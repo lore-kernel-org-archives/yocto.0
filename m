@@ -1,56 +1,60 @@
-Return-Path: <sbabic@denx.de>
+Return-Path: <parkch98@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 18804E00994; Wed,  4 Apr 2018 04:39:13 -0700 (PDT)
+	id 75330E00997; Wed,  4 Apr 2018 04:55:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [212.18.0.9 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (parkch98[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 105AAE008A2
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2018 04:39:10 -0700 (PDT)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 40GPB51y9tz1qyLX;
-	Wed,  4 Apr 2018 13:39:09 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-	by mail.m-online.net (Postfix) with ESMTP id 40GPB51NTtz1qql4;
-	Wed,  4 Apr 2018 13:39:09 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new,
-	port 10024)
-	with ESMTP id QAT6wy2rMD2l; Wed,  4 Apr 2018 13:39:08 +0200 (CEST)
-Received: from babic.homelinux.org (host-88-217-136-221.customer.m-online.net
-	[88.217.136.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPS;
-	Wed,  4 Apr 2018 13:39:08 +0200 (CEST)
-Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
-	by babic.homelinux.org (Postfix) with ESMTP id B0B0B45403CF;
-	Wed,  4 Apr 2018 13:39:07 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
-Received: from babic.homelinux.org ([127.0.0.1])
-	by localhost (mail.babic.homelinux.org [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id GWIG1kKOi6pG; Wed,  4 Apr 2018 13:39:05 +0200 (CEST)
-Received: from [192.168.178.132] (papero.fritz.box [192.168.178.132])
-	by babic.homelinux.org (Postfix) with ESMTP id EECE14540325;
-	Wed,  4 Apr 2018 13:39:04 +0200 (CEST)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Stefano Babic <sbabic@denx.de>
-Message-ID: <dbf53d93-c574-19e6-92b0-7624c4de5c4d@denx.de>
-Date: Wed, 4 Apr 2018 13:39:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBD65E008E4
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2018 04:55:52 -0700 (PDT)
+Received: by mail-wm0-f53.google.com with SMTP id b127so39575046wmf.5
+	for <yocto@yoctoproject.org>; Wed, 04 Apr 2018 04:55:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=q/geKhbBV9/YJs67Dhe0qlbKfEKAoqbaKClQJ+cFHr8=;
+	b=Dlc5xOrN6w4oIPv3AOo9WyHsZCUXisYRd+8zbAsynQ9Xv9lFN45dCzy47F5ddY3J5h
+	bpWV/1mEnc3JG9E3IDHk8jy1GKBvrMo2pmFjjPI/dOIgca3MSGEmdtrQtSDP46IFFn1a
+	0aFz3EsU51pmnJovgs00Qg/qrqJp3KzFTaKovr3KHBGy5QUAL5W9/skWoDq+aAPj5wGs
+	eWxt5weE+Y0fzCdzMeubAEoA3k8xK2fqf/SyUHDG1CFchYQQP8p6WU50fZ7oIU++mzuY
+	9zYybM1+Elc7duZG3MdMF21JoKChYCYHugQEO2gQjAUEwilrNfrp0oMmDeoNeLcf4gu5
+	650w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=q/geKhbBV9/YJs67Dhe0qlbKfEKAoqbaKClQJ+cFHr8=;
+	b=O3UbZU502K+qUxOWvqiEMR/bBgslMxvNPLl/2la0lfV8DSG7F/1JTxh1uxWYAQdGs0
+	F5afgy8RxoO4xGCWZN6nwcQsBzrzq5NymVa0buB+W0k+FP0XYkCjyRxst2YG+yvLD9Fm
+	6PUYUM7udWMpkOVY0b+yuczJZUeO2EmARbiqtZDzU11VYSLryE+joIcCPZvEnnCYAqe9
+	oOokKvjO/VP+YiD7zLF1tlmplozLAM1lQtoXzxkk0xFUTXzFd7LNGEpguZoFqW0+E7cB
+	0CmgJj3hhZUiUY6VzhIqPDM8tugPyD3yz8cTwhQqQjDE7catWGPSzksHp8U4hBTw+crk
+	kI4Q==
+X-Gm-Message-State: AElRT7EwVfLVmWt38jpyYxOEOYq9SOTrTF2CXOW93omMNKBSZCcNudl7
+	qnoU/PbA9hpDc4pAhlVXHUlA8rrbm5J7NWji+GY=
+X-Google-Smtp-Source: AIpwx48s9mcoHg+njArapJ0KhYULQXNd/jWZ7k0Gc4O8doZAqM03C8WqRQ8RDnEIrzV6BtczL8OBgYXyTurKdteS8z4=
+X-Received: by 10.28.109.88 with SMTP id i85mr6702519wmc.150.1522842951053;
+	Wed, 04 Apr 2018 04:55:51 -0700 (PDT)
 MIME-Version: 1.0
-Cc: Takashi Matsuzawa <tmatsuzawa@xevo.com>
-Subject: EFL : Status, WIP, interest...
+From: Chanho Park <parkch98@gmail.com>
+Date: Wed, 04 Apr 2018 11:55:40 +0000
+Message-ID: <CAPTzV17m6Av7fkRkLBD2cuv3zrMg+O6jbbJ=w=YcYaiCtavxnw@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Glibc fetch error inside proxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,38 +66,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Apr 2018 11:39:13 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 04 Apr 2018 11:55:53 -0000
+Content-Type: multipart/alternative; boundary="001a1147c4562577540569048184"
+
+--001a1147c4562577540569048184
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-I would like to know which is the status and the interest about EFL and
-Enlightment. I found the old Takashi's thread :
+Since the glibc revision has been moved to 2.26(d300041c), I couldn=E2=80=
+=99t fetch
+the glibc source properly. It seemed the glibc repository has a problem
+when cloning it inside http proxy. According to the mirrors.bbclass, the
+mirror of the glibc can be downloaded by
+http://downloads.yoctoproject.org/mirror/sources. My question is when the
+mirror can be updated to particular version.
 
-https://lists.yoctoproject.org/pipermail/yocto/2017-February/034588.html
+Best Regards,
+Chanho Park
 
-I have seen that Takashi did already a lot of work starting a
-meta-efl-rebuilding (maybe to be added to http://layers.openembedded.org
-?). This allows to build EFL and Enlightment, I tested the EFL image and
-I have crash when Enlightment is started - some work should be done.
-Anyway, I think it could be great to have a further graphic environment
-into OE, in cases QT could not be used and/or other frameworks are not
-suitable for embedded.
+--001a1147c4562577540569048184
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Takashi, can you tell me some notes about the current status and what
-you think it should be done ? Do you plan to maintain this layer or you
-stop with it ? I am sure this are topic interesting for other OE's users..
+<div dir=3D"auto">Hi,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Si=
+nce the glibc revision has been moved to 2.26(d300041c), I couldn=E2=80=99t=
+ fetch the glibc source properly. It seemed the glibc repository has a prob=
+lem when cloning it inside http proxy. According to the mirrors.bbclass, th=
+e mirror of the glibc can be downloaded by <a href=3D"http://downloads.yoct=
+oproject.org/mirror/sources">http://downloads.yoctoproject.org/mirror/sourc=
+es</a>. My question is when the mirror can be updated to particular version=
+.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Best Regards,</div><di=
+v dir=3D"auto">Chanho Park</div>
 
-Thanks,
-Stefano
-
-
--- 
-=====================================================================
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=====================================================================
-
+--001a1147c4562577540569048184--
