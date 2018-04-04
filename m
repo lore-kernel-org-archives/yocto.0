@@ -1,66 +1,66 @@
-Return-Path: <daniel@fooishbar.org>
+Return-Path: <grsandeep85@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 11F3FE00C25; Mon,  2 Apr 2018 15:18:30 -0700 (PDT)
+	id D434BE008A2; Wed,  4 Apr 2018 09:58:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.52 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (grsandeep85[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A854E00843
-	for <yocto@yoctoproject.org>; Mon,  2 Apr 2018 15:18:28 -0700 (PDT)
-Received: by mail-wm0-f52.google.com with SMTP id t67so8990813wmt.0
-	for <yocto@yoctoproject.org>; Mon, 02 Apr 2018 15:18:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
+Received: from mail-qk0-f180.google.com (mail-qk0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B7B0E006B4
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2018 09:58:18 -0700 (PDT)
+Received: by mail-qk0-f180.google.com with SMTP id g7so11021795qkm.1
+	for <yocto@yoctoproject.org>; Wed, 04 Apr 2018 09:58:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=w8vD06iYET2vhA1NzbVGd30p2myjxfsz75jNitO8CA4=;
-	b=mb5AycWK2e0Ztcd+o/VLvL0rAFFNPgiKcCNH2IbQ3CMDvfJiaz+/ILIeJEQYuenrSR
-	au9e5qldW/mWj7jlwOdEWuJQ4XpfoCqdf7fatDRUxXRRnjTglK1iz78Xp2qZ9gng9ft8
-	hZ2wjTxr/1/oZbOM36Jz02t7ebz3vBWTyV72UOv1YdwpGM+yW28hJlUBnAbrKG++6n5U
-	acIQMK0aZ+dFJhVwXlDO5Oag9Q2tIt38JS1sYcDLKHNBnifRTDd6G854lgnGji0IPFV8
-	BCEfNb3mNdnZLKZ9q+8ZB7y+pz/JofvCQDZtNMRnbzw9x1Lyme5qpixeP/7PmQvottvu
-	x2Hg==
+	:cc; bh=SMJp339yYyvSWOQyTs1VtBV+oYUBubiLkBcvJAjwSXo=;
+	b=dD17TqY89jTSPZ+q9yYxTBPhZe8sWYemIvZ9XAac6bgyGTX5YqJ+ggH7Mr4j9yzIcu
+	YTxVNKVPgz6K+CLpAwtkgmLwIkcxvGcuezOoKSji37o15HD33WOh7mLAMsJPyPgcjZ/V
+	c/SMSWChcH7cds521VyGoeDfkDYEw6gmBIMaAO/9tJNa6TXIKasP5qhj05IC8iDKBNbe
+	EJeaBdMdrIkfNZBB+1nNk5GfWnXVfbWb0cBH9D2oHl9bYlNkmDDNFz20chuPZa5cYDQT
+	150EtHm0AJ1QQo2D2deBtGu5dRr/+A37xq6sZOzCrSzP36Yc0xRDHNJ35+fKMNc0O4aQ
+	FWcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=w8vD06iYET2vhA1NzbVGd30p2myjxfsz75jNitO8CA4=;
-	b=OTFLC5yHF1uMo21iG86Wpx8egqpCRvGhBp0Jo5tmh9bDjeWXtq9Ak44fFYFcB1Xlal
-	KjYf1VeHL9YTAgQUjO7ZxVirFKlfs0b3+10p5Pi5IDJwYPpx37rHT/CWadqrRzlhmPzs
-	rYXukglQSKtjXWPFk+SWPELgS1xRqqdnyjJ0P934AENANGbVhA66ntgbtvXJ1uBKi9go
-	lJMYugXyJE5ZCpmbnKRXmBUkjR9D9JSXvahFGa2L2wBjg1bbyxC/cOOkuGV/WsB91MFB
-	frIkXaSfVrQkQYAF3igMT8N62u+8SLdoLjNCDQszQpNgJhphb3APEGug6HAd3ulqNClv
-	Y26A==
-X-Gm-Message-State: ALQs6tDwmMw3VQSjRzeDYFSwESMkbyxgVNt930CtHWBheJ3BpjcmgRcu
-	8rm0NYuOmVZLmWnL+kzEkQVyD4CkZVrHg1iWJEputQ==
-X-Google-Smtp-Source: AIpwx4+zgKlHJB1jixh3fMvN/OH4m9zcmKIjVilK4DKd6NRToyXAWOsJXjEm6FUSucSK5GZtVsCUhAKVrGLTxI2pebk=
-X-Received: by 10.46.70.18 with SMTP id t18mr7073975lja.62.1522707507905; Mon,
-	02 Apr 2018 15:18:27 -0700 (PDT)
+	:message-id:subject:to:cc;
+	bh=SMJp339yYyvSWOQyTs1VtBV+oYUBubiLkBcvJAjwSXo=;
+	b=K62MJWGlXXDEe5iO/9gibA7cruvtMj50J3OMnrf6zW5Jlk9XC2HxFhlURLNVn3I5FJ
+	eo94XRbRPcMQ4OBWsZ/WKGO6vNB7XIEH2mrvvcfZeXf9Yz+3uGx1tf7QvrZy4iiaJGL7
+	/LFADj7PssoawdTnykEs8ktse7c7O2ne6mCsyaxZXcmzLfsIuWg3g/UzNNfshiba80Dt
+	v8XA8Dixjlg8htQ0n/aX5lBHBybfRhuNtek+VGT1JdGgHR5PuoLE+1F3Mc4Xb3W0UlQM
+	cGr2Exlw1jHEQVt4BbWM7EvkJQanZ1pNHJzCKt3VINyqLnWb01r4FyI/NEhOSo74OFo2
+	8EyQ==
+X-Gm-Message-State: ALQs6tCwcIFSGIBc6LNqqc2ohcNUaijEHmclCWAE1lNAsjab/zXwCELC
+	iq7N82EyJBigF2XfseaniMCm9dU14u5ZP3kNfNo=
+X-Google-Smtp-Source: AIpwx48bsQ955+QCVKplECJMJ0d/haw452U1uFgrZQJoAqMtLuFCAoYWV+MTr73HbBDPvIaJzYjsqIRwTgNaDZ0L7iU=
+X-Received: by 10.55.174.7 with SMTP id x7mr24432968qke.218.1522861098216;
+	Wed, 04 Apr 2018 09:58:18 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.46.82.210 with HTTP; Mon, 2 Apr 2018 15:18:27 -0700 (PDT)
-In-Reply-To: <20180402220913.GA29264@linux-uys3>
-References: <CALbNGRRaocTSP5c0SsvUgPWxV0uMw2BBHD=fv5W1nCLdDC3FQw@mail.gmail.com>
-	<CALbNGRTBhbEZNPffkPMK1AqsvU-v055mSC=GVhgZzptDc=eb1Q@mail.gmail.com>
-	<20180402211218.GA28631@linux-uys3>
-	<CALbNGRRPXoM72Pudd13N2uWVLdXQJqhisibav9-w_xKf+p-ykQ@mail.gmail.com>
-	<20180402220913.GA29264@linux-uys3>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Mon, 2 Apr 2018 23:18:27 +0100
-Message-ID: <CAPj87rNgeAqku5hjT22=vehJL=1SXiSgCnPZ4b86oXNt2P2WMA@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-X-Mailman-Approved-At: Wed, 04 Apr 2018 09:50:27 -0700
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [Mesa-dev] VC4 not working for me with mesa 17.3.7 - was [meta-raspberrypi] VC4 not working for me with mesa 17.3.7
+Received: by 10.200.102.141 with HTTP; Wed, 4 Apr 2018 09:58:17 -0700 (PDT)
+In-Reply-To: <MAXPR01MB0348308E57E30FA8D6824DCB91A60@MAXPR01MB0348.INDPRD01.PROD.OUTLOOK.COM>
+References: <MAXPR01MB0348308E57E30FA8D6824DCB91A60@MAXPR01MB0348.INDPRD01.PROD.OUTLOOK.COM>
+From: "Sandeep G.R" <grsandeep85@gmail.com>
+Date: Wed, 4 Apr 2018 10:58:17 -0600
+Message-ID: <CAKP9-Shb3ZfAKf8sf29d=imSJCsJkxF0_rbWhYAGkcWe53uC1w@mail.gmail.com>
+To: Aditya Tayade <Aditya.Tayade@kpit.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: ERROR: problem:package openssh-7.6p1-r0.i586 conflicts with dropbear provided by dropbear-2017.75-r0.i586
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,62 +72,140 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Apr 2018 22:18:30 -0000
+X-List-Received-Date: Wed, 04 Apr 2018 16:58:19 -0000
+Content-Type: multipart/alternative; boundary="94eb2c06bc78cd339f056908bad9"
+
+--94eb2c06bc78cd339f056908bad9
 Content-Type: text/plain; charset="UTF-8"
+
+Add this to local.conf
+
+PACKAGE_EXCLUDE += " packagegroup-core-ssh-dropbear"
+
+*Thanks,*
+*Sandeep*
+
+
+On Mon, Apr 2, 2018 at 4:38 AM, Aditya Tayade <Aditya.Tayade@kpit.com>
+wrote:
+
+> Hi,
+>
+>
+> I trying to build core-image-sato using yocto 2.5 with new package openssh.
+>
+>
+> Added openssh entry in the local.conf file as follows:
+>
+> IMAGE_INSTALL_append = "openssh"
+>
+>
+> But facing some conflicts error. Please refer attached log file for more
+> information.
+>
+>
+> Could you please help to resolve the issue. I need to use use openssh for
+> ssh rather than dropbear.
+>
+>
+>
+> Regards,
+>
+> Aditya Tayade
+> This message contains information that may be privileged or confidential
+> and is the property of the KPIT Technologies Ltd. It is intended only for
+> the person to whom it is addressed. If you are not the intended recipient,
+> you are not authorized to read, print, retain copy, disseminate,
+> distribute, or use this message or any part thereof. If you receive this
+> message in error, please notify the sender immediately and delete all
+> copies of this message. KPIT Technologies Ltd. does not accept any
+> liability for virus infected mails.
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--94eb2c06bc78cd339f056908bad9
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Trevor,
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif;color:rgb(7,55,99)">Add this to local.conf</div><div cla=
+ss=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif;color:=
+rgb(7,55,99)"><br></div><div class=3D"gmail_default"><font color=3D"#073763=
+" face=3D"arial, helvetica, sans-serif">PACKAGE_EXCLUDE +=3D &quot; package=
+group-core-ssh-dropbear&quot;</font><br></div><div class=3D"gmail_extra"><b=
+r clear=3D"all"><div><div class=3D"gmail_signature"><div dir=3D"ltr"><div><=
+div dir=3D"ltr"><div><div dir=3D"ltr"><font color=3D"#073763" face=3D"arial=
+, helvetica, sans-serif"><b>Thanks,</b></font><div><font face=3D"arial, hel=
+vetica, sans-serif"><font color=3D"#073763"><b>Sandeep</b></font><br></font=
+><br></div></div></div></div></div></div></div></div>
+<br><div class=3D"gmail_quote">On Mon, Apr 2, 2018 at 4:38 AM, Aditya Tayad=
+e <span dir=3D"ltr">&lt;<a href=3D"mailto:Aditya.Tayade@kpit.com" target=3D=
+"_blank">Aditya.Tayade@kpit.com</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">
 
-On 2 April 2018 at 23:09, Trevor Woerner <twoerner@gmail.com> wrote:
-> On Mon 2018-04-02 @ 11:46:39 PM, Andreas M=C3=BCller wrote:
->> > to my conf/local.conf has glmark2-es2 running, and chromium-x11 is run=
-ning
->> > accelerated out-of-the-box (i.e. I don't have to install the egl/gles
->> > libraries it builds itself).
->> Cool - have not seen it running without issues for very long time...
->
-> Yes, this is a very nice side effect of your digging into this apparently
-> un-related issue! :-)
->
-> In my own layers I had a .bbappend that was copying the chromium-built
-> egl/gles libraries to the target, but it doesn't look like this is needed
-> anymore. I posted complete information here (as part of an issue you had
-> originally opened):
->
->         https://github.com/OSSystems/meta-browser/pull/82#issuecomment-35=
-3528110
 
-Right, you shouldn't need that at all. It's unlikely to do any good.
-If it does solve anything, we'd love to hear about what so we can try
-to fix it, like with this one.
 
->> > I'm re-building my rpi3-64 image to see if things are better there too=
- under
->> > vc4.
->> You'll let me know I guess...
->
-> Absolutely! But, you know chromium... I'll need an hour or two... ;-)
-> (my image has chromium, glmark2, mesa-demos, directfb, directfb-examples,=
- Qt,
-> and a bunch of Qt demos. sadly, the directfb examples always work, it's
-> everything else that's a coin-toss!! haha)
 
-Right, Weston/etc would've worked fine as well: this is solely broken
-on X11 with DRI3 disabled.
+<div dir=3D"ltr">
+<div id=3D"gmail-m_-321754330222620506divtagdefaultwrapper" dir=3D"ltr" sty=
+le=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-se=
+rif,EmojiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,Noto=
+ColorEmoji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbo=
+ls">
+<p style=3D"margin-top:0px;margin-bottom:0px">Hi,</p>
+<p style=3D"margin-top:0px;margin-bottom:0px"><br>
+</p>
+<p style=3D"margin-top:0px;margin-bottom:0px">I trying to build core-image-=
+sato using yocto 2.5 with new package openssh.</p>
+<p style=3D"margin-top:0px;margin-bottom:0px"><br>
+</p>
+<p style=3D"margin-top:0px;margin-bottom:0px">Added openssh entry in the lo=
+cal.conf file as follows:<br>
+</p>
+<p style=3D"margin-top:0px;margin-bottom:0px"><span>IMAGE_INSTALL_append =
+=3D &quot;</span>openssh&quot;</p>
+<p style=3D"margin-top:0px;margin-bottom:0px"><br>
+</p>
+<p style=3D"margin-top:0px;margin-bottom:0px">But facing some conflicts err=
+or. Please refer attached log file for more information.</p>
+<p style=3D"margin-top:0px;margin-bottom:0px"><br>
+</p>
+<p style=3D"margin-top:0px;margin-bottom:0px">Could you please help to reso=
+lve the issue. I need to use use openssh for ssh rather than
+<span>dropbear</span>.</p>
+<p style=3D"margin-top:0px;margin-bottom:0px"><br>
+</p>
+<p style=3D"margin-top:0px;margin-bottom:0px"><br>
+</p>
+<p style=3D"margin-top:0px;margin-bottom:0px">Regards,</p>
+<p style=3D"margin-top:0px;margin-bottom:0px">Aditya Tayade<br>
+</p>
+</div>
+This message contains information that may be privileged or confidential an=
+d is the property of the KPIT Technologies Ltd. It is intended only for the=
+ person to whom it is addressed. If you are not the intended recipient, you=
+ are not authorized to read, print,
+ retain copy, disseminate, distribute, or use this message or any part ther=
+eof. If you receive this message in error, please notify the sender immedia=
+tely and delete all copies of this message. KPIT Technologies Ltd. does not=
+ accept any liability for virus
+ infected mails.
+</div>
 
->> > I guess the patch is to address some of the other things you were seei=
-ng?
->> No - after enabling dri3 all I tested so far was perfectly fine. But
->> maybe other graphic drivers are affected.
->
-> Now I'm confused: is the patch needed?
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div></div>
 
-Yes and no. It only affects DRI2. Merging the patch fixes DRI2. Using
-DRI3 avoids the problem altogether, and is better to be doing anyway.
-If the recipes are going to continue to offer the option to disable
-DRI3 and go DRI2-only with X11, then making sure that's fixed is
-prudent. But the default should very definitely be DRI3.
-
-Cheers,
-Daniel
-
+--94eb2c06bc78cd339f056908bad9--
