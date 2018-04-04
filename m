@@ -1,61 +1,43 @@
-Return-Path: <kratsg@gmail.com>
+Return-Path: <stephano.cetola@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DDF58E00994; Wed,  4 Apr 2018 08:48:52 -0700 (PDT)
+	id DB932E00938; Wed,  4 Apr 2018 09:00:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kratsg[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.181 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f181.google.com (mail-io0-f181.google.com
-	[209.85.223.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7111AE00903
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2018 08:48:52 -0700 (PDT)
-Received: by mail-io0-f181.google.com with SMTP id q84so26897965iod.10
-	for <yocto@yoctoproject.org>; Wed, 04 Apr 2018 08:48:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=KfNz1NAXlibGq1q+vlHiGhfV6KCT2MSh5bX8C5ZUHNQ=;
-	b=J93F0/8bgxyTB/Mug31xjS1Dvsf8VoMa0ngFPTyNq/XCyjX48goo7FKaPAD1ONDnXP
-	bpLdcTokFSv8bZgw7tcC/XFMv2OV7OdrvxNCoYQoyxLN4VMl1vKV/Sw7QOjN0R/ITGl1
-	hr8qgkSNVbVJsnp1VfZsRqSEYKN2vQxiN8LjnIZtQQDJovG/AdC316sLwb2UN+ZOXvwc
-	NePi2nXZXt1qN8qmu/jIJTkVDFjByhOvomhhK2reqRP9dR3BMa6kDKSKFG6O0ntJTNMF
-	frjMyPSgyq4o+wIHKRCCy9gWUEQKA2w8n0jNiSkNGeMs5dA3fHn1F1RQHIuAGRFO0E7G
-	TMuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=KfNz1NAXlibGq1q+vlHiGhfV6KCT2MSh5bX8C5ZUHNQ=;
-	b=YZQ9WO9wH8YFdylCP49sdcsuhJBCA+RirEdmIZfZ5Rcq/Fd6Ahh2ECr1K1zgVkG9qm
-	wxXSw9FNgo2PmPSxSU+7pm1A05MN3Kkw+yc+vgDvSIAlz1vlL+bwbmdwubi76GTFFTgi
-	btP9o5YJfizBPO1jtzmd2vImg5eJvjegefDfFz2ZgDW4GNplZqm3regQOxRa9jup7bO8
-	88KJbrccj74QT0LWvUzCjaTitYuk1/WURvH0HFeav9kN2T25S2U2I9JOZ1GIrBN5CLHr
-	1WLnLlVxcEABeEG87cLcYL9vBMVmXw3FO6CsKNeiHKagGalpzV4AbC+EonvgRWKrFPt0
-	DXFw==
-X-Gm-Message-State: ALQs6tAItgkdleXSJ4UszMZdE+RWOAAg0pCkSpfldvdDVQdb79a+qtGp
-	ogKIPBBeGLq+QcU0ydH5KP868vK3Kf0vGscPW3jo8A==
-X-Google-Smtp-Source: AIpwx49c97wwsi/BIcpEqS1oKX1YbJJMhiMBO6CkZ2LTJTcVgN0W30ay6NbGaaIMJ4Y6NKh8t1Rf6VaJOMFt+7DZ7uE=
-X-Received: by 10.107.133.95 with SMTP id h92mr4177394iod.227.1522856931610;
-	Wed, 04 Apr 2018 08:48:51 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E94A9E008A2
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2018 09:00:23 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	04 Apr 2018 09:00:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.48,407,1517904000"; d="scan'208";a="31508600"
+Received: from linux.intel.com ([10.54.29.200])
+	by orsmga006.jf.intel.com with ESMTP; 04 Apr 2018 09:00:22 -0700
+Received: from klrodema-mobl1.amr.corp.intel.com (unknown [10.254.2.120])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by linux.intel.com (Postfix) with ESMTPS id 96F095801FC;
+	Wed,  4 Apr 2018 09:00:22 -0700 (PDT)
+To: Giordon Stark <kratsg@gmail.com>
+References: <CAFzUWGn0awUAJcBMmUMu5F4ctNUWrR_soGB2NG0zXrMiq3VesQ@mail.gmail.com>
+	<0a16a908-ee2f-7cc2-cdf7-680d4965579e@linux.intel.com>
+	<CAFzUWGnPs4EmJDQ4bTaPmQXwd+5-KDfwB7jJZmhgDD-3eoqv0g@mail.gmail.com>
+From: Stephano Cetola <stephano.cetola@linux.intel.com>
+Message-ID: <bd4ee205-2017-f257-2eed-ecf798da4a37@linux.intel.com>
+Date: Wed, 4 Apr 2018 09:00:21 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
+	Gecko/20100101 Thunderbird/52.7.0
 MIME-Version: 1.0
-From: Giordon Stark <kratsg@gmail.com>
-Date: Wed, 04 Apr 2018 15:48:41 +0000
-Message-ID: <CAFzUWG=mpaXdjF09r8x_rYbxyVq6we5XB8uSbkXtEche0LWeJw@mail.gmail.com>
-To: "N:" <yocto@yoctoproject.org>
-Subject: Setting a custom hostname using git revisions?
+In-Reply-To: <CAFzUWGnPs4EmJDQ4bTaPmQXwd+5-KDfwB7jJZmhgDD-3eoqv0g@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Kernel configuration patches not persisting?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,44 +49,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Apr 2018 15:48:52 -0000
-Content-Type: multipart/alternative; boundary="001a113f139c73d476056907c2f7"
+X-List-Received-Date: Wed, 04 Apr 2018 16:00:24 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
---001a113f139c73d476056907c2f7
-Content-Type: text/plain; charset="UTF-8"
+On 4/4/18 8:39 AM, Giordon Stark wrote:
+> Hi Stephano,
+> 
+> I see. A large part of this confusion probably comes from the fact that
+> they're both using kconfig indeed. ARCH_ZYNQMP is actually used by the
+> u-boot-xlnx as well (maybe that makes things even more confusing).
+> 
+> Do both u-boot and linux-yocto accept kernel fragments? Is a kernel
+> config fragment detected by bitbake as a file ending in *.cfg and a full
+> config as a file called "defconfig"? This distinction isn't super clear
+> in the manual.
 
-Hi all,
+linux-yocto supports using the .cfg to add configuration fragments for
+different targets or for multiple configurations on the same target. You
+can check out meta/classes/kernel-yocto.bbclass to see how this is done.
 
-I looked at the bitbake manual, but if I have a custom layer that's checked
-out at a specific revision, how can I access the variable containing the
-revision to embed it into the hostname variable?
+The u-boot recipe is much simpler and any changes to the configuration
+is probably going to be added in your u-boot tree
+(configs/[MACHINE]_defconfig). At least that's how I've done it in the past.
 
-I would want to append the hostname variable in:
-recipes-core/base-files/base-files_%.bbappend which is currently set to
-"${MACHINE}".
+I know that Freescale uses UBOOT_CONFIG for their boards, but I've never
+looked into doing this for a custom board.
 
-Instead, I would like something along the lines of
-"${MACHINE}-${LAYER_REV}".
+> 
+> In the meantime, I will add a bbappend and a kernel config fragment to
+> recipes-kernel/linux/ and report back.
 
-Thanks,
+Sounds good!
 
-Giordon
--- 
-Giordon Stark
+--S
 
---001a113f139c73d476056907c2f7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> 
+> G
+> 
+> On Wed, Apr 4, 2018 at 10:32 AM Stephano Cetola
+> <stephano.cetola@linux.intel.com
+> <mailto:stephano.cetola@linux.intel.com>> wrote:
+> 
+>     On 4/4/18 7:48 AM, Giordon Stark wrote:
+>     > Hi all,
+>     >
+>     > I have a custom board with custom kernel config changes. Because of
+>     > that, I append the u-boot recipe as well:
+>     >
+>     >
+>     https://github.com/kratsg/meta-l1calo/blob/master/recipes-bsp/u-boot/u-boot-xlnx_%25.bbappend 
+>     >
+>     > with my machine.h and defconfig files
+>     >
+>     here: https://github.com/kratsg/meta-l1calo/tree/master/recipes-bsp/u-boot/files/gfex-prototype4 
+>     >
+>     > I find that when I make a change in the defconfig, such as
+>     > "CONFIG_CPU_IDLE=n", bitbake properly recompiles all the necessary
+>     > components... however, when I look at the running kernel
+>     configuration:
+>     >
+>     > root@gfex-prototype4:~# cat /proc/config.gz | gunzip > run.config
+>     > root@gfex-prototype4:~# vi run.config
+>     > root@gfex-prototype4:~# cat run.config | grep CONFIG_CPU_IDLE
+>     > CONFIG_CPU_IDLE=y
+>     > # CONFIG_CPU_IDLE_GOV_LADDER is not set
+>     > CONFIG_CPU_IDLE_GOV_MENU=y
+>     >
+>     > it seems my change still wasn't propagated? I looked at the
+>     instructions
+>     > here
+>     >
+>     (https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html#changing-the-configuration)
+>     > but I'm not sure I want to duplicate my defconfig file into a second
+>     > location to bbappend the linux-yocto.
+>     >
+>     > Have I done something wrong? Am I missing something else?
+>     >
+>     > Giordon
+>     > --
+>     > Giordon Stark
+> 
+>     Hey Giordon,
+> 
+>     It looks like you're confusing two topics: u-boot and kernel
+>     configuration.
+> 
+>     Both u-boot and the kernel use kconfig. This can confuse folks that are
+>     new to bootloader/kernel work.
+> 
+>     Looking at your layer, you're actually interested in changing the
+>     kernel's configuration rather than u-boot. For example, on the
+>     gfex-prototype4 defconfig, you set ARCH_ZYNQMP, which is a kernel config
+>     for the Xilinx Zynq boards. You probably want to add a bbappend for your
+>     kernel and add the defconfig to that recipe.
+> 
+>     Cheers,
+>     Stephano
+> 
+> -- 
+> Giordon Stark
 
-<div dir=3D"ltr">Hi all,<div><br></div><div>I looked at the bitbake manual,=
- but if I have a custom layer that&#39;s checked out at a specific revision=
-, how can I access the variable containing the revision to embed it into th=
-e hostname variable?</div><div><br></div><div>I would want to append the ho=
-stname variable in: recipes-core/base-files/base-files_%.bbappend which is =
-currently set to &quot;${MACHINE}&quot;.</div><div><br></div><div>Instead, =
-I would like something along the lines of &quot;${MACHINE}-${LAYER_REV}&quo=
-t;.</div><div><br></div><div>Thanks,</div><div><br></div><div>Giordon</div>=
-</div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"g=
-mail_signature"><div dir=3D"ltr">Giordon Stark</div></div>
 
---001a113f139c73d476056907c2f7--
