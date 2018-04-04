@@ -1,43 +1,67 @@
-Return-Path: <stephano.cetola@linux.intel.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DB932E00938; Wed,  4 Apr 2018 09:00:24 -0700 (PDT)
+	id EDAB1E00A75; Wed,  4 Apr 2018 09:14:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (armccurdy[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.180 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E94A9E008A2
-	for <yocto@yoctoproject.org>; Wed,  4 Apr 2018 09:00:23 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	04 Apr 2018 09:00:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.48,407,1517904000"; d="scan'208";a="31508600"
-Received: from linux.intel.com ([10.54.29.200])
-	by orsmga006.jf.intel.com with ESMTP; 04 Apr 2018 09:00:22 -0700
-Received: from klrodema-mobl1.amr.corp.intel.com (unknown [10.254.2.120])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTPS id 96F095801FC;
-	Wed,  4 Apr 2018 09:00:22 -0700 (PDT)
-To: Giordon Stark <kratsg@gmail.com>
-References: <CAFzUWGn0awUAJcBMmUMu5F4ctNUWrR_soGB2NG0zXrMiq3VesQ@mail.gmail.com>
-	<0a16a908-ee2f-7cc2-cdf7-680d4965579e@linux.intel.com>
-	<CAFzUWGnPs4EmJDQ4bTaPmQXwd+5-KDfwB7jJZmhgDD-3eoqv0g@mail.gmail.com>
-From: Stephano Cetola <stephano.cetola@linux.intel.com>
-Message-ID: <bd4ee205-2017-f257-2eed-ecf798da4a37@linux.intel.com>
-Date: Wed, 4 Apr 2018 09:00:21 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
-	Gecko/20100101 Thunderbird/52.7.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f180.google.com (mail-wr0-f180.google.com
+	[209.85.128.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6147DE008F2
+	for <yocto@yoctoproject.org>; Wed,  4 Apr 2018 09:14:15 -0700 (PDT)
+Received: by mail-wr0-f180.google.com with SMTP id u46so23632270wrc.11
+	for <yocto@yoctoproject.org>; Wed, 04 Apr 2018 09:14:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=Q6QyUvHYMmub4nfrwA1MTSKFA0WDiXOoPLlIOWFuMgA=;
+	b=LdTk6CTkzQhCAE4l4vX5SQ2SOyVwv5tuy8bvWlrVzGF351yNCKF7HRbK/viWC13SgX
+	F+9Sr0B6tJAqp+BXp4pjg3tqsNTUHk3XDaAWnrP6rLmZIi98QZrca9VhLhegZ+xtjIjo
+	K+B1YoAqGlH8GkVULWAezy7TFM7lWvY4qPoOr6MgxTNLBbnNXlH9TyMPZgOT2LQP5eaO
+	+234pGBbw4BU/2K7UsHQWcE5ijofKTGs8sBKO+VXwcrYMI0jYUwOWrYsuLiU7b5JviLc
+	Pr4atQLlpAv8nrA19RjnH8aZSIHxlABPQ3fLiiHN4Qm+XEgl/njIfX+TXwAr0mikvF9z
+	pf9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=Q6QyUvHYMmub4nfrwA1MTSKFA0WDiXOoPLlIOWFuMgA=;
+	b=pghKztQw6djwDB40eqMJ/hW8ufrzXmHIzZHQOqfV65HTp+6fCYMSMak40im0zyOt30
+	qj9NGURPbUSaYBbI5wLwfO4mTET+f/Itk8mS3wXCWD/lKqYcHe3qsmo7Un/eGTbOQmG0
+	UsD00N3PQEuoHnTjCvFW2XLG+1sXmx2LdBTvecrv/6tUOGD32CynFHwMTE5i6QzXN9kN
+	SaD8wYaFCd4W3mvMHoMbnES8ZS6O9eVZSD2RG1aJvmTqftz6wgTfIU5aqVEO8UvUcVSK
+	tlmOATVBYDCzafEvquavK5WqT6tZLDs78YNCkMiXUvxwxOkAol4F0Jdze66ZKzqXRirq
+	Hh3Q==
+X-Gm-Message-State: AElRT7EM8umfb/U5SRyIW7M9ZjPfwPvyTNAxCd7umUhKwc/2Dh6a33Bl
+	fIaZn8NXg2TimAahcdax6w97JrYh6NkccLrUoGd7cQ==
+X-Google-Smtp-Source: AIpwx48ibRSqYjVTtofkwclIpPBdycfPHq0isn71gLijQgNBMOY9w1xVt5F57jEQt6V3gOy0a1+2UragEsmJXSk168Y=
+X-Received: by 10.223.177.213 with SMTP id r21mr14367979wra.89.1522858455128; 
+	Wed, 04 Apr 2018 09:14:15 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAFzUWGnPs4EmJDQ4bTaPmQXwd+5-KDfwB7jJZmhgDD-3eoqv0g@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Kernel configuration patches not persisting?
+Received: by 10.223.163.65 with HTTP; Wed, 4 Apr 2018 09:14:14 -0700 (PDT)
+In-Reply-To: <CAGfzNijGSQsde9dRgxHvDmTu-LB2JaGS2D+U98J+a8=25MJ5xg@mail.gmail.com>
+References: <CAGfzNig_csD+EtAShEV=zWpBhk7bfUdK3jWEq80T2pBYxcV7aQ@mail.gmail.com>
+	<CAJ86T=VyAkzuVkfipRk+ofhr7b8fb1-9zMq2L2QdUswxEiapAQ@mail.gmail.com>
+	<CAGfzNijGSQsde9dRgxHvDmTu-LB2JaGS2D+U98J+a8=25MJ5xg@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Wed, 4 Apr 2018 09:14:14 -0700
+Message-ID: <CAJ86T=WU2VakRhBpTZ6gRjSZdrntJpm25p45jbB3aZnt=J5ATA@mail.gmail.com>
+To: Chris Elledge <celledge@digitallumens.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: binutils 2.29.1 ARM Thumb kernel problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,106 +73,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Apr 2018 16:00:24 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 04 Apr 2018 16:14:17 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On 4/4/18 8:39 AM, Giordon Stark wrote:
-> Hi Stephano,
-> 
-> I see. A large part of this confusion probably comes from the fact that
-> they're both using kconfig indeed. ARCH_ZYNQMP is actually used by the
-> u-boot-xlnx as well (maybe that makes things even more confusing).
-> 
-> Do both u-boot and linux-yocto accept kernel fragments? Is a kernel
-> config fragment detected by bitbake as a file ending in *.cfg and a full
-> config as a file called "defconfig"? This distinction isn't super clear
-> in the manual.
+On Wed, Apr 4, 2018 at 8:06 AM, Chris Elledge
+<celledge@digitallumens.com> wrote:
+> Thanks for the feedback. I rolled back binutils to 2.28.0 by copying the
+> yocto-2.3.3 binutils recipe directory into my custom layer. That has
+> resolved the issue.
+>
+> I can confirm that binutils 2.29.0 also has the problem. I went from
+> yocto-2.3 to 2.4.2 so I hadn't tried binutils 2.29.0 previously. There are
+> also reports that openssl and libavcodec are broken when targeting an ARM
+> Thumb2 platform with binutils 2.29.*
 
-linux-yocto supports using the .cfg to add configuration fragments for
-different targets or for multiple configurations on the same target. You
-can check out meta/classes/kernel-yocto.bbclass to see how this is done.
+Yes, that makes sense. The binutils change is in both 2.29.0 and
+2.29.1 (and also in 2.30.0).
 
-The u-boot recipe is much simpler and any changes to the configuration
-is probably going to be added in your u-boot tree
-(configs/[MACHINE]_defconfig). At least that's how I've done it in the past.
+The next useful experiment would be to stay with binutils 2.29.1 and
+apply a patch to revert the one particular commit which caused the
+change in behaviour:
 
-I know that Freescale uses UBOOT_CONFIG for their boards, but I've never
-looked into doing this for a custom board.
-
-> 
-> In the meantime, I will add a bbappend and a kernel config fragment to
-> recipes-kernel/linux/ and report back.
-
-Sounds good!
-
---S
-
-> 
-> G
-> 
-> On Wed, Apr 4, 2018 at 10:32 AM Stephano Cetola
-> <stephano.cetola@linux.intel.com
-> <mailto:stephano.cetola@linux.intel.com>> wrote:
-> 
->     On 4/4/18 7:48 AM, Giordon Stark wrote:
->     > Hi all,
->     >
->     > I have a custom board with custom kernel config changes. Because of
->     > that, I append the u-boot recipe as well:
->     >
->     >
->     https://github.com/kratsg/meta-l1calo/blob/master/recipes-bsp/u-boot/u-boot-xlnx_%25.bbappend 
->     >
->     > with my machine.h and defconfig files
->     >
->     here: https://github.com/kratsg/meta-l1calo/tree/master/recipes-bsp/u-boot/files/gfex-prototype4 
->     >
->     > I find that when I make a change in the defconfig, such as
->     > "CONFIG_CPU_IDLE=n", bitbake properly recompiles all the necessary
->     > components... however, when I look at the running kernel
->     configuration:
->     >
->     > root@gfex-prototype4:~# cat /proc/config.gz | gunzip > run.config
->     > root@gfex-prototype4:~# vi run.config
->     > root@gfex-prototype4:~# cat run.config | grep CONFIG_CPU_IDLE
->     > CONFIG_CPU_IDLE=y
->     > # CONFIG_CPU_IDLE_GOV_LADDER is not set
->     > CONFIG_CPU_IDLE_GOV_MENU=y
->     >
->     > it seems my change still wasn't propagated? I looked at the
->     instructions
->     > here
->     >
->     (https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html#changing-the-configuration)
->     > but I'm not sure I want to duplicate my defconfig file into a second
->     > location to bbappend the linux-yocto.
->     >
->     > Have I done something wrong? Am I missing something else?
->     >
->     > Giordon
->     > --
->     > Giordon Stark
-> 
->     Hey Giordon,
-> 
->     It looks like you're confusing two topics: u-boot and kernel
->     configuration.
-> 
->     Both u-boot and the kernel use kconfig. This can confuse folks that are
->     new to bootloader/kernel work.
-> 
->     Looking at your layer, you're actually interested in changing the
->     kernel's configuration rather than u-boot. For example, on the
->     gfex-prototype4 defconfig, you set ARCH_ZYNQMP, which is a kernel config
->     for the Xilinx Zynq boards. You probably want to add a bbappend for your
->     kernel and add the defconfig to that recipe.
-> 
->     Cheers,
->     Stephano
-> 
-> -- 
-> Giordon Stark
-
+  https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;a=commitdiff;h=e645cf40b111daef4518a58547de577eb9379ccb
 
