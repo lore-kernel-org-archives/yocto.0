@@ -1,52 +1,101 @@
-Return-Path: <vpalacio@intemotechnologies.com>
+Return-Path: <rksyeung@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53A72E00BE9; Fri,  6 Apr 2018 04:05:05 -0700 (PDT)
+	id A7D9AE00B66; Fri,  6 Apr 2018 04:40:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [217.116.26.70 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rksyeung[at]hotmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust *      [40.92.7.66 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 532 seconds by postgrey-1.32 at yocto-www;
-	Fri, 06 Apr 2018 04:05:02 PDT
-Received: from relayout02-q01.dominioabsoluto.net
-	(relayout02-q01.dominioabsoluto.net [217.116.26.70])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B07C5E005A9
-	for <yocto@yoctoproject.org>; Fri,  6 Apr 2018 04:05:02 -0700 (PDT)
-Received: from relayout02-redir.dominioabsoluto.net
-	(relayout02-redir.dominioabsoluto.net [217.116.26.75])
-	by relayout02.dominioabsoluto.net (Postfix) with ESMTP id
-	40Hc7X4LXVzlXMk
-	for <yocto@yoctoproject.org>; Fri,  6 Apr 2018 12:56:08 +0200 (CEST)
-Received: from [192.168.1.31] (58.red-217-125-30.staticip.rima-tde.net
-	[217.125.30.58])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: vpalacio.intemotechnologies.com)
-	by relayout02-dsp.dominioabsoluto.net (Postfix) with ESMTPSA id
-	40Hc7X1wTkzlXMk
-	for <yocto@yoctoproject.org>; Fri,  6 Apr 2018 12:56:08 +0200 (CEST)
-To: yocto@yoctoproject.org
-From: Victor Palacio <vpalacio@intemotechnologies.com>
-Message-ID: <94147db7-3923-ae04-d8c7-23df0d6afe96@intemotechnologies.com>
-Date: Fri, 6 Apr 2018 12:56:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 32393 seconds by postgrey-1.32 at yocto-www;
+	Fri, 06 Apr 2018 04:40:46 PDT
+Received: from NAM03-CO1-obe.outbound.protection.outlook.com
+	(mail-oln040092007066.outbound.protection.outlook.com [40.92.7.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3275BE005A9
+	for <yocto@yoctoproject.org>; Fri,  6 Apr 2018 04:40:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=etELw+HlpcAPGVXJKmejWeAsIepzIB4NeItfPrqBarg=;
+	b=YpGs1WpfQpbZuv8xJJL8bZF/uBkKWMfNNn6ZoiWpz86PezmNlu3WSxt7GOydA16AGfwxdfNyDAKfj8DjvZH1fHD89rSkTBlWfSBUwBYi3DmqRMV0Nw4BUIx4q2EUXUWE7Fi7Aog2HqkXM7n95IW6mSUGaH6n+9ponrNAHiK1hqlFQ76ODyQSdzawtWVdpXf6defQOfH/N7N1u6I6SvxK7ypFprxDnwiw/moKeFjw78v7Uufea5WbiO1rGt1oGOTvamC3SFDQWZml5Xwn0cqtEHsA/EAUcNOVzCzvOo7ppLXkS6rLolRp6oL/TPOmdZ0RpqzoTSUdG/n0T30c4OIFZg==
+Received: from BY2NAM03FT029.eop-NAM03.prod.protection.outlook.com
+	(10.152.84.56) by BY2NAM03HT242.eop-NAM03.prod.protection.outlook.com
+	(10.152.85.16) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.653.8;
+	Thu, 5 Apr 2018 22:07:58 +0000
+Received: from MWHPR19MB1183.namprd19.prod.outlook.com (10.152.84.56) by
+	BY2NAM03FT029.mail.protection.outlook.com (10.152.84.213) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.653.8 via Frontend Transport; Thu, 5 Apr 2018 22:07:58 +0000
+Received: from MWHPR19MB1183.namprd19.prod.outlook.com
+	([fe80::74e9:81a5:f67b:ae41]) by
+	MWHPR19MB1183.namprd19.prod.outlook.com
+	([fe80::74e9:81a5:f67b:ae41%17]) with mapi id 15.20.0631.013;
+	Thu, 5 Apr 2018 22:07:57 +0000
+From: Raymond Yeung <rksyeung@hotmail.com>
+To: Robert Berger <yocto.user.mailinglist@gmail.com>
+Thread-Topic: [yocto] Problem with packages during "devtool build"
+Thread-Index: AQHTzH12aB4neOupkEGhBC8TIHhB3aPxbNIPgAD4OACAABFJooAADgwAgAA2Byk=
+Date: Thu, 5 Apr 2018 22:07:57 +0000
+Message-ID: <MWHPR19MB1183493B585CA11B864C269BC5BB0@MWHPR19MB1183.namprd19.prod.outlook.com>
+References: <MWHPR19MB11832923DB3D62F88A7A0BB5C5BB0@MWHPR19MB1183.namprd19.prod.outlook.com>
+	<MWHPR19MB118384708AABF27804EBDD66C5BB0@MWHPR19MB1183.namprd19.prod.outlook.com>
+	<CAMKF1sqodNOr9oxCTgqapjaZAxYjqLj3s86_MNj74i5D-1orQw@mail.gmail.com>
+	<MWHPR19MB11833298715A5E9438C791C8C5BB0@MWHPR19MB1183.namprd19.prod.outlook.com>,
+	<b5b5d8b1-efde-7e10-5ff1-404b2b407d89@gmail.com>
+In-Reply-To: <b5b5d8b1-efde-7e10-5ff1-404b2b407d89@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:7BEAE0E33F8151CF30399665A3E32B7CCD49677468B38DD956DF254B9305E678;
+	UpperCasedChecksum:2E07B77251F348D4A4CF6C441CD956DAAE70F6D644CBE83A3A7A3815CACF1F37;
+	SizeAsReceived:7441; Count:47
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [twTTzMPxFwHfqRmzG+2fl9K7fxHF9yjw]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; BY2NAM03HT242;
+	7:/HqxwjkuzU1kjv3uhiJCwkmrssDA4yiKWNe32Zza28byQv/twyjXOq+ZPBSAbBNXE1uhb4QWfOhv+vRBN2RI1VjVx1EOIARWRCJdZHTginK3Wle27b6D242GK9buPFz2Empy61G+n7CMkaOsg3YjHeIksdD6q4cxHf9JqI9O+dR0KljtrocRTIVwT72wANUPsyFvjLtUFwu9nt0vOPPYsUMSn8rETohjx2/pgYPRF5vJx+TL9t442ustwtbqRApJ
+x-incomingheadercount: 47
+x-eopattributedmessage: 0
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101448)(1601125374)(1701031045);
+	SRVR:BY2NAM03HT242; 
+x-ms-traffictypediagnostic: BY2NAM03HT242:
+x-ms-office365-filtering-correlation-id: 224a2bf9-5a84-4e82-63a1-08d59b41b085
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
+	SRVR:BY2NAM03HT242; BCL:0; PCL:0; RULEID:; SRVR:BY2NAM03HT242; 
+x-forefront-prvs: 06339BAE63
+x-forefront-antispam-report: SFV:NSPM; SFS:(7070007)(98901004); DIR:OUT;
+	SFP:1901; SCL:1; SRVR:BY2NAM03HT242;
+	H:MWHPR19MB1183.namprd19.prod.outlook.com; FPR:; SPF:None; LANG:;
+x-microsoft-antispam-message-info: Wv79LMcAxsKJVHfVas6/FaYvd5M33yGYBQifIcWNxToQT5sX803MAcfQkb7w8XjqFlr5KJuN0mT9fQtb0GVy9bVnkb8oS9TNyG+cbtjWYPjP4DR+HOIvFYTy3JlC4LhGN0Vu/mgj2pMfNErXM50CQh6+sxXJ490M0Jp8stI8tkABxRkepQpKBT/Bh39ShPzd
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-X-CTCH-Score: 0.000
-X-CTCH-ScoreCust: 0.000
-X-PostalOut-Country: IP: 217.125.30.58 | Country: ES
-X-PostalOut-Information: AntiSPAM and AntiVIRUS on relayout02
-X-PostalOut-MsgID: 40Hc7X1wTkzlXMk.A14FC
-X-PostalOut-SpamCheck: no es spam, Unknown
-X-PostalOut-From: vpalacio@intemotechnologies.com
-X-PostalOut-Watermark: 1523616968.53177@3I4kxXS/BfGqQgs7W+Kumg
-Subject: glib-initial do_install fails at 'oe_runmake csu/subdir_lib' (Rocko)
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 224a2bf9-5a84-4e82-63a1-08d59b41b085
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Apr 2018 22:07:57.8879 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY2NAM03HT242
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Problem with packages during "devtool build"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,473 +107,144 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Apr 2018 11:05:05 -0000
-Content-Type: multipart/alternative;
-	boundary="------------7D3F94E115C4094135499B95"
+X-List-Received-Date: Fri, 06 Apr 2018 11:40:48 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MWHPR19MB1183493B585CA11B864C269BC5BB0MWHPR19MB1183namp_"
 
---------------7D3F94E115C4094135499B95
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_MWHPR19MB1183493B585CA11B864C269BC5BB0MWHPR19MB1183namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
-
-I cannot buid core-image-minimal for a imx25pdk machine (rocko). 
-Building stops at glibc-initial install.
-
-Building for another machine with morty (imx25pdk is not available in 
-morty)  works.
-
-I assume is related to this part of the recipe (glibc-initial.inc):
-
-do_install () {
-     ******
-         oe_runmake csu/subdir_lib
-         mkdir -p ${D}${libdir}/
-         install -m 644 csu/crt[1in].o ${D}${libdir}
-     ******
-}
-
-Host machine is an Ubuntu 16.04...
-Linux vpalacio-laptop 4.4.0-116-generic #140-Ubuntu SMP Mon Feb 12 
-21:23:04 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
-
-Googling for the issue, I've found this post that looks like the same 
-issue: https://lists.yoctoproject.org/pipermail/yocto/2015-May/025018.html
-
-Build Configuration:
-BB_VERSION           = "1.36.0"
-BUILD_SYS            = "x86_64-linux"
-NATIVELSBSTRING      = "universal"
-TARGET_SYS           = "arm-fsl-linux-gnueabi"
-MACHINE              = "imx25pdk"
-DISTRO               = "fsl-x11"
-DISTRO_VERSION       = "2.4"
-TUNE_FEATURES        = "arm armv5 thumb dsp"
-TARGET_FPU           = "soft"
-meta
-meta-poky            = "HEAD:fdeecc901196bbccd7c5b1ea4268a2cf56764a62"
-meta-oe
-meta-multimedia      = "HEAD:dacfa2b1920e285531bec55cd2f08743390aaf57"
-meta-freescale       = "HEAD:d6141ea291a1ac9ab8fb1dd1110d408f840fda57"
-meta-freescale-3rdparty = "HEAD:62de01743c9233ea718de22991c47b73a78b4857"
-meta-freescale-distro = "HEAD:0ec6d7e206705702b5b534611754de0787f92b72"
+Hi Robert,
 
 
-*********************************************************************************************************+
-
-| NOTE: make PARALLELMFLAGS=-j 4 SHELL=/bin/bash csu/subdir_lib
-| make -r PARALLELMFLAGS="-j 4" -C ../git objdir=`pwd` csu/subdir_lib
-| make[1]: Entering directory 
-'/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/git'
-| make -j 4 subdir=csu -C csu ..=../ subdir_lib
-| make[2]: Entering directory 
-'/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/git/csu'
-| /bin/bash ../scripts/gen-libc-abis \
-|      arm-fsl-linux-gnueabi \
-|      < ../libc-abis > 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/libc-abis.hT
-| LC_ALL=C gawk -f ../scripts/abi-versions.awk 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/Versions.all 
- > 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/abi-versions.hT
-| gawk -f ../scripts/gen-tunables.awk ../elf/dl-tunables.list > 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/dl-tunable-list.T
-| .././scripts/mkinstalldirs 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/csu
-| mv -f 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/abi-versions.hT 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/abi-versions.h
-| /bin/bash ../scripts/move-if-change 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/libc-abis.hT 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/libc-abis.h
-
-| ../Makeconfig:1137: recipe for target 
-'/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/dl-tunable-list.stmp' 
-failed
-| make[2]: *** 
-[/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/dl-tunable-list.stmp] 
-Error 1
-| mkdir -p -- 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/csu
-| make[2]: *** Waiting for unfinished jobs....
-| (files="../crypt/Banner ../libidn/Banner ../nptl/Banner 
-../resolv/Banner";                \
-|  if test -n "$files"; then                \
-|    printf '"Available extensions:\\n"\n';        \
-|    sed -e '/^#/d' -e 's/^[[:space:]]*/    /'        \
-|        -e 's/^\(.*\)$/\"\1\\n\"/' $files;        \
-|  fi) > 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/csu/version-info.hT
-| mv -f 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/csu/version-info.hT 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/csu/version-info.h
-| touch 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/libc-abis.stamp
-| make[2]: Leaving directory 
-'/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/git/csu'
-| Makefile:235: recipe for target 'csu/subdir_lib' failed
-| make[1]: *** [csu/subdir_lib] Error 2
-| make[1]: Leaving directory 
-'/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/git'
-| Makefile:9: recipe for target 'csu/subdir_lib' failed
-| make: *** [csu/subdir_lib] Error 2
-| ERROR: oe_runmake failed
-| WARNING: 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/temp/run.do_install.30316:1 
-exit 1 from 'exit 1'
-| ERROR: Function failed: do_install (log file is located at 
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/temp/log.do_install.30316)
-ERROR: Task 
-(/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/sources/poky/meta/recipes-core/glibc/glibc-initial_2.26.bb:do_install) 
-failed with exit code '1'
-NOTE: Tasks Summary: Attempted 731 tasks of which 699 didn't need to be 
-rerun and 1 failed.
-NOTE: Writing buildhistory
-
-Summary: 1 task failed:
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/sources/poky/meta/recipes-core/glibc/glibc-initial_2.26.bb:do_install
-
--- 
-
-Victor M. Palacio Tárrega
-
-vpalacio@intemotechnologies.com <mailto:icarra@intemotechnologies.com>
-
-**
-
-*Intemo Technologies****- Idetech Europe, S.L.*
-
-Mov.: (+34)  670 03 66 08
-
-Tel:     (+34) 93 336 16 51
-
-C/ Montserrat Roig, nº 23, Pol. Ind. Pedrosa
-
-08908 Hospitalet de Llobregat
-
-BARCELONA (SPAIN)
-
-| SmartCards |RFID |NFC |Biometría |
-
-Este correo electrónico puede contener información reservada 
-y/o confidencial, destinada exclusivamente para el uso del destinatario. 
-Si Vd no es el destinatario o la persona encargada de distribuirlo, no 
-está autorizado a copiar o entregar esta comunicación a ninguna otra 
-persona. Si ha recibido este correo electrónico por error, le rogamos 
-nos lo notifique inmediatamente por  teléfono o por el mismo medio. Gracias.
-
-Privilege/Confidential Information may be contained in this e-mail and 
-is intended only for use of the addressee. If you are not  the 
-addressee, or the person responsible for delivering it to the person 
-addressed, you may not copy or deliver this to anyone else. If you 
-receive this e-mail by mistake, please notify us immediately by 
-telephone or e-mail. Thank you.
+I'd already read the out-of-tree example; it's the first thing I checked.
 
 
---------------7D3F94E115C4094135499B95
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+After some changes in 3rd party Makefile, I'm running into errors in do_com=
+pile step.  My new question now is, how the Makefile picks up cross-compile=
+ INC path, as well as the LINKER path.
+
+
+The variable KERNEL_SRC isn't enough to provide the needed clues for the ab=
+ove.  And it'd be a bad idea to hardcode paths in 3rd party code.
+
+
+Is there an easy way to have devtool pass in more variables?  And what vari=
+ables should we use?
+
+
+Raymond
+
+
+________________________________
+From: Robert Berger <yocto.user.mailinglist@gmail.com>
+Sent: Thursday, April 5, 2018 11:48 AM
+To: Raymond Yeung
+Cc: Khem Raj; yocto@yoctoproject.org
+Subject: Re: [yocto] Problem with packages during "devtool build"
+
+Hi,
+
+On 2018-04-05 21:02, Raymond Yeung wrote:
+> "inherit module" is already in recipes/cgosapi.bb file.  In fact, as I
+> use devtool to "add" the recipe to workspace layer, this .bb file is
+> autogenerated.  I only added the last line that sets KERNELDIR that 3rd
+> Party software's Makefile uses.
+
+Did you have a look at this out of tree kernel module example?
+
+https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-skeleton/recipes-=
+kernel/hello-mod
+
+You might want to use this makefile and add your stuff there.
+
+Regards,
+
+Robert
+
+--_000_MWHPR19MB1183493B585CA11B864C269BC5BB0MWHPR19MB1183namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Hello,</p>
-    <p>I cannot buid core-image-minimal for a imx25pdk machine (rocko).
-      Building stops at glibc-initial install.</p>
-    <p>Building for another machine with morty (imx25pdk is not
-      available in morty)  works.<br>
-    </p>
-    <p>I assume is related to this part of the recipe
-      (glibc-initial.inc):</p>
-    <p>do_install () {<br>
-          ******<br>
-              oe_runmake csu/subdir_lib<br>
-              mkdir -p ${D}${libdir}/<br>
-              install -m 644 csu/crt[1in].o ${D}${libdir}<br>
-          ******<br>
-      }<br>
-    </p>
-    Host machine is an Ubuntu 16.04...<br>
-    Linux vpalacio-laptop 4.4.0-116-generic #140-Ubuntu SMP Mon Feb 12
-    21:23:04 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux<br>
-    <br>
-    Googling for the issue, I've found this post that looks like the
-    same issue: 
-    <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/pipermail/yocto/2015-May/025018.html">https://lists.yoctoproject.org/pipermail/yocto/2015-May/025018.html</a><br>
-    <p>Build Configuration:<br>
-      BB_VERSION           = "1.36.0"<br>
-      BUILD_SYS            = "x86_64-linux"<br>
-      NATIVELSBSTRING      = "universal"<br>
-      TARGET_SYS           = "arm-fsl-linux-gnueabi"<br>
-      MACHINE              = "imx25pdk"<br>
-      DISTRO               = "fsl-x11"<br>
-      DISTRO_VERSION       = "2.4"<br>
-      TUNE_FEATURES        = "arm armv5 thumb dsp"<br>
-      TARGET_FPU           = "soft"<br>
-      meta                 <br>
-      meta-poky            =
-      "HEAD:fdeecc901196bbccd7c5b1ea4268a2cf56764a62"<br>
-      meta-oe              <br>
-      meta-multimedia      =
-      "HEAD:dacfa2b1920e285531bec55cd2f08743390aaf57"<br>
-      meta-freescale       =
-      "HEAD:d6141ea291a1ac9ab8fb1dd1110d408f840fda57"<br>
-      meta-freescale-3rdparty =
-      "HEAD:62de01743c9233ea718de22991c47b73a78b4857"<br>
-      meta-freescale-distro =
-      "HEAD:0ec6d7e206705702b5b534611754de0787f92b72"<br>
-    </p>
-    <p><br>
-    </p>
-    <p>*********************************************************************************************************+</p>
-    <p>| NOTE: make PARALLELMFLAGS=-j 4 SHELL=/bin/bash csu/subdir_lib<br>
-      | make -r PARALLELMFLAGS="-j 4" -C ../git objdir=`pwd`
-      csu/subdir_lib<br>
-      | make[1]: Entering directory
-'/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/git'<br>
-      | make -j 4 subdir=csu -C csu ..=../ subdir_lib<br>
-      | make[2]: Entering directory
-'/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/git/csu'<br>
-      | /bin/bash ../scripts/gen-libc-abis \<br>
-      |      arm-fsl-linux-gnueabi \<br>
-      |      &lt; ../libc-abis &gt;
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/libc-abis.hT<br>
-      | LC_ALL=C gawk -f ../scripts/abi-versions.awk
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/Versions.all
-      &gt;
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/abi-versions.hT<br>
-      | gawk -f ../scripts/gen-tunables.awk ../elf/dl-tunables.list &gt;
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/dl-tunable-list.T<br>
-      | .././scripts/mkinstalldirs
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/csu<br>
-      | mv -f
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/abi-versions.hT
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/abi-versions.h<br>
-      | /bin/bash ../scripts/move-if-change
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/libc-abis.hT
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/libc-abis.h<br>
-    </p>
-    <p>| ../Makeconfig:1137: recipe for target
-'/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/dl-tunable-list.stmp'
-      failed<br>
-      | make[2]: ***
-[/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/dl-tunable-list.stmp]
-      Error 1<br>
-      | mkdir -p --
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/csu<br>
-      | make[2]: *** Waiting for unfinished jobs....<br>
-      | (files="../crypt/Banner ../libidn/Banner ../nptl/Banner
-      ../resolv/Banner";                \<br>
-      |  if test -n "$files"; then                \<br>
-      |    printf '"Available extensions:\\n"\n';        \<br>
-      |    sed -e '/^#/d' -e 's/^[[:space:]]*/    /'        \<br>
-      |        -e 's/^\(.*\)$/\"\1\\n\"/' $files;        \<br>
-      |  fi) &gt;
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/csu/version-info.hT<br>
-      | mv -f
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/csu/version-info.hT
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/csu/version-info.h<br>
-      | touch
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/build-arm-fsl-linux-gnueabi/libc-abis.stamp<br>
-      | make[2]: Leaving directory
-'/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/git/csu'<br>
-      | Makefile:235: recipe for target 'csu/subdir_lib' failed<br>
-      | make[1]: *** [csu/subdir_lib] Error 2<br>
-      | make[1]: Leaving directory
-'/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/git'<br>
-      | Makefile:9: recipe for target 'csu/subdir_lib' failed<br>
-      | make: *** [csu/subdir_lib] Error 2<br>
-      | ERROR: oe_runmake failed<br>
-      | WARNING:
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/temp/run.do_install.30316:1
-      exit 1 from 'exit 1'<br>
-      | ERROR: Function failed: do_install (log file is located at
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/build/tmp/work/armv5e-fsl-linux-gnueabi/glibc-initial/2.26-r0/temp/log.do_install.30316)<br>
-      ERROR: Task
-(/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/sources/poky/meta/recipes-core/glibc/glibc-initial_2.26.bb:do_install)
-      failed with exit code '1'<br>
-      NOTE: Tasks Summary: Attempted 731 tasks of which 699 didn't need
-      to be rerun and 1 failed.<br>
-      NOTE: Writing buildhistory<br>
-      <br>
-      Summary: 1 task failed:<br>
-       
-/media/vpalacio/LINUX_DEV/fsl-community-bsp-mx25pdk/sources/poky/meta/recipes-core/glibc/glibc-initial_2.26.bb:do_install<br>
-      <br>
-    </p>
-    <div class="moz-signature">-- <br>
-      <title></title>
-      <link rel="important stylesheet"
-        href="chrome://messagebody/skin/messageBody.css">
-      <br>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <meta name="Generator" content="Microsoft Word 14 (filtered
-        medium)">
-      <!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]-->
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Texto de globo Car";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";
-	mso-fareast-language:EN-US;}
-span.EstiloCorreo17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.TextodegloboCar
-	{mso-style-name:"Texto de globo Car";
-	mso-style-priority:99;
-	mso-style-link:"Texto de globo";
-	font-family:"Tahoma","sans-serif";}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal"><span lang="CA"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span lang="CA"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:10.0pt;color:#1F497D;mso-fareast-language:ES"
-            lang="FR">Victor M. Palacio Tárrega</span><span
-            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:10.0pt;color:gray;mso-fareast-language:ES"><a
-              href="mailto:icarra@intemotechnologies.com"><span
-                style="color:gray" lang="FR">vpalacio@intemotechnologies.com</span></a></span><span
-            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><b><span
-              style="font-size:10.0pt;color:#99CC00;mso-fareast-language:ES"
-              lang="EN-US"> </span></b><span
-            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><b><span
-              style="font-size:10.0pt;color:#BDD63D;mso-fareast-language:ES"
-              lang="EN-US">Intemo Technologies</span></b><b><span
-              style="font-size:10.0pt;color:#99CC00;mso-fareast-language:ES"
-              lang="EN-US"> </span></b><b><span
-              style="font-size:10.0pt;color:#262626;mso-fareast-language:ES"
-              lang="EN-US">- Idetech Europe, S.L.</span></b><span
-            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES"
-            lang="EN-US">Mov.: (+34)  670 03 66 08</span><span
-            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES"
-            lang="EN-US">Tel:     (+34) 93 336 16 51</span><span
-            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES"
-            lang="EN-US">C/ Montserrat Roig, nº 23, Pol. Ind. </span><span
-style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES">Pedrosa</span><span
-            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES">08908
-            Hospitalet de Llobregat </span><span
-            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES">BARCELONA
-            (SPAIN)</span><span style="mso-fareast-language:ES"
-            lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:10.0pt;color:#BDD63D;mso-fareast-language:ES">|
-          </span><span
-            style="font-size:10.0pt;color:#0D0D0D;mso-fareast-language:ES">SmartCards
-          </span><span
-            style="font-size:10.0pt;color:#BDD63D;mso-fareast-language:ES">|</span><span
-style="font-size:10.0pt;color:#0D0D0D;mso-fareast-language:ES"> RFID </span><span
-style="font-size:10.0pt;color:#BDD63D;mso-fareast-language:ES">|</span><span
-style="font-size:10.0pt;color:#0D0D0D;mso-fareast-language:ES"> NFC </span><span
-style="font-size:10.0pt;color:#BDD63D;mso-fareast-language:ES">|</span><span
-style="font-size:10.0pt;color:#0D0D0D;mso-fareast-language:ES">
-            Biometría </span><span
-            style="font-size:10.0pt;color:#BDD63D;mso-fareast-language:ES">|     
-          </span><span
-            style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES">    
-            <!--<img border=0 width=50 height=37 id="Imagen_x0020_2" src="mailbox-message://nobody@local%20folders/Inbox#62206599?header=saveas&part=1.2&filename=image001.png" alt="cid:image003.png@01CDBD94.9106BDC0">-->
-          </span><span style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:10.0pt;color:#595959;mso-fareast-language:ES"> </span><span
-            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:8.5pt;color:#595959;mso-fareast-language:ES">Este
-            correo electrónico puede contener información reservada
-            y/o confidencial, destinada exclusivamente para el uso del
-            destinatario. Si Vd no es el destinatario o la persona
-            encargada de distribuirlo, no está autorizado a copiar o
-            entregar esta comunicación a ninguna otra persona. Si ha
-            recibido este correo electrónico por error, le rogamos nos
-            lo notifique inmediatamente por  teléfono o por el mismo
-            medio. </span><span
-            style="font-size:8.5pt;color:#595959;mso-fareast-language:ES"
-            lang="EN-US">Gracias.</span><span
-            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:8.5pt;color:#595959;mso-fareast-language:ES"
-            lang="EN-US"> </span><span style="mso-fareast-language:ES"
-            lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:8.5pt;color:#595959;mso-fareast-language:ES"
-            lang="EN-US">Privilege/Confidential Information may be
-            contained in this e-mail and is intended only for use of the
-            addressee. If you are not  the addressee, or the person
-            responsible for delivering it to the person addressed, you
-            may not copy or deliver this to anyone else. If you receive
-            this e-mail by mistake, please notify us immediately by
-            telephone or e-mail. </span><span
-            style="font-size:8.5pt;color:#595959;mso-fareast-language:ES">Thank
-            you.</span><span style="mso-fareast-language:ES"
-            lang="ES-TRAD"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span lang="CA"><o:p> </o:p></span></p>
-      </div>
-    </div>
-  </body>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">Hi Robert,</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">I'd already read the out-of-tree =
+example; it's the first thing I checked.</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">After some changes in 3rd party M=
+akefile, I'm running into errors in do_compile step. &nbsp;My new question =
+now is, how the Makefile picks up cross-compile INC path, as well as the LI=
+NKER path. &nbsp;</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">The variable KERNEL_SRC isn't eno=
+ugh to provide the needed clues for the above. &nbsp;And it'd be a bad idea=
+ to hardcode paths in 3rd party code.</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">Is there an easy way to have devt=
+ool pass in more variables? &nbsp;And what variables should we use?</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">Raymond</p>
+<br>
+<br>
+<div style=3D"color: rgb(0, 0, 0);">
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Robert Berger &lt;yoc=
+to.user.mailinglist@gmail.com&gt;<br>
+<b>Sent:</b> Thursday, April 5, 2018 11:48 AM<br>
+<b>To:</b> Raymond Yeung<br>
+<b>Cc:</b> Khem Raj; yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] Problem with packages during &quot;devtool buil=
+d&quot;</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Hi,<br>
+<br>
+On 2018-04-05 21:02, Raymond Yeung wrote:<br>
+&gt; &quot;inherit module&quot; is already in recipes/cgosapi.bb file. &nbs=
+p;In fact, as I <br>
+&gt; use devtool to &quot;add&quot; the recipe to workspace layer, this .bb=
+ file is <br>
+&gt; autogenerated. &nbsp;I only added the last line that sets KERNELDIR th=
+at 3rd <br>
+&gt; Party software's Makefile uses.<br>
+<br>
+Did you have a look at this out of tree kernel module example?<br>
+<br>
+<a href=3D"https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-skelet=
+on/recipes-kernel/hello-mod" id=3D"LPlnk696096" previewremoved=3D"true">htt=
+ps://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-skeleton/recipes-ker=
+nel/hello-mod</a><br>
+<br>
+You might want to use this makefile and add your stuff there.<br>
+<br>
+Regards,<br>
+<br>
+Robert<br>
+</div>
+</span></font></div>
+</div>
+</div>
+</body>
 </html>
 
---------------7D3F94E115C4094135499B95--
+--_000_MWHPR19MB1183493B585CA11B864C269BC5BB0MWHPR19MB1183namp_--
