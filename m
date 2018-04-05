@@ -1,17 +1,15 @@
-Return-Path: <farzanemostafa@yahoo.com>
+Return-Path: <MohammadJamal.Mohiuddin@ncr.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 059C8E00B30; Sun,  8 Apr 2018 06:09:32 -0700 (PDT)
+	id 234FAE00994; Thu,  5 Apr 2018 05:59:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (farzanemostafa[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.6.129.82 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [148.163.148.55 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,38 +18,96 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from sonic317-27.consmr.mail.bf2.yahoo.com
-	(sonic317-27.consmr.mail.bf2.yahoo.com [74.6.129.82])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 689D9E00A96
-	for <yocto@yoctoproject.org>; Sun,  8 Apr 2018 06:09:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1523192970; bh=zPfjfIc1dNjidxj8qBggyOcbqh7jJepv27s0K+EdCkw=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From:Subject;
-	b=JhaZuuG4LNsoYulDFZ3pJ02v17LJqcFb1ox6IOzKiUoNzBqLu+aMqz6tCklMkM7BU15lfJIXHmYrTsjSGMHhXJT7iE2Q7Vrf+iVfOxmpfV+3nY+4kvoWuEXjphLhhKVdMj1j7sZ906Rpeo6N5How8T/NYyuX9dmdywlKUVSY2zGPedfeor4Ay9UedX5EZEBc6KZt8H6aOnOve+TyU/U12kWpj7i5+NH5PaYBPJlJS7dhX9SETpE19rRIvLUuTn2QuQGdlKqOmN9qnF1YNVDR6fegX3dbfglSOjCv2JQGmoV/nmsxz08OwgtU3l8rouaM7vb6H8+rMgShKZnIrGpwUw==
-X-YMail-OSG: sFmp850VM1kinGHv36ofRfKEYpaBMWLLuafQLcBZ9ghVdHZYzPjv85tAIUx09qq
-	7BOZotl_CwZ82kkQKiN_Lf0GHY3hPsGNrI33vvzBrXMGFgmSfLh8mrxJpzkvtwdCUbQtZvJL_GDk
-	w673MOJVns7YqVvRVfK1FdDa5lhYtq6mf1qSCkkAul4edLUL_nbCuHBrrq3N4fi0sElSTjUihT_g
-	kmo6nIo1dcMQpHzDzccPix2D5BKmpZ7iq7rS2R2NU0eBi2J0obeZsO.tn7aXy0YEEV5GbNWZnXRP
-	X2eFmvEbAik87x.d7BgOY24zAUu395.lNbgR_AdybBLdcj99sk3QyaJ07wZuNfiQVhgXS8ODZF7c
-	ujSWSmROq0xQvZm9wsrz0aKkK8JiBB95IQp7UK5wXZgJxBkiFwLmqVOEUZbKNXagAFVCPBYbrIel
-	Ax8SAaSsf8s_kaKbtqc6rS8QouUIszIgMlfoDoD2MZ_IVjtK7EoIDu5o9HTx9s.n6WqmT
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic317.consmr.mail.bf2.yahoo.com with HTTP;
-	Sun, 8 Apr 2018 13:09:30 +0000
-Date: Sun, 8 Apr 2018 13:09:27 +0000 (UTC)
-From: Mostafa Farzane <farzanemostafa@yahoo.com>
-To: Anuj Mittal <anuj.mittal@intel.com>
-Message-ID: <1779056233.383965.1523192967392@mail.yahoo.com>
-In-Reply-To: <355c797a-a34b-2326-62bf-ca503edc82f5@intel.com>
-References: <674400918.88037.1523083601988.ref@mail.yahoo.com>
-	<674400918.88037.1523083601988@mail.yahoo.com>
-	<355c797a-a34b-2326-62bf-ca503edc82f5@intel.com>
+X-Greylist: delayed 4339 seconds by postgrey-1.32 at yocto-www;
+	Thu, 05 Apr 2018 05:59:33 PDT
+Received: from mx0a-00209e01.pphosted.com (mx0a-00209e01.pphosted.com
+	[148.163.148.55])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 009D9E00843
+	for <yocto@yoctoproject.org>; Thu,  5 Apr 2018 05:59:33 -0700 (PDT)
+Received: from pps.filterd (m0131214.ppops.net [127.0.0.1])
+	by mx0b-00209e01.pphosted.com (8.16.0.22/8.16.0.22) with SMTP id
+	w35BdUfX026000
+	for <yocto@yoctoproject.org>; Thu, 5 Apr 2018 07:47:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ncr.com;
+	h=from : to : subject :
+	date : message-id : content-type : mime-version; s=mail;
+	bh=LFBubKe9VcRZdY7MXyFSqKDlwY3dTyDCsqyRqqh3RLs=;
+	b=f7kU9mtpONT/yLRGROsyWmLCrtt8U9pyTSbM+WbK6WmNn77cot/5BPIG/goAnNMmP0BG
+	xxROe1Tj6+bdlUABeFM3LsHJ9GxeK0xjI59wmIWVAyiW1Rl19ejRqNrt1rLt9M/gUSWm
+	xi74VTjm16AiKvjA4mbCl8JGNCL9QcIRfd5/YhNR+Ttz5FaE2Ny2SIl2ToFYnZOSwEZm
+	RJj7Z1lMVVswDMUDzBj5B7G8F2/esj9kcBLdfHO18jTDzlbjBDv74wsOa8TsnOJjbhcR
+	97hecuj+pb4BXpyf3LaLtMcgNOEnrsBpfjdMtNUacpnPJ2xoZjVa7f6+fL8v7+iRXow0
+	lg== 
+Received: from nam01-bn3-obe.outbound.protection.outlook.com
+	(mail-bn3nam01lp0176.outbound.protection.outlook.com
+	[216.32.180.176])
+	by mx0b-00209e01.pphosted.com with ESMTP id 2h5gw4s1kp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
+	for <yocto@yoctoproject.org>; Thu, 05 Apr 2018 07:47:14 -0400
+Received: from CY1PR15MB0126.namprd15.prod.outlook.com (10.162.46.146) by
+	CY1PR15MB0859.namprd15.prod.outlook.com (10.169.22.137) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.653.12; Thu, 5 Apr 2018 11:47:11 +0000
+Received: from CY1PR15MB0126.namprd15.prod.outlook.com
+	([fe80::303b:a31e:e791:cc3a]) by
+	CY1PR15MB0126.namprd15.prod.outlook.com
+	([fe80::303b:a31e:e791:cc3a%16]) with mapi id 15.20.0631.013;
+	Thu, 5 Apr 2018 11:47:11 +0000
+From: "Mohammad, Jamal M" <MohammadJamal.Mohiuddin@ncr.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: No support for grubenv in efi mode
+Thread-Index: AdPM06YymWc2IkJJQbeVtH2piY1b1A==
+Date: Thu, 5 Apr 2018 11:47:11 +0000
+Message-ID: <CY1PR15MB012615EE6CDFA0885FC1A0B6F0BB0@CY1PR15MB0126.namprd15.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [32.66.192.216]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; CY1PR15MB0859;
+	7:rIH/bDcJeDuxfAtJYkEP89mKuhuAuxWJc9gH9SeMVzWxIcxv3M0A4OdDs7/4tWvcx2SrkRKI4ip0X/IsTBd5iFwm0n+40sQpbN2xEucSXB0mwonjws8yHLI5H9hmOg8xzpNSx0+ydEbPh0rGd75hH0ZTwOVMeuTjuGVrq5TLOjse2+tW11Zq1z8Ly9wrmVg43/6ngojxWEkHb1qsFuWDn2ERvvw6hB6E0+irFpdL/YZM97YHkJlc8gKN618b7PP1
+x-ms-exchange-antispam-srfa-diagnostics: SOS;
+x-ms-office365-filtering-correlation-id: 4d0c4e2d-7b20-48fb-8ed3-08d59aeaf821
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(5600026)(4604075)(3008032)(48565401081)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603328)(7153060)(7193020);
+	SRVR:CY1PR15MB0859; 
+x-ms-traffictypediagnostic: CY1PR15MB0859:
+x-from-ncr-tenant: Processed
+x-microsoft-antispam-prvs: <CY1PR15MB0859BFB9C115EEB56F425E05F0BB0@CY1PR15MB0859.namprd15.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(8211001083)(6040522)(2401047)(5005006)(8121501046)(3231221)(944501327)(52105095)(93006095)(93001095)(3002001)(10201501046)(6055026)(6041310)(20161123560045)(20161123564045)(20161123562045)(20161123558120)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(6072148)(201708071742011);
+	SRVR:CY1PR15MB0859; BCL:0; PCL:0; RULEID:; SRVR:CY1PR15MB0859; 
+x-forefront-prvs: 06339BAE63
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(376002)(39380400002)(396003)(346002)(39860400002)(366004)(199004)(189003)(3846002)(3280700002)(6116002)(790700001)(74316002)(3660700001)(7736002)(6506007)(25786009)(186003)(99286004)(5660300001)(2906002)(2900100001)(7696005)(53936002)(316002)(9686003)(54896002)(6306002)(6436002)(5640700003)(55016002)(68736007)(86362001)(5630700001)(8936002)(9326002)(97736004)(26005)(1730700003)(81156014)(486006)(8676002)(33656002)(5250100002)(2351001)(2501003)(81166006)(6916009)(66066001)(106356001)(476003)(478600001)(105586002)(14454004)(102836004)(72206003);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR15MB0859;
+	H:CY1PR15MB0126.namprd15.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: ncr.com does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: 5vU/3cdHOONCnaxM0NBbctIfUwZl7tZrcDAXOaYn5dKslotaS1g5dvUCOLDqIXTOfCn3b+ZqgvnUXA/XD9bhcfia9f4Yeq/nm2PvroU6RDkuJBx15/l3BgE6Kst4HheVFzZhUj5EI55QmOt8/Ztfr+LzT+ebm/rGUjeIf/tFxlYbkxNJzgAx+zKu26pPVbbDx/RvMXHB97+XiPJPeLRGsA6Jhn6Ar09Hu50WKgy259yJ6pNMEpfOe444pzlQCh8l3hPR7MWzN6VIrm8IT66qmbQE+t52N/KOnInklwz7sskqhIt3TWg5wxo+iF2LOojX+Tyg/yuiCG49emmZh7uMhUq0JUsz+nBwQRkFDYbw56IXD3qVRAGq6aCBJHWCSBWTmyFUYxAVGDLl4+LgJx2XEx5YsnF8qqyiSqdWuekP0m8=
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.11745 YMailNorrin Mozilla/5.0 (Windows NT 6.1; Win64;
-	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181
-	Safari/537.36
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Cannot add libsrtp to yocto image
+X-OriginatorOrg: ncr.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d0c4e2d-7b20-48fb-8ed3-08d59aeaf821
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Apr 2018 11:47:11.7360 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: ae4df1f7-611e-444f-897e-f964e1205171
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR15MB0859
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2018-04-05_06:, , signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	priorityscore=1501
+	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+	clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+	mlxlogscore=711 adultscore=0 classifier=spam adjust=0 reason=mlx
+	scancount=1 engine=8.0.1-1711220000 definitions=main-1804050125
+X-Mailman-Approved-At: Sun, 08 Apr 2018 13:41:55 -0700
+Subject: No support for grubenv in efi mode
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,172 +119,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 08 Apr 2018 13:09:32 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_383964_1491869618.1523192967390"
+X-List-Received-Date: Thu, 05 Apr 2018 12:59:35 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY1PR15MB012615EE6CDFA0885FC1A0B6F0BB0CY1PR15MB0126namp_"
 
-------=_Part_383964_1491869618.1523192967390
-Content-Type: text/plain; charset=UTF-8
+--_000_CY1PR15MB012615EE6CDFA0885FC1A0B6F0BB0CY1PR15MB0126namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-=20
-Thanks alot,
-I added=C2=A0TOOLCHAIN_TARGET_TASK =3D "libsrtp-staticdev" to my image inst=
-ead of libsrtp. But I get:
-=C2=A0* calculate_dependencies_for: Cannot satisfy the following dependenci=
-es for libsrtp-staticdev:=C2=A0*=C2=A0 =C2=A0 =C2=A0 libsrtp (=3D 1.5.2-r0)=
- *=C2=A0* opkg_solver_install: Cannot install package libsrtp-staticdev.
-    On Sunday, April 8, 2018, 2:33:26 PM GMT+4:30, Anuj Mittal <anuj.mittal=
-@intel.com> wrote: =20
-=20
- On 04/07/2018 02:46 PM, Mostafa Farzane wrote:
-> Hi,
-> I need to add libsrtp to my yocto image. So I added libsrtp to
-> "IMAGE_INSTALL". But I faced the following errors:
->=20
-> Unknown package 'libsrtp'.
->=20
-> Collected errors:
-> =C2=A0* opkg_solver_install: Cannot install package libsrtp.
+Hi Guys,
 
-That is because there's no package named libsrtp. Please see:
+I was trying to add grubenv to My Yocto Project in EFI Mode..By default the=
+ recipe grub-efi_2.02.bb doesn't create that, so I added the following code=
+:
 
-https://wiki.yoctoproject.org/wiki/Technical_FAQ#I.27ve_included_a_package_=
-in_my_image_but_files_I_expect_to_be_there_are_missing.2C_what.27s_the_issu=
-e.3F
+do_deploy_append_class-target() {
+grub-editenv grubenv create
+}
 
 
-$ oe-pkgdata-util list-pkg-files -p libsrtp
-libsrtp-dbg:
-libsrtp-dev:
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/aes.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/aes_cbc.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/aes_gcm_ossl.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/aes_icm.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/aes_icm_ossl.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/alloc.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/auth.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/cipher.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/config.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/crypto.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/crypto_kernel.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/crypto_math.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/crypto_types.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/cryptoalg.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/datatypes.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/ekt.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/err.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/getopt_s.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/gf2_8.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/hmac.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/integers.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/kernel_compat.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/key.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/null_auth.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/null_cipher.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/prng.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/rand_source.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/rdb.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/rdbx.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/rtp.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/rtp_priv.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/sha1.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/srtp.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/srtp_priv.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/stat.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/ut_sim.h
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/srtp/xfm.h
-libsrtp-staticdev:
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/lib64/libsrtp.a
- =20
+Running bitbake throws an error that grub-editenv: not found
 
-------=_Part_383964_1491869618.1523192967390
-Content-Type: text/html; charset=UTF-8
+What is the reason for this error and how can I add grubenv in efi mode ( G=
+RUB ).
+
+Thanks and Regards,
+Jamal
+
+--_000_CY1PR15MB012615EE6CDFA0885FC1A0B6F0BB0CY1PR15MB0126namp_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head></head><body><div style=3D"font-family:Helvetica Neue, Helvetic=
-a, Arial, sans-serif;font-size:13px;"><div></div>
-            <div><br></div><div><span><div style=3D"font-family: &quot;Helv=
-etica Neue&quot;, Helvetica, Arial, sans-serif;">Thanks alot,</div><div sty=
-le=3D"font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif=
-;"><br clear=3D"none"></div><div style=3D"font-family: &quot;Helvetica Neue=
-&quot;, Helvetica, Arial, sans-serif;">I added&nbsp;TOOLCHAIN_TARGET_TASK =
-=3D "libsrtp-staticdev" to my image instead of libsrtp. But I get:</div><di=
-v style=3D"font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-=
-serif;"><br clear=3D"none"></div><div style=3D"font-family: &quot;Helvetica=
- Neue&quot;, Helvetica, Arial, sans-serif;"><div>&nbsp;* calculate_dependen=
-cies_for: Cannot satisfy the following dependencies for libsrtp-staticdev:<=
-/div><div>&nbsp;*&nbsp; &nbsp; &nbsp; libsrtp (=3D 1.5.2-r0) *</div><div>&n=
-bsp;* opkg_solver_install: Cannot install package libsrtp-staticdev.</div><=
-/div></span><br></div>
-           =20
-            <div id=3D"yahoo_quoted_3361735987" class=3D"yahoo_quoted">
-                <div style=3D"font-family:'Helvetica Neue', Helvetica, Aria=
-l, sans-serif;font-size:13px;color:#26282a;">
-                   =20
-                    <div>
-                        On Sunday, April 8, 2018, 2:33:26 PM GMT+4:30, Anuj=
- Mittal &lt;anuj.mittal@intel.com&gt; wrote:
-                    </div>
-                    <div><br></div>
-                    <div><br></div>
-                    <div><div dir=3D"ltr">On 04/07/2018 02:46 PM, Mostafa F=
-arzane wrote:<div class=3D"yqt9460702117" id=3D"yqtfd31770"><br clear=3D"no=
-ne">&gt; Hi,<br clear=3D"none">&gt; I need to add libsrtp to my yocto image=
-. So I added libsrtp to<br clear=3D"none">&gt; "IMAGE_INSTALL". But I faced=
- the following errors:<br clear=3D"none">&gt; <br clear=3D"none">&gt; Unkno=
-wn package 'libsrtp'.<br clear=3D"none">&gt; <br clear=3D"none">&gt; Collec=
-ted errors:<br clear=3D"none">&gt; &nbsp;* opkg_solver_install: Cannot inst=
-all package libsrtp.</div><br clear=3D"none"><br clear=3D"none">That is bec=
-ause there's no package named libsrtp. Please see:<br clear=3D"none"><br cl=
-ear=3D"none"><a shape=3D"rect" href=3D"https://wiki.yoctoproject.org/wiki/T=
-echnical_FAQ#I.27ve_included_a_package_in_my_image_but_files_I_expect_to_be=
-_there_are_missing.2C_what.27s_the_issue.3F" target=3D"_blank">https://wiki=
-.yoctoproject.org/wiki/Technical_FAQ#I.27ve_included_a_package_in_my_image_=
-but_files_I_expect_to_be_there_are_missing.2C_what.27s_the_issue.3F</a><br =
-clear=3D"none"><br clear=3D"none"><br clear=3D"none">$ oe-pkgdata-util list=
--pkg-files -p libsrtp<br clear=3D"none">libsrtp-dbg:<br clear=3D"none">libs=
-rtp-dev:<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/ae=
-s.h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/aes_cbc=
-.h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/aes_gcm_=
-ossl.h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/aes_=
-icm.h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/aes_i=
-cm_ossl.h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/a=
-lloc.h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/auth=
-.h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/cipher.h=
-<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/config.h<b=
-r clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/crypto.h<br =
-clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/crypto_kernel.=
-h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/crypto_ma=
-th.h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/crypto=
-_types.h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/cr=
-yptoalg.h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/d=
-atatypes.h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/=
-ekt.h<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/err.h=
-<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/getopt_s.h=
-<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/gf2_8.h<br=
- clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/hmac.h<br cle=
-ar=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/integers.h<br cle=
-ar=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/kernel_compat.h<b=
-r clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/key.h<br cle=
-ar=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/null_auth.h<br cl=
-ear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/null_cipher.h<br=
- clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/prng.h<br cle=
-ar=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/rand_source.h<br =
-clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/rdb.h<br clear=
-=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/rdbx.h<br clear=3D"=
-none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/rtp.h<br clear=3D"none"=
->&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/rtp_priv.h<br clear=3D"none"=
->&nbsp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/sha1.h<br clear=3D"none">&nb=
-sp; &nbsp; &nbsp; &nbsp; /usr/include/srtp/srtp.h<br clear=3D"none">&nbsp; =
-&nbsp; &nbsp; &nbsp; /usr/include/srtp/srtp_priv.h<br clear=3D"none">&nbsp;=
- &nbsp; &nbsp; &nbsp; /usr/include/srtp/stat.h<br clear=3D"none">&nbsp; &nb=
-sp; &nbsp; &nbsp; /usr/include/srtp/ut_sim.h<br clear=3D"none">&nbsp; &nbsp=
-; &nbsp; &nbsp; /usr/include/srtp/xfm.h<br clear=3D"none">libsrtp-staticdev=
-:<br clear=3D"none">&nbsp; &nbsp; &nbsp; &nbsp; /usr/lib64/libsrtp.a<div cl=
-ass=3D"yqt9460702117" id=3D"yqtfd14820"><br clear=3D"none"></div></div></di=
-v>
-                </div>
-            </div></div></body></html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+code
+	{mso-style-priority:99;
+	font-family:"Courier New";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Guys,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I was trying to add grubenv to My Yocto Project in E=
+FI Mode..<span style=3D"font-size:11.5pt;font-family:&quot;Arial&quot;,sans=
+-serif;color:#242729;background:white">By default the recipe grub-efi_2.02.=
+bb doesn't create that, so I added the following
+ code:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">do_deploy_append_class-target() { <o:p></o:p></p>
+<p class=3D"MsoNormal">grub-editenv grubenv create <o:p></o:p></p>
+<p class=3D"MsoNormal">}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt;background:white;vertical-alig=
+n:baseline">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"=
+>Running bitbake throws an error that&nbsp;grub-editenv: not found<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">What is the reason for this error and how can I add =
+grubenv in efi mode ( GRUB ).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks and Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Jamal<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-------=_Part_383964_1491869618.1523192967390--
+--_000_CY1PR15MB012615EE6CDFA0885FC1A0B6F0BB0CY1PR15MB0126namp_--
