@@ -1,53 +1,56 @@
-Return-Path: <celledge@digitallumens.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D6F37E00BE9; Thu,  5 Apr 2018 12:29:35 -0700 (PDT)
+	id 4F895E00A96; Thu,  5 Apr 2018 15:11:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
 	*      [74.125.82.68 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (armccurdy[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AC5CE00BE9
-	for <yocto@yoctoproject.org>; Thu,  5 Apr 2018 12:29:34 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id r131so10244530wmb.2
-	for <yocto@yoctoproject.org>; Thu, 05 Apr 2018 12:29:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=digitallumens-com.20150623.gappssmtp.com; s=20150623;
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13D3BE00708
+	for <yocto@yoctoproject.org>; Thu,  5 Apr 2018 15:11:25 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id i3so11294177wmf.3
+	for <yocto@yoctoproject.org>; Thu, 05 Apr 2018 15:11:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=fT55YOXVb8+sx3MfA06dzmvv/LpOOVnDtp6scmAHSJE=;
-	b=fqGNIt7dRqQg9QcWLRDvpRVUO5wEti0F7BvMckWAW/nLeuDRgcE1aPPv2djgwTtxgA
-	txC/tD/eOdxuavvOHq1J2j+lm0X908eu4Ba4fwfbUG7teLACYLFKQEiYOD6gjU9hR8hX
-	CDllwkLv8IUcIb7Sm9n6yhEEcl9EtF7no4tpmDrze+WnaxsTR530M6tvKxRRq6jLXLXh
-	znWky0jK+onm8Fr9IbbemRthUsM0gfEpow5LTRIE57TsnZPhCavzeeKn/z5D8bd4tt1F
-	KXOwD0X4wo08JUoOLj3oxbHUmWgvBqPSI36RMPDYhlDs00I6gCEiH9Lbq/BkOLhOPld/
-	iYOA==
+	:cc; bh=On+Utt5+xHXT6CiLdxmeIWUAqjkFuwsg6GaIumq2Nr0=;
+	b=PHiVY6/U8YwkIGA2E38RUJFAzsoVoS+YHWbrSNwI94zwmfrMiUXLNzb2B21IIImhj8
+	xefLlSTIjRMiOCmzE3VDnH6MeS0HwbG6WEZrMgPr2XES7Tb2hSGYZqP/zIpQCMW6+IMN
+	BIvgzMs9KCPloWqA2upRx3Hs9bPEPPkH3H7xotyQNP3dhxCnQd21FKjdjbgCFtV6O0EP
+	LYA4JMX/5NaQZHjvdU1nOVsMhQheubsEs5ZKp7Z9KbO/JBkIt0qtemRVwOKFPQNdLSya
+	wnQNeIFdWmxE3BBgsuD/BOqzHHUT3THfqNhNErLt/SSv75/tk2xChxaX7M99UQ0HHkwy
+	uISA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=fT55YOXVb8+sx3MfA06dzmvv/LpOOVnDtp6scmAHSJE=;
-	b=jC5HXo9fm1O+HYkX6tcOBIWT4/28osXtTR+7iqfAESaAHd6bzZujTIBa2TfDdUvlyQ
-	jX5FEw2tLFU5wi31+op8esgyG85u5I6jx+verm11bUMATu/glV0iI1VWg8gyjVttgsCu
-	ZUK1QXs+kYDEaRYpfYtoi0AGNog/iPxW+QVbXJA5qKphAjwLCqnup5G5Amjfpwllx4Rw
-	dbd+HfOu58N3T0857HNlj7xH+Dhm2K7o08SwpwbhaRhKuY0i801cbxVi4UdbHodMUBLy
-	mq3/BlKM6NHkBF1yUE/BQ/dDZyb9GVxlhutzxlWdOqikSA3BJ3Uhu9XnejHq39pygbbM
-	/jHg==
-X-Gm-Message-State: ALQs6tAslEmnsQB9vQY6SpPyWt/TxoERxLF3ziBFVDCLkfTz6ZnxCTSn
-	E56wuiPXDWoxZ2BqtwKTQuhMeTRwv6H6ml/DXaFNPQ==
-X-Google-Smtp-Source: AIpwx49G76wyudrt7BIDcflhojlMOqfChHTJTysLlUJfx7Uuee38Jtwi6hUVm4buWarbozISKFJcmtqe5dcbgtI05hM=
-X-Received: by 10.46.134.89 with SMTP id i25mr11611891ljj.121.1522956573829;
-	Thu, 05 Apr 2018 12:29:33 -0700 (PDT)
+	bh=On+Utt5+xHXT6CiLdxmeIWUAqjkFuwsg6GaIumq2Nr0=;
+	b=ng9PRqdTVfQfsIarFyVsbyAycIsKqLdJrA9jWzvo156ptBYIeCKaf4bvxO+GdihId+
+	dTwJ171emBsdTDQ98e7JOU+PicZHSlU/LtwaTFwqGybEfCaofEDhoU++iIHG+FvwxfWu
+	7AJWRB3J7I08DkYlSUW/38lNFhwjcrRqT+OUqvb3uQug14jZD6/FcyRGlqA3I1ookE4T
+	BPDckc9gJqqqOccTP1XUkHZUEZo7lNmeeHsXKQsKiC678aeHColxG5kBi88yxr0QB6Ib
+	aoyU1CzEh2lFI6hnOgdsmWpRvr1ENdnWJ1asQARoVe98RtStEvOI8K9UA0jikvifHT0a
+	hkBw==
+X-Gm-Message-State: AElRT7Fqb1FBUL0j+34WT1R6zax5XW1AUs92ptvqnmUkOCaU67JHFowF
+	961YtoLIvKUFbgF48m0A80Sdza9dlDncc4pWMW4=
+X-Google-Smtp-Source: AIpwx48OBSC1NcwHZsFjaGHhRpTA0lJ7OQWDLj4Q1gB0io0hxN7f3ix2BAJZ0w7cYbovmCfroXU1CMSbHXH0x0GBfRY=
+X-Received: by 10.28.63.148 with SMTP id m142mr12710289wma.153.1522966284809; 
+	Thu, 05 Apr 2018 15:11:24 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.46.146.85 with HTTP; Thu, 5 Apr 2018 12:29:33 -0700 (PDT)
+Received: by 10.223.163.65 with HTTP; Thu, 5 Apr 2018 15:11:24 -0700 (PDT)
 In-Reply-To: <CAMKF1spzhN3HQW1Cyt5sbT7PEPFX_4ptT=x8C9-qOmH=ULVFaQ@mail.gmail.com>
 References: <CAGfzNig_csD+EtAShEV=zWpBhk7bfUdK3jWEq80T2pBYxcV7aQ@mail.gmail.com>
 	<CAJ86T=VyAkzuVkfipRk+ofhr7b8fb1-9zMq2L2QdUswxEiapAQ@mail.gmail.com>
@@ -57,9 +60,9 @@ References: <CAGfzNig_csD+EtAShEV=zWpBhk7bfUdK3jWEq80T2pBYxcV7aQ@mail.gmail.com>
 	<CAGfzNigE-s30pWaGmvjgAnqRDgPr=ZiEJknev8NEPn1aLwst_g@mail.gmail.com>
 	<CAMKF1srp1od_yxNdJBp-Gt7U_S4OEzk8vsh+bLkPbsRBg1WwQg@mail.gmail.com>
 	<CAMKF1spzhN3HQW1Cyt5sbT7PEPFX_4ptT=x8C9-qOmH=ULVFaQ@mail.gmail.com>
-From: Chris Elledge <celledge@digitallumens.com>
-Date: Thu, 5 Apr 2018 15:29:33 -0400
-Message-ID: <CAGfzNiicm2xYuD5mhW0RQwHmR7f8CfdZPXxrszrue-dG8t6yJA@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Thu, 5 Apr 2018 15:11:24 -0700
+Message-ID: <CAJ86T=XcR6ENG2H-ojpymmipO+9WRxOCccf31NG7_SEnBZad4g@mail.gmail.com>
 To: Khem Raj <raj.khem@gmail.com>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: binutils 2.29.1 ARM Thumb kernel problem
@@ -74,39 +77,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Apr 2018 19:29:35 -0000
-Content-Type: multipart/alternative; boundary="f4f5e80eea8c9784f305691ef559"
-
---f4f5e80eea8c9784f305691ef559
+X-List-Received-Date: Thu, 05 Apr 2018 22:11:27 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-If I have neither the +1 nor the ORR then the kernel boot does this:
-
-Loading file '/boot/gateway3.dtb' to addr 0x21000000 with size 28500
-(0x00006f54)...
-Done
-Loading file '/boot/zImage' to addr 0x22000000 with size 3182128
-(0x00308e30)...
-Done
-Kernel image @ 0x22000000 [ 0x000000 - 0x308e30 ]
-## Flattened Device Tree blob at 21000000
-   Booting using the fdt blob at 0x21000000
-   Loading Device Tree to 3fe2f000, end 3fe38f53 ... OK
-
-Starting kernel ...
-
-and it stalls until the hardware watchdog trips 16 seconds later.
-
--Chris
-
-On Thu, Apr 5, 2018 at 3:17 PM, Khem Raj <raj.khem@gmail.com> wrote:
-
->
+On Thu, Apr 5, 2018 at 12:17 PM, Khem Raj <raj.khem@gmail.com> wrote:
 > On Thu, Apr 5, 2018 at 12:16 PM Khem Raj <raj.khem@gmail.com> wrote:
->
 >> On Thu, Apr 5, 2018 at 11:53 AM Chris Elledge <celledge@digitallumens.com>
 >> wrote:
->>
+>>>
 >>> Unfortunately, removing the "+1" doesn't work. That results in a kernel
 >>> which claims to start, but doesn't progress.
 >>>
@@ -118,69 +96,21 @@ On Thu, Apr 5, 2018 at 3:17 PM, Khem Raj <raj.khem@gmail.com> wrote:
 >>>  #ifdef CONFIG_THUMB2_KERNEL
 >>>   adr\c \rd, \sym
 >>>   orr\c \rd, \rd, #1
->>>
->>
-> Sent too soon I mean remove ORR completely
 >
->>  #else
->>>
->>> Is giving me a "Bad Linux ARM zImage magic!" error on boot
->>>
->>> So, I don't think it's an easy change to the kernel.
->>>
->>
+> Sent too soon I mean remove ORR completely
 
---f4f5e80eea8c9784f305691ef559
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+There's a lot more description of the problem here:
 
-<div dir=3D"ltr"><div class=3D"gmail_extra">If I have neither the +1 nor th=
-e ORR then the kernel boot does this:</div><div class=3D"gmail_extra"><br><=
-/div><div class=3D"gmail_extra"><div class=3D"gmail_extra">Loading file &#3=
-9;/boot/gateway3.dtb&#39; to addr 0x21000000 with size 28500 (0x00006f54)..=
-.</div><div class=3D"gmail_extra">Done</div><div class=3D"gmail_extra">Load=
-ing file &#39;/boot/zImage&#39; to addr 0x22000000 with size 3182128 (0x003=
-08e30)...</div><div class=3D"gmail_extra">Done</div><div class=3D"gmail_ext=
-ra">Kernel image @ 0x22000000 [ 0x000000 - 0x308e30 ]</div><div class=3D"gm=
-ail_extra">## Flattened Device Tree blob at 21000000</div><div class=3D"gma=
-il_extra">=C2=A0 =C2=A0Booting using the fdt blob at 0x21000000</div><div c=
-lass=3D"gmail_extra">=C2=A0 =C2=A0Loading Device Tree to 3fe2f000, end 3fe3=
-8f53 ... OK</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_e=
-xtra">Starting kernel ...</div><div class=3D"gmail_extra"><br></div><div cl=
-ass=3D"gmail_extra">and it stalls until the hardware watchdog trips 16 seco=
-nds later.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_ex=
-tra">-Chris</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_q=
-uote">On Thu, Apr 5, 2018 at 3:17 PM, Khem Raj <span dir=3D"ltr">&lt;<a hre=
-f=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt=
-;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><=
-br><div class=3D"gmail_quote"><span class=3D"gmail-"><div dir=3D"auto">On T=
-hu, Apr 5, 2018 at 12:16 PM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.c=
-om" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div><div class=3D"gmail_quote"><di=
-v dir=3D"auto">On Thu, Apr 5, 2018 at 11:53 AM Chris Elledge &lt;<a href=3D=
-"mailto:celledge@digitallumens.com" target=3D"_blank">celledge@digitallumen=
-s.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex"><div>Unfortunately, removing the &quot;+1&quot; doesn&#39;t work. That=
- results in a kernel which claims to start, but doesn&#39;t progress.<div><=
-br><div>Changing it to an &quot;|1&quot; also doesn&#39;t work due to this =
-error:</div><div>arch/arm/kernel/entry-common.<wbr>S:117: Error: invalid op=
-erands (.text and *ABS* sections) for `|&#39;<br></div><div><br></div><div>=
-Doing this to the badr macro:</div></div></div><div><div><div><div>=C2=A0#i=
-fdef CONFIG_THUMB2_KERNEL</div><div>=C2=A0 adr\c \rd, \sym</div><div>=C2=A0=
- orr\c \rd, \rd, #1</div></div></div></div></blockquote></div></div></block=
-quote><div dir=3D"auto"><br></div></span><div dir=3D"auto">Sent too soon I =
-mean remove ORR completely=C2=A0</div><div><div class=3D"gmail-h5"><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
- solid rgb(204,204,204);padding-left:1ex"><div><div class=3D"gmail_quote"><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex"><div><div><div><div></div>=
-<div>=C2=A0#else</div></div><div><br></div></div></div><div><div><div>Is gi=
-ving me a &quot;Bad Linux ARM zImage magic!&quot; error on boot</div><div><=
-br></div><div>So, I don&#39;t think it&#39;s an easy change to the kernel.<=
-/div></div></div></blockquote></div></div></blockquote></div></div></div></=
-div></blockquote></div></div></div>
+  https://patchwork.kernel.org/patch/10072625/
 
---f4f5e80eea8c9784f305691ef559--
+The kernel patch proposed in that thread is basically the same as
+adding the extra ORR instruction, but formatted in a slightly
+different way. No variant of the patch appears to have been merged
+upstream yet.
+
+The binutils 2.29 change in behaviour was the root cause of the issue
+that was found and fixed in openssl a few months ago:
+
+  https://github.com/openssl/openssl/pull/4673
+  http://git.openembedded.org/openembedded-core/commit/?id=977db3843b629112539d3eb766c845127c0de497
+
