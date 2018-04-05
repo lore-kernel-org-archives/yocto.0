@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4FBBE00A75; Thu,  5 Apr 2018 12:16:28 -0700 (PDT)
+	id 54292E00A75; Thu,  5 Apr 2018 12:18:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.47 listed in list.dnswl.org]
+	*      [209.85.160.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,37 +20,37 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl0-f47.google.com (mail-pl0-f47.google.com
-	[209.85.160.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70AB7E00BC3
-	for <yocto@yoctoproject.org>; Thu,  5 Apr 2018 12:16:24 -0700 (PDT)
-Received: by mail-pl0-f47.google.com with SMTP id g20-v6so20513248plo.9
-	for <yocto@yoctoproject.org>; Thu, 05 Apr 2018 12:16:24 -0700 (PDT)
+Received: from mail-pl0-f65.google.com (mail-pl0-f65.google.com
+	[209.85.160.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C9B4E00903
+	for <yocto@yoctoproject.org>; Thu,  5 Apr 2018 12:18:05 -0700 (PDT)
+Received: by mail-pl0-f65.google.com with SMTP id z5-v6so2377868pln.1
+	for <yocto@yoctoproject.org>; Thu, 05 Apr 2018 12:18:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=SCEmkV7u8ybHkyAXLjtGN2FGPX5FBkCvSwttpueD62Y=;
-	b=Hia5ox7CgehIA3/6TyZskKllUlFLEyQYDb0a+Luxi0XDDEi6QkC2+QZEDNnkTY3u3u
-	l0GYcJ2Wo0cjUtXpx7YnJaVa3VIqesRnZuwInn/FwE8AqeO8sZpniCrk8BVwQOIgAxGf
-	H8RCLvQx39YxL90ACP57w8Sv3UgSCdfC2CgvzfDzAqVXePhQNs3IDsQ2Gc71rrmo2k+i
-	G77JV7VEEdN6z0bUEHeEU2NUYuTUa0vtIDxd4GZrnJYaFRZtXWMzTaCagYJBGpbtSMTy
-	UYMXg9XNJ/g/3rJ+AcpoF4/UoHbPvDmxDmZ9YVOtadzggTKOJdauVP+mLakA33vKjToW
-	oZJQ==
+	:cc; bh=yFAWyBzg8CU0nEIWYUUZMvlrCWwDmyUgvY7kqS9676Y=;
+	b=urlUPYZ3MwrAD4j9SQOMG5MoHoDyfbX+tmyiCk/ktbXWRKNTIwmKdgxsZfU7p1E+00
+	5l/ZxqppExKb+WznZFsWJsrdSBsB7P5xyaTfL/NwvffjEwMRvxot6nAF8v4ht2GDBEN0
+	A1o1GxiU5myVToymKtLBcWEz1sBVj6K3tc9QVTQmsbCfH9+tlBT6aXx91tXHvxw3Dj46
+	ihEgVY+m97VTkpv2Jz191zH1+ecB/FQRiQD0900BdoLjhpq4Spo8899HYUf1k6Tehxxn
+	tHrt9bwPzM5HDzy/2RqhydJhfzibAu9f71lNEUslwtlesOjUopNyio8j+iSHGbZeDyoN
+	JStw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=SCEmkV7u8ybHkyAXLjtGN2FGPX5FBkCvSwttpueD62Y=;
-	b=CvhabraYaqA+namT562waNBqPaoLcXT4MQXl1XjpseUD6ITwQFUC446tOSxwTIQKkI
-	ikpd9s/a4vwxpdC8WS+zU8BFuxH35Qhn873cYitf7ibxYAUguZhxC7xl4hzcR6Mjje3C
-	z/hdXjN8qIEs+EPpu0lxFuqaVOXelC7rRr9hS2xOWH+h+ig9LI/Iz02LteSZH6c8kfoI
-	zIXUprugh5sKn94VQ/UfYFEn3SlBtrn98NrWPbTF6buulpgx1xNkBi1+tcoAF2MGUNQq
-	MjvxE8nrf/K6Gv6ubJ6oQ0Hh039Dnh9CCoTpJLZLIQ2819ou5t4ka5o/a/z5peQzL5t1
-	0OJQ==
-X-Gm-Message-State: AElRT7FdyaC/CWgBy71vswRihjyTn3LIuX7YeBa4layH9C8VO/1Y7JqO
-	Ku0Ig6uJ5nim39RgSqMEn5x/6ED/GT/hgFl3QXk=
-X-Google-Smtp-Source: AIpwx4+FBOcnpBsPstOEIShRfpXKXPSMRE5ZDO8UMSd/Geov6HCyyjaN1xwM1f0gbIh37qNN22Ry8MnyAH8QcQNDy6w=
-X-Received: by 10.98.180.24 with SMTP id h24mr18149399pfn.213.1522955784166;
-	Thu, 05 Apr 2018 12:16:24 -0700 (PDT)
+	bh=yFAWyBzg8CU0nEIWYUUZMvlrCWwDmyUgvY7kqS9676Y=;
+	b=GJS1M5DJYRSX/WHkVsfiuQu5HiaKWK6RFtgZUJSddQllhy3deBNL1b01Om9q5LbJ0H
+	uC1pQwyG2pB4FzvfQUvtQMExlTu98jDde9wQFamNRR9qODb5VR9WOdyE5+qvT0Fs9Sbh
+	pd7M/UEf4anlHx8NnuO8KGsFlqSwX3vTCxZeQ+Uy+CgXEdy7vpTv6zg27PTQELb6bC4T
+	agCBQlLaBQ9O4QKiKT9ZU97wta2O1WkwJSFMo7Q+RejRne/lH5kWDWAeEtNmUIakvzuT
+	4zQT7zyGVf6iBnihiihplNfUxejobh4vO7xR4vIpuVU0HZjqwEHxEsvv/QlvsN5hO/xf
+	5RAw==
+X-Gm-Message-State: AElRT7EXVZB6zj/m1mFfIxlWK7MTu5BJzO9raTh6VKJ8zlLLABlkv44n
+	/RiU2DeOf7+7QiyVXtIdKD9P8GAC7kAR/a777T8=
+X-Google-Smtp-Source: AIpwx4+aqdkriyk7pdq9QURRHEA8SdqQciKle1TyBspC7/kWu13N8GfLjswc5ynokLeOUqvPKR44EzbYU+zafnn6yjw=
+X-Received: by 10.98.180.24 with SMTP id h24mr18152749pfn.213.1522955884586;
+	Thu, 05 Apr 2018 12:18:04 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAGfzNig_csD+EtAShEV=zWpBhk7bfUdK3jWEq80T2pBYxcV7aQ@mail.gmail.com>
 	<CAJ86T=VyAkzuVkfipRk+ofhr7b8fb1-9zMq2L2QdUswxEiapAQ@mail.gmail.com>
@@ -58,10 +58,11 @@ References: <CAGfzNig_csD+EtAShEV=zWpBhk7bfUdK3jWEq80T2pBYxcV7aQ@mail.gmail.com>
 	<CAJ86T=WU2VakRhBpTZ6gRjSZdrntJpm25p45jbB3aZnt=J5ATA@mail.gmail.com>
 	<CAJ86T=XGYjmRxmGxzY7a99CYNJ0P-9daMwPY0kv+na2Yw15reQ@mail.gmail.com>
 	<CAGfzNigE-s30pWaGmvjgAnqRDgPr=ZiEJknev8NEPn1aLwst_g@mail.gmail.com>
-In-Reply-To: <CAGfzNigE-s30pWaGmvjgAnqRDgPr=ZiEJknev8NEPn1aLwst_g@mail.gmail.com>
+	<CAMKF1srp1od_yxNdJBp-Gt7U_S4OEzk8vsh+bLkPbsRBg1WwQg@mail.gmail.com>
+In-Reply-To: <CAMKF1srp1od_yxNdJBp-Gt7U_S4OEzk8vsh+bLkPbsRBg1WwQg@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 05 Apr 2018 19:16:12 +0000
-Message-ID: <CAMKF1srp1od_yxNdJBp-Gt7U_S4OEzk8vsh+bLkPbsRBg1WwQg@mail.gmail.com>
+Date: Thu, 05 Apr 2018 19:17:54 +0000
+Message-ID: <CAMKF1spzhN3HQW1Cyt5sbT7PEPFX_4ptT=x8C9-qOmH=ULVFaQ@mail.gmail.com>
 To: Chris Elledge <celledge@digitallumens.com>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: binutils 2.29.1 ARM Thumb kernel problem
@@ -76,98 +77,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Apr 2018 19:16:29 -0000
-Content-Type: multipart/alternative; boundary="f4f5e80c49f886243a05691ec6c9"
+X-List-Received-Date: Thu, 05 Apr 2018 19:18:06 -0000
+Content-Type: multipart/alternative; boundary="f4f5e80c49f8826da105691eccfb"
 
---f4f5e80c49f886243a05691ec6c9
+--f4f5e80c49f8826da105691eccfb
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 5, 2018 at 11:53 AM Chris Elledge <celledge@digitallumens.com>
-wrote:
+On Thu, Apr 5, 2018 at 12:16 PM Khem Raj <raj.khem@gmail.com> wrote:
 
-> Unfortunately, removing the "+1" doesn't work. That results in a kernel
-> which claims to start, but doesn't progress.
+> On Thu, Apr 5, 2018 at 11:53 AM Chris Elledge <celledge@digitallumens.com=
 >
-> Changing it to an "|1" also doesn't work due to this error:
-> arch/arm/kernel/entry-common.S:117: Error: invalid operands (.text and
-> *ABS* sections) for `|'
+> wrote:
 >
-> Doing this to the badr macro:
->  #ifdef CONFIG_THUMB2_KERNEL
->   adr\c \rd, \sym
->   orr\c \rd, \rd, #1
+>> Unfortunately, removing the "+1" doesn't work. That results in a kernel
+>> which claims to start, but doesn't progress.
+>>
+>> Changing it to an "|1" also doesn't work due to this error:
+>> arch/arm/kernel/entry-common.S:117: Error: invalid operands (.text and
+>> *ABS* sections) for `|'
+>>
+>> Doing this to the badr macro:
+>>  #ifdef CONFIG_THUMB2_KERNEL
+>>   adr\c \rd, \sym
+>>   orr\c \rd, \rd, #1
+>>
+>
+Sent too soon I mean remove ORR completely
+
 >  #else
+>>
+>> Is giving me a "Bad Linux ARM zImage magic!" error on boot
+>>
+>> So, I don't think it's an easy change to the kernel.
+>>
 >
-> Is giving me a "Bad Linux ARM zImage magic!" error on boot
+> What hppens if you don=E2=80=99t do any change
 >
-> So, I don't think it's an easy change to the kernel.
->
-
-What hppens if you don=E2=80=99t do any change
-
->
-> -Chris
->
-> On Wed, Apr 4, 2018 at 4:04 PM, Andre McCurdy <armccurdy@gmail.com> wrote=
-:
->
->> On Wed, Apr 4, 2018 at 9:14 AM, Andre McCurdy <armccurdy@gmail.com>
+>>
+>> -Chris
+>>
+>> On Wed, Apr 4, 2018 at 4:04 PM, Andre McCurdy <armccurdy@gmail.com>
 >> wrote:
->> > On Wed, Apr 4, 2018 at 8:06 AM, Chris Elledge
->> > <celledge@digitallumens.com> wrote:
->> >> Thanks for the feedback. I rolled back binutils to 2.28.0 by copying
->> the
->> >> yocto-2.3.3 binutils recipe directory into my custom layer. That has
->> >> resolved the issue.
->> >>
->> >> I can confirm that binutils 2.29.0 also has the problem. I went from
->> >> yocto-2.3 to 2.4.2 so I hadn't tried binutils 2.29.0 previously. Ther=
-e
->> are
->> >> also reports that openssl and libavcodec are broken when targeting an
->> ARM
->> >> Thumb2 platform with binutils 2.29.*
->> >
->> > Yes, that makes sense. The binutils change is in both 2.29.0 and
->> > 2.29.1 (and also in 2.30.0).
->> >
->> > The next useful experiment would be to stay with binutils 2.29.1 and
->> > apply a patch to revert the one particular commit which caused the
->> > change in behaviour:
->> >
->> >
->> https://sourceware.org/git/gitweb.cgi?p=3Dbinutils-gdb.git;a=3Dcommitdif=
-f;h=3De645cf40b111daef4518a58547de577eb9379ccb
 >>
->> The experiment of patching the kernel would also be useful, since I
->> would guess that the final solution from upstream will involve a
->> change to the kernel rather than reverting the change to binutils.
+>>> On Wed, Apr 4, 2018 at 9:14 AM, Andre McCurdy <armccurdy@gmail.com>
+>>> wrote:
+>>> > On Wed, Apr 4, 2018 at 8:06 AM, Chris Elledge
+>>> > <celledge@digitallumens.com> wrote:
+>>> >> Thanks for the feedback. I rolled back binutils to 2.28.0 by copying
+>>> the
+>>> >> yocto-2.3.3 binutils recipe directory into my custom layer. That has
+>>> >> resolved the issue.
+>>> >>
+>>> >> I can confirm that binutils 2.29.0 also has the problem. I went from
+>>> >> yocto-2.3 to 2.4.2 so I hadn't tried binutils 2.29.0 previously.
+>>> There are
+>>> >> also reports that openssl and libavcodec are broken when targeting a=
+n
+>>> ARM
+>>> >> Thumb2 platform with binutils 2.29.*
+>>> >
+>>> > Yes, that makes sense. The binutils change is in both 2.29.0 and
+>>> > 2.29.1 (and also in 2.30.0).
+>>> >
+>>> > The next useful experiment would be to stay with binutils 2.29.1 and
+>>> > apply a patch to revert the one particular commit which caused the
+>>> > change in behaviour:
+>>> >
+>>> >
+>>> https://sourceware.org/git/gitweb.cgi?p=3Dbinutils-gdb.git;a=3Dcommitdi=
+ff;h=3De645cf40b111daef4518a58547de577eb9379ccb
+>>>
+>>> The experiment of patching the kernel would also be useful, since I
+>>> would guess that the final solution from upstream will involve a
+>>> change to the kernel rather than reverting the change to binutils.
+>>>
+>>> Changing "+ 1" to "| 1" in the badr macro would be a universal
+>>> solution for all versions of binutils, but for a quick test with
+>>> binutils 2.29.1 you could simply remove the "+ 1" from the
+>>> CONFIG_THUMB2_KERNEL case (ie make the ARM and Thumb2 versions of the
+>>> macro identical).
+>>>
+>>>
+>>> https://github.com/torvalds/linux/blob/master/arch/arm/include/asm/asse=
+mbler.h#L197
+>>>
 >>
->> Changing "+ 1" to "| 1" in the badr macro would be a universal
->> solution for all versions of binutils, but for a quick test with
->> binutils 2.29.1 you could simply remove the "+ 1" from the
->> CONFIG_THUMB2_KERNEL case (ie make the ARM and Thumb2 versions of the
->> macro identical).
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 >>
->>
->> https://github.com/torvalds/linux/blob/master/arch/arm/include/asm/assem=
-bler.h#L197
->>
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 >
 
---f4f5e80c49f886243a05691ec6c9
+--f4f5e80c49f8826da105691eccfb
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 <div><br><div class=3D"gmail_quote"><div dir=3D"auto">On Thu, Apr 5, 2018 a=
-t 11:53 AM Chris Elledge &lt;<a href=3D"mailto:celledge@digitallumens.com">=
+t 12:16 PM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmai=
+l.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div><div clas=
+s=3D"gmail_quote"><div dir=3D"auto">On Thu, Apr 5, 2018 at 11:53 AM Chris E=
+lledge &lt;<a href=3D"mailto:celledge@digitallumens.com" target=3D"_blank">=
 celledge@digitallumens.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
 il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
 t:1ex"><div>Unfortunately, removing the &quot;+1&quot; doesn&#39;t work. Th=
@@ -177,21 +190,29 @@ s error:</div><div>arch/arm/kernel/entry-common.S:117: Error: invalid opera=
 nds (.text and *ABS* sections) for `|&#39;<br></div><div><br></div><div>Doi=
 ng this to the badr macro:</div></div></div><div><div><div><div>=C2=A0#ifde=
 f CONFIG_THUMB2_KERNEL</div><div>=C2=A0 adr\c \rd, \sym</div><div>=C2=A0 or=
-r\c \rd, \rd, #1</div><div>=C2=A0#else</div></div><div><br></div></div></di=
-v><div><div><div>Is giving me a &quot;Bad Linux ARM zImage magic!&quot; err=
-or on boot</div><div><br></div><div>So, I don&#39;t think it&#39;s an easy =
-change to the kernel.</div></div></div></blockquote><div dir=3D"auto"><br><=
-/div><div dir=3D"auto">What hppens if you don=E2=80=99t do any change=C2=A0=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
-eft:1px #ccc solid;padding-left:1ex"><div><div><div></div></div></div><div>=
-<div><div><br></div><div>-Chris</div></div></div><div class=3D"gmail_extra"=
-><br><div class=3D"gmail_quote">On Wed, Apr 4, 2018 at 4:04 PM, Andre McCur=
-dy <span>&lt;<a href=3D"mailto:armccurdy@gmail.com" target=3D"_blank">armcc=
-urdy@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div=
- class=3D"m_-6294133974547591877HOEnZb"><div class=3D"m_-629413397454759187=
-7h5">On Wed, Apr 4, 2018 at 9:14 AM, Andre McCurdy &lt;<a href=3D"mailto:ar=
-mccurdy@gmail.com" target=3D"_blank">armccurdy@gmail.com</a>&gt; wrote:<br>
+r\c \rd, \rd, #1</div></div></div></div></blockquote></div></div></blockquo=
+te><div dir=3D"auto"><br></div><div dir=3D"auto">Sent too soon I mean remov=
+e ORR completely=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div><div class=
+=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
+ex;border-left:1px #ccc solid;padding-left:1ex"><div><div><div><div></div><=
+div>=C2=A0#else</div></div><div><br></div></div></div><div><div><div>Is giv=
+ing me a &quot;Bad Linux ARM zImage magic!&quot; error on boot</div><div><b=
+r></div><div>So, I don&#39;t think it&#39;s an easy change to the kernel.</=
+div></div></div></blockquote><div dir=3D"auto"><br></div></div></div><div><=
+div class=3D"gmail_quote"><div dir=3D"auto">What hppens if you don=E2=80=99=
+t do any change=C2=A0</div></div></div><div><div class=3D"gmail_quote"><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #c=
+cc solid;padding-left:1ex"><div><div><div></div></div></div><div><div><div>=
+<br></div><div>-Chris</div></div></div><div class=3D"gmail_extra"><br><div =
+class=3D"gmail_quote">On Wed, Apr 4, 2018 at 4:04 PM, Andre McCurdy <span>&=
+lt;<a href=3D"mailto:armccurdy@gmail.com" target=3D"_blank">armccurdy@gmail=
+.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D"=
+m_-6880632051023719215m_-6294133974547591877HOEnZb"><div class=3D"m_-688063=
+2051023719215m_-6294133974547591877h5">On Wed, Apr 4, 2018 at 9:14 AM, Andr=
+e McCurdy &lt;<a href=3D"mailto:armccurdy@gmail.com" target=3D"_blank">armc=
+curdy@gmail.com</a>&gt; wrote:<br>
 &gt; On Wed, Apr 4, 2018 at 8:06 AM, Chris Elledge<br>
 &gt; &lt;<a href=3D"mailto:celledge@digitallumens.com" target=3D"_blank">ce=
 lledge@digitallumens.com</a>&gt; wrote:<br>
@@ -247,6 +268,6 @@ yocto mailing list<br>
 ect.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
 " target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div></div>
+</blockquote></div></div></blockquote></div></div>
 
---f4f5e80c49f886243a05691ec6c9--
+--f4f5e80c49f8826da105691eccfb--
