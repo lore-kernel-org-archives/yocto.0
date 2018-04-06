@@ -1,54 +1,40 @@
-Return-Path: <florian.doersch@iis.fraunhofer.de>
+Return-Path: <dhkoo@m2i.co.kr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 50413E00C4F; Thu,  5 Apr 2018 23:53:17 -0700 (PDT)
+	id 3BCC3E00B9C; Fri,  6 Apr 2018 00:58:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [94.100.133.214 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [121.254.168.204 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mx-relay38-hz1.antispameurope.com
-	(mx-relay38-hz1.antispameurope.com [94.100.133.214])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4B97E00823
-	for <yocto@yoctoproject.org>; Thu,  5 Apr 2018 23:53:15 -0700 (PDT)
-Received: from mailgw1.iis.fraunhofer.de ([153.96.172.4]) by
-	mx-relay38-hz1.antispameurope.com; Fri, 06 Apr 2018 08:53:09 +0200
-Received: from mail.iis.fraunhofer.de (mail03.iis.fhg.de [153.96.171.212])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mailgw1.iis.fraunhofer.de (Postfix) with ESMTPS id D4CA32400081
-	for <yocto@yoctoproject.org>; Fri,  6 Apr 2018 08:53:08 +0200 (CEST)
-Received: from [10.12.70.78] (153.96.171.210) by mail03.iis.fhg.de
-	(2001:638:a0a:1111:314f:f22c:4a37:b25a) with Microsoft SMTP Server
-	(TLS) id 15.0.1365.1; Fri, 6 Apr 2018 08:53:08 +0200
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Florian Doersch <florian.doersch@iis.fraunhofer.de>
-Message-ID: <b3101c2c-8462-98fe-5c40-a0279f7d383a@iis.fraunhofer.de>
-Date: Fri, 6 Apr 2018 08:53:08 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	*      [score: 0.0044]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 399 seconds by postgrey-1.32 at yocto-www;
+	Fri, 06 Apr 2018 00:58:29 PDT
+Received: from smtp1.hiworks.co.kr (smtp1.hiworks.co.kr [121.254.168.204])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A036AE00994
+	for <yocto@yoctoproject.org>; Fri,  6 Apr 2018 00:58:29 -0700 (PDT)
+Received: (qmail 1092 invoked from network); 6 Apr 2018 16:51:48 +0900
+Received: from unknown (HELO hiworks.co.kr) (192.168.10.37)
+	by 0 (qmail 1.03 + ejcp v14) with SMTP; 6 Apr 2018 16:51:48 +0900
+Received: (qmail 101398 invoked from network); 6 Apr 2018 16:51:48 +0900
+Received: from unknown (HELO dhkooPC) (dhkoo@m2i.co.kr@112.216.145.10)
+	by 0 (qmail 1.03 + ejcp v14) with SMTP; 6 Apr 2018 16:51:48 +0900
+X-Authinfo: HIWORKS SMTP authenticated <dhkoo@m2i.co.kr>
+From: "dhkoo" <dhkoo@m2i.co.kr>
+To: <yocto@yoctoproject.org>
+Date: Fri, 6 Apr 2018 16:51:55 +0900
+Message-ID: <04b701d3cd7c$2212c2d0$66384870$@co.kr>
 MIME-Version: 1.0
-X-Originating-IP: [153.96.171.210]
-X-ClientProxiedBy: mail03.iis.fhg.de (2001:638:a0a:1111:314f:f22c:4a37:b25a)
-	To mail03.iis.fhg.de (2001:638:a0a:1111:314f:f22c:4a37:b25a)
-X-cloud-security-sender: florian.doersch@iis.fraunhofer.de
-X-cloud-security-recipient: yocto@yoctoproject.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Virusscan: CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on
-	mx-relay38-hz1.antispameurope.com with E31D568B3C
-X-cloud-security-connect: mailgw1.iis.fraunhofer.de[153.96.172.4], TLS=1,
-	IP=153.96.172.4
-X-cloud-security: scantime:.2269
-Subject: pyro: missing ldconfig
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdPNfCHzCHDX8JP/Sp+lG9EtjpmjVQ==
+Subject: [meta-qt5]Feature 'tslib' was disabled, but the pre-condition 'libs.tslib' failed.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Florian Doersch <florian.doersch@iis.fraunhofer.de>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -57,198 +43,176 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Apr 2018 06:53:17 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Fri, 06 Apr 2018 07:58:31 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_04B8_01D3CDC7.91FA6AD0"
+Content-Language: ko
+
+------=_NextPart_000_04B8_01D3CDC7.91FA6AD0
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-Hi,
+Hello.
 
-I recently updated from pyro 2.3.3 to latest pyro branch for my 
-raspberry3 and ran into the following problem trying to create the 
-toolchain via:
+ 
 
-`bitbake meta-toolchain -c populate_sdk`
+I want to compile the tslib enabled Qt5.10 on the yocto.
 
-```
-ERROR: meta-toolchain-1.0-r7 do_populate_sdk: Unable to remove packages. 
-Command 
-'['/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-ctgen-linux-gnueabi/meta-toolchain/1.0-r7/recipe-sysroot-native/usr/bin/dpkg', 
-'--admindir=/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-ctgen-linux-gnueabi/meta-toolchain/1.0-r7/sdk/image/var/lib/dpkg', 
-'--instdir=/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-ctgen-linux-gnueabi/meta-toolchain/1.0-r7/sdk/image', 
-'-P', '--force-depends', 
-'nativesdk-glibc-binary-localedata-hsb-de.utf-8', 
-'nativesdk-glibc-binary-localedata-uk-ua.utf-8', 
-'nativesdk-glibc-binary-localedata-en-dk.utf-8', 
-'nativesdk-glibc-binary-localedata-om-ke.utf-8', 
-'nativesdk-glibc-binary-localedata-en-au.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-sa.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-ye.utf-8', 
-'nativesdk-glibc-binary-localedata-ga-ie.utf-8', 
-'nativesdk-glibc-binary-localedata-wa-be.utf-8', 
-'nativesdk-glibc-binary-localedata-es-bo.utf-8', 
-'nativesdk-glibc-binary-localedata-pl-pl.utf-8', 
-'nativesdk-glibc-binary-localedata-fr-fr.utf-8', 
-'nativesdk-glibc-binary-localedata-lg-ug.utf-8', 
-'nativesdk-glibc-binary-localedata-de-lu.utf-8', 
-'nativesdk-glibc-binary-localedata-ca-fr.utf-8', 
-'nativesdk-glibc-binary-localedata-es-gt.utf-8', 
-'nativesdk-glibc-binary-localedata-fr-be.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-qa.utf-8', 
-'nativesdk-glibc-binary-localedata-ja-jp.utf-8', 
-'nativesdk-glibc-binary-localedata-en-nz.utf-8', 
-'nativesdk-glibc-binary-localedata-es-pe.utf-8', 
-'nativesdk-glibc-binary-localedata-fo-fo.utf-8', 
-'nativesdk-glibc-binary-localedata-en-hk.utf-8', 
-'nativesdk-glibc-binary-localedata-ms-my.utf-8', 
-'nativesdk-glibc-binary-localedata-so-ke.utf-8', 
-'nativesdk-glibc-binary-localedata-gv-gb.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-jo.utf-8', 
-'nativesdk-glibc-binary-localedata-it-ch.utf-8', 
-'nativesdk-glibc-binary-localedata-mi-nz.utf-8', 
-'nativesdk-glibc-binary-localedata-sk-sk.utf-8', 
-'nativesdk-glibc-binary-localedata-lv-lv.utf-8', 
-'nativesdk-glibc-binary-localedata-ka-ge.utf-8', 
-'nativesdk-glibc-binary-localedata-es-sv.utf-8', 
-'nativesdk-glibc-binary-localedata-tr-tr.utf-8', 
-'nativesdk-glibc-binary-localedata-en-sg.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-kw.utf-8', 
-'nativesdk-glibc-binary-localedata-nb-no.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-ma.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-om.utf-8', 
-'nativesdk-glibc-binary-localedata-nl-be.utf-8', 
-'nativesdk-glibc-binary-localedata-sl-si.utf-8', 
-'nativesdk-glibc-binary-localedata-is-is.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-sy.utf-8', 
-'nativesdk-glibc-binary-localedata-sv-se.utf-8', 
-'nativesdk-glibc-binary-localedata-en-us.utf-8', 
-'nativesdk-glibc-binary-localedata-zh-hk.utf-8', 
-'nativesdk-glibc-binary-localedata-gl-es.utf-8', 
-'nativesdk-glibc-binary-localedata-so-so.utf-8', 
-'nativesdk-glibc-binary-localedata-ru-ua.utf-8', 
-'nativesdk-glibc-binary-localedata-it-it.utf-8', 
-'nativesdk-glibc-binary-localedata-eu-es.utf-8', 
-'nativesdk-glibc-binary-localedata-es-ni.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-bh.utf-8', 
-'nativesdk-glibc-binary-localedata-so-dj.utf-8', 
-'nativesdk-glibc-binary-localedata-fr-ch.utf-8', 
-'nativesdk-glibc-binary-localedata-de-ch.utf-8', 
-'nativesdk-glibc-binary-localedata-tl-ph.utf-8', 
-'nativesdk-glibc-binary-localedata-en-ie.utf-8', 
-'nativesdk-glibc-binary-localedata-fi-fi.utf-8', 
-'nativesdk-glibc-binary-localedata-es-pa.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-sd.utf-8', 
-'nativesdk-glibc-binary-localedata-et-ee.utf-8', 
-'nativesdk-glibc-binary-localedata-bhb-in.utf-8', 
-'nativesdk-glibc-binary-localedata-ru-ru.utf-8', 
-'nativesdk-glibc-binary-localedata-de-at.utf-8', 
-'nativesdk-glibc-binary-localedata-yi-us.utf-8', 
-'nativesdk-glibc-binary-localedata-fr-ca.utf-8', 
-'nativesdk-glibc-binary-localedata-de-it.utf-8', 
-'nativesdk-glibc-binary-localedata-st-za.utf-8', 
-'nativesdk-glibc-binary-localedata-ca-es.utf-8', 
-'nativesdk-glibc-binary-localedata-fr-lu.utf-8', 
-'nativesdk-glibc-binary-localedata-es-ve.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-ly.utf-8', 
-'nativesdk-glibc-binary-localedata-mk-mk.utf-8', 
-'nativesdk-glibc-binary-localedata-ca-ad.utf-8', 
-'nativesdk-glibc-binary-localedata-el-cy.utf-8', 
-'nativesdk-glibc-binary-localedata-es-us.utf-8', 
-'nativesdk-glibc-binary-localedata-gd-gb.utf-8', 
-'nativesdk-glibc-binary-localedata-es-hn.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-eg.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-dz.utf-8', 
-'nativesdk-glibc-binary-localedata-da-dk.utf-8', 
-'nativesdk-glibc-binary-localedata-sq-al.utf-8', 
-'nativesdk-glibc-binary-localedata-kk-kz.utf-8', 
-'nativesdk-glibc-binary-localedata-es-uy.utf-8', 
-'nativesdk-glibc-binary-localedata-en-zw.utf-8', 
-'nativesdk-glibc-binary-localedata-oc-fr.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-lb.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-iq.utf-8', 
-'nativesdk-glibc-binary-localedata-mt-mt.utf-8', 
-'nativesdk-glibc-binary-localedata-ast-es.utf-8', 
-'nativesdk-glibc-binary-localedata-zh-cn.utf-8', 
-'nativesdk-glibc-binary-localedata-kw-gb.utf-8', 
-'nativesdk-glibc-binary-localedata-xh-za.utf-8', 
-'nativesdk-glibc-binary-localedata-hu-hu.utf-8', 
-'nativesdk-glibc-binary-localedata-sv-fi.utf-8', 
-'nativesdk-glibc-binary-localedata-es-cr.utf-8', 
-'nativesdk-glibc-binary-localedata-th-th.utf-8', 
-'nativesdk-glibc-binary-localedata-br-fr.utf-8', 
-'nativesdk-glibc-binary-localedata-tr-cy.utf-8', 
-'nativesdk-glibc-binary-localedata-zu-za.utf-8', 
-'nativesdk-glibc-binary-localedata-bg-bg.utf-8', 
-'nativesdk-glibc-binary-localedata-zh-sg.utf-8', 
-'nativesdk-glibc-binary-localedata-mg-mg.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-tn.utf-8', 
-'nativesdk-glibc-binary-localedata-en-bw.utf-8', 
-'nativesdk-glibc-binary-localedata-en-gb.utf-8', 
-'nativesdk-glibc-binary-localedata-es-mx.utf-8', 
-'nativesdk-glibc-binary-localedata-es-pr.utf-8', 
-'nativesdk-glibc-binary-localedata-es-es.utf-8', 
-'nativesdk-glibc-binary-localedata-he-il.utf-8', 
-'nativesdk-glibc-binary-localedata-es-ec.utf-8', 
-'nativesdk-glibc-binary-localedata-af-za.utf-8', 
-'nativesdk-glibc-binary-localedata-bs-ba.utf-8', 
-'nativesdk-glibc-binary-localedata-hr-hr.utf-8', 
-'nativesdk-glibc-binary-localedata-en-ca.utf-8', 
-'nativesdk-glibc-binary-localedata-ca-it.utf-8', 
-'nativesdk-glibc-binary-localedata-es-do.utf-8', 
-'nativesdk-glibc-binary-localedata-nn-no.utf-8', 
-'nativesdk-glibc-binary-localedata-cy-gb.utf-8', 
-'nativesdk-glibc-binary-localedata-uz-uz.utf-8', 
-'nativesdk-glibc-binary-localedata-tg-tj.utf-8', 
-'nativesdk-glibc-binary-localedata-lt-lt.utf-8', 
-'nativesdk-glibc-binary-localedata-ro-ro.utf-8', 
-'nativesdk-glibc-binary-localedata-an-es.utf-8', 
-'nativesdk-glibc-binary-localedata-es-co.utf-8', 
-'nativesdk-glibc-binary-localedata-ko-kr.utf-8', 
-'nativesdk-glibc-binary-localedata-tcy-in.utf-8', 
-'nativesdk-glibc-binary-localedata-aa-dj.utf-8', 
-'nativesdk-glibc-binary-localedata-de-li.utf-8', 
-'nativesdk-glibc-binary-localedata-es-ar.utf-8', 
-'nativesdk-glibc-binary-localedata-cs-cz.utf-8', 
-'nativesdk-glibc-binary-localedata-id-id.utf-8', 
-'nativesdk-glibc-binary-localedata-en-za.utf-8', 
-'nativesdk-glibc-binary-localedata-nl-nl.utf-8', 
-'nativesdk-glibc-binary-localedata-es-cl.utf-8', 
-'nativesdk-glibc-binary-localedata-de-de.utf-8', 
-'nativesdk-glibc-binary-localedata-es-py.utf-8', 
-'nativesdk-glibc-binary-localedata-be-by.utf-8', 
-'nativesdk-glibc-binary-localedata-ku-tr.utf-8', 
-'nativesdk-glibc-binary-localedata-de-be.utf-8', 
-'nativesdk-glibc-binary-localedata-pt-pt.utf-8', 
-'nativesdk-glibc-binary-localedata-ar-ae.utf-8', 
-'nativesdk-glibc-binary-localedata-pt-br.utf-8', 
-'nativesdk-glibc-binary-localedata-el-gr.utf-8', 
-'nativesdk-glibc-binary-localedata-kl-gl.utf-8', 
-'nativesdk-glibc-binary-localedata-zh-tw.utf-8', 
-'nativesdk-glibc-binary-localedata-en-ph.utf-8']' returned 2:
-dpkg: warning: 'ldconfig' not found in PATH or not executable
-dpkg: error: 1 expected program not found in PATH or not executable
-Note: root's PATH should usually contain /usr/local/sbin, /usr/sbin and 
-/sbin
-```
+ 
 
-after adding
+After running "bitbake core-image-mymachine", on the log 'run.do_configure'
+shows me "-no-tslib" option configured. So I modified qtbase_git.bb to
+enable "-tslib" option.
 
-```
-HOSTTOOLS += "ldconfig"
-```
+And after that, bitbake shows me "Feature 'tslib' was disabled, but the
+pre-condition 'libs.tslib' failed."
 
-to `build/conf/local.conf`
+ 
 
-the build succeeds.
+I added tslib, and xf86-input-tslib at "packagegroup.bb" and using
+architecture based on arm7a.
 
-I'm using
-```
-PACKAGE_CLASSES = "package_deb"
-```
+ 
 
-If you need additional information, let me know.
+Is there any good idea for enable "tslib" successfully?
 
-The problem does not occur when using the latest pyro tag (yocto-2.3.3)
+ 
 
-Regards
-Florian
+regards.
 
+Koo.
+
+
+------=_NextPart_000_04B8_01D3CDC7.91FA6AD0
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii">
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:"Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-autospace:none;
+	word-break:break-hangul;
+	font-size:10.0pt;
+	font-family:"Malgun Gothic";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"\D48D\C120 \B3C4\C6C0\B9D0 \D14D\C2A4\D2B8 Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-autospace:none;
+	word-break:break-hangul;
+	font-size:9.0pt;
+	font-family:"Malgun Gothic";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Malgun Gothic";
+	color:windowtext;}
+span.Char
+	{mso-style-name:"\D48D\C120 \B3C4\C6C0\B9D0 \D14D\C2A4\D2B8 Char";
+	mso-style-priority:99;
+	mso-style-link:"\D48D\C120 \B3C4\C6C0\B9D0 \D14D\C2A4\D2B8";
+	font-family:"Malgun Gothic";}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+ /* Page Definitions */
+ @page Section1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=3DKO link=3Dblue vlink=3Dpurple>
+
+<div class=3DSection1>
+
+<p class=3DMsoNormal><span lang=3DEN-US>Hello.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span lang=3DEN-US>I want to compile the tslib =
+enabled Qt5.10
+on the yocto.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span lang=3DEN-US>After running &quot;bitbake =
+core-image-mymachine&quot;,
+on the log 'run.do_configure' shows me &quot;-no-tslib&quot; option =
+configured.
+So I modified qtbase_git.bb to enable &quot;-tslib&quot; option.<br>
+<br>
+And after that, bitbake shows me &quot;Feature 'tslib' was disabled, but =
+the
+pre-condition 'libs.tslib' failed.&quot;<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span lang=3DEN-US>I added tslib, and =
+xf86-input-tslib at &quot;packagegroup.bb&quot;
+and using architecture based on arm7a.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span lang=3DEN-US>Is there any good idea for =
+enable
+&quot;tslib&quot; successfully?<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
+
+<p class=3DMsoNormal><span lang=3DEN-US>regards.<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><span lang=3DEN-US>Koo.<o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>
+
+------=_NextPart_000_04B8_01D3CDC7.91FA6AD0--
