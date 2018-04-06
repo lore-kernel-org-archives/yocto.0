@@ -1,16 +1,21 @@
-Return-Path: <vincent.daanen@orthotaxy.com>
+Return-Path: <rksyeung@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5A75FE00B28; Fri,  6 Apr 2018 07:42:15 -0700 (PDT)
+	id 34EFEE00B8A; Fri,  6 Apr 2018 15:46:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.2.99 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rksyeung[at]hotmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [40.92.10.51 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -19,68 +24,78 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-db5eur01on0099.outbound.protection.outlook.com [104.47.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8798E00956
-	for <yocto@yoctoproject.org>; Fri,  6 Apr 2018 07:42:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=orthotaxy.com;
+X-Greylist: delayed 123862 seconds by postgrey-1.32 at yocto-www;
+	Fri, 06 Apr 2018 15:46:32 PDT
+Received: from NAM04-CO1-obe.outbound.protection.outlook.com
+	(mail-oln040092010051.outbound.protection.outlook.com [40.92.10.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 335D9E0073D
+	for <yocto@yoctoproject.org>; Fri,  6 Apr 2018 15:46:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
 	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=3AS/iXMP+nnBfdquX5/arKJBQ7bx89HwdviH7oeMWNw=;
-	b=ni7wv1eKDIvG1FOEGZfTDrTWL6EuU3jeK19x71gd5dodxMHBfeymmcAzxZxthiSt/I6OaJ4Jv0/laThC+8OnTvtQEpeyUYucStp6FhAYFHrghS/tnd8LWEdHVSx3DkDfLtiGaqi9iu1jQE4UQnkTrnOdnNDHCVo7/zSgFsmYUjw=
-Received: from VI1P192MB0143.EURP192.PROD.OUTLOOK.COM (10.175.180.135) by
-	VI1P192MB0381.EURP192.PROD.OUTLOOK.COM (52.134.24.20) with Microsoft
+	bh=fiMk3Hm+XahrrhVcB6jbJ8Uore4HONLowOK9ZccJviY=;
+	b=Lv4BjWYk9mcqLMFibeCfjgnNwMY4OTDYoRB4CUY4dkw0r7e+nTwcRGiSLNmTuwpnWkNacvbFfT9uwt4JlXbjUWH4vgKR5uZoCN0AnYHMCzBemxsBiXBflMAMzPRMAwLKl2Dl9vueZ+pPokPOMAqRxhNpTvtv1CVEtWy1J7RnFLvtSl02/JgY+ORNEdL/V74ykp6cR+HklZVnZ9R2H2Mg/0lXVwOUH3aWiBSrl703NVna2lZ7hH8JQlcywuPBejP+J3OPILacc+fki4JNUv2yZFofqkTQCAbYeMICI0+GkiQEKk0DYnEuLwzJuL5IK2IQ9tGreAmvqogibHOy+Aambg==
+Received: from BN3NAM04FT039.eop-NAM04.prod.protection.outlook.com
+	(10.152.92.54) by BN3NAM04HT204.eop-NAM04.prod.protection.outlook.com
+	(10.152.93.115) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.20.653.8;
+	Fri, 6 Apr 2018 22:31:49 +0000
+Received: from MWHPR19MB1183.namprd19.prod.outlook.com (10.152.92.54) by
+	BN3NAM04FT039.mail.protection.outlook.com (10.152.93.3) with Microsoft
 	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.653.12; Fri, 6 Apr 2018 14:42:09 +0000
-Received: from VI1P192MB0143.EURP192.PROD.OUTLOOK.COM
-	([fe80::d9f:f0dc:1854:63eb]) by VI1P192MB0143.EURP192.PROD.OUTLOOK.COM
-	([fe80::d9f:f0dc:1854:63eb%17]) with mapi id 15.20.0653.014;
-	Fri, 6 Apr 2018 14:42:09 +0000
-From: Vincent Daanen <vincent.daanen@orthotaxy.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Adding support for GPIO chipset,  Am I doing it right ?
-Thread-Index: AdPNtLfCQJZpJD4IS06SmQzCjjutWA==
-Date: Fri, 6 Apr 2018 14:42:09 +0000
-Message-ID: <VI1P192MB01438A69AA6F7DE603C088498DBA0@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
-Accept-Language: fr-FR, en-US
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.20.653.8 via Frontend Transport; Fri, 6 Apr 2018 22:31:48 +0000
+Received: from MWHPR19MB1183.namprd19.prod.outlook.com
+	([fe80::74e9:81a5:f67b:ae41]) by
+	MWHPR19MB1183.namprd19.prod.outlook.com
+	([fe80::74e9:81a5:f67b:ae41%17]) with mapi id 15.20.0653.014;
+	Fri, 6 Apr 2018 22:31:49 +0000
+From: Raymond Yeung <rksyeung@hotmail.com>
+To: Anuj Mittal <anuj.mittal@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Adding debug output in recipe
+Thread-Index: AQHTzLAit2+6n2Xi7EWx49+fo7yXrqPzLKaAgAAQCLmAAA3ggIABCUnF
+Date: Fri, 6 Apr 2018 22:31:48 +0000
+Message-ID: <DM5PR19MB11773265DEE80AD2CD8F0265C5BA0@DM5PR19MB1177.namprd19.prod.outlook.com>
+References: <MWHPR19MB1183F00410877C3D80A2A59AC5BB0@MWHPR19MB1183.namprd19.prod.outlook.com>
+	<5e7c67e4-3f79-aece-0d1b-a1494acda442@intel.com>
+	<MWHPR19MB118326D76F8C45037C1BA6E6C5BA0@MWHPR19MB1183.namprd19.prod.outlook.com>,
+	<34bdb916-5d2b-a478-4b83-3a47e39db01d@intel.com>
+In-Reply-To: <34bdb916-5d2b-a478-4b83-3a47e39db01d@intel.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=vincent.daanen@orthotaxy.com; 
-x-originating-ip: [152.77.102.34]
+x-incomingtopheadermarker: OriginalChecksum:58421D35720AA8A5C3AAB6073AAAEFB882C3D541365F9712EF872B4CAF294711;
+	UpperCasedChecksum:57F90BD0D7D047CC8E2C2A6334B3451E35FBD20C6EA9EC6C29560DDD12D5CC17;
+	SizeAsReceived:7269; Count:46
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [e0aVxkHfBfsTmcptcCY42M25s1GtVvCO]
 x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; VI1P192MB0381;
-	7:nv434etxr9cDYYHII9hJt9aLLfy/b4Wdtl6+4o0/58krfx3oIi1pMAz8idHPkKMdV1s9aq9ahJOvd7aXbY2T/FBjCBXCSO0D4fnk1Ikh/aIZVygRaH+u12DITgvv+f8frmwhkByqiNcbPFoHzQ0Z4uQI/MtIslzukkY/s64CXPNAl/7lVx5yMBVhSQl4Jic1/kpu6NyyPAYcbtzgGwH6gMYTKmTaPtHuUqTcdIw60OrTq3ICgnZUR96O3e3JfFjx
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: 94c07469-69ee-4db3-a658-08d59bcc937c
+x-microsoft-exchange-diagnostics: 1; BN3NAM04HT204;
+	7:0rU6QDwhDow9CpaGoybTz+BS8aFvG+lBIu/zJQVuRpZq5upUjmf9YOhybb66R7t4nq3kYI+1viCeTCAcY9PSaFXdkyVEbXrsGnzvBcHzJqlwMupus1VM4LWG0DGGggiNVxO/Dsl7KpFIPGFGgdmaRQO7K3dz73xcrYWC6y1LGwhuF0mplZ51XB6arGmlcZHtea6hILQIWMJoIghBSWB8A1Yta02fUdtv42I5DqDFhp8ZYA+vzJgzbF6C6sAado/j
+x-incomingheadercount: 46
+x-eopattributedmessage: 0
 x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(7021125)(5600026)(4604075)(3008032)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(2017052603328)(7153060)(7193020);
-	SRVR:VI1P192MB0381; 
-x-ms-traffictypediagnostic: VI1P192MB0381:
-x-microsoft-antispam-prvs: <VI1P192MB0381B65D70F32179630946A98DBA0@VI1P192MB0381.EURP192.PROD.OUTLOOK.COM>
-x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(8121501046)(5005006)(10201501046)(3231221)(944501327)(52105095)(3002001)(93006095)(93001095)(6041310)(20161123560045)(2016111802025)(20161123564045)(20161123558120)(20161123562045)(6072148)(6043046)(201708071742011);
-	SRVR:VI1P192MB0381; BCL:0; PCL:0; RULEID:; SRVR:VI1P192MB0381; 
+	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101448)(1601125374)(1701031045);
+	SRVR:BN3NAM04HT204; 
+x-ms-traffictypediagnostic: BN3NAM04HT204:
+x-ms-office365-filtering-correlation-id: 6b47fa9e-ebb3-416b-c79d-08d59c0e2ff5
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
+	SRVR:BN3NAM04HT204; BCL:0; PCL:0; RULEID:; SRVR:BN3NAM04HT204; 
 x-forefront-prvs: 0634F37BFF
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(376002)(39380400002)(346002)(396003)(39830400003)(366004)(199004)(189003)(5660300001)(74316002)(105586002)(6436002)(9686003)(236005)(55016002)(6306002)(5640700003)(7696005)(54896002)(99286004)(33656002)(6506007)(97736004)(2351001)(2900100001)(68736007)(66066001)(606006)(5630700001)(14454004)(106356001)(7736002)(26005)(478600001)(102836004)(186003)(53936002)(6916009)(966005)(316002)(8676002)(476003)(2906002)(2501003)(25786009)(6116002)(790700001)(3846002)(3280700002)(3660700001)(1730700003)(81166006)(81156014)(9326002)(8936002)(86362001)(5250100002)(486006);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:VI1P192MB0381;
-	H:VI1P192MB0143.EURP192.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: orthotaxy.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: L3GQm2AsgfoX+Mc/Z72xm+nHnA94qAeEOoFMNLdnv4E+OJROC+5pqUILJwST0ySA/BOBqH+dYV+ry/WI8pzRsTbh2vUcyNeWYd/VzzxWSEuORYrtvCvLS3LtQ5Lhlw1sBM/KN+5tm1nXeRFG2AS0NftKtNb/IoyeQ5uXLfDpF+LT0ixUjvsDGSVXv6QdEj4c2I1tMJMAR6H+ZNI8FyyLLvs/Q1X4kaUlAc5TIG6Uwm+5MoYcXDh8R2seBclHbvZS1jLLPlG+qS+IJkUPMVHILkCAVtvjD0nuLqf3DeoM8Wvm9Cr4hoyto0eVHyjeGQEt63qZK4f7cxwoAlS+UgtbXKB6KZ1nmxxPYdsGPvSCWW963u9zJYaXDD/0GXPtO0S2GCeLsUh1D0g8y9YnjboT4crNm644826L30rn25ken/o=
+x-forefront-antispam-report: SFV:NSPM; SFS:(7070007)(98901004); DIR:OUT;
+	SFP:1901; SCL:1; SRVR:BN3NAM04HT204;
+	H:MWHPR19MB1183.namprd19.prod.outlook.com; FPR:; SPF:None; LANG:;
+x-microsoft-antispam-message-info: yps7ILmX95ESkd7FlfBhiYO6rrdYihGsM48Rmia//F8zGFaH/ZiRQqlWrHR5urVcKeRApiPmFhdzDUTCBPuhdY3oMkT7rTx//xm62+RgX9d+FMnpoIZz1spgyGWxP7B3nNdbUY63RABwU87ZiRZW9xe1OBfn6lR6pb4eYbCSJt/+VlkBmb7wpTW+4C00jFlI
 spamdiagnosticoutput: 1:99
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-X-OriginatorOrg: orthotaxy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94c07469-69ee-4db3-a658-08d59bcc937c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Apr 2018 14:42:09.1596 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0c838133-9c42-4d53-8cbc-7a36ef5279a7
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P192MB0381
-Subject: Adding support for GPIO chipset, Am I doing it right ?
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b47fa9e-ebb3-416b-c79d-08d59c0e2ff5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Apr 2018 22:31:49.0279 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3NAM04HT204
+Subject: Re: Adding debug output in recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -92,121 +107,353 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Apr 2018 14:42:15 -0000
-Content-Language: fr-FR
+X-List-Received-Date: Fri, 06 Apr 2018 22:46:35 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_VI1P192MB01438A69AA6F7DE603C088498DBA0VI1P192MB0143EURP_"
+	boundary="_000_DM5PR19MB11773265DEE80AD2CD8F0265C5BA0DM5PR19MB1177namp_"
 
---_000_VI1P192MB01438A69AA6F7DE603C088498DBA0VI1P192MB0143EURP_
-Content-Type: text/plain; charset="us-ascii"
+--_000_DM5PR19MB11773265DEE80AD2CD8F0265C5BA0DM5PR19MB1177namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-I'm using poky Rocko.
-I'm building a linux-rt based system (I'm using bitbake image-core-rt).
-
-The GPIO chip (Fintek F81866d) is not supported by the kernel we selected (=
-4.4). I downloaded the patch which adds support of Fintek F81866d to kernel=
- (from https://patchwork.ozlabs.org/patch/566380/) and add the patch to my =
-kernel linux recipes (via SRC_URI +=3D)
-When building the image, the kernel is being recompiled but the patch is no=
-t applied (I still get an error message saying that the chip is not support=
-ed when I try to modprobe the module).
-
-Is this way of adding support of the Fintek F81866d to the kernel is the ri=
-ght way ?
-How can I check that the patch is applied ?
-
-Thanks
-Vincent
+You're right on.  KERNEL_CC was used.  The 3rd party code actually has 3 co=
+mponents -
 
 
---_000_VI1P192MB01438A69AA6F7DE603C088498DBA0VI1P192MB0143EURP_
-Content-Type: text/html; charset="us-ascii"
+  1.  a kernel module
+  2.  a shared library
+  3.  2 demo binaries
+
+
+Their top-level makefile builds everything.  From Yocto's perspective, it i=
+nterfaces with this code as though the whole thing is a kernel module.  The=
+re may be adversed implication to the shared library if I were to use the K=
+ERNEL_CC variable.  So, I'm thinking of modifying the 3rd party makefile to=
+ support separate builds.
+
+
+What documentation/section I should look into for patching the makefile (mi=
+nimize changes to original vendor files)?
+
+
+Thanks,
+
+Raymond
+
+
+________________________________
+From: Anuj Mittal <anuj.mittal@intel.com>
+Sent: Thursday, April 5, 2018 11:39 PM
+To: Raymond Yeung; yocto@yoctoproject.org
+Subject: Re: [yocto] Adding debug output in recipe
+
+On 04/06/2018 02:05 PM, Raymond Yeung wrote:
+> Hi Anuj,
+>
+>
+> "bitbake -e" is very useful for debugging out-of-tree build issue.
+>  However, looks like I have another issue.  From "devtool build" output,
+> I could see variables passed into makefile.  Let's focus on "CC" for now:
+>
+>
+> CC=3Dx86_64-poky-linux-gcc  -fuse-ld=3Dbfd
+
+I think that is the value of KERNEL_CC if you're inheriting module.bbclass.
+
+>
+>
+> If we compare this to "bitbake -e" dump:
+>
+>
+> export CC=3D"x86_64-poky-linux-gcc  -m64 -march=3Dcorei7 -mtune=3Dcorei7
+> -mfpmath=3Dsse -msse4.2
+> --sysroot=3D/a/ryeung/dev/yocto-git/yocto_build/build/tmp/sysroots/intel-=
+corei7-64"
+>
+>
+> You can see somehow the variable is modified.  Let's focus on --sysroot
+> portion.  Without it, there seems to be no way for me to control
+> LIBRARY_PATH's value.  The result is that the linker couldn't find
+> crti.o and a few other files.  By manually adding back --sysroot
+> portion, I could now get past this failure, onto the next.
+>
+>
+> I suppose, as a possible final solution, I could do:
+>
+>
+> $(CC) --sysroot=3D$(KERNEL_SRC) ...
+
+This looks like a problem with your source Makefile. Please check the
+variable that points to kernel sources in your Makefile.
+
+Use EXTRA_OEMAKE +=3D "<varname>=3D'${STAGING_KERNEL_DIR}'" if the variable
+name used in your Makefile is different from KERNEL_PATH or KERNEL_SRC.
+
+You can also check run.do_compile file to see the exact compile steps.
+
+Please see:
+
+https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html#incorpo=
+rating-out-of-tree-modules
+Yocto Project Linux Kernel Development Manual<https://www.yoctoproject.org/=
+docs/latest/kernel-dev/kernel-dev.html#incorporating-out-of-tree-modules>
+www.yoctoproject.org
+Kernel modification involves changing the Yocto Project kernel, which could=
+ involve changing configuration options as well as adding new kernel recipe=
+s.
+
+
+
+
+>
+>
+> I'm really looking for simpler, more intuitive solution.  What about the
+> missing "-m64 -march=3Dcorei7 -mtune=3Dcorei7 -mfpmath=3Dsse -msse4.2" in=
+ the
+> export?
+>
+>
+> Raymond
+>
+>
+>
+>
+> ------------------------------------------------------------------------
+> *From:* Anuj Mittal <anuj.mittal@intel.com>
+> *Sent:* Thursday, April 5, 2018 9:52 PM
+> *To:* Raymond Yeung; yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Adding debug output in recipe
+>
+> On 04/05/2018 03:33 PM, Raymond Yeung wrote:
+>> Is there a way to add simple debug output (ideally don't need to control
+>> debug level) to echo out values of variables?  I tried the bb.xxx
+>> variants, but couldn't get them to work.
+>>
+>
+> To find out what a variable is being set to, you can try:
+>
+> bitbake -e <recipename>
+>
+> Please see:
+>
+> https://wiki.yoctoproject.org/wiki/Technical_FAQ#I_set_a_variable_but_it_=
+doesn.27t_seem_to_be_having_an_effect.2C_how_do_I_fix_this.3F
+>
+> Is that what you were looking for?
+
+
+--_000_DM5PR19MB11773265DEE80AD2CD8F0265C5BA0DM5PR19MB1177namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
 </head>
-<body lang=3D"EN-GB" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I&#8217;m using poky Rocko.<o:p></o:p></p>
-<p class=3D"MsoNormal">I&#8217;m building a linux-rt based system (I&#8217;=
-m using bitbake image-core-rt).<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The GPIO chip (Fintek F81866d) is not supported by t=
-he kernel we selected (4.4). I downloaded the patch which adds support of F=
-intek F81866d to kernel (from
-<a href=3D"https://patchwork.ozlabs.org/patch/566380/">https://patchwork.oz=
-labs.org/patch/566380/</a>) and add the patch to my kernel linux recipes (v=
-ia SRC_URI &#43;=3D)<o:p></o:p></p>
-<p class=3D"MsoNormal">When building the image, the kernel is being recompi=
-led but the patch is not applied (I still get an error message saying that =
-the chip is not supported when I try to modprobe the module).<o:p></o:p></p=
->
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is this way of adding support of the Fintek F81866d =
-to the kernel is the right way ?<o:p></o:p></p>
-<p class=3D"MsoNormal">How can I check that the patch is applied ?<o:p></o:=
-p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks<o:p></o:p></p>
-<p class=3D"MsoNormal">Vincent<span lang=3D"FR" style=3D"mso-fareast-langua=
-ge:EN-GB"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">You're right on. &nbsp;KERNEL_CC =
+was used. &nbsp;The 3rd party code actually has 3 components -</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0"></p>
+<ol style=3D"margin-bottom: 0px; margin-top: 0px;">
+<li><span style=3D"font-size: 12pt;"></span><span style=3D"font-size: 12pt;=
+"></span>a kernel module</li><li>a shared library</li><li>2 demo binaries</=
+li></ol>
+<br>
+<p></p>
+<p style=3D"margin-top:0;margin-bottom:0">Their top-level makefile builds e=
+verything. &nbsp;From Yocto's perspective, it interfaces with this code as =
+though the whole thing is a kernel module. &nbsp;There may be adversed impl=
+ication to the shared library if I were to use
+ the KERNEL_CC variable. &nbsp;So, I'm thinking of modifying the 3rd party =
+makefile to support separate builds.</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">What documentation/section I shou=
+ld look into for patching the makefile (minimize changes to original vendor=
+ files)?</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">Thanks,</p>
+<p style=3D"margin-top:0;margin-bottom:0">Raymond</p>
+<br>
+<br>
+<div style=3D"color: rgb(0, 0, 0);">
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Anuj Mittal &lt;anuj.=
+mittal@intel.com&gt;<br>
+<b>Sent:</b> Thursday, April 5, 2018 11:39 PM<br>
+<b>To:</b> Raymond Yeung; yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] Adding debug output in recipe</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">On 04/06/2018 02:05 PM, Raymond Yeung wrote:<br>
+&gt; Hi Anuj,<br>
+&gt; <br>
+&gt; <br>
+&gt; &quot;bitbake -e&quot; is very useful for debugging out-of-tree build =
+issue.<br>
+&gt; &nbsp;However, looks like I have another issue. &nbsp;From &quot;devto=
+ol build&quot; output,<br>
+&gt; I could see variables passed into&nbsp;makefile. &nbsp;Let's focus on =
+&quot;CC&quot; for now:<br>
+&gt; <br>
+&gt; <br>
+&gt; CC=3Dx86_64-poky-linux-gcc &nbsp;-fuse-ld=3Dbfd<br>
+<br>
+I think that is the value of KERNEL_CC if you're inheriting module.bbclass.=
+<br>
+<br>
+&gt; <br>
+&gt; <br>
+&gt; If we compare this to &quot;bitbake -e&quot; dump:<br>
+&gt; <br>
+&gt; <br>
+&gt; export CC=3D&quot;x86_64-poky-linux-gcc &nbsp;-m64 -march=3Dcorei7 -mt=
+une=3Dcorei7<br>
+&gt; -mfpmath=3Dsse -msse4.2<br>
+&gt; --sysroot=3D/a/ryeung/dev/yocto-git/yocto_build/build/tmp/sysroots/int=
+el-corei7-64&quot;<br>
+&gt; <br>
+&gt; <br>
+&gt; You can see somehow the variable is modified. &nbsp;Let's focus on --s=
+ysroot<br>
+&gt; portion. &nbsp;Without it, there seems to be no way for me to control<=
+br>
+&gt; LIBRARY_PATH's value. &nbsp;The result is that the linker couldn't fin=
+d<br>
+&gt; crti.o and a few other files. &nbsp;By manually adding back --sysroot<=
+br>
+&gt; portion, I could now get past this failure, onto the next.<br>
+&gt; <br>
+&gt; <br>
+&gt; I suppose, as a possible final solution, I could do:<br>
+&gt; <br>
+&gt; <br>
+&gt; $(CC) --sysroot=3D$(KERNEL_SRC) ...<br>
+<br>
+This looks like a problem with your source Makefile. Please check the<br>
+variable that points to kernel sources in your Makefile.<br>
+<br>
+Use EXTRA_OEMAKE &#43;=3D &quot;&lt;varname&gt;=3D'${STAGING_KERNEL_DIR}'&q=
+uot; if the variable<br>
+name used in your Makefile is different from KERNEL_PATH or KERNEL_SRC.<br>
+<br>
+You can also check run.do_compile file to see the exact compile steps.<br>
+<br>
+Please see:<br>
+<br>
+<a href=3D"https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.h=
+tml#incorporating-out-of-tree-modules" id=3D"LPlnk856268" previewremoved=3D=
+"true">https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html#=
+incorporating-out-of-tree-modules</a>
+<div id=3D"LPBorder_GT_15230537207900.47532767920173336" style=3D"margin-bo=
+ttom: 20px; overflow: auto; width: 100%; text-indent: 0px;">
+<table id=3D"LPContainer_15230537207870.6067276196852213" role=3D"presentat=
+ion" cellspacing=3D"0" style=3D"width: 90%; background-color: rgb(255, 255,=
+ 255); position: relative; overflow: auto; padding-top: 20px; padding-botto=
+m: 20px; margin-top: 20px; border-top-width: 1px; border-top-style: dotted;=
+ border-top-color: rgb(200, 200, 200); border-bottom-width: 1px; border-bot=
+tom-style: dotted; border-bottom-color: rgb(200, 200, 200);">
+<tbody>
+<tr valign=3D"top" style=3D"border-spacing: 0px;">
+<td id=3D"TextCell_15230537207880.4540178403164894" colspan=3D"2" style=3D"=
+vertical-align: top; position: relative; padding: 0px; display: table-cell;=
+">
+<div id=3D"LPRemovePreviewContainer_15230537207890.4310096310980922"><a id=
+=3D"LPlnk453941" class=3D"ms-Icon--x ms-icon-font-size-14" style=3D"font-fa=
+mily: wf_segoe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahom=
+a, Arial, sans-serif; font-weight: normal; position: relative; cursor: poin=
+ter; padding: 8px; float: right; color: rgb(102, 102, 102); background-colo=
+r: rgb(239, 246, 252); -webkit-user-select: none; margin-left: 10px;" previ=
+ewremoved=3D"true"></a></div>
+<div id=3D"LPTitle_15230537207890.9649983874124788" style=3D"top: 0px; colo=
+r: rgb(0, 120, 215); font-weight: normal; font-size: 21px; font-family: wf_=
+segoe-ui_light, &quot;Segoe UI Light&quot;, &quot;Segoe WP Light&quot;, &qu=
+ot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif; line-he=
+ight: 21px;">
+<a id=3D"LPUrlAnchor_15230537207890.4385613783150627" href=3D"https://www.y=
+octoproject.org/docs/latest/kernel-dev/kernel-dev.html#incorporating-out-of=
+-tree-modules" target=3D"_blank" style=3D"text-decoration: none;">Yocto Pro=
+ject Linux Kernel Development Manual</a></div>
+<div id=3D"LPMetadata_15230537207890.7809769039162715" style=3D"margin: 10p=
+x 0px 16px; color: rgb(102, 102, 102); font-weight: normal; font-family: wf=
+_segoe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial=
+, sans-serif; font-size: 14px; line-height: 14px;">
+www.yoctoproject.org</div>
+<div id=3D"LPDescription_15230537207900.7593695061999772" style=3D"display:=
+ block; color: rgb(102, 102, 102); font-weight: normal; font-family: wf_seg=
+oe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sa=
+ns-serif; font-size: 14px; line-height: 20px; max-height: 100px; overflow: =
+hidden;">
+Kernel modification involves changing the Yocto Project kernel, which could=
+ involve changing configuration options as well as adding new kernel recipe=
+s.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<br>
+&gt; <br>
+&gt; <br>
+&gt; I'm really looking for simpler, more intuitive solution. &nbsp;What ab=
+out the<br>
+&gt; missing &quot;-m64 -march=3Dcorei7 -mtune=3Dcorei7 -mfpmath=3Dsse -mss=
+e4.2&quot; in the<br>
+&gt; export?<br>
+&gt; <br>
+&gt; <br>
+&gt; Raymond<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; ----------------------------------------------------------------------=
+--<br>
+&gt; *From:* Anuj Mittal &lt;anuj.mittal@intel.com&gt;<br>
+&gt; *Sent:* Thursday, April 5, 2018 9:52 PM<br>
+&gt; *To:* Raymond Yeung; yocto@yoctoproject.org<br>
+&gt; *Subject:* Re: [yocto] Adding debug output in recipe<br>
+&gt; &nbsp;<br>
+&gt; On 04/05/2018 03:33 PM, Raymond Yeung wrote:<br>
+&gt;&gt; Is there a way to add simple debug output (ideally don't need to c=
+ontrol<br>
+&gt;&gt; debug level) to echo out values of variables? &nbsp;I tried the bb=
+.xxx<br>
+&gt;&gt; variants, but couldn't get them to work.<br>
+&gt;&gt; <br>
+&gt; <br>
+&gt; To find out what a variable is being set to, you can try:<br>
+&gt; <br>
+&gt; bitbake -e &lt;recipename&gt;<br>
+&gt; <br>
+&gt; Please see:<br>
+&gt; <br>
+&gt; <a href=3D"https://wiki.yoctoproject.org/wiki/Technical_FAQ#I_set_a_va=
+riable_but_it_doesn.27t_seem_to_be_having_an_effect.2C_how_do_I_fix_this.3F=
+" id=3D"LPlnk149872" previewremoved=3D"true">
+https://wiki.yoctoproject.org/wiki/Technical_FAQ#I_set_a_variable_but_it_do=
+esn.27t_seem_to_be_having_an_effect.2C_how_do_I_fix_this.3F</a><br>
+&gt; <br>
+&gt; Is that what you were looking for?<br>
+<br>
+</div>
+</span></font></div>
+</div>
 </div>
 </body>
 </html>
 
---_000_VI1P192MB01438A69AA6F7DE603C088498DBA0VI1P192MB0143EURP_--
+--_000_DM5PR19MB11773265DEE80AD2CD8F0265C5BA0DM5PR19MB1177namp_--
