@@ -1,113 +1,128 @@
-Return-Path: <MohammadJamal.Mohiuddin@ncr.com>
+Return-Path: <jakob.hasse@qiio.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 234FAE00994; Thu,  5 Apr 2018 05:59:35 -0700 (PDT)
+	id 366D0E00B28; Sat,  7 Apr 2018 08:15:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [148.163.148.55 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.76 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 4339 seconds by postgrey-1.32 at yocto-www;
-	Thu, 05 Apr 2018 05:59:33 PDT
-Received: from mx0a-00209e01.pphosted.com (mx0a-00209e01.pphosted.com
-	[148.163.148.55])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 009D9E00843
-	for <yocto@yoctoproject.org>; Thu,  5 Apr 2018 05:59:33 -0700 (PDT)
-Received: from pps.filterd (m0131214.ppops.net [127.0.0.1])
-	by mx0b-00209e01.pphosted.com (8.16.0.22/8.16.0.22) with SMTP id
-	w35BdUfX026000
-	for <yocto@yoctoproject.org>; Thu, 5 Apr 2018 07:47:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ncr.com;
-	h=from : to : subject :
-	date : message-id : content-type : mime-version; s=mail;
-	bh=LFBubKe9VcRZdY7MXyFSqKDlwY3dTyDCsqyRqqh3RLs=;
-	b=f7kU9mtpONT/yLRGROsyWmLCrtt8U9pyTSbM+WbK6WmNn77cot/5BPIG/goAnNMmP0BG
-	xxROe1Tj6+bdlUABeFM3LsHJ9GxeK0xjI59wmIWVAyiW1Rl19ejRqNrt1rLt9M/gUSWm
-	xi74VTjm16AiKvjA4mbCl8JGNCL9QcIRfd5/YhNR+Ttz5FaE2Ny2SIl2ToFYnZOSwEZm
-	RJj7Z1lMVVswDMUDzBj5B7G8F2/esj9kcBLdfHO18jTDzlbjBDv74wsOa8TsnOJjbhcR
-	97hecuj+pb4BXpyf3LaLtMcgNOEnrsBpfjdMtNUacpnPJ2xoZjVa7f6+fL8v7+iRXow0
-	lg== 
-Received: from nam01-bn3-obe.outbound.protection.outlook.com
-	(mail-bn3nam01lp0176.outbound.protection.outlook.com
-	[216.32.180.176])
-	by mx0b-00209e01.pphosted.com with ESMTP id 2h5gw4s1kp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
-	for <yocto@yoctoproject.org>; Thu, 05 Apr 2018 07:47:14 -0400
-Received: from CY1PR15MB0126.namprd15.prod.outlook.com (10.162.46.146) by
-	CY1PR15MB0859.namprd15.prod.outlook.com (10.169.22.137) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.653.12; Thu, 5 Apr 2018 11:47:11 +0000
-Received: from CY1PR15MB0126.namprd15.prod.outlook.com
-	([fe80::303b:a31e:e791:cc3a]) by
-	CY1PR15MB0126.namprd15.prod.outlook.com
-	([fe80::303b:a31e:e791:cc3a%16]) with mapi id 15.20.0631.013;
-	Thu, 5 Apr 2018 11:47:11 +0000
-From: "Mohammad, Jamal M" <MohammadJamal.Mohiuddin@ncr.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: No support for grubenv in efi mode
-Thread-Index: AdPM06YymWc2IkJJQbeVtH2piY1b1A==
-Date: Thu, 5 Apr 2018 11:47:11 +0000
-Message-ID: <CY1PR15MB012615EE6CDFA0885FC1A0B6F0BB0@CY1PR15MB0126.namprd15.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [32.66.192.216]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; CY1PR15MB0859;
-	7:rIH/bDcJeDuxfAtJYkEP89mKuhuAuxWJc9gH9SeMVzWxIcxv3M0A4OdDs7/4tWvcx2SrkRKI4ip0X/IsTBd5iFwm0n+40sQpbN2xEucSXB0mwonjws8yHLI5H9hmOg8xzpNSx0+ydEbPh0rGd75hH0ZTwOVMeuTjuGVrq5TLOjse2+tW11Zq1z8Ly9wrmVg43/6ngojxWEkHb1qsFuWDn2ERvvw6hB6E0+irFpdL/YZM97YHkJlc8gKN618b7PP1
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: 4d0c4e2d-7b20-48fb-8ed3-08d59aeaf821
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(5600026)(4604075)(3008032)(48565401081)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603328)(7153060)(7193020);
-	SRVR:CY1PR15MB0859; 
-x-ms-traffictypediagnostic: CY1PR15MB0859:
-x-from-ncr-tenant: Processed
-x-microsoft-antispam-prvs: <CY1PR15MB0859BFB9C115EEB56F425E05F0BB0@CY1PR15MB0859.namprd15.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(8211001083)(6040522)(2401047)(5005006)(8121501046)(3231221)(944501327)(52105095)(93006095)(93001095)(3002001)(10201501046)(6055026)(6041310)(20161123560045)(20161123564045)(20161123562045)(20161123558120)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(6072148)(201708071742011);
-	SRVR:CY1PR15MB0859; BCL:0; PCL:0; RULEID:; SRVR:CY1PR15MB0859; 
-x-forefront-prvs: 06339BAE63
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(376002)(39380400002)(396003)(346002)(39860400002)(366004)(199004)(189003)(3846002)(3280700002)(6116002)(790700001)(74316002)(3660700001)(7736002)(6506007)(25786009)(186003)(99286004)(5660300001)(2906002)(2900100001)(7696005)(53936002)(316002)(9686003)(54896002)(6306002)(6436002)(5640700003)(55016002)(68736007)(86362001)(5630700001)(8936002)(9326002)(97736004)(26005)(1730700003)(81156014)(486006)(8676002)(33656002)(5250100002)(2351001)(2501003)(81166006)(6916009)(66066001)(106356001)(476003)(478600001)(105586002)(14454004)(102836004)(72206003);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR15MB0859;
-	H:CY1PR15MB0126.namprd15.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: ncr.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: 5vU/3cdHOONCnaxM0NBbctIfUwZl7tZrcDAXOaYn5dKslotaS1g5dvUCOLDqIXTOfCn3b+ZqgvnUXA/XD9bhcfia9f4Yeq/nm2PvroU6RDkuJBx15/l3BgE6Kst4HheVFzZhUj5EI55QmOt8/Ztfr+LzT+ebm/rGUjeIf/tFxlYbkxNJzgAx+zKu26pPVbbDx/RvMXHB97+XiPJPeLRGsA6Jhn6Ar09Hu50WKgy259yJ6pNMEpfOe444pzlQCh8l3hPR7MWzN6VIrm8IT66qmbQE+t52N/KOnInklwz7sskqhIt3TWg5wxo+iF2LOojX+Tyg/yuiCG49emmZh7uMhUq0JUsz+nBwQRkFDYbw56IXD3qVRAGq6aCBJHWCSBWTmyFUYxAVGDLl4+LgJx2XEx5YsnF8qqyiSqdWuekP0m8=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+X-Greylist: delayed 1993 seconds by postgrey-1.32 at yocto-www;
+	Sat, 07 Apr 2018 08:15:41 PDT
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0076.outbound.protection.outlook.com [104.47.2.76])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C93BE008D4
+	for <yocto@yoctoproject.org>; Sat,  7 Apr 2018 08:15:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=smarthometechnologych.onmicrosoft.com; s=selector1-qiio-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=biv5fvnuJzII388pd2rbsYvv4JuZM8DyDEvpJDUnRqc=;
+	b=EoQlBlfEJdP1fpRykAvcd15n0lE+xfaBlNLzZoE1qNKZiBjxb9QfVfYZQnUY59D0TR5gARGrWJ+tktM29xCCeYKn04S13NngtgwpoI+91+RQap57TfY70A4F5HjEtMslvy5f0JvUH4QglkoI4DLjoLxcMUJGYBw/lljuNsWzpkY=
+Authentication-Results: spf=none (sender IP is )
+	smtp.mailfrom=jakob.hasse@qiio.com; 
+Received: from [IPv6:2a02:168:68a0:1:e53f:b388:4c51:a703]
+	(2a02:168:68a0:1:e53f:b388:4c51:a703) by
+	VI1P192MB0062.EURP192.PROD.OUTLOOK.COM (2603:10a6:800:c1::20) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.653.12;
+	Sat, 7 Apr 2018 14:42:25 +0000
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <4ac78687-69d5-a330-6b26-97aa5762e5b0@smart-home-technology.ch>
+	<3628235.utvFBA70li@peggleto-mobl.ger.corp.intel.com>
+From: Jakob Hasse <jakob.hasse@qiio.com>
+Message-ID: <778dedc0-fc79-822b-2a31-d205c39fc6aa@qiio.com>
+Date: Sat, 7 Apr 2018 16:42:23 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
-X-OriginatorOrg: ncr.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d0c4e2d-7b20-48fb-8ed3-08d59aeaf821
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Apr 2018 11:47:11.7360 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: ae4df1f7-611e-444f-897e-f964e1205171
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR15MB0859
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
-	definitions=2018-04-05_06:, , signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
-	priorityscore=1501
-	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
-	clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=711 adultscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1 engine=8.0.1-1711220000 definitions=main-1804050125
+In-Reply-To: <3628235.utvFBA70li@peggleto-mobl.ger.corp.intel.com>
+X-Originating-IP: [2a02:168:68a0:1:e53f:b388:4c51:a703]
+X-ClientProxiedBy: DB6P195CA0009.EURP195.PROD.OUTLOOK.COM (2603:10a6:4:cb::19)
+	To VI1P192MB0062.EURP192.PROD.OUTLOOK.COM
+	(2603:10a6:800:c1::20)
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 1773e2bc-7fe8-471d-1efa-08d59c95c7e4
+X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(7021125)(5600026)(4604075)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(2017052603328)(7153060)(7193020);
+	SRVR:VI1P192MB0062; 
+X-Microsoft-Exchange-Diagnostics: 1; VI1P192MB0062;
+	3:WPKm43hcpqgBpokFrf8jLltfDdPcYofBFWmXLgzAjl8PIKj3i4Y/QR5XktS23jvFdPQs5Bc1sriLu55yXEGHlZ364VC2jIzWXErxY92SPk5gPe9qH2tMDti+4XAWWeqRZXXfNAvr6pSOHreb6PQ5r1Hlw4ywu3Sxv7ERkUeWlKafi5kdnRThjz31Uqfm6husYsjfNCBPUvs8HNRa9qK6N3auANMH8VMnaihlBXQ9QUhv/aeutaGcQIrUWFKe/oFN;
+	25:MzrrN4mP3bpRE9s526GAB9AG4e5vdmX2gerl7yQ0aLdY3YcvWSNzrnBZuAcNx0nc8Nj+YA5aLiEkcpTxVcfshFzjjo+vvtQFIVkIMi9mKpJ/kI4pxAul508IniqMDdY6E9nZSMaCKhIECPyznyobiTbyI19aK9s1zwio7I658060YPwPNTH5It2Zne8e4Jaiw7ArUaTIWeHgzUkkUR46GZkKqjgYhukQ3V9xsdscqPnh6fELSwB9omzB1H0fe+IUa2zaiYQAsnT5sxeagLBLRYfS7H0cIBwTkZZnXeRes4QfKJs8qa4Z7CGrm6LzapqKgxcTpVXu3TvjMyw2xWPavA==;
+	31:k0azEeyBrwd1TNC67/rqdueN8RHlnMXFGOOeorcm+kFRiRuTAy4FOQPymiGinEh0axoRl/g6QoBOUzOxHCeSR+3rKcQPofmffypZyIt9vo9HkGOE1O6YlhRgcB3moBpBB9LMM3dh98I6FmS2P7xM3fnJj0btgMOkp0RgM3cUK/IUbf0mJ1GcMa9Smag+eINnK0C7/FUDHxvoczZMIepgDp1Xu8VGUOfvckniZfzbaWQ=
+X-MS-TrafficTypeDiagnostic: VI1P192MB0062:
+X-Microsoft-Antispam-PRVS: <VI1P192MB0062F1424939ABF2C1DF2F4784B90@VI1P192MB0062.EURP192.PROD.OUTLOOK.COM>
+X-Exchange-Antispam-Report-Test: UriScan:(158342451672863);
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(6040522)(2401047)(5005006)(8121501046)(3231221)(944501327)(52105095)(3002001)(10201501046)(93006095)(93001095)(6041310)(20161123562045)(2016111802025)(20161123560045)(20161123564045)(20161123558120)(6072148)(6043046)(201708071742011);
+	SRVR:VI1P192MB0062; BCL:0; PCL:0; RULEID:; SRVR:VI1P192MB0062; 
+X-Microsoft-Exchange-Diagnostics: 1; VI1P192MB0062;
+	4:bx0g+iKGf5eTosKZIvxPiDMK9Tz6ZKfAsutocvTSd4nDXqcnf/rtmquJUFXbvsb4/b5k+HoK1KJYnfnYkEJ6zPSveWG4tFLHQjkPOGfyQbVNn+54YiJLE4/Mvz5dRpcLIqQam36OCwrZaL7uhCkmsmzrbVb2EulJPQnS1VYsFnawG9xrMx7a2G0lQedM2MttRCbgd5iZnUicMgkvOpgF83CJxKhfK5jgB5oHX5SPVqkBTPLxfhSZHiulBQiOYuNd4K1+Vkt8mQVMDJZGiBRYSI6tFMoNSVtMpAvHDfFMQvzBt3Lkon751Slab/sgPaXY
+X-Forefront-PRVS: 0635D5275E
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10009020)(396003)(366004)(39830400003)(346002)(376002)(39380400002)(199004)(189003)(229853002)(65826007)(6916009)(5660300001)(186003)(105586002)(305945005)(6116002)(2906002)(7736002)(65956001)(65806001)(16526019)(25786009)(67846002)(76176011)(6246003)(50466002)(47776003)(31686004)(4326008)(52396003)(23676004)(52146003)(486006)(8676002)(64126003)(476003)(81166006)(11346002)(52116002)(53546011)(2616005)(446003)(36756003)(46003)(81156014)(230700001)(53936002)(1706002)(31696002)(59450400001)(8936002)(478600001)(2486003)(106356001)(58126008)(316002)(86362001)(6486002)(68736007)(97736004)(386003);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:VI1P192MB0062;
+	H:[IPv6:2a02:168:68a0:1:e53f:b388:4c51:a703]; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+Received-SPF: None (protection.outlook.com: qiio.com does not designate
+	permitted sender hosts)
+X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtWSTFQMTkyTUIwMDYyOzIzOnFiUWdlUXYzbUcvVTdBNlpKWkhsUDVFRXZC?=
+	=?utf-8?B?dlZXdW8rOFhEYUtLUlBTUnhCeVJnSkZNOCsxL0hvUGNHNzVtWEJQekxKQkpL?=
+	=?utf-8?B?VDZib2dFeEREUVo4QkVsbkk3bWVpcUdFbmZnc2pmc0plNXpod24yS1c0bUlI?=
+	=?utf-8?B?c05DaHh0MEpOd1BuejNXNGFsV2xXRVBkcXgyaEsySVVPQ1Z1TUQxM2hHWnBi?=
+	=?utf-8?B?WXhRc3JYdHFvdUsvRDl3WXI5clFaWTAxUUpGSW00VVdsNWp2RnRmMWVRdWYv?=
+	=?utf-8?B?RUtJZGRiREpyVGYzZTNVREJNaTYzMDFVSXNMeHk5TVFlWjhvZWkwNFFxRUZH?=
+	=?utf-8?B?NmF1b05Ia0NDeUFiSldVbU1lZm10R29JWVdkSzZ6OVRBL3lXM1JXL2JkL0RW?=
+	=?utf-8?B?L3loR3pNRWNjRTIyZ0tkWmJISTJhOXpmQjV4S1FBY0wweUZLUk9lczhWanFG?=
+	=?utf-8?B?REtqWnEzVk9PQ0pQQkczUWVHcXcyVmtRdVdwWWJtaGllbVdIK0lEY0d6OW9C?=
+	=?utf-8?B?WU1KNWlQUFU3Rk5saVRpVnNVY1hKSXY0cS9zS1I3Q0tQc0pHb1YvV0JsL3R2?=
+	=?utf-8?B?T0RaQVJUeW04REFicXMzS1N6QXVBcGVlTFNsTzA4YmgycHFBSWRrZEl0QWJG?=
+	=?utf-8?B?Yk5qOWdEVkpzZWRYVnZVT2lDenJrRUlIWFA5dnMyRXNZVHR6b1cwemNTTWlX?=
+	=?utf-8?B?ZEFWWmoxbjNBVEw4WkJOeWpZa1d4YmlRTXlPOWIrTFFJN1EwclhWb3UwckJr?=
+	=?utf-8?B?MXpBbllnL0ZXYkcwK2VmSUJuQjk3UGVtd0o1SGtzVS94L1hnM3Rma2t4VUhK?=
+	=?utf-8?B?eUM5ZVo1aWlnRHNLM1VPb1VoaTM2TmVQU3hGSnpBUVl3NTBaOGFFRDIwdk00?=
+	=?utf-8?B?V0tkOVVucWRQd2RFeGJmbDJXUzVoUHg3ZUp3M2tGWStnZWtLSFlhUUxWeUNZ?=
+	=?utf-8?B?YzRyNDFFbjlqREtKdEdpY1B6T0d5SWVvQks0Q2I2VzRPY09ES2pNcE5LcHBU?=
+	=?utf-8?B?c0hCUkE1YmIxNW1OSW1XWXZ4Nk13VjFKOTNuZ2M3YXpCclFBN1JDVmZSK0ow?=
+	=?utf-8?B?UUVhaHZTQkFtdE1VMXMveTdzUE9GU0FTbC9RLytLelBtUTZrOEwrdUs3OTE4?=
+	=?utf-8?B?ZFdiR2hxS1VtSzhTbCtYRXhmVVFqWnRyZ0dwNkZCM3huOWI0TTNyUlJzQ1Vo?=
+	=?utf-8?B?U2xYNE9uSFlXeHlOaE50dmYvYTV3N2owK3dYZkdzbk5aQ0JZOXczaGtrYVJo?=
+	=?utf-8?B?M1hhN1FZMWRyUktqdXdkZi94OHFhTldOK0xib0Jsek9ObUJzVzl5MFZWcHdx?=
+	=?utf-8?B?Ry93TDYzdXVxRFdTSnhSY0hVclEzQjUxdTdRdVR1ZFZQd2VYUlF4a0tyMmNw?=
+	=?utf-8?B?MWtoem5HbGJmcDFIYWkzRVFwU3ZHMEZyaEJFbHB6d1MvMzB1dDR0Ykx0bksv?=
+	=?utf-8?B?RnBzQUUxR2RQdDcwN1N6SE1oZzc5V2ppZ2QybGs4YndTM0RMZmNUS2dZeXBI?=
+	=?utf-8?B?a2FoRnp2SzgzdC9wUUdvK2JXQlUwL0lQM0xYaEE1aXBmQllQZEVVTkNaS3Qy?=
+	=?utf-8?B?Z2VvcWU2TDhzUjI2bm1hNUF2NkIyVzBWN2Y0QUhXOE5KMVEzcUZRaVgrQlVD?=
+	=?utf-8?B?NG9LQ1l2TXRqRHIrUXRGM2tPUE9McmlNYVAzZ1JkU1J2aWpQZGpZNVlFR2Ry?=
+	=?utf-8?B?RXlWZ293ZWZtdnJPTUdUbWpyWlVCZmUxMWVjUmlYd3E1Q2c1S1N2UXNFdUM3?=
+	=?utf-8?B?d1M4Z0FWUlpSMzhlclFIK1ZVdTR4Rzk3cTd6aVdDbzBpd1E5UU43L1ZUWVI0?=
+	=?utf-8?B?VTZyVGNmcW44VkYxU3NselJqT0gyaVlRTTROSWswTDcvSlE9PQ==?=
+X-Microsoft-Antispam-Message-Info: 9WVypxufaqG96s3rY+uJOeQHnw1rOze2guBLP4omnRolUeouYSND0UPg6EodBTZcEF0Q7bweeaRjPz1fOuhtd2R8mT0rUGM1o9dkI3taWZ13eQ//XdZeN2r16ECQgkWDfAHveQ5ey01QT+hUXDLrf3u/ZdHge9eXQzDBGghY4mdqGWeg8ozr37+R9J147n+T
+X-Microsoft-Exchange-Diagnostics: 1; VI1P192MB0062;
+	6:V5GMM0XVJJVlIccWux2/8As+Ut8hOFSgsbCkslbV+3TTo3XQTKcU2XY/YU2G7ipKEIhcwb+L/JYjSU+Ptgo74rS52P4IzoapQ7xCUqxGub6ae7pb96ooHllKM6KS9W7SNXerRIHGT7A4JeiLTT5Cd/Z5in8fPVVmP8VfwHTVEi6iAcwP/0yf3CcANrRF4bKTymbgEr3nto9LBwd1I79l3MbxWUedXxuDnXuAGtVSj0LM87lpyh8blt+ojMcxioTz9qvaHe8+nsJylFr6ZPLAG1U2MKsHp5SO4DS67btq8uax/83aZd0eKu2noE/QAPrBAhnhzkdTSX8qItEZXvk2Tk1dkmSQ80Iw0MW5VoGNT1UCcM3ln/yae72ekRjPjIKrMc8aW8Xd9z5W8K65ClRifZgOrmbeo4T0tmrzhjgB6layUWWr0ZbGWd6+kjz21WdUGzg6BBe4LaOcuzFPYdUIgA==;
+	5:MDyUVvjIVzcZMOKlB/52k0KGoH/1NyEKRyQD0D6u+VkG9Qgk8rfxBSTaUKaYABzpUH8KtxDPvlJqrPmMGB8YA76nGtCBNze66kmhaeb8MNdOjnBXVqJeQLIfrRydgw1X5k7gCg5T8rig0YscT7dQO3wZBxScwFqh7ypUIp76FnM=;
+	24:JP+aBK85Y+j/hGSMV+0qswMhWpZbRFN6mYGnCN9w5f5Z5QL4jYNJNBNEvUrhOb4RJD0XK8XXeBNloVkQaOj0w59AQgnO2XUHsEF0vNpRZFM=
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-Microsoft-Exchange-Diagnostics: 1; VI1P192MB0062;
+	7:RIuSi5XM93fZ3fCqs75FNUDEyps7n1IKyhGT3colSM77usmjTw6YlS9egjryTXO+i3dmo0njP/1ctLanKewcpaRpgMUPr+tgOBxvensIPq9keU/zbzjA66YRe//kcfhSQbd/fn8tRyeDV2Jst0ZDO9QcqBeLGu9dlbv8nbv9cSz76q+pFadAkG7v9dXAq+d2yIajhts2wAq6ZhFS64B59wGfmC2wLoo71nRHe9siziT5rUlAMY/hymPDYQe7A/8D
+X-OriginatorOrg: qiio.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2018 14:42:25.7656 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1773e2bc-7fe8-471d-1efa-08d59c95c7e4
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7110674e-f830-4f7f-87a8-a46973e4c75f
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P192MB0062
 X-Mailman-Approved-At: Sun, 08 Apr 2018 13:41:55 -0700
-Subject: No support for grubenv in efi mode
+Cc: yocto@yoctoproject.org
+Subject: Re: Bitbake problems recognizing the latest version of a repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -119,125 +134,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Apr 2018 12:59:35 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CY1PR15MB012615EE6CDFA0885FC1A0B6F0BB0CY1PR15MB0126namp_"
+X-List-Received-Date: Sat, 07 Apr 2018 15:15:45 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: de-DE
 
---_000_CY1PR15MB012615EE6CDFA0885FC1A0B6F0BB0CY1PR15MB0126namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi Paul,
 
-Hi Guys,
+thanks a lot for the clarification. Now I know much better what to 
+expect. The pulling from the repository seems to work fine after I set the
 
-I was trying to add grubenv to My Yocto Project in EFI Mode..By default the=
- recipe grub-efi_2.02.bb doesn't create that, so I added the following code=
-:
+SRCREV = "${AUTOREV}" variable.
 
-do_deploy_append_class-target() {
-grub-editenv grubenv create
-}
+That seems to have been the mistake causing most of the confusion.
 
+If I encounter unexpected behavior with the locally kept repositories, I 
+will come back to the mailing list (maybe it was just my confusion about 
+all the revision juggling which let me believe, that building an 
+EXTERNAL_SRC repo also does not work as expected).
 
-Running bitbake throws an error that grub-editenv: not found
+All the Best and Thanks again,
+Jakob
 
-What is the reason for this error and how can I add grubenv in efi mode ( G=
-RUB ).
-
-Thanks and Regards,
-Jamal
-
---_000_CY1PR15MB012615EE6CDFA0885FC1A0B6F0BB0CY1PR15MB0126namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 04.04.2018 06:13, Paul Eggleton wrote:
+> Hi Jakob,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-code
-	{mso-style-priority:99;
-	font-family:"Courier New";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi Guys,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I was trying to add grubenv to My Yocto Project in E=
-FI Mode..<span style=3D"font-size:11.5pt;font-family:&quot;Arial&quot;,sans=
--serif;color:#242729;background:white">By default the recipe grub-efi_2.02.=
-bb doesn't create that, so I added the following
- code:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">do_deploy_append_class-target() { <o:p></o:p></p>
-<p class=3D"MsoNormal">grub-editenv grubenv create <o:p></o:p></p>
-<p class=3D"MsoNormal">}<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt;background:white;vertical-alig=
-n:baseline">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"=
->Running bitbake throws an error that&nbsp;grub-editenv: not found<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">What is the reason for this error and how can I add =
-grubenv in efi mode ( GRUB ).<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks and Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Jamal<o:p></o:p></p>
-</div>
-</body>
-</html>
+> On Thursday, 29 March 2018 12:41:33 AM NZST Jakob Hasse wrote:
+>> Right now it's still a mystery for me when bitbake builds the latest
+>> version of a repository and why. I make changes in my code and whether I
+>> commit them or not, sometimes bitbake builds a package with the recent
+>> version, sometimes with an old version.
+>> So my strategy is doing mock changes (adding whitespaces, "enhencing"
+>> documentation) and adding signed commits as well as forcing a PR in the
+>> recipe and re-running bitbake until it works somehow (I heard the
+>> bitbake prefers the signed commits somehow could not verify this yet).
+>>
+>> Hence, I would like to know what I have to do to build only the latest
+>> version of a repository...
+>> 1. When it's local on my computer (with EXTERNALSRC_BUILD_pn-<package> =
+>> "/home/some/local/location/" in local.conf),
+> If you are using the externalsrc class (specifically with EXTERNALSRC set,
+> since EXTERNALSRC_BUILD only controls where the build is actually run) then
+> you should find that any change to files within the source tree should trigger
+> do_compile to rerun next time you build the recipe. If that does not happen
+> then that's a bug which we should explore further.
+>
+>> 2. When I build from a github or any remote repository.
+> In this case you need to be pulling the latest revision:
+>
+> SRCREV = "${AUTOREV}"
+>
+> If you need to specify a branch other than master, use ;branch=branchname in
+> SRC_URI.
+>
+> In order to force it to rebuild the latest version every time however, you
+> will likely also need something like this:
+>
+> PV = "1.0+git${SRCPV}"
+>
+> The "1.0" bit can be anything you like - usually it would be whatever the
+> latest release version was prior to the commit. A couple of further notes:
+>
+> 1) The result of the above will be that every time you run a build, even if
+> the recipe in question is not being built, bitbake will need to query the
+> remote repository in order to determine the latest available version.
+>
+> 2) If you want to ensure that PV never appears to go backwards (which is
+> important if you are using package management to perform upgrades within the
+> target image) then you will need to enable the PR server - see the manual for
+> information on how to do this.
+>
+> Cheers,
+> Paul
+>
 
---_000_CY1PR15MB012615EE6CDFA0885FC1A0B6F0BB0CY1PR15MB0126namp_--
