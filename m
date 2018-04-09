@@ -1,65 +1,49 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <epsi@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C3B87E00B9E; Tue, 10 Apr 2018 09:09:13 -0700 (PDT)
+	id 5CB2EE00B66; Mon,  9 Apr 2018 03:22:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.175 listed in list.dnswl.org]
+	mail provider *      (epsi[at]gmx.de)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.227.17.21 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f175.google.com (mail-qk0-f175.google.com
-	[209.85.220.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADEA4E009E2
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 09:09:12 -0700 (PDT)
-Received: by mail-qk0-f175.google.com with SMTP id n139so13936018qke.11
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 09:09:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Q+qz/N5RmBdguvUAFtWYaUnL/CFdx7t/bZY/JnirTVM=;
-	b=NzqzFtYz1xSBdvrJVA9+1DV1t4WUzm/TlvdNZMb0TvHjQWs6w7CbciPvRoWJ3dimzt
-	fLI4QL7y9rAbkSFwptu4GVtClS/TFlyy6Q6Mo9VgHeUL3kAqNsZEF7ojYdvsAmeMnTZa
-	hHudmeZ2E+ROxy8PCNXWYKvF79r1iMFqWvZdAc4jOZnW0eYz8QkJidINawwNyZmvptM1
-	Qdh+IPhM4Ro7eNg6UIDsOztUxFhQlWaKlcLNT+cO/f9dsByDirRh6u7wxM3fnffWrKM1
-	xZ4Fhrw2XutF4rqaOdSEuRsIFvCEjcssAmxXjvVTfKwvlNp6J5F6dH+xrKcXuDOE0ifx
-	Pkdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Q+qz/N5RmBdguvUAFtWYaUnL/CFdx7t/bZY/JnirTVM=;
-	b=LR4G73mjJvNNBLW/92OV0K8rHq8/QaqRmC84ghyOIlk7GD4c42Uj5+4Jjuv4hIcYWo
-	P7Xrixw+2hJSDpm3GDb+5JrWZdtQaqwRnDkVKWWcy/wvH7anbzf/0MvWi6d8E28ybMsn
-	9Zlh26EyrYXO286xIzUTShm7En7DFUYcNYPr8SPIXIZ8Y38iDFhrhDZxuXpem/SoGTzU
-	x4B64TKrCBqLEHCxLqTEhDHwbASmI6iK+CDj/mtYN77+aHvmVHa+TdYnCsIkXCssD3Lw
-	1cy8cgILbIw/jL63dc2MnlB4MW6k3vIFCjEwedgQ7yUFSKCwLsNXmxwCWM5jcMGbQwR2
-	12mQ==
-X-Gm-Message-State: ALQs6tArQHUxjOuMf7e/BWsNu4IOPX/iOj6VC2lDJdaZSoaKsTC95Npv
-	g83Rq5fKt1Zi+EDRU3kmAl5H1uQXjhy/O31Kq74=
-X-Google-Smtp-Source: AIpwx4/SqWMW8Hn8kGk+R+ffn2q7eizOLe5AQlrIsVnuUVBqlVVd1q2cC2tM5+UddP+xoj9N2X+C8GHQR2CsqTQmimI=
-X-Received: by 10.55.33.226 with SMTP id f95mr1459935qki.320.1523376551782;
-	Tue, 10 Apr 2018 09:09:11 -0700 (PDT)
+	*      [score: 0.0033]
+X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
+	Mon, 09 Apr 2018 03:22:15 PDT
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BCF2E007E1
+	for <yocto@yoctoproject.org>; Mon,  9 Apr 2018 03:22:15 -0700 (PDT)
+Received: from [62.225.157.196] ([62.225.157.196]) by
+	3c-app-gmx-bs79.server.lan (via HTTP); Mon, 9 Apr 2018 12:17:10 +0200
 MIME-Version: 1.0
-Received: by 10.12.247.141 with HTTP; Tue, 10 Apr 2018 09:09:11 -0700 (PDT)
-In-Reply-To: <E3DACD6AA0B26143AF16244886B5278E1FE91C49@MBCHN01.chn.nestgroup.net>
-References: <E3DACD6AA0B26143AF16244886B5278E1FE91C49@MBCHN01.chn.nestgroup.net>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Tue, 10 Apr 2018 18:09:11 +0200
-Message-ID: <CAGAf8Lz4EiOHJ+o5PmJbfgiyNyBAd44S+iSDTLOSKHqex=GTAg@mail.gmail.com>
-To: "Nishina A. Pervin" <Nishina.Pervin@nestgroup.net>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to update OpenCV to 3.3 in Krogoth branch of Yocto in i.MX6
+Message-ID: <trinity-1101ecc5-fcf9-4690-9f44-4ba6adb37022-1523269030673@3c-app-gmx-bs79>
+From: "Arno Steffens" <epsi@gmx.de>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Date: Mon, 9 Apr 2018 12:17:10 +0200
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:9HIC6i2uTyoiEDd6g+1NU46XZ6sFH0mB1oqkwS85hVy
+	XCq/mzsnBznvJvx2jIIhLfhata+eIumwp77cKO/AyaiNtxdpbt
+	Yr2bCLFMTURPcklALtRbIUw74zTIOZCy/DMLMkkQYQceolNMUr
+	14J2PfXe377pkcB5rcw01LYNzNWQp5Jr1I3fbU33shxJ+Z8tXr
+	mzlevpnEMuucsJ7/kpwFWjBfSsubpJTnPjaNHRjXz01n5cA2vS
+	1TumvDrpEZhW8WUVN2tzfeGBGal9dVJIglTYFH1m38+ujonv5G wc+YSM=
+X-UI-Out-Filterresults: notjunk:1;V01:K0:n/NDYoldkLY=:T4FztdvckhLEZBNuRKVDG8
+	iSXIXoMV0uusx8PY1QIA1JplT6J5LDzVYEj7Zl916Zy0fmY1VJE2yH8gFvLIm6s6ECMJ12utn
+	qvYiiTxCcRgfJDJlCBUK5JzPONVPxtmbIde3CA76jfouNPTtL+CO9IGFbsBXtq4bg1uJRSOXr
+	TPwZUDe0FVgyLDwCcVTz/Lim0MSUZ/uEatNmXwF7l0BRawjp7V8XUuchCcUqLzR76Va0Iz4f+
+	PBX7JN84sJ37a89xcXcQ7ZZWIzv1+ClI11cWWh3/0/DGoDP//MB0oz8bq3Qh57D2LUFpf1iO3
+	knM00RIAzi1DsX39JLXEKs1CQ0GnPVbwvukDyq2LI2efyRF1gDWNdbk1pIvzsYLmrqLd5pUmP
+	wqH+Bpg6tNXi+6odonAOMd7rnVYRdzvWOyhGzRNNu4knJewueI+o2NWtQJYlcYezW2Ecej6b9
+	a8xbr3vEOlbhGYHqPofQxpJbm+FouD6LcXa0eOMloFqUF130eqO3
+X-Mailman-Approved-At: Tue, 10 Apr 2018 09:11:57 -0700
+Subject: Update a recipe to use newer sources
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,65 +55,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2018 16:09:13 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 09 Apr 2018 10:22:16 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hello Nishina,
-
-Are you referring to: https://opencv.org (Open Source Computer Vision Library)?
-
-As I understand, Krogoth branch development is abandoned/done for the
-time being (only last three YOCTO releases are maintained).
-
-So, my best guess is that OpenCV 3.1 is the latest maintained release
-for Krogoth.
-
-But you can always try to update the OpenCV recipe to version 3.3, and
-see if APIs still fit?!
-
-(please, let us know the experiment outcome)
-
-Thank you,
-Zoran
-_______
-
-On Tue, Apr 10, 2018 at 8:47 AM, Nishina A. Pervin
-<Nishina.Pervin@nestgroup.net> wrote:
-> Hi,
->
->
->
-> How can we update OpenCV to 3.3 from 3.1 in Krogoth branch of Yocto for
-> i.MX6 board
->
->
->
-> Regards,
->
-> Nishina
->
-> ________________________________
->
-> Confidentiality Statement / Disclaimer : This message and any attachments is
-> intended for the sole use of the intended recipient. It may contain
-> confidential information. Any unauthorized use, dissemination or
-> modification is strictly prohibited. If you are not the intended recipient,
-> please notify the sender immediately then delete it from all your systems,
-> and do not copy, use or print. Internet communications are not secure and it
-> is the responsibility of the recipient to make sure that it is
-> virus/malicious code exempt.
->
-> The company/sender cannot be responsible for any unauthorized alterations or
-> modifications made to the contents. If you require any form of confirmation
-> of the contents, please contact the company/sender. The company/sender is
-> not liable for any errors or omissions in the content of this message.
->
-> ________________________________
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+Can you please help me? 
+For one or 2 packages I need newer sources than available via yocto. Is there a guide what and how I have to modify (or better copy, modify and add???) a recipe where the only change is a newer source code release? I am aware that this can create trouble, but sometimes I need a bugfix that it is only in recent versions available.
+Thank you
+Arno
 
