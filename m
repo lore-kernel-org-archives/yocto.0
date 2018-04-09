@@ -1,6 +1,6 @@
 Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 062EEE00C36; Mon,  9 Apr 2018 14:06:54 -0700 (PDT)
+	id BAC26E00BAD; Mon,  9 Apr 2018 14:27:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,6 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (armccurdy[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,46 +16,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f41.google.com (mail-wm0-f41.google.com [74.125.82.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 349DBE00C25
-	for <yocto@yoctoproject.org>; Mon,  9 Apr 2018 14:06:52 -0700 (PDT)
-Received: by mail-wm0-f41.google.com with SMTP id u189so21864400wmd.1
-	for <yocto@yoctoproject.org>; Mon, 09 Apr 2018 14:06:52 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.51 listed in list.dnswl.org]
+Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB241E009E2
+	for <yocto@yoctoproject.org>; Mon,  9 Apr 2018 14:27:51 -0700 (PDT)
+Received: by mail-wm0-f51.google.com with SMTP id w2so19249767wmw.1
+	for <yocto@yoctoproject.org>; Mon, 09 Apr 2018 14:27:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Vy3ybvdW5NI4U1wV8gP7QzVfScarZwzUIs5yQg5lOc4=;
-	b=nooY8FKX0hukHr0GxEHNB78GnIWoarme/3laYxO03tglr01edKUWjfyq7TrWDsHg+U
-	C1tr7IALabXZVByc0/1KJz/Vm7tuf+e/FqqhV8yJBirDcHqOUuHoyACSUlIoD+nGyH6P
-	sH3ZeowVLrD5EQyqPFsqxAYYlXJsykiuQn2FMwkzlmQFjMvPV8aLpPCFgNoWT/lVkxl4
-	J1VOVf6ahZQ4eL2z0AvxRnJWcwZvDfiLJAKhvWOpQgJAoAx3U3xtv2oFZgm2FDDoAaaY
-	vVu5N4HcG+b/UfobZ8Oy45Q9nHdUdWiPoK4BGuvNLQCpc7xFOKk7/JqsdNi1hcY2HTvH
-	ZqWg==
+	:cc; bh=EbH9N8YeKOUppGSlUtf3lNjcyZjMAoX0ZTNa1Aim6Q0=;
+	b=YkgcHy6A/0N/GYevCmq4l74qcxUkCJtl/8QsA3LNx/mHQG1Od7NsLJm3eOIaXkb6GU
+	ZUawk6CQLWxwR4XLq+8AWD84MZK2uDE0MvlSWJ7Yro9tksGJeTTasRtfdzPjk6WOj3YH
+	HEcr2yj9zc6TmbCpeB9+paPbIhxJSIoZ/VbQtb2hwx+zT/ELoiKy46ynA+KazPKE2PnJ
+	TVfsjqgP0ClcVFaq5E0X79NPbBdriOB2Ex++s3K+Hg5kKgNQ87JRbcMS+AJ645b6xLro
+	nZrsfJfWrd9nquArV03KlTX3zIMiePwTrQJ5Wi2PIRc9OPF6BhTCzlJzgZnNoY8q6QmU
+	8V9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=Vy3ybvdW5NI4U1wV8gP7QzVfScarZwzUIs5yQg5lOc4=;
-	b=APx/gmfr1dn0NlwS3QeIrAUvnp7L1OPtDo3Xq9gc3VZxig0Op6sYMERqxzPDvUmm2t
-	Dh2nfKN1RS7MiOiZvE3woxm8Ha+M9YNTvEriqjwmeNSIeY+lsbi2zTWRvhL08N9F6ASi
-	AU8QWRPiVpceUp4pIx+e+2l+vwT3gmYYcBqGLjj6kihVduOR6ti0lEwXYBDpCk+i91IH
-	DjU8awXYeQ4f28G2G0Ul5g068s8r4DvJrkDBzD+86zmx0v6tjiUiYNAPHSiBY663Tmc8
-	R6uZKXTpJu3bBuz1oF3oXS4koyaaw1RXrLyMZ9ZtAXA7CmeRokDzDT4ZRSivtBCHKtxz
-	p9UQ==
-X-Gm-Message-State: ALQs6tAGPBMwnilp2NlhWYaxam3Ljnd/7U5UzQEAZFGVssWwwLf6O7i9
-	/Gec0Gpt9h8wTekpdodO9Td3iKtwegvcP0ZAqXWAVQ==
-X-Google-Smtp-Source: AIpwx4/nqpmih4dgEJRA8kqQF4fMkl8NuDFP6xFoqa63Q1kmde+tx4OxKoU3c+FQMM9NTkaP8uW41hrS2sQcuXlUhuw=
-X-Received: by 10.28.212.84 with SMTP id l81mr947836wmg.151.1523308011882;
-	Mon, 09 Apr 2018 14:06:51 -0700 (PDT)
+	bh=EbH9N8YeKOUppGSlUtf3lNjcyZjMAoX0ZTNa1Aim6Q0=;
+	b=ITLGb9fF91VVRnLwV+N3GsqQdmJn3qzl30rinh7db+c4k9706zXLImuaSaLCcpzCJ8
+	5Vk6sMzVb//+aUj3wYeqxHor03E+wXr6LwkzA9TvPcwhlo/1c+RNdHOi976vdN1BmBza
+	clHuOuM7FXl0ZIEkV89l+gwUsIg/4YHnXqWGzF6Rafy2l+IfJeuFzkFLg3XIJ8bIup6z
+	qSGbQA6EUVhu5L44xU9025rCD5hSBJELhFkfMMI4NCe2nhrg/j2GmRYtdxV36W3Zzs3F
+	pAdR0h+nXRIBahsVVLGW9JTv++VZArMjEYumgU4wdLfysL6a1sAvuUcATV5F6ByEI3Ea
+	wLpw==
+X-Gm-Message-State: ALQs6tCQXBd/6uIpQ8lu4R9RL1yyBTQT396Po1KB3it5+XfIXL6V7ByZ
+	lPt6dVZaAmTYcumxQfvkbnaimhqurxVWNmTYNxA=
+X-Google-Smtp-Source: AIpwx49Nz2NTfz4RY8KakVAaiaKFQOfEXvmopby12Xs0wt1Ty/tW0NDKOA4p1lpKD+fZK7h2b3giTy/ndXWL0o3Edyw=
+X-Received: by 10.28.124.14 with SMTP id x14mr1055906wmc.86.1523309270961;
+	Mon, 09 Apr 2018 14:27:50 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.223.163.65 with HTTP; Mon, 9 Apr 2018 14:06:51 -0700 (PDT)
-In-Reply-To: <f15f87ff-1140-54d0-81ac-2c27e663643d@qiio.com>
-References: <f15f87ff-1140-54d0-81ac-2c27e663643d@qiio.com>
+Received: by 10.223.163.65 with HTTP; Mon, 9 Apr 2018 14:27:50 -0700 (PDT)
+In-Reply-To: <b3101c2c-8462-98fe-5c40-a0279f7d383a@iis.fraunhofer.de>
+References: <b3101c2c-8462-98fe-5c40-a0279f7d383a@iis.fraunhofer.de>
 From: Andre McCurdy <armccurdy@gmail.com>
-Date: Mon, 9 Apr 2018 14:06:51 -0700
-Message-ID: <CAJ86T=Xzi4qZF4wHEW5L_0btUvAseFQxcN+UG4ytrqy9xrKXUw@mail.gmail.com>
-To: Jakob Hasse <jakob.hasse@qiio.com>
-Cc: Yocto List <yocto@yoctoproject.org>
-Subject: Re: How to set SRC_URI in local.conf / how to set any variable of a specific recipe in local.conf
+Date: Mon, 9 Apr 2018 14:27:50 -0700
+Message-ID: <CAJ86T=Xd3GVTuGqYFkdB5BwR-NZAh1VznvgnEeWeDr2g81ow-A@mail.gmail.com>
+To: Florian Doersch <florian.doersch@iis.fraunhofer.de>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: pyro: missing ldconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,44 +70,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Apr 2018 21:06:54 -0000
+X-List-Received-Date: Mon, 09 Apr 2018 21:27:52 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Sat, Apr 7, 2018 at 8:04 AM, Jakob Hasse <jakob.hasse@qiio.com> wrote:
+On Thu, Apr 5, 2018 at 11:53 PM, Florian Doersch
+<florian.doersch@iis.fraunhofer.de> wrote:
 >
-> how can I set a another branch, i.e., the SRC_URI variable for a specific
-> recipe in conf/local.conf? Or more general: how can I change the variable of
-> any recipe in local.conf temporarily? I tried something like this already:
-> SRC_<recipe-name> = "..."
-> SRC-<recipe-name> = "..."
-> SRC_pn-<recipe-name> = "..."
->
-> I would like to switch a recipe to a testing branch temporarily via
-> local.conf without playing around in the actual recipes.
+> I recently updated from pyro 2.3.3 to latest pyro branch for my raspberry3
+> and ran into the following problem
+> ...
+> The problem does not occur when using the latest pyro tag (yocto-2.3.3)
 
-For your own temporary testing, modifying the actual recipes would be fine.
-
-However, if you need to make the change via local.conf, then the
-procedure would be something like:
-
-1) Capture output of "bitbake -e recipe-name" into a file
-
-2) From the bitbake environment for recipe-name, check what the
-original value of SRC_URI is. For example, it may be something like:
-
-  SRC_URI="git://git.project.com/foo file://fixes.patch"
-
-3) Also from the bitbake environment for recipe-name, check which
-over-rides are active. For example, it maybe something like:
-
-  OVERRIDES="linux:i586:build-linux:pn-recipe-name:x86:qemuall:qemux86:spooky:class-target:forcevariable:libc-glibc"
-
-4) Pick an over-ride. Since you want to use a global config file to
-make a recipe specific change, you need to use the recipe specific
-over-ride, ie "pn-recipe-name".
-
-5) Update the SRC_URI from step 2 as you want and then define it in
-local.conf using the over-ride you found in step 3. For example:
-
-  SRC_URI_pn-recipe-name = "git://git.project.com/foo2 file://fixes.patch"
+Unless someone else has a better answer, you might need to bisect
+between 2.3.3 and the latest pyro version to find out which particular
+commit caused your issue.
 
