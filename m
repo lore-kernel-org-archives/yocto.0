@@ -1,59 +1,53 @@
-Return-Path: <farzanemostafa@yahoo.com>
+Return-Path: <ee.peng.yeoh@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC959E00B30; Sun,  8 Apr 2018 23:04:19 -0700 (PDT)
+	id 3B3AEE00A1C; Mon,  9 Apr 2018 03:36:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (farzanemostafa[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.6.129.84 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from sonic317-29.consmr.mail.bf2.yahoo.com
-	(sonic317-29.consmr.mail.bf2.yahoo.com [74.6.129.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1071CE008D4
-	for <yocto@yoctoproject.org>; Sun,  8 Apr 2018 23:04:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1523253858; bh=Sh3ta75J9EGWDo0TABHgCsuwJqq8rVS70HssYh4yl18=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From:Subject;
-	b=lkGFwUAxd6Rkmi+sPqo3iuyG2k8cL3HgIxrfepRFPN+M7PCH5tBodFvNnswt4DirterwWf7MvkW2OWTSJPuD/eR8cRfJeelYBwZTrHNrJP6l/4Az0pXVgRXTerKtOL8k6JfKNrk/iIM5YRK1kRxgHPnH/cRR6y3wYVCIFIKpddS0hMQoEQLbdQJG3my0W7sSM0KfTieAuCYwQBxT990yyGjUWrvhhNjspl4nVxIn5+eEKcry9Jp+lST9qF8FUPFIHNYo836rcua1fAiyLY1VwBULHxzsUrZUnjudbvUgrEJBpyizv7L3JffGxPI7+0HSIO4zn/UWTzF4O4ROz9KZ9A==
-X-YMail-OSG: ciqzB5YVM1k22MXV.ohA07P1LkPREmeDbOWOyf3arjCffZdW996JLFtS6i8xH92
-	.YBS2bJDmY4XOm0FZnlplpyFnyoB_yZVyEZaoljd9lYo.NrjJI4mJmYe33WmUCuK.xCdl0zRIL5v
-	e6fNhMbDBn41gQ8KtSFhwxwkGF9L8pgPakeDTxl7R8W41lx.U2dqmA9eD4juBbaWbiTP6KXMNgEd
-	IvJ3VdZuKkIFezDcWywmc8kOpGVjLSUZzCAYZcf5xpp.Bm4ATWTz_2n4GfiWQuXM1RRiBLvXll1n
-	hmOtUfzdarI5h4su64NYRMN2pGfCfDl6gfjhXzFmsVUoL7cg8ya3nhtW8u67lvyIDskqsIvoHpdy
-	GoN0R2wgzOZHd3z8wbIaT5iA8lAOnU8XKiZ4FcJcQEsUnswxYoCyQK6mbialkNdZdRsaE7TBz4va
-	oAi09cHMipctGTmJXp3YEyfpnj78Iwq7vcEebOAobajDNA_vXYPZq.l9LMEH2HbzZ4KKA8A--
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic317.consmr.mail.bf2.yahoo.com with HTTP;
-	Mon, 9 Apr 2018 06:04:18 +0000
-Date: Mon, 9 Apr 2018 06:04:13 +0000 (UTC)
-From: Mostafa Farzane <farzanemostafa@yahoo.com>
-To: Anuj Mittal <anuj.mittal@intel.com>
-Message-ID: <1773490007.590394.1523253853566@mail.yahoo.com>
-In-Reply-To: <338d9cd0-3be6-2382-1515-3b8549354d1b@intel.com>
-References: <674400918.88037.1523083601988.ref@mail.yahoo.com>
-	<674400918.88037.1523083601988@mail.yahoo.com>
-	<355c797a-a34b-2326-62bf-ca503edc82f5@intel.com>
-	<1779056233.383965.1523192967392@mail.yahoo.com>
-	<338d9cd0-3be6-2382-1515-3b8549354d1b@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6561BE00903
+	for <yocto@yoctoproject.org>; Mon,  9 Apr 2018 03:36:55 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	09 Apr 2018 03:36:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.48,427,1517904000"; d="scan'208";a="30669821"
+Received: from pgsmsx111.gar.corp.intel.com ([10.108.55.200])
+	by fmsmga007.fm.intel.com with ESMTP; 09 Apr 2018 03:36:54 -0700
+Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.25]) by
+	PGSMSX111.gar.corp.intel.com ([169.254.2.233]) with mapi id
+	14.03.0319.002; Mon, 9 Apr 2018 18:36:53 +0800
+From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
+To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "Jolley,
+	Stephen K" <stephen.k.jolley@intel.com>, 
+	"Jordan, Robin L" <robin.l.jordan@intel.com>, "Zhang, Jessica"
+	<jessica.zhang@intel.com>, "Lock, Joshua G" <joshua.g.lock@intel.com>, 
+	"Eggleton, Paul" <paul.eggleton@intel.com>
+Thread-Topic: QA cycle report for 2.5 M3 RC1
+Thread-Index: AdPP4ZPgKcu/FI88Rh61D9+8v2DlQw==
+Date: Mon, 9 Apr 2018 10:36:52 +0000
+Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335E012E3@PGSMSX109.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZjk0YmQxNGMtZmRmNi00YWJkLWEzM2QtYWZkZTViMTVhZWUwIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6InkycjhtWG94cUFtRnE3ZUptakpcL1F5VnhlRG53WlFKWFhNZEpkTXdPajRzPSJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.200.100
+dlp-reaction: no-action
+x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.11745 YMailNorrin Mozilla/5.0 (Windows NT 6.1; Win64;
-	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181
-	Safari/537.36
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Cannot add libsrtp to yocto image
+Subject: QA cycle report for 2.5 M3 RC1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,117 +59,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Apr 2018 06:04:19 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_590393_2126536574.1523253853564"
-
-------=_Part_590393_2126536574.1523253853564
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 09 Apr 2018 10:36:56 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
- Thanks alot. It's work now.I have another question and It will be a huge h=
-elp if you answer it:I add libsrtp to another recepie's DEPENDS(jrtplib). b=
-ut I faced the following error:
-=C2=A0 =C2=A0 --ERROR: jrtplib-3.11.1-r0 do_populate_sysroot: QA Issue: jrt=
-plib.pc failed sanity test (tmpdir) in path /opt/yocto/toradex-morty/build-=
-intercom/tmp-glibc/work/armv7at2hf-neon-angstrom-linux-gnueabi/jrtplib/3.11=
-.1-r0/sysroot-destdir/usr/lib/pkgconfig [pkgconfig]
+Hello All,
+This is the full report for 2.5 M3 RC1: =20
+https://wiki.yoctoproject.org/wiki/WW15_-_2018-04-09-_Full_Test_Cycle_-_2.5=
+_M3_rc1
 
-I checked=C2=A0jrtplib.pc and it is the result:
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
 
-=C2=A0=C2=A0=C2=A0=C2=A0Name: Jrtplib=C2=A0=C2=A0=C2=A0=C2=A0Description: A=
- full featured RTP library=C2=A0=C2=A0=C2=A0=C2=A0Requires:=C2=A0=C2=A0=C2=
-=A0=C2=A0Version: 3.11.1=C2=A0=C2=A0=C2=A0=C2=A0Libs:=C2=A0 -L/usr/lib -ljr=
-tp -L/usr/lib -ljthread -lpthread /opt/yocto/toradex-morty/build-intercom/t=
-mp-glibc/sysroots/colibri-imx6/usr/lib/libsrtp.a=C2=A0=C2=A0=C2=A0=C2=A0Cfl=
-ags:=C2=A0 -I/usr/include -I/opt/yocto/toradex-morty/build-intercom/tmp-gli=
-bc/sysroots/colibri-imx6/usr/include
-I think something is wrong in libsrtp paths.
-Thanks
+The QA cycle for release 2.5 M3 RC1 was completed.=A0 Team had discovered 7=
+ new bugs.
 
-    On Monday, April 9, 2018, 7:08:23 AM GMT+4:30, Anuj Mittal <anuj.mittal=
-@intel.com> wrote: =20
+There were 3 bugs related to runtime [4] [6] [7], where core-image-lsb-sdk =
+unable to boot on Minnowboard Turbot, runtime tests failed on OpenSUSE42.3 =
+host machine, & connect host with serial console failed to display login pr=
+ompt for core-image-sato-sdk-genericx86-64 on Minnowboard Turbot.  There we=
+re 3 bugs related to selftest [1] [2] and kernel development [5].=20
+
+This QA cycle were executed with additional manual testing on the images/ar=
+tifacts created by the new Autobuilder codebase (http://autobuilder.yoctopr=
+oject.org/pub/yocto-2.5_M3.rc1/), where the images/artifacts were downloade=
+d and manually tested.  There was 1 bug discovered from new Autobuilder cod=
+ebase where Build Appliance failed [3] to build image. =20
+
+Testcase#202 (syslog) were skipped in multiple BSP automated runtime tests =
+where it cannot run with sysklogd installed.  Testcase#1550 (bitbake depend=
+ency explorer) was failing and it was still undergoing regression testing.=
 =20
- On 04/08/2018 09:09 PM, Mostafa Farzane wrote:
->=20
-> Thanks alot,
->=20
-> I added=C2=A0TOOLCHAIN_TARGET_TASK =3D "libsrtp-staticdev" to my image in=
-stead
-> of libsrtp. But I get:
->=20
-> =C2=A0* calculate_dependencies_for: Cannot satisfy the following dependen=
-cies
-> for libsrtp-staticdev:
-> =C2=A0*=C2=A0 =C2=A0 =C2=A0 libsrtp (=3D 1.5.2-r0) *
-> =C2=A0* opkg_solver_install: Cannot install package libsrtp-staticdev.
->=20
 
-Please try adding ALLOW_EMPTY_${PN} =3D "1" in your bbappend or try:
+Performance tests shown that build virtual/kernel time for this cycle incre=
+ased by ~6% compared to 2.5 M2 RC1.=20
 
-https://patchwork.openembedded.org/patch/150000/
- =20
+This QA cycle had automated package management runtime tests as well as mos=
+t of the meta-ide-support and SDK toolchain using both existing and new aut=
+omated tests available.=20
 
-------=_Part_590393_2126536574.1523253853564
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
 
-<html><head></head><body><div style=3D"font-family:Helvetica Neue, Helvetic=
-a, Arial, sans-serif;font-size:13px;"><div></div>
-            <div>Thanks alot. It's work now.</div><div>I have another quest=
-ion and It will be a huge help if you answer it:</div><div>I add libsrtp to=
- another recepie's DEPENDS(jrtplib). but I faced the following error:</div>=
-<div><br></div><div>&nbsp; &nbsp; --ERROR: jrtplib-3.11.1-r0 do_populate_sy=
-sroot: QA Issue: jrtplib.pc failed sanity test (tmpdir) in path /opt/yocto/=
-toradex-morty/build-intercom/tmp-glibc/work/armv7at2hf-neon-angstrom-linux-=
-gnueabi/jrtplib/3.11.1-r0/sysroot-destdir/usr/lib/pkgconfig [pkgconfig]<br>=
-</div><div><br></div><div>I checked&nbsp;<span><span style=3D"color: rgb(0,=
- 0, 0); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-ser=
-if;">jrtplib.pc and it is the result:</span></span></div><div><span><span s=
-tyle=3D"color: rgb(0, 0, 0); font-family: &quot;Helvetica Neue&quot;, Helve=
-tica, Arial, sans-serif;"><br></span></span></div><div><span><span style=3D=
-"color: rgb(0, 0, 0); font-family: &quot;Helvetica Neue&quot;, Helvetica, A=
-rial, sans-serif;"><br></span></span></div><div><span><span style=3D"color:=
- rgb(0, 0, 0); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, s=
-ans-serif;"><span><div>&nbsp;&nbsp;&nbsp;&nbsp;Name: Jrtplib</div><div>&nbs=
-p;&nbsp;&nbsp;&nbsp;Description: A full featured RTP library</div><div>&nbs=
-p;&nbsp;&nbsp;&nbsp;Requires:</div><div>&nbsp;&nbsp;&nbsp;&nbsp;Version: 3.=
-11.1</div><div>&nbsp;&nbsp;&nbsp;&nbsp;Libs:&nbsp; -L/usr/lib -ljrtp -L/usr=
-/lib -ljthread -lpthread /opt/yocto/toradex-morty/build-intercom/tmp-glibc/=
-sysroots/colibri-imx6/usr/lib/libsrtp.a</div><div>&nbsp;&nbsp;&nbsp;&nbsp;C=
-flags:&nbsp; -I/usr/include -I/opt/yocto/toradex-morty/build-intercom/tmp-g=
-libc/sysroots/colibri-imx6/usr/include</div><div><br></div><div>I think som=
-ething is wrong in libsrtp paths.</div><div><br></div><div>Thanks</div><div=
-><br></div></span><br></span></span></div>
-           =20
-            <div id=3D"ydpdd3b4890yahoo_quoted_3802922007" class=3D"ydpdd3b=
-4890yahoo_quoted">
-                <div style=3D"font-family:'Helvetica Neue', Helvetica, Aria=
-l, sans-serif;font-size:13px;color:#26282a;">
-                   =20
-                    <div>
-                        On Monday, April 9, 2018, 7:08:23 AM GMT+4:30, Anuj=
- Mittal &lt;anuj.mittal@intel.com&gt; wrote:
-                    </div>
-                    <div><br></div>
-                    <div><br></div>
-                    <div><div dir=3D"ltr">On 04/08/2018 09:09 PM, Mostafa F=
-arzane wrote:<div class=3D"ydpdd3b4890yqt0446973159" id=3D"ydpdd3b4890yqtfd=
-28432"><br clear=3D"none">&gt; <br clear=3D"none">&gt; Thanks alot,<br clea=
-r=3D"none">&gt; <br clear=3D"none">&gt; I added&nbsp;TOOLCHAIN_TARGET_TASK =
-=3D "libsrtp-staticdev" to my image instead<br clear=3D"none">&gt; of libsr=
-tp. But I get:<br clear=3D"none">&gt; <br clear=3D"none">&gt; &nbsp;* calcu=
-late_dependencies_for: Cannot satisfy the following dependencies<br clear=
-=3D"none">&gt; for libsrtp-staticdev:<br clear=3D"none">&gt; &nbsp;*&nbsp; =
-&nbsp; &nbsp; libsrtp (=3D 1.5.2-r0) *<br clear=3D"none">&gt; &nbsp;* opkg_=
-solver_install: Cannot install package libsrtp-staticdev.</div><br clear=3D=
-"none">&gt; <br clear=3D"none"><br clear=3D"none">Please try adding ALLOW_E=
-MPTY_${PN} =3D "1" in your bbappend or try:<br clear=3D"none"><br clear=3D"=
-none"><a shape=3D"rect" href=3D"https://patchwork.openembedded.org/patch/15=
-0000/" rel=3D"nofollow" target=3D"_blank">https://patchwork.openembedded.or=
-g/patch/150000/</a><div class=3D"ydpdd3b4890yqt0446973159" id=3D"ydpdd3b489=
-0yqtfd16814"><br clear=3D"none"></div></div></div>
-                </div>
-            </div></div></body></html>
+No significant bugs were discovered.=20
 
-------=_Part_590393_2126536574.1523253853564--
+=3D=3D=3D=3D=3D=3D=3D New Bugs =3D=3D=3D=3D=3D=3D=3D=3D
+
+[1] Bug 12647 - [2.5 M3 rc1][OE-Core:Debian9] recipe xcursor-transport-them=
+e went backwards, breaks package feeds
+[2] Bug 12655 - [2.5 M3 rc1][OE Core:Debian9] layerappend.LayerAppendTests.=
+test_layer_appends - Testcase 1196: ERROR
+[3] Bug 12637 - [2.5 M3 RC1] Build appliance failed on glibc-initial do_con=
+figure when bitbake core-image-minimal
+[4] Bug 12633 - [2.5 M3 RC1] BSP-QEMU:core-image-lsb-sdk-x86.wic unable to =
+boot on Minnowboard Turbot
+[5] Bug 12641 - [2.5 M3 RC1] Kernel Development Build external modules (hel=
+lo-mod) test case: Function failed do_rootfs
+[6] Bug 12665 - [2.5 M3 rc1] OpenSUSE42.3 runtime test fail at runtime_test=
+.TextExport, runtime_test.TestImage, runtime_test.TestImage and oe_runmake
+[7] Bug 12666 - [2.5 M3 RC1] BSP-QEMU:core-image-sato-sdk-genericx86-64.hdd=
+img unable to connect to console with serial on Minnowboard Turbot
+
+=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
+1. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12647 [1]=20
+2. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12655 [2]
+3. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12637 [3]
+4. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12633 [4]
+5. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12641 [5]
+6. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12665 [6]
+7. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12666 [7]
+
+Regards
+Ee Peng=20
+
+
+
