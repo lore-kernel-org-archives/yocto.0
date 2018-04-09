@@ -1,26 +1,59 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <farzanemostafa@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0EBD3E00B65; Sun,  8 Apr 2018 21:35:42 -0700 (PDT)
+	id BC959E00B30; Sun,  8 Apr 2018 23:04:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (farzanemostafa[at]yahoo.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.6.129.84 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0461E00A04
-	for <yocto@yoctoproject.org>; Sun,  8 Apr 2018 21:35:40 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 92F678713E04
-	for <yocto@yoctoproject.org>; Mon,  9 Apr 2018 00:35:39 -0400 (EDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from sonic317-29.consmr.mail.bf2.yahoo.com
+	(sonic317-29.consmr.mail.bf2.yahoo.com [74.6.129.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1071CE008D4
+	for <yocto@yoctoproject.org>; Sun,  8 Apr 2018 23:04:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1523253858; bh=Sh3ta75J9EGWDo0TABHgCsuwJqq8rVS70HssYh4yl18=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From:Subject;
+	b=lkGFwUAxd6Rkmi+sPqo3iuyG2k8cL3HgIxrfepRFPN+M7PCH5tBodFvNnswt4DirterwWf7MvkW2OWTSJPuD/eR8cRfJeelYBwZTrHNrJP6l/4Az0pXVgRXTerKtOL8k6JfKNrk/iIM5YRK1kRxgHPnH/cRR6y3wYVCIFIKpddS0hMQoEQLbdQJG3my0W7sSM0KfTieAuCYwQBxT990yyGjUWrvhhNjspl4nVxIn5+eEKcry9Jp+lST9qF8FUPFIHNYo836rcua1fAiyLY1VwBULHxzsUrZUnjudbvUgrEJBpyizv7L3JffGxPI7+0HSIO4zn/UWTzF4O4ROz9KZ9A==
+X-YMail-OSG: ciqzB5YVM1k22MXV.ohA07P1LkPREmeDbOWOyf3arjCffZdW996JLFtS6i8xH92
+	.YBS2bJDmY4XOm0FZnlplpyFnyoB_yZVyEZaoljd9lYo.NrjJI4mJmYe33WmUCuK.xCdl0zRIL5v
+	e6fNhMbDBn41gQ8KtSFhwxwkGF9L8pgPakeDTxl7R8W41lx.U2dqmA9eD4juBbaWbiTP6KXMNgEd
+	IvJ3VdZuKkIFezDcWywmc8kOpGVjLSUZzCAYZcf5xpp.Bm4ATWTz_2n4GfiWQuXM1RRiBLvXll1n
+	hmOtUfzdarI5h4su64NYRMN2pGfCfDl6gfjhXzFmsVUoL7cg8ya3nhtW8u67lvyIDskqsIvoHpdy
+	GoN0R2wgzOZHd3z8wbIaT5iA8lAOnU8XKiZ4FcJcQEsUnswxYoCyQK6mbialkNdZdRsaE7TBz4va
+	oAi09cHMipctGTmJXp3YEyfpnj78Iwq7vcEebOAobajDNA_vXYPZq.l9LMEH2HbzZ4KKA8A--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic317.consmr.mail.bf2.yahoo.com with HTTP;
+	Mon, 9 Apr 2018 06:04:18 +0000
+Date: Mon, 9 Apr 2018 06:04:13 +0000 (UTC)
+From: Mostafa Farzane <farzanemostafa@yahoo.com>
+To: Anuj Mittal <anuj.mittal@intel.com>
+Message-ID: <1773490007.590394.1523253853566@mail.yahoo.com>
+In-Reply-To: <338d9cd0-3be6-2382-1515-3b8549354d1b@intel.com>
+References: <674400918.88037.1523083601988.ref@mail.yahoo.com>
+	<674400918.88037.1523083601988@mail.yahoo.com>
+	<355c797a-a34b-2326-62bf-ca503edc82f5@intel.com>
+	<1779056233.383965.1523192967392@mail.yahoo.com>
+	<338d9cd0-3be6-2382-1515-3b8549354d1b@intel.com>
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 09 Apr 2018 04:35:39 -0000
-Message-ID: <20180409043539.8837.26195@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+X-Mailer: WebService/1.1.11745 YMailNorrin Mozilla/5.0 (Windows NT 6.1; Win64;
+	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181
+	Safari/537.36
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Cannot add libsrtp to yocto image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,245 +65,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Apr 2018 04:35:42 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 09 Apr 2018 06:04:19 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_590393_2126536574.1523253853564"
 
-This mail was sent out by Recipe reporting system.
+------=_Part_590393_2126536574.1523253853564
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+ Thanks alot. It's work now.I have another question and It will be a huge h=
+elp if you answer it:I add libsrtp to another recepie's DEPENDS(jrtplib). b=
+ut I faced the following error:
+=C2=A0 =C2=A0 --ERROR: jrtplib-3.11.1-r0 do_populate_sysroot: QA Issue: jrt=
+plib.pc failed sanity test (tmpdir) in path /opt/yocto/toradex-morty/build-=
+intercom/tmp-glibc/work/armv7at2hf-neon-angstrom-linux-gnueabi/jrtplib/3.11=
+.1-r0/sysroot-destdir/usr/lib/pkgconfig [pkgconfig]
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+I checked=C2=A0jrtplib.pc and it is the result:
 
-You can check the detail information at:
+=C2=A0=C2=A0=C2=A0=C2=A0Name: Jrtplib=C2=A0=C2=A0=C2=A0=C2=A0Description: A=
+ full featured RTP library=C2=A0=C2=A0=C2=A0=C2=A0Requires:=C2=A0=C2=A0=C2=
+=A0=C2=A0Version: 3.11.1=C2=A0=C2=A0=C2=A0=C2=A0Libs:=C2=A0 -L/usr/lib -ljr=
+tp -L/usr/lib -ljthread -lpthread /opt/yocto/toradex-morty/build-intercom/t=
+mp-glibc/sysroots/colibri-imx6/usr/lib/libsrtp.a=C2=A0=C2=A0=C2=A0=C2=A0Cfl=
+ags:=C2=A0 -I/usr/include -I/opt/yocto/toradex-morty/build-intercom/tmp-gli=
+bc/sysroots/colibri-imx6/usr/include
+I think something is wrong in libsrtp paths.
+Thanks
 
-http://recipes.yoctoproject.org/
+    On Monday, April 9, 2018, 7:08:23 AM GMT+4:30, Anuj Mittal <anuj.mittal=
+@intel.com> wrote: =20
+=20
+ On 04/08/2018 09:09 PM, Mostafa Farzane wrote:
+>=20
+> Thanks alot,
+>=20
+> I added=C2=A0TOOLCHAIN_TARGET_TASK =3D "libsrtp-staticdev" to my image in=
+stead
+> of libsrtp. But I get:
+>=20
+> =C2=A0* calculate_dependencies_for: Cannot satisfy the following dependen=
+cies
+> for libsrtp-staticdev:
+> =C2=A0*=C2=A0 =C2=A0 =C2=A0 libsrtp (=3D 1.5.2-r0) *
+> =C2=A0* opkg_solver_install: Cannot install package libsrtp-staticdev.
+>=20
 
-Package               Version          Upstream version      Maintainer            NoUpgradeReason
---------------------  ---------------  --------------------  --------------------  ------------------------------
-webkitgtk             2.18.6           2.20.0                Alexander Kanavin
-gcr                   3.20.0           3.28.0                Alexander Kanavin
-gnome-desktop3        3.26.2           3.28.0                Alexander Kanavin
-libsecret             0.18.5           0.18.6                Alexander Kanavin
-meson                 0.44.1           0.45.1                Alexander Kanavin
-dtc                   1.4.5            1.4.6                 Alexander Kanavin
-bash-completion       2.7              2.8                   Alexander Kanavin
-gobject-introspec...  1.54.1           1.56.0                Alexander Kanavin
-sysprof               3.26.1           3.28.0                Alexander Kanavin
-libidn                1.33             1.34                  Alexander Kanavin
-epiphany              3.26.6           3.28.0.1              Alexander Kanavin
-vala                  0.38.8           0.40.3                Alexander Kanavin
-gtk-doc               1.27             1.28                  Alexander Kanavin
-libaio                0.3.110          0.3.111               Alexander Kanavin
-lighttpd              1.4.48           1.4.49                Alexander Kanavin
-procps                3.3.12           3.3.13                Alexander Kanavin
-btrfs-tools           4.13.3           4.16                  Alexander Kanavin     Waiting for resolution of h...
-babeltrace            1.5.4            1.5.5                 Alexander Kanavin
-icu                   60.2             61.1                  Alexander Kanavin
-apt                   1.2.24           1.4.8                 Aníbal Limón
-dpkg                  1.18.24          1.19.0.5              Aníbal Limón
-apt-native            1.2.24           1.4.8                 Aníbal Limón
-gstreamer1.0-omx      1.12.4           1.14.0                Anuj Mittal
-gst-examples          0.0.1+gitX       0.0.1-new-commits...  Anuj Mittal
-gstreamer1.0-plug...  1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-rtsp...  1.12.4           1.14.0                Anuj Mittal
-gst-validate          1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-libav    1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-plug...  1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-plug...  1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-plug...  1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0          1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-vaapi    1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-python   1.12.4           1.14.0                Anuj Mittal
-mkfontscale           1.1.2            1.1.3                 Armin Kuster
-xeyes                 1.1.1            1.1.2                 Armin Kuster
-xinit                 1.3.4            1.4.0                 Armin Kuster
-xkbcomp               1.4.0            1.4.1                 Armin Kuster
-bind                  9.10.6           9.12.1                Armin Kuster
-xprop                 1.2.2            1.2.3                 Armin Kuster
-xset                  1.2.3            1.2.4                 Armin Kuster
-xwininfo              1.1.3            1.1.4                 Armin Kuster
-openssh               7.6p1            7.7p1                 Armin Kuster
-xf86-video-vesa       2.3.4            2.4.0                 Armin Kuster
-libxcb                1.12             1.13                  Armin Kuster
-libxshmfence          1.2              1.3                   Armin Kuster
-xkeyboard-config      2.22             2.23.1                Armin Kuster
-calibrateproto        0.0+gitX         0.0-new-commits-a...  Armin Kuster
-xcb-proto             1.12             1.13                  Armin Kuster
-util-macros           1.19.1           1.19.2                Armin Kuster
-xserver-xorg          1.19.6           1.19.99.903           Armin Kuster
-xf86-input-libinput   0.26.0           0.27.0                Armin Kuster
-curl                  7.58.0           7.59.0                Armin Kuster
-busybox               1.27.2           1.28.3                Armin Kuster
-gnutls                3.6.1            3.6.2                 Armin Kuster
-libpcre2              10.30            10.31                 Armin Kuster
-kern-tools-native     0.2+gitX         0.2-new-commits-a...  Bruce Ashfield
-linux-libc-headers    4.15.7           4.16.1                Bruce Ashfield
-kmscube               git              git-new-commits-a...  Carlos Rafael Giani
-iproute2              4.14.1           4.16.0                Changhyeok Bae
-ethtool               4.13             4.15                  Changhyeok Bae
-base-passwd           3.5.29           3.5.44                Chang Rebecca Swe...  Version 3.5.38 requires cde...
-sysvinit              2.88dsf          2.89                  Chang Rebecca Swe...
-dbus-test             1.12.2           1.12.6                Chen Qi
-dbus                  1.12.2           1.12.6                Chen Qi
-systemd               237              238                   Chen Qi
-util-linux            2.31             2.32                  Chen Qi
-systemd-boot          237              238                   Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-cups                  2.2.6            2.2.7                 Chen Qi
-gawk                  4.2.0            4.2.1                 Chen Qi
-dbus-glib             0.108            0.110                 Chen Qi
-sed                   4.2.2            4.5                   Chen Qi
-sysstat               11.7.1           11.7.3                Chen Qi
-build-appliance-i...  15.0.0           18.0.2                Cristian Iorga
-wayland               1.14.0           1.14.93               Denys Dmytriyenko
-weston                3.0.0            3.0.93                Denys Dmytriyenko
-lzip                  1.19             1.20                  Denys Dmytriyenko
-lz4                   1.7.4            1.8.1.2               Denys Dmytriyenko
-lzop                  1.03             1.04                  Denys Dmytriyenko
-hdparm                9.53             9.56                  Denys Dmytriyenko
-python3-git           2.1.8            2.1.9                 Derek Straka
-python3-pycairo       1.15.6           1.16.3                Derek Straka
-python3-pygobject     3.28.1           3.28.2                Derek Straka
-python3               3.5.5            3.6.5                 Derek Straka
-python3-pip           9.0.2            10.0.0                Derek Straka
-python3-setuptools    39.0.0           39.0.1                Derek Straka
-python-setuptools     39.0.0           39.0.1                Derek Straka
-python3-native        3.5.5            3.6.5                 Derek Straka
-acpica                20170303         20180313              Fathi Boudra
-dhcp                  4.3.6            4.4.1                 Hongxu Jia
-bash                  4.4.12           4.4.18                Hongxu Jia
-ncurses               6.0+20171125     6.1+20180210          Hongxu Jia
-gnupg                 2.2.4            2.2.5                 Hongxu Jia
-man-db                2.8.1            2.8.3                 Hongxu Jia
-libgpg-error          1.27             1.28                  Hongxu Jia
-ghostscript           9.21             9.23                  Hongxu Jia
-man-pages             4.14             4.15                  Hongxu Jia
-help2man-native       1.47.5           1.47.6                Hongxu Jia
-libxml2               2.9.7            2.9.8                 Hongxu Jia
-bc                    1.06             1.07.1                Jose Lamego
-qemu                  2.11.1           2.12.0-rc2            Juro Bystricky
-llvm                  6.0              6.0-new-commits-a...  Khem Raj
-re2c                  0.16             1.0.1                 Khem Raj
-libnsl2               1.0.5+gitX       1.2.0                 Khem Raj
-gdb                   8.0.1            8.1                   Khem Raj
-mpfr                  3.1.5            4.0.1                 Khem Raj
-u-boot-fw-utils       2018.01          2018.03               Marek Vasut
-u-boot-mkimage        2018.01          2018.03               Marek Vasut
-u-boot                2018.01          2018.03               Marek Vasut
-pango                 1.40.14          1.42.1                Maxin B. John
-piglit                1.0+gitrX        1.0-new-commits-a...  Maxin B. John
-libinput              1.9.4            1.10.3                Maxin B. John
-libsoup-2.4           2.60.3           2.62.0                Maxin B. John
-gtk-icon-utils-na...  3.22.28          3.22.29               Maxin B. John
-ruby                  2.5.0            2.5.1                 Maxin B. John
-gsettings-desktop...  3.24.1           3.28.0                Maxin B. John
-glib-2.0              2.54.3           2.56.1                Maxin B. John
-glib-networking       2.54.1           2.56.0                Maxin B. John
-libical               2.0.0            3.0.3                 Maxin B. John
-bluez5                5.48             5.49                  Maxin B. John
-vulkan                1.0.65.2         1.1.70.0              Maxin B. John
-at-spi2-atk           2.26.1           2.26.2                Maxin B. John
-vulkan-demos          git              git-new-commits-a...  Maxin B. John
-perl                  5.24.1           5.26.1                Maxin B. John
-puzzles               0.0+gitX         0.0-new-commits-a...  Maxin B. John
-at-spi2-core          2.26.2           2.28.0                Maxin B. John
-atk                   2.26.1           2.28.1                Maxin B. John
-ifupdown              0.8.16           0.8.31                Maxin B. John
-ofono                 1.22             1.23                  Maxin B. John
-libusb1               1.0.21           1.0.22                Maxin B. John
-sqlite3               3.22.0           3.23.0                Maxin B. John
-vte                   0.50.2           0.52.0                Maxin B. John
-libtirpc              1.0.2            1.0.3                 Maxin B. John
-libsolv               0.6.33           0.6.34                Maxin B. John
-clutter-gst-3.0       3.0.24           3.0.26                Maxin B. John
-adwaita-icon-theme    3.26.1           3.28.0                Maxin B. John
-libevdev              1.5.8            1.5.9                 Maxin B. John
-gdk-pixbuf            2.36.11          2.36.12               Maxin B. John
-gtk+3                 3.22.28          3.22.29               Maxin B. John
-librsvg               2.40.20          2.42.3                Maxin B. John         Versions from 2.41.0 requir...
-libatomic-ops         7.6.2+gitX       7.6.4                 Maxin B. John
-fontconfig            2.12.6           2.13.0                Maxin B. John
-harfbuzz              1.7.5            1.7.6                 Maxin B. John
-perl-native           5.24.1           5.26.1                Maxin B. John
-gdb-cross-canadia...  8.0.1            8.1                   No maintainer
-gdb-cross-i586        8.0.1            8.1                   No maintainer
-mesa                  17.3.8           18.0.0                Otavio Salvador
-linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
-cmake                 3.10.3           3.11.0                Otavio Salvador
-cmake-native          3.10.3           3.11.0                Otavio Salvador
-mesa-gl               17.3.8           18.0.0                Otavio Salvador
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Randy Witt
-tcf-agent             1.4.0+gitX       1.7.0                 Randy Witt
-lttng-tools           2.9.5            2.10.3                Richard Purdie
-gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
-nfs-utils             2.1.1            2.3.1                 Robert Yang
-e2fsprogs             1.43.8           1.44.1                Robert Yang
-automake              1.15.1           1.16.1                Robert Yang
-git                   2.16.1           2.17.0                Robert Yang
-autoconf-archive      2016.09.16       2018.03.13            Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-strace                4.20             4.22                  Robert Yang
-time                  1.8              1.9                   Robert Yang
-ccache                3.3.5            3.4.2                 Robert Yang
-alsa-lib              1.1.5            1.1.6                 Tanu Kaskinen
-alsa-tools            1.1.5            1.1.6                 Tanu Kaskinen
-alsa-utils            1.1.5            1.1.6                 Tanu Kaskinen
-libvorbis             1.3.5            1.3.6                 Tanu Kaskinen
-alsa-plugins          1.1.5            1.1.6                 Tanu Kaskinen
-alsa-utils-scripts    1.1.5            1.1.6                 Tanu Kaskinen
-libxml-simple-perl    2.24             2.25                  Tim Orling
-libxml-sax-perl       0.99             1.00                  Tim Orling
-gnu-efi               3.0.6            3.0.8                 Yi Zhao
-dropbear              2017.75          2018.76               Yi Zhao
-libpcre               8.41             8.42                  Yi Zhao
-less                  529              530                   Yi Zhao
-logrotate             3.13.0           3.14.0                Yi Zhao
-libcap-ng             0.7.8            0.7.9                 Yi Zhao
-chkconfig             1.3.58           1.8                   Yi Zhao               Version 1.5 requires selinux
+Please try adding ALLOW_EMPTY_${PN} =3D "1" in your bbappend or try:
 
-Upgradable count: 176
-Upgradable total count: 180
+https://patchwork.openembedded.org/patch/150000/
+ =20
 
-The based commit is:
+------=_Part_590393_2126536574.1523253853564
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-commit c1573cb7faeb296fe7077a60d02443d5ed5bded0
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Fri Apr 6 14:53:53 2018 +0200
+<html><head></head><body><div style=3D"font-family:Helvetica Neue, Helvetic=
+a, Arial, sans-serif;font-size:13px;"><div></div>
+            <div>Thanks alot. It's work now.</div><div>I have another quest=
+ion and It will be a huge help if you answer it:</div><div>I add libsrtp to=
+ another recepie's DEPENDS(jrtplib). but I faced the following error:</div>=
+<div><br></div><div>&nbsp; &nbsp; --ERROR: jrtplib-3.11.1-r0 do_populate_sy=
+sroot: QA Issue: jrtplib.pc failed sanity test (tmpdir) in path /opt/yocto/=
+toradex-morty/build-intercom/tmp-glibc/work/armv7at2hf-neon-angstrom-linux-=
+gnueabi/jrtplib/3.11.1-r0/sysroot-destdir/usr/lib/pkgconfig [pkgconfig]<br>=
+</div><div><br></div><div>I checked&nbsp;<span><span style=3D"color: rgb(0,=
+ 0, 0); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-ser=
+if;">jrtplib.pc and it is the result:</span></span></div><div><span><span s=
+tyle=3D"color: rgb(0, 0, 0); font-family: &quot;Helvetica Neue&quot;, Helve=
+tica, Arial, sans-serif;"><br></span></span></div><div><span><span style=3D=
+"color: rgb(0, 0, 0); font-family: &quot;Helvetica Neue&quot;, Helvetica, A=
+rial, sans-serif;"><br></span></span></div><div><span><span style=3D"color:=
+ rgb(0, 0, 0); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, s=
+ans-serif;"><span><div>&nbsp;&nbsp;&nbsp;&nbsp;Name: Jrtplib</div><div>&nbs=
+p;&nbsp;&nbsp;&nbsp;Description: A full featured RTP library</div><div>&nbs=
+p;&nbsp;&nbsp;&nbsp;Requires:</div><div>&nbsp;&nbsp;&nbsp;&nbsp;Version: 3.=
+11.1</div><div>&nbsp;&nbsp;&nbsp;&nbsp;Libs:&nbsp; -L/usr/lib -ljrtp -L/usr=
+/lib -ljthread -lpthread /opt/yocto/toradex-morty/build-intercom/tmp-glibc/=
+sysroots/colibri-imx6/usr/lib/libsrtp.a</div><div>&nbsp;&nbsp;&nbsp;&nbsp;C=
+flags:&nbsp; -I/usr/include -I/opt/yocto/toradex-morty/build-intercom/tmp-g=
+libc/sysroots/colibri-imx6/usr/include</div><div><br></div><div>I think som=
+ething is wrong in libsrtp paths.</div><div><br></div><div>Thanks</div><div=
+><br></div></span><br></span></span></div>
+           =20
+            <div id=3D"ydpdd3b4890yahoo_quoted_3802922007" class=3D"ydpdd3b=
+4890yahoo_quoted">
+                <div style=3D"font-family:'Helvetica Neue', Helvetica, Aria=
+l, sans-serif;font-size:13px;color:#26282a;">
+                   =20
+                    <div>
+                        On Monday, April 9, 2018, 7:08:23 AM GMT+4:30, Anuj=
+ Mittal &lt;anuj.mittal@intel.com&gt; wrote:
+                    </div>
+                    <div><br></div>
+                    <div><br></div>
+                    <div><div dir=3D"ltr">On 04/08/2018 09:09 PM, Mostafa F=
+arzane wrote:<div class=3D"ydpdd3b4890yqt0446973159" id=3D"ydpdd3b4890yqtfd=
+28432"><br clear=3D"none">&gt; <br clear=3D"none">&gt; Thanks alot,<br clea=
+r=3D"none">&gt; <br clear=3D"none">&gt; I added&nbsp;TOOLCHAIN_TARGET_TASK =
+=3D "libsrtp-staticdev" to my image instead<br clear=3D"none">&gt; of libsr=
+tp. But I get:<br clear=3D"none">&gt; <br clear=3D"none">&gt; &nbsp;* calcu=
+late_dependencies_for: Cannot satisfy the following dependencies<br clear=
+=3D"none">&gt; for libsrtp-staticdev:<br clear=3D"none">&gt; &nbsp;*&nbsp; =
+&nbsp; &nbsp; libsrtp (=3D 1.5.2-r0) *<br clear=3D"none">&gt; &nbsp;* opkg_=
+solver_install: Cannot install package libsrtp-staticdev.</div><br clear=3D=
+"none">&gt; <br clear=3D"none"><br clear=3D"none">Please try adding ALLOW_E=
+MPTY_${PN} =3D "1" in your bbappend or try:<br clear=3D"none"><br clear=3D"=
+none"><a shape=3D"rect" href=3D"https://patchwork.openembedded.org/patch/15=
+0000/" rel=3D"nofollow" target=3D"_blank">https://patchwork.openembedded.or=
+g/patch/150000/</a><div class=3D"ydpdd3b4890yqt0446973159" id=3D"ydpdd3b489=
+0yqtfd16814"><br clear=3D"none"></div></div></div>
+                </div>
+            </div></div></body></html>
 
-    nativesdk-glibc: Split glibc and libcrypt to use libxcrypt instead
-    
-    Fedora28[1] has decided to go ahead and use libxcrypt to replace libcrypt from glibc
-    despite the change not having merged into glibc upstream yet. This breaks the use of
-    uninative in OE on fedora28 since binaries there are now using new symbols only found
-    in libxcrypt. libxcrypt is meant to be backwards compatible with libcrypt but not the
-    reverse.
-    
-    Since this will impact OE in the next release cycle, this changes nativesdk only
-    to use this new model and adds libxcrypt to work in that case. This allows us to
-    build a uninative which is compatible with fedora28 and previous other OSes.
-    
-    In order to work, recipes will now need to depend on virtual/crypt where they use
-    libcrypt since its now a separate library and we can't depend on it from glibc to
-    preseve backwards compatibility since glibc needs to build first. For now, only the
-    problematic nativesdk recipes have been fixed up. For target use, the default
-    provider remains glibc for now. Assuming this change is merged into upstream glibc,
-    we will need to roll this change out for the target but we will do this in the next
-    release cycle when we can better deal with the resulting bugs.
-    
-    [1] https://fedoraproject.org/wiki/Changes/Replace_glibc_libcrypt_with_libxcrypt
-    
-    Original patch from Charles-Antoine Couret <charles-antoine.couret@essensium.com>,
-    tweaked by RP to add virtual provides, SkipRecipe for libxcrypt and other minor
-    tweaks.
-    
-    Signed-off-by: Charles-Antoine Couret <charles-antoine.couret@essensium.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
-
-
+------=_Part_590393_2126536574.1523253853564--
