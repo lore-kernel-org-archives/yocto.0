@@ -1,35 +1,92 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <rksyeung@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D027E00B58; Tue, 10 Apr 2018 20:13:38 -0700 (PDT)
+	id BECD6E00B8F; Tue, 10 Apr 2018 20:53:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rksyeung[at]hotmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust *      [40.92.3.21 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FD23E009BC
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 20:13:35 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w3B3DYP8031720
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 20:13:34 -0700
-Received: from localhost (128.224.163.220) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
-	Tue, 10 Apr 2018 20:13:33 -0700
-From: Yi Zhao <yi.zhao@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 11 Apr 2018 11:13:31 +0800
-Message-ID: <1523416411-6211-1-git-send-email-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 32329 seconds by postgrey-1.32 at yocto-www;
+	Tue, 10 Apr 2018 20:53:46 PDT
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+	(mail-oln040092003021.outbound.protection.outlook.com [40.92.3.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 934BCE009C9
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 20:53:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=BU65FGM9kbB+h9s+7grc1e3W7hW2EkIOi2p1MIWtei8=;
+	b=pYfr3cU5/PcvGJwimlJHPYfImF3YQG88OAzoyrHfOZrhC52tAw7/jE1dzqVu4qtL5TjniN4S01WYGt7no2R9rLKCSvSoTH9P4Sjjvk86W1l5OGLtFWnglqYLFBvTte38Xwa+nIDmx3+ZY5cTgXYmPk+KhwUdClIHE72/jxqYkwG3YtiRhnxL+Ljz7blJR0HTwO5itXWJOnrZApWdr5mYM1rDHuo500MmN8jE+tcYPxHtk41Ol1ic9MP6Me7I5P3ZmGVhY1lTfnyPfETTtHRERsJ0LZztNt6RBFHJOGdsObhJHie+jjBwll1gwJ9iVMYLn26UltV1Zbv2CLnm2+5DaQ==
+Received: from BL2NAM02FT059.eop-nam02.prod.protection.outlook.com
+	(10.152.76.54) by BL2NAM02HT245.eop-nam02.prod.protection.outlook.com
+	(10.152.76.123) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.20.653.8;
+	Tue, 10 Apr 2018 17:22:31 +0000
+Received: from MWHPR19MB1183.namprd19.prod.outlook.com (10.152.76.60) by
+	BL2NAM02FT059.mail.protection.outlook.com (10.152.76.247) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.20.653.8 via Frontend Transport; Tue, 10 Apr 2018 17:22:31 +0000
+Received: from MWHPR19MB1183.namprd19.prod.outlook.com
+	([fe80::74e9:81a5:f67b:ae41]) by
+	MWHPR19MB1183.namprd19.prod.outlook.com
+	([fe80::74e9:81a5:f67b:ae41%17]) with mapi id 15.20.0653.015;
+	Tue, 10 Apr 2018 17:22:31 +0000
+From: Raymond Yeung <rksyeung@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto Boot Question
+Thread-Index: AQHT0O/6gwl+jwmcWUK7Bu54LcEQmA==
+Date: Tue, 10 Apr 2018 17:22:31 +0000
+Message-ID: <MWHPR19MB11834B837C90D26A2F737FE4C5BE0@MWHPR19MB1183.namprd19.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:F2B65E561E58F7803C282A06EF2099D588E262FB90F4AFD1DEE8B3533D80B56B;
+	UpperCasedChecksum:E70370C37B614976CE0F2B8A8527C952A1030CCFECD90E3AC8E8CD5A68DF5749;
+	SizeAsReceived:6954; Count:44
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [C/YBYttJt9mtP9nhoqHddmwpl84Vd7niaNIrh41OXPu+jGX4xPMAbsWAuPVSXhUP]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; BL2NAM02HT245;
+	7:ZGHbMrZMT0K7540Fdqf1ujwX81AQQlmmamTnndTQIiADBxYXF0E1y6pvBfZwOWFMkNHdh+oPPo7c/yW0lepmRWTPT/tVq7hXGLZHRNurM2vK/tidUyfmMk5kEC8seGMqlSiEVhUMtl4w0Q9s4+nqJjPd68qk7QcY1an+pl6vQsvgpOD6Q4HrhYWw8oju3PEHGNLdK0ZUR0M83MQCRhkT4gWH6JlUlAzgVFOxWjxcUTIgNJ4sQV2CkisMKHmu11hi
+x-incomingheadercount: 44
+x-eopattributedmessage: 0
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101448)(1601125374)(1701031045);
+	SRVR:BL2NAM02HT245; 
+x-ms-traffictypediagnostic: BL2NAM02HT245:
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
+	SRVR:BL2NAM02HT245; BCL:0; PCL:0; RULEID:; SRVR:BL2NAM02HT245; 
+x-forefront-prvs: 0638FD5066
+x-forefront-antispam-report: SFV:NSPM; SFS:(7070007)(98901004); DIR:OUT;
+	SFP:1901; SCL:1; SRVR:BL2NAM02HT245;
+	H:MWHPR19MB1183.namprd19.prod.outlook.com; FPR:; SPF:None; LANG:;
+x-microsoft-antispam-message-info: w84Eq6T+2eoqat9zdFZkJEpYeojPSZSnOXthHRbTTAJGAZy4zg6pQ0Olm8kmvqqSfxlfn2meAHAS2+ZzKCv+4kPZsq/e1mYGz9D6agymUrVY8sOXXZDwMhZ0zi8JaoNTB8hQR1Ujfzu/cJB66t6yPLo8fD0fQ9UFMqLx8w0ZEBBSPenjK1utm6AtcWOT+lN/
 MIME-Version: 1.0
-X-Originating-IP: [128.224.163.220]
-Subject: [meta-security][PATCH] xmlsec1: refresh patches to fix QA warning
+X-MS-Office365-Filtering-Correlation-Id: 3f83cfa5-8bfb-42f3-d6aa-08d59f07a455
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3f83cfa5-8bfb-42f3-d6aa-08d59f07a455
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Apr 2018 17:22:31.2638 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL2NAM02HT245
+Subject: Yocto Boot Question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,234 +98,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Apr 2018 03:13:38 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 11 Apr 2018 03:53:47 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MWHPR19MB11834B837C90D26A2F737FE4C5BE0MWHPR19MB1183namp_"
 
-Refresh patches with devtool command.
+--_000_MWHPR19MB11834B837C90D26A2F737FE4C5BE0MWHPR19MB1183namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- .../xmlsec1/change-finding-path-of-nss.patch       | 22 +++++++++++++---------
- .../xmlsec1/xmlsec1/fix-ltmain.sh.patch            | 16 ++++++++--------
- .../xmlsec1/xmlsec1/makefile-ptest.patch           | 18 +++++++++++++-----
- ...sec1-examples-allow-build-in-separate-dir.patch | 10 ++++------
- .../xmlsec1-fix-a-typo-in-examples-verify3.c.patch |  6 ++----
- 5 files changed, 40 insertions(+), 32 deletions(-)
-
-diff --git a/recipes-security/xmlsec1/xmlsec1/change-finding-path-of-nss.patch b/recipes-security/xmlsec1/xmlsec1/change-finding-path-of-nss.patch
-index 0f4cef9..fcc63b3 100644
---- a/recipes-security/xmlsec1/xmlsec1/change-finding-path-of-nss.patch
-+++ b/recipes-security/xmlsec1/xmlsec1/change-finding-path-of-nss.patch
-@@ -1,3 +1,4 @@
-+From 47379747e34f952d31af028c672940ca7859ae3c Mon Sep 17 00:00:00 2001
- From: Yulong Pei <Yulong.pei@windriver.com>
- Date: Wed, 21 Jul 2010 22:33:43 +0800
- Subject: [PATCH] change finding path of nss and nspr
-@@ -6,13 +7,16 @@ Upstream-Status: Pending
- 
- Signed-off-by: Yulong Pei <Yulong.pei@windriver.com>
- Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
-+
- ---
-- configure.ac |   12 ++++++------
-- 1 files changed, 6 insertions(+), 6 deletions(-)
-+ configure.ac | 12 ++++++------
-+ 1 file changed, 6 insertions(+), 6 deletions(-)
- 
-+diff --git a/configure.ac b/configure.ac
-+index 3278200..6edec7d 100644
- --- a/configure.ac
- +++ b/configure.ac
--@@ -618,7 +618,7 @@
-+@@ -644,7 +644,7 @@ if test "z$NSS_FOUND" = "zno" ; then
-  
-      if test "z$with_nspr" != "z" ; then
-  	NSPR_PREFIX="$with_nspr"
-@@ -21,7 +25,7 @@ Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
-  	if test "z$with_gnu_ld" = "zyes" ; then
-  	    NSPR_LIBS="-Wl,-rpath-link -Wl,$with_nspr/lib -L$with_nspr/lib $NSPR_LIBS_LIST"
-  	else
--@@ -626,7 +626,7 @@
-+@@ -652,7 +652,7 @@ if test "z$NSS_FOUND" = "zno" ; then
-  	fi
-  	NSPR_INCLUDES_FOUND="yes"
-  	NSPR_LIBS_FOUND="yes"
-@@ -30,7 +34,7 @@ Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
-      else
-  	for dir in $ac_nss_inc_dir ; do
-      	    if test -f $dir/nspr/prinit.h ; then
--@@ -664,7 +664,7 @@
-+@@ -690,7 +690,7 @@ if test "z$NSS_FOUND" = "zno" ; then
-  	OLD_CPPFLAGS=$CPPFLAGS
-  	CPPFLAGS="$NSPR_CFLAGS"
-  	AC_EGREP_CPP(yes,[
-@@ -39,7 +43,7 @@ Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
-              #if PR_VMAJOR >= 4
-                 yes
-              #endif
--@@ -689,7 +689,7 @@
-+@@ -715,7 +715,7 @@ if test "z$NSS_FOUND" = "zno" ; then
-      NSS_NSS_H=""
-  
-      if test "z$with_nss" != "z" ; then
-@@ -48,7 +52,7 @@ Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
-  	if test "z$with_gnu_ld" = "zyes" ; then
-  	    NSS_LIBS="$NSS_LIBS -Wl,-rpath-link -Wl,$with_nss/lib -L$with_nss/lib $NSS_LIBS_LIST"
-          else
--@@ -697,7 +697,7 @@
-+@@ -723,7 +723,7 @@ if test "z$NSS_FOUND" = "zno" ; then
-          fi
-  	NSS_INCLUDES_FOUND="yes"
-  	NSS_LIBS_FOUND="yes"
-@@ -57,9 +61,9 @@ Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
-      else
-  	for dir in $ac_nss_inc_dir ; do
-  	    if test -f $dir/nss/nss.h ; then
--@@ -735,7 +735,7 @@
-+@@ -761,7 +761,7 @@ if test "z$NSS_FOUND" = "zno" ; then
-         OLD_CPPFLAGS=$CPPFLAGS
--        CPPFLAGS="$NSS_CFLAGS"
-+        CPPFLAGS="$NSPR_CFLAGS $NSS_CFLAGS"
-         AC_EGREP_CPP(yes,[
- -          #include <nss.h>
- +	  #include <nss3/nss.h>
-diff --git a/recipes-security/xmlsec1/xmlsec1/fix-ltmain.sh.patch b/recipes-security/xmlsec1/xmlsec1/fix-ltmain.sh.patch
-index 472f1cc..af598fe 100644
---- a/recipes-security/xmlsec1/xmlsec1/fix-ltmain.sh.patch
-+++ b/recipes-security/xmlsec1/xmlsec1/fix-ltmain.sh.patch
-@@ -1,3 +1,4 @@
-+From 847dc52f5a50e34ee4d6e3dc2c708711747a58ca Mon Sep 17 00:00:00 2001
- From: Yulong Pei <Yulong.pei@windriver.com>
- Date: Thu, 21 Jan 2010 14:11:20 +0800
- Subject: [PATCH] force to use our own libtool
-@@ -5,22 +6,21 @@ Subject: [PATCH] force to use our own libtool
- Upstream-Status: Inappropriate [ OE specific ]
- 
- Signed-off-by: Yulong Pei <Yulong.pei@windriver.com>
-+
- ---
-- ltmain.sh |    2 +-
-- 1 files changed, 1 insertions(+), 1 deletions(-)
-+ ltmain.sh | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
- 
- diff --git a/ltmain.sh b/ltmain.sh
-+index 147d758..a61f16b 100644
- --- a/ltmain.sh
- +++ b/ltmain.sh
--@@ -1309,7 +1309,7 @@ EOF
-- 	dir=`$echo "X$arg" | $Xsed -e 's/^-L//'`
-+@@ -6969,7 +6969,7 @@ func_mode_link ()
-+ 	dir=$func_resolve_sysroot_result
-  	# We need an absolute path.
-  	case $dir in
- -	[\\/]* | [A-Za-z]:[\\/]*) ;;
- +	=* | [\\/]* | [A-Za-z]:[\\/]*) ;;
-  	*)
-  	  absdir=`cd "$dir" && pwd`
-- 	  if test -z "$absdir"; then
---- 
--1.6.4
--
-+ 	  test -z "$absdir" && \
-diff --git a/recipes-security/xmlsec1/xmlsec1/makefile-ptest.patch b/recipes-security/xmlsec1/xmlsec1/makefile-ptest.patch
-index 2a199f4..d453569 100644
---- a/recipes-security/xmlsec1/xmlsec1/makefile-ptest.patch
-+++ b/recipes-security/xmlsec1/xmlsec1/makefile-ptest.patch
-@@ -1,18 +1,26 @@
-+From 83a1381e1d6bd1b5ec3df6f7c4bc1f4fe4f860b6 Mon Sep 17 00:00:00 2001
-+From: Jackie Huang <jackie.huang@windriver.com>
-+Date: Thu, 15 Jun 2017 14:44:01 +0800
-+Subject: [PATCH] xmlsec1: add new recipe
-+
- This enables the building of the examples directory
- and it's installed as ptest.
- 
- Upstream-Status: Inappropriate [ OE ptest specific ]
- 
- Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
-+
- ---
-- examples/Makefile |    7 +++++--
-- 1 files changed, 7 insertions(+), 0 deletions(-)
-+ examples/Makefile | 12 ++++++++++--
-+ 1 file changed, 10 insertions(+), 2 deletions(-)
- 
-+diff --git a/examples/Makefile b/examples/Makefile
-+index 89b1d61..c1cbcca 100644
- --- a/examples/Makefile
- +++ b/examples/Makefile
--@@ -9,9 +9,17 @@
-- 	xmldsigverify \
-- 	xkms-server
-+@@ -8,9 +8,17 @@ PROGRAMS = \
-+ 	decrypt1 decrypt2 decrypt3 \
-+ 	xmldsigverify
-  
- +ifndef CC
-  CC	= gcc
-diff --git a/recipes-security/xmlsec1/xmlsec1/xmlsec1-examples-allow-build-in-separate-dir.patch b/recipes-security/xmlsec1/xmlsec1/xmlsec1-examples-allow-build-in-separate-dir.patch
-index b0ced03..8b2533e 100644
---- a/recipes-security/xmlsec1/xmlsec1/xmlsec1-examples-allow-build-in-separate-dir.patch
-+++ b/recipes-security/xmlsec1/xmlsec1/xmlsec1-examples-allow-build-in-separate-dir.patch
-@@ -1,4 +1,4 @@
--From ef8872185dcd05d20c93cd98317ede1913371c94 Mon Sep 17 00:00:00 2001
-+From 0c38c6864e7ba8f53a657d87894f24374a6a4932 Mon Sep 17 00:00:00 2001
- From: Jackie Huang <jackie.huang@windriver.com>
- Date: Tue, 30 Dec 2014 11:18:17 +0800
- Subject: [PATCH] examples: allow build in separate dir
-@@ -6,15 +6,16 @@ Subject: [PATCH] examples: allow build in separate dir
- Upstream-Status: Inappropriate [ OE specific ]
- 
- Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
-+
- ---
-  examples/Makefile | 6 ++++--
-  1 file changed, 4 insertions(+), 2 deletions(-)
- 
- diff --git a/examples/Makefile b/examples/Makefile
--index 0d72ad7..f9bccc6 100644
-+index c1cbcca..3f1bd14 100644
- --- a/examples/Makefile
- +++ b/examples/Makefile
--@@ -13,8 +13,10 @@ ifndef CC
-+@@ -12,8 +12,10 @@ ifndef CC
-  CC	= gcc
-  endif
-  
-@@ -27,6 +28,3 @@ index 0d72ad7..f9bccc6 100644
-  
-  DESTDIR = /usr/share/xmlsec1
-  install-ptest:
---- 
--1.9.1
--
-diff --git a/recipes-security/xmlsec1/xmlsec1/xmlsec1-fix-a-typo-in-examples-verify3.c.patch b/recipes-security/xmlsec1/xmlsec1/xmlsec1-fix-a-typo-in-examples-verify3.c.patch
-index 0fe3fd7..5f967bb 100644
---- a/recipes-security/xmlsec1/xmlsec1/xmlsec1-fix-a-typo-in-examples-verify3.c.patch
-+++ b/recipes-security/xmlsec1/xmlsec1/xmlsec1-fix-a-typo-in-examples-verify3.c.patch
-@@ -1,4 +1,4 @@
--From bf1c7b17cc80a2f4dfd43f112f944f68fa5fbcd6 Mon Sep 17 00:00:00 2001
-+From 1d8ae4b32bd76c19ec238f30eb9b1ee582cbe990 Mon Sep 17 00:00:00 2001
- From: Jackie Huang <jackie.huang@windriver.com>
- Date: Fri, 2 Mar 2018 01:10:58 -0800
- Subject: [PATCH] xmlsec1: fix a typo in examples/verify3.c
-@@ -6,6 +6,7 @@ Subject: [PATCH] xmlsec1: fix a typo in examples/verify3.c
- Upstream-Status: Submitted [https://github.com/lsh123/xmlsec/pull/153]
- 
- Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
-+
- ---
-  examples/verify3.c | 2 +-
-  1 file changed, 1 insertion(+), 1 deletion(-)
-@@ -20,6 +21,3 @@ index 2d26ae7..68f52ab 100644
-   * XML Security Library example: Verifying a file signed with X509 certificate
-   *
-   * Verifies a file signed with X509 certificate. 
---- 
--2.13.0
--
--- 
-2.7.4
+Hi,
 
 
+I've successfully booted a BSP using USB thumb drive (.hddimg type).  I've =
+two follow-up questions -
+
+
+  1.  The BIOS offers "Serial Install" which seems to copy the USB boot ima=
+ge over to SSD.  Would SSD be using the same .hddimg type?  Right now, afte=
+r the above install, when I switch boot order to try both SSD (0 and 1), bo=
+oting doesn't seem to work.
+  2.  When using network boot option, what image type should I use?
+
+
+It would be great if details have already been documented somewhere.
+
+
+Thanks,
+
+Raymond
+
+--_000_MWHPR19MB11834B837C90D26A2F737FE4C5BE0MWHPR19MB1183namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">Hi,</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">I've successfully booted a BSP us=
+ing USB thumb drive (.hddimg type). &nbsp;I've two follow-up questions -</p=
+>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0"></p>
+<ol style=3D"margin-bottom: 0px; margin-top: 0px;">
+<li><span style=3D"font-size: 12pt;"></span><span style=3D"font-size: 12pt;=
+"></span>The BIOS offers &quot;Serial Install&quot; which seems to copy the=
+ USB boot image over to SSD. &nbsp;Would SSD be using the same .hddimg type=
+? &nbsp;Right now, after the above install, when I switch
+ boot order to try both SSD (0 and 1), booting doesn't seem to work.</li><l=
+i>When using network boot option, what image type should I use?</li></ol>
+<br>
+<p></p>
+<p style=3D"margin-top:0;margin-bottom:0">It would be great if details have=
+ already been documented somewhere.</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">Thanks,</p>
+<p style=3D"margin-top:0;margin-bottom:0">Raymond</p>
+</div>
+</body>
+</html>
+
+--_000_MWHPR19MB11834B837C90D26A2F737FE4C5BE0MWHPR19MB1183namp_--
