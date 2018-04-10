@@ -1,65 +1,54 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <amb58@arl.psu.edu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B001EE00B18; Fri, 13 Apr 2018 08:19:48 -0700 (PDT)
+	id B2EF2E00AD8; Tue, 10 Apr 2018 10:54:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.196 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [128.118.65.16 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot0-f196.google.com (mail-ot0-f196.google.com
-	[74.125.82.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC742E0086B
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2018 08:19:46 -0700 (PDT)
-Received: by mail-ot0-f196.google.com with SMTP id m22-v6so10235554otf.8
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2018 08:19:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=1AtQ9HXungXibOjP/9OL+o8Cemlq3H8cb75ko0aA6nE=;
-	b=XPlUKBxuY4fgtYszdliLIbyKCN++EY2ng+3MJUGHrdJVNgonQcuDE1x0LPXqx7s9mc
-	3QklycSqR+QobGTE+EbN84j8tQMZyz7bA2kViUTBZ6x6WfHy/B9MtlZ5zrySPaxBK6ce
-	OJv2QakxcPom9wfkwYb/NhbNp4HAzjLk163eQECXFgmxY8RmADta+s8z8PVJ4mGDi87t
-	jjrGhCT9t0Egjft2HfqQkFcXrNFeF2B5bF6iJH4Xo7a7JMbdBpEx3V0mAPqRmf5Isd+M
-	zQo1NKyVGpynxNWarCgDY7gOu+UDUR1Ul0G+3As/0NU9fNqZsx/YyAmDp0Y84yyVZ6gV
-	dJCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=1AtQ9HXungXibOjP/9OL+o8Cemlq3H8cb75ko0aA6nE=;
-	b=DJxHeN/xuEaKSg4zISgqBM4JsQBnH6ZWaW8lMsjGRc5IutQ/UCwBcjeDuucs80eEFj
-	zekMeEmsXpDU4ChGxe0j8DE3M/oHE/UQcyCq7dxvzlBi/rHjanLoc09r5Bx91smYZoWH
-	aGeg9jpjOhb7TqQXNTe31tXdzpu/XI5fnbTsfxT7bYwX/f2w1xY2Fl7yIWhW66TnnZ1D
-	yobAnOSQTa2TXbG4GxPUTTcmw70cUjirmfUfgYxdve7PCxLZRHqpiRj+b2RL2LIzfE2c
-	3YA731QsyMdg3tDt30SiVrvha+ulUDz5SqXdfpVj7e09JO2ZygfCqZw76NQ1IyrcjNE5
-	8idg==
-X-Gm-Message-State: ALQs6tCs/TJCwyp2azl3iPxevwvRqqD/XeZrSqrHAFL4cZXENLwJ8bDt
-	1nbcoC5T4BfnlTM2Dg7GZI0oK3MrmqpjSqoCAHs+tQ==
-X-Google-Smtp-Source: AIpwx4/gMe1GnFB13RvmJNSDZZOMJvuj98pVmVb+dvGbG3p+jPw+CLZ719aj1Nq1pm9blUBkMWfNhKZPBukLWWV710k=
-X-Received: by 2002:a9d:f29:: with SMTP id 38-v6mr4119761ott.119.1523632786027;
-	Fri, 13 Apr 2018 08:19:46 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 305 seconds by postgrey-1.32 at yocto-www;
+	Tue, 10 Apr 2018 10:54:52 PDT
+Received: from smtp4.arl.psu.edu (smtp4.arl.psu.edu [128.118.65.16])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 323E4E007E1
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 10:54:52 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.arl.psu.edu (Postfix) with ESMTP id 02A95404D44
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 13:49:47 -0400 (EDT)
+X-Virus-Scanned: amavisd-new at arl.psu.edu
+Received: from smtp4.arl.psu.edu ([127.0.0.1])
+	by localhost (smtp4.arl.psu.edu [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id DmbmZiDFRboT for <yocto@yoctoproject.org>;
+	Tue, 10 Apr 2018 13:49:46 -0400 (EDT)
+Received: from fc-m250s2.arl.psu.edu (fc-m250s2.arl.psu.edu [10.255.5.82])
+	by smtp4.arl.psu.edu (Postfix) with ESMTPS id E1E27404ADA
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 13:49:46 -0400 (EDT)
+Received: from exchange6.arl.psu.edu (exchange6.arl.psu.edu [10.254.4.41])
+	by fc-m250s2.arl.psu.edu (Postfix) with ESMTPS id C459810DE067
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 17:49:46 +0000 (UTC)
+Received: from COLO-EX10-MB1.arl.psu.edu ([fe80::a885:3185:a270:5dda]) by
+	exchange6.arl.psu.edu ([::1]) with mapi id 14.03.0361.001;
+	Tue, 10 Apr 2018 13:49:46 -0400
+From: "Aaron M. Biver" <amb58@arl.psu.edu>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Question about automatic dependencies when native packages are
+	used
+Thread-Index: AdPQ8iY+5rJJjHj9QKGae7MXSwgiEQ==
+Date: Tue, 10 Apr 2018 17:49:44 +0000
+Message-ID: <A5CF21C0A85F3B4FBBF15BA8E7A39E2C4522BE90@COLO-EX10-MB1.arl.psu.edu>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.176.10.146]
 MIME-Version: 1.0
-Received: by 10.138.17.198 with HTTP; Fri, 13 Apr 2018 08:19:25 -0700 (PDT)
-In-Reply-To: <6E51916E4A1F32428260031F4C7CD2B64C6A8227@ORSMSX112.amr.corp.intel.com>
-References: <1523577311-28620-1-git-send-email-juro.bystricky@intel.com>
-	<CAJTo0LaCBSJ1ch7_DuT5xCp8Z79tM4DxQqzeNy7JP9HOoAuF8Q@mail.gmail.com>
-	<6E51916E4A1F32428260031F4C7CD2B64C6A8227@ORSMSX112.amr.corp.intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 13 Apr 2018 16:19:25 +0100
-Message-ID: <CAJTo0LbQhrh+26n5OZKj-Grhrmc=5ANNdPEWgWDfLfKd+QSJew@mail.gmail.com>
-To: "Bystricky, Juro" <juro.bystricky@intel.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
-	Juro Bystricky <jurobystricky@hotmail.com>,
-	Alistair Francis <alistair.francis@xilinx.com>
-Subject: Re: [meta-mingw][PATCH] qemu_2.11.%.bbappend: fix broken qemu build for mingw
+X-Content-Scanned: Fidelis Mail
+X-Mailman-Approved-At: Fri, 13 Apr 2018 08:20:18 -0700
+Subject: Question about automatic dependencies when native packages are used
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,62 +60,165 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Apr 2018 15:19:48 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 10 Apr 2018 17:54:54 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_A5CF21C0A85F3B4FBBF15BA8E7A39E2C4522BE90COLOEX10MB1arlp_"
 
-Thanks Juro.  I'll remember to keep an eye out for the ifdefs disappearing.
+--_000_A5CF21C0A85F3B4FBBF15BA8E7A39E2C4522BE90COLOEX10MB1arlp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Ross
+I'm having some trouble with native dependencies in my recipe, and I'm wond=
+ering if anyone has any tips.  I'm building with the petalinux toolset on a=
+n x64 linux for an arm architecture.
 
-On 13 April 2018 at 15:46, Bystricky, Juro <juro.bystricky@intel.com> wrote:
-> yes, I've done it before:
-> https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?h=sumo&id=bc112b8368eb3842ccb2430fdf17e736ea39a742
->  I'll do it gain. Hopefully it will last longer this time.
->
->
-> ________________________________________
-> From: Burton, Ross [ross.burton@intel.com]
-> Sent: Friday, April 13, 2018 5:50 AM
-> To: Bystricky, Juro
-> Cc: Yocto-mailing-list; Juro Bystricky; Alistair Francis
-> Subject: Re: [yocto] [meta-mingw][PATCH] qemu_2.11.%.bbappend: fix broken qemu build for mingw
->
-> Is it feasible to fix the original patch?
->
-> Ross
->
-> On 13 April 2018 at 00:55, Juro Bystricky <juro.bystricky@intel.com> wrote:
->> The commit "qemu: Bump to version 2.11.0" in oe-core broke the
->> build of qemu for mingw, due to using "socketpair", which is
->> not supported by mingw. "socketpair" is used in a local patch,
->> not in the qemu upstream code. The original local patch had
->> conditional code to exclude "socketpair" for _WIN32, but the
->> modified patch for qemu 2.11.0 removed this.
->>
->> The fix is to simply remove the offending patch.
->>
->> Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
->> ---
->>  recipes-devtools/qemu/qemu_2.11.%.bbappend | 4 ++++
->>  1 file changed, 4 insertions(+)
->>  create mode 100644 recipes-devtools/qemu/qemu_2.11.%.bbappend
->>
->> diff --git a/recipes-devtools/qemu/qemu_2.11.%.bbappend b/recipes-devtools/qemu/qemu_2.11.%.bbappend
->> new file mode 100644
->> index 0000000..764b500
->> --- /dev/null
->> +++ b/recipes-devtools/qemu/qemu_2.11.%.bbappend
->> @@ -0,0 +1,4 @@
->> +
->> +
->> +SRC_URI_remove_mingw32 = "file://chardev-connect-socket-to-a-spawned-command.patch"
->> +
->> --
->> 2.7.4
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+I have a recipe myapp, which has a native version, myapp-native.  myapp dep=
+ends on its myapp-native, as this builds an application used in the build o=
+f myapp.  myapp also depends on a kernel module, mymodule.
 
+So, an excerpt from myapp.bb:
+
+DEPENDS +=3D "mymodule myapp-native"
+BBCLASSEXTEND =3D "native"
+
+The problem that myapp-native is trying to include mymodule-native.  This c=
+omplains:
+
+ERROR: Nothing PROVIDES 'mymodule-native' (but virtual:native:/path/.../mya=
+pp/myapp.bb DEPENDS on or otherwise requires it)
+
+I've tried adding a 'BBCLASSEXTEND =3D "native"' to mymodule.bb, but that g=
+enerated build errors.
+
+I've tried overriding the dependency in myapp.bb with
+DEPENDS-native =3D ""
+
+And then I tried adding this to myapp.bb
+DEPENDS_${PN}-native =3D ""
+
+I've also tried allowing the mymodule-native package to be empty by adding =
+this to mymodule.bb
+ALLOW_EMPTY_${PN} =3D "1"
+
+As well as this:
+ALLOW_EMPTY_${PN}-native =3D "1"
+
+But nothing seems to work... it keeps trying to find mymodule-native.  I'd =
+like a way to either override this dependency or make mymodule-native an em=
+pty package.  I'm all out of random spaghetti to throw against this wall, a=
+nd I'm hoping someone has some experience with this.
+
+
+
+
+--_000_A5CF21C0A85F3B4FBBF15BA8E7A39E2C4522BE90COLOEX10MB1arlp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I&#8217;m having some trouble with native dependenci=
+es in my recipe, and I&#8217;m wondering if anyone has any tips.&nbsp; I&#8=
+217;m building with the petalinux toolset on an x64 linux for an arm archit=
+ecture.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have a recipe myapp, which has a native version, m=
+yapp-native.&nbsp; myapp depends on its myapp-native, as this builds an app=
+lication used in the build of myapp.&nbsp; myapp also depends on a kernel m=
+odule, mymodule.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">So, an excerpt from myapp.bb:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">DEPENDS &#43;=3D &quot;mymodule myapp-native&quot;<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">BBCLASSEXTEND =3D &quot;native&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The problem that myapp-native is trying to include m=
+ymodule-native.&nbsp; This complains:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">ERROR: Nothing PROVIDES 'mymodule-native' (but virtu=
+al:native:/path/&#8230;/myapp/myapp.bb DEPENDS on or otherwise requires it)=
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;ve tried adding a &#8216;BBCLASSEXTEND =3D &=
+quot;native&quot;&#8217; to mymodule.bb, but that generated build errors.<o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;ve tried overriding the dependency in myapp.=
+bb with<o:p></o:p></p>
+<p class=3D"MsoNormal">DEPENDS-native =3D &quot;&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">And then I tried adding this to myapp.bb<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">DEPENDS_${PN}-native =3D &quot;&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;ve also tried allowing the mymodule-native p=
+ackage to be empty by adding this to mymodule.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">ALLOW_EMPTY_${PN} =3D &quot;1&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">As well as this:<o:p></o:p></p>
+<p class=3D"MsoNormal">ALLOW_EMPTY_${PN}-native =3D &quot;1&quot;<o:p></o:p=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">But nothing seems to work&#8230; it keeps trying to =
+find mymodule-native.&nbsp; I&#8217;d like a way to either override this de=
+pendency or make mymodule-native an empty package.&nbsp; I&#8217;m all out =
+of random spaghetti to throw against this wall, and I&#8217;m hoping
+ someone has some experience with this.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_A5CF21C0A85F3B4FBBF15BA8E7A39E2C4522BE90COLOEX10MB1arlp_--
