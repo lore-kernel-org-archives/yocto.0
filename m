@@ -1,51 +1,63 @@
-Return-Path: <mark.junghanns@spectra.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D2CCE00AD8; Tue, 10 Apr 2018 02:31:44 -0700 (PDT)
+	id F05A4E00A1E; Tue, 10 Apr 2018 05:44:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [195.85.237.182 listed in list.dnswl.org]
+	*      [209.85.218.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.spectra.de (mail.spectra.de [195.85.237.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D6F1E009BC
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 02:31:40 -0700 (PDT)
-X-SPECTRA-MailScanner-EFA-Watermark: 1523957479.92316@HYX3tlS9Z6Ui8W5sDP2KTg
-X-SPECTRA-MailScanner-EFA-From: mark.junghanns@spectra.de
-X-SPECTRA-MailScanner-EFA: Found to be clean
-X-SPECTRA-MailScanner-EFA-ID: 9B72DA052A.ABF7F
-X-SPECTRA-MailScanner-EFA-Information: Please contact it-team@spectra.de for
-	more information
-Received: from AresMail.spectra.netz (unknown [172.16.10.11])
-	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mail.spectra.de (Postfix) with ESMTPS id 9B72DA052A;
-	Tue, 10 Apr 2018 11:31:18 +0200 (CEST)
-Received: from ARESMAIL.spectra.netz ([::1]) by AresMail.spectra.netz ([::1])
-	with mapi id 14.03.0123.003; Tue, 10 Apr 2018 11:31:18 +0200
-From: Mark Junghanns <mark.junghanns@spectra.de>
-To: 'Bruce Ashfield' <bruce.ashfield@windriver.com>,
-	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] meta-virtualization -> docker not packaged when using
-	PACKAGE_CLASSES ?= "package_deb"
-Thread-Index: AdPNpZZOYDIvElIxRdmdYCUOL7J0uACWO50AACwIy1A=
-Date: Tue, 10 Apr 2018 09:31:17 +0000
-Message-ID: <EEF480D2AA622D48BD0D761FB54F5B1BE0D7FC@AresMail.spectra.netz>
-References: <EEF480D2AA622D48BD0D761FB54F5B1BE0D57D@AresMail.spectra.netz>
-	<0e5a2248-9f4b-ba47-cb3d-8377f1aa3c8f@windriver.com>
-In-Reply-To: <0e5a2248-9f4b-ba47-cb3d-8377f1aa3c8f@windriver.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.100.146]
-x-esetresult: clean, is OK
-x-esetid: 37303A29125E4C616C7C62
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f50.google.com (mail-oi0-f50.google.com
+	[209.85.218.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 452B0E00A1E
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 05:44:51 -0700 (PDT)
+Received: by mail-oi0-f50.google.com with SMTP id q71-v6so10993144oic.6
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 05:44:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=Y0H8ib4wUsYTDX4lCElQ3UB/PZT0Pvy+k84fBNu2rOo=;
+	b=yfe8vnrs6G+0r4nxxylQps7QjWKW9LbhhJriU7AVTMgNQvicYRFpES7Jvj4KsrutcL
+	YLUQzUfGU5BNeohzWIOQsJHauyB6AISNYcL50kU/7ctQ059ZZS38bpdKqjdO7lYc0kV3
+	ou8bkmlvWWsQOxO3WyHolRls5mCdNLFRB+9xD8eZTZrZ7Q8LkBSWJd7hc7eBV9tkG3hY
+	rbh9t6P+ztpnFSgB8kvdo2yWnE2TWt9rGyEbqycNwtC3oCjxmvH3FEHuf5MQUqmsX8X1
+	Uh8me9n/AsZUXahvH+Ef9O1nzIocksq9uKkoFWalPGyImxop3B4pTVgZZXw4buUoZEVa
+	DNHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=Y0H8ib4wUsYTDX4lCElQ3UB/PZT0Pvy+k84fBNu2rOo=;
+	b=boEtagTr933uUADxagWhpSIhMJowtSNiAb3hL8LP9vkIbSwnHL8dYLtQ27fY3YTqG5
+	XgSvlHexy/iYqFjUqzQ9QJBOz4zkqjVNE4zEWNsKdQ+P6FBJLmQqQllRYsPnmKx290HO
+	PxBs2RAocdOf6TBmdH3adO0gKiFsJrPTuAJWKukSmGWrS5QxrYjpzj8VWVcI13QFqz8I
+	7bmGKOHoIKSeySALqqrZLsX8CroXbnFjmXbHvMWl+vV1QYkfFvFR8YnYGJR2QmNPlE2W
+	cOQy5xlLEqBt8lNSLDGZFZ34+rbjIGMiI+U987OYd1w2n91RjikmalLZEOtbLmKEtgz5
+	+8Lw==
+X-Gm-Message-State: ALQs6tAgYtJ517t1We4uPuY4Ol1ZKn9oXMo/xclhuikfIixJ9Pe+zlq+
+	l9u/jJHRyOSif45bTzh1OY5vqwuzBDLNP1v1hvXS0g==
+X-Google-Smtp-Source: AIpwx4/wC2kwUTxNhGGz5Q+wtc5FYCfvsNfvWcN+njcC9TwKftyhAAOCs0054lmxq6InrufpyNlQFERk3XJItUdYJ18=
+X-Received: by 2002:aca:acd1:: with SMTP id
+	v200-v6mr172761oie.320.1523364291325; 
+	Tue, 10 Apr 2018 05:44:51 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: meta-virtualization -> docker not packaged when using PACKAGE_CLASSES ?= "package_deb"
+Received: by 10.138.17.198 with HTTP; Tue, 10 Apr 2018 05:44:30 -0700 (PDT)
+In-Reply-To: <CAEhQi8=Y7ofTEoTYgdQYkTS31j8W=aL3Hm_QSfuz8qom5r9Xfw@mail.gmail.com>
+References: <CAEhQi8=Y7ofTEoTYgdQYkTS31j8W=aL3Hm_QSfuz8qom5r9Xfw@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 10 Apr 2018 13:44:30 +0100
+Message-ID: <CAJTo0LajNnRO0zQ581LcM0uMMby-=KPiPo7p_fcJzAGNYpM=9Q@mail.gmail.com>
+To: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Is the a reason for adding the + to SRCPV?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,93 +69,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2018 09:31:44 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 10 Apr 2018 12:44:53 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Bruce,
+What tool is generating the code?  It probably shouldn't be using the
+full path of the header...
 
-unfortunately, there is not a single warning or error message whatsoever th=
-rown. The first occasion, some error message is thrown, occurs during do_ro=
-otfs where it complains about the missing package "docker" - which is obvio=
-usly missing as it has not been build.
+Ross
 
-As I mentioned in my original post, the docker package is being built when =
-using the rpm backend though.
-
-Mark
-
------Urspr=FCngliche Nachricht-----
-Von: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]=
- Im Auftrag von Bruce Ashfield
-Gesendet: Montag, 9. April 2018 16:30
-An: Mark Junghanns; yocto@yoctoproject.org
-Betreff: Re: [yocto] meta-virtualization -> docker not packaged when using =
-PACKAGE_CLASSES ?=3D "package_deb"
-
-On 04/06/2018 09:13 AM, Mark Junghanns wrote:
-> Hello,
-> I encountered a funny behavior the other day. While trying to integrate D=
-ocker into my image using the openembedded meta-virtualization layer, I hap=
-pened to not being able to get my image finalized.
->=20
-> Usually I build with
->              PACKAGE_CLASSES ?=3D "package_deb".
->=20
-> I also added
->              DISTRO_FEATURES_append =3D " virtualization"
->=20
-> The build process aborts at some point within do_rootfs, stating somethin=
-g like that the package 'docker' could not be found. I tracked down the pro=
-blem to docker's  build/tmp/work/<something>/docker/<version>/deploy-debs/ =
-directory. I found the following packages:
->=20
-> docker-contrib_17.06.0+gite639a70fbe999d96354a5bcf560231b7b8aa935c-r0_
-> amd64.deb docker-distribution-dev_v2.6.2-r0_amd64.deb
-> docker-registry_v2.6.2-r0_amd64.deb
-> docker-dbg_17.06.0+gite639a70fbe999d96354a5bcf560231b7b8aa935c-r0_amd6
-> 4.deb docker-distribution-ptest_v2.6.2-r0_amd64.deb
-> docker-distribution-dbg_v2.6.2-r0_amd64.deb
-> docker-ptest_17.06.0+gite639a70fbe999d96354a5bcf560231b7b8aa935c-r0_am
-> d64.deb
->=20
->=20
-> The package that is actually missing, is the docker package itself. I sup=
-pose it would be named docker_17.06.0+gite639a70fbe999d96354a5bcf560231b7b8=
-aa935c-r0_amd64.deb.
->=20
-> There is not any single warning or error thrown whatsoever during the bui=
-ld of docker, it seems to just silently refusing to build the package.
->=20
-> Yet, when change PACKAGE_CLASSES ?=3D "package_deb" to PACKAGE_CLASSES ?=
-=3D "package_rpm" it would build all required docker RPM-Packages just fine=
-. At the end of the day I way able to get a complete image with Docker inte=
-grated, which is fine for the moment. Unfortunately I need to stick with th=
-e DEB format for update reasons, so eventually I need to deal with this iss=
-ue again.
->=20
-> Has anyone seen this happening as well? Any idea, where and how to fix th=
-is?
-
-I've never seen this, but then again, I've also never used the .deb package=
- backend.
-
-When you were building with .debs, and your image had "docker' in the image=
- install .. was there any errors thrown due to the package not being create=
-d ?
-
-Bruce
-
->=20
-> Thanks in advance for your help!
->=20
-> Mark
->=20
-
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+On 10 April 2018 at 09:29, M=C3=A5ns Zigher <mans.zigher@gmail.com> wrote:
+> Hi,
+>
+> I am having some problems with one of my recipes when using the SRCPV the
+> get_srcrev is returning "AUTOINC+" + rev. This will cause problem in my
+> compile because I am using dbus codegen and it looks like the auto-genera=
+ted
+> code cannot handle the + sign in the paths. Is there a reason for this +
+> sign. The generated code that causes my build to fail looks like this
+>
+> #ifndef
+> ___HOME_EXTZIG_WORKSPACE_MOZART_MOZART_WORKSPACE_BUILDS_MOZART_RASPBERRYP=
+I_BUILD_TMP_WORK_CORTEXA7HF_NEON_VFPV4_MOZART_LINUX_GNUEABI_MOZART_DAEMON_1=
+_0_GITAUTOINC+8FD4C803AE_R3_GIT_SRC_LIBS_MOZART_BLE_SETUP_CODEGEN_ORG_BLUEZ=
+_LE_ADVERTISEMENT_INTERFACE_H__
+>
+> Currently the only way for me to get the build to work is not use the SRC=
+PV.
+> Could it actually be a better way then using the + sign or is there a
+> logical requirement for it?
+>
+> BR
+> Mans Zigher
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
