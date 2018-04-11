@@ -1,17 +1,17 @@
-Return-Path: <vincent.prince.fr@gmail.com>
+Return-Path: <mans.zigher@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBAAEE00D50; Tue, 10 Apr 2018 23:19:51 -0700 (PDT)
+	id 8DC4AE00C44; Wed, 11 Apr 2018 02:12:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
+	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vincent.prince.fr[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.50 listed in list.dnswl.org]
+	mail provider *      (mans.zigher[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,48 +20,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f50.google.com (mail-it0-f50.google.com
-	[209.85.214.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3427E00D4A
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 23:19:50 -0700 (PDT)
-Received: by mail-it0-f50.google.com with SMTP id t192-v6so16915665itc.1
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 23:19:50 -0700 (PDT)
+	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
+Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
+	[209.85.218.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F30D1E009E2
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2018 02:12:37 -0700 (PDT)
+Received: by mail-oi0-f48.google.com with SMTP id u141-v6so1039401oif.1
+	for <yocto@yoctoproject.org>; Wed, 11 Apr 2018 02:12:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=3Dvqe2itTxmFhdKw5cwKFpRnJIN1i+0yQ+0Vpn+7XCs=;
-	b=rp42FEIcfHcVTu3yYdLiNiivMwJqKOn54DMxdzBbFsrQKpE99mGdpFkvOUQ8hEhDUR
-	sM4Q08u+sNjxNV8zD97nyo3VJHXhXeFD7tQ0pZFiVj0ZwTxZXER4Sk9YZHqrYNUs9PZ1
-	zpRORJix5cudU32hI2c1zdA6I4QFCQ//T0BkuNXFlQXnwYXPvnKCPyvfQeOZMksAQ0WS
-	60DktHHGMCSNXdODw4H96uZII1F6aCpo6NvioqV2qlypwsQiRWYqSQRnsLZLjA7p9o/k
-	+MJR/XaZ7HQkvg7f6WoSUoedV3Dh2/0AC8Sv/8TT1sRI2/BwQOkNhztiVuqHDl9m1Hkx
-	5F7w==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=J1jX8ZRQ/i1ZCbocDlBv8qXXrlAd5Rt+0bKux8eBYys=;
+	b=Wp51n/rHxpg1+6aNnpAQ14We41L0sV8cZHYXLMmy4J3Am69+FTWIc2xrBBoHRiyhTz
+	cLuGzT/AiwNgRhMduXMUYsUzlQWWdqIwpYGvixsj/IxMj1vdD3TOFX1DaYy7KWFjvgsJ
+	POEFfifQv45E9moIv4w30Jz6zk1ci9+8cilOFz7qLYm7K0zwoN2y6gJb8mNrUhWmb61A
+	Nf/47072fMtMv9jxuNsBnkUw/PGaNPgj09jT2AVkefboTQ2DZJiXFurSuQDPxgxHt4PX
+	zqM1+elIf6/8oIeXD6zCgxfJOEJa71/+UuS0asKHXOmQqrPdFcSFAjukAYwscEAlQQiW
+	Snqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=3Dvqe2itTxmFhdKw5cwKFpRnJIN1i+0yQ+0Vpn+7XCs=;
-	b=OLR0qhZmeFSu6RVPa4edkEU8tiSd9N0f7u0InOtGJm/87Q4ULTQN4hAg3vx6dFkgN5
-	dtpMP45GRS0up98VO9o4eCqZjakZ7oRiq2EcWw1C/lvTyp9weM/dqyP9SXoDqvEyCwiR
-	TYfnaPGQE73CMjh6WVaUeTGnQz/flg5sjnnbB4mKJpTxRHMRnvPk8H+MRrefaEqVdTVp
-	Jec17cQlFjVXkfqSX7jqdVhpAJI/SpaJWzMOon4aKqkO5U59FUhuR+g3CCNUQWuBHi2N
-	PqN5Fao52ARNlPS8vG/nzuuqO//bWR17WF/YlHtFug1NCKGflhC1lULjh1eixoKCiUnh
-	3j2A==
-X-Gm-Message-State: ALQs6tCPdBv3LgfnzamY+gNhAMuGpw1qd0AZ+0wmkuXX7l0tgnakdTDW
-	Wnbu1rUhR4UaxhV4dzrzpe16mC83KcJVE/SdeUw=
-X-Google-Smtp-Source: AIpwx487HXNun0hZv/M0idgONTvWY1dOinXxnt/+uOtrc6rEAzFYGCus4m1arOxPv0kiCl4ZkvP+DZ/x57kdc1JYjmE=
-X-Received: by 2002:a24:2b48:: with SMTP id
-	h69-v6mr2631962ita.30.1523427589643; 
-	Tue, 10 Apr 2018 23:19:49 -0700 (PDT)
+	bh=J1jX8ZRQ/i1ZCbocDlBv8qXXrlAd5Rt+0bKux8eBYys=;
+	b=Tcg5GkLEaUjN/r1a9hZltF/BIAbdOCJW3UjWVTJ/jJCahXSRkz9Z4eNnL2fozqEWA0
+	5k0O47j7IwNYN2d4TN+eL79aoh86QsWqxFLEKD3W1FA3knXCFFDVvvBa41kb3i1gmb1U
+	aDwJb1XVlSv1LM05saoU0fhGH727qNKggH85qmIvoWjGorG4gHKAVZaWuC0xaO7OfYSu
+	h5HlVGJmEOGqSTOQbo5omqnWe68LGQgdNPdOOkOp4nUd1CrJ+xN4xv4g0PqeoI/qGIJP
+	pZSdjz0I13NrBRJjAWaRLdiLxWHD/efXXmjSl2cmhazF9sFdSUmZ5UB1z22C112oxWAx
+	HVWA==
+X-Gm-Message-State: ALQs6tC4rlSCexSdYjRHHzuiu5AGyOy5pQIxQEsaoMsOJHi4e37XVgA0
+	3kxwdZIDZw+lJLJjasOROKtTkRftMS9EDou0NQ0=
+X-Google-Smtp-Source: AIpwx4/N4tuI+w1m8tF5mtfalVK59d9QDGMiYtY/EAz72k7KoFHdoO9BYiuRmvd3nzl9RdVLJfqHCe+q3idYz9Nx2x0=
+X-Received: by 2002:aca:ce94:: with SMTP id
+	e142-v6mr2278247oig.194.1523437957358; 
+	Wed, 11 Apr 2018 02:12:37 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.2.176.144 with HTTP; Tue, 10 Apr 2018 23:19:29 -0700 (PDT)
-In-Reply-To: <trinity-1101ecc5-fcf9-4690-9f44-4ba6adb37022-1523269030673@3c-app-gmx-bs79>
-References: <trinity-1101ecc5-fcf9-4690-9f44-4ba6adb37022-1523269030673@3c-app-gmx-bs79>
-From: Vincent Prince <vincent.prince.fr@gmail.com>
-Date: Wed, 11 Apr 2018 08:19:29 +0200
-Message-ID: <CAB2nKc9rz_0q3+R8VM-rqKiGzipEWibdJy=oRUkCu__Kjz+pJQ@mail.gmail.com>
-To: Arno Steffens <epsi@gmx.de>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Update a recipe to use newer sources
+References: <CAEhQi8=Y7ofTEoTYgdQYkTS31j8W=aL3Hm_QSfuz8qom5r9Xfw@mail.gmail.com>
+	<CAJTo0LajNnRO0zQ581LcM0uMMby-=KPiPo7p_fcJzAGNYpM=9Q@mail.gmail.com>
+In-Reply-To: <CAJTo0LajNnRO0zQ581LcM0uMMby-=KPiPo7p_fcJzAGNYpM=9Q@mail.gmail.com>
+From: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
+Date: Wed, 11 Apr 2018 09:12:26 +0000
+Message-ID: <CAEhQi8kGya0qqB8Pj=dSgLaVFR_g2FRK1cuVYrPOBXrogUf8dw@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Is the a reason for adding the + to SRCPV?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,69 +74,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Apr 2018 06:19:51 -0000
-Content-Type: multipart/alternative; boundary="00000000000052612005698ca05b"
+X-List-Received-Date: Wed, 11 Apr 2018 09:12:38 -0000
+Content-Type: multipart/alternative; boundary="000000000000492b5005698f0a6b"
 
---00000000000052612005698ca05b
+--000000000000492b5005698f0a6b
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Arno,
+I believe dbus codegen is the tools generating the code.
 
-You can find pretty much everything in mega manual
-https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#extendpoky
+Br
+Mans Zigher
 
-Yocto uses layers to override recipes, so there's nothing wrong to use
-newer version in yours.
+On Tue, Apr 10, 2018, 14:44 Burton, Ross <ross.burton@intel.com> wrote:
 
-Regards,
-Vincent
-
-2018-04-09 12:17 GMT+02:00 Arno Steffens <epsi@gmx.de>:
-
-> Can you please help me?
-> For one or 2 packages I need newer sources than available via yocto. Is
-> there a guide what and how I have to modify (or better copy, modify and
-> add???) a recipe where the only change is a newer source code release? I am
-> aware that this can create trouble, but sometimes I need a bugfix that it
-> is only in recent versions available.
-> Thank you
-> Arno
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> What tool is generating the code?  It probably shouldn't be using the
+> full path of the header...
+>
+> Ross
+>
+> On 10 April 2018 at 09:29, M=C3=A5ns Zigher <mans.zigher@gmail.com> wrote=
+:
+> > Hi,
+> >
+> > I am having some problems with one of my recipes when using the SRCPV t=
+he
+> > get_srcrev is returning "AUTOINC+" + rev. This will cause problem in my
+> > compile because I am using dbus codegen and it looks like the
+> auto-generated
+> > code cannot handle the + sign in the paths. Is there a reason for this =
++
+> > sign. The generated code that causes my build to fail looks like this
+> >
+> > #ifndef
+> >
+> ___HOME_EXTZIG_WORKSPACE_MOZART_MOZART_WORKSPACE_BUILDS_MOZART_RASPBERRYP=
+I_BUILD_TMP_WORK_CORTEXA7HF_NEON_VFPV4_MOZART_LINUX_GNUEABI_MOZART_DAEMON_1=
+_0_GITAUTOINC+8FD4C803AE_R3_GIT_SRC_LIBS_MOZART_BLE_SETUP_CODEGEN_ORG_BLUEZ=
+_LE_ADVERTISEMENT_INTERFACE_H__
+> >
+> > Currently the only way for me to get the build to work is not use the
+> SRCPV.
+> > Could it actually be a better way then using the + sign or is there a
+> > logical requirement for it?
+> >
+> > BR
+> > Mans Zigher
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
 >
 
---00000000000052612005698ca05b
+--000000000000492b5005698f0a6b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Arno,=C2=A0<div><br></div><div>You can find pretty much=
- everything in mega manual=C2=A0<a href=3D"https://www.yoctoproject.org/doc=
-s/current/mega-manual/mega-manual.html#extendpoky">https://www.yoctoproject=
-.org/docs/current/mega-manual/mega-manual.html#extendpoky</a>=C2=A0</div><d=
-iv>Yocto uses layers to override recipes, so there&#39;s nothing wrong to u=
-se newer version in yours.=C2=A0</div><div><br></div><div>Regards,</div><di=
-v>Vincent</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">2018-04-09 12:17 GMT+02:00 Arno Steffens <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:epsi@gmx.de" target=3D"_blank">epsi@gmx.de</a>&gt;</span>:<br><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
-#ccc solid;padding-left:1ex">Can you please help me?<br>
-For one or 2 packages I need newer sources than available via yocto. Is the=
-re a guide what and how I have to modify (or better copy, modify and add???=
-) a recipe where the only change is a newer source code release? I am aware=
- that this can create trouble, but sometimes I need a bugfix that it is onl=
-y in recent versions available.<br>
-Thank you<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">Arno<br>
---<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+<div dir=3D"auto">I believe dbus codegen is the tools generating the code.<=
+div dir=3D"auto"><br></div><div dir=3D"auto">Br</div><div dir=3D"auto">Mans=
+ Zigher</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Tue, =
+Apr 10, 2018, 14:44 Burton, Ross &lt;<a href=3D"mailto:ross.burton@intel.co=
+m">ross.burton@intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
+1ex">What tool is generating the code?=C2=A0 It probably shouldn&#39;t be u=
+sing the<br>
+full path of the header...<br>
+<br>
+Ross<br>
+<br>
+On 10 April 2018 at 09:29, M=C3=A5ns Zigher &lt;<a href=3D"mailto:mans.zigh=
+er@gmail.com" target=3D"_blank" rel=3D"noreferrer">mans.zigher@gmail.com</a=
+>&gt; wrote:<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; I am having some problems with one of my recipes when using the SRCPV =
+the<br>
+&gt; get_srcrev is returning &quot;AUTOINC+&quot; + rev. This will cause pr=
+oblem in my<br>
+&gt; compile because I am using dbus codegen and it looks like the auto-gen=
+erated<br>
+&gt; code cannot handle the + sign in the paths. Is there a reason for this=
+ +<br>
+&gt; sign. The generated code that causes my build to fail looks like this<=
 br>
-</font></span></blockquote></div><br></div>
+&gt;<br>
+&gt; #ifndef<br>
+&gt; ___HOME_EXTZIG_WORKSPACE_MOZART_MOZART_WORKSPACE_BUILDS_MOZART_RASPBER=
+RYPI_BUILD_TMP_WORK_CORTEXA7HF_NEON_VFPV4_MOZART_LINUX_GNUEABI_MOZART_DAEMO=
+N_1_0_GITAUTOINC+8FD4C803AE_R3_GIT_SRC_LIBS_MOZART_BLE_SETUP_CODEGEN_ORG_BL=
+UEZ_LE_ADVERTISEMENT_INTERFACE_H__<br>
+&gt;<br>
+&gt; Currently the only way for me to get the build to work is not use the =
+SRCPV.<br>
+&gt; Could it actually be a better way then using the + sign or is there a<=
+br>
+&gt; logical requirement for it?<br>
+&gt;<br>
+&gt; BR<br>
+&gt; Mans Zigher<br>
+&gt;<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank" rel=3D"nor=
+eferrer">yocto@yoctoproject.org</a><br>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer noreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo=
+/yocto</a><br>
+&gt;<br>
+</blockquote></div>
 
---00000000000052612005698ca05b--
+--000000000000492b5005698f0a6b--
