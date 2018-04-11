@@ -1,65 +1,34 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72921E00944; Tue, 10 Apr 2018 09:18:43 -0700 (PDT)
+	id EE6B9E00B18; Tue, 10 Apr 2018 20:11:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f170.google.com (mail-qt0-f170.google.com
-	[209.85.216.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C5DAE007E1
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 09:18:41 -0700 (PDT)
-Received: by mail-qt0-f170.google.com with SMTP id w23so13889216qtn.3
-	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 09:18:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=IVw+fiP+iF3dRkI2yMqxH9ayAUOTVNKeS4dxA+R8t8I=;
-	b=Yyuddv8RcX5TayEtQ4KdhI2ytpSFjMaClVD0TW+Hh2jbl2OeheuhVLbDa782ZM3Axf
-	xc6fWkiYrBXKVuGhbbkECllA2OWaebSzyDCSYBm8YhfPT2lh7Kf7Txdu5ZIqsB2da1yu
-	oVZOKAEb04nlA2hwjZl3s/siyl9gfAJcUNYT/PysKrYSdY8dpbLAZerZun3fr1Fx2Msx
-	xV9k8Rt96Ahu0HNV26u2Shkt3WqssBSwbcBQZgE42IXBGTXcLg8GuWj35T3fbp4b244d
-	0zsCVF/WK73U1a7fblxRlv+nLAdOH9YOPxUoA7wuq3bMjZP2X1ZN3lMx1EZRjLtCwgu3
-	sfVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=IVw+fiP+iF3dRkI2yMqxH9ayAUOTVNKeS4dxA+R8t8I=;
-	b=stltVLt3jUjz7kxSqRSQElPhe+KUKHkug3KvU1riR89J+oXo9yZGvp2GdQDNt4z0jG
-	1RgkLZA26XgIeiT8q5mjRLjl59q4bY/Ssxi5Icef0rHGq2MGXpIfYwI24Git896RpnO3
-	3vXGQ/1dWF7qNcvjFXgeCsIgHcPOFstEiq/5kz9j5aL26/pXtFNqyWNStJvBtkcjkUGo
-	9qIKAOIGbxh74lY728tPNgX4xwAsh2cfi5NOcpoAixTVPgRggJ04ctt7pBya68wYgZzA
-	cvTxsQC3Eas8FwANI8PPTlMagV+OKS5hVw3EeYIY9qRhZ0G/kPId7DR76rB+wBHrh1yj
-	ZoVA==
-X-Gm-Message-State: ALQs6tDlu37s39cBNwqDhNhS7zG+VsAOXQMo7VU2abXB1KRrAtQ/RuOO
-	U8XJW2vFWqmhLs6EJurJNiKpoUZ9roGR3Rlr/Zs=
-X-Google-Smtp-Source: AIpwx486nZVxB2EyJbLvrFuL1c2PeWLKV5HEUKppNMLZDZo3E4IeqO79tjRatw/Zi0QdCaDon/MDPuaZAztDdVTK93Q=
-X-Received: by 10.200.82.86 with SMTP id y22mr1591081qtn.167.1523377120766;
-	Tue, 10 Apr 2018 09:18:40 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C9ECE009BC
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 20:11:18 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w3B3BIcI024900
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 10 Apr 2018 20:11:18 -0700 (PDT)
+Received: from localhost (128.224.163.220) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
+	Tue, 10 Apr 2018 20:11:17 -0700
+From: Yi Zhao <yi.zhao@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 11 Apr 2018 11:11:15 +0800
+Message-ID: <1523416275-5895-1-git-send-email-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Received: by 10.12.247.141 with HTTP; Tue, 10 Apr 2018 09:18:40 -0700 (PDT)
-In-Reply-To: <CACAZDOnEWYdBmWqRjG75YXy_-QRrMbH7xVY957B8oF-F6Uj09A@mail.gmail.com>
-References: <CACAZDOnEWYdBmWqRjG75YXy_-QRrMbH7xVY957B8oF-F6Uj09A@mail.gmail.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Tue, 10 Apr 2018 18:18:40 +0200
-Message-ID: <CAGAf8LxCLt-wJTpXrumtP-UxwZ_HWk5DKryYHKu0rbK9yFPAdw@mail.gmail.com>
-To: Viacheslav Salnikov <slavasalnikovv@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: : Add sources to rootfs of image
+X-Originating-IP: [128.224.163.220]
+Subject: [PATCH] xmlsec1: refresh patches to fix QA warning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,33 +40,234 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Apr 2018 16:18:43 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 11 Apr 2018 03:11:21 -0000
+Content-Type: text/plain
 
-> In the end of all tasks this recipe adds all sources to the rootfs.
+Refresh patches with devtool command.
 
-Why (what is the important/critical reason behind this request)?
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ .../xmlsec1/change-finding-path-of-nss.patch       | 22 +++++++++++++---------
+ .../xmlsec1/xmlsec1/fix-ltmain.sh.patch            | 16 ++++++++--------
+ .../xmlsec1/xmlsec1/makefile-ptest.patch           | 18 +++++++++++++-----
+ ...sec1-examples-allow-build-in-separate-dir.patch | 10 ++++------
+ .../xmlsec1-fix-a-typo-in-examples-verify3.c.patch |  6 ++----
+ 5 files changed, 40 insertions(+), 32 deletions(-)
 
-Zoran
-_______
+diff --git a/recipes-security/xmlsec1/xmlsec1/change-finding-path-of-nss.patch b/recipes-security/xmlsec1/xmlsec1/change-finding-path-of-nss.patch
+index 0f4cef9..fcc63b3 100644
+--- a/recipes-security/xmlsec1/xmlsec1/change-finding-path-of-nss.patch
++++ b/recipes-security/xmlsec1/xmlsec1/change-finding-path-of-nss.patch
+@@ -1,3 +1,4 @@
++From 47379747e34f952d31af028c672940ca7859ae3c Mon Sep 17 00:00:00 2001
+ From: Yulong Pei <Yulong.pei@windriver.com>
+ Date: Wed, 21 Jul 2010 22:33:43 +0800
+ Subject: [PATCH] change finding path of nss and nspr
+@@ -6,13 +7,16 @@ Upstream-Status: Pending
+ 
+ Signed-off-by: Yulong Pei <Yulong.pei@windriver.com>
+ Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
++
+ ---
+- configure.ac |   12 ++++++------
+- 1 files changed, 6 insertions(+), 6 deletions(-)
++ configure.ac | 12 ++++++------
++ 1 file changed, 6 insertions(+), 6 deletions(-)
+ 
++diff --git a/configure.ac b/configure.ac
++index 3278200..6edec7d 100644
+ --- a/configure.ac
+ +++ b/configure.ac
+-@@ -618,7 +618,7 @@
++@@ -644,7 +644,7 @@ if test "z$NSS_FOUND" = "zno" ; then
+  
+      if test "z$with_nspr" != "z" ; then
+  	NSPR_PREFIX="$with_nspr"
+@@ -21,7 +25,7 @@ Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
+  	if test "z$with_gnu_ld" = "zyes" ; then
+  	    NSPR_LIBS="-Wl,-rpath-link -Wl,$with_nspr/lib -L$with_nspr/lib $NSPR_LIBS_LIST"
+  	else
+-@@ -626,7 +626,7 @@
++@@ -652,7 +652,7 @@ if test "z$NSS_FOUND" = "zno" ; then
+  	fi
+  	NSPR_INCLUDES_FOUND="yes"
+  	NSPR_LIBS_FOUND="yes"
+@@ -30,7 +34,7 @@ Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
+      else
+  	for dir in $ac_nss_inc_dir ; do
+      	    if test -f $dir/nspr/prinit.h ; then
+-@@ -664,7 +664,7 @@
++@@ -690,7 +690,7 @@ if test "z$NSS_FOUND" = "zno" ; then
+  	OLD_CPPFLAGS=$CPPFLAGS
+  	CPPFLAGS="$NSPR_CFLAGS"
+  	AC_EGREP_CPP(yes,[
+@@ -39,7 +43,7 @@ Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
+              #if PR_VMAJOR >= 4
+                 yes
+              #endif
+-@@ -689,7 +689,7 @@
++@@ -715,7 +715,7 @@ if test "z$NSS_FOUND" = "zno" ; then
+      NSS_NSS_H=""
+  
+      if test "z$with_nss" != "z" ; then
+@@ -48,7 +52,7 @@ Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
+  	if test "z$with_gnu_ld" = "zyes" ; then
+  	    NSS_LIBS="$NSS_LIBS -Wl,-rpath-link -Wl,$with_nss/lib -L$with_nss/lib $NSS_LIBS_LIST"
+          else
+-@@ -697,7 +697,7 @@
++@@ -723,7 +723,7 @@ if test "z$NSS_FOUND" = "zno" ; then
+          fi
+  	NSS_INCLUDES_FOUND="yes"
+  	NSS_LIBS_FOUND="yes"
+@@ -57,9 +61,9 @@ Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
+      else
+  	for dir in $ac_nss_inc_dir ; do
+  	    if test -f $dir/nss/nss.h ; then
+-@@ -735,7 +735,7 @@
++@@ -761,7 +761,7 @@ if test "z$NSS_FOUND" = "zno" ; then
+         OLD_CPPFLAGS=$CPPFLAGS
+-        CPPFLAGS="$NSS_CFLAGS"
++        CPPFLAGS="$NSPR_CFLAGS $NSS_CFLAGS"
+         AC_EGREP_CPP(yes,[
+ -          #include <nss.h>
+ +	  #include <nss3/nss.h>
+diff --git a/recipes-security/xmlsec1/xmlsec1/fix-ltmain.sh.patch b/recipes-security/xmlsec1/xmlsec1/fix-ltmain.sh.patch
+index 472f1cc..af598fe 100644
+--- a/recipes-security/xmlsec1/xmlsec1/fix-ltmain.sh.patch
++++ b/recipes-security/xmlsec1/xmlsec1/fix-ltmain.sh.patch
+@@ -1,3 +1,4 @@
++From 847dc52f5a50e34ee4d6e3dc2c708711747a58ca Mon Sep 17 00:00:00 2001
+ From: Yulong Pei <Yulong.pei@windriver.com>
+ Date: Thu, 21 Jan 2010 14:11:20 +0800
+ Subject: [PATCH] force to use our own libtool
+@@ -5,22 +6,21 @@ Subject: [PATCH] force to use our own libtool
+ Upstream-Status: Inappropriate [ OE specific ]
+ 
+ Signed-off-by: Yulong Pei <Yulong.pei@windriver.com>
++
+ ---
+- ltmain.sh |    2 +-
+- 1 files changed, 1 insertions(+), 1 deletions(-)
++ ltmain.sh | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
+ 
+ diff --git a/ltmain.sh b/ltmain.sh
++index 147d758..a61f16b 100644
+ --- a/ltmain.sh
+ +++ b/ltmain.sh
+-@@ -1309,7 +1309,7 @@ EOF
+- 	dir=`$echo "X$arg" | $Xsed -e 's/^-L//'`
++@@ -6969,7 +6969,7 @@ func_mode_link ()
++ 	dir=$func_resolve_sysroot_result
+  	# We need an absolute path.
+  	case $dir in
+ -	[\\/]* | [A-Za-z]:[\\/]*) ;;
+ +	=* | [\\/]* | [A-Za-z]:[\\/]*) ;;
+  	*)
+  	  absdir=`cd "$dir" && pwd`
+- 	  if test -z "$absdir"; then
+--- 
+-1.6.4
+-
++ 	  test -z "$absdir" && \
+diff --git a/recipes-security/xmlsec1/xmlsec1/makefile-ptest.patch b/recipes-security/xmlsec1/xmlsec1/makefile-ptest.patch
+index 2a199f4..d453569 100644
+--- a/recipes-security/xmlsec1/xmlsec1/makefile-ptest.patch
++++ b/recipes-security/xmlsec1/xmlsec1/makefile-ptest.patch
+@@ -1,18 +1,26 @@
++From 83a1381e1d6bd1b5ec3df6f7c4bc1f4fe4f860b6 Mon Sep 17 00:00:00 2001
++From: Jackie Huang <jackie.huang@windriver.com>
++Date: Thu, 15 Jun 2017 14:44:01 +0800
++Subject: [PATCH] xmlsec1: add new recipe
++
+ This enables the building of the examples directory
+ and it's installed as ptest.
+ 
+ Upstream-Status: Inappropriate [ OE ptest specific ]
+ 
+ Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
++
+ ---
+- examples/Makefile |    7 +++++--
+- 1 files changed, 7 insertions(+), 0 deletions(-)
++ examples/Makefile | 12 ++++++++++--
++ 1 file changed, 10 insertions(+), 2 deletions(-)
+ 
++diff --git a/examples/Makefile b/examples/Makefile
++index 89b1d61..c1cbcca 100644
+ --- a/examples/Makefile
+ +++ b/examples/Makefile
+-@@ -9,9 +9,17 @@
+- 	xmldsigverify \
+- 	xkms-server
++@@ -8,9 +8,17 @@ PROGRAMS = \
++ 	decrypt1 decrypt2 decrypt3 \
++ 	xmldsigverify
+  
+ +ifndef CC
+  CC	= gcc
+diff --git a/recipes-security/xmlsec1/xmlsec1/xmlsec1-examples-allow-build-in-separate-dir.patch b/recipes-security/xmlsec1/xmlsec1/xmlsec1-examples-allow-build-in-separate-dir.patch
+index b0ced03..8b2533e 100644
+--- a/recipes-security/xmlsec1/xmlsec1/xmlsec1-examples-allow-build-in-separate-dir.patch
++++ b/recipes-security/xmlsec1/xmlsec1/xmlsec1-examples-allow-build-in-separate-dir.patch
+@@ -1,4 +1,4 @@
+-From ef8872185dcd05d20c93cd98317ede1913371c94 Mon Sep 17 00:00:00 2001
++From 0c38c6864e7ba8f53a657d87894f24374a6a4932 Mon Sep 17 00:00:00 2001
+ From: Jackie Huang <jackie.huang@windriver.com>
+ Date: Tue, 30 Dec 2014 11:18:17 +0800
+ Subject: [PATCH] examples: allow build in separate dir
+@@ -6,15 +6,16 @@ Subject: [PATCH] examples: allow build in separate dir
+ Upstream-Status: Inappropriate [ OE specific ]
+ 
+ Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
++
+ ---
+  examples/Makefile | 6 ++++--
+  1 file changed, 4 insertions(+), 2 deletions(-)
+ 
+ diff --git a/examples/Makefile b/examples/Makefile
+-index 0d72ad7..f9bccc6 100644
++index c1cbcca..3f1bd14 100644
+ --- a/examples/Makefile
+ +++ b/examples/Makefile
+-@@ -13,8 +13,10 @@ ifndef CC
++@@ -12,8 +12,10 @@ ifndef CC
+  CC	= gcc
+  endif
+  
+@@ -27,6 +28,3 @@ index 0d72ad7..f9bccc6 100644
+  
+  DESTDIR = /usr/share/xmlsec1
+  install-ptest:
+--- 
+-1.9.1
+-
+diff --git a/recipes-security/xmlsec1/xmlsec1/xmlsec1-fix-a-typo-in-examples-verify3.c.patch b/recipes-security/xmlsec1/xmlsec1/xmlsec1-fix-a-typo-in-examples-verify3.c.patch
+index 0fe3fd7..5f967bb 100644
+--- a/recipes-security/xmlsec1/xmlsec1/xmlsec1-fix-a-typo-in-examples-verify3.c.patch
++++ b/recipes-security/xmlsec1/xmlsec1/xmlsec1-fix-a-typo-in-examples-verify3.c.patch
+@@ -1,4 +1,4 @@
+-From bf1c7b17cc80a2f4dfd43f112f944f68fa5fbcd6 Mon Sep 17 00:00:00 2001
++From 1d8ae4b32bd76c19ec238f30eb9b1ee582cbe990 Mon Sep 17 00:00:00 2001
+ From: Jackie Huang <jackie.huang@windriver.com>
+ Date: Fri, 2 Mar 2018 01:10:58 -0800
+ Subject: [PATCH] xmlsec1: fix a typo in examples/verify3.c
+@@ -6,6 +6,7 @@ Subject: [PATCH] xmlsec1: fix a typo in examples/verify3.c
+ Upstream-Status: Submitted [https://github.com/lsh123/xmlsec/pull/153]
+ 
+ Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
++
+ ---
+  examples/verify3.c | 2 +-
+  1 file changed, 1 insertion(+), 1 deletion(-)
+@@ -20,6 +21,3 @@ index 2d26ae7..68f52ab 100644
+   * XML Security Library example: Verifying a file signed with X509 certificate
+   *
+   * Verifies a file signed with X509 certificate. 
+--- 
+-2.13.0
+-
+-- 
+2.7.4
 
-On Tue, Apr 10, 2018 at 5:36 PM, Viacheslav Salnikov
-<slavasalnikovv@gmail.com> wrote:
-> Hello guys,
->
-> I have a question: is it possible to easily add source code of package(s) to
-> rootfs?
->
-> For example: there is a recipe which gets sources from git, unpacks,
-> compiles etc. In the end of all tasks this recipe adds all sources to the
-> rootfs.
->
-> Looking forward to your reply!
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
