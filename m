@@ -1,6 +1,6 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <juro.bystricky@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3C0C9E00C4F; Thu, 12 Apr 2018 11:50:01 -0700 (PDT)
+	id D6AF3E00B1E; Thu, 12 Apr 2018 16:28:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,29 +8,28 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E090CE00BFF;
-	Thu, 12 Apr 2018 11:49:55 -0700 (PDT)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BF7DE0084E
+	for <yocto@yoctoproject.org>; Thu, 12 Apr 2018 16:28:16 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	12 Apr 2018 11:49:54 -0700
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	12 Apr 2018 16:28:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.48,443,1517904000"; d="scan'208";a="33840702"
-Received: from tgraydon-mac01.jf.intel.com ([10.24.9.10])
-	by orsmga006.jf.intel.com with ESMTP; 12 Apr 2018 11:49:54 -0700
-To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
-From: Tracy Graydon <tracy.graydon@intel.com>
-Message-ID: <c97b878a-b8cc-4b53-49cf-d4663b2d8c0c@intel.com>
-Date: Thu, 12 Apr 2018 11:49:54 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.1.0
-MIME-Version: 1.0
-Subject: [ANNOUNCEMENT] Milestone 3 for Yocto Project 2.5 (yocto-2.5_M3) now available
+X-IronPort-AV: E=Sophos;i="5.48,444,1517904000"; d="scan'208";a="191104640"
+Received: from juro-precision-t5610.jf.intel.com ([10.7.198.59])
+	by orsmga004.jf.intel.com with ESMTP; 12 Apr 2018 16:28:16 -0700
+From: Juro Bystricky <juro.bystricky@intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 12 Apr 2018 16:28:14 -0700
+Message-Id: <1523575694-11789-1-git-send-email-juro.bystricky@intel.com>
+X-Mailer: git-send-email 2.7.4
+Cc: jurobystricky@hotmail.com
+Subject: [meta-mingw][PATCH] diffutils_3.6: build for mingw
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,34 +41,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Apr 2018 18:50:01 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 12 Apr 2018 23:28:17 -0000
 
-We are pleased to announce the third milestone release for Yocto Project 2.5 (yocto-2.5_M3) is available for download now.
+Build of diffutils was requested/broken for mingw because of the commit
+"diffutils: allow native & nativesdk builds"
 
-Download:
+This patch implements neccessary steps needed to build diffutils executables:
+    cmp.exe
+    diff.exe
+    diff3.exe
+    sdiff.exe
 
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-2.5_M3/
+[YOCTO #12662]
 
-poky f49ee61422c867516db252054e993df29f775136
-bitbake 39d6a30a28f66c599e18beddbd847f40dcff623c
-eclipse-poky-neon a5dbc01b96be55c4ec2f774af9996a8086e402ab
-eclipse-poky-oxygen fbb91e5c5ad06470cd50ce1daa407a5f7d13c6ca
-meta-qt3 f33b73a9563f2dfdfd0ee37b61d65d90197a456f
-meta-qt4 f313dbee2ac3d5fcc9801407947d3cb6cfb90b5d
-meta-gplv2 c591f97432047a2add48ff0ec9c20babba2915c6
-meta-intel 11c2d33606669ab77467c040b5f45a6e3e188dd8
-meta-mingw a07fe304228b7f41b5558de7d8f39fd5e8a430d2
+Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
+---
+ .../diffutils/diffutils/sdiff-no-kill.patch            | 18 ++++++++++++++++++
+ recipes-extended/diffutils/diffutils_3.6.bbappend      | 18 ++++++++++++++++++
+ 2 files changed, 36 insertions(+)
+ create mode 100644 recipes-extended/diffutils/diffutils/sdiff-no-kill.patch
+ create mode 100644 recipes-extended/diffutils/diffutils_3.6.bbappend
 
-Test report:
+diff --git a/recipes-extended/diffutils/diffutils/sdiff-no-kill.patch b/recipes-extended/diffutils/diffutils/sdiff-no-kill.patch
+new file mode 100644
+index 0000000..70e7caf
+--- /dev/null
++++ b/recipes-extended/diffutils/diffutils/sdiff-no-kill.patch
+@@ -0,0 +1,18 @@
++"kill" is not supported by mingw, so compile conditionally,
++(same condition as another instance of "kill" in the source code).
++
++Upstream-Status: Pending
++Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
++
++--- a/src/sdiff.c
+++++ b/src/sdiff.c
++@@ -805,7 +805,9 @@
++ 
++       /* Yield an exit status indicating that a signal was received.  */
++       untrapsig (s);
+++#if HAVE_WORKING_FORK
++       kill (getpid (), s);
+++#endif
++ 
++       /* That didn't work, so exit with error status.  */
++       exit (EXIT_TROUBLE);
+diff --git a/recipes-extended/diffutils/diffutils_3.6.bbappend b/recipes-extended/diffutils/diffutils_3.6.bbappend
+new file mode 100644
+index 0000000..f301349
+--- /dev/null
++++ b/recipes-extended/diffutils/diffutils_3.6.bbappend
+@@ -0,0 +1,18 @@
++
++FILESEXTRAPATHS_prepend_mingw32 := "${THISDIR}/${BPN}:"
++
++SRC_URI_remove_mingw32 = "file://0001-explicitly-disable-replacing-getopt.patch"
++SRC_URI_append_mingw32 = " file://sdiff-no-kill.patch"
++
++CACHED_CONFIGUREVARS_append_mingw32 = " ac_cv_header_getopt_h=yes "
++
++# Add some definitions for POSIX signals..
++CFLAGS_append_mingw32 = " -DSIGALRM=14 -DSIGHUP=1 -DSIGQUIT=3 -DSIGPIPE=13 -DSIGTSTP=18 -DSIGSTOP=17 "
++
++do_configure_prepend_mingw32 () {
++    # Remove building of "man"
++    sed -i -e 's:^SUBDIRS = lib src tests doc man po gnulib-test:SUBDIRS = lib src tests doc po gnulib-test:g' ${S}/Makefile.am
++}
++
++
++
+-- 
+2.7.4
 
-https://wiki.yoctoproject.org/wiki/WW15_-_2018-04-09-_Full_Test_Cycle_-_2.5_M3_rc1
-
-
-Thank you.
-
-Tracy Graydon
-Yocto Project Build and Release
-tracy.graydon@intel.com
 
