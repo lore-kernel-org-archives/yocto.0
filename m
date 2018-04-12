@@ -1,59 +1,62 @@
-Return-Path: <richard.collins@guidedknowledge.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8924E00C22; Thu, 12 Apr 2018 02:44:59 -0700 (PDT)
+	id 4254AE00B1A; Thu, 12 Apr 2018 03:25:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.218.65 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.43 listed in list.dnswl.org]
-Received: from mail-pl0-f43.google.com (mail-pl0-f43.google.com
-	[209.85.160.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87BE1E00C22
-	for <yocto@yoctoproject.org>; Thu, 12 Apr 2018 02:44:57 -0700 (PDT)
-Received: by mail-pl0-f43.google.com with SMTP id w12-v6so2613113plp.0
-	for <yocto@yoctoproject.org>; Thu, 12 Apr 2018 02:44:57 -0700 (PDT)
+Received: from mail-oi0-f65.google.com (mail-oi0-f65.google.com
+	[209.85.218.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DBE0E00AAF
+	for <yocto@yoctoproject.org>; Thu, 12 Apr 2018 03:25:42 -0700 (PDT)
+Received: by mail-oi0-f65.google.com with SMTP id u141-v6so4653013oif.1
+	for <yocto@yoctoproject.org>; Thu, 12 Apr 2018 03:25:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=guidedknowledge-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=sG5oqKf5UBlvZorhNQK8vvkhh9xJ1JI+6b8FbwAHp8U=;
-	b=rWl5X5rWDPj2PnkmtipBZF9f48SMJ2iFWo9gghVaBMpOZElChMFHF3GxIjc0r6y0yu
-	OXdf4mqe1Cc68ALwrWwUKKq6FV9f3i0GHH7U3jqkjem6SshBGNHj0u3oXevGvqqEZudI
-	C/LAqyVG+c/TUHiwBtDYiYo4qxMq6bJD0VC33hgjEO88GuUzb9dhYxXLOXmOvf3KLXci
-	p80OYhV/U6satwQZpHpHyhUboyG962rbB+Wcmy3iZMpOK/3v3mNnILPMcjQ8gofV1FyV
-	WoIXLrCcIMYLk9oAoH3IJmDbpKBc83OAQWlDJHEsQ/GPmdDsVSavwAu8rKMUqbtpJX3n
-	spiA==
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=HOJGS267AtYMXTQue/XmonFjMp3oKiQ4EOe4vfJ8u3Y=;
+	b=V2HYiGXxKISiX4acaQEXooZPD2KtVB5UHWDJdjXYGDnR8FBxdBxd3++8TjH3nN1k0G
+	IpvWmNK7ZFhhpv9rd8w4q6wq2hRCdtT6Wc8RfQgjUncQl90TD8k7ujvi53kBOO5Bi2AP
+	/K+X6jesgj+1jBG/9wHfHSrL7bjgXb2vtjUv81jIlQbN0krXSKY3xodCbCiMNxpR66Ek
+	uwc8OnVOhUI1LevUmUW9feSnThgxKtXcEVIKRS3H83FqWC+Bc+oMnfJag/jM1hC9E+X8
+	NhvB9DZ1pMPFLA8otSX4XXDvSDMkMPaVyaBX+pPYQEBBARQCyxpN0xHsqpFMIze3bbi0
+	jVIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=sG5oqKf5UBlvZorhNQK8vvkhh9xJ1JI+6b8FbwAHp8U=;
-	b=SDX8d1TrV04H365AUniflJMYKhA7+zYnaTKjJBlMF9qR229PxVKSTjE7eJEi2eZXTX
-	TIR8mtXIm+rLzhXAXVtv6MVub9oD4merYKUNP+ZFL5WZg2rbN6ZeMV9q2dXk6gd9vOyG
-	pbweMsHbLmb8JFh6x/tB1tiNP5xxwFMA1PZG+YB/Dcg9WwfH69J1Ube7l1tCiCElNDEW
-	WBnabU/qOPJfyhQrVzvcMMDRUjYkXpANF42LqSi0JWA7ZGEiUSCOWwYyQ840wdzlgmpH
-	kg/96ujj/RYHrnwZOxLLW/sb2Of18FrPjDF6dR3SNY58SmPzaZgShZRHfbm/ZFITc+9R
-	Swug==
-X-Gm-Message-State: ALQs6tAIdsFjWkaxA4Ee+okK//9sZBvx462v7Cbz4j9fmW1NR2qIs6Iv
-	JJlkcyod+A+YWrTYDMYkE8QhMkpf0tAO+LUqoGBgqWf2
-X-Google-Smtp-Source: AIpwx4/VP1UN0unEGWaQNvkX7k1U1N8QkdKhfQd5CVo8TniebGHDBdKar6uzXNSkUVwz0ZqEAoSAdGbHjwF8lgw9FmM=
-X-Received: by 2002:a17:902:d681:: with SMTP id
-	v1-v6mr263161ply.120.1523526297473; 
-	Thu, 12 Apr 2018 02:44:57 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=HOJGS267AtYMXTQue/XmonFjMp3oKiQ4EOe4vfJ8u3Y=;
+	b=Ifw9KNbL0lSuqsYnqYggjTVglZHqOZlw+6bXdfzvXCAsxJ4e9GRIZRxnMUmpA91JGg
+	8Ogj/Qa8AWRB14dHPl+rfgSMoKl5CCx9o5Rrv38t6/0RPAZwXIj0VaSxg/aBggRONoQW
+	257YtDaYGTCoEcyAOVSpmbToGeZIJZAtcO7vWncMBLmAAYIpazSGHxS2Wz78n2GDJqaZ
+	yaYmXpWpMFWjlN99Xd+n+OneS3TXeTzK0dsBhEk7I1r8syZqLG5zhPFUp0Zf6jCa+XhR
+	dqjQcop1IHyMPvylbsKf0HiJS6aKDnXykvbBKIKHYNsEjydx90+iu+NcU5FKGjGV+i7n
+	xoww==
+X-Gm-Message-State: ALQs6tDLF8YItpOBMHMfC43lhgByxntMh75REehczdIhCrB+dqlLcww9
+	UBHpzbHehYZwVvKhUfqwIHCpCgAiwyE4NpS6dqgmdA==
+X-Google-Smtp-Source: AIpwx48vL9jAxqHmAbQA1bqqEMrf8CVMqBOPlXIuerzeAGrrkrAsvrtFlu2jNmfnGPWVVTBTeYFeyU7IeyDL1nFvmZA=
+X-Received: by 2002:aca:e40b:: with SMTP id
+	b11-v6mr5635958oih.70.1523528742151; 
+	Thu, 12 Apr 2018 03:25:42 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.236.164.199 with HTTP; Thu, 12 Apr 2018 02:44:57 -0700 (PDT)
-From: Richard Collins <richard.collins@guidedknowledge.com>
-Date: Thu, 12 Apr 2018 10:44:57 +0100
-Message-ID: <CAD-1PJi4SCi_QjuDdcvSy+qFAdKvK8iYi95r+Zk76uzN4GFViQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Getting the version of Yocto that is being used.
+Received: by 10.138.17.198 with HTTP; Thu, 12 Apr 2018 03:25:21 -0700 (PDT)
+In-Reply-To: <CAD-1PJi4SCi_QjuDdcvSy+qFAdKvK8iYi95r+Zk76uzN4GFViQ@mail.gmail.com>
+References: <CAD-1PJi4SCi_QjuDdcvSy+qFAdKvK8iYi95r+Zk76uzN4GFViQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 12 Apr 2018 11:25:21 +0100
+Message-ID: <CAJTo0LZ=8n9CC=F0zG_fY9QEnNCeWQhkjDXw081Z8ZojqRD-xw@mail.gmail.com>
+To: Richard Collins <richard.collins@guidedknowledge.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Getting the version of Yocto that is being used.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,29 +68,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Apr 2018 09:44:59 -0000
-Content-Type: multipart/alternative; boundary="000000000000c465570569a39b74"
-
---000000000000c465570569a39b74
+X-List-Received-Date: Thu, 12 Apr 2018 10:25:44 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-I've inherited a Yocto project that I know to be an old version. So one of
-my tasks is to update to the latest version. Before I do this I would like
-to know what version I have. The only information I can find is the bitbake
-version, BB_VERSION        = "1.32.0".
+If your project also includes meta-poky then poky.conf will contain a
+DISTRO_VERSION assignment.  However,
+https://wiki.yoctoproject.org/wiki/Releases indicates that bitbake
+1.32 was part of 2.2/morty.
 
-Many thanks,
-Richard.
+Ross
 
---000000000000c465570569a39b74
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 12 April 2018 at 10:44, Richard Collins
+<richard.collins@guidedknowledge.com> wrote:
+> I've inherited a Yocto project that I know to be an old version. So one of
+> my tasks is to update to the latest version. Before I do this I would like
+> to know what version I have. The only information I can find is the bitbake
+> version, BB_VERSION        = "1.32.0".
+>
+> Many thanks,
+> Richard.
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-<div dir=3D"ltr">I&#39;ve inherited a Yocto project that I know to be an ol=
-d version. So one of my tasks is to update to the latest version. Before I =
-do this I would like to know what version I have. The only information I ca=
-n find is the bitbake version, BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &q=
-uot;1.32.0&quot;.=C2=A0<div><br></div><div>Many thanks,</div><div>Richard.<=
-br><div><br></div></div></div>
-
---000000000000c465570569a39b74--
