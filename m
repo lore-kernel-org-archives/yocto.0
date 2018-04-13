@@ -1,68 +1,36 @@
-Return-Path: <haoyuin@gmail.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 38678E00C44; Fri, 13 Apr 2018 01:38:15 -0700 (PDT)
+	id C5AA9E00C5B; Fri, 13 Apr 2018 01:38:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED, DKIM_VALID, FREEMAIL_FROM, HTML_MESSAGE,
-	NML_ADSP_CUSTOM_MED, 
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ah_wan_la[at]yahoo.co.uk)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.42 listed in list.dnswl.org]
-	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
-	*      CUSTOM_MED
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
-	and not from a mailing list
-Received: from mail-lf0-f42.google.com (mail-lf0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C518BE00ADB
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2018 01:38:13 -0700 (PDT)
-Received: by mail-lf0-f42.google.com with SMTP id m200-v6so11469571lfm.4
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2018 01:38:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:sender:from:date:message-id:subject:to;
-	bh=Jg9vKinVkjRnazKqSiZ2bQO2YBLvOK3No03lYaVt2nw=;
-	b=gRHClHqh/V5wZR07d/en8Nb4ZDiESAO85wqVc+x0O2KRUg0fHIo/39pfC6KyikORC7
-	h29I4O1Zorioy1wZrROd6sNNAI3qRpF/5o3032iogFYP/q9j5mH4N9Vra5MxHHAhe3oV
-	rBIbxw2x3urlwPQBQH7sPFBDxfQ9fN/kUwCYH71hRIxvSd98lY3A9tuIDzNQPEqeVzg5
-	OMqyzO/wiKM0jUw8nDmaOFYqG7lAqQ+kfl4a9p4LXpadRTm0eu7GnLSzVVMLVZNFktfZ
-	iMrs3E3ghePkq/yr2J/4Chqvs6q9700LzQROt2cYrKZm3Scd2Zfq+C8052gQKGKeH9Ad
-	LT5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-	:to; bh=Jg9vKinVkjRnazKqSiZ2bQO2YBLvOK3No03lYaVt2nw=;
-	b=OCbofA0XL2kfjT6UpDapEQtbdJuffL1bEO3oS++0lnplLX5G1xbAXYhLpKkjPyEBF+
-	bZzF+sIMaWSNA2dBr4QOwFU2s8dySCAroaRUMAHrqgCZAsa/+7wW4uYfIKguuM74ZGHK
-	UH08A3tY9cmtmBIrAWsVM82wZ2yz14lr1E5O0G79gO92leMJfv7vjxX5HGbQkMSM4IST
-	HpYoXgJvyPKKssTX6mojxIzw89zUlVXt2BMhOGoIBZW1gSOQpuOoZp/9u83QmavJePH9
-	SWCTXZlZGFrL8zcHC5j+b8swC0s7XsXRn/AljjxsviA5lgspWciaY/3Y+jKemoo2YIyM
-	y/9w==
-X-Gm-Message-State: ALQs6tBCvG0JRBQbunlyBM3Gr+/2k/XYVV/NJABOmWn1crA4zTDvEMo8
-	rcb8HzERvuX7gQ/UhJGTRQgvXVkorh+Fp4m7cIZh9Q==
-X-Google-Smtp-Source: AIpwx48e4M2CfsTBbntF5cli0Zo3CcYDFDfqf2g9m8pEpLVwsbiS+vzAOacRoZBxRrkP59YKoQBWnLmtVQbjFeJXFW0=
-X-Received: by 10.46.155.1 with SMTP id u1mr2662010lji.130.1523608692269; Fri,
-	13 Apr 2018 01:38:12 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DCA3E00C44
+	for <yocto@yoctoproject.org>; Fri, 13 Apr 2018 01:38:35 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w3D8cQRj012508
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 13 Apr 2018 01:38:26 -0700
+Received: from localhost (128.224.163.220) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
+	Fri, 13 Apr 2018 01:38:25 -0700
+From: Yi Zhao <yi.zhao@windriver.com>
+To: <joe_macdonald@mentor.com>, <mark.hatle@windriver.com>, <flihp@twobit.us>, 
+	<yocto@yoctoproject.org>
+Date: Fri, 13 Apr 2018 16:38:21 +0800
+Message-ID: <1523608703-21616-1-git-send-email-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Sender: haoyuin@gmail.com
-Received: by 2002:a19:d482:0:0:0:0:0 with HTTP; Fri, 13 Apr 2018 01:37:31
-	-0700 (PDT)
-From: ah wan la <ah_wan_la@yahoo.co.uk>
-Date: Fri, 13 Apr 2018 16:37:31 +0800
-X-Google-Sender-Auth: cVPVVD8oRinxUOv5j5Bf0uEp0So
-Message-ID: <CAFvVEARSfMOTUdFTnJuM+YytL_F7gbD-B+g1a2yAbgf1bwiNHQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: How to set MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS under my custom layer
+X-Originating-IP: [128.224.163.220]
+Subject: [meta-selinux][PATCH 1/3] libselinux: refresh patches to fix QA warning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,101 +42,223 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Apr 2018 08:38:15 -0000
-Content-Type: multipart/alternative; boundary="883d24f17298e1287a0569b6ca30"
+X-List-Received-Date: Fri, 13 Apr 2018 08:38:37 -0000
+Content-Type: text/plain
 
---883d24f17298e1287a0569b6ca30
-Content-Type: text/plain; charset="UTF-8"
+Refresh patches with devtool command to fix do_patch warning.
 
-Hi all,
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ ...c-Makefile-fix-includedir-in-libselinux.pc.patch | 14 ++++++--------
+ .../libselinux-define-FD_CLOEXEC-as-necessary.patch | 14 ++++++--------
+ ...ibselinux-drop-Wno-unused-but-set-variable.patch | 21 +++++++++++++++------
+ .../libselinux-make-O_CLOEXEC-optional.patch        | 12 +++++-------
+ .../libselinux-make-SOCK_CLOEXEC-optional.patch     | 14 ++++++--------
+ 5 files changed, 38 insertions(+), 37 deletions(-)
 
-I am trying to add kernel modules to rootfs.
-I tried adding configuration  MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS_append =
-" kernel-module-module1" into <machine-name>.conf  is OK, module1 get
-installed.
-I also tried adding same configuration into build/conf/local.conf also OK,
-module1 get installed.
-But my final goal is to get this customization into my custom layer, eg.
-under meta-custom.
-I tried to create core-image-minimal.bbappend and add this
-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS_append  but module1 is not installed
-into the rootfs.
-I checked environment with bitbake -e core-image-minimal and found that
-the  MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS did append with kernel-module-module1
-but somehow it still not getting installed.
-May I know the correct way to set MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS under
-my custom layer?
-For some other dependencies I have to remain using the same machine name
-and therefore cannot create a new custom machine config (correct me on this
-if wrong).
+diff --git a/recipes-security/selinux/libselinux/0001-src-Makefile-fix-includedir-in-libselinux.pc.patch b/recipes-security/selinux/libselinux/0001-src-Makefile-fix-includedir-in-libselinux.pc.patch
+index 72b97df..c1d2b13 100644
+--- a/recipes-security/selinux/libselinux/0001-src-Makefile-fix-includedir-in-libselinux.pc.patch
++++ b/recipes-security/selinux/libselinux/0001-src-Makefile-fix-includedir-in-libselinux.pc.patch
+@@ -1,4 +1,4 @@
+-From 63d2c02a4dfa5ccd5d62a9f80b6a50cbb9946fbb Mon Sep 17 00:00:00 2001
++From c5bec43d3fae49e36997884448fc533462028b67 Mon Sep 17 00:00:00 2001
+ From: Robert Yang <liezhi.yang@windriver.com>
+ Date: Thu, 18 Feb 2016 02:39:16 +0000
+ Subject: [PATCH] src/Makefile: fix includedir in libselinux.pc
+@@ -6,23 +6,21 @@ Subject: [PATCH] src/Makefile: fix includedir in libselinux.pc
+ Upstream-Status: Pending
+ 
+ Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
++
+ ---
+  src/Makefile | 2 +-
+  1 file changed, 1 insertion(+), 1 deletion(-)
+ 
+ diff --git a/src/Makefile b/src/Makefile
+-index 1920029..06d291d 100644
++index a89c0f7..f304032 100644
+ --- a/src/Makefile
+ +++ b/src/Makefile
+-@@ -115,7 +115,7 @@ $(LIBSO): $(LOBJS)
+- 	ln -sf $@ $(TARGET) 
++@@ -148,7 +148,7 @@ $(LIBSO): $(LOBJS)
++ 	ln -sf $@ $(TARGET)
+  
+  $(LIBPC): $(LIBPC).in ../VERSION
+ -	sed -e 's/@VERSION@/$(VERSION)/; s:@prefix@:$(PREFIX):; s:@libdir@:$(LIBBASE):; s:@includedir@:$(INCLUDEDIR):' < $< > $@
+ +	sed -e 's/@VERSION@/$(VERSION)/; s:@prefix@:$(PREFIX):; s:@libdir@:$(LIBBASE):; s:@includedir@:${prefix}/include:' < $< > $@
+  
+  selinuxswig_python_exception.i: ../include/selinux/selinux.h
+- 	bash exception.sh > $@ 
+--- 
+-2.5.0
+-
++ 	bash -e exception.sh > $@ || (rm -f $@ ; false)
+diff --git a/recipes-security/selinux/libselinux/libselinux-define-FD_CLOEXEC-as-necessary.patch b/recipes-security/selinux/libselinux/libselinux-define-FD_CLOEXEC-as-necessary.patch
+index 1fa1fba..d2a362e 100644
+--- a/recipes-security/selinux/libselinux/libselinux-define-FD_CLOEXEC-as-necessary.patch
++++ b/recipes-security/selinux/libselinux/libselinux-define-FD_CLOEXEC-as-necessary.patch
+@@ -1,7 +1,7 @@
+-From 9a843a025fb0eaad537eb9dce28da539cf2cb9c2 Mon Sep 17 00:00:00 2001
++From 967beb17658f3f879a2b8640e40c0675e814a257 Mon Sep 17 00:00:00 2001
+ From: Joe MacDonald <joe.macdonald@windriver.com>
+ Date: Tue, 15 Oct 2013 10:14:41 -0400
+-Subject: [PATCH 2/3] libselinux: define FD_CLOEXEC as necessary
++Subject: [PATCH] libselinux: define FD_CLOEXEC as necessary
+ 
+ In truly old systems, even FD_CLOEXEC may not be defined.  Produce a
+ warning and duplicate the #define for FD_CLOEXEC found in
+@@ -10,15 +10,16 @@ asm-generic/fcntl.h on more modern platforms.
+ Uptream-Status: Inappropriate
+ 
+ Signed-off-by: Joe MacDonald <joe.macdonald@windriver.com>
++
+ ---
+- libselinux/src/setrans_client.c |    5 +++++
++ src/setrans_client.c | 5 +++++
+  1 file changed, 5 insertions(+)
+ 
+ diff --git a/src/setrans_client.c b/src/setrans_client.c
+-index f9065bd..e07a779 100644
++index fa188a8..a94f02c 100644
+ --- a/src/setrans_client.c
+ +++ b/src/setrans_client.c
+-@@ -38,6 +38,11 @@ static pthread_key_t destructor_key;
++@@ -39,6 +39,11 @@ static pthread_key_t destructor_key;
+  static int destructor_key_initialized = 0;
+  static __thread char destructor_initialized;
+  
+@@ -30,6 +31,3 @@ index f9065bd..e07a779 100644
+  /*
+   * setransd_open
+   *
+--- 
+-1.7.10.4
+-
+diff --git a/recipes-security/selinux/libselinux/libselinux-drop-Wno-unused-but-set-variable.patch b/recipes-security/selinux/libselinux/libselinux-drop-Wno-unused-but-set-variable.patch
+index 9deb67d..20c0c69 100644
+--- a/recipes-security/selinux/libselinux/libselinux-drop-Wno-unused-but-set-variable.patch
++++ b/recipes-security/selinux/libselinux/libselinux-drop-Wno-unused-but-set-variable.patch
+@@ -1,17 +1,26 @@
+-Subject: libselinux: drop flag: -Wno-unused-but-set-variable
++From 1312096e1d9d5c9963f18208ced54b63b7e5d9a7 Mon Sep 17 00:00:00 2001
++From: Randy MacLeod <Randy.MacLeod@windriver.com>
++Date: Tue, 30 Apr 2013 17:28:34 -0400
++Subject: [PATCH] libselinux: drop flag: -Wno-unused-but-set-variable
+ 
+ Upstream status: inappropriate (older compilers only).
+ 
+ Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
+ 
+---- libselinux-2.1.12.orig/src/Makefile
+-+++ libselinux-2.1.12/src/Makefile
+-@@ -79,7 +79,7 @@
++---
++ src/Makefile | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/src/Makefile b/src/Makefile
++index 2408fae..a89c0f7 100644
++--- a/src/Makefile
+++++ b/src/Makefile
++@@ -96,7 +96,7 @@ PCRE_LDLIBS ?= -lpcre
+  
+- override CFLAGS += -I../include -I$(INCLUDEDIR) -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 $(EMFLAGS)
++ override CFLAGS += -I../include -D_GNU_SOURCE $(DISABLE_FLAGS) $(PCRE_CFLAGS)
+  
+ -SWIG_CFLAGS += -Wno-error -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-parameter \
+ +SWIG_CFLAGS += -Wno-error -Wno-unused-variable -Wno-unused-parameter \
+  		-Wno-shadow -Wno-uninitialized -Wno-missing-prototypes -Wno-missing-declarations
+  
+- RANLIB=ranlib
++ RANLIB ?= ranlib
+diff --git a/recipes-security/selinux/libselinux/libselinux-make-O_CLOEXEC-optional.patch b/recipes-security/selinux/libselinux/libselinux-make-O_CLOEXEC-optional.patch
+index a041dd3..2d48deb 100644
+--- a/recipes-security/selinux/libselinux/libselinux-make-O_CLOEXEC-optional.patch
++++ b/recipes-security/selinux/libselinux/libselinux-make-O_CLOEXEC-optional.patch
+@@ -1,7 +1,7 @@
+-From 0a8c1c5f3d866d3a3c0f95653416f5f72587ce3a Mon Sep 17 00:00:00 2001
++From dec50b2504dedc0d13b24b7e7815cc1294249215 Mon Sep 17 00:00:00 2001
+ From: Joe MacDonald <joe.macdonald@windriver.com>
+ Date: Fri, 11 Oct 2013 09:56:25 -0400
+-Subject: [PATCH 2/2] libselinux: make O_CLOEXEC optional
++Subject: [PATCH] libselinux: make O_CLOEXEC optional
+ 
+ Various commits in the selinux tree in the current release added O_CLOEXEC
+ to open() calls in an attempt to address file descriptor leaks as
+@@ -18,6 +18,7 @@ Uptream-Status: Inappropriate [O_CLOEXEC has been in Linux since 2007 and POSIX
+ 
+ Signed-off-by: Joe MacDonald <joe.macdonald@windriver.com>
+ Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
++
+ ---
+  src/procattr.c  | 16 ++++++++++++++--
+  src/sestatus.c  |  8 +++++++-
+@@ -25,7 +26,7 @@ Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+  3 files changed, 28 insertions(+), 4 deletions(-)
+ 
+ diff --git a/src/procattr.c b/src/procattr.c
+-index 7efcd7e..3007876 100644
++index 48dd8af..8bf8432 100644
+ --- a/src/procattr.c
+ +++ b/src/procattr.c
+ @@ -79,7 +79,13 @@ static int openattr(pid_t pid, const char *attr, int flags)
+@@ -78,7 +79,7 @@ index ed29dc5..0cb15b6 100644
+  		goto error;
+  
+ diff --git a/src/stringrep.c b/src/stringrep.c
+-index 2dbec2b..de2a70b 100644
++index 2d83f96..17e9232 100644
+ --- a/src/stringrep.c
+ +++ b/src/stringrep.c
+ @@ -105,7 +105,13 @@ static struct discover_class_node * discover_class(const char *s)
+@@ -96,6 +97,3 @@ index 2dbec2b..de2a70b 100644
+  		if (fd < 0)
+  			goto err4;
+  
+--- 
+-2.7.4
+-
+diff --git a/recipes-security/selinux/libselinux/libselinux-make-SOCK_CLOEXEC-optional.patch b/recipes-security/selinux/libselinux/libselinux-make-SOCK_CLOEXEC-optional.patch
+index 14f0ce9..95735b9 100644
+--- a/recipes-security/selinux/libselinux/libselinux-make-SOCK_CLOEXEC-optional.patch
++++ b/recipes-security/selinux/libselinux/libselinux-make-SOCK_CLOEXEC-optional.patch
+@@ -1,7 +1,7 @@
+-From 193d42c8312cb8b189745696065b3aa5bbcc6968 Mon Sep 17 00:00:00 2001
++From 667f8670560d122ba9cff96e1b3ac9e9fad201eb Mon Sep 17 00:00:00 2001
+ From: Joe MacDonald <joe.macdonald@windriver.com>
+ Date: Tue, 15 Oct 2013 10:07:43 -0400
+-Subject: [PATCH 1/3] libselinux: make SOCK_CLOEXEC optional
++Subject: [PATCH] libselinux: make SOCK_CLOEXEC optional
+ 
+ libselinux/src/setrans_client.c checks for the existence of SOCK_CLOEXEC
+ before using it, however libselinux/src/avc_internal.c does not.  Since
+@@ -12,12 +12,13 @@ way.
+ Uptream-Status: Inappropriate
+ 
+ Signed-off-by: Joe MacDonald <joe.macdonald@windriver.com>
++
+ ---
+- libselinux/src/avc_internal.c |    8 +++++++-
++ src/avc_internal.c | 8 +++++++-
+  1 file changed, 7 insertions(+), 1 deletion(-)
+ 
+-diff --git a/src/avc_internal.c b/libselinux/src/avc_internal.c
+-index f735e73..eb0599a 100644
++diff --git a/src/avc_internal.c b/src/avc_internal.c
++index 49cecc9..148cc83 100644
+ --- a/src/avc_internal.c
+ +++ b/src/avc_internal.c
+ @@ -60,7 +60,13 @@ int avc_netlink_open(int blocking)
+@@ -35,6 +36,3 @@ index f735e73..eb0599a 100644
+  	if (fd < 0) {
+  		rc = fd;
+  		goto out;
+--- 
+-1.7.10.4
+-
+-- 
+2.7.4
 
-Thank you.
 
-Regards,
-Ahwan
-
---883d24f17298e1287a0569b6ca30
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
-sans-serif">Hi all,</div><div class=3D"gmail_default" style=3D"font-family:=
-verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fa=
-mily:verdana,sans-serif">I am trying to add kernel modules to rootfs.</div>=
-<div class=3D"gmail_default" style=3D"font-family:verdana,sans-serif">I tri=
-ed adding configuration=C2=A0 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS_append =
-=3D &quot; kernel-module-module1&quot; into &lt;machine-name&gt;.conf=C2=A0=
- is OK, module1 get installed.<br></div><div class=3D"gmail_default" style=
-=3D"font-family:verdana,sans-serif">I also tried adding same configuration =
-into build/conf/local.conf also OK, module1 get installed.</div><div class=
-=3D"gmail_default" style=3D"font-family:verdana,sans-serif">But my final go=
-al is to get this customization into my custom layer, eg. under meta-custom=
-.<br></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-s=
-erif">I tried to create core-image-minimal.bbappend and add this=C2=A0
-
-<span style=3D"color:rgb(34,34,34);font-family:verdana,sans-serif;font-size=
-:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:no=
-rmal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px=
-;text-transform:none;white-space:normal;word-spacing:0px;background-color:r=
-gb(255,255,255);text-decoration-style:initial;text-decoration-color:initial=
-;float:none;display:inline">MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS_append<span=
->=C2=A0 but module1 is not installed into the rootfs.</span></span></div><d=
-iv class=3D"gmail_default" style=3D"font-family:verdana,sans-serif">I check=
-ed environment with=C2=A0bitbake -e core-image-minimal and found that the=
-=C2=A0
-
-<span style=3D"color:rgb(34,34,34);font-family:verdana,sans-serif;font-size=
-:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:no=
-rmal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px=
-;text-transform:none;white-space:normal;word-spacing:0px;background-color:r=
-gb(255,255,255);text-decoration-style:initial;text-decoration-color:initial=
-;float:none;display:inline">MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS did append =
-with=20
-
-<span style=3D"color:rgb(34,34,34);font-family:verdana,sans-serif;font-size=
-:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:no=
-rmal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px=
-;text-transform:none;white-space:normal;word-spacing:0px;background-color:r=
-gb(255,255,255);text-decoration-style:initial;text-decoration-color:initial=
-;float:none;display:inline">kernel-module-module1 but somehow it still not =
-getting installed.</span></span></div><div class=3D"gmail_default" style=3D=
-"font-family:verdana,sans-serif">May I know the correct way to set=20
-
-<span style=3D"color:rgb(34,34,34);font-family:verdana,sans-serif;font-size=
-:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:no=
-rmal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px=
-;text-transform:none;white-space:normal;word-spacing:0px;background-color:r=
-gb(255,255,255);text-decoration-style:initial;text-decoration-color:initial=
-;float:none;display:inline">MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS under my cu=
-stom layer</span>?</div><div class=3D"gmail_default" style=3D"font-family:v=
-erdana,sans-serif">For some other dependencies I have to remain using the s=
-ame machine name and therefore cannot create a new custom machine config (c=
-orrect me on this if wrong).</div><div class=3D"gmail_default" style=3D"fon=
-t-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=
-=3D"font-family:verdana,sans-serif">Thank you.</div><div class=3D"gmail_def=
-ault" style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"gmai=
-l_default" style=3D"font-family:verdana,sans-serif">Regards,</div><div clas=
-s=3D"gmail_default" style=3D"font-family:verdana,sans-serif">Ahwan</div></d=
-iv>
-
---883d24f17298e1287a0569b6ca30--
