@@ -1,64 +1,49 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <s.mueller-klieser@phytec.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EDEF7E00938; Fri, 13 Apr 2018 05:51:07 -0700 (PDT)
+	id EE8DBE00C54; Fri, 13 Apr 2018 07:28:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.195 listed in list.dnswl.org]
+	*      [217.6.246.34 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot0-f195.google.com (mail-ot0-f195.google.com
-	[74.125.82.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E184EE0084E
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2018 05:51:06 -0700 (PDT)
-Received: by mail-ot0-f195.google.com with SMTP id v64-v6so9705418otb.13
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2018 05:51:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=TIaE47AJKn/Px/QBhk+Ey4c9f3oYk8EzwPHnbKlJOTQ=;
-	b=CL7vMr38ACOQRTF5GCDw0DqtmWwkD7hy9GYF1SNRb7qG9HQE1EAWrjhzXmg/85XoeJ
-	SHAjJRv9E2J0XTppm9f9kiQOeQhM9raIzMdjXYdLDnZAW1E7F9pAZP7sfvq/Cn8Mj8lp
-	B1cIZ3N0uUDF3gdvoct0ogy16+byuAJ2bKuDOLGC07xdySw4PQKvjxatYKx7sXdQDSdK
-	5h0a4UfF8ZuD7fvHW6Vu8tUSAmhjvOJQaLetBVYZYCVy5tV2r4bHG81cbDwfFYyJ/0KR
-	4wNHtUYzt1TBQI2SySIPlUrAQSD2YxJ2dIwOar1gt5LH0y9yplEbzNP3tanZ+1UVaAX+
-	r1yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=TIaE47AJKn/Px/QBhk+Ey4c9f3oYk8EzwPHnbKlJOTQ=;
-	b=fc7D/SoJgE5CB330jdTYASzjOOjjZPCpvJxmDAMercHCDVVFJ5MUvm8S4B929IeWD6
-	HbJ0nHgFhbQV89FUA6xHCuzNXdI/GnfeX1AXtLUcnzn7WqcUKPy2LUlb/w8HCkgxtpYd
-	7gzh0lvd3nmusb+jLDoe0YzCp2LmkD6gX+V927z91GcQf/42Fo67FO+NfXmpFGSrIYkE
-	e6ZEnoCVgDI+PlwoA2fXperzzoUBVwstRrCnK/XITZC73iJawxnqzKb/OYWqiWTUqrYt
-	yG2tkocFS5DsEuudAGRh2AemxcGCqJNOvtdRm6TGx8gBSinZ4SXB167fT6eyB+VHpERL
-	NeJQ==
-X-Gm-Message-State: ALQs6tC7wa1nb6KbMP0wmYaK4Fo3OuHwJxptunQrJ0zuEcFqAlirgXG3
-	FeXq9tK67oj9tleQPqLy6MaYAb4AbMUS67qgvU2KBg==
-X-Google-Smtp-Source: AIpwx4+Gtldq5OYV7Ntd/5becEF9kRaraZVpN8C4i0jAKGsXOIqqlw4jj1N2nU6sppDuixQdT+ewjwE9QngxNoq8Do4=
-X-Received: by 2002:a9d:2ce2:: with SMTP id
-	e31-v6mr3311817otd.135.1523623866058; 
-	Fri, 13 Apr 2018 05:51:06 -0700 (PDT)
+X-Greylist: delayed 397 seconds by postgrey-1.32 at yocto-www;
+	Fri, 13 Apr 2018 07:28:34 PDT
+Received: from root.phytec.de (mail.rapiddevelopmentkit.de [217.6.246.34])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63912E009BC
+	for <yocto@yoctoproject.org>; Fri, 13 Apr 2018 07:28:34 -0700 (PDT)
+Received: from idefix.phytec.de (idefix.phytec.de [172.16.0.10])
+	by root.phytec.de (Postfix) with ESMTP id 05FB0A0027D;
+	Fri, 13 Apr 2018 16:22:14 +0200 (CEST)
+Received: from [172.16.26.67] ([172.16.26.67])
+	by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+	with ESMTP id 2018041316215532-222746 ;
+	Fri, 13 Apr 2018 16:21:55 +0200 
+To: Richard Collins <richard.collins@guidedknowledge.com>,
+	yocto@yoctoproject.org
+References: <CAD-1PJi4SCi_QjuDdcvSy+qFAdKvK8iYi95r+Zk76uzN4GFViQ@mail.gmail.com>
+	<37b0eb72-940b-71bb-a3e5-50857e490a2f@linux.intel.com>
+	<CAD-1PJj+=U6K=HLfo5YYnBmr0RotyGPct0jRULO6v6qCgrMUag@mail.gmail.com>
+	<20180412184546.75r7dmfuy7epgnli@jholzmayr.localdomain>
+	<CAD-1PJgoZWihtRyUyz+oJLEDGnK2TmQEU=ygvbPdfQfwoEw2-g@mail.gmail.com>
+From: =?UTF-8?Q?Stefan_M=c3=bcller-Klieser?= <s.mueller-klieser@phytec.de>
+Organization: PHYTEC Messtechnik GmbH
+Message-ID: <cb234096-9517-d76a-36f3-da6a8e0a26f1@phytec.de>
+Date: Fri, 13 Apr 2018 16:21:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.7.0
 MIME-Version: 1.0
-Received: by 10.138.17.198 with HTTP; Fri, 13 Apr 2018 05:50:45 -0700 (PDT)
-In-Reply-To: <1523577311-28620-1-git-send-email-juro.bystricky@intel.com>
-References: <1523577311-28620-1-git-send-email-juro.bystricky@intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 13 Apr 2018 13:50:45 +0100
-Message-ID: <CAJTo0LaCBSJ1ch7_DuT5xCp8Z79tM4DxQqzeNy7JP9HOoAuF8Q@mail.gmail.com>
-To: Juro Bystricky <juro.bystricky@intel.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
-	Juro Bystricky <jurobystricky@hotmail.com>,
-	Alistair Francis <alistair.francis@xilinx.com>
-Subject: Re: [meta-mingw][PATCH] qemu_2.11.%.bbappend: fix broken qemu build for mingw
+In-Reply-To: <CAD-1PJgoZWihtRyUyz+oJLEDGnK2TmQEU=ygvbPdfQfwoEw2-g@mail.gmail.com>
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August
+	17, 2016) at 13.04.2018 16:21:55,
+	Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17,
+	2016) at 13.04.2018 16:21:55
+X-TNEFEvaluated: 1
+Subject: Re: Getting the version of Yocto that is being used.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,45 +55,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Apr 2018 12:51:08 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 13 Apr 2018 14:28:36 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Is it feasible to fix the original patch?
+Hello Richard,
 
-Ross
+some of us are also around on the list.
 
-On 13 April 2018 at 00:55, Juro Bystricky <juro.bystricky@intel.com> wrote:
-> The commit "qemu: Bump to version 2.11.0" in oe-core broke the
-> build of qemu for mingw, due to using "socketpair", which is
-> not supported by mingw. "socketpair" is used in a local patch,
-> not in the qemu upstream code. The original local patch had
-> conditional code to exclude "socketpair" for _WIN32, but the
-> modified patch for qemu 2.11.0 removed this.
->
-> The fix is to simply remove the offending patch.
->
-> Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
-> ---
->  recipes-devtools/qemu/qemu_2.11.%.bbappend | 4 ++++
->  1 file changed, 4 insertions(+)
->  create mode 100644 recipes-devtools/qemu/qemu_2.11.%.bbappend
->
-> diff --git a/recipes-devtools/qemu/qemu_2.11.%.bbappend b/recipes-devtools/qemu/qemu_2.11.%.bbappend
-> new file mode 100644
-> index 0000000..764b500
-> --- /dev/null
-> +++ b/recipes-devtools/qemu/qemu_2.11.%.bbappend
-> @@ -0,0 +1,4 @@
-> +
-> +
-> +SRC_URI_remove_mingw32 = "file://chardev-connect-socket-to-a-spawned-command.patch"
-> +
-> --
-> 2.7.4
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+You should find all documentation on the product page. Specifically, the
+git tag of the release is "2.2.1-phy3" which indicates that the release
+bundles poky morty 2.2.1. In future we will also have LAYERSERIES=5FCOMPAT
+set.
+
+If the documentation leaves some open questions, you can also write us
+directly.
+
+Regards, Stefan
+
+On 13.04.2018 09:59, Richard Collins wrote:
+> Thanks for the help. :)
+>=20
+> Yes they are Phytec boards. I have inherited the project from a 3rd party
+> and so in the mids of chasing up the support contacts and our account
+> details for their site. I'm sure you've all played the "Q) What are the
+> support / login details? A) I don't know, ask X, ask Y, ask Z.,
+> ask............" development game. ;)
+>=20
+> On 12 April 2018 at 19:45, Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+> wrote:
+>=20
+>> On Thu, Apr 12, 2018 at 01:11:17PM +0100, Richard Collins wrote:
+>>> I get the following for DISTRO.
+>>>
+>>> DISTRO            =3D "yogurt"
+>>> DISTRO=5FVERSION    =3D "BSP-Yocto-RK3288-PD17.1.1"
+>>>
+>>
+>> For further reference by anyone who is reading this in the archive: the
+>> supplier is Phytec, and the distro layer is here:
+>> https://git.phytec.de/meta-yogurt/
+>>
+>> Greetz
+>> --
+>> =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+>> Josef Holzmayr
+>> Software Developer Embedded Systems
+>>
+>> Tel: +49 8444 9204-48
+>> Fax: +49 8444 9204-50
+>>
+>> R-S-I Elektrotechnik GmbH & Co. KG
+>> Woelkestrasse 11
+>> D-85301 Schweitenkirchen
+>> www.rsi-elektrotechnik.de
+>> =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+>> Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA 1703=
+93
+>> Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+>> Ust-IdNr: DE 128592548
+>>
+>> =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
+>> Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+>> Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+>> USt-IdNr.: DE 128592548
+>>
+>>
+>=20
+>=20
+>=20
 
