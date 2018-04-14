@@ -1,6 +1,6 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 875EDE00948; Fri, 13 Apr 2018 16:14:04 -0700 (PDT)
+	id CDA20E00857; Fri, 13 Apr 2018 17:52:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,9 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.193 listed in list.dnswl.org]
+	*      [209.85.192.195 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,52 +19,56 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
-	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E82B7E00857
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2018 16:14:03 -0700 (PDT)
-Received: by mail-pf0-f193.google.com with SMTP id o16so7071879pfk.9
-	for <yocto@yoctoproject.org>; Fri, 13 Apr 2018 16:14:03 -0700 (PDT)
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A07EE00529
+	for <yocto@yoctoproject.org>; Fri, 13 Apr 2018 17:52:38 -0700 (PDT)
+Received: by mail-pf0-f195.google.com with SMTP id y66so7229296pfi.7
+	for <yocto@yoctoproject.org>; Fri, 13 Apr 2018 17:52:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=yKgAjQVZZ1b04hh0lQ40MjaRxLSLz3AIoVQZg5ZdZec=;
-	b=I6Eiw8mn4mjLC2P5/XvlhnjTh/OfRJ+XOnvFLjJkWBYvv2BFpn/LltLw54B87lB92m
-	GFX4DftMAGHSGOUTIsKLe4xGsA2rn2+y9rKvdm5lSuxf2BlToMuopbiVluFoKFsgYMd7
-	HFUe12i6HL/GBpVe6BFDaYsy1C/yucltOQBI27Gg+qXz5D60TMy/tDs71vXLo8xkHATW
-	jZupXc6dq4qiY/mk8FsKLm+ESdNZq9lg00XSlfixzP2o/ecLd+lYhAd16MdCVh/GyT3W
-	R5BbEnOspggGC31T2vrZnWRmwfWHqGiiDG1ow1aG7OnBD3kJVyfFs40jl9ci+ogzZDUZ
-	P7yw==
+	h=subject:to:references:from:organization:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=6L+ykjVr5sSocnm8FORju3QbjIsI3HqLcMRWBEGihYw=;
+	b=pTOTj3xcScRLfWwrh+8r6YJneuD72VVy+rN3+cse2LF0MynALb0SBy0uYCmyzMv+Bk
+	MZE+ehy+gRi1Gi0bgdWAF5uKLAAGd9q4AMLoMlHKH+tIz7EGt85XSQxftX2dQLS2cyd0
+	8nLeH8At1eJXORSldzqUdJjsVKO8lhw6y2kEpwSTBEzx9tm461cn0B7xtJlyQdWXUS+j
+	8tuC3pIeWQn+tup8CwHCcFgn89Z72eYxqutyxRnsbGx+sJCUnl/oTSxdtPOnoFMMgPjn
+	RAE5I6rtHFJSxwwtDLvDshAW5dB/IiorRO8zTCMqRYjbve93GnNTQI45CN/7AY15Mcgm
+	trvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=yKgAjQVZZ1b04hh0lQ40MjaRxLSLz3AIoVQZg5ZdZec=;
-	b=CS2VaxO+aUf4B/ti9jD0W2XvijIe7HmlNiGIWvn7e/HW8NKRVJ9J3T/zgjKNukmIYW
-	NNBZ3ML9VY7pLmvAf/CzJohSwAaaofRJ4GmMD0YWnUAjBdKmHg9FT7RXKd05TliYhv21
-	3JLDa/NuqYm9LubuzZKnG74T49dKtTIGCiW2P0m5F1TaaXZagQsKsDTZi9Fz+y8r8VHe
-	E28TmRoLnVJaO/bMjbEL+RR9b8LzHZEdfo9pQ2PT+A/95QvF9ps/uoH77u0uD02F5B/0
-	zFusE8s6hoZN55gocSqSCBZJEvE0twl1nG8fEEh3Z2byNxdaIIdW08jsme14qkUpncGh
-	SifA==
-X-Gm-Message-State: ALQs6tCG/zCoSYHQe2hfQQVR7/Rs2PnPGsq3SUA4s5kIkunVnR9MaFPx
-	bChLGVfO6SgYsVrHsdPeDkA=
-X-Google-Smtp-Source: AIpwx4/vwLbWJ4BK9I1z4PVe0iW3WIMh3WFhgcvsl91YXh+f0fKKCEmCFizuf5FBAfArmU4U5dNdGg==
-X-Received: by 10.101.72.203 with SMTP id o11mr5655792pgs.130.1523661243756;
-	Fri, 13 Apr 2018 16:14:03 -0700 (PDT)
-Received: from akuster-ThinkPad-T460s
-	([2601:202:4000:1184:dd04:5ab2:7006:f760])
+	h=x-gm-message-state:subject:to:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-language:content-transfer-encoding;
+	bh=6L+ykjVr5sSocnm8FORju3QbjIsI3HqLcMRWBEGihYw=;
+	b=rcjhw73kObwDuUUlR7d/p9rOwmL56G0ty69Mg8HKXuxYq46VGISUSJreTI+KCh4hDo
+	2SeBjyItcdo0I4vpetlgHkAwMmJpk4qGGVcA5silkoVjDpTXDRi8dUMfEC03c3AIpukc
+	mBA3LLel9qKbzBRG0/YaHXS/Qf1DQSI2GKlosCpabGz5d//g/JQ+qC3JZzTPHF7y7pBy
+	1Fu6TWI0oGKFkeXCSODEMF6IYfC9FQ/ZnzXa7cBOr/MFx5S7YcWEG2jbJ+k2JqEo7aPw
+	vcX8RE6gObofnVRZ/HYGvosl4j+3JtKWZlw7gHqDfZ2Ox/PX8yaMHiWih2Fes7CE3nPY
+	SIjg==
+X-Gm-Message-State: ALQs6tDlwQw49b8ogY/vKqGl5gUSAkduyhZ8nk4V5Jb/ZVR7jrYMXFFB
+	xtxD1t4P8SiE7CPgSVxLH6bRJjy7
+X-Google-Smtp-Source: AIpwx4/uCA4/36zl3vwqMPlvadzZ8UaG6qpwcgNMlDzf3ND72cvRXdjjZYELsplAUngNUORyzRGOKg==
+X-Received: by 10.99.95.14 with SMTP id t14mr4817742pgb.94.1523667158392;
+	Fri, 13 Apr 2018 17:52:38 -0700 (PDT)
+Received: from hermes.local ([2601:646:8880:466c:4caf:c486:61ac:d2f7])
 	by smtp.gmail.com with ESMTPSA id
-	m10sm14702783pgd.32.2018.04.13.16.14.01
+	r20sm17012247pff.165.2018.04.13.17.52.37
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 13 Apr 2018 16:14:03 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-X-Google-Original-From: "Armin Kuster" <akuster@akuster-ThinkPad-T460s>
-Received: by akuster-ThinkPad-T460s (sSMTP sendmail emulation);
-	Fri, 13 Apr 2018 16:14:01 -0700
-To: akuster808@gmail.com,
-	yocto@yoctoproject.org
-Date: Fri, 13 Apr 2018 16:13:59 -0700
-Message-Id: <1523661239-18682-1-git-send-email-akuster@mvista.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-selinux][PATCH] layer: add LAYERSERIES_COMPAT for sumo
+	Fri, 13 Apr 2018 17:52:37 -0700 (PDT)
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <231b0a5a6c0744ee9799b8bedf2c1ab7@sakuraus.com>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <8ffca19b-aaa1-de11-9e8a-c9cbcde7de6a@gmail.com>
+Date: Fri, 13 Apr 2018 17:52:36 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
+	Gecko/20100101 Thunderbird/60.0
+MIME-Version: 1.0
+In-Reply-To: <231b0a5a6c0744ee9799b8bedf2c1ab7@sakuraus.com>
+Subject: Re: How to patch a driver in Linux source tree
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,27 +80,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Apr 2018 23:14:04 -0000
+X-List-Received-Date: Sat, 14 Apr 2018 00:52:39 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Armin Kuster <akuster@mvista.com>
----
- conf/layer.conf | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index b13633a..0f9ea41 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -18,6 +18,8 @@ BBFILE_PRIORITY_selinux = "5"
- # cause compatibility issues with other layers
- LAYERVERSION_selinux = "1"
- 
-+LAYERSERIES_COMPAT_selinux = "sumo"
-+
- LAYERDEPENDS_selinux = " \
-     core \
-     meta-python \
--- 
-2.7.4
 
+On 4/13/18 11:41 AM, Greg Wilson-Lindberg wrote:
+> I'm working on a raspberry pi3 Yocto build from Qt's boot2qt project, 
+> it's running Yocto version 2.2.3, and Linux kernel 4.4.50. I need to 
+> back port some changes to a file in drivers/net/can/spi. I confused 
+> about where and how I set up the patch file.
+> 
+> I have a linux-raspberrypi_4.4.bbappend file. Do I put the patch file in 
+> that, and If so, how do I indicate the path to the file?
+
+yes.
+
+SRC_URI += "file://yourpatch.patch"
+
+also add
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+
+then create a directory called linux-raspberrypi parallel to where the 
+bbappend is and put the yourpatch.patch inside that directory.
+
+
+> 
+> 
+> Thanks for the help and enlightenment,
+> 
+> Greg Wilson-Lindberg
+> 
+> 
 
