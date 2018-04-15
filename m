@@ -1,71 +1,64 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80421E00B28; Sat, 14 Apr 2018 19:08:30 -0700 (PDT)
+	id 94995E00BF8; Sun, 15 Apr 2018 14:04:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.160.65 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	*      [216.168.135.166 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl0-f65.google.com (mail-pl0-f65.google.com
-	[209.85.160.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A05BE00571
-	for <yocto@yoctoproject.org>; Sat, 14 Apr 2018 19:08:30 -0700 (PDT)
-Received: by mail-pl0-f65.google.com with SMTP id x4-v6so8119692pln.7
-	for <yocto@yoctoproject.org>; Sat, 14 Apr 2018 19:08:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=+LaTDyogB7xssrT2Ir67aXPdGCgej440xyCCHkJwWp4=;
-	b=Zx1a9qunPwu0/+IRPSxnckoUa9bC/8Cvq0VS6WBn16x0MJVibHYD9bzhCFo/ufOKZL
-	6pUqrngVxDHZ1KSK4LYkoCbCC2oJ4BhzPGKKNXh52fo0tsteVovlx3HHm7XplP1c+ioI
-	f5m6LzSHjXNtaQqB7Ir+Jkecqa1N8KnW96lkA0qYNdjeguEViGQfnkUDLW9U1lBX+JEj
-	PvB5J0b65Cij1Af8MNUcmp8tsxEj2PSAaO/4HMxnLflHIn84t8K3ywkDGDpH3d32cQ2F
-	gLJn78FElZ2xM/RtVka9YbDpfStkkKzCxuGxxKKyceMhHprC0sqnmYdMs83BYBqS6A9I
-	O65Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=+LaTDyogB7xssrT2Ir67aXPdGCgej440xyCCHkJwWp4=;
-	b=kyphYGJiosrmyBiUjwHnr3UVYIau6KPW1vRyPbRO6BZ31VpfrF47vvUTruJkBDQHAt
-	g6YVb/VfHiXmM2KhbtIzzbmGlheJLR+pmc7TW67TOcEln79ao60Rg7UnX2fR+rwn5UBz
-	Co9kfyz88L4N0eiilj7hfZyS8PHBoJueJ2kyErm9bVjmnAAXCCZ236obQls29Rr29yOd
-	5LXKzvd5e5Smyk2MDibbnqjqvB4lfxpHhmaoLE+oqXC904OoycrJyIUNQObxWdhHtUDh
-	7+AgezxOyiUY8psh7tEVEntYetoBsklKrzzcd3GFLwLBZk342mVZ+312PlCiG50bjw87
-	a2jA==
-X-Gm-Message-State: ALQs6tCQGfUOzwGpaqlMP9bAZ6sUCw12GRVigkYeSw6P4t8tipvAIT1A
-	UA+j4c+99IBSg90+sxHSqPEgqg==
-X-Google-Smtp-Source: AIpwx48zuAJCBNrUCFjahQNewBB0/hIADSv6zycGRdXEPnubr+/l+uxaPJV1AowAhV7zrrB1PlBAkQ==
-X-Received: by 2002:a17:902:7084:: with SMTP id
-	z4-v6mr7432273plk.364.1523758109749; 
-	Sat, 14 Apr 2018 19:08:29 -0700 (PDT)
-Received: from akuster-ThinkPad-T460s
-	([2601:202:4000:1184:19e4:d7e5:ee20:78ac])
-	by smtp.gmail.com with ESMTPSA id
-	r11sm27062398pfg.0.2018.04.14.19.08.26
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 14 Apr 2018 19:08:28 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-X-Google-Original-From: "Armin Kuster" <akuster@akuster-ThinkPad-T460s>
-Received: by akuster-ThinkPad-T460s (sSMTP sendmail emulation);
-	Sat, 14 Apr 2018 19:08:25 -0700
-To: akuster808@gmail.com,
-	yocto@yoctoproject.org
-Date: Sat, 14 Apr 2018 19:08:24 -0700
-Message-Id: <1523758104-25257-1-git-send-email-akuster@mvista.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-selinux][PATCH] libselinux: python-importlib is now part of python*-core
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A1BEE00843
+	for <yocto@yoctoproject.org>; Sun, 15 Apr 2018 14:04:27 -0700 (PDT)
+Received: (qmail 17652 invoked by uid 1003); 15 Apr 2018 21:04:27 -0000
+Received: from unknown (HELO ?192.168.11.100?)
+	(philip@opensdr.com@73.152.143.112)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	15 Apr 2018 21:04:27 -0000
+To: "Burton, Ross" <ross.burton@intel.com>,
+	Richard Collins <richard.collins@guidedknowledge.com>
+References: <CAD-1PJi4SCi_QjuDdcvSy+qFAdKvK8iYi95r+Zk76uzN4GFViQ@mail.gmail.com>
+	<37b0eb72-940b-71bb-a3e5-50857e490a2f@linux.intel.com>
+	<CAD-1PJj+=U6K=HLfo5YYnBmr0RotyGPct0jRULO6v6qCgrMUag@mail.gmail.com>
+	<CAJTo0LZhxZNxHwOLzkWBXixKqU6i=pUQB+ZncMsCaXEwuCEJog@mail.gmail.com>
+From: Philip Balister <philip@balister.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
+	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
+	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
+	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+	6eUfr0u7CwnEyqiQ
+Message-ID: <ffb3d1d9-cf58-33ba-3e4d-bceca5ab74aa@balister.org>
+Date: Sun, 15 Apr 2018 17:04:25 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.2
+MIME-Version: 1.0
+In-Reply-To: <CAJTo0LZhxZNxHwOLzkWBXixKqU6i=pUQB+ZncMsCaXEwuCEJog@mail.gmail.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Getting the version of Yocto that is being used.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,29 +70,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 15 Apr 2018 02:08:30 -0000
+X-List-Received-Date: Sun, 15 Apr 2018 21:04:29 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 
-Missing or unbuildable dependency chain was: ['meta-world-pkgdata', 'restorecond', 'libselinux', 'python-importlib']
+I like:
 
-Signed-off-by: Armin Kuster <akuster@mvista.com>
----
- recipes-security/selinux/libselinux.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+https://git.yoctoproject.org/cgit.cgi/poky/plain/meta/classes/image-buildinfo.bbclass
 
-diff --git a/recipes-security/selinux/libselinux.inc b/recipes-security/selinux/libselinux.inc
-index bd5ce8d..51d0875 100644
---- a/recipes-security/selinux/libselinux.inc
-+++ b/recipes-security/selinux/libselinux.inc
-@@ -8,7 +8,7 @@ LICENSE = "PD"
- inherit lib_package pythonnative
- 
- DEPENDS += "libsepol python libpcre swig-native"
--RDEPENDS_${PN}-python += "python-importlib"
-+RDEPENDS_${PN}-python += "python-core"
- 
- PACKAGES += "${PN}-python"
- FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
--- 
-2.7.4
+Philip
 
+On 04/12/2018 08:47 AM, Burton, Ross wrote:
+> I think the message here is that we need to embed the oe-core version
+> in the metadata somewhere...
+> 
+> On 12 April 2018 at 13:11, Richard Collins
+> <richard.collins@guidedknowledge.com> wrote:
+>> I get the following for DISTRO.
+>>
+>> DISTRO            = "yogurt"
+>> DISTRO_VERSION    = "BSP-Yocto-RK3288-PD17.1.1"
+>>
+>> Can't find any reference to yogurt so I assume this is something the
+>> supplier of our SOM's has done. Looking on their Wiki it seems to be based
+>> on 2.1.2 (Krogoth)
+>>
+>>
+>> Thanks for the help. :)
+>>
+>> On 12 April 2018 at 11:21, Alexander Kanavin
+>> <alexander.kanavin@linux.intel.com> wrote:
+>>>
+>>> On 04/12/2018 12:44 PM, Richard Collins wrote:
+>>>>
+>>>> I've inherited a Yocto project that I know to be an old version. So one
+>>>> of my tasks is to update to the latest version. Before I do this I would
+>>>> like to know what version I have. The only information I can find is the
+>>>> bitbake version, BB_VERSION        = "1.32.0".
+>>>
+>>>
+>>> When you run bitbake, it should also print the values of DISTRO and
+>>> DISTRO_VERSION. Those should give a clue where you are at.
+>>>
+>>> Alex
+>>
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
 
