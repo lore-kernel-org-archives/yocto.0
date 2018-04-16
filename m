@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3ADC7E00948; Mon, 16 Apr 2018 08:03:44 -0700 (PDT)
+	id 61268E00C76; Mon, 16 Apr 2018 08:03:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.194 listed in list.dnswl.org]
+	*      [209.85.192.174 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -19,55 +19,55 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
-	[209.85.192.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E30D6E00903
-	for <yocto@yoctoproject.org>; Mon, 16 Apr 2018 08:03:42 -0700 (PDT)
-Received: by mail-pf0-f194.google.com with SMTP id y69so10661998pfb.5
-	for <yocto@yoctoproject.org>; Mon, 16 Apr 2018 08:03:42 -0700 (PDT)
+Received: from mail-pf0-f174.google.com (mail-pf0-f174.google.com
+	[209.85.192.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7386E00948
+	for <yocto@yoctoproject.org>; Mon, 16 Apr 2018 08:03:45 -0700 (PDT)
+Received: by mail-pf0-f174.google.com with SMTP id j11so4115889pff.10
+	for <yocto@yoctoproject.org>; Mon, 16 Apr 2018 08:03:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=3J6mj2vQ+SktZlkrdPhx7HyaM6Kluo3D5KG5zo1bJMo=;
-	b=Zilnp/F4G4oNgujyC1C4Vrjt9R4caiJ5oEtnvAfKhnaacBVCczsqjcBd7ytfcEXXKO
-	WLHSZvsTdN3RXUFcnesMiZ4oxdUoJmUK0KTRKOpeznU8KKPoJx38B3MGR112CX9pAmEd
-	mlt9m4uRI39PsiGPkxwpEHgjKdfH8yP//cqprwBXxrzIPsxwiSyk5jk60w6z3Sjl2Kv6
-	hlU6atoyIZgxA/8N0TcINRxAImro7qgLiXUtuyKPQqffFq3a6cEAY+tg/JrgKkU4JEfx
-	UCYlXS8TT4ZfzjbdFP2WL2WVEC3+OMas+7qOvc4dy1dneuWMtPjjhh4lNM/oeUy50iNO
-	DwCw==
+	bh=4d6UxM3WiNdaRMYK1JhwLn08qQesZF54X1Oq9jPql3I=;
+	b=l/dO5Pg3fdLZsn1106dFMErHrxpBnZgZcKoe/MVVxnsw+owTKSW1DWF93JOhjZKHrc
+	LLXGMPXyvF0uR8/LJC4AHdENy9NQ1MZQyxrKEshjtT8mGDn3z9rMXR0QRlAGh+jbXc7c
+	IaNILLVDGhq/8nPfUd3SmwR1WdpmIxDIJ//bDetrrU0hdcUMVs/IK3DQKCm2HQ+582cj
+	SOUgamoHlyfMhoWaiFkc9DUu6lYEwISBMtwO8pP2ewZ9zudkKp41o5V9fuI96MwLYmCy
+	FOSDUB/5jNuCvStgtfN4OzE/JZsgNXPBTEJia/gKSz/3poYGEmWJuGr8SHOccdtVNXoP
+	OgIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=3J6mj2vQ+SktZlkrdPhx7HyaM6Kluo3D5KG5zo1bJMo=;
-	b=kc7/t+dYWNjHWL2h7HPrIF7xgMsG6dtpxuvxNWAnMOsG29PGSWePo/KUnqU8QXqCC5
-	chkTISNOX2vtVuAB4itvD+5eQLYcKgdeP+hoJOQPfddG68F7UWcbOnrRiVmuJXnDU+g2
-	wi8hRwuvjTW1oMOXP36fk58WugT9f4iBy5XOyvsmuF3KH3+Ppf2wt8kHBQV5vA42zHgh
-	cszJUDjRoZT9Ii66Zs/qQTl6pfp+63mSHaF1KVFIeAZCHLhCkELTip8/x2S4wG4dtXpk
-	iVk3BR8k0QLsn8nV9XF9rEFvgHltmrJtCtdWeg9byQlvYun58OcP7WPhLa4L0eMwaf95
-	38Rg==
-X-Gm-Message-State: ALQs6tC8Ue8sgr7dr9fjwXx0GmZUw6H6R0m9Pkhwdnw0tboYR56jIVdz
-	fCKGnR395OJfw354sQMATsYh9A==
-X-Google-Smtp-Source: AIpwx487HFZfA5+JkgoIRq8aINtPs2dsKh6N+2eeB5Xo5udoA67otoE1MIaO/huQCNTMsJEpgXrwCA==
-X-Received: by 10.99.165.3 with SMTP id n3mr9759423pgf.19.1523891022094;
-	Mon, 16 Apr 2018 08:03:42 -0700 (PDT)
+	bh=4d6UxM3WiNdaRMYK1JhwLn08qQesZF54X1Oq9jPql3I=;
+	b=XjoX/bvOOve6t/t3qTh0qSPPO+Gq1q/+kMBSuFhCfgEs6l5oZktg19ZhO9aZJagOCz
+	ys3Y/OTrTY3HD77p77ZNjd3BsrELwnfl7GgcsYRmgRkhjZWZPLnrSil92hmnOebtf/sg
+	uQb9v4Bc/0u5ASt64QN6a4xR/kgl5FstaQU+7B7YOIGLhLon4D+Moudm1MGdu46RcULk
+	s4tqOl5ptrKP3vORjDlG0E2ZW/sbGMaGFLgX9heqRhfIMT3rD6B+3Ipdx9pUK93Oyg39
+	BAnY9/SH8Zb+IUusP+P/oti20dzziO2slhtkVC7fM0idRju93NaWX06vwTbxQ7zkaIGh
+	IuPg==
+X-Gm-Message-State: ALQs6tBow26NTOw8w0CqggP5S9EbZwt8r4/FB79ZNaRbEp7AWB1iYa7G
+	cEWxSwCZXwDbodsiDfuf64w=
+X-Google-Smtp-Source: AIpwx488HkRpaELMylem6D4l16b/h/Qk4JY2QiT/GJP9VaWNLwk42m/ngUs6vGtNLLh6+cGddyQfNw==
+X-Received: by 10.98.55.69 with SMTP id e66mr14097578pfa.253.1523891024656;
+	Mon, 16 Apr 2018 08:03:44 -0700 (PDT)
 Received: from akuster-ThinkPad-T460s
 	([2601:202:4000:1184:846b:ecf3:2137:c7c5])
 	by smtp.gmail.com with ESMTPSA id
-	f13sm6312238pgt.71.2018.04.16.08.03.40
+	b6sm31386216pfm.160.2018.04.16.08.03.42
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 16 Apr 2018 08:03:41 -0700 (PDT)
+	Mon, 16 Apr 2018 08:03:44 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 X-Google-Original-From: "Armin Kuster" <akuster@akuster-ThinkPad-T460s>
 Received: by akuster-ThinkPad-T460s (sSMTP sendmail emulation);
-	Mon, 16 Apr 2018 08:03:39 -0700
+	Mon, 16 Apr 2018 08:03:42 -0700
 To: akuster808@gmail.com,
 	yocto@yoctoproject.org
-Date: Mon, 16 Apr 2018 08:03:30 -0700
-Message-Id: <1523891014-31583-2-git-send-email-akuster@mvista.com>
+Date: Mon, 16 Apr 2018 08:03:31 -0700
+Message-Id: <1523891014-31583-3-git-send-email-akuster@mvista.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1523891014-31583-1-git-send-email-akuster@mvista.com>
 References: <1523891014-31583-1-git-send-email-akuster@mvista.com>
-Subject: [meta-cgl][PATCH 1/5] meta-cgl-fsl-ppc: drop layer supporting old kernel
+Subject: [meta-cgl][PATCH 2/5] Corosync: remove recipe its in meta-networking.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,217 +79,626 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Apr 2018 15:03:44 -0000
-
-This supports 3.12 and is expecting the old meta-fsl-ppc layer
+X-List-Received-Date: Mon, 16 Apr 2018 15:03:48 -0000
 
 Signed-off-by: Armin Kuster <akuster@mvista.com>
 ---
- meta-cgl-fsl-ppc/conf/layer.conf                   | 14 ----
- ...p-inherit-auth-capable-on-INIT-collisions.patch | 41 -----------
- ...erpc-Fix-64-bit-builds-with-binutils-2.24.patch | 80 ----------------------
- .../linux/linux-qoriq-cgl-prt_3.12.bb              | 36 ----------
- 4 files changed, 171 deletions(-)
- delete mode 100644 meta-cgl-fsl-ppc/conf/layer.conf
- delete mode 100644 meta-cgl-fsl-ppc/recipes-kernel/linux/files/Fix-CVE-2014-5077-sctp-inherit-auth-capable-on-INIT-collisions.patch
- delete mode 100644 meta-cgl-fsl-ppc/recipes-kernel/linux/files/powerpc-Fix-64-bit-builds-with-binutils-2.24.patch
- delete mode 100644 meta-cgl-fsl-ppc/recipes-kernel/linux/linux-qoriq-cgl-prt_3.12.bb
+ .../corosync/build-cleanup-configure-ac.patch      |  57 --------
+ .../corosync/corosync/corosync-docs.patch          |  37 -----
+ .../corosync/corosync/corosync-notifyd.service     |  13 --
+ .../recipes-cgl/corosync/corosync/corosync.init    | 160 ---------------------
+ .../recipes-cgl/corosync/corosync/corosync.service |  26 ----
+ .../corosync/corosync/fix-define-semun-union.patch |  20 ---
+ .../corosync/corosync/groff-desc-path.patch        |  12 --
+ .../recipes-cgl/corosync/corosync/notifyd.init     | 120 ----------------
+ .../recipes-cgl/corosync/corosync/volatiles        |   1 -
+ .../recipes-cgl/corosync/corosync_1.4.8.bb         |  88 ------------
+ 10 files changed, 534 deletions(-)
+ delete mode 100644 meta-cgl-common/recipes-cgl/corosync/corosync/build-cleanup-configure-ac.patch
+ delete mode 100644 meta-cgl-common/recipes-cgl/corosync/corosync/corosync-docs.patch
+ delete mode 100644 meta-cgl-common/recipes-cgl/corosync/corosync/corosync-notifyd.service
+ delete mode 100644 meta-cgl-common/recipes-cgl/corosync/corosync/corosync.init
+ delete mode 100644 meta-cgl-common/recipes-cgl/corosync/corosync/corosync.service
+ delete mode 100644 meta-cgl-common/recipes-cgl/corosync/corosync/fix-define-semun-union.patch
+ delete mode 100644 meta-cgl-common/recipes-cgl/corosync/corosync/groff-desc-path.patch
+ delete mode 100644 meta-cgl-common/recipes-cgl/corosync/corosync/notifyd.init
+ delete mode 100644 meta-cgl-common/recipes-cgl/corosync/corosync/volatiles
+ delete mode 100644 meta-cgl-common/recipes-cgl/corosync/corosync_1.4.8.bb
 
-diff --git a/meta-cgl-fsl-ppc/conf/layer.conf b/meta-cgl-fsl-ppc/conf/layer.conf
+diff --git a/meta-cgl-common/recipes-cgl/corosync/corosync/build-cleanup-configure-ac.patch b/meta-cgl-common/recipes-cgl/corosync/corosync/build-cleanup-configure-ac.patch
 deleted file mode 100644
-index dbc6d1c..0000000
---- a/meta-cgl-fsl-ppc/conf/layer.conf
+index 06338f6..0000000
+--- a/meta-cgl-common/recipes-cgl/corosync/corosync/build-cleanup-configure-ac.patch
 +++ /dev/null
-@@ -1,14 +0,0 @@
--# We have a conf and classes directory, add to BBPATH
--BBPATH .= ":${LAYERDIR}"
--
--# We have recipes-* directories, add to BBFILES
--BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
--	${LAYERDIR}/recipes-*/*/*.bbappend"
--
--BBFILE_COLLECTIONS += "cgl-fsl-ppc"
--BBFILE_PATTERN_cgl-fsl-ppc = "^${LAYERDIR}/"
--BBFILE_PRIORITY_cgl-fsl-ppc = "7"
--
--LAYERDEPENDS_cgl-fsl-ppc = "cgl-common"
--
--LAYERSERIES_COMPAT_cgl-fsl-ppc = "sumo"
-diff --git a/meta-cgl-fsl-ppc/recipes-kernel/linux/files/Fix-CVE-2014-5077-sctp-inherit-auth-capable-on-INIT-collisions.patch b/meta-cgl-fsl-ppc/recipes-kernel/linux/files/Fix-CVE-2014-5077-sctp-inherit-auth-capable-on-INIT-collisions.patch
-deleted file mode 100644
-index 7d16535..0000000
---- a/meta-cgl-fsl-ppc/recipes-kernel/linux/files/Fix-CVE-2014-5077-sctp-inherit-auth-capable-on-INIT-collisions.patch
-+++ /dev/null
-@@ -1,41 +0,0 @@
--CVE-2014-5077 Kernel/SCTP: fix a NULL pointer dereference
--
--A NULL pointer dereference flaw was found in the way the
--Linux kernel's Stream Control Transmission Protocol
--(SCTP) implementation handled simultaneous connections
--between the same hosts. A remote attacker could use this
--flaw to crash the system.
--
--Upstream-Status: Backport (from v3.16, commit 1be9a950c646c)
--
--References:
--    - https://access.redhat.com/security/cve/CVE-2014-5077
--    - http://patchwork.ozlabs.org/patch/372475/
--
--Fixes: 730fc3d05cd4 ("[SCTP]: Implete SCTP-AUTH parameter processing")
--Reported-by: Jason Gunthorpe <jgunthorpe@obsidianresearch.com>
--Signed-off-by: Daniel Borkmann <dborkman@redhat.com>
--Tested-by: Jason Gunthorpe <jgunthorpe@obsidianresearch.com>
--Cc: Vlad Yasevich <vyasevich@gmail.com>
--Acked-by: Vlad Yasevich <vyasevich@gmail.com>
--Signed-off-by: David S. Miller <davem@davemloft.net>
--Signed-off-by: Liviu Gheorghisan <liviu.gheorghisan@enea.com>
-----
-- net/sctp/associola.c | 1 +
-- 1 file changed, 1 insertion(+)
--
--diff --git a/net/sctp/associola.c b/net/sctp/associola.c
--index 9de23a2..06a9ee6 100644
----- a/net/sctp/associola.c
--+++ b/net/sctp/associola.c
--@@ -1097,6 +1097,7 @@ void sctp_assoc_update(struct sctp_association *asoc,
-- 	asoc->c = new->c;
-- 	asoc->peer.rwnd = new->peer.rwnd;
-- 	asoc->peer.sack_needed = new->peer.sack_needed;
--+	asoc->peer.auth_capable = new->peer.auth_capable;
-- 	asoc->peer.i = new->peer.i;
-- 	sctp_tsnmap_init(&asoc->peer.tsn_map, SCTP_TSN_MAP_INITIAL,
-- 			 asoc->peer.i.initial_tsn, GFP_ATOMIC);
---- 
--1.9.1
--
-diff --git a/meta-cgl-fsl-ppc/recipes-kernel/linux/files/powerpc-Fix-64-bit-builds-with-binutils-2.24.patch b/meta-cgl-fsl-ppc/recipes-kernel/linux/files/powerpc-Fix-64-bit-builds-with-binutils-2.24.patch
-deleted file mode 100644
-index 2fdcc9f..0000000
---- a/meta-cgl-fsl-ppc/recipes-kernel/linux/files/powerpc-Fix-64-bit-builds-with-binutils-2.24.patch
-+++ /dev/null
-@@ -1,80 +0,0 @@
--From 7998eb3dc700aaf499f93f50b3d77da834ef9e1d Mon Sep 17 00:00:00 2001
--From: Guenter Roeck <linux@roeck-us.net>
--Date: Thu, 15 May 2014 09:33:42 -0700
--Subject: powerpc: Fix 64 bit builds with binutils 2.24
--
--Upstream-Status: Backport
--
--With binutils 2.24, various 64 bit builds fail with relocation errors
--such as
--
--arch/powerpc/kernel/built-in.o: In function `exc_debug_crit_book3e':
--	(.text+0x165ee): relocation truncated to fit: R_PPC64_ADDR16_HI
--	against symbol `interrupt_base_book3e' defined in .text section
--	in arch/powerpc/kernel/built-in.o
--arch/powerpc/kernel/built-in.o: In function `exc_debug_crit_book3e':
--	(.text+0x16602): relocation truncated to fit: R_PPC64_ADDR16_HI
--	against symbol `interrupt_end_book3e' defined in .text section
--	in arch/powerpc/kernel/built-in.o
--
--The assembler maintainer says:
--
-- I changed the ABI, something that had to be done but unfortunately
-- happens to break the booke kernel code.  When building up a 64-bit
-- value with lis, ori, shl, oris, ori or similar sequences, you now
-- should use @high and @higha in place of @h and @ha.  @h and @ha
-- (and their associated relocs R_PPC64_ADDR16_HI and R_PPC64_ADDR16_HA)
-- now report overflow if the value is out of 32-bit signed range.
-- ie. @h and @ha assume you're building a 32-bit value. This is needed
-- to report out-of-range -mcmodel=medium toc pointer offsets in @toc@h
-- and @toc@ha expressions, and for consistency I did the same for all
-- other @h and @ha relocs.
--
--Replacing @h with @high in one strategic location fixes the relocation
--errors. This has to be done conditionally since the assembler either
--supports @h or @high but not both.
--
--Cc: <stable@vger.kernel.org>
--Signed-off-by: Guenter Roeck <linux@roeck-us.net>
--Signed-off-by: Benjamin Herrenschmidt <benh@kernel.crashing.org>
--
--diff --git a/arch/powerpc/Makefile b/arch/powerpc/Makefile
--index 4c0cedf..ce4c68a 100644
----- a/arch/powerpc/Makefile
--+++ b/arch/powerpc/Makefile
--@@ -150,7 +150,9 @@ endif
-- 
-- CFLAGS-$(CONFIG_TUNE_CELL) += $(call cc-option,-mtune=cell)
-- 
---KBUILD_CPPFLAGS	+= -Iarch/$(ARCH)
--+asinstr := $(call as-instr,lis 9$(comma)foo@high,-DHAVE_AS_ATHIGH=1)
+@@ -1,57 +0,0 @@
+-diff -Nurp corosync-1.4.7.orig/configure.ac corosync-1.4.7/configure.ac
+---- corosync-1.4.7.orig/configure.ac	2014-06-02 21:55:54.000000000 +0900
+-+++ corosync-1.4.7/configure.ac	2015-06-24 16:56:21.519999988 +0900
+-@@ -60,6 +60,8 @@ AC_PROG_INSTALL
+- AC_PROG_LN_S
+- AC_PROG_MAKE_SET
+- AC_PROG_RANLIB
+-+AC_PROG_SED
 -+
--+KBUILD_CPPFLAGS	+= -Iarch/$(ARCH) $(asinstr)
-- KBUILD_AFLAGS	+= -Iarch/$(ARCH)
-- KBUILD_CFLAGS	+= -msoft-float -pipe -Iarch/$(ARCH) $(CFLAGS-y)
-- CPP		= $(CC) -E $(KBUILD_CFLAGS)
--diff --git a/arch/powerpc/include/asm/ppc_asm.h b/arch/powerpc/include/asm/ppc_asm.h
--index 6586a40..cded7c1 100644
----- a/arch/powerpc/include/asm/ppc_asm.h
--+++ b/arch/powerpc/include/asm/ppc_asm.h
--@@ -318,11 +318,16 @@ n:
-- 	addi	reg,reg,(name - 0b)@l;
+- AC_CHECK_PROGS([GROFF], [groff])
+- AC_CHECK_PROGS([PKGCONFIG], [pkg-config])
 - 
-- #ifdef __powerpc64__
--+#ifdef HAVE_AS_ATHIGH
--+#define __AS_ATHIGH high
--+#else
--+#define __AS_ATHIGH h
--+#endif
-- #define LOAD_REG_IMMEDIATE(reg,expr)		\
-- 	lis     reg,(expr)@highest;		\
-- 	ori     reg,reg,(expr)@higher;	\
-- 	rldicr  reg,reg,32,31;		\
---	oris    reg,reg,(expr)@h;		\
--+	oris    reg,reg,(expr)@__AS_ATHIGH;	\
-- 	ori     reg,reg,(expr)@l;
+-@@ -78,7 +80,7 @@ AC_HEADER_SYS_WAIT
+- AC_CHECK_HEADERS([arpa/inet.h fcntl.h limits.h netdb.h netinet/in.h stdint.h \
+- 		  stdlib.h string.h sys/ioctl.h sys/param.h sys/socket.h \
+- 		  sys/time.h syslog.h unistd.h sys/types.h getopt.h malloc.h \
+--		  sys/sockio.h net/if_var.h])
+-+		  sys/sockio.h utmpx.h ifaddrs.h stddef.h sys/file.h])
 - 
-- #define LOAD_REG_ADDR(reg,name)			\
---- 
--cgit v0.10.1
--
-diff --git a/meta-cgl-fsl-ppc/recipes-kernel/linux/linux-qoriq-cgl-prt_3.12.bb b/meta-cgl-fsl-ppc/recipes-kernel/linux/linux-qoriq-cgl-prt_3.12.bb
+- # Checks for typedefs, structures, and compiler characteristics.
+- AC_C_CONST
+-@@ -90,30 +92,32 @@ AC_TYPE_INT64_T
+- AC_TYPE_INT8_T
+- AC_TYPE_SIZE_T
+- AC_TYPE_SSIZE_T
+--AC_HEADER_TIME
+- AC_TYPE_UINT16_T
+- AC_TYPE_UINT32_T
+- AC_TYPE_UINT64_T
+- AC_TYPE_UINT8_T
+- AC_C_VOLATILE
+-+AC_TYPE_SIGNAL
+- 
+- # Checks for library functions.
+- AC_FUNC_CLOSEDIR_VOID
+- AC_FUNC_ERROR_AT_LINE
+--AC_REPLACE_FNMATCH
+- AC_FUNC_FORK
+- AC_PROG_GCC_TRADITIONAL
+- AC_FUNC_MALLOC
+- AC_FUNC_MEMCMP
+-+AC_FUNC_MMAP
+- AC_FUNC_REALLOC
+- AC_FUNC_SELECT_ARGTYPES
+- AC_TYPE_SIGNAL
+- AC_FUNC_VPRINTF
+-+
+- AC_CHECK_FUNCS([alarm alphasort atexit bzero dup2 endgrent endpwent fcntl \
+- 		getcwd getpeerucred getpeereid gettimeofday inet_ntoa memmove \
+- 		memset mkdir scandir select socket strcasecmp strchr strdup \
+- 		strerror strrchr strspn strstr pthread_setschedparam \
+--		sched_get_priority_max sched_setscheduler])
+-+		sched_get_priority_max sched_setscheduler \
+-+		clock_gettime ftruncate gethostname localtime_r munmap strtol])
+- 
+- AC_CONFIG_FILES([Makefile
+- 		 exec/Makefile
+diff --git a/meta-cgl-common/recipes-cgl/corosync/corosync/corosync-docs.patch b/meta-cgl-common/recipes-cgl/corosync/corosync/corosync-docs.patch
 deleted file mode 100644
-index 33c51e2..0000000
---- a/meta-cgl-fsl-ppc/recipes-kernel/linux/linux-qoriq-cgl-prt_3.12.bb
+index e13ec68..0000000
+--- a/meta-cgl-common/recipes-cgl/corosync/corosync/corosync-docs.patch
 +++ /dev/null
-@@ -1,36 +0,0 @@
--require recipes-kernel/linux/cgl-common.inc
--require recipes-kernel/linux/linux-qoriq.inc
+@@ -1,37 +0,0 @@
+-diff -Nurp corosync-1.4.7.orig/configure.ac corosync-1.4.7/configure.ac
+---- corosync-1.4.7.orig/configure.ac	2015-06-24 16:56:21.519999988 +0900
+-+++ corosync-1.4.7/configure.ac	2015-06-24 17:00:38.292999987 +0900
+-@@ -558,7 +558,7 @@ if test "x${enable_user_flags}" = xyes; 
+- fi
+- 
+- # final build of *FLAGS
+--CFLAGS="$ENV_CFLAGS $OPT_CFLAGS $GDB_FLAGS $OS_CFLAGS \
+-+CFLAGS="$ENV_CFLAGS $OS_CFLAGS \
+- 	$COVERAGE_CFLAGS $EXTRA_WARNINGS $WERROR_CFLAGS $NSS_CFLAGS"
+- CPPFLAGS="$ENV_CPPFLAGS $ANSI_CPPFLAGS $OS_CPPFLAGS"
+- LDFLAGS="$ENV_LDFLAGS $COVERAGE_LDFLAGS $OS_LDFLAGS"
+-@@ -585,7 +585,10 @@ AM_CONDITIONAL(BUILD_SOLARIS, test -n "$
+- AC_SUBST([DARWIN_OPTS])
+- AC_SUBST([SOLARIS_OPTS])
+- 
+--AM_CONDITIONAL(BUILD_HTML_DOCS, test -n "${GROFF}")
+-+AC_ARG_ENABLE([doc],
+-+  AS_HELP_STRING([--enable-doc],[Build html documentation])
+-+)
+-+AM_CONDITIONAL(BUILD_HTML_DOCS, [test -n "${GROFF}" && test "x$enable_doc" = "xyes"] )
+- 
+- AC_SUBST([LINT_FLAGS])
+- 
+-diff -Nurp corosync-1.4.7.orig/Makefile.am corosync-1.4.7/Makefile.am
+---- corosync-1.4.7.orig/Makefile.am	2014-06-02 21:55:54.000000000 +0900
+-+++ corosync-1.4.7/Makefile.am	2015-06-24 17:01:06.087999988 +0900
+-@@ -46,9 +46,6 @@ MAINTAINERCLEANFILES	= Makefile.in acloc
+- 			  config.guess config.sub missing install-sh \
+- 			  autoheader automake autoconf
+- 
+--dist_doc_DATA		= LICENSE INSTALL README.devmap \
+--			  README.recovery SECURITY TODO AUTHORS
+--
+- corosysconfdir		= ${COROSYSCONFDIR}
+- 
+- corosysconf_DATA	= conf/corosync.conf.example \
+diff --git a/meta-cgl-common/recipes-cgl/corosync/corosync/corosync-notifyd.service b/meta-cgl-common/recipes-cgl/corosync/corosync/corosync-notifyd.service
+deleted file mode 100644
+index ce576fe..0000000
+--- a/meta-cgl-common/recipes-cgl/corosync/corosync/corosync-notifyd.service
++++ /dev/null
+@@ -1,13 +0,0 @@
+-[Unit]
+-Description=Corosync Dbus and snmp notifier
+-Wants=corosync.service
+-After=corosync.service
 -
--SRC_URI += "git://git.freescale.com/ppc/sdk/linux.git;nobranch=1 \
--    file://powerpc-Fix-64-bit-builds-with-binutils-2.24.patch \
--    file://Fix-CVE-2014-5077-sctp-inherit-auth-capable-on-INIT-collisions.patch \
--"
--SRCREV = "c29fe1a733308cbe592b3af054a97be1b91cf2dd"
--DELTA_KERNEL_DEFCONFIG += "cfg/00001-systemtap.cfg \
--                        cfg/00002-oprofile.cfg \
--                        cfg/00003-lttng.cfg \
--                        cfg/00004-kgdb.cfg \
--                        cfg/00005-quota.cfg \
--                        cfg/00007-device-mapper-multipath.cfg \
--                        cfg/00008-libcgroup.cfg \
--                        cfg/00009-filesystem-acl.cfg \
--                        cfg/00010-ext4.cfg \
--                        cfg/00011-raid-1.cfg \
--                        cfg/00012-hyper-threading.cfg \
--                        cfg/00013-dot1q-vlans.cfg \
--                        cfg/00014-selinux.cfg \
--                        cfg/00015-managing-transient-data.cfg \
--                        cfg/00016-dynamic-probe-insertion-kprobe.cfg \
--                        cfg/00018-ipsec.cfg \
--                        cfg/00019-raid-0.cfg \
--			cfg/00020-kexec.cfg \
--                        cfg/00021-sctp.cfg \
--                        cfg/00022-coredump.cfg \
--                        cfg/00023-open-scsi.cfg \
--                        cfg/00024-ftrace.cfg \
--                        cfg/00025-ipmi.cfg \
--                        cfg/00026-lm-sensors.cfg \
--                        cfg/00027-dmidecode.cfg \
--                        cfg/00028-bonding.cfg \
--                        "
+-[Service]
+-EnvironmentFile=@SYSCONFDIR@/sysconfig/corosync-notifyd
+-ExecStart=@SBINDIR@/corosync-notifyd -f $OPTIONS
+-Type=simple
+-Restart=on-failure
 -
+-[Install]
+-WantedBy=multi-user.target
+diff --git a/meta-cgl-common/recipes-cgl/corosync/corosync/corosync.init b/meta-cgl-common/recipes-cgl/corosync/corosync/corosync.init
+deleted file mode 100644
+index 6b397e5..0000000
+--- a/meta-cgl-common/recipes-cgl/corosync/corosync/corosync.init
++++ /dev/null
+@@ -1,160 +0,0 @@
+-#!/bin/sh
+-#
+-# corosync       Start the Corosync Cluster Engine
+-#
+-# Author:       Andrew Beekhof <abeekhof@suse.de>
+-# License:      Revised BSD
+-#
+-# chkconfig: - 20 20
+-# processname:  corosync
+-# description:  Corosync Cluster Engine
+-#
+-### BEGIN INIT INFO
+-# Description: corosync....
+-#
+-# Short-Description: Corosync Cluster Engine.
+-# Provides: corosync
+-# Required-Start: $network
+-# Should-Start: $syslog
+-# Required-Stop: $network
+-# Default-Start: 3 5
+-# Default-Stop: 0 6
+-### END INIT INFO
+-
+-do_force=0
+-prog="corosync"
+-lockfile="/var/lock/subsys/$prog"
+-configfile="/etc/corosync/corosync.conf"
+-
+-internal_status() {
+-    killall -0 corosync > /dev/null 2>&1
+-    return $?
+-}
+-
+-status() {
+-    if
+-	! internal_status
+-    then
+-	echo "Stopped"
+-	return 7
+-    fi
+-
+-    echo "Running"
+-    return 0
+-}
+-
+-start() {
+-    if [ ! -f "$configfile" ]; then
+-	echo "Error: corosync is not configured ($configfile missing)"
+-	exit 1
+-    fi
+-
+-    echo -n $"Starting Corosync Cluster Engine ($prog): "
+-    if
+-	! internal_status
+-    then
+-	echo -n "starting... "
+-	$prog 2>&1 > /dev/null 2>&1
+-	echo -n "rc=$?: "
+-    fi
+-
+-    sleep 2 # give it time to fail... $? isn't definitive
+-
+-    if
+-	internal_status
+-    then
+-	echo "OK"
+-	return 0
+-    fi
+-
+-    echo "Failed"
+-    return 1
+-}
+-
+-do_force=1
+-do_forever=0
+-
+-stop() {
+-    echo -n $"Stopping Corosync Cluster Engine ($prog): "
+-
+-    killall -QUIT corosync
+-
+-    if [ $do_forever = 0 ]; then
+-	for i in 1 2 3 4 5 6 7 8 9 10 12 13 14 15 16 17 18 19 20; do
+-	    if
+-		internal_status
+-	    then
+-		sleep 2
+-		echo -n "."
+-	    else
+-		rm -f "$lockfile"
+-		echo "OK"
+-		return 0
+-	    fi
+-	done
+-
+-	if [ $do_force = 1 ]; then
+-	    echo -n "Escalating... "
+-	    killall -KILL corosync
+-            pids=`pgrep -f '/usr/lib/heartbeat/*'`
+-            if [ -n "$pids" ]; then
+-                kill -KILL $pids
+-            fi
+-	    sleep 5
+-
+-	    if
+-		! internal_status
+-	    then
+-		rm -f "$lockfile"
+-		echo "OK"
+-		return 0
+-	    fi
+-	fi
+-
+-	echo "Failed"
+-	return 1
+-    fi
+-
+-    while
+-        internal_status
+-    do
+-	sleep 1
+-	echo -n "."
+-    done
+-
+-    rm -f "$lockfile"
+-    echo "OK"
+-    return 0
+-}
+-
+-restart() {
+-    if [ ! -f "$configfile" ]; then
+-	echo "Error: corosync is not configured ($configfile missing)"
+-	exit 1
+-    fi
+-
+-    stop
+-    start
+-}
+-
+-case "$1" in
+-    start|stop|restart)
+-        $1
+-        ;;
+-    force-stop)
+-	do_force=1
+-        stop
+-        ;;
+-    reload|force-reload)
+-        restart
+-        ;;
+-    condrestart|try-restart)
+-        [ ! -f "$lockfile" ] || restart
+-        ;;
+-    status)
+-        status $prog
+-        ;;
+-    *)
+-        echo $"Usage: $0 {start|stop|restart|try-restart|condrestart|reload|force-reload|force-stop|status}"
+-        exit 2
+-esac
+diff --git a/meta-cgl-common/recipes-cgl/corosync/corosync/corosync.service b/meta-cgl-common/recipes-cgl/corosync/corosync/corosync.service
+deleted file mode 100644
+index d5dd38f..0000000
+--- a/meta-cgl-common/recipes-cgl/corosync/corosync/corosync.service
++++ /dev/null
+@@ -1,26 +0,0 @@
+-[Unit]
+-Description=Corosync Cluster Engine
+-ConditionKernelCommandLine=!nocluster
+-Requires=network-online.target
+-After=network-online.target
+-
+-[Service]
+-ExecStart=@DATADIR@/corosync/corosync start
+-ExecStop=@DATADIR@/corosync/corosync stop
+-Type=oneshot
+-RemainAfterExit=yes
+-
+-# The following config is for corosync with enabled watchdog service.
+-#
+-#  When corosync watchdog service is being enabled and using with
+-#  pacemaker.service, and if you want to exert the watchdog when a
+-#  corosync process is terminated abnormally,
+-#  uncomment the line of the following Restart= and RestartSec=.
+-#Restart=on-failure
+-#  Specify a period longer than soft_margin as RestartSec.
+-#RestartSec=70
+-#  rewrite according to environment.
+-#ExecStartPre=/sbin/modprobe softdog soft_margin=60
+-
+-[Install]
+-WantedBy=multi-user.target
+diff --git a/meta-cgl-common/recipes-cgl/corosync/corosync/fix-define-semun-union.patch b/meta-cgl-common/recipes-cgl/corosync/corosync/fix-define-semun-union.patch
+deleted file mode 100644
+index 2f413db..0000000
+--- a/meta-cgl-common/recipes-cgl/corosync/corosync/fix-define-semun-union.patch
++++ /dev/null
+@@ -1,20 +0,0 @@
+-diff -Nurp corosync-1.4.7.orig/lib/coroipcc.c corosync-1.4.7/lib/coroipcc.c
+---- corosync-1.4.7.orig/lib/coroipcc.c	2014-06-02 21:55:54.000000000 +0900
+-+++ corosync-1.4.7/lib/coroipcc.c	2015-06-24 17:04:24.451999987 +0900
+-@@ -68,6 +68,16 @@
+- #include <semaphore.h>
+- #else
+- #include <sys/sem.h>
+-+
+-+#if _SEM_SEMUN_UNDEFINED
+-+union semun {
+-+	int val;                           // value for SETVAL
+-+	struct semid_ds *buf;              // buffer for IPC_STAT & IPC_SET
+-+	unsigned short int *array;         // array for GETALL & SETALL
+-+	struct seminfo *__buf;             // buffer for IPC_INFO
+-+};
+-+#endif
+-+
+- #endif
+- 
+- #include "util.h"
+diff --git a/meta-cgl-common/recipes-cgl/corosync/corosync/groff-desc-path.patch b/meta-cgl-common/recipes-cgl/corosync/corosync/groff-desc-path.patch
+deleted file mode 100644
+index da1378a..0000000
+--- a/meta-cgl-common/recipes-cgl/corosync/corosync/groff-desc-path.patch
++++ /dev/null
+@@ -1,12 +0,0 @@
+-diff -Nurp corosync-1.3.1.org/man/Makefile.am corosync-1.3.1/man/Makefile.am
+---- corosync-1.3.1.org/man/Makefile.am	2011-04-25 10:37:50.000000000 +0800
+-+++ corosync-1.3.1/man/Makefile.am	2014-11-24 10:33:36.583426707 +0800
+-@@ -126,7 +126,7 @@ HTML_DOCS = $(dist_man_MANS:%=%.html)
+- INDEX_HTML = index.html
+- 
+- %.html: %
+--	$(GROFF) -mandoc -Thtml $^ > $@
+-+	$(GROFF) -F $(DESCPATH) -mandoc -Thtml $^ > $@
+- 
+- install-data-local:
+- 	$(INSTALL) -d $(DESTDIR)/${docdir}/html
+diff --git a/meta-cgl-common/recipes-cgl/corosync/corosync/notifyd.init b/meta-cgl-common/recipes-cgl/corosync/corosync/notifyd.init
+deleted file mode 100644
+index 35e0cf1..0000000
+--- a/meta-cgl-common/recipes-cgl/corosync/corosync/notifyd.init
++++ /dev/null
+@@ -1,120 +0,0 @@
+-### BEGIN INIT INFO
+-# Description: corosync-notifyd....
+-#
+-# Short-Description: Corosync Dbus and snmp notifier
+-# Provides: corosync-notifyd
+-# Required-Start: $corosync $cman
+-# Should-Start: $syslog
+-# Required-Stop: $corosync $cman
+-# Default-Start: 3 5
+-# Default-Stop: 0 6
+-### END INIT INFO
+-
+-do_force=0
+-prog="corosync-notifyd"
+-lockfile="/var/lock/subsys/$prog"
+-
+-internal_status() {
+-    killall -0 $prog > /dev/null 2>&1
+-    return $?
+-}
+-
+-status() {
+-    if
+-        ! internal_status
+-    then
+-        echo "Stopped"
+-        return 7
+-    fi
+-
+-    echo "Running"
+-    return 0
+-}
+-
+-start() {
+-    echo -n $"Starting Corosync Dbus and snmp notifier ($prog): "
+-    if
+-        ! internal_status
+-    then
+-        echo -n "starting... "
+-        $prog 2>&1 > /dev/null 2>&1
+-        echo -n "rc=$?: "
+-    fi
+-
+-    sleep 2 # give it time to fail... $? isn't definitive
+-
+-    if
+-        internal_status
+-    then
+-        echo "OK"
+-        return 0
+-    fi
+-
+-    echo "Failed"
+-    return 1
+-}
+-
+-do_force=1
+-do_forever=0
+-
+-stop() {
+-    echo -n $"Stopping Corosync Dbus and snmp notifier ($prog): "
+-
+-    killall -TERM $prog
+-
+-    if [ $do_forever = 0 ]; then
+-        for i in 1 2 3 4 5 6 7 8 9 10 12 13 14 15 16 17 18 19 20; do
+-            if
+-                internal_status
+-            then
+-                sleep 2
+-                echo -n "."
+-            else
+-                rm -f "$lockfile"
+-                echo "OK"
+-                return 0
+-            fi
+-        done
+-
+-        echo "Failed"
+-        return 1
+-    fi
+-
+-    while
+-        internal_status
+-    do
+-        sleep 1
+-        echo -n "."
+-    done
+-
+-    rm -f "$lockfile"
+-    echo "OK"
+-    return 0
+-}
+-
+-restart() {
+-    stop
+-    start
+-}
+-
+-case "$1" in
+-    start|stop|restart)
+-        $1
+-        ;;
+-    force-stop)
+-        do_force=1
+-        stop
+-        ;;
+-    reload|force-reload)
+-        restart
+-        ;;
+-    condrestart|try-restart)
+-        [ ! -f "$lockfile" ] || restart
+-        ;;
+-    status)
+-        status $prog
+-        ;;
+-    *)
+-        echo $"Usage: $0 {start|stop|restart|try-restart|condrestart|reload|force-reload|force-stop|status}"
+-        exit 2
+-esac
+diff --git a/meta-cgl-common/recipes-cgl/corosync/corosync/volatiles b/meta-cgl-common/recipes-cgl/corosync/corosync/volatiles
+deleted file mode 100644
+index 2dc6eec..0000000
+--- a/meta-cgl-common/recipes-cgl/corosync/corosync/volatiles
++++ /dev/null
+@@ -1 +0,0 @@
+-d hacluster haclient 0755 /var/lib/corosync none
+diff --git a/meta-cgl-common/recipes-cgl/corosync/corosync_1.4.8.bb b/meta-cgl-common/recipes-cgl/corosync/corosync_1.4.8.bb
+deleted file mode 100644
+index 3b5afce..0000000
+--- a/meta-cgl-common/recipes-cgl/corosync/corosync_1.4.8.bb
++++ /dev/null
+@@ -1,88 +0,0 @@
+-SUMMARY = "The Corosync Cluster Engine and Application Programming Interfaces"
+-DESCRIPTION = "This package contains the Corosync Cluster Engine Executive, \
+-several default APIs and libraries, default configuration files, and an init \
+-script."
+-HOMEPAGE = "http://corosync.github.io/corosync/"
+-
+-inherit autotools pkgconfig update-rc.d useradd systemd
+-
+-SRC_URI = "http://build.clusterlabs.org/corosync/releases/${BPN}-${PV}.tar.gz \
+-           file://groff-desc-path.patch \
+-           file://corosync-docs.patch \
+-           file://fix-define-semun-union.patch \
+-           file://build-cleanup-configure-ac.patch \
+-           file://corosync.init \
+-           file://notifyd.init \
+-           file://corosync.service \
+-           file://corosync-notifyd.service \
+-           file://volatiles \
+-          "
+-
+-SRC_URI[md5sum] = "e16c71db45c8b39948847655958d0dec"
+-SRC_URI[sha256sum] = "64ee50f783a4bfa8a63fd576090cf7dd1810f3c60e01b4886723b87c5ff2b013"
+-
+-LICENSE = "BSD"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=25656171d1e4054c636a9893067f8c30"
+-
+-DEPENDS = "groff-native"
+-
+-INSANE_SKIP_${PN} += ""
+-
+-CFLAGS_append += " -fPIC "
+-
+-PACKAGECONFIG ?= "dbus nss snmp"
+-PACKAGECONFIG[dbus] = "--enable-dbus,--disable-dbus,dbus"
+-PACKAGECONFIG[nss] = "--enable-nss,--disable-nss,nss"
+-PACKAGECONFIG[rdma] = "--enable-rdma,--disable-rdma"
+-PACKAGECONFIG[snmp] = "--enable-snmp,--disable-snmp,net-snmp"
+-
+-do_compile() {
+-    DESCPATH="${STAGING_DATADIR_NATIVE}/groff/`groff -v | awk '{if(NR==1)print $4}'`/font"
+-    oe_runmake DESCPATH=${DESCPATH}
+-}
+-
+-do_install_append() {
+-    install -d ${D}${sysconfdir}/default/volatiles
+-    install -m 0644 ${WORKDIR}/volatiles ${D}${sysconfdir}/default/volatiles/05_corosync
+-    install -D -m 0644 ${S}/tools/corosync-notifyd.sysconfig.example ${D}${sysconfdir}/sysconfig/corosync-notifyd
+-
+-    # Original init script is too bashy
+-    rm -f ${D}/${sysconfdir}/init.d/corosync
+-    install -m 0755 ${WORKDIR}/corosync.init ${D}/${sysconfdir}/init.d/corosync
+-    rm -rf ${D}/${sysconfdir}/init.d/corosync-notifyd
+-    install -m 0755 ${WORKDIR}/notifyd.init ${D}/${sysconfdir}/init.d/corosync-notifyd
+-
+-    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
+-        install -d ${D}${datadir}/${BPN}
+-        cp ${D}/${sysconfdir}/init.d/* ${D}${datadir}/${BPN}/
+-
+-        install -d ${D}${systemd_system_unitdir}
+-        install -m 0644 ${WORKDIR}/corosync.service ${D}${systemd_system_unitdir}
+-        sed -i -e 's,@DATADIR@,${datadir},g' ${D}${systemd_system_unitdir}/corosync.service
+-
+-        install -m 0644 ${WORKDIR}/corosync-notifyd.service ${D}${systemd_system_unitdir}
+-        sed -i -e 's,@SYSCONFDIR@,${sysconfdir},g' \
+-            -e 's,@SBINDIR@,${sbindir},g' ${D}${systemd_system_unitdir}/corosync-notifyd.service
+-
+-        install -d ${D}${sysconfdir}/tmpfiles.d
+-        echo "d ${localstatedir}/log/cluster - - - -" > ${D}${sysconfdir}/tmpfiles.d/corosync.conf
+-    fi
+-
+-    rm -fr "${D}${localstatedir}/lock"
+-    rm -fr "${D}${localstatedir}/run"
+-    rmdir --ignore-fail-on-non-empty "${D}${localstatedir}"
+-}
+-
+-FILES_${PN}-doc += "${datadir}/snmp/mibs/COROSYNC-MIB.txt"
+-FILES_${PN}-dbg += "${libexecdir}/lcrso/.debug"
+-
+-INITSCRIPT_NAME = "corosync"
+-INITSCRIPT_PARAMS = "remove"
+-
+-SYSTEMD_SERVICE_${PN} = "corosync.service corosync-notifyd.service"
+-SYSTEMD_AUTO_ENABLE = "disable"
+-
+-
+-USERADD_PACKAGES = "${PN}"
+-GROUPADD_PARAM_${PN} = "haclient"
+-USERADD_PARAM_${PN} = "-M --home  ${localstatedir}/lib/heartbeat -g haclient hacluster"
 -- 
 2.7.4
 
