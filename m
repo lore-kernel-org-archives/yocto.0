@@ -1,64 +1,63 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mans.zigher@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EA103E00AAF; Tue, 17 Apr 2018 03:13:43 -0700 (PDT)
+	id 52AFFE00A6A; Tue, 17 Apr 2018 04:15:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
+	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mans.zigher[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f65.google.com (mail-oi0-f65.google.com
-	[209.85.218.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1463EE00948
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 03:13:42 -0700 (PDT)
-Received: by mail-oi0-f65.google.com with SMTP id f63-v6so17402563oic.4
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 03:13:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=5qKtumDMXwTHXKk4IhxWSJpGvtCquboAm35Wsn2Anm4=;
-	b=BTVj1mKUpepJ6YKAWo4YWzQ4VF9DWggNWC5UllxTumeOLiKjHkNR2rN126R3FMxr5S
-	IJ6K2of47ChaNnJsUZ9+MPoTef6ye7NzOe5LW0vy0nmpjR6z93Xl8sJqi7PjJXv5V8Ru
-	pxTLQ736bpRGl4GauEu+LBmRPcY/koEPQxxYnxOh6cCYGVVsw9svyJBPqmjIPo8Qiuxj
-	UDj5auSgvihcZ2GaX5uMxvg4Uu0vYStPrVTwybZQC993+PI4fhZNKouydUSYUN+lqfu5
-	Iiv+IlqzPQ7KY6Ol2oCv87FxFPGymtjodrt/p0y1Wqm8YhfM+864Pllz+XmMJo5h/kEt
-	QHQg==
+	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
+Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
+	[209.85.218.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCE59E00994
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 04:15:28 -0700 (PDT)
+Received: by mail-oi0-f44.google.com with SMTP id 188-v6so17538942oih.8
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 04:15:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=c3du5OUTA4WEnT+2u4KhTxRTb7kP5n2L4tIB3Y1AtNo=;
+	b=XsY2B3+FinDYvFxUWi4q5HlZjoHZ1X7TEBatLwNfK+6wVj2mtLrcKJOGkiJQqT90hZ
+	W9x1vKkg5TKpVGBf7+PxjjHw4fXgq0LA2pyUvAZFT0grASTMuHEZXg/hmFInhijnbV58
+	+5LAuIoo3XljroAgLZ9Qh47cvyhldFGtqsbOSS8MbpkylPeo7ja5RZRkS3Of2ryJr+IS
+	/PaR8d0Lj+D4WfUnsvrK3YGHnKO9iLGHXHJPUfDYamVJt7NDdLVmq1u46QmUINx5njXp
+	HcZHHWSGZj83Yy0XGC8QDYVCLD994n6NRlIykbuJEoHASfkxcamr3uJgWM1iEf22EII2
+	g2dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=5qKtumDMXwTHXKk4IhxWSJpGvtCquboAm35Wsn2Anm4=;
-	b=CYbuLLmpc/pAq9trwyYOdgghp15SKEDtDIe3Y/fAG2+S6vChaTwpDcSH7hHOCsReOg
-	pBy9j4n4szWvDdCvF1wiaPlZNtI870XO0UA5sqKvGUtfMIce+U792KmHrUEB9OMLe7Wa
-	z677WgaAIlaFRvdDJXVCWQNcVvnFRN1Qu9lwUlBBa0kBj8heVeINxhAG9RUVi+ZwopKT
-	V+TnuiHQxoPrqg/QNSdufIyEjcbfjRF1TMqRAiWkJrKRK3yrUnrIwitzPNOOTRZGhSeG
-	RMsdN4cwwyALjFLvuatBZrj+uUHVh53NpjCa1D7CyG15IQZCfFGWWlVb6iMtCSddTu8g
-	8Pgw==
-X-Gm-Message-State: ALQs6tCYQPukWV+sdgyOkrWSFqAwNItdLFi4mwgrUJmj6kN/uxISL1aX
-	jZ7MhjO8LaOSfTQXAPOI/mdeHpGI8OU4YZqP6xMwJw==
-X-Google-Smtp-Source: AIpwx4/cG87co5CKJCL9yB8qNObRKK9k03ikszgjcXCrsyFdLoMMgHdL6y/RhgFWyU85z5cd/fVieW9DHdBzP3GUCTA=
-X-Received: by 2002:aca:e40b:: with SMTP id b11-v6mr857862oih.70.1523960021846;
-	Tue, 17 Apr 2018 03:13:41 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=c3du5OUTA4WEnT+2u4KhTxRTb7kP5n2L4tIB3Y1AtNo=;
+	b=B8M3bYKoeVDciN0498w0XXVOLuP94HhZvsOmP2ve/arZEowCaNWbcHcZZuMSskvbDg
+	KhU4rExfQwpWFlWZLTzJhZM6CHpTgKBul1eRHWPmTiecGOO1LrXTLSgzCW/SmEVSW86D
+	lzmj/eYdfumXOGI9eUqE12Dz/TgaOAJwccUcPJHxhzL7+RKdteUycABEjqvcgm+iawZL
+	35+5EG65ilrgquQrYosf/1w+lYzUxxxFqcIJoo3tlnvFW7hN4CFbnO6I51GPb8SbXZvD
+	S8yyoAzrwunzI49qSfvbD2zIdYALp2LoG79ioOGoLDEg33X4cObw6CCuWQhgUyqL47jp
+	fmqg==
+X-Gm-Message-State: ALQs6tAI0HNlU20dglIH+xPNigvFa+2nyW/HOMXIJ96Iln0cySsdbEHI
+	CJ6zDIqgQuIo8Er8hJSbi8XJjBXIQTNpfs42zbmvaw==
+X-Google-Smtp-Source: AIpwx4+1tczdKsjRiA7ymlubSl0HR5yFLWETx8FVghaFs6UKFBoIYRBDjVyIrnzkxEKMZlOlz3f2QbdAvjuAdhnOh8Y=
+X-Received: by 2002:aca:2b09:: with SMTP id i9-v6mr921973oik.98.1523963727671; 
+	Tue, 17 Apr 2018 04:15:27 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.138.17.198 with HTTP; Tue, 17 Apr 2018 03:13:21 -0700 (PDT)
-In-Reply-To: <42b9a571-d0fd-d970-729f-39d6cac69358@numalliance.com>
-References: <f082fcef-b5c2-203d-849a-cd39bd349a79@numalliance.com>
-	<CAALXFYxkizrNiHLUsOUUz88Fgk+v039B+RYivtPhn84ydZd17A@mail.gmail.com>
-	<42b9a571-d0fd-d970-729f-39d6cac69358@numalliance.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 17 Apr 2018 11:13:21 +0100
-Message-ID: <CAJTo0Lb16CBPXF0EB=1XRjkqrENFd2ScWqU0fJWe7PZbBMnDtg@mail.gmail.com>
-To: =?UTF-8?Q?St=C3=A9phane_Ancelot?= <sancelot@numalliance.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: compiling core-image-sato failure on 32 bits system
+Received: by 10.74.153.83 with HTTP; Tue, 17 Apr 2018 04:15:27 -0700 (PDT)
+From: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
+Date: Tue, 17 Apr 2018 13:15:27 +0200
+Message-ID: <CAEhQi8khVFOsFzoM=LWZnDMnsbO2o=eodSokurZFSteXTNHjGA@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: rocko cmake buld cstdlib:75:15: fatal error: stdlib.h: No such file or directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,167 +69,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Apr 2018 10:13:44 -0000
+X-List-Received-Date: Tue, 17 Apr 2018 11:15:29 -0000
+Content-Type: multipart/alternative; boundary="000000000000a376ed056a0974fb"
+
+--000000000000a376ed056a0974fb
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-If you've an i5 why are you running a 32-bit OS?  Just so you're
-aware, it's practically impossible to build webkit on a 32-bit host
-because there just isn't enough memory available.
+Hi all,
 
-Ross
+Have anyone experienced this error message before?
 
-On 17 April 2018 at 10:50, St=C3=A9phane Ancelot <sancelot@numalliance.com>=
- wrote:
+c++/7.3.0/cstdlib:75:15: fatal error: stdlib.h: No such file or directory
 >
->
-> Le 17/04/2018 =C3=A0 09:08, Iv=C3=A1n Castell a =C3=A9crit :
->
-> Review "dmesg" output to see if there is some kernel crash in your host
-> machine. Which CPU are you using to compile yocto (your host machine)? We
-> also have been dealing with this kind of issues compiling with an AMD Ryz=
-en
-> 7 1700 Eight-Core Processor and (in our case) it seems is a bug related w=
-ith
-> the CPU.
->
-> This is a core i5, but the installed system runs a 32bit ubuntu system.
-> There is no crash message in dmesg, I have setted up a swapfile in the
-> system
->
-> 2018-04-17 8:51 GMT+02:00 St=C3=A9phane Ancelot <sancelot@numalliance.com=
->:
->>
->> Hi,
->>
->> On my ubuntu bionic system 32 bits, compilation core-image-sato fails as
->> follow;
->>
->> unfortunately nothing seems interesting in log.do_install.
->>
->> what can I do ?
->>
->> Regards,
->>
->> Steph
->>
->> Build Configuration:
->>
->> BB_VERSION        =3D "1.36.0"
->>
->> BUILD_SYS         =3D "i686-linux"
->>
->> NATIVELSBSTRING   =3D "universal"
->>
->> TARGET_SYS        =3D "i586-poky-linux"
->>
->> MACHINE           =3D "qemux86"
->>
->> DISTRO            =3D "poky"
->>
->> DISTRO_VERSION    =3D "2.4.2"
->>
->> TUNE_FEATURES     =3D "m32 i586"
->>
->> TARGET_FPU        =3D ""
->>
->> meta
->>
->> meta-poky
->>
->> meta-yocto-bsp    =3D "rocko:fdeecc901196bbccd7c5b1ea4268a2cf56764a62"
->>
->>
->> Initialising tasks: 100%
->> |#######################################################################=
-###########################################################################=
-##########|
->> Time: 0:00:30
->>
->> NOTE: Executing SetScene Tasks
->>
->> NOTE: Executing RunQueue Tasks
->>
->> ERROR: linux-libc-headers-4.12-r0 do_install: oe_runmake failed
->>
->> ERROR: linux-libc-headers-4.12-r0 do_install: Function failed: do_instal=
-l
->> (log file is located at
->> /home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/4.12-=
-r0/temp/log.do_install.4172)
->>
->> ERROR: Logfile of failure stored in:
->> /home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/4.12-=
-r0/temp/log.do_install.4172
->>
->> Log data follows:
->>
->> | DEBUG: Executing python function extend_recipe_sysroot
->>
->> | NOTE: Direct dependencies are
->> ['virtual:native:/home/yocto/poky/meta/recipes-devtools/pkgconfig/pkgcon=
-fig_git.bb:do_populate_sysroot',
->> 'virtual:native:/home/yocto/poky/meta/recipes-devtools/unifdef/unifdef_2=
-.11.bb:do_populate_sysroot',
->> 'virtual:native:/home/yocto/poky/meta/recipes-devtools/pseudo/pseudo_1.8=
-.2.bb:do_populate_sysroot',
->> '/home/yocto/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb:do_po=
-pulate_sysroot',
->> 'virtual:native:/home/yocto/poky/meta/recipes-extended/xz/xz_5.2.3.bb:do=
-_populate_sysroot']
->>
->> | NOTE: Installed into sysroot: []
->>
->> | NOTE: Skipping as already exists in sysroot: ['pkgconfig-native',
->> 'unifdef-native', 'pseudo-native', 'quilt-native', 'xz-native',
->> 'gnu-config-native', 'autoconf-native', 'automake-native', 'libtool-nati=
-ve',
->> 'gettext-minimal-native', 'm4-native', 'texinfo-dummy-native']
->>
->> | DEBUG: Python function extend_recipe_sysroot finished
->>
->> | DEBUG: Executing shell function do_install
->>
->> | NOTE: make -j 4 HOSTCC=3Dgcc  HOSTCPP=3Dgcc -E headers_install
->> INSTALL_HDR_PATH=3D/home/yocto/poky/build/tmp/work/i586-poky-linux/linux=
--libc-headers/4.12-r0/image/usr
->>
->> | Segmentation fault
->>
->> | ERROR: oe_runmake failed
->>
->> | WARNING: exit code 1 from a shell command.
->>
->> | ERROR: Function failed: do_install (log file is located at
->> /home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/4.12-=
-r0/temp/log.do_install.4172)
->>
->> ERROR: Task
->> (/home/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-head=
-ers_4.12.bb:do_install)
->> failed with exit code '1'
->>
->> NOTE: Tasks Summary: Attempted 191 tasks of which 185 didn't need to be
->> rerun and 1 failed.
->>
->>
->> Summary: 1 task failed:
->>
->>
->> /home/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-heade=
-rs_4.12.bb:do_install
->>
->> Summary: There was 1 WARNING message shown.
->>
->>
->>
+> |  #include_next <stdlib.h>
 >
 >
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> |                ^~~~~~~~~~
+>
 >
 
+
+I am not seeing this error when cross compiling using the sdk. I can see in
+the output that the -isystem is added which when googling the error appears
+to be a problem when cross compiling. Since the sdk works I am guessing
+this flag is added by OE/poky. Any pointers on how to go forward is
+appreciated.
+
+BR
+Mans Zigher
+
+--000000000000a376ed056a0974fb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+PGRpdiBkaXI9Imx0ciI+SGkgYWxsLDxkaXY+PGJyPjwvZGl2PjxkaXY+SGF2ZSBhbnlvbmUgZXhw
+ZXJpZW5jZWQgdGhpcyBlcnJvciBtZXNzYWdlIGJlZm9yZT88L2Rpdj48ZGl2Pjxicj48L2Rpdj48
+ZGl2PjxibG9ja3F1b3RlIGNsYXNzPSJnbWFpbF9xdW90ZSIgc3R5bGU9Im1hcmdpbjowcHggMHB4
+IDBweCAwLjhleDtib3JkZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTtwYWRkaW5n
+LWxlZnQ6MWV4Ij5jKysvNy4zLjAvY3N0ZGxpYjo3NToxNTogZmF0YWwgZXJyb3I6IHN0ZGxpYi5o
+OiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqA8YnI+fMKgICNpbmNsdWRlX25leHQgJmx0O3N0ZGxpYi5oJmd0O8KgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPGJyPnzCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCBe
+fn5+fn5+fn5+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqDCoDwvYmxvY2txdW90ZT48ZGl2Pjxicj48L2Rpdj48ZGl2
+PkkgYW0gbm90IHNlZWluZyB0aGlzIGVycm9yIHdoZW4gY3Jvc3MgY29tcGlsaW5nIHVzaW5nIHRo
+ZSBzZGsuIEkgY2FuIHNlZSBpbiB0aGUgb3V0cHV0IHRoYXQgdGhlIC1pc3lzdGVtIGlzIGFkZGVk
+IHdoaWNoIHdoZW4gZ29vZ2xpbmcgdGhlIGVycm9yIGFwcGVhcnMgdG8gYmUgYSBwcm9ibGVtIHdo
+ZW4gY3Jvc3MgY29tcGlsaW5nLiBTaW5jZSB0aGUgc2RrIHdvcmtzIEkgYW0gZ3Vlc3NpbmcgdGhp
+cyBmbGFnIGlzIGFkZGVkIGJ5IE9FL3Bva3kuIEFueSBwb2ludGVycyBvbiBob3cgdG8gZ28gZm9y
+d2FyZCBpcyBhcHByZWNpYXRlZC48L2Rpdj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkJSPC9k
+aXY+PGRpdj5NYW5zIFppZ2hlcjwvZGl2PjwvZGl2Pg0K
+
+--000000000000a376ed056a0974fb--
