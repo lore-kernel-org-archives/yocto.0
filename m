@@ -1,62 +1,68 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 206D2E00C58; Tue, 17 Apr 2018 06:41:25 -0700 (PDT)
+	id 8F138E00C50; Tue, 17 Apr 2018 07:03:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.83.66 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9016E00BFF
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 06:41:23 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w3HDfLgE024244
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 17 Apr 2018 06:41:22 -0700
-Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
-	Tue, 17 Apr 2018 06:41:20 -0700
-To: Nicolas Salmin <nicolas_salmin@trimble.com>, <yocto@yoctoproject.org>
-References: <CAGTsOqOb1jEyVz9EpgkqyOg=7GiNvgcE2qmpvyMBXztNoMbgMg@mail.gmail.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
-	xsBNBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
-	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
-	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
-	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
-	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
-	AAHNJU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT7CwHcEEwEIACEFAlYK
-	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
-	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
-	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
-	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
-	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
-	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrs7ATQRWCsRYAQgAwK3FuHCE+HW3YWdH
-	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
-	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
-	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
-	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
-	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABwsBfBBgBCAAJBQJWCsRYAhsMAAoJ
-	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
-	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
-	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
-	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
-	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
-Organization: Wind River Systems
-Message-ID: <9cb80929-0b30-bb27-44dd-03ce6f5f4cb1@windriver.com>
-Date: Tue, 17 Apr 2018 08:41:19 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.7.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC653E00C02
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 07:03:35 -0700 (PDT)
+Received: by mail-pg0-f66.google.com with SMTP id e9so4354675pgr.7
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 07:03:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=hHrIaqf/ivlL4LalSZDeuTLtmecGA5GCADqPuql18vY=;
+	b=eTzwQJNHGow/aA24q85e3TPB4Gj98qflOqy5/Jp32N/DCwvcP3dWpydcsteBERa2Ne
+	YfdagiNjvvt3AORk3g35SNZ09woSZv0mBCFbE5RH6d9hzHPNd6+yQy/JRub5HRVwgwnl
+	BLCkhO+MOPD+Xh4C9UuX0L7dTbp8DjrYOZPLaiuT0i+YSNx6pl4nPUuJ9EQA3C43hEQI
+	Iyv/+wmoJ1fuMRxp+VQHGOdzw3l85ubFlk9j2J8GxoaQHe/9alysgqLF77g4QNItlMye
+	yzfgW8k5ESE+GX5QV0r6od2PNFeH57m3UPGtKBGz2oOPZ8OiVAdOQRyRmAvNO4kzjAXC
+	X6rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=hHrIaqf/ivlL4LalSZDeuTLtmecGA5GCADqPuql18vY=;
+	b=FkORmOMkEuFid6z57i2oyyvUryfTgRMS09WvGGkgKGpmecXQnPD4Tdw5yKh5PHUJ1N
+	GIG/IGOCLRFpZ8OhBMwKQkL+Ou2GohvqWISst5Dvov2HFim5fZC4bYJUw8i7j5cnOFSM
+	QJAf88XSRNM+F1Ltc5o8G/zWkt+J6z7NX1utkPlB+dyt7kRNa1W6iU9ObsmnA29E6ikB
+	HLPsX5yv2MVQAO2zi1M49pEN+u0mDyiszXNfHb8q/dhENs5XcQed+YN6NBDvgHSBQKe2
+	SSJVhg3Rt7AerYbO2Udu4I01c0E0oZDOJfw2fzJ3AHMhFHSOM0p5acNsVIutadbkAL8S
+	MIxw==
+X-Gm-Message-State: ALQs6tDNtBIBQVuca7whesSuVHv5IL8v79uVHPiGfSC/Ub6ZD19P3xSF
+	0lPx/BCzCVmPUfFVYErJSBt7f4GeWwYU9CB0KhA=
+X-Google-Smtp-Source: AIpwx4+AO8C9/+soQAhnARp4fBs1jdZdA3NrA/eSXtVz4K00HKZ3FXJhc+GipNA/IB/+DvLmHuB/CwLCDmLblpc1YFU=
+X-Received: by 10.98.7.83 with SMTP id b80mr2108384pfd.133.1523973814697; Tue,
+	17 Apr 2018 07:03:34 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAGTsOqOb1jEyVz9EpgkqyOg=7GiNvgcE2qmpvyMBXztNoMbgMg@mail.gmail.com>
-Subject: Re: Prelink compilation for ZCU102
+Received: by 10.100.138.98 with HTTP; Tue, 17 Apr 2018 07:03:04 -0700 (PDT)
+In-Reply-To: <CAJTo0Lb16CBPXF0EB=1XRjkqrENFd2ScWqU0fJWe7PZbBMnDtg@mail.gmail.com>
+References: <f082fcef-b5c2-203d-849a-cd39bd349a79@numalliance.com>
+	<CAALXFYxkizrNiHLUsOUUz88Fgk+v039B+RYivtPhn84ydZd17A@mail.gmail.com>
+	<42b9a571-d0fd-d970-729f-39d6cac69358@numalliance.com>
+	<CAJTo0Lb16CBPXF0EB=1XRjkqrENFd2ScWqU0fJWe7PZbBMnDtg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 17 Apr 2018 07:03:04 -0700
+Message-ID: <CAMKF1so57MArfaf_OGL_EnbWoPdLToK5t1FLnvXQnq57-Yr5Lg@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: compiling core-image-sato failure on 32 bits system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,61 +74,181 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Apr 2018 13:41:25 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 17 Apr 2018 14:03:36 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-T24gNC8xNy8xOCAzOjU1IEFNLCBOaWNvbGFzIFNhbG1pbiB3cm90ZToNCj4gSGVsbG8gZ3V5
-cywNCj4gDQo+IFNvbWVvbmUgaGVyZSBoYXZlIHNvbWUgaW5mb3JtYXRpb24gdG8gYnVpbGQg
-cHJlbGluayByZWNpcGUgZm9yIFpDVTEwMiBib2FyZA0KPiBiZWNhdXNlIGknbSBub3QgYWJs
-ZSB0byBkbyBpdCAuLi4NCj4gDQo+IEhlbGxvIGd1eXMsDQo+IA0KPiBTb21lb25lIGhlcmUg
-aGF2ZSBzb21lIGluZm9ybWF0aW9uIHRvIGJ1aWxkIHByZWxpbmsgcmVjaXBlIGZvciBaQ1Ux
-MDIgYm9hcmQNCj4gYmVjYXVzZSBpJ20gbm90IGFibGUgdG8gZG8gaXQgLi4uDQo+IA0KPiBF
-UlJPUjogcHJlbGluay0xLjArZ2l0QVVUT0lOQythYTI5ODVlZWZhLXIwIGRvX3VucGFjazog
-RmV0Y2hlciBmYWlsdXJlOiBGZXRjaA0KPiBjb21tYW5kIGV4cG9ydCBQU0VVRE9fRElTQUJM
-RUQ9MTsgZXhwb3J0DQo+IERCVVNfU0VTU0lPTl9CVVNfQUREUkVTUz0idW5peDphYnN0cmFj
-dD0vdG1wL2RidXMtS1Ric0kwV2daMiI7IGV4cG9ydA0KPiBTU0hfQVVUSF9TT0NLPSIvcnVu
-L3VzZXIvMTAwMC9rZXlyaW5nL3NzaCI7IGV4cG9ydA0KPiBQQVRIPSIvcHJpdmF0ZS9wYXRo
-L1VsdHJhU2NhbGUvemN1MTAyL3lvY3RvL2J1aWxkL3RtcC9zeXNyb290cy11bmluYXRpdmUv
-eDg2XzY0LWxpbnV4L3Vzci9iaW46L3ByaXZhdGUvcGF0aC9VbHRyYVNjYWxlL3pjdTEwMi95
-b2N0by9wb2t5L3NjcmlwdHM6L3ByaXZhdGUvcGF0aC9VbHRyYVNjYWxlL3pjdTEwMi95b2N0
-by9idWlsZC90bXAvd29yay9hYXJjaDY0LXBva3ktbGludXgvcHJlbGluay8xLjArZ2l0QVVU
-T0lOQythYTI5ODVlZWZhLXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3IvYmluL2FhcmNo
-NjQtcG9reS1saW51eDovcHJpdmF0ZS9wYXRoL1VsdHJhU2NhbGUvemN1MTAyL3lvY3RvL2J1
-aWxkL3RtcC93b3JrL2FhcmNoNjQtcG9reS1saW51eC9wcmVsaW5rLzEuMCtnaXRBVVRPSU5D
-K2FhMjk4NWVlZmEtcjAvcmVjaXBlLXN5c3Jvb3QvdXNyL2Jpbi9jcm9zc3NjcmlwdHM6L3By
-aXZhdGUvcGF0aC9VbHRyYVNjYWxlL3pjdTEwMi95b2N0by9idWlsZC90bXAvd29yay9hYXJj
-aDY0LXBva3ktbGludXgvcHJlbGluay8xLjArZ2l0QVVUT0lOQythYTI5ODVlZWZhLXIwL3Jl
-Y2lwZS1zeXNyb290LW5hdGl2ZS91c3Ivc2JpbjovcHJpdmF0ZS9wYXRoL1VsdHJhU2NhbGUv
-emN1MTAyL3lvY3RvL2J1aWxkL3RtcC93b3JrL2FhcmNoNjQtcG9reS1saW51eC9wcmVsaW5r
-LzEuMCtnaXRBVVRPSU5DK2FhMjk4NWVlZmEtcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL3Vz
-ci9iaW46L3ByaXZhdGUvcGF0aC9VbHRyYVNjYWxlL3pjdTEwMi95b2N0by9idWlsZC90bXAv
-d29yay9hYXJjaDY0LXBva3ktbGludXgvcHJlbGluay8xLjArZ2l0QVVUT0lOQythYTI5ODVl
-ZWZhLXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS9zYmluOi9wcml2YXRlL3BhdGgvVWx0cmFT
-Y2FsZS96Y3UxMDIveW9jdG8vYnVpbGQvdG1wL3dvcmsvYWFyY2g2NC1wb2t5LWxpbnV4L3By
-ZWxpbmsvMS4wK2dpdEFVVE9JTkMrYWEyOTg1ZWVmYS1yMC9yZWNpcGUtc3lzcm9vdC1uYXRp
-dmUvYmluOi9wcml2YXRlL3BhdGgvVWx0cmFTY2FsZS96Y3UxMDIveW9jdG8vcG9reS9iaXRi
-YWtlL2JpbjovcHJpdmF0ZS9wYXRoL1VsdHJhU2NhbGUvemN1MTAyL3lvY3RvL2J1aWxkL3Rt
-cC9ob3N0dG9vbHMiOw0KPiBleHBvcnQgSE9NRT0iL2hvbWUvbmljb2xhcyI7IGdpdCAtYyBj
-b3JlLmZzeW5jb2JqZWN0ZmlsZXM9MCBjaGVja291dCAtQg0KPiBjcm9zc19wcmVsaW5rIGFh
-Mjk4NWVlZmE5NDYyNTAzN2FkMzFlOWRjNTIwN2ZkNWJmMzFjYTcgZmFpbGVkIHdpdGggZXhp
-dCBjb2RlDQo+IDEyOCwgb3V0cHV0Og0KPiBmYXRhbDogcmVmZXJlbmNlIGlzIG5vdCBhIHRy
-ZWU6IGFhMjk4NWVlZmE5NDYyNTAzN2FkMzFlOWRjNTIwN2ZkNWJmMzFjYTcNCg0KVGhlIGNv
-bW1pdCBpcyBtb3N0IGRlZmluaXRlbHkgc3RpbGwgaW4gdGhlIHRyZWUuDQoNCmh0dHA6Ly9n
-aXQueW9jdG9wcm9qZWN0Lm9yZy9jZ2l0L2NnaXQuY2dpL3ByZWxpbmstY3Jvc3MvY29tbWl0
-Lz9oPWNyb3NzX3ByZWxpbmsmaWQ9YWEyOTg1ZWVmYTk0NjI1MDM3YWQzMWU5ZGM1MjA3ZmQ1
-YmYzMWNhNw0KDQpZb3UgbGlrZWx5IGhhdmUgYSBsb2NhbCBtaXJyb3IgdGhhdCBpcyBub3Qg
-dXAtdG8tZGF0ZSBvciBzb21ldGhpbmcgc2ltaWxhci4NCg0KLS1NYXJrDQoNCj4gRVJST1I6
-IHByZWxpbmstMS4wK2dpdEFVVE9JTkMrYWEyOTg1ZWVmYS1yMCBkb191bnBhY2s6IEZ1bmN0
-aW9uIGZhaWxlZDoNCj4gYmFzZV9kb191bnBhY2sNCj4gRVJST1I6IExvZ2ZpbGUgb2YgZmFp
-bHVyZSBzdG9yZWQgaW46DQo+IC9wcml2YXRlL3BhdGgvVWx0cmFTY2FsZS96Y3UxMDIveW9j
-dG8vYnVpbGQvdG1wL3dvcmsvYWFyY2g2NC1wb2t5LWxpbnV4L3ByZWxpbmsvMS4wK2dpdEFV
-VE9JTkMrYWEyOTg1ZWVmYS1yMC90ZW1wL2xvZy5kb191bnBhY2suODU5ODYNCj4gRVJST1I6
-IFRhc2sNCj4gKC9wcml2YXRlL3BhdGgvVWx0cmFTY2FsZS96Y3UxMDIveW9jdG8vcG9reS9t
-ZXRhL3JlY2lwZXMtZGV2dG9vbHMvcHJlbGluay9wcmVsaW5rX2dpdC5iYjpkb191bnBhY2sp
-DQo+IGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMScNCj4gDQo+IA0KPiBJIGRvbid0IGtub3cg
-aWYgaXQncyBiZWNhdXNlIG9mIHRoZSB0YXJnZXQgaXMgYW4gYWFyY2g2NCBhcmNoaXRlY3R1
-cmUgb3Igbm90IC4uLg0KPiANCj4gQW55IGFkdmlzZSA/DQo+IENoZWVycywNCj4gTmljb2xh
-cw0KPiANCj4gDQoNCg==
+On Tue, Apr 17, 2018 at 3:13 AM, Burton, Ross <ross.burton@intel.com> wrote=
+:
+> If you've an i5 why are you running a 32-bit OS?  Just so you're
+> aware, it's practically impossible to build webkit on a 32-bit host
+> because there just isn't enough memory available.
+>
+
+you need 8G of RAM minimum or reduce your -j factor to 1 and have a lot of =
+swap
+you might get lucky
+
+> Ross
+>
+> On 17 April 2018 at 10:50, St=C3=A9phane Ancelot <sancelot@numalliance.co=
+m> wrote:
+>>
+>>
+>> Le 17/04/2018 =C3=A0 09:08, Iv=C3=A1n Castell a =C3=A9crit :
+>>
+>> Review "dmesg" output to see if there is some kernel crash in your host
+>> machine. Which CPU are you using to compile yocto (your host machine)? W=
+e
+>> also have been dealing with this kind of issues compiling with an AMD Ry=
+zen
+>> 7 1700 Eight-Core Processor and (in our case) it seems is a bug related =
+with
+>> the CPU.
+>>
+>> This is a core i5, but the installed system runs a 32bit ubuntu system.
+>> There is no crash message in dmesg, I have setted up a swapfile in the
+>> system
+>>
+>> 2018-04-17 8:51 GMT+02:00 St=C3=A9phane Ancelot <sancelot@numalliance.co=
+m>:
+>>>
+>>> Hi,
+>>>
+>>> On my ubuntu bionic system 32 bits, compilation core-image-sato fails a=
+s
+>>> follow;
+>>>
+>>> unfortunately nothing seems interesting in log.do_install.
+>>>
+>>> what can I do ?
+>>>
+>>> Regards,
+>>>
+>>> Steph
+>>>
+>>> Build Configuration:
+>>>
+>>> BB_VERSION        =3D "1.36.0"
+>>>
+>>> BUILD_SYS         =3D "i686-linux"
+>>>
+>>> NATIVELSBSTRING   =3D "universal"
+>>>
+>>> TARGET_SYS        =3D "i586-poky-linux"
+>>>
+>>> MACHINE           =3D "qemux86"
+>>>
+>>> DISTRO            =3D "poky"
+>>>
+>>> DISTRO_VERSION    =3D "2.4.2"
+>>>
+>>> TUNE_FEATURES     =3D "m32 i586"
+>>>
+>>> TARGET_FPU        =3D ""
+>>>
+>>> meta
+>>>
+>>> meta-poky
+>>>
+>>> meta-yocto-bsp    =3D "rocko:fdeecc901196bbccd7c5b1ea4268a2cf56764a62"
+>>>
+>>>
+>>> Initialising tasks: 100%
+>>> |######################################################################=
+###########################################################################=
+###########|
+>>> Time: 0:00:30
+>>>
+>>> NOTE: Executing SetScene Tasks
+>>>
+>>> NOTE: Executing RunQueue Tasks
+>>>
+>>> ERROR: linux-libc-headers-4.12-r0 do_install: oe_runmake failed
+>>>
+>>> ERROR: linux-libc-headers-4.12-r0 do_install: Function failed: do_insta=
+ll
+>>> (log file is located at
+>>> /home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/4.12=
+-r0/temp/log.do_install.4172)
+>>>
+>>> ERROR: Logfile of failure stored in:
+>>> /home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/4.12=
+-r0/temp/log.do_install.4172
+>>>
+>>> Log data follows:
+>>>
+>>> | DEBUG: Executing python function extend_recipe_sysroot
+>>>
+>>> | NOTE: Direct dependencies are
+>>> ['virtual:native:/home/yocto/poky/meta/recipes-devtools/pkgconfig/pkgco=
+nfig_git.bb:do_populate_sysroot',
+>>> 'virtual:native:/home/yocto/poky/meta/recipes-devtools/unifdef/unifdef_=
+2.11.bb:do_populate_sysroot',
+>>> 'virtual:native:/home/yocto/poky/meta/recipes-devtools/pseudo/pseudo_1.=
+8.2.bb:do_populate_sysroot',
+>>> '/home/yocto/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb:do_p=
+opulate_sysroot',
+>>> 'virtual:native:/home/yocto/poky/meta/recipes-extended/xz/xz_5.2.3.bb:d=
+o_populate_sysroot']
+>>>
+>>> | NOTE: Installed into sysroot: []
+>>>
+>>> | NOTE: Skipping as already exists in sysroot: ['pkgconfig-native',
+>>> 'unifdef-native', 'pseudo-native', 'quilt-native', 'xz-native',
+>>> 'gnu-config-native', 'autoconf-native', 'automake-native', 'libtool-nat=
+ive',
+>>> 'gettext-minimal-native', 'm4-native', 'texinfo-dummy-native']
+>>>
+>>> | DEBUG: Python function extend_recipe_sysroot finished
+>>>
+>>> | DEBUG: Executing shell function do_install
+>>>
+>>> | NOTE: make -j 4 HOSTCC=3Dgcc  HOSTCPP=3Dgcc -E headers_install
+>>> INSTALL_HDR_PATH=3D/home/yocto/poky/build/tmp/work/i586-poky-linux/linu=
+x-libc-headers/4.12-r0/image/usr
+>>>
+>>> | Segmentation fault
+>>>
+>>> | ERROR: oe_runmake failed
+>>>
+>>> | WARNING: exit code 1 from a shell command.
+>>>
+>>> | ERROR: Function failed: do_install (log file is located at
+>>> /home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/4.12=
+-r0/temp/log.do_install.4172)
+>>>
+>>> ERROR: Task
+>>> (/home/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-hea=
+ders_4.12.bb:do_install)
+>>> failed with exit code '1'
+>>>
+>>> NOTE: Tasks Summary: Attempted 191 tasks of which 185 didn't need to be
+>>> rerun and 1 failed.
+>>>
+>>>
+>>> Summary: 1 task failed:
+>>>
+>>>
+>>> /home/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-head=
+ers_4.12.bb:do_install
+>>>
+>>> Summary: There was 1 WARNING message shown.
+>>>
+>>>
+>>>
+>>
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
