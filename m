@@ -1,66 +1,56 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 05E8BE00A1C; Tue, 17 Apr 2018 07:04:51 -0700 (PDT)
+	id 11120E00A44; Tue, 17 Apr 2018 09:51:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [64.235.154.214 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.66 listed in list.dnswl.org]
-Received: from mail-oi0-f66.google.com (mail-oi0-f66.google.com
-	[209.85.218.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8B4EE00831
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 07:04:44 -0700 (PDT)
-Received: by mail-oi0-f66.google.com with SMTP id e123-v6so18026814oih.13
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 07:04:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=CQYQO+6zgFG3V74Sm94nmIaVK26qm8O42zrXs5JXkZQ=;
-	b=Eb02mgmeQ3+qqk1kEcRQ//suDwxnAlyexUl0hqYjEPf80W9jdJMb/u9R1vbmPiMjG5
-	y18Qsr/ZLKZy/TM3sPML/vlLrHE6SpocBCRK2e4f08sIqaQWI2ywIm7senIgO61BqMti
-	wBZgCWMRHiE9DTdb22GkAy5X7Uerxv0V/wL20q6uwUR4QxIsvFvPgwYz22viS+/0zB03
-	ynduIRsNEHNdDPucYW2nKWvxTTxO0tcqN/SU8Fl9fMDd3eEAw2G8TZ1pp38Y1S4vAUYB
-	xJfZ/CcfBOwMVTT6iiznnYfgQaPxfPfkgU0n+CDN+j4uIeyFP4e28vhcNcSP+gl3os4y
-	m3MQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=CQYQO+6zgFG3V74Sm94nmIaVK26qm8O42zrXs5JXkZQ=;
-	b=CZ+IgEL+gHJ5YLV7iHW9enQ/FbSNzLsMnA7sINA7vSMIteFkyC3KkBTvdjXeltvvKz
-	T1+vDIm6li20lrpJZIAypvtyjV+nqaOSSurNXXqSOfIVn/L4L1/s7fiOORLzlP5Y4D8y
-	s417XIsa2IrHu3Q2hJaz0lGih5M9q50pjQ7JgPk80IJZYiuHbIAdWjxIkSLGsWaulf2q
-	fJsJIMOYpRO1LPoHb9XpxrzhpP4ufYB/+zEd9c9bM8nb12BrzJ+azWOVQ/MUSrN0aEW6
-	BxjY58DOVcsNfjLZ4jChCc/lJtKhUEHkvdC3ch3zDuYl4Gtl0jKAnQAitXuRZhZtKSAo
-	XQ8A==
-X-Gm-Message-State: ALQs6tBS6gUXn9JRE7V7Sfn2RpPpVgyApFXlB//dzsnomRxGIBWuIZlX
-	j2pR6YW467StL+AO4zMK+3qQxg6XSWFNjZhVAzY9rQ==
-X-Google-Smtp-Source: AIpwx4+RzUem/FDpXMEOytHXfbwvdDQ789Qz7xBJIrnfVI8XUsS9Y4qzg6vszIPyd7kh2fEEGgHtiD8smQpMLTf0eyY=
-X-Received: by 2002:aca:ea06:: with SMTP id
-	i6-v6mr1358422oih.235.1523973883881; 
-	Tue, 17 Apr 2018 07:04:43 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from 11pmail.ess.barracuda.com (11pmail.ess.barracuda.com
+	[64.235.154.214])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00D71E00831
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 09:51:49 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
+	mx1402.ess.rzc.cudaops.com (version=TLSv1.2
+	cipher=AES256-SHA256 bits=256 verify=NO);
+	Tue, 17 Apr 2018 16:51:33 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
+	Tue, 17 Apr 2018 09:50:35 -0700
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+	([::1]) with mapi id 15.01.0669.032; Tue, 17 Apr 2018 09:50:35 -0700
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Connecting to mysql/mariadb
+Thread-Index: AQHT1mtkYaS4zGsrpkOnYJjDqg0PAg==
+Date: Tue, 17 Apr 2018 16:50:35 +0000
+Message-ID: <a3c2c1bf378440259497841cd4807320@sakuraus.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.239]
 MIME-Version: 1.0
-Received: by 10.138.17.198 with HTTP; Tue, 17 Apr 2018 07:04:23 -0700 (PDT)
-In-Reply-To: <CAMKF1so57MArfaf_OGL_EnbWoPdLToK5t1FLnvXQnq57-Yr5Lg@mail.gmail.com>
-References: <f082fcef-b5c2-203d-849a-cd39bd349a79@numalliance.com>
-	<CAALXFYxkizrNiHLUsOUUz88Fgk+v039B+RYivtPhn84ydZd17A@mail.gmail.com>
-	<42b9a571-d0fd-d970-729f-39d6cac69358@numalliance.com>
-	<CAJTo0Lb16CBPXF0EB=1XRjkqrENFd2ScWqU0fJWe7PZbBMnDtg@mail.gmail.com>
-	<CAMKF1so57MArfaf_OGL_EnbWoPdLToK5t1FLnvXQnq57-Yr5Lg@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 17 Apr 2018 15:04:23 +0100
-Message-ID: <CAJTo0LZ6oypk2+jpDaPq_PA1PrC_m9Nysp_gXYUHNz1aSv3_Ug@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: compiling core-image-sato failure on 32 bits system
+X-BESS-ID: 1523983890-321458-3638-626-1
+X-BESS-VER: 2018.4-r1804121647
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.192084
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
+	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, HTML_MESSAGE
+X-BESS-BRTS-Status: 1
+Subject: Connecting to mysql/mariadb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,21 +62,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Apr 2018 14:04:51 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 17 Apr 2018 16:51:53 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_a3c2c1bf378440259497841cd4807320sakurauscom_"
 
-On 17 April 2018 at 15:03, Khem Raj <raj.khem@gmail.com> wrote:
-> On Tue, Apr 17, 2018 at 3:13 AM, Burton, Ross <ross.burton@intel.com> wrote:
->> If you've an i5 why are you running a 32-bit OS?  Just so you're
->> aware, it's practically impossible to build webkit on a 32-bit host
->> because there just isn't enough memory available.
->>
->
-> you need 8G of RAM minimum or reduce your -j factor to 1 and have a lot of swap
-> you might get lucky
+--_000_a3c2c1bf378440259497841cd4807320sakurauscom_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-I've seen webkit fail to build on 32-bit systems because the linker
-has ran out of virtual address space.
+I've got a Yocto system that I'm working on that has mysql/mariadb configur=
+ed but I can't connect to it with MySQL Workbench from another machine. mar=
+iadb is running, the network connection is live, but when I try to connect =
+using MySQL Workbench I get an immediate "connection refused" response. I'v=
+e tried user root, & mysql, same response. I'm using the default configurat=
+ion from Yocto, so maybe I'm missing something that I should be configuring=
+.
 
-Ross
 
+If anybody here has any experience with this I would appreciate any enlight=
+enment you can give me.
+
+
+Thanks in advance,
+
+Greg Wilson-Lindberg
+
+
+--_000_a3c2c1bf378440259497841cd4807320sakurauscom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>I've got a Yocto system that I'm working on that has mysql/mariadb confi=
+gured but I can't connect to it with MySQL Workbench from another machine. =
+mariadb is running, the network connection is live, but when I try to conne=
+ct using MySQL Workbench I get an
+ immediate &quot;connection refused&quot; response. I've tried user root, &=
+amp; mysql, same response. I'm using the default configuration from Yocto, =
+so maybe I'm missing something that I should be configuring.</p>
+<p><br>
+</p>
+<p>If anybody here has any experience with this I would appreciate any enli=
+ghtenment you can give me.</p>
+<p><br>
+</p>
+<p>Thanks in advance,</p>
+<p>Greg Wilson-Lindberg</p>
+<p><br>
+</p>
+</div>
+</body>
+</html>
+
+--_000_a3c2c1bf378440259497841cd4807320sakurauscom_--
