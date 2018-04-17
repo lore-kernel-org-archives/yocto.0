@@ -1,43 +1,65 @@
-Return-Path: <sancelot@numalliance.com>
+Return-Path: <icastell@nayarsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1BDA8E00AAF; Tue, 17 Apr 2018 02:50:48 -0700 (PDT)
+	id 0BC88E00BFF; Tue, 17 Apr 2018 03:06:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [194.2.198.111 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.numalliance.com (mail.numalliance.com [194.2.198.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C728E00948
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 02:50:45 -0700 (PDT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.numalliance.com (Postfix) with ESMTP id BD9D721EF460;
-	Tue, 17 Apr 2018 11:50:43 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mail.numalliance.com
-Received: from mail.numalliance.com ([127.0.0.1])
-	by localhost (mail.numalliance.com [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id BPmzk29e4Pyq; Tue, 17 Apr 2018 11:50:35 +0200 (CEST)
-Received: from [192.168.0.112] (unknown [192.168.0.112])
-	(Authenticated sender: sancelot@numalliance.com)
-	by mail.numalliance.com (Postfix) with ESMTPSA id 6BBBB21EF45A;
-	Tue, 17 Apr 2018 11:50:35 +0200 (CEST)
-To: =?UTF-8?Q?Iv=c3=a1n_Castell?= <icastell@nayarsystems.com>,
-	yocto <yocto@yoctoproject.org>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.43 listed in list.dnswl.org]
+Received: from mail-it0-f43.google.com (mail-it0-f43.google.com
+	[209.85.214.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF1BDE00A6A
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 03:06:52 -0700 (PDT)
+Received: by mail-it0-f43.google.com with SMTP id x144-v6so14307562itc.0
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 03:06:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nayarsystems.com; s=google;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=/dDnvMTFqQ4lVdo4Z6vkDu/D7Cf/wBsfsTBlLqog02E=;
+	b=TFsZOdfCL2TA1j//+ZtnmDQJl8W0KwcJmOSrNgEz2Q+AIhfwkWNfj8iSEnWLMib34K
+	I0MSrPHOsLt5AWffOGG0mJ9Kf4hlXmF4VUReTjlvLRAwtKUTwEp3Y9Fe2mn7bthzD1dL
+	0TV7wOrC4pw9c+GXY1wgf2a1zXdKOW+F6WxmE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=/dDnvMTFqQ4lVdo4Z6vkDu/D7Cf/wBsfsTBlLqog02E=;
+	b=HBGjILYwla0dklRN+wwvFdgtd2OY0zCBu4mZNJDDS0+dOawF7k2zXhzEZ0f9RXJFQ/
+	6YyJ+8Y8A42h2VZwURYJ/rugOtUbE3U95CF1oqXqw33rp2kxD/enO31DXcR5fRSTbdBx
+	vGKhcwbrYZfrVug0t7NmRye+9ICCiOirn6Sf8h7HgKB5NQpf6sjxOF/0EhJD7vxr2isa
+	1whPoQe8GA5FbP7B1Nr4UYJfWnwH+1mKeyIjjZliIBjV6yPTis1Hd5UMFsjzTpv9l+LZ
+	LZdFnocTYOoESZBLNx/hxnOjRgc+OHKDyRBgH7RQH/Gr/rs5VLjTHqFY6DJ256GS+B9g
+	gE2g==
+X-Gm-Message-State: ALQs6tCAM6yhl4CrjtXMxr90O6yaEY9/Y5cqwVl8f+EP0oA+8RBPV8DS
+	Xt/3aof4J0W+tauBNCB++IZUc3glJe/P1s9j6Ma8DHoS
+X-Google-Smtp-Source: AIpwx49WxLb41psIFd+hxjdSHeL5wzalJWBTVSPc7jfF0KrbCUG1cYF468ji8wjdYz8gRiMf19UeKPFwE5X2Owe1v/k=
+X-Received: by 2002:a24:78cc:: with SMTP id
+	p195-v6mr493624itc.45.1523959612492; 
+	Tue, 17 Apr 2018 03:06:52 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a02:6664:0:0:0:0:0 with HTTP; Tue, 17 Apr 2018 03:06:51
+	-0700 (PDT)
+In-Reply-To: <42b9a571-d0fd-d970-729f-39d6cac69358@numalliance.com>
 References: <f082fcef-b5c2-203d-849a-cd39bd349a79@numalliance.com>
 	<CAALXFYxkizrNiHLUsOUUz88Fgk+v039B+RYivtPhn84ydZd17A@mail.gmail.com>
-From: =?UTF-8?Q?St=c3=a9phane_Ancelot?= <sancelot@numalliance.com>
-Message-ID: <42b9a571-d0fd-d970-729f-39d6cac69358@numalliance.com>
-Date: Tue, 17 Apr 2018 11:50:35 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.7.0
-MIME-Version: 1.0
-In-Reply-To: <CAALXFYxkizrNiHLUsOUUz88Fgk+v039B+RYivtPhn84ydZd17A@mail.gmail.com>
+	<42b9a571-d0fd-d970-729f-39d6cac69358@numalliance.com>
+From: =?UTF-8?Q?Iv=C3=A1n_Castell?= <icastell@nayarsystems.com>
+Date: Tue, 17 Apr 2018 12:06:51 +0200
+Message-ID: <CAALXFYzX4sXh3RGZ0zwq0R_J+03hQ=vDGmVVG5dYtU3eDWNeCw@mail.gmail.com>
+To: =?UTF-8?Q?St=C3=A9phane_Ancelot?= <sancelot@numalliance.com>
+Cc: yocto <yocto@yoctoproject.org>
 Subject: Re: compiling core-image-sato failure on 32 bits system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -50,775 +72,663 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Apr 2018 09:50:48 -0000
-Content-Type: multipart/alternative;
-	boundary="------------40C1268596228F5201D856E0"
-Content-Language: fr
+X-List-Received-Date: Tue, 17 Apr 2018 10:06:55 -0000
+Content-Type: multipart/alternative; boundary="0000000000005ae875056a087f20"
 
---------------40C1268596228F5201D856E0
-Content-Type: text/plain; charset=utf-8; format=flowed
+--0000000000005ae875056a087f20
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+If dmesg message shows no crashes your problem seems not related with the
+CPU of your host (build) machine. You should investigate further about that
+"Segmentation Fault" ERROR message. What gcc version is installed in your
+host machine? Also, check
+/home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/4.12-r0/=
+temp/log.do_install.4172
+contents to gather more useful information to discover/fix your issue.
 
 
-Le 17/04/2018 =C3=A0 09:08, Iv=C3=A1n Castell a =C3=A9crit=C2=A0:
-> Review "dmesg" output to see if there is some kernel crash in your=20
-> host machine. Which CPU are you using to compile yocto (your host=20
-> machine)?We also have been dealing with this kind of issues compiling=20
-> with anAMD Ryzen 7 1700 Eight-Core Processor and (in our case) it=20
-> seems is a bug related with the CPU.
->
-This is a core i5, but the installed system runs a 32bit ubuntu system.
-There is no crash message in dmesg, I have setted up a swapfile in the=20
-system
-> 2018-04-17 8:51 GMT+02:00 St=C3=A9phane Ancelot <sancelot@numalliance.c=
-om=20
-> <mailto:sancelot@numalliance.com>>:
->
->     **
->
->     *Hi,*
->
->     *
->
->     **
->
->     On my ubuntu bionic system 32 bits, compilation core-image-sato
->     fails as follow;
->
->     **
->
->     unfortunately nothing seems interesting in log*.*do_install.
->
->     **
->
->     what can I do ?
->
->     *
->
->     Regards,
->
->     Steph
->
->     *
->
->     Build Configuration:
->
->     BB_VERSION =3D "1.36.0"
->
->     BUILD_SYS =3D "i686-linux"
->
->     NATIVELSBSTRING =3D "universal"
->
->     TARGET_SYS =3D "i586-poky-linux"
->
->     MACHINE =3D "qemux86"
->
->     DISTRO =3D "poky"
->
->     DISTRO_VERSION =3D "2.4.2"
->
->     TUNE_FEATURES =3D "m32 i586"
->
->     TARGET_FPU =3D ""
->
->     meta
->
->     meta-poky
->
->     meta-yocto-bsp =3D "rocko:fdeecc901196bbccd7c5b1ea4268a2cf56764a62"
+2018-04-17 11:50 GMT+02:00 St=C3=A9phane Ancelot <sancelot@numalliance.com>=
+:
+
 >
 >
->     Initialising tasks: 100%
->     |##################################################################=
-#########################################################################=
-#################|
->     Time: 0:00:30
+> Le 17/04/2018 =C3=A0 09:08, Iv=C3=A1n Castell a =C3=A9crit :
 >
->     NOTE: Executing SetScene Tasks
+> Review "dmesg" output to see if there is some kernel crash in your host
+> machine. Which CPU are you using to compile yocto (your host machine)? We
+> also have been dealing with this kind of issues compiling with an AMD
+> Ryzen 7 1700 Eight-Core Processor and (in our case) it seems is a bug
+> related with the CPU.
 >
->     NOTE: Executing RunQueue Tasks
+> This is a core i5, but the installed system runs a 32bit ubuntu system.
+> There is no crash message in dmesg, I have setted up a swapfile in the
+> system
 >
->     ERROR: linux-libc-headers-4.12-r0 do_install: oe_runmake failed
+> 2018-04-17 8:51 GMT+02:00 St=C3=A9phane Ancelot <sancelot@numalliance.com=
+>:
 >
->     ERROR: linux-libc-headers-4.12-r0 do_install: Function failed:
->     do_install (log file is located at
->     /home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/=
-4.12-r0/temp/log.do_install.4172)
->
->     ERROR: Logfile of failure stored in:
->     /home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/=
-4.12-r0/temp/log.do_install.4172
->
->     Log data follows:
->
->     | DEBUG: Executing python function extend_recipe_sysroot
->
->     | NOTE: Direct dependencies are
->     ['virtual:native:/home/yocto/poky/meta/recipes-devtools/pkgconfig/p=
-kgconfig_git.bb:do_populate_sysroot',
->     'virtual:native:/home/yocto/poky/meta/recipes-devtools/unifdef/unif=
-def_2.11.bb:do_populate_sysroot',
->     'virtual:native:/home/yocto/poky/meta/recipes-devtools/pseudo/pseud=
-o_1.8.2.bb:do_populate_sysroot',
->     '/home/yocto/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb:=
-do_populate_sysroot',
->     'virtual:native:/home/yocto/poky/meta/recipes-extended/xz/xz_5.2.3.=
-bb:do_populate_sysroot']
->
->     | NOTE: Installed into sysroot: []
->
->     | NOTE: Skipping as already exists in sysroot:
->     ['pkgconfig-native', 'unifdef-native', 'pseudo-native',
->     'quilt-native', 'xz-native', 'gnu-config-native',
->     'autoconf-native', 'automake-native', 'libtool-native',
->     'gettext-minimal-native', 'm4-native', 'texinfo-dummy-native']
->
->     | DEBUG: Python function extend_recipe_sysroot finished
->
->     | DEBUG: Executing shell function do_install
->
->     | NOTE: make -j 4 HOSTCC=3Dgcc =C2=A0HOSTCPP=3Dgcc -E headers_insta=
-ll
->     INSTALL_HDR_PATH=3D/home/yocto/poky/build/tmp/work/i586-poky-linux/=
-linux-libc-headers/4.12-r0/image/usr
->
->     | Segmentation fault
->
->     | ERROR: oe_runmake failed
->
->     | WARNING: exit code 1 from a shell command.
->
->     | ERROR: Function failed: do_install (log file is located at
->     /home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/=
-4.12-r0/temp/log.do_install.4172)
->
->     ERROR: Task
->     (/home/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux-libc=
--headers_4.12.bb:do_install)
->     failed with exit code '1'
->
->     NOTE: Tasks Summary: Attempted 191 tasks of which 185 didn't need
->     to be rerun and 1 failed.
->
->
->     Summary: 1 task failed:
->
->     =C2=A0/home/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux=
--libc-headers_4.12.bb:do_install
->
->     Summary: There was 1 WARNING message shown.
->
->     *
->
+> *Hi,*
+>>
+>> * On my ubuntu bionic system 32 bits, compilation core-image-sato fails
+>> as follow; *
+>>
+>> * unfortunately nothing seems interesting in log.do_install. *
+>>
+>> * what can I do ? *
+>>
+>> Regards,
+>>
+>> Steph
+>>
+>>
+>>
+>> * Build Configuration: BB_VERSION        =3D "1.36.0" BUILD_SYS         =
+=3D
+>> "i686-linux" NATIVELSBSTRING   =3D "universal" TARGET_SYS        =3D
+>> "i586-poky-linux" MACHINE           =3D "qemux86" DISTRO            =3D =
+"poky"
+>> DISTRO_VERSION    =3D "2.4.2" TUNE_FEATURES     =3D "m32 i586" TARGET_FP=
+U
+>>        =3D "" meta             meta-poky        meta-yocto-bsp    =3D
+>> "rocko:fdeecc901196bbccd7c5b1ea4268a2cf56764a62" Initialising tasks: 100=
+%
+>> |#######################################################################=
+###########################################################################=
+##########|
+>> Time: 0:00:30 NOTE: Executing SetScene Tasks
+>>
+>> NOTE: Executing RunQueue Tasks
+>>
+>> ERROR: linux-libc-headers-4.12-r0 do_install: oe_runmake failed ERROR:
+>> linux-libc-headers-4.12-r0 do_install: Function failed: do_install (log
+>> file is located at
+>> /home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/4.12-=
+r0/temp/log.do_install.4172)
+>> ERROR: Logfile of failure stored in:
+>> /home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/4.12-=
+r0/temp/log.do_install.4172
+>> Log data follows: | DEBUG: Executing python function extend_recipe_sysro=
+ot
+>> | NOTE: Direct dependencies are
+>> ['virtual:native:/home/yocto/poky/meta/recipes-devtools/pkgconfig/pkgcon=
+fig_git.bb:do_populate_sysroot',
+>> 'virtual:native:/home/yocto/poky/meta/recipes-devtools/unifdef/unifdef_2=
+.11.bb:do_populate_sysroot',
+>> 'virtual:native:/home/yocto/poky/meta/recipes-devtools/pseudo/pseudo_1.8=
+.2.bb:do_populate_sysroot',
+>> '/home/yocto/poky/meta/recipes-devtools/quilt/quilt-native_0.65.bb:do_po=
+pulate_sysroot',
+>> 'virtual:native:/home/yocto/poky/meta/recipes-extended/xz/xz_5.2.3.bb:do=
+_populate_sysroot']
+>> | NOTE: Installed into sysroot: [] | NOTE: Skipping as already exists in
+>> sysroot: ['pkgconfig-native', 'unifdef-native', 'pseudo-native',
+>> 'quilt-native', 'xz-native', 'gnu-config-native', 'autoconf-native',
+>> 'automake-native', 'libtool-native', 'gettext-minimal-native', 'm4-nativ=
+e',
+>> 'texinfo-dummy-native'] | DEBUG: Python function extend_recipe_sysroot
+>> finished | DEBUG: Executing shell function do_install | NOTE: make -j 4
+>> HOSTCC=3Dgcc  HOSTCPP=3Dgcc -E headers_install
+>> INSTALL_HDR_PATH=3D/home/yocto/poky/build/tmp/work/i586-poky-linux/linux=
+-libc-headers/4.12-r0/image/usr
+>> | Segmentation fault | ERROR: oe_runmake failed | WARNING: exit code 1 f=
+rom
+>> a shell command. | ERROR: Function failed: do_install (log file is locat=
+ed
+>> at
+>> /home/yocto/poky/build/tmp/work/i586-poky-linux/linux-libc-headers/4.12-=
+r0/temp/log.do_install.4172)
+>> ERROR: Task
+>> (/home/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-head=
+ers_4.12.bb:do_install)
+>> failed with exit code '1' NOTE: Tasks Summary: Attempted 191 tasks of wh=
+ich
+>> 185 didn't need to be rerun and 1 failed. Summary: 1 task failed:
+>>  /home/yocto/poky/meta/recipes-kernel/linux-libc-headers/linux-libc-head=
+ers_4.12.bb:do_install
+>> Summary: There was 1 WARNING message shown. *
+>>
+>>
+>>
 >
 >
 
+--0000000000005ae875056a087f20
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------40C1268596228F5201D856E0
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+<div dir=3D"ltr">If dmesg message shows no crashes your problem seems not r=
+elated with the CPU of your host (build) machine. You should investigate fu=
+rther about that &quot;Segmentation Fault&quot;=C2=A0ERROR message. What gc=
+c version is installed in your host machine? Also, check /home/yocto/poky/b=
+uild/tmp/work/i586-poky-linux/linux-libc-headers/4.12-r0/temp/log.do_instal=
+l.4172 contents to gather more useful information to discover/fix your issu=
+e.<div><br></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+2018-04-17 11:50 GMT+02:00 St=C3=A9phane Ancelot <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:sancelot@numalliance.com" target=3D"_blank">sancelot@numallia=
+nce.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div text=3D"#000000" bgcolor=3D"#FFFFFF"><span class=3D"">
+    <p><br>
+    </p>
+    <br>
+    <div class=3D"m_1903241208638611641moz-cite-prefix">Le 17/04/2018 =C3=
+=A0 09:08, Iv=C3=A1n Castell a
+      =C3=A9crit=C2=A0:<br>
+    </div>
+    </span><span class=3D""><blockquote type=3D"cite">
+      <div dir=3D"ltr">Review &quot;dmesg&quot; output to see if there is s=
+ome
+        kernel crash in your host machine. <span style=3D"color:rgb(34,34,3=
+4);font-family:arial,sans-serif;font-size:small;font-style:normal;font-vari=
+ant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacin=
+g:normal;text-align:start;text-indent:0px;text-transform:none;white-space:n=
+ormal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-st=
+yle:initial;text-decoration-color:initial;float:none;display:inline">Which
+          CPU are you using to compile yocto (your host machine)?<span>=C2=
+=A0</span></span>We
+        also have been dealing with this kind of issues compiling with
+        an<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;f=
+ont-size:12.8px;font-style:normal;font-variant-ligatures:normal;font-varian=
+t-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-i=
+ndent:0px;text-transform:none;white-space:normal;word-spacing:0px;backgroun=
+d-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-colo=
+r:initial;float:none;display:inline"><span>=C2=A0</span>AMD
+          Ryzen 7 1700 Eight-Core Processor and (in our case) it seems
+          is a bug related with the CPU.</span>
+        <div class=3D"gmail_extra"><br>
+        </div>
+      </div>
+    </blockquote></span><span class=3D"">
+    This is a core i5, but the installed system runs a 32bit ubuntu
+    system.<br>
+    There is no crash message in dmesg, I have setted up a swapfile in
+    the system
+    </span><blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_extra">
+          <div class=3D"gmail_quote">2018-04-17 8:51 GMT+02:00 St=C3=A9phan=
+e
+            Ancelot <span dir=3D"ltr">&lt;<a href=3D"mailto:sancelot@numall=
+iance.com" target=3D"_blank">sancelot@numalliance.com</a>&gt;</span>:<div><=
+div class=3D"h5"><br>
+            <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex">
+              <div text=3D"#000000" bgcolor=3D"#FFFFFF">
+                <p><b style=3D"font-weight:normal" id=3D"m_1903241208638611=
+641m_-5163126202105580427docs-internal-guid-f17990ec-d25b-cb5d-aa94-8f979de=
+11a1c">
+                  </b></p>
+                <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;mar=
+gin-bottom:0pt"><b style=3D"font-weight:normal" id=3D"m_1903241208638611641=
+m_-5163126202105580427docs-internal-guid-f17990ec-d25b-cb5d-aa94-8f979de11a=
+1c"><span style=3D"font-size:11pt;font-family:Arial;color:#000000;backgroun=
+d-color:transparent;font-weight:400;font-style:normal;font-variant:normal;t=
+ext-decoration:none;vertical-align:baseline;white-space:pre-wrap;white-spac=
+e:pre-wrap">Hi,</span></b></p>
+                <b style=3D"font-weight:normal" id=3D"m_1903241208638611641=
+m_-5163126202105580427docs-internal-guid-f17990ec-d25b-cb5d-aa94-8f979de11a=
+1c">
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">
+</span></p>
+                </b><b style=3D"font-weight:normal" id=3D"m_190324120863861=
+1641m_-5163126202105580427docs-internal-guid-f17990ec-d25b-cb5d-aa94-8f979d=
+e11a1c">
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">On my ubuntu bionic system 32 bits, compilation c=
+ore-image-sato fails as follow;</span></p>
+                </b><b style=3D"font-weight:normal" id=3D"m_190324120863861=
+1641m_-5163126202105580427docs-internal-guid-f17990ec-d25b-cb5d-aa94-8f979d=
+e11a1c">
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">unfortunately nothing seems interesting in log<b>=
+.</b>do_install.</span></p>
+                </b><b style=3D"font-weight:normal" id=3D"m_190324120863861=
+1641m_-5163126202105580427docs-internal-guid-f17990ec-d25b-cb5d-aa94-8f979d=
+e11a1c">
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">
+</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">what can I do ?</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">
+</span></p>
+                </b><span style=3D"font-weight:normal">
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">Regards,</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">Steph</span></p>
+                </span><b style=3D"font-weight:normal" id=3D"m_190324120863=
+8611641m_-5163126202105580427docs-internal-guid-f17990ec-d25b-cb5d-aa94-8f9=
+79de11a1c">
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">
+</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">
+</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">Build Configuration:</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">BB_VERSION =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</=
+span><span style=3D"font-size:11pt;font-family:Arial;color:#000000;backgrou=
+nd-color:transparent;font-weight:400;font-style:normal;font-variant:normal;=
+text-decoration:none;vertical-align:baseline;white-space:pre-wrap;white-spa=
+ce:pre-wrap"><span class=3D"m_1903241208638611641m_-5163126202105580427Appl=
+e-tab-span" style=3D"white-space:pre-wrap">	</span></span><span style=3D"fo=
+nt-size:11pt;font-family:Arial;color:#000000;background-color:transparent;f=
+ont-weight:400;font-style:normal;font-variant:normal;text-decoration:none;v=
+ertical-align:baseline;white-space:pre-wrap;white-space:pre-wrap">=3D &quot=
+;1.36.0&quot;</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">BUILD_SYS =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0</span><span style=3D"font-size:11pt;font-family:Arial;color:#000000;bac=
+kground-color:transparent;font-weight:400;font-style:normal;font-variant:no=
+rmal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;whit=
+e-space:pre-wrap"><span class=3D"m_1903241208638611641m_-516312620210558042=
+7Apple-tab-span" style=3D"white-space:pre-wrap">	</span></span><span style=
+=3D"font-size:11pt;font-family:Arial;color:#000000;background-color:transpa=
+rent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:=
+none;vertical-align:baseline;white-space:pre-wrap;white-space:pre-wrap">=3D=
+ &quot;i686-linux&quot;</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">NATIVELSBSTRING =C2=A0</span><span style=3D"font-=
+size:11pt;font-family:Arial;color:#000000;background-color:transparent;font=
+-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vert=
+ical-align:baseline;white-space:pre-wrap;white-space:pre-wrap"><span class=
+=3D"m_1903241208638611641m_-5163126202105580427Apple-tab-span" style=3D"whi=
+te-space:pre-wrap">	</span></span><span style=3D"font-size:11pt;font-family=
+:Arial;color:#000000;background-color:transparent;font-weight:400;font-styl=
+e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
+hite-space:pre-wrap;white-space:pre-wrap">=3D &quot;universal&quot;</span><=
+/p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">TARGET_SYS =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</=
+span><span style=3D"font-size:11pt;font-family:Arial;color:#000000;backgrou=
+nd-color:transparent;font-weight:400;font-style:normal;font-variant:normal;=
+text-decoration:none;vertical-align:baseline;white-space:pre-wrap;white-spa=
+ce:pre-wrap"><span class=3D"m_1903241208638611641m_-5163126202105580427Appl=
+e-tab-span" style=3D"white-space:pre-wrap">	</span></span><span style=3D"fo=
+nt-size:11pt;font-family:Arial;color:#000000;background-color:transparent;f=
+ont-weight:400;font-style:normal;font-variant:normal;text-decoration:none;v=
+ertical-align:baseline;white-space:pre-wrap;white-space:pre-wrap">=3D &quot=
+;i586-poky-linux&quot;</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">MACHINE =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0</span><span style=3D"font-size:11pt;font-family:Arial;color=
+:#000000;background-color:transparent;font-weight:400;font-style:normal;fon=
+t-variant:normal;text-decoration:none;vertical-align:baseline;white-space:p=
+re-wrap;white-space:pre-wrap"><span class=3D"m_1903241208638611641m_-516312=
+6202105580427Apple-tab-span" style=3D"white-space:pre-wrap">	</span></span>=
+<span style=3D"font-size:11pt;font-family:Arial;color:#000000;background-co=
+lor:transparent;font-weight:400;font-style:normal;font-variant:normal;text-=
+decoration:none;vertical-align:baseline;white-space:pre-wrap;white-space:pr=
+e-wrap">=3D &quot;qemux86&quot;</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">DISTRO =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0</span><span style=3D"font-size:11pt;font-family:Arial;co=
+lor:#000000;background-color:transparent;font-weight:400;font-style:normal;=
+font-variant:normal;text-decoration:none;vertical-align:baseline;white-spac=
+e:pre-wrap;white-space:pre-wrap"><span class=3D"m_1903241208638611641m_-516=
+3126202105580427Apple-tab-span" style=3D"white-space:pre-wrap">	</span></sp=
+an><span style=3D"font-size:11pt;font-family:Arial;color:#000000;background=
+-color:transparent;font-weight:400;font-style:normal;font-variant:normal;te=
+xt-decoration:none;vertical-align:baseline;white-space:pre-wrap;white-space=
+:pre-wrap">=3D &quot;poky&quot;</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">DISTRO_VERSION =C2=A0=C2=A0</span><span style=3D"=
+font-size:11pt;font-family:Arial;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none=
+;vertical-align:baseline;white-space:pre-wrap;white-space:pre-wrap"><span c=
+lass=3D"m_1903241208638611641m_-5163126202105580427Apple-tab-span" style=3D=
+"white-space:pre-wrap">	</span></span><span style=3D"font-size:11pt;font-fa=
+mily:Arial;color:#000000;background-color:transparent;font-weight:400;font-=
+style:normal;font-variant:normal;text-decoration:none;vertical-align:baseli=
+ne;white-space:pre-wrap;white-space:pre-wrap">=3D &quot;2.4.2&quot;</span><=
+/p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">TUNE_FEATURES =C2=A0=C2=A0=C2=A0</span><span styl=
+e=3D"font-size:11pt;font-family:Arial;color:#000000;background-color:transp=
+arent;font-weight:400;font-style:normal;font-variant:normal;text-decoration=
+:none;vertical-align:baseline;white-space:pre-wrap;white-space:pre-wrap"><s=
+pan class=3D"m_1903241208638611641m_-5163126202105580427Apple-tab-span" sty=
+le=3D"white-space:pre-wrap">	</span></span><span style=3D"font-size:11pt;fo=
+nt-family:Arial;color:#000000;background-color:transparent;font-weight:400;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap;white-space:pre-wrap">=3D &quot;m32 i586&quot;=
+</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">TARGET_FPU =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</=
+span><span style=3D"font-size:11pt;font-family:Arial;color:#000000;backgrou=
+nd-color:transparent;font-weight:400;font-style:normal;font-variant:normal;=
+text-decoration:none;vertical-align:baseline;white-space:pre-wrap;white-spa=
+ce:pre-wrap"><span class=3D"m_1903241208638611641m_-5163126202105580427Appl=
+e-tab-span" style=3D"white-space:pre-wrap">	</span></span><span style=3D"fo=
+nt-size:11pt;font-family:Arial;color:#000000;background-color:transparent;f=
+ont-weight:400;font-style:normal;font-variant:normal;text-decoration:none;v=
+ertical-align:baseline;white-space:pre-wrap;white-space:pre-wrap">=3D &quot=
+;&quot;</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">meta =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0</span><span style=3D"font-size:11pt;font-family:Ar=
+ial;color:#000000;background-color:transparent;font-weight:400;font-style:n=
+ormal;font-variant:normal;text-decoration:none;vertical-align:baseline;whit=
+e-space:pre-wrap;white-space:pre-wrap"><span class=3D"m_1903241208638611641=
+m_-5163126202105580427Apple-tab-span" style=3D"white-space:pre-wrap">	</spa=
+n></span><span style=3D"font-size:11pt;font-family:Arial;color:#000000;back=
+ground-color:transparent;font-weight:400;font-style:normal;font-variant:nor=
+mal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;white=
+-space:pre-wrap"> </span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">meta-poky =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</s=
+pan><span style=3D"font-size:11pt;font-family:Arial;color:#000000;backgroun=
+d-color:transparent;font-weight:400;font-style:normal;font-variant:normal;t=
+ext-decoration:none;vertical-align:baseline;white-space:pre-wrap;white-spac=
+e:pre-wrap"><span class=3D"m_1903241208638611641m_-5163126202105580427Apple=
+-tab-span" style=3D"white-space:pre-wrap">	</span></span><span style=3D"fon=
+t-size:11pt;font-family:Arial;color:#000000;background-color:transparent;fo=
+nt-weight:400;font-style:normal;font-variant:normal;text-decoration:none;ve=
+rtical-align:baseline;white-space:pre-wrap;white-space:pre-wrap"> </span></=
+p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">meta-yocto-bsp =C2=A0=C2=A0</span><span style=3D"=
+font-size:11pt;font-family:Arial;color:#000000;background-color:transparent=
+;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none=
+;vertical-align:baseline;white-space:pre-wrap;white-space:pre-wrap"><span c=
+lass=3D"m_1903241208638611641m_-5163126202105580427Apple-tab-span" style=3D=
+"white-space:pre-wrap">	</span></span><span style=3D"font-size:11pt;font-fa=
+mily:Arial;color:#000000;background-color:transparent;font-weight:400;font-=
+style:normal;font-variant:normal;text-decoration:none;vertical-align:baseli=
+ne;white-space:pre-wrap;white-space:pre-wrap">=3D &quot;rocko:fdeecc901196b=
+bccd7c5b1e<wbr>a4268a2cf56764a62&quot;</span></p>
+                  <br>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">Initialising tasks: 100% |#######################=
+######<wbr>##############################<wbr>#############################=
+#<wbr>##############################<wbr>##############################<wbr=
+>#######| Time: 0:00:30</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">NOTE: Executing SetScene Tasks =C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0</span><span style=3D"font-size:11pt;font-family:Arial;color:#000000;bac=
+kground-color:transparent;font-weight:400;font-style:normal;font-variant:no=
+rmal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;whit=
+e-space:pre-wrap"><span class=3D"m_1903241208638611641m_-516312620210558042=
+7Apple-tab-span" style=3D"white-space:pre-wrap">	</span></span><span style=
+=3D"font-size:11pt;font-family:Arial;color:#000000;background-color:transpa=
+rent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:=
+none;vertical-align:baseline;white-space:pre-wrap;white-space:pre-wrap"> </=
+span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">NOTE: Executing RunQueue Tasks =C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0</span><span style=3D"font-size:11pt;font-family:Arial;color:#000000;bac=
+kground-color:transparent;font-weight:400;font-style:normal;font-variant:no=
+rmal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;whit=
+e-space:pre-wrap"><span class=3D"m_1903241208638611641m_-516312620210558042=
+7Apple-tab-span" style=3D"white-space:pre-wrap">	</span></span><span style=
+=3D"font-size:11pt;font-family:Arial;color:#000000;background-color:transpa=
+rent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:=
+none;vertical-align:baseline;white-space:pre-wrap;white-space:pre-wrap"> </=
+span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">ERROR: linux-libc-headers-4.12-r0 do_install: oe_=
+runmake failed</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">ERROR: linux-libc-headers-4.12-r0 do_install: Fun=
+ction failed: do_install (log file is located at /home/yocto/poky/build/tmp=
+/wor<wbr>k/i586-poky-linux/linux-libc-<wbr>headers/4.12-r0/temp/log.do_<wbr=
+>install.4172)</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">ERROR: Logfile of failure stored in: /home/yocto/=
+poky/build/tmp/wor<wbr>k/i586-poky-linux/linux-libc-<wbr>headers/4.12-r0/te=
+mp/log.do_<wbr>install.4172</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">Log data follows:</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">| DEBUG: Executing python function extend_recipe_=
+sysroot</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">| NOTE: Direct dependencies are [&#39;virtual:nat=
+ive:/home/yocto/p<wbr>oky/meta/recipes-devtools/pkgc<wbr>onfig/pkgconfig_gi=
+t.bb:do_popu<wbr>late_sysroot&#39;, &#39;virtual:native:/home/yocto/po<wbr>=
+ky/meta/recipes-devtools/unifd<wbr>ef/unifdef_2.11.bb:do_populate<wbr>_sysr=
+oot&#39;, &#39;virtual:native:/home/yocto/po<wbr>ky/meta/recipes-devtools/p=
+seud<wbr>o/pseudo_1.8.2.bb:do_populate_<wbr>sysroot&#39;, &#39;/home/yocto/=
+poky/meta/recipes<wbr>-devtools/quilt/quilt-native_<wbr>0.65.bb:do_populate=
+_sysroot&#39;, &#39;virtual:native:/home/yocto/po<wbr>ky/meta/recipes-exten=
+ded/xz/xz<wbr>_5.2.3.bb:do_populate_sysroot&#39;<wbr>]</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">| NOTE: Installed into sysroot: []</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">| NOTE: Skipping as already exists in sysroot: [&=
+#39;pkgconfig-native&#39;, &#39;unifdef-native&#39;, &#39;pseudo-native&#39=
+;, &#39;quilt-native&#39;, &#39;xz-native&#39;, &#39;gnu-config-native&#39;=
+, &#39;autoconf-native&#39;, &#39;automake-native&#39;, &#39;libtool-native=
+&#39;, &#39;gettext-minimal-native&#39;, &#39;m4-native&#39;, &#39;texinfo-=
+dummy-native&#39;]</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">| DEBUG: Python function extend_recipe_sysroot fi=
+nished</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">| DEBUG: Executing shell function do_install</spa=
+n></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">| NOTE: make -j 4 HOSTCC=3Dgcc =C2=A0HOSTCPP=3Dgc=
+c  -E headers_install INSTALL_HDR_PATH=3D/home/yocto/p<wbr>oky/build/tmp/wo=
+rk/i586-poky-l<wbr>inux/linux-libc-headers/4.12-r<wbr>0/image/usr</span></p=
+>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">| Segmentation fault</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">| ERROR: oe_runmake failed</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">| WARNING: exit code 1 from a shell command.</spa=
+n></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">| ERROR: Function failed: do_install (log file is=
+ located at /home/yocto/poky/build/tmp/wor<wbr>k/i586-poky-linux/linux-libc=
+-<wbr>headers/4.12-r0/temp/log.do_<wbr>install.4172)</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">ERROR: Task (/home/yocto/poky/meta/recipes<wbr>-k=
+ernel/linux-libc-headers/<wbr>linux-libc-headers_4.12.bb:do_<wbr>install) f=
+ailed with exit code &#39;1&#39;</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">NOTE: Tasks Summary: Attempted 191 tasks of which=
+ 185 didn&#39;t need to be rerun and 1 failed.</span></p>
+                  <br>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">Summary: 1 task failed:</span></p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap"> =C2=A0/home/yocto/poky/meta/recipes<wbr>-kernel/=
+linux-libc-headers/<wbr>linux-libc-headers_4.12.bb:do_<wbr>install</span></=
+p>
+                  <p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:#00=
+0000;background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap;white-space:pre-wrap">Summary: There was 1 WARNING message shown.</span=
+></p>
+                </b> <br>
+                <p><br>
+                </p>
+              </div>
+            </blockquote>
+          </div></div></div>
+          <div class=3D"m_1903241208638611641gmail_signature" data-smartmai=
+l=3D"gmail_signature"><br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </div>
 
-PGh0bWw+DQogIDxoZWFkPg0KICAgIDxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCiAgPC9oZWFkPg0KICA8Ym9k
-eSB0ZXh0PSIjMDAwMDAwIiBiZ2NvbG9yPSIjRkZGRkZGIj4NCiAgICA8cD48YnI+DQogICAg
-PC9wPg0KICAgIDxicj4NCiAgICA8ZGl2IGNsYXNzPSJtb3otY2l0ZS1wcmVmaXgiPkxlIDE3
-LzA0LzIwMTggw6AgMDk6MDgsIEl2w6FuIENhc3RlbGwgYQ0KICAgICAgw6ljcml0wqA6PGJy
-Pg0KICAgIDwvZGl2Pg0KICAgIDxibG9ja3F1b3RlIHR5cGU9ImNpdGUiDQpjaXRlPSJtaWQ6
-Q0FBTFhGWXhraXpyTmlITFVzT1VVejg4RmdrK3YwMzlCK1JZaXZ0UGhuODR5ZFpkMTdBQG1h
-aWwuZ21haWwuY29tIj4NCiAgICAgIDxkaXYgZGlyPSJsdHIiPlJldmlldyAiZG1lc2ciIG91
-dHB1dCB0byBzZWUgaWYgdGhlcmUgaXMgc29tZQ0KICAgICAgICBrZXJuZWwgY3Jhc2ggaW4g
-eW91ciBob3N0IG1hY2hpbmUuIDxzcGFuDQpzdHlsZT0iY29sb3I6cmdiKDM0LDM0LDM0KTtm
-b250LWZhbWlseTphcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZTpzbWFsbDtmb250LXN0eWxl
-Om5vcm1hbDtmb250LXZhcmlhbnQtbGlnYXR1cmVzOm5vcm1hbDtmb250LXZhcmlhbnQtY2Fw
-czpub3JtYWw7Zm9udC13ZWlnaHQ6NDAwO2xldHRlci1zcGFjaW5nOm5vcm1hbDt0ZXh0LWFs
-aWduOnN0YXJ0O3RleHQtaW5kZW50OjBweDt0ZXh0LXRyYW5zZm9ybTpub25lO3doaXRlLXNw
-YWNlOm5vcm1hbDt3b3JkLXNwYWNpbmc6MHB4O2JhY2tncm91bmQtY29sb3I6cmdiKDI1NSwy
-NTUsMjU1KTt0ZXh0LWRlY29yYXRpb24tc3R5bGU6aW5pdGlhbDt0ZXh0LWRlY29yYXRpb24t
-Y29sb3I6aW5pdGlhbDtmbG9hdDpub25lO2Rpc3BsYXk6aW5saW5lIj5XaGljaA0KICAgICAg
-ICAgIENQVSBhcmUgeW91IHVzaW5nIHRvIGNvbXBpbGUgeW9jdG8gKHlvdXIgaG9zdCBtYWNo
-aW5lKT88c3Bhbj7CoDwvc3Bhbj48L3NwYW4+V2UNCiAgICAgICAgYWxzbyBoYXZlIGJlZW4g
-ZGVhbGluZyB3aXRoIHRoaXMga2luZCBvZiBpc3N1ZXMgY29tcGlsaW5nIHdpdGgNCiAgICAg
-ICAgYW48c3Bhbg0Kc3R5bGU9ImNvbG9yOnJnYigzNCwzNCwzNCk7Zm9udC1mYW1pbHk6YXJp
-YWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTIuOHB4O2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQt
-dmFyaWFudC1saWdhdHVyZXM6bm9ybWFsO2ZvbnQtdmFyaWFudC1jYXBzOm5vcm1hbDtmb250
-LXdlaWdodDo0MDA7bGV0dGVyLXNwYWNpbmc6bm9ybWFsO3RleHQtYWxpZ246c3RhcnQ7dGV4
-dC1pbmRlbnQ6MHB4O3RleHQtdHJhbnNmb3JtOm5vbmU7d2hpdGUtc3BhY2U6bm9ybWFsO3dv
-cmQtc3BhY2luZzowcHg7YmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpO3RleHQt
-ZGVjb3JhdGlvbi1zdHlsZTppbml0aWFsO3RleHQtZGVjb3JhdGlvbi1jb2xvcjppbml0aWFs
-O2Zsb2F0Om5vbmU7ZGlzcGxheTppbmxpbmUiPjxzcGFuPsKgPC9zcGFuPkFNRA0KICAgICAg
-ICAgIFJ5emVuIDcgMTcwMCBFaWdodC1Db3JlIFByb2Nlc3NvciBhbmQgKGluIG91ciBjYXNl
-KSBpdCBzZWVtcw0KICAgICAgICAgIGlzIGEgYnVnIHJlbGF0ZWQgd2l0aCB0aGUgQ1BVLjwv
-c3Bhbj4NCiAgICAgICAgPGRpdiBjbGFzcz0iZ21haWxfZXh0cmEiPjxicj4NCiAgICAgICAg
-PC9kaXY+DQogICAgICA8L2Rpdj4NCiAgICA8L2Jsb2NrcXVvdGU+DQogICAgVGhpcyBpcyBh
-IGNvcmUgaTUsIGJ1dCB0aGUgaW5zdGFsbGVkIHN5c3RlbSBydW5zIGEgMzJiaXQgdWJ1bnR1
-DQogICAgc3lzdGVtLjxicj4NCiAgICBUaGVyZSBpcyBubyBjcmFzaCBtZXNzYWdlIGluIGRt
-ZXNnLCBJIGhhdmUgc2V0dGVkIHVwIGEgc3dhcGZpbGUgaW4NCiAgICB0aGUgc3lzdGVtDQog
-ICAgPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSINCmNpdGU9Im1pZDpDQUFMWEZZeGtpenJOaUhM
-VXNPVVV6ODhGZ2srdjAzOUIrUllpdnRQaG44NHlkWmQxN0FAbWFpbC5nbWFpbC5jb20iPg0K
-ICAgICAgPGRpdiBkaXI9Imx0ciI+DQogICAgICAgIDxkaXYgY2xhc3M9ImdtYWlsX2V4dHJh
-Ij4NCiAgICAgICAgICA8ZGl2IGNsYXNzPSJnbWFpbF9xdW90ZSI+MjAxOC0wNC0xNyA4OjUx
-IEdNVCswMjowMCBTdMOpcGhhbmUNCiAgICAgICAgICAgIEFuY2Vsb3QgPHNwYW4gZGlyPSJs
-dHIiPiZsdDs8YQ0KICAgICAgICAgICAgICAgIGhyZWY9Im1haWx0bzpzYW5jZWxvdEBudW1h
-bGxpYW5jZS5jb20iIHRhcmdldD0iX2JsYW5rIg0KICAgICAgICAgICAgICAgIG1vei1kby1u
-b3Qtc2VuZD0idHJ1ZSI+c2FuY2Vsb3RAbnVtYWxsaWFuY2UuY29tPC9hPiZndDs8L3NwYW4+
-Ojxicj4NCiAgICAgICAgICAgIDxibG9ja3F1b3RlIGNsYXNzPSJnbWFpbF9xdW90ZSIgc3R5
-bGU9Im1hcmdpbjowIDAgMA0KICAgICAgICAgICAgICAuOGV4O2JvcmRlci1sZWZ0OjFweCAj
-Y2NjIHNvbGlkO3BhZGRpbmctbGVmdDoxZXgiPg0KICAgICAgICAgICAgICA8ZGl2IHRleHQ9
-IiMwMDAwMDAiIGJnY29sb3I9IiNGRkZGRkYiPg0KICAgICAgICAgICAgICAgIDxwPjxiIHN0
-eWxlPSJmb250LXdlaWdodDpub3JtYWwiDQppZD0ibV8tNTE2MzEyNjIwMjEwNTU4MDQyN2Rv
-Y3MtaW50ZXJuYWwtZ3VpZC1mMTc5OTBlYy1kMjViLWNiNWQtYWE5NC04Zjk3OWRlMTFhMWMi
-Pg0KICAgICAgICAgICAgICAgICAgPC9iPjwvcD4NCiAgICAgICAgICAgICAgICA8cCBkaXI9
-Imx0ciINCiAgICAgICAgICAgICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdp
-bi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48Yg0KICAgICAgICAgICAgICAgICAgICBz
-dHlsZT0iZm9udC13ZWlnaHQ6bm9ybWFsIg0KaWQ9Im1fLTUxNjMxMjYyMDIxMDU1ODA0Mjdk
-b2NzLWludGVybmFsLWd1aWQtZjE3OTkwZWMtZDI1Yi1jYjVkLWFhOTQtOGY5NzlkZTExYTFj
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6
-IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtm
-b250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpu
-b25lO3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5lO3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRl
-LXNwYWNlOnByZS13cmFwIj5IaSw8L3NwYW4+PC9iPjwvcD4NCiAgICAgICAgICAgICAgICA8
-YiBzdHlsZT0iZm9udC13ZWlnaHQ6bm9ybWFsIg0KaWQ9Im1fLTUxNjMxMjYyMDIxMDU1ODA0
-Mjdkb2NzLWludGVybmFsLWd1aWQtZjE3OTkwZWMtZDI1Yi1jYjVkLWFhOTQtOGY5NzlkZTEx
-YTFjIj4NCiAgICAgICAgICAgICAgICAgIDxwIGRpcj0ibHRyIg0KICAgICAgICAgICAgICAg
-ICAgICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90
-dG9tOjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFs
-O2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdo
-dDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29y
-YXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3Jh
-cDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+DQo8L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAg
-IDwvYj48YiBzdHlsZT0iZm9udC13ZWlnaHQ6bm9ybWFsIg0KaWQ9Im1fLTUxNjMxMjYyMDIx
-MDU1ODA0Mjdkb2NzLWludGVybmFsLWd1aWQtZjE3OTkwZWMtZDI1Yi1jYjVkLWFhOTQtOGY5
-NzlkZTExYTFjIj4NCiAgICAgICAgICAgICAgICAgIDxwIGRpcj0ibHRyIg0KICAgICAgICAg
-ICAgICAgICAgICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJn
-aW4tYm90dG9tOjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5
-OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250
-LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0
-LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpw
-cmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+T24gbXkgdWJ1bnR1IGJpb25pYyBzeXN0
-ZW0gMzIgYml0cywgY29tcGlsYXRpb24gY29yZS1pbWFnZS1zYXRvIGZhaWxzIGFzIGZvbGxv
-dzs8L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAgIDwvYj48YiBzdHlsZT0iZm9udC13ZWln
-aHQ6bm9ybWFsIg0KaWQ9Im1fLTUxNjMxMjYyMDIxMDU1ODA0Mjdkb2NzLWludGVybmFsLWd1
-aWQtZjE3OTkwZWMtZDI1Yi1jYjVkLWFhOTQtOGY5NzlkZTExYTFjIj4NCiAgICAgICAgICAg
-ICAgICAgIDxwIGRpcj0ibHRyIg0KICAgICAgICAgICAgICAgICAgICBzdHlsZT0ibGluZS1o
-ZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFj
-a2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpu
-b3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNh
-bC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUt
-d3JhcCI+dW5mb3J0dW5hdGVseSBub3RoaW5nIHNlZW1zIGludGVyZXN0aW5nIGluIGxvZzxi
-Pi48L2I+ZG9faW5zdGFsbC48L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAgIDwvYj48YiBz
-dHlsZT0iZm9udC13ZWlnaHQ6bm9ybWFsIg0KaWQ9Im1fLTUxNjMxMjYyMDIxMDU1ODA0Mjdk
-b2NzLWludGVybmFsLWd1aWQtZjE3OTkwZWMtZDI1Yi1jYjVkLWFhOTQtOGY5NzlkZTExYTFj
-Ij4NCiAgICAgICAgICAgICAgICAgIDxwIGRpcj0ibHRyIg0KICAgICAgICAgICAgICAgICAg
-ICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9t
-OjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2Nv
-bG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0
-MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRp
-b246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3
-aGl0ZS1zcGFjZTpwcmUtd3JhcCI+DQo8L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAgICAg
-PHAgZGlyPSJsdHIiDQogICAgICAgICAgICAgICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDox
-LjM4O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjExcHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5k
-LWNvbG9yOnRyYW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtm
-b250LXZhcmlhbnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWdu
-OmJhc2VsaW5lO3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj53
-aGF0IGNhbiBJIGRvID88L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAgICAgPHAgZGlyPSJs
-dHIiDQogICAgICAgICAgICAgICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdp
-bi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-cHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRy
-YW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlh
-bnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5l
-O3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj4NCjwvc3Bhbj48
-L3A+DQogICAgICAgICAgICAgICAgPC9iPjxzcGFuIHN0eWxlPSJmb250LXdlaWdodDpub3Jt
-YWwiPg0KICAgICAgICAgICAgICAgICAgPHAgZGlyPSJsdHIiDQogICAgICAgICAgICAgICAg
-ICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0
-b206MHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Zm9udC1mYW1pbHk6QXJpYWw7
-Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFyZW50O2ZvbnQtd2VpZ2h0
-OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO3RleHQtZGVjb3Jh
-dGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5lO3doaXRlLXNwYWNlOnByZS13cmFw
-O3doaXRlLXNwYWNlOnByZS13cmFwIj5SZWdhcmRzLDwvc3Bhbj48L3A+DQogICAgICAgICAg
-ICAgICAgICA8cCBkaXI9Imx0ciINCiAgICAgICAgICAgICAgICAgICAgc3R5bGU9ImxpbmUt
-aGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2Jh
-Y2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6
-bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGlj
-YWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJl
-LXdyYXAiPlN0ZXBoPC9zcGFuPjwvcD4NCiAgICAgICAgICAgICAgICA8L3NwYW4+PGIgc3R5
-bGU9ImZvbnQtd2VpZ2h0Om5vcm1hbCINCmlkPSJtXy01MTYzMTI2MjAyMTA1NTgwNDI3ZG9j
-cy1pbnRlcm5hbC1ndWlkLWYxNzk5MGVjLWQyNWItY2I1ZC1hYTk0LThmOTc5ZGUxMWExYyI+
-DQogICAgICAgICAgICAgICAgICA8cCBkaXI9Imx0ciINCiAgICAgICAgICAgICAgICAgICAg
-c3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTow
-cHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xv
-cjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAw
-O2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9u
-Om5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hp
-dGUtc3BhY2U6cHJlLXdyYXAiPg0KPC9zcGFuPjwvcD4NCiAgICAgICAgICAgICAgICAgIDxw
-IGRpcj0ibHRyIg0KICAgICAgICAgICAgICAgICAgICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4z
-ODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1j
-b2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9u
-dC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpi
-YXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+DQo8
-L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAgICAgPHAgZGlyPSJsdHIiDQogICAgICAgICAg
-ICAgICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdp
-bi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Zm9udC1mYW1pbHk6
-QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFyZW50O2ZvbnQt
-d2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO3RleHQt
-ZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5lO3doaXRlLXNwYWNlOnBy
-ZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj5CdWlsZCBDb25maWd1cmF0aW9uOjwvc3Bh
-bj48L3A+DQogICAgICAgICAgICAgICAgICA8cCBkaXI9Imx0ciINCiAgICAgICAgICAgICAg
-ICAgICAgc3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJv
-dHRvbTowcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlh
-bDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWln
-aHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNv
-cmF0aW9uOm5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdy
-YXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAiPkJCX1ZFUlNJT04gwqDCoMKgwqDCoMKgPC9zcGFu
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjoj
-MDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2Zv
-bnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5v
-bmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUt
-c3BhY2U6cHJlLXdyYXAiPjxzcGFuIGNsYXNzPSJtXy01MTYzMTI2MjAyMTA1NTgwNDI3QXBw
-bGUtdGFiLXNwYW4iIHN0eWxlPSJ3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+CTwvc3Bhbj48L3Nw
-YW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9y
-OiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0MDA7
-Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246
-bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0
-ZS1zcGFjZTpwcmUtd3JhcCI+PSAiMS4zNi4wIjwvc3Bhbj48L3A+DQogICAgICAgICAgICAg
-ICAgICA8cCBkaXI9Imx0ciINCiAgICAgICAgICAgICAgICAgICAgc3R5bGU9ImxpbmUtaGVp
-Z2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tn
-cm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9y
-bWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwt
-YWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdy
-YXAiPkJVSUxEX1NZUyDCoMKgwqDCoMKgwqDCoDwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExcHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNv
-bG9yOnRyYW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250
-LXZhcmlhbnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJh
-c2VsaW5lO3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj48c3Bh
-biBjbGFzcz0ibV8tNTE2MzEyNjIwMjEwNTU4MDQyN0FwcGxlLXRhYi1zcGFuIiBzdHlsZT0i
-d2hpdGUtc3BhY2U6cHJlLXdyYXAiPgk8L3NwYW4+PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQt
-Y29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2Zv
-bnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxpZ246
-YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAiPj0g
-Imk2ODYtbGludXgiPC9zcGFuPjwvcD4NCiAgICAgICAgICAgICAgICAgIDxwIGRpcj0ibHRy
-Ig0KICAgICAgICAgICAgICAgICAgICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4t
-dG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0
-O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFu
-c3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50
-Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3
-aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+TkFUSVZFTFNCU1RS
-SU5HIMKgPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpB
-cmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13
-ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1k
-ZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJl
-LXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAiPjxzcGFuIGNsYXNzPSJtXy01MTYzMTI2MjAy
-MTA1NTgwNDI3QXBwbGUtdGFiLXNwYW4iIHN0eWxlPSJ3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+
-CTwvc3Bhbj48L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5
-OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250
-LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0
-LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpw
-cmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+PSAidW5pdmVyc2FsIjwvc3Bhbj48L3A+
-DQogICAgICAgICAgICAgICAgICA8cCBkaXI9Imx0ciINCiAgICAgICAgICAgICAgICAgICAg
-c3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTow
-cHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xv
-cjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAw
-O2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9u
-Om5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hp
-dGUtc3BhY2U6cHJlLXdyYXAiPlRBUkdFVF9TWVMgwqDCoMKgwqDCoMKgPC9zcGFuPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAw
-O2JhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5
-bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVy
-dGljYWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6
-cHJlLXdyYXAiPjxzcGFuIGNsYXNzPSJtXy01MTYzMTI2MjAyMTA1NTgwNDI3QXBwbGUtdGFi
-LXNwYW4iIHN0eWxlPSJ3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+CTwvc3Bhbj48L3NwYW4+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAw
-MDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1z
-dHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2
-ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFj
-ZTpwcmUtd3JhcCI+PSAiaTU4Ni1wb2t5LWxpbnV4Ijwvc3Bhbj48L3A+DQogICAgICAgICAg
-ICAgICAgICA8cCBkaXI9Imx0ciINCiAgICAgICAgICAgICAgICAgICAgc3R5bGU9ImxpbmUt
-aGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2Jh
-Y2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6
-bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGlj
-YWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJl
-LXdyYXAiPk1BQ0hJTkUgwqDCoMKgwqDCoMKgwqDCoMKgPC9zcGFuPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91
-bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFs
-O2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxp
-Z246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAi
-PjxzcGFuIGNsYXNzPSJtXy01MTYzMTI2MjAyMTA1NTgwNDI3QXBwbGUtdGFiLXNwYW4iIHN0
-eWxlPSJ3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+CTwvc3Bhbj48L3NwYW4+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dy
-b3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3Jt
-YWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1h
-bGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3Jh
-cCI+PSAicWVtdXg4NiI8L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAgICAgPHAgZGlyPSJs
-dHIiDQogICAgICAgICAgICAgICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdp
-bi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-cHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRy
-YW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlh
-bnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5l
-O3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj5ESVNUUk8gwqDC
-oMKgwqDCoMKgwqDCoMKgwqA8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2Zv
-bnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3Bh
-cmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5v
-cm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0
-ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+PHNwYW4gY2xhc3M9Im1f
-LTUxNjMxMjYyMDIxMDU1ODA0MjdBcHBsZS10YWItc3BhbiIgc3R5bGU9IndoaXRlLXNwYWNl
-OnByZS13cmFwIj4JPC9zcGFuPjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7
-Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRyYW5z
-cGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6
-bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5lO3do
-aXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj49ICJwb2t5Ijwvc3Bh
-bj48L3A+DQogICAgICAgICAgICAgICAgICA8cCBkaXI9Imx0ciINCiAgICAgICAgICAgICAg
-ICAgICAgc3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJv
-dHRvbTowcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlh
-bDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWln
-aHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNv
-cmF0aW9uOm5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdy
-YXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAiPkRJU1RST19WRVJTSU9OIMKgwqA8L3NwYW4+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAw
-MDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1z
-dHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2
-ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFj
-ZTpwcmUtd3JhcCI+PHNwYW4gY2xhc3M9Im1fLTUxNjMxMjYyMDIxMDU1ODA0MjdBcHBsZS10
-YWItc3BhbiIgc3R5bGU9IndoaXRlLXNwYWNlOnByZS13cmFwIj4JPC9zcGFuPjwvc3Bhbj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAw
-MDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250
-LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25l
-O3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5lO3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNw
-YWNlOnByZS13cmFwIj49ICIyLjQuMiI8L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAgICAg
-PHAgZGlyPSJsdHIiDQogICAgICAgICAgICAgICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDox
-LjM4O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjExcHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5k
-LWNvbG9yOnRyYW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtm
-b250LXZhcmlhbnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWdu
-OmJhc2VsaW5lO3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj5U
-VU5FX0ZFQVRVUkVTIMKgwqDCoDwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7
-Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRyYW5z
-cGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6
-bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5lO3do
-aXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj48c3BhbiBjbGFzcz0i
-bV8tNTE2MzEyNjIwMjEwNTU4MDQyN0FwcGxlLXRhYi1zcGFuIiBzdHlsZT0id2hpdGUtc3Bh
-Y2U6cHJlLXdyYXAiPgk8L3NwYW4+PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFw
-dDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJh
-bnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFu
-dDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7
-d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAiPj0gIm0zMiBpNTg2
-Ijwvc3Bhbj48L3A+DQogICAgICAgICAgICAgICAgICA8cCBkaXI9Imx0ciINCiAgICAgICAg
-ICAgICAgICAgICAgc3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFy
-Z2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWls
-eTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9u
-dC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4
-dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6
-cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAiPlRBUkdFVF9GUFUgwqDCoMKgwqDCoMKg
-PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtj
-b2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6
-NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0
-aW9uOm5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7
-d2hpdGUtc3BhY2U6cHJlLXdyYXAiPjxzcGFuIGNsYXNzPSJtXy01MTYzMTI2MjAyMTA1NTgw
-NDI3QXBwbGUtdGFiLXNwYW4iIHN0eWxlPSJ3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+CTwvc3Bh
-bj48L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFs
-O2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdo
-dDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29y
-YXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3Jh
-cDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+PSAiIjwvc3Bhbj48L3A+DQogICAgICAgICAgICAg
-ICAgICA8cCBkaXI9Imx0ciINCiAgICAgICAgICAgICAgICAgICAgc3R5bGU9ImxpbmUtaGVp
-Z2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tn
-cm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9y
-bWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwt
-YWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdy
-YXAiPm1ldGEgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDwvc3Bhbj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjExcHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5k
-LWNvbG9yOnRyYW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtm
-b250LXZhcmlhbnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWdu
-OmJhc2VsaW5lO3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj48
-c3BhbiBjbGFzcz0ibV8tNTE2MzEyNjIwMjEwNTU4MDQyN0FwcGxlLXRhYi1zcGFuIiBzdHls
-ZT0id2hpdGUtc3BhY2U6cHJlLXdyYXAiPgk8L3NwYW4+PC9zcGFuPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91
-bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFs
-O2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxp
-Z246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAi
-PiA8L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAgICAgPHAgZGlyPSJsdHIiDQogICAgICAg
-ICAgICAgICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21h
-cmdpbi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Zm9udC1mYW1p
-bHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFyZW50O2Zv
-bnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO3Rl
-eHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5lO3doaXRlLXNwYWNl
-OnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj5tZXRhLXBva3kgwqDCoMKgwqDCoMKg
-PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtj
-b2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6
-NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0
-aW9uOm5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7
-d2hpdGUtc3BhY2U6cHJlLXdyYXAiPjxzcGFuIGNsYXNzPSJtXy01MTYzMTI2MjAyMTA1NTgw
-NDI3QXBwbGUtdGFiLXNwYW4iIHN0eWxlPSJ3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+CTwvc3Bh
-bj48L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFs
-O2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdo
-dDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29y
-YXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3Jh
-cDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+IDwvc3Bhbj48L3A+DQogICAgICAgICAgICAgICAg
-ICA8cCBkaXI9Imx0ciINCiAgICAgICAgICAgICAgICAgICAgc3R5bGU9ImxpbmUtaGVpZ2h0
-OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91
-bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFs
-O2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxp
-Z246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAi
-Pm1ldGEteW9jdG8tYnNwIMKgwqA8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0
-O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFu
-c3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50
-Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3
-aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+PHNwYW4gY2xhc3M9
-Im1fLTUxNjMxMjYyMDIxMDU1ODA0MjdBcHBsZS10YWItc3BhbiIgc3R5bGU9IndoaXRlLXNw
-YWNlOnByZS13cmFwIj4JPC9zcGFuPjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-cHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRy
-YW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlh
-bnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5l
-O3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj49ICJyb2Nrbzo8
-d2JyPmZkZWVjYzkwMTE5NmJiY2NkN2M1YjFlYTQyNjhhMjx3YnI+Y2Y1Njc2NGE2MiI8L3Nw
-YW4+PC9wPg0KICAgICAgICAgICAgICAgICAgPGJyPg0KICAgICAgICAgICAgICAgICAgPHAg
-ZGlyPSJsdHIiDQogICAgICAgICAgICAgICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4
-O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExcHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNv
-bG9yOnRyYW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250
-LXZhcmlhbnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJh
-c2VsaW5lO3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj5Jbml0
-aWFsaXNpbmcgdGFza3M6IDEwMCUgfCMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjPHdi
-cj4jIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyM8d2JyPiMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIzx3YnI+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjPHdicj4j
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyM8d2JyPiMjIyMjIyN8IFRpbWU6IDA6MDA6
-MzA8L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAgICAgPHAgZGlyPSJsdHIiDQogICAgICAg
-ICAgICAgICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21h
-cmdpbi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Zm9udC1mYW1p
-bHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFyZW50O2Zv
-bnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO3Rl
-eHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5lO3doaXRlLXNwYWNl
-OnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj5OT1RFOiBFeGVjdXRpbmcgU2V0U2Nl
-bmUgVGFza3MgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgPHdicj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA8d2JyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDx3YnI+wqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgPHdicj7C
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqA8d2JyPsKgwqDCoMKgwqDCoMKgwqDCoMKgwqA8L3NwYW4+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dyb3Vu
-ZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7
-Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1hbGln
-bjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+
-PHNwYW4gY2xhc3M9Im1fLTUxNjMxMjYyMDIxMDU1ODA0MjdBcHBsZS10YWItc3BhbiIgc3R5
-bGU9IndoaXRlLXNwYWNlOnByZS13cmFwIj4JPC9zcGFuPjwvc3Bhbj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExcHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3Jv
-dW5kLWNvbG9yOnRyYW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1h
-bDtmb250LXZhcmlhbnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFs
-aWduOmJhc2VsaW5lO3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFw
-Ij4gPC9zcGFuPjwvcD4NCiAgICAgICAgICAgICAgICAgIDxwIGRpcj0ibHRyIg0KICAgICAg
-ICAgICAgICAgICAgICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDtt
-YXJnaW4tYm90dG9tOjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFt
-aWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtm
-b250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0
-ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFj
-ZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+Tk9URTogRXhlY3V0aW5nIFJ1blF1
-ZXVlIFRhc2tzIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoDx3YnI+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgPHdicj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA8d2JyPsKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDx3YnI+
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgPHdicj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgPC9zcGFuPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91
-bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFs
-O2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxp
-Z246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAi
-PjxzcGFuIGNsYXNzPSJtXy01MTYzMTI2MjAyMTA1NTgwNDI3QXBwbGUtdGFiLXNwYW4iIHN0
-eWxlPSJ3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+CTwvc3Bhbj48L3NwYW4+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dy
-b3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3Jt
-YWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1h
-bGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3Jh
-cCI+IDwvc3Bhbj48L3A+DQogICAgICAgICAgICAgICAgICA8cCBkaXI9Imx0ciINCiAgICAg
-ICAgICAgICAgICAgICAgc3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7
-bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZh
-bWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7
-Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7
-dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3Bh
-Y2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAiPkVSUk9SOiBsaW51eC1saWJjLWhl
-YWRlcnMtNC4xMi1yMCBkb19pbnN0YWxsOiBvZV9ydW5tYWtlIGZhaWxlZDwvc3Bhbj48L3A+
-DQogICAgICAgICAgICAgICAgICA8cCBkaXI9Imx0ciINCiAgICAgICAgICAgICAgICAgICAg
-c3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTow
-cHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xv
-cjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAw
-O2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9u
-Om5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hp
-dGUtc3BhY2U6cHJlLXdyYXAiPkVSUk9SOiBsaW51eC1saWJjLWhlYWRlcnMtNC4xMi1yMCBk
-b19pbnN0YWxsOiBGdW5jdGlvbiBmYWlsZWQ6IGRvX2luc3RhbGwgKGxvZyBmaWxlIGlzIGxv
-Y2F0ZWQgYXQgL2hvbWUveW9jdG8vcG9reS9idWlsZC90bXAvPHdicj53b3JrL2k1ODYtcG9r
-eS1saW51eC9saW51eC08d2JyPmxpYmMtaGVhZGVycy80LjEyLXIwL3RlbXAvbG9nLjx3YnI+
-ZG9faW5zdGFsbC40MTcyKTwvc3Bhbj48L3A+DQogICAgICAgICAgICAgICAgICA8cCBkaXI9
-Imx0ciINCiAgICAgICAgICAgICAgICAgICAgc3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFy
-Z2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6
-dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFy
-aWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxp
-bmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAiPkVSUk9SOiBM
-b2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvaG9tZS95b2N0by9wb2t5L2J1aWxkL3Rt
-cC88d2JyPndvcmsvaTU4Ni1wb2t5LWxpbnV4L2xpbnV4LTx3YnI+bGliYy1oZWFkZXJzLzQu
-MTItcjAvdGVtcC9sb2cuPHdicj5kb19pbnN0YWxsLjQxNzI8L3NwYW4+PC9wPg0KICAgICAg
-ICAgICAgICAgICAgPHAgZGlyPSJsdHIiDQogICAgICAgICAgICAgICAgICAgIHN0eWxlPSJs
-aW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExcHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAw
-MDtiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0
-eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3Zl
-cnRpY2FsLWFsaWduOmJhc2VsaW5lO3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNl
-OnByZS13cmFwIj5Mb2cgZGF0YSBmb2xsb3dzOjwvc3Bhbj48L3A+DQogICAgICAgICAgICAg
-ICAgICA8cCBkaXI9Imx0ciINCiAgICAgICAgICAgICAgICAgICAgc3R5bGU9ImxpbmUtaGVp
-Z2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tn
-cm91bmQtY29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9y
-bWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwt
-YWxpZ246YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdy
-YXAiPnwgREVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gZXh0ZW5kX3JlY2lwZV9z
-eXNyb290PC9zcGFuPjwvcD4NCiAgICAgICAgICAgICAgICAgIDxwIGRpcj0ibHRyIg0KICAg
-ICAgICAgICAgICAgICAgICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBw
-dDttYXJnaW4tYm90dG9tOjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQt
-ZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVu
-dDtmb250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1h
-bDt0ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1z
-cGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+fCBOT1RFOiBEaXJlY3QgZGVw
-ZW5kZW5jaWVzIGFyZSBbJ3ZpcnR1YWw6bmF0aXZlOi9ob21lL3lvY3RvLzx3YnI+cG9reS9t
-ZXRhL3JlY2lwZXMtZGV2dG9vbHMvPHdicj5wa2djb25maWcvcGtnY29uZmlnX2dpdC5iYjpk
-b188d2JyPnBvcHVsYXRlX3N5c3Jvb3QnLCAndmlydHVhbDpuYXRpdmU6L2hvbWUveW9jdG8v
-PHdicj5wb2t5L21ldGEvcmVjaXBlcy1kZXZ0b29scy88d2JyPnVuaWZkZWYvdW5pZmRlZl8y
-LjExLmJiOmRvXzx3YnI+cG9wdWxhdGVfc3lzcm9vdCcsICd2aXJ0dWFsOm5hdGl2ZTovaG9t
-ZS95b2N0by88d2JyPnBva3kvbWV0YS9yZWNpcGVzLWRldnRvb2xzLzx3YnI+cHNldWRvL3Bz
-ZXVkb18xLjguMi5iYjpkb188d2JyPnBvcHVsYXRlX3N5c3Jvb3QnLCAnL2hvbWUveW9jdG8v
-cG9reS9tZXRhLzx3YnI+cmVjaXBlcy1kZXZ0b29scy9xdWlsdC9xdWlsdC08d2JyPm5hdGl2
-ZV8wLjY1LmJiOmRvX3BvcHVsYXRlXzx3YnI+c3lzcm9vdCcsICd2aXJ0dWFsOm5hdGl2ZTov
-aG9tZS95b2N0by88d2JyPnBva3kvbWV0YS9yZWNpcGVzLWV4dGVuZGVkL3h6Lzx3YnI+eHpf
-NS4yLjMuYmI6ZG9fcG9wdWxhdGVfPHdicj5zeXNyb290J108L3NwYW4+PC9wPg0KICAgICAg
-ICAgICAgICAgICAgPHAgZGlyPSJsdHIiDQogICAgICAgICAgICAgICAgICAgIHN0eWxlPSJs
-aW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExcHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAw
-MDtiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0
-eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3Zl
-cnRpY2FsLWFsaWduOmJhc2VsaW5lO3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNl
-OnByZS13cmFwIj58IE5PVEU6IEluc3RhbGxlZCBpbnRvIHN5c3Jvb3Q6IFtdPC9zcGFuPjwv
-cD4NCiAgICAgICAgICAgICAgICAgIDxwIGRpcj0ibHRyIg0KICAgICAgICAgICAgICAgICAg
-ICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9t
-OjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2Nv
-bG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0
-MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRp
-b246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3
-aGl0ZS1zcGFjZTpwcmUtd3JhcCI+fCBOT1RFOiBTa2lwcGluZyBhcyBhbHJlYWR5IGV4aXN0
-cyBpbiBzeXNyb290OiBbJ3BrZ2NvbmZpZy1uYXRpdmUnLCAndW5pZmRlZi1uYXRpdmUnLCAn
-cHNldWRvLW5hdGl2ZScsICdxdWlsdC1uYXRpdmUnLCAneHotbmF0aXZlJywgJ2dudS1jb25m
-aWctbmF0aXZlJywgJ2F1dG9jb25mLW5hdGl2ZScsICdhdXRvbWFrZS1uYXRpdmUnLCAnbGli
-dG9vbC1uYXRpdmUnLCAnZ2V0dGV4dC1taW5pbWFsLW5hdGl2ZScsICdtNC1uYXRpdmUnLCAn
-dGV4aW5mby1kdW1teS1uYXRpdmUnXTwvc3Bhbj48L3A+DQogICAgICAgICAgICAgICAgICA8
-cCBkaXI9Imx0ciINCiAgICAgICAgICAgICAgICAgICAgc3R5bGU9ImxpbmUtaGVpZ2h0OjEu
-Mzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQt
-Y29sb3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2Zv
-bnQtdmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxpZ246
-YmFzZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAiPnwg
-REVCVUc6IFB5dGhvbiBmdW5jdGlvbiBleHRlbmRfcmVjaXBlX3N5c3Jvb3QgZmluaXNoZWQ8
-L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAgICAgPHAgZGlyPSJsdHIiDQogICAgICAgICAg
-ICAgICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdp
-bi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Zm9udC1mYW1pbHk6
-QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFyZW50O2ZvbnQt
-d2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO3RleHQt
-ZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5lO3doaXRlLXNwYWNlOnBy
-ZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj58IERFQlVHOiBFeGVjdXRpbmcgc2hlbGwg
-ZnVuY3Rpb24gZG9faW5zdGFsbDwvc3Bhbj48L3A+DQogICAgICAgICAgICAgICAgICA8cCBk
-aXI9Imx0ciINCiAgICAgICAgICAgICAgICAgICAgc3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7
-bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29s
-b3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQt
-dmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxpZ246YmFz
-ZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAiPnwgTk9U
-RTogbWFrZSAtaiA0IEhPU1RDQz1nY2MgwqBIT1NUQ1BQPWdjYyAgLUUgaGVhZGVyc19pbnN0
-YWxsIElOU1RBTExfSERSX1BBVEg9L2hvbWUveW9jdG8vPHdicj5wb2t5L2J1aWxkL3RtcC93
-b3JrL2k1ODYtcG9reS08d2JyPmxpbnV4L2xpbnV4LWxpYmMtaGVhZGVycy80LjEyLTx3YnI+
-cjAvaW1hZ2UvdXNyPC9zcGFuPjwvcD4NCiAgICAgICAgICAgICAgICAgIDxwIGRpcj0ibHRy
-Ig0KICAgICAgICAgICAgICAgICAgICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4t
-dG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0
-O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFu
-c3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50
-Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3
-aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+fCBTZWdtZW50YXRp
-b24gZmF1bHQ8L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAgICAgPHAgZGlyPSJsdHIiDQog
-ICAgICAgICAgICAgICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6
-MHB0O21hcmdpbi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Zm9u
-dC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNvbG9yOnRyYW5zcGFy
-ZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9y
-bWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJhc2VsaW5lO3doaXRl
-LXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj58IEVSUk9SOiBvZV9ydW5t
-YWtlIGZhaWxlZDwvc3Bhbj48L3A+DQogICAgICAgICAgICAgICAgICA8cCBkaXI9Imx0ciIN
-CiAgICAgICAgICAgICAgICAgICAgc3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFyZ2luLXRv
-cDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDtm
-b250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29sb3I6dHJhbnNw
-YXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpu
-b3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxpZ246YmFzZWxpbmU7d2hp
-dGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAiPnwgV0FSTklORzogZXhp
-dCBjb2RlIDEgZnJvbSBhIHNoZWxsIGNvbW1hbmQuPC9zcGFuPjwvcD4NCiAgICAgICAgICAg
-ICAgICAgIDxwIGRpcj0ibHRyIg0KICAgICAgICAgICAgICAgICAgICBzdHlsZT0ibGluZS1o
-ZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFj
-a2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpu
-b3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNh
-bC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUt
-d3JhcCI+fCBFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBkb19pbnN0YWxsIChsb2cgZmlsZSBp
-cyBsb2NhdGVkIGF0IC9ob21lL3lvY3RvL3Bva3kvYnVpbGQvdG1wLzx3YnI+d29yay9pNTg2
-LXBva3ktbGludXgvbGludXgtPHdicj5saWJjLWhlYWRlcnMvNC4xMi1yMC90ZW1wL2xvZy48
-d2JyPmRvX2luc3RhbGwuNDE3Mik8L3NwYW4+PC9wPg0KICAgICAgICAgICAgICAgICAgPHAg
-ZGlyPSJsdHIiDQogICAgICAgICAgICAgICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4
-O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0Ij48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExcHQ7Zm9udC1mYW1pbHk6QXJpYWw7Y29sb3I6IzAwMDAwMDtiYWNrZ3JvdW5kLWNv
-bG9yOnRyYW5zcGFyZW50O2ZvbnQtd2VpZ2h0OjQwMDtmb250LXN0eWxlOm5vcm1hbDtmb250
-LXZhcmlhbnQ6bm9ybWFsO3RleHQtZGVjb3JhdGlvbjpub25lO3ZlcnRpY2FsLWFsaWduOmJh
-c2VsaW5lO3doaXRlLXNwYWNlOnByZS13cmFwO3doaXRlLXNwYWNlOnByZS13cmFwIj5FUlJP
-UjogVGFzayAoL2hvbWUveW9jdG8vcG9reS9tZXRhLzx3YnI+cmVjaXBlcy1rZXJuZWwvbGlu
-dXgtbGliYy08d2JyPmhlYWRlcnMvbGludXgtbGliYy1oZWFkZXJzXzQuPHdicj4xMi5iYjpk
-b19pbnN0YWxsKSBmYWlsZWQgd2l0aCBleGl0IGNvZGUgJzEnPC9zcGFuPjwvcD4NCiAgICAg
-ICAgICAgICAgICAgIDxwIGRpcj0ibHRyIg0KICAgICAgICAgICAgICAgICAgICBzdHlsZT0i
-bGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAw
-MDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1z
-dHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2
-ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFj
-ZTpwcmUtd3JhcCI+Tk9URTogVGFza3MgU3VtbWFyeTogQXR0ZW1wdGVkIDE5MSB0YXNrcyBv
-ZiB3aGljaCAxODUgZGlkbid0IG5lZWQgdG8gYmUgcmVydW4gYW5kIDEgZmFpbGVkLjwvc3Bh
-bj48L3A+DQogICAgICAgICAgICAgICAgICA8YnI+DQogICAgICAgICAgICAgICAgICA8cCBk
-aXI9Imx0ciINCiAgICAgICAgICAgICAgICAgICAgc3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7
-bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTFwdDtmb250LWZhbWlseTpBcmlhbDtjb2xvcjojMDAwMDAwO2JhY2tncm91bmQtY29s
-b3I6dHJhbnNwYXJlbnQ7Zm9udC13ZWlnaHQ6NDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQt
-dmFyaWFudDpub3JtYWw7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dmVydGljYWwtYWxpZ246YmFz
-ZWxpbmU7d2hpdGUtc3BhY2U6cHJlLXdyYXA7d2hpdGUtc3BhY2U6cHJlLXdyYXAiPlN1bW1h
-cnk6IDEgdGFzayBmYWlsZWQ6PC9zcGFuPjwvcD4NCiAgICAgICAgICAgICAgICAgIDxwIGRp
-cj0ibHRyIg0KICAgICAgICAgICAgICAgICAgICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODtt
-YXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMXB0O2ZvbnQtZmFtaWx5OkFyaWFsO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xv
-cjp0cmFuc3BhcmVudDtmb250LXdlaWdodDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12
-YXJpYW50Om5vcm1hbDt0ZXh0LWRlY29yYXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNl
-bGluZTt3aGl0ZS1zcGFjZTpwcmUtd3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+IMKgL2hv
-bWUveW9jdG8vcG9reS9tZXRhLzx3YnI+cmVjaXBlcy1rZXJuZWwvbGludXgtbGliYy08d2Jy
-PmhlYWRlcnMvbGludXgtbGliYy1oZWFkZXJzXzQuPHdicj4xMi5iYjpkb19pbnN0YWxsPC9z
-cGFuPjwvcD4NCiAgICAgICAgICAgICAgICAgIDxwIGRpcj0ibHRyIg0KICAgICAgICAgICAg
-ICAgICAgICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4t
-Ym90dG9tOjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0O2ZvbnQtZmFtaWx5OkFy
-aWFsO2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjp0cmFuc3BhcmVudDtmb250LXdl
-aWdodDo0MDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWRl
-Y29yYXRpb246bm9uZTt2ZXJ0aWNhbC1hbGlnbjpiYXNlbGluZTt3aGl0ZS1zcGFjZTpwcmUt
-d3JhcDt3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+U3VtbWFyeTogVGhlcmUgd2FzIDEgV0FSTklO
-RyBtZXNzYWdlIHNob3duLjwvc3Bhbj48L3A+DQogICAgICAgICAgICAgICAgPC9iPiA8YnI+
-DQogICAgICAgICAgICAgICAgPHA+PGJyPg0KICAgICAgICAgICAgICAgIDwvcD4NCiAgICAg
-ICAgICAgICAgPC9kaXY+DQogICAgICAgICAgICA8L2Jsb2NrcXVvdGU+DQogICAgICAgICAg
-PC9kaXY+DQogICAgICAgICAgPGRpdiBjbGFzcz0iZ21haWxfc2lnbmF0dXJlIiBkYXRhLXNt
-YXJ0bWFpbD0iZ21haWxfc2lnbmF0dXJlIj48YnI+DQogICAgICAgICAgPC9kaXY+DQogICAg
-ICAgIDwvZGl2Pg0KICAgICAgPC9kaXY+DQogICAgPC9ibG9ja3F1b3RlPg0KICAgIDxicj4N
-CiAgPC9ib2R5Pg0KPC9odG1sPg0K
+</blockquote></div><br><br clear=3D"all"><div><br></div>
+</div></div>
 
---------------40C1268596228F5201D856E0--
+--0000000000005ae875056a087f20--
