@@ -1,67 +1,91 @@
-Return-Path: <mans.zigher@gmail.com>
+Return-Path: <MANJUKUM@xilinx.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 09ACAE00C1B; Tue, 17 Apr 2018 11:31:37 -0700 (PDT)
+	id 4926BE00C1B; Tue, 17 Apr 2018 12:58:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mans.zigher[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.175 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.41.50 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-Received: from mail-ot0-f175.google.com (mail-ot0-f175.google.com
-	[74.125.82.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 540E0E00831
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 11:31:35 -0700 (PDT)
-Received: by mail-ot0-f175.google.com with SMTP id p2-v6so5659623otf.3
-	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 11:31:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=y3PCu6jNC9BlW4L2Jk1vue3CgPpRlROSeAvwEogNkFo=;
-	b=gFFvO7JcwywHXg53xUuK/XvwjsljyCPyYyTPOk0IKw8OLUe/sbKZbTt8LbWpSPHNSQ
-	epeUuNuP3N1JxV66QUp1UsRI3EHERzjwRvU1uz9pTVq959o2/c9+giL2XrvavaULb0DX
-	ZzcL1o10MAGoJ4Yyb9qOf63e5B/wfsMerijeNUOtv3Zgb5BB+w9nUInjHU+mmvDAQIFw
-	ZYdxu6llfUwNguh80twpK+FXt+Y1FHGOlfrAycgpLkZKQw0qCwcILLr0WWgyb++21wyk
-	zYUDWTZ6bU3VvIvRGW/KL9yVmbYeo2Ss7XrhuXDi7Z4hO6x2LkCcsoMvh62whuSCGg7l
-	a2HQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=y3PCu6jNC9BlW4L2Jk1vue3CgPpRlROSeAvwEogNkFo=;
-	b=FV1PU+akrZuOqp+Z46HCw4EbS+48ph5iBmSl8JZdu8Gqfpw9QfFdOIvdlVd89RnFSC
-	K0jz6C6NzbLolQhQ+CQwYTKSnUJyMywAuqkSEUMxP3tQg0bXDWmTi/iQbRY3cdrIR8TT
-	as2dmgMnAXElW5eJZMDJhpInfcysRWNDT4FBb+h5N+H29W6SXLro0l45oTejgvFEnsdg
-	zEMiHagmwuyQVcvEn5aus+xzVArg2d6HldSbFcvBANQ9mOphXf7idgMMyrMXGCGyPia8
-	S1GVYWWQsjMRWXj7qBoqMzNhCeaf6pGRzgNqSvwUAblVDHpP9A4+wUBwjSih4J0Xu/TO
-	PPXQ==
-X-Gm-Message-State: ALQs6tBqaMyW4t9EiD/sGsmGyioN5zuT/r4t8wRsNhfoLICbmNhbNL3G
-	w7EaPAat0SwBsixJxHycjcXF8VRhv5Ozscg9cIE=
-X-Google-Smtp-Source: AIpwx4+k/V3BN0wIXIhi7pHYmTl7T2CJPaDWXsYYqAOtUSX7mxMJb30/zqLC8VOnks1+k2r5GG5gceYXTCKgm+Q9Qv0=
-X-Received: by 2002:a9d:605:: with SMTP id 5-v6mr2067218otn.360.1523989895370; 
-	Tue, 17 Apr 2018 11:31:35 -0700 (PDT)
+X-Greylist: delayed 939 seconds by postgrey-1.32 at yocto-www;
+	Tue, 17 Apr 2018 12:58:06 PDT
+Received: from NAM03-DM3-obe.outbound.protection.outlook.com
+	(mail-dm3nam03on0050.outbound.protection.outlook.com [104.47.41.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38A33E00816
+	for <yocto@yoctoproject.org>; Tue, 17 Apr 2018 12:58:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=nULzlRnyhHwQAZAsh7JagA8gTkzwqHAmwX2weNhrh8o=;
+	b=sHTSvoV9yq7zykHMZegqWrASSrciVXXknnNTSA3pw6Ta5pnHRoLQoGAHjIugU+kr11T1cwX6mgdf0cEBlfDd18RAma3TozScwCgLCfSooFL3fK8gPQem9XskdRnAhdRunWGfbOYdF4yr0dL+LlSRSx0L6VcLxffz9NYIzxxz5KQ=
+Received: from BLUPR02MB343.namprd02.prod.outlook.com (10.141.77.154) by
+	BLUPR02MB1156.namprd02.prod.outlook.com (10.163.79.158) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+	15.20.696.12; Tue, 17 Apr 2018 19:42:23 +0000
+Received: from BLUPR02MB343.namprd02.prod.outlook.com
+	([fe80::f099:7f3e:5c4c:2796]) by BLUPR02MB343.namprd02.prod.outlook.com
+	([fe80::f099:7f3e:5c4c:2796%17]) with mapi id 15.20.0675.015;
+	Tue, 17 Apr 2018 19:42:23 +0000
+From: Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>
+To: Nicolas Salmin <nicolas_salmin@trimble.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [Yocto] Prelink compilation for ZCU102
+Thread-Index: AQHT1ioa+ivYxIwc1kqjT3fCG3hj0KQFWyIA
+Date: Tue, 17 Apr 2018 19:42:23 +0000
+Message-ID: <BLUPR02MB34318DCCC4B86619927DA81B9B70@BLUPR02MB343.namprd02.prod.outlook.com>
+References: <CAGTsOqOb1jEyVz9EpgkqyOg=7GiNvgcE2qmpvyMBXztNoMbgMg@mail.gmail.com>
+In-Reply-To: <CAGTsOqOb1jEyVz9EpgkqyOg=7GiNvgcE2qmpvyMBXztNoMbgMg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: trimble.com; dkim=none (message not signed)
+	header.d=none; trimble.com;
+	dmarc=none action=none header.from=xilinx.com; 
+x-originating-ip: [73.231.161.32]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; BLUPR02MB1156;
+	7:nfViKr9f9P5CykljMsv7mJ+NheRB2+rYzvMmLAh1zINjIyIzqESJ8WaBW+2F4HUQWflsTuQIq8kqYt7ympPqFfhdBwbxX110mscxVKlkO2Q1ucWZUOPRBOBpHMlQ5iBV+9XAEEOK9OhXvAWLArmo8QJO/dCZx5EKQJTWEXUXcXmLJcJMUTATeEhupEndq1HC1ZPzBgWZfXaGn5pGbndBKqizP/b7tET6ZdegXr/f4CvRUvjzM632KRcYavUUjvca
+x-ms-exchange-antispam-srfa-diagnostics: SOS;
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(5600026)(4534165)(4627221)(201703031133081)(201702281549075)(48565401081)(2017052603328)(7153060)(7193020);
+	SRVR:BLUPR02MB1156; 
+x-ms-traffictypediagnostic: BLUPR02MB1156:
+x-microsoft-antispam-prvs: <BLUPR02MB115694EA753F0963DE31D2A9B9B70@BLUPR02MB1156.namprd02.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(8211001083)(6040522)(2401047)(8121501046)(5005006)(3231232)(944501327)(52105095)(93006095)(93001095)(3002001)(10201501046)(6055026)(6041310)(20161123558120)(20161123562045)(20161123560045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123564045)(6072148)(201708071742011);
+	SRVR:BLUPR02MB1156; BCL:0; PCL:0; RULEID:; SRVR:BLUPR02MB1156; 
+x-forefront-prvs: 0645BEB7AA
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(39380400002)(39860400002)(376002)(396003)(346002)(366004)(2501003)(2906002)(575784001)(476003)(5250100002)(2900100001)(68736007)(86362001)(229853002)(53936002)(6246003)(11346002)(3846002)(790700001)(6116002)(110136005)(186003)(72206003)(7736002)(66066001)(33656002)(25786009)(53546011)(5660300001)(76176011)(81166006)(8676002)(59450400001)(6506007)(74316002)(316002)(6306002)(478600001)(7696005)(54896002)(55016002)(14454004)(3280700002)(9686003)(26005)(9326002)(446003)(3660700001)(99286004)(102836004)(6436002)(8936002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR02MB1156;
+	H:BLUPR02MB343.namprd02.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; MLV:nov; PTR:InfoNoRecords; 
+x-microsoft-antispam-message-info: yjAcP0y9tqdOr0yfmRPUvUmFavdSrvIy6/B47s5SzRPTULMNhA8DOTTH/T0Dtex9ZkwTdKh7GFmF8OlJpvmK+3QEljyEfj9rGgsLdPDhvv4eaxV0ZiMLlhZZudFWRVCuGmmbJxjtJ/cSO/6fUtTWsZSDvXCmeeeWJpVB2dDrhjkCKeVJWHxoWPSOGn2+yqCj
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-References: <CAEhQi8khVFOsFzoM=LWZnDMnsbO2o=eodSokurZFSteXTNHjGA@mail.gmail.com>
-	<78ba1681-5c7d-2f2b-1784-474d29be6a8b@posteo.de>
-In-Reply-To: <78ba1681-5c7d-2f2b-1784-474d29be6a8b@posteo.de>
-From: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
-Date: Tue, 17 Apr 2018 18:31:24 +0000
-Message-ID: <CAEhQi8kVuBfTGy2Bx-cdnhYXtrd2_sWkWpoWqEiw7FNu3DjtJQ@mail.gmail.com>
-To: Dennis Menschel <menschel-d@posteo.de>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: rocko cmake buld cstdlib:75:15: fatal error: stdlib.h: No such file or directory
+X-MS-Office365-Filtering-Correlation-Id: e6fb8591-aac4-48c7-9417-08d5a49b5796
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6fb8591-aac4-48c7-9417-08d5a49b5796
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Apr 2018 19:42:23.8227 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR02MB1156
+Subject: Re: Prelink compilation for ZCU102
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,119 +97,200 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Apr 2018 18:31:37 -0000
-Content-Type: multipart/alternative; boundary="0000000000005aedc9056a0f8c2b"
+X-List-Received-Date: Tue, 17 Apr 2018 19:58:09 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BLUPR02MB34318DCCC4B86619927DA81B9B70BLUPR02MB343namprd_"
 
---0000000000005aedc9056a0f8c2b
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_BLUPR02MB34318DCCC4B86619927DA81B9B70BLUPR02MB343namprd_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi,
+SGkgTmljb2xhcywNCg0KU2VlbXMgbGlrZSB0aGVyZSB3YXMgYSDigJxmZXRjaGVyIGZhaWx1cmXi
+gJ0sIGNhbiB5b3UgbWFrZSBzdXJlIGdpdCBwcm94eSBpcyBzZXQgY29ycmVjdGx5IGZvciB5b3Vy
+IG5ldHdvcmsuDQpJZiB5b3UgYXJlIGFibGUgdG8gbWFudWFsbHkgY2xvbmUgdXNpbmcgdGhlIGNs
+b25lIGNvbW1hbmQgZm91bmQgaW4gdGhlIGxvZy5kb19mZXRjaCBvZiBwcmVsaW5rIHJlY2lwZSwg
+dGhlbiBiaXRiYWtlIHNob3VsZCBhbHNvIGJlIGFibGUgdG8gY2xvbmUgd2l0aG91dCBmYWlsdXJl
+cy4NCg0KVGhhbmtzLA0KTWFuanUNCg0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qu
+b3JnIFttYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2Yg
+Tmljb2xhcyBTYWxtaW4NClNlbnQ6IFR1ZXNkYXksIEFwcmlsIDE3LCAyMDE4IDE6NTUgQU0NClRv
+OiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBbeW9jdG9dIFtZb2N0b10gUHJlbGlu
+ayBjb21waWxhdGlvbiBmb3IgWkNVMTAyDQoNCkhlbGxvIGd1eXMsDQoNClNvbWVvbmUgaGVyZSBo
+YXZlIHNvbWUgaW5mb3JtYXRpb24gdG8gYnVpbGQgcHJlbGluayByZWNpcGUgZm9yIFpDVTEwMiBi
+b2FyZCBiZWNhdXNlIGknbSBub3QgYWJsZSB0byBkbyBpdCAuLi4NCg0KSGVsbG8gZ3V5cywNCg0K
+U29tZW9uZSBoZXJlIGhhdmUgc29tZSBpbmZvcm1hdGlvbiB0byBidWlsZCBwcmVsaW5rIHJlY2lw
+ZSBmb3IgWkNVMTAyIGJvYXJkIGJlY2F1c2UgaSdtIG5vdCBhYmxlIHRvIGRvIGl0IC4uLg0KDQpF
+UlJPUjogcHJlbGluay0xLjArZ2l0QVVUT0lOQythYTI5ODVlZWZhLXIwIGRvX3VucGFjazogRmV0
+Y2hlciBmYWlsdXJlOiBGZXRjaCBjb21tYW5kIGV4cG9ydCBQU0VVRE9fRElTQUJMRUQ9MTsgZXhw
+b3J0IERCVVNfU0VTU0lPTl9CVVNfQUREUkVTUz0idW5peDphYnN0cmFjdD0vdG1wL2RidXMtS1Ri
+c0kwV2daMiI7IGV4cG9ydCBTU0hfQVVUSF9TT0NLPSIvcnVuL3VzZXIvMTAwMC9rZXlyaW5nL3Nz
+aCI7IGV4cG9ydCBQQVRIPSIvcHJpdmF0ZS9wYXRoL1VsdHJhU2NhbGUvemN1MTAyL3lvY3RvL2J1
+aWxkL3RtcC9zeXNyb290cy11bmluYXRpdmUveDg2XzY0LWxpbnV4L3Vzci9iaW46L3ByaXZhdGUv
+cGF0aC9VbHRyYVNjYWxlL3pjdTEwMi95b2N0by9wb2t5L3NjcmlwdHM6L3ByaXZhdGUvcGF0aC9V
+bHRyYVNjYWxlL3pjdTEwMi95b2N0by9idWlsZC90bXAvd29yay9hYXJjaDY0LXBva3ktbGludXgv
+cHJlbGluay8xLjArZ2l0QVVUT0lOQythYTI5ODVlZWZhLXIwL3JlY2lwZS1zeXNyb290LW5hdGl2
+ZS91c3IvYmluL2FhcmNoNjQtcG9reS1saW51eDovcHJpdmF0ZS9wYXRoL1VsdHJhU2NhbGUvemN1
+MTAyL3lvY3RvL2J1aWxkL3RtcC93b3JrL2FhcmNoNjQtcG9reS1saW51eC9wcmVsaW5rLzEuMCtn
+aXRBVVRPSU5DK2FhMjk4NWVlZmEtcjAvcmVjaXBlLXN5c3Jvb3QvdXNyL2Jpbi9jcm9zc3Njcmlw
+dHM6L3ByaXZhdGUvcGF0aC9VbHRyYVNjYWxlL3pjdTEwMi95b2N0by9idWlsZC90bXAvd29yay9h
+YXJjaDY0LXBva3ktbGludXgvcHJlbGluay8xLjArZ2l0QVVUT0lOQythYTI5ODVlZWZhLXIwL3Jl
+Y2lwZS1zeXNyb290LW5hdGl2ZS91c3Ivc2JpbjovcHJpdmF0ZS9wYXRoL1VsdHJhU2NhbGUvemN1
+MTAyL3lvY3RvL2J1aWxkL3RtcC93b3JrL2FhcmNoNjQtcG9reS1saW51eC9wcmVsaW5rLzEuMCtn
+aXRBVVRPSU5DK2FhMjk4NWVlZmEtcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL3Vzci9iaW46L3By
+aXZhdGUvcGF0aC9VbHRyYVNjYWxlL3pjdTEwMi95b2N0by9idWlsZC90bXAvd29yay9hYXJjaDY0
+LXBva3ktbGludXgvcHJlbGluay8xLjArZ2l0QVVUT0lOQythYTI5ODVlZWZhLXIwL3JlY2lwZS1z
+eXNyb290LW5hdGl2ZS9zYmluOi9wcml2YXRlL3BhdGgvVWx0cmFTY2FsZS96Y3UxMDIveW9jdG8v
+YnVpbGQvdG1wL3dvcmsvYWFyY2g2NC1wb2t5LWxpbnV4L3ByZWxpbmsvMS4wK2dpdEFVVE9JTkMr
+YWEyOTg1ZWVmYS1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvYmluOi9wcml2YXRlL3BhdGgvVWx0
+cmFTY2FsZS96Y3UxMDIveW9jdG8vcG9reS9iaXRiYWtlL2JpbjovcHJpdmF0ZS9wYXRoL1VsdHJh
+U2NhbGUvemN1MTAyL3lvY3RvL2J1aWxkL3RtcC9ob3N0dG9vbHMiOyBleHBvcnQgSE9NRT0iL2hv
+bWUvbmljb2xhcyI7IGdpdCAtYyBjb3JlLmZzeW5jb2JqZWN0ZmlsZXM9MCBjaGVja291dCAtQiBj
+cm9zc19wcmVsaW5rIGFhMjk4NWVlZmE5NDYyNTAzN2FkMzFlOWRjNTIwN2ZkNWJmMzFjYTcgZmFp
+bGVkIHdpdGggZXhpdCBjb2RlIDEyOCwgb3V0cHV0Og0KZmF0YWw6IHJlZmVyZW5jZSBpcyBub3Qg
+YSB0cmVlOiBhYTI5ODVlZWZhOTQ2MjUwMzdhZDMxZTlkYzUyMDdmZDViZjMxY2E3DQoNCkVSUk9S
+OiBwcmVsaW5rLTEuMCtnaXRBVVRPSU5DK2FhMjk4NWVlZmEtcjAgZG9fdW5wYWNrOiBGdW5jdGlv
+biBmYWlsZWQ6IGJhc2VfZG9fdW5wYWNrDQpFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3Jl
+ZCBpbjogL3ByaXZhdGUvcGF0aC9VbHRyYVNjYWxlL3pjdTEwMi95b2N0by9idWlsZC90bXAvd29y
+ay9hYXJjaDY0LXBva3ktbGludXgvcHJlbGluay8xLjArZ2l0QVVUT0lOQythYTI5ODVlZWZhLXIw
+L3RlbXAvbG9nLmRvX3VucGFjay44NTk4Ng0KRVJST1I6IFRhc2sgKC9wcml2YXRlL3BhdGgvVWx0
+cmFTY2FsZS96Y3UxMDIveW9jdG8vcG9reS9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvcHJlbGluay9w
+cmVsaW5rX2dpdC5iYjpkb191bnBhY2spIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMScNCg0KDQpJ
+IGRvbid0IGtub3cgaWYgaXQncyBiZWNhdXNlIG9mIHRoZSB0YXJnZXQgaXMgYW4gYWFyY2g2NCBh
+cmNoaXRlY3R1cmUgb3Igbm90IC4uLg0KDQpBbnkgYWR2aXNlID8NCkNoZWVycywNCk5pY29sYXMN
+Cg==
 
-I actually managed to locate the problem to the cmake project where it
-added include_directories(SYSTEM which then is translated into -isystem
-this call was not included when building in the SDK so that explained why
-this was only triggered when building with bitbake. Thanks for the tip I
-will try it out and see what "cmake_do_configure()" can offer.
+--_000_BLUPR02MB34318DCCC4B86619927DA81B9B70BLUPR02MB343namprd_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Br
-Mans Zigher
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBz
+cGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxl
+MTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
+cmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
+c3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJp
+Zjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEu
+MGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2Vj
+dGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVm
+YXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48
+IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxv
+OmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwh
+W2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZs
+aW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SGkgTmljb2xhcyw8bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
+b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
+aWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlNlZW1zIGxpa2UgdGhlcmUgd2Fz
+IGEg4oCcZmV0Y2hlciBmYWlsdXJl4oCdLCBjYW4geW91IG1ha2Ugc3VyZSBnaXQgcHJveHkgaXMg
+c2V0IGNvcnJlY3RseSBmb3IgeW91ciBuZXR3b3JrLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5JZiB5b3Ug
+YXJlIGFibGUgdG8gbWFudWFsbHkgY2xvbmUgdXNpbmcgdGhlIGNsb25lIGNvbW1hbmQgZm91bmQg
+aW4gdGhlIGxvZy5kb19mZXRjaCBvZiBwcmVsaW5rIHJlY2lwZSwgdGhlbiBiaXRiYWtlIHNob3Vs
+ZCBhbHNvIGJlIGFibGUgdG8gY2xvbmUgd2l0aG91dCBmYWlsdXJlcy48bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
+RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoYW5rcyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
+LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+TWFu
+anU8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YSBuYW1lPSJf
+TWFpbEVuZENvbXBvc2UiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNw
+OzwvbzpwPjwvc3Bhbj48L2E+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxl
+ZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDQuMHB0Ij4NCjxkaXY+DQo8
+ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFk
+ZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiB5b2N0by1ib3VuY2Vz
+QHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmdd
+DQo8Yj5PbiBCZWhhbGYgT2YgPC9iPk5pY29sYXMgU2FsbWluPGJyPg0KPGI+U2VudDo8L2I+IFR1
+ZXNkYXksIEFwcmlsIDE3LCAyMDE4IDE6NTUgQU08YnI+DQo8Yj5Ubzo8L2I+IHlvY3RvQHlvY3Rv
+cHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW3lvY3RvXSBbWW9jdG9dIFByZWxpbmsg
+Y29tcGlsYXRpb24gZm9yIFpDVTEwMjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9k
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj5IZWxsbyBndXlzLDxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+U29tZW9uZSBoZXJlIGhhdmUgc29tZSBpbmZvcm1hdGlvbiB0
+byBidWlsZCBwcmVsaW5rIHJlY2lwZSBmb3IgWkNVMTAyIGJvYXJkIGJlY2F1c2UgaSdtIG5vdCBh
+YmxlIHRvIGRvIGl0IC4uLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+SGVsbG8gZ3V5cyw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+U29tZW9uZSBoZXJlIGhhdmUgc29tZSBpbmZv
+cm1hdGlvbiB0byBidWlsZCBwcmVsaW5rIHJlY2lwZSBmb3IgWkNVMTAyIGJvYXJkIGJlY2F1c2Ug
+aSdtIG5vdCBhYmxlIHRvIGRvIGl0IC4uLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5FUlJPUjogcHJlbGluay0xLjAmIzQzO2dpdEFVVE9JTkMm
+IzQzO2FhMjk4NWVlZmEtcjAgZG9fdW5wYWNrOiBGZXRjaGVyIGZhaWx1cmU6IEZldGNoIGNvbW1h
+bmQgZXhwb3J0IFBTRVVET19ESVNBQkxFRD0xOyBleHBvcnQgREJVU19TRVNTSU9OX0JVU19BRERS
+RVNTPSZxdW90O3VuaXg6YWJzdHJhY3Q9L3RtcC9kYnVzLUtUYnNJMFdnWjImcXVvdDs7IGV4cG9y
+dCBTU0hfQVVUSF9TT0NLPSZxdW90Oy9ydW4vdXNlci8xMDAwL2tleXJpbmcvc3NoJnF1b3Q7OyBl
+eHBvcnQNCiBQQVRIPSZxdW90Oy9wcml2YXRlL3BhdGgvVWx0cmFTY2FsZS96Y3UxMDIveW9jdG8v
+YnVpbGQvdG1wL3N5c3Jvb3RzLXVuaW5hdGl2ZS94ODZfNjQtbGludXgvdXNyL2JpbjovcHJpdmF0
+ZS9wYXRoL1VsdHJhU2NhbGUvemN1MTAyL3lvY3RvL3Bva3kvc2NyaXB0czovcHJpdmF0ZS9wYXRo
+L1VsdHJhU2NhbGUvemN1MTAyL3lvY3RvL2J1aWxkL3RtcC93b3JrL2FhcmNoNjQtcG9reS1saW51
+eC9wcmVsaW5rLzEuMCYjNDM7Z2l0QVVUT0lOQyYjNDM7YWEyOTg1ZWVmYS1yMC9yZWNpcGUtc3lz
+cm9vdC1uYXRpdmUvdXNyL2Jpbi9hYXJjaDY0LXBva3ktbGludXg6L3ByaXZhdGUvcGF0aC9VbHRy
+YVNjYWxlL3pjdTEwMi95b2N0by9idWlsZC90bXAvd29yay9hYXJjaDY0LXBva3ktbGludXgvcHJl
+bGluay8xLjAmIzQzO2dpdEFVVE9JTkMmIzQzO2FhMjk4NWVlZmEtcjAvcmVjaXBlLXN5c3Jvb3Qv
+dXNyL2Jpbi9jcm9zc3NjcmlwdHM6L3ByaXZhdGUvcGF0aC9VbHRyYVNjYWxlL3pjdTEwMi95b2N0
+by9idWlsZC90bXAvd29yay9hYXJjaDY0LXBva3ktbGludXgvcHJlbGluay8xLjAmIzQzO2dpdEFV
+VE9JTkMmIzQzO2FhMjk4NWVlZmEtcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL3Vzci9zYmluOi9w
+cml2YXRlL3BhdGgvVWx0cmFTY2FsZS96Y3UxMDIveW9jdG8vYnVpbGQvdG1wL3dvcmsvYWFyY2g2
+NC1wb2t5LWxpbnV4L3ByZWxpbmsvMS4wJiM0MztnaXRBVVRPSU5DJiM0MzthYTI5ODVlZWZhLXIw
+L3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3IvYmluOi9wcml2YXRlL3BhdGgvVWx0cmFTY2FsZS96
+Y3UxMDIveW9jdG8vYnVpbGQvdG1wL3dvcmsvYWFyY2g2NC1wb2t5LWxpbnV4L3ByZWxpbmsvMS4w
+JiM0MztnaXRBVVRPSU5DJiM0MzthYTI5ODVlZWZhLXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS9z
+YmluOi9wcml2YXRlL3BhdGgvVWx0cmFTY2FsZS96Y3UxMDIveW9jdG8vYnVpbGQvdG1wL3dvcmsv
+YWFyY2g2NC1wb2t5LWxpbnV4L3ByZWxpbmsvMS4wJiM0MztnaXRBVVRPSU5DJiM0MzthYTI5ODVl
+ZWZhLXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS9iaW46L3ByaXZhdGUvcGF0aC9VbHRyYVNjYWxl
+L3pjdTEwMi95b2N0by9wb2t5L2JpdGJha2UvYmluOi9wcml2YXRlL3BhdGgvVWx0cmFTY2FsZS96
+Y3UxMDIveW9jdG8vYnVpbGQvdG1wL2hvc3R0b29scyZxdW90OzsNCiBleHBvcnQgSE9NRT0mcXVv
+dDsvaG9tZS9uaWNvbGFzJnF1b3Q7OyBnaXQgLWMgY29yZS5mc3luY29iamVjdGZpbGVzPTAgY2hl
+Y2tvdXQgLUIgY3Jvc3NfcHJlbGluayBhYTI5ODVlZWZhOTQ2MjUwMzdhZDMxZTlkYzUyMDdmZDVi
+ZjMxY2E3IGZhaWxlZCB3aXRoIGV4aXQgY29kZSAxMjgsIG91dHB1dDo8bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmZhdGFsOiByZWZlcmVuY2UgaXMg
+bm90IGEgdHJlZTogYWEyOTg1ZWVmYTk0NjI1MDM3YWQzMWU5ZGM1MjA3ZmQ1YmYzMWNhNzxvOnA+
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5FUlJPUjog
+cHJlbGluay0xLjAmIzQzO2dpdEFVVE9JTkMmIzQzO2FhMjk4NWVlZmEtcjAgZG9fdW5wYWNrOiBG
+dW5jdGlvbiBmYWlsZWQ6IGJhc2VfZG9fdW5wYWNrPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5FUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3Jl
+ZCBpbjogL3ByaXZhdGUvcGF0aC9VbHRyYVNjYWxlL3pjdTEwMi95b2N0by9idWlsZC90bXAvd29y
+ay9hYXJjaDY0LXBva3ktbGludXgvcHJlbGluay8xLjAmIzQzO2dpdEFVVE9JTkMmIzQzO2FhMjk4
+NWVlZmEtcjAvdGVtcC9sb2cuZG9fdW5wYWNrLjg1OTg2PG86cD48L286cD48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5FUlJPUjogVGFzayAoL3ByaXZhdGUvcGF0aC9V
+bHRyYVNjYWxlL3pjdTEwMi95b2N0by9wb2t5L21ldGEvcmVjaXBlcy1kZXZ0b29scy9wcmVsaW5r
+L3ByZWxpbmtfZ2l0LmJiOmRvX3VucGFjaykgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJzxvOnA+
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+SSBkb24ndCBrbm93IGlmIGl0J3MgYmVjYXVzZSBvZiB0aGUgdGFyZ2V0IGlzIGFuIGFhcmNo
+NjQgYXJjaGl0ZWN0dXJlIG9yIG5vdCAuLi48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QW55IGFkdmlzZSA/PG86cD48L286cD48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5DaGVlcnMsPG86cD48L286cD48L3A+DQo8
+L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5OaWNvbGFzPG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-
-On Tue, Apr 17, 2018, 19:57 Dennis Menschel <menschel-d@posteo.de> wrote:
-
-> Hi Mans,
->
-> Am 17.04.2018 um 13:15 schrieb M=C3=A5ns Zigher:
-> > Hi all,
-> >
-> > Have anyone experienced this error message before?
-> >
-> >     c++/7.3.0/cstdlib:75:15: fatal error: stdlib.h: No such file or
-> >     directory
-> >     |  #include_next <stdlib.h>
-> >     |                ^~~~~~~~~~
-> >
-> > I am not seeing this error when cross compiling using the sdk. I can se=
-e
-> > in the output that the -isystem is added which when googling the error
-> > appears to be a problem when cross compiling. Since the sdk works I am
-> > guessing this flag is added by OE/poky. Any pointers on how to go
-> > forward is appreciated.
-> >
-> > BR
-> > Mans Zigher
->
-> if I recall correctly, the problem can be circumvented by adding the
-> option "-DCMAKE_NO_SYSTEM_FROM_IMPORTED=3D1" when invoking cmake.
->
-> You can find a reference in the function "cmake_do_configure()" located
-> inside "poky/meta/classes/cmake.bbclass"
->
-> Best regards,
-> Dennis
->
->
-
---0000000000005aedc9056a0f8c2b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">Hi,<div dir=3D"auto"><br></div><div dir=3D"auto">I actual=
-ly managed to locate the problem to the cmake project where it added includ=
-e_directories(SYSTEM which then is translated into -isystem this call was n=
-ot included when building in the SDK so that explained why this was only tr=
-iggered when building with bitbake. Thanks for the tip I will try it out an=
-d see what=C2=A0<span style=3D"font-family:sans-serif">&quot;cmake_do_confi=
-gure()&quot; can offer.=C2=A0</span></div><div dir=3D"auto"><span style=3D"=
-font-family:sans-serif"><br></span></div><div dir=3D"auto"><span style=3D"f=
-ont-family:sans-serif">Br</span></div><div dir=3D"auto"><font face=3D"sans-=
-serif">Mans Zigher</font></div><br><br><div class=3D"gmail_quote" dir=3D"au=
-to"><div dir=3D"ltr">On Tue, Apr 17, 2018, 19:57 Dennis Menschel &lt;<a hre=
-f=3D"mailto:menschel-d@posteo.de">menschel-d@posteo.de</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
-t:1px #ccc solid;padding-left:1ex">Hi Mans,<br>
-<br>
-Am 17.04.2018 um 13:15 schrieb M=C3=A5ns Zigher:<br>
-&gt; Hi all,<br>
-&gt; <br>
-&gt; Have anyone experienced this error message before?<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0c++/7.3.0/cstdlib:75:15: fatal error: stdlib.h: No =
-such file or<br>
-&gt;=C2=A0 =C2=A0 =C2=A0directory=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0|=C2=A0 #include_next &lt;stdlib.h&gt;=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 ^~~~~~~~~~=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0<br>
-&gt; <br>
-&gt; I am not seeing this error when cross compiling using the sdk. I can s=
-ee<br>
-&gt; in the output that the -isystem is added which when googling the error=
-<br>
-&gt; appears to be a problem when cross compiling. Since the sdk works I am=
-<br>
-&gt; guessing this flag is added by OE/poky. Any pointers on how to go<br>
-&gt; forward is appreciated.<br>
-&gt; <br>
-&gt; BR<br>
-&gt; Mans Zigher<br>
-<br>
-if I recall correctly, the problem can be circumvented by adding the<br>
-option &quot;-DCMAKE_NO_SYSTEM_FROM_IMPORTED=3D1&quot; when invoking cmake.=
-<br>
-<br>
-You can find a reference in the function &quot;cmake_do_configure()&quot; l=
-ocated<br>
-inside &quot;poky/meta/classes/cmake.bbclass&quot;<br>
-<br>
-Best regards,<br>
-Dennis<br>
-<br>
-</blockquote></div></div>
-
---0000000000005aedc9056a0f8c2b--
+--_000_BLUPR02MB34318DCCC4B86619927DA81B9B70BLUPR02MB343namprd_--
