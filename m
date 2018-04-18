@@ -1,88 +1,51 @@
-Return-Path: <mns@gomspace.com>
+Return-Path: <vpalacio@intemotechnologies.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3D750E00B65; Wed, 18 Apr 2018 08:16:15 -0700 (PDT)
+	id 31DFEE00C9C; Wed, 18 Apr 2018 08:30:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [40.107.4.112 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [217.116.26.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 7188 seconds by postgrey-1.32 at yocto-www;
-	Wed, 18 Apr 2018 08:16:12 PDT
-Received: from EUR03-DB5-obe.outbound.protection.outlook.com
-	(mail-eopbgr40112.outbound.protection.outlook.com [40.107.4.112])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43620E009C9
-	for <yocto@yoctoproject.org>; Wed, 18 Apr 2018 08:16:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gomspace.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=M3nBK8h69+UhmugfI33qSIT8mBAUGTr9gNpyUFti7kc=;
-	b=fyfBoyvcNVdnKRoRqtQL665MK/P7P0mAlVHj06GtC/AdT8oYCkP8VwfNuY9tLnOWQrP51GV4zwVVgYUVGuY0gb5wsM6R4XkHbjy/bkQgzg6c7/C3y5U/nUHbcvew8pVcksA39aNXSK7MwGRhZE594G1cPLhrQ1FMlcZDrzA7d5Q=
-Received: from AM5PR0402MB2721.eurprd04.prod.outlook.com (10.175.40.143) by
-	AM5PR0402MB2868.eurprd04.prod.outlook.com (10.175.41.151) with
-	Microsoft SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.696.13; Wed, 18 Apr 2018 12:42:00 +0000
-Received: from AM5PR0402MB2721.eurprd04.prod.outlook.com
-	([fe80::410b:634a:236b:73d2]) by
-	AM5PR0402MB2721.eurprd04.prod.outlook.com
-	([fe80::410b:634a:236b:73d2%7]) with mapi id 15.20.0696.013;
-	Wed, 18 Apr 2018 12:42:00 +0000
-From: Martin Siegumfeldt <mns@gomspace.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Extensible SDK and DEFAULT_PREFERENCE
-Thread-Index: AQHT1xBXFULFPLKSrEmY/QtI0hWd8A==
-Date: Wed, 18 Apr 2018 12:41:59 +0000
-Message-ID: <AM5PR0402MB2721E721141756999BAAF315C4B60@AM5PR0402MB2721.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=none action=none
-	header.from=gomspace.com;
-x-originating-ip: [85.191.189.104]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; AM5PR0402MB2868;
-	7:BTP3j1R94J6eShOgIxj6Gz7fJxZweFNF23AHrkCGxwCebC/ouLz6e9xQvkyw52mFvym497jcj/CxfuamLbuEYYgX3N5Se/CHhkm1DzHRwKisnyAOWczwvOZrXJUXAbq3bcmeUJmgqJYxxFZbWvobGY/awU9lrkw9ayMDTkufiRbuIINggKWe/6BWQf+KTGE8tDvxetuXt+8/OUyqZlm5ZUa2o6SsBs437Wgw6trSaFyXCI5fH7nMiPzAK9ZHK07A
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(7021125)(5600026)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(2017052603328)(7153060)(7193020);
-	SRVR:AM5PR0402MB2868; 
-x-ms-traffictypediagnostic: AM5PR0402MB2868:
-x-microsoft-antispam-prvs: <AM5PR0402MB2868E8AE4AEF8CFAB7008C50C4B60@AM5PR0402MB2868.eurprd04.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(166708455590820);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(5005006)(8121501046)(3231232)(944501327)(52105095)(3002001)(10201501046)(93006095)(93001095)(6041310)(20161123564045)(20161123560045)(2016111802025)(20161123562045)(20161123558120)(6072148)(6043046)(201708071742011);
-	SRVR:AM5PR0402MB2868; BCL:0; PCL:0; RULEID:;
-	SRVR:AM5PR0402MB2868; 
-x-forefront-prvs: 06469BCC91
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(396003)(366004)(376002)(39380400002)(39840400004)(33656002)(53936002)(25786009)(3846002)(6116002)(6916009)(2900100001)(5660300001)(6436002)(8936002)(2906002)(2351001)(7736002)(8676002)(14454004)(81166006)(1730700003)(478600001)(74316002)(66066001)(305945005)(6506007)(7696005)(5250100002)(102836004)(2501003)(26005)(86362001)(59450400001)(55016002)(99286004)(5640700003)(9686003)(476003)(42262002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:AM5PR0402MB2868;
-	H:AM5PR0402MB2721.eurprd04.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; MLV:sfv; 
-x-microsoft-antispam-message-info: wwgtqKipBrpQI896G3zszNZeqPyXAJYYoDNq8HQhObQQW6sAR27+bzaRD1t/YovJ0bEL7tn3NbZsC36X52eTwPUrTnXxMfLybkS1Z36Pky19nC9gcyO5PrGvXEpnAEsFCF8SrgVnSlo96TnZdqBsDRvYVuOV/HeyKqYvBTrWQ5rEsUghA1gaEIFUMhF85bYS
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from relayout01-q02.dominioabsoluto.net
+	(relayout01-q02.dominioabsoluto.net [217.116.26.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51C4AE009C9
+	for <yocto@yoctoproject.org>; Wed, 18 Apr 2018 08:30:07 -0700 (PDT)
+Received: from relayout01-redir.dominioabsoluto.net
+	(relayout01-redir.dominioabsoluto.net [217.116.26.69])
+	by relayout01.dominioabsoluto.net (Postfix) with ESMTP id
+	40R5f44Xrjz3wtn; Wed, 18 Apr 2018 17:30:04 +0200 (CEST)
+Received: from [192.168.1.135] (158.137.79.188.dynamic.jazztel.es
+	[188.79.137.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: vpalacio.intemotechnologies.com)
+	by relayout01-dsp.dominioabsoluto.net (Postfix) with ESMTPSA id
+	40R5f41HVqz1xrk; Wed, 18 Apr 2018 17:30:04 +0200 (CEST)
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+References: <a3c2c1bf378440259497841cd4807320@sakuraus.com>
+From: Victor Palacio <vpalacio@intemotechnologies.com>
+Message-ID: <e3ed56ac-9af5-7278-b46d-a4743d1adf8b@intemotechnologies.com>
+Date: Wed, 18 Apr 2018 17:30:03 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.7.0
 MIME-Version: 1.0
-X-MS-Office365-Filtering-Correlation-Id: 9b703700-9b4b-4124-8ea0-08d5a529c768
-X-OriginatorOrg: gomspace.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9b703700-9b4b-4124-8ea0-08d5a529c768
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Apr 2018 12:41:59.9362 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 91ed1e54-6d8b-4599-84d8-65fe75fda3d1
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0402MB2868
-Subject: Extensible SDK and DEFAULT_PREFERENCE
+In-Reply-To: <a3c2c1bf378440259497841cd4807320@sakuraus.com>
+X-CTCH-Score: 0.000
+X-CTCH-ScoreCust: 0.000
+X-PostalOut-Country: IP: 188.79.137.158 | Country: ES
+X-PostalOut-Information: AntiSPAM and AntiVIRUS on relayout01
+X-PostalOut-MsgID: 40R5f41HVqz1xrk.AE050
+X-PostalOut-SpamCheck: no es spam, Unknown
+X-PostalOut-From: vpalacio@intemotechnologies.com
+X-PostalOut-Watermark: 1524670204.54122@fXv/L/7Cie4t7cqiVljQ8A
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Connecting to mysql/mariadb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -94,92 +57,326 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Apr 2018 15:16:15 -0000
+X-List-Received-Date: Wed, 18 Apr 2018 15:30:17 -0000
+Content-Type: multipart/alternative;
+	boundary="------------2FA86BA92618213F90B308E8"
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+--------------2FA86BA92618213F90B308E8
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-I am having a number of recipes residing in two versions, some (development=
- versions) being down-prioritized=A0using:
-
-DEFAULT_PREFERENCE =3D "-1"
+Hi Greg,
 
 
-The source code is hosted at a private git repository, and the=A0git=A0vers=
-ion is selected using 'AUTOREV'. The extensible SDK renders successfully, h=
-owever the installation (by third party) fails:
+There are no leads to follow in logs? How about using netstat to check 
+if port is really open?
 
-Traceback (most recent call last):
-=A0 File "/home/martin/gomspace_sdk/layers/poky/bitbake/lib/bb/data_smart.p=
-y", line 412, in DataSmart.expandWithRefs(s=3D'dev+git${SRCPV}', varname=3D=
-'PV'):
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0try:
-=A0 =A0 >=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 s =3D __expand_var_regexp__.sub(va=
-rparse.var_sub, s)
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0try:
-=A0 File "/home/martin/gomspace_sdk/layers/poky/bitbake/lib/bb/data_smart.p=
-y", line 111, in VariableParse.var_sub(match=3D<_sre.SRE_Match object; span=
-=3D(7, 15), match=3D'${SRCPV}'>):
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0else:
-=A0 =A0 >=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 var =3D self.d.getVarFlag(key, "_c=
-ontent")
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0self.references.add(key)
-=A0 File "/home/martin/gomspace_sdk/layers/poky/bitbake/lib/bb/data_smart.p=
-y", line 794, in DataSmart.getVarFlag(var=3D'SRCPV', flag=3D'_content', exp=
-and=3DTrue, noweakdefault=3DFalse, parsing=3DFalse):
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0cachename =3D var + "[" + flag +=
- "]"
-=A0 =A0 >=A0 =A0 =A0 =A0 =A0 =A0 value =3D self.expand(value, cachename)
-=A0 =A0 =A0
-=A0 File "/home/martin/gomspace_sdk/layers/poky/bitbake/lib/bb/data_smart.p=
-y", line 436, in DataSmart.expand(s=3D'${@bb.fetch2.get_srcrev(d)}', varnam=
-e=3D'SRCPV'):
-=A0 =A0 =A0 =A0 =A0def expand(self, s, varname =3D None):
-=A0 =A0 >=A0 =A0 =A0 =A0 return self.expandWithRefs(s, varname).value
-=A0 =A0 =A0
-=A0 File "/home/martin/gomspace_sdk/layers/poky/bitbake/lib/bb/data_smart.p=
-y", line 426, in DataSmart.expandWithRefs(s=3D'${@bb.fetch2.get_srcrev(d)}'=
-, varname=3D'SRCPV'):
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0except Exception as exc:
-=A0 =A0 >=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 raise ExpansionError(varname, s, e=
-xc) from exc
-=A0 =A0 =A0
-bb.data_smart.ExpansionError: Failure expanding variable SRCPV, expression =
-was ${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError: Fetch=
-er failure: Fetch command export GIT_SSL_CAINFO=3D"/home
-/martin/gomspace_sdk/buildtools/sysroots/x86_64-gomspacesdk-linux/etc/ssl/c=
-erts/ca-certificates.crt"; export PATH=3D"/home/martin/gomspace_sdk/tmp/wor=
-k/aarch64-gomspace-linux/libgsisl/fetcheravoidrecurse-r0
-/recipe-sysroot-native/usr/bin/python-native:/home/martin/gomspace_sdk/laye=
-rs/poky/scripts:/home/martin/gomspace_sdk/tmp/work/aarch64-gomspace-linux/l=
-ibgsisl/fetcheravoidrecurse-r0/recipe-sysroot-native/u
-sr/bin/aarch64-gomspace-linux:/home/martin/gomspace_sdk/tmp/work/aarch64-go=
-mspace-linux/libgsisl/fetcheravoidrecurse-r0/recipe-sysroot/usr/bin/crosssc=
-ripts:/home/martin/gomspace_sdk/tmp/work/aarch64-gomsp
-ace-linux/libgsisl/fetcheravoidrecurse-r0/recipe-sysroot-native/usr/sbin:/h=
-ome/martin/gomspace_sdk/tmp/work/aarch64-gomspace-linux/libgsisl/fetcheravo=
-idrecurse-r0/recipe-sysroot-native/usr/bin:/home/marti
-n/gomspace_sdk/tmp/work/aarch64-gomspace-linux/libgsisl/fetcheravoidrecurse=
--r0/recipe-sysroot-native/sbin:/home/martin/gomspace_sdk/tmp/work/aarch64-g=
-omspace-linux/libgsisl/fetcheravoidrecurse-r0/recipe-s
-ysroot-native/bin:/home/martin/gomspace_sdk/layers/poky/bitbake/bin:/home/m=
-artin/gomspace_sdk/tmp/hosttools"; export HOME=3D"/home/martin"; git -c cor=
-e.fsyncobjectfiles=3D0 ls-remote ssh://git@github.com/GomS
-pace/libisl=A0 failed with exit code 128, output:
-Host key verification failed.
-fatal: Could not read from remote repository.
+Can you connect locally from a mysql client running in the device 
+instead of using it externally?
 
 
-Please make sure you have the correct access rights
-and the repository exists.
+BTW, verify that the skip-networking paramater is commented in your 
+my.cnf file. Maybe networking is disabled by default.
 
-It is not the intention that third party will ever need access to the devel=
-opment version, and I don't see why the version information is fetched give=
-n the reduced priority.=A0Have I encountered an 'undocumented bug' or is th=
-ere an alternate approach=A0to achieve this?
 
-Thanks,
-Martin=
+Regards,
 
+
+
+El 17/04/18 a las 18:50, Greg Wilson-Lindberg escribió:
+>
+> I've got a Yocto system that I'm working on that has mysql/mariadb 
+> configured but I can't connect to it with MySQL Workbench from another 
+> machine. mariadb is running, the network connection is live, but when 
+> I try to connect using MySQL Workbench I get an immediate "connection 
+> refused" response. I've tried user root, & mysql, same response. I'm 
+> using the default configuration from Yocto, so maybe I'm missing 
+> something that I should be configuring.
+>
+>
+> If anybody here has any experience with this I would appreciate any 
+> enlightenment you can give me.
+>
+>
+> Thanks in advance,
+>
+> Greg Wilson-Lindberg
+>
+>
+>
+>
+
+-- 
+
+Victor M. Palacio Tárrega
+
+vpalacio@intemotechnologies.com <mailto:icarra@intemotechnologies.com>
+
+**
+
+*Intemo Technologies****- Idetech Europe, S.L.*
+
+Mov.: (+34)  670 03 66 08
+
+Tel:     (+34) 93 336 16 51
+
+C/ Montserrat Roig, nº 23, Pol. Ind. Pedrosa
+
+08908 Hospitalet de Llobregat
+
+BARCELONA (SPAIN)
+
+| SmartCards |RFID |NFC |Biometría |
+
+Este correo electrónico puede contener información reservada 
+y/o confidencial, destinada exclusivamente para el uso del destinatario. 
+Si Vd no es el destinatario o la persona encargada de distribuirlo, no 
+está autorizado a copiar o entregar esta comunicación a ninguna otra 
+persona. Si ha recibido este correo electrónico por error, le rogamos 
+nos lo notifique inmediatamente por  teléfono o por el mismo medio. Gracias.
+
+Privilege/Confidential Information may be contained in this e-mail and 
+is intended only for use of the addressee. If you are not  the 
+addressee, or the person responsible for delivering it to the person 
+addressed, you may not copy or deliver this to anyone else. If you 
+receive this e-mail by mistake, please notify us immediately by 
+telephone or e-mail. Thank you.
+
+
+--------------2FA86BA92618213F90B308E8
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Hi Greg,</p>
+    <p><br>
+    </p>
+    <p>There are no leads to follow in logs? How about using netstat to
+      check if port is really open? <br>
+    </p>
+    <p>Can you connect locally from a mysql client running in the device
+      instead of using it externally?</p>
+    <p><br>
+    </p>
+    <p>BTW, verify that the skip-networking paramater is commented in
+      your my.cnf file. Maybe networking is disabled by default.<br>
+    </p>
+    <p><br>
+    </p>
+    <p>Regards,</p>
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">El 17/04/18 a las 18:50, Greg
+      Wilson-Lindberg escribió:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:a3c2c1bf378440259497841cd4807320@sakuraus.com">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <style type="text/css" style="display:none;"><!-- P {margin-top:0;margin-bottom:0;} --></style>
+      <div id="divtagdefaultwrapper"
+style="font-size:12pt;color:#000000;font-family:Calibri,Arial,Helvetica,sans-serif;">
+        <p>I've got a Yocto system that I'm working on that has
+          mysql/mariadb configured but I can't connect to it with MySQL
+          Workbench from another machine. mariadb is running, the
+          network connection is live, but when I try to connect using
+          MySQL Workbench I get an immediate "connection refused"
+          response. I've tried user root, &amp; mysql, same response.
+          I'm using the default configuration from Yocto, so maybe I'm
+          missing something that I should be configuring.</p>
+        <p><br>
+        </p>
+        <p>If anybody here has any experience with this I would
+          appreciate any enlightenment you can give me.</p>
+        <p><br>
+        </p>
+        <p>Thanks in advance,</p>
+        <p>Greg Wilson-Lindberg</p>
+        <p><br>
+        </p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+    <div class="moz-signature">-- <br>
+      <title></title>
+      <link rel="important stylesheet"
+        href="chrome://messagebody/skin/messageBody.css">
+      <br>
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 14 (filtered
+        medium)">
+      <!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]-->
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Texto de globo Car";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-language:EN-US;}
+span.EstiloCorreo17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.TextodegloboCar
+	{mso-style-name:"Texto de globo Car";
+	mso-style-priority:99;
+	mso-style-link:"Texto de globo";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal"><span lang="CA"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span lang="CA"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:10.0pt;color:#1F497D;mso-fareast-language:ES"
+            lang="FR">Victor M. Palacio Tárrega</span><span
+            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:10.0pt;color:gray;mso-fareast-language:ES"><a
+              href="mailto:icarra@intemotechnologies.com"><span
+                style="color:gray" lang="FR">vpalacio@intemotechnologies.com</span></a></span><span
+            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><b><span
+              style="font-size:10.0pt;color:#99CC00;mso-fareast-language:ES"
+              lang="EN-US"> </span></b><span
+            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><b><span
+              style="font-size:10.0pt;color:#BDD63D;mso-fareast-language:ES"
+              lang="EN-US">Intemo Technologies</span></b><b><span
+              style="font-size:10.0pt;color:#99CC00;mso-fareast-language:ES"
+              lang="EN-US"> </span></b><b><span
+              style="font-size:10.0pt;color:#262626;mso-fareast-language:ES"
+              lang="EN-US">- Idetech Europe, S.L.</span></b><span
+            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES"
+            lang="EN-US">Mov.: (+34)  670 03 66 08</span><span
+            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES"
+            lang="EN-US">Tel:     (+34) 93 336 16 51</span><span
+            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES"
+            lang="EN-US">C/ Montserrat Roig, nº 23, Pol. Ind. </span><span
+style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES">Pedrosa</span><span
+            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES">08908
+            Hospitalet de Llobregat </span><span
+            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES">BARCELONA
+            (SPAIN)</span><span style="mso-fareast-language:ES"
+            lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:10.0pt;color:#BDD63D;mso-fareast-language:ES">|
+          </span><span
+            style="font-size:10.0pt;color:#0D0D0D;mso-fareast-language:ES">SmartCards
+          </span><span
+            style="font-size:10.0pt;color:#BDD63D;mso-fareast-language:ES">|</span><span
+style="font-size:10.0pt;color:#0D0D0D;mso-fareast-language:ES"> RFID </span><span
+style="font-size:10.0pt;color:#BDD63D;mso-fareast-language:ES">|</span><span
+style="font-size:10.0pt;color:#0D0D0D;mso-fareast-language:ES"> NFC </span><span
+style="font-size:10.0pt;color:#BDD63D;mso-fareast-language:ES">|</span><span
+style="font-size:10.0pt;color:#0D0D0D;mso-fareast-language:ES">
+            Biometría </span><span
+            style="font-size:10.0pt;color:#BDD63D;mso-fareast-language:ES">|     
+          </span><span
+            style="font-size:10.0pt;color:#7F7F7F;mso-fareast-language:ES">    
+            <!--<img border=0 width=50 height=37 id="Imagen_x0020_2" src="mailbox-message://nobody@local%20folders/Inbox#62206599?header=saveas&part=1.2&filename=image001.png" alt="cid:image003.png@01CDBD94.9106BDC0">-->
+          </span><span style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:10.0pt;color:#595959;mso-fareast-language:ES"> </span><span
+            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:8.5pt;color:#595959;mso-fareast-language:ES">Este
+            correo electrónico puede contener información reservada
+            y/o confidencial, destinada exclusivamente para el uso del
+            destinatario. Si Vd no es el destinatario o la persona
+            encargada de distribuirlo, no está autorizado a copiar o
+            entregar esta comunicación a ninguna otra persona. Si ha
+            recibido este correo electrónico por error, le rogamos nos
+            lo notifique inmediatamente por  teléfono o por el mismo
+            medio. </span><span
+            style="font-size:8.5pt;color:#595959;mso-fareast-language:ES"
+            lang="EN-US">Gracias.</span><span
+            style="mso-fareast-language:ES" lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:8.5pt;color:#595959;mso-fareast-language:ES"
+            lang="EN-US"> </span><span style="mso-fareast-language:ES"
+            lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:8.5pt;color:#595959;mso-fareast-language:ES"
+            lang="EN-US">Privilege/Confidential Information may be
+            contained in this e-mail and is intended only for use of the
+            addressee. If you are not  the addressee, or the person
+            responsible for delivering it to the person addressed, you
+            may not copy or deliver this to anyone else. If you receive
+            this e-mail by mistake, please notify us immediately by
+            telephone or e-mail. </span><span
+            style="font-size:8.5pt;color:#595959;mso-fareast-language:ES">Thank
+            you.</span><span style="mso-fareast-language:ES"
+            lang="ES-TRAD"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="CA"><o:p> </o:p></span></p>
+      </div>
+    </div>
+  </body>
+</html>
+
+--------------2FA86BA92618213F90B308E8--
