@@ -1,6 +1,6 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4085AE00942; Wed, 18 Apr 2018 23:47:07 -0700 (PDT)
+	id 6414BE00B58; Thu, 19 Apr 2018 00:15:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,32 +8,26 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA9A4E00756
-	for <yocto@yoctoproject.org>; Wed, 18 Apr 2018 23:47:06 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C57C6E00756
+	for <yocto@yoctoproject.org>; Thu, 19 Apr 2018 00:15:44 -0700 (PDT)
 Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w3J6l4pq010821
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 18 Apr 2018 23:47:04 -0700 (PDT)
-Received: from localhost.corp.ad.wrs.com (128.224.163.240) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.361.1; Wed, 18 Apr 2018 23:47:04 -0700
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <cover.1524049072.git.liezhi.yang@windriver.com>
-	<CAJTo0LaXjmRt1fo3+-6_6X7mxJ7E8_itdRGYygGEqAT5NcASQg@mail.gmail.com>
-From: Robert Yang <liezhi.yang@windriver.com>
-Message-ID: <2d7c0a0d-4d78-3610-e6b3-a7d14ef4efda@windriver.com>
-Date: Thu, 19 Apr 2018 14:49:02 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.7.0
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w3J7FhT6023580
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 19 Apr 2018 00:15:43 -0700 (PDT)
+Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.361.1;
+	Thu, 19 Apr 2018 00:15:43 -0700
+From: <wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 19 Apr 2018 03:15:23 -0400
+Message-ID: <1524122123-9222-1-git-send-email-wenzong.fan@windriver.com>
+X-Mailer: git-send-email 2.8.1
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LaXjmRt1fo3+-6_6X7mxJ7E8_itdRGYygGEqAT5NcASQg@mail.gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>
-Subject: Re: [PATCH 0/4][layerindex-web] bug fix and performance improve
+Subject: [meta-selinux][PATCH] systemd: create /var/lib/systemd/backlight in advance
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,31 +39,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Apr 2018 06:47:07 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 19 Apr 2018 07:15:45 -0000
+Content-Type: text/plain
 
+From: Wenzong Fan <wenzong.fan@windriver.com>
 
-Hi Ross,
+The systemd-backlight@.service which called after selinux-init.service
+will create /var/lib/systemd/backlight with incorrect security labels,
+this causes the systemd-backlight service fails to start and stop.
 
-On 04/18/2018 07:12 PM, Burton, Ross wrote:
-> On 18 April 2018 at 12:04, Robert Yang <liezhi.yang@windriver.com> wrote:
->>    fixup! update: don't stop on unsatisfied layer dependencies
-> 
-> Pretty sure this isn't what you intended.
+Creating /var/lib/systemd/backlight in advance to make sure it could
+always be relabelled by selinux-init while first booting.
 
-Thanks, but this is intended, I used:
+Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+---
+ recipes-core/systemd/systemd_%.bbappend | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-$ git commit --fixup=8dd24abf99578e3d2572062ca04dbeac4321b2ea
+diff --git a/recipes-core/systemd/systemd_%.bbappend b/recipes-core/systemd/systemd_%.bbappend
+index 5ac3adb..b17e70a 100644
+--- a/recipes-core/systemd/systemd_%.bbappend
++++ b/recipes-core/systemd/systemd_%.bbappend
+@@ -1 +1,7 @@
+ inherit ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'enable-audit', '', d)}
++
++do_install_append() {
++	if ${@bb.utils.contains('PACKAGECONFIG', 'backlight', 'true', 'false', d)}; then
++		install -d ${D}${localstatedir}/lib/systemd/backlight
++	fi
++}
+-- 
+2.8.1
 
-While the 8dd24abf99578e3d2572062ca04dbeac4321b2ea is made by Paul,
-I use this way to specify what it fixes, I can update the subject line
-if this is not acceptable.
-
-// Robert
-
-> 
-> Ross
-> 
 
