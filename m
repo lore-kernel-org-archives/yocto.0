@@ -1,66 +1,39 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6CBF2E00A1C; Wed, 18 Apr 2018 23:00:29 -0700 (PDT)
+	id D4461E009AC; Wed, 18 Apr 2018 23:43:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.180 listed in list.dnswl.org]
-Received: from mail-qk0-f180.google.com (mail-qk0-f180.google.com
-	[209.85.220.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BEAEE00756
-	for <yocto@yoctoproject.org>; Wed, 18 Apr 2018 23:00:28 -0700 (PDT)
-Received: by mail-qk0-f180.google.com with SMTP id d206so4357805qkb.0
-	for <yocto@yoctoproject.org>; Wed, 18 Apr 2018 23:00:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=JC+yf1rI3lm+YJ0cYFFd/fXkte/hx9COMlr3JoWuJ0I=;
-	b=RP13UxzNZQ85VY4oLc/KjOqrd+8721XQY2Jja2Y2Mlh+1/UMW0+b6bEM2vOdoYXXS6
-	pspjfjRkxnyUWxnSr47OvvI76zCZ2u74mDc2reR/4yYRCBVItsvY99su3wWlvFYUDw+e
-	EFvi0WcLrcf475hxXJ2hwuLzEYzaXDUBzaIYDltAa70jQCpRh8t1pFSd7p9znREPK/ri
-	d4jN5CgbNZQbPu6aNknNA+RRjbSLJ2Grq69C8KHbjuoqqx9qqWtRZ2zhszIKtG79w6uX
-	upxbppWXDE0MzYsTha6Hr2FJJVFNJyY0jNn1qdt8tn6YEkVjeUL+D4MBmAThxRSMGNd3
-	7WSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=JC+yf1rI3lm+YJ0cYFFd/fXkte/hx9COMlr3JoWuJ0I=;
-	b=ToJPyyPIWOAA8rhMbE08VbYpaJwgBF307sUReQDrdI7nVypIlG2VDRjqRyU47uLD8i
-	knNjeSo7sjVrVmSSSPzPPWuMn83PnaUbluOQcYbc9agfIdVuvgogn26YgiwrYRQ2vBRX
-	Hc7LqGTNFZ4A3YVpRNkkTHAyNl3OQlyoEkVr+CRtjxZ0OwStCmxQFtKUOG7vKrPkffgC
-	z2mLfS9VFViksjXzLwJxRN//uzxWw8aWZolO6O/YoMbGWnEMxb3er7zwdNA93rdNMP/s
-	w5/8ewvdyzRJjG9uAgSMLwORdTF0PLz5eE/4gf2ny0GuIFc2MV/WJcNG/Y+zmCGv5oBc
-	3G3g==
-X-Gm-Message-State: ALQs6tC4mNt39xvLi34MmC9WtfFQ1/3f9sVN+xFQeiUo+poa0i5SzoIF
-	r6TRaIxsPet6tjCKQLzmocgm16yNTGdwSUBPjhdepw==
-X-Google-Smtp-Source: AB8JxZotP2PjbV5lTDroN4WqlxBy8U87jnRy8vq1LP66yvAxeVWV4Xv7ru0M+NGaYNJpyTtypoKgPIqfieIi5AI47Po=
-X-Received: by 10.55.31.69 with SMTP id f66mr4630638qkf.440.1524117627508;
-	Wed, 18 Apr 2018 23:00:27 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4764E00756
+	for <yocto@yoctoproject.org>; Wed, 18 Apr 2018 23:43:21 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w3J6hKbM022996
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 18 Apr 2018 23:43:20 -0700 (PDT)
+Received: from localhost.corp.ad.wrs.com (128.224.163.240) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.361.1; Wed, 18 Apr 2018 23:43:19 -0700
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <cover.1524049072.git.liezhi.yang@windriver.com>
+	<6deae428d43ea4bbe0146bf59aa7d247f6c0f80b.1524049072.git.liezhi.yang@windriver.com>
+	<1606711.kRkuylaPko@peggleto-mobl.ger.corp.intel.com>
+From: Robert Yang <liezhi.yang@windriver.com>
+Message-ID: <716b7370-2299-785f-4d39-9f1a4b2163a0@windriver.com>
+Date: Thu, 19 Apr 2018 14:45:17 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.7.0
 MIME-Version: 1.0
-Received: by 10.12.247.141 with HTTP; Wed, 18 Apr 2018 23:00:27 -0700 (PDT)
-In-Reply-To: <AM5P192MB0132AEBDAFE4E6411791DF658DB60@AM5P192MB0132.EURP192.PROD.OUTLOOK.COM>
-References: <AM5P192MB0132AEBDAFE4E6411791DF658DB60@AM5P192MB0132.EURP192.PROD.OUTLOOK.COM>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Thu, 19 Apr 2018 08:00:27 +0200
-Message-ID: <CAGAf8Lx77SfXCsRT=2i3XygqvQKH8zOQishdpRXUCqYz+4m5XA@mail.gmail.com>
-To: Vincent Daanen <vincent.daanen@orthotaxy.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Need Help for meta-qt5
+In-Reply-To: <1606711.kRkuylaPko@peggleto-mobl.ger.corp.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 4/4] update_layer.py: move layer validation to update.py (Performance improve)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,49 +45,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Apr 2018 06:00:29 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 19 Apr 2018 06:43:22 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-http://developer.toradex.com/knowledge-base/how-to-set-up-qt-creator-to-cro=
-ss-compile-for-embedded-linux#contents
-http://developer.toradex.com/knowledge-base/board-support-package/openembed=
-ded-(core)#Adding_the_Qt5_Layer
+Hi Paul,
 
-Hope this helps,
-Zoran
-_______
+On 04/19/2018 04:55 AM, Paul Eggleton wrote:
+> On Wednesday, 18 April 2018 11:04:33 PM NZST Robert Yang wrote:
+>> The utils.setup_django() costs a lot of time, but both update.py and
+>> update_layer.py calls it, so move layer validation from update_layer.py to
+>> update.py to avoid calling update_layer.py when possible can save a lot of
+>> time.
+> 
+> Unfortunately I still can't merge this, as mentioned earlier it breaks
+> handling older python 2-bound releases.
 
-On Wed, Apr 18, 2018 at 6:24 PM, Vincent Daanen
-<vincent.daanen@orthotaxy.com> wrote:
-> Hi,
->
->
->
-> I have to add Qt5 QtCore libs to my image. I know I must use meta-qt5 but=
- as
-> I=E2=80=99m not familiar with qt configuration, I simply do not know how =
-to start !
->
-> So can someone help me to configure meta-qt5 to simply build and add QtCo=
-re
-> to my image ?
->
-> Thank you
->
->
->
-> Vincent
->
->
->
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+I think you're talking about the one that I sent a few months ago, but this
+one is a completely new patch, that one moved tinfoil into update.py which
+broke python2, but this patch doesn't, it doesn't touch anything about tinfo,
+so it works when I switch from YP 2.0 -> 2.2 -> 2.4, and vice visa.
+
+// Robert
+
+> 
+> Cheers,
+> Paul
+> 
 
