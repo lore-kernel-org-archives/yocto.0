@@ -1,33 +1,34 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <jrswdnan22@snkmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A77BE00C76; Fri, 20 Apr 2018 03:45:52 -0700 (PDT)
+	id 42C37E00C54; Fri, 20 Apr 2018 03:52:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,MSGID_MULTIPLE_AT,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [62.142.5.110 listed in list.dnswl.org]
+	*  1.0 MSGID_MULTIPLE_AT Message-ID contains multiple '@' characters
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2861E00843
-	for <yocto@yoctoproject.org>; Fri, 20 Apr 2018 03:45:51 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w3KAjotG025676
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Fri, 20 Apr 2018 03:45:50 -0700 (PDT)
-Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Fri, 20 Apr 2018 03:45:49 -0700
-From: <wenzong.fan@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 20 Apr 2018 06:45:29 -0400
-Message-ID: <1524221129-220821-1-git-send-email-wenzong.fan@windriver.com>
-X-Mailer: git-send-email 2.8.1
+X-Greylist: delayed 310 seconds by postgrey-1.32 at yocto-www;
+	Fri, 20 Apr 2018 03:52:34 PDT
+Received: from emh04.mail.saunalahti.fi (emh04.mail.saunalahti.fi
+	[62.142.5.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1973E008A2
+	for <yocto@yoctoproject.org>; Fri, 20 Apr 2018 03:52:34 -0700 (PDT)
+Received: from uwe1 (85-76-108-172-nat.elisa-mobile.fi [85.76.108.172])
+	by emh04.mail.saunalahti.fi (Postfix) with ESMTP id 8D37030138;
+	Fri, 20 Apr 2018 13:47:22 +0300 (EEST)
+From: Uwe Geuder <jrswdnan22@snkmail.com>
+To: yocto@yoctoproject.org 
+In-Reply-To: <CAALXFYy3uftzYmjyYaJ+-X0OAPu8XJ2C7wNBMnoYZYHkm+Gp2g@mail.gmail.com>
+References: <CAALXFYy3uftzYmjyYaJ+-X0OAPu8XJ2C7wNBMnoYZYHkm+Gp2g@mail.gmail.com>
+Date: Fri, 20 Apr 2018 13:47:22 +0300
+Message-ID: <87k1t26tol.fsf@snkmail.com@snkmail.com>
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH v2] systemd: create /var/lib/systemd/backlight in advance
+Subject: Re: Usage of yocto on different (production vs debug) scenarios
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,51 +40,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Apr 2018 10:45:52 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 20 Apr 2018 10:52:36 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-From: Wenzong Fan <wenzong.fan@windriver.com>
+Hi!
 
-v2 changes:
-* Update patch for Yocto Compat - don't change layer's hash
+On Fri, Apr 20, 2018 at 10:59 AM, Iv=C3=A1n Castell <icastell@nayarsystems.=
+com> wrote:
 
-============================================
+> We are trying to use yocto in a continuous integration environment with
+> different (production vs debug) scenarios.
+>=20
+> To setup a given scenario (production vs debug) we are using something li=
+ke
+> this:
+>=20
+>     $ SCENARIO=3Ddebug
+>     $ MACHINE=3D<machine> DISTRO=3D<distro>-${SCENARIO} source
+> ../../build-<machine>-${SCENARIO}
+>     $ bitbake <image>-${SCENARIO}
+>=20
+> So we have different image recipes:
+>=20
+>     * image-production.bb
+>     * image-debug.bb
+>=20
+> Different distros:
+>=20
+>     * distro-production.conf
+>     * distro-debug.conf
+>=20
+> And different build directories:
+>=20
+>     * build-<machine>-production
+>     * build-<machine>-debug
+>=20
+> To optimize space usage and compilation time, we setup a shared sstate
+> cache and a shared directory for downloads. This seems a good starting
+> point.
 
-The systemd-backlight@.service which called after selinux-init.service
-will create /var/lib/systemd/backlight with incorrect security labels,
-this causes the systemd-backlight service fails to start and stop.
+Shared download, yes.
 
-Creating /var/lib/systemd/backlight in advance to make sure it could
-always be relabelled by selinux-init while first booting.
+But can you share state between distros? Isn't the purpose of distros to
+use different options (variable settings) so the state would always be
+different?
 
-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
----
- recipes-core/systemd/systemd_%.bbappend  | 2 +-
- recipes-core/systemd/systemd_selinux.inc | 7 +++++++
- 2 files changed, 8 insertions(+), 1 deletion(-)
- create mode 100644 recipes-core/systemd/systemd_selinux.inc
+(Please note: This is really a follow-up question, not me knowing
+better. I am just trying to fully understand these concepts)
 
-diff --git a/recipes-core/systemd/systemd_%.bbappend b/recipes-core/systemd/systemd_%.bbappend
-index 5ac3adb..7719d3b 100644
---- a/recipes-core/systemd/systemd_%.bbappend
-+++ b/recipes-core/systemd/systemd_%.bbappend
-@@ -1 +1 @@
--inherit ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'enable-audit', '', d)}
-+require ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', '${BPN}_selinux.inc', '', d)}
-diff --git a/recipes-core/systemd/systemd_selinux.inc b/recipes-core/systemd/systemd_selinux.inc
-new file mode 100644
-index 0000000..b17e70a
---- /dev/null
-+++ b/recipes-core/systemd/systemd_selinux.inc
-@@ -0,0 +1,7 @@
-+inherit ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'enable-audit', '', d)}
-+
-+do_install_append() {
-+	if ${@bb.utils.contains('PACKAGECONFIG', 'backlight', 'true', 'false', d)}; then
-+		install -d ${D}${localstatedir}/lib/systemd/backlight
-+	fi
-+}
--- 
-2.8.1
 
+> However, things are getting complicated, because there is no way to
+> exclude some recipes easily. For example, we don't want iptables
+> installed on the debug image, but dependency chains include iptables
+> by default
+
+Doesn't blacklist do what you want?=20
+
+E.g. in your distro-production.conf
+
+PNBLACKLIST[iptables] =3D "we don't want iptables in product"
+
+
+Of course if something has a hard dependency on iptables, the something
+might need blacklisting instead or too.
+
+
+Regards,
+
+Uwe Geuder
+Neuro Event Labs Oy
+Tampere, Finland
+uwe.gexder@neuroeventlabs.com (Bot check: fix one obvious typo)
+
+
+
+
+> even when declaring IMAGE_INSTALL_remove explicitly. In this case we
+> decided checking _%.bbappend to decide what rules are installed on ion
+> vs rules.debug).
+>=20
+> hod is poisoning all our recipes with that kind of
+>=20
+>=20
+>  right way to manage this? Can you suggest a
+> ay to deal with this?
+>=20
+>=20
 
