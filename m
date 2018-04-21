@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9990AE0090A; Sat, 21 Apr 2018 08:14:08 -0700 (PDT)
+	id 42E04E00B49; Sat, 21 Apr 2018 08:14:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -20,47 +20,47 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EFC5E007A2
-	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:14:07 -0700 (PDT)
-Received: by mail-pg0-f68.google.com with SMTP id i6so5391276pgv.3
-	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:14:07 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5AD2E00529
+	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:14:48 -0700 (PDT)
+Received: by mail-pg0-f68.google.com with SMTP id e12so5384776pgn.9
+	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:14:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
+	h=subject:to:references:cc:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=dBgorH9moZYqLCat8Fy2ndfjPbIKHgp0oOjAP1nulkc=;
-	b=VSUlY39Sv8O4H29t5vbBCm7MdUHvBch5os232fTrjxbqX3CEDcyMxzZgGBIiIyE5bD
-	Qqu6Q7KF/WIQIF6bxPw+nRd6KLAzuTZ1Dh9NqrPjyvZknQxEcd+96j0WXv6FnEewUMEC
-	T/ScsxDgkjdliU5vufTkbN47A7x9tkWvIWu4GSdlW5jD9x2OkGV2F0qAfgRa9Th5SbUq
-	Dl7pljViqujNd0toDriQndxNAm44MnpQS1pWf1fEowOZ/sBDxq8Aj59b0/S3F9bMwGHA
-	iDVJqomUZuv6hKOXUDxCm7MKKVDD77kmSaUF8oAONdheAjmSDQyd1wa/q7pOgGyUXFug
-	i6og==
+	bh=jYl+ZkPUmKAwdziHzgS8kBfUpPZfOeCWg6bqSyB/Kgc=;
+	b=gkmYwFnobMUCBdQO4i0YylYyML1ddodqNJbjTomspda104S4pUoqvAfa7mlcyV8L9o
+	hRCsCLF3dAUIn4vKATCX9MgpB9LnvU8CLDanqW1WHS5mparh19lkcnT/Pdg4uuwnvEwt
+	4Xqy2gs2BARGVJPjMXcOgJtnC1LOUMr6z1eiDh1l+Y3S/VJwCcMQzM245iHNmQ2SzcNH
+	odXl/lrLKmFJdMhAdYcHff6w0RlWqJ0JgCtb4zp2n2gHDw2zPMipP8A0KJKlZbm9YxS2
+	2L7RcLAAXgpFnKpKysLKvQ6iVBuIc3SLINwFNEXVqmAZ1eDlsyQH4WZPI1/TQx+q8RBd
+	Jgiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	h=x-gm-message-state:subject:to:references:cc:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=dBgorH9moZYqLCat8Fy2ndfjPbIKHgp0oOjAP1nulkc=;
-	b=WzgdQT/RzgSnYWzauIVFTb82R5zSLBC1ENrn7T0wTayPp1tAXZ+vGB57kAkSSzJng5
-	kTEbBNKjVQLTOPUAI1Xkk5KFuT9rjJ2gSAwEQIlh0SivTEKCQhSby7oDre4Z/iVMZI9h
-	YGk0vpBBwAKxbv2Kh1B9QKvOTpnR4wqHUn6x22ArGPZdB5D2uz3gD4yuapClD1If9MIS
-	EZC3mr38sgYoGZ2IkXhxFkXaMbwLt7nEXtsXfBba9adEzksHaXmx30Zmzbp3lnvCOlvH
-	nzvof/+5d+gwu3eVmbOds9nWtlqAmdfGLurHK2LXudktADtvtIBc6gc9a0bZ+B6s9o2G
-	J6Nw==
-X-Gm-Message-State: ALQs6tD2Wrx6HnCXTauorhvh3SHO4/8UblMTr1Xu9V8uLBGK+Bh8KHXV
-	0bd5d8nF7ZkAHPN5lzic4Sffdw==
-X-Google-Smtp-Source: AIpwx48zxpIa63GCrQaQ4z1I5awWAPR8Me5faOQhtULBmamRvmEavLnu5HqA0eAiMx7s4tbp6HhVjQ==
-X-Received: by 2002:a17:902:bd8d:: with SMTP id
-	q13-v6mr14181620pls.330.1524323647422; 
-	Sat, 21 Apr 2018 08:14:07 -0700 (PDT)
+	bh=jYl+ZkPUmKAwdziHzgS8kBfUpPZfOeCWg6bqSyB/Kgc=;
+	b=EMkvYJ4RioV7LQEcjlfbljHdAb5CaiIc/CLMKrrFcQOzHvwrRo1LRoAuCV/fet1x1M
+	QNk5IKlaZx8iw7mp3rhbcHYZq6n4oR/pAlCdTkg+g4kWHH87Kdj2i2OUh3d0errL552n
+	pP3nxB5OLN7kPRFOKqDrlU6hnPvZJq4aAUMmSirPi/I0j87ETXXdAqBJt6OXnpPh4RGv
+	XkhCppfjjnUWHD0nB/Jo50XyTeRAS1d/7SJs39JZ9cJbRygntDBkw5PGOV+C6BEkZ4ZK
+	1k/lmvbCi/RP6Us5diwUOFXeHExlDbBjqihUu9qoJVLN13pddA7drgUm3hXbXqDd2Cri
+	Y12w==
+X-Gm-Message-State: ALQs6tD4KPpLiNRg9UieAzlLYgdyS3kOOKDgT7AaUGXiLgr3x+lCSP90
+	m5wRknfEl5GfIq0ukOPPPf+hhQ==
+X-Google-Smtp-Source: AIpwx4+j4d3PHJTcwaxuO2pwH/2LFwQnTyQuf69aoVNzLaq+OLQL5cSSx2t4ULdunMYSCOKDotNh1g==
+X-Received: by 2002:a17:902:6086:: with SMTP id
+	s6-v6mr13855564plj.307.1524323688509; 
+	Sat, 21 Apr 2018 08:14:48 -0700 (PDT)
 Received: from ?IPv6:2601:202:4000:1184:ad3f:3096:6add:98d8?
 	([2601:202:4000:1184:ad3f:3096:6add:98d8])
 	by smtp.gmail.com with ESMTPSA id
-	l10sm26312963pfc.84.2018.04.21.08.14.05
+	a28sm5556514pfl.86.2018.04.21.08.14.47
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 21 Apr 2018 08:14:06 -0700 (PDT)
-To: Armin Kuster <akuster808@gmail.com>, yocto@yoctoproject.org
-References: <1523758104-25257-1-git-send-email-akuster@mvista.com>
+	Sat, 21 Apr 2018 08:14:47 -0700 (PDT)
+To: yocto@yoctoproject.org
+References: <1523745199-16128-1-git-send-email-akuster@mvista.com>
 From: akuster808 <akuster808@gmail.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
@@ -106,13 +106,13 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <271e1c14-4c10-1d2c-f94c-9a0c04aeebae@gmail.com>
-Date: Sat, 21 Apr 2018 08:14:05 -0700
+Message-ID: <b3d86d0d-8b83-9a7d-034c-3e3b48040fe6@gmail.com>
+Date: Sat, 21 Apr 2018 08:14:46 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.7.0
 MIME-Version: 1.0
-In-Reply-To: <1523758104-25257-1-git-send-email-akuster@mvista.com>
-Subject: Re: [meta-selinux][PATCH] libselinux: python-importlib is now part of python*-core
+In-Reply-To: <1523745199-16128-1-git-send-email-akuster@mvista.com>
+Subject: Re: [meta-selinux][PATCH] policycoreutils: remove oe_filter_out
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -124,34 +124,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Apr 2018 15:14:08 -0000
+X-List-Received-Date: Sat, 21 Apr 2018 15:14:49 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
 
-On 04/14/2018 07:08 PM, Armin Kuster wrote:
-> Missing or unbuildable dependency chain was: ['meta-world-pkgdata', 'restorecond', 'libselinux', 'python-importlib']
+On 04/14/2018 03:33 PM, Armin Kuster wrote:
+> bb.data_smart.ExpansionError: Failure expanding variable WARN_QA[:=], expression was ${@oe_filter_out('unsafe-references-in-scripts', 'ldflags useless-rpaths rpaths staticdev libdir xorg-driver-abi             textrel already-stripped incompatible-license files-invalid             installed-vs-shipped compile-host-path install-host-path             pn-overrides infodir build-deps             unknown-configure-option symlink-to-sysroot multilib             invalid-packageconfig host-user-contaminated uppercase-pn             ', d)} which triggered exception NameError: name 'oe_filter_out' is not defined
 >
 > Signed-off-by: Armin Kuster <akuster@mvista.com>
 > ---
->  recipes-security/selinux/libselinux.inc | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-Ping
+>  recipes-security/selinux/policycoreutils.inc | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/recipes-security/selinux/libselinux.inc b/recipes-security/selinux/libselinux.inc
-> index bd5ce8d..51d0875 100644
-> --- a/recipes-security/selinux/libselinux.inc
-> +++ b/recipes-security/selinux/libselinux.inc
-> @@ -8,7 +8,7 @@ LICENSE = "PD"
->  inherit lib_package pythonnative
+> diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-security/selinux/policycoreutils.inc
+> index 442b086..1842fd8 100644
+> --- a/recipes-security/selinux/policycoreutils.inc
+> +++ b/recipes-security/selinux/policycoreutils.inc
+> @@ -64,8 +64,8 @@ RDEPENDS_${BPN}-setsebool += "\
+>  "
+>  RDEPENDS_${BPN} += "selinux-python"
 >  
->  DEPENDS += "libsepol python libpcre swig-native"
-> -RDEPENDS_${PN}-python += "python-importlib"
-> +RDEPENDS_${PN}-python += "python-core"
+> -WARN_QA := "${@oe_filter_out('unsafe-references-in-scripts', '${WARN_QA}', d)}"
+> -ERROR_QA := "${@oe_filter_out('unsafe-references-in-scripts', '${ERROR_QA}', d)}"
+> +WARN_QA_remove = " unsafe-references-in-scripts"
+> +ERROR_QA_remove = " unsafe-references-in-scripts"
 >  
->  PACKAGES += "${PN}-python"
->  FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
+
+Ping
+>  
+>  PACKAGES =+ "\
 
 
