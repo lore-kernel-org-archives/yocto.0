@@ -1,69 +1,67 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42E04E00B49; Sat, 21 Apr 2018 08:14:49 -0700 (PDT)
+	id C3C96E00C99; Sat, 21 Apr 2018 08:15:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.68 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	*      [209.85.192.195 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5AD2E00529
-	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:14:48 -0700 (PDT)
-Received: by mail-pg0-f68.google.com with SMTP id e12so5384776pgn.9
-	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:14:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:cc:from:openpgp:autocrypt:message-id:date
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC817E00B58
+	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:15:21 -0700 (PDT)
+Received: by mail-pf0-f195.google.com with SMTP id l27so5768247pfk.12
+	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:15:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=jYl+ZkPUmKAwdziHzgS8kBfUpPZfOeCWg6bqSyB/Kgc=;
-	b=gkmYwFnobMUCBdQO4i0YylYyML1ddodqNJbjTomspda104S4pUoqvAfa7mlcyV8L9o
-	hRCsCLF3dAUIn4vKATCX9MgpB9LnvU8CLDanqW1WHS5mparh19lkcnT/Pdg4uuwnvEwt
-	4Xqy2gs2BARGVJPjMXcOgJtnC1LOUMr6z1eiDh1l+Y3S/VJwCcMQzM245iHNmQ2SzcNH
-	odXl/lrLKmFJdMhAdYcHff6w0RlWqJ0JgCtb4zp2n2gHDw2zPMipP8A0KJKlZbm9YxS2
-	2L7RcLAAXgpFnKpKysLKvQ6iVBuIc3SLINwFNEXVqmAZ1eDlsyQH4WZPI1/TQx+q8RBd
-	Jgiw==
+	bh=yOsDtgRX02WqHSzfTPYpb0RD3gug8QVmb6CSQDdgnSs=;
+	b=1eBfyhWCDE0ZLRoIEzunwDuWadFxIywAB2eg96LkvN2i/cqo6CmDmK6g3pJLpJGglL
+	TusHIJ+/le49GkPJHYl3qUKEHFJfubcHNxKZy+4WFaw6fCMHzF2OvvHHtxxqF1D9p/W7
+	ST0wshionmaly67MVw2bEBTkn/0N84Dp2EZ9NRqo0GlYsvsFGzdu8LD/GF0A4ffbKvr7
+	D9tGvXPU56eswreCuoHRcXmQCC6m94S3bF0NRrNupgaBxN3bgkLEuFGMScqWFABHq9Tf
+	GKGiuzWwOTDqdUYf5rQe/I1cbGxcXqR3QVAZYUU8YfNxzVKDxcBOyMCcqIY/Rkuxy1LC
+	h3oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:cc:from:openpgp:autocrypt
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=jYl+ZkPUmKAwdziHzgS8kBfUpPZfOeCWg6bqSyB/Kgc=;
-	b=EMkvYJ4RioV7LQEcjlfbljHdAb5CaiIc/CLMKrrFcQOzHvwrRo1LRoAuCV/fet1x1M
-	QNk5IKlaZx8iw7mp3rhbcHYZq6n4oR/pAlCdTkg+g4kWHH87Kdj2i2OUh3d0errL552n
-	pP3nxB5OLN7kPRFOKqDrlU6hnPvZJq4aAUMmSirPi/I0j87ETXXdAqBJt6OXnpPh4RGv
-	XkhCppfjjnUWHD0nB/Jo50XyTeRAS1d/7SJs39JZ9cJbRygntDBkw5PGOV+C6BEkZ4ZK
-	1k/lmvbCi/RP6Us5diwUOFXeHExlDbBjqihUu9qoJVLN13pddA7drgUm3hXbXqDd2Cri
-	Y12w==
-X-Gm-Message-State: ALQs6tD4KPpLiNRg9UieAzlLYgdyS3kOOKDgT7AaUGXiLgr3x+lCSP90
-	m5wRknfEl5GfIq0ukOPPPf+hhQ==
-X-Google-Smtp-Source: AIpwx4+j4d3PHJTcwaxuO2pwH/2LFwQnTyQuf69aoVNzLaq+OLQL5cSSx2t4ULdunMYSCOKDotNh1g==
-X-Received: by 2002:a17:902:6086:: with SMTP id
-	s6-v6mr13855564plj.307.1524323688509; 
-	Sat, 21 Apr 2018 08:14:48 -0700 (PDT)
+	bh=yOsDtgRX02WqHSzfTPYpb0RD3gug8QVmb6CSQDdgnSs=;
+	b=ZbJg+JEphdRhqbHikrhtfrblBZfxp29IKGMn0P3GBmHASp+DrMvhK+JR50O69tPU1w
+	zr+Y3w6XAvg9I1/ZwWf2vKQNW/lwSZ3koy2OiZU0e5KK5tPNZpeZSA+2cXvGC4lN4yRN
+	AyFAzwUu0/pAj50RucAjHBtyyIpF0UoEi75X/1x2lQSZ0SCD+Fmw55Qc7PxaxMpxpRTS
+	Jymja+gekhjvnLuwUHCgdKNZ9PALQGmtmm093iglEiAQnkd4A5ylbBzunrE0fV5TM/V3
+	N34U5GRYdiHTtZFubfr3dLscVmsi1t1h/Z/BxEe+F5EMI4Cgd4+bQ/qJDKarniCx9PCw
+	xOJQ==
+X-Gm-Message-State: ALQs6tAFC1n8Q2fTjlMT+/xOVupSVBneZL3ivlJhZVJZHmfn0fBrdKOK
+	djp5X7iGiw4B+iWC4c1Z+qZvcl16qkM=
+X-Google-Smtp-Source: AIpwx4/0tJULAp9fA8tkljnkCRG5N4fd7EJLWgfBQHIkDkntSo8V5+T69j6f6JN/ZlCFLQ9X9WA67w==
+X-Received: by 2002:a17:902:6a10:: with SMTP id
+	m16-v6mr13780530plk.370.1524323720837; 
+	Sat, 21 Apr 2018 08:15:20 -0700 (PDT)
 Received: from ?IPv6:2601:202:4000:1184:ad3f:3096:6add:98d8?
 	([2601:202:4000:1184:ad3f:3096:6add:98d8])
 	by smtp.gmail.com with ESMTPSA id
-	a28sm5556514pfl.86.2018.04.21.08.14.47
+	e190sm15182037pfe.171.2018.04.21.08.15.19
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 21 Apr 2018 08:14:47 -0700 (PDT)
-To: yocto@yoctoproject.org
-References: <1523745199-16128-1-git-send-email-akuster@mvista.com>
-From: akuster808 <akuster808@gmail.com>
+	Sat, 21 Apr 2018 08:15:19 -0700 (PDT)
+To: Armin Kuster <akuster808@gmail.com>, yocto@yoctoproject.org
+References: <1523659662-18201-1-git-send-email-akuster@mvista.com>
+	<1523659662-18201-2-git-send-email-akuster@mvista.com>
+From: akuster <akuster@mvista.com>
 Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
 	Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
 	mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
@@ -106,13 +104,13 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <b3d86d0d-8b83-9a7d-034c-3e3b48040fe6@gmail.com>
-Date: Sat, 21 Apr 2018 08:14:46 -0700
+Message-ID: <807ac55f-342e-c70f-f27f-dce054f36b7e@mvista.com>
+Date: Sat, 21 Apr 2018 08:15:18 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.7.0
 MIME-Version: 1.0
-In-Reply-To: <1523745199-16128-1-git-send-email-akuster@mvista.com>
-Subject: Re: [meta-selinux][PATCH] policycoreutils: remove oe_filter_out
+In-Reply-To: <1523659662-18201-2-git-send-email-akuster@mvista.com>
+Subject: Re: [meta-qt3][v2][PATCH 2/2] layer: Change LAYERSERIES_COMPAT to sumo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -124,37 +122,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Apr 2018 15:14:49 -0000
+X-List-Received-Date: Sat, 21 Apr 2018 15:15:26 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
 
-On 04/14/2018 03:33 PM, Armin Kuster wrote:
-> bb.data_smart.ExpansionError: Failure expanding variable WARN_QA[:=], expression was ${@oe_filter_out('unsafe-references-in-scripts', 'ldflags useless-rpaths rpaths staticdev libdir xorg-driver-abi             textrel already-stripped incompatible-license files-invalid             installed-vs-shipped compile-host-path install-host-path             pn-overrides infodir build-deps             unknown-configure-option symlink-to-sysroot multilib             invalid-packageconfig host-user-contaminated uppercase-pn             ', d)} which triggered exception NameError: name 'oe_filter_out' is not defined
+On 04/13/2018 03:47 PM, Armin Kuster wrote:
+> [v2]
+> fix typo in layer name
 >
 > Signed-off-by: Armin Kuster <akuster@mvista.com>
-> ---
->  recipes-security/selinux/policycoreutils.inc | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-security/selinux/policycoreutils.inc
-> index 442b086..1842fd8 100644
-> --- a/recipes-security/selinux/policycoreutils.inc
-> +++ b/recipes-security/selinux/policycoreutils.inc
-> @@ -64,8 +64,8 @@ RDEPENDS_${BPN}-setsebool += "\
->  "
->  RDEPENDS_${BPN} += "selinux-python"
->  
-> -WARN_QA := "${@oe_filter_out('unsafe-references-in-scripts', '${WARN_QA}', d)}"
-> -ERROR_QA := "${@oe_filter_out('unsafe-references-in-scripts', '${ERROR_QA}', d)}"
-> +WARN_QA_remove = " unsafe-references-in-scripts"
-> +ERROR_QA_remove = " unsafe-references-in-scripts"
->  
-
 Ping
+> ---
+>  conf/layer.conf | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/conf/layer.conf b/conf/layer.conf
+> index 0197197..cfcad24 100644
+> --- a/conf/layer.conf
+> +++ b/conf/layer.conf
+> @@ -8,4 +8,4 @@ BBFILE_COLLECTIONS += "qt3"
+>  BBFILE_PATTERN_qt3 = "^${LAYERDIR}/"
+>  BBFILE_PRIORITY_qt3 = "6"
 >  
->  PACKAGES =+ "\
+> -LAYERSERIES_COMPAT_qt3 = "rocko"
+> +LAYERSERIES_COMPAT_qt3 = "sumo"
 
 
