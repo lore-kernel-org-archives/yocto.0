@@ -1,6 +1,6 @@
 Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBD51E00C70; Sat, 21 Apr 2018 08:15:58 -0700 (PDT)
+	id 5439CE00C75; Sat, 21 Apr 2018 08:16:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,56 +8,57 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
+	*      [209.85.192.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BDC0E00B58
-	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:15:49 -0700 (PDT)
-Received: by mail-pf0-f195.google.com with SMTP id j5so5780347pfh.2
-	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:15:49 -0700 (PDT)
+Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
+	[209.85.192.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 271DAE00C40
+	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:16:22 -0700 (PDT)
+Received: by mail-pf0-f194.google.com with SMTP id j5so5780961pfh.2
+	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:16:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=mvista-com.20150623.gappssmtp.com; s=20150623;
 	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=QsOFS+B7WF53ODGE4q6/DAktrU/E8nFFtdL7GL/2veo=;
-	b=Jv+oiLZuLRR13YccX1XzXO+mYi/GAlwRUkRSmxVFKoazYmGqwKqoooqJXGd4wHnCZc
-	wyAnHEnZLnAS5HzrHFUdgAwcp8Tz2WHRaSnrTLNF4SjRzHX/qAw9gz1dg5xYg2HpbNzi
-	2nyT4pzjDG4UDM08ojYL8c1Ki44zbEyXZngSmqay91HzzlCElzoLs4/ElXqT2HY39l2x
-	R9OxAmslWgFDYzNMEhnNNMupicQVsIG90RJLoDOQjc/f7086dVS18+UEfPLOG1N8VtkD
-	6r7e7h/QHybzjahwzy3g4xxBwzm/q6madjv4Xwpjapzj+01CWQee63n5n6WEPGn2nWkx
-	5xMQ==
+	bh=0hjkqRDoNnfo3tilRWFR9HoyCZ1NIC7y7FDQB4X5Mzs=;
+	b=biXu7Av0dtUxkWQ1CkypOozs4Ao08pFg2ndb2e9UbUHvuofw719cleiOYj4PoKLtA2
+	tfal0tCp0j9gXVql0ZdsOQLuCH3hQsB3/fTxRdHlghsYDsZl6z/9xxRCsNdSlkRFXBPQ
+	sLka+5NUS1JIUCYKMuTBl5lpQ2gNougDFggUe3+bnCgvhXl9YFP5Vb6NroidKd3aOyYC
+	a3+rVViu3+INZ/YcOkhPJ2DgvXF6K3c/mYFATvo6yF6V/baBj6Tbr0EV/sk2dWFEPEdD
+	VkuTw2Jb4Xukvw1pyWvRRoAs06QgfgI34ta0qzRk1Qm/oZB/7XHtmCbAClUUlu7AfDXY
+	eEoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=QsOFS+B7WF53ODGE4q6/DAktrU/E8nFFtdL7GL/2veo=;
-	b=Odf9Cj5TctYBUXE02DTNrzUn2xgtVQToIszvtoqtP+OMTAc+OjIWZlzI6h6Pjt2F2p
-	PccVYr5hcUBm0HBts8Q8YXM7DNxvsAvhbj3Hv7zrKO57yitb5hng7B1M4dijMM7aLfQQ
-	A8Hv6NOxiXC0yvVw86zYoXyOfV8VDS/QDc7i2s4TRb0Lty53G709d2WDk+nKVFsvIlsB
-	DlmWZJEMPuB/7bD44ZjGe4Y/8Ac3mb50YlKYZyo6K+cx4/uldUzYjBEWYrY8pm9SBgPP
-	wRJUIteLfEXu2XR5U+WF3d5WO+PVOD4YTxJtL2x0x12pbHrn2av2pmyI3hZfR7yZBYAU
-	1zxQ==
-X-Gm-Message-State: ALQs6tABwqwXUBhtiZjn8ahNrwl4plVVpwS2U2i6CEpHXPTbl1PC9JE+
-	f4ssea8f0i9Vp1fcRFCQLtnikLtuWGk=
-X-Google-Smtp-Source: AIpwx4+QQvTq45fofRYYPZBMb69OXD4y2ZCCm4/1sSzyFbqZsnWT5H58LiFJwhKOEBsY1Y6qk4QMcw==
-X-Received: by 2002:a17:902:728f:: with SMTP id
-	d15-v6mr14266994pll.119.1524323748686; 
-	Sat, 21 Apr 2018 08:15:48 -0700 (PDT)
+	bh=0hjkqRDoNnfo3tilRWFR9HoyCZ1NIC7y7FDQB4X5Mzs=;
+	b=cmkylhY3dkmmuFaXJMHUjBc8xu3280O2jUfOPprYfi7rrYO4n/8UJG0+pKMt1JoU0Q
+	FugSBCO2L6vcBRpjotFl0MagnKuPJ5BKs9Ig5KyT+bwI4DWskUJtuQO1Fv1zlHOd36bE
+	NRF0p3yIS9WvtSiH/p+VxnHJZ9V3Uaub/3a+v1E8X/jM4CFCK6YnFsjqGWxk0gCx6yOy
+	pJ+yFqzocoHtPK+JmWXNZKOVY7vMcFUaN1eYY9sGPQ1+Yk7W6cWWqI+/p3X29p92aZ+W
+	++ntiZC+nl39zzNdbGBAV2kYjDbbX5AkA/QE1gnhnbq1LiCDtmt4HSedGcuVjMwkUIea
+	gqdg==
+X-Gm-Message-State: ALQs6tBSM0I3eT1mUqGsnZQivTtv52gpEQtWND9Lp6oUHAsPcPJLng/8
+	cQfJcxXg65LzCB2KUuQHoEjlRWopWu8=
+X-Google-Smtp-Source: AIpwx49UZtT5yUT4JPpH78KBZ6Jg0bE4IcYDvAdAiTJMx7mLEDxt7SxFSqZ2/JlRLHqvMJI7EeiAtw==
+X-Received: by 2002:a17:902:2f43:: with SMTP id
+	s61-v6mr10318351plb.99.1524323781404; 
+	Sat, 21 Apr 2018 08:16:21 -0700 (PDT)
 Received: from ?IPv6:2601:202:4000:1184:ad3f:3096:6add:98d8?
 	([2601:202:4000:1184:ad3f:3096:6add:98d8])
 	by smtp.gmail.com with ESMTPSA id
-	m185sm17703723pfc.88.2018.04.21.08.15.47
+	h1sm16436080pgf.93.2018.04.21.08.16.19
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 21 Apr 2018 08:15:47 -0700 (PDT)
+	Sat, 21 Apr 2018 08:16:20 -0700 (PDT)
 To: Armin Kuster <akuster808@gmail.com>, yocto@yoctoproject.org
-References: <1523659662-18201-1-git-send-email-akuster@mvista.com>
+References: <1523659141-17543-1-git-send-email-akuster@mvista.com>
+	<1523659141-17543-2-git-send-email-akuster@mvista.com>
 From: akuster <akuster@mvista.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
@@ -103,13 +104,13 @@ Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <73153189-2dc3-115f-0d10-28518e008223@mvista.com>
-Date: Sat, 21 Apr 2018 08:15:46 -0700
+Message-ID: <0982eba7-9e14-7976-f9bd-cc42b9b8f33c@mvista.com>
+Date: Sat, 21 Apr 2018 08:16:18 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.7.0
 MIME-Version: 1.0
-In-Reply-To: <1523659662-18201-1-git-send-email-akuster@mvista.com>
-Subject: Re: [meta-qt3][v2][PATCH 1/2] layer: add LAYERSERIES_COMPAT
+In-Reply-To: <1523659141-17543-2-git-send-email-akuster@mvista.com>
+Subject: Re: [meta-qt4][v2][PATCH 2/2] layers: move LAYERSERIES_COMPAT to sumo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -121,31 +122,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Apr 2018 15:15:59 -0000
+X-List-Received-Date: Sat, 21 Apr 2018 15:16:31 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
 
-On 04/13/2018 03:47 PM, Armin Kuster wrote:
+On 04/13/2018 03:39 PM, Armin Kuster wrote:
 > [v2]
-> Fix type in name
+> Fix cut&paste error
 >
 > Signed-off-by: Armin Kuster <akuster@mvista.com>
 > ---
->  conf/layer.conf | 1 +
->  1 file changed, 1 insertion(+)
+>  conf/layer.conf | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
 > diff --git a/conf/layer.conf b/conf/layer.conf
-> index 84ab5f7..0197197 100644
+> index 1ce54af..915d89c 100644
 > --- a/conf/layer.conf
 > +++ b/conf/layer.conf
-> @@ -8,3 +8,4 @@ BBFILE_COLLECTIONS += "qt3"
->  BBFILE_PATTERN_qt3 = "^${LAYERDIR}/"
->  BBFILE_PRIORITY_qt3 = "6"
+> @@ -8,4 +8,4 @@ BBFILE_COLLECTIONS += "qt4-layer"
+>  BBFILE_PATTERN_qt4-layer = "^${LAYERDIR}/"
+>  BBFILE_PRIORITY_qt4-layer = "6"
 >  
-> +LAYERSERIES_COMPAT_qt3 = "rocko"
-Ping
+> -LAYERSERIES_COMPAT_qt4-layer = "rocko"
+> +LAYERSERIES_COMPAT_qt4-layer = "sumo"
+Ping for the series
 
 
