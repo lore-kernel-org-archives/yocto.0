@@ -1,6 +1,6 @@
 Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C3C96E00C99; Sat, 21 Apr 2018 08:15:26 -0700 (PDT)
+	id CBD51E00C70; Sat, 21 Apr 2018 08:15:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -16,49 +16,48 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
 	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC817E00B58
-	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:15:21 -0700 (PDT)
-Received: by mail-pf0-f195.google.com with SMTP id l27so5768247pfk.12
-	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:15:21 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BDC0E00B58
+	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:15:49 -0700 (PDT)
+Received: by mail-pf0-f195.google.com with SMTP id j5so5780347pfh.2
+	for <yocto@yoctoproject.org>; Sat, 21 Apr 2018 08:15:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=mvista-com.20150623.gappssmtp.com; s=20150623;
 	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=yOsDtgRX02WqHSzfTPYpb0RD3gug8QVmb6CSQDdgnSs=;
-	b=1eBfyhWCDE0ZLRoIEzunwDuWadFxIywAB2eg96LkvN2i/cqo6CmDmK6g3pJLpJGglL
-	TusHIJ+/le49GkPJHYl3qUKEHFJfubcHNxKZy+4WFaw6fCMHzF2OvvHHtxxqF1D9p/W7
-	ST0wshionmaly67MVw2bEBTkn/0N84Dp2EZ9NRqo0GlYsvsFGzdu8LD/GF0A4ffbKvr7
-	D9tGvXPU56eswreCuoHRcXmQCC6m94S3bF0NRrNupgaBxN3bgkLEuFGMScqWFABHq9Tf
-	GKGiuzWwOTDqdUYf5rQe/I1cbGxcXqR3QVAZYUU8YfNxzVKDxcBOyMCcqIY/Rkuxy1LC
-	h3oQ==
+	bh=QsOFS+B7WF53ODGE4q6/DAktrU/E8nFFtdL7GL/2veo=;
+	b=Jv+oiLZuLRR13YccX1XzXO+mYi/GAlwRUkRSmxVFKoazYmGqwKqoooqJXGd4wHnCZc
+	wyAnHEnZLnAS5HzrHFUdgAwcp8Tz2WHRaSnrTLNF4SjRzHX/qAw9gz1dg5xYg2HpbNzi
+	2nyT4pzjDG4UDM08ojYL8c1Ki44zbEyXZngSmqay91HzzlCElzoLs4/ElXqT2HY39l2x
+	R9OxAmslWgFDYzNMEhnNNMupicQVsIG90RJLoDOQjc/f7086dVS18+UEfPLOG1N8VtkD
+	6r7e7h/QHybzjahwzy3g4xxBwzm/q6madjv4Xwpjapzj+01CWQee63n5n6WEPGn2nWkx
+	5xMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=yOsDtgRX02WqHSzfTPYpb0RD3gug8QVmb6CSQDdgnSs=;
-	b=ZbJg+JEphdRhqbHikrhtfrblBZfxp29IKGMn0P3GBmHASp+DrMvhK+JR50O69tPU1w
-	zr+Y3w6XAvg9I1/ZwWf2vKQNW/lwSZ3koy2OiZU0e5KK5tPNZpeZSA+2cXvGC4lN4yRN
-	AyFAzwUu0/pAj50RucAjHBtyyIpF0UoEi75X/1x2lQSZ0SCD+Fmw55Qc7PxaxMpxpRTS
-	Jymja+gekhjvnLuwUHCgdKNZ9PALQGmtmm093iglEiAQnkd4A5ylbBzunrE0fV5TM/V3
-	N34U5GRYdiHTtZFubfr3dLscVmsi1t1h/Z/BxEe+F5EMI4Cgd4+bQ/qJDKarniCx9PCw
-	xOJQ==
-X-Gm-Message-State: ALQs6tAFC1n8Q2fTjlMT+/xOVupSVBneZL3ivlJhZVJZHmfn0fBrdKOK
-	djp5X7iGiw4B+iWC4c1Z+qZvcl16qkM=
-X-Google-Smtp-Source: AIpwx4/0tJULAp9fA8tkljnkCRG5N4fd7EJLWgfBQHIkDkntSo8V5+T69j6f6JN/ZlCFLQ9X9WA67w==
-X-Received: by 2002:a17:902:6a10:: with SMTP id
-	m16-v6mr13780530plk.370.1524323720837; 
-	Sat, 21 Apr 2018 08:15:20 -0700 (PDT)
+	bh=QsOFS+B7WF53ODGE4q6/DAktrU/E8nFFtdL7GL/2veo=;
+	b=Odf9Cj5TctYBUXE02DTNrzUn2xgtVQToIszvtoqtP+OMTAc+OjIWZlzI6h6Pjt2F2p
+	PccVYr5hcUBm0HBts8Q8YXM7DNxvsAvhbj3Hv7zrKO57yitb5hng7B1M4dijMM7aLfQQ
+	A8Hv6NOxiXC0yvVw86zYoXyOfV8VDS/QDc7i2s4TRb0Lty53G709d2WDk+nKVFsvIlsB
+	DlmWZJEMPuB/7bD44ZjGe4Y/8Ac3mb50YlKYZyo6K+cx4/uldUzYjBEWYrY8pm9SBgPP
+	wRJUIteLfEXu2XR5U+WF3d5WO+PVOD4YTxJtL2x0x12pbHrn2av2pmyI3hZfR7yZBYAU
+	1zxQ==
+X-Gm-Message-State: ALQs6tABwqwXUBhtiZjn8ahNrwl4plVVpwS2U2i6CEpHXPTbl1PC9JE+
+	f4ssea8f0i9Vp1fcRFCQLtnikLtuWGk=
+X-Google-Smtp-Source: AIpwx4+QQvTq45fofRYYPZBMb69OXD4y2ZCCm4/1sSzyFbqZsnWT5H58LiFJwhKOEBsY1Y6qk4QMcw==
+X-Received: by 2002:a17:902:728f:: with SMTP id
+	d15-v6mr14266994pll.119.1524323748686; 
+	Sat, 21 Apr 2018 08:15:48 -0700 (PDT)
 Received: from ?IPv6:2601:202:4000:1184:ad3f:3096:6add:98d8?
 	([2601:202:4000:1184:ad3f:3096:6add:98d8])
 	by smtp.gmail.com with ESMTPSA id
-	e190sm15182037pfe.171.2018.04.21.08.15.19
+	m185sm17703723pfc.88.2018.04.21.08.15.47
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 21 Apr 2018 08:15:19 -0700 (PDT)
+	Sat, 21 Apr 2018 08:15:47 -0700 (PDT)
 To: Armin Kuster <akuster808@gmail.com>, yocto@yoctoproject.org
 References: <1523659662-18201-1-git-send-email-akuster@mvista.com>
-	<1523659662-18201-2-git-send-email-akuster@mvista.com>
 From: akuster <akuster@mvista.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
@@ -104,13 +103,13 @@ Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <807ac55f-342e-c70f-f27f-dce054f36b7e@mvista.com>
-Date: Sat, 21 Apr 2018 08:15:18 -0700
+Message-ID: <73153189-2dc3-115f-0d10-28518e008223@mvista.com>
+Date: Sat, 21 Apr 2018 08:15:46 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.7.0
 MIME-Version: 1.0
-In-Reply-To: <1523659662-18201-2-git-send-email-akuster@mvista.com>
-Subject: Re: [meta-qt3][v2][PATCH 2/2] layer: Change LAYERSERIES_COMPAT to sumo
+In-Reply-To: <1523659662-18201-1-git-send-email-akuster@mvista.com>
+Subject: Re: [meta-qt3][v2][PATCH 1/2] layer: add LAYERSERIES_COMPAT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -122,7 +121,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Apr 2018 15:15:26 -0000
+X-List-Received-Date: Sat, 21 Apr 2018 15:15:59 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
@@ -131,23 +130,22 @@ Content-Language: en-US
 
 On 04/13/2018 03:47 PM, Armin Kuster wrote:
 > [v2]
-> fix typo in layer name
+> Fix type in name
 >
 > Signed-off-by: Armin Kuster <akuster@mvista.com>
-Ping
 > ---
->  conf/layer.conf | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  conf/layer.conf | 1 +
+>  1 file changed, 1 insertion(+)
 >
 > diff --git a/conf/layer.conf b/conf/layer.conf
-> index 0197197..cfcad24 100644
+> index 84ab5f7..0197197 100644
 > --- a/conf/layer.conf
 > +++ b/conf/layer.conf
-> @@ -8,4 +8,4 @@ BBFILE_COLLECTIONS += "qt3"
+> @@ -8,3 +8,4 @@ BBFILE_COLLECTIONS += "qt3"
 >  BBFILE_PATTERN_qt3 = "^${LAYERDIR}/"
 >  BBFILE_PRIORITY_qt3 = "6"
 >  
-> -LAYERSERIES_COMPAT_qt3 = "rocko"
-> +LAYERSERIES_COMPAT_qt3 = "sumo"
+> +LAYERSERIES_COMPAT_qt3 = "rocko"
+Ping
 
 
