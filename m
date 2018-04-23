@@ -1,62 +1,55 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <peter.kjellerstedt@axis.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC059E00BAA; Mon, 23 Apr 2018 03:20:52 -0700 (PDT)
+	id 7ABF4E009CF; Mon, 23 Apr 2018 03:23:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.68 listed in list.dnswl.org]
+	*      [195.60.68.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f68.google.com (mail-it0-f68.google.com
-	[209.85.214.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02C58E00B66
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 03:20:51 -0700 (PDT)
-Received: by mail-it0-f68.google.com with SMTP id h143-v6so10209759ita.4
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 03:20:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=kApRT56Y5jN2gp1Vj2mCMSZdrRnuU3RC4AujztPO2Hc=;
-	b=pEanp1aKDGYdzJn7A/xLY9mSR+/lQkirG1Vh/4O7/+jnGaBXjY0faZbC8tFiysduX9
-	kxqdLHjcvar1355mhONYQRH0Xh5VRrGHmLZA0lo1tonOU+LyQVvH3Lh8mZndupJyTJ8x
-	YeNtYDkhbx32UVMUoWPrPZEw12sznnovjlTV5rRZubfEUCQMR4TnTTe4EBGNRylJPRjM
-	iwGyctACvR2Ksx+wfnG1akuqDqj6kLFHDQgdupfl6NhPAJ286mUHWRTJN8F3vqdtfOwy
-	by4xnRSRNuLuXGDpwVI3GMQ2fExUm6p8+pwOce8HwGzz6DZENPAe69JGNUE9pdeibWd3
-	NbMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=kApRT56Y5jN2gp1Vj2mCMSZdrRnuU3RC4AujztPO2Hc=;
-	b=EaQIAXvhojHSkcZBlS8oCPhLEu7Yn0zMLIYQUXDTwexdHlbuZzQlWQC3wHe2xxeDDU
-	VR3AtRhJ0hR3RxjD+SG+luzzlwMkEOyoOBSyj47K/0uXWv87cW87wx3WZqZP57x+FoTL
-	Ddwz72RFuXflkJj1PstZCYGt0KvNp5cAwavQTkFqNIFAdzw+i8wwT8h6sUJ+ULC9Fffn
-	n8NJRsj9om4+IS7cpZIgKwpTy5QUmBX8ytw9YBeGAM+1+KaU77XayH7AUGIJ0cxClHVd
-	d0rf0WXQDb3PziVVrzWc8HoNHrnOzQyos9wQpO+8evrShdyyj13X0+GOMf6FNZBL1YN2
-	jc0g==
-X-Gm-Message-State: ALQs6tDyHg1oIS6Y+x+egaEYc8mgqgNQrRjceDZmGcw9qHDifaBrDut4
-	U+foWIOQnCR4FN9Ob4MCD1yPMw6JglPKMyD5tFqPNA==
-X-Google-Smtp-Source: AB8JxZrlubi6E4Nh0Y5FLMtb+O69tGpIU9Gs5OnSOyHecD0KXugmE/sQHl8WnTeG1AdWmpjvqOiI6B9+h4hKojDBWWI=
-X-Received: by 2002:a24:4414:: with SMTP id
-	o20-v6mr13514188ita.60.1524478851201; 
-	Mon, 23 Apr 2018 03:20:51 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.29.203 with HTTP; Mon, 23 Apr 2018 03:20:30 -0700 (PDT)
-In-Reply-To: <20180421013036.3425-1-pkj@axis.com>
-References: <20180421013036.3425-1-pkj@axis.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 23 Apr 2018 11:20:30 +0100
-Message-ID: <CAJTo0LZQ6Oputf0xXy9acNBwzcAvVzFA8T49fdFYOCmVsDLcYA@mail.gmail.com>
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: [meta-gplv2][sumo][rocko][PATCH] bash: Provide /bin/{sh, bash} when usrmerge is used
+Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC8FBE009CF
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 03:23:38 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by bastet.se.axis.com (Postfix) with ESMTP id 8AF0B183FA
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:37 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
+Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
+	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP id 8GfQR6yb8OFT for <yocto@yoctoproject.org>;
+	Mon, 23 Apr 2018 12:23:36 +0200 (CEST)
+Received: from boulder03.se.axis.com (boulder03.se.axis.com [10.0.8.17])
+	by bastet.se.axis.com (Postfix) with ESMTPS id 16CC6180A2
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:36 +0200 (CEST)
+Received: from boulder03.se.axis.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id F20831E078
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:35 +0200 (CEST)
+Received: from boulder03.se.axis.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id E63431E077
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:35 +0200 (CEST)
+Received: from thoth.se.axis.com (unknown [10.0.2.173])
+	by boulder03.se.axis.com (Postfix) with ESMTP
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:35 +0200 (CEST)
+Received: from saur-2.se.axis.com (saur-2.se.axis.com [10.92.3.2])
+	by thoth.se.axis.com (Postfix) with ESMTP id D9BAE1C61
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:35 +0200 (CEST)
+Received: from saur-2.se.axis.com (localhost [127.0.0.1])
+	by saur-2.se.axis.com (8.14.5/8.14.5) with ESMTP id w3NANTZA018101
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:29 +0200
+Received: (from pkj@localhost)
+	by saur-2.se.axis.com (8.14.5/8.14.5/Submit) id w3NANTJV018100
+	for yocto@yoctoproject.org; Mon, 23 Apr 2018 12:23:29 +0200
+From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+To: yocto@yoctoproject.org
+Date: Mon, 23 Apr 2018 12:23:28 +0200
+Message-Id: <20180423102328.18058-1-pkj@axis.com>
+X-Mailer: git-send-email 2.12.0
+X-TM-AS-GCONF: 00
+Subject: [meta-gplv2][sumo][rocko][pyro][PATCH] coreutils: Avoid warnings due to update-alternatives for man pages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,45 +61,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Apr 2018 10:20:52 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 23 Apr 2018 10:23:40 -0000
 
-Pushed, thanks.
+The man pages for this package was disabled in 46349e1a with the result
+that the following warnings appeared:
 
-Ross
+  WARNING: coreutils-6.9-r0 do_package: coreutils: alternative target
+  (/usr/share/man/man1/su.1 or /usr/share/man/man1/su.1.coreutils) does
+  not exist, skipping...
+  WARNING: coreutils-6.9-r0 do_package: coreutils: alternative target
+  (/usr/share/man/man1/hostname.1 or
+  /usr/share/man/man1/hostname.1.coreutils) does not exist, skipping...
+  WARNING: coreutils-6.9-r0 do_package: coreutils: NOT adding
+  alternative provide /usr/share/man/man1/su.1:
+  /usr/share/man/man1/su.1.coreutils does not exist
+  WARNING: coreutils-6.9-r0 do_package: coreutils: NOT adding
+  alternative provide /usr/share/man/man1/hostname.1:
+  /usr/share/man/man1/hostname.1.coreutils does not exist
+  WARNING: coreutils-6.9-r0 do_package: coreutils: alt_link ==
+  alt_target: /usr/share/man/man1/su.1 == /usr/share/man/man1/su.1
+  WARNING: coreutils-6.9-r0 do_package: coreutils: alt_link ==
+  alt_target: /usr/share/man/man1/hostname.1 ==
+  /usr/share/man/man1/hostname.1
 
-On 21 April 2018 at 02:30, Peter Kjellerstedt
-<peter.kjellerstedt@axis.com> wrote:
-> Most shell scripts have '#!/bin/{sh,bash}' on the first line of the
-> script, which triggers RPM to automatically add a runtime dependency
-> on that path for any package that contains shell scripts.  However,
-> when the usrmerge feature is enabled, the path will actually be
-> /usr/bin/{sh,bash}.
->
-> So, to satisfy the runtime dependencies, add '/bin/{sh,bash}' to what
-> the bash package provides.
->
-> Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-> ---
->  recipes-extended/bash/bash.inc | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/recipes-extended/bash/bash.inc b/recipes-extended/bash/bash.inc
-> index a05b987..0f0d679 100644
-> --- a/recipes-extended/bash/bash.inc
-> +++ b/recipes-extended/bash/bash.inc
-> @@ -65,3 +65,5 @@ pkg_postinst_${PN} () {
->  pkg_postrm_${PN} () {
->         printf "$(grep -v "^${base_bindir}/bash$" $D${sysconfdir}/shells)\n" > $D${sysconfdir}/shells
->  }
-> +
-> +RPROVIDES_${PN} += "${@bb.utils.contains('DISTRO_FEATURES', 'usrmerge', '/bin/sh /bin/bash', '', d)}"
-> --
-> 2.12.0
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+This change removes the update-alternatives for the man pages that no
+longer exists.
+
+Change-Id: If79bb634e05db48462265c6e65291db27169fa51
+Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+---
+ recipes-core/coreutils/coreutils_6.9.bb | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/recipes-core/coreutils/coreutils_6.9.bb b/recipes-core/coreutils/coreutils_6.9.bb
+index 31e5c7e..0d236b2 100644
+--- a/recipes-core/coreutils/coreutils_6.9.bb
++++ b/recipes-core/coreutils/coreutils_6.9.bb
+@@ -90,10 +90,6 @@ ALTERNATIVE_PRIORITY = "100"
+ 
+ ALTERNATIVE_${PN} = "lbracket ${bindir_progs} ${base_bindir_progs} ${sbindir_progs}"
+ 
+-ALTERNATIVE_${PN}-doc = "su.1 hostname.1"
+-ALTERNATIVE_LINK_NAME[su.1] = "${mandir}/man1/su.1"
+-ALTERNATIVE_LINK_NAME[hostname.1] = "${mandir}/man1/hostname.1"
+-
+ ALTERNATIVE_PRIORITY[uptime] = "10"
+ ALTERNATIVE_PRIORITY[hostname] = "10"
+ 
+-- 
+2.12.0
+
 
