@@ -1,55 +1,62 @@
-Return-Path: <peter.kjellerstedt@axis.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7ABF4E009CF; Mon, 23 Apr 2018 03:23:40 -0700 (PDT)
+	id 94B40E009CF; Mon, 23 Apr 2018 03:27:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [195.60.68.11 listed in list.dnswl.org]
+	*      [209.85.223.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC8FBE009CF
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 03:23:38 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by bastet.se.axis.com (Postfix) with ESMTP id 8AF0B183FA
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:37 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
-Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
-	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP id 8GfQR6yb8OFT for <yocto@yoctoproject.org>;
-	Mon, 23 Apr 2018 12:23:36 +0200 (CEST)
-Received: from boulder03.se.axis.com (boulder03.se.axis.com [10.0.8.17])
-	by bastet.se.axis.com (Postfix) with ESMTPS id 16CC6180A2
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:36 +0200 (CEST)
-Received: from boulder03.se.axis.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id F20831E078
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:35 +0200 (CEST)
-Received: from boulder03.se.axis.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id E63431E077
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:35 +0200 (CEST)
-Received: from thoth.se.axis.com (unknown [10.0.2.173])
-	by boulder03.se.axis.com (Postfix) with ESMTP
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:35 +0200 (CEST)
-Received: from saur-2.se.axis.com (saur-2.se.axis.com [10.92.3.2])
-	by thoth.se.axis.com (Postfix) with ESMTP id D9BAE1C61
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:35 +0200 (CEST)
-Received: from saur-2.se.axis.com (localhost [127.0.0.1])
-	by saur-2.se.axis.com (8.14.5/8.14.5) with ESMTP id w3NANTZA018101
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 12:23:29 +0200
-Received: (from pkj@localhost)
-	by saur-2.se.axis.com (8.14.5/8.14.5/Submit) id w3NANTJV018100
-	for yocto@yoctoproject.org; Mon, 23 Apr 2018 12:23:29 +0200
-From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-To: yocto@yoctoproject.org
-Date: Mon, 23 Apr 2018 12:23:28 +0200
-Message-Id: <20180423102328.18058-1-pkj@axis.com>
-X-Mailer: git-send-email 2.12.0
-X-TM-AS-GCONF: 00
-Subject: [meta-gplv2][sumo][rocko][pyro][PATCH] coreutils: Avoid warnings due to update-alternatives for man pages
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f194.google.com (mail-io0-f194.google.com
+	[209.85.223.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E5E0E00843
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 03:27:06 -0700 (PDT)
+Received: by mail-io0-f194.google.com with SMTP id t123-v6so17832738iof.7
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 03:27:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=aVzuZUgdC6bKi0HsMLTddR4GdKgvbzWnzrylmFcR3FA=;
+	b=pviX2Ohe0V5OV12SEmPqt0DSD4g7MhW0gMWzWFfHj6JJeznC7/Y7ij3Y+DLddLPDNX
+	MLKG3qHQkE4xY59UkJ8yCfS8CX2grcMheRewGoVcOZOq7SktLkbbitxfBhlMNcRqnfbr
+	ny8AlIvajGjpwR9NJuvrSXBuLAZp2W1ozahZZ2HaCccmj2gk5HX8RZVnENpxbxHkGAiz
+	teOCisy6yYPjBB4oO6tyExFrRNP5CKRvcdyf0upHyyJ0W8xhYfxSaK+7BwITkbLP0xA9
+	FPy5uTAZflIfJwu/HFf7QeWm6x966Xc5crEUMVVGrGU/iLkB4V5RfL/UbUeE0xtDu0Jd
+	JK+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=aVzuZUgdC6bKi0HsMLTddR4GdKgvbzWnzrylmFcR3FA=;
+	b=icFW884rhB4pD9Fpgv58tPzCGii4VDL6ikIMga7hPnMweHYXk1czq3w1MJs9pwzjMW
+	e4i3ZIa1NvMmMChCCDONSK5owNFlI9yMhG0PoZubfGKBK1sMQxSwzabeH+acs89J/yyu
+	amw41cVUiT+tzmm4PKsl/EuuM09Wo3u8IOLVdwOwzRvoXGZGqYz2YZCPx/X8uD+NC26V
+	92oMaYNOFcyAVu5VGpOMndqES5oYn0bScbLh+rZX8n6SmjWmXdQOnWF1N6Qhy7esC8gv
+	QlKQ1sNIx6Ymc/3wi1z/5CAuiV5moamwndffy7Qxa6meC88Vff5NCevpz9ilzniWaSNh
+	DIUA==
+X-Gm-Message-State: ALQs6tAkt2aGHItMIzUIrWGiVkNfmFUGzy8/mLJBbvjyrI/8RfuXQBDo
+	I2yQf6ti9pVOEEVuCzbzHO4EiuzB2VfDhqbNrgBzZg==
+X-Google-Smtp-Source: AIpwx4/cF2KZ1q/+MZ39Zj/z/wXuDAOEs4Q5z+uj1GAdemUtq/udjtqOCSMc6JekquWPPlYDR6bjSXyayOApqbBASdM=
+X-Received: by 2002:a6b:248e:: with SMTP id
+	k136-v6mr19701919iok.270.1524479225725; 
+	Mon, 23 Apr 2018 03:27:05 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.29.203 with HTTP; Mon, 23 Apr 2018 03:26:45 -0700 (PDT)
+In-Reply-To: <20180423102328.18058-1-pkj@axis.com>
+References: <20180423102328.18058-1-pkj@axis.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 23 Apr 2018 11:26:45 +0100
+Message-ID: <CAJTo0La0YE+F1aTOwUCGjaM=0aZCAPyQs5-U9jB3h7x4Qtr4YQ@mail.gmail.com>
+To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: [meta-gplv2][sumo][rocko][pyro][PATCH] coreutils: Avoid warnings due to update-alternatives for man pages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,54 +68,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Apr 2018 10:23:40 -0000
+X-List-Received-Date: Mon, 23 Apr 2018 10:27:08 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-The man pages for this package was disabled in 46349e1a with the result
-that the following warnings appeared:
+Pushed, thanks.
 
-  WARNING: coreutils-6.9-r0 do_package: coreutils: alternative target
-  (/usr/share/man/man1/su.1 or /usr/share/man/man1/su.1.coreutils) does
-  not exist, skipping...
-  WARNING: coreutils-6.9-r0 do_package: coreutils: alternative target
-  (/usr/share/man/man1/hostname.1 or
-  /usr/share/man/man1/hostname.1.coreutils) does not exist, skipping...
-  WARNING: coreutils-6.9-r0 do_package: coreutils: NOT adding
-  alternative provide /usr/share/man/man1/su.1:
-  /usr/share/man/man1/su.1.coreutils does not exist
-  WARNING: coreutils-6.9-r0 do_package: coreutils: NOT adding
-  alternative provide /usr/share/man/man1/hostname.1:
-  /usr/share/man/man1/hostname.1.coreutils does not exist
-  WARNING: coreutils-6.9-r0 do_package: coreutils: alt_link ==
-  alt_target: /usr/share/man/man1/su.1 == /usr/share/man/man1/su.1
-  WARNING: coreutils-6.9-r0 do_package: coreutils: alt_link ==
-  alt_target: /usr/share/man/man1/hostname.1 ==
-  /usr/share/man/man1/hostname.1
-
-This change removes the update-alternatives for the man pages that no
-longer exists.
-
-Change-Id: If79bb634e05db48462265c6e65291db27169fa51
-Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
----
- recipes-core/coreutils/coreutils_6.9.bb | 4 ----
- 1 file changed, 4 deletions(-)
-
-diff --git a/recipes-core/coreutils/coreutils_6.9.bb b/recipes-core/coreutils/coreutils_6.9.bb
-index 31e5c7e..0d236b2 100644
---- a/recipes-core/coreutils/coreutils_6.9.bb
-+++ b/recipes-core/coreutils/coreutils_6.9.bb
-@@ -90,10 +90,6 @@ ALTERNATIVE_PRIORITY = "100"
- 
- ALTERNATIVE_${PN} = "lbracket ${bindir_progs} ${base_bindir_progs} ${sbindir_progs}"
- 
--ALTERNATIVE_${PN}-doc = "su.1 hostname.1"
--ALTERNATIVE_LINK_NAME[su.1] = "${mandir}/man1/su.1"
--ALTERNATIVE_LINK_NAME[hostname.1] = "${mandir}/man1/hostname.1"
--
- ALTERNATIVE_PRIORITY[uptime] = "10"
- ALTERNATIVE_PRIORITY[hostname] = "10"
- 
--- 
-2.12.0
-
+On 23 April 2018 at 11:23, Peter Kjellerstedt
+<peter.kjellerstedt@axis.com> wrote:
+> The man pages for this package was disabled in 46349e1a with the result
+> that the following warnings appeared:
+>
+>   WARNING: coreutils-6.9-r0 do_package: coreutils: alternative target
+>   (/usr/share/man/man1/su.1 or /usr/share/man/man1/su.1.coreutils) does
+>   not exist, skipping...
+>   WARNING: coreutils-6.9-r0 do_package: coreutils: alternative target
+>   (/usr/share/man/man1/hostname.1 or
+>   /usr/share/man/man1/hostname.1.coreutils) does not exist, skipping...
+>   WARNING: coreutils-6.9-r0 do_package: coreutils: NOT adding
+>   alternative provide /usr/share/man/man1/su.1:
+>   /usr/share/man/man1/su.1.coreutils does not exist
+>   WARNING: coreutils-6.9-r0 do_package: coreutils: NOT adding
+>   alternative provide /usr/share/man/man1/hostname.1:
+>   /usr/share/man/man1/hostname.1.coreutils does not exist
+>   WARNING: coreutils-6.9-r0 do_package: coreutils: alt_link ==
+>   alt_target: /usr/share/man/man1/su.1 == /usr/share/man/man1/su.1
+>   WARNING: coreutils-6.9-r0 do_package: coreutils: alt_link ==
+>   alt_target: /usr/share/man/man1/hostname.1 ==
+>   /usr/share/man/man1/hostname.1
+>
+> This change removes the update-alternatives for the man pages that no
+> longer exists.
+>
+> Change-Id: If79bb634e05db48462265c6e65291db27169fa51
+> Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+> ---
+>  recipes-core/coreutils/coreutils_6.9.bb | 4 ----
+>  1 file changed, 4 deletions(-)
+>
+> diff --git a/recipes-core/coreutils/coreutils_6.9.bb b/recipes-core/coreutils/coreutils_6.9.bb
+> index 31e5c7e..0d236b2 100644
+> --- a/recipes-core/coreutils/coreutils_6.9.bb
+> +++ b/recipes-core/coreutils/coreutils_6.9.bb
+> @@ -90,10 +90,6 @@ ALTERNATIVE_PRIORITY = "100"
+>
+>  ALTERNATIVE_${PN} = "lbracket ${bindir_progs} ${base_bindir_progs} ${sbindir_progs}"
+>
+> -ALTERNATIVE_${PN}-doc = "su.1 hostname.1"
+> -ALTERNATIVE_LINK_NAME[su.1] = "${mandir}/man1/su.1"
+> -ALTERNATIVE_LINK_NAME[hostname.1] = "${mandir}/man1/hostname.1"
+> -
+>  ALTERNATIVE_PRIORITY[uptime] = "10"
+>  ALTERNATIVE_PRIORITY[hostname] = "10"
+>
+> --
+> 2.12.0
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
