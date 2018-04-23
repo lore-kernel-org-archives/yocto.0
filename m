@@ -1,62 +1,57 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <peter.kjellerstedt@axis.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 380BAE00BFD; Mon, 23 Apr 2018 05:35:10 -0700 (PDT)
+	id 487F3E00C58; Mon, 23 Apr 2018 07:28:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.66 listed in list.dnswl.org]
+	*      [195.60.68.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f66.google.com (mail-it0-f66.google.com
-	[209.85.214.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77A79E00A1E
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 05:35:09 -0700 (PDT)
-Received: by mail-it0-f66.google.com with SMTP id t192-v6so9263965itc.1
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 05:35:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ARoCqQKLWZ2XMgY2sR4EBqPAxg6BHY41/n+zBzijAb8=;
-	b=BFqpabVjpIjyUAuzl9nr/QSj/NbVQuSdPjrcuqmx+Jx7qDcySRxICloTNURuy1+rUz
-	UKwbNTlwyeXg6uQB/0W4C1lIYlxwblJ6BvgDlZSgAtyeD4vXyYi4CmJyC6uykzZRe6Pq
-	1e8AOpFpB3mhzCiLoVykmD36/D3oqbwL09b5jk4NIGe1g8xipjsBG+4bUOq96sxHcAWP
-	JS2ICFYbpVqP5rgXRUsEjr3aynE7bYvxu8b1y6cZTSP1OjHxR4YmPH0YPCe85JIMMkM1
-	WsaL+P2PQHPzVe8QrX9Mc/tx0WmeB8YQqgKvaF29P8yocq1T4qggPSEKoL+iYBPfFKXT
-	dMOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ARoCqQKLWZ2XMgY2sR4EBqPAxg6BHY41/n+zBzijAb8=;
-	b=RTmKwfZgNAe9OaBPDo61ViW7ud5wOI1mHCWtmKbIsshJaRiTI6u8R5lvDeoruKJasb
-	Lid2Qe3ZqC9Q1dt2rk0bzCKJ/JExDVlQq///VvnOtUAOuokL4+1VmIkG9AICB2alb52y
-	vnQRxvHns4IGTVJBRSH73PcFGc617QcFBSLRsP3N1uCWVe3AmkEmlouo+A9KP3t5ETae
-	Qa8fYSkLDOwJ+lwYDiuFLre5aJoByeVKuvanU9854YsEEBhbKjH1pcC/8d4TGVMzJP+n
-	j9nxlfNS2hxKjtXPLESxGMUlaXPU0+6tYmnjVO7MTFZ+MvteHrgxjlfFZnsP+kDEoUmw
-	sV/g==
-X-Gm-Message-State: ALQs6tAAbWaZq2bZEY+tX7WMl1Lgv737gKOH8OM8/oj8tbFcVIWxKF8S
-	gLL4LIfbl6pz+hcnfzlKluCMdFaPBgLlHyPcBIsB0w==
-X-Google-Smtp-Source: AIpwx49qKg+u++lPb4qT92BUQpT2hWK8YKPtCCEvpbYnvyUt3SfkUkJNP75mROcGYshjkiSzXeswtPL+CeskBkbNMqM=
-X-Received: by 2002:a24:730e:: with SMTP id
-	y14-v6mr14596061itb.45.1524486908676; 
-	Mon, 23 Apr 2018 05:35:08 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.29.203 with HTTP; Mon, 23 Apr 2018 05:34:48 -0700 (PDT)
-In-Reply-To: <20180423105656.32099-1-pkj@axis.com>
-References: <20180423105656.32099-1-pkj@axis.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 23 Apr 2018 13:34:48 +0100
-Message-ID: <CAJTo0LbTbCFHO0yhksGtZqU4HdiM=-uSsEM+Wyp_dFNH=8Y_mg@mail.gmail.com>
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: [meta-gplv2][sumo][rocko][pyro][PATCH] coreutils: Update a patch to avoid fuzz
+Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE95CE00C54
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 07:28:47 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by bastet.se.axis.com (Postfix) with ESMTP id DF2F81843B
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 16:28:45 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
+Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
+	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
+	port 10024) with LMTP id 6FDXphaCFzey for <yocto@yoctoproject.org>;
+	Mon, 23 Apr 2018 16:28:44 +0200 (CEST)
+Received: from boulder02.se.axis.com (boulder02.se.axis.com [10.0.8.16])
+	by bastet.se.axis.com (Postfix) with ESMTPS id 5DEFC18432
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 16:28:44 +0200 (CEST)
+Received: from boulder02.se.axis.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 4BE1B1A07C
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 16:28:44 +0200 (CEST)
+Received: from boulder02.se.axis.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 3F14A1A07D
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 16:28:44 +0200 (CEST)
+Received: from seth.se.axis.com (unknown [10.0.2.172])
+	by boulder02.se.axis.com (Postfix) with ESMTP
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 16:28:44 +0200 (CEST)
+Received: from saur-2.se.axis.com (saur-2.se.axis.com [10.92.3.2])
+	by seth.se.axis.com (Postfix) with ESMTP id 3385E1BC4
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 16:28:44 +0200 (CEST)
+Received: from saur-2.se.axis.com (localhost [127.0.0.1])
+	by saur-2.se.axis.com (8.14.5/8.14.5) with ESMTP id w3NEScCJ012241
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 16:28:38 +0200
+Received: (from pkj@localhost)
+	by saur-2.se.axis.com (8.14.5/8.14.5/Submit) id w3NESc5Z012240
+	for yocto@yoctoproject.org; Mon, 23 Apr 2018 16:28:38 +0200
+From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+To: yocto@yoctoproject.org
+Date: Mon, 23 Apr 2018 16:28:34 +0200
+Message-Id: <20180423142835.12183-3-pkj@axis.com>
+X-Mailer: git-send-email 2.12.0
+In-Reply-To: <20180423142835.12183-1-pkj@axis.com>
+References: <20180423142835.12183-1-pkj@axis.com>
+X-TM-AS-GCONF: 00
+Subject: [meta-gplv2][sumo][rocko][pyro][PATCH 3/4] gnupg: Update a patch to avoid fuzz
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,42 +63,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Apr 2018 12:35:10 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 23 Apr 2018 14:28:49 -0000
 
-Merged, thanks.
+Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+---
+ recipes-support/gnupg/gnupg-1.4.7/long-long-thumb.patch | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Ross
+diff --git a/recipes-support/gnupg/gnupg-1.4.7/long-long-thumb.patch b/recipes-support/gnupg/gnupg-1.4.7/long-long-thumb.patch
+index 2855cab..c3c361d 100644
+--- a/recipes-support/gnupg/gnupg-1.4.7/long-long-thumb.patch
++++ b/recipes-support/gnupg/gnupg-1.4.7/long-long-thumb.patch
+@@ -15,5 +15,4 @@ Upstream-Status: Inappropriate [configuration]
+ +#if defined (__arm__) && W_TYPE_SIZE == 32 && !defined(__thumb__)
+  #define add_ssaaaa(sh, sl, ah, al, bh, bl) \
+    __asm__ ("adds %1, %4, %5\n"                                          \
+-          "adc  %0, %2, %3"                                            \
+-
++ 	   "adc  %0, %2, %3"                                            \
+-- 
+2.12.0
 
-On 23 April 2018 at 11:56, Peter Kjellerstedt
-<peter.kjellerstedt@axis.com> wrote:
-> Change-Id: I86ca76ca762da515fb6dfc95e2afd14cfe802fff
-> Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-> ---
->  recipes-core/coreutils/coreutils-6.9/coreutils-overflow.patch | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/recipes-core/coreutils/coreutils-6.9/coreutils-overflow.patch b/recipes-core/coreutils/coreutils-6.9/coreutils-overflow.patch
-> index 58074c0..b9cd52e 100644
-> --- a/recipes-core/coreutils/coreutils-6.9/coreutils-overflow.patch
-> +++ b/recipes-core/coreutils/coreutils-6.9/coreutils-overflow.patch
-> @@ -8,8 +8,8 @@ Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
->
->  --- coreutils-5.2.1/src/who.c.overflow 2005-05-25 09:59:06.000000000 +0100
->  +++ coreutils-5.2.1/src/who.c  2005-05-25 10:00:31.000000000 +0100
-> -@@ -75,7 +75,7 @@
-> - # define NEW_TIME 0
-> +@@ -78,7 +78,7 @@
-> + # define UT_TYPE_NEW_TIME(U) false
->   #endif
->
->  -#define IDLESTR_LEN 6
-> --
-> 2.12.0
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
