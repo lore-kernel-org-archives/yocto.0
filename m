@@ -1,117 +1,62 @@
-Return-Path: <rksyeung@hotmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5A6F0E00A1E; Mon, 23 Apr 2018 04:10:00 -0700 (PDT)
+	id 380BAE00BFD; Mon, 23 Apr 2018 05:35:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
-	HTML_MESSAGE, 
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rksyeung[at]hotmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust *      [40.92.2.71 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
-	but no 'Received:'
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 43385 seconds by postgrey-1.32 at yocto-www;
-	Mon, 23 Apr 2018 04:09:57 PDT
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com
-	(mail-oln040092002071.outbound.protection.outlook.com [40.92.2.71])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 517B0E008A2
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 04:09:57 -0700 (PDT)
-Received: from BY2NAM01HT109.eop-nam01.prod.protection.outlook.com
-	(2a01:111:e400:7e42::318) by
-	SN1NAM01HT111.eop-nam01.prod.protection.outlook.com
-	(2a01:111:e400:7e40::304) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.696.11;
-	Sun, 22 Apr 2018 21:33:37 +0000
-Received: from SN1NAM01HT110.eop-nam01.prod.protection.outlook.com
-	(2a01:111:e400:7e40::505) by
-	BY2NAM01HT109.eop-nam01.prod.protection.outlook.com
-	(2a01:111:e400:7e42::318) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.20.696.11;
-	Sun, 22 Apr 2018 07:37:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=nrDX/qSwoSBtUJ5wQV/mmOxAfjWGqZYAWqmfPXLFn6Q=;
-	b=lihd5v82Yr3PYfohLHb3lYS/ufOrMc/q0HFIFkLhYtjctJIyQ08kIaG7Gq8/nFLmRuJKqrdyyg5tQ+3Jtoq2sNCzmpBHcRDihHf2bt+49iIvoEv8W4Zi7lOWKEhLqdDm6aLrP9/Y+n9shniunYxmq7hysHgp1AoqP88SCknXlbJbjWjgj0XL2Ipklf3iO7ZL3jIcDk6R/RkOsWQ7UAlU031VUP4cBABhcuLM3NfDFPmnXV17EEUSiB6wlX32NEsuTXN+AkaQJgS7nKbivY1cNR9d5AuitFoud4sDyM74YKVpjoGYIR5vPB0zLqLY8UptFuE9wzoExOBN/L7tNKQFIg==
-Received: from SN1NAM01FT042.eop-nam01.prod.protection.outlook.com
-	(10.152.64.55) by SN1NAM01HT110.eop-nam01.prod.protection.outlook.com
-	(10.152.65.249) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.696.11;
-	Sun, 22 Apr 2018 05:23:54 +0000
-Received: from MWHPR19MB1183.namprd19.prod.outlook.com (10.152.64.58) by
-	SN1NAM01FT042.mail.protection.outlook.com (10.152.65.205) with
-	Microsoft SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
-	15.20.696.11 via Frontend Transport; Sun, 22 Apr 2018 05:23:54 +0000
-Received: from MWHPR19MB1183.namprd19.prod.outlook.com
-	([fe80::5125:a765:f3d4:40f8]) by
-	MWHPR19MB1183.namprd19.prod.outlook.com
-	([fe80::5125:a765:f3d4:40f8%18]) with mapi id 15.20.0696.013;
-	Sun, 22 Apr 2018 05:23:54 +0000
-From: Raymond Yeung <rksyeung@hotmail.com>
-To: William Mills <wmills@ti.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Linux Files needed for PXE network boot
-Thread-Index: AQHT1bpx3ngPGcU8okapyJig9EgOd6QHT4bzgAAC7yaAAUPgAIAAkZFpgAMdYIw=
-Date: Sun, 22 Apr 2018 05:23:54 +0000
-Message-ID: <MWHPR19MB1183485938FB53711770201CC58A0@MWHPR19MB1183.namprd19.prod.outlook.com>
-References: <MWHPR19MB1183563A0DFAFC6B7313C25CC5B00@MWHPR19MB1183.namprd19.prod.outlook.com>
-	<MWHPR19MB1183C61B954575D9F17CA1BEC5B50@MWHPR19MB1183.namprd19.prod.outlook.com>
-	<MWHPR19MB11839D60DD5DADD1573F4291C5B50@MWHPR19MB1183.namprd19.prod.outlook.com>,
-	<876a79a0-f419-9cbb-3dce-3de77113c525@ti.com>,
-	<MWHPR19MB1183CB8761F21E7D2AEF3258C5B40@MWHPR19MB1183.namprd19.prod.outlook.com>
-In-Reply-To: <MWHPR19MB1183CB8761F21E7D2AEF3258C5B40@MWHPR19MB1183.namprd19.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:13DF2499CA94CF5A06289AB2A03EC388017783EEEAA014B12C8E3CBC004C8D91;
-	UpperCasedChecksum:86155B7E72401C4B9D217BEA9DB039EA56FBBDA7B6A43C5FEF38E700889BC54A;
-	SizeAsReceived:7566; Count:46
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [3M3fUc+RkGfDJy+2WnO9EG/zCE6REOlBgyzwh22IDBBOVLBmOL3pmO006lVzIoRS]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; SN1NAM01HT110;
-	7:JJln2BqRHR9iCUrLx0Ouk32lSvMxkGESh12TKNuDkuGHgSaD/A60G2F5eXrkH2E19EYePpDupo1TLMruxuP3vOGvAYcXZqGoHSSCmS9nogvz0/6z+OSwJDd6I4W9XDiAeIQyjLR6JFslkO3Yk/WcXbl/vVoPgDQ5xt3hx4RPvs6Rbm1/hkClloElFV5OuWKui8fNTwYxgOzMFDUyv9vxadQaxLiKdGthQZchx5unM7iGHIarOgklNIQLvLYtPQQV
-x-incomingheadercount: 46
-x-eopattributedmessage: 0
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1601125374)(1603101448)(1701031045);
-	SRVR:SN1NAM01HT110; 
-X-MS-TrafficTypeDiagnostic: SN1NAM01HT110:|SN1NAM01HT110:|BY2NAM01HT109:|BY2NAM01HT109:|SN1NAM01HT111:
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
-	SRVR:SN1NAM01HT110; BCL:0; PCL:0; RULEID:; SRVR:SN1NAM01HT110; 
-x-forefront-prvs: 0650714AAA
-x-forefront-antispam-report: SFV:NSPM; SFS:(7070007)(98901004); DIR:OUT;
-	SFP:1901; SCL:1; SRVR:SN1NAM01HT110;
-	H:MWHPR19MB1183.namprd19.prod.outlook.com; FPR:; SPF:None; LANG:;
-x-microsoft-antispam-message-info: gD6IOsMDEEiK0MIsceU70tlidiVG1/66380mY14i/1g6v5eEDJzbnAh78OMEqoRAxzX/0JdYZQKoSNtmhGhnH314Aq67bjKw+rU4itzxgdJFa5EfTDmvdA9UiSaN2WSa8xgEzt7/Nwg0mkIRg3UkSX8+hSRSl6fl4pN2A3CyfjPLk7ivSmJwq2vyEFAHuR/g
+Received: from mail-it0-f66.google.com (mail-it0-f66.google.com
+	[209.85.214.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77A79E00A1E
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 05:35:09 -0700 (PDT)
+Received: by mail-it0-f66.google.com with SMTP id t192-v6so9263965itc.1
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 05:35:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=ARoCqQKLWZ2XMgY2sR4EBqPAxg6BHY41/n+zBzijAb8=;
+	b=BFqpabVjpIjyUAuzl9nr/QSj/NbVQuSdPjrcuqmx+Jx7qDcySRxICloTNURuy1+rUz
+	UKwbNTlwyeXg6uQB/0W4C1lIYlxwblJ6BvgDlZSgAtyeD4vXyYi4CmJyC6uykzZRe6Pq
+	1e8AOpFpB3mhzCiLoVykmD36/D3oqbwL09b5jk4NIGe1g8xipjsBG+4bUOq96sxHcAWP
+	JS2ICFYbpVqP5rgXRUsEjr3aynE7bYvxu8b1y6cZTSP1OjHxR4YmPH0YPCe85JIMMkM1
+	WsaL+P2PQHPzVe8QrX9Mc/tx0WmeB8YQqgKvaF29P8yocq1T4qggPSEKoL+iYBPfFKXT
+	dMOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=ARoCqQKLWZ2XMgY2sR4EBqPAxg6BHY41/n+zBzijAb8=;
+	b=RTmKwfZgNAe9OaBPDo61ViW7ud5wOI1mHCWtmKbIsshJaRiTI6u8R5lvDeoruKJasb
+	Lid2Qe3ZqC9Q1dt2rk0bzCKJ/JExDVlQq///VvnOtUAOuokL4+1VmIkG9AICB2alb52y
+	vnQRxvHns4IGTVJBRSH73PcFGc617QcFBSLRsP3N1uCWVe3AmkEmlouo+A9KP3t5ETae
+	Qa8fYSkLDOwJ+lwYDiuFLre5aJoByeVKuvanU9854YsEEBhbKjH1pcC/8d4TGVMzJP+n
+	j9nxlfNS2hxKjtXPLESxGMUlaXPU0+6tYmnjVO7MTFZ+MvteHrgxjlfFZnsP+kDEoUmw
+	sV/g==
+X-Gm-Message-State: ALQs6tAAbWaZq2bZEY+tX7WMl1Lgv737gKOH8OM8/oj8tbFcVIWxKF8S
+	gLL4LIfbl6pz+hcnfzlKluCMdFaPBgLlHyPcBIsB0w==
+X-Google-Smtp-Source: AIpwx49qKg+u++lPb4qT92BUQpT2hWK8YKPtCCEvpbYnvyUt3SfkUkJNP75mROcGYshjkiSzXeswtPL+CeskBkbNMqM=
+X-Received: by 2002:a24:730e:: with SMTP id
+	y14-v6mr14596061itb.45.1524486908676; 
+	Mon, 23 Apr 2018 05:35:08 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Office365-Filtering-Correlation-Id: 1f733574-92c3-4b40-e6e8-08d5a8113dd2
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f733574-92c3-4b40-e6e8-08d5a8113dd2
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Apr 2018 05:23:54.7310 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1NAM01HT110
-X-Microsoft-Exchange-Diagnostics: 1; BY2NAM01HT109;
-	23:drhEwdf9nhhDIaZSbet/R6nHsw0a+rZHzIo0HECaeRvx3XMllV4hcQJAOU5U7ZVDPxJ4J0t9lNWbu8MAEFL3cKGbQ0ArKpM/za3rim1YtKL4TvS+pinmufZdd3uwEurd76AxmgEPCS85pyuLDdHNnQ==
-X-Microsoft-Exchange-Diagnostics: 1; SN1NAM01HT111;
-	23:thVy7upnTezlJbSGMp1qiXJcQTt8/Ch8lGqEWw1E0qMk6HM9SWx7sr5aYe3ZgHii88TXpllAFnxKDx+ghUy9Uls2eqQJmPnFeBMXZjhTiw7BtUx4IVZCjch9p3BtKtORebUx943tDEHcbQPmVU69NQ==
-X-OriginatorOrg: hotmail.com
-Subject: Re: Linux Files needed for PXE network boot
+Received: by 10.107.29.203 with HTTP; Mon, 23 Apr 2018 05:34:48 -0700 (PDT)
+In-Reply-To: <20180423105656.32099-1-pkj@axis.com>
+References: <20180423105656.32099-1-pkj@axis.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 23 Apr 2018 13:34:48 +0100
+Message-ID: <CAJTo0LbTbCFHO0yhksGtZqU4HdiM=-uSsEM+Wyp_dFNH=8Y_mg@mail.gmail.com>
+To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: [meta-gplv2][sumo][rocko][pyro][PATCH] coreutils: Update a patch to avoid fuzz
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -123,83 +68,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Apr 2018 11:10:00 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MWHPR19MB1183485938FB53711770201CC58A0MWHPR19MB1183namp_"
+X-List-Received-Date: Mon, 23 Apr 2018 12:35:10 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---_000_MWHPR19MB1183485938FB53711770201CC58A0MWHPR19MB1183namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Merged, thanks.
 
-Thanks for all who extended helping hands.  I finally resolved my issues, a=
-nd the target PXE-boot'ed up.  I'd like to provide some updates, for refere=
-nce to someone that may run into this in the future.
+Ross
 
+On 23 April 2018 at 11:56, Peter Kjellerstedt
+<peter.kjellerstedt@axis.com> wrote:
+> Change-Id: I86ca76ca762da515fb6dfc95e2afd14cfe802fff
+> Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+> ---
+>  recipes-core/coreutils/coreutils-6.9/coreutils-overflow.patch | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/recipes-core/coreutils/coreutils-6.9/coreutils-overflow.patch b/recipes-core/coreutils/coreutils-6.9/coreutils-overflow.patch
+> index 58074c0..b9cd52e 100644
+> --- a/recipes-core/coreutils/coreutils-6.9/coreutils-overflow.patch
+> +++ b/recipes-core/coreutils/coreutils-6.9/coreutils-overflow.patch
+> @@ -8,8 +8,8 @@ Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
+>
+>  --- coreutils-5.2.1/src/who.c.overflow 2005-05-25 09:59:06.000000000 +0100
+>  +++ coreutils-5.2.1/src/who.c  2005-05-25 10:00:31.000000000 +0100
+> -@@ -75,7 +75,7 @@
+> - # define NEW_TIME 0
+> +@@ -78,7 +78,7 @@
+> + # define UT_TYPE_NEW_TIME(U) false
+>   #endif
+>
+>  -#define IDLESTR_LEN 6
+> --
+> 2.12.0
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-I'm able to use legacy mode (in BIOS) instead of UEFI mode.  While I haven'=
-t worked out the canonical form, it seems two things are important on BIOS =
-side - there are a number of options that have UEFI vs. legacy choices.  Se=
-lect "legacy" mode for all of them.  This is in the "CSM & Option ROM" Adva=
-nced setting.  Some of the logging options under "Event Logs" tab might hav=
-e helped turned on more diagnostic messages.
-
-
-After the above adjustment, the error messages on the BIOS console guided m=
-e to pick up missing files, including ldlinux.c32, libutil.c32, lib com.c32=
- that are not mentioned anywhere that I looked so far.
-
-
-Now, I'm onto investigating how I could (re)create partitions on SSD, load =
-the kernel there, and boot from that.
-
-
-Raymond
-
---_000_MWHPR19MB1183485938FB53711770201CC58A0MWHPR19MB1183namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p style=3D"margin-top:0;margin-bottom:0">Thanks for all who extended helpi=
-ng hands. &nbsp;I finally resolved my issues, and the target PXE-boot'ed up=
-. &nbsp;I'd like to provide some updates, for reference to someone that may=
- run into this in the future.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">I'm able to use legacy mode (in B=
-IOS) instead of UEFI mode. &nbsp;While I haven't worked out the canonical f=
-orm, it seems two things are important on BIOS side - there are a number of=
- options that have UEFI vs. legacy choices.
- &nbsp;Select &quot;legacy&quot; mode for all of them. &nbsp;This is in the=
- &quot;CSM &amp; Option ROM&quot; Advanced setting. &nbsp;Some of the loggi=
-ng options under &quot;Event Logs&quot; tab might have helped turned on mor=
-e diagnostic messages.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">After the above adjustment, the e=
-rror messages on the BIOS console guided me to pick up missing files, inclu=
-ding ldlinux.c32, libutil.c32, lib com.c32 that are not mentioned anywhere =
-that I looked so far.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Now, I'm onto investigating how I=
- could (re)create partitions on SSD, load the kernel there, and boot from t=
-hat.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Raymond&nbsp;</p>
-</div>
-</body>
-</html>
-
---_000_MWHPR19MB1183485938FB53711770201CC58A0MWHPR19MB1183namp_--
