@@ -1,36 +1,67 @@
-Return-Path: <jrswdnan22@snkmail.com>
+Return-Path: <icastell@nayarsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB68EE009F4; Mon, 23 Apr 2018 23:40:05 -0700 (PDT)
+	id 0DFF5E00A1C; Mon, 23 Apr 2018 23:45:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [195.197.172.111 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.42 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 527 seconds by postgrey-1.32 at yocto-www;
-	Mon, 23 Apr 2018 23:40:03 PDT
-Received: from gw03.mail.saunalahti.fi (gw03.mail.saunalahti.fi
-	[195.197.172.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16201E00948
-	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 23:40:03 -0700 (PDT)
-Received: from linux.suse (91-157-45-43.elisa-laajakaista.fi [91.157.45.43])
-	by gw03.mail.saunalahti.fi (Postfix) with ESMTP id 4C19F20372;
-	Tue, 24 Apr 2018 09:31:12 +0300 (EEST)
-From: Uwe Geuder <jrswdnan22@snkmail.com>
-To: Yocto-mailing-list <yocto@yoctoproject.org>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f42.google.com (mail-it0-f42.google.com
+	[209.85.214.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 717B0E009BC
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 23:45:18 -0700 (PDT)
+Received: by mail-it0-f42.google.com with SMTP id l83-v6so14124114ita.5
+	for <yocto@yoctoproject.org>; Mon, 23 Apr 2018 23:45:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nayarsystems.com; s=google;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=zQnxYFwTBT29Z1MA9EUm/jHfYOUxas8jPjwNQgrmfnY=;
+	b=iKgalK9OXXwWGQBFv0cGwb06E9ccN/RYousqtzf8ZAMQa2Czo13Srr+uozDmlhnRYV
+	3jZBsqqFP6e0wlUVlCvv3T2jKQk6LWiWv1EpN8QBHcjVKwwhzh+BGswbAbmhF+GW/yPB
+	QiJclU1Xl4bbBjNQF7qzCadtOxo4O3fUnBND8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=zQnxYFwTBT29Z1MA9EUm/jHfYOUxas8jPjwNQgrmfnY=;
+	b=WT8kevpsi8uW1cZuRZnXxcciUMLKRhFScPZbezH3Yb19dK38YBzOwnB/xQoiFrpfeS
+	wKK/uv5VHnLJtyFLdLtrRBmUuMWcHTVhsPM6vMyNv9rPoJmPccUb4DweWm/pznWLVpMW
+	0MJHtEATpUwbtCnU4LcBgflN7bt9VU9c3EsTwSIg+TfsmW/BXtZS7V4dDPSFqrKbduP1
+	m1WXlGvR5uTB6cgkJ0AjYCSxNpyX9Aa1frs3uUwVDP/piMQXP6rv2oObcV2WVlXUFtl4
+	EjCkMltQev0N0NVsjiEH/kuIOwdmloYJMmef0GzwI0rrgEtfSKuNq7DwXC4smalSV6vb
+	wGAw==
+X-Gm-Message-State: ALQs6tD9xNsJxMsLCPeT4JKAycui4GVqF7Ei52S3iPNrYaK/k5Nt4259
+	MU6uX92QpHAqmzbjQmgVE7Jajaahuz84VACOzVf52w==
+X-Google-Smtp-Source: AIpwx4/wjKhTphrQhXb9nbGCL6FRWtGK9qZXE3VR5Twa0RlMX3/h/ZuimM12nJ0fZJNiZY2qIHJIrpPSJdeDqGRfpc4=
+X-Received: by 2002:a24:730e:: with SMTP id
+	y14-v6mr17992336itb.45.1524552317912; 
+	Mon, 23 Apr 2018 23:45:17 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a02:6664:0:0:0:0:0 with HTTP; Mon, 23 Apr 2018 23:45:17
+	-0700 (PDT)
 In-Reply-To: <CAJTo0LaMzWdr3c5siBv2CU2p-ZWCcRi06khNmMFgT-0PV0+17w@mail.gmail.com>
 References: <CAALXFYy3uftzYmjyYaJ+-X0OAPu8XJ2C7wNBMnoYZYHkm+Gp2g@mail.gmail.com>
 	<5ad9c6a5.d806630a.b3470.003fSMTPIN_ADDED_BROKEN@mx.google.com>
 	<CAJTo0La99prBuhp5XDr1UPPYMqKHfHry6SWrQxpwudbK5KKCsA@mail.gmail.com>
 	<CAALXFYxrWHrsJTKApWahyeXmjnAGXUfvc+ffmgfNGhjyvcTwcw@mail.gmail.com>
 	<CAJTo0LaMzWdr3c5siBv2CU2p-ZWCcRi06khNmMFgT-0PV0+17w@mail.gmail.com>
-Date: Tue, 24 Apr 2018 09:31:11 +0300
-Message-ID: <87r2n5azf4.fsf@linux.suse>
-MIME-Version: 1.0
+From: =?UTF-8?Q?Iv=C3=A1n_Castell?= <icastell@nayarsystems.com>
+Date: Tue, 24 Apr 2018 08:45:17 +0200
+Message-ID: <CAALXFYxaTYfwDwfVR4dYDTePYyePinxjk-w13OXYn5PL2GNT3g@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: Usage of yocto on different (production vs debug) scenarios
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -43,140 +74,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Apr 2018 06:40:06 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 24 Apr 2018 06:45:19 -0000
+Content-Type: multipart/alternative; boundary="00000000000059f06a056a927fb1"
 
-Thanks Ross for your answers.  I'm still working on fully understanding
-shared state so I appreciate your help.  Let me follow up on both your
-answers in a single message.
+--00000000000059f06a056a927fb1
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Apr 23, 2018 at 6:38 PM, Burton, Ross <ross.burton@intel.com> wrote:
-> On 23 April 2018 at 16:23, Iv=C3=A1n Castell <icastell@nayarsystems.com> =
-wrote:
->>
-[...]
->>
->> Related with that shared state cache, I found some information on a e-bo=
-ok
->> (search the text on google to find the source):
->>
->> "Sharing a shared state cache is possible; however, it needs to be
->> approached with care. Not all changes are detected by the shared state c=
-ache
->> implementation, and when this happens, some or all of the cache needs to=
- be
->> invalidated. This can cause problems when the state cache is being share=
-d.
-[...]
+That sounds really convincing, I will give it a chance and come back to
+describe the hole process after all. Thank you for that valuable
+information Mr. Ross
+
+2018-04-23 17:38 GMT+02:00 Burton, Ross <ross.burton@intel.com>:
+
 > Very curious as to what book said that, because *any* example of that
 > happening is a bug in the recipe itself.  I wouldn't listen to it: the YP
-> autobuilder has a shared sstate for three distributions * four architectu=
-res
-> * two libc implementations and doesn't have problems.
+> autobuilder has a shared sstate for three distributions * four
+> architectures * two libc implementations and doesn't have problems.
 >
 > Ross
 >
-
-I think when talking about shared state there can be 2 aspects of sharing
-
-1.) sharing over time: Several invocations of bitbake in the same environme=
-nt
-  (DISTRO, MACHINE etc)
-2.) sharing over distros etc.
-
-Number 1 is an incremental build (as opposed to clean or full
-build).  Without any doubt that is useful (or really mandatory) for
-development work.  You build, you make little changes, you build, you
-test, you make more changes...  You share state from the previous build,
-because making a full clean build every time would lead to completely
-inacceptable cycle times.
-
-But when you are "done" with your changes you make an integration build
-and to my experience that should be a clean (aka full) build.  You
-intentionally do not share any state from a previous build, you don't
-make an incremental build, because there is always the risk of broken
-recipes.  I mean if there were no broken software, we would all be
-unemployed by now...
-
-Let me give a simple example I experienced my self recently:
-
-I added creation of a new file in some task.  In my incremental
-developer build it all worked fine.  When I put into a clean integration
-build the task failed.  It turned out that the directory I wrote my new
-file to in task A was created by a different task B.  In my development
-build task B had already been executed long before I even started to
-make the recipe modificationto to create a new file, so task A always
-succeeded.  In the clean build task A happened to run first and failed.
-A simple missing dependency / incorrect task ordering.  With parallel
-clean builds you might not always find it, but with incremental builds
-it can go undetected forever.
-
-It's not only "some book" that mentions the risk of "bad" state, but
-also the Yocto documentaton:
-
-https://www.yoctoproject.org/docs/2.5/mega-manual/mega-manual.html#concepts=
--tips-and-tricks
-
-(Especially 4.5.4.2. Invalidating Shared State.  Of course the
-invalidating is easy, but finding what you need to invalidate is hard.)
-
-Of course the less something is tested the bigger the risk is.  So the
-bitbake system should be rather fine, commonly used Poky recipes
-probably too.  But when it comes to random layers and our own local
-recipes and bbappends I would expect the risk to grow a lot.
-
-So do you really tell us in the message above that above that Yocto
-project runs incremental integration builds?
-
-Another way to think about it: Shared state is used to to avoid
-rebuilds.  So how could I benefit from having state information in some
-SSTATE_DIR already?  I have to build it anyway, because my build area is
-empty to begin with.
-
-The 2nd aspect, sharing over distros was covered in the other message.
-
-On Mon, Apr 23, 2018 at 6:10 PM, Burton, Ross <ross.burton@intel.com> wrote:
-> On 20 April 2018 at 11:47, Uwe Geuder <jrswdnan22@snkmail.com> wrote:
->> But can you share state between distros? Isn't the purpose of distros to
->> use different options (variable settings) so the state would always be
->> different?
 >
-> If the input to the recipe is different then the hashes would be
-> different so the content won't conflict.  You can definitely share
-> sstate between DISTROs.
->
-> Ross
 
-Under the assumption that all recepies were perfect (which they probably
-aren't in every point of history, see above) I fully believe that the
-build system would work perfectly when I share the SSTATE_DIR over
-DISTRO borders (or diferent MACHINE settings).  But do I really have any
-commmon data that would lead to any saving? As you say the hashes would
-be different.  In my thinking all "expensive" state info should be
-different, because a different DISTRO (or different MACHINE) would lead
-to different hashes for bascially every item.  So in the best case I end
-up with several distinct sets of state data stored under the same top
-directory, but that doesn't seem to result in any saving.  In the worst
-case an item goes into the same file, so I end up with "cache
-thrashing".  Build A calculates the state and stores it, build B finds
-the hashes not matching and puts its new info there.  Build A finds the
-hashes not matching and...
+--00000000000059f06a056a927fb1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Or does the saving come on the native part of the build? There I would
-guess that common state could occur more commonly.
+<div dir=3D"ltr">That sounds really convincing, I will give it a chance and=
+ come back to describe the hole process <span style=3D"color:rgb(34,34,34);=
+font-family:arial,sans-serif;font-size:small;font-style:normal;font-variant=
+-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:n=
+ormal;text-align:start;text-indent:0px;text-transform:none;white-space:norm=
+al;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style=
+:initial;text-decoration-color:initial;float:none;display:inline">after all=
+</span>. Thank you for that valuable information Mr. Ross<div><div class=3D=
+"gmail_extra"><br><div class=3D"gmail_quote">2018-04-23 17:38 GMT+02:00 Bur=
+ton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" ta=
+rget=3D"_blank">ross.burton@intel.com</a>&gt;</span>:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"ltr">Very curious as to what book said that, beca=
+use *any* example of that happening is a bug in the recipe itself.=C2=A0 I =
+wouldn&#39;t listen to it: the YP autobuilder has a shared sstate for three=
+ distributions * four architectures * two libc implementations and doesn&#3=
+9;t have problems.<span class=3D"HOEnZb"><font color=3D"#888888"><div><br><=
+/div><div>Ross</div></font></span></div><div class=3D"HOEnZb"><div class=3D=
+"h5"><div class=3D"gmail_extra"><br></div></div></div></blockquote></div>
+</div></div></div>
 
-I think it would really help to have a hello world type of Yocto build,
-where you could manually read through the sstate data to understand how
-it works exactly.  In a real world sized build the amount of data does
-not really help to understand the concepts.  Does anybody have a
-recommendation what would be the smallest possible Yocto build that
-makes some sense?
-
-Regards,
-
-Uwe Geuder
-Neuro Event Labs Oy
-Tampere, Finland
-uwe.gexder@neuroeventlabs.com (Bot check: fix one obvious typo)
-
+--00000000000059f06a056a927fb1--
