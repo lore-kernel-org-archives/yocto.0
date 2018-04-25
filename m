@@ -1,63 +1,69 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mirza.krak@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 70E2FE00B30; Wed, 25 Apr 2018 02:01:09 -0700 (PDT)
+	id BE769E00B30; Wed, 25 Apr 2018 02:07:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.42 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mirza.krak[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f42.google.com (mail-it0-f42.google.com
-	[209.85.214.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CC5BE00B01
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2018 02:01:08 -0700 (PDT)
-Received: by mail-it0-f42.google.com with SMTP id h143-v6so19075590ita.4
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2018 02:01:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-pf0-f170.google.com (mail-pf0-f170.google.com
+	[209.85.192.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFEA8E00B01
+	for <yocto@yoctoproject.org>; Wed, 25 Apr 2018 02:07:27 -0700 (PDT)
+Received: by mail-pf0-f170.google.com with SMTP id j11so14642098pff.10
+	for <yocto@yoctoproject.org>; Wed, 25 Apr 2018 02:07:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=OaO2Q6vscqPkR6uzx/vW5+v5qLuyXj9uk/SpxcKCumk=;
-	b=brHnRuwdUxUOQGIqPIGaTNJcath94r1Wn+n9EOTutjJ7cSuRHdJQn2RttsyppWvSAr
-	qkxSonSTc8ixVDpXHymVUf9iCb1OqANYDWFQSvK0JrkZpxFEx35SGRLhKWnPNmy6b/kx
-	D3hZmUluqljFqSv7yolvoTGi7ht51PhwXuL5101jr2LO0nd7icqBP68N/Y8T0WoiXEGG
-	V171uThJahHeFIjnuRtFyJ8Bb/tthuVYqgRVW2nOED02ExgDOLMQGSZoWo7oARN9plv1
-	M9JwHR/Ft8y30iEkX9XwDB1Dz4xGe4fvtQpqQqBGGyEi2kraDJDzV1fQPq4b2EhNT6Q4
-	lF+w==
+	:cc:content-transfer-encoding;
+	bh=knPHOECQArbUBoFEQtZ6QZsmnB66DV0OzUMJ+Z8s8A0=;
+	b=ugvsCk3jBXsHkDnj7YBuU4UjdAN+FBTDtWXGYnm630DaWiPwzCanTl+RLmDUKPL47u
+	dvrTHNUfo8kGzy6aKTNdHdBaGo+/sgESTTrlPMxQY7e3NvsCFz2r73qOjD0FPAiQqnRd
+	smgFAakXMjH6ydDO4JVtYCfz3fF/i7t7CDjtNHMAkWRZ0Dk7/hXSFuySw7gRwSKIzYyi
+	7DH68T2vf8ewxlphJ9lTyRWR2OtPmwwzajiVK/t4D02WokHN+/ng/UwE4GLDqdkYEhmh
+	YgHedIzYYwPP5jM7pwfOfRR2pL5S7KbpKZujJlfS94Amt5NwAIuWHgXX8wMJ6OmK1tJr
+	RduA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=OaO2Q6vscqPkR6uzx/vW5+v5qLuyXj9uk/SpxcKCumk=;
-	b=Dxicw6JylIpxG6YuHh7iaAexDaLIzYK9dLLR8nw5WE35iisP4hxyAO9xo6/bjD4y/b
-	7JYalbIXdYjhpMc7agPUc7pSvA0r00WiOfx4GPaGV8RNP7XIhLnuLBesbA6awiSG6uxN
-	qGMznGXZU5Sf89yuBRxQ5bJNfJYhZcagcMe2IQ8PXtvqmIHS069LXq9X+eOJ+RFWxZsV
-	qPgP3zSKQgpLKLptEtydEhx78Z25agSKsAnNydFmTiEkkKqb2RHRPsYRlZ823EJ50gd9
-	xTHfN7ie5+5X1Y091iIsHSUQaJOOCuh+h5wSudkYkpO59pk4gByE1kkgUi4RSSFx2Qwt
-	GSFg==
-X-Gm-Message-State: ALQs6tDtgsF0juVIWwn1xmXDlYzDh5Kv5Zh5j57Pv+x/DHv0OUoG0+r1
-	Mru2j54aeXMvDYmFAvOszNTxeYasBoImf7Jb4YEinQ==
-X-Google-Smtp-Source: AB8JxZo9viw5o5K1ZdPw3+Ef5av00acmymEpBsbMlXOi7F4tAk2XJxmf8HKyECglSE9x+J50bviOxtTslAuSdNcDDks=
-X-Received: by 2002:a24:9493:: with SMTP id
-	j141-v6mr4810459ite.60.1524646867693; 
-	Wed, 25 Apr 2018 02:01:07 -0700 (PDT)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=knPHOECQArbUBoFEQtZ6QZsmnB66DV0OzUMJ+Z8s8A0=;
+	b=U/O/sgI6MNz15B2Pfj/z4QccxrsHz194+xyGmn1S1ccKPGI1b8sBdkp8BSXh6D1V4s
+	zNzHVZRnNdtkdsUZ++OY3jEoZzxf3NlE0UaptxPsE//xEU1FJMxP3SJXNLuLqHULuvzu
+	A7R5H0EbiCwfJdYOnoxlSiFu7XPh3OWx5wJws8Zt8kN9J00WZZRUA3LbGz7tq14rCJgh
+	hUilQyLP3IJcCZi459/mgwHy6UIFC63ARjfIzUMDCbZIPO7zmMtG7bTxH+hycfvtSlHA
+	xX6CW/rmbH42DmRf+wgrk5C/SXCF2P5XBIRlRFzmGx7f7Og0BgXwOX9Xky8XwdUedBUl
+	QIoQ==
+X-Gm-Message-State: ALQs6tCAnGhrKUJ0FgwWJilaXkrw+xCJRMEdOoQG3V7KVPYmSuMh9Rme
+	56W0hR0SlkCkWF/RQsGru7ZB9sC/dVNPFxuJJ6c=
+X-Google-Smtp-Source: AIpwx4/o3YoJoHwGMdOIHUM5N6mBpcB9Gb8sa/iOO7NR+tUs5CS32822NODyvZKRbCgJlbNR1N4PDOaOkWGQof7jISg=
+X-Received: by 2002:a17:902:ba88:: with SMTP id
+	k8-v6mr27810892pls.305.1524647246891; 
+	Wed, 25 Apr 2018 02:07:26 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.29.203 with HTTP; Wed, 25 Apr 2018 02:00:47 -0700 (PDT)
-In-Reply-To: <509dbc86-dd0b-0d58-9d26-286cd8a2d026@windriver.com>
+Received: by 10.100.163.134 with HTTP; Wed, 25 Apr 2018 02:07:26 -0700 (PDT)
+In-Reply-To: <CAJTo0LbfXubp3VJkMHJoVMBiBe7=3VRMZAEuqZ=5K6-H79=eCw@mail.gmail.com>
 References: <CALw8SCWhMWJuQGDDbaG3fA617Qew9GvAapc+JvVU6d+9DoOafw@mail.gmail.com>
 	<c9e549ba-42f6-1a79-ec63-c37ceb805364@windriver.com>
 	<CAJTo0LYtg87SdW_SPuxTo+ifMxZN+qKJmnA4+PqC2R5fBgZ+kA@mail.gmail.com>
 	<509dbc86-dd0b-0d58-9d26-286cd8a2d026@windriver.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 25 Apr 2018 10:00:47 +0100
-Message-ID: <CAJTo0LbfXubp3VJkMHJoVMBiBe7=3VRMZAEuqZ=5K6-H79=eCw@mail.gmail.com>
-To: ChenQi <Qi.Chen@windriver.com>
+	<CAJTo0LbfXubp3VJkMHJoVMBiBe7=3VRMZAEuqZ=5K6-H79=eCw@mail.gmail.com>
+From: Mirza Krak <mirza.krak@gmail.com>
+Date: Wed, 25 Apr 2018 11:07:26 +0200
+Message-ID: <CALw8SCVT_H_O2w2pMFamX2kvfoSUsyaoOm9ZBV8rWZ43ottePg@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: gcc not found
 X-BeenThere: yocto@yoctoproject.org
@@ -71,166 +77,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Apr 2018 09:01:09 -0000
+X-List-Received-Date: Wed, 25 Apr 2018 09:07:29 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Good work Chen, the trailing slash was making me wonder but I didn't
-check.  Best normalise both of those paths before comparing.
+On 25 April 2018 at 11:00, Burton, Ross <ross.burton@intel.com> wrote:
+> Good work Chen, the trailing slash was making me wonder but I didn't
+> check.  Best normalise both of those paths before comparing.
 
-Ross
+Yeah, I will make that change and we will see in a couple of days if
+still produces any errors.
 
-On 25 April 2018 at 09:59, ChenQi <Qi.Chen@windriver.com> wrote:
-> After checking it again, I think removing the '/' would be sufficient.
->
-> do_unpack[cleandirs] = "${@d.getVar('S') if d.getVar('S') !=
-> d.getVar('WORKDIR') else os.path.join('${S}', 'patches')}"
->
-> Best Regards,
-> Chen Qi
->
->
-> On 04/25/2018 04:38 PM, Burton, Ross wrote:
->>
->> Plenty of recipes do that though...
->>
->> On 25 April 2018 at 09:36, ChenQi <Qi.Chen@windriver.com> wrote:
->>>
->>> I guess the problem is caused by the following line.
->>>
->>> S = "${WORKDIR}/"
->>>
->>> Try setting it to some dir under ${WORKDIR}, and make sure source file is
->>> under it.
->>> Check if the problem is still there after the above change.
->>>
->>> Best Regards,
->>> Chen Qi
->>>
->>>
->>> On 04/25/2018 04:24 PM, Mirza Krak wrote:
->>>>
->>>> Hi.
->>>>
->>>> I have come across a somewhat strange error that I can not explain to
->>>> my self, why it is occurring and hopefully someone on the list can
->>>> provide some insight.
->>>>
->>>> I am currently on "rocko" on all my layers and the recipe that I
->>>> having issues with is brcm-patchram-plus[1]. And even though this
->>>> recipe is part of meta-rockchip it seems to be modeled after the
->>>> hello.bb that is found in poky so I still think that this is a
->>>> "generic" problem and not specific to brcm-patchram-plus[1].
->>>>
->>>> The issue I am having is that we get intermediate build errors on
->>>> brcm-patchram-plus[1] on our build server. We have a nightly build
->>>> that builds without "sstate" and this is where we are seeing the
->>>> error. It does not always fail, but every once in while with the log
->>>> pasted below.
->>>>
->>>> Doing a "bitbake -c cleansstate brcm-patchram-plus" and rebuilding
->>>> solves it, but I would like to prevent it to happening in the first
->>>> place.
->>>>
->>>> NOTE: Running task 2923 of 3702
->>>>
->>>>
->>>> (/home/worker/yocto/layers/meta-rockchip/recipes-bsp/brcm-patchram-plus/brcm-patchram-plus_0.1.bb:do_fetch)
->>>> NOTE: recipe netbase-1_5.4-r0: task do_install: Started
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_fetch: Started
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_fetch: Succeeded
->>>> NOTE: Running task 2924 of 3702
->>>>
->>>>
->>>> (/home/worker/yocto/layers/meta-rockchip/recipes-bsp/brcm-patchram-plus/brcm-patchram-plus_0.1.bb:do_prepare_recipe_sysroot)
->>>> NOTE: recipe netbase-1_5.4-r0: task do_install: Succeeded
->>>> NOTE: Running task 2925 of 3702
->>>>
->>>>
->>>> (/home/worker/yocto/layers/poky/meta/recipes-core/netbase/netbase_5.4.bb:do_populate_sysroot)
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_prepare_recipe_sysroot:
->>>> Started
->>>> NOTE: recipe netbase-1_5.4-r0: task do_populate_sysroot: Started
->>>> NOTE: recipe netbase-1_5.4-r0: task do_populate_sysroot: Succeeded
->>>> NOTE: Running task 2926 of 3702
->>>>
->>>>
->>>> (/home/worker/yocto/layers/poky/meta/recipes-core/netbase/netbase_5.4.bb:do_package)
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task
->>>> do_prepare_recipe_sysroot: Succeeded
->>>> NOTE: Running task 2927 of 3702
->>>>
->>>>
->>>> (/home/worker/yocto/layers/meta-rockchip/recipes-bsp/brcm-patchram-plus/brcm-patchram-plus_0.1.bb:do_unpack)
->>>> NOTE: recipe netbase-1_5.4-r0: task do_package: Started
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_unpack: Started
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_unpack: Succeeded
->>>> NOTE: Running task 2928 of 3702
->>>>
->>>>
->>>> (/home/worker/yocto/layers/meta-rockchip/recipes-bsp/brcm-patchram-plus/brcm-patchram-plus_0.1.bb:do_patch)
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_patch: Started
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_patch: Succeeded
->>>> NOTE: Running task 2929 of 3702
->>>>
->>>>
->>>> (/home/worker/yocto/layers/meta-rockchip/recipes-bsp/brcm-patchram-plus/brcm-patchram-plus_0.1.bb:do_configure)
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_configure: Started
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_configure: Succeeded
->>>> NOTE: Running task 2930 of 3702
->>>>
->>>>
->>>> (/home/worker/yocto/layers/meta-rockchip/recipes-bsp/brcm-patchram-plus/brcm-patchram-plus_0.1.bb:do_compile)
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_compile: Started
->>>> ERROR: brcm-patchram-plus-0.1-r0 do_compile: Function failed:
->>>> do_compile (log file is located at
->>>>
->>>>
->>>> /home/worker/yocto/build/tmp/work/cortexa17hf-neon-vfpv4-custom-linux-gnueabi/brcm-patchram-plus/0.1-r0/temp/log.do_compile.22289)
->>>> ERROR: Logfile of failure stored in:
->>>>
->>>>
->>>> /home/worker/yocto/build/tmp/work/cortexa17hf-neon-vfpv4-custom-linux-gnueabi/brcm-patchram-plus/0.1-r0/temp/log.do_compile.22289
->>>> Log data follows:
->>>> | DEBUG: Executing shell function do_compile
->>>> |
->>>>
->>>> /home/worker/yocto/build/tmp/work/cortexa17hf-neon-vfpv4-custom-linux-gnueabi/brcm-patchram-plus/0.1-r0/temp/run.do_compile.22289:
->>>> 100:
->>>>
->>>> /home/worker/yocto/build/tmp/work/cortexa17hf-neon-vfpv4-custom-linux-gnueabi/brcm-patchram-plus/0.1-r0/temp/run.do_compile.22289:
->>>> arm-custom-linux-gnueabi-gcc: not found
->>>> | WARNING: exit code 127 from a shell command.
->>>> | ERROR: Function failed: do_compile (log file is located at
->>>>
->>>>
->>>> /home/worker/yocto/build/tmp/work/cortexa17hf-neon-vfpv4-custom-linux-gnueabi/brcm-patchram-plus/0.1-r0/temp/log.do_compile.22289)
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_compile: Failed
->>>> ERROR: Task
->>>>
->>>> (/home/worker/yocto/layers/meta-rockchip/recipes-bsp/brcm-patchram-plus/brcm-patchram-plus_0.1.bb:do_compile)
->>>> failed with exit code '1'
->>>> NOTE: Running task 2931 of 3702
->>>>
->>>>
->>>> (/home/worker/yocto/layers/meta-rockchip/recipes-bsp/brcm-patchram-plus/brcm-patchram-plus_0.1.bb:do_populate_lic)
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_populate_lic: Started
->>>> NOTE: recipe brcm-patchram-plus-0.1-r0: task do_populate_lic: Succeeded
->>>> NOTE: recipe netbase-1_5.4-r0: task do_package: Succeeded
->>>> NOTE: recipe groff-native-1.22.3-r0: task do_compile: Succeeded
->>>> NOTE: recipe perl-5.24.1-r0: task do_compile: Succeeded
->>>> NOTE: Tasks Summary: Attempted 2931 tasks of which 0 didn't need to be
->>>> rerun and 1 failed.
->>>>
->>>> [1].
->>>>
->>>> https://github.com/rockchip-linux/meta-rockchip/blob/master/recipes-bsp/brcm-patchram-plus/brcm-patchram-plus_0.1.bb
->>>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->
->
->
+--=20
+Med V=C3=A4nliga H=C3=A4lsningar / Best Regards
+
+Mirza Krak
 
