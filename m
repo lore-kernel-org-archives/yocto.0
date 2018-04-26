@@ -1,94 +1,53 @@
-Return-Path: <rksyeung@hotmail.com>
+Return-Path: <mohamad.noor.alim.hussin@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53316E00BFB; Thu, 26 Apr 2018 00:20:45 -0700 (PDT)
+	id 59D86E00BC3; Thu, 26 Apr 2018 00:26:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
-	HTML_MESSAGE, 
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rksyeung[at]hotmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust *      [40.92.9.30 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
-	but no 'Received:'
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 8413 seconds by postgrey-1.32 at yocto-www;
-	Thu, 26 Apr 2018 00:20:42 PDT
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
-	(mail-oln040092009030.outbound.protection.outlook.com [40.92.9.30])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C28BE00B9C
-	for <yocto@yoctoproject.org>; Thu, 26 Apr 2018 00:20:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=X24chEccMJyu666C1zZ5PNqrzCQKlmEyr3FjL6hycck=;
-	b=Q+Ui/EoIsk6Woysg73JGX6t1gNq4LMf60aIuoaXPB8cHj7Ae8cjnfza9gkqrbS2bzwP/wrIPDXAQAQJO30X5kah/PEwAzVcfPx+S1HFtZye8I49aJ/1dYbX/VjwMq31Xr7V5IFOzz5GzAUU8PSwusM1OaB6a2ReRZkdHER8LEkwIU+akvvLapCG+9PY+j7U4NDDHy327gEcu1kOrddm0MI9+7xrXCc5ydsowv/4pOqeP4wS9lz3YpvRQZ0HJhC6it1FOYrX65IZbibBntEQSmryfTL8+sFDX554vDhi0Q9mcCKm72dl3tYew7aswhpJja7nMlPcd5QWAcCleIY58Gg==
-Received: from SN1NAM04FT024.eop-NAM04.prod.protection.outlook.com
-	(10.152.88.55) by SN1NAM04HT233.eop-NAM04.prod.protection.outlook.com
-	(10.152.89.87) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.20.696.11;
-	Thu, 26 Apr 2018 04:45:49 +0000
-Received: from MWHPR19MB1183.namprd19.prod.outlook.com (10.152.88.60) by
-	SN1NAM04FT024.mail.protection.outlook.com (10.152.88.106) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.20.696.11 via Frontend Transport; Thu, 26 Apr 2018 04:45:49 +0000
-Received: from MWHPR19MB1183.namprd19.prod.outlook.com
-	([fe80::5125:a765:f3d4:40f8]) by
-	MWHPR19MB1183.namprd19.prod.outlook.com
-	([fe80::5125:a765:f3d4:40f8%18]) with mapi id 15.20.0696.020;
-	Thu, 26 Apr 2018 04:45:49 +0000
-From: Raymond Yeung <rksyeung@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73BD5E00B9C
+	for <yocto@yoctoproject.org>; Thu, 26 Apr 2018 00:26:47 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	26 Apr 2018 00:26:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.49,330,1520924400"; 
+	d="scan'208,217";a="219495432"
+Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
+	by orsmga005.jf.intel.com with ESMTP; 26 Apr 2018 00:26:34 -0700
+Received: from pgsmsx107.gar.corp.intel.com ([169.254.7.161]) by
+	PGSMSX101.gar.corp.intel.com ([169.254.1.211]) with mapi id
+	14.03.0319.002; Thu, 26 Apr 2018 15:26:33 +0800
+From: "Hussin, Mohamad Noor Alim" <mohamad.noor.alim.hussin@intel.com>
+To: Raymond Yeung <rksyeung@hotmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
 Thread-Topic: PXE Boot NFS not working
-Thread-Index: AQHT3RibB3SjOiqCJ0iFNIV79C8ZUA==
-Date: Thu, 26 Apr 2018 04:45:49 +0000
-Message-ID: <MWHPR19MB1183FFEEF33178BA3331F6A6C58E0@MWHPR19MB1183.namprd19.prod.outlook.com>
+Thread-Index: AQHT3RibB3SjOiqCJ0iFNIV79C8ZUKQSpG5A
+Date: Thu, 26 Apr 2018 07:26:32 +0000
+Message-ID: <A05DCA0C0293664FB237A9C4B0E55E4601515890@PGSMSX107.gar.corp.intel.com>
+References: <MWHPR19MB1183FFEEF33178BA3331F6A6C58E0@MWHPR19MB1183.namprd19.prod.outlook.com>
+In-Reply-To: <MWHPR19MB1183FFEEF33178BA3331F6A6C58E0@MWHPR19MB1183.namprd19.prod.outlook.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:B965A4D3F0AC4A2FF40CCD6F8EC872B61C6DC204A3D4F879BC8369390BC9448E;
-	UpperCasedChecksum:4EF83CB7EE6487982CBD862912AFDF48E2D67D14CD8A99AEDB7FA38D392C6170;
-	SizeAsReceived:6966; Count:44
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [wZXdLF19gwbJj4aZeIolNh9IuYjz5Np0Tsn/GA1va5PeRYbKZ0a566sHPaGcMi4N]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; SN1NAM04HT233;
-	7:VMHwjos4QnU58/aEy4keoMdoByUnLge/Iev3evnrDcncSbX7GoMlZIGRC3NIkvrahJNmMFlYmfDqgxMhVdSPguGjSq+H0msbWaXVuJdTYRwro8YzVctQUd/N1OPPdND1MwRyvEekr4hF8PTvlML06fh5SgUENnizyf8bKsD4dWVBXBWYPX4uRmt6g8t4chM/Yla15eHORLHX7+MXW1vrHrddxvjUaYXH2EjlHKxHREn6OJBY/sRnuMVybxjR5e6r
-x-incomingheadercount: 44
-x-eopattributedmessage: 0
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1601125374)(1603101448)(1701031045);
-	SRVR:SN1NAM04HT233; 
-x-ms-traffictypediagnostic: SN1NAM04HT233:
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
-	SRVR:SN1NAM04HT233; BCL:0; PCL:0; RULEID:; SRVR:SN1NAM04HT233; 
-x-forefront-prvs: 0654257CF5
-x-forefront-antispam-report: SFV:NSPM; SFS:(7070007)(98901004); DIR:OUT;
-	SFP:1901; SCL:1; SRVR:SN1NAM04HT233;
-	H:MWHPR19MB1183.namprd19.prod.outlook.com; FPR:; SPF:None; LANG:;
-x-microsoft-antispam-message-info: hdvQH505NL14MAX2v5pbGN0d6ccCqsb4lV2qeVpj6hdVW8ghFpVLp6gnmlV4EYHdkpz8aATiJ09kW20cJg+p1JLNeB7Jc6xE3jb+a7ZDjCO5u/Kbqg1SkWq+bwR7V3bSmO5qAbNXhOWIqytD0fGeZwZgf+TrDeVeUco8PDEfdVMg7brfNhFfyumdy7PjF2Ep
+dlp-product: dlpe-windows
+dlp-version: 11.0.200.100
+dlp-reaction: no-action
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYTgyNzlhZmItMWU5Yi00ZWY3LWFiOTgtM2NhNDZmNzVjMjllIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjIuNS4xOCIsIlRydXN0ZWRMYWJlbEhhc2giOiJlTG1EV1wvU3hLTzJ1TlkxWkw1ZHFcL0VRdGMyZk1tc0tlXC9PMXRaa0lrNWo4OGNcLzh0WnRCdHNKOU1KT29ubEduKyJ9
+x-ctpclassification: CTP_NT
+x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
-X-MS-Office365-Filtering-Correlation-Id: 1a7c57d5-34ff-4f07-c2eb-08d5ab30957a
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a7c57d5-34ff-4f07-c2eb-08d5ab30957a
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Apr 2018 04:45:49.6642 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1NAM04HT233
-Subject: PXE Boot NFS not working
+Subject: Re: PXE Boot NFS not working
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -100,14 +59,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Apr 2018 07:20:45 -0000
+X-List-Received-Date: Thu, 26 Apr 2018 07:26:48 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_MWHPR19MB1183FFEEF33178BA3331F6A6C58E0MWHPR19MB1183namp_"
+	boundary="_000_A05DCA0C0293664FB237A9C4B0E55E4601515890PGSMSX107garcor_"
 
---_000_MWHPR19MB1183FFEEF33178BA3331F6A6C58E0MWHPR19MB1183namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--_000_A05DCA0C0293664FB237A9C4B0E55E4601515890PGSMSX107garcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Refer to my post here https://lists.yoctoproject.org/pipermail/yocto/2018-A=
+pril/040860.html
+
+Don't use initramfs/initrd as it not working.
+
+
+Regards,
+Alim Hussin
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Raymond Yeung
+Sent: Thursday, April 26, 2018 12:46 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] PXE Boot NFS not working
+
 
 I've an Intel Xeon-D board.  I could boot up the board with PXE booting.  H=
 owever, this seems to be always looking for "removable media"; if there is =
@@ -117,11 +92,14 @@ ar, I've read up, experimented on NFS setup via pxelinux.cfg/default file. =
 configuration file doesn't seem to work.
 
 
+
 Now, I'm wondering if my bzImage and initrd files are built correct.  Accor=
 ding to this article here:
 
 
+
 https://wiki.yoctoproject.org/wiki/Poky_NFS_Root
+
 
 
 Two requirements must be met.  First one is that the network driver must be=
@@ -129,62 +107,163 @@ Two requirements must be met.  First one is that the network driver must be=
 e network init script.
 
 
+
 Does anyone know how to do the above two items?  What recipe file(s) should=
  I modify?
+
 
 
 Thanks,
 
 Raymond
 
---_000_MWHPR19MB1183FFEEF33178BA3331F6A6C58E0MWHPR19MB1183namp_
-Content-Type: text/html; charset="iso-8859-1"
+--_000_A05DCA0C0293664FB237A9C4B0E55E4601515890PGSMSX107garcor_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
 </head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p style=3D"margin-top:0;margin-bottom:0">I've an Intel Xeon-D board. &nbsp=
-;I could boot up the board with PXE booting. &nbsp;However, this seems to b=
-e always looking for &quot;removable media&quot;; if there is none, it woul=
-d hang (in a .sh file). &nbsp;I want to explore NFS approach.
- &nbsp;So far, I've read up, experimented on NFS setup via pxelinux.cfg/def=
-ault file. &nbsp;I'm able to manually perform nfs mount from client side, b=
-ut doing it via configuration file doesn't seem to work.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Now, I'm wondering if my bzImage =
-and initrd files are built correct. &nbsp;According to this article here:</=
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><a name=3D"_MailEndCompose"><span lang=3D"EN-MY" sty=
+le=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F=
+497D">Refer to my post here
+</span></a><a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2018-A=
+pril/040860.html"><span lang=3D"EN-MY" style=3D"font-size:11.0pt;font-famil=
+y:&quot;Calibri&quot;,sans-serif">https://lists.yoctoproject.org/pipermail/=
+yocto/2018-April/040860.html</span></a><span lang=3D"EN-MY" style=3D"font-s=
+ize:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-MY" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-MY" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D">Don&#8217;t use initra=
+mfs/initrd as it not working.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-MY" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-MY" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D">Regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1F497D">Alim Hussin<o:p></o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"EN-MY" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><a name=3D"_____replyseparator"></a><b><span style=
+=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">From:</spa=
+n></b><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-=
+serif"> yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
+rg]
+<b>On Behalf Of </b>Raymond Yeung<br>
+<b>Sent:</b> Thursday, April 26, 2018 12:46 PM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] PXE Boot NFS not working<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div id=3D"divtagdefaultwrapper">
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black">I=
+'ve an Intel Xeon-D board. &nbsp;I could boot up the board with PXE booting=
+. &nbsp;However, this seems to be always looking for &quot;removable media&=
+quot;; if there is none, it would hang (in a .sh file). &nbsp;I want
+ to explore NFS approach. &nbsp;So far, I've read up, experimented on NFS s=
+etup via pxelinux.cfg/default file. &nbsp;I'm able to manually perform nfs =
+mount from client side, but doing it via configuration file doesn't seem to=
+ work.<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black"><=
+o:p>&nbsp;</o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black">N=
+ow, I'm wondering if my bzImage and initrd files are built correct. &nbsp;A=
+ccording to this article here:<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black"><=
+o:p>&nbsp;</o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black"><=
+a href=3D"https://wiki.yoctoproject.org/wiki/Poky_NFS_Root" id=3D"LPlnk2399=
+2">https://wiki.yoctoproject.org/wiki/Poky_NFS_Root</a><o:p></o:p></span></=
 p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0"><a href=3D"https://wiki.yoctoproj=
-ect.org/wiki/Poky_NFS_Root" class=3D"OWAAutoLink" id=3D"LPlnk23992" preview=
-removed=3D"true">https://wiki.yoctoproject.org/wiki/Poky_NFS_Root</a><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Two requirements must be met. &nb=
-sp;First one is that the network driver must be built into the kernel rathe=
-r than being a module. &nbsp;Second one is to disable network init&nbsp;scr=
-ipt.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Does anyone know how to do the ab=
-ove two items? &nbsp;What recipe file(s) should I modify?</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Thanks,</p>
-<p style=3D"margin-top:0;margin-bottom:0">Raymond</p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black"><=
+o:p>&nbsp;</o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black">T=
+wo requirements must be met. &nbsp;First one is that the network driver mus=
+t be built into the kernel rather than being a module. &nbsp;Second one is =
+to disable network init&nbsp;script.<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black"><=
+o:p>&nbsp;</o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black">D=
+oes anyone know how to do the above two items? &nbsp;What recipe file(s) sh=
+ould I modify?<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black"><=
+o:p>&nbsp;</o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black">T=
+hanks,<o:p></o:p></span></p>
+<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black">R=
+aymond<o:p></o:p></span></p>
+</div>
 </div>
 </body>
 </html>
 
---_000_MWHPR19MB1183FFEEF33178BA3331F6A6C58E0MWHPR19MB1183namp_--
+--_000_A05DCA0C0293664FB237A9C4B0E55E4601515890PGSMSX107garcor_--
