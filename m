@@ -1,17 +1,18 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <tpradeep@cisco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B3D9E00823; Thu, 26 Apr 2018 11:30:03 -0700 (PDT)
+	id 8B951E00823; Thu, 26 Apr 2018 11:37:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.44 listed in list.dnswl.org]
+X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_HI, SPF_HELO_PASS,
+	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [173.37.86.76 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
+	white-list
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,45 +20,56 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f44.google.com (mail-wm0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D67C2E005A9
-	for <yocto@yoctoproject.org>; Thu, 26 Apr 2018 11:30:01 -0700 (PDT)
-Received: by mail-wm0-f44.google.com with SMTP id b21so15073431wme.4
-	for <yocto@yoctoproject.org>; Thu, 26 Apr 2018 11:30:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=zCYAUXE8IaAtj9c50D5M+8xh7lLtz5PJ9wTvIf42UwM=;
-	b=r5e++TcJTuT9ZEBYaGkdzDS1rP9HCF1HN9oCNRL3dL/A8vhvQSqD+SQyy8jOPDCH9L
-	S/yvMAwtSf9flCHlf/6LoO/dsZqk1gRsbQ335arpaMPFnJmXaMPUiG2VMP9uy8Wv61an
-	jCJVwOTasm4QaRje52KK2yEfV2UjAH2Ns2GMe1yi+7XfVQMryw/2Yy9ELueecof3NeQy
-	BPD/58xX37LR0IYnh/nbMWaX5EYtABkM+uHaSHnnik6cDhszzzC2raqLbPq9puKDNQRm
-	0xvdVTXPH8AAgNjjVsAdcA3cH4LqNxzgF8Spwr5g798Shpj8OmCOXAWirC6PDADsA4ql
-	Qlkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=zCYAUXE8IaAtj9c50D5M+8xh7lLtz5PJ9wTvIf42UwM=;
-	b=TiasyyNPATq+sXao4T616ybh5VTOxPHyC8951m0cqjRGR4tYZr/7Y3E1kHWF5wKlfB
-	b5GQcIvlyah7JCSUD7b3gVrqoWYyfh3AxZC732piwu+6evA4w+21GhKahiBy8O/mzSFu
-	vPfnF8N8L77AhxKmWxicmfeoN4t1alR0WXYnAXiZXwGrL18vcORLWUlzFkROZLEx1jhs
-	CRBeUT3NlGXdueFWPs/C7vLZZosMi94OzA1/4xKgntQGckmxqv8QtLCzLMwI/xA84kEJ
-	Y52YUnkPRFVAS5bUdcWGrZReCAP+FFyOTeQIXhYpFUY2qNjaAdgoaVlBmoCYm1BKG3TU
-	ZoRA==
-X-Gm-Message-State: ALQs6tANj3T4nM8xFECQF6TWkWeuzUjQJ/8PIvpZNJnxH72G/xjuUhoE
-	KzLkcK6Am1k2CHCrhWXlaU+g4t86MGphVA19KtQ=
-X-Google-Smtp-Source: AB8JxZqNFSw4Q/1sOQBrkJHxtlJj+pnX66TnCd8CttjJCc9+PzQdPwE91GEM/u2cax6nXUovp0a3exDcmdif6UofmG8=
-X-Received: by 10.28.63.148 with SMTP id m142mr20336955wma.153.1524767400504; 
-	Thu, 26 Apr 2018 11:30:00 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.223.229.210 with HTTP; Thu, 26 Apr 2018 11:29:59 -0700 (PDT)
-In-Reply-To: <3292C1BE-5786-4639-8EF8-9376A0FF00B2@cisco.com>
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Thu, 26 Apr 2018 11:37:19 PDT
+Received: from rcdn-iport-5.cisco.com (rcdn-iport-5.cisco.com [173.37.86.76])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A195E005A9
+	for <yocto@yoctoproject.org>; Thu, 26 Apr 2018 11:37:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=cisco.com; i=@cisco.com; l=2148; q=dns/txt; s=iport;
+	t=1524767839; x=1525977439;
+	h=from:to:cc:subject:date:message-id:references:
+	in-reply-to:content-id:content-transfer-encoding: mime-version;
+	bh=6RuAHKk1hXlPcUq/ZR4fokymcRzhAwfZiZz8vxsCI2c=;
+	b=I5ARSxTK5mBnyU5lzPfYcke4qCYtK1z4ufeAGtFhh4llj1VWyGIRr9Cj
+	ClBnhygxlasN1v674mB2Q/qMBsuXgItoSbUsO1RishsKCfXiMSxNs/2Zz
+	cjVhIvnNNrWbCYziZQSLdhJvJ/M7s1X3Vn3TBhUgDq63XZL5kth1+rIeM M=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0ATAQCbG+Ja/5JdJa1bGQEBAQEBAQE?=
+	=?us-ascii?q?BAQEBAQcBAQEBAYNDYXooCoNhiAKMeYFTIYEPhnKMIYF4CxuEUQIagi4hNBg?=
+	=?us-ascii?q?BAgEBAQEBAQJsHAyFIwEFIxFFEAIBCBgCAiYCAgIfERUQAgQOBYR3AxWoPII?=
+	=?us-ascii?q?chFiCNw2BK4JFgQmHCIITgTIMgic1gk+CJBeCaTCCJAKMDYtQLAgChWGFaIJ?=
+	=?us-ascii?q?9gXGKZIoChhICERMBgSQBHDiBUnAVZQGCGAmMZINhb5AcgRgBAQ?=
+X-IronPort-AV: E=Sophos;i="5.49,331,1520899200"; d="scan'208";a="169164837"
+Received: from rcdn-core-10.cisco.com ([173.37.93.146])
+	by rcdn-iport-5.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	26 Apr 2018 18:36:16 +0000
+Received: from XCH-ALN-014.cisco.com (xch-aln-014.cisco.com [173.36.7.24])
+	by rcdn-core-10.cisco.com (8.14.5/8.14.5) with ESMTP id w3QIaGuO024464
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL);
+	Thu, 26 Apr 2018 18:36:16 GMT
+Received: from xch-rcd-011.cisco.com (173.37.102.21) by XCH-ALN-014.cisco.com
+	(173.36.7.24) with Microsoft SMTP Server (TLS) id 15.0.1320.4;
+	Thu, 26 Apr 2018 13:36:16 -0500
+Received: from xch-rcd-011.cisco.com ([173.37.102.21]) by
+	xch-rcd-011.cisco.com ([173.37.102.21]) with mapi id 15.00.1320.000;
+	Thu, 26 Apr 2018 13:36:16 -0500
+From: "Shakthi Pradeep (tpradeep)" <tpradeep@cisco.com>
+To: Andre McCurdy <armccurdy@gmail.com>
+Thread-Topic: [yocto] New Recipe Integration Issue
+Thread-Index: AQHT3YjXcillAMD4LEqyWuaxceZwUaQTseqAgAABwIA=
+Date: Thu, 26 Apr 2018 18:36:15 +0000
+Message-ID: <B007846B-3D1C-4320-A089-E0B1E1C1B8A9@cisco.com>
 References: <3292C1BE-5786-4639-8EF8-9376A0FF00B2@cisco.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Thu, 26 Apr 2018 11:29:59 -0700
-Message-ID: <CAJ86T=X1naDA79_0qBAnfttnLea956FBvgKYJzTesPze6KULTw@mail.gmail.com>
-To: "Shakthi Pradeep (tpradeep)" <tpradeep@cisco.com>
+	<CAJ86T=X1naDA79_0qBAnfttnLea956FBvgKYJzTesPze6KULTw@mail.gmail.com>
+In-Reply-To: <CAJ86T=X1naDA79_0qBAnfttnLea956FBvgKYJzTesPze6KULTw@mail.gmail.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.65.58.197]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: New Recipe Integration Issue
 X-BeenThere: yocto@yoctoproject.org
@@ -71,43 +83,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Apr 2018 18:30:03 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 26 Apr 2018 18:37:20 -0000
+Content-Language: en-GB
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3FB5AEB687866147B0F8D8D0C1241ABB@emea.cisco.com>
+Content-Transfer-Encoding: base64
 
-On Thu, Apr 26, 2018 at 11:03 AM, Shakthi Pradeep (tpradeep)
-<tpradeep@cisco.com> wrote:
-> Hello Folks,
->
-> I am trying to integrate an SDK which is very simple and small. Building =
-the
-> SDK generates an executable and few .so libraries.
->
-> =E2=80=9Cbitbake sdk=E2=80=9D command goes through fine but when I run =
-=E2=80=9Cbitbake
-> wrlinux-image-glibc-std=E2=80=9D to generate an ISO with SDK packages I a=
-m get
-> following error
->
-> ...
->
->                 install -m 0755 ${S}/lib/libmvudrv.so
-> ${D}/${libdir}/libmvudrv.so.1.0.1
->
->     ln -sf libmvudrv.so.1.0.1 ${D}/${libdir}/libmvudrv.so
-
-Unfortunately, creating versioned libraries requires more than just
-renaming and creating a symlink.
-
-If the library is going to be renamed during installation, then the
-soname (which is set within the library when the library is linked)
-needs to match a name which will exist in the target rootfs at
-runtime.
-
-In this case, since "libmvudrv.so.1.0.1" is the name which will be
-present at runtime, when the build creates libmvudrv.so, it needs to
-set the soname to "libmvudrv.so.1.0.1". ie add the following to the
-linker commandline:
-
-  -Wl,-soname,libmvudrv.so.1.0.1
+VGhhbmtzIGZvciB0aGUgaW5mbyBBbmRyZS4gV2hhdCB5b3UgYXJlIHN1Z2dlc3RpbmcgaXQgdG8g
+YmUgZG9uZSB3aGlsZSBidWlsZGluZyBhbiBhcHBsaWNhdGlvbiBvdmVyIHRoZXNlIGxpYnJhcmll
+cyByaWdodD8NCg0KQW55IGlkZWEgd2h5IHRoZSBwYWNrYWdpbmcgaXMgZmFpbGluZz8NCg0KUmVn
+YXJkcywNClNoYWt0aGkNCg0KT24gMjcvMDQvMTgsIDEyOjAwIEFNLCAiQW5kcmUgTWNDdXJkeSIg
+PGFybWNjdXJkeUBnbWFpbC5jb20+IHdyb3RlOg0KDQogICAgT24gVGh1LCBBcHIgMjYsIDIwMTgg
+YXQgMTE6MDMgQU0sIFNoYWt0aGkgUHJhZGVlcCAodHByYWRlZXApDQogICAgPHRwcmFkZWVwQGNp
+c2NvLmNvbT4gd3JvdGU6DQogICAgPiBIZWxsbyBGb2xrcywNCiAgICA+DQogICAgPiBJIGFtIHRy
+eWluZyB0byBpbnRlZ3JhdGUgYW4gU0RLIHdoaWNoIGlzIHZlcnkgc2ltcGxlIGFuZCBzbWFsbC4g
+QnVpbGRpbmcgdGhlDQogICAgPiBTREsgZ2VuZXJhdGVzIGFuIGV4ZWN1dGFibGUgYW5kIGZldyAu
+c28gbGlicmFyaWVzLg0KICAgID4NCiAgICA+IOKAnGJpdGJha2Ugc2Rr4oCdIGNvbW1hbmQgZ29l
+cyB0aHJvdWdoIGZpbmUgYnV0IHdoZW4gSSBydW4g4oCcYml0YmFrZQ0KICAgID4gd3JsaW51eC1p
+bWFnZS1nbGliYy1zdGTigJ0gdG8gZ2VuZXJhdGUgYW4gSVNPIHdpdGggU0RLIHBhY2thZ2VzIEkg
+YW0gZ2V0DQogICAgPiBmb2xsb3dpbmcgZXJyb3INCiAgICA+DQogICAgPiAuLi4NCiAgICA+DQog
+ICAgPiAgICAgICAgICAgICAgICAgaW5zdGFsbCAtbSAwNzU1ICR7U30vbGliL2xpYm12dWRydi5z
+bw0KICAgID4gJHtEfS8ke2xpYmRpcn0vbGlibXZ1ZHJ2LnNvLjEuMC4xDQogICAgPg0KICAgID4g
+ICAgIGxuIC1zZiBsaWJtdnVkcnYuc28uMS4wLjEgJHtEfS8ke2xpYmRpcn0vbGlibXZ1ZHJ2LnNv
+DQogICAgDQogICAgVW5mb3J0dW5hdGVseSwgY3JlYXRpbmcgdmVyc2lvbmVkIGxpYnJhcmllcyBy
+ZXF1aXJlcyBtb3JlIHRoYW4ganVzdA0KICAgIHJlbmFtaW5nIGFuZCBjcmVhdGluZyBhIHN5bWxp
+bmsuDQogICAgDQogICAgSWYgdGhlIGxpYnJhcnkgaXMgZ29pbmcgdG8gYmUgcmVuYW1lZCBkdXJp
+bmcgaW5zdGFsbGF0aW9uLCB0aGVuIHRoZQ0KICAgIHNvbmFtZSAod2hpY2ggaXMgc2V0IHdpdGhp
+biB0aGUgbGlicmFyeSB3aGVuIHRoZSBsaWJyYXJ5IGlzIGxpbmtlZCkNCiAgICBuZWVkcyB0byBt
+YXRjaCBhIG5hbWUgd2hpY2ggd2lsbCBleGlzdCBpbiB0aGUgdGFyZ2V0IHJvb3RmcyBhdA0KICAg
+IHJ1bnRpbWUuDQogICAgDQogICAgSW4gdGhpcyBjYXNlLCBzaW5jZSAibGlibXZ1ZHJ2LnNvLjEu
+MC4xIiBpcyB0aGUgbmFtZSB3aGljaCB3aWxsIGJlDQogICAgcHJlc2VudCBhdCBydW50aW1lLCB3
+aGVuIHRoZSBidWlsZCBjcmVhdGVzIGxpYm12dWRydi5zbywgaXQgbmVlZHMgdG8NCiAgICBzZXQg
+dGhlIHNvbmFtZSB0byAibGlibXZ1ZHJ2LnNvLjEuMC4xIi4gaWUgYWRkIHRoZSBmb2xsb3dpbmcg
+dG8gdGhlDQogICAgbGlua2VyIGNvbW1hbmRsaW5lOg0KICAgIA0KICAgICAgLVdsLC1zb25hbWUs
+bGlibXZ1ZHJ2LnNvLjEuMC4xDQogICAgDQoNCg==
 
