@@ -1,6 +1,6 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3FE0DE005A9; Wed, 25 Apr 2018 13:58:16 -0700 (PDT)
+	id 3CFF4E00BAD; Wed, 25 Apr 2018 21:07:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	mail provider *      (armccurdy[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.216.177 listed in list.dnswl.org]
+	*      [74.125.82.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,51 +19,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f177.google.com (mail-qt0-f177.google.com
-	[209.85.216.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 123FBE005A9
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2018 13:58:14 -0700 (PDT)
-Received: by mail-qt0-f177.google.com with SMTP id f16-v6so24919525qth.0
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2018 13:58:14 -0700 (PDT)
+Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86FF8E00B28
+	for <yocto@yoctoproject.org>; Wed, 25 Apr 2018 21:07:51 -0700 (PDT)
+Received: by mail-wm0-f52.google.com with SMTP id x12so6889009wmc.0
+	for <yocto@yoctoproject.org>; Wed, 25 Apr 2018 21:07:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=u+fc3jhW5IkowFz0dc8bebTiGo+pHXiXQewSqRkScjs=;
-	b=JmECtp8AbTvR60IRc8WMn1rnFFh/8XoM3RECFl3ohr2y8Y0lQ/wLWX5tcF627fqQVs
-	uXaa1yhzO/vImFyMjJzYXeyFiMDdY1ScsXBQ8OGBVOdQ77HnKEASm7opbUQrRvELMAp4
-	Z43cISrjYvsT3ObVkAOAOkukmbM02lwy53ya6RAB8pfyVmqE+hK6dfGBt0Wfv3n0Ni/5
-	Q8mCYHV5yFzuwcVI3qCI0xkd8/NxKZHHkyTftNiw28YUtbsK3wzwIZS5EY4Ii8NIQXCx
-	7C7P2tUVAi3TvcDjpSaovoO+xzneWYueYNyOhmEYHIVjnYiTuO7T1YCs1egPbpOwZ26D
-	B+0A==
+	:content-transfer-encoding;
+	bh=YurOVOSHMVAax/WlHom9yVRIp5NDL1cQhRLyHnDVtCY=;
+	b=VlPxEqTi/1j7qbuE1MX2o1dXqsjjsPfp1eD0IArqtNaiGTSCJaUGkuWakacuSVzFJI
+	skQnyBtjKyrXx1vt2tdXgPY8fWyOKzNsfkuuORYY5U7+Jt9wpsPiL5a4hXySroRNGjug
+	dmiBccd5SHEkBpn0aHrQgt/QQfYbS4WNZ3G2iw4I0ij3Uslt4WzX474YSktEYg2D1us4
+	kacDgcy45y0CYzjzemqaHt900FvhaKXju/t2kllewOhRMneFA7/M7Ee1oUL70tJYXyMl
+	0fNR9XWR8QEG/8BimHROds8rgYp/nSfbLAQ2TtN1Y2IDlIqELedzh0XFEB4JeOet426x
+	ZGHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=u+fc3jhW5IkowFz0dc8bebTiGo+pHXiXQewSqRkScjs=;
-	b=Q2+qfIlhi4trMbVsxI5tJ06nd/uTDFLQGb0swrjODtx4snPOfL2n14HbbewIeIF8EW
-	3zGWRmhEzdd+kCJFAJBhjscfUUP1nqkIkdrNs7OTMvPjufSUhuSckItPUTnRUnouysAv
-	CY9r2xZommN6KeWzx2G9z/DqReVSr5uF/95VbDeWgx/VZIgIFebb1m14TvA8T+F7je1w
-	hv0grJocPXx6GNHhCuLz572T0ZsBgPCdGOczpc121QdKZQZKtgUXMkZ9AG4ZA04EaXsb
-	O8cqWIQ33VgLb6ZNBVZgFNOTVlOsR6Lko6JvVN7iB7t+u91TrBXKwBoGvU+elLaeoo/d
-	fCXA==
-X-Gm-Message-State: ALQs6tA0VZXPWA60AJGbv+pgRY4RpoQnKqmu37xdUJKw3e4BhHjYc6fP
-	2zm8jBvhbOSKKpv09lbNS3dM+QkhJNMOAIWUsCI=
-X-Google-Smtp-Source: AIpwx48vJyiT1A4xdWCZUoOdnJXb46Usub8TLUlwhlQiu/nRm3t4EMmiNokI9yWurdTNr56qvwEMoC8NO0xlYANCpWo=
-X-Received: by 2002:aed:222b:: with SMTP id
-	n40-v6mr33323492qtc.146.1524689894217; 
-	Wed, 25 Apr 2018 13:58:14 -0700 (PDT)
+	:message-id:subject:to:content-transfer-encoding;
+	bh=YurOVOSHMVAax/WlHom9yVRIp5NDL1cQhRLyHnDVtCY=;
+	b=Kt9iftU9xsncjl5ArX+CiIq3RqfISaZ8hbxNcl+0nr3z1OQ0SXodlwzLo97LPXe/9I
+	kCvvehqDfSLzX2jF4IPXdxWbxTPoNp/3nMFIhbohDpmycd+cphUSVxJa5glKZLHZ5rbM
+	gX9Z06jEf5cEK+UqunClSmV8Oe88CoCKBpmUQPDzuMy6mS+AV53gmKyC09pQy4Pdubv7
+	4OJjxz2+l00mtuajCTalpnEAhfBvUEY27s0KZ8F+t8+MILhdHVma3JB6Hs21OzP6thry
+	/nOUHO//QcLZKKgzYh3Zluq5tUkCQ6+dXWbPhLgVtSxdUfEBNP0asx9V8aVt0B++UbWn
+	KiVA==
+X-Gm-Message-State: ALQs6tBgykuhZzzeWmCtT+MtOIZB889mUfbEdt31gEQYEDCunOPcZY3K
+	415YpOkPOvDex4FzAe1kHLGnnUKl7ifrwXqKwOtcPw==
+X-Google-Smtp-Source: AIpwx497Ptm/m25WHO5Wq3oHr/KcWtpyvyuwukliOXvKOgEJXewFPl0elbqHq6Ygth/NFMWuzKcNWTrJgkuBnlkjrPI=
+X-Received: by 10.28.53.194 with SMTP id c185mr17799978wma.27.1524715670927;
+	Wed, 25 Apr 2018 21:07:50 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.12.173.106 with HTTP; Wed, 25 Apr 2018 13:58:13 -0700 (PDT)
-In-Reply-To: <CAGAf8LziVYUN6ZK622JURBer5CUHGTKQvx9t53Ut7NX9JO9-wA@mail.gmail.com>
+Received: by 10.223.229.210 with HTTP; Wed, 25 Apr 2018 21:07:50 -0700 (PDT)
+In-Reply-To: <20180425150333.GA9349@graute-opti>
 References: <20180425150333.GA9349@graute-opti>
-	<CAGAf8LzpCD-SC54z88pE_=iYQ2ANg+4pzhYNRH_Qk1L6i-V-8A@mail.gmail.com>
-	<5ae0d8b5.3bb5500a.22ed7.1ad6@mx.google.com>
-	<CAJTo0LZ5Cf5zqLVJf+Jjd60KLLKJ2q-01B3QdpuVDGx4tCxKAg@mail.gmail.com>
-	<CAGAf8LziVYUN6ZK622JURBer5CUHGTKQvx9t53Ut7NX9JO9-wA@mail.gmail.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 25 Apr 2018 22:58:13 +0200
-Message-ID: <CAGAf8Lx6=p_TBGHcU29obY8tmJd4mFE2ADa26n6UnyH1OwkdBA@mail.gmail.com>
-To: oliver.graute@gmail.com
-Cc: Yocto Project <yocto@yoctoproject.org>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Wed, 25 Apr 2018 21:07:50 -0700
+Message-ID: <CAJ86T=VSrF4P6-CCTQFJa20i+qgwQby1to4haFd88UMZaghmtQ@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: yocto jethro failed on gettext-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -76,72 +70,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Apr 2018 20:58:16 -0000
+X-List-Received-Date: Thu, 26 Apr 2018 04:07:53 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Oliver,
+On Wed, Apr 25, 2018 at 8:03 AM, Oliver Graute <oliver.graute@gmail.com> wr=
+ote:
+> Hello list,
+>
+> I try to compile yocto jethro environment which is working
+> on a Ubuntu 14.04 installation. But not on a Kubuntu 16.04.
+>
+> The compilations stops on gettext-native.
+>
+> bitbake -k fsl-image-mfgtool-initramfs
+>
+>  make[5]: Entering directory '/home/us/build-imx6ulevk-mfgtool/tmp/work/x=
+86_64-linux/gettext-native/0.19.4-r0/build/gettext-tools/src'
+> | ../x86_64-linux-libtool  --tag=3DCC   --mode=3Dlink gcc   -isystem/home=
+/us/build-imx6ulevk-mfgtool/tmp/sysroots/x86_64-linux/usr/include -O2 -pipe=
+ -release 0.19.4 ../gnulib-lib/libgettextlib.la  -lc -no-undefined  -L/home=
+/us/build-imx6ulevk-mfgtool/tmp/sysroots/x86_64-linux/usr/lib -L/home/us/bu=
+ild-imx6ulevk-mfgtool/tmp/sysroots/x86_64-linux/lib -Wl,-rpath-link,/home/u=
+s/build-imx6ulevk-mfgtool/tmp/sysroots/x86_64-linux/usr/lib -Wl,-rpath-link=
+,/home/us/build-imx6ulevk-mfgtool/tmp/sysroots/x86_64-linux/lib -Wl,-rpath,=
+/home/us/build-imx6ulevk-mfgtool/tmp/sysroots/x86_64-linux/usr/lib -Wl,-rpa=
+th,/home/us/build-imx6ulevk-mfgtool/tmp/sysroots/x86_64-linux/lib -Wl,-O1 -=
+o libgettextsrc.la -rpath /home/us/build-imx6ulevk-mfgtool/tmp/sysroots/x86=
+_64-linux/usr/lib libgettextsrc_la-message.lo libgettextsrc_la-po-error.lo =
+libgettextsrc_la-po-xerror.lo libgettextsrc_la-read-catalog-abstract.lo lib=
+gettextsrc_la-po-lex.lo libgettextsrc_la-po-gram-gen.lo libgettextsrc_la-po=
+-charset.lo libgettex
+>  tsrc_la-read-po.lo libgettextsrc_la-read-properties.lo libgettextsrc_la-=
+read-stringtable.lo libgettextsrc_la-open-catalog.lo libgettextsrc_la-dir-l=
+ist.lo libgettextsrc_la-str-list.lo libgettextsrc_la-read-catalog.lo libget=
+textsrc_la-color.lo libgettextsrc_la-write-catalog.lo libgettextsrc_la-writ=
+e-properties.lo libgettextsrc_la-write-stringtable.lo libgettextsrc_la-writ=
+e-po.lo libgettextsrc_la-msgl-ascii.lo libgettextsrc_la-msgl-iconv.lo libge=
+ttextsrc_la-msgl-equal.lo libgettextsrc_la-msgl-cat.lo libgettextsrc_la-msg=
+l-header.lo libgettextsrc_la-msgl-english.lo libgettextsrc_la-msgl-check.lo=
+ libgettextsrc_la-file-list.lo libgettextsrc_la-msgl-charset.lo libgettexts=
+rc_la-po-time.lo libgettextsrc_la-plural-exp.lo libgettextsrc_la-plural-eva=
+l.lo libgettextsrc_la-plural-table.lo libgettextsrc_la-format.lo libgettext=
+src_la-format-c.lo libgettextsrc_la-format-sh.lo libgettextsrc_la-format-py=
+thon.lo libgettextsrc_la-format-python-brace.lo libgettextsrc_la-format-lis=
+p.lo libgettextsr
+>  c_la-format-elisp.lo libgettextsrc_la-format-librep.lo libgettextsrc_la-=
+format-scheme.lo libgettextsrc_la-format-java.lo libgettextsrc_la-format-cs=
+harp.lo libgettextsrc_la-format-awk.lo libgettextsrc_la-format-pascal.lo li=
+bgettextsrc_la-format-ycp.lo libgettextsrc_la-format-tcl.lo libgettextsrc_l=
+a-format-perl.lo libgettextsrc_la-format-perl-brace.lo libgettextsrc_la-for=
+mat-php.lo libgettextsrc_la-format-gcc-internal.lo libgettextsrc_la-format-=
+gfc-internal.lo libgettextsrc_la-format-qt.lo libgettextsrc_la-format-qt-pl=
+ural.lo libgettextsrc_la-format-kde.lo libgettextsrc_la-format-boost.lo lib=
+gettextsrc_la-format-lua.lo libgettextsrc_la-format-javascript.lo libgettex=
+tsrc_la-read-desktop.lo
+> | x86_64-linux-libtool:   error: 'libgettextsrc_la-message.lo' is not a v=
+alid libtool object
 
-Sorry for stealing your show... Did not want to. :-(
+libgettextsrc_la-message.lo should be a short text file. Could you
+find it in your build tree and post a copy?
 
-Floor all yours.
+> | Makefile:2285: recipe for target 'libgettextsrc.la' failed
+> | make[5]: *** [libgettextsrc.la] Error 1
+> | make[5]: Leaving directory '/home/us/build-imx6ulevk-mfgtool/tmp/work/x=
+86_64-linux/gettext-native/0.19.4-r0/build/gettext-tools/src'
+> | Makefile:2206: recipe for target 'all' failed
+> | make[4]: *** [all] Error 2
+> | make[4]: Leaving directory '/home/us/build-imx6ulevk-mfgtool/tmp/work/x=
+86_64-linux/gettext-native/0.19.4-r0/build/gettext-tools/src'
+> | Makefile:1698: recipe for target 'all-recursive' failed
+> | make[3]: *** [all-recursive] Error 1
+> | make[3]: Leaving directory '/home/us/build-imx6ulevk-mfgtool/tmp/work/x=
+86_64-linux/gettext-native/0.19.4-r0/build/gettext-tools'
+> | Makefile:1564: recipe for target 'all' failed
+> | make[2]: *** [all] Error 2
+> | make[2]: Leaving directory '/home/us/build-imx6ulevk-mfgtool/tmp/work/x=
+86_64-linux/gettext-native/0.19.4-r0/build/gettext-tools'
+> | Makefile:380: recipe for target 'all-recursive' failed
+> | make[1]: *** [all-recursive] Error 1
+> | make[1]: Leaving directory '/home/us/build-imx6ulevk-mfgtool/tmp/work/x=
+86_64-linux/gettext-native/0.19.4-r0/build'
+> | Makefile:336: recipe for target 'all' failed
+> | make: *** [all] Error 2
+> | ERROR: oe_runmake failed
+> | ERROR: Function failed: do_compile (log file is located at /home/us/bui=
+ld-imx6ulevk-mfgtool/tmp/work/x86_64-linux/gettext-native/0.19.4-r0/temp/lo=
+g.do_compile.5336)
+> ERROR: Task 531 (virtual:native:/home/us/build/os-poky/meta/recipes-core/=
+gettext/gettext_0.19.4.bb, do_compile) failed with exit code '1'
+>
+>
+> I already tried to reinstall libtool but without success.
+>
+> Some ideas whats the cause for this error?
 
-Zoran
-_______
+At a guess, something a little unusual with the setup of your Kubuntu
+system. Combining Ubuntu 16.04 with OE 2.0 isn't so out of the
+ordinary and others would certainly have hit the problem before now if
+it was always seen.
 
-On Wed, Apr 25, 2018 at 10:55 PM, Zoran Stojsavljevic
-<zoran.stojsavljevic@gmail.com> wrote:
->> Jethro doesn't support Yocto 16.* because it is very old (released 2015...)...
->
-> Now, I must admit, I have learned something new. Never gave any
-> consideration to these releases: example: Pyro 17.0.3.
->
-> But now I understand: it has direct link with Ubuntu 17... Even, YOCTO
-> Pyro, as given example, can be substituted with Ubuntu 17.04?! Wow...
->
-> Every day in every way, I'm progressing more and more! ;-)
->
->> If you want to use Jethro despite the known serious security problems
->> then you'll need to dig out the relevant fixes from the newer releases.
->
-> My question here is: how hard it is? Either to move/rebase complex
-> application and some system packages to Rocko (and rebase/revisit
-> APIs), either to back-port additional (security) packages from the
-> newer releases?!
->
-> Seems lot of hard work, considering both cases.
->
-> Zoran
->
-> On Wed, Apr 25, 2018 at 9:50 PM, Burton, Ross <ross.burton@intel.com> wrote:
->> Jethro doesn't support Yocto 16.* because it is very old (released
->> 2015, it's been unmaintained for six months now).  If you want to use
->> Jethro despite the known serious security problems then you'll need to
->> dig out the relevant fixes from the newer releases.
->>
->> Ross
->>
->> On 25 April 2018 at 20:36, Oliver Graute <oliver.graute@gmail.com> wrote:
->>> On 25/04/18, Zoran Stojsavljevic wrote:
->>>> > I try to compile yocto jethro environment which is working
->>>> > on a Ubuntu 14.04 installation. But not on a Kubuntu 16.04 .
->>>>
->>>> What would be the benefit for the successful compiling of YOCTO Jethro on
->>>> Kubuntu 16.04 over Ubuntu 14.04???
->>>
->>> I tried to get my Yocto compiled on a PC of a colleague and his
->>> installation was a Kubuntu 16.04. I've made the experience that often
->>> only additional packages needs to be installed to step over these
->>> compile issues. Sometimes its clear from the debug output but in this
->>> case I have no Idea which packages is missing. On my develop PC and our
->>> Buildserver with Ubuntu 14.04 everything is fine. But I'am afraid that I
->>> can get similar trouble if I update to a newer ubuntu release there too.
->>>
->>> Best regards,
->>>
->>> Oliver
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
+Did you install all the standard host dependencies?
+
+  https://www.yoctoproject.org/docs/2.0/yocto-project-qs/yocto-project-qs.h=
+tml#packages
+
+Did you manually upgrade or downgrade any of these host tools? Or is
+the Kubuntu system a fairly clean generic installation?
 
