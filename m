@@ -1,100 +1,63 @@
-Return-Path: <rksyeung@hotmail.com>
+Return-Path: <alan.martinovic@senic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 71F30E009E2; Fri, 27 Apr 2018 07:57:37 -0700 (PDT)
+	id BBA99E009F8; Fri, 27 Apr 2018 08:39:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
-	HTML_MESSAGE, 
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rksyeung[at]hotmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust *      [40.92.4.53 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
-	but no 'Received:'
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 19735 seconds by postgrey-1.32 at yocto-www;
-	Fri, 27 Apr 2018 07:57:35 PDT
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
-	(mail-oln040092004053.outbound.protection.outlook.com [40.92.4.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F267E0073D
-	for <yocto@yoctoproject.org>; Fri, 27 Apr 2018 07:57:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=Rvmai2ubq3c7Y7B2/Oxar6rxyR4maVJJkg6/lTVyN7U=;
-	b=CT0DY7PULjJn+YxVBPZYwtRrd2ZLO6Er041UOY2cXAWn7yDOo/eI/BwHmCBg7vRuY0WHFruc/emAugkksQ/rY8rYt5p9V2VgsXidfxzk2+nXCsJN8CceGWOOUFhItOSfnzNRNXGknVSGvlzDzVSjJMfNooGY72hGCBuULV+SIUjLaN6EqqffgPfxtVyyKGoRQIc5Bib8OHOxK8hUQ1TkxW2IPdIcRXTTjvb0MwRQ8BKySysM1qsMdABAjDFMkFpy7okSDY0AQQJFZVXCFGLH8t3PykMD1um9A+aYXq9Cq4FmRAKBIiugupvRV8X0q9txnIhPHTBHzYY5Pe5pYmAJSQ==
-Received: from CY1NAM02FT005.eop-nam02.prod.protection.outlook.com
-	(10.152.74.59) by CY1NAM02HT017.eop-nam02.prod.protection.outlook.com
-	(10.152.74.82) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.20.696.11;
-	Fri, 27 Apr 2018 05:56:16 +0000
-Received: from MWHPR19MB1183.namprd19.prod.outlook.com (10.152.74.54) by
-	CY1NAM02FT005.mail.protection.outlook.com (10.152.74.117) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.696.11 via Frontend Transport; Fri, 27 Apr 2018 05:56:16 +0000
-Received: from MWHPR19MB1183.namprd19.prod.outlook.com
-	([fe80::5125:a765:f3d4:40f8]) by
-	MWHPR19MB1183.namprd19.prod.outlook.com
-	([fe80::5125:a765:f3d4:40f8%18]) with mapi id 15.20.0696.020;
-	Fri, 27 Apr 2018 05:56:16 +0000
-From: Raymond Yeung <rksyeung@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: "Waiting for Removable Media" hang
-Thread-Index: AQHT3ex02b65xtcklUGo7h3ur3SXzA==
-Date: Fri, 27 Apr 2018 05:56:16 +0000
-Message-ID: <MWHPR19MB11831CD5E5251FD498AE1F1BC58E0@MWHPR19MB1183.namprd19.prod.outlook.com>
-References: <MWHPR19MB1183FFEEF33178BA3331F6A6C58E0@MWHPR19MB1183.namprd19.prod.outlook.com>,
-	<A05DCA0C0293664FB237A9C4B0E55E4601515890@PGSMSX107.gar.corp.intel.com>,
-	<MWHPR19MB1183CCEDF7F16991BF5BCCA9C58E0@MWHPR19MB1183.namprd19.prod.outlook.com>
-In-Reply-To: <MWHPR19MB1183CCEDF7F16991BF5BCCA9C58E0@MWHPR19MB1183.namprd19.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:8605A5B1FAC0ED470E72421DA89F1FFE3A149D343C318E51BD23FC3323208CC1;
-	UpperCasedChecksum:14F9E6645C7D38826044620AC3D01F28BC6F78248B1A9A77BFFD3A5518AF8EB9;
-	SizeAsReceived:7319; Count:46
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [C0Sogk8KqpWlD9X3m+MIgY6iuY99VP2WOJ5kWnlHgQFy6J/9HMLHam2aEqTOTUM6]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; CY1NAM02HT017;
-	7:V+nvProRVq4KeGJKTS0h0pJZICeOPTqsJeGJBnFdmEFBdQasORh0Wt/y3/H/eYH6Ztd9ER1eoXwaVamuvvKjvXCScywOVd58rMDr93DZWZ7bttwPTJ015EdU3oQNxG/nAOLHV8bMZRJzHY4+P+18r5oj0DF7XdRrtJT7YD1C9cIsFdUjXI2C4cMM990En7utzSHFGfjmiMv3+HJfoR4ss2NQrVYEZKK1+8JLZlJEnpzjz6Q7XEGYJmw8ir3k6nHf;
-	23:N7HCJUAMM69YtKTdtJmq9nqp5W42LX6gOrNmJq8sFsj0Uith0EDLlbM9/F8oaAj0SyyJqBOkdMWA2Sq+RYdwR+V8gZxMNzN1jgxMhymla7kPHHe523vQAiGVtOX3ruNEBWNwRnKDHJfV/q66qKY1aQ==;
-	23:Ra2e+K+g4IVdgv84RsbWqsTxCk9kEHCA2pe6r6JvuSVEpTMDCUPStkQKYvrQVzCZVDdp+3gJ6MtL8hKCSytuwXWy8H/4Cyb0crFZi1hXophrHNEH+6kxxHypbFmFgYvJufpnphCGP/Hgwr4PEcSfXg==
-x-incomingheadercount: 46
-x-eopattributedmessage: 0
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101448)(1601125374)(1701031045);
-	SRVR:CY1NAM02HT017; 
-X-MS-TrafficTypeDiagnostic: CY1NAM02HT017:|CY1NAM02HT017:|CY1NAM02HT017:
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
-	SRVR:CY1NAM02HT017; BCL:0; PCL:0; RULEID:; SRVR:CY1NAM02HT017; 
-x-forefront-prvs: 0655F9F006
-x-forefront-antispam-report: SFV:NSPM; SFS:(7070007)(98901004); DIR:OUT;
-	SFP:1901; SCL:1; SRVR:CY1NAM02HT017;
-	H:MWHPR19MB1183.namprd19.prod.outlook.com; FPR:; SPF:None; LANG:;
-x-microsoft-antispam-message-info: e2yOhXjM8nQVlgaPqMiGNjydAx8j/Zkfhb4TZXLs/wXO1lVnWv6AEimlza/56JYn0Ij8qJNUn/y1DOMbi+ftVq0hyOJeEuw4/H6MylpCr2FVRdYgVYORPbOD8nI3d8bqEYWJ58pscL/t0MH9g1CR1LomZiHsLAAsI2g16PIVFSmXpzGUWPfQWAJ0oi1HzRK2
+Received: from mail-ot0-f172.google.com (mail-ot0-f172.google.com
+	[74.125.82.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06623E0073D
+	for <yocto@yoctoproject.org>; Fri, 27 Apr 2018 08:39:42 -0700 (PDT)
+Received: by mail-ot0-f172.google.com with SMTP id t1-v6so2478751ott.13
+	for <yocto@yoctoproject.org>; Fri, 27 Apr 2018 08:39:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=senic-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=SbRwz8qvH46pAUsfQYu90PwT/dh5e92SMmRuazvaIFc=;
+	b=iYLZJg9RY8fclavInALeZTNDZd2bpZire8EMTY9BO0gnPK4ewe2/rH6V31aq0cPhXY
+	We4rPlJj149k7M5P05Z/3mlpbh6xCDnrOokPgrWHIdCMP8OHfNuS1E/JmhcL+fii43Go
+	K7DPqMdUVD0sBV1/UxsYamDw7+hSl0pouyZ8okfGGWeYvEYbckLLYrTd82te7n+PHZce
+	PPTiPqxgKzXw4QS4cHRy7RjkFcXii+B7VbLPoUkQAeEk7FUt69eO2o3zJezmqpD/GGcy
+	jEqDiK02qHw7HlvqvL4yCEkk5wH6VTm/8W7RWXPvi748HZded1e9+cOU2wGlupvdC7rq
+	8NHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=SbRwz8qvH46pAUsfQYu90PwT/dh5e92SMmRuazvaIFc=;
+	b=eqdUCL2KV208g9OCAdkbmbpejkHpnZy0Tar7xaaBEb1uGr61RqrdIkrwabZAnNQFTR
+	zE/HcHJMub3h5Rhuv+f63x0CcaDXhIwwCjlDZkx6h6V7DEZKUqxnkgY7kMlKtny5yKJd
+	6DHRhdtk3peWCrXVkNH2Rp+3D2RljjdjcyTgv0kjwmEHd+rDcBbD0lxjlSuzdi9vb4PP
+	oQ7OjCYvHyClpIJoYk+IDebnE5JsYlDGXFJEzbedNyYxT5nLHELGerhJJWs3DZF70ZTK
+	Mgq/k7N5fvtqNvbm/Ps7Jm+3Zd/BWRwrgP90B2jx0V4xESYGgSz2mUSyts5z5CPEnBHd
+	LZtg==
+X-Gm-Message-State: ALQs6tAtK78fCp9CmxGnrOuPewsHFG74rIr8nluplmo+KQMEoLWp7DKy
+	KW0sawCfdKXrWrRT5hwaLOVZDBSZaWjKIGmD4/A44A==
+X-Google-Smtp-Source: AB8JxZq/IegTeJ+aCHRxunMlv8T20MYYfiH2C7gUwG3GtJkjRMvq+hFojoVDw0fjLNCD0qeLR83tFxi6kLd8CVJhee8=
+X-Received: by 2002:a9d:5320:: with SMTP id
+	g32-v6mr1639631oth.293.1524843581826; 
+	Fri, 27 Apr 2018 08:39:41 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Office365-Filtering-Correlation-Id: f7677767-efe0-42de-de30-08d5ac0396fc
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
-X-MS-Exchange-CrossTenant-Network-Message-Id: f7677767-efe0-42de-de30-08d5ac0396fc
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Apr 2018 05:56:16.0514 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1NAM02HT017
-X-OriginatorOrg: hotmail.com
-Subject: "Waiting for Removable Media" hang
+Received: by 10.201.26.152 with HTTP; Fri, 27 Apr 2018 08:39:41 -0700 (PDT)
+In-Reply-To: <CAC+thW09N85OA6Wj_N=H4K5+tNYH8FxqDgpuWoWSRD8go840qQ@mail.gmail.com>
+References: <CAOT_U5YEgeYdOJxdncO0vXm4OnNLofd6rj8amNiOMZZ_qbzqvw@mail.gmail.com>
+	<CAC+thW09N85OA6Wj_N=H4K5+tNYH8FxqDgpuWoWSRD8go840qQ@mail.gmail.com>
+From: Alan Martinovic <alan.martinovic@senic.com>
+Date: Fri, 27 Apr 2018 17:39:41 +0200
+Message-ID: <CAOT_U5aZMd_actfPGyEvq1xBpg_9+8=+LWLAEARXaH9oJ9189w@mail.gmail.com>
+To: Andrea Galbusera <gizero@gmail.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Installing a package on the board at runtime
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -106,107 +69,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Apr 2018 14:57:37 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MWHPR19MB11831CD5E5251FD498AE1F1BC58E0MWHPR19MB1183namp_"
+X-List-Received-Date: Fri, 27 Apr 2018 15:39:44 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---_000_MWHPR19MB11831CD5E5251FD498AE1F1BC58E0MWHPR19MB1183namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Hey
 
-I use Krogoth (released 4/2016) Camelback Mountain BSP, trying to do networ=
-k boot.  Initialization hangs indefinitely with "Waiting for Removable Medi=
-a".  This is a big issue for us, because we need to deal with the diskless =
-situation.
+> A more
+controlled way of installing packages would be to have
+package-management added to your IMAGE_FEATURES [1] to leverage a
+fully fledged package manager on the target (like any mainstream
+distro).
+
+Yeah, I admit I have been ignorantly avoiding this, always thinking that
+it isn't worth the overhead of setting the server and the additional
+aps on the board.
+Will check it out.
+
+> This shouldn't be the case. When using 'devtool modify'
+workspace/sources/<your-recipe> gets populated with a git repository
+which includes a 'devtool' branch which includes any patch the recipe
+declare in its SRC_URI.
+
+Cool share about the devtool branch, tnx.
+
+> Those patches are already applied to the
+fetched sources in the form of git commits on the 'devtool' branch
+[3].
+
+I guess it isn't a patch that is directly applied to the source but a
+config file that gets modified.
+
+    ....
+    SRC_URI += "file://bluetooth.conf"
+
+    python do_render_templates() {
+      render_template('bluetooth.conf')
+    }
+
+    addtask render_templates after do_compile before do_install
+
+    do_install_append() {
+        install -m 644 ${WORKDIR}/bluetooth.conf
+${D}${sysconfdir}/dbus-1/system.d/bluetooth.conf
+        install -d ${D}${systemd_unitdir}/system
+        install -m 0644 ${WORKDIR}/bluetooth.service
+${D}${systemd_unitdir}/system
+    }
+    do_render_templates[nostamp] = "1"
 
 
-It looks like this issue was here some 7-8 years ago.  It was deemed fixed =
-then:
+The render_template changes some entries in bluetooth.conf.
+I guess when it's run from devshell it gets confused as where to look
+for it.
+Works ok with bitbake.
+
+Be Well :)
+Alan
 
 
-http://poky.yoctoproject.narkive.com/2tXZ1euZ/patch-0-1-fix-for-endless-wai=
-ting-for-removable-media-problem
+On Fri, Apr 27, 2018 at 4:47 PM, Andrea Galbusera <gizero@gmail.com> wrote:
+> Hi Alan,
+>
+> On Fri, Apr 27, 2018 at 1:38 PM, Alan Martinovic
+> <alan.martinovic@senic.com> wrote:
+>> Hey,
+>> I know there is a method in devtool called devtool deploy-target.
+>> It's a great thing to install a package on the board at runtime.
+>>
+>> Is there something like that available without devtool?
+>
+> The devtool deploy-target way of deploying recipes' artefacts is
+> mostly oriented to easing development loops with the eSDK. A more
+> controlled way of installing packages would be to have
+> package-management added to your IMAGE_FEATURES [1] to leverage a
+> fully fledged package manager on the target (like any mainstream
+> distro). You can choose among different format by setting the
+> PACKAGE_CLASSES configuration variable. Using a package manager on the
+> target won't differ from how you install/upgrade your desktop
+> distribution. The only extra step you'll need to accomplish is setting
+> up a proper package feed to let your targets grab the packages from
+> your build/deploy/<package_format> dir. See the manual at [2] for more
+> details.
+>
+> Also, devtool works at a recipe scope, not at package level. You can
+> imagine it as a sort of 'make install' that leverages ssh to work
+> update the target filesystem. Recipes can provide more than one
+> package, then only a proper package manager will let you select any of
+> the packages a recipe provides for installation/upgrade.
+>
+>> A digression:
+>> Am asking for a non devtool option because it
+>> seems like devtool is ignoring the patch and config files
+>> the recipe depends on (can't find any in workspace/sources).
+>
+> This shouldn't be the case. When using 'devtool modify'
+> workspace/sources/<your-recipe> gets populated with a git repository
+> which includes a 'devtool' branch which includes any patch the recipe
+> declare in its SRC_URI. Those patches are already applied to the
+> fetched sources in the form of git commits on the 'devtool' branch
+> [3].
+>
+>> My particular recipe has a custom build step that
+>> depends on rendering config file templates (which fails due to missing
+>> not finding the config file).
+>
+> This might be due to errors in setting up the extra task: difficult to
+> say without looking at how the custom step is defined. Maybe you can
+> share your recipe together with the error logs bitbake is reporting.
+>
+> [1] https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#ref-features-image
+> [2] https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#runtime-package-management-server
+> [3] https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#devtool-modifying-a-recipe
 
-
-Then, in 2016, someone ran into something similar:  https://lists.yoctoproj=
-ect.org/pipermail/poky/2016-September/010706.html
-
-
-Anyone knows if this is fixed in later releases (e.g. end of 2017)?
-
-
-Raymond
-
---_000_MWHPR19MB11831CD5E5251FD498AE1F1BC58E0MWHPR19MB1183namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size: 12pt; color: rgb(0, 0,=
- 0); font-family: Calibri, Helvetica, sans-serif, Helvetica, EmojiFont, &qu=
-ot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &qu=
-ot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;" dir=3D"=
-ltr">
-<p style=3D"margin-top:0;margin-bottom:0">I use Krogoth (released 4/2016)&n=
-bsp;Camelback Mountain BSP, trying to do network boot. &nbsp;Initialization=
- hangs indefinitely with&nbsp;&quot;Waiting for Removable Media&quot;. &nbs=
-p;This is a big issue for us, because we need to deal with the diskless
- situation.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">It looks like this issue was here=
- some 7-8 years ago. &nbsp;It was deemed fixed then:</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0"><a href=3D"http://poky.yoctoproje=
-ct.narkive.com/2tXZ1euZ/patch-0-1-fix-for-endless-waiting-for-removable-med=
-ia-problem" class=3D"OWAAutoLink" id=3D"LPlnk366738" previewremoved=3D"true=
-">http://poky.yoctoproject.narkive.com/2tXZ1euZ/patch-0-1-fix-for-endless-w=
-aiting-for-removable-media-problem</a><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Then, in 2016, someone ran into s=
-omething similar: &nbsp;<a href=3D"https://lists.yoctoproject.org/pipermail=
-/poky/2016-September/010706.html" class=3D"OWAAutoLink" id=3D"LPlnk278969" =
-previewremoved=3D"true">https://lists.yoctoproject.org/pipermail/poky/2016-=
-September/010706.html</a></p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Anyone knows if this is fixed in =
-later releases (e.g. end of 2017)?</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Raymond</p>
-<div style=3D"color: rgb(0, 0, 0);">
-<div dir=3D"ltr">
-<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
-or:rgb(0,0,0); font-family:Calibri,Helvetica,sans-serif,Helvetica,EmojiFont=
-,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&q=
-uot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols">
-<div style=3D"color:rgb(0,0,0)">
-<div lang=3D"EN-US">
-<div class=3D"x_x_WordSection1">
-<div id=3D"x_x_divtagdefaultwrapper">
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif; color:black">=
-</span></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_MWHPR19MB11831CD5E5251FD498AE1F1BC58E0MWHPR19MB1183namp_--
