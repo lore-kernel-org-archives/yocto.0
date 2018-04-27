@@ -1,15 +1,17 @@
-Return-Path: <MohammadJamal.Mohiuddin@ncr.com>
+Return-Path: <lefevre.da@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D23DE00AE4; Tue, 24 Apr 2018 21:01:53 -0700 (PDT)
+	id 266A4E008D2; Fri, 27 Apr 2018 03:45:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [148.163.152.55 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (lefevre.da[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -18,94 +20,46 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mx0b-00209e01.pphosted.com (mx0b-00209e01.pphosted.com
-	[148.163.152.55])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 008B7E00A75
-	for <yocto@yoctoproject.org>; Tue, 24 Apr 2018 21:01:51 -0700 (PDT)
-Received: from pps.filterd (m0094032.ppops.net [127.0.0.1])
-	by mx0b-00209e01.pphosted.com (8.16.0.22/8.16.0.22) with SMTP id
-	w3P3t39x000525
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2018 00:01:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ncr.com;
-	h=from : to : subject :
-	date : message-id : content-type : mime-version; s=mail;
-	bh=4aFWprFVkpqkffTmUhz13lgX5lQhudkRQ8jt5SnmmVg=;
-	b=NSzCR2UX2rPd1rffi200UiEOBE50Tawj+eOlifrSdrxdZbvDOKsiU3AekT+tFxZHoO+B
-	67IC0W2xMeCxezJ8KCDXzWDhlW9IRIWlIgXZ/iZ+Yb4M1ot+im+yq9GdWhqhKO0/KRGv
-	I4mvBvyEQnhaeTH4KrkygkIlmzoW6J/nqLPkAIp5XFhoqTRVhTaP/I+VDHcM6mgvgK4s
-	/EyAoQjrMWWspY6/Mt/mqYmqRgB7Lit2gSwbD+Yz2TEX1P6cGtsJwbXXU9E1E4OB22Bq
-	trGY5cg31tktfB32kr6/NxmYtUHc2f/KvdQLxzp5lNpy7F7HvhLtaIvVOQXwQes9/sJX
-	iQ== 
-Received: from nam01-sn1-obe.outbound.protection.outlook.com
-	(mail-sn1nam01lp0111.outbound.protection.outlook.com
-	[207.46.163.111])
-	by mx0b-00209e01.pphosted.com with ESMTP id 2hjj2s81k5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
-	for <yocto@yoctoproject.org>; Wed, 25 Apr 2018 00:01:50 -0400
-Received: from MWHPR15MB1760.namprd15.prod.outlook.com (10.174.255.13) by
-	MWHPR15MB1742.namprd15.prod.outlook.com (10.174.255.7) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.696.13; Wed, 25 Apr 2018 04:01:49 +0000
-Received: from MWHPR15MB1760.namprd15.prod.outlook.com
-	([fe80::c5dc:8f8b:510c:a360]) by
-	MWHPR15MB1760.namprd15.prod.outlook.com
-	([fe80::c5dc:8f8b:510c:a360%17]) with mapi id 15.20.0696.019;
-	Wed, 25 Apr 2018 04:01:49 +0000
-From: "Mohammad, Jamal M" <MohammadJamal.Mohiuddin@ncr.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] pygtk package in yocto
-Thread-Index: AdPcSYti+7O6PAQ+Sr2K6gzvisZtmw==
-Date: Wed, 25 Apr 2018 04:01:49 +0000
-Message-ID: <MWHPR15MB1760BB8DDF46322CF5BCD7EBF08F0@MWHPR15MB1760.namprd15.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [32.66.192.218]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; MWHPR15MB1742;
-	7:oRzhwxVqv67JihetpbIYGn1PWz11BFhK4H+e+D1dA8VNpvRWykEA80xsn5xiINEonCyPEul22W173dOtup/V6A59xhpWbV/Tkcl+kV9ul6fhpkiQb51NixMYYG+qUItKgAfC1famzDvBROvDq567VmBjhFG8PJxs/lnbKzryphoCXVCfT2TDbATewb/wPYd8WKWquAFi0G7s//oh0J63J9VDEYo5p29UCoXVjoB8t4rjDnkf2DR3G15SmeKR3jMz
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(48565401081)(5600026)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603328)(7153060)(7193020);
-	SRVR:MWHPR15MB1742; 
-x-ms-traffictypediagnostic: MWHPR15MB1742:
-x-from-ncr-tenant: Processed
-x-microsoft-antispam-prvs: <MWHPR15MB17423BB41DFB75785D558F54F08F0@MWHPR15MB1742.namprd15.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(8211001083)(6040522)(2401047)(8121501046)(5005006)(93006095)(93001095)(3002001)(10201501046)(3231232)(944501410)(52105095)(6055026)(6041310)(20161123558120)(20161123562045)(20161123560045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123564045)(6072148)(201708071742011);
-	SRVR:MWHPR15MB1742; BCL:0; PCL:0; RULEID:; SRVR:MWHPR15MB1742; 
-x-forefront-prvs: 06530126A4
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(376002)(39380400002)(396003)(346002)(39860400002)(366004)(40764003)(199004)(189003)(57704003)(486006)(2501003)(476003)(186003)(7736002)(68736007)(5660300001)(86362001)(5250100002)(106356001)(2900100001)(1857600001)(6916009)(5640700003)(53936002)(14454004)(55016002)(99286004)(102836004)(6506007)(7696005)(74316002)(72206003)(478600001)(6436002)(25786009)(5630700001)(9686003)(6306002)(54896002)(26005)(33656002)(97736004)(3660700001)(2906002)(3280700002)(8676002)(6116002)(3846002)(790700001)(81156014)(1730700003)(9326002)(8936002)(81166006)(316002)(2351001)(66066001)(105586002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR15MB1742;
-	H:MWHPR15MB1760.namprd15.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: ncr.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: obRgH/ZGfOBFJCeK0p8noU3ympQX0ZqJo10jPhpn9+vDzGebRJNFjfp/0HtqjdyMHo9kiKgB4e9gRY6+6sZxaWtn5S74CYtO3ufwvu5fxzsQL76DmFJS7Sq0tuNaQTHKIU4s46Ko+SaHdreC8onbiZDPzEKL/fTwdQWW9S7eEjqkL5nq3lJdqOzgUCLXcKeA
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FEC4E00823
+	for <yocto@yoctoproject.org>; Fri, 27 Apr 2018 03:44:59 -0700 (PDT)
+Received: by mail-io0-f178.google.com with SMTP id t123-v6so1921867iof.7
+	for <yocto@yoctoproject.org>; Fri, 27 Apr 2018 03:44:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=NsioETqhMBOfGLqKjZM17fnyxuWL3TVnc7NFHvTEewQ=;
+	b=kXcv54PjjFDLnpTTbmtflu2MYdpURth+GsLS/x7w0gFIe8dkFuyKQ50lEscUMO5FgE
+	3g5Sf3lbLfKbDu7Rz8rjgOk8ImdNtey4FO+I8/hNu9079uu1IcsVs8MEXIn9R6RxfrqK
+	Fx2mhsVDG8PLhWMOJncmjof4ZlgNDAERs8hNduSUUNwSbYngbIJpKq2lDLwxkfDJqvqF
+	3O+2BYB3yPUKJCsDdaA6iHYj7pkWzhNk+P06jMLLWvBwF7ScslmHTmX8XDv166lO6B5y
+	D7OUGOuVF5mEXx1Ex+wpOyz3xvhmybkK97MHfCaLjYTZ/6By+DR8Cak1Wzn8ic0xMPOx
+	W2rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=NsioETqhMBOfGLqKjZM17fnyxuWL3TVnc7NFHvTEewQ=;
+	b=R1A0FfkYOID4Q9h6VPJSlOHTTXOKS/Dylut/zATzXXKyPjymzQq2aUwMkMZyvb2Zdg
+	cxtHXTN6DEj3cWQ7J8VIYOs+ac/yvIXcUY7lcDN2XdG7w9igL8G64rTb8EeJuTifa2ae
+	lefYwP6J6H7yEFQHaKCowAIzgJf5u+GS8+TgOBtSQPGCMH2ACnwccJKOipUlr6FsCZC2
+	1yBlEpTRoLOuZBPTmjBAKh6Dev9yOfalechzAOjc+yE0jsZIZeLLn2jV2FW4IZrUIZcX
+	0/dhHtp61TIdy1dp6ylS8c3QFA4JQ4jJTcSSYxjMET+CJin5ZcSo0GVhBahSc4ydR8Oi
+	s3Uw==
+X-Gm-Message-State: ALQs6tAOlbbOsV9qTfI0vqcBtRmoLhRmcIM/XCsDkxsYKksGNuo+Ag3G
+	wVLMGxUYTIk7qhMDXGoiMAElHfDzKuvOk215vpHw
+X-Google-Smtp-Source: AB8JxZpcBn55yQNjmvWuuysQWIfNv14UsHyvVWmYUjbB4lu+4310POetFX4IIMdvUCiAtFSPUADw0RudAZZEtORLeKU=
+X-Received: by 2002:a6b:ac42:: with SMTP id
+	v63-v6mr1538265ioe.261.1524825898434; 
+	Fri, 27 Apr 2018 03:44:58 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Office365-Filtering-Correlation-Id: 15a3bfa0-e0d2-4d72-2084-08d5aa614535
-X-OriginatorOrg: ncr.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15a3bfa0-e0d2-4d72-2084-08d5aa614535
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Apr 2018 04:01:49.1202 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: ae4df1f7-611e-444f-897e-f964e1205171
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR15MB1742
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
-	definitions=2018-04-25_01:, , signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
-	priorityscore=1501
-	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
-	clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=742 adultscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1 engine=8.0.1-1711220000 definitions=main-1804250033
+Received: by 2002:a02:69d5:0:0:0:0:0 with HTTP; Fri, 27 Apr 2018 03:44:57
+	-0700 (PDT)
+From: Damien LEFEVRE <lefevre.da@gmail.com>
+Date: Fri, 27 Apr 2018 13:44:57 +0300
+Message-ID: <CA+FhBv87F=hTjo5R3kt1KiK4oghwxEgxBGh5NEAUdHFoLLjvbQ@mail.gmail.com>
+To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Fri, 27 Apr 2018 12:07:45 -0700
-Subject: pygtk package in yocto
+Subject: LINUX_VERSION issue in recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -117,104 +71,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Apr 2018 04:01:53 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MWHPR15MB1760BB8DDF46322CF5BCD7EBF08F0MWHPR15MB1760namp_"
+X-List-Received-Date: Fri, 27 Apr 2018 10:45:00 -0000
+Content-Type: multipart/alternative; boundary="000000000000054723056ad232b8"
 
---_000_MWHPR15MB1760BB8DDF46322CF5BCD7EBF08F0MWHPR15MB1760namp_
-Content-Type: text/plain; charset="us-ascii"
+--000000000000054723056ad232b8
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+This must be a stupid basic question. I have the following recipe append:
+
+keymaps_1.0.bbappend
+-----------------------------------------------------------------------------
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+SRC_URI_append = " file://keymaps.service \
+                   file://keymap.sh \
+"
+
+do_install_append() {
+    install -d ${D}${sysconfdir}
+    ln -sf /usr/share/keymaps/i386/qwerty/fi.map.gz
+${D}${sysconfdir}/keymap-${LINUX_VERSION}.map.gz
+
+    install -d ${D}${systemd_system_unitdir}
+    install -m 0644 ${WORKDIR}/keymaps.service ${D}${systemd_system_unitdir}
+}
+
+FILES_${PN} += " ${sysconfdir}/* \
+                 ${systemd_system_unitdir}/* \
+"
+
+inherit systemd
+SYSTEMD_SERVICE_${PN} = "${PN}.service"
+-----------------------------------------------------------------------------
+
+The LINUX_VERSION is not expanded and the final symlink name becomes  /etc/
+keymap-.map.gz.
+
+What's correct way to get the linux version in the recipe files?
+
+Thanks,
+-Damien
+
+--000000000000054723056ad232b8
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Guys,
+<div dir=3D"ltr">Hi,<div><br></div><div>This must be a stupid basic questio=
+n. I have the following recipe append:</div><div><br></div><div>keymaps_1.0=
+.bbappend</div><div>-------------------------------------------------------=
+----------------------</div><div><div>FILESEXTRAPATHS_prepend :=3D &quot;${=
+THISDIR}/${PN}:&quot;<br></div><div>SRC_URI_append =3D &quot; file://keymap=
+s.service \</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0file://keymap.sh \</div><div>&quot;</div><div><br></div><d=
+iv>do_install_append() {</div><div>=C2=A0 =C2=A0 install -d ${D}${sysconfdi=
+r}</div><div>=C2=A0 =C2=A0 ln -sf /usr/share/keymaps/i386/qwerty/fi.map.gz =
+${D}${sysconfdir}/keymap-${LINUX_VERSION}.map.gz</div><div><br></div><div>=
+=C2=A0 =C2=A0 install -d ${D}${systemd_system_unitdir}</div><div>=C2=A0 =C2=
+=A0 install -m 0644 ${WORKDIR}/keymaps.service ${D}${systemd_system_unitdir=
+}</div><div>}</div><div><br></div><div>FILES_${PN} +=3D &quot; ${sysconfdir=
+}/* \</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0${systemd_system_unitdir}/* \</div><div>&quot;</div><div><br></div><div>=
+inherit systemd</div><div>SYSTEMD_SERVICE_${PN} =3D &quot;${PN}.service&quo=
+t;</div><div>--------------------------------------------------------------=
+---------------</div><div><br></div><div>The=C2=A0<span style=3D"color:rgb(=
+34,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal;fo=
+nt-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter=
+-spacing:normal;text-align:start;text-indent:0px;text-transform:none;white-=
+space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decora=
+tion-style:initial;text-decoration-color:initial;float:none;display:inline"=
+>LINUX_VERSION is not expanded and the final symlink=C2=A0<span style=3D"co=
+lor:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:n=
+ormal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:40=
+0;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:non=
+e;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);tex=
+t-decoration-style:initial;text-decoration-color:initial;float:none;display=
+:inline">name</span> becomes=C2=A0 /etc/<span style=3D"color:rgb(34,34,34);=
+font-family:arial,sans-serif;font-size:small;font-style:normal;font-variant=
+-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:n=
+ormal;text-align:start;text-indent:0px;text-transform:none;white-space:norm=
+al;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style=
+:initial;text-decoration-color:initial;float:none;display:inline">keymap-</=
+span><span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-s=
+ize:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps=
+:normal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:=
+0px;text-transform:none;white-space:normal;word-spacing:0px;background-colo=
+r:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:init=
+ial;float:none;display:inline">.map.gz.</span></span></div><div><span style=
+=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-s=
+tyle:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-wei=
+ght:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transfo=
+rm:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,25=
+5);text-decoration-style:initial;text-decoration-color:initial;float:none;d=
+isplay:inline"><span style=3D"color:rgb(34,34,34);font-family:arial,sans-se=
+rif;font-size:small;font-style:normal;font-variant-ligatures:normal;font-va=
+riant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;te=
+xt-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;backg=
+round-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-=
+color:initial;float:none;display:inline"><br></span></span></div><div><span=
+ style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;=
+font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fo=
+nt-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-t=
+ransform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,=
+255,255);text-decoration-style:initial;text-decoration-color:initial;float:=
+none;display:inline"><span style=3D"color:rgb(34,34,34);font-family:arial,s=
+ans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;f=
+ont-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:st=
+art;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px=
+;background-color:rgb(255,255,255);text-decoration-style:initial;text-decor=
+ation-color:initial;float:none;display:inline">What&#39;s correct way to ge=
+t the linux version in the recipe files?</span></span></div><div><span styl=
+e=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-=
+style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-we=
+ight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transf=
+orm:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,2=
+55);text-decoration-style:initial;text-decoration-color:initial;float:none;=
+display:inline"><span style=3D"color:rgb(34,34,34);font-family:arial,sans-s=
+erif;font-size:small;font-style:normal;font-variant-ligatures:normal;font-v=
+ariant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;t=
+ext-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;back=
+ground-color:rgb(255,255,255);text-decoration-style:initial;text-decoration=
+-color:initial;float:none;display:inline"><br></span></span></div><div><spa=
+n style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small=
+;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;f=
+ont-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-=
+transform:none;white-space:normal;word-spacing:0px;background-color:rgb(255=
+,255,255);text-decoration-style:initial;text-decoration-color:initial;float=
+:none;display:inline"><span style=3D"color:rgb(34,34,34);font-family:arial,=
+sans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;=
+font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:s=
+tart;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0p=
+x;background-color:rgb(255,255,255);text-decoration-style:initial;text-deco=
+ration-color:initial;float:none;display:inline">Thanks,</span></span></div>=
+<div><span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-s=
+ize:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps=
+:normal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:=
+0px;text-transform:none;white-space:normal;word-spacing:0px;background-colo=
+r:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:init=
+ial;float:none;display:inline"><span style=3D"color:rgb(34,34,34);font-fami=
+ly:arial,sans-serif;font-size:small;font-style:normal;font-variant-ligature=
+s:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;tex=
+t-align:start;text-indent:0px;text-transform:none;white-space:normal;word-s=
+pacing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;=
+text-decoration-color:initial;float:none;display:inline">-Damien</span></sp=
+an></div><div><br></div>
+</div></div>
 
-I am using the latest branch of poky and meta-oe . I need pygtk package for=
- one of my application as it's one of the requirement for it to run.
-
-Pygtk is supported in Jethro branch. Do I need to switch to Jethro branch f=
-or my project or did anyone port pygtk recipe port for the latest version.
-
-Please help.
-
-Thanks for your help and time
-
-Regards,
-Jamal
-
---_000_MWHPR15MB1760BB8DDF46322CF5BCD7EBF08F0MWHPR15MB1760namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://sc=
-hemas.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-=
-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi Guys,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am using the latest branch of poky and meta-oe . I=
- need pygtk package for one of my application as it&#8217;s one of the requ=
-irement for it to run.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Pygtk is supported in Jethro branch. Do I need to sw=
-itch to Jethro branch for my project or did anyone port pygtk recipe port f=
-or the latest version.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Please help.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks for your help and time<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Jamal<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_MWHPR15MB1760BB8DDF46322CF5BCD7EBF08F0MWHPR15MB1760namp_--
+--000000000000054723056ad232b8--
