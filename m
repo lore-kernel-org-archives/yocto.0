@@ -1,62 +1,71 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20E21E008D2; Fri, 27 Apr 2018 05:34:35 -0700 (PDT)
+	id E66BBE009DF; Fri, 27 Apr 2018 06:27:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.196 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f196.google.com (mail-wr0-f196.google.com
-	[209.85.128.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22CDEE007F2
-	for <yocto@yoctoproject.org>; Fri, 27 Apr 2018 05:34:33 -0700 (PDT)
-Received: by mail-wr0-f196.google.com with SMTP id u18-v6so1631189wrg.3
-	for <yocto@yoctoproject.org>; Fri, 27 Apr 2018 05:34:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=PnSWIsGc5AmRLimkMZw37CkTNhPXWWevIEWMeq58cMg=;
-	b=oo7sWBA6hh6u+sCEcZUehk/0qiwkePg/0A4IPo7QOblAjVAhb/YrRC6uJ1vdjRD1No
-	oi9IEhq6hFZQF0UfYKfbSuiCzA03Cd6Jj0iS8d/6KPcQePrjZ8g8G1NYlkFyCzseojIu
-	ZbIXdK/TXMqDq7EylUmrzeOo0aiJV5yGPCthrtkrsEBD9YL1q7hPw7QESZ6o6Q/OJ7K2
-	WqMb/xnf65z+HVv/sFsEjyDzV4w4dPPXoa2NexXZMQAirsH49FSpEFEi6U3ggzAZj7Du
-	d94d/tO/AMDnnJxBWHixKoMeggdwX5Nc9O/zLREEZ6skwgFG5oZB+14XaQYAzf0kKuWW
-	95zw==
+Received: from mail-qt0-f194.google.com (mail-qt0-f194.google.com
+	[209.85.216.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAFCEE008D2
+	for <yocto@yoctoproject.org>; Fri, 27 Apr 2018 06:27:45 -0700 (PDT)
+Received: by mail-qt0-f194.google.com with SMTP id g13-v6so2195651qth.8
+	for <yocto@yoctoproject.org>; Fri, 27 Apr 2018 06:27:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=2SCK1IF8OMNvpM28M5rrmWfkETRb40Jz41GevcnnBNQ=;
+	b=I8g87hUhQIzhEDyU0KE/stDxnH9WCywBvuzml/ISmWFDJWJezAvl4bWWro7NUyRbow
+	R2X/c2JKXEyMuxQkvnDacdo2VGMqCknrVoXrEV/L/S8NiNUztESS5LTDCRvNow/DRfBR
+	vymn7xhCMJtYvcMnbINlveSSK244skhwtnU1c0pCJgJn98F+mgI3uVaPd5pn0OhyOivO
+	mq4iAc1w935gnrOo0awqsOamP88HUDL2JHITeIEz/32dzbpwdSlWoAv/OzyS0l04hRq9
+	PAYjf1F6YOKUWUQm4ht9vvW9f/2tTYgXwz4G9yOWQVxowOQdCTjHpuNhherkd8ojb4Jy
+	sxNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=PnSWIsGc5AmRLimkMZw37CkTNhPXWWevIEWMeq58cMg=;
-	b=H7ZrCwYIstQGsIGjY72o+AmKpqmlagl8CEUkE9HdyWbDZXn4QLEfkJDwv5fdc+lUNL
-	MJJJRUMKYCyM9kl2SvnDKDW2//etKyHA1XosyiuS17SukWVIMCYSt8A9naHuITwOqCYE
-	0PZw3IVncWKdCBWMIEp5Ym4K+6LiNp/aZ4Q2RvKceyGMoqtRaWtaBVadnpIqEZeZ1xhu
-	j58vSLvhaeHTd007Rf0ziN97BChLxkGvxFZXtnRaxWPt26ULiVNkq/jShPsjdQWRPZ4a
-	PA/jmjgC4Sr63LuuRAWS9jtW9cQu84yeA01QXto03fyItN7sWbPTQbIfnGDZSj8sjxZp
-	MQqQ==
-X-Gm-Message-State: ALQs6tCJEofcSZg9zpbi0uF3XPKcqxmQwm66jnRgcIK4JPKp3VXNApCl
-	BsP4PAP0ZVH/I3Un8oCMgrEenmWU
-X-Google-Smtp-Source: AB8JxZpCqLd7Xe+kG/zazVegSjCuxP9FknVDQwW7qhmYYntaUAWAn6ssqB2OXe19dMJP8HkyzoBnXg==
-X-Received: by 2002:adf:b8eb:: with SMTP id
-	c40-v6mr1536414wrg.170.1524832472307; 
-	Fri, 27 Apr 2018 05:34:32 -0700 (PDT)
-Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa.
-	[81.2.106.35])
-	by smtp.gmail.com with ESMTPSA id u5sm1873149wmd.40.2018.04.27.05.34.31
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 27 Apr 2018 05:34:31 -0700 (PDT)
-From: Ross Burton <ross.burton@intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 27 Apr 2018 13:34:26 +0100
-Message-Id: <20180427123426.13194-1-ross.burton@intel.com>
-X-Mailer: git-send-email 2.11.0
-Subject: [PATCH V2][meta-mingw] machine-sdk: split out common configuration
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=2SCK1IF8OMNvpM28M5rrmWfkETRb40Jz41GevcnnBNQ=;
+	b=ZLAwh9MJGrEDfp1j8XXHGtpIdE/C+m8swvtE1nzFq2WCWwi50mvoK3lY/uD4C7KZTn
+	ZzzVOzRdVqHcatuQfvoLl+Un74OI7QoaMTGy2oOv2NGgsd8kefdJs1mJLHX0SN0pUFiF
+	wMlkw/DfUpDNr8w/Vq1GCZqoMTh5o9X3CgfEFMNHMdUr4ZXah0bRKhFe34dkhTsSRGi5
+	KNnA8i+QztssMfS0Mjy8hqFwr9j4+Pr3HMkwN97nr+CkGqz4tNpo0+c18ipTGkiuWVIv
+	lBC6npXAEaJz4vM+Fq0TerSQya3vLzcuetZn4SpkBE/Uaoe6FcwRwTTp9fT5hUSbF0nC
+	S9PA==
+X-Gm-Message-State: ALQs6tBdkG+G5nNvUAGIEDTBVhBedpSDZUjgZL7WDVnxSFJ2br9U3ouX
+	Z4chVL/uj5uAr4U3R0xC+AQCKzt6Mf894zXwz6o=
+X-Google-Smtp-Source: AB8JxZpGSP+yJviIuMsa6r0pU382SEY6AW6mwxNT6Z3QkHTjWgO6g1X429fd4KewthEbHRm/W14BbhJ80nEXn6A97/c=
+X-Received: by 2002:aed:222b:: with SMTP id
+	n40-v6mr2012778qtc.146.1524835664939; 
+	Fri, 27 Apr 2018 06:27:44 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.12.173.106 with HTTP; Fri, 27 Apr 2018 06:27:44 -0700 (PDT)
+In-Reply-To: <ba29cba8-2f67-7f7d-351e-04a59a732b9c@balister.org>
+References: <20180425150333.GA9349@graute-opti>
+	<CAJ86T=VSrF4P6-CCTQFJa20i+qgwQby1to4haFd88UMZaghmtQ@mail.gmail.com>
+	<5ae1f5fc.0790500a.2fb14.0681@mx.google.com>
+	<CAGAf8LwkCDyzkej_c31EjtxXBDP+dqx5ihMCwuBH5CDP5X5T4w@mail.gmail.com>
+	<20180427061932.GB9349@graute-opti>
+	<ba29cba8-2f67-7f7d-351e-04a59a732b9c@balister.org>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Fri, 27 Apr 2018 15:27:44 +0200
+Message-ID: <CAGAf8LxXm9jcKeAqPqZKgKACsSLnFZXQoxLD6hN8DEaZL9+1cg@mail.gmail.com>
+To: Philip Balister <philip@balister.org>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: yocto jethro failed on gettext-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,145 +77,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Apr 2018 12:34:35 -0000
+X-List-Received-Date: Fri, 27 Apr 2018 13:27:48 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- conf/machine-sdk/i686-mingw32.conf          | 36 +----------------------------
- conf/machine-sdk/include/mingw32-common.inc | 36 +++++++++++++++++++++++++++++
- conf/machine-sdk/x86_64-mingw32.conf        | 36 +----------------------------
- 3 files changed, 38 insertions(+), 70 deletions(-)
- create mode 100644 conf/machine-sdk/include/mingw32-common.inc
+> Take a look at BIOS settings. I had a board that was overclocking based
+> on CPU temperature, which failed miserably when you actually used all
+> the cores. Disable such settings.
 
-diff --git a/conf/machine-sdk/i686-mingw32.conf b/conf/machine-sdk/i686-mingw32.conf
-index f85b05d..5090168 100644
---- a/conf/machine-sdk/i686-mingw32.conf
-+++ b/conf/machine-sdk/i686-mingw32.conf
-@@ -1,37 +1,3 @@
- SDK_ARCH = "i686"
--SDK_OS = "mingw32"
- 
--GCCTHREADS_mingw32 = "win32"
--
--PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-for-gcc_mingw32 = "nativesdk-mingw-w64-runtime"
--PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-initial_mingw32 = "nativesdk-mingw-w64-runtime"
--PREFERRED_PROVIDER_virtual/nativesdk-libc = "nativesdk-mingw-w64-runtime"
--PREFERRED_PROVIDER_virtual/nativesdk-libintl = "nativesdk-gettext"
--PREFERRED_PROVIDER_virtual/nativesdk-libiconv = "nativesdk-libiconv"
--
--USE_NLS_mingw32 = "no"
--
--FILES_${PN}-staticdev_append_mingw32 = " ${libdir}/*.lib"
--ALLOW_EMPTY_${PN}_mingw32 = "1"
--
--# Do what amounts to a NOOP
--SDK_PACKAGING_FUNC = "do_compile"
--
--# Causes an endless loop
--#SDKTAROPTS_append = " -h --hard-dereference"
--
--SDKUSE_NLS = "no"
--SDKIMAGE_LINGUAS = ""
--SDK_DEPENDS_remove = "nativesdk-glibc-locale"
--
--SDKPKGSUFFIX = "nativesdk-mingw32"
--
--MACHINEOVERRIDES .= ":sdkmingw32"
--
--export WINDRES = "${HOST_PREFIX}windres --include-dir=${STAGING_INCDIR}"
--export RC = "${WINDRES}"
--
--BB_HASHBASE_WHITELIST_append = " WINDRES RC"
--
--# Needed to override no-static-libs.inc
--DISABLE_STATIC_mingw32 = ""
-+require conf/machine-sdk/include/mingw32-common.inc
-diff --git a/conf/machine-sdk/include/mingw32-common.inc b/conf/machine-sdk/include/mingw32-common.inc
-new file mode 100644
-index 0000000..53bac4c
---- /dev/null
-+++ b/conf/machine-sdk/include/mingw32-common.inc
-@@ -0,0 +1,36 @@
-+SDK_OS = "mingw32"
-+
-+GCCTHREADS_mingw32 = "win32"
-+
-+PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-for-gcc_mingw32 = "nativesdk-mingw-w64-runtime"
-+PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-initial_mingw32 = "nativesdk-mingw-w64-runtime"
-+PREFERRED_PROVIDER_virtual/nativesdk-libc = "nativesdk-mingw-w64-runtime"
-+PREFERRED_PROVIDER_virtual/nativesdk-libintl = "nativesdk-gettext"
-+PREFERRED_PROVIDER_virtual/nativesdk-libiconv = "nativesdk-libiconv"
-+
-+USE_NLS_mingw32 = "no"
-+
-+FILES_${PN}-staticdev_append_mingw32 = " ${libdir}/*.lib"
-+ALLOW_EMPTY_${PN}_mingw32 = "1"
-+
-+# Do what amounts to a NOOP
-+SDK_PACKAGING_FUNC = "do_compile"
-+
-+# Causes an endless loop
-+#SDKTAROPTS_append = " -h --hard-dereference"
-+
-+SDKUSE_NLS = "no"
-+SDKIMAGE_LINGUAS = ""
-+SDK_DEPENDS_remove = "nativesdk-glibc-locale"
-+
-+SDKPKGSUFFIX = "nativesdk-mingw32"
-+
-+MACHINEOVERRIDES .= ":sdkmingw32"
-+
-+export WINDRES = "${HOST_PREFIX}windres --include-dir=${STAGING_INCDIR}"
-+export RC = "${WINDRES}"
-+
-+BB_HASHBASE_WHITELIST_append = " WINDRES RC"
-+
-+# Needed to override no-static-libs.inc
-+DISABLE_STATIC_mingw32 = ""
-diff --git a/conf/machine-sdk/x86_64-mingw32.conf b/conf/machine-sdk/x86_64-mingw32.conf
-index ec801c3..fc53822 100644
---- a/conf/machine-sdk/x86_64-mingw32.conf
-+++ b/conf/machine-sdk/x86_64-mingw32.conf
-@@ -1,37 +1,3 @@
- SDK_ARCH = "x86_64"
--SDK_OS = "mingw32"
- 
--GCCTHREADS_mingw32 = "win32"
--
--PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-for-gcc_mingw32 = "nativesdk-mingw-w64-runtime"
--PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-initial_mingw32 = "nativesdk-mingw-w64-runtime"
--PREFERRED_PROVIDER_virtual/nativesdk-libc = "nativesdk-mingw-w64-runtime"
--PREFERRED_PROVIDER_virtual/nativesdk-libintl = "nativesdk-gettext"
--PREFERRED_PROVIDER_virtual/nativesdk-libiconv = "nativesdk-libiconv"
--
--USE_NLS_mingw32 = "no"
--
--FILES_${PN}-staticdev_append_mingw32 = " ${libdir}/*.lib"
--ALLOW_EMPTY_${PN}_mingw32 = "1"
--
--# Do what amounts to a NOOP
--SDK_PACKAGING_FUNC = "do_compile"
--
--# Causes an endless loop
--#SDKTAROPTS_append = " -h --hard-dereference"
--
--SDKUSE_NLS = "no"
--SDKIMAGE_LINGUAS = ""
--SDK_DEPENDS_remove = "nativesdk-glibc-locale"
--
--SDKPKGSUFFIX = "nativesdk-mingw32"
--
--MACHINEOVERRIDES .= ":sdkmingw32"
--
--export WINDRES = "${HOST_PREFIX}windres --include-dir=${STAGING_INCDIR}"
--export RC = "${WINDRES}"
--
--BB_HASHBASE_WHITELIST_append = " WINDRES RC"
--
--# Needed to override no-static-libs.inc
--DISABLE_STATIC_mingw32 = ""
-+require conf/machine-sdk/include/mingw32-common.inc
--- 
-2.11.0
+This has nothing to do with this particular problem. You simply, since
+you over-clocked CPU, reached very quickly TDP1 (using all cores),
+then reached beyond so-called TDP2 (since you did not setup CMOS
+correctly), which initiated/triggered HW control called /PROCHOT... In
+order to save CPU from physical damage, since you have reached very
+close to Junction T.
 
+Even if you did setup thresholds correctly, CPU probably went to
+hold/blocked state for some limited time to throttle, in order to cool
+down... Then these YOCTO failing effects might be visible, but I have
+no idea how (most likely some overheated cores got thread of
+execution/HyperThreads pipeline stale/lost)!?
+
+My best guess, IMHO!
+
+Zoran
+_______
+
+On Fri, Apr 27, 2018 at 2:04 PM, Philip Balister <philip@balister.org> wrote:
+> On 04/27/2018 02:19 AM, Oliver Graute wrote:
+>> On 26/04/18, Zoran Stojsavljevic wrote:
+>>>> I deleted all the build-imx6ulevk folder and build everything from
+>>>> scratch with only one thread, waited a few hours for compilation and now
+>>>> its working ;)
+>>>
+>>> Still, I am struggling to understand why??? What is the requirement
+>>> behind this ask?
+>>
+>> The requirement was just get our older yocto (jethro) build running on a
+>> PC of a different developer. Often developers have their own flavor of
+>> Ubuntu releases and they update to newer versions while they still
+>> develop on yocto releases which is much older. Because that yocto
+>> release is currently in the field by our costumer. Our product cycle is
+>> not so fast to use the newest yocto releases. We started to develop when
+>> jethro was up to date.
+>>
+>> We compiled single threaded just because his PC is a bit unstable on
+>> high load. And it crashed a few times on parallel makes. I know that
+>> this is not ideal for yocto development.
+>
+> Take a look at BIOS settings. I had a board that was overclocking based
+> on CPU temperature, which failed miserably when you actually used all
+> the cores. Disable such settings.
+>
+> Philip
+>
+>
+>>
+>>>
+>>> As we see, it is much longer (one thread only) than on 14.04!?
+>>
+>> its takes much longer then with settings
+>>
+>> PARALLEL_MAKE = "-j 4"
+>> BB_NUMBER_THREADS = "4"
+>>
+>>> Could you, please, do it on Ubuntu 17.04, or 17.10 (i bet, you
+>>> can't)??? And why, after all???
+>>
+>> currently not im using only Ubuntu LTS Releases.
+>> Perhaps I will try 18.04  LTS which released yesterday ;)
+>>
+>> Best regards,
+>>
+>> Oliver
+>>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
