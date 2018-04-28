@@ -1,56 +1,39 @@
-Return-Path: <bluehills7@comcast.net>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BBCE0E008BF; Fri, 27 Apr 2018 16:26:09 -0700 (PDT)
+	id D4D66E009DC; Fri, 27 Apr 2018 19:21:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bluehills7[at]comcast.net)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [69.252.207.33 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from resqmta-ch2-01v.sys.comcast.net
-	(resqmta-ch2-01v.sys.comcast.net [69.252.207.33])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9198CE00823
-	for <yocto@yoctoproject.org>; Fri, 27 Apr 2018 16:26:07 -0700 (PDT)
-Received: from resomta-ch2-19v.sys.comcast.net ([69.252.207.115])
-	by resqmta-ch2-01v.sys.comcast.net with ESMTP
-	id CBkUfFSlJySmGCCkhfpcxO; Fri, 27 Apr 2018 23:26:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
-	s=q20161114; t=1524871567;
-	bh=oR+fwVty3GSb9mzf4PYSwIhFij/iGwWlnYhrfzt9TX4=;
-	h=Received:Received:From:Content-Type:Mime-Version:Subject:
-	Message-Id:Date:To;
-	b=gE8YPMD+H65vZXpOYntNn3eubiHFohKhT9ZPPvNPpNeNd0ZxLBBw9wXyXH06rtgWB
-	gaxbu+be9brKjvMtgNUYwBAJBRkQmsyY5QxjJ1M1rioO8Tfu4AM4wnklswEEwd4SPQ
-	dWsk7KUdUYXdN40cvawuFAr71Z5rHvh3IGQ9Cxk78EXWqhJ+gXwgNOs4QtyfzBC2UP
-	zj+VVCH8xjc/ci4W7CLEUnMdzywEJWzSCQrIJFY2YiADVj6wLVkOONxROlE7azOqe9
-	o9nzlyDX45ScnAHl6XSV8OTQYQgesYkGeJPtPaC5bh1G++zHaPunOZTL6CoQ5YLifM
-	KNoNO0AcANKyw==
-Received: from [IPv6:2601:18f:880:9aeb:d5d3:c56d:56b7:5bb5]
-	([IPv6:2601:18f:880:9aeb:d5d3:c56d:56b7:5bb5])
-	by resomta-ch2-19v.sys.comcast.net with ESMTPSA
-	id CCkff5sv53rorCCkgfIiwv; Fri, 27 Apr 2018 23:26:07 +0000
-From: Russell Peterson <bluehills7@comcast.net>
-Mime-Version: 1.0 (Mac OS X Mail 11.2 \(3445.5.20\))
-Message-Id: <7ED8F308-F150-4C07-9FA9-325E45D1388B@comcast.net>
-Date: Fri, 27 Apr 2018 19:26:04 -0400
-To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3445.5.20)
-X-CMAE-Envelope: MS4wfDoqIKPvFCuB+8dHEnzfv1yJwfSW+uhTgR+0Yn9OysCK36RZsuYETmVKWdHK+ubMwug+g13A5QWSclMg+oPlx+9Kec5sI2MVPu1N91g9XpNcpLTkYXwn
-	5IdiJtT2AghXg3jFzFMIV+5LbtTTVuXJ8y+V6WFHuZa0/mPmoAv/C2jidtqpMTl2y/OY91ZX9cBuC4WVnTxoy08kWoQeNxjDxA/zlfDndcbOTNPSrZzElKvW
-	C3rTbrdMHIrnAAp+IK2pKAXUIf5qiaSzUP0Nl/VxEVen6fPwY+/Dk2w7Iz2/bBa0
-Subject: python & xml2
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D90F5E008BF
+	for <yocto@yoctoproject.org>; Fri, 27 Apr 2018 19:21:23 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w3S2KZu1012880
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 27 Apr 2018 19:20:56 -0700
+Received: from [128.224.20.59] (128.224.20.59) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
+	Fri, 27 Apr 2018 19:20:41 -0700
+To: Andre McCurdy <armccurdy@gmail.com>, Damien LEFEVRE <lefevre.da@gmail.com>
+References: <CA+FhBv87F=hTjo5R3kt1KiK4oghwxEgxBGh5NEAUdHFoLLjvbQ@mail.gmail.com>
+	<CAJ86T=Ui20qYO0p_WFpZSjJAK6an2-i_bmhM+Oyp+avWbt5fiA@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <35bcadb3-3ceb-94a1-fd5b-80da39e62c11@windriver.com>
+Date: Fri, 27 Apr 2018 22:20:46 -0400
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.7.0
+MIME-Version: 1.0
+In-Reply-To: <CAJ86T=Ui20qYO0p_WFpZSjJAK6an2-i_bmhM+Oyp+avWbt5fiA@mail.gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: LINUX_VERSION issue in recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,17 +45,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Apr 2018 23:26:09 -0000
-Content-Type: text/plain;
-	charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 28 Apr 2018 02:21:25 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-I am trying to install libxml2 for python2 in my image recipe.  Seems =
-like it is being installed in the python3 site packages directory =
-instead of the python2 site packages directory.  While looking into this =
-I have become very confused.  Is there some documentation on this?  Do I =
-need to set some kind of variable in the xml2 recipe??
 
-Russell
 
+On 4/27/2018 5:34 PM, Andre McCurdy wrote:
+> On Fri, Apr 27, 2018 at 3:44 AM, Damien LEFEVRE <lefevre.da@gmail.com> wrote:
+>> Hi,
+>>
+>> This must be a stupid basic question. I have the following recipe append:
+>>
+>> keymaps_1.0.bbappend
+>> -----------------------------------------------------------------------------
+>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>> SRC_URI_append = " file://keymaps.service \
+>>                     file://keymap.sh \
+>> "
+>>
+>> do_install_append() {
+>>      install -d ${D}${sysconfdir}
+>>      ln -sf /usr/share/keymaps/i386/qwerty/fi.map.gz
+>> ${D}${sysconfdir}/keymap-${LINUX_VERSION}.map.gz
+>>
+>>      install -d ${D}${systemd_system_unitdir}
+>>      install -m 0644 ${WORKDIR}/keymaps.service ${D}${systemd_system_unitdir}
+>> }
+>>
+>> FILES_${PN} += " ${sysconfdir}/* \
+>>                   ${systemd_system_unitdir}/* \
+>> "
+>>
+>> inherit systemd
+>> SYSTEMD_SERVICE_${PN} = "${PN}.service"
+>> -----------------------------------------------------------------------------
+>>
+>> The LINUX_VERSION is not expanded and the final symlink name becomes
+>> /etc/keymap-.map.gz.
+>>
+>> What's correct way to get the linux version in the recipe files?
+> 
+> In general, there isn't a correct way to do that. The LINUX_VERSION
+> variable is defined within the kernel recipe and other recipes won't
+> have access to it.
+> 
+> A core concept in OE is that recipes build independently of each
+> other. In this case, since the keymaps recipe has no direct dependency
+> on the kernel, you should not expect the keymaps recipe to be rebuilt
+> (or affected in any way) when the kernel or kernel version changes.
+
+Yep. Unless you inherit the kernel build classes there's no
+easy way to do this. But if the kernel classes are inherited,
+then some of the variables like KERNEL_VERSION become available
+to use .. but of course, you've just tightly coupled things to
+the kernel.
+
+Cheers,
+
+Bruce
+
+> 
+> The keymaps init script ( meta/recipes-bsp/keymaps/files/keymap.sh )
+> detects the kernel version dynamically at runtime. If you need a
+> kernel version specific symlink in your target rootfs, maybe you could
+> create it at runtime from your keymaps service file?
+> 
 
