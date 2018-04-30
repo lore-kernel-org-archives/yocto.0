@@ -1,105 +1,133 @@
-Return-Path: <robin.l.jordan@intel.com>
+Return-Path: <mkelly@xevo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72020E00C2B; Mon, 30 Apr 2018 07:57:15 -0700 (PDT)
+	id B1531E00C40; Mon, 30 Apr 2018 12:29:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.38.65 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17666E00C25
-	for <yocto@yoctoproject.org>; Mon, 30 Apr 2018 07:57:13 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	30 Apr 2018 07:57:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,346,1520924400"; 
-	d="scan'208,217";a="220487829"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by orsmga005.jf.intel.com with ESMTP; 30 Apr 2018 07:57:12 -0700
-Received: from ORSEDG001.ED.cps.intel.com (10.7.248.4) by
-	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 30 Apr 2018 07:57:12 -0700
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com (207.46.163.118)
-	by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP
-	Server (TLS) id 14.3.319.2; Mon, 30 Apr 2018 07:57:12 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
-	s=selector1-intel-com;
+X-Greylist: delayed 3609 seconds by postgrey-1.32 at yocto-www;
+	Mon, 30 Apr 2018 12:29:07 PDT
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+	(mail-bl2nam02on0065.outbound.protection.outlook.com [104.47.38.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC813E00B66
+	for <yocto@yoctoproject.org>; Mon, 30 Apr 2018 12:29:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=F1AhU61l2Ptf9vLnOWX6Ouxbw/OpxNSZQen1QmE0wIk=;
-	b=DplHkN7cTu6BFp62MNFRIMg2k/V6P1lnUNIvjYln7ar0MXvPbehnxEWHYXDiLMHajoDyNW9l2YFDsIcq/WQJthRcVYvMHCSY+qvVV5JfulJM7TghNB3LinIkdeLBTv0LXJeyPYsHnmYb1gk9ht/wGO6leqXIIuaQjTVC088TSPQ=
-Received: from CY4PR11MB1766.namprd11.prod.outlook.com (10.175.81.12) by
-	CY4PR11MB1719.namprd11.prod.outlook.com (10.173.16.23) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.696.15; Mon, 30 Apr 2018 14:57:08 +0000
-Received: from CY4PR11MB1766.namprd11.prod.outlook.com
-	([fe80::415e:d567:c492:6651]) by
-	CY4PR11MB1766.namprd11.prod.outlook.com
-	([fe80::415e:d567:c492:6651%16]) with mapi id 15.20.0696.023;
-	Mon, 30 Apr 2018 14:57:08 +0000
-From: "Jordan, Robin L" <robin.l.jordan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: =?Windows-1252?Q?Yocto_Project_Status_WW18=9218?=
-Thread-Index: AdPgk3Utk6swKFmqQreT4g88bTjsPw==
-Importance: high
-X-Priority: 1
-Date: Mon, 30 Apr 2018 14:57:07 +0000
-Message-ID: <CY4PR11MB17663072FF2A272554D43D62C7820@CY4PR11MB1766.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.200.100
-dlp-reaction: no-action
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=robin.l.jordan@intel.com; 
-x-originating-ip: [192.55.52.196]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; CY4PR11MB1719;
-	7:aD8MVis3ClVADN38EGiTAEnv+PAgEp+LSgMSRToHXtL5yDJNYi25Q0Zicu2x9HT2zZd4YlVS1B2MgpmNqM9gimM3LyKJxfDPG05F3mnGrY7BzJNp+ZHFYyR7E7twQt7D+QNWC+lH7SnKYD6Tx249k73zmhNcnNRPDG8lzsEqXOOWiNkdEDrIUxXGo9aqFW9e+PbfKIpGAgAdoZLY/mfYMF79vRq6CQak5ykrIFW4apsq864ESwlKmkcw/BjKprRs
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(5600026)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603328)(7153060)(7193020);
-	SRVR:CY4PR11MB1719; 
-x-ms-traffictypediagnostic: CY4PR11MB1719:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <CY4PR11MB17192AFC7328D77F6E7B1F92C7820@CY4PR11MB1719.namprd11.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(28532068793085)(20558992708506)(264703809997249)(21748063052155);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(8121501046)(5005006)(10201501046)(93006095)(93001095)(3002001)(3231254)(944501410)(52105095)(6041310)(20161123560045)(20161123564045)(20161123562045)(20161123558120)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(6072148)(201708071742011);
-	SRVR:CY4PR11MB1719; BCL:0; PCL:0; RULEID:; SRVR:CY4PR11MB1719; 
-x-forefront-prvs: 0658BAF71F
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(396003)(39380400002)(39840400004)(366004)(376002)(346002)(199004)(189003)(5250100002)(8936002)(66066001)(316002)(476003)(105586002)(2501003)(21615005)(33656002)(3280700002)(2906002)(97736004)(110136005)(68736007)(106356001)(186003)(2900100001)(606006)(486006)(81166006)(86362001)(53936002)(3846002)(26005)(790700001)(5660300001)(3660700001)(54896002)(55016002)(102836004)(81686011)(6116002)(99286004)(6506007)(14454004)(7736002)(81156014)(25786009)(966005)(59450400001)(236005)(478600001)(6306002)(74316002)(9686003)(6436002)(7696005);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:CY4PR11MB1719;
-	H:CY4PR11MB1766.namprd11.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-x-microsoft-antispam-message-info: 6ltKHNoYiBsi4V84L1njBgthxpEmWFChPrKKJWwG8hHls+TmVuyY84xkcQmYVUCglDoOBhk0x9ctG6ttqZSKBKX3um6jQAfHV6fiQxujOGEv4nWnCh4d5yGCa1VqwypFgZrcS4UqBJBm/cwfnHHRf1r3tlYRJ8tGZpyii5bL39rxkrW3+qWySlVXe1e+/OG2
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	bh=TRTuWnIDLiss5yq0k3j/6c0RVq0R+717+sGExGfBE+Y=;
+	b=rQLBJyWo8DFeyhV7HvWEJ7SnD0Kd50pzOmnlf3uq4RcNN5nnD0HrVvaA7Ewz14QL9ut/CN/lNIHcXqWp65Vd6SF6IDmsXnILWPECvPashH4a16fIHK6m88GZw+f8DmidqC0FAS40kI3oEiL/fSvMv9VC8/80M3Zdo97JNSrDIkA=
+Authentication-Results: spf=none (sender IP is )
+	smtp.mailfrom=mkelly@xevo.com; 
+Received: from [192.168.0.3] (174.21.182.65) by
+	SN6PR0102MB3421.prod.exchangelabs.com (2603:10b6:805:3::10) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.715.20;
+	Mon, 30 Apr 2018 17:54:45 +0000
+To: Scott Rifenbark <srifenbark@gmail.com>
+References: <20180427174642.24184-1-mkelly@xevo.com>
+	<CAFNP8Os_yoYfEFefKnu_zP+yj1CMNoaaL4Rdjb9zfzUA04Tbcw@mail.gmail.com>
+From: Martin Kelly <mkelly@xevo.com>
+Message-ID: <83e8b05e-95f8-fc3c-0057-4f2742cf8228@xevo.com>
+Date: Mon, 30 Apr 2018 10:54:37 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.7.0
 MIME-Version: 1.0
-X-MS-Office365-Filtering-Correlation-Id: dd30fa3e-911e-4ba5-6732-08d5aeaaa527
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd30fa3e-911e-4ba5-6732-08d5aeaaa527
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2018 14:57:07.9883 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1719
-X-OriginatorOrg: intel.com
-Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1cxOOKAmTE4?=
+In-Reply-To: <CAFNP8Os_yoYfEFefKnu_zP+yj1CMNoaaL4Rdjb9zfzUA04Tbcw@mail.gmail.com>
+X-Originating-IP: [174.21.182.65]
+X-ClientProxiedBy: MWHPR15CA0031.namprd15.prod.outlook.com
+	(2603:10b6:300:ad::17) To SN6PR0102MB3421.prod.exchangelabs.com
+	(2603:10b6:805:3::10)
+X-MS-PublicTrafficType: Email
+X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(5600026)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603328)(7153060)(7193020);
+	SRVR:SN6PR0102MB3421; 
+X-Microsoft-Exchange-Diagnostics: 1; SN6PR0102MB3421;
+	3:uPTKE4kdYEDpyvJFyJPSo2c2GOVEhDyYmgtbgArMpIZuwiMdK++7jucDWj8lAd3tU5iXWB5Ymdyah7RHq+HuBMBI/GfBZnG46IjLl5vHDUmMqZBJYLBqSviuYRGIFhT2kk4CNaFmwzyH+dJ3jnaXLcqSE3YmboYenftvWeUleila4tJSDgTkznqESinyoXkW34fSQwHH4rO24hos/twmasueFooaso0pV+pTASOTEzV1dB5hDfv5sJLCaD+5d5Qm;
+	25:h0lkt132JVQPomuFjOlZG7G+1J5K/WDEaJv4FKuG+JZrc/YSzg8vIK+AaQvmHvqf7ZJneDg6hLLvPTiDNK4GRIkRPuMrbKtpckZlln2x4BxZhiX+JPWpPD+KFodtkxdM+AuEaRY5kl8xofEX73rniFdTVQav96OywUpvKcxSQKCLcV8b1lNzNMQOJDb4gk36kudcQd/Unm1iDLd21tPb5WUAFJQMSMmq+ffYVM9qGhnpS+2C1x/cey1c/Zd7rLP+1Ie0KzmC6XoFXQzFpuhdJLCb2MrwWqxsDgcRlbvep3ooCP9xeWaeCa1SMqknXj5fmjkppeU+U/dwnOJglVzx3A==;
+	31:euAmCXzyGT6lOuHv0lscozUpywW4kggantuJtwTjC+Wz4hXBMiCcvcd/5eZE2J12Iyl4AvF4qslwjMReSnwj4NPgpLCf7FI3tPqMBqJ4o6isBfQVLkxnzOgoUjywp8/2xjGFuIufziPPrdnXIbSEPOV8UCoKIW4zgxEkYhMjolz8URHCf22LmCGraPfEDmgDyVSONJ5qRoZJEEB2Uavh+bR5iT18GLv4Du4iWLMfaSw=
+X-MS-TrafficTypeDiagnostic: SN6PR0102MB3421:
+X-Microsoft-Exchange-Diagnostics: 1; SN6PR0102MB3421;
+	20:V8n4loRKmtSt5eQnOYiVZbnQ55g93Fo/JlxvEZCP2sbbqpS+FfseCz+10WyK8L8Iqk8NUw+Ym4w68JTMu3QEMNz33WJsFWJzgplyW+uxJke7Ig/YAROGVE3gYPHzIhlg7PKQgaG2sj9APx2nI47HX1vpK7SXsfUgXIeb+QKnCNEw7EYrRZY3WRLBVHoHwZn6fB0j7NTmADU2Od/CLL4+fjsSj1bqY4cZBPAtDOmaQqlkAhEAZMTrcMmEry/Z66kC9YFLnC0nWpo3lm4xVpjK3S2bXrVAB9zRyJG8YiElF7BvQWJPuPkmVgVL26EmDjru2fe7WTvdjkbYfgTu+lpD7VpQfqFXsUf2UgjQeA1NYgwJ39EsDozNTITX23jBY2s5DnqhmFPt06ZJopIMdVWjJxvB+TtIYmTXk6okzmWBv/rVOMc+cZEzSKdA7tbCOfsz6xGD8kbTdHsiESgctt+iVgHwQeSbgHVyTsAw10o1Lz864uq6rlTE6aIJ3N+hiztL;
+	4:dNY3N8qvG3VkkjeSakGCb2FdJGBdgxDRD14xp/4sN1onPC8VHTxiPSJq4rhgxY5qWsyvFuFzfykKTlXzJ4yZtKjSKMC3wOLGxJHLm9T2/lj7s9Igdj9bCt9cOvVzpdwkFf8j6q8aGZXF7leuL2WOGPpjeI4qibj54kFj+BzOY96EpleDi3/xvx669G2Gbig+1HF835QQx+BnDGxqPGjQSdL/j1kjNfbHXAeRAWopFN5+FJyS1Lf49l1icv4NQROt0cFf/sP+eUOcc8aUyhuYbw==
+X-Microsoft-Antispam-PRVS: <SN6PR0102MB3421641E0E7B32865685D6C0AB820@SN6PR0102MB3421.prod.exchangelabs.com>
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(6040522)(2401047)(5005006)(8121501046)(3002001)(3231254)(944501410)(52105095)(10201501046)(93006095)(93001095)(6041310)(20161123564045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123562045)(20161123560045)(20161123558120)(6072148)(201708071742011);
+	SRVR:SN6PR0102MB3421; BCL:0; PCL:0; RULEID:;
+	SRVR:SN6PR0102MB3421; 
+X-Forefront-PRVS: 0658BAF71F
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10009020)(6049001)(396003)(39840400004)(346002)(366004)(376002)(39380400002)(199004)(189003)(81166006)(67846002)(64126003)(6246003)(106356001)(31686004)(4326008)(50466002)(76176011)(386003)(16526019)(53936002)(5660300001)(68736007)(25786009)(52116002)(26005)(86362001)(3846002)(53546011)(65826007)(6116002)(39060400002)(77096007)(8676002)(31696002)(6306002)(117156002)(81156014)(52146003)(2486003)(2906002)(65806001)(23676004)(65956001)(229853002)(54906003)(186003)(305945005)(47776003)(316002)(486006)(97736004)(446003)(6666003)(966005)(2616005)(7736002)(476003)(6486002)(1411001)(11346002)(956004)(66066001)(2870700001)(16576012)(8936002)(105586002)(478600001)(58126008)(36756003)(6916009);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:SN6PR0102MB3421; H:[192.168.0.3];
+	FPR:; SPF:None; LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+Received-SPF: None (protection.outlook.com: xevo.com does not designate
+	permitted sender hosts)
+X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtTTjZQUjAxMDJNQjM0MjE7MjM6UEhoY1l3NVhKTDU4T0NtUjBzMy9qVFoz?=
+	=?utf-8?B?bkJRNHpqcm42RnV0NUowck1YSWlSWTBoN3laeFZud3JTdTRVMmFvd1ZuNEQ2?=
+	=?utf-8?B?SWs3MUdxV1laZkNZQnRzTUlSYndtTU1FYXExY1lzZzdNQ1R1MTJGaVI3WTQy?=
+	=?utf-8?B?RWZWM3RYOTllOStTUUFLV016R2ZBOUJjZW80TlhWZFRJZmswSENvVGUrOGtq?=
+	=?utf-8?B?cmVOT05ObktDUUVsVkwzSUpnYU1UVW9paGVhL3dWWFpueEJXcEhqLy9nQ3ZG?=
+	=?utf-8?B?SkxPTzVMM3oyenZieFMxU1FTRnFvUVB4dE1jdmI0cWpZZTlGdnNUR294UEox?=
+	=?utf-8?B?OVV2aEFtdG1rWk4zNXFUMzZidjMrS3c4aDJVMXhBZHA4c0JnVExRamlmQjFk?=
+	=?utf-8?B?YVpIek5MQnhXaXFqbFhQM3lvY1FKelJjc01XRE9maGdhL2szc1ZRU2FqbEp0?=
+	=?utf-8?B?aGQ1YVZtSXJmQ1ZKOTZxdk1sZWdORGp3UFMxczF4N3pVYjYvM0ExL0lHOVZS?=
+	=?utf-8?B?eUIvT0VGRlBKTENRVDFQUDMvdndPVDJ4NlFRWHk3cklCMG1iK20vQXRqR3pF?=
+	=?utf-8?B?QkJGc1JQS3lSUjcvM00zMms4azFyMlFnNm9Ga0xSTTZIbG1hQ0ZjRjYxbFc4?=
+	=?utf-8?B?WG92UDJVMFNKZjlOaE9OT1B4dkhmNE9qK1FpSHRkZ2NEdFN1MlF2aWkrV2du?=
+	=?utf-8?B?V1NLWlYzbVJtUmZJM3hhOUNPNE51QXliZVFIOHBoK2toNVRKSjZidUF2bHpo?=
+	=?utf-8?B?YnpVcDJCaUpSZ0wxYy9EQUxVVUo1eEE3WVYwTWJsYmZ1WW9nUjNrY0tMQXpJ?=
+	=?utf-8?B?a3ZReWtrUFFMOCtNTzVyTW9BU04vaTQ3a0JFRi9Pb0JoaS9JVEhVUTliMUIx?=
+	=?utf-8?B?ZWlRcHo0N2ZaUE1DS056ZlJsNk9oekZqZHUvQ1NGb05VOU5MVGRLMGVmV2pp?=
+	=?utf-8?B?UjZuVWRRUGxWY2tmN2c3THBBby9RRzRrL0JMTGorMmY0UnNsTDFiTkgzRC8v?=
+	=?utf-8?B?am9zQTZsRVovZXVjNjVXbmdKeXZReFZCZzFwbWNyVG4raTFEcE13RVBoZUlq?=
+	=?utf-8?B?YzNsWC9JSEttbHcyMUluRjFyb1FOT0h4SVN0dUszWUxpVkoybWhzMngxck1m?=
+	=?utf-8?B?NDlTNkVDTmhpcXJFZllkVyt1THYwQzg5c21RWDQvbVlOTzJMcVY0SlRFa0Y1?=
+	=?utf-8?B?QUhHT3gyUm40V053VFFWRDlkamwra1BMeTAzZ2RkZzY2Wm1IQnR1UkhmRHZ6?=
+	=?utf-8?B?emdjeFlsUFdkMWN0Y0JZZ056b200aTVSSEpyelNUZjdsclJZNzBaVVNSNDJQ?=
+	=?utf-8?B?d0c0bE16elJpbXdpR3BpOGRPWnJOOHNIL3FibDZkMC9sNDFEb1hzVzBsc2VJ?=
+	=?utf-8?B?ZU1IQ3hjdVIyMkFlNHlPSkFKa3pDcngrckRnamhQMmsrYThrOEdUc1Jua1Jn?=
+	=?utf-8?B?UDQ3TzRzQURRVFpXeS9BeXlkOUluWkZaVlIzWW54NzUwWnZURnZvRE9MNkpz?=
+	=?utf-8?B?RDFlN3pwLy9LSE1Ia1pvRFIwWFFETlQwVFJGZ25LMm9zVFYwSnpWdStJSXgx?=
+	=?utf-8?B?SkpLT1hSeW56dzB6WktaVEdpTXY5ZW1LWmFINElxdnc2R2tjbG94L0dsd01q?=
+	=?utf-8?B?bVAvcExsOC9nLzNENkVuaWU2QmFFRmN6Q2QvSkxzbzBKc09PVWllMGVqMmJ4?=
+	=?utf-8?B?ZWg4VHgvWTRzN3FpakNpZG0rckFmZG1xWTcweDJRNEhtRkdzZDQ2amp4Nnov?=
+	=?utf-8?B?dGdaWmtnYi84T1RqZE90aEN5OWUvZm9jaU5wcGNDZDhXU0MvVHJpeUxYY0Vz?=
+	=?utf-8?B?YU9PZk1oWlFnRmZ1Q1JhWkFncGJLMmx0ZlVOMkZxT2RiSkV3V3liUk5CSTdU?=
+	=?utf-8?B?S0QrczFWc3M0MjlKZEMxTHBtTDUyNk9PUUlqK2xMb1lEZUxneXk5bkE3SlJS?=
+	=?utf-8?B?bzVYQ3FsWndIZDg2bllZeHFTMmVBWExMUXh5NkkxWjRUR0xvWkxuWDkxRTlS?=
+	=?utf-8?B?NnFvSGRMbjJyM2xRa1MraXl0T0tsREptWUEvSDNTRlMzWHJNNzBrblo2NjVC?=
+	=?utf-8?B?aXBJK3hRT1RDZXN4bG0xWm9UQm1CR0lqdHlSbjJhQy8wT1F5VWZqaUgrdDBC?=
+	=?utf-8?B?SDFVZz09?=
+X-Microsoft-Antispam-Message-Info: oa0Uj47nDplZSWyILVPzmfrE+EAOxZlp0c4E4S2GQCfd+38zK98T/IxnWtMqCghx4UIiaNq0HoVcrhn4uLgbvwHJSGVbnzq6EJ1n9y39+aLXy3+mn97DTHrD9a+7SsaW3QjY7ilIsMUDNu+XQQk0J9EMRYJJcZAbGOJVZLZGX6EU6Yiai7J24YNRpk+BVbQc
+X-Microsoft-Exchange-Diagnostics: 1; SN6PR0102MB3421;
+	6:XfrwgZO875rS/o1CnIwU9HBgO9PSG8G11uxsL9w3SgsYG68EY9ojyxnA7Zz9oe19DfsBOvQ6lFzdkQOaLihvvj95HLY1U55t1zvEd66ZG229Js7pGb5lC9KOmOXC/36NZndafEuWrbHppdeS5Vkyf6a22QCL9WJl+Pa7EA6SXsgr/9DP1wKTMSGdfETG1mxR2B/nLEE495+C+dv631Cu4PCSFQ+dFRPA2njtmWoIsEND4iAtaIrLsoLdt9/5GcrYTqcQWZrNwZXEq6u+7wBfeZcsbd8n6XYWv6RCDGvs/CWv5iNkJmvzD8YvvpmBPDJ3PNkeH0lZLXx/vacSkzh0ZnG77Ep8sG3nO6DYtoWfDVsjXTk6nTOJxGHLmZE979CVIkwfVLfq+fPs6ZWcjOdqjWTtVS2hPjXLvrfnvGDzt/6cleqniehbMtrhH4n0pDOge31a74H2gHEvlmk84CgGhw==;
+	5:B0y5pYsbz52q7tQcPvWlB3P+JESWOoiuECqUNBkgetJy1Cg/lPFLGv2BBmT0zg9DRXq/RIpWr5+4lSk3oMRsTtwcVzmrJPIDCwxOFCpTxgM8HfzhWIo1O1IqueMUEMFqpgd3/gx9YlXFaXb/5gfaTM6yzZTfc8O8Foz6og6hMJo=;
+	24:NGNTLItz407XSIjxWc/05gYHUUTGjGjl/z26f9A00X9lWuZXrC90cI9kw1nSxTNjXEGyC86gK49l97WliBQBd+j3bsCz8II0+1vJ/yM43C8=
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-Microsoft-Exchange-Diagnostics: 1; SN6PR0102MB3421;
+	7:EgXCEQuoUp0tJ98SGwM3C9W9C3O6kigraFDV0WpQeUha806UD6ajIzvh6nrUZFt1JzBXFlskZ66eS6yUUCr5BRd+ZT8GMd0gPI6OU9KLf+n6WaoOcH7k+tbv0Viyj0dV9AmrTxj8EwiRRK2X4xYxJ0fWE4esC4mHbUJZUqZ22yR1Gxvw1gaUqbeJNq/Ny55bLb7oCpsdnpgtQPr6H/wY1h+eQupgRt/qBhctyZR27iorcpzWJCJGQ6vABkOCmgwp
+X-MS-Office365-Filtering-Correlation-Id: f4950a24-31f5-4c04-0eee-08d5aec375c9
+X-OriginatorOrg: xevo.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2018 17:54:45.7478 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f4950a24-31f5-4c04-0eee-08d5aec375c9
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR0102MB3421
+Cc: Kristi Rifenbark <kristi@buzzcollectivemarketing.com>,
+	Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [yocto-docs][PATCH] dev-manual: document CPU features and QB_CPU_KVM
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -111,443 +139,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Apr 2018 14:57:15 -0000
+X-List-Received-Date: Mon, 30 Apr 2018 19:29:09 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CY4PR11MB17663072FF2A272554D43D62C7820CY4PR11MB1766namp_"
+Content-Transfer-Encoding: 8bit
 
---_000_CY4PR11MB17663072FF2A272554D43D62C7820CY4PR11MB1766namp_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+On 04/30/2018 10:25 AM, Scott Rifenbark wrote:
+> Hi Martin,
+> 
+> See 
+> https://yoctoproject.org/docs/2.5/dev-manual/dev-manual.html#qemu-kvm-cpu-compatibility 
+> and let me know if this section works.  I took your patch and did some 
+> rewriting.
+> 
+> Thanks,
+> Scott
+> 
 
-Current Dev Position: YP 2.5 is in QA.
+I like your changes; thanks!
 
-Next Deadline: YP 2.5 M4 release is 4/27/18
+> On Fri, Apr 27, 2018 at 10:46 AM, Martin Kelly <mkelly@xevo.com 
+> <mailto:mkelly@xevo.com>> wrote:
+> 
+>     As suggested in a recent mail thread by Martin Jansa, there are cases in
+>     which QEMU under KVM will crash because of CPU feature incompatibilities
+>     between compiled binaries and the host CPU under which qemu is run.
+>     Although this is hard to fully escape, we should document the issue to
+>     help people work around it.
+> 
+>     Signed-off-by: Martin Kelly <mkelly@xevo.com <mailto:mkelly@xevo.com>>
+>     ---
+>       documentation/dev-manual/dev-manual-qemu.xml | 22
+>     ++++++++++++++++++++++
+>       1 file changed, 22 insertions(+)
+> 
+>     diff --git a/documentation/dev-manual/dev-manual-qemu.xml
+>     b/documentation/dev-manual/dev-manual-qemu.xml
+>     index f4719ebc3..1870a6a8d 100644
+>     --- a/documentation/dev-manual/dev-manual-qemu.xml
+>     +++ b/documentation/dev-manual/dev-manual-qemu.xml
+>     @@ -343,6 +343,28 @@
+>               </para>
+>           </section>
+> 
+>     +    <section id='qemu-kvm-cpu-compatibility'>
+>     +        <title>QEMU CPU Compatiblity under KVM</title>
+>     +
+>     +        <para>
+>     +            By default, the QEMU build compiles for and targets
+>     core2duo (for
+>     +            64-bit x86) and pentium2 (for 32-bit x86). These CPUS
+>     are chose to
+>     +            have a broad range of CPU feature compatibility with
+>     many commonly
+>     +            used CPUs, but in some cases, they still support a CPU
+>     feature that
+>     +            your host CPU does not. Although this is not a problem
+>     when QEMU
+>     +            uses software emulation of the feature, it can be when
+>     running with
+>     +            KVM enabled. Specifically, software compiled with a
+>     certain CPU
+>     +            feature will crash when run on a CPU under KVM that
+>     does not support
+>     +            that feature. If this becomes a problem, you can
+>     override QEMU's
+>     +            runtime CPU setting by changing the
+>     <filename>QB_CPU_KVM</filename>
+>     +            variable in <filename>qemuboot.conf</filename> in the
+>     image deploy
+>     +            directory. This setting specifies a
+>     <filename>-cpu</filename> option
+>     +            passed into QEMU in the <filename>runqemu</filename>
+>     script. Running
+>     +            <filename>qemu -cpu help</filename> will give a list of
+>     supported
+>     +            CPU types available.
+>     +        </para>
+>     +    </section>
+>     +
+>           <section id='qemu-dev-performance'>
+>               <title>QEMU Performance</title>
+> 
+>     -- 
+>     2.11.0
+> 
+> 
 
-
-SWAT Team Rotation:
-
-SWAT lead is currently: Stephano
-
-SWAT team rotation: Stephano -> Stephano on May 4, 2018
-
-SWAT team rotation: Stephano -> Maxin on May 11, 2018
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-Key Status/Updates:
-
-  *   2.5 rc1 is in QA
-  *   As things stand we are aware of some minor issues in rc1 such as the =
-bitbake version not having been updated and a fix for the eclipse plugin be=
-ing missing. A workaround is available for the latter. We will let QA run i=
-ts course before deciding on whether an rc2 makes sense.
-  *   The monthly technical call is tomorrow (1st May) and will focus on 2.=
-6 planning discussion (https://www.yoctoproject.org/monthly-technical-call/=
-). The email linked to below details the planning process we will be follow=
-ing along with some of the possible ideas for 2.6: http://lists.openembedde=
-d.org/pipermail/openembedded-core/2018-April/150040.html
-
-
-Planned upcoming dot releases:
-
-YP 2.3.4 (Pyro) will be built after 2.5
-
-YP 2.2.4 (Morty) will be built after 2.5
-
-YP 2.4.3 (Rocko) is planned for post YP 2.5
-
-
-Key YP 2.5 Dates are:
-
-YP 2.5 M4 release of 4/27/18
-
-
-Tracking Metrics:
-
-  *   WDD 2508 (last week 2486) (https://wiki.yoctoproject.org/charts/combo=
-.html)
-  *   Patches
-     *   Same as last week as nothing has merged.
-     *   Total patches found: 1635
-     *   Percentage of patches in the Pending State: 46%
-
-
-Key Status Links for YP:
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features
-
-
-The Status reports are now stored on the wiki at: https://wiki.yoctoproject=
-.org/wiki/Weekly_Status
-
-
-[If anyone has suggestions for other information you=92d like to see on thi=
-s weekly status update, let us know!]
-
-
---_000_CY4PR11MB17663072FF2A272554D43D62C7820CY4PR11MB1766namp_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;
-	font-weight:normal;
-	font-style:normal;
-	text-decoration:none none;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:537935244;
-	mso-list-template-ids:-1544659874;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:2131119498;
-	mso-list-template-ids:-1157737520;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Current Dev Position: YP 2.5 is in =
-QA.</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Next Deadline: YP 2.5 M4 release is=
- 4/27/18</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">SWAT Team Rotation:</span><o:p></o:=
-p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">SWAT lead is currently: Stephano</s=
-pan><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">SWAT team rotation: Stephano -&gt; =
-Stephano on May 4, 2018</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">SWAT team rotation: Stephano -&gt; =
-Maxin&nbsp;on May 11, 2018</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-family:=
-Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Build_Fail=
-ure_Swat_Team</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Key Status/Updates:</span><o:p></o:=
-p></p>
-<ul style=3D"margin-top:0in" type=3D"disc">
-<li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.00=
-01pt;mso-list:l0 level1 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">2.5 rc1 is in QA<o=
-:p></o:p></span></li><li style=3D"color:black;margin-top:0in;margin-bottom:=
-0in;margin-bottom:.0001pt;mso-list:l0 level1 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">As things stand we=
- are aware of some minor issues in rc1 such as the bitbake version not havi=
-ng been updated and a fix for the eclipse plugin being missing. A workaroun=
-d is available for the latter. We will let QA
- run its course before deciding on whether an rc2 makes sense.<o:p></o:p></=
-span></li><li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-=
-bottom:.0001pt;mso-list:l0 level1 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">The monthly techni=
-cal call is tomorrow (1st May) and will focus on 2.6 planning discussion (<=
-a href=3D"https://www.yoctoproject.org/monthly-technical-call/"><span style=
-=3D"color:#1155CC">https://www.yoctoproject.org/monthly-technical-call/</sp=
-an></a>).
- The email linked to below details the planning process we will be followin=
-g along with some of the possible ideas for 2.6:
-<a href=3D"http://lists.openembedded.org/pipermail/openembedded-core/2018-A=
-pril/150040.html">
-<span style=3D"color:#1155CC">http://lists.openembedded.org/pipermail/opene=
-mbedded-core/2018-April/150040.html</span></a><o:p></o:p></span></li></ul>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Planned upcoming dot releases:</spa=
-n><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.3.4 (Pyro) will be built after=
- 2.5</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.2.4 (Morty) will be built afte=
-r 2.5</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.4.3 (Rocko) is planned for pos=
-t YP 2.5</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Key YP 2.5 Dates are:</span><o:p></=
-o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.5 M4 release of 4/27/18</span>=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Tracking Metrics:</span><o:p></o:p>=
-</p>
-<ul style=3D"margin-top:0in" type=3D"disc">
-<li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.00=
-01pt;mso-list:l1 level1 lfo2;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">WDD 2508 (last wee=
-k 2486)</span><span style=3D"font-family:Consolas"> (</span><span style=3D"=
-font-family:&quot;Arial&quot;,sans-serif"><a href=3D"https://wiki.yoctoproj=
-ect.org/charts/combo.html"><span style=3D"color:#1155CC">https://wiki.yocto=
-project.org/charts/combo.html</span></a></span><span style=3D"font-family:C=
-onsolas">)</span><span style=3D"font-family:&quot;Arial&quot;,sans-serif"><=
-o:p></o:p></span></li><li style=3D"color:black;margin-top:0in;margin-bottom=
-:0in;margin-bottom:.0001pt;mso-list:l1 level1 lfo2;vertical-align:baseline"=
->
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">Patches </span><sp=
-an style=3D"font-family:Consolas"><o:p></o:p></span>
-<ul style=3D"margin-top:0in" type=3D"circle">
-<li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.00=
-01pt;mso-list:l1 level2 lfo2;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">Same as last week =
-as nothing has merged. &nbsp;<o:p></o:p></span></li><li style=3D"color:blac=
-k;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l1 level2=
- lfo2;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">Total patches foun=
-d: 1635 <o:p></o:p></span></li><li style=3D"color:black;margin-top:0in;marg=
-in-bottom:0in;margin-bottom:.0001pt;mso-list:l1 level2 lfo2;vertical-align:=
-baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">Percentage of patc=
-hes in the Pending State: 46%</span><span style=3D"font-family:Consolas"><o=
-:p></o:p></span></li></ul>
-</li></ul>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Key Status Links for YP:</span><o:p=
-></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Project_v2.5_Status"><span style=3D"font-family:Cons=
-olas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_S=
-tatus</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.5_Schedule"><span style=3D"font-family:Consolas;co=
-lor:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule</span></=
-a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.5_Features"><span style=3D"font-family:Consolas;co=
-lor:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features</span></=
-a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">The Status reports are now stored o=
-n the wiki at:
-</span><a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span s=
-tyle=3D"font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wik=
-i.yoctoproject.org/wiki/Weekly_Status</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">[If anyone has suggestions for othe=
-r information you=92d like to see on this weekly status update, let us know=
-!]</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-</div>
-</body>
-</html>
-
---_000_CY4PR11MB17663072FF2A272554D43D62C7820CY4PR11MB1766namp_--
