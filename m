@@ -1,26 +1,105 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <robin.l.jordan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B016BE00A21; Sun, 29 Apr 2018 21:31:28 -0700 (PDT)
+	id 72020E00C2B; Mon, 30 Apr 2018 07:57:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74D6AE009A7
-	for <yocto@yoctoproject.org>; Sun, 29 Apr 2018 21:31:27 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 479738333E57
-	for <yocto@yoctoproject.org>; Mon, 30 Apr 2018 00:31:26 -0400 (EDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17666E00C25
+	for <yocto@yoctoproject.org>; Mon, 30 Apr 2018 07:57:13 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	30 Apr 2018 07:57:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.49,346,1520924400"; 
+	d="scan'208,217";a="220487829"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by orsmga005.jf.intel.com with ESMTP; 30 Apr 2018 07:57:12 -0700
+Received: from ORSEDG001.ED.cps.intel.com (10.7.248.4) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Mon, 30 Apr 2018 07:57:12 -0700
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com (207.46.163.118)
+	by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP
+	Server (TLS) id 14.3.319.2; Mon, 30 Apr 2018 07:57:12 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+	s=selector1-intel-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=F1AhU61l2Ptf9vLnOWX6Ouxbw/OpxNSZQen1QmE0wIk=;
+	b=DplHkN7cTu6BFp62MNFRIMg2k/V6P1lnUNIvjYln7ar0MXvPbehnxEWHYXDiLMHajoDyNW9l2YFDsIcq/WQJthRcVYvMHCSY+qvVV5JfulJM7TghNB3LinIkdeLBTv0LXJeyPYsHnmYb1gk9ht/wGO6leqXIIuaQjTVC088TSPQ=
+Received: from CY4PR11MB1766.namprd11.prod.outlook.com (10.175.81.12) by
+	CY4PR11MB1719.namprd11.prod.outlook.com (10.173.16.23) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.696.15; Mon, 30 Apr 2018 14:57:08 +0000
+Received: from CY4PR11MB1766.namprd11.prod.outlook.com
+	([fe80::415e:d567:c492:6651]) by
+	CY4PR11MB1766.namprd11.prod.outlook.com
+	([fe80::415e:d567:c492:6651%16]) with mapi id 15.20.0696.023;
+	Mon, 30 Apr 2018 14:57:08 +0000
+From: "Jordan, Robin L" <robin.l.jordan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: =?Windows-1252?Q?Yocto_Project_Status_WW18=9218?=
+Thread-Index: AdPgk3Utk6swKFmqQreT4g88bTjsPw==
+Importance: high
+X-Priority: 1
+Date: Mon, 30 Apr 2018 14:57:07 +0000
+Message-ID: <CY4PR11MB17663072FF2A272554D43D62C7820@CY4PR11MB1766.namprd11.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.0.200.100
+dlp-reaction: no-action
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=robin.l.jordan@intel.com; 
+x-originating-ip: [192.55.52.196]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; CY4PR11MB1719;
+	7:aD8MVis3ClVADN38EGiTAEnv+PAgEp+LSgMSRToHXtL5yDJNYi25Q0Zicu2x9HT2zZd4YlVS1B2MgpmNqM9gimM3LyKJxfDPG05F3mnGrY7BzJNp+ZHFYyR7E7twQt7D+QNWC+lH7SnKYD6Tx249k73zmhNcnNRPDG8lzsEqXOOWiNkdEDrIUxXGo9aqFW9e+PbfKIpGAgAdoZLY/mfYMF79vRq6CQak5ykrIFW4apsq864ESwlKmkcw/BjKprRs
+x-ms-exchange-antispam-srfa-diagnostics: SOS;
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(5600026)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603328)(7153060)(7193020);
+	SRVR:CY4PR11MB1719; 
+x-ms-traffictypediagnostic: CY4PR11MB1719:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-microsoft-antispam-prvs: <CY4PR11MB17192AFC7328D77F6E7B1F92C7820@CY4PR11MB1719.namprd11.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(28532068793085)(20558992708506)(264703809997249)(21748063052155);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040522)(2401047)(8121501046)(5005006)(10201501046)(93006095)(93001095)(3002001)(3231254)(944501410)(52105095)(6041310)(20161123560045)(20161123564045)(20161123562045)(20161123558120)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(6072148)(201708071742011);
+	SRVR:CY4PR11MB1719; BCL:0; PCL:0; RULEID:; SRVR:CY4PR11MB1719; 
+x-forefront-prvs: 0658BAF71F
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(396003)(39380400002)(39840400004)(366004)(376002)(346002)(199004)(189003)(5250100002)(8936002)(66066001)(316002)(476003)(105586002)(2501003)(21615005)(33656002)(3280700002)(2906002)(97736004)(110136005)(68736007)(106356001)(186003)(2900100001)(606006)(486006)(81166006)(86362001)(53936002)(3846002)(26005)(790700001)(5660300001)(3660700001)(54896002)(55016002)(102836004)(81686011)(6116002)(99286004)(6506007)(14454004)(7736002)(81156014)(25786009)(966005)(59450400001)(236005)(478600001)(6306002)(74316002)(9686003)(6436002)(7696005);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:CY4PR11MB1719;
+	H:CY4PR11MB1766.namprd11.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+x-microsoft-antispam-message-info: 6ltKHNoYiBsi4V84L1njBgthxpEmWFChPrKKJWwG8hHls+TmVuyY84xkcQmYVUCglDoOBhk0x9ctG6ttqZSKBKX3um6jQAfHV6fiQxujOGEv4nWnCh4d5yGCa1VqwypFgZrcS4UqBJBm/cwfnHHRf1r3tlYRJ8tGZpyii5bL39rxkrW3+qWySlVXe1e+/OG2
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 30 Apr 2018 04:31:26 -0000
-Message-ID: <20180430043126.24065.80565@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+X-MS-Office365-Filtering-Correlation-Id: dd30fa3e-911e-4ba5-6732-08d5aeaaa527
+X-MS-Exchange-CrossTenant-Network-Message-Id: dd30fa3e-911e-4ba5-6732-08d5aeaaa527
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2018 14:57:07.9883 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1719
+X-OriginatorOrg: intel.com
+Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1cxOOKAmTE4?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,238 +111,443 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Apr 2018 04:31:28 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 30 Apr 2018 14:57:15 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY4PR11MB17663072FF2A272554D43D62C7820CY4PR11MB1766namp_"
 
-This mail was sent out by Recipe reporting system.
+--_000_CY4PR11MB17663072FF2A272554D43D62C7820CY4PR11MB1766namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Current Dev Position: YP 2.5 is in QA.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
-
-You can check the detail information at:
-
-http://recipes.yoctoproject.org/
-
-Package               Version          Upstream version      Maintainer            NoUpgradeReason
---------------------  ---------------  --------------------  --------------------  ------------------------------
-webkitgtk             2.18.6           2.20.1                Alexander Kanavin
-gcr                   3.20.0           3.28.0                Alexander Kanavin
-gnome-desktop3        3.26.2           3.28.1                Alexander Kanavin
-libsecret             0.18.5           0.18.6                Alexander Kanavin
-libwebp               0.6.1            1.0.0                 Alexander Kanavin
-ffmpeg                3.4.2            4.0                   Alexander Kanavin
-dtc                   1.4.5            1.4.6                 Alexander Kanavin
-bash-completion       2.7              2.8                   Alexander Kanavin
-gobject-introspec...  1.54.1           1.56.1                Alexander Kanavin
-pcmanfm               1.2.5            1.3.0                 Alexander Kanavin
-sysprof               3.26.1           3.28.1                Alexander Kanavin
-libidn                1.33             1.34                  Alexander Kanavin
-epiphany              3.26.6           3.28.1.1              Alexander Kanavin
-boost                 1.66.0           1.67.0                Alexander Kanavin
-ca-certificates       20170717         20180409              Alexander Kanavin
-vala                  0.38.8           0.40.4                Alexander Kanavin
-libfm-extra           1.2.5            1.3.0.2               Alexander Kanavin
-libfm                 1.2.5            1.3.0.2               Alexander Kanavin
-gtk-doc               1.27             1.28                  Alexander Kanavin
-libaio                0.3.110          0.3.111               Alexander Kanavin
-lighttpd              1.4.48           1.4.49                Alexander Kanavin
-meson                 0.44.1           0.46.0                Alexander Kanavin
-bjam-native           1.66.0           1.67.0                Alexander Kanavin
-procps                3.3.12           3.3.14                Alexander Kanavin
-btrfs-tools           4.13.3           4.16.1                Alexander Kanavin     Waiting for resolution of h...
-icu                   60.2             61.1                  Alexander Kanavin
-apt                   1.2.24           1.6.1                 Aníbal Limón
-dpkg                  1.18.24          1.19.0.5              Aníbal Limón
-apt-native            1.2.24           1.6.1                 Aníbal Limón
-gstreamer1.0-vaapi    1.12.4           1.14.0                Anuj Mittal
-gst-examples          0.0.1+gitX       0.0.1-new-commits...  Anuj Mittal
-gstreamer1.0-rtsp...  1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-plug...  1.12.4           1.14.0                Anuj Mittal
-gst-validate          1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-libav    1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-plug...  1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-plug...  1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0          1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-omx      1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-python   1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-plug...  1.12.4           1.14.0                Anuj Mittal
-mkfontscale           1.1.2            1.1.3                 Armin Kuster
-xeyes                 1.1.1            1.1.2                 Armin Kuster
-xinit                 1.3.4            1.4.0                 Armin Kuster
-xkbcomp               1.4.0            1.4.1                 Armin Kuster
-bind                  9.10.6           9.12.1                Armin Kuster
-xprop                 1.2.2            1.2.3                 Armin Kuster
-xset                  1.2.3            1.2.4                 Armin Kuster
-xwininfo              1.1.3            1.1.4                 Armin Kuster
-openssh               7.6p1            7.7p1                 Armin Kuster
-xf86-video-vesa       2.3.4            2.4.0                 Armin Kuster
-libxcb                1.12             1.13                  Armin Kuster
-libxshmfence          1.2              1.3                   Armin Kuster
-xkeyboard-config      2.22             2.23.1                Armin Kuster
-calibrateproto        0.0+gitX         0.0-new-commits-a...  Armin Kuster
-xcb-proto             1.12             1.13                  Armin Kuster
-util-macros           1.19.1           1.19.2                Armin Kuster
-xserver-xorg          1.19.6           1.19.99.905           Armin Kuster
-kexec-tools           2.0.16           2.0.17                Armin Kuster
-curl                  7.58.0           7.59.0                Armin Kuster
-busybox               1.27.2           1.28.3                Armin Kuster
-gnutls                3.6.1            3.6.2                 Armin Kuster
-nss                   3.35             3.36.1                Armin Kuster
-libpcre2              10.30            10.31                 Armin Kuster
-xf86-input-libinput   0.26.0           0.27.1                Armin Kuster
-kern-tools-native     0.2+gitX         0.2-new-commits-a...  Bruce Ashfield
-linux-libc-headers    4.15.7           4.16.6                Bruce Ashfield
-kmscube               git              git-new-commits-a...  Carlos Rafael Giani
-iproute2              4.14.1           4.16.0                Changhyeok Bae
-ethtool               4.13             4.16                  Changhyeok Bae
-base-passwd           3.5.29           3.5.45                Chang Rebecca Swe...  Version 3.5.38 requires cde...
-sysvinit              2.88dsf          2.89                  Chang Rebecca Swe...
-dbus-test             1.12.2           1.12.6                Chen Qi
-dbus                  1.12.2           1.12.6                Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-systemd               237              238                   Chen Qi
-util-linux            2.31             2.32                  Chen Qi
-systemd-boot          237              238                   Chen Qi
-cups                  2.2.6            2.2.7                 Chen Qi
-gawk                  4.2.0            4.2.1                 Chen Qi
-dbus-glib             0.108            0.110                 Chen Qi
-sed                   4.2.2            4.5                   Chen Qi
-sysstat               11.7.1           11.7.3                Chen Qi
-build-appliance-i...  15.0.0           18.0.2                Cristian Iorga
-wayland               1.14.0           1.15.0                Denys Dmytriyenko
-weston                3.0.0            4.0.0                 Denys Dmytriyenko
-lzop                  1.03             1.04                  Denys Dmytriyenko
-lzip                  1.19             1.20                  Denys Dmytriyenko
-mtd-utils             2.0.1+X          2.0.2                 Denys Dmytriyenko
-lz4                   1.7.4            1.8.1.2               Denys Dmytriyenko
-hdparm                9.53             9.56                  Denys Dmytriyenko
-xz                    5.2.3            5.3.1alpha            Denys Dmytriyenko
-python3-git           2.1.8            2.1.9                 Derek Straka
-python3-numpy         1.14.2           1.14.3                Derek Straka
-python3-pycairo       1.15.6           1.17.0                Derek Straka
-python-numpy          1.14.2           1.14.3                Derek Straka
-python3-pygobject     3.28.1           3.28.2                Derek Straka
-python3               3.5.5            3.6.5                 Derek Straka
-python3-pip           9.0.2            10.0.1                Derek Straka
-python3-setuptools    39.0.0           39.1.0                Derek Straka
-python-setuptools     39.0.0           39.1.0                Derek Straka
-python3-native        3.5.5            3.6.5                 Derek Straka
-acpica                20170303         20180427              Fathi Boudra
-dhcp                  4.3.6            4.4.1                 Hongxu Jia
-libxml2               2.9.7            2.9.8                 Hongxu Jia
-ncurses               6.0+20171125     6.1+20180210          Hongxu Jia
-gnupg                 2.2.4            2.2.6                 Hongxu Jia
-man-db                2.8.1            2.8.3                 Hongxu Jia
-gpgme                 1.10.0           1.11.1                Hongxu Jia
-libgpg-error          1.27             1.29                  Hongxu Jia
-bash                  4.4.12           4.4.18                Hongxu Jia
-ghostscript           9.21             9.23                  Hongxu Jia
-man-pages             4.14             4.15                  Hongxu Jia
-help2man-native       1.47.5           1.47.6                Hongxu Jia
-bc                    1.06             1.07.1                Jose Lamego
-qemu                  2.11.1           2.12.0                Juro Bystricky
-llvm                  6.0              6.0-new-commits-a...  Khem Raj
-re2c                  0.16             1.0.1                 Khem Raj
-libnsl2               1.0.5+gitX       1.2.0                 Khem Raj
-gdb                   8.0.1            8.1                   Khem Raj
-mpfr                  3.1.5            4.0.1                 Khem Raj
-u-boot-fw-utils       2018.01          2018.03               Marek Vasut
-u-boot-mkimage        2018.01          2018.03               Marek Vasut
-u-boot                2018.01          2018.03               Marek Vasut
-pango                 1.40.14          1.42.1                Maxin B. John
-piglit                1.0+gitrX        1.0-new-commits-a...  Maxin B. John
-acpid                 2.0.28           2.0.29                Maxin B. John
-libinput              1.9.4            1.10.5                Maxin B. John
-libsoup-2.4           2.60.3           2.62.1                Maxin B. John
-gtk-icon-utils-na...  3.22.28          3.22.30               Maxin B. John
-ruby                  2.5.0            2.5.1                 Maxin B. John
-bluez5                5.48             5.49                  Maxin B. John
-gsettings-desktop...  3.24.1           3.28.0                Maxin B. John
-glib-2.0              2.54.3           2.56.1                Maxin B. John
-glib-networking       2.54.1           2.56.0                Maxin B. John
-vulkan                1.0.65.2         1.1.73.0              Maxin B. John
-at-spi2-atk           2.26.1           2.26.2                Maxin B. John
-vulkan-demos          git              git-new-commits-a...  Maxin B. John
-perl                  5.24.1           5.26.2                Maxin B. John
-puzzles               0.0+gitX         0.0-new-commits-a...  Maxin B. John
-harfbuzz              1.7.5            1.7.6                 Maxin B. John
-at-spi2-core          2.26.2           2.28.0                Maxin B. John
-atk                   2.26.1           2.28.1                Maxin B. John
-libsolv               0.6.33           0.6.34                Maxin B. John
-ofono                 1.22             1.23                  Maxin B. John
-libusb1               1.0.21           1.0.22                Maxin B. John
-sqlite3               3.22.0           3.23.1                Maxin B. John
-vte                   0.50.2           0.52.1                Maxin B. John
-libepoxy              1.5.0            1.5.1                 Maxin B. John
-libtirpc              1.0.2            1.0.3                 Maxin B. John
-clutter-gst-3.0       3.0.24           3.0.26                Maxin B. John
-adwaita-icon-theme    3.26.1           3.28.0                Maxin B. John
-libevdev              1.5.8            1.5.9                 Maxin B. John
-gdk-pixbuf            2.36.11          2.36.12               Maxin B. John
-gtk+3                 3.22.28          3.22.30               Maxin B. John
-librsvg               2.40.20          2.42.3                Maxin B. John         Versions from 2.41.0 requir...
-libatomic-ops         7.6.2+gitX       7.6.4                 Maxin B. John
-fontconfig            2.12.6           2.13.0                Maxin B. John
-libical               2.0.0            3.0.3                 Maxin B. John
-perl-native           5.24.1           5.26.2                Maxin B. John
-gdb-cross-canadia...  8.0.1            8.1                   No maintainer
-gdb-cross-i586        8.0.1            8.1                   No maintainer
-mesa                  17.3.8           18.0.2                Otavio Salvador
-linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
-cmake                 3.10.3           3.11.1                Otavio Salvador
-cmake-native          3.10.3           3.11.1                Otavio Salvador
-mesa-gl               17.3.8           18.0.2                Otavio Salvador
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Randy Witt
-tcf-agent             1.4.0+gitX       1.7.0                 Randy Witt
-lttng-tools           2.9.5            2.10.3                Richard Purdie
-subversion            1.9.7            1.10.0                Richard Purdie
-gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
-nfs-utils             2.1.1            2.3.1                 Robert Yang
-e2fsprogs             1.43.8           1.44.1                Robert Yang
-automake              1.15.1           1.16.1                Robert Yang
-ccache                3.3.5            3.4.2                 Robert Yang
-git                   2.16.1           2.17.0                Robert Yang
-autoconf-archive      2016.09.16       2018.03.13            Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-strace                4.20             4.22                  Robert Yang
-time                  1.8              1.9                   Robert Yang
-alsa-lib              1.1.5            1.1.6                 Tanu Kaskinen
-alsa-tools            1.1.5            1.1.6                 Tanu Kaskinen
-alsa-utils            1.1.5            1.1.6                 Tanu Kaskinen
-libvorbis             1.3.5            1.3.6                 Tanu Kaskinen
-alsa-plugins          1.1.5            1.1.6                 Tanu Kaskinen
-alsa-utils-scripts    1.1.5            1.1.6                 Tanu Kaskinen
-liburi-perl           1.73             1.74                  Tim Orling
-libxml-simple-perl    2.24             2.25                  Tim Orling
-libxml-sax-perl       0.99             1.00                  Tim Orling
-gnu-efi               3.0.6            3.0.8                 Yi Zhao
-dropbear              2017.75          2018.76               Yi Zhao
-file                  5.32             5.33                  Yi Zhao
-chkconfig             1.3.58           1.8                   Yi Zhao               Version 1.5 requires selinux
-libpcre               8.41             8.42                  Yi Zhao
-less                  529              530                   Yi Zhao
-logrotate             3.13.0           3.14.0                Yi Zhao
-libcap-ng             0.7.8            0.7.9                 Yi Zhao
-
-Upgradable count: 194
-Upgradable total count: 198
-
-The based commit is:
-
-commit 1b03cdf290c3c8b7f903aef696b0e1bfe763cbe0
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Mon Apr 23 17:53:31 2018 +0100
-
-    build-appliance-image: Update to sumo head revision
-    
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
+Next Deadline: YP 2.5 M4 release is 4/27/18
 
 
+SWAT Team Rotation:
+
+SWAT lead is currently: Stephano
+
+SWAT team rotation: Stephano -> Stephano on May 4, 2018
+
+SWAT team rotation: Stephano -> Maxin on May 11, 2018
+
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+
+
+Key Status/Updates:
+
+  *   2.5 rc1 is in QA
+  *   As things stand we are aware of some minor issues in rc1 such as the =
+bitbake version not having been updated and a fix for the eclipse plugin be=
+ing missing. A workaround is available for the latter. We will let QA run i=
+ts course before deciding on whether an rc2 makes sense.
+  *   The monthly technical call is tomorrow (1st May) and will focus on 2.=
+6 planning discussion (https://www.yoctoproject.org/monthly-technical-call/=
+). The email linked to below details the planning process we will be follow=
+ing along with some of the possible ideas for 2.6: http://lists.openembedde=
+d.org/pipermail/openembedded-core/2018-April/150040.html
+
+
+Planned upcoming dot releases:
+
+YP 2.3.4 (Pyro) will be built after 2.5
+
+YP 2.2.4 (Morty) will be built after 2.5
+
+YP 2.4.3 (Rocko) is planned for post YP 2.5
+
+
+Key YP 2.5 Dates are:
+
+YP 2.5 M4 release of 4/27/18
+
+
+Tracking Metrics:
+
+  *   WDD 2508 (last week 2486) (https://wiki.yoctoproject.org/charts/combo=
+.html)
+  *   Patches
+     *   Same as last week as nothing has merged.
+     *   Total patches found: 1635
+     *   Percentage of patches in the Pending State: 46%
+
+
+Key Status Links for YP:
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features
+
+
+The Status reports are now stored on the wiki at: https://wiki.yoctoproject=
+.org/wiki/Weekly_Status
+
+
+[If anyone has suggestions for other information you=92d like to see on thi=
+s weekly status update, let us know!]
+
+
+--_000_CY4PR11MB17663072FF2A272554D43D62C7820CY4PR11MB1766namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;
+	font-weight:normal;
+	font-style:normal;
+	text-decoration:none none;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:537935244;
+	mso-list-template-ids:-1544659874;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:2131119498;
+	mso-list-template-ids:-1157737520;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">Current Dev Position: YP 2.5 is in =
+QA.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">Next Deadline: YP 2.5 M4 release is=
+ 4/27/18</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">SWAT Team Rotation:</span><o:p></o:=
+p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">SWAT lead is currently: Stephano</s=
+pan><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">SWAT team rotation: Stephano -&gt; =
+Stephano on May 4, 2018</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">SWAT team rotation: Stephano -&gt; =
+Maxin&nbsp;on May 11, 2018</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-family:=
+Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Build_Fail=
+ure_Swat_Team</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">Key Status/Updates:</span><o:p></o:=
+p></p>
+<ul style=3D"margin-top:0in" type=3D"disc">
+<li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.00=
+01pt;mso-list:l0 level1 lfo1;vertical-align:baseline">
+<span style=3D"font-family:&quot;Arial&quot;,sans-serif">2.5 rc1 is in QA<o=
+:p></o:p></span></li><li style=3D"color:black;margin-top:0in;margin-bottom:=
+0in;margin-bottom:.0001pt;mso-list:l0 level1 lfo1;vertical-align:baseline">
+<span style=3D"font-family:&quot;Arial&quot;,sans-serif">As things stand we=
+ are aware of some minor issues in rc1 such as the bitbake version not havi=
+ng been updated and a fix for the eclipse plugin being missing. A workaroun=
+d is available for the latter. We will let QA
+ run its course before deciding on whether an rc2 makes sense.<o:p></o:p></=
+span></li><li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-=
+bottom:.0001pt;mso-list:l0 level1 lfo1;vertical-align:baseline">
+<span style=3D"font-family:&quot;Arial&quot;,sans-serif">The monthly techni=
+cal call is tomorrow (1st May) and will focus on 2.6 planning discussion (<=
+a href=3D"https://www.yoctoproject.org/monthly-technical-call/"><span style=
+=3D"color:#1155CC">https://www.yoctoproject.org/monthly-technical-call/</sp=
+an></a>).
+ The email linked to below details the planning process we will be followin=
+g along with some of the possible ideas for 2.6:
+<a href=3D"http://lists.openembedded.org/pipermail/openembedded-core/2018-A=
+pril/150040.html">
+<span style=3D"color:#1155CC">http://lists.openembedded.org/pipermail/opene=
+mbedded-core/2018-April/150040.html</span></a><o:p></o:p></span></li></ul>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">Planned upcoming dot releases:</spa=
+n><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">YP 2.3.4 (Pyro) will be built after=
+ 2.5</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">YP 2.2.4 (Morty) will be built afte=
+r 2.5</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">YP 2.4.3 (Rocko) is planned for pos=
+t YP 2.5</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">Key YP 2.5 Dates are:</span><o:p></=
+o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">YP 2.5 M4 release of 4/27/18</span>=
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">Tracking Metrics:</span><o:p></o:p>=
+</p>
+<ul style=3D"margin-top:0in" type=3D"disc">
+<li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.00=
+01pt;mso-list:l1 level1 lfo2;vertical-align:baseline">
+<span style=3D"font-family:&quot;Arial&quot;,sans-serif">WDD 2508 (last wee=
+k 2486)</span><span style=3D"font-family:Consolas"> (</span><span style=3D"=
+font-family:&quot;Arial&quot;,sans-serif"><a href=3D"https://wiki.yoctoproj=
+ect.org/charts/combo.html"><span style=3D"color:#1155CC">https://wiki.yocto=
+project.org/charts/combo.html</span></a></span><span style=3D"font-family:C=
+onsolas">)</span><span style=3D"font-family:&quot;Arial&quot;,sans-serif"><=
+o:p></o:p></span></li><li style=3D"color:black;margin-top:0in;margin-bottom=
+:0in;margin-bottom:.0001pt;mso-list:l1 level1 lfo2;vertical-align:baseline"=
+>
+<span style=3D"font-family:&quot;Arial&quot;,sans-serif">Patches </span><sp=
+an style=3D"font-family:Consolas"><o:p></o:p></span>
+<ul style=3D"margin-top:0in" type=3D"circle">
+<li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.00=
+01pt;mso-list:l1 level2 lfo2;vertical-align:baseline">
+<span style=3D"font-family:&quot;Arial&quot;,sans-serif">Same as last week =
+as nothing has merged. &nbsp;<o:p></o:p></span></li><li style=3D"color:blac=
+k;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l1 level2=
+ lfo2;vertical-align:baseline">
+<span style=3D"font-family:&quot;Arial&quot;,sans-serif">Total patches foun=
+d: 1635 <o:p></o:p></span></li><li style=3D"color:black;margin-top:0in;marg=
+in-bottom:0in;margin-bottom:.0001pt;mso-list:l1 level2 lfo2;vertical-align:=
+baseline">
+<span style=3D"font-family:&quot;Arial&quot;,sans-serif">Percentage of patc=
+hes in the Pending State: 46%</span><span style=3D"font-family:Consolas"><o=
+:p></o:p></span></li></ul>
+</li></ul>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">Key Status Links for YP:</span><o:p=
+></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_Project_v2.5_Status"><span style=3D"font-family:Cons=
+olas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_S=
+tatus</span></a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_2.5_Schedule"><span style=3D"font-family:Consolas;co=
+lor:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule</span></=
+a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_2.5_Features"><span style=3D"font-family:Consolas;co=
+lor:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features</span></=
+a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">The Status reports are now stored o=
+n the wiki at:
+</span><a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span s=
+tyle=3D"font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wik=
+i.yoctoproject.org/wiki/Weekly_Status</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif;color:black">[If anyone has suggestions for othe=
+r information you=92d like to see on this weekly status update, let us know=
+!]</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt"><o:p>&nbsp;</o:p></=
+span></p>
+</div>
+</body>
+</html>
+
+--_000_CY4PR11MB17663072FF2A272554D43D62C7820CY4PR11MB1766namp_--
