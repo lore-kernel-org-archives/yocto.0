@@ -1,66 +1,101 @@
-Return-Path: <peter.kjellerstedt@axis.com>
+Return-Path: <rksyeung@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 79AC7E009DF; Thu,  3 May 2018 06:37:08 -0700 (PDT)
+	id 2B319E009DF; Thu,  3 May 2018 07:20:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [195.60.68.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rksyeung[at]hotmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [40.92.10.68 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AED5E008D2
-	for <yocto@yoctoproject.org>; Thu,  3 May 2018 06:37:06 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by bastet.se.axis.com (Postfix) with ESMTP id 3302A18530;
-	Thu,  3 May 2018 15:37:05 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
-Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
-	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
-	port 10024)
-	with LMTP id K2EyY2Kvqmup; Thu,  3 May 2018 15:37:03 +0200 (CEST)
-Received: from boulder03.se.axis.com (boulder03.se.axis.com [10.0.8.17])
-	by bastet.se.axis.com (Postfix) with ESMTPS id A5A5918532;
-	Thu,  3 May 2018 15:37:03 +0200 (CEST)
-Received: from boulder03.se.axis.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 94AAC1E07E;
-	Thu,  3 May 2018 15:37:03 +0200 (CEST)
-Received: from boulder03.se.axis.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 88FEE1E079;
-	Thu,  3 May 2018 15:37:03 +0200 (CEST)
-Received: from thoth.se.axis.com (unknown [10.0.2.173])
-	by boulder03.se.axis.com (Postfix) with ESMTP;
-	Thu,  3 May 2018 15:37:03 +0200 (CEST)
-Received: from XBOX03.axis.com (xbox03.axis.com [10.0.5.17])
-	by thoth.se.axis.com (Postfix) with ESMTP id 7CE94259E;
-	Thu,  3 May 2018 15:37:03 +0200 (CEST)
-Received: from XBOX02.axis.com (10.0.5.16) by XBOX03.axis.com (10.0.5.17) with
-	Microsoft SMTP Server (TLS) id 15.0.1263.5;
-	Thu, 3 May 2018 15:37:03 +0200
-Received: from XBOX02.axis.com ([fe80::50c3:4d2f:4507:7776]) by
-	XBOX02.axis.com ([fe80::50c3:4d2f:4507:7776%21]) with mapi id
-	15.00.1263.000; Thu, 3 May 2018 15:37:03 +0200
-From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>, Paulo Neves
-	<ptsneves@gmail.com>, Yocto list discussion <yocto@yoctoproject.org>
-Thread-Topic: [yocto] ROOTFS_RPM_DEBUG undocumented
-Thread-Index: AQHT4suRPUTZD1SdN0uKkn1NbA0AWKQd1zEAgAAphHA=
-Date: Thu, 3 May 2018 13:37:03 +0000
-Message-ID: <50b98492ad0d40a0b8f32933c371125f@XBOX02.axis.com>
-References: <CAJO0J4gxf0ahVGCoV64Y_Z_cGtw4OiakWkSLbu2u4WB_CHzehQ@mail.gmail.com>
-	<70e7860b-5b9f-45c7-5436-73859b0d3706@linux.intel.com>
-In-Reply-To: <70e7860b-5b9f-45c7-5436-73859b0d3706@linux.intel.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from NAM04-CO1-obe.outbound.protection.outlook.com
+	(mail-oln040092010068.outbound.protection.outlook.com [40.92.10.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15EBAE008D2
+	for <yocto@yoctoproject.org>; Thu,  3 May 2018 07:20:53 -0700 (PDT)
+Received: from BN3NAM04HT120.eop-NAM04.prod.protection.outlook.com
+	(10.152.93.110) by CO1NAM04HT122.eop-NAM04.prod.protection.outlook.com
+	(10.152.90.215) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.715.13;
+	Thu, 3 May 2018 12:47:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=G3Q32S3qaPCBsvb63z+wj6Fqyka9YbgB9OflilGXQ8k=;
+	b=BoOMaOZDVlMdScBlpF24DeLEz04q4hNhY7jW5OMZBBczg0durMo6udaQ7nTlkrMCumkv+420issqRykBcRCSV2ZSrl4rJ//JNvHED1kKZLJ3XPc1ZGesJALGnISbsq6wm0dUP/LKKy32m/Q/rBYhlsLpzPjf4+jCgly/XlgsnEQILZPZs5cKlSF6VkSGFRJmM6Xg+RGZlLknGp3rIwDhZ4oq6ioiwVFrB6yfV1XLVq30W53UBPbc4sGZonP2c45/trJcl6A47Y3gDSgPTP/p6eYq1l+GXPTpRUurblvOd97H88IRvFqRwGjgss7RWBayx5szVWRiM/6O+hMFfsJPWw==
+Received: from BN3NAM04FT013.eop-NAM04.prod.protection.outlook.com
+	(10.152.92.60) by BN3NAM04HT120.eop-NAM04.prod.protection.outlook.com
+	(10.152.93.110) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.715.13;
+	Tue, 1 May 2018 19:51:57 +0000
+Received: from MWHPR19MB1183.namprd19.prod.outlook.com (10.152.92.53) by
+	BN3NAM04FT013.mail.protection.outlook.com (10.152.92.152) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.715.13 via Frontend Transport; Tue, 1 May 2018 19:51:57 +0000
+Received: from MWHPR19MB1183.namprd19.prod.outlook.com
+	([fe80::5125:a765:f3d4:40f8]) by
+	MWHPR19MB1183.namprd19.prod.outlook.com
+	([fe80::5125:a765:f3d4:40f8%18]) with mapi id 15.20.0715.018;
+	Tue, 1 May 2018 19:51:56 +0000
+From: Raymond Yeung <rksyeung@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: TI TLK10031 Driver Needed
+Thread-Index: AQHT4YWZqTQvrpweLky0wye80cxVxg==
+Date: Tue, 1 May 2018 19:51:56 +0000
+Message-ID: <MWHPR19MB118333915F5E542DE68C340EC5810@MWHPR19MB1183.namprd19.prod.outlook.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.0.5.60]
+x-incomingtopheadermarker: OriginalChecksum:8FBE303932F9E1CAA94EFD9DD875506FB83E7D172921F7EA14EED149DCBB2E1B;
+	UpperCasedChecksum:CB024E3949092C63CCA0925F27508B75D114CA09537F96363691C9C44E10701D;
+	SizeAsReceived:6836; Count:44
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [lE4idGlaOfqAJ91YNLcXEFGQ2CepRNjZ]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; BN3NAM04HT120;
+	7:QGFI1Fm4sHr3dnQX8go1zwH+pE4SHQXqnJSMwBru+pTHmSohuDrVWjC7BwQXP0uK2v0dKmTUch20BABOjt67IVdkcpEyV9Wzbw1yRrfDtJr6lsYWQOo3M7Q+naH3C70PijcvPtSGWatmXZ4YtYdCAkA4ngUuxh8ylfi/T2vKkD9sOESXUhCOhIZwSXe7WndGTgqklmBpJnW3xzOvXkEhqQs/5NVYv6JDiGtkZqT6p9yooaY9e7E6oE/e+GKv1Jc7;
+	23:2PclmsbspbY1pnah5K6ct9qV1GiN8ljaKMkR1mgSlVUE/7s1wLpDb9ATj2VwozqgVQ3GMkdVrjDjlOkJxgBeSGRX2/BZkE/ujtAe86SwyEKe4tZy5ZUK+ANGz6e1N/R+XlJ2yWuAK3XXGlKdKcqwFA==
+x-incomingheadercount: 44
+x-eopattributedmessage: 0
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1601125374)(1603101448)(1701031045);
+	SRVR:BN3NAM04HT120; 
+X-MS-TrafficTypeDiagnostic: BN3NAM04HT120:|BN3NAM04HT120:|BN3NAM04HT120:|CO1NAM04HT122:
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
+	SRVR:BN3NAM04HT120; BCL:0; PCL:0; RULEID:; SRVR:BN3NAM04HT120; 
+x-forefront-prvs: 06592CCE58
+x-forefront-antispam-report: SFV:NSPM; SFS:(7070007)(98901004); DIR:OUT;
+	SFP:1901; SCL:1; SRVR:BN3NAM04HT120;
+	H:MWHPR19MB1183.namprd19.prod.outlook.com; FPR:; SPF:None; LANG:;
+x-microsoft-antispam-message-info: 1ISHKQw2IWhNYqSzlA2vqQsabKMLfR1p89LejjOM/dQ3IRkv2XSOP6ck9i9qo2KZqutHs6IbleXTFWp70XupKtSsFQ+KgBKdovQMToc6a6G8asRSJ6KlDfuZnk6KQiSqimfQmrQ8dvMruz1njjFr89JuEXYwhHUP3DQJrMMX3NQXE2UKpA3VttqJDGxbDtZj
 MIME-Version: 1.0
-X-TM-AS-GCONF: 00
-Subject: Re: ROOTFS_RPM_DEBUG undocumented
+X-MS-Office365-Filtering-Correlation-Id: 7cc09457-549b-4d94-afef-08d5af9cfef3
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7cc09457-549b-4d94-afef-08d5af9cfef3
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 May 2018 19:51:56.9466 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3NAM04HT120
+X-Microsoft-Exchange-Diagnostics: 1; CO1NAM04HT122;
+	23:Q4qLr6ACdy599RLib+BO+DmlsGG8OcouN+ekWq+qYHmhW1XtzW75rTWzEBWf4Xa/qVkIViv+nkH7HfLR81CwJlSLY2ksNH6jiWRqpcynvb/dd5Yg9sBbH2Je5py1ifgS3RUVbUexWJuQ0ufuqz0HYw==
+X-OriginatorOrg: hotmail.com
+Subject: TI TLK10031 Driver Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,51 +107,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2018 13:37:08 -0000
+X-List-Received-Date: Thu, 03 May 2018 14:20:55 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/alternative;
+	boundary="_000_MWHPR19MB118333915F5E542DE68C340EC5810MWHPR19MB1183namp_"
+
+--_000_MWHPR19MB118333915F5E542DE68C340EC5810MWHPR19MB1183namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Alexander Kanavin
-> Sent: den 3 maj 2018 15:04
-> To: Paulo Neves <ptsneves@gmail.com>; Yocto list discussion
-> <yocto@yoctoproject.org>
-> Subject: Re: [yocto] ROOTFS_RPM_DEBUG undocumented
->=20
-> On 05/03/2018 01:42 PM, Paulo Neves wrote:
-> > # Add ROOTFS_RPM_DEBUG to the documentation;
->=20
-> I'd rather get rid of it, the less variables the better :)
->=20
-> > # Detect if we are running with debug output and enable the debugging
-> > output. This is the most elegant solution but I do not know how to
-> > detect if debug log level is turned on;
->=20
-> I don't think you are meant to detect that; bitbake's debug level is
-> not
-> meant to affect what is being printed, but merely whether it's printed
-> or discarded.
->=20
-> > # Have dnf always print in verbose mode and print the output to
-> > bb.debug instead of bb.note.
->=20
-> I think this is the best solution actually.
-
-I disagree with changing bb.note to bb.debug for this. It is very good=20
-to be able to look in log.do_rootfs to see what dnf has done (we have=20
-ROOTFS_RPM_DEBUG set by default). Changing the output to debug level=20
-would mean having to run bitbake with -D, which is anything but=20
-desirable.
-
-> > I am happy to provide a patch upon decision or suggestions.
->=20
-> Thank you :) Do measure the performance before and after as we don't
-> want to introduce a significant slowdown here.
->=20
-> Alex
-
-//Peter
+What is the best way to search for existing driver support (in particular, =
+driver for TLK10031) in YP?  I search my own Poky source and its build tree=
+, but find nothing.  I saw on google returned result mentioning of one inst=
+ance for a similar chip (TLK10232), but don't know which branch/repo it's f=
+rom.
 
 
+Thanks,
+
+Raymond
+
+--_000_MWHPR19MB118333915F5E542DE68C340EC5810MWHPR19MB1183namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">What is the best way to search fo=
+r existing driver support (in particular, driver for TLK10031) in YP? &nbsp=
+;I search my own Poky source and its build tree, but find nothing. &nbsp;I =
+saw on google returned result mentioning of
+ one instance for a similar chip (TLK10232), but don't know which branch/re=
+po it's from.</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">Thanks,</p>
+<p style=3D"margin-top:0;margin-bottom:0">Raymond</p>
+</div>
+</body>
+</html>
+
+--_000_MWHPR19MB118333915F5E542DE68C340EC5810MWHPR19MB1183namp_--
