@@ -1,69 +1,68 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96676E009AC; Wed,  2 May 2018 01:33:35 -0700 (PDT)
+	id 2B51BE0084D; Wed,  2 May 2018 02:02:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gizero[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.54 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f54.google.com (mail-vk0-f54.google.com
-	[209.85.213.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7751AE007F2
-	for <yocto@yoctoproject.org>; Wed,  2 May 2018 01:33:33 -0700 (PDT)
-Received: by mail-vk0-f54.google.com with SMTP id q189-v6so8486012vkb.0
-	for <yocto@yoctoproject.org>; Wed, 02 May 2018 01:33:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-it0-f54.google.com (mail-it0-f54.google.com
+	[209.85.214.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08DE4E007F2
+	for <yocto@yoctoproject.org>; Wed,  2 May 2018 02:01:58 -0700 (PDT)
+Received: by mail-it0-f54.google.com with SMTP id q4-v6so8208092ite.3
+	for <yocto@yoctoproject.org>; Wed, 02 May 2018 02:01:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Q/BrYM/kHw4/VvehZ3N6F6c6cilKLC7EW7GGjL8Ljns=;
-	b=O3R5K+D6nGFnrjZVcm7k31dCEjjS0xfSphfiYic/8X5XrTbr22E8Hz1tyTP6aC5tlb
-	J8PPuK8Fk3c08p1ypBggQVD5jPgPsIG71tXlhRcJrXA+QzjujB04pFwFGTM0m9pf3oFF
-	BetOOlKxLeaEEQxKVvrhbv+SYWngUCmlGY0uWj8UfAiiWHnLerQvSoXGYwonYY+LOL67
-	HsclyXghHuvv1HOQw6yNNQ1QOM+ZXFYFj8L/aQJvlfzEESEsRGInOIs/M1o9W48psqwo
-	CEixxSz8pplBpn+f/2Mez/PaW3lU6j3mON9i81KRxFNiF7hr8M1ADy4pG2thMqa0fO5A
-	99sg==
+	:cc; bh=VQT2wv1KQg+z+VwEhqLDooeWetzq7T4jjPWixmqvk/Q=;
+	b=YHnRdZQuXDqs3lAQLyns5yTbvHrMOKTZae8n0I2uUiIbCe7Czto0OMxGiBCtr1MW+U
+	ASNNBoYk4C4yqNqvQ6BTLWr5pO/7FY1qmsJvbu0lN2N06KhQaAxvABkRvBEfit0oSqh0
+	RxJMH01dDgSg4AOtVYao7vy26V9TsPtQKBWvVLTfG3ejkmKVWkG0M5RjIUCA3HXS77ie
+	LgVDdqYRSwXKcL0DcIMvs2Knh+c2ApmKtBdp/0gMqTUC7/QUO8RpiP14sdaNyF2PBm+m
+	GGDQLeNU0sI5ts71rbVr+pr6tHK96wfAv04ReP9zjL8Eb4YMDIAPK5TpMWujQjB47PYT
+	FJcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=Q/BrYM/kHw4/VvehZ3N6F6c6cilKLC7EW7GGjL8Ljns=;
-	b=rMEiQCLhOFnThO2kzESM09gqKAnmOzxhs5Eh3zkjoIdT7I9TpO0ioQsPL6xCpZcxiQ
-	MniF57sZbiDBoNJCS4wAs0SpvESd6LSPun+izBkWROy55UIMwcIXVP/6y1aUGxUxDNqO
-	ddnYdVRWgRqZZ2Jy3GR44wE1OiMrLBM1fOJXOX8TYFIS0WZ7VwGH78iqfjNw4X8dKMRz
-	exmp3fIuULzy6CXuv3b0c5za7g2oP4Z/Zkixck2D8at0OI2kwLQDXOUMxPhghkCqbCDd
-	P/EYxhDZgjaBP06o68A7LJPhaR71pc7fq4301vztkHiHXkoZbtyLV2rKrTL3a3Hxy2YK
-	ui9g==
-X-Gm-Message-State: ALQs6tAjJn3Im1fLxtf2JYPzkLPnIyyA2wmerTy73MWOFN5h6q7kTtVK
-	7FyoMKoZvRlyPn0jnkE3Kdk8qgCZOjTHDulxiwY=
-X-Google-Smtp-Source: AB8JxZqDJ27deLdX8+90RtQoHA2HlxWIHyZnc5IEOgzA+MDm0iH6XZqAKEsjPH4Y/qczsyyZhranQDwF3ZUHG+HbMeg=
-X-Received: by 2002:a1f:5044:: with SMTP id
-	e65-v6mr17658063vkb.182.1525250012913; 
-	Wed, 02 May 2018 01:33:32 -0700 (PDT)
+	bh=VQT2wv1KQg+z+VwEhqLDooeWetzq7T4jjPWixmqvk/Q=;
+	b=JNcJVd4ePn+B9dO2PCbk/qzvHmeJbuxwa5myC9xjurgdJaMqIPE5jZPmX3PfhDbDJL
+	YnbsridiBJj/xLVmzRPZCrd5cePEjJqULZXdX57teOn418vcm0IOFRun4WoQ5auHSWU/
+	Egbghrp6VDVwHQDHeul/qV3bWO3oFP6kjFQezOqiGajd5B0C/Y4LDfD1yNraP8AT/lrj
+	cglwwvL3wF7xAiJBAoBPo1+bguTnDpDugg3igao4OtQcH+ZIKJio2puNWZ1DxYeytTjE
+	KNthgqGkLw/ZbOwhimvX66fSfGL6eG+oXlO6bfl0Ci1mK5NBxVsr3VQavB+Nh6+B6fGP
+	w3fw==
+X-Gm-Message-State: ALQs6tDXY72Rw4O6dd1bNDBL5No7aKqQW7yOSYFJ8ltbJvRJV9xwEhUb
+	hW+w11/JGZSCfIUevw1sTQ4K/p7Mvhm3h8joBGkpPQ==
+X-Google-Smtp-Source: AB8JxZo+Fm8hS67vGlMjg1f92aahTL7qC+9PyrAjLcKvYEBcDNDQEwFaSHcbuXG8eWkh94doGVnZT9u9MS/sgv3/GMI=
+X-Received: by 2002:a24:b803:: with SMTP id
+	m3-v6mr18668974ite.131.1525251718157; 
+	Wed, 02 May 2018 02:01:58 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.176.4.44 with HTTP; Wed, 2 May 2018 01:33:12 -0700 (PDT)
-In-Reply-To: <AM5PR0402MB27213A743A419B0D00E4AD63C4800@AM5PR0402MB2721.eurprd04.prod.outlook.com>
-References: <AM5PR0402MB2721B2D61F1D3477AEE59DFEC4820@AM5PR0402MB2721.eurprd04.prod.outlook.com>
-	<CAC+thW3R88fkjU4Gk6xH3=y1BMPLJAb0zvVhpDEPS+yiR7rW7w@mail.gmail.com>
-	<AM5PR0402MB2721423A92FAD6DD6409AA3EC4810@AM5PR0402MB2721.eurprd04.prod.outlook.com>
-	<AM5PR0402MB27213A743A419B0D00E4AD63C4800@AM5PR0402MB2721.eurprd04.prod.outlook.com>
-From: Andrea Galbusera <gizero@gmail.com>
-Date: Wed, 2 May 2018 10:33:12 +0200
-Message-ID: <CAC+thW1U42nj0aoDd56Vzi2-1Bpto0JDmtpSx2p8pmDgV7PB-g@mail.gmail.com>
-To: Martin Siegumfeldt <mns@gomspace.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Recipe availability through eSDK (cppzmq)
+Received: by 10.107.29.203 with HTTP; Wed, 2 May 2018 02:01:37 -0700 (PDT)
+In-Reply-To: <CAJ86T=UE=B+v9-SOztXRB5j6C_QJudF8bJobnxMCEYB047GdPA@mail.gmail.com>
+References: <CAN--ZaVOR1dTDJMTJq=8B6bRMfKQ7eJEBie-_hzTRD+cJ8YzCg@mail.gmail.com>
+	<30506956.aUxZm2NLWB@peggleto-mobl.ger.corp.intel.com>
+	<CAJ86T=U15GmkmqcJD-NAAiV+ued8yG9SSEPA-P=VCeo7twFPLA@mail.gmail.com>
+	<16228440.x8j5tLIZ7R@peggleto-mobl.ger.corp.intel.com>
+	<CAJ86T=UE=B+v9-SOztXRB5j6C_QJudF8bJobnxMCEYB047GdPA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 2 May 2018 10:01:37 +0100
+Message-ID: <CAJTo0Lad=PmT4n70SMLu8J29aVnenqOjx_DznVrp2Pwro2ELgQ@mail.gmail.com>
+To: Andre McCurdy <armccurdy@gmail.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Irving ST <irving@ssfivy.com>,
+	Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Avoiding both GPLv3 and meta-gplv2 ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,287 +74,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 May 2018 08:33:35 -0000
+X-List-Received-Date: Wed, 02 May 2018 09:02:00 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, May 2, 2018 at 9:52 AM, Martin Siegumfeldt <mns@gomspace.com> wrote:
-> Hi,
+On 2 May 2018 at 01:41, Andre McCurdy <armccurdy@gmail.com> wrote:
+> On Tue, May 1, 2018 at 4:59 PM, Paul Eggleton
+> <paul.eggleton@linux.intel.com> wrote:
+>> On Wednesday, 2 May 2018 11:54:00 AM NZST Andre McCurdy wrote:
+>>> On Tue, May 1, 2018 at 3:10 PM, Paul Eggleton
+>>> <paul.eggleton@linux.intel.com> wrote:
+>>> > On Wednesday, 2 May 2018 12:07:42 AM NZST Burton, Ross wrote:
+>>> >> The make dependencies come from the ptest packages, so if you disable
+>>> >> ptest in your DISTRO_FEATURES then those should disappear.
+>>> >>
+>>> >> Essentially doing a full build without any GPLv3 software *and* not
+>>> >> using old releases which are still GPLv2 is tricky.  I can only
+>>> >> suggest you don't use the meta-gpl2 layer (as you don't want the
+>>> >> recipes to be used) and use bbappends to disable pieces where
+>>> >> required.
+>>> >
+>>> > We probably need some sort of whitepaper on how to do that, it doesn't
+>>> > look like our manuals cover it in sufficient detail. Any volunteers ? ;)
+>>>
+>>> Does "Blacklist GPLv3, don't use meta-gplv2, fix any issues you may
+>>> run into" need a whitepaper? Or is there more to it than that?
+>>
+>> Apart from "disable ptest" as Ross pointed out, I would assume that's all
+>> there is to it - but right now aside from asking here there's really no way
+>> for someone to know that that's the best available way of handling it, so I
+>> think it's worth documenting somewhere.
 >
+> Yes, OK. I hadn't realised ptest is enabled by default in poky (!?!).
 >
-> Hacking the recipe according to:
->
->
-> martin@dell:~/work/z7000-distro-zcu102/meta-openembedded$ git diff
-> diff --git a/meta-oe/recipes-connectivity/zeromq/cppzmq_git.bb
-> b/meta-oe/recipes-connectivity/zeromq/cppzmq_git.bb
-> index a64745c94..aba1d6edb 100644
-> --- a/meta-oe/recipes-connectivity/zeromq/cppzmq_git.bb
-> +++ b/meta-oe/recipes-connectivity/zeromq/cppzmq_git.bb
-> @@ -13,9 +13,11 @@ S = "${WORKDIR}/git"
->
->  do_install () {
->          install -d ${D}/usr/include
-> +        install -d ${D}/etc
->          install -m 0755 ${S}/zmq.hpp ${D}/usr/include/
-> +        install -m 0755 ${S}/zmq.hpp ${D}/etc
->  }
->
-> -PACKAGES = "${PN}-dev"
-> +PACKAGES = "${PN}-dev ${PN}"
+>   http://git.yoctoproject.org/cgit.cgi/meta-yocto/commit/?id=9381b2d2bddf9f67cf57b0718cf99e45805125fa
 
-If you go down the patch-the-recipe way, you can probably leave
-PACKAGES at its default: both ${PN} and ${PN}-dev are there by
-default.
+Poky is primarily a vehicle for testing the Yocto Project software, so
+it follows that it enables ptest for QA purposes.
 
-> RDEPENDS_${PN}-dev = "zeromq-dev"
->
-> triggers both ${PN}-dev and ${PN} variants to be packaged and included by
-> the image. Leaving out the installation into /etc causes ${PN} package not
-> to be generated and the image generation does not pick up the ${PN}-dev
-> variant.
-
-Better would be adding:
-
-ALLOW_EMPTY_${PN} = "1"
-
-This way it's cleaner and should work as well. However, you'll need to
-force your image to depend upon an empty package to be added
-(meaningless for the target), for the sake of the corresponding -dev
-package to be part of the tailored eSDK... Maybe there's a better way
-to achieve this, possibly by adding cppzmq-dev to the SDK explicitly
-with something like TOOLCHAIN_TARGET_TASK_append (never used it in
-practice though). Hopefully someone can further comment on this to add
-some wisdom.
-
-> In essence, it looks like image generation disregards recipes residing
-> exclusively in the ${PN}-dev variant - question is whether this is intended
-> or not?
-
-Yes it is. -dev packages are not intended to be installed into target
-image by design.
-
->
->
-> Br,
->
-> Martin
->
->
-> ________________________________
-> From: Martin Siegumfeldt
-> Sent: Tuesday, May 1, 2018 8:49:17 PM
-> To: Andrea Galbusera
->
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Recipe availability through eSDK (cppzmq)
->
->
-> Hi Andrea,
->
->
->
-> ________________________________
-> From: Andrea Galbusera <gizero@gmail.com>
-> Sent: Tuesday, May 1, 2018 16:06
-> To: Martin Siegumfeldt
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Recipe availability through eSDK (cppzmq)
->
-> Hi Martin,
->
-> On Mon, Apr 30, 2018 at 9:10 PM, Martin Siegumfeldt <mns@gomspace.com>
-> wrote:
->> Hi,
->>
->> I am trying to build cppzmq through a Yocto (Rocko) generated eSDK. The
->> search function does not return anything, despite the recipe being available
->> through local recipe:
->>
->> martin@dell:~/gomspace_sdk$ ls
->> layers/meta-openembedded/meta-oe/recipes-connectivity/zeromq/
->> cppzmq_git.bb  files  zeromq_4.1.6.bb
->>
->> I assume this is expected since it does not come prebuilt as part of the
->> eSDK - is this correct understood?
->>
->> Fortunately, 'devtool modify/build/package' generates the package -
->> unfortunately it is not included in the subsequent image generation:
->>
->> martin@dell:~/gomspace_sdk$ devtool package cppzmq
->> NOTE: Starting bitbake server...
->> NOTE: Starting bitbake server...
->> WARNING: Host distribution "ubuntu-17.10" has not been validated with this
->> version of the build system; you may possibly experience unexpected
->> failures. It is recommended that you use a tested distribution.
->> Loading cache: 100%
->> |########################################################################################################################################################################|
->> Time: 0:00:03
->> Loaded 2773 entries from dependency cache.
->> Parsing recipes: 100%
->> |######################################################################################################################################################################|
->> Time: 0:00:01
->> Parsing of 1968 .bb files complete (1960 cached, 8 parsed). 2780 targets,
->> 305 skipped, 11 masked, 0 errors.
->> NOTE: Resolving any missing task queue dependencies
->> Initialising tasks: 100%
->> |###################################################################################################################################################################|
->> Time: 0:00:00
->> Checking sstate mirror object availability: 100%
->> |###########################################################################################################################################|
->> Time: 0:00:00
->> NOTE: Executing SetScene Tasks
->> NOTE: Executing RunQueue Tasks
->> NOTE: Tasks Summary: Attempted 492 tasks of which 491 didn't need to be
->> rerun and all succeeded.
->>
->> Summary: There was 1 WARNING message shown.
->> NOTE: Your packages are in /home/martin/gomspace_sdk/tmp/deploy/ipk
->>
->> martin@dell:~/gomspace_sdk$ devtool build-image
->> NOTE: Starting bitbake server...
->> WARNING: Host distribution "ubuntu-17.10" has not been validated with this
->> version of the build system; you may possibly experience unexpected
->> failures. It is recommended that you use a tested distribution.
->> Loading cache: 100%
->> |########################################################################################################################################################################|
->> Time: 0:00:00
->> Loaded 2773 entries from dependency cache.
->> Parsing recipes: 100%
->> |######################################################################################################################################################################|
->> Time: 0:00:02
->> Parsing of 1968 .bb files complete (1960 cached, 8 parsed). 2780 targets,
->> 305 skipped, 11 masked, 0 errors.
->>
->> Summary: There was 1 WARNING message shown.
->> WARNING: Skipping recipe cppzmq as it doesn't produce a package with the
->> same name
->
-> This is the suspicious bit... If you look at the recipe, you'll notice
-> it's re-defining the PACKAGES variable. Then, it's not generating a
-> package called 'cppzmq', but only one named 'cppzmq-dev'. That said,
-> I'm not sure why you'd want to add a package which only provides
-> development headers to your target image...
->
-> I understand your doubt here. The header file installed is a wrapper around
-> zeromq and thus DEPENDS/RDEPENDS on this library. zeromq is included in the
-> image, for which the SDK is generated, hence I would expect this to be a
-> valid use case?
->
-> Anyhow, I realized that the recipe does not even work in a BB environment -
-> the following is encountered for an image including the package:
->
-> ERROR: Nothing RPROVIDES 'cppzmq' (but
-> /home/martin/work/z7000-distro-zcu102/poky/meta/recipes-core/images/core-image-minimal.bb
-> RDEPENDS on or otherwise requires it)
-> NOTE: Runtime target 'cppzmq' is unbuildable, removing...
-> Missing or unbuildable dependency chain was: ['cppzmq']
-> ERROR: Required build target 'core-image-minimal' has no buildable
-> providers.
-> Missing or unbuildable dependency chain was: ['core-image-minimal',
-> 'cppzmq']
->
-> I wonder why this occurs when the recipe is indeed present:
->
-> martin@dell:~/work/z7000-distro-zcu102/build$ bitbake-layers  show-recipes
-> cppzmq
-> NOTE: Starting bitbake server...
-> WARNING: Host distribution "ubuntu-17.10" has not been validated with this
-> version of the build system; you may possibly experience unexpected
-> failures. It is recommended that you use a tested distribution.
-> Loading cache: 100%
-> |########################################################################################################################################################################|
-> Time: 0:00:00
-> Loaded 2773 entries from dependency cache.
-> Parsing recipes: 100%
-> |######################################################################################################################################################################|
-> Time: 0:00:01
-> Parsing of 1968 .bb files complete (1961 cached, 7 parsed). 2780 targets,
-> 305 skipped, 11 masked, 0 errors.
->
-> Summary: There was 1 WARNING message shown.
-> === Matching recipes: ===
-> cppzmq:
->   meta-oe              4.1.5+gitAUTOINC+68a7b09cfc
->
-> Br,
-> Martin
->
->>
->> Inspecting the manifest file confirms that the package is not installed -
->> any idea why not? I also tried installing though sdk-install:
->>
->> martin@dell:~/gomspace_sdk$ devtool sdk-install -s cppzmq
->> NOTE: Starting bitbake server...
->> WARNING: Host distribution "ubuntu-17.10" has not been validated with this
->> version of the build system; you may possibly experience unexpected
->> failures. It is recommended that you use a tested distribution.
->> Loading cache: 100%
->> |########################################################################################################################################################################|
->> Time: 0:00:00
->> Loaded 2773 entries from dependency cache.
->> Parsing recipes: 100%
->> |######################################################################################################################################################################|
->> Time: 0:00:02
->> Parsing of 1968 .bb files complete (1961 cached, 7 parsed). 2780 targets,
->> 305 skipped, 11 masked, 0 errors.
->>
->> Summary: There was 1 WARNING message shown.
->> NOTE: Installing cppzmq...
->> WARNING: Host distribution "ubuntu-17.10" has not been validated with this
->> version of the build system; you may possibly experience unexpected
->> failures. It is recommended that you use a tested distribution.
->> Loading cache: 100%
->> |########################################################################################################################################################################|
->> Time: 0:00:03
->> Loaded 2773 entries from dependency cache.
->> Parsing recipes: 100%
->> |######################################################################################################################################################################|
->> Time: 0:00:01
->> Parsing of 1968 .bb files complete (1961 cached, 7 parsed). 2780 targets,
->> 305 skipped, 11 masked, 0 errors.
->> NOTE: Resolving any missing task queue dependencies
->> Initialising tasks: 100%
->> |###################################################################################################################################################################|
->> Time: 0:00:00
->> Checking sstate mirror object availability: 100%
->> |###########################################################################################################################################|
->> Time: 0:00:00
->> NOTE: Executing SetScene Tasks
->> NOTE: Executing RunQueue Tasks
->> NOTE: Tasks Summary: Attempted 487 tasks of which 477 didn't need to be
->> rerun and all succeeded.
->>
->> Summary: There was 1 WARNING message shown.
->> NOTE: Successfully installed cppzmq
->>
->> Which also does not pick up the package upon image building:
->>
->> martin@dell:~/gomspace_sdk$ IMAGE_INSTALL_append="cppzmq" devtool
->> build-image
->> NOTE: Starting bitbake server...
->> WARNING: Host distribution "ubuntu-17.10" has not been validated with this
->> version of the build system; you may possibly experience unexpected
->> failures. It is recommended that you use a tested distribution.
->> Loading cache: 100%
->> |########################################################################################################################################################################|
->> Time: 0:00:00
->> Loaded 2773 entries from dependency cache.
->> Parsing recipes: 100%
->> |######################################################################################################################################################################|
->> Time: 0:00:02
->> Parsing of 1968 .bb files complete (1961 cached, 7 parsed). 2780 targets,
->> 305 skipped, 11 masked, 0 errors.
->>
->> Summary: There was 1 WARNING message shown.
->> WARNING: No packages to add, building image nanocom-sdr-image unmodified
->>
->> What am I missing here?
->>
->> Thanks,
->> Martin
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+Ross
 
