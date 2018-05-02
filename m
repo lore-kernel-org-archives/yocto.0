@@ -1,70 +1,64 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <lefevre.da@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 60AA7E00AE4; Wed,  2 May 2018 07:22:28 -0700 (PDT)
+	id 4FA6AE00A28; Wed,  2 May 2018 07:48:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gizero[at]gmail.com)
+	mail provider *      (lefevre.da[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.176 listed in list.dnswl.org]
+	*      [209.85.223.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f176.google.com (mail-ua0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9371DE00A28
-	for <yocto@yoctoproject.org>; Wed,  2 May 2018 07:22:26 -0700 (PDT)
-Received: by mail-ua0-f176.google.com with SMTP id h15so9553462uan.11
-	for <yocto@yoctoproject.org>; Wed, 02 May 2018 07:22:26 -0700 (PDT)
+Received: from mail-io0-f179.google.com (mail-io0-f179.google.com
+	[209.85.223.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE9EFE00A28
+	for <yocto@yoctoproject.org>; Wed,  2 May 2018 07:48:32 -0700 (PDT)
+Received: by mail-io0-f179.google.com with SMTP id e12-v6so17776391iob.8
+	for <yocto@yoctoproject.org>; Wed, 02 May 2018 07:48:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=hbxRKfLHgbf/dimrJINNxXm8Qmrcseax6Wqfpibv+Ws=;
-	b=HfcXEPoR+VH6ejpEYM7F5bSOU+F7/CDiVc2Vbs9clPVlUDJDJQpkgW/WeBegctHwgi
-	VgvQuICRcWRz5Ios4iLEzvDxpNVoByfIlT5Ox+FV3XVZ/YCFLoIncLsiPGXLbMnATTBg
-	8K1pXCMQDzWpvpo+jt+4Qsi4XgJHvY7ImIAyqF5LUw+rW/XqapBTZsPzCZNrjv9C+6dd
-	CZCqKZm2Oo67QuiFhaz9p+nFps+QYUmc9pvkA05T4dwec7W6ZPMI93SdBdkJLPZABbC3
-	aK/3sRztIjNE77l4nZnalzUqhEzYVb06oXMTT33fX6bmlutYiVu9F/ehWC95sEJhNcpX
-	42sw==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=YWA7kQsk9BYGxmY9xIsigRHzqUnrcutNtebXPm158mg=;
+	b=GoV6H9kAFnJm0yz9vCcISMrnWO/0cTriaHx82VV+YDN53Y2rBkioHlz4TEOo8rReAk
+	OPLyqaTrIpiOV9wWzmlK8t/+PNRAVqd/nU5yHTR7xpccxWqGtXu8mckUDRZAUFalZbJY
+	1xb66iZXovooQ3dMgRvKyYWqkiohVG9snv8NLB40CxLa5xHd9Gn6H8FtnhSd5FDKEjPR
+	bD9gAvmSRAcA5dZwDeHzCrZELU2aBXg9a/sSgIpSii8N2yB3upJVjDYo9mfPksVl7que
+	nxSEIrcW5AYopP6FcO9PXAIVtXm19WZwhS+UfaW3TcPSRE1SjTt59JWUTsKgWuoNHllU
+	IS/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=hbxRKfLHgbf/dimrJINNxXm8Qmrcseax6Wqfpibv+Ws=;
-	b=KWs/w+y6foyxhq4jnif/mQCZOFT2gVUgWJRSN+B9uZRkFvIDExbeHjtjyL8R0yHrVf
-	cbIOE0b5v3oyba2ZHygCLK5tkJrXX2OxHl4asPBxZnAntRtEYJhXzAyAOg99hQwlxpZp
-	RluI8rwQAA+y2Sm+RqfYvW5OIAeacB4ooZ7YoeXkvZkzlm+1Md5kI74TzG3suEx3NELi
-	JeUZxU/7x5Qgp4ufhOqEqqUUF080L/h1fg7sPY8p0QgDdUzFggALtqJzVGFJIofLwVu+
-	qwePKOMH9vCxTxiM0QDNCfqziQYsHSXaMbHQe6j15HxSulvUyozh5x6JzjVcxArjF1Z9
-	1G/Q==
-X-Gm-Message-State: ALQs6tDjiMUngpTaTk5DKym/AT/6xuetdTD/5Ew7iuXepX6oqEjgJk/S
-	oxcJzd7oGpavZPkG51/rXiBRVu+JCcpmG8hqpRs=
-X-Google-Smtp-Source: AB8JxZpKPPiYuUeZN7ycj67mWv1/N9s+3SMvms4bDgU+OZORvsre1Byx87BEJivjhZ6dUJIDUl/hQeO1b5p20vAl3SA=
-X-Received: by 10.176.93.27 with SMTP id u27mr9104875uaf.59.1525270945013;
-	Wed, 02 May 2018 07:22:25 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=YWA7kQsk9BYGxmY9xIsigRHzqUnrcutNtebXPm158mg=;
+	b=HKajkOQgHDDc39Y2cxYHB+SIypYita3IceLaBx5ftdjAqecJD79uLvYeqA/l62UL7d
+	I89tDEa6HNHahk6k59ejPHd+qQWZFXeIec+H1P58f3dVJfADKpMuoDwD4r7/n5zjLlTk
+	bLIigl0cb2N1ob5mLAEdn0TlqO+lLEsbBPm9NiUP3gNJNDyZKmJDh+lvn6lkvBK+LHVw
+	wvXSpPuVorR3aeVZzIGS9vseQbRqTmM7m1rM+466MWlmPYoVZRhwfvX9RTxPdOQkZ+2L
+	lEdnqLYR66dD84c2dvHV6ohozI7Rbu3+LLciqGyLehVQXf8ckXHAo4NltvpYdu0Vl0Ry
+	j7cQ==
+X-Gm-Message-State: ALQs6tAvkns8zFD6TSd5mladyN2r/CCeI3DaNDueF1OXGVjOGBWDcxeG
+	tsRXRTbL0gXn4G+LWV67X7JfQI2qNpsHx0y+iUTP
+X-Google-Smtp-Source: AB8JxZrHH7+949cIb+k5NgrT3IcP/QnuzGtZowhTFxdQkE0S0t33AMNas3bRNXddmus7l3CfA5Ta5RZc6fVfAm7ozpA=
+X-Received: by 2002:a6b:4e19:: with SMTP id
+	c25-v6mr20780558iob.302.1525272511607; 
+	Wed, 02 May 2018 07:48:31 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.176.4.44 with HTTP; Wed, 2 May 2018 07:22:04 -0700 (PDT)
-In-Reply-To: <DB6PR0402MB2728A67E8A29394515D90449C4800@DB6PR0402MB2728.eurprd04.prod.outlook.com>
-References: <AM5PR0402MB2721B2D61F1D3477AEE59DFEC4820@AM5PR0402MB2721.eurprd04.prod.outlook.com>
-	<CAC+thW3R88fkjU4Gk6xH3=y1BMPLJAb0zvVhpDEPS+yiR7rW7w@mail.gmail.com>
-	<AM5PR0402MB2721423A92FAD6DD6409AA3EC4810@AM5PR0402MB2721.eurprd04.prod.outlook.com>
-	<AM5PR0402MB27213A743A419B0D00E4AD63C4800@AM5PR0402MB2721.eurprd04.prod.outlook.com>
-	<CAC+thW1U42nj0aoDd56Vzi2-1Bpto0JDmtpSx2p8pmDgV7PB-g@mail.gmail.com>
-	<DB6PR0402MB2728A67E8A29394515D90449C4800@DB6PR0402MB2728.eurprd04.prod.outlook.com>
-From: Andrea Galbusera <gizero@gmail.com>
-Date: Wed, 2 May 2018 16:22:04 +0200
-Message-ID: <CAC+thW0u-qQL5WtiRzNi9d5HZpR8FEQLp_m_uUgs6DqoHa9nDQ@mail.gmail.com>
-To: Martin Siegumfeldt <mns@gomspace.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Recipe availability through eSDK (cppzmq)
+Received: by 2002:a02:69d5:0:0:0:0:0 with HTTP;
+	Wed, 2 May 2018 07:48:31 -0700 (PDT)
+From: Damien LEFEVRE <lefevre.da@gmail.com>
+Date: Wed, 2 May 2018 17:48:31 +0300
+Message-ID: <CA+FhBv8zustk32Gu0hGUq-dQD1s-MNbuHWUWv9NeZ2kg8aaz+A@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Splash screen using systemd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,313 +70,217 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 May 2018 14:22:28 -0000
+X-List-Received-Date: Wed, 02 May 2018 14:48:34 -0000
+Content-Type: multipart/alternative; boundary="0000000000003d7a24056b3a2ec8"
+
+--0000000000003d7a24056b3a2ec8
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 2, 2018 at 2:33 PM, Martin Siegumfeldt <mns@gomspace.com> wrote:
-> Hi Andrea,
->
-> You are right, the recipe works-as-is, when adding 'cppzmq-dev' to the image rather than just 'cppzmq' - I was not aware of this. From an eSDK perspective it seems to work when the package is installed according to
->
-> devtool sdk-install -s cppzmq
->
-> and then adding 'IMAGE_INSTALL += "cppzmq-dev"' to local.conf.
->
-> On the variables passed in from the shell, can you refer to the location of this whitelist - for future reference?
+Hi,
 
-https://www.yoctoproject.org/docs/latest/bitbake-user-manual/bitbake-user-manual.html#var-BB_ENV_WHITELIST
+I'm working on an NVidia Jetson board with a TX2 module and I would like to
+have splash screen with a progress bar when booting and shutting down. The
+board boots to an application embedded style. There's no desktop and no
+user login.
 
->
-> Thanks for your support - highly appreciated.
-> Martin
->
->
-> From: Andrea Galbusera <gizero@gmail.com>
-> Sent: Wednesday, May 2, 2018 10:33
-> To: Martin Siegumfeldt
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Recipe availability through eSDK (cppzmq)
->
->
-> On Wed, May 2, 2018 at 9:52 AM, Martin Siegumfeldt <mns@gomspace.com> wrote:
->> Hi,
->>
->>
->> Hacking the recipe according to:
->>
->>
->> martin@dell:~/work/z7000-distro-zcu102/meta-openembedded$ git diff
->> diff --git a/meta-oe/recipes-connectivity/zeromq/cppzmq_git.bb
->> b/meta-oe/recipes-connectivity/zeromq/cppzmq_git.bb
->> index a64745c94..aba1d6edb 100644
->> --- a/meta-oe/recipes-connectivity/zeromq/cppzmq_git.bb
->> +++ b/meta-oe/recipes-connectivity/zeromq/cppzmq_git.bb
->> @@ -13,9 +13,11 @@ S = "${WORKDIR}/git"
->>
->>  do_install () {
->>          install -d ${D}/usr/include
->> +        install -d ${D}/etc
->>          install -m 0755 ${S}/zmq.hpp ${D}/usr/include/
->> +        install -m 0755 ${S}/zmq.hpp ${D}/etc
->>  }
->>
->> -PACKAGES = "${PN}-dev"
->> +PACKAGES = "${PN}-dev ${PN}"
->
-> If you go down the patch-the-recipe way, you can probably leave
-> PACKAGES at its default: both ${PN} and ${PN}-dev are there by
-> default.
->
->> RDEPENDS_${PN}-dev = "zeromq-dev"
->>
->> triggers both ${PN}-dev and ${PN} variants to be packaged and included by
->> the image. Leaving out the installation into /etc causes ${PN} package not
->> to be generated and the image generation does not pick up the ${PN}-dev
->> variant.
->
-> Better would be adding:
->
-> ALLOW_EMPTY_${PN} = "1"
->
-> This way it's cleaner and should work as well. However, you'll need to
-> force your image to depend upon an empty package to be added
-> (meaningless for the target), for the sake of the corresponding -dev
-> package to be part of the tailored eSDK... Maybe there's a better way
-> to achieve this, possibly by adding cppzmq-dev to the SDK explicitly
-> with something like TOOLCHAIN_TARGET_TASK_append (never used it in
-> practice though). Hopefully someone can further comment on this to add
-> some wisdom.
->
->> In essence, it looks like image generation disregards recipes residing
->> exclusively in the ${PN}-dev variant - question is whether this is intended
->> or not?
->
-> Yes it is. -dev packages are not intended to be installed into target
-> image by design.
->
->>
->>
->> Br,
->>
->> Martin
->>
->>
->> ________________________________
->> From: Martin Siegumfeldt
->> Sent: Tuesday, May 1, 2018 8:49:17 PM
->> To: Andrea Galbusera
->>
->> Cc: yocto@yoctoproject.org
->> Subject: Re: [yocto] Recipe availability through eSDK (cppzmq)
->>
->>
->> Hi Andrea,
->>
->>
->>
->> ________________________________
->> From: Andrea Galbusera <gizero@gmail.com>
->> Sent: Tuesday, May 1, 2018 16:06
->> To: Martin Siegumfeldt
->> Cc: yocto@yoctoproject.org
->> Subject: Re: [yocto] Recipe availability through eSDK (cppzmq)
->>
->> Hi Martin,
->>
->> On Mon, Apr 30, 2018 at 9:10 PM, Martin Siegumfeldt <mns@gomspace.com>
->> wrote:
->>> Hi,
->>>
->>> I am trying to build cppzmq through a Yocto (Rocko) generated eSDK. The
->>> search function does not return anything, despite the recipe being available
->>> through local recipe:
->>>
->>> martin@dell:~/gomspace_sdk$ ls
->>> layers/meta-openembedded/meta-oe/recipes-connectivity/zeromq/
->>> cppzmq_git.bb  files  zeromq_4.1.6.bb
->>>
->>> I assume this is expected since it does not come prebuilt as part of the
->>> eSDK - is this correct understood?
->>>
->>> Fortunately, 'devtool modify/build/package' generates the package -
->>> unfortunately it is not included in the subsequent image generation:
->>>
->>> martin@dell:~/gomspace_sdk$ devtool package cppzmq
->>> NOTE: Starting bitbake server...
->>> NOTE: Starting bitbake server...
->>> WARNING: Host distribution "ubuntu-17.10" has not been validated with this
->>> version of the build system; you may possibly experience unexpected
->>> failures. It is recommended that you use a tested distribution.
->>> Loading cache: 100%
->>> |########################################################################################################################################################################|
->>> Time: 0:00:03
->>> Loaded 2773 entries from dependency cache.
->>> Parsing recipes: 100%
->>> |######################################################################################################################################################################|
->>> Time: 0:00:01
->>> Parsing of 1968 .bb files complete (1960 cached, 8 parsed). 2780 targets,
->>> 305 skipped, 11 masked, 0 errors.
->>> NOTE: Resolving any missing task queue dependencies
->>> Initialising tasks: 100%
->>> |###################################################################################################################################################################|
->>> Time: 0:00:00
->>> Checking sstate mirror object availability: 100%
->>> |###########################################################################################################################################|
->>> Time: 0:00:00
->>> NOTE: Executing SetScene Tasks
->>> NOTE: Executing RunQueue Tasks
->>> NOTE: Tasks Summary: Attempted 492 tasks of which 491 didn't need to be
->>> rerun and all succeeded.
->>>
->>> Summary: There was 1 WARNING message shown.
->>> NOTE: Your packages are in /home/martin/gomspace_sdk/tmp/deploy/ipk
->>>
->>> martin@dell:~/gomspace_sdk$ devtool build-image
->>> NOTE: Starting bitbake server...
->>> WARNING: Host distribution "ubuntu-17.10" has not been validated with this
->>> version of the build system; you may possibly experience unexpected
->>> failures. It is recommended that you use a tested distribution.
->>> Loading cache: 100%
->>> |########################################################################################################################################################################|
->>> Time: 0:00:00
->>> Loaded 2773 entries from dependency cache.
->>> Parsing recipes: 100%
->>> |######################################################################################################################################################################|
->>> Time: 0:00:02
->>> Parsing of 1968 .bb files complete (1960 cached, 8 parsed). 2780 targets,
->>> 305 skipped, 11 masked, 0 errors.
->>>
->>> Summary: There was 1 WARNING message shown.
->>> WARNING: Skipping recipe cppzmq as it doesn't produce a package with the
->>> same name
->>
->> This is the suspicious bit... If you look at the recipe, you'll notice
->> it's re-defining the PACKAGES variable. Then, it's not generating a
->> package called 'cppzmq', but only one named 'cppzmq-dev'. That said,
->> I'm not sure why you'd want to add a package which only provides
->> development headers to your target image...
->>
->> I understand your doubt here. The header file installed is a wrapper around
->> zeromq and thus DEPENDS/RDEPENDS on this library. zeromq is included in the
->> image, for which the SDK is generated, hence I would expect this to be a
->> valid use case?
->>
->> Anyhow, I realized that the recipe does not even work in a BB environment -
->> the following is encountered for an image including the package:
->>
->> ERROR: Nothing RPROVIDES 'cppzmq' (but
->> /home/martin/work/z7000-distro-zcu102/poky/meta/recipes-core/images/core-image-minimal.bb
->> RDEPENDS on or otherwise requires it)
->> NOTE: Runtime target 'cppzmq' is unbuildable, removing...
->> Missing or unbuildable dependency chain was: ['cppzmq']
->> ERROR: Required build target 'core-image-minimal' has no buildable
->> providers.
->> Missing or unbuildable dependency chain was: ['core-image-minimal',
->> 'cppzmq']
->>
->> I wonder why this occurs when the recipe is indeed present:
->>
->> martin@dell:~/work/z7000-distro-zcu102/build$ bitbake-layers  show-recipes
->> cppzmq
->> NOTE: Starting bitbake server...
->> WARNING: Host distribution "ubuntu-17.10" has not been validated with this
->> version of the build system; you may possibly experience unexpected
->> failures. It is recommended that you use a tested distribution.
->> Loading cache: 100%
->> |########################################################################################################################################################################|
->> Time: 0:00:00
->> Loaded 2773 entries from dependency cache.
->> Parsing recipes: 100%
->> |######################################################################################################################################################################|
->> Time: 0:00:01
->> Parsing of 1968 .bb files complete (1961 cached, 7 parsed). 2780 targets,
->> 305 skipped, 11 masked, 0 errors.
->>
->> Summary: There was 1 WARNING message shown.
->> === Matching recipes: ===
->> cppzmq:
->>   meta-oe              4.1.5+gitAUTOINC+68a7b09cfc
->>
->> Br,
->> Martin
->>
->>>
->>> Inspecting the manifest file confirms that the package is not installed -
->>> any idea why not? I also tried installing though sdk-install:
->>>
->>> martin@dell:~/gomspace_sdk$ devtool sdk-install -s cppzmq
->>> NOTE: Starting bitbake server...
->>> WARNING: Host distribution "ubuntu-17.10" has not been validated with this
->>> version of the build system; you may possibly experience unexpected
->>> failures. It is recommended that you use a tested distribution.
->>> Loading cache: 100%
->>> |########################################################################################################################################################################|
->>> Time: 0:00:00
->>> Loaded 2773 entries from dependency cache.
->>> Parsing recipes: 100%
->>> |######################################################################################################################################################################|
->>> Time: 0:00:02
->>> Parsing of 1968 .bb files complete (1961 cached, 7 parsed). 2780 targets,
->>> 305 skipped, 11 masked, 0 errors.
->>>
->>> Summary: There was 1 WARNING message shown.
->>> NOTE: Installing cppzmq...
->>> WARNING: Host distribution "ubuntu-17.10" has not been validated with this
->>> version of the build system; you may possibly experience unexpected
->>> failures. It is recommended that you use a tested distribution.
->>> Loading cache: 100%
->>> |########################################################################################################################################################################|
->>> Time: 0:00:03
->>> Loaded 2773 entries from dependency cache.
->>> Parsing recipes: 100%
->>> |######################################################################################################################################################################|
->>> Time: 0:00:01
->>> Parsing of 1968 .bb files complete (1961 cached, 7 parsed). 2780 targets,
->>> 305 skipped, 11 masked, 0 errors.
->>> NOTE: Resolving any missing task queue dependencies
->>> Initialising tasks: 100%
->>> |###################################################################################################################################################################|
->>> Time: 0:00:00
->>> Checking sstate mirror object availability: 100%
->>> |###########################################################################################################################################|
->>> Time: 0:00:00
->>> NOTE: Executing SetScene Tasks
->>> NOTE: Executing RunQueue Tasks
->>> NOTE: Tasks Summary: Attempted 487 tasks of which 477 didn't need to be
->>> rerun and all succeeded.
->>>
->>> Summary: There was 1 WARNING message shown.
->>> NOTE: Successfully installed cppzmq
->>>
->>> Which also does not pick up the package upon image building:
->>>
->>> martin@dell:~/gomspace_sdk$ IMAGE_INSTALL_append="cppzmq" devtool
->>> build-image
->>> NOTE: Starting bitbake server...
->>> WARNING: Host distribution "ubuntu-17.10" has not been validated with this
->>> version of the build system; you may possibly experience unexpected
->>> failures. It is recommended that you use a tested distribution.
->>> Loading cache: 100%
->>> |########################################################################################################################################################################|
->>> Time: 0:00:00
->>> Loaded 2773 entries from dependency cache.
->>> Parsing recipes: 100%
->>> |######################################################################################################################################################################|
->>> Time: 0:00:02
->>> Parsing of 1968 .bb files complete (1961 cached, 7 parsed). 2780 targets,
->>> 305 skipped, 11 masked, 0 errors.
->>>
->>> Summary: There was 1 WARNING message shown.
->>> WARNING: No packages to add, building image nanocom-sdr-image unmodified
->>>
->>> What am I missing here?
->>>
->>> Thanks,
->>> Martin
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->
+The configuration I use makes use of systemd.
 
+I gave a try to psplash but by now I have realized that it is not
+compatible with systemd. The image is displayed but I don't get progress
+information.
+
+Next try with dietsplash. The splash screen isn't displayed and I just have
+a black screen when booting. If I manually run /bin/dietsplash I lose
+control over the keyboard and the penguin isn't displayed.
+
+The dietsplash doc https://github.com/lucasdemarchi/dietsplash/tree/v0.3
+mentions to add 'init=3D/bin/dietsplash' to the kernel command line.
+
+What would be the way to I add it?
+
+Last try plymouth. An error comes during the boot and the splash screen
+doesn't show:
+[   OK    ] Started Show Plymouth Boot Screen.
+[FAILED] Failed to start Forward Passwrod Requests to Plymouth Directory
+Watch.
+See 'systemctl status systemd-ask-password-plymouth.path' for details
+
+systemctl status gives me:
+=E2=97=8F systemd-ask-password-plymouth.path - Forward Password Requests to
+Plymouth Directory Watch
+   Loaded: loaded (/lib/systemd/system/systemd-ask-password-plymouth.path;
+static; vendor preset: enabled)
+   Active: inactive (dead)
+     Docs: http://www.freedesktop.org/wiki/Software/systemd/PasswordAgents
+
+May 02 14:34:10 jetson-tx2 systemd[1]:
+[[0;1;31msystemd-ask-password-plymouth.path: Refusing to start, unit to
+trigger not loaded.[[0m
+May 02 14:34:10 jetson-tx2 systemd[1]: [[0;1;31mFailed to start Forward
+Password Requests to Plymouth Directory Watch.[[0m
+
+Any hint would be greatly appreciated :D
+
+Cheers,
+-Damien
+
+--0000000000003d7a24056b3a2ec8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m working on an NVidia Jetson=
+ board with a TX2 module and I would like to have splash screen <span style=
+=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-s=
+tyle:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-wei=
+ght:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transfo=
+rm:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,25=
+5);text-decoration-style:initial;text-decoration-color:initial;float:none;d=
+isplay:inline">with a progress bar=C2=A0</span>when booting and shutting do=
+wn. The board boots to an application embedded style. There&#39;s no deskto=
+p and no user login.</div><div><br></div><div>The configuration I use makes=
+ use of systemd.=C2=A0</div><div><br></div><div>I gave a try to psplash but=
+ b<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size=
+:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:no=
+rmal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px=
+;text-transform:none;white-space:normal;word-spacing:0px;background-color:r=
+gb(255,255,255);text-decoration-style:initial;text-decoration-color:initial=
+;float:none;display:inline">y now I have realized that it is not compatible=
+ with systemd. The image is displayed but I don&#39;t get progress informat=
+ion.</span></div><div><span style=3D"color:rgb(34,34,34);font-family:arial,=
+sans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;=
+font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:s=
+tart;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0p=
+x;background-color:rgb(255,255,255);text-decoration-style:initial;text-deco=
+ration-color:initial;float:none;display:inline"><br></span></div><div><span=
+ style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;=
+font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fo=
+nt-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-t=
+ransform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,=
+255,255);text-decoration-style:initial;text-decoration-color:initial;float:=
+none;display:inline">Next try with dietsplash. The splash screen isn&#39;t =
+displayed and I just have a black screen when booting. If I manually run /b=
+in/dietsplash I lose control over the keyboard and the penguin isn&#39;t di=
+splayed.=C2=A0 =C2=A0</span></div><div><span style=3D"color:rgb(34,34,34);f=
+ont-family:arial,sans-serif;font-size:small;font-style:normal;font-variant-=
+ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:no=
+rmal;text-align:start;text-indent:0px;text-transform:none;white-space:norma=
+l;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:=
+initial;text-decoration-color:initial;float:none;display:inline"><br></span=
+></div><div><span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif=
+;font-size:small;font-style:normal;font-variant-ligatures:normal;font-varia=
+nt-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-=
+indent:0px;text-transform:none;white-space:normal;word-spacing:0px;backgrou=
+nd-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-col=
+or:initial;float:none;display:inline">The dietsplash doc <a href=3D"https:/=
+/github.com/lucasdemarchi/dietsplash/tree/v0.3">https://github.com/lucasdem=
+archi/dietsplash/tree/v0.3</a> mentions to add=C2=A0&#39;init=3D/bin/dietsp=
+lash&#39; to the kernel command line.=C2=A0</span></div><div><span style=3D=
+"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-styl=
+e:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight=
+:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:=
+none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);=
+text-decoration-style:initial;text-decoration-color:initial;float:none;disp=
+lay:inline"><br></span></div><div><span style=3D"color:rgb(34,34,34);font-f=
+amily:arial,sans-serif;font-size:small;font-style:normal;font-variant-ligat=
+ures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;=
+text-align:start;text-indent:0px;text-transform:none;white-space:normal;wor=
+d-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initi=
+al;text-decoration-color:initial;float:none;display:inline">What would be t=
+he way to I add it?</span></div><div><span style=3D"color:rgb(34,34,34);fon=
+t-family:arial,sans-serif;font-size:small;font-style:normal;font-variant-li=
+gatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:norm=
+al;text-align:start;text-indent:0px;text-transform:none;white-space:normal;=
+word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:in=
+itial;text-decoration-color:initial;float:none;display:inline"><br></span><=
+/div><div><span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;f=
+ont-size:small;font-style:normal;font-variant-ligatures:normal;font-variant=
+-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-in=
+dent:0px;text-transform:none;white-space:normal;word-spacing:0px;background=
+-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-color=
+:initial;float:none;display:inline">Last try plymouth. An error comes durin=
+g the boot and the splash screen doesn&#39;t show:</span></div><div><span s=
+tyle=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;fo=
+nt-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font=
+-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tra=
+nsform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,25=
+5,255);text-decoration-style:initial;text-decoration-color:initial;float:no=
+ne;display:inline">[=C2=A0 =C2=A0OK=C2=A0 =C2=A0 ] Started Show Plymouth Bo=
+ot Screen.</span></div><div><span style=3D"color:rgb(34,34,34);font-family:=
+arial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:n=
+ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
+lign:start;text-indent:0px;text-transform:none;white-space:normal;word-spac=
+ing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;tex=
+t-decoration-color:initial;float:none;display:inline">[FAILED] Failed to st=
+art Forward Passwrod Requests to Plymouth Directory Watch.</span></div><div=
+><span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:=
+small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:nor=
+mal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;=
+text-transform:none;white-space:normal;word-spacing:0px;background-color:rg=
+b(255,255,255);text-decoration-style:initial;text-decoration-color:initial;=
+float:none;display:inline">See &#39;systemctl status systemd-ask-password-p=
+lymouth.path&#39; for details</span></div><div><span style=3D"color:rgb(34,=
+34,34);font-family:arial,sans-serif;font-size:small;font-style:normal;font-=
+variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-sp=
+acing:normal;text-align:start;text-indent:0px;text-transform:none;white-spa=
+ce:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decoratio=
+n-style:initial;text-decoration-color:initial;float:none;display:inline"><b=
+r></span></div><div><span style=3D"color:rgb(34,34,34);font-family:arial,sa=
+ns-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;fo=
+nt-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:sta=
+rt;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;=
+background-color:rgb(255,255,255);text-decoration-style:initial;text-decora=
+tion-color:initial;float:none;display:inline">systemctl status gives me:</s=
+pan></div><div><span style=3D"text-align:start;text-indent:0px;background-c=
+olor:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:i=
+nitial;float:none;display:inline"><div>=E2=97=8F systemd-ask-password-plymo=
+uth.path - Forward Password Requests to Plymouth Directory Watch</div><div>=
+=C2=A0 =C2=A0Loaded: loaded (/lib/systemd/system/systemd-ask-password-plymo=
+uth.path; static; vendor preset: enabled)</div><div>=C2=A0 =C2=A0Active: in=
+active (dead)</div><div>=C2=A0 =C2=A0 =C2=A0Docs: <a href=3D"http://www.fre=
+edesktop.org/wiki/Software/systemd/PasswordAgents">http://www.freedesktop.o=
+rg/wiki/Software/systemd/PasswordAgents</a></div><div><br></div><div>May 02=
+ 14:34:10 jetson-tx2 systemd[1]: [[0;1;31msystemd-ask-password-plymouth.pat=
+h: Refusing to start, unit to trigger not loaded.[[0m</div><div>May 02 14:3=
+4:10 jetson-tx2 systemd[1]: [[0;1;31mFailed to start Forward Password Reque=
+sts to Plymouth Directory Watch.[[0m</div><div style=3D"color:rgb(34,34,34)=
+;font-family:arial,sans-serif;font-size:small;font-style:normal;font-varian=
+t-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:=
+normal;text-transform:none;white-space:normal;word-spacing:0px"><br></div><=
+div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:sma=
+ll;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal=
+;font-weight:400;letter-spacing:normal;text-transform:none;white-space:norm=
+al;word-spacing:0px">Any hint would be greatly appreciated :D</div><div sty=
+le=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font=
+-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-w=
+eight:400;letter-spacing:normal;text-transform:none;white-space:normal;word=
+-spacing:0px"><br></div><div style=3D"color:rgb(34,34,34);font-family:arial=
+,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal=
+;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-transf=
+orm:none;white-space:normal;word-spacing:0px">Cheers,</div><div style=3D"co=
+lor:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:n=
+ormal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:40=
+0;letter-spacing:normal;text-transform:none;white-space:normal;word-spacing=
+:0px">-Damien</div><div style=3D"color:rgb(34,34,34);font-family:arial,sans=
+-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;font=
+-variant-caps:normal;font-weight:400;letter-spacing:normal;text-transform:n=
+one;white-space:normal;word-spacing:0px"><br></div></span></div><div><span =
+style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;f=
+ont-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fon=
+t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
+ansform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,2=
+55,255);text-decoration-style:initial;text-decoration-color:initial;float:n=
+one;display:inline"><br></span></div><div><span style=3D"color:rgb(34,34,34=
+);font-family:arial,sans-serif;font-size:small;font-style:normal;font-varia=
+nt-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing=
+:normal;text-align:start;text-indent:0px;text-transform:none;white-space:no=
+rmal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-sty=
+le:initial;text-decoration-color:initial;float:none;display:inline"><br></s=
+pan></div><div><span style=3D"color:rgb(34,34,34);font-family:arial,sans-se=
+rif;font-size:small;font-style:normal;font-variant-ligatures:normal;font-va=
+riant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;te=
+xt-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;backg=
+round-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-=
+color:initial;float:none;display:inline"><br></span></div></div>
+
+--0000000000003d7a24056b3a2ec8--
