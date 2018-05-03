@@ -1,6 +1,6 @@
 Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33450E00B58; Wed,  2 May 2018 20:29:38 -0700 (PDT)
+	id 9FD98E00AE6; Wed,  2 May 2018 20:42:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.220.196 listed in list.dnswl.org]
+	*      [209.85.216.193 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,52 +20,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f196.google.com (mail-qk0-f196.google.com
-	[209.85.220.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E6AEE00A6A
-	for <yocto@yoctoproject.org>; Wed,  2 May 2018 20:29:37 -0700 (PDT)
-Received: by mail-qk0-f196.google.com with SMTP id b131so12944176qkg.2
-	for <yocto@yoctoproject.org>; Wed, 02 May 2018 20:29:37 -0700 (PDT)
+Received: from mail-qt0-f193.google.com (mail-qt0-f193.google.com
+	[209.85.216.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF79AE00A6A
+	for <yocto@yoctoproject.org>; Wed,  2 May 2018 20:42:24 -0700 (PDT)
+Received: by mail-qt0-f193.google.com with SMTP id g13-v6so21228617qth.8
+	for <yocto@yoctoproject.org>; Wed, 02 May 2018 20:42:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=6a7vKNvWc+LdjFje6fLJERKzpmCW0aVQW0+yZ0KNF/Y=;
-	b=E29LuZ+geQy3aAk3nIZ8DqE/No0tr3VGMTi0Zvmf+okWev6+FXSQm3CpenefKBa/4z
-	2IjAt4LGAoUeuSqcb19JL4Q4m1ntlVAiKhwH8LmZ5yYIyZw1uwpYUm+mSKnW0qeDDK1T
-	Qjg/iCjJqOkOqNNHzQS3WFAHIRPU33a9STK+XtTnxnJ4/yEhGAYujdbAIurPKXoNCXCN
-	hwawG1KG67K0LapGz/oBcoCrpoBkDh4BNKxQiUl4v86b3SnDFeGpAIBUGZJLQe03YqSV
-	nM+y/UucwiBG6aMPgAHvIV4V2rZ/7S8rTK2fW1aIg2VIxfWpUijxYzeChflQK5XF57TC
-	xACQ==
+	:cc; bh=h4NCudebkdPTu4cvR1anirMtmDs9Ole/zu96cWHmOJM=;
+	b=ZGSe1ckWejeRJtJYehrhke65JxHldaqBN+7E6pDLh1RKGYV8kac1K6uP6F0ldZD3sH
+	mSxO8uR+3fbS47s2RJFC51quLSdnXnKS/fB5nEOy6traETzYnD31mqqmWzqcB8kqaUbj
+	Nemp3r8Bh5507ECUoh5GfKXxNgQVDxNGon6M8aXP1oF3hIjomJIuxuZe91QaWwB3N9OY
+	YcI3DdlhxyuF5icNbNzpzcPnYSr9zXmwcSn/ZucBIRFTdpYMBPiPV4wQasQXLW7cPGVR
+	ZH3jSQu8Wr63cgM/tBMChxr+MVhxOu+gvC1ys3hZPsq9ey2hf0OG8X8QgEz1Fe4pR50W
+	7QZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=6a7vKNvWc+LdjFje6fLJERKzpmCW0aVQW0+yZ0KNF/Y=;
-	b=DF2Z77NpliKqtALGGz3sTzOKwVTBfyd5++OXJ0m0IQ63ZGYsZDnRYa6gwHbx5YGkNQ
-	ZxwFfKS3VTDc4yqx1kGmJ1R43dwq2b4QNEav6ZXiSzNizpKL6hCYkEpoST6RCJpRNvJk
-	/y4xjLHAySGklHlS9UaMlF3lnQWoW/qSfImlM5udyHVBIbJ9d6BE1kmOW8RY+J4xpN5M
-	t5akRiXzmP7/xZ4hnYAlEwot7cRT9cYC8x/ql5RLIRpRkFjs+SqdXY8+jhIV9NXcQ4Gj
-	eCmB8frlPOI5UH7t1rYivwDFZb+7Hx7n+iJ6eYLMtDEwk+JS7mT2s3lL8z+bW76WyI/8
-	ahMg==
-X-Gm-Message-State: ALQs6tCdDbDMK57YMo++YEBu9+aV43FZwwfTMkDIZ4zK7C1y4mkxF3kS
-	ONitSnSJHeGrIrU0Xo1kTbjweApcVMlFTvcawDvxeA==
-X-Google-Smtp-Source: AB8JxZonDIC++5AutjWo0bixAi0IO99fwqofFFHWkSDckJEUpdOem/KjUDmYM/pQ6MrtjS8ecqQNJ8pjh1fm/caj/XU=
-X-Received: by 10.55.192.197 with SMTP id v66mr16893768qkv.343.1525318176447; 
-	Wed, 02 May 2018 20:29:36 -0700 (PDT)
+	bh=h4NCudebkdPTu4cvR1anirMtmDs9Ole/zu96cWHmOJM=;
+	b=IVqrZEBjNaOst7XriKx1yDert9YJiRRGmY7o6DySqz7cP/dTatDgWirww4ZooCipTv
+	7dpGwcPF4+9WlvAH/D4kQM/Oy5YUEYvJTlmXzUkGJMdduIpvu/Zs2xBtzjgN9ESKOXNb
+	+4aTR32PVKk+c24cpdKKJT3pwbj4NxOQPHbbI84G1uq355SdZ/NW/6O/WkNYPSsoycYy
+	Skng+7HsdYkIMBEMjDOJ6Tm/5mf7fDoIJ/etGEB8EIaeoH6ZxP0LuXOTC8kjRqlynJ9a
+	1LwuF/tAf0QpjLdZzgI2F0uicm8ZbW/pPwGS25wfXvd362bVywCxUJqqThYKOZpoJSbL
+	HTZQ==
+X-Gm-Message-State: ALQs6tD85vDwgRdV6Amq98r+BrsRx3R97hXlXaE5omrcJ3nRqunw/FvK
+	eaYjMWNz2ajIJUMmbpRyDIkLtUgBE7jHushmYdU=
+X-Google-Smtp-Source: AB8JxZrHa5wqHzrIt9AI+7jH0o22eX78yxCYngwN+1VwQx8Gy4fiiN6ZXh+IveQjn+5uU+tTDO0CsgubrymbmXVfkYA=
+X-Received: by 2002:ac8:1628:: with SMTP id
+	p37-v6mr18101336qtj.122.1525318943743; 
+	Wed, 02 May 2018 20:42:23 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.12.173.106 with HTTP; Wed, 2 May 2018 20:29:36 -0700 (PDT)
-In-Reply-To: <1525293379.1343784.1358733424.3328B6FF@webmail.messagingengine.com>
-References: <20180425150333.GA9349@graute-opti>
-	<CAGAf8LzpCD-SC54z88pE_=iYQ2ANg+4pzhYNRH_Qk1L6i-V-8A@mail.gmail.com>
-	<5ae0d8b5.3bb5500a.22ed7.1ad6@mx.google.com>
-	<CAJTo0LZ5Cf5zqLVJf+Jjd60KLLKJ2q-01B3QdpuVDGx4tCxKAg@mail.gmail.com>
-	<CAGAf8LziVYUN6ZK622JURBer5CUHGTKQvx9t53Ut7NX9JO9-wA@mail.gmail.com>
-	<1525293379.1343784.1358733424.3328B6FF@webmail.messagingengine.com>
+Received: by 10.12.173.106 with HTTP; Wed, 2 May 2018 20:42:23 -0700 (PDT)
+In-Reply-To: <1525293137.1342848.1358729048.121DC72A@webmail.messagingengine.com>
+References: <MWHPR19MB1183D3C8CA06798F8109DCFCC5810@MWHPR19MB1183.namprd19.prod.outlook.com>
+	<CAGAf8LymM_PYzz3CVDqvG9+yq-YCeQ+UmMOOPDmCaovm6dFYgA@mail.gmail.com>
+	<MWHPR19MB1183A2A575D567D9DE74ED12C5800@MWHPR19MB1183.namprd19.prod.outlook.com>
+	<CAGAf8Lw0FCJ6ebE3dLFmbnm00MOe-vMdi+rWa+sHcDYpZMcBBA@mail.gmail.com>
+	<1525293137.1342848.1358729048.121DC72A@webmail.messagingengine.com>
 From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Thu, 3 May 2018 05:29:36 +0200
-Message-ID: <CAGAf8Lz5ctB40u3EwD-4XLdTbAgRG0g8nkAK1BkDsjkhYAHB_w@mail.gmail.com>
+Date: Thu, 3 May 2018 05:42:23 +0200
+Message-ID: <CAGAf8Lzuo8zFBEKM3jTi5mB1Xc6_+Z1BgprGw325+073Rt3grg@mail.gmail.com>
 To: Paul Barker <paul@betafive.co.uk>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: yocto jethro failed on gettext-native
+Subject: Re: Problem with Python when running oe-init-build-env
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,151 +77,166 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2018 03:29:38 -0000
-Content-Type: multipart/alternative; boundary="001a1147a26e13a02d056b44d072"
+X-List-Received-Date: Thu, 03 May 2018 03:42:25 -0000
+Content-Type: multipart/alternative; boundary="000000000000cfa253056b44fdf1"
 
---001a1147a26e13a02d056b44d072
+--000000000000cfa253056b44fdf1
 Content-Type: text/plain; charset="UTF-8"
 
-Hello Paul,
+ > Advising people to "freeze" their host system and stop taking
+security/bugfix updates pushed by their distro is a bad idea.
 
-Could you, please, read couple of times more my quoted comment (by you)?
-Stress to word: *couple*! ;-)
+I already said here that I am ignorant in regards to Centos. I never used
+this distro. Please, read again my comments.
 
-> Now, I must admit, I have learned something new. Never gave any
-> consideration to these releases: example: Pyro 17.0.3.
->
->* But now I understand: it has direct link with Ubuntu 17... Even, YOCTO*
-> *Pyro, as given example, can be substituted with Ubuntu 17.04?! Wow... *
+In contrary, if I try to compile YOCTO Krogoth with my Fedora 27 host, it
+will 100% fail.
+
+Paul, wanna bet on it?! ;-)
 
 Thank you,
 Zoran
 _______
 
-On Wed, May 2, 2018 at 10:36 PM, Paul Barker <paul@betafive.co.uk> wrote:
+On Wed, May 2, 2018 at 10:32 PM, Paul Barker <paul@betafive.co.uk> wrote:
 
-> On Wed, 25 Apr 2018, at 21:55, Zoran Stojsavljevic wrote:
-> > > Jethro doesn't support Yocto 16.* because it is very old (released
-> 2015...)...
+> On Wed, 2 May 2018, at 21:17, Zoran Stojsavljevic wrote:
+> > Hello Raymond,
 > >
-> > Now, I must admit, I have learned something new. Never gave any
-> > consideration to these releases: example: Pyro 17.0.3.
-> >
-> > But now I understand: it has direct link with Ubuntu 17... Even, YOCTO
-> > Pyro, as given example, can be substituted with Ubuntu 17.04?! Wow...
-> >
-> > Every day in every way, I'm progressing more and more! ;-)
-> >
+> > YOCTO is, per say, moving target. If you have YOCTO Krogoth, you should
+> > have somehow frozen host Centos 7 release around this time. As you now
+> > moving to Rocko, you need to fast-forward the whole host Centos 7 (in
+> other
+> > words to upgrade Centos 7) to this state (maybe to latest, it'll still
+> > work, I guess).
 >
-> You seem to be a bit confused here by the fact that the poky version
-> number lined up with the year in 2017. See https://wiki.yoctoproject.org/
-> wiki/Releases for some context.
+> Sorry, I'd say this is wrong. Centos is a pretty stable base and I
+> wouldn't expect backwards incompatible changes to be made within a stable
+> release series. So if a Yocto release worked on a given Centos version (say
+> Centos 7) at the time of release, it should still work now.
+>
+> Advising people to "freeze" their host system and stop taking
+> security/bugfix updates pushed by their distro is a bad idea.
 >
 > --
 > Paul Barker
 > Beta Five Ltd
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
---001a1147a26e13a02d056b44d072
+--000000000000cfa253056b44fdf1
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello Paul,<div><br></div><div>Could you, please, read cou=
-ple of times more my quoted comment (by you)? Stress to word: <i style=3D""=
-><u style=3D"">couple</u></i>! ;-)</div><div><br></div><div>
+<div dir=3D"ltr">
 
-<span style=3D"color:rgb(80,0,80);font-family:arial,sans-serif;font-size:12=
-.8px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
-al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
-ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
-(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
-loat:none;display:inline">&gt; Now, I must admit, I have learned something =
-new. Never gave any</span><br style=3D"color:rgb(80,0,80);font-family:arial=
-,sans-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:norma=
-l;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align=
-:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:=
-0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-de=
-coration-color:initial"><span style=3D"color:rgb(80,0,80);font-family:arial=
-,sans-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:norma=
-l;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align=
-:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:=
-0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-de=
-coration-color:initial;float:none;display:inline">&gt; consideration to the=
-se releases: example: Pyro 17.0.3.</span><br style=3D"color:rgb(80,0,80);fo=
-nt-family:arial,sans-serif;font-size:12.8px;font-style:normal;font-variant-=
-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:no=
-rmal;text-align:start;text-indent:0px;text-transform:none;white-space:norma=
-l;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:=
-initial;text-decoration-color:initial"><span style=3D"color:rgb(80,0,80);fo=
-nt-family:arial,sans-serif;font-size:12.8px;font-style:normal;font-variant-=
-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:no=
-rmal;text-align:start;text-indent:0px;text-transform:none;white-space:norma=
-l;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:=
-initial;text-decoration-color:initial;float:none;display:inline">&gt;<span>=
-=C2=A0</span></span><br style=3D"color:rgb(80,0,80);font-family:arial,sans-=
-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:normal;font=
--variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start=
-;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;ba=
-ckground-color:rgb(255,255,255);text-decoration-style:initial;text-decorati=
-on-color:initial"><span style=3D"color:rgb(80,0,80);font-family:arial,sans-=
-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:normal;font=
--variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start=
-;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;ba=
-ckground-color:rgb(255,255,255);text-decoration-style:initial;text-decorati=
-on-color:initial;float:none;display:inline">&gt;</span><span style=3D"font-=
-family:arial,sans-serif;font-size:12.8px;font-variant-ligatures:normal;font=
--variant-caps:normal;letter-spacing:normal;text-align:start;text-indent:0px=
-;text-transform:none;white-space:normal;word-spacing:0px;background-color:r=
-gb(255,255,255);text-decoration-style:initial;text-decoration-color:initial=
-;float:none;display:inline"><b style=3D""><i style=3D""><font color=3D"#ff0=
-000"> But now I understand: it has direct link with Ubuntu 17... Even, YOCT=
-O</font></i></b></span><br style=3D"color:rgb(80,0,80);font-family:arial,sa=
-ns-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:normal;f=
-ont-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:st=
-art;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px=
-;background-color:rgb(255,255,255);text-decoration-style:initial;text-decor=
-ation-color:initial"><span style=3D"color:rgb(80,0,80);font-family:arial,sa=
-ns-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:normal;f=
-ont-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:st=
-art;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px=
-;background-color:rgb(255,255,255);text-decoration-style:initial;text-decor=
-ation-color:initial;float:none;display:inline">&gt; </span><b><i><font colo=
-r=3D"#ff0000"><span style=3D"font-family:arial,sans-serif;font-size:12.8px;=
-font-variant-ligatures:normal;font-variant-caps:normal;letter-spacing:norma=
-l;text-align:start;text-indent:0px;text-transform:none;white-space:normal;w=
-ord-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:ini=
-tial;text-decoration-color:initial;float:none;display:inline">Pyro, as give=
-n example, can be substituted with Ubuntu 17.04?! Wow...</span>
-
-</font></i></b><br></div><div><br></div><div>Thank you,</div><div>Zoran</di=
-v><div>_______</div></div><div class=3D"gmail_extra"><br><div class=3D"gmai=
-l_quote">On Wed, May 2, 2018 at 10:36 PM, Paul Barker <span dir=3D"ltr">&lt=
-;<a href=3D"mailto:paul@betafive.co.uk" target=3D"_blank">paul@betafive.co.=
-uk</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D""=
->On Wed, 25 Apr 2018, at 21:55, Zoran Stojsavljevic wrote:<br>
-&gt; &gt; Jethro doesn&#39;t support Yocto 16.* because it is very old (rel=
-eased 2015...)...<br>
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+2.8px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:nor=
+mal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;=
+text-transform:none;white-space:normal;word-spacing:0px;background-color:rg=
+b(255,255,255);text-decoration-style:initial;text-decoration-color:initial;=
+float:none;display:inline">&gt; Advising people to &quot;freeze&quot; their=
+ host system and stop taking security/bugfix updates pushed by their distro=
+ is a bad idea.</span><br><div><span style=3D"color:rgb(34,34,34);font-fami=
+ly:arial,sans-serif;font-size:12.8px;font-style:normal;font-variant-ligatur=
+es:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;te=
+xt-align:start;text-indent:0px;text-transform:none;white-space:normal;word-=
+spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initial=
+;text-decoration-color:initial;float:none;display:inline"><br></span></div>=
+<div><span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-s=
+ize:12.8px;font-style:normal;font-variant-ligatures:normal;font-variant-cap=
+s:normal;font-weight:400;letter-spacing:normal;text-align:start;text-indent=
+:0px;text-transform:none;white-space:normal;word-spacing:0px;background-col=
+or:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:ini=
+tial;float:none;display:inline">I already said here that I am ignorant in r=
+egards to Centos. I never used this distro. Please, read again my comments.=
+</span></div><div><span style=3D"color:rgb(34,34,34);font-family:arial,sans=
+-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:normal;fon=
+t-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:star=
+t;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;b=
+ackground-color:rgb(255,255,255);text-decoration-style:initial;text-decorat=
+ion-color:initial;float:none;display:inline"><br></span></div><div><span st=
+yle=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12.8px;fo=
+nt-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font=
+-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tra=
+nsform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,25=
+5,255);text-decoration-style:initial;text-decoration-color:initial;float:no=
+ne;display:inline">In contrary, if I try to compile YOCTO Krogoth with my F=
+edora 27 host, it will 100% fail.</span></div><div><span style=3D"color:rgb=
+(34,34,34);font-family:arial,sans-serif;font-size:12.8px;font-style:normal;=
+font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;lett=
+er-spacing:normal;text-align:start;text-indent:0px;text-transform:none;whit=
+e-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-deco=
+ration-style:initial;text-decoration-color:initial;float:none;display:inlin=
+e"><br></span></div><div><span style=3D"color:rgb(34,34,34);font-family:ari=
+al,sans-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:nor=
+mal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-ali=
+gn:start;text-indent:0px;text-transform:none;white-space:normal;word-spacin=
+g:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-=
+decoration-color:initial;float:none;display:inline">Paul, wanna bet on it?!=
+ ;-)</span></div><div><span style=3D"color:rgb(34,34,34);font-family:arial,=
+sans-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:normal=
+;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:=
+start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0=
+px;background-color:rgb(255,255,255);text-decoration-style:initial;text-dec=
+oration-color:initial;float:none;display:inline"><br></span></div><div><spa=
+n style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12.8p=
+x;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;=
+font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text=
+-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(25=
+5,255,255);text-decoration-style:initial;text-decoration-color:initial;floa=
+t:none;display:inline">Thank you,</span></div><div><span style=3D"color:rgb=
+(34,34,34);font-family:arial,sans-serif;font-size:12.8px;font-style:normal;=
+font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;lett=
+er-spacing:normal;text-align:start;text-indent:0px;text-transform:none;whit=
+e-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-deco=
+ration-style:initial;text-decoration-color:initial;float:none;display:inlin=
+e">Zoran</span></div><div><span style=3D"color:rgb(34,34,34);font-family:ar=
+ial,sans-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:no=
+rmal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-al=
+ign:start;text-indent:0px;text-transform:none;white-space:normal;word-spaci=
+ng:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text=
+-decoration-color:initial;float:none;display:inline">_______</span></div></=
+div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed, May 2=
+, 2018 at 10:32 PM, Paul Barker <span dir=3D"ltr">&lt;<a href=3D"mailto:pau=
+l@betafive.co.uk" target=3D"_blank">paul@betafive.co.uk</a>&gt;</span> wrot=
+e:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
+eft:1px #ccc solid;padding-left:1ex"><span class=3D"">On Wed, 2 May 2018, a=
+t 21:17, Zoran Stojsavljevic wrote:<br>
+&gt; Hello Raymond,<br>
 &gt; <br>
-&gt; Now, I must admit, I have learned something new. Never gave any<br>
-&gt; consideration to these releases: example: Pyro 17.0.3.<br>
-&gt; <br>
-&gt; But now I understand: it has direct link with Ubuntu 17... Even, YOCTO=
+&gt; YOCTO is, per say, moving target. If you have YOCTO Krogoth, you shoul=
+d<br>
+&gt; have somehow frozen host Centos 7 release around this time. As you now=
 <br>
-&gt; Pyro, as given example, can be substituted with Ubuntu 17.04?! Wow...<=
-br>
-&gt; <br>
-&gt; Every day in every way, I&#39;m progressing more and more! ;-)<br>
-&gt; <br>
+&gt; moving to Rocko, you need to fast-forward the whole host Centos 7 (in =
+other<br>
+&gt; words to upgrade Centos 7) to this state (maybe to latest, it&#39;ll s=
+till<br>
+&gt; work, I guess).<br>
 <br>
-</span>You seem to be a bit confused here by the fact that the poky version=
- number lined up with the year in 2017. See <a href=3D"https://wiki.yoctopr=
-oject.org/wiki/Releases" rel=3D"noreferrer" target=3D"_blank">https://wiki.=
-yoctoproject.org/<wbr>wiki/Releases</a> for some context.<br>
+</span>Sorry, I&#39;d say this is wrong. Centos is a pretty stable base and=
+ I wouldn&#39;t expect backwards incompatible changes to be made within a s=
+table release series. So if a Yocto release worked on a given Centos versio=
+n (say Centos 7) at the time of release, it should still work now.<br>
+<br>
+Advising people to &quot;freeze&quot; their host system and stop taking sec=
+urity/bugfix updates pushed by their distro is a bad idea.<br>
 <span class=3D"HOEnZb"><font color=3D"#888888"><br>
 -- <br>
 Paul Barker<br>
 Beta Five Ltd<br>
-</font></span></blockquote></div><br></div>
+</font></span><div class=3D"HOEnZb"><div class=3D"h5">-- <br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</div></div></blockquote></div><br></div>
 
---001a1147a26e13a02d056b44d072--
+--000000000000cfa253056b44fdf1--
