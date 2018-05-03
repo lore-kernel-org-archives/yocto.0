@@ -1,17 +1,20 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <rksyeung@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E297E00A38; Thu,  3 May 2018 11:47:28 -0700 (PDT)
+	id 63B8FE00BAD; Thu,  3 May 2018 13:14:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	mail provider *      (rksyeung[at]hotmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.176 listed in list.dnswl.org]
+	no *      trust *      [40.92.9.83 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,52 +23,75 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f176.google.com (mail-qt0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14F72E00994
-	for <yocto@yoctoproject.org>; Thu,  3 May 2018 11:47:26 -0700 (PDT)
-Received: by mail-qt0-f176.google.com with SMTP id m16-v6so24210567qtg.13
-	for <yocto@yoctoproject.org>; Thu, 03 May 2018 11:47:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=V4nSbfSPZ3A6+TXWEAYNE/GAij+v0ljBEcH+JayOJYY=;
-	b=fTMJFKRUX/da9dSLPxkTqMr18NOiViISfoyYay2JZ3Sq9N5Maw3X3hJRtcHAJ40cYV
-	XcE3LqhR+V/WCq9i/C1en3KpbZZ+oXPn0/9bL0fkImBOhRgeoBqBLPXymRdvxy+DQcOM
-	Tz3wgCPDBiHW7RKenczeFHN7irNN4jK//CnChHekPdR++8lrdtnC0EidmRJTCl+rtGpL
-	5jbjd33TDvSj9v17bVEo3jDvIAvAguwup5hUVR0RKDfFpyocDI9MBUO0pmuwhx5MpAtX
-	//IzknyLXo/4aDshSS0bH3TgFovw11UyrY2H8Mv0p6nesyTxuQUtoqKCadAMU9sb31DZ
-	9nBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=V4nSbfSPZ3A6+TXWEAYNE/GAij+v0ljBEcH+JayOJYY=;
-	b=c25TCDZ5OjymVd/c81+bc0LOMZRFSx3SpBvNCx05ZaSe4ty6m3kaTEwIHHGfWk49kz
-	9vpqNz1krleXXsIDch1DxF3BY5Z3iEXOApEsuhzJ8k39Wl1WfP7GTUGrwJdJ7ttJIdFW
-	che5vJPJ0T/j/4m6v4X3aeQuEVtzq0R2e2R8d7FBpdjFM8D1tG8D/4BIRpUl5ZsSZKpc
-	bZNQhV1NXcfIIE+fOttqZSY4eZIQhz4PpXFbWXc3LpZ7woQ0sfj3g9MaFjCq3btCUJQ8
-	lvdtOXtuC6jEST47SNXPbcRtHx8ULXetfz6TgOuu2KMnL7mJ2iPqUCJDTFpFxq264oax
-	SyrA==
-X-Gm-Message-State: ALQs6tDsxnQFcc5IpXvYp8roImWyXEa8EAi6z5KLtI0mMaV2ttd+rDDG
-	vh2eUTBkbPPH/5bRXxINl1cbNO8qij5vKTkPPIc=
-X-Google-Smtp-Source: AB8JxZrkSgwNpXuQpd3eORFSx8NCf6mKM/foQebVCmwj6qfxWEjX7CBXuuODVMBaCqpEK3PNhxcmiVBIzJDirqOT3WE=
-X-Received: by 2002:aed:222b:: with SMTP id
-	n40-v6mr20871146qtc.146.1525373246039; 
-	Thu, 03 May 2018 11:47:26 -0700 (PDT)
+X-Greylist: delayed 65388 seconds by postgrey-1.32 at yocto-www;
+	Thu, 03 May 2018 13:14:30 PDT
+Received: from NAM04-BN3-obe.outbound.protection.outlook.com
+	(mail-oln040092009083.outbound.protection.outlook.com [40.92.9.83])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66ED1E00994
+	for <yocto@yoctoproject.org>; Thu,  3 May 2018 13:14:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=OkuykB4bOPWb03URoCxk3+mckS8TXRgvnOw/6avfMGk=;
+	b=jJKL5ljlompRxwIbFAcpOyN9nqpsqZF6+5cS3e4kpb6PZSO3qIEMvus5F11fn8EMYh88/JDpS4JxKtUAG7HpekGZw+eP/OwGFsGi2Edjb3eXePBGHAuG6gU7vJi3Nr+H6MZqYZiaXp+6Oo4RCP3Y1RSXR6YyBzuNRG3X/rXvDkWiUVJvqBw8qioY5ozonsTNKNo3Vzpvl8K2jzVJ1wK9RUboSu0mFfqIJ2zrIVWimO0tTT0olaRxyO7pjGwl7gu7iPkp/NBcO5ieVhCYqtXi+E+jRbza4xLObqkUuUo0jITqoQr2FbdepvXyXB4U3TYcevK1EmSj3xn5ZJyWUzemdg==
+Received: from CO1NAM04FT047.eop-NAM04.prod.protection.outlook.com
+	(10.152.90.53) by CO1NAM04HT052.eop-NAM04.prod.protection.outlook.com
+	(10.152.91.98) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.715.13;
+	Thu, 3 May 2018 19:41:29 +0000
+Received: from MWHPR19MB1183.namprd19.prod.outlook.com (10.152.90.54) by
+	CO1NAM04FT047.mail.protection.outlook.com (10.152.90.126) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.715.13 via Frontend Transport; Thu, 3 May 2018 19:41:29 +0000
+Received: from MWHPR19MB1183.namprd19.prod.outlook.com
+	([fe80::5125:a765:f3d4:40f8]) by
+	MWHPR19MB1183.namprd19.prod.outlook.com
+	([fe80::5125:a765:f3d4:40f8%18]) with mapi id 15.20.0715.024;
+	Thu, 3 May 2018 19:41:29 +0000
+From: Raymond Yeung <rksyeung@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: PXE booting ISO image fails with message "Waiting for removable
+	media..."
+Thread-Index: AQHT4xa7kZ51esAEykaXqXu2cIV6uw==
+Date: Thu, 3 May 2018 19:41:29 +0000
+Message-ID: <MWHPR19MB11834493BB850310B51FF64CC5870@MWHPR19MB1183.namprd19.prod.outlook.com>
+References: <mailman.83558.1525373248.15860.yocto@yoctoproject.org>
+In-Reply-To: <mailman.83558.1525373248.15860.yocto@yoctoproject.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:08BEAA845EBEBBB7CBC51B1ADE2665E897A59A98D9A317EA42C9E1B0C9D6ED8E;
+	UpperCasedChecksum:F925F9C444605D10932B4921CC22B2867FD2B50DD57728B174A5352AE380AFC0;
+	SizeAsReceived:7080; Count:46
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [L1kyssdLYLYSRa9LOX9Eyc7CE3mVktqg]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; CO1NAM04HT052;
+	7:sx92Kr+n+tOGjz3T6aE5m2U90t5T+UbIxr7cZNVSX4zWnw6UjZFbX1uR9zMMr3/7dx12qabmn9U5E/xAcpyXVQwm8cqes1ZIQwrAnKoKEuDdKpGAV5u8EQIjdJZhbjxdRW3R0TjNI93jfGiJ6XhhYjHiJhVH6vDn+iHX8fHXxKWVCIrMgoYiyuOKZH5vGaPfZzM9U6cWuD1PGTKA2v8MWEckVbPszow/CxRnbuRZKhFSGVdm5i+T2ZuAPENXz1QL
+x-incomingheadercount: 46
+x-eopattributedmessage: 0
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101448)(1601125374)(1701031045);
+	SRVR:CO1NAM04HT052; 
+x-ms-traffictypediagnostic: CO1NAM04HT052:
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
+	SRVR:CO1NAM04HT052; BCL:0; PCL:0; RULEID:; SRVR:CO1NAM04HT052; 
+x-forefront-prvs: 066153096A
+x-forefront-antispam-report: SFV:NSPM; SFS:(7070007)(98901004); DIR:OUT;
+	SFP:1901; SCL:1; SRVR:CO1NAM04HT052;
+	H:MWHPR19MB1183.namprd19.prod.outlook.com; FPR:; SPF:None; LANG:;
+x-microsoft-antispam-message-info: 80v/mNQA3pYAc5P7ZcNT6KM92daY/R68TD0tjrDMuTNudtC0T3Mm3ffb2kyysFDkzOF7tqCTqmbMdtHPG1uL7Bk+HyHLPmskfWLemijVSdodxOt40PqXGR7JAtiN4ZkVBKBoZR7FMUSZmGj4G9DJJbO4n2NPso8QDV+smYxSB55sIGhaII4bXBkZ/+N4zGuz
 MIME-Version: 1.0
-Received: by 10.12.173.106 with HTTP; Thu, 3 May 2018 11:47:25 -0700 (PDT)
-In-Reply-To: <CAJTo0LaWnAgFiGZLg9MjMjitahqEi9n5Ptw0SrTETOzyfSccPw@mail.gmail.com>
-References: <MWHPR19MB1183D3C8CA06798F8109DCFCC5810@MWHPR19MB1183.namprd19.prod.outlook.com>
-	<CAGAf8LymM_PYzz3CVDqvG9+yq-YCeQ+UmMOOPDmCaovm6dFYgA@mail.gmail.com>
-	<MWHPR19MB1183A2A575D567D9DE74ED12C5800@MWHPR19MB1183.namprd19.prod.outlook.com>
-	<CAJTo0LaWnAgFiGZLg9MjMjitahqEi9n5Ptw0SrTETOzyfSccPw@mail.gmail.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Thu, 3 May 2018 20:47:25 +0200
-Message-ID: <CAGAf8LzF70hcZZ=WPOKft59U0j4sxkX=dPYTsk3JtwJUKNSKDA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Raymond Yeung <rksyeung@hotmail.com>
-Subject: Re: Problem with Python when running oe-init-build-env
+X-MS-Office365-Filtering-Correlation-Id: 75ec02a6-71da-4561-c4d1-08d5b12ddd95
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75ec02a6-71da-4561-c4d1-08d5b12ddd95
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 May 2018 19:41:29.1549 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1NAM04HT052
+Subject: Re: PXE booting ISO image fails with message "Waiting for removable media..."
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,387 +103,216 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 May 2018 18:47:28 -0000
-Content-Type: multipart/alternative; boundary="0000000000007aec0e056b51a2fa"
+X-List-Received-Date: Thu, 03 May 2018 20:14:33 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MWHPR19MB11834493BB850310B51FF64CC5870MWHPR19MB1183namp_"
 
---0000000000007aec0e056b51a2fa
-Content-Type: text/plain; charset="UTF-8"
-
-Hello Ross,
-
-Seems that you are correct. I have checked on my host Fedora 27:
-
-[vuser@localhost bin]$ pwd
-/usr/bin
-[vuser@localhost bin]$ uname -r
-4.16.5-200.fc27.x86_64
-[vuser@localhost bin]$ ls -al pyth*
-lrwxrwxrwx. 1 root root     7 Mar 14 14:36 python -> python2
-lrwxrwxrwx. 1 root root     9 Mar 14 14:36 python2 -> python2.7
--rwxr-xr-x. 1 root root  7128 Mar 14 14:37 python2.7
-lrwxrwxrwx. 1 root root     9 Apr  4 17:03 python3 -> python3.6
--rwxr-xr-x. 2 root root 11240 Apr  4 17:03 python3.6
--rwxr-xr-x. 2 root root 11240 Apr  4 17:03 python3.6m
--rwxr-xr-x. 1 root root   388 Jul 28  2017 python3-chardetect
--rwxr-xr-x. 1 root root   387 Nov 16 18:05 python3-coverage
--rwxr-xr-x. 1 root root   396 Jul 28  2017 python3-mako-render
--rwxr-xr-x. 1 root root   392 Jul 28  2017 python3-pyinotify
-[vuser@localhost bin]$
-
-I also have checked on my Debian 9.4.0 VM:
-
-user@unassigned-hostname:/usr/bin$ pwd
-/usr/bin
-user@unassigned-hostname:/usr/bin$ uname -r
-4.9.0-6-amd64
-user@unassigned-hostname:/usr/bin$ ls -al pyth*
-lrwxrwxrwx 1 root root       9 May  3 11:03 python -> python2.7
-lrwxrwxrwx 1 root root       9 May  3 11:03 python2 -> python2.7
--rwxr-xr-x 1 root root 3779512 Nov 24 12:33 python2.7
-lrwxrwxrwx 1 root root       9 May  3 11:03 python3 -> python3.5
--rwxr-xr-x 2 root root 4747120 Jan 19  2017 python3.5
--rwxr-xr-x 2 root root 4747120 Jan 19  2017 python3.5m
-lrwxrwxrwx 1 root root      10 May  3 11:03 python3m -> python3.5m
-user@unassigned-hostname:/usr/bin$
-
-Zoran
-_______
-
-
-On Thu, May 3, 2018 at 6:00 PM, Burton, Ross <ross.burton@intel.com> wrote:
-
-> I suggest you have a look through the feed that you link to and see if it
-> provides a package which has /usr/bin/python3 in, and if it doesn't then
-> just make a python3 -> python3.6 symlink (which is all you need).
->
-> Ross
->
-> On 2 May 2018 at 20:28, Raymond Yeung <rksyeung@hotmail.com> wrote:
->
->> Thanks Zoran.
->>
->>
->> My Linux build machine uses Centos 7.  I thought I'd done the
->> installation to Python 3.6.5.  If this is not Python3 > 3.4.0, then I'm
->> confused.  The link I follow for installation is here:
->> https://janikarhunen.fi/how-to-install-python-3-6-1-on-centos-7.html
->>
->> > python3.6 -V
->>
->> Python 3.6.5
->>
->> >python -V
->>
->> Python 2.7.5
->>
->>
->> Anyway, I realize what went wrong.  I'd Krogoth (a 2016 Poky) running
->> before.  Now as I'm migrating to Rocko (a 2017 Poky), I try to solve a
->> Python versioning issue by installing Python only (as above).  However,
->> there may be other packages I need to update.  After getting latest
->> Reference Manual, download and install latest environment, I no longer have
->> python3 issue.  However, the Python version of why Python3.6 won't satisfy
->> Python > 3.4.0 still puzzles me (though no longer blocking me).
->>
->>
->> Raymond
->>
->>
->> ------------------------------
->> *From:* Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
->> *Sent:* Tuesday, May 1, 2018 11:19 PM
->> *To:* Raymond Yeung
->> *Cc:* yocto@yoctoproject.org
->> *Subject:* Re: [yocto] Problem with Python when running oe-init-build-env
->>
->> Hello Raymond,
->>
->> The problem is that you (talking about your host distro):
->> [1] Do NOT have python3 package installed;
->> [2] Do have python3 package < 3.4.0 version, so you need to upgrade!
->>
->> So, I have no idea which host distro you are using, but:
->> [1] If Debian/Ubuntu, then: apt-get install python3
->>      If Fedora, then dnf install python3
->> [2] If Debian/Ubuntu, then: apt-get update python3
->>      If Fedora, then dnf update python3
->>
->> Hope this helps,
->> Zoran
->> _______
->>
->> On Tue, May 1, 2018 at 10:43 PM, Raymond Yeung <rksyeung@hotmail.com>
->> wrote:
->> > I'd just git cloned Rocko and meta-ti.  When I try to source
->> > oe-init-build-env, I got errors:
->> >
->> >
->> > -bash: python3: command not found
->> >
->> > BitBake requires Python 3.4.0 or later as 'python3'.  "python -V" gives
->> > "Python 2.7.9".  "python3" is not in $PATH.  I'd followed some detailed
->> > online description to install Python 3.6 on CentOS 7.  However, after
->> > installation, it looks like I need to invoke it with python3.6.
->> >
->> >
->> > How does this work now?  I suppose the oe-init-build-env script
->> uses/expects
->> > python3, not python3.6.
->> >
->> >
->> > Any insight?
->> >
->> >
->> > Raymond
->> >
->> >
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->> yocto Info Page <https://lists.yoctoproject.org/listinfo/yocto>
->> lists.yoctoproject.org
->> Discussion of all things about the Yocto Project. Read our Community
->> Guidelines or learn more about how to participate in other community
->> discussions. Subscribe before posting to bypass moderation.
->>
->>
->> >
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->
-
---0000000000007aec0e056b51a2fa
-Content-Type: text/html; charset="UTF-8"
+--_000_MWHPR19MB11834493BB850310B51FF64CC5870MWHPR19MB1183namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Hello Ross,<br><br></div>Seems that you are corr=
-ect. I have checked on my host Fedora 27:<br><br>[vuser@localhost bin]$ pwd=
-<br>/usr/bin<br>[vuser@localhost bin]$ uname -r<br>4.16.5-200.fc27.x86_64<b=
-r>[vuser@localhost bin]$ ls -al pyth*<br>lrwxrwxrwx. 1 root root=C2=A0=C2=
-=A0=C2=A0=C2=A0 7 Mar 14 14:36 python -&gt; python2<br>lrwxrwxrwx. 1 root r=
-oot=C2=A0=C2=A0=C2=A0=C2=A0 9 Mar 14 14:36 python2 -&gt; python2.7<br>-rwxr=
--xr-x. 1 root root=C2=A0 7128 Mar 14 14:37 python2.7<br>lrwxrwxrwx. 1 root =
-root=C2=A0=C2=A0=C2=A0=C2=A0 9 Apr=C2=A0 4 17:03 python3 -&gt; python3.6<br=
->-rwxr-xr-x. 2 root root 11240 Apr=C2=A0 4 17:03 python3.6<br>-rwxr-xr-x. 2=
- root root 11240 Apr=C2=A0 4 17:03 python3.6m<br>-rwxr-xr-x. 1 root root=C2=
-=A0=C2=A0 388 Jul 28=C2=A0 2017 python3-chardetect<br>-rwxr-xr-x. 1 root ro=
-ot=C2=A0=C2=A0 387 Nov 16 18:05 python3-coverage<br>-rwxr-xr-x. 1 root root=
-=C2=A0=C2=A0 396 Jul 28=C2=A0 2017 python3-mako-render<br>-rwxr-xr-x. 1 roo=
-t root=C2=A0=C2=A0 392 Jul 28=C2=A0 2017 python3-pyinotify<br>[vuser@localh=
-ost bin]$<br><br></div><div>I also have checked on my Debian 9.4.0 VM:<br><=
-br>user@unassigned-hostname:/usr/<wbr>bin$ pwd<br>/usr/bin<br>user@unassign=
-ed-hostname:/usr/<wbr>bin$ uname -r<br>4.9.0-6-amd64<br>user@unassigned-hos=
-tname:/usr/<wbr>bin$ ls -al pyth*<br>lrwxrwxrwx 1 root root=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 9 May=C2=A0 3 11:03 python -&gt; python2.7<br>lrwxrwx=
-rwx 1 root root=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 9 May=C2=A0 3 11:03 pyt=
-hon2 -&gt; python2.7<br>-rwxr-xr-x 1 root root 3779512 Nov 24 12:33 python2=
-.7<br>lrwxrwxrwx 1 root root=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 9 May=C2=
-=A0 3 11:03 python3 -&gt; python3.5<br>-rwxr-xr-x 2 root root 4747120 Jan 1=
-9=C2=A0 2017 python3.5<br>-rwxr-xr-x 2 root root 4747120 Jan 19=C2=A0 2017 =
-python3.5m<br>lrwxrwxrwx 1 root root=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 10 May=
-=C2=A0 3 11:03 python3m -&gt; python3.5m<br>user@unassigned-hostname:/usr/<=
-wbr>bin$<br><br></div><div>Zoran<br>_______<br></div><div><br></div></div><=
-div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, May 3, 201=
-8 at 6:00 PM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.bur=
-ton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote=
-:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
-ft:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">I suggest you have a l=
-ook through the feed that you link to and see if it provides a package whic=
-h has /usr/bin/python3 in, and if it doesn&#39;t then just make a python3 -=
-&gt; python3.6 symlink (which is all you need).<span class=3D"HOEnZb"><font=
- color=3D"#888888"><div><br></div><div>Ross</div></font></span></div><div c=
-lass=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_extra"><br><div class=
-=3D"gmail_quote">On 2 May 2018 at 20:28, Raymond Yeung <span dir=3D"ltr">&l=
-t;<a href=3D"mailto:rksyeung@hotmail.com" target=3D"_blank">rksyeung@hotmai=
-l.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+Hi Vincent,
+
+
+I'd recently gone through similar issue that you're experiencing.  The "Wai=
+ting for Removable Media" hang had been there for at least 7-8 years.  A wo=
+rkaround was put in around 2013.  See here:
+
+https://patchwork.openembedded.org/patch/42291/
+
+
+Add "debugshell=3D30" (30 is in second, for timeout, or any other reasonabl=
+e value that you like) to the append
+statement in your pxelinux.cfg/default file.  Then you'd timeout when you "=
+normally" hangs, break into a shell,
+where you could initiate udhcpc to configure networking, after which you co=
+uld transfer your bootable image onto
+your RAM, and write out onto your HDD/SSD.
+
+It seems this kernel boot option of debugshell isn't documented officially =
+in kernel-parameters.txt file.
+
+You could also look for init-live.sh on your yocto tree, and look for "Wait=
+ing for Removable Media", and see the
+surrounding code to get a fell how this debugshell thing works.
+
+Raymond
 
 
 
 
-<div dir=3D"ltr">
-<div id=3D"m_4255108367079081674m_-6613158871024243400divtagdefaultwrapper"=
- style=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,san=
-s-serif,Helvetica,EmojiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Em=
-oji&quot;,NotoColorEmoji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&qu=
-ot;,EmojiSymbols" dir=3D"ltr">
-<p style=3D"margin-top:0;margin-bottom:0">Thanks Zoran.</p>
+Date: Thu, 3 May 2018 14:27:46 +0000
+From: Vincent Daanen <vincent.daanen@orthotaxy.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [yocto] PXE booting ISO image fails with message "Waiting for
+        removable media..."
+Message-ID:
+        <VI1P192MB01430B16A66D217CB44829098D870@VI1P192MB0143.EURP192.PROD.=
+OUTLOOK.COM>
+
+Content-Type: text/plain; charset=3D"utf-8"
+
+Hi,
+
+We want to deploy image created with Yocto (Rocko) via PXE.
+The target board is a Intel-based SBC (AAEON GENE BT05).
+
+At first, we tried with a ISO from Archlinux and the target-board successfu=
+lly booted.
+
+Then we create a ISO using Yocto but boot hangs with a message ?Waiting for=
+ removable media ...?.
+Googling this message points me to this post: http://thread.gmane.org/gmane=
+.linux.embedded.yocto.general/20611 which relates exactly the same problem,=
+ explain why the issue raises, gives an indication to how to fix .. and tha=
+t?s all ?
+
+So at this point, we know that the problem comes from the /recipes-core/ini=
+trdscripts/files/init-live.sh file.
+It seems searching for an /dev/sdx should be protected by a timeout set by =
+default to 30 secs but during our trials, no timeout seems to exist.
+
+What we do not understand, is how to highlight the differences between the =
+Yocto-based and the Archlinux ISO files so that we can ?unblock? the boot u=
+sing the Yocto-based ISO file.
+
+Is the someone here how could help?
+
+Thanks
+
+Vincent
+
+
+--_000_MWHPR19MB11834493BB850310B51FF64CC5870MWHPR19MB1183namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">Hi Vincent,</p>
 <p style=3D"margin-top:0;margin-bottom:0"><br>
 </p>
-<p style=3D"margin-top:0;margin-bottom:0">My Linux build machine uses Cento=
-s 7.=C2=A0 I thought I&#39;d done the installation to Python 3.6.5.=C2=A0 I=
-f this is not Python3 &gt; 3.4.0, then I&#39;m confused.=C2=A0 The link I f=
-ollow for installation is here: =C2=A0<a href=3D"https://janikarhunen.fi/ho=
-w-to-install-python-3-6-1-on-centos-7.html" class=3D"m_4255108367079081674m=
-_-6613158871024243400OWAAutoLink" id=3D"m_4255108367079081674m_-66131588710=
-24243400LPlnk623282" target=3D"_blank">https://janikarhunen.fi/how-t<wbr>o-=
-install-python-3-6-1-on-cent<wbr>os-7.html</a></p>
-<br>
-<p style=3D"margin-top:0;margin-bottom:0">&gt;<span style=3D"font-size:12pt=
-">=C2=A0python3.6 -V</span></p>
-<p>Python 3.6.5</p>
-<p>&gt;<span style=3D"font-size:12pt">python -V</span></p>
-<p>Python 2.7.5</p>
-<p><br>
-</p>
-<p>Anyway, I realize what went wrong.=C2=A0 I&#39;d Krogoth (a 2016 Poky) r=
-unning before.=C2=A0 Now as I&#39;m migrating to Rocko (a 2017 Poky), I try=
-=C2=A0to solve a Python versioning issue by installing Python only (as abov=
-e).=C2=A0 However, there may be other packages I need to update.
- =C2=A0After getting latest Reference Manual, download and install latest e=
-nvironment, I no longer have python3 issue.=C2=A0 However, the Python versi=
-on of why Python3.6 won&#39;t satisfy Python &gt; 3.4.0 still puzzles me (t=
-hough no longer blocking me).</p>
-<p></p>
-<p><br>
-</p>
-<p>Raymond</p>
-<br>
-<br>
-<div style=3D"color:rgb(0,0,0)">
-<hr style=3D"display:inline-block;width:98%">
-<div id=3D"m_4255108367079081674m_-6613158871024243400divRplyFwdMsg" dir=3D=
-"ltr"><font style=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"=
-#000000"><b>From:</b> Zoran Stojsavljevic &lt;<a href=3D"mailto:zoran.stojs=
-avljevic@gmail.com" target=3D"_blank">zoran.stojsavljevic@gmail.com</a><wbr=
->&gt;<br>
-<b>Sent:</b> Tuesday, May 1, 2018 11:19 PM<br>
-<b>To:</b> Raymond Yeung<br>
-<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
-o@yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] Problem with Python when running oe-init-build-=
-env</font>
-<div>=C2=A0</div>
-</div>
-<div class=3D"m_4255108367079081674m_-6613158871024243400BodyFragment"><fon=
-t size=3D"2"><span style=3D"font-size:11pt">
-<div class=3D"m_4255108367079081674m_-6613158871024243400PlainText">Hello R=
-aymond,<br>
-<br>
-The problem is that you (talking about your host distro):<br>
-[1] Do NOT have python3 package installed;<br>
-[2] Do have python3 package &lt; 3.4.0 version, so you need to upgrade!<br>
-<br>
-So, I have no idea which host distro you are using, but:<br>
-[1] If Debian/Ubuntu, then: apt-get install python3<br>
-=C2=A0=C2=A0=C2=A0=C2=A0 If Fedora, then dnf install python3<br>
-[2] If Debian/Ubuntu, then: apt-get update python3<br>
-=C2=A0=C2=A0=C2=A0=C2=A0 If Fedora, then dnf update python3<br>
-<br>
-Hope this helps,<br>
-Zoran<br>
-_______<br>
-<br>
-On Tue, May 1, 2018 at 10:43 PM, Raymond Yeung &lt;<a href=3D"mailto:rksyeu=
-ng@hotmail.com" target=3D"_blank">rksyeung@hotmail.com</a>&gt; wrote:<br>
-&gt; I&#39;d just git cloned Rocko and meta-ti.=C2=A0 When I try to source<=
-br>
-&gt; oe-init-build-env, I got errors:<br>
-&gt;<br>
-&gt;<br>
-&gt; -bash: python3: command not found<br>
-&gt;<br>
-&gt; BitBake requires Python 3.4.0 or later as &#39;python3&#39;.=C2=A0 &qu=
-ot;python -V&quot; gives<br>
-&gt; &quot;Python 2.7.9&quot;.=C2=A0 &quot;python3&quot; is not in $PATH.=
-=C2=A0 I&#39;d followed some detailed<br>
-&gt; online description to install Python 3.6 on CentOS 7.=C2=A0 However, a=
-fter<br>
-&gt; installation, it looks like I need to invoke it with python3.6.<br>
-&gt;<br>
-&gt;<br>
-&gt; How does this work now?=C2=A0 I suppose the oe-init-build-env script u=
-ses/expects<br>
-&gt; python3, not python3.6.<br>
-&gt;<br>
-&gt;<br>
-&gt; Any insight?<br>
-&gt;<br>
-&gt;<br>
-&gt; Raymond<br>
-&gt;<span class=3D"m_4255108367079081674HOEnZb"><font color=3D"#888888"><br=
->
-&gt;<br>
-&gt; --<br>
-&gt; ______________________________<wbr>_________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" id=3D"m_4255=
-108367079081674m_-6613158871024243400LPlnk894811" class=3D"m_42551083670790=
-81674m_-6613158871024243400OWAAutoLink" target=3D"_blank">
-https://lists.yoctoproject.org<wbr>/listinfo/yocto</a>
-<div id=3D"m_4255108367079081674m_-6613158871024243400LPBorder_GT_152527670=
-47480.9353307514330218" style=3D"margin-bottom:20px;overflow:auto;width:100=
-%;text-indent:0px">
-<table id=3D"m_4255108367079081674m_-6613158871024243400LPContainer_1525276=
-7047450.0060050600858457814" style=3D"width:90%;background-color:rgb(255,25=
-5,255);overflow:auto;padding-top:20px;padding-bottom:20px;margin-top:20px;b=
-order-top-width:1px;border-top-style:dotted;border-top-color:rgb(200,200,20=
-0);border-bottom-width:1px;border-bottom-style:dotted;border-bottom-color:r=
-gb(200,200,200)" cellspacing=3D"0">
+<p style=3D"margin-top:0;margin-bottom:0">I'd recently gone through similar=
+ issue that you're experiencing. &nbsp;The &quot;Waiting for Removable Medi=
+a&quot; hang had been there for at least 7-8 years. &nbsp;A workaround was =
+put in around 2013. &nbsp;See here: &nbsp;</p>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"87" style=
+=3D"font-family: -webkit-standard; border-collapse: collapse; width: 65pt;"=
+ class=3D"">
+<colgroup><col width=3D"87" style=3D"width: 65pt;"></colgroup>
 <tbody>
-<tr style=3D"border-spacing:0px" valign=3D"top">
-<td id=3D"m_4255108367079081674m_-6613158871024243400TextCell_1525276704747=
-0.3908343845028899" colspan=3D"2" style=3D"vertical-align:top;padding:0px;d=
-isplay:table-cell">
-<div id=3D"m_4255108367079081674m_-6613158871024243400LPRemovePreviewContai=
-ner_15252767047470.4155838622579563"></div>
-<div id=3D"m_4255108367079081674m_-6613158871024243400LPTitle_1525276704747=
-0.2926955628645245" style=3D"color:rgb(0,120,215);font-weight:normal;font-s=
-ize:21px;font-family:wf_segoe-ui_light,&quot;Segoe UI Light&quot;,&quot;Seg=
-oe WP Light&quot;,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sa=
-ns-serif;line-height:21px">
-<a id=3D"m_4255108367079081674m_-6613158871024243400LPUrlAnchor_15252767047=
-470.2327548529833663" href=3D"https://lists.yoctoproject.org/listinfo/yocto=
-" style=3D"text-decoration:none" target=3D"_blank">yocto Info Page</a></div=
->
-<div id=3D"m_4255108367079081674m_-6613158871024243400LPMetadata_1525276704=
-7470.16915804322735695" style=3D"margin:10px 0px 16px;color:rgb(102,102,102=
-);font-weight:normal;font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&q=
-uot;Segoe WP&quot;,Tahoma,Arial,sans-serif;font-size:14px;line-height:14px"=
->
-<a href=3D"http://lists.yoctoproject.org" target=3D"_blank">lists.yoctoproj=
-ect.org</a></div>
-<div id=3D"m_4255108367079081674m_-6613158871024243400LPDescription_1525276=
-7047480.7820393102064364" style=3D"display:block;color:rgb(102,102,102);fon=
-t-weight:normal;font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;S=
-egoe WP&quot;,Tahoma,Arial,sans-serif;font-size:14px;line-height:20px;max-h=
-eight:100px;overflow:hidden">
-Discussion of all things about the Yocto Project. Read our Community Guidel=
-ines or learn more about how to participate in other community discussions.=
- Subscribe before posting to bypass moderation.</div>
+<tr height=3D"21" style=3D"height: 16pt;" class=3D"">
+<td height=3D"21" width=3D"87" style=3D"padding-top: 1px; padding-right: 1p=
+x; padding-left: 1px; font-size: 12pt; font-family: Calibri, sans-serif; ve=
+rtical-align: bottom; border: none; white-space: nowrap; height: 16pt; widt=
+h: 65pt;" class=3D"">
+https://patchwork.openembedded.org/patch/42291/</td>
+</tr>
+<tr height=3D"21" style=3D"height: 16pt;" class=3D"">
+<td height=3D"21" width=3D"87" style=3D"padding-top: 1px; padding-right: 1p=
+x; padding-left: 1px; font-size: 12pt; font-family: Calibri, sans-serif; ve=
+rtical-align: bottom; border: none; white-space: nowrap; height: 16pt; widt=
+h: 65pt;" rowspan=3D"1" class=3D"">
+<br>
+</td>
+</tr>
+<tr height=3D"21" style=3D"height: 16pt;" class=3D"">
+<td height=3D"21" width=3D"87" style=3D"padding-top: 1px; padding-right: 1p=
+x; padding-left: 1px; font-size: 12pt; font-family: Calibri, sans-serif; ve=
+rtical-align: bottom; border: none; white-space: nowrap; height: 16pt; widt=
+h: 65pt;" rowspan=3D"1" class=3D"">
+Add &quot;debugshell=3D30&quot; (30 is in second, for timeout, or any other=
+ reasonable value that you like) to the append
+<br>
+statement in your pxelinux.cfg/default file. &nbsp;Then you'd timeout when =
+you &quot;normally&quot; hangs, break into a shell,<br>
+where you could initiate udhcpc to configure networking, after which you co=
+uld transfer your bootable image onto<br>
+your RAM, and write out onto your HDD/SSD.<br>
+<br>
+It seems this kernel boot option of debugshell isn't documented officially =
+in kernel-parameters.txt file.<br>
+<br>
+You could also look for&nbsp;<span style=3D"font-size: 12pt;">init-live.sh =
+on your yocto tree, and look for &quot;Waiting for Removable Media&quot;, a=
+nd see the<br>
+</span>surrounding code to get a fell how this debugshell thing works.<br>
+<br>
+Raymond</td>
+</tr>
+<tr height=3D"21" style=3D"height: 16pt;" class=3D"">
+<td height=3D"21" width=3D"87" style=3D"padding-top: 1px; padding-right: 1p=
+x; padding-left: 1px; font-size: 12pt; font-family: Calibri, sans-serif; ve=
+rtical-align: bottom; border: none; white-space: nowrap; height: 16pt; widt=
+h: 65pt;" rowspan=3D"1" class=3D"">
+<br>
 </td>
 </tr>
 </tbody>
 </table>
+<br>
+<br>
+<div style=3D"color: rgb(0, 0, 0);">
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Date: Thu, 3 May 2018 14:27:46 &#43;0000<br>
+From: Vincent Daanen &lt;vincent.daanen@orthotaxy.com&gt;<br>
+To: &quot;yocto@yoctoproject.org&quot; &lt;yocto@yoctoproject.org&gt;<br>
+Subject: [yocto] PXE booting ISO image fails with message &quot;Waiting for=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; removable media...&quot;<br>
+Message-ID:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;VI1P192MB01430B16A66D217CB44=
+829098D870@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+Content-Type: text/plain; charset=3D&quot;utf-8&quot;<br>
+<br>
+Hi,<br>
+<br>
+We want to deploy image created with Yocto (Rocko) via PXE.<br>
+The target board is a Intel-based SBC (AAEON GENE BT05).<br>
+<br>
+At first, we tried with a ISO from Archlinux and the target-board successfu=
+lly booted.<br>
+<br>
+Then we create a ISO using Yocto but boot hangs with a message ?Waiting for=
+ removable media ...?.<br>
+Googling this message points me to this post: <a href=3D"http://thread.gman=
+e.org/gmane.linux.embedded.yocto.general/20611" id=3D"LPlnk645940" previewr=
+emoved=3D"true">
+http://thread.gmane.org/gmane.linux.embedded.yocto.general/20611</a> which =
+relates exactly the same problem, explain why the issue raises, gives an in=
+dication to how to fix .. and that?s all ?<br>
+<br>
+So at this point, we know that the problem comes from the /recipes-core/ini=
+trdscripts/files/init-live.sh file.<br>
+It seems searching for an /dev/sdx should be protected by a timeout set by =
+default to 30 secs but during our trials, no timeout seems to exist.<br>
+<br>
+What we do not understand, is how to highlight the differences between the =
+Yocto-based and the Archlinux ISO files so that we can ?unblock? the boot u=
+sing the Yocto-based ISO file.<br>
+<br>
+Is the someone here how could help?<br>
+<br>
+Thanks<br>
+<br>
+Vincent<br>
+<br>
 </div>
-<br>
-<br>
-&gt;<br>
-</font></span></div>
 </span></font></div>
 </div>
 </div>
-</div>
+</body>
+</html>
 
-<br>-- <br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
-br>
-<br></blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-
---0000000000007aec0e056b51a2fa--
+--_000_MWHPR19MB11834493BB850310B51FF64CC5870MWHPR19MB1183namp_--
