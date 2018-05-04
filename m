@@ -1,65 +1,40 @@
-Return-Path: <ptsneves@gmail.com>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0F20E00C50; Fri,  4 May 2018 05:42:46 -0700 (PDT)
+	id 12AB4E00C50; Fri,  4 May 2018 05:47:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ptsneves[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.194 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f194.google.com (mail-wr0-f194.google.com
-	[209.85.128.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C306E00C25
-	for <yocto@yoctoproject.org>; Fri,  4 May 2018 05:42:45 -0700 (PDT)
-Received: by mail-wr0-f194.google.com with SMTP id i14-v6so17785231wre.2
-	for <yocto@yoctoproject.org>; Fri, 04 May 2018 05:42:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=7uPG1dX5PjOEnSGShwNn8rgtyEbHSM/W7igMQA1udhY=;
-	b=pLOVz/NlrLnPzxKVOD2R9gzCYKNycNMfiIEhQGRE/gFsIC1YM5oYw4JgEOiK0DtTLX
-	nDfmlFKLb3vJ+5rJdR37R0ENS5qyU+Emm4Zy43TlSYRkUG8qDLEI7Wdv/RXST0LJ5YMP
-	AT5wimE7Lqf+mo8hQDm6DAiSBCEBQZu3Xb6MbluY9Y6yD4YuPwBrFf/P+QQ1sxgBNnEc
-	dIct99Ch0031AMGsPSP4JUkWMhJuDU7KoKcbLa/sEzdq0zVDYltUaRHjQP7bJN00gV+k
-	9tTWVmcAJjaI0ya02YVX1C4hvW5nZK7Xj6Uncu3wWcvsXn4EYg6Jg3vsWgrNeIwUfQp3
-	KFgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=7uPG1dX5PjOEnSGShwNn8rgtyEbHSM/W7igMQA1udhY=;
-	b=lGlJUL5RhIXSws8fCj5I4yzMFwKeaMvfHoJZRYkUv7dBMu+LlbSj14Jhgme5xW1ccb
-	9sLKX5/q6aYEPvPP2EZV0UBShiIjbeZF9R8mLTO+Rbsbc2fQ13ldb3A73Ogzr56ECGfx
-	OU3qzmORXpP0WAqSEB7KfXd/vht0VyWrwcUAqS5r05ClvDXz4M/R48gOlpWKn1+iFsDN
-	WIFKBDsuiB1Dcznf57lw/PKv7mDrvfwytom+OOlPpGpzxVV0FOA2kcVrs/pzsnzBSTQD
-	0pM1UUl71so+7apN2EnlopLuSlrdubR1pDNDXL2ivq4OK6qldQBL0w+EZyrBcdIJc2WL
-	5xwg==
-X-Gm-Message-State: ALQs6tDwKAOvmOAZeRUhUz2IUU/5rzKDDvDIQrN+ct+C4QJ6TitNYG3v
-	RP+mMzUMi6pEoGgfSZvUC9zqO5TpfWO50e4caw==
-X-Google-Smtp-Source: AB8JxZrmk88F6qyd+cXdd+Sk7d8a3dirjt/xsMIR6SuIFZ/fBOAjyHe2EwXMbpUphTIJ5IzDzQBQKMTHXIuDnl6bydM=
-X-Received: by 2002:adf:a3d7:: with SMTP id
-	m23-v6mr22632462wrb.209.1525437764960; 
-	Fri, 04 May 2018 05:42:44 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.28.39.68 with HTTP; Fri, 4 May 2018 05:42:44 -0700 (PDT)
-In-Reply-To: <70e7860b-5b9f-45c7-5436-73859b0d3706@linux.intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85300E00C25
+	for <yocto@yoctoproject.org>; Fri,  4 May 2018 05:47:12 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	04 May 2018 05:47:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.49,362,1520924400"; d="scan'208";a="53173523"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by orsmga001.jf.intel.com with ESMTP; 04 May 2018 05:47:10 -0700
+To: Paulo Neves <ptsneves@gmail.com>
 References: <CAJO0J4gxf0ahVGCoV64Y_Z_cGtw4OiakWkSLbu2u4WB_CHzehQ@mail.gmail.com>
 	<70e7860b-5b9f-45c7-5436-73859b0d3706@linux.intel.com>
-From: Paulo Neves <ptsneves@gmail.com>
-Date: Fri, 4 May 2018 14:42:44 +0200
-Message-ID: <CAJO0J4gz6SVhknSgPM0mGqpDR_vqsrdmNaHiXAfR4TbuxTu04Q@mail.gmail.com>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+	<CAJO0J4gz6SVhknSgPM0mGqpDR_vqsrdmNaHiXAfR4TbuxTu04Q@mail.gmail.com>
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Message-ID: <ecb1ab50-450e-8e77-b3af-191313296602@linux.intel.com>
+Date: Fri, 4 May 2018 15:41:18 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
+MIME-Version: 1.0
+In-Reply-To: <CAJO0J4gz6SVhknSgPM0mGqpDR_vqsrdmNaHiXAfR4TbuxTu04Q@mail.gmail.com>
 Cc: Yocto list discussion <yocto@yoctoproject.org>
 Subject: Re: ROOTFS_RPM_DEBUG undocumented
 X-BeenThere: yocto@yoctoproject.org
@@ -73,58 +48,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2018 12:42:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 04 May 2018 12:47:13 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-I will propose a patch with a default bb.debug, and always have the
-verbose on dnf. Let's see how it affects the performance. I cannot
-test this in a docker container because of the problems described
-below:
+On 05/04/2018 03:42 PM, Paulo Neves wrote:
+> I will propose a patch with a default bb.debug, and always have the
+> verbose on dnf. Let's see how it affects the performance. I cannot
+> test this in a docker container because of the problems described
+> below:
+> 
+> In the mean time I found what was happening with my slow do_rootfs. I
+> was running bitbake with RPM packaging in a docker instance. It seems
+> there is a problem with RPM/dnf in bitbake where it is extremely slow
+> inside a docker container (1 file per second). After changing to IPK
+> packages everything went smoothly.
+> 
+> Others have had the same problem[1]. I will later report this to
+> openembedded mailing list as this effectively makes RPM unusable in a
+> container. I will also provide a Dockerfile to reproduce this problem.
+> 
+> [1] https://github.com/moby/moby/issues/23137#issuecomment-359097008
 
-In the mean time I found what was happening with my slow do_rootfs. I
-was running bitbake with RPM packaging in a docker instance. It seems
-there is a problem with RPM/dnf in bitbake where it is extremely slow
-inside a docker container (1 file per second). After changing to IPK
-packages everything went smoothly.
+No need to report. We have already fixed this and reported upstream:
 
-Others have had the same problem[1]. I will later report this to
-openembedded mailing list as this effectively makes RPM unusable in a
-container. I will also provide a Dockerfile to reproduce this problem.
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-devtools/rpm/files/0001-Revert-Set-FD_CLOEXEC-on-opened-files-before-exec-fr.patch
 
-[1] https://github.com/moby/moby/issues/23137#issuecomment-359097008
+https://bugzilla.redhat.com/show_bug.cgi?id=1537564
 
-Paulo Neves
 
-On Thu, May 3, 2018 at 3:03 PM, Alexander Kanavin
-<alexander.kanavin@linux.intel.com> wrote:
-> On 05/03/2018 01:42 PM, Paulo Neves wrote:
->>
->> # Add ROOTFS_RPM_DEBUG to the documentation;
->
->
-> I'd rather get rid of it, the less variables the better :)
->
->> # Detect if we are running with debug output and enable the debugging
->> output. This is the most elegant solution but I do not know how to
->> detect if debug log level is turned on;
->
->
-> I don't think you are meant to detect that; bitbake's debug level is not
-> meant to affect what is being printed, but merely whether it's printed or
-> discarded.
->
->> # Have dnf always print in verbose mode and print the output to
->> bb.debug instead of bb.note.
->
->
-> I think this is the best solution actually.
->
->> I am happy to provide a patch upon decision or suggestions.
->
->
-> Thank you :) Do measure the performance before and after as we don't want to
-> introduce a significant slowdown here.
->
->
-> Alex
+Alex
 
