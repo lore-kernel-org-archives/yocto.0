@@ -1,6 +1,6 @@
 Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 12AB4E00C50; Fri,  4 May 2018 05:47:13 -0700 (PDT)
+	id 07879E00C50; Fri,  4 May 2018 05:49:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,33 +8,34 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85300E00C25
-	for <yocto@yoctoproject.org>; Fri,  4 May 2018 05:47:12 -0700 (PDT)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A82E9E00C25
+	for <yocto@yoctoproject.org>; Fri,  4 May 2018 05:49:00 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	04 May 2018 05:47:11 -0700
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	04 May 2018 05:49:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,362,1520924400"; d="scan'208";a="53173523"
+X-IronPort-AV: E=Sophos;i="5.49,362,1520924400"; d="scan'208";a="53173810"
 Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
 	([10.237.68.161])
-	by orsmga001.jf.intel.com with ESMTP; 04 May 2018 05:47:10 -0700
+	by orsmga001.jf.intel.com with ESMTP; 04 May 2018 05:48:59 -0700
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
 To: Paulo Neves <ptsneves@gmail.com>
 References: <CAJO0J4gxf0ahVGCoV64Y_Z_cGtw4OiakWkSLbu2u4WB_CHzehQ@mail.gmail.com>
 	<70e7860b-5b9f-45c7-5436-73859b0d3706@linux.intel.com>
 	<CAJO0J4gz6SVhknSgPM0mGqpDR_vqsrdmNaHiXAfR4TbuxTu04Q@mail.gmail.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <ecb1ab50-450e-8e77-b3af-191313296602@linux.intel.com>
-Date: Fri, 4 May 2018 15:41:18 +0300
+	<ecb1ab50-450e-8e77-b3af-191313296602@linux.intel.com>
+Message-ID: <652ae34c-7f91-1015-d05f-b43dcd91d7d0@linux.intel.com>
+Date: Fri, 4 May 2018 15:43:07 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.6.0
 MIME-Version: 1.0
-In-Reply-To: <CAJO0J4gz6SVhknSgPM0mGqpDR_vqsrdmNaHiXAfR4TbuxTu04Q@mail.gmail.com>
+In-Reply-To: <ecb1ab50-450e-8e77-b3af-191313296602@linux.intel.com>
 Cc: Yocto list discussion <yocto@yoctoproject.org>
 Subject: Re: ROOTFS_RPM_DEBUG undocumented
 X-BeenThere: yocto@yoctoproject.org
@@ -48,35 +49,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2018 12:47:13 -0000
+X-List-Received-Date: Fri, 04 May 2018 12:49:02 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-On 05/04/2018 03:42 PM, Paulo Neves wrote:
-> I will propose a patch with a default bb.debug, and always have the
-> verbose on dnf. Let's see how it affects the performance. I cannot
-> test this in a docker container because of the problems described
-> below:
-> 
-> In the mean time I found what was happening with my slow do_rootfs. I
-> was running bitbake with RPM packaging in a docker instance. It seems
-> there is a problem with RPM/dnf in bitbake where it is extremely slow
-> inside a docker container (1 file per second). After changing to IPK
-> packages everything went smoothly.
-> 
-> Others have had the same problem[1]. I will later report this to
-> openembedded mailing list as this effectively makes RPM unusable in a
-> container. I will also provide a Dockerfile to reproduce this problem.
-> 
-> [1] https://github.com/moby/moby/issues/23137#issuecomment-359097008
+On 05/04/2018 03:41 PM, Alexander Kanavin wrote:
 
-No need to report. We have already fixed this and reported upstream:
+> https://bugzilla.redhat.com/show_bug.cgi?id=1537564
 
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-devtools/rpm/files/0001-Revert-Set-FD_CLOEXEC-on-opened-files-before-exec-fr.patch
-
-https://bugzilla.redhat.com/show_bug.cgi?id=1537564
-
+Obviously you and anyone else affected need to make noise in the redhat 
+bugzilla, otherwise they're likely to keep this low priority.
 
 Alex
 
