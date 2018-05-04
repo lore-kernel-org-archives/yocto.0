@@ -1,66 +1,74 @@
-Return-Path: <icastell@nayarsystems.com>
+Return-Path: <peter.kjellerstedt@axis.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 61C2CE009E2; Fri,  4 May 2018 07:29:13 -0700 (PDT)
+	id 4B79AE009DF; Fri,  4 May 2018 09:26:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, NORMAL_HTTP_TO_IP,
-	RCVD_IN_DNSWL_NONE, WEIRD_PORT autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.52 listed in list.dnswl.org]
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
-	* 0.0 NORMAL_HTTP_TO_IP URI: URI host has a public dotted-decimal IPv4
-	*      address
+	*      [195.60.68.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f52.google.com (mail-it0-f52.google.com
-	[209.85.214.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC5FAE0086B
-	for <yocto@yoctoproject.org>; Fri,  4 May 2018 07:29:11 -0700 (PDT)
-Received: by mail-it0-f52.google.com with SMTP id z6-v6so3569234iti.4
-	for <yocto@yoctoproject.org>; Fri, 04 May 2018 07:29:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=nayarsystems.com; s=google;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=ShphEZPUe4dGXN/M1vwWFlyxDLe7b7EYCIIq91zrebY=;
-	b=L+s9PrPux3+L7oxaCvti507MEKevXLa54TGzumulAsFRogcDYo5MGtcJq+9JaTn7Ez
-	jnxYRVa1CSAc+ajXmm5Ph8DSX5Pu6KBggOaG1YLGYMD4s/SlLLHkJlLRasJALaBuch+6
-	+NgqPw2pUcLumQgNMeuw95McpcazVaE5gon3k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=ShphEZPUe4dGXN/M1vwWFlyxDLe7b7EYCIIq91zrebY=;
-	b=GGM5vRBWmzva0gNHUsqsx+fmWy+K9tZFa4eDfQz0666d3FYdXrsk4gEFGVS91Gprn/
-	tLZRwMPRqVhOcqAtURp+XkKsXmXRwTP4ZKcpHhWGoJy+xmZWOZgcEh3r1zOH4JpjdT+Z
-	XS4TrMDVniiEBd40oA/L0g3qEmbPh086hNsykaO5U+hOgbwxLVakVmBwGmb7Rqxa2kX2
-	CloAR8VIS4kUIDoA1ejLWy/pKr7pWNbXRKspaUziN7XvO/3l80oMAS20sp0lbfIpEvjr
-	aqFUcSYb1krb2sW7VfcXYMlDC2LJZv7dp0EwvfpN06MUEkC1o3A5FWT/xOKqo17GXnfg
-	C2Rg==
-X-Gm-Message-State: ALQs6tBCymz8OhYvsJ++ZgibWKsJKPrnb0FG/E9DaZU4LhZ58+L+mXJh
-	5OG1LSFLT5YrKx8DGWAccoWnen8G89Z4mO99TW4ns0Q7
-X-Google-Smtp-Source: AB8JxZoiU5DkZiAkQtK2x/mZSPGVgNn743yEFMUeMOnoEL1GbbaP3Z4MqJZP0GTn60e+g07c2KSYekytSZ0qtAnUwF4=
-X-Received: by 2002:a24:730e:: with SMTP id
-	y14-v6mr30129885itb.45.1525444150648; 
-	Fri, 04 May 2018 07:29:10 -0700 (PDT)
+Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EC02E005A9
+	for <yocto@yoctoproject.org>; Fri,  4 May 2018 09:26:16 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by bastet.se.axis.com (Postfix) with ESMTP id 22035185B8;
+	Fri,  4 May 2018 18:26:15 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
+Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
+	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
+	port 10024)
+	with LMTP id 0D679BO4Piip; Fri,  4 May 2018 18:26:12 +0200 (CEST)
+Received: from boulder03.se.axis.com (boulder03.se.axis.com [10.0.8.17])
+	by bastet.se.axis.com (Postfix) with ESMTPS id 595F0185C0;
+	Fri,  4 May 2018 18:26:12 +0200 (CEST)
+Received: from boulder03.se.axis.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 404BD1E070;
+	Fri,  4 May 2018 18:26:12 +0200 (CEST)
+Received: from boulder03.se.axis.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 32AA51E06C;
+	Fri,  4 May 2018 18:26:12 +0200 (CEST)
+Received: from thoth.se.axis.com (unknown [10.0.2.173])
+	by boulder03.se.axis.com (Postfix) with ESMTP;
+	Fri,  4 May 2018 18:26:12 +0200 (CEST)
+Received: from XBOX02.axis.com (xbox02.axis.com [10.0.5.16])
+	by thoth.se.axis.com (Postfix) with ESMTP id 254D826F3;
+	Fri,  4 May 2018 18:26:12 +0200 (CEST)
+Received: from xbox12.axis.com (10.0.5.26) by XBOX02.axis.com (10.0.5.16) with
+	Microsoft SMTP Server (TLS) id 15.0.1263.5;
+	Fri, 4 May 2018 18:26:12 +0200
+Received: from XBOX02.axis.com (10.0.5.16) by xbox12.axis.com (10.0.5.26) with
+	Microsoft SMTP Server (TLS) id 15.0.1263.5;
+	Fri, 4 May 2018 18:26:11 +0200
+Received: from XBOX02.axis.com ([fe80::50c3:4d2f:4507:7776]) by
+	XBOX02.axis.com ([fe80::50c3:4d2f:4507:7776%21]) with mapi id
+	15.00.1263.000; Fri, 4 May 2018 18:26:11 +0200
+From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+To: Scott Rifenbark <srifenbark@gmail.com>
+Thread-Topic: [OE-core] 2.6 planning proposals and meeting
+Thread-Index: AQHT2KDP4d7Nf6xZCEeertOFjqGvRKQa47GAgAAChoCAAsVpwIAATySAgAHbqIA=
+Date: Fri, 4 May 2018 16:26:11 +0000
+Message-ID: <1de735f1d8b44901b57403f49bca0611@XBOX02.axis.com>
+References: <1524154643.18865.113.camel@linuxfoundation.org>
+	<39f087be-1129-6131-d5d1-5714f127667b@thecshore.com>
+	<1525186011.25196.117.camel@linuxfoundation.org>
+	<CAFNP8Ov2waP_aG81Y9_AJRNbm4FicjhkC7Yy-M5OU=SXLmJarg@mail.gmail.com>
+	<5e09a0d81b0a48a1bebdc3e8ed542f52@XBOX02.axis.com>
+	<CAFNP8Ot4j5V4LzmE=7MU+WWXX1wha0_8byV27TLr2Qb9pW9SOw@mail.gmail.com>
+In-Reply-To: <CAFNP8Ot4j5V4LzmE=7MU+WWXX1wha0_8byV27TLr2Qb9pW9SOw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.0.5.60]
 MIME-Version: 1.0
-Received: by 2002:a02:4b04:0:0:0:0:0 with HTTP;
-	Fri, 4 May 2018 07:29:10 -0700 (PDT)
-In-Reply-To: <CAALXFYzFeuLLM+V9ngH=V+K53DQnjaUX_piE6k4zECZ7jLEirw@mail.gmail.com>
-References: <CAALXFYzFeuLLM+V9ngH=V+K53DQnjaUX_piE6k4zECZ7jLEirw@mail.gmail.com>
-From: =?UTF-8?Q?Iv=C3=A1n_Castell?= <icastell@nayarsystems.com>
-Date: Fri, 4 May 2018 16:29:10 +0200
-Message-ID: <CAALXFYw2m97cBKiHDf0pqUu02NsixHuM4QJjtBxo2kx+BDGdow@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Writing a functional Dockerfile to run a container with a package revision (PR) server
+X-TM-AS-GCONF: 00
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [OE-core] 2.6 planning proposals and meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,306 +80,288 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2018 14:29:13 -0000
-Content-Type: multipart/alternative; boundary="000000000000b9777f056b6224c7"
+X-List-Received-Date: Fri, 04 May 2018 16:26:20 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_1de735f1d8b44901b57403f49bca0611XBOX02axiscom_"
 
---000000000000b9777f056b6224c7
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_1de735f1d8b44901b57403f49bca0611XBOX02axiscom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I found the right way to fix my issue. First I wrote this script:
+Tm90IHN1cmUgd2h5IHlvdSByZW9yZGVyZWQgdGhlIGRlc2NyaXB0aW9ucyBvZiB0aGUgZmVhdHVy
+ZXMgZnJvbSBpbWFnZSxwYWNrYWdlLHNkayx0YXNrIHRvIGltYWdlLHRhc2sscGFja2FnZSxzZGsg
+KEkgYWRkZWQg4oCcdGFza+KAnSBhdCB0aGUgZW5kIHNpbmNlIHRoYXQga2VwdCB0aGVtIHNvcnRl
+ZCBhbHBoYWJldGljYWxseSksIGJ1dCBhcGFydCBmcm9tIHRoYXQgaXQgbG9va3MgZmluZSB0byBt
+ZS4NCg0KLy9QZXRlcg0KDQpGcm9tOiBTY290dCBSaWZlbmJhcmsgW21haWx0bzpzcmlmZW5iYXJr
+QGdtYWlsLmNvbV0NClNlbnQ6IGRlbiAzIG1haiAyMDE4IDE1OjU4DQpUbzogUGV0ZXIgS2plbGxl
+cnN0ZWR0IDxwZXRlci5ramVsbGVyc3RlZHRAYXhpcy5jb20+DQpDYzogUmljaGFyZCBQdXJkaWUg
+PHJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmc+OyBvcGVuZW1iZWRkZWQtY29yZSA8
+b3BlbmVtYmVkZGVkLWNvcmVAbGlzdHMub3BlbmVtYmVkZGVkLm9yZz47IFlvY3RvIGRpc2N1c3Np
+b24gbGlzdCA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IFJlOiBbT0UtY29yZV0g
+Mi42IHBsYW5uaW5nIHByb3Bvc2FscyBhbmQgbWVldGluZw0KDQpIaSBQZXRlciwNClRoYW5rcyBm
+b3IgdGhlIHBhdGNoLiAgSSBoYXZlIGFwcGxpZWQgaXQgdG8gdGhlIDIuNSB2ZXJzaW9uIG9mIHRo
+ZSBZb2N0byBQcm9qZWN0IFJlZmVyZW5jZSBNYW51YWwgKHNlZSBodHRwczovL3lvY3RvcHJvamVj
+dC5vcmcvZG9jcy8yLjUvcmVmLW1hbnVhbC9yZWYtbWFudWFsLmh0bWwjdmFyLUJVSUxESElTVE9S
+WV9GRUFUVVJFUykuICBZb3UgY2FuIGFsc28gc2VlIGh0dHBzOi8veW9jdG9wcm9qZWN0Lm9yZy9k
+b2NzLzIuNS9yZWYtbWFudWFsL3JlZi1tYW51YWwuaHRtbCN2YXItQlVJTERISVNUT1JZX0ZFQVRV
+UkVTIGZvciB0aGUgY29tbWl0IGluIHRoZSB5b2N0by1kb2NzIHJlcG9zaXRvcnkuDQpQbGVhc2Ug
+bG9vayBpdCBvdmVyIGFzIEkgZGlkIGEgYml0IG9mIG1vZGlmaWNhdGlvbiBmb3IgbWFudWFsIHB1
+cnBvc2VzLg0KUmVnYXJkcywNClNjb3R0DQoNCk9uIFRodSwgTWF5IDMsIDIwMTggYXQgMTI6Mjkg
+QU0sIFBldGVyIEtqZWxsZXJzdGVkdCA8cGV0ZXIua2plbGxlcnN0ZWR0QGF4aXMuY29tPG1haWx0
+bzpwZXRlci5ramVsbGVyc3RlZHRAYXhpcy5jb20+PiB3cm90ZToNCg0KDQpGcm9tOiBvcGVuZW1i
+ZWRkZWQtY29yZS1ib3VuY2VzQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmc8bWFpbHRvOm9wZW5lbWJl
+ZGRlZC1jb3JlLWJvdW5jZXNAbGlzdHMub3BlbmVtYmVkZGVkLm9yZz4gW21haWx0bzpvcGVuZW1i
+ZWRkZWQtY29yZS1ib3VuY2VzQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmc8bWFpbHRvOm9wZW5lbWJl
+ZGRlZC1jb3JlLWJvdW5jZXNAbGlzdHMub3BlbmVtYmVkZGVkLm9yZz5dIE9uIEJlaGFsZiBPZiBT
+Y290dCBSaWZlbmJhcmsNClNlbnQ6IGRlbiAxIG1haiAyMDE4IDE2OjU2DQpUbzogUmljaGFyZCBQ
+dXJkaWUgPHJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmc8bWFpbHRvOnJpY2hhcmQu
+cHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmc+Pg0KQ2M6IG9wZW5lbWJlZGRlZC1jb3JlIDxvcGVu
+ZW1iZWRkZWQtY29yZUBsaXN0cy5vcGVuZW1iZWRkZWQub3JnPG1haWx0bzpvcGVuZW1iZWRkZWQt
+Y29yZUBsaXN0cy5vcGVuZW1iZWRkZWQub3JnPj4NClN1YmplY3Q6IFJlOiBbT0UtY29yZV0gMi42
+IHBsYW5uaW5nIHByb3Bvc2FscyBhbmQgbWVldGluZw0KDQpPbiBUdWUsIE1heSAxLCAyMDE4IGF0
+IDc6NDYgQU0sIFJpY2hhcmQgUHVyZGllIDxyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24u
+b3JnPG1haWx0bzpyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24ub3JnPj4gd3JvdGU6DQpI
+aSwNCg0KT24gRnJpLCAyMDE4LTA0LTIwIGF0IDA4OjAyIC0wNDAwLCBEYW5pZWwgRi4gRGlja2lu
+c29uIHdyb3RlOg0KPiBJJ20gcmVsYXRpdmVseSBuZXcgdG8gT0U7IEkndmUgd3JpdHRlbiBhIGNv
+dXBsZSBvZiBwcmUtYWxwaGEgbGF5ZXJzDQo+IHRvIHRyeSBzb21lIGlkZWEsIGFuZCB3b3JrZWQg
+b24gbWV0YS1vcGVuZW1iZWRkZWQsIGJ1dCBJJ3ZlIG5vdCBoYWQgYQ0KPiBjaGFuY2UgdG8gZ28g
+aW4gZGVwdGggb24gdGhlIFlvY3RvIGRvY3VtZW50YXRpb24sIGFuZCBhdCB0aGUgc29tZQ0KPiB0
+aGVyZSBzZWUgdG8gYmUgdGhpbmdzIChiYXNlZCBvbiB0aGUgbGlzdHMpIHRoYXQgYXJlIG91dCBv
+ZiBkYXRlLCBvcg0KPiBuZXcgdGhpbmdzIHRoYXQgYXJlbid0IGV2ZW4gbWVudGlvbmVkLCB3aGlj
+aCBtYWtlcyBnZXR0aW5nIHVwIHNwZWVkDQo+IHNvbWV3aGF0IGRpZmZpY3VsdC4NCg0KV3JpdGlu
+ZyBkb3duIHdoZXJlIHlvdSB0aGluayB0aGVyZSBhcmUgaXNzdWVzIHdvdWxkIGJlIGEgaGVscCBz
+byB0aGF0DQp3ZSBjYW4gc2VlIGlmIHRoZXJlIGlzIHNvbWUgd2F5IHdlIGNhbiBpbXByb3ZlIHRo
+YXQuDQoNClllcyAtIHBsZWFzZSBpbmRpY2F0ZSBhbnkgYXJlYXMgaW4gdGhlIGRvY3VtZW50YXRp
+b24geW91IGJlbGlldmUgbmVlZCB1cGRhdGVkLCBjaGFuZ2VkLCBvciBhZGRlZC4gIEkgaGF2ZSBi
+ZWVuIHRyeWluZyB0byBicmluZyB0aGluZ3MgdXAtdG8tZGF0ZSBpbiBzZXZlcmFsIG1hbnVhbHMg
+ZHVyaW5nIHRoZSAyLjUgcHJvY2Vzcy4gIFNvLCBpZGVudGlmeWluZyBhcmVhcyBpbiB0aGUgMi41
+IG1hbnVhbCBzZXQgd291bGQgYmUgdmVyeSBoZWxwZnVsLiAgVG8gYmUgc3VyZSB5b3UgYXJlIHZp
+ZXdpbmcgMi41IG1hbnVhbHMgdXNlIHRoZSBmb2xsb3dpbmcgZm9ybSBmb3IgdGhlIFVSTDoNCiAg
+ICAgIHlvY3RvcHJvamVjdC5vcmcvZG9jcy8yLjUvPGh0dHA6Ly95b2N0b3Byb2plY3Qub3JnL2Rv
+Y3MvMi41Lz48bWFudWFsX2ZvbGRlcj4vPG1hbnVhbF9mb2xkZXI+Lmh0bWwNCiAgICAgIHdoZXJl
+IDxtYW51YWxfZm9sZGVyPiBpcw0KICAgICAgICAgICBicmllZi15b2N0b3Byb2plY3Rxcw0KICAg
+ICAgICAgICBic3AtZ3VpZGUNCiAgICAgICAgICAgb3ZlcnZpZXctbWFudWFsDQogICAgICAgICAg
+IGRldi1tYW51YWwNCiAgICAgICAgICAgc2RrLW1hbnVhbA0KICAgICAgICAgICBwcm9maWxlLW1h
+bnVhbA0KICAgICAgICAgICBrZXJuZWwtZGV2DQogICAgICAgICAgIHJlZi1tYW51YWwNCiAgICAg
+ICAgICAgdG9hc3Rlci1tYW51YWwNCiAgICAgICAgICAgYml0YmFrZS11c2VyLWd1aWRlDQpUaGFu
+a3MNClNjb3R0DQpJcyB0aGVyZSBhbnkgc3BlY2lhbCBwcm9jZXNzIHRvIGdldCBtYW51YWwgdXBk
+YXRlcyBhY2NlcHRlZD8gSSBhbSBhc2tpbmcgYmVjYXVzZSBJIHNlbnQgYW4gdXBkYXRlIGZvciB0
+aGUgQlVJTERISVNUT1JZX0ZFQVRVUkVTIHZhcmlhYmxlIHRvIHRoZSBZb2N0byBtYWlsaW5nIGxp
+c3QgKGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9waXBlcm1haWwveW9jdG8vMjAxOC1K
+YW51YXJ5LzAzOTc4Ny5odG1sKSBhdCB0aGUgZW5kIG9mIEphbnVhcnkgKGxhc3QgcGluZ2VkIGEg
+bW9udGggYWdvKSBhbmQgaXQgc3RpbGwgaGFzIG5vdCBtYWRlIGl0IGludG8gdGhlIG1hbnVhbCBB
+RkFJQ1QgYW5kIGl0IGhhcyBub3QgcmVjZWl2ZWQgYW55IGZlZWRiYWNrLg0KLy9QZXRlcg0KDQoN
+Cg==
 
-    $ cat start.sh
-    #! /bin/sh
+--_000_1de735f1d8b44901b57403f49bca0611XBOX02axiscom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-    cd /home/yocto/poky
-    source ./oe-init-build-env ../build
-    bitbake-prserv --start --file /home/yocto/prserv/sqlite3.db --log
-/tmp/prserv.log --port 8585
-    tail -f /tmp/prserv.log
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
+OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1z
+b0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpwdXJw
+bGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1zb25v
+cm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCgltc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4tYm90
+dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnNwYW4uaG9lbnpiDQoJe21zby1zdHls
+ZS1uYW1lOmhvZW56Yjt9DQpzcGFuLkVtYWlsU3R5bGUxOQ0KCXttc28tc3R5bGUtdHlwZTpwZXJz
+b25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjoj
+OTQzNjM0Ow0KCWZvbnQtd2VpZ2h0Om5vcm1hbDsNCglmb250LXN0eWxlOm5vcm1hbDsNCgl0ZXh0
+LWRlY29yYXRpb246bm9uZSBub25lO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBl
+OmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCW1zby1m
+YXJlYXN0LWxhbmd1YWdlOkVOLVVTO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4w
+cHQgNzkyLjBwdDsNCgltYXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5X
+b3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0
+ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEw
+MjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNo
+YXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAv
+Pg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFu
+Zz0iU1YiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rp
+b24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29s
+b3I6Izk0MzYzNDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Tm90IHN1cmUgd2h5IHlvdSBy
+ZW9yZGVyZWQgdGhlIGRlc2NyaXB0aW9ucyBvZiB0aGUgZmVhdHVyZXMgZnJvbSBpbWFnZSxwYWNr
+YWdlLHNkayx0YXNrIHRvIGltYWdlLHRhc2sscGFja2FnZSxzZGsgKEkgYWRkZWQg4oCcdGFza+KA
+nSBhdCB0aGUgZW5kIHNpbmNlIHRoYXQga2VwdCB0aGVtIHNvcnRlZA0KIGFscGhhYmV0aWNhbGx5
+KSwgYnV0IGFwYXJ0IGZyb20gdGhhdCBpdCBsb29rcyBmaW5lIHRvIG1lLjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0i
+Y29sb3I6Izk0MzYzNDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
+eWxlPSJjb2xvcjojOTQzNjM0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj4vL1BldGVyPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
+VVMiIHN0eWxlPSJjb2xvcjojOTQzNjM0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXIt
+bGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNC4wcHQiPg0KPGRpdj4N
+CjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtw
+YWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFu
+IGxhbmc9IkVOLVVTIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiPiBTY290dCBS
+aWZlbmJhcmsgW21haWx0bzpzcmlmZW5iYXJrQGdtYWlsLmNvbV0NCjxicj4NCjxiPlNlbnQ6PC9i
+PiBkZW4gMyBtYWogMjAxOCAxNTo1ODxicj4NCjxiPlRvOjwvYj4gUGV0ZXIgS2plbGxlcnN0ZWR0
+ICZsdDtwZXRlci5ramVsbGVyc3RlZHRAYXhpcy5jb20mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiBSaWNo
+YXJkIFB1cmRpZSAmbHQ7cmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZyZndDs7IG9w
+ZW5lbWJlZGRlZC1jb3JlICZsdDtvcGVuZW1iZWRkZWQtY29yZUBsaXN0cy5vcGVuZW1iZWRkZWQu
+b3JnJmd0OzsgWW9jdG8gZGlzY3Vzc2lvbiBsaXN0ICZsdDt5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
+Jmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW09FLWNvcmVdIDIuNiBwbGFubmluZyBwcm9w
+b3NhbHMgYW5kIG1lZXRpbmc8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4N
+CjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4t
+Ym90dG9tOjEyLjBwdCI+SGkgUGV0ZXIsIDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPlRoYW5rcyBmb3IgdGhl
+IHBhdGNoLiZuYnNwOyBJIGhhdmUgYXBwbGllZCBpdCB0byB0aGUgMi41IHZlcnNpb24gb2YgdGhl
+IFlvY3RvIFByb2plY3QgUmVmZXJlbmNlIE1hbnVhbCAoc2VlDQo8YSBocmVmPSJodHRwczovL3lv
+Y3RvcHJvamVjdC5vcmcvZG9jcy8yLjUvcmVmLW1hbnVhbC9yZWYtbWFudWFsLmh0bWwjdmFyLUJV
+SUxESElTVE9SWV9GRUFUVVJFUyI+DQpodHRwczovL3lvY3RvcHJvamVjdC5vcmcvZG9jcy8yLjUv
+cmVmLW1hbnVhbC9yZWYtbWFudWFsLmh0bWwjdmFyLUJVSUxESElTVE9SWV9GRUFUVVJFUzwvYT4p
+LiZuYnNwOyBZb3UgY2FuIGFsc28gc2VlDQo8YSBocmVmPSJodHRwczovL3lvY3RvcHJvamVjdC5v
+cmcvZG9jcy8yLjUvcmVmLW1hbnVhbC9yZWYtbWFudWFsLmh0bWwjdmFyLUJVSUxESElTVE9SWV9G
+RUFUVVJFUyI+DQpodHRwczovL3lvY3RvcHJvamVjdC5vcmcvZG9jcy8yLjUvcmVmLW1hbnVhbC9y
+ZWYtbWFudWFsLmh0bWwjdmFyLUJVSUxESElTVE9SWV9GRUFUVVJFUzwvYT4gZm9yIHRoZSBjb21t
+aXQgaW4gdGhlIHlvY3RvLWRvY3MgcmVwb3NpdG9yeS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5QbGVhc2Ug
+bG9vayBpdCBvdmVyIGFzIEkgZGlkIGEgYml0IG9mIG1vZGlmaWNhdGlvbiBmb3IgbWFudWFsIHB1
+cnBvc2VzLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5SZWdh
+cmRzLCA8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+U2NvdHQ8
+bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFRodSwgTWF5
+IDMsIDIwMTggYXQgMTI6MjkgQU0sIFBldGVyIEtqZWxsZXJzdGVkdCAmbHQ7PGEgaHJlZj0ibWFp
+bHRvOnBldGVyLmtqZWxsZXJzdGVkdEBheGlzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnBldGVyLmtq
+ZWxsZXJzdGVkdEBheGlzLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPGJsb2Nr
+cXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7
+cGFkZGluZzowY20gMGNtIDBjbSA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6
+MGNtIj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
+aW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5nPSJF
+Ti1VUyIgc3R5bGU9ImNvbG9yOiM5NDM2MzQiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28t
+bWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjoj
+OTQzNjM0Ij4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6
+bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNC4w
+cHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0Ux
+RTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
+YXV0byI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJF
+Ti1VUyI+DQo8YSBocmVmPSJtYWlsdG86b3BlbmVtYmVkZGVkLWNvcmUtYm91bmNlc0BsaXN0cy5v
+cGVuZW1iZWRkZWQub3JnIiB0YXJnZXQ9Il9ibGFuayI+DQpvcGVuZW1iZWRkZWQtY29yZS1ib3Vu
+Y2VzQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmc8L2E+IFttYWlsdG86PGEgaHJlZj0ibWFpbHRvOm9w
+ZW5lbWJlZGRlZC1jb3JlLWJvdW5jZXNAbGlzdHMub3BlbmVtYmVkZGVkLm9yZyIgdGFyZ2V0PSJf
+YmxhbmsiPm9wZW5lbWJlZGRlZC1jb3JlLWJvdW5jZXNAbGlzdHMub3BlbmVtYmVkZGVkLm9yZzwv
+YT5dDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPlNjb3R0IFJpZmVuYmFyazxicj4NCjxiPlNlbnQ6PC9i
+PiBkZW4gMSBtYWogMjAxOCAxNjo1Njxicj4NCjxiPlRvOjwvYj4gUmljaGFyZCBQdXJkaWUgJmx0
+OzxhIGhyZWY9Im1haWx0bzpyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24ub3JnIiB0YXJn
+ZXQ9Il9ibGFuayI+cmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZzwvYT4mZ3Q7PGJy
+Pg0KPGI+Q2M6PC9iPiBvcGVuZW1iZWRkZWQtY29yZSAmbHQ7PGEgaHJlZj0ibWFpbHRvOm9wZW5l
+bWJlZGRlZC1jb3JlQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmciIHRhcmdldD0iX2JsYW5rIj5vcGVu
+ZW1iZWRkZWQtY29yZUBsaXN0cy5vcGVuZW1iZWRkZWQub3JnPC9hPiZndDs8YnI+DQo8Yj5TdWJq
+ZWN0OjwvYj4gUmU6IFtPRS1jb3JlXSAyLjYgcGxhbm5pbmcgcHJvcG9zYWxzIGFuZCBtZWV0aW5n
+PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0
+OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiPk9uIFR1ZSwg
+TWF5IDEsIDIwMTggYXQgNzo0NiBBTSwgUmljaGFyZCBQdXJkaWUgJmx0Ozwvc3Bhbj48YSBocmVm
+PSJtYWlsdG86cmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZyIgdGFyZ2V0PSJfYmxh
+bmsiPjxzcGFuIGxhbmc9IkVOLVVTIj5yaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24ub3Jn
+PC9zcGFuPjwvYT48c3BhbiBsYW5nPSJFTi1VUyI+Jmd0Ow0KIHdyb3RlOjwvc3Bhbj48bzpwPjwv
+bzpwPjwvcD4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xp
+ZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44
+cHQ7bWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tcmlnaHQ6MGNtO21hcmdpbi1ib3R0b206NS4wcHQi
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21z
+by1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5IaSw8YnI+DQo8YnI+DQpPbiBGcmksIDIwMTgtMDQt
+MjAgYXQgMDg6MDIgLTA0MDAsIERhbmllbCBGLiBEaWNraW5zb24gd3JvdGU6PGJyPg0KJmd0OyBJ
+J20gcmVsYXRpdmVseSBuZXcgdG8gT0U7IEkndmUgd3JpdHRlbiBhIGNvdXBsZSBvZiBwcmUtYWxw
+aGEgbGF5ZXJzPGJyPg0KJmd0OyB0byB0cnkgc29tZSBpZGVhLCBhbmQgd29ya2VkIG9uIG1ldGEt
+b3BlbmVtYmVkZGVkLCBidXQgSSd2ZSBub3QgaGFkIGE8YnI+DQomZ3Q7IGNoYW5jZSB0byBnbyBp
+biBkZXB0aCBvbiB0aGUgWW9jdG8gZG9jdW1lbnRhdGlvbiwgYW5kIGF0IHRoZSBzb21lPGJyPg0K
+Jmd0OyB0aGVyZSBzZWUgdG8gYmUgdGhpbmdzIChiYXNlZCBvbiB0aGUgbGlzdHMpIHRoYXQgYXJl
+IG91dCBvZiBkYXRlLCBvcjxicj4NCiZndDsgbmV3IHRoaW5ncyB0aGF0IGFyZW4ndCBldmVuIG1l
+bnRpb25lZCwgd2hpY2ggbWFrZXMgZ2V0dGluZyB1cCBzcGVlZDxicj4NCiZndDsgc29tZXdoYXQg
+ZGlmZmljdWx0Ljxicj4NCjxicj4NCldyaXRpbmcgZG93biB3aGVyZSB5b3UgdGhpbmsgdGhlcmUg
+YXJlIGlzc3VlcyB3b3VsZCBiZSBhIGhlbHAgc28gdGhhdDxicj4NCndlIGNhbiBzZWUgaWYgdGhl
+cmUgaXMgc29tZSB3YXkgd2UgY2FuIGltcHJvdmUgdGhhdC48bzpwPjwvbzpwPjwvcD4NCjwvYmxv
+Y2txdW90ZT4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
+b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
+aW4tdG9wLWFsdDphdXRvO21hcmdpbi1ib3R0b206MTIuMHB0Ij5ZZXMgLSBwbGVhc2UgaW5kaWNh
+dGUgYW55IGFyZWFzIGluIHRoZSBkb2N1bWVudGF0aW9uIHlvdSBiZWxpZXZlIG5lZWQgdXBkYXRl
+ZCwgY2hhbmdlZCwgb3IgYWRkZWQuJm5ic3A7IEkgaGF2ZSBiZWVuIHRyeWluZyB0byBicmluZyB0
+aGluZ3MgdXAtdG8tZGF0ZSBpbiBzZXZlcmFsIG1hbnVhbHMgZHVyaW5nIHRoZSAyLjUgcHJvY2Vz
+cy4mbmJzcDsNCiBTbywgaWRlbnRpZnlpbmcgYXJlYXMgaW4gdGhlIDIuNSBtYW51YWwgc2V0IHdv
+dWxkIGJlIHZlcnkgaGVscGZ1bC4mbmJzcDsgVG8gYmUgc3VyZSB5b3UgYXJlIHZpZXdpbmcgMi41
+IG1hbnVhbHMgdXNlIHRoZSBmb2xsb3dpbmcgZm9ybSBmb3IgdGhlIFVSTDo8bzpwPjwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttYXJnaW4tYm90dG9tOjEyLjBwdCI+Jm5ic3A7ICZuYnNwOyAmbmJzcDsg
+PGEgaHJlZj0iaHR0cDovL3lvY3RvcHJvamVjdC5vcmcvZG9jcy8yLjUvIiB0YXJnZXQ9Il9ibGFu
+ayI+DQp5b2N0b3Byb2plY3Qub3JnL2RvY3MvMi41LzwvYT4mbHQ7bWFudWFsX2ZvbGRlciZndDsv
+Jmx0O21hbnVhbF9mb2xkZXImZ3Q7Lmh0bWw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttYXJn
+aW4tYm90dG9tOjEyLjBwdCI+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgd2hlcmUgJmx0O21hbnVhbF9m
+b2xkZXImZ3Q7IGlzDQo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRv
+bS1hbHQ6YXV0byI+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyZuYnNwOyBicmll
+Zi15b2N0b3Byb2plY3RxczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90
+dG9tLWFsdDphdXRvIj4mbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7Jm5ic3A7IGJz
+cC1ndWlkZTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDph
+dXRvIj4mbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7Jm5ic3A7IG92ZXJ2aWV3LW1h
+bnVhbDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
+Ij4mbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7Jm5ic3A7IGRldi1tYW51YWw8bzpw
+PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJt
+c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7
+ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyZuYnNwOyBzZGstbWFudWFsPG86cD48L286cD48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdp
+bi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOyAmbmJzcDsg
+Jm5ic3A7ICZuYnNwOyAmbmJzcDsmbmJzcDsgcHJvZmlsZS1tYW51YWw8bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7ICZuYnNwOyAmbmJz
+cDsgJm5ic3A7ICZuYnNwOyZuYnNwOyBrZXJuZWwtZGV2PG86cD48L286cD48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
+dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
+OyAmbmJzcDsmbmJzcDsgcmVmLW1hbnVhbDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
+YXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
+Jm5ic3A7IHRvYXN0ZXItbWFudWFsPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bWFyZ2luLWJv
+dHRvbToxMi4wcHQiPiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsmbmJzcDsgYml0
+YmFrZS11c2VyLWd1aWRlPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0
+b20tYWx0OmF1dG8iPlRoYW5rczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttYXJnaW4tYm90
+dG9tOjEyLjBwdDttYXJnaW4tbGVmdDo1LjI1cHQiPg0KU2NvdHQ8bzpwPjwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG8iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6Izk0MzYzNCI+SXMgdGhlcmUgYW55
+IHNwZWNpYWwgcHJvY2VzcyB0byBnZXQgbWFudWFsIHVwZGF0ZXMgYWNjZXB0ZWQ/IEkgYW0gYXNr
+aW5nIGJlY2F1c2UgSSBzZW50IGFuIHVwZGF0ZSBmb3IgdGhlIEJVSUxESElTVE9SWV9GRUFUVVJF
+UyB2YXJpYWJsZQ0KIHRvIHRoZSBZb2N0byBtYWlsaW5nIGxpc3QgKDxhIGhyZWY9Imh0dHBzOi8v
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9waXBlcm1haWwveW9jdG8vMjAxOC1KYW51YXJ5LzAzOTc4
+Ny5odG1sIiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL3Bp
+cGVybWFpbC95b2N0by8yMDE4LUphbnVhcnkvMDM5Nzg3Lmh0bWw8L2E+KSBhdCB0aGUgZW5kIG9m
+IEphbnVhcnkgKGxhc3QgcGluZ2VkIGEgbW9udGggYWdvKSBhbmQgaXQNCiBzdGlsbCBoYXMgbm90
+IG1hZGUgaXQgaW50byB0aGUgbWFudWFsIEFGQUlDVCBhbmQgaXQgaGFzIG5vdCByZWNlaXZlZCBh
+bnkgZmVlZGJhY2suPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
+Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOiM5NDM2MzQiPi8vUGV0ZXI8L3NwYW4+
+PHNwYW4gc3R5bGU9ImNvbG9yOiM4ODg4ODgiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
+LWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjojOTQzNjM0
+Ij4mbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9ImNvbG9yOiM4ODg4ODgiPjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2
+Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-And after modified the Dockerfile adding this stuff:
-
-    ADD start.sh /home/yocto/start.sh
-    RUN chmod 755 /home/yocto/start.sh
-    RUN chown yocto.yocto /home/yocto/start.sh
-    ...
-    CMD /home/yocto/start.sh
-
-Now it works as expected. Hope this helps somebody else!
-
-
-
-2018-05-04 15:57 GMT+02:00 Iv=C3=A1n Castell <icastell@nayarsystems.com>:
-
-> The purpose is deploying a yocto PR server using a docker container. More
-> info about PR server can be found in the following link: https://wiki.
-> yoctoproject.org/wiki/PR_Service
->
-> To try doing that I wrote this "Dockerfile" to generate a docker image:
->
-> FROM ubuntu:16.04
-> MAINTAINER Yocto <yocto@mydomain.com>
->
-> # Update, upgrade and install
-> RUN apt-get update
-> RUN apt-get upgrade -y
-> RUN apt-get install -y gawk wget git git-core diffstat unzip texinfo
-> gcc-multilib build-essential chrpath socat xterm curl parted python pytho=
-n3
-> python3-pip python3-pexpect xz-utils debianutils iputils-ping libsdl1.2-d=
-ev
-> net-tools
->
-> # Set up locales
-> RUN apt-get -y install locales apt-utils sudo && dpkg-reconfigure locales
-> && locale-gen en_US.UTF-8 && update-locale LC_ALL=3Den_US.UTF-8
-> LANG=3Den_US.UTF-8
-> ENV LANG en_US.utf8
->
-> # Clean up APT when done
-> RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
->
-> # Replace dash with bash
-> RUN rm /bin/sh && ln -s bash /bin/sh
->
-> # Yocto user management
-> RUN groupadd -g 1000 yocto && useradd -u 1000 -g 1000 -ms /bin/bash yocto
-> && usermod -a -G sudo yocto && usermod -a -G users yocto
-> ENV HOME /home/yocto
-> USER yocto
->
-> # Download poky
-> RUN git clone --branch rocko git://git.yoctoproject.org/poky
-> /home/yocto/poky
->
-> # Create some directories
-> RUN mkdir -p /home/yocto/build /home/yocto/prserv
->
-> # Make /home/yocto/poky the working directory
-> WORKDIR /home/yocto/poky
->
-> # Expose listen port
-> EXPOSE 8585
->
-> # Run PR-server
-> CMD /bin/sh -c " \
->     source ./oe-init-build-env ../build \
->     && bitbake-prserv --start --file /home/yocto/prserv/sqlite3.db --log
-> /tmp/prserv.log --port 8585 \
-> "
-> Using previous Dockerfile I build a docker image:
->
-> $ docker build -t docker-prserver .
-> [...]
-> Successfully built 362f4599b1b6
-> Successfully tagged docker-prserver:latest
->
-> As you can see before, the process ends successfully. After that, I run a
-> container:
->
-> $ docker run -ti docker-prserver
-> yocto@b3c9fd06d8af:~/poky$
->
-> The previous command creates a shell. I check if the process
-> =E2=80=9Cbitbake-prserver=E2=80=9D is running:
->
-> $ netstat -nat
-> Active Internet connections (servers and established)
-> Proto Recv-Q Send-Q Local Address           Foreign Address         State
->
-> As you can see, the =E2=80=9Cbitbake-prserver=E2=80=9D process is not run=
-ning (no listen
-> port). However, if I log into the container and execute the CMD command:
->
-> yocto@b3c9fd06d8af:~/poky/build$ source ./oe-init-build-env ../build/ &&
-> bitbake-prserv --start --file /home/yocto/prserv/sqlite3.db --log
-> /tmp/prserv.log --port 8585
->
-> Then it works fine:
->
-> yocto@b3c9fd06d8af:~$ netstat -nat
-> Active Internet connections (servers and established)
-> Proto Recv-Q Send-Q Local Address           Foreign Address    State
-> tcp        0      0 0.0.0.0:8585            0.0.0.0:*          LISTEN
->
-> It=E2=80=99s supposed that CMD is executed when the container is instanti=
-ated, but
-> this is not happening. What is the right way to write a Dockerfile to run=
- a
-> bitbake-prserv server listening on the exposed port?
->
-> Hope some of you have some experience on this and can provide some useful
-> feedback.
->
-> Thanks a lot in advance! :)
->
->
-
-
---=20
-
-
-
-
-*NOTA LEGAL*
-Este correo electr=C3=B3nico y, en su caso, cualquier fichero anexo al mism=
-o,
-contiene informaci=C3=B3n de car=C3=A1cter confidencial exclusivamente diri=
-gida a su
-destinatario y se encuentra protegido por Ley. Cualquier persona distinta
-de su destinataria tiene prohibida su reproducci=C3=B3n, uso, divulgaci=C3=
-=B3n, copia
-o impresi=C3=B3n total o parcial. Si ha recibido este correo electr=C3=B3ni=
-co por
-error, se ruega lo notifique de inmediato al remitente borrando el mensaje
-original juntamente con sus ficheros anexos. Gracias.
-
-De conformidad con lo establecido en la LOPD, NAYAR SYSTEMS SL garantiza la
-adopci=C3=B3n de las medidas necesarias para asegurar el tratamiento
-confidencial de los datos de car=C3=A1cter personal. As=C3=AD mismo le info=
-rmamos de
-la inclusi=C3=B3n de sus datos en un fichero bajo la responsabilidad de NAY=
-AR
-SYSTEMS SL, con la finalidad de poder atender los compromisos derivados de
-la relaci=C3=B3n que mantenemos con usted. Si lo desea, puede ejercer sus
-derechos de acceso, rectificaci=C3=B3n, cancelaci=C3=B3n y oposici=C3=B3n m=
-ediante un
-escrito a la siguiente direcci=C3=B3n: info@nayarsystems.com
-
-*LEGAL NOTE*
-This email and any attachments to it contains is confidential information
-exclusively intended for the recipients. Any divulgation, copy or
-distribution to third parties is prohibited without written permission of
-NAYAR SYSTEMS SL. If you have received this e-mail in error, please notify
-the sender immediately. In accordance with Law 15/1999 of 13 December on
-the Protection of Personal Data, the NAYAR SYSTEMS SL guarantees that it
-has adopted the necessary measures to ensure the confidential treatment of
-personal information. We also inform you that you can exercise your access,
-rectification, cancellation and opposition rights by send us a mail to:
-info@nayarsystems.com
-
---000000000000b9777f056b6224c7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>I found the right way to fix my issue. First I wrote =
-this script:</div><div><br></div><div>=C2=A0 =C2=A0 $ cat start.sh=C2=A0</d=
-iv><div>=C2=A0 =C2=A0 #! /bin/sh</div><div><br></div><div>=C2=A0 =C2=A0 cd =
-/home/yocto/poky</div><div>=C2=A0 =C2=A0 source ./oe-init-build-env ../buil=
-d</div><div>=C2=A0 =C2=A0 bitbake-prserv --start --file /home/yocto/prserv/=
-sqlite3.db --log /tmp/prserv.log --port 8585</div><div>=C2=A0 =C2=A0 tail -=
-f /tmp/prserv.log</div><div><br></div><div>And after modified the Dockerfil=
-e adding this stuff:</div><div><br></div><div><div>=C2=A0 =C2=A0 ADD start.=
-sh /home/yocto/start.sh</div><div>=C2=A0 =C2=A0 RUN chmod 755 /home/yocto/s=
-tart.sh</div><div>=C2=A0 =C2=A0 RUN chown yocto.yocto /home/yocto/start.sh<=
-/div><div>=C2=A0 =C2=A0 ...</div><div>=C2=A0 =C2=A0 CMD /home/yocto/start.s=
-h<br></div></div><div><br></div><div>Now it works as expected. Hope this he=
-lps somebody else!=C2=A0</div><div><br></div><div><br></div></div><div clas=
-s=3D"gmail_extra"><br><div class=3D"gmail_quote">2018-05-04 15:57 GMT+02:00=
- Iv=C3=A1n Castell <span dir=3D"ltr">&lt;<a href=3D"mailto:icastell@nayarsy=
-stems.com" target=3D"_blank">icastell@nayarsystems.com</a>&gt;</span>:<br><=
-blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
- #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div>The purpose is dep=
-loying a yocto PR server using a docker container. More info about PR serve=
-r can be found in the following link:=C2=A0<a href=3D"https://wiki.yoctopro=
-ject.org/wiki/PR_Service" target=3D"_blank">https://wiki.<wbr>yoctoproject.=
-org/wiki/PR_<wbr>Service</a></div><div><br></div><div>To try doing that I w=
-rote this &quot;Dockerfile&quot; to generate a docker image:</div><div><br>=
-</div><div>FROM ubuntu:16.04</div><div>MAINTAINER Yocto &lt;<a href=3D"mail=
-to:yocto@mydomain.com" target=3D"_blank">yocto@mydomain.com</a>&gt;</div><d=
-iv><br></div><div># Update, upgrade and install</div><div>RUN apt-get updat=
-e</div><div>RUN apt-get upgrade -y</div><div>RUN apt-get install -y gawk wg=
-et git git-core diffstat unzip texinfo gcc-multilib build-essential chrpath=
- socat xterm curl parted python python3 python3-pip python3-pexpect xz-util=
-s debianutils iputils-ping libsdl1.2-dev net-tools</div><div><br></div><div=
-># Set up locales</div><div>RUN apt-get -y install locales apt-utils sudo &=
-amp;&amp; dpkg-reconfigure locales &amp;&amp; locale-gen en_US.UTF-8 &amp;&=
-amp; update-locale LC_ALL=3Den_US.UTF-8 LANG=3Den_US.UTF-8</div><div>ENV LA=
-NG en_US.utf8</div><div><br></div><div># Clean up APT when done</div><div>R=
-UN apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*</=
-div><div><br></div><div># Replace dash with bash</div><div>RUN rm /bin/sh &=
-amp;&amp; ln -s bash /bin/sh</div><div><br></div><div># Yocto user manageme=
-nt</div><div>RUN groupadd -g 1000 yocto &amp;&amp; useradd -u 1000 -g 1000 =
--ms /bin/bash yocto &amp;&amp; usermod -a -G sudo yocto &amp;&amp; usermod =
--a -G users yocto</div><div>ENV HOME /home/yocto</div><div>USER yocto</div>=
-<div><br></div><div># Download poky</div><div>RUN git clone --branch rocko =
-git://<a href=3D"http://git.yoctoproject.org/poky" target=3D"_blank">git.yo=
-ctoproject.org/<wbr>poky</a> /home/yocto/poky</div><div><br></div><div># Cr=
-eate some directories</div><div>RUN mkdir -p /home/yocto/build /home/yocto/=
-prserv</div><div><br></div><div># Make /home/yocto/poky the working directo=
-ry</div><div>WORKDIR /home/yocto/poky</div><div><br></div><div># Expose lis=
-ten port</div><div>EXPOSE 8585</div><div><br></div><div># Run PR-server</di=
-v><div>CMD /bin/sh -c &quot; \</div><div>=C2=A0 =C2=A0 source ./oe-init-bui=
-ld-env ../build \</div><div>=C2=A0 =C2=A0 &amp;&amp; bitbake-prserv --start=
- --file /home/yocto/prserv/sqlite3.db --log /tmp/prserv.log --port 8585 \</=
-div><div>&quot;</div><div>Using previous Dockerfile I build a docker image:=
-</div><div><br></div><div>$ docker build -t docker-prserver .</div><div>[..=
-.]</div><div>Successfully built 362f4599b1b6</div><div>Successfully tagged =
-docker-prserver:latest</div><div><br></div><div>As you can see before, the =
-process ends successfully. After that, I run a container:</div><div><br></d=
-iv><div>$ docker run -ti docker-prserver</div><div>yocto@b3c9fd06d8af:~/pok=
-y$</div><div><br></div><div>The previous command creates a shell. I check i=
-f the process =E2=80=9Cbitbake-prserver=E2=80=9D is running:</div><div><br>=
-</div><div>$ netstat -nat</div><div>Active Internet connections (servers an=
-d established)</div><div>Proto Recv-Q Send-Q Local Address=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0Foreign Address=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0St=
-ate=C2=A0</div><div><br></div><div>As you can see, the =E2=80=9Cbitbake-prs=
-erver=E2=80=9D process is not running (no listen port). However, if I log i=
-nto the container and execute the CMD command:</div><div><br></div><div>yoc=
-to@b3c9fd06d8af:~/poky/<wbr>build$ source ./oe-init-build-env ../build/ &am=
-p;&amp; bitbake-prserv --start --file /home/yocto/prserv/sqlite3.db --log /=
-tmp/prserv.log --port 8585</div><div><br></div><div>Then it works fine:</di=
-v><div><br></div><div>yocto@b3c9fd06d8af:~$ netstat -nat</div><div>Active I=
-nternet connections (servers and established)</div><div>Proto Recv-Q Send-Q=
- Local Address=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Foreign Address=C2=
-=A0 =C2=A0 State=C2=A0 =C2=A0 =C2=A0=C2=A0</div><div>tcp=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 0=C2=A0 =C2=A0 =C2=A0 0 <a href=3D"http://0.0.0.0:8585" target=
-=3D"_blank">0.0.0.0:8585</a>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0.0.0=
-.0:*=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 LISTEN=C2=A0 =C2=A0 =C2=A0</div><div=
-><br></div><div>It=E2=80=99s supposed that CMD is executed when the contain=
-er is instantiated, but this is not happening. What is the right way to wri=
-te a Dockerfile to run a bitbake-prserv server listening on the exposed por=
-t?</div><div><br></div><div>Hope some of you have some experience on this a=
-nd can provide some useful feedback.</div><div><br></div><div>Thanks a lot =
-in advance! :)</div><div><br></div></div>
-</div>
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div class=
-=3D"gmail_signature" data-smartmail=3D"gmail_signature"><br><img src=3D"htt=
-p://www.nayarsystems.com/docs/FIRMAS/icastell.jpg"><br><font size=3D"2"><b>=
-</b></font><br><div><span><font size=3D"1"><span style=3D"color:rgb(153,153=
-,153)"><br><u><b>NOTA LEGAL</b></u><br>Este correo electr=C3=B3nico y, en s=
-u caso, cualquier fichero anexo al mismo, contiene informaci=C3=B3n de car=
-=C3=A1cter confidencial exclusivamente dirigida a su destinatario y se encu=
-entra protegido por Ley. Cualquier persona distinta de su destinataria tien=
-e prohibida su reproducci=C3=B3n, uso, divulgaci=C3=B3n, copia o impresi=C3=
-=B3n total o parcial. Si ha recibido este correo electr=C3=B3nico por error=
-, se ruega lo notifique de inmediato al remitente borrando el mensaje origi=
-nal juntamente con sus ficheros anexos. Gracias.<br><br>De conformidad con =
-lo establecido en la LOPD, NAYAR SYSTEMS SL garantiza la adopci=C3=B3n de l=
-as medidas necesarias para asegurar el tratamiento confidencial de los dato=
-s de car=C3=A1cter personal. As=C3=AD mismo le informamos de la inclusi=C3=
-=B3n de sus datos en un fichero bajo la responsabilidad de NAYAR SYSTEMS SL=
-, con la finalidad de poder atender los compromisos derivados de la relaci=
-=C3=B3n que mantenemos con usted. Si lo desea, puede ejercer sus derechos d=
-e acceso, rectificaci=C3=B3n, cancelaci=C3=B3n y oposici=C3=B3n mediante un=
- escrito a la siguiente direcci=C3=B3n:=C2=A0<a style=3D"color:rgb(17,85,20=
-4)" href=3D"mailto:info@nayarsystems.com" target=3D"_blank">info@nayarsyste=
-ms.com</a></span><br><br></font></span></div><div><span style=3D"color:rgb(=
-153,153,153);font-family:arial,helvetica,sans-serif;font-size:x-small"><u><=
-b>LEGAL NOTE</b></u></span></div><div><span style=3D"color:rgb(153,153,153)=
-;font-family:arial,helvetica,sans-serif;font-size:x-small">This email and a=
-ny attachments to it contains is confidential information exclusively inten=
-ded for the recipients. Any divulgation, copy or distribution to third part=
-ies is prohibited without written permission of NAYAR SYSTEMS SL. If you ha=
-ve received this e-mail in error, please notify the sender immediately. In =
-accordance with Law 15/1999 of 13 December on the Protection of Personal Da=
-ta, the NAYAR SYSTEMS SL guarantees that it has adopted the necessary measu=
-res to ensure the confidential treatment of personal information. We also i=
-nform you that you can exercise your access, rectification, cancellation an=
-d opposition rights by send us a mail to:=C2=A0<a href=3D"mailto:info@nayar=
-systems.com" target=3D"_blank">info@nayarsystems.com</a></span></div><br></=
-div>
-</div>
-
---000000000000b9777f056b6224c7--
+--_000_1de735f1d8b44901b57403f49bca0611XBOX02axiscom_--
