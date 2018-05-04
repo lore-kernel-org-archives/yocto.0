@@ -1,67 +1,67 @@
-Return-Path: <ptsneves@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B9540E00C50; Fri,  4 May 2018 05:55:26 -0700 (PDT)
+	id C0622E00C50; Fri,  4 May 2018 06:22:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ptsneves[at]gmail.com)
+	mail provider *      (twoerner[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
+	*      [209.85.215.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 788CBE00C25
-	for <yocto@yoctoproject.org>; Fri,  4 May 2018 05:55:25 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id l1-v6so4627786wmb.2
-	for <yocto@yoctoproject.org>; Fri, 04 May 2018 05:55:25 -0700 (PDT)
+Received: from mail-lf0-f49.google.com (mail-lf0-f49.google.com
+	[209.85.215.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DF77E00C25
+	for <yocto@yoctoproject.org>; Fri,  4 May 2018 06:22:10 -0700 (PDT)
+Received: by mail-lf0-f49.google.com with SMTP id y14-v6so30544696lfy.12
+	for <yocto@yoctoproject.org>; Fri, 04 May 2018 06:22:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=GVqy2caQCUc6uwh5TH5to6HVnUKuPvoEq7yBo8HYg8E=;
-	b=b04Et9ayfvLotM53MRt7BzRZLo+MshiqxQeWDGLUxsRSzVI1BnMU3RAywf1V5lvFAX
-	Mf2/N+izwmJ1kV5mT9OweXdgjCddp2BkgxPxi6Dw9ibub0OFO2ixHLLqt+bZ4tezjPmO
-	AXDh/CFVqBSsAmGpaAeMn3iD7l45Ta7l9tlVpu9qc+eVz7VlL+80qS1lq7qzD3VhUgwR
-	2YZbH0OC9gIG83Di+kqI+b+owqfnXoFZ2ZFmv+BhwTqPLaObns7+I3E1woi3MEokMIlR
-	BNq1D6+L8S4tV2wxjcUCj2s85CXCkAl99wmE3wgsEZTN1Dx9GENhDZm3dGkSL3+DVTdE
-	U5tw==
+	:cc; bh=5W7bFw+TKR6/hpPN/WSCIU/C/Zh3KtlUpi850n+Va+g=;
+	b=aMHpTDUUogvZPfhw9noX6GkwxNI4r7gUZoldtGGsEBBGlRtmP25w85PmZBrE+A9kmM
+	mkH+jWQSl/Z5e+fTuQ28T/dM4mgx7bvXruE6ZTy+KX9qNQPgtsqGkT1HxGJSQ2SuWLhQ
+	ARdPKzyCBXQ4k2o4HAxNPosJq+jgSosG7F/An3RdMkGUI3Cz7lH8n6gRoSDQ9HaFtZf9
+	bmMHc2iABFto0QF2vemGHyTILPVuLvKzDBSBxqjgWBZsa3E39NlTirBHRG61ANK5hspq
+	4a+iGLKWYyIYX9h7rGp1owKC2cQxzVNSUJzJdB5wUDtJdn58s1oe1oHk2P7cXGnn3lps
+	Efbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=GVqy2caQCUc6uwh5TH5to6HVnUKuPvoEq7yBo8HYg8E=;
-	b=fNXBP/bM7aTHjCzJNsC8dPDD3ZyqYOdWAegXKhjCzCbSqXQ3PR2xFNH79RXoBB/Dg3
-	tDwypIEyCWbsNlVvHp6+vC/cClaWlp09AzdK4BG/r+78WaA/mHVoFqD8phdYseLIJtBu
-	k2CUsaqhnQFN61+6vRArtO8TWqz7tVWQmrmv4arTJzuqGZyy62mBmNGYyy/7nH7saabT
-	WFZ3PBZCuU2XlY7cCGZxHS4+azBRWqdyEfbw4/ReT9IIX+LDkwC/f3Y2rcCE9vlNj84f
-	TJVjlJPw2zLSMZsC3eapLT5LJZp68OiP/pnqwjIYRbjFjDWP3B2cS6EZ8tCTCF5F8Oya
-	7v7w==
-X-Gm-Message-State: ALQs6tC0AXyB5In6lqZuKUYNGsbkwnWNWWk4KgkokccpUfKWncyCukfQ
-	+llxbR7wxpKRsp8UJ+vFHL+r3mMKskhsvQmFfymz
-X-Google-Smtp-Source: AB8JxZo1FC5OLQP1UxaNlZVtYdBq+QuuYS45UkltNsXDvbZNpWSPyrXc5+dp5f9u7GQtmN9PLdudYE4cu0jlIKNG9NM=
-X-Received: by 10.28.18.71 with SMTP id 68mr16326885wms.74.1525438524325; Fri,
-	04 May 2018 05:55:24 -0700 (PDT)
+	bh=5W7bFw+TKR6/hpPN/WSCIU/C/Zh3KtlUpi850n+Va+g=;
+	b=SBbZlBxe9qrXXf8bW1f+0lX2S0u4F9R6whzuE80rFPZW8dqHxKXBzNSlZNEIK1VHrv
+	vHhm43nGOVlkbml3tm+Iw50CFHTSnvgz7o4Az1BehthnCZAnOTVRPM3M2GZWUqMapazd
+	QBKeg1YdN/b5oqxE9XXkrmm6KCTeKMuzKXf7BSEFtR8oOxKMewUdqRDSHlQnV1wBallt
+	tKE2lPMtZWVH/EcddSUpqXzhUfsiCXHQjHgru8NFR1qSAo8gkpKcfS0e9JH8SgTzG5jj
+	JC15X4CQWeYYwuNppQ6UlCO2UBtVHvMeQ6dfT88eE7GNvDGBjKfkLPP0TcSkh/d2+xOF
+	gO6w==
+X-Gm-Message-State: ALQs6tBzq5vFEGgd5g3vywQzDM86jNuPXIt/QX0ubcsgFW5S/khOYpGk
+	6Wzap9Vg5Lk/fq5+JBOnJwW/78Cz/Crtyn19mRw=
+X-Google-Smtp-Source: AB8JxZpdhOy0rdM2VXAtJ3eTbHUDeyxszSrXs4c4cdWtwBtD8yePU/8mGGbtTTtkAesf53mNQ0XFQ2kT+QcB9xz1NJE=
+X-Received: by 2002:a19:1142:: with SMTP id g63-v6mr1037169lfi.6.1525440129766;
+	Fri, 04 May 2018 06:22:09 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.28.39.68 with HTTP; Fri, 4 May 2018 05:55:23 -0700 (PDT)
-In-Reply-To: <ecb1ab50-450e-8e77-b3af-191313296602@linux.intel.com>
-References: <CAJO0J4gxf0ahVGCoV64Y_Z_cGtw4OiakWkSLbu2u4WB_CHzehQ@mail.gmail.com>
-	<70e7860b-5b9f-45c7-5436-73859b0d3706@linux.intel.com>
-	<CAJO0J4gz6SVhknSgPM0mGqpDR_vqsrdmNaHiXAfR4TbuxTu04Q@mail.gmail.com>
-	<ecb1ab50-450e-8e77-b3af-191313296602@linux.intel.com>
-From: Paulo Neves <ptsneves@gmail.com>
-Date: Fri, 4 May 2018 14:55:23 +0200
-Message-ID: <CAJO0J4gwwaGCOH-YnGuJ=a63wzQ9PkSQOaH4fd3fPKWSiQq07Q@mail.gmail.com>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: ROOTFS_RPM_DEBUG undocumented
+Received: by 2002:a19:c9:0:0:0:0:0 with HTTP;
+	Fri, 4 May 2018 06:22:08 -0700 (PDT)
+In-Reply-To: <AM5PR0902MB2034E7A84703702D64ED675E87820@AM5PR0902MB2034.eurprd09.prod.outlook.com>
+References: <AM5PR0902MB2034E7A84703702D64ED675E87820@AM5PR0902MB2034.eurprd09.prod.outlook.com>
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Fri, 4 May 2018 09:22:08 -0400
+Message-ID: <CAHUNapTZacynMZ+WQBreKYrSP_cmzhHdHDypzh97R6YuxhagnA@mail.gmail.com>
+To: Luis Martins <luis_martins_5@hotmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Help with Bitbake: (bitbake-layers show-recipes)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,40 +73,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 May 2018 12:55:26 -0000
+X-List-Received-Date: Fri, 04 May 2018 13:22:11 -0000
+Content-Type: multipart/alternative; boundary="0000000000000f9c2b056b6135b8"
+
+--0000000000000f9c2b056b6135b8
 Content-Type: text/plain; charset="UTF-8"
 
-Ouch you are right. Damn me for using pyro still?
-After applying this patch I will report on the remaining issues.
+*$ git clone git://git.linaro.org/openembedded/jenkins-setup.git
+<http://git.linaro.org/openembedded/jenkins-setup.git>*
 
-On Fri, May 4, 2018 at 2:41 PM, Alexander Kanavin
-<alexander.kanavin@linux.intel.com> wrote:
-> On 05/04/2018 03:42 PM, Paulo Neves wrote:
->>
->> I will propose a patch with a default bb.debug, and always have the
->> verbose on dnf. Let's see how it affects the performance. I cannot
->> test this in a docker container because of the problems described
->> below:
->>
->> In the mean time I found what was happening with my slow do_rootfs. I
->> was running bitbake with RPM packaging in a docker instance. It seems
->> there is a problem with RPM/dnf in bitbake where it is extremely slow
->> inside a docker container (1 file per second). After changing to IPK
->> packages everything went smoothly.
->>
->> Others have had the same problem[1]. I will later report this to
->> openembedded mailing list as this effectively makes RPM unusable in a
->> container. I will also provide a Dockerfile to reproduce this problem.
->>
->> [1] https://github.com/moby/moby/issues/23137#issuecomment-359097008
->
->
-> No need to report. We have already fixed this and reported upstream:
->
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-devtools/rpm/files/0001-Revert-Set-FD_CLOEXEC-on-opened-files-before-exec-fr.patch
->
-> https://bugzilla.redhat.com/show_bug.cgi?id=1537564
->
->
-> Alex
+Since the repository from which you're working comes from Linaro, maybe
+you'll have better luck getting support from their mailing list?
+openembedded-core@lists.openembedded.org
 
+--0000000000000f9c2b056b6135b8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"color:rgb(0,111,201)"><b>$ git clone git://=
+<a href=3D"http://git.linaro.org/openembedded/jenkins-setup.git" target=3D"=
+_blank">git.linaro.org/<wbr>openembedded/jenkins-setup.git</a></b></span><d=
+iv class=3D"gmail_extra"><div class=3D"gmail_quote"><div><br></div><div>Sin=
+ce the repository from which you&#39;re working comes from Linaro, maybe yo=
+u&#39;ll have better luck getting support from their mailing list?<br><span=
+ class=3D"gmail-gI"><span><a href=3D"mailto:openembedded-core@lists.openemb=
+edded.org">openembedded-core@lists.openembedded.org</a></span></span></div>=
+</div><br></div></div>
+
+--0000000000000f9c2b056b6135b8--
