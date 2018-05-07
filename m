@@ -1,68 +1,63 @@
-Return-Path: <sherifomran2000@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D101EE00A75; Mon,  7 May 2018 05:23:16 -0700 (PDT)
+	id 991B5E00BFF; Mon,  7 May 2018 07:54:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sherifomran2000[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64FF2E00A0C
-	for <yocto@yoctoproject.org>; Mon,  7 May 2018 05:23:16 -0700 (PDT)
-Received: by mail-pf0-f196.google.com with SMTP id p12so22725811pff.13
-	for <yocto@yoctoproject.org>; Mon, 07 May 2018 05:23:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=HL6r3AFnfQOt4ZE8ENzS8x1StW6Jkwm6ypzSszlks0E=;
-	b=aTAMLm6ESFS/BM4ZQ11iC8QkiCTLUPClcTJf7rOLGSdRV8S3HylBcXIgaqlRBBWOCz
-	c0os2B5GWdGHFb9vJQT7ZlDqzsV2Y22LepHeUzrhHFHsPJ9GhsgEgRTsIVq1yspeGLbn
-	wYfqpwV6Qjy/OXcXVUJO/w73od3zuun7TfXt2QpVUGBWx3X/aHiuu++ksH7CLSQ5FTtM
-	ESCTcvMVshWZWuSVUZFAo/Liey31JNTcIrtVD8j84IW3rzNr4aRRwwi8C0ktEweagLES
-	W+gCur5SUqUQk+DKdw0qmrh9GWIc0cO7dQ6j9iUFDf3H4t8QrDTUyy04Fj9slih6hbHz
-	bm2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=HL6r3AFnfQOt4ZE8ENzS8x1StW6Jkwm6ypzSszlks0E=;
-	b=SmB90pJ3p45K5q0/Iahmh03n3xKeX90VqicXnzJTJf5eMB0A+Y5pxXzdzQdkRTQaW8
-	fEQynp6ppt53MbPqp83EtHajYwfMem/W346uXk77H40b2jLkBlqGg8T+bsYohEDRWHIL
-	YT52ho6cKu4J3vXeW8gm5NOb7g8wjOvNjtQqaHyXFhvdlkkXMNtwePIohW86/VLIvhyD
-	6uxamLbDhgnKmNMtWsj7JBnbGWLXesLHOQmNlQYVpGiRhclIeWF9Sqy4RGZB+2UhnTX9
-	6XwMSr5JT5Kzhm132XAwsEUr/oIXovAJkXK4RRP01sd9BhYQ2d1G1qrOweW/N0fzKWy4
-	28MQ==
-X-Gm-Message-State: ALQs6tB/YjBzsoWhpVk5WOPUFUJLjNkehrT5u/bz7og/CRzh33nPSEZS
-	mJAIvG5oZKSAErkKaKSDn093b6oV4LbTrA/r46g=
-X-Google-Smtp-Source: AB8JxZoIfaszXF0hcAc+NKs9KML2HrOozjbMIvRMiLG7co1ksozyYsaX810dup9bUiSweeVi8Sa3HdsK4gz8Jo4X7qI=
-X-Received: by 2002:a63:87c6:: with SMTP id
-	i189-v6mr29224390pge.2.1525695795643; 
-	Mon, 07 May 2018 05:23:15 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66B8CE00B8E
+	for <yocto@yoctoproject.org>; Mon,  7 May 2018 07:54:37 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w47ErElI021728
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 7 May 2018 07:54:10 -0700
+Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
+	Mon, 7 May 2018 07:53:54 -0700
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, <yocto@yoctoproject.org>
+References: <cover.1525663905.git.paul.eggleton@linux.intel.com>
+	<5be1d731d1a4df7528f6a46183aefdceb9949279.1525663905.git.paul.eggleton@linux.intel.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
+	xsBNBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
+	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
+	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
+	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
+	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
+	AAHNJU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT7CwHcEEwEIACEFAlYK
+	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
+	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
+	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
+	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
+	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
+	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrs7ATQRWCsRYAQgAwK3FuHCE+HW3YWdH
+	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
+	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
+	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
+	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
+	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABwsBfBBgBCAAJBQJWCsRYAhsMAAoJ
+	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
+	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
+	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
+	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
+	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
+Organization: Wind River Systems
+Message-ID: <b977c4fe-0cc1-b8ff-e37d-8b0ff96519c2@windriver.com>
+Date: Mon, 7 May 2018 09:53:53 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
+	Gecko/20100101 Thunderbird/52.7.0
 MIME-Version: 1.0
-Received: by 10.100.237.136 with HTTP; Mon, 7 May 2018 05:23:15 -0700 (PDT)
-In-Reply-To: <CAMKF1sp0kDx5sUhDwkEEs1WMVXum9Bw=mFO22trGZwzW0APShA@mail.gmail.com>
-References: <CAPb0b+MsXPBnGOYxrufzSiKGk+wU=qY42DZVKKuFur+YgCdSxw@mail.gmail.com>
-	<CAMKF1sp0kDx5sUhDwkEEs1WMVXum9Bw=mFO22trGZwzW0APShA@mail.gmail.com>
-From: Sherif Omran <sherifomran2000@gmail.com>
-Date: Mon, 7 May 2018 14:23:15 +0200
-Message-ID: <CAPb0b+PAiLbX8D1+dG3br_TBhbkGWVCXrWArMJYofyEu_y-9ig@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [dbus] [meta-raspberrypi] using dbus with system verilog
+In-Reply-To: <5be1d731d1a4df7528f6a46183aefdceb9949279.1525663905.git.paul.eggleton@linux.intel.com>
+Subject: Re: [layerindex-web][PATCH 2/2] Add CSV export for layer recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,181 +69,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 May 2018 12:23:16 -0000
-Content-Type: multipart/alternative; boundary="000000000000ef4a80056b9cbb65"
+X-List-Received-Date: Mon, 07 May 2018 14:54:38 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---000000000000ef4a80056b9cbb65
-Content-Type: text/plain; charset="UTF-8"
+On 5/6/18 10:35 PM, Paul Eggleton wrote:
+> Add the ability to export the recipe listing for a layer to a CSV file
+> for importing into external tools. At the moment we include name,
+> version and license, but there is a parameter that lets you specify the
+> fields to include in the URL if desired.
+> 
+> Implements [YOCTO #12722].
 
-yes, see below, but my problem is with the systemVinit
+With the bitbake layer library I'm working on, it should be possible to do this
+directly out of bitbake.
 
-DISTRO_FEATURES_append += " bluez5 bluez-utils bluetooth wifi alsa"
-IMAGE_INSTALL_append += " linux-firmware-bcm43430 bluez5 bridge-utils
-wpa-supplicant python-smbus i2c-tools"
-DISTRO_FEATURES_append += " ext2 pulseaudio pam usbhost sbc alsa-plugins
-${DISTRO_FEATURES_LIBC} "
-PACKAGECONFIG_bluez += " --disable-systemd "
-IMAGE_INSTALL_append += " bluez5-testtools bluez5-noinst-tools
-libasound-module-bluez packagegroup-base-bluetooth "
+This wouldn't limit it to just recipes either, but any data.  Loading (querying)
+the json data from the layer index is easy, and the library would know how to
+filter to the right branch/layer/etc.
 
+Something to consider as we go forward with this and other work.
 
-IMAGE_INSTALL_append= " bluez5 pulseaudio-server libpulsecore sbc
-pulseaudio-module-bluetooth-discover pulseaudio-module-bluez5-device
-pulseaudio-module-bluez5-discover pulseaudio-$
-DISTRO_FEATURES_remove = " x11 "
-IMAGE_INSTALL_append= " screen "
+--Mark
 
-On Mon, May 7, 2018 at 12:18 AM, Khem Raj <raj.khem@gmail.com> wrote:
-
->
-> On Sun, May 6, 2018 at 2:02 AM Sherif Omran <sherifomran2000@gmail.com>
-> wrote:
->
->> hi
->> i created an os for raspberry pi 0 w, it uses system v, but dbus does not
->> start automatically and when i started it using a startup script and
->> exported its parameters, i still get the following when i start pulseaudio
->> -vvvv.
->>
->> Unknown interface org.freedesktop.DBUS.Introspectable
->>
->> Unknown interface org.bluez.AgentManager1 found
->>
->> Unknown interface org.bluez.ProfileManager1
->>
->> Unknown interface org.freedesktop.DBUS.Properties found
->>
->> Unknown interace org.bluez.Media1 found
->>
->> Unknown interface org.bluez.NetworkServer1 found
->>
->>
-> Have you included bluez in image ?
->
->
->>
->> What is the best way to start dbus? should i edit in kernel configuration?
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
-
---000000000000ef4a80056b9cbb65
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">yes, see below, but my problem is with the systemVinit<br>=
-<br>DISTRO_FEATURES_append +=3D &quot; bluez5 bluez-utils bluetooth wifi al=
-sa&quot;<br>IMAGE_INSTALL_append +=3D &quot; linux-firmware-bcm43430 bluez5=
- bridge-utils wpa-supplicant python-smbus i2c-tools&quot;<br>DISTRO_FEATURE=
-S_append +=3D &quot; ext2 pulseaudio pam usbhost sbc alsa-plugins ${DISTRO_=
-FEATURES_LIBC} &quot;<br>PACKAGECONFIG_bluez +=3D &quot; --disable-systemd =
-&quot;<br>IMAGE_INSTALL_append +=3D &quot; bluez5-testtools bluez5-noinst-t=
-ools libasound-module-bluez packagegroup-base-bluetooth &quot;<br><br><br>I=
-MAGE_INSTALL_append=3D &quot; bluez5 pulseaudio-server libpulsecore sbc pul=
-seaudio-module-bluetooth-discover pulseaudio-module-bluez5-device pulseaudi=
-o-module-bluez5-discover pulseaudio-$<br>DISTRO_FEATURES_remove =3D &quot; =
-x11 &quot;<br>IMAGE_INSTALL_append=3D &quot; screen &quot;<br></div><div cl=
-ass=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, May 7, 2018 at 1=
-2:18 AM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.co=
-m" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
-id;padding-left:1ex"><div><br><div class=3D"gmail_quote"><span class=3D""><=
-div dir=3D"auto">On Sun, May 6, 2018 at 2:02 AM Sherif Omran &lt;<a href=3D=
-"mailto:sherifomran2000@gmail.com" target=3D"_blank">sherifomran2000@gmail.=
-com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div><div><div>h=
-i<br></div>i created an os for raspberry pi 0 w, it uses system v, but dbus=
- does not start automatically and when i started it using a startup script =
-and exported its parameters, i still get the following when i start pulseau=
-dio -vvvv. <br><br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<p style=3D"margin:0cm 0cm 0.0001pt;text-indent:0cm;line-height:107%;page-b=
-reak-after:avoid;font-size:11pt;font-family:&quot;Times New Roman&quot;" cl=
-ass=3D"m_-9178613209230605325m_-6315659821394050345gmail-MsoNoteLevel1CxSpF=
-irst"><span style=3D"font-size:8pt;line-height:107%" lang=3D"DE">Unknown in=
-terface org.freedesktop.DBUS.<wbr>Introspectable</span></p>
-
-<p style=3D"margin:0cm 0cm 0.0001pt;text-indent:0cm;line-height:107%;page-b=
-reak-after:avoid;font-size:11pt;font-family:&quot;Times New Roman&quot;" cl=
-ass=3D"m_-9178613209230605325m_-6315659821394050345gmail-MsoNoteLevel1CxSpM=
-iddle"><span style=3D"font-size:8pt;line-height:107%" lang=3D"DE">Unknown i=
-nterface org.bluez.AgentManager1 found</span></p>
-
-<p style=3D"margin:0cm 0cm 0.0001pt;text-indent:0cm;line-height:107%;page-b=
-reak-after:avoid;font-size:11pt;font-family:&quot;Times New Roman&quot;" cl=
-ass=3D"m_-9178613209230605325m_-6315659821394050345gmail-MsoNoteLevel1CxSpM=
-iddle"><span style=3D"font-size:8pt;line-height:107%" lang=3D"DE">Unknown i=
-nterface org.bluez.ProfileManager1 </span></p>
-
-<p style=3D"margin:0cm 0cm 0.0001pt;text-indent:0cm;line-height:107%;page-b=
-reak-after:avoid;font-size:11pt;font-family:&quot;Times New Roman&quot;" cl=
-ass=3D"m_-9178613209230605325m_-6315659821394050345gmail-MsoNoteLevel1CxSpM=
-iddle"><span style=3D"font-size:8pt;line-height:107%" lang=3D"DE">Unknown i=
-nterface org.freedesktop.DBUS.<wbr>Properties found</span></p>
-
-<p style=3D"margin:0cm 0cm 0.0001pt;text-indent:0cm;line-height:107%;page-b=
-reak-after:avoid;font-size:11pt;font-family:&quot;Times New Roman&quot;" cl=
-ass=3D"m_-9178613209230605325m_-6315659821394050345gmail-MsoNoteLevel1CxSpM=
-iddle"><span style=3D"font-size:8pt;line-height:107%" lang=3D"DE">Unknown i=
-nterace org.bluez.Media1 found</span></p>
-
-<p style=3D"margin:0cm 0cm 0.0001pt;text-indent:0cm;line-height:107%;page-b=
-reak-after:avoid;font-size:11pt;font-family:&quot;Times New Roman&quot;" cl=
-ass=3D"m_-9178613209230605325m_-6315659821394050345gmail-MsoNoteLevel1CxSpL=
-ast"><span style=3D"font-size:8pt;line-height:107%" lang=3D"DE">Unknown int=
-erface org.bluez.NetworkServer1 found</span></p><p style=3D"margin:0cm 0cm =
-0.0001pt;text-indent:0cm;line-height:107%;page-break-after:avoid;font-size:=
-11pt;font-family:&quot;Times New Roman&quot;" class=3D"m_-91786132092306053=
-25m_-6315659821394050345gmail-MsoNoteLevel1CxSpLast"><span style=3D"font-si=
-ze:8pt;line-height:107%" lang=3D"DE"></span></p></div></div></blockquote><d=
-iv dir=3D"auto"><br></div></span><div dir=3D"auto">Have you included bluez =
-in image ?</div><div dir=3D"auto"><br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
-<span class=3D""><div><div><p style=3D"margin:0cm 0cm 0.0001pt;text-indent:=
-0cm;line-height:107%;page-break-after:avoid;font-size:11pt;font-family:&quo=
-t;Times New Roman&quot;" class=3D"m_-9178613209230605325m_-6315659821394050=
-345gmail-MsoNoteLevel1CxSpLast"><span style=3D"font-size:8pt;line-height:10=
-7%" lang=3D"DE"><br></span></p><p style=3D"margin:0cm 0cm 0.0001pt;text-ind=
-ent:0cm;line-height:107%;page-break-after:avoid;font-size:11pt;font-family:=
-&quot;Times New Roman&quot;" class=3D"m_-9178613209230605325m_-631565982139=
-4050345gmail-MsoNoteLevel1CxSpLast"><span style=3D"font-size:8pt;line-heigh=
-t:107%" lang=3D"DE"><br></span></p>
+> Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+> ---
+>  layerindex/urls_branch.py        |  5 ++++-
+>  layerindex/views.py              | 22 ++++++++++++++++++++++
+>  templates/layerindex/detail.html | 14 +++++++-------
+>  3 files changed, 33 insertions(+), 8 deletions(-)
+> 
+> diff --git a/layerindex/urls_branch.py b/layerindex/urls_branch.py
+> index 0e41435e..2809147b 100644
+> --- a/layerindex/urls_branch.py
+> +++ b/layerindex/urls_branch.py
+> @@ -7,7 +7,7 @@
+>  from django.conf.urls import *
+>  from django.views.defaults import page_not_found
+>  from django.core.urlresolvers import reverse_lazy
+> -from layerindex.views import LayerListView, RecipeSearchView, MachineSearchView, DistroSearchView, ClassSearchView, LayerDetailView, edit_layer_view, delete_layer_view, edit_layernote_view, delete_layernote_view, RedirectParamsView, DuplicatesView, LayerUpdateDetailView
+> +from layerindex.views import LayerListView, RecipeSearchView, MachineSearchView, DistroSearchView, ClassSearchView, LayerDetailView, edit_layer_view, delete_layer_view, edit_layernote_view, delete_layernote_view, RedirectParamsView, DuplicatesView, LayerUpdateDetailView, layer_export_recipes_csv_view
+>  
+>  urlpatterns = [
+>      url(r'^$', 
+> @@ -20,6 +20,9 @@ urlpatterns = [
+>          LayerDetailView.as_view(
+>              template_name='layerindex/detail.html'),
+>              name='layer_item'),
+> +    url(r'^layer/(?P<slug>[-\w]+)/recipes/csv/$',
+> +        layer_export_recipes_csv_view,
+> +        name='layer_export_recipes_csv'),
+>      url(r'^recipes/$',
+>          RecipeSearchView.as_view(
+>              template_name='layerindex/recipes.html'),
+> diff --git a/layerindex/views.py b/layerindex/views.py
+> index dbf08497..06d35261 100644
+> --- a/layerindex/views.py
+> +++ b/layerindex/views.py
+> @@ -1022,3 +1022,25 @@ class StatsView(TemplateView):
+>                  machine_count=Count('layerbranch__machine', distinct=True),
+>                  distro_count=Count('layerbranch__distro', distinct=True))
+>          return context
+> +
+> +
+> +def layer_export_recipes_csv_view(request, branch, slug):
+> +    import csv
+> +    layer = get_object_or_404(LayerItem, name=slug)
+> +    layerbranch = layer.get_layerbranch(branch)
+> +
+> +    response = HttpResponse(content_type='text/csv')
+> +    response['Content-Disposition'] = 'attachment; filename="recipes_%s_%s.csv"' % (layer.name, layerbranch.branch.name)
+> +
+> +    fieldlist = request.GET.get('fields', 'pn,pv,license').split(',')
+> +    recipe_fields = [f.name for f in Recipe._meta.get_fields() if not (f.auto_created and f.is_relation)]
+> +    for field in fieldlist:
+> +        if field not in recipe_fields:
+> +            return HttpResponse('Field %s is invalid' % field)
+> +
+> +    writer = csv.writer(response)
+> +    for recipe in layerbranch.sorted_recipes():
+> +        values = [getattr(recipe, field) for field in fieldlist]
+> +        writer.writerow(values)
+> +
+> +    return response
+> diff --git a/templates/layerindex/detail.html b/templates/layerindex/detail.html
+> index 220d475b..67c21126 100644
+> --- a/templates/layerindex/detail.html
+> +++ b/templates/layerindex/detail.html
+> @@ -199,13 +199,13 @@
+>                          <div class="navbar-inner">
+>                              <a class="brand pull-left">{{ layeritem.name }} recipes <span class="muted">({{ layerbranch.sorted_recipes.count }})</span></a>
+>  
+> -                            <ul class="nav pull-right">
+> -                                <li>
+> -                                    <form action="" class="navbar-search pull-right" id="filter-form">
+> -                                        <input type="text" placeholder="Search recipes" class="search-query" id="filter">
+> -                                    </form>
+> -                                </li>
+> -                            </ul>
+> +                            <div class="pull-right">
+> +                                <a href="{% url 'layer_export_recipes_csv' layerbranch.branch.name layerbranch.layer.name %}" class="btn"><i class="icon-file"></i> Export CSV</a>
+> +
+> +                                <form action="" class="navbar-search nav-spacer pull-right" id="filter-form">
+> +                                    <input type="text" placeholder="Search recipes" class="search-query" id="filter">
+> +                                </form>
+> +                            </div>
+>                          </div>
+>                      </div>
+>  
+> 
 
 
-
-
-
-What is the best way to start dbus? should i edit in kernel configuration?<=
-/div></div></span><span class=3D"HOEnZb"><font color=3D"#888888">
--- <br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-</font></span></blockquote></div></div>
-</blockquote></div><br></div>
-
---000000000000ef4a80056b9cbb65--
