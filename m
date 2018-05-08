@@ -1,46 +1,65 @@
-Return-Path: <Joe_MacDonald@mentor.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C11A1E00B8E; Tue,  8 May 2018 09:38:13 -0700 (PDT)
+	id D34EDE00B8E; Tue,  8 May 2018 10:27:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9119AE0084D
-	for <yocto@yoctoproject.org>; Tue,  8 May 2018 09:38:11 -0700 (PDT)
-Received: from svr-orw-mbx-07.mgc.mentorg.com ([147.34.90.207])
-	by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
-	id 1fG5cx-00023n-DR from Joe_MacDonald@mentor.com ;
-	Tue, 08 May 2018 09:38:11 -0700
-Received: from SVR-ORW-MBX-09.mgc.mentorg.com (147.34.90.209) by
-	SVR-ORW-MBX-07.mgc.mentorg.com (147.34.90.207) with Microsoft SMTP
-	Server (TLS) id 15.0.1320.4; Tue, 8 May 2018 09:38:09 -0700
-Received: from burninator.cal.mentorg.com (147.34.91.1) by
-	SVR-ORW-MBX-09.mgc.mentorg.com (147.34.90.209) with Microsoft SMTP
-	Server id
-	15.0.1320.4 via Frontend Transport; Tue, 8 May 2018 09:38:08 -0700
-Received: by burninator.cal.mentorg.com (Postfix, from userid 1000)
-	id 68097583962; Tue,  8 May 2018 12:38:08 -0400 (EDT)
-Date: Tue, 8 May 2018 12:38:08 -0400
-From: Joe MacDonald <Joe_MacDonald@mentor.com>
-To: akuster808 <akuster808@gmail.com>
-Message-ID: <20180508163808.m3dovwwvrapmqtcs@mentor.com>
-References: <1523758104-25257-1-git-send-email-akuster@mvista.com>
-	<43b42f5a-57dd-2c82-92cc-ea2d742870b8@gmail.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f182.google.com (mail-pf0-f182.google.com
+	[209.85.192.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 436CBE0084D
+	for <yocto@yoctoproject.org>; Tue,  8 May 2018 10:27:58 -0700 (PDT)
+Received: by mail-pf0-f182.google.com with SMTP id f189so24273653pfa.7
+	for <yocto@yoctoproject.org>; Tue, 08 May 2018 10:27:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=fuiu1YRLJwH8+t2Se4FvtU9PKg4/UQLz+yNSjkGoDy0=;
+	b=cEJuxGEXOwZnWXiMrFhgUfM3JZXISY+1Z4JdfDq+UB1UPa6pc+HbX/iFlca/Mp7vYU
+	2DdLfuVULjY1EJmTFAPRhwnBzKSWB2bXdhALvXRSPT2T16+LLi9K1KMXZsNStJEEakyS
+	gFdZr1cm9+Ey4Zdm1MG5Q3zYdriwwGIak9KPz3GWLWRvEkFrs00dt7Oj6oIHM+KoG9yK
+	FOi0A772CjzMND0zf3q7jN7HmcIakUh130tpQScK3wRAR0UaOkCbvgl/3C8d/VjV42Gp
+	RlU2Erxuz1etMKuq+mOXTb9XJgsWq6UA2E1rmLD9V0DD4KOyFE9G+hwvbsLjSxDQjxqe
+	WqGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=fuiu1YRLJwH8+t2Se4FvtU9PKg4/UQLz+yNSjkGoDy0=;
+	b=TufLB5eMygDO54ENA4XuRaI0WEOOHn75cnfsP2ZRwllBxnsriYY8Xcu4W/wUnNStR+
+	B3aX+H22G+eyP79W3XMNpu2qvmu4LEqaekVhBw9XABuaZw9Fy5cTahY/0oxNXBRJryaT
+	LtcBfjkJtxVSBIlOqxxU6lLRebcfZnzqVc4wfP3Wd4zb+7eQpfCms7RDxmE6rLZNlgBu
+	EXEQ5hgnR/19miwGjF8wuqSvP4Fu1Y8IWgDFe/xbo/QFaYHSQE74uJQcAKt2dPdbtgzV
+	iQEkb969hcs5LUTd/IwYyeizY1LO81hQwRTVHVjB6ouf5Ucg1ubtLgTZNuJEs/FRK2N3
+	C4vQ==
+X-Gm-Message-State: ALQs6tDWgD/9WXEwUY+33OsjuMuwx7+GZjDaxRMdDAOMMvGVtgEiPy68
+	IB3rKjNcv+BAe+SvrymH/JOtoz3BIXRewQcSCfU=
+X-Google-Smtp-Source: AB8JxZruE56HG+2tlHTtl9bfgMxZm23EVx5Oebn4Q63D+5+cZfXPJLroN5mOfG9cICtTu+99SMnS2jNk86SakQxo6Fg=
+X-Received: by 10.98.91.2 with SMTP id p2mr32601016pfb.96.1525800478425; Tue,
+	08 May 2018 10:27:58 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <43b42f5a-57dd-2c82-92cc-ea2d742870b8@gmail.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-800 http://www.vim.org
-User-Agent: NeoMutt/20170113 (1.7.2)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH] libselinux: python-importlib is now part of python*-core
+Received: by 10.236.187.132 with HTTP; Tue, 8 May 2018 10:27:27 -0700 (PDT)
+In-Reply-To: <5304B3CDBC3FA44CAED287F54088A0CA236C39CD@MBCHN01.chn.nestgroup.net>
+References: <5304B3CDBC3FA44CAED287F54088A0CA236C39CD@MBCHN01.chn.nestgroup.net>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 8 May 2018 10:27:27 -0700
+Message-ID: <CAMKF1srYbXcRm_Zb=u2tqUW272VEjAGytOVsUCUSfbLqOARooQ@mail.gmail.com>
+To: "Chinthamol CS." <Chinthamol.CS@nestgroup.net>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: QT5.8 -qtwebengine SDK generation fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,72 +71,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 May 2018 16:38:13 -0000
-X-Groupsio-MsgNum: 41038
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kvd5w4qlwcpa6qdk"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 08 May 2018 17:27:59 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---kvd5w4qlwcpa6qdk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+there isnt enough information in the logs that can be built upon to
+help you. you might want to enable some verbosity with smart and try
+to find out why it fails.
 
-[Re: [yocto] [meta-selinux][PATCH] libselinux: python-importlib is now part=
- of python*-core] On 18.05.07 (Mon 10:20) akuster808 wrote:
+secondly, try the same with newer releases and see if the problem is
+reproducible.
 
->=20
->=20
-> On 04/14/2018 07:08 PM, Armin Kuster wrote:
-> > Missing or unbuildable dependency chain was: ['meta-world-pkgdata', 're=
-storecond', 'libselinux', 'python-importlib']
-> >
-> > Signed-off-by: Armin Kuster <akuster@mvista.com>
-> ping
+On Sun, May 6, 2018 at 11:18 PM, Chinthamol CS.
+<Chinthamol.CS@nestgroup.net> wrote:
+> Hi,
+>
+> We are using a i.MX8 board and we need to develop QT application based on
+> qtwebengine. QT version used here is 5.8.
+>
+> We are using QT Creator with an external tool chain. we have to populate the
+> SDK out of our yocto image.
+>
+> When we start to include qtwebengine to the
+> packagegroup-qt5-toolchain-target.bb, we are getting errors. This step is
+> required as otherwise the qtwebengine binary will be missing in the SDK and
+> QT Creator will complain about that.
+>
+> We are using the imx-morty branch with Kernel Version  as 4.9.51of the i.MX
+> yocto BSP.
+>
+> The problem can be triggered with either "bitbake -c populate_sdk
+> image-name" or with "bitbake meta-toolchain-qt5".
+>
+> Error log is attached with this email. We really cannot find the reason why.
+>
+> Any tips for how to proceed?
+>
+> Below mentioned link says, Use webkit instead of webengine.
+>
+> https://community.nxp.com/thread/473203#
+>
+> Anyway we have to use qtwebengine for web browsing, not qtwebkit.. Please
+> provide one solution to resolve this issue.
+>
+> Any help from anyone is greatly appreciated.
+>
+>
+>
+> Thanks,
+>
+> Chintha
+>
+>
+>
+>
+>
+> ________________________________
+>
+> Confidentiality Statement / Disclaimer : This message and any attachments is
+> intended for the sole use of the intended recipient. It may contain
+> confidential information. Any unauthorized use, dissemination or
+> modification is strictly prohibited. If you are not the intended recipient,
+> please notify the sender immediately then delete it from all your systems,
+> and do not copy, use or print. Internet communications are not secure and it
+> is the responsibility of the recipient to make sure that it is
+> virus/malicious code exempt.
+>
+> The company/sender cannot be responsible for any unauthorized alterations or
+> modifications made to the contents. If you require any form of confirmation
+> of the contents, please contact the company/sender. The company/sender is
+> not liable for any errors or omissions in the content of this message.
+>
+> ________________________________
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Hey all,
-
-I'm working through selinux issues now.
-
--J.
-
-> > ---
-> >  recipes-security/selinux/libselinux.inc | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/recipes-security/selinux/libselinux.inc b/recipes-security=
-/selinux/libselinux.inc
-> > index bd5ce8d..51d0875 100644
-> > --- a/recipes-security/selinux/libselinux.inc
-> > +++ b/recipes-security/selinux/libselinux.inc
-> > @@ -8,7 +8,7 @@ LICENSE =3D "PD"
-> >  inherit lib_package pythonnative
-> > =20
-> >  DEPENDS +=3D "libsepol python libpcre swig-native"
-> > -RDEPENDS_${PN}-python +=3D "python-importlib"
-> > +RDEPENDS_${PN}-python +=3D "python-core"
-> > =20
-> >  PACKAGES +=3D "${PN}-python"
-> >  FILES_${PN}-python =3D "${libdir}/python${PYTHON_BASEVERSION}/site-pac=
-kages/*"
->=20
---=20
--Joe MacDonald.
-:wq
-
---kvd5w4qlwcpa6qdk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEEkMd/b97HINT8/zEqSfx99yw59pYFAlrx0nAACgkQSfx99yw5
-9pb6ggf/TsQX+Mpc81S40zF1lc0kZp8lLlFIUjXoppNRYKOKedYIVXsFoM6YDEwH
-/LwdZll7AlMtoCgtC1r2bS4jJrSKwXSLCUEKhZ34Ivb/6SyJeSAhgTaniae/Ax44
-mYp5kR4cls8n0ho5Neg/7Why3y8IP0Mxu/psiMXXxRX3M9JDWeyvXj1I2K8RmEoA
-03X3eN3zOl462Q4rjgO6qr7h2T9KtF7IJdvB4HNg40rKXFf/tWGsWyvKqAG52yJI
-BAO8aHPeTmEDeXJL40CSp6rQg1HxXARz0oAp2/QPPA8uWFNG2COfOLfMo2/nLHWA
-93YvxKfiMioPxbAL4bQ7tHalatz8GQ==
-=xFbH
------END PGP SIGNATURE-----
-
---kvd5w4qlwcpa6qdk--
