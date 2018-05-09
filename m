@@ -1,64 +1,66 @@
-Return-Path: <jefro.net@gmail.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88C66E00B8E; Tue,  8 May 2018 14:20:49 -0700 (PDT)
+	id 94F93E00C59; Tue,  8 May 2018 20:32:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f174.google.com (mail-wr0-f174.google.com
-	[209.85.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9B9FE0084D
-	for <yocto@yoctoproject.org>; Tue,  8 May 2018 14:20:48 -0700 (PDT)
-Received: by mail-wr0-f174.google.com with SMTP id h5-v6so9769912wrm.4
-	for <yocto@yoctoproject.org>; Tue, 08 May 2018 14:20:48 -0700 (PDT)
+Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
+	[209.85.220.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 814B2E009AC
+	for <yocto@yoctoproject.org>; Tue,  8 May 2018 20:32:48 -0700 (PDT)
+Received: by mail-qk0-f179.google.com with SMTP id z8so26469941qki.11
+	for <yocto@yoctoproject.org>; Tue, 08 May 2018 20:32:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc;
-	bh=bxsb+KYJhxdJSwcwnHzXFbCa0S/Aq8K6GaUYTY/htAk=;
-	b=eyY0LYcdGbIuVe/QUjschQQF/70JZJ1+hgJR9UpCZKwNuoxJOz8vz2fPhYNYbxyijT
-	HTMJaac3fQokxnmd+i8DC4bkzXGmhR2DeoxayPSjHdtU9N+OWsXD30B8ss/6R7GJzIKo
-	5bOV8bU177Ixrjnb0j4oiOAmKsZZMhaP5L92euZwK8QcqRvgdK8PatE8cstYQSuXaYkv
-	AJod0nOT/cBR5oa3nUQGFQ44XUwnSIddweJ+u9SsajDdqbv6rY8k9msrJxneYtqileL0
-	vztCBCPXVFCfrOzPP9iGjbu0K6AdIHfl1k2iFVFGp89PAuraLC4hJ/1BQmcqkJu+6KIT
-	jAsw==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=5bU6mKDGFsuAdvl2EaGa2/TgR1Uuk9xG1Nnqn47mIXA=;
+	b=eQYpj8uQBFy9L5/dzrTcchA5IG6GVrkZ5VQVskw+D7UFRg4/OdPXMBeRJ8vlY/Va6O
+	8D5pS8o+3x4b/OR3MrOC/O4MWC+eGEmc1csMrtaF2vzufIYqs3bQR73aMcNjHet5PgIL
+	Gw5AYRtgjJgKrQ3/oyAt/6qUyQBrG+DhfuhcEtOhJPL2d/bH3BgPirDeYs5HrP+0qU6B
+	+j27d2cwj196N2kYpK/D1ckj8Itp4b2pIGSJdwEmPtIJsS6Ec9+UmVNehyDsjNsCyov9
+	zeUDdw7XHh+PTp/MB+OJXnLjVCgkMUc6CfGifKvKF0fPRROlWsy2kTEdFEGHamd9GjSn
+	s9OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc;
-	bh=bxsb+KYJhxdJSwcwnHzXFbCa0S/Aq8K6GaUYTY/htAk=;
-	b=INHkLedRERhbZcmJcy18NZNBerrELfuayWD55J+MXy+9v2U3BNizCAxxtCvwl257Ln
-	u85x+loo3rYf1GFHxZsDyFctG0VU7ncISoIc2cL0z+OfIP+0sK6YpaCXy+G62kBrmV96
-	IZMz7hTyw2DvSFRpejl1nHXUG4RZJE3N/afdh01nMO6zD5NNpp1W88hw1XOJ0ZehS3bF
-	ESrZ5BoynQj95278xBjs0mkCj+q81kwdnJEXFcRGPreniY3HV9gJopx9M2MZZEWr2KPG
-	gUfC18CABrHOsVoFKDFpiq8ySKNjTYuv58n46I5dmKX3tkETm39e0YLGCFsTY47PKHAW
-	wopQ==
-X-Gm-Message-State: ALQs6tD9315U1nNHQuexBjjTxBGFxWI04suN8ZshP3yShJCaY/WLfx5i
-	nDFgH363/oc+kvuQSHA4RrTgg8eFZJI8v5Z1ngQ=
-X-Google-Smtp-Source: AB8JxZrn1VASdadnUe07DJk0RbcIVFym8ZCu+g0rFAUW4U1eW3eYwXodoJ4C6THg4ys4EJi2PiTVjLFuTT4lC7ZQVtQ=
-X-Received: by 2002:adf:99b5:: with SMTP id
-	y50-v6mr31934124wrb.168.1525814447432; 
-	Tue, 08 May 2018 14:20:47 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=5bU6mKDGFsuAdvl2EaGa2/TgR1Uuk9xG1Nnqn47mIXA=;
+	b=hkph8EyKcgwZahmYvd2ZPvohIRytWZOLYuFsJc7GKf26Vmb0mOy9LllIYdXbLOI1P0
+	CS1ZeFWoAHweMqqlxB+AF6s5iyiWnQKBBJDuNEOFobav4dW5Uma7MPRwtTqNgad7EbB6
+	UVnJ5E99FAVsprAuqfOa4RvEl1kF/UwrJc3POA0sCwXSI9yCz6+OXUb2XbQSpajGA0wX
+	rhrey60Qrnh+4KWr4GC9fSkjllmmXAAyqdmF2gxSNqiFw4vX2sRUtYjzNAtNz/MSrBRn
+	LvrtCFqRe8Uv0jO7PwGqo9paPHwhB4bJIUK+26/T60eYYhJBr+Fy0xhXQj36kwYM+yLU
+	JvBQ==
+X-Gm-Message-State: ALKqPwfMpeoQiy6/H6Gn3pVqFG2p40P9D1uKdxRvzJmjrDqEY+5OelCF
+	ia63xWDmARneeahc6cUxBGi6d7uKedQH2pmifLc=
+X-Google-Smtp-Source: AB8JxZq7suoR9odn8ZW+pwuimLu4R0ARzLM4/WRAVrqamarTiP39yYj33xCTcVyfHMU6z83EUS6AeAPM6Wcy0SF5cQQ=
+X-Received: by 10.55.165.66 with SMTP id o63mr5203730qke.57.1525836767117;
+	Tue, 08 May 2018 20:32:47 -0700 (PDT)
 MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.223.229.139 with HTTP; Tue, 8 May 2018 14:20:26 -0700 (PDT)
-In-Reply-To: <CAGAf8LwBWH7DQPRyTDgzuuJYCYZxHvjrzva3a03DzksYd66shQ@mail.gmail.com>
+Received: by 10.12.173.106 with HTTP; Tue, 8 May 2018 20:32:46 -0700 (PDT)
+In-Reply-To: <CA+YB3raaF45piohqCHwuxPXBsVYp54g3invvbUcPr29TUMdiuQ@mail.gmail.com>
 References: <CA+YB3rba5-xUdzRg2jE8oaY6+ZLhu3ROV0O6_=w7Dc+qPVSqpQ@mail.gmail.com>
 	<CAGAf8LwBWH7DQPRyTDgzuuJYCYZxHvjrzva3a03DzksYd66shQ@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Tue, 8 May 2018 14:20:26 -0700
-X-Google-Sender-Auth: Im-ClSAm30PO-V0SiB7fBQJp5JU
-Message-ID: <CA+YB3raaF45piohqCHwuxPXBsVYp54g3invvbUcPr29TUMdiuQ@mail.gmail.com>
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+	<CA+YB3raaF45piohqCHwuxPXBsVYp54g3invvbUcPr29TUMdiuQ@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Wed, 9 May 2018 05:32:46 +0200
+Message-ID: <CAGAf8LwA4BKgpfP-n+t+oW-bFcesTH0vN3cRwVnRxxoDehu4xg@mail.gmail.com>
+To: Jeff Osier-Mixon <jefro@jefro.net>
 Cc: Yocto Project <yocto@yoctoproject.org>,
 	openembedded-members@lists.openembedded.org,
 	openembedded-core <openembedded-core@lists.openembedded.org>
@@ -74,155 +76,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 May 2018 21:20:49 -0000
-Content-Type: multipart/alternative; boundary="00000000000021eba3056bb85c0e"
-
---00000000000021eba3056bb85c0e
+X-List-Received-Date: Wed, 09 May 2018 03:32:49 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Many projects function this way. It is one of the strengths of the open
-source process.
+Once I (at least I can speak for myself) embarked on this YOCTO ship,
+voluntarily, I do not consider leaving it. I like the concept,
+although there are problems with it.
 
-I'd be happy to answer any questions.
+I could not commit too much time to it (since I have another
+commitments), but I keep one eye on it, primarily trying to learn,
+and, as abilities allow, to help.
 
+Big IT players' politics is driven primarily by interest. And interest
+is changing over Time, due to Global Policies and Economy shifting...
+Well!
 
-On Mon, May 7, 2018 at 9:53 PM, Zoran Stojsavljevic <
-zoran.stojsavljevic@gmail.com> wrote:
+Zoran
+_______
 
-> Very interesting, indeed! Newer knew that Richard (Purdie) is/was
-> INTEL employee!?
+On Tue, May 8, 2018 at 11:20 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote:
+> Many projects function this way. It is one of the strengths of the open
+> source process.
 >
-> This announcement gives several (conspiracy?) theories... Some
-> official, some unofficial. ;-)
+> I'd be happy to answer any questions.
 >
-> As independent thinker... IMHO.
 >
-> Time Will Tell!
->
-> Zoran Stojsavljevic
-> _______
->
-> On Mon, May 7, 2018 at 11:53 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote=
-:
-> > Hello everyone. I'd like to briefly address rumors around Richard
-> Purdie's
-> > transition from Intel to a more neutral position, and Intel's reduction
-> in
-> > resources for the project.
-> >
-> > We set up the Yocto Project in 2010 through Linux Foundation, with over
-> 20
-> > member organizations, so it would function as a true open source projec=
-t
-> -
-> > neutral, unbiased, and well distributed. Those things are what make ope=
+> On Mon, May 7, 2018 at 9:53 PM, Zoran Stojsavljevic
+> <zoran.stojsavljevic@gmail.com> wrote:
+>>
+>> Very interesting, indeed! Newer knew that Richard (Purdie) is/was
+>> INTEL employee!?
+>>
+>> This announcement gives several (conspiracy?) theories... Some
+>> official, some unofficial. ;-)
+>>
+>> As independent thinker... IMHO.
+>>
+>> Time Will Tell!
+>>
+>> Zoran Stojsavljevic
+>> _______
+>>
+>> On Mon, May 7, 2018 at 11:53 PM, Jeff Osier-Mixon <jefro@jefro.net> wrot=
+e:
+>> > Hello everyone. I'd like to briefly address rumors around Richard
+>> > Purdie's
+>> > transition from Intel to a more neutral position, and Intel's reductio=
 n
-> > source projects less vulnerable to any one person or company. This is
-> > actually a very exciting transitional time for the project, and all
-> existing
-> > member organizations are fully behind the project. We will let people
-> know
-> > details as they are available.
-> >
-> > Meanwhile, the 2.5 "Sumo" release is on the way and should be released
-> soon,
-> > the 2.6 planning process has started in earnest (please participate!),
-> and
-> > we are excited to see what the future has in store for the project.
-> >
-> > --
-> > Jeffrey =E2=80=9CJefro=E2=80=9D Osier-Mixon, Intel Corporation
-> > Open Source Community Ecosystem Strategist
-> >
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
+>> > in
+>> > resources for the project.
+>> >
+>> > We set up the Yocto Project in 2010 through Linux Foundation, with ove=
+r
+>> > 20
+>> > member organizations, so it would function as a true open source proje=
+ct
+>> > -
+>> > neutral, unbiased, and well distributed. Those things are what make op=
+en
+>> > source projects less vulnerable to any one person or company. This is
+>> > actually a very exciting transitional time for the project, and all
+>> > existing
+>> > member organizations are fully behind the project. We will let people
+>> > know
+>> > details as they are available.
+>> >
+>> > Meanwhile, the 2.5 "Sumo" release is on the way and should be released
+>> > soon,
+>> > the 2.6 planning process has started in earnest (please participate!),
+>> > and
+>> > we are excited to see what the future has in store for the project.
+>> >
+>> > --
+>> > Jeffrey =E2=80=9CJefro=E2=80=9D Osier-Mixon, Intel Corporation
+>> > Open Source Community Ecosystem Strategist
+>> >
+>> >
+>> > --
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
+>> >
+>
+>
+>
+>
+> --
+> Jeffrey =E2=80=9CJefro=E2=80=9D Osier-Mixon, Intel Corporation
+> Open Source Community Ecosystem Strategist
 >
 
-
-
---=20
-Jeffrey =E2=80=9CJefro=E2=80=9D Osier-Mixon, Intel Corporation
-Open Source Community Ecosystem Strategist
-
---00000000000021eba3056bb85c0e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Many projects function this way. It is one of the str=
-engths of the open source process.<br></div><div><div><br></div><div>I&#39;=
-d be happy to answer any questions.</div><div><br></div></div></div><div cl=
-ass=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, May 7, 2018 at 9=
-:53 PM, Zoran Stojsavljevic <span dir=3D"ltr">&lt;<a href=3D"mailto:zoran.s=
-tojsavljevic@gmail.com" target=3D"_blank">zoran.stojsavljevic@gmail.com</a>=
-&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
- 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Very interesting, inde=
-ed! Newer knew that Richard (Purdie) is/was<br>
-INTEL employee!?<br>
-<br>
-This announcement gives several (conspiracy?) theories... Some<br>
-official, some unofficial. ;-)<br>
-<br>
-As independent thinker... IMHO.<br>
-<br>
-Time Will Tell!<br>
-<br>
-Zoran Stojsavljevic<br>
-_______<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-On Mon, May 7, 2018 at 11:53 PM, Jeff Osier-Mixon &lt;<a href=3D"mailto:jef=
-ro@jefro.net">jefro@jefro.net</a>&gt; wrote:<br>
-&gt; Hello everyone. I&#39;d like to briefly address rumors around Richard =
-Purdie&#39;s<br>
-&gt; transition from Intel to a more neutral position, and Intel&#39;s redu=
-ction in<br>
-&gt; resources for the project.<br>
-&gt;<br>
-&gt; We set up the Yocto Project in 2010 through Linux Foundation, with ove=
-r 20<br>
-&gt; member organizations, so it would function as a true open source proje=
-ct -<br>
-&gt; neutral, unbiased, and well distributed. Those things are what make op=
-en<br>
-&gt; source projects less vulnerable to any one person or company. This is<=
-br>
-&gt; actually a very exciting transitional time for the project, and all ex=
-isting<br>
-&gt; member organizations are fully behind the project. We will let people =
-know<br>
-&gt; details as they are available.<br>
-&gt;<br>
-&gt; Meanwhile, the 2.5 &quot;Sumo&quot; release is on the way and should b=
-e released soon,<br>
-&gt; the 2.6 planning process has started in earnest (please participate!),=
- and<br>
-&gt; we are excited to see what the future has in store for the project.<br=
->
-&gt;<br>
-&gt; --<br>
-&gt; Jeffrey =E2=80=9CJefro=E2=80=9D Osier-Mixon, Intel Corporation<br>
-&gt; Open Source Community Ecosystem Strategist<br>
-&gt;<br>
-&gt;<br>
-</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
-&gt; ______________________________<wbr>_________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
-</a><br>
-&gt;<br>
-</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
-r><div class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div di=
-r=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div>Jeffrey =E2=80=9CJefr=
-o=E2=80=9D Osier-Mixon, Intel Corporation</div><div>Open Source Community E=
-cosystem Strategist</div><div><br></div></div></div></div></div></div>
-</div>
-
---00000000000021eba3056bb85c0e--
