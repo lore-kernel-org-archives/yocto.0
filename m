@@ -1,61 +1,109 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <rksyeung@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 81CBBE00E85; Thu, 10 May 2018 10:35:26 -0700 (PDT)
+	id AFBE4E009F4; Thu, 10 May 2018 10:41:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.126 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rksyeung[at]hotmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust *      [40.92.3.60 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2DDEE00E85
-	for <yocto@yoctoproject.org>; Thu, 10 May 2018 10:35:25 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	10 May 2018 10:35:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,386,1520924400"; 
-	d="scan'208,217";a="227489489"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
-	by fmsmga006.fm.intel.com with ESMTP; 10 May 2018 10:35:25 -0700
-Received: from fmsmsx118.amr.corp.intel.com (10.18.116.18) by
-	FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Thu, 10 May 2018 10:35:24 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.70]) by
-	fmsmsx118.amr.corp.intel.com ([169.254.1.138]) with mapi id
-	14.03.0319.002; Thu, 10 May 2018 10:35:24 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Burton, Ross"
-	<ross.burton@intel.com>, "Bystricky, Juro" <juro.bystricky@intel.com>, 
-	"denys@ti.com" <denys@ti.com>, "Eggleton, Paul" <paul.eggleton@intel.com>, 
-	"Hatle, Mark G (Wind River)" <mark.hatle@windriver.com>, "Jordan, Robin L"
-	<robin.l.jordan@intel.com>, "akuster@mvista.com" <akuster@mvista.com>, 
-	"MacLeod, Randy (Wind River)" <randy.macleod@windriver.com>, "Purdie,
-	Richard" <richard.purdie@intel.com>, "Sangal, Apoorv"
-	<apoorv.sangal@intel.com>, "Sullivan, California L"
-	<california.l.sullivan@intel.com>, "Brindle, Amanda R"
-	<amanda.r.brindle@intel.com>, "Orling, Timothy T"
-	<timothy.t.orling@intel.com>
-Thread-Topic: Yocto Project Bug Triage
-Thread-Index: AdPohFwIbW7NkOtaQw+RvFhDVr96gAAAOkOA
-Date: Thu, 10 May 2018 17:35:23 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB532@fmsmsx111.amr.corp.intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 35895 seconds by postgrey-1.32 at yocto-www;
+	Thu, 10 May 2018 10:41:04 PDT
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+	(mail-oln040092003060.outbound.protection.outlook.com [40.92.3.60])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49250E009BC
+	for <yocto@yoctoproject.org>; Thu, 10 May 2018 10:41:04 -0700 (PDT)
+Received: from SN1NAM02HT230.eop-nam02.prod.protection.outlook.com
+	(2a01:111:e400:7e44::411) by
+	BL2NAM02HT229.eop-nam02.prod.protection.outlook.com
+	(2a01:111:e400:7e46::213) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.20.735.16;
+	Thu, 10 May 2018 05:11:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=RKn9XYC6WRZcUYd1989GA/+fXMj/aF+Iforcbs44uLY=;
+	b=DlE98bJfSUVFXKH7Km3szJUnOPG5Y3NyBgQPjCT/KUr/MVglrYfV1p/gKaGt56fjYkTgUULmSUA18CtgxjItzK85WE8rqC8TbxEMHVAxRL2X/qnGtxmE7EwTb0glrv76MfORNslGVPv7A/5A1p2XwLl7qv9CZj9M7fGOYdZsGSqE1BgaqF3w5S98CFRfu605jy6Mns3iHn4oaRvh27sd9jNrRaxrqes62rxdWLVgdDklOn9IQWgLNjmXWogVi2qmRWYVCZiGSzn5Ghueha2L5aY0C1k+9GS6dJaxDrQpOYvBESDNqtR13EMBpOhqT44ukrQjg6iJMIP4wr7E+TxZog==
+Received: from SN1NAM02FT009.eop-nam02.prod.protection.outlook.com
+	(10.152.72.57) by SN1NAM02HT230.eop-nam02.prod.protection.outlook.com
+	(10.152.73.155) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.20.735.16;
+	Wed, 9 May 2018 22:41:04 +0000
+Received: from MWHPR19MB1183.namprd19.prod.outlook.com (10.152.72.53) by
+	SN1NAM02FT009.mail.protection.outlook.com (10.152.73.32) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.20.735.16 via Frontend Transport; Wed, 9 May 2018 22:41:04 +0000
+Received: from MWHPR19MB1183.namprd19.prod.outlook.com
+	([fe80::5125:a765:f3d4:40f8]) by
+	MWHPR19MB1183.namprd19.prod.outlook.com
+	([fe80::5125:a765:f3d4:40f8%18]) with mapi id 15.20.0735.018;
+	Wed, 9 May 2018 22:41:04 +0000
+From: Raymond Yeung <rksyeung@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Can we keep toolchain while upgrade source code?
+Thread-Index: AQHT5+YpWjZ9jvKdEEuXugg9rWMLVg==
+Date: Wed, 9 May 2018 22:41:04 +0000
+Message-ID: <MWHPR19MB1183A156B004661C9EA7B127C5990@MWHPR19MB1183.namprd19.prod.outlook.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.200.100
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.108]
+x-incomingtopheadermarker: OriginalChecksum:1419D29824BBC76CDF0FA0B975B520769DBF77CE49E1B2AD4F7CA4E15861AFFC;
+	UpperCasedChecksum:078286C6932E7A0BE1D7865DC31732CFD9D503F3D3A77506C2176CC9BB459662;
+	SizeAsReceived:6874; Count:44
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [Q77dqL6JWsCD3EJ+fPH6/6ZuRec6P2MO]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; SN1NAM02HT230;
+	7:S3VhL2XCzhuc4/Xyo5Qa/H/en+3Az3Ag3r6Xg6vNkrfFOssiBYr3FVlG6Dw+F4HSjbuzO3n5aSLaFit2msyfllUMXEOqAqnffMd9vVidXI0EVhJd/7qgOhme1X3Af8zJbvrQNih5mv1QqZ3BLJQbSr+UN+oIXluIs3DtSO67XicWqrulriAxqRUq0JxJ0hx81JmQPcJ3REcmzHGf0lj5kIZKfHHljBvEUIFttCG5RrtbunilNqeHZAL184Jr4J0I;
+	23:DrAGfmOu7G9zsMZxKeGIQcDRr9ZOpkZMWxwgHEtA8o3+LLLq7whJBSIm2IL94YIkSH0eX79ElRPsa0fitBVnwyb35JgsTEROtWM7AJkDhMZ5EoyrJNAJS4arW32nIGASqfYCPC8Q1bCELxOHIyKHWg==
+x-incomingheadercount: 44
+x-eopattributedmessage: 0
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101448)(1601125420)(1701031045);
+	SRVR:SN1NAM02HT230; 
+X-MS-TrafficTypeDiagnostic: SN1NAM02HT230:|SN1NAM02HT230:|SN1NAM02HT230:|BL2NAM02HT229:
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
+	SRVR:SN1NAM02HT230; BCL:0; PCL:0; RULEID:; SRVR:SN1NAM02HT230; 
+x-forefront-prvs: 0667289FF8
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(7070007)(189003)(199004)(14454004)(102836004)(6506007)(59450400001)(25786009)(5660300001)(99286004)(26005)(8936002)(19627405001)(6346003)(7696005)(105586002)(3660700001)(87572001)(83332001)(86362001)(3280700002)(97736004)(106356001)(20460500001)(2900100001)(2351001)(6606003)(6916009)(486006)(476003)(104016004)(74316002)(73972006)(5640700003)(9686003)(55016002)(1730700003)(6436002)(82202002)(2501003)(33656002)(81156014)(68736007)(8676002)(5250100002)(54896002)(15852004);
+	DIR:OUT; SFP:1901; SCL:1; SRVR:SN1NAM02HT230;
+	H:MWHPR19MB1183.namprd19.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:; 
+received-spf: None (protection.outlook.com: hotmail.com does not designate
+	permitted sender hosts)
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=rksyeung@hotmail.com; 
+x-microsoft-antispam-message-info: 3NnADYOvRc+v222SYdmAlpXggXOg/xpvyCc5OINzpuXvLZEvaMOEMHPyGSZ3LkRPZ5AJ9XJK1h1Mojdv2wtK6o0tBrUhTv7qbftfya/E5ox+TyPNFLcOixZqn40Z28d8kJ1AfX2hjlBEgOkW0BTwXpO8gnRttx0CfFxiUer4SXWs9zdP2Qj0ocFW8eej2DnV
 MIME-Version: 1.0
-Subject: Yocto Project Bug Triage
+X-MS-Office365-Filtering-Correlation-Id: b94b4bdf-c861-4d55-8425-08d5b5fdf26f
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
+X-MS-Exchange-CrossTenant-Network-Message-Id: b94b4bdf-c861-4d55-8425-08d5b5fdf26f
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 May 2018 22:41:04.1384 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1NAM02HT230
+X-Microsoft-Exchange-Diagnostics: 1; BL2NAM02HT229;
+	23:GqkvqepJKxuWi0Eu1jYXXRyP/i2OwjpMi1kW9qrU1fKgilsD/ZQ311imFl8YrXQvd3rgX8/VsV/eNsKo6PEictcVP79GXFgITO4BbnUhP+vTYba9p+phAumVhaFIo8q5M7co7zwLpUfWxX8wWuL5Rg==
+X-OriginatorOrg: hotmail.com
+Subject: Can we keep toolchain while upgrade source code?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,39 +115,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 May 2018 17:35:26 -0000
-X-Groupsio-MsgNum: 41084
+X-List-Received-Date: Thu, 10 May 2018 17:41:06 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB532fmsmsx111amrcor_"
+	boundary="_000_MWHPR19MB1183A156B004661C9EA7B127C5990MWHPR19MB1183namp_"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB532fmsmsx111amrcor_
+--_000_MWHPR19MB1183A156B004661C9EA7B127C5990MWHPR19MB1183namp_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
+Our project currently uses Krogoth 2.1.  It's a mid-2016 release.  I'm look=
+ing into logistic of upgrading to Rocko 2.4 (a late-2017 release).
 
-...........................................................................=
-..............................................................
---> Join Skype Meeting<https://meet.intel.com/stephen.k.jolley/76SHKH6Z>
-  Trouble Joining? Try Skype Web App<https://meet.intel.com/stephen.k.jolle=
-y/76SHKH6Z?sl=3D1>
-Join by phone
-+1(916)356-2663 (or your local bridge access #) Choose bridge 5.<tel:+1(916=
-)356-2663%20(or%20your%20local%20bridge%20access%20#)%20Choose%20bridge%205=
-.> (Global)               English (United States)
-Find a local number<https://dial.intel.com>
+Is it possible to keep the toolchain in Krogoth 2.1 revisions, while migrat=
+ing the sources to Rocko 2.4 revisions?  Has anyone done that?
 
-Conference ID: 1931452285
- Forgot your dial-in PIN?<https://dial.intel.com> |Help<https://o15.officer=
-edir.microsoft.com/r/rlidLync15?clid=3D1033&p1=3D5&p2=3D2009>
+Upgrading toolchain seems to be a pain-point, as it affects packages (e.g. =
+Python 2.7 vs. Python 3) that other legacy builds may also use.
 
-[!OC([1033])!]
-...........................................................................=
-..............................................................
+Thanks,
+Raymond
 
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB532fmsmsx111amrcor_
+--_000_MWHPR19MB1183A156B004661C9EA7B127C5990MWHPR19MB1183namp_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -107,150 +144,31 @@ Content-Transfer-Encoding: quoted-printable
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
 1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
 </head>
-<body>
-<font face=3D"Times New Roman" size=3D"3"><span style=3D"font-size:12pt;"><=
-a name=3D"_InsertRtfSavedPosition"></a>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"1" color=3D"#404040"><span style=3D"fon=
-t-size:8pt;">..............................................................=
-...........................................................................=
-</span></font></div>
-<a name=3D"OutJoinLink"></a>
-<div><font face=3D"Calibri" size=3D"4" color=3D"#0066CC"><span style=3D"fon=
-t-size:14pt;"><font face=3D"Wingdings">=E0</font> <a href=3D"https://meet.i=
-ntel.com/stephen.k.jolley/76SHKH6Z"><font size=3D"4"><span style=3D"font-si=
-ze:16pt;"><u>Join Skype Meeting</u></span></font></a><font color=3D"black">=
-&nbsp;
-</font><a name=3D"OutSharedNoteBorder"></a>&nbsp;&nbsp; <a name=3D"OutShare=
-dNoteLink"></a> </span></font></div>
-<div style=3D"margin-top:3pt;margin-bottom:12pt;padding-left:16pt;"><font f=
-ace=3D"Calibri" size=3D"2"><span style=3D"font-size:10pt;">Trouble Joining?=
- <a href=3D"https://meet.intel.com/stephen.k.jolley/76SHKH6Z?sl=3D1"><font =
-color=3D"#0066CC"><u>Try Skype Web App</u></font></a><u>
-</u></span></font></div>
-<div><font face=3D"Calibri" size=3D"3"><span style=3D"font-size:13pt;">Join=
- by phone</span></font></div>
-<div style=3D"margin-bottom:2pt;"><font face=3D"Calibri" size=3D"2"><span s=
-tyle=3D"font-size:11pt;"><a href=3D"tel:&#43;1(916)356-2663 (or your local =
-bridge access #) Choose bridge 5."><font size=3D"2" color=3D"#0066CC"><span=
- style=3D"font-size:10pt;"><u>&#43;1(916)356-2663 (or your
-local bridge access #) Choose bridge 5.</u></span></font></a><font size=3D"=
-2"><span style=3D"font-size:10pt;"> (Global)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; English (United=
- States) </span></font></span></font></div>
-<div style=3D"margin-bottom:2pt;"><font face=3D"Calibri" size=3D"2"><span s=
-tyle=3D"font-size:11pt;"><a href=3D"https://dial.intel.com"><font size=3D"2=
-" color=3D"#0066CC"><span style=3D"font-size:10pt;"><u>Find a local number<=
-/u></span></font></a> </span></font></div>
-<div style=3D"margin-bottom:2pt;"><font face=3D"Calibri" size=3D"2"><span s=
-tyle=3D"font-size:11pt;">&nbsp;</span></font></div>
-<div style=3D"margin-bottom:2pt;"><font face=3D"Calibri" size=3D"2"><span s=
-tyle=3D"font-size:10pt;">Conference ID: 1931452285</span></font></div>
-<div><font face=3D"Calibri" size=3D"1"><span style=3D"font-size:3pt;"> <a h=
-ref=3D"https://dial.intel.com"><font size=3D"2" color=3D"#0066CC"><span sty=
-le=3D"font-size:10pt;"><u>Forgot your dial-in PIN?</u></span></font></a> <f=
-ont size=3D"2"><span style=3D"font-size:11pt;">|</span></font><a href=3D"ht=
-tps://o15.officeredir.microsoft.com/r/rlidLync15?clid=3D1033&amp;p1=3D5&amp=
-;p2=3D2009"><font size=3D"2" color=3D"#0066CC"><span style=3D"font-size:10p=
-t;"><u>Help</u></span></font></a>&nbsp;&nbsp;&nbsp;&nbsp;
-</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"1" color=3D"#CFCFCF"><span style=3D"fon=
-t-size:1pt;"><font size=3D"1"><span style=3D"font-size:0.65pt;"><sub>[!OC([=
-1033])!]</sub></span></font></span></font></div>
-<div style=3D"margin-bottom:10pt;"><font face=3D"Calibri" size=3D"1" color=
-=3D"#404040"><span style=3D"font-size:8pt;">...............................=
-...........................................................................=
-...............................</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-</span></font>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+Our project currently uses Krogoth 2.1. &nbsp;It's a mid-2016 release. &nbs=
+p;I'm looking into logistic of upgrading to Rocko 2.4 (a late-2017 release)=
+.
+<div><br>
+</div>
+<div>Is it possible to keep the toolchain in Krogoth 2.1 revisions, while m=
+igrating the sources to Rocko 2.4 revisions? &nbsp;Has anyone done that?</d=
+iv>
+<div><br>
+</div>
+<div>Upgrading toolchain seems to be a pain-point, as it affects packages (=
+e.g. Python 2.7 vs. Python 3)&nbsp;that other legacy builds may also use.</=
+div>
+<div><br>
+</div>
+<div>Thanks,</div>
+<div>Raymond</div>
+</div>
 </body>
 </html>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB532fmsmsx111amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=REQUEST
-Content-Transfer-Encoding: base64
-
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
-ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
-IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
-VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
-TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
-R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
-VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
-PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
-Q049IkpvbGxleSwgU3RlcGhlbiBLIjpNQUlMVE86c3RlcGhlbi5rLmpvbGxleUBpbnRlbC5jb20N
-CkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQ
-PVRSVUU7Q049eW9jdG9AeW9jdA0KIG9wcm9qZWN0Lm9yZzpNQUlMVE86eW9jdG9AeW9jdG9wcm9q
-ZWN0Lm9yZw0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNU
-SU9OO1JTVlA9VFJVRTtDTj0iQnVydG9uLCBSbw0KIHNzIjpNQUlMVE86cm9zcy5idXJ0b25AaW50
-ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJ
-T047UlNWUD1UUlVFO0NOPSJCeXN0cmlja3ksDQogIEp1cm8iOk1BSUxUTzpqdXJvLmJ5c3RyaWNr
-eUBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
-LUFDVElPTjtSU1ZQPVRSVUU7Q049ZGVueXNAdGkuYw0KIG9tOk1BSUxUTzpkZW55c0B0aS5jb20N
-CkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQ
-PVRSVUU7Q049IkVnZ2xldG9uLCANCiBQYXVsIjpNQUlMVE86cGF1bC5lZ2dsZXRvbkBpbnRlbC5j
-b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
-U1ZQPVRSVUU7Q049IkhhdGxlLCBNYXINCiBrIEcgKFdpbmQgUml2ZXIpIjpNQUlMVE86bWFyay5o
-YXRsZUB3aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RB
-VD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJKb3JkYW4sIFJvDQogYmluIEwiOk1BSUxUTzpy
-b2Jpbi5sLmpvcmRhbkBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BB
-UlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049YWt1c3RlckBtdg0KIGlzdGEuY29tOk1B
-SUxUTzpha3VzdGVyQG12aXN0YS5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BB
-UlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049Ik1hY0xlb2QsIFINCiBhbmR5IChXaW5k
-IFJpdmVyKSI6TUFJTFRPOnJhbmR5Lm1hY2xlb2RAd2luZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9M
-RT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iUHVy
-ZGllLCBSaQ0KIGNoYXJkIjpNQUlMVE86cmljaGFyZC5wdXJkaWVAaW50ZWwuY29tDQpBVFRFTkRF
-RTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NO
-PSJTYW5nYWwsIEFwDQogb29ydiI6TUFJTFRPOmFwb29ydi5zYW5nYWxAaW50ZWwuY29tDQpBVFRF
-TkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVF
-O0NOPSJTdWxsaXZhbiwgDQogQ2FsaWZvcm5pYSBMIjpNQUlMVE86Y2FsaWZvcm5pYS5sLnN1bGxp
-dmFuQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVF
-RFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iQnJpbmRsZSwgQQ0KIG1hbmRhIFIiOk1BSUxUTzphbWFu
-ZGEuci5icmluZGxlQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFS
-VFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iT3JsaW5nLCBUaQ0KIG1vdGh5IFQiOk1B
-SUxUTzp0aW1vdGh5LnQub3JsaW5nQGludGVsLmNvbQ0KREVTQ1JJUFRJT047TEFOR1VBR0U9ZW4t
-VVM6XG4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uDQogLi4u
-Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4u
-Li4uLi4uLi4uLi4uLi4NCiAuLi4uLi4uLi4uLi4uLi4uLlxuLS0+IEpvaW4gU2t5cGUgTWVldGlu
-ZzxodHRwczovL21lZXQuaW50ZWwuY29tL3N0ZXBoZW4uaw0KIC5qb2xsZXkvNzZTSEtINlo+XG4g
-IFRyb3VibGUgSm9pbmluZz8gVHJ5IFNreXBlIFdlYiBBcHA8aHR0cHM6Ly9tZWV0LmludGVsDQog
-LmNvbS9zdGVwaGVuLmsuam9sbGV5Lzc2U0hLSDZaP3NsPTE+XG5Kb2luIGJ5IHBob25lXG4rMSg5
-MTYpMzU2LTI2NjMgKG9yIHkNCiBvdXIgbG9jYWwgYnJpZGdlIGFjY2VzcyAjKSBDaG9vc2UgYnJp
-ZGdlIDUuPHRlbDorMSg5MTYpMzU2LTI2NjMlMjAob3IlMjB5bw0KIHVyJTIwbG9jYWwlMjBicmlk
-Z2UlMjBhY2Nlc3MlMjAjKSUyMENob29zZSUyMGJyaWRnZSUyMDUuPiAoR2xvYmFsKSAgICAgICAg
-DQogICAgICAgIEVuZ2xpc2ggKFVuaXRlZCBTdGF0ZXMpXG5GaW5kIGEgbG9jYWwgbnVtYmVyPGh0
-dHBzOi8vZGlhbC5pbnRlbC5jb20NCiA+XG5cbkNvbmZlcmVuY2UgSUQ6IDE5MzE0NTIyODVcbiBG
-b3Jnb3QgeW91ciBkaWFsLWluIFBJTj88aHR0cHM6Ly9kaWFsLmludA0KIGVsLmNvbT4gfEhlbHA8
-aHR0cHM6Ly9vMTUub2ZmaWNlcmVkaXIubWljcm9zb2Z0LmNvbS9yL3JsaWRMeW5jMTU/Y2xpZD0x
-MDMzDQogJnAxPTUmcDI9MjAwOT5cblxuWyFPQyhbMTAzM10pIV1cbi4uLi4uLi4uLi4uLi4uLi4u
-Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4NCiAuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4u
-Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLg0KIC4uLi4uLi4uLi4u
-Li4uLi4uLi4uLi4uXG5cblxuDQpSUlVMRTpGUkVRPVdFRUtMWTtJTlRFUlZBTD0xO0JZREFZPVRI
-O1dLU1Q9U1UNClNVTU1BUlk7TEFOR1VBR0U9ZW4tVVM6WW9jdG8gUHJvamVjdCBCdWcgVHJpYWdl
-DQpEVFNUQVJUO1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTgwNTE3VDA3MzAwMA0KRFRF
-TkQ7VFpJRD1QYWNpZmljIFN0YW5kYXJkIFRpbWU6MjAxODA1MTdUMDgzMDAwDQpVSUQ6MDQwMDAw
-MDA4MjAwRTAwMDc0QzVCNzEwMUE4MkUwMDgwMDAwMDAwMDgwREU4OTE0NEFFOEQzMDEwMDAwMDAw
-MDAwMDAwMDANCiAwMTAwMDAwMDBBMTAzMkZGMTk4Qzk3RTQ1QjgxMjJBRTg5Q0VERkZBNA0KQ0xB
-U1M6UFVCTElDDQpQUklPUklUWTo1DQpEVFNUQU1QOjIwMTgwNTEwVDE3MzUyMVoNClRSQU5TUDpP
-UEFRVUUNClNUQVRVUzpDT05GSVJNRUQNClNFUVVFTkNFOjENCkxPQ0FUSU9OO0xBTkdVQUdFPWVu
-LVVTOlNreXBlIE1lZXRpbmcNClgtTUlDUk9TT0ZULUNETy1BUFBULVNFUVVFTkNFOjENClgtTUlD
-Uk9TT0ZULUNETy1PV05FUkFQUFRJRDo3MjYyOTI0NTANClgtTUlDUk9TT0ZULUNETy1CVVNZU1RB
-VFVTOlRFTlRBVElWRQ0KWC1NSUNST1NPRlQtQ0RPLUlOVEVOREVEU1RBVFVTOkJVU1kNClgtTUlD
-Uk9TT0ZULUNETy1BTExEQVlFVkVOVDpGQUxTRQ0KWC1NSUNST1NPRlQtQ0RPLUlNUE9SVEFOQ0U6
-MQ0KWC1NSUNST1NPRlQtQ0RPLUlOU1RUWVBFOjENClgtTUlDUk9TT0ZULURJU0FMTE9XLUNPVU5U
-RVI6RkFMU0UNCkJFR0lOOlZBTEFSTQ0KQUNUSU9OOkRJU1BMQVkNCkRFU0NSSVBUSU9OOlJFTUlO
-REVSDQpUUklHR0VSO1JFTEFURUQ9U1RBUlQ6LVBUMTVNDQpFTkQ6VkFMQVJNDQpFTkQ6VkVWRU5U
-DQpFTkQ6VkNBTEVOREFSDQo=
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB532fmsmsx111amrcor_--
+--_000_MWHPR19MB1183A156B004661C9EA7B127C5990MWHPR19MB1183namp_--
