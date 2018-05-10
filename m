@@ -1,6 +1,6 @@
 Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EE761E009F8; Wed,  9 May 2018 18:05:25 -0700 (PDT)
+	id 434CCE00E18; Wed,  9 May 2018 21:27:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (armccurdy[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.172 listed in list.dnswl.org]
+	*      [209.85.213.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,49 +19,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f172.google.com (mail-ua0-f172.google.com
-	[209.85.217.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CC36E009F8
-	for <yocto@yoctoproject.org>; Wed,  9 May 2018 18:05:24 -0700 (PDT)
-Received: by mail-ua0-f172.google.com with SMTP id h15-v6so262892uan.11
-	for <yocto@yoctoproject.org>; Wed, 09 May 2018 18:05:24 -0700 (PDT)
+Received: from mail-vk0-f67.google.com (mail-vk0-f67.google.com
+	[209.85.213.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A35FCE00DFE
+	for <yocto@yoctoproject.org>; Wed,  9 May 2018 21:27:16 -0700 (PDT)
+Received: by mail-vk0-f67.google.com with SMTP id m144-v6so446103vke.4
+	for <yocto@yoctoproject.org>; Wed, 09 May 2018 21:27:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=aCZGZnIrsQOQXn34xmBfgNBTalppHu8Rg9WvW5UKoDA=;
-	b=oWnLyuHdwRiwnraf99Y+no2tCF78Clzp0iNYC1tPpgZoZDIzIPlbV0sss+35wFTvVk
-	yOHXPX/B6nY/s4EVbWou5Y6SYzqUW1QXikTsHQZY9vxx1LwByK8nFi3uuZyMWIDI53S6
-	1keahs0cPcqOfVxjKzAH7k7VTO1hwjQVwAv+O0HlPVcUi2Oqc+QhY8mJYu2i983rDWUZ
-	3/8MRQz8ExqRClD1XvmgDdNM1S+COzmlyizPacnsbgsa6tP6vK61x9ZQiwbXLC5mKS3f
-	DyDXDtCqnR91fNFqklxZKhIV8yOm4tSm4jXGIqec81bRpc6hOtK6pvSz+gC/PxuExqDq
-	EUUQ==
+	:cc; bh=enP4m708/FSTQwLx8aKIjV9l9f1TPCXpP1PB/bsH53c=;
+	b=D/RS2ntUrZt5mT1kG3Z9ovV5IkcqSZQCtjUAF93fGrbMhOAWQ95ZQ+9os0zf8WA2tV
+	rHUttOIzIK9z0nG2LJpMeLwWoh7TAiBDktSzcveH7IVhhMQ8i5D9OZu5hr497JpjdzdH
+	XIArhxETo8nFA+m5rAre0FBRz0hFHlmpe4YLaGcUF45riQtM4MCt7vyLCgHbcANL4A3f
+	fX4ftt8ZnJsAcxQvNV3So0ZPIivkidwo6HC5d+ksORhiPxIXlXRi9yCWKHwnWWt/7AyT
+	HiLNLt3kCB3Fek8PiwYaSk9QtqkJFU0plk/SvxY0Iu4/iKqCEwJms056OkdbuJ96WIAe
+	WBFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=aCZGZnIrsQOQXn34xmBfgNBTalppHu8Rg9WvW5UKoDA=;
-	b=FMuyuk2+cSmCHkuDZ70tk4Wy9K973lzDnbxqNzof8U0Sel9eECPqb8zq7fHH6z4twz
-	uRPtd+31qjYVxpeaK6Y0M7ySldq3IUnVxDPd6+kTjLeiduwPcVQop+d6ivxATOuYM1sK
-	LYMexnEn2qet2y0+tXTsGkOpNFxsIwT34JBs7KD4iUXwJHIdxkvl3UqP3BzGphO7TYKU
-	NYsY9AOMgLAA1mdOKTMQLMAd5rz/a1Vc0PiXf0bapLF3vgCdzdv3cGv0RAkh+0VfNCZx
-	6qoRAyHgHUaIUXUZoZgxZxunKusvWzGmWrFBshIpFIrN/pd0xsAxrdObzBe8bErsqaiF
-	vRdA==
-X-Gm-Message-State: ALQs6tDJj8seMBThoWnOoX1U/rtTm0v2kz/ppFq8AUJqrtzdB6opvfjg
-	Xp4QGaZGGyMWC+dJL+NwO+fwGuvd7DW/I82B9E8=
-X-Google-Smtp-Source: AB8JxZrCPdOxK1WkPjqVNBePzjJwsia8Bb6C3yDBc/bew0+dnVFh15pkY0C7uvKqSMp5trNEIERRov+cR/fGrLf2iBY=
-X-Received: by 10.159.40.35 with SMTP id c32mr41757022uac.193.1525914324040;
-	Wed, 09 May 2018 18:05:24 -0700 (PDT)
+	bh=enP4m708/FSTQwLx8aKIjV9l9f1TPCXpP1PB/bsH53c=;
+	b=iDLSgE9K1F7P1y/r2wfIIDbwNFS1w6HSB17KT4sz+v8HzhHQSNJhFwZrFY0MdUn149
+	FK23AGvYo5QuEMmh729FWi9Ov6sRQxqVsKfPmYAwoYir45AJ15a9PFeRzJUGjbEk1Ik6
+	efIyl9p8zs/KYy0roSbjqn4mPaTwp/S4MEFGPKndnekSGG5yeNT99nF1BEnasFf502Hj
+	j7wryEWc3WBmztywooTsiNfdyUN/GCgJJasdrgUIMUa5OMSIhlRJL2wVTvfkNsOE8Ju7
+	RxKFsQ8vTutkoEPGMtbcELnicIwqWgPH7LV5OkoNBvwUF0wHGgC3G4TjMd7oqBonfgtV
+	4BIQ==
+X-Gm-Message-State: ALQs6tBlzOj86TSKs4XNDE5zuFO9XuX2JA/hYInqxMwZgzUuBUtnMdlW
+	fNxizwdni4D0HA/IorUOdUWu8PPGlGDdwarvJkZrIg==
+X-Google-Smtp-Source: AB8JxZqFQFe2Kzb/+k6I2wOAap98VWcXYIM5mWyiMFFVynFfqaaD9dk4Hx8RYowo1U7LAXIL+Uto7bweVDVeeP9tTiE=
+X-Received: by 2002:a1f:9e17:: with SMTP id
+	h23-v6mr18564248vke.24.1525926435637; 
+	Wed, 09 May 2018 21:27:15 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.176.48.148 with HTTP; Wed, 9 May 2018 18:05:23 -0700 (PDT)
-In-Reply-To: <CAJgxT3_=C2roF-oP9-VpPZcFTphOyCe8VLpqYjuy+8C628_XZQ@mail.gmail.com>
-References: <20180509214855.3330-1-matt.hoosier@gmail.com>
-	<CAJ86T=UpVWZsvYSz4yeDVZp+EmbnhFsWGRGq5EWgG766qTZ-xA@mail.gmail.com>
-	<CAJgxT3_=C2roF-oP9-VpPZcFTphOyCe8VLpqYjuy+8C628_XZQ@mail.gmail.com>
+Received: by 10.176.48.148 with HTTP; Wed, 9 May 2018 21:27:15 -0700 (PDT)
+In-Reply-To: <1831367.lNj4jCPAXG@tomcat>
+References: <1831367.lNj4jCPAXG@tomcat>
 From: Andre McCurdy <armccurdy@gmail.com>
-Date: Wed, 9 May 2018 18:05:23 -0700
-Message-ID: <CAJ86T=VgsP9jXh1pxzx257qLPAVf+MW-1tmLf2OOQUSYDp-Q9A@mail.gmail.com>
-To: Matt Hoosier <matt.hoosier@gmail.com>
+Date: Wed, 9 May 2018 21:27:15 -0700
+Message-ID: <CAJ86T=UZ=G-eh0U70eRWniAJN0btd+yrAkXigP3HMKeRjiTUuw@mail.gmail.com>
+To: Denis <info@denisgottardello.it>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [PATCH] bitbake: fetch2/gitsm: avoid live submodule fetching during unpack()
+Subject: Re: How to create a build for ARM Cortex-A8, S5PV210
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,81 +72,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 May 2018 01:05:26 -0000
+X-List-Received-Date: Thu, 10 May 2018 04:27:17 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, May 9, 2018 at 5:40 PM, Matt Hoosier <matt.hoosier@gmail.com> wrote:
-> On Wed, May 9, 2018 at 6:27 PM, Andre McCurdy <armccurdy@gmail.com> wrote:
->>
->> On Wed, May 9, 2018 at 2:48 PM, Matt Hoosier <matt.hoosier@gmail.com>
->> wrote:
->> > From: Matt Hoosier <matt.hoosier@garmin.com>
->> >
->> > Although the submodules' histories have been fetched during the
->> > do_fetch() phase, the mechanics used to clone the workdir copy
->> > of the repo haven't been transferring the actual .git/modules
->> > directory from the repo fetched into downloads/ during the
->> > fetch task.
->> >
->> > Fix that, and for good measure also explicitly tell Git to avoid
->> > hitting the network during do_unpack() of the submodules.
->> >
->> > Ref:
->> > https://bugzilla.yoctoproject.org/show_bug.cgi?id=12739
->>
->> Patches for bitbake should be sent to the bitbake-devel mailing list:
->>
->>   http://lists.openembedded.org/mailman/listinfo/bitbake-devel
+On Tue, May 8, 2018 at 1:38 PM, Denis <info@denisgottardello.it> wrote:
+> Hi. I'm new to yocto. So I have followed a tutorial and now I have crewated
+> my first yocto distro for i386.
 >
-> Right, okay. How's that meant to work for stuff developed in-tree with poky?
-> Do you manually want the 'bitbake/' leading directory stripped off before
-> emailing the patch?
-
-Yes, patches for bitbake should apply directly to a clone of the bitbake repo.
-
-Manually editing a patch created from poky is certainly do-able, but
-applying the patch to a genuine bikebake repo (with "git am -p2 ...")
-and re-generating the patch from there may be safer. Whichever you
-prefer.
-
->> > ---
->> >  bitbake/lib/bb/fetch2/gitsm.py | 12 +++++++++++-
->> >  1 file changed, 11 insertions(+), 1 deletion(-)
->> >
->> > diff --git a/bitbake/lib/bb/fetch2/gitsm.py
->> > b/bitbake/lib/bb/fetch2/gitsm.py
->> > index 0aff1008e5..1f3fc44352 100644
->> > --- a/bitbake/lib/bb/fetch2/gitsm.py
->> > +++ b/bitbake/lib/bb/fetch2/gitsm.py
->> > @@ -132,4 +132,14 @@ class GitSM(Git):
->> >
->> >          if self.uses_submodules(ud, d, ud.destdir):
->> >              runfetchcmd(ud.basecmd + " checkout " +
->> > ud.revisions[ud.names[0]], d, workdir=ud.destdir)
->> > -            runfetchcmd(ud.basecmd + " submodule update --init
->> > --recursive", d, workdir=ud.destdir)
->> > +
->> > +            # Copy over the submodules' fetched histories too.
->> > +            if ud.bareclone:
->> > +                repo_conf = ud.destdir
->> > +            else:
->> > +                repo_conf = os.path.join(ud.destdir, '.git')
->> > +            runfetchcmd("cp -pr %s %s" % (os.path.join(ud.clonedir,
->> > 'modules'), repo_conf), d)
->> > +
->> > +            # Careful not to hit the network during unpacking; all
->> > history should already
->> > +            # be fetched.
->> > +            runfetchcmd(ud.basecmd + " submodule update --init
->> > --recursive --no-fetch", d, workdir=ud.destdir)
->> > --
->> > 2.13.6
->> >
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
+> Now I need to create a build for my device. It is a Samsung S5PV210 device,
+> Cortex A8.
 >
+> Here there is a description
 >
+> http://www.friendlyarm.net/products/mini210
+>
+> Can someone suggest me how to setup the yocto build for this target?
+
+Start by creating a machine config. That could initially be very
+minimal, for example, just:
+
+  require conf/machine/include/tune-cortexa8.inc
+
+might be enough to build a toolchain and a minimal rootfs image with
+command line tools which will run on your board (if the board comes
+with a pre-built kernel then you may be able to use the pre-built
+kernel to run the OE rootfs - just for an initial test).
+
+Next step would be to create a kernel recipe, so that you can create a
+complete kernel + rootfs with OE.
+
+After that, add recipes for any components which are machine specific
+but are not part of the kernel (e.g. out of tree kernel driver
+modules, etc).
 
