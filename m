@@ -1,65 +1,63 @@
-Return-Path: <piotr.piwko@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2E62DE00E23; Thu, 10 May 2018 01:59:57 -0700 (PDT)
+	id A9143E00E46; Thu, 10 May 2018 02:22:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (piotr.piwko[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.52 listed in list.dnswl.org]
-Received: from mail-lf0-f52.google.com (mail-lf0-f52.google.com
-	[209.85.215.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89558E00D60
-	for <yocto@yoctoproject.org>; Thu, 10 May 2018 01:59:56 -0700 (PDT)
-Received: by mail-lf0-f52.google.com with SMTP id b18-v6so1179890lfa.9
-	for <yocto@yoctoproject.org>; Thu, 10 May 2018 01:59:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=OjRWFABFrDlYb3SlfugtspJIYuxqBuHbHKK/gpSNZg8=;
-	b=PFxAeFyLaXsGfiZiyTlfEPZ1rgI9Tdmcb1RbFL9jRqMebsbW70LFN+o2fyxo7KI7b0
-	D5jAwzJ2XLWrxMi+xKJOUV8uKw2Cu2QhqMqs9pWQhRFHqWJDBrWYi+8OFBLIfJ6WPrCb
-	IbPCMC00vn+XJusFbOX4LYKXMkR+9pBJjZb+okeTVakJAkP++kyv68TBKlDcrVLWVVZP
-	/oUVazSkUP/S2MhxicMxVCStIaROB8M1f099WJZIX5q0PeSDKbRIFVz8f1q+a562OVl4
-	I71xQ2kAh+2ie/JSjctQWlUVAZMuO61lC6H3aBH5IOHICS1f6386z7RR1aNbtSeJiDiw
-	3Qyg==
+Received: from mail-io0-f172.google.com (mail-io0-f172.google.com
+	[209.85.223.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9844AE00D60
+	for <yocto@yoctoproject.org>; Thu, 10 May 2018 02:22:55 -0700 (PDT)
+Received: by mail-io0-f172.google.com with SMTP id e20-v6so2247812iof.4
+	for <yocto@yoctoproject.org>; Thu, 10 May 2018 02:22:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=qd1MwIvC6xUQtSYbNpcPlk+otYdQoqQ/B87TaHDnndA=;
+	b=IoOgtsLHHLNzkN/kwH3pK7txsbJnpHP+ZHyfGB70Y8fBWCC1Qii53EilTnEcou+e5N
+	gk96+ygkdrirvo4uY6iD5I4PeX/kFHxFt8xy9IfJ2gTep3bM43S/hpn/n+LNJObSsxva
+	CpbtX0CHn2Qmoi2H8Hmz5TTnM0/3Nr7ki5O/iuiEHd/r6Nka5ysdAN6tCf7GUU+UHPoN
+	7d+kI+TXgPndRybp/fzwwJtXpS8b/ktDQtFOIbYS4tM7FVdoWnMY/HKbhtABlNpjwPIp
+	d/fcZLuKlnKrmknfv1ChtymtuKsw5oj366zPOAcob1d4rR0Di0BKXd1dqJrvHF02ExQg
+	rZeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=OjRWFABFrDlYb3SlfugtspJIYuxqBuHbHKK/gpSNZg8=;
-	b=TLL8PgO2f1bTlbVDvW0mjA/1ZyCwePCkaXtCmJNh6xJwFwEjeeY8GwKuuk1m+JRR9z
-	xo/w3nTmjVt7EbSsoh/iGn6PNKA2pP78IAuK6hphXkzJCs6iCdhOfQax51y5mkl9SsVH
-	dB3e1qkR14dQelodB1QtyD0wJmjZIppEmUnKFmsZTAZqOeO7y7kLXA3/6g4JOe36xauU
-	FDd2+P1nvjVnzUfMmyV4cF5xa1sEPZ8bWSNlTJ0jDMfCg+xKHdC3mQygoEqfgjD6qydR
-	CtKY6uSbOqlpgVOAXAWZ6oNTo2nGLmsYxrKkC2LKwKoYfXzDifJzWyKkFS2CcFW0B5o7
-	byfw==
-X-Gm-Message-State: ALKqPwdP7zNp+v0SPAB4tWbbGBtxj/fzxKAgcL1iHpeILNRG4NzoZ106
-	ay3E+qikmGLSihXxgUIELKvxlSGrQJO2HsROtUo=
-X-Google-Smtp-Source: AB8JxZr0vfEBeX3gKUpRD9E9ne1/2UebGjCBWfDuHEcREoH+S19dC5JVL4O1a/ZKAzYTHkb93lrwDgzblz+7NrAsTsU=
-X-Received: by 2002:a2e:c41:: with SMTP id o1-v6mr511020ljd.87.1525942795336; 
-	Thu, 10 May 2018 01:59:55 -0700 (PDT)
+	bh=qd1MwIvC6xUQtSYbNpcPlk+otYdQoqQ/B87TaHDnndA=;
+	b=j0+SptDEBMc7xsBJecEFm9TyI/QaKgaxfyEeQShoeAV8IEliQPjBXyGxQDGeZOg5SF
+	2bVXUJ4sU7IpNnrabClTqMLwxn63vdICmEDiUfIOdYQhrFri+y6Srdwwcxz0TV83Q7d9
+	JAVHyzDaLcUZ8uWITNxIe9eRWw+hCnrFujJJUHndIwrBRLfF5cBI73PmnjAytbBUd2rw
+	tOEi0th+0Gl7Gk27fiLRvAER8+K2BRTLAhZKtdJWOtF/tJpFVyWP4qR59TWUQhz+DULm
+	OBXITEDQ+bENEgrorVHsnYCDq6oW4oS9s1ZWYfbk2qnBgiRr8WgFC85380jJBuCUXoEm
+	LXSg==
+X-Gm-Message-State: ALKqPwfxrAPEDyts9w4A/f300nNmZk1makN77jxqX9smj96SNTSiWXoD
+	ZplFWACV4XTQ/rljO+0zdRuYAqOXKZXnjF7W7z32BQ==
+X-Google-Smtp-Source: AB8JxZpSXeqYp4rhp001qrg+lf7nhZCYBV3dYKnsmOtU83ioV2Fz6N73L/4qLg0H4CPQX+usftRXCJQ/qt7z+wZD0JQ=
+X-Received: by 2002:a6b:752:: with SMTP id 79-v6mr645698ioh.216.1525944174898; 
+	Thu, 10 May 2018 02:22:54 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 10.107.239.11 with HTTP; Thu, 10 May 2018 02:22:34 -0700 (PDT)
+In-Reply-To: <CAMTWR-Np4pd8tytDdOoabzEZsqU=2w95Y9ddh6UOsD4-F4eDCw@mail.gmail.com>
 References: <CAMTWR-MFckD=GaqL-iteivzh7fPn+MHtYES+gGkWZyOMu7E9sQ@mail.gmail.com>
 	<d2ed93c9-f746-6e37-c959-66a5eebfb93d@windriver.com>
-In-Reply-To: <d2ed93c9-f746-6e37-c959-66a5eebfb93d@windriver.com>
-From: Piotr Piwko <piotr.piwko@gmail.com>
-Date: Thu, 10 May 2018 08:59:44 +0000
-Message-ID: <CAMTWR-Np4pd8tytDdOoabzEZsqU=2w95Y9ddh6UOsD4-F4eDCw@mail.gmail.com>
-To: Qi.Chen@windriver.com
-Cc: yocto@yoctoproject.org
+	<CAMTWR-Np4pd8tytDdOoabzEZsqU=2w95Y9ddh6UOsD4-F4eDCw@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 10 May 2018 10:22:34 +0100
+Message-ID: <CAJTo0LaOOAhnPbUJ2DfWyaty5GM4JBNrGS-+44jt8p+iO4+kqA@mail.gmail.com>
+To: Piotr Piwko <piotr.piwko@gmail.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: Check IMAGE_FEATURES content in recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -72,77 +70,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 May 2018 08:59:57 -0000
-Content-Type: multipart/alternative; boundary="000000000000437e99056bd63e30"
+X-List-Received-Date: Thu, 10 May 2018 09:22:56 -0000
+Content-Type: multipart/alternative; boundary="0000000000007e042f056bd690d5"
 
---000000000000437e99056bd63e30
+--0000000000007e042f056bd690d5
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-czw., 10 maj 2018 o 10:45 ChenQi <Qi.Chen@windriver.com> napisa=C5=82(a):
+On 10 May 2018 at 09:59, Piotr Piwko <piotr.piwko@gmail.com> wrote:
 
-> Hi Piotr,
 >
-> VAR set in recipe A cannot be accessed by recipe B.
+>> VAR set in recipe A cannot be accessed by recipe B.
+>>
 >
-
-All right, but what about DISTRO_FEATURES? It is available everywhere, so
-maybe there is some possibility to do so ...
-
-
-> For 'read-only-rootfs' image feature, tweaks are done in functions
-> executed after generating rootfs.
-> meta/classes/rootfs-postcommands.bbclass:ROOTFS_POSTPROCESS_COMMAND +=3D
-> '${@bb.utils.contains("IMAGE_FEATURES", "read-only-rootfs",
-> "read_only_rootfs_hook; ", "",d)}'
->
-> Can you use a similar approach to solve your problem?
+> All right, but what about DISTRO_FEATURES? It is available everywhere, so
+> maybe there is some possibility to do so ...
 >
 
-Unfortunately, I can not. I would like to make a pkg_postinst() function of
-my package dependent on the rootfs mount mode. It should be different if
-the rootfs is going to be mounted as read-only.
+You need to think about what actually happens.  This is a valid bitbake
+call:
 
---=20
-Piotr Piwko
-http://www.embedded-engineering.pl/
+$ bitbake image-foo image-bar
 
---000000000000437e99056bd63e30
+image-foo and image-bar both contain recipe-flob.  recipe-flob will be
+built *once* to generate the packages, and those packages used to build
+both images.  If image-foo is read-only and image-bar is read/write, the
+*same packages* will be reused.  recipe-flob has no idea that foo is
+read-only and bar is read/write because the IMAGE_FEATURES assignments are
+specific to those image recipes.
+
+There are global variables (such as DISTRO_FEATURES) and the *default*
+IMAGE_FEATURES is also available globally, but that won't help you here.
+
+Ross
+
+--0000000000007e042f056bd690d5
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr">czw., 10 maj 2=
-018 o 10:45=C2=A0ChenQi &lt;<a href=3D"mailto:Qi.Chen@windriver.com">Qi.Che=
-n@windriver.com</a>&gt; napisa=C5=82(a):<br></div><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
-:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
-    <div class=3D"m_-3825394283286796240moz-cite-prefix">Hi Piotr,<br>
-      <br>
-      VAR set in recipe A cannot be accessed by recipe B.<br></div></div></=
-blockquote><div><br></div><div>All right, but what about DISTRO_FEATURES? I=
-t is available everywhere, so maybe there is some possibility to do so ...<=
-/div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
- 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div bgcolor=3D"#FFFFF=
-F" text=3D"#000000"><div class=3D"m_-3825394283286796240moz-cite-prefix">
-      For &#39;read-only-rootfs&#39; image feature, tweaks are done in func=
-tions
-      executed after generating rootfs.<br>
-meta/classes/rootfs-postcommands.bbclass:ROOTFS_POSTPROCESS_COMMAND +=3D
-      &#39;${@bb.utils.contains(&quot;IMAGE_FEATURES&quot;, &quot;read-only=
--rootfs&quot;,
-      &quot;read_only_rootfs_hook; &quot;, &quot;&quot;,d)}&#39;<br>
-      <br>
-      Can you use a similar approach to solve your problem?<br></div></div>=
-</blockquote><div><br></div><div>Unfortunately, I can not. I would like to =
-make a pkg_postinst() function of my package dependent on the rootfs mount =
-mode. It should be different if the rootfs is going to be mounted as read-o=
-nly.</div><div><br></div></div>-- <br><div dir=3D"ltr" class=3D"gmail_signa=
-ture" data-smartmail=3D"gmail_signature">Piotr Piwko<br><a href=3D"http://w=
-ww.embedded-engineering.pl/" target=3D"_blank">http://www.embedded-engineer=
-ing.pl/</a></div></div>
+<div dir=3D"ltr">On 10 May 2018 at 09:59, Piotr Piwko <span dir=3D"ltr">&lt=
+;<a href=3D"mailto:piotr.piwko@gmail.com" target=3D"_blank">piotr.piwko@gma=
+il.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div class=3D"gm=
+ail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bor=
+der-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gm=
+ail_quote"><span class=3D""><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div bgcolor=3D"=
+#FFFFFF" text=3D"#000000"><div class=3D"m_2303106346380240168m_-38253942832=
+86796240moz-cite-prefix"><br>VAR set in recipe A cannot be accessed by reci=
+pe B.<br></div></div></blockquote><div><br></div></span><div>All right, but=
+ what about DISTRO_FEATURES? It is available everywhere, so maybe there is =
+some possibility to do so ...</div></div></div></blockquote><div><br></div>=
+<div>You need to think about what actually happens.=C2=A0 This is a valid b=
+itbake call:</div><div><br></div><div>$ bitbake image-foo image-bar</div><d=
+iv><br></div><div>image-foo and image-bar both contain recipe-flob. =C2=A0r=
+ecipe-flob will be built *once* to generate the packages, and those package=
+s used to build both images.=C2=A0 If image-foo is read-only and image-bar =
+is read/write, the *same packages* will be reused. =C2=A0recipe-flob has no=
+ idea that foo is read-only and bar is read/write because the IMAGE_FEATURE=
+S assignments are specific to those image recipes.</div><div><br></div><div=
+>There are global variables (such as DISTRO_FEATURES) and the *default* IMA=
+GE_FEATURES is also available globally, but that won&#39;t help you here.</=
+div><div><br></div><div>Ross</div></div></div></div>
 
---000000000000437e99056bd63e30--
+--0000000000007e042f056bd690d5--
