@@ -1,48 +1,64 @@
-Return-Path: <marcelo.magallon@hpe.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3C16CE009F4; Thu, 10 May 2018 08:15:01 -0700 (PDT)
+	id 1B0D8E00C25; Thu, 10 May 2018 09:35:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [15.241.32.99 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 526 seconds by postgrey-1.32 at yocto-www;
-	Thu, 10 May 2018 08:15:00 PDT
-Received: from g9t1613g.houston.hpe.com (g9t1613g.houston.hpe.com
-	[15.241.32.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 999F9E009BC
-	for <yocto@yoctoproject.org>; Thu, 10 May 2018 08:15:00 -0700 (PDT)
-Received: from g2t2352.austin.hpe.com (g2t2352.austin.hpe.com [15.233.44.25])
-	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by g9t1613g.houston.hpe.com (Postfix) with ESMTPS id B87E461CC9
-	for <yocto@yoctoproject.org>; Thu, 10 May 2018 15:06:13 +0000 (UTC)
-Received: from g2t2360.austin.hpecorp.net (g2t2360.austin.hpecorp.net
-	[16.196.225.135])
-	by g2t2352.austin.hpe.com (Postfix) with ESMTP id 748EE91;
-	Thu, 10 May 2018 15:06:12 +0000 (UTC)
-Received: from hpe.com (unknown [10.250.102.240])
-	by g2t2360.austin.hpecorp.net (Postfix) with ESMTP id 2B2A337;
-	Thu, 10 May 2018 15:06:12 +0000 (UTC)
-Date: Thu, 10 May 2018 09:06:11 -0600
-From: "Marcelo E. Magallon" <marcelo.magallon@hpe.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Message-ID: <20180510150603.m2u5s53z6c7zc3uh@nyx.americas.hpqcorp.net>
-References: <CAMTWR-MFckD=GaqL-iteivzh7fPn+MHtYES+gGkWZyOMu7E9sQ@mail.gmail.com>
-	<d2ed93c9-f746-6e37-c959-66a5eebfb93d@windriver.com>
-	<CAMTWR-Np4pd8tytDdOoabzEZsqU=2w95Y9ddh6UOsD4-F4eDCw@mail.gmail.com>
-	<CAJTo0LaOOAhnPbUJ2DfWyaty5GM4JBNrGS-+44jt8p+iO4+kqA@mail.gmail.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f66.google.com (mail-it0-f66.google.com
+	[209.85.214.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A86D7E009BC
+	for <yocto@yoctoproject.org>; Thu, 10 May 2018 09:34:59 -0700 (PDT)
+Received: by mail-it0-f66.google.com with SMTP id q4-v6so3873700ite.3
+	for <yocto@yoctoproject.org>; Thu, 10 May 2018 09:34:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=KIrqx460yy28H9RKr4q6irBYuTOKHoSj3w+m4XUCXNA=;
+	b=Y6M9jfJu8SMFtJ/GGdWUnAjSfAXKeuyfxaB7ytT6wQMd2Yk1O8YechvyS37Tx5W5CX
+	GZZsocGdMGd0c+xl8BaeWixVBeUmxHMEs8NFFvnghZMGClzjRuWvJUosM33pIuPo9Cnz
+	gOx92iN0RMFBbLgdoAFWLaXxzjdzoveHAN6EyZQ47a4+IdJI1xi/RIcQ+G+/vE5AcwoI
+	rxacgB6l7WeM36s7rXW4VClr2THff7mQZhcpMR35qWOPlrc/gnL6rKZN9d6AFIWqEEsR
+	CIHbDDy6T4D7clRB5ENw4f5fwcUxo45DGjow4D2lfztErBs5lJPKkf1rXgau4jiwH4/E
+	/rww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=KIrqx460yy28H9RKr4q6irBYuTOKHoSj3w+m4XUCXNA=;
+	b=YPZchAhFw/X14TE5xVwHm3KlO8Kj/VHRJGjgODwyUSEZKUZ/X1RUcl4sIJOe39JP8r
+	/zgmITF3XV0IpQ7kIHpQ3mzgAv3PgYZOAwj14qsCYztBAtMLWgIms6vYSpbpqNaH3H65
+	QjuPMCTMJHA2ze2fb57svwH5wwm1mXN2NfcUVUOIeycB5j/LevWKnu7QnPVn2fiVR5DK
+	cOP5pCBqKX4b/2qkLstcgFZ29J1Jz07Zt4WL0P5or5tqSJANBCFA40ODF1tNTgszfaMf
+	GZ6itPMdw0TA9+tw4MwkJTQVQ6W9yMcTy0+imgdyuja5alCx1OjQMCuv2hk6M3ZrqjMr
+	dleg==
+X-Gm-Message-State: ALKqPwfg1yhljSXV+AFZu/kI2KdAsmCAwypYdj6BhQW3J0yeaNvKToTk
+	B5SCgC+ILE9hK0pl9jnq/niRNe1V7/tMTZxJalZmvg==
+X-Google-Smtp-Source: AB8JxZp0QJAFrHTQ6L8LH9pDeGx1vJ+QD2JfzBv/fOTZHxa4zBtJ72bwvsRqL7PG5sG6kGrf8NktgjVNwa04GDlhLIs=
+X-Received: by 2002:a24:56c3:: with SMTP id
+	o186-v6mr2418698itb.127.1525970099260; 
+	Thu, 10 May 2018 09:34:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LaOOAhnPbUJ2DfWyaty5GM4JBNrGS-+44jt8p+iO4+kqA@mail.gmail.com>
-User-Agent: NeoMutt/20180323
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
-	Piotr Piwko <piotr.piwko@gmail.com>
-Subject: Re: Check IMAGE_FEATURES content in recipe
+Received: by 10.107.239.11 with HTTP; Thu, 10 May 2018 09:34:38 -0700 (PDT)
+In-Reply-To: <CAJgxT3_=C2roF-oP9-VpPZcFTphOyCe8VLpqYjuy+8C628_XZQ@mail.gmail.com>
+References: <20180509214855.3330-1-matt.hoosier@gmail.com>
+	<CAJ86T=UpVWZsvYSz4yeDVZp+EmbnhFsWGRGq5EWgG766qTZ-xA@mail.gmail.com>
+	<CAJgxT3_=C2roF-oP9-VpPZcFTphOyCe8VLpqYjuy+8C628_XZQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 10 May 2018 17:34:38 +0100
+Message-ID: <CAJTo0LaKSE=K5xpSk3QJogxRvuKeTA0PKpbT1uPtaTpZywLY5Q@mail.gmail.com>
+To: Matt Hoosier <matt.hoosier@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [PATCH] bitbake: fetch2/gitsm: avoid live submodule fetching during unpack()
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,25 +70,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 May 2018 15:15:01 -0000
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
+X-List-Received-Date: Thu, 10 May 2018 16:35:02 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, May 10, 2018 at 10:22:34AM +0100, Burton, Ross wrote:
-
->$ bitbake image-foo image-bar
+On 10 May 2018 at 01:40, Matt Hoosier <matt.hoosier@gmail.com> wrote:
+> On Wed, May 9, 2018 at 6:27 PM, Andre McCurdy <armccurdy@gmail.com> wrote:
+>>
+>> On Wed, May 9, 2018 at 2:48 PM, Matt Hoosier <matt.hoosier@gmail.com>
+>> wrote:
+>> > From: Matt Hoosier <matt.hoosier@garmin.com>
+>> >
+>> > Although the submodules' histories have been fetched during the
+>> > do_fetch() phase, the mechanics used to clone the workdir copy
+>> > of the repo haven't been transferring the actual .git/modules
+>> > directory from the repo fetched into downloads/ during the
+>> > fetch task.
+>> >
+>> > Fix that, and for good measure also explicitly tell Git to avoid
+>> > hitting the network during do_unpack() of the submodules.
+>> >
+>> > Ref:
+>> > https://bugzilla.yoctoproject.org/show_bug.cgi?id=12739
+>>
+>> Patches for bitbake should be sent to the bitbake-devel mailing list:
+>>
+>>   http://lists.openembedded.org/mailman/listinfo/bitbake-devel
 >
->image-foo and image-bar both contain recipe-flob.  recipe-flob will be
->built *once* to generate the packages, and those packages used to build
->both images.  If image-foo is read-only and image-bar is read/write, the
->*same packages* will be reused.  recipe-flob has no idea that foo is
->read-only and bar is read/write because the IMAGE_FEATURES assignments are
->specific to those image recipes.
+>
+>
+> Right, okay. How's that meant to work for stuff developed in-tree with poky?
+> Do you manually want the 'bitbake/' leading directory stripped off before
+> emailing the patch?
 
-When dealing with a somewhat similar problem, what I've done is 
-that my-recipe.bb generates two packages (my-package-a, 
-my-package-b) and the images select which of the two packages 
-they want to use.
+If you're feeling lazy you can just send the patch to bitbake@ from a
+poky repo and git will figure it out.  The same works the other way: a
+bitbake patch applies fine to a poky repository.
 
-Marcelo
+Ross
 
