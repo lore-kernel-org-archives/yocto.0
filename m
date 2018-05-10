@@ -1,71 +1,68 @@
-Return-Path: <mtownsend1973@gmail.com>
+Return-Path: <icastell@nayarsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06141E009F4; Thu, 10 May 2018 06:47:17 -0700 (PDT)
+	id 190FFE009F4; Thu, 10 May 2018 07:01:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mtownsend1973[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.46 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f46.google.com (mail-lf0-f46.google.com
-	[209.85.215.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88F01E009BC
-	for <yocto@yoctoproject.org>; Thu, 10 May 2018 06:47:15 -0700 (PDT)
-Received: by mail-lf0-f46.google.com with SMTP id z142-v6so3071443lff.5
-	for <yocto@yoctoproject.org>; Thu, 10 May 2018 06:47:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5153E009BC
+	for <yocto@yoctoproject.org>; Thu, 10 May 2018 07:01:14 -0700 (PDT)
+Received: by mail-io0-f180.google.com with SMTP id e78-v6so3135276iod.0
+	for <yocto@yoctoproject.org>; Thu, 10 May 2018 07:01:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nayarsystems.com; s=google;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ju6ex+fBnf/kOZ94aOreaqEy1s0QhVYT7yFuZ1d8sqM=;
-	b=hvem5L8znpZin4L5nLvwipMvWgiT+W2RldWW6nmasT4sstMTBJI7JLWfUlryg3FqIc
-	5q0qd3fL6GU1421iBXwAAjPD36kWu5hwMQwFasdUxYJy7zY2DXBfFU710hpClGVX9JWZ
-	WXNL2CTGmj4Ge7WKDWCgDqbL6yLOuwlFb70awhJ6t+amCWt5rj9HGVpnRmD1tf/OIwKs
-	PnpgQmVdgInlevCR1tSgMwh1n6vzqFvDkj8G4a6Rmvg8H++LEhER1enHCb0hwKIhnG6N
-	+xojFnKtoaW4LNIu/o0Shv8UOGw71JDBrR55SsETzHMT47FoOL0KSzF/iUk54DAmTMoy
-	SosA==
+	:cc; bh=H7JohqI4id9xLR0K/OqCTcXRM5KefiwJ19wmhWr0P/c=;
+	b=hy3PiVidYjFlxpBM1sSO3rmXVFMWSn5JH/ld4KUVI1axN/fsPKZUDbCcMuvaLB4dyR
+	9i3A5/3x0HvJso87N9BYdAKSwMS8dAFZb4GsAKBt3t2Qwuv0mQELKCCpoYIZWaSVFFFy
+	r5FEEOk7ZIcLbhqlOgD34AeNmGOA7i+zmcpII=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=ju6ex+fBnf/kOZ94aOreaqEy1s0QhVYT7yFuZ1d8sqM=;
-	b=e57OByWXkpQ+aunp2jIOJSnRpoAKa/ea56QEJO2uEFJH9iyr71Hk7qbg8yS668aSNe
-	1gZQ4T2IoOhpWdSBeTF6wX02GNvHy3dVTWf0PYqiDngSOIV4ChP3CeKP8wxbwfyI82x/
-	+oaq5gucUyb6q75SbIj6U+khd924lPsr31F5FW2Wh8WqwVcnec4aZFgsbBtDnGUyapnD
-	sErTopMeMn4o2hpCWrV+4b2T8PnD+GIuZPzcfMGgR7cr2mE8oVsLBNAcVSJ1pKSdtY6i
-	GTIlZ9hPuQn9AyBWELpVPhZEhq/JJqKLOm+2Wh3bwApt6FHvFIIttjLcegnAOr6e5ff1
-	Ob1A==
-X-Gm-Message-State: ALKqPwe7T5Akt2XS7Y+H3Gr08gnWCQN9dLpRnQvFItJuAOMlsP0zyidZ
-	EJ/wLLW3VidUntPiEX+3zLTKj2EkyHgEyiUlnsjZtw==
-X-Google-Smtp-Source: AB8JxZo4Chzri0fOFYzkYRU8wZ1sQ5NTvUAMyhYrOkVq+0LKrm876mhV3fmG/RE1Wz6RV8HNV1zl5bt8/mEA4dvOLVY=
-X-Received: by 2002:a19:1303:: with SMTP id
-	j3-v6mr1021196lfi.107.1525960034061; 
-	Thu, 10 May 2018 06:47:14 -0700 (PDT)
+	bh=H7JohqI4id9xLR0K/OqCTcXRM5KefiwJ19wmhWr0P/c=;
+	b=i2h5NL+tDcYeb5KHrYHcvE9zBxX37/zKAkTGOocLosFBBpctlAq/fhi6+vSTbr9RQF
+	pWoRQAByK/YaR3OqzYS1zUzYPE/gghz7xYX/FX/SJe/Ark0fpPIwMFs5fnxTNmOhC3zp
+	8XGckuDDR85Xz4k8gBYJZ/PABwNlNDVxfIb/uGuJWrVnKCRHLudwv2E4eeoBtkP16nye
+	Qp0b++tYxNfsHjK/JJbgG8DWhOhiNBGhsPCoSm6TewW5N1cEsdpTM3DfB1bF96AeHwrF
+	z6XRgDFcH2SGwfLGT82+cH/JzTY6mj1WqsPXmGUkaUCutTqOSMbcBNYRU6Z2WoDzxh7Q
+	QZSg==
+X-Gm-Message-State: ALKqPwdC7Z7CDtwrhQ45DXvJS1DoFg42k1ybo9McwpTdXbjykOIFlQqB
+	TMPCIlo3gZDqMpRMNtyJe47sE2xN+1XqVPqZct9ZuigG
+X-Google-Smtp-Source: AB8JxZrZsRLnHhkXKdMevx4l9/DdnPFhNnA1IZEYa5p41LMXU0HjoN5jBTHfZAydRJ5s5i5JiVjniP7NUEV06oGgsBE=
+X-Received: by 2002:a6b:1fd2:: with SMTP id
+	f201-v6mr1677438iof.74.1525960873769; 
+	Thu, 10 May 2018 07:01:13 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a19:4a95:0:0:0:0:0 with HTTP; Thu, 10 May 2018 06:47:13
+Received: by 2002:a02:4b04:0:0:0:0:0 with HTTP; Thu, 10 May 2018 07:01:13
 	-0700 (PDT)
-In-Reply-To: <CALmqtKYAaFFgaYencB_wM-+Mm+=Or1ts=0eHt0_PHnCJcecMCA@mail.gmail.com>
-References: <CALmqtKYKV1WBH8yO2mOkLVGzPOX4amGt_DthGSF8FwT=HkEBbA@mail.gmail.com>
-	<CABatt_xEU55GqY8d9TtT8CdHdTeN_i9JO4H9Dw9D-ZaNZwQUsA@mail.gmail.com>
-	<CALmqtKanTeT72ZgoLTnHX44vAFm2=ybLeRET5cv=Myb+03t+4A@mail.gmail.com>
-	<CABatt_zpNOS1HsMi9hejaUe4_4iaB=Kay1NBgyOV=wQ3jxCtiw@mail.gmail.com>
-	<CALmqtKYAaFFgaYencB_wM-+Mm+=Or1ts=0eHt0_PHnCJcecMCA@mail.gmail.com>
-From: Martin Townsend <mtownsend1973@gmail.com>
-Date: Thu, 10 May 2018 14:47:13 +0100
-Message-ID: <CABatt_yfjC6ewfzdLiAo7m=2Qo28Q+Wy3H5cx7RZEuAxePT2rw@mail.gmail.com>
-To: Enrico Bonomi <enrico.bonomi92@gmail.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: System recovery
+In-Reply-To: <CAALXFYxoKv8j+eB10t1sHBumgNCRxLmkejN_-trryR98sheHKA@mail.gmail.com>
+References: <CAALXFYw5fYE+JBAO4hrXFO-L3wyE6DRzP-yFWbPvKX6S1eRePw@mail.gmail.com>
+	<da5f1fde-171e-09cb-f51c-13a6e147c3ed@linux.intel.com>
+	<CAALXFYwpsMmKzyO47CzFxj_3FMT+zZja4OdTNtFfoD4=QT0Ehw@mail.gmail.com>
+	<f6a9d6bb-1b5f-d3b7-a6a9-03500b03fb3a@linux.intel.com>
+	<CAALXFYxoKv8j+eB10t1sHBumgNCRxLmkejN_-trryR98sheHKA@mail.gmail.com>
+From: =?UTF-8?Q?Iv=C3=A1n_Castell?= <icastell@nayarsystems.com>
+Date: Thu, 10 May 2018 16:01:13 +0200
+Message-ID: <CAALXFYy+xqUiiEp00fyUnbe9JnCp=pg4b4UQ32LFvcuMXv1b3Q@mail.gmail.com>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Native curl and SSL CA certificates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,160 +74,285 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 May 2018 13:47:17 -0000
+X-List-Received-Date: Thu, 10 May 2018 14:01:17 -0000
+Content-Type: multipart/alternative; boundary="000000000000d2950d056bda7340"
+
+--000000000000d2950d056bda7340
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Enrico,
+Once the image was build and cloned into the target device, this error
+appears when trying to update dnf database from target device:
 
-Then I would use a tar.gz image type and then extract that onto the
-formatted partition of the SD card or if the partition is ext then I
-think you can generate an image type for this.
+    $ dnf clean all
+    $ dnf update
+    DNF version: 2.7.5
+    cachedir: /var/cache/dnf
+    repo oe-remote-repo: 0x6235C65BD7C1F0D8 already imported
+    Cannot download 'https://storage.googleapis.com/my_repo': GPG
+verification is enabled, but GPG signature repomd.xml.asc is not available:
+Status code: 403 for https://storage.googleapis.com/my_repo/repodata/
+    Failed to synchronize cache for repo 'oe-remote-repo', disabling.
 
-There is also wic for generating partitioned images, I've not used it
-so can't really comment on it but is described in the Yocto manual.
+The "repodata" directory does not appear inside the package feed directory.
+I managed to generate that "repodata" directory executing this commands in
+my host machine:
 
--Martin
+    $ bitbake createrepo-c-native -caddto_recipe_sysroot
+    $ oe-run-native createrepo-c-native createrepo_c
+/home/yocto/yocto/build/tmp/deploy/rpm
 
-On Thu, May 10, 2018 at 7:14 AM, Enrico Bonomi
-<enrico.bonomi92@gmail.com> wrote:
-> Hi Martin,
+After that, "repodata" directory appears in the package feed and
+"repomd.xml" file is inside available, but "repomd.xml.asc" is still not
+found.
+
+Do I am missing something?
+
+Thank you in advance!
+
+
+2018-05-09 13:44 GMT+02:00 Iv=C3=A1n Castell <icastell@nayarsystems.com>:
+
+> Thank you very much for your explanation Mr. Alexander, it was really
+> helpfull to understand my issue.
 >
-> I know that i can create multiple images types, but i don't want an sdcard
-> bootable image. On my first try, the image on sdcard was ubi type because i
-> want to obtain i kind of recovery partition directly on the sdcard. Do you
-> suggest to put the recovery partition directly on the raw NAND? in that case
-> how could i create a compressed image (because i don't have enough space on
-> my device to keep 2 images)?
+> I fixed it removing completely my dnf bbappend recipe from my custom laye=
+r
+> and adding this variable to my distro.conf file:
 >
-> thanks
+>     PACKAGE_FEED_URIS =3D "https://storage.googleapis.com/my_repo/"
 >
-> Enrico
+> After that, at the end of the build process the image contains a valid
+> /etc/yum.d/oe-remote-repo file and all the necesary stuff to manage it.
+> There is no need to copy "ca-certificates.crt" manually at all.
 >
-> 2018-05-09 12:37 GMT+02:00 Martin Townsend <mtownsend1973@gmail.com>:
+> Now its working as expected! :-)
+>
+>
+> 2018-05-09 8:56 GMT+02:00 Alexander Kanavin <alexander.kanavin@linux.
+> intel.com>:
+>
+>> On 05/09/2018 09:29 AM, Iv=C3=A1n Castell wrote:
 >>
->> On Wed, May 9, 2018 at 11:21 AM, Enrico Bonomi
->> <enrico.bonomi92@gmail.com> wrote:
->> > Hi Martin,
->> >
->> > I'm newbie in yocto, but i used IMAGE_FSTYPES ="sdcard" to boot the
->> > system
->> > from SD card. What i want to obtain is to replace the broken file system
->> > that is located on the NAND with another one that works. A kind of
->> > recovery
->> > partition. is it possible from SD or should i create a recovery
->> > partition
->> > over the NAND?
->> >
->> > thanks
->> >
->> > Enrico
->> >
->> > 2018-05-09 11:25 GMT+02:00 Martin Townsend <mtownsend1973@gmail.com>:
->> >>
->> >> Hi Enrico,
->> >>
->> >> UBI is only designed to work on raw NAND using the MTD subsystem.  MMC
->> >> will be a standard block device as the SD card will have Flash
->> >> Translation layer. See the excellent MTD website for more info
->> >> http://www.linux-mtd.infradead.org/doc/ubi.html
->> >>
->> >> In Yocto I believe you can use "sdcard" in the IMAGE_FSTYPES for a
->> >> flashable image for SD cards that can be used with U-Boot.
->> >>
->> >> -Martin.
->> >>
->> >>
->> >> On Wed, May 9, 2018 at 9:31 AM, Enrico Bonomi
->> >> <enrico.bonomi92@gmail.com>
->> >> wrote:
->> >> > Hi,
->> >> >
->> >> > I work with Yocto Poky 1.7.3 on an imx6 dual lite SOM. I recently
->> >> > came
->> >> > across a problem with a preexisting system. Infact in a couple of
->> >> > cases,
->> >> > after about one year of work with no problems, file system results
->> >> > corrupted
->> >> > and the machine can't work. So i decide to implement a recovery
->> >> > system
->> >> > that
->> >> > can intervene in theese cases. An sd card is mounted on my board, so
->> >> > i
->> >> > think
->> >> > that i can use it to act this process. Using gparted i create a
->> >> > partition on
->> >> > sd card that can store my recovery file system.
->> >> > This partition starts at block 1581056 (so 0x00182000), every block
->> >> > has
->> >> > a
->> >> > size of 512 bytes and the file system size is 370262016 bytes (so
->> >> > 0x1611c000) that are 723168 blocks (so 0x000b08e0).
->> >> > In the u-boot i do the following instructions:
->> >> >
->> >> > nand erase.part rootfs
->> >> > ubi part rootfs
->> >> > ubi create rootfs
->> >> > mmc dev 0
->> >> > mmc read 12000000 0x00182000  0x000b08e0
->> >> > ubi write 12000000 rootfs 0x1611c000
->> >> > ubifsmount ubi0:rootfs
->> >> >
->> >> > and this instruction results in the following errors:
->> >> >
->> >> > UBIFS error (pid 0): ubifs_read_node: bad node type (0 but expected
->> >> > 6)
->> >> > UBIFS error (pid 0): ubifs_read_node: bad node at LEB 0:0
->> >> > UBIFS error (pid 0): ubifs_mount: Error reading superblock on volume
->> >> > 'ubi0:rootfs' errno=-22!
->> >> >
->> >> > ubifsmount - mount UBIFS volume
->> >> >
->> >> > Usage:
->> >> > ubifsmount <volume-name>
->> >> >    - mount 'volume-name' volume
->> >> >
->> >> > the strange thing is that when i first program all new devices i use
->> >> > the
->> >> > following instruction:
->> >> >
->> >> > tftpboot prall
->> >> >
->> >> > and prall is the compiled of a txt file which, when programming file
->> >> > system
->> >> > use the same instructions, obviously except for
->> >> >
->> >> > tftp 12000000 rootfs.ubifs
->> >> >
->> >> > instead of my mmc instructions, and
->> >> >
->> >> > ubi write 12000000 rootfs ${filesize}
->> >> >
->> >> > but from what i understand the "filesize" variable is set from the
->> >> > tftp
->> >> > instruction
->> >> >
->> >> > Where do i fail?
->> >> >
->> >> > Thanks
->> >> >
->> >> > Enrico
->> >> >
->> >> > --
->> >> > _______________________________________________
->> >> > yocto mailing list
->> >> > yocto@yoctoproject.org
->> >> > https://lists.yoctoproject.org/listinfo/yocto
->> >> >
->> >
->> >
+>>> But I am not fetching nor installing packages over the network during
+>>> image creation. I just build an image using local recipes (standard
+>>> procedure). One of those local recipes sets up a remote repository for =
+rpm
+>>> packages (adding /etc/yum.repos.d/yocto-adv-rpm.repo to the final
+>>> image). The purpose of that remote repository is using it to update rpm
+>>> packages on target devices when they are running in production.
+>>>
+>>> In fact, I don't understand why yocto needs to synchronize that cache
+>>> for 'yocto-adv-rpm' repo during build time. It doesn't have any sense f=
+or
+>>> me. But the fact is that when the ca-certificates.crt is properly
+>>> installed, the build process ends fine. If that file is not properly
+>>> installed, the build process fails with the error reported in my previo=
+us
+>>> message.
+>>>
 >>
->> You forgot to reply to all so added the Yocto mailing list back in again.
+>> During image creation dnf is run several times, and it picks up its own
+>> configuration from the target rootfs. It is definitely not recommended t=
+o
+>> change that configuration behind dnf's back via installed recipes.
 >>
->> You can create multiple images by specifying ubi and sdcard in
->> IMAGE_FSTYPES and then flash ubi to the raw NAND and then the sdcard
->> image to the SD then write the logic to perform the switch.
+>> The supported way to configure remote repositories is via
+>> PACKAGE_FEED_URIS:
+>> https://www.yoctoproject.org/docs/latest/dev-manual/dev-manu
+>> al.html#using-runtime-package-management
 >>
->> -Martin.
+>> Alex
+>>
+>
+>
 >
 >
 
+
+--=20
+
+
+
+
+*NOTA LEGAL*
+Este correo electr=C3=B3nico y, en su caso, cualquier fichero anexo al mism=
+o,
+contiene informaci=C3=B3n de car=C3=A1cter confidencial exclusivamente diri=
+gida a su
+destinatario y se encuentra protegido por Ley. Cualquier persona distinta
+de su destinataria tiene prohibida su reproducci=C3=B3n, uso, divulgaci=C3=
+=B3n, copia
+o impresi=C3=B3n total o parcial. Si ha recibido este correo electr=C3=B3ni=
+co por
+error, se ruega lo notifique de inmediato al remitente borrando el mensaje
+original juntamente con sus ficheros anexos. Gracias.
+
+De conformidad con lo establecido en la LOPD, NAYAR SYSTEMS SL garantiza la
+adopci=C3=B3n de las medidas necesarias para asegurar el tratamiento
+confidencial de los datos de car=C3=A1cter personal. As=C3=AD mismo le info=
+rmamos de
+la inclusi=C3=B3n de sus datos en un fichero bajo la responsabilidad de NAY=
+AR
+SYSTEMS SL, con la finalidad de poder atender los compromisos derivados de
+la relaci=C3=B3n que mantenemos con usted. Si lo desea, puede ejercer sus
+derechos de acceso, rectificaci=C3=B3n, cancelaci=C3=B3n y oposici=C3=B3n m=
+ediante un
+escrito a la siguiente direcci=C3=B3n: info@nayarsystems.com
+
+*LEGAL NOTE*
+This email and any attachments to it contains is confidential information
+exclusively intended for the recipients. Any divulgation, copy or
+distribution to third parties is prohibited without written permission of
+NAYAR SYSTEMS SL. If you have received this e-mail in error, please notify
+the sender immediately. In accordance with Law 15/1999 of 13 December on
+the Protection of Personal Data, the NAYAR SYSTEMS SL guarantees that it
+has adopted the necessary measures to ensure the confidential treatment of
+personal information. We also inform you that you can exercise your access,
+rectification, cancellation and opposition rights by send us a mail to:
+info@nayarsystems.com
+
+--000000000000d2950d056bda7340
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Once the image was build and cloned into the target d=
+evice, this error appears when trying to update dnf database from target de=
+vice:</div><div><br></div><div>=C2=A0 =C2=A0 $ dnf clean all</div><div>=C2=
+=A0 =C2=A0 $ dnf update</div><div>=C2=A0 =C2=A0 DNF version: 2.7.5</div><di=
+v>=C2=A0 =C2=A0 cachedir: /var/cache/dnf</div><div>=C2=A0 =C2=A0 repo oe-re=
+mote-repo: 0x6235C65BD7C1F0D8 already imported</div><div>=C2=A0 =C2=A0 Cann=
+ot download &#39;<a href=3D"https://storage.googleapis.com/my_repo">https:/=
+/storage.googleapis.com/my_repo</a>&#39;: GPG verification is enabled, but =
+GPG signature repomd.xml.asc is not available: Status code: 403 for <a href=
+=3D"https://storage.googleapis.com/my_repo/repodata/">https://storage.googl=
+eapis.com/my_repo/repodata/</a></div><div>=C2=A0 =C2=A0 Failed to synchroni=
+ze cache for repo &#39;oe-remote-repo&#39;, disabling.</div><div><br></div>=
+<div>The &quot;repodata&quot; directory does not appear inside the package =
+feed directory. I managed to generate that &quot;repodata&quot; directory e=
+xecuting this commands in my host machine:</div><div><br></div><div>=C2=A0 =
+=C2=A0 $ bitbake createrepo-c-native -caddto_recipe_sysroot</div><div>=C2=
+=A0 =C2=A0 $ oe-run-native createrepo-c-native createrepo_c /home/yocto/yoc=
+to/build/tmp/deploy/rpm</div><div><br></div><div>After that, &quot;repodata=
+&quot; directory appears in the package feed and &quot;repomd.xml&quot; fil=
+e is inside available, but &quot;repomd.xml.asc&quot; is still not found.</=
+div><div><br></div><div>Do I am missing something?</div><div><br></div><div=
+>Thank you in advance!</div><div><br></div></div><div class=3D"gmail_extra"=
+><br><div class=3D"gmail_quote">2018-05-09 13:44 GMT+02:00 Iv=C3=A1n Castel=
+l <span dir=3D"ltr">&lt;<a href=3D"mailto:icastell@nayarsystems.com" target=
+=3D"_blank">icastell@nayarsystems.com</a>&gt;</span>:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"ltr"><div><span style=3D"color:rgb(34,34,34);font=
+-family:arial,sans-serif;font-size:small;font-style:normal;font-variant-lig=
+atures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:norma=
+l;text-align:start;text-indent:0px;text-transform:none;white-space:normal;w=
+ord-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:ini=
+tial;text-decoration-color:initial;float:none;display:inline">Thank you ver=
+y much for your explanation Mr. Alexander, it was really helpfull to unders=
+tand my issue.=C2=A0</span><br></div><div><br></div><div>I fixed it removin=
+g completely my dnf bbappend recipe from my custom layer and adding <span s=
+tyle=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;fo=
+nt-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font=
+-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tra=
+nsform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,25=
+5,255);text-decoration-style:initial;text-decoration-color:initial;float:no=
+ne;display:inline">this variable=C2=A0</span>to my distro.conf file:<br></d=
+iv><div><div><br></div><div>=C2=A0 =C2=A0 PACKAGE_FEED_URIS =3D &quot;<a hr=
+ef=3D"https://storage.googleapis.com/my_repo/" style=3D"color:rgb(17,85,204=
+);font-family:arial,sans-serif;font-size:12.8px;font-style:normal;font-vari=
+ant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacin=
+g:normal;text-align:start;text-indent:0px;text-transform:none;white-space:n=
+ormal;word-spacing:0px;background-color:rgb(255,255,255)" target=3D"_blank"=
+>https://storage.googleapis.<wbr>com/my_repo/</a>&quot;</div><div><br></div=
+><div>After that, at the end of the build process the image contains a vali=
+d /etc/yum.d/oe-remote-repo file and all the necesary stuff to manage it. T=
+here is no need to copy=C2=A0<span style=3D"font-size:12.8px">&quot;ca-cert=
+ificates.crt&quot; manually at all.</span></div><div><br></div></div><div><=
+span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:sm=
+all;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norma=
+l;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;te=
+xt-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(=
+255,255,255);text-decoration-style:initial;text-decoration-color:initial;fl=
+oat:none;display:inline">Now its working as expected! :-)</span><br></div><=
+div><div class=3D"h5"><div><span style=3D"color:rgb(34,34,34);font-family:a=
+rial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:no=
+rmal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-al=
+ign:start;text-indent:0px;text-transform:none;white-space:normal;word-spaci=
+ng:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text=
+-decoration-color:initial;float:none;display:inline"><br></span></div><div =
+class=3D"gmail_extra"><br><div class=3D"gmail_quote">2018-05-09 8:56 GMT+02=
+:00 Alexander Kanavin <span dir=3D"ltr">&lt;<a href=3D"mailto:alexander.kan=
+avin@linux.intel.com" target=3D"_blank">alexander.kanavin@linux.<wbr>intel.=
+com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 =
+0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span>On 05/09/2018 0=
+9:29 AM, Iv=C3=A1n Castell wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+But I am not fetching nor installing packages over the network during image=
+ creation. I just build an image using local recipes (standard procedure). =
+One of those local recipes sets up a remote repository for rpm packages (ad=
+ding /etc/yum.repos.d/yocto-adv-rpm<wbr>.repo to the final image). The purp=
+ose of that remote repository is using it to update rpm packages on target =
+devices when they are running in production.<br>
+<br>
+In fact, I don&#39;t understand why yocto needs to synchronize that cache f=
+or &#39;yocto-adv-rpm&#39; repo during build time. It doesn&#39;t have any =
+sense for me. But the fact is that when the ca-certificates.crt is properly=
+ installed, the build process ends fine. If that file is not properly insta=
+lled, the build process fails with the error reported in my previous messag=
+e.<br>
+</blockquote>
+<br></span>
+During image creation dnf is run several times, and it picks up its own con=
+figuration from the target rootfs. It is definitely not recommended to chan=
+ge that configuration behind dnf&#39;s back via installed recipes.<br>
+<br>
+The supported way to configure remote repositories is via PACKAGE_FEED_URIS=
+:<br>
+<a href=3D"https://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.h=
+tml#using-runtime-package-management" rel=3D"noreferrer" target=3D"_blank">=
+https://www.yoctoproject.org/d<wbr>ocs/latest/dev-manual/dev-manu<wbr>al.ht=
+ml#using-runtime-package-<wbr>management</a><br>
+<br>
+Alex<br>
+</blockquote></div><br><br clear=3D"all"><div><br></div>
+</div></div></div></div>
+</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div class=
+=3D"gmail_signature" data-smartmail=3D"gmail_signature"><br><img src=3D"htt=
+p://www.nayarsystems.com/docs/FIRMAS/icastell.jpg"><br><font size=3D"2"><b>=
+</b></font><br><div><span><font size=3D"1"><span style=3D"color:rgb(153,153=
+,153)"><br><u><b>NOTA LEGAL</b></u><br>Este correo electr=C3=B3nico y, en s=
+u caso, cualquier fichero anexo al mismo, contiene informaci=C3=B3n de car=
+=C3=A1cter confidencial exclusivamente dirigida a su destinatario y se encu=
+entra protegido por Ley. Cualquier persona distinta de su destinataria tien=
+e prohibida su reproducci=C3=B3n, uso, divulgaci=C3=B3n, copia o impresi=C3=
+=B3n total o parcial. Si ha recibido este correo electr=C3=B3nico por error=
+, se ruega lo notifique de inmediato al remitente borrando el mensaje origi=
+nal juntamente con sus ficheros anexos. Gracias.<br><br>De conformidad con =
+lo establecido en la LOPD, NAYAR SYSTEMS SL garantiza la adopci=C3=B3n de l=
+as medidas necesarias para asegurar el tratamiento confidencial de los dato=
+s de car=C3=A1cter personal. As=C3=AD mismo le informamos de la inclusi=C3=
+=B3n de sus datos en un fichero bajo la responsabilidad de NAYAR SYSTEMS SL=
+, con la finalidad de poder atender los compromisos derivados de la relaci=
+=C3=B3n que mantenemos con usted. Si lo desea, puede ejercer sus derechos d=
+e acceso, rectificaci=C3=B3n, cancelaci=C3=B3n y oposici=C3=B3n mediante un=
+ escrito a la siguiente direcci=C3=B3n:=C2=A0<a style=3D"color:rgb(17,85,20=
+4)" href=3D"mailto:info@nayarsystems.com" target=3D"_blank">info@nayarsyste=
+ms.com</a></span><br><br></font></span></div><div><span style=3D"color:rgb(=
+153,153,153);font-family:arial,helvetica,sans-serif;font-size:x-small"><u><=
+b>LEGAL NOTE</b></u></span></div><div><span style=3D"color:rgb(153,153,153)=
+;font-family:arial,helvetica,sans-serif;font-size:x-small">This email and a=
+ny attachments to it contains is confidential information exclusively inten=
+ded for the recipients. Any divulgation, copy or distribution to third part=
+ies is prohibited without written permission of NAYAR SYSTEMS SL. If you ha=
+ve received this e-mail in error, please notify the sender immediately. In =
+accordance with Law 15/1999 of 13 December on the Protection of Personal Da=
+ta, the NAYAR SYSTEMS SL guarantees that it has adopted the necessary measu=
+res to ensure the confidential treatment of personal information. We also i=
+nform you that you can exercise your access, rectification, cancellation an=
+d opposition rights by send us a mail to:=C2=A0<a href=3D"mailto:info@nayar=
+systems.com" target=3D"_blank">info@nayarsystems.com</a></span></div><br></=
+div>
+</div>
+
+--000000000000d2950d056bda7340--
