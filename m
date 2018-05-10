@@ -1,38 +1,52 @@
-Return-Path: <Qi.Chen@windriver.com>
+Return-Path: <andre.draszik@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CE88EE00E23; Thu, 10 May 2018 01:45:18 -0700 (PDT)
+	id C928CE00E23; Thu, 10 May 2018 01:54:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F25F3E00D60
-	for <yocto@yoctoproject.org>; Thu, 10 May 2018 01:45:16 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w4A8ioVp018481
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 10 May 2018 01:45:05 -0700
-Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
-	Thu, 10 May 2018 01:44:39 -0700
-To: <yocto@yoctoproject.org>
+Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EAA1E00D60
+	for <yocto@yoctoproject.org>; Thu, 10 May 2018 01:54:29 -0700 (PDT)
+Received: by mail-wm0-f53.google.com with SMTP id j5-v6so2945348wme.5
+	for <yocto@yoctoproject.org>; Thu, 10 May 2018 01:54:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+	:references:mime-version:content-transfer-encoding;
+	bh=uIUKc7lAFVlzRdg1VnH8pANULY9l0/0jaF194zA+Js8=;
+	b=G3gA6Js/XGtMWfXLcFmCgQoO9W38Jm+y+YO8S7xunj04wTMtLCCej+IpBvhI9E5gh/
+	QO/Dtaglx1mNr7Js8r6z7HI4I4oE0zFSVdhmK/9Q+jUbG7BUW976Zm0HT9IVh+zEC27h
+	V4P/EPgwPe5Lt1yuhiOhjgqm+5t6ZiqtW5GshirtejupYechVjUo4Ts65mQOHmn9UMPB
+	b9zgIPk3fWtQN9JOuERtXqX25RRFyfXBFgLQrTJE8a8fqHC0oKEawOUUM5MY/6trWbYu
+	wMJ7fB9T7NWmbVoAB8d8jWTYZatHhBPVkxFurbKsJX23BN9ffc+Yq32ceBU+MyOl6QFq
+	yAAQ==
+X-Gm-Message-State: ALKqPwe4eZvppOsrLRZupwHDuL4mJUdgGxY/OGgqxlEhr0AfIi2C/NoN
+	FvNpa3N8Yb54pY/3piXdPs3nfddx
+X-Google-Smtp-Source: AB8JxZrJP+GjCYOxXWiV2S4Ij+blCeQw7fsoFuaUiN9aQ3Ts7FvaG2tylFr7W6NufA4/++hjFUgbrg==
+X-Received: by 2002:a50:d94a:: with SMTP id
+	u10-v6mr1151166edj.241.1525942468059; 
+	Thu, 10 May 2018 01:54:28 -0700 (PDT)
+Received: from tfsielt31850 ([77.107.218.170])
+	by smtp.gmail.com with ESMTPSA id
+	p36-v6sm440135eda.43.2018.05.10.01.54.27 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Thu, 10 May 2018 01:54:27 -0700 (PDT)
+Message-ID: <1525942466.5115.26.camel@andred.net>
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <git@andred.net>
+To: yocto@yoctoproject.org
+Date: Thu, 10 May 2018 09:54:26 +0100
+In-Reply-To: <d2ed93c9-f746-6e37-c959-66a5eebfb93d@windriver.com>
 References: <CAMTWR-MFckD=GaqL-iteivzh7fPn+MHtYES+gGkWZyOMu7E9sQ@mail.gmail.com>
-From: ChenQi <Qi.Chen@windriver.com>
-Message-ID: <d2ed93c9-f746-6e37-c959-66a5eebfb93d@windriver.com>
-Date: Thu, 10 May 2018 16:46:32 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
-MIME-Version: 1.0
-In-Reply-To: <CAMTWR-MFckD=GaqL-iteivzh7fPn+MHtYES+gGkWZyOMu7E9sQ@mail.gmail.com>
-X-Originating-IP: [128.224.162.218]
+	<d2ed93c9-f746-6e37-c959-66a5eebfb93d@windriver.com>
+X-Mailer: Evolution 3.26.5-1 
+Mime-Version: 1.0
 Subject: Re: Check IMAGE_FEATURES content in recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -45,131 +59,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 May 2018 08:45:18 -0000
-Content-Type: multipart/alternative;
-	boundary="------------D444CEF0AF170ED54B9276FD"
-
---------------D444CEF0AF170ED54B9276FD
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Thu, 10 May 2018 08:54:30 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-Hi Piotr,
+Hi,
 
-VAR set in recipe A cannot be accessed by recipe B.
+To expand on that - the idea is that (binary) packages shall not be affected
+by the image, meaning that you should be able to install the exact same
+(binary) package in different images. If you were able to access image
+specific variables inside your package recipe (and change behaviour/contents
+of your package based on the image), this wouldn't be possible any more.
 
-For 'read-only-rootfs' image feature, tweaks are done in functions 
-executed after generating rootfs.
-meta/classes/rootfs-postcommands.bbclass:ROOTFS_POSTPROCESS_COMMAND += 
-'${@bb.utils.contains("IMAGE_FEATURES", "read-only-rootfs", 
-"read_only_rootfs_hook; ", "",d)}'
+In other words, an image is just a collection of a different set / number of
+packages to be installed, but each individual package itself is the same for
+all images.
 
-Can you use a similar approach to solve your problem?
+Cheers,
+Andre'
 
-Best Regards,
-Chen Qi
+On Thu, 2018-05-10 at 16:46 +0800, ChenQi wrote:
+> Hi Piotr,
+> 
+> VAR set in recipe A cannot be accessed by recipe B.
+> 
+> For 'read-only-rootfs' image feature, tweaks are done in functions 
+> executed after generating rootfs.
+> meta/classes/rootfs-postcommands.bbclass:ROOTFS_POSTPROCESS_COMMAND += 
+> '${@bb.utils.contains("IMAGE_FEATURES", "read-only-rootfs", 
+> "read_only_rootfs_hook; ", "",d)}'
+> 
+> Can you use a similar approach to solve your problem?
+> 
+> Best Regards,
+> Chen Qi
+> 
+> On 05/10/2018 03:37 PM, Piotr Piwko wrote:
+> > Hi,
+> > 
+> > I would like to check in my recipe if created image is read-only or 
+> > not. In order to do so, I use the following condition which I would 
+> > inside poky sources:
+> > 
+> > if ${@bb.utils.contains('IMAGE_FEATURES', 'read-only-rootfs', 'true', 
+> > 'false', d)}; then
+> > 
+> > However it seems that IMAGE_FEATURES variable is not exported to the 
+> > higher recipes. I also confirmed it's content by executing:
+> > 
+> > bitbake my-image -e | grep IMAGE_FEATURES
+> > 
+> > Is there any possibility to export this variable to my recipe or 
+> > somehow check the particular image feature?
+> > 
+> > Thank you in advance for help.
+> > 
+> > -- 
+> > Piotr Piwko
+> > http://www.embedded-engineering.pl/
+> > 
+> > 
+> 
+> 
 
-On 05/10/2018 03:37 PM, Piotr Piwko wrote:
-> Hi,
->
-> I would like to check in my recipe if created image is read-only or 
-> not. In order to do so, I use the following condition which I would 
-> inside poky sources:
->
-> if ${@bb.utils.contains('IMAGE_FEATURES', 'read-only-rootfs', 'true', 
-> 'false', d)}; then
->
-> However it seems that IMAGE_FEATURES variable is not exported to the 
-> higher recipes. I also confirmed it's content by executing:
->
-> bitbake my-image -e | grep IMAGE_FEATURES
->
-> Is there any possibility to export this variable to my recipe or 
-> somehow check the particular image feature?
->
-> Thank you in advance for help.
->
-> -- 
-> Piotr Piwko
-> http://www.embedded-engineering.pl/
->
->
-
-
---------------D444CEF0AF170ED54B9276FD
-Content-Type: text/html; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">Hi Piotr,<br>
-      <br>
-      VAR set in recipe A cannot be accessed by recipe B.<br>
-      <br>
-      For 'read-only-rootfs' image feature, tweaks are done in functions
-      executed after generating rootfs.<br>
-meta/classes/rootfs-postcommands.bbclass:ROOTFS_POSTPROCESS_COMMAND +=
-      '${@bb.utils.contains("IMAGE_FEATURES", "read-only-rootfs",
-      "read_only_rootfs_hook; ", "",d)}'<br>
-      <br>
-      Can you use a similar approach to solve your problem?<br>
-      <br>
-      Best Regards,<br>
-      Chen Qi<br>
-      <br>
-      On 05/10/2018 03:37 PM, Piotr Piwko wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAMTWR-MFckD=GaqL-iteivzh7fPn+MHtYES+gGkWZyOMu7E9sQ@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <div dir="ltr">Hi, 
-        <div><br>
-        </div>
-        <div>I would like to check in my recipe if created image is
-          read-only or not. In order to do so, I use the following
-          condition which I would inside poky sources:</div>
-        <div><br>
-        </div>
-        <div>
-          <div>if ${@bb.utils.contains('IMAGE_FEATURES',
-            'read-only-rootfs', 'true', 'false', d)}; then</div>
-        </div>
-        <div><br>
-        </div>
-        <div>However it seems that IMAGE_FEATURES variable is not
-          exported to the higher recipes. I also confirmed it's content
-          by executing:</div>
-        <div><br>
-        </div>
-        <div>bitbake my-image -e | grep IMAGE_FEATURES</div>
-        <div><br>
-        </div>
-        <div>Is there any possibility to export this variable to my
-          recipe or somehow check the particular image feature?</div>
-        <div><br>
-        </div>
-        <div>Thank you in advance for help.</div>
-        <div>
-          <div><br>
-          </div>
-          -- <br>
-          <div dir="ltr" class="gmail_signature">Piotr Piwko<br>
-            <a moz-do-not-send="true"
-              href="http://www.embedded-engineering.pl/" target="_blank">http://www.embedded-engineering.pl/</a></div>
-        </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <p><br>
-    </p>
-  </body>
-</html>
-
---------------D444CEF0AF170ED54B9276FD--
