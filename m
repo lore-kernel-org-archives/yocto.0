@@ -1,35 +1,36 @@
 Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 74EB8E009F4; Thu, 10 May 2018 10:34:25 -0700 (PDT)
+	id 81CBBE00E85; Thu, 10 May 2018 10:35:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.126 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD0FCE009BC
-	for <yocto@yoctoproject.org>; Thu, 10 May 2018 10:34:24 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2DDEE00E85
+	for <yocto@yoctoproject.org>; Thu, 10 May 2018 10:35:25 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	10 May 2018 10:34:24 -0700
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	10 May 2018 10:35:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,386,1520924400"; d="scan'208,217";a="53221943"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
-	by fmsmga004.fm.intel.com with ESMTP; 10 May 2018 10:34:24 -0700
-Received: from fmsmsx126.amr.corp.intel.com (10.18.125.43) by
-	fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Thu, 10 May 2018 10:34:23 -0700
+X-IronPort-AV: E=Sophos;i="5.49,386,1520924400"; 
+	d="scan'208,217";a="227489489"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+	by fmsmga006.fm.intel.com with ESMTP; 10 May 2018 10:35:25 -0700
+Received: from fmsmsx118.amr.corp.intel.com (10.18.116.18) by
+	FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Thu, 10 May 2018 10:35:24 -0700
 Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.70]) by
-	FMSMSX126.amr.corp.intel.com ([169.254.1.170]) with mapi id
-	14.03.0319.002; Thu, 10 May 2018 10:34:23 -0700
+	fmsmsx118.amr.corp.intel.com ([169.254.1.138]) with mapi id
+	14.03.0319.002; Thu, 10 May 2018 10:35:24 -0700
 From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Burton, Ross"
 	<ross.burton@intel.com>, "Bystricky, Juro" <juro.bystricky@intel.com>, 
@@ -43,9 +44,9 @@ To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Burton, Ross"
 	<amanda.r.brindle@intel.com>, "Orling, Timothy T"
 	<timothy.t.orling@intel.com>
 Thread-Topic: Yocto Project Bug Triage
-Thread-Index: AdPohFwIbW7NkOtaQw+RvFhDVr96gAAAMTSg
-Date: Thu, 10 May 2018 17:34:22 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB4B3@fmsmsx111.amr.corp.intel.com>
+Thread-Index: AdPohFwIbW7NkOtaQw+RvFhDVr96gAAAOkOA
+Date: Thu, 10 May 2018 17:35:23 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB532@fmsmsx111.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -66,13 +67,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 May 2018 17:34:25 -0000
-X-Groupsio-MsgNum: 41083
+X-List-Received-Date: Thu, 10 May 2018 17:35:26 -0000
+X-Groupsio-MsgNum: 41084
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB4B3fmsmsx111amrcor_"
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB532fmsmsx111amrcor_"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB4B3fmsmsx111amrcor_
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB532fmsmsx111amrcor_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -98,7 +99,7 @@ edir.microsoft.com/r/rlidLync15?clid=3D1033&p1=3D5&p2=3D2009>
 
 
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB4B3fmsmsx111amrcor_
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB532fmsmsx111amrcor_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -176,7 +177,7 @@ p;</span></font></div>
 </body>
 </html>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB4B3fmsmsx111amrcor_
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB532fmsmsx111amrcor_
 Content-Type: text/calendar; charset="utf-8"; method=REQUEST
 Content-Transfer-Encoding: base64
 
@@ -235,20 +236,21 @@ aHR0cHM6Ly9vMTUub2ZmaWNlcmVkaXIubWljcm9zb2Z0LmNvbS9yL3JsaWRMeW5jMTU/Y2xpZD0x
 MDMzDQogJnAxPTUmcDI9MjAwOT5cblxuWyFPQyhbMTAzM10pIV1cbi4uLi4uLi4uLi4uLi4uLi4u
 Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4NCiAuLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4u
 Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLg0KIC4uLi4uLi4uLi4u
-Li4uLi4uLi4uLi4uXG5cblxuDQpTVU1NQVJZO0xBTkdVQUdFPWVuLVVTOllvY3RvIFByb2plY3Qg
-QnVnIFRyaWFnZQ0KRFRTVEFSVDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDE4MDUxN1Qw
-NzMwMDANCkRURU5EO1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTgwNTE3VDA4MzAwMA0K
-VUlEOjA0MDAwMDAwODIwMEUwMDA3NEM1QjcxMDFBODJFMDA4MDAwMDAwMDA4MERFODkxNDRBRThE
-MzAxMDAwMDAwMDAwMDAwMDAwDQogMDEwMDAwMDAwQTEwMzJGRjE5OEM5N0U0NUI4MTIyQUU4OUNF
-REZGQTQNCkNMQVNTOlBVQkxJQw0KUFJJT1JJVFk6NQ0KRFRTVEFNUDoyMDE4MDUxMFQxNzM0MjBa
-DQpUUkFOU1A6T1BBUVVFDQpTVEFUVVM6Q09ORklSTUVEDQpTRVFVRU5DRTowDQpMT0NBVElPTjtM
-QU5HVUFHRT1lbi1VUzpTa3lwZSBNZWV0aW5nDQpYLU1JQ1JPU09GVC1DRE8tQVBQVC1TRVFVRU5D
-RTowDQpYLU1JQ1JPU09GVC1DRE8tT1dORVJBUFBUSUQ6NzI2MjkyNDUwDQpYLU1JQ1JPU09GVC1D
-RE8tQlVTWVNUQVRVUzpURU5UQVRJVkUNClgtTUlDUk9TT0ZULUNETy1JTlRFTkRFRFNUQVRVUzpC
-VVNZDQpYLU1JQ1JPU09GVC1DRE8tQUxMREFZRVZFTlQ6RkFMU0UNClgtTUlDUk9TT0ZULUNETy1J
-TVBPUlRBTkNFOjENClgtTUlDUk9TT0ZULUNETy1JTlNUVFlQRTowDQpYLU1JQ1JPU09GVC1ESVNB
-TExPVy1DT1VOVEVSOkZBTFNFDQpCRUdJTjpWQUxBUk0NCkFDVElPTjpESVNQTEFZDQpERVNDUklQ
-VElPTjpSRU1JTkRFUg0KVFJJR0dFUjtSRUxBVEVEPVNUQVJUOi1QVDE1TQ0KRU5EOlZBTEFSTQ0K
-RU5EOlZFVkVOVA0KRU5EOlZDQUxFTkRBUg0K
+Li4uLi4uLi4uLi4uXG5cblxuDQpSUlVMRTpGUkVRPVdFRUtMWTtJTlRFUlZBTD0xO0JZREFZPVRI
+O1dLU1Q9U1UNClNVTU1BUlk7TEFOR1VBR0U9ZW4tVVM6WW9jdG8gUHJvamVjdCBCdWcgVHJpYWdl
+DQpEVFNUQVJUO1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTgwNTE3VDA3MzAwMA0KRFRF
+TkQ7VFpJRD1QYWNpZmljIFN0YW5kYXJkIFRpbWU6MjAxODA1MTdUMDgzMDAwDQpVSUQ6MDQwMDAw
+MDA4MjAwRTAwMDc0QzVCNzEwMUE4MkUwMDgwMDAwMDAwMDgwREU4OTE0NEFFOEQzMDEwMDAwMDAw
+MDAwMDAwMDANCiAwMTAwMDAwMDBBMTAzMkZGMTk4Qzk3RTQ1QjgxMjJBRTg5Q0VERkZBNA0KQ0xB
+U1M6UFVCTElDDQpQUklPUklUWTo1DQpEVFNUQU1QOjIwMTgwNTEwVDE3MzUyMVoNClRSQU5TUDpP
+UEFRVUUNClNUQVRVUzpDT05GSVJNRUQNClNFUVVFTkNFOjENCkxPQ0FUSU9OO0xBTkdVQUdFPWVu
+LVVTOlNreXBlIE1lZXRpbmcNClgtTUlDUk9TT0ZULUNETy1BUFBULVNFUVVFTkNFOjENClgtTUlD
+Uk9TT0ZULUNETy1PV05FUkFQUFRJRDo3MjYyOTI0NTANClgtTUlDUk9TT0ZULUNETy1CVVNZU1RB
+VFVTOlRFTlRBVElWRQ0KWC1NSUNST1NPRlQtQ0RPLUlOVEVOREVEU1RBVFVTOkJVU1kNClgtTUlD
+Uk9TT0ZULUNETy1BTExEQVlFVkVOVDpGQUxTRQ0KWC1NSUNST1NPRlQtQ0RPLUlNUE9SVEFOQ0U6
+MQ0KWC1NSUNST1NPRlQtQ0RPLUlOU1RUWVBFOjENClgtTUlDUk9TT0ZULURJU0FMTE9XLUNPVU5U
+RVI6RkFMU0UNCkJFR0lOOlZBTEFSTQ0KQUNUSU9OOkRJU1BMQVkNCkRFU0NSSVBUSU9OOlJFTUlO
+REVSDQpUUklHR0VSO1JFTEFURUQ9U1RBUlQ6LVBUMTVNDQpFTkQ6VkFMQVJNDQpFTkQ6VkVWRU5U
+DQpFTkQ6VkNBTEVOREFSDQo=
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB4B3fmsmsx111amrcor_--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC72FB532fmsmsx111amrcor_--
