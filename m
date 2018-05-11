@@ -1,106 +1,37 @@
-Return-Path: <rudolf.streif@gmail.com>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D56D2E014A9; Fri, 11 May 2018 11:20:03 -0700 (PDT)
+	id 903FBE01617; Fri, 11 May 2018 14:22:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rudolf.streif[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.193 listed in list.dnswl.org]
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	TO_NO_BRKTS_PCNT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.151 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
-	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA784E00F78
-	for <yocto@yoctoproject.org>; Fri, 11 May 2018 11:20:01 -0700 (PDT)
-Received: by mail-pf0-f193.google.com with SMTP id c10-v6so3084428pfi.12
-	for <yocto@yoctoproject.org>; Fri, 11 May 2018 11:20:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to;
-	bh=YswxSFzyvUlN8JRaDp3JLgQdtPVEW0A2Fo5UdKdVOaE=;
-	b=j08vZ98s+aFCBr34N4KUSkhIP5MNgBjYcdMYCJseFt4r67widIWwAsdlK/ZiBits4B
-	lhy82MOt/LLk47685BLz+Q2Up8PzRFf3PUVyKpjkk4/zARuEG24C7dSNTLgt4rNvXCr9
-	czmH2GrQ8fUmPbEnXYxcTXRxH5flsOjRhkZjwxrDSZIpcGkNwTC7Gxjn/ixDuzY6FpIE
-	ncSrG8wfGGzPI9YMmB1GOd22CCn5RVL2l6oMjjBz2h1Wcv9FBjwSM0TQYjgkSCUBQW/G
-	jUUucrTyIsIyAznwOd572KtDClbAOAnngWWRy9ervlL7kJocLxk3tR0788iGdxOcH8ov
-	QrOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to;
-	bh=YswxSFzyvUlN8JRaDp3JLgQdtPVEW0A2Fo5UdKdVOaE=;
-	b=qj1WMgUvl42nUIQ3/xdr4Gh/Ipt5P0S2tIrMSPQJPm/qeA6DUwcv3fVxUWDXKWSEKp
-	+jkRKUTKnRj6WkziX6YKeennWuRg/lfuDAgtOdlJSqDsx6tqKma7b0hUfAXKwWrWdRMJ
-	M94+4tWjdFTHQtIgc4qsKe00WKWOP/UDAosGXdATVaEzITfv2Fj1PQ+cjyjsbEbgU+h2
-	+DXTsiQTsZcEffJnc5pX03uLgLK2hO/rvFs1gMBJH9uB4iKA7jIlU0uCcPL7xh/LJnqp
-	ekZWE4nWI6K51TdfGSqpH9DCZRJ1524nt+pIf1phAKGjB+l9XcFaylYAjdyoCdVvCQBm
-	lfDQ==
-X-Gm-Message-State: ALKqPwduXqjaIYjOen4ZNAFTY7jpvHoO3DW3zshKvCXQ2QSAbspU9P66
-	SaPwOH6K9VTxVQQb+En7C8C3aWWz
-X-Google-Smtp-Source: AB8JxZooB96+Qp3J68NmBKB77H0Sf3sAf6G7OmSggycSelzQbmlKg+nLZ6Af8wWoixd5WWp6DOm2Cw==
-X-Received: by 2002:a62:ec18:: with SMTP id
-	k24-v6mr6563933pfh.204.1526062800608; 
-	Fri, 11 May 2018 11:20:00 -0700 (PDT)
-Received: from rjs-zotac.streifs.net (ip68-7-63-100.sd.sd.cox.net.
-	[68.7.63.100]) by smtp.gmail.com with ESMTPSA id
-	u75-v6sm8616005pfd.92.2018.05.11.11.19.59
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 11 May 2018 11:19:59 -0700 (PDT)
-To: Mark Hatle <mark.hatle@windriver.com>, akuster808 <akuster808@gmail.com>, 
-	"akuster@mvista" <akuster@mvista.com>, yocto@yoctoproject.org
-References: <1523758104-25257-1-git-send-email-akuster@mvista.com>
-	<43b42f5a-57dd-2c82-92cc-ea2d742870b8@gmail.com>
-	<9c97d64c-07a4-7499-4a70-611d659d26d4@gmail.com>
-	<d7eb0b4a-e511-023c-3872-04b891bd0a4e@windriver.com>
-From: Rudolf J Streif <rudolf.streif@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=rudolf.streif@gmail.com; prefer-encrypt=mutual; keydata=
-	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
-	vN0JVJf8p4e3anmLkFyASoeAKUumyGnf
-Message-ID: <fd441792-54e6-e7a8-d6ce-f17f35de76a3@gmail.com>
-Date: Fri, 11 May 2018 11:19:58 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.7.0
+	*  1.0 TO_NO_BRKTS_PCNT To: lacks brackets + percentage
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F496E01399;
+	Fri, 11 May 2018 14:22:37 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	11 May 2018 14:22:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.49,390,1520924400"; d="scan'208";a="54455085"
+Received: from jwenck-mobl.amr.corp.intel.com ([10.255.229.135])
+	by fmsmga001.fm.intel.com with ESMTP; 11 May 2018 14:22:35 -0700
+From: Tracy Graydon <tracy.graydon@intel.com>
+To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
+Message-ID: <17a502b9-5ddf-e703-8df6-4fc83742aac4@intel.com>
+Date: Fri, 11 May 2018 14:22:35 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.1.0
 MIME-Version: 1.0
-In-Reply-To: <d7eb0b4a-e511-023c-3872-04b891bd0a4e@windriver.com>
-Subject: Re: [meta-selinux][PATCH] libselinux: python-importlib is now part of python*-core
+Subject: [ANNOUNCEMENT] Yocto Project 2.5 (sumo 19.0.0) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -112,200 +43,532 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 May 2018 18:20:03 -0000
-X-Groupsio-MsgNum: 41123
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="60Puw2QzubueEqHme96ZUL7VY47WVKYdv"
-
---60Puw2QzubueEqHme96ZUL7VY47WVKYdv
-Content-Type: multipart/mixed; boundary="OeUfLn091PRZd6LWG6CiROSbwBmKshkQG";
- protected-headers="v1"
-From: Rudolf J Streif <rudolf.streif@gmail.com>
-To: Mark Hatle <mark.hatle@windriver.com>, akuster808 <akuster808@gmail.com>,
- "akuster@mvista" <akuster@mvista.com>, yocto@yoctoproject.org
-Message-ID: <fd441792-54e6-e7a8-d6ce-f17f35de76a3@gmail.com>
-Subject: Re: [yocto] [meta-selinux][PATCH] libselinux: python-importlib is now
- part of python*-core
-References: <1523758104-25257-1-git-send-email-akuster@mvista.com>
- <43b42f5a-57dd-2c82-92cc-ea2d742870b8@gmail.com>
- <9c97d64c-07a4-7499-4a70-611d659d26d4@gmail.com>
- <d7eb0b4a-e511-023c-3872-04b891bd0a4e@windriver.com>
-In-Reply-To: <d7eb0b4a-e511-023c-3872-04b891bd0a4e@windriver.com>
-
---OeUfLn091PRZd6LWG6CiROSbwBmKshkQG
+X-List-Received-Date: Fri, 11 May 2018 21:22:39 -0000
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Thank you, Mark. Much appreciated and understood.
+Hello,
 
-Would you be open to tagging the layer for rocko to the right commit and
-applying the patches sent to the mailing list by Armin and Kai to master
-so that we have known points to move forward?
+We are pleased to announce the latest release of the Yocto Project 2.5 (sumo-19.0.0) is now available for download at:
 
-Thank you,
-Rudi
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.5/poky-sumo-19.0.0.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.5/poky-sumo-19.0.0.tar.bz2
 
+A gpg signed version of these release notes is available at:
 
-On 05/11/2018 10:45 AM, Mark Hatle wrote:
-> On 5/11/18 12:28 PM, Rudolf J Streif wrote:
->> Echoing this: may I ask what the current maintenance status of
->> meta-selinux is. It appears that no updates have been made for more th=
-an
->> 9 months. This is of course not to blame anybody but out of concern th=
-at
->> the layer is falling behind even more and to find a solution.
-> The answer is the current set of people are horribly overworked and bus=
-y, so
-> day-to-day updates have been 'sparse'.
->
-> Usually we update meta-selinux about the time of a release, and thus ar=
-e due.
->
-> The last update of meta-selinux was about the time of the Rocko release=
-, so what
-> is in master is definitely current as of Rocko.  (I did the last set of=
- updates
-> -- so I know it did work as of Rocko release.)  The master needs to be =
-branched
-> as Rocko... master needs to be updated to be Sumo compatible.
->
-> My assumption is that once Sumo is formally released (any minute now), =
-we'll
-> collection all of the patches and get them into place and spend some ti=
-me
-> cleaning them up...
->
-> It looks like Joe is already working through this effort.
->
-> (Only speaking for myself,) I don't have time to do day-to-day maintena=
-nce of
-> meta-selinux any longer -- nor do I have the indepth knowledge to under=
-stand
-> when not to do something.  I filled this role purely out of necessity s=
-ince
-> nobody else was doing it.
->
-> So with that said, if anyone wants to help, we're all open for help her=
-e...  I
-> doubt there would be any objection to adding or replacing existing main=
-tainers
-> and/or giving more people push access.
->
->> In addition to Armin's patches there are two patches submitted by Kai
->> Kang at Windriver:
->>
->> * https://lists.yoctoproject.org/pipermail/yocto/2018-February/039917.=
-html
->> * https://lists.yoctoproject.org/pipermail/yocto/2018-February/039918.=
-html
->>
->> Curiously enough, the second patch has been applied to master but not
->> the first one.
->>
->>
->> There is also an issue with building SELinux with systemd. The layer
->> enables auditing:
->>
->> meta-selinux/classes/enable-audit.bbclass:PACKAGECONFIG[audit] =3D
->> "--enable-audit,--disable-audit,audit,"
->> meta-selinux/recipes-core/systemd/systemd_%.bbappend:inherit
->> ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'enable-audit', '',=
- d)}
->>
->> Apparently the --enable-audit switch is passed to meson when running t=
-he
->> configure task, which meson does not appreciate. I am not that familia=
-r
->> with the audit feature nor with meson, so I currently have no idea on
->> how to fix this the right way.
-> audit feature is useful outside of selinux, so my understand was that a=
-udit
-> itself was moving into core during the sumo time frame (if it hadn't al=
-ready
-> been oved.)
->
-> I don't know anything about meson, so I can't speak to that...
->
->> Further, refpolicy_git does not build anymore as the YP specific patch=
-es
->> do not apply anymore since upstream changed.
-> The refpolicy is and has always been crap.  I've been talking to a few =
-people on
-> IRC about working to replace the refpolicy with a policy that can be ge=
-nerated
-> dynamically based on the contents of the recipes.  I don't know if that=
- is
-> really going to happen, but I hate the way it's currently implemented.
->
-> One of the key issues about the refpolicy is that you need to be an exp=
-ert at
-> this (which I never claimed to be) in order to make any reasonable deci=
-sion --
-> add to that any specific policy needs to userstand overall system desig=
-n, and I
-> wouldn't trust any of the refpolicy items as they stand in meta-selinux=
-=2E
->
-> --Mark
->
->> Thanks,
->> Rudi
->>
->>
->>
->> On 05/07/2018 10:20 AM, akuster808 wrote:
->>> On 04/14/2018 07:08 PM, Armin Kuster wrote:
->>>> Missing or unbuildable dependency chain was: ['meta-world-pkgdata', =
-'restorecond', 'libselinux', 'python-importlib']
->>>>
->>>> Signed-off-by: Armin Kuster <akuster@mvista.com>
->>> ping
->>>> ---
->>>>  recipes-security/selinux/libselinux.inc | 2 +-
->>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/recipes-security/selinux/libselinux.inc b/recipes-secur=
-ity/selinux/libselinux.inc
->>>> index bd5ce8d..51d0875 100644
->>>> --- a/recipes-security/selinux/libselinux.inc
->>>> +++ b/recipes-security/selinux/libselinux.inc
->>>> @@ -8,7 +8,7 @@ LICENSE =3D "PD"
->>>>  inherit lib_package pythonnative
->>>> =20
->>>>  DEPENDS +=3D "libsepol python libpcre swig-native"
->>>> -RDEPENDS_${PN}-python +=3D "python-importlib"
->>>> +RDEPENDS_${PN}-python +=3D "python-core"
->>>> =20
->>>>  PACKAGES +=3D "${PN}-python"
->>>>  FILES_${PN}-python =3D "${libdir}/python${PYTHON_BASEVERSION}/site-=
-packages/*"
->>
->>
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.5/RELEASENOTES
 
---=20
-Rudolf J Streif
+Full pass test report is available at:
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_Status#Milestone_4.2FFinal_-_Target_Apr._27.2C_2018
+
+Thank you for everyone's contributions to this release.
+
+Sincerely,
+
+Tracy Graydon
+Yocto Project Build and Release
+tracy.graydon@intel.com
+
+------------------
+yocto-2.5 Errata
+------------------
+
+Release Name: poky-sumo-19.0.0
+Branch: sumo
+Tag: sumo-19.0.0
+Hash: da3625c52e1ab8985fba4fc3d133edf92142f182
+md5: 99f4ec64f8c4e7bcd141658a07bbe11b
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.5/poky-sumo-19.0.0.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.5/poky-sumo-19.0.0.tar.bz2
+
+Release Name: eclipse-poky-neon-sumo-19.0.0
+Branch: neon/sumo
+Tag: neon/sumo-19.0.0
+Hash: a5dbc01b96be55c4ec2f774af9996a8086e402ab
+md5: 884ceedc37c7c04e89d031c3d913a88e
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.5/eclipse-poky-neon-sumo-19.0.0.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.5/eclipse-poky-neon-sumo-19.0.0.tar.bz2
+
+Release Name: eclipse-poky-oxygen-sumo-19.0.0
+Branch: oxygen/sumo
+Tag: oxygen/sumo-19.0.0
+Hash: fbb91e5c5ad06470cd50ce1daa407a5f7d13c6ca
+md5: c1212bb0489b1b2681033624f739e086
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.5/eclipse-poky-oxygen-sumo-19.0.0.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.5/eclipse-poky-oxygen-sumo-19.0.0.tar.bz2
+
+Release Name: oecore-sumo-19.0.0
+Branch: sumo
+Tag: 2018-04
+Hash: 1b03cdf290c3c8b7f903aef696b0e1bfe763cbe0
+md5: ffbdbdec1c6ce5c031a520dda469a40b
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.5/oecore-sumo-19.0.0.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.5/oecore-sumo-19.0.0.tar.bz2
+
+Release Name: bitbake-sumo-19.0.0
+Branch: sumo
+Tag: 1.38.0
+Hash: 82ea737a0b42a8b53e11c9cde141e9e9c0bd8c40
+md5: a6661fd48cb8cf2be6063793c744df72
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.5/bitbake-sumo-19.0.0.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.5/bitbake-sumo-19.0.0.tar.bz2
+
+Release Name: meta-qt3-sumo-19.0.0
+Branch: sumo
+Tag: sumo-19.0.0
+Hash: 02f273cba6c25f5cf20cb66d8a417a83772c3179
+md5: 06247992d8a1efb27bd508e151277f4e
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.5/meta-qt3-sumo-19.0.0.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.5/meta-qt3-sumo-19.0.0.tar.bz2
+
+Release Name: meta-qt4-sumo-19.0.0
+Branch: sumo
+Tag: sumo-19.0.0
+Hash: c0d1a3cfd24b62674dae9e6abd78ac7c3aa95be5
+md5: fbe892f3cabff10cebd705b5fab5951a
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.5/meta-qt4-sumo-19.0.0.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.5/meta-qt4-sumo-19.0.0.tar.bz2
+
+Release Name: meta-gplv2-sumo-19.0.0
+Branch: sumo
+Tag: sumo-19.0.0
+Hash: 36a4b0243831d36310826d51579cf1e47d959251
+md5: dd712734f5d28d4bb162f0d1d442ebc9
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.5/meta-gplv2-sumo-19.0.0.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.5/meta-gplv2-sumo-19.0.0.tar.bz2
+
+Release Name: meta-mingw-sumo-19.0.0
+Branch: sumo
+Tag: sumo-19.0.0
+Hash: 6106b73926394e054b8433c0a9e24149470d1baf
+md5: 39094e2b4b9c010ffff28a83568076f0
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.5/meta-mingw-sumo-19.0.0.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.5/meta-mingw-sumo-19.0.0.tar.bz2
 
 
+-----------------------------
+New Features / Enhancements
+-----------------------------
 
---OeUfLn091PRZd6LWG6CiROSbwBmKshkQG--
+* Linux kernel 4.15/4.14/4.12, gcc 7.3, glibc 2.27 and ~240 other recipe upgrades
+* Simplified enabling binary reproducible builds (reproducible_build and reproducible_build_simple classes)
+* Support for installing multiple kernels at runtime and selecting between them
+* Support for the Meson build system (imported from meta-oe)
+* Reworked EFI boot support
+* Added support to IMAGE_FSTYPES for F2FS flash filesystem generation
+* A shared state mirror is now being published on yoctoproject.org in order to accelerate builds where compatible. You will need to configure the build system to point to these - details in the auto-generated local.conf (or meta-poky/local.conf.sample).
+* Specific architecture support:
+ - Added support for RISC-V architecture (riscv32 and riscv64)
+ - Added Xilinx MicroBlaze architecture support
+ - Added support for ARM64 ILP32
+ - Added new tune-i686.inc for better support of 686-class CPUs
+ - Added support for Intel CoffeeLake-S within linux-yocto and xf86-video-intel
+ - Added support for stratix10 SoC development board within linux-yocto
+ - systemtap can now also be built for MIPS and MicroBlaze
+* wic image creator improvements:
+ - Introduced --fsuuid option and have --use-uuid make use of UUID too
+ - Updated canned-wks for systemd to use file system UUID everywhere
+ - Added --part-name option for naming GPT partitions
+ - Added a do_post_partition hook for plugins to post-process a partition (useful for e.g. package signing)
+ - Added a template wks file to make use of exclude-path functionality (useful for e.g. splitting a single image into multiple partitions)
+ - wic can now be used from within in the Extensible SDK (eSDK)
+* bitbake-layers improvements:
+ - add-layer/remove-layer: added support for adding and removing multiple layers at once
+ - show-recipes/show-appends: support specifying more than one recipe
+* devtool improvements:
+ - Added a 'devtool latest-version' subcommand to get the latest available version upstream for a recipe
+ - devtool upgrade now defaults to latest upstream version/commit when upgrading recipes
+ - devtool upgrade now automatically handles a change in source subdirectory in the upstream archive
+ - devtool upgrade will now handle and report license checksum changes
+ - devtool upgrade has improved performance and now shows progress when adding files
+ - devtool find-recipe and edit-recipe now always work with any recipe
+ - devtool finish now ensures the source repository is clean before proceeding
+ - devtool finish now has a dry-run option so you can see the changes that will be made before applying them
+ - devtool finish now has a --force-patch-refresh option to allow refreshing patch context
+ - devtool can now deal with conditional patches (those added to SRC_URI using an override)
+ - devtool search will now also look in the recipe cache, so it can show unbuilt recipes in the results
+* initramfs improvements:
+ - core-image-minimal-initramfs now uses initramfs-framework for initialization
+ - New 'initramfs-live-boot-tiny' uses busybox-mdev instead of udev for a smaller footprint
+ - New 'exec' initramfs-framework module allows executing a set of arbitrary scripts
+ - initramfs-live-install can now be built for aarch64
+ - initramfs-framework: allow use of LABEL= to find the rootfs using its partition label
+ - live image build will now show a warning if the initramfs is invalid
+* cmake integration improvements:
+ - Allow the generator to be changed and default to Ninja for faster builds for cmake-using recipes
+ - Allow target names for compile and install to be overridden
+ - Always put cmake package files in -dev packages
+* BitBake changes:
+ - Reworked --runall option and added --runonly option
+ - Graph (dot) files produced by bitbake -g are now sorted for easier comparisons
+ - Make contrib/dump_cache.py dump everything
+* Toaster web UI improvements:
+ - Updated to Django 1.11
+ - Added a "nobuild" command-line option to disable building from the UI (whilst still enabling sharing of build statistics)
+ - Highlight capture of command-line builds on frontpage
+* Icecream distributed compilation improvements:
+ - Add Icecream support to SDK if icecc class is inherited by the build
+ - icecc-create-env: add option to add arbitrary extra tools
+ - icecc-create-env: allow multiple tool aliases
+ - icecc-create-env: allow logging to a file
+ - Add ICECC_ENV_DEBUG variable to allow passing extra debug options to icecc-create-env
+* Miscellaneous script improvements:
+ - oe-pkgdata-util: Add support for RPROVIDES
+ - oe-pkgdata-util: add --long option to list-pkg-files to show sizes
+ - oe-depends-dot: add script to make handling .dot files (produced by bitbake -g or buildhistory) easier
+ - runqemu: Allow the user to override the device tree option
+ - crosstap: replace script with new python based implementation
+ - buildhistory-diff: add support for colourising the output
+ - scripts/contrib/bbvars.py: rewritten to use tinfoil
+* New recipes: glide, gst-validate, initramfs-live-boot-tiny, libpipeline, libtest-needs-perl, meson, musl-utils, systemd-bootconf
+* Replaced outdated man with man-db
+* Restructured python/python3 packaging and replaced it with autopackaging for better maintainability
+* Added pypi class to simplify python recipes that fetch from pypi.org (from meta-python)
+* Added ptest-perl class and use to enable ptest functionality for a number of perl recipes
+* SDK generation now runs package postinstall scripts
+* SDK now provides a post-relocate script hook
+* Enabled ptests as part of runtime tests by default (where possible)
+* kern-tools: make fuzzy matching of machine optional
+* kernel-uboot: support Image kernel type for arm64
+* kexec-tools: add systemd support for kdump
+* godep.bbclass: Add helper class to enable go-dep tool
+* Added new glide class to make using Glide for Go packaging easier
+* Ensure that rootfs gets mounted ro when read-only-rootfs is active
+* Extend recipes to nativesdk: diffutils, libcroco, libtirpc
+* Extend recipes to native: diffutils, libmnl, libtirpc
+* qemu: use upstream swtpm support
+* coreutils: add PACKAGECONFIG for single-binary feature
+* libarchive: Enable xz and lzo by default
+* grub-efi: add configfile as default built-in
+* systemd: add systemd-bootconf recipe
+* systemd-boot: add package that installs to boot
+* cve-check: provide CVE_VERSION variable to allow recipes to override their version
+* oe-init-build-env now searches for bitbake outside of oe-core
+* Added the addto_recipe_sysroot task for cross recipes (in addition to native)
+* SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS now supports a wildcard on the left side of a dependency (to exclude anything depending on a particular recipe)
+* distrodata: make upstream version check more useful for git upstreams
+* distrodata: added a utility script to compare list of recipes
+* image: add image-combined-dbg helper class
+* connman: Implement subnet route in session
+* useradd-staticids: improve error messages to suggest corrective action for missing user/group IDs
+* sstate.bbclass: added progress bars when removing items from the sysroots
+* waf.bbclass: added progress reporting for compile task
+* bin_package: error out if source directory doesn't actually contain anything
+* Refreshed patches across a number of recipes
+* common-licenses: added BSD-1-Clause
 
---60Puw2QzubueEqHme96ZUL7VY47WVKYdv
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+ 
+-----------------
+ Known Issues
+-----------------
 
------BEGIN PGP SIGNATURE-----
+* Whilst recipes for Go 1.10.x are provided, the default version of Go remains at 1.9.x, as there is a serious bug in Go 1.10 when it comes to using the shared runtime support which causes problems in multiple projects. If you need to you can switch to 1.10 by setting GOVERSION to "1.10%" in your configuration. For more details on the issue upstream see: 
+https://github.com/golang/go/issues/24640
+* The BitBake version remains at 1.37.0 rather than being bumped to 1.38.0 as it should have been.
+* The sumo release is missing from the branch selection in Toaster. This has been corrected on the sumo branch and will be in the next point release.
+* The environment setup script produced by meta-ide-support has an incorrect PATH setup - see bug 12695. This has been corrected on the sumo branch and will be in the next point release.
 
-iQEzBAEBCAAdFiEEE8vjdGrpkXMshtfshnUrlOPRyboFAlr13s4ACgkQhnUrlOPR
-ybqlbAf+L7nQW8KZTzcluEfKRVfuzZalT9nt9EEBZ9/ICjGLYqwOHZU+pTvf2n7Z
-I0Ceswmaj3xxFsdVsFJtZjyC030IF1438MNSNo95oX+KPWdHZBpnMDaQ0qvJw4XD
-Yj2bP8JjpC4AzRYHLukAiu95I25wA3slWxJkZ0HTHjUxFDwRDVb6knnlf9Unf2+e
-RbKNYzHnJFI01eTqI7E9dyy0L0Ug7DnL0kCzshtBHzv77YYDWonaPsqcO3wGoLlq
-vgs9CedpNcIB7iCGJLX4iev+DJaHbJeKaLrFuue1XVUG1uJDFL+Xm3LwULGbU+Ju
-tsW9azBdaq8UZgZGLScb1sgNRdJVRQ==
-=eKgQ
------END PGP SIGNATURE-----
 
---60Puw2QzubueEqHme96ZUL7VY47WVKYdv--
+------------------------
+Migration instructions
+------------------------
+
+For details on changes that you might need to make when migrating to the
+Yocto Project 2.5 release from previous releases, please see the following
+manual section:
+ 
+http://www.yoctoproject.org/docs/2.5/ref-manual/ref-manual.html#moving-to-the-yocto-project-2.5-release
+
+
+-----------------
+Security Fixes
+-----------------
+
+* bind: CVE-2017-3142 and CVE-2017-3143, CVE-2017-3141, CVE-2017-3140
+* binutils: CVE-2017-15939, CVE-2017-15938, CVE-2017-15225, CVE-2017-15025, CVE-2017-15024, CVE-2017-15023, CVE-2017-15022, CVE-2017-15021, CVE-2017-15020, CVE-2017-14974, CVE-2017-14940, CVE-2017-14939, CVE-2017-14938, CVE-2017-14934, CVE-2017-14933, CVE-2017-14932, CVE-2017-14930, CVE-2017-14745, CVE-2017-14729, CVE-2017-14529, CVE-2017-14333, CVE-2017-14130, CVE-2017-14129, CVE-2017-14128, CVE-2017-13757, CVE-2017-13716, CVE-2017-13710, CVE-2017-12967, CVE-2017-12799, CVE-2017-12459, CVE-2017-12458, CVE-2017-12457, CVE-2017-12456, CVE-2017-12455, CVE-2017-12454, CVE-2017-12453, CVE-2017-12452, CVE-2017-12451, CVE-2017-12450, CVE-2017-12449, CVE-2017-12448
+* bluez5: CVE-2017-1000250   
+* busybox: CVE-2011-5325, CVE-2017-16544, CVE-2017-15873
+* curl: CVE-2017-1000254
+* dhcp: CVE-2017-3144
+* glibc: CVE-2017-15671, CVE-2017-16997, CVE-2017-17426
+* icu: CVE-2017-14952
+* lame: CVE-2017-9412, CVE-2017-9410, CVE-2017-9411, CVE-2017-13712
+* libpcre2: CVE-2017-8399
+* libvorbis: CVE-2017-14633, CVE-2017-14632, CVE-2018-5146
+* libxcursor: CVE-2017-16612
+* libxfont: CVE-2017-16611
+* libxfont2: CVE-2017-16611
+* libxres: CVE-2013-1988
+* nss: CVE-2017-7805
+* openssl: CVE-2017-3736, CVE-2017-3735
+* openssl10: CVE-2017-3736, CVE-2017-3735
+* patch: CVE-2018-6951, CVE-2018-1000156
+* perl: CVE-2017-12883
+* python3: CVE-2017-1000158
+* python3-native: CVE-2017-1000158
+* qemu: CVE-2017-17381, CVE-2017-15124
+* tiff: CVE-2017-99935, CVE-2017-18013, CVE-2018-5784
+* webkitgtk: CVE-2017-5753 and CVE-2017-5715
+* wget: CVE-2017-13089 CVE-2017-13090 CVE-2017-6508
+* xorg-xserver: CVEs 2017-12176, CVE-2017-12177, CVE-2017-12178, CVE-2017-12179, CVE-2017-12180, CVE-2017-12181, CVE-2017-12182, CVE-2017-12183, CVE-2017-12184, CVE-2017-12185, CVE-2017-12186, CVE 2017-12187
+
+
+-----------------
+Recipe Upgrades
+-----------------
+
+* adwaita-icon-theme: update to 3.26.0
+* alsa-lib: 1.1.4.1 -> 1.1.5
+* alsa-plugins: 1.1.4 -> 1.1.5
+* alsa-tools: 1.1.3 -> 1.1.5
+* alsa-utils: 1.1.4 -> 1.1.5
+* apr: 1.6.2 -> 1.6.3
+* apr-util: 1.6.0 -> 1.6.1
+* assimp: upgrade to version 4.1.0
+* atk: upgrade to version 2.26.1
+* at-spi2-atk: 2.26.0 -> 2.26.1
+* at-spi2-core: 2.26.0 -> 2.26.2
+* avahi: upgrade to 0.7
+* babeltrace: update to 1.5.4
+* bash: 4.4 -> 4.4.12
+* bind: update to 9.10.6
+* binutils: Upgrade to 2.30 release
+* blktrace: 1.1.0+gitX -> 1.2.0+gitX
+* bluez5: 5.46 -> 5.48
+* boost: update to 1.66.0
+* btrfs-tools: update to 4.13.3
+* busybox: 1.24.1 -> 1.27.2
+* cairo: 1.14.10 -> 1.14.12
+* ccache: 3.3.4 -> 3.3.5
+* clutter-gtk-1.0: update to 1.8.4
+* cmake: Upgrade to 3.10.3
+* connman: upgrade 1.34 -> 1.35
+* coreutils: upgrade to 8.29
+* cups: upgrade to 2.2.6
+* curl: upgrade to 7.58.0
+* dbus-test: upgrade to 1.12.2
+* dbus: upgrade to 1.12.2
+* debianutils: update to 4.8.4
+* dnf: update to 2.7.5
+* dtc: update to 1.4.5
+* e2fsprogs: 1.43.5 -> 1.43.8
+* epiphany: upgrade to 3.26.6
+* ethtool: upgrade to 4.13
+* eudev: bump up to version 3.2.5
+* expat: upgrade to 2.2.5
+* expect: update to 5.45.4
+* ffmpeg: update to 3.4.2
+* file: 5.31 -> 5.32
+* fontconfig: update to 2.12.6
+* freetype: upgrade to version 2.9
+* gawk: upgrade to 4.2.0
+* gcc6: Upgrade to 6.4
+* gcc: Upgrade 7.2 -> 7.3
+* gdbm: 1.13 -> 1.14.1
+* gdb: Upgrade to 8.0.1
+* gdk-pixbuf: update to 2.36.11
+* git: 2.13.3 -> 2.16.1
+* glew: update to 2.1.0
+* glib-2.0: upgrade to version 2.54.3
+* glibc: Upgrade to 2.27 release + bugfixes
+* glib-networking: update to 2.54.1
+* gnome-desktop3: Update to 3.26.2
+* gnupg: upgrade to 2.2.4
+* gnutls: update to 3.6.1
+* gobject-introspection: update to 1.54.1
+* go-dep: Upgrade to 0.4.1
+* go: add 1.10.1
+* go: Upgrade 1.9 to 1.9.4 stable release
+* gpgme: 1.9.0 -> 1.10.0
+* gsettings-desktop-schemas: update to 3.24.1
+* gst-examples: upgrade to latest revision
+* gstreamer1.0-libav: upgrade to version 1.12.3
+* gstreamer1.0-omx: upgrade to version 1.12.3
+* gstreamer1.0-plugins-bad: upgrade to version 1.12.3
+* gstreamer1.0-plugins-base: upgrade to version 1.12.3
+* gstreamer1.0-plugins-good: upgrade to version 1.12.3
+* gstreamer1.0-plugins-ugly: upgrade to version 1.12.3
+* gstreamer1.0-python: upgrade to version 1.12.3
+* gstreamer1.0-rtsp-server: upgrade to version 1.12.3
+* gstreamer1.0: upgrade to version 1.12.4
+* gstreamer1.0-vaapi: upgrade to version 1.12.3
+* gtk+3: upgrade to version 3.22.28
+* gtk-doc: update to 1.27
+* gtk-icon-utils-native: upgrade to version 3.22.28
+* gtk+: upgrade to version 2.24.32
+* gzip: 1.8 -> 1.9
+* harfbuzz: upgrade to version 1.7.5
+* hdparm: 9.52 -> 9.53
+* help2man-native: 1.47.4 -> 1.47.5
+* hicolor-icon-theme: update to 0.17
+* i2c-tools: upgrade to 4.0
+* icu: 60.1 -> 60.2
+* icu: update to 60.1
+* iproute2: upgrade to 4.14.1
+* iptables: 1.6.1 -> 1.6.2
+* iputils: update to 20161105
+* iso-codes: update to 3.77
+* iw: 4.9 -> 4.14
+* json-c: update to 0.13
+* json-glib: update to 1.4.2
+* kexec-tools: 2.0.14 -> 2.0.16
+* kmod: 24 -> 25
+* lame: 3.99.5 -> 3.100
+* less: 487 -> 529
+* libassuan: update to 2.5.1
+* libatomic-ops: upgrade to 7.6.2
+* libbsd: update to 0.8.7
+* libcheck: Upgrade to 0.12.0
+* libdnf: update to 0.11.1
+* libdrm: upgrade to 2.4.91
+* libepoxy: update to version 1.5.0
+* liberror-perl: 0.17024 -> 0.17025
+* libevdev: upgrade to version 1.5.8
+* libgcrypt: update from version 1.8.0 to 1.8.2
+* libgudev: update to 232
+* libinput: upgrade to version 1.9.4
+* libjpeg-turbo: upgrade to 1.5.3
+* libmpc: upgrade to 1.1.0
+* libnl: 3.2.29 -> 3.4.0
+* libogg: upgrade to 1.3.3
+* libpciaccess: update to 0.14
+* libpcre2: update to 10.30
+* libpng: Upgrade 1.6.31 -> 1.6.34
+* libproxy: upgrade to 0.4.15
+* librepo: update to 1.8.1
+* librsvg: update to 2.40.20
+* libsdl2: 2.0.5 -> 2.0.8
+* libsolv: upgrade to version 0.6.32
+* libsoup-2.4: upgrade to version 2.60.3
+* libtasn1: upgrade to version 4.13
+* libunistring: update version to 0.9.9
+* libunwind: 1.2 -> 1.2.1
+* liburcu: update to 0.10.1
+* liburi-perl: upgrade 1.72 -> 1.73
+* libva: upgrade to 2.1.0
+* libva-utils: upgrade to 2.1.0
+* libwebp: update to 0.6.1
+* libxcursor: update to 1.1.15 plus sec fixes
+* libxfont2: update to 2.0.3 with sec fix
+* libxfont: update 1.5.4 with sec fix
+* libxkbcommon: update to 0.8.0
+* libxml2: 2.9.4 -> 2.9.7
+* libxml-namespacesupport-perl: upgrade to 1.12.9
+* libxslt: update to 1.1.32
+* lighttpd: update to 1.4.48
+* linux-firmware: upgrade to 4c0bf11 revision
+* linux-libc-headers: update to 4.15.7
+* linux-yocto/4.12: update to v4.12.21
+* linux-yocto/4.14: update to v4.14.30
+* linux-yocto/4.15: update to v4.15.13
+* linux-yocto-dev: update to v4.16-rcX
+* llvm: Upgrade to 6.0 release
+* logrotate: 3.12.3 -> 3.13.0
+* lsbinitscripts: update to 9.79
+* lsb: update to 5.0
+* ltp: bump to release 20180118
+* lttng-modules: update to v2.10.5 for kernel 4.15
+* lttng-ust: upgrade 2.9.1 -> 2.10.1
+* man-db: replace the outdated man implementation
+* man-pages: 4.11 -> 4.14
+* mc: upgrade to 4.8.20
+* mesa: Upgrade to 17.3.8
+* meson: upgrade to 0.44.1
+* mmc-utils: Upgrade to latest revision (7bcad17117)
+* mpg123: update to 1.25.10
+* mtd-utils: Bump revision to 1bfee866
+* musl: Update to latest master (618b18c78e)
+* nasm: upgrade 2.13.01 -> 2.13.03
+* ncurses: 6.0+20170715 -> 6.0+20171125
+* nettle: update to 3.4 and cleanup
+* ninja: Upgrade from 1.7.2 to major release 1.8.2
+* nspr: update to 4.19
+* nss: update to 3.35
+* ofono: upgrade to version 1.22
+* openssh: update to 7.6
+* openssl: update 1.1 version to 1.1.0h
+* openssl: update to 1.0.2o
+* opkg: upgrade to version 0.3.6
+* opkg-utils: upgrade to version 0.3.6
+* orc: upgrade to 0.4.28
+* pango: upgrade to version 1.40.14
+* patch:2.7.5 -> 2.7.6
+* pciutils: upgrade to 3.5.6
+* piglit: upgrade to current git master
+* pigz: 2.3.4 -> 2.4
+* pinentry: update to 1.1.0
+* pkgconf: upgrade to version 1.4.2
+* powertop: update to v2.9
+* prelink_git.bb: Update recipe to newest commit
+* pseudo: update to latest master
+* psmisc: update to 23.0
+* ptest-runner: Upgrade to 2.1.1
+* pulseaudio: 10.0 -> 11.1
+* puzzles: upgrade to latest revision
+* python3-dbus: update to version 1.2.6
+* python3-git: update to 2.1.8
+* python3-native: update to version 3.5.5 to fix security issues
+* python3-numpy: upgrade to 1.13.3
+* python3-pip: update to 9.0.2
+* python3-pycairo: update to 1.15.6
+* python3-pygobject: update to 3.28.1
+* python3-six: update to 1.11.0
+* python3: update to version 3.5.5 to fix security issues
+* python-gitdb: upgrade to v2.0.3
+* python-numpy: update to 1.14.2
+* python-scons: upgrade to v3.0.1
+* python*-setuptools: update to 39.0.0
+* python: Upgrade both python and python-native to 2.7.14
+* qemu: upgrade to 2.11.1
+* quota: upgrade to 4.04
+* rpm: update to 4.14.1
+* rsync: update to 3.1.3
+* ruby: upgrade to 2.5.0
+* screen: upgrade to version 4.6.2
+* shared-mime-info: update to 1.9
+* slang: 2.3.1a -> 2.3.2
+* sqlite3: upgrade to version 3.22.0
+* strace: 4.18 -> 4.20
+* subversion: upgrade 1.9.6 -> 1.9.7
+* sudo: upgrade to 1.8.22
+* sysprof: update to 3.26.1
+* sysstat: upgrade to 11.7.1
+* systemd-bootchart: upgrade to v233
+* systemd-boot: upgrade to 237
+* systemd: upgrade to 237
+* systemtap: 3.1 -> 3.2
+* tar: 1.29 -> 1.30
+* tcl: update to 8.6.8
+* texinfo: upgrade to 6.5
+* tiff: 4.0.8 -> 4.0.9
+* time: 1.7 -> 1.8
+* trace-cmd: update to 2.7
+* tzcode-native: update to 2018d
+* tzdata: update to 2018d
+* u-boot: Upgrade to 2018.01 release
+* usbutils: 008 -> 009
+* util-linux: upgrade to 2.31
+* vala: update to 0.38.8
+* vte: upgrade to version 0.50.2
+* vulkan: upgrade to version 1.0.65.2
+* wayland : Bump to version 1.14.0
+* wayland-protocols: upgrade to 1.13
+* webkitgtk: update to 2.18.6
+* weston: Bump version to 3.0.0
+* wget: update to 1.19.4
+* x264: upgrade to latest revision
+* xdg-utils: update to 1.1.2
+* xf86-input-libinput: update to 0.26.0
+* xkeyboard-config: upgrade to 2.22
+* xorg-xserver: update to 1.19.6
+
