@@ -1,31 +1,104 @@
-Return-Path: <jrswdnan22@snkmail.com>
+Return-Path: <rudolf.streif@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D63AE013B5; Fri, 11 May 2018 09:51:51 -0700 (PDT)
+	id 6B339E0140D; Fri, 11 May 2018 10:28:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [62.142.5.107 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rudolf.streif[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from emh01.mail.saunalahti.fi (emh01.mail.saunalahti.fi
-	[62.142.5.107])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F801E010F5
-	for <yocto@yoctoproject.org>; Fri, 11 May 2018 09:51:48 -0700 (PDT)
-Received: from uwe1 (85-76-108-0-nat.elisa-mobile.fi [85.76.108.0])
-	by emh01.mail.saunalahti.fi (Postfix) with ESMTP id 1428A200CC;
-	Fri, 11 May 2018 19:51:46 +0300 (EEST)
-From: Uwe Geuder <jrswdnan22@snkmail.com>
-To: yocto@yoctoproject.org
-In-Reply-To: <9d01063271b7468f9d1b06a9b850a2c9@grupawp.pl>
-References: <9d01063271b7468f9d1b06a9b850a2c9@grupawp.pl>
-Date: Fri, 11 May 2018 19:51:46 +0300
-Message-ID: <87603u16fx.fsf@snkmail.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pl0-f68.google.com (mail-pl0-f68.google.com
+	[209.85.160.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA9E2E013EB
+	for <yocto@yoctoproject.org>; Fri, 11 May 2018 10:28:29 -0700 (PDT)
+Received: by mail-pl0-f68.google.com with SMTP id u6-v6so3653419pls.9
+	for <yocto@yoctoproject.org>; Fri, 11 May 2018 10:28:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to;
+	bh=JbUnPakvkFiysyJWbOb4OQHvvbM024zv6cxrhFmc+JQ=;
+	b=IX12Y8sDyZKbL9IK3KxMVv7JsZc+QK4ztfPp4pYmb+447t8L3ZIxjJO5mLV91UGsiy
+	UoVCUOu5Mt7nE0IRJaaofTCSvL8LmEmc8zhqRYV4oNcMR8i3To5ZNokTmvnWdPwPH5SD
+	5ZpRbNUzKIZdtHlQVrFi4taDNpEnCP9Oi3hOY4K3/Xryl3OFXMch7PrT059JhzIIVmBw
+	mHyemDqV2G+OAinsBikQeeZTQ+OdNTVH3la/gubuNnc5N7qeOYLP5WK6MweRM6ry0dSM
+	SlsTX1lQYb9l+/y50VfsRf5JpiC4M8geP1SWh869iTUX7pXiT/WVe7O8Qdr29nHrb+gG
+	YzOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to;
+	bh=JbUnPakvkFiysyJWbOb4OQHvvbM024zv6cxrhFmc+JQ=;
+	b=khZ2rLJlWww2LqwT0uSaRlTtCmqJhIFKoaYfpt0hhR8+11tjb4Bf3FbY/0fv8uY3dd
+	+3bZgZ71AKFaWhxWjRHoSqRvlCE72toCQg1jevcp7/dmz/P+xqDbiiIPRvkrOSr90jvf
+	3A1UPZbN6e3Tk6cm/CjkSa9+udeAXpEkN9fl+KHUpbF6iGhjBmx/WLwf/dViFdqjMchg
+	r0RTvQSRnWVtpTlgIBMj2QLEzpnmXQgTUDWDh+k1oskhR9LXBk0XMI0vewGOvPChiCvh
+	PAkNotS/NxZEqeOiyoPc27dHdpH43Nfgv5MBCscrCyhjVRPmfmTJh6E+DlQ9WiitT/Mm
+	sScA==
+X-Gm-Message-State: ALKqPwdDsTtMndeWcRxK3154NVLRwS8MssPRDrjGuhz7a7pR1f1cf2ri
+	7vmxdugay3K6KrKN+DqjB4BHDakj
+X-Google-Smtp-Source: AB8JxZqFjnzI1lr/Fll5TB4AjUEkWMbwA/NaskB8SkdFRQkpHEw2z+FdiDCWezabxay+r5PxstXCig==
+X-Received: by 2002:a17:902:e8:: with SMTP id
+	a95-v6mr6380799pla.274.1526059708634; 
+	Fri, 11 May 2018 10:28:28 -0700 (PDT)
+Received: from rjs-zotac.streifs.net (ip68-7-63-100.sd.sd.cox.net.
+	[68.7.63.100]) by smtp.gmail.com with ESMTPSA id
+	i127-v6sm6863527pfc.154.2018.05.11.10.28.27
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 11 May 2018 10:28:28 -0700 (PDT)
+To: akuster808 <akuster808@gmail.com>, "akuster@mvista" <akuster@mvista.com>, 
+	yocto@yoctoproject.org
+References: <1523758104-25257-1-git-send-email-akuster@mvista.com>
+	<43b42f5a-57dd-2c82-92cc-ea2d742870b8@gmail.com>
+From: Rudolf J Streif <rudolf.streif@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=rudolf.streif@gmail.com; prefer-encrypt=mutual; keydata=
+	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
+	vN0JVJf8p4e3anmLkFyASoeAKUumyGnf
+Message-ID: <9c97d64c-07a4-7499-4a70-611d659d26d4@gmail.com>
+Date: Fri, 11 May 2018 10:28:26 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.7.0
 MIME-Version: 1.0
-Subject: Re: Wrong file's ownership in rootfs.
+In-Reply-To: <43b42f5a-57dd-2c82-92cc-ea2d742870b8@gmail.com>
+Subject: Re: [meta-selinux][PATCH] libselinux: python-importlib is now part of python*-core
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,110 +110,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 May 2018 16:51:51 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 11 May 2018 17:28:30 -0000
+X-Groupsio-MsgNum: 41121
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="Hoy8CGwSJK4Lxy0ykZtHAmrJjfVrpVTLr"
 
-Hi!
+--Hoy8CGwSJK4Lxy0ykZtHAmrJjfVrpVTLr
+Content-Type: multipart/mixed; boundary="3v40fM83CyYKjW6V3HzHkZcQJtQoOSo15";
+ protected-headers="v1"
+From: Rudolf J Streif <rudolf.streif@gmail.com>
+To: akuster808 <akuster808@gmail.com>, "akuster@mvista" <akuster@mvista.com>,
+ yocto@yoctoproject.org
+Message-ID: <9c97d64c-07a4-7499-4a70-611d659d26d4@gmail.com>
+Subject: Re: [yocto] [meta-selinux][PATCH] libselinux: python-importlib is now
+ part of python*-core
+References: <1523758104-25257-1-git-send-email-akuster@mvista.com>
+ <43b42f5a-57dd-2c82-92cc-ea2d742870b8@gmail.com>
+In-Reply-To: <43b42f5a-57dd-2c82-92cc-ea2d742870b8@gmail.com>
 
+--3v40fM83CyYKjW6V3HzHkZcQJtQoOSo15
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
 
-On Fri, May 11, 2018 at 2:42 PM, Grzegorz Mierzejewski <mierzejewskigrzegorz@o2.pl> wrote:
-> Hello all,
->
-> I have the following problem concerning the file's ownership.
-> In my recipe I install the new file to rootfs and change it's ownership in
-> do_install function:
-> do_install () {
->     install -p -m 644 file1 ${D}/
->     chmod 777 ${D}/file1
->     chown ${USER_DUMMY} ${D}/file1
-> }
->
-> USER_DUMMY is properly created with useradd class.
-> Thing is, that file1 in rootfs do not have the proper ownership - it is
-> instead owned by root.
->
-> I've checked the pseudo/files.db in recipe's temp folder and ownership is
-> proper.
-> Also, "bitbake my_package -c devshell" shows proper ownership (as it uses
-> files.db).
-> But, the same thing done in image's temp folder results in bad (root)
-> ownership.
->
-> Of course, it happens in modified Jethro delivered by vendor.
-> Everything works fine on official Jethro for Wandboard.
->
-> Could anyone please give me some hints on what to look for as a root-cause
-> of such behavior?
-> Or at least describe the process of generating the files.db for image?
-> Is it generated based on each package's files.db?
->
+Echoing this: may I ask what the current maintenance status of
+meta-selinux is. It appears that no updates have been made for more than
+9 months. This is of course not to blame anybody but out of concern that
+the layer is falling behind even more and to find a solution.
 
-I don't know the exact answer. I hope somebody can tell how us to debug
-the problem systematically. I have debugged similar issues before
-without full success and here is what I happen to remember from the top
-of my head
+In addition to Armin's patches there are two patches submitted by Kai
+Kang at Windriver:
 
-1) Check whether the ipk contains the desired ownership
+* https://lists.yoctoproject.org/pipermail/yocto/2018-February/039917.htm=
+l
+* https://lists.yoctoproject.org/pipermail/yocto/2018-February/039918.htm=
+l
 
-1a) An ipk is an "ar" file containing 3 files. Extract it like this
-
-$ ar -x tmp/work/corei7-64-poky-linux/openssh/7.5p1-r0/deploy-ipks/corei7-64/openssh-foo_7.5p1-r0_corei7-64.ipk
+Curiously enough, the second patch has been applied to master but not
+the first one.
 
 
-1b) The files are contained in data.tar.gz
+There is also an issue with building SELinux with systemd. The layer
+enables auditing:
 
-See their owners in textual form using
-
-$ tar tvf data.tar.gz 
-
-(I'm not 100% sure how this relates the checking pseudo as you mention
-it. It might lead to the same result. But I feel checking the ipk
-contents is less dependent on low level implementation details.)
-
-
-2) Check out file  poky/meta/files/fs-perms.txt. It's documented in the
-mega manual.
-
-
-3) Could it be some postinst command that changes it? No detailed
-   commands from the top of my head :(
-
-
-4) Debug what you have in ROOTFS_POSTPROCESS_COMMAND
-
-$ bitbake -e my-image-recipe
-
-Maybe something there calls chown?
-
-
-5) If you cannot find/fix the root cause consider some like
-
-ROOTFS_POSTPROCESS_COMMAND_append = "; hack_protections"
-
-hack_protections () {
-  chown 42:42 /foo/bar
+meta-selinux/classes/enable-audit.bbclass:PACKAGECONFIG[audit] =3D
+"--enable-audit,--disable-audit,audit,"
+meta-selinux/recipes-core/systemd/systemd_%.bbappend:inherit
+${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'enable-audit', '', d)=
 }
 
-in your image recipe.
-
-This is completely untested pseudo code, modify until it works :) I have
-succcessfully used ROOTFS_POSTPROCESS_COMMANDS, but have never tried for
-chown. I am not sure whether you have access to symbolic user/group
-names in your recipe.  Depending on what you have done with useradd, the
-numerical id might not be fixed.
-
-I vaguely remember that I have used
-
-DEPENDS += "my-useradd"
-
-in a recipe. I think that should make the symbolic ids useradd has created
-available to another recipe. I have not done it in an image recipe.
+Apparently the --enable-audit switch is passed to meson when running the
+configure task, which meson does not appreciate. I am not that familiar
+with the audit feature nor with meson, so I currently have no idea on
+how to fix this the right way.
 
 
-Regards,
+Further, refpolicy_git does not build anymore as the YP specific patches
+do not apply anymore since upstream changed.
 
-Uwe Geuder
-Neuro Event Labs Oy
-Tampere, Finland
-uwe.gexder@neuroeventlabs.com (Bot check: fix one obvious typo)
 
+Thanks,
+Rudi
+
+
+
+On 05/07/2018 10:20 AM, akuster808 wrote:
+>
+> On 04/14/2018 07:08 PM, Armin Kuster wrote:
+>> Missing or unbuildable dependency chain was: ['meta-world-pkgdata', 'r=
+estorecond', 'libselinux', 'python-importlib']
+>>
+>> Signed-off-by: Armin Kuster <akuster@mvista.com>
+> ping
+>> ---
+>>  recipes-security/selinux/libselinux.inc | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/recipes-security/selinux/libselinux.inc b/recipes-securit=
+y/selinux/libselinux.inc
+>> index bd5ce8d..51d0875 100644
+>> --- a/recipes-security/selinux/libselinux.inc
+>> +++ b/recipes-security/selinux/libselinux.inc
+>> @@ -8,7 +8,7 @@ LICENSE =3D "PD"
+>>  inherit lib_package pythonnative
+>> =20
+>>  DEPENDS +=3D "libsepol python libpcre swig-native"
+>> -RDEPENDS_${PN}-python +=3D "python-importlib"
+>> +RDEPENDS_${PN}-python +=3D "python-core"
+>> =20
+>>  PACKAGES +=3D "${PN}-python"
+>>  FILES_${PN}-python =3D "${libdir}/python${PYTHON_BASEVERSION}/site-pa=
+ckages/*"
+
+--=20
+Rudolf J Streif
+
+
+
+--3v40fM83CyYKjW6V3HzHkZcQJtQoOSo15--
+
+--Hoy8CGwSJK4Lxy0ykZtHAmrJjfVrpVTLr
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEE8vjdGrpkXMshtfshnUrlOPRyboFAlr10rsACgkQhnUrlOPR
+ybrLqQgAgG69qTSHo4D1ldXve8kybPa658/v1VdTf/V/Kt5Bu9Po/Bcs+Mfv/oo/
+ZLfQqwx4vB/SY05uVa0gU8HZvgcNhdiVJuSCFssTLwqRpd1uWHpm2zZK84J+39g5
+xzJJND5d+pNHnCAvS7HLOUID9DgGUWsKJwWmyZIDgOd+wfN5p+0ErUFWY2XrcL2A
+ixc6BLq9R6JNslTuWOMonD1VdYoilwnPDV0Pveqww+C/9vcTgZye+qNBREp6y3C4
+eBb5ks1pWd0wP50R8FU6mW9IOMqFkg3CXW9l2zFF6Lsl0Rc5pxwQWYZL109Hvlio
+Vh9KoPtN2KPhQBXPy3Yldajiruaheg==
+=8sga
+-----END PGP SIGNATURE-----
+
+--Hoy8CGwSJK4Lxy0ykZtHAmrJjfVrpVTLr--
