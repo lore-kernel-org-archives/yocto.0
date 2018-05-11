@@ -1,41 +1,78 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1599DE00E85; Thu, 10 May 2018 17:05:52 -0700 (PDT)
+	id B52D3E00E85; Thu, 10 May 2018 17:56:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAB61E009CF
-	for <yocto@yoctoproject.org>; Thu, 10 May 2018 17:05:50 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	10 May 2018 17:05:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,387,1520924400"; d="scan'208";a="40046489"
-Received: from lilyfoo-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.139.109])
-	by orsmga007.jf.intel.com with ESMTP; 10 May 2018 17:05:44 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 11 May 2018 12:04:13 +1200
-Message-ID: <3277264.MICTcM6872@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <20180510150603.m2u5s53z6c7zc3uh@nyx.americas.hpqcorp.net>
-References: <CAMTWR-MFckD=GaqL-iteivzh7fPn+MHtYES+gGkWZyOMu7E9sQ@mail.gmail.com>
-	<CAJTo0LaOOAhnPbUJ2DfWyaty5GM4JBNrGS-+44jt8p+iO4+kqA@mail.gmail.com>
-	<20180510150603.m2u5s53z6c7zc3uh@nyx.americas.hpqcorp.net>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f50.google.com (mail-pg0-f50.google.com [74.125.83.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34AB6E009CF
+	for <yocto@yoctoproject.org>; Thu, 10 May 2018 17:56:05 -0700 (PDT)
+Received: by mail-pg0-f50.google.com with SMTP id i194-v6so1692834pgd.0
+	for <yocto@yoctoproject.org>; Thu, 10 May 2018 17:56:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=o1MVnUvflWQrl5mTOJEMbU4xJ+wEYCFu0C3ONjBG5/c=;
+	b=utHFvT/OYBMggP7A2yzkvXHD5ZbApcfb+z57G3Spfu2ZcUQCDX2iVSG96CJ9ScfJeU
+	fwbLOc2UMmV8a2tzZCIB7d8eANJEQj7e8Z6tVes36DMta3/pBXeCF5j+d4ZpFBZNjyEJ
+	TYNf8tuTuGap0llxH5t8giCE6SWvxcdAZId5Ns2dxg2j0JlvDepMRRx6OtfuZYASxN7M
+	Z0p9vrY+NcrlMM0YqE3WgRFr/HhKVOpdVYXsXjhxjQJ2OvMg9M+Bw6o1YlEXOSjI2PD/
+	s4wtRqtKM1OfInn1isTFFxeCp/mO5iMq1xMzPNewJj/XS5jb5MZadGDwFallkBAKacaF
+	j1Gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=o1MVnUvflWQrl5mTOJEMbU4xJ+wEYCFu0C3ONjBG5/c=;
+	b=mOJskDAUNar8SZ0z6rmcFWMJpIh2+t57vRuAgtXu3Upd5c3YRRvoFrVRh5SAT6yjDH
+	2y8BTwANkOPERZkFEnKQWCyHcvMox1QUGoQm6nUMngWpY+7OrdYljafpYHdy7t2MBsWz
+	XBSCBjk4TbxBYlr/eFqrCcKfN+1Gxxg9YcJQxHjkR20VkIKUV2DZod9MOy8k3JokbZzm
+	oq+dkoyeRtQmmcqYB7a75HCQG+KLpVQGraROP3GKDnDFyFS2Er/DtEAggYtMTfUyWG1F
+	2trY3NsKGEdU5Li1vUGPSC38Pi2hVngJGKesKHduNmutL56WBuFoXDwEK0Geq5PkeqYi
+	tWcg==
+X-Gm-Message-State: ALKqPwfOOJ9ii10sibHW6vHPhPoe7NleT/y94PeTHt8ThOgQDonv/0S4
+	/ZYXEgKllDzpG73OmL53sW7TGJnCXn5ORNUqwT0=
+X-Google-Smtp-Source: AB8JxZpdfqFzypmV/yt2MbKSmVZ3aE6qT3OzgIFiXlOxNxJhOAODvs141Ca/8rSvdmoXnImsqRXDF8N96nns7wuhQ4A=
+X-Received: by 2002:a62:7f91:: with SMTP id
+	a139-v6mr3359839pfd.25.1526000165357; 
+	Thu, 10 May 2018 17:56:05 -0700 (PDT)
 MIME-Version: 1.0
-Cc: Piotr Piwko <piotr.piwko@gmail.com>
-Subject: Re: Check IMAGE_FEATURES content in recipe
+Received: by 10.236.139.145 with HTTP; Thu, 10 May 2018 17:55:34 -0700 (PDT)
+In-Reply-To: <CAJ86T=UfXtgtaWQyJbrhW40MJFW9YAArB3CshMxy5e5f9Cg_=Q@mail.gmail.com>
+References: <CAMKF1spa1bbrUjQWbhdUw3C4Cxu99fU=Be3sEm+SYFNq_oxEKw@mail.gmail.com>
+	<CA+chaQcUU=Dew1cATDBpuA2_f_eh1=DAyEMaDHfVx7kY88rZhg@mail.gmail.com>
+	<8d962430-ac63-5e97-fd32-2c0464c62acb@gmail.com>
+	<20180510191145.GA1954@jama>
+	<CAJ86T=Xz+2neJPBw41_sFxd977xp=zznsgzFdbeHJ-aysJNk+g@mail.gmail.com>
+	<20180510214325.GC1954@jama> <20180510220735.GD1954@jama>
+	<CAJ86T=UpZ0+HTqre2Z4eAPM9LY_eH1EUO=e1v0sz7FPe4+8aRw@mail.gmail.com>
+	<CA+chaQcTPwJy+dL6GvBKJTcZuiVUiztVqEDXmSwZ==b53m_mcQ@mail.gmail.com>
+	<CAJ86T=XkBkKhK6mwqxnFA1CkaV5swjGKsdNv_7E9fgFa=qhdCw@mail.gmail.com>
+	<20180510225017.GE1954@jama>
+	<CAJ86T=UfXtgtaWQyJbrhW40MJFW9YAArB3CshMxy5e5f9Cg_=Q@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 10 May 2018 17:55:34 -0700
+Message-ID: <CAMKF1soAQYfL+gwsEmt6bZv_42pO_F5Gsb0CxUrdWueaja50hg@mail.gmail.com>
+To: Andre McCurdy <armccurdy@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>,
+	openembedded-devel <Openembedded-devel@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] GCC 8.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,43 +84,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 May 2018 00:05:52 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 11 May 2018 00:56:06 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On Friday, 11 May 2018 3:06:11 AM NZST Marcelo E. Magallon wrote:
-> On Thu, May 10, 2018 at 10:22:34AM +0100, Burton, Ross wrote:
-> 
-> >$ bitbake image-foo image-bar
-> >
-> >image-foo and image-bar both contain recipe-flob.  recipe-flob will be
-> >built *once* to generate the packages, and those packages used to build
-> >both images.  If image-foo is read-only and image-bar is read/write, the
-> >*same packages* will be reused.  recipe-flob has no idea that foo is
-> >read-only and bar is read/write because the IMAGE_FEATURES assignments are
-> >specific to those image recipes.
-> 
-> When dealing with a somewhat similar problem, what I've done is 
-> that my-recipe.bb generates two packages (my-package-a, 
-> my-package-b) and the images select which of the two packages 
-> they want to use.
+On Thu, May 10, 2018 at 4:11 PM, Andre McCurdy <armccurdy@gmail.com> wrote:
+> On Thu, May 10, 2018 at 3:50 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
+>> On Thu, May 10, 2018 at 03:40:53PM -0700, Andre McCurdy wrote:
+>>> On Thu, May 10, 2018 at 3:38 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
+>>> > see
+>>> > http://lists.openembedded.org/pipermail/openembedded-core/2018-May/150654.html
+>>>
+>>> Removing -fno-omit-frame-pointer isn't the same as adding
+>>> -fomit-frame-pointer. Frame pointers may get enabled depending on the
+>>> optimisation level etc (ie not only by -fno-omit-frame-pointer).
+>>
+>> Should I send v2 adding -fomit-frame-pointer instead of removing
+>> -fno-omit-frame-pointer?
+>>
+>> The v1 fixes the issue for me with default config + DEBUG_BUILD.
+>
+> The v1 patch isn't wrong, it's just incomplete (the problem could come
+> back if someone changes optimisation level or switches gcc to clang,
+> etc).
+>
+> My choice would be a v2 patch which adds -fomit-frame-pointer to
+> CFLAGS unconditionally for all ARM builds when Thumb is enabled. That
+> should fix the problem for all optimisation levels etc and avoids
+> building the main strace binary differently depending on whether or
+> not ptest is enabled.
 
-Right, that's another solution.
-
-FYI I have covered these in the technical FAQ:
-
-  https://wiki.yoctoproject.org/wiki/Technical_FAQ#How_do_I_change_how_my_recipe_is_built_depending_on_what_image_I.27m_building.3F
-
-(One day we'll figure out how to place this somewhere where people can more
-easily find it).
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
-
+explicitly adding this option is a poor choice especially for debug
+builds where we should
+let the -On level decide and not explicitly ask for either
+enable/disable frame-pointers
+that will also make it compiler proof.
 
