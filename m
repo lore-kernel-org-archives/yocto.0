@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <sunil.mukundan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6FD98E01145; Fri, 11 May 2018 23:10:45 -0700 (PDT)
+	id 18EF9E01995; Sat, 12 May 2018 17:44:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (sunil.mukundan[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
+	*      [209.85.220.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,53 +19,44 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58DBCE00EBE
-	for <yocto@yoctoproject.org>; Fri, 11 May 2018 23:10:43 -0700 (PDT)
-Received: by mail-pf0-f196.google.com with SMTP id j20-v6so3657466pff.10
-	for <yocto@yoctoproject.org>; Fri, 11 May 2018 23:10:43 -0700 (PDT)
+Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00778E00C4F
+	for <yocto@yoctoproject.org>; Sat, 12 May 2018 17:44:34 -0700 (PDT)
+Received: by mail-qk0-f178.google.com with SMTP id l132-v6so7338898qke.3
+	for <yocto@yoctoproject.org>; Sat, 12 May 2018 17:44:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=wkOvjJsXvUru0y3NURklI+CUij60gAYevyKik3A1nZw=;
-	b=FKVKEiYyu/1ug9a3UKdySJPgJ3iRrSTy+N8b+qQuJ8Z+VRBig1bt4Nhmk1Mij0WZkL
-	IO3Lo6mgq5F7hYw4zzM+3thUtTf6ZATXo7M9Jbgs8E+NnlBLjammHQOSmReXEhAAK5lb
-	7Ke8zQWctigYTua6M7TkV4stT85GnDj8To9r/WJCI5nJrkQYnOkdIUfqoZTSp+T7RwX4
-	Gt9TtnXfzdAHk6WOu7zCm+CefkN64rQUj2CJh4opQPkPP8p+cdc+bWb2/X7+HQQNGew5
-	J1GPrNDYbjkFLpgt+DbWulDuA0rwXBUaSq0rMUl7ZmZTSXHE1clAVFH7UNVDEwW6bUOV
-	2B6Q==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=9khqOFxkHC9htNw6lU0NXPtGZdx0lWvtcsaIRpJz5aE=;
+	b=Y38TbJCEkDwnB2p/b3UnzBiRfff35akNZdVbKbJBUt1ino2h4ALvSlj/vk7dnSdAde
+	IhMQj9dmwJKybMSVoH7+HjI9j+9k8XgAeMqJlCkaUJysaU1rryOqLQhLXmAkoVnX+pby
+	HGwXj5rUtlbAVtoc6zOa8QceuOSrY+EN6CNu9PV6FMbzHf7vt2kWsckft+3nW2rk/x8s
+	BV/JOdgATpWwkZiHnvX3d4tyuhicZ7E2nk5meLtH8bcgsayfkrl+927TucdlM2LqhtCS
+	M2QKw8xJyblgzcavUZe6vhPpqDE1aZcjxhkGkiasD+PuzBZ0Rmej5f8STN6TkJVvaW/G
+	6m/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=wkOvjJsXvUru0y3NURklI+CUij60gAYevyKik3A1nZw=;
-	b=VFNrYK0XJp93QLLBus/Eq8hVvRSK3k2ViQAmt/KSz1f3x9Ie+u5wNRU+08zPs7Vlcu
-	EcKnc4UwL+rxFeOuOaS7qxKnt5DJyslNznjo13+Lhf7ucOkIfKklMNtKFRH8CC3jTw8C
-	9xTY2cmizMa0iNpKdgj8cH5Uu8EqbmpORCkdjtJlPSWFYc8AEzmFP3irOqnj8ZlT8eWH
-	n0mv5YbE/NWH1uegkgatJNG46H2/qbKJ+CsXXtz8bZeBLyY3HLe740TaWemk2SQev7yT
-	AGYKjkjY3eWvPAWy1amKlggSG+HWdPxzdmZdQePDYtEdSuDjZPnjlSBjNIczwDxeLs06
-	dPkA==
-X-Gm-Message-State: ALKqPwfssSLjxU35m9C5kUbq6oxX4cI28xbPAYKvsbc7WVnAmXCmR1zs
-	rMKgSXt4tODQuglxYgdZtwY6B1XPV5LR0LtiuI0=
-X-Google-Smtp-Source: AB8JxZosAKcmjYqw8Dlz2KumPk1vSp895bvrHqzORvuIo+f4tyBRF8gbC3bJVfjeqkAGGxor0J7NnZlboq+NDlAU7B4=
-X-Received: by 2002:a62:828c:: with SMTP id
-	w134-v6mr1861816pfd.138.1526105443079; 
-	Fri, 11 May 2018 23:10:43 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=9khqOFxkHC9htNw6lU0NXPtGZdx0lWvtcsaIRpJz5aE=;
+	b=i7w8plJivN6MXgaPteTx8/oyo/79fwAStOzGmcOZpYSaS80vdSsqnREkHI9dzhROaZ
+	Ah9mOw3z3ViLqsRV2BTXkGars6fAGgs97WysEK/diSWpMoWBPZ/hrK/24sUmztzizowZ
+	PU9dAllDo86eaHOP3YbeUf40+YZ2Hjat0FB3CPIwprqbBy5HdvMittdEjtsi5svOHYrd
+	JAM0A6+WraquKdvZpG+1J0eBylStyMHZu1tEAMww3b2Fk8TPXQjLAyQIjq5aa8EAvdLY
+	6o176fA4sKyT5gz3tWbVfw4VnjC4I1RMMzP9VVIOpRCVeUOux1D9W26Ex9c8I0XclojR
+	vwrg==
+X-Gm-Message-State: ALKqPwd4MJxwq6IaDcEJmoYHevxShbpjTy10th3uL5C6fUQvJflR/5nK
+	xHrpj7A3CCG7wUzdQ/3/s2mNc0E6DrElLxRKCvQE1Ja+
+X-Google-Smtp-Source: AB8JxZo0xsOXTxgqEKTdZC0OXXzTQJ39gcWmBLx5WWQxWLnDAvWWVGTv3QAr0l6DLIpblGyNnsyZBnacfLlZ1HECzvs=
+X-Received: by 2002:a37:7e47:: with SMTP id
+	z68-v6mr3339871qkc.115.1526172273726; 
+	Sat, 12 May 2018 17:44:33 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a17:90a:8b91:0:0:0:0 with HTTP; Fri, 11 May 2018 23:10:12
-	-0700 (PDT)
-In-Reply-To: <CAJTo0LYmyzY67JC=72OMRBRH=8juBSnAVaYUKB6ENZ9koqPqTA@mail.gmail.com>
-References: <CAMKF1spa1bbrUjQWbhdUw3C4Cxu99fU=Be3sEm+SYFNq_oxEKw@mail.gmail.com>
-	<CAJTo0LYmyzY67JC=72OMRBRH=8juBSnAVaYUKB6ENZ9koqPqTA@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 11 May 2018 23:10:12 -0700
-Message-ID: <CAMKF1spiysRSaNDtaou+Bq7Ss3xLefPf1HnZsdXKUKUbBoWtUQ@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [RFT] GCC 8.1
+From: Sunil Mukundan <sunil.mukundan@gmail.com>
+Date: Sat, 12 May 2018 17:44:20 -0700
+Message-ID: <CAD0Q=OcyewS7Fw075bQ3pD6r_f6_Ncvx38ZE3H1F72=oVKcUww@mail.gmail.com>
+To: yocto@yoctoproject.org, 
+	EEF480D2AA622D48BD0D761FB54F5B1BE0D57D@aresmail.spectra.netz
+Subject: Re: meta-virtualization -> docker not packaged when using PACKAGE_CLASSES ?= "package_deb"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,98 +68,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 12 May 2018 06:10:45 -0000
+X-List-Received-Date: Sun, 13 May 2018 00:44:36 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Ross
+> The build process aborts at some point within do_rootfs, stating something
+like that the package 'docker' could not be found. I tracked down the
+problem to docker's
+  >build/tmp/work/<something>/docker/<version>/deploy-debs/ directory. I
+found the following packages:
 
-Thanks for testing
+> docker-contrib_17.06.0+gite639a70fbe999d96354a5bcf560231b7b8aa935c-r0_amd64.deb
+> docker-distribution-dev_v2.6.2-r0_amd64.deb
+> docker-registry_v2.6.2-r0_amd64.deb
+> docker-dbg_17.06.0+gite639a70fbe999d96354a5bcf560231b7b8aa935c-r0_amd64.deb
+> docker-distribution-ptest_v2.6.2-r0_amd64.deb
+> docker-distribution-dbg_v2.6.2-r0_amd64.deb
+> docker-ptest_17.06.0+gite639a70fbe999d96354a5bcf560231b7b8aa935c-r0_amd64.deb
 
-I looked at failures and one of them is
+I hit this issue too, basically the 'deb-pkg' building failed while
+building the docker package.  Since the 'deb_write_pkg' function in
+'meta/classes/package_deb.bbclass' file did not catch exceptions and print
+out an error when it happens, it failed silently.
 
-RESULTS - kernelmodule.KernelModuleTest.test_kernel_module - Testcase
-1541: FAILED
+Coming to the reason why the deb-pkg building failed:
+basically the deb package's CONTROL meta data file has a line that lists a
+deb package's dependency. In the case of docker this line ends up looking
+like this:
+"Depends: foo1, foo2, foo3, virtual/containerd, virtual/runc"
 
-and this is the compile error.
+when we pass this CONTROL file to the deb-pkg utility, it barfs saying that
+the '/' character is not allowed
+sunil@sunil-dev:~/yoctocache/poky/build$
+./tmp/work/qemuarm64-poky-linux/core-image-minimal/1.0-r0/recipe-sysroot-native/usr/bin/dpkg-deb
+-b
+/home/sunil/yoctocache/poky/build/tmp/work/aarch64-poky-linux/docker/17.06.0+gite639a70fbe999d96354a5bcf560231b7b8aa935c-r0/packages-split/docker
+/home/sunil/yoctocache/poky/build/tmp/work/aarch64-poky-linux/docker/17.06.0+gite639a70fbe999d96354a5bcf560231b7b8aa935c-r0/deploy-debs/
+dpkg-deb: error: parsing file
+'/home/sunil/yoctocache/poky/build/tmp/work/aarch64-poky-linux/docker/17.06.0+gite639a70fbe999d96354a5bcf560231b7b8aa935c-r0/packages-split/docker/DEBIAN/control'
+near line 23 package 'docker:arm64':
+  'Depends' field, invalid package name 'virtual/containerd': character '/'
+not allowed (only letters, digits and characters '-+._')
 
-pager.c: In function 'pager_preexec':
-pager.c:36:12: error: passing argument 2 to restrict-qualified
-parameter aliases with argument 4 [-Werror=restrict]
-  select(1, &in, NULL, &in, NULL);
-            ^~~        ~~~
-cc1: all warnings being treated as errors
-mv: cannot stat '/usr/src/kernel/tools/objtool/.pager.o.tmp': No such
-file or directory
+Digging a little deeper this "Depends" list is built from the RDEPENDS
+variable in the docker_%.bb file and that file uses this style (i.e
+virtual/containerd) to list the dependencies. Now removing just replacing
+this with 'containerd' instead of 'virtual/containerd' breaks the bitbake
+build system and leaving it as-is breaks the deb packager.
 
+The solution i had was to fix the way the 'Depends' list is built in the
+'deb_write_pkg' function. bitbake's bb.utils.explode_dep_version2 function
+is used to achieve this. So i basically checked and ignored the segment of
+the string before the '/' when building the '/' depends list. For
+completeness, i also caught the exception and printed a NOTE in the log
+informing the user of this situation. I am new to yocto and i am not sure
+how the exceptions unroll so i did not really do the right thing there but
+atleast this leaves a clue
 
-Firstly I must say that I am impressed with autotest, We are building
-on-device toolchain and then downloading a kernel and building it to
-test i.. bravo
+sunil@sunil-dev:~/yoctocache/poky$ git diff
+diff --git a/bitbake/lib/bb/utils.py b/bitbake/lib/bb/utils.py
+index c540b49..8c90d64 100644
+--- a/bitbake/lib/bb/utils.py
++++ b/bitbake/lib/bb/utils.py
+@@ -200,12 +200,19 @@ def explode_dep_versions2(s):
+      lastver = ""
+      incmp = False
+      inversion = False
++
+      for i in l:
+          if i[0] == '(':
+              incmp = True
+              i = i[1:].strip()
+              if not i:
+                  continue
++        # deb packages don't allow '/' as a special character
++        # RDEPENDES potentially could have it legitimately
++        if '/' in i:
++            i = i.split('/')[-1]
++            fp.write(str(i))
++            fp.write('\n')
 
-Problem here is that poky pins linux-yocto to 4.14, with gcc8 we need
-to use 4.15.x
-eventually 4.14 will get fixed but until then use 4.15,
-the test subject component that is being compiled
-is not ported to gcc-8, not sure how we can improve it. Is it
-compiling linux-yocto kmods ? or external kmod ? We need to patch the
-test before building,
+          if incmp:
+              incmp = False
+diff --git a/meta/classes/package_deb.bbclass
+b/meta/classes/package_deb.bbclass
+index 5d29793..bb3efc8 100644
+--- a/meta/classes/package_deb.bbclass
++++ b/meta/classes/package_deb.bbclass
+@@ -320,6 +320,8 @@ def deb_write_pkg(pkg, d):
+                                  stderr=subprocess.STDOUT,
+                                  shell=True)
 
-I think the mesa error is new with mesa-18 I havent seen this on my
-end. Its showing up when we enable llvmpipe which is not general
-default so it might not happen in general.
++    except:
++        bb.note("error packaging %s" %(root))
+      finally:
+          cleanupcontrol(root)
+          bb.utils.unlockfile(lf)
 
-selftest is failing like this
+With this patch things worked for me. i did not spend time to find out why
+it selectively affects on a small subset of people as opposed to everyone
+who are using deb packages and meta-virtualization. Hope this helps
 
-| Copying files into the device: __populate_fs: Could not allocate
-block in ext2 filesystem while writing file "ldconfig"
-| mkfs.ext4: Could not allocate block in ext2 filesystem while
-populating file system
-| WARNING: /tmp/eSDKQAfqaczn6s/tmp/work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/temp/run.do_image_ext4.15615:1
-exit 1 from 'mkfs.$fstype -F $extra_imagecmd
-/tmp/eSDKQAfqaczn6s/tmp/work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/deploy-core-image-minimal-image-complete/core-image-minimal-qemux86-64-20180511212710.rootfs.$fstype
--d /tmp/eSDKQAfqaczn6s/tmp/work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/rootfs'
-
-not sure if I understand it fully but it sems system ran out of disk space.
-
-
-On Fri, May 11, 2018 at 3:05 PM, Burton, Ross <ross.burton@intel.com> wrote:
-> I threw the branch at the Yocto Project autobuilder today, produced a
-> number of failures:
->
-> http://errors.yoctoproject.org/Errors/Latest//?filter=b23dba19607412c8cc7d267d95354d65f5631088&type=commit
->
-> Ross
->
-> On 5 May 2018 at 01:26, Khem Raj <raj.khem@gmail.com> wrote:
->> Hi All
->>
->> As you might have noticed that gcc 8.1 was released this week, I am
->> calling out for some testing help on testing branch so we can weed out
->> issues you might see in your setups. so if you have your
->> builders idling over weekend, then you know what they can do this weekend :)
->>
->> Highlighted changes are
->>
->> https://gcc.gnu.org/gcc-8/changes.html
->>
->> and porting doc is
->>
->> https://gcc.gnu.org/gcc-8/porting_to.html
->>
->> The branch is here
->>
->> http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/gcc-8
->>
->> Its uptodate on top of current master oe-core
->>
->> May fourth be with you !!
->>
->> Cheers!
->>
->> -Khem
->> --
->> _______________________________________________
->> Openembedded-core mailing list
->> Openembedded-core@lists.openembedded.org
->> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+- Sunil Mukundan
 
