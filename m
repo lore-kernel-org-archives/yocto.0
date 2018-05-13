@@ -1,62 +1,80 @@
-Return-Path: <stefano.cappa.ks89@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33656E01892; Sun, 13 May 2018 13:59:07 -0700 (PDT)
+	id B96EDE0109E; Sun, 13 May 2018 16:35:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (stefano.cappa.ks89[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.174 listed in list.dnswl.org]
+	*      [209.85.192.193 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f174.google.com (mail-ua0-f174.google.com
-	[209.85.217.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB693E00CC8
-	for <yocto@yoctoproject.org>; Sun, 13 May 2018 13:59:05 -0700 (PDT)
-Received: by mail-ua0-f174.google.com with SMTP id v17-v6so7021078uak.6
-	for <yocto@yoctoproject.org>; Sun, 13 May 2018 13:59:05 -0700 (PDT)
+Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
+	[209.85.192.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DE93E00DA5
+	for <yocto@yoctoproject.org>; Sun, 13 May 2018 16:35:19 -0700 (PDT)
+Received: by mail-pf0-f193.google.com with SMTP id a14-v6so5123747pfi.1
+	for <yocto@yoctoproject.org>; Sun, 13 May 2018 16:35:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=f5doeT/C65XWJ8xtGniFDRGCT0sUEyZowuKmRCJi+So=;
-	b=tCxGGod5haVUf8aLP0f3Qel1nJe785kK22AB3ZxwGiZyucuWAmgqfSLBuTvShJNtR2
-	8BehTM+B++THZhci5NJycC1Olkz1qbLK4YJkci4FUD3wyYnM/2O/vSid2q5+Qqd/C1y0
-	Phw+kx7NQKdmGbcVFPSuxetXmzUnDKPokM9uKIACvD6o8C7wA+UL+wvS6PaK1YpNCtPn
-	vOLrN3EIkFzUSPjmXF8D174ULAeE3vVE/k18pffL/q26jQLddZ/0AweuzCNU3IG3IuPY
-	cBotB8MNyezyIMiWmU/aeAf5CwGnUmi4yIaNoTYBLWW5tlDy2rsmLUxx3FgbnlyC5Jy4
-	RxQA==
+	h=subject:to:cc:references:from:organization:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=0jLsZcJRI+y9mipqhQVXZv58gqzZBcWiQ1W2mcHLtMc=;
+	b=gn+1gMSIDGuDV8I/D7LrR4ptpdefoHBP8erryidWw/rgSkFF1dj0HtyZe/+0bRcEb7
+	tR4+YbqhwoMdK/fhl/jn1/eY1WQqeHi12w1zXQEkNN5Bx4AKdzPfJjKAYnulJmyxBNZC
+	24NsNakpoWKNWID6WY1IBz/fnEV324SvIjW5aYA2/mx3u0lsWS5Thhiz6+952t4sbssk
+	8PTEPxI48+1QsAQa5ZgA7aNbtdTR3BJZeV9gkw9Uo4ppSD6yGqc5es+A6mjnAnqWZR3q
+	jfvsXGJbTsw03fa6ZnxMOyRB3epXuj+tyS4St558FEJqUDori5ON2NN9On3+QJcjxsIB
+	FOZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=f5doeT/C65XWJ8xtGniFDRGCT0sUEyZowuKmRCJi+So=;
-	b=P8C3gQU0jLUVZ8+/nTypte6Y9GzQWXXaM6l0+oZMO/bgWFnM9Or31qjgOLlFdZ2DMp
-	tUMOljKEDvj+CvvWJN+4UJTw64iXTLK4knoJPTaQxKzscpASdB+Lva2qwaDf2zssvLQ4
-	jFikUML68aCnnJCReVZbAX3XLpSCNQD3si69g33nu74rm3DdIiQoelUgkBfaz9iQoW40
-	Y1Mmuv6keUheRLqcxTxzNaG0/afDK0wXRmwfKi9KgA2v4+HYmfOM1lQOkYmMLmuzgfHt
-	lN/UC0nW/u0LxHQHSZ1wi+pdhsbNCTcYrREVlLWC74aiaHuds6UL5FIjLnZDcltcPoeY
-	8MqQ==
-X-Gm-Message-State: ALKqPweUoVB6ku/JiA6fcZ3jcs9KXSLv2AMfxaAV2bVcUigh1lfjocPh
-	S/fpbdwyJRRA4F7tEHvEIKEGK389z3mtgISU8O6+Jw==
-X-Google-Smtp-Source: AB8JxZpWac77A/oBPnNxnEdgEYgf2YP463r9vdthKMoX1VM897EnQm9tADFYAZzLorh+A4b8Cz9NpqAC52DDvVySv4U=
-X-Received: by 2002:a9f:309a:: with SMTP id
-	j26-v6mr9315528uab.71.1526245144728; 
-	Sun, 13 May 2018 13:59:04 -0700 (PDT)
+	h=x-gm-message-state:subject:to:cc:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-language:content-transfer-encoding;
+	bh=0jLsZcJRI+y9mipqhQVXZv58gqzZBcWiQ1W2mcHLtMc=;
+	b=LAsUbGfWjiELI3YgbM6feiOuSB+hWEfYcNa78+XewfGHl7coukdfeTHyPWSZgxbif2
+	Iu0Mp2ZDVDCkTOFomcxoP/Dpu4eO+2lA3HwhE3842dcxm2MWr/16mAjjCwvt7r4i8rCQ
+	qelUmNHQgUwaJEMndGTO20k6/SyApq+H+gOcWPr/iY959gyD7ef+UQsspnkdShaMQ6sy
+	Ff3y0yx+vcGh58b9GGY0UilnvKnUZSHVAmXLEQ32aLtERU4MZxgu7lxeb74wNzAonUuv
+	qo4iMfcF/7z3s/S+ZV5JsKLzw8vznRGvHT1pgdqmcotpIh7Hk9cUbeKGJpy/WJcs8EOj
+	CkwQ==
+X-Gm-Message-State: ALKqPwfIBu+NslTEvfNJRT13yJmEEE4yEV/x3jf9yEyVbH5/XgTkiIZT
+	GDbHBnC7KDgWKM50V3m+MuqE1mEN
+X-Google-Smtp-Source: AB8JxZoh4aZR/NowurLel+5JxOX4cWphyjzT/LYYYb/40rpkQeLVsft5TJksP6xH0/H/y0jirmriqQ==
+X-Received: by 2002:a63:990a:: with SMTP id
+	d10-v6mr6494573pge.166.1526254518181; 
+	Sun, 13 May 2018 16:35:18 -0700 (PDT)
+Received: from hermes.local ([2601:646:877f:9499:346a:79fe:a8e0:abd2])
+	by smtp.gmail.com with ESMTPSA id
+	v85-v6sm12184559pgb.71.2018.05.13.16.35.17
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 13 May 2018 16:35:17 -0700 (PDT)
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <CAMKF1spa1bbrUjQWbhdUw3C4Cxu99fU=Be3sEm+SYFNq_oxEKw@mail.gmail.com>
+	<CAJTo0LYmyzY67JC=72OMRBRH=8juBSnAVaYUKB6ENZ9koqPqTA@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <50c78b70-5b7b-6d23-e1ba-c86e14c2c7be@gmail.com>
+Date: Sun, 13 May 2018 16:35:16 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
+	Gecko/20100101 Thunderbird/60.0
 MIME-Version: 1.0
-From: Stefano Cappa <stefano.cappa.ks89@gmail.com>
-Date: Sun, 13 May 2018 22:58:52 +0200
-Message-ID: <CAKRytNwzOzk0N9Z1mg6V2zufrQutWYRrjn7bcbijEa3FwdQH8g@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: How to modify a meta third party layer sources from my custom layer
+In-Reply-To: <CAJTo0LYmyzY67JC=72OMRBRH=8juBSnAVaYUKB6ENZ9koqPqTA@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] GCC 8.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,65 +86,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 13 May 2018 20:59:07 -0000
-Content-Type: multipart/alternative; boundary="000000000000b11b15056c1ca3f7"
+X-List-Received-Date: Sun, 13 May 2018 23:35:19 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---000000000000b11b15056c1ca3f7
-Content-Type: text/plain; charset="UTF-8"
+Hi Ross
 
-Hello everyone,
-I'm new to yocto so please don't kill me :). I have a question, probably
-very stupid and simple, but I'm really don't know how to understand this so
-I'm trying to ask to the cummunity.
+I pushed a few more fixes to branch which fixes
 
-I'm using Yocto 2.4 for an hardware with meta-freescale layer to support it.
-However I have to apply some changes. I'm able to build if I
-modify/overwrite and delete some files by myself, but when I try to use a
-custom layer to do that I cannot build, because obviously I don't know what
-I should do.
+kernel build issue
+ovmf build issue
+python2 build issue (your fix)
 
-My custom layer applies some patches to work and work-shared dirs and
-everything is ok, but I don't understand how to add files and changes to my
-layer to modify meta-freescale sources.
+I could not reproduce the mesa issues that is shown on AB
 
-I can create a fork of that layer, but I prefer to add all changes to my
-layer.
-In particular I need to add some .inc, .bb files into /recipes-bsp/u-boot/
-of meta-freescale and a folder with some files and patches taken from
-poky/meta/..../u-boot/ like u-boot-fw-utils-imx_2017.09.bb and
-u-boot-common_2017.09.inc
+With this I think we should be in better shape. Can you retry
 
-How can I do this from a custom layer? Which is the right procedure?
+http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/master
 
-Custom layers can modify only work and work-shared dirs content or also
-other layer sources, because that they are executed?
+Once again and please bump the kernel version in poky to default by 
+removing the pinning
 
-Thank you.
+meta-poky/conf/distro/poky-lsb.conf:PREFERRED_VERSION_linux-yocto_linuxstdbase 
+?= "4.14%"
+meta-poky/conf/distro/poky-tiny.conf:PREFERRED_VERSION_linux-yocto-tiny 
+?= "4.14%"
+meta-poky/conf/distro/poky.conf:PREFERRED_VERSION_linux-yocto ?= "4.14%"
 
---000000000000b11b15056c1ca3f7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello everyone,=C2=A0<div>I&#39;m new to yocto so please d=
-on&#39;t kill me :). I have a question, probably very stupid and simple, bu=
-t I&#39;m really don&#39;t know how to understand this so I&#39;m trying to=
- ask to the cummunity.</div><div><br></div><div>I&#39;m using Yocto 2.4 for=
- an hardware with meta-freescale layer to support it.</div><div>However I h=
-ave to apply some changes. I&#39;m able to build if I modify/overwrite and =
-delete some files by myself, but when I try to use a custom layer to do tha=
-t I cannot build, because obviously I don&#39;t know what I should do.</div=
-><div><br></div><div>My custom layer applies some patches to work and work-=
-shared dirs and everything is ok, but I don&#39;t understand how to add fil=
-es and changes to my layer to modify meta-freescale sources.</div><div><br>=
-</div><div>I can create a fork of that layer, but I prefer to add all chang=
-es to my layer.</div><div>In particular I need to add some .inc, .bb files =
-into /recipes-bsp/u-boot/ of meta-freescale and a folder with some files an=
-d patches taken from poky/meta/..../u-boot/ like=C2=A0<a href=3D"http://u-b=
-oot-fw-utils-imx_2017.09.bb">u-boot-fw-utils-imx_2017.09.bb</a>=C2=A0and u-=
-boot-common_2017.09.inc</div><div></div><div><br></div><div>How can I do th=
-is from a custom layer? Which is the right procedure?</div><div><br></div><=
-div>Custom layers can modify only work and work-shared dirs content or also=
- other layer sources, because that they are executed?</div><div><br></div><=
-div>Thank you.</div><div><br></div></div>
+Thanks
+-Khem
 
---000000000000b11b15056c1ca3f7--
+
+
+On 5/11/18 3:05 PM, Burton, Ross wrote:
+> I threw the branch at the Yocto Project autobuilder today, produced a
+> number of failures:
+> 
+> http://errors.yoctoproject.org/Errors/Latest//?filter=b23dba19607412c8cc7d267d95354d65f5631088&type=commit
+> 
+> Ross
+> 
+> On 5 May 2018 at 01:26, Khem Raj <raj.khem@gmail.com> wrote:
+>> Hi All
+>>
+>> As you might have noticed that gcc 8.1 was released this week, I am
+>> calling out for some testing help on testing branch so we can weed out
+>> issues you might see in your setups. so if you have your
+>> builders idling over weekend, then you know what they can do this weekend :)
+>>
+>> Highlighted changes are
+>>
+>> https://gcc.gnu.org/gcc-8/changes.html
+>>
+>> and porting doc is
+>>
+>> https://gcc.gnu.org/gcc-8/porting_to.html
+>>
+>> The branch is here
+>>
+>> http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/gcc-8
+>>
+>> Its uptodate on top of current master oe-core
+>>
+>> May fourth be with you !!
+>>
+>> Cheers!
+>>
+>> -Khem
+>> --
+>> _______________________________________________
+>> Openembedded-core mailing list
+>> Openembedded-core@lists.openembedded.org
+>> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+
