@@ -1,93 +1,40 @@
-Return-Path: <Richard.Schmitt@commscope.com>
+Return-Path: <leimaohui@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 76572E006F1; Thu, 24 May 2018 17:21:26 -0700 (PDT)
+	id B482EE007AD; Fri, 25 May 2018 00:25:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [68.232.148.72 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Level: *
+X-Spam-Status: No, score=1.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_96_XX,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [183.91.158.132 listed in list.dnswl.org]
+	* 3.4 DATE_IN_PAST_96_XX Date: is 96 hours or more before Received:
+	date * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Thu, 24 May 2018 17:21:25 PDT
-Received: from esa3.commscope.iphmx.com (esa3.commscope.iphmx.com
-	[68.232.148.72])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95651E0044F
-	for <yocto@yoctoproject.org>; Thu, 24 May 2018 17:21:25 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.49,438,1520913600"; d="scan'208,217";a="8677043"
-Received: from mail-by2nam03lp0049.outbound.protection.outlook.com (HELO
-	NAM03-BY2-obe.outbound.protection.outlook.com) ([216.32.180.49])
-	by ob1.commscope.iphmx.com with ESMTP/TLS/AES256-SHA256;
-	24 May 2018 20:20:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=commscope.onmicrosoft.com; s=selector1-commscope-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=0jQpizbCKZ9aJV+wK8I2o5CHQW3UxoyKPmHg/3r8iHE=;
-	b=IGCAJAFZewopSMYRWI1pcIMZO2gPBd9AhE4eCWgui1FZ5VVvH/3U78qdIaGBihitD4lG9pUFNmEqQqjQ3V9KsbPsWNiNhP2+wFxbbym8s02RGFOtm1YTOOn5jlq874t1lmI3Y8V/pq8u/fpFCa8Mb52iQXoRFBRKB9EHFCsKBw8=
-Received: from BLUPR0601MB0961.namprd06.prod.outlook.com (10.160.35.25) by
-	BLUPR0601MB1698.namprd06.prod.outlook.com (10.163.212.155) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.797.11; Fri, 25 May 2018 00:20:20 +0000
-Received: from BLUPR0601MB0961.namprd06.prod.outlook.com
-	([fe80::d56d:1ad9:557f:55de]) by
-	BLUPR0601MB0961.namprd06.prod.outlook.com
-	([fe80::d56d:1ad9:557f:55de%9]) with mapi id 15.20.0776.019;
-	Fri, 25 May 2018 00:20:20 +0000
-From: "Schmitt, Richard" <Richard.Schmitt@commscope.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Chicken or the Egg Problem with Images
-Thread-Index: AQHT874pxD/out1jKkSSAyAVbEyU3Q==
-Date: Fri, 25 May 2018 00:20:19 +0000
-Message-ID: <F0047264-6A35-4DCA-912E-222FB22F034F@commscope.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=Richard.Schmitt@commscope.com; 
-x-originating-ip: [131.239.32.100]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; BLUPR0601MB1698;
-	7:wHhLa7oWDbUsPF6XHtlxiNm0FGLMcg9GNmTKk6dqNfMuhuTfMSUb7I/Ksaezz4nt6tHA4XBTg/EnpUk2WfcX5duxSIJu2kQfLnN5x4ZbxJ5/n9t1/NZ1MZGi/yGPl0iUFKGEPostLDDgdm+boTQNIHIWUO5WkF5lt3cMs6mXLGHgt4YPeJ7DqA5/WvO3pTbBY0VFZNB+3y7oSSaQw2gFYtW7OIvdGBUapkVZz7mzgFOSE1tgi8wN7GGmsC++9vqs
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(5600026)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603328)(7153060)(7193020);
-	SRVR:BLUPR0601MB1698; 
-x-ms-traffictypediagnostic: BLUPR0601MB1698:
-x-microsoft-antispam-prvs: <BLUPR0601MB169824144BE9BDBA199A0DB7E6690@BLUPR0601MB1698.namprd06.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155);
-x-ms-exchange-senderadcheck: 1
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(8121501046)(5005006)(3231254)(944501410)(52105095)(3002001)(10201501046)(93006095)(93001095)(149027)(150027)(6041310)(20161123564045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123562045)(20161123558120)(20161123560045)(6072148)(201708071742011)(7699016);
-	SRVR:BLUPR0601MB1698; BCL:0; PCL:0; RULEID:;
-	SRVR:BLUPR0601MB1698; 
-x-forefront-prvs: 06833C6A67
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(39380400002)(39860400002)(346002)(376002)(366004)(396003)(189003)(199004)(8676002)(486006)(2900100001)(2501003)(478600001)(316002)(102836004)(97736004)(3846002)(59450400001)(5250100002)(6116002)(53936002)(2616005)(36756003)(72206003)(86362001)(476003)(14454004)(83716003)(6916009)(81166006)(81156014)(66066001)(1730700003)(8936002)(82746002)(106356001)(5660300001)(25786009)(3280700002)(3660700001)(2351001)(26005)(6436002)(186003)(5640700003)(99286004)(7736002)(6506007)(68736007)(105586002)(6486002)(6512007)(2906002)(54896002)(6306002)(33656002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR0601MB1698;
-	H:BLUPR0601MB0961.namprd06.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: commscope.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: pLNP4/dw6rPJ27spnSphkblcEpoJ+xctYi3ih4PkqrEv8JzUt14XXUYDVoO/7n5Mo8LANs3JEVaGbFKq9LttVt7b8hI2SadG3jqChcrYtbBh76ntUU5IEJGEPGKKsYjFGFwIT0E2oCDgREvQ8+ofoLwdRNlP/QJrj2vvxM0KyJxD+TN73uZnKe+BupdiougW
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from heian.cn.fujitsu.com (mail.cn.fujitsu.com [183.91.158.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 170C6E006F1
+	for <yocto@yoctoproject.org>; Fri, 25 May 2018 00:25:44 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.43,368,1503331200"; d="scan'208";a="40362143"
+Received: from localhost (HELO cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 25 May 2018 15:25:43 +0800
+Received: from G08CNEXCHPEKD03.g08.fujitsu.local (unknown [10.167.33.85])
+	by cn.fujitsu.com (Postfix) with ESMTP id 2E5C74B40409
+	for <yocto@yoctoproject.org>; Fri, 25 May 2018 15:25:40 +0800 (CST)
+Received: from localhost.localdomain (10.167.225.27) by
+	G08CNEXCHPEKD03.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
+	Server (TLS) id 14.3.399.0; Fri, 25 May 2018 15:25:40 +0800
+From: Lei Maohui <leimaohui@cn.fujitsu.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 15 May 2018 15:33:03 -0700
+Message-ID: <1526423583-12491-1-git-send-email-leimaohui@cn.fujitsu.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-X-MS-Office365-Filtering-Correlation-Id: 81b43983-4d15-4b5a-fc52-08d5c1d54cb8
-X-OriginatorOrg: commscope.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81b43983-4d15-4b5a-fc52-08d5c1d54cb8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 May 2018 00:20:20.0278 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 31472f81-8fe4-49ec-8bc3-fa1c295640d7
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR0601MB1698
-Subject: Chicken or the Egg Problem with Images
+X-Originating-IP: [10.167.225.27]
+X-yoursite-MailScanner-ID: 2E5C74B40409.AC6AB
+X-yoursite-MailScanner: Found to be clean
+X-yoursite-MailScanner-From: leimaohui@cn.fujitsu.com
+Subject: [meta-cgl][PATCH] ocfs2-tools: uppgrade from 1.8.4 to 1.8.5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -99,180 +46,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 May 2018 00:21:26 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_F00472646A354DCA912E222FB22F034Fcommscopecom_"
+X-List-Received-Date: Fri, 25 May 2018 07:25:46 -0000
+Content-Type: text/plain
 
---_000_F00472646A354DCA912E222FB22F034Fcommscopecom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Signed-off-by: Lei Maohui <leimaohui@cn.fujitsu.com>
+---
+ .../distro/include/cgl_common_security_flags.inc   |  4 +++
+ .../disable-ocfs2-stack-user-support.patch         | 42 ----------------------
+ .../ocfs2-tools-1.8.5-format-fortify.patch         | 13 +++++++
+ .../{ocfs2-tools_1.8.4.bb => ocfs2-tools_1.8.5.bb} |  8 ++---
+ 4 files changed, 21 insertions(+), 46 deletions(-)
+ delete mode 100644 meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/disable-ocfs2-stack-user-support.patch
+ create mode 100644 meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/ocfs2-tools-1.8.5-format-fortify.patch
+ rename meta-cgl-common/recipes-cgl/ocfs2-tools/{ocfs2-tools_1.8.4.bb => ocfs2-tools_1.8.5.bb} (94%)
 
-SeKAmW0gYnVpbGRpbmcgYSBsaW51eCBpbWFnZSB3aXRoIGFuIGluaXRyYW1mcyBhbmQgYSBzZWN1
-cmUgcm9vdCBmaWxlIHN5c3RlbSB1c2luZyBhIGRtdmVyaXR5IGhhc2ggdGFibGUuICBJIHdhbnQg
-dG8gaW5jbHVkZSB0aGUgZG12ZXJpdHkgcm9vdCBoYXNoIGluIHRoZSBpbml0cmFtZnMuICBXaGVu
-IGJ1aWxkaW5nIGEgeW9jdG8gaW1hZ2UsIHNheSBjb3JlLWltYWdlLW1pbmltYWwsIHdpdGggYW4g
-aW5pdHJhbWZzLCB0aGUgaW5pdHJhbWZzIGlzIGJ1aWx0IGJlZm9yZSB0aGUgY29yZS1pbWFnZS1t
-aW5pbWFsIGltYWdlIGlzIGRlcGxveWVkLiAgV2hhdCBJIHdvdWxkIGxpa2UgaXMgYSBidWlsZCBv
-cmRlciBsaWtlOg0KDQpEZXNpcmVkOiBiaXRiYWtlIGNvcmUtaW1hZ2UtbWluaW1hbA0KDQoNCiAg
-MS4gIGJ1aWxkIGFsbCByb290ZnMgcGFja2FnZXMNCiAgMi4gIGRlcGxveSB0aGUgcm9vdGZzDQog
-IDMuICBidWlsZCB0aGUgaW5pdHJhbWZzDQogIDQuICBidWlsZCB0aGUga2VybmVsDQogIDUuICBi
-dWlsZCB0aGUgZml0aW1hZ2UNCg0KT2JzZXJ2ZWQ6IGJpdGJha2UgY29yZS1pbWFnZS1taW5pbWFs
-DQoNCg0KICAxLiAgYnVpbGQgYWxsIHJvb3RmcyBwYWNrYWdlcw0KICAyLiAgYnVpbGQgdGhlIGlu
-aXRyYW1mcw0KICAzLiAgYnVpbGQgdGhlIGtlcm5lbA0KICA0LiAgZGVwbG95IHRoZSByb290ZnMN
-CiAgNS4gIGJ1aWxkIHRoZSBmaXRpbWFnZQ0KDQpJZiB0aGUgaW5pdHJhbWZzIGlzIGJ1aWx0IGJl
-Zm9yZSB0aGUgcm9vdGZzIGlzIGRlcGxveWVkLCBJIGNhbm5vdCBpbmNsdWRlIHRoZSByb290IGhh
-c2ggaW4gdGhlIGluaXRyYW1mcyBpbWFnZS4NCg0KSeKAmW0gaG9waW5nIHNvbWVvbmUgY2FuIHRl
-bGwgbWUgYSBiZXR0ZXIgd2F5Lg0KDQpUaGFua3MNClJpY2gNCg==
+diff --git a/meta-cgl-common/conf/distro/include/cgl_common_security_flags.inc b/meta-cgl-common/conf/distro/include/cgl_common_security_flags.inc
+index 42c612c..a2f9857 100644
+--- a/meta-cgl-common/conf/distro/include/cgl_common_security_flags.inc
++++ b/meta-cgl-common/conf/distro/include/cgl_common_security_flags.inc
+@@ -1 +1,5 @@
+ SECURITY_LDFLAGS_remove_pn-audit = "-fstack-protector-strong"
++
++SECURITY_CFLAGS_pn-ocfs2-tools = "${SECURITY_NOPIE_CFLAGS}"
++SECURITY_LDFLAGS_pn-ocfs2-tools = ""
++
+diff --git a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/disable-ocfs2-stack-user-support.patch b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/disable-ocfs2-stack-user-support.patch
+deleted file mode 100644
+index 8d92f0c..0000000
+--- a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/disable-ocfs2-stack-user-support.patch
++++ /dev/null
+@@ -1,42 +0,0 @@
+-Only support stack 'o2cb' in init script o2cb.
+-
+-Source file /etc/init.d/functions rather than /lib/lsb/init-functions which
+-doesn't exist in wrlinux.  /etc/init.d/functions provides functions killproc
+-and pidofproc, and doesn't provides function start_daemon. It doesn't matter
+-that start_daemon is used by stack 'user' only.
+-
+-Upstream-Status: Pending
+-
+-Signed-off-by: Kai Kang <kai.kang@windriver.com>
+----
+-diff --git a/vendor/common/o2cb.init.sh b/vendor/common/o2cb.init.sh
+-index 2e73108..926e61e 100755
+---- a/vendor/common/o2cb.init.sh
+-+++ b/vendor/common/o2cb.init.sh
+-@@ -18,11 +18,11 @@
+- # Force LC_ALL=C
+- export LC_ALL=C
+- 
+--# Let's try to use the LSB functions
+--. /lib/lsb/init-functions
+-+# Let's try to use the init scripts functions
+-+. /etc/init.d/functions
+- if [ $? != 0 ]
+- then
+--    echo "Unable to load LSB init functions" >&2
+-+    echo "Unable to load init scripts functions" >&2
+-     exit 1
+- fi
+- 
+-@@ -72,6 +72,11 @@ VERSION=@@VERSION@@
+- # Need this default
+- [ -z "$O2CB_STACK" ] && O2CB_STACK=o2cb
+- 
+-+if [ "$O2CB_STACK" != "o2cb" ]; then
+-+    echo "Invalid cluster stack name \"$O2CB_STACK\""
+-+    exit 1
+-+fi
+-+
+- configfs_path()
+- {
+-     # Note that this is only valid *after* configfs is loaded
+diff --git a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/ocfs2-tools-1.8.5-format-fortify.patch b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/ocfs2-tools-1.8.5-format-fortify.patch
+new file mode 100644
+index 0000000..f8ab313
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools/ocfs2-tools-1.8.5-format-fortify.patch
+@@ -0,0 +1,13 @@
++diff --git a/tunefs.ocfs2/op_query.c b/tunefs.ocfs2/op_query.c
++index 295c185b..40394d15 100644
++--- a/tunefs.ocfs2/op_query.c
+++++ b/tunefs.ocfs2/op_query.c
++@@ -339,7 +339,7 @@ static int query_run(struct tunefs_operation *op, ocfs2_filesys *fs,
++ 	register_printf_function('O', handle_ro_compat, handle_arginfo);
++ 
++ 	query_fs = fs;
++-	fprintf(stdout, fmt);
+++	fprintf(stdout, fmt, "dummy");
++ 	query_fs = NULL;
++ 
++ 	ocfs2_free(&fmt);
+diff --git a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.8.4.bb b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.8.5.bb
+similarity index 94%
+rename from meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.8.4.bb
+rename to meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.8.5.bb
+index 9098fbf..946423e 100644
+--- a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.8.4.bb
++++ b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.8.5.bb
+@@ -12,19 +12,19 @@ SECTION = "System Environment/Base"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
+ 
+-SRC_URI = "git://oss.oracle.com/git/ocfs2-tools.git \
++SRC_URI = "git://github.com/markfasheh/ocfs2-tools \
+     file://0003-vendor-common-o2cb.ocf-add-new-conf-file.patch \
+-    file://disable-ocfs2-stack-user-support.patch \
+     file://ocfs2-fix-compile-error-when-glibc-upgrade.patch \
++    file://ocfs2-tools-1.8.5-format-fortify.patch \
+     file://o2cb.service \
+     file://ocfs2.service \
+ "
+-SRCREV = "0b8be47d61dbdcd08d21c83f0b3993735b884ef9"
++SRCREV = "f1b4d073f08679f97b64b3eb88e586032f92a701"
+ S = "${WORKDIR}/git"
+ 
+ inherit autotools-brokensep pkgconfig systemd
+ 
+-DEPENDS = "corosync cluster-glue openais pacemaker \
++DEPENDS = "corosync pacemaker \
+     libxml2 linux-libc-headers libaio \
+     e2fsprogs e2fsprogs-native \
+ "
+-- 
+1.9.1
 
---_000_F00472646A354DCA912E222FB22F034Fcommscopecom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <FA05AC6C99BF5148AC4F1EB3D2D7BA6D@namprd06.prod.outlook.com>
-Content-Transfer-Encoding: base64
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseTpXaW5nZGluZ3M7DQoJcGFub3NlLTE6NSAwIDAgMCAwIDAgMCAwIDAg
-MDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0x
-OjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJp
-Ow0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25z
-ICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjow
-aW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1m
-YW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0K
-CXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6IzA1NjNDMTsNCgl0ZXh0LWRlY29yYXRp
-b246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXtt
-c28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Izk1NEY3MjsNCgl0ZXh0LWRlY29yYXRpb246
-dW5kZXJsaW5lO30NCnAuTXNvTGlzdFBhcmFncmFwaCwgbGkuTXNvTGlzdFBhcmFncmFwaCwgZGl2
-Lk1zb0xpc3RQYXJhZ3JhcGgNCgl7bXNvLXN0eWxlLXByaW9yaXR5OjM0Ow0KCW1hcmdpbi10b3A6
-MGluOw0KCW1hcmdpbi1yaWdodDowaW47DQoJbWFyZ2luLWJvdHRvbTowaW47DQoJbWFyZ2luLWxl
-ZnQ6LjVpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglm
-b250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXtt
-c28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixz
-YW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0
-eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7
-fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBp
-biAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rp
-b24xO30NCi8qIExpc3QgRGVmaW5pdGlvbnMgKi8NCkBsaXN0IGwwDQoJe21zby1saXN0LWlkOjc3
-NTQ0NzI0MDsNCgltc28tbGlzdC10eXBlOmh5YnJpZDsNCgltc28tbGlzdC10ZW1wbGF0ZS1pZHM6
-LTE1NTE4ODk3MDYgNjc2OTg3MDMgNjc2OTg2OTEgNjc2OTg2OTMgNjc2OTg2ODkgNjc2OTg2OTEg
-Njc2OTg2OTMgNjc2OTg2ODkgNjc2OTg2OTEgNjc2OTg2OTM7fQ0KQGxpc3QgbDA6bGV2ZWwxDQoJ
-e21zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVm
-dDsNCgl0ZXh0LWluZGVudDotLjI1aW47fQ0KQGxpc3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC1u
-dW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWIt
-c3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVu
-dDotLjI1aW47DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpAbGlzdCBsMDpsZXZlbDMN
-Cgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsN
-Cgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxl
-ZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlz
-dCBsMDpsZXZlbDQNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZl
-bC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVy
-LXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OlN5bWJv
-bDt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0K
-CW1zby1sZXZlbC10ZXh0Om87DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVs
-LW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWls
-eToiQ291cmllciBOZXciO30NCkBsaXN0IGwwOmxldmVsNg0KCXttc28tbGV2ZWwtbnVtYmVyLWZv
-cm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674KnOw0KCW1zby1sZXZlbC10YWItc3RvcDpu
-b25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1
-aW47DQoJZm9udC1mYW1pbHk6V2luZ2RpbmdzO30NCkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2
-ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZl
-bC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0
-LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsOA0K
-CXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6bzsNCglt
-c28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7
-DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxp
-c3QgbDA6bGV2ZWw5DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2
-ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJl
-ci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWlseTpXaW5n
-ZGluZ3M7fQ0KQGxpc3QgbDENCgl7bXNvLWxpc3QtaWQ6MTI5NDc0OTA1NzsNCgltc28tbGlzdC10
-eXBlOmh5YnJpZDsNCgltc28tbGlzdC10ZW1wbGF0ZS1pZHM6MTIwNTUzMzAyNiA2NzY5ODcwMyA2
-NzY5ODcxMyA2NzY5ODcxNSA2NzY5ODcwMyA2NzY5ODcxMyA2NzY5ODcxNSA2NzY5ODcwMyA2NzY5
-ODcxMyA2NzY5ODcxNTt9DQpAbGlzdCBsMTpsZXZlbDENCgl7bXNvLWxldmVsLXRhYi1zdG9wOm5v
-bmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVp
-bjt9DQpAbGlzdCBsMTpsZXZlbDINCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YWxwaGEtbG93
-ZXI7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlv
-bjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjt9DQpAbGlzdCBsMTpsZXZlbDMNCgl7bXNvLWxl
-dmVsLW51bWJlci1mb3JtYXQ6cm9tYW4tbG93ZXI7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7
-DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpyaWdodDsNCgl0ZXh0LWluZGVudDotOS4wcHQ7
-fQ0KQGxpc3QgbDE6bGV2ZWw0DQoJe21zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZl
-bC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47fQ0KQGxpc3QgbDE6
-bGV2ZWw1DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmFscGhhLWxvd2VyOw0KCW1zby1sZXZl
-bC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0
-LWluZGVudDotLjI1aW47fQ0KQGxpc3QgbDE6bGV2ZWw2DQoJe21zby1sZXZlbC1udW1iZXItZm9y
-bWF0OnJvbWFuLWxvd2VyOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1u
-dW1iZXItcG9zaXRpb246cmlnaHQ7DQoJdGV4dC1pbmRlbnQ6LTkuMHB0O30NCkBsaXN0IGwxOmxl
-dmVsNw0KCXttc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0
-aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluO30NCkBsaXN0IGwxOmxldmVsOA0KCXttc28t
-bGV2ZWwtbnVtYmVyLWZvcm1hdDphbHBoYS1sb3dlcjsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9u
-ZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWlu
-O30NCkBsaXN0IGwxOmxldmVsOQ0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpyb21hbi1sb3dl
-cjsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9u
-OnJpZ2h0Ow0KCXRleHQtaW5kZW50Oi05LjBwdDt9DQpvbA0KCXttYXJnaW4tYm90dG9tOjBpbjt9
-DQp1bA0KCXttYXJnaW4tYm90dG9tOjBpbjt9DQotLT48L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkg
-bGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9
-IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdCI+SeKAmW0gYnVpbGRpbmcgYSBsaW51eCBpbWFnZSB3aXRoIGFuIGluaXRyYW1m
-cyBhbmQgYSBzZWN1cmUgcm9vdCBmaWxlIHN5c3RlbSB1c2luZyBhIGRtdmVyaXR5IGhhc2ggdGFi
-bGUuJm5ic3A7IEkgd2FudCB0byBpbmNsdWRlIHRoZSBkbXZlcml0eSByb290IGhhc2ggaW4gdGhl
-IGluaXRyYW1mcy4mbmJzcDsgV2hlbiBidWlsZGluZyBhIHlvY3RvIGltYWdlLCBzYXkgY29yZS1p
-bWFnZS1taW5pbWFsLA0KIHdpdGggYW4gaW5pdHJhbWZzLCB0aGUgaW5pdHJhbWZzIGlzIGJ1aWx0
-IGJlZm9yZSB0aGUgY29yZS1pbWFnZS1taW5pbWFsIGltYWdlIGlzIGRlcGxveWVkLiZuYnNwOyBX
-aGF0IEkgd291bGQgbGlrZSBpcyBhIGJ1aWxkIG9yZGVyIGxpa2U6PG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQi
-PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5EZXNpcmVkOiBiaXRiYWtlIGNvcmUtaW1hZ2UtbWlu
-aW1hbDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8b2wg
-c3R5bGU9Im1hcmdpbi10b3A6MGluIiBzdGFydD0iMSIgdHlwZT0iMSI+DQo8bGkgY2xhc3M9Ik1z
-b0xpc3RQYXJhZ3JhcGgiIHN0eWxlPSJtYXJnaW4tbGVmdDowaW47bXNvLWxpc3Q6bDAgbGV2ZWwx
-IGxmbzEiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5idWlsZCBhbGwgcm9vdGZzIHBh
-Y2thZ2VzPG86cD48L286cD48L3NwYW4+PC9saT48bGkgY2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgi
-IHN0eWxlPSJtYXJnaW4tbGVmdDowaW47bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzEiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0Ij5kZXBsb3kgdGhlIHJvb3RmczxvOnA+PC9vOnA+PC9zcGFu
-PjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MGlu
-O21zby1saXN0OmwwIGxldmVsMSBsZm8xIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+
-YnVpbGQgdGhlIGluaXRyYW1mczxvOnA+PC9vOnA+PC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJNc29M
-aXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MGluO21zby1saXN0OmwwIGxldmVsMSBs
-Zm8xIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+YnVpbGQgdGhlIGtlcm5lbDxvOnA+
-PC9vOnA+PC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFy
-Z2luLWxlZnQ6MGluO21zby1saXN0OmwwIGxldmVsMSBsZm8xIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdCI+YnVpbGQgdGhlIGZpdGltYWdlPG86cD48L286cD48L3NwYW4+PC9saT48L29s
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0Ij5PYnNlcnZlZDogYml0YmFrZSBjb3JlLWltYWdlLW1pbmlt
-YWw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPG9sIHN0
-eWxlPSJtYXJnaW4tdG9wOjBpbiIgc3RhcnQ9IjEiIHR5cGU9IjEiPg0KPGxpIGNsYXNzPSJNc29M
-aXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MGluO21zby1saXN0OmwxIGxldmVsMSBs
-Zm8yIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+YnVpbGQgYWxsIHJvb3RmcyBwYWNr
-YWdlczxvOnA+PC9vOnA+PC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBz
-dHlsZT0ibWFyZ2luLWxlZnQ6MGluO21zby1saXN0OmwxIGxldmVsMSBsZm8yIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdCI+YnVpbGQgdGhlIGluaXRyYW1mczxvOnA+PC9vOnA+PC9zcGFu
-PjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MGlu
-O21zby1saXN0OmwxIGxldmVsMSBsZm8yIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+
-YnVpbGQgdGhlIGtlcm5lbDxvOnA+PC9vOnA+PC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0
-UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MGluO21zby1saXN0OmwxIGxldmVsMSBsZm8y
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+ZGVwbG95IHRoZSByb290ZnM8bzpwPjwv
-bzpwPjwvc3Bhbj48L2xpPjxsaSBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCIgc3R5bGU9Im1hcmdp
-bi1sZWZ0OjBpbjttc28tbGlzdDpsMSBsZXZlbDEgbGZvMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQiPmJ1aWxkIHRoZSBmaXRpbWFnZTxvOnA+PC9vOnA+PC9zcGFuPjwvbGk+PC9vbD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpw
-PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdCI+SWYgdGhlIGluaXRyYW1mcyBpcyBidWlsdCBiZWZvcmUgdGhl
-IHJvb3RmcyBpcyBkZXBsb3llZCwgSSBjYW5ub3QgaW5jbHVkZSB0aGUgcm9vdCBoYXNoIGluIHRo
-ZSBpbml0cmFtZnMgaW1hZ2UuJm5ic3A7DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQiPknigJltIGhvcGluZyBzb21lb25lIGNhbiB0ZWxsIG1lIGEgYmV0dGVyIHdh
-eS48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPlRoYW5rczxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTEuMHB0Ij5SaWNoPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2JvZHk+
-DQo8L2h0bWw+DQo=
 
---_000_F00472646A354DCA912E222FB22F034Fcommscopecom_--
+
