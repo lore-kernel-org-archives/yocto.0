@@ -1,6 +1,6 @@
 Return-Path: <mauro@faresoftware.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ECD1FE009CF; Wed, 16 May 2018 01:46:24 -0700 (PDT)
+	id 510BDE007AD; Wed, 16 May 2018 02:00:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,28 +15,30 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from smtpcmd04131.aruba.it (smtpcmd04131.aruba.it [62.149.158.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E478E00929
-	for <yocto@yoctoproject.org>; Wed, 16 May 2018 01:46:22 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F614E007AD
+	for <yocto@yoctoproject.org>; Wed, 16 May 2018 02:00:25 -0700 (PDT)
 Received: from [10.0.3.130] ([78.6.3.122])
 	by smtpcmd04.ad.aruba.it with bizsmtp
-	id mwmL1x00l2dwwGE01wmLVc; Wed, 16 May 2018 10:46:21 +0200
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	id mx0P1x01V2dwwGE01x0PN2; Wed, 16 May 2018 11:00:24 +0200
+To: yocto@yoctoproject.org
+References: <706c8cbc-b5ac-e456-5a30-199aeb596766@faresoftware.it>
 From: Mauro Ziliani <mauro@faresoftware.it>
-Message-ID: <706c8cbc-b5ac-e456-5a30-199aeb596766@faresoftware.it>
-Date: Wed, 16 May 2018 10:46:20 +0200
+Message-ID: <4567ff4e-5c5e-bed9-1510-6a60e1381705@faresoftware.it>
+Date: Wed, 16 May 2018 11:00:23 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.7.0
 MIME-Version: 1.0
+In-Reply-To: <706c8cbc-b5ac-e456-5a30-199aeb596766@faresoftware.it>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
-	t=1526460381; bh=WQOBjc2QDd/I5HB5H9aVcQiPP/zlUsHmMdgzekClzv0=;
-	h=To:From:Subject:Date:MIME-Version:Content-Type;
-	b=nUzhjO8mZBYgXCeXjpNCQDnrz7477ckn0OoBAMY5dApIYcfcJioDTgSq+8/ODkyj5
-	1zIV1RieC1yt6Fm88/IyP96q/6mma83VhsFqnn78jp0nUhnRBRDu2A+nAm7BpeBAc6
-	gnUeL7iqMGuVIgYadjbjCwofZs9/5fVniMkw4uUkuCnM6qW8UWh4e7jdaX5k94mptp
-	CjHmS0YdwLFVjH4O+OO/nvRkKZ8pNJUB+WWjtk5/QlTYNBUZwAKDwqP5erIJZG477Y
-	K5G5QowS3oF49TH01XF39Qfo8aNeWjTX/kSTaNKE9MmMaOrAwQk0xJPbZtDztDsVrt
-	QLJyW/k+aklrg==
-Subject: Set root password from a recipe
+	t=1526461224; bh=KLjpQAWTSZcO3mFDtuz5ycuuNt/Rvy4NQ4KVxUE69UA=;
+	h=Subject:To:From:Date:MIME-Version:Content-Type;
+	b=Q7iF2/kMmfE6E1IWA4ErqaF3mHofvHFTV0wKs5kzj1d+V/eft+elrPVUOYdAcRKhs
+	Dikxo/n9mQVkKyv/SSwDB+x52JahC8C6z2dQv1EnzJWGcPQ9BASuVfwsefOC8NE2Bn
+	dMi4fGNSEd/ZfeCHvHtHl5N9L8+mkav7v9+pR94fhza1Zs+kAcODq31AAHAVSx8O/r
+	GQXnCLkeo8Kkhid1UiwOzTsbiIZ02kMJegVb+moYkbRB7QjGfH+Q69RSre1hEmiNGO
+	615k4+c/pKZqL9KMB25H5/mZXKb4TczpHp+y0Dx5oN/JlCkmGKoLNitc1nnZix+3oa
+	4Uco5YwBVgeMQ==
+Subject: Re: Set root password from a recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,42 +50,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 May 2018 08:46:25 -0000
+X-List-Received-Date: Wed, 16 May 2018 09:00:27 -0000
 Content-Type: text/plain; charset=iso-8859-15; format=flowed
 Content-Transfer-Encoding: 8bit
 Content-Language: it
 
-Hi all.
+Sorry
 
-I need to set a well know password for root user.
-
-I follow the istruction to do this with
+inherit extrausers
 
 
-inherit extra_users
-
-EXTRA_USERS_PARAMS = " \
-
-     usermod -P secret root; \
-
-"
-
-
-But it does not work.
-
-I think the problem i for usermod
-
-I sse the man page and the -p parameter needs the output of crypt(3) 
-function.
-
-While -P parameter (p-uppercase) is not a valid parameter for usermod
-
-
-Any idea?
-
-
-Thanks
-
-    Mauro
+Il 16/05/2018 10:46, Mauro Ziliani ha scritto:
+> Hi all.
+>
+> I need to set a well know password for root user.
+>
+> I follow the istruction to do this with
+>
+>
+> inherit extra_users
+>
+> EXTRA_USERS_PARAMS = " \
+>
+>     usermod -P secret root; \
+>
+> "
+>
+>
+> But it does not work.
+>
+> I think the problem i for usermod
+>
+> I sse the man page and the -p parameter needs the output of crypt(3) 
+> function.
+>
+> While -P parameter (p-uppercase) is not a valid parameter for usermod
+>
+>
+> Any idea?
+>
+>
+> Thanks
+>
+>    Mauro
+>
 
 
