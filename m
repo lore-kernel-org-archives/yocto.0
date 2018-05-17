@@ -1,39 +1,42 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <mauro@faresoftware.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CB3CCE00B18; Thu, 17 May 2018 03:58:08 -0700 (PDT)
+	id 86589E00C75; Thu, 17 May 2018 05:18:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [62.149.156.56 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6028DE007DA
-	for <yocto@yoctoproject.org>; Thu, 17 May 2018 03:58:07 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	17 May 2018 03:58:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,410,1520924400"; d="scan'208";a="42000555"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by orsmga008.jf.intel.com with ESMTP; 17 May 2018 03:58:06 -0700
-To: yocto@yoctoproject.org, stevep@korgrd.com
-References: <87DBB3BF-2DF5-4A71-AF55-7BE109ABCA01@korgrd.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <c7f0780b-79f8-7124-4d2a-39e41e801bde@linux.intel.com>
-Date: Thu, 17 May 2018 13:50:39 +0300
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from smtpcmd0756.aruba.it (smtpcmd0756.aruba.it [62.149.156.56])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4AE2E00B18
+	for <yocto@yoctoproject.org>; Thu, 17 May 2018 05:18:07 -0700 (PDT)
+Received: from [10.0.3.130] ([78.6.3.122])
+	by smtpcmd07.ad.aruba.it with bizsmtp
+	id nQJ51x00y2dwwGE01QJ59U; Thu, 17 May 2018 14:18:06 +0200
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Mauro Ziliani <mauro@faresoftware.it>
+Message-ID: <d8bc33da-e352-7408-c5ab-2c175529f90d@faresoftware.it>
+Date: Thu, 17 May 2018 14:18:05 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.7.0
 MIME-Version: 1.0
-In-Reply-To: <87DBB3BF-2DF5-4A71-AF55-7BE109ABCA01@korgrd.com>
-Subject: Re: [meta-raspberrypi] troubling warning "postinstall intercept hook 'update_gio_module_cache-nativesdk' failed"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1526559486; bh=+ElkkIQeIi8N5DpsQ9VG+xKwa5iEhuAaOhTbcbnQf7k=;
+	h=To:From:Subject:Date:MIME-Version:Content-Type;
+	b=gsih1JlxqsTonJ85XgrJzOAOOKWAPkDR/0056CPfmddME7IcwsT8ukOGI/bNXKH5u
+	6NwoU6MQoiYkvb+VwFSGdYI4SCBoLVHKCrQtwgIFKM7I0Eh9PxSZQx9jO+f5OOCH67
+	BLGVrVZCbRvEubnV1n77pHmea4A9FrWXc3E4pRrmwNodbVEKAccU8UU67RoB66LDmH
+	V34Bp1rVDYg/6MCmJ9smJWHWqvoSUOMxHpCqaeOh3OxCcjZgN2e8eNHN23e2O7Q9my
+	ZA6+q3QfcW17kkJ/0CxrmG4yuTlP4CD17okY43mkeqnIJCNlvSRkmTPfNbnKWF2Kl6
+	IXlfCDJgaZBsw==
+Subject: Configuration network from qt5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,30 +48,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 May 2018 10:58:08 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 17 May 2018 12:18:09 -0000
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: it
 
-On 05/17/2018 12:17 PM, Steve Pavao wrote:
-> I am trying to build for raspberrypi3 near head of sumo. I get the following troublesome warning fairly often since I started doing some builds in sumo and master the past week.:
-> 
-> WARNING: core-image-minimal-1.0-r0 do_populate_sdk: The postinstall intercept hook 'update_gio_module_cache-nativesdk' failed, details in /data/development/lfs/yocto/build/spark/raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_populate_sdk
-> 
-> Here is the detail of the warning is.  It basically reports "Invalid ELF image for this architecture":
-> 
-> NOTE: > Executing update_gio_module_cache-nativesdk intercept ...
-> WARNING: The postinstall intercept hook 'update_gio_module_cache-nativesdk' failed, details in /data/development/lfs/yocto/build/spark/raspb
-> errypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_populate_sdk
-> NOTE: Exit code 255. Output:
-> /data/development/lfs/yocto/build/spark/raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-minimal/1.0-r0/sdk/image/opt/poky/2
-> .5/sysroots/x86_64-pokysdk-linux/usr/libexec/nativesdk-gio-querymodules: Invalid ELF image for this architecture
-> 
-> Question: How serious is this warning, and what should I do about it?
+Hi all.
 
-Thanks for reporting! This is mostly harmless, but I'll make a patch to 
-address it.
+Which the betst choice to perform the network configuration in Yocto 
+Krogoth from a qt5 application?
 
-Alex
+The configuration should be made without external script, using dbus.
+
+
+Best regards,
+
+   MZ
 
 
