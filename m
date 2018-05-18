@@ -1,60 +1,71 @@
-Return-Path: <chandrasekhar@evolute.in>
+Return-Path: <rahuljangra017@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E62C9E009E2; Thu, 17 May 2018 23:17:32 -0700 (PDT)
+	id ED37BE00BFB; Thu, 17 May 2018 23:20:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [202.137.236.136 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,WEIRD_PORT
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rahuljangra017[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.196 listed in list.dnswl.org]
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 405 seconds by postgrey-1.32 at yocto-www;
-	Thu, 17 May 2018 23:17:29 PDT
-Received: from rediffmail.com (pro236-136.mxout.rediffmailpro.com
-	[202.137.236.136])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7361FE009B9
-	for <yocto@yoctoproject.org>; Thu, 17 May 2018 23:17:28 -0700 (PDT)
-X-REDIFF-Delivered-Remotely-To: yocto@yoctoproject.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rediffmailpro.com;
-	s=epro; t=1526623836;
-	bh=kKKdOfixb4RSmzD79sCgpPoemGNi4fCZgJBOsJ3yas8=;
-	h=MIME-Version:From:Date:Message-ID:Subject:To;
-	b=OhXZA+sxi2B0gDU1nm5X1da51Y936JSiUsDYxFnTfhxKtus7qM0nh8JsOd5NaTzcJ
-	x/KKI4GzSyDA4RJa38bt1o2/yNumq1vic5yvKQytkfRCGO2ozhYHUdepPhYJ6u8V12
-	1tnx0whdRXSLvbM427acDYYzY6HWZLykCb8Tz1C4=
-Received: (qmail 1429 invoked from network); 18 May 2018 06:10:36 -0000
-x-m-msg: asd54ad564ad7aa6sd5as6d5; a6da7d6asas6dasd77; 5dad65ad5sd;
-X-OUT-VDRT-SpamState: 0\LEGIT
-X-OUT-VDRT-SpamScore: -100
-X-OUT-VDRT-SpamCause: gggruggvucftvghtrhhoucdtuddrgedthedrfedvgddutdehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvfhgjufffkfggtgfothesrgdtghepvddtjeenucfhrhhomhepfdgthhgrnhgurhgrshgvkhhhrghrfdcuoegthhgrnhgurhgrshgvkhhhrghrsegvvhholhhuthgvrdhinheqnecuffhomhgrihhnpeihrghhohhordgtohhmnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtnecuvehluhhsthgvrhfuihiivgeptd
-X-Dedup-Identifier: 1526623836_1335_958_pro-236-136
-Received: from unknown (HELO chandrasekhar)
-	(chandrasekhar@evolute.in@180.151.37.180)
-	by mailserver with SMTP; 18 May 2018 06:10:35 -0000
-From: "chandrasekhar" <chandrasekhar@evolute.in>
-To: <kumar.ugesh003@yahoo.com>, "'Yocto-mailing-list'" <yocto@yoctoproject.org>
-References: <1621704137.2131896.1526488025606.ref@mail.yahoo.com>
-	<1621704137.2131896.1526488025606@mail.yahoo.com>
-	<000c01d3ed93$cc662ce0$653286a0$@in>
-	<1610363301.2651115.1526610116510@mail.yahoo.com>
-	<000901d3ee5e$aab1ec80$0015c580$@in>
-	<2114034351.2762560.1526622299302@mail.yahoo.com>
-In-Reply-To: <2114034351.2762560.1526622299302@mail.yahoo.com>
-Date: Fri, 18 May 2018 11:40:20 +0530
-Message-ID: <001d01d3ee6e$e6fb79d0$b4f26d70$@in>
+Received: from mail-qt0-f196.google.com (mail-qt0-f196.google.com
+	[209.85.216.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05E20E009E2;
+	Thu, 17 May 2018 23:20:26 -0700 (PDT)
+Received: by mail-qt0-f196.google.com with SMTP id f5-v6so8965408qth.2;
+	Thu, 17 May 2018 23:20:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=c8Qtqpydw3UTs02aOfZI3MoChnsNJTbCKHAPv11NMqk=;
+	b=dIqNd52d9ygzG70w5SWuMjOwUNjJ+hJtjflxBtoCOSv2pxjHAqFP8kmn1kUiGlMPLu
+	NRP6k4k5RDS+OY+eD692t014iFjgNRJ2zck3TsnfVacXZHRd3jcHN5e7RKVLlRcU9pvU
+	mR3f0FgfJJBltirVnGeq7A9G9ZVaeQMMkkAOs91TJMLZT/PugUUr0f8/rm9lZUBIGu0x
+	BEDSFWCL/sWketzXiqSg81ydz+z8UXK5xR+gP34mSiGPDjXfAJ8B8fW1mrRlN4tvt/vN
+	zRh6u4DNhK1pECxk3JzDmTPeYWZU30F55eaxV3Mrd66lw2zqibBf25G3GhOtY/PKUHdQ
+	w1vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=c8Qtqpydw3UTs02aOfZI3MoChnsNJTbCKHAPv11NMqk=;
+	b=ObAmQc5zQE5GSQ0cKDgqP0wptzOjdmmVuj4UYKK8wmD3Azg794lOTthXVlpebFkodW
+	gtbZZL38dDQTg2U0J/Q1GXxDsdkb0+syU13uWYnBorcoCxxbeHKgiL1dMxBMfTzGvUTo
+	71h+VUDFZ0s4/Q0bVN8o8wfqdRN+hsYq4T7Rq6Sm79F9HUfiAp3GDx9k4NxaG+X5X1nb
+	s0i0eWK+N1nv3Bgl3iIbzdTqSctuFfBcQL9BhgwzqYyeM6CFbVGnFLATy/abhicaZmZi
+	eNzEDhCzfn5NzJSiPDsDALNAbH/r3GVCQCzJqhnnwGQOT51aUddGD2Idou2cY4CQ3sKR
+	1UsA==
+X-Gm-Message-State: ALKqPwdC/4F2mC9yNyBAMsrFSn2+BmQseDqJ4zyxu2Bemsbg2z3Mt8kV
+	KAnZO0EF+Yic6SgklN4ZUU4xgKTJKXNjmro0MIo=
+X-Google-Smtp-Source: AB8JxZo+D+jSgCZI4v9PO7Ve2GzOnAWcgnWj6VkujpigGfvGbi0t+KZRvXa6rpl3/PaUxeFwqzltqlaAqkefBEip4us=
+X-Received: by 2002:ac8:27c9:: with SMTP id
+	x9-v6mr8020154qtx.374.1526624426052; 
+	Thu, 17 May 2018 23:20:26 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 12.0
-Thread-Index: AdPua1/MoLti/K/0SqW4WCyDl/FX7AAA3RPg
-Subject: Re: Enabling the recipe from menuconfig
+Received: by 10.12.229.132 with HTTP; Thu, 17 May 2018 23:20:25 -0700 (PDT)
+In-Reply-To: <CAGUdgLbY8dXkpmkS0mLz-xseThX0g5pHRnvzYUbje9Xp9yDxXg@mail.gmail.com>
+References: <CAGUdgLYvHa1DMx4qZ5D1M+x7YSymjYJ9_htyjf=bXKuV50V4hA@mail.gmail.com>
+	<12db0c4e-d881-60ca-8af9-01461ebc00a5@intel.com>
+	<CAGUdgLa-HpxrFeK7w5X6b9oxrH2+ohnn0uek65_z=T2UzLmuKQ@mail.gmail.com>
+	<CAGUdgLbY8dXkpmkS0mLz-xseThX0g5pHRnvzYUbje9Xp9yDxXg@mail.gmail.com>
+From: Rahul jangra <rahuljangra017@gmail.com>
+Date: Fri, 18 May 2018 11:50:25 +0530
+Message-ID: <CAGUdgLZbmXQdz=QZjq3aFUzT5HqMR6JwC18EyCdicFCS-S5sNw@mail.gmail.com>
+To: yocto-request <yocto-request@yoctoproject.org>,
+	yocto <yocto@yoctoproject.org>
+Cc: yocto-builds-owner <yocto-builds-owner@yoctoproject.org>
+Subject: apt-get error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,617 +77,232 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 May 2018 06:17:33 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_001E_01D3EE9D.00B3B5D0"
-Content-Language: en-us
+X-List-Received-Date: Fri, 18 May 2018 06:20:29 -0000
+Content-Type: text/plain; charset="UTF-8"
+
+---------- Forwarded message ----------
+From: Rahul jangra <rahuljangra017@gmail.com>
+Date: Thu, 17 May 2018 10:29:16 +0530
+Subject: Re: [yocto] apt-get error
+To: Anuj Mittal <anuj.mittal@intel.com>
+
+when I am creating core-image-minimal it easy to build up
+but when I am trying to create core-image-full-cmdline he is getting an error
+
+ore-image-full-cmdline-1.0-r0 do_rootfs: Unable to install packages.
+Command '/home/debianstretch/rpi/build/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/apt-get
+ install --force-yes --allow-unauthenticated dpkg base-passwd
+hello-mender packagegroup-core-ssh-openssh psplash-raspberrypi
+run-postinsts shadow packagegroup-core-boot kernel-devicetree
+kernel-image-4.14.39 mender packagegroup-core-full-cmdline apt'
+returned 100:
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+
+The following packages have unmet dependencies:
+ packagegroup-core-full-cmdline : Depends:
+packagegroup-core-full-cmdline-initscripts but it is not going to be
+installed
+E: Unable to correct problems, you have held broken packages.
+
+ERROR: core-image-full-cmdline-1.0-r0 do_rootfs: Function failed: do_rootfs
+ERROR: Logfile of failure stored in:
+/home/debianstretch/rpi/build/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/temp/log.do_rootfs.105216
+ERROR: Task (/home/debianstretch/poky-rocko/meta/recipes-extended/images/core-image-full-cmdline.bb:do_rootfs)
+failed with exit code '1'
+
+
+
+
+
+On 5/17/18, Rahul jangra <rahuljangra017@gmail.com> wrote:
+> I am working on mender yocto project of raspberry pi
+> and I am sharing my details
+> my local.conf file setting
+> # Local configuration for meta-RPI images
+> # Yocto Project 2.4 Poky distribution [rocko] branch
+> # This is a sysvinit system
+>
+> LICENSE_FLAGS_WHITELIST = "commercial"
+>
+> DISTRO_FEATURES = "ext2 pam opengl usbhost ${DISTRO_FEATURES_LIBC}"
+>
+> DISTRO_FEATURES_BACKFILL_CONSIDERED += "pulseaudio"
+>
+> PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
+> PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"
+>
+> PREFERRED_PROVIDER_udev = "eudev"
+> #VIRTUAL-RUNTIME_init_manager = "sysvinit"
+>
+> MACHINE_FEATURES_remove = "apm"
+>
+> IMAGE_FSTYPES = "tar.xz"
+>
+> # override the meta-raspberrypi default 4.9 kernel
+> PREFERRED_VERSION_linux-raspberrypi = "4.14.%"
+>
+> # Choose the board you are building for
+> #MACHINE="raspberrypi"
+> #MACHINE="raspberrypi0"
+> #MACHINE="raspberrypi0-wifi"
+> #MACHINE="raspberrypi2"
+> #MACHINE = "raspberrypi3"
+> #MACHINE="raspberrypi-cm"
+> #MACHINE="raspberrypi-cm3"
+>
+> # Choices are Image or zImage if NOT using u-boot (no u-boot is the
+> default)
+> # Choices are uImage or zImage if using u-boot, though if you choose zImage
+> # with u-boot you will also have to change the boot script boot command
+> #KERNEL_IMAGETYPE = "zImage"
+>
+> ENABLE_UART="1"
+>
+> DL_DIR = "${HOME}/oe-sources"
+>
+> #SSTATE_DIR = "/oe4/rpi/sstate-cache"
+>
+> #TMPDIR = "/oe4/rpi/tmp-rocko"
+>
+> DISTRO = "poky"
+>
+> #PACKAGE_CLASSES = "package_ipk"
+> PACKAGE_CLASSES = "package_deb"
+>
+> # i686 or x86_64
+> SDKMACHINE = "x86_64"
+>
+> EXTRA_IMAGE_FEATURES = "debug-tweaks"
+> INHERIT += "extrausers"
+> EXTRA_USERS_PARAMS = "usermod -P nsspl@123 root; "
+>
+> USER_CLASSES = "image-mklibs image-prelink"
+>
+> PATCHRESOLVE = "noop"
+>
+> RM_OLD_IMAGE = "1"
+>
+> INHERIT += "rm_work"
+>
+> ONF_VERSION = "1"
+>
+> # The name of the disk image and Artifact that will be built.
+> # This is what the device will report that it is running, and
+> different updates must have different names
+> # because Mender will skip installation of an Artifact if it is
+> already installed.
+> MENDER_ARTIFACT_NAME = "release-1"
+>
+> INHERIT += "mender-full"
+>
+> # A MACHINE integrated with Mender.
+> # raspberrypi3, beaglebone, and vexpress-qemu are reference devices
+> MACHINE = "raspberrypi3"
+>
+> # For Raspberry Pi, uncomment the following block:
+> RPI_USE_U_BOOT = "1"
+> #MENDER_PARTITION_ALIGNMENT_KB = "4096"
+> #MENDER_BOOT_PART_SIZE_MB = "40"
+> MENDER_PARTITION_ALIGNMENT_KB = "8192"
+> MENDER_BOOT_PART_SIZE_MB = "80"
+> MENDER_DATA_PART_SIZE_MB = "128"
+> MENDER_STORAGE_TOTAL_SIZE_MB = "5000"
+> do_image_sdimg[depends] += " bcm2835-bootfiles:do_populate_sysroot"
+> IMAGE_INSTALL_append = " kernel-image kernel-devicetree"
+> IMAGE_FSTYPES_remove += " rpi-sdimg"
+>
+> # Lines below not needed for Yocto Rocko (2.4) or newer.
+> # IMAGE_BOOT_FILES_append = " boot.scr u-boot.bin;${SDIMG_KERNELIMAGE}"
+> KERNEL_IMAGETYPE = "uImage"
+>
+> # The version of Mender to build. This needs to match an existing
+> recipe in the meta-mender repository.
+> #
+> # Given your Yocto Project version, see which versions of Mender you
+> can currently build here:
+> #
+> https://docs.mender.io/architecture/compatibility#mender-client-and-yocto-project-version
+> #
+> # Given a Mender client version, see the corresponding version of the
+> mender-artifact utility:
+> #
+> https://docs.mender.io/architecture/compatibility#mender-client-and-artifact-format
+> #
+> # Note that by default this will select the latest released version of
+> the tools.
+> # If you need an earlier version, please uncomment the following and set to
+> the
+> # required version.
+> #
+> # PREFERRED_VERSION_pn-mender = "1.1.%"
+> # PREFERRED_VERSION_pn-mender-artifact = "2.0.%"
+> # PREFERRED_VERSION_pn-mender-artifact-native = "2.0.%"
+>
+> # Build for Hosted Mender
+> # To get your tenant token, log in to https://hosted.mender.io,
+> # click your email at the top right and then "My organization".
+>
+> DISTRO_FEATURES_append = " systemd"
+> VIRTUAL-RUNTIME_init_manager = "systemd"
+> DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+> VIRTUAL-RUNTIME_initscripts = ""
+>
+> IMAGE_FSTYPES = "ext4"
+> IMAGE_INSTALL_append += " apt dpkg "
+> #IMAGE_ROOTFS_EXTRA_SPACE = "5242880"
+> PACKAGE_FEED_URIS = "http://192.168.1.12:8000"
+> EXTRA_IMAGE_FEATURES += " package-management "
+>
+> bblayers.conf file setting
+>
+> POKY_BBLAYERS_CONF_VERSION = "2"
+>
+> BBPATH = "${TOPDIR}"
+> BBFILES ?= ""
+>
+> BBLAYERS ?= " \
+>   ${HOME}/poky-rocko/meta \
+>   ${HOME}/poky-rocko/meta-poky \
+>   ${HOME}/poky-rocko/meta-openembedded/meta-oe \
+>   ${HOME}/poky-rocko/meta-openembedded/meta-multimedia \
+>   ${HOME}/poky-rocko/meta-openembedded/meta-networking \
+>   ${HOME}/poky-rocko/meta-openembedded/meta-perl \
+>   ${HOME}/poky-rocko/meta-openembedded/meta-python \
+>   ${HOME}/poky-rocko/meta-qt5 \
+>   ${HOME}/poky-rocko/meta-raspberrypi \
+>   ${HOME}/poky-rocko/meta-security \
+>   ${HOME}/rpi/meta-rpi \
+>   /home/nsspl/rpi/meta-mender/meta-mender-core \
+>   /home/nsspl/rpi/meta-mender/meta-mender-demo \
+>   /home/nsspl/rpi/meta-mender/meta-mender-raspberrypi \
+>   "
+>
+>
+> On 5/17/18, Anuj Mittal <anuj.mittal@intel.com> wrote:
+>> On 05/16/2018 06:31 PM, Rahul jangra wrote:
+>>> Hi
+>>> i am facing the so many issues to creating .deb base yocto raspberry pi
+>>> image now i am getting this error.
+>>> someone can help me how to resolve this error.
+>>>
+>>> ERROR: core-image-full-cmdline-1.0-r0 do_rootfs: Unable to install
+>>> packages. Command
+>>> '/home/nsspl/rpi/build/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-f
+>>> ull-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/apt-get install
+>>> --force-yes --allow-unauthenticated mender psplash-raspberrypi shadow
+>>> run-postinsts hello-mender packagegroup-core-boot kernel-devicetree
+>>> packagegroup-core-ssh-openssh apt dpkg base-passwd kernel-image-4.14.37
+>>
+>> It'd help if you can share more details - layers that you are using,
+>> which version, local configuration and the complete error.
+>>
+>>
+>
 
-------=_NextPart_000_001E_01D3EE9D.00B3B5D0
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-I think you can use Toaster for that which has a web interface you can =
-select packages/receipes
-
-=20
-
-Regards,
-
-Chandrasekhar
-
-=20
-
-From: Ugesh Reddy [mailto:kumar.ugesh003@yahoo.com]=20
-Sent: Friday, May 18, 2018 11:15 AM
-To: chandrasekhar@evolute.in; 'Yocto-mailing-list'
-Subject: RE: [yocto] Enabling the recipe from menuconfig
-
-=20
-
-The similar kind is required for my custom layer. So that I could enable =
-the receipt from the menu config
-
-Sent from Yahoo <https://overview.mail.yahoo.com/mobile/?.src=3DAndroid> =
- Mail on Android
-
-=20
-
-On Fri, 18 May 2018 at 9:44 a.m., chandrasekhar
-
-<chandrasekhar@evolute.in> wrote:
-
-you want to see in kernel menuconfig??
-
-=20
-
-From: yocto-bounces@yoctoproject.org =
-[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Ugesh Reddy
-Sent: Friday, May 18, 2018 7:52 AM
-To: 'Yocto-mailing-list'; chandrasekhar
-Subject: Re: [yocto] Enabling the recipe from menuconfig
-
-=20
-
-Hi,
-
-Thanks for the response,
-
-=20
-
- This will add the recipe as a part of image but I want to build and add =
-the recipe when it has been selected from the menuconfig.
-
-How to make visible the recipe in menuconfig?
-
-On Thursday, 17 May, 2018, 9:32:15 AM IST, chandrasekhar =
-<chandrasekhar@evolute.in> wrote:=20
-
-=20
-
-=20
-
-Hi=20
-
-You can use=20
-
-IMAGE_INSTALL +=3D "Package Name/Recipes name"
-
-=20
-
-Regards,
-
-Chandrasekhar
-
-=20
-
-From: yocto-bounces@yoctoproject.org =
-[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Ugesh Reddy
-Sent: Wednesday, May 16, 2018 9:57 PM
-To: Yocto-mailing-list
-Subject: [yocto] Enabling the recipe from menuconfig
-
-=20
-
-Hello Team,
-
-=20
-
- I have a list of recipes in my custom layer. The recipes in this layer =
-shall be enabled/selected through the menuconfig, once it is enabled =
-then it shall be the part of image. is it possible to achieve it ? do we =
-have any references?=20
-
-=20
-
-Regards,
-
-Ugesh
-
-
-------=_NextPart_000_001E_01D3EE9D.00B3B5D0
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40">
-
-<head>
-<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8">
-<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:New;
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.yiv1946153965msonormal, li.yiv1946153965msonormal, =
-div.yiv1946153965msonormal
-	{mso-style-name:yiv1946153965msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-p.yiv1946153965msochpdefault, li.yiv1946153965msochpdefault, =
-div.yiv1946153965msochpdefault
-	{mso-style-name:yiv1946153965msochpdefault;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-p.yiv1946153965msonormal1, li.yiv1946153965msonormal1, =
-div.yiv1946153965msonormal1
-	{mso-style-name:yiv1946153965msonormal1;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-p.yiv1946153965msochpdefault1, li.yiv1946153965msochpdefault1, =
-div.yiv1946153965msochpdefault1
-	{mso-style-name:yiv1946153965msochpdefault1;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.yiv1946153965msohyperlink
-	{mso-style-name:yiv1946153965msohyperlink;}
-span.yiv1946153965msohyperlinkfollowed
-	{mso-style-name:yiv1946153965msohyperlinkfollowed;}
-span.yiv1946153965msohyperlink1
-	{mso-style-name:yiv1946153965msohyperlink1;}
-span.yiv1946153965msohyperlinkfollowed1
-	{mso-style-name:yiv1946153965msohyperlinkfollowed1;}
-span.yiv1946153965emailstyle171
-	{mso-style-name:yiv1946153965emailstyle171;}
-span.yiv1946153965emailstyle27
-	{mso-style-name:yiv1946153965emailstyle27;}
-p.yiv1946153965msonormal2, li.yiv1946153965msonormal2, =
-div.yiv1946153965msonormal2
-	{mso-style-name:yiv1946153965msonormal2;
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"New","serif";}
-span.yiv1946153965msohyperlink2
-	{mso-style-name:yiv1946153965msohyperlink2;
-	color:blue;
-	text-decoration:underline;}
-span.yiv1946153965msohyperlinkfollowed2
-	{mso-style-name:yiv1946153965msohyperlinkfollowed2;
-	color:purple;
-	text-decoration:underline;}
-p.yiv1946153965msonormal3, li.yiv1946153965msonormal3, =
-div.yiv1946153965msonormal3
-	{mso-style-name:yiv1946153965msonormal3;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"New","serif";}
-p.yiv1946153965msochpdefault2, li.yiv1946153965msochpdefault2, =
-div.yiv1946153965msochpdefault2
-	{mso-style-name:yiv1946153965msochpdefault2;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"New","serif";}
-p.yiv1946153965msonormal11, li.yiv1946153965msonormal11, =
-div.yiv1946153965msonormal11
-	{mso-style-name:yiv1946153965msonormal11;
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.yiv1946153965msohyperlink11
-	{mso-style-name:yiv1946153965msohyperlink11;
-	color:blue;
-	text-decoration:underline;}
-span.yiv1946153965msohyperlinkfollowed11
-	{mso-style-name:yiv1946153965msohyperlinkfollowed11;
-	color:purple;
-	text-decoration:underline;}
-span.yiv1946153965emailstyle1711
-	{mso-style-name:yiv1946153965emailstyle1711;
-	color:#1F497D;}
-p.yiv1946153965msochpdefault11, li.yiv1946153965msochpdefault11, =
-div.yiv1946153965msochpdefault11
-	{mso-style-name:yiv1946153965msochpdefault11;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:10.0pt;
-	font-family:"New","serif";}
-span.yiv1946153965emailstyle271
-	{mso-style-name:yiv1946153965emailstyle271;
-	color:#1F497D;}
-span.EmailStyle38
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page Section1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.Section1
-	{page:Section1;}
--->
-</style>
-<!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
-
-<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
-
-<div class=3DSection1>
-
-<p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
-color:#1F497D'>I think you can use Toaster for that which has a web =
-interface
-you can select packages/receipes<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
-color:#1F497D'><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
-color:#1F497D'>Regards,<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
-color:#1F497D'>Chandrasekhar<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
-color:#1F497D'><o:p>&nbsp;</o:p></span></p>
-
-<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt =
-0in 0in 0in'>
-
-<p class=3DMsoNormal><b><span =
-style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
-</b><span
-style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> Ugesh =
-Reddy
-[mailto:kumar.ugesh003@yahoo.com] <br>
-<b>Sent:</b> Friday, May 18, 2018 11:15 AM<br>
-<b>To:</b> chandrasekhar@evolute.in; 'Yocto-mailing-list'<br>
-<b>Subject:</b> RE: [yocto] Enabling the recipe from =
-menuconfig<o:p></o:p></span></p>
-
-</div>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=3DMsoNormal style=3D'margin-bottom:12.0pt'>The similar kind is =
-required
-for my custom layer. So that I could enable the receipt from the menu =
-config<o:p></o:p></p>
-
-<div id=3D"ymail_android_signature">
-
-<p class=3DMsoNormal><a
-href=3D"https://overview.mail.yahoo.com/mobile/?.src=3DAndroid">Sent =
-from Yahoo
-Mail on Android</a><o:p></o:p></p>
-
-</div>
-
-<blockquote =
-style=3D'margin-left:0in;margin-right:0in;margin-bottom:15.0pt'>
-
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
-
-<div>
-
-<div>
-
-<p class=3DMsoNormal><span =
-style=3D'font-family:"Arial","sans-serif";color:#6D00F6'>On
-Fri, 18 May 2018 at 9:44 a.m., chandrasekhar<o:p></o:p></span></p>
-
-</div>
-
-<div>
-
-<p class=3DMsoNormal><span =
-style=3D'font-family:"Arial","sans-serif";color:#6D00F6'>&lt;chandrasekha=
-r@evolute.in&gt;
-wrote:<o:p></o:p></span></p>
-
-</div>
-
-</div>
-
-<div style=3D'border:none;border-left:solid #6D00F6 1.0pt;padding:0in =
-0in 0in 15.0pt;
-margin-top:7.5pt'>
-
-<div id=3Dyiv1946153965>
-
-<div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal><span style=3D'font-size:11.0pt'>you =
-want to see
-in kernel menuconfig??</span><o:p></o:p></p>
-
-<p class=3Dyiv1946153965msonormal><span =
-style=3D'font-size:11.0pt'>&nbsp;</span><o:p></o:p></p>
-
-<div id=3Dyiv1946153965yqt05922>
-
-<div>
-
-<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt =
-0in 0in 0in'>
-
-<p class=3Dyiv1946153965msonormal><b><span =
-style=3D'font-size:10.0pt'>From:</span></b><span
-style=3D'font-size:10.0pt'> yocto-bounces@yoctoproject.org
-[mailto:yocto-bounces@yoctoproject.org] <b>On Behalf Of </b>Ugesh =
-Reddy<br>
-<b>Sent:</b> Friday, May 18, 2018 7:52 AM<br>
-<b>To:</b> 'Yocto-mailing-list'; chandrasekhar<br>
-<b>Subject:</b> Re: [yocto] Enabling the recipe from =
-menuconfig</span><o:p></o:p></p>
-
-</div>
-
-</div>
-
-<p class=3Dyiv1946153965msonormal>&nbsp;<o:p></o:p></p>
-
-<div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal><span =
-style=3D'font-size:10.0pt'>Hi,</span><o:p></o:p></p>
-
-</div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal><span =
-style=3D'font-size:10.0pt'>Thanks for the
-response,</span><o:p></o:p></p>
-
-</div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal>&nbsp;<o:p></o:p></p>
-
-</div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal><span =
-style=3D'font-size:10.0pt'>&nbsp;This will
-add the recipe as a part of image but I want&nbsp;to build and add the =
-recipe
-when it has been selected from the menuconfig.</span><o:p></o:p></p>
-
-</div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal><span style=3D'font-size:10.0pt'>How =
-to make
-visible&nbsp;the recipe in menuconfig?</span><o:p></o:p></p>
-
-</div>
-
-<div id=3D"yiv1946153965yahoo_quoted_7582411903">
-
-<div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal><span style=3D'font-size:10.0pt'>On =
-Thursday, 17
-May, 2018, 9:32:15 AM IST, chandrasekhar =
-&lt;chandrasekhar@evolute.in&gt;
-wrote: </span><o:p></o:p></p>
-
-</div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal><span =
-style=3D'font-size:10.0pt'>&nbsp;</span><o:p></o:p></p>
-
-</div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal><span =
-style=3D'font-size:10.0pt'>&nbsp;</span><o:p></o:p></p>
-
-</div>
-
-<div>
-
-<div id=3Dyiv1946153965>
-
-<div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal3><span style=3D'font-size:11.0pt'>Hi =
-</span><o:p></o:p></p>
-
-<p class=3Dyiv1946153965msonormal3><span style=3D'font-size:11.0pt'>You =
-can use </span><o:p></o:p></p>
-
-<p class=3Dyiv1946153965msonormal3><span =
-style=3D'font-size:11.0pt'>IMAGE_INSTALL
-+=3D &quot;Package Name/Recipes name&quot;</span><o:p></o:p></p>
-
-<p class=3Dyiv1946153965msonormal3><span =
-style=3D'font-size:11.0pt'>&nbsp;</span><o:p></o:p></p>
-
-<p class=3Dyiv1946153965msonormal3><span =
-style=3D'font-size:11.0pt'>Regards,</span><o:p></o:p></p>
-
-<p class=3Dyiv1946153965msonormal3><span =
-style=3D'font-size:11.0pt'>Chandrasekhar</span><o:p></o:p></p>
-
-<p class=3Dyiv1946153965msonormal3><span =
-style=3D'font-size:11.0pt'>&nbsp;</span><o:p></o:p></p>
-
-<div id=3Dyiv1946153965yqt99373>
-
-<div>
-
-<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt =
-0in 0in 0in'>
-
-<p class=3Dyiv1946153965msonormal3><b><span =
-style=3D'font-size:10.0pt'>From:</span></b><span
-style=3D'font-size:10.0pt'> yocto-bounces@yoctoproject.org
-[mailto:yocto-bounces@yoctoproject.org] <b>On Behalf Of </b>Ugesh =
-Reddy<br>
-<b>Sent:</b> Wednesday, May 16, 2018 9:57 PM<br>
-<b>To:</b> Yocto-mailing-list<br>
-<b>Subject:</b> [yocto] Enabling the recipe from =
-menuconfig</span><o:p></o:p></p>
-
-</div>
-
-</div>
-
-<p class=3Dyiv1946153965msonormal3><span =
-style=3D'font-size:10.0pt'>&nbsp;</span><o:p></o:p></p>
-
-<div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal3><span =
-style=3D'font-size:10.0pt'>Hello Team,</span><o:p></o:p></p>
-
-</div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal3><span =
-style=3D'font-size:10.0pt'>&nbsp;</span><o:p></o:p></p>
-
-</div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal3><span =
-style=3D'font-size:10.0pt'>&nbsp;I have a
-list of recipes in my custom layer. The recipes in this&nbsp;layer shall =
-be
-enabled/selected through the menuconfig, once it is enabled then it =
-shall be
-the part of image. is it possible to achieve&nbsp;it ? do we have any
-references?&nbsp;</span><o:p></o:p></p>
-
-</div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal3><span =
-style=3D'font-size:10.0pt'>&nbsp;</span><o:p></o:p></p>
-
-</div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal3><span =
-style=3D'font-size:10.0pt'>Regards,</span><o:p></o:p></p>
-
-</div>
-
-<div>
-
-<p class=3Dyiv1946153965msonormal3><span =
-style=3D'font-size:10.0pt'>Ugesh</span><o:p></o:p></p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</blockquote>
-
-</div>
-
-</body>
-
-</html>
-
-------=_NextPart_000_001E_01D3EE9D.00B3B5D0--
