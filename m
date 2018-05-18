@@ -1,64 +1,74 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <mirza@mkrak.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B2AB8E009E2; Fri, 18 May 2018 03:52:08 -0700 (PDT)
+	id 6B54CE00BAD; Fri, 18 May 2018 04:44:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (marek.belisko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.160.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B962E009B9
-	for <yocto@yoctoproject.org>; Fri, 18 May 2018 03:52:06 -0700 (PDT)
-Received: by mail-wm0-f47.google.com with SMTP id a8-v6so13349134wmg.5
-	for <yocto@yoctoproject.org>; Fri, 18 May 2018 03:52:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=6hGSNR6oZkhPKKsbp9CkKot+VfZ4RbwlARlwfQSDchA=;
-	b=lkBtbKbAJSkWwNqBGZ1SuEooc/m5QXqRanyIrS31Jm/8cldKTzGvYdJINymVMi4572
-	qaYEXhKLxkYq6m4+9kfPrdlnns7jkENim+RTzlxEIPLGd0wHtpa0Nx9cZrAioB/Es2hX
-	BI2DmZjjqjQzAlPvsoW+KQq6YN3Xef0RUEbpBDaKlfWs86BGEHUFq86ForRDed2Q6dpM
-	goWg7gh/bqdsYn2tKy2ttk7CGjkErCLNcRvSokzUuhpUTI+/XlC4fDMuPgPLXNvBVkq4
-	+T5Dt3Te0FdxU1TfcGHkMkfTmKvvVZPBnsyIm97z6zH6LMJ5ts84/p3kD98zmkrKu/SC
-	Fz3g==
+Received: from mail-pl0-f41.google.com (mail-pl0-f41.google.com
+	[209.85.160.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82459E009B9
+	for <yocto@yoctoproject.org>; Fri, 18 May 2018 04:44:21 -0700 (PDT)
+Received: by mail-pl0-f41.google.com with SMTP id c19-v6so4454290pls.6
+	for <yocto@yoctoproject.org>; Fri, 18 May 2018 04:44:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mkrak-org.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to:cc
+	:content-transfer-encoding;
+	bh=sJXdUr5/wZM/Xmhexb6965WAD1pb8i7TRhRSmhoddfU=;
+	b=K9KH+g48IRMel8nvQbcM6UuxYzU4cHUJKCwAc9gIR+Emf/qYEyv8SjloE/7B2bllv6
+	cQ+CtyEIBbTSQutUezgcWAQyw4zEDiTBKZaMq7QCL/sEIfDbmCl+Utag5r4/XKYTOSfN
+	Pjl5iIPUtxcArQNPzkjEZIGDVntIMfszRUIc1J9efBps5WWunVUw6DBgq2G2t2h4UuDH
+	aLQQR/fx3exn+UpKdExh15rMlYW1uLJSvoMuiLhxc/kfDTV56M6ktnt0N4QhPW6WSc4f
+	yDKklHRYiXfqEZIk7OLKRSn3oKLdygJ88CbIf9yhSY+nhhE3m4Y7ugaaAYaHTfwMwS+X
+	7oxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=6hGSNR6oZkhPKKsbp9CkKot+VfZ4RbwlARlwfQSDchA=;
-	b=lyoXQV7c3evsFqEA8UXsP8U9ekPnQh0nfRaGx6x8jL1MWMJBsC0zQfuPKwA8GuXD64
-	/pRMtEvy0SBSRxB0N1DR775jCQ1TtFfdMeHP/xC234QHs3/eLU45jCnWJFz1u3PpoHxf
-	iowr3A+ktHVwS0FNDXZ/xX5RiB4vgJvxohxLnMjGEjFVkcmllHRY2KRi0owxxVpQS27A
-	g+FNrk6VaZc+hZtesZ6gUVv44XFZrhLpzMhhl8RnVEYdNE62BkE4psyLlGyQfenhVGd4
-	HpPxcMe4KhGN0wHVABrB8SaPQyVnPs5e5D1MYa9BUcZxSsa1rG+9DmIB7bO2poHNRJ32
-	YG8g==
-X-Gm-Message-State: ALKqPwcsc17iGjLokL4imz2vYNorMbP/PaMc14y9RL+xjG8Zcvhvz8fe
-	h43/QXOpJv2WOsx89COkSGNP9WH09mMDMFyE3AA=
-X-Google-Smtp-Source: AB8JxZosEShE1FTRWQ9Le8wyHXsQ2f4sy/L+adngiN42dd+iCamCV2gGsJVSzylQO1UssVnL4LcVvGJpvvkM2vJZ+B8=
-X-Received: by 2002:a1c:fc3:: with SMTP id
-	186-v6mr4570953wmp.113.1526640725967; 
-	Fri, 18 May 2018 03:52:05 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc
+	:content-transfer-encoding;
+	bh=sJXdUr5/wZM/Xmhexb6965WAD1pb8i7TRhRSmhoddfU=;
+	b=qytvdcaoaSNcPf/7CgwB3AxCm+CVH6CaOIEMLLIeMDXuI6raBrX28DyfwCaujvTPdo
+	Lp/e8R4LBCO3HsnrIMH8pmAmUW2m85qvixy4l13uZjnXhNm4uv9y9q20rE92V9GuGRbI
+	JsA1Xz3gRVf5tiP8ldYW1yL6D2uotNewHe1z3py5BqDNOk5kH7GGtxy88BpVpcaT2MYz
+	1/hsA9E5io9A9Lg9hWRDaquC2wNCvIRGXOdmPtURzo4Dj4aN6BsnH4iyEg+tRel4X453
+	un7dkKRfWQKdCeqiLl3g9/L70xyi1s5JvSK2fc1Dfn/Ly1oaVecEn3xo9cB4laczmBbE
+	qKng==
+X-Gm-Message-State: ALKqPwdryN73qy3/7sv5I3D6XY5/pfZ4tnW58Nj5JMi9lSKuxKIIOJgE
+	QH4m52FA4+wj1uyHotOTj6DnqBiv
+X-Google-Smtp-Source: AB8JxZrCG/7PCS6KVkVhyLcTu8xM5UUuQOnR9Z8nG2zOfE+c8sRHoHbVnyP1g2LGTn5C2+QyaEBgFg==
+X-Received: by 2002:a17:902:758d:: with SMTP id
+	j13-v6mr1325209pll.188.1526643860524; 
+	Fri, 18 May 2018 04:44:20 -0700 (PDT)
+Received: from mail-pl0-f41.google.com (mail-pl0-f41.google.com.
+	[209.85.160.41]) by smtp.gmail.com with ESMTPSA id
+	o84-v6sm16643346pfi.27.2018.05.18.04.44.19
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 18 May 2018 04:44:19 -0700 (PDT)
+Received: by mail-pl0-f41.google.com with SMTP id 30-v6so4432680pld.13
+	for <yocto@yoctoproject.org>; Fri, 18 May 2018 04:44:19 -0700 (PDT)
+X-Received: by 2002:a17:902:8e8b:: with SMTP id
+	bg11-v6mr9009293plb.95.1526643858991; 
+	Fri, 18 May 2018 04:44:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <CALmqtKZf-2zEYTr7duH3FRUkPtL_-ftUys+nMfkBNph5Axx0wA@mail.gmail.com>
-In-Reply-To: <CALmqtKZf-2zEYTr7duH3FRUkPtL_-ftUys+nMfkBNph5Axx0wA@mail.gmail.com>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Fri, 18 May 2018 12:51:54 +0200
-Message-ID: <CAAfyv34XBx5FanV82mj7+1Fg5r0Kevzw-ROF22BOt1DyghCFNw@mail.gmail.com>
-To: enrico.bonomi92@gmail.com
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: Display 1920x1080 double LVDS channel problem
+Received: by 2002:a17:90a:950c:0:0:0:0 with HTTP; Fri, 18 May 2018 04:44:18
+	-0700 (PDT)
+From: Mirza Krak <mirza@mkrak.org>
+Date: Fri, 18 May 2018 13:44:18 +0200
+X-Gmail-Original-Message-ID: <CALw8SCUFX-ARtpWRxf4bUBHnV0BFT6jHs5JTErGeCf+=evcn7w@mail.gmail.com>
+Message-ID: <CALw8SCUFX-ARtpWRxf4bUBHnV0BFT6jHs5JTErGeCf+=evcn7w@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: gandersson@genivi.org
+Subject: TEST_IMAGE issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,70 +80,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 May 2018 10:52:08 -0000
+X-List-Received-Date: Fri, 18 May 2018 11:44:22 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi all!
 
-On Fri, May 18, 2018 at 11:41 AM Enrico Bonomi <enrico.bonomi92@gmail.com>
-wrote:
+Found something interesting (perhaps).
 
-> Hi,
+So we where thinking about enabling some of the OE QA tests that that
+are part of poky.
 
-> I'm working with an imx6duallite with Yocto 1.7.3. I want to drive a
-1920x1080 display with 2 LVDS channels but i came across a problem.
-Pictures are shown correctly on display but they have wrong colors (for
-example a blue bar during psplash is shown pink).
-This is not yocto specific question. I think you can get more help on
-meta-freescale@yoctoproject.org
+Seemed pretty straight forward. Added following to local.conf:
 
-> my .dts has the following ldb:
+    INHERIT +=3D "testimage"
 
-> &ldb {
-> ipu_id = <1>;
-> disp_id = <0>;
-> ext_ref = <1>;
-> mode = "sep0";
-> sec_ipu_id = <1>;
-> sec_disp_id = <1>;
-> status = "okay";
-> split-mode;
+Build my image and then tried to run:
 
-> lvds-channel@0{
-> fsl,data-mapping = "spwg";
-> fsl,data-width = <24>;
-> crtc = "ipu1-di0";
-> status = "okay";
-> };
+    bitbake -c testimage <image name>
 
-> lvds-channel@1{
-> fsl,data-mapping = "spwg";
-> fsl,data-width = <24>;
-> crtc = "ipu1-di0";
-> status = "okay";
-> };
+To my despair it did not work and instead produced an error. Tried
+both on "pyro" and "rocko" branches. The error was:
 
+    | runqemu started, pid is 45087
+    | NOTE: runqemu started, pid is 45087
+    | waiting at most 60 seconds for qemu pid
+    | NOTE: waiting at most 60 seconds for qemu pid
+    | runqemu exited with code 1
+    | NOTE: runqemu exited with code 1
+    | Output from runqemu:
+    | runqemu - ERROR - Unknown path arg
+<masked>/tmp/deploy/images/qemux86-64/genivi-dev-platform-qemux86-64.ext4
+    | runqemu - ERROR - Try 'runqemu help' on how to use it
 
+Some (a lot) digging later, I finally figured out that error occurs
+because the image name does not contain "-image" or "image-". runqemu
+is not able to parse it and throws a "unknown" argument error (not
+that obvious from the print).
 
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+I realize that this is a "problem" in runqemu and not much to do about
+it with a large refactoring job on the runqemu application.
 
-BR,
+But I am looking for suggesting for an appropriate workaround, other
+then renaming the image which I have verified works.
 
-marek
+Does it say somewhere in the docs that all image files must contain
+"-image" or "image-" in their name? If that is the case it makes sense
+to rename it, but trying to avoid that.
 
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+--=20
+Med V=C3=A4nliga H=C3=A4lsningar / Best Regards
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+Mirza Krak
+email: mirza@mkrak.org
+web: https://mkrak.org
 
