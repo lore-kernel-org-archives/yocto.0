@@ -1,73 +1,34 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Mingli.Yu@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4FA9E009E2; Thu, 17 May 2018 22:55:22 -0700 (PDT)
+	id 5DC50E009E2; Thu, 17 May 2018 23:06:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.65 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl0-f65.google.com (mail-pl0-f65.google.com
-	[209.85.160.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46D3DE009B9
-	for <yocto@yoctoproject.org>; Thu, 17 May 2018 22:55:21 -0700 (PDT)
-Received: by mail-pl0-f65.google.com with SMTP id c11-v6so3935840plr.5
-	for <yocto@yoctoproject.org>; Thu, 17 May 2018 22:55:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=E9eB6YniNXrdIsXZ7/XGjBVKU4Wp+sNG3UQcTMO7PRY=;
-	b=HXJ0xghH82RZ9XWQYi38g9AIsxJ3+WfMaHUGVyNiIV8aUQGi73Ko6r+xcRG3Ng+HHj
-	0uOex7Z8Wu1DnIuVNX2Q3a/MNMnM0HhUOEW7gdc1WyLysKWVnnEhjYeDDwJIlJ5emsbX
-	t+QPzcr+mqDfbTtk3cisufGB+UOMLF89zDSRLClMqqNBQUkX8bzfK3RGMsTemKGozXXs
-	kN16t45kFeNncYbDFZdBy2/COVMKcAHhnXltIt+dqWt2WboE5Dgb1fzI9Ug1jrTaavR+
-	3Ys871bh9hB72HoxE+s9lhfuEmpr10P77oVeClvBDaFcBu7Fd9E3/AjDkILNMkVX+opX
-	vpwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=E9eB6YniNXrdIsXZ7/XGjBVKU4Wp+sNG3UQcTMO7PRY=;
-	b=RCBKNeNliEuwe1x5BpTlDKHZK/uByjbFZbJix2KrvMKPHWEWqfNY67G0dLfdnnMVie
-	jUHwcQbxulbwHYYoZw19H0eQ9MApH9VekGMrnf6Uwv8kwWpi7wm2CQcOgeHerJGrt4AY
-	k82/HvBzqsBJ30v+1OwB+irvr9TUkfNJTgTuXxtq0YniUxi0LTF/nl2HAnPN/ayyUtVC
-	49/SF1ihPIhRLaDJavx5HMBiA9sIsr0YW8KTlu9B/GupGaHOjZXc+zRJGviCzEfg1kuD
-	PhuOFLBc4MSBZhTqsdUekxgNiaDzsq0wiDAZwHNxDSe/xs5dfvtyiC5wch/zR3eYBr9a
-	NWlg==
-X-Gm-Message-State: ALKqPwd0gdaZneFNWAjYwpNpphX4xh1V0En1+hd8GQk8adhwPCfUUDgR
-	tBwScG9Du8rb9mcoL5A332wzwoNSFjbig4gbD/A=
-X-Google-Smtp-Source: AB8JxZot2IIOo2OpS8cZOnbLNGY3UJod5J7V/gs+i1DbpdBl+5zg7zARXCfZHcWJ+Li6Hn0rL0HuP2ENk3PjOF8Ebzg=
-X-Received: by 2002:a17:902:14d:: with SMTP id
-	71-v6mr8098398plb.275.1526622921112; 
-	Thu, 17 May 2018 22:55:21 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B46CAE009B9
+	for <yocto@yoctoproject.org>; Thu, 17 May 2018 23:06:50 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w4I66nGU008422
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 17 May 2018 23:06:49 -0700 (PDT)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.361.1; Thu, 17 May 2018 23:06:42 -0700
+From: <mingli.yu@windriver.com>
+To: <mark.asselstine@windriver.com>, <bruce.ashfield@windriver.com>,
+	<yocto@yoctoproject.org>
+Date: Fri, 18 May 2018 14:06:41 +0800
+Message-ID: <1526623601-452418-1-git-send-email-mingli.yu@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Received: by 2002:a17:90a:8b91:0:0:0:0 with HTTP; Thu, 17 May 2018 22:54:50
-	-0700 (PDT)
-In-Reply-To: <20180517104640.GA1398@jama>
-References: <CAMKF1spa1bbrUjQWbhdUw3C4Cxu99fU=Be3sEm+SYFNq_oxEKw@mail.gmail.com>
-	<CA+chaQcUU=Dew1cATDBpuA2_f_eh1=DAyEMaDHfVx7kY88rZhg@mail.gmail.com>
-	<8d962430-ac63-5e97-fd32-2c0464c62acb@gmail.com>
-	<20180510191145.GA1954@jama> <20180517104640.GA1398@jama>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 17 May 2018 22:54:50 -0700
-Message-ID: <CAMKF1soKXsC6_FG2g116KusAf=rBMDoi0mdfjdKtYKeASS+Whw@mail.gmail.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [RFT] GCC 8.1
+Subject: [meta-openstack][PATCH] python-requests: remove PREFERRED_VERSION limit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,61 +40,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 May 2018 05:55:22 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 18 May 2018 06:06:51 -0000
+Content-Type: text/plain
 
-On Thu, May 17, 2018 at 3:46 AM, Martin Jansa <martin.jansa@gmail.com> wrote:
-> On Thu, May 10, 2018 at 09:11:45PM +0200, Martin Jansa wrote:
->> > > 5) nativesdk-libxcrypt fails to build (not sure which change caused
->> > > this, it build OK with sumo since the -std=gnu99 addition.
->> > > ../git/crypt-sunmd5.c:189:13: error: 'snprintf' output may be truncated
->> > > before the last format character [-Werror=format-truncation=]
->> > >               "$" CRYPT_ALGNAME "," ROUNDS "%u$%s$",
->> > >               ^~~
->> > >
->> >
->> > something new, I will look into reproducing this.
->
-> The fix from you worked for me, thanks!
+From: Mingli Yu <Mingli.Yu@windriver.com>
 
-There is a followup here which now doesnt need local patch
+* Previously, add PREFERRED_VERSION for python-requests
+  as we want to use version >=2.10.0 and the full commit
+  message as below:
 
-http://git.openembedded.org/openembedded-core-contrib/commit/?h=kraj/master&id=0924a69244892097f60adbf6c7f576375bea7870
+  commit 185eccef8964632f5b255265a0a8e59fe5858397
+  Author: Mark Asselstine <mark.asselstine@windriver.com>
+  Date:   Fri Jan 20 16:59:31 2017 -0500
 
-> Just FYI if someone needs similar fix, backporting this:
-> https://patchwork.kernel.org/patch/9170055/
->
-> fixed the issue for me, now I have successful kernel build.
->
-> The failing code was always in put_user calls, e.g. kernel/exit.s was showing:
-> @ 1581 "kernel-source/kernel/exit.c" 1
->         .ifnc r0,r0; .ifnc r0r0,fpr11; .ifnc r0r0,r11fp; .ifnc r0r0,ipr12; .ifnc r0r0,r12ip; .err; .endif; .endif; .endif; .endif; .endif
->         .ifnc r5,r2; .ifnc r5r2,fpr11; .ifnc r5r2,r11fp; .ifnc r5r2,ipr12; .ifnc r5r2,r12ip; .err; .endif; .endif; .endif; .endif; .endif
->         .ifnc r1,r1; .ifnc r1r1,fpr11; .ifnc r1r1,r11fp; .ifnc r1r1,ipr12; .ifnc r1r1,r12ip; .err; .endif; .endif; .endif; .endif; .endif
->         bl      __put_user_4
-> @ 0 "" 2
->
-> with the error triggered on the middle line.
-> /tmp/ccHq8ugv.s: Assembler messages:
-> /tmp/ccHq8ugv.s:1179: Error: .err encountered
-> /tmp/ccHq8ugv.s:1331: Error: .err encountered
-> /tmp/ccHq8ugv.s:4617: Error: .err encountered
-> /tmp/ccHq8ugv.s:6222: Error: .err encountered
-> /tmp/ccHq8ugv.s:8705: Error: .err encountered
-> /tmp/ccHq8ugv.s:14486: Error: .err encountered
-> /tmp/ccHq8ugv.s:14646: Error: .err encountered
-> /tmp/ccHq8ugv.s:14806: Error: .err encountered
-> /tmp/ccHq8ugv.s:14966: Error: .err encountered
-> /tmp/ccHq8ugv.s:15126: Error: .err encountered
-> /tmp/ccHq8ugv.s:15286: Error: .err encountered
->
-> That leaves only few issues in our internal components and strange failure with perf which fails to include various header files:
+    python-requests: use version from meta-openembedded
 
-perf is building file for qemux86 on o-core
-I wonder if this is an issue related to your
-kernel version.
+    We want to use a version >=2.10.0 as required by python-keystoneauth1
+    so set a PREF so we don't get the older version found in
+    meta-virtualization and used by docker.
 
+    Signed-off-by: Mark Asselstine <mark.asselstine@windriver.com>
+    Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
 
->
-> Cheers,
+* Now meta-oe upreved python-requests to 2.18.4, remove
+  PREFERRED_VERSION limit to avoid bitbake messages like:
+
+  "NOTE: preferred version 2.13.0 of python-requests not available"
+
+Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
+---
+ meta-openstack/conf/layer.conf | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/meta-openstack/conf/layer.conf b/meta-openstack/conf/layer.conf
+index 55df509..c376d58 100644
+--- a/meta-openstack/conf/layer.conf
++++ b/meta-openstack/conf/layer.conf
+@@ -31,7 +31,6 @@ PREFERRED_VERSION_python-futures = "3.0.3%"
+ PREFERRED_VERSION_python-django = "1.8.6"
+ PREFERRED_VERSION_python-netaddr = "0.7.19"
+ PREFERRED_VERSION_python-sqlalchemy = "1.0.16"
+-PREFERRED_VERSION_python-requests = "2.13.0"
+ PREFERRED_VERSION_python-eventlet = "0.20.0"
+ PREFERRED_VERSION_python-warlock = "1.2.0"
+ PREFERRED_VERSION_python-jsonschema = "2.6.0"
+-- 
+2.7.4
+
 
