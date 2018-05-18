@@ -1,58 +1,56 @@
-Return-Path: <kumar.ugesh003@yahoo.com>
+Return-Path: <chandrasekhar@evolute.in>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 61B85E009CA; Thu, 17 May 2018 19:22:02 -0700 (PDT)
+	id 56021E009CA; Thu, 17 May 2018 21:21:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kumar.ugesh003[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [106.10.242.39 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [202.137.236.83 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from sonic303-22.consmr.mail.sg3.yahoo.com
-	(sonic303-22.consmr.mail.sg3.yahoo.com [106.10.242.39])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9D61E00942
-	for <yocto@yoctoproject.org>; Thu, 17 May 2018 19:21:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1526610117; bh=0XWcL9xsdJm0vWUx8vDB7XX9dLGrjW8DC05DJMbm4Lg=;
-	h=Date:From:To:In-Reply-To:References:Subject:From:Subject;
-	b=Da2GQbBzdYAeSxLHEgyKman053029uTVAvt1TCyjRYMddwm9e8XmsbarpzJ93PTgyuFx1/LXzy4sfHFCkBIsq9vqLZaI/LHUakbCUSawHZmjPRL6P8zp7GRmHED2SYimU7AuSRZrepng8f7G6dBrg0H1rY5IsuCi1MCj6L50GsKtXKbT6e/CZi7tzxeKcLb9teYDyLgci0DxLxnhIVNewhn6iRXMjJvMPN9/Bg4c3FSLaiXGcHkmHpZBMvt85LQd25jnmf6sIUnI+U7jkD692xW74EDhwOSWcA+8yA5REEDhI91/iLdxIhu/OCJtKPNgy3frR0vb/uaTg3ZpOm16Ug==
-X-YMail-OSG: BOIDrJ8VM1mfHXrisF8M.qDCV0IpIawRqNNUjrtnS4dopXM311QxUtXHB7G9wwN
-	2LVdNTpIrCovVZikqs2S7wtUPNbnRBOF2FQCItOcksuFfukxuRqXXLPXPCT8.Sa4.Kn5wwK0ZKT8
-	y1yaoKqSzP9CV2wlxH4N6Q3Zzx1fV93.dp0Op_zqPzoAK9p7.zFWxME7mO1WvOBelrWz11UsPDjD
-	pHqMXVsZqkh0y7h8yIMMJ_MAXgmVKZd6V7MHedQeeF.sEEj8VYWTErfnpiu8g8AW_CyufcZ6A6hx
-	YKGgnpKK8rptsTW89iftQam9_4P7FMapQRzwTohTiJsttk8rr.p1UCxCw1pYicSMA4yyZ0Urmqri
-	90qArWN8GPMzxaOM6f6LOrbNa5oXlKJ7h6stoofqfM6vQivr0vFHuQdFoI0Mm4kJjb.DhQCPBVUQ
-	EaTyQfQirqd1GaOZFAly6Zrb.Ya8Jla7b1FaZ8Kcb_5_vmXQsjYhuDH.4u90hDtY_lr29cb73joj
-	GyG7uSlvKkcf753ne9X9RJ5xAEAWxke201xYWBQZ8bYg4RaI.20i6GVce2KXLb1aOR4gIKsqpGdn
-	ykV58g41nRzyD.4rZETRmCyDAzvrz7BJ4H.Ww1HDZMJw6ROU7M7ilLOvV
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic303.consmr.mail.sg3.yahoo.com with HTTP;
-	Fri, 18 May 2018 02:21:57 +0000
-Date: Fri, 18 May 2018 02:21:56 +0000 (UTC)
-From: Ugesh Reddy <kumar.ugesh003@yahoo.com>
-To: 'Yocto-mailing-list' <yocto@yoctoproject.org>, 
-	chandrasekhar <chandrasekhar@evolute.in>
-Message-ID: <1610363301.2651115.1526610116510@mail.yahoo.com>
-In-Reply-To: <000c01d3ed93$cc662ce0$653286a0$@in>
-References: <1621704137.2131896.1526488025606.ref@mail.yahoo.com>
-	<1621704137.2131896.1526488025606@mail.yahoo.com>
-	<000c01d3ed93$cc662ce0$653286a0$@in>
+X-Greylist: delayed 399 seconds by postgrey-1.32 at yocto-www;
+	Thu, 17 May 2018 21:21:09 PDT
+Received: from rediffmail.com (pro236-83.mxout.rediffmailpro.com
+	[202.137.236.83])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8435E00942
+	for <yocto@yoctoproject.org>; Thu, 17 May 2018 21:21:09 -0700 (PDT)
+X-REDIFF-Delivered-Remotely-To: yocto@yoctoproject.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rediffmailpro.com;
+	s=epro; t=1526616863;
+	bh=8BtGaIgBIXIwbLx1M2+TTXA4bxyviqRRgH3pJoyx0UA=;
+	h=MIME-Version:From:Date:Message-ID:Subject:To;
+	b=azI4IT+zQ/7g/dcyxjgzaxYtc92MmAFS2l9o4UHQOqRn/XrxLGTlj1DdOTSYgOK/+
+	amFImzhnGdDMrGyHRBxUFkEPPbHv79sJYhV06wdRE2VdljgaLI81CMtv10K7zNUlTs
+	Ys/Bsh+kSaCa6ifOfswnLN5rHVE2KUkTz6jxdn5g=
+Received: (qmail 10954 invoked from network); 18 May 2018 04:14:23 -0000
+x-m-msg: asd54ad564ad7aa6sd5as6d5; a6da7d6asas6dasd77; 5dad65ad5sd;
+X-OUT-VDRT-SpamState: 0\LEGIT
+X-OUT-VDRT-SpamScore: -100
+X-OUT-VDRT-SpamCause: gggruggvucftvghtrhhoucdtuddrgedthedrfedvgdekudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfhfjgfufffkgggtofhtsegrtdhgpedvtdejnecuhfhrohhmpedftghhrghnughrrghsvghkhhgrrhdfuceotghhrghnughrrghsvghkhhgrrhesvghvohhluhhtvgdrihhnqeenucfrrghrrghmpehmohguvgepshhmthhpohhuthenucevlhhushhtvghrufhiiigvpedt
+X-Dedup-Identifier: 1526616863_10931_10693_pro-236-161
+Received: from unknown (HELO chandrasekhar)
+	(chandrasekhar@evolute.in@180.151.37.180)
+	by mailserver with SMTP; 18 May 2018 04:14:23 -0000
+From: "chandrasekhar" <chandrasekhar@evolute.in>
+To: "'Ugesh Reddy'" <kumar.ugesh003@yahoo.com>,
+	"'Yocto-mailing-list'" <yocto@yoctoproject.org>
+References: <1621704137.2131896.1526488025606.ref@mail.yahoo.com>	<1621704137.2131896.1526488025606@mail.yahoo.com>	<000c01d3ed93$cc662ce0$653286a0$@in>
+	<1610363301.2651115.1526610116510@mail.yahoo.com>
+In-Reply-To: <1610363301.2651115.1526610116510@mail.yahoo.com>
+Date: Fri, 18 May 2018 09:44:06 +0530
+Message-ID: <000901d3ee5e$aab1ec80$0015c580$@in>
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.11871 YMailNorrin Mozilla/5.0 (X11;
-	Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu
-	Chromium/64.0.3282.167 Chrome/64.0.3282.167 Safari/537.36
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdPuTw6uitJSNDHkRPeSU9Ixo7gB7AAD4yaQ
 Subject: Re: Enabling the recipe from menuconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -65,193 +63,475 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 May 2018 02:22:02 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_2651113_2121111703.1526610116504"
+X-List-Received-Date: Fri, 18 May 2018 04:21:12 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_000A_01D3EE8C.C46A2880"
+Content-Language: en-us
 
-------=_Part_2651113_2121111703.1526610116504
-Content-Type: text/plain; charset=UTF-8
+------=_NextPart_000_000A_01D3EE8C.C46A2880
+Content-Type: text/plain;
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
- Hi,Thanks for the response,
-=C2=A0This will add the recipe as a part of image but I want=C2=A0to build =
-and add the recipe when it has been selected from the menuconfig.How to mak=
-e visible=C2=A0the recipe in menuconfig?    On Thursday, 17 May, 2018, 9:32=
-:15 AM IST, chandrasekhar <chandrasekhar@evolute.in> wrote: =20
+you want to see in kernel menuconfig??
+
 =20
- #yiv3901952822 #yiv3901952822 -- _filtered #yiv3901952822 {font-family:Hel=
-vetica;panose-1:2 11 6 4 2 2 2 2 2 4;} _filtered #yiv3901952822 {panose-1:2=
- 4 5 3 5 4 6 3 2 4;} _filtered #yiv3901952822 {font-family:Calibri;panose-1=
-:2 15 5 2 2 2 4 3 2 4;} _filtered #yiv3901952822 {font-family:Tahoma;panose=
--1:2 11 6 4 3 5 4 4 2 4;}#yiv3901952822 #yiv3901952822 p.yiv3901952822MsoNo=
-rmal, #yiv3901952822 li.yiv3901952822MsoNormal, #yiv3901952822 div.yiv39019=
-52822MsoNormal {margin:0in;margin-bottom:.0001pt;font-size:12.0pt;font-fami=
-ly:New;}#yiv3901952822 a:link, #yiv3901952822 span.yiv3901952822MsoHyperlin=
-k {color:blue;text-decoration:underline;}#yiv3901952822 a:visited, #yiv3901=
-952822 span.yiv3901952822MsoHyperlinkFollowed {color:purple;text-decoration=
-:underline;}#yiv3901952822 span.yiv3901952822EmailStyle17 {color:#1F497D;}#=
-yiv3901952822 .yiv3901952822MsoChpDefault {font-size:10.0pt;} _filtered #yi=
-v3901952822 {margin:1.0in 1.0in 1.0in 1.0in;}#yiv3901952822 div.yiv39019528=
-22Section1 {}#yiv3901952822=20
+
+From: yocto-bounces@yoctoproject.org =
+[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Ugesh Reddy
+Sent: Friday, May 18, 2018 7:52 AM
+To: 'Yocto-mailing-list'; chandrasekhar
+Subject: Re: [yocto] Enabling the recipe from menuconfig
+
+=20
+
+Hi,
+
+Thanks for the response,
+
+=20
+
+ This will add the recipe as a part of image but I want to build and add =
+the recipe when it has been selected from the menuconfig.
+
+How to make visible the recipe in menuconfig?
+
+On Thursday, 17 May, 2018, 9:32:15 AM IST, chandrasekhar =
+<chandrasekhar@evolute.in> wrote:=20
+
+=20
+
+=20
+
 Hi=20
-=20
+
 You can use=20
-=20
+
 IMAGE_INSTALL +=3D "Package Name/Recipes name"
+
 =20
- =C2=A0
-=20
+
 Regards,
-=20
+
 Chandrasekhar
+
 =20
- =C2=A0
-=20
-From:yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]=
- OnBehalf Of Ugesh Reddy
+
+From: yocto-bounces@yoctoproject.org =
+[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Ugesh Reddy
 Sent: Wednesday, May 16, 2018 9:57 PM
 To: Yocto-mailing-list
 Subject: [yocto] Enabling the recipe from menuconfig
+
 =20
- =C2=A0
+
+Hello Team,
+
 =20
-HelloTeam,
+
+ I have a list of recipes in my custom layer. The recipes in this layer =
+shall be enabled/selected through the menuconfig, once it is enabled =
+then it shall be the part of image. is it possible to achieve it ? do we =
+have any references?=20
+
 =20
- =C2=A0
-=20
-=C2=A0Ihave a list of recipes in my custom layer. The recipes in this=C2=A0=
-layer shallbe enabled/selected through the menuconfig, once it is enabled t=
-hen it shall bethe part of image. is it possible to achieve=C2=A0it ? do we=
- have anyreferences?=C2=A0
-=20
- =C2=A0
-=20
+
 Regards,
-=20
+
 Ugesh
-  =20
 
-------=_Part_2651113_2121111703.1526610116504
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-<html><head></head><body><div style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div></div>
-            <div><font size="2">Hi,</font></div><div><font size="2">Thanks for the response,</font></div><div><font size="2"><br></font></div><div><font size="2">&nbsp;This will add the recipe as a part of image but I want&nbsp;to build and add the recipe when it has been selected from the menuconfig.</font></div><div><font size="2">How to make visible&nbsp;the recipe in menuconfig?</font></div>
-            
-            <div id="yahoo_quoted_7582411903" class="yahoo_quoted">
-                <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:13px;color:#26282a;">
-                    
-                    <div>
-                        On Thursday, 17 May, 2018, 9:32:15 AM IST, chandrasekhar &lt;chandrasekhar@evolute.in&gt; wrote:
-                    </div>
-                    <div><br></div>
-                    <div><br></div>
-                    <div><div id="yiv3901952822"><style>
-#yiv3901952822 #yiv3901952822 --
-  
- _filtered #yiv3901952822 {font-family:Helvetica;panose-1:2 11 6 4 2 2 2 2 2 4;}
- _filtered #yiv3901952822 {panose-1:2 4 5 3 5 4 6 3 2 4;}
- _filtered #yiv3901952822 {font-family:Calibri;panose-1:2 15 5 2 2 2 4 3 2 4;}
- _filtered #yiv3901952822 {font-family:Tahoma;panose-1:2 11 6 4 3 5 4 4 2 4;}
-#yiv3901952822  
-#yiv3901952822 p.yiv3901952822MsoNormal, #yiv3901952822 li.yiv3901952822MsoNormal, #yiv3901952822 div.yiv3901952822MsoNormal
-	{margin:0in;margin-bottom:.0001pt;font-size:12.0pt;font-family:New;}
-#yiv3901952822 a:link, #yiv3901952822 span.yiv3901952822MsoHyperlink
-	{color:blue;text-decoration:underline;}
-#yiv3901952822 a:visited, #yiv3901952822 span.yiv3901952822MsoHyperlinkFollowed
-	{color:purple;text-decoration:underline;}
-#yiv3901952822 span.yiv3901952822EmailStyle17
-	{color:#1F497D;}
-#yiv3901952822 .yiv3901952822MsoChpDefault
-	{font-size:10.0pt;}
- _filtered #yiv3901952822 {margin:1.0in 1.0in 1.0in 1.0in;}
-#yiv3901952822 div.yiv3901952822Section1
-	{}
-#yiv3901952822 
-</style><div>
+------=_NextPart_000_000A_01D3EE8C.C46A2880
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-<div class="yiv3901952822Section1">
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40">
 
-<p class="yiv3901952822MsoNormal"><span style="font-size:11.0pt;">Hi </span></p> 
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8">
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:New;
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.yiv3901952822msonormal, li.yiv3901952822msonormal, =
+div.yiv3901952822msonormal
+	{mso-style-name:yiv3901952822msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.yiv3901952822msochpdefault, li.yiv3901952822msochpdefault, =
+div.yiv3901952822msochpdefault
+	{mso-style-name:yiv3901952822msochpdefault;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.yiv3901952822msohyperlink
+	{mso-style-name:yiv3901952822msohyperlink;}
+span.yiv3901952822msohyperlinkfollowed
+	{mso-style-name:yiv3901952822msohyperlinkfollowed;}
+span.yiv3901952822emailstyle17
+	{mso-style-name:yiv3901952822emailstyle17;}
+p.yiv3901952822msonormal1, li.yiv3901952822msonormal1, =
+div.yiv3901952822msonormal1
+	{mso-style-name:yiv3901952822msonormal1;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"New","serif";}
+span.yiv3901952822msohyperlink1
+	{mso-style-name:yiv3901952822msohyperlink1;
+	color:blue;
+	text-decoration:underline;}
+span.yiv3901952822msohyperlinkfollowed1
+	{mso-style-name:yiv3901952822msohyperlinkfollowed1;
+	color:purple;
+	text-decoration:underline;}
+span.yiv3901952822emailstyle171
+	{mso-style-name:yiv3901952822emailstyle171;
+	color:#1F497D;}
+p.yiv3901952822msochpdefault1, li.yiv3901952822msochpdefault1, =
+div.yiv3901952822msochpdefault1
+	{mso-style-name:yiv3901952822msochpdefault1;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+span.EmailStyle27
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
 
-<p class="yiv3901952822MsoNormal"><span style="font-size:11.0pt;">You can use </span></p> 
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
 
-<p class="yiv3901952822MsoNormal"><span style="font-size:11.0pt;">IMAGE_INSTALL += "Package Name/Recipes name"</span></p> 
+<div class=3DSection1>
 
-<p class="yiv3901952822MsoNormal"><span style="font-size:11.0pt;"> &nbsp;</span></p> 
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'>you want to see in kernel =
+menuconfig??<o:p></o:p></span></p>
 
-<p class="yiv3901952822MsoNormal"><span style="font-size:11.0pt;">Regards,</span></p> 
+<p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";
+color:#1F497D'><o:p>&nbsp;</o:p></span></p>
 
-<p class="yiv3901952822MsoNormal"><span style="font-size:11.0pt;">Chandrasekhar</span></p> 
+<div>
 
-<p class="yiv3901952822MsoNormal"><span style="font-size:11.0pt;"> &nbsp;</span></p> 
+<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt =
+0in 0in 0in'>
 
-<div class="yiv3901952822yqt1003813865" id="yiv3901952822yqt99373"><div>
-
-<div style="border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in 0in 0in;">
-
-<p class="yiv3901952822MsoNormal"><b><span style="font-size:10.0pt;">From:</span></b><span style="font-size:10.0pt;">
-yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] <b>On
-Behalf Of </b>Ugesh Reddy<br clear="none">
-<b>Sent:</b> Wednesday, May 16, 2018 9:57 PM<br clear="none">
-<b>To:</b> Yocto-mailing-list<br clear="none">
-<b>Subject:</b> [yocto] Enabling the recipe from menuconfig</span></p> 
+<p class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>
+yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] =
+<b>On
+Behalf Of </b>Ugesh Reddy<br>
+<b>Sent:</b> Friday, May 18, 2018 7:52 AM<br>
+<b>To:</b> 'Yocto-mailing-list'; chandrasekhar<br>
+<b>Subject:</b> Re: [yocto] Enabling the recipe from =
+menuconfig<o:p></o:p></span></p>
 
 </div>
 
 </div>
 
-<p class="yiv3901952822MsoNormal"> &nbsp;</p> 
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
 <div>
 
 <div>
 
-<p class="yiv3901952822MsoNormal"><span style="font-size:10.0pt;">Hello
-Team,</span><span style=""></span></p> 
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'>Hi,</span=
+><span
+style=3D'font-family:"Helvetica","sans-serif"'><o:p></o:p></span></p>
 
 </div>
 
 <div>
 
-<p class="yiv3901952822MsoNormal"><span style=""> &nbsp;</span></p> 
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'>Thanks
+for the response,</span><span =
+style=3D'font-family:"Helvetica","sans-serif"'><o:p></o:p></span></p>
 
 </div>
 
 <div>
 
-<p class="yiv3901952822MsoNormal"><span style="font-size:10.0pt;">&nbsp;I
-have a list of recipes in my custom layer. The recipes in this&nbsp;layer shall
-be enabled/selected through the menuconfig, once it is enabled then it shall be
-the part of image. is it possible to achieve&nbsp;it ? do we have any
-references?&nbsp;</span><span style=""></span></p> 
+<p class=3DMsoNormal><span =
+style=3D'font-family:"Helvetica","sans-serif"'><o:p>&nbsp;</o:p></span></=
+p>
 
 </div>
 
 <div>
 
-<p class="yiv3901952822MsoNormal"><span style=""> &nbsp;</span></p> 
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'>&nbsp;Thi=
+s
+will add the recipe as a part of image but I want&nbsp;to build and add =
+the
+recipe when it has been selected from the menuconfig.</span><span
+style=3D'font-family:"Helvetica","sans-serif"'><o:p></o:p></span></p>
 
 </div>
 
 <div>
 
-<p class="yiv3901952822MsoNormal"><span style="font-size:10.0pt;">Regards,</span><span style=""></span></p> 
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif"'>How
+to make visible&nbsp;the recipe in menuconfig?</span><span =
+style=3D'font-family:
+"Helvetica","sans-serif"'><o:p></o:p></span></p>
+
+</div>
+
+<div id=3D"yahoo_quoted_7582411903">
+
+<div>
+
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>On Thursday, 17 May, 2018, 9:32:15 AM IST, chandrasekhar
+&lt;chandrasekhar@evolute.in&gt; wrote: <o:p></o:p></span></p>
 
 </div>
 
 <div>
 
-<p class="yiv3901952822MsoNormal"><span style="font-size:10.0pt;">Ugesh</span><span style=""></span></p> 
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'><o:p>&nbsp;</o:p></span></p>
 
 </div>
 
-</div></div>
+<div>
+
+<p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'><o:p>&nbsp;</o:p></span></p>
 
 </div>
 
-</div></div></div>
-                </div>
-            </div></div></body></html>
+<div>
 
-------=_Part_2651113_2121111703.1526610116504--
+<div id=3Dyiv3901952822>
+
+<div>
+
+<div>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:11.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>Hi </span><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'><o:p></o:p></span></p>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:11.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>You can use </span><span =
+style=3D'font-size:10.0pt;font-family:
+"Helvetica","sans-serif";color:#26282A'><o:p></o:p></span></p>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:11.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>IMAGE_INSTALL +=3D &quot;Package Name/Recipes =
+name&quot;</span><span
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";color:#262=
+82A'><o:p></o:p></span></p>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:11.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'><o:p></o:p></span></p>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:11.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>Regards,</span><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'><o:p></o:p></span></p>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:11.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>Chandrasekhar</span><span =
+style=3D'font-size:10.0pt;font-family:
+"Helvetica","sans-serif";color:#26282A'><o:p></o:p></span></p>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:11.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'><o:p></o:p></span></p>
+
+<div id=3Dyiv3901952822yqt99373>
+
+<div>
+
+<div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt =
+0in 0in 0in'>
+
+<p class=3Dyiv3901952822msonormal><b><span =
+style=3D'font-size:10.0pt;font-family:
+"Helvetica","sans-serif";color:#26282A'>From:</span></b><span =
+style=3D'font-size:
+10.0pt;font-family:"Helvetica","sans-serif";color:#26282A'>
+yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] =
+<b>On
+Behalf Of </b>Ugesh Reddy<br>
+<b>Sent:</b> Wednesday, May 16, 2018 9:57 PM<br>
+<b>To:</b> Yocto-mailing-list<br>
+<b>Subject:</b> [yocto] Enabling the recipe from =
+menuconfig<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>&nbsp;<o:p></o:p></span></p>
+
+<div>
+
+<div>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>Hello Team,<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>&nbsp;<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>&nbsp;I have a list of recipes in my custom layer. The =
+recipes
+in this&nbsp;layer shall be enabled/selected through the menuconfig, =
+once it is
+enabled then it shall be the part of image. is it possible to =
+achieve&nbsp;it ?
+do we have any references?&nbsp;<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>&nbsp;<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>Regards,<o:p></o:p></span></p>
+
+</div>
+
+<div>
+
+<p class=3Dyiv3901952822msonormal><span =
+style=3D'font-size:10.0pt;font-family:"Helvetica","sans-serif";
+color:#26282A'>Ugesh<o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
+
+------=_NextPart_000_000A_01D3EE8C.C46A2880--
