@@ -1,22 +1,18 @@
-Return-Path: <kumar.ugesh003@yahoo.com>
+Return-Path: <enrico.bonomi92@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 25846E009E2; Fri, 18 May 2018 00:22:30 -0700 (PDT)
+	id CE9CDE009E2; Fri, 18 May 2018 02:40:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	REPTO_QUOTE_YAHOO autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kumar.ugesh003[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [106.10.241.209 listed in list.dnswl.org]
-	* 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-	digit
-	*      ("kumar.ugesh003[at]yahoo.com" <kumar.ugesh003[at]yahoo.com>
-	) * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	mail provider *      (enrico.bonomi92[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.50 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -24,50 +20,47 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.6 REPTO_QUOTE_YAHOO Yahoo! doesn't do quoting like this
-Received: from sonic308-19.consmr.mail.sg3.yahoo.com
-	(sonic308-19.consmr.mail.sg3.yahoo.com [106.10.241.209])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBE13E009B9
-	for <yocto@yoctoproject.org>; Fri, 18 May 2018 00:22:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1526628146; bh=ts4PcYkUAXLzJwZ/iNv3Zw2zz3xKmFHQ2PD0dorD2eg=;
-	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject;
-	b=hmXWS9YXjizqO9m5Yozb/5o2Yp17hijPNMG7AJ2FUs2v9bPI7wwEwBixhn8hfM6C0Hogp/VPsyh15josNrMtyaAjRcrmhsLQRclV+nZUIlXoHiNLIVTf+6ZMb7IIposAHaq7PO+vU/m10/k5FEl8BvtJrF/jDHUcC7mNCWL8T5+6nyWOcxpg9nqjOAzDroyxknNpl4iJ5LRd5iRn4i0KfoBdU1WMceHTsTca1xy+0K/WZvEibRC8yykqpjCNRkJkXJiJI0ElG/o7T5yotpt5TkC1mV3L6gtsF1K8WiKGQKk6Nv/jxozRF1TNDrEjDdyZ3E3ixoaa1dxTFHYVIIo9mw==
-X-YMail-OSG: 5ahgUREVM1lLtrLuI.tE3QN4bcOJpguuv6ECvk3tQ78gBpFWxkE4SEMY.UtGhx3
-	c_KQUMhLQbnpbHa7ID2Gh4Gy9.vOzBWAiCULgx_.BlW3KIaGcMRQZrbfJZt61PR.pFZ4PO2QZfRW
-	nm2MBb61BzeYFyyFRFqc6aPBOMWEYDanQP_iKsGPqZ3FJj1SPdBVIvK_VTD1en__22DLWgV3C_UD
-	U2Eqy_zT2v5D4mgj2YOcYnOxBFgZ9mudaYARgbejuTC.QrtDzTlb4zwDxfnIjLvwEx3ol7D.Z.VJ
-	xQX.2qQrYDCQ6uFsssTXjHfL5YH6E559mZCXJ1lqFEeBVjpVlQ8uCHJQJSDLg04eK6vyK6zRbtR5
-	GFp1srrElJLX0qs6RyA1T5Qe1N5ZxA21QyQYN9ota662AINwQEY8hKzjpiZyROfx5rebWFVYGek5
-	PA_73WgPImziSmb3IQLuSmuMXqB.mh7GwJyy5thkXacBTPeLzrw6wsjFyeeY35t5O1VWQGvrZiyX
-	BmGZ..5h0wtkmPcT3qoiRv5JCBVwafx9dgLTbsKHabyoylEBI2dkH7Z9N3eCo5j8eiCjA4D1FOSz
-	9GmgAEi4WJNc_6wDY40F_7lReW3RMN59q5blmAoTUTkHu3UP5rezHdSbkNvDKzZiUZx2J3ud2JL8
-	DKnEP5xELESTzhbo-
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic308.consmr.mail.sg3.yahoo.com with HTTP;
-	Fri, 18 May 2018 07:22:26 +0000
-Date: Fri, 18 May 2018 07:22:24 +0000 (UTC)
-From: Ugesh Reddy <kumar.ugesh003@yahoo.com>
-To: "gizero@gmail.com" <gizero@gmail.com>, 
-	chandrasekhar <chandrasekhar@evolute.in>
-Message-ID: <1706775371.2737239.1526628144518@mail.yahoo.com>
-In-Reply-To: <CAC+thW0QMu8UHtz2J_MpjabG_YV1K6++aqgOgZ5y6X4PcZjYnw@mail.gmail.com>
-References: <1621704137.2131896.1526488025606.ref@mail.yahoo.com>
-	<1621704137.2131896.1526488025606@mail.yahoo.com>
-	<000c01d3ed93$cc662ce0$653286a0$@in>
-	<1610363301.2651115.1526610116510@mail.yahoo.com>
-	<000901d3ee5e$aab1ec80$0015c580$@in>
-	<CAC+thW0QMu8UHtz2J_MpjabG_YV1K6++aqgOgZ5y6X4PcZjYnw@mail.gmail.com>
+Received: from mail-it0-f50.google.com (mail-it0-f50.google.com
+	[209.85.214.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D70AE009B9
+	for <yocto@yoctoproject.org>; Fri, 18 May 2018 02:40:23 -0700 (PDT)
+Received: by mail-it0-f50.google.com with SMTP id 70-v6so12397670ity.2
+	for <yocto@yoctoproject.org>; Fri, 18 May 2018 02:40:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=6XBgInBJymjsv0vlsSONAQ1ECrYaj6E7yv1z11Lx1XE=;
+	b=ZsSnUNF1Opa3trAKS24q/t2bNsoO9Urm4+08yAtO3Tj3D7Zv79qYUt9iSinaqv1X14
+	Y1H+0psuD8W/kc1GF6fcOVkAWtqDeOgqxPGBcIu0IzyOqrqnvcVx0M4d6TirUsG3mg17
+	2naXI/ILsXOu//PsjvKuY59Ae5F7mgzEBkygnvO7ToAb/VzuwGN8SQIxx+0vLfSuAM7e
+	7Kdy44OTnue3WEt7td2U4vwTcaRfF0QnQ4kVReFLdxdraqC/IANqpCNyuaJMwPmVc8Wx
+	o8NojLG1SqTaWXFnfiDL0kP1cM3yJhzT7OkvpBSQ15u59w+Cdm/fimv/43f9EsspUcRX
+	oihg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=6XBgInBJymjsv0vlsSONAQ1ECrYaj6E7yv1z11Lx1XE=;
+	b=mDmcWOFgcl9LiqYWKPNjwNrnfFJLVdHaObhgae6dFG7cnN3zc0Vj1TgcRIjVjOJ68v
+	OEkWsqgoLFpi08lmWNtf9quIzeVpcsQ/Qot+PqjYdWajJpl+NkYTLFR7o54YM/AWtU8t
+	HyWaWLR3yh+rKuzSJbaO8il9UO+zkNGWhPM9j6hFlOZtEtCWhdJ74ZgQHaqOFjwNTKFp
+	ObrtdnY/OcSOvt3L4NBykk2z+sXGsPkxSzRebBvUCYvODKxSDQtXJ1e9HBvbSq288Woz
+	ExUNxj5tvMwQZph6eIdm+l9VkydyeVk9LxnOfcvPZ1jQc3GNsm7RMoArFBkPHP/1PCPw
+	IZBw==
+X-Gm-Message-State: ALKqPwdb2kDRgQ3PmOKvFwrKZWa/N+kdqvzX15/4uMmYF0q9ql22H93g
+	L3yQE9HWfChwPozs7s3OcaEL3OTw7Wi95XfzKl1omw==
+X-Google-Smtp-Source: AB8JxZrI2Mey5nj27C4tLsYvh33vJ5GX5rxXllURVpJ4eEmKe2ikNxe8+dC5ZO/bKpqvuAjHlaJL5a01OG92N9lLpgE=
+X-Received: by 2002:a24:a90d:: with SMTP id
+	r13-v6mr6083532ite.119.1526636422921; 
+	Fri, 18 May 2018 02:40:22 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.11871 YahooMailAndroidMobile YMobile/1.0
-	(com.yahoo.mobile.client.android.mail/5.24.8; Android/6.0;
-	MPB24.65-34-3; titan_umtsds; motorola; XT1068; 4.69; 1184x720; )
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Enabling the recipe from menuconfig
+Received: by 10.107.4.206 with HTTP; Fri, 18 May 2018 02:40:22 -0700 (PDT)
+From: Enrico Bonomi <enrico.bonomi92@gmail.com>
+Date: Fri, 18 May 2018 11:40:22 +0200
+Message-ID: <CALmqtKZf-2zEYTr7duH3FRUkPtL_-ftUys+nMfkBNph5Axx0wA@mail.gmail.com>
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Display 1920x1080 double LVDS channel problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: "kumar.ugesh003@yahoo.com" <kumar.ugesh003@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -76,184 +69,267 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 May 2018 07:22:30 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_2737238_309018884.1526628144516"
+X-List-Received-Date: Fri, 18 May 2018 09:40:25 -0000
+Content-Type: multipart/alternative; boundary="000000000000b080b0056c77bd6e"
 
-------=_Part_2737238_309018884.1526628144516
-Content-Type: text/plain; charset=UTF-8
+--000000000000b080b0056c77bd6e
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+I'm working with an imx6duallite with Yocto 1.7.3. I want to drive a
+1920x1080 display with 2 LVDS channels but i came across a problem.
+Pictures are shown correctly on display but they have wrong colors (for
+example a blue bar during psplash is shown pink).
+
+my .dts has the following ldb:
+
+&ldb {
+ipu_id = <1>;
+disp_id = <0>;
+ext_ref = <1>;
+mode = "sep0";
+sec_ipu_id = <1>;
+sec_disp_id = <1>;
+status = "okay";
+split-mode;
+
+lvds-channel@0{
+fsl,data-mapping = "spwg";
+fsl,data-width = <24>;
+crtc = "ipu1-di0";
+status = "okay";
+};
+
+lvds-channel@1{
+fsl,data-mapping = "spwg";
+fsl,data-width = <24>;
+crtc = "ipu1-di0";
+status = "okay";
+};
+
+--000000000000b080b0056c77bd6e
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,=C2=A0I want to create such a menuconfig like kernal. So it shall displa=
-y my recipe in menuconfig
-  On Fri, 18 May 2018 at 11:55 a.m., Andrea Galbusera<gizero@gmail.com> wr=
-ote:   On Fri, May 18, 2018 at 6:14 AM, chandrasekhar <chandrasekhar@evolut=
-e.in> wrote:
-> you want to see in kernel menuconfig??
->
->
->
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.=
-org]
-> On Behalf Of Ugesh Reddy
-> Sent: Friday, May 18, 2018 7:52 AM
-> To: 'Yocto-mailing-list'; chandrasekhar
-> Subject: Re: [yocto] Enabling the recipe from menuconfig
->
->
->
-> Hi,
->
-> Thanks for the response,
->
->
->
->=C2=A0 This will add the recipe as a part of image but I want to build an=
-d add the
-> recipe when it has been selected from the menuconfig.
->
-> How to make visible the recipe in menuconfig?
+<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m working with an imx6duallit=
+e with Yocto 1.7.3. I want to drive a 1920x1080 display with 2 LVDS channel=
+s but i came across a problem. Pictures are shown correctly on display but =
+they have wrong colors (for example a blue bar during psplash is shown pink=
+).</div><div><br></div><div>my .dts has the following ldb:</div><div><br></=
+div><div>
 
-Unlike other distribution build systems, Yocto/OE don't provide any
-menuconfig based configuration interface for selecting which package
-to include in images you build. There is indeed support for accessing
-menuconfig interfaces provided by specific recipes like the linux
-kernel. If you need a high level recipe selection tool, your best bet
-is probably to look at Toaster.
+<span style=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-size:=
+13px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:left;text-indent:0px;te=
+xt-transform:none;white-space:normal;word-spacing:0px;text-decoration-style=
+:initial;text-decoration-color:initial;float:none;display:inline">&amp;ldb =
+{</span><br style=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font=
+-size:13px;font-style:normal;font-variant-ligatures:normal;font-variant-cap=
+s:normal;font-weight:400;letter-spacing:normal;text-align:left;text-indent:=
+0px;text-transform:none;white-space:normal;word-spacing:0px;text-decoration=
+-style:initial;text-decoration-color:initial"><span style=3D"color:rgb(38,5=
+0,56);font-family:Roboto,sans-serif;font-size:13px;font-style:normal;font-v=
+ariant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spa=
+cing:normal;text-align:left;text-indent:0px;text-transform:none;white-space=
+:normal;word-spacing:0px;text-decoration-style:initial;text-decoration-colo=
+r:initial;float:none;display:inline">ipu_id =3D &lt;1&gt;;</span><br style=
+=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-size:13px;font-s=
+tyle:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-wei=
+ght:400;letter-spacing:normal;text-align:left;text-indent:0px;text-transfor=
+m:none;white-space:normal;word-spacing:0px;text-decoration-style:initial;te=
+xt-decoration-color:initial"><span style=3D"color:rgb(38,50,56);font-family=
+:Roboto,sans-serif;font-size:13px;font-style:normal;font-variant-ligatures:=
+normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-=
+align:left;text-indent:0px;text-transform:none;white-space:normal;word-spac=
+ing:0px;text-decoration-style:initial;text-decoration-color:initial;float:n=
+one;display:inline">disp_id =3D &lt;0&gt;;</span><br style=3D"color:rgb(38,=
+50,56);font-family:Roboto,sans-serif;font-size:13px;font-style:normal;font-=
+variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-sp=
+acing:normal;text-align:left;text-indent:0px;text-transform:none;white-spac=
+e:normal;word-spacing:0px;text-decoration-style:initial;text-decoration-col=
+or:initial"><span style=3D"color:rgb(38,50,56);font-family:Roboto,sans-seri=
+f;font-size:13px;font-style:normal;font-variant-ligatures:normal;font-varia=
+nt-caps:normal;font-weight:400;letter-spacing:normal;text-align:left;text-i=
+ndent:0px;text-transform:none;white-space:normal;word-spacing:0px;text-deco=
+ration-style:initial;text-decoration-color:initial;float:none;display:inlin=
+e">ext_ref =3D &lt;1&gt;;</span><br style=3D"color:rgb(38,50,56);font-famil=
+y:Roboto,sans-serif;font-size:13px;font-style:normal;font-variant-ligatures=
+:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text=
+-align:left;text-indent:0px;text-transform:none;white-space:normal;word-spa=
+cing:0px;text-decoration-style:initial;text-decoration-color:initial"><span=
+ style=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-size:13px;=
+font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fo=
+nt-weight:400;letter-spacing:normal;text-align:left;text-indent:0px;text-tr=
+ansform:none;white-space:normal;word-spacing:0px;text-decoration-style:init=
+ial;text-decoration-color:initial;float:none;display:inline">mode =3D &quot=
+;sep0&quot;;</span><br style=3D"color:rgb(38,50,56);font-family:Roboto,sans=
+-serif;font-size:13px;font-style:normal;font-variant-ligatures:normal;font-=
+variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:left;t=
+ext-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;text=
+-decoration-style:initial;text-decoration-color:initial"><span style=3D"col=
+or:rgb(38,50,56);font-family:Roboto,sans-serif;font-size:13px;font-style:no=
+rmal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400=
+;letter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;=
+white-space:normal;word-spacing:0px;text-decoration-style:initial;text-deco=
+ration-color:initial;float:none;display:inline">sec_ipu_id =3D &lt;1&gt;;</=
+span><br style=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-si=
+ze:13px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:n=
+ormal;font-weight:400;letter-spacing:normal;text-align:left;text-indent:0px=
+;text-transform:none;white-space:normal;word-spacing:0px;text-decoration-st=
+yle:initial;text-decoration-color:initial"><span style=3D"color:rgb(38,50,5=
+6);font-family:Roboto,sans-serif;font-size:13px;font-style:normal;font-vari=
+ant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacin=
+g:normal;text-align:left;text-indent:0px;text-transform:none;white-space:no=
+rmal;word-spacing:0px;text-decoration-style:initial;text-decoration-color:i=
+nitial;float:none;display:inline">sec_disp_id =3D &lt;1&gt;;</span><br styl=
+e=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-size:13px;font-=
+style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-we=
+ight:400;letter-spacing:normal;text-align:left;text-indent:0px;text-transfo=
+rm:none;white-space:normal;word-spacing:0px;text-decoration-style:initial;t=
+ext-decoration-color:initial"><span style=3D"color:rgb(38,50,56);font-famil=
+y:Roboto,sans-serif;font-size:13px;font-style:normal;font-variant-ligatures=
+:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text=
+-align:left;text-indent:0px;text-transform:none;white-space:normal;word-spa=
+cing:0px;text-decoration-style:initial;text-decoration-color:initial;float:=
+none;display:inline">status =3D &quot;okay&quot;;</span><br style=3D"color:=
+rgb(38,50,56);font-family:Roboto,sans-serif;font-size:13px;font-style:norma=
+l;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;le=
+tter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;whi=
+te-space:normal;word-spacing:0px;text-decoration-style:initial;text-decorat=
+ion-color:initial"><span style=3D"color:rgb(38,50,56);font-family:Roboto,sa=
+ns-serif;font-size:13px;font-style:normal;font-variant-ligatures:normal;fon=
+t-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:left=
+;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;te=
+xt-decoration-style:initial;text-decoration-color:initial;float:none;displa=
+y:inline">split-mode;</span><br style=3D"color:rgb(38,50,56);font-family:Ro=
+boto,sans-serif;font-size:13px;font-style:normal;font-variant-ligatures:nor=
+mal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-ali=
+gn:left;text-indent:0px;text-transform:none;white-space:normal;word-spacing=
+:0px;text-decoration-style:initial;text-decoration-color:initial"><br style=
+=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-size:13px;font-s=
+tyle:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-wei=
+ght:400;letter-spacing:normal;text-align:left;text-indent:0px;text-transfor=
+m:none;white-space:normal;word-spacing:0px;text-decoration-style:initial;te=
+xt-decoration-color:initial"><span style=3D"color:rgb(38,50,56);font-family=
+:Roboto,sans-serif;font-size:13px;font-style:normal;font-variant-ligatures:=
+normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-=
+align:left;text-indent:0px;text-transform:none;white-space:normal;word-spac=
+ing:0px;text-decoration-style:initial;text-decoration-color:initial;float:n=
+one;display:inline">lvds-channel@0{</span><br style=3D"color:rgb(38,50,56);=
+font-family:Roboto,sans-serif;font-size:13px;font-style:normal;font-variant=
+-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:n=
+ormal;text-align:left;text-indent:0px;text-transform:none;white-space:norma=
+l;word-spacing:0px;text-decoration-style:initial;text-decoration-color:init=
+ial"><span style=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-=
+size:13px;font-style:normal;font-variant-ligatures:normal;font-variant-caps=
+:normal;font-weight:400;letter-spacing:normal;text-align:left;text-indent:0=
+px;text-transform:none;white-space:normal;word-spacing:0px;text-decoration-=
+style:initial;text-decoration-color:initial;float:none;display:inline">fsl,=
+data-mapping =3D &quot;spwg&quot;;</span><br style=3D"color:rgb(38,50,56);f=
+ont-family:Roboto,sans-serif;font-size:13px;font-style:normal;font-variant-=
+ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:no=
+rmal;text-align:left;text-indent:0px;text-transform:none;white-space:normal=
+;word-spacing:0px;text-decoration-style:initial;text-decoration-color:initi=
+al"><span style=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-s=
+ize:13px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:=
+normal;font-weight:400;letter-spacing:normal;text-align:left;text-indent:0p=
+x;text-transform:none;white-space:normal;word-spacing:0px;text-decoration-s=
+tyle:initial;text-decoration-color:initial;float:none;display:inline">fsl,d=
+ata-width =3D &lt;24&gt;;</span><br style=3D"color:rgb(38,50,56);font-famil=
+y:Roboto,sans-serif;font-size:13px;font-style:normal;font-variant-ligatures=
+:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text=
+-align:left;text-indent:0px;text-transform:none;white-space:normal;word-spa=
+cing:0px;text-decoration-style:initial;text-decoration-color:initial"><span=
+ style=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-size:13px;=
+font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fo=
+nt-weight:400;letter-spacing:normal;text-align:left;text-indent:0px;text-tr=
+ansform:none;white-space:normal;word-spacing:0px;text-decoration-style:init=
+ial;text-decoration-color:initial;float:none;display:inline">crtc =3D &quot=
+;ipu1-di0&quot;;</span><br style=3D"color:rgb(38,50,56);font-family:Roboto,=
+sans-serif;font-size:13px;font-style:normal;font-variant-ligatures:normal;f=
+ont-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:le=
+ft;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;=
+text-decoration-style:initial;text-decoration-color:initial"><span style=3D=
+"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-size:13px;font-styl=
+e:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight=
+:400;letter-spacing:normal;text-align:left;text-indent:0px;text-transform:n=
+one;white-space:normal;word-spacing:0px;text-decoration-style:initial;text-=
+decoration-color:initial;float:none;display:inline">status =3D &quot;okay&q=
+uot;;</span><br style=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;=
+font-size:13px;font-style:normal;font-variant-ligatures:normal;font-variant=
+-caps:normal;font-weight:400;letter-spacing:normal;text-align:left;text-ind=
+ent:0px;text-transform:none;white-space:normal;word-spacing:0px;text-decora=
+tion-style:initial;text-decoration-color:initial"><span style=3D"color:rgb(=
+38,50,56);font-family:Roboto,sans-serif;font-size:13px;font-style:normal;fo=
+nt-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter=
+-spacing:normal;text-align:left;text-indent:0px;text-transform:none;white-s=
+pace:normal;word-spacing:0px;text-decoration-style:initial;text-decoration-=
+color:initial;float:none;display:inline">};</span><br style=3D"color:rgb(38=
+,50,56);font-family:Roboto,sans-serif;font-size:13px;font-style:normal;font=
+-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-s=
+pacing:normal;text-align:left;text-indent:0px;text-transform:none;white-spa=
+ce:normal;word-spacing:0px;text-decoration-style:initial;text-decoration-co=
+lor:initial"><br style=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif=
+;font-size:13px;font-style:normal;font-variant-ligatures:normal;font-varian=
+t-caps:normal;font-weight:400;letter-spacing:normal;text-align:left;text-in=
+dent:0px;text-transform:none;white-space:normal;word-spacing:0px;text-decor=
+ation-style:initial;text-decoration-color:initial"><span style=3D"color:rgb=
+(38,50,56);font-family:Roboto,sans-serif;font-size:13px;font-style:normal;f=
+ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;lette=
+r-spacing:normal;text-align:left;text-indent:0px;text-transform:none;white-=
+space:normal;word-spacing:0px;text-decoration-style:initial;text-decoration=
+-color:initial;float:none;display:inline">lvds-channel@1{</span><br style=
+=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-size:13px;font-s=
+tyle:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-wei=
+ght:400;letter-spacing:normal;text-align:left;text-indent:0px;text-transfor=
+m:none;white-space:normal;word-spacing:0px;text-decoration-style:initial;te=
+xt-decoration-color:initial"><span style=3D"color:rgb(38,50,56);font-family=
+:Roboto,sans-serif;font-size:13px;font-style:normal;font-variant-ligatures:=
+normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-=
+align:left;text-indent:0px;text-transform:none;white-space:normal;word-spac=
+ing:0px;text-decoration-style:initial;text-decoration-color:initial;float:n=
+one;display:inline">fsl,data-mapping =3D &quot;spwg&quot;;</span><br style=
+=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-size:13px;font-s=
+tyle:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-wei=
+ght:400;letter-spacing:normal;text-align:left;text-indent:0px;text-transfor=
+m:none;white-space:normal;word-spacing:0px;text-decoration-style:initial;te=
+xt-decoration-color:initial"><span style=3D"color:rgb(38,50,56);font-family=
+:Roboto,sans-serif;font-size:13px;font-style:normal;font-variant-ligatures:=
+normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-=
+align:left;text-indent:0px;text-transform:none;white-space:normal;word-spac=
+ing:0px;text-decoration-style:initial;text-decoration-color:initial;float:n=
+one;display:inline">fsl,data-width =3D &lt;24&gt;;</span><br style=3D"color=
+:rgb(38,50,56);font-family:Roboto,sans-serif;font-size:13px;font-style:norm=
+al;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;l=
+etter-spacing:normal;text-align:left;text-indent:0px;text-transform:none;wh=
+ite-space:normal;word-spacing:0px;text-decoration-style:initial;text-decora=
+tion-color:initial"><span style=3D"color:rgb(38,50,56);font-family:Roboto,s=
+ans-serif;font-size:13px;font-style:normal;font-variant-ligatures:normal;fo=
+nt-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:lef=
+t;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;t=
+ext-decoration-style:initial;text-decoration-color:initial;float:none;displ=
+ay:inline">crtc =3D &quot;ipu1-di0&quot;;</span><br style=3D"color:rgb(38,5=
+0,56);font-family:Roboto,sans-serif;font-size:13px;font-style:normal;font-v=
+ariant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spa=
+cing:normal;text-align:left;text-indent:0px;text-transform:none;white-space=
+:normal;word-spacing:0px;text-decoration-style:initial;text-decoration-colo=
+r:initial"><span style=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif=
+;font-size:13px;font-style:normal;font-variant-ligatures:normal;font-varian=
+t-caps:normal;font-weight:400;letter-spacing:normal;text-align:left;text-in=
+dent:0px;text-transform:none;white-space:normal;word-spacing:0px;text-decor=
+ation-style:initial;text-decoration-color:initial;float:none;display:inline=
+">status =3D &quot;okay&quot;;</span><br style=3D"color:rgb(38,50,56);font-=
+family:Roboto,sans-serif;font-size:13px;font-style:normal;font-variant-liga=
+tures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal=
+;text-align:left;text-indent:0px;text-transform:none;white-space:normal;wor=
+d-spacing:0px;text-decoration-style:initial;text-decoration-color:initial">=
+<span style=3D"color:rgb(38,50,56);font-family:Roboto,sans-serif;font-size:=
+13px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:left;text-indent:0px;te=
+xt-transform:none;white-space:normal;word-spacing:0px;text-decoration-style=
+:initial;text-decoration-color:initial;float:none;display:inline">};</span>
 
->
-> On Thursday, 17 May, 2018, 9:32:15 AM IST, chandrasekhar
-> <chandrasekhar@evolute.in> wrote:
->
->
->
->
->
-> Hi
->
-> You can use
->
-> IMAGE_INSTALL +=3D "Package Name/Recipes name"
->
->
->
-> Regards,
->
-> Chandrasekhar
->
->
->
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.=
-org]
-> On Behalf Of Ugesh Reddy
-> Sent: Wednesday, May 16, 2018 9:57 PM
-> To: Yocto-mailing-list
-> Subject: [yocto] Enabling the recipe from menuconfig
->
->
->
-> Hello Team,
->
->
->
->=C2=A0 I have a list of recipes in my custom layer. The recipes in this l=
-ayer
-> shall be enabled/selected through the menuconfig, once it is enabled the=
-n it
-> shall be the part of image. is it possible to achieve it ? do we have an=
-y
-> references?
->
->
->
-> Regards,
->
-> Ugesh
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-  
+<br></div><div><br></div><div><br></div><div><br></div></div>
 
-------=_Part_2737238_309018884.1526628144516
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<div id=3D"yMail_cursorElementTracker_1526628026195">&nbsp;I want to cre=
-ate such a menuconfig like kernal. So it shall display my recipe in menucon=
-fig<br id=3D"yMail_cursorElementTracker_1526628007462"><br><div id=3D"ymail=
-_android_signature"><a href=3D"https://overview.mail.yahoo.com/mobile/?.src=
-=
-=3DAndroid"></a></div> <br> <blockquote style=3D"margin: 0 0 20px 0;"> <di=
-v style=3D"font-family:Roboto, sans-serif; color:#6D00F6;"> <div>On Fri, 18=
- May 2018 at 11:55 a.m., Andrea Galbusera</div><div>&lt;gizero@gmail.com&gt=
-; wrote:</div> </div> <div style=3D"padding: 10px 0 0 20px; margin: 10px 0 =
-0 0; border-left: 1px solid #6D00F6;"> On Fri, May 18, 2018 at 6:14 AM, cha=
-ndrasekhar &lt;<a shape=3D"rect" ymailto=3D"mailto:chandrasekhar@evolute.in=
-" href=3D"mailto:chandrasekhar@evolute.in">chandrasekhar@evolute.in</a>&gt;=
- wrote:<br clear=3D"none">&gt; you want to see in kernel menuconfig??<br cl=
-ear=3D"none">&gt;<br clear=3D"none">&gt;<br clear=3D"none">&gt;<br clear=3D=
-"none">&gt; From: <a shape=3D"rect" ymailto=3D"mailto:yocto-bounces@yoctopr=
-oject.org" href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yoc=
-toproject.org</a> [mailto:<a shape=3D"rect" ymailto=3D"mailto:yocto-bounces=
-@yoctoproject.org" href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bou=
-nces@yoctoproject.org</a>]<br clear=3D"none">&gt; On Behalf Of Ugesh Reddy<=
-br clear=3D"none">&gt; Sent: Friday, May 18, 2018 7:52 AM<br clear=3D"none"=
->&gt; To: 'Yocto-mailing-list'; chandrasekhar<br clear=3D"none">&gt; Subjec=
-t: Re: [yocto] Enabling the recipe from menuconfig<br clear=3D"none">&gt;<b=
-r clear=3D"none">&gt;<br clear=3D"none">&gt;<br clear=3D"none">&gt; Hi,<br =
-clear=3D"none">&gt;<br clear=3D"none">&gt; Thanks for the response,<br clea=
-r=3D"none">&gt;<br clear=3D"none">&gt;<br clear=3D"none">&gt;<br clear=3D"n=
-one">&gt;&nbsp; This will add the recipe as a part of image but I want to b=
-uild and add the<br clear=3D"none">&gt; recipe when it has been selected fr=
-om the menuconfig.<br clear=3D"none">&gt;<br clear=3D"none">&gt; How to mak=
-e visible the recipe in menuconfig?<br clear=3D"none"><br clear=3D"none">Un=
-like other distribution build systems, Yocto/OE don't provide any<br clear=
-=3D"none">menuconfig based configuration interface for selecting which pac=
-kage<br clear=3D"none">to include in images you build. There is indeed supp=
-ort for accessing<br clear=3D"none">menuconfig interfaces provided by speci=
-fic recipes like the linux<br clear=3D"none">kernel. If you need a high lev=
-el recipe selection tool, your best bet<br clear=3D"none">is probably to lo=
-ok at Toaster.<div class=3D"yqt3373937361 yQTDBase" id=3D"yqtfd06407"><br c=
-lear=3D"none"><br clear=3D"none">&gt;<br clear=3D"none">&gt; On Thursday, 1=
-7 May, 2018, 9:32:15 AM IST, chandrasekhar<br clear=3D"none">&gt; &lt;<a sh=
-ape=3D"rect" ymailto=3D"mailto:chandrasekhar@evolute.in" href=3D"mailto:cha=
-ndrasekhar@evolute.in">chandrasekhar@evolute.in</a>&gt; wrote:<br clear=3D"=
-none">&gt;<br clear=3D"none">&gt;<br clear=3D"none">&gt;<br clear=3D"none">=
-&gt;<br clear=3D"none">&gt;<br clear=3D"none">&gt; Hi<br clear=3D"none">&gt=
-;<br clear=3D"none">&gt; You can use<br clear=3D"none">&gt;<br clear=3D"non=
-e">&gt; IMAGE_INSTALL +=3D "Package Name/Recipes name"<br clear=3D"none">&g=
-t;<br clear=3D"none">&gt;<br clear=3D"none">&gt;<br clear=3D"none">&gt; Reg=
-ards,<br clear=3D"none">&gt;<br clear=3D"none">&gt; Chandrasekhar<br clear=
-=3D"none">&gt;<br clear=3D"none">&gt;<br clear=3D"none">&gt;<br clear=3D"n=
-one">&gt; From: <a shape=3D"rect" ymailto=3D"mailto:yocto-bounces@yoctoproj=
-ect.org" href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yocto=
-project.org</a> [mailto:<a shape=3D"rect" ymailto=3D"mailto:yocto-bounces@y=
-octoproject.org" href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounc=
-es@yoctoproject.org</a>]<br clear=3D"none">&gt; On Behalf Of Ugesh Reddy<br=
- clear=3D"none">&gt; Sent: Wednesday, May 16, 2018 9:57 PM<br clear=3D"none=
-">&gt; To: Yocto-mailing-list<br clear=3D"none">&gt; Subject: [yocto] Enabl=
-ing the recipe from menuconfig<br clear=3D"none">&gt;<br clear=3D"none">&gt=
-;<br clear=3D"none">&gt;<br clear=3D"none">&gt; Hello Team,<br clear=3D"non=
-e">&gt;<br clear=3D"none">&gt;<br clear=3D"none">&gt;<br clear=3D"none">&gt=
-;&nbsp; I have a list of recipes in my custom layer. The recipes in this la=
-yer<br clear=3D"none">&gt; shall be enabled/selected through the menuconfig=
-, once it is enabled then it<br clear=3D"none">&gt; shall be the part of im=
-age. is it possible to achieve it ? do we have any<br clear=3D"none">&gt; r=
-eferences?<br clear=3D"none">&gt;<br clear=3D"none">&gt;<br clear=3D"none">=
-&gt;<br clear=3D"none">&gt; Regards,<br clear=3D"none">&gt;<br clear=3D"non=
-e">&gt; Ugesh</div><br clear=3D"none">&gt;<br clear=3D"none">&gt;<br clear=
-=3D"none">&gt; --<br clear=3D"none">&gt; _________________________________=
-______________<br clear=3D"none">&gt; yocto mailing list<br clear=3D"none">=
-&gt; <a shape=3D"rect" ymailto=3D"mailto:yocto@yoctoproject.org" href=3D"ma=
-ilto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br clear=3D"none">&=
-gt; <a shape=3D"rect" href=3D"https://lists.yoctoproject.org/listinfo/yocto=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><div c=
-lass=3D"yqt3373937361 yQTDBase" id=3D"yqtfd35355"><br clear=3D"none">&gt;<b=
-r clear=3D"none"></div> </div> </blockquote></div>
-
-------=_Part_2737238_309018884.1526628144516--
+--000000000000b080b0056c77bd6e--
