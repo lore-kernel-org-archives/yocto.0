@@ -1,42 +1,35 @@
-Return-Path: <mauro@faresoftware.it>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83CEDE00A51; Sun, 20 May 2018 08:12:03 -0700 (PDT)
+	id 4E21AE00C88; Sun, 20 May 2018 20:04:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [62.149.156.116 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from smtpcmd11116.aruba.it (smtpcmd11116.aruba.it [62.149.156.116])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A462AE008E1
-	for <yocto@yoctoproject.org>; Sun, 20 May 2018 08:12:01 -0700 (PDT)
-Received: from [192.168.24.148] ([87.26.78.158])
-	by smtpcmd11.ad.aruba.it with bizsmtp
-	id ofBz1x00L3QvvBK01fBzgP; Sun, 20 May 2018 17:11:59 +0200
-To: Yocto Project <yocto@yoctoproject.org>
-From: Mauro Ziliani <mauro@faresoftware.it>
-Message-ID: <8b3544f6-732f-3f56-1087-7c6b17c8f61d@faresoftware.it>
-Date: Sun, 20 May 2018 17:11:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.7.0
-MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
-	t=1526829120; bh=ngEoX2vYtL0X4AO3nhW3N3HdXiz0GXZo4oAof9hW95k=;
-	h=To:From:Subject:Date:MIME-Version:Content-Type;
-	b=mYTGwfa4YnF+2fT7R+YNkJ8LCtky/4MwpDhvBNSVs4lDXMmBY6Yj2RqYmtEK4MB4t
-	NwxOUywNxwcgq5DpM4ymLN/JhCRW1Rm6q06UJXp6KiB/OPlD7v1Vqjhvw/0DSG37o3
-	oKK5FCTkBZhuYaSw4Guga1tUnw1u8xiNEEBeTaBHlBk6Hk26FZOrj6dFkEaSBzL6Mq
-	GSkMwyK/vn/Dw4TbdY2B3fivfJ5mvN15loxVKwDMb8amEKXRMQOxT5m3CkjgNthY+T
-	IRL3L3B9RCR/qGQw62yyUPSwCFT6ZD55DcpLj5K/p08uxf4f3JNbH+HKeUPXY6t5z9
-	ofGkO9NvDNnqA==
-Subject: Krogoth dpkg_arch=armhf: how?
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49CA2E00A48
+	for <yocto@yoctoproject.org>; Sun, 20 May 2018 20:04:45 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	20 May 2018 20:04:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.49,425,1520924400"; d="scan'208";a="225835553"
+Received: from syadandx-mobl1.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.168.242])
+	by orsmga005.jf.intel.com with ESMTP; 20 May 2018 20:04:42 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 21 May 2018 15:04:08 +1200
+Message-Id: <cover.1526871767.git.paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 2.14.3
+Subject: [layerindex-web][PATCH 0/6] Layer index improvements
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,23 +41,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 May 2018 15:12:03 -0000
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: it
+X-List-Received-Date: Mon, 21 May 2018 03:04:48 -0000
 
-Hi all.
-
-My image works with debian package management.
-
-The image is produced with armel architecture, while sdk with armhf and 
-other packages is armhf.
-
-How can I set the correct debian architecture?
-
-I try DPKG_ARCH:="armhf" but seems it doesn't take effect
+Fixes for some minor issues, plus add a few small features.
 
 
-MZ
+The following changes since commit 09f629b997da1e52b1cb93d36566e04908e0517c:
+
+  Add CSV export for layer recipes (2018-05-07 15:30:04 +1200)
+
+are available in the Git repository at:
+
+  git://git.yoctoproject.org/layerindex-web paule/fixes2
+  http://git.yoctoproject.org/cgit.cgi//log/?h=paule/fixes2
+
+Paul Eggleton (6):
+  settings: allow disabling layer publishing emails
+  update_layer: drop debug message for deleting recipe file dependencies
+  update_layer: avoid errors on modified & renamed files
+  Add site-wide notice support
+  Add a script to import layers from an existing layer index
+  update_classic_status: fix matching on wrong layer
+
+ TODO                                      |   1 -
+ layerindex/admin.py                       |   1 +
+ layerindex/context_processors.py          |   7 +-
+ layerindex/migrations/0014_sitenotice.py  |  24 +++
+ layerindex/models.py                      |  25 ++-
+ layerindex/tools/import_layers.py         | 251 ++++++++++++++++++++++++++++++
+ layerindex/tools/update_classic_status.py |   2 +-
+ layerindex/update_layer.py                |   3 +-
+ layerindex/utils.py                       |  14 ++
+ layerindex/views.py                       |  66 ++++----
+ requirements.txt                          |   1 +
+ settings.py                               |   3 +
+ templates/base.html                       |   5 +
+ 13 files changed, 364 insertions(+), 39 deletions(-)
+ create mode 100644 layerindex/migrations/0014_sitenotice.py
+ create mode 100755 layerindex/tools/import_layers.py
+
+-- 
+2.14.3
 
 
