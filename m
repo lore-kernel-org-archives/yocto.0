@@ -1,63 +1,63 @@
-Return-Path: <jpuhlman@mvista.com>
+Return-Path: <pauldotknopf@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2CB12E00CA6; Mon, 21 May 2018 12:29:29 -0700 (PDT)
+	id 39FA4E008D2; Mon, 21 May 2018 14:00:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pauldotknopf[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f182.google.com (mail-pf0-f182.google.com
-	[209.85.192.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 260EAE00C5B
-	for <yocto@yoctoproject.org>; Mon, 21 May 2018 12:29:27 -0700 (PDT)
-Received: by mail-pf0-f182.google.com with SMTP id f189-v6so7562100pfa.7
-	for <yocto@yoctoproject.org>; Mon, 21 May 2018 12:29:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mvista-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=gmq6iBf3HsbsG3RUKwDy9XLBQDR5rNlaH3O4tqGM8Yw=;
-	b=FHS9+uEa/1zmaXN+9nQtDn8MgsrSWgWi3vp5uUQIWPYlkfh6OZA2LPwCPDH0Y2II8A
-	nh0wq7Az4NR1XZLpo5YjZE6GQbBwW9tC6NKwYO5SvQemBie2uicGBpkuRM85/w+wmtHn
-	LAT8+vw1kOq5QhBWqhy1NKPaPSF/OI6d1vVfAp25IXqRG/60lUpa7kepl2IU3BHNLyjE
-	jkDiE2z1VBMfJlKEVT8TCCmlP1vhshXZoNEGLiKTmgRkOPeK3suiPXFU2hnRUNGTNXF7
-	mFhpcdkGB25UX43phMon3Kpub0i86Iw9/Eca0UGyFq/x2jgnduH3p0i5XGjvcaXS1zrE
-	HS4Q==
+Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 199A1E0084E
+	for <yocto@yoctoproject.org>; Mon, 21 May 2018 14:00:22 -0700 (PDT)
+Received: by mail-io0-f182.google.com with SMTP id r9-v6so15929358iod.6
+	for <yocto@yoctoproject.org>; Mon, 21 May 2018 14:00:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=OH7C4GuCM7C2f1Y/CmbRFE//ArRnKQu6aTDVt3dkV78=;
+	b=vPEJXPZvl2oKxZo8xf014+6Zj2pKgt1sNnabNxaszrikkkzxdpYxjbroQaqbqQGc93
+	dvQW2Sqifr4OhBrbQy1cUoWilTPa/Do9qRjFU/FmsN1lXi0evXiiZqj76sbl7QAwp6cE
+	znaZJfCJw8cgIh0KzdiDbZSjcKjwMuoVAZVhKTGcKeYkn38KhdVZhz1g1p0BtWGsabQj
+	mOLSVA3dRG6i7LvmDp1nl/qZGNhdoE1Bj9p3fP9RFFNBaN3wbzasohcsD50RaunjeBE/
+	iRGqf7A0Oo7FP8sq1cDhlkYW8bBOiEB7vx0BXvWJsWQ356LW3+hK2t+Lk9U1gA4bjK5z
+	pr4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=gmq6iBf3HsbsG3RUKwDy9XLBQDR5rNlaH3O4tqGM8Yw=;
-	b=fXVLmv9wonE6+oJHlki0ixI/Ypx1T/JZbpf7Z0RROjj+l6pqSBQRuOXPOsreQZEQvt
-	x6wbKs2Gm45e0E083GIHNfrgFUTCJ7iyCf11ntjxGIJFGr2EvF56ku2HriFCVpNwwojs
-	rzgXQBEJTHjmN4QJj/+mvTfqdgRanD2vdhiQE3AzOZfMUitNPn9bQlye+zLCWABJYoFY
-	muepnNphhlGKVJUOOGgMthlF/lufqTetRBYvCRiOd3qe7VUmAUsJzJl2CYOgs+sum3xC
-	cSeYQ4qjpYIWlvkwxb6M0mYwSfCAMmrZtbmbC0McHQO6+n5Zs5yxCJ0cXMNsCSXeUmkp
-	rOwA==
-X-Gm-Message-State: ALKqPwfZyYN9lB/FEU3myWlPWVsZp3cr6zcnUEDHA2D1yKIDcjMICOX2
-	7npprb6SUFK0G1P1w2TN9PdCRtMG
-X-Google-Smtp-Source: AB8JxZpz2xiSLfQVHIPP8CTT4vbFsIkRjmN64+gV/E3AOpIl3CcLBqiaO+eUNKO+BKyXL7sWkphdNQ==
-X-Received: by 2002:a62:f80c:: with SMTP id
-	d12-v6mr21346240pfh.159.1526930967342; 
-	Mon, 21 May 2018 12:29:27 -0700 (PDT)
-Received: from workhorse.mvista.com
-	(99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-	by smtp.gmail.com with ESMTPSA id
-	w12-v6sm20740280pge.69.2018.05.21.12.29.26
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 21 May 2018 12:29:26 -0700 (PDT)
-From: Jeremy Puhlman <jpuhlman@mvista.com>
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=OH7C4GuCM7C2f1Y/CmbRFE//ArRnKQu6aTDVt3dkV78=;
+	b=KbyILnTSXxsLue4qbPMAkGoXAOUyW29zWOhXcajPQ0jHffTJ+PzqOY7tAPsMsCQSvv
+	h+DfXpbIy5f9dyoVzYbnLQrvqjMl4n9mNbnpRA2NaUnF70B49GYZsmFnMe4CPRjS39lx
+	3ZKqg/yjT0kYXWdwYJCvgqr4BA4K7DOu4O/x8ajaMcIJ/ZYw4Nj6jgc6iZzIzoVZhvCv
+	fCX7/i8TUbYFYbbIl4lJFkqQ4D8FGoOMNOushrQpXy8gP5uiwFj28vBRS5eR3+7tmRAh
+	jgTHGBasYL7t679farClSHYae4qxWrsFImSowQ+O8W1hW2jcHedRkU7Plr31uNShCP3p
+	mN7g==
+X-Gm-Message-State: ALKqPwfgdFOFVzxf/2tXOwxy03VSCmvi3FOPitcMbl72g+qfL8lrjah4
+	s2SxAhLNrN4YI0fKYbeZyOrBsz59/uuUuJX50LirIg==
+X-Google-Smtp-Source: AB8JxZq3fXsb/QgNx7SpZNvZkN7ZfD/+rP6MA8b4MQc+ynFrW4vJsPe64b4i0GDDXXDBzvKP+TLDCWnbMpI/RM5rq/E=
+X-Received: by 2002:a6b:88e3:: with SMTP id
+	s96-v6mr23246800ioi.45.1526936421924; 
+	Mon, 21 May 2018 14:00:21 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.139.211 with HTTP; Mon, 21 May 2018 14:00:21 -0700 (PDT)
+From: Paul Knopf <pauldotknopf@gmail.com>
+Date: Mon, 21 May 2018 17:00:21 -0400
+Message-ID: <CAKmWj-1Uks-O3HhP016_qhtk-a_dhv=39zMkJKdebkuBPhhifQ@mail.gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 21 May 2018 12:29:19 -0700
-Message-Id: <1526930959-7384-1-git-send-email-jpuhlman@mvista.com>
-X-Mailer: git-send-email 2.6.2
-Subject: [meta-cgl][PATCH] Add LAYERSERIES_COMPAT
+Subject: Patch for custom imager plugin in wic.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,38 +69,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 May 2018 19:29:29 -0000
+X-List-Received-Date: Mon, 21 May 2018 21:00:24 -0000
+Content-Type: multipart/alternative; boundary="0000000000000610d0056cbd977c"
 
-From: "Jeremy A. Puhlman" <jpuhlman@mvista.com>
+--0000000000000610d0056cbd977c
+Content-Type: text/plain; charset="UTF-8"
+
+From 136d6214b6fc2c1118dac5b7f3e029ed006fab8a Mon Sep 17 00:00:00 2001
+From: Paul Knopf <pauldotknopf@gmail.com>
+Date: Mon, 21 May 2018 16:56:51 -0400
+Subject: [PATCH] Support for changing the imager used in wic.
 
 ---
- meta-cgl-common/conf/layer.conf  | 2 +-
- meta-cgl-fsl-ppc/conf/layer.conf | 1 +
+ scripts/lib/wic/engine.py | 2 +-
+ scripts/wic               | 1 +
  2 files changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-cgl-common/conf/layer.conf b/meta-cgl-common/conf/layer.conf
-index bdf5f3f..9384ec7 100644
---- a/meta-cgl-common/conf/layer.conf
-+++ b/meta-cgl-common/conf/layer.conf
-@@ -10,7 +10,7 @@ BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "cgl-common"
- BBFILE_PATTERN_cgl-common = "^${LAYERDIR}/"
- BBFILE_PRIORITY_cgl-common = "7"
--
-+LAYERSERIES_COMPAT_cgl-common = "sumo"
- LAYERDEPENDS_cgl-common = "core openembedded-layer networking-layer perl-layer filesystems-layer security selinux"
- 
- require conf/distro/include/cgl_common_security_flags.inc
-diff --git a/meta-cgl-fsl-ppc/conf/layer.conf b/meta-cgl-fsl-ppc/conf/layer.conf
-index 353824d..525080c 100644
---- a/meta-cgl-fsl-ppc/conf/layer.conf
-+++ b/meta-cgl-fsl-ppc/conf/layer.conf
-@@ -10,3 +10,4 @@ BBFILE_PATTERN_cgl-fsl-ppc = "^${LAYERDIR}/"
- BBFILE_PRIORITY_cgl-fsl-ppc = "7"
- 
- LAYERDEPENDS_cgl-fsl-ppc = "cgl-common"
-+LAYERSERIES_COMPAT_cgl-fsl-ppc = "sumo"
+diff --git a/scripts/lib/wic/engine.py b/scripts/lib/wic/engine.py
+index edcfab3..d7c5c11 100644
+--- a/scripts/lib/wic/engine.py
++++ b/scripts/lib/wic/engine.py
+@@ -191,7 +191,7 @@ def wic_create(wks_file, rootfs_dir, bootimg_dir,
+kernel_dir,
+     if not os.path.exists(options.outdir):
+         os.makedirs(options.outdir)
+
+-    pname = 'direct'
++    pname = options.imager
+     plugin_class = PluginMgr.get_plugins('imager').get(pname)
+     if not plugin_class:
+         raise WicError('Unknown plugin: %s' % pname)
+diff --git a/scripts/wic b/scripts/wic
+index 7392bc4..255e524 100755
+--- a/scripts/wic
++++ b/scripts/wic
+@@ -360,6 +360,7 @@ def wic_init_parser_create(subparser):
+     subparser.add_argument("-v", "--vars", dest='vars_dir',
+                       help="directory with <image>.env files that store "
+                            "bitbake variables")
++    subparser.add_argument("-i", "--imager", dest="imager",
+default="direct", help="the wic imager plugin")
+     subparser.add_argument("-D", "--debug", dest="debug",
+action="store_true",
+                       default=False, help="output debug information")
+     return
 -- 
-2.6.2
+2.7.4
 
+--0000000000000610d0056cbd977c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div>From 136d6214b6fc2c1118dac5b7f3e029ed006fab8a Mon Sep=
+ 17 00:00:00 2001</div><div>From: Paul Knopf &lt;<a href=3D"mailto:pauldotk=
+nopf@gmail.com">pauldotknopf@gmail.com</a>&gt;</div><div>Date: Mon, 21 May =
+2018 16:56:51 -0400</div><div>Subject: [PATCH] Support for changing the ima=
+ger used in wic.</div><div><br></div><div>---</div><div>=C2=A0scripts/lib/w=
+ic/engine.py | 2 +-</div><div>=C2=A0scripts/wic =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 | 1 +</div><div>=C2=A02 files changed, 2 insertions(+=
+), 1 deletion(-)</div><div><br></div><div>diff --git a/scripts/lib/wic/engi=
+ne.py b/scripts/lib/wic/engine.py</div><div>index edcfab3..d7c5c11 100644</=
+div><div>--- a/scripts/lib/wic/engine.py</div><div>+++ b/scripts/lib/wic/en=
+gine.py</div><div>@@ -191,7 +191,7 @@ def wic_create(wks_file, rootfs_dir, =
+bootimg_dir, kernel_dir,</div><div>=C2=A0 =C2=A0 =C2=A0if not os.path.exist=
+s(options.outdir):</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0os.makedirs(=
+options.outdir)</div><div>=C2=A0</div><div>- =C2=A0 =C2=A0pname =3D &#39;di=
+rect&#39;</div><div>+ =C2=A0 =C2=A0pname =3D options.imager</div><div>=C2=
+=A0 =C2=A0 =C2=A0plugin_class =3D PluginMgr.get_plugins(&#39;imager&#39;).g=
+et(pname)</div><div>=C2=A0 =C2=A0 =C2=A0if not plugin_class:</div><div>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0raise WicError(&#39;Unknown plugin: %s&#39; =
+% pname)</div><div>diff --git a/scripts/wic b/scripts/wic</div><div>index 7=
+392bc4..255e524 100755</div><div>--- a/scripts/wic</div><div>+++ b/scripts/=
+wic</div><div>@@ -360,6 +360,7 @@ def wic_init_parser_create(subparser):</d=
+iv><div>=C2=A0 =C2=A0 =C2=A0subparser.add_argument(&quot;-v&quot;, &quot;--=
+vars&quot;, dest=3D&#39;vars_dir&#39;,</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0help=3D&quot;dir=
+ectory with &lt;image&gt;.env files that store &quot;</div><div>=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 &quot;bitbake variables&quot;)</div><div>+ =C2=A0 =C2=A0subpa=
+rser.add_argument(&quot;-i&quot;, &quot;--imager&quot;, dest=3D&quot;imager=
+&quot;, default=3D&quot;direct&quot;, help=3D&quot;the wic imager plugin&qu=
+ot;)</div><div>=C2=A0 =C2=A0 =C2=A0subparser.add_argument(&quot;-D&quot;, &=
+quot;--debug&quot;, dest=3D&quot;debug&quot;, action=3D&quot;store_true&quo=
+t;,</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0default=3DFalse, help=3D&quot;output debug informat=
+ion&quot;)</div><div>=C2=A0 =C2=A0 =C2=A0return</div><div>--=C2=A0</div><di=
+v>2.7.4</div><div><br></div></div>
+
+--0000000000000610d0056cbd977c--
