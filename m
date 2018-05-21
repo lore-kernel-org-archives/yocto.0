@@ -1,6 +1,6 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47D59E00CDF; Sun, 20 May 2018 20:04:58 -0700 (PDT)
+	id 88663E00D0B; Sun, 20 May 2018 20:05:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,26 +12,26 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9652BE00C88
-	for <yocto@yoctoproject.org>; Sun, 20 May 2018 20:04:56 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C16FEE00D4C
+	for <yocto@yoctoproject.org>; Sun, 20 May 2018 20:04:59 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
 	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	20 May 2018 20:04:56 -0700
+	20 May 2018 20:04:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,425,1520924400"; d="scan'208";a="225835605"
+X-IronPort-AV: E=Sophos;i="5.49,425,1520924400"; d="scan'208";a="225835621"
 Received: from syadandx-mobl1.gar.corp.intel.com (HELO
 	peggleto-mobl.ger.corp.intel.com) ([10.255.168.242])
-	by orsmga005.jf.intel.com with ESMTP; 20 May 2018 20:04:53 -0700
+	by orsmga005.jf.intel.com with ESMTP; 20 May 2018 20:04:56 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 21 May 2018 15:04:12 +1200
-Message-Id: <f972f4133e7ff144c5480f4ae0a6b30a1f06d76e.1526871767.git.paul.eggleton@linux.intel.com>
+Date: Mon, 21 May 2018 15:04:13 +1200
+Message-Id: <8be35ede38039b4695237cdbdfadd30b1f560ec7.1526871767.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 2.14.3
 In-Reply-To: <cover.1526871767.git.paul.eggleton@linux.intel.com>
 References: <cover.1526871767.git.paul.eggleton@linux.intel.com>
-Subject: [layerindex-web][PATCH 4/6] Add site-wide notice support
+Subject: [layerindex-web][PATCH 5/6] Add a script to import layers from an existing layer index
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,194 +43,279 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 May 2018 03:04:58 -0000
+X-List-Received-Date: Mon, 21 May 2018 03:05:02 -0000
 
-Add the ability to show a notice at the top of every page; this provides
-the ability for admins to display a message to visitors in the case of
-infrastructure or index data issues. Notices can have an expiry date and
-can be disabled and re-enabled if needed. A subset of HTML can be used
-for formatting the text, URLs will be made into clickable links, and
-four "levels" are supported (info, success, warning and error).
+Add a script that uses the REST API to gather information from another
+running layer index instance (e.g. layers.openembedded.org) and import
+that into the local index. Only information for branches that are
+already set up is imported, and only manually entered information -
+no recipes, machines, etc.
+
+Partially implements [YOCTO #9760].
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- layerindex/admin.py                      |  1 +
- layerindex/context_processors.py         |  7 +++++--
- layerindex/migrations/0014_sitenotice.py | 24 ++++++++++++++++++++++++
- layerindex/models.py                     | 25 ++++++++++++++++++++++++-
- layerindex/utils.py                      | 14 ++++++++++++++
- requirements.txt                         |  1 +
- templates/base.html                      |  5 +++++
- 7 files changed, 74 insertions(+), 3 deletions(-)
- create mode 100644 layerindex/migrations/0014_sitenotice.py
+ layerindex/tools/import_layers.py | 251 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 251 insertions(+)
+ create mode 100755 layerindex/tools/import_layers.py
 
-diff --git a/layerindex/admin.py b/layerindex/admin.py
-index 3cb59691..312f7a30 100644
---- a/layerindex/admin.py
-+++ b/layerindex/admin.py
-@@ -198,3 +198,4 @@ admin.site.register(Patch)
- admin.site.register(RecipeChangeset, RecipeChangesetAdmin)
- admin.site.register(ClassicRecipe, ClassicRecipeAdmin)
- admin.site.register(PythonEnvironment)
-+admin.site.register(SiteNotice)
-diff --git a/layerindex/context_processors.py b/layerindex/context_processors.py
-index db8e3fa3..7cf20ede 100644
---- a/layerindex/context_processors.py
-+++ b/layerindex/context_processors.py
-@@ -1,11 +1,13 @@
- # layerindex-web - custom context processor
- #
--# Copyright (C) 2013 Intel Corporation
-+# Copyright (C) 2013, 2018 Intel Corporation
- #
- # Licensed under the MIT license, see COPYING.MIT for details
- 
--from layerindex.models import Branch, LayerItem
-+from layerindex.models import Branch, LayerItem, SiteNotice
- from django.contrib.sites.models import Site
-+from django.db.models import Q
-+from datetime import datetime
- 
- def layerindex_context(request):
-     import settings
-@@ -20,4 +22,5 @@ def layerindex_context(request):
-         'oe_classic': Branch.objects.filter(name='oe-classic'),
-         'site_name': site_name,
-         'rrs_enabled': 'rrs' in settings.INSTALLED_APPS,
-+        'notices': SiteNotice.objects.filter(disabled=False).filter(Q(expires__isnull=True) | Q(expires__gte=datetime.now())),
-     }
-diff --git a/layerindex/migrations/0014_sitenotice.py b/layerindex/migrations/0014_sitenotice.py
-new file mode 100644
-index 00000000..630700cf
+diff --git a/layerindex/tools/import_layers.py b/layerindex/tools/import_layers.py
+new file mode 100755
+index 00000000..b02759ea
 --- /dev/null
-+++ b/layerindex/migrations/0014_sitenotice.py
-@@ -0,0 +1,24 @@
-+# -*- coding: utf-8 -*-
-+from __future__ import unicode_literals
++++ b/layerindex/tools/import_layers.py
+@@ -0,0 +1,251 @@
++#!/usr/bin/env python3
 +
-+from django.db import migrations, models
-+
-+
-+class Migration(migrations.Migration):
-+
-+    dependencies = [
-+        ('layerindex', '0013_patch'),
-+    ]
-+
-+    operations = [
-+        migrations.CreateModel(
-+            name='SiteNotice',
-+            fields=[
-+                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
-+                ('text', models.TextField(help_text='Text to show in the notice. A limited subset of HTML is supported for formatting.')),
-+                ('level', models.CharField(choices=[('I', 'Info'), ('S', 'Success'), ('W', 'Warning'), ('E', 'Error')], help_text='Level of notice to display', default='I', max_length=1)),
-+                ('disabled', models.BooleanField(verbose_name='Disabled', help_text='Use to temporarily disable this notice', default=False)),
-+                ('expires', models.DateTimeField(blank=True, help_text='Optional date/time when this notice will stop showing', null=True)),
-+            ],
-+        ),
-+    ]
-diff --git a/layerindex/models.py b/layerindex/models.py
-index ff164baa..891f5dfb 100644
---- a/layerindex/models.py
-+++ b/layerindex/models.py
-@@ -1,6 +1,6 @@
- # layerindex-web - model definitions
- #
--# Copyright (C) 2013-2016 Intel Corporation
-+# Copyright (C) 2013-2018 Intel Corporation
- #
- # Licensed under the MIT license, see COPYING.MIT for details
- 
-@@ -658,3 +658,26 @@ class RecipeChange(models.Model):
-     def reset_fields(self):
-         for fieldname in self.RECIPE_VARIABLE_MAP:
-             setattr(self, fieldname, getattr(self.recipe, fieldname))
-+
-+class SiteNotice(models.Model):
-+    NOTICE_LEVEL_CHOICES = [
-+        ('I', 'Info'),
-+        ('S', 'Success'),
-+        ('W', 'Warning'),
-+        ('E', 'Error'),
-+    ]
-+    text = models.TextField(help_text='Text to show in the notice. A limited subset of HTML is supported for formatting.')
-+    level = models.CharField(max_length=1, choices=NOTICE_LEVEL_CHOICES, default='I', help_text='Level of notice to display')
-+    disabled = models.BooleanField('Disabled', default=False, help_text='Use to temporarily disable this notice')
-+    expires = models.DateTimeField(blank=True, null=True, help_text='Optional date/time when this notice will stop showing')
-+
-+    def __str__(self):
-+        prefix = ''
-+        if self.expires and datetime.now() >= self.expires:
-+            prefix = '[expired] '
-+        elif self.disabled:
-+            prefix = '[disabled] '
-+        return '%s%s' % (prefix, self.text)
-+
-+    def text_sanitised(self):
-+        return utils.sanitise_html(self.text)
-diff --git a/layerindex/utils.py b/layerindex/utils.py
-index f8c5fd45..fe994439 100644
---- a/layerindex/utils.py
-+++ b/layerindex/utils.py
-@@ -14,6 +14,7 @@ import time
- import fcntl
- import signal
- import codecs
-+from bs4 import BeautifulSoup
- 
- def get_branch(branchname):
-     from layerindex.models import Branch
-@@ -376,6 +377,7 @@ def setup_core_layer_sys_path(settings, branchname):
-     core_layerdir = os.path.join(core_repodir, core_layerbranch.vcs_subdir)
-     sys.path.insert(0, os.path.join(core_layerdir, 'lib'))
- 
-+
- def run_command_interruptible(cmd):
-     """
-     Run a command with output displayed on the console, but ensure any Ctrl+C is
-@@ -404,3 +406,15 @@ def run_command_interruptible(cmd):
-     finally:
-         signal.signal(signal.SIGINT, signal.SIG_DFL)
-     return process.returncode, buf
++# Import layers from another layer index instance
++#
++# Copyright (C) 2018 Intel Corporation
++# Author: Paul Eggleton <paul.eggleton@linux.intel.com>
++#
++# Licensed under the MIT license, see COPYING.MIT for details
 +
 +
-+def sanitise_html(html):
-+    soup = BeautifulSoup(html, "html.parser")
-+    for tag in soup.findAll(True):
-+        if tag.name not in ['strong', 'em', 'b', 'i', 'p', 'ul', 'ol', 'li', 'br', 'p']:
-+            tag.hidden = True
-+        elif tag.attrs:
-+            tag.attrs = []
++import sys
++import os
++import optparse
++import re
++import glob
++import logging
++import subprocess
++import urllib.request
++import json
 +
-+    return soup.renderContents()
++sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), '..')))
 +
-diff --git a/requirements.txt b/requirements.txt
-index 5ca7cf6e..7facd2b6 100644
---- a/requirements.txt
-+++ b/requirements.txt
-@@ -1,5 +1,6 @@
- amqp==2.2.2
- anyjson==0.3.3
-+beautifulsoup4==4.6.0
- billiard==3.5.0.3
- celery==4.1.0
- confusable-homoglyphs==3.0.0
-diff --git a/templates/base.html b/templates/base.html
-index 38373ab8..a5e97cd5 100644
---- a/templates/base.html
-+++ b/templates/base.html
-@@ -89,6 +89,11 @@
-     {% endblock %}
- 
- {% block contenttag %}<div id="content" class="container top-padded">{% endblock %}
-+        {% if notices %}
-+            {% for notice in notices %}
-+            <div class="alert {% if notice.level == 'I' %}alert-info{% elif notice.level == 'S' %}alert-success{% elif notice.level == 'W' %}{% elif notice.level == 'E' %}alert-error{% endif %}">{{ notice.text_sanitised|safe|urlize }}</div>
-+            {% endfor %}
-+        {% endif %}
-         {% if messages %}
-             {% for message in messages %}
-             <div{% if message.tags %} class="alert {{ message.tags }}"{% endif %}>{{ message }}</div>
++import utils
++from layerconfparse import LayerConfParse
++
++class DryRunRollbackException(Exception):
++    pass
++
++logger = utils.logger_create('LayerIndexImport')
++
++
++
++def main():
++    valid_layer_name = re.compile('[-\w]+$')
++
++    parser = optparse.OptionParser(
++        usage = """
++    %prog [options] <url>""")
++
++    parser.add_option("-n", "--dry-run",
++            help = "Don't write any data back to the database",
++            action="store_true", dest="dryrun")
++    parser.add_option("-d", "--debug",
++            help = "Enable debug output",
++            action="store_const", const=logging.DEBUG, dest="loglevel", default=logging.INFO)
++    parser.add_option("-q", "--quiet",
++            help = "Hide all output except error messages",
++            action="store_const", const=logging.ERROR, dest="loglevel")
++
++    options, args = parser.parse_args(sys.argv)
++
++    if len(args) < 2:
++        print("Please specify URL of the layer index")
++        sys.exit(1)
++
++    layerindex_url = args[1]
++
++    utils.setup_django()
++    import settings
++    from layerindex.models import Branch, LayerItem, LayerBranch, LayerDependency, LayerMaintainer, LayerNote
++    from django.db import transaction
++
++    logger.setLevel(options.loglevel)
++
++    fetchdir = settings.LAYER_FETCH_DIR
++    if not fetchdir:
++        logger.error("Please set LAYER_FETCH_DIR in settings.py")
++        sys.exit(1)
++
++    if not os.path.exists(fetchdir):
++        os.makedirs(fetchdir)
++
++    if not layerindex_url.endswith('/'):
++        layerindex_url += '/'
++    if not '/layerindex/api/' in layerindex_url:
++        layerindex_url += '/layerindex/api/'
++
++    rq = urllib.request.Request(layerindex_url)
++    data = urllib.request.urlopen(rq).read()
++    jsdata = json.loads(data.decode('utf-8'))
++
++    branches_url = jsdata['branches']
++    layers_url = jsdata['layerItems']
++    layerdeps_url = jsdata['layerDependencies']
++    layerbranches_url = jsdata['layerBranches']
++    layermaintainers_url = jsdata.get('layerMaintainers', None)
++    layernotes_url = jsdata.get('layerNotes', None)
++
++    logger.debug('Getting branches')
++
++    # Get branches (we assume the ones we want are already there, so skip any that aren't)
++    rq = urllib.request.Request(branches_url)
++    data = urllib.request.urlopen(rq).read()
++    jsdata = json.loads(data.decode('utf-8'))
++    branch_idmap = {}
++    for branchjs in jsdata:
++        res = Branch.objects.filter(name=branchjs['name'])
++        if res:
++            branch = res.first()
++            branch_idmap[branchjs['id']] = branch
++
++    try:
++        with transaction.atomic():
++            # Get layers
++            logger.debug('Importing layers')
++            rq = urllib.request.Request(layers_url)
++            data = urllib.request.urlopen(rq).read()
++            jsdata = json.loads(data.decode('utf-8'))
++
++            layer_idmap = {}
++            exclude_fields = ['id', 'updated']
++            for layerjs in jsdata:
++                res = LayerItem.objects.filter(name=layerjs['name'])
++                if res:
++                    # Already have this layer
++                    logger.debug('Skipping layer %s, already in database' % layerjs['name'])
++                    layer_idmap[layerjs['id']] = res[0]
++                    continue
++                logger.debug('Adding layer %s' % layerjs['name'])
++                layeritem = LayerItem()
++                for key, value in layerjs.items():
++                    if key in exclude_fields:
++                        continue
++                    setattr(layeritem, key, value)
++                layeritem.save()
++                layer_idmap[layerjs['id']] = layeritem
++
++            # Get layer branches
++            logger.debug('Importing layer branches')
++            rq = urllib.request.Request(layerbranches_url)
++            data = urllib.request.urlopen(rq).read()
++            jsdata = json.loads(data.decode('utf-8'))
++
++            layerbranch_idmap = {}
++            exclude_fields = ['id', 'layer', 'branch', 'vcs_last_fetch', 'vcs_last_rev', 'vcs_last_commit', 'yp_compatible_version', 'updated']
++            for layerbranchjs in jsdata:
++                branch = branch_idmap.get(layerbranchjs['branch'], None)
++                if not branch:
++                    # We don't have this branch, skip it
++                    logger.debug('Skipping layerbranch %s, branch not imported' % layerbranchjs['id'])
++                    continue
++                layer = layer_idmap.get(layerbranchjs['layer'], None)
++                if not layer:
++                    # We didn't import this layer, skip it
++                    logger.debug('Skipping layerbranch %s, layer not imported' % layerbranchjs['id'])
++                    continue
++                res = LayerBranch.objects.filter(layer=layer).filter(branch=branch)
++                if res:
++                    # The layerbranch already exists (this will occur for layers
++                    # that already existed, since we need to have those in layer_idmap
++                    # to be able to import layer dependencies)
++                    logger.debug('Skipping layerbranch %s, already exists' % layerbranchjs['id'])
++                    continue
++
++                layerbranch = LayerBranch()
++                for key, value in layerbranchjs.items():
++                    if key in exclude_fields:
++                        continue
++                    setattr(layerbranch, key, value)
++                layerbranch.branch = branch
++                layerbranch.layer = layer
++                layerbranch.save()
++                layerbranch_idmap[layerbranchjs['id']] = layerbranch
++
++            # Get layer dependencies
++            logger.debug('Importing layer dependencies')
++            rq = urllib.request.Request(layerdeps_url)
++            data = urllib.request.urlopen(rq).read()
++            jsdata = json.loads(data.decode('utf-8'))
++
++            exclude_fields = ['id', 'layerbranch', 'dependency', 'updated']
++            for layerdepjs in jsdata:
++                layerbranch = layerbranch_idmap.get(layerdepjs['layerbranch'], None)
++                if not layerbranch:
++                    # We didn't import this layerbranch, skip it
++                    continue
++                dependency = layer_idmap.get(layerdepjs['dependency'], None)
++                if not dependency:
++                    # We didn't import the dependency, skip it
++                    continue
++
++                layerdep = LayerDependency()
++                for key, value in layerdepjs.items():
++                    if key in exclude_fields:
++                        continue
++                    setattr(layerdep, key, value)
++                layerdep.layerbranch = layerbranch
++                layerdep.dependency = dependency
++                layerdep.save()
++
++            if layermaintainers_url:
++                # Get layer maintainers (only available in latest code)
++                logger.debug('Importing layer maintainers')
++                rq = urllib.request.Request(layermaintainers_url)
++                data = urllib.request.urlopen(rq).read()
++                jsdata = json.loads(data.decode('utf-8'))
++
++                exclude_fields = ['id', 'layerbranch']
++                for layermaintainerjs in jsdata:
++                    layerbranch = layerbranch_idmap.get(layermaintainerjs['layerbranch'], None)
++                    if not layerbranch:
++                        # We didn't import this layerbranch, skip it
++                        continue
++
++                    layermaintainer = LayerMaintainer()
++                    for key, value in layermaintainerjs.items():
++                        if key in exclude_fields:
++                            continue
++                        setattr(layermaintainer, key, value)
++                    layermaintainer.layerbranch = layerbranch
++                    layermaintainer.save()
++
++            if layernotes_url:
++                # Get layer notes (only available in latest code)
++                logger.debug('Importing layer notes')
++                rq = urllib.request.Request(layernotes_url)
++                data = urllib.request.urlopen(rq).read()
++                jsdata = json.loads(data.decode('utf-8'))
++
++                exclude_fields = ['id', 'layer']
++                for layernotejs in jsdata:
++                    layer = layer_idmap.get(layernotejs['layer'], None)
++                    if not layer:
++                        # We didn't import this layer, skip it
++                        continue
++                    res = LayerNote.objects.filter(layer=layer).filter(text=layernotejs['text'])
++                    if res:
++                        # The note already exists (this will occur for layers
++                        # that already existed, since we need to have those in layer_idmap
++                        # to be able to import layer dependencies)
++                        logger.debug('Skipping note %s, already exists' % layernotejs['id'])
++                        continue
++
++                    layernote = LayerNote()
++                    for key, value in layernotejs.items():
++                        if key in exclude_fields:
++                            continue
++                        setattr(layernote, key, value)
++                    layernote.layer = layer
++                    layernote.save()
++
++            if options.dryrun:
++                raise DryRunRollbackException()
++    except DryRunRollbackException:
++        pass
++
++    sys.exit(0)
++
++
++if __name__ == "__main__":
++    main()
 -- 
 2.14.3
 
