@@ -1,38 +1,63 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <techieth@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9C01FE009BC; Mon, 21 May 2018 19:13:05 -0700 (PDT)
+	id CD034E00903; Mon, 21 May 2018 21:23:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	HTML_OBFUSCATE_05_10, 
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (techieth[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.52 listed in list.dnswl.org]
+	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46E1FE008D2
-	for <yocto@yoctoproject.org>; Mon, 21 May 2018 19:13:02 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w4M2CaKR016996
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 21 May 2018 19:12:51 -0700
-Received: from server.local (128.224.21.50) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Mon, 21 May 2018 19:12:25 -0700
-To: <mingli.yu@windriver.com>, <mark.asselstine@windriver.com>,
-	<yocto@yoctoproject.org>
-References: <1526623601-452418-1-git-send-email-mingli.yu@windriver.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <ae987aaf-6f0d-bd48-e207-f5dcfad4c699@windriver.com>
-Date: Mon, 21 May 2018 22:12:24 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.7.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44B1DE0086B;
+	Mon, 21 May 2018 21:23:56 -0700 (PDT)
+Received: by mail-wm0-f52.google.com with SMTP id j4-v6so28674413wme.1;
+	Mon, 21 May 2018 21:23:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=/5f7qf+P9UDCGJZu10n3tp6CxBZkWKWGdXHgQHM5tw4=;
+	b=hRYYCbC8H5GQT3wMia2gwKNbNUbeuPhBJOb1c0PieAP3JYrPPVVvSCK5iKxmo5g4A9
+	UXwihJl11yqINZszbwhgHDGsTrvTS8++Ok57NJkGiJWAlBIXl9qdTaoyLyAMEnrC4LVc
+	mglMJ5YWsklfGx7NXQhV3qU/LJl9WoOMzwkKJBJjTWqSYpC9QZXSpmlehPkWef109UJE
+	Kgr0zMJA59Cbs01vFg570y2HiFO86/eNJx0/ngouj3XS5jNETsyL9mboxyJBSsjAoTHT
+	xHD2Cd5pfZjTR32x90/zANKJYfWoHvOtN5Q+O3qcuS8NT1ymzZgHgWw+KZKVNp3lcFLS
+	xaiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=/5f7qf+P9UDCGJZu10n3tp6CxBZkWKWGdXHgQHM5tw4=;
+	b=OQvDkeLg57OYmVw1xCm5NrujlI21CC46hAzINwWIFPRlHGM75B7hVxOd1vcNtnqOW3
+	vGlvT8TTLcpRRIvMgsiqPmXFrjWbArRnw9EDttw+eKY6V7qvH2VesIeXdnyhgK35yP+Y
+	wgEvsOYHLs/yjGtTnqQCS8r8GwIiYdHXkB/4TWr4FEtHyViaoixHOyATyv0VYmZ40b+m
+	XZyakjZZ6qY1xVSmzIJvWQPG6w+cNgFdsfrGDo4dt16OIr6RRhU8h+0VV7A7z9U83IW6
+	dCkkYW5uEijrjLTTSsALVxXt9Un+L0SbAtnlhE14PnDVSInQsL79vtBB9Berm6eaXoA0
+	jL8A==
+X-Gm-Message-State: ALKqPwfr/PQ9JGg5JBAVvHsSidjvEdNjwFx3DHgYma6aT61Xk0KBDF7K
+	kAX7IHw9ZuZfO3JfvkxUKvvXu0LOzhSEEAcj1OKSBw==
+X-Google-Smtp-Source: AB8JxZpPH1qlmjwJpUVTdFM0qUGClWcfa2Wt7/o66gxD5aY/2TzaV+IZ9w8wzT8aOWSidZKqYFbUYEvxMDdkif1JplM=
+X-Received: by 2002:a1c:8b88:: with SMTP id n130-v6mr784319wmd.8.1526963035277;
+	Mon, 21 May 2018 21:23:55 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1526623601-452418-1-git-send-email-mingli.yu@windriver.com>
-Subject: Re: [meta-openstack][PATCH] python-requests: remove PREFERRED_VERSION limit
+Received: by 10.28.227.70 with HTTP; Mon, 21 May 2018 21:23:54 -0700 (PDT)
+From: techi eth <techieth@gmail.com>
+Date: Tue, 22 May 2018 09:53:54 +0530
+Message-ID: <CAJw2sSA-7znpoAFzz5_=bqQsWP+xrYzxbFt+2Yms=+4dcw573g@mail.gmail.com>
+To: yocto@yoctoproject.org, yocto-builds@yoctoproject.org
+Subject: Yocto SDK & Toolchain Deploy Issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,57 +69,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 May 2018 02:13:05 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 22 May 2018 04:23:56 -0000
+Content-Type: multipart/alternative; boundary="0000000000004d8f0a056cc3c931"
 
-merged.
+--0000000000004d8f0a056cc3c931
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Bruce
-
-On 2018-05-18 2:06 AM, mingli.yu@windriver.com wrote:
-> From: Mingli Yu <Mingli.Yu@windriver.com>
-> 
-> * Previously, add PREFERRED_VERSION for python-requests
->    as we want to use version >=2.10.0 and the full commit
->    message as below:
-> 
->    commit 185eccef8964632f5b255265a0a8e59fe5858397
->    Author: Mark Asselstine <mark.asselstine@windriver.com>
->    Date:   Fri Jan 20 16:59:31 2017 -0500
-> 
->      python-requests: use version from meta-openembedded
-> 
->      We want to use a version >=2.10.0 as required by python-keystoneauth1
->      so set a PREF so we don't get the older version found in
->      meta-virtualization and used by docker.
-> 
->      Signed-off-by: Mark Asselstine <mark.asselstine@windriver.com>
->      Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
-> 
-> * Now meta-oe upreved python-requests to 2.18.4, remove
->    PREFERRED_VERSION limit to avoid bitbake messages like:
-> 
->    "NOTE: preferred version 2.13.0 of python-requests not available"
-> 
-> Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
-> ---
->   meta-openstack/conf/layer.conf | 1 -
->   1 file changed, 1 deletion(-)
-> 
-> diff --git a/meta-openstack/conf/layer.conf b/meta-openstack/conf/layer.conf
-> index 55df509..c376d58 100644
-> --- a/meta-openstack/conf/layer.conf
-> +++ b/meta-openstack/conf/layer.conf
-> @@ -31,7 +31,6 @@ PREFERRED_VERSION_python-futures = "3.0.3%"
->   PREFERRED_VERSION_python-django = "1.8.6"
->   PREFERRED_VERSION_python-netaddr = "0.7.19"
->   PREFERRED_VERSION_python-sqlalchemy = "1.0.16"
-> -PREFERRED_VERSION_python-requests = "2.13.0"
->   PREFERRED_VERSION_python-eventlet = "0.20.0"
->   PREFERRED_VERSION_python-warlock = "1.2.0"
->   PREFERRED_VERSION_python-jsonschema = "2.6.0"
-> 
+I would like to use SDK=E2=80=99s & tool chain generated from Yocto to some=
+ other
+PC. I see following difficulty while using.
 
 
+
+1)      Path in *environment-setup-cortexa8hf-vfp-neon-poky-linux-gnueabi* =
+is
+hard code. Is it possible to have that is configurable.
+
+2)      If I change path in *environment-setup-cortexa8hf-vfp-neon-poky-lin=
+ux-
+gnueabi script *than also it raise error while recognizing compiler*.*
+
+
+
+Please let me know hint for using tool chain generated from one machine to
+other machine at any path.
+
+--0000000000004d8f0a056cc3c931
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;color:rgb(34,34,34)=
+;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;f=
+ont-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-=
+transform:none;white-space:normal;word-spacing:0px;background-color:rgb(255=
+,255,255);text-decoration-style:initial;text-decoration-color:initial;font-=
+size:11pt;font-family:Calibri,sans-serif">I would like to use SDK=E2=80=99s=
+ &amp; tool chain generated from Yocto to some other PC. I see following di=
+fficulty while using.<span></span></p><p class=3D"MsoNormal" style=3D"margi=
+n:0in 0in 0.0001pt;color:rgb(34,34,34);font-style:normal;font-variant-ligat=
+ures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;=
+text-align:start;text-indent:0px;text-transform:none;white-space:normal;wor=
+d-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initi=
+al;text-decoration-color:initial;font-size:11pt;font-family:Calibri,sans-se=
+rif"><span>=C2=A0</span></p><p class=3D"gmail-m_3899209230007378221gmail-Ms=
+oListParagraph" style=3D"color:rgb(34,34,34);font-style:normal;font-variant=
+-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:n=
+ormal;text-align:start;text-indent:0px;text-transform:none;white-space:norm=
+al;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style=
+:initial;text-decoration-color:initial;margin:0in 0in 0.0001pt 0.5in;font-s=
+ize:11pt;font-family:Calibri,sans-serif"><span><span>1)<span style=3D"font-=
+style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fon=
+t-size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0<span>=C2=A0</span></span></span></span>Path in<=
+span>=C2=A0</span><b>environment-setup-cortexa8hf-<wbr>vfp-neon-poky-linux-=
+gnueabi</b><span>=C2=A0</span>is hard code. Is it possible to have that is =
+configurable.<span></span></p><p class=3D"gmail-m_3899209230007378221gmail-=
+MsoListParagraph" style=3D"color:rgb(34,34,34);font-style:normal;font-varia=
+nt-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing=
+:normal;text-align:start;text-indent:0px;text-transform:none;white-space:no=
+rmal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-sty=
+le:initial;text-decoration-color:initial;margin:0in 0in 0.0001pt 0.5in;font=
+-size:11pt;font-family:Calibri,sans-serif"><span><span>2)<span style=3D"fon=
+t-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;f=
+ont-size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span>=C2=A0</span></span></span></span>If I =
+change path in<span>=C2=A0</span><b>environment-setup-cortexa8hf-<wbr>vfp-n=
+eon-poky-linux- gnueabi script<span>=C2=A0</span></b>than also it raise err=
+or while recognizing compiler<b>.</b><span></span></p><p class=3D"MsoNormal=
+" style=3D"margin:0in 0in 0.0001pt;color:rgb(34,34,34);font-style:normal;fo=
+nt-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter=
+-spacing:normal;text-align:start;text-indent:0px;text-transform:none;white-=
+space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decora=
+tion-style:initial;text-decoration-color:initial;font-size:11pt;font-family=
+:Calibri,sans-serif"><span>=C2=A0</span></p><p class=3D"MsoNormal" style=3D=
+"margin:0in 0in 0.0001pt;color:rgb(34,34,34);font-style:normal;font-variant=
+-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:n=
+ormal;text-align:start;text-indent:0px;text-transform:none;white-space:norm=
+al;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style=
+:initial;text-decoration-color:initial;font-size:11pt;font-family:Calibri,s=
+ans-serif">Please let me know hint for using tool chain generated from one =
+machine to other machine at any path.</p>
+
+<br></div>
+
+--0000000000004d8f0a056cc3c931--
