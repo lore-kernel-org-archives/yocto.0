@@ -1,63 +1,64 @@
-Return-Path: <techieth@gmail.com>
+Return-Path: <rahuljangra017@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CD034E00903; Mon, 21 May 2018 21:23:56 -0700 (PDT)
+	id 1D82DE00903; Mon, 21 May 2018 23:52:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	HTML_OBFUSCATE_05_10, 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (techieth[at]gmail.com)
+	mail provider *      (rahuljangra017[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.52 listed in list.dnswl.org]
-	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
+	*      [209.85.220.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44B1DE0086B;
-	Mon, 21 May 2018 21:23:56 -0700 (PDT)
-Received: by mail-wm0-f52.google.com with SMTP id j4-v6so28674413wme.1;
-	Mon, 21 May 2018 21:23:56 -0700 (PDT)
+Received: from mail-qk0-f175.google.com (mail-qk0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB5D5E0086B;
+	Mon, 21 May 2018 23:52:07 -0700 (PDT)
+Received: by mail-qk0-f175.google.com with SMTP id 196-v6so376930qke.9;
+	Mon, 21 May 2018 23:52:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=/5f7qf+P9UDCGJZu10n3tp6CxBZkWKWGdXHgQHM5tw4=;
-	b=hRYYCbC8H5GQT3wMia2gwKNbNUbeuPhBJOb1c0PieAP3JYrPPVVvSCK5iKxmo5g4A9
-	UXwihJl11yqINZszbwhgHDGsTrvTS8++Ok57NJkGiJWAlBIXl9qdTaoyLyAMEnrC4LVc
-	mglMJ5YWsklfGx7NXQhV3qU/LJl9WoOMzwkKJBJjTWqSYpC9QZXSpmlehPkWef109UJE
-	Kgr0zMJA59Cbs01vFg570y2HiFO86/eNJx0/ngouj3XS5jNETsyL9mboxyJBSsjAoTHT
-	xHD2Cd5pfZjTR32x90/zANKJYfWoHvOtN5Q+O3qcuS8NT1ymzZgHgWw+KZKVNp3lcFLS
-	xaiQ==
+	bh=ZT1DjRDyObUWJVjEcIok/0jq2sjcdtxo4XkDKA6kCbw=;
+	b=g5/ZNvNTi8PUcx6akX8utCzTl1gxDQdoAag7GzYSUIVm998zLmrZRvE+ax8zdbTOe0
+	o1S53UYvbRsIQ4C6p31KzCDC6Fuey4xCB1UFaAgRDCDdchyzNNZQGMtMnDwuh13TTYkh
+	qpTBtTfQ6R35T1L2Snk3F4ErdF/SvmAn3sCyN+0XJmhXmkmJTljrE1crm13N+curfdq+
+	7HBgHQJSHQLPZyZbPR9ryVUa6C6s6lQ/RFdM0YB69pS7vUGkZ2LE5K3THd7xlPUnVikc
+	ksYJGpwEQHPiPn4Ct2jxgJuPkYx51hmnKl0jpOb6CpGFFLBY01q3ACLrRZNd8eATsZvz
+	ksQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=/5f7qf+P9UDCGJZu10n3tp6CxBZkWKWGdXHgQHM5tw4=;
-	b=OQvDkeLg57OYmVw1xCm5NrujlI21CC46hAzINwWIFPRlHGM75B7hVxOd1vcNtnqOW3
-	vGlvT8TTLcpRRIvMgsiqPmXFrjWbArRnw9EDttw+eKY6V7qvH2VesIeXdnyhgK35yP+Y
-	wgEvsOYHLs/yjGtTnqQCS8r8GwIiYdHXkB/4TWr4FEtHyViaoixHOyATyv0VYmZ40b+m
-	XZyakjZZ6qY1xVSmzIJvWQPG6w+cNgFdsfrGDo4dt16OIr6RRhU8h+0VV7A7z9U83IW6
-	dCkkYW5uEijrjLTTSsALVxXt9Un+L0SbAtnlhE14PnDVSInQsL79vtBB9Berm6eaXoA0
-	jL8A==
-X-Gm-Message-State: ALKqPwfr/PQ9JGg5JBAVvHsSidjvEdNjwFx3DHgYma6aT61Xk0KBDF7K
-	kAX7IHw9ZuZfO3JfvkxUKvvXu0LOzhSEEAcj1OKSBw==
-X-Google-Smtp-Source: AB8JxZpPH1qlmjwJpUVTdFM0qUGClWcfa2Wt7/o66gxD5aY/2TzaV+IZ9w8wzT8aOWSidZKqYFbUYEvxMDdkif1JplM=
-X-Received: by 2002:a1c:8b88:: with SMTP id n130-v6mr784319wmd.8.1526963035277;
-	Mon, 21 May 2018 21:23:55 -0700 (PDT)
+	bh=ZT1DjRDyObUWJVjEcIok/0jq2sjcdtxo4XkDKA6kCbw=;
+	b=Yt20ufFH902FsSJ3G0tXT6rXfpRdxqiD4shRSCuMCdx8xQ2BfP5ldh8e0tWDf/mT/P
+	9pxFZeTk4J+e50GDHe+FC5LvHOuGBTCA5ozoPDLwFOGgvANrJ4jw2pVrZ2V9h8PKyYpn
+	GxIkAuFFTgH4kZMdu150Zve2ui0/NS+MBNub+lB6XEQ31h9zcUuZ/a97s48bQYyDjYn1
+	GXRdfaPrfkQqnK5CTVkzV/LwyBT62ZCsCtyPfxEdELnwFsf4p9Wck4WiiVKIWeg2/eFF
+	FTSS90w1j+kOEHYiheRkXzGZ4q+dU2jiYX2fmN2VIrOuvM0niexjQkU78FqI1v/IhUIn
+	1CFw==
+X-Gm-Message-State: ALKqPwf7WtSxHAQN3IzVrZ433WM8rfybdJam6IvcrF7fp+ZLlpn8Y0cZ
+	z+txzxVFS9SXgptHxAhPoQV9ZKODBJA04AvkUfQ=
+X-Google-Smtp-Source: AB8JxZoJUZ9aLsOzDXS5anyL+lKaxsQ5U0hXS9/CQ7piUsXCyfN0BTYa0LA1fivi+41fgLqCaUtx+i5/2Z3tnM8hnOg=
+X-Received: by 2002:a37:48cf:: with SMTP id
+	v198-v6mr19736554qka.128.1526971926722; 
+	Mon, 21 May 2018 23:52:06 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.28.227.70 with HTTP; Mon, 21 May 2018 21:23:54 -0700 (PDT)
-From: techi eth <techieth@gmail.com>
-Date: Tue, 22 May 2018 09:53:54 +0530
-Message-ID: <CAJw2sSA-7znpoAFzz5_=bqQsWP+xrYzxbFt+2Yms=+4dcw573g@mail.gmail.com>
-To: yocto@yoctoproject.org, yocto-builds@yoctoproject.org
-Subject: Yocto SDK & Toolchain Deploy Issue
+Received: by 10.12.229.132 with HTTP; Mon, 21 May 2018 23:52:06 -0700 (PDT)
+From: Rahul jangra <rahuljangra017@gmail.com>
+Date: Tue, 22 May 2018 12:22:06 +0530
+Message-ID: <CAGUdgLYNbUfcgphEhWfkb5EVjehCz8VsQj6g4yNfb--nRAd1Zg@mail.gmail.com>
+To: yocto-request <yocto-request@yoctoproject.org>,
+	yocto <yocto@yoctoproject.org>, 
+	yocto-builds-owner <yocto-builds-owner@yoctoproject.org>
+Subject: (No subject)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,90 +70,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 May 2018 04:23:56 -0000
-Content-Type: multipart/alternative; boundary="0000000000004d8f0a056cc3c931"
-
---0000000000004d8f0a056cc3c931
+X-List-Received-Date: Tue, 22 May 2018 06:52:09 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-I would like to use SDK=E2=80=99s & tool chain generated from Yocto to some=
- other
-PC. I see following difficulty while using.
+Hi team
+I am facing the issue when creat deb base core-image-full-cmdline he
+is getting this error but when I switch to rpm easily to built.
+kindly help me.
 
+ Executing 'cd /home/nsspl/rpi/build/tmp/deploy/deb/all;
+PSEUDO_UNLOAD=1
+/home/nsspl/rpi/build/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/apt-ftparchive
+packages . > Packages;/home/nsspl/rpi/build/tmp/hosttools/gzip -fcn
+Packages > Packages.gz;PSEUDO_UNLOAD=1
+/home/nsspl/rpi/build/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/apt-ftparchive
+release . >> Release' ...
+NOTE: Executing 'cd
+/home/nsspl/rpi/build/tmp/deploy/deb/cortexa7hf-neon-vfpv4;
+PSEUDO_UNLOAD=1
+/home/nsspl/rpi/build/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/apt-ftparchive
+packages . > Packages;/home/nsspl/rpi/build/tmp/hosttools/gzip -fcn
+Packages > Packages.gz;PSEUDO_UNLOAD=1
+/home/nsspl/rpi/build/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/apt-ftparchive
+release . >> Release' ...
+NOTE: Executing 'cd /home/nsspl/rpi/build/tmp/deploy/deb/raspberrypi3;
+PSEUDO_UNLOAD=1
+/home/nsspl/rpi/build/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/apt-ftparchive
+packages . > Packages;/home/nsspl/rpi/build/tmp/hosttools/gzip -fcn
+Packages > Packages.gz;PSEUDO_UNLOAD=1
+/home/nsspl/rpi/build/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/apt-ftparchive
+release . >> Release' ...
+NOTE: Installing the following packages: locale-base-en-us locale-base-en-gb
+NOTE: Installing the following packages: dpkg hello-mender
+psplash-raspberrypi packagegroup-core-full-cmdline apt run-postinsts
+mender packagegroup-core-boot packagegroup-core-ssh-openssh
+kernel-devicetree shadow kernel-image-4.14.37 base-passwd
+ERROR: Unable to install packages. Command
+'/home/nsspl/rpi/build/tmp/work/raspberrypi3-poky-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/apt-get
+ install --force-yes --allow-unauthenticated dpkg hello-mender
+psplash-raspberrypi packagegroup-core-full-cmdline apt run-postinsts
+mender packagegroup-core-boot packagegroup-core-ssh-openssh
+kernel-devicetree shadow kernel-image-4.14.37 base-passwd' returned
+100:
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
 
+The following packages have unmet dependencies:
+ packagegroup-core-full-cmdline : Depends:
+packagegroup-core-full-cmdline-initscripts but it is not going to be
+installed
+E: Unable to correct problems, you have held broken packages.
 
-1)      Path in *environment-setup-cortexa8hf-vfp-neon-poky-linux-gnueabi* =
-is
-hard code. Is it possible to have that is configurable.
+Regards
 
-2)      If I change path in *environment-setup-cortexa8hf-vfp-neon-poky-lin=
-ux-
-gnueabi script *than also it raise error while recognizing compiler*.*
+Rahul
 
-
-
-Please let me know hint for using tool chain generated from one machine to
-other machine at any path.
-
---0000000000004d8f0a056cc3c931
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">
-
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;color:rgb(34,34,34)=
-;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;f=
-ont-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-=
-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(255=
-,255,255);text-decoration-style:initial;text-decoration-color:initial;font-=
-size:11pt;font-family:Calibri,sans-serif">I would like to use SDK=E2=80=99s=
- &amp; tool chain generated from Yocto to some other PC. I see following di=
-fficulty while using.<span></span></p><p class=3D"MsoNormal" style=3D"margi=
-n:0in 0in 0.0001pt;color:rgb(34,34,34);font-style:normal;font-variant-ligat=
-ures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;=
-text-align:start;text-indent:0px;text-transform:none;white-space:normal;wor=
-d-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initi=
-al;text-decoration-color:initial;font-size:11pt;font-family:Calibri,sans-se=
-rif"><span>=C2=A0</span></p><p class=3D"gmail-m_3899209230007378221gmail-Ms=
-oListParagraph" style=3D"color:rgb(34,34,34);font-style:normal;font-variant=
--ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:n=
-ormal;text-align:start;text-indent:0px;text-transform:none;white-space:norm=
-al;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style=
-:initial;text-decoration-color:initial;margin:0in 0in 0.0001pt 0.5in;font-s=
-ize:11pt;font-family:Calibri,sans-serif"><span><span>1)<span style=3D"font-=
-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fon=
-t-size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0<span>=C2=A0</span></span></span></span>Path in<=
-span>=C2=A0</span><b>environment-setup-cortexa8hf-<wbr>vfp-neon-poky-linux-=
-gnueabi</b><span>=C2=A0</span>is hard code. Is it possible to have that is =
-configurable.<span></span></p><p class=3D"gmail-m_3899209230007378221gmail-=
-MsoListParagraph" style=3D"color:rgb(34,34,34);font-style:normal;font-varia=
-nt-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing=
-:normal;text-align:start;text-indent:0px;text-transform:none;white-space:no=
-rmal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-sty=
-le:initial;text-decoration-color:initial;margin:0in 0in 0.0001pt 0.5in;font=
--size:11pt;font-family:Calibri,sans-serif"><span><span>2)<span style=3D"fon=
-t-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;f=
-ont-size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span>=C2=A0</span></span></span></span>If I =
-change path in<span>=C2=A0</span><b>environment-setup-cortexa8hf-<wbr>vfp-n=
-eon-poky-linux- gnueabi script<span>=C2=A0</span></b>than also it raise err=
-or while recognizing compiler<b>.</b><span></span></p><p class=3D"MsoNormal=
-" style=3D"margin:0in 0in 0.0001pt;color:rgb(34,34,34);font-style:normal;fo=
-nt-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter=
--spacing:normal;text-align:start;text-indent:0px;text-transform:none;white-=
-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decora=
-tion-style:initial;text-decoration-color:initial;font-size:11pt;font-family=
-:Calibri,sans-serif"><span>=C2=A0</span></p><p class=3D"MsoNormal" style=3D=
-"margin:0in 0in 0.0001pt;color:rgb(34,34,34);font-style:normal;font-variant=
--ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:n=
-ormal;text-align:start;text-indent:0px;text-transform:none;white-space:norm=
-al;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style=
-:initial;text-decoration-color:initial;font-size:11pt;font-family:Calibri,s=
-ans-serif">Please let me know hint for using tool chain generated from one =
-machine to other machine at any path.</p>
-
-<br></div>
-
---0000000000004d8f0a056cc3c931--
