@@ -1,39 +1,38 @@
-Return-Path: <anuj.mittal@intel.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36998E009CF; Tue, 22 May 2018 18:08:18 -0700 (PDT)
+	id 1165DE009D4; Tue, 22 May 2018 19:39:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.136 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14743E00791
-	for <yocto@yoctoproject.org>; Tue, 22 May 2018 18:08:16 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	22 May 2018 18:08:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,431,1520924400"; d="scan'208";a="53061181"
-Received: from anmitta2-mobl1.png.intel.com (HELO [10.221.23.24])
-	([10.221.23.24])
-	by orsmga003.jf.intel.com with ESMTP; 22 May 2018 18:08:15 -0700
-To: techi eth <techieth@gmail.com>, yocto@yoctoproject.org
-References: <CAJw2sSA-7znpoAFzz5_=bqQsWP+xrYzxbFt+2Yms=+4dcw573g@mail.gmail.com>
-From: Anuj Mittal <anuj.mittal@intel.com>
-Message-ID: <a46a4ad3-dbfc-89d5-c7d9-37832ec0e24b@intel.com>
-Date: Wed, 23 May 2018 09:08:14 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.7.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E1EAE00929
+	for <yocto@yoctoproject.org>; Tue, 22 May 2018 19:39:24 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w4N2dNKq013869
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 22 May 2018 19:39:24 -0700 (PDT)
+Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
+	Tue, 22 May 2018 19:39:23 -0700
+To: <yocto@yoctoproject.org>
+References: <CAG0OLMaBuq05knexO=gnaQnDadhQsHdiZSFiYFRsFu4ZCsDj+Q@mail.gmail.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <8ef5b821-df26-0c89-60d8-7c55d13d4275@windriver.com>
+Date: Wed, 23 May 2018 10:41:35 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-In-Reply-To: <CAJw2sSA-7znpoAFzz5_=bqQsWP+xrYzxbFt+2Yms=+4dcw573g@mail.gmail.com>
-Subject: Re: Yocto SDK & Toolchain Deploy Issue
+In-Reply-To: <CAG0OLMaBuq05knexO=gnaQnDadhQsHdiZSFiYFRsFu4ZCsDj+Q@mail.gmail.com>
+X-Originating-IP: [128.224.162.218]
+Subject: Re: busybox / sysklogd post install conflict
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,28 +44,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 May 2018 01:08:18 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 23 May 2018 02:39:25 -0000
+Content-Type: multipart/alternative;
+	boundary="------------0E63F43467C2FB34BBD56AF8"
 
-On 05/22/2018 12:23 PM, techi eth wrote:
-> I would like to use SDK’s & tool chain generated from Yocto to some
-> other PC. I see following difficulty while using.
-> 
->  
-> 
-> 1)      Path
-> in *environment-setup-cortexa8hf-vfp-neon-poky-linux-gnueabi* is hard
-> code. Is it possible to have that is configurable.
+--------------0E63F43467C2FB34BBD56AF8
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-You will have to install the SDK using the sh file that is generated on
-that other machine that you're planning to use.
+Is it because that these two commands are packaged into busybox instead 
+of busybox-syslog?
+If some layer introduces such change, then a bbappend file in that layer 
+needs to be added to also modify sysklogd recipe accordingly.
 
-Please see this and the sections around it:
+Anyway, thanks for raising this problem up. When checking the sysklogd 
+recipe, I found a typo from my previous patch.
+I've sent out patch to fix it.
 
-https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#sdk-installing-the-sdk
+   git://git.pokylinux.org/poky-contrib ChenQi/sysklogd-typo
+   http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=ChenQi/sysklogd-typo
 
-If this doesn't answer your question, then as Alex mentioned, please
-include more details on what you are doing and the steps.
 
+
+Best Regards,
+Chen Qi
+
+
+On 05/22/2018 11:28 PM, Brian Walsh wrote:
+> I have run into an issue building against sumo branch (using opkg if 
+> that matters). This patch removed the update-alternatives for sysklogd.
+>
+> https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=c83eb10f70b714ce3a8c165fad547d800f3ed27d
+>
+> However, busybox is still configured with syslog support. The script 
+> that generates all of the symlinks for busybox runs during the main 
+> busybox package post install. This causes the post install to exit 
+> with an error since it can't create the links for klogd and syslogd if 
+> sysklogd is installed without update alternatives.
+>
+> From busybox.postinst:
+>
+> update-alternatives --install /sbin/klogd klogd /bin/busybox.nosuid 50
+> update-alternatives --install /sbin/syslogd syslogd /bin/busybox.nosuid 50
+>
+> I think that patch needs to be reverted. The rconflicts for 
+> busybox-syslog and sysklogd takes care of the conflicting config file 
+> name that is shared between the two packages but we still need the 
+> update-alternatives. Unless the function that generates the busybox 
+> symlinks gets smart enough to generate the symlinks only in the 
+> busybox-syslog package.
+>
+>
+>
+
+
+--------------0E63F43467C2FB34BBD56AF8
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">Is it because that these two commands
+      are packaged into busybox instead of busybox-syslog?<br>
+      If some layer introduces such change, then a bbappend file in that
+      layer needs to be added to also modify sysklogd recipe
+      accordingly.<br>
+      <br>
+      Anyway, thanks for raising this problem up. When checking the
+      sysklogd recipe, I found a typo from my previous patch.<br>
+      I've sent out patch to fix it.<br>
+      <br>
+      <pre wrap="">  git://git.pokylinux.org/poky-contrib ChenQi/sysklogd-typo
+  <a class="moz-txt-link-freetext" href="http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=ChenQi/sysklogd-typo">http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=ChenQi/sysklogd-typo</a></pre>
+      <br>
+      <br>
+      Best Regards,<br>
+      Chen Qi<br>
+      <br>
+      <br>
+      On 05/22/2018 11:28 PM, Brian Walsh wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAG0OLMaBuq05knexO=gnaQnDadhQsHdiZSFiYFRsFu4ZCsDj+Q@mail.gmail.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <div dir="ltr">I have run into an issue building against sumo
+        branch (using opkg if that matters). This patch removed the
+        update-alternatives for sysklogd.<br>
+        <br>
+        <a moz-do-not-send="true"
+href="https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=c83eb10f70b714ce3a8c165fad547d800f3ed27d">https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=c83eb10f70b714ce3a8c165fad547d800f3ed27d</a><br>
+        <br>
+        However, busybox is still configured with syslog support. The
+        script that generates all of the symlinks for busybox runs
+        during the main busybox package post install. This causes the
+        post install to exit with an error since it can't create the
+        links for klogd and syslogd if sysklogd is installed without
+        update alternatives.<br>
+        <br>
+        From busybox.postinst:<br>
+        <br>
+        update-alternatives --install /sbin/klogd klogd
+        /bin/busybox.nosuid 50<br>
+        update-alternatives --install /sbin/syslogd syslogd
+        /bin/busybox.nosuid 50<br>
+        <br>
+        I think that patch needs to be reverted. The rconflicts for
+        busybox-syslog and sysklogd takes care of the conflicting config
+        file name that is shared between the two packages but we still
+        need the update-alternatives. Unless the function that generates
+        the busybox symlinks gets smart enough to generate the symlinks
+        only in the busybox-syslog package.<br>
+        <div><br>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------0E63F43467C2FB34BBD56AF8--
