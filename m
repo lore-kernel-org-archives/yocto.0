@@ -1,46 +1,39 @@
-Return-Path: <kdatta@ads.isi.edu>
+Return-Path: <anuj.mittal@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88550E009CF; Tue, 22 May 2018 14:59:25 -0700 (PDT)
+	id 36998E009CF; Tue, 22 May 2018 18:08:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [128.9.180.199 listed in list.dnswl.org]
+	*      [192.55.52.136 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-d.ads.isi.edu (mail-d.ads.isi.edu [128.9.180.199])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29413E00791
-	for <yocto@yoctoproject.org>; Tue, 22 May 2018 14:59:23 -0700 (PDT)
-From: Kaushik Datta <kdatta@isi.edu>
-X-IronPort-AV: E=Sophos;i="5.49,430,1520924400"; d="scan'208,217";a="1799465"
-Received: from usmdrmbx01.ads.isi.edu ([10.100.2.77])
-	by usmdrip04-mgmt.ads.isi.edu with ESMTP; 22 May 2018 14:59:16 -0700
-Received: from usarlmbx01.ads.isi.edu (10.13.52.77) by usmdrmbx01.ads.isi.edu
-	(10.100.2.77) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Tue, 22 May 2018 14:59:14 -0700
-Received: from usarlmbx01.ads.isi.edu (10.13.52.77) by usarlmbx01.ads.isi.edu
-	(10.13.52.77) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Tue, 22 May 2018 17:59:13 -0400
-Received: from usarlmbx01.ads.isi.edu ([fe80::31f5:7f06:6285:7a69]) by
-	usarlmbx01.ads.isi.edu ([fe80::31f5:7f06:6285:7a69%17]) with mapi id
-	15.01.1261.039; Tue, 22 May 2018 17:59:13 -0400
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Problems adding OpenMP to the cross-toolchain installer
-Thread-Index: AQHT8hgekwFwbIOpok6mbraUW1t92A==
-Date: Tue, 22 May 2018 21:59:13 +0000
-Message-ID: <2810ED11-79ED-4DD6-9ADA-C1AFC300F77D@ads.isi.edu>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.9.47.101]
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14743E00791
+	for <yocto@yoctoproject.org>; Tue, 22 May 2018 18:08:16 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	22 May 2018 18:08:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.49,431,1520924400"; d="scan'208";a="53061181"
+Received: from anmitta2-mobl1.png.intel.com (HELO [10.221.23.24])
+	([10.221.23.24])
+	by orsmga003.jf.intel.com with ESMTP; 22 May 2018 18:08:15 -0700
+To: techi eth <techieth@gmail.com>, yocto@yoctoproject.org
+References: <CAJw2sSA-7znpoAFzz5_=bqQsWP+xrYzxbFt+2Yms=+4dcw573g@mail.gmail.com>
+From: Anuj Mittal <anuj.mittal@intel.com>
+Message-ID: <a46a4ad3-dbfc-89d5-c7d9-37832ec0e24b@intel.com>
+Date: Wed, 23 May 2018 09:08:14 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.7.0
 MIME-Version: 1.0
-Subject: Problems adding OpenMP to the cross-toolchain installer
+In-Reply-To: <CAJw2sSA-7znpoAFzz5_=bqQsWP+xrYzxbFt+2Yms=+4dcw573g@mail.gmail.com>
+Subject: Re: Yocto SDK & Toolchain Deploy Issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,162 +45,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 May 2018 21:59:25 -0000
+X-List-Received-Date: Wed, 23 May 2018 01:08:18 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_2810ED1179ED4DD69ADAC1AFC300F77Dadsisiedu_"
+Content-Transfer-Encoding: 8bit
 
---_000_2810ED1179ED4DD69ADAC1AFC300F77Dadsisiedu_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On 05/22/2018 12:23 PM, techi eth wrote:
+> I would like to use SDK’s & tool chain generated from Yocto to some
+> other PC. I see following difficulty while using.
+> 
+>  
+> 
+> 1)      Path
+> in *environment-setup-cortexa8hf-vfp-neon-poky-linux-gnueabi* is hard
+> code. Is it possible to have that is configurable.
 
-SGVsbG8gWW9jdG8gUHJvamVjdCwNCg0KSeKAmW0gaGF2aW5nIHByb2JsZW1zIGFkZGluZyBPcGVu
-TVAgaGVhZGVycy9saWJyYXJpZXMgdG8gdGhlIFNESyB0aGF0IGlzIGluc3RhbGxlZCBieSB0aGUg
-WW9jdG8tZ2VuZXJhdGVkIGNyb3NzLXRvb2xjaGFpbiBpbnN0YWxsZXIuICBIZXJlIGFyZSB0aGUg
-c3RlcHMgdGhhdCBJIGN1cnJlbnRseSB0YWtlIHRvIGFkZCBib3RoIHRoZSBkeW5hbWljIGFuZCBz
-dGF0aWMgT3Blbk1QIGxpYnJhcmllczoNCg0KDQogIDEuICBJIGRvd25sb2FkZWQgdGhlIHBva3kg
-ZGlzdHJpYnV0aW9uIG9mIFlvY3RvIChweXJvIGJyYW5jaCkuDQogIDIuICBJbiBvcmRlciB0byBn
-ZW5lcmF0ZSBhIHRvb2xjaGFpbiBpbnN0YWxsZXIgZm9yIHRoZSB6Y3UxMDItenlucW1wIG1hY2hp
-bmUsIEkgYWxzbyBhZGRlZCB0aGUg4oCcbWV0YS14aWxpbnjigJ0gbGF5ZXIsIHVzaW5nIHRoZSBw
-eXJvIGJyYW5jaCBmb3IgdGhpcyBhcyB3ZWxsLg0KICAzLiAgQXQgdGhlIGVuZCBvZiB0aGUgY29u
-Zi9sb2NhbC5jb25mIGZpbGUsIEkgYWRkZWQgdGhlIGZvbGxvd2luZzoNCk1BQ0hJTkUgPSAiemN1
-MTAyLXp5bnFtcCINCklNQUdFX0lOU1RBTExfYXBwZW5kID0gIiBsaWJnb21wIGxpYmdvbXAtZGV2
-IGxpYmdvbXAtc3RhdGljZGV2IGdsaWJjLXN0YXRpY2RldiINClNES0lNQUdFX0ZFQVRVUkVTICs9
-ICIgZGV2LXBrZ3MgZGJnLXBrZ3Mgc3RhdGljZGV2LXBrZ3MiDQoNCiAgMS4gIEkgZ2VuZXJhdGVk
-IHRoZSB0b29sY2hhaW4gaW5zdGFsbGVyIHdpdGggdGhlIGNvbW1hbmQ6IOKAnGJpdGJha2UgbWV0
-YS10b29sY2hhaW7igJ0NCiAgMi4gIEkgcmFuIHRoZSB0b29sY2hhaW4gaW5zdGFsbGVyICh0bXAv
-ZGVwbG95L3Nkay9wb2t5LWdsaWJjLXg4Nl82NC1tZXRhLXRvb2xjaGFpbi1hYXJjaDY0LXRvb2xj
-aGFpbi0yLjMuNC5zaCkgLg0KDQpEdXJpbmcgdGhlIGJ1aWxkLCB0aGVyZSBhcmUgT01QIGxpYnJh
-cnkvaGVhZGVyIGZpbGVzIGNyZWF0ZWQgaW4gdGhlIGJ1aWxkIGRpcmVjdG9yeSAodW5kZXIgdG1w
-L3dvcmsvYWFyY2g2NC1wb2t5LWxpbnV4LykuICBIb3dldmVyLCBhZnRlciB0aGUgdG9vbGNoYWlu
-IGluc3RhbGxlciBpcyBnZW5lcmF0ZWQgYW5kIHJ1biwgdGhlIGluc3RhbGxlZCBTREsgZGlyZWN0
-b3J5IG9ubHkgaW5jbHVkZXMgdGhlIGZvbGxvd2luZyBPcGVuTVAgbGlicmFyeToNCnN5c3Jvb3Rz
-L2FhcmNoNjQtcG9reS1saW51eC91c3IvbGliLy5kZWJ1Zy9saWJnb21wLnNvLjEuMC4wDQoNClRo
-ZSBwcm9ibGVtIGlzIHRoYXQgdGhlcmUgYXJlIG5vIE9wZW5NUCBoZWFkZXIgZmlsZXMgbm9yIHN0
-YXRpYyBPcGVuTVAgbGlicmFyeSBmaWxlcyBpbiB0aGUgU0RLIGRpcmVjdG9yeSwgc28gT3Blbk1Q
-IGNvZGUgY2Fu4oCZdCBiZSBjb21waWxlZCBkeW5hbWljYWxseSBvciBzdGF0aWNhbGx5Lg0KDQpJ
-IHdhbnQgdGhlIHRvb2xjaGFpbiBpbnN0YWxsZXIgdG8gaW5zdGFsbCBib3RoIHRoZSBkeW5hbWlj
-IGFuZCBzdGF0aWMgT3Blbk1QIGxpYnJhcmllcyBhbmQgY29ycmVzcG9uZGluZyBoZWFkZXIgZmls
-ZXMgaW4gdGhlIGFwcHJvcHJpYXRlIHBhdGhzIHVuZGVyIHRoZSBTREsgZGlyZWN0b3J5Lg0KDQpB
-bnkgaGVscCB3aXRoIHRoaXMgd291bGQgYmUgYXBwcmVjaWF0ZWQuICBQbGVhc2UgbGV0IG1lIGtu
-b3cgaWYgeW914oCZZCBsaWtlIGZ1cnRoZXIgY2xhcmlmaWNhdGlvbi4NCg0KVGhhbmtzLA0KS2F1
-c2hpaw0KDQo=
+You will have to install the SDK using the sh file that is generated on
+that other machine that you're planning to use.
 
---_000_2810ED1179ED4DD69ADAC1AFC300F77Dadsisiedu_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <F6A1ED41777D834993828D6EF616B4A5@ads.isi.edu>
-Content-Transfer-Encoding: base64
+Please see this and the sections around it:
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
-IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
-IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3Jt
-YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1i
-b3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
-IixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
-aW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9
-DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9y
-aXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpz
-cGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZv
-bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1z
-b0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6
-IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4g
-MTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rp
-b24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi8qIExpc3QgRGVmaW5pdGlvbnMgKi8NCkBsaXN0
-IGwwDQoJe21zby1saXN0LWlkOjE2MzUyMTAzNzsNCgltc28tbGlzdC10ZW1wbGF0ZS1pZHM6Mjkz
-MjYwOTg0O30NCkBsaXN0IGwwOmxldmVsMQ0KCXttc28tbGV2ZWwtc3RhcnQtYXQ6NDsNCgltc28t
-bGV2ZWwtdGFiLXN0b3A6LjVpbjsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJ
-dGV4dC1pbmRlbnQ6LS4yNWluO30NCkBsaXN0IGwxDQoJe21zby1saXN0LWlkOjc4Mjg0Mzg3MjsN
-Cgltc28tbGlzdC10ZW1wbGF0ZS1pZHM6MjA0NzI1MTU3NDt9DQpvbA0KCXttYXJnaW4tYm90dG9t
-OjBpbjt9DQp1bA0KCXttYXJnaW4tYm90dG9tOjBpbjt9DQotLT48L3N0eWxlPg0KPC9oZWFkPg0K
-PGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYg
-Y2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtjb2xvcjpibGFjayI+SGVsbG8gWW9jdG8gUHJvamVjdCw8L3NwYW4+
-PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtjb2xvcjpibGFjayI+
-Jm5ic3A7PC9zcGFuPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjayI+PG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
-Y29sb3I6YmxhY2siPknigJltIGhhdmluZyBwcm9ibGVtcyBhZGRpbmcgT3Blbk1QIGhlYWRlcnMv
-bGlicmFyaWVzIHRvIHRoZSBTREsgdGhhdCBpcyBpbnN0YWxsZWQgYnkgdGhlIFlvY3RvLWdlbmVy
-YXRlZCBjcm9zcy10b29sY2hhaW4gaW5zdGFsbGVyLiZuYnNwOyBIZXJlIGFyZSB0aGUgc3RlcHMg
-dGhhdCBJIGN1cnJlbnRseSB0YWtlIHRvIGFkZCBib3RoIHRoZSBkeW5hbWljDQogYW5kIHN0YXRp
-YyBPcGVuTVAgbGlicmFyaWVzOjwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPjxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTEuMHB0O2NvbG9yOmJsYWNrIj4mbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9ImNvbG9y
-OmJsYWNrIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8b2wgc3R5bGU9Im1hcmdpbi10b3A6MGlu
-IiBzdGFydD0iMSIgdHlwZT0iMSI+DQo8bGkgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImNvbG9y
-OmJsYWNrO21zby1saXN0OmwxIGxldmVsMSBsZm8xIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdCI+SSBkb3dubG9hZGVkIHRoZSBwb2t5IGRpc3RyaWJ1dGlvbiBvZiBZb2N0byAocHlybyBi
-cmFuY2gpLjwvc3Bhbj48bzpwPjwvbzpwPjwvbGk+PGxpIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
-PSJjb2xvcjpibGFjazttc28tbGlzdDpsMSBsZXZlbDEgbGZvMSI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQiPkluIG9yZGVyIHRvIGdlbmVyYXRlIGEgdG9vbGNoYWluIGluc3RhbGxlciBm
-b3IgdGhlIHpjdTEwMi16eW5xbXAgbWFjaGluZSwgSSBhbHNvIGFkZGVkIHRoZSDigJxtZXRhLXhp
-bGlueOKAnSBsYXllciwgdXNpbmcgdGhlIHB5cm8gYnJhbmNoIGZvciB0aGlzIGFzIHdlbGwuPC9z
-cGFuPjxvOnA+PC9vOnA+PC9saT48bGkgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImNvbG9yOmJs
-YWNrO21zby1saXN0OmwxIGxldmVsMSBsZm8xIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dCI+QXQgdGhlIGVuZCBvZiB0aGUgY29uZi9sb2NhbC5jb25mIGZpbGUsIEkgYWRkZWQgdGhlIGZv
-bGxvd2luZzo8L3NwYW4+PG86cD48L286cD48L2xpPjwvb2w+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0idGV4dC1pbmRlbnQ6LjVpbiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
-Y29sb3I6YmxhY2siPk1BQ0hJTkUgPSAmcXVvdDt6Y3UxMDItenlucW1wJnF1b3Q7PC9zcGFuPjxz
-cGFuIHN0eWxlPSJjb2xvcjpibGFjayI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCIgc3R5bGU9InRleHQtaW5kZW50Oi41aW4iPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0O2NvbG9yOmJsYWNrIj5JTUFHRV9JTlNUQUxMX2FwcGVuZCA9ICZxdW90OyBsaWJn
-b21wIGxpYmdvbXAtZGV2IGxpYmdvbXAtc3RhdGljZGV2IGdsaWJjLXN0YXRpY2RldiZxdW90Ozwv
-c3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJ0ZXh0LWluZGVudDouNWluIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtjb2xvcjpibGFjayI+U0RLSU1BR0VfRkVBVFVSRVMgJiM0Mzs9ICZx
-dW90OyBkZXYtcGtncyBkYmctcGtncyBzdGF0aWNkZXYtcGtncyZxdW90Ozwvc3Bhbj48c3BhbiBz
-dHlsZT0iY29sb3I6YmxhY2siPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxvbCBzdHlsZT0ibWFy
-Z2luLXRvcDowaW4iIHN0YXJ0PSI0IiB0eXBlPSIxIj4NCjxsaSBjbGFzcz0iTXNvTm9ybWFsIiBz
-dHlsZT0iY29sb3I6YmxhY2s7bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzIiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0Ij5JIGdlbmVyYXRlZCB0aGUgdG9vbGNoYWluIGluc3RhbGxlciB3aXRo
-IHRoZSBjb21tYW5kOiDigJxiaXRiYWtlIG1ldGEtdG9vbGNoYWlu4oCdPC9zcGFuPjxvOnA+PC9v
-OnA+PC9saT48bGkgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImNvbG9yOmJsYWNrO21zby1saXN0
-OmwwIGxldmVsMSBsZm8yIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+SSByYW4gdGhl
-IHRvb2xjaGFpbiBpbnN0YWxsZXIgKHRtcC9kZXBsb3kvc2RrL3Bva3ktZ2xpYmMteDg2XzY0LW1l
-dGEtdG9vbGNoYWluLWFhcmNoNjQtdG9vbGNoYWluLTIuMy40LnNoKSAuPC9zcGFuPjxvOnA+PC9v
-OnA+PC9saT48L29sPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Y29sb3I6YmxhY2siPiZuYnNwOzwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6Ymxh
-Y2siPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2NvbG9yOmJsYWNrIj5EdXJpbmcgdGhlIGJ1aWxkLCB0aGVy
-ZSBhcmUgT01QIGxpYnJhcnkvaGVhZGVyIGZpbGVzIGNyZWF0ZWQgaW4gdGhlIGJ1aWxkIGRpcmVj
-dG9yeSAodW5kZXIgdG1wL3dvcmsvYWFyY2g2NC1wb2t5LWxpbnV4LykuJm5ic3A7IEhvd2V2ZXIs
-IGFmdGVyIHRoZSB0b29sY2hhaW4gaW5zdGFsbGVyIGlzIGdlbmVyYXRlZCBhbmQgcnVuLCB0aGUg
-aW5zdGFsbGVkDQogU0RLIGRpcmVjdG9yeSBvbmx5IGluY2x1ZGVzIHRoZSBmb2xsb3dpbmcgT3Bl
-bk1QIGxpYnJhcnk6PGJyPg0Kc3lzcm9vdHMvYWFyY2g2NC1wb2t5LWxpbnV4L3Vzci9saWIvLmRl
-YnVnL2xpYmdvbXAuc28uMS4wLjA8L3NwYW4+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj48bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjExLjBwdDtjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Y29sb3I6
-YmxhY2siPlRoZSBwcm9ibGVtIGlzIHRoYXQgdGhlcmUgYXJlIG5vIE9wZW5NUCBoZWFkZXIgZmls
-ZXMgbm9yIHN0YXRpYyBPcGVuTVAgbGlicmFyeSBmaWxlcyBpbiB0aGUgU0RLIGRpcmVjdG9yeSwg
-c28gT3Blbk1QIGNvZGUgY2Fu4oCZdCBiZSBjb21waWxlZCBkeW5hbWljYWxseSBvciBzdGF0aWNh
-bGx5LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Y29sb3I6YmxhY2siPkkg
-d2FudCB0aGUgdG9vbGNoYWluIGluc3RhbGxlciB0byBpbnN0YWxsIGJvdGggdGhlIGR5bmFtaWMg
-YW5kIHN0YXRpYyBPcGVuTVAgbGlicmFyaWVzIGFuZCBjb3JyZXNwb25kaW5nIGhlYWRlciBmaWxl
-cyBpbiB0aGUgYXBwcm9wcmlhdGUgcGF0aHMgdW5kZXIgdGhlIFNESyBkaXJlY3RvcnkuPC9zcGFu
-PjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjayI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Y29sb3I6YmxhY2si
-PiZuYnNwOzwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPjxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2NvbG9yOmJsYWNrIj5BbnkgaGVscCB3aXRoIHRoaXMgd291bGQgYmUgYXBwcmVjaWF0ZWQuJm5i
-c3A7IFBsZWFzZSBsZXQgbWUga25vdyBpZiB5b3XigJlkIGxpa2UgZnVydGhlciBjbGFyaWZpY2F0
-aW9uLjwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPjxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Nv
-bG9yOmJsYWNrIj4mbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj48bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtjb2xvcjpibGFjayI+VGhhbmtzLDwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6
-YmxhY2siPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5LYXVzaGlrPG86cD48L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvYm9k
-eT4NCjwvaHRtbD4NCg==
+https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#sdk-installing-the-sdk
 
---_000_2810ED1179ED4DD69ADAC1AFC300F77Dadsisiedu_--
+If this doesn't answer your question, then as Alex mentioned, please
+include more details on what you are doing and the steps.
+
