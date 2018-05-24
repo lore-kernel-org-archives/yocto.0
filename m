@@ -1,52 +1,78 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5F59EE00C11; Thu, 24 May 2018 08:02:03 -0700 (PDT)
+	id AC84CE009E2; Thu, 24 May 2018 08:08:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.195 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4F85E00BAF
-	for <yocto@yoctoproject.org>; Thu, 24 May 2018 08:02:02 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	24 May 2018 08:02:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,436,1520924400"; d="scan'208,217";a="49793779"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
-	by fmsmga002.fm.intel.com with ESMTP; 24 May 2018 08:02:01 -0700
-Received: from fmsmsx153.amr.corp.intel.com (10.18.125.6) by
-	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Thu, 24 May 2018 08:02:01 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.70]) by
-	FMSMSX153.amr.corp.intel.com ([169.254.9.45]) with mapi id
-	14.03.0319.002; Thu, 24 May 2018 08:02:00 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minites: Yocto Project Bug Triage
-Thread-Index: AdPza4wFT2yGIeBoSGqc0q+bUyBuPQ==
-Date: Thu, 24 May 2018 15:01:59 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7310795@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjI0NjFlMzctNjQ1OS00YjUwLWFiZGQtZWU0MjRiZDAzOGIyIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoicE1yanZSZnU3YXhiMWhkbG9OVjdrdWl0UFwvXC9VQXNVczNCSDdRakRZOHBSWk5OdUp1bDE0RTlQSmh4YmFjR09NIn0=
-dlp-product: dlpe-windows
-dlp-version: 11.0.200.100
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.107]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f195.google.com (mail-wr0-f195.google.com
+	[209.85.128.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1559E009CA
+	for <yocto@yoctoproject.org>; Thu, 24 May 2018 08:07:59 -0700 (PDT)
+Received: by mail-wr0-f195.google.com with SMTP id l41-v6so3774179wre.7
+	for <yocto@yoctoproject.org>; Thu, 24 May 2018 08:07:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=jZwUz2Z81dptT/5ubkunSg8E4yYgSjMHCTjzrSpa3zg=;
+	b=l1tLdyT+0oOhCB4iAP1HKEHFxoly+z84ed8jbbM4A5tp+wXI+VisXqqyWW7Q4P29Et
+	9Nq3/MyGQj5CpmZIxMdrF0cqDBLO8aL5QAEIgbTp6leg29w36AZqI4LFAtj0Fdnmmgei
+	uhqfuu2N5u2bJIPLnrjVtpQmDOZwJprunOHedsUA85Flh9CzEQhW35+4rHQaSirbQmO+
+	fFxHiW7iyHXt7pZqoey3vX7mt1/uaDYyGgT0Z7vC2TAxfv3Nob9GHfe4K9U4/0GwDp27
+	pUy8OHFi6XBa4ipOvJhXyi50cXQDvzVw3TJOTa5mVTXORu25jbFBXu8mESd9vo1gDj4S
+	xZPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=jZwUz2Z81dptT/5ubkunSg8E4yYgSjMHCTjzrSpa3zg=;
+	b=Ozyzud1lmvsk+Wbg8rqTS459yoLGffqX125NddDaa731CHxTz40kGhCHlV3YdLNzj3
+	l4ADQ9PjoMmZ2HwIC2rPToPdVXPKioPiHK62+oOD9vngv/oCIA2mAx0CIRAsV0ZF+9/o
+	MoL0Wd9uG94iulZV6nH43/FDQtDrQmVsjVrG3e8Dn2KqIDXzkAGKHSguRQpJE0YpFpyA
+	sNzn31JABpXFvdv7he4W3sju3TXcZI2t3uLOJvJZn8oDjzImjG2/dg5Ixc6vGRhqXQc7
+	W4DGpaUoZldhvylZ5KR0emFB+QZ/KpXYX3APjv4WP7DoEoK6KbvazuqbvHTmFjdj2lNJ
+	ZLuA==
+X-Gm-Message-State: ALKqPwfwJqtwIfz4gLDxcVpCKvY5HwspYpfLKbn8h4LTtayLfw24kpoL
+	/ZjSKaj5yIl7s6ibdR86zpc=
+X-Google-Smtp-Source: AB8JxZonWZFLyKUWIeci6p9WLBlciF6d5YAo0UF8G3D8/xzablVSmoGqMXcijklAvsOWgU/7KrBL8w==
+X-Received: by 2002:adf:9ae5:: with SMTP id
+	a92-v6mr6237541wrc.180.1527174478248; 
+	Thu, 24 May 2018 08:07:58 -0700 (PDT)
+Received: from localhost ([217.30.68.212]) by smtp.gmail.com with ESMTPSA id
+	184-v6sm5228785wmv.33.2018.05.24.08.07.56
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Thu, 24 May 2018 08:07:57 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Thu, 24 May 2018 17:08:05 +0200
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20180524150805.GC1395@jama>
+References: <CAMKF1spa1bbrUjQWbhdUw3C4Cxu99fU=Be3sEm+SYFNq_oxEKw@mail.gmail.com>
+	<CA+chaQcUU=Dew1cATDBpuA2_f_eh1=DAyEMaDHfVx7kY88rZhg@mail.gmail.com>
+	<8d962430-ac63-5e97-fd32-2c0464c62acb@gmail.com>
+	<20180510191145.GA1954@jama> <20180517104640.GA1398@jama>
 MIME-Version: 1.0
-Subject: Minites: Yocto Project Bug Triage
+In-Reply-To: <20180517104640.GA1398@jama>
+User-Agent: Mutt/1.9.5 (2018-04-13)
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] GCC 8.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,87 +84,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 May 2018 15:02:03 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7310795fmsmsx111amrcor_"
+X-List-Received-Date: Thu, 24 May 2018 15:08:00 -0000
+X-Groupsio-MsgNum: 41231
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="XWOWbaMNXpFDWE00"
+Content-Disposition: inline
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7310795fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--XWOWbaMNXpFDWE00
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Attendees:  Stephen, Stephano, Randy, Amanda, Richard, Ross,
+> That leaves only few issues in our internal components and strange failur=
+e with perf which fails to include various header files:
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/asm/byteorder.h:2:10: fatal =
+error: ../../../../include/uapi/linux/swab.h: No such file or directory
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/asm/byteorder.h:2:10: fatal =
+error: ../../../../include/uapi/linux/swab.h: No such file or directory
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/asm/byteorder.h:2:10: fatal =
+error: ../../../../include/uapi/linux/swab.h: No such file or directory
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:1:28: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:2:26: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:3:25: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:5:41: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/asm/byteorder.h:2:10: fatal =
+error: ../../../../include/uapi/linux/swab.h: No such file or directory
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/asm/byteorder.h:2:10: fatal =
+error: ../../../../include/uapi/linux/swab.h: No such file or directory
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:1:28: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:2:26: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:3:25: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:5:41: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:1:28: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:2:26: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:3:25: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:5:41: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/asm/byteorder.h:2:10: fatal =
+error: ../../../../include/uapi/linux/swab.h: No such file or directory
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/asm/byteorder.h:2:10: fatal =
+error: ../../../../include/uapi/linux/swab.h: No such file or directory
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/asm/byteorder.h:2:10: fatal =
+error: ../../../../include/uapi/linux/swab.h: No such file or directory
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/asm/byteorder.h:2:10: fatal =
+error: ../../../../include/uapi/linux/swab.h: No such file or directory
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:1:28: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:2:26: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:3:25: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/../../../include/linux/list.=
+h:5:41: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/util/include/asm/byteorder.h:2:10: fatal =
+error: ../../../../include/uapi/linux/swab.h: No such file or directory
+> perf/1.0-r9/perf-1.0/tools/perf/arch/arm/include/../../../../include/asm-=
+generic/bitops/fls.h:1:56: error: #include nested too deeply
+> perf/1.0-r9/perf-1.0/tools/perf/arch/arm/include/../../../../include/asm-=
+generic/bitops/fls.h:1:56: error: #include nested too deeply
+> ...
 
-AR: Stephen - Mention IRC channel and links on IRC and meeting invite.
+This issue wasn't caused by gcc upgrade, it was caused by:
+https://patchwork.openembedded.org/patch/150269/
+which was included in the same batch of updates when I've included
+these RFT changes.
 
-Thanks,
+I've sent separate fix for perf with slightly longer explanation what
+was wrong:
+https://patchwork.openembedded.org/patch/151017/
 
-Stephen K. Jolley
-Yocto Project Project Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*    Cell:              (208) 244-4460
-* Email:                stephen.k.jolley@intel.com
+Now I got a bit further with testing again, remaining 3 issues in public
+recipes:
 
+gcc-sanitizers/8.1.0-r0 fails to build with qemuarm (with thumb
+enabled):
+{standard input}: Assembler messages:
+{standard input}:5724: Error: lo register required -- `ldr ip,[sp],#8'
+make[2]: *** [sanitizer_linux.lo] Error 1
 
+qtbase/5.6.3+gitAUTOINC+e6f8b072d2-r0 fails to build with qemuarm (with
+thumb
+enabled):
+{standard input}: Assembler messages:
+{standard input}: Error: unaligned opcodes detected in executable segment
+make[2]: *** [.obj/qdrawhelper.o] Error 1
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7310795fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+lib32-glibc-initial/2.27-r0 fails to build with multilib
+checking installed Linux kernel header files... missing or too old!
+configure: error: GNU libc requires kernel header files from
+Linux 3.2.0 or later to be installed before configuring.
+The kernel header files are found usually in /usr/include/asm and
+/usr/include/linux; make sure these directories use files from
+Linux 3.2.0 or later.  This check uses <linux/version.h>, so
+make sure that file was built correctly when installing the kernel header
+files.  To use kernel headers not from /usr/include/linux, use the
+configure option --with-headers.
+WARNING: exit code 1 from a shell command.
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Times New Roman" size=3D"3"><span style=3D"font-size:12pt;"><=
-a name=3D"_MailEndCompose"></a>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
-t-size:11pt;">Attendees:&nbsp; Stephen, Stephano, Randy, Amanda, Richard, R=
-oss, </span></font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
-t-size:11pt;">AR: Stephen &#8211; Mention IRC channel and links on IRC and =
-meeting invite.</span></font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
-t-size:11pt;">Thanks,</span></font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font size=3D"4" color=3D"purple"><span style=3D"font-size:16pt;"><b><=
-i>Stephen K. Jolley</i></b></span></font></div>
-<div><font face=3D"Courier New" size=3D"1" color=3D"blue"><span style=3D"fo=
-nt-size:8pt;"><b>Yocto Project Project Manager</b></span></font></div>
-<div><font face=3D"Courier New" size=3D"2" color=3D"fuchsia"><span style=3D=
-"font-size:10pt;"><b>INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, O=
-R 97124 </b></span></font></div>
-<div><font size=3D"2"><span style=3D"font-size:9pt;"><font face=3D"Wingding=
-s">(</font><font face=3D"MS Sans Serif" color=3D"teal">&nbsp;&nbsp;&nbsp; <=
-/font><font face=3D"Comic Sans MS" size=3D"1" color=3D"teal"><span style=3D=
-"font-size:8pt;"><b>Cell</b></span></font><font face=3D"MS Sans Serif" colo=
-r=3D"teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-</font><font face=3D"MS Sans Serif" color=3D"#1F497D">(208) 244-4460</font>=
-</span></font></div>
-<div><font size=3D"2" color=3D"#1F497D"><span style=3D"font-size:9pt;"><fon=
-t face=3D"Wingdings">* </font><font face=3D"Comic Sans MS" size=3D"1" color=
-=3D"teal"><span style=3D"font-size:8pt;"><b>Email</b></span></font><font fa=
-ce=3D"MS Sans Serif" color=3D"teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</font><font face=3D"MS Sans Serif" color=3D"blue"><u>stephen.k.jolley@inte=
-l.com</u></font></span></font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-</span></font>
-</body>
-</html>
+Regards,
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7310795fmsmsx111amrcor_--
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--XWOWbaMNXpFDWE00
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCWwbVVAAKCRA3VSO3ZXaA
+HA50AKCBm3S+4YFWAbPKqmLCkbwbEbdbZwCfY9P+WzbKZhe22O+XbYjulm6WHFA=
+=r+WF
+-----END PGP SIGNATURE-----
+
+--XWOWbaMNXpFDWE00--
