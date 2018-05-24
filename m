@@ -1,68 +1,62 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <brian@walsh.ws>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B72EE007AD; Thu, 24 May 2018 09:08:22 -0700 (PDT)
+	id 57DB5E00720; Thu, 24 May 2018 10:18:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.179 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.217.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f179.google.com (mail-wr0-f179.google.com
-	[209.85.128.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7524CE006F1
-	for <yocto@yoctoproject.org>; Thu, 24 May 2018 09:08:21 -0700 (PDT)
-Received: by mail-wr0-f179.google.com with SMTP id i12-v6so4140305wrc.4
-	for <yocto@yoctoproject.org>; Thu, 24 May 2018 09:08:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=WC8lDSzvO1vNl4ZZQXNeoMnbAuZnf24VIjt4dfM/aLU=;
-	b=V67BFVTu2Q78BKtQEpmccIcsCl48zk7NJb+zG/yUui5my3B1LA4deCQkV3WXLRn09k
-	0JxjDcKQGFuiNnS0ZwSPTFTR3roTqo9U9dZGNmE4JpLg42DnD79vVldpc+XdTqSNncXE
-	yLR+mwo8z2FaDU4RCUaCLzJZafp88KmmuloLnnXZmRDygTaBBzTVulxD8aO37NFro2dt
-	vlktlB62odyrhdQNvvjyoWApaTqGXIcxs1uNEdjmCDOhWhgjOdvfJrv/fwZn02cfrbTk
-	38boADyDnnwEMPoyelgGM7jIUsVnAuuQJq2DBycxSO1HpkROIi4SCfv/IYSMMks+iJnN
-	CEAA==
+Received: from mail-ua0-f173.google.com (mail-ua0-f173.google.com
+	[209.85.217.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24D39E006B4
+	for <yocto@yoctoproject.org>; Thu, 24 May 2018 10:18:30 -0700 (PDT)
+Received: by mail-ua0-f173.google.com with SMTP id f3-v6so1617996uan.9
+	for <yocto@yoctoproject.org>; Thu, 24 May 2018 10:18:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walsh.ws; s=google;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=rJwJ8dj5HWhYf5uV3OcLzaZXT/rW2cReTvtt9MJA50o=;
+	b=ZvbixDfaz5O8q2ramTX+UwA8PuXoHM8/7R1oGhUXrRtnHtRjae8P89JX+8SH2W+lkJ
+	e/jR85jkUTlKOpvlHx1h2PqPAYZrIah7Bh862RvppuTkvDi2R+X4oWbtmp1OEKoLNbo4
+	jVKU52d+Nl1hFyW2Hn5Ma8OI8DqtDXT2MMBDE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=WC8lDSzvO1vNl4ZZQXNeoMnbAuZnf24VIjt4dfM/aLU=;
-	b=U9j/jcgZz/s2yMInudNKmdV7GX2ABPszqAF079fUL9kY831us33B+VC1o7869429wZ
-	eezYDmAFQsIhG5jox1Lpwpyhphtppxzx+5uX/Ej9+3NsKP/Pr9wjxKBdsj+1UJhw90VV
-	YGEnJscGGjPy5BSzS2VdajPf3zjWlh3RtV5d0jrK12lSb/VYajUPMPL6F6JkbzYeIdLn
-	k3DDwGm0024IFuIwSXN75LLp9t24PBj1pEHQsX1fpqrOIvUUTcbrKn7kObHnOFbFQhGx
-	x6TDuaivF+ZosHMRY4dZnNNBifPlDBColGjffICLtA6sNe8E2T8Am0sr6pveXnCsCN8F
-	h1kw==
-X-Gm-Message-State: ALKqPwc70itVAJZA5x31x374oJiqeWXcvkpnDeiu9m301NwEy1/Gdo1R
-	gfL78YhBHlYeQ36sdiitGhAk95TIkRCf9D4DksRpYQ==
-X-Google-Smtp-Source: AB8JxZrLmS2cXD5ZnJCLCiUGGlYauoIV8vEn/zXf0pnhf+Rn78rvbbZZoPnkF1zoU2tBbpwWHwhqYE4WzopkL9TDYYE=
-X-Received: by 2002:a19:a70f:: with SMTP id
-	q15-v6mr4779924lfe.39.1527178100344; 
-	Thu, 24 May 2018 09:08:20 -0700 (PDT)
+	:message-id:subject:to;
+	bh=rJwJ8dj5HWhYf5uV3OcLzaZXT/rW2cReTvtt9MJA50o=;
+	b=c6Keg/LUQINztpNCD9TGHaMtNyBYsnM4zg9FV87wXWC8e7VuhKsQOSZWvGCLeodHq/
+	vF+SP7YrGWXqSVKXsk6WpY6xTak4dXZDZ+Kik1O/bQHoSv2tQAG6CWMb5skb1BT7Skhz
+	7vshOgigBW/ROOwwfenwV27FMWqF78Cmi7Dx13zaAhPpDwCssj5t/2o6WCPXlrQ/on8T
+	uWE+REJhX2iKMMQhjwPKZT3U33tXS0EYfyumhL1Yt+V6xM0ycl6ooonwBTyQ78TdqIb5
+	CdBgQBCUWr2lLkWabgbFGJ7yU0dYsPIe712pS0m5WCdvnbG9364WSp9m2TDch9HRH3XD
+	clkw==
+X-Gm-Message-State: ALKqPwdKq0VaRXTbMt4wFfOCsYIyNJK/XPj4yIIDvQ6XriTHnpZu/6ZS
+	CP7Mnua9sGNm63cseluWYJC2JxSxsZWEA+W//zE4HyC6
+X-Google-Smtp-Source: AB8JxZqk2rQIyX7aIzSuN4t3Dd6hQelXa3saGm+pOzSrViMxOe/MxlYLZdmCC/4/3WxJ93SghluwmUtWZnr+COb1ez0=
+X-Received: by 2002:ab0:51b3:: with SMTP id
+	g48-v6mr240056uaa.195.1527182309285; 
+	Thu, 24 May 2018 10:18:29 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a19:cb07:0:0:0:0:0 with HTTP; Thu, 24 May 2018 09:08:19
+Received: by 2002:ab0:58ca:0:0:0:0:0 with HTTP; Thu, 24 May 2018 10:18:08
 	-0700 (PDT)
-In-Reply-To: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7310795@fmsmsx111.amr.corp.intel.com>
-References: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7310795@fmsmsx111.amr.corp.intel.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Thu, 24 May 2018 12:08:19 -0400
-Message-ID: <CAHUNapT0Rs9d74wm=WKxS1RrQVBC3oXjngWfxPBpqFx4beKs=Q@mail.gmail.com>
-To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Minites: Yocto Project Bug Triage
+In-Reply-To: <8ef5b821-df26-0c89-60d8-7c55d13d4275@windriver.com>
+References: <CAG0OLMaBuq05knexO=gnaQnDadhQsHdiZSFiYFRsFu4ZCsDj+Q@mail.gmail.com>
+	<8ef5b821-df26-0c89-60d8-7c55d13d4275@windriver.com>
+From: Brian Walsh <brian@walsh.ws>
+Date: Thu, 24 May 2018 13:18:08 -0400
+Message-ID: <CAG0OLMbsV512+Exr3owEwV+kDBffNWE2K5DV6UPc8o=V3rsGGg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: busybox / sysklogd post install conflict
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,45 +68,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 May 2018 16:08:22 -0000
-Content-Type: multipart/alternative; boundary="0000000000002e0e8e056cf5dcb6"
-
---0000000000002e0e8e056cf5dcb6
+X-List-Received-Date: Thu, 24 May 2018 17:18:32 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 24, 2018 at 11:01 AM, Jolley, Stephen K <
-stephen.k.jolley@intel.com> wrote:
+Yes if the links for busybox klogd and syslogd were only generated in
+busybox-syslog that would fix the problem instead of putting the
+update-alternative back in sysklogd.
 
-> AR: Stephen =E2=80=93 Mention IRC channel and links on IRC and meeting in=
-vite.
+
+On Tue, May 22, 2018 at 10:41 PM, ChenQi <Qi.Chen@windriver.com> wrote:
+> Is it because that these two commands are packaged into busybox instead of
+> busybox-syslog?
+> If some layer introduces such change, then a bbappend file in that layer
+> needs to be added to also modify sysklogd recipe accordingly.
+>
+> Anyway, thanks for raising this problem up. When checking the sysklogd
+> recipe, I found a typo from my previous patch.
+> I've sent out patch to fix it.
+>
+>   git://git.pokylinux.org/poky-contrib ChenQi/sysklogd-typo
+>   http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=ChenQi/sysklogd-typo
+>
+>
+>
+> Best Regards,
+> Chen Qi
+>
+>
+>
+> On 05/22/2018 11:28 PM, Brian Walsh wrote:
+>
+> I have run into an issue building against sumo branch (using opkg if that
+> matters). This patch removed the update-alternatives for sysklogd.
+>
+> https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=c83eb10f70b714ce3a8c165fad547d800f3ed27d
+>
+> However, busybox is still configured with syslog support. The script that
+> generates all of the symlinks for busybox runs during the main busybox
+> package post install. This causes the post install to exit with an error
+> since it can't create the links for klogd and syslogd if sysklogd is
+> installed without update alternatives.
+>
+> From busybox.postinst:
+>
+> update-alternatives --install /sbin/klogd klogd /bin/busybox.nosuid 50
+> update-alternatives --install /sbin/syslogd syslogd /bin/busybox.nosuid 50
+>
+> I think that patch needs to be reverted. The rconflicts for busybox-syslog
+> and sysklogd takes care of the conflicting config file name that is shared
+> between the two packages but we still need the update-alternatives. Unless
+> the function that generates the busybox symlinks gets smart enough to
+> generate the symlinks only in the busybox-syslog package.
+>
+>
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
-Also: create calendar of Yocto meetings (google calendar?)
-
---0000000000002e0e8e056cf5dcb6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On T=
-hu, May 24, 2018 at 11:01 AM, Jolley, Stephen K <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:stephen.k.jolley@intel.com" target=3D"_blank">stephen.k.jolley=
-@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-
-
-
-
-
-
-<div><font size=3D"3" face=3D"Times New Roman"><span style=3D"font-size:12p=
-t"><div><font size=3D"2" face=3D"Calibri" color=3D"#1F497D"><span style=3D"=
-font-size:11pt">AR: Stephen =E2=80=93 Mention IRC channel and links on IRC =
-and meeting invite.</span></font></div></span></font><font size=3D"3" face=
-=3D"Times New Roman"><span style=3D"font-size:12pt"><a name=3D"m_1992351526=
-593856378__MailEndCompose"></a></span></font><font size=3D"3" face=3D"Times=
- New Roman"><span style=3D"font-size:12pt">
-</span></font></div></blockquote></div><br></div><div class=3D"gmail_extra"=
->Also: create calendar of Yocto meetings (google calendar?)<br></div></div>
-
---0000000000002e0e8e056cf5dcb6--
