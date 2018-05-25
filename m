@@ -1,62 +1,59 @@
 Return-Path: <ee.peng.yeoh@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 585A7E00720; Thu, 24 May 2018 20:40:28 -0700 (PDT)
+	id CE130E007D4; Fri, 25 May 2018 01:49:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C02E4E006B4
-	for <yocto@yoctoproject.org>; Thu, 24 May 2018 20:40:27 -0700 (PDT)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8C69E006F1
+	for <yocto@yoctoproject.org>; Fri, 25 May 2018 01:49:39 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	24 May 2018 20:40:26 -0700
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	25 May 2018 01:49:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,438,1520924400"; d="scan'208";a="53705403"
-Received: from kmsmsx154.gar.corp.intel.com ([172.21.73.14])
-	by orsmga003.jf.intel.com with ESMTP; 24 May 2018 20:40:25 -0700
-Received: from pgsmsx110.gar.corp.intel.com (10.221.44.111) by
-	KMSMSX154.gar.corp.intel.com (172.21.73.14) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Fri, 25 May 2018 11:40:23 +0800
+X-IronPort-AV: E=Sophos;i="5.49,439,1520924400"; d="scan'208";a="42110603"
+Received: from kmsmsx155.gar.corp.intel.com ([172.21.73.106])
+	by fmsmga007.fm.intel.com with ESMTP; 25 May 2018 01:49:37 -0700
 Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.58]) by
-	PGSMSX110.gar.corp.intel.com ([169.254.13.50]) with mapi id
-	14.03.0319.002; Fri, 25 May 2018 11:40:22 +0800
+	KMSMSX155.gar.corp.intel.com ([169.254.15.135]) with mapi id
+	14.03.0319.002; Fri, 25 May 2018 16:49:35 +0800
 From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
 To: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
 	yocto <yocto@yoctoproject.org>, "Velu, NagarajagopalX"
 	<nagarajagopalx.velu@intel.com>, "Patil, Pravin ShankarX"
 	<pravin.shankarx.patil@intel.com>, "Yadav, PankajX"
 	<pankajx.yadav@intel.com>, "Das, Manish KumarX"
-	<manish.kumarx.das@intel.com>, "Mohamad, Mazliana"
-	<mazliana.mohamad@intel.com>
-Thread-Topic: Release Candidate Build for yocto-2.4.3.rc2 now available.
-Thread-Index: AQHT8zeMm99qpgElf0OPXEvCnwBi86Q/uR9A
-Date: Fri, 25 May 2018 03:40:22 +0000
-Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335E1FCBE@PGSMSX109.gar.corp.intel.com>
-References: <1527149747.16911.57.camel@linuxfoundation.org>
-In-Reply-To: <1527149747.16911.57.camel@linuxfoundation.org>
+	<manish.kumarx.das@intel.com>, OTC Embedded Malaysia
+	<otc.embedded.malaysia@intel.com>
+Thread-Topic: Release Candidate Build for yocto-2.3.4.rc1 now available.
+Thread-Index: AQHT8eKcWGLPhWsLGESUxjbKi7W2gKRAJhDA
+Date: Fri, 25 May 2018 08:49:35 +0000
+Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335E1FF8A@PGSMSX109.gar.corp.intel.com>
+References: <1527003338.8937.180.camel@linuxfoundation.org>
+In-Reply-To: <1527003338.8937.180.camel@linuxfoundation.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZTA5ZjBjNDEtMjg0OC00Mjk5LWEyYjEtM2FmZmNlMDQ1MWFjIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiY3VsNXIwKzZPQjBMa3pCd1dTUEo1Ym5aaDNxeTFzRHFlVUZGaHJwczlBWXptcW5vSkJYa1pNZzdXQW41dWszbCJ9
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNWUwNWVkNDMtYTQ4Mi00ODIwLWE0OGQtYTkyOTBkMjg2ZTk2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiRGZaeFdNTExHMkxTelRNb3F0NXhJbVJBNjU4U0hvRTl6a1lQNXpcL1N3N3lIQ0dqdE4rYUNUS0VMXC9nQ2VPcm9cLyJ9
 dlp-product: dlpe-windows
 dlp-version: 11.0.200.100
 dlp-reaction: no-action
-x-originating-ip: [172.30.20.206]
+x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 04 Jun 2018 01:11:40 -0700
 Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
 	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>
-Subject: Re: Release Candidate Build for yocto-2.4.3.rc2 now available.
+Subject: Re: Release Candidate Build for yocto-2.3.4.rc1 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,36 +65,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 May 2018 03:40:28 -0000
+X-List-Received-Date: Fri, 25 May 2018 08:49:40 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 
-SGkgYWxsLA0KDQpCdWlsZCBmb3IgMi40LjMucmMyIGlzIHJlYWR5LiANClBsZWFzZSBnZXQgcmVh
-ZHkgZm9yIHRoZSBRQS4NCg0KVGhhbmtzLA0KWWVvaCwgRWUgUGVuZw0KDQotLS0tLU9yaWdpbmFs
-IE1lc3NhZ2UtLS0tLQ0KRnJvbTogcmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZyBb
-bWFpbHRvOnJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmddIA0KU2VudDogVGh1cnNk
-YXksIE1heSAyNCwgMjAxOCA0OjE2IFBNDQpUbzogeW9jdG8gPHlvY3RvQHlvY3RvcHJvamVjdC5v
-cmc+DQpDYzogcGlkZ2VAdG9nYW5sYWJzLmNvbTsgb3RhdmlvQG9zc3lzdGVtcy5jb20uYnI7IFpo
-YW8sIFlpIChXaW5kIFJpdmVyKSA8eWkuemhhb0B3aW5kcml2ZXIuY29tPjsgR3JheWRvbiwgVHJh
-Y3kgPHRyYWN5LmdyYXlkb25AaW50ZWwuY29tPjsgc3RlcGhhbm8uY2V0b2xhQGxpbnV4LmludGVs
-LmNvbTsgU2FuZ2FsLCBBcG9vcnYgPGFwb29ydi5zYW5nYWxAaW50ZWwuY29tPjsgWWVvaCwgRWUg
-UGVuZyA8ZWUucGVuZy55ZW9oQGludGVsLmNvbT47IENoYW4sIEFhcm9uIENodW4gWWV3IDxhYXJv
-bi5jaHVuLnlldy5jaGFuQGludGVsLmNvbT47IENoYW5nLCBSZWJlY2NhIFN3ZWUgRnVuIDxyZWJl
-Y2NhLnN3ZWUuZnVuLmNoYW5nQGludGVsLmNvbT47IEFuZywgQ2hpbiBIdWF0IDxjaGluLmh1YXQu
-YW5nQGludGVsLmNvbT47IEpvbGxleSwgU3RlcGhlbiBLIDxzdGVwaGVuLmsuam9sbGV5QGludGVs
-LmNvbT47IEpvcmRhbiwgUm9iaW4gTCA8cm9iaW4ubC5qb3JkYW5AaW50ZWwuY29tPg0KU3ViamVj
-dDogUmVsZWFzZSBDYW5kaWRhdGUgQnVpbGQgZm9yIHlvY3RvLTIuNC4zLnJjMiBub3cgYXZhaWxh
-YmxlLg0KDQpBIHJlbGVhc2UgY2FuZGlkYXRlIGJ1aWxkIGZvciB5b2N0by0yLjQuMy5yYzIgaXMg
-bm93IGF2YWlsYWJsZSBhdDoNCg0KDQrCoMKgwqDCoGh0dHBzOi8vYXV0b2J1aWxkZXIueW9jdG8u
-aW8vcHViL3JlbGVhc2VzL3lvY3RvLTIuNC4zLnJjMg0KDQoNClBsZWFzZSBiZWdpbiBRQSBvbiB0
-aGlzIGJ1aWxkIGFzIHNvb24gYXMgcG9zc2libGUuDQoNCg0KQnVpbGQgaGFzaCBpbmZvcm1hdGlv
-bjrCoA0KbWV0YS1pbnRlbCA6IGY2NmNlNTFkMDU5ZDI5MWE0NDFkODk2ODU0YmU4ZGI3MGRlNWE1
-NTTCoA0KbWV0YS1xdDQgOiBlMjkwNzM4NzU5ZWYzZjM5YzllMDc5ZWFhOWI2MDZhNjIxMDdlNWJh
-wqANCm1ldGEtbWluZ3cgOiAxY2M2MjBiMzhmNmYzMGEwYmRkMTgxNzgzMjk3OTk4ZmUwNzMzODdm
-wqANCm1ldGEtcXQzIDogOGVmNzI2MWEzMzFlMDg2OWEwNDYxYWIyZmI0NGUzOTk4MGNlZGMwMsKg
-DQptZXRhLWdwbHYyIDogZjg3NWM2MGVjZDZmMzA3OTNiODBhNDMxYTI0MjNjNGI5OGU1MTU0OMKg
-DQpwb2t5IDogN2U3ZWU2NjJmNWRlYTRkMDkwMjkzMDQ1Zjc0OTgwOTMzMjI4MDJjY8KgDQoNClRo
-aXMgaXMgYW4gYXV0b21hdGVkIG1lc3NhZ2UgZnJvbSBUaGUgWW9jdG8gUHJvamVjdCBBdXRvYnVp
-bGRlcg0KR2l0OiBnaXQ6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy95b2N0by1hdXRvYnVpbGRlcg0K
+SGkgYWxsLA0KDQpCdWlsZCBmb3IgMi4zLjQucmMxIGlzIHJlYWR5LiANClBsZWFzZSBnZXQgcmVh
+ZHkgZm9yIHRoZSBRQS4NClRlc3RvcGlhIGFuZCB3aWtpIHBhZ2Ugd2VyZSByZWFkeS4gDQpodHRw
+czovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpLzIuM19RQV9TdGF0dXMNCg0KVGhhbmtzLA0K
+RWUgUGVuZyANCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IHJpY2hhcmQucHVy
+ZGllQGxpbnV4Zm91bmRhdGlvbi5vcmcgW21haWx0bzpyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5k
+YXRpb24ub3JnXSANClNlbnQ6IFR1ZXNkYXksIE1heSAyMiwgMjAxOCAxMTozNiBQTQ0KVG86IHlv
+Y3RvIDx5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KQ2M6IHBpZGdlQHRvZ2FubGFicy5jb207IG90
+YXZpb0Bvc3N5c3RlbXMuY29tLmJyOyBaaGFvLCBZaSAoV2luZCBSaXZlcikgPHlpLnpoYW9Ad2lu
+ZHJpdmVyLmNvbT47IEdyYXlkb24sIFRyYWN5IDx0cmFjeS5ncmF5ZG9uQGludGVsLmNvbT47IHN0
+ZXBoYW5vLmNldG9sYUBsaW51eC5pbnRlbC5jb207IFNhbmdhbCwgQXBvb3J2IDxhcG9vcnYuc2Fu
+Z2FsQGludGVsLmNvbT47IFllb2gsIEVlIFBlbmcgPGVlLnBlbmcueWVvaEBpbnRlbC5jb20+OyBD
+aGFuLCBBYXJvbiBDaHVuIFlldyA8YWFyb24uY2h1bi55ZXcuY2hhbkBpbnRlbC5jb20+OyBDaGFu
+ZywgUmViZWNjYSBTd2VlIEZ1biA8cmViZWNjYS5zd2VlLmZ1bi5jaGFuZ0BpbnRlbC5jb20+OyBB
+bmcsIENoaW4gSHVhdCA8Y2hpbi5odWF0LmFuZ0BpbnRlbC5jb20+OyBKb2xsZXksIFN0ZXBoZW4g
+SyA8c3RlcGhlbi5rLmpvbGxleUBpbnRlbC5jb20+OyBKb3JkYW4sIFJvYmluIEwgPHJvYmluLmwu
+am9yZGFuQGludGVsLmNvbT4NClN1YmplY3Q6IFJlbGVhc2UgQ2FuZGlkYXRlIEJ1aWxkIGZvciB5
+b2N0by0yLjMuNC5yYzEgbm93IGF2YWlsYWJsZS4NCg0KQSByZWxlYXNlIGNhbmRpZGF0ZSBidWls
+ZCBmb3IgeW9jdG8tMi4zLjQucmMxIGlzIG5vdyBhdmFpbGFibGUgYXQ6DQrCoA0KwqANCsKgIMKg
+IMKgaHR0cHM6Ly9hdXRvYnVpbGRlci55b2N0by5pby9wdWIvcmVsZWFzZXMveW9jdG8tMi4zLjQu
+cmMxDQrCoA0KwqANClBsZWFzZSBiZWdpbiBRQSBvbiB0aGlzIGJ1aWxkIGFzIHNvb24gYXMgcG9z
+c2libGUuDQrCoA0KwqANCsKgQnVpbGQgaGFzaCBpbmZvcm1hdGlvbjrCoA0KwqBtZXRhLWludGVs
+IDogOWIzNzk1MmQ2YWYzNjM1OGI2Mzk3Y2VkZjNkZDUzZWM4OTYyYjZiZsKgDQrCoG1ldGEtcXQ0
+IDogODg5ODlhZTNhYmU5OGIzMDA4OWU3NTE4ZDNhZGFiZTk5MGM0MGExMMKgDQrCoG1ldGEtbWlu
+Z3cgOiBjNmRiMTkzNGZjNDNmYjA2YjkzYWZmM2U1NjM0ZDg5Y2MyYjY1Yjc3wqANCsKgbWV0YS1x
+dDMgOiBmMzNiNzNhOTU2M2YyZGZkZmQwZWUzN2I2MWQ2NWQ5MDE5N2E0NTZmwqANCsKgbWV0YS1n
+cGx2MiA6IDYyNzE0Nzk5NDk0M2RkNTYyY2MyOTRiN2NjZmQ0NDMyNTc0NDk1NmTCoA0KwqBwb2t5
+IDogZWJiNDJhZjI4MjllZGZjYTFhMjNjN2E1MWE0MzFjNjU2ZmZjMjA5MMKgDQrCoA0KVGhpcyBp
+cyBhbiBhdXRvbWF0ZWQgbWVzc2FnZSBmcm9tIFRoZSBZb2N0byBQcm9qZWN0IEF1dG9idWlsZGVy
+DQpHaXQ6IGdpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3lvY3RvLWF1dG9idWlsZGVyDQoNCg==
 
