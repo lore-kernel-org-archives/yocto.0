@@ -1,6 +1,6 @@
 Return-Path: <ee.peng.yeoh@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CE130E007D4; Fri, 25 May 2018 01:49:40 -0700 (PDT)
+	id B551BE007DA; Fri, 25 May 2018 01:56:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,43 +8,43 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8C69E006F1
-	for <yocto@yoctoproject.org>; Fri, 25 May 2018 01:49:39 -0700 (PDT)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A47DE00720
+	for <yocto@yoctoproject.org>; Fri, 25 May 2018 01:56:00 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	25 May 2018 01:49:38 -0700
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	25 May 2018 01:55:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,439,1520924400"; d="scan'208";a="42110603"
-Received: from kmsmsx155.gar.corp.intel.com ([172.21.73.106])
-	by fmsmga007.fm.intel.com with ESMTP; 25 May 2018 01:49:37 -0700
+X-IronPort-AV: E=Sophos;i="5.49,439,1520924400"; d="scan'208";a="58412570"
+Received: from kmsmsx156.gar.corp.intel.com ([172.21.138.133])
+	by fmsmga001.fm.intel.com with ESMTP; 25 May 2018 01:55:58 -0700
 Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.58]) by
-	KMSMSX155.gar.corp.intel.com ([169.254.15.135]) with mapi id
-	14.03.0319.002; Fri, 25 May 2018 16:49:35 +0800
+	KMSMSX156.gar.corp.intel.com ([169.254.1.238]) with mapi id
+	14.03.0319.002; Fri, 25 May 2018 16:54:59 +0800
 From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
-To: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
-	yocto <yocto@yoctoproject.org>, "Velu, NagarajagopalX"
+To: "Purdie, Richard" <richard.purdie@intel.com>, yocto
+	<yocto@yoctoproject.org>, "Velu, NagarajagopalX"
 	<nagarajagopalx.velu@intel.com>, "Patil, Pravin ShankarX"
 	<pravin.shankarx.patil@intel.com>, "Yadav, PankajX"
 	<pankajx.yadav@intel.com>, "Das, Manish KumarX"
 	<manish.kumarx.das@intel.com>, OTC Embedded Malaysia
 	<otc.embedded.malaysia@intel.com>
-Thread-Topic: Release Candidate Build for yocto-2.3.4.rc1 now available.
-Thread-Index: AQHT8eKcWGLPhWsLGESUxjbKi7W2gKRAJhDA
-Date: Fri, 25 May 2018 08:49:35 +0000
-Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335E1FF8A@PGSMSX109.gar.corp.intel.com>
-References: <1527003338.8937.180.camel@linuxfoundation.org>
-In-Reply-To: <1527003338.8937.180.camel@linuxfoundation.org>
+Thread-Topic: Release Candidate Build for yocto-2.2.4.rc1 now available.
+Thread-Index: AQHT82P0zSU/lwKBKkaL3YKnfi6BZKRAJRqw
+Date: Fri, 25 May 2018 08:54:59 +0000
+Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335E1FFD5@PGSMSX109.gar.corp.intel.com>
+References: <1527168770.16911.59.camel@intel.com>
+In-Reply-To: <1527168770.16911.59.camel@intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNWUwNWVkNDMtYTQ4Mi00ODIwLWE0OGQtYTkyOTBkMjg2ZTk2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiRGZaeFdNTExHMkxTelRNb3F0NXhJbVJBNjU4U0hvRTl6a1lQNXpcL1N3N3lIQ0dqdE4rYUNUS0VMXC9nQ2VPcm9cLyJ9
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjUzNjYyYjMtY2M5My00YzA5LTlmNDUtYjAyNjY1OTExYzNhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiRTBHczdiVjZRbk1ISlJ2UWloOW1tZ0h0V3FGZklCbzFoaWsyWVBDSmxaeFdXT0h2UjZzSGlGVmxHZzRsb0ZOTyJ9
 dlp-product: dlpe-windows
 dlp-version: 11.0.200.100
 dlp-reaction: no-action
@@ -53,7 +53,7 @@ MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 04 Jun 2018 01:11:40 -0700
 Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
 	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>
-Subject: Re: Release Candidate Build for yocto-2.3.4.rc1 now available.
+Subject: Re: Release Candidate Build for yocto-2.2.4.rc1 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,38 +65,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 May 2018 08:49:40 -0000
+X-List-Received-Date: Fri, 25 May 2018 08:56:01 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 
-SGkgYWxsLA0KDQpCdWlsZCBmb3IgMi4zLjQucmMxIGlzIHJlYWR5LiANClBsZWFzZSBnZXQgcmVh
+SGkgYWxsLA0KDQpCdWlsZCBmb3IgMi4yLjQucmMxIGlzIHJlYWR5LiANClBsZWFzZSBnZXQgcmVh
 ZHkgZm9yIHRoZSBRQS4NClRlc3RvcGlhIGFuZCB3aWtpIHBhZ2Ugd2VyZSByZWFkeS4gDQpodHRw
-czovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpLzIuM19RQV9TdGF0dXMNCg0KVGhhbmtzLA0K
-RWUgUGVuZyANCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IHJpY2hhcmQucHVy
-ZGllQGxpbnV4Zm91bmRhdGlvbi5vcmcgW21haWx0bzpyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5k
-YXRpb24ub3JnXSANClNlbnQ6IFR1ZXNkYXksIE1heSAyMiwgMjAxOCAxMTozNiBQTQ0KVG86IHlv
-Y3RvIDx5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KQ2M6IHBpZGdlQHRvZ2FubGFicy5jb207IG90
-YXZpb0Bvc3N5c3RlbXMuY29tLmJyOyBaaGFvLCBZaSAoV2luZCBSaXZlcikgPHlpLnpoYW9Ad2lu
-ZHJpdmVyLmNvbT47IEdyYXlkb24sIFRyYWN5IDx0cmFjeS5ncmF5ZG9uQGludGVsLmNvbT47IHN0
-ZXBoYW5vLmNldG9sYUBsaW51eC5pbnRlbC5jb207IFNhbmdhbCwgQXBvb3J2IDxhcG9vcnYuc2Fu
-Z2FsQGludGVsLmNvbT47IFllb2gsIEVlIFBlbmcgPGVlLnBlbmcueWVvaEBpbnRlbC5jb20+OyBD
-aGFuLCBBYXJvbiBDaHVuIFlldyA8YWFyb24uY2h1bi55ZXcuY2hhbkBpbnRlbC5jb20+OyBDaGFu
-ZywgUmViZWNjYSBTd2VlIEZ1biA8cmViZWNjYS5zd2VlLmZ1bi5jaGFuZ0BpbnRlbC5jb20+OyBB
-bmcsIENoaW4gSHVhdCA8Y2hpbi5odWF0LmFuZ0BpbnRlbC5jb20+OyBKb2xsZXksIFN0ZXBoZW4g
-SyA8c3RlcGhlbi5rLmpvbGxleUBpbnRlbC5jb20+OyBKb3JkYW4sIFJvYmluIEwgPHJvYmluLmwu
-am9yZGFuQGludGVsLmNvbT4NClN1YmplY3Q6IFJlbGVhc2UgQ2FuZGlkYXRlIEJ1aWxkIGZvciB5
-b2N0by0yLjMuNC5yYzEgbm93IGF2YWlsYWJsZS4NCg0KQSByZWxlYXNlIGNhbmRpZGF0ZSBidWls
-ZCBmb3IgeW9jdG8tMi4zLjQucmMxIGlzIG5vdyBhdmFpbGFibGUgYXQ6DQrCoA0KwqANCsKgIMKg
-IMKgaHR0cHM6Ly9hdXRvYnVpbGRlci55b2N0by5pby9wdWIvcmVsZWFzZXMveW9jdG8tMi4zLjQu
-cmMxDQrCoA0KwqANClBsZWFzZSBiZWdpbiBRQSBvbiB0aGlzIGJ1aWxkIGFzIHNvb24gYXMgcG9z
-c2libGUuDQrCoA0KwqANCsKgQnVpbGQgaGFzaCBpbmZvcm1hdGlvbjrCoA0KwqBtZXRhLWludGVs
-IDogOWIzNzk1MmQ2YWYzNjM1OGI2Mzk3Y2VkZjNkZDUzZWM4OTYyYjZiZsKgDQrCoG1ldGEtcXQ0
-IDogODg5ODlhZTNhYmU5OGIzMDA4OWU3NTE4ZDNhZGFiZTk5MGM0MGExMMKgDQrCoG1ldGEtbWlu
-Z3cgOiBjNmRiMTkzNGZjNDNmYjA2YjkzYWZmM2U1NjM0ZDg5Y2MyYjY1Yjc3wqANCsKgbWV0YS1x
-dDMgOiBmMzNiNzNhOTU2M2YyZGZkZmQwZWUzN2I2MWQ2NWQ5MDE5N2E0NTZmwqANCsKgbWV0YS1n
-cGx2MiA6IDYyNzE0Nzk5NDk0M2RkNTYyY2MyOTRiN2NjZmQ0NDMyNTc0NDk1NmTCoA0KwqBwb2t5
-IDogZWJiNDJhZjI4MjllZGZjYTFhMjNjN2E1MWE0MzFjNjU2ZmZjMjA5MMKgDQrCoA0KVGhpcyBp
-cyBhbiBhdXRvbWF0ZWQgbWVzc2FnZSBmcm9tIFRoZSBZb2N0byBQcm9qZWN0IEF1dG9idWlsZGVy
-DQpHaXQ6IGdpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3lvY3RvLWF1dG9idWlsZGVyDQoNCg==
+czovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpLzIuMl9RQV9TdGF0dXMNCg0KVGhhbmtzLA0K
+WWVvaCBFZSBQZW5nDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiByaWNoYXJk
+LnB1cmRpZUBpbnRlbC5jb20gW21haWx0bzpyaWNoYXJkLnB1cmRpZUBpbnRlbC5jb21dIA0KU2Vu
+dDogVGh1cnNkYXksIE1heSAyNCwgMjAxOCA5OjMzIFBNDQpUbzogeW9jdG8gPHlvY3RvQHlvY3Rv
+cHJvamVjdC5vcmc+DQpDYzogcGlkZ2VAdG9nYW5sYWJzLmNvbTsgb3RhdmlvQG9zc3lzdGVtcy5j
+b20uYnI7IFpoYW8sIFlpIChXaW5kIFJpdmVyKSA8eWkuemhhb0B3aW5kcml2ZXIuY29tPjsgR3Jh
+eWRvbiwgVHJhY3kgPHRyYWN5LmdyYXlkb25AaW50ZWwuY29tPjsgc3RlcGhhbm8uY2V0b2xhQGxp
+bnV4LmludGVsLmNvbTsgU2FuZ2FsLCBBcG9vcnYgPGFwb29ydi5zYW5nYWxAaW50ZWwuY29tPjsg
+WWVvaCwgRWUgUGVuZyA8ZWUucGVuZy55ZW9oQGludGVsLmNvbT47IENoYW4sIEFhcm9uIENodW4g
+WWV3IDxhYXJvbi5jaHVuLnlldy5jaGFuQGludGVsLmNvbT47IENoYW5nLCBSZWJlY2NhIFN3ZWUg
+RnVuIDxyZWJlY2NhLnN3ZWUuZnVuLmNoYW5nQGludGVsLmNvbT47IEFuZywgQ2hpbiBIdWF0IDxj
+aGluLmh1YXQuYW5nQGludGVsLmNvbT47IEpvbGxleSwgU3RlcGhlbiBLIDxzdGVwaGVuLmsuam9s
+bGV5QGludGVsLmNvbT47IEpvcmRhbiwgUm9iaW4gTCA8cm9iaW4ubC5qb3JkYW5AaW50ZWwuY29t
+Pg0KU3ViamVjdDogUmVsZWFzZSBDYW5kaWRhdGUgQnVpbGQgZm9yIHlvY3RvLTIuMi40LnJjMSBu
+b3cgYXZhaWxhYmxlLg0KDQpBIHJlbGVhc2UgY2FuZGlkYXRlIGJ1aWxkIGZvciB5b2N0by0yLjIu
+NC5yYzEgaXMgbm93IGF2YWlsYWJsZSBhdDoNCg0KDQrCoMKgwqDCoGh0dHBzOi8vYXV0b2J1aWxk
+ZXIueW9jdG8uaW8vcHViL3JlbGVhc2VzL3lvY3RvLTIuMi40LnJjMQ0KDQoNClBsZWFzZSBiZWdp
+biBRQSBvbiB0aGlzIGJ1aWxkIGFzIHNvb24gYXMgcG9zc2libGUuDQoNCg0KQnVpbGQgaGFzaCBp
+bmZvcm1hdGlvbjrCoA0KbWV0YS1pbnRlbCA6IGM3ODE1MTBhNWE2YjQ1ZTYwY2MzMmI2NjE0ZGRj
+Y2UzZjE0NTIxMjHCoA0KbWV0YS1xdDQgOiBmMzg5MzY4ZGM4NmU3NDVkZjE0Y2FiOWVlYjlhOTRi
+YzAyYmQyNzNlwqANCm1ldGEtbWluZ3cgOiBmNWY2NzZkOWVlOWY4ZTIwNTM2M2VhY2U3YTg0NmEw
+MzYwOTk4NjM0wqANCm1ldGEtcXQzIDogZjMzYjczYTk1NjNmMmRmZGZkMGVlMzdiNjFkNjVkOTAx
+OTdhNDU2ZsKgDQptZXRhLWdwbHYyIDogZDc2ODdkNDA0YmJjOWJhM2Y0NGVjNDNlYTg4MjhkOTA3
+MTAzMzUxM8KgDQpwb2t5IDogZGY3NjY2OWJkZDcwYWEwZDkwM2M0MjExZGRlNzMxMjIxYzdlNzU2
+ZMKgDQoNClRoaXMgaXMgYW4gYXV0b21hdGVkIG1lc3NhZ2UgZnJvbVxuVGhlIFlvY3RvIFByb2pl
+Y3QgQXV0b2J1aWxkZXINCkdpdDogZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcveW9jdG8tYXV0
+b2J1aWxkZXINCg==
 
