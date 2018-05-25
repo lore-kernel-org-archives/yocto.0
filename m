@@ -1,67 +1,71 @@
-Return-Path: <srifenbark@gmail.com>
+Return-Path: <jed.openxt@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BDA80E007DA; Fri, 25 May 2018 06:20:23 -0700 (PDT)
+	id 5A42AE009CA; Fri, 25 May 2018 14:37:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (srifenbark[at]gmail.com)
+	mail provider *      (jed.openxt[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.218.50 listed in list.dnswl.org]
+	*      [209.85.220.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f50.google.com (mail-oi0-f50.google.com
-	[209.85.218.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02FD0E007AD
-	for <yocto@yoctoproject.org>; Fri, 25 May 2018 06:20:22 -0700 (PDT)
-Received: by mail-oi0-f50.google.com with SMTP id d5-v6so1516173oib.5
-	for <yocto@yoctoproject.org>; Fri, 25 May 2018 06:20:22 -0700 (PDT)
+Received: from mail-qk0-f196.google.com (mail-qk0-f196.google.com
+	[209.85.220.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EA80E009B9
+	for <yocto@yoctoproject.org>; Fri, 25 May 2018 14:37:38 -0700 (PDT)
+Received: by mail-qk0-f196.google.com with SMTP id c198-v6so5150480qkg.12
+	for <yocto@yoctoproject.org>; Fri, 25 May 2018 14:37:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=wpFuqhFV5MHjBoBOXE9VAX39gJSlQhCuZZ8HnwH6ZJk=;
-	b=Ci+NkZiMyuKGOYlzRpfzs6yry398w7N++UqvnWvvCH+/HtwBiyqMGvLON6a+YoDzAE
-	hQkOYVTAYbVS1rseDCyiBBW78aOCLn+SWW8wDEoXlGvTZzLGAY3ag8e2Y/V+lNZWSRm/
-	qHZ6hN5AO+IAtRh/+MHrqAXD461rZwsXajSpAJ3Uc2MYSx4vclHa8aJY761ExiP6TOAD
-	lXhFd8BxoGA5XRM+sE2jxO/TJIz0mH6TpB9ApLvSZzOFky67O7S7xpnz2XfgmOYlDoGi
-	GRGo8G3DwYN22vT6ZgtPq3RGJUh74YLhLpPBs0eFqHCeIDkYBBUkqwykaFL8Nh8awUV0
-	t4FA==
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-language:content-transfer-encoding;
+	bh=ta2bigJ1CD/0LkeeHi/ShXtzs1R3qigFLuDNVG8QbTk=;
+	b=AH+vHu17Otakq7JAU7K461NzkQKZwOeaysv0V4qqPdLZRX1rLIq+UD7b3ybBjjCGxk
+	03g6JGyx/iblHI9quis7qRr2oPpH2B/dRDBhp1ABgPNS+IvfIbgUi9d6C4ErlzpE0+U3
+	c/nylfc8NSnBEy964m2zZl5ii14eLRXA29m7qjn3HWNlIzSr+aBHpCy4f1f/Qj2OHJmE
+	HOqyfsHHKb+P3DycAS4PA5giCfklJqbnuQR0bISi1qd1ICs/ekd1eKuyCps2LDoOLJ0e
+	n3+CClkgtZitR4W135GRQQWLJbhhz46sCiBmDXzjQASeJNO8SQnIzroC+QoHYSfWbNyS
+	bZPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=wpFuqhFV5MHjBoBOXE9VAX39gJSlQhCuZZ8HnwH6ZJk=;
-	b=OA3v8+GLSwJ1l9PwHRsvZYABjA/RrcZjGNNecT6k/kfHyKKSV2h9vKLKBQ9QGmjzpt
-	gZN90m6JHhbTvG15GenkgrDl39c7JeG2OVX7witRDTgTb6RaZgAWEOgdrJ1ZZUfXd1ZF
-	jO6Fpj5qj5cHFhIZyTO2jGTnov0xyDryyRhLQW2/2XeT60iYe+jtCmLQNJJ47Gk1NdOd
-	U2V1WdZpoKBRAHyo6TubrNouhUCZeVd1loO2/HqRFnPa/iPHIxhpPbFILmF8oEkf6cSN
-	5ebYcEQ2J/30fo54vS7cP1F7gly6q5YlOmgVGIXMC9MZtpfLQuSLLWe0k2Q2PM/zfQfK
-	Cz/A==
-X-Gm-Message-State: ALKqPweA/HGJODBn0f6ms5IEbO0U00RSEQINHvF6PcPpwYqtkS2uYanE
-	xz54ZK9qDAinzRIGkZnQ9XPHpama4BaFKS1ULGM=
-X-Google-Smtp-Source: AB8JxZo75cnQR8ANEfGEuOCV5QFABDcdprNsG67NgUEMwHgAJcQz5EjIYPDp9pYEn1zt4STQWj0zQTfIPtxkbQcIrME=
-X-Received: by 2002:aca:488d:: with SMTP id
-	v135-v6mr1376571oia.142.1527254422310; 
-	Fri, 25 May 2018 06:20:22 -0700 (PDT)
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-language:content-transfer-encoding;
+	bh=ta2bigJ1CD/0LkeeHi/ShXtzs1R3qigFLuDNVG8QbTk=;
+	b=Y9ffahWL3Q18cHBXoSswybs8a3udrMv+olBIMtPM0z+lx4N3plTUuQH7NDIEG/8b9L
+	tQepNWYo7q+Nb9Kqf5wuYbIlpoAGD90P50DFFTZuLXQMicvngVIq5EU6km3S1FU0w8H0
+	SQTm2XapDI1vQmmTJBhF+DEBKiofZpZJrhFNCMcv/a1pnt248uoxr7pAU2FDirNOJ6jb
+	+oGyTkIw3W/Zrx5sEXOyNEwjbkQDSGaSLzjMpE2FYGl/Ip28WYBleK5D27sQ1zw7DHlJ
+	rhG9acfDHrWXBZQ6Liqv2e4TrbQLuO7sStZ6kDnKOCqDscCBK5yCfeSlV4Ap5aLJd2fe
+	xPKw==
+X-Gm-Message-State: ALKqPwes3Gy5dfdjusCriWwOfzKzoAZ6buxPJdCjocFHM2gquxZ6SWkZ
+	EKnTTAcs0oR3dzvimRhjJlTW1CGy
+X-Google-Smtp-Source: ADUXVKIsKnNg/DwHgrTB+FF5BFRxop3j9PejuVheCO+MWmPa0L+zrKEE3YThoYSqGSFHGXVGvClWtg==
+X-Received: by 2002:a37:52d7:: with SMTP id
+	g206-v6mr3730463qkb.205.1527284258295; 
+	Fri, 25 May 2018 14:37:38 -0700 (PDT)
+Received: from [192.168.1.1] (50-205-235-218-static.hfc.comcastbusiness.net.
+	[50.205.235.218]) by smtp.gmail.com with ESMTPSA id
+	c10-v6sm5467310qth.97.2018.05.25.14.37.37
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 25 May 2018 14:37:37 -0700 (PDT)
+To: yocto@yoctoproject.org
+From: Jed <jed.openxt@gmail.com>
+Message-ID: <6fe5c164-6d57-72f2-57e0-adf8a42a4517@gmail.com>
+Date: Fri, 25 May 2018 17:37:37 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.7.0
 MIME-Version: 1.0
-References: <CAJqXeOwTyTasp31EapH2jO8WFmY-Tz-CjDp2CAUpcs=3Dxsqhg@mail.gmail.com>
-	<CAFNP8Os4zOcGhTU7EV8_YrWFu=8-jPLqTMvb+VQgN6BhgN9FDw@mail.gmail.com>
-In-Reply-To: <CAFNP8Os4zOcGhTU7EV8_YrWFu=8-jPLqTMvb+VQgN6BhgN9FDw@mail.gmail.com>
-From: Scott Rifenbark <srifenbark@gmail.com>
-Date: Fri, 25 May 2018 06:20:11 -0700
-Message-ID: <CAFNP8OuG_qw_jZ6MzaOT3ftTSKMxyJdZJit0LOu52t9PAUCmcQ@mail.gmail.com>
-To: nikhkkv@gmail.com
-Cc: yocto@yoctoproject.org
-Subject: Yocto
+Subject: [meta-selinux][PATCH] libsemanage: lift dependency on python for the main package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,85 +77,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 May 2018 13:20:23 -0000
-Content-Type: multipart/alternative; boundary="00000000000052d1eb056d07a163"
+X-List-Received-Date: Fri, 25 May 2018 21:37:40 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---00000000000052d1eb056d07a163
-Content-Type: text/plain; charset="UTF-8"
+Just moving the python script to the -python package.
+This allows using libsemanage without requiring python.
 
----------- Forwarded message ---------
-From: Scott Rifenbark <srifenbark@gmail.com>
-Date: Fri, May 25, 2018, 6:18 AM
-Subject: Fwd: Yocto
-To: <yocto@yoctoproject.org>
+Signed-off-by: Jed <jed.openxt@gmail.com>
+---
+ recipes-security/selinux/libsemanage.inc | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
 
+diff --git a/recipes-security/selinux/libsemanage.inc b/recipes-security/selinux/libsemanage.inc
+index 9b238c8..ee31e4b 100644
+--- a/recipes-security/selinux/libsemanage.inc
++++ b/recipes-security/selinux/libsemanage.inc
+@@ -11,11 +11,9 @@ inherit lib_package python-dir
+ DEPENDS += "libsepol libselinux bzip2 python bison-native flex-native swig-native"
+ DEPENDS_append_class-target += "audit"
+ 
+-# For /usr/libexec/selinux/semanage_migrate_store
+-RDEPENDS_${PN} += "python"
+-
+-PACKAGES += "${PN}-python"
+-FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
++PACKAGES =+ "${PN}-python"
++FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/* \
++                      ${libexecdir}/selinux/semanage_migrate_store"
+ FILES_${PN}-dbg += "${libdir}/python${PYTHON_BASEVERSION}/site-packages/.debug/*"
+ 
+ EXTRA_OEMAKE_class-native += "DISABLE_AUDIT=y"
+-- 
+2.11.0
 
-Hi Nikhil,
-
-I am forwarding your email to the Yocto Project email group.  Someone there
-can better help you with your questions.  I take care of the Yocto manual
-set.
-
-Thanks,
-Scott Rifenbark
-
----------- Forwarded message ---------
-From: nikh kkvv <nikhkkv@gmail.com>
-Date: Fri, May 25, 2018, 6:03 AM
-Subject: Yocto
-To: <srifenbark@gmail.com>
-
-
-Hi srifenbark,
-
-
-I am Nikhil working as soft ware engineer in kerala.
-
-Currently i am working with a project which require yocto based file system.
-I am using sama5d36-xplained evaluation kit.
-
-Based on the information from the following site
-http://www.at91.com/linux4sam/bin/view/Linux4SAM/YoctoProject build a file
-system which support qt images and tested successfully.
-
-Is there any way to  avoid this demo images from this build and add qt
-support for bitbake core-image minimal process.
-
-
-Regards
-Nikhil
-
---00000000000052d1eb056d07a163
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto"><div><br><br><div class=3D"gmail_quote"><div dir=3D"ltr">=
----------- Forwarded message ---------<br>From: Scott Rifenbark &lt;<a href=
-=3D"mailto:srifenbark@gmail.com">srifenbark@gmail.com</a>&gt;<br>Date: Fri,=
- May 25, 2018, 6:18 AM<br>Subject: Fwd: Yocto<br>To:  &lt;<a href=3D"mailto=
-:yocto@yoctoproject.org">yocto@yoctoproject.org</a>&gt;<br></div><br><br><d=
-iv dir=3D"auto"><div>Hi Nikhil,</div><div dir=3D"auto"><br></div><div dir=
-=3D"auto">I am forwarding your email to the Yocto Project email group.=C2=
-=A0 Someone there can better help you with your questions.=C2=A0 I take car=
-e of the Yocto manual set.</div><div dir=3D"auto"><br></div><div dir=3D"aut=
-o">Thanks,</div><div dir=3D"auto">Scott Rifenbark<br><br><div class=3D"gmai=
-l_quote" dir=3D"auto"><div dir=3D"ltr">---------- Forwarded message -------=
---<br>From: nikh kkvv &lt;<a href=3D"mailto:nikhkkv@gmail.com" target=3D"_b=
-lank" rel=3D"noreferrer">nikhkkv@gmail.com</a>&gt;<br>Date: Fri, May 25, 20=
-18, 6:03 AM<br>Subject: Yocto<br>To:  &lt;<a href=3D"mailto:srifenbark@gmai=
-l.com" target=3D"_blank" rel=3D"noreferrer">srifenbark@gmail.com</a>&gt;<br=
-></div><br><br><div dir=3D"ltr"><div>Hi srifenbark,</div><div><br></div><di=
-v><br></div><div>I am Nikhil working as soft ware engineer in kerala.</div>=
-<div><br></div><div>Currently i am working with a project which require yoc=
-to based file system.</div><div>I am using sama5d36-xplained evaluation kit=
-.</div><div><br></div><div>Based on the information from the following site=
- <br></div><div><a href=3D"http://www.at91.com/linux4sam/bin/view/Linux4SAM=
-/YoctoProject" rel=3D"noreferrer noreferrer" target=3D"_blank">http://www.a=
-t91.com/linux4sam/bin/view/Linux4SAM/YoctoProject</a> build a file system w=
-hich support qt images and tested successfully.<br></div><div><br></div><di=
-v>Is there any way to=C2=A0 avoid this demo images from this build and add =
-qt support for bitbake core-image minimal process.</div><div><br></div><div=
-><br></div><div>Regards</div><div>Nikhil<br></div></div>
-</div></div></div></div></div></div>
-
---00000000000052d1eb056d07a163--
