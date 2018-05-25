@@ -1,56 +1,93 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <Richard.Schmitt@commscope.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B82A0E007D4; Thu, 24 May 2018 14:55:35 -0700 (PDT)
+	id 76572E006F1; Thu, 24 May 2018 17:21:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
+	*      [68.232.148.72 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F96CE00720
-	for <yocto@yoctoproject.org>; Thu, 24 May 2018 14:55:33 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	24 May 2018 14:55:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,437,1520924400"; d="scan'208,217";a="44543130"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
-	by orsmga006.jf.intel.com with ESMTP; 24 May 2018 14:55:33 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.70]) by
-	FMSMSX103.amr.corp.intel.com ([169.254.2.228]) with mapi id
-	14.03.0319.002; Thu, 24 May 2018 14:55:32 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, OTC Embedded All
-	<otc.embedded.all@intel.com>
-Thread-Topic: Yocto Project Technical Team Meeting
-Thread-Index: AdPohXzFOgxC2BniTHO19C2TrRzF0wLJHClw
-Importance: high
-X-Priority: 1
-Date: Thu, 24 May 2018 21:55:31 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7311EC6@fmsmsx111.amr.corp.intel.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Thu, 24 May 2018 17:21:25 PDT
+Received: from esa3.commscope.iphmx.com (esa3.commscope.iphmx.com
+	[68.232.148.72])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95651E0044F
+	for <yocto@yoctoproject.org>; Thu, 24 May 2018 17:21:25 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.49,438,1520913600"; d="scan'208,217";a="8677043"
+Received: from mail-by2nam03lp0049.outbound.protection.outlook.com (HELO
+	NAM03-BY2-obe.outbound.protection.outlook.com) ([216.32.180.49])
+	by ob1.commscope.iphmx.com with ESMTP/TLS/AES256-SHA256;
+	24 May 2018 20:20:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=commscope.onmicrosoft.com; s=selector1-commscope-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=0jQpizbCKZ9aJV+wK8I2o5CHQW3UxoyKPmHg/3r8iHE=;
+	b=IGCAJAFZewopSMYRWI1pcIMZO2gPBd9AhE4eCWgui1FZ5VVvH/3U78qdIaGBihitD4lG9pUFNmEqQqjQ3V9KsbPsWNiNhP2+wFxbbym8s02RGFOtm1YTOOn5jlq874t1lmI3Y8V/pq8u/fpFCa8Mb52iQXoRFBRKB9EHFCsKBw8=
+Received: from BLUPR0601MB0961.namprd06.prod.outlook.com (10.160.35.25) by
+	BLUPR0601MB1698.namprd06.prod.outlook.com (10.163.212.155) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.797.11; Fri, 25 May 2018 00:20:20 +0000
+Received: from BLUPR0601MB0961.namprd06.prod.outlook.com
+	([fe80::d56d:1ad9:557f:55de]) by
+	BLUPR0601MB0961.namprd06.prod.outlook.com
+	([fe80::d56d:1ad9:557f:55de%9]) with mapi id 15.20.0776.019;
+	Fri, 25 May 2018 00:20:20 +0000
+From: "Schmitt, Richard" <Richard.Schmitt@commscope.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Chicken or the Egg Problem with Images
+Thread-Index: AQHT874pxD/out1jKkSSAyAVbEyU3Q==
+Date: Fri, 25 May 2018 00:20:19 +0000
+Message-ID: <F0047264-6A35-4DCA-912E-222FB22F034F@commscope.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.200.100
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.106]
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=Richard.Schmitt@commscope.com; 
+x-originating-ip: [131.239.32.100]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; BLUPR0601MB1698;
+	7:wHhLa7oWDbUsPF6XHtlxiNm0FGLMcg9GNmTKk6dqNfMuhuTfMSUb7I/Ksaezz4nt6tHA4XBTg/EnpUk2WfcX5duxSIJu2kQfLnN5x4ZbxJ5/n9t1/NZ1MZGi/yGPl0iUFKGEPostLDDgdm+boTQNIHIWUO5WkF5lt3cMs6mXLGHgt4YPeJ7DqA5/WvO3pTbBY0VFZNB+3y7oSSaQw2gFYtW7OIvdGBUapkVZz7mzgFOSE1tgi8wN7GGmsC++9vqs
+x-ms-exchange-antispam-srfa-diagnostics: SOS;
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(5600026)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603328)(7153060)(7193020);
+	SRVR:BLUPR0601MB1698; 
+x-ms-traffictypediagnostic: BLUPR0601MB1698:
+x-microsoft-antispam-prvs: <BLUPR0601MB169824144BE9BDBA199A0DB7E6690@BLUPR0601MB1698.namprd06.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155);
+x-ms-exchange-senderadcheck: 1
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040522)(2401047)(8121501046)(5005006)(3231254)(944501410)(52105095)(3002001)(10201501046)(93006095)(93001095)(149027)(150027)(6041310)(20161123564045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123562045)(20161123558120)(20161123560045)(6072148)(201708071742011)(7699016);
+	SRVR:BLUPR0601MB1698; BCL:0; PCL:0; RULEID:;
+	SRVR:BLUPR0601MB1698; 
+x-forefront-prvs: 06833C6A67
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(39380400002)(39860400002)(346002)(376002)(366004)(396003)(189003)(199004)(8676002)(486006)(2900100001)(2501003)(478600001)(316002)(102836004)(97736004)(3846002)(59450400001)(5250100002)(6116002)(53936002)(2616005)(36756003)(72206003)(86362001)(476003)(14454004)(83716003)(6916009)(81166006)(81156014)(66066001)(1730700003)(8936002)(82746002)(106356001)(5660300001)(25786009)(3280700002)(3660700001)(2351001)(26005)(6436002)(186003)(5640700003)(99286004)(7736002)(6506007)(68736007)(105586002)(6486002)(6512007)(2906002)(54896002)(6306002)(33656002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR0601MB1698;
+	H:BLUPR0601MB0961.namprd06.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: commscope.com does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: pLNP4/dw6rPJ27spnSphkblcEpoJ+xctYi3ih4PkqrEv8JzUt14XXUYDVoO/7n5Mo8LANs3JEVaGbFKq9LttVt7b8hI2SadG3jqChcrYtbBh76ntUU5IEJGEPGKKsYjFGFwIT0E2oCDgREvQ8+ofoLwdRNlP/QJrj2vvxM0KyJxD+TN73uZnKe+BupdiougW
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 24 May 2018 15:03:57 -0700
-Cc: 'Manjukumar Harthikote Matha' <MANJUKUM@xilinx.com>, "Chan,
-	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>, "Cetola,
-	Stephano" <stephano.cetola@intel.com>, "Erway,
-	Tracey M" <tracey.m.erway@intel.com>, "Orling,
-	Timothy T" <timothy.t.orling@intel.com>
-Subject: Canceled: Yocto Project Technical Team Meeting
+X-MS-Office365-Filtering-Correlation-Id: 81b43983-4d15-4b5a-fc52-08d5c1d54cb8
+X-OriginatorOrg: commscope.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81b43983-4d15-4b5a-fc52-08d5c1d54cb8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 May 2018 00:20:20.0278 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 31472f81-8fe4-49ec-8bc3-fa1c295640d7
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR0601MB1698
+Subject: Chicken or the Egg Problem with Images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,1121 +99,180 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 May 2018 21:55:35 -0000
-X-Groupsio-MsgNum: 41240
+X-List-Received-Date: Fri, 25 May 2018 00:21:26 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7311EC6fmsmsx111amrcor_"
+	boundary="_000_F00472646A354DCA912E222FB22F034Fcommscopecom_"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7311EC6fmsmsx111amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-We encourage people attending the meeting to logon and announce themselves =
-on the Yocto Project IRC chancel during the meeting (optional):
-
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
-
-https://www.yoctoproject.org/monthly-technical-call/
-
-
-Conference Details:
-
-Company:           WIND RIVER SYS
-
-- dial into: 1-800-262-0778/404-397-1527
-
-- enter the bridge number: 88748961#
-
-
-The international numbers are:
-
-
-United States Toll      404-397-1527
-
-US & Canada Toll Free   800-262-0778
-
-Albania dial 008000010+ 8558142509
-
-Angola dial 808000011+  8558142510
-
-Anguilla Toll Free      18003004779
-
-Argentina Toll  +541159844583
-
-Argentina Toll Free     08004446354
-
-Australia Toll  +610386580431
-
-Australia Toll Free     1800347095
-
-Austria Toll Free       080088668498
-
-Bahamas Toll Free       18003890740
-
-Bahrain Toll Free       80006770
-
-Bangladesh dial 1570011+        8558142505
-
-Barbados Toll Free      18002070056
-
-Belarus Toll Free       882000110813
-
-Belgium Toll    +3227925498
-
-Belgium Toll Free       080029896
-
-Belize Toll Free        18000130907
-
-Bermuda Toll free       18002072792
-
-Botswana Toll Free      002698003004981
-
-Brazil Toll     +5501149497489
-
-Brazil Toll Free        08008919885
-
-British Virgin Islands Toll Free        18002075710
-
-Brunei Toll Free        8014373
-
-Bulgaria Toll   +359024916371
-
-Bulgaria Toll Free      008001201170
-
-Cambodia Toll Free      1800209578
-
-Cambodia Toll Free      1800209361
-
-Canada Toll     +14169810101
-
-Cayman islands Toll Free        18444305771
-
-Chile Toll      +56442080836
-
-Chile Toll Free 12300206143
-
-China Toll Free 4000342070
-
-China Toll Free 8008709853
-
-China Toll Free 4008877140
-
-China Toll Free 8008768605
-
-Colombia Toll   +5714864720
-
-Colombia Toll Free      18000129671
-
-Costa Rica Toll 40017415
-
-Croatia Toll    +38517776838
-
-Croatia Toll Free       08009975
-
-Cuba dial 2935+ 8558142540
-
-Cyprus Toll Free        80096877
-
-Czech Republic Toll Free        0800701476
-
-Denmark Toll    +4536927940
-
-Denmark Toll Free       80251209
-
-Dominica Toll Free      18003004904
-
-Dominican Republic Toll Free    18887514588
-
-Ecuador Toll Free       1800000314
-
-Egypt Toll Free 08000009493
-
-Estonia Toll    +3726867092
-
-Estonia Toll Free       8000100708
-
-Finland Toll    +3580923195770
-
-Finland Toll Free       0800774585
-
-France Toll     +33272249926
-
-France Toll Free        0800947235
-
-French Guiana Toll Free 0800910113
-
-Germany Toll    +4930700150733
-
-Germany Toll Free       08007238960
-
-Ghana dial 0242426004+  8553944954
-
-Greece Toll     +302111983414
-
-Greece Toll Free        0080016122059757
-
-Grenada Toll Free       18003004905
-
-Guatemala dial 0019999190+      8553944634
-
-Honduras Toll Free      80027919493
-
-Hong Kong Toll  +85230507540
-
-Hong Kong Toll Free     800961673
-
-Hungary Toll    +40017789124
-
-Hungary Toll Free       0680015494
-
-India Toll      +914466747384
-
-India Toll Free 18002090252
-
-Indonesia Toll Free     0078030114912
-
-Ireland Toll    +35316539376
-
-Ireland Toll Free       1800948436
-
-Israel Toll     +97233762260
-
-Israel Toll Free        1809458778
-
-Italy Toll      +390200617793
-
-Italy Toll Free 0800187234
-
-Jamaica Toll Free       18002196874
-
-Japan Toll      +810345786573
-
-Japan Toll Free 0120525303
-
-Jordan Toll Free        080022545
-
-Kenya Toll Free 0800723004
-
-Latvia Toll Free        8002601
-
-Lebanon dial 01426801+  8558142511
-
-Lithuania Toll  +37052054804
-
-Lithuania Toll Free     880031895
-
-Luxembourg Toll +35228264835
-
-Luxembourg Toll Free    80023986
-
-Macedonia Toll Free     080094382
-
-Malaysia Toll   +600377248228
-
-Malta Toll      +35627781438
-
-Malta Toll Free 80062568
-
-Martinique Toll Free    0800910664
-
-Mauritius Toll Free     8020440157
-
-Mexico Toll     +52015515001053
-
-Mexico Toll Free        018002530547
-
-Moldavia Toll Free      080062305
-
-Monaco Toll Free        80094215
-
-Morocco dial 002110011+ 8558142537
-
-Netherlands Toll        +310107994621
-
-Netherlands Toll Free   08000200244
-
-New Zealand Toll        +64042806288
-
-New Zealand Toll Free   0800441743
-
-Norway Toll     +4721034359
-
-Norway Toll Free        80058604
-
-Oman Toll Free  80074218
-
-Pakistan Toll   +924238108753
-
-Panama Toll     +5078323301
-
-Panama Toll Free        008002267987
-
-Paraguay Toll Free      009800110233
-
-Peru Toll       +51017017728
-
-Peru Toll Free  080078493
-
-Philippines Toll        +6322312145
-
-Philippines Toll Free   180011101073
-
-Poland Toll     +480223060270
-
-Poland Toll Free        800080328
-
-Portugal Toll   +351707201563
-
-Portugal Toll Free      800788629
-
-Qatar Toll Free 00800100142
-
-Romania Toll    +40215291752
-
-Romania Toll Free       0800400068
-
-Russia Toll     +74993504823
-
-Russia Toll Free        81080026895011
-
-Saudi Arabia Toll Free  8008442574
-
-Saudi Arabia Toll Free  8008500370
-
-Senegal dial 800103072+ 8558842521
-
-Serbia Toll Free        0800190975
-
-Singapore Toll  +6563494173
-
-Singapore Toll Free     18005792882
-
-Slovakia Toll   +4210268622038
-
-Slovakia Toll Free      0800606692
-
-Slovenia Toll   +38618281644
-
-Slovenia Toll Free      080081438
-
-South Africa Toll       +270214277972
-
-South Africa Toll Free  0800994623
-
-South Korea Toll        +827074882482
-
-South Korea Toll Free   00308132034
-
-Spain Mobile    900-828-467
-
-Spain Toll      +34935451755
-
-Spain Toll Free 900828467
-
-Sri Lanka Toll  +94720910363
-
-Sweden Toll     +460114966619
-
-Sweden Toll Free        0201409738
-
-Switzerland Toll        +41434569403
-
-Switzerland Toll Free   800740310
-
-Taiwan Toll     +8860287933075
-
-Taiwan Toll Free        0800868159
-
-Thailand Toll   +6621040574
-
-Thailand Toll Free      0018001562038778
-
-Trinidad and Tobago Toll Free   18002038778
-
-Turkey Toll     +902129003723
-
-Turks & Caicos Toll Free        18003000086
-
-UK Toll +442030144000
-
-UK Toll Free    08005283819
-
-Ukraine Toll    +380893240452
-
-Ukraine Toll Free       0800503625
-
-United Arab Emirates Toll Free  800035703321
-
-Uruguay Toll Free       00040190461
-
-Venezuela Toll Free     08001004189
-
-Vietnam Toll Free       12065242
-
-
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7311EC6fmsmsx111amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>We encourage people attending the meeting to logon and announce themse=
-lves on the Yocto Project IRC chancel during the meeting (optional):<br>
-
-</div>
-<div>&nbsp;</div>
-<div>Yocto IRC: <a href=3D"http://webchat.freenode.net/?channels=3D#yocto">=
-<font color=3D"blue"><u>http://webchat.freenode.net/?channels=3D#yocto</u><=
-/font></a><br>
-
-</div>
-<div>IRC Tutorial: <a href=3D"http://www.irchelp.org/irchelp/irctutorial.ht=
-ml"><font color=3D"blue"><u>http://www.irchelp.org/irchelp/irctutorial.html=
-</u></font></a>
-<br>
-
-</div>
-<div style=3D"margin-top:2pt;margin-bottom:2pt;"><font face=3D"Calibri"><a =
-href=3D"https://www.yoctoproject.org/monthly-technical-call/"><font face=3D=
-"Segoe UI" size=3D"2" color=3D"#0563C1"><span style=3D"font-size:10pt;"><u>=
-https://www.yoctoproject.org/monthly-technical-call/</u></span></font></a><=
-/font></div>
-<div><font face=3D"Calibri"><br>
-
-</font></div>
-<div>Conference Details:<br>
-
-</div>
-<div>Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; W=
-IND RIVER SYS<br>
-
-</div>
-<div>- dial into: 1-800-262-0778/404-397-1527<br>
-
-</div>
-<div>- enter the bridge number: 88748961#<br>
-
-<br>
-
-</div>
-<div>The international numbers are:<br>
-
-<br>
-
-</div>
-<div>United States Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 404-397-1527<br>
-
-</div>
-<div>US &amp; Canada Toll Free&nbsp;&nbsp; 800-262-0778<br>
-
-</div>
-<div>Albania dial 008000010&#43; 8558142509<br>
-
-</div>
-<div>Angola dial 808000011&#43;&nbsp; 8558142510<br>
-
-</div>
-<div>Anguilla Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18003004779<br>
-
-</div>
-<div>Argentina Toll&nbsp; &#43;541159844583<br>
-
-</div>
-<div>Argentina Toll Free&nbsp;&nbsp;&nbsp;&nbsp; 08004446354<br>
-
-</div>
-<div>Australia Toll&nbsp; &#43;610386580431<br>
-
-</div>
-<div>Australia Toll Free&nbsp;&nbsp;&nbsp;&nbsp; 1800347095<br>
-
-</div>
-<div>Austria Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 080088668498<br>
-
-</div>
-<div>Bahamas Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18003890740<br>
-
-</div>
-<div>Bahrain Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80006770<br>
-
-</div>
-<div>Bangladesh dial 1570011&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- 8558142505<br>
-
-</div>
-<div>Barbados Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18002070056<br>
-
-</div>
-<div>Belarus Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 882000110813<br>
-
-</div>
-<div>Belgium Toll&nbsp;&nbsp;&nbsp; &#43;3227925498<br>
-
-</div>
-<div>Belgium Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 080029896<br>
-
-</div>
-<div>Belize Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18000130907=
-<br>
-
-</div>
-<div>Bermuda Toll free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18002072792<br>
-
-</div>
-<div>Botswana Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 002698003004981<br>
-
-</div>
-<div>Brazil Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;5501149497489<br>
-
-</div>
-<div>Brazil Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 08008919885=
-<br>
-
-</div>
-<div>British Virgin Islands Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; 18002075710<br>
-
-</div>
-<div>Brunei Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8014373<br>
-
-</div>
-<div>Bulgaria Toll&nbsp;&nbsp; &#43;359024916371<br>
-
-</div>
-<div>Bulgaria Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 008001201170<br>
-
-</div>
-<div>Cambodia Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800209578<br>
-
-</div>
-<div>Cambodia Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800209361<br>
-
-</div>
-<div>Canada Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;14169810101<br>
-
-</div>
-<div>Cayman islands Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 184=
-44305771<br>
-
-</div>
-<div>Chile Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;56442080836<br>
-
-</div>
-<div>Chile Toll Free 12300206143<br>
-
-</div>
-<div>China Toll Free 4000342070<br>
-
-</div>
-<div>China Toll Free 8008709853<br>
-
-</div>
-<div>China Toll Free 4008877140<br>
-
-</div>
-<div>China Toll Free 8008768605<br>
-
-</div>
-<div>Colombia Toll&nbsp;&nbsp; &#43;5714864720<br>
-
-</div>
-<div>Colombia Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18000129671<br>
-
-</div>
-<div>Costa Rica Toll 40017415<br>
-
-</div>
-<div>Croatia Toll&nbsp;&nbsp;&nbsp; &#43;38517776838<br>
-
-</div>
-<div>Croatia Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 08009975<br>
-
-</div>
-<div>Cuba dial 2935&#43; 8558142540<br>
-
-</div>
-<div>Cyprus Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80096877<br=
->
-
-</div>
-<div>Czech Republic Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 080=
-0701476<br>
-
-</div>
-<div>Denmark Toll&nbsp;&nbsp;&nbsp; &#43;4536927940<br>
-
-</div>
-<div>Denmark Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80251209<br>
-
-</div>
-<div>Dominica Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18003004904<br>
-
-</div>
-<div>Dominican Republic Toll Free&nbsp;&nbsp;&nbsp; 18887514588<br>
-
-</div>
-<div>Ecuador Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800000314<br>
-
-</div>
-<div>Egypt Toll Free 08000009493<br>
-
-</div>
-<div>Estonia Toll&nbsp;&nbsp;&nbsp; &#43;3726867092<br>
-
-</div>
-<div>Estonia Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8000100708<br>
-
-</div>
-<div>Finland Toll&nbsp;&nbsp;&nbsp; &#43;3580923195770<br>
-
-</div>
-<div>Finland Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800774585<br>
-
-</div>
-<div>France Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;33272249926<br>
-
-</div>
-<div>France Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800947235<=
-br>
-
-</div>
-<div>French Guiana Toll Free 0800910113<br>
-
-</div>
-<div>Germany Toll&nbsp;&nbsp;&nbsp; &#43;4930700150733<br>
-
-</div>
-<div>Germany Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 08007238960<br>
-
-</div>
-<div>Ghana dial 0242426004&#43;&nbsp; 8553944954<br>
-
-</div>
-<div>Greece Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;302111983414<br>
-
-</div>
-<div>Greece Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 00800161220=
-59757<br>
-
-</div>
-<div>Grenada Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18003004905<br>
-
-</div>
-<div>Guatemala dial 0019999190&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 855394463=
-4<br>
-
-</div>
-<div>Honduras Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80027919493<br>
-
-</div>
-<div>Hong Kong Toll&nbsp; &#43;85230507540<br>
-
-</div>
-<div>Hong Kong Toll Free&nbsp;&nbsp;&nbsp;&nbsp; 800961673<br>
-
-</div>
-<div>Hungary Toll&nbsp;&nbsp;&nbsp; &#43;40017789124<br>
-
-</div>
-<div>Hungary Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0680015494<br>
-
-</div>
-<div>India Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;914466747384<br>
-
-</div>
-<div>India Toll Free 18002090252<br>
-
-</div>
-<div>Indonesia Toll Free&nbsp;&nbsp;&nbsp;&nbsp; 0078030114912<br>
-
-</div>
-<div>Ireland Toll&nbsp;&nbsp;&nbsp; &#43;35316539376<br>
-
-</div>
-<div>Ireland Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800948436<br>
-
-</div>
-<div>Israel Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;97233762260<br>
-
-</div>
-<div>Israel Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1809458778<=
-br>
-
-</div>
-<div>Italy Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;390200617793<br>
-
-</div>
-<div>Italy Toll Free 0800187234<br>
-
-</div>
-<div>Jamaica Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18002196874<br>
-
-</div>
-<div>Japan Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;810345786573<br>
-
-</div>
-<div>Japan Toll Free 0120525303<br>
-
-</div>
-<div>Jordan Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 080022545<b=
-r>
-
-</div>
-<div>Kenya Toll Free 0800723004<br>
-
-</div>
-<div>Latvia Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8002601<br>
-
-</div>
-<div>Lebanon dial 01426801&#43;&nbsp; 8558142511<br>
-
-</div>
-<div>Lithuania Toll&nbsp; &#43;37052054804<br>
-
-</div>
-<div>Lithuania Toll Free&nbsp;&nbsp;&nbsp;&nbsp; 880031895<br>
-
-</div>
-<div>Luxembourg Toll &#43;35228264835<br>
-
-</div>
-<div>Luxembourg Toll Free&nbsp;&nbsp;&nbsp; 80023986<br>
-
-</div>
-<div>Macedonia Toll Free&nbsp;&nbsp;&nbsp;&nbsp; 080094382<br>
-
-</div>
-<div>Malaysia Toll&nbsp;&nbsp; &#43;600377248228<br>
-
-</div>
-<div>Malta Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;35627781438<br>
-
-</div>
-<div>Malta Toll Free 80062568<br>
-
-</div>
-<div>Martinique Toll Free&nbsp;&nbsp;&nbsp; 0800910664<br>
-
-</div>
-<div>Mauritius Toll Free&nbsp;&nbsp;&nbsp;&nbsp; 8020440157<br>
-
-</div>
-<div>Mexico Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;52015515001053<br>
-
-</div>
-<div>Mexico Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 01800253054=
-7<br>
-
-</div>
-<div>Moldavia Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 080062305<br>
-
-</div>
-<div>Monaco Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80094215<br=
->
-
-</div>
-<div>Morocco dial 002110011&#43; 8558142537<br>
-
-</div>
-<div>Netherlands Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;310107=
-994621<br>
-
-</div>
-<div>Netherlands Toll Free&nbsp;&nbsp; 08000200244<br>
-
-</div>
-<div>New Zealand Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;640428=
-06288<br>
-
-</div>
-<div>New Zealand Toll Free&nbsp;&nbsp; 0800441743<br>
-
-</div>
-<div>Norway Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;4721034359<br>
-
-</div>
-<div>Norway Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80058604<br=
->
-
-</div>
-<div>Oman Toll Free&nbsp; 80074218<br>
-
-</div>
-<div>Pakistan Toll&nbsp;&nbsp; &#43;924238108753<br>
-
-</div>
-<div>Panama Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;5078323301<br>
-
-</div>
-<div>Panama Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 00800226798=
-7<br>
-
-</div>
-<div>Paraguay Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 009800110233<br>
-
-</div>
-<div>Peru Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;51017017728<br>
-
-</div>
-<div>Peru Toll Free&nbsp; 080078493<br>
-
-</div>
-<div>Philippines Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;632231=
-2145<br>
-
-</div>
-<div>Philippines Toll Free&nbsp;&nbsp; 180011101073<br>
-
-</div>
-<div>Poland Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;480223060270<br>
-
-</div>
-<div>Poland Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 800080328<b=
-r>
-
-</div>
-<div>Portugal Toll&nbsp;&nbsp; &#43;351707201563<br>
-
-</div>
-<div>Portugal Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 800788629<br>
-
-</div>
-<div>Qatar Toll Free 00800100142<br>
-
-</div>
-<div>Romania Toll&nbsp;&nbsp;&nbsp; &#43;40215291752<br>
-
-</div>
-<div>Romania Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800400068<br>
-
-</div>
-<div>Russia Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;74993504823<br>
-
-</div>
-<div>Russia Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 81080026895=
-011<br>
-
-</div>
-<div>Saudi Arabia Toll Free&nbsp; 8008442574<br>
-
-</div>
-<div>Saudi Arabia Toll Free&nbsp; 8008500370<br>
-
-</div>
-<div>Senegal dial 800103072&#43; 8558842521<br>
-
-</div>
-<div>Serbia Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800190975<=
-br>
-
-</div>
-<div>Singapore Toll&nbsp; &#43;6563494173<br>
-
-</div>
-<div>Singapore Toll Free&nbsp;&nbsp;&nbsp;&nbsp; 18005792882<br>
-
-</div>
-<div>Slovakia Toll&nbsp;&nbsp; &#43;4210268622038<br>
-
-</div>
-<div>Slovakia Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800606692<br>
-
-</div>
-<div>Slovenia Toll&nbsp;&nbsp; &#43;38618281644<br>
-
-</div>
-<div>Slovenia Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 080081438<br>
-
-</div>
-<div>South Africa Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;27021427797=
-2<br>
-
-</div>
-<div>South Africa Toll Free&nbsp; 0800994623<br>
-
-</div>
-<div>South Korea Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;827074=
-882482<br>
-
-</div>
-<div>South Korea Toll Free&nbsp;&nbsp; 00308132034<br>
-
-</div>
-<div>Spain Mobile&nbsp;&nbsp;&nbsp; 900-828-467<br>
-
-</div>
-<div>Spain Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;34935451755<br>
-
-</div>
-<div>Spain Toll Free 900828467<br>
-
-</div>
-<div>Sri Lanka Toll&nbsp; &#43;94720910363<br>
-
-</div>
-<div>Sweden Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;460114966619<br>
-
-</div>
-<div>Sweden Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0201409738<=
-br>
-
-</div>
-<div>Switzerland Toll&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;414345=
-69403<br>
-
-</div>
-<div>Switzerland Toll Free&nbsp;&nbsp; 800740310<br>
-
-</div>
-<div>Taiwan Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;8860287933075<br>
-
-</div>
-<div>Taiwan Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800868159<=
-br>
-
-</div>
-<div>Thailand Toll&nbsp;&nbsp; &#43;6621040574<br>
-
-</div>
-<div>Thailand Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0018001562038778<br>
-
-</div>
-<div>Trinidad and Tobago Toll Free&nbsp;&nbsp; 18002038778<br>
-
-</div>
-<div>Turkey Toll&nbsp;&nbsp;&nbsp;&nbsp; &#43;902129003723<br>
-
-</div>
-<div>Turks &amp; Caicos Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- 18003000086<br>
-
-</div>
-<div>UK Toll &#43;442030144000<br>
-
-</div>
-<div>UK Toll Free&nbsp;&nbsp;&nbsp; 08005283819<br>
-
-</div>
-<div>Ukraine Toll&nbsp;&nbsp;&nbsp; &#43;380893240452<br>
-
-</div>
-<div>Ukraine Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800503625<br>
-
-</div>
-<div>United Arab Emirates Toll Free&nbsp; 800035703321<br>
-
-</div>
-<div>Uruguay Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 00040190461<br>
-
-</div>
-<div>Venezuela Toll Free&nbsp;&nbsp;&nbsp;&nbsp; 08001004189<br>
-
-</div>
-<div>Vietnam Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12065242<br>
-
-</div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7311EC6fmsmsx111amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=CANCEL
+--_000_F00472646A354DCA912E222FB22F034Fcommscopecom_
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6Q0FOQ0VMDQpQUk9ESUQ6TWljcm9zb2Z0IEV4Y2hhbmdl
-IFNlcnZlciAyMDEwDQpWRVJTSU9OOjIuMA0KQkVHSU46VlRJTUVaT05FDQpUWklEOlBhY2lmaWMg
-U3RhbmRhcmQgVGltZQ0KQkVHSU46U1RBTkRBUkQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpU
-Wk9GRlNFVEZST006LTA3MDANClRaT0ZGU0VUVE86LTA4MDANClJSVUxFOkZSRVE9WUVBUkxZO0lO
-VEVSVkFMPTE7QllEQVk9MVNVO0JZTU9OVEg9MTENCkVORDpTVEFOREFSRA0KQkVHSU46REFZTElH
-SFQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpUWk9GRlNFVEZST006LTA4MDANClRaT0ZGU0VU
-VE86LTA3MDANClJSVUxFOkZSRVE9WUVBUkxZO0lOVEVSVkFMPTE7QllEQVk9MlNVO0JZTU9OVEg9
-Mw0KRU5EOkRBWUxJR0hUDQpFTkQ6VlRJTUVaT05FDQpCRUdJTjpWRVZFTlQNCk9SR0FOSVpFUjtD
-Tj0iSm9sbGV5LCBTdGVwaGVuIEsiOk1BSUxUTzpzdGVwaGVuLmsuam9sbGV5QGludGVsLmNvbQ0K
-QVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9
-VFJVRTtDTj15b2N0b0B5b2N0DQogb3Byb2plY3Qub3JnOk1BSUxUTzp5b2N0b0B5b2N0b3Byb2pl
-Y3Qub3JnDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJ
-T047UlNWUD1UUlVFO0NOPU9UQyBFbWJlZGQNCiBlZCBBbGw6TUFJTFRPOm90Yy5lbWJlZGRlZC5h
-bGxAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVE
-Uy1BQ1RJT047UlNWUD1UUlVFO0NOPSJDZXRvbGEsIFN0DQogZXBoYW5vIjpNQUlMVE86c3RlcGhh
-bm8uY2V0b2xhQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFSVElDSVBBTlQ7UEFSVFNU
-QVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iU3Rld2FydCwgRA0KIGF2aWQgQyI6TUFJTFRP
-OmRhdmlkLmMuc3Rld2FydEBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5U
-O1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049J01hbmp1a3VtYQ0KIHIgSGFydGhp
-a290ZSBNYXRoYSc6TUFJTFRPOk1BTkpVS1VNQHhpbGlueC5jb20NCkFUVEVOREVFO1JPTEU9T1BU
-LVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkVyd2F5LCBU
-cmENCiBjZXkgTSI6TUFJTFRPOnRyYWNleS5tLmVyd2F5QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9M
-RT1PUFQtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTXVl
-bGxlciwgUg0KIG9iZXJ0IjpNQUlMVE86cm9iZXJ0Lm11ZWxsZXJAaW50ZWwuY29tDQpBVFRFTkRF
-RTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NO
-PSJKb3JkYW4sIFJvDQogYmluIEwiOk1BSUxUTzpyb2Jpbi5sLmpvcmRhbkBpbnRlbC5jb20NCkFU
-VEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRS
-VUU7Q049Ik1vc2VzLCBGcmUNCiBkIjpNQUlMVE86ZnJlZC5tb3Nlc0BpbnRlbC5jb20NCkFUVEVO
-REVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7
-Q049QXJhdmluZGhsYQ0KIGwgRy5TLlM6TUFJTFRPOmFyYXZpbmRobGFsZ3NzQGVtYmVkdXIuY29t
-DQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNW
-UD1UUlVFO0NOPSJPcmxpbmcsIFRpDQogbW90aHkgVCI6TUFJTFRPOnRpbW90aHkudC5vcmxpbmdA
-aW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1B
-Q1RJT047UlNWUD1UUlVFO0NOPSJNYWNMZW9kLCBSDQogYW5keSAoV2luZCBSaXZlcikiOk1BSUxU
-TzpyYW5keS5tYWNsZW9kQHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQ
-QU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkJvZGtlLCBLaXMNCiBob3Jl
-IEsiOk1BSUxUTzpraXNob3JlLmsuYm9ka2VAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1Q
-QVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdNaWNoYWVsIEwN
-CiBpbSc6TUFJTFRPOnlvdWhvdXJAdXMuaWJtLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFSVElD
-SVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iQW5nLCBDaGluIA0KIEh1
-YXQiOk1BSUxUTzpjaGluLmh1YXQuYW5nQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFS
-VElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iQ2hhbiwgQWFybw0K
-IG4gQ2h1biBZZXciOk1BSUxUTzphYXJvbi5jaHVuLnlldy5jaGFuQGludGVsLmNvbQ0KQVRURU5E
-RUU7Uk9MRT1PUFQtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtD
-Tj1WaWduZXNoIFJhDQogamVuZHJhbiAoUkJFSS9FQ0YzKTpNQUlMVE86VmlnbmVzaC5SYWplbmRy
-YW5AaW4uYm9zY2guY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
-RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPUlEIC0gRGF2aWQNCiAgVG9ycmVzOk1BSUxUTzpkdG9y
-cmVzQGZlcm1heC5jb20NCkRFU0NSSVBUSU9OO0xBTkdVQUdFPWVuLVVTOldlIGVuY291cmFnZSBw
-ZW9wbGUgYXR0ZW5kaW5nIHRoZSBtZWV0aW5nIHRvIGxvZw0KIG9uIGFuZCBhbm5vdW5jZSB0aGVt
-c2VsdmVzIG9uIHRoZSBZb2N0byBQcm9qZWN0IElSQyBjaGFuY2VsIGR1cmluZyB0aGUgbWVlDQog
-dGluZyAob3B0aW9uYWwpOlxuXG5cbllvY3RvIElSQzogaHR0cDovL3dlYmNoYXQuZnJlZW5vZGUu
-bmV0Lz9jaGFubmVscz0jeW8NCiBjdG9cblxuSVJDIFR1dG9yaWFsOiBodHRwOi8vd3d3LmlyY2hl
-bHAub3JnL2lyY2hlbHAvaXJjdHV0b3JpYWwuaHRtbFxuXG5odA0KIHRwczovL3d3dy55b2N0b3By
-b2plY3Qub3JnL21vbnRobHktdGVjaG5pY2FsLWNhbGwvXG5cblxuQ29uZmVyZW5jZSBEZXRhaWxz
-DQogOlxuXG5Db21wYW55OiAgICAgICAgICAgV0lORCBSSVZFUiBTWVNcblxuLSBkaWFsIGludG86
-IDEtODAwLTI2Mi0wNzc4LzQwNC0NCiAzOTctMTUyN1xuXG4tIGVudGVyIHRoZSBicmlkZ2UgbnVt
-YmVyOiA4ODc0ODk2MSNcblxuXG5UaGUgaW50ZXJuYXRpb25hbCBudQ0KIG1iZXJzIGFyZTpcblxu
-XG5Vbml0ZWQgU3RhdGVzIFRvbGwgICAgICA0MDQtMzk3LTE1MjdcblxuVVMgJiBDYW5hZGEgVG9s
-bCBGDQogcmVlICAgODAwLTI2Mi0wNzc4XG5cbkFsYmFuaWEgZGlhbCAwMDgwMDAwMTArIDg1NTgx
-NDI1MDlcblxuQW5nb2xhIGRpYWwgODANCiA4MDAwMDExKyAgODU1ODE0MjUxMFxuXG5Bbmd1aWxs
-YSBUb2xsIEZyZWUgICAgICAxODAwMzAwNDc3OVxuXG5BcmdlbnRpbmEgVA0KIG9sbCAgKzU0MTE1
-OTg0NDU4M1xuXG5BcmdlbnRpbmEgVG9sbCBGcmVlICAgICAwODAwNDQ0NjM1NFxuXG5BdXN0cmFs
-aWEgVG9sDQogbCAgKzYxMDM4NjU4MDQzMVxuXG5BdXN0cmFsaWEgVG9sbCBGcmVlICAgICAxODAw
-MzQ3MDk1XG5cbkF1c3RyaWEgVG9sbCBGcmUNCiBlICAgICAgIDA4MDA4ODY2ODQ5OFxuXG5CYWhh
-bWFzIFRvbGwgRnJlZSAgICAgICAxODAwMzg5MDc0MFxuXG5CYWhyYWluIFRvbA0KIGwgRnJlZSAg
-ICAgICA4MDAwNjc3MFxuXG5CYW5nbGFkZXNoIGRpYWwgMTU3MDAxMSsgICAgICAgIDg1NTgxNDI1
-MDVcblxuQmFyDQogYmFkb3MgVG9sbCBGcmVlICAgICAgMTgwMDIwNzAwNTZcblxuQmVsYXJ1cyBU
-b2xsIEZyZWUgICAgICAgODgyMDAwMTEwODEzXG4NCiBcbkJlbGdpdW0gVG9sbCAgICArMzIyNzky
-NTQ5OFxuXG5CZWxnaXVtIFRvbGwgRnJlZSAgICAgICAwODAwMjk4OTZcblxuQmVsaQ0KIHplIFRv
-bGwgRnJlZSAgICAgICAgMTgwMDAxMzA5MDdcblxuQmVybXVkYSBUb2xsIGZyZWUgICAgICAgMTgw
-MDIwNzI3OTJcblxuDQogQm90c3dhbmEgVG9sbCBGcmVlICAgICAgMDAyNjk4MDAzMDA0OTgxXG5c
-bkJyYXppbCBUb2xsICAgICArNTUwMTE0OTQ5NzQ4OVwNCiBuXG5CcmF6aWwgVG9sbCBGcmVlICAg
-ICAgICAwODAwODkxOTg4NVxuXG5Ccml0aXNoIFZpcmdpbiBJc2xhbmRzIFRvbGwgRnJlZQ0KICAg
-ICAgICAgMTgwMDIwNzU3MTBcblxuQnJ1bmVpIFRvbGwgRnJlZSAgICAgICAgODAxNDM3M1xuXG5C
-dWxnYXJpYSBUb2xsICAgDQogKzM1OTAyNDkxNjM3MVxuXG5CdWxnYXJpYSBUb2xsIEZyZWUgICAg
-ICAwMDgwMDEyMDExNzBcblxuQ2FtYm9kaWEgVG9sbCBGcmUNCiBlICAgICAgMTgwMDIwOTU3OFxu
-XG5DYW1ib2RpYSBUb2xsIEZyZWUgICAgICAxODAwMjA5MzYxXG5cbkNhbmFkYSBUb2xsICAgIA0K
-ICArMTQxNjk4MTAxMDFcblxuQ2F5bWFuIGlzbGFuZHMgVG9sbCBGcmVlICAgICAgICAxODQ0NDMw
-NTc3MVxuXG5DaGlsZSBUb2xsDQogICAgICAgKzU2NDQyMDgwODM2XG5cbkNoaWxlIFRvbGwgRnJl
-ZSAxMjMwMDIwNjE0M1xuXG5DaGluYSBUb2xsIEZyZWUgNDAwMDMNCiA0MjA3MFxuXG5DaGluYSBU
-b2xsIEZyZWUgODAwODcwOTg1M1xuXG5DaGluYSBUb2xsIEZyZWUgNDAwODg3NzE0MFxuXG5DaGlu
-YQ0KICBUb2xsIEZyZWUgODAwODc2ODYwNVxuXG5Db2xvbWJpYSBUb2xsICAgKzU3MTQ4NjQ3MjBc
-blxuQ29sb21iaWEgVG9sbCBGcmVlDQogICAgICAgMTgwMDAxMjk2NzFcblxuQ29zdGEgUmljYSBU
-b2xsIDQwMDE3NDE1XG5cbkNyb2F0aWEgVG9sbCAgICArMzg1MTc3NzYNCiA4MzhcblxuQ3JvYXRp
-YSBUb2xsIEZyZWUgICAgICAgMDgwMDk5NzVcblxuQ3ViYSBkaWFsIDI5MzUrIDg1NTgxNDI1NDBc
-blxuQw0KIHlwcnVzIFRvbGwgRnJlZSAgICAgICAgODAwOTY4NzdcblxuQ3plY2ggUmVwdWJsaWMg
-VG9sbCBGcmVlICAgICAgICAwODAwNzAxDQogNDc2XG5cbkRlbm1hcmsgVG9sbCAgICArNDUzNjky
-Nzk0MFxuXG5EZW5tYXJrIFRvbGwgRnJlZSAgICAgICA4MDI1MTIwOVxuXG4NCiBEb21pbmljYSBU
-b2xsIEZyZWUgICAgICAxODAwMzAwNDkwNFxuXG5Eb21pbmljYW4gUmVwdWJsaWMgVG9sbCBGcmVl
-ICAgIDE4OA0KIDg3NTE0NTg4XG5cbkVjdWFkb3IgVG9sbCBGcmVlICAgICAgIDE4MDAwMDAzMTRc
-blxuRWd5cHQgVG9sbCBGcmVlIDA4MDAwMDA5DQogNDkzXG5cbkVzdG9uaWEgVG9sbCAgICArMzcy
-Njg2NzA5MlxuXG5Fc3RvbmlhIFRvbGwgRnJlZSAgICAgICA4MDAwMTAwNzA4XG4NCiBcbkZpbmxh
-bmQgVG9sbCAgICArMzU4MDkyMzE5NTc3MFxuXG5GaW5sYW5kIFRvbGwgRnJlZSAgICAgICAwODAw
-Nzc0NTg1XG5cbg0KIEZyYW5jZSBUb2xsICAgICArMzMyNzIyNDk5MjZcblxuRnJhbmNlIFRvbGwg
-RnJlZSAgICAgICAgMDgwMDk0NzIzNVxuXG5GcmVuDQogY2ggR3VpYW5hIFRvbGwgRnJlZSAwODAw
-OTEwMTEzXG5cbkdlcm1hbnkgVG9sbCAgICArNDkzMDcwMDE1MDczM1xuXG5HZXJtYW4NCiB5IFRv
-bGwgRnJlZSAgICAgICAwODAwNzIzODk2MFxuXG5HaGFuYSBkaWFsIDAyNDI0MjYwMDQrICA4NTUz
-OTQ0OTU0XG5cbkdyZQ0KIGVjZSBUb2xsICAgICArMzAyMTExOTgzNDE0XG5cbkdyZWVjZSBUb2xs
-IEZyZWUgICAgICAgIDAwODAwMTYxMjIwNTk3NTdcblxuDQogR3JlbmFkYSBUb2xsIEZyZWUgICAg
-ICAgMTgwMDMwMDQ5MDVcblxuR3VhdGVtYWxhIGRpYWwgMDAxOTk5OTE5MCsgICAgICA4NTUNCiAz
-OTQ0NjM0XG5cbkhvbmR1cmFzIFRvbGwgRnJlZSAgICAgIDgwMDI3OTE5NDkzXG5cbkhvbmcgS29u
-ZyBUb2xsICArODUyMzA1MA0KIDc1NDBcblxuSG9uZyBLb25nIFRvbGwgRnJlZSAgICAgODAwOTYx
-NjczXG5cbkh1bmdhcnkgVG9sbCAgICArNDAwMTc3ODkxMjRcDQogblxuSHVuZ2FyeSBUb2xsIEZy
-ZWUgICAgICAgMDY4MDAxNTQ5NFxuXG5JbmRpYSBUb2xsICAgICAgKzkxNDQ2Njc0NzM4NFxuXG4N
-CiBJbmRpYSBUb2xsIEZyZWUgMTgwMDIwOTAyNTJcblxuSW5kb25lc2lhIFRvbGwgRnJlZSAgICAg
-MDA3ODAzMDExNDkxMlxuXG5Jcg0KIGVsYW5kIFRvbGwgICAgKzM1MzE2NTM5Mzc2XG5cbklyZWxh
-bmQgVG9sbCBGcmVlICAgICAgIDE4MDA5NDg0MzZcblxuSXNyYWVsDQogIFRvbGwgICAgICs5NzIz
-Mzc2MjI2MFxuXG5Jc3JhZWwgVG9sbCBGcmVlICAgICAgICAxODA5NDU4Nzc4XG5cbkl0YWx5IFRv
-bGwNCiAgICAgICArMzkwMjAwNjE3NzkzXG5cbkl0YWx5IFRvbGwgRnJlZSAwODAwMTg3MjM0XG5c
-bkphbWFpY2EgVG9sbCBGcmVlICAgIA0KICAgIDE4MDAyMTk2ODc0XG5cbkphcGFuIFRvbGwgICAg
-ICArODEwMzQ1Nzg2NTczXG5cbkphcGFuIFRvbGwgRnJlZSAwMTIwNTI1DQogMzAzXG5cbkpvcmRh
-biBUb2xsIEZyZWUgICAgICAgIDA4MDAyMjU0NVxuXG5LZW55YSBUb2xsIEZyZWUgMDgwMDcyMzAw
-NFxuXG4NCiBMYXR2aWEgVG9sbCBGcmVlICAgICAgICA4MDAyNjAxXG5cbkxlYmFub24gZGlhbCAw
-MTQyNjgwMSsgIDg1NTgxNDI1MTFcblxuTA0KIGl0aHVhbmlhIFRvbGwgICszNzA1MjA1NDgwNFxu
-XG5MaXRodWFuaWEgVG9sbCBGcmVlICAgICA4ODAwMzE4OTVcblxuTHV4ZW1iDQogb3VyZyBUb2xs
-ICszNTIyODI2NDgzNVxuXG5MdXhlbWJvdXJnIFRvbGwgRnJlZSAgICA4MDAyMzk4NlxuXG5NYWNl
-ZG9uaWEgVG8NCiBsbCBGcmVlICAgICAwODAwOTQzODJcblxuTWFsYXlzaWEgVG9sbCAgICs2MDAz
-NzcyNDgyMjhcblxuTWFsdGEgVG9sbCAgICAgIA0KICszNTYyNzc4MTQzOFxuXG5NYWx0YSBUb2xs
-IEZyZWUgODAwNjI1NjhcblxuTWFydGluaXF1ZSBUb2xsIEZyZWUgICAgMDgwMDkxDQogMDY2NFxu
-XG5NYXVyaXRpdXMgVG9sbCBGcmVlICAgICA4MDIwNDQwMTU3XG5cbk1leGljbyBUb2xsICAgICAr
-NTIwMTU1MTUwMDENCiAwNTNcblxuTWV4aWNvIFRvbGwgRnJlZSAgICAgICAgMDE4MDAyNTMwNTQ3
-XG5cbk1vbGRhdmlhIFRvbGwgRnJlZSAgICAgIDA4MA0KIDA2MjMwNVxuXG5Nb25hY28gVG9sbCBG
-cmVlICAgICAgICA4MDA5NDIxNVxuXG5Nb3JvY2NvIGRpYWwgMDAyMTEwMDExKyA4NTU4DQogMTQy
-NTM3XG5cbk5ldGhlcmxhbmRzIFRvbGwgICAgICAgICszMTAxMDc5OTQ2MjFcblxuTmV0aGVybGFu
-ZHMgVG9sbCBGcmVlICANCiAgMDgwMDAyMDAyNDRcblxuTmV3IFplYWxhbmQgVG9sbCAgICAgICAg
-KzY0MDQyODA2Mjg4XG5cbk5ldyBaZWFsYW5kIFRvbGwgRg0KIHJlZSAgIDA4MDA0NDE3NDNcblxu
-Tm9yd2F5IFRvbGwgICAgICs0NzIxMDM0MzU5XG5cbk5vcndheSBUb2xsIEZyZWUgICAgICAgDQog
-IDgwMDU4NjA0XG5cbk9tYW4gVG9sbCBGcmVlICA4MDA3NDIxOFxuXG5QYWtpc3RhbiBUb2xsICAg
-KzkyNDIzODEwODc1M1xuXG4NCiBQYW5hbWEgVG9sbCAgICAgKzUwNzgzMjMzMDFcblxuUGFuYW1h
-IFRvbGwgRnJlZSAgICAgICAgMDA4MDAyMjY3OTg3XG5cblBhcg0KIGFndWF5IFRvbGwgRnJlZSAg
-ICAgIDAwOTgwMDExMDIzM1xuXG5QZXJ1IFRvbGwgICAgICAgKzUxMDE3MDE3NzI4XG5cblBlcnUg
-DQogVG9sbCBGcmVlICAwODAwNzg0OTNcblxuUGhpbGlwcGluZXMgVG9sbCAgICAgICAgKzYzMjIz
-MTIxNDVcblxuUGhpbGlwcGluZXMNCiAgVG9sbCBGcmVlICAgMTgwMDExMTAxMDczXG5cblBvbGFu
-ZCBUb2xsICAgICArNDgwMjIzMDYwMjcwXG5cblBvbGFuZCBUb2xsIA0KIEZyZWUgICAgICAgIDgw
-MDA4MDMyOFxuXG5Qb3J0dWdhbCBUb2xsICAgKzM1MTcwNzIwMTU2M1xuXG5Qb3J0dWdhbCBUb2xs
-IEZyDQogZWUgICAgICA4MDA3ODg2MjlcblxuUWF0YXIgVG9sbCBGcmVlIDAwODAwMTAwMTQyXG5c
-blJvbWFuaWEgVG9sbCAgICArNDAyMTUNCiAyOTE3NTJcblxuUm9tYW5pYSBUb2xsIEZyZWUgICAg
-ICAgMDgwMDQwMDA2OFxuXG5SdXNzaWEgVG9sbCAgICAgKzc0OTkzNTA0OA0KIDIzXG5cblJ1c3Np
-YSBUb2xsIEZyZWUgICAgICAgIDgxMDgwMDI2ODk1MDExXG5cblNhdWRpIEFyYWJpYSBUb2xsIEZy
-ZWUgIDgwDQogMDg0NDI1NzRcblxuU2F1ZGkgQXJhYmlhIFRvbGwgRnJlZSAgODAwODUwMDM3MFxu
-XG5TZW5lZ2FsIGRpYWwgODAwMTAzMDcyKyANCiA4NTU4ODQyNTIxXG5cblNlcmJpYSBUb2xsIEZy
-ZWUgICAgICAgIDA4MDAxOTA5NzVcblxuU2luZ2Fwb3JlIFRvbGwgICs2NTYzNA0KIDk0MTczXG5c
-blNpbmdhcG9yZSBUb2xsIEZyZWUgICAgIDE4MDA1NzkyODgyXG5cblNsb3Zha2lhIFRvbGwgICAr
-NDIxMDI2ODYyDQogMjAzOFxuXG5TbG92YWtpYSBUb2xsIEZyZWUgICAgICAwODAwNjA2NjkyXG5c
-blNsb3ZlbmlhIFRvbGwgICArMzg2MTgyODE2NDQNCiBcblxuU2xvdmVuaWEgVG9sbCBGcmVlICAg
-ICAgMDgwMDgxNDM4XG5cblNvdXRoIEFmcmljYSBUb2xsICAgICAgICsyNzAyMTQyNw0KIDc5NzJc
-blxuU291dGggQWZyaWNhIFRvbGwgRnJlZSAgMDgwMDk5NDYyM1xuXG5Tb3V0aCBLb3JlYSBUb2xs
-ICAgICAgICArODI3DQogMDc0ODgyNDgyXG5cblNvdXRoIEtvcmVhIFRvbGwgRnJlZSAgIDAwMzA4
-MTMyMDM0XG5cblNwYWluIE1vYmlsZSAgICA5MDAtODINCiA4LTQ2N1xuXG5TcGFpbiBUb2xsICAg
-ICAgKzM0OTM1NDUxNzU1XG5cblNwYWluIFRvbGwgRnJlZSA5MDA4Mjg0NjdcblxuU3JpIA0KIExh
-bmthIFRvbGwgICs5NDcyMDkxMDM2M1xuXG5Td2VkZW4gVG9sbCAgICAgKzQ2MDExNDk2NjYxOVxu
-XG5Td2VkZW4gVG9sbCBGDQogcmVlICAgICAgICAwMjAxNDA5NzM4XG5cblN3aXR6ZXJsYW5kIFRv
-bGwgICAgICAgICs0MTQzNDU2OTQwM1xuXG5Td2l0emVybGENCiBuZCBUb2xsIEZyZWUgICA4MDA3
-NDAzMTBcblxuVGFpd2FuIFRvbGwgICAgICs4ODYwMjg3OTMzMDc1XG5cblRhaXdhbiBUb2xsIA0K
-IEZyZWUgICAgICAgIDA4MDA4NjgxNTlcblxuVGhhaWxhbmQgVG9sbCAgICs2NjIxMDQwNTc0XG5c
-blRoYWlsYW5kIFRvbGwgRnJlDQogZSAgICAgIDAwMTgwMDE1NjIwMzg3NzhcblxuVHJpbmlkYWQg
-YW5kIFRvYmFnbyBUb2xsIEZyZWUgICAxODAwMjAzODc3OFxuXG4NCiBUdXJrZXkgVG9sbCAgICAg
-KzkwMjEyOTAwMzcyM1xuXG5UdXJrcyAmIENhaWNvcyBUb2xsIEZyZWUgICAgICAgIDE4MDAzMDAw
-MA0KIDg2XG5cblVLIFRvbGwgKzQ0MjAzMDE0NDAwMFxuXG5VSyBUb2xsIEZyZWUgICAgMDgwMDUy
-ODM4MTlcblxuVWtyYWluZSBUb2xsDQogICAgICszODA4OTMyNDA0NTJcblxuVWtyYWluZSBUb2xs
-IEZyZWUgICAgICAgMDgwMDUwMzYyNVxuXG5Vbml0ZWQgQXJhYiBFbWkNCiByYXRlcyBUb2xsIEZy
-ZWUgIDgwMDAzNTcwMzMyMVxuXG5VcnVndWF5IFRvbGwgRnJlZSAgICAgICAwMDA0MDE5MDQ2MVxu
-XG5WZQ0KIG5lenVlbGEgVG9sbCBGcmVlICAgICAwODAwMTAwNDE4OVxuXG5WaWV0bmFtIFRvbGwg
-RnJlZSAgICAgICAxMjA2NTI0MlxuXG5cDQogblxuDQpTVU1NQVJZO0xBTkdVQUdFPWVuLVVTOkNh
-bmNlbGVkOiBZb2N0byBQcm9qZWN0IFRlY2huaWNhbCBUZWFtIE1lZXRpbmcNCkRUU1RBUlQ7VFpJ
-RD1QYWNpZmljIFN0YW5kYXJkIFRpbWU6MjAxODA2MDVUMDgwMDAwDQpEVEVORDtUWklEPVBhY2lm
-aWMgU3RhbmRhcmQgVGltZToyMDE4MDYwNVQwODMwMDANClVJRDowNDAwMDAwMDgyMDBFMDAwNzRD
-NUI3MTAxQTgyRTAwODAwMDAwMDAwRTA2NkZCNkQ0QkU4RDMwMTAwMDAwMDAwMDAwMDAwMA0KIDAx
-MDAwMDAwMDExODM4NDBBRUE1MDEzNDU5ODE0OTEzQUQ4REMzMzExDQpSRUNVUlJFTkNFLUlEO1Ra
-SUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTgwNjA1VDA4MDAwMA0KQ0xBU1M6UFVCTElDDQpQ
-UklPUklUWToxDQpEVFNUQU1QOjIwMTgwNTI0VDIxNTUyOVoNClRSQU5TUDpPUEFRVUUNClNUQVRV
-UzpDQU5DRUxMRUQNClNFUVVFTkNFOjINCkxPQ0FUSU9OO0xBTkdVQUdFPWVuLVVTOkJyaWRnZSBJ
-bmZvIEVuY2xvc2VkDQpYLU1JQ1JPU09GVC1DRE8tQVBQVC1TRVFVRU5DRToyDQpYLU1JQ1JPU09G
-VC1DRE8tT1dORVJBUFBUSUQ6NzQwOTcyNTE0DQpYLU1JQ1JPU09GVC1DRE8tQlVTWVNUQVRVUzpG
-UkVFDQpYLU1JQ1JPU09GVC1DRE8tSU5URU5ERURTVEFUVVM6RlJFRQ0KWC1NSUNST1NPRlQtQ0RP
-LUFMTERBWUVWRU5UOkZBTFNFDQpYLU1JQ1JPU09GVC1DRE8tSU1QT1JUQU5DRToyDQpYLU1JQ1JP
-U09GVC1DRE8tSU5TVFRZUEU6Mw0KWC1NSUNST1NPRlQtRElTQUxMT1ctQ09VTlRFUjpGQUxTRQ0K
-RU5EOlZFVkVOVA0KRU5EOlZDQUxFTkRBUg0K
+SeKAmW0gYnVpbGRpbmcgYSBsaW51eCBpbWFnZSB3aXRoIGFuIGluaXRyYW1mcyBhbmQgYSBzZWN1
+cmUgcm9vdCBmaWxlIHN5c3RlbSB1c2luZyBhIGRtdmVyaXR5IGhhc2ggdGFibGUuICBJIHdhbnQg
+dG8gaW5jbHVkZSB0aGUgZG12ZXJpdHkgcm9vdCBoYXNoIGluIHRoZSBpbml0cmFtZnMuICBXaGVu
+IGJ1aWxkaW5nIGEgeW9jdG8gaW1hZ2UsIHNheSBjb3JlLWltYWdlLW1pbmltYWwsIHdpdGggYW4g
+aW5pdHJhbWZzLCB0aGUgaW5pdHJhbWZzIGlzIGJ1aWx0IGJlZm9yZSB0aGUgY29yZS1pbWFnZS1t
+aW5pbWFsIGltYWdlIGlzIGRlcGxveWVkLiAgV2hhdCBJIHdvdWxkIGxpa2UgaXMgYSBidWlsZCBv
+cmRlciBsaWtlOg0KDQpEZXNpcmVkOiBiaXRiYWtlIGNvcmUtaW1hZ2UtbWluaW1hbA0KDQoNCiAg
+MS4gIGJ1aWxkIGFsbCByb290ZnMgcGFja2FnZXMNCiAgMi4gIGRlcGxveSB0aGUgcm9vdGZzDQog
+IDMuICBidWlsZCB0aGUgaW5pdHJhbWZzDQogIDQuICBidWlsZCB0aGUga2VybmVsDQogIDUuICBi
+dWlsZCB0aGUgZml0aW1hZ2UNCg0KT2JzZXJ2ZWQ6IGJpdGJha2UgY29yZS1pbWFnZS1taW5pbWFs
+DQoNCg0KICAxLiAgYnVpbGQgYWxsIHJvb3RmcyBwYWNrYWdlcw0KICAyLiAgYnVpbGQgdGhlIGlu
+aXRyYW1mcw0KICAzLiAgYnVpbGQgdGhlIGtlcm5lbA0KICA0LiAgZGVwbG95IHRoZSByb290ZnMN
+CiAgNS4gIGJ1aWxkIHRoZSBmaXRpbWFnZQ0KDQpJZiB0aGUgaW5pdHJhbWZzIGlzIGJ1aWx0IGJl
+Zm9yZSB0aGUgcm9vdGZzIGlzIGRlcGxveWVkLCBJIGNhbm5vdCBpbmNsdWRlIHRoZSByb290IGhh
+c2ggaW4gdGhlIGluaXRyYW1mcyBpbWFnZS4NCg0KSeKAmW0gaG9waW5nIHNvbWVvbmUgY2FuIHRl
+bGwgbWUgYSBiZXR0ZXIgd2F5Lg0KDQpUaGFua3MNClJpY2gNCg==
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7311EC6fmsmsx111amrcor_--
+--_000_F00472646A354DCA912E222FB22F034Fcommscopecom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <FA05AC6C99BF5148AC4F1EB3D2D7BA6D@namprd06.prod.outlook.com>
+Content-Transfer-Encoding: base64
+
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseTpXaW5nZGluZ3M7DQoJcGFub3NlLTE6NSAwIDAgMCAwIDAgMCAwIDAg
+MDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0x
+OjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJp
+Ow0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25z
+ICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjow
+aW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1m
+YW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0K
+CXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6IzA1NjNDMTsNCgl0ZXh0LWRlY29yYXRp
+b246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXtt
+c28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Izk1NEY3MjsNCgl0ZXh0LWRlY29yYXRpb246
+dW5kZXJsaW5lO30NCnAuTXNvTGlzdFBhcmFncmFwaCwgbGkuTXNvTGlzdFBhcmFncmFwaCwgZGl2
+Lk1zb0xpc3RQYXJhZ3JhcGgNCgl7bXNvLXN0eWxlLXByaW9yaXR5OjM0Ow0KCW1hcmdpbi10b3A6
+MGluOw0KCW1hcmdpbi1yaWdodDowaW47DQoJbWFyZ2luLWJvdHRvbTowaW47DQoJbWFyZ2luLWxl
+ZnQ6LjVpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglm
+b250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXtt
+c28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixz
+YW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0
+eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7
+fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBp
+biAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rp
+b24xO30NCi8qIExpc3QgRGVmaW5pdGlvbnMgKi8NCkBsaXN0IGwwDQoJe21zby1saXN0LWlkOjc3
+NTQ0NzI0MDsNCgltc28tbGlzdC10eXBlOmh5YnJpZDsNCgltc28tbGlzdC10ZW1wbGF0ZS1pZHM6
+LTE1NTE4ODk3MDYgNjc2OTg3MDMgNjc2OTg2OTEgNjc2OTg2OTMgNjc2OTg2ODkgNjc2OTg2OTEg
+Njc2OTg2OTMgNjc2OTg2ODkgNjc2OTg2OTEgNjc2OTg2OTM7fQ0KQGxpc3QgbDA6bGV2ZWwxDQoJ
+e21zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVm
+dDsNCgl0ZXh0LWluZGVudDotLjI1aW47fQ0KQGxpc3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC1u
+dW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWIt
+c3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVu
+dDotLjI1aW47DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpAbGlzdCBsMDpsZXZlbDMN
+Cgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CpzsN
+Cgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxl
+ZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlz
+dCBsMDpsZXZlbDQNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZl
+bC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVy
+LXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OlN5bWJv
+bDt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0K
+CW1zby1sZXZlbC10ZXh0Om87DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVs
+LW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWls
+eToiQ291cmllciBOZXciO30NCkBsaXN0IGwwOmxldmVsNg0KCXttc28tbGV2ZWwtbnVtYmVyLWZv
+cm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674KnOw0KCW1zby1sZXZlbC10YWItc3RvcDpu
+b25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1
+aW47DQoJZm9udC1mYW1pbHk6V2luZ2RpbmdzO30NCkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2
+ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZl
+bC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0
+LWluZGVudDotLjI1aW47DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsOA0K
+CXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6bzsNCglt
+c28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7
+DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxp
+c3QgbDA6bGV2ZWw5DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2
+ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJl
+ci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCglmb250LWZhbWlseTpXaW5n
+ZGluZ3M7fQ0KQGxpc3QgbDENCgl7bXNvLWxpc3QtaWQ6MTI5NDc0OTA1NzsNCgltc28tbGlzdC10
+eXBlOmh5YnJpZDsNCgltc28tbGlzdC10ZW1wbGF0ZS1pZHM6MTIwNTUzMzAyNiA2NzY5ODcwMyA2
+NzY5ODcxMyA2NzY5ODcxNSA2NzY5ODcwMyA2NzY5ODcxMyA2NzY5ODcxNSA2NzY5ODcwMyA2NzY5
+ODcxMyA2NzY5ODcxNTt9DQpAbGlzdCBsMTpsZXZlbDENCgl7bXNvLWxldmVsLXRhYi1zdG9wOm5v
+bmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVp
+bjt9DQpAbGlzdCBsMTpsZXZlbDINCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YWxwaGEtbG93
+ZXI7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlv
+bjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjt9DQpAbGlzdCBsMTpsZXZlbDMNCgl7bXNvLWxl
+dmVsLW51bWJlci1mb3JtYXQ6cm9tYW4tbG93ZXI7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7
+DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpyaWdodDsNCgl0ZXh0LWluZGVudDotOS4wcHQ7
+fQ0KQGxpc3QgbDE6bGV2ZWw0DQoJe21zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZl
+bC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47fQ0KQGxpc3QgbDE6
+bGV2ZWw1DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmFscGhhLWxvd2VyOw0KCW1zby1sZXZl
+bC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0
+LWluZGVudDotLjI1aW47fQ0KQGxpc3QgbDE6bGV2ZWw2DQoJe21zby1sZXZlbC1udW1iZXItZm9y
+bWF0OnJvbWFuLWxvd2VyOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1u
+dW1iZXItcG9zaXRpb246cmlnaHQ7DQoJdGV4dC1pbmRlbnQ6LTkuMHB0O30NCkBsaXN0IGwxOmxl
+dmVsNw0KCXttc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0
+aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluO30NCkBsaXN0IGwxOmxldmVsOA0KCXttc28t
+bGV2ZWwtbnVtYmVyLWZvcm1hdDphbHBoYS1sb3dlcjsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9u
+ZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWlu
+O30NCkBsaXN0IGwxOmxldmVsOQ0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpyb21hbi1sb3dl
+cjsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9u
+OnJpZ2h0Ow0KCXRleHQtaW5kZW50Oi05LjBwdDt9DQpvbA0KCXttYXJnaW4tYm90dG9tOjBpbjt9
+DQp1bA0KCXttYXJnaW4tYm90dG9tOjBpbjt9DQotLT48L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkg
+bGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9
+IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdCI+SeKAmW0gYnVpbGRpbmcgYSBsaW51eCBpbWFnZSB3aXRoIGFuIGluaXRyYW1m
+cyBhbmQgYSBzZWN1cmUgcm9vdCBmaWxlIHN5c3RlbSB1c2luZyBhIGRtdmVyaXR5IGhhc2ggdGFi
+bGUuJm5ic3A7IEkgd2FudCB0byBpbmNsdWRlIHRoZSBkbXZlcml0eSByb290IGhhc2ggaW4gdGhl
+IGluaXRyYW1mcy4mbmJzcDsgV2hlbiBidWlsZGluZyBhIHlvY3RvIGltYWdlLCBzYXkgY29yZS1p
+bWFnZS1taW5pbWFsLA0KIHdpdGggYW4gaW5pdHJhbWZzLCB0aGUgaW5pdHJhbWZzIGlzIGJ1aWx0
+IGJlZm9yZSB0aGUgY29yZS1pbWFnZS1taW5pbWFsIGltYWdlIGlzIGRlcGxveWVkLiZuYnNwOyBX
+aGF0IEkgd291bGQgbGlrZSBpcyBhIGJ1aWxkIG9yZGVyIGxpa2U6PG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5EZXNpcmVkOiBiaXRiYWtlIGNvcmUtaW1hZ2UtbWlu
+aW1hbDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8b2wg
+c3R5bGU9Im1hcmdpbi10b3A6MGluIiBzdGFydD0iMSIgdHlwZT0iMSI+DQo8bGkgY2xhc3M9Ik1z
+b0xpc3RQYXJhZ3JhcGgiIHN0eWxlPSJtYXJnaW4tbGVmdDowaW47bXNvLWxpc3Q6bDAgbGV2ZWwx
+IGxmbzEiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5idWlsZCBhbGwgcm9vdGZzIHBh
+Y2thZ2VzPG86cD48L286cD48L3NwYW4+PC9saT48bGkgY2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgi
+IHN0eWxlPSJtYXJnaW4tbGVmdDowaW47bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzEiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0Ij5kZXBsb3kgdGhlIHJvb3RmczxvOnA+PC9vOnA+PC9zcGFu
+PjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MGlu
+O21zby1saXN0OmwwIGxldmVsMSBsZm8xIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+
+YnVpbGQgdGhlIGluaXRyYW1mczxvOnA+PC9vOnA+PC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJNc29M
+aXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MGluO21zby1saXN0OmwwIGxldmVsMSBs
+Zm8xIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+YnVpbGQgdGhlIGtlcm5lbDxvOnA+
+PC9vOnA+PC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFy
+Z2luLWxlZnQ6MGluO21zby1saXN0OmwwIGxldmVsMSBsZm8xIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdCI+YnVpbGQgdGhlIGZpdGltYWdlPG86cD48L286cD48L3NwYW4+PC9saT48L29s
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0Ij5PYnNlcnZlZDogYml0YmFrZSBjb3JlLWltYWdlLW1pbmlt
+YWw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPG9sIHN0
+eWxlPSJtYXJnaW4tdG9wOjBpbiIgc3RhcnQ9IjEiIHR5cGU9IjEiPg0KPGxpIGNsYXNzPSJNc29M
+aXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MGluO21zby1saXN0OmwxIGxldmVsMSBs
+Zm8yIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+YnVpbGQgYWxsIHJvb3RmcyBwYWNr
+YWdlczxvOnA+PC9vOnA+PC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBz
+dHlsZT0ibWFyZ2luLWxlZnQ6MGluO21zby1saXN0OmwxIGxldmVsMSBsZm8yIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdCI+YnVpbGQgdGhlIGluaXRyYW1mczxvOnA+PC9vOnA+PC9zcGFu
+PjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MGlu
+O21zby1saXN0OmwxIGxldmVsMSBsZm8yIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+
+YnVpbGQgdGhlIGtlcm5lbDxvOnA+PC9vOnA+PC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0
+UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MGluO21zby1saXN0OmwxIGxldmVsMSBsZm8y
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+ZGVwbG95IHRoZSByb290ZnM8bzpwPjwv
+bzpwPjwvc3Bhbj48L2xpPjxsaSBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCIgc3R5bGU9Im1hcmdp
+bi1sZWZ0OjBpbjttc28tbGlzdDpsMSBsZXZlbDEgbGZvMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQiPmJ1aWxkIHRoZSBmaXRpbWFnZTxvOnA+PC9vOnA+PC9zcGFuPjwvbGk+PC9vbD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdCI+SWYgdGhlIGluaXRyYW1mcyBpcyBidWlsdCBiZWZvcmUgdGhl
+IHJvb3RmcyBpcyBkZXBsb3llZCwgSSBjYW5ub3QgaW5jbHVkZSB0aGUgcm9vdCBoYXNoIGluIHRo
+ZSBpbml0cmFtZnMgaW1hZ2UuJm5ic3A7DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQiPknigJltIGhvcGluZyBzb21lb25lIGNhbiB0ZWxsIG1lIGEgYmV0dGVyIHdh
+eS48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPlRoYW5rczxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0Ij5SaWNoPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2JvZHk+
+DQo8L2h0bWw+DQo=
+
+--_000_F00472646A354DCA912E222FB22F034Fcommscopecom_--
