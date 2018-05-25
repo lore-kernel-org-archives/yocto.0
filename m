@@ -1,59 +1,124 @@
-Return-Path: <ee.peng.yeoh@intel.com>
+Return-Path: <jakob.hasse@qiio.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B551BE007DA; Fri, 25 May 2018 01:56:01 -0700 (PDT)
+	id 4E241E009CF; Fri, 25 May 2018 19:44:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.58 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A47DE00720
-	for <yocto@yoctoproject.org>; Fri, 25 May 2018 01:56:00 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	25 May 2018 01:55:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,439,1520924400"; d="scan'208";a="58412570"
-Received: from kmsmsx156.gar.corp.intel.com ([172.21.138.133])
-	by fmsmga001.fm.intel.com with ESMTP; 25 May 2018 01:55:58 -0700
-Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.58]) by
-	KMSMSX156.gar.corp.intel.com ([169.254.1.238]) with mapi id
-	14.03.0319.002; Fri, 25 May 2018 16:54:59 +0800
-From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
-To: "Purdie, Richard" <richard.purdie@intel.com>, yocto
-	<yocto@yoctoproject.org>, "Velu, NagarajagopalX"
-	<nagarajagopalx.velu@intel.com>, "Patil, Pravin ShankarX"
-	<pravin.shankarx.patil@intel.com>, "Yadav, PankajX"
-	<pankajx.yadav@intel.com>, "Das, Manish KumarX"
-	<manish.kumarx.das@intel.com>, OTC Embedded Malaysia
-	<otc.embedded.malaysia@intel.com>
-Thread-Topic: Release Candidate Build for yocto-2.2.4.rc1 now available.
-Thread-Index: AQHT82P0zSU/lwKBKkaL3YKnfi6BZKRAJRqw
-Date: Fri, 25 May 2018 08:54:59 +0000
-Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335E1FFD5@PGSMSX109.gar.corp.intel.com>
-References: <1527168770.16911.59.camel@intel.com>
-In-Reply-To: <1527168770.16911.59.camel@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjUzNjYyYjMtY2M5My00YzA5LTlmNDUtYjAyNjY1OTExYzNhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiRTBHczdiVjZRbk1ISlJ2UWloOW1tZ0h0V3FGZklCbzFoaWsyWVBDSmxaeFdXT0h2UjZzSGlGVmxHZzRsb0ZOTyJ9
-dlp-product: dlpe-windows
-dlp-version: 11.0.200.100
-dlp-reaction: no-action
-x-originating-ip: [172.30.20.205]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 1825 seconds by postgrey-1.32 at yocto-www;
+	Fri, 25 May 2018 19:44:15 PDT
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0058.outbound.protection.outlook.com [104.47.2.58])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47246E009B9
+	for <yocto@yoctoproject.org>; Fri, 25 May 2018 19:44:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=smarthometechnologych.onmicrosoft.com; s=selector1-qiio-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=1lYEMp5ilg+DXJGZes10YUwWljUQHzXf7DeScuzb2aE=;
+	b=Jtv24N7RCwJ5TuT1tZgTvBK1Yje4TT8gtghHPtgzVIcnmHLTZrSJ66DEy/gcMHmDlduDT+y1qEcDqH5qOn1kkGBGLP8KIGfh5QfmyUaxHnAauPgqpXgWsnEBJ9QCr/eTZTnHgucOVMn75B0NDaJOfFnMUVY15eHVjyicpBIXHRE=
+Authentication-Results: spf=none (sender IP is )
+	smtp.mailfrom=jakob.hasse@qiio.com; 
+Received: from [IPv6:2a02:168:6898:1:84a8:e960:4415:80b9]
+	(2a02:168:6898:1:84a8:e960:4415:80b9) by
+	AM5P192MB0049.EURP192.PROD.OUTLOOK.COM (2603:10a6:203:80::19) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.797.11; Fri, 25 May 2018 16:38:36 +0000
+To: Yocto List <yocto@yoctoproject.org>
+From: Jakob Hasse <jakob.hasse@qiio.com>
+Message-ID: <975e67af-45fd-9957-a140-0313c9200105@qiio.com>
+Date: Fri, 25 May 2018 18:38:34 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.8.0
 MIME-Version: 1.0
+X-Originating-IP: [2a02:168:6898:1:84a8:e960:4415:80b9]
+X-ClientProxiedBy: VI1P193CA0003.EURP193.PROD.OUTLOOK.COM
+	(2603:10a6:800:bd::13) To AM5P192MB0049.EURP192.PROD.OUTLOOK.COM
+	(2603:10a6:203:80::19)
+X-MS-PublicTrafficType: Email
+X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(7021125)(5600026)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(2017052603328)(7153060)(7193020);
+	SRVR:AM5P192MB0049; 
+X-Microsoft-Exchange-Diagnostics: 1; AM5P192MB0049;
+	3:Mhav8v+W4LwlDm7CyjT3Q+B88oTyBe9sa8wa1RTHGiDerQkzjmyCvuEhnlL3BjKYFb90YqRKNhPy1bOC/jU2Sb81qMEmD2Z0lX2jnGM9tssaCI54tYL0LDysm4SYJKz/oGRkzmFv+LQK2Zhs9bLC/XqYdOhZybHXSJtOZZMO6b0XDUhPqXM7YGRObrF2e5bvT5ckucFTzyv862FkrYYf7AVml3BduGZLDui/8v4rA/SZKQJPud3rErAjJK0QLTnx;
+	25:sBXRr+GiN6+bMpdQBHlqg1jH+34CEFhaP5UmiOaMDF1Guq6nXkw8SGhDIbuSRbcawgIqbtrLni2vd7r5foMyDx6AFRVWhRazGgENX7Pv8VhH1oTmvMtvdTKUKj2Zrc8eB61C2CJ7RC02RNAQZ8DkOEjVUJFr869DmWtWDz9Mtkq3KSqtbdN6sTnyk4c5qvVnS6QqzIIno0X+D4cdef9BSfgzo71tOHauZMCV/XtrvS9SA9nHVGmgQ5QsLMH1VJbYla7Ysd32uSM8g+ODbHrARQqI0tEp+6A3fTzDRVX4z9fJFbS2zTyODcgu/CCzYVLg6DNCwpogWC0OV3glggU41Q==;
+	31:97bShezQpmvb8lJP46F3ubMW+fxEte5SRZ2il3ZbwDcd0Lo9nCvD+YgC/oAR3258D1TxSdjTTi3nJQoblxxQ9auR2x6F69c4XH3Xnbft3oTaLnuuwgtIZLnfMmjPLvm0fNsb7RoHV3IjjtRAhOIEcprTIwHS6K2ZPTKmM6hqpU1yBnI+4CITEoPfkPOWhRUfXKlSQTqY1euaFp/KobaVJXzT2OFHRq940GoXEyz30nM=
+X-MS-TrafficTypeDiagnostic: AM5P192MB0049:|AM5P192MB0049:
+X-Microsoft-Antispam-PRVS: <AM5P192MB004965255782840FAF22719984690@AM5P192MB0049.EURP192.PROD.OUTLOOK.COM>
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-MS-Exchange-SenderADCheck: 1
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(6040522)(2401047)(8121501046)(5005006)(3002001)(3231254)(944501410)(52105095)(93006095)(93001095)(10201501046)(149027)(150027)(6041310)(2016111802025)(20161123558120)(20161123564045)(20161123562045)(20161123560045)(6072148)(6043046)(201708071742011)(7699016);
+	SRVR:AM5P192MB0049; BCL:0; PCL:0; RULEID:; SRVR:AM5P192MB0049; 
+X-Microsoft-Exchange-Diagnostics: 1; AM5P192MB0049;
+	4:BfHK3JFXTiU7gDyM3U7IUJPm8rOIvEi1VUazlYtvRUmoTfEuKH1Sg346z5KWSHZPg+qnEIAALfzl/5xTw6jaeKCAceu+evnEiwcz/4CZExuPdYGrH9MiastnGCzulXcB8qZ+OKvgyxh8dXTvQcqMDVS9Ik8f3YvjOCrP2t4qdJwmAu3VYWsNYNtLAkHlr5BLCxkSvBJl49K0IP9wRTiCWAMeYHtE89etXMZy9I2gQ+CoXRHzWCYqe/NZA5M+ibEh6MRt3gvU6c+hUwCebgFEkw==
+X-Forefront-PRVS: 06833C6A67
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10009020)(396003)(376002)(346002)(39380400002)(39830400003)(366004)(199004)(189003)(8676002)(316002)(58126008)(50466002)(16526019)(186003)(86362001)(68736007)(486006)(65956001)(65806001)(476003)(2616005)(1706002)(6486002)(81166006)(81156014)(64126003)(106356001)(386003)(36756003)(8936002)(6116002)(230700001)(31686004)(305945005)(7736002)(47776003)(44832011)(46003)(31696002)(5660300001)(97736004)(65826007)(478600001)(25786009)(2906002)(6916009)(67846002)(52116002)(52146003)(23676004)(52396003)(105586002)(2486003)(53936002)(554374003);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:AM5P192MB0049;
+	H:[IPv6:2a02:168:6898:1:84a8:e960:4415:80b9]; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+Received-SPF: None (protection.outlook.com: qiio.com does not designate
+	permitted sender hosts)
+X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtBTTVQMTkyTUIwMDQ5OzIzOkh3Umc3Y2NFdHlUckwySzhjKzJkTkZqbHNZ?=
+	=?utf-8?B?TUxlRDR2VVBtVFJsVUhFdmNkSmNCZXFpcytYcDJZSm5FRWp5YWZLNGZ1TUpG?=
+	=?utf-8?B?cjN4YlhxTUoxRWdzb2kyM1J3VFRuNXZnajRrY2hYcENNbSs4SFRKM3paenJz?=
+	=?utf-8?B?dDRpTTQ2SVExZTBHNVMwNzZiUTRRekVmeHRNejY4YUxlaVFIanBhcHRsdlNH?=
+	=?utf-8?B?S1g3OUJYRFJwQXNKczFFYU9nU2VqVHBnbktGVm0ydSs4UVNWaTM3S01SektL?=
+	=?utf-8?B?d0RoL1ovVVZFRmJZYVJiR1lWK1RReC9XZy9jYjJ3QXVwR24wdU1OMitMcVpH?=
+	=?utf-8?B?T2xxQWtQWmlGNDd5dW5EWXplK0hYSUE3MGp3dy9kcEExVzhpOXRkbVZnT1Jx?=
+	=?utf-8?B?em5xdW4vTGpYN3NKdGVyNnBnUnpMV2hFUlpBaSs0Z3JZT0NTSGlWK1B5dDg2?=
+	=?utf-8?B?TUV3NzMrdTV0S3k4ZjhIcHBtWGIxdktQOG5GL2RqT3hldTNSc2tXcUNUbEVa?=
+	=?utf-8?B?bHdpaUpzWlltdkszaWc4VnRKa3dLZm9yRFBydmprVXNLbHFocDhmNjNKZGw5?=
+	=?utf-8?B?NFlSZ3RNTmhGeVNMV1VvR1hRTmJHUHhOQ0tFeXVQYjdZOXRzR21pQXNvdy80?=
+	=?utf-8?B?TC90QVdvTUFNcHJkZmx2TXJzUHk4dTY2Z2ttcEQ2elJNT0trWXNNZGdEMjZB?=
+	=?utf-8?B?QjFDMWdiRzNjNXhjMDVXZ3ZpbXZpRlYyWEYrZHJVKzVRdGU4aGRFL01UNExM?=
+	=?utf-8?B?Z1ZrZE5SVVRXcU5FeUZDcDRPNUh6dEFBdXZsQWt0TUxvOGQ3aDhiZ1EzL0Vq?=
+	=?utf-8?B?b1hMMzRSWWplZmZJZDdxcklCUHIzQ25sWTNPcUl6dHhQMWsreGR1d3k0MkRC?=
+	=?utf-8?B?S1hST3RJc1FZSlVyZ2RnZmZaZkFOdzd4TjFHSFc0Ui9mSVZSL0V6VEdRcXMr?=
+	=?utf-8?B?aXpPbkVtSjNFUmh6Zy9Rc0VrYW04amwrL3hyWklqUHh3TnhZclVKb21remNL?=
+	=?utf-8?B?SzdGYWxIbU8rREI5WElrajRLQ0xIT0pLSE1VY3JDN24xbzY3N2l6V1p5MW9X?=
+	=?utf-8?B?cG5kZXR2eEp2VEdXUmljcGNvYVIrTHRxRGt0UnNGeTBhdVFHZkdtaFIxNSt6?=
+	=?utf-8?B?N1lnWDNZUHYxVEF5Q3pUSnJDQjM3aWQ3SXZXb1BYeE1BaDdrd3pVbUpqZUlp?=
+	=?utf-8?B?L3Z5UW9xdDU1bFMybzdSU2xpcXNZdm1TK2ZQbSt5d3d5NURoTGFSVWUxeUpX?=
+	=?utf-8?B?SDdydVg2ekZOS0hvZjBXSWJyd0ZoWnJLNkt5U1QzRXFXZS92R29UdXlOUW1z?=
+	=?utf-8?B?ZklGTGliQ0lDUlhPamkydXY0ckwwSXhNbDU0YnBPY0ZvVmtpVjhYNDZmU0JZ?=
+	=?utf-8?B?VSs2TWZEb2xhU0tJNFFVTHB5cUxSVXp5RjBUVTY3bW10SUVXS2dWaXZqOXRx?=
+	=?utf-8?B?dWg0cUx6aWo3QUVxeklUanBlcjVQTEFSUkl0OWtIdVlyWUxpaDJHaFFQOVIx?=
+	=?utf-8?B?UjIzN29ybWN0aEZFY3BtSXBUaVVmQnJjM3Y3bGFiSDdDbm53SGRVbTBvdHZ6?=
+	=?utf-8?B?MGRWSVVlNkpsSW5zZXpDL2pIbUdRL1l4cVpzZUVTemJhcDBIK1EwMnFIN25l?=
+	=?utf-8?B?T0pPVG5ibVI0T3pqV0xmSWJXdkE4OUhER1BldXMvSWRqSG55NFZWUFZOUkdZ?=
+	=?utf-8?Q?LlYnDpVin7OvRCrqlk=3D?=
+X-Microsoft-Antispam-Message-Info: FN9wxqWZ8Emj9unYK0yQuQNroyfQIZuZjR5VbGvJYQQ2i12NdGD+7UH0TkZCCvlpmonwGMQu9e8x/2A2miTpuJ2uBAQiV327AjmpbAePPpkgnBVd4Gj0jTJqwvH7Wh2sGFmmu6n8YGGo4r9sndovVJWBaqOQepjcCOKJ/kdCXC4Zh20sNjLmsk0+DTcT93Ap
+X-Microsoft-Exchange-Diagnostics: 1; AM5P192MB0049;
+	6:8Fplai6RTdFH+O9UxjzlKFnmOuuWhCKx5RBC9AopxxGpbYTw9fVYT002cPmI4zuokgUQrqj/0RPKiyS8e2qAI0k1acHXXfl7me/gm+/qyVwFVMPdjd+5T1978oimRqnXGn8W3ZOJ5byRHOCEc8wcuhayHA1EGBEGhYyvfDvuLjFzFFsR0mWwPlLpnn3B6v4ONFyxlbcaUtDKFJbQLbuOs6IrCmBJyVtUN8YUu6yL/ZR4dKbc25AP7VrMkeVIiTVdVrxAtPOAUNWRR8xwkno/TKbS2mbzvVtOsCf+HnEAuhTRK6It1hPd7KJZQ4OtESeO/nUrl9TmI64j/xhP9UrjG/Zup6vdPihDW+HnMOs41KagVdot4xAO1Z41D6wWuE8pu93jAdDlpwOJU8qzcMeI2OVEucw6MyCfp/UX2g4qJgcoeHIkkcJVNyeQRrc6OQOW8UdWPvX9i50iP8UzaYLoSg==;
+	5:M1KdZsJ/qSYU3CmYK6XD91i63m/ovsoE+n822IW8semLqcTRylPmqk9FPLmipC3Db/E9VZrlMgpnGhxHP2doG4PmzxCzoPXKrKGrutR3rCFPtVfw/omN+Yxsm290bv4nTwRjAw5+BZN8EXROl68wTdI/O39Q7oc7+0BS6h1BN08=;
+	24:SavBHfQegwE51tp/KNGXnftu9DEuWORd5UQsqD+aJkGeCoJgTYrWMvtFqOwFxBmxwncp1S7y92fMrZ/EM/vFdoaRR0CaEmzKt+lFxzXaBC0=
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-Microsoft-Exchange-Diagnostics: 1; AM5P192MB0049;
+	7:eJ4DfkoqF7G8MM39x/7hdy2v7RiRYd/ZWq/m4yt8hG3Xmkkk3pbf1RMS5/RNJthKs+gCw6sqTLclRGRqJL+98MWQlxM4z/AXivhr/YI2aWTpYxLQwY7a+AXy38t9CRpTDxH1zoEdwP1dkZJbZ0werJ9obLLwDsIrAMAYPfaywFdVsFwsN7dTLzwmJGohBZhO5+BRtED7Bw0XVZpS50bvrEVZjmeJgX8qZlWebQL+/PyqBHy/ZPIkr0mJcidLdALy;
+	23:85imYZ3SQv4mz19EwVuDlRYOG9vQAZr2LFbvX/8jHmH8HRrx5O1+aoiNvx9Oh0TEB0VwadeLCIdAC7vGaRDfAWTawxn3khzqpaD17xIJYo2qntowqNKgKqBVZIU1nz8Qm2QSRimnWzu0n5YImbrCDg==
+X-MS-Office365-Filtering-Correlation-Id: 84a47c3a-e3be-4669-e666-08d5c25df6c0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2018 16:38:36.9276 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 84a47c3a-e3be-4669-e666-08d5c25df6c0
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7110674e-f830-4f7f-87a8-a46973e4c75f
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5P192MB0049
+X-OriginatorOrg: qiio.com
 X-Mailman-Approved-At: Mon, 04 Jun 2018 01:11:40 -0700
-Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
-	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>
-Subject: Re: Release Candidate Build for yocto-2.2.4.rc1 now available.
+Subject: Set route metric in recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,38 +130,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 May 2018 08:56:01 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Sat, 26 May 2018 02:44:18 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: de-DE
 
-SGkgYWxsLA0KDQpCdWlsZCBmb3IgMi4yLjQucmMxIGlzIHJlYWR5LiANClBsZWFzZSBnZXQgcmVh
-ZHkgZm9yIHRoZSBRQS4NClRlc3RvcGlhIGFuZCB3aWtpIHBhZ2Ugd2VyZSByZWFkeS4gDQpodHRw
-czovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpLzIuMl9RQV9TdGF0dXMNCg0KVGhhbmtzLA0K
-WWVvaCBFZSBQZW5nDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiByaWNoYXJk
-LnB1cmRpZUBpbnRlbC5jb20gW21haWx0bzpyaWNoYXJkLnB1cmRpZUBpbnRlbC5jb21dIA0KU2Vu
-dDogVGh1cnNkYXksIE1heSAyNCwgMjAxOCA5OjMzIFBNDQpUbzogeW9jdG8gPHlvY3RvQHlvY3Rv
-cHJvamVjdC5vcmc+DQpDYzogcGlkZ2VAdG9nYW5sYWJzLmNvbTsgb3RhdmlvQG9zc3lzdGVtcy5j
-b20uYnI7IFpoYW8sIFlpIChXaW5kIFJpdmVyKSA8eWkuemhhb0B3aW5kcml2ZXIuY29tPjsgR3Jh
-eWRvbiwgVHJhY3kgPHRyYWN5LmdyYXlkb25AaW50ZWwuY29tPjsgc3RlcGhhbm8uY2V0b2xhQGxp
-bnV4LmludGVsLmNvbTsgU2FuZ2FsLCBBcG9vcnYgPGFwb29ydi5zYW5nYWxAaW50ZWwuY29tPjsg
-WWVvaCwgRWUgUGVuZyA8ZWUucGVuZy55ZW9oQGludGVsLmNvbT47IENoYW4sIEFhcm9uIENodW4g
-WWV3IDxhYXJvbi5jaHVuLnlldy5jaGFuQGludGVsLmNvbT47IENoYW5nLCBSZWJlY2NhIFN3ZWUg
-RnVuIDxyZWJlY2NhLnN3ZWUuZnVuLmNoYW5nQGludGVsLmNvbT47IEFuZywgQ2hpbiBIdWF0IDxj
-aGluLmh1YXQuYW5nQGludGVsLmNvbT47IEpvbGxleSwgU3RlcGhlbiBLIDxzdGVwaGVuLmsuam9s
-bGV5QGludGVsLmNvbT47IEpvcmRhbiwgUm9iaW4gTCA8cm9iaW4ubC5qb3JkYW5AaW50ZWwuY29t
-Pg0KU3ViamVjdDogUmVsZWFzZSBDYW5kaWRhdGUgQnVpbGQgZm9yIHlvY3RvLTIuMi40LnJjMSBu
-b3cgYXZhaWxhYmxlLg0KDQpBIHJlbGVhc2UgY2FuZGlkYXRlIGJ1aWxkIGZvciB5b2N0by0yLjIu
-NC5yYzEgaXMgbm93IGF2YWlsYWJsZSBhdDoNCg0KDQrCoMKgwqDCoGh0dHBzOi8vYXV0b2J1aWxk
-ZXIueW9jdG8uaW8vcHViL3JlbGVhc2VzL3lvY3RvLTIuMi40LnJjMQ0KDQoNClBsZWFzZSBiZWdp
-biBRQSBvbiB0aGlzIGJ1aWxkIGFzIHNvb24gYXMgcG9zc2libGUuDQoNCg0KQnVpbGQgaGFzaCBp
-bmZvcm1hdGlvbjrCoA0KbWV0YS1pbnRlbCA6IGM3ODE1MTBhNWE2YjQ1ZTYwY2MzMmI2NjE0ZGRj
-Y2UzZjE0NTIxMjHCoA0KbWV0YS1xdDQgOiBmMzg5MzY4ZGM4NmU3NDVkZjE0Y2FiOWVlYjlhOTRi
-YzAyYmQyNzNlwqANCm1ldGEtbWluZ3cgOiBmNWY2NzZkOWVlOWY4ZTIwNTM2M2VhY2U3YTg0NmEw
-MzYwOTk4NjM0wqANCm1ldGEtcXQzIDogZjMzYjczYTk1NjNmMmRmZGZkMGVlMzdiNjFkNjVkOTAx
-OTdhNDU2ZsKgDQptZXRhLWdwbHYyIDogZDc2ODdkNDA0YmJjOWJhM2Y0NGVjNDNlYTg4MjhkOTA3
-MTAzMzUxM8KgDQpwb2t5IDogZGY3NjY2OWJkZDcwYWEwZDkwM2M0MjExZGRlNzMxMjIxYzdlNzU2
-ZMKgDQoNClRoaXMgaXMgYW4gYXV0b21hdGVkIG1lc3NhZ2UgZnJvbVxuVGhlIFlvY3RvIFByb2pl
-Y3QgQXV0b2J1aWxkZXINCkdpdDogZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcveW9jdG8tYXV0
-b2J1aWxkZXINCg==
+Hello,
+
+I would like to know how I can set the route metric for specific 
+interfaces in a recipe. I have two interfaces, one eth0 for debugging 
+and one ppp0 (modem) for internet connectivity. Since the eth0 interface 
+has by default a lower route metric, but is not connected to the 
+internet, I always have to set the route metric manually with 
+NetworkManager.
+
+Does anyone have an idea about this?
+
+Thank you very much and best regards,
+Jakob
 
