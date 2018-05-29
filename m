@@ -1,43 +1,59 @@
-Return-Path: <david.reyna@windriver.com>
+Return-Path: <alan.martinovic@senic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5F044E00AE4; Mon, 28 May 2018 20:37:21 -0700 (PDT)
+	id 3A44BE00C5B; Tue, 29 May 2018 01:22:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF835E009AC
-	for <yocto@yoctoproject.org>; Mon, 28 May 2018 20:37:20 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w4T3aF8m027724
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 28 May 2018 20:36:36 -0700
-Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.237]) by
-	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.03.0361.001;
-	Mon, 28 May 2018 20:36:05 -0700
-From: "Reyna, David" <david.reyna@windriver.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, yocto
-	<yocto@yoctoproject.org>
-Thread-Topic: HELP: [yocto] Release Candidate Build for yocto-2.4.3.rc2 now
-	available.
-Thread-Index: AdP2/h+bAVbTtLiERe63nHvc0Xv1jA==
-Date: Tue, 29 May 2018 03:36:04 +0000
-Message-ID: <5E53D14CE4667A45B9A06760DE5D13D0F38CA91E@ALA-MBD.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.116.42]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ot0-f177.google.com (mail-ot0-f177.google.com
+	[74.125.82.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6967E009AC
+	for <yocto@yoctoproject.org>; Tue, 29 May 2018 01:22:43 -0700 (PDT)
+Received: by mail-ot0-f177.google.com with SMTP id n1-v6so15984950otf.7
+	for <yocto@yoctoproject.org>; Tue, 29 May 2018 01:22:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=senic-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=SydTAWv8EeYmYgPL8IZX76HtalpG1NDI+cKSdv2oyhY=;
+	b=NY2XerOjYk5ulyCzqZcXvPLiEB0XVMkWzk34Xb/2+0NqtUjKiYWwE988coJTsQFsUR
+	T+VABWZlet+7570j1ZzEcdL/QPO3nEIhgpshkeaqVEGvlblFth/gJr+wd8+qooupn8yG
+	opvJtZTq3J4Sijr/8ZwkYxOkE3CXKQbw8rsvVh4HO65xWhqmkdjp+MSEID35uCFQ/elB
+	eWuRuhDKUo2l6UJc2Q7ZHNgzMtG2ecjQG/Y620wTyLWSK1XlKQ/eoIc2nTFZKVfNckEg
+	daYKqfmhnPN0luV9TBpC0zDm6tsPHyGHzlKhRov54yX1oDO8owwg+/mh/IbKkzulCF5t
+	Uwqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=SydTAWv8EeYmYgPL8IZX76HtalpG1NDI+cKSdv2oyhY=;
+	b=Dwc1yMBwJ7fDloFgl/KZPRUExWddYGLp9PxghVHvnHJngUuQDv5uvThl6roZSnRnai
+	XtX7VjlnGsFTKCmeTdOLrSsDBLPF6uCOW66mOmheNdAQ8pVX2dszcVEXDzyZZXQa8iOk
+	1XytzJVeqLfyUkB7OFBjnQUtyigHdK2bSMzvCFJmgW+2CP5UVdd7vhaRSWbHuVN8ClNo
+	i/gIvxjQ9vQNs8bvOWYbqMbNuGbJtAjKxp0GP4s259Is5pkg83EqEIYmpf9gcAI/1zpp
+	Xk0bLD4PiXjQo44RwhUy8K24UUXqIkLMrqKpsZ/z1KaDXeNnU6/K0MKWFaJQXOZNI64W
+	yEYg==
+X-Gm-Message-State: ALKqPwflBaM2IgN88VlxIdm4xCLUFhy/HBHYUhH1e2p/u/xtKnASnwst
+	IUnvnXTN0wMLtgIfC5QwvltJP+z8x0JqqCg4lUm8sJde
+X-Google-Smtp-Source: ADUXVKLcNeYlpsdOfDKQox/Q3SBpoypxM0jKyaemkCqGjMYfOk33NFyvtqpcSm9WvBwDUBOlfvHH2MwonM6SjzQr3m0=
+X-Received: by 2002:a9d:6002:: with SMTP id
+	h2-v6mr11176175otj.295.1527582162236; 
+	Tue, 29 May 2018 01:22:42 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "CHAN, AARON CHUN YEW" <aaron.chun.yew.chan@intel.com>,
-	"otavio@ossystems.com.br" <otavio@ossystems.com.br>
-Subject: HELP: Release Candidate Build for yocto-2.4.3.rc2 now available.
+Received: by 2002:ac9:1a99:0:0:0:0:0 with HTTP; Tue, 29 May 2018 01:22:41
+	-0700 (PDT)
+From: Alan Martinovic <alan.martinovic@senic.com>
+Date: Tue, 29 May 2018 10:22:41 +0200
+Message-ID: <CAOT_U5a0_QAXjYbd05fCDMUjJorQ43Ax66aN7grd_-OH3URKkA@mail.gmail.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Debugging race conditions in image creation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,41 +65,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 May 2018 03:37:21 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 29 May 2018 08:22:44 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-SGkgUmljaGFyZCwNCg0KSSBhcG9sb2dpemUgZm9yIHNlbmRpbmcgdGhpcyBwYXRjaCBmb3IgVG9h
-c3RlciBmb3IgUm9jbyAyLjQuMyB2ZXJ5IGxhdGUuIEkgaGF2ZSBiZWVuIGZvY3VzZWQgb24gU3Vt
-byBhbmQgSSB0aG91Z2h0IEkgaGFkIG1vcmUgdGltZS4NCg0KVGhlIFRvYXN0ZXIgZm9yIFJvY2tv
-IGlzIGJyb2tlbiBvbiBIRUFELiBUaGVyZSBhcmUgdHdvIHBhdGNoZXMgdGhhdCBtYWRlIGl0IGlu
-dG8gbWFzdGVyIGFuZCBTdW1vLCBidXQgbWlzc2VkIFJvY2tvLg0KDQpJIGhhdmUganVzdCBub3cg
-c2VudCB0aGUgbWlzc2luZyBwYXRjaCBzZXQgdG8gImJpdGJha2UtZGV2Ii4gVGhlIGZpcnN0IHBh
-dGNoIGZpeGVzIGFuIGVycm9yIHRoYXQgYnJlYWtzIHRoZSBpbml0aWFsaXphdGlvbiBvZiBUb2Fz
-dGVyLiBUaGUgc2Vjb25kIHBhdGNoZXMgZml4ZXMgYSBjaGFuZ2UgaW4gYmVoYXZpb3IgZm9yIERq
-YW5nbyB0aGF0IGNyZWF0ZXMgYW4gZXh0cmEgdGhyZWFkIHRoYXQgYmxvY2tzIFRvYXN0ZXIgZnJv
-bSBzaHV0dGluZyBkb3duLg0KDQpQbGVhc2UgYWNjZXB0IHRoZXNlIHBhdGNoZXMgZm9yIFJvY2tv
-LiBUaGV5IGFyZSBjb25maW5lZCB0byBUb2FzdGVyIGFuZCBkbyBub3QgYWZmZWN0IHRoZSByZXN0
-IG9mIHRoZSByZWxlYXNlLg0KDQpUaGFua3MsDQpEYXZpZA0KDQoNCi0tLS0tT3JpZ2luYWwgTWVz
-c2FnZS0tLS0tDQpGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5
-b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBSaWNoYXJkIFB1cmRp
-ZQ0KU2VudDogVGh1cnNkYXksIE1heSAyNCwgMjAxOCAxOjE2IEFNDQpUbzogeW9jdG8NCkNjOiBv
-dGF2aW9Ab3NzeXN0ZW1zLmNvbS5icjsgQ0hBTiwgQUFST04gQ0hVTiBZRVcNClN1YmplY3Q6IFt5
-b2N0b10gUmVsZWFzZSBDYW5kaWRhdGUgQnVpbGQgZm9yIHlvY3RvLTIuNC4zLnJjMiBub3cgYXZh
-aWxhYmxlLg0KDQpBIHJlbGVhc2UgY2FuZGlkYXRlIGJ1aWxkIGZvciB5b2N0by0yLjQuMy5yYzIg
-aXMgbm93IGF2YWlsYWJsZSBhdDoNCg0KDQrCoMKgwqDCoGh0dHBzOi8vYXV0b2J1aWxkZXIueW9j
-dG8uaW8vcHViL3JlbGVhc2VzL3lvY3RvLTIuNC4zLnJjMg0KDQoNClBsZWFzZSBiZWdpbiBRQSBv
-biB0aGlzIGJ1aWxkIGFzIHNvb24gYXMgcG9zc2libGUuDQoNCg0KQnVpbGQgaGFzaCBpbmZvcm1h
-dGlvbjrCoA0KbWV0YS1pbnRlbCA6IGY2NmNlNTFkMDU5ZDI5MWE0NDFkODk2ODU0YmU4ZGI3MGRl
-NWE1NTTCoA0KbWV0YS1xdDQgOiBlMjkwNzM4NzU5ZWYzZjM5YzllMDc5ZWFhOWI2MDZhNjIxMDdl
-NWJhwqANCm1ldGEtbWluZ3cgOiAxY2M2MjBiMzhmNmYzMGEwYmRkMTgxNzgzMjk3OTk4ZmUwNzMz
-ODdmwqANCm1ldGEtcXQzIDogOGVmNzI2MWEzMzFlMDg2OWEwNDYxYWIyZmI0NGUzOTk4MGNlZGMw
-MsKgDQptZXRhLWdwbHYyIDogZjg3NWM2MGVjZDZmMzA3OTNiODBhNDMxYTI0MjNjNGI5OGU1MTU0
-OMKgDQpwb2t5IDogN2U3ZWU2NjJmNWRlYTRkMDkwMjkzMDQ1Zjc0OTgwOTMzMjI4MDJjY8KgDQoN
-ClRoaXMgaXMgYW4gYXV0b21hdGVkIG1lc3NhZ2UgZnJvbSBUaGUgWW9jdG8gUHJvamVjdCBBdXRv
-YnVpbGRlcg0KR2l0OiBnaXQ6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy95b2N0by1hdXRvYnVpbGRl
-cg0KLS0gDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
-eW9jdG8gbWFpbGluZyBsaXN0DQp5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpodHRwczovL2xpc3Rz
-LnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg==
+Hi,
+I'm building multiple images with the same invocation of the bitbake command.
+
+When building them one by one, everything works ok.
+However when they are both executed in the same time,
+issues occur during do_image_sdimg.
+
+The issue seems to be related to a missing bootloader file (they both
+depend on the exact same bootloader):
+    images/senic-hub/u-boot-sunxi-with-spl.bin.1
+
+I'm guessing one image is trying to use the file while the other one
+is deleting it or something, so probably some dependency related
+issues in the recipes.
+
+My questions is do you have suggestions on how to debug it?
+Is there a global ordered list of executed tasks so I could see what
+might be happening in parallel or before the issue happens?
+
+Or can I explicitly set that a recipe shouldn't be parallelised?
+
+
+Be Well,
+Alan
 
