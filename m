@@ -1,6 +1,6 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <kumar.ugesh003@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CC4B7E00C2B; Tue, 29 May 2018 09:44:46 -0700 (PDT)
+	id 08429E00C62; Tue, 29 May 2018 09:50:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,67 +8,49 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
+	mail provider *      (kumar.ugesh003[at]yahoo.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.44 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f44.google.com (mail-wm0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E144E009D4
-	for <yocto@yoctoproject.org>; Tue, 29 May 2018 09:44:44 -0700 (PDT)
-Received: by mail-wm0-f44.google.com with SMTP id f6-v6so42494197wmc.4
-	for <yocto@yoctoproject.org>; Tue, 29 May 2018 09:44:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=YZBRfFgpcToBk0AC/x9YFgI2mLOvYXAGKyWaiWkmzas=;
-	b=PLilRt74ET0QAhK2Zjuo00GYPvVMRIvpa4xLn/kq5Dax2Gx/lDOHAlDSqSPsU3GaaZ
-	rtExHLNrpaOsJFq9JYL7X2oOSDVFJh4H3vTWIul8bB69kzI80mzxHTH9AgCYf0lxMJye
-	C+kWVcD7Bf5TQ34+IFfT73PQi/R80aMjD5wLRPMt0/EaYKnUrpadzFWrRYsqRi0N1kkK
-	Iju9nfWEcRB01ayMyF9kUBBj5LAq8v02BHufL8A7TcoBE7r/KlHlisloPrJsIPMBYV4G
-	eV6TQvhxNdbiWiIoCXTm8sR9GuQr5U8aeG+mgMO0bJ7dihG8CNIGfMxR4FkxHqbFlfTf
-	I+FQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=YZBRfFgpcToBk0AC/x9YFgI2mLOvYXAGKyWaiWkmzas=;
-	b=HBVGj5tGDlYA1FuNHs6Ot761hOIW2YQ9gfX1txMt4q0hcZ9qw/114MPVDaYO+7R3D/
-	mfO6tJ48+jC/LKrAc2ncvBWWLZzrKPNPwe7AUeBawmV8HQtemWj5sd3CzMW7sjomZgwX
-	nv3ddsuh5e1te2ZUnH8bkWaBJNSWUefumoY7+Bl4ahDFDialuhDwNGlN2vqg4egmk+vS
-	U+npogkGRb3ciRKWKW/xKZpnoZliz/qNxgkWHDzWSN4ikaIsD8nK6wQTmzwI0EQYl5Gf
-	+Cfss9MqKujnZcC5N19t/+yYoASh9B0PQ+4zutW7sdLyBybkyM9yCJbGEP7QOJOnYh2u
-	aYTA==
-X-Gm-Message-State: ALKqPwednykNzv3qmReQ+fU3mE+UlIEc5pLjzSY6cM8NuHYBFd1mZML4
-	0A9quQFjmOGHoOralaG+2hj74GV+MPnssGbJ4Ng=
-X-Google-Smtp-Source: AB8JxZqeRPFEBsBnLsp+khCKESOKPiKU9UzeRNtiqMxB9vIWPstPf8v8gbYkF4teWzaJY9CZiJ2NNbUcgfcCxu1u00k=
-X-Received: by 2002:a2e:84d5:: with SMTP id
-	q21-v6mr11421963ljh.126.1527612284214; 
-	Tue, 29 May 2018 09:44:44 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [106.10.244.83 listed in list.dnswl.org]
+Received: from sonic309-20.consmr.mail.sg3.yahoo.com
+	(sonic309-20.consmr.mail.sg3.yahoo.com [106.10.244.83])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49336E00A26
+	for <yocto@yoctoproject.org>; Tue, 29 May 2018 09:50:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1527612645; bh=01SOXRPt6JV8Bz8VsJImeosIhuPctwpkRvXVYeac88g=;
+	h=Date:From:To:Subject:References:From:Subject;
+	b=E2yP3FgmxfVwNysZmTC3OVBz+CD5PSYgVKQ0AVTTIXw697LVKDo53VEJojCuI7m4VESzCqYsFptb8Il6zXHp66PkBRAKIbhRYglX3kgRYgm9S9Ql5Bh2K28hivIsEbUYjfx56vIFtuz4IfYo6qWpRcMCSAkut2fMRAeIMgj++HpL86w4LGhbXK4AG/uugUZQ4Fm3i4qcbKwyJmsR4EzdGfXEv+3nSmATQzYtJCQEqtSENY8f5zsW89le4MT6oDzimU3qSs26m/BMVUKed7/nid/b9P3u1V09RcJrnuNK4RYBcWfCigvgu3Dh1m1d+vUKJN4HNcr9SKxLZf6kR7VZwQ==
+X-YMail-OSG: YGYO7gIVM1mA59tqw9BWSzYFfeS7vIOaNuZZnLQslYv5u3bVPb7KGYCp7nvoqTE
+	975iigP.BCg.Nq70rssIc.4mHliwNkq7HxT1v4FWuVQZJnP4oUCC20jt.arCWzOVkOS7ggA2hGyG
+	kvnNwPT9bnjyN3iw5VjPjYj4GjhweozCZVBisaqMj7L_ZfCZTuGQT3tu8amMMBw6CTN6sQmgZjSK
+	OGKK2l5cc61T7UCKgRCC07BcrW58oEjKETkfP031tIFrX142Ptu3YVVuV5L7rW1QwfmRLv.Fg1bt
+	3GaDcW2N6MHZyB4ITKOfWXV_TheVxpgvDE.5BZm8Ee6QJLM2QNXU36RuYBH8jePmJK_br_tMHVF1
+	q6bfxqOn0jwZ3fp.VfBhf5FJTFXlB0rdr_6GP11fODR3XMd0OD_eitQySM8_mffTLOAjea66sIro
+	tS4Gp.J5tpfbk5uKwHQ9Cm8DO.1U6zNkNUgYLRfK2PkQTbQIqJkgg5.Q4_DqK_5Z6T65cgTu5XpV
+	xrmturb60m8EuyWdng9Hg4P4kPPYx5LWVCU5cbi_sRgjv.KYY9ec0MgsY8n..IBR0BPwpd2N0AYd
+	y9aMV5YuFc2B3FUT0ig2_wCZKbgz1NcZUHxPu6ALfez1CunyZ2U1i6wbXukb4c2v8sicC.RO05iH
+	ahnG3ig8J
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic309.consmr.mail.sg3.yahoo.com with HTTP;
+	Tue, 29 May 2018 16:50:45 +0000
+Date: Tue, 29 May 2018 16:50:40 +0000 (UTC)
+From: Ugesh Reddy <kumar.ugesh003@yahoo.com>
+To: Yocto Discussion List <yocto@yoctoproject.org>
+Message-ID: <357124699.6943089.1527612640596@mail.yahoo.com>
 MIME-Version: 1.0
-Received: by 2002:a19:cb07:0:0:0:0:0 with HTTP; Tue, 29 May 2018 09:44:43
-	-0700 (PDT)
-In-Reply-To: <800E589716441541A37F6120DCDD24557A2CD7DE@IRSMSX101.ger.corp.intel.com>
-References: <2c9b354f-cb29-d8ae-875f-123a45b045e6@linux.intel.com>
-	<CAHUNapSC1zBx8vq1Z2p8pU-TV_r_-uXLHv_P+C4MuSti5Yz3_Q@mail.gmail.com>
-	<064fd4f8-7cac-e354-a710-c61085e7fe84@linux.intel.com>
-	<3ffb78f7-8115-6040-988a-6fe2a1f79a46@linuxfoundation.org>
-	<800E589716441541A37F6120DCDD24557A2CC6B1@IRSMSX101.ger.corp.intel.com>
-	<CADfgfoYPVVazGs+V4DPy_xHuDzQ65R=+3-HT_U1EpVH9s3Y0mg@mail.gmail.com>
-	<CAHUNapR3pph31UUeOFXXhXbrjTfguMtWAH+U5ZJBmNNJ7zwj8g@mail.gmail.com>
-	<800E589716441541A37F6120DCDD24557A2CD7DE@IRSMSX101.ger.corp.intel.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Tue, 29 May 2018 12:44:43 -0400
-Message-ID: <CAHUNapTNyCdAoeC96kvb0LSKt1M-bVpGdCBew7uSS6-hVQtZ6w@mail.gmail.com>
-To: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [Call to Action] Yocto Project Bug Triage
+References: <357124699.6943089.1527612640596.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.11871 YMailNorrin Mozilla/5.0 (X11;
+	Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu
+	Chromium/64.0.3282.167 Chrome/64.0.3282.167 Safari/537.36
+Subject: Enabling Macro from .bb file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,87 +62,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 May 2018 16:44:46 -0000
-Content-Type: multipart/alternative; boundary="0000000000008e21c6056d5af3ec"
+X-List-Received-Date: Tue, 29 May 2018 16:50:48 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_6943088_1343089440.1527612640595"
 
---0000000000008e21c6056d5af3ec
-Content-Type: text/plain; charset="UTF-8"
+------=_Part_6943088_1343089440.1527612640595
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 29, 2018 at 12:25 PM, Osier-mixon, Jeffrey <
-jeffrey.osier-mixon@intel.com> wrote:
+Hello,=C2=A0 I have the source code were the part of the code kept inside t=
+he #ifdef SOME_MACRO=C2=A0 and what would be the correct place to define SO=
+ME_MACRO=C2=A0 this macro?note: This define is specific to the recipe.
+Regrds,Ugesh
 
-> Here are links for shared google calendars for
->
->
->
-> Public meetings: https://calendar.google.com/calendar/b/2?cid=3D
-> dGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbQ
->
->
->
-> Release schedule: https://calendar.google.com/calendar/b/2?cid=3D
-> M2EwOTI3Y3RwczUxdThyczJqdjF1bGlnZGNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ
->
->
->
-> I=E2=80=99ll add these links to the web page. Please let me know if you h=
-ave any
-> trouble with them.
->
+------=_Part_6943088_1343089440.1527612640595
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Works fine for me.
-Thanks!
+<html><head></head><body><div style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div><font size="2">Hello,</font></div><div><font size="2">&nbsp; I have the source code were the part of the code kept inside the #ifdef SOME_MACRO&nbsp; and what would be the correct place to define SOME_MACRO&nbsp; this macro?</font></div><div><font size="2">note: This define is specific to the recipe.</font></div><div><font size="2"><br></font></div><div><font size="2">Regrds,</font></div><div><font size="2">Ugesh</font></div></div></body></html>
 
---0000000000008e21c6056d5af3ec
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On T=
-ue, May 29, 2018 at 12:25 PM, Osier-mixon, Jeffrey <span dir=3D"ltr">&lt;<a=
- href=3D"mailto:jeffrey.osier-mixon@intel.com" target=3D"_blank">jeffrey.os=
-ier-mixon@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
->
-
-
-
-
-
-<div link=3D"blue" vlink=3D"purple" lang=3D"EN-US">
-<div class=3D"m_-1556935572727498927WordSection1"><font face=3D"Calibri" co=
-lor=3D"#1f497d" size=3D"2"><span style=3D"font-size:11.0pt;font-family:&quo=
-t;Calibri&quot;,sans-serif;color:#1f497d">Here are links for shared google =
-calendars for</span></font>
-<p class=3D"MsoNormal"><font face=3D"Calibri" color=3D"#1f497d" size=3D"2">=
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
-color:#1f497d"><u></u>=C2=A0<u></u></span></font></p>
-<p class=3D"MsoNormal"><font face=3D"Calibri" color=3D"#1f497d" size=3D"2">=
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
-color:#1f497d">Public meetings:
-<a href=3D"https://calendar.google.com/calendar/b/2?cid=3DdGhleW9jdG9wcm9qZ=
-WN0QGdtYWlsLmNvbQ" target=3D"_blank">
-https://calendar.google.com/<wbr>calendar/b/2?cid=3D<wbr>dGhleW9jdG9wcm9qZW=
-N0QGdtYWlsLm<wbr>NvbQ</a><u></u><u></u></span></font></p>
-<p class=3D"MsoNormal"><font face=3D"Calibri" color=3D"#1f497d" size=3D"2">=
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
-color:#1f497d"><u></u>=C2=A0<u></u></span></font></p>
-<p class=3D"MsoNormal"><font face=3D"Calibri" color=3D"#1f497d" size=3D"2">=
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
-color:#1f497d">Release schedule:
-<a href=3D"https://calendar.google.com/calendar/b/2?cid=3DM2EwOTI3Y3RwczUxd=
-ThyczJqdjF1bGlnZGNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ" target=3D"_blank">
-https://calendar.google.com/<wbr>calendar/b/2?cid=3D<wbr>M2EwOTI3Y3RwczUxdT=
-hyczJqdjF1bG<wbr>lnZGNAZ3JvdXAuY2FsZW5kYXIuZ29v<wbr>Z2xlLmNvbQ</a><u></u><u=
-></u></span></font></p>
-<p class=3D"MsoNormal"><font face=3D"Calibri" color=3D"#1f497d" size=3D"2">=
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
-color:#1f497d"><u></u>=C2=A0<u></u></span></font></p>
-<p class=3D"MsoNormal"><font face=3D"Calibri" color=3D"#1f497d" size=3D"2">=
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
-color:#1f497d">I=E2=80=99ll add these links to the web page. Please let me =
-know if you have any trouble with them.<u></u><u></u></span></font></p>
-</div></div></blockquote><div><br></div><div>Works fine for me.</div><div>T=
-hanks!<br></div></div></div></div>
-
---0000000000008e21c6056d5af3ec--
+------=_Part_6943088_1343089440.1527612640595--
