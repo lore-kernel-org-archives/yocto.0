@@ -1,36 +1,38 @@
 Return-Path: <yocto@emagii.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 86BB4E01CD4; Tue, 12 Jun 2018 11:02:38 -0700 (PDT)
+	id ABB45E02AEA; Tue, 12 Jun 2018 11:02:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00, DATE_IN_PAST_12_24, 
-	MIME_QP_LONG_LINE, RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_00,DATE_IN_PAST_96_XX,
+	MIME_QP_LONG_LINE,RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
 	*      [81.236.60.154 listed in list.dnswl.org]
-	* 1.0 DATE_IN_PAST_12_24 Date: is 12 to 24 hours before Received: date
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	* 3.4 DATE_IN_PAST_96_XX Date: is 96 hours or more before Received:
+	date * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
 Received: from v-smtpout1.han.skanova.net (v-smtpout1.han.skanova.net
 	[81.236.60.154])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59BBAE01CD4
-	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 11:02:36 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEC11E02ABA
+	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 11:02:37 -0700 (PDT)
 Received: from [10.175.196.108] ([37.123.169.62]) by cmsmtp with ESMTPA
-	id SncnfOZvn19K9SncpfwXa1; Tue, 12 Jun 2018 20:02:35 +0200
+	id SncnfOZvn19K9SncrfwXaS; Tue, 12 Jun 2018 20:02:37 +0200
 From: Ulf Samuelsson <yocto@emagii.com>
 Mime-Version: 1.0 (1.0)
-Date: Mon, 11 Jun 2018 21:16:27 +0200
-Message-Id: <25AD44CC-F807-4984-9ABF-A6BB32DC0EE6@emagii.com>
-References: <CAOsp8o_KM7ZtmscjePc+E55-aZZBevV5pd=sWRWmkV5c8YTaYw@mail.gmail.com>
-In-Reply-To: <CAOsp8o_KM7ZtmscjePc+E55-aZZBevV5pd=sWRWmkV5c8YTaYw@mail.gmail.com>
-To: Michael Habibi <mikehabibi@gmail.com>
+Date: Wed, 30 May 2018 00:07:55 +0200
+Message-Id: <472F667C-A752-4ECA-AC12-58B15BEA23DE@emagii.com>
+References: <VI1PR0301MB2240D44AD76C24B2DBA960A3CE6E0@VI1PR0301MB2240.eurprd03.prod.outlook.com>
+	<5D4F2D61-6DE5-480F-AE1F-E1DD377337D3@emagii.com>
+	<CAMKF1speJzyZaTP0rqL_gJcOf-BSCmXieR+ySy9Nu-uN-d4nGQ@mail.gmail.com>
+In-Reply-To: <CAMKF1speJzyZaTP0rqL_gJcOf-BSCmXieR+ySy9Nu-uN-d4nGQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
 X-Mailer: iPad Mail (15B202)
-X-CMAE-Envelope: MS4wfGOzs7J0Ir5bizSkT7i7XOA34T5B7ABiMYn8pXqgsGc0/9moD99jXYWISh9hpYAQioB//ii23whuNxLQ6z38UmtEi8At+oTEiFy4FDDNsBT7iKu2kAXv
-	4YFhIjEdnOw5kMPntnaNxhDyuY8sgVI+Ita/RBLPJC1eDJZgtIKmoLgngeRXkCF0C2mZ3g38y2Cp4sIQwlgaojIkWz2cyJVrlA8=
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: Generating license/manifest for a specific layer?
+X-CMAE-Envelope: MS4wfN5xW1SyUCgLnoEgA/ucsrG5e3cZ+PqhdGS9gSJxj3G3N83mI/FOfNbEURBRSkfmGo6YT3y35KLKUnYti2VmvmqHGE9kYWPoYn3LMXu5rWDlm8zJfaai
+	bFgALkThpkcYEbuoDOKasdND7hIPfqM5dPfObXbBSxlFjmCrtw8LG85wh/TluhNolAf97kX+QX4EGTUj4m/QF8vB1hZ2clMcmec=
+Cc: Yocto Mailing List <yocto@yoctoproject.org>
+Subject: Re: image-mklibs.bbclass fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,36 +48,63 @@ X-List-Received-Date: Tue, 12 Jun 2018 18:02:38 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-I have been working on a release-notes bbclass which will for each recipe in=
-cluded in am image extract stuff like package name, license info, cve info, S=
-UMMARY, DESCRIPTION etc. and generate LaTex files.
-repo diffmanifests is used to extract the difference between a previous mani=
-fest and the current manifest.=20
-Each patch committed has a JIRA ticket number, and a LaTex file is generated=
- with a symbolic link to our JIRA server.
-Everything is collected by a separate project, and once the LaTex files are c=
-omplete,
-I only have to do=20
-make <product>-release-notes.pdf.
+I am currently upgrading a morty based rootfs to rocko, and today I found th=
+at the morty based poky layer had a patch which they sent upstream over one y=
+ear ago.
+Author Peter Liu
+This is similar to what You suggested, and the fix works also in rocko.
 
-Once it is merged locally, I am considering upstreaming.
-
+We will decide tomorrow how to proceed.
 Best Regards,
-Ulf Samuelsson
+Ulf
 
-> 11 juni 2018 kl. 15:46 skrev Michael Habibi <mikehabibi@gmail.com>:
+> 29 maj 2018 kl. 21:43 skrev Khem Raj <raj.khem@gmail.com>:
 >=20
-> Our use case is to capture the license files, manifest (package/version), a=
-nd download information only for packages we modify/add. We use our own laye=
-r to modify/add packages, everything coming from standard Yocto layers are u=
-ntouched.
+>> On Mon, May 28, 2018 at 2:10 AM, Ulf Samuelsson <yocto@emagii.com> wrote:=
+
+>> Checked out poky
+>> git checkout -b rocko origin/rocko
+>> export MACHINE=3Dbeaglebone
+>> . ./oe-init-build-env
+>>=20
+>> Added to local.conf:
+>> MKLIBS_OPTIMIZED_IMAGES_append =3D " core-image-minimal"
+>>=20
+>> Result:
+>>=20
+>> <XXX>/core-image-minimal/1.0-r0/temp/run.mklibs_optimize_image.13363: lin=
+e
+>> 133: i586-poky-linux-readelf: command not found
+>> ...
+>> Exception: Cannot find
+>> lib/home/ulf/projects/poky-bb/poky/build/tmp/work/qemux86-poky-linux/core=
+-image-minimal/1.0-r0/recipe-sysroot/lib/ld-linux.so.2
+>> WARNING:
+>> /home/ulf/projects/poky-bb/poky/build/tmp/work/qemux86-poky-linux/core-im=
+age-minimal/1.0-r0/temp/run.mklibs_optimize_image.13363:1
+>> exit 1 from 'mklibs -v --ldlib ${dynamic_loader} --libdir lib --sysroot
+>> /home/ulf/projects/poky-bb/poky/build/tmp/work/qemux86-poky-linux/core-im=
+age-minimal/1.0-r0/recipe-sysroot
+>> --gcc-options
+>> "--sysroot=3D/home/ulf/projects/poky-bb/poky/build/tmp/work/qemux86-poky-=
+linux/core-image-minimal/1.0-r0/recipe-sysroot"
+>> --root
+>> /home/ulf/projects/poky-bb/poky/build/tmp/work/qemux86-poky-linux/core-im=
+age-minimal/1.0-r0/rootfs
+>> --target `echo i586-poky-linux- | sed 's/-$//' ` -d
+>> /home/ulf/projects/poky-bb/poky/build/tmp/work/qemux86-poky-linux/core-im=
+age-minimal/1.0-r0/mklibs/dest
+>> `cat
+>> /home/ulf/projects/poky-bb/poky/build/tmp/work/qemux86-poky-linux/core-im=
+age-minimal/1.0-r0/mklibs/executables.list`'
+>> ...
+>>=20
+>> Looks like image-mklibs.bbclass has not been tested since the move to a
+>> local sysroot happened.
 >=20
-> Is there a way to generate this information on a layer-by-layer basis, ins=
-tead of a full manifest that includes all standard, unmodified packages?
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> It seems class should be adding a dependency on
+> virtual/${TARGET_PREFIX}binutils-cross
+> if that fixes the problem, please send the patch if not file a bug
+> since there might be more to it.
 
 
