@@ -1,68 +1,68 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <mhalstead@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E5B5E00A75; Tue, 29 May 2018 08:50:52 -0700 (PDT)
+	id F2656E009D4; Tue, 29 May 2018 08:52:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,URI_NOVOWEL
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.42 listed in list.dnswl.org]
-	*  0.5 URI_NOVOWEL URI: URI hostname has long non-vowel sequence
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.218.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f42.google.com (mail-it0-f42.google.com
-	[209.85.214.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8800BE009D4
-	for <yocto@yoctoproject.org>; Tue, 29 May 2018 08:50:51 -0700 (PDT)
-Received: by mail-it0-f42.google.com with SMTP id j186-v6so19173907ita.5
-	for <yocto@yoctoproject.org>; Tue, 29 May 2018 08:50:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=date:from:to:subject:message-id:mime-version:content-disposition
-	:user-agent; bh=1glcvhHcsEDNg5yhkqTr7L2Vy6U0DTUysA1jR4wHfhQ=;
-	b=nGLK2JM8t54oq1K65Lbw81aHiYlV8+L1QJEQITG3YnMnokTso03THTDjZikGtMAyaY
-	vYv6cvc+pLNeN+LPL9fJhxZ2zIFRXcDPsU4dt5QseBgw9C3eOYnWK6rCNP1Pua+ihzzL
-	uf71Ymt+zdmL0ZBpB9qC3sCJbKIS+R3IZkA5It8lI0YiPB3M0ZRQMjh70paO9WfN7y6J
-	eAUmSBfOYkVFjz0WtPUuZ/3vLu5ylSpWDi79aLoOenTq1VQXuOyk1HG2Ybkgk4Re+nTx
-	4v0yYYrzFFwg52NyfmhrOWIiy7udl7+cFQH05h/iPGHQ/6bIwPVkvVfLfjtOom8ntcza
-	B9Vg==
+Received: from mail-oi0-f65.google.com (mail-oi0-f65.google.com
+	[209.85.218.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3484DE009D4
+	for <yocto@yoctoproject.org>; Tue, 29 May 2018 08:52:11 -0700 (PDT)
+Received: by mail-oi0-f65.google.com with SMTP id 14-v6so5474807oie.3
+	for <yocto@yoctoproject.org>; Tue, 29 May 2018 08:52:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=hq+lyLqg/73GBlAiuthe9paBMqnMg51/9LycnsnogM8=;
+	b=U7ISitkm34f+TjzRe5FikvgoIw1M7FXu3YW5wpdR6mP+g38LwJlKfO3YhtJCYYeEI6
+	LsYV5gvWHVvdEnraVeRA3N5doBPVM1sMOCYmZBbjBGwszodas8343KpvRYT+iAyh9I9C
+	Z6zH/BH3r/QOhW0/I+PHPBnESndMar3F2z0cs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:subject:message-id:mime-version
-	:content-disposition:user-agent;
-	bh=1glcvhHcsEDNg5yhkqTr7L2Vy6U0DTUysA1jR4wHfhQ=;
-	b=l6ReBWvgFRODaj3rqkAiAcJoQmxTO8ug41bSx9oV4oWzXK/aF6ZWSx01KSP4VUi89b
-	Afm70DqA76BY1Va+Xbk2kvKJhiKE7hko6UMQ4360MdJFfoK5Kc7adCKpWwqyK0BkCtDw
-	wvKDtoMnoyRo+A9A18Ed1eWLUSIQVyCuSW3i3dEDhtD2yO9la2+pVa5WXh0ocWlnva+k
-	EHgc3Y4iuudy3fMG/mjCa7jzSr2t5I0BAWE2Ypnp+lRRRQdkn1AHE16Q21RDPvG5oI+H
-	hEXedHToNWqCoreI3q4NPwjaI/pIsvS8AGNM/EHUCQ8BD1e8BpqaOgbxj+dQKYyX/F35
-	2SwA==
-X-Gm-Message-State: ALKqPwffWsNnSnLvPT9BIKTSXT1Ul/t2QujnxcK3jgguoqapFdBKqIyd
-	DAG5euuledsra7akO+doQperXYGP
-X-Google-Smtp-Source: ADUXVKIAhxZYup3HSy2L0mwmGaOOoe6P6XFRmHLC1cnKR4y4XMMdyHd+Z5nxmOiEDl//xCpoqFytjw==
-X-Received: by 2002:a24:1249:: with SMTP id 70-v6mr5079450itp.82.1527609050405;
-	Tue, 29 May 2018 08:50:50 -0700 (PDT)
-Received: from linux-uys3 ([206.248.190.95]) by smtp.gmail.com with ESMTPSA id
-	z72-v6sm24368868ioz.64.2018.05.29.08.50.48
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 29 May 2018 08:50:48 -0700 (PDT)
-Date: Tue, 29 May 2018 11:50:46 -0400
-From: Trevor Woerner <twoerner@gmail.com>
-To: yocto@yoctoproject.org
-Message-ID: <20180529155046.GA24142@linux-uys3>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=hq+lyLqg/73GBlAiuthe9paBMqnMg51/9LycnsnogM8=;
+	b=s8U1Zc1Hjkyyq9kYMFvsr9JhsLTzwLzxnBLK7n27C6a7F5/HltIjlbqU8BbBVBI2++
+	exHqJ1J4bhouHttU5aiAYUO6BUZNv4LUYi3rF+pwVz3+AhE3LF89lhHcdeHC/ThecEOL
+	OPpHy2g7PvAKqIJuwSkzEnDnoU4CBnHZVD7SwrMzDm6LKYTb18bhjA9Hz7fWseY2PpZ7
+	c+Um4D8QtKEK0vi9CxCPfSPyr8O8tvP8Ag4sTrsPxvC7G5P4n3y28fzsLEGFsj+W8aYZ
+	c/HjeWWYSjQTCBOPhCYB5EJKhk8+bOH4Fj5S8VlYFojMRSjUjE0tbyGDz7KnPXl9eYxY
+	XSEg==
+X-Gm-Message-State: ALKqPwe9s2CuViMp5JFYODy6CF5ZOMfLC9MsN+PnsDACUX+dN2AjoBeM
+	HcsBxRFjoRpZU4+ZiDzBJHofLZAPtuGJdZEEFVWb6A==
+X-Google-Smtp-Source: AB8JxZqpmTNehbRryLNDk+P10wR3cMdhBqF5gcSXRFQqajC68jlUsZg8arZfysQUhMJYEQ6z3rAmCfEcU8LWc1dHbQI=
+X-Received: by 2002:aca:5e43:: with SMTP id
+	s64-v6mr9356736oib.332.1527609131190; 
+	Tue, 29 May 2018 08:52:11 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mutt/1.6.0 (2016-04-01)
-Subject: interacting with patchwork / unmerged development work
+Received: by 2002:ac9:1346:0:0:0:0:0 with HTTP; Tue, 29 May 2018 08:52:10
+	-0700 (PDT)
+In-Reply-To: <800E589716441541A37F6120DCDD24557A2CC6B1@IRSMSX101.ger.corp.intel.com>
+References: <2c9b354f-cb29-d8ae-875f-123a45b045e6@linux.intel.com>
+	<CAHUNapSC1zBx8vq1Z2p8pU-TV_r_-uXLHv_P+C4MuSti5Yz3_Q@mail.gmail.com>
+	<064fd4f8-7cac-e354-a710-c61085e7fe84@linux.intel.com>
+	<3ffb78f7-8115-6040-988a-6fe2a1f79a46@linuxfoundation.org>
+	<800E589716441541A37F6120DCDD24557A2CC6B1@IRSMSX101.ger.corp.intel.com>
+From: Michael Halstead <mhalstead@linuxfoundation.org>
+Date: Tue, 29 May 2018 08:52:10 -0700
+Message-ID: <CADfgfoYPVVazGs+V4DPy_xHuDzQ65R=+3-HT_U1EpVH9s3Y0mg@mail.gmail.com>
+To: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [Call to Action] Yocto Project Bug Triage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,84 +74,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 May 2018 15:50:52 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Tue, 29 May 2018 15:52:13 -0000
+Content-Type: multipart/alternative; boundary="0000000000009ee2b2056d5a379b"
 
-Hello,
+--0000000000009ee2b2056d5a379b
+Content-Type: text/plain; charset="UTF-8"
 
-One of the minor inconveniences with submitting patches to this project, is to
-work on a patch against master (for example), submit it, then find that
-yesterday someone submitted a patch against the same file you're editing
-causing your patch to not apply with what the maintainer is going to test.
+The meeting page is https://www.yoctoproject.org/public-virtual-meetings/
+for anyone interested.
 
-Do people have tricks or workflows for syncing their repositories with, say,
-master PLUS any patches which have been sent to the list since the last time
-(in this case) master was updated?
+On Tue, May 29, 2018 at 8:39 AM, Osier-mixon, Jeffrey <
+jeffrey.osier-mixon@intel.com> wrote:
 
-OR: is there an easy way to retrieve what is going to be tested in the next
-test cycle?
+> Stephen and I put together a meetings page. I'll work with him on a
+> shareable calendar this week.
+>
+>
+> -------- Original message --------
+> From: Michael Halstead <mhalstead@linuxfoundation.org>
+> Date: 5/29/18 8:37 AM (GMT-08:00)
+> To: Stephano Cetola <stephano.cetola@linux.intel.com>, Trevor Woerner <
+> twoerner@gmail.com>
+> Cc: yocto@yoctoproject.org, "Jolley, Stephen K" <
+> stephen.k.jolley@intel.com>, "Osier-mixon, Jeffrey" <
+> jeffrey.osier-mixon@intel.com>
+> Subject: Re: [yocto] [Call to Action] Yocto Project Bug Triage
+>
+>
+>
+> On 05/29/2018 08:16 AM, Stephano Cetola wrote:
+> > On 5/29/18 8:00 AM, Trevor Woerner wrote:
+> >> Is someone working on putting together a (google?) calendar of the
+> >> various project (OE Yocto) meetings?
+> > Great question.
+> >
+> > Michael, do we have access to a Yocto Project google account?
+> >
+> > --S
+> >
+> I don't but I think this is being worked on currently. It appears new
+> meetings are being scheduled by theyoctoproject@gmail.com. Whoever
+> controls that account should be able to make the calendar public.
+>
+> --
+> Michael Halstead
+> Linux Foundation / SysAdmin
+>
+>
 
-OR: would it be possible to tweak patchwork such that all received patches
-could be automatically applied to a given branch? Developers could then work
-off that branch and have a better chance of being in-sync? Maintainers could
-then prune that branch, removing any patches that have been rejected or need
-more work.
+--0000000000009ee2b2056d5a379b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I dug around and found two command-line utilities for interacting with
-patchwork:
-	- pwclient
-	- git-pw
+<div dir=3D"ltr">The meeting page is <a href=3D"https://www.yoctoproject.or=
+g/public-virtual-meetings/">https://www.yoctoproject.org/public-virtual-mee=
+tings/</a> for anyone interested.</div><div class=3D"gmail_extra"><br><div =
+class=3D"gmail_quote">On Tue, May 29, 2018 at 8:39 AM, Osier-mixon, Jeffrey=
+ <span dir=3D"ltr">&lt;<a href=3D"mailto:jeffrey.osier-mixon@intel.com" tar=
+get=3D"_blank">jeffrey.osier-mixon@intel.com</a>&gt;</span> wrote:<br><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
+c solid;padding-left:1ex">
 
-I can't seem to get either to work.
 
-Using the following ~/.pwclientrc (which is obtained from the OE patchwork
-server itself: https://patchwork.openembedded.org/project/oe/ and
-https://patchwork.openembedded.org/project/oe/pwclientrc/)
 
-	[options]
-	default=oe
 
-	[oe]
-	url= https://patchwork.openembedded.org/xmlrpc/
 
-I get a timeout error:
+<div>
+<div><font face=3D"sans-serif">Stephen and I put together a meetings page. =
+I&#39;ll work with him on a shareable calendar this week.=C2=A0</font><div>=
+<div class=3D"h5">
+<div><br>
+</div>
+<div><br>
+</div>
+<div>-------- Original message --------</div>
+<div>From: Michael Halstead &lt;<a href=3D"mailto:mhalstead@linuxfoundation=
+.org" target=3D"_blank">mhalstead@linuxfoundation.org</a><wbr>&gt; </div>
+<div>Date: 5/29/18 8:37 AM (GMT-08:00) </div>
+<div>To: Stephano Cetola &lt;<a href=3D"mailto:stephano.cetola@linux.intel.=
+com" target=3D"_blank">stephano.cetola@linux.intel.<wbr>com</a>&gt;, Trevor=
+ Woerner &lt;<a href=3D"mailto:twoerner@gmail.com" target=3D"_blank">twoern=
+er@gmail.com</a>&gt;
+</div>
+<div>Cc: <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@=
+yoctoproject.org</a>, &quot;Jolley, Stephen K&quot; &lt;<a href=3D"mailto:s=
+tephen.k.jolley@intel.com" target=3D"_blank">stephen.k.jolley@intel.com</a>=
+&gt;, &quot;Osier-mixon, Jeffrey&quot; &lt;<a href=3D"mailto:jeffrey.osier-=
+mixon@intel.com" target=3D"_blank">jeffrey.osier-mixon@intel.com</a><wbr>&g=
+t;
+</div>
+<div>Subject: Re: [yocto] [Call to Action] Yocto Project Bug Triage </div>
+<div><br>
+</div>
+</div></div></div><div><div class=3D"h5">
+<font size=3D"2"><span style=3D"font-size:10pt">
+<div class=3D"m_-5600529620024584419PlainText"><br>
+<br>
+On 05/29/2018 08:16 AM, Stephano Cetola wrote:<br>
+&gt; On 5/29/18 8:00 AM, Trevor Woerner wrote:<br>
+&gt;&gt; Is someone working on putting together a (google?) calendar of the=
+<br>
+&gt;&gt; various project (OE Yocto) meetings?<br>
+&gt; Great question.<br>
+&gt;<br>
+&gt; Michael, do we have access to a Yocto Project google account?<br>
+&gt;<br>
+&gt; --S<br>
+&gt;<br>
+I don&#39;t but I think this is being worked on currently. It appears new<b=
+r>
+meetings are being scheduled by <a href=3D"mailto:theyoctoproject@gmail.com=
+" target=3D"_blank">theyoctoproject@gmail.com</a>. Whoever<br>
+controls that account should be able to make the calendar public.<br>
+<br>
+-- <br>
+Michael Halstead<br>
+Linux Foundation / SysAdmin<br>
+<br>
+</div>
+</span></font>
+</div></div></div>
 
-	$ pwclient list
-	Traceback (most recent call last):
-	  File "/home/trevor/local/bin/pwclient", line 10, in <module>
-	    sys.exit(main())
-	  File "/home/trevor/local/lib/python2.7/site-packages/pwclient/shell.py", line 190, in main
-	    action_list(rpc, filt, submitter_str, delegate_str, format_str)
-	  File "/home/trevor/local/lib/python2.7/site-packages/pwclient/patches.py", line 114, in action_list
-	    patches = rpc.patch_list(filter.d)
-	  File "/usr/lib64/python2.7/xmlrpclib.py", line 1243, in __call__
-	    return self.__send(self.__name, args)
-	  File "/usr/lib64/python2.7/xmlrpclib.py", line 1602, in __request
-	    verbose=self.__verbose
-	  File "/usr/lib64/python2.7/xmlrpclib.py", line 1283, in request
-	    return self.single_request(host, handler, request_body, verbose)
-	  File "/usr/lib64/python2.7/xmlrpclib.py", line 1331, in single_request
-	    response.msg,
-	xmlrpclib.ProtocolError: <ProtocolError for patchwork.openembedded.org/xmlrpc/: 504 Gateway Time-out>
+</blockquote></div><br></div>
 
-For git-pw, it always seems to want a username/password, regardless of the
-operation, even though listing or retrieving patches shouldn't need a login:
-
-	$ git config pw.server https://patchwork.openembedded.org
-	$ git config pw.project oe
-	$ git pw patch list
-	Authentication information missing
-	You must configure authentication via git-config or via --token or --username, --password
-
-In any case, even if one of these were working, I'd still need to be able to
-generate a list of patch IDs since the last test. I have no idea how I'd go
-about doing that since I don't think the last accepted patch ID is known.
-Also, a list of currently-accepted patches isn't given anywhere either (that
-I'm aware).
-
-Any thoughts?
-
-Best regards,
-	Trevor
-
+--0000000000009ee2b2056d5a379b--
