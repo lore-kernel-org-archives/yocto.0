@@ -1,37 +1,64 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <lefevre.da@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 22D24E00CDE; Thu, 31 May 2018 13:44:31 -0700 (PDT)
+	id EBED2E00A0C; Thu, 31 May 2018 22:46:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (lefevre.da[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B05B4E00CCE;
-	Thu, 31 May 2018 13:44:29 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	31 May 2018 13:44:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,463,1520924400"; d="scan'208";a="60246382"
-Received: from tgraydon-mac01.jf.intel.com ([10.24.9.29])
-	by fmsmga001.fm.intel.com with ESMTP; 31 May 2018 13:44:28 -0700
-From: Tracy Graydon <tracy.graydon@intel.com>
-To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org,
-	meta-intel@yoctoproject.org
-Message-ID: <43ed34c9-0d3a-61e7-727f-6ad636b6bd49@intel.com>
-Date: Thu, 31 May 2018 13:44:27 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.1.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f179.google.com (mail-io0-f179.google.com
+	[209.85.223.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B6D2E00A0C
+	for <yocto@yoctoproject.org>; Thu, 31 May 2018 22:46:24 -0700 (PDT)
+Received: by mail-io0-f179.google.com with SMTP id e20-v6so28439951iof.4
+	for <yocto@yoctoproject.org>; Thu, 31 May 2018 22:46:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Ey3NlZMlHbdrNlFKG8Lg+i/+/pzcE9/y/m0ICYEWP2U=;
+	b=tQpjc3faCayklFK75I6NRrXcz5l8IW8INIsjjiddoHwAxJQFEZGbaSNrEHH6CRd2dV
+	K6O4hGS1jOi3HLXs1dmVBgSFQGXBnPZtvLKkew4fbzfKwM5CorfC+OPDax38jrlx5eHF
+	1ZC88iAaYSlrhgY+suDHMm8dmL7WyadGJq8r8GH+XgK69FtpVmWfFnKCnreZmrxGLSbp
+	vQ/fdeEnZgG8sZhNojD80qUR4fXuNuEu3SbTarXINdhCbrCHYg++iyc8INLI0ccx67X7
+	CBPVYoZ9kC3uhKEvnwrOyOJF2bHYgKSSM0Ok27T1uJcyt1lyW75BJ3aSOVy4ihBLzO2s
+	KFgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Ey3NlZMlHbdrNlFKG8Lg+i/+/pzcE9/y/m0ICYEWP2U=;
+	b=B7VQXvdtpR6nRH1H9FJabEY/k916Ge/aoFCUsSoWRgJjl+potMnZ0UlxHhYWum8dV5
+	zQFYL/Nz5J5erN0gQe2BddRkAOB4drWmjQXWBr1AXvK6QSJ05nk3cpGm+mA0OAIdB5CK
+	eTO/xF93nYxBAZlzH2S/y9IVc52vNff/fgwlzkih4ox6ZftSdG4diDM5r3CRrHIxW2hi
+	+S23bjjH0j7zygNGzAmR6I3SWr1r2OTA082200bYeY3E71Lxq4hulnQYAZ6Poz2+Dj2A
+	kaZCCVKR5Zl0Zl678ts/4NQLK9MoDbtlvvVoSSYXD5+K5k6TQgKTMEAjJ49i5tFF7enp
+	K6CQ==
+X-Gm-Message-State: ALKqPwe/BrHGbaIs1FjWhdTCpnw6qz9ueK4GuF2dMwFymL1E3lCHi49Q
+	i7sBr6f/LFdbme1OqPW2Ae1GDpe2yddRy64Q5Nrb
+X-Google-Smtp-Source: ADUXVKLsoYipWGX86qAlOz/eu43hwlWG13zVnZQwYs7Fsho9fUT5oXoC5ongNLT48ErsbZMZckb0Io89/HGe63enCsQ=
+X-Received: by 2002:a6b:a14d:: with SMTP id
+	k74-v6mr949064ioe.302.1527831983436; 
+	Thu, 31 May 2018 22:46:23 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [ANNOUNCEMENT] meta-intel 9.0 for Yocto Project "sumo" 2.5 is now available
+Received: by 2002:a02:7a4d:0:0:0:0:0 with HTTP; Thu, 31 May 2018 22:46:22
+	-0700 (PDT)
+From: Damien LEFEVRE <lefevre.da@gmail.com>
+Date: Fri, 1 Jun 2018 08:46:22 +0300
+Message-ID: <CA+FhBv94MKe=hP1om41-5knfLXxCQM92GKPLQaw=f8Pz-=RV7Q@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Image specific configuration files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,155 +70,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 May 2018 20:44:31 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 01 Jun 2018 05:46:25 -0000
+Content-Type: multipart/alternative; boundary="000000000000a63716056d8e1a4d"
 
-We are pleased to announce the meta-intel 9.0 layer for the Yocto Project 2.5 “sumo" release is now available for download.
+--000000000000a63716056d8e1a4d
+Content-Type: text/plain; charset="UTF-8"
 
-Tracy Graydon 
-Intel Corporation
+Hi,
 
-----------------------
-9.0-sumo-2.5 Errata
-----------------------
+For the same MACHINE I create the following images:
+- myimage-production
+- myimage-rnd
+- myimage-retail
 
-Release Name: meta-intel-9.0-sumo-2.5
-Branch: sumo
-Tag: 9.0-sumo-2.5
-Hash: d423576931b1d7c92939b5bc8529bc54619fa43c
-md5: df29d4d5368025814dd724f287389421
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.5/meta-intel-9.0-sumo-2.5.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-2.5/meta-intel-9.0-sumo-2.5.tar.bz2
+The production one has production assisted tools for flashing peripheral
+HW, testing vital HW components, writing some serial numbers, etc.
 
+The rnd one has more packages than the retail one just to help rnd work and
+debugging in device, but none of the rnd image extra packages.
 
----------------------------
-New Features / Enhancements
----------------------------
-Quark has been EoL'd, and thus the intel-quark MACHINE support has been removed.
+The retail one has the final product image.
 
-Default bootloader has been changed to systemd-boot.
+I'm using web and FTP servers. I would like for the rnd version of the
+image to have a different nginx configuration to set the root directory to
+a development folder, or set an alias.
 
-Default kernel is now linux-intel-4.14.
+Furthermore, I'll have different variant of the device where only the
+device SW changes but the platform is identical. So I'll end up with
+- myimage2-production
+- myimage2-rnd
+- myimage2-retail
 
+I know how to make MACHINE based configuration. How could I do this in
+my nginx.bbappend based on image name?
 
---------------
- Known Issues
---------------
-N\A
+Thanks,
+-Damien
 
+--000000000000a63716056d8e1a4d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
----------------
-Security Fixes
----------------
-For Intel processor-specific security information please visit https://software.intel.com/en-us/side-channel-security-support
- 
-Method information on Intel's Security Center site:
-https://security-center.intel.com/advisory.aspx?intelid=INTEL-SA-00088&languageid=en-fr
- 
-Intel Security Center:
-https://security-center.intel.com/default.aspx
+<div dir=3D"ltr">Hi,<div><br></div><div>For the same MACHINE I create the f=
+ollowing images:</div><div>- myimage-production</div><div>- myimage-rnd</di=
+v><div>- myimage-retail</div><div><br></div><div>The production one has pro=
+duction assisted tools for flashing peripheral HW, testing vital HW compone=
+nts, writing some serial numbers, etc.</div><div><br></div><div>The rnd one=
+ has more packages than the retail one just to help rnd work and debugging =
+in device, but none of the rnd image extra packages.=C2=A0</div><div><br></=
+div><div>The retail one has the final product image.</div><div><br></div><d=
+iv>I&#39;m using web and FTP servers. I would like for the rnd version of t=
+he image to have a different nginx configuration to set the root directory =
+to a development folder,=C2=A0<span style=3D"color:rgb(34,34,34);font-famil=
+y:arial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures=
+:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text=
+-align:start;text-indent:0px;text-transform:none;white-space:normal;word-sp=
+acing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;t=
+ext-decoration-color:initial;float:none;display:inline">or set an alias.</s=
+pan></div><div><br></div><div>Furthermore, I&#39;ll have different variant =
+of the device where only the device SW changes but the platform is identica=
+l. So I&#39;ll end up with=C2=A0<br></div><div><div style=3D"color:rgb(34,3=
+4,34);font-family:arial,sans-serif;font-size:small;font-style:normal;font-v=
+ariant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spa=
+cing:normal;text-align:start;text-indent:0px;text-transform:none;white-spac=
+e:normal;word-spacing:0px;text-decoration-style:initial;text-decoration-col=
+or:initial">- myimage2-production</div><div style=3D"color:rgb(34,34,34);fo=
+nt-family:arial,sans-serif;font-size:small;font-style:normal;font-variant-l=
+igatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:nor=
+mal;text-align:start;text-indent:0px;text-transform:none;white-space:normal=
+;word-spacing:0px;text-decoration-style:initial;text-decoration-color:initi=
+al">- myimage2-rnd</div><div style=3D"color:rgb(34,34,34);font-family:arial=
+,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal=
+;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:=
+start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0=
+px;text-decoration-style:initial;text-decoration-color:initial">- myimage2-=
+retail</div><div><br></div><div>I know how to make MACHINE based configurat=
+ion. How could I do this in my=C2=A0nginx.bbappend based on image name?<br>=
+</div></div><div><span style=3D"color:rgb(34,34,34);font-family:arial,sans-=
+serif;font-size:small;font-style:normal;font-variant-ligatures:normal;font-=
+variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;=
+text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;bac=
+kground-color:rgb(255,255,255);text-decoration-style:initial;text-decoratio=
+n-color:initial;float:none;display:inline"><br></span></div><div><span styl=
+e=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-=
+style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-we=
+ight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transf=
+orm:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,2=
+55);text-decoration-style:initial;text-decoration-color:initial;float:none;=
+display:inline">Thanks,</span></div><div><span style=3D"color:rgb(34,34,34)=
+;font-family:arial,sans-serif;font-size:small;font-style:normal;font-varian=
+t-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:=
+normal;text-align:start;text-indent:0px;text-transform:none;white-space:nor=
+mal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-styl=
+e:initial;text-decoration-color:initial;float:none;display:inline">-Damien<=
+/span></div></div>
 
-
----------------
-Fixes
----------------
-conf/machine/intel-corei7-64.conf: remove DPDK_TARGET_MACHINE
-conf/machine/intel-core*: use systemd-bootdisk-microcode.wks by default
-conf/machine/intel-*: remove do_image_wic depends
-core-image-minimal-initramfs.bbappend: Add missing install module
-core-image-tiny: Remove Quark reference and WKS file
-efilinux: remove
-Galileo: Remove remaining bits from RMC and WIC directory
-intel-gpu-tools: 
-- backport patch fixing 32-bit builds
-- upgrades from: 1.19 to 1.20. 1.20 - 1.21, 1.21 - 1.22
-intel-microcode: Updates to 20171117 and 20180312
-intel-quark: Remove MACHINE configuration for Quark
-intel-vaapi-driver: upgrades to 2.0.0 and 2.1.0
-iwlwifi: remove reference to SYSTEMD_AUTO_ENABLE
-ixgbe: 
-- update to v5.3.6
-- cleanup recipe
-ixgbevf: 
-- update to v4.3.4
-- cleanup recipe
-layer.conf: update LAYERSERIES_COMPAT variable
-libyami: upgrade to 1.3.0
-libyami-utils: upgrade to 1.3.0
-linux-*: remove quark references from kernel
-linux-intel: 
-- Update 4.9 SRCREV and refactor
-- fix menuconfig when host lacks ncurses 
-- set COMPATIBLE_MACHINE default
-- use meta-intel-compat-kernel.inc
-linux-intel/4.14: 
-- Fix 32-bit perf issue
-- change KBRANCH to 4.14 and update SRCREVs
-- add preempt-rt recipe
-- mirror new dependencies added to linux-yocto-dev
-- use master cache until named branch available
-- Add latest LTS kernel
-linux-intel/4.14 Updates: 
-- v4.14.12
-- v4.14.14
-- v4.14.15
-- v4.14.18
-- v4.14.26
-- v4.14.30
-- v4.14.35
-- v4.14.40
-linux-intel/4.9: 
-- Update cache and source SRCREVs
-linux-intel/4.9 Updates: 
-- v4.9.76
-- v4.9.77
-- v4.9.81
-- v4.9.84
-- v4.9.99
-linux-intel-rt/4.14 Updates: 
-- v4.14.24
-- v4.14.29
-- v4.14.34
-- v4.14.40
-linux-yocto: remove 4.4, 4.9, and 4.10 bbappends
-linux-yocto/4.4: Update to v4.4.113
-linux-yocto/4.12: use meta-intel-compat-kernel.inc instead
-linux-yocto-4.14: 
-- update to v4.14.33
-- add bbappends
-linux-yocto/4.15: add bbappends
-MAINTAINERS: 
-- update to current project maintainers
-- Update for the removal of meta-tlk
-maintainers.inc: update recipes for new maintainers
-meta-intel: Reorganize the layout to remove common
-meta-intel.inc: 
-- use linux-intel instead of linux-yocto in -lsb
-- set default EFI_PROVIDER to systemd-boot
-- Update linux-intel PREFERRED_VERSION to 4.14
-- remove unreferenced xserver code
-qemuboot-intel: Remove quark references
-README: 
-- Remove Quark references
-- update bitbake and OE-core requirements
-- minor edit
-- update for sumo release requirements
-recipes-kernel/linux: add meta-intel-compat-kernel.inc file
-rmc-db: also install to /boot/
-systemd-boot: 
-- fix bbappend file to suit latest version
-- move systemd-boot.inc into base bbappend
-- move commit pinning to rmc-boot.inc
-systemd-boot/rmc-boot.inc:
-- make it work with EFI image enhancements
-- update to work with v237 and meson
-thermald: 
-- fix typo in license name
-- update from 1.6 to 1.7.1
-uefi-comboapp.bbclass: install files under pseudo
-wic: add systemd-bootdisk-microcode.wks
-xf86-video-mga: remove recipe from meta-intel
-
-
+--000000000000a63716056d8e1a4d--
