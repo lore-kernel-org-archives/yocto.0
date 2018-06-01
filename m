@@ -1,65 +1,72 @@
-Return-Path: <jon.szymaniak@gmail.com>
+Return-Path: <laurent.joli@kapelse.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EEF85E00C99; Fri,  1 Jun 2018 09:34:25 -0700 (PDT)
+	id 56BECE00C4B; Fri,  1 Jun 2018 09:40:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jon.szymaniak.foss[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.169 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [176.120.128.35 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot0-f169.google.com (mail-ot0-f169.google.com
-	[74.125.82.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEFE4E00843
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 09:34:24 -0700 (PDT)
-Received: by mail-ot0-f169.google.com with SMTP id m11-v6so29950201otf.3
-	for <yocto@yoctoproject.org>; Fri, 01 Jun 2018 09:34:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:sender:from:date:message-id:subject:to;
-	bh=ZuHFKDAMjysf9LknEn8lAT3l/pETHEB90A/W0gkfeMA=;
-	b=r7jSxf08SjaTzS+qlNjV0eE2U9ByXdq8/V/AqulLLJJe9HhP+mrTF7MLuvutt8NpFT
-	ZKmrhhSOmFuTqtehQhQBMJmCZ/dFq9SZyzBd+CvFUx6L4bTImd0U1ejF85RRUF3NT5Gy
-	oaV6CNY9imJHB5/GRB+YVfkxyxn1qRM8vsmPNENDjZQPZuaaLTwb7C5Q+rwmOtW2IgAV
-	1mF3wjGOBejfFEyayXkzR//vR9RpzXNjDbTqOjkWSut6V/d/PF6O4KrayV9jlZhZ5h7F
-	0kmjGssnrxbML2AayiJcj92EVZP/j3Q/5r3q4vj06ZP2TfOZkO9dtlaxi7cyAHaeckAk
-	GWcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-	:to; bh=ZuHFKDAMjysf9LknEn8lAT3l/pETHEB90A/W0gkfeMA=;
-	b=Rq7sJSBe4BVV4B0oq5Y7k0hMDvIDSOWzCvMLnPVc+U789tDndVBFTy/2TjviCA6/r4
-	uZksc1eQyIfDry1Hkloo3EACtpgDHFAxIuQBWY/j+mIfQvlY4CRxTe664PmT8n7tI4/1
-	3FE2sv0bzsjUzS8EfzQPSY1L38ToqcxyUhXRdU8UfgpAyEre2vvhfk+kHxqwNVNJ2Zkf
-	p21BWxIETHZ7RUUOVlvZ0AszdUVsCgeXeTZbQo2s4G9qqdDTxNdNRHZ00bDrrYbbuzPr
-	INwZa9JLGenAl6UuVzpxTTw8mTP3fzy4drjVyLYYNE6nbW9HHVOVUUlIwX9sV6xGo0Sp
-	n8JA==
-X-Gm-Message-State: ALKqPwf/vqCIkJ/5B1fpMT9bRVQ9TsjzmZj04vyJ2Z4OkRwaMY9eRCUq
-	JCFq7Thr7UqSjl0P9aNjtaMHzB1GRilD0olf9h50nYzF
-X-Google-Smtp-Source: ADUXVKL4cYUk0w2FtFF4OFFpFhWadzg0MUqRB9Y7SJNG3Fo6Hy1FK+VjeGbkX4OKysS7Hczahw7Dy9P9qFtWW++I3e8=
-X-Received: by 2002:a9d:1f23:: with SMTP id
-	x32-v6mr3722136otd.201.1527870863729; 
-	Fri, 01 Jun 2018 09:34:23 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 376 seconds by postgrey-1.32 at yocto-www;
+	Fri, 01 Jun 2018 09:40:39 PDT
+Received: from stripper.pharmagest.com (stripper.pharmagest.com
+	[176.120.128.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C20A0E00AD8
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 09:40:39 -0700 (PDT)
+Received: from 127.0.0.1 (localhost [127.0.0.1])
+	by stripper.pharmagest.com (Postfix) with ESMTP id 858066B2316
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 18:34:22 +0200 (CEST)
+X-MIB-FROM: laurent.joli@kapelse.com
+X-MIBTO: BKix6Fn39KkNW6xZDl6cUwBEMlwkHw1v0T/KRO0nYQo=
+Received: from localhost ([127.0.0.1])
+	by stripper.pharmagest.com (MIBD SMTP Server 4.0.0000) with SMTP ID 675
+	for <yocto@yoctoproject.org>; Fri, 1 Jun 2018 18:34:21 +0200 (CEST)
+Received: from vm-shunter1-prd.sim.pharmagest.com
+	(vm-shunter1-prd.sim.pharmagest.com [172.19.32.61])
+	by stripper.pharmagest.com (Postfix) with ESMTP id 6646E6B229A
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 18:34:21 +0200 (CEST)
+Received: from vm-zimbranemta1-prd.sim.pharmagest.com
+	(vm-zimbranemta1-prd.sim.pharmagest.com [172.19.32.35])
+	by vm-shunter1-prd.sim.pharmagest.com (courriel) with ESMTP id
+	2DC2F80AACE1
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 18:34:20 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by vm-zimbranemta1-prd.sim.pharmagest.com (Postfix) with ESMTP id
+	47F4A83058
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 18:34:21 +0200 (CEST)
+Received: from vm-zimbranemta1-prd.sim.pharmagest.com ([127.0.0.1])
+	by localhost (vm-zimbranemta1-prd.sim.pharmagest.com [127.0.0.1])
+	(amavisd-new, port 10032)
+	with ESMTP id HvxZ0BiT3rQS for <yocto@yoctoproject.org>;
+	Fri,  1 Jun 2018 18:34:20 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by vm-zimbranemta1-prd.sim.pharmagest.com (Postfix) with ESMTP id
+	B864E83059
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 18:34:20 +0200 (CEST)
+Received: from vm-zimbranemta1-prd.sim.pharmagest.com ([127.0.0.1])
+	by localhost (vm-zimbranemta1-prd.sim.pharmagest.com [127.0.0.1])
+	(amavisd-new, port 10026)
+	with ESMTP id tzqg-CEebBxA for <yocto@yoctoproject.org>;
+	Fri,  1 Jun 2018 18:34:20 +0200 (CEST)
+Received: from vm-zimbranestore2-prd.sim.pharmagest.com (unknown
+	[172.19.32.41])
+	by vm-zimbranemta1-prd.sim.pharmagest.com (Postfix) with ESMTP id
+	83D5183058
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 18:34:20 +0200 (CEST)
+Date: Fri, 1 Jun 2018 18:34:20 +0200 (CEST)
+From: Laurent JOLI <laurent.joli@kapelse.com>
+To: yocto <yocto@yoctoproject.org>
+Message-ID: <744580343.12524344.1527870860299.JavaMail.zimbra@kapelse.com>
 MIME-Version: 1.0
-Sender: jon.szymaniak@gmail.com
-Received: by 2002:a9d:ed1:0:0:0:0:0 with HTTP;
-	Fri, 1 Jun 2018 09:34:03 -0700 (PDT)
-From: Jon Szymaniak <jon.szymaniak.foss@gmail.com>
-Date: Fri, 1 Jun 2018 11:34:03 -0500
-X-Google-Sender-Auth: 4sjyti-uG-wIqyI-D3jks6OlDkg
-Message-ID: <CANge7vU376tuKnCGRVAU6i98a-V6nqxN7q8oy=gM0wTjfdn9fQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: [meta-security] buck-security not found in STAGING_BINDIR_NATIVE
+X-Mailer: Zimbra 8.7.1_GA_1670 (ZimbraWebClient - FF60 (Linux)/8.7.1_GA_1670)
+Thread-Index: BHaRWuDRxKKaTK4z5bRXELxPRF8FBQ==
+Thread-Topic: Add --enable-speech-dispatcher
+Subject: Add --enable-speech-dispatcher
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,53 +78,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2018 16:34:26 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 01 Jun 2018 16:40:41 -0000
+Content-Type: multipart/alternative; 
+	boundary="=_478c803d-8f17-4b06-b796-d2f45a5994a3"
 
-I'm working with the rocko branch of the meta-security layer [1], with the
-latest poky rocko branch HEAD on an Ubuntu 17.10 machine (technically an
-"untested" distro but otherwise fine with Rocko the past).
+--=_478c803d-8f17-4b06-b796-d2f45a5994a3
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-From my understanding, all that should be required to run the buck-security
-after an image build is adding INHERIT += "check_security" to local.conf. I see
-that check_security.bbclass [2] already takes care of appending itself to
-EXTRA_IMAGEDEPENDS.
+Hello, 
 
-However, when building an image (e.g. core-image-minimal),
-check_security.bbclass is failing to find buck-security in
-${STAGING_BINDIR_NATIVE}, as indicated by the following error message:
+I work on the following context : 
 
-${TMPDIR}/work/raspberrypi0_wifi-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/run.check_security.24976:
-  112: ${TMPDIR}/work/raspberrypi0_wifi-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/run.check_security.24976:
-     ${TMPDIR}/work/raspberrypi0_wifi-poky-linux-gnueabi/core-image-minimal/1.0-r0/recipe-sysroot-native/usr/bin/buck-security:
-not found
+qt: 5.9.2 
+SRCREV_qtwebengine = "c11c2c8981e647c1eb2c6753ce77d436b92fff87" 
+SRCREV_chromium = "cfe8c60903b327ac94406661350f4ac05aa8c21b" 
 
-The above makes it clear what ${STAGING_BINDIR_NATIVE} expands to;
-buck-security is indeed not present in this location.
+So, I use the layer of QT5 : 
 
-My logs indicate that when buck-security-native recipe's do_install() is
-executed [3], ${D} and ${bindir} are defined as follows:
+https://github.com/meta-qt5/meta-qt5 
 
-D: ${TMPDIR}/work/x86_64-linux/buck-security-native/0.7-r0/image
-bindir: ${TMPDIR}/work/x86_64-linux/buck-security-native/0.7-r0/recipe-sysroot-native/usr/bin
+with the commit : bbb304456978fa9713932e9ff529d18a5ef2a947 
 
-buck-security also appears to be present in the  following location:
-${TMPDIR}/sysroots-components/x86_64/buck-security-native/usr/bin/buck-security
+I can run correctly the browser : quicknanobrowser 
 
+I also can run correctly speech-dispatcher with espak 
 
-After going through the manuals, I'm still a little unclear about when exactly
-buck-security-native's files should be copied or linked into the image's
-respective sysroot (presumably, during do_populate_sysroot?), and where the
-breakdown is happening here.
+When running quicknanobrowser on website using web speech api, it does not work ( no voices listed, no audio output) even if web speech synthesis support seems to be detected. 
 
-If anyone else is able to reproduce this or provide some assistance in
-resolving or just debugging it, I'd greatly appreciate it.
+Does qtwebengine supports Web Speech API? 
+If yes, how qtwebengine must be configured to support Web Speech Api (webrtc...)? 
 
-Thank you,
-Jon Szymaniak
+Regards, 
+LJO 
 
-Links:
-[1] https://git.yoctoproject.org/cgit/cgit.cgi/meta-security/
-[2] https://git.yoctoproject.org/cgit/cgit.cgi/meta-security/tree/classes/check_security.bbclass
-[3] https://git.yoctoproject.org/cgit/cgit.cgi/meta-security/tree/recipes-security/buck-security/buck-security_0.7.bb#n51
+--=_478c803d-8f17-4b06-b796-d2f45a5994a3
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+<html><body><div style=3D"font-family: Arial, Helvetica, sans-serif; font-s=
+ize: 10pt; color: #000000"><div>Hello,<br><br>I work on the following conte=
+xt :<br><br>qt: 5.9.2<br>SRCREV_qtwebengine =3D "c11c2c8981e647c1eb2c6753ce=
+77d436b92fff87"<br>SRCREV_chromium =3D "cfe8c60903b327ac94406661350f4ac05aa=
+8c21b"<br><br>So, I use the layer of QT5 :<br><br>https://github.com/meta-q=
+t5/meta-qt5<br><br>with the commit : bbb304456978fa9713932e9ff529d18a5ef2a9=
+47<br><br>I can run correctly the browser : quicknanobrowser<br><br>I also =
+can run correctly speech-dispatcher with espak<br><br>When running quicknan=
+obrowser on website using web speech api, it does not work ( no voices list=
+ed, no audio output) even if web speech synthesis support seems to be detec=
+ted.<br><br>Does qtwebengine supports Web Speech API?<br>If yes, how qtwebe=
+ngine must be configured&nbsp; to support Web Speech Api (webrtc...)?<br><b=
+r>Regards,<br data-mce-bogus=3D"1"></div><div>LJO<br data-mce-bogus=3D"1"><=
+/div></div></body></html>
+
+--=_478c803d-8f17-4b06-b796-d2f45a5994a3--
