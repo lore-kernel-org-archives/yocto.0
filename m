@@ -1,44 +1,69 @@
-Return-Path: <jakob.hasse@smart-home-technology.ch>
+Return-Path: <jon.szymaniak@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8189E00CB2; Fri,  1 Jun 2018 09:15:54 -0700 (PDT)
+	id C2714E00D33; Thu, 31 May 2018 21:38:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [217.26.49.177 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	HTML_OBFUSCATE_05_10, 
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jon.szymaniak.foss[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.42 listed in list.dnswl.org]
+	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mxout017.mail.hostpoint.ch (mxout017.mail.hostpoint.ch
-	[217.26.49.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2270E00A0C
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 09:15:52 -0700 (PDT)
-Received: from [10.0.2.45] (helo=asmtp012.mail.hostpoint.ch)
-	by mxout017.mail.hostpoint.ch with esmtp (Exim 4.91 (FreeBSD))
-	(envelope-from <jakob.hasse@smart-home-technology.ch>)
-	id 1fOmiT-0007ui-NE; Fri, 01 Jun 2018 18:15:49 +0200
-Received: from [2a02:168:6893:1:c83f:a228:a23b:fd64]
-	by asmtp012.mail.hostpoint.ch with esmtpa (Exim 4.91 (FreeBSD))
-	(envelope-from <jakob.hasse@smart-home-technology.ch>)
-	id 1fOmiT-000AM0-Ky; Fri, 01 Jun 2018 18:15:49 +0200
-X-Authenticated-Sender-Id: jakob.hasse@smart-home-technology.ch
-To: Bruce Ashfield <bruce.ashfield@windriver.com>,
-	Yocto List <yocto@yoctoproject.org>
-References: <783ff7cd-c1d8-1802-4b67-3aff339aae31@smart-home-technology.ch>
-	<6391ddea-802d-7f4d-26b3-44a79556c8a0@windriver.com>
-From: Jakob Hasse <jakob.hasse@smart-home-technology.ch>
-Message-ID: <761e6979-b696-04f6-6e62-e325bc979c38@smart-home-technology.ch>
-Date: Fri, 1 Jun 2018 18:15:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.8.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f42.google.com (mail-oi0-f42.google.com
+	[209.85.218.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93C0BE007DA
+	for <yocto@yoctoproject.org>; Thu, 31 May 2018 21:38:23 -0700 (PDT)
+Received: by mail-oi0-f42.google.com with SMTP id 14-v6so13435255oie.3
+	for <yocto@yoctoproject.org>; Thu, 31 May 2018 21:38:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:sender:from:date:message-id:subject:to;
+	bh=xrjGlZnTrmKxpIWgaG3hM0RYckDrm5m4EEM0cvunXvA=;
+	b=KMuI6SYiPgKFT9luevGF0cumyEb+rEYV7nrtbs3+zlROuZGQCt9K8hGWddCLaKjTad
+	SzYP4Y0pQiefCFAWScS7g36bpa7G8ap6K0LfOMSOS3pz/LRbuVyth3gJvnnCRGub8cvM
+	IWgUFMB4uPtCRgQmlnfhj+XVhKyGaFkGVHoSHK/yR6PkGJGqON1sJMdGQDU7x2cI4iz8
+	Ixrsd5xZEiax5QDCF2gtYEdalKWpKW4pmiRUPV0c+I3wp+tW0eWJn94aRu44rZtmzjFy
+	aMdmF4g7WPvqrlojSgjQbBVrWgWsKIf6eZFa8sE6apDTcfzxpuASmxJaTzGMf+1UmQMt
+	H6HQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+	:to; bh=xrjGlZnTrmKxpIWgaG3hM0RYckDrm5m4EEM0cvunXvA=;
+	b=dC540/OxRpPebxIuvuAU+5huM/4XyIb9/pFvvIfvKuokC5rK5M4+GPAyr0dthm3O50
+	i2Yj2B1xIuyGmERR9wrb9pFVJHSoafcl7QahVxftHDPjUmw8CW9/wRPMw1OUnK/KR1V1
+	wE9siTUgiW3hS4AizaKocw0RQ9U5alrpIW3jQ8qBZTrX9IICe57PFnJ66HeIPGgD3WMM
+	ysc3vYgfgsxYP1dcHNYtMnM40FKRhyaKShtrF4XM85IpuVWRBRZL2htOxaU8FOX4aKnZ
+	PN2eBlqdnu2ejmUNA050LckzwVQj1fUqIsT+fdiTSASqshNTPtOtPuKXuk2tcdtXL5UD
+	+xTA==
+X-Gm-Message-State: APt69E3zUq73jxKARiIm8IGcBNZ3kylWnMtwp8cED4GO1s0tGceWuEVQ
+	BV0F4AOdrdE0+wYS7nXQhPBfi9oyK9mdudhEDI91Yc6i
+X-Google-Smtp-Source: ADUXVKKER3bgFzOPkRKPmAHnD+ta7hdrN7JN/wa57o59mkfnxTTb+oLuCe/NWRMUQ7ygmRRGD0xnCShKHzNVJ4XFDes=
+X-Received: by 2002:aca:4957:: with SMTP id
+	w84-v6mr2774529oia.293.1527827902764; 
+	Thu, 31 May 2018 21:38:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <6391ddea-802d-7f4d-26b3-44a79556c8a0@windriver.com>
+Sender: jon.szymaniak@gmail.com
+Received: by 2002:a9d:ed1:0:0:0:0:0 with HTTP;
+	Thu, 31 May 2018 21:38:02 -0700 (PDT)
+From: Jon Szymaniak <jon.szymaniak.foss@gmail.com>
+Date: Thu, 31 May 2018 23:38:02 -0500
+X-Google-Sender-Auth: IvYsumY_pjBoFwRNbdIi6dzqoBI
+Message-ID: <CANge7vXCY-5cULGyjqT3L+LhNUW4CF9T5mrDFhJXDNfqkcw6Ag@mail.gmail.com>
+To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Mon, 04 Jun 2018 01:11:40 -0700
-Cc: "meta-virtualization@yoctoproject.org"
-	<meta-virtualization@yoctoproject.org>
-Subject: Re: cgroups and iptables problems running docker - maybe my config wrong?
+Subject: [meta-security] buck-security not found in STAGING_BINDIR_NATIVE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,259 +75,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2018 16:15:54 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: de-DE
+X-List-Received-Date: Fri, 01 Jun 2018 04:38:24 -0000
+Content-Type: multipart/alternative; boundary="0000000000006c1bfb056d8d2768"
 
-Hello Bruce,
+--0000000000006c1bfb056d8d2768
+Content-Type: text/plain; charset="UTF-8"
 
-Thank you very much for the quick response. I tried to built in the 
-kernel changes. But the iptables error persists.
-Eventually, I tried to enable systemd again and it still breaks my build 
--.-:
+I'm working with the rocko branch of the meta-security layer [1], with the
+latest poky rocko branch HEAD on an Ubuntu 17.04 machine (technically an
+"untested" distro but otherwise fine in the past).
 
-test$ bitbake core-image-base
-NOTE: Started PRServer with DBfile: 
-/home/build/test/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 40169, PID: 2335
-Loading cache: 100% 
-|########################################################################################################| 
-Time: 0:00:00
-Loaded 3023 entries from dependency cache.
-Parsing recipes: 100% 
-|######################################################################################################| 
-Time: 0:00:01
-Parsing of 2194 .bb files complete (2193 cached, 1 parsed). 3024 
-targets, 146 skipped, 0 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
+From my understanding, all that should be required to run the buck-security
+after an image build is adding INHERIT += "check_security" to local.conf. I
+see that check_security.bbclass [2] already takes care of appending itself
+to EXTRA_IMAGEDEPENDS.
 
-Build Configuration:
-BB_VERSION           = "1.36.0"
-BUILD_SYS            = "x86_64-linux"
-NATIVELSBSTRING      = "universal"
-TARGET_SYS           = "arm-dey-linux-gnueabi"
-MACHINE              = "ccimx6ulstarter"
-DISTRO               = "dey"
-DISTRO_VERSION       = "2.4-r1"
-TUNE_FEATURES        = "arm armv7ve vfp thumb neon callconvention-hard 
-cortexa7"
-TARGET_FPU           = "hard"
-meta
-meta-poky
-meta-yocto-bsp       = "HEAD:3befe6d7b7fa8c8481519aa8dd0cae52207ad339"
-meta-oe
-meta-python
-meta-networking
-meta-webserver       = "HEAD:dacfa2b1920e285531bec55cd2f08743390aaf57"
-meta-qt5             = "HEAD:cfe02f26de53e5c20e6f9555059cbaaf5ab9b22f"
-meta-swupdate        = "HEAD:6e4eab4f475b0129d6510815a3bbc4748c97dbbe"
-meta-freescale       = "HEAD:d6141ea291a1ac9ab8fb1dd1110d408f840fda57"
-meta-fsl-demos       = "HEAD:0ec6d7e206705702b5b534611754de0787f92b72"
-meta-digi-arm
-meta-digi-dey        = "HEAD:1246ecff2cecea9247d94f36385608ac844d7abb"
+However, when building an image (e.g. core-image-minimal),
+check_security.bbclass is failing to find buck-security in
+${STAGING_BINDIR_NATIVE}, as indicated by the following error message:
 
-Initialising tasks: 100% 
-|###################################################################################################| 
-Time: 0:00:04
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-ERROR: core-image-base-1.0-r0 do_rootfs: Could not invoke dnf. Command 
-'/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/recipe-sysroot-native/usr/bin/dnf 
--y -c 
-/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/rootfs/etc/dnf/dnf.conf 
---setopt=reposdir=/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/rootfs/etc/yum.repos.d 
---repofrompath=oe-repo,/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/oe-rootfs-repo 
---installroot=/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/rootfs 
---setopt=logdir=/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/temp 
--x udev-cache --nogpgcheck install locale-base-en-us locale-base-en-gb 
-packagegroup-core-boot packagegroup-core-eclipse-debug run-postinsts 
-packagegroup-dey-bluetooth psplash packagegroup-core-ssh-dropbear 
-packagegroup-dey-network packagegroup-base-extended 
-packagegroup-dey-audio packagegroup-dey-wireless rpm dnf' returned 1:
-Added oe-repo repo from 
-/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/oe-rootfs-repo
-Last metadata expiration check: 0:00:00 ago on Fri 01 Jun 2018 03:49:44 
-PM UTC.
-Error:
-  Problem: package packagegroup-base-1.0-r83.0.ccimx6ulstarter requires 
-packagegroup-distro-base, but none of the providers can be installed
-   - package packagegroup-base-extended-1.0-r83.0.ccimx6ulstarter 
-requires packagegroup-base, but none of the providers can be installed
-   - package packagegroup-distro-base-1.0-r83.0.ccimx6ulstarter requires 
-packagegroup-dey-core, but none of the providers can be installed
-   - conflicting requests
-   - nothing provides busybox-hwclock needed by 
-packagegroup-dey-core-1.0-r0.0.ccimx6ulstarter
+${TMPDIR}/work/raspberrypi0_wifi-poky-linux-gnueabi/core-ima
+ge-minimal/1.0-r0/temp/run.check_security.24976:
+  112: ${TMPDIR}/work/raspberrypi0_wifi-poky-linux-gnueabi/core-ima
+ge-minimal/1.0-r0/temp/run.check_security.24976:
+     ${TMPDIR}/work/raspberrypi0_wifi-poky-linux-gnueabi/core-im
+age-minimal/1.0-r0/recipe-sysroot-native/usr/bin/buck-security: not found
 
-ERROR: core-image-base-1.0-r0 do_rootfs: Function failed: do_rootfs
-ERROR: Logfile of failure stored in: 
-/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/temp/log.do_rootfs.2380
-ERROR: Task 
-(/usr/local/dey-2.4/sources/poky/meta/recipes-core/images/core-image-base.bb:do_rootfs) 
-failed with exit code '1'
-NOTE: Tasks Summary: Attempted 4106 tasks of which 4105 didn't need to 
-be rerun and 1 failed.
+The above makes it clear what ${STAGING_BINDIR_NATIVE} expands to;
+buck-security is indeed not present in this location.
 
-Summary: 1 task failed:
-/usr/local/dey-2.4/sources/poky/meta/recipes-core/images/core-image-base.bb:do_rootfs
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+My logs indicate that when buck-security-native recipe's do_install() is
+executed [3], ${D} and ${bindir} are defined as follows:
 
-Seems that the introduction of systemd "confuses" dnf. I found a quite 
-similar description in this bugreport here:
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=12025
-only that I'm not using different machines. This bug doesn't seem to be 
-resolved yet.
+D: ${TMPDIR}/work/x86_64-linux/buck-security-native/0.7-r0/image
+bindir: ${TMPDIR}/work/x86_64-linux/buck-security-native/0.7-r0/recipe-sysroot-native/usr/bin
 
-Our Yocto-distribution is DIGI Embedded Yocto. So non-standard.
-Shall I still log a bug against oe-core?
-If someone here has some more helpful ideas, I would be very thankful.
-
-All the Best,
-Jakob
-
-On 31.05.2018 13:44, Bruce Ashfield wrote:
-> On 2018-05-31 7:00 AM, Jakob Hasse wrote:
->> Hello,
->
-> Make sure to cc meta-virtualization on questions like this, since
-> that is where you'll get more eyes that are running docker
-> all the time.
->
->> I ran into trouble running docker on our target.
->> 1. When I want to start docker, I first have to re-mount cgroups:
->> root@target:~# cgroups-umount
->> root@target:~# cgroups-mount
->> Otherwise docker would produce an error:
->> ERRO[0002] Failed to built-in GetDriver graph btrfs /var/lib/docker
->>
->> 2. When I then start dockerd, it complains about a missing nat table:
->> root@target:~# dockerd
->> INFO[0000] libcontainerd: new containerd process, pid: 929
->> WARN[0000] containerd: low RLIMIT_NOFILE changing to max current=1024 
->> max=4096
->> INFO[0001] [graphdriver] using prior storage driver: overlay2
->> INFO[0001] Graph migration to content-addressability took 0.00 seconds
->> WARN[0001] Your kernel does not support cgroup memory limit
->> WARN[0001] Unable to find cpu cgroup in mounts
->> WARN[0001] Unable to find blkio cgroup in mounts
->> WARN[0001] Unable to find cpuset cgroup in mounts
->> WARN[0001] mountpoint for pids not found
->> INFO[0001] Loading containers: start.
->> WARN[0001] Running modprobe nf_nat failed with message: `modprobe: 
->> WARNING: Module nf_nat not found in directory 
->> /lib/modules/4.9.81-dey+g2c6ae4c`, error: exit status 1
->> WARN[0001] Running modprobe xt_conntrack failed with message: 
->> `modprobe: WARNING: Module xt_conntrack not found in directory 
->> /lib/modules/4.9.81-dey+g2c6ae4c`, error: exit status 1
->> Error starting daemon: Error initializing network controller: error 
->> obtaining controller instance: failed to create NAT chain: iptables 
->> failed: iptables --wait -t nat -N DOCKER: iptables v1.6.1: can't 
->> initialize iptables table `nat': Table does not exist (do you need to 
->> insmod?)
->> Perhaps iptables or your kernel needs to be upgraded.
->>   (exit status 3)
->>
->> Our configuration is as suggested here: 
->> https://wiki.yoctoproject.org/wiki/TipsAndTricks/DockerOnImage, except 
->
-> I've never seen that wiki page before (or at least I don't remember
-> seeing it), so I can't confirm or deny the validity of the content :)
->
->> that I don't include the system systemd stuff  (it lets my build fail) 
->
-> If systemd is breaking your build, make sure to log a bugzilla against
-> oe-core
->
->> and connman (using NetworkManager).
->> Furthermore, I added the following lines to the kernel bbappend file:
->>
->> # remove old defconfig
->> SRC_URI_remove = " defconfig"
->> # replace with new defconfig
->> SRC_URI_append = " file://defconfig"
->>
->> KERNEL_FEATURES_append = " features/cgroups/cgroups.scc "
->>
->> I also added a lot of configurations manually to the defconfig 
->> (mostly via menuconfig) to enable NAT:
->>
->> CONFIG_CGROUP_DEVICE=y
->> CONFIG_IP_MULTICAST=y
->> CONFIG_IP_ADVANCED_ROUTER=y
->> CONFIG_NETFILTER=y
->> CONFIG_NF_CONNTRACK=y
->> CONFIG_NF_TABLES=y
->> CONFIG_NF_NAT=y
->> CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=y
->> CONFIG_NETFILTER_XT_MATCH_COMMENT=y
->> CONFIG_NETFILTER_XT_MATCH_HL=y
->> CONFIG_NETFILTER_XT_MATCH_IPRANGE=y
->> CONFIG_NETFILTER_XT_MATCH_LIMIT=y
->> CONFIG_NETFILTER_XT_MATCH_MULTIPORT=y
->> CONFIG_NETFILTER_XT_MATCH_RECENT=y
->> CONFIG_IP_VS=y
->> CONFIG_NF_TABLES_IPV4=y
->> CONFIG_IP_NF_IPTABLES=y
->> CONFIG_IP_NF_NAT=y
->> CONFIG_IP_NF_FILTER=y
->> CONFIG_IP_NF_MANGLE=y
->> CONFIG_IP6_NF_IPTABLES=y
->> CONFIG_IP6_NF_FILTER=y
->> CONFIG_IP6_NF_MANGLE=y
->> CONFIG_BTRFS_FS=y
->> CONFIG_OVERLAY_FS=y
->>
->> Apart from that, I added virtualization and aufs as DISTRO_FEATURE in 
->> local.conf and also enabled it in menuconfig.
->>
->> But I still keep getting the above mentioned iptables error when 
->> trying to start docker. All this hassle makes me suspicious, 
->> especially as I'm quite sure that I once had docker running already 
->> with an image on our target and it wasn't that hard. So maybe it's 
->> just a misconfiguration and I need to add something in local.conf or 
->> the kernel recipe? Is systemd necessary? Or am I missing some 
->> life-or-death kernel configuration? It would also be nice if I could 
->> avoid the cgroup re-mounting before starting docker.
->
-> What release branch are you using ?
->
-> I'm running docker from meta-virt every day, as are many others,
-> but you have several differences in your configuration.
->
->  - most use systemd as the init manager, I know that I do. That
->    is going to impact how cgroups is set up on your 'host' image.
->    You shouldn't need to touch cgroups at all if systemd is used,
->    since it is correct out of the box.
->
->  - You are using a different kernel and kernel configuration.
->    linux-yocto + the configuration fragments in the layer are what
->    is routinely tested. Are you using linux-yocto, or something
->    different ? If it is different, all you can do is run the various
->    checks to make sure that the docker prereqs are in place.
->
->    The errors you see in dockerd tells me that the options you are
->    turning on, are not making it into the final kernel that is
->    running on target.
->
-> Cheers,
->
-> Bruce
->
->>
->> Thanks for every answer!
->> All the Best,
->> Jakob
->>
->
-
--- 
-Jakob Hasse
-Software Developement
-
-E: jakob.hasse@smart-home-technology.ch
-T: +41 44 552 02 66
-
-Smart Home Technology GmbH
-www.smart-home-technology.ch
+buck-security also appears to be present in the  following location:
+${TMPDIR}/sysroots-components/x86_64/buck-security-native/usr/bin/buck-security
 
 
+After going through the manuals, I'm still a little unclear about when
+exactly buck-security-native's files should be copied or linked into the
+image's respective sysroot (presumably, during do_populate_sysroot?), and
+where the breakdown is happening here.
+
+If anyone else is able to reproduce this or provide some assistance in
+resolving or just debugging it, I'd greatly appreciate it.
+
+Thank you,
+Jon Szymaniak
+
+
+
+References:
+[1] https://git.yoctoproject.org/cgit/cgit.cgi/meta-security/
+[2] https://git.yoctoproject.org/cgit/cgit.cgi/meta-security
+/tree/classes/check_security.bbclass
+[3] https://git.yoctoproject.org/cgit/cgit.cgi/meta-security/tree/recipes-
+security/buck-security/buck-security_0.7.bb#n51
+
+--0000000000006c1bfb056d8d2768
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I&#39;m working with the rocko branch of the meta-security=
+ layer [1], with the latest poky rocko branch HEAD on an Ubuntu 17.04 machi=
+ne (technically an &quot;untested&quot; distro but otherwise fine in the pa=
+st).<div><br></div><div><div>From my understanding, all that should be requ=
+ired to run the buck-security after an image build is adding INHERIT +=3D &=
+quot;check_security&quot; to local.conf. I see that check_security.bbclass =
+[2] already takes care of appending itself to EXTRA_IMAGEDEPENDS.<br></div>=
+<div><br></div><div>However, when building an image (e.g. core-image-minima=
+l), check_security.bbclass is failing to find buck-security in ${STAGING_BI=
+NDIR_NATIVE}, as indicated by the following error message:</div><div><br></=
+div><div><div>${TMPDIR}/work/raspberrypi0_wi<wbr>fi-poky-linux-gnueabi/core=
+-ima<wbr>ge-minimal/1.0-r0/temp/run.che<wbr>ck_security.24976:=C2=A0</div><=
+div>=C2=A0 112: ${TMPDIR}/work/raspberrypi0_wi<wbr>fi-poky-linux-gnueabi/co=
+re-ima<wbr>ge-minimal/1.0-r0/temp/run.che<wbr>ck_security.24976:=C2=A0</div=
+><div>=C2=A0 =C2=A0 =C2=A0${TMPDIR}/work/raspberrypi0_w<wbr>ifi-poky-linux-=
+gnueabi/core-im<wbr>age-minimal/1.0-r0/recipe-sysr<wbr>oot-native/usr/bin/b=
+uck-securi<wbr>ty: not found</div></div><div><br></div><div>The above makes=
+ it clear what ${STAGING_BINDIR_NATIVE} expands to; buck-security is indeed=
+ not present in this location.</div><div><br></div><div>My logs indicate th=
+at when buck-security-native recipe&#39;s do_install() is executed [3], ${D=
+} and ${bindir} are defined as follows:<br><br>D: ${TMPDIR}/work/x86_64-lin=
+ux/buck-security-native/0.7-r0/image</div><div>bindir:=C2=A0${TMPDIR}/work/=
+x86_64-linux/buck-security-native/0.7-r0/recipe-sysroot-native/usr/bin</div=
+><div><br></div><div>buck-security also appears to be present in the=C2=A0 =
+following location:</div><div>${TMPDIR}/sysroots-components/x86_64/buck-sec=
+urity-native/usr/bin/buck-security<br></div><div><br></div><div><br></div><=
+div>After going through the manuals, I&#39;m still a little unclear about w=
+hen exactly buck-security-native&#39;s files should be copied or linked int=
+o the image&#39;s respective sysroot (presumably, during do_populate_sysroo=
+t?), and where the breakdown is happening here.<br></div><div><br></div><di=
+v>If anyone else is able to reproduce this or provide some assistance in re=
+solving or just debugging it, I&#39;d greatly appreciate it.</div><div><br>=
+</div><div><div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;f=
+ont-size:small;font-style:normal;font-variant-ligatures:normal;font-variant=
+-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-in=
+dent:0px;text-transform:none;white-space:normal;word-spacing:0px;text-decor=
+ation-style:initial;text-decoration-color:initial">Thank you,</div><div sty=
+le=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font=
+-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-w=
+eight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-trans=
+form:none;white-space:normal;word-spacing:0px;text-decoration-style:initial=
+;text-decoration-color:initial">Jon Szymaniak</div><br></div><div><br></div=
+><div><br></div><div>References:</div><div>[1]=C2=A0<a href=3D"https://git.=
+yoctoproject.org/cgit/cgit.cgi/meta-security/" target=3D"_blank">https://gi=
+t.yoctoproject.o<wbr>rg/cgit/cgit.cgi/meta-security<wbr>/</a><br></div><div=
+>[2]=C2=A0<a href=3D"https://git.yoctoproject.org/cgit/cgit.cgi/meta-securi=
+ty/tree/classes/check_security.bbclass" target=3D"_blank">https://git.yocto=
+project.o<wbr>rg/cgit/cgit.cgi/meta-security<wbr>/tree/classes/check_securi=
+ty.<wbr>bbclass</a></div></div><div>[3]=C2=A0<a href=3D"https://git.yoctopr=
+oject.org/cgit/cgit.cgi/meta-security/tree/recipes-security/buck-security/b=
+uck-security_0.7.bb#n51" target=3D"_blank">https://git.yoctoproject.<wbr>or=
+g/cgit/cgit.cgi/meta-<wbr>security/tree/recipes-<wbr>security/buck-security=
+/buck-<wbr>security_0.7.bb#n51</a></div><div><br></div><div><br></div><div>=
+<br></div></div>
+
+--0000000000006c1bfb056d8d2768--
