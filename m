@@ -1,72 +1,64 @@
-Return-Path: <laurent.joli@kapelse.com>
+Return-Path: <linux.matthew@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56BECE00C4B; Fri,  1 Jun 2018 09:40:41 -0700 (PDT)
+	id 5640FE00D4F; Fri,  1 Jun 2018 12:36:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [176.120.128.35 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (linux.matthew[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 376 seconds by postgrey-1.32 at yocto-www;
-	Fri, 01 Jun 2018 09:40:39 PDT
-Received: from stripper.pharmagest.com (stripper.pharmagest.com
-	[176.120.128.35])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C20A0E00AD8
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 09:40:39 -0700 (PDT)
-Received: from 127.0.0.1 (localhost [127.0.0.1])
-	by stripper.pharmagest.com (Postfix) with ESMTP id 858066B2316
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 18:34:22 +0200 (CEST)
-X-MIB-FROM: laurent.joli@kapelse.com
-X-MIBTO: BKix6Fn39KkNW6xZDl6cUwBEMlwkHw1v0T/KRO0nYQo=
-Received: from localhost ([127.0.0.1])
-	by stripper.pharmagest.com (MIBD SMTP Server 4.0.0000) with SMTP ID 675
-	for <yocto@yoctoproject.org>; Fri, 1 Jun 2018 18:34:21 +0200 (CEST)
-Received: from vm-shunter1-prd.sim.pharmagest.com
-	(vm-shunter1-prd.sim.pharmagest.com [172.19.32.61])
-	by stripper.pharmagest.com (Postfix) with ESMTP id 6646E6B229A
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 18:34:21 +0200 (CEST)
-Received: from vm-zimbranemta1-prd.sim.pharmagest.com
-	(vm-zimbranemta1-prd.sim.pharmagest.com [172.19.32.35])
-	by vm-shunter1-prd.sim.pharmagest.com (courriel) with ESMTP id
-	2DC2F80AACE1
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 18:34:20 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by vm-zimbranemta1-prd.sim.pharmagest.com (Postfix) with ESMTP id
-	47F4A83058
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 18:34:21 +0200 (CEST)
-Received: from vm-zimbranemta1-prd.sim.pharmagest.com ([127.0.0.1])
-	by localhost (vm-zimbranemta1-prd.sim.pharmagest.com [127.0.0.1])
-	(amavisd-new, port 10032)
-	with ESMTP id HvxZ0BiT3rQS for <yocto@yoctoproject.org>;
-	Fri,  1 Jun 2018 18:34:20 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by vm-zimbranemta1-prd.sim.pharmagest.com (Postfix) with ESMTP id
-	B864E83059
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 18:34:20 +0200 (CEST)
-Received: from vm-zimbranemta1-prd.sim.pharmagest.com ([127.0.0.1])
-	by localhost (vm-zimbranemta1-prd.sim.pharmagest.com [127.0.0.1])
-	(amavisd-new, port 10026)
-	with ESMTP id tzqg-CEebBxA for <yocto@yoctoproject.org>;
-	Fri,  1 Jun 2018 18:34:20 +0200 (CEST)
-Received: from vm-zimbranestore2-prd.sim.pharmagest.com (unknown
-	[172.19.32.41])
-	by vm-zimbranemta1-prd.sim.pharmagest.com (Postfix) with ESMTP id
-	83D5183058
-	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 18:34:20 +0200 (CEST)
-Date: Fri, 1 Jun 2018 18:34:20 +0200 (CEST)
-From: Laurent JOLI <laurent.joli@kapelse.com>
-To: yocto <yocto@yoctoproject.org>
-Message-ID: <744580343.12524344.1527870860299.JavaMail.zimbra@kapelse.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f173.google.com (mail-qt0-f173.google.com
+	[209.85.216.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF3BAE00D4A
+	for <yocto@yoctoproject.org>; Fri,  1 Jun 2018 12:36:17 -0700 (PDT)
+Received: by mail-qt0-f173.google.com with SMTP id d3-v6so33537495qtp.11
+	for <yocto@yoctoproject.org>; Fri, 01 Jun 2018 12:36:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=GzPUNDaNjxCxAvDyXPLfeloH572zOF1zD9ja6CFyWkE=;
+	b=Ia4/5VczOU3k212wiCFPQUypYRVwegvJEi6O47WVhK9KgbXR8P/CKm3SYT74ZC3yv9
+	i/7eftmPA6kj+Fx6UmCzNf+BpXsZ7i0E6f2nUkWcFfjjsO+A1Og1c5sMuYKQvCam7gfj
+	uXZeNO7s7zgbXcqgmEK0eu9uJ1i2bN+ifYOrHyqmpkB3fdQME8cCMcIxEXL52DvZi9nP
+	WJt3m7+fwGYFDDPvdSu/skp5yMC4LVVkX8HYXesdad/ajSMXh2GTmJI+0+hTWeR9TW7v
+	G3Nz3crFq16qGhUkiegcWiMelvXrfWZ7v0VTTywEHQZt9hGucTDb2VYn/Si1Wmo5m3W/
+	HlWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=GzPUNDaNjxCxAvDyXPLfeloH572zOF1zD9ja6CFyWkE=;
+	b=nGXHzoBSW1KfHj/mBU2cJhYrg6rB5GPA0XpHNGTlH4slD68gMLtbJQJeZWi5nTMuwF
+	eMLlGr9xy1U3nMGNU4jI/Dl761yukEBabyPiaybkUqKfV+uXlyX80NrhODdXtlWl6Wt5
+	+mJydWNJIouo2wND15gmgXXwt5SMR1EEwG5VXm6XLnLc4CyeOCqH86cUbtbvBJH0yrao
+	9E7ipCHUHkVXWMRGQhp+9roE81QjOHn4hkhtTGMMFjaBSd2gDACTAks8CJyoivxm7XMe
+	nYK6kVyr3T3AQx1E9w19wijOEJ2hAS92jmcf3GddC6YWGg6bQriIgfKDqE7BtWqmLhuE
+	pvfQ==
+X-Gm-Message-State: APt69E3zk/DUOO/Jrv5JQMZwEZ3V7FpOO9cIayjg8qoXMZZbPjp9bgGN
+	T1dEW9qLCLi/7NK2hy0x5c5GEvlPcsnhXrBWKyRoDg==
+X-Google-Smtp-Source: ADUXVKLUi/pTNITxLwLsxct1p62JNTWTqYdSZ0GoT4XdELl3zxvP4wo+oJuhP7vSHZWvvAYA8OFYXbCGAZxKc8HDdNQ=
+X-Received: by 2002:ac8:fdb:: with SMTP id
+	f27-v6mr12559376qtk.293.1527881776775; 
+	Fri, 01 Jun 2018 12:36:16 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Zimbra 8.7.1_GA_1670 (ZimbraWebClient - FF60 (Linux)/8.7.1_GA_1670)
-Thread-Index: BHaRWuDRxKKaTK4z5bRXELxPRF8FBQ==
-Thread-Topic: Add --enable-speech-dispatcher
-Subject: Add --enable-speech-dispatcher
+Received: by 2002:ac8:2c8a:0:0:0:0:0 with HTTP;
+	Fri, 1 Jun 2018 12:36:16 -0700 (PDT)
+From: Matthew Clark <linux.matthew@gmail.com>
+Date: Fri, 1 Jun 2018 15:36:16 -0400
+Message-ID: <CAHHS9cF2mO3ORV+tccyN7CnweCCOc+f=6nFRpNq6RzL7fGw7ew@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Error cross-building python 3.5.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,57 +70,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Jun 2018 16:40:41 -0000
-Content-Type: multipart/alternative; 
-	boundary="=_478c803d-8f17-4b06-b796-d2f45a5994a3"
+X-List-Received-Date: Fri, 01 Jun 2018 19:36:19 -0000
+Content-Type: multipart/alternative; boundary="000000000000904601056d99b259"
 
---=_478c803d-8f17-4b06-b796-d2f45a5994a3
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+--000000000000904601056d99b259
+Content-Type: text/plain; charset="UTF-8"
 
-Hello, 
+I'm trying to build yocto for two different ARM boards using a rocko and a
+sumo distro, but am running into the same problem:
 
-I work on the following context : 
 
-qt: 5.9.2 
-SRCREV_qtwebengine = "c11c2c8981e647c1eb2c6753ce77d436b92fff87" 
-SRCREV_chromium = "cfe8c60903b327ac94406661350f4ac05aa8c21b" 
+PYTHON_PROJECT_BASE=/home/mclark/Code/Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3/3.5.5-r1.0/build
+\
+_PYTHON_HOST_PLATFORM=linux-aarch64  PYTHONPATH=\
+/home/mclark/Code/Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3/3.5.5-r1.0/recipe-sysroot-native/usr/lib/python3.5/lib-dynload/:
+/home/mclark/Code/Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3/3.5.5-r1.0/build/build/lib.linux-aarch64-3.5:\
+/home/mclark/Code/Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3/3.5.5-r1.0/Python-3.5.5/Lib:\
+/home/mclark/Code/Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3/3.5.5-r1.0/Python-3.5.5/Lib/plat-linux
+\
+python -S -m sysconfig --generate-posix-vars
 
-So, I use the layer of QT5 : 
+Traceback (most recent call last):
+  File
+"/home/mclark/Code/Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3/3.5.5-r1.0/Python-3.5.5/Lib/encodings/__init__.py",
+line 31, in <module>
+    import codecs
+  File
+"/home/mclark/Code/Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3/3.5.5-r1.0/Python-3.5.5/Lib/codecs.py",
+line 95
+    *, _is_text_encoding=None):
+     ^
+SyntaxError: invalid syntax
 
-https://github.com/meta-qt5/meta-qt5 
+I've not been able to to identify a solid lead on why this is bailing, but
+its blocking my builds.  Does anyone one know why it's crapping here?
 
-with the commit : bbb304456978fa9713932e9ff529d18a5ef2a947 
+Matt
 
-I can run correctly the browser : quicknanobrowser 
-
-I also can run correctly speech-dispatcher with espak 
-
-When running quicknanobrowser on website using web speech api, it does not work ( no voices listed, no audio output) even if web speech synthesis support seems to be detected. 
-
-Does qtwebengine supports Web Speech API? 
-If yes, how qtwebengine must be configured to support Web Speech Api (webrtc...)? 
-
-Regards, 
-LJO 
-
---=_478c803d-8f17-4b06-b796-d2f45a5994a3
-Content-Type: text/html; charset=utf-8
+--000000000000904601056d99b259
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><body><div style=3D"font-family: Arial, Helvetica, sans-serif; font-s=
-ize: 10pt; color: #000000"><div>Hello,<br><br>I work on the following conte=
-xt :<br><br>qt: 5.9.2<br>SRCREV_qtwebengine =3D "c11c2c8981e647c1eb2c6753ce=
-77d436b92fff87"<br>SRCREV_chromium =3D "cfe8c60903b327ac94406661350f4ac05aa=
-8c21b"<br><br>So, I use the layer of QT5 :<br><br>https://github.com/meta-q=
-t5/meta-qt5<br><br>with the commit : bbb304456978fa9713932e9ff529d18a5ef2a9=
-47<br><br>I can run correctly the browser : quicknanobrowser<br><br>I also =
-can run correctly speech-dispatcher with espak<br><br>When running quicknan=
-obrowser on website using web speech api, it does not work ( no voices list=
-ed, no audio output) even if web speech synthesis support seems to be detec=
-ted.<br><br>Does qtwebengine supports Web Speech API?<br>If yes, how qtwebe=
-ngine must be configured&nbsp; to support Web Speech Api (webrtc...)?<br><b=
-r>Regards,<br data-mce-bogus=3D"1"></div><div>LJO<br data-mce-bogus=3D"1"><=
-/div></div></body></html>
+<div dir=3D"ltr">I&#39;m trying to build yocto for two different ARM boards=
+ using a rocko and a sumo distro, but am running into the same problem:<br>=
+<br><br><font face=3D"monospace, monospace">PYTHON_PROJECT_BASE=3D/home/mcl=
+ark/Code/Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3/3.5.5-r1.0/=
+build \<br>_PYTHON_HOST_PLATFORM=3Dlinux-aarch64=C2=A0=C2=A0PYTHONPATH=3D\<=
+br>/home/mclark/Code/Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3=
+/3.5.5-r1.0/recipe-sysroot-native/usr/lib/python3.5/lib-dynload/:<br>/home/=
+mclark/Code/Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3/3.5.5-r1=
+.0/build/build/lib.linux-aarch64-3.5:\<br>/home/mclark/Code/Yocto/ODroid/bu=
+ild/tmp/work/aarch64-poky-linux/python3/3.5.5-r1.0/Python-3.5.5/Lib:\<br>/h=
+ome/mclark/Code/Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3/3.5.=
+5-r1.0/Python-3.5.5/Lib/plat-linux \<br>python -S -m sysconfig --generate-p=
+osix-vars<br><br>Traceback (most recent call last):<br>=C2=A0 File &quot;/h=
+ome/mclark/Code/Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3/3.5.=
+5-r1.0/Python-3.5.5/Lib/encodings/__init__.py&quot;, line 31, in &lt;module=
+&gt;<br>=C2=A0 =C2=A0 import codecs<br>=C2=A0 File &quot;/home/mclark/Code/=
+Yocto/ODroid/build/tmp/work/aarch64-poky-linux/python3/3.5.5-r1.0/Python-3.=
+5.5/Lib/codecs.py&quot;, line 95<br>=C2=A0 =C2=A0 *, _is_text_encoding=3DNo=
+ne):<br>=C2=A0 =C2=A0 =C2=A0^<br>SyntaxError: invalid syntax</font><div><fo=
+nt face=3D"monospace, monospace"><br></font></div><div><font face=3D"arial,=
+ helvetica, sans-serif">I&#39;ve not been able to to identify a solid lead =
+on why this is bailing, but its blocking my builds.=C2=A0 Does anyone one k=
+now why it&#39;s crapping here?</font></div><div><font face=3D"arial, helve=
+tica, sans-serif"><br></font></div><div><font face=3D"arial, helvetica, san=
+s-serif">Matt</font></div></div>
 
---=_478c803d-8f17-4b06-b796-d2f45a5994a3--
+--000000000000904601056d99b259--
