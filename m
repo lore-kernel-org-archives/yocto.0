@@ -1,42 +1,53 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 03CBCE00B4C; Mon,  4 Jun 2018 08:54:46 -0700 (PDT)
+	id 7B715E00F05; Mon,  4 Jun 2018 16:22:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D7B2E0086B;
-	Mon,  4 Jun 2018 08:54:43 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w54Frawe022808
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 4 Jun 2018 08:53:52 -0700
-Received: from server.local (128.224.21.159) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.399.0;
-	Mon, 4 Jun 2018 08:53:19 -0700
-To: Jakob Hasse <jakob.hasse@smart-home-technology.ch>, Yocto List
-	<yocto@yoctoproject.org>
-References: <783ff7cd-c1d8-1802-4b67-3aff339aae31@smart-home-technology.ch>
-	<6391ddea-802d-7f4d-26b3-44a79556c8a0@windriver.com>
-	<761e6979-b696-04f6-6e62-e325bc979c38@smart-home-technology.ch>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <80617b66-6714-03f6-f6e7-45afc4def6d5@windriver.com>
-Date: Mon, 4 Jun 2018 11:53:18 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.8.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECE92E00E36
+	for <yocto@yoctoproject.org>; Mon,  4 Jun 2018 16:22:18 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	04 Jun 2018 16:22:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.49,477,1520924400"; 
+	d="scan'208,217";a="229904628"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by orsmga005.jf.intel.com with ESMTP; 04 Jun 2018 16:22:18 -0700
+Received: from fmsmsx119.amr.corp.intel.com (10.18.124.207) by
+	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Mon, 4 Jun 2018 16:22:17 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.166]) by
+	FMSMSX119.amr.corp.intel.com ([169.254.14.61]) with mapi id
+	14.03.0319.002; Mon, 4 Jun 2018 16:22:17 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Reminder: Yocto Project Technical Team Meeting
+Thread-Index: AdP8Wpx+XC49x5FZTdSU7wFDfA+xXg==
+Date: Mon, 4 Jun 2018 23:22:17 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7339978@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMzNlNTlkMTgtNTNkZC00YTYwLWI3NzctMWNkY2Q0ZjA5Mzk1IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiaEdJSHYzcGpVMGJoZlFvdEo2bDA5blJ6N3UwNmthR2Q3cExzRE95VytDeEhKVWZxQUNvMmVTNzNXTkhKK2NPTyJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.200.100
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.107]
 MIME-Version: 1.0
-In-Reply-To: <761e6979-b696-04f6-6e62-e325bc979c38@smart-home-technology.ch>
-Cc: "meta-virtualization@yoctoproject.org"
-	<meta-virtualization@yoctoproject.org>
-Subject: Re: cgroups and iptables problems running docker - maybe my config wrong?
+Subject: Reminder: Yocto Project Technical Team Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,276 +59,164 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Jun 2018 15:54:46 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Mon, 04 Jun 2018 23:22:19 -0000
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7339978fmsmsx111amrcor_"
 
-On 2018-06-01 12:15 PM, Jakob Hasse wrote:
-> Hello Bruce,
-> 
-> Thank you very much for the quick response. I tried to built in the 
-> kernel changes. But the iptables error persists.
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7339978fmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I double checked over the weekend, and I have no problems with
-linux-yocto + the meta-virtualization fragment and docker.
+Yocto Project Technical Team Meeting
+Changed: We encourage people attending the meeting to logon and announce th=
+emselves on the Yocto Project IRC chancel during the meeting (optional):
 
-Did you say that you confirmed on target via /proc/config.gz that
-all the options you tried to enable are still present in the running
-kernel ?
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
 
-> Eventually, I tried to enable systemd again and it still breaks my build 
-> -.-:
-> 
-> test$ bitbake core-image-base
-> NOTE: Started PRServer with DBfile: 
-> /home/build/test/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 40169, PID: 
-> 2335
-> Loading cache: 100% 
-> |########################################################################################################| 
-> Time: 0:00:00
-> Loaded 3023 entries from dependency cache.
-> Parsing recipes: 100% 
-> |######################################################################################################| 
-> Time: 0:00:01
-> Parsing of 2194 .bb files complete (2193 cached, 1 parsed). 3024 
-> targets, 146 skipped, 0 masked, 0 errors.
-> NOTE: Resolving any missing task queue dependencies
-> 
-> Build Configuration:
-> BB_VERSION           = "1.36.0"
-> BUILD_SYS            = "x86_64-linux"
-> NATIVELSBSTRING      = "universal"
-> TARGET_SYS           = "arm-dey-linux-gnueabi"
-> MACHINE              = "ccimx6ulstarter"
-> DISTRO               = "dey"
-> DISTRO_VERSION       = "2.4-r1"
-> TUNE_FEATURES        = "arm armv7ve vfp thumb neon callconvention-hard 
-> cortexa7"
-> TARGET_FPU           = "hard"
-> meta
-> meta-poky
-> meta-yocto-bsp       = "HEAD:3befe6d7b7fa8c8481519aa8dd0cae52207ad339"
-> meta-oe
-> meta-python
-> meta-networking
-> meta-webserver       = "HEAD:dacfa2b1920e285531bec55cd2f08743390aaf57"
-> meta-qt5             = "HEAD:cfe02f26de53e5c20e6f9555059cbaaf5ab9b22f"
-> meta-swupdate        = "HEAD:6e4eab4f475b0129d6510815a3bbc4748c97dbbe"
-> meta-freescale       = "HEAD:d6141ea291a1ac9ab8fb1dd1110d408f840fda57"
-> meta-fsl-demos       = "HEAD:0ec6d7e206705702b5b534611754de0787f92b72"
-> meta-digi-arm
-> meta-digi-dey        = "HEAD:1246ecff2cecea9247d94f36385608ac844d7abb"
-> 
-> Initialising tasks: 100% 
-> |###################################################################################################| 
-> Time: 0:00:04
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> ERROR: core-image-base-1.0-r0 do_rootfs: Could not invoke dnf. Command 
-> '/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/recipe-sysroot-native/usr/bin/dnf 
-> -y -c 
-> /home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/rootfs/etc/dnf/dnf.conf 
-> --setopt=reposdir=/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/rootfs/etc/yum.repos.d 
-> --repofrompath=oe-repo,/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/oe-rootfs-repo 
-> --installroot=/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/rootfs 
-> --setopt=logdir=/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/temp 
-> -x udev-cache --nogpgcheck install locale-base-en-us locale-base-en-gb 
-> packagegroup-core-boot packagegroup-core-eclipse-debug run-postinsts 
-> packagegroup-dey-bluetooth psplash packagegroup-core-ssh-dropbear 
-> packagegroup-dey-network packagegroup-base-extended 
-> packagegroup-dey-audio packagegroup-dey-wireless rpm dnf' returned 1:
-> Added oe-repo repo from 
-> /home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/oe-rootfs-repo 
-> 
-> Last metadata expiration check: 0:00:00 ago on Fri 01 Jun 2018 03:49:44 
-> PM UTC.
-> Error:
->   Problem: package packagegroup-base-1.0-r83.0.ccimx6ulstarter requires 
-> packagegroup-distro-base, but none of the providers can be installed
->    - package packagegroup-base-extended-1.0-r83.0.ccimx6ulstarter 
-> requires packagegroup-base, but none of the providers can be installed
->    - package packagegroup-distro-base-1.0-r83.0.ccimx6ulstarter requires 
-> packagegroup-dey-core, but none of the providers can be installed
->    - conflicting requests
->    - nothing provides busybox-hwclock needed by 
-> packagegroup-dey-core-1.0-r0.0.ccimx6ulstarter
-> 
-> ERROR: core-image-base-1.0-r0 do_rootfs: Function failed: do_rootfs
-> ERROR: Logfile of failure stored in: 
-> /home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/temp/log.do_rootfs.2380 
-> 
-> ERROR: Task 
-> (/usr/local/dey-2.4/sources/poky/meta/recipes-core/images/core-image-base.bb:do_rootfs) 
-> failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 4106 tasks of which 4105 didn't need to 
-> be rerun and 1 failed.
-> 
-> Summary: 1 task failed:
-> /usr/local/dey-2.4/sources/poky/meta/recipes-core/images/core-image-base.bb:do_rootfs 
-> 
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-> 
-> Seems that the introduction of systemd "confuses" dnf. I found a quite 
-> similar description in this bugreport here:
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12025
-> only that I'm not using different machines. This bug doesn't seem to be 
-> resolved yet.
-> 
-> Our Yocto-distribution is DIGI Embedded Yocto. So non-standard.
-> Shall I still log a bug against oe-core?
+Wiki: https://www.yoctoproject.org/public-virtual-meetings/
 
-You could, but without a reproducer on oe-core, chances are that it
-won't be easily resolved.
+Bridge is with Zoom at: https://zoom.us/j/990892712
+When                    Monthly from 8am to 8:30am on the first Tuesday Pac=
+ific Time
+Where                  Zoom Meeting: https://zoom.us/j/990892712  (map)
+Thanks,
 
-At a glance, it isn't clear to me how systemd is causing your 
-busybox-hwclock
-issue. But if you check the list, that particular package has recently
-been moved around/broken out. So I'd suggest making sure that all of
-your layers are on the correct branches and that releases aren't being
-mixed.
-
-Bruce
-
-> If someone here has some more helpful ideas, I would be very thankful.
-> 
-> All the Best,
-> Jakob
-> 
-> On 31.05.2018 13:44, Bruce Ashfield wrote:
->> On 2018-05-31 7:00 AM, Jakob Hasse wrote:
->>> Hello,
->>
->> Make sure to cc meta-virtualization on questions like this, since
->> that is where you'll get more eyes that are running docker
->> all the time.
->>
->>> I ran into trouble running docker on our target.
->>> 1. When I want to start docker, I first have to re-mount cgroups:
->>> root@target:~# cgroups-umount
->>> root@target:~# cgroups-mount
->>> Otherwise docker would produce an error:
->>> ERRO[0002] Failed to built-in GetDriver graph btrfs /var/lib/docker
->>>
->>> 2. When I then start dockerd, it complains about a missing nat table:
->>> root@target:~# dockerd
->>> INFO[0000] libcontainerd: new containerd process, pid: 929
->>> WARN[0000] containerd: low RLIMIT_NOFILE changing to max current=1024 
->>> max=4096
->>> INFO[0001] [graphdriver] using prior storage driver: overlay2
->>> INFO[0001] Graph migration to content-addressability took 0.00 seconds
->>> WARN[0001] Your kernel does not support cgroup memory limit
->>> WARN[0001] Unable to find cpu cgroup in mounts
->>> WARN[0001] Unable to find blkio cgroup in mounts
->>> WARN[0001] Unable to find cpuset cgroup in mounts
->>> WARN[0001] mountpoint for pids not found
->>> INFO[0001] Loading containers: start.
->>> WARN[0001] Running modprobe nf_nat failed with message: `modprobe: 
->>> WARNING: Module nf_nat not found in directory 
->>> /lib/modules/4.9.81-dey+g2c6ae4c`, error: exit status 1
->>> WARN[0001] Running modprobe xt_conntrack failed with message: 
->>> `modprobe: WARNING: Module xt_conntrack not found in directory 
->>> /lib/modules/4.9.81-dey+g2c6ae4c`, error: exit status 1
->>> Error starting daemon: Error initializing network controller: error 
->>> obtaining controller instance: failed to create NAT chain: iptables 
->>> failed: iptables --wait -t nat -N DOCKER: iptables v1.6.1: can't 
->>> initialize iptables table `nat': Table does not exist (do you need to 
->>> insmod?)
->>> Perhaps iptables or your kernel needs to be upgraded.
->>>   (exit status 3)
->>>
->>> Our configuration is as suggested here: 
->>> https://wiki.yoctoproject.org/wiki/TipsAndTricks/DockerOnImage, except 
->>
->> I've never seen that wiki page before (or at least I don't remember
->> seeing it), so I can't confirm or deny the validity of the content :)
->>
->>> that I don't include the system systemd stuff  (it lets my build fail) 
->>
->> If systemd is breaking your build, make sure to log a bugzilla against
->> oe-core
->>
->>> and connman (using NetworkManager).
->>> Furthermore, I added the following lines to the kernel bbappend file:
->>>
->>> # remove old defconfig
->>> SRC_URI_remove = " defconfig"
->>> # replace with new defconfig
->>> SRC_URI_append = " file://defconfig"
->>>
->>> KERNEL_FEATURES_append = " features/cgroups/cgroups.scc "
->>>
->>> I also added a lot of configurations manually to the defconfig 
->>> (mostly via menuconfig) to enable NAT:
->>>
->>> CONFIG_CGROUP_DEVICE=y
->>> CONFIG_IP_MULTICAST=y
->>> CONFIG_IP_ADVANCED_ROUTER=y
->>> CONFIG_NETFILTER=y
->>> CONFIG_NF_CONNTRACK=y
->>> CONFIG_NF_TABLES=y
->>> CONFIG_NF_NAT=y
->>> CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=y
->>> CONFIG_NETFILTER_XT_MATCH_COMMENT=y
->>> CONFIG_NETFILTER_XT_MATCH_HL=y
->>> CONFIG_NETFILTER_XT_MATCH_IPRANGE=y
->>> CONFIG_NETFILTER_XT_MATCH_LIMIT=y
->>> CONFIG_NETFILTER_XT_MATCH_MULTIPORT=y
->>> CONFIG_NETFILTER_XT_MATCH_RECENT=y
->>> CONFIG_IP_VS=y
->>> CONFIG_NF_TABLES_IPV4=y
->>> CONFIG_IP_NF_IPTABLES=y
->>> CONFIG_IP_NF_NAT=y
->>> CONFIG_IP_NF_FILTER=y
->>> CONFIG_IP_NF_MANGLE=y
->>> CONFIG_IP6_NF_IPTABLES=y
->>> CONFIG_IP6_NF_FILTER=y
->>> CONFIG_IP6_NF_MANGLE=y
->>> CONFIG_BTRFS_FS=y
->>> CONFIG_OVERLAY_FS=y
->>>
->>> Apart from that, I added virtualization and aufs as DISTRO_FEATURE in 
->>> local.conf and also enabled it in menuconfig.
->>>
->>> But I still keep getting the above mentioned iptables error when 
->>> trying to start docker. All this hassle makes me suspicious, 
->>> especially as I'm quite sure that I once had docker running already 
->>> with an image on our target and it wasn't that hard. So maybe it's 
->>> just a misconfiguration and I need to add something in local.conf or 
->>> the kernel recipe? Is systemd necessary? Or am I missing some 
->>> life-or-death kernel configuration? It would also be nice if I could 
->>> avoid the cgroup re-mounting before starting docker.
->>
->> What release branch are you using ?
->>
->> I'm running docker from meta-virt every day, as are many others,
->> but you have several differences in your configuration.
->>
->>  - most use systemd as the init manager, I know that I do. That
->>    is going to impact how cgroups is set up on your 'host' image.
->>    You shouldn't need to touch cgroups at all if systemd is used,
->>    since it is correct out of the box.
->>
->>  - You are using a different kernel and kernel configuration.
->>    linux-yocto + the configuration fragments in the layer are what
->>    is routinely tested. Are you using linux-yocto, or something
->>    different ? If it is different, all you can do is run the various
->>    checks to make sure that the docker prereqs are in place.
->>
->>    The errors you see in dockerd tells me that the options you are
->>    turning on, are not making it into the final kernel that is
->>    running on target.
->>
->> Cheers,
->>
->> Bruce
->>
->>>
->>> Thanks for every answer!
->>> All the Best,
->>> Jakob
->>>
->>
-> 
+Stephen K. Jolley
+Yocto Project Project Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*    Cell:                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
 
 
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7339978fmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Yocto Project Technical Team Meeting<o:p></o:p></p>
+<p class=3D"MsoNormal">Changed: We encourage people attending the meeting t=
+o logon and announce themselves on the Yocto Project IRC chancel during the=
+ meeting (optional):<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Yocto IRC: <a href=3D"http://webchat.freenode.net/?c=
+hannels=3D#yocto">
+http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Wiki: <a href=3D"https://www.yoctoproject.org/public=
+-virtual-meetings/">
+https://www.yoctoproject.org/public-virtual-meetings/</a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Bridge is with Zoom at: <a href=3D"https://zoom.us/j=
+/990892712">
+https://zoom.us/j/990892712</a><o:p></o:p></p>
+<p class=3D"MsoNormal">When&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Monthly =
+from 8am to 8:30am on the first Tuesday Pacific Time<o:p></o:p></p>
+<p class=3D"MsoNormal">Where&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Zoom Meeting: <a hr=
+ef=3D"https://zoom.us/j/990892712">
+https://zoom.us/j/990892712</a> &nbsp;(map)<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Project Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7339978fmsmsx111amrcor_--
