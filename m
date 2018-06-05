@@ -1,170 +1,47 @@
-Return-Path: <patrick.vacek@here.com>
+Return-Path: <jakob.hasse@smart-home-technology.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EA995E00C80; Mon,  4 Jun 2018 03:36:23 -0700 (PDT)
+	id CC7A6E016C2; Tue,  5 Jun 2018 09:12:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.0.90 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [217.26.49.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 3651 seconds by postgrey-1.32 at yocto-www;
-	Mon, 04 Jun 2018 03:36:22 PDT
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com
-	(mail-he1eur01on0090.outbound.protection.outlook.com [104.47.0.90])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 387DEE006B4
-	for <yocto@yoctoproject.org>; Mon,  4 Jun 2018 03:36:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hmcs.onmicrosoft.com; 
-	s=selector1-here-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=0tR+q29YWqO1D4l4pAOjuVf2jvrMm3rfof8wfephvrc=;
-	b=LWv5u2BFQ0qRFhFjN1Bs2xE/HDbU4cTto1AOw3JQkXR3FlhNQUc2SNbsYHNmkvsHVu/bHTaFxyrvlJ0yg0uVt3BlTLgVpCLcNCXbeoux1kMTpRQLNRcckD12OLvcZvHn47GsiqEKGm7Y+D7BQ6uNBsuwOJmMHS0rXWp0I9o4/L4=
-Authentication-Results: spf=none (sender IP is )
-	smtp.mailfrom=patrick.vacek@here.com; 
-Received: from [192.168.1.113] (87.191.159.149) by
-	DB7PR04MB4108.eurprd04.prod.outlook.com (2603:10a6:5:26::13) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.820.15; Mon, 4 Jun 2018 09:01:15 +0000
-To: yocto@yoctoproject.org
-From: Patrick Vacek <patrick.vacek@here.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=patrick.vacek@here.com; prefer-encrypt=mutual; keydata=
-	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
-	j64UOX5oCSfUpA==
-Message-ID: <785a2b9a-d6c8-8356-d218-ecc80af2c46d@here.com>
-Date: Mon, 4 Jun 2018 11:01:12 +0200
+Received: from mxout014.mail.hostpoint.ch (mxout014.mail.hostpoint.ch
+	[217.26.49.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96E75E00D33;
+	Tue,  5 Jun 2018 09:12:05 -0700 (PDT)
+Received: from [10.0.2.46] (helo=asmtp013.mail.hostpoint.ch)
+	by mxout014.mail.hostpoint.ch with esmtp (Exim 4.91 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1fQEYz-000C1N-KE; Tue, 05 Jun 2018 18:12:01 +0200
+Received: from [2a02:168:6893:1:6569:b397:3591:3cfa]
+	by asmtp013.mail.hostpoint.ch with esmtpa (Exim 4.91 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1fQEYt-0005QX-Kf; Tue, 05 Jun 2018 18:12:01 +0200
+X-Authenticated-Sender-Id: jakob.hasse@smart-home-technology.ch
+To: Bruce Ashfield <bruce.ashfield@windriver.com>,
+	Yocto List <yocto@yoctoproject.org>
+References: <783ff7cd-c1d8-1802-4b67-3aff339aae31@smart-home-technology.ch>
+	<6391ddea-802d-7f4d-26b3-44a79556c8a0@windriver.com>
+	<761e6979-b696-04f6-6e62-e325bc979c38@smart-home-technology.ch>
+	<80617b66-6714-03f6-f6e7-45afc4def6d5@windriver.com>
+From: Jakob Hasse <jakob.hasse@smart-home-technology.ch>
+Message-ID: <a8aa1583-28fe-065b-f4d9-c8cfd90a5ead@smart-home-technology.ch>
+Date: Tue, 5 Jun 2018 18:11:50 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.8.0
 MIME-Version: 1.0
-X-Originating-IP: [87.191.159.149]
-X-ClientProxiedBy: CWLP265CA0094.GBRP265.PROD.OUTLOOK.COM
-	(2603:10a6:401:50::34) To DB7PR04MB4108.eurprd04.prod.outlook.com
-	(2603:10a6:5:26::13)
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(48565401081)(5600026)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603328)(7153060)(7193020);
-	SRVR:DB7PR04MB4108; 
-X-Microsoft-Exchange-Diagnostics: 1; DB7PR04MB4108;
-	3:FNY1+WFB2qZy/8PNOLDBsJjm+O+2raHIvP4fxTD87EHS0EXaPLh37U6o3IODu+51W7Ug2C1JFteqE25ktmfce1nTGqMp5D1DRlmuqAERWC61cKAL8hXO98krIFMpjK6ugUnjEFsytw6DK4zAjYd3lGHG9VExj9S9E4w/YvjLgExCVzPPIW0iW8I9P6vJR73unwZ4xFG1sZpgxm5KZ7W6tgpRQXyfKPUCQNp4TnSbQsh3udUdyoqq3ZJcKU0f3B2U;
-	25:T7aVf6XxwoZ8P5jz+6r9QTb3+EtxyzXrbLOeqpPJrDDT4vvglYSI4YTp4o+OLh7Mh4CANEh+0mNTjxAur3LpcYQM1RGcECGP4NpaIzEMvUbg4i0YO007Nn3p0zTISbke7jMSyioWVkVA1j8j0KZRtUJUkcwMRpGkkHyxkrSTbpw0EjJW7Cs2osVPas2OJSMTLQFYx7Hwv12kXPrwz01Z8gltEITPExIoF/3QLg/0Y9UMJCnudv5x55lxeHRRPZB+RPxY2IcHlUDPo551+WyQbW9YsdnqWhItBcKidXWsi6/8VxjCkiGVsgoEDfDOT/kYIsS2jrvSKpRXtCuRoqsQ+A==;
-	31:PQEBnhZz4cyXYxRIoT/hNxXws62LnM/PPn/qs/J/8A6gmbk1Pfh2k7YDK5E4PEfUBxkHfTDfxV8XcVaJPkSjwgij5MPyKSok9AeF1wx2I8hqk2mAo5qgpM7nyNYY1ylCplpkc/BNL9F0xTDuHNOqdR+Iv6SQCg8yZqJ/TJnD73Q4UcjiiGxulSiFDcBo1TG4nnOoXj4q5eR1YLG+kUuqNrITKVHDO7e41nTep/loCTc=
-X-MS-TrafficTypeDiagnostic: DB7PR04MB4108:
-X-Microsoft-Exchange-Diagnostics: 1; DB7PR04MB4108;
-	20:lZjDtrD+VirO80tIzgpoJsywtikGxmpzLoOb46DE2X5rYjJAxnqk0jq5uHGZ76+xYbTt2yn0cJnhj5fJoLLzo4Dh2Sa8yijFZA3rS9giBAbtdLg+Ei5yFs5MyzYvpoXBgMafnSQE8qttOy8yQ+iciQ18XAOvFu2FzEQs9vyRykZ0WwiWKqQGNCiiyaBkpw0ssZJPM965MaQ+mJyeN315045nv/KEDWY0qdtmUvKTEEUQQBtv3+3d0W4PXuHKeOIjnbqO1atUYzbCfZ1itLKz/d1yDREhmx6MHVXTMjBBFjyu//MEONhf4tellzGq8nZrNAfZETCd/Es7QmGYFv+O/KdlM+g/G4jOYQuPam5TX5B03Gywjol40kK59LPf40QcXpWu9KkrGLFajUGAF6RyQA/OZss5YuMnuMvYl8K054PTIec6loo6kG8lz9xoywDuDwiHTraS1ah90PxYeHySoPS5ZpEJ7Tc4AXu3Wk2KvmFHlz/Llpx8hjj2AYPYhkvt;
-	4:wotWZzq4H8Ez89DGe81mtZpn2wK7Plpa6k1eM0ALqktee953lg3vsfRQ/+/a0D1REd1BEOZomixk7Tafgtgdm+N87ON2F+iLsCbJ6YnFymYxu3jpjS0DaO4oC6mV9zYJIHAjLSx2wRFOsXPoUw3jqLerzKGdymwEHNisYuAPls/NhIxmhLdSFKTeuCSNK5hDFDhe/d74KlXFHoVDoR5UPTOXoiiOC2V63/28kHB6q3QIEwOPj4W5QHUimDlmssr6juvxCTvQ8ZRYYKyGPYQ98w==
-X-Microsoft-Antispam-PRVS: <DB7PR04MB41085ECD1ACA2A72DCDEA9A88D670@DB7PR04MB4108.eurprd04.prod.outlook.com>
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-MS-Exchange-SenderADCheck: 1
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
-	RULEID:(8211001083)(6040522)(2401047)(8121501046)(5005006)(10201501046)(93006095)(93001095)(3002001)(3231254)(944501410)(52105095)(6055026)(149027)(150027)(6041310)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123560045)(20161123562045)(20161123558120)(20161123564045)(6072148)(201708071742011)(7699016);
-	SRVR:DB7PR04MB4108; BCL:0; PCL:0; RULEID:; SRVR:DB7PR04MB4108; 
-X-Forefront-PRVS: 069373DFB6
-X-Forefront-Antispam-Report: SFV:NSPM;
-	SFS:(10019020)(6049001)(39860400002)(39380400002)(366004)(376002)(346002)(396003)(53754006)(199004)(189003)(77096007)(52146003)(2486003)(65806001)(8676002)(81166006)(23676004)(81156014)(486006)(117156002)(305945005)(6486002)(50466002)(52116002)(105586002)(65956001)(106356001)(7736002)(31686004)(6916009)(97736004)(6666003)(66066001)(64126003)(2906002)(956004)(16576012)(316002)(478600001)(2361001)(53936002)(58126008)(47776003)(5660300001)(2616005)(68736007)(25786009)(476003)(6116002)(3846002)(36756003)(2351001)(65826007)(8746002)(16526019)(8936002)(386003)(186003)(3480700004)(26005)(86362001)(31696002)(44832011);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DB7PR04MB4108; H:[192.168.1.113];
-	FPR:; SPF:None; LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-Received-SPF: None (protection.outlook.com: here.com does not designate
-	permitted sender hosts)
-X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtEQjdQUjA0TUI0MTA4OzIzOmVLVk9wTUFSWUs4NzRLWkYyNC9HMFcrWnA5?=
-	=?utf-8?B?a2ZPcDM1SWJGcndtdG5HWTFHQzNiR3hSZ29raE1zMXlMeWllaEJuVExoV0JP?=
-	=?utf-8?B?cVVlcXpCVk82Qmw3WGpjdVB0QUV0dzdoY2xLc3dSbzJMTVZ3SFRKMldqZVJD?=
-	=?utf-8?B?WkxIN1JLZ1RkeHk3N2U1Q2c3SSsyV2VISC9ZZWUvVURJZlI4Uzl4V0w4ODZB?=
-	=?utf-8?B?a0pESXJBNWxPUUZ1VDhwRXZFRTljS3djM0NOaWdLRU9KMjM3cUJ6UERJOU5r?=
-	=?utf-8?B?cWJhMTl6NUplNlNKYk1wQnFCL2VsYWZIZFFxMGZkOE5SbTZpNzFrTlBKSnNB?=
-	=?utf-8?B?M2ZCSEhHY1ZGMjVOZEdZK1p0YW9QVTdVa2NCQldoblQvSHJ6MXhrRWJFZ1VT?=
-	=?utf-8?B?Wkp0TTBXVnpscUhCbEtxR2RmVmVscktlVFV5dGtxUGlCTzlMdFJCdVdiUXJB?=
-	=?utf-8?B?SmlxRjBzM3ZLWmJjaEdmVEJxU25JKytTOHQxQ2hFZXFNUE1YSlVBY2J5RWk5?=
-	=?utf-8?B?aDNkNmttYnE1ZXNwZFpLWllMbmY4MS9hOE9vZXVHZjFBRkF3TWVWTUJmUnF2?=
-	=?utf-8?B?Q1RDQmp5MjQ0R09jV2RQYjR0OWtyMVp1Z1l2YmFOTDlweURlMkJWZ2dLVU01?=
-	=?utf-8?B?TzZZL0dnMTNoUGJpU1I0SFZURVVlU0VCRW02cWhKOUlYVlhiVFlkRjNUNWZp?=
-	=?utf-8?B?SDhFOG91KzBlT3lTZUtsMGh5SGh6dzI1NmIybkZJd1dJUGN5Z1BIeVBrdGpa?=
-	=?utf-8?B?R1pZN0pMYkpGV1F3OWxnZG9rMXUvZGFuQTI1bkE1cW95VkhON3J2UWJxb3A5?=
-	=?utf-8?B?MUNOMzdEdmtrSDFMUHF2U3Z1NmdSeHdIa0psY1p6NXBPY3loR2toYjV5dDB6?=
-	=?utf-8?B?azRrTEVRbGpoMGRtK1R6ZGNPN1ZRWXJFNUxYbHNMUmZFenBOUzA0ZTc1VHRk?=
-	=?utf-8?B?blBRZHhBZ0FXQlZsS3NZUkNqajdYVjNla1djUzhFcmpySkNGZWVqT2FwdnZC?=
-	=?utf-8?B?OUZlV010RU1OMlA2U3Q5RHlIU1dhZ0R5SndQZXhxeEtjTWYxcDJaa24xYitu?=
-	=?utf-8?B?dFJwNWY3MmlqRWVuMXRTU2NVa3JDZ2RZU1dGV3lPTFRURmVYM2FGMW94cksy?=
-	=?utf-8?B?Q2o3Q1JPaldVNGp0TE9sVnRCRHR3M1A2ZnJHdGhFNG5VVVM1MGpUK1FkaSsw?=
-	=?utf-8?B?L0pUTXRycGJydlkvYzBoSEM4VVZwYllEVGZLUmFTOU9NMVhCZHBJUDhPVHY3?=
-	=?utf-8?B?L1poRVptY0xBMG5oMG9WRTN5Y3dJZDkvQ1pTYUNKeU5FRmxDRCs3R0lwVkJr?=
-	=?utf-8?B?Q3VKcG02NjZ0V0FSZExidThTWTJudjNTa3lVMEJEKy9ZK3JlM2Y0SmJFVnli?=
-	=?utf-8?B?am5sbHlGQlNIZ01ha0hXY0FwYXdhTlphWWpqazU3VkpkMGE4UkRyOEw5Z3JN?=
-	=?utf-8?B?UDBIcVlXZCtFSGtvdllRREthdUR6SXpvZG5PWDN6QW1jbWc1YUFOWEtoVXlz?=
-	=?utf-8?B?bDdDVUJ4b2tuYmpBWWs2NHVnb1NmUmRDdUNwcXdCZ2xrajJHN2lnNDU3SVI0?=
-	=?utf-8?B?RVZrQlZuallIQWMwT1R3b1VIMHZxdzZVZlQ1dGt3c1VqZFNaWCtBNGRhc3A4?=
-	=?utf-8?B?Lzl4bnRLQzc1RkhuM0syaDhBcG1ZaUl4UGJPcERlQnBVanBSRVd5cENiMGhy?=
-	=?utf-8?B?SzlYZndvUFZaQXhSbzE1VllITzhIUEhUVytrUjJGR1V3ZXNmYWxjMFM4bXR3?=
-	=?utf-8?B?SGlJcXg1bXl6WmtmSEYvTXA2UU1KYVYxUDJJd1FCeElsYkhqTGRqVkdWR1hu?=
-	=?utf-8?B?bmZPeHJnREtWU2Y0c055enB6UEhia0Q5WmRNNzlyTkdqMG4rcFZ3b1g1ZzA3?=
-	=?utf-8?Q?ukRvB6nEh/L4rBjc2XXqZUUNJ/DF+1ai?=
-X-Microsoft-Antispam-Message-Info: wihSpwbrCFD3XuCtunSpyXJFmCmBAyTtU9yn3jhxTA2DqC6WhZS/zyc66w5vIUbVxJnWJViYcahVxqUfFTfSuasIpXIb+elWDePu/t+ps3uIouL2P71Unmh5D+d9ydz+9b1r+bJ+tlVotL6J0nD3uult7zF1SdwBvt3CImyAWVl7gUttg+be4jdeVbHOmuZK
-X-Microsoft-Exchange-Diagnostics: 1; DB7PR04MB4108;
-	6:NkxxAzjKwfRc41ShK26s3Xt80bBGv4GcpbhiyasCnX4hCjId95oaGy75LI+bcGzPVyoeyzO3gVn/srs6q8B2buWrb7mmEkxZvln7eV9GyKmw+VcxTlsLip94V2SaTp07wYK9y5tTubadYg14uhMWKqg5dRyklnJqBjGdwLJZm5JNcfzOx7a85pnitG4vC5JwNM56bHnfPzMPY04o68l+crdwd1aLwMHSWDzlkcWnngSH1ND2GJPkGCFTIFw4gySG3dqo/tT94+l91X0dAJhyFjGnMYUj97taQ30fW3q9pWQi2qFA1SmVzcsdas1krd5nWjaJ7ltKVXcGORWEKlbwqtXPDt2xA+yyW+TlQC5Mn2G1E/8hBjP8jecAAEBNmV45U6vaFPXTI93vVlkT66Qpdj51bBUk8hQSS/CxV8gE/szjoCHW6bAy6Up3sUwkfuXbT/i4vr1A2W2AyKeUHmWm1g==;
-	5:PQ0m//BY+vAu8ELP62RKpnndw+0a9Ge1LzSBODuCXe9q82XGQ/BhzVGQXeZIkEHYmqMAcKcREnr0iYhaUJPzeXW5KHTzZa7UKbh7H36DQLJrFyf99G+6Ydp12ArZyLIz8dymJ82BJAzyIfcUaJFsubMAtpvY3F4tg8JbN8sVDu4=;
-	24:kWexkHDvQLFoC9YrRE4gn/neTSSuE1NCA8heTh/D1TgpQ/+YIrYGAFgiG8Dbc7CtKcAxCru0FeEKHAic2lWtseAALdsAnrZP5I3+rOx/S18=
-SpamDiagnosticOutput: 1:99
-SpamDiagnosticMetadata: NSPM
-X-Microsoft-Exchange-Diagnostics: 1; DB7PR04MB4108;
-	7:W/RmlyZz1zdr/36OZw09qsWJ8HLUA/6EZ5Mu1imLQowXh/RGnS/rMGxCGfrDTCsrl13aqgKE9BrvVcy1GdXJxA0kNITCdkhl++by0UVwSouAhgs9Jph3QPruSvPy5G6reOpGJMJmu69nHOmBigBe6aXnUJD7BA1aplEke2I1I/AEFx6tLKIbhfQ7DCnC8AVxgF7OkcP+aDphHnXrgzktp98rjXbp+PjL04JtLsLE8JYyj+eCVLUUwUTdRCqZuc1b
-X-MS-Office365-Filtering-Correlation-Id: 37d9fc0c-fd93-4d6a-863b-08d5c9f9bab7
-X-OriginatorOrg: here.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2018 09:01:15.7547 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 37d9fc0c-fd93-4d6a-863b-08d5c9f9bab7
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 6d4034cd-7225-4f72-b853-91feaea64919
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4108
+In-Reply-To: <80617b66-6714-03f6-f6e7-45afc4def6d5@windriver.com>
 X-Mailman-Approved-At: Thu, 07 Jun 2018 08:19:20 -0700
-Subject: sysroot not being populated
+Cc: "meta-virtualization@yoctoproject.org"
+	<meta-virtualization@yoctoproject.org>,
+	Andrii Voloshyn <andrii.voloshyn@qiio.com>
+Subject: Re: cgroups and iptables problems running docker - maybe my config wrong?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -176,41 +53,306 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Jun 2018 10:36:24 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
+X-List-Received-Date: Tue, 05 Jun 2018 16:12:07 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: de-DE
 
-Hello all,
+On 04.06.2018 17:53, Bruce Ashfield wrote:
+> On 2018-06-01 12:15 PM, Jakob Hasse wrote:
+>> Hello Bruce,
+>>
+>> Thank you very much for the quick response. I tried to built in the 
+>> kernel changes. But the iptables error persists.
+>
+> I double checked over the weekend, and I have no problems with
+> linux-yocto + the meta-virtualization fragment and docker.
+Thanks a lot for the work!
+>
+> Did you say that you confirmed on target via /proc/config.gz that
+> all the options you tried to enable are still present in the running
+> kernel ?
+I double checked with /proc/config.gz and all the modules are builting 
+except for CONFIG_NF_TABLES, CONFIG_NF_TABLES_IPV4. The last two might 
+not even exists, I was so desperate that I put everything into the 
+configuration which I could find related to NAT.
+Some modules are builtin as modules instead (...=m instead of ...=y), 
+however.
+>
+>> Eventually, I tried to enable systemd again and it still breaks my 
+>> build -.-:
+>>
+>> test$ bitbake core-image-base
+>> NOTE: Started PRServer with DBfile: 
+>> /home/build/test/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 40169, 
+>> PID: 2335
+>> Loading cache: 100% 
+>> |########################################################################################################| 
+>> Time: 0:00:00
+>> Loaded 3023 entries from dependency cache.
+>> Parsing recipes: 100% 
+>> |######################################################################################################| 
+>> Time: 0:00:01
+>> Parsing of 2194 .bb files complete (2193 cached, 1 parsed). 3024 
+>> targets, 146 skipped, 0 masked, 0 errors.
+>> NOTE: Resolving any missing task queue dependencies
+>>
+>> Build Configuration:
+>> BB_VERSION           = "1.36.0"
+>> BUILD_SYS            = "x86_64-linux"
+>> NATIVELSBSTRING      = "universal"
+>> TARGET_SYS           = "arm-dey-linux-gnueabi"
+>> MACHINE              = "ccimx6ulstarter"
+>> DISTRO               = "dey"
+>> DISTRO_VERSION       = "2.4-r1"
+>> TUNE_FEATURES        = "arm armv7ve vfp thumb neon 
+>> callconvention-hard cortexa7"
+>> TARGET_FPU           = "hard"
+>> meta
+>> meta-poky
+>> meta-yocto-bsp       = "HEAD:3befe6d7b7fa8c8481519aa8dd0cae52207ad339"
+>> meta-oe
+>> meta-python
+>> meta-networking
+>> meta-webserver       = "HEAD:dacfa2b1920e285531bec55cd2f08743390aaf57"
+>> meta-qt5             = "HEAD:cfe02f26de53e5c20e6f9555059cbaaf5ab9b22f"
+>> meta-swupdate        = "HEAD:6e4eab4f475b0129d6510815a3bbc4748c97dbbe"
+>> meta-freescale       = "HEAD:d6141ea291a1ac9ab8fb1dd1110d408f840fda57"
+>> meta-fsl-demos       = "HEAD:0ec6d7e206705702b5b534611754de0787f92b72"
+>> meta-digi-arm
+>> meta-digi-dey        = "HEAD:1246ecff2cecea9247d94f36385608ac844d7abb"
+>>
+>> Initialising tasks: 100% 
+>> |###################################################################################################| 
+>> Time: 0:00:04
+>> NOTE: Executing SetScene Tasks
+>> NOTE: Executing RunQueue Tasks
+>> ERROR: core-image-base-1.0-r0 do_rootfs: Could not invoke dnf. 
+>> Command 
+>> '/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/recipe-sysroot-native/usr/bin/dnf 
+>> -y -c 
+>> /home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/rootfs/etc/dnf/dnf.conf 
+>> --setopt=reposdir=/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/rootfs/etc/yum.repos.d 
+>> --repofrompath=oe-repo,/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/oe-rootfs-repo 
+>> --installroot=/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/rootfs 
+>> --setopt=logdir=/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/temp 
+>> -x udev-cache --nogpgcheck install locale-base-en-us 
+>> locale-base-en-gb packagegroup-core-boot 
+>> packagegroup-core-eclipse-debug run-postinsts 
+>> packagegroup-dey-bluetooth psplash packagegroup-core-ssh-dropbear 
+>> packagegroup-dey-network packagegroup-base-extended 
+>> packagegroup-dey-audio packagegroup-dey-wireless rpm dnf' returned 1:
+>> Added oe-repo repo from 
+>> /home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/oe-rootfs-repo 
+>>
+>> Last metadata expiration check: 0:00:00 ago on Fri 01 Jun 2018 
+>> 03:49:44 PM UTC.
+>> Error:
+>>   Problem: package packagegroup-base-1.0-r83.0.ccimx6ulstarter 
+>> requires packagegroup-distro-base, but none of the providers can be 
+>> installed
+>>    - package packagegroup-base-extended-1.0-r83.0.ccimx6ulstarter 
+>> requires packagegroup-base, but none of the providers can be installed
+>>    - package packagegroup-distro-base-1.0-r83.0.ccimx6ulstarter 
+>> requires packagegroup-dey-core, but none of the providers can be 
+>> installed
+>>    - conflicting requests
+>>    - nothing provides busybox-hwclock needed by 
+>> packagegroup-dey-core-1.0-r0.0.ccimx6ulstarter
+>>
+>> ERROR: core-image-base-1.0-r0 do_rootfs: Function failed: do_rootfs
+>> ERROR: Logfile of failure stored in: 
+>> /home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/temp/log.do_rootfs.2380 
+>>
+>> ERROR: Task 
+>> (/usr/local/dey-2.4/sources/poky/meta/recipes-core/images/core-image-base.bb:do_rootfs) 
+>> failed with exit code '1'
+>> NOTE: Tasks Summary: Attempted 4106 tasks of which 4105 didn't need 
+>> to be rerun and 1 failed.
+>>
+>> Summary: 1 task failed:
+>> /usr/local/dey-2.4/sources/poky/meta/recipes-core/images/core-image-base.bb:do_rootfs 
+>>
+>> Summary: There were 2 ERROR messages shown, returning a non-zero exit 
+>> code.
+>>
+>> Seems that the introduction of systemd "confuses" dnf. I found a 
+>> quite similar description in this bugreport here:
+>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12025
+>> only that I'm not using different machines. This bug doesn't seem to 
+>> be resolved yet.
+>>
+>> Our Yocto-distribution is DIGI Embedded Yocto. So non-standard.
+>> Shall I still log a bug against oe-core?
+>
+> You could, but without a reproducer on oe-core, chances are that it
+> won't be easily resolved.
+>
+> At a glance, it isn't clear to me how systemd is causing your 
+> busybox-hwclock
+> issue. But if you check the list, that particular package has recently
+> been moved around/broken out. So I'd suggest making sure that all of
+> your layers are on the correct branches and that releases aren't being
+> mixed.
+Our hardware supplier told me that systemd is broken in their 
+distribution and recommended to try it without systemd. That's what I'm 
+doing right now.
 
-I have a recipe (aktualizr-hsm-prov) that depends on another (aktualizr)
-to provide an executable and a config file. The former recipe includes
-`DEPENDS =3D "aktualizr-native"`, and my do_install() for
-aktualizr-hsm-prov has a line something like this:
+Thank you again for all the information already. All the Best,
+Jakob
+>
+> Bruce
+>
+>> If someone here has some more helpful ideas, I would be very thankful.
+>>
+>> All the Best,
+>> Jakob
+>>
+>> On 31.05.2018 13:44, Bruce Ashfield wrote:
+>>> On 2018-05-31 7:00 AM, Jakob Hasse wrote:
+>>>> Hello,
+>>>
+>>> Make sure to cc meta-virtualization on questions like this, since
+>>> that is where you'll get more eyes that are running docker
+>>> all the time.
+>>>
+>>>> I ran into trouble running docker on our target.
+>>>> 1. When I want to start docker, I first have to re-mount cgroups:
+>>>> root@target:~# cgroups-umount
+>>>> root@target:~# cgroups-mount
+>>>> Otherwise docker would produce an error:
+>>>> ERRO[0002] Failed to built-in GetDriver graph btrfs /var/lib/docker
+>>>>
+>>>> 2. When I then start dockerd, it complains about a missing nat table:
+>>>> root@target:~# dockerd
+>>>> INFO[0000] libcontainerd: new containerd process, pid: 929
+>>>> WARN[0000] containerd: low RLIMIT_NOFILE changing to max 
+>>>> current=1024 max=4096
+>>>> INFO[0001] [graphdriver] using prior storage driver: overlay2
+>>>> INFO[0001] Graph migration to content-addressability took 0.00 seconds
+>>>> WARN[0001] Your kernel does not support cgroup memory limit
+>>>> WARN[0001] Unable to find cpu cgroup in mounts
+>>>> WARN[0001] Unable to find blkio cgroup in mounts
+>>>> WARN[0001] Unable to find cpuset cgroup in mounts
+>>>> WARN[0001] mountpoint for pids not found
+>>>> INFO[0001] Loading containers: start.
+>>>> WARN[0001] Running modprobe nf_nat failed with message: `modprobe: 
+>>>> WARNING: Module nf_nat not found in directory 
+>>>> /lib/modules/4.9.81-dey+g2c6ae4c`, error: exit status 1
+>>>> WARN[0001] Running modprobe xt_conntrack failed with message: 
+>>>> `modprobe: WARNING: Module xt_conntrack not found in directory 
+>>>> /lib/modules/4.9.81-dey+g2c6ae4c`, error: exit status 1
+>>>> Error starting daemon: Error initializing network controller: error 
+>>>> obtaining controller instance: failed to create NAT chain: iptables 
+>>>> failed: iptables --wait -t nat -N DOCKER: iptables v1.6.1: can't 
+>>>> initialize iptables table `nat': Table does not exist (do you need 
+>>>> to insmod?)
+>>>> Perhaps iptables or your kernel needs to be upgraded.
+>>>>   (exit status 3)
+>>>>
+>>>> Our configuration is as suggested here: 
+>>>> https://wiki.yoctoproject.org/wiki/TipsAndTricks/DockerOnImage, except 
+>>>
+>>> I've never seen that wiki page before (or at least I don't remember
+>>> seeing it), so I can't confirm or deny the validity of the content :)
+>>>
+>>>> that I don't include the system systemd stuff  (it lets my build fail) 
+>>>
+>>> If systemd is breaking your build, make sure to log a bugzilla against
+>>> oe-core
+>>>
+>>>> and connman (using NetworkManager).
+>>>> Furthermore, I added the following lines to the kernel bbappend file:
+>>>>
+>>>> # remove old defconfig
+>>>> SRC_URI_remove = " defconfig"
+>>>> # replace with new defconfig
+>>>> SRC_URI_append = " file://defconfig"
+>>>>
+>>>> KERNEL_FEATURES_append = " features/cgroups/cgroups.scc "
+>>>>
+>>>> I also added a lot of configurations manually to the defconfig 
+>>>> (mostly via menuconfig) to enable NAT:
+>>>>
+>>>> CONFIG_CGROUP_DEVICE=y
+>>>> CONFIG_IP_MULTICAST=y
+>>>> CONFIG_IP_ADVANCED_ROUTER=y
+>>>> CONFIG_NETFILTER=y
+>>>> CONFIG_NF_CONNTRACK=y
+>>>> CONFIG_NF_TABLES=y
+>>>> CONFIG_NF_NAT=y
+>>>> CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=y
+>>>> CONFIG_NETFILTER_XT_MATCH_COMMENT=y
+>>>> CONFIG_NETFILTER_XT_MATCH_HL=y
+>>>> CONFIG_NETFILTER_XT_MATCH_IPRANGE=y
+>>>> CONFIG_NETFILTER_XT_MATCH_LIMIT=y
+>>>> CONFIG_NETFILTER_XT_MATCH_MULTIPORT=y
+>>>> CONFIG_NETFILTER_XT_MATCH_RECENT=y
+>>>> CONFIG_IP_VS=y
+>>>> CONFIG_NF_TABLES_IPV4=y
+>>>> CONFIG_IP_NF_IPTABLES=y
+>>>> CONFIG_IP_NF_NAT=y
+>>>> CONFIG_IP_NF_FILTER=y
+>>>> CONFIG_IP_NF_MANGLE=y
+>>>> CONFIG_IP6_NF_IPTABLES=y
+>>>> CONFIG_IP6_NF_FILTER=y
+>>>> CONFIG_IP6_NF_MANGLE=y
+>>>> CONFIG_BTRFS_FS=y
+>>>> CONFIG_OVERLAY_FS=y
+>>>>
+>>>> Apart from that, I added virtualization and aufs as DISTRO_FEATURE 
+>>>> in local.conf and also enabled it in menuconfig.
+>>>>
+>>>> But I still keep getting the above mentioned iptables error when 
+>>>> trying to start docker. All this hassle makes me suspicious, 
+>>>> especially as I'm quite sure that I once had docker running already 
+>>>> with an image on our target and it wasn't that hard. So maybe it's 
+>>>> just a misconfiguration and I need to add something in local.conf 
+>>>> or the kernel recipe? Is systemd necessary? Or am I missing some 
+>>>> life-or-death kernel configuration? It would also be nice if I 
+>>>> could avoid the cgroup re-mounting before starting docker.
+>>>
+>>> What release branch are you using ?
+>>>
+>>> I'm running docker from meta-virt every day, as are many others,
+>>> but you have several differences in your configuration.
+>>>
+>>>  - most use systemd as the init manager, I know that I do. That
+>>>    is going to impact how cgroups is set up on your 'host' image.
+>>>    You shouldn't need to touch cgroups at all if systemd is used,
+>>>    since it is correct out of the box.
+>>>
+>>>  - You are using a different kernel and kernel configuration.
+>>>    linux-yocto + the configuration fragments in the layer are what
+>>>    is routinely tested. Are you using linux-yocto, or something
+>>>    different ? If it is different, all you can do is run the various
+>>>    checks to make sure that the docker prereqs are in place.
+>>>
+>>>    The errors you see in dockerd tells me that the options you are
+>>>    turning on, are not making it into the final kernel that is
+>>>    running on target.
+>>>
+>>> Cheers,
+>>>
+>>> Bruce
+>>>
+>>>>
+>>>> Thanks for every answer!
+>>>> All the Best,
+>>>> Jakob
+>>>>
+>>>
+>>
+>
 
-aktualizr -i ${STAGING_DIR_NATIVE}${libdir}/sota.conf
+-- 
+Jakob Hasse
+Software Developement
 
-The binary executable (aktualizr) runs, which tells me that the recipe
-can find that. (Although to be honest, I'm not sure which version it is
-running.) However, it doesn't find the config file, and sure enough,
-${STAGING_DIR_NATIVE}${libdir} does not have the config file I expect. I
-can see that aktualizr-native is populating its sysroot-destdir, but it
-isn't getting copied to the sysroot for aktualizr-hsm-prov.
+E: jakob.hasse@smart-home-technology.ch
+T: +41 44 552 02 66
 
-I see this problem in sumo and master, although previously this logic
-has worked just fine in morty/pyro/rocko.
-
-Switching to depending on aktualizr (instead of aktualizr-native) and
-using STAGING_DIR_HOST or STAGING_DIR_TARGET does not help, and in fact
-makes it worse, as it can't even find the aktualizr executable in that ca=
-se.
-
-What am I doing wrong? What changed between rocko and sumo?
-
-Thanks,
-
-Patrick Vacek
-HERE Technologies
-
+Smart Home Technology GmbH
+www.smart-home-technology.ch
 
 
