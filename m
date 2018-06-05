@@ -1,77 +1,140 @@
-Return-Path: <theyoctoproject@gmail.com>
+Return-Path: <jakob.hasse@qiio.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96729E016E6; Tue,  5 Jun 2018 09:31:31 -0700 (PDT)
+	id BB049E01164; Tue,  5 Jun 2018 15:55:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (theyoctoproject[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.201 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.49 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yb0-f201.google.com (mail-yb0-f201.google.com
-	[209.85.213.201])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E69CE01635
-	for <yocto@yoctoproject.org>; Tue,  5 Jun 2018 09:31:29 -0700 (PDT)
-Received: by mail-yb0-f201.google.com with SMTP id t12-v6so2276163ybg.5
-	for <yocto@yoctoproject.org>; Tue, 05 Jun 2018 09:31:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
-	h=mime-version:reply-to:sender:message-id:date:subject:from:to;
-	bh=4WSkjE0t38E8NcP8BVESy4p6Kkj5FxRiZf8kEiBE12w=;
-	b=DJydSh/9CXWTspS8Peum9/OZMKdALH83UzMIM/YSWBbkjWmvnRobSHr1f/l8R3Z1ka
-	GSwN/ylc/MGZPRjyaBzslCcnlSzCCHm6d0SVz5Yvs4Ns+tZIa94jSvKWe7qGpAbBZBeW
-	bbm/WWdVZXoYdttraBdVQzClBW9A5prThhquAinF6ifsCpjDRR4Be4f8DDc+QquicWla
-	wPRPYDqFx2XfqJjs0cqyVPkVwUxadHERoQQxPvMkNjEB+UzDZgEDrnnEZMCvekri3tPR
-	GWaOIOMOBuXU7vzV91J7GpZ9GiYp65TZCMdAdcGbvYhmGEKXSzgv0bkWIpr84JqKKYE8
-	sRJg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:reply-to:sender:message-id:date:subject:from:to;
-	bh=4WSkjE0t38E8NcP8BVESy4p6Kkj5FxRiZf8kEiBE12w=;
-	b=loZZM4vEECwCp/ERkvK8JKPSTZszfcaP3DS1ur+Ut8uIcmJ3NYpTGmImbbvJ/a4WNI
-	ZZgCnYiISmlQJbvT97mGMi4j77mzerhGCRki+5p8tx0pbfgXqVNlcVNFHkYc+xDffxKB
-	REAYFSdZWCaf9HOK1WGw0BohmTOphwlR+biFt7H8WXdEkDQ/Pw9Hoz8QlcIqnkFcrEeT
-	LesTdl69E5aLGrEJVY6lDMPC78Bey9nC8HjxDsLQHdz+sKciALf7mfgXdqBevrl4KDZH
-	unD1FSIM2a1AQbEc/xjUBwLaxYk2sAKaOxokSRhCAb98OlvL9LxhURGtw9q3tP+NgY7P
-	pocw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:reply-to:sender:message-id:date
-	:subject:from:to;
-	bh=4WSkjE0t38E8NcP8BVESy4p6Kkj5FxRiZf8kEiBE12w=;
-	b=COGVJFGe8Kj7M+CBfXii9Ltcoyi5qkLBQLAholhtThtkCKZXxbGU170/isPRiwinoI
-	gpvy3bRgIoqPo+3O6fftflu6ZTCbxsAnaQrjhSgvUXFM3nQBeQcQURS6wI2krI69tdzT
-	UTmZMJQMCcyPc/7RfbYFPlzO4iLMdlKd/FhLtAtelEigYJi+DMBklbCaB3Ru2qVvliWg
-	F69jlW7CLnLRQZAQRYpxEtZ06eNmlL/ZXKgM3++hk/E8L81WzzCBNLh6TQ5uDfFbDtLm
-	q/f0MeKp/waBJgyHdPJPkB6gyuCTlPKadxcBKtiJg91qEyZgY8dmWppg9icH5DtquTeB
-	8rhg==
-X-Gm-Message-State: APt69E38I8DGFsjgPtxnKkdQ2eIpAe44qOa5M7UIWE6bTRL1oFXD3ujW
-	26i5FzpW69VUQOsJ0SMBdmcsyf/i36VkO37pZL0W
-X-Google-Smtp-Source: ADUXVKJDdHIJXLjWJBl9/88nWWPQ2nucdBRqNm0jkRmHWNk6F0F5YB5v41qmjcPpAGS+dJkmIjHEep4gs0MkJWEXB3zm
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0049.outbound.protection.outlook.com [104.47.2.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 143D3E00CE2;
+	Tue,  5 Jun 2018 15:55:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=smarthometechnologych.onmicrosoft.com; s=selector1-qiio-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=Hhmri+XlPmm2z34jh86fB4Giv33lP8s+hN7gnu6Pluc=;
+	b=bc0OeuQ8ZFzO9EZewHlW5hLZ7R7MyHnx6ZTFeFGKar6IsknrUM2XnG6cqwgH87U0jzVf3wZqa2qDx4ev06r3aq/kGgXA6+yAVmr/GIFo5odyxHNh3FFa2TEHzN3zUFi+lH8NpO5vDNdhAGSNKzrm7BilX6pQSuqI79NVO/nyP3s=
+Authentication-Results: spf=none (sender IP is )
+	smtp.mailfrom=jakob.hasse@qiio.com; 
+Received: from [IPv6:2a02:168:6893:1:6569:b397:3591:3cfa]
+	(2a02:168:6893:1:6569:b397:3591:3cfa) by
+	VI1P192MB0062.EURP192.PROD.OUTLOOK.COM (2603:10a6:800:c1::20) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.820.13; Tue, 5 Jun 2018 16:23:16 +0000
+From: Jakob Hasse <jakob.hasse@qiio.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>,
+	Yocto List <yocto@yoctoproject.org>
+References: <783ff7cd-c1d8-1802-4b67-3aff339aae31@smart-home-technology.ch>
+	<6391ddea-802d-7f4d-26b3-44a79556c8a0@windriver.com>
+	<761e6979-b696-04f6-6e62-e325bc979c38@smart-home-technology.ch>
+	<80617b66-6714-03f6-f6e7-45afc4def6d5@windriver.com>
+	<a8aa1583-28fe-065b-f4d9-c8cfd90a5ead@smart-home-technology.ch>
+Message-ID: <4b1fb073-e2f1-0d51-a5d8-a431e581d59d@qiio.com>
+Date: Tue, 5 Jun 2018 18:23:13 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.8.0
 MIME-Version: 1.0
-X-Received: by 2002:a81:2c54:: with SMTP id
-	s81-v6mr4273060yws.240.1528216289504; 
-	Tue, 05 Jun 2018 09:31:29 -0700 (PDT)
-Sender: Google Calendar <calendar-notification@google.com>
-Message-ID: <000000000000137487056de795e3@google.com>
-Date: Tue, 05 Jun 2018 16:31:29 +0000
-From: theyoctoproject@gmail.com
-To: yocto@yoctoproject.org, stephen.k.jolley@intel.com
-Subject: Invitation: Yocto Project Technical Team Meeting @ Tue Jun 19, 2018 8am - 9am (PDT) (yocto@yoctoproject.org)
+In-Reply-To: <a8aa1583-28fe-065b-f4d9-c8cfd90a5ead@smart-home-technology.ch>
+X-Originating-IP: [2a02:168:6893:1:6569:b397:3591:3cfa]
+X-ClientProxiedBy: VI1PR07CA0129.eurprd07.prod.outlook.com
+	(2603:10a6:802:16::16) To VI1P192MB0062.EURP192.PROD.OUTLOOK.COM
+	(2603:10a6:800:c1::20)
+X-MS-PublicTrafficType: Email
+X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(5600026)(2017052603328)(7153060)(7193020);
+	SRVR:VI1P192MB0062; 
+X-Microsoft-Exchange-Diagnostics: 1; VI1P192MB0062;
+	3:dW9P1Xx0es3MYstbR2dDWvMFOX1k+Ve8mVbO+Lh9g/lzqLb5269wlt5RUBLssZfxziOt+XCotAQBjZB8cuqyLDkp351D5kdSazHWB/ZxN+EVDge44EVxbmds8MPB7vmqwkNn6TndLt8HFLeIgWUImDhNdHZUc9vWCY1yi1exzPkLRu3gzGdg+rkN5M82549RdDnb9piNdERAq/epIsE+SC85/2+r5BHxL8oDpC8ypXYpDBvvGpU5LALRoJrRKs7j;
+	25:TUm2Vt1Y1Fson3fAx5IwPNDq5Wysy1Qfo8KyPQNn1+SxIkhRGnciWm0lVp6efprkzuku+eJmy+9EgkMHwLjM715NxwSvtlV6PcVWLna9f4BQ/zj/N1qkIQ+oswP6CqXBbLNzBdUzkE02+YDCyuVyRNdrvpdoBTM4ziqlClDzxXyqiNHooIshblSrBTofOhcDaFpRq4oEZwJNevhAV5bpmFIZlUmlRGIgLCaE+oT0s1SsN8jLKqfGeOxnztWa64XP6HbM+gFsUdyZI5olGv4TWJc4GB1vnqZ6CfbfFmI3mjtLbu0rJCkHD7hrzSTW+zQuwSLHWp9DMfYXpy2WuiLfBQ==;
+	31:oNCruMCnu/TpRBrMwp51JiI5joPcC9WMk7yaVFlCrgOjBnswjiZ5Hw9ZcUdqxBrY3tPxJies1lCco/kJFvaPAdK23ZwKJWByRc6p3iWPRuQIn1p2xNlXGlkM7poPGIP76je9bjvRS8kX+rX8oBh3kEZYIJ0cICliBVG7HNYiAkUsYIwl2YnDKTUN6e7W7TIhPqkWw2Hu3bP9zU0vi0PQ3FLyLJHXe+8fckRrBhBDc4Q=
+X-MS-TrafficTypeDiagnostic: VI1P192MB0062:
+X-Microsoft-Antispam-PRVS: <VI1P192MB00624EE7C8B2338A3556A67684660@VI1P192MB0062.EURP192.PROD.OUTLOOK.COM>
+X-Exchange-Antispam-Report-Test: UriScan:(788757137089);
+X-MS-Exchange-SenderADCheck: 1
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(6040522)(2401047)(5005006)(8121501046)(10201501046)(3231254)(944501410)(52105095)(3002001)(93006095)(93001095)(149027)(150027)(6041310)(20161123558120)(20161123562045)(20161123564045)(20161123560045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(2016111802025)(6043046)(6072148)(201708071742011)(7699016);
+	SRVR:VI1P192MB0062; BCL:0; PCL:0; RULEID:; SRVR:VI1P192MB0062; 
+X-Microsoft-Exchange-Diagnostics: 1; VI1P192MB0062;
+	4:/kkct+u+afYYbT68S8DRxYgDfFR9/8Lwg79jQbIVrsX/4gOAAoeQKjmnUbogDfbCNTNPZQmH6gbstwU0LoVyU7414syWbeGTS0Ypw35lR05bfVbEmTmwZVS6oiLWXTnTWpc4KtueClLWjE/gZIwBeSgT8HmKhHadO26nOqUK3+WZdJfXcoFD9I0QA15Uz1aLG/J8rijjqGZxz0q5/cztZyLP4kBYgkJqcdOJAjy6gCS0+5DRozI/Qm35cxaMQDpCDS735fMDd9ap3iCvaj8TLPWOGKrpHflDs/wvVjL5th32C7OVcMTB/XS3utzo95pL
+X-Forefront-PRVS: 0694C54398
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10009020)(366004)(396003)(39830400003)(376002)(346002)(39380400002)(189003)(199004)(65826007)(50466002)(46003)(105586002)(25786009)(106356001)(67846002)(64126003)(8936002)(229853002)(386003)(53546011)(575784001)(59450400001)(5660300001)(31686004)(4326008)(86362001)(68736007)(36756003)(76176011)(52396003)(2486003)(6246003)(23676004)(52146003)(478600001)(476003)(2616005)(2906002)(486006)(44832011)(47776003)(11346002)(446003)(8676002)(110136005)(16526019)(97736004)(107886003)(31696002)(316002)(81166006)(54906003)(81156014)(58126008)(6666003)(65956001)(6486002)(93886005)(6306002)(1706002)(305945005)(2870700001)(7736002)(65806001)(53936002)(966005)(6116002)(52116002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:VI1P192MB0062;
+	H:[IPv6:2a02:168:6893:1:6569:b397:3591:3cfa]; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
+Received-SPF: None (protection.outlook.com: qiio.com does not designate
+	permitted sender hosts)
+X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtWSTFQMTkyTUIwMDYyOzIzOnB1ejE0WGY4dDcwSmVVMVlnQnpubDNTL3JZ?=
+	=?utf-8?B?MjBON3lJVFlxNktJejIyanFJOE92Q3lQWHYvNDZrODNDdDVPcVFPZkE2YkEw?=
+	=?utf-8?B?MisyMmdDalBsM2NVK01IYVlrSk40M0R3NlpRQ3RnVWVNZWVjaFNrZWdKZkw5?=
+	=?utf-8?B?UGJicEpsandNNlR1UUhJZHUvQ2NPdGZuRHhiaC9VNUFpMGdMVEN2Z052K3Ja?=
+	=?utf-8?B?SWJmSHpuNzRjZ0FBOGdVZjYwWFFkVkxyVGU3UzVMTUhkNTRPL3FtRVFYQVNp?=
+	=?utf-8?B?Ni9xY1ZGKzVUY1lSbEtpa2l0UUlLMW83d0tWTGN3ZHVQdW4zdG93NVEwZDQx?=
+	=?utf-8?B?czAxV1NKZDhyVVQzbEE2NXZtYTFITHR4SWYzdkFOWjI0VVFsMlp3SUlITWRV?=
+	=?utf-8?B?Q2tnVGJOVUJzT0VMZllYaGtpVUVueDBpVEY4QUtKTjN5UVVuU0s3YnM2U3E5?=
+	=?utf-8?B?RmgxczNlMU5BVVlnZmVlb2ovTVduV1E3dmEwV0tXL3M2T1Q4UVpOcjMvR3Mv?=
+	=?utf-8?B?eW1ObmlFWW5yWWJDak5BdGM4blJVMHZSQ2FwcjYxZmZMeU5oVDZLdzV6dDFX?=
+	=?utf-8?B?bzNPSmpsbWJDWUNadFFBWklja1V3TVBlODRzRE1YQjJqWnZXcUN4dHVSTTdx?=
+	=?utf-8?B?R3AzNTJEdDVaQ2JWRkM3UVljN0dhc0tZbzZuL0NOU0w5ZTJ1S0tIVS8vNGpt?=
+	=?utf-8?B?RG5JcXloYzJuZkp1dnJWeW8xTldwanZNRVU2OFAzZzQyay96ekVieEV3WkNX?=
+	=?utf-8?B?VU1UcHowclJDUm8wQUxwWHRLM2Faenlva3FtcENISS9aMzNkZnZRUElUMUtq?=
+	=?utf-8?B?bDU1TDE4NWlGN2lXUFhWcmF6akhZY1VTR3d6bGo2MnRwS2V5bHd2ZmFFQklt?=
+	=?utf-8?B?OXdsRXhFREpqd3JPWmVvWFhnUjFlMkoyY0ZTVUhHZWtUSmFSNDhQNmwzQkYx?=
+	=?utf-8?B?SlEwQkdqYVZ3cWpPOWxyVWlDVlIzSlNScnNPSEhEODJvR3F0UnMyaXhQVU9s?=
+	=?utf-8?B?RzBxVE9CWlhUY0N2aHNwMklENU55WGF0VDI0d2l1NGUyWWdQVHNraGVEdVNz?=
+	=?utf-8?B?b0dBOWVjZGNKYkRKMzlvUkNsSys3SmtMN1Njd2MzMm12dnc5NS80bEN2Qm9l?=
+	=?utf-8?B?WjJoc1EzMlNIVStFcGF1cjZzRHp2YUlQMmt2Nm1qRGVHa3JiNS90RFozT291?=
+	=?utf-8?B?MjYvdlRWcCtlaU0rcFRWb05sa2hyY3AxaGZ5ajlUeDRvYlFDV3VpWjdxUW5G?=
+	=?utf-8?B?QmxQMlV3amdOYzdmZXBjSGF2dVl4Ti85L0ZHUjl3a09rZUM3L1pRdjNaWjRq?=
+	=?utf-8?B?Q0paMGJsZ2FyOE1PdkcvcVQ4VnVvdGx5TjI0Ym5IVXNTRzdUNTlwaXk1SEN3?=
+	=?utf-8?B?TTRCcUJwOU1YN2d1MmdTNzFydU1GeU5GaFd6SVgxcDFxWUxSNWQ5ck1oY21k?=
+	=?utf-8?B?QWN0OUJ5QjlrbTVFdWdVV0Y3VzVmRXMyV2FkcmtEazJpejkvT2lKVVh4Uk9H?=
+	=?utf-8?B?eU9OaFJWdDNFRFVWelVYUDU0MzRwaHdEeXljcG5rcUFvaWt4MWhwbkRtcTcz?=
+	=?utf-8?B?SDNOZzVwazRycHp2RWcrM053TlJjK1BZamtqejFuVTVBbkxKT2Z5MGpYb1JV?=
+	=?utf-8?B?cVdsYVNMWG05M0RRelRqYlp1b2tOZWI3RTFoOTZSWFY0SlNaRkNUYTdkQU4v?=
+	=?utf-8?B?dldWZXVPTHkrTUhWSWxzSGh3QTMzSllKa25tWC9vek1qa2U4RDd6VERYTDBt?=
+	=?utf-8?B?RWZjd1J1a2lPeVlJclJjcmUrelVCYkJLMnRDbnlzQUNHRG93UEZyWng2UGZE?=
+	=?utf-8?B?dGxvdFBiLzc3NURmc1NLRU12NUg1S3lKSWhsL2FkZVNHK1k0dEhFVDZhTkNC?=
+	=?utf-8?B?SlZ2QVRTRTgzWk9JY28waFlsQVBkZk9DbHZKZm1OTEhKN21yblJwTWEzZVg5?=
+	=?utf-8?B?Vjg5YUIwT1U4WnBVeHp2VGFIRDQrYk0wNHkxUERHY0hDbXJDUzl5MHd5OGx3?=
+	=?utf-8?B?SFNkY1NlVW9yK2ZZRnNKbTVwKzZvTFdkbGZhZTJ4RTVueThCWDM5QW5oVlI2?=
+	=?utf-8?Q?Ku9Z+ADPIupy/5+z8wdyK1fKH?=
+X-Microsoft-Antispam-Message-Info: stCKO5xjoqyGcMMCOs/41UD3eFTSBxCSXS7Yh96BZ5WGD3aWtbjpRM2Ro+5ATX4+zizjkzML26v01dlphF327PfWLi90IgPY2ETyC44PUYeOXvFoSApZLv6VHUMN4yT8GxpetR0+tE58aZWK5oBIziNpMhF4hUnttN2dOPxmjHNsR2yj4Uh9jZqwVxn3OdtL
+X-Microsoft-Exchange-Diagnostics: 1; VI1P192MB0062;
+	6:Xd7eMk+D5Nc9oWq67tiY+meOLtXlDxcsjCfDbUZ1sQazMiUrT5kdjIywirBiabG+Ug+l3tcA22DA408/nwpuyiP2yH0/aQFJpHOfHU3X1Uo7QDbnwDEFPRyJaVhtI7PJSUHJLhpWDt24V8TUIh7ziDJMORKqm7Jv5BbGBiu+ase0hpwQVP0QwRJDW2gyN9kAZWenUgy6jBgQyZ/AGzya0A7jD9gaU7jehMg4wyLl24Mc6Yg/+06jHBeX5AyVrZec0B/yRx3K2G1TPJ02phP2IdKzYy2LgJ4HIBFarpy3egBK7mDNw5WpHei3qUCcHUJ5CJaefrGDQ+96TJvVz64BVvG4fGe2pMc4BdJkQ6DtO6yKDnRFzCraMv1F7TCEbPcDEyFDKhj3gSp5KXbU55mK7G2GnAQrSU6sgl9GV7q3qKobXDKUg6G98zt/iVgWknpvNUa1ML3EQkNxlHtqwkY/Ww==;
+	5:rADl89AIU2tdAd//Vu4n9MubyLgU4K71tr//Uf5zgpu2A973jyDAL8UdaBRmgAiOsXN1pfc++wTCqt3EeCpujv7tAWmN4JFa1M0TBPUGBbYVutmY4RK/h5oaLEk+Lv4wtAgSFcNOy5FKZi4FnpXnY/tujZGuv1YJ/GIWzQyczQg=;
+	24:kMBUAfNPTSeJ3URXMpkPJBzckgF/uTkEKpNpoA1oCPgRBoFb3+AHPiwi8wyhybbz4S66PYQgVUyOq9CN2aq6/Npp+cYSLqbam7wzImM7sfs=
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-Microsoft-Exchange-Diagnostics: 1; VI1P192MB0062;
+	7:AuNI/inOEBWjUkepGIDNAPZ4MYdYdXpvS0U93wGumugdcewshP3cUazEILvJwtSJvmsqW046MAxR3xr8W+Xkw9fR8xN//x/qhIbePMLNjqLJq1RQjWPlfwlSEUgKkVBmGZRX6E+znyvK+gc/bnI2OAMIWUe0okwd1hFCV3rzyfINxSwuQfFzMjUWJvQrF78zZ9LN7f9A23BL/K7uKZPMRQ3ClOEif7en2ALNpZzdpyMkjcpFa5VJ1Y/rw2w2Zmuj
+X-MS-Office365-Filtering-Correlation-Id: f4c300f9-a588-4d4c-64fd-08d5cb00a488
+X-OriginatorOrg: qiio.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2018 16:23:16.2540 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f4c300f9-a588-4d4c-64fd-08d5cb00a488
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7110674e-f830-4f7f-87a8-a46973e4c75f
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P192MB0062
+Cc: "meta-virtualization@yoctoproject.org"
+	<meta-virtualization@yoctoproject.org>,
+	Andrii Voloshyn <andrii.voloshyn@qiio.com>,
+	jakob.hasse@smart-home-technology.ch
+Subject: Re: cgroups and iptables problems running docker - maybe my config wrong?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: theyoctoproject@gmail.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -80,300 +143,328 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Jun 2018 16:31:31 -0000
-X-Groupsio-MsgNum: 41336
-Content-Type: multipart/mixed; boundary="000000000000137473056de795e2"
+X-List-Received-Date: Tue, 05 Jun 2018 22:55:44 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: de-DE
 
---000000000000137473056de795e2
-Content-Type: multipart/alternative; boundary="000000000000137470056de795e0"
+Hello,
 
---000000000000137470056de795e0
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
-Content-Transfer-Encoding: base64
+right now, there is no insmod warning anymore, only iptables does still 
+not work with the nat table:
 
-WW91IGhhdmUgYmVlbiBpbnZpdGVkIHRvIHRoZSBmb2xsb3dpbmcgZXZlbnQuDQoNClRpdGxlOiBZ
-b2N0byBQcm9qZWN0IFRlY2huaWNhbCBUZWFtIE1lZXRpbmcNCldlIGVuY291cmFnZSBwZW9wbGUg
-YXR0ZW5kaW5nIHRoZSBtZWV0aW5nIHRvIGxvZ29uIGFuZCBhbm5vdW5jZSB0aGVtc2VsdmVzICAN
-Cm9uIHRoZSBZb2N0byBQcm9qZWN0IElSQyBjaGFuY2VsIGR1cmluZyB0aGUgbWVldGluZyAob3B0
-aW9uYWwpOllvY3RvIElSQzogIA0KaHR0cDovL3dlYmNoYXQuZnJlZW5vZGUubmV0Lz9jaGFubmVs
-cz0jeW9jdG9XaWtpOiAgDQpodHRwczovL3d3dy55b2N0b3Byb2plY3Qub3JnL3B1YmxpYy12aXJ0
-dWFsLW1lZXRpbmdzL0JyaWRnZSBpcyB3aXRoIFpvb20gIA0KYXQ6IGh0dHBzOi8vem9vbS51cy9q
-Lzk5MDg5MjcxMg0KV2hlbjogVHVlIEp1biAxOSwgMjAxOCA4YW0g4oCTIDlhbSBQYWNpZmljIFRp
-bWUNCldoZXJlOiBab29tIE1lZXRpbmc6IGh0dHBzOi8vem9vbS51cy9qLzk5MDg5MjcxMg0KQ2Fs
-ZW5kYXI6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCldobzoNCiAgICAgKiB0aGV5b2N0b3Byb2pl
-Y3RAZ21haWwuY29tIC0gb3JnYW5pemVyDQogICAgICogc3RlcGhlbi5rLmpvbGxleUBpbnRlbC5j
-b20NCiAgICAgKiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQoNCkV2ZW50IGRldGFpbHM6ICANCmh0
-dHBzOi8vd3d3Lmdvb2dsZS5jb20vY2FsZW5kYXIvZXZlbnQ/YWN0aW9uPVZJRVcmZWlkPU4zWmlk
-bWRoWjJJM1kzRjFZemh2Tkc1d2NtZG9OamMyY1RnZ2VXOWpkRzlBZVc5amRHOXdjbTlxWldOMExt
-OXladyZ0b2s9TWpVamRHaGxlVzlqZEc5d2NtOXFaV04wUUdkdFlXbHNMbU52YldKaVpqZGtOVGcw
-T0Rka09HUXdZVE5rTkdFelpqbGxPV1ZrTW1ZMU9HSXhOMlV5TUdSbE1qSSZjdHo9QW1lcmljYSUy
-Rkxvc19BbmdlbGVzJmhsPWVuJmVzPTANCg0KSW52aXRhdGlvbiBmcm9tIEdvb2dsZSBDYWxlbmRh
-cjogaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9jYWxlbmRhci8NCg0KWW91IGFyZSByZWNlaXZpbmcg
-dGhpcyBjb3VydGVzeSBlbWFpbCBhdCB0aGUgYWNjb3VudCB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
-ICANCmJlY2F1c2UgeW91IGFyZSBhbiBhdHRlbmRlZSBvZiB0aGlzIGV2ZW50Lg0KDQpUbyBzdG9w
-IHJlY2VpdmluZyBmdXR1cmUgdXBkYXRlcyBmb3IgdGhpcyBldmVudCwgZGVjbGluZSB0aGlzIGV2
-ZW50LiAgDQpBbHRlcm5hdGl2ZWx5IHlvdSBjYW4gc2lnbiB1cCBmb3IgYSBHb29nbGUgYWNjb3Vu
-dCBhdCAgDQpodHRwczovL3d3dy5nb29nbGUuY29tL2NhbGVuZGFyLyBhbmQgY29udHJvbCB5b3Vy
-IG5vdGlmaWNhdGlvbiBzZXR0aW5ncyBmb3IgIA0KeW91ciBlbnRpcmUgY2FsZW5kYXIuDQoNCkZv
-cndhcmRpbmcgdGhpcyBpbnZpdGF0aW9uIGNvdWxkIGFsbG93IGFueSByZWNpcGllbnQgdG8gbW9k
-aWZ5IHlvdXIgUlNWUCAgDQpyZXNwb25zZS4gTGVhcm4gbW9yZSBhdCAgDQpodHRwczovL3N1cHBv
-cnQuZ29vZ2xlLmNvbS9jYWxlbmRhci9hbnN3ZXIvMzcxMzUjZm9yd2FyZGluZw0K
+root@ccimx6uluvalue:~# dockerd
+INFO[0000] libcontainerd: new containerd process, pid: 1003
+WARN[0000] containerd: low RLIMIT_NOFILE changing to max current=1024 
+max=4096
+INFO[0001] [graphdriver] using prior storage driver: overlay2
+INFO[0001] Graph migration to content-addressability took 0.00 seconds
+WARN[0001] Your kernel does not support cgroup memory limit
+WARN[0001] Unable to find cpu cgroup in mounts
+WARN[0001] Unable to find blkio cgroup in mounts
+WARN[0001] Unable to find cpuset cgroup in mounts
+WARN[0001] mountpoint for pids not found
+INFO[0001] Loading containers: start.
+Error starting daemon: Error initializing network controller: error 
+obtaining controller instance: failed to create NAT chain: iptables 
+failed: iptables --wait -t nat -N DOCKER: iptables v1.6.1: can't 
+initialize iptables table `nat': Table does not exist (do you need to 
+insmod?)
+Perhaps iptables or your kernel needs to be upgraded.
+  (exit status 3)
 
---000000000000137470056de795e0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Best Regards,
+Jakob
 
-<span itemscope itemtype=3D"http://schema.org/InformAction"><span style=3D"=
-display:none" itemprop=3D"about" itemscope itemtype=3D"http://schema.org/Pe=
-rson"><meta itemprop=3D"description" content=3D"Invitation from theyoctopro=
-ject@gmail.com"/></span><span itemprop=3D"object" itemscope itemtype=3D"htt=
-p://schema.org/Event"><div style=3D""><table cellspacing=3D"0" cellpadding=
-=3D"8" border=3D"0" summary=3D"" style=3D"width:100%;font-family:Arial,Sans=
--serif;border:1px Solid #ccc;border-width:1px 2px 2px 1px;background-color:=
-#fff;"><tr><td><meta itemprop=3D"eventStatus" content=3D"http://schema.org/=
-EventScheduled"/><div style=3D"padding:2px"><span itemprop=3D"publisher" it=
-emscope itemtype=3D"http://schema.org/Organization"><meta itemprop=3D"name"=
- content=3D"Google Calendar"/></span><meta itemprop=3D"eventId/googleCalend=
-ar" content=3D"7vbvgagb7cquc8o4nprgh676q8"/><div style=3D"float:right;font-=
-weight:bold;font-size:13px"> <a href=3D"https://www.google.com/calendar/eve=
-nt?action=3DVIEW&amp;eid=3DN3ZidmdhZ2I3Y3F1YzhvNG5wcmdoNjc2cTggeW9jdG9AeW9j=
-dG9wcm9qZWN0Lm9yZw&amp;tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbWJiZjdkNT=
-g0ODdkOGQwYTNkNGEzZjllOWVkMmY1OGIxN2UyMGRlMjI&amp;ctz=3DAmerica%2FLos_Angel=
-es&amp;hl=3Den&amp;es=3D0" style=3D"color:#20c;white-space:nowrap" itemprop=
-=3D"url">more details &raquo;</a><br></div><h3 style=3D"padding:0 0 6px 0;m=
-argin:0;font-family:Arial,Sans-serif;font-size:16px;font-weight:bold;color:=
-#222"><span itemprop=3D"name">Yocto Project Technical Team Meeting</span></=
-h3><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" summary=3D"Event=
- details"><tr><td style=3D"padding:0 1em 10px 0;font-family:Arial,Sans-seri=
-f;font-size:13px;color:#888;white-space:nowrap;width:90px" valign=3D"top"><=
-div><i style=3D"font-style:normal">When</i></div></td><td style=3D"padding-=
-bottom:10px;font-family:Arial,Sans-serif;font-size:13px;color:#222" valign=
-=3D"top"><div style=3D"text-indent:-1px"><time itemprop=3D"startDate" datet=
-ime=3D"20180619T150000Z"></time><time itemprop=3D"endDate" datetime=3D"2018=
-0619T160000Z"></time>Tue Jun 19, 2018 8am =E2=80=93 9am <span style=3D"colo=
-r:#888">Pacific Time</span></div></td></tr><tr><td style=3D"padding:0 1em 1=
-0px 0;font-family:Arial,Sans-serif;font-size:13px;color:#888;white-space:no=
-wrap;width:90px" valign=3D"top"><div><i style=3D"font-style:normal">Where</=
-i></div></td><td style=3D"padding-bottom:10px;font-family:Arial,Sans-serif;=
-font-size:13px;color:#222" valign=3D"top"><div style=3D"text-indent:-1px"><=
-span itemprop=3D"location" itemscope itemtype=3D"http://schema.org/Place"><=
-span itemprop=3D"name" class=3D"notranslate">Zoom Meeting: https://zoom.us/=
-j/990892712</span><span dir=3D"ltr"> (<a href=3D"https://maps.google.com/ma=
-ps?q=3DZoom+Meeting:+https://zoom.us/j/990892712&amp;hl=3Den" style=3D"colo=
-r:#20c;white-space:nowrap" target=3D"_blank" itemprop=3D"map">map</a>)</spa=
-n></span></div></td></tr><tr><td style=3D"padding:0 1em 10px 0;font-family:=
-Arial,Sans-serif;font-size:13px;color:#888;white-space:nowrap;width:90px" v=
-align=3D"top"><div><i style=3D"font-style:normal">Calendar</i></div></td><t=
-d style=3D"padding-bottom:10px;font-family:Arial,Sans-serif;font-size:13px;=
-color:#222" valign=3D"top"><div style=3D"text-indent:-1px">yocto@yoctoproje=
-ct.org</div></td></tr><tr><td style=3D"padding:0 1em 10px 0;font-family:Ari=
-al,Sans-serif;font-size:13px;color:#888;white-space:nowrap;width:90px" vali=
-gn=3D"top"><div><i style=3D"font-style:normal">Who</i></div></td><td style=
-=3D"padding-bottom:10px;font-family:Arial,Sans-serif;font-size:13px;color:#=
-222" valign=3D"top"><table cellspacing=3D"0" cellpadding=3D"0"><tr><td styl=
-e=3D"padding-right:10px;font-family:Arial,Sans-serif;font-size:13px;color:#=
-222;width:10px"><div style=3D"text-indent:-1px"><span style=3D"font-family:=
-Courier New,monospace">&#x2022;</span></div></td><td style=3D"padding-right=
-:10px;font-family:Arial,Sans-serif;font-size:13px;color:#222"><div style=3D=
-"text-indent:-1px"><div><div style=3D"margin:0 0 0.3em 0"><span itemprop=3D=
-"attendee" itemscope itemtype=3D"http://schema.org/Person"><span itemprop=
-=3D"name" class=3D"notranslate">theyoctoproject@gmail.com</span><meta itemp=
-rop=3D"email" content=3D"theyoctoproject@gmail.com"/></span><span itemprop=
-=3D"organizer" itemscope itemtype=3D"http://schema.org/Person"><meta itempr=
-op=3D"name" content=3D"theyoctoproject@gmail.com"/><meta itemprop=3D"email"=
- content=3D"theyoctoproject@gmail.com"/></span><span style=3D"font-size:11p=
-x;color:#888"> - organizer</span></div></div></div></td></tr><tr><td style=
-=3D"padding-right:10px;font-family:Arial,Sans-serif;font-size:13px;color:#2=
-22;width:10px"><div style=3D"text-indent:-1px"><span style=3D"font-family:C=
-ourier New,monospace">&#x2022;</span></div></td><td style=3D"padding-right:=
-10px;font-family:Arial,Sans-serif;font-size:13px;color:#222"><div style=3D"=
-text-indent:-1px"><div><div style=3D"margin:0 0 0.3em 0"><span itemprop=3D"=
-attendee" itemscope itemtype=3D"http://schema.org/Person"><span itemprop=3D=
-"name" class=3D"notranslate">stephen.k.jolley@intel.com</span><meta itempro=
-p=3D"email" content=3D"stephen.k.jolley@intel.com"/></span></div></div></di=
-v></td></tr><tr><td style=3D"padding-right:10px;font-family:Arial,Sans-seri=
-f;font-size:13px;color:#222;width:10px"><div style=3D"text-indent:-1px"><sp=
-an style=3D"font-family:Courier New,monospace">&#x2022;</span></div></td><t=
-d style=3D"padding-right:10px;font-family:Arial,Sans-serif;font-size:13px;c=
-olor:#222"><div style=3D"text-indent:-1px"><div><div style=3D"margin:0 0 0.=
-3em 0"><span itemprop=3D"attendee" itemscope itemtype=3D"http://schema.org/=
-Person"><span itemprop=3D"name" class=3D"notranslate">yocto@yoctoproject.or=
-g</span><meta itemprop=3D"email" content=3D"yocto@yoctoproject.org"/></span=
-></div></div></div></td></tr></table></td></tr></table><div style=3D"paddin=
-g-bottom:15px;font-family:Arial,Sans-serif;font-size:13px;color:#222;white-=
-space:pre-wrap!important;white-space:-moz-pre-wrap!important;white-space:-p=
-re-wrap!important;white-space:-o-pre-wrap!important;white-space:pre;word-wr=
-ap:break-word"><span>We encourage people attending the meeting to logon and=
- announce themselves on the Yocto Project IRC chancel during the meeting (o=
-ptional):<br><br>Yocto IRC: <a href=3D"https://www.google.com/url?q=3Dhttp%=
-3A%2F%2Fwebchat.freenode.net%2F%3Fchannels%3D%23yocto&amp;sa=3DD&amp;usd=3D=
-2&amp;usg=3DAFQjCNEh9OQrs1YBcw7IAy-tvGf0ilzcGA" target=3D"_blank">http://we=
-bchat.freenode.net/?channels=3D#yocto</a><br><br>Wiki: <a href=3D"https://w=
-ww.google.com/url?q=3Dhttps%3A%2F%2Fwww.yoctoproject.org%2Fpublic-virtual-m=
-eetings%2F&amp;sa=3DD&amp;usd=3D2&amp;usg=3DAFQjCNGuv3-PMohkZImjCRVm8IQS5yY=
-2iw" target=3D"_blank">https://www.yoctoproject.org/public-virtual-meetings=
-/</a><br><br>Bridge is with Zoom at: <a href=3D"https://www.google.com/url?=
-q=3Dhttps%3A%2F%2Fzoom.us%2Fj%2F990892712&amp;sa=3DD&amp;usd=3D2&amp;usg=3D=
-AFQjCNHX_hluoIn561yqnT2i0scv-HJOEw" target=3D"_blank">https://zoom.us/j/990=
-892712</a></span><meta itemprop=3D"description" content=3D"We encourage peo=
-ple attending the meeting to logon and announce themselves on the Yocto Pro=
-ject IRC chancel during the meeting (optional):Yocto IRC: http://webchat.fr=
-eenode.net/?channels=3D#yoctoWiki: https://www.yoctoproject.org/public-virt=
-ual-meetings/Bridge is with Zoom at: https://zoom.us/j/990892712"/></div></=
-div><p style=3D"color:#222;font-size:13px;margin:0"><span style=3D"color:#8=
-88">Going?&nbsp;&nbsp;&nbsp;</span><wbr><strong><span itemprop=3D"potential=
-action" itemscope itemtype=3D"http://schema.org/RsvpAction"><meta itemprop=
-=3D"attendance" content=3D"http://schema.org/RsvpAttendance/Yes"/><span ite=
-mprop=3D"handler" itemscope itemtype=3D"http://schema.org/HttpActionHandler=
-"><link itemprop=3D"method" href=3D"http://schema.org/HttpRequestMethod/GET=
-"/><a href=3D"https://www.google.com/calendar/event?action=3DRESPOND&amp;ei=
-d=3DN3ZidmdhZ2I3Y3F1YzhvNG5wcmdoNjc2cTggeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw&amp;=
-rst=3D1&amp;tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbWJiZjdkNTg0ODdkOGQwY=
-TNkNGEzZjllOWVkMmY1OGIxN2UyMGRlMjI&amp;ctz=3DAmerica%2FLos_Angeles&amp;hl=
-=3Den&amp;es=3D0" style=3D"color:#20c;white-space:nowrap" itemprop=3D"url">=
-Yes</a></span></span><span style=3D"margin:0 0.4em;font-weight:normal"> - <=
-/span><span itemprop=3D"potentialaction" itemscope itemtype=3D"http://schem=
-a.org/RsvpAction"><meta itemprop=3D"attendance" content=3D"http://schema.or=
-g/RsvpAttendance/Maybe"/><span itemprop=3D"handler" itemscope itemtype=3D"h=
-ttp://schema.org/HttpActionHandler"><link itemprop=3D"method" href=3D"http:=
-//schema.org/HttpRequestMethod/GET"/><a href=3D"https://www.google.com/cale=
-ndar/event?action=3DRESPOND&amp;eid=3DN3ZidmdhZ2I3Y3F1YzhvNG5wcmdoNjc2cTgge=
-W9jdG9AeW9jdG9wcm9qZWN0Lm9yZw&amp;rst=3D3&amp;tok=3DMjUjdGhleW9jdG9wcm9qZWN=
-0QGdtYWlsLmNvbWJiZjdkNTg0ODdkOGQwYTNkNGEzZjllOWVkMmY1OGIxN2UyMGRlMjI&amp;ct=
-z=3DAmerica%2FLos_Angeles&amp;hl=3Den&amp;es=3D0" style=3D"color:#20c;white=
--space:nowrap" itemprop=3D"url">Maybe</a></span></span><span style=3D"margi=
-n:0 0.4em;font-weight:normal"> - </span><span itemprop=3D"potentialaction" =
-itemscope itemtype=3D"http://schema.org/RsvpAction"><meta itemprop=3D"atten=
-dance" content=3D"http://schema.org/RsvpAttendance/No"/><span itemprop=3D"h=
-andler" itemscope itemtype=3D"http://schema.org/HttpActionHandler"><link it=
-emprop=3D"method" href=3D"http://schema.org/HttpRequestMethod/GET"/><a href=
-=3D"https://www.google.com/calendar/event?action=3DRESPOND&amp;eid=3DN3Zidm=
-dhZ2I3Y3F1YzhvNG5wcmdoNjc2cTggeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw&amp;rst=3D2&am=
-p;tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbWJiZjdkNTg0ODdkOGQwYTNkNGEzZjl=
-lOWVkMmY1OGIxN2UyMGRlMjI&amp;ctz=3DAmerica%2FLos_Angeles&amp;hl=3Den&amp;es=
-=3D0" style=3D"color:#20c;white-space:nowrap" itemprop=3D"url">No</a></span=
-></span></strong>&nbsp;&nbsp;&nbsp;&nbsp;<wbr><a href=3D"https://www.google=
-.com/calendar/event?action=3DVIEW&amp;eid=3DN3ZidmdhZ2I3Y3F1YzhvNG5wcmdoNjc=
-2cTggeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw&amp;tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtY=
-WlsLmNvbWJiZjdkNTg0ODdkOGQwYTNkNGEzZjllOWVkMmY1OGIxN2UyMGRlMjI&amp;ctz=3DAm=
-erica%2FLos_Angeles&amp;hl=3Den&amp;es=3D0" style=3D"color:#20c;white-space=
-:nowrap" itemprop=3D"url">more options &raquo;</a></p></td></tr><tr><td sty=
-le=3D"background-color:#f6f6f6;color:#888;border-top:1px Solid #ccc;font-fa=
-mily:Arial,Sans-serif;font-size:11px"><p>Invitation from <a href=3D"https:/=
-/www.google.com/calendar/" target=3D"_blank" style=3D"">Google Calendar</a>=
-</p><p>You are receiving this courtesy email at the account yocto@yoctoproj=
-ect.org because you are an attendee of this event.</p><p>To stop receiving =
-future updates for this event, decline this event. Alternatively you can si=
-gn up for a Google account at https://www.google.com/calendar/ and control =
-your notification settings for your entire calendar.</p><p>Forwarding this =
-invitation could allow any recipient to modify your RSVP response. <a href=
-=3D"https://support.google.com/calendar/answer/37135#forwarding">Learn More=
-</a>.</p></td></tr></table></div></span></span>
+On 05.06.2018 18:11, Jakob Hasse wrote:
+> On 04.06.2018 17:53, Bruce Ashfield wrote:
+>> On 2018-06-01 12:15 PM, Jakob Hasse wrote:
+>>> Hello Bruce,
+>>>
+>>> Thank you very much for the quick response. I tried to built in the 
+>>> kernel changes. But the iptables error persists.
+>>
+>> I double checked over the weekend, and I have no problems with
+>> linux-yocto + the meta-virtualization fragment and docker.
+> Thanks a lot for the work!
+>>
+>> Did you say that you confirmed on target via /proc/config.gz that
+>> all the options you tried to enable are still present in the running
+>> kernel ?
+> I double checked with /proc/config.gz and all the modules are builting 
+> except for CONFIG_NF_TABLES, CONFIG_NF_TABLES_IPV4. The last two might 
+> not even exists, I was so desperate that I put everything into the 
+> configuration which I could find related to NAT.
+> Some modules are builtin as modules instead (...=m instead of ...=y), 
+> however.
+>>
+>>> Eventually, I tried to enable systemd again and it still breaks my 
+>>> build -.-:
+>>>
+>>> test$ bitbake core-image-base
+>>> NOTE: Started PRServer with DBfile: 
+>>> /home/build/test/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 40169, 
+>>> PID: 2335
+>>> Loading cache: 100% 
+>>> |########################################################################################################| 
+>>> Time: 0:00:00
+>>> Loaded 3023 entries from dependency cache.
+>>> Parsing recipes: 100% 
+>>> |######################################################################################################| 
+>>> Time: 0:00:01
+>>> Parsing of 2194 .bb files complete (2193 cached, 1 parsed). 3024 
+>>> targets, 146 skipped, 0 masked, 0 errors.
+>>> NOTE: Resolving any missing task queue dependencies
+>>>
+>>> Build Configuration:
+>>> BB_VERSION           = "1.36.0"
+>>> BUILD_SYS            = "x86_64-linux"
+>>> NATIVELSBSTRING      = "universal"
+>>> TARGET_SYS           = "arm-dey-linux-gnueabi"
+>>> MACHINE              = "ccimx6ulstarter"
+>>> DISTRO               = "dey"
+>>> DISTRO_VERSION       = "2.4-r1"
+>>> TUNE_FEATURES        = "arm armv7ve vfp thumb neon 
+>>> callconvention-hard cortexa7"
+>>> TARGET_FPU           = "hard"
+>>> meta
+>>> meta-poky
+>>> meta-yocto-bsp       = "HEAD:3befe6d7b7fa8c8481519aa8dd0cae52207ad339"
+>>> meta-oe
+>>> meta-python
+>>> meta-networking
+>>> meta-webserver       = "HEAD:dacfa2b1920e285531bec55cd2f08743390aaf57"
+>>> meta-qt5             = "HEAD:cfe02f26de53e5c20e6f9555059cbaaf5ab9b22f"
+>>> meta-swupdate        = "HEAD:6e4eab4f475b0129d6510815a3bbc4748c97dbbe"
+>>> meta-freescale       = "HEAD:d6141ea291a1ac9ab8fb1dd1110d408f840fda57"
+>>> meta-fsl-demos       = "HEAD:0ec6d7e206705702b5b534611754de0787f92b72"
+>>> meta-digi-arm
+>>> meta-digi-dey        = "HEAD:1246ecff2cecea9247d94f36385608ac844d7abb"
+>>>
+>>> Initialising tasks: 100% 
+>>> |###################################################################################################| 
+>>> Time: 0:00:04
+>>> NOTE: Executing SetScene Tasks
+>>> NOTE: Executing RunQueue Tasks
+>>> ERROR: core-image-base-1.0-r0 do_rootfs: Could not invoke dnf. 
+>>> Command 
+>>> '/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/recipe-sysroot-native/usr/bin/dnf 
+>>> -y -c 
+>>> /home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/rootfs/etc/dnf/dnf.conf 
+>>> --setopt=reposdir=/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/rootfs/etc/yum.repos.d 
+>>> --repofrompath=oe-repo,/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/oe-rootfs-repo 
+>>> --installroot=/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/rootfs 
+>>> --setopt=logdir=/home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/temp 
+>>> -x udev-cache --nogpgcheck install locale-base-en-us 
+>>> locale-base-en-gb packagegroup-core-boot 
+>>> packagegroup-core-eclipse-debug run-postinsts 
+>>> packagegroup-dey-bluetooth psplash packagegroup-core-ssh-dropbear 
+>>> packagegroup-dey-network packagegroup-base-extended 
+>>> packagegroup-dey-audio packagegroup-dey-wireless rpm dnf' returned 1:
+>>> Added oe-repo repo from 
+>>> /home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/oe-rootfs-repo 
+>>>
+>>> Last metadata expiration check: 0:00:00 ago on Fri 01 Jun 2018 
+>>> 03:49:44 PM UTC.
+>>> Error:
+>>>   Problem: package packagegroup-base-1.0-r83.0.ccimx6ulstarter 
+>>> requires packagegroup-distro-base, but none of the providers can be 
+>>> installed
+>>>    - package packagegroup-base-extended-1.0-r83.0.ccimx6ulstarter 
+>>> requires packagegroup-base, but none of the providers can be installed
+>>>    - package packagegroup-distro-base-1.0-r83.0.ccimx6ulstarter 
+>>> requires packagegroup-dey-core, but none of the providers can be 
+>>> installed
+>>>    - conflicting requests
+>>>    - nothing provides busybox-hwclock needed by 
+>>> packagegroup-dey-core-1.0-r0.0.ccimx6ulstarter
+>>>
+>>> ERROR: core-image-base-1.0-r0 do_rootfs: Function failed: do_rootfs
+>>> ERROR: Logfile of failure stored in: 
+>>> /home/build/test/tmp/work/ccimx6ulstarter-dey-linux-gnueabi/core-image-base/1.0-r0/temp/log.do_rootfs.2380 
+>>>
+>>> ERROR: Task 
+>>> (/usr/local/dey-2.4/sources/poky/meta/recipes-core/images/core-image-base.bb:do_rootfs) 
+>>> failed with exit code '1'
+>>> NOTE: Tasks Summary: Attempted 4106 tasks of which 4105 didn't need 
+>>> to be rerun and 1 failed.
+>>>
+>>> Summary: 1 task failed:
+>>> /usr/local/dey-2.4/sources/poky/meta/recipes-core/images/core-image-base.bb:do_rootfs 
+>>>
+>>> Summary: There were 2 ERROR messages shown, returning a non-zero 
+>>> exit code.
+>>>
+>>> Seems that the introduction of systemd "confuses" dnf. I found a 
+>>> quite similar description in this bugreport here:
+>>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12025
+>>> only that I'm not using different machines. This bug doesn't seem to 
+>>> be resolved yet.
+>>>
+>>> Our Yocto-distribution is DIGI Embedded Yocto. So non-standard.
+>>> Shall I still log a bug against oe-core?
+>>
+>> You could, but without a reproducer on oe-core, chances are that it
+>> won't be easily resolved.
+>>
+>> At a glance, it isn't clear to me how systemd is causing your 
+>> busybox-hwclock
+>> issue. But if you check the list, that particular package has recently
+>> been moved around/broken out. So I'd suggest making sure that all of
+>> your layers are on the correct branches and that releases aren't being
+>> mixed.
+> Our hardware supplier told me that systemd is broken in their 
+> distribution and recommended to try it without systemd. That's what 
+> I'm doing right now.
+>
+> Thank you again for all the information already. All the Best,
+> Jakob
+>>
+>> Bruce
+>>
+>>> If someone here has some more helpful ideas, I would be very thankful.
+>>>
+>>> All the Best,
+>>> Jakob
+>>>
+>>> On 31.05.2018 13:44, Bruce Ashfield wrote:
+>>>> On 2018-05-31 7:00 AM, Jakob Hasse wrote:
+>>>>> Hello,
+>>>>
+>>>> Make sure to cc meta-virtualization on questions like this, since
+>>>> that is where you'll get more eyes that are running docker
+>>>> all the time.
+>>>>
+>>>>> I ran into trouble running docker on our target.
+>>>>> 1. When I want to start docker, I first have to re-mount cgroups:
+>>>>> root@target:~# cgroups-umount
+>>>>> root@target:~# cgroups-mount
+>>>>> Otherwise docker would produce an error:
+>>>>> ERRO[0002] Failed to built-in GetDriver graph btrfs /var/lib/docker
+>>>>>
+>>>>> 2. When I then start dockerd, it complains about a missing nat table:
+>>>>> root@target:~# dockerd
+>>>>> INFO[0000] libcontainerd: new containerd process, pid: 929
+>>>>> WARN[0000] containerd: low RLIMIT_NOFILE changing to max 
+>>>>> current=1024 max=4096
+>>>>> INFO[0001] [graphdriver] using prior storage driver: overlay2
+>>>>> INFO[0001] Graph migration to content-addressability took 0.00 
+>>>>> seconds
+>>>>> WARN[0001] Your kernel does not support cgroup memory limit
+>>>>> WARN[0001] Unable to find cpu cgroup in mounts
+>>>>> WARN[0001] Unable to find blkio cgroup in mounts
+>>>>> WARN[0001] Unable to find cpuset cgroup in mounts
+>>>>> WARN[0001] mountpoint for pids not found
+>>>>> INFO[0001] Loading containers: start.
+>>>>> WARN[0001] Running modprobe nf_nat failed with message: `modprobe: 
+>>>>> WARNING: Module nf_nat not found in directory 
+>>>>> /lib/modules/4.9.81-dey+g2c6ae4c`, error: exit status 1
+>>>>> WARN[0001] Running modprobe xt_conntrack failed with message: 
+>>>>> `modprobe: WARNING: Module xt_conntrack not found in directory 
+>>>>> /lib/modules/4.9.81-dey+g2c6ae4c`, error: exit status 1
+>>>>> Error starting daemon: Error initializing network controller: 
+>>>>> error obtaining controller instance: failed to create NAT chain: 
+>>>>> iptables failed: iptables --wait -t nat -N DOCKER: iptables 
+>>>>> v1.6.1: can't initialize iptables table `nat': Table does not 
+>>>>> exist (do you need to insmod?)
+>>>>> Perhaps iptables or your kernel needs to be upgraded.
+>>>>>   (exit status 3)
+>>>>>
+>>>>> Our configuration is as suggested here: 
+>>>>> https://wiki.yoctoproject.org/wiki/TipsAndTricks/DockerOnImage, 
+>>>>> except 
+>>>>
+>>>> I've never seen that wiki page before (or at least I don't remember
+>>>> seeing it), so I can't confirm or deny the validity of the content :)
+>>>>
+>>>>> that I don't include the system systemd stuff  (it lets my build 
+>>>>> fail) 
+>>>>
+>>>> If systemd is breaking your build, make sure to log a bugzilla against
+>>>> oe-core
+>>>>
+>>>>> and connman (using NetworkManager).
+>>>>> Furthermore, I added the following lines to the kernel bbappend file:
+>>>>>
+>>>>> # remove old defconfig
+>>>>> SRC_URI_remove = " defconfig"
+>>>>> # replace with new defconfig
+>>>>> SRC_URI_append = " file://defconfig"
+>>>>>
+>>>>> KERNEL_FEATURES_append = " features/cgroups/cgroups.scc "
+>>>>>
+>>>>> I also added a lot of configurations manually to the defconfig 
+>>>>> (mostly via menuconfig) to enable NAT:
+>>>>>
+>>>>> CONFIG_CGROUP_DEVICE=y
+>>>>> CONFIG_IP_MULTICAST=y
+>>>>> CONFIG_IP_ADVANCED_ROUTER=y
+>>>>> CONFIG_NETFILTER=y
+>>>>> CONFIG_NF_CONNTRACK=y
+>>>>> CONFIG_NF_TABLES=y
+>>>>> CONFIG_NF_NAT=y
+>>>>> CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=y
+>>>>> CONFIG_NETFILTER_XT_MATCH_COMMENT=y
+>>>>> CONFIG_NETFILTER_XT_MATCH_HL=y
+>>>>> CONFIG_NETFILTER_XT_MATCH_IPRANGE=y
+>>>>> CONFIG_NETFILTER_XT_MATCH_LIMIT=y
+>>>>> CONFIG_NETFILTER_XT_MATCH_MULTIPORT=y
+>>>>> CONFIG_NETFILTER_XT_MATCH_RECENT=y
+>>>>> CONFIG_IP_VS=y
+>>>>> CONFIG_NF_TABLES_IPV4=y
+>>>>> CONFIG_IP_NF_IPTABLES=y
+>>>>> CONFIG_IP_NF_NAT=y
+>>>>> CONFIG_IP_NF_FILTER=y
+>>>>> CONFIG_IP_NF_MANGLE=y
+>>>>> CONFIG_IP6_NF_IPTABLES=y
+>>>>> CONFIG_IP6_NF_FILTER=y
+>>>>> CONFIG_IP6_NF_MANGLE=y
+>>>>> CONFIG_BTRFS_FS=y
+>>>>> CONFIG_OVERLAY_FS=y
+>>>>>
+>>>>> Apart from that, I added virtualization and aufs as DISTRO_FEATURE 
+>>>>> in local.conf and also enabled it in menuconfig.
+>>>>>
+>>>>> But I still keep getting the above mentioned iptables error when 
+>>>>> trying to start docker. All this hassle makes me suspicious, 
+>>>>> especially as I'm quite sure that I once had docker running 
+>>>>> already with an image on our target and it wasn't that hard. So 
+>>>>> maybe it's just a misconfiguration and I need to add something in 
+>>>>> local.conf or the kernel recipe? Is systemd necessary? Or am I 
+>>>>> missing some life-or-death kernel configuration? It would also be 
+>>>>> nice if I could avoid the cgroup re-mounting before starting docker.
+>>>>
+>>>> What release branch are you using ?
+>>>>
+>>>> I'm running docker from meta-virt every day, as are many others,
+>>>> but you have several differences in your configuration.
+>>>>
+>>>>  - most use systemd as the init manager, I know that I do. That
+>>>>    is going to impact how cgroups is set up on your 'host' image.
+>>>>    You shouldn't need to touch cgroups at all if systemd is used,
+>>>>    since it is correct out of the box.
+>>>>
+>>>>  - You are using a different kernel and kernel configuration.
+>>>>    linux-yocto + the configuration fragments in the layer are what
+>>>>    is routinely tested. Are you using linux-yocto, or something
+>>>>    different ? If it is different, all you can do is run the various
+>>>>    checks to make sure that the docker prereqs are in place.
+>>>>
+>>>>    The errors you see in dockerd tells me that the options you are
+>>>>    turning on, are not making it into the final kernel that is
+>>>>    running on target.
+>>>>
+>>>> Cheers,
+>>>>
+>>>> Bruce
+>>>>
+>>>>>
+>>>>> Thanks for every answer!
+>>>>> All the Best,
+>>>>> Jakob
+>>>>>
+>>>>
+>>>
+>>
+>
 
---000000000000137470056de795e0
-Content-Type: text/calendar; charset="UTF-8"; method=REQUEST
-Content-Transfer-Encoding: 7bit
-
-BEGIN:VCALENDAR
-PRODID:-//Google Inc//Google Calendar 70.9054//EN
-VERSION:2.0
-CALSCALE:GREGORIAN
-METHOD:REQUEST
-BEGIN:VEVENT
-DTSTART:20180619T150000Z
-DTEND:20180619T160000Z
-DTSTAMP:20180605T163129Z
-ORGANIZER;CN=theyoctoproject@gmail.com:mailto:theyoctoproject@gmail.com
-UID:7vbvgagb7cquc8o4nprgh676q8@google.com
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE
- ;CN=theyoctoproject@gmail.com;X-NUM-GUESTS=0:mailto:theyoctoproject@gmail.c
- om
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
- TRUE;CN=stephen.k.jolley@intel.com;X-NUM-GUESTS=0:mailto:stephen.k.jolley@i
- ntel.com
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
- TRUE;CN=yocto@yoctoproject.org;X-NUM-GUESTS=0:mailto:yocto@yoctoproject.org
-CREATED:20180605T163128Z
-DESCRIPTION:We encourage people attending the meeting to logon and announce
-  themselves on the Yocto Project IRC chancel during the meeting (optional):
- <br><br>Yocto IRC: <a href="https://www.google.com/url?q=http%3A%2F%2Fwebch
- at.freenode.net%2F%3Fchannels%3D%23yocto&amp\;sa=D&amp\;usd=2&amp\;usg=AFQj
- CNEvOHVIkxKIrfXWfUxCcVS5_8kh5w" target="_blank">http://webchat.freenode.net
- /?channels=#yocto</a><br><br>Wiki: <a href="https://www.yoctoproject.org/pu
- blic-virtual-meetings/">https://www.yoctoproject.org/public-virtual-meeting
- s/</a><br><br>Bridge is with Zoom at: <a href="https://www.google.com/url?q
- =https%3A%2F%2Fzoom.us%2Fj%2F990892712&amp\;sa=D&amp\;usd=2&amp\;usg=AFQjCN
- G2F5sUpm-S-RhkqNhXVBd3m1_3LA" target="_blank">https://zoom.us/j/990892712</
- a>\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
- :~:~:~:~:~::~:~::-\nPlease do not edit this section of the description.\n\n
- View your event at https://www.google.com/calendar/event?action=VIEW&eid=N3
- ZidmdhZ2I3Y3F1YzhvNG5wcmdoNjc2cTggeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw&tok=MjUjdG
- hleW9jdG9wcm9qZWN0QGdtYWlsLmNvbWJiZjdkNTg0ODdkOGQwYTNkNGEzZjllOWVkMmY1OGIxN
- 2UyMGRlMjI&ctz=America%2FLos_Angeles&hl=en&es=1.\n-::~:~::~:~:~:~:~:~:~:~:~
- :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
-LAST-MODIFIED:20180605T163129Z
-LOCATION:Zoom Meeting: https://zoom.us/j/990892712
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:Yocto Project Technical Team Meeting
-TRANSP:OPAQUE
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:This is an event reminder
-TRIGGER:-P0DT0H15M0S
-END:VALARM
-END:VEVENT
-END:VCALENDAR
-
---000000000000137470056de795e0--
-
---000000000000137473056de795e2
-Content-Type: application/ics; name="invite.ics"
-Content-Disposition: attachment; filename="invite.ics"
-Content-Transfer-Encoding: base64
-
-QkVHSU46VkNBTEVOREFSDQpQUk9ESUQ6LS8vR29vZ2xlIEluYy8vR29vZ2xlIENhbGVuZGFyIDcw
-LjkwNTQvL0VODQpWRVJTSU9OOjIuMA0KQ0FMU0NBTEU6R1JFR09SSUFODQpNRVRIT0Q6UkVRVUVT
-VA0KQkVHSU46VkVWRU5UDQpEVFNUQVJUOjIwMTgwNjE5VDE1MDAwMFoNCkRURU5EOjIwMTgwNjE5
-VDE2MDAwMFoNCkRUU1RBTVA6MjAxODA2MDVUMTYzMTI5Wg0KT1JHQU5JWkVSO0NOPXRoZXlvY3Rv
-cHJvamVjdEBnbWFpbC5jb206bWFpbHRvOnRoZXlvY3RvcHJvamVjdEBnbWFpbC5jb20NClVJRDo3
-dmJ2Z2FnYjdjcXVjOG80bnByZ2g2NzZxOEBnb29nbGUuY29tDQpBVFRFTkRFRTtDVVRZUEU9SU5E
-SVZJRFVBTDtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1BQ0NFUFRFRDtSU1ZQPVRSVUUN
-CiA7Q049dGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbTtYLU5VTS1HVUVTVFM9MDptYWlsdG86dGhl
-eW9jdG9wcm9qZWN0QGdtYWlsLmMNCiBvbQ0KQVRURU5ERUU7Q1VUWVBFPUlORElWSURVQUw7Uk9M
-RT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9DQogVFJVRTtDTj1z
-dGVwaGVuLmsuam9sbGV5QGludGVsLmNvbTtYLU5VTS1HVUVTVFM9MDptYWlsdG86c3RlcGhlbi5r
-LmpvbGxleUBpDQogbnRlbC5jb20NCkFUVEVOREVFO0NVVFlQRT1JTkRJVklEVUFMO1JPTEU9UkVR
-LVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPQ0KIFRSVUU7Q049eW9jdG9A
-eW9jdG9wcm9qZWN0Lm9yZztYLU5VTS1HVUVTVFM9MDptYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0
-Lm9yZw0KQ1JFQVRFRDoyMDE4MDYwNVQxNjMxMjhaDQpERVNDUklQVElPTjpXZSBlbmNvdXJhZ2Ug
-cGVvcGxlIGF0dGVuZGluZyB0aGUgbWVldGluZyB0byBsb2dvbiBhbmQgYW5ub3VuY2UNCiAgdGhl
-bXNlbHZlcyBvbiB0aGUgWW9jdG8gUHJvamVjdCBJUkMgY2hhbmNlbCBkdXJpbmcgdGhlIG1lZXRp
-bmcgKG9wdGlvbmFsKToNCiA8YnI+PGJyPllvY3RvIElSQzogPGEgaHJlZj0iaHR0cHM6Ly93d3cu
-Z29vZ2xlLmNvbS91cmw/cT1odHRwJTNBJTJGJTJGd2ViY2gNCiBhdC5mcmVlbm9kZS5uZXQlMkYl
-M0ZjaGFubmVscyUzRCUyM3lvY3RvJmFtcFw7c2E9RCZhbXBcO3VzZD0yJmFtcFw7dXNnPUFGUWoN
-CiBDTkV2T0hWSWt4S0lyZlhXZlV4Q2NWUzVfOGtoNXciIHRhcmdldD0iX2JsYW5rIj5odHRwOi8v
-d2ViY2hhdC5mcmVlbm9kZS5uZXQNCiAvP2NoYW5uZWxzPSN5b2N0bzwvYT48YnI+PGJyPldpa2k6
-IDxhIGhyZWY9Imh0dHBzOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvcHUNCiBibGljLXZpcnR1YWwt
-bWVldGluZ3MvIj5odHRwczovL3d3dy55b2N0b3Byb2plY3Qub3JnL3B1YmxpYy12aXJ0dWFsLW1l
-ZXRpbmcNCiBzLzwvYT48YnI+PGJyPkJyaWRnZSBpcyB3aXRoIFpvb20gYXQ6IDxhIGhyZWY9Imh0
-dHBzOi8vd3d3Lmdvb2dsZS5jb20vdXJsP3ENCiA9aHR0cHMlM0ElMkYlMkZ6b29tLnVzJTJGaiUy
-Rjk5MDg5MjcxMiZhbXBcO3NhPUQmYW1wXDt1c2Q9MiZhbXBcO3VzZz1BRlFqQ04NCiBHMkY1c1Vw
-bS1TLVJoa3FOaFhWQmQzbTFfM0xBIiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly96b29tLnVzL2ov
-OTkwODkyNzEyPC8NCiBhPlxuXG4tOjp+On46On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+
-On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On4NCiA6fjp+On46fjp+Ojp+On46Oi1cblBs
-ZWFzZSBkbyBub3QgZWRpdCB0aGlzIHNlY3Rpb24gb2YgdGhlIGRlc2NyaXB0aW9uLlxuXG4NCiBW
-aWV3IHlvdXIgZXZlbnQgYXQgaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9jYWxlbmRhci9ldmVudD9h
-Y3Rpb249VklFVyZlaWQ9TjMNCiBaaWRtZGhaMkkzWTNGMVl6aHZORzV3Y21kb05qYzJjVGdnZVc5
-amRHOUFlVzlqZEc5d2NtOXFaV04wTG05eVp3JnRvaz1NalVqZEcNCiBobGVXOWpkRzl3Y205cVpX
-TjBRR2R0WVdsc0xtTnZiV0ppWmpka05UZzBPRGRrT0dRd1lUTmtOR0V6WmpsbE9XVmtNbVkxT0dJ
-eE4NCiAyVXlNR1JsTWpJJmN0ej1BbWVyaWNhJTJGTG9zX0FuZ2VsZXMmaGw9ZW4mZXM9MS5cbi06
-On46fjo6fjp+On46fjp+On46fjp+On4NCiA6fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46
-fjp+On46fjp+On46fjp+On46fjp+On46On46fjo6LQ0KTEFTVC1NT0RJRklFRDoyMDE4MDYwNVQx
-NjMxMjlaDQpMT0NBVElPTjpab29tIE1lZXRpbmc6IGh0dHBzOi8vem9vbS51cy9qLzk5MDg5Mjcx
-Mg0KU0VRVUVOQ0U6MA0KU1RBVFVTOkNPTkZJUk1FRA0KU1VNTUFSWTpZb2N0byBQcm9qZWN0IFRl
-Y2huaWNhbCBUZWFtIE1lZXRpbmcNClRSQU5TUDpPUEFRVUUNCkJFR0lOOlZBTEFSTQ0KQUNUSU9O
-OkRJU1BMQVkNCkRFU0NSSVBUSU9OOlRoaXMgaXMgYW4gZXZlbnQgcmVtaW5kZXINClRSSUdHRVI6
-LVAwRFQwSDE1TTBTDQpFTkQ6VkFMQVJNDQpFTkQ6VkVWRU5UDQpFTkQ6VkNBTEVOREFSDQo=
-
---000000000000137473056de795e2--
