@@ -1,52 +1,62 @@
-Return-Path: <grigorieva_a@ekra.ru>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 14011E01581; Tue,  5 Jun 2018 04:09:47 -0700 (PDT)
+	id 0CA9CE01470; Tue,  5 Jun 2018 06:22:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FROM_EXCESS_BASE64, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [85.234.16.50 listed in list.dnswl.org]
+	*      [209.85.128.193 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-X-Greylist: delayed 401 seconds by postgrey-1.32 at yocto-www;
-	Tue, 05 Jun 2018 04:09:44 PDT
-Received: from Mail.ekra.ru (mail.ekra.ru [85.234.16.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E00E0E01571
-	for <yocto@yoctoproject.org>; Tue,  5 Jun 2018 04:09:44 -0700 (PDT)
-Received: from mail.ekra.local (localhost [127.0.0.1])
-	by Mail.ekra.ru (Postfix) with ESMTP id 8452751EE0E
-	for <yocto@yoctoproject.org>; Tue,  5 Jun 2018 14:02:59 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ekra.ru; h=
-	content-language:x-mailer:content-type:content-type:mime-version
-	:message-id:date:date:subject:subject:from:from:received; s=
-	mail; t=1528196579; bh=hjHr9S1xjM8Qe4eG8BSOT/1o4eeJ2YVIMUcZZjHLY
-	GE=; b=UTjF7p4thVe1HvTyVhPhqw7xpdxKdW/JMCVQrMQi2yWaW4Klq7flBNP9X
-	ipCOWykbC8bULUWzb0ptcP1kjKORURJN94fekV+v5OvdUVZ/xkNj/xm33YlXicUa
-	srFtlouwaSj4EBgc4QZDckUXkxoVuTWpx9qNKpgLAisabrQRF4=
-X-Virus-Scanned: amavisd-new at ekra.ru
-Received: from Mail.ekra.ru ([127.0.0.1])
-	by mail.ekra.local (mail-server.ekra.ru [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id cxb6_qhxxcHQ for <yocto@yoctoproject.org>;
-	Tue,  5 Jun 2018 14:02:59 +0300 (MSK)
-From: =?koi8-r?B?59LJx8/S2MXXwSDhzKPOwSD3wcTJzc/XzsE=?= <grigorieva_a@ekra.ru>
-To: <yocto@yoctoproject.org>
-Date: Tue, 5 Jun 2018 14:02:46 +0300
-Message-ID: <!&!AAAAAAAAAAAYAAAAAAAAAOIV+o8oqWlAgQIx8uG2Fx7CgAAAEAAAAHWamJ9+nBRDq2JZfmjgT/8BAAAAAA==@ekra.ru>
-MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AdP8u9eBVKamem63T2iQXDQGAybBSw==
-Subject: Re: Yocto uses UTC time for DATETIME instead of localtime
+Received: from mail-wr0-f193.google.com (mail-wr0-f193.google.com
+	[209.85.128.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5862BE011F8
+	for <yocto@yoctoproject.org>; Tue,  5 Jun 2018 06:22:40 -0700 (PDT)
+Received: by mail-wr0-f193.google.com with SMTP id h10-v6so2407422wrq.8
+	for <yocto@yoctoproject.org>; Tue, 05 Jun 2018 06:22:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=DHbnVbxJ7w8FhvzmvAiZ0Vfmh1Y2uK02rOITd0g4c4Q=;
+	b=s5GEsd68ib5u0ZaCwWEx7ZHdD4QevAx/u8PMPOepMljuXzO/C6YqAGHg8ZN/KJXtKl
+	d33598NExQEVtoRgpDzCwtx3dczxzZAlzCawArAQCGApgVQ+cSHE3RMC2YvIEa6iJVtL
+	GIXKwdq0dPOBser6G7WVjw95qmdv9eR8qWQ143n6hCI0e62oRMhNAl8X47vCXx9OtOjW
+	Yb3tu36HbpHsxY7gKf7cb6PEeylfUp8ICkfUkhOqBiCGvRUrdfwfha/a44OlqSVuE1fJ
+	HKcjMbWfdLFcxrTeZJlFLQHuA4nxE0U/Bb/8EQK46cINRbq5HKoIb3S0C7KivtWZ1Jek
+	Wn9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=DHbnVbxJ7w8FhvzmvAiZ0Vfmh1Y2uK02rOITd0g4c4Q=;
+	b=AH8a8sf6HeMw7kfAVNFDZND+aedN5z29LzuhGcPCXOBQ/20+8mFt4VkqmF+43WiJ6k
+	43L/uhtPujcRhWK/TOPP5iDTNdmzjjrjBeQxkUHnFii6NqUm2yVKLhZnd9A7jLS5B/Et
+	noJXS+c1puNlCElyki8X3TN2ASJRsEsmZNUqC3R4Gwmcrbx7V1OAo+WzmtgG7XsoXmjf
+	AlmA72HAwSzZNGOTBYCwB4O3NvE6GbJjh9oPm0ca3uGmghfetMBU0r7nqyoMF6uTceb1
+	8WvN+3XE9oSFqmBeTbukFc0d+0JNKeIQ0m7wl0Yo0NfalkPTMcEot7MSsIfht1+yNUy5
+	OQPw==
+X-Gm-Message-State: ALKqPwdWvma2tb587pSPI0HsFYLKx2qfJLq3FXNT/lgpPNRS0A8BLtGt
+	HS9UgJ6I4c2Lh1qmbytbfkT5XfFu
+X-Google-Smtp-Source: ADUXVKL2NOZaHPTWVMZgO7G9auuQycf1xOkh0Mbk41/G6JPnDxR3Qa+CQn1zDHk1JvDf3sSCa+Lqwg==
+X-Received: by 2002:adf:8650:: with SMTP id
+	16-v6mr13434109wrw.73.1528204958982; 
+	Tue, 05 Jun 2018 06:22:38 -0700 (PDT)
+Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa.
+	[81.2.106.35]) by smtp.gmail.com with ESMTPSA id
+	b66-v6sm2185154wma.48.2018.06.05.06.22.37
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 05 Jun 2018 06:22:38 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue,  5 Jun 2018 14:22:34 +0100
+Message-Id: <20180605132234.15759-1-ross.burton@intel.com>
+X-Mailer: git-send-email 2.11.0
+Subject: [PATCH][meta-mingw] libsdl2: add bbappend to fix build with mingw
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,142 +68,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Jun 2018 11:09:47 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0000_01D3FCD5.E198D6C0"
-Content-Language: ru
+X-List-Received-Date: Tue, 05 Jun 2018 13:22:41 -0000
 
-------=_NextPart_000_0000_01D3FCD5.E198D6C0
-Content-Type: text/plain;
-	charset="koi8-r"
-Content-Transfer-Encoding: 7bit
+We need to disable X11 as we do with libsdl1, and also convince libtool to stop
+trying to be clever so the build doesn't break.
 
-Hello, Davis Roman!
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ recipes-graphics/libsdl2/libsdl2_%.bbappend | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+ create mode 100644 recipes-graphics/libsdl2/libsdl2_%.bbappend
 
- 
-
-The only way to change ${DATE} and ${TIME}  is to change python function: 
-
-def buildSetVars(self):
-
-        """
-
-        Setup any variables needed before starting a build
-
-        """
-
-        t = time.gmtime() <---- here use localtime()
-
-        if not self.data.getVar("BUILDNAME", False):
-
-            self.data.setVar("BUILDNAME", "${DATE}${TIME}")
-
-        self.data.setVar("BUILDSTART", time.strftime('%m/%d/%Y %H:%M:%S',
-t))
-
-        self.data.setVar("DATE", time.strftime('%Y%m%d', t))
-
-        self.data.setVar("TIME", time.strftime('%H%M%S', t))
-
- 
-
- 
-
-file: /sources/poky/bitbake/lib/bb/cooker.py
-
- 
-
-Alena Grigorieva
-
- 
+diff --git a/recipes-graphics/libsdl2/libsdl2_%.bbappend b/recipes-graphics/libsdl2/libsdl2_%.bbappend
+new file mode 100644
+index 0000000..97fd96e
+--- /dev/null
++++ b/recipes-graphics/libsdl2/libsdl2_%.bbappend
+@@ -0,0 +1,10 @@
++PACKAGECONFIG_remove_mingw32_class-nativesdk = "x11"
++
++# libtool doesn't think it can link windres output (COFF) with libtool objects
++# (COFF) , but it can.  This might be because file misidentifies version.o:
++#
++# version.o: Targa image data - Map (0) 1 x 65536 x 0 +862 "\004\001.rsrc"
++#
++# Telling libtool to be dumb and just pass the input to the underlying tools
++# works fine.
++EXTRA_OECONF_append_mingw32 = " lt_cv_deplibs_check_method=pass_all"
+-- 
+2.11.0
 
 
-------=_NextPart_000_0000_01D3FCD5.E198D6C0
-Content-Type: text/html;
-	charset="koi8-r"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dkoi8-r"><meta =
-name=3DGenerator content=3D"Microsoft Word 14 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DRU link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
-lang=3DEN-US>Hello, Davis Roman!<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>The only way to change ${DATE} and =
-${TIME} =9Ais to change python function: <o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>def =
-buildSetVars(self):<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A =
-&quot;&quot;&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A Setup any variables needed before =
-starting a build<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A =
-&quot;&quot;&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A t =3D time.gmtime() &lt;---- here use =
-localtime()<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A if not =
-self.data.getVar(&quot;BUILDNAME&quot;, False):<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>=9A=9A=9A=9A=9A=9A =
-=9A=9A=9A=9A=9Aself.data.setVar(&quot;BUILDNAME&quot;, =
-&quot;${DATE}${TIME}&quot;)<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A =
-self.data.setVar(&quot;BUILDSTART&quot;, time.strftime('%m/%d/%Y =
-%H:%M:%S', t))<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A self.data.setVar(&quot;DATE&quot;, =
-time.strftime('%Y%m%d', t))<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A =
-self.data.setVar(&quot;TIME&quot;, time.strftime('%H%M%S', =
-t))<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>file: =
-/sources/poky/bitbake/lib/bb/cooker.py<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Alena =
-Grigorieva<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
-
-------=_NextPart_000_0000_01D3FCD5.E198D6C0--
