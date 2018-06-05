@@ -1,53 +1,52 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <grigorieva_a@ekra.ru>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7B715E00F05; Mon,  4 Jun 2018 16:22:19 -0700 (PDT)
+	id 14011E01581; Tue,  5 Jun 2018 04:09:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FROM_EXCESS_BASE64, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [85.234.16.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECE92E00E36
-	for <yocto@yoctoproject.org>; Mon,  4 Jun 2018 16:22:18 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	04 Jun 2018 16:22:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,477,1520924400"; 
-	d="scan'208,217";a="229904628"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
-	by orsmga005.jf.intel.com with ESMTP; 04 Jun 2018 16:22:18 -0700
-Received: from fmsmsx119.amr.corp.intel.com (10.18.124.207) by
-	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 4 Jun 2018 16:22:17 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.166]) by
-	FMSMSX119.amr.corp.intel.com ([169.254.14.61]) with mapi id
-	14.03.0319.002; Mon, 4 Jun 2018 16:22:17 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Reminder: Yocto Project Technical Team Meeting
-Thread-Index: AdP8Wpx+XC49x5FZTdSU7wFDfA+xXg==
-Date: Mon, 4 Jun 2018 23:22:17 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7339978@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMzNlNTlkMTgtNTNkZC00YTYwLWI3NzctMWNkY2Q0ZjA5Mzk1IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiaEdJSHYzcGpVMGJoZlFvdEo2bDA5blJ6N3UwNmthR2Q3cExzRE95VytDeEhKVWZxQUNvMmVTNzNXTkhKK2NPTyJ9
-dlp-product: dlpe-windows
-dlp-version: 11.0.200.100
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.107]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
+X-Greylist: delayed 401 seconds by postgrey-1.32 at yocto-www;
+	Tue, 05 Jun 2018 04:09:44 PDT
+Received: from Mail.ekra.ru (mail.ekra.ru [85.234.16.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E00E0E01571
+	for <yocto@yoctoproject.org>; Tue,  5 Jun 2018 04:09:44 -0700 (PDT)
+Received: from mail.ekra.local (localhost [127.0.0.1])
+	by Mail.ekra.ru (Postfix) with ESMTP id 8452751EE0E
+	for <yocto@yoctoproject.org>; Tue,  5 Jun 2018 14:02:59 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ekra.ru; h=
+	content-language:x-mailer:content-type:content-type:mime-version
+	:message-id:date:date:subject:subject:from:from:received; s=
+	mail; t=1528196579; bh=hjHr9S1xjM8Qe4eG8BSOT/1o4eeJ2YVIMUcZZjHLY
+	GE=; b=UTjF7p4thVe1HvTyVhPhqw7xpdxKdW/JMCVQrMQi2yWaW4Klq7flBNP9X
+	ipCOWykbC8bULUWzb0ptcP1kjKORURJN94fekV+v5OvdUVZ/xkNj/xm33YlXicUa
+	srFtlouwaSj4EBgc4QZDckUXkxoVuTWpx9qNKpgLAisabrQRF4=
+X-Virus-Scanned: amavisd-new at ekra.ru
+Received: from Mail.ekra.ru ([127.0.0.1])
+	by mail.ekra.local (mail-server.ekra.ru [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id cxb6_qhxxcHQ for <yocto@yoctoproject.org>;
+	Tue,  5 Jun 2018 14:02:59 +0300 (MSK)
+From: =?koi8-r?B?59LJx8/S2MXXwSDhzKPOwSD3wcTJzc/XzsE=?= <grigorieva_a@ekra.ru>
+To: <yocto@yoctoproject.org>
+Date: Tue, 5 Jun 2018 14:02:46 +0300
+Message-ID: <!&!AAAAAAAAAAAYAAAAAAAAAOIV+o8oqWlAgQIx8uG2Fx7CgAAAEAAAAHWamJ9+nBRDq2JZfmjgT/8BAAAAAA==@ekra.ru>
 MIME-Version: 1.0
-Subject: Reminder: Yocto Project Technical Team Meeting
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AdP8u9eBVKamem63T2iQXDQGAybBSw==
+Subject: Re: Yocto uses UTC time for DATETIME instead of localtime
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,91 +58,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Jun 2018 23:22:19 -0000
-Content-Language: en-US
+X-List-Received-Date: Tue, 05 Jun 2018 11:09:47 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7339978fmsmsx111amrcor_"
+	boundary="----=_NextPart_000_0000_01D3FCD5.E198D6C0"
+Content-Language: ru
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7339978fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
+------=_NextPart_000_0000_01D3FCD5.E198D6C0
+Content-Type: text/plain;
+	charset="koi8-r"
+Content-Transfer-Encoding: 7bit
+
+Hello, Davis Roman!
+
+ 
+
+The only way to change ${DATE} and ${TIME}  is to change python function: 
+
+def buildSetVars(self):
+
+        """
+
+        Setup any variables needed before starting a build
+
+        """
+
+        t = time.gmtime() <---- here use localtime()
+
+        if not self.data.getVar("BUILDNAME", False):
+
+            self.data.setVar("BUILDNAME", "${DATE}${TIME}")
+
+        self.data.setVar("BUILDSTART", time.strftime('%m/%d/%Y %H:%M:%S',
+t))
+
+        self.data.setVar("DATE", time.strftime('%Y%m%d', t))
+
+        self.data.setVar("TIME", time.strftime('%H%M%S', t))
+
+ 
+
+ 
+
+file: /sources/poky/bitbake/lib/bb/cooker.py
+
+ 
+
+Alena Grigorieva
+
+ 
+
+
+------=_NextPart_000_0000_01D3FCD5.E198D6C0
+Content-Type: text/html;
+	charset="koi8-r"
 Content-Transfer-Encoding: quoted-printable
 
-Yocto Project Technical Team Meeting
-Changed: We encourage people attending the meeting to logon and announce th=
-emselves on the Yocto Project IRC chancel during the meeting (optional):
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-
-Wiki: https://www.yoctoproject.org/public-virtual-meetings/
-
-Bridge is with Zoom at: https://zoom.us/j/990892712
-When                    Monthly from 8am to 8:30am on the first Tuesday Pac=
-ific Time
-Where                  Zoom Meeting: https://zoom.us/j/990892712  (map)
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Project Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*    Cell:                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7339978fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dkoi8-r"><meta =
+name=3DGenerator content=3D"Microsoft Word 14 (filtered =
+medium)"><style><!--
 /* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
+	{margin:0cm;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
-	color:#0563C1;
+	color:blue;
 	text-decoration:underline;}
 a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
-	color:#954F72;
+	color:purple;
 	text-decoration:underline;}
 span.EmailStyle17
 	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
+	font-family:"Calibri","sans-serif";
 	color:windowtext;}
 .MsoChpDefault
-	{mso-style-type:export-only;}
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
 @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
+	{size:612.0pt 792.0pt;
+	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
@@ -151,72 +158,42 @@ div.WordSection1
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Yocto Project Technical Team Meeting<o:p></o:p></p>
-<p class=3D"MsoNormal">Changed: We encourage people attending the meeting t=
-o logon and announce themselves on the Yocto Project IRC chancel during the=
- meeting (optional):<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Yocto IRC: <a href=3D"http://webchat.freenode.net/?c=
-hannels=3D#yocto">
-http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Wiki: <a href=3D"https://www.yoctoproject.org/public=
--virtual-meetings/">
-https://www.yoctoproject.org/public-virtual-meetings/</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Bridge is with Zoom at: <a href=3D"https://zoom.us/j=
-/990892712">
-https://zoom.us/j/990892712</a><o:p></o:p></p>
-<p class=3D"MsoNormal">When&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Monthly =
-from 8am to 8:30am on the first Tuesday Pacific Time<o:p></o:p></p>
-<p class=3D"MsoNormal">Where&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Zoom Meeting: <a hr=
-ef=3D"https://zoom.us/j/990892712">
-https://zoom.us/j/990892712</a> &nbsp;(map)<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p></o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Project Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+</o:shapelayout></xml><![endif]--></head><body lang=3DRU link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+lang=3DEN-US>Hello, Davis Roman!<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>The only way to change ${DATE} and =
+${TIME} =9Ais to change python function: <o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>def =
+buildSetVars(self):<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A =
+&quot;&quot;&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A Setup any variables needed before =
+starting a build<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A =
+&quot;&quot;&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A t =3D time.gmtime() &lt;---- here use =
+localtime()<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A if not =
+self.data.getVar(&quot;BUILDNAME&quot;, False):<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>=9A=9A=9A=9A=9A=9A =
+=9A=9A=9A=9A=9Aself.data.setVar(&quot;BUILDNAME&quot;, =
+&quot;${DATE}${TIME}&quot;)<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A =
+self.data.setVar(&quot;BUILDSTART&quot;, time.strftime('%m/%d/%Y =
+%H:%M:%S', t))<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A self.data.setVar(&quot;DATE&quot;, =
+time.strftime('%Y%m%d', t))<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>=9A=9A=9A=9A=9A=9A=9A =
+self.data.setVar(&quot;TIME&quot;, time.strftime('%H%M%S', =
+t))<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>file: =
+/sources/poky/bitbake/lib/bb/cooker.py<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Alena =
+Grigorieva<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7339978fmsmsx111amrcor_--
+------=_NextPart_000_0000_01D3FCD5.E198D6C0--
