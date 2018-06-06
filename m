@@ -1,63 +1,39 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <abuse@basmevissen.nl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 46727E013C1; Wed,  6 Jun 2018 02:35:54 -0700 (PDT)
+	id 33A3AE013C9; Wed,  6 Jun 2018 02:48:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.181 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f181.google.com (mail-qt0-f181.google.com
-	[209.85.216.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D09CAE01074
-	for <yocto@yoctoproject.org>; Wed,  6 Jun 2018 02:35:52 -0700 (PDT)
-Received: by mail-qt0-f181.google.com with SMTP id h5-v6so5605812qtm.13
-	for <yocto@yoctoproject.org>; Wed, 06 Jun 2018 02:35:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=JNt6+uvDrlVQ8fe/IJXXU7C33wDRkwcQLNXVDFzgJZs=;
-	b=L7cCsqsBoL8xa7WEMsZBdRzZD3Qs+Ozm6TpmpiNjv1EObTsNUp9ixbscVi0dm1m8Wp
-	P2PaL/8jdQz8kHpgzwZrES76RNYLoCd87GJSr8MER7GyfXzB/4igrf+DEWO7LtwJ8F8v
-	1EnRUTJPqn7Tsb1ryJx8ZTtZeje9tPdPYv+HSZ7hC2UPea5JDt14kYbgORiWSYq6pk/C
-	JXqLwJhfSvmiCKlKBJAgFuYAfyurhz6pUyjFeEeCaqnNgFUxjvoeqSKV5il32e5o5fsP
-	yU3PrP/DHSOCeqKYo6IHXRWSoRtixO33vLIXTAwHaLxRdvSWmwKB2IS+cFZJkF3R6MlZ
-	7C2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=JNt6+uvDrlVQ8fe/IJXXU7C33wDRkwcQLNXVDFzgJZs=;
-	b=lhCQimBsO/nQ1iuRfi9m5B6TTsySHWB8zTxkrAnRDqAUsP51ojz8u5lgd6fblgHpJc
-	Pt2keoQYWW2CfjQgdqzwKqtVyjqzsrjP2dcqfXeZBhEXR65PApAzDbdVqC75vPat9Or6
-	9kq+O0XBjq90+rBrLJYTb5CtN7JO4ug6vwuMsp1JUZCTTPAUJue14QNn+ds2yvQuWTu8
-	9thnl4qDhFC6eZSVbefu08bR1ivn4P3hv0L3aaVg3HX6fNNsxEUWrNmUXxv1hiPJ4cJd
-	xO65m+rCOmlL+Na3i6Kzd/ZuY56bBJF4oIxtOG2vzJiqEoRbvjy+HZ8bEkSGg5S5BCwb
-	viqA==
-X-Gm-Message-State: APt69E2eA8bj/Z5Ln9k2BM4UYbd4lYWEVFDz4l5T/TSjgg4mnCHMEJdr
-	xqvWAXv5cM1pGihk4mm4E9RGV/uLuHrRuMctS7k=
-X-Google-Smtp-Source: ADUXVKLNeOrRsn494/Q+eWuBrrU2eCQHxqKyuBpEkfLZLXxiM9o22IaO3nUYyQ/yahgz2YKVs1PDse/V+dN/nEUu6kk=
-X-Received: by 2002:ac8:2429:: with SMTP id
-	c38-v6mr1978016qtc.122.1528277752021; 
-	Wed, 06 Jun 2018 02:35:52 -0700 (PDT)
+X-Greylist: delayed 378 seconds by postgrey-1.32 at yocto-www;
+	Wed, 06 Jun 2018 02:48:37 PDT
+Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D790E01074
+	for <yocto@yoctoproject.org>; Wed,  6 Jun 2018 02:48:36 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by hosting.emcodev.net (Postfix) with ESMTP id 7DDDA212003;
+	Wed,  6 Jun 2018 11:42:17 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at hosting.emcodev.net
+Received: from hosting.emcodev.net ([127.0.0.1])
+	by localhost (hosting.emcodev.net [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id GSkhJFeJSdp0; Wed,  6 Jun 2018 11:42:17 +0200 (CEST)
+Received: from emcodev.nl (localhost [127.0.0.1])
+	by hosting.emcodev.net (Postfix) with ESMTP id 0B7AB212002;
+	Wed,  6 Jun 2018 11:42:16 +0200 (CEST)
 MIME-Version: 1.0
-Received: by 2002:a0c:ad44:0:0:0:0:0 with HTTP;
-	Wed, 6 Jun 2018 02:35:51 -0700 (PDT)
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 6 Jun 2018 11:35:51 +0200
-Message-ID: <CAGAf8LybGizfPXzhNyqY4BdJ2rxWiMs2n+EDuam_n6n_6XPrdg@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: YOCTO kernel PF_CAN feature set and socketCAN layer of the shelf?
+Date: Wed, 06 Jun 2018 11:42:16 +0200
+From: Bas Mevissen <abuse@basmevissen.nl>
+To: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
+In-Reply-To: <800E589716441541A37F6120DCDD24557A2D8296@IRSMSX101.ger.corp.intel.com>
+References: <800E589716441541A37F6120DCDD24557A2D8296@IRSMSX101.ger.corp.intel.com>
+Message-ID: <d370c87052d92f674508b9a48fb5d853@basmevissen.nl>
+X-Sender: abuse@basmevissen.nl
+User-Agent: Roundcube Webmail/1.3.6
+Cc: yocto@yoctoproject.org
+Subject: Re: Gratitude
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,30 +45,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jun 2018 09:35:54 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 06 Jun 2018 09:48:39 -0000
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello to YOCTO community,
+Hi Jeffrey,
 
-I am looking into the new CAN FD (CAN Flexible Data rate) protocol. It
-is very similar to classical CAN.
+Many thanks for the hard work over the years. The Yocto Project has 
+helped me a lot with creating great pieces of software for several 
+clients.
+Good luck and a lot of fun with your new job!
 
-I am wondering the following (I'll ask very basic questions, just to
-see if I am on the right tracks):
-[1] Do YOCTO kernels have CAN drivers left as mandatory drivers in the
-drivers/ tree (CAN drivers exist on kernel.org kernels)?
-[2] If YES, are these drivers enabled by default, or I need to enable
-them? Anybody to quickly refresh me how to manipulate make menuconfig
-in YOCTO tree?
+Cheers,
 
-I also need the feature called: SocketCAN. The following questions arise:
-[3] Do we have in the socket I/Fs added PF_CAN protocol family handling?
-     https://en.wikipedia.org/wiki/SocketCAN
-[4] Does added SocketCAN layer exist, which covers this topic? It'll
-be layer on the top of the YOCTO-BSP layer, my best guess. Any
-examples, using such a layer? Or any Open Source example(s) of such a
-layer?
+Bas.
 
-Thank you,
-Zoran
+On 2018-06-06 08:42, Osier-mixon, Jeffrey wrote:
+> I have been the Yocto Project community manager for over 7 years now,
+> and have had the pleasure of knowing or conversing individually with
+> several hundred of you. It is with mixed feelings that I must announce
+> that I am stepping down from my position as the YP community manager
+> and the Advisory Board chair after 7 years, as I am taking on a new
+> role in my job.
+> 
+> I am very proud of the progress that the project has made, growing
+> from a small set of build tools into an industry standard for building
+> and working with embedded Linux-based operating systems, supporting
+> upstream projects including the Linux kernel, hosting projects like
+> opkg, and inspiring many very successful downstream projects,
+> including AGL and OpenBMC among many others, and also supporting
+> countless configurations of hardware among seven different
+> architectures. We have also seen the community of users grow from
+> fewer than 1000 in 2010 to a large city-sized community, estimated in
+> the tens of thousands of developers.
+> 
+> Please continue to participate, collaborate, and come together as a
+> community! The Yocto Project is a success because every one of you
+> participates.
+> 
+> Jeffrey "Jefro" Osier-Mixon, Intel Corporation
+> Open Source Community Ecosystem Strategist
+
 
