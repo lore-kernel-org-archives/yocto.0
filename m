@@ -1,68 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D5B7E016A1; Wed,  6 Jun 2018 10:49:38 -0700 (PDT)
+	id 2DB74E01481; Wed,  6 Jun 2018 12:21:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.170 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f170.google.com (mail-qt0-f170.google.com
-	[209.85.216.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26450E00DE3
-	for <yocto@yoctoproject.org>; Wed,  6 Jun 2018 10:49:37 -0700 (PDT)
-Received: by mail-qt0-f170.google.com with SMTP id q6-v6so7273343qtn.7
-	for <yocto@yoctoproject.org>; Wed, 06 Jun 2018 10:49:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=7QSuHLxe0kPeGpFPRn/X51xd15R9+wfOVT+Mnljw+0c=;
-	b=LW4v7lPuDt6DbOVYi7a+75GEWhWhSedTEJOVzgHNy3op+yDi1rLdSz+tTjrRdIagvj
-	H5DdSdBI+fKptoJ2Mfb+3sYKQkCCHr4IEzsZBhXu+o6DJI2IuEMwbtzTCA1U1jGxuKNY
-	gIXCdDeHA+qIn+Gc6O568aPgNQAk2i2pNnHeZdgTx64HjLtwnsSiYX7Jd48Zga19KTzu
-	Ncerk/akqtDBXhnk5MgfednMSKSuckqiBeV0hG+sYAuVd6JNnY/c5bXeenuLSqyUBpZ2
-	PY3i/mcJL+8mUDvsN6YzN3af67WRYHf+4RTv58l6YOQquxbGt01tu9mWNhSvw5sfaWW7
-	7daw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=7QSuHLxe0kPeGpFPRn/X51xd15R9+wfOVT+Mnljw+0c=;
-	b=ohnMH75oSZvNo4M0d4HZmVp9vTbRCv+ISPlySOZl69yRmp0RV2Cdn2S1zpt2tQ5L3q
-	5HfQCGaMH8Q4PWCWqhVPgjaR4V6WRJySRqpoF1Zcn/IhiGck69dEYWJZqNcvZQp18bNl
-	zQzfrukiwgpJzWBVRT5Ph7uQ5WEvt+7GWEj7kOSiFEVfkd8c5IUWYZdEpkZdCJLlTaOz
-	jRv6Syhfg8c8I6rd0o7ZbANoAe6y/3g1RmRyvw9cTZEB8/K0kXkXqceH8Iva6OTVpRpZ
-	DnSrdOT6OtC7YukzOfjhSM2BDomfTR9eiNQLETqS/p4P7mohpydGgmIboISFgOJZ7ged
-	PoOg==
-X-Gm-Message-State: APt69E1P+WJOoansxxeYNWmks9kDk5p7GyLiMU69Zqt0JvVbDv+J8NDL
-	jTwyv4/Ay8MkpKnH2mdh26DX5vyW6BZP0YET1zw=
-X-Google-Smtp-Source: ADUXVKJnKLvwNqtKy23R8FqGTluLRKlLM7G50UCzZdq+QhDcWFVN40Ca/CYG//PH0C0DQV3tVHFCYRW4wEM7DZLzqEY=
-X-Received: by 2002:ac8:4407:: with SMTP id
-	j7-v6mr3793470qtn.117.1528307377186; 
-	Wed, 06 Jun 2018 10:49:37 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:a0c:e486:0:0:0:0:0 with HTTP;
-	Wed, 6 Jun 2018 10:49:06 -0700 (PDT)
-In-Reply-To: <800E589716441541A37F6120DCDD24557A2D8296@IRSMSX101.ger.corp.intel.com>
-References: <800E589716441541A37F6120DCDD24557A2D8296@IRSMSX101.ger.corp.intel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 6 Jun 2018 10:49:06 -0700
-Message-ID: <CAMKF1sq1n7nLFaCLQVmRmdSHjGair-J3mk3XGBK+4maLMKEAJA@mail.gmail.com>
-To: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Gratitude
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 900 seconds by postgrey-1.32 at yocto-www;
+	Wed, 06 Jun 2018 12:21:14 PDT
+Received: from blaine.gmane.org (unknown [195.159.176.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3055AE00DD0
+	for <yocto@yoctoproject.org>; Wed,  6 Jun 2018 12:21:14 -0700 (PDT)
+Received: from list by blaine.gmane.org with local (Exim 4.84_2)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1fQdiz-0003Fa-Fp
+	for yocto@yoctoproject.org; Wed, 06 Jun 2018 21:04:01 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Ferry Toth <ftoth@telfort.nl>
+Date: Wed, 06 Jun 2018 21:06:05 +0200
+Message-ID: <pf9b6q$bns$1@blaine.gmane.org>
+References: <443D9650-0A26-433A-AC22-F61DBFDE1221@gmail.com>
+	<bd69dabb-1aa3-6553-4f43-2337c9cf5190@windriver.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@blaine.gmane.org
+User-Agent: KNode/4.14.10
+Subject: Re: partitions resizing on the fly
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,47 +39,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Jun 2018 17:49:38 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 06 Jun 2018 19:21:17 -0000
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7Bit
 
-Jefro
+ChenQi wrote:
 
-you have been very helpful all along has been great working with you. Your
-contributions have been significant for project, thanks for all your
-contributions.
-Small world I am sure I will see you around :)
-
--Khem
-
-On Tue, Jun 5, 2018 at 11:42 PM, Osier-mixon, Jeffrey
-<jeffrey.osier-mixon@intel.com> wrote:
-> I have been the Yocto Project community manager for over 7 years now, and=
- have had the pleasure of knowing or conversing individually with several h=
-undred of you. It is with mixed feelings that I must announce that I am ste=
-pping down from my position as the YP community manager and the Advisory Bo=
-ard chair after 7 years, as I am taking on a new role in my job.
->
-> I am very proud of the progress that the project has made, growing from a=
- small set of build tools into an industry standard for building and workin=
-g with embedded Linux-based operating systems, supporting upstream projects=
- including the Linux kernel, hosting projects like opkg, and inspiring many=
- very successful downstream projects, including AGL and OpenBMC among many =
-others, and also supporting countless configurations of hardware among seve=
-n different architectures. We have also seen the community of users grow fr=
-om fewer than 1000 in 2010 to a large city-sized community, estimated in th=
-e tens of thousands of developers.
->
-> Please continue to participate, collaborate, and come together as a commu=
-nity! The Yocto Project is a success because every one of you participates.
->
-> Jeffrey "Jefro" Osier-Mixon, Intel Corporation
-> Open Source Community Ecosystem Strategist
->
->
+> On 06/05/2018 10:33 PM, Mihaela Apetroaie-Cristea wrote:
+>> Hello,
+>>
+>> I have a minimal yocto OS built for RPI, which has three partitions:
+>> boot, root and data. Is there any way to resize root and data such that
+>> root expands/flattens when files and others are added/deleted? Such that
+>> I can make more space for the data partition. At the moment my partitions
+>> are built with minimal size and I expand them with gparted after I added
+>> them on the sd card. But if I put my device somewhere unreachable it
+>> would be very useful to have a way to expand and flatten portions on the
+>> fly.
+>>
+>> Thank you,
+>> Mihaela
+> It is said that btrfs supports such feature? Frankly I didn't try it out.
+> Yocto supports building out btrfs images. Maybe you can give it a try?
+With btrfs you can have multiple partitions (on the same or different 
+disks), the partitions can form a single pool. In this single pool you can 
+have multiple volumes. Space from the pool gets allocated to the files in a 
+particular volume. The volume size is not really restricted, but when you 
+ask df, it will give you the size of the pool. With 3 volumes on the 
+partition you might think you have 3x the pool available, which is not true 
+of course. If you run out of space it will hit all volumes at the same time. 
+But you can then (temporarily) add f.i. a usb disk to instantly add space to 
+all volumes.
+> Best Regards,
+> Chen Qi
 > --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+
+
 
