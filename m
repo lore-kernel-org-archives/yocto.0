@@ -1,36 +1,38 @@
 Return-Path: <yocto@emagii.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96D25E02B63; Tue, 12 Jun 2018 11:02:39 -0700 (PDT)
+	id 65BAFE02BFA; Tue, 12 Jun 2018 11:02:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,MIME_QP_LONG_LINE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_00,DATE_IN_PAST_96_XX,
+	HTML_MESSAGE, MIME_QP_LONG_LINE,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
 	*      [81.236.60.154 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	* 3.4 DATE_IN_PAST_96_XX Date: is 96 hours or more before Received:
+	date * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
 Received: from v-smtpout1.han.skanova.net (v-smtpout1.han.skanova.net
 	[81.236.60.154])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84020E02AE4
-	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 11:02:38 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CEC8E02AEC
+	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 11:02:42 -0700 (PDT)
 Received: from [10.175.196.108] ([37.123.169.62]) by cmsmtp with ESMTPA
-	id SncnfOZvn19K9SncrfwXaZ; Tue, 12 Jun 2018 20:02:38 +0200
+	id SncnfOZvn19K9SncwfwXan; Tue, 12 Jun 2018 20:02:42 +0200
 From: Ulf Samuelsson <yocto@emagii.com>
 Mime-Version: 1.0 (1.0)
-Date: Sun, 10 Jun 2018 05:30:03 +0200
-Message-Id: <9EEEF203-2371-4CCE-8E70-947330CDB462@emagii.com>
-References: <3cf3fb0e-02c4-8867-7650-8764bfb67a3b@emagii.com>
-	<b02028a72c604aa1bce0e40bc0089f43@XBOX02.axis.com>
-In-Reply-To: <b02028a72c604aa1bce0e40bc0089f43@XBOX02.axis.com>
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+Date: Thu, 7 Jun 2018 17:09:05 +0200
+Message-Id: <5CEB21E9-D704-4C29-A0CF-5F4E3C662178@emagii.com>
+References: <CAALXFYwr=UUkS7dVb3QzHzsoQ3pU56j58CZunkKJkRYYcpMv3g@mail.gmail.com>
+In-Reply-To: <CAALXFYwr=UUkS7dVb3QzHzsoQ3pU56j58CZunkKJkRYYcpMv3g@mail.gmail.com>
+To: =?utf-8?Q?Iv=C3=A1n_Castell?= <icastell@nayarsystems.com>
 X-Mailer: iPad Mail (15B202)
-X-CMAE-Envelope: MS4wfE8korAkwQKsTaD3O6jbOiEJXILMIwl1F9o4MVgEYFPcYf0p0+LKdxr5sWZNHAagbaS6Cd4Yr/zEognMIf5AoxO2s0sw/ss1AV8KrTSOPqOFPJCEEvhA
-	5b0uW9oaBYmBl9/AXcCzjoJgcb0sETZ7kT4aQmnnaEnvYlSNnt21YhxJctYq5hu78GZNDR1rq8vOogG02G8QoYnzm0qHCqj2FbA=
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How handle files needing updates in read-only filesystem
+X-CMAE-Envelope: MS4wfGvoC4bUbtEt348lypRAZ3fvoa5wGaPwvuxwG4PvvgkPIPucxw6ivV5uXSkmVT9KP34fmEF765xPQgDKdNW95eX4gBSH7FVfCOxfUBvN9IbQ0boCMTpU
+	YaDiR5wgLDuUl1PVfzrT5smW3qZO48fo6zTGMXW4heITd/PWA6TWONPSsrglIu5DjNLUHIzbovG0ZfLdFNxejX8eXe11te3fvL8=
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Issue when integrating different bsp-layers on a single bblayers.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,125 +44,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jun 2018 18:02:39 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Tue, 12 Jun 2018 18:02:44 -0000
+Content-Type: multipart/alternative;
+	boundary=Apple-Mail-F83EFFC4-1C74-4339-86BC-E0185CA07781
+Content-Transfer-Encoding: 7bit
+
+--Apple-Mail-F83EFFC4-1C74-4339-86BC-E0185CA07781
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-
-We want most of /etc to be read-only for security reasons,
-and the overlayfs will make the whole of /etc writeable.
-
-I tried mount =E2=80=94bind /etc/timezone /persistent/etc/timezone, and it c=
-omplained that they were not directories. Bind mounting /etc again will make=
- all of /etc writeable.
-
-Symlinking to /persistent is fine, so the question is what an acceptable met=
-hod is to have a simple way of ensuring that a certain file is converted to t=
-hat symlink.
-
-
+You can BBMASK away that bbappend when you are not building the rockchip mac=
+hine.
 
 Best Regards,
 Ulf Samuelsson
-+46 722 427 437
 
-10 juni 2018 kl. 01:36 skrev Peter Kjellerstedt <peter.kjellerstedt@axis.com=
->:
+> 7 juni 2018 kl. 16:39 skrev Iv=C3=A1n Castell <icastell@nayarsystems.com>:=
 
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->> bounces@yoctoproject.org] On Behalf Of Ulf Samuelsson
->> Sent: den 9 juni 2018 11:51
->> To: yocto@yoctoproject.org
->> Subject: [yocto] How handle files needing updates in read-only
->> filesystem
->>=20
->> We have a rootfs which is read-only.
->> For files that needs to be updated, like "/etc/localtime"
->> we will create a symbolic link to a partition (/persistent) which
->> is retained between rootfs image updates.
->>=20
->> /etc/localtime -> /persistent/etc/localtime
->>=20
->> The original recipe will generate the real /etc/localtime of course.
->>=20
->> To support the file beeing updated, the following needs to be done in a
->> rootfs postprocess.
->>=20
->> mv   /etc/localtime /update/etc/localtime
->> ln   -sf /persistent/etc/localtime /etc/localtime
->> install -m 0644 /update/etc/localtime /persistent/etc/localtime
->> chown <user>:<group> /persistent/etc/localtime
->>=20
->> The last two commands needs to be executed on the running system,
->> since /persistent is not part of the rootfs.
->>=20
->> To ensure that the file can be updated is an ad-hoc activity for each
->> affected file. It would be better if there was a class where you
->> declare
->> a file to be writeable, and then a post process
->> would move the file to /update (or similar) and create a symbolic link
->>=20
->> SETTINGS ?=3D "/persistent"
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
->> inherit writeable
->>=20
->> WRITEABLE =3D "/etc/localtime"
->> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
->>=20
->> This would generate the first two commands for each listed file.
->>=20
->> mv   /etc/localtime /update/etc/localtime
->> ln   -sf ${SETTINGS}/etc/localtime /etc/localtime
->>=20
->> The file would also be added to a file indicating that it may need
->> to be copied to the ${SETTINGS}
->>=20
->> Is it a good solution to modify "populate_volatiles.sh"
->> to support a second file parameter for the f (file) command
->> in the /etc/default/volatiles file?
->>=20
->> Today the file create command looks like:
->> f <mode> <uid> <gid> <filename> <ignored>
->>=20
->> An idea would be to have the following syntax:
->> f <mode> <uid> <gid> <filename> <source>
->>=20
->> If <source> is a valid filepath, then copy this file to <filename>
->> If <source> is not a valid filepath, create <filename> using "touch"
->>=20
->> This would break any build which has a "funny" volatiles file.
->> Otherwise a script called populate_persistent.sh could be
->> created with such an extension.
->>=20
->> Comments?
->>=20
->> BR
->> Ulf Samuelsson
 >=20
-> Since a  lot of files in /etc typically need to be writable, one way to=20=
+> Hello forum.
+>=20
+> I am trying to integrate several BSP-layers for different platforms on a s=
+ingle Yocto repository to build a Linux Yocto-based distro for all those pla=
+tforms easily.
+>=20
+> The idea is maintaining a single bblayers.conf with all the layers availab=
+le, set PLATFORM and DISTRO on local.conf, call bitbake <image> and get the f=
+inal image for that platform.
+>=20
+> When setting the "build" directory with a bblayers.conf customized for a s=
+ingle platform, each platform builds the image recipe properly.
+>=20
+> However, when I have integrated all bsp-layers in a single bblayers.conf, t=
+he compilation of some platforms has been broken.
+>=20
+> The specific problem is this: one bsp layer (meta-rockchip + meta-rockchip=
+-extra) defines a recipes-graphics/mesa/mesa_%.bbappend with this content in=
+side:
+>=20
+>     PROVIDES_remove =3D "virtual/libgles1 virtual/libgles2 virtual/egl vir=
+tual/libwayland-egl"
+>=20
+> That alters gstreamer recipe on the poky layer, getting this error when bu=
+ilding for a meta-intel platform:
+>=20
+>     ERROR: Nothing PROVIDES 'virtual/egl' (but /data/yocto/yocto/sources/p=
+oky/meta/recipes-multimedia/gstreamer/gstreamer1.0-vaapi_1.12.2.bb, /data/yo=
+cto/yocto/sources/poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugin=
+s-bad_1.12.2.bb DEPENDS on or otherwise requires it)
+>=20
+> My questions:
+>=20
+>     - Is a good practice to define a custom bblayers.conf depending on the=
+ choosen PLATFORM?
+>     - Is there some any other way to disable a BSP-layer completely when b=
+uilding for a different one?
+>     - Can you suggest a fix to solve this issue?
+>=20
+> Thanks a lot in advance! :)
+>=20
+> Kind regards.
+>   -- Ivan
+>=20
+>=20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-> handle this is by using an overlayfs for /etc. That is what we do and=20
-> it works very well.
->=20
-> An alternative, more along your suggestion, is to use bind mounts. The=20
-> advantage of using a bind mount instead of a symbolic link is that it=20
-> will look as a normal file.
->=20
-> You should look into the volatile-binds recipe and the VOLATILE_BINDS=20
-> variable. It is used to handle directories that need to be writable.=20
-> It will create systemd service files that copies the non-volatile=20
-> directory to the volatile directory (if it does not already exists),=20
-> and the bind mounts it back.=20
->=20
-> I am not sure volatile-binds works out-of-the-box for files, but I=20
-> believe it does. If not, it should not be too hard to modify it so=20
-> that it can handle files as well.
->=20
-> //Peter
->=20
+--Apple-Mail-F83EFFC4-1C74-4339-86BC-E0185CA07781
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">You can BBMASK away that bbappend when you a=
+re not building the rockchip machine.<div><br><div>Best Regards,<div>Ulf Sam=
+uelsson</div></div><div><br>7 juni 2018 kl. 16:39 skrev Iv=C3=A1n Castell &l=
+t;<a href=3D"mailto:icastell@nayarsystems.com">icastell@nayarsystems.com</a>=
+&gt;:<br><br></div><blockquote type=3D"cite"><div><div dir=3D"ltr"><div>Hell=
+o forum.</div><div><br></div><div><div><div>I am trying to integrate several=
+ BSP-layers for different platforms on a single Yocto repository to build a L=
+inux Yocto-based distro for all those platforms easily.</div><div><br></div>=
+<div>The idea is maintaining a single bblayers.conf with all the layers avai=
+lable, set PLATFORM and DISTRO on local.conf, call bitbake &lt;image&gt; and=
+ get the final image for that platform.</div><div><br></div><div>When settin=
+g the "build" directory with a bblayers.conf customized for a single platfor=
+m, each platform builds the image recipe properly.</div><div><br></div><div>=
+However, when I have integrated all bsp-layers in a single bblayers.conf, th=
+e compilation of some platforms has been broken.<br></div><div><br></div><di=
+v>The specific problem is this: one bsp layer (meta-rockchip + meta-rockchip=
+-extra) defines a&nbsp;recipes-graphics/mesa/mesa_%.bbappend with this conte=
+nt inside:<br></div><div><span style=3D"font-size:small;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;fl=
+oat:none;display:inline"><br></span></div><div><span style=3D"font-size:smal=
+l;background-color:rgb(255,255,255);text-decoration-style:initial;text-decor=
+ation-color:initial;float:none;display:inline"><span style=3D"text-decoratio=
+n-style:initial;text-decoration-color:initial;float:none;display:inline">&nb=
+sp; &nbsp; PROVIDES_remove =3D "virtual/libgles1 virtual/libgles2 virtual/eg=
+l virtual/libwayland-egl"</span><br></span></div><div><span style=3D"font-si=
+ze:small;background-color:rgb(255,255,255);text-decoration-style:initial;tex=
+t-decoration-color:initial;float:none;display:inline"><span style=3D"text-de=
+coration-style:initial;text-decoration-color:initial;float:none;display:inli=
+ne"><br></span></span></div><div><span style=3D"font-size:small;background-c=
+olor:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:in=
+itial;float:none;display:inline"><span style=3D"text-decoration-style:initia=
+l;text-decoration-color:initial;float:none;display:inline">That alters gstre=
+amer recipe on the poky layer, getting this error when building for a meta-i=
+ntel platform:</span></span></div><div><br></div><div>&nbsp; &nbsp; ERROR: N=
+othing PROVIDES 'virtual/egl' (but /data/yocto/yocto/sources/poky/meta/recip=
+es-multimedia/gstreamer/<a href=3D"http://gstreamer1.0-vaapi_1.12.2.bb">gstr=
+eamer1.0-vaapi_1.12.2.bb</a>, /data/yocto/yocto/sources/poky/meta/recipes-mu=
+ltimedia/gstreamer/<a href=3D"http://gstreamer1.0-plugins-bad_1.12.2.bb">gst=
+reamer1.0-plugins-bad_1.12.2.bb</a> DEPENDS on or otherwise requires it)</di=
+v><div><br></div><div>My questions:</div><div><br></div><div>&nbsp; &nbsp; -=
+ Is a good practice to define a custom bblayers.conf depending on the choose=
+n PLATFORM?</div><div>&nbsp; &nbsp; - Is there some any other way to disable=
+ a BSP-layer completely when building for a different one?</div></div><div>&=
+nbsp; &nbsp; - Can you suggest a fix to solve this issue?</div><div><br></di=
+v><div>Thanks a lot in advance! :)</div><div><br></div><div>Kind regards.</d=
+iv></div><div>&nbsp; -- Ivan</div><div><br></div><div><br></div>
+</div>
+</div></blockquote><blockquote type=3D"cite"><div><span>-- </span><br><span>=
+_______________________________________________</span><br><span>yocto mailin=
+g list</span><br><span><a href=3D"mailto:yocto@yoctoproject.org">yocto@yocto=
+project.org</a></span><br><span><a href=3D"https://lists.yoctoproject.org/li=
+stinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a></span><br></=
+div></blockquote></div></body></html>=
 
+--Apple-Mail-F83EFFC4-1C74-4339-86BC-E0185CA07781--
