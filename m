@@ -1,6 +1,6 @@
 Return-Path: <yocto@emagii.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A0FB6E02BFA; Tue, 12 Jun 2018 11:02:44 -0700 (PDT)
+	id 8ADD8E02AEC; Tue, 12 Jun 2018 11:02:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -17,22 +17,22 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
 Received: from v-smtpout1.han.skanova.net (v-smtpout1.han.skanova.net
 	[81.236.60.154])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8C6AE02B63
-	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 11:02:43 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 919B3E02AEC
+	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 11:02:44 -0700 (PDT)
 Received: from [10.175.196.108] ([37.123.169.62]) by cmsmtp with ESMTPA
-	id SncnfOZvn19K9SncxfwXau; Tue, 12 Jun 2018 20:02:43 +0200
+	id SncnfOZvn19K9SncyfwXay; Tue, 12 Jun 2018 20:02:44 +0200
 From: Ulf Samuelsson <yocto@emagii.com>
 Mime-Version: 1.0 (1.0)
-Date: Fri, 1 Jun 2018 10:12:28 +0200
-Message-Id: <6C255AB6-2605-4EAF-AAF0-FF610D75FF83@emagii.com>
-References: <CA+FhBv94MKe=hP1om41-5knfLXxCQM92GKPLQaw=f8Pz-=RV7Q@mail.gmail.com>
-In-Reply-To: <CA+FhBv94MKe=hP1om41-5knfLXxCQM92GKPLQaw=f8Pz-=RV7Q@mail.gmail.com>
-To: Damien LEFEVRE <lefevre.da@gmail.com>
+Date: Thu, 7 Jun 2018 17:27:04 +0200
+Message-Id: <545BDFE1-411A-4211-BB1C-A597FADB9A08@emagii.com>
+References: <CAALXFYwr=UUkS7dVb3QzHzsoQ3pU56j58CZunkKJkRYYcpMv3g@mail.gmail.com>
+In-Reply-To: <CAALXFYwr=UUkS7dVb3QzHzsoQ3pU56j58CZunkKJkRYYcpMv3g@mail.gmail.com>
+To: =?utf-8?Q?Iv=C3=A1n_Castell?= <icastell@nayarsystems.com>
 X-Mailer: iPad Mail (15B202)
-X-CMAE-Envelope: MS4wfAna+k3WYr98KnS8QEgBXX4dG3YwpAwiqyuZjLE6Kz7Xisuk3g4iqSQlv7IcMYyZ8hj+kkweJ86adaQCsu9CRZCHdE61x5B7GAckJ+ywaaYakYMN9oJd
-	jymXqkNNFc/3CQkQnErXX/+zbijPYBDcpIoPv7TFjix5XQbXhxin3nlK5BMOpfwBlE1J/8RJnmibvNs6pZj6isjkH3Bggs17py8=
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Image specific configuration files
+X-CMAE-Envelope: MS4wfGp9ko5O51NS6oMcJl9DhHfAqlchlAj8oD9IuIjVARpmI8QSf7LIUQXpkvWeuVKm/RJWyBunyhl92XRI/RjatIM6KRQwa31Z6hL9MR3a9vPVTU9Odu8q
+	lR+iPCVOwE9HD5eQOLWSu0lNFj4/lk7dNNagev98mf23GEArkXjKDsF4vs1AlDTC+pTRMxorud/ootNIfCG/VKWK1ycHf0gWMvI=
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Issue when integrating different bsp-layers on a single bblayers.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,132 +44,160 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jun 2018 18:02:44 -0000
+X-List-Received-Date: Tue, 12 Jun 2018 18:02:45 -0000
 Content-Type: multipart/alternative;
-	boundary=Apple-Mail-4B86D2CF-0C8B-4052-9501-6C04FCD51DE2
+	boundary=Apple-Mail-56FBA04D-0632-42CD-815C-54DF79D670C6
 Content-Transfer-Encoding: 7bit
 
---Apple-Mail-4B86D2CF-0C8B-4052-9501-6C04FCD51DE2
+--Apple-Mail-56FBA04D-0632-42CD-815C-54DF79D670C6
 Content-Type: text/plain;
-	charset=us-ascii
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-You can create three separate recipes that generate three different nginx co=
-nfigurations and include one if them in each image recipe.
+Maybe something similar to this in local.conf
+
+BBMASK .=3D "${@base_conditional('MACHINE', '<rockchip>', '','|meta-rockchip=
+/recipes-*', d)}"
+(did not test)
+If there are multiple machines in the meta-rockchip layer, you have to look f=
+or a unique variable which is true only if a machine in the meta-rockchip la=
+yer is used.
 
 
 Best Regards,
 Ulf Samuelsson
 
-> 1 juni 2018 kl. 07:46 skrev Damien LEFEVRE <lefevre.da@gmail.com>:
+> 7 juni 2018 kl. 16:39 skrev Iv=C3=A1n Castell <icastell@nayarsystems.com>:=
+
 >=20
-> Hi,
+> Hello forum.
 >=20
-> For the same MACHINE I create the following images:
-> - myimage-production
-> - myimage-rnd
-> - myimage-retail
+> I am trying to integrate several BSP-layers for different platforms on a s=
+ingle Yocto repository to build a Linux Yocto-based distro for all those pla=
+tforms easily.
 >=20
-> The production one has production assisted tools for flashing peripheral H=
-W, testing vital HW components, writing some serial numbers, etc.
+> The idea is maintaining a single bblayers.conf with all the layers availab=
+le, set PLATFORM and DISTRO on local.conf, call bitbake <image> and get the f=
+inal image for that platform.
 >=20
-> The rnd one has more packages than the retail one just to help rnd work an=
-d debugging in device, but none of the rnd image extra packages.=20
+> When setting the "build" directory with a bblayers.conf customized for a s=
+ingle platform, each platform builds the image recipe properly.
 >=20
-> The retail one has the final product image.
+> However, when I have integrated all bsp-layers in a single bblayers.conf, t=
+he compilation of some platforms has been broken.
 >=20
-> I'm using web and FTP servers. I would like for the rnd version of the ima=
-ge to have a different nginx configuration to set the root directory to a de=
-velopment folder, or set an alias.
+> The specific problem is this: one bsp layer (meta-rockchip + meta-rockchip=
+-extra) defines a recipes-graphics/mesa/mesa_%.bbappend with this content in=
+side:
 >=20
-> Furthermore, I'll have different variant of the device where only the devi=
-ce SW changes but the platform is identical. So I'll end up with=20
-> - myimage2-production
-> - myimage2-rnd
-> - myimage2-retail
+>     PROVIDES_remove =3D "virtual/libgles1 virtual/libgles2 virtual/egl vir=
+tual/libwayland-egl"
 >=20
-> I know how to make MACHINE based configuration. How could I do this in my n=
-ginx.bbappend based on image name?
+> That alters gstreamer recipe on the poky layer, getting this error when bu=
+ilding for a meta-intel platform:
 >=20
-> Thanks,
-> -Damien
+>     ERROR: Nothing PROVIDES 'virtual/egl' (but /data/yocto/yocto/sources/p=
+oky/meta/recipes-multimedia/gstreamer/gstreamer1.0-vaapi_1.12.2.bb, /data/yo=
+cto/yocto/sources/poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugin=
+s-bad_1.12.2.bb DEPENDS on or otherwise requires it)
+>=20
+> My questions:
+>=20
+>     - Is a good practice to define a custom bblayers.conf depending on the=
+ choosen PLATFORM?
+>     - Is there some any other way to disable a BSP-layer completely when b=
+uilding for a different one?
+>     - Can you suggest a fix to solve this issue?
+>=20
+> Thanks a lot in advance! :)
+>=20
+> Kind regards.
+>   -- Ivan
+>=20
+>=20
 > --=20
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
---Apple-Mail-4B86D2CF-0C8B-4052-9501-6C04FCD51DE2
+--Apple-Mail-56FBA04D-0632-42CD-815C-54DF79D670C6
 Content-Type: text/html;
 	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
 <html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto"><span style=3D"background-color: rgba(255, 2=
-55, 255, 0);">You can create three separate recipes that generate three diff=
-erent nginx configurations and include one if them in each image recipe.<br>=
-<br><br></span><div><span style=3D"background-color: rgba(255, 255, 255, 0);=
-">Best Regards,</span><div><span style=3D"background-color: rgba(255, 255, 2=
-55, 0);">Ulf Samuelsson</span></div></div><div><br>1 juni 2018 kl. 07:46 skr=
-ev Damien LEFEVRE &lt;<a href=3D"mailto:lefevre.da@gmail.com">lefevre.da@gma=
-il.com</a>&gt;:<br><br></div><blockquote type=3D"cite"><div><div dir=3D"ltr"=
->Hi,<div><br></div><div>For the same MACHINE I create the following images:<=
-/div><div>- myimage-production</div><div>- myimage-rnd</div><div>- myimage-r=
-etail</div><div><br></div><div>The production one has production assisted to=
-ols for flashing peripheral HW, testing vital HW components, writing some se=
-rial numbers, etc.</div><div><br></div><div>The rnd one has more packages th=
-an the retail one just to help rnd work and debugging in device, but none of=
- the rnd image extra packages.&nbsp;</div><div><br></div><div>The retail one=
- has the final product image.</div><div><br></div><div>I'm using web and FTP=
- servers. I would like for the rnd version of the image to have a different n=
-ginx configuration to set the root directory to a development folder,&nbsp;<=
-span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:sma=
-ll;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;=
-font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-=
-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,=
-255,255);text-decoration-style:initial;text-decoration-color:initial;float:n=
-one;display:inline">or set an alias.</span></div><div><br></div><div>Further=
-more, I'll have different variant of the device where only the device SW cha=
-nges but the platform is identical. So I'll end up with&nbsp;<br></div><div>=
-<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:sma=
-ll;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;=
-font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-=
-transform:none;white-space:normal;word-spacing:0px;text-decoration-style:ini=
-tial;text-decoration-color:initial">- myimage2-production</div><div style=3D=
-"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style=
-:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:4=
-00;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:non=
-e;white-space:normal;word-spacing:0px;text-decoration-style:initial;text-dec=
-oration-color:initial">- myimage2-rnd</div><div style=3D"color:rgb(34,34,34)=
-;font-family:arial,sans-serif;font-size:small;font-style:normal;font-variant=
--ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:no=
-rmal;text-align:start;text-indent:0px;text-transform:none;white-space:normal=
-;word-spacing:0px;text-decoration-style:initial;text-decoration-color:initia=
-l">- myimage2-retail</div><div><br></div><div>I know how to make MACHINE bas=
-ed configuration. How could I do this in my&nbsp;nginx.bbappend based on ima=
-ge name?<br></div></div><div><span style=3D"color:rgb(34,34,34);font-family:=
-arial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:no=
-rmal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-ali=
-gn:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing=
-:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-de=
-coration-color:initial;float:none;display:inline"><br></span></div><div><spa=
-n style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;=
-font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fon=
-t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tra=
-nsform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255=
-,255);text-decoration-style:initial;text-decoration-color:initial;float:none=
-;display:inline">Thanks,</span></div><div><span style=3D"color:rgb(34,34,34)=
-;font-family:arial,sans-serif;font-size:small;font-style:normal;font-variant=
--ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:no=
-rmal;text-align:start;text-indent:0px;text-transform:none;white-space:normal=
-;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:in=
-itial;text-decoration-color:initial;float:none;display:inline">-Damien</span=
-></div></div>
+utf-8"></head><body dir=3D"auto">Maybe something similar to this in local.co=
+nf<div><br></div><div><pre style=3D"color: rgb(69, 69, 69); font-style: inhe=
+rit; font-variant-caps: inherit; margin-top: 0px; margin-bottom: 1em; paddin=
+g: 5px; border: 0px; font-stretch: inherit; line-height: inherit; vertical-a=
+lign: baseline; box-sizing: inherit; width: auto; max-height: 600px; overflo=
+w: auto; word-wrap: normal;"><code style=3D"margin: 0px; padding: 0px; borde=
+r: 0px; font-style: inherit; font-variant-caps: inherit; font-stretch: inher=
+it; line-height: inherit; vertical-align: baseline; box-sizing: inherit; whi=
+te-space: normal; background-color: rgba(255, 255, 255, 0);"><font face=3D"U=
+ICTFontTextStyleBody">BBMASK .=3D "${@base_conditional('MACHINE',&nbsp;</fon=
+t></code><span style=3D"font-style: inherit; font-variant-caps: inherit;">'<=
+/span><span style=3D"font-family: UICTFontTextStyleBody; font-style: inherit=
+; font-variant-caps: inherit; white-space: normal; background-color: rgba(25=
+5, 255, 255, 0);">&lt;rockchip&gt;',&nbsp;</span><span style=3D"font-style: i=
+nherit; font-variant-caps: inherit;">'',</span><span style=3D"font-family: U=
+ICTFontTextStyleBody; font-style: inherit; font-variant-caps: inherit; white=
+-space: normal; background-color: rgba(255, 255, 255, 0);">'|meta-rockchip/r=
+ecipes-*', d)}"</span></pre>(did not test)</div><div>If there are multiple m=
+achines in the meta-rockchip layer, you have to look for a unique variable w=
+hich is true only if a machine in the meta-rockchip layer is used.</div><div=
+><br></div><div><br></div><div><div>Best Regards,<div>Ulf Samuelsson</div></=
+div><div><br>7 juni 2018 kl. 16:39 skrev Iv=C3=A1n Castell &lt;<a href=3D"ma=
+ilto:icastell@nayarsystems.com">icastell@nayarsystems.com</a>&gt;:<br><br></=
+div><blockquote type=3D"cite"><div><div dir=3D"ltr"><div>Hello forum.</div><=
+div><br></div><div><div><div>I am trying to integrate several BSP-layers for=
+ different platforms on a single Yocto repository to build a Linux Yocto-bas=
+ed distro for all those platforms easily.</div><div><br></div><div>The idea i=
+s maintaining a single bblayers.conf with all the layers available, set PLAT=
+FORM and DISTRO on local.conf, call bitbake &lt;image&gt; and get the final i=
+mage for that platform.</div><div><br></div><div>When setting the "build" di=
+rectory with a bblayers.conf customized for a single platform, each platform=
+ builds the image recipe properly.</div><div><br></div><div>However, when I h=
+ave integrated all bsp-layers in a single bblayers.conf, the compilation of s=
+ome platforms has been broken.<br></div><div><br></div><div>The specific pro=
+blem is this: one bsp layer (meta-rockchip + meta-rockchip-extra) defines a&=
+nbsp;recipes-graphics/mesa/mesa_%.bbappend with this content inside:<br></di=
+v><div><span style=3D"font-size:small;background-color:rgb(255,255,255);text=
+-decoration-style:initial;text-decoration-color:initial;float:none;display:i=
+nline"><br></span></div><div><span style=3D"font-size:small;background-color=
+:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:initia=
+l;float:none;display:inline"><span style=3D"text-decoration-style:initial;te=
+xt-decoration-color:initial;float:none;display:inline">&nbsp; &nbsp; PROVIDE=
+S_remove =3D "virtual/libgles1 virtual/libgles2 virtual/egl virtual/libwayla=
+nd-egl"</span><br></span></div><div><span style=3D"font-size:small;backgroun=
+d-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-color=
+:initial;float:none;display:inline"><span style=3D"text-decoration-style:ini=
+tial;text-decoration-color:initial;float:none;display:inline"><br></span></s=
+pan></div><div><span style=3D"font-size:small;background-color:rgb(255,255,2=
+55);text-decoration-style:initial;text-decoration-color:initial;float:none;d=
+isplay:inline"><span style=3D"text-decoration-style:initial;text-decoration-=
+color:initial;float:none;display:inline">That alters gstreamer recipe on the=
+ poky layer, getting this error when building for a meta-intel platform:</sp=
+an></span></div><div><br></div><div>&nbsp; &nbsp; ERROR: Nothing PROVIDES 'v=
+irtual/egl' (but /data/yocto/yocto/sources/poky/meta/recipes-multimedia/gstr=
+eamer/<a href=3D"http://gstreamer1.0-vaapi_1.12.2.bb">gstreamer1.0-vaapi_1.1=
+2.2.bb</a>, /data/yocto/yocto/sources/poky/meta/recipes-multimedia/gstreamer=
+/<a href=3D"http://gstreamer1.0-plugins-bad_1.12.2.bb">gstreamer1.0-plugins-=
+bad_1.12.2.bb</a> DEPENDS on or otherwise requires it)</div><div><br></div><=
+div>My questions:</div><div><br></div><div>&nbsp; &nbsp; - Is a good practic=
+e to define a custom bblayers.conf depending on the choosen PLATFORM?</div><=
+div>&nbsp; &nbsp; - Is there some any other way to disable a BSP-layer compl=
+etely when building for a different one?</div></div><div>&nbsp; &nbsp; - Can=
+ you suggest a fix to solve this issue?</div><div><br></div><div>Thanks a lo=
+t in advance! :)</div><div><br></div><div>Kind regards.</div></div><div>&nbs=
+p; -- Ivan</div><div><br></div><div><br></div>
+</div>
 </div></blockquote><blockquote type=3D"cite"><div><span>-- </span><br><span>=
 _______________________________________________</span><br><span>yocto mailin=
 g list</span><br><span><a href=3D"mailto:yocto@yoctoproject.org">yocto@yocto=
 project.org</a></span><br><span><a href=3D"https://lists.yoctoproject.org/li=
 stinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a></span><br></=
-div></blockquote></body></html>=
+div></blockquote></div></body></html>=
 
---Apple-Mail-4B86D2CF-0C8B-4052-9501-6C04FCD51DE2--
+--Apple-Mail-56FBA04D-0632-42CD-815C-54DF79D670C6--
