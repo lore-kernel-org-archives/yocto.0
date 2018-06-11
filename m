@@ -1,58 +1,42 @@
-Return-Path: <o_o@ieee.org>
+Return-Path: <david.reyna@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49979E0198E; Sun, 10 Jun 2018 17:07:20 -0700 (PDT)
+	id 0C939E01879; Sun, 10 Jun 2018 17:18:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.53 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
-	[209.85.214.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBB07E0197F
-	for <yocto@yoctoproject.org>; Sun, 10 Jun 2018 17:07:19 -0700 (PDT)
-Received: by mail-it0-f53.google.com with SMTP id u4-v6so8429784itg.0
-	for <yocto@yoctoproject.org>; Sun, 10 Jun 2018 17:07:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ieee-org.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=IDLdCnbJa3DbWno0EgiYhHTRDvi0oY09N5cftstPJRM=;
-	b=nC0ePKGy9UqG1xgkIGzS/4jBsTEwFkDvDyws2nz0QdB4fLMdI7ryFleZPKHuTDPe2w
-	vVEZ7yFT+W3HL74CzYnc4EFzj4PnZJ0mari3GEooyoV1RSd8GwDC8/cWaf68+tNmS2+X
-	4PwOY0Ihr9tUD+4061aewOhS+0gVj1AfDzxJn9P15dhQFbS6LNsC927tDnf8nYTtP22v
-	bFWYJr4dP9x6wJhZndKzTP8570aZtLkFejvNRYydsVuAz6Pfjn7WQWflw9n48M/wmpBF
-	yTicDAzeUFqURfcu6Xhx/nR2NPHL6mp0AJUlZ6l8Hx0UuHXOa4FG4d4HJ/fil6SZ+sa9
-	R4eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=IDLdCnbJa3DbWno0EgiYhHTRDvi0oY09N5cftstPJRM=;
-	b=uP/8b5pTqzzJig12yHr+P/A3ym7BHOaC6VFDzSxg9l2eR4Hsg4WL0Gq/QNDdGypJZm
-	svkAMHak4HfeO2AT5SmUQtAAd5dE2C98D4eIbZeQzhxHcfy5BCS1rddZngRondHBOyfo
-	+XlOWAZrGbLXSQ3voPIk/WgZpXR8i8eSuG7ThfsmFhI+afqADrxpHIjCOTvBeJ4EmhXE
-	4JfW/KsmOcRWitEDvkXsN4R76JJTMql1122nzNtgcD0BeKJzswmH7Igwcw+gnEBDO9+L
-	AjbTW6lptSQQWulc3Zkin94Z+B7qMHnRsGiETqaY/nhgiUEsrvIbdSQZKHG1cupceyO3
-	ZDsg==
-X-Gm-Message-State: APt69E3lfFl/B/oKwGSoJTJ1iHcVJ36jsxmBHNCJ8vrRDpz9oQCGw+5Z
-	L5FYCKLxEj9/TjE52WVoKRaZqQxvZi5U3+78Okw5MA==
-X-Google-Smtp-Source: ADUXVKICVBnYlBMD7Nh4n8r8+TtAahu1LaUmVhkXGvrT0pKx8vcsI4vKOXPg3DnUWB4Z3XtXEMiZsMCh9aLFaRjcXtE=
-X-Received: by 2002:a24:e105:: with SMTP id n5-v6mr8733914ith.68.1528675638873;
-	Sun, 10 Jun 2018 17:07:18 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B539E00E9E
+	for <yocto@yoctoproject.org>; Sun, 10 Jun 2018 17:18:05 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w5B0HLsc011360
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 10 Jun 2018 17:17:36 -0700
+Received: from ALA-MBC.corp.ad.wrs.com ([169.254.1.176]) by
+	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0399.000;
+	Sun, 10 Jun 2018 17:17:10 -0700
+From: "Reyna, David" <david.reyna@windriver.com>
+To: Ricardo Ramirez <o_o@ieee.org>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Target CPU architectures that Yocto Project Support
+Thread-Index: AQHUARhSUYOG8WaoHESGgGoUmyoaIqRaL8Og
+Date: Mon, 11 Jun 2018 00:17:10 +0000
+Message-ID: <5E53D14CE4667A45B9A06760DE5D13D0F38E9788@ALA-MBC.corp.ad.wrs.com>
+References: <CAMXie8EtM6FOs4Qf3XHW-5EGTy_+xc7Cen-U_UB3ZpO8b4PcjA@mail.gmail.com>
+In-Reply-To: <CAMXie8EtM6FOs4Qf3XHW-5EGTy_+xc7Cen-U_UB3ZpO8b4PcjA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.11.117.33]
 MIME-Version: 1.0
-Received: by 2002:a02:850b:0:0:0:0:0 with HTTP; Sun, 10 Jun 2018 17:07:18
-	-0700 (PDT)
-From: Ricardo Ramirez <o_o@ieee.org>
-Date: Sun, 10 Jun 2018 19:07:18 -0500
-Message-ID: <CAMXie8EtM6FOs4Qf3XHW-5EGTy_+xc7Cen-U_UB3ZpO8b4PcjA@mail.gmail.com>
-To: yocto@yoctoproject.org
 Subject: Re: Target CPU architectures that Yocto Project Support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -65,28 +49,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jun 2018 00:07:20 -0000
-Content-Type: multipart/alternative; boundary="0000000000006eaa18056e528898"
+X-List-Received-Date: Mon, 11 Jun 2018 00:18:06 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_5E53D14CE4667A45B9A06760DE5D13D0F38E9788ALAMBCcorpadwrs_"
 
---0000000000006eaa18056e528898
-Content-Type: text/plain; charset="UTF-8"
+--_000_5E53D14CE4667A45B9A06760DE5D13D0F38E9788ALAMBCcorpadwrs_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi,
+SGkgUmljYXJkbywNCg0KSWYgeW91IGFyZSBhc2tpbmcgYWJvdXQgdGhlIGxpc3Qgb2YgTUFDSElO
+RSB0eXBlcyB0aGF0IFlvY3RvIFByb2plY3Qgc3VwcG9ydHMsIHRoZW4gdGhlIGJlc3QgcGxhY2Ug
+dG8gbG9vayBpcyBpbiB0aGUgTGF5ZXIgSW5kZXg6DQoNCiAgIGh0dHBzOi8vbGF5ZXJzLm9wZW5l
+bWJlZGRlZC5vcmcvbGF5ZXJpbmRleC9icmFuY2gvbWFzdGVyL2xheWVycy8NCg0KQ2xpY2sgb24g
+dGhlIOKAnE1hY2hpbmVz4oCdIHRhYiwgY2xpY2sgb24gdGhlIOKAnFNlYXJjaOKAnSB0YWIgd2l0
+aCBvciB3aXRob3V0IGEgc2VhcmNoIHZhbHVlLCBhbmQgc2VlIHRoZSBnbG9yaW91cyBsaXN0Lg0K
+DQpUaGUgc2FtZSBnb2VzIGZvciBzdXBwb3J0ZWQgbGF5ZXJzLCByZWNpcGVzLCBjbGFzc2VzLCBh
+bmQgZGlzdHJvIHZhbHVlcy4NCg0KWW91IGNhbiBjaGFuZ2UgdGhlIOKAnEJyYW5jaOKAnSB2YWx1
+ZSB0byBzZWUgdGhlIE1BQ0hJTkXigJlzIHBlciByZWxlYXNlLg0KDQotIERhdmlkIFJleW5hDQoN
+CkZyb206IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5j
+ZXNAeW9jdG9wcm9qZWN0Lm9yZ10gT24gQmVoYWxmIE9mIFJpY2FyZG8gUmFtaXJleg0KU2VudDog
+U3VuZGF5LCBKdW5lIDEwLCAyMDE4IDU6MDcgUE0NClRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
+DQpTdWJqZWN0OiBSZTogW3lvY3RvXSBUYXJnZXQgQ1BVIGFyY2hpdGVjdHVyZXMgdGhhdCBZb2N0
+byBQcm9qZWN0IFN1cHBvcnQNCg0KSGksDQoNCk5haXZlIHF1ZXN0aW9uIGZyb20gYSBuZXdiaWUu
+IEhvdyBjYW4gdGhpcyBiZSBhY2hpZXZlZD8gSSdkIGFwcHJlY2lhdGUgaWYgeW91IGNvdWxkIHBs
+ZWFzZSBzaGVkIHNvbWUgbGlnaHQgb24gd2hhdCBzdGVwcyBuZWVkIHRvIGJlIGZvbGxvd2VkPw0K
+DQpUaGFua3MgaW4gYWR2YW5jZSwNCg0KLVINCg==
 
-Naive question from a newbie. How can this be achieved? I'd appreciate if
-you could please shed some light on what steps need to be followed?
+--_000_5E53D14CE4667A45B9A06760DE5D13D0F38E9788ALAMBCcorpadwrs_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Thanks in advance,
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
+LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
+LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
+eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7fQ0K
+QHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAx
+LjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
+O30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRz
+IHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtp
+ZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1h
+cCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRp
+Zl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVy
+cGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SGkgUmljYXJkbyw8bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMx
+RjQ5N0QiPklmIHlvdSBhcmUgYXNraW5nIGFib3V0IHRoZSBsaXN0IG9mIE1BQ0hJTkUgdHlwZXMg
+dGhhdCBZb2N0byBQcm9qZWN0IHN1cHBvcnRzLCB0aGVuIHRoZSBiZXN0IHBsYWNlIHRvIGxvb2sg
+aXMgaW4gdGhlIExheWVyIEluZGV4OjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90
+O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+Jm5ic3A7Jm5ic3A7IGh0dHBzOi8vbGF5
+ZXJzLm9wZW5lbWJlZGRlZC5vcmcvbGF5ZXJpbmRleC9icmFuY2gvbWFzdGVyL2xheWVycy88bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMx
+RjQ5N0QiPkNsaWNrIG9uIHRoZSDigJxNYWNoaW5lc+KAnSB0YWIsIGNsaWNrIG9uIHRoZSDigJxT
+ZWFyY2jigJ0gdGFiIHdpdGggb3Igd2l0aG91dCBhIHNlYXJjaCB2YWx1ZSwgYW5kIHNlZSB0aGUg
+Z2xvcmlvdXMgbGlzdC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNl
+cmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlRoZSBzYW1lIGdvZXMgZm9yIHN1cHBvcnRlZCBsYXll
+cnMsIHJlY2lwZXMsIGNsYXNzZXMsIGFuZCBkaXN0cm8gdmFsdWVzLjxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztj
+b2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+WW91IGNh
+biBjaGFuZ2UgdGhlIOKAnEJyYW5jaOKAnSB2YWx1ZSB0byBzZWUgdGhlIE1BQ0hJTkXigJlzIHBl
+ciByZWxlYXNlLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
+dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
+cXVvdDs7Y29sb3I6IzFGNDk3RCI+LSBEYXZpZCBSZXluYTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
+MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhv
+bWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVv
+dDtzYW5zLXNlcmlmJnF1b3Q7Ij4geW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWls
+dG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXQ0KPGI+T24gQmVoYWxmIE9mIDwvYj5S
+aWNhcmRvIFJhbWlyZXo8YnI+DQo8Yj5TZW50OjwvYj4gU3VuZGF5LCBKdW5lIDEwLCAyMDE4IDU6
+MDcgUE08YnI+DQo8Yj5Ubzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJq
+ZWN0OjwvYj4gUmU6IFt5b2N0b10gVGFyZ2V0IENQVSBhcmNoaXRlY3R1cmVzIHRoYXQgWW9jdG8g
+UHJvamVjdCBTdXBwb3J0PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGks
+PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
+L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5OYWl2ZSBxdWVz
+dGlvbiBmcm9tIGEgbmV3YmllLiBIb3cgY2FuIHRoaXMgYmUgYWNoaWV2ZWQ/IEknZCBhcHByZWNp
+YXRlIGlmIHlvdSBjb3VsZCBwbGVhc2Ugc2hlZCBzb21lIGxpZ2h0IG9uIHdoYXQgc3RlcHMgbmVl
+ZCB0byBiZSBmb2xsb3dlZD88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+VGhhbmtzIGluIGFkdmFuY2UsPG86cD48L286cD48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPi1SPG86cD48L286cD48L3A+DQo8L2Rpdj4N
+CjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
--R
-
---0000000000006eaa18056e528898
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>Naive question from a newbie. How c=
-an this be achieved? I&#39;d appreciate if you could please shed some light=
- on what steps need to be followed?<br></div><div><br></div><div>Thanks in =
-advance,</div><div><br></div><div>-R</div></div>
-
---0000000000006eaa18056e528898--
+--_000_5E53D14CE4667A45B9A06760DE5D13D0F38E9788ALAMBCcorpadwrs_--
