@@ -1,64 +1,26 @@
-Return-Path: <o_o@ieee.org>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8223E0187E; Sun, 10 Jun 2018 19:06:50 -0700 (PDT)
+	id 57874E01CB7; Sun, 10 Jun 2018 21:34:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.46 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
-	[209.85.214.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1723DE010BF
-	for <yocto@yoctoproject.org>; Sun, 10 Jun 2018 19:06:49 -0700 (PDT)
-Received: by mail-it0-f46.google.com with SMTP id k17-v6so10058382ita.0
-	for <yocto@yoctoproject.org>; Sun, 10 Jun 2018 19:06:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ieee-org.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=qKYI4ZAMODukNDUJNWqDAcPWx7RaQ8r7qnR1Vn+CNj8=;
-	b=fQfLg48McfWSxVlnPoqnOAWMSkEUvulvvk6upSr28Sqfm01pUwXJfnx6ivq/RwNzzV
-	IH7DcyTjEA/sBL3bZi3yEUn70UavAZDnKcY0KRp7w5QcvPxYvo1Ojri/7TaDVv21MWAD
-	1wPSunnym8WWmigUhtgwsg26IGOFDxlBr54/wCRuSv3SsYdWMsFPdL/gfJSnHrf6j3Uk
-	JkMiXS+nE23o4Tdg24W4F4iAkDv9YYMlAhLPdjSQPxmPgxOpwAz9J0IkgiQ5azEIj7Be
-	P+OJCOeNg0eDtBuul+JeUI/1X7yD1ISdQBnK85Bpdqbea6nz/0tIMXA3zcULSn3PS8OK
-	WNMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=qKYI4ZAMODukNDUJNWqDAcPWx7RaQ8r7qnR1Vn+CNj8=;
-	b=QLjOO0+dUvV4dPRipmhZ0RBW1ODD1dqKK+f4rYBqaGFeThiURxRhC/rLx0vAtWi66b
-	xfCUNuyZ25JvDbJcQS1dV2KEPLhS/Z4oEwuEn27LjCp/r3H733CdEHtoYSfCJWxHm5Uz
-	Sp2PyaCdAT9xRjGyDg57wM5+MLQ2pnhoejpk4Wyqi5TmUVcQaJkCPDNB5QLMjzVbsKX0
-	dAbdF3CGIgU6mImV792ofnP3Da5Hqqk2/Z5MTdxlKZhMy41pinViTnDkgjhCC+AjZDpN
-	W2G0baD/7/mc/mLNssFKuc8DAi9UfrLP624yYbuPkR1r0A6LWuGYzabiFESjXnkeSplQ
-	PTmw==
-X-Gm-Message-State: APt69E15BUWM6yL+8t1Cj52A97ly+wV+PVrkZops/4xeKA7DGthvuNZf
-	uSdSDQODzbcgNQXE8k09ekRFlYkn91xtE100FmfxGhV5
-X-Google-Smtp-Source: ADUXVKKqAzrANWgwIAUrgeIQwgxXrD92tntthqyt1++PWwTW8pE6A1qWD+jMdQZRJmay5qV/dQud/q6L+4dpNqgVLIQ=
-X-Received: by 2002:a24:3a87:: with SMTP id
-	m129-v6mr298579itm.90.1528682809468; 
-	Sun, 10 Jun 2018 19:06:49 -0700 (PDT)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3075E01C84
+	for <yocto@yoctoproject.org>; Sun, 10 Jun 2018 21:34:04 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 91CE68090254
+	for <yocto@yoctoproject.org>; Mon, 11 Jun 2018 00:34:03 -0400 (EDT)
 MIME-Version: 1.0
-Received: by 2002:a02:850b:0:0:0:0:0 with HTTP; Sun, 10 Jun 2018 19:06:49
-	-0700 (PDT)
-In-Reply-To: <5E53D14CE4667A45B9A06760DE5D13D0F38E9788@ALA-MBC.corp.ad.wrs.com>
-References: <CAMXie8EtM6FOs4Qf3XHW-5EGTy_+xc7Cen-U_UB3ZpO8b4PcjA@mail.gmail.com>
-	<5E53D14CE4667A45B9A06760DE5D13D0F38E9788@ALA-MBC.corp.ad.wrs.com>
-From: Ricardo Ramirez <o_o@ieee.org>
-Date: Sun, 10 Jun 2018 21:06:49 -0500
-Message-ID: <CAMXie8EYUhONeuve=oF3hs9fe9Jz_rTP2QWFh0AKZdyyGj=J8Q@mail.gmail.com>
-To: "Reyna, David" <david.reyna@windriver.com>, yocto@yoctoproject.org
-Subject: Re: Target CPU architectures that Yocto Project Support
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 11 Jun 2018 04:34:03 -0000
+Message-ID: <20180611043403.27129.5972@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,208 +32,188 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jun 2018 02:06:50 -0000
-Content-Type: multipart/alternative; boundary="000000000000d551f3056e5433a6"
+X-List-Received-Date: Mon, 11 Jun 2018 04:34:05 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---000000000000d551f3056e5433a6
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This mail was sent out by Recipe reporting system.
 
-Hi David,
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-Thanks for the prompt reply!
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-My question was a follow up of Khem's inquire (posted on 2014-05-02)
+You can check the detail information at:
 
-https://lists.yoctoproject.org/pipermail/yocto/2014-May/019387.html
+http://recipes.yoctoproject.org/
 
-Using the links you sent me, I found that the old OE-Classic branch
-supports sparc32 but didn't see any sparc64
+Package               Version          Upstream version      Maintainer            NoUpgradeReason
+--------------------  ---------------  --------------------  --------------------  ------------------------------
+usbutils              009              010                   Alexander Kanavin
+ca-certificates       20170717         20180409              Alexander Kanavin
+vala                  0.40.4           0.40.6                Alexander Kanavin
+procps                3.3.14           3.3.15                Alexander Kanavin
+psmisc                23.0             23.1                  Alexander Kanavin
+sysprof               3.26.1           3.28.1                Alexander Kanavin     Waiting for resolution of h...
+systemtap-uprobes     3.2              3.3                   Alexander Kanavin
+systemtap             3.2              3.3                   Alexander Kanavin
+cantarell-fonts       0.0.24           0.0.25                Alexander Kanavin
+epiphany              3.28.1.1         3.28.3.1              Alexander Kanavin
+apt                   1.2.24           1.6.1                 Aníbal Limón
+apt-native            1.2.24           1.6.1                 Aníbal Limón
+dpkg                  1.18.24          1.19.0.5              Aníbal Limón
+gstreamer1.0-plug...  1.14.0           1.14.1                Anuj Mittal
+gst-validate          1.14.0           1.14.1                Anuj Mittal
+gstreamer1.0-rtsp...  1.14.0           1.14.1                Anuj Mittal
+gstreamer1.0-libav    1.14.0           1.14.1                Anuj Mittal
+gstreamer1.0-omx      1.14.0           1.14.1                Anuj Mittal
+gstreamer1.0          1.14.0           1.14.1                Anuj Mittal
+gstreamer1.0-vaapi    1.14.0           1.14.1                Anuj Mittal
+gst-examples          0.0.1+gitX       0.0.1-new-commits...  Anuj Mittal
+gstreamer1.0-python   1.14.0           1.14.1                Anuj Mittal
+gstreamer1.0-plug...  1.14.0           1.14.1                Anuj Mittal
+gstreamer1.0-plug...  1.14.0           1.14.1                Anuj Mittal
+gstreamer1.0-plug...  1.14.0           1.14.1                Anuj Mittal
+xkbcomp               1.4.1            1.4.2                 Armin Kuster
+xf86-input-evdev      2.10.5           2.10.6                Armin Kuster
+xf86-video-fbdev      0.4.4            0.5.0                 Armin Kuster
+xf86-video-vmware     13.2.1           13.3.0                Armin Kuster
+busybox               1.27.2           1.28.4                Armin Kuster
+xkeyboard-config      2.23.1           2.24                  Armin Kuster
+nss                   3.36.1           3.37.1                Armin Kuster
+bind                  9.10.6           9.13.0                Armin Kuster
+xserver-xorg          1.19.6           1.20.0                Armin Kuster
+xf86-input-synaptics  1.9.0            1.9.1                 Armin Kuster
+linux-libc-headers    4.15.7           4.17                  Bruce Ashfield
+kern-tools-native     0.2+gitX         0.2-new-commits-a...  Bruce Ashfield
+linux-yocto           4.15.13+gitX     4.15.18               Bruce Ashfield
+linux-yocto-rt        4.15.13+gitX     4.15.18               Bruce Ashfield
+linux-yocto-tiny      4.15.13+gitX     4.15.18               Bruce Ashfield
+kmscube               git              git-new-commits-a...  Carlos Rafael Giani
+connman               1.35             1.36                  Changhyeok Bae
+iproute2              4.16.0           4.17.0                Changhyeok Bae
+base-passwd           3.5.29           3.5.45                Chang Rebecca Swe...  Version 3.5.38 requires cde...
+lsbinitscripts        9.79             9.82                  Chang Rebecca Swe...
+sysvinit              2.88dsf          2.89                  Chang Rebecca Swe...
+systemd-boot          237              238                   Chen Qi
+cups                  2.2.6            2.2.8                 Chen Qi
+systemd               237              238                   Chen Qi
+bison                 3.0.4            3.0.5                 Chen Qi
+sed                   4.2.2            4.5                   Chen Qi
+sysstat               11.7.3           11.7.4                Chen Qi
+flex                  2.6.0            2.6.4                 Chen Qi
+lzop                  1.03             1.04                  Denys Dmytriyenko
+xz                    5.2.3            5.2.4                 Denys Dmytriyenko
+mtd-utils             2.0.1+X          2.0.2                 Denys Dmytriyenko
+python3-dbus          1.2.6            1.2.8                 Derek Straka
+python-numpy          1.14.2           1.14.4                Derek Straka
+python3-pygobject     3.28.1           3.28.3                Derek Straka
+python3               3.5.5            3.6.5                 Derek Straka
+python                2.7.14           2.7.15                Derek Straka
+python3-git           2.1.8            2.1.10                Derek Straka
+python3-pycairo       1.15.6           1.17.0                Derek Straka
+python3-pip           9.0.3            10.0.1                Derek Straka
+python-setuptools     39.0.1           39.2.0                Derek Straka
+python3-numpy         1.14.2           1.14.4                Derek Straka
+python3-setuptools    39.0.1           39.2.0                Derek Straka
+python3-native        3.5.5            3.6.5                 Derek Straka
+python-native         2.7.14           2.7.15                Derek Straka
+acpica                20180508         20180531              Fathi Boudra
+gnupg                 2.2.5            2.2.8                 Hongxu Jia
+dhcp                  4.3.6            4.4.1                 Hongxu Jia
+man-db                2.8.2            2.8.3                 Hongxu Jia
+elfutils              0.170            0.171                 Hongxu Jia
+gpgme                 1.10.0           1.11.1                Hongxu Jia
+ncurses               6.1              6.1+20180602          Hongxu Jia
+man-pages             4.14             4.16                  Hongxu Jia
+help2man-native       1.47.5           1.47.6                Hongxu Jia
+bc                    1.06             1.07.1                Jose Lamego
+llvm                  6.0              6.0-new-commits-a...  Khem Raj
+mpfr                  3.1.5            4.0.1                 Khem Raj
+re2c                  0.16             1.0.1                 Khem Raj
+go-native             1.10.2           1.10.3                Khem Raj
+go                    1.10.2           1.10.3                Khem Raj
+pango                 1.40.14          1.42.1                Maxin B. John
+piglit                1.0+gitrX        1.0-new-commits-a...  Maxin B. John
+acpid                 2.0.28           2.0.29                Maxin B. John
+libinput              1.9.4            1.11.0                Maxin B. John
+vulkan-demos          git              git-new-commits-a...  Maxin B. John
+perl                  5.24.1           5.26.2                Maxin B. John
+libsoup-2.4           2.62.0           2.62.2                Maxin B. John
+cronie                1.5.1            1.5.2                 Maxin B. John
+gtk-icon-utils-na...  3.22.29          3.22.30               Maxin B. John
+ifupdown              0.8.16           0.8.33                Maxin B. John
+glib-networking       2.54.1           2.56.1                Maxin B. John
+libical               2.0.0            3.0.3                 Maxin B. John
+freetype              2.9              2.9.1                 Maxin B. John
+libunistring          0.9.9            0.9.10                Maxin B. John
+sqlite3               3.23.1           3.24.0                Maxin B. John
+vte                   0.52.0           0.52.2                Maxin B. John
+vulkan                1.0.65.2         1.1.73.0              Maxin B. John
+libepoxy              1.5.0            1.5.2                 Maxin B. John
+puzzles               0.0+gitX         0.0-new-commits-a...  Maxin B. John
+xdg-utils             1.1.2            1.1.3                 Maxin B. John
+gdk-pixbuf            2.36.11          2.36.12               Maxin B. John
+mc                    4.8.20           4.8.21                Maxin B. John
+gtk+3                 3.22.29          3.22.30               Maxin B. John
+bluez5                5.49             5.50                  Maxin B. John
+librsvg               2.40.20          2.42.5                Maxin B. John         Versions from 2.41.0 requir...
+fontconfig            2.12.6           2.13.0                Maxin B. John
+harfbuzz              1.7.5            1.8.0                 Maxin B. John
+perl-native           5.24.1           5.26.2                Maxin B. John
+systemtap-native      3.2              3.3                   No maintainer
+gcc-source-7.3.0      7.3.0            8.1.0                 No maintainer
+go-cross-canadian...  1.10.2           1.10.3                No maintainer
+go-cross-i586         1.10.2           1.10.3                No maintainer
+go-crosssdk-x86_64    1.10.2           1.10.3                No maintainer
+go-runtime            1.10.2           1.10.3                No maintainer
+mesa                  18.0.2           18.1.1                Otavio Salvador
+linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
+cmake                 3.10.3           3.11.3                Otavio Salvador
+cmake-native          3.10.3           3.11.3                Otavio Salvador
+mesa-gl               18.0.2           18.1.1                Otavio Salvador
+tcf-agent             1.4.0+gitX       1.7.0                 Randy Witt
+build-compare         2015.02.10+gitX  2015.02.10-new-co...  Randy Witt
+subversion            1.9.7            1.10.0                Richard Purdie
+build-appliance-i...  15.0.0           19.0.0                Richard Purdie
+lttng-tools           2.9.5            2.10.4                Richard Purdie
+lttng-modules         2.10.5           2.10.6                Richard Purdie
+gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
+nfs-utils             2.1.1            2.3.2                 Robert Yang
+squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
+automake              1.15.1           1.16.1                Robert Yang
+e2fsprogs             1.43.8           1.44.2                Robert Yang
+ccache                3.3.5            3.4.2                 Robert Yang
+git                   2.16.1           2.17.1                Robert Yang
+pulseaudio            11.1             11.99.1               Tanu Kaskinen
+liberror-perl         0.17025          0.17026               Tim Orling
+gnu-efi               3.0.6            3.0.8                 Yi Zhao
+chkconfig             1.3.58           1.8                   Yi Zhao               Version 1.5 requires selinux
+debianutils           4.8.4            4.8.6                 Yi Zhao
+libbsd                0.8.7            0.9.1                 Yi Zhao
+file                  5.32             5.33                  Yi Zhao
 
-http://layers.openembedded.org/layerindex/oe-classic/recipes/
+Upgradable count: 139
+Upgradable total count: 143
 
-As such, I'd like to know what steps I need to follow in order to enable a
-SPARCv9 machine in Yocto.
+The based commit is:
 
-I appreciate your answer.
+commit 23f15c63777020f5d43b070a1eb2bcf246c19ff8
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Wed Jun 6 19:10:43 2018 +0000
 
--R
+    rpm: Fix patch to ensure variables aren't used uninitialised
+    
+    Recent patches were applied which removed a function which set the xx
+    variable. This means xx can be uninitalised and prerm functions can fail.
+    
+    This adjusts the patch to ensure the xx value isn't used in such a way.
+    
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-
-On Sun, Jun 10, 2018 at 7:17 PM, Reyna, David <david.reyna@windriver.com>
-wrote:
-
-> Hi Ricardo,
->
->
->
-> If you are asking about the list of MACHINE types that Yocto Project
-> supports, then the best place to look is in the Layer Index:
->
->
->
->    https://layers.openembedded.org/layerindex/branch/master/layers/
->
->
->
-> Click on the =E2=80=9CMachines=E2=80=9D tab, click on the =E2=80=9CSearch=
-=E2=80=9D tab with or without a
-> search value, and see the glorious list.
->
->
->
-> The same goes for supported layers, recipes, classes, and distro values.
->
->
->
-> You can change the =E2=80=9CBranch=E2=80=9D value to see the MACHINE=E2=
-=80=99s per release.
->
->
->
-> - David Reyna
->
->
->
-> *From:* yocto-bounces@yoctoproject.org [mailto:yocto-bounces@
-> yoctoproject.org] *On Behalf Of *Ricardo Ramirez
-> *Sent:* Sunday, June 10, 2018 5:07 PM
-> *To:* yocto@yoctoproject.org
-> *Subject:* Re: [yocto] Target CPU architectures that Yocto Project Suppor=
-t
->
->
->
-> Hi,
->
->
->
-> Naive question from a newbie. How can this be achieved? I'd appreciate if
-> you could please shed some light on what steps need to be followed?
->
->
->
-> Thanks in advance,
->
->
->
-> -R
->
-
---000000000000d551f3056e5433a6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi David,<div><br></div><div>Thanks for the prompt reply!=
-=C2=A0</div><div><br></div><div>My question was a follow up of Khem&#39;s i=
-nquire (posted on 2014-05-02)</div><div><br></div><div><a href=3D"https://l=
-ists.yoctoproject.org/pipermail/yocto/2014-May/019387.html">https://lists.y=
-octoproject.org/pipermail/yocto/2014-May/019387.html</a><br></div><div><br>=
-</div><div>Using the links you sent me, I found that the old OE-Classic bra=
-nch supports sparc32 but didn&#39;t see any sparc64<br></div><div><br></div=
-><div><a href=3D"http://layers.openembedded.org/layerindex/oe-classic/recip=
-es/">http://layers.openembedded.org/layerindex/oe-classic/recipes/</a><br><=
-/div><div><br></div><div>As such, I&#39;d like to know what steps I need to=
- follow in order to enable a SPARCv9 machine in Yocto.</div><div><br></div>=
-<div>I appreciate=C2=A0your answer.</div><div><br></div><div>-R</div><div><=
-br></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On=
- Sun, Jun 10, 2018 at 7:17 PM, Reyna, David <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:david.reyna@windriver.com" target=3D"_blank">david.reyna@windriv=
-er.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
 
 
-
-
-
-<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"m_-7623447277888117760WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hi Ricardo,<u></u><u></u>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">If you are asking about t=
-he list of MACHINE types that Yocto Project supports, then the best place t=
-o look is in the Layer Index:<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0 <a href=3D"h=
-ttps://layers.openembedded.org/layerindex/branch/master/layers/" target=3D"=
-_blank">https://layers.openembedded.<wbr>org/layerindex/branch/master/<wbr>=
-layers/</a><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Click on the =E2=80=9CMac=
-hines=E2=80=9D tab, click on the =E2=80=9CSearch=E2=80=9D tab with or witho=
-ut a search value, and see the glorious list.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">The same goes for support=
-ed layers, recipes, classes, and distro values.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">You can change the =E2=80=
-=9CBranch=E2=80=9D value to see the MACHINE=E2=80=99s per release.<u></u><u=
-></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">- David Reyna<u></u><u></=
-u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> <a href=
-=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-bounces@=
-yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.o=
-rg" target=3D"_blank">yocto-bounces@<wbr>yoctoproject.org</a>]
-<b>On Behalf Of </b>Ricardo Ramirez<br>
-<b>Sent:</b> Sunday, June 10, 2018 5:07 PM<br>
-<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
-o@yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] Target CPU architectures that Yocto Project Sup=
-port<u></u><u></u></span></p><div><div class=3D"h5">
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Naive question from a newbie. How can this be achiev=
-ed? I&#39;d appreciate if you could please shed some light on what steps ne=
-ed to be followed?<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Thanks in advance,<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">-R<u></u><u></u></p>
-</div>
-</div>
-</div></div></div>
-</div>
-
-</blockquote></div><br></div>
-
---000000000000d551f3056e5433a6--
