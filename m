@@ -1,44 +1,64 @@
-Return-Path: <david.reyna@windriver.com>
+Return-Path: <o_o@ieee.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7B1E6E01837; Sun, 10 Jun 2018 17:31:03 -0700 (PDT)
+	id C8223E0187E; Sun, 10 Jun 2018 19:06:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C8F8E0159C
-	for <yocto@yoctoproject.org>; Sun, 10 Jun 2018 17:31:02 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w5B0UF70011949
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 10 Jun 2018 17:30:30 -0700
-Received: from ALA-MBC.corp.ad.wrs.com ([169.254.1.176]) by
-	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.03.0399.000;
-	Sun, 10 Jun 2018 17:30:04 -0700
-From: "Reyna, David" <david.reyna@windriver.com>
-To: Khem Raj <raj.khem@gmail.com>, "OSIER-MIXON, JEFFREY"
-	<jeffrey.osier-mixon@intel.com>
-Thread-Topic: [yocto] Gratitude
-Thread-Index: AQHT/b7WYsbT+7zNfE+ArO1FxbY2gqRaOaPQ
-Date: Mon, 11 Jun 2018 00:30:03 +0000
-Message-ID: <5E53D14CE4667A45B9A06760DE5D13D0F38E97D6@ALA-MBC.corp.ad.wrs.com>
-References: <800E589716441541A37F6120DCDD24557A2D8296@IRSMSX101.ger.corp.intel.com>
-	<CAMKF1sq1n7nLFaCLQVmRmdSHjGair-J3mk3XGBK+4maLMKEAJA@mail.gmail.com>
-In-Reply-To: <CAMKF1sq1n7nLFaCLQVmRmdSHjGair-J3mk3XGBK+4maLMKEAJA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.117.33]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
+	[209.85.214.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1723DE010BF
+	for <yocto@yoctoproject.org>; Sun, 10 Jun 2018 19:06:49 -0700 (PDT)
+Received: by mail-it0-f46.google.com with SMTP id k17-v6so10058382ita.0
+	for <yocto@yoctoproject.org>; Sun, 10 Jun 2018 19:06:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ieee-org.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=qKYI4ZAMODukNDUJNWqDAcPWx7RaQ8r7qnR1Vn+CNj8=;
+	b=fQfLg48McfWSxVlnPoqnOAWMSkEUvulvvk6upSr28Sqfm01pUwXJfnx6ivq/RwNzzV
+	IH7DcyTjEA/sBL3bZi3yEUn70UavAZDnKcY0KRp7w5QcvPxYvo1Ojri/7TaDVv21MWAD
+	1wPSunnym8WWmigUhtgwsg26IGOFDxlBr54/wCRuSv3SsYdWMsFPdL/gfJSnHrf6j3Uk
+	JkMiXS+nE23o4Tdg24W4F4iAkDv9YYMlAhLPdjSQPxmPgxOpwAz9J0IkgiQ5azEIj7Be
+	P+OJCOeNg0eDtBuul+JeUI/1X7yD1ISdQBnK85Bpdqbea6nz/0tIMXA3zcULSn3PS8OK
+	WNMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=qKYI4ZAMODukNDUJNWqDAcPWx7RaQ8r7qnR1Vn+CNj8=;
+	b=QLjOO0+dUvV4dPRipmhZ0RBW1ODD1dqKK+f4rYBqaGFeThiURxRhC/rLx0vAtWi66b
+	xfCUNuyZ25JvDbJcQS1dV2KEPLhS/Z4oEwuEn27LjCp/r3H733CdEHtoYSfCJWxHm5Uz
+	Sp2PyaCdAT9xRjGyDg57wM5+MLQ2pnhoejpk4Wyqi5TmUVcQaJkCPDNB5QLMjzVbsKX0
+	dAbdF3CGIgU6mImV792ofnP3Da5Hqqk2/Z5MTdxlKZhMy41pinViTnDkgjhCC+AjZDpN
+	W2G0baD/7/mc/mLNssFKuc8DAi9UfrLP624yYbuPkR1r0A6LWuGYzabiFESjXnkeSplQ
+	PTmw==
+X-Gm-Message-State: APt69E15BUWM6yL+8t1Cj52A97ly+wV+PVrkZops/4xeKA7DGthvuNZf
+	uSdSDQODzbcgNQXE8k09ekRFlYkn91xtE100FmfxGhV5
+X-Google-Smtp-Source: ADUXVKKqAzrANWgwIAUrgeIQwgxXrD92tntthqyt1++PWwTW8pE6A1qWD+jMdQZRJmay5qV/dQud/q6L+4dpNqgVLIQ=
+X-Received: by 2002:a24:3a87:: with SMTP id
+	m129-v6mr298579itm.90.1528682809468; 
+	Sun, 10 Jun 2018 19:06:49 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Gratitude
+Received: by 2002:a02:850b:0:0:0:0:0 with HTTP; Sun, 10 Jun 2018 19:06:49
+	-0700 (PDT)
+In-Reply-To: <5E53D14CE4667A45B9A06760DE5D13D0F38E9788@ALA-MBC.corp.ad.wrs.com>
+References: <CAMXie8EtM6FOs4Qf3XHW-5EGTy_+xc7Cen-U_UB3ZpO8b4PcjA@mail.gmail.com>
+	<5E53D14CE4667A45B9A06760DE5D13D0F38E9788@ALA-MBC.corp.ad.wrs.com>
+From: Ricardo Ramirez <o_o@ieee.org>
+Date: Sun, 10 Jun 2018 21:06:49 -0500
+Message-ID: <CAMXie8EYUhONeuve=oF3hs9fe9Jz_rTP2QWFh0AKZdyyGj=J8Q@mail.gmail.com>
+To: "Reyna, David" <david.reyna@windriver.com>, yocto@yoctoproject.org
+Subject: Re: Target CPU architectures that Yocto Project Support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,75 +70,208 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jun 2018 00:31:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 11 Jun 2018 02:06:50 -0000
+Content-Type: multipart/alternative; boundary="000000000000d551f3056e5433a6"
+
+--000000000000d551f3056e5433a6
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Jefro,
+Hi David,
 
-I am very happy for you in your moving forward, thought I will very much mi=
-ss your being part of our community.
+Thanks for the prompt reply!
 
-Thank you for all your years of work and guidance and enthusiasm, and thank=
- you for your generous support of the team as a whole and myself in particu=
-lar!
+My question was a follow up of Khem's inquire (posted on 2014-05-02)
 
-I hope to get a chance to say hello next time I am in Portland (and if you =
-end up in Canada, I am happy to meet up with you there as well :-).
+https://lists.yoctoproject.org/pipermail/yocto/2014-May/019387.html
 
-- David
+Using the links you sent me, I found that the old OE-Classic branch
+supports sparc32 but didn't see any sparc64
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Khem Raj
-Sent: Wednesday, June 06, 2018 10:49 AM
-To: OSIER-MIXON, JEFFREY
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Gratitude
+http://layers.openembedded.org/layerindex/oe-classic/recipes/
 
-Jefro
+As such, I'd like to know what steps I need to follow in order to enable a
+SPARCv9 machine in Yocto.
 
-you have been very helpful all along has been great working with you. Your
-contributions have been significant for project, thanks for all your
-contributions.
-Small world I am sure I will see you around :)
+I appreciate your answer.
 
--Khem
+-R
 
-On Tue, Jun 5, 2018 at 11:42 PM, Osier-mixon, Jeffrey
-<jeffrey.osier-mixon@intel.com> wrote:
-> I have been the Yocto Project community manager for over 7 years now, and=
- have had the pleasure of knowing or conversing individually with several h=
-undred of you. It is with mixed feelings that I must announce that I am ste=
-pping down from my position as the YP community manager and the Advisory Bo=
-ard chair after 7 years, as I am taking on a new role in my job.
->
-> I am very proud of the progress that the project has made, growing from a=
- small set of build tools into an industry standard for building and workin=
-g with embedded Linux-based operating systems, supporting upstream projects=
- including the Linux kernel, hosting projects like opkg, and inspiring many=
- very successful downstream projects, including AGL and OpenBMC among many =
-others, and also supporting countless configurations of hardware among seve=
-n different architectures. We have also seen the community of users grow fr=
-om fewer than 1000 in 2010 to a large city-sized community, estimated in th=
-e tens of thousands of developers.
->
-> Please continue to participate, collaborate, and come together as a commu=
-nity! The Yocto Project is a success because every one of you participates.
->
-> Jeffrey "Jefro" Osier-Mixon, Intel Corporation
-> Open Source Community Ecosystem Strategist
+
+On Sun, Jun 10, 2018 at 7:17 PM, Reyna, David <david.reyna@windriver.com>
+wrote:
+
+> Hi Ricardo,
 >
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
---=20
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+>
+> If you are asking about the list of MACHINE types that Yocto Project
+> supports, then the best place to look is in the Layer Index:
+>
+>
+>
+>    https://layers.openembedded.org/layerindex/branch/master/layers/
+>
+>
+>
+> Click on the =E2=80=9CMachines=E2=80=9D tab, click on the =E2=80=9CSearch=
+=E2=80=9D tab with or without a
+> search value, and see the glorious list.
+>
+>
+>
+> The same goes for supported layers, recipes, classes, and distro values.
+>
+>
+>
+> You can change the =E2=80=9CBranch=E2=80=9D value to see the MACHINE=E2=
+=80=99s per release.
+>
+>
+>
+> - David Reyna
+>
+>
+>
+> *From:* yocto-bounces@yoctoproject.org [mailto:yocto-bounces@
+> yoctoproject.org] *On Behalf Of *Ricardo Ramirez
+> *Sent:* Sunday, June 10, 2018 5:07 PM
+> *To:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Target CPU architectures that Yocto Project Suppor=
+t
+>
+>
+>
+> Hi,
+>
+>
+>
+> Naive question from a newbie. How can this be achieved? I'd appreciate if
+> you could please shed some light on what steps need to be followed?
+>
+>
+>
+> Thanks in advance,
+>
+>
+>
+> -R
+>
 
+--000000000000d551f3056e5433a6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi David,<div><br></div><div>Thanks for the prompt reply!=
+=C2=A0</div><div><br></div><div>My question was a follow up of Khem&#39;s i=
+nquire (posted on 2014-05-02)</div><div><br></div><div><a href=3D"https://l=
+ists.yoctoproject.org/pipermail/yocto/2014-May/019387.html">https://lists.y=
+octoproject.org/pipermail/yocto/2014-May/019387.html</a><br></div><div><br>=
+</div><div>Using the links you sent me, I found that the old OE-Classic bra=
+nch supports sparc32 but didn&#39;t see any sparc64<br></div><div><br></div=
+><div><a href=3D"http://layers.openembedded.org/layerindex/oe-classic/recip=
+es/">http://layers.openembedded.org/layerindex/oe-classic/recipes/</a><br><=
+/div><div><br></div><div>As such, I&#39;d like to know what steps I need to=
+ follow in order to enable a SPARCv9 machine in Yocto.</div><div><br></div>=
+<div>I appreciate=C2=A0your answer.</div><div><br></div><div>-R</div><div><=
+br></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On=
+ Sun, Jun 10, 2018 at 7:17 PM, Reyna, David <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:david.reyna@windriver.com" target=3D"_blank">david.reyna@windriv=
+er.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"m_-7623447277888117760WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hi Ricardo,<u></u><u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">If you are asking about t=
+he list of MACHINE types that Yocto Project supports, then the best place t=
+o look is in the Layer Index:<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0=C2=A0 <a href=3D"h=
+ttps://layers.openembedded.org/layerindex/branch/master/layers/" target=3D"=
+_blank">https://layers.openembedded.<wbr>org/layerindex/branch/master/<wbr>=
+layers/</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Click on the =E2=80=9CMac=
+hines=E2=80=9D tab, click on the =E2=80=9CSearch=E2=80=9D tab with or witho=
+ut a search value, and see the glorious list.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">The same goes for support=
+ed layers, recipes, classes, and distro values.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">You can change the =E2=80=
+=9CBranch=E2=80=9D value to see the MACHINE=E2=80=99s per release.<u></u><u=
+></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">- David Reyna<u></u><u></=
+u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> <a href=
+=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-bounces@=
+yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.o=
+rg" target=3D"_blank">yocto-bounces@<wbr>yoctoproject.org</a>]
+<b>On Behalf Of </b>Ricardo Ramirez<br>
+<b>Sent:</b> Sunday, June 10, 2018 5:07 PM<br>
+<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] Target CPU architectures that Yocto Project Sup=
+port<u></u><u></u></span></p><div><div class=3D"h5">
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Naive question from a newbie. How can this be achiev=
+ed? I&#39;d appreciate if you could please shed some light on what steps ne=
+ed to be followed?<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Thanks in advance,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">-R<u></u><u></u></p>
+</div>
+</div>
+</div></div></div>
+</div>
+
+</blockquote></div><br></div>
+
+--000000000000d551f3056e5433a6--
