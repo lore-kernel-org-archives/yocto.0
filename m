@@ -1,6 +1,6 @@
 Return-Path: <>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 749D7E01CAC; Sun, 10 Jun 2018 23:46:56 -0700 (PDT)
+	id ACF78E01E8D; Sun, 10 Jun 2018 23:54:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,25 +8,25 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
+	*      [192.55.52.151 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DC4CE00CE2
-	for <yocto@yoctoproject.org>; Sun, 10 Jun 2018 23:46:55 -0700 (PDT)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54D7CE01E89
+	for <yocto@yoctoproject.org>; Sun, 10 Jun 2018 23:54:28 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	10 Jun 2018 23:46:54 -0700
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	10 Jun 2018 23:54:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.49,500,1520924400"; d="scan'208";a="58187162"
+X-IronPort-AV: E=Sophos;i="5.49,500,1520924400"; d="scan'208";a="236088305"
 Received: from aaronchu-mobl1.png.intel.com ([10.221.23.106])
-	by orsmga003.jf.intel.com with ESMTP; 10 Jun 2018 23:46:53 -0700
+	by fmsmga005.fm.intel.com with ESMTP; 10 Jun 2018 23:54:26 -0700
 From: Aaron@yoctoproject.org, Chan@yoctoproject.org
 To: yocto@yoctoproject.org
-Date: Mon, 11 Jun 2018 14:46:45 +0800
-Message-Id: <1528699605-21682-1-git-send-email-aaron.chun.yew.chan@intel.com>
+Date: Mon, 11 Jun 2018 14:54:22 +0800
+Message-Id: <1528700062-22032-1-git-send-email-aaron.chun.yew.chan@intel.com>
 X-Mailer: git-send-email 2.7.4
 X-Mailman-Approved-At: Mon, 11 Jun 2018 02:39:56 -0700
 Cc: Aaron Chan <aaron.chun.yew.chan@intel.com>
@@ -42,7 +42,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Jun 2018 06:46:56 -0000
+X-List-Received-Date: Mon, 11 Jun 2018 06:54:30 -0000
 
 From: Aaron Chan <aaron.chun.yew.chan@intel.com>
 
