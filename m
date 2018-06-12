@@ -1,69 +1,91 @@
-Return-Path: <pauldotknopf@gmail.com>
+Return-Path: <alexandretm@amotus.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1EE87E02C5E; Tue, 12 Jun 2018 11:47:55 -0700 (PDT)
+	id 8BCDDE02EEE; Tue, 12 Jun 2018 13:34:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pauldotknopf[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.177 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.41.92 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f177.google.com (mail-io0-f177.google.com
-	[209.85.223.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00D01E02C11
-	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 11:47:53 -0700 (PDT)
-Received: by mail-io0-f177.google.com with SMTP id e15-v6so613981iog.1
-	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 11:47:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=G8v+uohb6dcV5EMo9cnrhAzh/XQMawxzg8lG2Q1n06Q=;
-	b=dsRZrs9E7ZluhvPoYwfF4Ji2bfyJiBKnyN+i2HtmdkbQeUtcX+LWuOJ+0AeeVNTdNV
-	pXpHV7SGBtQX9KRmSR8YpU2tdDx50w/e4hcU3kBTy+OjSilIi2gUYH3g1ZuEO5bkIN88
-	H9BWvaRRqTF20fu8SQyQsShMX4mEKZPp74zfKKY1Q6A0n0dOVkMg6WlMWoZWVSqPv34t
-	JhdSdHXhVDdOGAIZeuQJG63yG27XE+H/oIkaJYxMS7E09F7MK4BbLYjSdBNaYe9PZUq/
-	1uqu9sJE3OEGW/nG0k4HIOlcsd2thkoKFgYqAaD/G77u2zPCc88WffyT/z1YGVYKe3/H
-	dKXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=G8v+uohb6dcV5EMo9cnrhAzh/XQMawxzg8lG2Q1n06Q=;
-	b=ffFjFXChtquHRCsB3rc36MEKRbEEhDaTrPVwnQV6guVmE0hcKXxyB0ZXMRzVqvo98h
-	WiipunxqM9cTboEGXBGnhwzYogHnRgxykSoa7+QXJ8jk1FLC9AvZ6tYEe7WFTw/82qC9
-	HsrVOOvllBATkSg8b1QwWLRSP9jhkGJ8gtZEDXwDDTJ4jjryXFiUDWci0UxjDkq+bI32
-	buZMWW6OycqBxVj3D/n9rAwUYRjksYLk141x6eE/T/K/XZMqqTnmQqlUIsocQa9j4kYL
-	EoaX9Q58ULFjeZ9+22NfBzT51qw6He4FsWpj8yJzwBA3bZwKQ4h6BCLEG714cYg9c2NF
-	wSog==
-X-Gm-Message-State: APt69E2hYlXQLMVOEEa2MNqgm9qC4qd/nJsIeLcs0oxi8ks3DQJGiHBF
-	wvHQ4zOPC8VnvI8ZAr1E93WnCTyzEpIpUfTwHrI=
-X-Google-Smtp-Source: ADUXVKIXj9pR25zx6eVo33bWafRvSPc8GU5wNbeqYxLhiBDBgJCtyHVOQu2Us2k2fG2+mgPbQ4bL1QKm/s0e8uTQDXw=
-X-Received: by 2002:a6b:882a:: with SMTP id
-	k42-v6mr1649832iod.137.1528829273245; 
-	Tue, 12 Jun 2018 11:47:53 -0700 (PDT)
+X-Greylist: delayed 9066 seconds by postgrey-1.32 at yocto-www;
+	Tue, 12 Jun 2018 13:34:53 PDT
+Received: from NAM03-DM3-obe.outbound.protection.outlook.com
+	(mail-dm3nam03on0092.outbound.protection.outlook.com [104.47.41.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40074E02EE4
+	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 13:34:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=amotus.onmicrosoft.com; s=selector1-amotus-ca;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=+/l1W7snNs+rg3dQ+jZtid+809OCMBxxd0LRL1Y7HKM=;
+	b=0807L1BAu+HofZVZcKnU2+8UEWFqy4M03LuL7FMhIHVDd9oK85GoQ/s85vGUDiNZ+wZmSUN/TbEP0175ZKdcy/Yr6XvtHTm5KmzZONBW8MqZo8pVC6ZFwFQ3N0zLb5HF6yJmEBzMMmhhchXHuj75yuKL3ojMBwhp7IAiii6an+k=
+Received: from BN6PR1101MB2356.namprd11.prod.outlook.com (10.173.203.137) by
+	BN6PR1101MB2164.namprd11.prod.outlook.com (10.174.112.145) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.863.14; Tue, 12 Jun 2018 14:37:35 +0000
+Received: from BN6PR1101MB2356.namprd11.prod.outlook.com
+	([fe80::2161:de98:cc62:3e5f]) by
+	BN6PR1101MB2356.namprd11.prod.outlook.com
+	([fe80::2161:de98:cc62:3e5f%4]) with mapi id 15.20.0841.019;
+	Tue, 12 Jun 2018 14:37:35 +0000
+From: =?iso-8859-1?Q?Mathieu_Alexandre-T=E9treault?= <alexandretm@amotus.ca>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Adding package's license to the final image
+Thread-Index: AdQCWgu5xCuZT2GtSeCM1RdKkosW4w==
+Date: Tue, 12 Jun 2018 14:37:35 +0000
+Message-ID: <BN6PR1101MB2356874E9E745A6EA9D8F5D4B27F0@BN6PR1101MB2356.namprd11.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=alexandretm@amotus.ca; 
+x-originating-ip: [24.37.194.182]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; BN6PR1101MB2164;
+	7:kCoczW1lOmHpY+WhjTji9HL4PbgmxlLp/Xbm4a9JedMKj4W3GFqDHOH4NLwZtMI2toGywnyOKiGHVHOquiw02tplf8iSpnp/5Z+pOi5cfOU5IVgWpuaKHLrV2Wuvbw44j/9Gygr7D8SdUSWgGeBmZBujuBO9G+tOyIluYbbGxdsnh2UbPDEq9K1bO5tOr0LMoNSKak6LmigdEauEopNXGOC+FHYp2WFJVH/os4/wGI7e3DDi4eWmZtTyLC48sPfV;
+	23:chN9aoX6f1/BMz+i5Gna5VTtMW4CMoyqWwWgTXNFy/kyWEUaYDEYCcvsS+0/l+kDGvr8rLhcUXK+B7FWhgH8WD3OKhASSv/6WuM5JALB5u8hKtd5qLghFxAjeRib/nAymv11AcI8CBHiSIAULOMPxQ==
+x-ms-exchange-antispam-srfa-diagnostics: SOS;
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(7021125)(5600026)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(2017052603328)(7153060)(7193020);
+	SRVR:BN6PR1101MB2164; 
+X-MS-TrafficTypeDiagnostic: BN6PR1101MB2164:|BN6PR1101MB2164:
+x-microsoft-antispam-prvs: <BN6PR1101MB2164E027DA323B45A670ABD7B27F0@BN6PR1101MB2164.namprd11.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155);
+x-ms-exchange-senderadcheck: 1
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040522)(2401047)(8121501046)(5005006)(93006095)(93001095)(10201501046)(3002001)(3231254)(944501410)(52105095)(149027)(150027)(6041310)(20161123560045)(20161123564045)(20161123558120)(2016111802025)(20161123562045)(6072148)(6043046)(201708071742011)(7699016);
+	SRVR:BN6PR1101MB2164; BCL:0; PCL:0; RULEID:;
+	SRVR:BN6PR1101MB2164; 
+x-forefront-prvs: 07013D7479
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(366004)(39830400003)(376002)(396003)(39380400002)(346002)(189003)(199004)(316002)(5630700001)(86362001)(7696005)(105586002)(68736007)(106356001)(53936002)(6916009)(81156014)(55016002)(66066001)(186003)(5640700003)(5660300001)(74316002)(2351001)(81166006)(1730700003)(74482002)(25786009)(97736004)(8676002)(3660700001)(102836004)(6506007)(26005)(99286004)(7736002)(3280700002)(33656002)(6436002)(8936002)(486006)(2900100001)(6116002)(790700001)(476003)(3846002)(6306002)(2501003)(5250100002)(478600001)(54896002)(9686003)(14454004)(2906002)(21314002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6PR1101MB2164;
+	H:BN6PR1101MB2356.namprd11.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: amotus.ca does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: 5ixQ79a+Vzjib5BTYbxhusVgRsidHKAFJeNCZ201eSmCMfgcc2rbDdoWI/OxYVIh+f3kTniMc8uV5vjgvjadm3doAApfk10BNH+mbOlL1ZPw9EjvLpyhZXsvsR1JK/nOsqTKtKhqFd+MVwhNbF4CCWv3bpxqW+xiqm4m45sKh66fIU0qLZeWM5aMqvggHT8d
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 2002:a6b:8c0a:0:0:0:0:0 with HTTP; Tue, 12 Jun 2018 11:47:52
-	-0700 (PDT)
-In-Reply-To: <CAKmWj-2NHyF7qKT5vKvVL1KoGEenCQzMPZL4Cyw2BMH_RN3ihw@mail.gmail.com>
-References: <CAKmWj-1Uks-O3HhP016_qhtk-a_dhv=39zMkJKdebkuBPhhifQ@mail.gmail.com>
-	<CAKmWj-3-=praP1s0047GE_P4D=fSA57TpJe77ZXHSZLZCuy4uw@mail.gmail.com>
-	<CAKmWj-2NHyF7qKT5vKvVL1KoGEenCQzMPZL4Cyw2BMH_RN3ihw@mail.gmail.com>
-From: Paul Knopf <pauldotknopf@gmail.com>
-Date: Tue, 12 Jun 2018 14:47:52 -0400
-Message-ID: <CAKmWj-04G9Ar83SmsZo+_U-UZ=AnreREXqjPYf1YUR7eL+Nbkw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: Patch for custom imager plugin in wic.
+X-MS-Office365-Filtering-Correlation-Id: 16a1e35d-f225-40dd-3ccb-08d5d0720a0c
+X-MS-Exchange-CrossTenant-Network-Message-Id: 16a1e35d-f225-40dd-3ccb-08d5d0720a0c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2018 14:37:35.3844 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eb1fb47f-d32e-4ec7-8cf5-9c91bb29593c
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1101MB2164
+X-OriginatorOrg: amotus.ca
+Subject: Adding package's license to the final image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,133 +97,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jun 2018 18:47:55 -0000
-Content-Type: multipart/alternative; boundary="000000000000c10c6c056e764df8"
+X-List-Received-Date: Tue, 12 Jun 2018 20:34:55 -0000
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR1101MB2356874E9E745A6EA9D8F5D4B27F0BN6PR1101MB2356_"
 
---000000000000c10c6c056e764df8
-Content-Type: text/plain; charset="UTF-8"
-
-Can anybody see this message? lol
-
-On Tue, Jun 5, 2018 at 10:05 AM, Paul Knopf <pauldotknopf@gmail.com> wrote:
-
-> Can someone instruct me on the proper protocol to request a change?
->
-> On Wed, May 23, 2018 at 1:37 PM, Paul Knopf <pauldotknopf@gmail.com>
-> wrote:
->
->> Can this change be merged into master?
->>
->> On Mon, May 21, 2018 at 5:00 PM, Paul Knopf <pauldotknopf@gmail.com>
->> wrote:
->>
->>> From 136d6214b6fc2c1118dac5b7f3e029ed006fab8a Mon Sep 17 00:00:00 2001
->>> From: Paul Knopf <pauldotknopf@gmail.com>
->>> Date: Mon, 21 May 2018 16:56:51 -0400
->>> Subject: [PATCH] Support for changing the imager used in wic.
->>>
->>> ---
->>>  scripts/lib/wic/engine.py | 2 +-
->>>  scripts/wic               | 1 +
->>>  2 files changed, 2 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/scripts/lib/wic/engine.py b/scripts/lib/wic/engine.py
->>> index edcfab3..d7c5c11 100644
->>> --- a/scripts/lib/wic/engine.py
->>> +++ b/scripts/lib/wic/engine.py
->>> @@ -191,7 +191,7 @@ def wic_create(wks_file, rootfs_dir, bootimg_dir,
->>> kernel_dir,
->>>      if not os.path.exists(options.outdir):
->>>          os.makedirs(options.outdir)
->>>
->>> -    pname = 'direct'
->>> +    pname = options.imager
->>>      plugin_class = PluginMgr.get_plugins('imager').get(pname)
->>>      if not plugin_class:
->>>          raise WicError('Unknown plugin: %s' % pname)
->>> diff --git a/scripts/wic b/scripts/wic
->>> index 7392bc4..255e524 100755
->>> --- a/scripts/wic
->>> +++ b/scripts/wic
->>> @@ -360,6 +360,7 @@ def wic_init_parser_create(subparser):
->>>      subparser.add_argument("-v", "--vars", dest='vars_dir',
->>>                        help="directory with <image>.env files that store
->>> "
->>>                             "bitbake variables")
->>> +    subparser.add_argument("-i", "--imager", dest="imager",
->>> default="direct", help="the wic imager plugin")
->>>      subparser.add_argument("-D", "--debug", dest="debug",
->>> action="store_true",
->>>                        default=False, help="output debug information")
->>>      return
->>> --
->>> 2.7.4
->>>
->>>
->>
->
-
---000000000000c10c6c056e764df8
-Content-Type: text/html; charset="UTF-8"
+--_000_BN6PR1101MB2356874E9E745A6EA9D8F5D4B27F0BN6PR1101MB2356_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Can anybody see this message? lol</div><div class=3D"gmail=
-_extra"><br><div class=3D"gmail_quote">On Tue, Jun 5, 2018 at 10:05 AM, Pau=
-l Knopf <span dir=3D"ltr">&lt;<a href=3D"mailto:pauldotknopf@gmail.com" tar=
-get=3D"_blank">pauldotknopf@gmail.com</a>&gt;</span> wrote:<br><blockquote =
-class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
-;padding-left:1ex"><div dir=3D"ltr">Can someone instruct me on the proper p=
-rotocol to request a change?</div><div class=3D"HOEnZb"><div class=3D"h5"><=
-div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed, May 23, 20=
-18 at 1:37 PM, Paul Knopf <span dir=3D"ltr">&lt;<a href=3D"mailto:pauldotkn=
-opf@gmail.com" target=3D"_blank">pauldotknopf@gmail.com</a>&gt;</span> wrot=
-e:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
-eft:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Can this change be me=
-rged into master?</div><div class=3D"m_8890298167323351978HOEnZb"><div clas=
-s=3D"m_8890298167323351978h5"><div class=3D"gmail_extra"><br><div class=3D"=
-gmail_quote">On Mon, May 21, 2018 at 5:00 PM, Paul Knopf <span dir=3D"ltr">=
-&lt;<a href=3D"mailto:pauldotknopf@gmail.com" target=3D"_blank">pauldotknop=
-f@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div di=
-r=3D"ltr"><div>From 136d6214b6fc2c1118dac5b7f3e029<wbr>ed006fab8a Mon Sep 1=
-7 00:00:00 2001</div><div>From: Paul Knopf &lt;<a href=3D"mailto:pauldotkno=
-pf@gmail.com" target=3D"_blank">pauldotknopf@gmail.com</a>&gt;</div><div>Da=
-te: Mon, 21 May 2018 16:56:51 -0400</div><div>Subject: [PATCH] Support for =
-changing the imager used in wic.</div><div><br></div><div>---</div><div>=C2=
-=A0scripts/lib/wic/engine.py | 2 +-</div><div>=C2=A0scripts/wic =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 1 +</div><div>=C2=A02 files change=
-d, 2 insertions(+), 1 deletion(-)</div><div><br></div><div>diff --git a/scr=
-ipts/lib/wic/engine.py b/scripts/lib/wic/engine.py</div><div>index edcfab3.=
-.d7c5c11 100644</div><div>--- a/scripts/lib/wic/engine.py</div><div>+++ b/s=
-cripts/lib/wic/engine.py</div><div>@@ -191,7 +191,7 @@ def wic_create(wks_f=
-ile, rootfs_dir, bootimg_dir, kernel_dir,</div><div>=C2=A0 =C2=A0 =C2=A0if =
-not os.path.exists(options.outdir)<wbr>:</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0os.makedirs(options.outdir)</div><div>=C2=A0</div><div>- =C2=A0 =
-=C2=A0pname =3D &#39;direct&#39;</div><div>+ =C2=A0 =C2=A0pname =3D options=
-.imager</div><div>=C2=A0 =C2=A0 =C2=A0plugin_class =3D PluginMgr.get_plugin=
-s(&#39;imager&#39;<wbr>).get(pname)</div><div>=C2=A0 =C2=A0 =C2=A0if not pl=
-ugin_class:</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0raise WicError(&#39=
-;Unknown plugin: %s&#39; % pname)</div><div>diff --git a/scripts/wic b/scri=
-pts/wic</div><div>index 7392bc4..255e524 100755</div><div>--- a/scripts/wic=
-</div><div>+++ b/scripts/wic</div><div>@@ -360,6 +360,7 @@ def wic_init_par=
-ser_create(subpars<wbr>er):</div><div>=C2=A0 =C2=A0 =C2=A0subparser.add_arg=
-ument(&quot;-v&quot;, &quot;--vars&quot;, dest=3D&#39;vars_dir&#39;,</div><=
-div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0help=3D&quot;directory with &lt;image&gt;.env files that store=
- &quot;</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;bitbake variables&quot;)</d=
-iv><div>+ =C2=A0 =C2=A0subparser.add_argument(&quot;-i&quot;, &quot;--image=
-r&quot;, dest=3D&quot;imager&quot;, default=3D&quot;direct&quot;, help=3D&q=
-uot;the wic imager plugin&quot;)</div><div>=C2=A0 =C2=A0 =C2=A0subparser.ad=
-d_argument(&quot;-D&quot;, &quot;--debug&quot;, dest=3D&quot;debug&quot;, a=
-ction=3D&quot;store_true&quot;,</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0default=3DFalse, help=
-=3D&quot;output debug information&quot;)</div><div>=C2=A0 =C2=A0 =C2=A0retu=
-rn</div><span class=3D"m_8890298167323351978m_1527622693881356800HOEnZb"><f=
-ont color=3D"#888888"><div>--=C2=A0</div><div>2.7.4</div><div><br></div></f=
-ont></span></div>
-</blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
+Howdy,
 
---000000000000c10c6c056e764df8--
+I am working on a project that requires the final image to contain a licens=
+e manifest for all the packaged installed on the image.
+
+At first I though about using the tmp/deploy/licenses/xxx/license.manifest =
+but this file is deployed by the IMAGE_POSTPROCESS_COMMAND_prepend which ha=
+ppens after the rootfs is done.
+
+Would anyone have a suggestion on how to this properly without using any we=
+ird hack?
+
+Cheers,
+Mathieu
+
+--_000_BN6PR1101MB2356874E9E745A6EA9D8F5D4B27F0BN6PR1101MB2356_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-CA" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Howdy,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am working on a project that requires the final im=
+age to contain a license manifest for all the packaged installed on the ima=
+ge.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">At first I though about using the tmp/deploy/license=
+s/xxx/license.manifest but this file is deployed by the IMAGE_POSTPROCESS_C=
+OMMAND_prepend which happens after the rootfs is done.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Would anyone have a suggestion on how to this proper=
+ly without using any weird hack?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Cheers,<o:p></o:p></p>
+<p class=3D"MsoNormal">Mathieu<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_BN6PR1101MB2356874E9E745A6EA9D8F5D4B27F0BN6PR1101MB2356_--
