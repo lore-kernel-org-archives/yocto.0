@@ -1,14 +1,15 @@
-Return-Path: <pandapravaskumar97@gmail.com>
+Return-Path: <icastell@nayarsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B13D3E02001; Tue, 12 Jun 2018 00:16:57 -0700 (PDT)
+	id 78180E02285; Tue, 12 Jun 2018 00:33:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pandapravaskumar97[at]gmail.com)
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,46 +18,47 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.42 listed in list.dnswl.org]
-Received: from mail-lf0-f42.google.com (mail-lf0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1AECE00CCC
-	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 00:16:56 -0700 (PDT)
-Received: by mail-lf0-f42.google.com with SMTP id j13-v6so34360554lfb.13
-	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 00:16:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=nMq5ybyLj5Tt4aRWN6FZqc+34NsYDU+rjR9DiJ/NVP4=;
-	b=pB1xkWAtx2tBdsiz7MngPkf1D8KMbsF2XSRG+RsiM3qQ2AMsY5Ibj9kxbxgN/2uszL
-	2Pr5hfpKesn6XYN60VblaP+YJoNuKKWdoicYWoR0emr1Jbu+/zPPgme+5AG3G7f21Kp5
-	wNN1Fl2gdJNi6cEVNhknrgwNW3ZnuCZgEfpB9C/bdVtJQDpglYfixrHohAVi41VeV3xw
-	fQlzbb6b5vMbyYIsMocYauXa8/a5bkVSprY9kxm0OakqAURIiExtyxpDd5Ps4i3HQLB0
-	S6fzG2fM2ECKN/IUHaDHZb+Idd2GC6HFGZ1dechbfy3lH+H5ZYBRwagmT+CQlquB5OrY
-	h1NA==
+Received: from mail-io0-f181.google.com (mail-io0-f181.google.com
+	[209.85.223.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7200AE016F5
+	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 00:33:14 -0700 (PDT)
+Received: by mail-io0-f181.google.com with SMTP id k3-v6so12879474iog.3
+	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 00:33:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nayarsystems.com; s=google;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=jxQ2wSpZTi0s/PXdu4QhfcI1VaMBgNy/MsyKcgF7Np0=;
+	b=h/+ab6cqvaXoea52vsPzMNNIb2fH4LBD2dLz+WIqGCsrHqACqqCL3re1FUSrLKdQXl
+	x7NHpcb4tpqzufBJILMwYbSGiD5vTOIriJxMtDvGX9rEsnzQ2PrL2Mxd9UnCyiIUQtx6
+	Y/RSrDCpzs9C5XQwvh1Rcg5WNfNnbORH3GBHw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=nMq5ybyLj5Tt4aRWN6FZqc+34NsYDU+rjR9DiJ/NVP4=;
-	b=UYgVj4HpmVjuCCKaU4pLXylimtlh9cTA7ZcQjV5dQf6ex355fY3cFKoHbEVXXphYMR
-	bwO6AEb7vqom62pMdDWU49gvcEY72n4XVqqKHOecvgS5dIy3Axax3cb0dU7xGQp3Q/AQ
-	V21C/D3k5ZjdbkqUhFNEiuVozaQlCzo3TGT0xi85ztzxhebLvrs4lveuVVkX2OYH4xNa
-	6bWuDzf76E84rxpNtSYMJ723oeKqYFNWa0OVkTTxnIzTy2xLjzVvmHl/uAFRCHSbgu4+
-	ha0B10K2jpT2HXRNCjyMGSy2ZHIiURNnJyVW1aQS4ZLsRJ0/Ap9ELlPrKaE2+gMpRkC5
-	cp7g==
-X-Gm-Message-State: APt69E0SkaBW0FK1Wxa4w2JLJlSjBLvZtJKIIoqUxFzJ1tXbCTA2ByWJ
-	m6W9ZN6UEfh7Ny+m3C+aQdjrSRMFKeYe6CY1Pw==
-X-Google-Smtp-Source: ADUXVKI+CMPeKZa40htbcT7652OAGOPmHxeVxWO8Hf4+El6sJ9ofI5+caECrwbMfGx+FvTVRhCU+bqFpmoQ0bRu16uk=
-X-Received: by 2002:a2e:5687:: with SMTP id
-	k7-v6mr1548758lje.140.1528787815664; 
-	Tue, 12 Jun 2018 00:16:55 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=jxQ2wSpZTi0s/PXdu4QhfcI1VaMBgNy/MsyKcgF7Np0=;
+	b=pGwA0jXZZGs75Akbnyhv987AQv2W0+z5pniic1CxRFO1LA/MDtsZUubGu0oa/V0/Qq
+	npDPVoSOxpoOJZIibOBSIsjkD8jjYxs8O1rROSMnvpPrVLo3cqBsOwqbDCOK5N1i4Q8M
+	q20og2GjQXv5CweNrHwz8otfgxNA/NbPn0JnQxPQ/22Bxo8SAv9gGyR7/7K+a3uvreTu
+	eELEiWj21rqKH9z/TxgslcH+hKfIx+AFlPXmg+pkfIdTB8QMmyn7m3rae40IEiPLMHCX
+	MNi4XNXkko0qvq/XygRtZZgMNyYCjwVPvNB0aw9P7bcENA3/rBJB8n+s76Y1NTHLLQe/
+	Kv/g==
+X-Gm-Message-State: APt69E3cBMZNYkJCDu+b49wUrGJe2dpLjwLsGPIaRJWc9ET/KzikEoJ3
+	ePxeiPUhvcxkmn+GUvpeJNknwIvvVdAl6xx8Fuimw6g7
+X-Google-Smtp-Source: ADUXVKLVRXyHbjhlCYWJbpxIXvwlDbgT0neEp0ol6vYl+vfw2CA4QsmhdNrb+sJ2OwevgQ1eCa3wpyHY44kbxIFK1rA=
+X-Received: by 2002:a6b:588:: with SMTP id
+	130-v6mr2053370iof.282.1528788793892; 
+	Tue, 12 Jun 2018 00:33:13 -0700 (PDT)
 MIME-Version: 1.0
-From: pravas kumar Panda <pandapravaskumar97@gmail.com>
-Date: Tue, 12 Jun 2018 12:46:42 +0530
-Message-ID: <CAMrvBPP=9vaErzvHjjxNrg674N+Hm3YE-La9ouxL+5DHkqW2TA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Adding kernel module to yocto core-image-base
+Received: by 2002:a02:4b86:0:0:0:0:0 with HTTP; Tue, 12 Jun 2018 00:33:13
+	-0700 (PDT)
+In-Reply-To: <CAMrvBPP=9vaErzvHjjxNrg674N+Hm3YE-La9ouxL+5DHkqW2TA@mail.gmail.com>
+References: <CAMrvBPP=9vaErzvHjjxNrg674N+Hm3YE-La9ouxL+5DHkqW2TA@mail.gmail.com>
+From: =?UTF-8?Q?Iv=C3=A1n_Castell?= <icastell@nayarsystems.com>
+Date: Tue, 12 Jun 2018 09:33:13 +0200
+Message-ID: <CAALXFYyic2am_6wjJGtfZmcC4Uaby=J6oLzGqux--Xof1_KWeQ@mail.gmail.com>
+To: pravas kumar Panda <pandapravaskumar97@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Adding kernel module to yocto core-image-base
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,48 +70,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jun 2018 07:16:57 -0000
-Content-Type: multipart/alternative; boundary="000000000000b0936e056e6ca6f8"
+X-List-Received-Date: Tue, 12 Jun 2018 07:33:15 -0000
+Content-Type: multipart/alternative; boundary="000000000000ff39b7056e6ce094"
 
---000000000000b0936e056e6ca6f8
+--000000000000ff39b7056e6ce094
 Content-Type: text/plain; charset="UTF-8"
 
-Hi all,
+Hello.
 
-I want to know how to add a kernel module using my own layer and recipe in
-yocto.
-Can someone suggest me the step by step process how to do it. how to edit
-or add
-new files so that i could build my image and the module should
-automatically loaded
-at the time of boot.please reply me with the step by step procedure.
+First you need to reconfigure your kernel configuration (ncurses must be
+properly installed in your host PC):
 
-Thanks in advance.
+    $ bitbake -c menuconfig virtual/kernel
 
-Regards,
-Pravas Kumar Panda
+After you need to generate a fragment.cfg (containing a diff betweeen your
+default and your recently customized kernel config):
 
---000000000000b0936e056e6ca6f8
+    $ bitbake -c diffconfig  virtual/kernel
+
+Thak will generate the fragment.cfg fine into your ${WORKDIR}
+
+Then you need to create a bbappend in your own BSP layer extending the
+content of your working kernel recipe. Something similar to this:
+
+    $ cat your-custom-bsp-layer/recipes-kernel/linux/linux-kernel_%.bbappend
+
+    FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+
+    SUMMARY = "Linux kernel customization for your board"
+    LINUX_VERSION = "x.y.z"
+
+    inherit kernel
+
+    SRC_URI += " \
+        file://fragment.cfg \
+    "
+
+Just replace x.y.z by your specific kernel version. The fragment.cfg file
+must be available inside your own kernel recipe, in a directory named ${PN}
+(as indicated by FILESEXTRAPATHS_prepend):
+
+    $ ls your-custom-bsp-layer/recipes-kernel/linux/linux-kernel
+    fragment.cfg
+
+Then you already can build your new kernel:
+
+    $ bitbake virtual/kernel
+
+Hope this helps!
+
+--000000000000ff39b7056e6ce094
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto"><div style=3D"font-family:arial,helvetica,sans-serif;font=
--size:16px" dir=3D"auto"><br>Hi all,<br></div><br style=3D"font-family:aria=
-l,helvetica,sans-serif;font-size:16px"><div style=3D"font-family:arial,helv=
-etica,sans-serif;font-size:16px" dir=3D"auto">I want to know how to add a k=
-ernel module using my own layer and recipe in yocto.<br></div><div style=3D=
-"font-family:arial,helvetica,sans-serif;font-size:16px" dir=3D"auto">Can so=
-meone suggest me the step by step process how to do it. how to edit or add<=
-/div><div style=3D"font-family:arial,helvetica,sans-serif;font-size:16px" d=
-ir=3D"auto">new files so that i could build my image and the module should =
-automatically loaded</div><div style=3D"font-family:arial,helvetica,sans-se=
-rif;font-size:16px" dir=3D"auto">at the time of boot.please reply me with t=
-he step by step procedure.<br></div><br style=3D"font-family:arial,helvetic=
-a,sans-serif;font-size:16px"><div style=3D"font-family:arial,helvetica,sans=
--serif;font-size:16px" dir=3D"auto">Thanks in advance.<br></div><br style=
-=3D"font-family:arial,helvetica,sans-serif;font-size:16px"><div style=3D"fo=
-nt-family:arial,helvetica,sans-serif;font-size:16px" dir=3D"auto">Regards,<=
-br></div><div style=3D"font-family:arial,helvetica,sans-serif;font-size:16p=
-x" dir=3D"auto">Pravas Kumar Panda</div></div>
+<div dir=3D"ltr">Hello.<div><br></div><div>First you need to reconfigure yo=
+ur kernel configuration (ncurses must be properly installed in your host PC=
+):</div><div><br></div><div>=C2=A0 =C2=A0 $ bitbake -c menuconfig virtual/k=
+ernel</div><div><br></div><div>After you need to generate a fragment.cfg (c=
+ontaining a diff betweeen your default and your recently customized kernel =
+config):</div><div><br></div><div>=C2=A0 =C2=A0 $ bitbake -c diffconfig=C2=
+=A0 virtual/kernel<br></div><div><br></div><div>Thak will generate the frag=
+ment.cfg fine into your ${WORKDIR}</div><div><br></div><div>Then you need t=
+o create a bbappend in your own BSP layer extending the content of your wor=
+king kernel recipe. Something similar to this:</div><div><br></div><div>=C2=
+=A0 =C2=A0 $ cat your-custom-bsp-layer/recipes-kernel/linux/linux-kernel_%.=
+bbappend</div><div><br></div><div><div>=C2=A0 =C2=A0 FILESEXTRAPATHS_prepen=
+d :=3D &quot;${THISDIR}/${PN}:&quot;</div><div><br></div><div>=C2=A0 =C2=A0=
+ SUMMARY =3D &quot;Linux kernel customization for your board&quot;</div><di=
+v>=C2=A0 =C2=A0 LINUX_VERSION =3D &quot;x.y.z&quot;</div><div><br></div><di=
+v>=C2=A0 =C2=A0 inherit kernel</div><div><br></div><div>=C2=A0 =C2=A0 SRC_U=
+RI +=3D &quot; \</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 file://fragment.cfg =
+\</div><div>=C2=A0 =C2=A0 &quot;<br></div></div><div><br></div><div><span s=
+tyle=3D"font-size:small;background-color:rgb(255,255,255);text-decoration-s=
+tyle:initial;text-decoration-color:initial;float:none;display:inline">Just =
+replace x.y.z by your specific kernel version.=C2=A0</span>The fragment.cfg=
+ file must be available inside your own kernel recipe, in a directory named=
+ ${PN} (as indicated by=C2=A0FILESEXTRAPATHS_prepend):</div><div><br></div>=
+<div>=C2=A0 =C2=A0 $ ls=C2=A0<span style=3D"font-size:small;background-colo=
+r:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:init=
+ial;float:none;display:inline">your-custom-bsp-layer/recipes-kernel/linux/l=
+inux-kernel</span></div><div><span style=3D"font-size:small;background-colo=
+r:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:init=
+ial;float:none;display:inline">=C2=A0 =C2=A0 fragment.cfg</span></div><div>=
+<span style=3D"font-size:small;background-color:rgb(255,255,255);text-decor=
+ation-style:initial;text-decoration-color:initial;float:none;display:inline=
+"><br></span></div><div><span style=3D"font-size:small;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">Then you already can build your new kernel:</span=
+></div><div><span style=3D"font-size:small;background-color:rgb(255,255,255=
+);text-decoration-style:initial;text-decoration-color:initial;float:none;di=
+splay:inline"><br></span></div><div><span style=3D"font-size:small;backgrou=
+nd-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-col=
+or:initial;float:none;display:inline">=C2=A0 =C2=A0 $ bitbake virtual/kerne=
+l</span></div><div><span style=3D"font-size:small;background-color:rgb(255,=
+255,255);text-decoration-style:initial;text-decoration-color:initial;float:=
+none;display:inline"><br></span></div><div><span style=3D"font-size:small;b=
+ackground-color:rgb(255,255,255);text-decoration-style:initial;text-decorat=
+ion-color:initial;float:none;display:inline">Hope this helps!</span></div><=
+div><br></div></div>
 
---000000000000b0936e056e6ca6f8--
+--000000000000ff39b7056e6ce094--
