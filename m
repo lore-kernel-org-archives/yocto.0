@@ -1,46 +1,53 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <prvs=5701fdb85f=adrian.ratiu@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 90D4EE026A9; Tue, 12 Jun 2018 06:27:14 -0700 (PDT)
+	id 37EFAE0273E; Tue, 12 Jun 2018 07:36:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [148.163.156.75 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAAF7E011A9
-	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 06:27:12 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	12 Jun 2018 06:27:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,214,1526367600"; d="scan'208";a="236489271"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by fmsmga005.fm.intel.com with ESMTP; 12 Jun 2018 06:27:11 -0700
-To: Ricardo Ramirez <o_o@ieee.org>
-References: <CAMXie8EtM6FOs4Qf3XHW-5EGTy_+xc7Cen-U_UB3ZpO8b4PcjA@mail.gmail.com>
-	<5E53D14CE4667A45B9A06760DE5D13D0F38E9788@ALA-MBC.corp.ad.wrs.com>
-	<CAMXie8EYUhONeuve=oF3hs9fe9Jz_rTP2QWFh0AKZdyyGj=J8Q@mail.gmail.com>
-	<611dfb80-87b3-33f7-7bdc-3a3f36a6be7f@gmail.com>
-	<CAMXie8GXRqKFwCOOPApHUcxpEo1K9NeCVazsqSvWtzZ-Bxsqzw@mail.gmail.com>
-	<CANNYZj-U69qvSQKcVwEgY3+8qcn7fKtpCS3BYjk9QrRVoPx_1w@mail.gmail.com>
-	<CAMXie8EUe=r79rN5rJ9_TnoC8kYjUaHF9W0g-QZd_JtPmHgaKg@mail.gmail.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <5d9b1ecd-7aab-585b-1a15-6232a20e59b3@linux.intel.com>
-Date: Tue, 12 Jun 2018 16:27:39 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.7.0
+X-Greylist: delayed 1619 seconds by postgrey-1.32 at yocto-www;
+	Tue, 12 Jun 2018 07:36:00 PDT
+Received: from mx0b-00010702.pphosted.com (mx0a-00010702.pphosted.com
+	[148.163.156.75])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA170E024D5
+	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 07:36:00 -0700 (PDT)
+Received: from pps.filterd (m0098781.ppops.net [127.0.0.1])
+	by mx0a-00010702.pphosted.com (8.16.0.22/8.16.0.22) with SMTP id
+	w5CE5abx016103; Tue, 12 Jun 2018 09:08:58 -0500
+Received: from ni.com (skprod2.natinst.com [130.164.80.23])
+	by mx0a-00010702.pphosted.com with ESMTP id 2jgcb4hajj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NOT); Tue, 12 Jun 2018 09:08:58 -0500
+Received: from us-aus-exhub1.ni.corp.natinst.com
+	(us-aus-exhub1.ni.corp.natinst.com [130.164.68.41])
+	by us-aus-skprod2.natinst.com (8.16.0.22/8.16.0.22) with ESMTPS id
+	w5CE8v0i009004
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Tue, 12 Jun 2018 09:08:57 -0500
+Received: from us-aus-exhub2.ni.corp.natinst.com (130.164.68.32) by
+	us-aus-exhub1.ni.corp.natinst.com (130.164.68.41) with Microsoft SMTP
+	Server (TLS) id 15.0.1156.6; Tue, 12 Jun 2018 09:08:57 -0500
+Received: from ionel-work.natinst.com (130.164.49.7) by
+	us-aus-exhub2.ni.corp.natinst.com (130.164.68.32) with Microsoft SMTP
+	Server
+	id 15.0.1156.6 via Frontend Transport; Tue, 12 Jun 2018 09:08:56 -0500
+From: Ioan-Adrian Ratiu <adrian.ratiu@ni.com>
+To: <ajlennon@dynamicdevices.co.uk>
+Date: Tue, 12 Jun 2018 17:10:24 +0300
+Message-ID: <20180612141024.25961-1-adrian.ratiu@ni.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <CAMXie8EUe=r79rN5rJ9_TnoC8kYjUaHF9W0g-QZd_JtPmHgaKg@mail.gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Target CPU architectures that Yocto Project Support
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+	definitions=2018-06-12_01:, , signatures=0
+X-Proofpoint-Spam-Reason: safe
+Cc: yocto@yoctoproject.org
+Subject: [meta-mono][PATCH] layer.conf: define LAYERSERIES_COMPAT_mono = "sumo"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,41 +59,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jun 2018 13:27:14 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 12 Jun 2018 14:36:01 -0000
+Content-Type: text/plain
 
-On 06/12/2018 04:07 PM, Ricardo Ramirez wrote:
+Newer versions of bitbake require each layer to explicitely state
+their OE/Yocto release compatibility. The consensus is for each layer
+to use the latest released version codename for the master branch.
 
-> You are right. I didn't define a clear scope for what I wanted to 
-> validate. Apologies about that imprecision.
-> 
-> If possible, I'd like to divide the validation process into three stages
-> 
-> 1. The system has a clean boot up process
-> 2. The system is tested using a C-based benchmark (e.g. SPEC CPU2006)
-> 3. The system is validated using a more complex set of 
-> testbench frameworks (e.g. http://www.phoronix-test-suite.com/ 
-> <http://www.phoronix-test-suite.com/>))
-> 
-> My immediate goal is to accomplish stages 1 and 2.
-> 
-> Considering the stages listed above, what steps would I need to follow?
+Signed-off-by: Ioan-Adrian Ratiu <adrian.ratiu@ni.com>
+---
+ conf/layer.conf | 2 ++
+ 1 file changed, 2 insertions(+)
 
-1. You need to create and boot an image for the target system, and run 
-basic smoke tests (e.g. that you can log in, and the network is up and 
-runing etc). We do this in a fully automated fashion when the target 
-hardware is QEMU emulation of various machines:
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 017a7c7..e3a10b9 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -14,3 +14,5 @@ PREFERRED_VERSION_mono ?= "5.4.1.6"
+ PREFERRED_VERSION_mono-native ?= "5.4.1.6"
+ 
+ PREFERRED_VERSION_nuget ?= "3.5.0"
++
++LAYERSERIES_COMPAT_mono = "sumo"
+-- 
+2.17.1
 
-bitbake -c testimage <image_name>
-
-2. You need to place the benchmark software into the target image, by 
-building and packaging it via yocto recipes that you need to write. I 
-don't know if the recipes for benchmarks you mentioned are already 
-available somewhere; in that case you can simply re-use that, and 
-configure your image to include that. Then you boot the image on the 
-target hardware and run the benchmarks.
-
-Alex
 
