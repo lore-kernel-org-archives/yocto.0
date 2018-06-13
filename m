@@ -1,53 +1,66 @@
-Return-Path: <ee.peng.yeoh@intel.com>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC4CBE03056; Tue, 12 Jun 2018 20:22:48 -0700 (PDT)
+	id 69AD2E03076; Tue, 12 Jun 2018 22:08:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.136 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gizero[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EE24E0304A
-	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 20:22:48 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	12 Jun 2018 20:22:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,217,1526367600"; d="scan'208";a="56871461"
-Received: from pgsmsx105.gar.corp.intel.com ([10.221.44.96])
-	by FMSMGA003.fm.intel.com with ESMTP; 12 Jun 2018 20:22:47 -0700
-Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.110]) by
-	PGSMSX105.gar.corp.intel.com ([169.254.4.136]) with mapi id
-	14.03.0319.002; Wed, 13 Jun 2018 11:22:46 +0800
-From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
-To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>, "Jolley, Stephen K"
-	<stephen.k.jolley@intel.com>, "Eggleton, Paul" <paul.eggleton@intel.com>,
-	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>
-Thread-Topic: QA cycle report for 2.4.3 RC2
-Thread-Index: AdQCNgYlScP3wiGESQCKhBJRDknQSQAj1hyw
-Date: Wed, 13 Jun 2018 03:22:45 +0000
-Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335E65208@PGSMSX109.gar.corp.intel.com>
-References: <9DDD2658D1FE414E99172D2DB1E4D04335E64BD8@PGSMSX109.gar.corp.intel.com>
-In-Reply-To: <9DDD2658D1FE414E99172D2DB1E4D04335E64BD8@PGSMSX109.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNGU2ZDQ4MTYtOThmOC00ZTc4LWE5OTItZmM3NDk2YjUyYWQ0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiZjhUWGpTemE4bHFubXNIQ0ZyZ29CMDZGbEZWejlSM051VWJpb3N5cTBETmdsOXZHVXI4RlFmNFRiTXhTVFphaSJ9
-dlp-product: dlpe-windows
-dlp-version: 11.0.200.100
-dlp-reaction: no-action
-x-originating-ip: [172.30.20.206]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f47.google.com (mail-vk0-f47.google.com
+	[209.85.213.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC871E03074
+	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 22:08:50 -0700 (PDT)
+Received: by mail-vk0-f47.google.com with SMTP id l64-v6so750776vkl.12
+	for <yocto@yoctoproject.org>; Tue, 12 Jun 2018 22:08:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=QDtG8avn6GDoWpdGn2D7vRTIjuqd96FInVIF29rQ88g=;
+	b=CODsPefzeo9iD5VGNy3HO0vheM0FNwCzM0pjqXX/Gbpw15+Nynl12TD9He/sbplHsP
+	Ydg8pyK3qi/yiecFnLRA1IvBHKYL0HMgCXh704JhIsJX/QSQoS0dT3Honff94S9VRkrA
+	chB2u/PB9nujcwDnzeiRdbZEx4c/AotJ6HSGRy107Yc+rwjSi/kd/TNLzYaTCvaXyPDa
+	eWnljUp3b5k66E+qPsADhgG9nzIfxsG/YgD2W5BO/Hs0UwhKPtz//UBHnTKy/mIqhJDN
+	OOuEQ/4Rz5yZyQUKVgjM7Ci2MkP+J7sEAOnpXlB6AXbUgrGRA+u4rVY1UIrXpc7UpDB2
+	2Ctg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=QDtG8avn6GDoWpdGn2D7vRTIjuqd96FInVIF29rQ88g=;
+	b=YNrYxkLmZE7S1JY5fRgfxV5kF40cHit4V9CfGuNOM8KY5DRWbdO/M9+Ex8q7CEbioU
+	nHZq9hlGamX913t52rF1VNuoxU+0tgQ7qMXznEP7c4w5G3qEmodbQqrjkzDxGmHMFzso
+	9e1/UdWi+sjXscLPnBErkyHGUvuZYC4j62t2XX2OTFENUm7jI9ri3Y8WerfvgmMc3Cn3
+	EPL6VVzwkNvCvsthxYEzFEqIRxCDXJ2VSAE/Trc+xl9rAIWcjLFRXTsugMiWRGLVkHHm
+	K2H+scFpNSC5hkqrR7f5CCKd9nigJvTM+FV1wRc7YaWKKg8KHjw0YQ8uBmk74CYrt2Km
+	CZGg==
+X-Gm-Message-State: APt69E2q51RZ95GO03rUAK9rihBbPvAyuK4VVo744IY5UpAHXBjLVaxg
+	8oA6igH/zJMFSb9ix+AP2v2zD7AehB7yyuSLLYlN0VgN
+X-Google-Smtp-Source: ADUXVKKefRv5W0HUD1cPFEeJmoLbxw8YHMKsxa68blSr40K1L7nSvYpixo1HiaL/IZ2r7uGHB4mwuqeBqHR0ul1YSVo=
+X-Received: by 2002:a1f:fc02:: with SMTP id
+	a2-v6mr2106098vki.141.1528866529793; 
+	Tue, 12 Jun 2018 22:08:49 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "Kirkiris, Nectar" <nectar.kirkiris@intel.com>
-Subject: QA cycle report for 2.4.3 RC2
+References: <BN6PR1101MB23560CC2388A4D2F295E2454B27F0@BN6PR1101MB2356.namprd11.prod.outlook.com>
+In-Reply-To: <BN6PR1101MB23560CC2388A4D2F295E2454B27F0@BN6PR1101MB2356.namprd11.prod.outlook.com>
+From: Andrea Galbusera <gizero@gmail.com>
+Date: Wed, 13 Jun 2018 07:08:31 +0200
+Message-ID: <CAC+thW1jALyD_gCbhtqh4B+x_W=tHsA7znnTf++JYzhXZ0eTiQ@mail.gmail.com>
+To: alexandretm@amotus.ca
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Adding package's license to the final image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,36 +72,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jun 2018 03:22:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Wed, 13 Jun 2018 05:08:51 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
+Hi!
 
-This is the full report for 2.4.3 RC2: =20
-https://wiki.yoctoproject.org/wiki/WW24_-_2018-06-12-_Full_Test_Cycle_-_2.4=
-.3_rc2
+On Tue, Jun 12, 2018 at 8:53 PM Mathieu Alexandre-T=C3=A9treault
+<alexandretm@amotus.ca> wrote:
+>
+> Howdy,
+>
+> I am working on a project that requires the final image to contain a lice=
+nse manifest for all the packaged installed on the image.
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+Take a look at [1]. There's background on licence tacking and a
+technique to include licenses in target images (never tested myself).
 
-The QA cycle for release 2.4.3 RC2 was completed.=A0 Team had found that vi=
-rtual/kernel build time had increased by 10% and 18% accordingly on Centos =
-7 and Ubuntu 1604 performance machines.  Team found that libxml2 pTest was =
-failed.  No other new bugs were discovered.=20
+[1] https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#=
+providing-license-text
 
-=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
-
-QA shows no major bug.
-
-=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
-
-New Bugs
-[1] Bug 12782 - [2.4.3.rc2] libxml2 ptest failed
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12782
-
-Regards
-Ee Peng=20
-
-
+>
+> At first I though about using the tmp/deploy/licenses/xxx/license.manifes=
+t but this file is deployed by the IMAGE_POSTPROCESS_COMMAND_prepend which =
+happens after the rootfs is done.
+>
+> Would anyone have a suggestion on how to this properly without using any =
+weird hack?
+>
+> Cheers,
+> Mathieu
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
