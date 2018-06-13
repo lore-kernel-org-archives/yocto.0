@@ -1,87 +1,69 @@
-Return-Path: <alexandretm@amotus.ca>
+Return-Path: <mikehabibi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 22F04E01CC2; Wed, 13 Jun 2018 10:10:29 -0700 (PDT)
+	id 71C55E00E84; Wed, 13 Jun 2018 13:01:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.36.96 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mikehabibi[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
-	(mail-sn1nam02on0096.outbound.protection.outlook.com [104.47.36.96])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AC32E00A4C
-	for <yocto@yoctoproject.org>; Wed, 13 Jun 2018 10:10:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=amotus.onmicrosoft.com; s=selector1-amotus-ca;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=0k8hpf4Ez062WniOC/S6gPyeoXgdGv0jemfMTm5MzEM=;
-	b=UPbs9voBeiiw8UQNwM+Gavybz6F5ZHFSgigpSdlK0iya/4Mq6Ywq5KfFakBqMCoHxKIU2X6Kh6cIertdV6cIjM5U4hSFk/QdVnQkE1b6Fzj64LiVXSEztI9RzTo4JviorIjTAmyFIaukOch8bCmec93RmZb4sDZAuKdVso0fOgY=
-Received: from BN6PR1101MB2356.namprd11.prod.outlook.com (10.173.203.137) by
-	BN6PR1101MB2258.namprd11.prod.outlook.com (10.174.113.22) with
-	Microsoft SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.863.16; Wed, 13 Jun 2018 17:10:26 +0000
-Received: from BN6PR1101MB2356.namprd11.prod.outlook.com
-	([fe80::2161:de98:cc62:3e5f]) by
-	BN6PR1101MB2356.namprd11.prod.outlook.com
-	([fe80::2161:de98:cc62:3e5f%4]) with mapi id 15.20.0863.016;
-	Wed, 13 Jun 2018 17:10:25 +0000
-From: =?iso-8859-1?Q?Mathieu_Alexandre-T=E9treault?= <alexandretm@amotus.ca>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Issue yocto strip the kernel module signature during packaging
-Thread-Index: AdQDOVVi/02C62t1R3S1vqeO7pZP1A==
-Date: Wed, 13 Jun 2018 17:10:25 +0000
-Message-ID: <BN6PR1101MB2356F068A4BE5B55E09BF089B27E0@BN6PR1101MB2356.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=alexandretm@amotus.ca; 
-x-originating-ip: [24.37.194.182]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; BN6PR1101MB2258;
-	7:IkNvq1BL671Xq0G1ujWrqyyOPcADUnGN4k3970jL2YkwwYVRUtmhAt3wF14BsaMRnzx99ConGgcodbKSSy1adQulWaw1P/gEdz1UL2liGWd+SYLXo2v3udKxvgSK/f1vaH1VujjA7h18mdP6LR3JVwDH5dVrvHXeAdIrfHfd4GffGr6ypPMfu9rBrZj0PXaTkANChHKGBQ8AlZ6tiy+PH1dwn3fPNISzSu/qdwXi50F6TAB6J1HYRSzaJNfgTFSA
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-X-MS-Office365-Filtering-Correlation-Id: d9f43ec7-b059-4d4e-eb0a-08d5d1508e6b
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(7021125)(5600026)(711020)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(2017052603328)(7153060)(7193020);
-	SRVR:BN6PR1101MB2258; 
-x-ms-traffictypediagnostic: BN6PR1101MB2258:
-x-microsoft-antispam-prvs: <BN6PR1101MB22587445FAB06D24B16258C2B27E0@BN6PR1101MB2258.namprd11.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-ms-exchange-senderadcheck: 1
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(8121501046)(5005006)(10201501046)(3002001)(93006095)(93001095)(3231254)(944501410)(52105095)(149027)(150027)(6041310)(20161123560045)(20161123562045)(20161123558120)(20161123564045)(2016111802025)(6043046)(6072148)(201708071742011)(7699016);
-	SRVR:BN6PR1101MB2258; BCL:0; PCL:0; RULEID:;
-	SRVR:BN6PR1101MB2258; 
-x-forefront-prvs: 07025866F6
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(396003)(376002)(39380400002)(39830400003)(346002)(366004)(199004)(189003)(486006)(59450400001)(2501003)(26005)(102836004)(7696005)(74482002)(6506007)(2351001)(68736007)(99286004)(478600001)(5250100002)(2906002)(6116002)(3660700001)(14454004)(186003)(2900100001)(476003)(316002)(97736004)(3280700002)(3846002)(55016002)(6916009)(6436002)(5640700003)(53936002)(66066001)(5660300001)(305945005)(105586002)(106356001)(7736002)(74316002)(25786009)(8676002)(81166006)(8936002)(1730700003)(81156014)(33656002)(86362001)(9686003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6PR1101MB2258;
-	H:BN6PR1101MB2356.namprd11.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amotus.ca does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: 1NNJi+7fjqSQwwIGgh/sArXuwmo3Q1I/33rYK++ET05xhbM4tm8zW0nXdCtaurFW9tIgGutAL1CnsAWTqnxc9QmrJwLDgzVV9gJ4TSmnqgJlag3RCB8HFobig/GKTas7h18opt6OkO9lbXHb49EOgP5idzR1qEA72BJ9uBrMfZVMMLxB/+0h5pcApj/hkanJ
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-pf0-f173.google.com (mail-pf0-f173.google.com
+	[209.85.192.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CC31E00D64
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2018 13:00:49 -0700 (PDT)
+Received: by mail-pf0-f173.google.com with SMTP id a12-v6so1979830pfi.3
+	for <yocto@yoctoproject.org>; Wed, 13 Jun 2018 13:00:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=DUeVzmnzDVfXpC9SQTvkXrX7CW0/k4o3dXs5Yz6ehlw=;
+	b=I9i2w/4kED5U+0Fn6q1/sFpMU5RyvMQAes4c/+juemhWfwQAf3seMwLJudcenDZJac
+	Ks72Zz+sPRQo3Mv6oA1NY3FMZa6DUMp32abJCFfij5lEabW9SVZEBNNIESADwmvtYM6l
+	CqFjUVDtIUIvB20o7tNnZqz8jCToixNClLa502XYLIsL/dxtkgUE7MzYi/WSEpuINyYr
+	GugaVXBPfuA9MvMbmphfwfQlxVHVpePaB9aMp6BBDgNU8riSTnJN9AkAHT2p+gk2DMlS
+	bZmlFNgWXyE5difnWA2VEwzxF5QZfioc5gdW3VEynnme4cqmXhv/Y6/+Ajq6SG4LV3cj
+	PWEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=DUeVzmnzDVfXpC9SQTvkXrX7CW0/k4o3dXs5Yz6ehlw=;
+	b=qhJDhfa8sZErieej7NB8e1GuYUnYDmJRHgn3tcOJpNCgkhbpy7XwVNXRSenE94kFQR
+	LaNCyF7S5Y4gA+sBhvLJmxcwzYpBw3SAQhCOlaBCnHCaLmoc1+TPgBsAfkDyHWqjwd3Y
+	rlJAyTZMc7pI0a63wP6jHl3+vfjl1NROd8wQ1sHcTl5uuCCi2/n5/RbFqV7J7CDH2TRi
+	5aXWXa7pAt3u05zeHNFaErV93EVg3PkD986HimDLg2ypWEaJ1aOTJu4AlNyZt39LzLJL
+	1bl3139I5v7Znr8NTwhO2Rbb0d0tzzpJlTCisiIOxpp6eZ2rQzhYxPLtgD5X37qdT7o1
+	NQJQ==
+X-Gm-Message-State: APt69E1qOUbNkLc6zyKv/lpif8yY9jYNraqOqF9Ri45M+T3ZMrXqkQx3
+	ezaqhJJ1pjJV26MBx54ssnlgyIdF38Q8R7DVFOHHlQ==
+X-Google-Smtp-Source: ADUXVKJ8mw53WUXC/HGw2fFnPlR6RouayQQ3/SJkuIoAFNnXxoOrvq959ccId649jz2JVcs3Ka8MiFl+7aTbDULjrcw=
+X-Received: by 2002:a65:5006:: with SMTP id
+	f6-v6mr5255883pgo.116.1528920048610; 
+	Wed, 13 Jun 2018 13:00:48 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amotus.ca
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9f43ec7-b059-4d4e-eb0a-08d5d1508e6b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jun 2018 17:10:25.7737 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eb1fb47f-d32e-4ec7-8cf5-9c91bb29593c
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1101MB2258
-Subject: Issue yocto strip the kernel module signature during packaging
+References: <CAOsp8o_KM7ZtmscjePc+E55-aZZBevV5pd=sWRWmkV5c8YTaYw@mail.gmail.com>
+	<CANik3vGehMFhJZdReNZ3eJo=bp8SRFBRnP1G2ntqB8xri009eA@mail.gmail.com>
+	<CAOsp8o98NbO=55Y-8i2Ld6pv=ck2Qnxtb9rKXyKWku-kVXUSjQ@mail.gmail.com>
+	<CANik3vF3cOGqQDHuiYYJLcDw-=y9nHb6KNP9ipOzyz9i6Y6F4Q@mail.gmail.com>
+In-Reply-To: <CANik3vF3cOGqQDHuiYYJLcDw-=y9nHb6KNP9ipOzyz9i6Y6F4Q@mail.gmail.com>
+From: Michael Habibi <mikehabibi@gmail.com>
+Date: Wed, 13 Jun 2018 15:00:37 -0500
+Message-ID: <CAOsp8o_uOdD3kN9_+7frgNx=iVfGTytGEq0V=RsBvBpSQo4QJg@mail.gmail.com>
+To: pidge@toganlabs.com
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: Generating license/manifest for a specific layer?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -93,29 +75,152 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jun 2018 17:10:29 -0000
-Content-Language: fr-FR
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Wed, 13 Jun 2018 20:01:10 -0000
+Content-Type: multipart/alternative; boundary="000000000000633104056e8b70b1"
+
+--000000000000633104056e8b70b1
+Content-Type: text/plain; charset="UTF-8"
+
+So to clarify your question, basically everything we would want in the
+custom manifest would be in our own layer: both bbappends and new bb
+recipes. Given that, you think I could still modify it like you suggest to
+get what I want?
+
+On Wed, Jun 13, 2018 at 8:59 AM Beth Flanagan <pidge@toganlabs.com> wrote:
+
+> Ok, I guess my question there then would be is how you'd determine
+> where a recipe "lived". Like, if meta-foo has a bbappends for
+> something in core, would you include it or not in your manifest?
+>
+> If so, then taking the original manifest and just doing some text
+> manipulation in a ROOTFS_POSTPROCESS_COMMAND would be the way I'd
+> probably look at tackling it.
+>
+> On Wed, Jun 13, 2018 at 2:42 PM, Michael Habibi <mikehabibi@gmail.com>
+> wrote:
+> > Beth,
+> >
+> > This is for internal consumption. We want to be able to generate a full
+> > manifest, and also one that reflects how we diverged from base Yocto
+> > distribution.
+> >
+> > On Mon, Jun 11, 2018 at 10:55 AM Beth Flanagan <pidge@toganlabs.com>
+> wrote:
+> >>
+> >> On Mon, Jun 11, 2018 at 2:46 PM, Michael Habibi <mikehabibi@gmail.com>
+> >> wrote:
+> >> > Our use case is to capture the license files, manifest
+> >> > (package/version),
+> >> > and download information only for packages we modify/add. We use our
+> own
+> >> > layer to modify/add packages, everything coming from standard Yocto
+> >> > layers
+> >> > are untouched.
+> >> >
+> >> > Is there a way to generate this information on a layer-by-layer basis,
+> >> > instead of a full manifest that includes all standard, unmodified
+> >> > packages?
+> >>
+> >> The easy (cheating) way, would be to modify the tmp/deploy/licenses
+> >> artifact post build (I do it to remove -native- and -cross- from
+> >> things I distribute as I'm not actually distributing them) or put in a
+> >> post do_rootfs function that does it.
+> >>
+> >> I guess my question would be (and this is less a technical question
+> >> and more of a legal one) is why would you want to only include a
+> >> manifest for only part of what you're distributing (or am I
+> >> misunderstanding what you're trying to do here?)
+> >>
+> >> -b
+> >> >
+> >> > --
+> >> > _______________________________________________
+> >> > yocto mailing list
+> >> > yocto@yoctoproject.org
+> >> > https://lists.yoctoproject.org/listinfo/yocto
+> >> >
+>
+
+--000000000000633104056e8b70b1
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+<div dir=3D"ltr">So to clarify your question, basically everything we would=
+ want in the custom manifest would be in our own layer: both bbappends and =
+new bb recipes. Given that, you think I could still modify it like you sugg=
+est to get what I want?</div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
+">On Wed, Jun 13, 2018 at 8:59 AM Beth Flanagan &lt;<a href=3D"mailto:pidge=
+@toganlabs.com">pidge@toganlabs.com</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex">Ok, I guess my question there then would be is how you&#39;=
+d determine<br>
+where a recipe &quot;lived&quot;. Like, if meta-foo has a bbappends for<br>
+something in core, would you include it or not in your manifest?<br>
+<br>
+If so, then taking the original manifest and just doing some text<br>
+manipulation in a ROOTFS_POSTPROCESS_COMMAND would be the way I&#39;d<br>
+probably look at tackling it.<br>
+<br>
+On Wed, Jun 13, 2018 at 2:42 PM, Michael Habibi &lt;<a href=3D"mailto:mikeh=
+abibi@gmail.com" target=3D"_blank">mikehabibi@gmail.com</a>&gt; wrote:<br>
+&gt; Beth,<br>
+&gt;<br>
+&gt; This is for internal consumption. We want to be able to generate a ful=
+l<br>
+&gt; manifest, and also one that reflects how we diverged from base Yocto<b=
+r>
+&gt; distribution.<br>
+&gt;<br>
+&gt; On Mon, Jun 11, 2018 at 10:55 AM Beth Flanagan &lt;<a href=3D"mailto:p=
+idge@toganlabs.com" target=3D"_blank">pidge@toganlabs.com</a>&gt; wrote:<br=
+>
+&gt;&gt;<br>
+&gt;&gt; On Mon, Jun 11, 2018 at 2:46 PM, Michael Habibi &lt;<a href=3D"mai=
+lto:mikehabibi@gmail.com" target=3D"_blank">mikehabibi@gmail.com</a>&gt;<br=
+>
+&gt;&gt; wrote:<br>
+&gt;&gt; &gt; Our use case is to capture the license files, manifest<br>
+&gt;&gt; &gt; (package/version),<br>
+&gt;&gt; &gt; and download information only for packages we modify/add. We =
+use our own<br>
+&gt;&gt; &gt; layer to modify/add packages, everything coming from standard=
+ Yocto<br>
+&gt;&gt; &gt; layers<br>
+&gt;&gt; &gt; are untouched.<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; Is there a way to generate this information on a layer-by-lay=
+er basis,<br>
+&gt;&gt; &gt; instead of a full manifest that includes all standard, unmodi=
+fied<br>
+&gt;&gt; &gt; packages?<br>
+&gt;&gt;<br>
+&gt;&gt; The easy (cheating) way, would be to modify the tmp/deploy/license=
+s<br>
+&gt;&gt; artifact post build (I do it to remove -native- and -cross- from<b=
+r>
+&gt;&gt; things I distribute as I&#39;m not actually distributing them) or =
+put in a<br>
+&gt;&gt; post do_rootfs function that does it.<br>
+&gt;&gt;<br>
+&gt;&gt; I guess my question would be (and this is less a technical questio=
+n<br>
+&gt;&gt; and more of a legal one) is why would you want to only include a<b=
+r>
+&gt;&gt; manifest for only part of what you&#39;re distributing (or am I<br=
+>
+&gt;&gt; misunderstanding what you&#39;re trying to do here?)<br>
+&gt;&gt;<br>
+&gt;&gt; -b<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; --<br>
+&gt;&gt; &gt; _______________________________________________<br>
+&gt;&gt; &gt; yocto mailing list<br>
+&gt;&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">y=
+octo@yoctoproject.org</a><br>
+&gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/y=
+octo</a><br>
+&gt;&gt; &gt;<br>
+</blockquote></div>
 
-I am working to activate the kernel module signature for in-tree and out-of=
--tree packages.
-While I was debugging the cause of the kernel complaining about unsigned mo=
-dules.
-I noticed that yocto was stripping the signature information from the binar=
-y, therefore I've
-set INHIBIT_PACKAGE_STRIP =3D "1" for all of my out-of-tree module. Then I =
-had to  set the flag
-for the kernel recipe to fix the issue for my in-tree kernel module.
-
-My question is:
-   - is there any issue with turning off the stripping for the linux recipe=
-? I'd like to be sure I haven't overlooked anything about this.
-   - Would there be a better way to achieve this?
-
-Cheers,
-
-Mathieu
-
+--000000000000633104056e8b70b1--
