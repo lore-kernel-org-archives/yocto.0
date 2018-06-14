@@ -1,41 +1,70 @@
-Return-Path: <yocto@emagii.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D13E8E012F3; Thu, 14 Jun 2018 14:02:58 -0700 (PDT)
+	id BFCB7E01335; Thu, 14 Jun 2018 14:50:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,MIME_QP_LONG_LINE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [81.236.60.155 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
-Received: from v-smtpout2.han.skanova.net (v-smtpout2.han.skanova.net
-	[81.236.60.155])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5511DE01236
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 14:02:56 -0700 (PDT)
-Received: from [192.168.1.22] ([89.160.66.251]) by cmsmtp with ESMTPA
-	id TZOQfCQiI8gExTZOQfm6EA; Thu, 14 Jun 2018 23:02:54 +0200
-Mime-Version: 1.0 (1.0)
-From: Ulf Samuelsson <yocto@emagii.com>
-X-Mailer: iPad Mail (15B202)
-In-Reply-To: <CAJ86T=XtAdK7=Xbhg9ndKmimiRqstHHtLhvPyNP6AM+q+qr6eQ@mail.gmail.com>
-Date: Thu, 14 Jun 2018 23:02:54 +0200
-Message-Id: <2EA39EC2-A3D4-48E5-9021-43735023C56D@emagii.com>
-References: <3cf3fb0e-02c4-8867-7650-8764bfb67a3b@emagii.com>
-	<b02028a72c604aa1bce0e40bc0089f43@XBOX02.axis.com>
-	<9EEEF203-2371-4CCE-8E70-947330CDB462@emagii.com>
-	<20180613132009.GA11193@ad.chargestorm.se>
-	<D6C2C352-896F-4D2B-A499-4526393B9418@emagii.com>
-	<CAJ86T=XtAdK7=Xbhg9ndKmimiRqstHHtLhvPyNP6AM+q+qr6eQ@mail.gmail.com>
-To: Andre McCurdy <armccurdy@gmail.com>
-X-CMAE-Envelope: MS4wfGN1yoJdOvOTKAHxBu/vzz23WCJ+dvZRscO9RFDqSU4CyEbjYG2qB8oBqsWz7e8TKUa2wwArWQ4Xc5zqyWaOaqchjIJH+YAJKaYa7c1zlPinHVoc2hyv
-	H3AkpBo33a4Iqm5cjE61SgI2GAQzpHWjNdVatPpyde3ibYsLBahcbZjkKEu3jY/tOQUD/8UTEsj/G7+DzLbXKuOcBZ28OQNqKXhkJN5N8ITOpPhrzGEAoMyD
-Cc: Anders Darander <anders@chargestorm.se>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How handle files needing updates in read-only filesystem
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f52.google.com (mail-vk0-f52.google.com
+	[209.85.213.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BADAE0113E
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 14:50:31 -0700 (PDT)
+Received: by mail-vk0-f52.google.com with SMTP id b77-v6so4590125vkb.5
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 14:50:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=hOzwC46cZBfSLXpoeBrLQsWXdMNh4fO+2FMy3LX7ZBs=;
+	b=X/2TwUUOj3jR00/hO8I407C9cWVHv+OGAs80Gko/XM0Q6WnVykG0ypaDu0b/ZxR+ic
+	HG1zGR5VxaRSOVQAduDSiBSbaOUZxMwueHTlActWs1fGFyCycNBV45Q8Tet6e4RpbiIU
+	Go6b8PmO8hsSepOc80jQo4Cgxu284MeGSNTg3+BEol3Rzx0ZAwjdVYSwfY5wbpBbiYHx
+	4R1FLsXURfq/d6hx5Ja7GoyH73/Fpqcu19SWJUM0kP0Mt7/rOUKhiwIILsAQiAWuqZ+f
+	9zkgHGsmtzd06OuYEnHI/9SbKAtsyhFFRrt9pdfQtTm0UaAo0Ngyi2C9exo/r7NaPEQu
+	oRWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=hOzwC46cZBfSLXpoeBrLQsWXdMNh4fO+2FMy3LX7ZBs=;
+	b=SbykDgKLLt/NCeN3YiiWWoH8otN89ZjcazgRsGG098VxhDmZZswPuD6ZI8lzyrsPSc
+	wGfDaHFWXWQICOEM8NY1bWsbrcSF5u9fYOP8gcPjJNXpeOzIP0nYqa7Adud84MLgUVjs
+	NgC3RAB7Bj+0oeK82kPDJ76VjG0XqzvOAQ0wTKxp5HNE3+M5WBO/EGE750IGfUIREbrG
+	EYnzkzriuFx13XcRwoUsZ3XpcWECuTZHEibiIzL4QYwGKd0Ccnb/f1R8b4rJoPO78ojO
+	DxN5MHRfg9ReZXmxa0BXjNULl8pFF7syFZM1m+rDuJPn3z1hx4aVt/pX3jkXFHRi2zWC
+	fCYw==
+X-Gm-Message-State: APt69E0aeDL4VX4lKC86czJuZAKaWXC3ncMHZFioIG1k/7KmOA7cxR/h
+	6YlXeZ1shj7Uv396Nx2a8UfeMbBEDgfrc/K5OpY=
+X-Google-Smtp-Source: ADUXVKIrWgbJ5N128dEgig00fMfb6nav0Kz69lZCetCP6aVFmwzhUoF/360QAG55/y9w25IztPtkQHWNyDpS/pCCzTY=
+X-Received: by 2002:a1f:7c4:: with SMTP id 187-v6mr2729230vkh.60.1529013030451;
+	Thu, 14 Jun 2018 14:50:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <CANge7vWW35a41fOJhFis1aw2vu2qw9TvtodTSKmyuJ5NvCuL7g@mail.gmail.com>
+	<CANge7vWC+p7Df41A5uFLDYfP5EpaFiGhBxtEt5N_DJ3mOwvq3g@mail.gmail.com>
+	<aade00d6-6ad7-a894-420b-47a97fb68d37@gmail.com>
+	<CANge7vVnftfefRnx80EjvEKfZUkPNvd0mf9QUMqXeXc-6UkCag@mail.gmail.com>
+	<CAMKF1so9RB+wb3TJPYNkFuW_LU4fgW8Hpjhgz0S1+b0QDdwgng@mail.gmail.com>
+	<CANge7vUjYRAiGSZY-QGzLTU0p57xcOPS3JryxaO0sLVDSZ-ZZw@mail.gmail.com>
+In-Reply-To: <CANge7vUjYRAiGSZY-QGzLTU0p57xcOPS3JryxaO0sLVDSZ-ZZw@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 14 Jun 2018 14:50:19 -0700
+Message-ID: <CAMKF1spu_eeWWqxJFFGqZ_kdp9BJQSC-1ExHwt9G8ZYPs=k57g@mail.gmail.com>
+To: Jon Szymaniak <jon.szymaniak@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: qemu-native build fails on sumo due to missing capstone.h
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,104 +76,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jun 2018 21:02:58 -0000
-Content-Type: text/plain;
-	charset=utf-8
+X-List-Received-Date: Thu, 14 Jun 2018 21:50:31 -0000
+Content-Type: multipart/alternative; boundary="000000000000897d8d056ea116e7"
+
+--000000000000897d8d056ea116e7
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I looked at the populate-volatile.sh, and this seemed to almost do the job,
-if I solve the problem using symlinks.
-What it needs is a copy file function.
-As a temporary solution, I  created a derivative: populate-settings.sh
-which will check /etc/default/settings in the same way populate-volatile.sh
-checks /etc/default/volatiles.
+On Thu, Jun 14, 2018 at 1:08 PM Jon Szymaniak <jon.szymaniak@gmail.com>
+wrote:
 
-It also support copying a file, if the copy target does not exist.
+> On Thu, Jun 14, 2018 at 14:18 Khem Raj <raj.khem@gmail.com> wrote:
+>
+>> On Thu, Jun 14, 2018 at 9:56 AM Jon Szymaniak <jon.szymaniak@gmail.com>
+>> wrote:
+>> >
+>> > On Thu, Jun 14, 2018 at 11:43 Khem Raj <raj.khem@gmail.com> wrote:
+>> > > Do you have capstone development headers/libs installed on your buil=
+d
+>> host ?
+>> > >
+>> >
+>> > No, and I understand that's an easy thing to address on the build host=
+.
+>> >
+>> > However, I don't think this should be necessary build host dependency.
+>> > QEMU includes the capstone codebase as a git submodule, so everything
+>> > that's needed is there.
+>> >
+>> > Maybe it's just a matter of tweaking the recipe to set
+>> > CMAKE_INSTALL_PREFIX appropriately so that when the build dives down
+>> > into the capstone directory, this points to the correct prefix?
+>> >
+>> > It looks like the inclusion and use of capstone is new, as of the QEMU
+>> > version included with sumo. (i.e. This appears not to be the situation
+>> > with the version used in rocko and pyro).
+>>
+>> Least intrusive approach would be to disable it if its not something you
+>> depend on.
+>
+>
+> Makes sense, thank you.
+>
+> Two workarounds that worked for me were either adding qemu-native to
+> ASSUME_PROVIDED or appending =E2=80=9C--disable-capstone=E2=80=9D to qemu=
+=E2=80=99s EXTRA_OECONF.
+>
 
-What I have right now is a =E2=80=9Dwriteable.bbclass=E2=80=9D
-To make a file located in a read-only location, I just inherit writeable and=
- declare it writeable in a bbappend.
+The fact that not everyone sees this issue makes me think that it might be
+something in your environment that=E2=80=99s triggering this but if we disa=
+ble it
+then we make the issue irrelevant
 
-inherit writeable
-WRITEABLE =3D =E2=80=9D/etc/localtime=E2=80=9D
+>
+> I=E2=80=99ll try to follow up with a patch to the recipe in oe-core, unle=
+ss you
+> suspect that the source of this is merely something on my end.
+>
+>
 
-At build time, the =E2=80=9D/etc/localtime=E2=80=9D is moved to =E2=80=9D/et=
-c/update/localtime=E2=80=9D, and =E2=80=9D/etc/localtime=E2=80=9D becomes a s=
-ymlink to =E2=80=9D/persistent/localtime=E2=80=9D
-(a leading =E2=80=9D/etc=E2=80=9D is shaved off)
-An entry to copy =E2=80=9D/etc/update/localtime=E2=80=9D to =E2=80=9C/persis=
-tent/localtime=E2=80=9D is created in=20
-=E2=80=9C/etc/default/settings/99_tzdata=E2=80=9D=20
-When =E2=80=9C/etc/init.d/populate-settings.sh=E2=80=9D is run,  =E2=80=9C/p=
-ersistent/localtime=E2=80=9D is created.
+--000000000000897d8d056ea116e7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This works.
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"auto">On Thu=
+, Jun 14, 2018 at 1:08 PM Jon Szymaniak &lt;<a href=3D"mailto:jon.szymaniak=
+@gmail.com">jon.szymaniak@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex"><div><div><div><div>On Thu, Jun 14, 2018 at 14:18 Khem Raj =
+&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.=
+com</a>&gt; wrote:<br></div><div><div class=3D"gmail_quote"><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex">On Thu, Jun 14, 2018 at 9:56 AM Jon Szymaniak &lt;<a href=
+=3D"mailto:jon.szymaniak@gmail.com" target=3D"_blank">jon.szymaniak@gmail.c=
+om</a>&gt; wrote:<br>
+&gt;<br>
+&gt; On Thu, Jun 14, 2018 at 11:43 Khem Raj &lt;<a href=3D"mailto:raj.khem@=
+gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br>
+&gt; &gt; Do you have capstone development headers/libs installed on your b=
+uild host ?<br>
+&gt; &gt;<br>
+&gt;<br>
+&gt; No, and I understand that&#39;s an easy thing to address on the build =
+host.<br>
+&gt;<br>
+&gt; However, I don&#39;t think this should be necessary build host depende=
+ncy.<br>
+&gt; QEMU includes the capstone codebase as a git submodule, so everything<=
+br>
+&gt; that&#39;s needed is there.<br>
+&gt;<br>
+&gt; Maybe it&#39;s just a matter of tweaking the recipe to set<br>
+&gt; CMAKE_INSTALL_PREFIX appropriately so that when the build dives down<b=
+r>
+&gt; into the capstone directory, this points to the correct prefix?<br>
+&gt;<br>
+&gt; It looks like the inclusion and use of capstone is new, as of the QEMU=
+<br>
+&gt; version included with sumo. (i.e. This appears not to be the situation=
+<br>
+&gt; with the version used in rocko and pyro).<br>
+<br>
+Least intrusive approach would be to disable it if its not something you<br=
+>
+depend on.</blockquote><div dir=3D"auto"><br></div></div></div></div></div>=
+</div><div><div><div><div><div class=3D"gmail_quote"><div dir=3D"auto">Make=
+s sense, thank you.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto=
+">Two workarounds that worked for me were either adding qemu-native to ASSU=
+ME_PROVIDED or appending =E2=80=9C<span style=3D"color:rgb(49,49,49);word-s=
+pacing:1px;background-color:rgb(255,255,255)">--disable-capstone=E2=80=9D t=
+o qemu=E2=80=99s=C2=A0</span><span style=3D"color:rgb(49,49,49);word-spacin=
+g:1px;background-color:rgb(255,255,255)">EXTRA_OECONF.</span></div></div></=
+div></div></div></div></blockquote><div dir=3D"auto"><br></div><div dir=3D"=
+auto">The fact that not everyone sees this issue makes me think that it mig=
+ht be something in your environment that=E2=80=99s triggering this but if w=
+e disable it then we make the issue irrelevant=C2=A0</div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div><div><div><div><div class=3D"gmail_quote"><div dir=3D"au=
+to"><span style=3D"color:rgb(49,49,49);word-spacing:1px;background-color:rg=
+b(255,255,255)"></span></div><div dir=3D"auto"><span style=3D"color:rgb(49,=
+49,49);word-spacing:1px;background-color:rgb(255,255,255)"><br></span></div=
+><div dir=3D"auto"><span style=3D"color:rgb(49,49,49);word-spacing:1px;back=
+ground-color:rgb(255,255,255)">I=E2=80=99ll try to follow up with a patch t=
+o the recipe in oe-core, unless you suspect that the source of this is mere=
+ly something on my end.</span></div><div dir=3D"auto"><br></div></div></div=
+>
+</div>
+</div>
+</div>
+</blockquote></div></div>
 
-Efficiency is on several levels.
-I am looking for a solution, where I, like above, only need to declare the n=
-ame of the file. I want to avoid solutions, where I manually have to add sym=
-links etc.
-
-Once the symlink/bind mount is accessed, it should not eat up the CPU cycles=
-,
-Kno
-Best Regards,
-Ulf Samuelsson
-
-
-> 14 juni 2018 kl. 01:02 skrev Andre McCurdy <armccurdy@gmail.com>:
->=20
->> On Wed, Jun 13, 2018 at 9:28 AM, Ulf Samuelsson <yocto@emagii.com> wrote:=
-
->> Thanks, is it more efficient than symlinking?
->=20
-> Efficient in what way?
->=20
-> Have you looked at the volatile-binds recipe in oe-core? Its job is to
-> setup enough bind mounts to enable systemd to run from a readonly
-> rootfs. Although it's currently systemd specific (it only provides a
-> systemd service file, no init script) it might give you some clues
-> about how to setup bind mounts at boot time.
->=20
->> Best Regards,
->> Ulf Samuelsson
->>=20
->>> 13 juni 2018 kl. 15:20 skrev Anders Darander <anders@chargestorm.se>:
->>>=20
->>> * Ulf Samuelsson <yocto@emagii.com> [180612 22:01]:
->>>=20
->>>> We want most of /etc to be read-only for security reasons,
->>>> and the overlayfs will make the whole of /etc writeable.
->>>=20
->>>> I tried mount =E2=80=94bind /etc/timezone /persistent/etc/timezone, and=
- it
->>>> complained that they were not directories. Bind mounting /etc again
->>>> will make all of /etc writeable.
->>>=20
->>> Try to use: mount =E2=80=94o bind /etc/timezone /persistent/etc/timezone=
-
->>>=20
->>> I'm using that heavily, either manually or by the volatile-binds recipe.=
-
->>> It works perfectly fine with files.
->>>=20
->>>> Symlinking to /persistent is fine, so the question is what an
->>>> acceptable method is to have a simple way of ensuring that a certain
->>>> file is converted to that symlink.
->>>=20
->>> This is normally done by a manual inspection / addition of bbappend
->>> file.
->>>=20
->>> Cheers,
->>> Anders
->>> --
->>> Anders Darander, Senior System Architect
->>> ChargeStorm AB / eStorm AB
->>=20
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-
-
+--000000000000897d8d056ea116e7--
