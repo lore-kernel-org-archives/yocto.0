@@ -1,16 +1,17 @@
-Return-Path: <prvs=17033f6a1e=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88EA4E01EC4; Wed, 13 Jun 2018 23:47:03 -0700 (PDT)
+	id 262B3E01A16; Thu, 14 Jun 2018 00:07:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [81.169.146.166 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,57 +19,49 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 360 seconds by postgrey-1.32 at yocto-www;
-	Wed, 13 Jun 2018 23:47:00 PDT
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
-	[81.169.146.166])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5619AE01EAA
-	for <yocto@yoctoproject.org>; Wed, 13 Jun 2018 23:47:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1528958819;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=DpCXlvqwYTYsDm+9ySuFITRqZVnBhuS9zrUlHmqC8d4=;
-	b=hVSxL2nDSjWEZxS+TiH/9ixJfN00YRdwRWepGn6B7L5WuCOJET46jlyD13lnETdyYi
-	5TVK9i2FIZs8rc0TvE1m8sHY7WuCK2HTbQmdrvnxptAKiUzo6xqqVc5J6YNxVyZ6gfMS
-	cPJvLA9BshYMqQTaiK8US0eucuKA5tDsxYAnYHEradbonHro89+t+dYjIDCM/YqZbPxs
-	nI80Tvgs2enmJKpiaicK3svbL5YCZNUPHIzprmATNe7jpreb83/VtOqbcV0p8zH2W6Ex
-	tcrCskNCcdvKfrsbPLr0y5rHFnpJXXgzh/G492OvWH3q5x8o1L+cpdLn9hoLdIt8rRWI
-	tJ9w==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/Kpz6b/avroGOv0c9sak1tqOWjLU3UFhR6"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de by smtp.strato.de (RZmta 43.10 AUTH)
-	with ESMTPSA id n0b0c9u5E6ewZag
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Thu, 14 Jun 2018 08:40:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1528958444; x=1529563244;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
-	Subject:Message-ID:References:MIME-Version:Content-Type:
-	Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
-	User-Agent; bh=DpCXlvqwYTYsDm+9ySuFITRqZVnBhuS9zrUlHmqC8d4=; b=Y
-	5WYC2X6xcwE41qBuM5pVOYsaK/H0zdxbhrSf1L5BVxNSSEpBPw5dVds0c4O2yIBl
-	Y5c4gXQU3bwBp1ZKrEDDIxYguP3k5HCf9ouHKrChVVcO1uQmxRh8Rd3uvuIPWUQS
-	E2ikpdI4zs8wdNdFJVuNFFd5Lni7iJUgx7z7UQ9XIc=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v18.0.1) with ESMTPSA id
-	md50000077392.msg; Thu, 14 Jun 2018 08:40:44 +0200
-X-MDArrival-Date: Thu, 14 Jun 2018 08:40:44 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=17033f6a1e=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-Date: Thu, 14 Jun 2018 08:40:52 +0200
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-To: Tim Hammer <tdhammer99@gmail.com>
-Message-ID: <20180614064052.z64dme5mzs56fs4z@jholzmayr.localdomain>
-References: <CALh9vaWsyukbyqEz7Yr4Y5zH3PGsfgqFKYR3ofZ4CgtmAJbB1w@mail.gmail.com>
+Received: from mail-oi0-f53.google.com (mail-oi0-f53.google.com
+	[209.85.218.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BBDAE0112F
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 00:07:02 -0700 (PDT)
+Received: by mail-oi0-f53.google.com with SMTP id i205-v6so4729856oib.1
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 00:07:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=zotD5g6HjPpZ/OlIGVXpSP6rSzq6utxPwOBiwYNG+FY=;
+	b=LMMBGUj20dVt7eqMJx9e4V2mxJW7odKWzxA1OVENT2MWkUlWJfYTVpulrHQZkj7IH1
+	bVFENlIa+6BKF+Gsq5V6FX7eZAEZaDv64t+JlKSFGqZIvFyxV8NB6C2WEGdtJvtZXANS
+	B+cLKLrBfSE9X4pAwb3ZSRGq88OiR7dDMpoU3P5tuSYSEWc16GeWAbAKIZ1n63RMEE9y
+	z/vajekiYEN8NFQC9LVWk7oOw031psois66V+mw4vka/TBBFu5TtdbijiXlTYkg0bg7k
+	+7PStGJL/Mu6+TVLOkJhPFBYmPTPiZJrW8Azts+ea1CkiDaCc+1ZtJcRGSQiZZAGlLup
+	h9wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=zotD5g6HjPpZ/OlIGVXpSP6rSzq6utxPwOBiwYNG+FY=;
+	b=OyEybwB/KenKYRtKZzU6IdnGptqOjerggV5acffB2qn23icoiB7s0HbLuHzAeom8oE
+	PTuQwkq57TvRbGO54CkSovg3KgrEF6ly1xkTqVERWCjMhC/HOBKPNndKACUlMjt/I0aH
+	zp1IA6FjM2dfMXmOSzoPjTWod0oSrfVJtInsV8x78/kc6V3rNeJYBH6ttAwzYBmRP1sb
+	fG8r//e18hVROoTJq7O1drpGO4ACqsBocIx34KBTaZTWSNeIkNq1FXRC5cSA+Yifui6C
+	XGfgU3IbfxBZ0hVI0veVUoAnsqZHLeCdqHp8HI1hCXfVw4S2NVxDMPx/776Aos46SRGA
+	qfpw==
+X-Gm-Message-State: APt69E09YLUKzdMXhpNOFnD8DzNPKu4bR4twQ0C8VhuYD7V4raB5YvAn
+	v/IgVTYK8hL/qkzwtfVBMVAVZKncV1wtQ2ty9i4=
+X-Google-Smtp-Source: ADUXVKJrDseqKB2WWu7Z7zgFvmB2m578AmHYTLpnAabVMFGvHa++MT1FhvRX5BXNYGGQ6gDb5krD8bjgI7lkYPyvB/Q=
+X-Received: by 2002:aca:41d6:: with SMTP id
+	o205-v6mr684103oia.38.1528960022559; 
+	Thu, 14 Jun 2018 00:07:02 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CALh9vaWsyukbyqEz7Yr4Y5zH3PGsfgqFKYR3ofZ4CgtmAJbB1w@mail.gmail.com>
-User-Agent: NeoMutt/20180512
-Cc: yocto@yoctoproject.org
-Subject: Re: /boot/ content into root filesystem?
+Received: by 2002:a4a:90cd:0:0:0:0:0 with HTTP; Thu, 14 Jun 2018 00:07:02
+	-0700 (PDT)
+In-Reply-To: <CALh9vaXCbqBe_49fi3OFs_Cj56s=J7Bvdv6f8BfWz9QMhmJQUw@mail.gmail.com>
+References: <CALh9vaXCbqBe_49fi3OFs_Cj56s=J7Bvdv6f8BfWz9QMhmJQUw@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 14 Jun 2018 10:07:02 +0300
+Message-ID: <CANNYZj9bbraOoEJChm2X7Ws1+h9+K86Kissdh2dWaPtr1PiOEw@mail.gmail.com>
+To: Tim Hammer <tdhammer99@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: devtool finish & patch order
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,46 +73,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jun 2018 06:47:03 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 14 Jun 2018 07:07:04 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Tim,
+2018-06-14 7:02 GMT+03:00 Tim Hammer <tdhammer99@gmail.com>:
+>
+> My changes for U-Boot are not working as expected. I am wondering- did I use
+> devtool incorrectly?
+>
+> I used 'devtool modify' to create a working copy of the vendor's u-boot and
+> copied & modified files to add support for my custom board. I did my work in
+> 3 distinct and commitable steps, resulting in 3 patch files in my layer when
+> I ran 'devtool finish'.
+>
+> When I pulled the changes into another clone for validation, it appears to
+> be applying patches in reverse order! It is attempting to apply patch 003
+> but cannot find the file to modify. That file was created in patch 001. None
+> of the files created in patch 001 are in my working directory.
+>
+> I reversed the order of the patch files in the .bbappend file and it worked
+> fine.
+>
+> Do I need to use the tool differently to get the patches correctly applied?
 
-On Wed, Jun 13, 2018 at 11:57:10PM -0400, Tim Hammer wrote:
-> I would like to include the kernel Image and DTB files in the /boot/
-> directory of the root filesystem that will be installed in flash memory (
-> *vs.* a separate partition with the /boot/ content).
+Devtool should add newly added patches to the recipe in the same order
+as the commits you created in workdir repo. If that is not the case,
+please provide the steps that reproduce the issue.
 
-IMAGE_INSTALL += "kernel kernel-devicetree"
-
-should do that neatly. See also:
-https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/kernel.bbclass#n548
-and
-https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/kernel-devicetree.bbclass#n6
-
-Greetz
--- 
-———————————————
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548 
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
-
+Alex
 
