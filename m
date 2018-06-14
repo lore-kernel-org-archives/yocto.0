@@ -1,6 +1,6 @@
-Return-Path: <jon.szymaniak@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AAFC1E01486; Thu, 14 Jun 2018 10:57:39 -0700 (PDT)
+	id BECC9E01486; Thu, 14 Jun 2018 12:18:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,58 +8,61 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jon.szymaniak.foss[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.194 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.53 listed in list.dnswl.org]
-Received: from mail-oi0-f53.google.com (mail-oi0-f53.google.com
-	[209.85.218.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64BFDE01503
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 10:57:38 -0700 (PDT)
-Received: by mail-oi0-f53.google.com with SMTP id e8-v6so6490835oii.2
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 10:57:38 -0700 (PDT)
+Received: from mail-ua0-f194.google.com (mail-ua0-f194.google.com
+	[209.85.217.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44B72E01228
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 12:18:20 -0700 (PDT)
+Received: by mail-ua0-f194.google.com with SMTP id 74-v6so4879831uav.1
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 12:18:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:sender:from:date:message-id:subject:to;
-	bh=2IrG2yaPQLuXWulqCylJ9nyNFopSbbjh20BE40IykyQ=;
-	b=HU42MvfDbUCWHqPzP6fRQp8po2rdcMBcIPXoKq3954l4CH6wo1KP15r5vpZ/GlzVGX
-	SpIqcZZ+JbgGiO3iDlv24fi8dLndBqEKl5NnTJpWSqR7KR3SLXxzbjH5iZCh4hbtYgqy
-	2Ohb2v9RLMaH3cwquhIQEQB1tMgy2AEn+aKPDQlaiINr6uQVMwoVqJhRWIf+ofbCOaHN
-	bPBhuSaCmBkTHyHlsz6l7NPcnBsnPp9/KCATyGlvjqf9JtEMQdU2UpbBHsfOnXsst7S1
-	otDbp8dC5vxQv5ci/fwyvbqgbyMhNMTg2W+rclABAq6zjc6HDHeXtLSuGgPN60UoFvHQ
-	3ZPA==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=MU0S2gtMz8tEQyb6E9ERw6/paWARgcoprqLa6N4V9sc=;
+	b=g+D89fZVkMYmou6NuxkSylfndeYimVn6bGcm4rr1N8wcPgqjEtSgN5R+oHSuCgrefM
+	hxDqraYnmkymaIWBWjVChlA01ZFOFSaZviXSYDLzHo9jeS6VufNf/95er2HJD7SF2Ey3
+	5+s3uzJyyOKwpvIG6N/bO9qhSoruq5MuwUJbEsl7ABJJSnHxQn9Z1i7I6NrFGcHMeixD
+	AnnyPn2+2dgEIMwsh1uIk1d/1Qz5VwdKQMQtzejXbsP8HU1bUEr1deG+Y4el6acG2RqT
+	G+HXe8pR9QXE+I55GrIQh4xOkuEua748YrVSdlfC5sJuwzbLD2d4R5DI6BAl1Jxo5F/S
+	d9SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-	:to; bh=2IrG2yaPQLuXWulqCylJ9nyNFopSbbjh20BE40IykyQ=;
-	b=LM3m3aJdbX2THPJe2VAkJPKVh0JclV99Jc4dWg0CWlzwnqQNf4IooN7eMsq28I7Aas
-	+0iJsKA8sYpYQLCzNo+yapiev0ZZtDpFSMFIeL1fTETgY+5v3vwdxRLFjQCdoKIKHlIf
-	BxuDR9uEdCYLWNm7a5Uvm1WjqMmJc17Z5CD4CDEPoNpJBkoKplPjbZmZxBp117G1jJX/
-	9umBD6KsKK3v7bwKcQFKxlb/abWwXiCm30+e3eqzv6EzBBEy/ZtNdCv5gBWA5OQHmbWu
-	tzoSo0QUYZZVwsPEe7ji0cjIhlWMRN5v1BCrSO5RNBGPPqgLCSG/qwIV3F8NowVdn89/
-	49rw==
-X-Gm-Message-State: APt69E0uu3mU/1jGW5NmBtzyuHsjuaOUjx6Duwfc/bUYWAjXRLLfRNr0
-	EBZYJ1KZ0Hl1oqJNCtrAjAaTc02si/IVdeWMcDpCzQ==
-X-Google-Smtp-Source: ADUXVKJimHBDhvovnQGvnP4fALVWXkJ4E6N7Iblcq6l6ekBgmBk+NsM1rGS98rZs8vFy9ZXjvHrWOnBwXgF8y1niwYc=
-X-Received: by 2002:aca:4957:: with SMTP id
-	w84-v6mr1902211oia.293.1528999057508; 
-	Thu, 14 Jun 2018 10:57:37 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=MU0S2gtMz8tEQyb6E9ERw6/paWARgcoprqLa6N4V9sc=;
+	b=CmBVdf67fLzJ+o28uKeTxt1tYJz6fY4Jm6Koo28bxS/FNykA4mej5bhPxuDSaCggaP
+	UT0zHKH/nhXotHyS/WG2WyVqwFuz6CfH1frhRPm2lkvn6Vh1f1xIqp8A7QNHJzLmV3GN
+	A8Ly+rqEEKj8cUkFmQp5aQTtrjTcHRm6RvaJZ6FGr5tDWlXDj8+jX66ubKg7DwOqqjRd
+	zpck58qWhSNaep9rQ/EM8xV2razQx6qXsdzckmM+tKLJuViU+RNQOA5AQSj4fS4kc4KH
+	IHwHSbVyOC5xe4i3Dtrixfg3AVlg3FRujI9wtzI56H3dtBpj0vLFHSdJeRnyLY3x9wDf
+	nqzw==
+X-Gm-Message-State: APt69E32Di3lnadwdHpPYdVDRbFwRcHi7qBfqB+72r4NgiCQSWDaFIIB
+	TEVbucHRKaBOcSPs03yJHX5I8xPJ/buzJTox6wY=
+X-Google-Smtp-Source: ADUXVKJ0W31iyDI6iQLKz8P7lLQDWD6k5o3s5CfBKhINakK7+ASQFHIU88KO8yfq6PMo9Icb6i+9ToEL6RVT5JUu+YM=
+X-Received: by 2002:ab0:304e:: with SMTP id
+	x14-v6mr2620144ual.80.1529003899218; 
+	Thu, 14 Jun 2018 12:18:19 -0700 (PDT)
 MIME-Version: 1.0
-Sender: jon.szymaniak@gmail.com
-Received: by 2002:a9d:ed1:0:0:0:0:0 with HTTP;
-	Thu, 14 Jun 2018 10:57:17 -0700 (PDT)
-From: Jon Szymaniak <jon.szymaniak.foss@gmail.com>
-Date: Thu, 14 Jun 2018 12:57:17 -0500
-X-Google-Sender-Auth: 2u4JksUsHW8SNMoPXoW3ixov6Vs
-Message-ID: <CANge7vVKTT8x6BCVm0iG28yiFhfj6HR9J51L4Kw+f7R5ySPBqw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Build failure when BUILDHISTORY_FEATURES includes "package"
+References: <CANge7vWW35a41fOJhFis1aw2vu2qw9TvtodTSKmyuJ5NvCuL7g@mail.gmail.com>
+	<CANge7vWC+p7Df41A5uFLDYfP5EpaFiGhBxtEt5N_DJ3mOwvq3g@mail.gmail.com>
+	<aade00d6-6ad7-a894-420b-47a97fb68d37@gmail.com>
+	<CANge7vVnftfefRnx80EjvEKfZUkPNvd0mf9QUMqXeXc-6UkCag@mail.gmail.com>
+In-Reply-To: <CANge7vVnftfefRnx80EjvEKfZUkPNvd0mf9QUMqXeXc-6UkCag@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 14 Jun 2018 12:17:53 -0700
+Message-ID: <CAMKF1so9RB+wb3TJPYNkFuW_LU4fgW8Hpjhgz0S1+b0QDdwgng@mail.gmail.com>
+To: jon.szymaniak@gmail.com
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: qemu-native build fails on sumo due to missing capstone.h
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,35 +74,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jun 2018 17:57:39 -0000
+X-List-Received-Date: Thu, 14 Jun 2018 19:18:20 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi all,
+On Thu, Jun 14, 2018 at 9:56 AM Jon Szymaniak <jon.szymaniak@gmail.com> wrote:
+>
+> On Thu, Jun 14, 2018 at 11:43 Khem Raj <raj.khem@gmail.com> wrote:
+> > Do you have capstone development headers/libs installed on your build host ?
+> >
+>
+> No, and I understand that's an easy thing to address on the build host.
+>
+> However, I don't think this should be necessary build host dependency.
+> QEMU includes the capstone codebase as a git submodule, so everything
+> that's needed is there.
+>
+> Maybe it's just a matter of tweaking the recipe to set
+> CMAKE_INSTALL_PREFIX appropriately so that when the build dives down
+> into the capstone directory, this points to the correct prefix?
+>
+> It looks like the inclusion and use of capstone is new, as of the QEMU
+> version included with sumo. (i.e. This appears not to be the situation
+> with the version used in rocko and pyro).
 
-I'm encountering the following error, which I can reproduce with qemu
-targets, core-image-minimal, a default bblayers.conf, and the
-following additions to an otherwise default local.conf:
-
-INHERIT += "buildhistory"
-BUILDHISTORY_COMMIT = "0"
-BUILDHISTORY_FEATURES = "package"
-
-
-ERROR: core-image-minimal-dev-1.0-r0 do_packagedata_setscene: The
-recipe core-image-minimal-dev is trying to install files into a shared
-area when those files already exist. Those files and their manifest
-location are:
-  ${TMPDIR}/pkgdata/qemux86-64/runtime/core-image-minimal-dev
-    (matched in manifest-qemux86_64-core-image-minimal.packagedata)
-Please verify which recipe should provide the above files.
-
-My build host is XUbuntu-17.10 -- not officially supported so I
-understand my mileage may vary.  If no one else is seeing this, I can
-follow up with some logs, try a supported LTS next week, and try to
-report back with a root cause.
-
-Mostly just trying to confirm this isn't PEBKAC ... ;)
-
-Cheers,
-Jon
+Least intrusive approach would be to disable it if its not something you
+depend on.
 
