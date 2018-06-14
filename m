@@ -1,6 +1,6 @@
 Return-Path: <lefevre.da@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 584E1E00CCC; Thu, 14 Jun 2018 05:16:13 -0700 (PDT)
+	id 6D7F3E01121; Thu, 14 Jun 2018 05:32:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (lefevre.da[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.49 listed in list.dnswl.org]
+	*      [209.85.214.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,43 +20,50 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f49.google.com (mail-it0-f49.google.com
-	[209.85.214.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8EB1E0084E
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 05:16:12 -0700 (PDT)
-Received: by mail-it0-f49.google.com with SMTP id 76-v6so7960978itx.4
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 05:16:12 -0700 (PDT)
+Received: from mail-it0-f48.google.com (mail-it0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 138D1E00CCC
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 05:32:58 -0700 (PDT)
+Received: by mail-it0-f48.google.com with SMTP id 76-v6so8030338itx.4
+	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 05:32:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=C0of1YonjaQBYukO9t+lpNFPxhTFypdmvJvPzP8Sq/8=;
-	b=k6WMnoW+Zaw9KbC/BOhzcPvTpRJaK8LjhnC3YpOMNFcvhXq8AhkSkMkXAVb4hmelcH
-	w5QwCd57iTfTOXsaXpmidCiVHgj2IPOl8SvmfhNifHsiHS6ryeULmcAb2HTN2VKobQIv
-	plTmr3u4oPqmNOeKoRjoOJKs5zZStwxd0Y6ReMSXygRZmFpegagWyCob3GpqKyjd5XCG
-	S8wcofxwFXQfdomp+mYd/r1BSErfnX5KhTud8L6l+u3qI052zYlufwiq3yZ6JlSx0D6t
-	DqNkPam1MON0tkKleQp39yFaiq6w+fvywiJ+ngqeDmmWkAfvwA11vbO78n3iPdQyHnNN
-	1dDg==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=2is4FJMcpQeXDQEgU48MxBizAEnT9rShrvaO7LrVBtc=;
+	b=T+f0MaPN+sqsSXryg0cEZr4NMZ6UM8Ku819J1NtJHA5HMYSpEWXiCCuU2FRxMJ7cQF
+	YlgZyObMRAwHG8qVXq4QLd9fjdk9W6tThWWb08pBSO4OVXIF4Ff0TQ4MTArSbSEriFOm
+	lFOZFWP20VQCMwLJElA4+Oe1PikV7hqZXaQLNN3EPO5M6w8q5aiIL21sXZbfVBQlpDr0
+	OSk4d0Xp1pseCSQ9r96k18/EhtnOxM9AmtnHFLownXKTsMAWJ0Vu8d8Bpi4eZJhGll+7
+	PbiUg7zEBZiSMJzfubp8YT2OzzlgsWWH6XkA9T9PvNbiwhyv9g45XF4G3PFpc68t93Vi
+	3mIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=C0of1YonjaQBYukO9t+lpNFPxhTFypdmvJvPzP8Sq/8=;
-	b=IFiJKjj+UZvV+Ola2FGkbGLRfjRQ2NL8MrH/hACKOG+0eSI8E8OYO9CX0L60mMcOrv
-	zaTuIyX0LUk3ES4lVKGKf9FVljvHtwiK33DS2GLBaVnvYhhkj2xQ6ZjpT0zn6qxdjWlT
-	kZ5xzlgisBjn0OqhjNUNWSDuuXUpBT2XFxpeT12ZNrn8AB325y3/pealMVg6NVBQFtKX
-	9ezTq0dM9/+Qi420MNxEuZZlKAMoApEJlj45pWvk+VoZ6Xl2nWHKfYyxuMzLZ0RPUKb4
-	gMXcyeFS81ZbuzoFnza920iuRoox/fAGEvDPSwogvQJVOxuzErfm10ONZkAD/amTF9x7
-	Cvhg==
-X-Gm-Message-State: APt69E1BdyyABoXSeKbXPaGY4U/TopUi1nIqW6Yubs6Gd96JbFtvjCHO
-	Y+0X/YnW0wLBhCHyzncxCkS+QsKTh0F/CmN2oAf8
-X-Google-Smtp-Source: ADUXVKLfPmJjLy42FwOk/BIphUXGQzIWVdt3Y8w4Y9ZqYYY0EUPpvq7v9AxXaYH5llv7DhOPTXLvkaFnNrdaq1QYXL8=
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=2is4FJMcpQeXDQEgU48MxBizAEnT9rShrvaO7LrVBtc=;
+	b=JGRdgW6wKdhN71opBEhlFfWCXmJmuxZ6kIq6oZ0PGEMJ3xS2+Jusb4IUCSd++1lrEV
+	ZEU0oDL5uM7m14IC7P1RSqwBKrpKNq1OjeHM2HMYDbFnHk3K1k66+80VTP1HfBVaXa/L
+	IcTHECg3fQ+/RsjlS9Wfwp80AVckgK/ZRBiAum/cC6lNE+Lcd6XxPjgoZHxdSQpm4ToB
+	GA6G8Lhw67jlbwws3gORL8wUkpcTOMSV5SbSEPDODeVGqpdcyINE1abXYMz3unPe98nt
+	DjKiCsfk5LuBpoqXSzjJVhySSw/zPv0NjIqX4rsxKcTI7DAjw1su8vBn9xmND9e9Nh6k
+	clQA==
+X-Gm-Message-State: APt69E0beO9Prsq+ZbN2S6APdSMUb6g+UmpqQv6eLriCcv0kyttX1NXr
+	l3Wr9aG8PZCBESCtietRZpj4HgeRvZLhdkImeqd3
+X-Google-Smtp-Source: ADUXVKKZJ68fF+Zidfm8LRCL6yrrIeI+Ft6PizdukWSVkmd+1NjlF8ED+z3dwzVyZ3usI5lxF5M0t4daiz3Wrd8mYLY=
 X-Received: by 2002:a24:8385:: with SMTP id
-	d127-v6mr2049789ite.58.1528978571737; 
-	Thu, 14 Jun 2018 05:16:11 -0700 (PDT)
+	d127-v6mr2097478ite.58.1528979578542; 
+	Thu, 14 Jun 2018 05:32:58 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 2002:a02:5bc3:0:0:0:0:0 with HTTP; Thu, 14 Jun 2018 05:32:57
+	-0700 (PDT)
+In-Reply-To: <alpine.LFD.2.21.1806140822540.15964@localhost.localdomain>
+References: <CA+FhBv_HSm-DBfaJuQjNpAhhCYUFpv_mZHjUfzePRA20wgW=6w@mail.gmail.com>
+	<alpine.LFD.2.21.1806140822540.15964@localhost.localdomain>
 From: Damien LEFEVRE <lefevre.da@gmail.com>
-Date: Thu, 14 Jun 2018 15:16:00 +0300
-Message-ID: <CA+FhBv_HSm-DBfaJuQjNpAhhCYUFpv_mZHjUfzePRA20wgW=6w@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: bbappend extra SRC_URI ignored
+Date: Thu, 14 Jun 2018 15:32:57 +0300
+Message-ID: <CA+FhBv-=wi8zhLQVwDu0A+z-iZKhjBdFvnTKZ8Vjc+nZv9zbtA@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: bbappend extra SRC_URI ignored
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,82 +75,136 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jun 2018 12:16:13 -0000
-Content-Type: multipart/alternative; boundary="000000000000a33ed9056e9910bf"
+X-List-Received-Date: Thu, 14 Jun 2018 12:32:59 -0000
+Content-Type: multipart/alternative; boundary="000000000000a5e235056e994c0a"
 
---000000000000a33ed9056e9910bf
+--000000000000a5e235056e994c0a
 Content-Type: text/plain; charset="UTF-8"
 
-HI,
+Typo sorry.
 
-I'm working on meta-tegra layer and I'd like to append a recipe. The
-original recipe looks like this:
-https://github.com/madisongh/meta-tegra/blob/rocko-l4t-r28.2/recipes-bsp/tegra-binaries/tegra-tools_28.2.0.bb
-<https://github.com/madisongh/meta-tegra/blob/rocko-l4t-r28.2/recipes-bsp/tegra-binaries/tegra-tools_28.2.0.bb>
+I've tried all possible combination
 
-I've made a tegra-tools_28.2.0.bbappend to change the default PM_CONFIG
-DEFAULT from 2 to 3 to get max performance in nvpmodel.conf configuration
-file.
+   - SRC_URI += "file://nvpmodel.conf"
+   - SRC_URI_append = " file://nvpmodel.conf"
+   - SRC_URI_prepend = "file://nvpmodel.conf "
+   - SRC_URI_append_tegra186 = " file://nvpmodel.conf"
+   - SRC_URI_prepend_tegra186 = "file://nvpmodel.conf "
 
-```
-FILESEXTRAPATHS_prepend := "${THISDIR}/files/tegra186:"
-SRC_URI_prepend_tegra186 += "file://nvpmodel.conf "
 
-do_install_append_tegra186() {
-    install -d ${D}${sysconfdir}
-    install -m 0755 ${B}/usr/sbin/nvpmodel ${D}${sbindir}/
-    install -m 0644 ${WORKDIR}/nvpmodel.conf ${D}${sysconfdir}/nvpmodel.conf
-    install -d ${D}${sysconfdir}/init.d
-    install -m 0644 ${S}/nvpmodel.init ${D}${sysconfdir}/init.d/nvpmodel
-    install -d ${D}${systemd_system_unitdir}
-    install -m 0644 ${S}/nvpmodel.service ${D}${systemd_system_unitdir}
-}
-```
-Would you have any idea why the nvpmodel.conf prepend is ignored and the
-file never ends up in ${WORKDIR}.
-
-I've made sure the paths are correct. nvpmodel.conf exists and if I put a
-typo like nvpmodel.conf_blabla bitbake throws a warning that it cannot find
-the file. So I'm sure the file is found but somehow bitbake ignores it.
-
-I'm having this issue with this one single recipe only, none of the others
-in my build system so I'm a bit puzzled.
-
-Thanks,
 -Damien
 
---000000000000a33ed9056e9910bf
+On Thu, Jun 14, 2018 at 3:24 PM, Robert P. J. Day <rpjday@crashcourse.ca>
+wrote:
+
+> On Thu, 14 Jun 2018, Damien LEFEVRE wrote:
+>
+> > HI,
+> > I'm working on meta-tegra layer and I'd like to append a recipe. The
+> original recipe looks like
+> > this:
+> > https://github.com/madisongh/meta-tegra/blob/rocko-l4t-r28.
+> 2/recipes-bsp/tegra-binaries/tegra-t
+> > ools_28.2.0.bb
+> >
+> > I've made a tegra-tools_28.2.0.bbappend to change the default PM_CONFIG
+> DEFAULT from 2 to 3 to
+> > get max performance in nvpmodel.conf configuration file.
+> >
+> > ```
+> > FILESEXTRAPATHS_prepend := "${THISDIR}/files/tegra186:"
+> > SRC_URI_prepend_tegra186 += "file://nvpmodel.conf "
+>
+>   why are you using both a prepend and the "+=" operator on the same
+> line?
+>
+> rday
+>
+> --
+>
+> ========================================================================
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                   http://crashcourse.ca/dokuwiki
+>
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> ========================================================================
+
+--000000000000a5e235056e994c0a
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">HI,<div><div><br></div><div>I&#39;m working on meta-tegra =
-layer and I&#39;d like to append a recipe. The original recipe looks like t=
-his:</div><div><a href=3D"https://github.com/madisongh/meta-tegra/blob/rock=
-o-l4t-r28.2/recipes-bsp/tegra-binaries/tegra-tools_28.2.0.bb">https://githu=
-b.com/madisongh/meta-tegra/blob/rocko-l4t-r28.2/recipes-bsp/tegra-binaries/=
-tegra-tools_28.2.0.bb=C2=A0</a><br></div><div><br></div><div>I&#39;ve made =
-a tegra-tools_28.2.0.bbappend to change the default PM_CONFIG DEFAULT from =
-2 to 3 to get max performance in <span style=3D"background-color:rgb(255,25=
-5,255);text-decoration-style:initial;text-decoration-color:initial;float:no=
-ne;display:inline">nvpmodel.conf</span> configuration file.</div><div><br><=
-/div><div>```</div><div>FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files=
-/tegra186:&quot;</div><div>SRC_URI_prepend_tegra186 +=3D &quot;file://nvpmo=
-del.conf &quot;</div><div><br></div><div>do_install_append_tegra186() {</di=
-v><div>=C2=A0 =C2=A0 install -d ${D}${sysconfdir}</div><div>=C2=A0 =C2=A0 i=
-nstall -m 0755 ${B}/usr/sbin/nvpmodel ${D}${sbindir}/</div><div>=C2=A0 =C2=
-=A0 install -m 0644 ${WORKDIR}/nvpmodel.conf ${D}${sysconfdir}/nvpmodel.con=
-f</div><div>=C2=A0 =C2=A0 install -d ${D}${sysconfdir}/init.d</div><div>=C2=
-=A0 =C2=A0 install -m 0644 ${S}/nvpmodel.init ${D}${sysconfdir}/init.d/nvpm=
-odel</div><div>=C2=A0 =C2=A0 install -d ${D}${systemd_system_unitdir}</div>=
-<div>=C2=A0 =C2=A0 install -m 0644 ${S}/nvpmodel.service ${D}${systemd_syst=
-em_unitdir}</div><div>}</div><div>```</div><div>Would you have any idea why=
- the nvpmodel.conf prepend is ignored and the file never ends up in ${WORKD=
-IR}.=C2=A0</div><div><br></div><div>I&#39;ve made sure the paths are correc=
-t. nvpmodel.conf exists and if I put a typo like nvpmodel.conf_blabla bitba=
-ke throws a warning that it cannot find the file. So I&#39;m sure the file =
-is found but somehow bitbake ignores it.</div><div><br></div><div>I&#39;m h=
-aving this issue with this one single recipe only, none of the others in my=
- build system so I&#39;m a bit puzzled.</div></div><div><br></div><div>Than=
-ks,</div><div>-Damien</div><div><br></div><div><br></div></div>
+<div dir=3D"ltr">Typo sorry.<div><br></div><div>I&#39;ve tried all possible=
+ combination</div><div><ul><li>SRC_URI +=3D &quot;file://nvpmodel.conf&quot=
+;</li><li><span style=3D"font-size:small;background-color:rgb(255,255,255);=
+text-decoration-style:initial;text-decoration-color:initial;float:none;disp=
+lay:inline">SRC_URI_append =3D &quot;=C2=A0file://nvpmodel.conf&quot;</span=
+><br></li><li><span style=3D"font-size:small;background-color:rgb(255,255,2=
+55);text-decoration-style:initial;text-decoration-color:initial;float:none;=
+display:inline"><span style=3D"text-decoration-style:initial;text-decoratio=
+n-color:initial;float:none;display:inline">SRC_URI_prepend =3D &quot;file:/=
+/nvpmodel.conf &quot;</span></span></li><li>SRC_URI_append_tegra186 =3D &qu=
+ot;=C2=A0file://nvpmodel.conf&quot;</li><li>SRC_URI_prepend_<span style=3D"=
+font-size:small;background-color:rgb(255,255,255);text-decoration-style:ini=
+tial;text-decoration-color:initial;float:none;display:inline">tegra186</spa=
+n> =3D &quot;file://nvpmodel.conf &quot;</li></ul><br></div><div>-Damien</d=
+iv></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, =
+Jun 14, 2018 at 3:24 PM, Robert P. J. Day <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@crashcourse.ca</a>&g=
+t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
+ .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On Thu,=
+ 14 Jun 2018, Damien LEFEVRE wrote:<br>
+<br>
+&gt; HI,<br>
+&gt; I&#39;m working on meta-tegra layer and I&#39;d like to append a recip=
+e. The original recipe looks like<br>
+&gt; this:<br>
+&gt; <a href=3D"https://github.com/madisongh/meta-tegra/blob/rocko-l4t-r28.=
+2/recipes-bsp/tegra-binaries/tegra-t" rel=3D"noreferrer" target=3D"_blank">=
+https://github.com/madisongh/<wbr>meta-tegra/blob/rocko-l4t-r28.<wbr>2/reci=
+pes-bsp/tegra-binaries/<wbr>tegra-t</a><br>
+&gt; <a href=3D"http://ools_28.2.0.bb" rel=3D"noreferrer" target=3D"_blank"=
+>ools_28.2.0.bb</a>=C2=A0<br>
+&gt;<br>
+&gt; I&#39;ve made a tegra-tools_28.2.0.bbappend to change the default PM_C=
+ONFIG DEFAULT from 2 to 3 to<br>
+&gt; get max performance in nvpmodel.conf configuration file.<br>
+&gt;<br>
+&gt; ```<br>
+&gt; FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files/tegra186:&quot;<br=
+>
+&gt; SRC_URI_prepend_tegra186 +=3D &quot;file://nvpmodel.conf &quot;<br>
+<br>
+</span>=C2=A0 why are you using both a prepend and the &quot;+=3D&quot; ope=
+rator on the same<br>
+line?<br>
+<br>
+rday<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+-- <br>
+<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D<br>
+Robert P. J. Day=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Ottawa, Ontario,=
+ CANADA<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"h=
+ttp://crashcourse.ca/dokuwiki" rel=3D"noreferrer" target=3D"_blank">http://=
+crashcourse.ca/dokuwiki</a><br>
+<br>
+Twitter:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a=
+ href=3D"http://twitter.com/rpjday" rel=3D"noreferrer" target=3D"_blank">ht=
+tp://twitter.com/rpjday</a><br>
+LinkedIn:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"http://ca.linkedin.=
+com/in/rpjday" rel=3D"noreferrer" target=3D"_blank">http://ca.linkedin.com/=
+in/<wbr>rpjday</a><br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D</font></span></blockquote></div><br></div>
 
---000000000000a33ed9056e9910bf--
+--000000000000a5e235056e994c0a--
