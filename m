@@ -1,70 +1,36 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BFCB7E01335; Thu, 14 Jun 2018 14:50:31 -0700 (PDT)
+	id 6437AE012F3; Thu, 14 Jun 2018 15:08:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.52 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.126 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f52.google.com (mail-vk0-f52.google.com
-	[209.85.213.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BADAE0113E
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 14:50:31 -0700 (PDT)
-Received: by mail-vk0-f52.google.com with SMTP id b77-v6so4590125vkb.5
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 14:50:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=hOzwC46cZBfSLXpoeBrLQsWXdMNh4fO+2FMy3LX7ZBs=;
-	b=X/2TwUUOj3jR00/hO8I407C9cWVHv+OGAs80Gko/XM0Q6WnVykG0ypaDu0b/ZxR+ic
-	HG1zGR5VxaRSOVQAduDSiBSbaOUZxMwueHTlActWs1fGFyCycNBV45Q8Tet6e4RpbiIU
-	Go6b8PmO8hsSepOc80jQo4Cgxu284MeGSNTg3+BEol3Rzx0ZAwjdVYSwfY5wbpBbiYHx
-	4R1FLsXURfq/d6hx5Ja7GoyH73/Fpqcu19SWJUM0kP0Mt7/rOUKhiwIILsAQiAWuqZ+f
-	9zkgHGsmtzd06OuYEnHI/9SbKAtsyhFFRrt9pdfQtTm0UaAo0Ngyi2C9exo/r7NaPEQu
-	oRWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=hOzwC46cZBfSLXpoeBrLQsWXdMNh4fO+2FMy3LX7ZBs=;
-	b=SbykDgKLLt/NCeN3YiiWWoH8otN89ZjcazgRsGG098VxhDmZZswPuD6ZI8lzyrsPSc
-	wGfDaHFWXWQICOEM8NY1bWsbrcSF5u9fYOP8gcPjJNXpeOzIP0nYqa7Adud84MLgUVjs
-	NgC3RAB7Bj+0oeK82kPDJ76VjG0XqzvOAQ0wTKxp5HNE3+M5WBO/EGE750IGfUIREbrG
-	EYnzkzriuFx13XcRwoUsZ3XpcWECuTZHEibiIzL4QYwGKd0Ccnb/f1R8b4rJoPO78ojO
-	DxN5MHRfg9ReZXmxa0BXjNULl8pFF7syFZM1m+rDuJPn3z1hx4aVt/pX3jkXFHRi2zWC
-	fCYw==
-X-Gm-Message-State: APt69E0aeDL4VX4lKC86czJuZAKaWXC3ncMHZFioIG1k/7KmOA7cxR/h
-	6YlXeZ1shj7Uv396Nx2a8UfeMbBEDgfrc/K5OpY=
-X-Google-Smtp-Source: ADUXVKIrWgbJ5N128dEgig00fMfb6nav0Kz69lZCetCP6aVFmwzhUoF/360QAG55/y9w25IztPtkQHWNyDpS/pCCzTY=
-X-Received: by 2002:a1f:7c4:: with SMTP id 187-v6mr2729230vkh.60.1529013030451;
-	Thu, 14 Jun 2018 14:50:30 -0700 (PDT)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2182E01281;
+	Thu, 14 Jun 2018 15:08:12 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	14 Jun 2018 15:08:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,224,1526367600"; d="scan'208";a="208199957"
+Received: from tgraydon-mac01.jf.intel.com ([10.24.9.51])
+	by orsmga004.jf.intel.com with ESMTP; 14 Jun 2018 15:08:09 -0700
+From: Tracy Graydon <tracy.graydon@intel.com>
+To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
+Message-ID: <e1cb225c-7cfa-ad44-21e4-c37bb55bd553@intel.com>
+Date: Thu, 14 Jun 2018 15:08:09 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.1.0
 MIME-Version: 1.0
-References: <CANge7vWW35a41fOJhFis1aw2vu2qw9TvtodTSKmyuJ5NvCuL7g@mail.gmail.com>
-	<CANge7vWC+p7Df41A5uFLDYfP5EpaFiGhBxtEt5N_DJ3mOwvq3g@mail.gmail.com>
-	<aade00d6-6ad7-a894-420b-47a97fb68d37@gmail.com>
-	<CANge7vVnftfefRnx80EjvEKfZUkPNvd0mf9QUMqXeXc-6UkCag@mail.gmail.com>
-	<CAMKF1so9RB+wb3TJPYNkFuW_LU4fgW8Hpjhgz0S1+b0QDdwgng@mail.gmail.com>
-	<CANge7vUjYRAiGSZY-QGzLTU0p57xcOPS3JryxaO0sLVDSZ-ZZw@mail.gmail.com>
-In-Reply-To: <CANge7vUjYRAiGSZY-QGzLTU0p57xcOPS3JryxaO0sLVDSZ-ZZw@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 14 Jun 2018 14:50:19 -0700
-Message-ID: <CAMKF1spu_eeWWqxJFFGqZ_kdp9BJQSC-1ExHwt9G8ZYPs=k57g@mail.gmail.com>
-To: Jon Szymaniak <jon.szymaniak@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: qemu-native build fails on sumo due to missing capstone.h
+Subject: [ANNOUNCEMENT] Yocto Project 2.4.3 (rocko-18.0.3) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,134 +42,239 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jun 2018 21:50:31 -0000
-Content-Type: multipart/alternative; boundary="000000000000897d8d056ea116e7"
+X-List-Received-Date: Thu, 14 Jun 2018 22:08:14 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---000000000000897d8d056ea116e7
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hello,
 
-On Thu, Jun 14, 2018 at 1:08 PM Jon Szymaniak <jon.szymaniak@gmail.com>
-wrote:
+The latest release of the Yocto Project 2.4.3 (rocko-18.0.3) is now available for download at:
 
-> On Thu, Jun 14, 2018 at 14:18 Khem Raj <raj.khem@gmail.com> wrote:
->
->> On Thu, Jun 14, 2018 at 9:56 AM Jon Szymaniak <jon.szymaniak@gmail.com>
->> wrote:
->> >
->> > On Thu, Jun 14, 2018 at 11:43 Khem Raj <raj.khem@gmail.com> wrote:
->> > > Do you have capstone development headers/libs installed on your buil=
-d
->> host ?
->> > >
->> >
->> > No, and I understand that's an easy thing to address on the build host=
-.
->> >
->> > However, I don't think this should be necessary build host dependency.
->> > QEMU includes the capstone codebase as a git submodule, so everything
->> > that's needed is there.
->> >
->> > Maybe it's just a matter of tweaking the recipe to set
->> > CMAKE_INSTALL_PREFIX appropriately so that when the build dives down
->> > into the capstone directory, this points to the correct prefix?
->> >
->> > It looks like the inclusion and use of capstone is new, as of the QEMU
->> > version included with sumo. (i.e. This appears not to be the situation
->> > with the version used in rocko and pyro).
->>
->> Least intrusive approach would be to disable it if its not something you
->> depend on.
->
->
-> Makes sense, thank you.
->
-> Two workarounds that worked for me were either adding qemu-native to
-> ASSUME_PROVIDED or appending =E2=80=9C--disable-capstone=E2=80=9D to qemu=
-=E2=80=99s EXTRA_OECONF.
->
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.3/poky-rocko-18.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.4.3/poky-rocko-18.0.3.tar.bz2
 
-The fact that not everyone sees this issue makes me think that it might be
-something in your environment that=E2=80=99s triggering this but if we disa=
-ble it
-then we make the issue irrelevant
+A gpg signed version of these release notes is available at:
 
->
-> I=E2=80=99ll try to follow up with a patch to the recipe in oe-core, unle=
-ss you
-> suspect that the source of this is merely something on my end.
->
->
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.3/RELEASENOTES
 
---000000000000897d8d056ea116e7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Full pass test report is available at:
 
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"auto">On Thu=
-, Jun 14, 2018 at 1:08 PM Jon Szymaniak &lt;<a href=3D"mailto:jon.szymaniak=
-@gmail.com">jon.szymaniak@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
-dding-left:1ex"><div><div><div><div>On Thu, Jun 14, 2018 at 14:18 Khem Raj =
-&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.=
-com</a>&gt; wrote:<br></div><div><div class=3D"gmail_quote"><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
-dding-left:1ex">On Thu, Jun 14, 2018 at 9:56 AM Jon Szymaniak &lt;<a href=
-=3D"mailto:jon.szymaniak@gmail.com" target=3D"_blank">jon.szymaniak@gmail.c=
-om</a>&gt; wrote:<br>
-&gt;<br>
-&gt; On Thu, Jun 14, 2018 at 11:43 Khem Raj &lt;<a href=3D"mailto:raj.khem@=
-gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br>
-&gt; &gt; Do you have capstone development headers/libs installed on your b=
-uild host ?<br>
-&gt; &gt;<br>
-&gt;<br>
-&gt; No, and I understand that&#39;s an easy thing to address on the build =
-host.<br>
-&gt;<br>
-&gt; However, I don&#39;t think this should be necessary build host depende=
-ncy.<br>
-&gt; QEMU includes the capstone codebase as a git submodule, so everything<=
-br>
-&gt; that&#39;s needed is there.<br>
-&gt;<br>
-&gt; Maybe it&#39;s just a matter of tweaking the recipe to set<br>
-&gt; CMAKE_INSTALL_PREFIX appropriately so that when the build dives down<b=
-r>
-&gt; into the capstone directory, this points to the correct prefix?<br>
-&gt;<br>
-&gt; It looks like the inclusion and use of capstone is new, as of the QEMU=
-<br>
-&gt; version included with sumo. (i.e. This appears not to be the situation=
-<br>
-&gt; with the version used in rocko and pyro).<br>
-<br>
-Least intrusive approach would be to disable it if its not something you<br=
->
-depend on.</blockquote><div dir=3D"auto"><br></div></div></div></div></div>=
-</div><div><div><div><div><div class=3D"gmail_quote"><div dir=3D"auto">Make=
-s sense, thank you.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto=
-">Two workarounds that worked for me were either adding qemu-native to ASSU=
-ME_PROVIDED or appending =E2=80=9C<span style=3D"color:rgb(49,49,49);word-s=
-pacing:1px;background-color:rgb(255,255,255)">--disable-capstone=E2=80=9D t=
-o qemu=E2=80=99s=C2=A0</span><span style=3D"color:rgb(49,49,49);word-spacin=
-g:1px;background-color:rgb(255,255,255)">EXTRA_OECONF.</span></div></div></=
-div></div></div></div></blockquote><div dir=3D"auto"><br></div><div dir=3D"=
-auto">The fact that not everyone sees this issue makes me think that it mig=
-ht be something in your environment that=E2=80=99s triggering this but if w=
-e disable it then we make the issue irrelevant=C2=A0</div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex"><div><div><div><div><div class=3D"gmail_quote"><div dir=3D"au=
-to"><span style=3D"color:rgb(49,49,49);word-spacing:1px;background-color:rg=
-b(255,255,255)"></span></div><div dir=3D"auto"><span style=3D"color:rgb(49,=
-49,49);word-spacing:1px;background-color:rgb(255,255,255)"><br></span></div=
-><div dir=3D"auto"><span style=3D"color:rgb(49,49,49);word-spacing:1px;back=
-ground-color:rgb(255,255,255)">I=E2=80=99ll try to follow up with a patch t=
-o the recipe in oe-core, unless you suspect that the source of this is mere=
-ly something on my end.</span></div><div dir=3D"auto"><br></div></div></div=
->
-</div>
-</div>
-</div>
-</blockquote></div></div>
+https://wiki.yoctoproject.org/wiki/WW24_-_2018-06-12-_Full_Test_Cycle_-_2.4.3_rc2
 
---000000000000897d8d056ea116e7--
+Thank you to everyone for your contributions to this release!
+
+Tracy Graydon
+Yocto Project Release Engineering
+tracy.graydon@intel.com
+
+
+------------------
+yocto-2.4.3 Errata
+--------------------
+
+Release Name: eclipse-poky-neon-rocko-18.0.3
+Branch: neon/rocko
+Tag: neon/rocko-18.0.3
+Hash: a5dbc01b96be55c4ec2f774af9996a8086e402ab
+md5: 54e8fca5fa246c43845721ec9e0c709b
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.3/eclipse-poky-neon-rocko-18.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.4.3/eclipse-poky-neon-rocko-18.0.3.tar.bz2
+
+Release Name: eclipse-poky-oxygen-rocko-18.0.3
+Branch: oxygen/rocko
+Tag: oxygen/rocko-18.0.3
+Hash: 020fc5814d2028654879356296b647002caf30b6
+md5: f61add93dc74f864a4d66d62249b4bf7
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.3/eclipse-poky-oxygen-rocko-18.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.4.3/eclipse-poky-oxygen-rocko-18.0.3.tar.bz2
+
+Release Name: meta-qt3-rocko-18.0.3
+Branch: rocko
+Tag: rocko-18.0.3
+Hash: 8ef7261a331e0869a0461ab2fb44e39980cedc02
+md5: d9fc8c6550d7352dd9176a1ce980bdf4
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.3/meta-qt3-rocko-18.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.4.3/meta-qt3-rocko-18.0.3.tar.bz2
+
+Release Name: meta-qt4-rocko-18.0.3
+Branch: rocko
+Tag: rocko-18.0.3
+Hash: e290738759ef3f39c9e079eaa9b606a62107e5ba
+md5: df426f563fca33a943aa9cef5bd20903
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.3/meta-qt4-rocko-18.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.4.3/meta-qt4-rocko-18.0.3.tar.bz2
+
+Release Name: poky-rocko-18.0.3
+Branch: rocko
+Tag: rocko-18.0.3
+Hash: 7e7ee662f5dea4d090293045f7498093322802cc
+md5: fabf3fa0506a8a487b1b79c8f108de0b
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.3/poky-rocko-18.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.4.3/poky-rocko-18.0.3.tar.bz2
+
+
+---------------
+ Known Issues
+---------------
+Toaster for Rocko:  
+
+- There are two patches that fix toaster issues that did not make it into this release. These fixes are on the Poky rocko and bitbake rocko/1.36 branches.
+The first patch fixes an error that breaks the initialization of Toaster. The second patches fixes a change in behavior for Django that creates
+an extra thread that blocks Toaster from shutting down. These issues only affect Toaster and do not affect the rest of the release.
+
+
+- https://bugzilla.yoctoproject.org/show_bug.cgi?id=12751: django fails for 'optional' fixture 'custom.xml'
+
+Toaster looks for and will include the optional fixture file "custom.xml". The test for this file relied on a passive fail if the file was not found. This is now a hard fail that breaks Toaster startup.
+Solution is to wrap the load command with a "try" and passive "except".
+
+Fix is on Rocko branch:
+http://git.yoctoproject.org/cgit.cgi/poky/commit/?h=rocko&id=9c3da34ec6c2c9a9abc30c72d6a8f9b996250862
+
+
+---------------
+Security Fixes
+---------------
+libnl: fix CVE-2017-0553
+perl: Security fix CVE-2017-12883
+patch: fix CVE-2018-1000156
+patch: fix CVE-2018-6951
+dhcp: Security Advisory - CVE-2017-3144
+libvorbis: CVE-2018-5146
+libvorbis: CVE-2017-14632
+libvorbis: CVE-2017-14633
+lame: revert "lame: fix CVE-2017-13712"
+
+
+------
+Fixes
+------
+documentation: Prepped set for a 2.4.3 release
+ref-manual: Updated SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS variable
+bsp-guide: Fixed manual title in title page note
+ref-manual: Updated the SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS variable
+documentation: Updated manual notes
+bitbake: toaster: do not fail on optional 'custom.xml' file
+bitbake: Toaster: fix shutdown and extra threads
+build-appliance-image: Update to rocko head revision
+poky: Bump version to 2.4.3
+meta-yocto-bsp: bump to the latest v4.12 stable kernel for the non-x86 BSPs
+linux-yocto: update genericx86* SRCREVs for 4.12
+ncurses: Abstract out termlib
+ncurses: fix deletion of /usr/lib/terminfo
+ncurses: fix do_install failure when base_libdir has more than one level
+ncurses: 6.0+20170715 -> 6.0+20171125
+package.py: use single quotes for path passed to file in is_elf()
+package.bbclass: Add '-b' option to file call in isELF
+package.bbclass: use single quotes for path passed to file in isELF()
+Revert "package.bbclass: Add '-b' option to file call in isELF"
+ruby: Update to 2.4.4
+ruby: fix typo in gmp PACKAGECONFIG option
+ruby: remove spurious db build dependency
+ruby: upgrade to 2.4.2
+grub/grub-efi: fix conflict
+scripts/test-dependencies.sh: remove
+Revert "waf.bbclass: explicitly pass bindir and libdir if supported"
+perl: add patch to solve libcrypt incompatibility
+rsync: update to 3.1.3
+mpfr: Update SRC_URI to use gnu
+uninative: Set the dynamic linker to use at compile time
+uninative: Add allow-shlib-undefined to BUILD_LDFLAGS and drop other workarounds
+bitbake.conf: Set and export TZ envvar to UTC
+yocto-uninative: Update to version 1.9 (fedora28 compatible)
+package.bbclass: Add '-b' option to file call in isELF
+patch:2.7.5 -> 2.7.6
+gio-module-cache.bbclass: pass in ${libexecdir}
+uninative: add variables to the whitelist so that it does not re-triger recipe parsing
+package_manager.py: Skip gpgcheck while using dnf on target
+libpcre-ptest: skip locale test
+openssl: update 1.1.0g -> 1.1.0h
+openssl: update 1.0.2n -> 1.0.2o
+openssl: fix libdir logic to allow multiarch style paths
+openssl: drop openssl-1.0.2a-x32-asm.patch
+openssl: refresh patches
+package_rpm: set _builddir to B not S
+linux-yocto/4.12: intel-socfpga, intel-pmc-core and ish support for CoffeeLake board
+linux-yocto/meta: improve wifi driver granularity
+linux-yocto/4.12: add ssl and utils native dependencies
+linux-yocto/4.12: update to v4.12.21
+mirrors.bbclass: change Debian anonscm to salsa
+ca-certificates: change SRC_URI from Debian anonscm to salsa
+ncurses: change SRC_URI from Debian anonscm to salsa
+curl: DEPENDS on libidn2 (not libidn)
+libxml2: 2.9.4 -> 2.9.5
+curl: upgrade to 7.58.0
+curl: 7.54.1 -> 7.57.0
+logging.bbclass: Enclose the tr string in quotes
+bitbake.conf: Add comm to HOSTTOOLS
+lttng-modules: update to v2.10.5 for kernel 4.15
+lttng-ust: upgrade 2.9.1 -> 2.10.1
+lttng-modules: upgrade 2.9.5 -> 2.10.4
+distcc: Change SRC_URI
+e2fsprogs: fix compatibility with glibc 2.27
+openssl_1.0.2n: improve reproducibility
+checklayer: remove reference to undefined class
+valgrind: Fix multilib header conflict - valgrind/config.h
+tiff: Fix multilib header conflict - tiffconf.h
+scripts/oe-build-perf-report: fix comparing arbitrary commits
+ca-certificates: run postinst script only for -target package
+linux-yocto/4.12: backport bugfixes for x86
+linux-yocto/4.12: warning: drm/i915/cfl: Coffee Lake works on Kaby Lake PCH
+linux-yocto/4.12: memleak and build warning fixes
+linux-yocto/4.12: fix aufs compile warning
+linux-yocto/4.12: add stratix10 SoC development board
+qemu: fix memfd_create with glibc 2.27
+package-manager: add install_glob()
+package_manager: improve install_complementary
+sdk: generate locale archive and remove packages
+populate_sdk_base: depend on nativesdk-glibc-locale
+populate_sdk: install UTF-8 locales in SDKs
+sdk: only install locales if we're using glibc
+sdk: install specified locales into SDK
+cross-localedef-native: add way to specify which locale archive to write
+glibc: relocate locale paths in nativesdk
+glibc: don't use host locales in nativesdk
+default-distrovars: don't rename locales for nativesdk
+beaglebone: Find /boot partition on mmcblk0
+gcc: Fix internal compiler error for PPC test case "gcc.dg/vmx/7d-02.c"
+gcc: Fix test case issue when SSE is not enabled
+maintainers.inc: add myself as maintainer for the new busybox-inittab
+layer.conf: add busybox-inittab to SIGGEN_EXCLUDERECIPES_ABISAFE
+busybox: separate inittab into own package, due to SERIAL_CONSOLES being machine-specific
+package_manager.py: Explicit complementary fail
+go: Upgrade 1.9 to 1.9.4 stable release
+uninative: Add compatiblity version check
+yocto-uninative: Upgrade to 1.8 version with glibc 2.27
+unfs3: Fix libtirpc usage for unfs3-native version
+libtirpc: Extend to native and nativesdk recipes
+unfs3: Fix build with musl
+gcc6: Patch to fix broken gcc-sanitizers build
+gdb: fix header ordering for TRAP_HWBKPT
+glibc: add missing TRAP_BRANCH/TRAP_HWBKPT definitions
+gcc: Remove patch causing ICE on x86_64 valgrind compile
+gcc6: Backport few more patches
+gcc6: enable FL_LPAE flag for armv7ve cores
+gcc7/gcc6: Fix unaligned STRD issue on ARM
+gcc6: Upgrade to 6.4
+gcc: Fix libssh_nonshared linker specs for ppc/musl
+gcc: Link libssp_nonshared.a only on musl targets
+gcc-runtime: Disable libitm on riscv
+bitbake: providers: Fix determinism issue
+glibc: Update to tip of 2.26
+glibc: Adapt do_install_append_aarch64() for usrmerge
+libtirpc: refresh patches
+libtirpc: stop dropping in NIS headers
+libunwind: Fix multilib header conflict - libunwind.h
+libmpc: fix SRC_URI
+siteinfo: add aarch64_illp32 decode
+update-rc.d: QA regression.
+webkitgtk_2.18.6.bb: Fix configure failure for aarch64 build
+eglinfo-fb: Pass -DMESA_EGL_NO_X11_HEADERS to cxxflags
+openssl: remove patch from 1.0.2m left behind after update to 1.0.2n
+p11-kit: take source code from official git
+
