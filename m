@@ -1,70 +1,80 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <prvs=6977bbb5e=Richard.Leitner@skidata.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 79C35E0113F; Thu, 14 Jun 2018 21:36:52 -0700 (PDT)
+	id 7F44CE010CC; Fri, 15 Jun 2018 01:01:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (alex.kanavin[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [91.230.2.99 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.196 listed in list.dnswl.org]
-Received: from mail-ot0-f196.google.com (mail-ot0-f196.google.com
-	[74.125.82.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA17DE00DFE
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 21:36:51 -0700 (PDT)
-Received: by mail-ot0-f196.google.com with SMTP id q17-v6so9647552otg.2
-	for <yocto@yoctoproject.org>; Thu, 14 Jun 2018 21:36:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=7pejDaovlBFl41qtcYUszljFEqQZxiv3lvDZjlt4Wto=;
-	b=dcCOjpnsSyTUNkFpw+X8vDtMeN8RjpXac85lf4s0GnwPmjLZlSDszx7S1LWmMKXVRZ
-	FDVgQfG0iB+itivpLAUG98di166+zGemkYiXmCISJk7EvWOp4man4ObL0GcdMCfonQft
-	8NpAsP7ek2vB4EMHkkOUE4G7hjHkiIyKW5bXPglHldvApUsMgnjraYE6zPffLbbMIpd0
-	ZwUwKPBmFRDqdJbOP9sIq3iL/hJNXD7sEQbf5iHDaiytLqntAjgLOVgfLwROmxsEkRYM
-	T2VrP2ShqVvklhpLKZTJfgKPLt3Q/7PRSHsudQLi+cMhK8Fw4TFUFS6ueQsTibcZl0QM
-	NAXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=7pejDaovlBFl41qtcYUszljFEqQZxiv3lvDZjlt4Wto=;
-	b=oO/P/Y3t0mzT252OjCeaAWSd1E1pAB1ph4oeKuKAhQJMJ2K787FoMlA2JgQjXXp+X+
-	wIN8Z01Y+vFTsQyxjHN0+6GbrsqLF2c0kSpAJRuVekv/lS4sSz55DyszPjSz4uncymLp
-	zeLGpXr9jX0rp/m5uxjBSBj5bSahEtbikqbqw/Gjq2RFXOtrRj1ZknSLnZvjDfMJIlPZ
-	onVfF+Jl4lnD6Wmy/68ZIQ84Bsd99RStYSi9ybsGqjs86d70r76ZrsxenYJBy+RKQPaP
-	MlNLZfAIALNUfUPf6FHy4rQyqimcUJiRQuDyEfnjzUzJTEK/dCgglZn0NqMth9vukmB/
-	nBXw==
-X-Gm-Message-State: APt69E3qN5Ha1DtY9Rm2whSC0Pun2raTqKQXZUJ0MP3ke7pTM7wsnUH3
-	aaWnl9+Htv6tHsELA68qHIvthlmLuMR74rasoDI=
-X-Google-Smtp-Source: ADUXVKJvFP+OXUPPW1XctKrRw0nD17AVolv7WaVwby7tn81UqcU8/4J6DdZ+d+UBPOAVuAN8x4DaDulEHqBRFU3Yxc8=
-X-Received: by 2002:a9d:1142:: with SMTP id p2-v6mr70126otp.110.1529037411428; 
-	Thu, 14 Jun 2018 21:36:51 -0700 (PDT)
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Fri, 15 Jun 2018 01:01:27 PDT
+Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0312AE00C80
+	for <yocto@yoctoproject.org>; Fri, 15 Jun 2018 01:01:27 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.51,226,1526335200"; d="scan'208";a="10865042"
+To: =?UTF-8?Q?Andr=c3=a9_Draszik?= <git@andred.net>, <yocto@yoctoproject.org>
+References: <20180330084019.18955-1-git@andred.net>
+	<20180330084019.18955-4-git@andred.net>
+From: Richard Leitner <richard.leitner@skidata.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=richard.leitner@skidata.com; prefer-encrypt=mutual; keydata=
+	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
+	P3I6bcPJefUstj65yFQnTw==
+Message-ID: <3463e929-53ce-df98-355c-11de357fc5ae@skidata.com>
+Date: Fri, 15 Jun 2018 10:00:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.8.0
 MIME-Version: 1.0
-Received: by 2002:a4a:90cd:0:0:0:0:0 with HTTP; Thu, 14 Jun 2018 21:36:50
-	-0700 (PDT)
-In-Reply-To: <3d30eca24f6f4709aa81cc5bf31c5850@XBOX02.axis.com>
-References: <CALh9vaXCbqBe_49fi3OFs_Cj56s=J7Bvdv6f8BfWz9QMhmJQUw@mail.gmail.com>
-	<CANNYZj9bbraOoEJChm2X7Ws1+h9+K86Kissdh2dWaPtr1PiOEw@mail.gmail.com>
-	<3d30eca24f6f4709aa81cc5bf31c5850@XBOX02.axis.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 15 Jun 2018 07:36:50 +0300
-Message-ID: <CANNYZj9HprmGYL3V_2me2q2s-K0A6Um+Z6LBN+hYw5X8cnr9pg@mail.gmail.com>
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	"Paul Eggleton \(paul.eggleton@linux.intel.com\)"
-	<paul.eggleton@linux.intel.com>
-Subject: Re: devtool finish & patch order
+In-Reply-To: <20180330084019.18955-4-git@andred.net>
+X-Originating-IP: [192.168.111.252]
+X-ClientProxiedBy: sdex3srv.skidata.net (192.168.111.81) To
+	sdex5srv.skidata.net (192.168.111.83)
+Subject: Re: [meta-java][PATCH 3/3] openjdk-8: use ca-certificates-java
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,43 +86,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jun 2018 04:36:52 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 15 Jun 2018 08:01:29 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-2018-06-15 2:11 GMT+03:00 Peter Kjellerstedt <peter.kjellerstedt@axis.com>:
-> * `devtool modify -w <some simple package>`
-> * Modify some file, e.g., add some comment to the Makefile.
-> * Commit it with subject "Change 1"
-> * Repeat the two steps above two more times, increasing the number in
->   the subject each time.
-> * `devtool finish <some simple package> <layer where the recipe is>`
-> * Examine the updated recipe. In my case the patches were in the correct
->   order after this step:
->
-> SRC_URI = "<original URI> \
->            file://0001-Change-1.patch \
->            file://0002-Change-2.patch \
->            file://0003-Change-3.patch \
->            "
->
-> * Not to be discouraged, I started over (using the existing source dir):
-> * `devtool modify -n <some simple package>`
-> * `git rebase -i 'HEAD~3'` (in workspace/sources/<some simple package>)
-> * Use "reword" on the last two commits and change their subject lines
->   to "Another change" and "Some third change".
-> * `devtool finish <some simple package> <some other layer than where the recipe is>`
-> * Now I ended up with the following in the new .bbappend file:
->
-> SRC_URI += "file://0002-Another-change.patch file://0003-Some-third-change.patch file://0001-Change-1.patch"
+Hi,
+this commit of yours breaks the build on meta-java's current
+mater-next branch (when building an image containing openjre-8
+or openjdk-8) with following message:
 
-Wait, what would be the correct thing for devtool to do here? The
-original patches are already added to the recipe in the original
-layer, so .bbappend
-would have to first revert them and add newly modified ones? I don't
-think devtool is that clever :) Does it add the patches correctly, if
-you repeat
-the first half of the sequence (adding new patches), but use devtool
-finish to save changes to a diffferent layer?
+ERROR: openjre-8-test-image-1.0-r0 do_rootfs: [log_check] openjre-8-test-image: found 1 error message in the logfile:
+[log_check] E: /yocto/meta-java-test/build/tmp/work/qemuarm-poky-linux-gnueabi/openjre-8-test-image/1.0-r0/rootfs/etc/ca-certificates/update.d/ca-certificates-java-hook exited with code 1.
 
-Alex
+ERROR: openjre-8-test-image-1.0-r0 do_rootfs: Function failed: do_rootfs
+ERROR: Logfile of failure stored in: /yocto/meta-java-test/build/tmp/work/qemuarm-poky-linux-gnueabi/openjre-8-test-image/1.0-r0/temp/log.do_rootfs.19892
+ERROR: Task (/yocto/meta-java-test/meta-java/recipes-images/images/openjre-8-test-image.bb:do_rootfs) failed with exit code '1'
+
+
+The logfile contains following error:
+
+Running hooks in /yocto/meta-java-test/build/tmp/work/qemuarm-poky-linux-gnueabi/openjre-8-test-image/1.0-r0/rootfs/etc/ca-certificates/update.d...
+/yocto/meta-java-test/build/tmp/work/qemuarm-poky-linux-gnueabi/openjre-8-test-image/1.0-r0/rootfs/etc/ca-certificates/update.d/ca-certificates-java-hook: no JVM_LIBDIR specified
+E: /yocto/meta-java-test/build/tmp/work/qemuarm-poky-linux-gnueabi/openjre-8-test-image/1.0-r0/rootfs/etc/ca-certificates/update.d/ca-certificates-java-hook exited with code 1.
+done.
+
+
+Therefore it will be removed from master-next.
+
+It would be great if you could send an fixed version.
+
+Thank you!
+
+regards;Richard.L
+
+
+On 03/30/2018 10:40 AM, André Draszik wrote:
+> From: André Draszik <andre.draszik@jci.com>
+> 
+> The OpenJDK-8 package currently comes with a trustStore
+> that was generated at OpenJDK-8-native build time from
+> *all* certificates available in the system, not just from
+> those that are marked as trusted.
+> 
+> This isn't right...
+> 
+> openjdk-8 and openjre-8 now RDEPENDS on (and use) the CA
+> certificates as provided by the ca-certificates-java
+> package just added.
+> 
+> This makes sure that Java now uses the same trusted CA
+> certificates as the rest of the system.
+> 
+> Signed-off-by: André Draszik <andre.draszik@jci.com>
+> ---
+>  recipes-core/openjdk/openjdk-8-common.inc |  2 ++
+>  recipes-core/openjdk/openjdk-8-cross.inc  | 12 +++++++++++-
+>  2 files changed, 13 insertions(+), 1 deletion(-)
+> 
+> diff --git a/recipes-core/openjdk/openjdk-8-common.inc b/recipes-core/openjdk/openjdk-8-common.inc
+> index b2020c3..c8d157e 100644
+> --- a/recipes-core/openjdk/openjdk-8-common.inc
+> +++ b/recipes-core/openjdk/openjdk-8-common.inc
+> @@ -254,3 +254,5 @@ def version_specific_cflags(d):
+>  CFLAGS_append = " ${@version_specific_cflags(d)}"
+>  CXXFLAGS_append = " ${@version_specific_cflags(d)}"
+>  CXX_append = " -std=gnu++98"
+> +
+> +RDEPENDS_${PN} = "ca-certificates-java"
+> diff --git a/recipes-core/openjdk/openjdk-8-cross.inc b/recipes-core/openjdk/openjdk-8-cross.inc
+> index d70c946..6795c92 100644
+> --- a/recipes-core/openjdk/openjdk-8-cross.inc
+> +++ b/recipes-core/openjdk/openjdk-8-cross.inc
+> @@ -57,7 +57,6 @@ EXTRA_OECONF_append = "\
+>      --with-sys-root=${STAGING_DIR_HOST} \
+>      --with-tools-dir=${STAGING_DIR_NATIVE} \
+>      --with-boot-jdk=${STAGING_LIBDIR_NATIVE}/jvm/openjdk-8-native \
+> -    --with-cacerts-file=${STAGING_LIBDIR_NATIVE}/jvm/openjdk-8-native/jre/lib/security/cacerts \
+>      \
+>      --disable-precompiled-headers \
+>      --disable-zip-debug-info \
+> @@ -88,6 +87,17 @@ do_install_append() {
+>                pack200 --repack --effort=9 --segment-limit=-1 --modification-time=latest --strip-debug "$0"'
+>        fi
+>      fi
+> +
+> +    if [ -d ${D}${JDK_HOME} ] ; then
+> +      rm ${D}${JDK_HOME}/jre/lib/security/cacerts
+> +      ln -s ${@os.path.relpath("${sysconfdir}/ssl/certs/java/cacerts", "${JDK_HOME}/jre/lib/security/cacerts")} \
+> +            ${D}${JDK_HOME}/jre/lib/security/cacerts
+> +    fi
+> +    if [ -d ${D}${JRE_HOME} ] ; then
+> +      rm ${D}${JRE_HOME}/lib/security/cacerts
+> +      ln -s ${@os.path.relpath("${sysconfdir}/ssl/certs/java/cacerts", "${JRE_HOME}/lib/security/cacerts")} \
+> +            ${D}${JRE_HOME}/lib/security/cacerts
+> +    fi
+>  }
+>  
+>  export MAKE_VERBOSE = "y"
+> 
 
