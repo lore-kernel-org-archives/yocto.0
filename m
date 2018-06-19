@@ -1,35 +1,42 @@
-Return-Path: <aaron.chun.yew.chan@intel.com>
+Return-Path: <mauro@faresoftware.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53A73E00CE7; Tue, 19 Jun 2018 01:05:42 -0700 (PDT)
+	id 93F1BE018D8; Tue, 19 Jun 2018 04:40:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.151 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [62.149.158.217 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E3E0E00CE7
-	for <yocto@yoctoproject.org>; Tue, 19 Jun 2018 01:05:41 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	19 Jun 2018 01:05:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,242,1526367600"; d="scan'208";a="238353058"
-Received: from aaronchu-mobl1.png.intel.com ([10.221.23.106])
-	by fmsmga005.fm.intel.com with ESMTP; 19 Jun 2018 01:05:39 -0700
-From: Aaron Chan <aaron.chun.yew.chan@intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 19 Jun 2018 16:05:35 +0800
-Message-Id: <1529395535-8886-1-git-send-email-aaron.chun.yew.chan@intel.com>
-X-Mailer: git-send-email 2.7.4
-Cc: Aaron Chan <aaron.chun.yew.chan@intel.com>
-Subject: [PATCH] [yocto-autobuilder2] Add nightly-x86-64-bsp job to enable BSP HW Testcase
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from smtpcmd01217.aruba.it (smtpcmd01217.aruba.it [62.149.158.217])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95F07E0115B
+	for <yocto@yoctoproject.org>; Tue, 19 Jun 2018 04:40:38 -0700 (PDT)
+Received: from [10.0.3.128] ([78.6.3.122])
+	by smtpcmd01.ad.aruba.it with bizsmtp
+	id 0bgb1y0082dwwGE01bgb9C; Tue, 19 Jun 2018 13:40:36 +0200
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Mauro Ziliani <mauro@faresoftware.it>
+Message-ID: <f2409254-ce6b-f7f4-324f-3d51fcc09885@faresoftware.it>
+Date: Tue, 19 Jun 2018 13:40:34 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.8.0
+MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1529408436; bh=durFwCeDxmrURNtmyUQi5VT4lW5N94JsI5WYlbo1rag=;
+	h=To:From:Subject:Date:MIME-Version:Content-Type;
+	b=lteO2HSU0FvW5a5UYMFT9MS+n9B92hzOMZwDnxKg6aZX+EHrWG6OQ250NCGcNyKKT
+	TWiYBacbc8dGyk9Q+GVuEpsteRsy+kFX2eAfA8yojUn9h1Un6JbXS2Vju2+leHA/7Z
+	PMo4OBAc7eNxnIqCbme5zp30AkqgyL1tixgLXaCcu6MLQO6Vx6v+pUmRtHR4OmtyEp
+	kKCKa9nmUDZZvptZayS+8EsG3bBstJ5w8UI1V9tbBJrzAPBfHDw9zfOgdSwoaIKBlL
+	Q1mE2+vl8UFA5g2McEp2eIYiGvFda6zrx2ZI2kEN8N01uqA/qJoV30UuQrleyBPsaJ
+	+305zjxFD+0WA==
+Subject: checkroot.sh and mountall.sh Krogoth
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,54 +48,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jun 2018 08:05:42 -0000
+X-List-Received-Date: Tue, 19 Jun 2018 11:40:40 -0000
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: it
 
-Signed-off-by: Aaron Chan <aaron.chun.yew.chan@intel.com>
----
- config.json | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Hi all.
 
-diff --git a/config.json b/config.json
-index 808fefc..e79fae3 100644
---- a/config.json
-+++ b/config.json
-@@ -230,6 +230,23 @@
-                 "MACHINE" : "genericx86-64"
-             }
-         },
-+        "nightly-x86-64-bsp" : {
-+            "MACHINE" : "intel-corei7-64",
-+            "SDKMACHINE" : "x86_64",
-+            "BBTARGETS" : "core-image-sato-sdk",
-+            "extravars" : [
-+                "DISTRO_FEATURES_append = \" systemd\"",
-+                "IMAGE_INSTALL_append = \" udev util-linux systemd\"",
-+                "IMAGE_FSTYPES = \"tar.gz\"",
-+                "CORE_IMAGE_EXTRA_INSTALL += \"python3 python3-pip python-pip git socat apt dpkg openssh\""
-+            ],
-+            "NEEDREPOS" : ["poky", "meta-intel", "meta-minnow", "meta-openembedded"],
-+            "ADDLAYER" : [
-+                "${BUILDDIR}/../meta-intel",
-+                "${BUILDDIR}/../meta-minnow",
-+                "${BUILDDIR}/../meta-openembedded/meta-python"
-+            ]
-+        },
-         "nightly-world" : {
-             "MACHINE" : "qemux86",
-             "SDKMACHINE" : "x86_64",
-@@ -738,6 +755,11 @@
-             "url" : "git://git.yoctoproject.org/meta-gplv2",
-             "branch" : "master",
-             "revision" : "HEAD"
-+        },
-+        "meta-minnow" : {
-+            "url" : "https://github.com/alimhussin2/meta-minnow",
-+            "branch" : "master",
-+            "revision" : "HEAD"
-         }
-     }
- }
--- 
-2.7.4
+I'm looking inside the boot sequence of Yocto Krogoth in my imx6dlsabresd.
+
+
+The boot sequence runned is in S level with this order
+
+
+S03mountall.sh
+
+S06chechroot.sh
+
+
+in /etc/default/rcS I setup
+
+ENABLE_ROOTFS_FSCK=yes
+FSCKFIX=yes
+
+I coverted an ext2 to ext4
+
+After upgrade the system mount the root partition readonly because ext4 
+mounter has found some error.
+
+But I expect that checkroot.sh repairs
+
+
+This is true?
+
+
+MZ
 
 
