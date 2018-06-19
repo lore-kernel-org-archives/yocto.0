@@ -1,42 +1,53 @@
-Return-Path: <mauro@faresoftware.it>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 93F1BE018D8; Tue, 19 Jun 2018 04:40:40 -0700 (PDT)
+	id 84F5CE01970; Tue, 19 Jun 2018 08:13:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [62.149.158.217 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from smtpcmd01217.aruba.it (smtpcmd01217.aruba.it [62.149.158.217])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95F07E0115B
-	for <yocto@yoctoproject.org>; Tue, 19 Jun 2018 04:40:38 -0700 (PDT)
-Received: from [10.0.3.128] ([78.6.3.122])
-	by smtpcmd01.ad.aruba.it with bizsmtp
-	id 0bgb1y0082dwwGE01bgb9C; Tue, 19 Jun 2018 13:40:36 +0200
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCB80E0196E
+	for <yocto@yoctoproject.org>; Tue, 19 Jun 2018 08:13:56 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	19 Jun 2018 08:13:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,243,1526367600"; d="scan'208,217";a="65438550"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by fmsmga001.fm.intel.com with ESMTP; 19 Jun 2018 08:13:54 -0700
+Received: from fmsmsx152.amr.corp.intel.com (10.18.125.5) by
+	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Tue, 19 Jun 2018 08:13:53 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.38]) by
+	FMSMSX152.amr.corp.intel.com ([169.254.6.31]) with mapi id
+	14.03.0319.002; Tue, 19 Jun 2018 08:13:53 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Mauro Ziliani <mauro@faresoftware.it>
-Message-ID: <f2409254-ce6b-f7f4-324f-3d51fcc09885@faresoftware.it>
-Date: Tue, 19 Jun 2018 13:40:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.8.0
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting 
+Thread-Index: AdP83NvNJv3HzyeoQ2iPlJJESQDsbw==
+Date: Tue, 19 Jun 2018 15:13:52 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7349282@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.106]
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZGY1YzFiZWItNzAzNC00Y2E5LThhOTQtYzMzM2RlZDI0MmIyIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiVEN5VEF1MHhjcUNDUEo3RHc1c3BDOVdNSEI2RFFybFdyYnczbk5tQVlyQXpsSllCNVBHakJVNUw2VVowTmxoayJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.200.100
+dlp-reaction: no-action
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
-	t=1529408436; bh=durFwCeDxmrURNtmyUQi5VT4lW5N94JsI5WYlbo1rag=;
-	h=To:From:Subject:Date:MIME-Version:Content-Type;
-	b=lteO2HSU0FvW5a5UYMFT9MS+n9B92hzOMZwDnxKg6aZX+EHrWG6OQ250NCGcNyKKT
-	TWiYBacbc8dGyk9Q+GVuEpsteRsy+kFX2eAfA8yojUn9h1Un6JbXS2Vju2+leHA/7Z
-	PMo4OBAc7eNxnIqCbme5zp30AkqgyL1tixgLXaCcu6MLQO6Vx6v+pUmRtHR4OmtyEp
-	kKCKa9nmUDZZvptZayS+8EsG3bBstJ5w8UI1V9tbBJrzAPBfHDw9zfOgdSwoaIKBlL
-	Q1mE2+vl8UFA5g2McEp2eIYiGvFda6zrx2ZI2kEN8N01uqA/qJoV30UuQrleyBPsaJ
-	+305zjxFD+0WA==
-Subject: checkroot.sh and mountall.sh Krogoth
+Subject: Minutes: Yocto Project Technical Team Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,40 +59,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jun 2018 11:40:40 -0000
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: it
+X-List-Received-Date: Tue, 19 Jun 2018 15:13:57 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7349282fmsmsx111amrcor_"
 
-Hi all.
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7349282fmsmsx111amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I'm looking inside the boot sequence of Yocto Krogoth in my imx6dlsabresd.
+QXR0ZW5kZWVzOiBBcm1pbiwgSm9zaHVhLCBCcnVjZSwgTmljaywgTWFyaywgU2FiYXN0aWFuLCBN
+YXR0LCBBbGVqYW5kcm8sDQpZUCBTdGF0dXM6DQrigKIgICAgICAgICAgICAgICBZUCAyLjMuNCAo
+UHlybykgcmMxIGlzIGJ1aWx0IGFuZCBpbiBRQSBzZWU6IGh0dHBzOi8vd2lraS55b2N0b3Byb2pl
+Y3Qub3JnL3dpa2kvMi4zX1FBX1N0YXR1cyAgaXQgaXMgYXQgOTIlIGNvbXBsZXRlLiBJdCBtb3N0
+IGxpa2VseSBzaG91bGQgYmUgcmVsZWFzZWQgdGhpcyB3ZWVrLg0K4oCiICAgICAgICAgICAgICAg
+WVAgMi4yLjQgKE1vcnR5KSByYzEgaXMgYnVpbHQgYW5kIGluIFFBIHNlZTogaHR0cHM6Ly93aWtp
+LnlvY3RvcHJvamVjdC5vcmcvd2lraS8yLjJfUUFfU3RhdHVzICBpdCBpcyBhdCAyNCUgY29tcGxl
+dGUuIEl0IG1vc3QgbGlrZWx5IHdpbGwgYmUgcmVsZWFzZWQgaW4gYSBjb3VwbGUgb2Ygd2Vla3Mu
+DQrigKIgICAgICAgICAgICAgICBZUCAyLjYgTTEgKFRodWQpIHJjMSBpcyBidWlsdCBhbmQgaW4g
+UUEgc2VlOiAgSXQgaXMgOCUgY29tcGxldGUuDQoNCk9wZW5zOg0KRGlzY3Vzc2VkIHJlbGVhc2Ug
+c2NoZWR1bGUuDQrCtyAgICAgICAgIFlQIDIuNiBNMSBSZWxlYXNlIFRhcmdldCBpcyBKdW5lIDIy
+LCAyMDE4DQrCtyAgICAgICAgIFlQIDIuNiBNMiBCdWlsZCBUYXJnZXQgaXMgSnVseSAxNiwgMjAx
+OA0KwrcgICAgICAgICBZUCAyLjYgTTIgUmVsZWFzZSBUYXJnZXQgaXMgSnVseSAyNywgMjAxOA0K
+wrcgICAgICAgICBZUCAyLjYgTTMgQnVpbGQgVGFyZ2V0IGlzIEF1Zy4gMjcsIDIwMTgNCsK3ICAg
+ICAgICAgWVAgMi42IE0zIFJlbGVhc2UgVGFyZ2V0IGlzIFNlcHQuIDcsIDIwMTgNCsK3ICAgICAg
+ICAgWVAgMi42IE00IEJ1aWxkIFRhcmdldCBpcyBPY3QuIDEsIDIwMTgNCsK3ICAgICAgICAgWVAg
+Mi42IE00IFJlbGVhc2UgVGFyZ2V0IGlzIE9jdC4gMjYsIDIwMTgNCg0KV2UgZGlzY3Vzc2VkIHBs
+YW4gZm9yIFlQIDIuNiBpbmNsdWRpbmcgUUEgaW1wcm92ZW1lbnRzIGFuZCBtdWx0aXN0YXRlIGlt
+cHJvdmVtZW50cy4NCg0KVGhhbmtzLA0KDQpTdGVwaGVuIEsuIEpvbGxleQ0KWW9jdG8gUHJvamVj
+dCBQcm9qZWN0IE1hbmFnZXINCklOVEVMLCBNUyBKRjEtMjU1LCAyMTExIE4uRS4gMjV0aCBBdmVu
+dWUsIEhpbGxzYm9ybywgT1IgOTcxMjQNCuKAoiAgICBDZWxsOiAgICAgICAgICAgICAgKDIwOCkg
+MjQ0LTQ0NjANCuKAoiBFbWFpbDogICAgICAgICAgICAgICAgc3RlcGhlbi5rLmpvbGxleUBpbnRl
+bC5jb20NCg0KDQo=
 
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7349282fmsmsx111amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-The boot sequence runned is in S level with this order
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
+dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
+LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
+ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
+PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
+Pg0KPGRpdiBzdHlsZT0ibWFyZ2luLXRvcDoxOHB0O21hcmdpbi1ib3R0b206NnB0OyI+PGZvbnQg
+ZmFjZT0iQXJpYWwiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPkF0dGVu
+ZGVlczogQXJtaW4sIEpvc2h1YSwgQnJ1Y2UsIE5pY2ssIE1hcmssIFNhYmFzdGlhbiwgTWF0dCwg
+QWxlamFuZHJvLDwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2IHN0eWxlPSJtYXJnaW4tdG9wOjE4
+cHQ7bWFyZ2luLWJvdHRvbTo2cHQ7Ij48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMiI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+WVAgU3RhdHVzOjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8
+ZGl2IHN0eWxlPSJtYXJnaW4tdG9wOjE4cHQ7bWFyZ2luLWJvdHRvbTo2cHQ7Ij48Zm9udCBmYWNl
+PSJBcmlhbCI+4oCiICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBZUCAyLjMuNCAoUHlybykgcmMxIGlz
+IGJ1aWx0IGFuZCBpbiBRQSBzZWU6PGEgaHJlZj0iaHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5v
+cmcvd2lraS8yLjNfUUFfU3RhdHVzIj4gPGZvbnQgY29sb3I9IiMxMTU1Q0MiPjx1Pmh0dHBzOi8v
+d2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvMi4zX1FBX1N0YXR1PC91PjwvZm9udD48Zm9udCBj
+b2xvcj0iIzExNTVDQyI+PHU+czwvdT48L2ZvbnQ+PC9hPg0KJm5ic3A7aXQgaXMgYXQgOTIlIGNv
+bXBsZXRlLiBJdCBtb3N0IGxpa2VseSBzaG91bGQgYmUgcmVsZWFzZWQgdGhpcyB3ZWVrLjwvZm9u
+dD48L2Rpdj4NCjxkaXYgc3R5bGU9Im1hcmdpbi10b3A6MThwdDttYXJnaW4tYm90dG9tOjZwdDsi
+Pjxmb250IGZhY2U9IkFyaWFsIj7igKIgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFlQIDIuMi40IChN
+b3J0eSkgcmMxIGlzIGJ1aWx0IGFuZCBpbiBRQSBzZWU6PGEgaHJlZj0iaHR0cHM6Ly93aWtpLnlv
+Y3RvcHJvamVjdC5vcmcvd2lraS8yLjJfUUFfU3RhdHVzIj4gPGZvbnQgY29sb3I9IiMxMTU1Q0Mi
+Pjx1Pmh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvMi4yX1FBX1N0YXR1PC91Pjwv
+Zm9udD48Zm9udCBjb2xvcj0iIzExNTVDQyI+PHU+czwvdT48L2ZvbnQ+PC9hPg0KJm5ic3A7aXQg
+aXMgYXQgMjQlIGNvbXBsZXRlLiBJdCBtb3N0IGxpa2VseSB3aWxsIGJlIHJlbGVhc2VkIGluIGEg
+Y291cGxlIG9mIHdlZWtzLjwvZm9udD48L2Rpdj4NCjxkaXYgc3R5bGU9Im1hcmdpbi10b3A6MThw
+dDttYXJnaW4tYm90dG9tOjZwdDsiPjxmb250IGZhY2U9IkFyaWFsIiBzaXplPSIyIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExcHQ7Ij7igKIgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFlQIDIuNiBN
+MSAoVGh1ZCkgcmMxIGlzIGJ1aWx0IGFuZCBpbiBRQSBzZWU6ICZuYnNwO0l0IGlzIDglIGNvbXBs
+ZXRlLiA8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0i
+MiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rp
+dj4NCjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTFwdDsiPk9wZW5zOjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkFy
+aWFsIiBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5EaXNjdXNzZWQgcmVs
+ZWFzZSBzY2hlZHVsZS48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJBcmlh
+bCIgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyI+wrcgJm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7PGZvbnQgc2l6ZT0iMiI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+WVAgMi42IE0xIFJlbGVhc2UgVGFyZ2V0IGlzIEp1bmUg
+MjIsIDIwMTwvc3Bhbj48L2ZvbnQ+PGZvbnQgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMXB0OyI+ODwvc3Bhbj48L2ZvbnQ+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQg
+ZmFjZT0iQXJpYWwiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTBwdDsiPsK3ICZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOzxmb250IHNpemU9
+IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPllQIDIuNiBNMiBCdWlsZCBUYXJnZXQg
+aXMgSnVseSAxNiwgMjAxPC9zcGFuPjwvZm9udD48Zm9udCBzaXplPSIyIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExcHQ7Ij44PC9zcGFuPjwvZm9udD48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRp
+dj48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0
+OyI+wrcgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7PGZv
+bnQgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+WVAgMi42IE0yIFJlbGVh
+c2UgVGFyZ2V0IGlzIEp1bHkgMjcsIDIwMTwvc3Bhbj48L2ZvbnQ+PGZvbnQgc2l6ZT0iMiI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+ODwvc3Bhbj48L2ZvbnQ+PC9zcGFuPjwvZm9udD48
+L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTBwdDsiPsK3ICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOzxmb250IHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPllQIDIu
+NiBNMyBCdWlsZCBUYXJnZXQgaXMgQXVnLiAyNywgMjAxPC9zcGFuPjwvZm9udD48Zm9udCBzaXpl
+PSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij44PC9zcGFuPjwvZm9udD48L3NwYW4+
+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMiI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMHB0OyI+wrcgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7PGZvbnQgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0
+OyI+WVAgMi42IE0zIFJlbGVhc2UgVGFyZ2V0IGlzIFNlcHQuIDcsIDIwMTwvc3Bhbj48L2ZvbnQ+
+PGZvbnQgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+ODwvc3Bhbj48L2Zv
+bnQ+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9IjIi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTBwdDsiPsK3ICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOzxmb250IHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTFwdDsiPllQIDIuNiBNNCBCdWlsZCBUYXJnZXQgaXMgT2N0LiAxLCAyMDE8L3NwYW4+
+PC9mb250Pjxmb250IHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPjg8L3Nw
+YW4+PC9mb250Pjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkFyaWFsIiBz
+aXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Ij7CtyAmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDs8Zm9udCBzaXplPSIyIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExcHQ7Ij5ZUCAyLjYgTTQgUmVsZWFzZSBUYXJnZXQgaXMgT2N0LiAyNiwg
+MjAxPC9zcGFuPjwvZm9udD48Zm9udCBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+cHQ7Ij44PC9zcGFuPjwvZm9udD48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNl
+PSJDYWxpYnJpIiBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8
+L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMiI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+V2UgZGlzY3Vzc2VkIHBsYW4gZm9yIFlQIDIuNiBp
+bmNsdWRpbmcgUUEgaW1wcm92ZW1lbnRzIGFuZCBtdWx0aXN0YXRlIGltcHJvdmVtZW50cy4gPC9z
+cGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29s
+b3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48
+L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIj
+MUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5UaGFua3MsPC9zcGFuPjwvZm9u
+dD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5
+N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9k
+aXY+DQo8ZGl2Pjxmb250IHNpemU9IjQiIGNvbG9yPSJwdXJwbGUiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTZwdDsiPjxiPjxpPlN0ZXBoZW4gSy4gSm9sbGV5PC9pPjwvYj48L3NwYW4+PC9mb250
+PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDb3VyaWVyIE5ldyIgc2l6ZT0iMSIgY29sb3I9ImJs
+dWUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OHB0OyI+PGI+WW9jdG8gUHJvamVjdCBQcm9qZWN0
+IE1hbmFnZXI8L2I+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ291cmll
+ciBOZXciIHNpemU9IjIiIGNvbG9yPSJmdWNoc2lhIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEw
+cHQ7Ij48Yj5JTlRFTCwgTVMgSkYxLTI1NSwgMjExMSBOLkUuIDI1dGggQXZlbnVlLCBIaWxsc2Jv
+cm8sIE9SIDk3MTI0IDwvYj48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBzaXplPSIy
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjlwdDsiPjxmb250IGZhY2U9IldpbmdkaW5ncyI+KDwv
+Zm9udD48Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0idGVhbCI+Jm5ic3A7Jm5ic3A7
+Jm5ic3A7IDwvZm9udD48Zm9udCBmYWNlPSJDb21pYyBTYW5zIE1TIiBzaXplPSIxIiBjb2xvcj0i
+dGVhbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo4cHQ7Ij48Yj5DZWxsPC9iPjwvc3Bhbj48L2Zv
+bnQ+PGZvbnQgZmFjZT0iTVMgU2FucyBTZXJpZiIgY29sb3I9InRlYWwiPjombmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsNCjwvZm9udD48Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0iIzFGNDk3
+RCI+KDIwOCkgMjQ0LTQ0NjA8L2ZvbnQ+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQg
+c2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OXB0OyI+PGZv
+bnQgZmFjZT0iV2luZ2RpbmdzIj4qIDwvZm9udD48Zm9udCBmYWNlPSJDb21pYyBTYW5zIE1TIiBz
+aXplPSIxIiBjb2xvcj0idGVhbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo4cHQ7Ij48Yj5FbWFp
+bDwvYj48L3NwYW4+PC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9yPSJ0ZWFs
+Ij46Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8L2ZvbnQ+PGZvbnQgZmFjZT0i
+TVMgU2FucyBTZXJpZiIgY29sb3I9ImJsdWUiPjx1PnN0ZXBoZW4uay5qb2xsZXlAaW50ZWwuY29t
+PC91PjwvZm9udD48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJp
+IiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+
+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6
+ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48
+L2Rpdj4NCjwvc3Bhbj48L2ZvbnQ+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-
-S03mountall.sh
-
-S06chechroot.sh
-
-
-in /etc/default/rcS I setup
-
-ENABLE_ROOTFS_FSCK=yes
-FSCKFIX=yes
-
-I coverted an ext2 to ext4
-
-After upgrade the system mount the root partition readonly because ext4 
-mounter has found some error.
-
-But I expect that checkroot.sh repairs
-
-
-This is true?
-
-
-MZ
-
-
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7349282fmsmsx111amrcor_--
