@@ -1,46 +1,77 @@
-Return-Path: <craig.mcqueen@innerrange.com>
+Return-Path: <ajlennon@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0CAACE01304; Wed, 20 Jun 2018 00:46:48 -0700 (PDT)
+	id AB856E00EBC; Wed, 20 Jun 2018 07:37:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [203.222.77.226 listed in list.dnswl.org]
+	*      [74.125.82.46 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ajlennon[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.innerrange.com.au (mail.innerrange.com.au [203.222.77.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 933E8E00C82
-	for <yocto@yoctoproject.org>; Wed, 20 Jun 2018 00:46:46 -0700 (PDT)
-Received: from ir-mail.corp.innerrange.com.au (192.168.4.15) by
-	ir-mail.corp.innerrange.com.au (192.168.4.15) with Microsoft SMTP
-	Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
-	15.1.544.27; Wed, 20 Jun 2018 17:46:43 +1000
-Received: from ir-mail.corp.innerrange.com.au ([fe80::b00d:e485:459b:788f]) by
-	ir-mail.corp.innerrange.com.au ([fe80::b00d:e485:459b:788f%2]) with
-	mapi id 15.01.0544.030; Wed, 20 Jun 2018 17:46:43 +1000
-From: Craig McQueen <craig.mcqueen@innerrange.com>
-To: Alex Lennon <ajlennon@gmail.com>
-Thread-Topic: [yocto] mono-native is trying to install files into a shared
-	area...
-Thread-Index: AdPhD++O+rvl88kJTyWaau1I0cIc9wdqhH8QANELUyD//2vBgIAB6EKA//R7ULA=
-Date: Wed, 20 Jun 2018 07:46:43 +0000
-Message-ID: <aae33ff7aa8d4d158c191abc3ecb8ec8@innerrange.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3805E00D38
+	for <yocto@yoctoproject.org>; Wed, 20 Jun 2018 07:37:34 -0700 (PDT)
+Received: by mail-wm0-f46.google.com with SMTP id r15-v6so154893wmc.1
+	for <yocto@yoctoproject.org>; Wed, 20 Jun 2018 07:37:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language;
+	bh=MH83QW1P6r8aCvRLgeT312rL/7jTO067eiH1fsa/gy0=;
+	b=DZxGRdKOMCNRD4/96ucORfOKdGxXKTumgz7Fz//J3yVTslW4bPGbGfqDv8xRSfVUvY
+	bA5/2lyTSPzZhDpCUfqynCsttRJ+mFXyPHH53MOPqcFptLtuqhvL/+LF2KQKgoCq3gtN
+	ULdqy4U8IVl1ZDtNcJ3Tz405KqOlrZ+sdy9GCj8xb/l8AuDp3/yf15qflQxD00tRuZhJ
+	aDyY52YWaa0NW73D/MLpQTsORGuQkvrUs1oRGWiv+xil+Mvsz6sD6mCQsOMHmcNsCRsn
+	dGVE/W4ubzqO3FqyCAkt1ZtDiRDegqJVCdyM1SsTxVE8uYXyfnykHK6Iq+KyjV576/Oa
+	aU9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=MH83QW1P6r8aCvRLgeT312rL/7jTO067eiH1fsa/gy0=;
+	b=Y9rrBiPyY8oQvKUy9k66ZYSu2BitRzUugVNcb/1u7FTWa8Akf0r+BIIpEsxLEiEH2R
+	sxW4sVwkyXgVadA0NN4bHBBfJ0HymrsKWty6eGHT38IgNAXqlhhysIYwM1QT+MtcWC5w
+	emqIZd/oQud/CS+EVlmCKEI5KUjKCqQLi2K87BvfGl3sYojKg+zqZ5rv8eRUFaYQSlEq
+	LA4/oBhr9lSF3xgB58PBGV8WGmeGXCNpo7DcW2SE50wo/huQg1vb3rG8wmCRbONDmcJi
+	wyYF6gYfsm4M+N5gvY0mkdCAvVv4JFfPq508Ursm5UMj3FZTELyV0vYN/FCZnkoJmibB
+	nM5Q==
+X-Gm-Message-State: APt69E343YxtZOuY3+05MsTY0R+LbiTnBdgiMwP2dFYOjEAqliPZVF3c
+	eAIzUVKjAMSQiuvUpNDNqgU1RYw7
+X-Google-Smtp-Source: ADUXVKIc/tv3GmkKfmHM37NDPfsa/O7oAdmwbii/XS7HgPC0L/icIVKfhndSu3En5O7CrR3cM7uJ1A==
+X-Received: by 2002:a1c:5c93:: with SMTP id
+	q141-v6mr1916628wmb.77.1529505453307; 
+	Wed, 20 Jun 2018 07:37:33 -0700 (PDT)
+Received: from [192.168.0.133]
+	(cpc111193-live30-2-0-cust656.17-2.cable.virginm.net.
+	[92.232.58.145]) by smtp.gmail.com with ESMTPSA id
+	q77-v6sm4706358wmg.25.2018.06.20.07.37.31
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 20 Jun 2018 07:37:32 -0700 (PDT)
+To: Craig McQueen <craig.mcqueen@innerrange.com>
 References: <fbde2f2fc27041fbb13d6f9c9eb3f881@innerrange.com>
 	<9178069e17354c5daa14353f7e248009@innerrange.com>
 	<48aca69585934356ae110e8647a8453f@innerrange.com>
 	<CAMKF1spZJZ0WCaxHKa4e5O4EJtWH=Z1bMcnjEMSSGzUKzjz5qA@mail.gmail.com>
 	<f1091f7c-f86e-a84d-8a5a-7ed3192a1598@gmail.com>
-In-Reply-To: <f1091f7c-f86e-a84d-8a5a-7ed3192a1598@gmail.com>
-Accept-Language: en-AU, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.105.136]
+	<aae33ff7aa8d4d158c191abc3ecb8ec8@innerrange.com>
+From: Alex Lennon <ajlennon@gmail.com>
+Message-ID: <0f082b6e-f3c8-b426-adba-19e0e95fc3aa@gmail.com>
+Date: Wed, 20 Jun 2018 15:37:31 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.8.0
 MIME-Version: 1.0
+In-Reply-To: <aae33ff7aa8d4d158c191abc3ecb8ec8@innerrange.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: mono-native is trying to install files into a shared area...
 X-BeenThere: yocto@yoctoproject.org
@@ -54,329 +85,542 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jun 2018 07:46:48 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 20 Jun 2018 14:37:38 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_aae33ff7aa8d4d158c191abc3ecb8ec8innerrangecom_"
+	boundary="------------C5280C4094BA20FC0A7A9781"
+Content-Language: en-GB
 
---_000_aae33ff7aa8d4d158c191abc3ecb8ec8innerrangecom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--------------C5280C4094BA20FC0A7A9781
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-RnJvbTogQWxleCBMZW5ub24NCg0KDQpPbiAxMi8wNi8yMDE4IDA1OjQzLCBLaGVtIFJhaiB3cm90
-ZToNCg0KDQpPbiBNb24sIEp1biAxMSwgMjAxOCBhdCA4OjM2IFBNIENyYWlnIE1jUXVlZW4gPGNy
-YWlnLm1jcXVlZW5AaW5uZXJyYW5nZS5jb208bWFpbHRvOmNyYWlnLm1jcXVlZW5AaW5uZXJyYW5n
-ZS5jb20+PiB3cm90ZToNCkkgd3JvdGU6DQo+DQo+IEkgd3JvdGU6DQo+ID4NCj4gPiBMYXRlbHks
-IEknbSB0cnlpbmcgdG8gdXBncmFkZSB0byBhIGxhdGVyIHZlcnNpb24gb2YgbW9ubywgNS40LjEu
-Ni4NCj4gPiBXaGVuIEkgdHJ5IHRvIGRvIGEgYnVpbGQgb2YgbXkgWW9jdG8gaW1hZ2UsIGJpdGJh
-a2UgZ2V0cyB0byB0aGUgZW5kIG9mDQo+ID4gYnVpbGRpbmcgbW9uby0gbmF0aXZlLCBhbmQgdGhl
-biBnZXRzIGFuIGVycm9yOg0KPiA+DQo+ID4NCj4gPiBFUlJPUjogbW9uby1uYXRpdmUtNS40LjEu
-Ni1yMCBkb19wb3B1bGF0ZV9zeXNyb290OiBUaGUgcmVjaXBlIG1vbm8tDQo+ID4gbmF0aXZlIGlz
-IHRyeWluZyB0byBpbnN0YWxsIGZpbGVzIGludG8gYSBzaGFyZWQgYXJlYSB3aGVuIHRob3NlIGZp
-bGVzIGFscmVhZHkNCj4gZXhpc3QuDQo+ID4gVGhvc2UgZmlsZXMgYW5kIHRoZWlyIG1hbmlmZXN0
-IGxvY2F0aW9uIGFyZToNCj4gPiAgICAvaG9tZS9jcmFpZ20veW9jdG8vcG9reS9idWlsZC90bXAv
-c3lzcm9vdHMveDg2XzY0LQ0KPiA+IGxpbnV4L3Vzci9saWIvbW9uby9sbGRiL21vbm8ucHkNCj4g
-PiAgTWF0Y2hlZCBpbiBiJycNCj4gPiAgL2hvbWUvY3JhaWdtL3lvY3RvL3Bva3kvYnVpbGQvdG1w
-L3N5c3Jvb3RzL3g4Nl82NC0NCj4gPiBsaW51eC91c3IvbGliL21vbm8vNC42LjEtYXBpL1N5c3Rl
-bS5XZWIuSHR0cC5TZWxmSG9zdC5kbGwNCj4gPiAgTWF0Y2hlZCBpbiBiJycNCj4gPiAuLi4NCj4g
-PiAvaG9tZS9jcmFpZ20veW9jdG8vcG9reS9idWlsZC90bXAvc3lzcm9vdHMveDg2XzY0LQ0KPiA+
-DQo+IGxpbnV4L3Vzci9saWIvbW9uby94YnVpbGQvMTQuMC9iaW4vTVNCdWlsZC9NaWNyb3NvZnQu
-QnVpbGQuQ29tbW9uVHlwZXMuDQo+ID4geHNkDQo+ID4gIE1hdGNoZWQgaW4gYicnDQo+ID4gIC9o
-b21lL2NyYWlnbS95b2N0by9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy94ODZfNjQtDQo+ID4gbGlu
-dXgvdXNyL2xpYi9tb25vL3hidWlsZC8xNC4wL2Jpbi9NU0J1aWxkL01pY3Jvc29mdC5CdWlsZC5D
-b3JlLnhzZA0KPiA+ICBNYXRjaGVkIGluIGInJw0KPiA+ICAvaG9tZS9jcmFpZ20veW9jdG8vcG9r
-eS9idWlsZC90bXAvc3lzcm9vdHMveDg2XzY0LQ0KPiA+DQo+IGxpbnV4L3Vzci9saWIvbW9uby94
-YnVpbGQvMTQuMC9NaWNyb3NvZnQuQ29tbW9uLnRhcmdldHMvSW1wb3J0QWZ0ZXIvTWkNCj4gPiBj
-DQo+ID4gcm9zb2Z0Lk51R2V0LkltcG9ydEFmdGVyLnRhcmdldHMNCj4gPiAgTWF0Y2hlZCBpbiBi
-JycNCj4gPiBQbGVhc2UgdmVyaWZ5IHdoaWNoIHJlY2lwZSBzaG91bGQgcHJvdmlkZSB0aGUgYWJv
-dmUgZmlsZXMuDQo+ID4gVGhlIGJ1aWxkIGhhcyBzdG9wcGVkIGFzIGNvbnRpbnVpbmcgaW4gdGhp
-cyBzY2VuYXJpbyBXSUxMIGJyZWFrDQo+ID4gdGhpbmdzLCBpZiBub3Qgbm93LCBwb3NzaWJseSBp
-biB0aGUgZnV0dXJlICh3ZSd2ZSBzZWVuIGJ1aWxkcyBmYWlsDQo+ID4gc2V2ZXJhbCBtb250aHMg
-bGF0ZXIpLiBJZiB0aGUgc3lzdGVtIGtuZXcgaG93IHRvIHJlY292ZXIgZnJvbSB0aGlzDQo+ID4g
-YXV0b21hdGljYWxseSBpdCB3b3VsZCBob3dldmVyIHRoZXJlIGFyZSBzZXZlcmFsIGRpZmZlcmVu
-dCBzY2VuYXJpb3MNCj4gPiB3aGljaCBjYW4gcmVzdWx0IGluIHRoaXMgYW5kIHdlIGRvbid0IGtu
-b3cgd2hpY2ggb25lIHRoaXMgaXMuIEl0IG1heQ0KPiA+IGJlIHlvdSBoYXZlIHN3aXRjaGVkIHBy
-b3ZpZGVycyBvZiBzb21ldGhpbmcgbGlrZSB2aXJ0dWFsL2tlcm5lbCAoZS5nLg0KPiA+IGZyb20g
-bGludXgteW9jdG8gdG8gbGludXgteW9jdG8tZGV2KSwgaW4gdGhhdCBjYXNlIHlvdSBuZWVkIHRv
-IGV4ZWN1dGUgdGhlDQo+IGNsZWFuIHRhc2sgZm9yIGJvdGggcmVjaXBlcyBhbmQgaXQgd2lsbCBy
-ZXNvbHZlIHRoaXMgZXJyb3IuDQo+ID4gSXQgbWF5IGJlIHlvdSBjaGFuZ2VkIERJU1RST19GRUFU
-VVJFUyBmcm9tIHN5c3RlbWQgdG8gdWRldiBvciB2aWNlDQo+ID4gdmVyc2EuIENsZWFuaW5nIHRo
-b3NlIHJlY2lwZXMgc2hvdWxkIGFnYWluIHJlc29sdmUgdGhpcyBlcnJvciBob3dldmVyDQo+ID4g
-c3dpdGNoaW5nIERJU1RST19GRUFUVVJFUyBvbiBhbiBleGlzdGluZyBidWlsZCBkaXJlY3Rvcnkg
-aXMgbm90DQo+ID4gc3VwcG9ydGVkLCB5b3Ugc2hvdWxkIHJlYWxseSBjbGVhbiBvdXQgdG1wIGFu
-ZCByZWJ1aWxkIChyZXVzaW5nIHNzdGF0ZQ0KPiA+IHNob3VsZCBiZSBzYWZlKS4gSXQgY291bGQg
-YmUgdGhlIG92ZXJsYXBwaW5nIGZpbGVzIGRldGVjdGVkIGFyZQ0KPiA+IGhhcm1sZXNzIGluIHdo
-aWNoIGNhc2UgYWRkaW5nIHRoZW0gdG8gU1NUQVRFX0RVUFdISVRFTElTVCBtYXkgYmUgdGhlDQo+
-ID4gY29ycmVjdCBzb2x1dGlvbi4gSXQgY291bGQgYWxzbyBiZSB5b3VyIGJ1aWwgIGQgaXMgaW5j
-bHVkaW5nIHR3bw0KPiA+IGRpZmZlcmVudCBjb25mbGljdGluZyB2ZXJzaW9ucyBvZiB0aGluZ3Mg
-KGUuZy4gYmx1ZXoNCj4gPiA0IGFuZCBibHVleiA1IGFuZCB0aGUgY29ycmVjdCBzb2x1dGlvbiBm
-b3IgdGhhdCB3b3VsZCBiZSB0byByZXNvbHZlDQo+ID4gdGhlIGNvbmZsaWN0LiBJZiBpbiBkb3Vi
-dCwgcGxlYXNlIGFzayBvbiB0aGUgbWFpbGluZyBsaXN0LCBzaGFyaW5nIHRoZQ0KPiA+IGVycm9y
-IGFuZCBmaWxlbGlzdCBhYm92ZS4NCj4gPiBFUlJPUjogbW9uby1uYXRpdmUtNS40LjEuNi1yMCBk
-b19wb3B1bGF0ZV9zeXNyb290OiBJZiB0aGUgYWJvdmUNCj4gPiBtZXNzYWdlIGlzIHRvbyBtdWNo
-LCB0aGUgc2ltcGxlciB2ZXJzaW9uIGlzIHlvdSdyZSBhZHZpc2VkIHRvIHdpcGUgb3V0DQo+ID4g
-dG1wIGFuZCByZWJ1aWxkIChyZXVzaW5nIHNzdGF0ZSBpcyBmaW5lKS4gVGhhdCB3aWxsIGxpa2Vs
-eSBmaXggdGhpbmdzDQo+ID4gaW4gbW9zdCAoYnV0IG5vdCBhbGwpIGNhc2VzLg0KPiA+IEVSUk9S
-OiBtb25vLW5hdGl2ZS01LjQuMS42LXIwIGRvX3BvcHVsYXRlX3N5c3Jvb3Q6IEZ1bmN0aW9uIGZh
-aWxlZDoNCj4gPiBzc3RhdGVfdGFza19wb3N0ZnVuYw0KPiA+IEVSUk9SOiBMb2dmaWxlIG9mIGZh
-aWx1cmUgc3RvcmVkIGluOg0KPiA+IC9ob21lL2NyYWlnbS95b2N0by9wb2t5L2J1aWxkL3RtcC93
-b3JrL3g4Nl82NC1saW51eC9tb25vLQ0KPiA+IG5hdGl2ZS81LjQuMS42LXIwL3RlbXAvbG9nLmRv
-X3BvcHVsYXRlX3N5c3Jvb3QuMTA4MzU4DQo+ID4gRVJST1I6IFRhc2sgKC9ob21lL2NyYWlnbS95
-b2N0by9wb2t5L2J1aWxkLy4uLy4uL21ldGEtbW9uby9yZWNpcGVzLQ0KPiA+IG1vbm8vbW9uby9t
-b25vLW5hdGl2ZV81LjQuMS42LmJiOmRvX3BvcHVsYXRlX3N5c3Jvb3QpIGZhaWxlZCB3aXRoDQo+
-IGV4aXQNCj4gPiBjb2RlICcxJw0KPiA+IE5PVEU6IFRhc2tzIFN1bW1hcnk6IEF0dGVtcHRlZCA2
-NzAgdGFza3Mgb2Ygd2hpY2ggNjYyIGRpZG4ndCBuZWVkIHRvDQo+ID4gYmUgcmVydW4gYW5kIDEg
-ZmFpbGVkLg0KPiA+DQo+ID4gU3VtbWFyeTogMSB0YXNrIGZhaWxlZDoNCj4gPiAgIC9ob21lL2Ny
-YWlnbS95b2N0by9wb2t5L2J1aWxkLy4uLy4uL21ldGEtbW9uby9yZWNpcGVzLQ0KPiA+IG1vbm8v
-bW9uby9tb25vLW5hdGl2ZV81LjQuMS42LmJiOmRvX3BvcHVsYXRlX3N5c3Jvb3QNCj4gPiBTdW1t
-YXJ5OiBUaGVyZSB3ZXJlIDMgRVJST1IgbWVzc2FnZXMgc2hvd24sIHJldHVybmluZyBhIG5vbi16
-ZXJvIGV4aXQNCj4gPiBjb2RlLg0KPiA+DQo+ID4NCj4gPiBJJ20gYnVpbGRpbmcgd2l0aCBZb2N0
-byBwb2t5IG1vcnR5IGJyYW5jaCAoY3VycmVudGx5IGNvbW1pdA0KPiA+IDBlNzMwNzcwYTkpLCBt
-ZXRhLW1vbm8gbWFzdGVyIChjb21taXQgZGNlZDY2MzVjYSkuIEknbSBidWlsZGluZyBvbg0KPiBV
-YnVudHUgMTYuMDQuNC4NCj4gPg0KPiA+IEkgaGF2ZSB0cmllZCBkZWxldGluZyB0aGUgdG1wIGRp
-cmVjdG9yeSwgZGVsZXRpbmcgYWxsIG1vbm8gYW5kDQo+ID4gbW9uby1uYXRpdmUgZnJvbSBzc3Rh
-dGUsIGNsZWFuaW5nIG1vbm8gYW5kIG1ldGEtbW9ubywgZXRjLCB0byBubyBhdmFpbC4NCj4gPg0K
-PiA+IEl0J3MgcHV6emxpbmcgd2h5IEknbSBnZXR0aW5nIHRoZXNlIGVycm9ycywgYmVjYXVzZSBp
-dCBzYXlzICJNYXRjaGVkDQo+ID4gaW4gYicnIiwgc28gdGhlIGZpbGVzIGFyZSBub3QgY2xhc2hp
-bmcgd2l0aCBhbm90aGVyIHJlY2lwZS4gSXQgc2VlbXMNCj4gPiB0byBiZSBzb21laG93IHRyeWlu
-ZyB0byBpbnN0YWxsIGl0cyBvd24gZmlsZXMgdHdpY2UsIG9yIHNvbWV0aGluZyBsaWtlDQo+ID4g
-dGhhdC4gSWYgSSBsb29rIHVuZGVyIHRtcC93b3JrL3g4Nl82NC1saW51eC9tb25vLW5hdGl2ZS81
-LjQuMS42LXIwLywNCj4gPiB0aGVuIEkgc2VlIHRoZSBmaWxlcyBwcmVzZW50IGluIGJvdGg6DQo+
-ID4NCj4gPiBzeXNyb290LWRlc3RkaXIvaG9tZS9jcmFpZ20veW9jdG8vcG9reS9idWlsZC90bXAv
-c3lzcm9vdHMveDg2XzY0LQ0KPiBsaW51eA0KPiA+IC8gYW5kIGltYWdlL2hvbWUvY3JhaWdtL3lv
-Y3RvL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3g4Nl82NC1saW51eC8NCj4gPg0KPiA+IElzIHRo
-YXQgcGFydCBvZiB0aGUgcHJvYmxlbT8NCj4NCj4NCj4gSSBoYXZlbid0IGhhZCBhbnkgc3VjY2Vz
-cyBmaWd1cmluZyBvdXQgd2hhdCBpcyBnb2luZyBvbi4gSSB0cmllZCBkb2luZyBhIG5ldw0KPiBj
-bGVhbiBidWlsZCwgYW5kIGdvdCB0aGUgc2FtZSBlcnJvci4NCj4NCj4gRG9lcyBhbnlvbmUgZWxz
-ZSBoYXZlIHRoaXMgcHJvYmxlbT8gSXMgaXQgYW4gaW5jb21wYXRpYmlsaXR5IHdpdGggWW9jdG8N
-Cj4gbW9ydHksIHdoaWNoIEknbSB1c2luZz8gQW55IHBvaW50ZXJzIG9uIGhvdyB0byBuYXJyb3cg
-ZG93biB0aGUgY2F1c2U/DQoNCkkgdHJpZWQgdXBkYXRpbmcgZnJvbSBtb3J0eSB0byByb2Nrbywg
-YW5kIG5vIGxvbmdlciBnb3QgdGhpcyBlcnJvci4gU28gaXQgc2VlbXMgaXQncyBzb21laG93IGFu
-IGlzc3VlIHdpdGggbWV0YS1tb25vIGluIGNvbmp1bmN0aW9uIHdpdGggbW9ydHkuDQoNClRoYXTi
-gJlzIGR1ZSB0byB0aGUgZmFjdCB0aGF0IFJvY2tvIG9ud2FyZHMgT0Ugc3dpdGNoZWQgdG8gdXNp
-bmcgcmVjaXBlIHNwZWNpZmljIHN5c3Jvb3RzDQoNCkhleSBDcmFpZywNCg0KVGhlcmUgd2FzIGFu
-IHNlcGFyYXRlIGlzc3VlIHdpdGggdGhlIG1vcnR5IGJyYW5jaCBidWlsZGluZyB3aGljaCBob3Bl
-ZnVsbHkgSSd2ZSByZXNvbHZlZCB3aXRoIGEgcmVjZW50IGNoZXJyeS1waWNrLg0KDQpJJ20gbm90
-IGludGVuZGluZyBhdG0gdG8gdXBkYXRlIHN1cHBvcnQgZm9yIG1vcmUgcmVjZW50IHJlbGVhc2Vz
-IG9mIE1vbm8gb24gTW9ydHkgZHVlIHRvIHRoZSBpc3N1ZSB5b3UndmUgaWRlbnRpZmllZCBhYm92
-ZS4NCg0KKFRoaXMgaXMgYmVjYXVzZSBJIHRoaW5rIGl0J3MgbW9yZSB2YWx1YWJsZSB0byBwdXQg
-dGhlIHRpbWUgSSBoYXZlIGF2YWlsYWJsZSBpbnRvIHN1cHBvcnRpbmcgdGhlIGN1cnJlbnQgTW9u
-byByZWxlYXNlIG9uIG1hc3RlciwgVC1QIGV0Yy4gLSB3aGljaCBJJ2xsIGhvcGVmdWxseSBiZSBs
-b29raW5nIGF0IHNob3J0bHkpLg0KDQpJJ2QgYmUgdmVyeSBwbGVhc2VkIHRvIHJlY2VpdmUgUFJz
-IHRob3VnaCBpZiB5b3UgaGF2ZSB0aGUgdGltZSB0byBhZGRyZXNzIHRoaXMuLi4NCg0KDQoNClRo
-YW5rIHlvdSBmb3IgdGhlIGluZm9ybWF0aW9uLg0KDQpXaGF0IGlzIHRoZSBjaGVycnktcGljayB3
-aGljaCBob3BlZnVsbHkgcmVzb2x2ZWQgdGhpcyBpc3N1ZT8NCg0KSSBjYW7igJl0IHByb3ZpZGUg
-YSBQUiBzaW5jZSBJIGRvbuKAmXQgdW5kZXJzdGFuZCB0aGUgcHJvYmxlbSBhdCB0aGlzIHBvaW50
-LiBCdXQsIEkgYWdyZWUgaXTigJlzIHByb2JhYmx5IG5vdCBzcGVuZGluZyBlZmZvcnQgb24gbW9y
-dHkgc2luY2UgSSB0aGluayBpdHMgc3VwcG9ydCB3aWxsIGVuZCBzb29uLiBJ4oCZbSBpbiB0aGUg
-cHJvY2VzcyBvZiB1cGRhdGluZyB0byByb2Nrby4NCg0KUmVnYXJkcywNCkNyYWlnDQoNCg==
 
---_000_aae33ff7aa8d4d158c191abc3ecb8ec8innerrangecom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjsN
-Cgljb2xvcjpibGFjazt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1w
-cmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0K
-YTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0
-eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwDQoJ
-e21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJn
-aW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0
-OjBjbTsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4i
-LHNlcmlmOw0KCWNvbG9yOmJsYWNrO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10
-eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0K
-CWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0
-LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2
-MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA3Mi4wcHQgNzIuMHB0IDcyLjBwdDt9DQpk
-aXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtp
-ZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4
-PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8
-bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0i
-MSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5
-IGJnY29sb3I9IndoaXRlIiBsYW5nPSJFTi1BVSIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+
-DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNw
-YW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjp3aW5kb3d0ZXh0Ij5Gcm9tOjwvc3Bhbj48
-L2I+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjp3aW5kb3d0ZXh0Ij4gQWxleCBM
-ZW5ub248YnI+DQo8YnI+DQo8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5P
-biAxMi8wNi8yMDE4IDA1OjQzLCBLaGVtIFJhaiB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2
-Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBw
-dCI+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
-L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
-CjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gTW9uLCBKdW4gMTEsIDIwMTgg
-YXQgODozNiBQTSBDcmFpZyBNY1F1ZWVuICZsdDs8YSBocmVmPSJtYWlsdG86Y3JhaWcubWNxdWVl
-bkBpbm5lcnJhbmdlLmNvbSI+Y3JhaWcubWNxdWVlbkBpbm5lcnJhbmdlLmNvbTwvYT4mZ3Q7IHdy
-b3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5v
-bmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDYu
-MHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20iPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+SSB3cm90ZTo8YnI+DQomZ3Q7IDxicj4NCiZndDsgSSB3cm90ZTo8YnI+DQomZ3Q7ICZn
-dDs8YnI+DQomZ3Q7ICZndDsgTGF0ZWx5LCBJJ20gdHJ5aW5nIHRvIHVwZ3JhZGUgdG8gYSBsYXRl
-ciB2ZXJzaW9uIG9mIG1vbm8sIDUuNC4xLjYuPGJyPg0KJmd0OyAmZ3Q7IFdoZW4gSSB0cnkgdG8g
-ZG8gYSBidWlsZCBvZiBteSBZb2N0byBpbWFnZSwgYml0YmFrZSBnZXRzIHRvIHRoZSBlbmQgb2Y8
-YnI+DQomZ3Q7ICZndDsgYnVpbGRpbmcgbW9uby0gbmF0aXZlLCBhbmQgdGhlbiBnZXRzIGFuIGVy
-cm9yOjxicj4NCiZndDsgJmd0Ozxicj4NCiZndDsgJmd0Ozxicj4NCiZndDsgJmd0OyBFUlJPUjog
-bW9uby1uYXRpdmUtNS40LjEuNi1yMCBkb19wb3B1bGF0ZV9zeXNyb290OiBUaGUgcmVjaXBlIG1v
-bm8tPGJyPg0KJmd0OyAmZ3Q7IG5hdGl2ZSBpcyB0cnlpbmcgdG8gaW5zdGFsbCBmaWxlcyBpbnRv
-IGEgc2hhcmVkIGFyZWEgd2hlbiB0aG9zZSBmaWxlcyBhbHJlYWR5PGJyPg0KJmd0OyBleGlzdC48
-YnI+DQomZ3Q7ICZndDsgVGhvc2UgZmlsZXMgYW5kIHRoZWlyIG1hbmlmZXN0IGxvY2F0aW9uIGFy
-ZTo8YnI+DQomZ3Q7ICZndDsmbmJzcDsgJm5ic3A7IC9ob21lL2NyYWlnbS95b2N0by9wb2t5L2J1
-aWxkL3RtcC9zeXNyb290cy94ODZfNjQtPGJyPg0KJmd0OyAmZ3Q7IGxpbnV4L3Vzci9saWIvbW9u
-by9sbGRiL21vbm8ucHk8YnI+DQomZ3Q7ICZndDsmbmJzcDsgTWF0Y2hlZCBpbiBiJyc8YnI+DQom
-Z3Q7ICZndDsmbmJzcDsgL2hvbWUvY3JhaWdtL3lvY3RvL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3Rz
-L3g4Nl82NC08YnI+DQomZ3Q7ICZndDsgbGludXgvdXNyL2xpYi9tb25vLzQuNi4xLWFwaS9TeXN0
-ZW0uV2ViLkh0dHAuU2VsZkhvc3QuZGxsPGJyPg0KJmd0OyAmZ3Q7Jm5ic3A7IE1hdGNoZWQgaW4g
-YicnPGJyPg0KJmd0OyAmZ3Q7IC4uLjxicj4NCiZndDsgJmd0OyAvaG9tZS9jcmFpZ20veW9jdG8v
-cG9reS9idWlsZC90bXAvc3lzcm9vdHMveDg2XzY0LTxicj4NCiZndDsgJmd0Ozxicj4NCiZndDsg
-bGludXgvdXNyL2xpYi9tb25vL3hidWlsZC8xNC4wL2Jpbi9NU0J1aWxkL01pY3Jvc29mdC5CdWls
-ZC5Db21tb25UeXBlcy48YnI+DQomZ3Q7ICZndDsgeHNkPGJyPg0KJmd0OyAmZ3Q7Jm5ic3A7IE1h
-dGNoZWQgaW4gYicnPGJyPg0KJmd0OyAmZ3Q7Jm5ic3A7IC9ob21lL2NyYWlnbS95b2N0by9wb2t5
-L2J1aWxkL3RtcC9zeXNyb290cy94ODZfNjQtPGJyPg0KJmd0OyAmZ3Q7IGxpbnV4L3Vzci9saWIv
-bW9uby94YnVpbGQvMTQuMC9iaW4vTVNCdWlsZC9NaWNyb3NvZnQuQnVpbGQuQ29yZS54c2Q8YnI+
-DQomZ3Q7ICZndDsmbmJzcDsgTWF0Y2hlZCBpbiBiJyc8YnI+DQomZ3Q7ICZndDsmbmJzcDsgL2hv
-bWUvY3JhaWdtL3lvY3RvL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3g4Nl82NC08YnI+DQomZ3Q7
-ICZndDs8YnI+DQomZ3Q7IGxpbnV4L3Vzci9saWIvbW9uby94YnVpbGQvMTQuMC9NaWNyb3NvZnQu
-Q29tbW9uLnRhcmdldHMvSW1wb3J0QWZ0ZXIvTWk8YnI+DQomZ3Q7ICZndDsgYzxicj4NCiZndDsg
-Jmd0OyByb3NvZnQuTnVHZXQuSW1wb3J0QWZ0ZXIudGFyZ2V0czxicj4NCiZndDsgJmd0OyZuYnNw
-OyBNYXRjaGVkIGluIGInJzxicj4NCiZndDsgJmd0OyBQbGVhc2UgdmVyaWZ5IHdoaWNoIHJlY2lw
-ZSBzaG91bGQgcHJvdmlkZSB0aGUgYWJvdmUgZmlsZXMuPGJyPg0KJmd0OyAmZ3Q7IFRoZSBidWls
-ZCBoYXMgc3RvcHBlZCBhcyBjb250aW51aW5nIGluIHRoaXMgc2NlbmFyaW8gV0lMTCBicmVhazxi
-cj4NCiZndDsgJmd0OyB0aGluZ3MsIGlmIG5vdCBub3csIHBvc3NpYmx5IGluIHRoZSBmdXR1cmUg
-KHdlJ3ZlIHNlZW4gYnVpbGRzIGZhaWw8YnI+DQomZ3Q7ICZndDsgc2V2ZXJhbCBtb250aHMgbGF0
-ZXIpLiBJZiB0aGUgc3lzdGVtIGtuZXcgaG93IHRvIHJlY292ZXIgZnJvbSB0aGlzPGJyPg0KJmd0
-OyAmZ3Q7IGF1dG9tYXRpY2FsbHkgaXQgd291bGQgaG93ZXZlciB0aGVyZSBhcmUgc2V2ZXJhbCBk
-aWZmZXJlbnQgc2NlbmFyaW9zPGJyPg0KJmd0OyAmZ3Q7IHdoaWNoIGNhbiByZXN1bHQgaW4gdGhp
-cyBhbmQgd2UgZG9uJ3Qga25vdyB3aGljaCBvbmUgdGhpcyBpcy4gSXQgbWF5PGJyPg0KJmd0OyAm
-Z3Q7IGJlIHlvdSBoYXZlIHN3aXRjaGVkIHByb3ZpZGVycyBvZiBzb21ldGhpbmcgbGlrZSB2aXJ0
-dWFsL2tlcm5lbCAoZS5nLjxicj4NCiZndDsgJmd0OyBmcm9tIGxpbnV4LXlvY3RvIHRvIGxpbnV4
-LXlvY3RvLWRldiksIGluIHRoYXQgY2FzZSB5b3UgbmVlZCB0byBleGVjdXRlIHRoZTxicj4NCiZn
-dDsgY2xlYW4gdGFzayBmb3IgYm90aCByZWNpcGVzIGFuZCBpdCB3aWxsIHJlc29sdmUgdGhpcyBl
-cnJvci48YnI+DQomZ3Q7ICZndDsgSXQgbWF5IGJlIHlvdSBjaGFuZ2VkIERJU1RST19GRUFUVVJF
-UyBmcm9tIHN5c3RlbWQgdG8gdWRldiBvciB2aWNlPGJyPg0KJmd0OyAmZ3Q7IHZlcnNhLiBDbGVh
-bmluZyB0aG9zZSByZWNpcGVzIHNob3VsZCBhZ2FpbiByZXNvbHZlIHRoaXMgZXJyb3IgaG93ZXZl
-cjxicj4NCiZndDsgJmd0OyBzd2l0Y2hpbmcgRElTVFJPX0ZFQVRVUkVTIG9uIGFuIGV4aXN0aW5n
-IGJ1aWxkIGRpcmVjdG9yeSBpcyBub3Q8YnI+DQomZ3Q7ICZndDsgc3VwcG9ydGVkLCB5b3Ugc2hv
-dWxkIHJlYWxseSBjbGVhbiBvdXQgdG1wIGFuZCByZWJ1aWxkIChyZXVzaW5nIHNzdGF0ZTxicj4N
-CiZndDsgJmd0OyBzaG91bGQgYmUgc2FmZSkuIEl0IGNvdWxkIGJlIHRoZSBvdmVybGFwcGluZyBm
-aWxlcyBkZXRlY3RlZCBhcmU8YnI+DQomZ3Q7ICZndDsgaGFybWxlc3MgaW4gd2hpY2ggY2FzZSBh
-ZGRpbmcgdGhlbSB0byBTU1RBVEVfRFVQV0hJVEVMSVNUIG1heSBiZSB0aGU8YnI+DQomZ3Q7ICZn
-dDsgY29ycmVjdCBzb2x1dGlvbi4gSXQgY291bGQgYWxzbyBiZSB5b3VyIGJ1aWwmbmJzcDsgZCBp
-cyBpbmNsdWRpbmcgdHdvPGJyPg0KJmd0OyAmZ3Q7IGRpZmZlcmVudCBjb25mbGljdGluZyB2ZXJz
-aW9ucyBvZiB0aGluZ3MgKGUuZy4gYmx1ZXo8YnI+DQomZ3Q7ICZndDsgNCBhbmQgYmx1ZXogNSBh
-bmQgdGhlIGNvcnJlY3Qgc29sdXRpb24gZm9yIHRoYXQgd291bGQgYmUgdG8gcmVzb2x2ZTxicj4N
-CiZndDsgJmd0OyB0aGUgY29uZmxpY3QuIElmIGluIGRvdWJ0LCBwbGVhc2UgYXNrIG9uIHRoZSBt
-YWlsaW5nIGxpc3QsIHNoYXJpbmcgdGhlPGJyPg0KJmd0OyAmZ3Q7IGVycm9yIGFuZCBmaWxlbGlz
-dCBhYm92ZS48YnI+DQomZ3Q7ICZndDsgRVJST1I6IG1vbm8tbmF0aXZlLTUuNC4xLjYtcjAgZG9f
-cG9wdWxhdGVfc3lzcm9vdDogSWYgdGhlIGFib3ZlPGJyPg0KJmd0OyAmZ3Q7IG1lc3NhZ2UgaXMg
-dG9vIG11Y2gsIHRoZSBzaW1wbGVyIHZlcnNpb24gaXMgeW91J3JlIGFkdmlzZWQgdG8gd2lwZSBv
-dXQ8YnI+DQomZ3Q7ICZndDsgdG1wIGFuZCByZWJ1aWxkIChyZXVzaW5nIHNzdGF0ZSBpcyBmaW5l
-KS4gVGhhdCB3aWxsIGxpa2VseSBmaXggdGhpbmdzPGJyPg0KJmd0OyAmZ3Q7IGluIG1vc3QgKGJ1
-dCBub3QgYWxsKSBjYXNlcy48YnI+DQomZ3Q7ICZndDsgRVJST1I6IG1vbm8tbmF0aXZlLTUuNC4x
-LjYtcjAgZG9fcG9wdWxhdGVfc3lzcm9vdDogRnVuY3Rpb24gZmFpbGVkOjxicj4NCiZndDsgJmd0
-OyBzc3RhdGVfdGFza19wb3N0ZnVuYzxicj4NCiZndDsgJmd0OyBFUlJPUjogTG9nZmlsZSBvZiBm
-YWlsdXJlIHN0b3JlZCBpbjo8YnI+DQomZ3Q7ICZndDsgL2hvbWUvY3JhaWdtL3lvY3RvL3Bva3kv
-YnVpbGQvdG1wL3dvcmsveDg2XzY0LWxpbnV4L21vbm8tPGJyPg0KJmd0OyAmZ3Q7IG5hdGl2ZS81
-LjQuMS42LXIwL3RlbXAvbG9nLmRvX3BvcHVsYXRlX3N5c3Jvb3QuMTA4MzU4PGJyPg0KJmd0OyAm
-Z3Q7IEVSUk9SOiBUYXNrICgvaG9tZS9jcmFpZ20veW9jdG8vcG9reS9idWlsZC8uLi8uLi9tZXRh
-LW1vbm8vcmVjaXBlcy08YnI+DQomZ3Q7ICZndDsgbW9uby9tb25vL21vbm8tbmF0aXZlXzUuNC4x
-LjYuYmI6ZG9fcG9wdWxhdGVfc3lzcm9vdCkgZmFpbGVkIHdpdGg8YnI+DQomZ3Q7IGV4aXQ8YnI+
-DQomZ3Q7ICZndDsgY29kZSAnMSc8YnI+DQomZ3Q7ICZndDsgTk9URTogVGFza3MgU3VtbWFyeTog
-QXR0ZW1wdGVkIDY3MCB0YXNrcyBvZiB3aGljaCA2NjIgZGlkbid0IG5lZWQgdG88YnI+DQomZ3Q7
-ICZndDsgYmUgcmVydW4gYW5kIDEgZmFpbGVkLjxicj4NCiZndDsgJmd0Ozxicj4NCiZndDsgJmd0
-OyBTdW1tYXJ5OiAxIHRhc2sgZmFpbGVkOjxicj4NCiZndDsgJmd0OyZuYnNwOyAmbmJzcDsvaG9t
-ZS9jcmFpZ20veW9jdG8vcG9reS9idWlsZC8uLi8uLi9tZXRhLW1vbm8vcmVjaXBlcy08YnI+DQom
-Z3Q7ICZndDsgbW9uby9tb25vL21vbm8tbmF0aXZlXzUuNC4xLjYuYmI6ZG9fcG9wdWxhdGVfc3lz
-cm9vdDxicj4NCiZndDsgJmd0OyBTdW1tYXJ5OiBUaGVyZSB3ZXJlIDMgRVJST1IgbWVzc2FnZXMg
-c2hvd24sIHJldHVybmluZyBhIG5vbi16ZXJvIGV4aXQ8YnI+DQomZ3Q7ICZndDsgY29kZS48YnI+
-DQomZ3Q7ICZndDs8YnI+DQomZ3Q7ICZndDs8YnI+DQomZ3Q7ICZndDsgSSdtIGJ1aWxkaW5nIHdp
-dGggWW9jdG8gcG9reSBtb3J0eSBicmFuY2ggKGN1cnJlbnRseSBjb21taXQ8YnI+DQomZ3Q7ICZn
-dDsgMGU3MzA3NzBhOSksIG1ldGEtbW9ubyBtYXN0ZXIgKGNvbW1pdCBkY2VkNjYzNWNhKS4gSSdt
-IGJ1aWxkaW5nIG9uPGJyPg0KJmd0OyBVYnVudHUgMTYuMDQuNC48YnI+DQomZ3Q7ICZndDs8YnI+
-DQomZ3Q7ICZndDsgSSBoYXZlIHRyaWVkIGRlbGV0aW5nIHRoZSB0bXAgZGlyZWN0b3J5LCBkZWxl
-dGluZyBhbGwgbW9ubyBhbmQ8YnI+DQomZ3Q7ICZndDsgbW9uby1uYXRpdmUgZnJvbSBzc3RhdGUs
-IGNsZWFuaW5nIG1vbm8gYW5kIG1ldGEtbW9ubywgZXRjLCB0byBubyBhdmFpbC48YnI+DQomZ3Q7
-ICZndDs8YnI+DQomZ3Q7ICZndDsgSXQncyBwdXp6bGluZyB3aHkgSSdtIGdldHRpbmcgdGhlc2Ug
-ZXJyb3JzLCBiZWNhdXNlIGl0IHNheXMgJnF1b3Q7TWF0Y2hlZDxicj4NCiZndDsgJmd0OyBpbiBi
-JycmcXVvdDssIHNvIHRoZSBmaWxlcyBhcmUgbm90IGNsYXNoaW5nIHdpdGggYW5vdGhlciByZWNp
-cGUuIEl0IHNlZW1zPGJyPg0KJmd0OyAmZ3Q7IHRvIGJlIHNvbWVob3cgdHJ5aW5nIHRvIGluc3Rh
-bGwgaXRzIG93biBmaWxlcyB0d2ljZSwgb3Igc29tZXRoaW5nIGxpa2U8YnI+DQomZ3Q7ICZndDsg
-dGhhdC4gSWYgSSBsb29rIHVuZGVyIHRtcC93b3JrL3g4Nl82NC1saW51eC9tb25vLW5hdGl2ZS81
-LjQuMS42LXIwLyw8YnI+DQomZ3Q7ICZndDsgdGhlbiBJIHNlZSB0aGUgZmlsZXMgcHJlc2VudCBp
-biBib3RoOjxicj4NCiZndDsgJmd0Ozxicj4NCiZndDsgJmd0OyBzeXNyb290LWRlc3RkaXIvaG9t
-ZS9jcmFpZ20veW9jdG8vcG9reS9idWlsZC90bXAvc3lzcm9vdHMveDg2XzY0LTxicj4NCiZndDsg
-bGludXg8YnI+DQomZ3Q7ICZndDsgLyBhbmQgaW1hZ2UvaG9tZS9jcmFpZ20veW9jdG8vcG9reS9i
-dWlsZC90bXAvc3lzcm9vdHMveDg2XzY0LWxpbnV4Lzxicj4NCiZndDsgJmd0Ozxicj4NCiZndDsg
-Jmd0OyBJcyB0aGF0IHBhcnQgb2YgdGhlIHByb2JsZW0/PGJyPg0KJmd0OyA8YnI+DQomZ3Q7IDxi
-cj4NCiZndDsgSSBoYXZlbid0IGhhZCBhbnkgc3VjY2VzcyBmaWd1cmluZyBvdXQgd2hhdCBpcyBn
-b2luZyBvbi4gSSB0cmllZCBkb2luZyBhIG5ldzxicj4NCiZndDsgY2xlYW4gYnVpbGQsIGFuZCBn
-b3QgdGhlIHNhbWUgZXJyb3IuPGJyPg0KJmd0OyA8YnI+DQomZ3Q7IERvZXMgYW55b25lIGVsc2Ug
-aGF2ZSB0aGlzIHByb2JsZW0/IElzIGl0IGFuIGluY29tcGF0aWJpbGl0eSB3aXRoIFlvY3RvPGJy
-Pg0KJmd0OyBtb3J0eSwgd2hpY2ggSSdtIHVzaW5nPyBBbnkgcG9pbnRlcnMgb24gaG93IHRvIG5h
-cnJvdyBkb3duIHRoZSBjYXVzZT88YnI+DQo8YnI+DQpJIHRyaWVkIHVwZGF0aW5nIGZyb20gbW9y
-dHkgdG8gcm9ja28sIGFuZCBubyBsb25nZXIgZ290IHRoaXMgZXJyb3IuIFNvIGl0IHNlZW1zIGl0
-J3Mgc29tZWhvdyBhbiBpc3N1ZSB3aXRoIG1ldGEtbW9ubyBpbiBjb25qdW5jdGlvbiB3aXRoIG1v
-cnR5LjxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+VGhhdOKAmXMgZHVlIHRvIHRoZSBmYWN0IHRoYXQgUm9ja28gb253YXJkcyBPRSBz
-d2l0Y2hlZCB0byB1c2luZyByZWNpcGUgc3BlY2lmaWMgc3lzcm9vdHMmbmJzcDs8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
-DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
-bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5IZXkgQ3JhaWcsPGJyPg0KPGJyPg0KVGhlcmUgd2Fz
-IGFuIHNlcGFyYXRlIGlzc3VlIHdpdGggdGhlIG1vcnR5IGJyYW5jaCBidWlsZGluZyB3aGljaCBo
-b3BlZnVsbHkgSSd2ZSByZXNvbHZlZCB3aXRoIGEgcmVjZW50IGNoZXJyeS1waWNrLjxicj4NCjxi
-cj4NCkknbSBub3QgaW50ZW5kaW5nIGF0bSB0byB1cGRhdGUgc3VwcG9ydCBmb3IgbW9yZSByZWNl
-bnQgcmVsZWFzZXMgb2YgTW9ubyBvbiBNb3J0eSBkdWUgdG8gdGhlIGlzc3VlIHlvdSd2ZSBpZGVu
-dGlmaWVkIGFib3ZlLjxicj4NCjxicj4NCihUaGlzIGlzIGJlY2F1c2UgSSB0aGluayBpdCdzIG1v
-cmUgdmFsdWFibGUgdG8gcHV0IHRoZSB0aW1lIEkgaGF2ZSBhdmFpbGFibGUgaW50byBzdXBwb3J0
-aW5nIHRoZSBjdXJyZW50IE1vbm8gcmVsZWFzZSBvbiBtYXN0ZXIsIFQtUCBldGMuIC0gd2hpY2gg
-SSdsbCBob3BlZnVsbHkgYmUgbG9va2luZyBhdCBzaG9ydGx5KS48YnI+DQo8YnI+DQpJJ2QgYmUg
-dmVyeSBwbGVhc2VkIHRvIHJlY2VpdmUgUFJzIHRob3VnaCBpZiB5b3UgaGF2ZSB0aGUgdGltZSB0
-byBhZGRyZXNzIHRoaXMuLi48YnI+DQo8YnI+DQo8c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
-cmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
-b3I6IzFGNDk3RCI+VGhhbmsgeW91IGZvciB0aGUgaW5mb3JtYXRpb24uPG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5
-N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
-dDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5XaGF0IGlzIHRoZSBjaGVycnktcGljayB3aGlj
-aCBob3BlZnVsbHkgcmVzb2x2ZWQgdGhpcyBpc3N1ZT88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
-bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4m
-bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
-cmlmO2NvbG9yOiMxRjQ5N0QiPkkgY2Fu4oCZdCBwcm92aWRlIGEgUFIgc2luY2UgSSBkb27igJl0
-IHVuZGVyc3RhbmQgdGhlIHByb2JsZW0gYXQgdGhpcyBwb2ludC4gQnV0LCBJIGFncmVlIGl04oCZ
-cyBwcm9iYWJseSBub3Qgc3BlbmRpbmcgZWZmb3J0IG9uIG1vcnR5IHNpbmNlIEkgdGhpbmsgaXRz
-IHN1cHBvcnQgd2lsbA0KIGVuZCBzb29uLiBJ4oCZbSBpbiB0aGUgcHJvY2VzcyBvZiB1cGRhdGlu
-ZyB0byByb2Nrby48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlJl
-Z2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oyxz
-YW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkNyYWlnPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+On 20/06/2018 08:46, Craig McQueen wrote:
+>
+> *From:*Alex Lennon
+>
+> On 12/06/2018 05:43, Khem Raj wrote:
+>
+>     On Mon, Jun 11, 2018 at 8:36 PM Craig McQueen
+>     <craig.mcqueen@innerrange.com
+>     <mailto:craig.mcqueen@innerrange.com>> wrote:
+>
+>         I wrote:
+>         >
+>         > I wrote:
+>         > >
+>         > > Lately, I'm trying to upgrade to a later version of mono,
+>         5.4.1.6.
+>         > > When I try to do a build of my Yocto image, bitbake gets
+>         to the end of
+>         > > building mono- native, and then gets an error:
+>         > >
+>         > >
+>         > > ERROR: mono-native-5.4.1.6-r0 do_populate_sysroot: The
+>         recipe mono-
+>         > > native is trying to install files into a shared area when
+>         those files already
+>         > exist.
+>         > > Those files and their manifest location are:
+>         > > /home/craigm/yocto/poky/build/tmp/sysroots/x86_64-
+>         > > linux/usr/lib/mono/lldb/mono.py
+>         > >  Matched in b''
+>         > > /home/craigm/yocto/poky/build/tmp/sysroots/x86_64-
+>         > > linux/usr/lib/mono/4.6.1-api/System.Web.Http.SelfHost.dll
+>         > >  Matched in b''
+>         > > ...
+>         > > /home/craigm/yocto/poky/build/tmp/sysroots/x86_64-
+>         > >
+>         >
+>         linux/usr/lib/mono/xbuild/14.0/bin/MSBuild/Microsoft.Build.CommonTypes.
+>         > > xsd
+>         > >  Matched in b''
+>         > > /home/craigm/yocto/poky/build/tmp/sysroots/x86_64-
+>         > >
+>         linux/usr/lib/mono/xbuild/14.0/bin/MSBuild/Microsoft.Build.Core.xsd
+>         > >  Matched in b''
+>         > > /home/craigm/yocto/poky/build/tmp/sysroots/x86_64-
+>         > >
+>         >
+>         linux/usr/lib/mono/xbuild/14.0/Microsoft.Common.targets/ImportAfter/Mi
+>         > > c
+>         > > rosoft.NuGet.ImportAfter.targets
+>         > >  Matched in b''
+>         > > Please verify which recipe should provide the above files.
+>         > > The build has stopped as continuing in this scenario WILL
+>         break
+>         > > things, if not now, possibly in the future (we've seen
+>         builds fail
+>         > > several months later). If the system knew how to recover
+>         from this
+>         > > automatically it would however there are several different
+>         scenarios
+>         > > which can result in this and we don't know which one this
+>         is. It may
+>         > > be you have switched providers of something like
+>         virtual/kernel (e.g.
+>         > > from linux-yocto to linux-yocto-dev), in that case you
+>         need to execute the
+>         > clean task for both recipes and it will resolve this error.
+>         > > It may be you changed DISTRO_FEATURES from systemd to udev
+>         or vice
+>         > > versa. Cleaning those recipes should again resolve this
+>         error however
+>         > > switching DISTRO_FEATURES on an existing build directory
+>         is not
+>         > > supported, you should really clean out tmp and rebuild
+>         (reusing sstate
+>         > > should be safe). It could be the overlapping files
+>         detected are
+>         > > harmless in which case adding them to SSTATE_DUPWHITELIST
+>         may be the
+>         > > correct solution. It could also be your buil  d is
+>         including two
+>         > > different conflicting versions of things (e.g. bluez
+>         > > 4 and bluez 5 and the correct solution for that would be
+>         to resolve
+>         > > the conflict. If in doubt, please ask on the mailing list,
+>         sharing the
+>         > > error and filelist above.
+>         > > ERROR: mono-native-5.4.1.6-r0 do_populate_sysroot: If the
+>         above
+>         > > message is too much, the simpler version is you're advised
+>         to wipe out
+>         > > tmp and rebuild (reusing sstate is fine). That will likely
+>         fix things
+>         > > in most (but not all) cases.
+>         > > ERROR: mono-native-5.4.1.6-r0 do_populate_sysroot:
+>         Function failed:
+>         > > sstate_task_postfunc
+>         > > ERROR: Logfile of failure stored in:
+>         > > /home/craigm/yocto/poky/build/tmp/work/x86_64-linux/mono-
+>         > > native/5.4.1.6-r0/temp/log.do_populate_sysroot.108358
+>         > > ERROR: Task
+>         (/home/craigm/yocto/poky/build/../../meta-mono/recipes-
+>         > > mono/mono/mono-native_5.4.1.6.bb:do_populate_sysroot)
+>         failed with
+>         > exit
+>         > > code '1'
+>         > > NOTE: Tasks Summary: Attempted 670 tasks of which 662
+>         didn't need to
+>         > > be rerun and 1 failed.
+>         > >
+>         > > Summary: 1 task failed:
+>         > >  /home/craigm/yocto/poky/build/../../meta-mono/recipes-
+>         > > mono/mono/mono-native_5.4.1.6.bb:do_populate_sysroot
+>         > > Summary: There were 3 ERROR messages shown, returning a
+>         non-zero exit
+>         > > code.
+>         > >
+>         > >
+>         > > I'm building with Yocto poky morty branch (currently commit
+>         > > 0e730770a9), meta-mono master (commit dced6635ca). I'm
+>         building on
+>         > Ubuntu 16.04.4.
+>         > >
+>         > > I have tried deleting the tmp directory, deleting all mono and
+>         > > mono-native from sstate, cleaning mono and meta-mono, etc,
+>         to no avail.
+>         > >
+>         > > It's puzzling why I'm getting these errors, because it
+>         says "Matched
+>         > > in b''", so the files are not clashing with another
+>         recipe. It seems
+>         > > to be somehow trying to install its own files twice, or
+>         something like
+>         > > that. If I look under
+>         tmp/work/x86_64-linux/mono-native/5.4.1.6-r0/,
+>         > > then I see the files present in both:
+>         > >
+>         > >
+>         sysroot-destdir/home/craigm/yocto/poky/build/tmp/sysroots/x86_64-
+>         > linux
+>         > > / and
+>         image/home/craigm/yocto/poky/build/tmp/sysroots/x86_64-linux/
+>         > >
+>         > > Is that part of the problem?
+>         >
+>         >
+>         > I haven't had any success figuring out what is going on. I
+>         tried doing a new
+>         > clean build, and got the same error.
+>         >
+>         > Does anyone else have this problem? Is it an incompatibility
+>         with Yocto
+>         > morty, which I'm using? Any pointers on how to narrow down
+>         the cause?
+>
+>         I tried updating from morty to rocko, and no longer got this
+>         error. So it seems it's somehow an issue with meta-mono in
+>         conjunction with morty.
+>
+>     That’s due to the fact that Rocko onwards OE switched to using
+>     recipe specific sysroots
+>
+> Hey Craig,
+>
+> There was an separate issue with the morty branch building which 
+> hopefully I've resolved with a recent cherry-pick.
+>
+> I'm not intending atm to update support for more recent releases of 
+> Mono on Morty due to the issue you've identified above.
+>
+> (This is because I think it's more valuable to put the time I have 
+> available into supporting the current Mono release on master, T-P etc. 
+> - which I'll hopefully be looking at shortly).
+>
+> I'd be very pleased to receive PRs though if you have the time to 
+> address this...
+>
+> Thank you for the information.
+>
+> What is the cherry-pick which hopefully resolved this issue?
+>
+> I can’t provide a PR since I don’t understand the problem at this 
+> point. But, I agree it’s probably not spending effort on morty since I 
+> think its support will end soon. I’m in the process of updating to rocko.
+>
+> Regards,
+>
+> Craig
+>
 
---_000_aae33ff7aa8d4d158c191abc3ecb8ec8innerrangecom_--
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-mono/log/?h=morty
+
+Regards, Alex
+
+
+--------------C5280C4094BA20FC0A7A9781
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 20/06/2018 08:46, Craig McQueen
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:aae33ff7aa8d4d158c191abc3ecb8ec8@innerrange.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal"><b><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:windowtext"
+              lang="EN-US">From:</span></b><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:windowtext"
+            lang="EN-US"> Alex Lennon<br>
+            <br>
+          </span><o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <div>
+          <p class="MsoNormal">On 12/06/2018 05:43, Khem Raj wrote:<o:p></o:p></p>
+        </div>
+        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
+          <div>
+            <p class="MsoNormal"><o:p> </o:p></p>
+          </div>
+          <div>
+            <p class="MsoNormal"><o:p> </o:p></p>
+            <div>
+              <div>
+                <p class="MsoNormal">On Mon, Jun 11, 2018 at 8:36 PM
+                  Craig McQueen &lt;<a
+                    href="mailto:craig.mcqueen@innerrange.com"
+                    moz-do-not-send="true">craig.mcqueen@innerrange.com</a>&gt;
+                  wrote:<o:p></o:p></p>
+              </div>
+              <blockquote style="border:none;border-left:solid #CCCCCC
+                1.0pt;padding:0cm 0cm 0cm
+                6.0pt;margin-left:4.8pt;margin-right:0cm">
+                <p class="MsoNormal">I wrote:<br>
+                  &gt; <br>
+                  &gt; I wrote:<br>
+                  &gt; &gt;<br>
+                  &gt; &gt; Lately, I'm trying to upgrade to a later
+                  version of mono, 5.4.1.6.<br>
+                  &gt; &gt; When I try to do a build of my Yocto image,
+                  bitbake gets to the end of<br>
+                  &gt; &gt; building mono- native, and then gets an
+                  error:<br>
+                  &gt; &gt;<br>
+                  &gt; &gt;<br>
+                  &gt; &gt; ERROR: mono-native-5.4.1.6-r0
+                  do_populate_sysroot: The recipe mono-<br>
+                  &gt; &gt; native is trying to install files into a
+                  shared area when those files already<br>
+                  &gt; exist.<br>
+                  &gt; &gt; Those files and their manifest location are:<br>
+                  &gt; &gt;   
+                  /home/craigm/yocto/poky/build/tmp/sysroots/x86_64-<br>
+                  &gt; &gt; linux/usr/lib/mono/lldb/mono.py<br>
+                  &gt; &gt;  Matched in b''<br>
+                  &gt; &gt; 
+                  /home/craigm/yocto/poky/build/tmp/sysroots/x86_64-<br>
+                  &gt; &gt;
+                  linux/usr/lib/mono/4.6.1-api/System.Web.Http.SelfHost.dll<br>
+                  &gt; &gt;  Matched in b''<br>
+                  &gt; &gt; ...<br>
+                  &gt; &gt;
+                  /home/craigm/yocto/poky/build/tmp/sysroots/x86_64-<br>
+                  &gt; &gt;<br>
+                  &gt;
+                  linux/usr/lib/mono/xbuild/14.0/bin/MSBuild/Microsoft.Build.CommonTypes.<br>
+                  &gt; &gt; xsd<br>
+                  &gt; &gt;  Matched in b''<br>
+                  &gt; &gt; 
+                  /home/craigm/yocto/poky/build/tmp/sysroots/x86_64-<br>
+                  &gt; &gt;
+                  linux/usr/lib/mono/xbuild/14.0/bin/MSBuild/Microsoft.Build.Core.xsd<br>
+                  &gt; &gt;  Matched in b''<br>
+                  &gt; &gt; 
+                  /home/craigm/yocto/poky/build/tmp/sysroots/x86_64-<br>
+                  &gt; &gt;<br>
+                  &gt;
+                  linux/usr/lib/mono/xbuild/14.0/Microsoft.Common.targets/ImportAfter/Mi<br>
+                  &gt; &gt; c<br>
+                  &gt; &gt; rosoft.NuGet.ImportAfter.targets<br>
+                  &gt; &gt;  Matched in b''<br>
+                  &gt; &gt; Please verify which recipe should provide
+                  the above files.<br>
+                  &gt; &gt; The build has stopped as continuing in this
+                  scenario WILL break<br>
+                  &gt; &gt; things, if not now, possibly in the future
+                  (we've seen builds fail<br>
+                  &gt; &gt; several months later). If the system knew
+                  how to recover from this<br>
+                  &gt; &gt; automatically it would however there are
+                  several different scenarios<br>
+                  &gt; &gt; which can result in this and we don't know
+                  which one this is. It may<br>
+                  &gt; &gt; be you have switched providers of something
+                  like virtual/kernel (e.g.<br>
+                  &gt; &gt; from linux-yocto to linux-yocto-dev), in
+                  that case you need to execute the<br>
+                  &gt; clean task for both recipes and it will resolve
+                  this error.<br>
+                  &gt; &gt; It may be you changed DISTRO_FEATURES from
+                  systemd to udev or vice<br>
+                  &gt; &gt; versa. Cleaning those recipes should again
+                  resolve this error however<br>
+                  &gt; &gt; switching DISTRO_FEATURES on an existing
+                  build directory is not<br>
+                  &gt; &gt; supported, you should really clean out tmp
+                  and rebuild (reusing sstate<br>
+                  &gt; &gt; should be safe). It could be the overlapping
+                  files detected are<br>
+                  &gt; &gt; harmless in which case adding them to
+                  SSTATE_DUPWHITELIST may be the<br>
+                  &gt; &gt; correct solution. It could also be your
+                  buil  d is including two<br>
+                  &gt; &gt; different conflicting versions of things
+                  (e.g. bluez<br>
+                  &gt; &gt; 4 and bluez 5 and the correct solution for
+                  that would be to resolve<br>
+                  &gt; &gt; the conflict. If in doubt, please ask on the
+                  mailing list, sharing the<br>
+                  &gt; &gt; error and filelist above.<br>
+                  &gt; &gt; ERROR: mono-native-5.4.1.6-r0
+                  do_populate_sysroot: If the above<br>
+                  &gt; &gt; message is too much, the simpler version is
+                  you're advised to wipe out<br>
+                  &gt; &gt; tmp and rebuild (reusing sstate is fine).
+                  That will likely fix things<br>
+                  &gt; &gt; in most (but not all) cases.<br>
+                  &gt; &gt; ERROR: mono-native-5.4.1.6-r0
+                  do_populate_sysroot: Function failed:<br>
+                  &gt; &gt; sstate_task_postfunc<br>
+                  &gt; &gt; ERROR: Logfile of failure stored in:<br>
+                  &gt; &gt;
+                  /home/craigm/yocto/poky/build/tmp/work/x86_64-linux/mono-<br>
+                  &gt; &gt;
+                  native/5.4.1.6-r0/temp/log.do_populate_sysroot.108358<br>
+                  &gt; &gt; ERROR: Task
+                  (/home/craigm/yocto/poky/build/../../meta-mono/recipes-<br>
+                  &gt; &gt;
+                  mono/mono/mono-native_5.4.1.6.bb:do_populate_sysroot)
+                  failed with<br>
+                  &gt; exit<br>
+                  &gt; &gt; code '1'<br>
+                  &gt; &gt; NOTE: Tasks Summary: Attempted 670 tasks of
+                  which 662 didn't need to<br>
+                  &gt; &gt; be rerun and 1 failed.<br>
+                  &gt; &gt;<br>
+                  &gt; &gt; Summary: 1 task failed:<br>
+                  &gt; &gt; 
+                   /home/craigm/yocto/poky/build/../../meta-mono/recipes-<br>
+                  &gt; &gt;
+                  mono/mono/mono-native_5.4.1.6.bb:do_populate_sysroot<br>
+                  &gt; &gt; Summary: There were 3 ERROR messages shown,
+                  returning a non-zero exit<br>
+                  &gt; &gt; code.<br>
+                  &gt; &gt;<br>
+                  &gt; &gt;<br>
+                  &gt; &gt; I'm building with Yocto poky morty branch
+                  (currently commit<br>
+                  &gt; &gt; 0e730770a9), meta-mono master (commit
+                  dced6635ca). I'm building on<br>
+                  &gt; Ubuntu 16.04.4.<br>
+                  &gt; &gt;<br>
+                  &gt; &gt; I have tried deleting the tmp directory,
+                  deleting all mono and<br>
+                  &gt; &gt; mono-native from sstate, cleaning mono and
+                  meta-mono, etc, to no avail.<br>
+                  &gt; &gt;<br>
+                  &gt; &gt; It's puzzling why I'm getting these errors,
+                  because it says "Matched<br>
+                  &gt; &gt; in b''", so the files are not clashing with
+                  another recipe. It seems<br>
+                  &gt; &gt; to be somehow trying to install its own
+                  files twice, or something like<br>
+                  &gt; &gt; that. If I look under
+                  tmp/work/x86_64-linux/mono-native/5.4.1.6-r0/,<br>
+                  &gt; &gt; then I see the files present in both:<br>
+                  &gt; &gt;<br>
+                  &gt; &gt;
+                  sysroot-destdir/home/craigm/yocto/poky/build/tmp/sysroots/x86_64-<br>
+                  &gt; linux<br>
+                  &gt; &gt; / and
+                  image/home/craigm/yocto/poky/build/tmp/sysroots/x86_64-linux/<br>
+                  &gt; &gt;<br>
+                  &gt; &gt; Is that part of the problem?<br>
+                  &gt; <br>
+                  &gt; <br>
+                  &gt; I haven't had any success figuring out what is
+                  going on. I tried doing a new<br>
+                  &gt; clean build, and got the same error.<br>
+                  &gt; <br>
+                  &gt; Does anyone else have this problem? Is it an
+                  incompatibility with Yocto<br>
+                  &gt; morty, which I'm using? Any pointers on how to
+                  narrow down the cause?<br>
+                  <br>
+                  I tried updating from morty to rocko, and no longer
+                  got this error. So it seems it's somehow an issue with
+                  meta-mono in conjunction with morty.<o:p></o:p></p>
+              </blockquote>
+              <div>
+                <p class="MsoNormal"><o:p> </o:p></p>
+              </div>
+              <div>
+                <p class="MsoNormal">That’s due to the fact that Rocko
+                  onwards OE switched to using recipe specific sysroots <o:p></o:p></p>
+              </div>
+              <p class="MsoNormal"><o:p> </o:p></p>
+            </div>
+          </div>
+        </blockquote>
+        <p class="MsoNormal" style="margin-bottom:12.0pt">Hey Craig,<br>
+          <br>
+          There was an separate issue with the morty branch building
+          which hopefully I've resolved with a recent cherry-pick.<br>
+          <br>
+          I'm not intending atm to update support for more recent
+          releases of Mono on Morty due to the issue you've identified
+          above.<br>
+          <br>
+          (This is because I think it's more valuable to put the time I
+          have available into supporting the current Mono release on
+          master, T-P etc. - which I'll hopefully be looking at
+          shortly).<br>
+          <br>
+          I'd be very pleased to receive PRs though if you have the time
+          to address this...<br>
+          <br>
+          <span style="color:#1F497D"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">Thank
+            you for the information.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">What
+            is the cherry-pick which hopefully resolved this issue?<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">I
+            can’t provide a PR since I don’t understand the problem at
+            this point. But, I agree it’s probably not spending effort
+            on morty since I think its support will end soon. I’m in the
+            process of updating to rocko.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">Regards,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D">Craig<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p> </o:p></span></p>
+      </div>
+    </blockquote>
+    <br>
+    <a class="moz-txt-link-freetext" href="http://git.yoctoproject.org/cgit/cgit.cgi/meta-mono/log/?h=morty">http://git.yoctoproject.org/cgit/cgit.cgi/meta-mono/log/?h=morty</a><br>
+    <br>
+    Regards, Alex<br>
+    <br>
+  </body>
+</html>
+
+--------------C5280C4094BA20FC0A7A9781--
