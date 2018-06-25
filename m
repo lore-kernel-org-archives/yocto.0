@@ -1,65 +1,64 @@
-Return-Path: <mans.zigher@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 90133E007AD; Mon, 25 Jun 2018 10:59:25 -0700 (PDT)
+	id EB7D5E01134; Mon, 25 Jun 2018 11:03:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mans.zigher[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.177 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.218.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-Received: from mail-ot0-f177.google.com (mail-ot0-f177.google.com
-	[74.125.82.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DC56E007AD
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2018 10:59:24 -0700 (PDT)
-Received: by mail-ot0-f177.google.com with SMTP id w9-v6so16037620otj.7
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2018 10:59:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=pphUjWwc0lKwi77vFQKDfq4fnZbKdd1V1oJ3eAxReXQ=;
-	b=qyLqt7yChS0kvEICmEsoq4vMApiogI8hiB7TrbWrcprnwMRxchkrkVXbqTp0JGiRA8
-	XPM7fnsgKb3YxRFooo/JLL7r3n9T0ID6hrUN4iUyrMkQG+TitqkePORUiBMaWbVMnx8j
-	BxPAb4rP8VvTM+HGIxKM/XPND1geDni9een9TeAs9LveaqICo1CbhgiwRKIiBMNqtEqY
-	TMNvZZb5fS7IHbeenkA3sKIvtCSENY9Nyea6YcdGnNsnRrtfxJLaZTLfum5I8k8goy+c
-	F7HpDsmubSR305k5HKRF3jumskjLTx0xCt9eNgHMUIZvN3HqSm6btlQjKV86vRQBn4Lw
-	9Ysg==
+Received: from mail-oi0-f45.google.com (mail-oi0-f45.google.com
+	[209.85.218.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBD57E01131
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2018 11:03:39 -0700 (PDT)
+Received: by mail-oi0-f45.google.com with SMTP id e8-v6so13384658oii.2
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2018 11:03:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=oKOkhmtG5POCzuDG1qz5ZW8uK7OApLm6R+PmSZgBUjQ=;
+	b=c5Gg2x3aKdnyFNK8jjbwGMdGWDwjaDkc5ubhM70j0qHCCdRhzXgcQLooZB4hE60mJ5
+	YnZzUWaX/zxWIR7tJf5uR9SmbAp60BYWQNmR3tNwTBblpQPqZDDN6q23sw2iEerW/Rla
+	xn+UiZ1TdpvAHG2pd5Wse/EfDr/Vcyp4IiyPg27g9HPnajM0c+5kyyzb/5tOrDWB4ovQ
+	oJ121QATGsTQAYYywC2qY8Yxeu3d7tC9G9hBocS91LyqeBY3uFCtidqw1XAUAIY8pbLd
+	0QexFs91NvL1nXghZ9HpniT0gaMCvZ4ZML6HcoX4c9HTsbG4bQos3IwbWaEwSaXBzkjI
+	2mqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=pphUjWwc0lKwi77vFQKDfq4fnZbKdd1V1oJ3eAxReXQ=;
-	b=UD+n8n6G5/aHBvbTXphWpvchB30W2xaU8HEyfi605ve0E8ZREgdbMkW7uE8llZpzUg
-	CBVVF4P2F7d4+7mLSHy/B6oSfEODwdXWJR9BkoUa1w0antKeRNi7ccv16pvZdGzf/0WB
-	05NDVdcAwU1/XA12D7mmO8fkoqlDhqEuz/MTa4ABuu8iyY8aE7TE4HJ4bgrdRER6ej2q
-	PoQPOgu6hQf91WSzaPEvLVybL3HWfs5XoEtj0J1Piq4qq0i2gFFdQnvIUNFlG9cAoj37
-	E82P812zzSHy1nhKXKk4dTJ5uj6I084OMJvPvEpcwojlZO4dmhJsgS8Z8q5tfReypFLs
-	En6g==
-X-Gm-Message-State: APt69E1MKtF+Jb8dgCRCV4b+qpoW1NX0/Rtq+B+KxBDS5AHkOf+u+iIy
-	EIcadl9UNlwKvEOqeZS8uW4t3vJaer6ipal3kRV7Fg==
-X-Google-Smtp-Source: AAOMgpf4R6AnIsdnGRve1lJVgHNbhJvW+5qnFm67lqU8rvEFacCId8J0hYcYUXvjPsCnfNEyolrBBVqo7twWer8hx0U=
-X-Received: by 2002:a9d:3cf3:: with SMTP id
-	t48-v6mr7103649otf.378.1529949563657; 
-	Mon, 25 Jun 2018 10:59:23 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=oKOkhmtG5POCzuDG1qz5ZW8uK7OApLm6R+PmSZgBUjQ=;
+	b=I5I3fJ7t7nYAU+lC9u/DH0lBtcuAhwoJKx1lLWQC5p2sIA8X0t90GYwBwHway1Y6QO
+	ie3wvvIKaQQdZ/5r3F1BWGnts+pAT/We1y8ZzGnBC1v91tkR+sYNhDLSwEw11B1EsBwx
+	7aIoXoIFXGNm3dOIiKPtPW+1XdJC3m3ueVKMBO5QtA+R+Sxk789rM3BrCMf2nrKzHErY
+	wvcnO+9bLPUB3OK2IH8RvrBPG7NJL3BG3uKC2+zXxmXczQTw9BHxafeiRGRG2SeOEh2Y
+	UTRUrQ6IxH/jCFPiZM887rMmhp5CruiIl4XHlw9zCfeVpIm2o7f9TInGGWIXXqHJkkSM
+	OXsA==
+X-Gm-Message-State: APt69E1UTHe3GGv83QGK+Mlwj8pNei1bRFiFsDoCUOH3LNY7izQ/nCDq
+	qmrZInq5T3JMsx2YD4gOE2A+9uxFUaj3+Kuqtk/xWg==
+X-Google-Smtp-Source: ADUXVKJOjjyJxtO40sogtNPJE/O4SOAE2orfXgmmuq0aDSeE1t/Gy50Yom0GHnZzTZr0rutQRFHIN9XWgwMRJEmMjno=
+X-Received: by 2002:aca:ef8b:: with SMTP id
+	n133-v6mr8078450oih.70.1529949818797; 
+	Mon, 25 Jun 2018 11:03:38 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a4a:5d01:0:0:0:0:0 with HTTP; Mon, 25 Jun 2018 10:59:23
+Received: by 2002:ac9:434d:0:0:0:0:0 with HTTP; Mon, 25 Jun 2018 11:03:18
 	-0700 (PDT)
-From: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
-Date: Mon, 25 Jun 2018 19:59:23 +0200
-Message-ID: <CAEhQi8k+US+M1MjAaVhnSOdsUxggTMKNAdjsq7fe095H2yyrBQ@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: busybox: adding task to run before do_configure
+In-Reply-To: <CAEhQi8k+US+M1MjAaVhnSOdsUxggTMKNAdjsq7fe095H2yyrBQ@mail.gmail.com>
+References: <CAEhQi8k+US+M1MjAaVhnSOdsUxggTMKNAdjsq7fe095H2yyrBQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 25 Jun 2018 19:03:18 +0100
+Message-ID: <CAJTo0LaMiuXU8d7CWdXd5XHQvf_FpXjrWxr6fybTmf6-r-hGQA@mail.gmail.com>
+To: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: busybox: adding task to run before do_configure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,185 +70,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Jun 2018 17:59:25 -0000
-Content-Type: multipart/alternative; boundary="0000000000004425dd056f7b24c8"
-
---0000000000004425dd056f7b24c8
+X-List-Received-Date: Mon, 25 Jun 2018 18:03:41 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+AFAIK, you don't need the deptasks as the before/after statements will
+insert the task in the right place.
 
-I have created this simple class file
+Ross
 
-python do_busybox_foo() {
-    bb.warn("BUSYBOX: foo task!")
-}
-addtask busybox_foo after do_configure before do_compile
-do_busybox_foo[deptask] +=3D "do_configure"
+On 25 June 2018 at 18:59, M=C3=A5ns Zigher <mans.zigher@gmail.com> wrote:
+> Hi,
+>
+> I have created this simple class file
+>
+> python do_busybox_foo() {
+>     bb.warn("BUSYBOX: foo task!")
+> }
+> addtask busybox_foo after do_configure before do_compile
+> do_busybox_foo[deptask] +=3D "do_configure"
+>
+> do_compile[deptask] +=3D "do_busybox_foo"
+>
+> And created a busybox_%.bbappend inherit this class. When running this I =
+am
+> seeing the following error
+>
+> WARNING: busybox-1.24.1-r0 do_busybox_foo: BUSYBOX: foo task!
+> ERROR: busybox-1.24.1-r0 do_install: Error executing a python function in
+> exec_python_func() autogenerated:
+>
+> The stack trace of python calls that resulted in this exception/failure w=
+as:
+> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+>      0001:
+>  *** 0002:extend_recipe_sysroot(d)
+>      0003:
+> File: '/home/user/workdir/layers/poky/meta/classes/staging.bbclass', line=
+no:
+> 565, function: extend_recipe_sysroot
+>      0561:                    dest =3D newmanifest[l]
+>      0562:                    if l.endswith("/"):
+>      0563:                        staging_copydir(l, targetdir, dest,
+> seendirs)
+>      0564:                        continue
+>  *** 0565:                    staging_copyfile(l, targetdir, dest,
+> postinsts, seendirs)
+>      0566:
+>      0567:    bb.note("Installed into sysroot: %s" % str(msg_adding))
+>      0568:    bb.note("Skipping as already exists in sysroot: %s" %
+> str(msg_exists))
+>      0569:
+> File: '/home/user/workdir/layers/poky/meta/classes/staging.bbclass', line=
+no:
+> 151, function: staging_copyfile
+>      0147:        os.symlink(linkto, dest)
+>      0148:        #bb.warn(c)
+>      0149:    else:
+>      0150:        try:
+>  *** 0151:            os.link(c, dest)
+>      0152:        except OSError as err:
+>      0153:            if err.errno =3D=3D errno.EXDEV:
+>      0154:                bb.utils.copyfile(c, dest)
+>      0155:            else:
+> Exception: FileExistsError: [Errno 17] File exists:
+> '/home/user/workdir/build/tmp/sysroots-components/cortexa7hf-neon/glibc-i=
+nitial/usr/include/time.h'
+> ->
+> '/home/user/workdir/build/tmp/work/cortexa7hf-neon-target-linux-gnueabi/b=
+usybox/1.24.1-r0/recipe-sysroot/usr/include/time.h'
+>
+> ERROR: busybox-1.24.1-r0 do_install: Function failed: extend_recipe_sysro=
+ot
+> ERROR: Logfile of failure stored in:
+> /home/user/workdir/build/tmp/work/cortexa7hf-neon-target-linux-gnueabi/bu=
+sybox/1.24.1-r0/temp/log.do_install.30635
+> ERROR: Task
+> (/home/user/workdir/layers/poky/meta/recipes-core/busybox/busybox_1.24.1.=
+bb:do_install)
+> failed with exit code '1'
+>
+> I have tried to debug this because I cannot understand why it affects the
+> staging in the install task. By removing the do_busybox_foo[deptask] I
+> prevent this error. Any advise would be appreciated.
+>
+> BR
+> M=C3=A5ns Zigher
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-do_compile[deptask] +=3D "do_busybox_foo"
-
-And created a busybox_%.bbappend inherit this class. When running this I am
-seeing the following error
-
-WARNING: busybox-1.24.1-r0 do_busybox_foo: BUSYBOX: foo task!
-
-ERROR: busybox-1.24.1-r0 do_install: Error executing a python function in
-exec_python_func() autogenerated:
-
-
-The stack trace of python calls that resulted in this exception/failure
-was:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-
-     0001:
- *** 0002:extend_recipe_sysroot(d)
-     0003:
-File: '/home/user/workdir/layers/poky/meta/classes/staging.bbclass',
-lineno: 565, function: extend_recipe_sysroot
-
-     0561:                    dest =3D newmanifest[l]
-     0562:                    if l.endswith("/"):
-     0563:                        staging_copydir(l, targetdir, dest,
-seendirs)
-     0564:                        continue
- *** 0565:                    staging_copyfile(l, targetdir, dest,
-postinsts, seendirs)
-     0566:
-     0567:    bb.note("Installed into sysroot: %s" % str(msg_adding))
-
-     0568:    bb.note("Skipping as already exists in sysroot: %s" %
-str(msg_exists))
-     0569:
-File: '/home/user/workdir/layers/poky/meta/classes/staging.bbclass',
-lineno: 151, function: staging_copyfile
-
-     0147:        os.symlink(linkto, dest)
-     0148:        #bb.warn(c)
-     0149:    else:
-     0150:        try:
- *** 0151:            os.link(c, dest)
-     0152:        except OSError as err:
-     0153:            if err.errno =3D=3D errno.EXDEV:
-     0154:                bb.utils.copyfile(c, dest)
-
-     0155:            else:
-Exception: FileExistsError: [Errno 17] File exists:
-'/home/user/workdir/build/tmp/sysroots-components/cortexa7hf-neon/glibc-ini=
-tial/usr/include/time.h'
-->
-'/home/user/workdir/build/tmp/work/cortexa7hf-neon-target-linux-gnueabi/bus=
-ybox/1.24.1-r0/recipe-sysroot/usr/include/time.h'
-
-ERROR: busybox-1.24.1-r0 do_install: Function failed:
-extend_recipe_sysroot
-ERROR: Logfile of failure stored in:
-/home/user/workdir/build/tmp/work/cortexa7hf-neon-target-linux-gnueabi/busy=
-box/1.24.1-r0/temp/log.do_install.30635
-
-ERROR: Task
-(/home/user/workdir/layers/poky/meta/recipes-core/busybox/busybox_1.24.1.bb=
-:do_install)
-failed with exit code '1'
-
-I have tried to debug this because I cannot understand why it affects the
-staging in the install task. By removing the do_busybox_foo[deptask] I
-prevent this error. Any advise would be appreciated.
-
-BR
-M=C3=A5ns Zigher
-
---0000000000004425dd056f7b24c8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
-
-PGRpdiBkaXI9Imx0ciI+SGksPGRpdj48YnI+PC9kaXY+PGRpdj5JIGhhdmUgY3JlYXRlZCB0aGlz
-IHNpbXBsZSBjbGFzcyBmaWxlPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj48ZGl2PnB5dGhvbiBk
-b19idXN5Ym94X2ZvbygpIHs8L2Rpdj48ZGl2PsKgIMKgIGJiLndhcm4oJnF1b3Q7QlVTWUJPWDog
-Zm9vIHRhc2shJnF1b3Q7KTwvZGl2PjxkaXY+fTwvZGl2PjxkaXY+YWRkdGFzayBidXN5Ym94X2Zv
-byBhZnRlciBkb19jb25maWd1cmUgYmVmb3JlIGRvX2NvbXBpbGU8L2Rpdj48ZGl2PmRvX2J1c3li
-b3hfZm9vW2RlcHRhc2tdICs9ICZxdW90O2RvX2NvbmZpZ3VyZSZxdW90OzwvZGl2PjxkaXY+PGJy
-PjwvZGl2PjxkaXY+ZG9fY29tcGlsZVtkZXB0YXNrXSArPSAmcXVvdDtkb19idXN5Ym94X2ZvbyZx
-dW90OzwvZGl2PjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+QW5kIGNyZWF0ZWQgYSBidXN5Ym94
-XyUuYmJhcHBlbmQgaW5oZXJpdCB0aGlzIGNsYXNzLiBXaGVuIHJ1bm5pbmcgdGhpcyBJIGFtIHNl
-ZWluZyB0aGUgZm9sbG93aW5nIGVycm9yPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj48ZGl2PldB
-Uk5JTkc6IGJ1c3lib3gtMS4yNC4xLXIwIGRvX2J1c3lib3hfZm9vOiBCVVNZQk9YOiBmb28gdGFz
-ayHCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoMKgPC9kaXY+PGRpdj5FUlJPUjogYnVzeWJveC0xLjI0LjEtcjAgZG9faW5zdGFs
-bDogRXJyb3IgZXhlY3V0aW5nIGEgcHl0aG9uIGZ1bmN0aW9uIGluIGV4ZWNfcHl0aG9uX2Z1bmMo
-KSBhdXRvZ2VuZXJhdGVkOsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-wqA8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PlRoZSBzdGFjayB0cmFjZSBvZiBweXRob24gY2Fs
-bHMgdGhhdCByZXN1bHRlZCBpbiB0aGlzIGV4Y2VwdGlvbi9mYWlsdXJlIHdhczrCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDwvZGl2PjxkaXY+RmlsZTogJiMzOTtl
-eGVjX3B5dGhvbl9mdW5jKCkgYXV0b2dlbmVyYXRlZCYjMzk7LCBsaW5lbm86IDIsIGZ1bmN0aW9u
-OiAmbHQ7bW9kdWxlJmd0O8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgwqA8L2Rpdj48ZGl2PsKgIMKgIMKgMDAwMTrCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoMKgPC9kaXY+PGRpdj7CoCoq
-KiAwMDAyOmV4dGVuZF9yZWNpcGVfc3lzcm9vdChkKcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-wqA8L2Rpdj48ZGl2PsKgIMKgIMKgMDAwMzrCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoMKgPC9kaXY+PGRpdj5GaWxlOiAmIzM5Oy9o
-b21lL3VzZXIvd29ya2Rpci9sYXllcnMvcG9reS9tZXRhL2NsYXNzZXMvc3RhZ2luZy5iYmNsYXNz
-JiMzOTssIGxpbmVubzogNTY1LCBmdW5jdGlvbjogZXh0ZW5kX3JlY2lwZV9zeXNyb290wqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqA8L2Rpdj48ZGl2PsKgIMKgIMKgMDU2MTrCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCBkZXN0ID0gbmV3bWFuaWZlc3RbbF3CoDwvZGl2PjxkaXY+wqAgwqAgwqAwNTYy
-OsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIGlmIGwuZW5kc3dpdGgoJnF1b3Q7LyZxdW90
-Oyk6wqAgwqA8L2Rpdj48ZGl2PsKgIMKgIMKgMDU2MzrCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCBzdGFnaW5nX2NvcHlkaXIobCwgdGFyZ2V0ZGlyLCBkZXN0LCBzZWVuZGlycynC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoMKgPC9kaXY+PGRpdj7CoCDCoCDC
-oDA1NjQ6wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgY29udGludWXCoCDCoCDC
-oCDCoCDCoMKgPC9kaXY+PGRpdj7CoCoqKiAwNTY1OsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIHN0YWdpbmdfY29weWZpbGUobCwgdGFyZ2V0ZGlyLCBkZXN0LCBwb3N0aW5zdHMsIHNlZW5k
-aXJzKcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgwqA8L2Rpdj48ZGl2PsKgIMKgIMKgMDU2NjrC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoMKgPC9kaXY+PGRpdj7CoCDCoCDCoDA1Njc6wqAgwqAgYmIubm90ZSgmcXVvdDtJbnN0YWxs
-ZWQgaW50byBzeXNyb290OiAlcyZxdW90OyAlIHN0cihtc2dfYWRkaW5nKSnCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoMKgPC9kaXY+PGRpdj7CoCDC
-oCDCoDA1Njg6wqAgwqAgYmIubm90ZSgmcXVvdDtTa2lwcGluZyBhcyBhbHJlYWR5IGV4aXN0cyBp
-biBzeXNyb290OiAlcyZxdW90OyAlIHN0cihtc2dfZXhpc3RzKSnCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoDwvZGl2PjxkaXY+wqAgwqAgwqAwNTY5OsKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgwqA8L2Rpdj48ZGl2PkZp
-bGU6ICYjMzk7L2hvbWUvdXNlci93b3JrZGlyL2xheWVycy9wb2t5L21ldGEvY2xhc3Nlcy9zdGFn
-aW5nLmJiY2xhc3MmIzM5OywgbGluZW5vOiAxNTEsIGZ1bmN0aW9uOiBzdGFnaW5nX2NvcHlmaWxl
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqDCoDwvZGl2PjxkaXY+wqAgwqAgwqAwMTQ3OsKgIMKg
-IMKgIMKgIG9zLnN5bWxpbmsobGlua3RvLCBkZXN0KcKgIMKgIMKgIMKgIMKgwqA8L2Rpdj48ZGl2
-PsKgIMKgIMKgMDE0ODrCoCDCoCDCoCDCoCAjYmIud2FybihjKcKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgPC9kaXY+PGRpdj7CoCDCoCDCoDAxNDk6wqAgwqAgZWxzZTrCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDwvZGl2PjxkaXY+wqAg
-wqAgwqAwMTUwOsKgIMKgIMKgIMKgIHRyeTrCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoMKgPC9kaXY+PGRpdj7CoCoqKiAwMTUxOsKgIMKgIMKgIMKgIMKgIMKgIG9z
-LmxpbmsoYywgZGVzdCnCoCDCoCDCoCDCoCDCoCDCoCDCoMKgPC9kaXY+PGRpdj7CoCDCoCDCoDAx
-NTI6wqAgwqAgwqAgwqAgZXhjZXB0IE9TRXJyb3IgYXMgZXJyOsKgIMKgIMKgIMKgIMKgIMKgwqA8
-L2Rpdj48ZGl2PsKgIMKgIMKgMDE1MzrCoCDCoCDCoCDCoCDCoCDCoCBpZiBlcnIuZXJybm8gPT0g
-ZXJybm8uRVhERVY6wqDCoDwvZGl2PjxkaXY+wqAgwqAgwqAwMTU0OsKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgIGJiLnV0aWxzLmNvcHlmaWxlKGMsIGRlc3QpwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8
-L2Rpdj48ZGl2PsKgIMKgIMKgMDE1NTrCoCDCoCDCoCDCoCDCoCDCoCBlbHNlOsKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPC9kaXY+PGRpdj5FeGNlcHRpb246IEZpbGVFeGlz
-dHNFcnJvcjogW0Vycm5vIDE3XSBGaWxlIGV4aXN0czogJiMzOTsvaG9tZS91c2VyL3dvcmtkaXIv
-YnVpbGQvdG1wL3N5c3Jvb3RzLWNvbXBvbmVudHMvY29ydGV4YTdoZi1uZW9uL2dsaWJjLWluaXRp
-YWwvdXNyL2luY2x1ZGUvdGltZS5oJiMzOTsgLSZndDsgJiMzOTsvaG9tZS91c2VyL3dvcmtkaXIv
-YnVpbGQvdG1wL3dvcmsvY29ydGV4YTdoZi1uZW9uLXRhcmdldC1saW51eC1nbnVlYWJpL2J1c3li
-b3gvMS4yNC4xLXIwL3JlY2lwZS1zeXNyb290L3Vzci9pbmNsdWRlL3RpbWUuaCYjMzk7PC9kaXY+
-PGRpdj48YnI+PC9kaXY+PGRpdj5FUlJPUjogYnVzeWJveC0xLjI0LjEtcjAgZG9faW5zdGFsbDog
-RnVuY3Rpb24gZmFpbGVkOiBleHRlbmRfcmVjaXBlX3N5c3Jvb3TCoCDCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoMKgPC9kaXY+PGRpdj5FUlJPUjogTG9nZmlsZSBvZiBm
-YWlsdXJlIHN0b3JlZCBpbjogL2hvbWUvdXNlci93b3JrZGlyL2J1aWxkL3RtcC93b3JrL2NvcnRl
-eGE3aGYtbmVvbi10YXJnZXQtbGludXgtZ251ZWFiaS9idXN5Ym94LzEuMjQuMS1yMC90ZW1wL2xv
-Zy5kb19pbnN0YWxsLjMwNjM1wqAgwqAgwqA8L2Rpdj48ZGl2PkVSUk9SOiBUYXNrICgvaG9tZS91
-c2VyL3dvcmtkaXIvbGF5ZXJzL3Bva3kvbWV0YS9yZWNpcGVzLWNvcmUvYnVzeWJveC9idXN5Ym94
-XzEuMjQuMS5iYjpkb19pbnN0YWxsKSBmYWlsZWQgd2l0aCBleGl0IGNvZGUgJiMzOTsxJiMzOTvC
-oDwvZGl2PjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+SSBoYXZlIHRyaWVkIHRvIGRlYnVnIHRo
-aXMgYmVjYXVzZSBJIGNhbm5vdCB1bmRlcnN0YW5kIHdoeSBpdCBhZmZlY3RzIHRoZSBzdGFnaW5n
-IGluIHRoZSBpbnN0YWxsIHRhc2suIEJ5IHJlbW92aW5nIHRoZcKgPHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZTpzbWFsbDtiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSk7dGV4dC1kZWNvcmF0
-aW9uLXN0eWxlOmluaXRpYWw7dGV4dC1kZWNvcmF0aW9uLWNvbG9yOmluaXRpYWw7ZmxvYXQ6bm9u
-ZTtkaXNwbGF5OmlubGluZSI+ZG9fYnVzeWJveF9mb29bZGVwdGFza10gSSBwcmV2ZW50IHRoaXMg
-ZXJyb3IuPC9zcGFuPsKgQW55IGFkdmlzZSB3b3VsZCBiZSBhcHByZWNpYXRlZC48L2Rpdj48ZGl2
-Pjxicj48L2Rpdj48ZGl2PkJSPC9kaXY+PGRpdj5Nw6VucyBaaWdoZXI8L2Rpdj48L2Rpdj4NCg==
-
---0000000000004425dd056f7b24c8--
