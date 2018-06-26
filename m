@@ -1,64 +1,36 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <aaron.chun.yew.chan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB7D5E01134; Mon, 25 Jun 2018 11:03:40 -0700 (PDT)
+	id 616D6E007AD; Mon, 25 Jun 2018 18:42:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.45 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.151 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f45.google.com (mail-oi0-f45.google.com
-	[209.85.218.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBD57E01131
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2018 11:03:39 -0700 (PDT)
-Received: by mail-oi0-f45.google.com with SMTP id e8-v6so13384658oii.2
-	for <yocto@yoctoproject.org>; Mon, 25 Jun 2018 11:03:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=oKOkhmtG5POCzuDG1qz5ZW8uK7OApLm6R+PmSZgBUjQ=;
-	b=c5Gg2x3aKdnyFNK8jjbwGMdGWDwjaDkc5ubhM70j0qHCCdRhzXgcQLooZB4hE60mJ5
-	YnZzUWaX/zxWIR7tJf5uR9SmbAp60BYWQNmR3tNwTBblpQPqZDDN6q23sw2iEerW/Rla
-	xn+UiZ1TdpvAHG2pd5Wse/EfDr/Vcyp4IiyPg27g9HPnajM0c+5kyyzb/5tOrDWB4ovQ
-	oJ121QATGsTQAYYywC2qY8Yxeu3d7tC9G9hBocS91LyqeBY3uFCtidqw1XAUAIY8pbLd
-	0QexFs91NvL1nXghZ9HpniT0gaMCvZ4ZML6HcoX4c9HTsbG4bQos3IwbWaEwSaXBzkjI
-	2mqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=oKOkhmtG5POCzuDG1qz5ZW8uK7OApLm6R+PmSZgBUjQ=;
-	b=I5I3fJ7t7nYAU+lC9u/DH0lBtcuAhwoJKx1lLWQC5p2sIA8X0t90GYwBwHway1Y6QO
-	ie3wvvIKaQQdZ/5r3F1BWGnts+pAT/We1y8ZzGnBC1v91tkR+sYNhDLSwEw11B1EsBwx
-	7aIoXoIFXGNm3dOIiKPtPW+1XdJC3m3ueVKMBO5QtA+R+Sxk789rM3BrCMf2nrKzHErY
-	wvcnO+9bLPUB3OK2IH8RvrBPG7NJL3BG3uKC2+zXxmXczQTw9BHxafeiRGRG2SeOEh2Y
-	UTRUrQ6IxH/jCFPiZM887rMmhp5CruiIl4XHlw9zCfeVpIm2o7f9TInGGWIXXqHJkkSM
-	OXsA==
-X-Gm-Message-State: APt69E1UTHe3GGv83QGK+Mlwj8pNei1bRFiFsDoCUOH3LNY7izQ/nCDq
-	qmrZInq5T3JMsx2YD4gOE2A+9uxFUaj3+Kuqtk/xWg==
-X-Google-Smtp-Source: ADUXVKJOjjyJxtO40sogtNPJE/O4SOAE2orfXgmmuq0aDSeE1t/Gy50Yom0GHnZzTZr0rutQRFHIN9XWgwMRJEmMjno=
-X-Received: by 2002:aca:ef8b:: with SMTP id
-	n133-v6mr8078450oih.70.1529949818797; 
-	Mon, 25 Jun 2018 11:03:38 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:ac9:434d:0:0:0:0:0 with HTTP; Mon, 25 Jun 2018 11:03:18
-	-0700 (PDT)
-In-Reply-To: <CAEhQi8k+US+M1MjAaVhnSOdsUxggTMKNAdjsq7fe095H2yyrBQ@mail.gmail.com>
-References: <CAEhQi8k+US+M1MjAaVhnSOdsUxggTMKNAdjsq7fe095H2yyrBQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 25 Jun 2018 19:03:18 +0100
-Message-ID: <CAJTo0LaMiuXU8d7CWdXd5XHQvf_FpXjrWxr6fybTmf6-r-hGQA@mail.gmail.com>
-To: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: busybox: adding task to run before do_configure
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F6ADE007AD
+	for <yocto@yoctoproject.org>; Mon, 25 Jun 2018 18:42:36 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	25 Jun 2018 18:42:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,272,1526367600"; d="scan'208";a="51883174"
+Received: from aaronchu-mobl1.png.intel.com ([10.221.17.73])
+	by orsmga007.jf.intel.com with ESMTP; 25 Jun 2018 18:42:34 -0700
+From: Aaron Chan <aaron.chun.yew.chan@intel.com>
+To: richard.purdie@linuxfoundation.org,
+	yocto@yoctoproject.org
+Date: Tue, 26 Jun 2018 09:42:31 +0800
+Message-Id: <1529977351-7738-1-git-send-email-aaron.chun.yew.chan@intel.com>
+X-Mailer: git-send-email 2.7.4
+Cc: Aaron Chan <aaron.chun.yew.chan@intel.com>
+Subject: [PATCH] [yocto-autobuilder2] Set ABHELPER_JSON on shared-repo-unpack, run-config buildStep
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,97 +42,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Jun 2018 18:03:41 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 26 Jun 2018 01:42:38 -0000
 
-AFAIK, you don't need the deptasks as the before/after statements will
-insert the task in the right place.
+Signed-off-by: Aaron Chan <aaron.chun.yew.chan@intel.com>
+---
+ builders.py | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Ross
+diff --git a/builders.py b/builders.py
+index 4b6ee9e..0ebe562 100644
+--- a/builders.py
++++ b/builders.py
+@@ -142,6 +142,7 @@ def create_builder_factory():
+                  util.Property("buildername"),
+                  util.Property("is_release")],
+         haltOnFailure=True,
++        env={'ABHELPER_JSON' : 'config.json config-intel-lava.json'},
+         name="Unpack shared repositories"))
+ 
+     f.addStep(steps.SetPropertyFromCommand(command=util.Interpolate("cd %(prop:sharedrepolocation)s/poky; git rev-parse HEAD"),
+@@ -160,6 +161,7 @@ def create_builder_factory():
+                  get_publish_dest,
+                  util.URLForBuild],
+         name="run-config",
++        env={'ABHELPER_JSON' : '../config.json config-intel-lava.json'},
+         timeout=16200))  # default of 1200s/20min is too short, use 4.5hrs
+     return f
+ 
+-- 
+2.7.4
 
-On 25 June 2018 at 18:59, M=C3=A5ns Zigher <mans.zigher@gmail.com> wrote:
-> Hi,
->
-> I have created this simple class file
->
-> python do_busybox_foo() {
->     bb.warn("BUSYBOX: foo task!")
-> }
-> addtask busybox_foo after do_configure before do_compile
-> do_busybox_foo[deptask] +=3D "do_configure"
->
-> do_compile[deptask] +=3D "do_busybox_foo"
->
-> And created a busybox_%.bbappend inherit this class. When running this I =
-am
-> seeing the following error
->
-> WARNING: busybox-1.24.1-r0 do_busybox_foo: BUSYBOX: foo task!
-> ERROR: busybox-1.24.1-r0 do_install: Error executing a python function in
-> exec_python_func() autogenerated:
->
-> The stack trace of python calls that resulted in this exception/failure w=
-as:
-> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:extend_recipe_sysroot(d)
->      0003:
-> File: '/home/user/workdir/layers/poky/meta/classes/staging.bbclass', line=
-no:
-> 565, function: extend_recipe_sysroot
->      0561:                    dest =3D newmanifest[l]
->      0562:                    if l.endswith("/"):
->      0563:                        staging_copydir(l, targetdir, dest,
-> seendirs)
->      0564:                        continue
->  *** 0565:                    staging_copyfile(l, targetdir, dest,
-> postinsts, seendirs)
->      0566:
->      0567:    bb.note("Installed into sysroot: %s" % str(msg_adding))
->      0568:    bb.note("Skipping as already exists in sysroot: %s" %
-> str(msg_exists))
->      0569:
-> File: '/home/user/workdir/layers/poky/meta/classes/staging.bbclass', line=
-no:
-> 151, function: staging_copyfile
->      0147:        os.symlink(linkto, dest)
->      0148:        #bb.warn(c)
->      0149:    else:
->      0150:        try:
->  *** 0151:            os.link(c, dest)
->      0152:        except OSError as err:
->      0153:            if err.errno =3D=3D errno.EXDEV:
->      0154:                bb.utils.copyfile(c, dest)
->      0155:            else:
-> Exception: FileExistsError: [Errno 17] File exists:
-> '/home/user/workdir/build/tmp/sysroots-components/cortexa7hf-neon/glibc-i=
-nitial/usr/include/time.h'
-> ->
-> '/home/user/workdir/build/tmp/work/cortexa7hf-neon-target-linux-gnueabi/b=
-usybox/1.24.1-r0/recipe-sysroot/usr/include/time.h'
->
-> ERROR: busybox-1.24.1-r0 do_install: Function failed: extend_recipe_sysro=
-ot
-> ERROR: Logfile of failure stored in:
-> /home/user/workdir/build/tmp/work/cortexa7hf-neon-target-linux-gnueabi/bu=
-sybox/1.24.1-r0/temp/log.do_install.30635
-> ERROR: Task
-> (/home/user/workdir/layers/poky/meta/recipes-core/busybox/busybox_1.24.1.=
-bb:do_install)
-> failed with exit code '1'
->
-> I have tried to debug this because I cannot understand why it affects the
-> staging in the install task. By removing the do_busybox_foo[deptask] I
-> prevent this error. Any advise would be appreciated.
->
-> BR
-> M=C3=A5ns Zigher
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
