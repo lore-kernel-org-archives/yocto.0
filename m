@@ -1,117 +1,95 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <carlos.bejar-colonia@philips.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0AD5BE0084F; Tue, 26 Jun 2018 13:16:01 -0700 (PDT)
+	id 7C690E01094; Tue, 26 Jun 2018 15:59:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.48 listed in list.dnswl.org]
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.97 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f48.google.com (mail-pg0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDA7BE006F1
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2018 13:15:57 -0700 (PDT)
-Received: by mail-pg0-f48.google.com with SMTP id b10-v6so4423608pgq.11
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2018 13:15:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=GiWrwz5Y6ghCfNnHxCQp0IgzdafN6/5M1GUK2QzLoc0=;
-	b=sd8sMnpdpjpjpjC9lHSAtRv/9LMJ6JJ5uU/hK9C9fHz8Oj5LqlliMMEjUnXWVOdEE7
-	AoGeDfVZEIKpHPWRi60n6/xcvejyvaAa4sn/X3a9RewJoZjLZyMVNDBpmNeZSVrRVKCP
-	vVDQuIHtdQsCg2aXaozwlD7ThZuSPp3bUso5BnUKROZ24CUSFP9Ih16FYbZ3w8Iy89bu
-	BK/3JPmzdNXlQS+Rp/UGHgxzJrfrNAMkzv/yO0+Z5agwjovgqH5KMbe/n8T2UVmYdf5e
-	fb/MYianCsSAmQMyFDRO8Gk4nYNx/6ZhwSxfoLLAj5PBQ2XHE2SqWO08muVAvAX3tUIj
-	lWPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-language;
-	bh=GiWrwz5Y6ghCfNnHxCQp0IgzdafN6/5M1GUK2QzLoc0=;
-	b=M4IGspdoQ5X39QUNeAYzTXJbLiTGXXw9D1Ov881/dK+t4LJxh2zgNoT/ONm6x6xqlS
-	EJ0ZSNrkLXJdCxarQEXltvglyOlRjbA+195+7LThEgg/7hMa+WzUtV9eWqPdvZ+b5+Bs
-	urANdknMsKIVareQpR8arICGO9LT9JjVq1sQ3tNSGW3+8WPS8Fuxot/RCXS90ZvSkVpP
-	ydA1NcI90uwBsANVawTWt/3N96fj4E7UXweSnN7m8wHEdn4sj+oVoUtrmttWMdepAYMj
-	9TBKS1bdNVnWXRnIBz3d+As+mrp/MhiLjSpQtmSwFea/Vnd59WVGMAK+SI2dhRjNAz17
-	KMZA==
-X-Gm-Message-State: APt69E0XmzeX50JDgkaV+Zdo1yPdggzJZdX2pmFfBcFz1uI6r7AcD4Gt
-	urUZu7Tk3CnpEocaSmygX62d6LVt
-X-Google-Smtp-Source: AAOMgpffvbY28lizVgW0V8MpDfwEKFgkRKvk16veC4xISHK99j07+XlNVX3q29MOdteAXysUKzSdrQ==
-X-Received: by 2002:a62:660a:: with SMTP id
-	a10-v6mr2934652pfc.156.1530044157101; 
-	Tue, 26 Jun 2018 13:15:57 -0700 (PDT)
-Received: from [10.43.100.234] (64.2.3.196.ptr.us.xo.net. [64.2.3.196])
-	by smtp.gmail.com with ESMTPSA id
-	q82-v6sm4889799pfg.170.2018.06.26.13.15.55
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 26 Jun 2018 13:15:56 -0700 (PDT)
-To: Giordon Stark <kratsg@gmail.com>, "N:" <yocto@yoctoproject.org>
-References: <CAFzUWGmFaHwccznqTA_ppKA5SNjcB2+SqwYgP1yvtACMrKiLLQ@mail.gmail.com>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	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
-	8CS2NxU=
-Message-ID: <d9590764-7090-4740-32d1-51efdfb0711e@gmail.com>
-Date: Tue, 26 Jun 2018 13:15:55 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.8.0
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0097.outbound.protection.outlook.com [104.47.2.97])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA139E01092
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2018 15:59:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=philips.com;
+	s=selector1;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=UHvT1HFOFVLcT++RZrMtE1wgCwRrljVF9cxljZ1wkD8=;
+	b=lCmLOnF/r3lhHRVcIQ6dEyYzSVVdkRPHPTBBgck5wbIkmuDBftJny50DsK1AqxaJ/ehIlCDVcw5a1JqNLvnkvPycFJPK0DXLTSHqgH5qPzpo/90r0AeafgyMiYn017ptp+hseMypUobl2OY/2mXI9Nlvd5oRlFdrhLGm70/eK4s=
+Received: from HE1P122MB0090.EURP122.PROD.OUTLOOK.COM (129.75.166.25) by
+	HE1P122MB0060.EURP122.PROD.OUTLOOK.COM (129.75.140.219) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.884.23; Tue, 26 Jun 2018 21:26:36 +0000
+Received: from HE1P122MB0090.EURP122.PROD.OUTLOOK.COM
+	([fe80::d44a:d85f:383b:e2fa]) by HE1P122MB0090.EURP122.PROD.OUTLOOK.COM
+	([fe80::d44a:d85f:383b:e2fa%14]) with mapi id 15.20.0884.024;
+	Tue, 26 Jun 2018 21:26:36 +0000
+From: "Bejar-Colonia, Carlos" <carlos.bejar-colonia@philips.com>
+To: =?utf-8?B?TWFydGluIEh1bmRlYsO4bGw=?= <martin@geanix.com>, Khem Raj
+	<raj.khem@gmail.com>
+Thread-Topic: [yocto] Rocko: how to remove python3 from target's rootfs
+Thread-Index: AdQJqPWdu7UrvZT8Svq1h37yr+AFPQAlU/WAAJ9DblAAF/YAAAAdVX2w
+Date: Tue, 26 Jun 2018 21:26:36 +0000
+Message-ID: <HE1P122MB00908ACD1682B84B1C52C6AFD6490@HE1P122MB0090.EURP122.PROD.OUTLOOK.COM>
+References: <HE1P122MB0090894C688B6F014F3ABE50D6760@HE1P122MB0090.EURP122.PROD.OUTLOOK.COM>
+	<CAMKF1srp7ONCyBNnt3y72uG1dcfRe+tKeg5H_M09WD=5Je6DwQ@mail.gmail.com>
+	<HE1P122MB0090C3849A14E569035E95CFD64A0@HE1P122MB0090.EURP122.PROD.OUTLOOK.COM>
+	<3633b8b8-5c53-9b70-3287-d8c3f2760b30@geanix.com>
+In-Reply-To: <3633b8b8-5c53-9b70-3287-d8c3f2760b30@geanix.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=carlos.bejar-colonia@philips.com; 
+x-originating-ip: [192.101.81.235]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; HE1P122MB0060;
+	7:LdOGt1byF5ebdYtXot6hWxtQ7ZvcrprYiFPAsfhDL7FJ81xk2sB/cRUfPLOx7QQVOhPcL/kWNY8SfS/ANDM8TNi+T1FgDc+Aq/p/x20Sk9OGEXoEfo874BMxeizzCp/p77y6mJ7EHTo5GknypKBWGgd9s0GcUkYD9XbFRVvMnmqIq+EdYDLyMw4xy8OeN/l+AyyFTbKfies0WgOVLbMlRpQD+fxkBfbsrI/6sojstks7pmKB4BD7sVsnWwL3BxFh
+x-ms-exchange-antispam-srfa-diagnostics: SOS;
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 873f71ff-b9ab-4bf7-642f-08d5dbab7f64
+x-microsoft-antispam: UriScan:(223705240517415)(260087099026482); BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(8989117)(4534165)(4627221)(201703031133081)(201702281549075)(8990107)(48565401081)(5600026)(711020)(2017052603328)(7153060)(7193020);
+	SRVR:HE1P122MB0060; 
+x-ms-traffictypediagnostic: HE1P122MB0060:
+x-microsoft-antispam-prvs: <HE1P122MB00604B573796731D5C041734D6490@HE1P122MB0060.EURP122.PROD.OUTLOOK.COM>
+x-exchange-antispam-report-test: UriScan:(189930954265078)(223705240517415)(85827821059158)(45079756050767)(260087099026482);
+x-ms-exchange-senderadcheck: 1
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(8211001083)(6040522)(2401047)(5005006)(8121501046)(3231254)(944501410)(52105095)(3002001)(93006095)(93001095)(10201501046)(6055026)(149027)(150027)(6041310)(20161123562045)(20161123558120)(20161123560045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123564045)(6072148)(201708071742011)(7699016);
+	SRVR:HE1P122MB0060; BCL:0; PCL:0; RULEID:; SRVR:HE1P122MB0060; 
+x-forefront-prvs: 071518EF63
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(39860400002)(366004)(396003)(376002)(346002)(136003)(55904004)(374574003)(199004)(13464003)(189003)(8936002)(110136005)(5660300001)(102836004)(5250100002)(7736002)(76176011)(7696005)(99286004)(6506007)(316002)(6306002)(97736004)(105586002)(81166006)(14444005)(106356001)(53546011)(9686003)(575784001)(66066001)(6436002)(74316002)(305945005)(2906002)(476003)(55016002)(446003)(11346002)(81156014)(86362001)(8676002)(486006)(53936002)(14454004)(3846002)(93886005)(229853002)(68736007)(186003)(25786009)(45080400002)(6116002)(39060400002)(2900100001)(256004)(6246003)(26005)(33656002)(4326008)(478600001)(966005);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1P122MB0060;
+	H:HE1P122MB0090.EURP122.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: philips.com does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: MhUiOtZvNR72lyFjQy9Sg6zPhQdbygAz0IdAEDIjNXxE6g1VTJ7r7VpWkADDJ98eDTdQLzH7WGEyIZ6e9WUyWd+Dn5r2LDL/CY2kj7EKmABU9lDg5aY1glVC099cCXmQygbyhRTqV73z7IG1tPYDhHpkst2HhfUdHupCQtSOtHWWgfVNGjK/jMJXm5j3hL5fyGh3NgdINNna1OXZaeyfJax46lMx39u6pINNKmjYoE7Zh0a+b5AnsLIiyX03Kgkj+AeZ6rOXDgGfwtPAOOJb8+hqzLdY892rxyHOIWFSrHN8ZQ7ycOqO76oxXeQqrO16xbdv7xEooVJAEbOCEFrHe4TwEK4gcjhv8H77kikAOUA=
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-In-Reply-To: <CAFzUWGmFaHwccznqTA_ppKA5SNjcB2+SqwYgP1yvtACMrKiLLQ@mail.gmail.com>
-Subject: Re: Best practice for updating a single recipe in meta-openembedded?
+X-OriginatorOrg: philips.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 873f71ff-b9ab-4bf7-642f-08d5dbab7f64
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jun 2018 21:26:36.4698 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1a407a2d-7675-4d17-8692-b3ac285306e4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1P122MB0060
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Rocko: how to remove python3 from target's rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -123,112 +101,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2018 20:16:01 -0000
-Content-Type: multipart/alternative;
-	boundary="------------49F7E4F17ED849DD2741BCFE"
+X-List-Received-Date: Tue, 26 Jun 2018 22:59:19 -0000
 Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---------------49F7E4F17ED849DD2741BCFE
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+SGkgTWFydGluLA0KDQpJJ3ZlIGRvd25sb2FkZWQgYmluZF85LjEwLjYuYmIgcmVjaXBlIGFuZCBh
+cHBsaWVkIHRoZSBwYXRjaCB5b3UgcG9pbnRlZCwgYnV0IGRvX2luc3RhbGwgZmFpbHMNCg0KZXJy
+b3I6IGludmFsaWQgUHl0aG9uIGluc3RhbGxhdGlvbjogdW5hYmxlIHRvIG9wZW4gL2hvbWUvY2Fy
+bG9zL2RldmVsb3AvYWxsZWdyby9idWlsZC1hdG1lbC90bXAvd29yay9jb3J0ZXhhNWhmLXZmcC1w
+b2t5LWxpbnV4LWdudWVhYmkvYmluZC85LjEwLjYtcjAvcmVjaXBlLXN5c3Jvb3QvdXNyL2xpYi9w
+eXRob24zLjUvY29uZmlnLTMuNW0vTWFrZWZpbGUgKE5vIHN1Y2ggZmlsZSBvciBkaXJlY3Rvcnkp
+DQpNYWtlZmlsZTo0NjU6IHJlY2lwZSBmb3IgdGFyZ2V0ICdpbnN0YWxsJyBmYWlsZWQNCm1ha2Vb
+Ml06ICoqKiBbaW5zdGFsbF0gRXJyb3IgMQ0KbWFrZVsyXTogTGVhdmluZyBkaXJlY3RvcnkgJy9o
+b21lL2Nhcmxvcy9kZXZlbG9wL2FsbGVncm8vYnVpbGQtYXRtZWwvdG1wL3dvcmsvY29ydGV4YTVo
+Zi12ZnAtcG9reS1saW51eC1nbnVlYWJpL2JpbmQvOS4xMC42LXIwL2J1aWxkL2Jpbi9weXRob24n
+DQpNYWtlZmlsZToxMTQ6IHJlY2lwZSBmb3IgdGFyZ2V0ICdpbnN0YWxsJyBmYWlsZWQNCm1ha2Vb
+MV06ICoqKiBbaW5zdGFsbF0gRXJyb3IgMQ0KbWFrZVsxXTogTGVhdmluZyBkaXJlY3RvcnkgJy9o
+b21lL2Nhcmxvcy9kZXZlbG9wL2FsbGVncm8vYnVpbGQtYXRtZWwvdG1wL3dvcmsvY29ydGV4YTVo
+Zi12ZnAtcG9reS1saW51eC1nbnVlYWJpL2JpbmQvOS4xMC42LXIwL2J1aWxkL2JpbicNCk1ha2Vm
+aWxlOjEyMDogcmVjaXBlIGZvciB0YXJnZXQgJ2luc3RhbGwnIGZhaWxlZA0KbWFrZTogKioqIFtp
+bnN0YWxsXSBFcnJvciAxDQpFUlJPUjogb2VfcnVubWFrZSBmYWlsZWQNCg0KSSd2ZSBhbHNvIHRy
+aWVkIHRoZSBwYXRjaCBmcm9tIEFybWluIEt1c3RlciAoUGF0Y2ggSUQgMTUxNzc4KSwgYmluZF85
+LjEyLjEuYmIgYnVpbGRzIGZpbmUsIGJ1dCBkaGNwXzQuMy42LmJiIGRvX2NvbXBpbGUgZmFpbHMN
+Cg0KLi8ubGlicy9saWJvbWFwaS5zbzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgUE9TVCcNCmNv
+bGxlY3QyOiBlcnJvcjogbGQgcmV0dXJuZWQgMSBleGl0IHN0YXR1cw0KTWFrZWZpbGU6NDMzOiBy
+ZWNpcGUgZm9yIHRhcmdldCAnc3Z0ZXN0JyBmYWlsZWQNCm1ha2VbMV06ICoqKiBbc3Z0ZXN0XSBF
+cnJvciAxDQptYWtlWzFdOiBMZWF2aW5nIGRpcmVjdG9yeSAnL2hvbWUvY2FybG9zL2RldmVsb3Av
+YWxsZWdyby9idWlsZC1hdG1lbC90bXAvd29yay9jb3J0ZXhhNWhmLXZmcC1wb2t5LWxpbnV4LWdu
+dWVhYmkvZGhjcC80LjMuNi1yMC9idWlsZC9vbWFwaXAnDQpNYWtlZmlsZTo0NjQ6IHJlY2lwZSBm
+b3IgdGFyZ2V0ICdhbGwtcmVjdXJzaXZlJyBmYWlsZWQNCm1ha2U6ICoqKiBbYWxsLXJlY3Vyc2l2
+ZV0gRXJyb3IgMQ0KRVJST1I6IG9lX3J1bm1ha2UgZmFpbGVkDQpXQVJOSU5HOiBleGl0IGNvZGUg
+MSBmcm9tIGEgc2hlbGwgY29tbWFuZC4NCg0KVGhpcyBlcnJvciBpcyBzaW1pbGFyIHRvIHdoYXQg
+aXMgcG9zdGVkIGhlcmU6IA0KaHR0cDovL2Vycm9ycy55b2N0b3Byb2plY3Qub3JnL0Vycm9ycy9E
+ZXRhaWxzLzE4MDYyOC8NCg0KQ291bGQgeW91IGNsYXJpZmllZCBpZiB0aG9zZSBlcnJvcnMgd2Vy
+ZSBhbHJlYWR5IGhhbmRsZWQsIHNvIEkgY2FuIGZldGNoIHRoZSBmaXg/DQoNClRoYW5rcywNCkNh
+cmxvcw0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogTWFydGluIEh1bmRlYsO4
+bGwgPG1hcnRpbkBnZWFuaXguY29tPiANClNlbnQ6IFR1ZXNkYXksIEp1bmUgMjYsIDIwMTggMjo1
+OSBBTQ0KVG86IEJlamFyLUNvbG9uaWEsIENhcmxvcyA8Y2FybG9zLmJlamFyLWNvbG9uaWFAcGhp
+bGlwcy5jb20+OyBLaGVtIFJhaiA8cmFqLmtoZW1AZ21haWwuY29tPg0KQ2M6IFlvY3RvIFByb2pl
+Y3QgPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpTdWJqZWN0OiBSZTogW3lvY3RvXSBSb2Nrbzog
+aG93IHRvIHJlbW92ZSBweXRob24zIGZyb20gdGFyZ2V0J3Mgcm9vdGZzDQoNCkhpIEJlamFyLA0K
+DQpPbiAyMDE4LTA2LTI1IDIyOjAyLCBCZWphci1Db2xvbmlhLCBDYXJsb3Mgd3JvdGU6DQo+IExv
+b2tzIGxpa2UgdGhlIGRoY3AgZGVwZW5kZW5jeSBpcyBleHBsaWNpdDogZGhjcC0+YmluZC0+cHl0
+aG9uMyANCj4gcmVjaXBlcy1jb25uZWN0aXZpdHkvZGhjcC9kaGNwLmluYw0KPiAJREVQRU5EUyA9
+ICJvcGVuc3NsIGJpbmQiDQo+IHJlY2lwZXMtY29ubmVjdGl2aXR5L2JpbmQvYmluZF85LjEwLjUt
+UDMuYmINCj4gCVJERVBFTkRTXyR7UE59ID0gInB5dGhvbjMtY29yZSINCj4gDQo+IEluIHRoZSBi
+dWlsZCBhcmVhOiBkaGNwLzQuMy42LXIwL3BhY2thZ2VzLXNwbGl0L2RoY3AtY2xpZW50LnNobGli
+ZGVwcw0KPiAJZGhjcC1saWJzICg+PSA0LjMuNikNCj4gCWJpbmQgKD49IDkuMTAuNS1QMykNCj4g
+CWdsaWJjICg+PSAyLjI2KQ0KPiANCj4gRG9lcyBpdCBtZWFuIHRoYXQgcHl0aG9uMyBjYW5ub3Qg
+YmUgcmVtb3ZlZCBmcm9tIHRhcmdldCByb290ZnM/DQo+IA0KPiBPbiB0aGUgb3RoZXIgaGFuZCwg
+SSBzZWUgdGhpcyBmaWxlIGluIHJvb3RmczogL3Vzci9zYmluL2Ruc3NlYy1jaGVja2RzLCB3aGlj
+aCByZXF1aXJlcyBweXRob24zICgjISAvdXNyL2Jpbi9weXRob24zKS4NCj4gSSBiZWxpZXZlIHRo
+aXMgZmlsZSBnZXRzIGluc3RhbGxlZCBmcm9tIGJpbmRfOS4xMC41LVAzLmJiDQo+IA0KPiBkb19p
+bnN0YWxsX2FwcGVuZCgpIHsNCj4gICAgICAgICAgc2VkIC1pIC1lICcxcywjIS4qcHl0aG9uMywj
+ISAvdXNyL2Jpbi9weXRob24zLCcgDQo+ICR7RH0ke3NiaW5kaXJ9L2Ruc3NlYy1jb3ZlcmFnZSAk
+e0R9JHtzYmluZGlyfS9kbnNzZWMtY2hlY2tkcyB9DQo+IA0KPiBIb3cgY2FuIEkgbW92ZSB0aGlz
+IGZpbGUgdG8gYSBkaWZmZXJlbnQgcGFja2FnZT8NCg0KSSBoYWQgdGhlIHNhbWUgaXNzdWUgYSB3
+aGlsZSBiYWNrLCBhbmQgc3VibWl0dGVkIHRoaXMgcGF0Y2g6DQpodHRwczovL2VtZWEwMS5zYWZl
+bGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHBzJTNBJTJGJTJGcGF0Y2h3b3Jr
+Lm9wZW5lbWJlZGRlZC5vcmclMkZwYXRjaCUyRjE0ODI1NyUyRiZkYXRhPTAyJTdDMDElN0NjYXJs
+b3MuYmVqYXItY29sb25pYSU0MHBoaWxpcHMuY29tJTdDNWJmODAwNjk3NzkxNDJkNDlhOTIwOGQ1
+ZGIzMjQ1MDclN0MxYTQwN2EyZDc2NzU0ZDE3ODY5MmIzYWMyODUzMDZlNCU3QzAlN0MwJTdDNjM2
+NjU1OTMxMzE4OTk1MDQ1JnNkYXRhPTJRQlcyWFMycjdLeDNtUWRUTiUyQlBWUXBDdnAlMkJoMFRJ
+N1FsNkhQSnltbEJVJTNEJnJlc2VydmVkPTANCg0KU2luY2UgdGhlbiBBcm1pbiBpbmNvcnBvcmF0
+ZWQgbXkgcGF0Y2ggd2l0aCBoaXMgdmVyc2lvbiB1cGdyYWRlIGhlcmU6DQpodHRwczovL2VtZWEw
+MS5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHBzJTNBJTJGJTJGcGF0
+Y2h3b3JrLm9wZW5lbWJlZGRlZC5vcmclMkZwYXRjaCUyRjE1MTc3OCUyRiZkYXRhPTAyJTdDMDEl
+N0NjYXJsb3MuYmVqYXItY29sb25pYSU0MHBoaWxpcHMuY29tJTdDNWJmODAwNjk3NzkxNDJkNDlh
+OTIwOGQ1ZGIzMjQ1MDclN0MxYTQwN2EyZDc2NzU0ZDE3ODY5MmIzYWMyODUzMDZlNCU3QzAlN0Mw
+JTdDNjM2NjU1OTMxMzE4OTk1MDQ1JnNkYXRhPXlJTXlla251RmVua05QR3RHN0l0dlg2V3pObmho
+TmJGMUV4b2NhOXZtTnclM0QmcmVzZXJ2ZWQ9MA0KDQpJZiB5b3UgbWFpbnRhaW4geW91ciBvd24g
+bWV0YSBsYXllciwgeW91IGNhbiBlaXRoZXIgY3JlYXRlIGEgYmJhcHBlbmQgZmlsZSB0byBpbXBs
+ZW1lbnQgdGhlIHBhY2thZ2UgY29uZmlnIGZlYXR1cmUsIG9yIHlvdSBjYW4gc2ltcGx5IGFkZCB0
+aGUgdXBkYXRlZCB2ZXJzaW9uIGZyb20gQXJtaW4uDQoNCi8vIE1hcnRpbg0KDQo+IC0tLS0tT3Jp
+Z2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+
+DQo+IFNlbnQ6IEZyaWRheSwgSnVuZSAyMiwgMjAxOCAxMTozMyBBTQ0KPiBUbzogQmVqYXItQ29s
+b25pYSwgQ2FybG9zIDxjYXJsb3MuYmVqYXItY29sb25pYUBwaGlsaXBzLmNvbT4NCj4gQ2M6IFlv
+Y3RvIFByb2plY3QgPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQo+IFN1YmplY3Q6IFJlOiBbeW9j
+dG9dIFJvY2tvOiBob3cgdG8gcmVtb3ZlIHB5dGhvbjMgZnJvbSB0YXJnZXQncyByb290ZnMNCj4g
+DQo+IE9uIEZyaSwgSnVuIDIyLCAyMDE4IGF0IDg6MTcgQU0gQmVqYXItQ29sb25pYSwgQ2FybG9z
+IDxjYXJsb3MuYmVqYXItY29sb25pYUBwaGlsaXBzLmNvbT4gd3JvdGU6DQo+Pg0KPj4gSGVsbG8g
+WW9jdG8gVGVhbSwNCj4+DQo+Pg0KPj4NCj4+IEnigJl2ZSB1cGdyYWRlZCBteSBZb2N0byBzeXN0
+ZW0gZnJvbSBNb3J0eSB0byBSb2NrbyBhbmQgSeKAmXZlIG5vdGljZWQgDQo+PiB0aGF0IHB5dGhv
+bjMgZ2V0cyBpbnN0YWxsZWQgaW4gdGhlIHJvb3Rmcywgd2hpY2ggSSBkb27igJl0IHdhbnQgKGl0
+IA0KPj4gdGFrZXMgYSBsb3QgZGlzayBzcGFjZSkNCj4+DQo+PiBJ4oCZdmUgbm90aWNlZCB0aGF0
+IHdoZW4gSSBhZGQgZGhjcC1jbGllbnQgcGFja2FnZSB0byB0aGUgcm9vdGZzIChDT1JFX0lNQUdF
+X0VYVFJBX0lOU1RBTEwgKz0gImRoY3AtY2xpZW50IiksIHB5dGhvbjMgZ2V0cyBpbnN0YWxsZWQg
+YXMgd2VsbC4NCj4+DQo+PiBIb3dldmVyLCB3aXRoIE1vcnR5LCBweXRob24zIGRvZXMgbm90IGdl
+dCBpbnN0YWxsZWQgaW4gdGhlIHJvb3RmcyBhZnRlciBhZGRpbmcgZGhjcC1jbGllbnQgcGFrYWdl
+Lg0KPj4NCj4+DQo+Pg0KPj4gUHJvYmFibHkgc29tZW9uZSBoYXMgYWxyZWFkeSBkb25lIHRoaXMs
+IGJ1dCBJIHdhcyBub3QgYWJsZSB0byBmaWd1cmUgaXQgb3V0LiBJIHRyaWVkOiBJTUFHRV9JTlNU
+QUxMX3JlbW92ZSArPSAicHl0aG9uMy1jb3JlIiwgZGlkbuKAmXQgaGVscC4NCj4+DQo+PiBBbnkg
+aGludHMgb24gaG93IHRvIHJlbW92ZSBweXRob24zIGZyb20gdGhlIHRhcmdldOKAmXMgcm9vdGZz
+ICh3aXRob3V0IHJlbW92aW5nIGRoY3AtY2xpZW50KT8NCj4gDQo+IHdoZW4gdGhlcmUgYXJlIHNj
+cmlwdHMgaW4gcGFja2FnZXMgd2hpY2ggcmVxdWlyZXMgYSBjZXJ0YWluIGtpbmQgb2YgaW50ZXJw
+cmV0ZXIgZS5nLiBwZXJsLiBweXRob24uIGJhc2gsIHNoIGV0Yy4gc3lzdGVtIGNhbiBhdXRvZGV0
+ZWN0IHRoYXQgaWYgaW50ZXJwcmV0ZXIgaXMgc3BlY2lmaWVkIGluIGZpcnN0IGxpbmUgb2Ygc2Ny
+aXB0IGFuZCBhZGQgdGhlIGFwcHJvcHJpYXRlIHJ1bnRpbWUgZGVwZW5kZW5jeSwgc2luY2UgdGhp
+cyBzY3JpcHQgb3RoZXJ3aXNlIHdpbGwgYmUgdXNlbGVzcyBvbiB0YXJnZXQuDQo+IA0KPiBJIHN1
+c3BlY3QgYnVpbGQgZm9yIGRoY3AgaXMgYWRkaW5nIHN1Y2ggYSBmaWxlIGludG8gZGhjcC1jbGll
+bnQgcGFja2FnZSB3aGljaCBtaWdodCBiZSByZXN1bHRpbmcgaW4gdGhpcyBpbXBsaWNpdCBkZXAu
+DQo+IA0KPiBTbyBwbGVhc2UgY2hlY2sgaXQgaW4gdGhlIGJ1aWxkIGFyZWEgZm9yIGRoY3AgZXNw
+ZWNpYWxseSB1bmRlciANCj4gcGFja2FnZXMtc3BsaXQvZGhjcC1jbGllbnQNCj4gDQo+IGZvciBh
+bnkgc3VjaCBzY3JpcHRzLg0KPiANCj4gaWYgdGhlcmUgYXJlIGFueSBhbmQgeW91IGZpbmQgdGhh
+dCB0aGVzZSBzY3JpcHRzIGFyZSBub3QgcmVxdWlyZWQgZm9yIA0KPiBub3JtYWwgZnVuY3Rpb25p
+bmcgb2YgZGhjcC1jbGllbnQgb24gdGFyZ2V0IHRoZW4gbW92ZSB0aGlzIHNjcmlwdCBvdXQgDQo+
+IGludG8gYW5vdGhlciBwYWNrYWdlIHdoZXJlIGl0IG1pZ2h0IGJlIG1vcmUgYXBwcm9wcmlhdGUs
+IHRoYXQgY2FuIA0KPiBlbGltaW5hdGUgdGhpcyByZGVwDQo+Pg0KPj4NCj4+DQo+PiBUaGFua3Ms
+DQo+Pg0KPj4gQ2FybG9zDQo+Pg0KPj4NCj4+DQo+Pg0KPj4NCj4+DQo+PiBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXw0KPj4gVGhlIGluZm9ybWF0aW9uIGNvbnRhaW5lZCBpbiB0aGlz
+IG1lc3NhZ2UgbWF5IGJlIGNvbmZpZGVudGlhbCBhbmQgbGVnYWxseSBwcm90ZWN0ZWQgdW5kZXIg
+YXBwbGljYWJsZSBsYXcuIFRoZSBtZXNzYWdlIGlzIGludGVuZGVkIHNvbGVseSBmb3IgdGhlIGFk
+ZHJlc3NlZShzKS4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgeW91IGFy
+ZSBoZXJlYnkgbm90aWZpZWQgdGhhdCBhbnkgdXNlLCBmb3J3YXJkaW5nLCBkaXNzZW1pbmF0aW9u
+LCBvciByZXByb2R1Y3Rpb24gb2YgdGhpcyBtZXNzYWdlIGlzIHN0cmljdGx5IHByb2hpYml0ZWQg
+YW5kIG1heSBiZSB1bmxhd2Z1bC4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVu
+dCwgcGxlYXNlIGNvbnRhY3QgdGhlIHNlbmRlciBieSByZXR1cm4gZS1tYWlsIGFuZCBkZXN0cm95
+IGFsbCBjb3BpZXMgb2YgdGhlIG9yaWdpbmFsIG1lc3NhZ2UuDQo+PiAtLQ0KPj4gX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+IHlvY3RvIG1haWxpbmcg
+bGlzdA0KPj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPj4gaHR0cHM6Ly9lbWVhMDEuc2FmZWxp
+bmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmxpDQo+PiBzIA0K
+Pj4gdHMueW9jdG9wcm9qZWN0Lm9yZyUyRmxpc3RpbmZvJTJGeW9jdG8mZGF0YT0wMiU3QzAxJTdD
+Y2FybG9zLmJlamFyLWNvDQo+PiBsIA0KPj4gb25pYSU0MHBoaWxpcHMuY29tJTdDNjFkZjdiZTk0
+OTU0NGRiODdkZDYwOGQ1ZDg1NTczYjglN0MxYTQwN2EyZDc2NzU0DQo+PiBkIA0KPj4gMTc4Njky
+YjNhYzI4NTMwNmU0JTdDMCU3QzAlN0M2MzY2NTI3ODM4NzYyODIxNzEmc2RhdGE9dWZzUkJnVVRw
+UiUyRmttDQo+PiBYDQo+PiBuRkNlTUswRGJTMjd1WDlMOHoxNVkwUzNaJTJCY3QwJTNEJnJlc2Vy
+dmVkPTANCg0KLS0NCktpbmQgcmVnYXJkcywNCk1hcnRpbiBIdW5kZWLDuGxsDQpFbWJlZGRlZCBM
+aW51eCBDb25zdWx0YW50DQoNCis0NSA2MSA2NSA1NCA2MQ0KbWFydGluQGdlYW5peC5jb20NCg0K
+R2Vhbml4IElWUw0KREszOTYwMDcwNg0K
 
-
-
-On 06/26/2018 12:37 PM, Giordon Stark wrote:
-> Hi all,
-Wrong mailing list. Meta-openembedded questions should be directed to
-openembedded-devel@lists.openembedded.org
-
->
-> I noticed on a 64b board, devmem2 isn't able to write 32b. I noticed,
-> surprisingly, that there's now a patch for this fix in master
-> (https://github.com/openembedded/meta-openembedded/commit/1bcd15ed5b31bdec492af99f671718d7a6eb887b).
->
-> I'm currently on rocko, which doesn't have this additional change. Can
-> I just cherry-pick this commit onto meta-openembedded, or should I
-> apply these changes into my custom layer, and leave the
-> meta-openembedded layer untouched?
-
-I am running through master changes and this changes is a candidate for
-backport to both sumo and then rocko.
-
-- armin
->
-> Thanks,
->
-> Giordon
-> -- 
-> Giordon Stark
->
->
-
-
---------------49F7E4F17ED849DD2741BCFE
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 06/26/2018 12:37 PM, Giordon Stark
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAFzUWGmFaHwccznqTA_ppKA5SNjcB2+SqwYgP1yvtACMrKiLLQ@mail.gmail.com">
-      <div dir="ltr">Hi all,</div>
-    </blockquote>
-    Wrong mailing list. Meta-openembedded questions should be directed
-    to <a class="moz-txt-link-abbreviated" href="mailto:openembedded-devel@lists.openembedded.org">openembedded-devel@lists.openembedded.org</a><br>
-    <br>
-    <blockquote type="cite"
-cite="mid:CAFzUWGmFaHwccznqTA_ppKA5SNjcB2+SqwYgP1yvtACMrKiLLQ@mail.gmail.com">
-      <div dir="ltr">
-        <div><br>
-        </div>
-        <div>I noticed on a 64b board, devmem2 isn't able to write 32b.
-          I noticed, surprisingly, that there's now a patch for this fix
-          in master (<a
-href="https://github.com/openembedded/meta-openembedded/commit/1bcd15ed5b31bdec492af99f671718d7a6eb887b"
-            moz-do-not-send="true">https://github.com/openembedded/meta-openembedded/commit/1bcd15ed5b31bdec492af99f671718d7a6eb887b</a>).</div>
-        <div><br>
-        </div>
-        <div>I'm currently on rocko, which doesn't have this additional
-          change. Can I just cherry-pick this commit onto
-          meta-openembedded, or should I apply these changes into my
-          custom layer, and leave the meta-openembedded layer untouched?</div>
-      </div>
-    </blockquote>
-    <br>
-    I am running through master changes and this changes is a candidate
-    for backport to both sumo and then rocko.<br>
-    <br>
-    - armin<br>
-    <blockquote type="cite"
-cite="mid:CAFzUWGmFaHwccznqTA_ppKA5SNjcB2+SqwYgP1yvtACMrKiLLQ@mail.gmail.com">
-      <div dir="ltr">
-        <div><br>
-        </div>
-        <div>Thanks,</div>
-        <div><br>
-        </div>
-        <div>Giordon</div>
-      </div>
-      -- <br>
-      <div dir="ltr" class="gmail_signature"
-        data-smartmail="gmail_signature">
-        <div dir="ltr">Giordon Stark</div>
-      </div>
-      <!--'"--><br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------49F7E4F17ED849DD2741BCFE--
