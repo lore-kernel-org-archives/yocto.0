@@ -1,95 +1,33 @@
-Return-Path: <carlos.bejar-colonia@philips.com>
+Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C690E01094; Tue, 26 Jun 2018 15:59:19 -0700 (PDT)
+	id A4F05E011D5; Tue, 26 Jun 2018 22:10:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.2.97 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-db5eur01on0097.outbound.protection.outlook.com [104.47.2.97])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA139E01092
-	for <yocto@yoctoproject.org>; Tue, 26 Jun 2018 15:59:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=philips.com;
-	s=selector1;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=UHvT1HFOFVLcT++RZrMtE1wgCwRrljVF9cxljZ1wkD8=;
-	b=lCmLOnF/r3lhHRVcIQ6dEyYzSVVdkRPHPTBBgck5wbIkmuDBftJny50DsK1AqxaJ/ehIlCDVcw5a1JqNLvnkvPycFJPK0DXLTSHqgH5qPzpo/90r0AeafgyMiYn017ptp+hseMypUobl2OY/2mXI9Nlvd5oRlFdrhLGm70/eK4s=
-Received: from HE1P122MB0090.EURP122.PROD.OUTLOOK.COM (129.75.166.25) by
-	HE1P122MB0060.EURP122.PROD.OUTLOOK.COM (129.75.140.219) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.884.23; Tue, 26 Jun 2018 21:26:36 +0000
-Received: from HE1P122MB0090.EURP122.PROD.OUTLOOK.COM
-	([fe80::d44a:d85f:383b:e2fa]) by HE1P122MB0090.EURP122.PROD.OUTLOOK.COM
-	([fe80::d44a:d85f:383b:e2fa%14]) with mapi id 15.20.0884.024;
-	Tue, 26 Jun 2018 21:26:36 +0000
-From: "Bejar-Colonia, Carlos" <carlos.bejar-colonia@philips.com>
-To: =?utf-8?B?TWFydGluIEh1bmRlYsO4bGw=?= <martin@geanix.com>, Khem Raj
-	<raj.khem@gmail.com>
-Thread-Topic: [yocto] Rocko: how to remove python3 from target's rootfs
-Thread-Index: AdQJqPWdu7UrvZT8Svq1h37yr+AFPQAlU/WAAJ9DblAAF/YAAAAdVX2w
-Date: Tue, 26 Jun 2018 21:26:36 +0000
-Message-ID: <HE1P122MB00908ACD1682B84B1C52C6AFD6490@HE1P122MB0090.EURP122.PROD.OUTLOOK.COM>
-References: <HE1P122MB0090894C688B6F014F3ABE50D6760@HE1P122MB0090.EURP122.PROD.OUTLOOK.COM>
-	<CAMKF1srp7ONCyBNnt3y72uG1dcfRe+tKeg5H_M09WD=5Je6DwQ@mail.gmail.com>
-	<HE1P122MB0090C3849A14E569035E95CFD64A0@HE1P122MB0090.EURP122.PROD.OUTLOOK.COM>
-	<3633b8b8-5c53-9b70-3287-d8c3f2760b30@geanix.com>
-In-Reply-To: <3633b8b8-5c53-9b70-3287-d8c3f2760b30@geanix.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=carlos.bejar-colonia@philips.com; 
-x-originating-ip: [192.101.81.235]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; HE1P122MB0060;
-	7:LdOGt1byF5ebdYtXot6hWxtQ7ZvcrprYiFPAsfhDL7FJ81xk2sB/cRUfPLOx7QQVOhPcL/kWNY8SfS/ANDM8TNi+T1FgDc+Aq/p/x20Sk9OGEXoEfo874BMxeizzCp/p77y6mJ7EHTo5GknypKBWGgd9s0GcUkYD9XbFRVvMnmqIq+EdYDLyMw4xy8OeN/l+AyyFTbKfies0WgOVLbMlRpQD+fxkBfbsrI/6sojstks7pmKB4BD7sVsnWwL3BxFh
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 873f71ff-b9ab-4bf7-642f-08d5dbab7f64
-x-microsoft-antispam: UriScan:(223705240517415)(260087099026482); BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(8989117)(4534165)(4627221)(201703031133081)(201702281549075)(8990107)(48565401081)(5600026)(711020)(2017052603328)(7153060)(7193020);
-	SRVR:HE1P122MB0060; 
-x-ms-traffictypediagnostic: HE1P122MB0060:
-x-microsoft-antispam-prvs: <HE1P122MB00604B573796731D5C041734D6490@HE1P122MB0060.EURP122.PROD.OUTLOOK.COM>
-x-exchange-antispam-report-test: UriScan:(189930954265078)(223705240517415)(85827821059158)(45079756050767)(260087099026482);
-x-ms-exchange-senderadcheck: 1
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(8211001083)(6040522)(2401047)(5005006)(8121501046)(3231254)(944501410)(52105095)(3002001)(93006095)(93001095)(10201501046)(6055026)(149027)(150027)(6041310)(20161123562045)(20161123558120)(20161123560045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123564045)(6072148)(201708071742011)(7699016);
-	SRVR:HE1P122MB0060; BCL:0; PCL:0; RULEID:; SRVR:HE1P122MB0060; 
-x-forefront-prvs: 071518EF63
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39860400002)(366004)(396003)(376002)(346002)(136003)(55904004)(374574003)(199004)(13464003)(189003)(8936002)(110136005)(5660300001)(102836004)(5250100002)(7736002)(76176011)(7696005)(99286004)(6506007)(316002)(6306002)(97736004)(105586002)(81166006)(14444005)(106356001)(53546011)(9686003)(575784001)(66066001)(6436002)(74316002)(305945005)(2906002)(476003)(55016002)(446003)(11346002)(81156014)(86362001)(8676002)(486006)(53936002)(14454004)(3846002)(93886005)(229853002)(68736007)(186003)(25786009)(45080400002)(6116002)(39060400002)(2900100001)(256004)(6246003)(26005)(33656002)(4326008)(478600001)(966005);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1P122MB0060;
-	H:HE1P122MB0090.EURP122.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: philips.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: MhUiOtZvNR72lyFjQy9Sg6zPhQdbygAz0IdAEDIjNXxE6g1VTJ7r7VpWkADDJ98eDTdQLzH7WGEyIZ6e9WUyWd+Dn5r2LDL/CY2kj7EKmABU9lDg5aY1glVC099cCXmQygbyhRTqV73z7IG1tPYDhHpkst2HhfUdHupCQtSOtHWWgfVNGjK/jMJXm5j3hL5fyGh3NgdINNna1OXZaeyfJax46lMx39u6pINNKmjYoE7Zh0a+b5AnsLIiyX03Kgkj+AeZ6rOXDgGfwtPAOOJb8+hqzLdY892rxyHOIWFSrHN8ZQ7ycOqO76oxXeQqrO16xbdv7xEooVJAEbOCEFrHe4TwEK4gcjhv8H77kikAOUA=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DB90E00EB4
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2018 22:10:32 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w5R5AVg0027204
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 26 Jun 2018 22:10:31 -0700 (PDT)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.399.0; Tue, 26 Jun 2018 22:10:30 -0700
+From: Changqing Li <changqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 27 Jun 2018 13:10:29 +0800
+Message-ID: <1530076229-46216-1-git-send-email-changqing.li@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-X-OriginatorOrg: philips.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 873f71ff-b9ab-4bf7-642f-08d5dbab7f64
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jun 2018 21:26:36.4698 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1a407a2d-7675-4d17-8692-b3ac285306e4
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1P122MB0060
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Rocko: how to remove python3 from target's rootfs
+Subject: [PATCH] samhain: correct service status
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -101,133 +39,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2018 22:59:19 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 27 Jun 2018 05:10:32 -0000
+Content-Type: text/plain
 
-SGkgTWFydGluLA0KDQpJJ3ZlIGRvd25sb2FkZWQgYmluZF85LjEwLjYuYmIgcmVjaXBlIGFuZCBh
-cHBsaWVkIHRoZSBwYXRjaCB5b3UgcG9pbnRlZCwgYnV0IGRvX2luc3RhbGwgZmFpbHMNCg0KZXJy
-b3I6IGludmFsaWQgUHl0aG9uIGluc3RhbGxhdGlvbjogdW5hYmxlIHRvIG9wZW4gL2hvbWUvY2Fy
-bG9zL2RldmVsb3AvYWxsZWdyby9idWlsZC1hdG1lbC90bXAvd29yay9jb3J0ZXhhNWhmLXZmcC1w
-b2t5LWxpbnV4LWdudWVhYmkvYmluZC85LjEwLjYtcjAvcmVjaXBlLXN5c3Jvb3QvdXNyL2xpYi9w
-eXRob24zLjUvY29uZmlnLTMuNW0vTWFrZWZpbGUgKE5vIHN1Y2ggZmlsZSBvciBkaXJlY3Rvcnkp
-DQpNYWtlZmlsZTo0NjU6IHJlY2lwZSBmb3IgdGFyZ2V0ICdpbnN0YWxsJyBmYWlsZWQNCm1ha2Vb
-Ml06ICoqKiBbaW5zdGFsbF0gRXJyb3IgMQ0KbWFrZVsyXTogTGVhdmluZyBkaXJlY3RvcnkgJy9o
-b21lL2Nhcmxvcy9kZXZlbG9wL2FsbGVncm8vYnVpbGQtYXRtZWwvdG1wL3dvcmsvY29ydGV4YTVo
-Zi12ZnAtcG9reS1saW51eC1nbnVlYWJpL2JpbmQvOS4xMC42LXIwL2J1aWxkL2Jpbi9weXRob24n
-DQpNYWtlZmlsZToxMTQ6IHJlY2lwZSBmb3IgdGFyZ2V0ICdpbnN0YWxsJyBmYWlsZWQNCm1ha2Vb
-MV06ICoqKiBbaW5zdGFsbF0gRXJyb3IgMQ0KbWFrZVsxXTogTGVhdmluZyBkaXJlY3RvcnkgJy9o
-b21lL2Nhcmxvcy9kZXZlbG9wL2FsbGVncm8vYnVpbGQtYXRtZWwvdG1wL3dvcmsvY29ydGV4YTVo
-Zi12ZnAtcG9reS1saW51eC1nbnVlYWJpL2JpbmQvOS4xMC42LXIwL2J1aWxkL2JpbicNCk1ha2Vm
-aWxlOjEyMDogcmVjaXBlIGZvciB0YXJnZXQgJ2luc3RhbGwnIGZhaWxlZA0KbWFrZTogKioqIFtp
-bnN0YWxsXSBFcnJvciAxDQpFUlJPUjogb2VfcnVubWFrZSBmYWlsZWQNCg0KSSd2ZSBhbHNvIHRy
-aWVkIHRoZSBwYXRjaCBmcm9tIEFybWluIEt1c3RlciAoUGF0Y2ggSUQgMTUxNzc4KSwgYmluZF85
-LjEyLjEuYmIgYnVpbGRzIGZpbmUsIGJ1dCBkaGNwXzQuMy42LmJiIGRvX2NvbXBpbGUgZmFpbHMN
-Cg0KLi8ubGlicy9saWJvbWFwaS5zbzogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgUE9TVCcNCmNv
-bGxlY3QyOiBlcnJvcjogbGQgcmV0dXJuZWQgMSBleGl0IHN0YXR1cw0KTWFrZWZpbGU6NDMzOiBy
-ZWNpcGUgZm9yIHRhcmdldCAnc3Z0ZXN0JyBmYWlsZWQNCm1ha2VbMV06ICoqKiBbc3Z0ZXN0XSBF
-cnJvciAxDQptYWtlWzFdOiBMZWF2aW5nIGRpcmVjdG9yeSAnL2hvbWUvY2FybG9zL2RldmVsb3Av
-YWxsZWdyby9idWlsZC1hdG1lbC90bXAvd29yay9jb3J0ZXhhNWhmLXZmcC1wb2t5LWxpbnV4LWdu
-dWVhYmkvZGhjcC80LjMuNi1yMC9idWlsZC9vbWFwaXAnDQpNYWtlZmlsZTo0NjQ6IHJlY2lwZSBm
-b3IgdGFyZ2V0ICdhbGwtcmVjdXJzaXZlJyBmYWlsZWQNCm1ha2U6ICoqKiBbYWxsLXJlY3Vyc2l2
-ZV0gRXJyb3IgMQ0KRVJST1I6IG9lX3J1bm1ha2UgZmFpbGVkDQpXQVJOSU5HOiBleGl0IGNvZGUg
-MSBmcm9tIGEgc2hlbGwgY29tbWFuZC4NCg0KVGhpcyBlcnJvciBpcyBzaW1pbGFyIHRvIHdoYXQg
-aXMgcG9zdGVkIGhlcmU6IA0KaHR0cDovL2Vycm9ycy55b2N0b3Byb2plY3Qub3JnL0Vycm9ycy9E
-ZXRhaWxzLzE4MDYyOC8NCg0KQ291bGQgeW91IGNsYXJpZmllZCBpZiB0aG9zZSBlcnJvcnMgd2Vy
-ZSBhbHJlYWR5IGhhbmRsZWQsIHNvIEkgY2FuIGZldGNoIHRoZSBmaXg/DQoNClRoYW5rcywNCkNh
-cmxvcw0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogTWFydGluIEh1bmRlYsO4
-bGwgPG1hcnRpbkBnZWFuaXguY29tPiANClNlbnQ6IFR1ZXNkYXksIEp1bmUgMjYsIDIwMTggMjo1
-OSBBTQ0KVG86IEJlamFyLUNvbG9uaWEsIENhcmxvcyA8Y2FybG9zLmJlamFyLWNvbG9uaWFAcGhp
-bGlwcy5jb20+OyBLaGVtIFJhaiA8cmFqLmtoZW1AZ21haWwuY29tPg0KQ2M6IFlvY3RvIFByb2pl
-Y3QgPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpTdWJqZWN0OiBSZTogW3lvY3RvXSBSb2Nrbzog
-aG93IHRvIHJlbW92ZSBweXRob24zIGZyb20gdGFyZ2V0J3Mgcm9vdGZzDQoNCkhpIEJlamFyLA0K
-DQpPbiAyMDE4LTA2LTI1IDIyOjAyLCBCZWphci1Db2xvbmlhLCBDYXJsb3Mgd3JvdGU6DQo+IExv
-b2tzIGxpa2UgdGhlIGRoY3AgZGVwZW5kZW5jeSBpcyBleHBsaWNpdDogZGhjcC0+YmluZC0+cHl0
-aG9uMyANCj4gcmVjaXBlcy1jb25uZWN0aXZpdHkvZGhjcC9kaGNwLmluYw0KPiAJREVQRU5EUyA9
-ICJvcGVuc3NsIGJpbmQiDQo+IHJlY2lwZXMtY29ubmVjdGl2aXR5L2JpbmQvYmluZF85LjEwLjUt
-UDMuYmINCj4gCVJERVBFTkRTXyR7UE59ID0gInB5dGhvbjMtY29yZSINCj4gDQo+IEluIHRoZSBi
-dWlsZCBhcmVhOiBkaGNwLzQuMy42LXIwL3BhY2thZ2VzLXNwbGl0L2RoY3AtY2xpZW50LnNobGli
-ZGVwcw0KPiAJZGhjcC1saWJzICg+PSA0LjMuNikNCj4gCWJpbmQgKD49IDkuMTAuNS1QMykNCj4g
-CWdsaWJjICg+PSAyLjI2KQ0KPiANCj4gRG9lcyBpdCBtZWFuIHRoYXQgcHl0aG9uMyBjYW5ub3Qg
-YmUgcmVtb3ZlZCBmcm9tIHRhcmdldCByb290ZnM/DQo+IA0KPiBPbiB0aGUgb3RoZXIgaGFuZCwg
-SSBzZWUgdGhpcyBmaWxlIGluIHJvb3RmczogL3Vzci9zYmluL2Ruc3NlYy1jaGVja2RzLCB3aGlj
-aCByZXF1aXJlcyBweXRob24zICgjISAvdXNyL2Jpbi9weXRob24zKS4NCj4gSSBiZWxpZXZlIHRo
-aXMgZmlsZSBnZXRzIGluc3RhbGxlZCBmcm9tIGJpbmRfOS4xMC41LVAzLmJiDQo+IA0KPiBkb19p
-bnN0YWxsX2FwcGVuZCgpIHsNCj4gICAgICAgICAgc2VkIC1pIC1lICcxcywjIS4qcHl0aG9uMywj
-ISAvdXNyL2Jpbi9weXRob24zLCcgDQo+ICR7RH0ke3NiaW5kaXJ9L2Ruc3NlYy1jb3ZlcmFnZSAk
-e0R9JHtzYmluZGlyfS9kbnNzZWMtY2hlY2tkcyB9DQo+IA0KPiBIb3cgY2FuIEkgbW92ZSB0aGlz
-IGZpbGUgdG8gYSBkaWZmZXJlbnQgcGFja2FnZT8NCg0KSSBoYWQgdGhlIHNhbWUgaXNzdWUgYSB3
-aGlsZSBiYWNrLCBhbmQgc3VibWl0dGVkIHRoaXMgcGF0Y2g6DQpodHRwczovL2VtZWEwMS5zYWZl
-bGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHBzJTNBJTJGJTJGcGF0Y2h3b3Jr
-Lm9wZW5lbWJlZGRlZC5vcmclMkZwYXRjaCUyRjE0ODI1NyUyRiZkYXRhPTAyJTdDMDElN0NjYXJs
-b3MuYmVqYXItY29sb25pYSU0MHBoaWxpcHMuY29tJTdDNWJmODAwNjk3NzkxNDJkNDlhOTIwOGQ1
-ZGIzMjQ1MDclN0MxYTQwN2EyZDc2NzU0ZDE3ODY5MmIzYWMyODUzMDZlNCU3QzAlN0MwJTdDNjM2
-NjU1OTMxMzE4OTk1MDQ1JnNkYXRhPTJRQlcyWFMycjdLeDNtUWRUTiUyQlBWUXBDdnAlMkJoMFRJ
-N1FsNkhQSnltbEJVJTNEJnJlc2VydmVkPTANCg0KU2luY2UgdGhlbiBBcm1pbiBpbmNvcnBvcmF0
-ZWQgbXkgcGF0Y2ggd2l0aCBoaXMgdmVyc2lvbiB1cGdyYWRlIGhlcmU6DQpodHRwczovL2VtZWEw
-MS5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHBzJTNBJTJGJTJGcGF0
-Y2h3b3JrLm9wZW5lbWJlZGRlZC5vcmclMkZwYXRjaCUyRjE1MTc3OCUyRiZkYXRhPTAyJTdDMDEl
-N0NjYXJsb3MuYmVqYXItY29sb25pYSU0MHBoaWxpcHMuY29tJTdDNWJmODAwNjk3NzkxNDJkNDlh
-OTIwOGQ1ZGIzMjQ1MDclN0MxYTQwN2EyZDc2NzU0ZDE3ODY5MmIzYWMyODUzMDZlNCU3QzAlN0Mw
-JTdDNjM2NjU1OTMxMzE4OTk1MDQ1JnNkYXRhPXlJTXlla251RmVua05QR3RHN0l0dlg2V3pObmho
-TmJGMUV4b2NhOXZtTnclM0QmcmVzZXJ2ZWQ9MA0KDQpJZiB5b3UgbWFpbnRhaW4geW91ciBvd24g
-bWV0YSBsYXllciwgeW91IGNhbiBlaXRoZXIgY3JlYXRlIGEgYmJhcHBlbmQgZmlsZSB0byBpbXBs
-ZW1lbnQgdGhlIHBhY2thZ2UgY29uZmlnIGZlYXR1cmUsIG9yIHlvdSBjYW4gc2ltcGx5IGFkZCB0
-aGUgdXBkYXRlZCB2ZXJzaW9uIGZyb20gQXJtaW4uDQoNCi8vIE1hcnRpbg0KDQo+IC0tLS0tT3Jp
-Z2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+
-DQo+IFNlbnQ6IEZyaWRheSwgSnVuZSAyMiwgMjAxOCAxMTozMyBBTQ0KPiBUbzogQmVqYXItQ29s
-b25pYSwgQ2FybG9zIDxjYXJsb3MuYmVqYXItY29sb25pYUBwaGlsaXBzLmNvbT4NCj4gQ2M6IFlv
-Y3RvIFByb2plY3QgPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQo+IFN1YmplY3Q6IFJlOiBbeW9j
-dG9dIFJvY2tvOiBob3cgdG8gcmVtb3ZlIHB5dGhvbjMgZnJvbSB0YXJnZXQncyByb290ZnMNCj4g
-DQo+IE9uIEZyaSwgSnVuIDIyLCAyMDE4IGF0IDg6MTcgQU0gQmVqYXItQ29sb25pYSwgQ2FybG9z
-IDxjYXJsb3MuYmVqYXItY29sb25pYUBwaGlsaXBzLmNvbT4gd3JvdGU6DQo+Pg0KPj4gSGVsbG8g
-WW9jdG8gVGVhbSwNCj4+DQo+Pg0KPj4NCj4+IEnigJl2ZSB1cGdyYWRlZCBteSBZb2N0byBzeXN0
-ZW0gZnJvbSBNb3J0eSB0byBSb2NrbyBhbmQgSeKAmXZlIG5vdGljZWQgDQo+PiB0aGF0IHB5dGhv
-bjMgZ2V0cyBpbnN0YWxsZWQgaW4gdGhlIHJvb3Rmcywgd2hpY2ggSSBkb27igJl0IHdhbnQgKGl0
-IA0KPj4gdGFrZXMgYSBsb3QgZGlzayBzcGFjZSkNCj4+DQo+PiBJ4oCZdmUgbm90aWNlZCB0aGF0
-IHdoZW4gSSBhZGQgZGhjcC1jbGllbnQgcGFja2FnZSB0byB0aGUgcm9vdGZzIChDT1JFX0lNQUdF
-X0VYVFJBX0lOU1RBTEwgKz0gImRoY3AtY2xpZW50IiksIHB5dGhvbjMgZ2V0cyBpbnN0YWxsZWQg
-YXMgd2VsbC4NCj4+DQo+PiBIb3dldmVyLCB3aXRoIE1vcnR5LCBweXRob24zIGRvZXMgbm90IGdl
-dCBpbnN0YWxsZWQgaW4gdGhlIHJvb3RmcyBhZnRlciBhZGRpbmcgZGhjcC1jbGllbnQgcGFrYWdl
-Lg0KPj4NCj4+DQo+Pg0KPj4gUHJvYmFibHkgc29tZW9uZSBoYXMgYWxyZWFkeSBkb25lIHRoaXMs
-IGJ1dCBJIHdhcyBub3QgYWJsZSB0byBmaWd1cmUgaXQgb3V0LiBJIHRyaWVkOiBJTUFHRV9JTlNU
-QUxMX3JlbW92ZSArPSAicHl0aG9uMy1jb3JlIiwgZGlkbuKAmXQgaGVscC4NCj4+DQo+PiBBbnkg
-aGludHMgb24gaG93IHRvIHJlbW92ZSBweXRob24zIGZyb20gdGhlIHRhcmdldOKAmXMgcm9vdGZz
-ICh3aXRob3V0IHJlbW92aW5nIGRoY3AtY2xpZW50KT8NCj4gDQo+IHdoZW4gdGhlcmUgYXJlIHNj
-cmlwdHMgaW4gcGFja2FnZXMgd2hpY2ggcmVxdWlyZXMgYSBjZXJ0YWluIGtpbmQgb2YgaW50ZXJw
-cmV0ZXIgZS5nLiBwZXJsLiBweXRob24uIGJhc2gsIHNoIGV0Yy4gc3lzdGVtIGNhbiBhdXRvZGV0
-ZWN0IHRoYXQgaWYgaW50ZXJwcmV0ZXIgaXMgc3BlY2lmaWVkIGluIGZpcnN0IGxpbmUgb2Ygc2Ny
-aXB0IGFuZCBhZGQgdGhlIGFwcHJvcHJpYXRlIHJ1bnRpbWUgZGVwZW5kZW5jeSwgc2luY2UgdGhp
-cyBzY3JpcHQgb3RoZXJ3aXNlIHdpbGwgYmUgdXNlbGVzcyBvbiB0YXJnZXQuDQo+IA0KPiBJIHN1
-c3BlY3QgYnVpbGQgZm9yIGRoY3AgaXMgYWRkaW5nIHN1Y2ggYSBmaWxlIGludG8gZGhjcC1jbGll
-bnQgcGFja2FnZSB3aGljaCBtaWdodCBiZSByZXN1bHRpbmcgaW4gdGhpcyBpbXBsaWNpdCBkZXAu
-DQo+IA0KPiBTbyBwbGVhc2UgY2hlY2sgaXQgaW4gdGhlIGJ1aWxkIGFyZWEgZm9yIGRoY3AgZXNw
-ZWNpYWxseSB1bmRlciANCj4gcGFja2FnZXMtc3BsaXQvZGhjcC1jbGllbnQNCj4gDQo+IGZvciBh
-bnkgc3VjaCBzY3JpcHRzLg0KPiANCj4gaWYgdGhlcmUgYXJlIGFueSBhbmQgeW91IGZpbmQgdGhh
-dCB0aGVzZSBzY3JpcHRzIGFyZSBub3QgcmVxdWlyZWQgZm9yIA0KPiBub3JtYWwgZnVuY3Rpb25p
-bmcgb2YgZGhjcC1jbGllbnQgb24gdGFyZ2V0IHRoZW4gbW92ZSB0aGlzIHNjcmlwdCBvdXQgDQo+
-IGludG8gYW5vdGhlciBwYWNrYWdlIHdoZXJlIGl0IG1pZ2h0IGJlIG1vcmUgYXBwcm9wcmlhdGUs
-IHRoYXQgY2FuIA0KPiBlbGltaW5hdGUgdGhpcyByZGVwDQo+Pg0KPj4NCj4+DQo+PiBUaGFua3Ms
-DQo+Pg0KPj4gQ2FybG9zDQo+Pg0KPj4NCj4+DQo+Pg0KPj4NCj4+DQo+PiBfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXw0KPj4gVGhlIGluZm9ybWF0aW9uIGNvbnRhaW5lZCBpbiB0aGlz
-IG1lc3NhZ2UgbWF5IGJlIGNvbmZpZGVudGlhbCBhbmQgbGVnYWxseSBwcm90ZWN0ZWQgdW5kZXIg
-YXBwbGljYWJsZSBsYXcuIFRoZSBtZXNzYWdlIGlzIGludGVuZGVkIHNvbGVseSBmb3IgdGhlIGFk
-ZHJlc3NlZShzKS4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgeW91IGFy
-ZSBoZXJlYnkgbm90aWZpZWQgdGhhdCBhbnkgdXNlLCBmb3J3YXJkaW5nLCBkaXNzZW1pbmF0aW9u
-LCBvciByZXByb2R1Y3Rpb24gb2YgdGhpcyBtZXNzYWdlIGlzIHN0cmljdGx5IHByb2hpYml0ZWQg
-YW5kIG1heSBiZSB1bmxhd2Z1bC4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVu
-dCwgcGxlYXNlIGNvbnRhY3QgdGhlIHNlbmRlciBieSByZXR1cm4gZS1tYWlsIGFuZCBkZXN0cm95
-IGFsbCBjb3BpZXMgb2YgdGhlIG9yaWdpbmFsIG1lc3NhZ2UuDQo+PiAtLQ0KPj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+IHlvY3RvIG1haWxpbmcg
-bGlzdA0KPj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPj4gaHR0cHM6Ly9lbWVhMDEuc2FmZWxp
-bmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmxpDQo+PiBzIA0K
-Pj4gdHMueW9jdG9wcm9qZWN0Lm9yZyUyRmxpc3RpbmZvJTJGeW9jdG8mZGF0YT0wMiU3QzAxJTdD
-Y2FybG9zLmJlamFyLWNvDQo+PiBsIA0KPj4gb25pYSU0MHBoaWxpcHMuY29tJTdDNjFkZjdiZTk0
-OTU0NGRiODdkZDYwOGQ1ZDg1NTczYjglN0MxYTQwN2EyZDc2NzU0DQo+PiBkIA0KPj4gMTc4Njky
-YjNhYzI4NTMwNmU0JTdDMCU3QzAlN0M2MzY2NTI3ODM4NzYyODIxNzEmc2RhdGE9dWZzUkJnVVRw
-UiUyRmttDQo+PiBYDQo+PiBuRkNlTUswRGJTMjd1WDlMOHoxNVkwUzNaJTJCY3QwJTNEJnJlc2Vy
-dmVkPTANCg0KLS0NCktpbmQgcmVnYXJkcywNCk1hcnRpbiBIdW5kZWLDuGxsDQpFbWJlZGRlZCBM
-aW51eCBDb25zdWx0YW50DQoNCis0NSA2MSA2NSA1NCA2MQ0KbWFydGluQGdlYW5peC5jb20NCg0K
-R2Vhbml4IElWUw0KREszOTYwMDcwNg0K
+status get by "systemctl status samhain" is not correct.
+It is active(exited) now. but actually, there is a dameon
+running, it should be active(running). so change Type of
+servive.
+
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
+---
+ recipes-security/samhain/files/samhain.service | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-security/samhain/files/samhain.service b/recipes-security/samhain/files/samhain.service
+index e6dc3b9..e4f216a 100644
+--- a/recipes-security/samhain/files/samhain.service
++++ b/recipes-security/samhain/files/samhain.service
+@@ -3,7 +3,7 @@ Description=Samhain @MODE_NAME@ Daemon
+ After=syslog.target network.target
+ 
+ [Service]
+-Type=oneshot
++Type=forking
+ RemainAfterExit=yes
+ ExecStart=@LIBDIR@/@SAMHAIN_HELPER@ start
+ ExecStop=@LIBDIR@/@SAMHAIN_HELPER@ stop
+-- 
+2.7.4
+
 
