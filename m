@@ -1,99 +1,65 @@
-Return-Path: <carlos.bejar-colonia@philips.com>
+Return-Path: <abhishekr@eximiusdesign.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E158FE00CED; Wed, 27 Jun 2018 21:53:10 -0700 (PDT)
+	id 29858E00C88; Wed, 27 Jun 2018 22:59:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.3 required=5.0 tests=AC_DIV_BONANZA,BAYES_00,
+	DKIM_SIGNED, DKIM_VALID, HTML_IMAGE_ONLY_24, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, T_REMOTE_IMAGE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [40.107.2.117 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.215.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	* 1.6 HTML_IMAGE_ONLY_24 BODY: HTML: images with 2000-2400 bytes of
+	words *  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.0 AC_DIV_BONANZA RAW: Too many divs in a row... spammy template
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 14433 seconds by postgrey-1.32 at yocto-www;
-	Wed, 27 Jun 2018 21:53:07 PDT
-Received: from EUR02-VE1-obe.outbound.protection.outlook.com
-	(mail-eopbgr20117.outbound.protection.outlook.com [40.107.2.117])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FE6BE007D2
-	for <yocto@yoctoproject.org>; Wed, 27 Jun 2018 21:53:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=philips.com;
-	s=selector1;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=R1qqUDS3Tf6SNJvtrxcqawvKv9iIBNeRACO/KQPcxhg=;
-	b=MA0Wijo17sZyIDxJuAvyHb2sb8NpJXIE6etcvflWcGuNmI++7HV95qAR4FQmI+baJ0iuZPWyabJIsQojZJgDFVIydjpTf3Ns3o4v9QyzvAgdKuaQTri41CmltBmnMR03xYt39ch9T8H0zY/74Ra7AJcKoCDbeMQI/g7430EwWwg=
-Received: from HE1P122MB0090.EURP122.PROD.OUTLOOK.COM (129.75.166.25) by
-	HE1P122MB0091.EURP122.PROD.OUTLOOK.COM (129.75.166.26) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.884.23; Wed, 27 Jun 2018 20:18:40 +0000
-Received: from HE1P122MB0090.EURP122.PROD.OUTLOOK.COM
-	([fe80::d44a:d85f:383b:e2fa]) by HE1P122MB0090.EURP122.PROD.OUTLOOK.COM
-	([fe80::d44a:d85f:383b:e2fa%14]) with mapi id 15.20.0884.024;
-	Wed, 27 Jun 2018 20:18:40 +0000
-From: "Bejar-Colonia, Carlos" <carlos.bejar-colonia@philips.com>
-To: "Bejar-Colonia, Carlos" <carlos.bejar-colonia@philips.com>,
-	=?utf-8?B?TWFydGluIEh1bmRlYsO4bGw=?= <martin@geanix.com>, Khem Raj
-	<raj.khem@gmail.com>
-Thread-Topic: [yocto] Rocko: how to remove python3 from target's rootfs
-Thread-Index: AdQJqPWdu7UrvZT8Svq1h37yr+AFPQAlU/WAAJ9DblAAF/YAAAAdVX2wADCmVEA=
-Date: Wed, 27 Jun 2018 20:18:40 +0000
-Message-ID: <HE1P122MB0090FD784BDB1AB9BAF9E166D6480@HE1P122MB0090.EURP122.PROD.OUTLOOK.COM>
-References: <HE1P122MB0090894C688B6F014F3ABE50D6760@HE1P122MB0090.EURP122.PROD.OUTLOOK.COM>
-	<CAMKF1srp7ONCyBNnt3y72uG1dcfRe+tKeg5H_M09WD=5Je6DwQ@mail.gmail.com>
-	<HE1P122MB0090C3849A14E569035E95CFD64A0@HE1P122MB0090.EURP122.PROD.OUTLOOK.COM>
-	<3633b8b8-5c53-9b70-3287-d8c3f2760b30@geanix.com>
-	<HE1P122MB00908ACD1682B84B1C52C6AFD6490@HE1P122MB0090.EURP122.PROD.OUTLOOK.COM>
-In-Reply-To: <HE1P122MB00908ACD1682B84B1C52C6AFD6490@HE1P122MB0090.EURP122.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=carlos.bejar-colonia@philips.com; 
-x-originating-ip: [192.101.81.235]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; HE1P122MB0091;
-	7:eHEVojjiSZxrFJ8jti9lhqY1Ejui5uhN1Jhucysx/GlUYBBdKPU99y8qXwxGXYz1RB5yJpu6bNn5bJCz7TyfRirxP9gGloljGTAh4SWy7u+K81R4jBmRFSkWKHwupkRwj1VJE5/LCZ8SBucKuG3q8CbPxw7aYJvU7lPM/zW9whm+efi6NwCj7A02NeGs5skL+b9wOH/zFgdT1hqIo9EHqbKGCpYj0LvSUDaejbIWNrlBtSQKrlo3NYyH5UGP4aOq
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: fceed848-7c78-48bf-c43f-08d5dc6b2c4f
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: UriScan:(223705240517415)(260087099026482); BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(8989117)(5600026)(711020)(48565401081)(2017052603328)(7153060)(7193020);
-	SRVR:HE1P122MB0091; 
-x-ms-traffictypediagnostic: HE1P122MB0091:
-x-microsoft-antispam-prvs: <HE1P122MB00913B2FC22C5753DCCED0F3D6480@HE1P122MB0091.EURP122.PROD.OUTLOOK.COM>
-x-exchange-antispam-report-test: UriScan:(189930954265078)(223705240517415)(85827821059158)(45079756050767)(260087099026482);
-x-ms-exchange-senderadcheck: 1
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(8211001083)(6040522)(2401047)(8121501046)(5005006)(3002001)(10201501046)(3231254)(944501410)(52105095)(93006095)(93001095)(6055026)(149027)(150027)(6041310)(20161123558120)(20161123560045)(20161123562045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123564045)(6072148)(201708071742011)(7699016);
-	SRVR:HE1P122MB0091; BCL:0; PCL:0; RULEID:; SRVR:HE1P122MB0091; 
-x-forefront-prvs: 0716E70AB6
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(136003)(376002)(39860400002)(346002)(366004)(396003)(189003)(374574003)(199004)(51914003)(13464003)(55904004)(5660300001)(11346002)(53936002)(76176011)(93886005)(74316002)(97736004)(7736002)(229853002)(2900100001)(305945005)(66066001)(8936002)(6436002)(110136005)(476003)(316002)(446003)(99286004)(81156014)(105586002)(8676002)(81166006)(25786009)(256004)(6246003)(575784001)(39060400002)(106356001)(486006)(55016002)(966005)(26005)(33656002)(14454004)(4326008)(68736007)(102836004)(6306002)(86362001)(45080400002)(6506007)(53546011)(478600001)(6116002)(2906002)(3846002)(7696005)(5250100002)(14444005)(9686003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1P122MB0091;
-	H:HE1P122MB0090.EURP122.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: philips.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: ux8WBMWBONwREde/t8R+nk8pPLcoIyPIBFQnCLPnCyChGY7mjvyDH5Cs4zjZo3BxST6Va8Vyd+AKMiHDtaglb7GPNR475jcYMttjZB+qI7OfNMBtYmx9f3rgpR8iiotl3TjVUiExhrvtkSvYJIZ2KbY7ope19RbyPTq9hRQwccdd+u3KSGL5IS913YEG1tOkzMwyQn6cJG04/G+J8EApwNfKVHyPkGBUwAQspXoX3j2T739h7IvxndUpXBkCsWb7BniKWI44vrKx3xHP4SpKtMPzBsqepzIaHoizm5lsRoLO8Asi9Klp2F8emWXdVA2iYrREDH7o9fgGYN46PNVlhxHPklKH6wZZo73WaHE3GaM=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.0 T_REMOTE_IMAGE Message contains an external image
+Received: from mail-lf0-f50.google.com (mail-lf0-f50.google.com
+	[209.85.215.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC9BFE007CE
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2018 22:59:46 -0700 (PDT)
+Received: by mail-lf0-f50.google.com with SMTP id n96-v6so3275864lfi.1
+	for <yocto@yoctoproject.org>; Wed, 27 Jun 2018 22:59:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=eximiusdesign-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=G4BQhCoAEE7ZmaGJO52JOJ9VLS7S7bjMYgJJQpQR9os=;
+	b=lL2oPpC1Pe3gt+b1Uz3hRcUGGDr7utZ+o2IUBVnUKE9AlLKVTt3h2h9t1Cp4bu6Swo
+	hiOPMVqdtcZmvLImpZTXhntv0mCuQOswwOAZ3d76O/UV9qu90/FRu9/ovW84gRIJb7nm
+	uw5ZBhwVYlms+SQpXy2g8nTzO/h0Jg50Cm9mS5Gx4AobwqqFianN/RFmkOotZ+NDdS9D
+	jiVBimr3bUTkZ0oXQViVGWyw8bXK6Y19ahg4TaGeejvcxCwHZ9T6OSB2wJePJrDeIYCw
+	B41LOIZZVX+NfVG8tmDy7kDAjiwNfSazhQu/qaPsrHai395t2ZWbaihGLl3oDLRXjPno
+	HLhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=G4BQhCoAEE7ZmaGJO52JOJ9VLS7S7bjMYgJJQpQR9os=;
+	b=Z3U0vCQGZpJLSsP+MN8fKTo3EIDQ6JWvGsbGtkyhToCSSH7N43S+10qx+umJMhXTRH
+	pnFw73GFm8PzSDvbfKDH0Y6be1gvXa8dVra40lqOoEn7ZfGUF9rZeb6mBgUhVad1EK1d
+	pi/JsKO5UgD5yc1DpeNCA+sr8CevE3aQ0lh2NfnIJfIkXlO18DqU2k3vGbKRAjcltDa9
+	QY5hBadHB7mYXejAL66ye2j4gn0LhkPmNKD0FM4cqh+xgvRVS8ShvBfhDX/B9y2AWRds
+	zojQF2GOaKSb6EGvBQoyDE1ey6V0pEbQON82R4lNq9al883pEd7uO7ql918Hw9nYRDp7
+	sRSA==
+X-Gm-Message-State: APt69E1w4/EvqFXMldX6Guw16O4PQqMz51ZFF1dftGhXHJBOjfy4v8Ai
+	6DBslKWNGygXEAO2E0JjjTyim2phS8EomthcwmUfsz2OZwYZHj6vs0CqCArpOnunobIMkioMvYx
+	iZOwi1zX7Qt7RzTvZriGAwUtdFt3Z+sU=
+X-Google-Smtp-Source: AAOMgpeolmmrszr7k0WwUf+YkUGrRmCqs8FfRNLqomM5hyGYypr2i9bnKWWSgSS/cCzQS/Kp+owkTpNyOAYpkopq9w4=
+X-Received: by 2002:a19:f104:: with SMTP id
+	p4-v6mr2998526lfh.137.1530165585571; 
+	Wed, 27 Jun 2018 22:59:45 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: philips.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fceed848-7c78-48bf-c43f-08d5dc6b2c4f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jun 2018 20:18:40.5517 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1a407a2d-7675-4d17-8692-b3ac285306e4
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1P122MB0091
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Rocko: how to remove python3 from target's rootfs
+Received: by 2002:a19:7412:0:0:0:0:0 with HTTP; Wed, 27 Jun 2018 22:59:44
+	-0700 (PDT)
+From: Abhishek Kumar Rai <abhishekr@eximiusdesign.com>
+Date: Thu, 28 Jun 2018 11:29:44 +0530
+Message-ID: <CALYWmf9Yd9iVHLmijQzYK-FmPYqt+x1pwG7=NE6JtDBN_fYJ2Q@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Regarding Use the Latest LTP on Latest YOCTO build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -105,161 +71,165 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Jun 2018 04:53:11 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 28 Jun 2018 05:59:48 -0000
+Content-Type: multipart/alternative; boundary="0000000000002d089f056fad7028"
 
-SGkgTWFydGluLA0KDQpKdXN0IGFuIHVwZGF0ZTogVGhlIHBhdGNoIHlvdSBwb2ludGVkIG91dCwg
-aW5jbHVkZXMgZm9sbG93aW5nIGxpbmU6DQorUEFDS0FHRUNPTkZJR1tweXRob25dID0gIi0td2l0
-aC1weXRob249JHtQWVRIT059LC0td2l0aG91dC1weXRob24sLHB5dGhvbjMtY29yZSINCg0KSG93
-ZXZlciwgSSBmb3VuZCBhbm90aGVyIHBhdGNoIGZyb20geW91OiANCmh0dHBzOi8vcGF0Y2h3b3Jr
-Lm9wZW5lbWJlZGRlZC5vcmcvcGF0Y2gvMTQ3ODgzLw0KDQp3aGljaCBpbmNsdWRlczoNCitQQUNL
-QUdFQ09ORklHW3B5dGhvbl0gPSAiLS13aXRoLXB5dGhvbj0ke1BZVEhPTn0sLS13aXRob3V0LXB5
-dGhvbixweXRob24zLWNvcmUscHl0aG9uMy1jb3JlIg0KDQpXaXRoIHRoYXQgY2hhbmdlLCBJIHdh
-cyBhYmxlIHRvIGJ1aWxkIGNvcmUtaW1hZ2UtbWluaW1hbCwgYW5kIHB5dGhvbjMgaXMgcmVtb3Zl
-ZCBmcm9tIHRhcmdldCByb290ZnMuDQoNClRoYW5rcyBmb3IgdGhlIGhlbHANCkNhcmxvcw0KDQot
-LS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2pl
-Y3Qub3JnIDx5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmc+IE9uIEJlaGFsZiBPZiBCZWph
-ci1Db2xvbmlhLCBDYXJsb3MNClNlbnQ6IFR1ZXNkYXksIEp1bmUgMjYsIDIwMTggNToyNyBQTQ0K
-VG86IE1hcnRpbiBIdW5kZWLDuGxsIDxtYXJ0aW5AZ2Vhbml4LmNvbT47IEtoZW0gUmFqIDxyYWou
-a2hlbUBnbWFpbC5jb20+DQpDYzogWW9jdG8gUHJvamVjdCA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9y
-Zz4NClN1YmplY3Q6IFJlOiBbeW9jdG9dIFJvY2tvOiBob3cgdG8gcmVtb3ZlIHB5dGhvbjMgZnJv
-bSB0YXJnZXQncyByb290ZnMNCg0KSGkgTWFydGluLA0KDQpJJ3ZlIGRvd25sb2FkZWQgYmluZF85
-LjEwLjYuYmIgcmVjaXBlIGFuZCBhcHBsaWVkIHRoZSBwYXRjaCB5b3UgcG9pbnRlZCwgYnV0IGRv
-X2luc3RhbGwgZmFpbHMNCg0KZXJyb3I6IGludmFsaWQgUHl0aG9uIGluc3RhbGxhdGlvbjogdW5h
-YmxlIHRvIG9wZW4gL2hvbWUvY2FybG9zL2RldmVsb3AvYWxsZWdyby9idWlsZC1hdG1lbC90bXAv
-d29yay9jb3J0ZXhhNWhmLXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvYmluZC85LjEwLjYtcjAvcmVj
-aXBlLXN5c3Jvb3QvdXNyL2xpYi9weXRob24zLjUvY29uZmlnLTMuNW0vTWFrZWZpbGUgKE5vIHN1
-Y2ggZmlsZSBvciBkaXJlY3RvcnkpDQpNYWtlZmlsZTo0NjU6IHJlY2lwZSBmb3IgdGFyZ2V0ICdp
-bnN0YWxsJyBmYWlsZWQNCm1ha2VbMl06ICoqKiBbaW5zdGFsbF0gRXJyb3IgMQ0KbWFrZVsyXTog
-TGVhdmluZyBkaXJlY3RvcnkgJy9ob21lL2Nhcmxvcy9kZXZlbG9wL2FsbGVncm8vYnVpbGQtYXRt
-ZWwvdG1wL3dvcmsvY29ydGV4YTVoZi12ZnAtcG9reS1saW51eC1nbnVlYWJpL2JpbmQvOS4xMC42
-LXIwL2J1aWxkL2Jpbi9weXRob24nDQpNYWtlZmlsZToxMTQ6IHJlY2lwZSBmb3IgdGFyZ2V0ICdp
-bnN0YWxsJyBmYWlsZWQNCm1ha2VbMV06ICoqKiBbaW5zdGFsbF0gRXJyb3IgMQ0KbWFrZVsxXTog
-TGVhdmluZyBkaXJlY3RvcnkgJy9ob21lL2Nhcmxvcy9kZXZlbG9wL2FsbGVncm8vYnVpbGQtYXRt
-ZWwvdG1wL3dvcmsvY29ydGV4YTVoZi12ZnAtcG9reS1saW51eC1nbnVlYWJpL2JpbmQvOS4xMC42
-LXIwL2J1aWxkL2JpbicNCk1ha2VmaWxlOjEyMDogcmVjaXBlIGZvciB0YXJnZXQgJ2luc3RhbGwn
-IGZhaWxlZA0KbWFrZTogKioqIFtpbnN0YWxsXSBFcnJvciAxDQpFUlJPUjogb2VfcnVubWFrZSBm
-YWlsZWQNCg0KSSd2ZSBhbHNvIHRyaWVkIHRoZSBwYXRjaCBmcm9tIEFybWluIEt1c3RlciAoUGF0
-Y2ggSUQgMTUxNzc4KSwgYmluZF85LjEyLjEuYmIgYnVpbGRzIGZpbmUsIGJ1dCBkaGNwXzQuMy42
-LmJiIGRvX2NvbXBpbGUgZmFpbHMNCg0KLi8ubGlicy9saWJvbWFwaS5zbzogdW5kZWZpbmVkIHJl
-ZmVyZW5jZSB0byBgUE9TVCcNCmNvbGxlY3QyOiBlcnJvcjogbGQgcmV0dXJuZWQgMSBleGl0IHN0
-YXR1cw0KTWFrZWZpbGU6NDMzOiByZWNpcGUgZm9yIHRhcmdldCAnc3Z0ZXN0JyBmYWlsZWQNCm1h
-a2VbMV06ICoqKiBbc3Z0ZXN0XSBFcnJvciAxDQptYWtlWzFdOiBMZWF2aW5nIGRpcmVjdG9yeSAn
-L2hvbWUvY2FybG9zL2RldmVsb3AvYWxsZWdyby9idWlsZC1hdG1lbC90bXAvd29yay9jb3J0ZXhh
-NWhmLXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvZGhjcC80LjMuNi1yMC9idWlsZC9vbWFwaXAnDQpN
-YWtlZmlsZTo0NjQ6IHJlY2lwZSBmb3IgdGFyZ2V0ICdhbGwtcmVjdXJzaXZlJyBmYWlsZWQNCm1h
-a2U6ICoqKiBbYWxsLXJlY3Vyc2l2ZV0gRXJyb3IgMQ0KRVJST1I6IG9lX3J1bm1ha2UgZmFpbGVk
-DQpXQVJOSU5HOiBleGl0IGNvZGUgMSBmcm9tIGEgc2hlbGwgY29tbWFuZC4NCg0KVGhpcyBlcnJv
-ciBpcyBzaW1pbGFyIHRvIHdoYXQgaXMgcG9zdGVkIGhlcmU6IA0KaHR0cHM6Ly9lbWVhMDEuc2Fm
-ZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwJTNBJTJGJTJGZXJyb3JzLnlv
-Y3RvcHJvamVjdC5vcmclMkZFcnJvcnMlMkZEZXRhaWxzJTJGMTgwNjI4JTJGJmRhdGE9MDIlN0Mw
-MSU3Q2Nhcmxvcy5iZWphci1jb2xvbmlhJTQwcGhpbGlwcy5jb20lN0MyYmYwNzI2OTJlMmU0NzQ0
-NTFmNTA4ZDVkYmI4YjcwZSU3QzFhNDA3YTJkNzY3NTRkMTc4NjkyYjNhYzI4NTMwNmU0JTdDMCU3
-QzAlN0M2MzY2NTY1MDg3NTMyNjQyMzgmc2RhdGE9am9MTW9jVTh3ejN6NXVBUE1KJTJGaWdTSzBt
-cGJ1UGprUVBYVXplSTBKS2tvJTNEJnJlc2VydmVkPTANCg0KQ291bGQgeW91IGNsYXJpZmllZCBp
-ZiB0aG9zZSBlcnJvcnMgd2VyZSBhbHJlYWR5IGhhbmRsZWQsIHNvIEkgY2FuIGZldGNoIHRoZSBm
-aXg/DQoNClRoYW5rcywNCkNhcmxvcw0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJv
-bTogTWFydGluIEh1bmRlYsO4bGwgPG1hcnRpbkBnZWFuaXguY29tPg0KU2VudDogVHVlc2RheSwg
-SnVuZSAyNiwgMjAxOCAyOjU5IEFNDQpUbzogQmVqYXItQ29sb25pYSwgQ2FybG9zIDxjYXJsb3Mu
-YmVqYXItY29sb25pYUBwaGlsaXBzLmNvbT47IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+
-DQpDYzogWW9jdG8gUHJvamVjdCA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IFJl
-OiBbeW9jdG9dIFJvY2tvOiBob3cgdG8gcmVtb3ZlIHB5dGhvbjMgZnJvbSB0YXJnZXQncyByb290
-ZnMNCg0KSGkgQmVqYXIsDQoNCk9uIDIwMTgtMDYtMjUgMjI6MDIsIEJlamFyLUNvbG9uaWEsIENh
-cmxvcyB3cm90ZToNCj4gTG9va3MgbGlrZSB0aGUgZGhjcCBkZXBlbmRlbmN5IGlzIGV4cGxpY2l0
-OiBkaGNwLT5iaW5kLT5weXRob24zIA0KPiByZWNpcGVzLWNvbm5lY3Rpdml0eS9kaGNwL2RoY3Au
-aW5jDQo+IAlERVBFTkRTID0gIm9wZW5zc2wgYmluZCINCj4gcmVjaXBlcy1jb25uZWN0aXZpdHkv
-YmluZC9iaW5kXzkuMTAuNS1QMy5iYg0KPiAJUkRFUEVORFNfJHtQTn0gPSAicHl0aG9uMy1jb3Jl
-Ig0KPiANCj4gSW4gdGhlIGJ1aWxkIGFyZWE6IGRoY3AvNC4zLjYtcjAvcGFja2FnZXMtc3BsaXQv
-ZGhjcC1jbGllbnQuc2hsaWJkZXBzDQo+IAlkaGNwLWxpYnMgKD49IDQuMy42KQ0KPiAJYmluZCAo
-Pj0gOS4xMC41LVAzKQ0KPiAJZ2xpYmMgKD49IDIuMjYpDQo+IA0KPiBEb2VzIGl0IG1lYW4gdGhh
-dCBweXRob24zIGNhbm5vdCBiZSByZW1vdmVkIGZyb20gdGFyZ2V0IHJvb3Rmcz8NCj4gDQo+IE9u
-IHRoZSBvdGhlciBoYW5kLCBJIHNlZSB0aGlzIGZpbGUgaW4gcm9vdGZzOiAvdXNyL3NiaW4vZG5z
-c2VjLWNoZWNrZHMsIHdoaWNoIHJlcXVpcmVzIHB5dGhvbjMgKCMhIC91c3IvYmluL3B5dGhvbjMp
-Lg0KPiBJIGJlbGlldmUgdGhpcyBmaWxlIGdldHMgaW5zdGFsbGVkIGZyb20gYmluZF85LjEwLjUt
-UDMuYmINCj4gDQo+IGRvX2luc3RhbGxfYXBwZW5kKCkgew0KPiAgICAgICAgICBzZWQgLWkgLWUg
-JzFzLCMhLipweXRob24zLCMhIC91c3IvYmluL3B5dGhvbjMsJyANCj4gJHtEfSR7c2JpbmRpcn0v
-ZG5zc2VjLWNvdmVyYWdlICR7RH0ke3NiaW5kaXJ9L2Ruc3NlYy1jaGVja2RzIH0NCj4gDQo+IEhv
-dyBjYW4gSSBtb3ZlIHRoaXMgZmlsZSB0byBhIGRpZmZlcmVudCBwYWNrYWdlPw0KDQpJIGhhZCB0
-aGUgc2FtZSBpc3N1ZSBhIHdoaWxlIGJhY2ssIGFuZCBzdWJtaXR0ZWQgdGhpcyBwYXRjaDoNCmh0
-dHBzOi8vZW1lYTAxLnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxvb2suY29tLz91cmw9aHR0cHMl
-M0ElMkYlMkZwYXRjaHdvcmsub3BlbmVtYmVkZGVkLm9yZyUyRnBhdGNoJTJGMTQ4MjU3JTJGJmRh
-dGE9MDIlN0MwMSU3Q2Nhcmxvcy5iZWphci1jb2xvbmlhJTQwcGhpbGlwcy5jb20lN0M1YmY4MDA2
-OTc3OTE0MmQ0OWE5MjA4ZDVkYjMyNDUwNyU3QzFhNDA3YTJkNzY3NTRkMTc4NjkyYjNhYzI4NTMw
-NmU0JTdDMCU3QzAlN0M2MzY2NTU5MzEzMTg5OTUwNDUmc2RhdGE9MlFCVzJYUzJyN0t4M21RZFRO
-JTJCUFZRcEN2cCUyQmgwVEk3UWw2SFBKeW1sQlUlM0QmcmVzZXJ2ZWQ9MA0KDQpTaW5jZSB0aGVu
-IEFybWluIGluY29ycG9yYXRlZCBteSBwYXRjaCB3aXRoIGhpcyB2ZXJzaW9uIHVwZ3JhZGUgaGVy
-ZToNCmh0dHBzOi8vZW1lYTAxLnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxvb2suY29tLz91cmw9
-aHR0cHMlM0ElMkYlMkZwYXRjaHdvcmsub3BlbmVtYmVkZGVkLm9yZyUyRnBhdGNoJTJGMTUxNzc4
-JTJGJmRhdGE9MDIlN0MwMSU3Q2Nhcmxvcy5iZWphci1jb2xvbmlhJTQwcGhpbGlwcy5jb20lN0M1
-YmY4MDA2OTc3OTE0MmQ0OWE5MjA4ZDVkYjMyNDUwNyU3QzFhNDA3YTJkNzY3NTRkMTc4NjkyYjNh
-YzI4NTMwNmU0JTdDMCU3QzAlN0M2MzY2NTU5MzEzMTg5OTUwNDUmc2RhdGE9eUlNeWVrbnVGZW5r
-TlBHdEc3SXR2WDZXek5uaGhOYkYxRXhvY2E5dm1OdyUzRCZyZXNlcnZlZD0wDQoNCklmIHlvdSBt
-YWludGFpbiB5b3VyIG93biBtZXRhIGxheWVyLCB5b3UgY2FuIGVpdGhlciBjcmVhdGUgYSBiYmFw
-cGVuZCBmaWxlIHRvIGltcGxlbWVudCB0aGUgcGFja2FnZSBjb25maWcgZmVhdHVyZSwgb3IgeW91
-IGNhbiBzaW1wbHkgYWRkIHRoZSB1cGRhdGVkIHZlcnNpb24gZnJvbSBBcm1pbi4NCg0KLy8gTWFy
-dGluDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS2hlbSBSYWogPHJh
-ai5raGVtQGdtYWlsLmNvbT4NCj4gU2VudDogRnJpZGF5LCBKdW5lIDIyLCAyMDE4IDExOjMzIEFN
-DQo+IFRvOiBCZWphci1Db2xvbmlhLCBDYXJsb3MgPGNhcmxvcy5iZWphci1jb2xvbmlhQHBoaWxp
-cHMuY29tPg0KPiBDYzogWW9jdG8gUHJvamVjdCA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NCj4g
-U3ViamVjdDogUmU6IFt5b2N0b10gUm9ja286IGhvdyB0byByZW1vdmUgcHl0aG9uMyBmcm9tIHRh
-cmdldCdzIHJvb3Rmcw0KPiANCj4gT24gRnJpLCBKdW4gMjIsIDIwMTggYXQgODoxNyBBTSBCZWph
-ci1Db2xvbmlhLCBDYXJsb3MgPGNhcmxvcy5iZWphci1jb2xvbmlhQHBoaWxpcHMuY29tPiB3cm90
-ZToNCj4+DQo+PiBIZWxsbyBZb2N0byBUZWFtLA0KPj4NCj4+DQo+Pg0KPj4gSeKAmXZlIHVwZ3Jh
-ZGVkIG15IFlvY3RvIHN5c3RlbSBmcm9tIE1vcnR5IHRvIFJvY2tvIGFuZCBJ4oCZdmUgbm90aWNl
-ZCANCj4+IHRoYXQgcHl0aG9uMyBnZXRzIGluc3RhbGxlZCBpbiB0aGUgcm9vdGZzLCB3aGljaCBJ
-IGRvbuKAmXQgd2FudCAoaXQgDQo+PiB0YWtlcyBhIGxvdCBkaXNrIHNwYWNlKQ0KPj4NCj4+IEni
-gJl2ZSBub3RpY2VkIHRoYXQgd2hlbiBJIGFkZCBkaGNwLWNsaWVudCBwYWNrYWdlIHRvIHRoZSBy
-b290ZnMgKENPUkVfSU1BR0VfRVhUUkFfSU5TVEFMTCArPSAiZGhjcC1jbGllbnQiKSwgcHl0aG9u
-MyBnZXRzIGluc3RhbGxlZCBhcyB3ZWxsLg0KPj4NCj4+IEhvd2V2ZXIsIHdpdGggTW9ydHksIHB5
-dGhvbjMgZG9lcyBub3QgZ2V0IGluc3RhbGxlZCBpbiB0aGUgcm9vdGZzIGFmdGVyIGFkZGluZyBk
-aGNwLWNsaWVudCBwYWthZ2UuDQo+Pg0KPj4NCj4+DQo+PiBQcm9iYWJseSBzb21lb25lIGhhcyBh
-bHJlYWR5IGRvbmUgdGhpcywgYnV0IEkgd2FzIG5vdCBhYmxlIHRvIGZpZ3VyZSBpdCBvdXQuIEkg
-dHJpZWQ6IElNQUdFX0lOU1RBTExfcmVtb3ZlICs9ICJweXRob24zLWNvcmUiLCBkaWRu4oCZdCBo
-ZWxwLg0KPj4NCj4+IEFueSBoaW50cyBvbiBob3cgdG8gcmVtb3ZlIHB5dGhvbjMgZnJvbSB0aGUg
-dGFyZ2V04oCZcyByb290ZnMgKHdpdGhvdXQgcmVtb3ZpbmcgZGhjcC1jbGllbnQpPw0KPiANCj4g
-d2hlbiB0aGVyZSBhcmUgc2NyaXB0cyBpbiBwYWNrYWdlcyB3aGljaCByZXF1aXJlcyBhIGNlcnRh
-aW4ga2luZCBvZiBpbnRlcnByZXRlciBlLmcuIHBlcmwuIHB5dGhvbi4gYmFzaCwgc2ggZXRjLiBz
-eXN0ZW0gY2FuIGF1dG9kZXRlY3QgdGhhdCBpZiBpbnRlcnByZXRlciBpcyBzcGVjaWZpZWQgaW4g
-Zmlyc3QgbGluZSBvZiBzY3JpcHQgYW5kIGFkZCB0aGUgYXBwcm9wcmlhdGUgcnVudGltZSBkZXBl
-bmRlbmN5LCBzaW5jZSB0aGlzIHNjcmlwdCBvdGhlcndpc2Ugd2lsbCBiZSB1c2VsZXNzIG9uIHRh
-cmdldC4NCj4gDQo+IEkgc3VzcGVjdCBidWlsZCBmb3IgZGhjcCBpcyBhZGRpbmcgc3VjaCBhIGZp
-bGUgaW50byBkaGNwLWNsaWVudCBwYWNrYWdlIHdoaWNoIG1pZ2h0IGJlIHJlc3VsdGluZyBpbiB0
-aGlzIGltcGxpY2l0IGRlcC4NCj4gDQo+IFNvIHBsZWFzZSBjaGVjayBpdCBpbiB0aGUgYnVpbGQg
-YXJlYSBmb3IgZGhjcCBlc3BlY2lhbGx5IHVuZGVyIA0KPiBwYWNrYWdlcy1zcGxpdC9kaGNwLWNs
-aWVudA0KPiANCj4gZm9yIGFueSBzdWNoIHNjcmlwdHMuDQo+IA0KPiBpZiB0aGVyZSBhcmUgYW55
-IGFuZCB5b3UgZmluZCB0aGF0IHRoZXNlIHNjcmlwdHMgYXJlIG5vdCByZXF1aXJlZCBmb3IgDQo+
-IG5vcm1hbCBmdW5jdGlvbmluZyBvZiBkaGNwLWNsaWVudCBvbiB0YXJnZXQgdGhlbiBtb3ZlIHRo
-aXMgc2NyaXB0IG91dCANCj4gaW50byBhbm90aGVyIHBhY2thZ2Ugd2hlcmUgaXQgbWlnaHQgYmUg
-bW9yZSBhcHByb3ByaWF0ZSwgdGhhdCBjYW4gDQo+IGVsaW1pbmF0ZSB0aGlzIHJkZXANCj4+DQo+
-Pg0KPj4NCj4+IFRoYW5rcywNCj4+DQo+PiBDYXJsb3MNCj4+DQo+Pg0KPj4NCj4+DQo+Pg0KPj4N
-Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+PiBUaGUgaW5mb3JtYXRpb24g
-Y29udGFpbmVkIGluIHRoaXMgbWVzc2FnZSBtYXkgYmUgY29uZmlkZW50aWFsIGFuZCBsZWdhbGx5
-IHByb3RlY3RlZCB1bmRlciBhcHBsaWNhYmxlIGxhdy4gVGhlIG1lc3NhZ2UgaXMgaW50ZW5kZWQg
-c29sZWx5IGZvciB0aGUgYWRkcmVzc2VlKHMpLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQg
-cmVjaXBpZW50LCB5b3UgYXJlIGhlcmVieSBub3RpZmllZCB0aGF0IGFueSB1c2UsIGZvcndhcmRp
-bmcsIGRpc3NlbWluYXRpb24sIG9yIHJlcHJvZHVjdGlvbiBvZiB0aGlzIG1lc3NhZ2UgaXMgc3Ry
-aWN0bHkgcHJvaGliaXRlZCBhbmQgbWF5IGJlIHVubGF3ZnVsLiBJZiB5b3UgYXJlIG5vdCB0aGUg
-aW50ZW5kZWQgcmVjaXBpZW50LCBwbGVhc2UgY29udGFjdCB0aGUgc2VuZGVyIGJ5IHJldHVybiBl
-LW1haWwgYW5kIGRlc3Ryb3kgYWxsIGNvcGllcyBvZiB0aGUgb3JpZ2luYWwgbWVzc2FnZS4NCj4+
-IC0tDQo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
-Pj4geW9jdG8gbWFpbGluZyBsaXN0DQo+PiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+PiBodHRw
-czovL2VtZWEwMS5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHBzJTNB
-JTJGJTJGbGkNCj4+IHMNCj4+IHRzLnlvY3RvcHJvamVjdC5vcmclMkZsaXN0aW5mbyUyRnlvY3Rv
-JmRhdGE9MDIlN0MwMSU3Q2Nhcmxvcy5iZWphci1jbw0KPj4gbA0KPj4gb25pYSU0MHBoaWxpcHMu
-Y29tJTdDNjFkZjdiZTk0OTU0NGRiODdkZDYwOGQ1ZDg1NTczYjglN0MxYTQwN2EyZDc2NzU0DQo+
-PiBkDQo+PiAxNzg2OTJiM2FjMjg1MzA2ZTQlN0MwJTdDMCU3QzYzNjY1Mjc4Mzg3NjI4MjE3MSZz
-ZGF0YT11ZnNSQmdVVHBSJTJGa20NCj4+IFgNCj4+IG5GQ2VNSzBEYlMyN3VYOUw4ejE1WTBTM1ol
-MkJjdDAlM0QmcmVzZXJ2ZWQ9MA0KDQotLQ0KS2luZCByZWdhcmRzLA0KTWFydGluIEh1bmRlYsO4
-bGwNCkVtYmVkZGVkIExpbnV4IENvbnN1bHRhbnQNCg0KKzQ1IDYxIDY1IDU0IDYxDQptYXJ0aW5A
-Z2Vhbml4LmNvbQ0KDQpHZWFuaXggSVZTDQpESzM5NjAwNzA2DQotLSANCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlv
-Y3RvQHlvY3RvcHJvamVjdC5vcmcNCmh0dHBzOi8vZW1lYTAxLnNhZmVsaW5rcy5wcm90ZWN0aW9u
-Lm91dGxvb2suY29tLz91cmw9aHR0cHMlM0ElMkYlMkZsaXN0cy55b2N0b3Byb2plY3Qub3JnJTJG
-bGlzdGluZm8lMkZ5b2N0byZkYXRhPTAyJTdDMDElN0NjYXJsb3MuYmVqYXItY29sb25pYSU0MHBo
-aWxpcHMuY29tJTdDMmJmMDcyNjkyZTJlNDc0NDUxZjUwOGQ1ZGJiOGI3MGUlN0MxYTQwN2EyZDc2
-NzU0ZDE3ODY5MmIzYWMyODUzMDZlNCU3QzAlN0MwJTdDNjM2NjU2NTA4NzUzMjY0MjM4JnNkYXRh
-PVphVUMyeXJadDVzS0VOQmdqeWZvS2pCVnZtRGlEUHB1STFCQyUyRiUyRjJMSExNJTNEJnJlc2Vy
-dmVkPTANCg==
+--0000000000002d089f056fad7028
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Team,
+
+I am planning to use the LTP latest version on YOCTO latest vesion.
+It seems that the earlier YOCTO versions are released with LTP and
+latest version are not.
+Found the below difficulties so far:
+1. Latest LTP version(20180118) suitable for old gcc version(4.8).
+2. But at the same time, latest version of YOCTO build(2.3) supporting
+latest
+gcc version(6.3) only.
+
+so we want to use a latest LTP version(20180118) with latest YOCTO
+build(2.3) which has latest gcc version(6.3) .
+
+Please share your valuable inputs with me to achieve the same.
+
+Thanks & Regards,
+Abhishek Rai
+
+--=20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The information contained in this e-mail message (including=20
+any=C2=A0
+
+
+attachments) may be confidential, proprietary, privileged, or=20
+otherwise
+
+
+exempt from disclosure under applicable laws. It is intended to=20
+be=C2=A0
+
+
+conveyed only to the designated recipient(s). Any use, dissemination,=C2=A0
+
+
+
+distribution, printing, retaining or copying of this e-mail (including=20
+its=C2=A0
+
+
+attachments) by unintended recipient(s) is strictly prohibited and=20
+may=C2=A0
+
+
+be unlawful. If you are not an intended recipient of this e-mail, or=20
+believe=C2=A0
+
+
+that you have received this e-mail in error, please notify the=20
+sender=C2=A0
+
+
+immediately (by replying to this e-mail), delete any and all=20
+copies of=C2=A0
+
+
+this e-mail (including any attachments) from your system, and=20
+do not
+
+
+disclose the content of this e-mail to any other person. Thank you=20
+for your cooperation.
+
+
+
+
+
+
+--=20
+_This e-mail message (including any=C2=A0attachments) may be confidential,=
+=20
+proprietary, privileged, or otherwise=C2=A0exempt from disclosure under=20
+applicable laws. If you are not an intended recipient, please delete this=
+=20
+message. Thank you.
+_
+
+--0000000000002d089f056fad7028
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div><div><div><div><div><div><div>Hi =
+Team,<br><br></div>I am planning to use the LTP latest version on YOCTO lat=
+est vesion.<br></div>It seems that the earlier YOCTO versions are released =
+with LTP and <br></div>latest version are not.<br></div>Found the below dif=
+ficulties so far:<br></div>1. Latest LTP version(20180118) suitable for old=
+ gcc version(4.8).<br></div>2. But at the same time, latest version of YOCT=
+O build(2.3) supporting latest<br></div>gcc version(6.3) only.<br>=C2=A0 <b=
+r></div>so we want to use a latest LTP version(20180118) with latest YOCTO =
+build(2.3) which has latest gcc version(6.3) .<br><br></div>Please share yo=
+ur valuable inputs with me to achieve the same.<br><br></div>Thanks &amp; R=
+egards,<br></div>Abhishek Rai</div>
+
+<br>
+
+
+
+
+
+
+
+
+<table cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr>
+<td valign=3D"middle">
+<p><span>The information contained in this e-mail message (including any=C2=
+=A0</span></p>
+<p><span>attachments) may be confidential, proprietary, privileged, or othe=
+rwise</span></p>
+<p><span>exempt from disclosure under applicable laws. It is intended to be=
+=C2=A0</span></p>
+<p><span>conveyed only to the designated recipient(s). Any use, disseminati=
+on,=C2=A0</span></p>
+<p><span>distribution, printing, retaining or copying of this e-mail (inclu=
+ding its=C2=A0</span></p>
+<p><span>attachments) by unintended recipient(s) is strictly prohibited and=
+ may=C2=A0</span></p>
+<p><span>be unlawful. If you are not an intended recipient of this e-mail, =
+or believe=C2=A0</span></p>
+<p><span>that you have received this e-mail in error, please notify the sen=
+der=C2=A0</span></p>
+<p><span>immediately (by replying to this e-mail), delete any and all copie=
+s of=C2=A0</span></p>
+<p><span>this e-mail (including any attachments) from your system, and do n=
+ot</span></p>
+<p><span>disclose the content of this e-mail to any other person. Thank you=
+ for your cooperation.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<img><i style=3D"font-family:Calibri;font-size:14px"><span style=3D"font-si=
+ze:10pt">This e-mail message (including any=C2=A0</span>attachments) may be=
+ confidential, proprietary, privileged, or otherwise=C2=A0exempt from discl=
+osure under applicable laws. If you are not an intended recipient, please d=
+elete this message. Thank you.</i><br style=3D"font-family:Calibri;font-siz=
+e:14px">
+
+--0000000000002d089f056fad7028--
