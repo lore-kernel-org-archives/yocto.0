@@ -1,6 +1,6 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D116E00CF4; Mon,  2 Jul 2018 16:00:50 -0700 (PDT)
+	id D95A7E00DF8; Mon,  2 Jul 2018 16:00:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,26 +12,26 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9644FE00AAB
-	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 16:00:49 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83F2AE00CF4
+	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 16:00:51 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
 	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	02 Jul 2018 16:00:49 -0700
+	02 Jul 2018 16:00:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,300,1526367600"; d="scan'208";a="52165046"
+X-IronPort-AV: E=Sophos;i="5.51,300,1526367600"; d="scan'208";a="52165070"
 Received: from nmunfye-mobl1.gar.corp.intel.com (HELO localhost.localdomain)
 	([10.249.64.227])
-	by fmsmga008.fm.intel.com with ESMTP; 02 Jul 2018 16:00:30 -0700
+	by fmsmga008.fm.intel.com with ESMTP; 02 Jul 2018 16:00:34 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Tue,  3 Jul 2018 10:58:45 +1200
-Message-Id: <16698830f2cbf586cb3303b7e97dcfb526602204.1530569567.git.paul.eggleton@linux.intel.com>
+Date: Tue,  3 Jul 2018 10:58:46 +1200
+Message-Id: <93888694d62ebd1f85debf0c45e1b2851edade8a.1530569567.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1530569567.git.paul.eggleton@linux.intel.com>
 References: <cover.1530569567.git.paul.eggleton@linux.intel.com>
-Subject: [layerindex-web][PATCH 1/7] settings: allow disabling layer publishing emails
+Subject: [layerindex-web][PATCH 2/7] update_layer: drop debug message for deleting recipe file dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,109 +43,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jul 2018 23:00:50 -0000
+X-List-Received-Date: Mon, 02 Jul 2018 23:00:52 -0000
 
-If you're running a testing / internal instance then you really don't
-want to be emailing maintainers on publish, so provide a setting you can
-use to disable that.
+This was too noisy and not particularly useful.
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- layerindex/views.py | 66 +++++++++++++++++++++++----------------------
- settings.py         |  3 +++
- 2 files changed, 37 insertions(+), 32 deletions(-)
+ layerindex/update_layer.py | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/layerindex/views.py b/layerindex/views.py
-index a905c347..d02e4f91 100644
---- a/layerindex/views.py
-+++ b/layerindex/views.py
-@@ -259,38 +259,40 @@ def _check_url_branch(kwargs):
- def publish_view(request, name):
-     if not (request.user.is_authenticated() and request.user.has_perm('layerindex.publish_layer')):
-         raise PermissionDenied
--    layeritem = get_object_or_404(LayerItem, name=name)
--    layerbranch = get_object_or_404(LayerBranch, layer=layeritem)
--    layer_url = request.build_absolute_uri(reverse('layer_item', args=(layerbranch.branch, layeritem.name)))
--    maintainers = get_list_or_404(LayerMaintainer, layerbranch=layerbranch)
--    from_email = settings.SUBMIT_EMAIL_FROM
--    subjecttext = get_template('layerindex/publishemailsubject.txt')
--    bodytext = get_template('layerindex/publishemail.txt')
--    maintainer_names = [m.name for m in maintainers]
--    # find appropriate help contact
--    help_contact = None
--    for user in User.objects.all():
--        if user.username != 'root' and (user.is_staff or user.is_superuser) and user.is_active:
--            help_contact = user
--            break
--
--    # create subject from subject template
--    d = {
--        'layer_name': layeritem.name,
--        'site_name': request.META['HTTP_HOST'],
--    }
--    subject = subjecttext.render(d).rstrip()
--
--    #create body from body template
--    d = {
--        'maintainers': maintainer_names,
--        'layer_name': layeritem.name,
--        'layer_url': layer_url,
--        'help_contact': help_contact,
--    }
--    body = bodytext.render(d)
--
--    tasks.send_email.apply_async((subject, body, from_email, [m.email for m in maintainers]))
-+
-+    if getattr(settings, 'SEND_PUBLISH_EMAIL', True):
-+        layeritem = get_object_or_404(LayerItem, name=name)
-+        layerbranch = get_object_or_404(LayerBranch, layer=layeritem)
-+        layer_url = request.build_absolute_uri(reverse('layer_item', args=(layerbranch.branch, layeritem.name)))
-+        maintainers = get_list_or_404(LayerMaintainer, layerbranch=layerbranch)
-+        from_email = settings.SUBMIT_EMAIL_FROM
-+        subjecttext = get_template('layerindex/publishemailsubject.txt')
-+        bodytext = get_template('layerindex/publishemail.txt')
-+        maintainer_names = [m.name for m in maintainers]
-+        # find appropriate help contact
-+        help_contact = None
-+        for user in User.objects.all():
-+            if user.username != 'root' and (user.is_staff or user.is_superuser) and user.is_active:
-+                help_contact = user
-+                break
-+
-+        # create subject from subject template
-+        d = {
-+            'layer_name': layeritem.name,
-+            'site_name': request.META['HTTP_HOST'],
-+        }
-+        subject = subjecttext.render(d).rstrip()
-+
-+        #create body from body template
-+        d = {
-+            'maintainers': maintainer_names,
-+            'layer_name': layeritem.name,
-+            'layer_url': layer_url,
-+            'help_contact': help_contact,
-+        }
-+        body = bodytext.render(d)
-+
-+        tasks.send_email.apply_async((subject, body, from_email, [m.email for m in maintainers]))
+diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
+index bbfaba9a..018d7bcd 100644
+--- a/layerindex/update_layer.py
++++ b/layerindex/update_layer.py
+@@ -228,7 +228,6 @@ def update_recipe_file(tinfoil, data, path, recipe, layerdir_start, repodir, ski
+             recipedep.save()
  
-     return _statuschange(request, name, 'P')
+         for filedep in recipedeps_delete:
+-            logger.debug('%s: removing %s' % (recipe.layerbranch, filedep))
+             recipedeps.filter(path=filedep).delete()
  
-diff --git a/settings.py b/settings.py
-index c3075a5e..3d70aaa5 100644
---- a/settings.py
-+++ b/settings.py
-@@ -227,6 +227,9 @@ FORCE_REVIEW_HTTPS = False
- SUBMIT_EMAIL_FROM = 'noreply@example.com'
- SUBMIT_EMAIL_SUBJECT = 'OE Layerindex layer submission'
- 
-+# Send email to maintainer(s) when their layer is published
-+SEND_PUBLISH_EMAIL = True
-+
- # RabbitMQ settings
- RABBIT_BROKER = 'amqp://'
- RABBIT_BACKEND = 'rpc://'
+     except KeyboardInterrupt:
 -- 
 2.17.1
 
