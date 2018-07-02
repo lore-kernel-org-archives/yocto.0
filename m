@@ -1,26 +1,70 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <abhishekr@eximiusdesign.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D819E00929; Sun,  1 Jul 2018 21:35:54 -0700 (PDT)
+	id 8C1CAE00CFD; Sun,  1 Jul 2018 21:45:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=AC_DIV_BONANZA,BAYES_00,
+	DKIM_SIGNED,DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_NONE,WEIRD_PORT
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.215.48 listed in list.dnswl.org]
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1067E00791
-	for <yocto@yoctoproject.org>; Sun,  1 Jul 2018 21:35:52 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id ADFB584A5214
-	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 00:35:51 -0400 (EDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.0 AC_DIV_BONANZA RAW: Too many divs in a row... spammy template
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f48.google.com (mail-lf0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00845E0086E
+	for <yocto@yoctoproject.org>; Sun,  1 Jul 2018 21:45:50 -0700 (PDT)
+Received: by mail-lf0-f48.google.com with SMTP id n96-v6so10929145lfi.1
+	for <yocto@yoctoproject.org>; Sun, 01 Jul 2018 21:45:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=eximiusdesign-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=x4Zt09JlPoAsll570jb0dq51YuwOEDIxR7GPH12peV8=;
+	b=KMGiVJk3wv3jdz2SSDCTWWXksjdi/i3vG5pDXuMSn9TZgVrDsBVGsGl75GvsB9Rt/q
+	wNL/oa3koxxD7EldfXZTvrQu1/Q58Qni8HcziAD8kX7Ym2J2LbK/sS85G2bgSh6CbQeN
+	f98t1R2XKvOdiSFEGIGEwx8w8tWLjYmavhQkuCV1jdIq9Y38CPxbzHwbYKwsZcJDueOs
+	kXxOVvd5BEVT09eq3mx8QjePDmLCEI0TMxnO9APTeD7QR4q8VvoZBpMuUxgeCl+Yp0kj
+	pzQs+xNNemMEJuxSXe8UnU6XSwuz4vOAvqdVQAXWtrmJgBWX4r2dbW2AflYsZcA8ljOs
+	mQuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=x4Zt09JlPoAsll570jb0dq51YuwOEDIxR7GPH12peV8=;
+	b=hMpaoH53o6rwLRFj0D52q5ik7PSoagsV6hI3/94/Kg/csC7GzeeTygGvFI8zvXRm2W
+	dg8zvM29ccnMS17LV8L65A+az7+qcavTvjVOv0TzXAbScz0Q8rfJMIhZWiRtg7JeP+RH
+	AbKqtXw49nHuBvgbWn8QD3sJoU84OhclGP8L2Rjln4wF9op+q4FJwtPv1o438Hwb0WLi
+	P+1leEK8+UPn86VhMTbSRVJolBP/j1k9Ow+dxNkCFnxc4Ev0Ox7vNRYBd0Frf1CagGTL
+	khQ0LIgz8aBC6Wcf81+YFSG2gTCzErgMzdaBzhah1/P8COX9poTMBDEeKwC8b2yX08VL
+	qI3Q==
+X-Gm-Message-State: APt69E0TuC5D7UNFyAcOAmMx80zLfZwSD1yi8V2YkvB/lodEnKUhGX/z
+	kTGDRtpWGEliXHHG8vOKW6Um6GV9czc5NUh+rQoaLzwqXW9wNfJOPoN4NTUNAw43c+nhRhyPQLZ
+	xu0Ol9pnfpG1zjqY9XatWeQ86kA==
+X-Google-Smtp-Source: AAOMgpfcFE0X7p38Ihl464OyuLnkKSGw6+QsELwxwsjv5K7PAvGkkQJVx7G3iGYEkcFMHHaphjbTe3uS0mnoTaVnr1k=
+X-Received: by 2002:a19:41c5:: with SMTP id
+	o188-v6mr12496649lfa.100.1530506749979; 
+	Sun, 01 Jul 2018 21:45:49 -0700 (PDT)
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 02 Jul 2018 04:35:51 -0000
-Message-ID: <20180702043551.22821.78317@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Received: by 2002:a19:7412:0:0:0:0:0 with HTTP;
+	Sun, 1 Jul 2018 21:45:49 -0700 (PDT)
+In-Reply-To: <CALYWmf_s9+zUJUkPkjNjZETgJV4G4Zh_LLnrin_HkqXeyCeziQ@mail.gmail.com>
+References: <CALYWmf9Yd9iVHLmijQzYK-FmPYqt+x1pwG7=NE6JtDBN_fYJ2Q@mail.gmail.com>
+	<CAJTo0LYN6EFUQ3H-K0dO9hs=4L2m5-yRuTrocYN=AemayVFijg@mail.gmail.com>
+	<CALYWmf_s9+zUJUkPkjNjZETgJV4G4Zh_LLnrin_HkqXeyCeziQ@mail.gmail.com>
+From: Abhishek Kumar Rai <abhishekr@eximiusdesign.com>
+Date: Mon, 2 Jul 2018 10:15:49 +0530
+Message-ID: <CALYWmf-0-cfwQwM4FitPvjnmp3Jh1gChVzN+OFB44SGGEQi+3A@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Regarding Use the Latest LTP on Latest YOCTO build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,199 +76,417 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jul 2018 04:35:54 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 02 Jul 2018 04:45:52 -0000
+Content-Type: multipart/alternative; boundary="00000000000028c3e7056ffcdf48"
 
-This mail was sent out by Recipe reporting system.
+--00000000000028c3e7056ffcdf48
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hello Team,
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
-
-You can check the detail information at:
-
-http://recipes.yoctoproject.org/
-
-Package               Version          Upstream version      Maintainer           NoUpgradeReason
---------------------  ---------------  --------------------  -------------------  ------------------------------
-libgloss              3.0.0            3.0.0.20180226        Alejandro Hernandez
-newlib                3.0.0            3.0.0.20180226        Alejandro Hernandez
-usbutils              009              010                   Alexander Kanavin
-webkitgtk             2.20.2           2.20.3                Alexander Kanavin
-ca-certificates       20170717         20180409              Alexander Kanavin
-gdbm                  1.14.1           1.16                  Alexander Kanavin
-vala                  0.40.4           0.40.7                Alexander Kanavin
-createrepo-c          0.10.0+gitX      0.11.0                Alexander Kanavin
-dnf                   2.7.5            3.0.2                 Alexander Kanavin
-librepo               1.8.1            1.9.0                 Alexander Kanavin
-ffmpeg                4.0              4.0.1                 Alexander Kanavin
-icu                   61.1             62.1                  Alexander Kanavin
-btrfs-tools           4.16.1           4.17                  Alexander Kanavin
-procps                3.3.14           3.3.15                Alexander Kanavin
-psmisc                23.0             23.1                  Alexander Kanavin
-sysprof               3.26.1           3.28.1                Alexander Kanavin    Waiting for resolution of h...
-cantarell-fonts       0.0.24           0.0.25                Alexander Kanavin
-epiphany              3.28.1.1         3.28.3.1              Alexander Kanavin
-libdnf                0.11.1           0.15.2                Alexander Kanavin
-busybox               1.27.2           1.29.0                Andrej Valek
-apt                   1.2.24           1.6.2                 Aníbal Limón
-apt-native            1.2.24           1.6.2                 Aníbal Limón
-dpkg                  1.18.24          1.19.0.5              Aníbal Limón
-gst-examples          0.0.1+gitX       0.0.1-new-commits...  Anuj Mittal
-xf86-input-mouse      1.9.2            1.9.3                 Armin Kuster
-xf86-video-fbdev      0.4.4            0.5.0                 Armin Kuster
-nss                   3.37.1           3.38                  Armin Kuster
-bind                  9.10.6           9.13.1                Armin Kuster
-xserver-xorg          1.19.6           1.20.0                Armin Kuster
-linux-libc-headers    4.15.7           4.17.3                Bruce Ashfield
-connman               1.35             1.36                  Changhyeok Bae
-ethtool               4.16             4.17                  Changhyeok Bae
-iputils               s20161105        s20180629             Changhyeok Bae
-pciutils              3.5.6            3.6.0                 Chen Qi
-acl                   2.2.52           2.2.53                Chen Qi
-attr                  2.4.47           2.4.48                Chen Qi
-systemd-boot          237              239                   Chen Qi
-cups                  2.2.6            2.2.8                 Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-systemd               237              239                   Chen Qi
-bison                 3.0.4            3.0.5                 Chen Qi
-sed                   4.2.2            4.5                   Chen Qi
-shadow                4.2.1            4.6                   Chen Qi
-sysstat               11.7.3           11.7.4                Chen Qi
-coreutils             8.29             8.30                  Chen Qi
-lzop                  1.03             1.04                  Denys Dmytriyenko
-xz                    5.2.3            5.2.4                 Denys Dmytriyenko
-python3-dbus          1.2.6            1.2.8                 Derek Straka
-python-numpy          1.14.2           1.14.5                Derek Straka
-python3-pygobject     3.28.1           3.28.3                Derek Straka
-python3               3.5.5            3.7.0                 Derek Straka
-python                2.7.14           2.7.15                Derek Straka
-python3-git           2.1.8            2.1.10                Derek Straka
-python3-pip           9.0.3            10.0.1                Derek Straka
-python-setuptools     39.0.1           39.2.0                Derek Straka
-python3-numpy         1.14.2           1.14.5                Derek Straka
-python3-pycairo       1.15.6           1.17.0                Derek Straka
-python3-setuptools    39.0.1           39.2.0                Derek Straka
-python3-native        3.5.5            3.7.0                 Derek Straka
-python-native         2.7.14           2.7.15                Derek Straka
-acpica                20180508         20180629              Fathi Boudra
-gnupg                 2.2.5            2.2.8                 Hongxu Jia
-dhcp                  4.3.6            4.4.1                 Hongxu Jia
-man-db                2.8.2            2.8.3                 Hongxu Jia
-gpgme                 1.10.0           1.11.1                Hongxu Jia
-elfutils              0.170            0.173                 Hongxu Jia
-ncurses               6.1              6.1+20180630          Hongxu Jia
-man-pages             4.14             4.16                  Hongxu Jia
-help2man-native       1.47.5           1.47.6                Hongxu Jia
-libgcrypt             1.8.2            1.8.3                 Hongxu Jia
-llvm                  6.0              6.0-new-commits-a...  Khem Raj
-mpfr                  3.1.5            4.0.1                 Khem Raj
-re2c                  0.16             1.0.1                 Khem Raj
-go-native             1.10.2           1.10.3                Khem Raj
-go                    1.10.2           1.10.3                Khem Raj
-pango                 1.40.14          1.42.1                Maxin B. John
-piglit                1.0+gitrX        1.0-new-commits-a...  Maxin B. John
-libinput              1.11.0           1.11.1                Maxin B. John
-vulkan-demos          git              git-new-commits-a...  Maxin B. John
-perl                  5.24.1           5.28.0                Maxin B. John
-matchbox-terminal     0.1              0.2                   Maxin B. John
-puzzles               0.0+gitX         0.0-new-commits-a...  Maxin B. John
-shared-mime-info      1.9              1.10                  Maxin B. John
-ifupdown              0.8.16           0.8.33                Maxin B. John
-glib-networking       2.54.1           2.56.1                Maxin B. John
-libical               2.0.0            3.0.3                 Maxin B. John
-fontconfig            2.12.6           2.13.0                Maxin B. John
-vulkan                1.0.65.2         1.1.73.0              Maxin B. John
-gdk-pixbuf            2.36.11          2.36.12               Maxin B. John
-librsvg               2.40.20          2.42.5                Maxin B. John        Versions from 2.41.0 requir...
-pkgconf               1.4.2            1.5.1                 Maxin B. John
-sqlite3               3.23.1           3.24.0                Maxin B. John
-freetype              2.9              2.9.1                 Maxin B. John
-harfbuzz              1.7.5            1.8.1                 Maxin B. John
-perl-native           5.24.1           5.28.0                Maxin B. John
-systemtap-native      3.2              3.3                   No maintainer
-gcc-source-7.3.0      7.3.0            8.1.0                 No maintainer
-go-cross-canadian...  1.10.2           1.10.3                No maintainer
-go-cross-i586         1.10.2           1.10.3                No maintainer
-go-crosssdk-x86_64    1.10.2           1.10.3                No maintainer
-go-runtime            1.10.2           1.10.3                No maintainer
-mesa                  18.1.2           18.1.3                Otavio Salvador
-cmake                 3.10.3           3.11.4                Otavio Salvador
-cmake-native          3.10.3           3.11.4                Otavio Salvador
-mesa-gl               18.1.2           18.1.3                Otavio Salvador
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Paul Eggleton
-build-appliance-i...  15.0.0           19.0.0                Richard Purdie
-lttng-tools           2.9.5            2.10.4                Richard Purdie
-gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
-nfs-utils             2.1.1            2.3.2                 Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-strace                4.22             4.23                  Robert Yang
-automake              1.15.1           1.16.1                Robert Yang
-e2fsprogs             1.43.8           1.44.2                Robert Yang
-ccache                3.3.5            3.4.2                 Robert Yang
-base-passwd           3.5.29           3.5.45                Ross Burton          Version 3.5.38 requires cde...
-tcf-agent             1.4.0+gitX       1.7.0                 Ross Burton
-bc                    1.06             1.07.1                Ross Burton
-lsbinitscripts        9.79             10.00.0               Ross Burton
-sysvinit              2.88dsf          2.90                  Ross Burton
-pulseaudio            11.1             12.0                  Tanu Kaskinen
-systemtap-uprobes     3.2              3.3                   Victor Kamensky
-systemtap             3.2              3.3                   Victor Kamensky
-chkconfig             1.3.58           1.8                   Yi Zhao              Version 1.5 requires selinux
-
-Upgradable count: 120
-Upgradable total count: 124
-
-The based commit is:
-
-commit 6f8f984ba363f764e83290b972ec31a90aad1603
-Author: Arsalan H. Awan <Arsalan_Awan@mentor.com>
-Date:   Thu Jun 28 19:16:36 2018 +0500
-
-    initrdscripts/init-live.sh: fix mounts w/ spaces fail to move to real rootfs
-    
-    When there are spaces in the mount points of devices e.g.:
-    
-     a partition mounted at "/run/media/My Root Partition-sda1",
-    
-    the initrd fails to move such mount points over to the
-    corresponding directories at /media under the real root filesystem,
-    and the mount points would appear at the same location as they were
-    mounted on when detected by initrd, for example:
-     here: "/run/media/My Root Partition-sda1"
-     instead of here: "/media/My Root Partition-sda1"
-    
-    This causes issues such as:
-    
-      * The disks/partitions cannot be formated with any filesystem
-        using e.g. mkfs.ext4 or mke2fs in general. When tried to do so
-        by making sure the device is not mounted, it failed with
-        errors such as:
-    
-        > /dev/sda1 is apparently in use by the system; will not make a
-          filesystem here!
-        > /dev/sda1: Device or resource busy while setting up superblock
-    
-      * The read/write operations become extremely slow. e.g. Under testing,
-        it took approx. 2 hours just to copy 700 MB of data to the partition,
-        and it took more than 40 minutes to delete that data from it.
-        Same operations took under 5 minutes on a partition that had no
-        spaces in its mount point (or that was successfully moved to real
-        root by initrd and appeared under /media instead of /run/media).
-    
-    This commit fixes such issues by quoting the arguments of failing mount
-    move commands and by parsing OCT or HEX encoded special characters
-    such as spaces to ASCII charecters in the mount points as kernel
-    populates the procfs like so.
-    
-    Signed-off-by: Arsalan H. Awan <Arsalan_Awan@mentor.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
+Could you please provide your suggestion regarding above issue.
 
 
+On Thu, Jun 28, 2018 at 1:05 PM, Abhishek Kumar Rai <
+abhishekr@eximiusdesign.com> wrote:
+
+> Hi Burton Ross,
+> Thanks for your prompt reply.
+>
+> I have some doubt please clarify
+>  I can use the latest release also but i am getting below error in versio=
+n
+> 2.3
+> {{{
+>
+>      ltp-20170116-r0 do_compile: NOTE: ltp: compiling from external sourc=
+e
+> tree ~/build/https:/github.com/linux-test-project/ltp.git
+>      ERROR: ltp-20170116-r0 do_compile: oe_runmake failed
+>      ERROR: ltp-20170116-r0 do_compile: Function failed: do_compile (log
+> file is located at ~/build/tmp/work/cortexa9hf-neon-agl-linux-gnueabi/ltp=
+/20170116-
+> r0/temp
+>      /log.do_compile.161006)
+>      ERROR: Logfile of failure stored in: ~/build//tmp/work/cortexa9hf-ne=
+on-agl-
+> linux-gnueabi/ltp/20170116-r0/temp/log.do_compile.161006
+>      Log data follows:
+>      | DEBUG: Executing python function externalsrc_compile_prefunc
+>      | NOTE: ltp: compiling from external source tree~/build//https:/
+> github.com/linux-test-project/ltp.git
+>      | DEBUG: Python function externalsrc_compile_prefunc finished
+>      | DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
+> 'arm-32', 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi=
+',
+> 'common']
+>      | DEBUG: Executing shell function do_compile
+>      | NOTE: make -j 16
+>      | ERROR: oe_runmake failed
+>      | make: Entering directory '~/build/https:/github.com/linux-test-
+> project/ltp.git/testcases/kernel'
+>      | make: 'include/linux_syscall_numbers.h' is up to date.
+>      | make: Leaving directory '~/build/https:/github.com/linux-test-
+> project/ltp.git/testcases/kernel'
+>      | ~/build/https:/github.com/linux-test- project/ltp.git/include/mk/
+> automake.mk:108: *** target pattern contains no '%'.  Stop.
+>      | ERROR: Function failed: do_compile (log file is located at
+> ~/build/tmp/work/cortexa9hf-neon-agl-linux-gnueabi/ltp/20170116-
+> r0/temp/log.do_compile.161006)
+>
+> }}}
+> Note :
+>         $ bitbake --version
+>            BitBake Build Tool Core version 1.34.0
+> Regards,
+> Abhishek
+>
+> On Thu, Jun 28, 2018 at 12:49 PM, Burton, Ross <ross.burton@intel.com>
+> wrote:
+>
+>> Just so you know, 2.3 is a year old.  2.5 is the latest release.
+>>
+>> On 28 June 2018 at 06:59, Abhishek Kumar Rai <abhishekr@eximiusdesign.co=
+m
+>> > wrote:
+>>
+>>> Hi Team,
+>>>
+>>> I am planning to use the LTP latest version on YOCTO latest vesion.
+>>> It seems that the earlier YOCTO versions are released with LTP and
+>>> latest version are not.
+>>> Found the below difficulties so far:
+>>> 1. Latest LTP version(20180118) suitable for old gcc version(4.8).
+>>> 2. But at the same time, latest version of YOCTO build(2.3) supporting
+>>> latest
+>>> gcc version(6.3) only.
+>>>
+>>> so we want to use a latest LTP version(20180118) with latest YOCTO
+>>> build(2.3) which has latest gcc version(6.3) .
+>>>
+>>> Please share your valuable inputs with me to achieve the same.
+>>>
+>>> Thanks & Regards,
+>>> Abhishek Rai
+>>>
+>>> The information contained in this e-mail message (including any
+>>>
+>>> attachments) may be confidential, proprietary, privileged, or otherwise
+>>>
+>>> exempt from disclosure under applicable laws. It is intended to be
+>>>
+>>> conveyed only to the designated recipient(s). Any use, dissemination,
+>>>
+>>> distribution, printing, retaining or copying of this e-mail (including
+>>> its
+>>>
+>>> attachments) by unintended recipient(s) is strictly prohibited and may
+>>>
+>>> be unlawful. If you are not an intended recipient of this e-mail, or
+>>> believe
+>>>
+>>> that you have received this e-mail in error, please notify the sender
+>>>
+>>> immediately (by replying to this e-mail), delete any and all copies of
+>>>
+>>> this e-mail (including any attachments) from your system, and do not
+>>>
+>>> disclose the content of this e-mail to any other person. Thank you for
+>>> your cooperation.
+>>>
+>>> *This e-mail message (including any attachments) may be confidential,
+>>> proprietary, privileged, or otherwise exempt from disclosure under
+>>> applicable laws. If you are not an intended recipient, please delete th=
+is
+>>> message. Thank you.*
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>>
+>>
+>
+
+--=20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The information contained in this e-mail message (including=20
+any=C2=A0
+
+
+attachments) may be confidential, proprietary, privileged, or=20
+otherwise
+
+
+exempt from disclosure under applicable laws. It is intended to=20
+be=C2=A0
+
+
+conveyed only to the designated recipient(s). Any use, dissemination,=C2=A0
+
+
+
+distribution, printing, retaining or copying of this e-mail (including=20
+its=C2=A0
+
+
+attachments) by unintended recipient(s) is strictly prohibited and=20
+may=C2=A0
+
+
+be unlawful. If you are not an intended recipient of this e-mail, or=20
+believe=C2=A0
+
+
+that you have received this e-mail in error, please notify the=20
+sender=C2=A0
+
+
+immediately (by replying to this e-mail), delete any and all=20
+copies of=C2=A0
+
+
+this e-mail (including any attachments) from your system, and=20
+do not
+
+
+disclose the content of this e-mail to any other person. Thank you=20
+for your cooperation.
+
+
+
+
+
+
+--=20
+_This e-mail message (including any=C2=A0attachments) may be confidential,=
+=20
+proprietary, privileged, or otherwise=C2=A0exempt from disclosure under=20
+applicable laws. If you are not an intended recipient, please delete this=
+=20
+message. Thank you.
+_
+
+--00000000000028c3e7056ffcdf48
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div>Hello Team,<br><br></div>Could you please p=
+rovide your suggestion regarding above issue.<br><br></div></div></div><div=
+ class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, Jun 28, 2018 =
+at 1:05 PM, Abhishek Kumar Rai <span dir=3D"ltr">&lt;<a href=3D"mailto:abhi=
+shekr@eximiusdesign.com" target=3D"_blank">abhishekr@eximiusdesign.com</a>&=
+gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
+0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><h3 cl=
+ass=3D"m_-5452446206379023923gmail-m_-2286539447084380405gmail-western" sty=
+le=3D"font-weight:normal">Hi Burton Ross,</h3>
+
+<div>Thanks for your prompt reply.<br><br> I have some doubt please clarify=
+ </div><div>=C2=A0I can use the latest release also but i am getting below =
+error in version 2.3<br></div><div>{{{<br><p style=3D"margin-bottom:0in;lin=
+e-height:100%">=C2=A0=C2=A0 =C2=A0	ltp-20170116-r0
+do_compile: NOTE: ltp: compiling from external source tree ~/build/https:/<=
+a href=3D"http://github.com/linux-test-project/ltp.git" target=3D"_blank">g=
+ithub.com/<wbr>linux-test-project/ltp.git</a><br>=C2=A0=C2=A0=C2=A0=C2=A0
+	ERROR:
+ltp-20170116-r0 do_compile: oe_runmake failed<br>=C2=A0=C2=A0=C2=A0=C2=A0
+	ERROR:
+ltp-20170116-r0 do_compile: Function failed: do_compile (log file is
+located at ~/build/tmp/work/cortexa9hf-<wbr>neon-agl-linux-gnueabi/ltp/<wbr=
+>20170116-		r0/temp<br>=C2=A0=C2=A0=C2=A0=C2=A0 /log.do_compile.161006)<br>=
+=C2=A0=C2=A0=C2=A0=C2=A0 ERROR:
+Logfile of failure stored in: ~/build//tmp/work/cortexa9hf-<wbr>neon-agl-	l=
+inux-gnueabi/ltp/20170116-r0/<wbr>temp/log.do_compile.161006<br>=C2=A0=C2=
+=A0=C2=A0=C2=A0
+	Log
+data follows:<br>=C2=A0=C2=A0=C2=A0=C2=A0
+	| DEBUG: Executing python function
+externalsrc_compile_prefunc<br>=C2=A0=C2=A0=C2=A0=C2=A0
+	| NOTE: ltp: compiling from
+external source tree~/build//https:/<a href=3D"http://github.com/linux-test=
+-project/ltp.git" target=3D"_blank">github.<wbr>com/linux-test-project/ltp.=
+git</a><br>=C2=A0=C2=A0=C2=A0=C2=A0
+	|
+DEBUG: Python function externalsrc_compile_prefunc finished<br>=C2=A0=C2=A0=
+=C2=A0=C2=A0
+	|
+DEBUG: SITE files [&#39;endian-little&#39;, &#39;bit-32&#39;, &#39;arm-comm=
+on&#39;, &#39;arm-32&#39;,
+&#39;common-linux&#39;, 	&#39;common-glibc&#39;, &#39;arm-linux&#39;, &#39;=
+arm-linux-gnueabi&#39;,
+&#39;common&#39;]<br>=C2=A0=C2=A0=C2=A0=C2=A0
+	| DEBUG: Executing shell function do_compile<br>=C2=A0=C2=A0=C2=A0=C2=A0
+	|
+NOTE: make -j 16<br>=C2=A0=C2=A0=C2=A0=C2=A0
+	| ERROR: oe_runmake failed<br>=C2=A0=C2=A0=C2=A0=C2=A0 | make:
+Entering directory
+&#39;~/build/https:/<a href=3D"http://github.com/linux-test-" target=3D"_bl=
+ank">github.com/<wbr>linux-test-</a>	project/ltp.git/testcases/kern<wbr>el&=
+#39;<br>=C2=A0=C2=A0=C2=A0=C2=A0
+	|
+make: &#39;include/linux_syscall_numbers<wbr>.h&#39; is up to date.<br>=C2=
+=A0=C2=A0=C2=A0=C2=A0 | make:
+Leaving directory
+&#39;~/build/https:/<a href=3D"http://github.com/linux-test-" target=3D"_bl=
+ank">github.com/<wbr>linux-test-</a>	project/ltp.git/testcases/kern<wbr>el&=
+#39;<br>=C2=A0=C2=A0=C2=A0=C2=A0 | ~/build/https:/<a href=3D"http://github.=
+com/linux-test-" target=3D"_blank">github.com/<wbr>linux-test-</a>	project/=
+ltp.git/include/mk/<a href=3D"http://automake.mk:108" target=3D"_blank">aut=
+<wbr>omake.mk:108</a>:
+*** target pattern contains no &#39;%&#39;.=C2=A0 Stop.<br>=C2=A0=C2=A0=C2=
+=A0=C2=A0
+	| ERROR:
+Function failed: do_compile (log file is located at ~/build/tmp/work/cortex=
+a9hf-<wbr>neon-agl-linux-gnueabi/ltp/<wbr>20170116-	r0/temp/log.do_compile.=
+161006)</p>
+
+<br>}}}<br></div><div>Note : <br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ $ bitbake --version<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 BitBake Build Tool Core version 1.34.0<br></div><div>Regards,<br>=
+</div>Abhishek</div><div class=3D"HOEnZb"><div class=3D"h5"><div class=3D"g=
+mail_extra"><br><div class=3D"gmail_quote">On Thu, Jun 28, 2018 at 12:49 PM=
+, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.co=
+m" target=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
+solid;padding-left:1ex"><div dir=3D"ltr">Just so you know, 2.3 is a year ol=
+d. =C2=A02.5 is the latest release.</div><div class=3D"gmail_extra"><br><di=
+v class=3D"gmail_quote"><div><div class=3D"m_-5452446206379023923h5">On 28 =
+June 2018 at 06:59, Abhishek Kumar Rai <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:abhishekr@eximiusdesign.com" target=3D"_blank">abhishekr@eximiusdesign.=
+com</a>&gt;</span> wrote:<br></div></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><di=
+v><div class=3D"m_-5452446206379023923h5"><div dir=3D"ltr"><div><div><div><=
+div><div><div><div><div><div><div><div>Hi Team,<br><br></div>I am planning =
+to use the LTP latest version on YOCTO latest vesion.<br></div>It seems tha=
+t the earlier YOCTO versions are released with LTP and <br></div>latest ver=
+sion are not.<br></div>Found the below difficulties so far:<br></div>1. Lat=
+est LTP version(20180118) suitable for old gcc version(4.8).<br></div>2. Bu=
+t at the same time, latest version of YOCTO build(2.3) supporting latest<br=
+></div>gcc version(6.3) only.<br>=C2=A0 <br></div>so we want to use a lates=
+t LTP version(20180118) with latest YOCTO build(2.3) which has latest gcc v=
+ersion(6.3) .<br><br></div>Please share your valuable inputs with me to ach=
+ieve the same.<br><br></div>Thanks &amp; Regards,<br></div>Abhishek Rai</di=
+v>
+
+<br>
+
+
+
+
+
+
+
+
+</div></div><table cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr>
+<td valign=3D"middle">
+<p><span>The information contained in this e-mail message (including any=C2=
+=A0</span></p>
+<p><span>attachments) may be confidential, proprietary, privileged, or othe=
+rwise</span></p>
+<p><span>exempt from disclosure under applicable laws. It is intended to be=
+=C2=A0</span></p>
+<p><span>conveyed only to the designated recipient(s). Any use, disseminati=
+on,=C2=A0</span></p>
+<p><span>distribution, printing, retaining or copying of this e-mail (inclu=
+ding its=C2=A0</span></p>
+<p><span>attachments) by unintended recipient(s) is strictly prohibited and=
+ may=C2=A0</span></p>
+<p><span>be unlawful. If you are not an intended recipient of this e-mail, =
+or believe=C2=A0</span></p>
+<p><span>that you have received this e-mail in error, please notify the sen=
+der=C2=A0</span></p>
+<p><span>immediately (by replying to this e-mail), delete any and all copie=
+s of=C2=A0</span></p>
+<p><span>this e-mail (including any attachments) from your system, and do n=
+ot</span></p>
+<p><span>disclose the content of this e-mail to any other person. Thank you=
+ for your cooperation.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<img><i style=3D"font-family:Calibri;font-size:14px"><span style=3D"font-si=
+ze:10pt">This e-mail message (including any=C2=A0</span>attachments) may be=
+ confidential, proprietary, privileged, or otherwise=C2=A0exempt from discl=
+osure under applicable laws. If you are not an intended recipient, please d=
+elete this message. Thank you.</i><span class=3D"m_-5452446206379023923HOEn=
+Zb"><font color=3D"#888888"><br style=3D"font-family:Calibri;font-size:14px=
+"><br>-- <br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
+br>
+<br></font></span></blockquote></div><br></div>
+</blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+
+<br>
+
+
+
+
+
+
+
+
+<table cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr>
+<td valign=3D"middle">
+<p><span>The information contained in this e-mail message (including any=C2=
+=A0</span></p>
+<p><span>attachments) may be confidential, proprietary, privileged, or othe=
+rwise</span></p>
+<p><span>exempt from disclosure under applicable laws. It is intended to be=
+=C2=A0</span></p>
+<p><span>conveyed only to the designated recipient(s). Any use, disseminati=
+on,=C2=A0</span></p>
+<p><span>distribution, printing, retaining or copying of this e-mail (inclu=
+ding its=C2=A0</span></p>
+<p><span>attachments) by unintended recipient(s) is strictly prohibited and=
+ may=C2=A0</span></p>
+<p><span>be unlawful. If you are not an intended recipient of this e-mail, =
+or believe=C2=A0</span></p>
+<p><span>that you have received this e-mail in error, please notify the sen=
+der=C2=A0</span></p>
+<p><span>immediately (by replying to this e-mail), delete any and all copie=
+s of=C2=A0</span></p>
+<p><span>this e-mail (including any attachments) from your system, and do n=
+ot</span></p>
+<p><span>disclose the content of this e-mail to any other person. Thank you=
+ for your cooperation.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<img><i style=3D"font-family:Calibri;font-size:14px"><span style=3D"font-si=
+ze:10pt">This e-mail message (including any=C2=A0</span>attachments) may be=
+ confidential, proprietary, privileged, or otherwise=C2=A0exempt from discl=
+osure under applicable laws. If you are not an intended recipient, please d=
+elete this message. Thank you.</i><br style=3D"font-family:Calibri;font-siz=
+e:14px">
+
+--00000000000028c3e7056ffcdf48--
