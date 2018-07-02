@@ -1,119 +1,68 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <prvs=0721de6c26=mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1236E01382; Mon,  2 Jul 2018 13:14:55 -0700 (PDT)
+	id 17649E01089; Mon,  2 Jul 2018 14:16:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.66 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [95.211.2.203 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl0-f66.google.com (mail-pl0-f66.google.com
-	[209.85.160.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95FABE01380
-	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 13:14:54 -0700 (PDT)
-Received: by mail-pl0-f66.google.com with SMTP id w8-v6so8454247ply.8
-	for <yocto@yoctoproject.org>; Mon, 02 Jul 2018 13:14:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=te+T+TK6oGeYW8JxpLo5M5aUeqqxmVW0ZsRFB7Z9A3s=;
-	b=Ws1Cjq9kj8RzThHmosYKK/+RrLgbLHSUvTfCCtUd7xA3k5UVnApaQcgVXPcNlnFYHU
-	tJiGRLaM8PnhNAXEfbOmM7iZotegU4ExxRhFT/3WJzfisTJR0GBLizS09v/ZbatUrUWa
-	yyRMe9Zess9fBUlqQiAGwGtHuFoQIxfdzU2UQqLVv2lJ6WRc27bvuPotoXlwPob6KtU/
-	Bg1b2qBobZwVgjUSFXADlillirHBmK5xOwdgEL1d/ThR4BIONOLxdiFVBTyLZRi/Vvh4
-	xxtz+IyIXELLkKkv8UTuFl0HO6dKhEPjizT7rZDrLA4nzwd6ljZmMIs+8tKld0g+zm0n
-	0Fag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-transfer-encoding:content-language;
-	bh=te+T+TK6oGeYW8JxpLo5M5aUeqqxmVW0ZsRFB7Z9A3s=;
-	b=aAqEwS1EgPwB9gQ8/mzVfTSKK7GF667pkaGteICiq9xQArkaHn/4VHfpx4ZhmMfQPI
-	Kws4PnTJuc1noVZiqwFUrKamW40FCW4GUH3+DtKQeo/HLYEmrowWQdv0pA9c6pipEuNK
-	PvkZEuqT4vzT/PiHEHX+91+Eaf0WPiLulumAVZhzeLtjUJvsQoKebnSq1bUoPxRma2RJ
-	ogc0/lwKYn6QOKO0jHmRZXjwRbdio1b22ZUrcHCCToBaoRxRXbZBABwOZWtizwB2+PsN
-	EmNzmxrWpH/PixAokf8pfW3SR67ljJ7kOgna6egxplpUCHzq3BQxU2K240e4jAKfPeBP
-	1RRQ==
-X-Gm-Message-State: APt69E1iGPzaicDpuXC7kw9Q009Czt45bjYI+2APcQd6YmiupF/9z795
-	Onlak24kRuYS+MSDOrOTIiHPxA==
-X-Google-Smtp-Source: ADUXVKIxIDdcAcGF2WOVdGf+h3/p6wMVFiHyhq0OXhrfBQKLT3Ken4MhDL2zvNJZ09GD4fj66Oft4Q==
-X-Received: by 2002:a17:902:758e:: with SMTP id
-	j14-v6mr26634807pll.160.1530562493816; 
-	Mon, 02 Jul 2018 13:14:53 -0700 (PDT)
-Received: from ?IPv6:2601:202:4000:1184:2428:17ac:bf67:b172?
-	([2601:202:4000:1184:2428:17ac:bf67:b172])
-	by smtp.gmail.com with ESMTPSA id
-	v15-v6sm36832272pfk.12.2018.07.02.13.14.52
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 02 Jul 2018 13:14:53 -0700 (PDT)
-To: Changqing Li <changqing.li@windriver.com>, yocto@yoctoproject.org
-References: <1530076229-46216-1-git-send-email-changqing.li@windriver.com>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	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
-	8CS2NxU=
-Message-ID: <5e6a9c36-7d2d-1908-9090-be133eab3570@gmail.com>
-Date: Mon, 2 Jul 2018 13:14:52 -0700
+X-Greylist: delayed 35741 seconds by postgrey-1.32 at yocto-www;
+	Mon, 02 Jul 2018 14:16:48 PDT
+Received: from mx6-out12.antispamcloud.com (mx6-out12.antispamcloud.com
+	[95.211.2.203])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3F8BE0080A
+	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 14:16:48 -0700 (PDT)
+Received: from [37.74.225.131] (helo=TOP-EX01.TOPIC.LOCAL)
+	by mx64.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
+	(Exim 4.89) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1fZwtF-0006TX-MM
+	for yocto@yoctoproject.org; Mon, 02 Jul 2018 13:21:06 +0200
+Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
+	(192.168.10.102) with Microsoft SMTP Server id 14.3.361.1;
+	Mon, 2 Jul 2018 13:21:04 +0200
+To: <yocto@yoctoproject.org>
+References: <CAJw2sSBnJWCWV84FDV=L4JX6EQg80Z-HvMAOnkCwKXaZboZCuQ@mail.gmail.com>
+	<CAJw2sSDJOKV-aXrUEjmHGvQ7NxPmnMKgJn3njY_hAEka4HGrQg@mail.gmail.com>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <12bc4741-afe5-c0e0-abd0-f9483be306df@topic.nl>
+Date: Mon, 2 Jul 2018 13:21:03 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.8.0
 MIME-Version: 1.0
-In-Reply-To: <1530076229-46216-1-git-send-email-changqing.li@windriver.com>
-Subject: Re: [PATCH] samhain: correct service status
+In-Reply-To: <CAJw2sSDJOKV-aXrUEjmHGvQ7NxPmnMKgJn3njY_hAEka4HGrQg@mail.gmail.com>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Originating-IP: 37.74.225.131
+X-AntiSpamCloud-Domain: topic.nl
+X-AntiSpamCloud-Username: 37.74.225.128/28
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=37.74.225.128/28@topic.nl
+X-AntiSpamCloud-Outgoing-Class: unsure
+X-AntiSpamCloud-Outgoing-Evidence: Combined (0.39)
+X-Recommended-Action: accept
+X-Filter-ID: EX5BVjFpneJeBchSMxfU5na9dIrEnTJ5iW6feKcQskt602E9L7XzfQH6nu9C/Fh9KJzpNe6xgvOx
+	q3u0UDjvO6o33k7ex0aJilIfU+9klVrmcwoElHgcIN3IBKCALItii/77mVkkLnpxqOrZwNHqf9pE
+	I7O5e2ARZxxo/Ye/5CVQyacT2UA9FxLvxR5esQOY/yox/64M9sssD3rtPzwyOVYFvf25LVONYbYi
+	fH5OzZBcL+MdujCjU5iV47di8pZymqZ9l5BbLgn5uBWKsF5sXv6uW3BB9i/rD4I2O09txq7iTzj+
+	/BOqg7SFB7Og72Wa0TyXe6jsMXnTy/o9BuCfMU0N8VsfwEwgrGZ4g+CwipxU9luQrU+8/8qthi+0
+	Jd/WC1iHQdTyKl6V4X8eYMOTQT/8U8jGWZSIp3MkcCdYxtmQ925D5y2rV05l1KzUZfXwXSkUN9YO
+	FVKaiUNJUFPD/NY4BNO+cb5BQJx+tKzoVlxXU2LhVNPGXzR4wPhpC4sYe3KKC/am0SSdnvIEkFKi
+	Cahg+1A6gSzKLyn/BYWKbfH74O4hBSz/kkmPgL+fgIguMHfOEvSInHnrbahJGL8cw9CF9LeOAefq
+	UBSpGAbUEY7ze5vg+28xHmkrcwxA7rSm9msNLhj3JMwwUQbkKqoNClzlkzXu1dw0WcBov4OS/MA+
+	n0GI+vic4IKyFWgs/C2Q92PNDpgLsd6Ddd/s7VM53tdnPuxFIxFtmUUsBociIOC8NerMo4qUhIZK
+	iu2YtnpN2Rz1pPOUS4X93420HcNhjgk4NWWutrsCpCDShSb5W9QEaFrgCvBoVJdxi+eW4aEACnGS
+	Lr4ok5YT+YirCnMR0fGq+LDvZGJq+/55nIT0fRvptqX8nVoZKzdBjfrUqNEbJ4hvzMdfMIdvfTVQ
+	5z75sPLd14/y82ebPziYNS9mrGdRT5rWFD8BAm2aL++pZqMfqTeNwRe8o7J9V+BIuhdSMfY4ocfm
+	Wv3Fe9Iziczdq+A=
+X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
+Subject: Re: Basehash value changed issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -125,41 +74,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jul 2018 20:14:55 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Mon, 02 Jul 2018 21:16:50 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: nl
+Content-Transfer-Encoding: quoted-printable
+
+=EF=BB=BFThe simplest (and probably preferred) way to fix would be to get r=
+id of TIME=20
+usage from that recipe. Parsing the recipe twice should yield the same resu=
+lt=20
+and your trouble would be over.
+
+
+On 02-07-18 07:27, techi eth wrote:
+> Hi,
+>=20
+> Can anybody give me hint over below issue.
+>=20
+> Thanks
+>=20
+>=20
+
+Kind regards,
+
+Mike Looijmans
+System Expert
+
+TOPIC Products
+Materiaalweg 4, NL-5681 RJ Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
 
 
 
-On 06/26/2018 10:10 PM, Changqing Li wrote:
-> status get by "systemctl status samhain" is not correct.
-> It is active(exited) now. but actually, there is a dameon
-> running, it should be active(running). so change Type of
-> servive.
->
-> Signed-off-by: Changqing Li <changqing.li@windriver.com>
-
-merged,
-
-thanks
-- armin
-> ---
->  recipes-security/samhain/files/samhain.service | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/recipes-security/samhain/files/samhain.service b/recipes-security/samhain/files/samhain.service
-> index e6dc3b9..e4f216a 100644
-> --- a/recipes-security/samhain/files/samhain.service
-> +++ b/recipes-security/samhain/files/samhain.service
-> @@ -3,7 +3,7 @@ Description=Samhain @MODE_NAME@ Daemon
->  After=syslog.target network.target
->  
->  [Service]
-> -Type=oneshot
-> +Type=forking
->  RemainAfterExit=yes
->  ExecStart=@LIBDIR@/@SAMHAIN_HELPER@ start
->  ExecStop=@LIBDIR@/@SAMHAIN_HELPER@ stop
+---------- Forwarded message ----------
+> From: *techi eth* <techieth@gmail.com <mailto:techieth@gmail.com>>
+> Date: Thu, Jun 21, 2018 at 6:30 PM
+> Subject: Basehash value changed issue
+> To: yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>=20
+>=20
+> Hi,
+>=20
+> I am facing issue with basehash value changed while building image on one=
+ of=20
+> my test board (Ref of beagle bone) on morty branch.
+>=20
+> Error :
+> gateway.bb.do_rootfs, the basehash value changed from=20
+> e685a429b8df6dcff60063f087d425ee to 3f98a102f48ea8722835ad0d65bfbc1f. The=
+=20
+> metadata is not deterministic and this needs to be fixed
+>=20
+> When i run bitbake-diffsigs -t gateway do_rootfs
+> I found below O/P.
+> basehash changed from 8e6b9498c9704590bd016491efcbf9f9 to=20
+> 3f98a102f48ea8722835ad0d65bfbc1f
+> Variable TIME value changed from '112854' to '115745'
+>=20
+> After googling I found that TIME need's to be added in vardepsexclude lis=
+t.
+> I added below in conf/distro/machine.conf but error persist.
+> do_rootfs[vardepsexclude] =3D "TIME DATE DATETIME"
+>=20
+> Please suggest me where & what has to be added to come out of issue.
+>=20
+>=20
+>=20
 
 
