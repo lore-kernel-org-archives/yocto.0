@@ -1,6 +1,6 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA784E00DF8; Mon,  2 Jul 2018 16:00:53 -0700 (PDT)
+	id 0575FE00DFE; Mon,  2 Jul 2018 16:00:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,26 +12,26 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE4BFE00D3D
-	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 16:00:51 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBAEAE00D3D
+	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 16:00:54 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
 	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	02 Jul 2018 16:00:51 -0700
+	02 Jul 2018 16:00:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,300,1526367600"; d="scan'208";a="52165138"
+X-IronPort-AV: E=Sophos;i="5.51,300,1526367600"; d="scan'208";a="52165180"
 Received: from nmunfye-mobl1.gar.corp.intel.com (HELO localhost.localdomain)
 	([10.249.64.227])
-	by fmsmga008.fm.intel.com with ESMTP; 02 Jul 2018 16:00:39 -0700
+	by fmsmga008.fm.intel.com with ESMTP; 02 Jul 2018 16:00:49 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Tue,  3 Jul 2018 10:58:47 +1200
-Message-Id: <d4b8009425d566c10591c480f74c2502c959a264.1530569567.git.paul.eggleton@linux.intel.com>
+Date: Tue,  3 Jul 2018 10:58:49 +1200
+Message-Id: <2774b95ad7f971714498b5d35885225af873da03.1530569567.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1530569567.git.paul.eggleton@linux.intel.com>
 References: <cover.1530569567.git.paul.eggleton@linux.intel.com>
-Subject: [layerindex-web][PATCH 3/7] update_layer: avoid errors on modified & renamed files
+Subject: [layerindex-web][PATCH 5/7] update: ignore recommends when ordering layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,70 +43,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jul 2018 23:00:53 -0000
+X-List-Received-Date: Mon, 02 Jul 2018 23:00:56 -0000
 
-If a file is modified and renamed it will show up in both
-iter_change_type('M') and iter_change_type('R'), however naturally the
-file that will exist will be the b path and not the a one, so we should
-be looking at the b path or we will get errors.
-
-FYI you can reproduce this with OE-Core (in a scratch database) using
-the following procedure:
-1) (in the OE-Core layer directory):
-   git checkout 59285b324f6d9ed270b0bef209ef5da22a620a83
-2) update.py -l openembedded-core -b master -x --nofetch -r --fullreload
-3) (in the OE-Core layer directory):
-   git checkout 086308aa2a5e332de6f00ed397c4a55d132f158f
-4) update.py -l openembedded-core -b master -x --nofetch
-
-Without this change you'll see the following error:
-
-ERROR: Unable to read /opt/layerindex/layers/git___git_openembedded_org_openembedded-core/meta/recipes-devtools/python-numpy/python-numpy_1.13.1.bb: Traceback (most recent call last):
-  File "/opt/layerindex/layers/bitbake/lib/bb/command.py", line 84, in runCommand
-    result = command_method(self, commandline)
-  File "/opt/layerindex/layers/bitbake/lib/bb/command.py", line 568, in parseRecipeFile
-    envdata = bb.cache.parse_recipe(config_data, fn, appendfiles)['']
-  File "/opt/layerindex/layers/bitbake/lib/bb/cache.py", line 315, in parse_recipe
-    bb_data = bb.parse.handle(bbfile, bb_data)
-  File "/opt/layerindex/layers/bitbake/lib/bb/parse/__init__.py", line 117, in handle
-    return h['handle'](fn, data, include)
-  File "/opt/layerindex/layers/bitbake/lib/bb/parse/parse_py/BBHandler.py", line 132, in handle
-    abs_fn = resolve_file(fn, d)
-  File "/opt/layerindex/layers/bitbake/lib/bb/parse/__init__.py", line 141, in resolve_file
-    raise IOError(errno.ENOENT, "file %s not found" % fn)
-FileNotFoundError: [Errno 2] file /opt/layerindex/layers/git___git_openembedded_org_openembedded-core/meta/recipes-devtools/python-numpy/python-numpy_1.13.1.bb not found
+We don't actually need to consider recommended layers when preparing the
+order - just the depends. If we do then we can get into circular
+dependency situation e.g. currently with meta-intel and meta-intel-qat
+where meta-intel recommends meta-intel-qat and meta-intel-qat depends on
+meta-intel. (Likely the latter dependency is erroneous since the content
+of meta-intel-qat doesn't appear to depend on meta-intel, but there
+could be other scenarios where it is legitimate).
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- TODO                       | 1 -
- layerindex/update_layer.py | 2 +-
- 2 files changed, 1 insertion(+), 2 deletions(-)
+ layerindex/update.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/TODO b/TODO
-index 96d4feb8..7d522f84 100644
---- a/TODO
-+++ b/TODO
-@@ -10,7 +10,6 @@ TODO:
+diff --git a/layerindex/update.py b/layerindex/update.py
+index 06c61a79..a4b96e24 100755
+--- a/layerindex/update.py
++++ b/layerindex/update.py
+@@ -399,7 +399,7 @@ def main():
+                     deps = re.search("^LAYERDEPENDS = \"(.*)\"", output, re.M).group(1) or ''
+                     recs = re.search("^LAYERRECOMMENDS = \"(.*)\"", output, re.M).group(1) or ''
  
- Bugs
- * Duplication of first maintainer when editing to add a second?
--* GitPython sometimes reports renamed files as type M but we don't handle that properly e.g. OE-Core 59285b324f6d9ed270b0bef209ef5da22a620a83 086308aa2a5e332de6f00ed397c4a55d132f158f
- 
- Other
- * Full-text search on layer contents
-diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
-index 018d7bcd..272fe51a 100644
---- a/layerindex/update_layer.py
-+++ b/layerindex/update_layer.py
-@@ -636,7 +636,7 @@ def main():
-                                 bbclass.save()
- 
-                     for diffitem in diff.iter_change_type('M'):
--                        path = diffitem.a_blob.path
-+                        path = diffitem.b_blob.path
-                         if path.startswith(subdir_start):
-                             skip = False
-                             for removedir in removedirs:
+-                    deps_dict = utils.explode_dep_versions2(bitbakepath, deps + ' ' + recs)
++                    deps_dict = utils.explode_dep_versions2(bitbakepath, deps)
+                     if len(deps_dict) == 0:
+                         # No depends, add it firstly
+                         layerquery_sorted.append(layer)
 -- 
 2.17.1
 
