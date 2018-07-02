@@ -1,55 +1,26 @@
-Return-Path: <mheard@x4b.net>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9B7FE00CE7; Sun,  1 Jul 2018 20:04:20 -0700 (PDT)
+	id 1D819E00929; Sun,  1 Jul 2018 21:35:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 371 seconds by postgrey-1.32 at yocto-www;
-	Sun, 01 Jul 2018 20:04:19 PDT
-Received: from mail.x3b.org (mail.x3b.org [95.85.20.4])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85255E00B74
-	for <yocto@yoctoproject.org>; Sun,  1 Jul 2018 20:04:19 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.x3b.org (Postfix) with ESMTP id 4482E9A7A4
-	for <yocto@yoctoproject.org>; Sun,  1 Jul 2018 22:55:22 -0400 (EDT)
-Received: from mail.x3b.org ([127.0.0.1])
-	by localhost (mail.x3b.org [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id Kwz4awkm4HTZ for <yocto@yoctoproject.org>;
-	Sun,  1 Jul 2018 22:55:21 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.x3b.org (Postfix) with ESMTP id 621CE9A7A6
-	for <yocto@yoctoproject.org>; Sun,  1 Jul 2018 22:55:21 -0400 (EDT)
-X-Virus-Scanned: amavisd-new at mail.x3b.org
-Received: from mail.x3b.org ([127.0.0.1])
-	by localhost (mail.x3b.org [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id Z1-u6qJFut2Q for <yocto@yoctoproject.org>;
-	Sun,  1 Jul 2018 22:55:21 -0400 (EDT)
-Received: from mail-yb0-f181.google.com (mail-yb0-f181.google.com
-	[209.85.213.181])
-	by mail.x3b.org (Postfix) with ESMTPSA id E5D5F9A7A4
-	for <yocto@yoctoproject.org>; Sun,  1 Jul 2018 22:55:20 -0400 (EDT)
-Received: by mail-yb0-f181.google.com with SMTP id s1-v6so4587415ybk.3
-	for <yocto@yoctoproject.org>; Sun, 01 Jul 2018 19:58:06 -0700 (PDT)
-X-Gm-Message-State: APt69E21yZ3RbreB55OQIPX2l0iB5kg/AquedcPedpviQbv+1tQqo+iJ
-	VCQpqCEhgALVjJxCjcabLaaEk6oIKi7bKudM5Wc=
-X-Google-Smtp-Source: ADUXVKJ0jb/2Kl+d6x+8frQs95FMflcBRZOpod1gO04glr8wOoE0rQzrEw44NY6wSbbylwBf6EgUaDHxXbokcSBn6Ok=
-X-Received: by 2002:a25:b402:: with SMTP id
-	n2-v6mr11855184ybj.517.1530500279445; 
-	Sun, 01 Jul 2018 19:57:59 -0700 (PDT)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1067E00791
+	for <yocto@yoctoproject.org>; Sun,  1 Jul 2018 21:35:52 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id ADFB584A5214
+	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 00:35:51 -0400 (EDT)
 MIME-Version: 1.0
-Received: by 2002:a25:bd84:0:0:0:0:0 with HTTP;
-	Sun, 1 Jul 2018 19:57:38 -0700 (PDT)
-From: Mathew Heard <mheard@x4b.net>
-Date: Mon, 2 Jul 2018 12:57:38 +1000
-X-Gmail-Original-Message-ID: <CALFfGYYWnx82jW=ioYjThM6hL0u2q8051Hv91mQ2nED0-ZLZHg@mail.gmail.com>
-Message-ID: <CALFfGYYWnx82jW=ioYjThM6hL0u2q8051Hv91mQ2nED0-ZLZHg@mail.gmail.com>
+From: recipe-report@yoctoproject.org
 To: yocto@yoctoproject.org
-Subject: Re: Kernel Crash when moving from Pyro to Rocko (or master): change in kernel compile process or flags?
+Date: Mon, 02 Jul 2018 04:35:51 -0000
+Message-ID: <20180702043551.22821.78317@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,216 +32,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jul 2018 03:04:20 -0000
-Content-Type: multipart/alternative; boundary="0000000000007c2f4b056ffb5d3b"
+X-List-Received-Date: Mon, 02 Jul 2018 04:35:54 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---0000000000007c2f4b056ffb5d3b
-Content-Type: text/plain; charset="UTF-8"
+This mail was sent out by Recipe reporting system.
 
-Hi,
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-We too are experiencing this crash when attempting to upgrade from
-Pyro to Rocko.
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-Has anyone been able to work out the cause, or can someone look into
-it? I can supply any debug information needed (just let me know).
+You can check the detail information at:
 
-Regards,
-Mathew
+http://recipes.yoctoproject.org/
+
+Package               Version          Upstream version      Maintainer           NoUpgradeReason
+--------------------  ---------------  --------------------  -------------------  ------------------------------
+libgloss              3.0.0            3.0.0.20180226        Alejandro Hernandez
+newlib                3.0.0            3.0.0.20180226        Alejandro Hernandez
+usbutils              009              010                   Alexander Kanavin
+webkitgtk             2.20.2           2.20.3                Alexander Kanavin
+ca-certificates       20170717         20180409              Alexander Kanavin
+gdbm                  1.14.1           1.16                  Alexander Kanavin
+vala                  0.40.4           0.40.7                Alexander Kanavin
+createrepo-c          0.10.0+gitX      0.11.0                Alexander Kanavin
+dnf                   2.7.5            3.0.2                 Alexander Kanavin
+librepo               1.8.1            1.9.0                 Alexander Kanavin
+ffmpeg                4.0              4.0.1                 Alexander Kanavin
+icu                   61.1             62.1                  Alexander Kanavin
+btrfs-tools           4.16.1           4.17                  Alexander Kanavin
+procps                3.3.14           3.3.15                Alexander Kanavin
+psmisc                23.0             23.1                  Alexander Kanavin
+sysprof               3.26.1           3.28.1                Alexander Kanavin    Waiting for resolution of h...
+cantarell-fonts       0.0.24           0.0.25                Alexander Kanavin
+epiphany              3.28.1.1         3.28.3.1              Alexander Kanavin
+libdnf                0.11.1           0.15.2                Alexander Kanavin
+busybox               1.27.2           1.29.0                Andrej Valek
+apt                   1.2.24           1.6.2                 Aníbal Limón
+apt-native            1.2.24           1.6.2                 Aníbal Limón
+dpkg                  1.18.24          1.19.0.5              Aníbal Limón
+gst-examples          0.0.1+gitX       0.0.1-new-commits...  Anuj Mittal
+xf86-input-mouse      1.9.2            1.9.3                 Armin Kuster
+xf86-video-fbdev      0.4.4            0.5.0                 Armin Kuster
+nss                   3.37.1           3.38                  Armin Kuster
+bind                  9.10.6           9.13.1                Armin Kuster
+xserver-xorg          1.19.6           1.20.0                Armin Kuster
+linux-libc-headers    4.15.7           4.17.3                Bruce Ashfield
+connman               1.35             1.36                  Changhyeok Bae
+ethtool               4.16             4.17                  Changhyeok Bae
+iputils               s20161105        s20180629             Changhyeok Bae
+pciutils              3.5.6            3.6.0                 Chen Qi
+acl                   2.2.52           2.2.53                Chen Qi
+attr                  2.4.47           2.4.48                Chen Qi
+systemd-boot          237              239                   Chen Qi
+cups                  2.2.6            2.2.8                 Chen Qi
+flex                  2.6.0            2.6.4                 Chen Qi
+systemd               237              239                   Chen Qi
+bison                 3.0.4            3.0.5                 Chen Qi
+sed                   4.2.2            4.5                   Chen Qi
+shadow                4.2.1            4.6                   Chen Qi
+sysstat               11.7.3           11.7.4                Chen Qi
+coreutils             8.29             8.30                  Chen Qi
+lzop                  1.03             1.04                  Denys Dmytriyenko
+xz                    5.2.3            5.2.4                 Denys Dmytriyenko
+python3-dbus          1.2.6            1.2.8                 Derek Straka
+python-numpy          1.14.2           1.14.5                Derek Straka
+python3-pygobject     3.28.1           3.28.3                Derek Straka
+python3               3.5.5            3.7.0                 Derek Straka
+python                2.7.14           2.7.15                Derek Straka
+python3-git           2.1.8            2.1.10                Derek Straka
+python3-pip           9.0.3            10.0.1                Derek Straka
+python-setuptools     39.0.1           39.2.0                Derek Straka
+python3-numpy         1.14.2           1.14.5                Derek Straka
+python3-pycairo       1.15.6           1.17.0                Derek Straka
+python3-setuptools    39.0.1           39.2.0                Derek Straka
+python3-native        3.5.5            3.7.0                 Derek Straka
+python-native         2.7.14           2.7.15                Derek Straka
+acpica                20180508         20180629              Fathi Boudra
+gnupg                 2.2.5            2.2.8                 Hongxu Jia
+dhcp                  4.3.6            4.4.1                 Hongxu Jia
+man-db                2.8.2            2.8.3                 Hongxu Jia
+gpgme                 1.10.0           1.11.1                Hongxu Jia
+elfutils              0.170            0.173                 Hongxu Jia
+ncurses               6.1              6.1+20180630          Hongxu Jia
+man-pages             4.14             4.16                  Hongxu Jia
+help2man-native       1.47.5           1.47.6                Hongxu Jia
+libgcrypt             1.8.2            1.8.3                 Hongxu Jia
+llvm                  6.0              6.0-new-commits-a...  Khem Raj
+mpfr                  3.1.5            4.0.1                 Khem Raj
+re2c                  0.16             1.0.1                 Khem Raj
+go-native             1.10.2           1.10.3                Khem Raj
+go                    1.10.2           1.10.3                Khem Raj
+pango                 1.40.14          1.42.1                Maxin B. John
+piglit                1.0+gitrX        1.0-new-commits-a...  Maxin B. John
+libinput              1.11.0           1.11.1                Maxin B. John
+vulkan-demos          git              git-new-commits-a...  Maxin B. John
+perl                  5.24.1           5.28.0                Maxin B. John
+matchbox-terminal     0.1              0.2                   Maxin B. John
+puzzles               0.0+gitX         0.0-new-commits-a...  Maxin B. John
+shared-mime-info      1.9              1.10                  Maxin B. John
+ifupdown              0.8.16           0.8.33                Maxin B. John
+glib-networking       2.54.1           2.56.1                Maxin B. John
+libical               2.0.0            3.0.3                 Maxin B. John
+fontconfig            2.12.6           2.13.0                Maxin B. John
+vulkan                1.0.65.2         1.1.73.0              Maxin B. John
+gdk-pixbuf            2.36.11          2.36.12               Maxin B. John
+librsvg               2.40.20          2.42.5                Maxin B. John        Versions from 2.41.0 requir...
+pkgconf               1.4.2            1.5.1                 Maxin B. John
+sqlite3               3.23.1           3.24.0                Maxin B. John
+freetype              2.9              2.9.1                 Maxin B. John
+harfbuzz              1.7.5            1.8.1                 Maxin B. John
+perl-native           5.24.1           5.28.0                Maxin B. John
+systemtap-native      3.2              3.3                   No maintainer
+gcc-source-7.3.0      7.3.0            8.1.0                 No maintainer
+go-cross-canadian...  1.10.2           1.10.3                No maintainer
+go-cross-i586         1.10.2           1.10.3                No maintainer
+go-crosssdk-x86_64    1.10.2           1.10.3                No maintainer
+go-runtime            1.10.2           1.10.3                No maintainer
+mesa                  18.1.2           18.1.3                Otavio Salvador
+cmake                 3.10.3           3.11.4                Otavio Salvador
+cmake-native          3.10.3           3.11.4                Otavio Salvador
+mesa-gl               18.1.2           18.1.3                Otavio Salvador
+build-compare         2015.02.10+gitX  2015.02.10-new-co...  Paul Eggleton
+build-appliance-i...  15.0.0           19.0.0                Richard Purdie
+lttng-tools           2.9.5            2.10.4                Richard Purdie
+gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
+nfs-utils             2.1.1            2.3.2                 Robert Yang
+squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
+strace                4.22             4.23                  Robert Yang
+automake              1.15.1           1.16.1                Robert Yang
+e2fsprogs             1.43.8           1.44.2                Robert Yang
+ccache                3.3.5            3.4.2                 Robert Yang
+base-passwd           3.5.29           3.5.45                Ross Burton          Version 3.5.38 requires cde...
+tcf-agent             1.4.0+gitX       1.7.0                 Ross Burton
+bc                    1.06             1.07.1                Ross Burton
+lsbinitscripts        9.79             10.00.0               Ross Burton
+sysvinit              2.88dsf          2.90                  Ross Burton
+pulseaudio            11.1             12.0                  Tanu Kaskinen
+systemtap-uprobes     3.2              3.3                   Victor Kamensky
+systemtap             3.2              3.3                   Victor Kamensky
+chkconfig             1.3.58           1.8                   Yi Zhao              Version 1.5 requires selinux
+
+Upgradable count: 120
+Upgradable total count: 124
+
+The based commit is:
+
+commit 6f8f984ba363f764e83290b972ec31a90aad1603
+Author: Arsalan H. Awan <Arsalan_Awan@mentor.com>
+Date:   Thu Jun 28 19:16:36 2018 +0500
+
+    initrdscripts/init-live.sh: fix mounts w/ spaces fail to move to real rootfs
+    
+    When there are spaces in the mount points of devices e.g.:
+    
+     a partition mounted at "/run/media/My Root Partition-sda1",
+    
+    the initrd fails to move such mount points over to the
+    corresponding directories at /media under the real root filesystem,
+    and the mount points would appear at the same location as they were
+    mounted on when detected by initrd, for example:
+     here: "/run/media/My Root Partition-sda1"
+     instead of here: "/media/My Root Partition-sda1"
+    
+    This causes issues such as:
+    
+      * The disks/partitions cannot be formated with any filesystem
+        using e.g. mkfs.ext4 or mke2fs in general. When tried to do so
+        by making sure the device is not mounted, it failed with
+        errors such as:
+    
+        > /dev/sda1 is apparently in use by the system; will not make a
+          filesystem here!
+        > /dev/sda1: Device or resource busy while setting up superblock
+    
+      * The read/write operations become extremely slow. e.g. Under testing,
+        it took approx. 2 hours just to copy 700 MB of data to the partition,
+        and it took more than 40 minutes to delete that data from it.
+        Same operations took under 5 minutes on a partition that had no
+        spaces in its mount point (or that was successfully moved to real
+        root by initrd and appeared under /media instead of /run/media).
+    
+    This commit fixes such issues by quoting the arguments of failing mount
+    move commands and by parsing OCT or HEX encoded special characters
+    such as spaces to ASCII charecters in the mount points as kernel
+    populates the procfs like so.
+    
+    Signed-off-by: Arsalan H. Awan <Arsalan_Awan@mentor.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
 
 
-> Hi,
-> I am experiencing a Kernel crash when moving my system from Yocto 2.3 (Pyro) to Rocko or Master.
-> Target system is an ARMv7 (NXP Layerscape LS1021a, built on Cortex-A7).
-> This is what I did:
-> 1) switched poky version
-> 2) re-built same image in a new, blank directory
-> Results:
-> Root-FS works fine, the kernel crashes with an undefined instruction oops.
-> Just exchanging the kernel zImage with the one compiled with Pyro (same recipe), my system works fine again.
-> What I tried so far:
-> 1) checked and compared the kernel configs generated: 100% identical
-> 2) switched gcc back to the version used in Pyro (6.3) instead of 7.2: kernel still crashes, same oops, no changes. So it's not related to GCC 7.2
-> 3) checked on different boards: same issue for the same board type, but the switch to rocko worked fine for a system based on Cortex-A9.
-> I am using separate tmp directories and am not sharing sstate. I always started builds in blank build directories.
-> The error is reproducible (100%)
-> It was also present with all of the various snapshots of the master branch I tried
-> What I suspect: there are some changes in the ways that gcc is called from pyro to rocko. Maybe one of the switches, or features, etc
-> Before deep-diving into the trial and error phase of reproducing the CFLAGS, etc:
-> Is anyone experiencing the same issues?
-> * What exactly has changed in the way the kernel build is called (methods, compile/link flags, etc) between pyro and rocko? *
-> * Is there a way to (easily) disable some of the features to test which one causes the issue? *
-> * Any suspicions about what could cause this? *
-> Pls. find a log of the crash below, and an excerpt of my kernel recipe and machine configuration.
-> Thanks in advance for your help,
-> Best regards,
-> Michael
-> -------------
-> VFS: Mounted root (ext4 filesystem) on device 179:1.
-> devtmpfs: mounted
-> Freeing unused kernel memory: 2048K
-> Internal error: Oops - undefined instruction: 0 [#1] SMP THUMB2
-> Modules linked in:
-> CPU: 1 PID: 1 Comm: init Not tainted 4.14.2-avnet-nxp #2
-> Hardware name: Freescale LS1021A
-> task: bf0a0000 task.stack: bf09a000
-> PC is at ret_fast_syscall+0x2/0x52
-> LR is at SyS_brk+0x109/0x128
-> pc : [<80205fc2>]    lr : [<802c513d>]    psr: 60000013
-> sp : bf09bfa8  ip : 70c5387d  fp : 00001000
-> r10: 00000000  r9 : bf09a000  r8 : 802061a4
-> r7 : 0000002d  r6 : 76f71bac  r5 : 00010034  r4 : 00000009
-> r3 : 000273c8  r2 : ffff0001  r1 : 00000000  r0 : 00028000
-> Flags: nZCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
-> Control: 70c5387d  Table: be7d1000  DAC: fffbfff3
-> Process init (pid: 1, stack limit = 0xbf09a210)
-> Stack: (0xbf09bfa8 to 0xbf09c000)
-> bfa0:                   00000009 00010034 00000000 7ee86fea 00000000 00000001
-> bfc0: 00000009 00010034 76f71bac 0000002d 00000000 00000001 00000001 00001000
-> bfe0: 7ee86f14 7ee86e4c 76f87a58 76f88e88 60000010 00000000 00000000 00000000
-> Code: 20012000 0000bd08 00000000 b6720000 (2008f8d9)
-> ---[ end trace 7bab6dceda641aab ]---
-> Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
-> CPU0: stopping
-> CPU: 0 PID: 0 Comm: swapper/0 Tainted: G      D         4.14.2-avnet-nxp #2
-> Hardware name: Freescale LS1021A
-> [<8020bbe9>] (unwind_backtrace) from [<80208e77>] (show_stack+0xb/0xc)
-> [<80208e77>] (show_stack) from [<8066af19>] (dump_stack+0x69/0x78)
-> [<8066af19>] (dump_stack) from [<8020b1d5>] (handle_IPI+0x261/0x274)
-> [<8020b1d5>] (handle_IPI) from [<802012b1>] (gic_handle_irq+0x61/0x64)
-> [<802012b1>] (gic_handle_irq) from [<8067d953>] (__irq_svc+0x53/0x7c)
-> Exception stack(0x80e01f38 to 0x80e01f80)
-> 1f20:                                                       00000000 000027d0
-> 1f40: 3eb79000 80212641 ffffe000 80e03cd0 80e03c74 80e7f3ab 8096e480 80e03c40
-> 1f60: 80e8ce00 80c42a30 01400000 80e01f88 80206a3d 80206a3e 40000033 ffffffff
-> [<8067d953>] (__irq_svc) from [<80206a3e>] (arch_cpu_idle+0x22/0x24)
-> [<80206a3e>] (arch_cpu_idle) from [<802405bf>] (do_idle+0x9f/0xe4)
-> [<802405bf>] (do_idle) from [<802407bb>] (cpu_startup_entry+0x13/0x14)
-> [<802407bb>] (cpu_startup_entry) from [<80c00a05>] (start_kernel+0x305/0x310)
-> ---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=0x0000000b
-> -----------------------
-> Excerpt from linux_xxx.bb:
-> ----
-> DEPENDS_kernel-base   += "kernel-devicetree"
-> LINUX_VERSION           = "4.14-stable"
-> S = "${WORKDIR}/git"
-> PR = "r1"
-> SRCREV = "8292fd8d726105abc01dae26d0a2cddcf53d4e0f"
-> PV     = "4.14.2"
-> SRC_URI = " \
->     git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=master;protocol=git;nobranch=1 \
-> "
-> SRC_URI_append_ls1021a   = " file://defconfig "
-> SRC_URI_append_ls1021a   = " file://pcie.cfg file://caam.cfg file://usb.cfg file://bt.cfg "
-> ----
-> Excerpt from machine.conf
-> ---
-> SOC_FAMILY = "ls1021a"
-> TARGET_ARCH = "arm"
-> DEFAULTTUNE = "cortexa7hf-neon-vfpv4"
-> IMAGE_INSTALL_append = " kernel-modules kernel-devicetree kernel-image"
-> KERNEL_IMAGETYPE = "zImage"
-> KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
-> EXTRA_IMAGEDEPENDS += "virtual/bootloader"
-> ----
->
-
---0000000000007c2f4b056ffb5d3b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">
-
-<pre style=3D"white-space:pre-wrap;color:rgb(0,0,0);text-decoration-style:i=
-nitial;text-decoration-color:initial"><div>Hi,</div><div><br></div><div>We =
-too are experiencing this crash when attempting to upgrade from Pyro to Roc=
-ko.</div><div><br></div><div>Has anyone been able to work out the cause, or=
- can someone look into it? I can supply any debug information needed (just =
-let me know).</div><div><br></div><div>Regards,</div><div>Mathew</div><div>=
-=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi,<br>I am e=
-xperiencing a Kernel crash when moving my system from Yocto 2.3 (Pyro) to R=
-ocko or Master.<br>Target system is an ARMv7 (NXP Layerscape LS1021a, built=
- on Cortex-A7).<br>This is what I did:<br>1) switched poky version<br>2) re=
--built same image in a new, blank directory
-Results:<br>Root-FS works fine, the kernel crashes with an undefined instru=
-ction oops.<br>Just exchanging the kernel zImage with the one compiled with=
- Pyro (same recipe), my system works fine again.
-What I tried so far:<br>1) checked and compared the kernel configs generate=
-d: 100% identical<br>2) switched gcc back to the version used in Pyro (6.3)=
- instead of 7.2: kernel still crashes, same oops, no changes. So it&#39;s n=
-ot related to GCC 7.2<br>3) checked on different boards: same issue for the=
- same board type, but the switch to rocko worked fine for a system based on=
- Cortex-A9.
-I am using separate tmp directories and am not sharing sstate. I always sta=
-rted builds in blank build directories.<br>The error is reproducible (100%)=
-<br>It was also present with all of the various snapshots of the master bra=
-nch I tried
-What I suspect: there are some changes in the ways that gcc is called from =
-pyro to rocko. Maybe one of the switches, or features, etc<br>Before deep-d=
-iving into the trial and error phase of reproducing the CFLAGS, etc:<br>Is =
-anyone experiencing the same issues?<br>* What exactly has changed in the w=
-ay the kernel build is called (methods, compile/link flags, etc) between py=
-ro and rocko? *<br>* Is there a way to (easily) disable some of the feature=
-s to test which one causes the issue? *<br>* Any suspicions about what coul=
-d cause this? *
-Pls. find a log of the crash below, and an excerpt of my kernel recipe and =
-machine configuration.
-Thanks in advance for your help,<br>Best regards,<br>Michael
--------------<br>VFS: Mounted root (ext4 filesystem) on device 179:1.<br>de=
-vtmpfs: mounted<br>Freeing unused kernel memory: 2048K<br>Internal error: O=
-ops - undefined instruction: 0 [#1] SMP THUMB2<br>Modules linked in:<br>CPU=
-: 1 PID: 1 Comm: init Not tainted 4.14.2-avnet-nxp #2<br>Hardware name: Fre=
-escale LS1021A<br>task: bf0a0000 task.stack: bf09a000<br>PC is at ret_fast_=
-syscall+0x2/0x52<br>LR is at SyS_brk+0x109/0x128<br>pc : [&lt;80205fc2&gt;]=
-    lr : [&lt;802c513d&gt;]    psr: 60000013<br>sp : bf09bfa8  ip : 70c5387=
-d  fp : 00001000<br>r10: 00000000  r9 : bf09a000  r8 : 802061a4<br>r7 : 000=
-0002d  r6 : 76f71bac  r5 : 00010034  r4 : 00000009<br>r3 : 000273c8  r2 : f=
-fff0001  r1 : 00000000  r0 : 00028000<br>Flags: nZCv  IRQs on  FIQs on  Mod=
-e SVC_32  ISA ARM  Segment none<br>Control: 70c5387d  Table: be7d1000  DAC:=
- fffbfff3<br>Process init (pid: 1, stack limit =3D 0xbf09a210)<br>Stack: (0=
-xbf09bfa8 to 0xbf09c000)<br>bfa0:                   00000009 00010034 00000=
-000 7ee86fea 00000000 00000001<br>bfc0: 00000009 00010034 76f71bac 0000002d=
- 00000000 00000001 00000001 00001000<br>bfe0: 7ee86f14 7ee86e4c 76f87a58 76=
-f88e88 60000010 00000000 00000000 00000000<br>Code: 20012000 0000bd08 00000=
-000 b6720000 (2008f8d9)<br>---[ end trace 7bab6dceda641aab ]---<br>Kernel p=
-anic - not syncing: Attempted to kill init! exitcode=3D0x0000000b
-CPU0: stopping<br>CPU: 0 PID: 0 Comm: swapper/0 Tainted: G      D         4=
-.14.2-avnet-nxp #2<br>Hardware name: Freescale LS1021A<br>[&lt;8020bbe9&gt;=
-] (unwind_backtrace) from [&lt;80208e77&gt;] (show_stack+0xb/0xc)<br>[&lt;8=
-0208e77&gt;] (show_stack) from [&lt;8066af19&gt;] (dump_stack+0x69/0x78)<br=
->[&lt;8066af19&gt;] (dump_stack) from [&lt;8020b1d5&gt;] (handle_IPI+0x261/=
-0x274)<br>[&lt;8020b1d5&gt;] (handle_IPI) from [&lt;802012b1&gt;] (gic_hand=
-le_irq+0x61/0x64)<br>[&lt;802012b1&gt;] (gic_handle_irq) from [&lt;8067d953=
-&gt;] (__irq_svc+0x53/0x7c)<br>Exception stack(0x80e01f38 to 0x80e01f80)<br=
->1f20:                                                       00000000 00002=
-7d0<br>1f40: 3eb79000 80212641 ffffe000 80e03cd0 80e03c74 80e7f3ab 8096e480=
- 80e03c40<br>1f60: 80e8ce00 80c42a30 01400000 80e01f88 80206a3d 80206a3e 40=
-000033 ffffffff<br>[&lt;8067d953&gt;] (__irq_svc) from [&lt;80206a3e&gt;] (=
-arch_cpu_idle+0x22/0x24)<br>[&lt;80206a3e&gt;] (arch_cpu_idle) from [&lt;80=
-2405bf&gt;] (do_idle+0x9f/0xe4)<br>[&lt;802405bf&gt;] (do_idle) from [&lt;8=
-02407bb&gt;] (cpu_startup_entry+0x13/0x14)<br>[&lt;802407bb&gt;] (cpu_start=
-up_entry) from [&lt;80c00a05&gt;] (start_kernel+0x305/0x310)<br>---[ end Ke=
-rnel panic - not syncing: Attempted to kill init! exitcode=3D0x0000000b<br>=
------------------------
-Excerpt from <a href=3D"http://linux_xxx.bb">linux_xxx.bb</a>:<br>----<br>D=
-EPENDS_kernel-base   +=3D &quot;kernel-devicetree&quot;
-LINUX_VERSION           =3D &quot;4.14-stable&quot;<br>S =3D &quot;${WORKDI=
-R}/git&quot;<br>PR =3D &quot;r1&quot;<br>SRCREV =3D &quot;8292fd8d726105abc=
-01dae26d0a2cddcf53d4e0f&quot;<br>PV     =3D &quot;4.14.2&quot;<br>SRC_URI =
-=3D &quot; \<br>    <a>git://git.kernel.org/pub/scm/linux/kernel/git/stable=
-/linux-stable.git;branch=3Dmaster;protocol=3Dgit;nobranch=3D1</a> \<br>&quo=
-t;<br>SRC_URI_append_ls1021a   =3D &quot; <a>file://defconfig</a> &quot;<br=
->SRC_URI_append_ls1021a   =3D &quot; <a>file://pcie.cfg</a> <a>file://caam.=
-cfg</a> <a>file://usb.cfg</a> <a>file://bt.cfg</a> &quot;<br>----
-Excerpt from machine.conf<br>---<br>SOC_FAMILY =3D &quot;ls1021a&quot;<br>T=
-ARGET_ARCH =3D &quot;arm&quot;<br>DEFAULTTUNE =3D &quot;cortexa7hf-neon-vfp=
-v4&quot;<br>IMAGE_INSTALL_append =3D &quot; kernel-modules kernel-devicetre=
-e kernel-image&quot;<br>KERNEL_IMAGETYPE =3D &quot;zImage&quot;
-KERNEL_EXTRA_ARGS +=3D &quot;LOADADDR=3D${UBOOT_ENTRYPOINT}&quot;<br>EXTRA_=
-IMAGEDEPENDS +=3D &quot;virtual/bootloader&quot;<br>----<br class=3D"gmail-=
-Apple-interchange-newline"></blockquote></pre>
-
-<br></div>
-
---0000000000007c2f4b056ffb5d3b--
