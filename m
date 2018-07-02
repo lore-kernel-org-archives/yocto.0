@@ -1,6 +1,6 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB415E00EAA; Mon,  2 Jul 2018 16:00:52 -0700 (PDT)
+	id BA784E00DF8; Mon,  2 Jul 2018 16:00:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,26 +12,26 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CE6DE00CF4
-	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 16:00:52 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE4BFE00D3D
+	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 16:00:51 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
 	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
 	02 Jul 2018 16:00:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,300,1526367600"; d="scan'208";a="52165159"
+X-IronPort-AV: E=Sophos;i="5.51,300,1526367600"; d="scan'208";a="52165138"
 Received: from nmunfye-mobl1.gar.corp.intel.com (HELO localhost.localdomain)
 	([10.249.64.227])
-	by fmsmga008.fm.intel.com with ESMTP; 02 Jul 2018 16:00:44 -0700
+	by fmsmga008.fm.intel.com with ESMTP; 02 Jul 2018 16:00:39 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Tue,  3 Jul 2018 10:58:48 +1200
-Message-Id: <41fb2d462f9735f979a97312f36fc276db451591.1530569567.git.paul.eggleton@linux.intel.com>
+Date: Tue,  3 Jul 2018 10:58:47 +1200
+Message-Id: <d4b8009425d566c10591c480f74c2502c959a264.1530569567.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1530569567.git.paul.eggleton@linux.intel.com>
 References: <cover.1530569567.git.paul.eggleton@linux.intel.com>
-Subject: [layerindex-web][PATCH 4/7] recipeparse: don't error out on missing layer recommends
+Subject: [layerindex-web][PATCH 3/7] update_layer: avoid errors on modified & renamed files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,32 +45,68 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Mon, 02 Jul 2018 23:00:53 -0000
 
-If a LAYERRECOMMENDS relationship is not satisfied, we shouldn't be
-erroring out - it's a recommendation, not a hard dependency. Just show a
-warning and allow processing to continue.
+If a file is modified and renamed it will show up in both
+iter_change_type('M') and iter_change_type('R'), however naturally the
+file that will exist will be the b path and not the a one, so we should
+be looking at the b path or we will get errors.
+
+FYI you can reproduce this with OE-Core (in a scratch database) using
+the following procedure:
+1) (in the OE-Core layer directory):
+   git checkout 59285b324f6d9ed270b0bef209ef5da22a620a83
+2) update.py -l openembedded-core -b master -x --nofetch -r --fullreload
+3) (in the OE-Core layer directory):
+   git checkout 086308aa2a5e332de6f00ed397c4a55d132f158f
+4) update.py -l openembedded-core -b master -x --nofetch
+
+Without this change you'll see the following error:
+
+ERROR: Unable to read /opt/layerindex/layers/git___git_openembedded_org_openembedded-core/meta/recipes-devtools/python-numpy/python-numpy_1.13.1.bb: Traceback (most recent call last):
+  File "/opt/layerindex/layers/bitbake/lib/bb/command.py", line 84, in runCommand
+    result = command_method(self, commandline)
+  File "/opt/layerindex/layers/bitbake/lib/bb/command.py", line 568, in parseRecipeFile
+    envdata = bb.cache.parse_recipe(config_data, fn, appendfiles)['']
+  File "/opt/layerindex/layers/bitbake/lib/bb/cache.py", line 315, in parse_recipe
+    bb_data = bb.parse.handle(bbfile, bb_data)
+  File "/opt/layerindex/layers/bitbake/lib/bb/parse/__init__.py", line 117, in handle
+    return h['handle'](fn, data, include)
+  File "/opt/layerindex/layers/bitbake/lib/bb/parse/parse_py/BBHandler.py", line 132, in handle
+    abs_fn = resolve_file(fn, d)
+  File "/opt/layerindex/layers/bitbake/lib/bb/parse/__init__.py", line 141, in resolve_file
+    raise IOError(errno.ENOENT, "file %s not found" % fn)
+FileNotFoundError: [Errno 2] file /opt/layerindex/layers/git___git_openembedded_org_openembedded-core/meta/recipes-devtools/python-numpy/python-numpy_1.13.1.bb not found
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- layerindex/recipeparse.py | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ TODO                       | 1 -
+ layerindex/update_layer.py | 2 +-
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/layerindex/recipeparse.py b/layerindex/recipeparse.py
-index f1c1bd32..bc8a19ef 100644
---- a/layerindex/recipeparse.py
-+++ b/layerindex/recipeparse.py
-@@ -102,7 +102,11 @@ def setup_layer(config_data, fetchdir, layerdir, layer, layerbranch):
-         deprepodir = os.path.join(fetchdir, depurldir)
-         deplayerbranch = dep.dependency.get_layerbranch(layerbranch.branch.name)
-         if not deplayerbranch:
--            raise RecipeParseError('Dependency %s of layer %s does not have branch record for branch %s' % (dep.dependency.name, layer.name, layerbranch.branch.name))
-+            if dep.required:
-+                raise RecipeParseError('Dependency %s of layer %s does not have branch record for branch %s' % (dep.dependency.name, layer.name, layerbranch.branch.name))
-+            else:
-+                logger.warning('Recommends %s of layer %s does not have branch record for branch %s - ignoring' % (dep.dependency.name, layer.name, layerbranch.branch.name))
-+                continue
-         deplayerdir = os.path.join(deprepodir, deplayerbranch.vcs_subdir)
-         utils.parse_layer_conf(deplayerdir, config_data_copy)
-     config_data_copy.delVar('LAYERDIR')
+diff --git a/TODO b/TODO
+index 96d4feb8..7d522f84 100644
+--- a/TODO
++++ b/TODO
+@@ -10,7 +10,6 @@ TODO:
+ 
+ Bugs
+ * Duplication of first maintainer when editing to add a second?
+-* GitPython sometimes reports renamed files as type M but we don't handle that properly e.g. OE-Core 59285b324f6d9ed270b0bef209ef5da22a620a83 086308aa2a5e332de6f00ed397c4a55d132f158f
+ 
+ Other
+ * Full-text search on layer contents
+diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
+index 018d7bcd..272fe51a 100644
+--- a/layerindex/update_layer.py
++++ b/layerindex/update_layer.py
+@@ -636,7 +636,7 @@ def main():
+                                 bbclass.save()
+ 
+                     for diffitem in diff.iter_change_type('M'):
+-                        path = diffitem.a_blob.path
++                        path = diffitem.b_blob.path
+                         if path.startswith(subdir_start):
+                             skip = False
+                             for removedir in removedirs:
 -- 
 2.17.1
 
