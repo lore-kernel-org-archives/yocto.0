@@ -1,57 +1,64 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <tdhammer99@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0686E0122F; Tue,  3 Jul 2018 08:08:42 -0700 (PDT)
+	id A273AE013D8; Tue,  3 Jul 2018 11:02:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (tdhammer99[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D63C9E0122F
-	for <yocto@yoctoproject.org>; Tue,  3 Jul 2018 08:08:41 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	03 Jul 2018 08:08:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,304,1526367600"; d="scan'208,217";a="68340227"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
-	by fmsmga004.fm.intel.com with ESMTP; 03 Jul 2018 08:08:38 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.188]) by
-	FMSMSX105.amr.corp.intel.com ([169.254.4.232]) with mapi id
-	14.03.0319.002; Tue, 3 Jul 2018 08:08:37 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, OTC Embedded All
-	<otc.embedded.all@intel.com>
-Thread-Topic: Yocto Project Technical Team Meeting
-Thread-Index: AdPohXzFOgxC2BniTHO19C2TrRzF0wqWjjLQ
-Importance: high
-X-Priority: 1
-Date: Tue, 3 Jul 2018 15:08:36 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC734F42E@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.200.100
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.108]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f65.google.com (mail-oi0-f65.google.com
+	[209.85.218.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CA1AE013BC
+	for <yocto@yoctoproject.org>; Tue,  3 Jul 2018 11:02:37 -0700 (PDT)
+Received: by mail-oi0-f65.google.com with SMTP id n84-v6so5596429oib.9
+	for <yocto@yoctoproject.org>; Tue, 03 Jul 2018 11:02:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=u0zJys/bf+y3zm/QwK6cfIuWIpa9zTHrGRKqMmQ299I=;
+	b=g9HlkVu3fh8j3AsaDFs9iqdUR/peLKhAYDA3miSVklaa5PSbJllVvJP7Ox2rLNk3nQ
+	qqgpZmsJIabWL5mmZZqrPFHO2cmA/fsYfY4OXaq84VY4YUUAfA6b822OsMyJqrSsAILl
+	CvZxcJGQojz0Z82tmR6cfjNdNDiBF97WXcg/eyCgr/bJLdYzIIW2sTdoLvIxb296OPAy
+	n3ti3TYLu1Gf1HP29gwDMdwNzfXJZzSuRAMeL5jinPpgA1o0eCZFnb54HsbX7QpJLJgB
+	y7NLjfaKcjF6US8jVxqKsHI028/WPE5HoLVTc5/JxRpa/iD8lin+/N3ec0WfVPUmSDw7
+	6R6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=u0zJys/bf+y3zm/QwK6cfIuWIpa9zTHrGRKqMmQ299I=;
+	b=Fm2JKz0aQXwBULLjEUt0G7qT2u5WCr2YKyv+jXxetPEkzvNPq4ApHV52Tqc4NZnGi8
+	3Pc3VTa/mW/5/1q2CXhKa4H3DB2PvZSBXlZpcZlH1S7oFN9FI4cZh79GOf0pcLBDKQsn
+	hFYfpXH3kvTh97YopIZDxbzBc1PlqoiH/AQVNwoIQGMQBjY1Dd9TIJofNZ7yCIS/s5sc
+	twxTcJrYCzoUB0Q0tp+l5qR02fgql4Kx2w17QbiYzD2TVJ7wclI+IyHjsMUkGI7z3XD1
+	WkD1xoGWWMUGkoevrW4GEp/U2/rNafmoFDTHjnfkq04mIQdAELor95h5/smiOe6pzi/f
+	kwmQ==
+X-Gm-Message-State: APt69E2HtgGmz6EQ3hdjxfxiGKyjdQPalsNjtA3QM+CpXEC+0qUwrde7
+	DsP2BUbD58YNbrel0LsoqSTneZMAh5SFzoUrPx+d1fDo
+X-Google-Smtp-Source: AAOMgpcx1Hl2zGCpDXCfTzTImteQSDrRhLt1mdmad3NMHl6casq8QXEUhMfwMuZOzjFFxvfKd1RJ5HITvuNwymMZ8hE=
+X-Received: by 2002:aca:fc8e:: with SMTP id
+	a136-v6mr17962773oii.123.1530640956666; 
+	Tue, 03 Jul 2018 11:02:36 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 03 Jul 2018 09:16:43 -0700
-Cc: 'Manjukumar Harthikote Matha' <MANJUKUM@xilinx.com>, "Chan,
-	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>, "Cetola,
-	Stephano" <stephano.cetola@intel.com>, "Erway,
-	Tracey M" <tracey.m.erway@intel.com>, "Orling, 
-	Timothy T" <timothy.t.orling@intel.com>, "Jordan,
-	Robin L" <robin.l.jordan@intel.com>
-Subject: Canceled: Yocto Project Technical Team Meeting
+Received: by 2002:a9d:39a2:0:0:0:0:0 with HTTP;
+	Tue, 3 Jul 2018 11:02:36 -0700 (PDT)
+From: Tim Hammer <tdhammer99@gmail.com>
+Date: Tue, 3 Jul 2018 14:02:36 -0400
+Message-ID: <CALh9vaX7aAYi59jJABfr5JXtoHXE6XVupfAwaHvRnVAAA5nDdA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: struggling with initramfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,120 +70,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jul 2018 15:08:43 -0000
-X-Groupsio-MsgNum: 41605
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC734F42Efmsmsx111amrcor_"
+X-List-Received-Date: Tue, 03 Jul 2018 18:02:39 -0000
+Content-Type: multipart/alternative; boundary="00000000000080381805701c1e96"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC734F42Efmsmsx111amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
+--00000000000080381805701c1e96
+Content-Type: text/plain; charset="UTF-8"
+
+Can anyone point me to a step-by-step tutorial or simple how-to on creating
+and using an initramfs with my kernel for ARM aarch64?
+
+
+I have tried creating my own:
+ - boot-image.bb file with IMAGE_FSTYPES = "cpio.gz".
+ - local.conf has INITRAMFS_IMAGE_BUNDLE = "1"
+ - linux.bbappend has INITRAMFS_IMAGE = "boot-image"
+
+This all seems to be "correct" to the extent that bitbake linux tries to do
+the right thing.
+
+However, I get a failure in do_bundle_initramfs- "mv: cannot stat
+'arch/arm64/boot/Image': No such file or directory".
+
+To the best of my (limited) debugging abilities with Yocto, it seems like
+the kernel image backup has already been run when it gets to this point and
+the Image file in that directory has already been moved to Image.bak. If I
+comment out the mv statement in kernel.bbclass causing the failure, the
+process continues, but the initramfs does not seem to get populated or
+perhaps installed into my kernel image as I get kernel panics that I have
+been unable to get past.
+
+
+I decided to take a different approach and try using the
+core-image-minimal-initramfs recipe as INITRAMFS_IMAGE. By commenting out
+the COMPATIBLE_HOST entry I am able to build a kernel for ARM aarch64. I
+can even seem to boot into this initramfs- it counts down waiting for
+removable media; seems to find my primary rootfs on sda3, but there is no
+rootfs.img file there so says it is dropping to a shell (although I never
+get a prompt...).
+
+Thinking I could start with that recipe and work to get rid of the live
+stuff and just get to a busybox prompt before trying to run my unique init
+commands, I copied  core-image-minimal-initramfs.bb to my-
+core-image-minimal-initramfs.bb in my layer and changed INITRAMFS_IMAGE to
+"my- core-image-minimal-initramfs".
+However, I obviously missed something in the configuration as I get an
+error in go_bundle_initramfs again:
+     kernel-source/scripts/gen_initramfs_list.sh:
+                 Cannot open
+'/.../linux-qoriq/4.14-r0/build/usr/my-core-image-minimal-initramfs-{machine}.cpio'
+
+Any help would be greatly appreciated.
+Thank you!
+-- 
+
+.Tim
+
+--00000000000080381805701c1e96
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-This is the old meeting invite.  I thought I had canceled it.  We now have =
-a zoom meeting for this.
+<div dir=3D"ltr"><div><br></div><div>Can anyone point me to a step-by-step =
+tutorial or simple how-to on creating and using an initramfs with my kernel=
+ for ARM aarch64?</div><div><br></div><div><br></div><div>I have tried crea=
+ting my own:</div><div>=C2=A0- <a href=3D"http://boot-image.bb">boot-image.=
+bb</a> file with IMAGE_FSTYPES =3D &quot;cpio.gz&quot;.</div><div>=C2=A0- l=
+ocal.conf has INITRAMFS_IMAGE_BUNDLE =3D &quot;1&quot;</div><div>=C2=A0- li=
+nux.bbappend has INITRAMFS_IMAGE =3D &quot;boot-image&quot;</div><div><br><=
+/div><div>This all seems to be &quot;correct&quot; to the extent that bitba=
+ke linux tries to do the right thing.</div><div><br></div><div>However, I g=
+et a failure in do_bundle_initramfs- &quot;mv: cannot stat &#39;arch/arm64/=
+boot/Image&#39;: No such file or directory&quot;.</div><div><br></div><div>=
+To the best of my (limited) debugging abilities with Yocto, it seems like t=
+he kernel image backup has already been run when it gets to this point and =
+the Image file in that directory has already been moved to Image.bak. If I =
+comment out the mv statement in kernel.bbclass causing the failure, the pro=
+cess continues, but the initramfs does not seem to get populated or perhaps=
+ installed into my kernel image as I get kernel panics that I have been una=
+ble to get past.</div><div><br></div><div><br></div><div>I decided to take =
+a different approach and try using the core-image-minimal-initramfs recipe =
+as INITRAMFS_IMAGE. By commenting out the COMPATIBLE_HOST entry I am able t=
+o build a kernel for ARM aarch64. I can even seem to boot into this initram=
+fs- it counts down waiting for removable media; seems to find my primary ro=
+otfs on sda3, but there is no rootfs.img file there so says it is dropping =
+to a shell (although I never get a prompt...).</div><div><br></div><div>Thi=
+nking I could start with that recipe and work to get rid of the live stuff =
+and just get to a busybox prompt before trying to run my unique init comman=
+ds, I copied=C2=A0
 
+<span style=3D"font-size:small;background-color:rgb(255,255,255);text-decor=
+ation-style:initial;text-decoration-color:initial;float:none;display:inline=
+"><a href=3D"http://core-image-minimal-initramfs.bb">core-image-minimal-ini=
+tramfs.bb</a> to my-
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC734F42Efmsmsx111amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+<span style=3D"text-decoration-style:initial;text-decoration-color:initial;=
+float:none;display:inline"><a href=3D"http://core-image-minimal-initramfs.b=
+b">core-image-minimal-initramfs.bb</a> in my layer and changed INITRAMFS_IM=
+AGE to &quot;my-
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
-<div>This is the old meeting invite.&nbsp; I thought I had canceled it.&nbs=
-p; We now have a zoom meeting for this.</div>
-<div>&nbsp;</div>
-</span></font>
-</body>
-</html>
+<span style=3D"font-size:small;background-color:rgb(255,255,255);text-decor=
+ation-style:initial;text-decoration-color:initial;float:none;display:inline=
+">core-image-minimal-initramfs&quot;.</span></span></span></div><div><span =
+style=3D"font-size:small;background-color:rgb(255,255,255);text-decoration-=
+style:initial;text-decoration-color:initial;float:none;display:inline"><spa=
+n style=3D"text-decoration-style:initial;text-decoration-color:initial;floa=
+t:none;display:inline"><span style=3D"font-size:small;background-color:rgb(=
+255,255,255);text-decoration-style:initial;text-decoration-color:initial;fl=
+oat:none;display:inline">However, I obviously missed something in the confi=
+guration as I get an error in go_bundle_initramfs again:</span></span></spa=
+n></div><div><span style=3D"background-color:rgb(255,255,255);text-decorati=
+on-style:initial;text-decoration-color:initial;float:none;display:inline"><=
+span style=3D"text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline"><span style=3D"background-color:rgb(255,255,255);=
+text-decoration-style:initial;text-decoration-color:initial;float:none;disp=
+lay:inline">=C2=A0 =C2=A0 =C2=A0kernel-source/scripts/gen_initramfs_list.sh=
+:=C2=A0</span></span></span></div><div><span style=3D"background-color:rgb(=
+255,255,255);text-decoration-style:initial;text-decoration-color:initial;fl=
+oat:none;display:inline"><span style=3D"text-decoration-style:initial;text-=
+decoration-color:initial;float:none;display:inline"><span style=3D"backgrou=
+nd-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-col=
+or:initial;float:none;display:inline">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0Cannot open &#39;/.../linux-qoriq/4.14-r0/build/=
+usr/my-core-image-minimal-initramfs-{machine}.cpio&#39;<br></span></span></=
+span></div><div><span style=3D"font-size:small;background-color:rgb(255,255=
+,255);text-decoration-style:initial;text-decoration-color:initial;float:non=
+e;display:inline"><span style=3D"text-decoration-style:initial;text-decorat=
+ion-color:initial;float:none;display:inline"><span style=3D"font-size:small=
+;background-color:rgb(255,255,255);text-decoration-style:initial;text-decor=
+ation-color:initial;float:none;display:inline"><br></span></span></span></d=
+iv><div><span style=3D"font-size:small;background-color:rgb(255,255,255);te=
+xt-decoration-style:initial;text-decoration-color:initial;float:none;displa=
+y:inline"><span style=3D"text-decoration-style:initial;text-decoration-colo=
+r:initial;float:none;display:inline"><span style=3D"font-size:small;backgro=
+und-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-co=
+lor:initial;float:none;display:inline">Any help would be greatly appreciate=
+d.</span></span></span></div><div>Thank you!</div>-- <br><div class=3D"gmai=
+l_signature"><div dir=3D"ltr"><br><span style=3D"font-family:&quot;arial na=
+rrow&quot;,sans-serif">.Tim</span><br></div></div>
+</div>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC734F42Efmsmsx111amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=CANCEL
-Content-Transfer-Encoding: base64
-
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6Q0FOQ0VMDQpQUk9ESUQ6TWljcm9zb2Z0IEV4Y2hhbmdl
-IFNlcnZlciAyMDEwDQpWRVJTSU9OOjIuMA0KQkVHSU46VlRJTUVaT05FDQpUWklEOlBhY2lmaWMg
-U3RhbmRhcmQgVGltZQ0KQkVHSU46U1RBTkRBUkQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpU
-Wk9GRlNFVEZST006LTA3MDANClRaT0ZGU0VUVE86LTA4MDANClJSVUxFOkZSRVE9WUVBUkxZO0lO
-VEVSVkFMPTE7QllEQVk9MVNVO0JZTU9OVEg9MTENCkVORDpTVEFOREFSRA0KQkVHSU46REFZTElH
-SFQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpUWk9GRlNFVEZST006LTA4MDANClRaT0ZGU0VU
-VE86LTA3MDANClJSVUxFOkZSRVE9WUVBUkxZO0lOVEVSVkFMPTE7QllEQVk9MlNVO0JZTU9OVEg9
-Mw0KRU5EOkRBWUxJR0hUDQpFTkQ6VlRJTUVaT05FDQpCRUdJTjpWRVZFTlQNCk9SR0FOSVpFUjtD
-Tj0iSm9sbGV5LCBTdGVwaGVuIEsiOk1BSUxUTzpzdGVwaGVuLmsuam9sbGV5QGludGVsLmNvbQ0K
-QVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9
-VFJVRTtDTj15b2N0b0B5b2N0DQogb3Byb2plY3Qub3JnOk1BSUxUTzp5b2N0b0B5b2N0b3Byb2pl
-Y3Qub3JnDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJ
-T047UlNWUD1UUlVFO0NOPU9UQyBFbWJlZGQNCiBlZCBBbGw6TUFJTFRPOm90Yy5lbWJlZGRlZC5h
-bGxAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVE
-Uy1BQ1RJT047UlNWUD1UUlVFO0NOPSJDZXRvbGEsIFN0DQogZXBoYW5vIjpNQUlMVE86c3RlcGhh
-bm8uY2V0b2xhQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFSVElDSVBBTlQ7UEFSVFNU
-QVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iU3Rld2FydCwgRA0KIGF2aWQgQyI6TUFJTFRP
-OmRhdmlkLmMuc3Rld2FydEBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5U
-O1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049J01hbmp1a3VtYQ0KIHIgSGFydGhp
-a290ZSBNYXRoYSc6TUFJTFRPOk1BTkpVS1VNQHhpbGlueC5jb20NCkFUVEVOREVFO1JPTEU9T1BU
-LVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkVyd2F5LCBU
-cmENCiBjZXkgTSI6TUFJTFRPOnRyYWNleS5tLmVyd2F5QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9M
-RT1PUFQtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTXVl
-bGxlciwgUg0KIG9iZXJ0IjpNQUlMVE86cm9iZXJ0Lm11ZWxsZXJAaW50ZWwuY29tDQpBVFRFTkRF
-RTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NO
-PSJKb3JkYW4sIFJvDQogYmluIEwiOk1BSUxUTzpyb2Jpbi5sLmpvcmRhbkBpbnRlbC5jb20NCkFU
-VEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRS
-VUU7Q049Ik1vc2VzLCBGcmUNCiBkIjpNQUlMVE86ZnJlZC5tb3Nlc0BpbnRlbC5jb20NCkFUVEVO
-REVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7
-Q049Ik9ybGluZywgVGkNCiBtb3RoeSBUIjpNQUlMVE86dGltb3RoeS50Lm9ybGluZ0BpbnRlbC5j
-b20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
-U1ZQPVRSVUU7Q049J1JhbmR5IE1hYw0KIExlb2QnOk1BSUxUTzpyYW5keS5tYWNsZW9kQHdpbmRy
-aXZlci5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
-VElPTjtSU1ZQPVRSVUU7Q049IkJvZGtlLCBLaXMNCiBob3JlIEsiOk1BSUxUTzpraXNob3JlLmsu
-Ym9ka2VAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
-RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSdNaWNoYWVsIEwNCiBpbSc6TUFJTFRPOnlvdWhvdXJA
-dXMuaWJtLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
-QUNUSU9OO1JTVlA9VFJVRTtDTj0iQW5nLCBDaGluIA0KIEh1YXQiOk1BSUxUTzpjaGluLmh1YXQu
-YW5nQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVF
-RFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iQ2hhbiwgQWFybw0KIG4gQ2h1biBZZXciOk1BSUxUTzph
-YXJvbi5jaHVuLnlldy5jaGFuQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFSVElDSVBB
-TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0nVmlnbmVzaCBSDQogYWplbmRy
-YW4gKFJCRUkvRUNGMyknOk1BSUxUTzpWaWduZXNoLlJhamVuZHJhbkBpbi5ib3NjaC5jb20NCkFU
-VEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRS
-VUU7Q049J0lEIC0gRGF2aQ0KIGQgVG9ycmVzJzpNQUlMVE86ZHRvcnJlc0BmZXJtYXguY29tDQpE
-RVNDUklQVElPTjtMQU5HVUFHRT1lbi1VUzpUaGlzIGlzIHRoZSBvbGQgbWVldGluZyBpbnZpdGUu
-ICBJIHRob3VnaHQgSSBoYWQNCiAgY2FuY2VsZWQgaXQuICBXZSBub3cgaGF2ZSBhIHpvb20gbWVl
-dGluZyBmb3IgdGhpcy5cblxuDQpSUlVMRTpGUkVRPU1PTlRITFk7SU5URVJWQUw9MTtCWURBWT0x
-VFUNClNVTU1BUlk7TEFOR1VBR0U9ZW4tVVM6Q2FuY2VsZWQ6IFlvY3RvIFByb2plY3QgVGVjaG5p
-Y2FsIFRlYW0gTWVldGluZw0KRFRTVEFSVDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDE4
-MDYwNVQwODAwMDANCkRURU5EO1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTgwNjA1VDA4
-MzAwMA0KVUlEOjA0MDAwMDAwODIwMEUwMDA3NEM1QjcxMDFBODJFMDA4MDAwMDAwMDBFMDY2RkI2
-RDRCRThEMzAxMDAwMDAwMDAwMDAwMDAwDQogMDEwMDAwMDAwMTE4Mzg0MEFFQTUwMTM0NTk4MTQ5
-MTNBRDhEQzMzMTENCkNMQVNTOlBVQkxJQw0KUFJJT1JJVFk6MQ0KRFRTVEFNUDoyMDE4MDcwM1Qx
-NTA4MzNaDQpUUkFOU1A6T1BBUVVFDQpTVEFUVVM6Q0FOQ0VMTEVEDQpTRVFVRU5DRToxDQpMT0NB
-VElPTjtMQU5HVUFHRT1lbi1VUzpCcmlkZ2UgSW5mbyBFbmNsb3NlZA0KWC1NSUNST1NPRlQtQ0RP
-LUFQUFQtU0VRVUVOQ0U6MQ0KWC1NSUNST1NPRlQtQ0RPLU9XTkVSQVBQVElEOjc0MDk3MjUxNA0K
-WC1NSUNST1NPRlQtQ0RPLUJVU1lTVEFUVVM6RlJFRQ0KWC1NSUNST1NPRlQtQ0RPLUlOVEVOREVE
-U1RBVFVTOkZSRUUNClgtTUlDUk9TT0ZULUNETy1BTExEQVlFVkVOVDpGQUxTRQ0KWC1NSUNST1NP
-RlQtQ0RPLUlNUE9SVEFOQ0U6Mg0KWC1NSUNST1NPRlQtQ0RPLUlOU1RUWVBFOjENClgtTUlDUk9T
-T0ZULURJU0FMTE9XLUNPVU5URVI6RkFMU0UNCkVORDpWRVZFTlQNCkJFR0lOOlZFVkVOVA0KU1VN
-TUFSWTpDYW5jZWxlZDogWW9jdG8gUHJvamVjdCBUZWNobmljYWwgVGVhbSBNZWV0aW5nDQpEVFNU
-QVJUO1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTgwNjA1VDA4MDAwMA0KRFRFTkQ7VFpJ
-RD1QYWNpZmljIFN0YW5kYXJkIFRpbWU6MjAxODA2MDVUMDgzMDAwDQpVSUQ6MDQwMDAwMDA4MjAw
-RTAwMDc0QzVCNzEwMUE4MkUwMDgwMDAwMDAwMEUwNjZGQjZENEJFOEQzMDEwMDAwMDAwMDAwMDAw
-MDANCiAwMTAwMDAwMDAxMTgzODQwQUVBNTAxMzQ1OTgxNDkxM0FEOERDMzMxMQ0KUkVDVVJSRU5D
-RS1JRDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDE4MDYwNVQwMDAwMDANCkNMQVNTOlBV
-QkxJQw0KUFJJT1JJVFk6MQ0KRFRTVEFNUDoyMDE4MDcwM1QxNTA4MzNaDQpUUkFOU1A6T1BBUVVF
-DQpTVEFUVVM6Q0FOQ0VMTEVEDQpTRVFVRU5DRToxDQpMT0NBVElPTjpCcmlkZ2UgSW5mbyBFbmNs
-b3NlZA0KWC1NSUNST1NPRlQtQ0RPLUFQUFQtU0VRVUVOQ0U6MQ0KWC1NSUNST1NPRlQtQ0RPLU9X
-TkVSQVBQVElEOjc0MDk3MjUxNA0KWC1NSUNST1NPRlQtQ0RPLUJVU1lTVEFUVVM6RlJFRQ0KWC1N
-SUNST1NPRlQtQ0RPLUlOVEVOREVEU1RBVFVTOkZSRUUNClgtTUlDUk9TT0ZULUNETy1BTExEQVlF
-VkVOVDpGQUxTRQ0KWC1NSUNST1NPRlQtQ0RPLUlNUE9SVEFOQ0U6Mg0KWC1NSUNST1NPRlQtQ0RP
-LUlOU1RUWVBFOjENClgtTUlDUk9TT0ZULURJU0FMTE9XLUNPVU5URVI6RkFMU0UNCkVORDpWRVZF
-TlQNCkVORDpWQ0FMRU5EQVINCg==
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC734F42Efmsmsx111amrcor_--
+--00000000000080381805701c1e96--
