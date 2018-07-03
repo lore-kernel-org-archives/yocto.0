@@ -1,39 +1,38 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 14974E0140A; Mon,  2 Jul 2018 19:58:56 -0700 (PDT)
+	id A1929E013C0; Mon,  2 Jul 2018 20:08:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A2F5E00D38
-	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 19:58:54 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	02 Jul 2018 19:58:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,301,1526367600"; d="scan'208";a="63654577"
-Received: from nmunfye-mobl1.gar.corp.intel.com (HELO localhost.localdomain)
-	([10.249.64.227])
-	by fmsmga002.fm.intel.com with ESMTP; 02 Jul 2018 19:58:50 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Robert Yang <liezhi.yang@windriver.com>
-Date: Tue, 03 Jul 2018 14:58:47 +1200
-Message-ID: <9167934.g4TBrBcL74@localhost.localdomain>
-Organization: Intel Corporation
-In-Reply-To: <f94a49f1-70cc-b960-c8eb-67f2cb6eac2c@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20EAEE00D38
+	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 20:08:50 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w6338lCb010283
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 2 Jul 2018 20:08:47 -0700 (PDT)
+Received: from [128.224.16.192] (128.224.16.192) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.399.0;
+	Mon, 2 Jul 2018 20:08:46 -0700
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
 References: <cover.1530569567.git.paul.eggleton@linux.intel.com>
 	<2774b95ad7f971714498b5d35885225af873da03.1530569567.git.paul.eggleton@linux.intel.com>
 	<f94a49f1-70cc-b960-c8eb-67f2cb6eac2c@windriver.com>
+	<9167934.g4TBrBcL74@localhost.localdomain>
+From: Robert Yang <liezhi.yang@windriver.com>
+Message-ID: <d57ea952-26ab-ced5-2393-f625f9e9e095@windriver.com>
+Date: Tue, 3 Jul 2018 11:08:43 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.8.0
 MIME-Version: 1.0
+In-Reply-To: <9167934.g4TBrBcL74@localhost.localdomain>
 Cc: yocto@yoctoproject.org
 Subject: Re: [layerindex-web][PATCH 5/7] update: ignore recommends when ordering layers
 X-BeenThere: yocto@yoctoproject.org
@@ -47,53 +46,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jul 2018 02:58:56 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 03 Jul 2018 03:08:50 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Hi Robert
 
-On Tuesday, 3 July 2018 2:45:11 PM NZST Robert Yang wrote:
-> Thanks for let me know this, this patch might be incorrect, suppose we have two
-> layers: core and hello:
+
+On 07/03/2018 10:58 AM, Paul Eggleton wrote:
+> Hi Robert
 > 
-> 1) LAYERRECOMMENDS_core = "hello"
-> 2) $ update.py -l hello,core
+> On Tuesday, 3 July 2018 2:45:11 PM NZST Robert Yang wrote:
+>> Thanks for let me know this, this patch might be incorrect, suppose we have two
+>> layers: core and hello:
+>>
+>> 1) LAYERRECOMMENDS_core = "hello"
+>> 2) $ update.py -l hello,core
+>>
+>> Then core maybe added before hello layer since it ignores recs on hello, and if
+>> hello is a new layer, it would not be in core's recs in database since core
+>> knows nothing about hello, I think that this is incorrect.
+>>
+>> If we really need this, I think that we should not ignore recs when the
+>> layer is present, but only ignore it when the layer is not present, for
+>> example, ignore it when hello layer doesn't exist, otherwise, don't ignore it.
 > 
-> Then core maybe added before hello layer since it ignores recs on hello, and if
-> hello is a new layer, it would not be in core's recs in database since core
-> knows nothing about hello, I think that this is incorrect.
->
-> If we really need this, I think that we should not ignore recs when the
-> layer is present, but only ignore it when the layer is not present, for
-> example, ignore it when hello layer doesn't exist, otherwise, don't ignore it.
+> Can you come up with an alternative fix that doesn't break parsing like it does now?
 
-Can you come up with an alternative fix that doesn't break parsing like it does now?
- 
-> But I'm not sure about patch 4 (error -> warning) either, since layerindex is
-> a central database, whether add recs to conf/bblayers.conf should depend on
-> end user rather than ignore it in database, otherwise the end user (especially
-> the api user) would have no way to choice, for example, we use api to make
-> conf/bblayers.conf have all or no recs layers according to user's choice,
-> if the database is wrong, then there might be only part of recs layers.
-> Though we can check update.py's warnings to fix the problem.
+OK, I will, maybe I can send you a patch by tomorrow, but I'm not sure since
+the implementation might be a little complicated.
 
-Recommends are just that - recommendations. Someone might legitimately
-submit a layer that recommends another which they don't submit (perhaps a
-commercial layer?). The system shouldn't refuse to handle it or indicate that
-it's broken (it isn't, there might be reduced functionality but the layer will still
-be parseable by bitbake).
+// Robert
 
-I'll leave these changes unmerged for a bit in case you have a better fix for
-the current problems.
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
-
+>   
+>> But I'm not sure about patch 4 (error -> warning) either, since layerindex is
+>> a central database, whether add recs to conf/bblayers.conf should depend on
+>> end user rather than ignore it in database, otherwise the end user (especially
+>> the api user) would have no way to choice, for example, we use api to make
+>> conf/bblayers.conf have all or no recs layers according to user's choice,
+>> if the database is wrong, then there might be only part of recs layers.
+>> Though we can check update.py's warnings to fix the problem.
+> 
+> Recommends are just that - recommendations. Someone might legitimately
+> submit a layer that recommends another which they don't submit (perhaps a
+> commercial layer?). The system shouldn't refuse to handle it or indicate that
+> it's broken (it isn't, there might be reduced functionality but the layer will still
+> be parseable by bitbake).
+> 
+> I'll leave these changes unmerged for a bit in case you have a better fix for
+> the current problems.
+> 
+> Cheers,
+> Paul
+> 
 
