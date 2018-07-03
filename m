@@ -1,35 +1,67 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <miketiri@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C651CE0135D; Tue,  3 Jul 2018 00:47:16 -0700 (PDT)
+	id 2AB36E00F58; Tue,  3 Jul 2018 01:40:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (miketiri[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A119FE00CEE
-	for <yocto@yoctoproject.org>; Tue,  3 Jul 2018 00:47:15 -0700 (PDT)
-Received: from hex ([192.168.3.34]) (authenticated bits=0)
-	by dan.rpsys.net (8.15.2/8.15.2/Debian-3) with ESMTPSA id
-	w637l9gK003601
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NOT); Tue, 3 Jul 2018 08:47:10 +0100
-Message-ID: <0dcb209044a4ea457eb2172703f780fc6dc4b61e.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "'yocto@yoctoproject.org'"
-	<yocto@yoctoproject.org>, "Jolley, Stephen K" <stephen.k.jolley@intel.com>,
-	"Eggleton, Paul" <paul.eggleton@intel.com>
-Date: Tue, 03 Jul 2018 08:47:09 +0100
-In-Reply-To: <9DDD2658D1FE414E99172D2DB1E4D04335E6E78E@PGSMSX109.gar.corp.intel.com>
-References: <9DDD2658D1FE414E99172D2DB1E4D04335E6E78E@PGSMSX109.gar.corp.intel.com>
-X-Mailer: Evolution 3.28.1-2 
-Mime-Version: 1.0
-X-Virus-Scanned: clamav-milter 0.99.4 at dan
-X-Virus-Status: Clean
-Cc: "Kirkiris, Nectar" <nectar.kirkiris@intel.com>
-Subject: Re: QA cycle report for 2.6 M1 RC1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.49 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f49.google.com (mail-oi0-f49.google.com
+	[209.85.218.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF0A8E00DC3
+	for <yocto@yoctoproject.org>; Tue,  3 Jul 2018 01:40:42 -0700 (PDT)
+Received: by mail-oi0-f49.google.com with SMTP id k81-v6so2202176oib.4
+	for <yocto@yoctoproject.org>; Tue, 03 Jul 2018 01:40:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=tfOCj7BsUfD0GVj9EChZkSLrBz/DuFxHtUi+FWPPAtE=;
+	b=iTAtVOE8srP0HShfMp83+Q6U0HCae5wn4bj+Z78K0vg57p/n1RGjoXow+coeZSUQtw
+	FDJKKBXlRx8t7B/zYVBMR08+TWnQJoeyfCJO3+G8L79h/H5CNrSDl8QSmDpRgP1F58kH
+	02KVxd14MBFIHohddEAZgQ1FXT6UMtQ3ZUZTdW5x20iNpMML4iMbA+22pp4BB/KJA4E6
+	cXhF/Xjx0p+jPrBHv5T3XOrn+JLNFIFfZcNqYV9/9SIsd9hYAg16S0jTxzDqZDBKVxXF
+	dqXW5OUWvHf3ftbFP0aId4joPxp4M1xluvG26gF3ihYnwHudtbCYvd94mLESY+jRl0S7
+	7cwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=tfOCj7BsUfD0GVj9EChZkSLrBz/DuFxHtUi+FWPPAtE=;
+	b=HbGsZW1qJQG4eGDQ5JsE1h0Gj0HgUtZjHCspGkT/9uxiTVcD1TpYt/FMzPcGuN8ZbT
+	MblGnCNM6H1kUFJPNYEkb8dBLwdyJWpdDWX0F+e/jfAnihRCI4RMtKnRcZ1FFeAgQVIw
+	6oEBpXr/xM+sfxOy+UHkelxhwF9Ny0bNVu2nAbU5sB34eu0UKAs1ipATT8iagBF7PkvD
+	H/Hhx33WOa4VChJIqaj+LMHzyN1UoLbBhB8x72BzI3C+JoQvYm63WRueZrb8DjFhUsFn
+	beTtXvbRW1aChTjTuwUZkv+axXvhENGjpygWsBGGhvHC2n1iVP+NeD5NYMK6L4NxW4o+
+	LmvA==
+X-Gm-Message-State: APt69E1CEEndQsFvSuk0AVYIByfhvAiHhkCGfv/MewQyWKvCrFKQAIDc
+	xio2BC5Jh1ZIsdnSAMcI+hHweZZiPmPQPbQ3mtI=
+X-Google-Smtp-Source: AAOMgpfPS0Oanm2jzENN8OKHHENnynuuywStHb+hDEUDkD1Y/EhFG6h83bZXtRKKcrzswwJq4FvhsAImLInh0fieTyk=
+X-Received: by 2002:aca:3d43:: with SMTP id
+	k64-v6mr18559003oia.166.1530607241826; 
+	Tue, 03 Jul 2018 01:40:41 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAMDWK9W30-W2Ooo5yzAjEgJHT_xS9rcq9BiYhnhFC-Jo7L27YA@mail.gmail.com>
+	<CAHUNapTMgE5pVfe77OfkPF=h_mcZCVZU_dp8vh8xKmzXpY30_A@mail.gmail.com>
+In-Reply-To: <CAHUNapTMgE5pVfe77OfkPF=h_mcZCVZU_dp8vh8xKmzXpY30_A@mail.gmail.com>
+From: Michele Tirinzoni <miketiri@gmail.com>
+Date: Tue, 3 Jul 2018 10:40:30 +0200
+Message-ID: <CAMDWK9UuDCrPM1T8HQSFTpN0Eout+P_50_LpGXQ0wKnJWgsXYw@mail.gmail.com>
+To: twoerner@gmail.com
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi] Waveshare touchscreen
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,108 +73,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jul 2018 07:47:16 -0000
+X-List-Received-Date: Tue, 03 Jul 2018 08:40:43 -0000
+Content-Type: multipart/alternative; boundary="000000000000f0980a05701444d1"
+
+--000000000000f0980a05701444d1
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
-Thanks Ee Peng and team, this release seemed to have a number of issues
-and proved challenging to QA. I appreciate the work that goes into
-these (particularly given the other releases also queued), this is a
-useful QA report and has found some real issues.
+Thanks Trevor. I don't see he zero in their supported device list, I will
+try to contact them.
+Anyway, the config.txt is just enough to be able to use the screen with
+touch functionality ? No need to have any driver installed ?
 
-On Tue, 2018-07-03 at 07:09 +0000, Yeoh, Ee Peng wrote:
-> This is the full report for 2.6 M1 RC1: 
-> https://wiki.yoctoproject.org/wiki/WW27_-_2018-07-02_-_Full_Test_Cycl
-> e_2.6_M1_rc1
->  
-> ======= Summary ========
->  
-> 99% of planned tests were executed except automated SDK test for
->  (testrun# 9747-9753) and automated SDK image tests
-> for core-image-sato-sdk-qemumips (testrun# 9713-9714), where those
-> tests were excluded from the automated test suites and it was still
-> under investigation why they were excluded.
+On Tue, 3 Jul 2018 at 04:33, Trevor Woerner <twoerner@gmail.com> wrote:
 
-I think buildgalculator is excluded simply because it takes so long to
-run as the mips emulation in qemu is slow. There might be information
-in commit logs about why we did that.
- 
-> There were zero high milestone defect.  Team had found 9 new defects
-> where Edgerouter [1] & Beaglebone Black [3] defects were resolved. 
-> Team found that pTest for busybox and valgrind had testcases passed
-> in previous 2.5 M4 rc1 but failed during this release [8] [9].  Team
-> had also found that existing automated xorg test was passed
-> successfully while it was not able to catch matchbox window manager
-> issue on qemumips [4], thus team had added manual graphic tests as
-> temporary solution.  
->  
-> ======= QA-Hints========
->  
-> Two medium+ defects where 1 was resolved and 1 under design. 
->  
-> ======= Bugs ========
->  
-> New Bugs
-> [1] Bug 12790 - [2.6 M1] Edgerouter can not boot
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12790
+> On Wed, Jun 27, 2018 at 7:38 AM, Michele Tirinzoni <miketiri@gmail.com>
+> wrote:
+>>
+>> I saw in the documentation page that the Waveshare touchscreen is
+>> supported.
+>> Before buying one of those I'd like to know if anyone tried it recently
+>> with a rpi zero w or if there's any known issue.
+>>
+>
+> I added the support for the waveshare screen and use it regularly with a
+> Raspberry Pi 3 (B and B+) 32-bit. My _latest_ build and test from master
+> for RPi3B+-32 was just last week. Check the commit message for the specific
+> one I'm using:
+>
+>
+> https://github.com/agherzan/meta-raspberrypi/commit/da32aac453da278e254d37b816602410af85d162#diff-a8b738ce971c646d8c30f0d75c6c45b9
+>
+> I haven't tried it with the Zero, in fact, I haven't tried a Zero at all.
+>
 
-[Fixed in master]
- 
-> [2] Bug 12804 - [QA 2.6 M1 rc1 ][Build Appliance]: proxy issue in VM
-> ware
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12804
+--000000000000f0980a05701444d1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-[Regression where we understand which change broke things but not fixed
-yet]
- 
-> [3] Bug 12795 - [2.6 M1] gcc/g++ doesn't work on beaglebone black
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12795
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Thanks Trevor. I don&#39;t see he zero in their support=
+ed device list, I will try to contact them.</div><div class=3D"gmail_defaul=
+t" style=3D"font-family:arial,helvetica,sans-serif">Anyway, the config.txt =
+is just enough to be able to use the screen with touch functionality ? No n=
+eed to have any driver installed ?<br></div></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr">On Tue, 3 Jul 2018 at 04:33, Trevor Woerner &lt;<a h=
+ref=3D"mailto:twoerner@gmail.com">twoerner@gmail.com</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
+1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra=
+"><div class=3D"gmail_quote">On Wed, Jun 27, 2018 at 7:38 AM, Michele Tirin=
+zoni <span dir=3D"ltr">&lt;<a href=3D"mailto:miketiri@gmail.com" target=3D"=
+_blank">miketiri@gmail.com</a>&gt;</span> wrote:<blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><div dir=3D"ltr"><div style=3D"font-family:arial,hel=
+vetica,sans-serif">I saw in the documentation page that the Waveshare touch=
+screen is supported.</div><div style=3D"font-family:arial,helvetica,sans-se=
+rif">Before buying one of those I&#39;d like to know if anyone tried it rec=
+ently with a rpi zero w or if there&#39;s any known issue.</div><div style=
+=3D"font-family:arial,helvetica,sans-serif"></div></div></blockquote></div>=
+<br></div><div class=3D"gmail_extra">I added the support for the waveshare =
+screen and use it regularly with a Raspberry Pi 3 (B and B+) 32-bit. My _la=
+test_ build and test from master for RPi3B+-32 was just last week. Check th=
+e commit message for the specific one I&#39;m using:</div><div class=3D"gma=
+il_extra"><br></div><div class=3D"gmail_extra"><a href=3D"https://github.co=
+m/agherzan/meta-raspberrypi/commit/da32aac453da278e254d37b816602410af85d162=
+#diff-a8b738ce971c646d8c30f0d75c6c45b9" target=3D"_blank">https://github.co=
+m/agherzan/meta-raspberrypi/commit/da32aac453da278e254d37b816602410af85d162=
+#diff-a8b738ce971c646d8c30f0d75c6c45b9</a><br></div><div class=3D"gmail_ext=
+ra"><br></div><div class=3D"gmail_extra">I haven&#39;t tried it with the Ze=
+ro, in fact, I haven&#39;t tried a Zero at all.</div></div>
+</blockquote></div>
 
-[Fixed in master]
-
-> [4] Bug 12806 - [2.6 M1 rc1 ][BSP][Test Run 9708]: Qemuppc image was
-> not booting with graphic even though runtime/xorg.py test passed
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12806
-
-[Needs further debugging - Ross' comment about arm64 confuses me in a
-qemuppc bug :/]
- 
-> [5] Bug 12832 - [ 2.6 M1 rc1 ][BSP][Test case 267]: audio and video
-> does not play in media player[Mturbot x86-64 and NUC7]
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12832
-
-[Not triaged yet]
- 
-> [6] Bug 12802 - [Yocto-2.6_M1.RC1] Crosstap doesn't work on 2.6 M1
-> RC1
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12802
-
-[Unclear if functionality is broken or just a warning message]
-
-> [7] Bug 12813 - [QA 2.6 M1 rc1 ][Toaster]:Build stopped without
-> error, to terminate by ctrl+c
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12813
-
-[Valid issue, not release blocker and scheduled for M3]
- 
-> [8] Bug 12836 - [2.6 M1 RC1] busybox ptest failed
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12836
-
-[Regression: 4 wget tests that passed now fail]
-
-> [9] Bug 12837 - [2.6 M1 RC1] valgrind ptest failed
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12837
-
-[Regression: 19 tests started failing, 2 started passing]
-
-
-My take on this is that we probably should release M1 rc1 and move to
-concentrate on M2 but we need to ensure more of the above issued are
-fixed before we can build M2. This QA report tells us very clearly
-where we need to focus effort on addressing regressions.
-
-Cheers,
-
-Richard
-
-
+--000000000000f0980a05701444d1--
