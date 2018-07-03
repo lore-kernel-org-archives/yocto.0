@@ -1,68 +1,37 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B332E013C0; Mon,  2 Jul 2018 19:33:12 -0700 (PDT)
+	id 30571E013E5; Mon,  2 Jul 2018 19:45:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.172 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
-	[209.85.208.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FCABE00E36
-	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 19:33:11 -0700 (PDT)
-Received: by mail-lj1-f172.google.com with SMTP id t21-v6so293303lji.0
-	for <yocto@yoctoproject.org>; Mon, 02 Jul 2018 19:33:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=YW8I5GfP4vyYo6IngyyZH1QZ3+Sv2ZGf08fcKCXSGqQ=;
-	b=AQZ64+dRpXQp7X9eQv/VTkpJrveD3QvdgWJhT7qcWGrmRXodNIEOMeVw2xkchH5Jt9
-	rHc1au44gxjSnNQvBxXYA6MFIwsgZBdCRBFevU80HJ4KZrQpGc+a5X2TZS4t5mN9Cv1P
-	Tnx/iAE50uo3ovC8fe2/5R3qMjAJYjaahaASUdszwvVHTJvW6NNWImHi01h/FMog0dkv
-	6u0VIFr6FmWRzp7vhmewjPgmwVX2J6pWX1Pj7CfX5fqBqwml2MBnLQOj0VNAgTt9cv+G
-	e9JgL3g09J059xkQiRMMUcWQxzbcyg68KV+42cTl7ubBRsEdW0QubWRllYz1/IYR8/4b
-	JK8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=YW8I5GfP4vyYo6IngyyZH1QZ3+Sv2ZGf08fcKCXSGqQ=;
-	b=DzDrmvTLpKXa39QOc7nhftislqPo0Hz2llxwng2L+l1zs6JNCvZ5RxNxO3iFZtZm6b
-	eXOAf1myw1YzvqWD2QlOPF0psFnWlTgUCV8ij+DRA0I5SZ7BCjGaWYjrYmX5uJdemICu
-	A39YN1hMFN0aNfFUOS2UJ+pB/8/BoVQLJWnGwmtTbS/Z/QZYqsaLX/0sWAJZQ1pZGmTn
-	D9H/nOeghqoNNKWDoLWBwnPHtx9FLTBeYAiME2RPJUgAsjAlTtXsRg6kTCAGtfb+T6Hw
-	yntOQj92BdBJ/uU5gBWD7LPjGkb2ku4Nul3cv0W2TUFa3FgFDwAdrDDJ1UWMph07V5tq
-	LVDQ==
-X-Gm-Message-State: APt69E2EaVaMWPUR9yM/cPcmEwHwu/TUCIP4tuUFH0zy+HCrYnYllP+q
-	A+20l9GDUw8z7QewkdKa0h1dXA16v8tA7toJQk/g5OVh
-X-Google-Smtp-Source: AAOMgpcQToCawnz9+EdvK6mOJHvdXb+9b0Gz8QWpgO18ftfBqwI3gimtoHq42FcGzksUnKmGRU20lv1Ge5uXA7lQrCI=
-X-Received: by 2002:a2e:84d7:: with SMTP id
-	q23-v6mr17434062ljh.126.1530585190363; 
-	Mon, 02 Jul 2018 19:33:10 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 008C1E013C0
+	for <yocto@yoctoproject.org>; Mon,  2 Jul 2018 19:45:16 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w632jG4o010212
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 2 Jul 2018 19:45:16 -0700 (PDT)
+Received: from [128.224.16.192] (128.224.16.192) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.399.0;
+	Mon, 2 Jul 2018 19:45:15 -0700
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, <yocto@yoctoproject.org>
+References: <cover.1530569567.git.paul.eggleton@linux.intel.com>
+	<2774b95ad7f971714498b5d35885225af873da03.1530569567.git.paul.eggleton@linux.intel.com>
+From: Robert Yang <liezhi.yang@windriver.com>
+Message-ID: <f94a49f1-70cc-b960-c8eb-67f2cb6eac2c@windriver.com>
+Date: Tue, 3 Jul 2018 10:45:11 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.8.0
 MIME-Version: 1.0
-Received: by 2002:a19:2195:0:0:0:0:0 with HTTP;
-	Mon, 2 Jul 2018 19:33:09 -0700 (PDT)
-In-Reply-To: <CAMDWK9W30-W2Ooo5yzAjEgJHT_xS9rcq9BiYhnhFC-Jo7L27YA@mail.gmail.com>
-References: <CAMDWK9W30-W2Ooo5yzAjEgJHT_xS9rcq9BiYhnhFC-Jo7L27YA@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Mon, 2 Jul 2018 22:33:09 -0400
-Message-ID: <CAHUNapTMgE5pVfe77OfkPF=h_mcZCVZU_dp8vh8xKmzXpY30_A@mail.gmail.com>
-To: Michele Tirinzoni <miketiri@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Waveshare touchscreen
+In-Reply-To: <2774b95ad7f971714498b5d35885225af873da03.1530569567.git.paul.eggleton@linux.intel.com>
+Subject: Re: [layerindex-web][PATCH 5/7] update: ignore recommends when ordering layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,55 +43,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jul 2018 02:33:12 -0000
-Content-Type: multipart/alternative; boundary="00000000000091f81805700f225b"
+X-List-Received-Date: Tue, 03 Jul 2018 02:45:18 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---00000000000091f81805700f225b
-Content-Type: text/plain; charset="UTF-8"
+Hi Paul,
 
-On Wed, Jun 27, 2018 at 7:38 AM, Michele Tirinzoni <miketiri@gmail.com>
-wrote:
->
-> I saw in the documentation page that the Waveshare touchscreen is
-> supported.
-> Before buying one of those I'd like to know if anyone tried it recently
-> with a rpi zero w or if there's any known issue.
->
+Thanks for let me know this, this patch might be incorrect, suppose we have two
+layers: core and hello:
 
-I added the support for the waveshare screen and use it regularly with a
-Raspberry Pi 3 (B and B+) 32-bit. My _latest_ build and test from master
-for RPi3B+-32 was just last week. Check the commit message for the specific
-one I'm using:
+1) LAYERRECOMMENDS_core = "hello"
+2) $ update.py -l hello,core
 
-https://github.com/agherzan/meta-raspberrypi/commit/da32aac453da278e254d37b816602410af85d162#diff-a8b738ce971c646d8c30f0d75c6c45b9
+Then core maybe added before hello layer since it ignores recs on hello, and if
+hello is a new layer, it would not be in core's recs in database since core
+knows nothing about hello, I think that this is incorrect.
 
-I haven't tried it with the Zero, in fact, I haven't tried a Zero at all.
+If we really need this, I think that we should not ignore recs when the
+layer is present, but only ignore it when the layer is not present, for
+example, ignore it when hello layer doesn't exist, otherwise, don't ignore it.
 
---00000000000091f81805700f225b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+But I'm not sure about patch 4 (error -> warning) either, since layerindex is
+a central database, whether add recs to conf/bblayers.conf should depend on
+end user rather than ignore it in database, otherwise the end user (especially
+the api user) would have no way to choice, for example, we use api to make
+conf/bblayers.conf have all or no recs layers according to user's choice,
+if the database is wrong, then there might be only part of recs layers.
+Though we can check update.py's warnings to fix the problem.
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On W=
-ed, Jun 27, 2018 at 7:38 AM, Michele Tirinzoni <span dir=3D"ltr">&lt;<a hre=
-f=3D"mailto:miketiri@gmail.com" target=3D"_blank">miketiri@gmail.com</a>&gt=
-;</span> wrote:<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr"><div style=3D"font-family:arial,helvetica,sans-serif">I saw in the=
- documentation page that the Waveshare touchscreen is supported.</div><div =
-style=3D"font-family:arial,helvetica,sans-serif">Before buying one of those=
- I&#39;d like to know if anyone tried it recently with a rpi zero w or if t=
-here&#39;s any known issue.</div><div style=3D"font-family:arial,helvetica,=
-sans-serif"></div></div></blockquote></div><br></div><div class=3D"gmail_ex=
-tra">I added the support for the waveshare screen and use it regularly with=
- a Raspberry Pi 3 (B and B+) 32-bit. My _latest_ build and test from master=
- for RPi3B+-32 was just last week. Check the commit message for the specifi=
-c one I&#39;m using:</div><div class=3D"gmail_extra"><br></div><div class=
-=3D"gmail_extra"><a href=3D"https://github.com/agherzan/meta-raspberrypi/co=
-mmit/da32aac453da278e254d37b816602410af85d162#diff-a8b738ce971c646d8c30f0d7=
-5c6c45b9">https://github.com/agherzan/meta-raspberrypi/commit/da32aac453da2=
-78e254d37b816602410af85d162#diff-a8b738ce971c646d8c30f0d75c6c45b9</a><br></=
-div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">I haven=
-&#39;t tried it with the Zero, in fact, I haven&#39;t tried a Zero at all.<=
-/div></div>
+// Robert
 
---00000000000091f81805700f225b--
+On 07/03/2018 06:58 AM, Paul Eggleton wrote:
+> We don't actually need to consider recommended layers when preparing the
+> order - just the depends. If we do then we can get into circular
+> dependency situation e.g. currently with meta-intel and meta-intel-qat
+> where meta-intel recommends meta-intel-qat and meta-intel-qat depends on
+> meta-intel. (Likely the latter dependency is erroneous since the content
+> of meta-intel-qat doesn't appear to depend on meta-intel, but there
+> could be other scenarios where it is legitimate).
+> 
+> Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+> ---
+>   layerindex/update.py | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/layerindex/update.py b/layerindex/update.py
+> index 06c61a79..a4b96e24 100755
+> --- a/layerindex/update.py
+> +++ b/layerindex/update.py
+> @@ -399,7 +399,7 @@ def main():
+>                       deps = re.search("^LAYERDEPENDS = \"(.*)\"", output, re.M).group(1) or ''
+>                       recs = re.search("^LAYERRECOMMENDS = \"(.*)\"", output, re.M).group(1) or ''
+>   
+> -                    deps_dict = utils.explode_dep_versions2(bitbakepath, deps + ' ' + recs)
+> +                    deps_dict = utils.explode_dep_versions2(bitbakepath, deps)
+>                       if len(deps_dict) == 0:
+>                           # No depends, add it firstly
+>                           layerquery_sorted.append(layer)
+> 
+
