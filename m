@@ -1,61 +1,62 @@
-Return-Path: <abhishekr@eximiusdesign.com>
+Return-Path: <owestermann@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21AEFE0109D; Thu,  5 Jul 2018 00:15:23 -0700 (PDT)
+	id 6209AE00E97; Thu,  5 Jul 2018 00:26:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.208.172 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (owestermann[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
-	[209.85.208.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A9DCE00ECB
-	for <yocto@yoctoproject.org>; Thu,  5 Jul 2018 00:15:22 -0700 (PDT)
-Received: by mail-lj1-f172.google.com with SMTP id u7-v6so3244162lji.3
-	for <yocto@yoctoproject.org>; Thu, 05 Jul 2018 00:15:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=eximiusdesign-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-ua0-f175.google.com (mail-ua0-f175.google.com
+	[209.85.217.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB361E00DA5
+	for <yocto@yoctoproject.org>; Thu,  5 Jul 2018 00:26:31 -0700 (PDT)
+Received: by mail-ua0-f175.google.com with SMTP id x18-v6so4804427uaj.9
+	for <yocto@yoctoproject.org>; Thu, 05 Jul 2018 00:26:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=SEP0Ol3hltpg1He/QARPtKtg0LWMhf6wLUO+5SGXDkk=;
-	b=b1TXD5MtMDzbbGNwaxxmripFoXSL1rmWGeR1OS86YgBsK2O5MJZ6jGaLIiObPxLKT3
-	IWj9qB1S9j9I8FnqxEl0kdQGzfGqcBP9oER6NygWfWP5hXAHnWClqJ97FniqD/aON+nF
-	m1phlRaRTnL/Zd5sO6zM/p+qKC9MSChAwwdoEDOxxUDVRe60O7zY8dEBf7RqPzRRN2ks
-	FHWY9T08trdrmpKubOdunEqO5suhDXfEU3GU08/P9RHsJQMjc2WLwcmXAjB5UsT2+49X
-	K/MalRzqAak6Kwj4i0+Lv51dTNAQM5wBgoK56jU10TDph5LXy2jGI3SI7O9MBt+mJdLe
-	ebZA==
+	bh=BuXAIntC9OK6MzOpJ4c5KnHTRMig1KopnUX1YKJPx1w=;
+	b=PClEMSxXLq2TUqGrVXqrMRuQmQFmYigFRsht8V6G9dXaKL3cQE9PssDcylG9V3u+pE
+	euqem5WixGhsopQi7kfjHEIyu5T38tyT29fJRo1AdqAr866Kh61n0GWSOi3ErDdqbQTg
+	WZRFm6bzbtNjLJqV7nhFGt0MYOiUnF1nQCam8JcCfrJ98/EWc3rZDhUZn1iW4XV/0f2y
+	asEV1q/06BRfOEjdoyWHkixW6AKfgj7tqGg2XFKua57aSONFryo/QBb+nLG+/VUFdgga
+	6xmHdS7LBQbJ3BrARlG5wQ35ZuWFfrMDYQpNaPrzBExMjzkneI0az5eBLF0wk4GYQ+ud
+	+MjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=SEP0Ol3hltpg1He/QARPtKtg0LWMhf6wLUO+5SGXDkk=;
-	b=Urjt1vD+RzRPAxcOf3GHKRH3MVehs+LufesiD27VwV9Aren2a/8SIz+/yqz80wOcbD
-	JJQbLSZEij+K0AvG74SEW5T+2jf1PJBlTSRvll406f0abHnJZ6Hfj5/bzV0WN4eVJt5D
-	fkEH3x9lYurs5xrXuAZowvQA2DEg6KjhkVO8WjlPsXHl3zTO+cAR1o8GShKSbHAH/+BU
-	Uu3WvvRQ5+fd/blv1GqtSA4cEu7CP3lmGu0PrwUhm99+qnovTpDIrjvROIz3psMHDvB6
-	kQEVMYqGHvjWoJINOU47Qrdt1XqUnE1Hi1KubQYmJV/xZD23+TPN/g3CgFoaMncRKHyr
-	CxCg==
-X-Gm-Message-State: APt69E2aj2Gr2x9BPRPxZKNY5aXfeT5jWFopxOAR4nUbig60r37AKa7q
-	Vc6fVnNJ4JqQTutxKdsOfjcABKX+uYSZNJvDTwSXLTEHBLupLLhiHRDNhOKxn+vpoEW5g6WCxFe
-	SAm7o1Ds3gDoItfwRJtpl4WCPJjaIR+0=
-X-Google-Smtp-Source: AAOMgpcbUm6HqzT5Zp4ze+LpJRDrS/XKrcSdtpMR+BvVZQGoca5H4hej5sKYT+B/TYFvLjmzadA4XtuyfrvNs4dP7Xg=
-X-Received: by 2002:a2e:4357:: with SMTP id
-	q84-v6mr3076080lja.13.1530774921050; 
-	Thu, 05 Jul 2018 00:15:21 -0700 (PDT)
+	bh=BuXAIntC9OK6MzOpJ4c5KnHTRMig1KopnUX1YKJPx1w=;
+	b=jiwnRcdHe16WyZoHU3+xO6HwHl0/ZpmLpm9CT4Gf/bREetsbwr89fTKbtoZ6YVfIod
+	EOiR8qxQmApnvQjagV5m1D862jX26LQY3HOagAu5ca96Aor75QXPlPAUj9TdLB4VP8tg
+	Dtv7LIJap8+aMyO+R+jnCvAnEAuxiz5GOdoaNh3MU3Rxvniz61bD80uAZFkX8NL+w83J
+	jvJNEyxAggmKanpxJDprKcutNI9+icsi41tRsnLe8v8zaUXbiiFUM1DoR0nfEUKflyKu
+	WSyihgWAy4YLSWVEymyw6HM38+toGksbCKYzk0gDnCO0NrXSXLeAc0QKJp4MNvxSJuxn
+	SYnQ==
+X-Gm-Message-State: APt69E3F/4CRsWdSJgypr3MLqFl4iUccLc9Ua6ijPj2qbsPYHXqH3rYE
+	QOYaLi1ABrImW8Osqq9uziRP+gaxxhezoOaESoXX9Q==
+X-Google-Smtp-Source: AAOMgpereQnW1ewZ3WIveZIPdcj2x2HMxyPQfO0pnWjIk3Kwq6TpwIldd+TKUKqQuyYJ9U7Tq5dvzgsZ8U+cnFraAdI=
+X-Received: by 2002:ab0:4ad7:: with SMTP id
+	t23-v6mr3050538uae.35.1530775590752; 
+	Thu, 05 Jul 2018 00:26:30 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a19:6b05:0:0:0:0:0 with HTTP;
-	Thu, 5 Jul 2018 00:15:20 -0700 (PDT)
-From: Abhishek Kumar Rai <abhishekr@eximiusdesign.com>
-Date: Thu, 5 Jul 2018 12:45:20 +0530
-Message-ID: <CALYWmf9kQfqdvz-8AuR2dDAz-xDxHWwcACu-j+AyNxq426UEgw@mail.gmail.com>
-To: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Regarding Error occuring after changing configuration
+From: Oliver Westermann <owestermann@gmail.com>
+Date: Thu, 5 Jul 2018 09:26:19 +0200
+Message-ID: <CAGKr=yesOWOFUHJrvkgeBkw4LzqeNod6kG=6NpUkDzCJb8DDdQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Creating a recipe for python3-pillow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,220 +68,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jul 2018 07:15:23 -0000
-Content-Type: multipart/alternative; boundary="000000000000668dea05703b4ff6"
+X-List-Received-Date: Thu, 05 Jul 2018 07:26:32 -0000
+Content-Type: multipart/alternative; boundary="0000000000005156b305703b778d"
 
---000000000000668dea05703b4ff6
+--0000000000005156b305703b778d
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Team,
+ Hey,
 
-I am getting error while building yocto after changing the configuration.
+I'm fiddeling around with yocto. I want to move some python stuff onto an
+embedded board and use the nxp mx8 yocto. Everything worked as expected
+until now, I was able to create yocto recipes for python modules like
+pyv4l2 (is there any interest for recipes like these to be commited to
+meta-python?).
 
-Please find set of below commands that i have used
-$ bitbake virtual/kernel -c menuconfig
-$ bitbake virtual/kernel
-$ bitbake -k agl-demo-platform
+Now I wanted to install pillow for some image manipulation, but whereas
+other python module recipes worked fine, this one fails and I don't
+understand why.
 
-*| Disk
-~/build/tmp/work/nitrogen6x-agl-linux-gnueabi/agl-demo-platform/1.0-r0/depl=
-oy-agl-demo-platform-image-complete/agl-demo-platform-nitrogen6x-2018070506=
-3932.rootfs.sdcard:
-2185MB*
-*| Sector size (logical/physical): 512B/512B*
-*| Partition Table: msdos*
-*| Disk Flags:*
-*| *
-*| Number  Start   End     Size    Type     File system  Flags*
-*|  1      4194kB  12.6MB  8389kB  primary               lba*
-*|  2      12.6MB  2181MB  2168MB  primary*
-*| *
-*| mkfs.fat: warning - lowercase labels might not work properly with DOS or
-Windows*
-*| mkfs.fat 4.1 (2017-01-24)*
-*| Disk full*
-*| WARNING: exit code 1 from a shell command.*
-*| ERROR: Function failed: do_image_sdcard (log file is located at
-~/build/tmp/work/nitrogen6x-agl-linux-gnueabi/agl-demo-platform/1.0-r0/temp=
-/log.do_image_sdcard.6362)*
-*ERROR: Task
-(~/kapil/meta-agl-demo/recipes-platform/images/agl-demo-platform.bb:do_imag=
-e_sdcard)
-failed with exit code '1'*
+Yocto reports missing setuptools:
 
+Log data follows:
+| DEBUG: Executing shell function do_configure
+| NOTE: make clean
+| python setup.py clean
+| Traceback (most recent call last):
+|   File "setup.py", line 22, in <module>
+|     from setuptools import Extension, setup
+| ImportError: No module named setuptools
 
-*NOTE: Tasks Summary: Attempted 7063 tasks of which 7059 didn't need to be
-rerun and 1 failed.*I think due to change in configuration rootfs size is
-increased and the current rootfs size is small that is not able to
-accommodate the thae changed size.
-If it is so can anybody please provide steps to change the rootfs size .
+I've googled around and everything suggests that inherit setuptools3 is
+missing, but it's present in my recipe. This is my python3-pillow_5.2.0.bb:
 
-Can you please give your inputs regarding this.
+SUMMARY = "Pillow (The friendly PIL fork)"
+HOMEPAGE = "http://python-pillow.org/"
+LICENSE = "EPLv1"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=c6379001ecb47e2a0420c40177fc1125"
 
+SRC_URI[md5sum] = "52d93a34f4180abcff04876f23eaa9b9"
 
-*Regards,*
+PYPI_PACKAGE = "Pillow"
 
-*Abhishek Rai*
+inherit pypi setuptools3
 
---=20
+BBCLASSEXTEND = "native nativesdk"
 
+Any idea whats missing or what I am doing wrong (other than that the
+license line is incorrect)?
 
+Best regards, Olli
 
-
-
-
-
-
-
-
-
-
-
-
-The information contained in this e-mail message (including=20
-any=C2=A0
-
-
-attachments) may be confidential, proprietary, privileged, or=20
-otherwise
-
-
-exempt from disclosure under applicable laws. It is intended to=20
-be=C2=A0
-
-
-conveyed only to the designated recipient(s). Any use, dissemination,=C2=A0
-
-
-
-distribution, printing, retaining or copying of this e-mail (including=20
-its=C2=A0
-
-
-attachments) by unintended recipient(s) is strictly prohibited and=20
-may=C2=A0
-
-
-be unlawful. If you are not an intended recipient of this e-mail, or=20
-believe=C2=A0
-
-
-that you have received this e-mail in error, please notify the=20
-sender=C2=A0
-
-
-immediately (by replying to this e-mail), delete any and all=20
-copies of=C2=A0
-
-
-this e-mail (including any attachments) from your system, and=20
-do not
-
-
-disclose the content of this e-mail to any other person. Thank you=20
-for your cooperation.
-
-
-
-
-
-
---=20
-_This e-mail message (including any=C2=A0attachments) may be confidential,=
-=20
-proprietary, privileged, or otherwise=C2=A0exempt from disclosure under=20
-applicable laws. If you are not an intended recipient, please delete this=
-=20
-message. Thank you.
-_
-
---000000000000668dea05703b4ff6
+--0000000000005156b305703b778d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div>Hi Team,<br><br></div>I am getting error wh=
-ile building yocto after changing the configuration.<br><br>Please find set=
- of below commands that i have used<br>$ bitbake virtual/kernel -c menuconf=
-ig<br></div><div>$ bitbake virtual/kernel<br>$ bitbake -k agl-demo-platform=
-<br></div><div><br><span id=3D"gmail-:c2.co" class=3D"gmail-tL8wMe gmail-EM=
-oHub" style=3D"text-align:left" dir=3D"ltr"><b>|
- Disk ~/build/tmp/work/nitrogen6x-agl-linux-gnueabi/agl-demo-platform/1.0-r=
-0/deploy-agl-demo-platform-image-complete/agl-demo-platform-nitrogen6x-2018=
-0705063932.rootfs.sdcard:
- 2185MB</b><br><b>| Sector size (logical/physical): 512B/512B</b><br><b>| P=
-artition Table: msdos</b><br><b>| Disk Flags:</b><br><b>| </b><br><b>| Numb=
-er=C2=A0 Start=C2=A0=C2=A0 End=C2=A0=C2=A0=C2=A0=C2=A0 Size=C2=A0=C2=A0=C2=
-=A0 Type=C2=A0=C2=A0=C2=A0=C2=A0 File system=C2=A0 Flags</b><br><b>|=C2=A0 =
-1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 4194kB=C2=A0 12.6MB=C2=A0 8389kB=C2=A0 prim=
-ary=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 lba</b><br><b>|=C2=A0 2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 12.6MB=
-=C2=A0 2181MB=C2=A0 2168MB=C2=A0 primary</b><br><b>| </b><br><b>| mkfs.fat:=
- warning - lowercase labels might not work properly with DOS or Windows</b>=
-<br><b>| mkfs.fat 4.1 (2017-01-24)</b><br><b>| Disk full</b><br><b>| WARNIN=
-G: exit code 1 from a shell command.</b><br><b>|
- ERROR: Function failed: do_image_sdcard (log file is located at ~/build/tm=
-p/work/nitrogen6x-agl-linux-gnueabi/agl-demo-platform/1.0-r0/temp/log.do_im=
-age_sdcard.6362)</b><br><b>ERROR:
- Task=20
-(~/kapil/meta-agl-demo/recipes-platform/images/agl-demo-platform.bb:do_imag=
-e_sdcard)
- failed with exit code &#39;1&#39;</b><br><b>NOTE: Tasks Summary: Attempted=
- 7063 tasks of which 7059 didn&#39;t need to be rerun and 1 failed.<br><br>=
-</b></span>I think due to change in configuration rootfs size is increased =
-and the current rootfs size is small that is not able to accommodate the th=
-ae changed size.<br>If it is so can anybody please provide steps to change =
-the rootfs size .<br><br>Can you please give your inputs regarding this.<br=
-><br></div><span id=3D"gmail-:c2.co" class=3D"gmail-tL8wMe gmail-EMoHub" st=
-yle=3D"text-align:left" dir=3D"ltr"><b>Regards,<br></b></span></div><span i=
-d=3D"gmail-:c2.co" class=3D"gmail-tL8wMe gmail-EMoHub" style=3D"text-align:=
-left" dir=3D"ltr"><b>Abhishek Rai<br></b></span></div>
+<div dir=3D"ltr">
 
-<br>
+<span style=3D"font-size:small;text-decoration-style:initial;text-decoratio=
+n-color:initial;float:none;display:inline">Hey,</span><div style=3D"font-si=
+ze:small;text-decoration-style:initial;text-decoration-color:initial"><br><=
+/div><div style=3D"font-size:small;text-decoration-style:initial;text-decor=
+ation-color:initial">I&#39;m fiddeling around with yocto. I want to move so=
+me python stuff onto an embedded board and use the nxp mx8 yocto. Everythin=
+g worked as expected until now, I was able to create yocto recipes for pyth=
+on modules like pyv4l2 (is there any interest for recipes like these to be =
+commited to meta-python?).</div><div style=3D"font-size:small;text-decorati=
+on-style:initial;text-decoration-color:initial"><br></div><div style=3D"fon=
+t-size:small;text-decoration-style:initial;text-decoration-color:initial">N=
+ow I wanted to install pillow for some image manipulation, but whereas othe=
+r python module recipes worked fine, this one fails and I don&#39;t underst=
+and why.</div><div style=3D"font-size:small;text-decoration-style:initial;t=
+ext-decoration-color:initial"><br></div><div style=3D"font-size:small;text-=
+decoration-style:initial;text-decoration-color:initial">Yocto reports missi=
+ng setuptools:</div><div style=3D"font-size:small;text-decoration-style:ini=
+tial;text-decoration-color:initial"><br></div><div style=3D"font-size:small=
+;text-decoration-style:initial;text-decoration-color:initial"><div>Log data=
+ follows:</div><div>| DEBUG: Executing shell function do_configure</div><di=
+v>| NOTE: make clean</div><div>| python setup.py clean</div><div>| Tracebac=
+k (most recent call last):</div><div>|=C2=A0 =C2=A0File &quot;setup.py&quot=
+;, line 22, in &lt;module&gt;</div><div>|=C2=A0 =C2=A0 =C2=A0from setuptool=
+s import Extension, setup</div><div>| ImportError: No module named setuptoo=
+ls</div></div><div style=3D"font-size:small;text-decoration-style:initial;t=
+ext-decoration-color:initial"><br></div><div style=3D"font-size:small;text-=
+decoration-style:initial;text-decoration-color:initial">I&#39;ve googled ar=
+ound and everything suggests that inherit setuptools3 is missing, but it&#3=
+9;s present in my recipe. This is my<span>=C2=A0</span><a href=3D"http://py=
+thon3-pillow_5.2.0.bb/" target=3D"_blank" style=3D"color:rgb(17,85,204)">py=
+thon3-pillow_5.2.0.bb</a>:</div><div style=3D"font-size:small;text-decorati=
+on-style:initial;text-decoration-color:initial"><br></div><div style=3D"fon=
+t-size:small;text-decoration-style:initial;text-decoration-color:initial"><=
+div>SUMMARY =3D &quot;Pillow (The friendly PIL fork)&quot;</div><div>HOMEPA=
+GE =3D &quot;<a href=3D"http://python-pillow.org/" target=3D"_blank" style=
+=3D"color:rgb(17,85,204)">http://python-pillow.org/</a>&quot;</div><div>LIC=
+ENSE =3D &quot;EPLv1&quot;</div><div>LIC_FILES_CHKSUM =3D &quot;file://LICE=
+NSE;md5=3Dc6379001ecb47e2a0420c40177fc1125&quot;</div><div><br></div><div>S=
+RC_URI[md5sum] =3D &quot;52d93a34f4180abcff04876f23eaa9b9&quot;</div><div><=
+br></div><div>PYPI_PACKAGE =3D &quot;Pillow&quot;</div><div><br></div><div>=
+inherit pypi setuptools3</div><div><br></div><div>BBCLASSEXTEND =3D &quot;n=
+ative nativesdk&quot;</div></div><div style=3D"font-size:small;text-decorat=
+ion-style:initial;text-decoration-color:initial"><br></div><div style=3D"fo=
+nt-size:small;text-decoration-style:initial;text-decoration-color:initial">=
+Any idea whats missing or what I am doing wrong (other than that the licens=
+e line is incorrect)?</div><div style=3D"font-size:small;text-decoration-st=
+yle:initial;text-decoration-color:initial"><br></div><div style=3D"font-siz=
+e:small;text-decoration-style:initial;text-decoration-color:initial">Best r=
+egards, Olli</div>
 
+<br></div>
 
-
-
-
-
-
-
-<table cellspacing=3D"0" cellpadding=3D"0">
-<tbody>
-<tr>
-<td valign=3D"middle">
-<p><span>The information contained in this e-mail message (including any=C2=
-=A0</span></p>
-<p><span>attachments) may be confidential, proprietary, privileged, or othe=
-rwise</span></p>
-<p><span>exempt from disclosure under applicable laws. It is intended to be=
-=C2=A0</span></p>
-<p><span>conveyed only to the designated recipient(s). Any use, disseminati=
-on,=C2=A0</span></p>
-<p><span>distribution, printing, retaining or copying of this e-mail (inclu=
-ding its=C2=A0</span></p>
-<p><span>attachments) by unintended recipient(s) is strictly prohibited and=
- may=C2=A0</span></p>
-<p><span>be unlawful. If you are not an intended recipient of this e-mail, =
-or believe=C2=A0</span></p>
-<p><span>that you have received this e-mail in error, please notify the sen=
-der=C2=A0</span></p>
-<p><span>immediately (by replying to this e-mail), delete any and all copie=
-s of=C2=A0</span></p>
-<p><span>this e-mail (including any attachments) from your system, and do n=
-ot</span></p>
-<p><span>disclose the content of this e-mail to any other person. Thank you=
- for your cooperation.</span></p>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<img><i style=3D"font-family:Calibri;font-size:14px"><span style=3D"font-si=
-ze:10pt">This e-mail message (including any=C2=A0</span>attachments) may be=
- confidential, proprietary, privileged, or otherwise=C2=A0exempt from discl=
-osure under applicable laws. If you are not an intended recipient, please d=
-elete this message. Thank you.</i><br style=3D"font-family:Calibri;font-siz=
-e:14px">
-
---000000000000668dea05703b4ff6--
+--0000000000005156b305703b778d--
