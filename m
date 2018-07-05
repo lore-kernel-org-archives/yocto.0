@@ -1,30 +1,36 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <aaron.chun.yew.chan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00DEAE00E6A; Wed,  4 Jul 2018 11:57:27 -0700 (PDT)
+	id 7BB3FE010B9; Wed,  4 Jul 2018 22:34:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from blaine.gmane.org (unknown [195.159.176.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C3C6E0086B
-	for <yocto@yoctoproject.org>; Wed,  4 Jul 2018 11:57:26 -0700 (PDT)
-Received: from list by blaine.gmane.org with local (Exim 4.84_2)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1famvp-0001jg-S0
-	for yocto@yoctoproject.org; Wed, 04 Jul 2018 20:55:13 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Ferry Toth <ftoth@telfort.nl>
-Date: Wed, 04 Jul 2018 20:57:18 +0200
-Message-ID: <phj56a$5q5$1@blaine.gmane.org>
-References: <CALh9vaX7aAYi59jJABfr5JXtoHXE6XVupfAwaHvRnVAAA5nDdA@mail.gmail.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@blaine.gmane.org
-User-Agent: KNode/4.14.10
-Subject: Re: struggling with initramfs
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E0DCE010A7
+	for <yocto@yoctoproject.org>; Wed,  4 Jul 2018 22:34:51 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	04 Jul 2018 22:34:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,310,1526367600"; d="scan'208";a="70200809"
+Received: from aaronchu-mobl1.png.intel.com ([10.221.22.199])
+	by orsmga001.jf.intel.com with ESMTP; 04 Jul 2018 22:34:49 -0700
+From: Aaron Chan <aaron.chun.yew.chan@intel.com>
+To: richard.purdie@linuxfoundation.org,
+	yocto@yoctoproject.org
+Date: Thu,  5 Jul 2018 13:34:47 +0800
+Message-Id: <1530768887-9349-1-git-send-email-aaron.chun.yew.chan@intel.com>
+X-Mailer: git-send-email 2.7.4
+Cc: Aaron Chan <aaron.chun.yew.chan@intel.com>
+Subject: [PATCH] [yocto-ab-helper] clobberdir: Fix Unicode data expansion with utils API
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,63 +42,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jul 2018 18:57:28 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Thu, 05 Jul 2018 05:34:53 -0000
 
-Tim Hammer wrote:
+This fix is to move clobberdir from python2 to python3 to resolve unicode data
+in python2 and change the data extraction expansion from ourconfig["TRASH_DIR"]
+to utils.getconfig("TRASH_DIR", ourconfig) on "Clobber build dir" BuildStep
 
-> Can anyone point me to a step-by-step tutorial or simple how-to on
-> creating and using an initramfs with my kernel for ARM aarch64?
-> 
-> 
-> I have tried creating my own:
->  - boot-image.bb file with IMAGE_FSTYPES = "cpio.gz".
->  - local.conf has INITRAMFS_IMAGE_BUNDLE = "1"
->  - linux.bbappend has INITRAMFS_IMAGE = "boot-image"
-> 
-> This all seems to be "correct" to the extent that bitbake linux tries to
-> do the right thing.
-> 
-> However, I get a failure in do_bundle_initramfs- "mv: cannot stat
-> 'arch/arm64/boot/Image': No such file or directory".
-> 
-> To the best of my (limited) debugging abilities with Yocto, it seems like
-> the kernel image backup has already been run when it gets to this point
-> and the Image file in that directory has already been moved to Image.bak.
-> If I comment out the mv statement in kernel.bbclass causing the failure,
-> the process continues, but the initramfs does not seem to get populated or
-> perhaps installed into my kernel image as I get kernel panics that I have
-> been unable to get past.
-> 
-> 
-> I decided to take a different approach and try using the
-> core-image-minimal-initramfs recipe as INITRAMFS_IMAGE. By commenting out
-> the COMPATIBLE_HOST entry I am able to build a kernel for ARM aarch64. I
-> can even seem to boot into this initramfs- it counts down waiting for
-> removable media; seems to find my primary rootfs on sda3, but there is no
-> rootfs.img file there so says it is dropping to a shell (although I never
-> get a prompt...).
+Signed-off-by: Aaron Chan <aaron.chun.yew.chan@intel.com>
+---
+ janitor/clobberdir | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-We have taken this approach here 
-https://github.com/edison-fw/meta-intel-edison/tree/master/meta-intel-edison-distro/recipes-core
-
-There are 2 images, the rootfs and the initramfs. And we overload the init-live.sh 
-to load certain kernel modules and acpi-tables then switchroot to the rootfs.
-
-> Thinking I could start with that recipe and work to get rid of the live
-> stuff and just get to a busybox prompt before trying to run my unique init
-> commands, I copied  core-image-minimal-initramfs.bb to my-
-> core-image-minimal-initramfs.bb in my layer and changed INITRAMFS_IMAGE to
-> "my- core-image-minimal-initramfs".
-> However, I obviously missed something in the configuration as I get an
-> error in go_bundle_initramfs again:
->      kernel-source/scripts/gen_initramfs_list.sh:
->                  Cannot open
-> '/.../linux-qoriq/4.14-r0/build/usr/my-core-image-minimal-initramfs-{machine}.cpio'
-> 
-> Any help would be greatly appreciated.
-> Thank you!
-
+diff --git a/janitor/clobberdir b/janitor/clobberdir
+index 5e04ed7..b05a876 100755
+--- a/janitor/clobberdir
++++ b/janitor/clobberdir
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python2
++#!/usr/bin/env python3
+ #
+ # Delete a directory using the ionice backgrounded command
+ #
+-- 
+2.7.4
 
 
