@@ -1,6 +1,6 @@
 Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29D24E00CDC; Fri,  6 Jul 2018 15:02:56 -0700 (PDT)
+	id 1A4C1E00E02; Fri,  6 Jul 2018 15:08:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (armccurdy[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.195 listed in list.dnswl.org]
+	*      [209.85.217.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,48 +19,54 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f195.google.com (mail-ua0-f195.google.com
-	[209.85.217.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1934E00AD8
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2018 15:02:55 -0700 (PDT)
-Received: by mail-ua0-f195.google.com with SMTP id 59-v6so8424049uas.5
-	for <yocto@yoctoproject.org>; Fri, 06 Jul 2018 15:02:55 -0700 (PDT)
+Received: from mail-ua0-f171.google.com (mail-ua0-f171.google.com
+	[209.85.217.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74D56E00A48
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2018 15:08:36 -0700 (PDT)
+Received: by mail-ua0-f171.google.com with SMTP id y8-v6so8427099uan.3
+	for <yocto@yoctoproject.org>; Fri, 06 Jul 2018 15:08:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=jqW3i/b4g3ZHCqNjDVZAPw8jL9ydjZ/4sHKbWxjHVA8=;
-	b=cqPLhDFLugjyixJBEcyWXcKF0kOttAugY+CJwGRx4SJAe7TkMkOlLm/oFN6iI1vfnx
-	wEcs4WTLTri31k4JftBFp2MxKGovpSoKsU4LHBb7rY1H83gEj5rTZgu1+isKbm/hM3Rv
-	IFGYZhLLexZvett3lqxbAB/D/rvAKNxcp1jpe9RptBpEE+5wI2J1A+3Ghb7zKuJ+f9gk
-	LmSosjJxlCjt518TMLw5jUbV0Y56PM+Q1MdQQXT0YsLciyvP5hV19fE9OzTUwd4YZbSi
-	tDH22AftbXaAng1vjYaJ3q84Ie0MKIZUvMW6d/Jnvbr/2m0TGc57Sh+4/cZtaibn30Wf
-	fDGg==
+	:cc; bh=NkaLIOwBHAMppgLXQYALkvSsQKxmD6jRHevT8inpFgM=;
+	b=rOjNk41IbGTVp9nN+x1Q5BWnD1PlGhbTGZngaqgd76uCYP6nl/TNEhsrGAkFU59X9P
+	yGJhhaGVDDXEja7iO2qcsr2QmWU3W2OPC++iyd4F/fOPcSlEG1ziVhDeObhVRERn5YRE
+	UdHDP1PlpujCE6hGqiRuKVv75KHgu2/Kaf3mCjdpTzH48HaCSZhJDtH8AQ+Cviq5Kl0F
+	6HD4MePfxDMVvomfwOQLq6aIMDv6Of7Vja9nUYgxYui94jujUyMclpmbJxtN/SJL5qUJ
+	7AFfX9vLdoGKFWcJdNJnCzVfD84cmNtFM15rmqi83aUqbr2qKIbim4R95R5MZ/HBx7mE
+	IOtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=jqW3i/b4g3ZHCqNjDVZAPw8jL9ydjZ/4sHKbWxjHVA8=;
-	b=ITWdiem/5N4uxTQBbJA5iJlda785qnTmDPPySra1+AXaImP9tHPh+L3/4ddAvyXVEg
-	EKmbbhBv6FRz7JYPzM4F/xFZbSCZlLrJ9ZjuDwjeBnzFaRu3a7eaTtDqEcobz+P5BQ7b
-	U4c43HX6HrLbsDd7LQITf4d/C8DSE0vdSk9lKKyG9wAr6LPghcbbjpT1aVrk/DpN/eFk
-	q66QX+6UvIcKdtrIA0fhoBxkad525N0J+YVn2GnSdciw5zHIArzSLcTHlSo/tLNMwLRO
-	RJp74GaCGDeY0SBlILHdMZMATuSpOjQGw7FekngWvGedAW+ZbHTWJ6edGaMibt16uOVi
-	0Fdg==
-X-Gm-Message-State: APt69E2n8QuN5YkV4e26YuGxLZxnIUeTxC+2sAyGeZ0zQhk5QXUujLQB
-	A5BLy7VF3VoEO5zPZpwGMCcAjNtIHZucXXV62kI=
-X-Google-Smtp-Source: AAOMgpfsQJblOlwiw5eULE/U3OAnc6WM8MYr89UGL7XXGoyYyBM+6dXxCJkxpCvTVgsguPNlt/Kakl4k6FMYM4QLecA=
-X-Received: by 2002:ab0:1544:: with SMTP id p4-v6mr7333820uae.81.1530914575066;
-	Fri, 06 Jul 2018 15:02:55 -0700 (PDT)
+	bh=NkaLIOwBHAMppgLXQYALkvSsQKxmD6jRHevT8inpFgM=;
+	b=agr0o82E2uDCQ4MFch0LrO3gomrXBWoGVG3JrhQOOwMUdun4+pn3MANVD9hxIYVdA6
+	FzNIx1qdO4UxCo79uhbsCTeON/mMsyGNudMdU1gvfYp0EeqdFUh0pT7xjU54siE3famx
+	4hTLjtt5+5d+FOIYY4lH8jXkX76YS8mADEQQn4V+VwHYQQkaUQSTSzqzTcfa9OWC50fH
+	9SCQCdFJoH3KV3o9nxbGAIO9hdevruz2W3tLlS5JR68DN0pTFWUHQbHR+6qUWWeGWz6W
+	6hxbYH7tMDGwZO2RKwrvHVlJfVMr8U41anuMwwJ9OheiIIn/oDbnm25Csvy++3J1JD24
+	hHIw==
+X-Gm-Message-State: APt69E2AkHvrFjEkxAScGqJ9ilOOFmgbFCDaE9Z+m6FQ0UNSg2EpVwLJ
+	uVKYAP+hiNd0ja0kWbSPO79PQs06cgTh14ybCRY=
+X-Google-Smtp-Source: AAOMgpdejgnHJdEg4fR/EE/jPBk+BrUqXQw7+Pu/Hn1YnhahcQhcdUXtqkF7bDRgKkRZnH41Qoe7k3Kyx72T/UNKAtY=
+X-Received: by 2002:ab0:136c:: with SMTP id
+	h41-v6mr7809153uae.193.1530914915784; 
+	Fri, 06 Jul 2018 15:08:35 -0700 (PDT)
 MIME-Version: 1.0
 Received: by 2002:ab0:2a5:0:0:0:0:0 with HTTP;
-	Fri, 6 Jul 2018 15:02:54 -0700 (PDT)
-In-Reply-To: <CALh9vaXPQfH1hupu7C3AZv3qNa1Szb9A7_=iEkLvQ8GRn-YuGQ@mail.gmail.com>
-References: <CALh9vaXPQfH1hupu7C3AZv3qNa1Szb9A7_=iEkLvQ8GRn-YuGQ@mail.gmail.com>
+	Fri, 6 Jul 2018 15:08:35 -0700 (PDT)
+In-Reply-To: <CAFzUWGn2BBjYzOQAfCkVnbQWH0L77cTe7EYQKX5eTbL7Mg13gQ@mail.gmail.com>
+References: <CAFzUWGm+ji+pGQJAxz-bFMUok4eLSkMgMNyUtYw_OWDyUdHz6g@mail.gmail.com>
+	<CAJTo0LZ6FK+F_nsVyi3YmsAaGhqc0RCLV74gfmb8=WRY4C6iow@mail.gmail.com>
+	<CAJ86T=X4NjfRUwN3vq6i8FTQ=6iqUoMjOc136ZRtfmm2ecJ+aA@mail.gmail.com>
+	<CAFzUWGmE8sUDbBUZjfzRCSJ6e_SXiLfxYkof3uB+b275sD_0pg@mail.gmail.com>
+	<CAJ86T=WyWPYtBNUvWySd6qTTg5HyB1Hg_nHqftg+vpP7wtDizA@mail.gmail.com>
+	<CAFzUWGn2BBjYzOQAfCkVnbQWH0L77cTe7EYQKX5eTbL7Mg13gQ@mail.gmail.com>
 From: Andre McCurdy <armccurdy@gmail.com>
-Date: Fri, 6 Jul 2018 15:02:54 -0700
-Message-ID: <CAJ86T=We69Eh0ojPu=i+Dg1Tm8wv7D-5qHevcT9=K+RpV1LKAg@mail.gmail.com>
-To: Tim Hammer <tdhammer99@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: (still) struggling with initramfs
+Date: Fri, 6 Jul 2018 15:08:35 -0700
+Message-ID: <CAJ86T=X5q3ozHJL9Ns97o=NcKR3qc-5DkaNVf+B4KnBOZD4tmw@mail.gmail.com>
+To: Giordon Stark <kratsg@gmail.com>
+Cc: "N:" <yocto@yoctoproject.org>
+Subject: Re: Understanding "dev package contains non-symlink"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,46 +78,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2018 22:02:56 -0000
+X-List-Received-Date: Fri, 06 Jul 2018 22:08:37 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Jul 6, 2018 at 1:22 PM, Tim Hammer <tdhammer99@gmail.com> wrote:
+On Fri, Jul 6, 2018 at 2:10 PM, Giordon Stark <kratsg@gmail.com> wrote:
+> Hi,
 >
-> Thanks for the responses to my first email. I was able to get a working
-> initramfs in my kernel image that allowed me to do the initial evaluation of
-> my solution.
+> So the good news is that this is at least the source code itself appears to
+> be written in a packaged-up-manner which makes some things easier to deal
+> with. It seems that all of the plugins are here:
+> https://github.com/xrootd/xrootd/blob/dad82068ae99859ebf40f65d95fe7c44f7db057e/src/XrdPlugins.cmake
+>
+> where it seems to install to
+>
+> install(
+>   TARGETS ${LIB_XRD_PSS} ${LIB_XRD_BWM} ${LIB_XRD_GPFS} ${LIB_XRD_ZCRC32}
+> ${LIB_XRD_THROTTLE} ${LIB_XRD_N2NO2P}
+>   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} )
+>
+> While all other "non-plugins" also install to the same
+> "CMAKE_INSTALL_LIBDIR". I suppose it might be possible to patch this one
+> particular file to get the installs in a separate location? This seems like
+> potentially a short patch given that all plug-ins, from a cursory glance,
+> are installed with the same CMake instruction...
+>
+> If not, I would be ok with adding
+>
+> INSANE_SKIP_${PN} += "dev-so"
+>
+> to my recipe along with the other two lines I've added (one to erase the
+> so-libs pattern for ${PN}-dev, and one to force all the *.so libs into
+> ${PN}).
+>
+> Would a third option be to just manually write out my ${PN} and ${PN}-dev
+> files to split up which are symlinks and which are not -- given that I'm
+> writing this recipe for a given version/configuration?
 
-What was the issue? What was the fix?
-
-> Now I am working to get all of the proper content into the filesystem, but
-> am seeing some strangeness that I cannot comprehend. I have updated the
-> image recipe that my linux.bbappend is calling out as the INITRAMFS_IMAGE,
-> but the bitbake linux command did not see anything as changed so ran no
-> tasks.
-
-The kernel's bundle_initramfs task depends on
-${INITRAMFS_IMAGE}:do_image_complete, so if the new value you set for
-INITRAMFS_IMAGE is an image which had previously been built the
-kernel's bundle_initramfs might not get triggered again?
-
-Perhaps try running "bitbake -c cleansstate" for your image and then
-"bitbake linux" again.
-
-> As a simplistic attempt, I commented out the INITRAMFS_IMAGE line in
-> the recipe and this time it rebuilt a lot, but ended up with the "old"
-> initramfs (not an empty one as I kind of expected). I then re-enabled the
-> INITRAMFS_IMAGE line and this time got a much smaller Linux image which
-> failed to boot (Unable to mount root fs- more what I expected from the last
-> build).
-
-A kernel image without the bundled initramfs is always going to be
-built as part of the normal build process for the kernel (it's built
-by the kernel's compile task - the version with the bundled initramfs
-is built by the bundle_initramfs task).
-
-Normally you should be able to tell the difference between the two
-kernel images by the .initramfs suffix, however the bug you saw
-originally was in the bundle_initramfs code to do that renaming, so
-depending on how you resolved the original issue, maybe your kernel
-images are still getting mixed up?
+Yes, that should be OK.
 
