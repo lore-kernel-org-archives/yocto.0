@@ -1,69 +1,35 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B0837E010B5; Fri,  6 Jul 2018 06:13:13 -0700 (PDT)
+	id A6CE5E01107; Fri,  6 Jul 2018 06:29:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,RCVD_IN_RP_RNBL
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: *  1.3 RCVD_IN_RP_RNBL RBL: Relay in RNBL,
+	*      https://senderscore.org/blacklistlookup/
+	*      [87.81.244.161 listed in bl.score.senderscore.com]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f47.google.com (mail-oi0-f47.google.com
-	[209.85.218.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55259E00AD8
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2018 06:13:13 -0700 (PDT)
-Received: by mail-oi0-f47.google.com with SMTP id i12-v6so23361464oik.2
-	for <yocto@yoctoproject.org>; Fri, 06 Jul 2018 06:13:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=nnaPLwyWVRpm81eCut65ufVhAhn8SSre2RfRF7xT318=;
-	b=ePZIJeiiELKr9Qbhq7iiwowzC20ACGX9qhYGVzl82PxgI/n2BoWAcJUEQ2B33K5xVH
-	TM9eEUhvmYM5cgloOaFe8ubFqsRr7UyUbq3l+moqljHkFU49Fb2wH6VsNbxZ87IlLsy+
-	o5MNoU3nLFJYbgxpP2F8px3mySFdklXWF9u8Ibv/BCTO9wfP2AMUaBOVWVHnPK5z8ML9
-	iAt5Gl985HAz2a3KM08R7tMAZd6h0K9/BiXfzrTajkA5czDpIHiO57NWhTV9Kv4bIocS
-	l3J1UqVdkyDGvCiYKUe/Juz6COi3Eh2LKuCEwuIAhDE4H+sqpIGLvzqoB5SGpoV4Lszi
-	REaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=nnaPLwyWVRpm81eCut65ufVhAhn8SSre2RfRF7xT318=;
-	b=ei2zpmxv28Xn/fd5tuw/ZXnvkafrFv3Aezbqk2Nu8bslr76kTO7+D3vt2o518TO+uu
-	yUBaj2UhBfabUArvEjDzNkeNxmCpFHquJl4+Ui8kfVof9fSx6MW+267gkz8HNzksYpfu
-	YSHv8E/TbNVlcIWH7ZssC98VtmzZfySyC9BC5suQiHOVoO25k5Nmmex7j5zz1486IPmO
-	LkG64MPgEapIKLkWLv7F/b94Neuaywd+QJaQxcqMUnBukhrS6k2w3bhtDRzrtt5fr71B
-	mt2231KdwVOPqacJ0AHhNh2HO0nIU3QrMHswjgPkl+YCqE9GdHOa2ZnpKxFpDEC0GRYe
-	wtyA==
-X-Gm-Message-State: APt69E3O/a2IEXAKWI+Z4CniTMtvzbXGHy9Vu2zTXHeXDiQx+UwHdmdd
-	rxQO9bnhiz2sF6LVMd4PXeGSbSlQMzAtqGQJKL+dbg==
-X-Google-Smtp-Source: AAOMgpe85afCl9AuQcOoLEJ9kq3p0DU10os4D8Q+oF1Co/QzEonmiE1nIouwnph2/rsbJ5Cn4UG4iz3QplMJ9lTR8RU=
-X-Received: by 2002:aca:e185:: with SMTP id
-	y127-v6mr12168001oig.245.1530882792745; 
-	Fri, 06 Jul 2018 06:13:12 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:ac9:434d:0:0:0:0:0 with HTTP;
-	Fri, 6 Jul 2018 06:12:52 -0700 (PDT)
-In-Reply-To: <CAGKr=yc-cZArRiH=reK35FCLvUxRs7Rye8eZKnA4evBy+kDCXA@mail.gmail.com>
-References: <CAGKr=yesOWOFUHJrvkgeBkw4LzqeNod6kG=6NpUkDzCJb8DDdQ@mail.gmail.com>
-	<CAJTo0LaKC868wFeNd8V4MTgnW=e5BJpqSG8Ou_K9Ms__JHOSpQ@mail.gmail.com>
-	<CAGKr=ydT_93m6GmGbhR0U21ewX6=OyvjaskX1hNCzNVu=eAeug@mail.gmail.com>
-	<CAJTo0LaiQ2oXL2VJA3VKSqNWpp7Vdd-UB+qCQH-EOD6gBwgxeQ@mail.gmail.com>
-	<CAGKr=yfs7shznSGNcpGz9vJbwXhHr8XAPNuhafsBgjpFPxkfOQ@mail.gmail.com>
-	<CAJTo0LZTbW7RRUt1rA62VxdwitR9Xac5KrBbuSLtdx5reHrdVQ@mail.gmail.com>
-	<CAGKr=yc-cZArRiH=reK35FCLvUxRs7Rye8eZKnA4evBy+kDCXA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 6 Jul 2018 14:12:52 +0100
-Message-ID: <CAJTo0LYcHNQoZjEZ8D=dqt9-3i7_e8ivNfXxvLt_qAF0QQj-9Q@mail.gmail.com>
-To: Oliver Westermann <owestermann@gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Creating a recipe for python3-pillow
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48A36E0089D
+	for <yocto@yoctoproject.org>; Fri,  6 Jul 2018 06:29:50 -0700 (PDT)
+Received: from hex ([192.168.3.34]) (authenticated bits=0)
+	by dan.rpsys.net (8.15.2/8.15.2/Debian-3) with ESMTPSA id
+	w66DTgUW008693
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NOT); Fri, 6 Jul 2018 14:29:44 +0100
+Message-ID: <99fb7a6226377d5e10c68a03fcc08010ad14cdd9.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Aaron Chan <aaron.chun.yew.chan@intel.com>, yocto@yoctoproject.org
+Date: Fri, 06 Jul 2018 14:29:42 +0100
+In-Reply-To: <1530868505-31937-1-git-send-email-aaron.chun.yew.chan@intel.com>
+References: <1530868505-31937-1-git-send-email-aaron.chun.yew.chan@intel.com>
+X-Mailer: Evolution 3.28.1-2 
+Mime-Version: 1.0
+X-Virus-Scanned: clamav-milter 0.99.4 at dan
+X-Virus-Status: Clean
+Subject: Re: [PATCH] [yocto-ab-helper] scripts/run-jinja-parser: Add Jinja2 parser extension in autobuilder
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,33 +41,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jul 2018 13:13:13 -0000
+X-List-Received-Date: Fri, 06 Jul 2018 13:29:52 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On 6 July 2018 at 14:06, Oliver Westermann <owestermann@gmail.com> wrote:
-> Of course, thats the reason I'm here ;)
->
-> SUMMARY = "Pillow (The friendly PIL fork)"
-> HOMEPAGE = "http://python-pillow.org/"
-> LICENSE = "EPLv1"
-> LIC_FILES_CHKSUM = "file://LICENSE;md5=c6379001ecb47e2a0420c40177fc1125"
->
-> SRC_URI[md5sum] = "52d93a34f4180abcff04876f23eaa9b9"
->
-> PYPI_PACKAGE = "Pillow"
->
-> inherit pypi setuptools3
->
-> BBCLASSEXTEND = "native nativesdk"
->
-> DEPENDS = "jpeg zlib"
->
-> CLEANBROKEN="1"
+On Fri, 2018-07-06 at 17:15 +0800, Aaron Chan wrote:
+> This patch is introduced as a feature in 2.6 M2 to support the
+> extension of autobuilder to LAVA (Linaro Automated Validation
+> Architecture).
+> run-jinja2-parser loads lava config module and generates LAVA job
+> config in a YAML format before its triggers LAVA server to execute a
+> task.
 
-Move your DEPENDS up, as the inherits are setting up DEPENDS with
-python3-native python3-setuptools-native, and you're overwriting it.
+I don't have much lava knowledge but at a quick glance this may be ok,
+apart from one of the file names which I've commented on below.
 
-Put the DEPENDS after PYI_PACKAGE but before inherit.
+> Signed-off-by: Aaron Chan <aaron.chun.yew.chan@intel.com>
+> ---
+>  lava/device/bsp-packages.jinja2 | 43 ++++++++++++++++++
+>  scripts/lava.py                 | 76
+> ++++++++++++++++++++++++++++++++
+>  scripts/run-jinja-parser        | 97
+> +++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 216 insertions(+)
+>  create mode 100644 lava/device/bsp-packages.jinja2
+>  create mode 100644 scripts/lava.py
+>  create mode 100755 scripts/run-jinja-parser
+> 
+> diff --git a/lava/device/bsp-packages.jinja2 b/lava/device/bsp-packages.jinja2
+> new file mode 100644
+> index 0000000..61fbcad
+> --- /dev/null
+> +++ b/lava/device/bsp-packages.jinja2
+> @@ -0,0 +1,43 @@
+> +device_type: {{ device_type }}
+> +job_name: {{ job_name }}
+> +timeouts: 
+> +  job:
+> +    minutes: {{ timeout.job.minutes }}
+> +  action:
+> +    minutes: {{ timeout.action.minutes }}
+> +  connection:
+> +    minutes: {{ timeout.connection.minutes }}
+> +priority: {{ priority }}
+> +visibility: {{ visibility }}
+> +actions:
+> +- deploy:
+> +    timeout:
+> +      minutes: {{ deploy.timeout }}
+> +    to: {{ deploy.to }}
+> +    kernel:
+> +      url: {{ deploy.kernel.url }}
+> +      type: {{ deploy.kernel.type }}
+> +    modules:
+> +      url: {{ deploy.modules.url }}
+> +      compression: {{ deploy.modules.compression }}
+> +    nfsrootfs:
+> +      url: {{ deploy.nfsrootfs.url }}
+> +      compression: {{ deploy.nfsrootfs.compression }}
+> +    os: {{ deploy.os }}
+> +- boot:
+> +    timeout:
+> +      minutes: {{ boot.timeout }}
+> +    method: {{ boot.method }}
+> +    commands: {{ boot.commands }}
+> +    auto_login: { login_prompt: {{ boot.auto_login.login_prompt }},
+> username: {{ boot.auto_login.username }} }
+> +    prompts:
+> +      - {{ boot.prompts }}
+> +- test:
+> +    timeout:
+> +      minutes: {{ test.timeout }}
+> +    name: {{ test.name }}
+> +    definitions:
+> +    - repository: {{ test.definitions.repository }}
+> +      from: {{ test.definitions.from }}
+> +      path: {{ test.definitions.path }}
+> +      name: {{ test.definitions.name }}
+> diff --git a/scripts/lava.py b/scripts/lava.py
+> new file mode 100644
+> index 0000000..be18529
+> --- /dev/null
+> +++ b/scripts/lava.py
 
-Ross
+I'm not sure we want to call this "lava.py". Would something like
+"lava-conf-intelqa-minnowboard.py" be a better description (as that is
+what it appears to be)?
+
+Should configuration files be places somewhere outside scripts?
+
+Cheers,
+
+Richard
 
