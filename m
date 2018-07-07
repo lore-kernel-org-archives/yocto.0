@@ -1,50 +1,33 @@
-Return-Path: <aaron.chun.yew.chan@intel.com>
+Return-Path: <timm@timmedia.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 217C8E010A6; Fri,  6 Jul 2018 22:25:09 -0700 (PDT)
+	id 73E32E00CEA; Sat,  7 Jul 2018 03:09:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.151 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8C82E00BFB
-	for <yocto@yoctoproject.org>; Fri,  6 Jul 2018 22:25:07 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	06 Jul 2018 22:25:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,319,1526367600"; d="scan'208";a="214082687"
-Received: from pgsmsx106.gar.corp.intel.com ([10.221.44.98])
-	by orsmga004.jf.intel.com with ESMTP; 06 Jul 2018 22:25:03 -0700
-Received: from pgsmsx103.gar.corp.intel.com ([169.254.2.4]) by
-	PGSMSX106.gar.corp.intel.com ([169.254.9.57]) with mapi id
-	14.03.0319.002; Sat, 7 Jul 2018 13:25:02 +0800
-From: "Chan, Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>
-To: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [PATCH] [yocto-ab-helper] scripts/run-jinja-parser: Add Jinja2
-	parser extension in autobuilder
-Thread-Index: AQHUFQneYaP2yMje5UOpEA2LzdrnGKSBqpoAgAGJogA=
-Date: Sat, 7 Jul 2018 05:25:02 +0000
-Message-ID: <AA9B40170ABA1047B45E714CB2B866B7068FAC3C@PGSMSX103.gar.corp.intel.com>
-References: <1530868505-31937-1-git-send-email-aaron.chun.yew.chan@intel.com>
-	<99fb7a6226377d5e10c68a03fcc08010ad14cdd9.camel@linuxfoundation.org>
-In-Reply-To: <99fb7a6226377d5e10c68a03fcc08010ad14cdd9.camel@linuxfoundation.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMTc2ZmJlY2MtMzU4ZS00NjRjLWI0YmItNGMxYzJlN2Y2NmIxIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiVTc3VitORnBMTGVKWHZ4SFpYOFFxZ2ZYdVpsc2h2Uk03RVdObzd0YnJrZVdpM0ZGcGRWQ1p3MGM5Sng2VU1xSyJ9
-x-originating-ip: [172.30.20.206]
+X-Greylist: delayed 421 seconds by postgrey-1.32 at yocto-www;
+	Sat, 07 Jul 2018 03:09:27 PDT
+Received: from mail.timmedia.de (mail.timmedia.de [46.4.107.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BB3FE00A48
+	for <yocto@yoctoproject.org>; Sat,  7 Jul 2018 03:09:27 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.timmedia.de (Postfix) with ESMTP id 0B21C301F16
+	for <yocto@yoctoproject.org>; Sat,  7 Jul 2018 10:02:23 +0000 (UTC)
+X-Fuglu-Suspect: c6299435fba1432787337e4ada8fb10e
+X-Fuglu-Spamstatus: NO
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: timm@timmedia.de)
+	by mail.timmedia.de (Postfix) with ESMTPSA
+	for <yocto@yoctoproject.org>; Sat,  7 Jul 2018 10:02:22 +0000 (UTC)
+To: yocto@yoctoproject.org
+From: Timm <timm@timmedia.de>
+Message-ID: <79b2d102-5cf4-f5ff-1bff-68fe260ffd41@timmedia.de>
+Date: Sat, 7 Jul 2018 12:02:22 +0200
 MIME-Version: 1.0
-Subject: Re: [PATCH] [yocto-ab-helper] scripts/run-jinja-parser: Add Jinja2 parser extension in autobuilder
+Subject: Building gutenprint recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,100 +39,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Jul 2018 05:25:09 -0000
+X-List-Received-Date: Sat, 07 Jul 2018 10:09:28 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-SGkgUmljaGFyZCwNCg0KTGV0IG1lIGRvIGEgcXVpY2sgZXhwbGFuYXRpb24gb24gd2hhdCBJIGlu
-dGVuZGVkIHRvIGRvIHdpdGggdGhpcyBzY3JpcHQuDQoNCjEuIEkgZG9uJ3QgaGF2ZSBtdWNoIGxh
-dmEga25vd2xlZGdlIGJ1dCBhdCBhIHF1aWNrIGdsYW5jZSB0aGlzIG1heSBiZSBvaywgYXBhcnQg
-ZnJvbSBvbmUgb2YgdGhlIGZpbGUgbmFtZXMgd2hpY2ggSSd2ZSBjb21tZW50ZWQgb24gYmVsb3cu
-DQoNCltBbnNdOiBCYXNpY2FsbHkgdGhpcyBqaW5qYSB0ZW1wbGF0ZSBpcyBtYXBwZWQgdG8gbGF2
-YS5weSBtb2R1bGUgd2hlcmUgd2UgZGVmaW5lcyBqb2IgY29uZmlndXJhdGlvbiBmb3Igc2V2ZXJh
-bCBhcmNoaXRlY3R1cmVzIChBUk0sIE1JUFMsIFBQQywgeDg2KS4NCiAgICAgICAgICAgIGxhdmEv
-ZGV2aWNlL2JzcC1wYWNrYWdlcy5qaW5qYTIgbWF5YmUgd2UgY2FuIG5hbWUgaXQgdG8gImxhdmEt
-eWFtbC10ZW1wbGF0ZS5qaW5qYTIiIHNpbmNlIHRoaXMgaXMgWUFNTCB0ZW1wbGF0ZSBmb3IgTEFW
-QT8gSSdtIG9wZW4gZm9yIGFsbCBzdWdnZXN0aW9ucy4NCg0KMi4gSSdtIG5vdCBzdXJlIHdlIHdh
-bnQgdG8gY2FsbCB0aGlzICJsYXZhLnB5Ii4gV291bGQgc29tZXRoaW5nIGxpa2UgImxhdmEtY29u
-Zi1pbnRlbHFhLW1pbm5vd2JvYXJkLnB5IiBiZSBhIGJldHRlciBkZXNjcmlwdGlvbiAoYXMgdGhh
-dCBpcyB3aGF0IGl0IGFwcGVhcnMgdG8gYmUpPw0KDQpbQW5zXTogU28gSSd2ZSBwdXQgdGhlIExB
-VkEgam9iIGNvbmZpZyBpbnRvIGxhdmEucHksIHRoZSBjb25jZXB0IGlzIHZlcnkgc2ltaWxhciB0
-byBvdXIgeW9jdG9hYmIgKGNvbmZpZy5weSkgICAgICAgICAgIA0KICAgICAgICAgICAgSWYgd2Ug
-Y2hhbmdlIHRoZSBuYW1lIGZyb20gbGF2YS5weSB0byBsYXZhLWNvbmYtaW50ZWxxYS1taW5ub3di
-b2FyZC5weSwgaW4gdGhlIGNvZGUgd2UgbmVlZCB0byBjaGFuZ2UgdG8gImltcG9ydCBsYXZhLWNv
-bmYtaW50ZWxxYS1taW5ub3ciIGluc3RlYWQgb2YgImltcG9ydCBsYXZhIi4NCiAgICAgICAgICAg
-IEkgYW0gZ29vZCB3aXRoIHRoZSByZW5hbWUgYnV0IGl0IHdpbGwgYmUganVzdCBsb25nLg0KDQoz
-LiBTaG91bGQgY29uZmlndXJhdGlvbiBmaWxlcyBiZSBwbGFjZXMgc29tZXdoZXJlIG91dHNpZGUg
-c2NyaXB0cz8NCg0KW0Fuc106IFNvLCBiYXNpY2FsbHkgbXkgc2NyaXB0IGlzIGFibGUgdG8gbG9h
-ZCB0aGUgbW9kdWxlL2NvbmZpZyBvdXRzaWRlIChpbiBhbnkgZmlsZSBzdHJ1Y3R1cmUpIGFuZCBJ
-IGhhdmUgaXQgdGVzdGVkIGxpa2UgdGhlIGV4YW1wbGVzIGJlbG93Og0KDQokIHJ1bi1qaW5qYS1w
-YXJzZXIgPE1vZHVsZSBQYXRoPiAkMiAkMyAkNCAkNQ0KDQplLmcuIEl0IHdvcmtzIGluIHRoaXMg
-Y2FzZToNCn4veW9jdG8tYXV0b2J1aWxkZXIvbGF2YS5weQ0KJCBydW4tamluamEtcGFyc2VyICJ+
-L3lvY3RvLWF1dG9idWlsZGVyLWhlbHBlciIgJDIgJDMgJDQgJDUNCg0KT3IgDQp+L3lvY3RvLWF1
-dG9idWlsZGVyL3NjcmlwdHMvbGF2YS5weQ0KJCBydW4tamluamEtcGFyc2VyICJ+L3lvY3RvLWF1
-dG9idWlsZGVyLWhlbHBlci9zY3JpcHRzIiAkMiAkMyAkNCAkNQ0KDQpMZXQgbWUga25vdyB5b3Vy
-IHRob3VnaHMgYWJvdXQgdGhlc2UuIE9uY2UgdGhlc2UgY2hhbmdlcyBhcmUgYWRkZWQsIHRoZSBj
-b21tdW5pdHkgd2lsbCBiZW5lZml0IGZyb20gdXNpbmcgWW9jdG8gYXV0b2J1aWxkZXIgdG8gdHJp
-Z2dlciANCnRoZWlyIGF1dG9tYXRlZCBCU1AgdGVzdCAodXNpbmcgTEFWQSkgb24gdGhlaXIgcGxh
-dGZvcm0gc3RhcnRpbmcgd2l0aCBiZW5jaG1hcmtpbmcgb3duIG1hbnVhbCBCU1AgdGVzdCBjYXNl
-KHMpLg0KDQpDaGVlcnMsDQpBYXJvbg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJv
-bTogcmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZyBbbWFpbHRvOnJpY2hhcmQucHVy
-ZGllQGxpbnV4Zm91bmRhdGlvbi5vcmddIA0KU2VudDogRnJpZGF5LCBKdWx5IDYsIDIwMTggOToz
-MCBQTQ0KVG86IENoYW4sIEFhcm9uIENodW4gWWV3IDxhYXJvbi5jaHVuLnlldy5jaGFuQGludGVs
-LmNvbT47IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbUEFUQ0hdIFt5b2N0
-by1hYi1oZWxwZXJdIHNjcmlwdHMvcnVuLWppbmphLXBhcnNlcjogQWRkIEppbmphMiBwYXJzZXIg
-ZXh0ZW5zaW9uIGluIGF1dG9idWlsZGVyDQoNCk9uIEZyaSwgMjAxOC0wNy0wNiBhdCAxNzoxNSAr
-MDgwMCwgQWFyb24gQ2hhbiB3cm90ZToNCj4gVGhpcyBwYXRjaCBpcyBpbnRyb2R1Y2VkIGFzIGEg
-ZmVhdHVyZSBpbiAyLjYgTTIgdG8gc3VwcG9ydCB0aGUgDQo+IGV4dGVuc2lvbiBvZiBhdXRvYnVp
-bGRlciB0byBMQVZBIChMaW5hcm8gQXV0b21hdGVkIFZhbGlkYXRpb24gDQo+IEFyY2hpdGVjdHVy
-ZSkuDQo+IHJ1bi1qaW5qYTItcGFyc2VyIGxvYWRzIGxhdmEgY29uZmlnIG1vZHVsZSBhbmQgZ2Vu
-ZXJhdGVzIExBVkEgam9iIA0KPiBjb25maWcgaW4gYSBZQU1MIGZvcm1hdCBiZWZvcmUgaXRzIHRy
-aWdnZXJzIExBVkEgc2VydmVyIHRvIGV4ZWN1dGUgYSANCj4gdGFzay4NCg0KSSBkb24ndCBoYXZl
-IG11Y2ggbGF2YSBrbm93bGVkZ2UgYnV0IGF0IGEgcXVpY2sgZ2xhbmNlIHRoaXMgbWF5IGJlIG9r
-LCBhcGFydCBmcm9tIG9uZSBvZiB0aGUgZmlsZSBuYW1lcyB3aGljaCBJJ3ZlIGNvbW1lbnRlZCBv
-biBiZWxvdy4NCg0KPiBTaWduZWQtb2ZmLWJ5OiBBYXJvbiBDaGFuIDxhYXJvbi5jaHVuLnlldy5j
-aGFuQGludGVsLmNvbT4NCj4gLS0tDQo+ICBsYXZhL2RldmljZS9ic3AtcGFja2FnZXMuamluamEy
-IHwgNDMgKysrKysrKysrKysrKysrKysrDQo+ICBzY3JpcHRzL2xhdmEucHkgICAgICAgICAgICAg
-ICAgIHwgNzYNCj4gKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysNCj4gIHNjcmlwdHMv
-cnVuLWppbmphLXBhcnNlciAgICAgICAgfCA5Nw0KPiArKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKw0KPiAgMyBmaWxlcyBjaGFuZ2VkLCAyMTYgaW5zZXJ0aW9ucygrKQ0K
-PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGxhdmEvZGV2aWNlL2JzcC1wYWNrYWdlcy5qaW5qYTIgIGNy
-ZWF0ZSBtb2RlIA0KPiAxMDA2NDQgc2NyaXB0cy9sYXZhLnB5ICBjcmVhdGUgbW9kZSAxMDA3NTUg
-c2NyaXB0cy9ydW4tamluamEtcGFyc2VyDQo+IA0KPiBkaWZmIC0tZ2l0IGEvbGF2YS9kZXZpY2Uv
-YnNwLXBhY2thZ2VzLmppbmphMiANCj4gYi9sYXZhL2RldmljZS9ic3AtcGFja2FnZXMuamluamEy
-IG5ldyBmaWxlIG1vZGUgMTAwNjQ0IGluZGV4IA0KPiAwMDAwMDAwLi42MWZiY2FkDQo+IC0tLSAv
-ZGV2L251bGwNCj4gKysrIGIvbGF2YS9kZXZpY2UvYnNwLXBhY2thZ2VzLmppbmphMg0KPiBAQCAt
-MCwwICsxLDQzIEBADQo+ICtkZXZpY2VfdHlwZToge3sgZGV2aWNlX3R5cGUgfX0NCj4gK2pvYl9u
-YW1lOiB7eyBqb2JfbmFtZSB9fQ0KPiArdGltZW91dHM6IA0KPiArICBqb2I6DQo+ICsgICAgbWlu
-dXRlczoge3sgdGltZW91dC5qb2IubWludXRlcyB9fQ0KPiArICBhY3Rpb246DQo+ICsgICAgbWlu
-dXRlczoge3sgdGltZW91dC5hY3Rpb24ubWludXRlcyB9fQ0KPiArICBjb25uZWN0aW9uOg0KPiAr
-ICAgIG1pbnV0ZXM6IHt7IHRpbWVvdXQuY29ubmVjdGlvbi5taW51dGVzIH19DQo+ICtwcmlvcml0
-eToge3sgcHJpb3JpdHkgfX0NCj4gK3Zpc2liaWxpdHk6IHt7IHZpc2liaWxpdHkgfX0NCj4gK2Fj
-dGlvbnM6DQo+ICstIGRlcGxveToNCj4gKyAgICB0aW1lb3V0Og0KPiArICAgICAgbWludXRlczog
-e3sgZGVwbG95LnRpbWVvdXQgfX0NCj4gKyAgICB0bzoge3sgZGVwbG95LnRvIH19DQo+ICsgICAg
-a2VybmVsOg0KPiArICAgICAgdXJsOiB7eyBkZXBsb3kua2VybmVsLnVybCB9fQ0KPiArICAgICAg
-dHlwZToge3sgZGVwbG95Lmtlcm5lbC50eXBlIH19DQo+ICsgICAgbW9kdWxlczoNCj4gKyAgICAg
-IHVybDoge3sgZGVwbG95Lm1vZHVsZXMudXJsIH19DQo+ICsgICAgICBjb21wcmVzc2lvbjoge3sg
-ZGVwbG95Lm1vZHVsZXMuY29tcHJlc3Npb24gfX0NCj4gKyAgICBuZnNyb290ZnM6DQo+ICsgICAg
-ICB1cmw6IHt7IGRlcGxveS5uZnNyb290ZnMudXJsIH19DQo+ICsgICAgICBjb21wcmVzc2lvbjog
-e3sgZGVwbG95Lm5mc3Jvb3Rmcy5jb21wcmVzc2lvbiB9fQ0KPiArICAgIG9zOiB7eyBkZXBsb3ku
-b3MgfX0NCj4gKy0gYm9vdDoNCj4gKyAgICB0aW1lb3V0Og0KPiArICAgICAgbWludXRlczoge3sg
-Ym9vdC50aW1lb3V0IH19DQo+ICsgICAgbWV0aG9kOiB7eyBib290Lm1ldGhvZCB9fQ0KPiArICAg
-IGNvbW1hbmRzOiB7eyBib290LmNvbW1hbmRzIH19DQo+ICsgICAgYXV0b19sb2dpbjogeyBsb2dp
-bl9wcm9tcHQ6IHt7IGJvb3QuYXV0b19sb2dpbi5sb2dpbl9wcm9tcHQgfX0sDQo+IHVzZXJuYW1l
-OiB7eyBib290LmF1dG9fbG9naW4udXNlcm5hbWUgfX0gfQ0KPiArICAgIHByb21wdHM6DQo+ICsg
-ICAgICAtIHt7IGJvb3QucHJvbXB0cyB9fQ0KPiArLSB0ZXN0Og0KPiArICAgIHRpbWVvdXQ6DQo+
-ICsgICAgICBtaW51dGVzOiB7eyB0ZXN0LnRpbWVvdXQgfX0NCj4gKyAgICBuYW1lOiB7eyB0ZXN0
-Lm5hbWUgfX0NCj4gKyAgICBkZWZpbml0aW9uczoNCj4gKyAgICAtIHJlcG9zaXRvcnk6IHt7IHRl
-c3QuZGVmaW5pdGlvbnMucmVwb3NpdG9yeSB9fQ0KPiArICAgICAgZnJvbToge3sgdGVzdC5kZWZp
-bml0aW9ucy5mcm9tIH19DQo+ICsgICAgICBwYXRoOiB7eyB0ZXN0LmRlZmluaXRpb25zLnBhdGgg
-fX0NCj4gKyAgICAgIG5hbWU6IHt7IHRlc3QuZGVmaW5pdGlvbnMubmFtZSB9fQ0KPiBkaWZmIC0t
-Z2l0IGEvc2NyaXB0cy9sYXZhLnB5IGIvc2NyaXB0cy9sYXZhLnB5IG5ldyBmaWxlIG1vZGUgMTAw
-NjQ0IA0KPiBpbmRleCAwMDAwMDAwLi5iZTE4NTI5DQo+IC0tLSAvZGV2L251bGwNCj4gKysrIGIv
-c2NyaXB0cy9sYXZhLnB5DQoNCkknbSBub3Qgc3VyZSB3ZSB3YW50IHRvIGNhbGwgdGhpcyAibGF2
-YS5weSIuIFdvdWxkIHNvbWV0aGluZyBsaWtlDQoibGF2YS1jb25mLWludGVscWEtbWlubm93Ym9h
-cmQucHkiIGJlIGEgYmV0dGVyIGRlc2NyaXB0aW9uIChhcyB0aGF0IGlzDQp3aGF0IGl0IGFwcGVh
-cnMgdG8gYmUpPw0KDQpTaG91bGQgY29uZmlndXJhdGlvbiBmaWxlcyBiZSBwbGFjZXMgc29tZXdo
-ZXJlIG91dHNpZGUgc2NyaXB0cz8NCg0KQ2hlZXJzLA0KDQpSaWNoYXJkDQo=
+There was a gutenprint recipe back in OE-Classic:
+https://layers.openembedded.org/layerindex/oe-classic/recipe/12076/
+
+But currently there is no gutenprint available for Yocto.
+
+I tried to build my own recipe. But I got stuck at the stage where the
+build process wants to call some generated binaries:
+
+    | ./extract-strings `cat xml-stamp | sed -e
+'s;^;../../../gutenprint-5.2.11/src/xml/;'` > xmli18n-tmp.h.tmp
+    | /lib/ld-linux-armhf.so.3: No such file or directory
+
+So, I introduced a "native" recipe, which just compiles the
+"extract-strings" for me: 
+
+----------------------------------------------------------------------------------------------------------
+
+SECTION = "libs"
+require gutenprint_${PV}.bb
+DEPENDS = "gettext-native"
+inherit native autotools
+
+EXTRA_OECONG = "\
+        --disable-libgutenprintui2 \
+            --disable-samples \
+        --without-gimp2 \
+        --without-doc \
+        --disable-nls \
+        --disable-nls-macos \
+        --without-foomatic \
+        --without-foomatic3 \
+        --disable-escputil \
+        --disable-test \
+        --disable-testpattern \
+        --without-cups \
+               "
+
+do_compile() {
+    oe_runmake -C src/xml/ extract-strings
+}
+
+-----------------------------------------------------------------------------------------------------------------
+
+The next step is quite unclear for me? How can I tell the build system
+not to generate the extract-strings again and use the native instead?
+
+As reference I used the build scripts from openwrt and buildroot. But
+I'm not able to translate this build steps to Yocto.
+
+https://github.com/FranciscoBorges/openwrt-printing-packages/blob/master/net/gutenprint/Makefile
+
+https://github.com/buildroot/buildroot/blob/master/package/gutenprint/gutenprint.mk
 
