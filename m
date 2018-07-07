@@ -1,34 +1,68 @@
-Return-Path: <timm@timmedia.de>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EE005E00D23; Sat,  7 Jul 2018 04:30:36 -0700 (PDT)
+	id 4ED51E00EB1; Sat,  7 Jul 2018 07:53:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.42 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.timmedia.de (mail.timmedia.de [46.4.107.74])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF7B4E004F6
-	for <yocto@yoctoproject.org>; Sat,  7 Jul 2018 04:30:35 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by mail.timmedia.de (Postfix) with ESMTP id 8E40D301EDD;
-	Sat,  7 Jul 2018 11:30:32 +0000 (UTC)
-X-Fuglu-Suspect: 702c89e50ae742789e8dd3e3dd7c6d30
-X-Fuglu-Spamstatus: NO
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: timm@timmedia.de)
-	by mail.timmedia.de (Postfix) with ESMTPSA;
-	Sat,  7 Jul 2018 11:30:32 +0000 (UTC)
-To: Alexander Kanavin <alex.kanavin@gmail.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f42.google.com (mail-oi0-f42.google.com
+	[209.85.218.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05BFAE00A48
+	for <yocto@yoctoproject.org>; Sat,  7 Jul 2018 07:53:09 -0700 (PDT)
+Received: by mail-oi0-f42.google.com with SMTP id w126-v6so28642299oie.7
+	for <yocto@yoctoproject.org>; Sat, 07 Jul 2018 07:53:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=+zRSqybA91XEd/PPUzhbGjRpUYheNiR5HksfqFmwgEg=;
+	b=PL98Zhs4HHfauhvKmzvZxOYjVpq5bFc83Dhi8SYtMAts0N1rd3kvw7mjrm6ZYPcGD/
+	CH7oXQnoSglnxOEibVrIz/1VX0h2m3XMD1p7fr9aoWfdYXxqpysSRZHxIo6/n5x3znRu
+	s+qbPjqmcc6JdoXyPFd73sy5jxq61noeUJzdmVb0iQS8xgkWZMpYJa/QIdLpu3y877vm
+	aSEMArIyXCUDBq/19BG78PfyWJxurvm86nbMw+79JgjgiJMBaCZDhuHk5IMOOnqkPq1w
+	CWlZUvYgA+10YMni+w21hRaq3cUaLLFTrqFxHhjTpAUYTqoZhfcPt93bO4barzNqLyPv
+	ZeuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=+zRSqybA91XEd/PPUzhbGjRpUYheNiR5HksfqFmwgEg=;
+	b=WZoLMQsP0IDjxEwovQ2fU6mtKNflDf+RbBcSLPBKeaaMhfHaQsQmu25/tdYuOABvjF
+	gJtkGBgC9TMxurdkLpPN1BDA72FPV4pZt4pyILMXqLf9esex1lL52Aq6GXX5FZ95SsnE
+	5SMwD2fGVzQaxQT0dgnabSuYJHArob0VYZpy5JeqLnfAjLEW0oq4yDxwUmOxCmTN5t6o
+	a+hkxowjXN3en3MDQR1Ut853jUYU3Znwp7Ud31SfCByrW66DatGztozenl5oAdym9Ezk
+	dEfqjC9cLB5Yw86IgaIzo48DyYVdlbDevlaxYMjxT/ATBzuWXzI3PCV01ApgMtOzgJEo
+	WIZQ==
+X-Gm-Message-State: APt69E3ghICk1kjqM9/S7tLtf3ZQ9eqQ0ZSOiEnf+DKu/oiPbJSA/76q
+	lf+2uIQW2QUYCmr9CwDb+ZJYSfGIxyZ1ownqX0c=
+X-Google-Smtp-Source: AAOMgpclqI4FRBPz9gX9g9mkXfdSdc9f0GKpaVFPXcOoc3vMZg1Lgii+8eVlzF0ueE3iPW9aTgBq/yYx9fyA2jLxicw=
+X-Received: by 2002:aca:3d4:: with SMTP id
+	203-v6mr14627794oid.321.1530975189415; 
+	Sat, 07 Jul 2018 07:53:09 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a4a:90c5:0:0:0:0:0 with HTTP;
+	Sat, 7 Jul 2018 07:53:09 -0700 (PDT)
+In-Reply-To: <5d98c3cd-cc93-cb19-431a-ae3bc051970e@timmedia.de>
 References: <79b2d102-5cf4-f5ff-1bff-68fe260ffd41@timmedia.de>
 	<CANNYZj_ub7Lf2NXPScOY-BMH7G5LRx1zYNTv53h+KjvgUZbVzw@mail.gmail.com>
-From: Timm <timm@timmedia.de>
-Message-ID: <5d98c3cd-cc93-cb19-431a-ae3bc051970e@timmedia.de>
-Date: Sat, 7 Jul 2018 13:30:32 +0200
-MIME-Version: 1.0
-In-Reply-To: <CANNYZj_ub7Lf2NXPScOY-BMH7G5LRx1zYNTv53h+KjvgUZbVzw@mail.gmail.com>
+	<5d98c3cd-cc93-cb19-431a-ae3bc051970e@timmedia.de>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Sat, 7 Jul 2018 16:53:09 +0200
+Message-ID: <CANNYZj-NvXP+J7VTotkm+F8rN02_88HS2=gH7pdsV0j3XQ9dKA@mail.gmail.com>
+To: Timm <timm@timmedia.de>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: Building gutenprint recipe
 X-BeenThere: yocto@yoctoproject.org
@@ -42,190 +76,220 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Jul 2018 11:30:37 -0000
-Content-Type: multipart/alternative;
-	boundary="------------0497A18F6766A8403C309D66"
-Content-Language: en-US
+X-List-Received-Date: Sat, 07 Jul 2018 14:53:11 -0000
+Content-Type: multipart/alternative; boundary="000000000000533d1c057069f047"
 
---------------0497A18F6766A8403C309D66
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+--000000000000533d1c057069f047
+Content-Type: text/plain; charset="UTF-8"
 
-Am 07.07.2018 um 12:17 schrieb Alexander Kanavin:
+I do not recommend that you copy the binary over; it's better to clearly
+separate native and target. Just patch the makefile.
+
+Alex
+
+2018-07-07 13:30 GMT+02:00 Timm <timm@timmedia.de>:
+
+> Am 07.07.2018 um 12:17 schrieb Alexander Kanavin:
+>
 > How to do this is specific to each project. Generally, you want the
 > target recipe to depend on the native recipe (so that the necessary
-> native tools show up in the target sysroot), 
-Done that: gutenprint depends on gutenprint-native.
+> native tools show up in the target sysroot),
+>
+> Done that: gutenprint depends on gutenprint-native.
+>
 > and then you need to
 > study the build system of the upstream component project (makefiles
 > etc.) to see how it can be instructed to use the tool installed in the
 > system, instead of building and using it's own version. Then patch the
 > source code accordingly from the recipe.
-As I understand I have two options:
-1. Patching the makefile that the makefile calls the upstream version of
-"extract-strings" from gutenprint-native.
-2. Would be the openwrt-way: removing the directories with the
-extract-strings sources. So this part will not be compiled. Then copying
-the the binary build by gutenprint-native. I extracted the part of the
-openwrt-build-file:
+>
+> As I understand I have two options:
+> 1. Patching the makefile that the makefile calls the upstream version of
+> "extract-strings" from gutenprint-native.
+> 2. Would be the openwrt-way: removing the directories with the
+> extract-strings sources. So this part will not be compiled. Then copying
+> the the binary build by gutenprint-native. I extracted the part of the
+> openwrt-build-file:
+>
+> define Build/Compile
+> # Replace the cross-compiled "extract-string" by a shell-script that
+> # runs the host's own compiled version (gutenprint needs to run this)
+> (cd $(PKG_BUILD_DIR) && $(MAKE) -C src/xml extract-strings && \
+> $(RM) src/xml/extract-strings && \
+> echo '#!/bin/sh' > src/xml/extract-strings && \
+> echo 'exec $(HOST_BUILD_DIR)/src/xml/extract-strings "$$$$@" ' \
+> >> src/xml/extract-strings && chmod +x src/xml/extract-strings && cp
+> src/xml/extract-strings /tmp/)
+> $(call Build/Compile/Default)
+> endef
+>
+>
+> Source: https://github.com/FranciscoBorges/openwrt-
+> printing-packages/blob/master/net/gutenprint/Makefile
+>
+> ------------------------------------------------------------
+> ----------------------------------------------
+>
+> There is one thing, I don't quite understand. How can I access the files
+> which were created by the gutenprint-native recipe?
+>
+>
+>
 
-define Build/Compile
+--000000000000533d1c057069f047
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-# Replace the cross-compiled "extract-string" by a shell-script that
-
-# runs the host's own compiled version (gutenprint needs to run this)
-
-(cd $(PKG_BUILD_DIR) && $(MAKE) -C src/xml extract-strings && \
-
-$(RM) src/xml/extract-strings && \
-
-echo '#!/bin/sh' > src/xml/extract-strings && \
-
-echo 'exec $(HOST_BUILD_DIR)/src/xml/extract-strings "$$$$@" ' \
-
->> src/xml/extract-strings && chmod +x src/xml/extract-strings && cp
-src/xml/extract-strings /tmp/)
-
-$(call Build/Compile/Default)
-
-endef   
-
-
-Source:
-https://github.com/FranciscoBorges/openwrt-printing-packages/blob/master/net/gutenprint/Makefile
-
-----------------------------------------------------------------------------------------------------------
-
-There is one thing, I don't quite understand. How can I access the files
-which were created by the gutenprint-native recipe?
-
-
-
---------------0497A18F6766A8403C309D66
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
+<div dir=3D"ltr"><div>I do not recommend that you copy the binary over; it&=
+#39;s better to clearly separate native and target. Just patch the makefile=
+.</div><div><br></div><div>Alex<br></div></div><div class=3D"gmail_extra"><=
+br><div class=3D"gmail_quote">2018-07-07 13:30 GMT+02:00 Timm <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:timm@timmedia.de" target=3D"_blank">timm@timmedi=
+a.de</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div text=3D"#000000" bgcolor=3D"#FFFFFF"><span class=3D"">
     Am 07.07.2018 um 12:17 schrieb Alexander Kanavin:<br>
-    <blockquote type="cite"
-cite="mid:CANNYZj_ub7Lf2NXPScOY-BMH7G5LRx1zYNTv53h+KjvgUZbVzw@mail.gmail.com">
-      <pre wrap="">How to do this is specific to each project. Generally, you want the
+    <blockquote type=3D"cite">
+      <pre>How to do this is specific to each project. Generally, you want =
+the
 target recipe to depend on the native recipe (so that the necessary
 native tools show up in the target sysroot), </pre>
-    </blockquote>
-    Done that: gutenprint depends on gutenprint-native.<br>
-    <blockquote type="cite"
-cite="mid:CANNYZj_ub7Lf2NXPScOY-BMH7G5LRx1zYNTv53h+KjvgUZbVzw@mail.gmail.com">
-      <pre wrap="">and then you need to
+    </blockquote></span>
+    Done that: gutenprint depends on gutenprint-native.<span class=3D""><br=
+>
+    <blockquote type=3D"cite">
+      <pre>and then you need to
 study the build system of the upstream component project (makefiles
 etc.) to see how it can be instructed to use the tool installed in the
-system, instead of building and using it's own version. Then patch the
+system, instead of building and using it&#39;s own version. Then patch the
 source code accordingly from the recipe.</pre>
-    </blockquote>
+    </blockquote></span>
     As I understand I have two options: <br>
     1. Patching the makefile that the makefile calls the upstream
-    version of "extract-strings" from gutenprint-native. <br>
+    version of &quot;extract-strings&quot; from gutenprint-native. <br>
     2. Would be the openwrt-way: removing the directories with the
     extract-strings sources. So this part will not be compiled. Then
     copying the the binary build by gutenprint-native. I extracted the
     part of the openwrt-build-file:<br>
     <br>
-    <table class="highlight tab-size js-file-line-container"
-      data-tab-size="8">
+    <table class=3D"m_-3319893517160037274highlight m_-3319893517160037274t=
+ab-size m_-3319893517160037274js-file-line-container">
       <tbody>
         <tr>
-          <td id="LC68" class="blob-code blob-code-inner js-file-line"><span
-              class="pl-k">define</span> <span class="pl-smi">Build/Compile</span></td>
+          <td id=3D"m_-3319893517160037274LC68" class=3D"m_-331989351716003=
+7274blob-code m_-3319893517160037274blob-code-inner m_-3319893517160037274j=
+s-file-line"><span class=3D"m_-3319893517160037274pl-k">define</span> <span=
+ class=3D"m_-3319893517160037274pl-smi">Build/Compile</span></td>
         </tr>
         <tr>
         </tr>
       </tbody>
     </table>
-    <table class="highlight tab-size js-file-line-container"
-      data-tab-size="8">
+    <table class=3D"m_-3319893517160037274highlight m_-3319893517160037274t=
+ab-size m_-3319893517160037274js-file-line-container">
       <tbody>
         <tr>
-          <td id="LC69" class="blob-code blob-code-inner js-file-line">
-            <span class="pl-c"><span class="pl-c">#</span> Replace the
-              cross-compiled "extract-string" by a shell-script that</span></td>
+          <td id=3D"m_-3319893517160037274LC69" class=3D"m_-331989351716003=
+7274blob-code m_-3319893517160037274blob-code-inner m_-3319893517160037274j=
+s-file-line">
+            <span class=3D"m_-3319893517160037274pl-c"><span class=3D"m_-33=
+19893517160037274pl-c">#</span> Replace the
+              cross-compiled &quot;extract-string&quot; by a shell-script t=
+hat</span></td>
         </tr>
         <tr>
         </tr>
       </tbody>
     </table>
-    <table class="highlight tab-size js-file-line-container"
-      data-tab-size="8">
+    <table class=3D"m_-3319893517160037274highlight m_-3319893517160037274t=
+ab-size m_-3319893517160037274js-file-line-container">
       <tbody>
         <tr>
-          <td id="LC70" class="blob-code blob-code-inner js-file-line">
-            <span class="pl-c"><span class="pl-c">#</span> runs the
-              host's own compiled version (gutenprint needs to run this)</span></td>
+          <td id=3D"m_-3319893517160037274LC70" class=3D"m_-331989351716003=
+7274blob-code m_-3319893517160037274blob-code-inner m_-3319893517160037274j=
+s-file-line">
+            <span class=3D"m_-3319893517160037274pl-c"><span class=3D"m_-33=
+19893517160037274pl-c">#</span> runs the
+              host&#39;s own compiled version (gutenprint needs to run this=
+)</span></td>
         </tr>
         <tr>
         </tr>
       </tbody>
     </table>
-    <table class="highlight tab-size js-file-line-container"
-      data-tab-size="8">
+    <table class=3D"m_-3319893517160037274highlight m_-3319893517160037274t=
+ab-size m_-3319893517160037274js-file-line-container">
       <tbody>
         <tr>
-          <td id="LC71" class="blob-code blob-code-inner js-file-line">
-            (cd <span class="pl-s">$(<span class="pl-smi">PKG_BUILD_DIR</span>)</span>
-            &amp;&amp; <span class="pl-s">$(<span class="pl-c1">MAKE</span>)</span>
+          <td id=3D"m_-3319893517160037274LC71" class=3D"m_-331989351716003=
+7274blob-code m_-3319893517160037274blob-code-inner m_-3319893517160037274j=
+s-file-line">
+            (cd <span class=3D"m_-3319893517160037274pl-s">$(<span class=3D=
+"m_-3319893517160037274pl-smi">PKG_BUILD_DIR</span>)</span>
+            &amp;&amp; <span class=3D"m_-3319893517160037274pl-s">$(<span c=
+lass=3D"m_-3319893517160037274pl-c1">MAKE</span>)</span>
             -C src/xml extract-strings &amp;&amp; \</td>
         </tr>
         <tr>
         </tr>
       </tbody>
     </table>
-    <table class="highlight tab-size js-file-line-container"
-      data-tab-size="8">
+    <table class=3D"m_-3319893517160037274highlight m_-3319893517160037274t=
+ab-size m_-3319893517160037274js-file-line-container">
       <tbody>
         <tr>
-          <td id="LC72" class="blob-code blob-code-inner js-file-line">
-            <span class="pl-s">$(<span class="pl-smi">RM</span>)</span>
+          <td id=3D"m_-3319893517160037274LC72" class=3D"m_-331989351716003=
+7274blob-code m_-3319893517160037274blob-code-inner m_-3319893517160037274j=
+s-file-line">
+            <span class=3D"m_-3319893517160037274pl-s">$(<span class=3D"m_-=
+3319893517160037274pl-smi">RM</span>)</span>
             src/xml/extract-strings &amp;&amp; \</td>
         </tr>
         <tr>
         </tr>
       </tbody>
     </table>
-    <table class="highlight tab-size js-file-line-container"
-      data-tab-size="8">
+    <table class=3D"m_-3319893517160037274highlight m_-3319893517160037274t=
+ab-size m_-3319893517160037274js-file-line-container">
       <tbody>
         <tr>
-          <td id="LC73" class="blob-code blob-code-inner js-file-line">
-            echo '<span class="pl-c"><span class="pl-c">#</span>!/bin/sh'
-              &gt; src/xml/extract-strings &amp;&amp; <span
-                class="pl-cce">\</span></span></td>
+          <td id=3D"m_-3319893517160037274LC73" class=3D"m_-331989351716003=
+7274blob-code m_-3319893517160037274blob-code-inner m_-3319893517160037274j=
+s-file-line">
+            echo &#39;<span class=3D"m_-3319893517160037274pl-c"><span clas=
+s=3D"m_-3319893517160037274pl-c">#</span>!/bin/sh&#39;
+              &gt; src/xml/extract-strings &amp;&amp; <span class=3D"m_-331=
+9893517160037274pl-cce">\</span></span></td>
         </tr>
         <tr>
         </tr>
       </tbody>
     </table>
-    <table class="highlight tab-size js-file-line-container"
-      data-tab-size="8">
+    <table class=3D"m_-3319893517160037274highlight m_-3319893517160037274t=
+ab-size m_-3319893517160037274js-file-line-container">
       <tbody>
         <tr>
-          <td id="LC74" class="blob-code blob-code-inner js-file-line"><span
-              class="pl-c"> echo 'exec
-              $(HOST_BUILD_DIR)/src/xml/extract-strings "$$$$@" ' <span
-                class="pl-cce">\</span></span></td>
+          <td id=3D"m_-3319893517160037274LC74" class=3D"m_-331989351716003=
+7274blob-code m_-3319893517160037274blob-code-inner m_-3319893517160037274j=
+s-file-line"><span class=3D"m_-3319893517160037274pl-c"> echo &#39;exec
+              $(HOST_BUILD_DIR)/src/xml/<wbr>extract-strings &quot;$$$$@&qu=
+ot; &#39; <span class=3D"m_-3319893517160037274pl-cce">\</span></span></td>
         </tr>
         <tr>
         </tr>
       </tbody>
     </table>
-    <table class="highlight tab-size js-file-line-container"
-      data-tab-size="8">
+    <table class=3D"m_-3319893517160037274highlight m_-3319893517160037274t=
+ab-size m_-3319893517160037274js-file-line-container">
       <tbody>
         <tr>
-          <td id="LC75" class="blob-code blob-code-inner js-file-line"><span
-              class="pl-c"> &gt;&gt; src/xml/extract-strings &amp;&amp;
+          <td id=3D"m_-3319893517160037274LC75" class=3D"m_-331989351716003=
+7274blob-code m_-3319893517160037274blob-code-inner m_-3319893517160037274j=
+s-file-line"><span class=3D"m_-3319893517160037274pl-c"> &gt;&gt; src/xml/e=
+xtract-strings &amp;&amp;
               chmod +x src/xml/extract-strings &amp;&amp; cp
               src/xml/extract-strings /tmp/)</span></td>
         </tr>
@@ -233,32 +297,41 @@ source code accordingly from the recipe.</pre>
         </tr>
       </tbody>
     </table>
-    <table class="highlight tab-size js-file-line-container"
-      data-tab-size="8">
+    <table class=3D"m_-3319893517160037274highlight m_-3319893517160037274t=
+ab-size m_-3319893517160037274js-file-line-container">
       <tbody>
         <tr>
-          <td id="LC76" class="blob-code blob-code-inner js-file-line">
-            <span class="pl-s">$(<span class="pl-c1">call</span>
+          <td id=3D"m_-3319893517160037274LC76" class=3D"m_-331989351716003=
+7274blob-code m_-3319893517160037274blob-code-inner m_-3319893517160037274j=
+s-file-line">
+            <span class=3D"m_-3319893517160037274pl-s">$(<span class=3D"m_-=
+3319893517160037274pl-c1">call</span>
               Build/Compile/Default)</span></td>
         </tr>
         <tr>
         </tr>
       </tbody>
     </table>
-    <span class="pl-k">endef    <br>
+    <span class=3D"m_-3319893517160037274pl-k">endef=C2=A0=C2=A0=C2=A0 <br>
       <br>
       <br>
       Source:
-<a class="moz-txt-link-freetext" href="https://github.com/FranciscoBorges/openwrt-printing-packages/blob/master/net/gutenprint/Makefile">https://github.com/FranciscoBorges/openwrt-printing-packages/blob/master/net/gutenprint/Makefile</a><br>
+<a class=3D"m_-3319893517160037274moz-txt-link-freetext" href=3D"https://gi=
+thub.com/FranciscoBorges/openwrt-printing-packages/blob/master/net/gutenpri=
+nt/Makefile" target=3D"_blank">https://github.com/<wbr>FranciscoBorges/open=
+wrt-<wbr>printing-packages/blob/master/<wbr>net/gutenprint/Makefile</a><br>
       <br>
-----------------------------------------------------------------------------------------------------------<br>
+------------------------------<wbr>------------------------------<wbr>-----=
+-------------------------<wbr>----------------<br>
       <br>
-      There is one thing, I don't quite understand. How can I access the
+      There is one thing, I don&#39;t quite understand. How can I access th=
+e
       files which were created by the gutenprint-native recipe?<br>
       <br>
       <br>
     </span>
-  </body>
-</html>
+  </div>
 
---------------0497A18F6766A8403C309D66--
+</blockquote></div><br></div>
+
+--000000000000533d1c057069f047--
