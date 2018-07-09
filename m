@@ -1,6 +1,6 @@
-Return-Path: <aaron.chun.yew.chan@intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23021E00E24; Mon,  9 Jul 2018 00:36:01 -0700 (PDT)
+	id AF528E00D8E; Mon,  9 Jul 2018 01:34:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,29 +8,33 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67B60E0086E
-	for <yocto@yoctoproject.org>; Mon,  9 Jul 2018 00:36:00 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46536E00CA6
+	for <yocto@yoctoproject.org>; Mon,  9 Jul 2018 01:34:11 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	09 Jul 2018 00:35:59 -0700
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	09 Jul 2018 01:34:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,329,1526367600"; d="scan'208";a="73266099"
-Received: from aaronchu-mobl1.png.intel.com ([10.221.23.53])
-	by orsmga002.jf.intel.com with ESMTP; 09 Jul 2018 00:35:55 -0700
-From: Aaron Chan <aaron.chun.yew.chan@intel.com>
-To: richard.purdie@linuxfoundation.org, yocto@yoctoproject.org,
-	ross.burton@intel.com, paul.eggleton@intel.com
-Date: Mon,  9 Jul 2018 15:35:52 +0800
-Message-Id: <1531121752-10525-1-git-send-email-aaron.chun.yew.chan@intel.com>
-X-Mailer: git-send-email 2.7.4
-Cc: Aaron Chan <aaron.chun.yew.chan@intel.com>
-Subject: [PATCH] [yocto-autobuilder] Add Manual BSP job-config into autobuilder
+X-IronPort-AV: E=Sophos;i="5.51,329,1526367600"; d="scan'208";a="70718264"
+Received: from gosinald-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+	([10.252.54.166])
+	by fmsmga001.fm.intel.com with ESMTP; 09 Jul 2018 01:34:08 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Robert Yang <liezhi.yang@windriver.com>
+Date: Mon, 09 Jul 2018 10:34:07 +0200
+Message-ID: <21268191.2cf1WCTquc@localhost.localdomain>
+Organization: Intel Corporation
+In-Reply-To: <8be7c6c9057c9b1d461aacfde8459adeddb348d5.1531109397.git.liezhi.yang@windriver.com>
+References: <cover.1531109397.git.liezhi.yang@windriver.com>
+	<8be7c6c9057c9b1d461aacfde8459adeddb348d5.1531109397.git.liezhi.yang@windriver.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [layerindex-web][PATCH 4/4] update.py: check whether branch existed when nocheckout
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,57 +46,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jul 2018 07:36:01 -0000
+X-List-Received-Date: Mon, 09 Jul 2018 08:34:13 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-This patch is to add/update configuration needed to support several
-hardware platforms on ARM64, x32, x86/x86-64, MIPS64, PPC on
-autobuilder as new features added in 2.6 M2 and to support automated
-manual BSP test case(s) for future QA releases.
+Hi Robert,
 
-Signed-off-by: Aaron Chan <aaron.chun.yew.chan@intel.com>
----
- config.py | 17 ++++++++++-------
- 1 file changed, 10 insertions(+), 7 deletions(-)
+On Monday, 9 July 2018 6:11:30 AM CEST Robert Yang wrote:
+> Fixed:
+> Assume there is no master branch in hello layer:
+> $ update.py -l hello -b master
+> INFO: Skipping update of layer hello - branch master doesn't exist
+> 
+> This is correct since hello layer doesn't have master branch, but when --nocheckout:
+> $ update.py -l hello -b master  --nocheckout
+> [snip]
+> INFO: Sorting layers for branch mater:
+> WARNING: Cannot find required collections on branch master:
+> WARNING: hello: LAYERDEPENDS: <snip>
+> 
+> This is incorrect, this patch fixed the problem, now it skips it since the
+> branch doesn't exists when --nocheckout.
 
-diff --git a/config.py b/config.py
-index 2568768..ada76ac 100644
---- a/config.py
-+++ b/config.py
-@@ -11,6 +11,7 @@ buildertorepos = {
-     "nightly-oecore": ["oecore", "bitbake"],
-     "nightly-checkuri": ["poky", "meta-qt4", "meta-qt3"],
-     "nightly-check-layer": ["poky", "meta-mingw", "meta-gplv2"],
-+    "nightly-x86-64-bsp": ["poky", "meta-intel", "meta-security", "meta-openembedded"],
-     "default": ["poky"]
- }
- 
-@@ -32,16 +33,18 @@ repos = {
-     "meta-qt4": ["git://git.yoctoproject.org/meta-qt4", "master"],
-     "meta-qt3": ["git://git.yoctoproject.org/meta-qt3", "master"],
-     "meta-mingw": ["git://git.yoctoproject.org/meta-mingw", "master"],
--    "meta-gplv2": ["git://git.yoctoproject.org/meta-gplv2", "master"]
-+    "meta-gplv2": ["git://git.yoctoproject.org/meta-gplv2", "master"],
-+    "meta-security": ["git://git.yoctoproject.org/meta-security", "master"],
-+    "meta-openembedded": ["git://git.yoctoproject.org/meta-openembedded", "master"]
- }
- 
- trigger_builders_wait = [
--    "nightly-arm", "nightly-arm-lsb", "nightly-arm64",
--    "nightly-mips", "nightly-mips-lsb", "nightly-mips64",
--    "nightly-multilib", "nightly-x32",
--    "nightly-ppc", "nightly-ppc-lsb",
--    "nightly-x86-64", "nightly-x86-64-lsb",
--    "nightly-x86", "nightly-x86-lsb",
-+    "nightly-arm", "nightly-arm-lsb", "nightly-arm64", "nightly-arm-bsp", "nightly-arm64-bsp",
-+    "nightly-mips", "nightly-mips-lsb", "nightly-mips64", "nightly-mips-bsp", "nightly-mips64-bsp",
-+    "nightly-multilib", "nightly-x32", "nightly-x32-bsp",
-+    "nightly-ppc", "nightly-ppc-lsb", "nightly-ppc-bsp",
-+    "nightly-x86-64", "nightly-x86-64-lsb", "nightly-x86-64-bsp",
-+    "nightly-x86", "nightly-x86-lsb", "nightly-x86-bsp",
-     "nightly-packagemanagers",
-     "nightly-rpm-non-rpm", "nightly-deb-non-deb",
-     "build-appliance", "buildtools", "eclipse-plugin-neon",
+This fix doesn't seem right. The intention of --nocheckout is to not check anything
+out, i.e. use whatever HEAD is in the current repository. It wouldn't be correct
+to get the commit from the origin in this case.
+
+Cheers,
+Paul
+
 -- 
-2.7.4
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
 
 
