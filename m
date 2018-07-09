@@ -1,45 +1,41 @@
-Return-Path: <mauro@faresoftware.it>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8D697E00C77; Tue, 10 Jul 2018 05:18:18 -0700 (PDT)
+	id E5351E009B9; Tue, 10 Jul 2018 07:38:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [62.149.156.101 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00, DATE_IN_PAST_24_48, 
+	RCVD_IN_DNSWL_MED autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.126 listed in list.dnswl.org]
+	* 1.3 DATE_IN_PAST_24_48 Date: is 24 to 48 hours before Received: date
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from smtpcmd10101.aruba.it (smtpcmd10101.aruba.it [62.149.156.101])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2D7AE0080A
-	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 05:18:16 -0700 (PDT)
-Received: from [10.0.3.79] ([78.6.3.122]) by smtpcmd10.ad.aruba.it with bizsmtp
-	id 90JE1y0152dwwGE010JF0p; Tue, 10 Jul 2018 14:18:15 +0200
-To: yocto@yoctoproject.org
-References: <72f720d8-8638-808a-0433-316f83caa781@faresoftware.it>
-	<94004992-f933-ec78-cd60-d496616d9bf5@geanix.com>
-	<6c7dc4a9-cc58-8485-50c3-656860e265a5@geanix.com>
-From: Mauro Ziliani <mauro@faresoftware.it>
-Message-ID: <702dffd1-0b3a-ce81-c16d-ceddb5ff5555@faresoftware.it>
-Date: Tue, 10 Jul 2018 14:18:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.0
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E4CDE009B9;
+	Tue, 10 Jul 2018 07:38:48 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	10 Jul 2018 07:38:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,334,1526367600"; d="scan'208";a="70185781"
+Received: from rossbach-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+	([10.249.32.194])
+	by fmsmga004.fm.intel.com with ESMTP; 10 Jul 2018 07:38:46 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Konrad Scherer <konrad.scherer@windriver.com>
+Date: Mon, 09 Jul 2018 14:57:45 +0200
+Message-ID: <1787109.kPri9hXMnf@localhost.localdomain>
+Organization: Intel Corporation
+In-Reply-To: <20180626174130.21617-2-konrad.scherer@windriver.com>
+References: <20180626174130.21617-1-konrad.scherer@windriver.com>
+	<20180626174130.21617-2-konrad.scherer@windriver.com>
 MIME-Version: 1.0
-In-Reply-To: <6c7dc4a9-cc58-8485-50c3-656860e265a5@geanix.com>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
-	t=1531225095; bh=ZWHKjAeXOHpLwyarEeGCEyzgd6UGdblYJvoXLQaPTxg=;
-	h=Subject:To:From:Date:MIME-Version:Content-Type;
-	b=KsLsotVbPFzyFuffYkqRk4XxfvfBnoULs7SVKbbhq6f5iQsuTyJqCD1pF4VjiHVbn
-	m/X4Z/dQHuyUfB/bHifSUQlm4NJAGW7ud76vIQyGz47wwUhw8E4IgBRwNAb6/vYMGh
-	HcmJvN5NqCuneLIhCZY7pQeTozpd4mU5gNSU7r6bvJjZi6eT1mhAjNMPNVFfBrGNh/
-	n6FBM/GVuI10yesH01J8bKZd+MiJO7Ka4X2+B19JhX+gMCmKW6PQGM7r7XZivEzobI
-	0kNYcn/kb4/z4KUqoCDEwehodeE/9umdnF8gFCTr0r+q69Enne8mRyB+u/UPdtRCh7
-	X5KVHjkroGLUw==
-Subject: Re: SRC_URI git from ssh fails
+Cc: yocto@yoctoproject.org
+Subject: Re: [layerindex-web][PATCH 1/6] Add docker-compose file to create full layerindex stack of MariaDB, RabbitMQ and Nginx
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,98 +47,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jul 2018 12:18:18 -0000
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: it
+X-List-Received-Date: Tue, 10 Jul 2018 14:38:49 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Now it works.
+Hi Konrad
 
-But it was a problem of git repository.
+On Tuesday, 26 June 2018 7:41:30 PM CEST Konrad Scherer wrote:
+> Lots of new features added:
+> 
+> - Layerindex runs as unprivileged user inside container
+> 
+> - Celery worker is started before gunicorn
+> 
+> - Entrypoint script supports changing RabbitMQ location
+> 
+> - Entrypoint script support initialization of database and superuser
+> 
+> - Reverse Proxy uses https with self signed certs by default and
+>   supports Let's Encrypt certs (not enabled by default)
+> 
+> - Move docker image to debian stretch and python3
+> 
+> - Remove build tools after installation to reduce the image
+>   to under 500MB in size
 
-I rebuild the SRCREC on the repository and now I acan fetch the source code.
+This is quite nice, thanks!
 
+Coincidentally, both myself and Michael Halstead have had a go at cleaning up
+and improving the Docker setup, so I have to do a little reconciliation
+between your and his changes - see here for his:
 
-I choose this recipe method.
+https://github.com/halstead/layerindex-web/commit/b9791710ff97550fa9110ab89a70c42b1fc86581
 
-PV="1.0"
+I think we probably want to break all of this down into a set of discrete 
+commits rather than one big one, and then it'll be a bit clearer. I'll do a
+first pass and come back to you both.
 
-SRCREV="refs/tags/${PV}"
+Cheers,
+Paul
 
+-- 
 
-SRC_URI = " \
-     git://user@server/repos.git;protocol=ssh \
-"
+Paul Eggleton
+Intel Open Source Technology Centre
 
-Thanks for the help
-
-MZ
-
-Il 10/07/2018 10:40, Martin Hundebøll ha scritto:
-> Hi again,
->
-> On 2018-07-10 10:37, Martin Hundebøll wrote:
->> Hi Mauro,
->>
->> On 2018-07-10 10:31, Mauro Ziliani wrote:
->>> Hi all
->>>
->>> I'm working with Krogoth and imx6dlsabresd board.
->>>
->>> I'm in trouble fetching source code from a git repository via ssh.
->>>
->>> If I get manually the source codes with
->>>
->>> git clone ssh://user@server/repos.git -b 0.4
->>>
->>> it works
->>>
->>>
->>> If I put it in myrecipe_git.bb with
->>>
->>>
->>> SRC_URI = " \
->>>
->>>     git://user@server/repos.git;protocol=ssh;tag=0.4 \
->>>
->>> "
->>
->> You might get lucky with a colon instead of the slash:
->>
->>      git://user@server:repos.git;protocol=ssh;tag=0.4
->>
->> But it is just a wild guess, and I didn't really test it :)
->>
->> // Martin
->>
->>>
->>> S="${WORKDIR}/${PN}-${PV}"
->>>
->>>
->>> the fecth task fails.
->>>
->>>
->>> I try also SRCREV="0.4" outside SRC_URI and rev=0.4 in place of tag=0.4
->
-> Oh, don't base your checkouts on tags, as they can change without 
-> bitbake noticing.
->
-> Put a commit id in SRCREV instead and look into AUTOREV if you need to 
-> always build the latest and greatest.
->
-> // Martin
->
->>>
->>> Where I mistake?
->>>
->>>
->>> Thanks
->>>
->>>
->>> MZ
->>>
->>>
->>
->
 
 
