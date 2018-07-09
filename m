@@ -1,106 +1,71 @@
-Return-Path: <rksyeung@hotmail.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9211CE00E18; Sun,  8 Jul 2018 20:26:20 -0700 (PDT)
+	id 720B9E00AD8; Sun,  8 Jul 2018 20:47:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
-	HTML_MESSAGE, 
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rksyeung[at]hotmail.com)
+	mail provider *      (armccurdy[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust *      [40.92.2.29 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
-	but no 'Received:'
+	no *      trust
+	*      [209.85.213.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 129005 seconds by postgrey-1.32 at yocto-www;
-	Sun, 08 Jul 2018 20:26:19 PDT
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com
-	(mail-oln040092002029.outbound.protection.outlook.com [40.92.2.29])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77F74E00DE1
-	for <yocto@yoctoproject.org>; Sun,  8 Jul 2018 20:26:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=Xkl7TrWqiPQXpYJXl2r18PnFPDvOrOuY/DHyT2mnV+M=;
-	b=pfHZXETNxU0Gi4iPU7a12QTDY55f8CWUNU6/PAdsiZyQRp3A+G/Sug3KNjDW5DV22IMr2NAC7zUcpPxOPQjWSL1Ddp1DkIORNm7Bh5NPO244LSzU5ryxhP3sbRjMMWvBFFRCh9lQKKpZSDSZiR5fXm+l6JD1E9SNegf3/r/udJViQlmi7YXj0JXn2+g2H3sHZBM5ANJ9VObCJ2OZZuUvLJZ97LsZuQjENCFd90DfjfW5++VPmZ0y8zbf+1V033aDP1T6hjNQs9LG6wvvII7YpJfjC9ISeD1KK9it3LSABS0JfWgN94uuf33QXAhS9iZOaVEIZS6b4rVIYuzZEmhrqw==
-Received: from SN1NAM01FT042.eop-nam01.prod.protection.outlook.com
-	(10.152.64.53) by SN1NAM01HT150.eop-nam01.prod.protection.outlook.com
-	(10.152.64.87) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.906.15;
-	Mon, 9 Jul 2018 03:10:59 +0000
-Received: from MWHPR19MB1183.namprd19.prod.outlook.com (10.152.64.56) by
-	SN1NAM01FT042.mail.protection.outlook.com (10.152.65.205) with
-	Microsoft SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.906.15 via Frontend Transport; Mon, 9 Jul 2018 03:10:59 +0000
-Received: from MWHPR19MB1183.namprd19.prod.outlook.com
-	([fe80::641a:8a85:b9d5:1bcd]) by
-	MWHPR19MB1183.namprd19.prod.outlook.com
-	([fe80::641a:8a85:b9d5:1bcd%4]) with mapi id 15.20.0930.022;
-	Mon, 9 Jul 2018 03:10:59 +0000
-From: Raymond Yeung <rksyeung@hotmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Any Linux/Yocto Image Installer (for target system)
-Thread-Index: AQHUFkNrHJn1kPyQq0uRSPXu478g/qSGN4K+
-Date: Mon, 9 Jul 2018 03:10:59 +0000
-Message-ID: <MWHPR19MB118343CB9AD0BA7EBF868E3CC5440@MWHPR19MB1183.namprd19.prod.outlook.com>
+Received: from mail-vk0-f65.google.com (mail-vk0-f65.google.com
+	[209.85.213.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F22DFE0086E
+	for <yocto@yoctoproject.org>; Sun,  8 Jul 2018 20:47:12 -0700 (PDT)
+Received: by mail-vk0-f65.google.com with SMTP id l64-v6so9674486vkl.12
+	for <yocto@yoctoproject.org>; Sun, 08 Jul 2018 20:47:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=F3VoygwT6THz7AEmTlwY1uGgYHmmibrwhPjYLIqyQvo=;
+	b=cZG4tYYB30VdEmttwhMt7ruTmniDt9V5aLlV289voFc+ZOLL2msBdf6+w1tk28L4uE
+	iYapSrQlN/yKJ71HwiJ2H/B12UcL+t3UvUMZljqL5qHpbQZ2t3L5BiLOFsgLwoZEwJCy
+	puGU0HxqW+LA0JVqNQcnGBXDgvvlS4mSGO29akMuU+ddEimY9fMwLfbATQVEa4AXyH8W
+	MQPiY8IS+XjUum0cQHo53zNtiDOZrMKqb0Heq7bqvSf8CbG7vML7P6/XGdrX4GrvkbEy
+	ywqG9CaL4Bwqa6MU0R33m703qZBEwtPV/omkh+1r41MbgpKCx5Ur8hgv3XVWBHtSrkCO
+	W5SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=F3VoygwT6THz7AEmTlwY1uGgYHmmibrwhPjYLIqyQvo=;
+	b=k/Hif401MXz1X61VjUVyK5FFIO+/nFbCWwJR3r/cTEI7NrxRDkbFkRSMndCYSzCsZf
+	OUrnkWnizlWf5UsCjMsCw4jfx8cFZz11isgSeQaXBWweU/LBjbk9xD8ByQXt9wvicWij
+	AyPyDGG+7SxWCzjKny/htnngFl6cmwys6NXc/0MYpoKJ0zNhRIgRAdd40fePWpKbCg1Z
+	vha1Yh7jWxqj/MAZA8y8/wd4ZJP/gzo8p94DrcHJ4CSuhz753jSWvE/NolZGGUO2nNDD
+	vsjiD6xykuXvtqZTgnQrMxPzJ9Nc7D0CPNEH29akUqMffl1tplszUqgeFsc3x40nRQz+
+	YNaw==
+X-Gm-Message-State: AOUpUlHvPrgzGTxcLgeqrFvtxfb5WMxz18wSPUmzhMduUwPkxhAd36Xp
+	rhRbE+4NqEjI3ki9gUQhClp96TBrwbLKbskk2pQ=
+X-Google-Smtp-Source: AAOMgpcQTJUEC3WtCrNpLwMg8SEP245VWmJ4MK/dV/2p7lta8357SpLwU5zS+nSDBdXgKeQ5JxrFgWO8x1qvnW6fQto=
+X-Received: by 2002:a1f:9704:: with SMTP id
+	z4-v6mr2166182vkd.174.1531108031404; 
+	Sun, 08 Jul 2018 20:47:11 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:ab0:2a5:0:0:0:0:0 with HTTP;
+	Sun, 8 Jul 2018 20:47:11 -0700 (PDT)
+In-Reply-To: <81f82708-8e6b-259d-d37d-2a892d9093cf@balister.org>
 References: <mailman.87211.1530587331.15860.yocto@yoctoproject.org>
 	<MWHPR19MB118319929EC2DAFB0F1281A5C5420@MWHPR19MB1183.namprd19.prod.outlook.com>
-	<MWHPR19MB1183DC762147A7F8D864EF36C5470@MWHPR19MB1183.namprd19.prod.outlook.com>,
-	<CAJTo0LbjTeL3HTQXztNyxEaA78hoA1cBSiUAQBom7r8sDDE7kQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LbjTeL3HTQXztNyxEaA78hoA1cBSiUAQBom7r8sDDE7kQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:9FA3A79E2472D6298AF4B3DFB3525E5A17FB7E297B31DEB4479CDD6B6532FC08;
-	UpperCasedChecksum:40535640F5AA227E6238F861C7479F71C944B5826281D3DEEFFA740A233A6996;
-	SizeAsReceived:7355; Count:47
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [QSGmymNJyFTEKYkC9jkC19duy6aaYDlh]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; SN1NAM01HT150;
-	7:5BoDUWfA5EYijvWhjUyrBu9IpH5IxBQuVl4090q6YERmMsgwNkjf6GVY7Uws/tGT+7WLSH4Cz+734Nls4daQnzNEXQW62t1GnZWYa/L/uJoeVIs2i7mC7jUueiC43pDzqK3VtK/Vpvt/aQapi7jEUQv+jS0Wlxv3HF1COwRvATRIASp1V9S+eXmnV1yVUCUy2dFzbpgUSu+/4xphd4hQasfHVYhSA/e8VS+XUoDjEgFXoOLlwBBbf5MNr8qpMF0W
-x-incomingheadercount: 47
-x-eopattributedmessage: 0
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1601125500)(1603101448)(1701031045);
-	SRVR:SN1NAM01HT150; 
-x-ms-traffictypediagnostic: SN1NAM01HT150:
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(82015058);
-	SRVR:SN1NAM01HT150; BCL:0; PCL:0; RULEID:; SRVR:SN1NAM01HT150; 
-x-forefront-prvs: 07283408BE
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(7070007)(189003)(199004)(486006)(11346002)(476003)(446003)(99286004)(45080400002)(606006)(966005)(7696005)(4326008)(236005)(55016002)(54896002)(6306002)(76176011)(93886005)(6436002)(5660300001)(229853002)(9686003)(82202002)(97736004)(14454004)(86362001)(256004)(6606003)(6246003)(5250100002)(6916009)(20460500001)(25786009)(74316002)(2900100001)(81156014)(83332001)(106356001)(33656002)(87572001)(26005)(104016004)(6346003)(8676002)(6506007)(73972006)(102836004)(53546011)(19627405001)(8936002)(105586002)(68736007)(15852004);
-	DIR:OUT; SFP:1901; SCL:1; SRVR:SN1NAM01HT150;
-	H:MWHPR19MB1183.namprd19.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:; 
-received-spf: None (protection.outlook.com: hotmail.com does not designate
-	permitted sender hosts)
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=rksyeung@hotmail.com; 
-x-microsoft-antispam-message-info: PBVlPq8obYS1hdQouB3YAuztxjdqaziRoDFfqom1g+x8yxXe9jth1Ty0DMipCRw9WBaWceVyEb+zgr0DiTts0/s1m+XcELxZL0pUt3dYxxtuWxasJHLj63PKvB5AqVyegQ8LXJo2aTmiRkxG8HxmkF0UB8YtjqyEQzuBVChp56EHz5dC1Jk5YYyOXwf/+cNBuCYoJm50kaxW6mlF6ys/3zdHBfIE2QVB03a6No2kWhM=
-MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf6b8ae0-2860-40a9-a5c8-08d5e5499859
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jul 2018 03:10:59.3507 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1NAM01HT150
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Any Linux/Yocto Image Installer (for target system)
+	<MWHPR19MB11832EE45DE3D590BC782414C5470@MWHPR19MB1183.namprd19.prod.outlook.com>
+	<81f82708-8e6b-259d-d37d-2a892d9093cf@balister.org>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Sun, 8 Jul 2018 20:47:11 -0700
+Message-ID: <CAJ86T=XC0fXH6gwrHaxeoHyguArCoDbh7S0ewn+wSgWhvnLR5A@mail.gmail.com>
+To: Philip Balister <philip@balister.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Raymond Yeung <rksyeung@hotmail.com>
+Subject: Re: How to remove openssl from sysroots
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -112,230 +77,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jul 2018 03:26:20 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MWHPR19MB118343CB9AD0BA7EBF868E3CC5440MWHPR19MB1183namp_"
+X-List-Received-Date: Mon, 09 Jul 2018 03:47:13 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---_000_MWHPR19MB118343CB9AD0BA7EBF868E3CC5440MWHPR19MB1183namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-This brings up the next logical question - where is the installer?  I'd alr=
-eady done a grep and looked into the volume of output.  You could ask why d=
-on't I read the code.  Yes, only if I know what I'm reading is the "correct=
-" file/code.  Otherwise, I could be spending a lot of time reading a lot of=
- unrelated codes.
-
-
-If I did "dd" of .hddimg to SSD, there's only 1 partition.  If I could loca=
-te where the logic is that generates this .hddimg file, perhaps I could fig=
-ure out how it creates its single partition, and perhaps add one or more pa=
-rtitions to it as well.
-
-
-________________________________
-From: Burton, Ross <ross.burton@intel.com>
-Sent: Saturday, July 7, 2018 3:39 PM
-To: Raymond Yeung
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Any Linux/Yocto Image Installer (for target system)
-
-The easiest thing would be to edit the installer script that goes into
-the hddimg to create your extra partitions and whatever else you want
-done.
-
-Ross
-
-On 6 July 2018 at 22:52, Raymond Yeung <rksyeung@hotmail.com> wrote:
-> Is there any installer that I could download along with the .hddimg (or
-> .iso) image to the RAM, invoke the installer, so we could have a bootable
-> image installed on a SSD?
+On Sun, Jul 8, 2018 at 7:04 PM, Philip Balister <philip@balister.org> wrote:
+> On 07/06/2018 03:06 PM, Raymond Yeung wrote:
+>> I've changed the subject heading to make it more specific to our problem.  Hopefully this generates some responses.
+>>
+>> It has been blocking us for close to one week now.  We want to use our 3rd party vendor openssl, not the one that comes with the source.  Apparently, even with "minimal" instead of "base" or "sato" cannot exclude it.
+>>
+>> Any idea [e.g. how do we systematically find out how it's included now, and possibly what other packages/recipes we may also need to remove due to dependency]?
 >
->
-> History:
->
-> I can already create USB live image with dd and .hddimg.  I could also dd
-> the .hddimg onto SSD and make it bootable.  The problem is that I need
-> multiple partitions on my 250MB SSD, some reserved for other purposes.
->
->
-> I find that when booting up with USB running SysLinux, I could install GR=
-UB,
-> vmlinuz, along with boot.img and core.img under /boot directory, and the
-> rootFs under root (i.e. '/') directory.  That's 4 partitions.  I believe =
-I
-> could resize the largest partition after installation to do what I want.
->
->
-> Is there a way to do this manually, possibly with a utility or a shell
-> script?
->
->
-> Thanks,
->
-> Raymond
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-yocto Info Page<https://lists.yoctoproject.org/listinfo/yocto>
-lists.yoctoproject.org
-Discussion of all things about the Yocto Project. Read our Community Guidel=
-ines or learn more about how to participate in other community discussions.=
- Subscribe before posting to bypass moderation.
+> I tend to use the ouput of the buildhistory class when I have these
+> questions.
 
+An alternative quick and dirty approach is to make the recipe
+unbuildable. If the recipe is unbuildable but needed by something then
+the bitbake error message will give the dependency chain. You can make
+a recipe unbuildable for the target by adding the following to the
+recipe:
 
+  COMPATIBLE_HOST_class-target = 'null'
 
->
+Note that there are two openssl recipes in recent oe-core (v1.0.x and
+v1.1.x). For this experiment you will need to make BOTH of them
+unbuildable.
 
---_000_MWHPR19MB118343CB9AD0BA7EBF868E3CC5440MWHPR19MB1183namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+This seems like a somewhat pointless path to be going down though. If
+you remove all packages which depend on openssl from the target rootfs
+then you won't need to add in your 3rd party vendor openssl any
+more... since nothing is going to use it.
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p style=3D"margin-top:0;margin-bottom:0">This brings up the next logical q=
-uestion - where is the installer? &nbsp;I'd already done a grep and looked =
-into the volume of output. &nbsp;You could ask why don't I read the code. &=
-nbsp;Yes, only if I know what I'm reading is the
- &quot;correct&quot; file/code. &nbsp;Otherwise, I could be spending a lot =
-of time reading a lot of unrelated codes.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">If I did &quot;dd&quot; of .hddim=
-g to SSD, there's only 1 partition. &nbsp;If I could locate where the logic=
- is that generates this .hddimg file, perhaps I could figure out how it cre=
-ates its single partition, and perhaps add one or
- more partitions to it as well.</p>
-<br>
-<br>
-<div style=3D"color: rgb(0, 0, 0);">
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Burton, Ross &lt;ross=
-.burton@intel.com&gt;<br>
-<b>Sent:</b> Saturday, July 7, 2018 3:39 PM<br>
-<b>To:</b> Raymond Yeung<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] Any Linux/Yocto Image Installer (for target sys=
-tem)</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">The easiest thing would be to edit the installer s=
-cript that goes into<br>
-the hddimg to create your extra partitions and whatever else you want<br>
-done.<br>
-<br>
-Ross<br>
-<br>
-On 6 July 2018 at 22:52, Raymond Yeung &lt;rksyeung@hotmail.com&gt; wrote:<=
-br>
-&gt; Is there any installer that I could download along with the .hddimg (o=
-r<br>
-&gt; .iso) image to the RAM, invoke the installer, so we could have a boota=
-ble<br>
-&gt; image installed on a SSD?<br>
-&gt;<br>
-&gt;<br>
-&gt; History:<br>
-&gt;<br>
-&gt; I can already create USB live image with dd and .hddimg.&nbsp; I could=
- also dd<br>
-&gt; the .hddimg onto SSD and make it bootable.&nbsp; The problem is that I=
- need<br>
-&gt; multiple partitions on my 250MB SSD, some reserved for other purposes.=
-<br>
-&gt;<br>
-&gt;<br>
-&gt; I find that when booting up with USB running SysLinux, I could install=
- GRUB,<br>
-&gt; vmlinuz, along with boot.img and core.img under /boot directory, and t=
-he<br>
-&gt; rootFs under root (i.e. '/') directory.&nbsp; That's 4 partitions.&nbs=
-p; I believe I<br>
-&gt; could resize the largest partition after installation to do what I wan=
-t.<br>
-&gt;<br>
-&gt;<br>
-&gt; Is there a way to do this manually, possibly with a utility or a shell=
-<br>
-&gt; script?<br>
-&gt;<br>
-&gt;<br>
-&gt; Thanks,<br>
-&gt;<br>
-&gt; Raymond<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; yocto@yoctoproject.org<br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" id=3D"LPlnk8=
-22133" class=3D"OWAAutoLink" previewremoved=3D"true">
-https://lists.yoctoproject.org/listinfo/yocto</a>
-<div id=3D"LPBorder_GT_15311056702970.9730854530905975" style=3D"margin-bot=
-tom: 20px; overflow: auto; width: 100%; text-indent: 0px;">
-<table id=3D"LPContainer_15311056702930.2617746585191326" role=3D"presentat=
-ion" cellspacing=3D"0" style=3D"width: 90%; background-color: rgb(255, 255,=
- 255); position: relative; overflow: auto; padding-top: 20px; padding-botto=
-m: 20px; margin-top: 20px; border-top-width: 1px; border-top-style: dotted;=
- border-top-color: rgb(200, 200, 200); border-bottom-width: 1px; border-bot=
-tom-style: dotted; border-bottom-color: rgb(200, 200, 200);">
-<tbody>
-<tr valign=3D"top" style=3D"border-spacing: 0px;">
-<td id=3D"TextCell_15311056702940.734335358912997" colspan=3D"2" style=3D"v=
-ertical-align: top; position: relative; padding: 0px; display: table-cell;"=
->
-<div id=3D"LPRemovePreviewContainer_15311056702940.5136939606474453"></div>
-<div id=3D"LPTitle_15311056702940.31575185467581424" style=3D"top: 0px; col=
-or: rgb(0, 120, 215); font-weight: normal; font-size: 21px; font-family: wf=
-_segoe-ui_light, &quot;Segoe UI Light&quot;, &quot;Segoe WP Light&quot;, &q=
-uot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif; line-h=
-eight: 21px;">
-<a id=3D"LPUrlAnchor_15311056702950.9360655403668678" href=3D"https://lists=
-.yoctoproject.org/listinfo/yocto" target=3D"_blank" style=3D"text-decoratio=
-n: none;">yocto Info Page</a></div>
-<div id=3D"LPMetadata_15311056702950.025132768314606757" style=3D"margin: 1=
-0px 0px 16px; color: rgb(102, 102, 102); font-weight: normal; font-family: =
-wf_segoe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Ari=
-al, sans-serif; font-size: 14px; line-height: 14px;">
-lists.yoctoproject.org</div>
-<div id=3D"LPDescription_15311056702960.055651361849063385" style=3D"displa=
-y: block; color: rgb(102, 102, 102); font-weight: normal; font-family: wf_s=
-egoe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, =
-sans-serif; font-size: 14px; line-height: 20px; max-height: 100px; overflow=
-: hidden;">
-Discussion of all things about the Yocto Project. Read our Community Guidel=
-ines or learn more about how to participate in other community discussions.=
- Subscribe before posting to bypass moderation.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<br>
-<br>
-&gt;<br>
-</div>
-</span></font></div>
-</div>
-</div>
-</body>
-</html>
-
---_000_MWHPR19MB118343CB9AD0BA7EBF868E3CC5440MWHPR19MB1183namp_--
