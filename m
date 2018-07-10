@@ -1,74 +1,49 @@
-Return-Path: <Shrawan.Kumar@harman.com>
+Return-Path: <aaron.chun.yew.chan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A87C8E00EFB; Tue, 10 Jul 2018 02:08:20 -0700 (PDT)
+	id B985FE00EB8; Tue, 10 Jul 2018 03:47:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [67.219.250.116 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.126 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail1.bemta24.messagelabs.com (mail1.bemta24.messagelabs.com
-	[67.219.250.116])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02758E00EF3
-	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 02:08:19 -0700 (PDT)
-Received: from [67.219.250.194] (using TLSv1.2 with cipher
-	DHE-RSA-AES256-GCM-SHA384 (256 bits))
-	by server-5.bemta.az-b.us-west-2.aws.symcld.net id 98/74-21287-387744B5;
-	Tue, 10 Jul 2018 09:08:19 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLKsWRWlGSWpSXmKPExsVySpdNU7ep3CX
-	a4PYRc4sbF3+wWLRdn8VoMenlGjYHZo+ds+6ye7Sf6GMLYIpizcxLyq9IYM2Y9+o0S8GN6Irf
-	y5rZGhg3RXUxcnIICWxllLg2h7mLkQvI3sIo0fXyBRuEc5BRov18CxNIFZuAocSVnruMILaIg
-	KnEi2Nf2EBsZoFoic1XnoDFhQV0JI7O3sgOUaMrceDOVhYI20ji9owDQHM4OFgEVCU6f9SAhH
-	kF3CVWNkxnBbEZBWQlvjSuZoYYKS5x68l8sLUSAgISS/acZ4awRSVePv7HCmEbSGxduo8Fwla
-	QWNndAHVOjsSMP9tYIeYLSpyc+YQF4klViS0Lf7NMYBSZhWTFLCQts5C0zAK6lFlAU2L9Ln2I
-	EkWJKd0P2SFsDYnWOXPZkcUXMLKvYjRPKspMzyjJTczM0TU0MNA1NDTSNTQ20TUz10us0k3SK
-	y3WLU8tLtE10kssL9YrrsxNzknRy0st2cQIjEwGINjB+PJQyiFGSQ4mJVHe/y4u0UJ8SfkplR
-	mJxRnxRaU5qcWHGGU4OJQkeA+XAeUEi1LTUyvSMnOAKQImLcHBoyTCyw+S5i0uSMwtzkyHSJ1
-	i9Oa41dwziZnjyL0pQPICmJx3dCqQ/PMeRN7pnjaJWYglLz8vVUqc9xDICAGQERmleXALYKnu
-	EqOslDAvI9DJQjwFqUW5mSWo8q8YxTkYlYR59UGm8GTmlcDd8QroRCagE7UXOoOcWJKIkJJqY
-	DQSrlnylf2hxB+Df0aTGI58X9GQJGW6+9yUaU97ThXfzSrpCuDlWxX95W+P6BnbU79S43KeWK
-	xcU8c674Hxg3M1us+mS+wq1brJ/vDJS+M4u7VlZuuFHi10j/h3PuSid+96yfeVU8T1s8+7fj+
-	uX1C+6SP3hI670w5wdTN46664N33LFGXrA71KLMUZiYZazEXFiQAEkcf+cAMAAA==
-X-Env-Sender: Shrawan.Kumar@harman.com
-X-Msg-Ref: server-34.tower-342.messagelabs.com!1531213693!1030620!2
-X-Originating-IP: [202.45.6.41]
-X-SYMC-ESS-Client-Auth: outbound-route-from=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.9.15; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 3968 invoked from network); 10 Jul 2018 09:08:18 -0000
-Received: from unknown (HELO HIBDWSMB10.ad.harman.com) (202.45.6.41)
-	by server-34.tower-342.messagelabs.com with DHE-RSA-AES256-GCM-SHA384
-	encrypted SMTP; 10 Jul 2018 09:08:18 -0000
-Received: from HIBDWSMB06.ad.harman.com (10.99.236.96) by
-	HIBDWSMB10.ad.harman.com (10.99.236.101) with Microsoft SMTP Server
-	(TLS) id 15.0.1365.1; Tue, 10 Jul 2018 14:37:26 +0530
-Received: from HIBDWSMB02.ad.harman.com (10.99.236.92) by
-	HIBDWSMB06.ad.harman.com (10.99.236.96) with Microsoft SMTP Server
-	(TLS) id 15.0.1365.1; Tue, 10 Jul 2018 14:37:26 +0530
-Received: from HIBDWSMB02.ad.harman.com ([fe80::c569:ebfc:95e0:7067]) by
-	HIBDWSMB02.ad.harman.com ([fe80::c569:ebfc:95e0:7067%16]) with mapi id
-	15.00.1365.000; Tue, 10 Jul 2018 14:37:26 +0530
-From: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: POSIX capability broken  pseudo
-Thread-Index: AdQXef8SDHZqVVVyR+OxKjHNYtjguAAs2Ihg
-Date: Tue, 10 Jul 2018 09:07:26 +0000
-Message-ID: <678ca73541bb4411bb1db8a49a0e3c1a@HIBDWSMB02.ad.harman.com>
-Accept-Language: en-GB, en-US
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1EDFE00AAB
+	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 03:47:18 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	10 Jul 2018 03:47:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,334,1526367600"; d="scan'208";a="55746289"
+Received: from kmsmsx152.gar.corp.intel.com ([172.21.73.87])
+	by orsmga008.jf.intel.com with ESMTP; 10 Jul 2018 03:47:17 -0700
+Received: from pgsmsx103.gar.corp.intel.com ([169.254.2.4]) by
+	KMSMSX152.gar.corp.intel.com ([169.254.11.13]) with mapi id
+	14.03.0319.002; Tue, 10 Jul 2018 18:47:15 +0800
+From: "Chan, Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>
+To: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Burton, Ross"
+	<ross.burton@intel.com>, "Eggleton, Paul" <paul.eggleton@intel.com>
+Thread-Topic: [PATCH] [yocto-autobuilder] init: Fix the import module
+	yoctoabb & yocto_console_view
+Thread-Index: AQHUF/2Sn7dPTp+TgEut+88gdg1JC6SHnTQAgACnAJs=
+Date: Tue, 10 Jul 2018 10:47:14 +0000
+Message-ID: <AA9B40170ABA1047B45E714CB2B866B7068FF63C@PGSMSX103.gar.corp.intel.com>
+References: <1531193077-10652-1-git-send-email-aaron.chun.yew.chan@intel.com>,
+	<0c6dfc5e97f24bd90f6b3ff573a637eb2ec12915.camel@linuxfoundation.org>
+In-Reply-To: <0c6dfc5e97f24bd90f6b3ff573a637eb2ec12915.camel@linuxfoundation.org>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.99.236.43]
+x-originating-ip: [10.3.86.139]
 MIME-Version: 1.0
-Cc: "connect.shrawan@gmail.com" <connect.shrawan@gmail.com>
-Subject: Re: POSIX capability broken pseudo
+Subject: Re: [PATCH] [yocto-autobuilder] init: Fix the import module yoctoabb & yocto_console_view
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,168 +55,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jul 2018 09:08:20 -0000
+X-List-Received-Date: Tue, 10 Jul 2018 10:47:19 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_678ca73541bb4411bb1db8a49a0e3c1aHIBDWSMB02adharmancom_"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---_000_678ca73541bb4411bb1db8a49a0e3c1aHIBDWSMB02adharmancom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hi Richard,
 
-QW55IHVwZGF0ZSAgb24gdGhpcyA/DQoNCg0KUmVnYXJkcw0KU2hyYXdhbg0KDQpGcm9tOiBLdW1h
-ciwgU2hyYXdhbg0KU2VudDogMDkgSnVseSAyMDE4IDE3OjE3DQpUbzogJ3lvY3RvQHlvY3RvcHJv
-amVjdC5vcmcnIDx5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KQ2M6ICdjb25uZWN0LnNocmF3YW5A
-Z21haWwuY29tJyA8Y29ubmVjdC5zaHJhd2FuQGdtYWlsLmNvbT47ICdLaGVtIFJhaicgPHJhai5r
-aGVtQGdtYWlsLmNvbT4NClN1YmplY3Q6IFBPU0lYIGNhcGFiaWxpdHkgYnJva2VuIHBzZXVkbw0K
-DQpIZWxsbyBUZWFtLA0KDQpVbmRlciBESVNUUk9fVkVSU0lPTiA9ICIyLjAuMiIgKCJqZXRocm8i
-KSwgSSB3YXMgdXNpbmcgdGhlIGF0dGFjaGVkIOKAnHNldGNhcC5wYXRjaOKAnSBvbiBwc2V1ZG9f
-MS43LjQgIHRvIGdldCBQT1NJWCBjYXBhYmlsaXR5IHNldCBpbiB0aGUgZmlsZXMgYXMgYmVsb3cg
-Og0KDQpwa2dfcG9zdGluc3RfJHtQTn0oKSB7DQoNCiAgICBzZXRjYXAgY2FwX25ldF9yYXcrZXAg
-ICREJGJpbmRpci9oZWxsb3dvcmxkDQoNCn0NCg0KVGhpcyB3YXMgd29ya2luZyBmaW5lLg0KDQoN
-Ckhvd2V2ZXIsIHJlY2VudGx5IHN3aXRjaGVkIHRvIERJU1RST19WRVJTSU9OID0gIjIuMi4yIiAo
-Im1vcnR5IikgLSBwc2V1ZG9fMS44LjEsIHdoZXJlIHRoZSBwYXRjaCBpcyBnZXR0aW5nIGFwcGxp
-ZWQgYnV0IHRoZSBQT1NJWCBjYXBhYmlsaXRpZXMgYXJlIG5vdCBnZXR0aW5nIHNldC4NCg0KQ2Fu
-IHNvbWVvbmUgaGVscCBoZXJlPw0KDQoNClJlZ2FyZHMNClNocmF3YW4NCg0KDQo=
+[Richard] I think this means you're using python2 and we really should be u=
+sing
+                python3 as I don't want to support both...
 
---_000_678ca73541bb4411bb1db8a49a0e3c1aHIBDWSMB02adharmancom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+[Reply] This error/bug was found during buildbot startup meaning this is ou=
+t of my control.=20
+            Maybe you have a fix for this, otherwise I do suggest to add in=
+ __init__.py in places where we need to source custom modules.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZp
-bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
-YXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29I
-eXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1k
-ZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93
-ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29y
-YXRpb246dW5kZXJsaW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0
-eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowY207DQoJbWFyZ2lu
-LWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJp
-ZXIgTmV3Ijt9DQpzcGFuLkhUTUxQcmVmb3JtYXR0ZWRDaGFyDQoJe21zby1zdHlsZS1uYW1lOiJI
-VE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0
-eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIjsNCglmb250LWZhbWlseToiQ291cmllciBOZXci
-O30NCnAubXNvbm9ybWFsMCwgbGkubXNvbm9ybWFsMCwgZGl2Lm1zb25vcm1hbDANCgl7bXNvLXN0
-eWxlLW5hbWU6bXNvbm9ybWFsOw0KCW1zby1tYXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdpbi1y
-aWdodDowY207DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGNt
-Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsc2Vy
-aWY7fQ0Kc3Bhbi5tMTc1MTI0NDg1ODMwNjc2ODc2OW0zNjQxNjkyNzM1Mjk4NzkyNzNob2VuemIN
-Cgl7bXNvLXN0eWxlLW5hbWU6bV8xNzUxMjQ0ODU4MzA2NzY4NzY5bV8zNjQxNjkyNzM1Mjk4Nzky
-NzNob2VuemI7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjENCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWw7
-DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6IzFGNDk3RDt9DQpz
-cGFuLkVtYWlsU3R5bGUyMg0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWls
-eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCnNwYW4uRW1haWxTdHls
-ZTIzDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixz
-YW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjQNCgl7bXNvLXN0
-eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2Vy
-aWY7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpl
-eHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtz
-aXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0
-O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48
-IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNw
-aWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHht
-bD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBk
-YXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0K
-PGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFz
-cz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtj
-b2xvcjojMUY0OTdEIj5BbnkgdXBkYXRlJm5ic3A7IG9uIHRoaXMgPzxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlJlZ2Fy
-ZHM8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
-c2VyaWY7Y29sb3I6IzFGNDk3RCI+U2hyYXdhbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVy
-LXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGNtIDBjbSAwY20iPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5Gcm9tOjwvc3Bhbj48L2I+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OyxzYW5zLXNlcmlmIj4gS3VtYXIsIFNocmF3YW4NCjxicj4NCjxiPlNlbnQ6PC9iPiAwOSBKdWx5
-IDIwMTggMTc6MTc8YnI+DQo8Yj5Ubzo8L2I+ICd5b2N0b0B5b2N0b3Byb2plY3Qub3JnJyAmbHQ7
-eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyZndDs8YnI+DQo8Yj5DYzo8L2I+ICdjb25uZWN0LnNocmF3
-YW5AZ21haWwuY29tJyAmbHQ7Y29ubmVjdC5zaHJhd2FuQGdtYWlsLmNvbSZndDs7ICdLaGVtIFJh
-aicgJmx0O3Jhai5raGVtQGdtYWlsLmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUE9TSVgg
-Y2FwYWJpbGl0eSBicm9rZW4gcHNldWRvPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8
-L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkhlbGxvIFRlYW0s
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
-cmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5VbmRlciBESVNUUk9f
-VkVSU0lPTiA9ICZxdW90OzIuMC4yJnF1b3Q7ICgmcXVvdDtqZXRocm8mcXVvdDspLCBJIHdhcyB1
-c2luZyB0aGUgYXR0YWNoZWQg4oCcc2V0Y2FwLnBhdGNo4oCdIG9uDQo8Yj5wc2V1ZG9fMS43LjQ8
-L2I+ICZuYnNwO3RvIGdldCBQT1NJWCBjYXBhYmlsaXR5IHNldCBpbiB0aGUgZmlsZXMgYXMgYmVs
-b3cgOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
-cy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
-eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzAwNzBDMCI+cGtnX3Bvc3Rp
-bnN0XyR7UE59KCkgezxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMDA3MEMwIj4mbmJzcDsNCjxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMDA3MEMw
-Ij4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtzZXRjYXAgY2FwX25ldF9yYXcmIzQzO2VwJm5ic3A7
-ICREJGJpbmRpci9oZWxsb3dvcmxkPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMwMDcwQzAiPiZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOw0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMwMDcwQzAiPn08bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
-bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzAwNzBDMCI+PG86cD4m
-bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
-LXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoaXMgd2FzIHdvcmtpbmcgZmluZS48bzpwPjwvbzpwPjwv
-c3Bhbj48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
-OiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
-RCI+SG93ZXZlciwgcmVjZW50bHkgc3dpdGNoZWQgdG8gRElTVFJPX1ZFUlNJT04gPSAmcXVvdDsy
-LjIuMiZxdW90OyAoJnF1b3Q7bW9ydHkmcXVvdDspIC0NCjxiPnBzZXVkb18xLjguMSw8L2I+IHdo
-ZXJlIHRoZSBwYXRjaCBpcyBnZXR0aW5nIGFwcGxpZWQgYnV0IHRoZSBQT1NJWCBjYXBhYmlsaXRp
-ZXMgYXJlIG5vdCBnZXR0aW5nIHNldC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
-OiMxRjQ5N0QiPkNhbiBzb21lb25lIGhlbHAgaGVyZT88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
-bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4m
-bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
-cmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5SZWdhcmRzPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2Nv
-bG9yOiMxRjQ5N0QiPlNocmF3YW48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
-MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMx
-RjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9o
-dG1sPg0K
+$ buildbot start ~/yocto-controller
+$ cat -n 100 ~/yocto-controller/twistd.log
 
---_000_678ca73541bb4411bb1db8a49a0e3c1aHIBDWSMB02adharmancom_--
+5800	2018-07-10 18:42:13+0800 [-] Main loop terminated.
+  5801	2018-07-10 18:42:13+0800 [-] Server Shut Down.
+  5802	2018-07-10 18:42:27+0800 [-] Loading buildbot.tac...
+  5803	2018-07-10 18:42:27+0800 [-] Loaded.
+  5804	2018-07-10 18:42:27+0800 [-] twistd 18.4.0 (/usr/bin/python 2.7.13) =
+starting up.
+  5805	2018-07-10 18:42:27+0800 [-] reactor class: twisted.internet.epollre=
+actor.EPollReactor.
+  5806	2018-07-10 18:42:27+0800 [-] Starting BuildMaster -- buildbot.versio=
+n: 1.2.0
+  5807	2018-07-10 18:42:27+0800 [-] Loading configuration from '/home/ab/yo=
+cto-controller/master.cfg'
+  5808	2018-07-10 18:42:27+0800 [-] error while parsing config file:
+  5809		Traceback (most recent call last):
+  5810		  File "/home/ab/.local/lib/python2.7/site-packages/twisted/python/=
+threadpool.py", line 266, in <lambda>
+  5811		    inContext.theWork =3D lambda: context.call(ctx, func, *args, **=
+kw)
+  5812		  File "/home/ab/.local/lib/python2.7/site-packages/twisted/python/=
+context.py", line 122, in callWithContext
+  5813		    return self.currentContext().callWithContext(ctx, func, *args, =
+**kw)
+  5814		  File "/home/ab/.local/lib/python2.7/site-packages/twisted/python/=
+context.py", line 85, in callWithContext
+  5815		    return func(*args,**kw)
+  5816		  File "/home/ab/.local/lib/python2.7/site-packages/buildbot/config=
+.py", line 182, in loadConfig
+  5817		    self.basedir, self.configFileName)
+  5818		--- <exception caught here> ---
+  5819		  File "/home/ab/.local/lib/python2.7/site-packages/buildbot/config=
+.py", line 140, in loadConfigDict
+  5820		    execfile(filename, localDict)
+  5821		  File "/home/ab/.local/lib/python2.7/site-packages/twisted/python/=
+compat.py", line 246, in execfile
+  5822		    exec(code, globals, locals)
+  5823		  File "/home/ab/yocto-controller/master.cfg", line 11, in <module>
+  5824		    from yoctoabb import builders, config, schedulers, workers, ser=
+vices, www
+  5825		exceptions.ImportError: No module named yoctoabb
+  5826	=09
+  5827	2018-07-10 18:42:27+0800 [-] Configuration Errors:
+  5828	2018-07-10 18:42:27+0800 [-]   error while parsing config file: No m=
+odule named yoctoabb (traceback in logfile)
+  5829	2018-07-10 18:42:27+0800 [-] Halting master.
+  5830	2018-07-10 18:42:27+0800 [-] BuildMaster startup failed
+  5831	2018-07-10 18:42:27+0800 [-] BuildMaster is stopped
+  5832	2018-07-10 18:42:27+0800 [-] Main loop terminated.
+  5833	2018-07-10 18:42:27+0800 [-] Server Shut Down.
+
+Cheers,
+Aaron
+________________________________________
+From: richard.purdie@linuxfoundation.org [richard.purdie@linuxfoundation.or=
+g]
+Sent: Tuesday, July 10, 2018 4:40 PM
+To: Chan, Aaron Chun Yew; yocto@yoctoproject.org; Burton, Ross; Eggleton, P=
+aul
+Subject: Re: [PATCH] [yocto-autobuilder] init: Fix the import module yoctoa=
+bb & yocto_console_view
+
+On Tue, 2018-07-10 at 11:24 +0800, Aaron Chan wrote:
+> This patch is to fix the inconsistency in loading custom module
+> yoctoabb & yocto_console_view during Buildbot Master startup.
+>
+> Signed-off-by: Aaron Chan <aaron.chun.yew.chan@intel.com>
+> ---
+>  __init__.py                    | 0
+>  yocto_console_view/__init__.py | 0
+>  2 files changed, 0 insertions(+), 0 deletions(-)
+>  create mode 100644 __init__.py
+>  create mode 100644 yocto_console_view/__init__.py
+
+I think this means you're using python2 and we really should be using
+python3 as I don't want to support both...
+
+Cheers,
+
+Richard
+
