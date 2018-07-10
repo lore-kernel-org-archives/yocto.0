@@ -1,38 +1,64 @@
-Return-Path: <Qi.Chen@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8283EE00D82; Mon,  9 Jul 2018 18:29:33 -0700 (PDT)
+	id 60B5EE00DB7; Mon,  9 Jul 2018 18:44:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10F6DE006B4
-	for <yocto@yoctoproject.org>; Mon,  9 Jul 2018 18:29:32 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w6A1TVRf032477
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 9 Jul 2018 18:29:31 -0700
-Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.399.0;
-	Mon, 9 Jul 2018 18:29:30 -0700
-To: Simon Chamlian <simon.chamlian@mpbc.ca>, <yocto@yoctoproject.org>
-References: <CANmTPBZZHDw5BVGSMMx_N+ZtRyLtE0k5+yDVK-Ywh+peciaPVw@mail.gmail.com>
-From: ChenQi <Qi.Chen@windriver.com>
-Message-ID: <c9cf4aad-d222-a12d-6167-0d9f7e6106f7@windriver.com>
-Date: Tue, 10 Jul 2018 09:32:56 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f44.google.com (mail-vk0-f44.google.com
+	[209.85.213.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 316D9E00B5E
+	for <yocto@yoctoproject.org>; Mon,  9 Jul 2018 18:44:51 -0700 (PDT)
+Received: by mail-vk0-f44.google.com with SMTP id y9-v6so11555291vky.3
+	for <yocto@yoctoproject.org>; Mon, 09 Jul 2018 18:44:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=tS8kCAVUvbIqAMi0mECgCUD0u5nta9HvWrliWZxN+WY=;
+	b=rgABikhm8rZN6+hvW12GZi1FfefC5Xd2Mu89A/6MmK7zusut03DzIzuxLdL4YVp7xf
+	N2y5Q0Y62c/pAwUg0vq8wg+rE77kaQkp/1lsTN1LJVq9fmEaTgSfJP7wpTaiVsaRBCr8
+	JYm03lck5tclO9fd3FQZRxYGWTprJsggIHjw21858YfILU2MEfsbaZaQhymmI8eW7bOk
+	F84fi2lLfLRLqHIXsXxo/TdwXdZizPCK779ZHSZqtbC6FwZR3L3p46rJOylkjDt+D0mD
+	ZBh22IX3XcY5p3O84xcraLqS70Tll7ZMinmBLZpWNI6IxGbGwiKNivdp9edtp8SWaSmh
+	54yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=tS8kCAVUvbIqAMi0mECgCUD0u5nta9HvWrliWZxN+WY=;
+	b=aV1Hosepo1X/ui/hKKqdw0gr09h8ijJUA1LavFcwNggBlA+JCobaygjtbaNAnk3cmb
+	sDxoOerWv4UvP6k3Tw23pwzOycW5CHsCEFRdc+ix8hCkF6b0RrQXktRM9z+jwzfLaI+p
+	uD04+cTHh/Y4BEW8jyuqR1+bwqHGxq0puQZeOPE6pc2dJEETpnGVKieDI/BkVYpUaij5
+	dA+tiBpu9/RquBPcjKK2DlyA+QrwQbB9tlObT8aSkvrjeXsP6xH1PhtBrQfjPrreuZi3
+	gAB+dVnLCwgSUnUrVDPu4+hnFhQR/ppAWgj4+kGXmAXN0S8uap1anGrHeOSP4pXYZ5Ny
+	BVKA==
+X-Gm-Message-State: APt69E3wLzpnfetUjaf3s5pfuGFaXcFccgN0rQFX2rifDK6jLTerU2f0
+	V/h7mpzzExUDtU6EKOZDKpenPyFUSI87iXFj4Lzi6g==
+X-Google-Smtp-Source: AAOMgpe37Zx0bCcVhprMZZm6eR48ZGHshlUsoY9L69NAcjtoXd/PDqlsqXdMQaqfCgE8L9x3yUT7EVil5cvwSadsjxw=
+X-Received: by 2002:a1f:2cce:: with SMTP id
+	s197-v6mr12780737vks.106.1531187090266; 
+	Mon, 09 Jul 2018 18:44:50 -0700 (PDT)
 MIME-Version: 1.0
+References: <CANmTPBZZHDw5BVGSMMx_N+ZtRyLtE0k5+yDVK-Ywh+peciaPVw@mail.gmail.com>
 In-Reply-To: <CANmTPBZZHDw5BVGSMMx_N+ZtRyLtE0k5+yDVK-Ywh+peciaPVw@mail.gmail.com>
-X-Originating-IP: [128.224.162.218]
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 9 Jul 2018 18:44:24 -0700
+Message-ID: <CAMKF1spfJ0_UXPbhS3YM1xP_y5meheoreQ67+vVc0xrXiC4_Jw@mail.gmail.com>
+To: simon.chamlian@mpbc.ca
+Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Keeping and modifying Source code in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -45,40 +71,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jul 2018 01:29:33 -0000
-Content-Type: multipart/alternative;
-	boundary="------------40F95A948DA39456D1832658"
+X-List-Received-Date: Tue, 10 Jul 2018 01:44:52 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---------------40F95A948DA39456D1832658
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Hi Simon,
-
-I usually use the following steps when I need to modify source for some 
-purpose.
-
-1. bitbake A (or at least bitbake A -c configure)
-*2. cd tmp/work/xxxxx/A/<source dir>**
-**3. make the modification*
-4. bitbake A -c compile -f
-5. bitbake A
-
-If you find the modification useful, make a patch from it.
-
-Best Regards,
-Chen Qi
-
-On 07/06/2018 11:20 PM, Simon Chamlian wrote:
+On Fri, Jul 6, 2018 at 8:20 AM Simon Chamlian <simon.chamlian@mpbc.ca> wrote:
+>
 > Hi,
 >
-> Is there a way to keep the source code of a package to be able to 
-> modify it and then compile?
+> Is there a way to keep the source code of a package to be able to modify it and then compile?
 >
-> For example, with LTIB ( Linux Target Image Builder ), it was possible 
-> with a command to extract the source code from a package, make 
-> modifications and then re-compile?
+> For example, with LTIB ( Linux Target Image Builder ), it was possible with a command to extract the source code from a package, make modifications and then re-compile?
 >
+
+Please use devtool which is aimed at exactly what you want to get done here.
+
+https://www.yoctoproject.org/docs/2.6/sdk-manual/sdk-manual.html#sdk-a-closer-look-at-devtool-add
+
 > Thanks,
 > S
 >
@@ -86,77 +94,9 @@ On 07/06/2018 11:20 PM, Simon Chamlian wrote:
 >
 >
 >
->
->
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-
---------------40F95A948DA39456D1832658
-Content-Type: text/html; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">Hi Simon,<br>
-      <br>
-      I usually use the following steps when I need to modify source for
-      some purpose.<br>
-      <br>
-      1. bitbake A (or at least bitbake A -c configure)<br>
-      <b>2. cd tmp/work/xxxxx/A/&lt;source dir&gt;</b><b><br>
-      </b><b>3. make the modification</b><br>
-      4. bitbake A -c compile -f<br>
-      5. bitbake A<br>
-      <br>
-      If you find the modification useful, make a patch from it.<br>
-      <br>
-      Best Regards,<br>
-      Chen Qi<br>
-      <br>
-      On 07/06/2018 11:20 PM, Simon Chamlian wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CANmTPBZZHDw5BVGSMMx_N+ZtRyLtE0k5+yDVK-Ywh+peciaPVw@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <div dir="ltr">
-        <div>Hi,</div>
-        <div><br>
-        </div>
-        <div>Is there a way to keep the source code of a package to be
-          able to modify it and then compile?</div>
-        <div><br>
-        </div>
-        <div>For example, with LTIB (
-          <span>Linux Target Image Builder</span>
-          ), it was possible with a command to extract the source code
-          from a package, make modifications and then re-compile?</div>
-        <div><br>
-        </div>
-        <div>Thanks,</div>
-        <div>S<br>
-        </div>
-        <div><br>
-        </div>
-        <div><br>
-        </div>
-        <div><br>
-        </div>
-        <div><br>
-        </div>
-        <br>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <p><br>
-    </p>
-  </body>
-</html>
-
---------------40F95A948DA39456D1832658--
