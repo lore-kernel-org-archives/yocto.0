@@ -1,50 +1,56 @@
-Return-Path: <aaron.chun.yew.chan@intel.com>
+Return-Path: <michael.allwright@ulb.ac.be>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9F6DEE00A51; Mon,  9 Jul 2018 23:59:32 -0700 (PDT)
+	id 5EC6CE00D33; Tue, 10 Jul 2018 00:10:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.151 listed in list.dnswl.org]
+	*      [164.15.128.114 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC72AE00A51
-	for <yocto@yoctoproject.org>; Mon,  9 Jul 2018 23:59:29 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	09 Jul 2018 23:59:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,333,1526367600"; d="scan'208";a="53880086"
-Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
-	by fmsmga008.fm.intel.com with ESMTP; 09 Jul 2018 23:59:23 -0700
-Received: from pgsmsx103.gar.corp.intel.com ([169.254.2.4]) by
-	PGSMSX101.gar.corp.intel.com ([169.254.1.62]) with mapi id
-	14.03.0319.002; Tue, 10 Jul 2018 14:59:21 +0800
-From: "Chan, Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>
-To: =?iso-8859-1?Q?Martin_Hundeb=F8ll?= <martin@geanix.com>,
-	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Burton, Ross"
-	<ross.burton@intel.com>, "Eggleton, Paul" <paul.eggleton@intel.com>
-Thread-Topic: [yocto] [PATCH] [yocto-autobuilder] master.cfg: Defaults
-	autobuilder URL based on FQDN
-Thread-Index: AQHUF/yvTP4jfefbqUOICjNU6k3liaSHc1AAgACTIYc=
-Date: Tue, 10 Jul 2018 06:59:21 +0000
-Message-ID: <AA9B40170ABA1047B45E714CB2B866B7068FF5CC@PGSMSX103.gar.corp.intel.com>
-References: <1531192694-10351-1-git-send-email-aaron.chun.yew.chan@intel.com>,
-	<e26b7285-187b-c768-3490-af62f61ee78c@geanix.com>
-In-Reply-To: <e26b7285-187b-c768-3490-af62f61ee78c@geanix.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.3.86.139]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mxin.ulb.ac.be (mxin.ulb.ac.be [164.15.128.114])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47059E00C99
+	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 00:10:54 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2EuBQB7W0Rb/y/dVdFcHQEBBQELAYJTd?=
+	=?us-ascii?q?oFhKIN6gR2THIIKiDaHboUigWYBCoRsAoJHITcVAQIBAQIBAQICAmkohTgBAQE?=
+	=?us-ascii?q?DASNWBQkCCwsNKgICGwYBEgEFARwZhQgDDQidXzyLCYIchxENKxlrgToFiHSBV?=
+	=?us-ascii?q?z+Dcy6CVoFyARIBgyCCVQKZJisHAoFwiiqDDIgHhVaLB4Z6DyGBNiNhcU0ggQQ?=
+	=?us-ascii?q?GgjKCJReOGT0wiyiCOQEB?=
+X-IPAS-Result: =?us-ascii?q?A2EuBQB7W0Rb/y/dVdFcHQEBBQELAYJTdoFhKIN6gR2THII?=
+	=?us-ascii?q?KiDaHboUigWYBCoRsAoJHITcVAQIBAQIBAQICAmkohTgBAQEDASNWBQkCCwsNK?=
+	=?us-ascii?q?gICGwYBEgEFARwZhQgDDQidXzyLCYIchxENKxlrgToFiHSBVz+Dcy6CVoFyARI?=
+	=?us-ascii?q?BgyCCVQKZJisHAoFwiiqDDIgHhVaLB4Z6DyGBNiNhcU0ggQQGgjKCJReOGT0wi?=
+	=?us-ascii?q?yiCOQEB?=
+Received: from mail-wr1-f47.google.com ([209.85.221.47])
+	by smtp.ulb.ac.be with ESMTP/TLS/AES128-GCM-SHA256;
+	10 Jul 2018 09:10:52 +0200
+Received: by mail-wr1-f47.google.com with SMTP id g6-v6so4457982wrp.0
+	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 00:10:53 -0700 (PDT)
+X-Gm-Message-State: APt69E0zG1bEhUGBHqGgL0YVbZt15ERbhrdUPXtV3Yi9hQdhU2UMfreO
+	M6qBdTXJBqs0z72PDbnfBx/m2n5c8bQ9M+B4D1o=
+X-Google-Smtp-Source: AAOMgpc98NpR3ZZ3PnyMILs8YnjbaGenDhKoDZtjcG+6JwVvz+Lh/D2tdC8m7JzCqDeNclTTWRi6SVS9Mb/ZzcRJ148=
+X-Received: by 2002:adf:a015:: with SMTP id
+	k21-v6mr16125796wrk.202.1531206652807; 
+	Tue, 10 Jul 2018 00:10:52 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [PATCH] [yocto-autobuilder] master.cfg: Defaults autobuilder URL based on FQDN
+References: <CALcgO_4bg5JX1Zf93fJY671GnCLk_sDR6qesPBcym9q3QiACbw@mail.gmail.com>
+	<CAJ86T=Wea6yCsqxn+ZfMQ=tXC2d8FWxGv9b7TFZ1E57FLBhyjA@mail.gmail.com>
+	<CALcgO_5bC0R6+KbkvGzUWasA89iV4eWb71xyV_qj9qzFeytz-g@mail.gmail.com>
+	<CAJ86T=U7SaXgaoPc4sYJf3FeVvAY2rqHEkZ=9Z92nzn3vH2KDQ@mail.gmail.com>
+	<CALcgO_7c3OdgMiDQuHwDDr-YTrqibkZ0J6UEBYy++vKjGtq6HQ@mail.gmail.com>
+In-Reply-To: <CALcgO_7c3OdgMiDQuHwDDr-YTrqibkZ0J6UEBYy++vKjGtq6HQ@mail.gmail.com>
+From: Michael Allwright <michael.allwright@ulb.ac.be>
+Date: Tue, 10 Jul 2018 09:11:23 +0200
+X-Gmail-Original-Message-ID: <CALcgO_6Wr2WhXSXwYeE3dQZZfmTtfP2sTQuC=PGVd2-w3Yg=9Q@mail.gmail.com>
+Message-ID: <CALcgO_6Wr2WhXSXwYeE3dQZZfmTtfP2sTQuC=PGVd2-w3Yg=9Q@mail.gmail.com>
+To: armccurdy@gmail.com
+Cc: yocto@yoctoproject.org
+Subject: Re: Including a header from an external kernel module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,108 +62,229 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jul 2018 06:59:32 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 10 Jul 2018 07:10:56 -0000
+Content-Type: multipart/alternative; boundary="0000000000009e517a05709fd4b1"
+
+--0000000000009e517a05709fd4b1
+Content-Type: text/plain; charset="UTF-8"
+
+Am I correct in expecting that, if I do everything correctly, my header
+file from module-a should end up
+in ~/poky/build/tmp/work-shared/machine/kernel-source/include/linux/mfd
+
+Michael Allwright
+
+Postdoctoral Researcher at IRIDIA
+Phone: +32 2 650 2273
+Email: michael.allwright@ulb.ac.be
+
+
+On Tue, 10 Jul 2018 at 07:53, Michael Allwright <michael.allwright@ulb.ac.be>
+wrote:
+
+>
+>
+> On Tue., 10 Jul. 2018, 00:15 Andre McCurdy, <armccurdy@gmail.com> wrote:
+>
+>> On Mon, Jul 9, 2018 at 3:07 PM, Michael Allwright
+>> <michael.allwright@ulb.ac.be> wrote:
+>> > Yes, it ended up in the development package in the do_install_append
+>> > attempt
+>>
+>> How did you confirm that (ie that the header ended up in the
+>> module-a-dev package) ?
+>
+>
+> In the build directory, I can see that the header file is in the
+> module-a-dev directory under split packages.
+>
+>
+>> > , but I couldn't #include it in the second module (file didn't exist
+>> > in the include search paths).
+>>
+>> Did you add:
+>>
+>>   DEPENDS = "module-a"
+>>
+>> to the module-b recipe?
+>>
+>
+> Yes, I did this.
+>
+> > I would point out though, that I am interested in what is the correct
+>> way to
+>> > do this, and not just in finding some workaround / hack so that it
+>> works...
+>>
+>> That's good to hear.
+>>
+>
+> So am I on the right track or should I be doing this differently?
+>
+>
+>> > On Mon., 9 Jul. 2018, 19:47 Andre McCurdy, <armccurdy@gmail.com> wrote:
+>> >>
+>> >> On Mon, Jul 9, 2018 at 8:27 AM, Michael Allwright
+>> >> <michael.allwright@ulb.ac.be> wrote:
+>> >> > Hello,
+>> >> >
+>> >> > I think it would be useful to extend the hello-mod recipe in
+>> >> > meta-skeleton
+>> >> > to demonstrate some slightly more complicated scenarios. For
+>> example, I
+>> >> > am
+>> >> > trying to find out how to have two external kernel modules A and B,
+>> >> > where
+>> >> > module B #includes a header file provided by module A.
+>> >> >
+>> >> > I have made module B depend on module A, however, I believe I am
+>> still
+>> >> > missing one or two steps in my recipe for module A such that the
+>> header
+>> >> > file
+>> >> > is copied into the shared kernel staging directory where module B can
+>> >> > find
+>> >> > it.
+>> >> >
+>> >> > So far I have tried the following:
+>> >> >
+>> >> > FILES_${PN}-dev += "/usr/include/linux/mfd/module-a.h"
+>> >> >
+>> >> > FILES_kernel-headers += "${includedir}/linux/mfd/module-a.h"
+>> >> >
+>> >> > do_install_append () {
+>> >> >    install -d ${D}${includedir}/linux/mfd
+>> >> >    install -m 644 ${S}/module-a
+>> ${D}${includedir}/linux/mfd/module-a.h
+>> >> > }
+>> >>
+>> >> And what happened after you tried the above? Did the header not end up
+>> >> in the -dev package for module A? Did the module A recipe not create a
+>> >> -dev package? Something else?
+>> >>
+>> >> > In module B, I want to be able to:
+>> >> >
+>> >> > #include <linux/mfd/module-a.h>
+>> >> >
+>>
+>
+
+--0000000000009e517a05709fd4b1
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-My name is Aaron and not Aron for start
+<div dir=3D"ltr">Am I correct in expecting that, if I do everything correct=
+ly, my header file from module-a should end up in=C2=A0~/poky/build/tmp/wor=
+k-shared/machine/kernel-source/include/linux/mfd<br clear=3D"all"><div><div=
+ dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"lt=
+r"><div><div dir=3D"ltr"><div style=3D"font-size:12.8px"><br></div><div sty=
+le=3D"font-size:12.8px">Michael Allwright</div><div style=3D"font-size:12.8=
+px"><span style=3D"font-size:12.8px"><br></span></div><div style=3D"font-si=
+ze:12.8px"><span style=3D"font-size:12.8px">Postdoctoral Researcher at IRID=
+IA</span><br></div><div style=3D"font-size:12.8px"><span style=3D"font-size=
+:12.8px">Phone:=C2=A0+32 2 650 2273</span><br></div><div style=3D"font-size=
+:12.8px">Email: <a href=3D"mailto:michael.allwright@ulb.ac.be" target=3D"_b=
+lank">michael.allwright@ulb.ac.be</a></div></div></div></div></div></div></=
+div></div><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Tue,=
+ 10 Jul 2018 at 07:53, Michael Allwright &lt;<a href=3D"mailto:michael.allw=
+right@ulb.ac.be">michael.allwright@ulb.ac.be</a>&gt; wrote:<br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc=
+ solid;padding-left:1ex"><div dir=3D"auto"><div><br><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr">On Tue., 10 Jul. 2018, 00:15 Andre McCurdy, &lt;<a=
+ href=3D"mailto:armccurdy@gmail.com" target=3D"_blank">armccurdy@gmail.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On Mon, Jul 9, 2018 =
+at 3:07 PM, Michael Allwright<br>
+&lt;<a href=3D"mailto:michael.allwright@ulb.ac.be" rel=3D"noreferrer" targe=
+t=3D"_blank">michael.allwright@ulb.ac.be</a>&gt; wrote:<br>
+&gt; Yes, it ended up in the development package in the do_install_append<b=
+r>
+&gt; attempt<br>
+<br>
+How did you confirm that (ie that the header ended up in the<br>
+module-a-dev package) ?</blockquote></div></div><div dir=3D"auto"><br></div=
+><div dir=3D"auto">In the build directory, I can see that the header file i=
+s in the module-a-dev directory under split packages.</div><div dir=3D"auto=
+"><br></div><div dir=3D"auto"><div class=3D"gmail_quote"><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><br>
+&gt; , but I couldn&#39;t #include it in the second module (file didn&#39;t=
+ exist<br>
+&gt; in the include search paths).<br>
+<br>
+Did you add:<br>
+<br>
+=C2=A0 DEPENDS =3D &quot;module-a&quot;<br>
+<br>
+to the module-b recipe?<br></blockquote></div></div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">Yes, I did this.</div><div dir=3D"auto"><br></div><d=
+iv dir=3D"auto"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote=
+" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+&gt; I would point out though, that I am interested in what is the correct =
+way to<br>
+&gt; do this, and not just in finding some workaround / hack so that it wor=
+ks...<br>
+<br>
+That&#39;s good to hear.<br></blockquote></div></div><div dir=3D"auto"><br>=
+</div><div dir=3D"auto">So am I on the right track or should I be doing thi=
+s differently?</div><div dir=3D"auto"><br></div><div dir=3D"auto"><div clas=
+s=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
+8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
+&gt; On Mon., 9 Jul. 2018, 19:47 Andre McCurdy, &lt;<a href=3D"mailto:armcc=
+urdy@gmail.com" rel=3D"noreferrer" target=3D"_blank">armccurdy@gmail.com</a=
+>&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; On Mon, Jul 9, 2018 at 8:27 AM, Michael Allwright<br>
+&gt;&gt; &lt;<a href=3D"mailto:michael.allwright@ulb.ac.be" rel=3D"noreferr=
+er" target=3D"_blank">michael.allwright@ulb.ac.be</a>&gt; wrote:<br>
+&gt;&gt; &gt; Hello,<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; I think it would be useful to extend the hello-mod recipe in<=
+br>
+&gt;&gt; &gt; meta-skeleton<br>
+&gt;&gt; &gt; to demonstrate some slightly more complicated scenarios. For =
+example, I<br>
+&gt;&gt; &gt; am<br>
+&gt;&gt; &gt; trying to find out how to have two external kernel modules A =
+and B,<br>
+&gt;&gt; &gt; where<br>
+&gt;&gt; &gt; module B #includes a header file provided by module A.<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; I have made module B depend on module A, however, I believe I=
+ am still<br>
+&gt;&gt; &gt; missing one or two steps in my recipe for module A such that =
+the header<br>
+&gt;&gt; &gt; file<br>
+&gt;&gt; &gt; is copied into the shared kernel staging directory where modu=
+le B can<br>
+&gt;&gt; &gt; find<br>
+&gt;&gt; &gt; it.<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; So far I have tried the following:<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; FILES_${PN}-dev +=3D &quot;/usr/include/linux/mfd/module-a.h&=
+quot;<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; FILES_kernel-headers +=3D &quot;${includedir}/linux/mfd/modul=
+e-a.h&quot;<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; do_install_append () {<br>
+&gt;&gt; &gt;=C2=A0 =C2=A0 install -d ${D}${includedir}/linux/mfd<br>
+&gt;&gt; &gt;=C2=A0 =C2=A0 install -m 644 ${S}/module-a ${D}${includedir}/l=
+inux/mfd/module-a.h<br>
+&gt;&gt; &gt; }<br>
+&gt;&gt;<br>
+&gt;&gt; And what happened after you tried the above? Did the header not en=
+d up<br>
+&gt;&gt; in the -dev package for module A? Did the module A recipe not crea=
+te a<br>
+&gt;&gt; -dev package? Something else?<br>
+&gt;&gt;<br>
+&gt;&gt; &gt; In module B, I want to be able to:<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; #include &lt;linux/mfd/module-a.h&gt;<br>
+&gt;&gt; &gt;<br>
+</blockquote></div></div></div>
+</blockquote></div>
 
-Martin,
-
-Please try this
-
-#!/usr/bin/env python2
-
-import os
-
-a =3D os.path.join('http://', 'alibaba.com')
-b =3D '/'.join(['http://', 'alibaba.com'])
-c =3D '/'.join(['http:/', 'alibaba.com', ''])
-
-print(a)
-print(b)
-print(c)
-
-and repeat the same for python3, I got the following results:
-
-http://alibaba.com
-http:///alibaba.com
-http://alibaba.com/
-
-Cheers,
-Aaron
-________________________________________
-From: Martin Hundeb=F8ll [martin@geanix.com]
-Sent: Tuesday, July 10, 2018 2:10 PM
-To: Chan, Aaron Chun Yew; richard.purdie@linuxfoundation.org; yocto@yoctopr=
-oject.org; Burton, Ross; Eggleton, Paul
-Subject: Re: [yocto] [PATCH] [yocto-autobuilder] master.cfg: Defaults autob=
-uilder URL based on FQDN
-
-Hi Aron,
-
-On 2018-07-10 05:18, Aaron Chan wrote:
-> This patch is to enable auto-assignments buildbot URL based on Hosts FQDN=
-.
-> The socket module allows the retrieval on FQDN and constructs the entire
-> URL by default, this default settings can be overwritten in c['buildbotUR=
-L']
-> based on local administrator preferences.
->
-> Signed-off-by: Aaron Chan <aaron.chun.yew.chan@intel.com>
-> ---
->   master.cfg | 7 +++++--
->   1 file changed, 5 insertions(+), 2 deletions(-)
->
-> diff --git a/master.cfg b/master.cfg
-> index fca80d2..49ddeb4 100644
-> --- a/master.cfg
-> +++ b/master.cfg
-> @@ -4,6 +4,7 @@
->   import os
->   import imp
->   import pkg_resources
-> +import socket
->
->   from buildbot.plugins import *
->   from buildbot.plugins import db
-> @@ -55,6 +56,7 @@ imp.reload(services)
->   imp.reload(www)
->
->   c =3D BuildmasterConfig =3D {}
-> +url =3D os.path.join('http://', socket.getfqdn() + ':' + str(config.web_=
-port) + '/')
-
-Why use `os.path.join()` here? It isn't supposed to be used to construct
-url's, and is overkill for this case, and you'd end up with "http:///...".
-
-// Martin
-
->
->   # Disable usage reporting
->   c['buildbotNetUsageData'] =3D None
-> @@ -76,6 +78,7 @@ c['www'] =3D www.www
->   c['workers'] =3D workers.workers
->
->   c['title'] =3D "Yocto Autobuilder"
-> -c['titleURL'] =3D "https://autobuilder.yoctoproject.org/main/"
-> +c['titleURL'] =3D url
->   # visible location for internal web server
-> -c['buildbotURL'] =3D "https://autobuilder.yoctoproject.org/main/"
-> +# - Default c['buildbotURL'] =3D "https://autobuilder.yoctoproject.org/m=
-ain/"
-> +c['buildbotURL'] =3D url
->
-
---
-Kind regards,
-Martin Hundeb=F8ll
-Embedded Linux Consultant
-
-+45 61 65 54 61
-martin@geanix.com
-
-Geanix IVS
-DK39600706
-
+--0000000000009e517a05709fd4b1--
