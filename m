@@ -1,36 +1,74 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <Shrawan.Kumar@harman.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1A30E00E73; Tue, 10 Jul 2018 01:55:21 -0700 (PDT)
+	id A87C8E00EFB; Tue, 10 Jul 2018 02:08:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,RCVD_IN_RP_RNBL
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: *  1.3 RCVD_IN_RP_RNBL RBL: Relay in RNBL,
-	*      https://senderscore.org/blacklistlookup/
-	*      [87.81.244.161 listed in bl.score.senderscore.com]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [67.219.250.116 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5D89E009B9
-	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 01:55:19 -0700 (PDT)
-Received: from hex ([192.168.3.34]) (authenticated bits=0)
-	by dan.rpsys.net (8.15.2/8.15.2/Debian-3) with ESMTPSA id
-	w6A8tE6P019959
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NOT); Tue, 10 Jul 2018 09:55:15 +0100
-Message-ID: <65331fd8bde273c5f69c22242c1c5b7b7574ad0e.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Aaron Chan <aaron.chun.yew.chan@intel.com>, yocto@yoctoproject.org,
-	ross.burton@intel.com, paul.eggleton@intel.com
-Date: Tue, 10 Jul 2018 09:55:14 +0100
-In-Reply-To: <1531192694-10351-1-git-send-email-aaron.chun.yew.chan@intel.com>
-References: <1531192694-10351-1-git-send-email-aaron.chun.yew.chan@intel.com>
-X-Mailer: Evolution 3.28.1-2 
-Mime-Version: 1.0
-X-Virus-Scanned: clamav-milter 0.99.4 at dan
-X-Virus-Status: Clean
-Subject: Re: [PATCH] [yocto-autobuilder] master.cfg: Defaults autobuilder URL based on FQDN
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail1.bemta24.messagelabs.com (mail1.bemta24.messagelabs.com
+	[67.219.250.116])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02758E00EF3
+	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 02:08:19 -0700 (PDT)
+Received: from [67.219.250.194] (using TLSv1.2 with cipher
+	DHE-RSA-AES256-GCM-SHA384 (256 bits))
+	by server-5.bemta.az-b.us-west-2.aws.symcld.net id 98/74-21287-387744B5;
+	Tue, 10 Jul 2018 09:08:19 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLKsWRWlGSWpSXmKPExsVySpdNU7ep3CX
+	a4PYRc4sbF3+wWLRdn8VoMenlGjYHZo+ds+6ye7Sf6GMLYIpizcxLyq9IYM2Y9+o0S8GN6Irf
+	y5rZGhg3RXUxcnIICWxllLg2h7mLkQvI3sIo0fXyBRuEc5BRov18CxNIFZuAocSVnruMILaIg
+	KnEi2Nf2EBsZoFoic1XnoDFhQV0JI7O3sgOUaMrceDOVhYI20ji9owDQHM4OFgEVCU6f9SAhH
+	kF3CVWNkxnBbEZBWQlvjSuZoYYKS5x68l8sLUSAgISS/acZ4awRSVePv7HCmEbSGxduo8Fwla
+	QWNndAHVOjsSMP9tYIeYLSpyc+YQF4klViS0Lf7NMYBSZhWTFLCQts5C0zAK6lFlAU2L9Ln2I
+	EkWJKd0P2SFsDYnWOXPZkcUXMLKvYjRPKspMzyjJTczM0TU0MNA1NDTSNTQ20TUz10us0k3SK
+	y3WLU8tLtE10kssL9YrrsxNzknRy0st2cQIjEwGINjB+PJQyiFGSQ4mJVHe/y4u0UJ8SfkplR
+	mJxRnxRaU5qcWHGGU4OJQkeA+XAeUEi1LTUyvSMnOAKQImLcHBoyTCyw+S5i0uSMwtzkyHSJ1
+	i9Oa41dwziZnjyL0pQPICmJx3dCqQ/PMeRN7pnjaJWYglLz8vVUqc9xDICAGQERmleXALYKnu
+	EqOslDAvI9DJQjwFqUW5mSWo8q8YxTkYlYR59UGm8GTmlcDd8QroRCagE7UXOoOcWJKIkJJqY
+	DQSrlnylf2hxB+Df0aTGI58X9GQJGW6+9yUaU97ThXfzSrpCuDlWxX95W+P6BnbU79S43KeWK
+	xcU8c674Hxg3M1us+mS+wq1brJ/vDJS+M4u7VlZuuFHi10j/h3PuSid+96yfeVU8T1s8+7fj+
+	uX1C+6SP3hI670w5wdTN46664N33LFGXrA71KLMUZiYZazEXFiQAEkcf+cAMAAA==
+X-Env-Sender: Shrawan.Kumar@harman.com
+X-Msg-Ref: server-34.tower-342.messagelabs.com!1531213693!1030620!2
+X-Originating-IP: [202.45.6.41]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.9.15; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 3968 invoked from network); 10 Jul 2018 09:08:18 -0000
+Received: from unknown (HELO HIBDWSMB10.ad.harman.com) (202.45.6.41)
+	by server-34.tower-342.messagelabs.com with DHE-RSA-AES256-GCM-SHA384
+	encrypted SMTP; 10 Jul 2018 09:08:18 -0000
+Received: from HIBDWSMB06.ad.harman.com (10.99.236.96) by
+	HIBDWSMB10.ad.harman.com (10.99.236.101) with Microsoft SMTP Server
+	(TLS) id 15.0.1365.1; Tue, 10 Jul 2018 14:37:26 +0530
+Received: from HIBDWSMB02.ad.harman.com (10.99.236.92) by
+	HIBDWSMB06.ad.harman.com (10.99.236.96) with Microsoft SMTP Server
+	(TLS) id 15.0.1365.1; Tue, 10 Jul 2018 14:37:26 +0530
+Received: from HIBDWSMB02.ad.harman.com ([fe80::c569:ebfc:95e0:7067]) by
+	HIBDWSMB02.ad.harman.com ([fe80::c569:ebfc:95e0:7067%16]) with mapi id
+	15.00.1365.000; Tue, 10 Jul 2018 14:37:26 +0530
+From: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: POSIX capability broken  pseudo
+Thread-Index: AdQXef8SDHZqVVVyR+OxKjHNYtjguAAs2Ihg
+Date: Tue, 10 Jul 2018 09:07:26 +0000
+Message-ID: <678ca73541bb4411bb1db8a49a0e3c1a@HIBDWSMB02.ad.harman.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.99.236.43]
+MIME-Version: 1.0
+Cc: "connect.shrawan@gmail.com" <connect.shrawan@gmail.com>
+Subject: Re: POSIX capability broken pseudo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,71 +80,168 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jul 2018 08:55:21 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 10 Jul 2018 09:08:20 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_678ca73541bb4411bb1db8a49a0e3c1aHIBDWSMB02adharmancom_"
 
-On Tue, 2018-07-10 at 11:18 +0800, Aaron Chan wrote:
-> This patch is to enable auto-assignments buildbot URL based on Hosts FQDN.
-> The socket module allows the retrieval on FQDN and constructs the entire
-> URL by default, this default settings can be overwritten in c['buildbotURL']
-> based on local administrator preferences.
-> 
-> Signed-off-by: Aaron Chan <aaron.chun.yew.chan@intel.com>
-> ---
->  master.cfg | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/master.cfg b/master.cfg
-> index fca80d2..49ddeb4 100644
-> --- a/master.cfg
-> +++ b/master.cfg
-> @@ -4,6 +4,7 @@
->  import os
->  import imp
->  import pkg_resources
-> +import socket
->  
->  from buildbot.plugins import *
->  from buildbot.plugins import db
-> @@ -55,6 +56,7 @@ imp.reload(services)
->  imp.reload(www)
->  
->  c = BuildmasterConfig = {}
-> +url = os.path.join('http://', socket.getfqdn() + ':' + str(config.web_port) + '/')
->  
->  # Disable usage reporting
->  c['buildbotNetUsageData'] = None
-> @@ -76,6 +78,7 @@ c['www'] = www.www
->  c['workers'] = workers.workers
->  
->  c['title'] = "Yocto Autobuilder"
-> -c['titleURL'] = "https://autobuilder.yoctoproject.org/main/"
-> +c['titleURL'] = url
->  # visible location for internal web server
-> -c['buildbotURL'] = "https://autobuilder.yoctoproject.org/main/"
-> +# - Default c['buildbotURL'] = "https://autobuilder.yoctoproject.org/main/"
-> +c['buildbotURL'] = url
+--_000_678ca73541bb4411bb1db8a49a0e3c1aHIBDWSMB02adharmancom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I appreciate what you're trying to do here and make this autoconfigure.
- Unfortunately the urls can't always be figured out this way, the above
-for example drops the "/main/" part, without which the autobuilder
-won't work. The server can be behind forwarding or proxies/firewalls
-which also make this problematic.
+QW55IHVwZGF0ZSAgb24gdGhpcyA/DQoNCg0KUmVnYXJkcw0KU2hyYXdhbg0KDQpGcm9tOiBLdW1h
+ciwgU2hyYXdhbg0KU2VudDogMDkgSnVseSAyMDE4IDE3OjE3DQpUbzogJ3lvY3RvQHlvY3RvcHJv
+amVjdC5vcmcnIDx5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KQ2M6ICdjb25uZWN0LnNocmF3YW5A
+Z21haWwuY29tJyA8Y29ubmVjdC5zaHJhd2FuQGdtYWlsLmNvbT47ICdLaGVtIFJhaicgPHJhai5r
+aGVtQGdtYWlsLmNvbT4NClN1YmplY3Q6IFBPU0lYIGNhcGFiaWxpdHkgYnJva2VuIHBzZXVkbw0K
+DQpIZWxsbyBUZWFtLA0KDQpVbmRlciBESVNUUk9fVkVSU0lPTiA9ICIyLjAuMiIgKCJqZXRocm8i
+KSwgSSB3YXMgdXNpbmcgdGhlIGF0dGFjaGVkIOKAnHNldGNhcC5wYXRjaOKAnSBvbiBwc2V1ZG9f
+MS43LjQgIHRvIGdldCBQT1NJWCBjYXBhYmlsaXR5IHNldCBpbiB0aGUgZmlsZXMgYXMgYmVsb3cg
+Og0KDQpwa2dfcG9zdGluc3RfJHtQTn0oKSB7DQoNCiAgICBzZXRjYXAgY2FwX25ldF9yYXcrZXAg
+ICREJGJpbmRpci9oZWxsb3dvcmxkDQoNCn0NCg0KVGhpcyB3YXMgd29ya2luZyBmaW5lLg0KDQoN
+Ckhvd2V2ZXIsIHJlY2VudGx5IHN3aXRjaGVkIHRvIERJU1RST19WRVJTSU9OID0gIjIuMi4yIiAo
+Im1vcnR5IikgLSBwc2V1ZG9fMS44LjEsIHdoZXJlIHRoZSBwYXRjaCBpcyBnZXR0aW5nIGFwcGxp
+ZWQgYnV0IHRoZSBQT1NJWCBjYXBhYmlsaXRpZXMgYXJlIG5vdCBnZXR0aW5nIHNldC4NCg0KQ2Fu
+IHNvbWVvbmUgaGVscCBoZXJlPw0KDQoNClJlZ2FyZHMNClNocmF3YW4NCg0KDQo=
 
-I also agree with Martin that using os.path.join() in a url is
-incorrect, its not meant for urls.
+--_000_678ca73541bb4411bb1db8a49a0e3c1aHIBDWSMB02adharmancom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Most people setting up an autobuilder will need to have some
-customisations on top of yocto-autobuilder2, I don't think its possible
-to avoid that. I'd therefore perhaps try and concentrate on having key
-modules like the lava integration available and accept there will
-always be some local configuration the end user needs to make to things
-like the URL details? Even the main autobuilder adds in passwords and
-some other local config on top of the stardard repo...
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZp
+bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
+YXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0K
+CWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29I
+eXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1k
+ZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93
+ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29y
+YXRpb246dW5kZXJsaW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0
+eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowY207DQoJbWFyZ2lu
+LWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJp
+ZXIgTmV3Ijt9DQpzcGFuLkhUTUxQcmVmb3JtYXR0ZWRDaGFyDQoJe21zby1zdHlsZS1uYW1lOiJI
+VE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0
+eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIjsNCglmb250LWZhbWlseToiQ291cmllciBOZXci
+O30NCnAubXNvbm9ybWFsMCwgbGkubXNvbm9ybWFsMCwgZGl2Lm1zb25vcm1hbDANCgl7bXNvLXN0
+eWxlLW5hbWU6bXNvbm9ybWFsOw0KCW1zby1tYXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdpbi1y
+aWdodDowY207DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGNt
+Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsc2Vy
+aWY7fQ0Kc3Bhbi5tMTc1MTI0NDg1ODMwNjc2ODc2OW0zNjQxNjkyNzM1Mjk4NzkyNzNob2VuemIN
+Cgl7bXNvLXN0eWxlLW5hbWU6bV8xNzUxMjQ0ODU4MzA2NzY4NzY5bV8zNjQxNjkyNzM1Mjk4Nzky
+NzNob2VuemI7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjENCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWw7
+DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6IzFGNDk3RDt9DQpz
+cGFuLkVtYWlsU3R5bGUyMg0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWls
+eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCnNwYW4uRW1haWxTdHls
+ZTIzDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixz
+YW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjQNCgl7bXNvLXN0
+eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2Vy
+aWY7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpl
+eHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtz
+aXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0
+O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48
+IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNw
+aWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHht
+bD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBk
+YXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0K
+PGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFz
+cz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtj
+b2xvcjojMUY0OTdEIj5BbnkgdXBkYXRlJm5ic3A7IG9uIHRoaXMgPzxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlJlZ2Fy
+ZHM8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
+c2VyaWY7Y29sb3I6IzFGNDk3RCI+U2hyYXdhbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNw
+OzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVy
+LXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGNtIDBjbSAwY20iPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5Gcm9tOjwvc3Bhbj48L2I+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OyxzYW5zLXNlcmlmIj4gS3VtYXIsIFNocmF3YW4NCjxicj4NCjxiPlNlbnQ6PC9iPiAwOSBKdWx5
+IDIwMTggMTc6MTc8YnI+DQo8Yj5Ubzo8L2I+ICd5b2N0b0B5b2N0b3Byb2plY3Qub3JnJyAmbHQ7
+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyZndDs8YnI+DQo8Yj5DYzo8L2I+ICdjb25uZWN0LnNocmF3
+YW5AZ21haWwuY29tJyAmbHQ7Y29ubmVjdC5zaHJhd2FuQGdtYWlsLmNvbSZndDs7ICdLaGVtIFJh
+aicgJmx0O3Jhai5raGVtQGdtYWlsLmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUE9TSVgg
+Y2FwYWJpbGl0eSBicm9rZW4gcHNldWRvPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8
+L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkhlbGxvIFRlYW0s
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
+cmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5VbmRlciBESVNUUk9f
+VkVSU0lPTiA9ICZxdW90OzIuMC4yJnF1b3Q7ICgmcXVvdDtqZXRocm8mcXVvdDspLCBJIHdhcyB1
+c2luZyB0aGUgYXR0YWNoZWQg4oCcc2V0Y2FwLnBhdGNo4oCdIG9uDQo8Yj5wc2V1ZG9fMS43LjQ8
+L2I+ICZuYnNwO3RvIGdldCBQT1NJWCBjYXBhYmlsaXR5IHNldCBpbiB0aGUgZmlsZXMgYXMgYmVs
+b3cgOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
+cy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzAwNzBDMCI+cGtnX3Bvc3Rp
+bnN0XyR7UE59KCkgezxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMDA3MEMwIj4mbmJzcDsNCjxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMDA3MEMw
+Ij4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtzZXRjYXAgY2FwX25ldF9yYXcmIzQzO2VwJm5ic3A7
+ICREJGJpbmRpci9oZWxsb3dvcmxkPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMwMDcwQzAiPiZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOw0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMwMDcwQzAiPn08bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzAwNzBDMCI+PG86cD4m
+bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
+LXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoaXMgd2FzIHdvcmtpbmcgZmluZS48bzpwPjwvbzpwPjwv
+c3Bhbj48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
+cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
+RCI+SG93ZXZlciwgcmVjZW50bHkgc3dpdGNoZWQgdG8gRElTVFJPX1ZFUlNJT04gPSAmcXVvdDsy
+LjIuMiZxdW90OyAoJnF1b3Q7bW9ydHkmcXVvdDspIC0NCjxiPnBzZXVkb18xLjguMSw8L2I+IHdo
+ZXJlIHRoZSBwYXRjaCBpcyBnZXR0aW5nIGFwcGxpZWQgYnV0IHRoZSBQT1NJWCBjYXBhYmlsaXRp
+ZXMgYXJlIG5vdCBnZXR0aW5nIHNldC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OiMxRjQ5N0QiPkNhbiBzb21lb25lIGhlbHAgaGVyZT88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4m
+bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
+cmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5SZWdhcmRzPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2Nv
+bG9yOiMxRjQ5N0QiPlNocmF3YW48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMx
+RjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9o
+dG1sPg0K
 
-Cheers,
-
-Richard
-
-
+--_000_678ca73541bb4411bb1db8a49a0e3c1aHIBDWSMB02adharmancom_--
