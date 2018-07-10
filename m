@@ -1,69 +1,39 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7436CE00C77; Mon,  9 Jul 2018 15:15:19 -0700 (PDT)
+	id 8283EE00D82; Mon,  9 Jul 2018 18:29:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.67 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f67.google.com (mail-vk0-f67.google.com
-	[209.85.213.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4CD1E006B3
-	for <yocto@yoctoproject.org>; Mon,  9 Jul 2018 15:15:18 -0700 (PDT)
-Received: by mail-vk0-f67.google.com with SMTP id t4-v6so11239042vke.9
-	for <yocto@yoctoproject.org>; Mon, 09 Jul 2018 15:15:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=M6eqLq+OqAFoHPQoB9i5XFPp4C0+hKnhy1y3c03hlW0=;
-	b=p/Fc4NOetW3APUZt+0tk7qVvW59dZ4CxzUhsXrKZrWs06oblQTs1tFFijA+8AVCfb0
-	PW81Le73s+35dPC2J1+Gu+0gSwMCYNxo+NC5311rfgMcLdNHI1b6n/j+7YiTY0KtyNR9
-	E+oXG2wke+/0Rx2QitavVUnM1sg1/dhCGfhPTVnxCRd/tMBrS4KbPzDYzZoI2/aziNFh
-	hO5hhz3dthsq2VLHvswovo+KwQEOzNNwjz+vuNw/p7HpCZ2bhC1tTcfTvDU73yxYZfNg
-	iFWp4/JCipUbWLsnirBVMjPHiodv/nir3Wc/o5/rROstyCu7gMNb7juy5mZozQ9F11J4
-	JYVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=M6eqLq+OqAFoHPQoB9i5XFPp4C0+hKnhy1y3c03hlW0=;
-	b=PnzYWtaRIgPlTyB7WKKbYon3m+LC1yJ0cepJ3Gd075eqFQ0Mj96CElaeu68sbKyQFw
-	ffH40IC+UqS+7/Aif7SsCyHQ9keOajew0picpCANkgGBCsnVpoRHpcNVqA/8CtA/1NtW
-	fSsHOZWDavO9wb/Nc4uBCKFWwGlhsRn9LkYqTSbOwkFj8eqKVlc5510xgeg+lDPEqjw6
-	NND35llC3BZRhP7uJyRkd1LsQnqSYZyEXEv+E4xE2yUuH6X17H8FaCEX2BtMs/X6qTq3
-	3+nw7xkfSG74m3Kv5Eqxxze/diJDC58DruMEBJzO4XmpKLq5rusSLHTOMOQPN9F43Nz3
-	cfkg==
-X-Gm-Message-State: AOUpUlFwp+0PmlShtJ/bY9FRAqLotCVlo0n+crJSNohgf2l2dtaqFDb7
-	qwIqI4dksAK7sZIoD+GfQ2Blae5eZAxC06T95Vg=
-X-Google-Smtp-Source: AAOMgpcGwP6dAU4o7uiD+CXbKJfkSyur0fN82Lxt6VcS4F3Fh/QwNQ0S6kgtahZCQ+343WlNaFzH3P3k9tdVSrLGODs=
-X-Received: by 2002:a1f:9704:: with SMTP id
-	z4-v6mr4030732vkd.174.1531174518179; 
-	Mon, 09 Jul 2018 15:15:18 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10F6DE006B4
+	for <yocto@yoctoproject.org>; Mon,  9 Jul 2018 18:29:32 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w6A1TVRf032477
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 9 Jul 2018 18:29:31 -0700
+Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.399.0;
+	Mon, 9 Jul 2018 18:29:30 -0700
+To: Simon Chamlian <simon.chamlian@mpbc.ca>, <yocto@yoctoproject.org>
+References: <CANmTPBZZHDw5BVGSMMx_N+ZtRyLtE0k5+yDVK-Ywh+peciaPVw@mail.gmail.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <c9cf4aad-d222-a12d-6167-0d9f7e6106f7@windriver.com>
+Date: Tue, 10 Jul 2018 09:32:56 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Received: by 2002:ab0:2a5:0:0:0:0:0 with HTTP;
-	Mon, 9 Jul 2018 15:15:17 -0700 (PDT)
-In-Reply-To: <CALcgO_5bC0R6+KbkvGzUWasA89iV4eWb71xyV_qj9qzFeytz-g@mail.gmail.com>
-References: <CALcgO_4bg5JX1Zf93fJY671GnCLk_sDR6qesPBcym9q3QiACbw@mail.gmail.com>
-	<CAJ86T=Wea6yCsqxn+ZfMQ=tXC2d8FWxGv9b7TFZ1E57FLBhyjA@mail.gmail.com>
-	<CALcgO_5bC0R6+KbkvGzUWasA89iV4eWb71xyV_qj9qzFeytz-g@mail.gmail.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Mon, 9 Jul 2018 15:15:17 -0700
-Message-ID: <CAJ86T=U7SaXgaoPc4sYJf3FeVvAY2rqHEkZ=9Z92nzn3vH2KDQ@mail.gmail.com>
-To: Michael Allwright <michael.allwright@ulb.ac.be>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Including a header from an external kernel module
+In-Reply-To: <CANmTPBZZHDw5BVGSMMx_N+ZtRyLtE0k5+yDVK-Ywh+peciaPVw@mail.gmail.com>
+X-Originating-IP: [128.224.162.218]
+Subject: Re: Keeping and modifying Source code in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,69 +45,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jul 2018 22:15:19 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 10 Jul 2018 01:29:33 -0000
+Content-Type: multipart/alternative;
+	boundary="------------40F95A948DA39456D1832658"
 
-On Mon, Jul 9, 2018 at 3:07 PM, Michael Allwright
-<michael.allwright@ulb.ac.be> wrote:
-> Yes, it ended up in the development package in the do_install_append
-> attempt
+--------------40F95A948DA39456D1832658
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-How did you confirm that (ie that the header ended up in the
-module-a-dev package) ?
+Hi Simon,
 
-> , but I couldn't #include it in the second module (file didn't exist
-> in the include search paths).
+I usually use the following steps when I need to modify source for some 
+purpose.
 
-Did you add:
+1. bitbake A (or at least bitbake A -c configure)
+*2. cd tmp/work/xxxxx/A/<source dir>**
+**3. make the modification*
+4. bitbake A -c compile -f
+5. bitbake A
 
-  DEPENDS = "module-a"
+If you find the modification useful, make a patch from it.
 
-to the module-b recipe?
+Best Regards,
+Chen Qi
 
-> I would point out though, that I am interested in what is the correct way to
-> do this, and not just in finding some workaround / hack so that it works...
+On 07/06/2018 11:20 PM, Simon Chamlian wrote:
+> Hi,
+>
+> Is there a way to keep the source code of a package to be able to 
+> modify it and then compile?
+>
+> For example, with LTIB ( Linux Target Image Builder ), it was possible 
+> with a command to extract the source code from a package, make 
+> modifications and then re-compile?
+>
+> Thanks,
+> S
+>
+>
+>
+>
+>
+>
+>
 
-That's good to hear.
 
-> On Mon., 9 Jul. 2018, 19:47 Andre McCurdy, <armccurdy@gmail.com> wrote:
->>
->> On Mon, Jul 9, 2018 at 8:27 AM, Michael Allwright
->> <michael.allwright@ulb.ac.be> wrote:
->> > Hello,
->> >
->> > I think it would be useful to extend the hello-mod recipe in
->> > meta-skeleton
->> > to demonstrate some slightly more complicated scenarios. For example, I
->> > am
->> > trying to find out how to have two external kernel modules A and B,
->> > where
->> > module B #includes a header file provided by module A.
->> >
->> > I have made module B depend on module A, however, I believe I am still
->> > missing one or two steps in my recipe for module A such that the header
->> > file
->> > is copied into the shared kernel staging directory where module B can
->> > find
->> > it.
->> >
->> > So far I have tried the following:
->> >
->> > FILES_${PN}-dev += "/usr/include/linux/mfd/module-a.h"
->> >
->> > FILES_kernel-headers += "${includedir}/linux/mfd/module-a.h"
->> >
->> > do_install_append () {
->> >    install -d ${D}${includedir}/linux/mfd
->> >    install -m 644 ${S}/module-a ${D}${includedir}/linux/mfd/module-a.h
->> > }
->>
->> And what happened after you tried the above? Did the header not end up
->> in the -dev package for module A? Did the module A recipe not create a
->> -dev package? Something else?
->>
->> > In module B, I want to be able to:
->> >
->> > #include <linux/mfd/module-a.h>
->> >
+--------------40F95A948DA39456D1832658
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
 
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">Hi Simon,<br>
+      <br>
+      I usually use the following steps when I need to modify source for
+      some purpose.<br>
+      <br>
+      1. bitbake A (or at least bitbake A -c configure)<br>
+      <b>2. cd tmp/work/xxxxx/A/&lt;source dir&gt;</b><b><br>
+      </b><b>3. make the modification</b><br>
+      4. bitbake A -c compile -f<br>
+      5. bitbake A<br>
+      <br>
+      If you find the modification useful, make a patch from it.<br>
+      <br>
+      Best Regards,<br>
+      Chen Qi<br>
+      <br>
+      On 07/06/2018 11:20 PM, Simon Chamlian wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CANmTPBZZHDw5BVGSMMx_N+ZtRyLtE0k5+yDVK-Ywh+peciaPVw@mail.gmail.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <div dir="ltr">
+        <div>Hi,</div>
+        <div><br>
+        </div>
+        <div>Is there a way to keep the source code of a package to be
+          able to modify it and then compile?</div>
+        <div><br>
+        </div>
+        <div>For example, with LTIB (
+          <span>Linux Target Image Builder</span>
+          ), it was possible with a command to extract the source code
+          from a package, make modifications and then re-compile?</div>
+        <div><br>
+        </div>
+        <div>Thanks,</div>
+        <div>S<br>
+        </div>
+        <div><br>
+        </div>
+        <div><br>
+        </div>
+        <div><br>
+        </div>
+        <div><br>
+        </div>
+        <br>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------40F95A948DA39456D1832658--
