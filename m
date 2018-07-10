@@ -1,64 +1,72 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1890DE00DA9; Tue, 10 Jul 2018 12:27:07 -0700 (PDT)
+	id 191AEE00CA1; Tue, 10 Jul 2018 12:41:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.54 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (armccurdy[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f54.google.com (mail-oi0-f54.google.com
-	[209.85.218.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2362E00C82
-	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 12:27:06 -0700 (PDT)
-Received: by mail-oi0-f54.google.com with SMTP id r16-v6so44854462oie.3
-	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 12:27:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-vk0-f66.google.com (mail-vk0-f66.google.com
+	[209.85.213.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 489E7E00874
+	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 12:41:25 -0700 (PDT)
+Received: by mail-vk0-f66.google.com with SMTP id j11-v6so13129047vke.8
+	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 12:41:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=RGfLSLzIbGIf1TLUF0JUo1IXYCYsESGvfRH0sPHrxY0=;
-	b=mwSfiyl9XOHNiKxRSlKcGoAFxf0fWJRgBWjTdAwqZ5NmOqzxLihyK0x6bHfXEewCnF
-	GDsvSs/mvjG1+6cp4L6DpjLnmvUZdfher8PQBvhmzN3Sc0LsghbWwwRIjgU4Bstmr2wN
-	hfCYxIOX10fAFRDhz2B87tP09nK7tdfVIt4JcVZ6Peg51R0gqwn01Ki0NsYS1KqjPcfw
-	prVyRYy/gPqonB8a9ekxSRjnyKI2FD4MxwUQZgUCaf7PF6XwyPzbA7g4t6f2ZS3CBf65
-	w/Yeb7m5i93Z7349K6z7R9CdbUilBvINn+wUcpMjd1QXiSh5xlz3mwuEtw69XDRwCx5O
-	YL1g==
+	:cc; bh=SWh/QEb7VNthgmf5eSPx4rK2jkJQ53XUbd1TlOOdZd4=;
+	b=jjYyngVgv6rfvg16wYwqxYGFtteH1vHJHKn8/f3vAWfBaXPrkLWgb8wyKtWILA8vvJ
+	SNp6PGjzP5mz5APMw1uSlnbTo9l1K+QAP9ftVBx38CWT36iuD5SeYApmgJuXrcEs8Rut
+	T89SxbWoCjpsdt4ZoqD7psmEmDq9q5iJK7FuKih8izDj7E6/Yt4htqbP50TbaJu6Vr3m
+	gJQLcS8D7KcT5gAJf4J+mDCJqsEbVnELWZlLXA/8zft3F49s761hzHAZ8orEQDgprzEW
+	0tPgh2hUVMRhkMHtN4kvEBbkSeMnDrh3ctVjzL09ZfHH5uoJQUznOlFvvT691x/gpaw+
+	+IgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=RGfLSLzIbGIf1TLUF0JUo1IXYCYsESGvfRH0sPHrxY0=;
-	b=GH+kBra41z8Ho5hxi03SMc6tTxmvJPm5MzqjbWkZwuQDSTOk/YVkl47UHkOVIXvtl7
-	0z2E3MW3IPYZOGKqd9aglwdujTLsRTNtda5iAa+DQzAQ1luYnsWq8phVI9fM76EN4P09
-	G0yddPoZAUPIMGP/8zuAr/GWr2z7//prq8c8N02XDhotpi6ZJw8VJJ3wIMExSXy/7jwG
-	VFctAkuiAa1DjWpH1KlXz5z7lS8pkIBW3qOgiW01j6DQ1TXIaDyyRdzapXgX43vyz/1/
-	MRUgreCqbRk671mxvkmz9x273Sy0Lz6VX6X0dpJA1eccCC50qPvw0MfJuYxGSBp2uOni
-	lQBg==
-X-Gm-Message-State: APt69E05oP9s2ARrMbcSMaY1TMUz0GUN0BwWoyRHVomKAuWsq5hr4QTL
-	SwqCXLkMC0BtJ1oycmWd0gNDhh8iK4rKlKzki8OghQ==
-X-Google-Smtp-Source: AAOMgpeMRCBlzl5H8xHLU3FXES9Pn+n2h1KS8kCEeBHgILuuNFEhuuJS14RonzCF7upkzF10qj/cNUoih4EPF58R0xg=
-X-Received: by 2002:aca:2808:: with SMTP id
-	8-v6mr30368360oix.235.1531250826125; 
-	Tue, 10 Jul 2018 12:27:06 -0700 (PDT)
+	bh=SWh/QEb7VNthgmf5eSPx4rK2jkJQ53XUbd1TlOOdZd4=;
+	b=m1vO1fnIpRBA9UIhOW6VGY24CYkAvdVn3C9hUEe3Z5EPSy0x6oQfRhONvaR3/Gwnc7
+	YZu+C0X0bZHZczLX1YBiEhkhrMMKqKg6/ng6FDySfSI7WFxajTOK1T3Dobr0/GFbmZ8K
+	yW1TVMrZX4vI8M8ZzgQ/WETimo7ggdwnwPvZjOV4xde8o6G1feRtwbjJqxF2TCWnJh+E
+	DQapu2tDDZsMUWygDMVpCyfomImV9co7IObsoONqcWrEy/nNu2rxRo9E3GtwfxdRiidO
+	lHGy8qwh0Vx4p8UKrxEJexJYC8mpZbQKv4+3gC8+qQDtaLDubT5Cj/KSQ80nO4NdUhX9
+	TzvA==
+X-Gm-Message-State: APt69E3iDjElAgaxc/PUPOo6FMiCkzfnOZsq+Pfv6c7abwXYwC4Z92Xf
+	NLOSbfux7ZVyNEt+e0DLEOK6VUTn2aHn9FiPRQY=
+X-Google-Smtp-Source: AAOMgpd1wKQCr95g1aDTf6vUPyTzpr4hXpw7S5zo1+D3U02cJcBE7EzUrymtYlCOAlpJY9uInucy21/iHqZHc89O1JA=
+X-Received: by 2002:a1f:3b43:: with SMTP id
+	i64-v6mr14832856vka.2.1531251684565; 
+	Tue, 10 Jul 2018 12:41:24 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ac9:6845:0:0:0:0:0 with HTTP; Tue, 10 Jul 2018 12:26:45
-	-0700 (PDT)
-In-Reply-To: <CANNYZj9161QoBpFJ7w3Z-1Pog5fRntsr=7mxNwtRz8y3SQq3_g@mail.gmail.com>
-References: <CAOsp8o-2V=xNk4aEB9HfV9j=aHdW=bgyOqcCg13QJqQ2APSOHA@mail.gmail.com>
-	<CANNYZj9161QoBpFJ7w3Z-1Pog5fRntsr=7mxNwtRz8y3SQq3_g@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 10 Jul 2018 20:26:45 +0100
-Message-ID: <CAJTo0LZKArwnjGxbZnhyrY2eTnKL5g7Tp1yvFQhbMu3tNwhoSw@mail.gmail.com>
-To: Michael Habibi <mikehabibi@gmail.com>
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: Hook for layer-only actions?
+Received: by 2002:ab0:2a5:0:0:0:0:0 with HTTP;
+	Tue, 10 Jul 2018 12:41:23 -0700 (PDT)
+In-Reply-To: <CALcgO_6Wr2WhXSXwYeE3dQZZfmTtfP2sTQuC=PGVd2-w3Yg=9Q@mail.gmail.com>
+References: <CALcgO_4bg5JX1Zf93fJY671GnCLk_sDR6qesPBcym9q3QiACbw@mail.gmail.com>
+	<CAJ86T=Wea6yCsqxn+ZfMQ=tXC2d8FWxGv9b7TFZ1E57FLBhyjA@mail.gmail.com>
+	<CALcgO_5bC0R6+KbkvGzUWasA89iV4eWb71xyV_qj9qzFeytz-g@mail.gmail.com>
+	<CAJ86T=U7SaXgaoPc4sYJf3FeVvAY2rqHEkZ=9Z92nzn3vH2KDQ@mail.gmail.com>
+	<CALcgO_7c3OdgMiDQuHwDDr-YTrqibkZ0J6UEBYy++vKjGtq6HQ@mail.gmail.com>
+	<CALcgO_6Wr2WhXSXwYeE3dQZZfmTtfP2sTQuC=PGVd2-w3Yg=9Q@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Tue, 10 Jul 2018 12:41:23 -0700
+Message-ID: <CAJ86T=Uj_uUjGDiQkzY3rUTYgRuC8A92BMeTmj9Xgf75Mn+bOw@mail.gmail.com>
+To: Michael Allwright <michael.allwright@ulb.ac.be>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Including a header from an external kernel module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,39 +78,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jul 2018 19:27:08 -0000
+X-List-Received-Date: Tue, 10 Jul 2018 19:41:26 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hypothetically a new QA action should be added at the distro level, by
-writing a class and adding it to INHERIT.
+On Tue, Jul 10, 2018 at 12:11 AM, Michael Allwright
+<michael.allwright@ulb.ac.be> wrote:
+> Am I correct in expecting that, if I do everything correctly, my header file
+> from module-a should end up in
+> ~/poky/build/tmp/work-shared/machine/kernel-source/include/linux/mfd
 
-(I've several new QA tests added in this way)
+No, the kernel-source directory is for the kernel recipe and other
+recipes can't generally add anything too it (if you want a header to
+show up in the kernel source directory then you could patch the kernel
+sources though).
 
-Ross
+Other (ie non-kernel) recipes share headers etc via sysroot, which
+with OE 2.3 and above is created for each recipe in the
+"recipe-sysroot" subdirectory in the recipe's WORKDIR.
 
-On 10 July 2018 at 19:53, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
-> Yes. Implement a class and inherit it from the recipes.
->
-> Alex
->
-> 2018-07-10 20:50 GMT+02:00 Michael Habibi <mikehabibi@gmail.com>:
->> I was wondering if there is a way I can apply a global modification to all
->> recipes in a layer? For instance, we have our own layer for our changes that
->> sit on top of the base Yocto/OE layers.
->>
->> What if, hypothetically, I wanted to insert a do_package_qa action globally,
->> for everything in our layer. Is there a way to codify that, beyond actually
->> adding this to every recipe in our layer?
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+From what you've said so far, I guess module-a's header file is in
+module-b's sysroot directory under /usr/include, but when module-b is
+compiled the include path isn't setup to find it.
+
+Since /usr/include in sysroot contains headers for user space it's
+quite correct that it shouldn't be in the include path when building a
+kernel module (e.g. to prevent accidentally including user space
+string.h instead of the kernel version, etc, etc). When the kbuild
+Makefiles call the compiler they will not pass a --sysroot option etc.
+
+If module-a is sharing a header in a subdirectory of sysroot, you will
+need to somehow manually add that directory as an extra include path
+when module-b is compiled (don't try to add the whole of sysroot
+/usr/include - just the specific subdirectory you need).
+
+A possible alternative approach might be to create one recipe which
+builds all your kernel modules. That would make the build self more
+contained as each module can find headers from other modules somewhere
+in ${S}.
 
