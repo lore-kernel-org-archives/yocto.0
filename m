@@ -1,72 +1,68 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <mikehabibi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 191AEE00CA1; Tue, 10 Jul 2018 12:41:26 -0700 (PDT)
+	id 98468E00EC3; Tue, 10 Jul 2018 13:05:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
+	mail provider *      (mikehabibi[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.213.66 listed in list.dnswl.org]
+	*      [209.85.160.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f66.google.com (mail-vk0-f66.google.com
-	[209.85.213.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 489E7E00874
-	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 12:41:25 -0700 (PDT)
-Received: by mail-vk0-f66.google.com with SMTP id j11-v6so13129047vke.8
-	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 12:41:25 -0700 (PDT)
+Received: from mail-pl0-f51.google.com (mail-pl0-f51.google.com
+	[209.85.160.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEBC8E00874
+	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 13:05:10 -0700 (PDT)
+Received: by mail-pl0-f51.google.com with SMTP id c41-v6so8088658plj.10
+	for <yocto@yoctoproject.org>; Tue, 10 Jul 2018 13:05:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=SWh/QEb7VNthgmf5eSPx4rK2jkJQ53XUbd1TlOOdZd4=;
-	b=jjYyngVgv6rfvg16wYwqxYGFtteH1vHJHKn8/f3vAWfBaXPrkLWgb8wyKtWILA8vvJ
-	SNp6PGjzP5mz5APMw1uSlnbTo9l1K+QAP9ftVBx38CWT36iuD5SeYApmgJuXrcEs8Rut
-	T89SxbWoCjpsdt4ZoqD7psmEmDq9q5iJK7FuKih8izDj7E6/Yt4htqbP50TbaJu6Vr3m
-	gJQLcS8D7KcT5gAJf4J+mDCJqsEbVnELWZlLXA/8zft3F49s761hzHAZ8orEQDgprzEW
-	0tPgh2hUVMRhkMHtN4kvEBbkSeMnDrh3ctVjzL09ZfHH5uoJQUznOlFvvT691x/gpaw+
-	+IgQ==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=A7rJuc4yBI+OsUyujKmK/eQQxxNeXYulqnJAfzqvQtQ=;
+	b=aZmdUJtxFCW1wykAcVaSQNwuePtnnll7pne1YgULheH4FGWCKSvu3TEBsC/JWwchtf
+	oGwDaNuXinU9HkolgeTz2mqeSCoOcbgb2sYZXXh+1ttu20U6CSzlOZVgDde0yToWN+6z
+	gF4Ju4TkAsv6HxGWQWJV388FtIOLDj5vxxHW+2vE7yZIfnaR8/n+5KIT2DJT+IrpoTmJ
+	yTyFWTbNlZ6jubKl7JhOUj4Q/ygVcw4q8X0d0QaSrQahQCo/ygbXC1LDlg6hbn7HCJqV
+	QX2k0T5mQqu9asjvGI5WXZbDZHHe5ucnDZCb7eBcPvGQONhvBRXX5XpyLg0fspHMKLpe
+	9JQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=SWh/QEb7VNthgmf5eSPx4rK2jkJQ53XUbd1TlOOdZd4=;
-	b=m1vO1fnIpRBA9UIhOW6VGY24CYkAvdVn3C9hUEe3Z5EPSy0x6oQfRhONvaR3/Gwnc7
-	YZu+C0X0bZHZczLX1YBiEhkhrMMKqKg6/ng6FDySfSI7WFxajTOK1T3Dobr0/GFbmZ8K
-	yW1TVMrZX4vI8M8ZzgQ/WETimo7ggdwnwPvZjOV4xde8o6G1feRtwbjJqxF2TCWnJh+E
-	DQapu2tDDZsMUWygDMVpCyfomImV9co7IObsoONqcWrEy/nNu2rxRo9E3GtwfxdRiidO
-	lHGy8qwh0Vx4p8UKrxEJexJYC8mpZbQKv4+3gC8+qQDtaLDubT5Cj/KSQ80nO4NdUhX9
-	TzvA==
-X-Gm-Message-State: APt69E3iDjElAgaxc/PUPOo6FMiCkzfnOZsq+Pfv6c7abwXYwC4Z92Xf
-	NLOSbfux7ZVyNEt+e0DLEOK6VUTn2aHn9FiPRQY=
-X-Google-Smtp-Source: AAOMgpd1wKQCr95g1aDTf6vUPyTzpr4hXpw7S5zo1+D3U02cJcBE7EzUrymtYlCOAlpJY9uInucy21/iHqZHc89O1JA=
-X-Received: by 2002:a1f:3b43:: with SMTP id
-	i64-v6mr14832856vka.2.1531251684565; 
-	Tue, 10 Jul 2018 12:41:24 -0700 (PDT)
+	bh=A7rJuc4yBI+OsUyujKmK/eQQxxNeXYulqnJAfzqvQtQ=;
+	b=sysXcCAPs1/9BZLWo6GX1VIjQe1Wxw5ao0ILspokfkpDRKTgRNfFUormY2gGOKUD9t
+	cgDPkWjlbK2alvA8rgfMSCh92FyB6ukkG71unK9mUS1pphPj+NQxOXDI7hmqGhya/YJz
+	NthvyaZd6HUL186ozbNfX81t8KcXsGII/ztZL9TptDMjpUsp80ixW3NJx84pA9RjA8DI
+	ZCwhohfK2KfAxC1ZrzCXx/yNPOCDDBfSqNeqssKnuHecWx9J5jXzo3b5uZ9iHtnOWgth
+	YnhBt5B9ghus6wtuzp1BKbtWzgRzGS0cEswZTk4itDxLKCfz3RuOoRZgY94jbVQ+hgTZ
+	VszQ==
+X-Gm-Message-State: APt69E3Dm+dYv3PzUcy8nmHxN+9ITUVbU3BSLLxGbwlh3XRr13PzzBV+
+	2frtrKUkpJrBtZJz3YlZTdUxK1BqakaktyGpuZw=
+X-Google-Smtp-Source: AAOMgpdtMuOUjgpIh2I5EHSWnRx8ZtkgFA9r4mc61DqRgV7U7pgdYuoBGn9wQzc6yFuZXiCD7OkS1fh6fGSOxFbtx8o=
+X-Received: by 2002:a17:902:7481:: with SMTP id
+	h1-v6mr26573495pll.183.1531253110653; 
+	Tue, 10 Jul 2018 13:05:10 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ab0:2a5:0:0:0:0:0 with HTTP;
-	Tue, 10 Jul 2018 12:41:23 -0700 (PDT)
-In-Reply-To: <CALcgO_6Wr2WhXSXwYeE3dQZZfmTtfP2sTQuC=PGVd2-w3Yg=9Q@mail.gmail.com>
-References: <CALcgO_4bg5JX1Zf93fJY671GnCLk_sDR6qesPBcym9q3QiACbw@mail.gmail.com>
-	<CAJ86T=Wea6yCsqxn+ZfMQ=tXC2d8FWxGv9b7TFZ1E57FLBhyjA@mail.gmail.com>
-	<CALcgO_5bC0R6+KbkvGzUWasA89iV4eWb71xyV_qj9qzFeytz-g@mail.gmail.com>
-	<CAJ86T=U7SaXgaoPc4sYJf3FeVvAY2rqHEkZ=9Z92nzn3vH2KDQ@mail.gmail.com>
-	<CALcgO_7c3OdgMiDQuHwDDr-YTrqibkZ0J6UEBYy++vKjGtq6HQ@mail.gmail.com>
-	<CALcgO_6Wr2WhXSXwYeE3dQZZfmTtfP2sTQuC=PGVd2-w3Yg=9Q@mail.gmail.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Tue, 10 Jul 2018 12:41:23 -0700
-Message-ID: <CAJ86T=Uj_uUjGDiQkzY3rUTYgRuC8A92BMeTmj9Xgf75Mn+bOw@mail.gmail.com>
-To: Michael Allwright <michael.allwright@ulb.ac.be>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Including a header from an external kernel module
+References: <CAOsp8o-2V=xNk4aEB9HfV9j=aHdW=bgyOqcCg13QJqQ2APSOHA@mail.gmail.com>
+	<CANNYZj9161QoBpFJ7w3Z-1Pog5fRntsr=7mxNwtRz8y3SQq3_g@mail.gmail.com>
+	<CAJTo0LZKArwnjGxbZnhyrY2eTnKL5g7Tp1yvFQhbMu3tNwhoSw@mail.gmail.com>
+In-Reply-To: <CAJTo0LZKArwnjGxbZnhyrY2eTnKL5g7Tp1yvFQhbMu3tNwhoSw@mail.gmail.com>
+From: Michael Habibi <mikehabibi@gmail.com>
+Date: Tue, 10 Jul 2018 15:04:59 -0500
+Message-ID: <CAOsp8o9U02cT0Y3u0GerispM0RjowviEUxgbxysFPwrdihg53w@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: Hook for layer-only actions?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,41 +74,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jul 2018 19:41:26 -0000
+X-List-Received-Date: Tue, 10 Jul 2018 20:05:11 -0000
+Content-Type: multipart/alternative; boundary="000000000000b8c9fe0570aaa5c5"
+
+--000000000000b8c9fe0570aaa5c5
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Jul 10, 2018 at 12:11 AM, Michael Allwright
-<michael.allwright@ulb.ac.be> wrote:
-> Am I correct in expecting that, if I do everything correctly, my header file
-> from module-a should end up in
-> ~/poky/build/tmp/work-shared/machine/kernel-source/include/linux/mfd
+Well I should have just used what I want to actually do as the example, and
+not a QA action.
 
-No, the kernel-source directory is for the kernel recipe and other
-recipes can't generally add anything too it (if you want a header to
-show up in the kernel source directory then you could patch the kernel
-sources though).
+I want to create a new type of manifest that is only my layer, that will
+include line items that basically has like: package name, version, download
+URL, checksum, license.
 
-Other (ie non-kernel) recipes share headers etc via sysroot, which
-with OE 2.3 and above is created for each recipe in the
-"recipe-sysroot" subdirectory in the recipe's WORKDIR.
+I have no idea yet how to implement it, but wanted to make sure it was
+feasible.
 
-From what you've said so far, I guess module-a's header file is in
-module-b's sysroot directory under /usr/include, but when module-b is
-compiled the include path isn't setup to find it.
+On Tue, Jul 10, 2018 at 2:27 PM Burton, Ross <ross.burton@intel.com> wrote:
 
-Since /usr/include in sysroot contains headers for user space it's
-quite correct that it shouldn't be in the include path when building a
-kernel module (e.g. to prevent accidentally including user space
-string.h instead of the kernel version, etc, etc). When the kbuild
-Makefiles call the compiler they will not pass a --sysroot option etc.
+> Hypothetically a new QA action should be added at the distro level, by
+> writing a class and adding it to INHERIT.
+>
+> (I've several new QA tests added in this way)
+>
+> Ross
+>
+> On 10 July 2018 at 19:53, Alexander Kanavin <alex.kanavin@gmail.com>
+> wrote:
+> > Yes. Implement a class and inherit it from the recipes.
+> >
+> > Alex
+> >
+> > 2018-07-10 20:50 GMT+02:00 Michael Habibi <mikehabibi@gmail.com>:
+> >> I was wondering if there is a way I can apply a global modification to
+> all
+> >> recipes in a layer? For instance, we have our own layer for our changes
+> that
+> >> sit on top of the base Yocto/OE layers.
+> >>
+> >> What if, hypothetically, I wanted to insert a do_package_qa action
+> globally,
+> >> for everything in our layer. Is there a way to codify that, beyond
+> actually
+> >> adding this to every recipe in our layer?
+> >>
+> >> --
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
+> >>
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+>
 
-If module-a is sharing a header in a subdirectory of sysroot, you will
-need to somehow manually add that directory as an extra include path
-when module-b is compiled (don't try to add the whole of sysroot
-/usr/include - just the specific subdirectory you need).
+--000000000000b8c9fe0570aaa5c5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-A possible alternative approach might be to create one recipe which
-builds all your kernel modules. That would make the build self more
-contained as each module can find headers from other modules somewhere
-in ${S}.
+<div dir=3D"ltr">Well I should have just used what I want to actually do as=
+ the example, and not a QA action.<div><br></div><div>I want to create a ne=
+w type of manifest that is only my layer, that will include line items that=
+ basically has like: package name, version, download URL, checksum, license=
+.</div><div><br></div><div>I have no idea yet how to implement it, but want=
+ed to make sure it was feasible.</div></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr">On Tue, Jul 10, 2018 at 2:27 PM Burton, Ross &lt;<a href=
+=3D"mailto:ross.burton@intel.com">ross.burton@intel.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
+ft:1px #ccc solid;padding-left:1ex">Hypothetically a new QA action should b=
+e added at the distro level, by<br>
+writing a class and adding it to INHERIT.<br>
+<br>
+(I&#39;ve several new QA tests added in this way)<br>
+<br>
+Ross<br>
+<br>
+On 10 July 2018 at 19:53, Alexander Kanavin &lt;<a href=3D"mailto:alex.kana=
+vin@gmail.com" target=3D"_blank">alex.kanavin@gmail.com</a>&gt; wrote:<br>
+&gt; Yes. Implement a class and inherit it from the recipes.<br>
+&gt;<br>
+&gt; Alex<br>
+&gt;<br>
+&gt; 2018-07-10 20:50 GMT+02:00 Michael Habibi &lt;<a href=3D"mailto:mikeha=
+bibi@gmail.com" target=3D"_blank">mikehabibi@gmail.com</a>&gt;:<br>
+&gt;&gt; I was wondering if there is a way I can apply a global modificatio=
+n to all<br>
+&gt;&gt; recipes in a layer? For instance, we have our own layer for our ch=
+anges that<br>
+&gt;&gt; sit on top of the base Yocto/OE layers.<br>
+&gt;&gt;<br>
+&gt;&gt; What if, hypothetically, I wanted to insert a do_package_qa action=
+ globally,<br>
+&gt;&gt; for everything in our layer. Is there a way to codify that, beyond=
+ actually<br>
+&gt;&gt; adding this to every recipe in our layer?<br>
+&gt;&gt;<br>
+&gt;&gt; --<br>
+&gt;&gt; _______________________________________________<br>
+&gt;&gt; yocto mailing list<br>
+&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@=
+yoctoproject.org</a><br>
+&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"n=
+oreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto<=
+/a><br>
+&gt;&gt;<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
+oproject.org</a><br>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
+br>
+</blockquote></div>
 
+--000000000000b8c9fe0570aaa5c5--
