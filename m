@@ -1,59 +1,60 @@
-Return-Path: <nectar.kirkiris@intel.com>
+Return-Path: <simon.chamlian@mpbc.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E11ADE00E43; Wed, 11 Jul 2018 09:39:35 -0700 (PDT)
+	id DF3DDE00CEA; Wed, 11 Jul 2018 12:28:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.220.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AA97E00E18
-	for <yocto@yoctoproject.org>; Wed, 11 Jul 2018 09:39:35 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	11 Jul 2018 09:39:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,338,1526367600"; d="scan'208";a="55755615"
-Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
-	by orsmga007.jf.intel.com with ESMTP; 11 Jul 2018 09:39:34 -0700
-Received: from orsmsx159.amr.corp.intel.com (10.22.240.24) by
-	ORSMSX110.amr.corp.intel.com (10.22.240.8) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Wed, 11 Jul 2018 09:39:34 -0700
-Received: from orsmsx106.amr.corp.intel.com ([169.254.1.85]) by
-	ORSMSX159.amr.corp.intel.com ([169.254.11.31]) with mapi id
-	14.03.0319.002; Wed, 11 Jul 2018 09:39:33 -0700
-From: "Kirkiris, Nectar" <nectar.kirkiris@intel.com>
-To: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
-	"Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "'yocto@yoctoproject.org'"
-	<yocto@yoctoproject.org>, "Jolley,
-	Stephen K" <stephen.k.jolley@intel.com>, 
-	"Eggleton, Paul" <paul.eggleton@intel.com>
-Thread-Topic: QA cycle report for 2.3.4 RC1
-Thread-Index: AdQYFM15jqq6V4xRQ8SWy9QoEbx81gBP+oyAAAfC8NA=
-Date: Wed, 11 Jul 2018 16:39:33 +0000
-Message-ID: <F76A3524AF85D345AD0CCA3E70E13D04936A9A97@ORSMSX106.amr.corp.intel.com>
-References: <9DDD2658D1FE414E99172D2DB1E4D04335E7F876@PGSMSX109.gar.corp.intel.com>
-	<f9f8617f880d57694c54585dcbb3c9737e509ceb.camel@linuxfoundation.org>
-In-Reply-To: <f9f8617f880d57694c54585dcbb3c9737e509ceb.camel@linuxfoundation.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNzRjYmRmNTEtYzUzZi00NDQwLWE1NmMtNWNkMTlhM2QxMmIxIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjIuNS4xOCIsIlRydXN0ZWRMYWJlbEhhc2giOiIrYk0ydzhwQUZjTTlqdUhpVTMzWW4wemVIZHI2bEZUNHFsZmRRd0p6ejdtVmZBMWt0bXJHd0V3VzJ5VVVZazFXIn0=
-dlp-product: dlpe-windows
-dlp-version: 11.0.200.100
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.139]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BFB4E0044F
+	for <yocto@yoctoproject.org>; Wed, 11 Jul 2018 12:28:24 -0700 (PDT)
+Received: by mail-qk0-f178.google.com with SMTP id z74-v6so14257232qkb.10
+	for <yocto@yoctoproject.org>; Wed, 11 Jul 2018 12:28:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mpbc-ca.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=GZAeTzN9mKhxc/JnW0RKZZWy/temQy8ntMIxOOaz5Os=;
+	b=Xqx8hPedUYHk1LY4ElSzXBL8yzzEwmFde9Wgt9lgOyjYeVxuueEbVFDv+yLwI8frAG
+	eCizT8J+U35YWX+w1KscZ/U3+CtbQEOLEwi9ZIzV2lYd2LKyL8q11o9zfvNG3SBuUfr/
+	CQmaxYkrQ8qrtuGhfTjCYyGXjaijm1+S4SrKgpHpTycNTZFf8+X/lfYe66DWMdAX4ttB
+	HcHzhPubevKJsYl0bjPaWkY4g3YCMe1AC9bmT+XY2S/iBWfRQTm8IHqscM9COyaeNImD
+	+kkotr4yRNWp46f8l7/rHBe/hTFotoPPYj3ewVSPwa39ltZHV8DxGL0MKb8m3us8J06Z
+	XHHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=GZAeTzN9mKhxc/JnW0RKZZWy/temQy8ntMIxOOaz5Os=;
+	b=qDzCM1FC/jTTArOFpeRDmxcCP2DgiqLkAM6XMpbaB0ZFTHQUQFR5kr5fZsUTg4cBOQ
+	9xP09LS55Q+4s/MA25M8dYIll2LBFU8SnYO4/J817tbJaAQ3ZvZXsaRjGmPkfAt2HpbP
+	I4aA1EEfxRt5UjRNvmh5A5pre3HUyJkQ7xB0HmFc9YbVjcsuUluwPJLhCuw2jBpHc0+4
+	sL3B3fTvw0k7AOVlunrJEWruAgtCwYBg3Jt2aMs7HZqQbB6eMsAtIPhLAky80Yc33Wfn
+	Uc/6t6gdjtc/HZm0IVk3YM1tdD0LmuABSXm0F/DxPdoLaoVSXtUU42nHIr3E/SfQ8Ttt
+	gU1Q==
+X-Gm-Message-State: APt69E1rURTodznPIkWzd2mSeukxWHvCiOGzlpyMAzEly/oc2xo5gJS8
+	2yZVJ8nnUwHV48yEWAs7rRlaPNpEN0MUgz3dc+e2WQql
+X-Google-Smtp-Source: AAOMgpcSPeakCsGAV/kcowiNfYNrZ0HE1MCkQjQFoShKBXzA3tP13KjNgfX2zpdzwigo84/UwdXWGPV0Ro2bfDP1gj8=
+X-Received: by 2002:a37:c9:: with SMTP id
+	t70-v6mr27142764qkg.235.1531337303531; 
+	Wed, 11 Jul 2018 12:28:23 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 11 Jul 2018 10:03:43 -0700
-Subject: Re: QA cycle report for 2.3.4 RC1
+Received: by 2002:ac8:856:0:0:0:0:0 with HTTP;
+	Wed, 11 Jul 2018 12:28:23 -0700 (PDT)
+From: Simon Chamlian <simon.chamlian@mpbc.ca>
+Date: Wed, 11 Jul 2018 15:28:23 -0400
+Message-ID: <CANmTPBaL6gdfO0KhiQ9Eu2zsUvDPkxUtsi8uk=jUwkOxXNkPnQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Which bb is chosen when several versions are available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,53 +66,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jul 2018 16:39:36 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 11 Jul 2018 19:28:24 -0000
+Content-Type: multipart/alternative; boundary="00000000000002351f0570be4093"
 
-KzEgdG8gcmVsZWFzZSBmcm9tIHRoZSBJbnRlbCBzaWRlIGFzIHdlbGwuDQoNCk5lY3Rhcg0KDQot
-LS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogcmljaGFyZC5wdXJkaWVAbGludXhmb3Vu
-ZGF0aW9uLm9yZyBbbWFpbHRvOnJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmddIA0K
-U2VudDogV2VkbmVzZGF5LCBKdWx5IDExLCAyMDE4IDY6MjEgQU0NClRvOiBZZW9oLCBFZSBQZW5n
-IDxlZS5wZW5nLnllb2hAaW50ZWwuY29tPjsgJ3lvY3RvQHlvY3RvcHJvamVjdC5vcmcnIDx5b2N0
-b0B5b2N0b3Byb2plY3Qub3JnPjsgSm9sbGV5LCBTdGVwaGVuIEsgPHN0ZXBoZW4uay5qb2xsZXlA
-aW50ZWwuY29tPjsgRWdnbGV0b24sIFBhdWwgPHBhdWwuZWdnbGV0b25AaW50ZWwuY29tPg0KQ2M6
-IFNhbmdhbCwgQXBvb3J2IDxhcG9vcnYuc2FuZ2FsQGludGVsLmNvbT47IEtpcmtpcmlzLCBOZWN0
-YXIgPG5lY3Rhci5raXJraXJpc0BpbnRlbC5jb20+DQpTdWJqZWN0OiBSZTogUUEgY3ljbGUgcmVw
-b3J0IGZvciAyLjMuNCBSQzENCg0KT24gVHVlLCAyMDE4LTA3LTEwIGF0IDA2OjExICswMDAwLCBZ
-ZW9oLCBFZSBQZW5nIHdyb3RlOg0KPiBUaGlzIGlzIHRoZSBmdWxsIHJlcG9ydCBmb3IgMi4zLjQu
-cmMxOiANCj4gaHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9XVzI1Xy1fMjAxOC0w
-Ni0yMi1fRnVsbF9UZXN0X0N5Y2xlDQo+IF8tXzIuMy40X3JjMQ0KPiAgDQo+ID09PT09PT0gU3Vt
-bWFyeSA9PT09PT09PQ0KPiAgDQo+IEFsbCBwbGFubmVkIHRlc3RzIHdlcmUgZXhlY3V0ZWQuICBU
-aGVyZSB3ZXJlIHplcm8gaGlnaCBtaWxlc3RvbmUgDQo+IGRlZmVjdC4gIFRlYW0gaGFkIGZvdW5k
-IDMgbmV3IGRlZmVjdHMgd2hlcmUgeW9jdG8tYnNwIGZhaWxlZCB0byBjcmVhdGUgDQo+IGJvb3Rh
-YmxlIGltYWdlIHdpdGggbmV3IGJzcCBsYXllciBbMV0sIFFFTVUgZW5kZWQgdW5leHBlY3RlZGx5
-IGR1cmluZyANCj4gZG9fdGVzdGltYWdlOmNvcmUtaW1hZ2UtbHNiLXNkayBbMl0sICYgdmFsZ3Jp
-bmQgcHRlc3QgcGFzc2VkIGluIA0KPiAyLjMuMy5yYzEgZmFpbGVkIGF0IGN1cnJlbnQgcmVsZWFz
-ZSBbM10uDQo+ICANCj4gPT09PT09PSBRQS1IaW50cz09PT09PT09DQo+ICANCj4gRm91bmQgMyBu
-b24gY3JpdGljYWwgZGVmZWN0cy4gDQo+ICANCj4gPT09PT09PSBCdWdzID09PT09PT09DQoNClRo
-YW5rcyBmb3IgdGhpcyBFZSBQZW5nIGFuZCB0ZWFtIQ0KDQo+IE5ldyBCdWdzDQo+IFsxXSBCdWcg
-MTI4NDYgLSBbUUEgMi4zLjRyYzFdW01ldGEtWW9jdG9dW0Nhc2UgMzA5LCBDYXNlIDMxMF06IEFm
-dGVyIA0KPiBjcmVhdGluZyBCU1AgbGF5ZXIgdXNpbmcgeW9jdG8tYnNwLCB0aGUgaW1hZ2UgY3Jl
-YXRlZCBub3QgYWJsZSB0byBib290IA0KPiB1cCBhcyBsb2NhbCB2YXJpYWJsZSAncWJzeXMnIHJl
-ZmVyZW5jZWQgYmVmb3JlIGFzc2lnbm1lbnQNCj4gaHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2pl
-Y3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0xMjg0Ng0KDQpIYXMgdGhpcyBldmVyIHdvcmtlZD8gSSBh
-Z3JlZSB3ZSBzaG91bGQgaGF2ZSBhIGJldHRlciBlcnJvciBtZXNzYWdlIGJ1dCB1bHRpbWF0ZWx5
-IGl0cyBkdWUgdG8gcnVucWVtdSBub3QgdW5kZXJzdGFuZGluZyB0aGF0IE1BQ0hJTkUgbmFtZS4N
-Cg0KSSBkb24ndCB0aGluayB0aGF0IGlzIGEgcmVsZWFzZSBibG9ja2VyLg0KDQo+IFsyXSBCdWcg
-MTI4MTIgLSBbMi4zLjQgcmMxXSBRZW11IGVuZGVkIHVuZXhwZWN0ZWRseSBkdXJpbmcgDQo+IGRv
-X3Rlc3RpbWFnZTpjb3JlLWltYWdlLWxzYi1zZGsNCj4gaHR0cHM6Ly9idWd6aWxsYS55b2N0b3By
-b2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0xMjgxMg0KDQpXZSBiZWxpZXZlIHRoaXMgaXMgZHVl
-IHRvIHRoZSBpbmZhbW91cyBhcGljIGlzc3VlcyB3ZSd2ZSBoYWQgd2l0aCBjZXJ0YWluIGtlcm5l
-bCB2ZXJzaW9ucyAoSUEgb25seSkuIEl0cyBhbm5veWluZyBhbmQgc29tZXRoaW5nIHdlIHNob3Vs
-ZCBmaXggYnV0IG5vdCBhIHJlbGVhc2UgYmxvY2tlciBJTU8uDQogDQo+IFszXSBCdWcgMTI4NDcg
-LSBbMi4zLjQgcmMxXSB2YWxncmluZCBwdGVzdCBmYWlsZWQNCj4gaHR0cHM6Ly9idWd6aWxsYS55
-b2N0b3Byb2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0xMjg0Nw0KDQpUaGlzIGlzIGFubm95aW5n
-IGJ1dCB3ZSdkIHByb2JhYmx5IGZvY3VzIG9uIG1hc3RlciBmb3IgcHRlc3Qgd29yay4NCg0KTG9v
-a2luZyBhdCB0aGUgdmFyaW91cyBidWdzIGZpbGVkIGFnYWluc3QgdGhlIHJlbGVhc2UgaW4gdGhl
-IFFBIHJlcG9ydCwgSSB0aGluayB0aGVyZSBhcmUgc29tZSBhbm5veWluZyBpc3N1ZXMgYnV0IG5v
-dGhpbmcgdG8gd2FycmFudCBhbiByYzIgZ2l2ZW4gb3VyIGN1cnJlbnQgcmVzb3VyY2Ugc2l0dWF0
-aW9uIHNvIEknZCBzdWdnZXN0IHJlbGVhc2luZyByYzEuDQoNCkNoZWVycywNCg0KUmljaGFyZA0K
-DQoNCg0K
+--00000000000002351f0570be4093
+Content-Type: text/plain; charset="UTF-8"
 
+Hi,
+
+In the BSP yocto image, I have 2 recipes:
+
+/sources/meta-openembedded/meta-oe/recipes-devtools/php
+
+drwxrwxr-x 2 jay jay  4096 Jun 28 09:48 php
+-rw-rw-r-- 1 jay jay   232 Jun 28 09:48 php_5.5.38.bb
+drwxrwxr-x 2 jay jay  4096 Jun 28 09:48 php-5.6.26
+-rw-rw-r-- 1 jay jay   291 Jun 28 09:48 php_5.6.26.bb
+-rw-rw-r-- 1 jay jay 11980 Jun 28 09:48 php.inc
+
+
+If I add in my image recipe:
+CORE_IMAGE_EXTRA_INSTALL += " \
+    php \
+"
+
+which version will be included?
+
+Thanks,
+S
+
+--00000000000002351f0570be4093
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>In the BSP yocto image, =
+I have 2 recipes:</div><div><br></div><div style=3D"margin-left:40px"><span=
+ style=3D"font-family:monospace,monospace">/sources/meta-openembedded/meta-=
+oe/recipes-devtools/php<br><br>drwxrwxr-x 2 jay jay=C2=A0 4096 Jun 28 09:48=
+ php<br>-rw-rw-r-- 1 jay jay=C2=A0=C2=A0 232 Jun 28 09:48 <a href=3D"http:/=
+/php_5.5.38.bb">php_5.5.38.bb</a><br>drwxrwxr-x 2 jay jay=C2=A0 4096 Jun 28=
+ 09:48 php-5.6.26<br>-rw-rw-r-- 1 jay jay=C2=A0=C2=A0 291 Jun 28 09:48 <a h=
+ref=3D"http://php_5.6.26.bb">php_5.6.26.bb</a><br>-rw-rw-r-- 1 jay jay 1198=
+0 Jun 28 09:48 php.inc</span></div><div><br></div><div><br></div><div>If I =
+add in my image recipe:</div><div style=3D"margin-left:40px"><span style=3D=
+"font-family:monospace,monospace">CORE_IMAGE_EXTRA_INSTALL +=3D &quot; \<br=
+>=C2=A0=C2=A0=C2=A0 php \=C2=A0=C2=A0 <br></span></div><div style=3D"margin=
+-left:40px"><span style=3D"font-family:monospace,monospace">&quot;</span></=
+div><div><br></div><div>which version will be included?</div><div><br></div=
+><div>Thanks,</div><div>S</div><div><br></div></div>
+
+--00000000000002351f0570be4093--
