@@ -1,67 +1,65 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <simon.chamlian@mpbc.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 12751E00D91; Thu, 12 Jul 2018 09:54:59 -0700 (PDT)
+	id 2DF6AE00D9E; Thu, 12 Jul 2018 10:49:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.65 listed in list.dnswl.org]
+	*      [209.85.216.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f65.google.com (mail-oi0-f65.google.com
-	[209.85.218.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1AF4E006B3
-	for <yocto@yoctoproject.org>; Thu, 12 Jul 2018 09:54:57 -0700 (PDT)
-Received: by mail-oi0-f65.google.com with SMTP id i12-v6so57073849oik.2
-	for <yocto@yoctoproject.org>; Thu, 12 Jul 2018 09:54:57 -0700 (PDT)
+Received: from mail-qt0-f171.google.com (mail-qt0-f171.google.com
+	[209.85.216.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7ADD5E009B2
+	for <yocto@yoctoproject.org>; Thu, 12 Jul 2018 10:49:22 -0700 (PDT)
+Received: by mail-qt0-f171.google.com with SMTP id b15-v6so24834733qtp.11
+	for <yocto@yoctoproject.org>; Thu, 12 Jul 2018 10:49:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	d=mpbc-ca.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=V3z1EAgwJ5DN+6sYWz8UP9zoyEa5dAuzFNV3Tdvipag=;
-	b=TT8MZ3JesZKwzykJalVfTSjQy8dEqJ994RyCq5xqNz+C1076AF4BZPCHrpgwAIGRji
-	ercHoKWLgULpFVyqzskex+SPAoQYl/E0WWZqNLDkWJc/KzfRb9Vy+i3RB4K/I0nKjD1H
-	ENjyGsD4UrpveK90aSqIoGTt8Exj9FJdavkG0DeAUCVNyqdCx72FabFAEcmtaIxi0nLS
-	5jZlhhE3utKTsnWZDtezoYMxi4Hc9v1jlWr2QfKTuwiEoSanQVzXM80uKokrFgrbYL6d
-	WlkqMPc0Je9oiWyFCSgb6nR4rGWC2wSxewboiEU1UnelsdWJLB9P36/t7H74mdaLFMuX
-	AFuQ==
+	:cc; bh=kBnK6k938prmSva5AVh6S8EFoOuRy5nrFY8umhIqgHg=;
+	b=dtXaOAZ5y6pquqIjkcjzQoTNLllDtBlVVyfbTDW3KxQAUEa6FTnD/AEMQMjSUcLI6Z
+	yxLD6a7PNoiggCARgZBEltkPAAyKEzDS0BjbReNrhMttlsqYtVL7dcKl+oZnRi7Ivz5T
+	KMDwiRjBo0Rlb08+wRkY1Tdp8juDDEdg304PlOcx9OiOO1i3BHU4KlRSUqbsFMeJkjMM
+	d74jUyUJ1A3BMI9G+Jtq56HOy0z/g1wY1kBfmZzoJ7O3NO+x6sBCjgrlTTHRfBsCgRei
+	erebgpCAByxBfO41WjpFl4FZOKWj+JHHAMVcTG8blJaczFsp4kdu4Itd1OkUgdE4MP7w
+	4Cdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=V3z1EAgwJ5DN+6sYWz8UP9zoyEa5dAuzFNV3Tdvipag=;
-	b=T3wFwIkxKpKdRL+MYX+8IFcqHlnRoR55e/xIe8DBYd4Ar7g/kYU+dT1HFcBq6Lta3z
-	K4Wa7HQ0hCMdjaXVwW84uLt+Dvd0ntDiCO87Mu+AKK2Kw1d1NKitW2vJGK+GsCYYvUmm
-	arx/46a3G5G40qIqIeYYX3Z/fUcjO1HSuV0emFn7UZeX2j41PvZpiDYU/e36gNM/FsGW
-	FwAfpJZdiIWge42jY8xvY2WTs/S8Vygpg6JEF1Vy8wC0G4iGGDC2gfEAswEWbyk7rU40
-	fVmoIRVZp67rCkZ7Fa8Mxv4B7Ibr1xIicjuRsgMNsWZ8f5D2BaXuysuCIdw6HYx2a1RP
-	z3Bw==
-X-Gm-Message-State: AOUpUlFTPFq57BunCTzSMCWMXqeNmXoWMn6AajGrxlbQijHLaPTlCjeS
-	JxdL44z7aoj5Wwwnpf3/8qtZvc9NUuK8ZMyBF2cbtw==
-X-Google-Smtp-Source: AAOMgpf/aAjDJcxNMQrepGVEtBJmITsbxpStoqMfN7ljqM359pfdLfLJWOL93l9tR/XUNSWjPJi4ArTqIq1b+WwBJ4c=
-X-Received: by 2002:aca:5dc5:: with SMTP id
-	r188-v6mr3256261oib.320.1531414497302; 
-	Thu, 12 Jul 2018 09:54:57 -0700 (PDT)
+	:message-id:subject:to:cc;
+	bh=kBnK6k938prmSva5AVh6S8EFoOuRy5nrFY8umhIqgHg=;
+	b=RSWmJDOdc04g7PQ2vSQu478pqGeL8w3kcafxnT1k4AQTJrpuazDEvJDAfj/2eLp0yp
+	VvFLApG/takEKmRAw9F/l9iCT84eBJTOKB7WK/qYS9GsG5/J7wiVShF8oEmqsvOQoNpT
+	+/MEjZW1+ibndeQjWlPn0llIYNqt6pw2SbO0Qm2MIGs4lo490m2Z4Gviz42q7Rawxg3R
+	vLvdZA2Kp92hv9spWg/YXIn76yvueW65LR3w2x9Vwz8fRyBPbMFgBg0s2P7+jLqLP3Hl
+	98J309smAN/SDYSDt2ycVLTefBRr80j25KKswqb8JOYZUPnbm9Z3VIHzvCMNBMTThuHy
+	3IVA==
+X-Gm-Message-State: AOUpUlHByA+wxce6qaOR4VUOTqFIBx2iWz1fbs6NK7QoQ0Tta1GAs8ZX
+	WWebzuqzJTbEcqtW3a+AxDeCVYWMsQAjDQ/vvghUjQ==
+X-Google-Smtp-Source: AAOMgpfmIMP//L146BT0ZJwJ30lEs+syCyiOXqCfzY9ol/KawvndeykxBaNJ5sIPVAyTsQsb8uD/HByYRF/FyrWUfJo=
+X-Received: by 2002:a0c:e651:: with SMTP id
+	c17-v6mr3529981qvn.170.1531417761818; 
+	Thu, 12 Jul 2018 10:49:21 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ac9:6845:0:0:0:0:0 with HTTP; Thu, 12 Jul 2018 09:54:36
-	-0700 (PDT)
-In-Reply-To: <1531348961-38317-2-git-send-email-juro.bystricky@intel.com>
-References: <1531348961-38317-1-git-send-email-juro.bystricky@intel.com>
-	<1531348961-38317-2-git-send-email-juro.bystricky@intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 12 Jul 2018 17:54:36 +0100
-Message-ID: <CAJTo0LZh7vxSP8D0tKk_NPky6NXS_gRz4J2zXMz8aU5b9Bhq9g@mail.gmail.com>
-To: Juro Bystricky <juro.bystricky@intel.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
-	Alejandro Enedino Hernandez Samaniego <alejandr@xilinx.com>,
-	Juro Bystricky <jurobystricky@hotmail.com>
-Subject: Re: [meta-mingw][sumo][PATCH 1/1] openssl: build for mingw
+Received: by 2002:ac8:856:0:0:0:0:0 with HTTP;
+	Thu, 12 Jul 2018 10:49:21 -0700 (PDT)
+In-Reply-To: <CAJTo0LaTeoEssFT8zy54AaSqgPgxE7ForzYZYWD8n5aVhGV_WQ@mail.gmail.com>
+References: <CANmTPBYQtpFnEJccZ0aLQFXxViB6KB+4CemA+c9Y1EtX0j2P1Q@mail.gmail.com>
+	<CAJTo0LaTeoEssFT8zy54AaSqgPgxE7ForzYZYWD8n5aVhGV_WQ@mail.gmail.com>
+From: Simon Chamlian <simon.chamlian@mpbc.ca>
+Date: Thu, 12 Jul 2018 13:49:21 -0400
+Message-ID: <CANmTPBY=pJajhhyr=9rBPpAQE_LSJyxxQk5YuJ+c-T9d9DmB-w@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: how to download a recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,90 +71,161 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jul 2018 16:54:59 -0000
+X-List-Received-Date: Thu, 12 Jul 2018 17:49:23 -0000
+Content-Type: multipart/alternative; boundary="000000000000b23c7a0570d0fb57"
+
+--000000000000b23c7a0570d0fb57
 Content-Type: text/plain; charset="UTF-8"
+
+for grpc, there are 2 of them:
+
+http://layers.openembedded.org/layerindex/recipe/72419/
+Layer meta-oe
+<http://layers.openembedded.org/layerindex/branch/master/layer/meta-oe/>
+(master branch)
+
+
+and
+http://layers.openembedded.org/layerindex/recipe/86424/
+Layer meta-networking
+<http://layers.openembedded.org/layerindex/branch/master/layer/meta-networking/>
+(master branch)
+
+
+which one do I choose?
+
+
+
+On Thu, Jul 12, 2018 at 12:42 PM, Burton, Ross <ross.burton@intel.com>
+wrote:
+
+> Using postgresql as an example, searching for it will take you to the
+> recipe page:
+>
+> http://layers.openembedded.org/layerindex/recipe/5558/
+>
+> This tells you that the recipe is in the meta-oe layer, so click on that:
+>
+> http://layers.openembedded.org/layerindex/branch/master/layer/meta-oe/
+>
+> That tells you where the layer is hosted:
+>
+> http://cgit.openembedded.org/meta-openembedded
+>
+> You use git to clone that layer and add it to BBLAYERS.
+>
+> Ross
+>
+> On 12 July 2018 at 17:19, Simon Chamlian <simon.chamlian@mpbc.ca> wrote:
+> > Hi,
+> >
+> > I simple question.
+> >
+> > How do you download a recipe from ?
+> >
+> > http://layers.openembedded.org/layerindex/branch/master/recipes/
+> >
+> > ??
+> >
+> > Do I copy past the bb into a text file or there is a way to download the
+> > actual file?
+> >
+> > Thanks,
+> > S
+> >
+> >
+> >
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+>
+
+--000000000000b23c7a0570d0fb57
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Does this also work for rocko and master if the bbappend used a
-wildcard?  Or is it not required for rocko and master?
+<div dir=3D"ltr"><div>for grpc, there are 2 of them:</div><div><br></div><d=
+iv><a href=3D"http://layers.openembedded.org/layerindex/recipe/72419/">http=
+://layers.openembedded.org/layerindex/recipe/72419/</a></div><div><table cl=
+ass=3D"gmail-table gmail-table-striped gmail-table-bordered"><tbody><tr><th=
+>Layer</th>
+                            <td><a href=3D"http://layers.openembedded.org/l=
+ayerindex/branch/master/layer/meta-oe/">meta-oe</a> (master branch)</td></t=
+r></tbody></table></div><div><br></div><div><br></div><div>and</div><div><a=
+ href=3D"http://layers.openembedded.org/layerindex/recipe/86424/">http://la=
+yers.openembedded.org/layerindex/recipe/86424/</a></div><div><table class=
+=3D"gmail-table gmail-table-striped gmail-table-bordered"><tbody><tr><th>La=
+yer</th>
+                            <td><a href=3D"http://layers.openembedded.org/l=
+ayerindex/branch/master/layer/meta-networking/">meta-networking</a> (master=
+ branch)</td></tr></tbody></table><br></div><div><br></div><div><br></div><=
+div>which one do I choose?</div><div><br></div><div><br></div></div><div cl=
+ass=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, Jul 12, 2018 at =
+12:42 PM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@=
+intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br=
+><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
+px #ccc solid;padding-left:1ex">Using postgresql as an example, searching f=
+or it will take you to the<br>
+recipe page:<br>
+<br>
+<a href=3D"http://layers.openembedded.org/layerindex/recipe/5558/" rel=3D"n=
+oreferrer" target=3D"_blank">http://layers.openembedded.<wbr>org/layerindex=
+/recipe/5558/</a><br>
+<br>
+This tells you that the recipe is in the meta-oe layer, so click on that:<b=
+r>
+<br>
+<a href=3D"http://layers.openembedded.org/layerindex/branch/master/layer/me=
+ta-oe/" rel=3D"noreferrer" target=3D"_blank">http://layers.openembedded.<wb=
+r>org/layerindex/branch/master/<wbr>layer/meta-oe/</a><br>
+<br>
+That tells you where the layer is hosted:<br>
+<br>
+<a href=3D"http://cgit.openembedded.org/meta-openembedded" rel=3D"noreferre=
+r" target=3D"_blank">http://cgit.openembedded.org/<wbr>meta-openembedded</a=
+><br>
+<br>
+You use git to clone that layer and add it to BBLAYERS.<br>
+<br>
+Ross<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+On 12 July 2018 at 17:19, Simon Chamlian &lt;<a href=3D"mailto:simon.chamli=
+an@mpbc.ca">simon.chamlian@mpbc.ca</a>&gt; wrote:<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; I simple question.<br>
+&gt;<br>
+&gt; How do you download a recipe from ?<br>
+&gt;<br>
+&gt; <a href=3D"http://layers.openembedded.org/layerindex/branch/master/rec=
+ipes/" rel=3D"noreferrer" target=3D"_blank">http://layers.openembedded.<wbr=
+>org/layerindex/branch/master/<wbr>recipes/</a><br>
+&gt;<br>
+&gt; ??<br>
+&gt;<br>
+&gt; Do I copy past the bb into a text file or there is a way to download t=
+he<br>
+&gt; actual file?<br>
+&gt;<br>
+&gt; Thanks,<br>
+&gt; S<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
+&gt; ______________________________<wbr>_________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
+</a><br>
+&gt;<br>
+</font></span></blockquote></div><br></div>
 
-Ross
-
-On 11 July 2018 at 23:42, Juro Bystricky <juro.bystricky@intel.com> wrote:
-> Build openssl.exe and several .dll files needed to run openssl
-> under Windows
->
-> Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
-> ---
->  .../openssl/openssl/mingw-targets.patch               | 13 +++++++++++++
->  recipes-connectivity/openssl/openssl_1.0.2o.bbappend  | 19 +++++++++++++=
-++++++
->  2 files changed, 32 insertions(+)
->  create mode 100644 recipes-connectivity/openssl/openssl/mingw-targets.pa=
-tch
->  create mode 100644 recipes-connectivity/openssl/openssl_1.0.2o.bbappend
->
-> diff --git a/recipes-connectivity/openssl/openssl/mingw-targets.patch b/r=
-ecipes-connectivity/openssl/openssl/mingw-targets.patch
-> new file mode 100644
-> index 0000000..a9d98db
-> --- /dev/null
-> +++ b/recipes-connectivity/openssl/openssl/mingw-targets.patch
-> @@ -0,0 +1,13 @@
-> +--- a/Configure
-> ++++ b/Configure
-> +@@ -672,6 +668,10 @@ my %table=3D(
-> +
-> + # MinGW
-> + "mingw", "gcc:-mno-cygwin -DL_ENDIAN -DWIN32_LEAN_AND_MEAN -fomit-frame=
--pointer -O3 -march=3Di486 -Wall::-D_MT:MINGW32:-lws2_32 -lgdi32 -lcrypt32:=
-BN_LLONG ${x86_gcc_des} ${x86_gcc_opts} EXPORT_VAR_AS_FN:${x86_asm}:coff:wi=
-n32:cygwin-shared:-D_WINDLL -DOPENSSL_USE_APPLINK:-mno-cygwin:.dll.a",
-> ++"mingw32-x86_64","gcc:-mno-cygwin -DL_ENDIAN -O3 -Wall -DWIN32_LEAN_AND=
-_MEAN -DUNICODE -D_UNICODE::-D_MT:MINGW64:-lws2_32 -lgdi32 -lcrypt32:SIXTY_=
-FOUR_BIT RC4_CHUNK_LL DES_INT EXPORT_VAR_AS_FN:${x86_64_asm}:mingw64:win32:=
-cygwin-shared:-D_WINDLL:-mno-cygwin:.dll.a",
-> ++"i686-pokysdk-mingw32", "gcc:-mno-cygwin -DL_ENDIAN -DWIN32_LEAN_AND_ME=
-AN -fomit-frame-pointer -O3 -march=3Di486 -Wall::-D_MT:MINGW32:-lws2_32 -lg=
-di32 -lcrypt32:BN_LLONG ${x86_gcc_des} ${x86_gcc_opts} EXPORT_VAR_AS_FN:${x=
-86_asm}:coff:win32:cygwin-shared:-D_WINDLL -DOPENSSL_USE_APPLINK:-mno-cygwi=
-n:.dll.a",
-> ++"mingw32-i686", "gcc:-mno-cygwin -DL_ENDIAN -DWIN32_LEAN_AND_MEAN -fomi=
-t-frame-pointer -O3 -march=3Di686 -Wall::-D_MT:MINGW32:-lws2_32 -lgdi32 -lc=
-rypt32:BN_LLONG ${x86_gcc_des} ${x86_gcc_opts} EXPORT_VAR_AS_FN:${x86_asm}:=
-coff:win32:cygwin-shared:-D_WINDLL -DOPENSSL_USE_APPLINK:-mno-cygwin:.dll.a=
-",
-> ++
-> + # As for OPENSSL_USE_APPLINK. Applink makes it possible to use .dll
-> + # compiled with one compiler with application compiled with another
-> + # compiler. It's possible to engage Applink support in mingw64 build,
-> diff --git a/recipes-connectivity/openssl/openssl_1.0.2o.bbappend b/recip=
-es-connectivity/openssl/openssl_1.0.2o.bbappend
-> new file mode 100644
-> index 0000000..0e4485c
-> --- /dev/null
-> +++ b/recipes-connectivity/openssl/openssl_1.0.2o.bbappend
-> @@ -0,0 +1,19 @@
-> +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> +
-> +SRC_URI_append_mingw32 =3D " file://mingw-targets.patch"
-> +
-> +EXTRA_LIBS_mingw32 =3D "-lws2_32 -lgdi32 -lcrypt32 -lgcc"
-> +
-> +CFLAG_remove_mingw32 =3D " -DTERMIO"
-> +CFLAG_remove_mingw32 =3D " -DHAVE_CRYPTODEV"
-> +CFLAG_remove_mingw32 =3D " -Wa,--noexecstack"
-> +CFLAG_append_mingw32 =3D " -DNOCRYPT -mno-cygwin -DWIN32_LEAN_AND_MEAN"
-> +
-> +do_compile_prepend_mingw32 () {
-> +       export EX_LIBS=3D"${EXTRA_LIBS}"
-> +}
-> +
-> +do_install_prepend_mingw32 () {
-> +       export EX_LIBS=3D"${EXTRA_LIBS}"
-> +}
-> +
-> --
-> 2.7.4
->
-
+--000000000000b23c7a0570d0fb57--
