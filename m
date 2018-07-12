@@ -1,37 +1,68 @@
-Return-Path: <juro.bystricky@intel.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B54FE00CCE; Wed, 11 Jul 2018 15:42:45 -0700 (PDT)
+	id 8F509E00EC1; Wed, 11 Jul 2018 23:11:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B8A2E00CA4
-	for <yocto@yoctoproject.org>; Wed, 11 Jul 2018 15:42:44 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	11 Jul 2018 15:42:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,339,1526367600"; d="scan'208";a="56958461"
-Received: from juro-precision-t5610.jf.intel.com ([10.7.198.59])
-	by orsmga006.jf.intel.com with ESMTP; 11 Jul 2018 15:42:43 -0700
-From: Juro Bystricky <juro.bystricky@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 11 Jul 2018 15:42:41 -0700
-Message-Id: <1531348961-38317-2-git-send-email-juro.bystricky@intel.com>
-X-Mailer: git-send-email 2.7.4
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f54.google.com (mail-oi0-f54.google.com
+	[209.85.218.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 271D1E00CA9
+	for <yocto@yoctoproject.org>; Wed, 11 Jul 2018 23:11:24 -0700 (PDT)
+Received: by mail-oi0-f54.google.com with SMTP id y207-v6so53709298oie.13
+	for <yocto@yoctoproject.org>; Wed, 11 Jul 2018 23:11:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=xQdgsa8ouq+ZEksxH+K7v/TLNRpgppT2i1j0ZGn6gXs=;
+	b=QP66GviP/6Z0YR4tPX40gN78dA7hoNV2/Ia4bg5Z9wC3L9u4dEPqdLF6m4OTAZ2gED
+	2jiL0HuFFiLtAUrrJV6qRq6X9od51HpipT4Cwqrth+j7S8dCvt2prVO09d2kg4YaDZdn
+	eGpUtOwm9sM2Me7pvzmidr0LL3EpyBSb3d6c3lEA3Dke65xrpXk4he/2gcRsHAZwq5cx
+	obnIBjx1e9QZI87n1HPM+2aTQIghW07r+9cRyIn930y4WkenHytIThJ1/slmbtdcbxGr
+	C84Q3h+WZP3LNpgwzCyx5TaMXNuByw3XwR7+dbdMmUQiJrbT7hWNk2t4XuqDEAxCDHMi
+	4bEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=xQdgsa8ouq+ZEksxH+K7v/TLNRpgppT2i1j0ZGn6gXs=;
+	b=JZO8VYhZ3mVwaSvvkdnN0G9IvHxOVPmNXUMqvh54cbdqGIpgiOZuBtjE7O+gKNIaTG
+	yAncKk+NbsxPcDqMe8lIEF5FOHR+9Fu/qDv7e6JNNDI/8Ev5LffFAZwDJvGOfTuzOesy
+	Rymf9FogaEVuGK1eW/pwsi+FH3qNn/8+2gilhrRVQ36AW7VEqXX/L0SHdx5A1rKV0XsN
+	QLqEUnHYIjG/U0XaBVtJngMyQ9N35zwpmXCptByVj7WCtJ0uvBj+41IUO8rSpEOPw16/
+	me2vd9BtDStebgXKGSlr+dG48ysiz0NwG7Omrb+VMdcQNQJ4VU7MR2zXtL4cF5/YHUx+
+	XKsw==
+X-Gm-Message-State: AOUpUlE2o6kul82q1NFj1T+DJPkq9hQgQn2d5IuFfRuerWivB/odJof4
+	9/kfSMbnBGlp1CUjvFXovv64S3lEPgBoKnE7Vdc=
+X-Google-Smtp-Source: AAOMgpdaIX9NRy1Z0DB9PqDMDNkgAqdpOMHgzABXGPONarM3hNAvm/N1j8F1ckD8fOOK/uu818cMLNLekfn/CWFJUjY=
+X-Received: by 2002:aca:e80c:: with SMTP id
+	f12-v6mr1007686oih.38.1531375884477; 
+	Wed, 11 Jul 2018 23:11:24 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a4a:90c5:0:0:0:0:0 with HTTP; Wed, 11 Jul 2018 23:11:24
+	-0700 (PDT)
 In-Reply-To: <1531348961-38317-1-git-send-email-juro.bystricky@intel.com>
 References: <1531348961-38317-1-git-send-email-juro.bystricky@intel.com>
-Cc: alejandr@xilinx.com, jurobystricky@hotmail.com
-Subject: [meta-mingw][sumo][PATCH 1/1] openssl: build for mingw
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 12 Jul 2018 08:11:24 +0200
+Message-ID: <CANNYZj-6T094K_MLnzL0DMT4Yb-0X_m370ncS366MOHQm_LHLw@mail.gmail.com>
+To: Juro Bystricky <juro.bystricky@intel.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>, jurobystricky@hotmail.com,
+	alejandr@xilinx.com
+Subject: Re: [meta-mingw][sumo][PATCH 0/1] openssl for Windows
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,64 +74,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jul 2018 22:42:45 -0000
+X-List-Received-Date: Thu, 12 Jul 2018 06:11:25 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Build openssl.exe and several .dll files needed to run openssl
-under Windows
+You probably need to do this for openssl 1.1 as well as it soon will
+be the default.
 
-Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
----
- .../openssl/openssl/mingw-targets.patch               | 13 +++++++++++++
- recipes-connectivity/openssl/openssl_1.0.2o.bbappend  | 19 +++++++++++++++++++
- 2 files changed, 32 insertions(+)
- create mode 100644 recipes-connectivity/openssl/openssl/mingw-targets.patch
- create mode 100644 recipes-connectivity/openssl/openssl_1.0.2o.bbappend
+Alex
 
-diff --git a/recipes-connectivity/openssl/openssl/mingw-targets.patch b/recipes-connectivity/openssl/openssl/mingw-targets.patch
-new file mode 100644
-index 0000000..a9d98db
---- /dev/null
-+++ b/recipes-connectivity/openssl/openssl/mingw-targets.patch
-@@ -0,0 +1,13 @@
-+--- a/Configure
-++++ b/Configure
-+@@ -672,6 +668,10 @@ my %table=(
-+ 
-+ # MinGW
-+ "mingw", "gcc:-mno-cygwin -DL_ENDIAN -DWIN32_LEAN_AND_MEAN -fomit-frame-pointer -O3 -march=i486 -Wall::-D_MT:MINGW32:-lws2_32 -lgdi32 -lcrypt32:BN_LLONG ${x86_gcc_des} ${x86_gcc_opts} EXPORT_VAR_AS_FN:${x86_asm}:coff:win32:cygwin-shared:-D_WINDLL -DOPENSSL_USE_APPLINK:-mno-cygwin:.dll.a",
-++"mingw32-x86_64","gcc:-mno-cygwin -DL_ENDIAN -O3 -Wall -DWIN32_LEAN_AND_MEAN -DUNICODE -D_UNICODE::-D_MT:MINGW64:-lws2_32 -lgdi32 -lcrypt32:SIXTY_FOUR_BIT RC4_CHUNK_LL DES_INT EXPORT_VAR_AS_FN:${x86_64_asm}:mingw64:win32:cygwin-shared:-D_WINDLL:-mno-cygwin:.dll.a",
-++"i686-pokysdk-mingw32", "gcc:-mno-cygwin -DL_ENDIAN -DWIN32_LEAN_AND_MEAN -fomit-frame-pointer -O3 -march=i486 -Wall::-D_MT:MINGW32:-lws2_32 -lgdi32 -lcrypt32:BN_LLONG ${x86_gcc_des} ${x86_gcc_opts} EXPORT_VAR_AS_FN:${x86_asm}:coff:win32:cygwin-shared:-D_WINDLL -DOPENSSL_USE_APPLINK:-mno-cygwin:.dll.a",
-++"mingw32-i686", "gcc:-mno-cygwin -DL_ENDIAN -DWIN32_LEAN_AND_MEAN -fomit-frame-pointer -O3 -march=i686 -Wall::-D_MT:MINGW32:-lws2_32 -lgdi32 -lcrypt32:BN_LLONG ${x86_gcc_des} ${x86_gcc_opts} EXPORT_VAR_AS_FN:${x86_asm}:coff:win32:cygwin-shared:-D_WINDLL -DOPENSSL_USE_APPLINK:-mno-cygwin:.dll.a",
-++
-+ # As for OPENSSL_USE_APPLINK. Applink makes it possible to use .dll
-+ # compiled with one compiler with application compiled with another
-+ # compiler. It's possible to engage Applink support in mingw64 build,
-diff --git a/recipes-connectivity/openssl/openssl_1.0.2o.bbappend b/recipes-connectivity/openssl/openssl_1.0.2o.bbappend
-new file mode 100644
-index 0000000..0e4485c
---- /dev/null
-+++ b/recipes-connectivity/openssl/openssl_1.0.2o.bbappend
-@@ -0,0 +1,19 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+SRC_URI_append_mingw32 = " file://mingw-targets.patch"
-+
-+EXTRA_LIBS_mingw32 = "-lws2_32 -lgdi32 -lcrypt32 -lgcc"
-+
-+CFLAG_remove_mingw32 = " -DTERMIO"
-+CFLAG_remove_mingw32 = " -DHAVE_CRYPTODEV"
-+CFLAG_remove_mingw32 = " -Wa,--noexecstack"
-+CFLAG_append_mingw32 = " -DNOCRYPT -mno-cygwin -DWIN32_LEAN_AND_MEAN" 
-+
-+do_compile_prepend_mingw32 () {
-+	export EX_LIBS="${EXTRA_LIBS}"
-+}
-+
-+do_install_prepend_mingw32 () {
-+	export EX_LIBS="${EXTRA_LIBS}"
-+}
-+
--- 
-2.7.4
-
+2018-07-12 0:42 GMT+02:00 Juro Bystricky <juro.bystricky@intel.com>:
+> Patch to allow building openssl for Windows.
+> openssl can also become part of SDK, i.e:
+>
+> SDKMACHINE="x86_64-mingw32"
+> MACHINE = "qemux86-64"
+> TOOLCHAIN_HOST_TASK_append = " nativesdk-openssl "
+>
+>
+> Juro Bystricky (1):
+>   openssl: build for mingw
+>
+>  .../openssl/openssl/mingw-targets.patch               | 13 +++++++++++++
+>  recipes-connectivity/openssl/openssl_1.0.2o.bbappend  | 19 +++++++++++++++++++
+>  2 files changed, 32 insertions(+)
+>  create mode 100644 recipes-connectivity/openssl/openssl/mingw-targets.patch
+>  create mode 100644 recipes-connectivity/openssl/openssl_1.0.2o.bbappend
+>
+> --
+> 2.7.4
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
