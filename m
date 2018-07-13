@@ -1,62 +1,41 @@
-Return-Path: <figiel@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 896B1E010E1; Thu, 12 Jul 2018 23:42:47 -0700 (PDT)
+	id A6E3AE010F0; Fri, 13 Jul 2018 00:29:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (figiel[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.41 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f41.google.com (mail-vk0-f41.google.com
-	[209.85.213.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 243C8E00CFD
-	for <yocto@yoctoproject.org>; Thu, 12 Jul 2018 23:42:46 -0700 (PDT)
-Received: by mail-vk0-f41.google.com with SMTP id d74-v6so17654229vke.10
-	for <yocto@yoctoproject.org>; Thu, 12 Jul 2018 23:42:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=712sg3+lgnQJESjk4BjLy+rVWBxweEksTW77pwNk13M=;
-	b=R/nhMkEmCKWJDyUjCp65IUeq3Eb7E4cJvm55TwcNBm4R72447pkLwW0IM8k5D8doZM
-	Pt9OfxMsKGTJKVzoUTayM+DoN2vUm6DEiNRXRSDYr36B6MWPqDFiHRatgtWKn1BSX/pl
-	6L3zPs/rwA0TJlO6EXbYdRnyFnG5Eb2j96eouanDfLLqvy5lEvJb2BDlrs4TxlCSCSju
-	Bes8RTSdcyucjJFDQ4mz7zd37EAusMRdt4jvOgeazHvioER+Lihk9AbQ9HIYuuTkCEDy
-	UhCjVGMwZLDdqPK0YwRxccSNCFoRwRgC949SQgHbl79A5PiKmR6oGWpEqx/vhkFbvrzR
-	ICOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=712sg3+lgnQJESjk4BjLy+rVWBxweEksTW77pwNk13M=;
-	b=Dfp4EWCpBszA5tabiV9C184oY4Qi28jDyoIV/TIVsC0twCHh7aMo4xeAg3QiJdlid1
-	R34gsReARQ9Q7Ooab7y/KJRvtrSrzLIQfFkTOiLnpvSS8Dex4zZDLMMzh2CgpxN+sYUn
-	T6bn9v/8EDPfoAECCbQZrSpUyuJ1JxOo9qGJzbtKM8CC/CW9/XlKBE/0mt3w5UJZ3kEC
-	ukrFGwmxa13XIlgMmwqjYuA65RF3LbzS07/6BlmC+ilL1RPCGFkeptTsZ4kHHgYGo0xC
-	hVZBfn8JweyXJwjFXDaTu8Y0V1YLn8sjnUElSxxxQjVYBNmROhbYOeVEVq1d1Zhdhrn/
-	EqBw==
-X-Gm-Message-State: AOUpUlEtie2wmGiX2WpYHoJ0dPHDMeOU4SsT8SeI1BxK9cClUY22vL7t
-	RiuVhOhcNYzjmwIOWguDndch5lzR/GD604kCXaw=
-X-Google-Smtp-Source: AAOMgpcvyBv/hIVHMgTk8n2deU0M8XI5WYhm+DP4oIsrh2BWDo1ecXfnfzSPqbbad+3rnYTZj3ZJ9MFhKJlx0Lzay7g=
-X-Received: by 2002:a1f:3b43:: with SMTP id i64-v6mr2948902vka.2.1531464166249;
-	Thu, 12 Jul 2018 23:42:46 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49624E00E23;
+	Fri, 13 Jul 2018 00:29:24 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	13 Jul 2018 00:29:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,347,1526367600"; d="scan'208";a="54066364"
+Received: from hsolima-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+	([10.249.33.36])
+	by fmsmga007.fm.intel.com with ESMTP; 13 Jul 2018 00:29:22 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Konrad Scherer <Konrad.Scherer@windriver.com>
+Date: Fri, 13 Jul 2018 09:29:21 +0200
+Message-ID: <14728108.V4DRTVBihh@localhost.localdomain>
+Organization: Intel Corporation
+In-Reply-To: <cf47aad9-6eda-46a4-20c2-24e9903fa5df@windriver.com>
+References: <2274431.fXWzuTuIFg@localhost.localdomain>
+	<46407905.10uWkAFYrq@localhost.localdomain>
+	<cf47aad9-6eda-46a4-20c2-24e9903fa5df@windriver.com>
 MIME-Version: 1.0
-Received: by 2002:a67:6702:0:0:0:0:0 with HTTP; Thu, 12 Jul 2018 23:42:45
-	-0700 (PDT)
-From: Piotr Figiel <figiel@gmail.com>
-Date: Fri, 13 Jul 2018 08:42:45 +0200
-Message-ID: <CAL9TtUqzaZMzRukGLRwc7nArh_xt2hfVRvy5SkiPS6Tz+Maqmw@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: License information of statically linked libraries
+Cc: yocto@yoctoproject.org
+Subject: Re: [layerindex-web] RFC: layer index docker fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,27 +47,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jul 2018 06:42:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 13 Jul 2018 07:29:24 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
- do license files for statically linked libraries get somehow on the
-target image?
- I'm thinking of how license.bbclass works, as far as I understand it
-gathers all relevant license files basing on the recipe fields like
-LICENSE and LIC_FILES_CHKSUM of installed packages.
- If a recipe is only DEPENDant (and not RDEPENDand) to a library and
-uses only static files from it the dependency in question is not
-installed on the target. Will the license text files of the dependency
-be installed though?
- If I recall correctly for example native DEPENDencies don't get their
-license text installed so are static devs somehow special?
- I have similar case here, not exactly about static libraries but I
-have a case where a recipe I want to write depends build-time but not
-runtime on some BSD licensed component. If I make separate recipe for
-that component which will not install anything to runtime image will
-the license text get installed?
+On Thursday, 12 July 2018 10:16:12 PM CEST you wrote:
+> I just noticed that the image doesn't contain git. Was this 
+> deliberate or an oversight?
 
-Best regards,
-Piotr.
+Ah, no, it wasn't deliberate - perhaps it was there earlier with buildpack-
+deps? It doesn't appear that we ever explicitly had it in there. I've added it 
+and pushed the branch again.
+ 
+> >> I recommend docker-compose because much of the information in
+> >> docker/README can be captured in a compose yaml file. It handles the
+> >> network setup and makes managing shared volumes much simpler.
+> > 
+> > Right, we'd just need to make sure everything we now have in the README is
+> > covered by the compose file (everything that's practical to cover
+> > , anyway).
+> 
+> I am heading out on vacation soon. I will rework my docker-compose 
+> configuration with the new image and make some documentation when I get 
+> back.
+
+OK great, thanks.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
+
 
