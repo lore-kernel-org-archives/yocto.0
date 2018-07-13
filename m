@@ -1,65 +1,67 @@
-Return-Path: <kratsg@gmail.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB3B8E00D8E; Thu, 12 Jul 2018 15:12:27 -0700 (PDT)
+	id 1008BE00EBD; Thu, 12 Jul 2018 19:49:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.46 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (kratsg[at]gmail.com)
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (armccurdy[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
-	[209.85.214.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11DD6E00972
-	for <yocto@yoctoproject.org>; Thu, 12 Jul 2018 15:12:25 -0700 (PDT)
-Received: by mail-it0-f46.google.com with SMTP id v71-v6so8934341itb.3
-	for <yocto@yoctoproject.org>; Thu, 12 Jul 2018 15:12:25 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.49 listed in list.dnswl.org]
+Received: from mail-vk0-f49.google.com (mail-vk0-f49.google.com
+	[209.85.213.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96BB9E00972
+	for <yocto@yoctoproject.org>; Thu, 12 Jul 2018 19:49:12 -0700 (PDT)
+Received: by mail-vk0-f49.google.com with SMTP id 125-v6so17467240vke.11
+	for <yocto@yoctoproject.org>; Thu, 12 Jul 2018 19:49:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=/y4xYWO+OuBn7nFyWGXn4hOEWWL1zczTsi2Opn7kC0M=;
-	b=hVIjRxTONlbdNjwHqSVczEtdJDF0VChCRqzLXAKZ7sILMcg8qLt8Yt/E2F4rBHqlKS
-	AuCAQlOQFj07JKNPhrnmiDd8XlNcObkC9OAVb9eXt3tom+b9EcIHF7yWp1BjNrXTjqST
-	5AQpI0lsE8rFxK8FDWUWYgDZorOkbjk6IFukimzZbK6cUH2mfqfypphbVBY+G8NQekmh
-	ADLYNKgYw9SK9eDtut7kZTISlYhQGYRtT9IyPhNRTMo3Qqx/eowbE+sdoxpcL/2Z+PCR
-	7fLIG/TaaUWbE+jaj+2cX74WczHc8uU/94lKreFHLJNE5GQODS8vxQejMqoFABdB7C1i
-	I1sg==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=+3IMYqu9Q7qEHg5TgvsxstZysvYj7Q9HlaNl5yGRFZc=;
+	b=HMh/a8lWda8esQur0ofM7dZf+5FBd/N0HbvIqtF9iP+s1UEDeaFMSdfS4794RarlHS
+	BKgaWxZmjqWFhFvnHcbgzcRScLY51xeNZ1jZ5T7aXbtK8Lvibik8TVL9m7+Ogez/y9/q
+	c3kcptdUeR5XBpoYWXLSylxMhulCluq/qwWJ5p9TN4aBK75vghBpfKKVw50kOSSTTpWW
+	EkQPvOWotWO8ABGmy71OwRdijX97nbjj1bdZFlN4A0NCvN0i7oo4/IVeKyFgNwKT4OqO
+	kzvVNUTsN7U67xv4jNJ5waECnpqkr754TlknE5aQrRIlohYt4xNc0FZDekVZnE3lNxsq
+	ZBvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=/y4xYWO+OuBn7nFyWGXn4hOEWWL1zczTsi2Opn7kC0M=;
-	b=cmzDG5zFHrE3AElr0SUPTxBnY576gCtaO4QzW/qxNT1f/x9WsLLSZlC1FOyVRFpJb6
-	A+Kp9NtJYX8XBiImiExfljhFTvzLYDS0Uy2+2fId/W2v7J8p72R4HrpHN71FAW02I/3K
-	pc5AsYuEl2K1/0KiSVSwH3oFq7pKjKxFumu7E3ndQuqL7p5YJmv78CbTLE1epbLGBjLD
-	x1ryTYkEuLc0qrGPO9x0V1JSaoFpl8jaUD+8c9TuKY3OGK+eZX4achAc98wpSVyAA8+H
-	o/gPQyDcWLIhuqEYXzV88FHlDeKx2wOZsFfy1VEl0uR1r5tbAPYQhN30Ld+ap0tNMm6f
-	O2Eg==
-X-Gm-Message-State: AOUpUlH7isAKCarTUAu8AyacCrHssajyWXggjBB3KZ7sXJL9rumwCOVY
-	jACanl+3rX8CWYo4KXaE5oKak9M7MGV+bwEh674=
-X-Google-Smtp-Source: AAOMgpeS2ccypbIKvINfbYaZJ2WGhqYq+n4xtbuoR+SA049ymTSZUrSV+pmqXaE23lIaoQU26GPO1FIDEorHTKK72IQ=
-X-Received: by 2002:a24:89c3:: with SMTP id
-	s186-v6mr2750925itd.122.1531433545523; 
-	Thu, 12 Jul 2018 15:12:25 -0700 (PDT)
+	bh=+3IMYqu9Q7qEHg5TgvsxstZysvYj7Q9HlaNl5yGRFZc=;
+	b=VS54mdi8DsxMbBzEaJJMBTMffn2VURprjXHXiS3NJoGjxAAVBr4b7L8qt5pOpS/144
+	x9yZia4kg9exq4to7u7iZ3mY9PCmy/m/8p01u8oYkDQU7cm3NkG1wLvTT0EjSur9VVtG
+	q8+jJYL7YC0rtNosxsNAAgP/e6riIsE/NWUFXRVdgURymntnddb7antp/Lw1B1xVCgiz
+	DPQ0V1oklDa7OkSrXVwqPonnFQtpeCTwdv2aBMjHFCaJJa99i81KL8wS/8xAiSAhfqz/
+	6SiNIg86CSPJ7NwpLLAi1NtWZZCo2fUKhL+APK9ZKLO038xceavWq0LNAuqhvgUknZ+c
+	kaWw==
+X-Gm-Message-State: AOUpUlEBNBDQmcVqNVYkCU0eyYYFN4LrZnRvv04i4rabpl7DrNdsNEva
+	Mu/wWQm4/fq213VHn9binYXlWV4WwfXcrXnRQ00=
+X-Google-Smtp-Source: AAOMgpfJnfCZLIH1/6e+MVAp1fJA4rkaHBWgTO4Lsio1FdRBW+I5FnsYsbUbJIHyPyOFeO4F6964UOQTO1SW6VazMdE=
+X-Received: by 2002:a1f:b04c:: with SMTP id
+	z73-v6mr2691018vke.194.1531450151825; 
+	Thu, 12 Jul 2018 19:49:11 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 2002:ab0:2a5:0:0:0:0:0 with HTTP;
+	Thu, 12 Jul 2018 19:49:11 -0700 (PDT)
+In-Reply-To: <CAFzUWG=hRfY9J0z1j-cy20pegF2iSKXbQb+vRrGUhtSGLYMPdw@mail.gmail.com>
 References: <CAFzUWG=7Aam-5PAE_1cpw24Zd+PCj+0KyOziyWrbWYeFLk0EdQ@mail.gmail.com>
 	<CAJTo0Lauvt-utgGQ8B++ytRt_UcRaUrRitv39WZ+mHCT14q6Mw@mail.gmail.com>
-In-Reply-To: <CAJTo0Lauvt-utgGQ8B++ytRt_UcRaUrRitv39WZ+mHCT14q6Mw@mail.gmail.com>
-From: Giordon Stark <kratsg@gmail.com>
-Date: Thu, 12 Jul 2018 18:12:13 -0400
-Message-ID: <CAFzUWG=hRfY9J0z1j-cy20pegF2iSKXbQb+vRrGUhtSGLYMPdw@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
+	<CAFzUWG=hRfY9J0z1j-cy20pegF2iSKXbQb+vRrGUhtSGLYMPdw@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Thu, 12 Jul 2018 19:49:11 -0700
+Message-ID: <CAJ86T=W6e02FV2Dh8OxUWWNi2zMfxDgaB6oFqZkcCK567cG_BQ@mail.gmail.com>
+To: Giordon Stark <kratsg@gmail.com>
 Cc: "N:" <yocto@yoctoproject.org>
 Subject: Re: Writing a recipe that allows for extra depends, depending on the extra_oemake configurations
 X-BeenThere: yocto@yoctoproject.org
@@ -73,65 +75,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jul 2018 22:12:28 -0000
-Content-Type: multipart/alternative; boundary="0000000000007a6b0a0570d4a8b1"
-
---0000000000007a6b0a0570d4a8b1
+X-List-Received-Date: Fri, 13 Jul 2018 02:49:13 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Ross,
-
-Thanks. I saw that but the documentation doesn't explicitly mentioned
-EXTRA_OEMAKE. Is that the same as EXTRA_OECONF?
-
-Giordon
-
-On Thu, Jul 12, 2018 at 5:08 PM Burton, Ross <ross.burton@intel.com> wrote:
-
-> > I'm wondering how I can make it so that I can have a user allow for
-> > additional configuration to enable crypto/krb5 which requires extra
-> depends
-> > and changing the oemake flags. Is this something Yocto can do, or is it
-> > better to have users provide a bbappend file to update this recipe?
+On Thu, Jul 12, 2018 at 3:12 PM, Giordon Stark <kratsg@gmail.com> wrote:
+> Hi Ross,
 >
-> Yes, PACKAGECONFIG is exactly what you want.
->
->
-> https://www.yoctoproject.org/docs/2.4.2/ref-manual/ref-manual.html#var-PACKAGECONFIG
->
-> Ross
->
--- 
-Giordon Stark
+> Thanks. I saw that but the documentation doesn't explicitly mentioned
+> EXTRA_OEMAKE. Is that the same as EXTRA_OECONF?
 
---0000000000007a6b0a0570d4a8b1
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+No, EXTRA_OEMAKE and EXTRA_OECONF are different.
 
-<div dir=3D"ltr">Hi Ross,<div><br></div><div>Thanks. I saw that but the doc=
-umentation doesn&#39;t explicitly mentioned EXTRA_OEMAKE. Is that the same =
-as EXTRA_OECONF?</div><div><br></div><div>Giordon</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr">On Thu, Jul 12, 2018 at 5:08 PM Burton, R=
-oss &lt;<a href=3D"mailto:ross.burton@intel.com">ross.burton@intel.com</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex">&gt; I&#39;m wondering h=
-ow I can make it so that I can have a user allow for<br>
-&gt; additional configuration to enable crypto/krb5 which requires extra de=
-pends<br>
-&gt; and changing the oemake flags. Is this something Yocto can do, or is i=
-t<br>
-&gt; better to have users provide a bbappend file to update this recipe?<br=
->
-<br>
-Yes, PACKAGECONFIG is exactly what you want.<br>
-<br>
-<a href=3D"https://www.yoctoproject.org/docs/2.4.2/ref-manual/ref-manual.ht=
-ml#var-PACKAGECONFIG" rel=3D"noreferrer" target=3D"_blank">https://www.yoct=
-oproject.org/docs/2.4.2/ref-manual/ref-manual.html#var-PACKAGECONFIG</a><br=
->
-<br>
-Ross<br>
-</blockquote></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-s=
-martmail=3D"gmail_signature"><div dir=3D"ltr">Giordon Stark</div></div>
+Config options derived from PACKAGECONFIG are automatically appended
+to EXTRA_OECONF (by autotools.bbclass), EXTRA_OECMAKE (by
+cmake.bbclass) and EXTRA_OEMESON (by meson.bbclass) but never
+automatically appended to EXTRA_OEMAKE. If you want to add
+PACKAGECONFIG derived options to EXTRA_OEMAKE then you can manually
+add PACKAGECONFIG_CONFARGS to EXTRA_OEMAKE from within a recipe, for
+example see:
 
---0000000000007a6b0a0570d4a8b1--
+  http://git.openembedded.org/openembedded-core/tree/meta/recipes-graphics/glew/glew_2.1.0.bb
+
+Note that your original example was based around EXTRA_OECMAKE though,
+not EXTRA_OEMAKE.
+
+> On Thu, Jul 12, 2018 at 5:08 PM Burton, Ross <ross.burton@intel.com> wrote:
+>>
+>> > I'm wondering how I can make it so that I can have a user allow for
+>> > additional configuration to enable crypto/krb5 which requires extra
+>> > depends
+>> > and changing the oemake flags. Is this something Yocto can do, or is it
+>> > better to have users provide a bbappend file to update this recipe?
+>>
+>> Yes, PACKAGECONFIG is exactly what you want.
+>>
+>> https://www.yoctoproject.org/docs/2.4.2/ref-manual/ref-manual.html#var-PACKAGECONFIG
+>>
+
