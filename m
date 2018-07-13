@@ -1,17 +1,17 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E9255E010DF; Fri, 13 Jul 2018 07:52:23 -0700 (PDT)
+	id C5152E01125; Fri, 13 Jul 2018 08:32:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.160.65 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,102 +19,52 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl0-f65.google.com (mail-pl0-f65.google.com
-	[209.85.160.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1CD3E00EE0
-	for <yocto@yoctoproject.org>; Fri, 13 Jul 2018 07:52:21 -0700 (PDT)
-Received: by mail-pl0-f65.google.com with SMTP id a7-v6so12305598plp.3
-	for <yocto@yoctoproject.org>; Fri, 13 Jul 2018 07:52:21 -0700 (PDT)
+Received: from mail-vk0-f41.google.com (mail-vk0-f41.google.com
+	[209.85.213.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46535E00E0D
+	for <yocto@yoctoproject.org>; Fri, 13 Jul 2018 08:32:28 -0700 (PDT)
+Received: by mail-vk0-f41.google.com with SMTP id d74-v6so18406615vke.10
+	for <yocto@yoctoproject.org>; Fri, 13 Jul 2018 08:32:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=lC/oElDWw9qAWIixyMQUqk7qCEkAQEBvc+Y8yWiOvsM=;
-	b=g2H9Ktxby55qaZ9zs2wsoAg8iOLhpOXcQp3pjuestVR12+ZG8uVo1ut/H4+9llqvfk
-	1lYAnkJrrTkCSiuQ7TEjEBULAFn8r4NoNpO14gnuNskAsNokdYJ6iQuo77HE2GBIY8+d
-	JXbPfSks4z2ZF1sconph1MKF7lOq8Cg4WGy6zOw065i+26vJZBc5ojNCM1Ou3ZT9o+G+
-	3hP2ra7YYlZYimEOAVhlOV6EHODt2wJFUfTu/8QikA8idXnQaFHCpKzMTcWpuAreWYkp
-	2rLXlyVH2IB8Y41MUjqcye6ZeuHtspHEKPCo+Rl4wBL5d5xxz1ADhZMQoa4ucCdZGq9J
-	+2eQ==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=avPUbAvjqTlxyT8WQoHUbohfYsZKJHZhG/SkMbIAqsA=;
+	b=hJHTMd0lCmFt3eHFpz19Tq0sxGednK4pxDKq0/qqZ6wUUCoyeB1o4/TszdkBN/yJvj
+	1/lJpWB4MiwqqrCXyMKIPioWUsBKTCm9Ilhf3ySE1T/K84NHUABbdG5aQQUUh6j0WNrs
+	qcRhMI0n6gxfpMO5iHexGlhAvMxSk3Kyc/UoPY8Dy5LoLQP1jdT9PIsvbabmVQiKMZdc
+	3JpSlH9GMiHv9ASYHDf4PoGccAgV+CfGUQfN+TqVZrZ2cZXXQhE2zaxkGeA5HuScJV0h
+	Z7AXFBDiZ7JnDB4NwRYe1AzMHUjI0Ln0WXAC6pedrrmVsI7nd4zf+Yiv4rYz7ookytqp
+	fpFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-transfer-encoding:content-language;
-	bh=lC/oElDWw9qAWIixyMQUqk7qCEkAQEBvc+Y8yWiOvsM=;
-	b=Hrzd+a/l1bA9TT6ZEqR21z1CNalA/vOi1OCv3EMnPYIXoh/gEoe2CK4sWnVkUY6Qi2
-	sdHDSXyO9NQQoZ1KZHsCF3MX9lmMtB3p4ODkZBsgYNGHoVP7/mDO7uiMHz733Q1lo0XF
-	l12iVPCHfPcGUUx+6nsEt5tp+uu6LzQZJGV2zl6DVs6QrsK1KA/oEPf71nOlMym0ZVOO
-	ojAtQOecAAvkEDxJp1jG1kgbZOMybXzebOQW9mloLVuvCFsd6yXs8o8nNymOiKLqVLI6
-	ldFOVkuSrIj/+Cht9gYWf5ndyQ8xNqOImmLY6QS2qZPAfho6K44NJjk+KroV7RFPH0Jt
-	y8aA==
-X-Gm-Message-State: AOUpUlFHx4DyXRCoqI2gnkeXx0sYOwqVlomkgbBNTBbSE1CTD3eQO5mV
-	rPguUzD6VxcyIZ0JtZ/asBpNMg==
-X-Google-Smtp-Source: AAOMgpeNaYMzUPNcuZYKM5d2LTFO5AqKmgGXI/CBhYOKmIG83aXncTcWfPW3Wto0VO/hFTRx6zccCw==
-X-Received: by 2002:a17:902:24a5:: with SMTP id
-	w34-v6mr6741082pla.52.1531493540773; 
-	Fri, 13 Jul 2018 07:52:20 -0700 (PDT)
-Received: from ?IPv6:2601:202:4000:1184:955f:e3a6:6fb7:17eb?
-	([2601:202:4000:1184:955f:e3a6:6fb7:17eb])
-	by smtp.gmail.com with ESMTPSA id
-	e186-v6sm45404640pfc.13.2018.07.13.07.52.19
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 13 Jul 2018 07:52:19 -0700 (PDT)
-To: mohamad.noor.alim.hussin@intel.com, yocto@yoctoproject.org,
-	richard.purdie@linuxfoundation.org
-References: <1531483735-31772-1-git-send-email-mohamad.noor.alim.hussin@intel.com>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	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
-	8CS2NxU=
-Message-ID: <6de7931a-6e29-e7c9-bc40-b79a4c50e430@gmail.com>
-Date: Fri, 13 Jul 2018 07:52:18 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.8.0
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=avPUbAvjqTlxyT8WQoHUbohfYsZKJHZhG/SkMbIAqsA=;
+	b=JdWD0L/x7am9LugUww3r/iaWenMPh3UrGXAmCXOk6y/ASc8kXAT7HFv+LiP4PPLDMn
+	JV196MFnjibC90JrBWgw/yX6SQ3+Md6O5JWVsljQ07VAp6sHJxagEW220ns/oeESvjoC
+	xHKrZfY7Rylj0Ti7FFncvxN+DhhGVHt0rt5aSBrWFUdJpdDHHWDzmhjIV8KsqnRRq6Tq
+	/tx5JHGcOc3tKFRFV1QbBPRY+izyposHJg80eTZQjnbdKURtMQ2wUylmBBxmwMJpgM3v
+	EgFqiYQD6cYz9YVr35/PWn38YGICmvK+0AFZWLMrF8bYfeRMwjUPT7mJisXn+1nE291M
+	XWjQ==
+X-Gm-Message-State: AOUpUlHNglga3zIVVL2nANXGqLU+orN8K0zv4Ri7DhbcuWmJlaFU84sL
+	q6lsnvuf0spT8Us9QtqL6UNOFrahK9Nf7DAW4AA=
+X-Google-Smtp-Source: AAOMgpcDiSNFJVS1Phqu74nVMRX0OhnJSxzsmD4ptH5OnPKWEH1XWlqKVJ+0YPmyUMG34dIUqJ/6KPlcbT2x0x6Lgak=
+X-Received: by 2002:a1f:20d4:: with SMTP id
+	g203-v6mr4037979vkg.176.1531495947212; 
+	Fri, 13 Jul 2018 08:32:27 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1531483735-31772-1-git-send-email-mohamad.noor.alim.hussin@intel.com>
-Subject: Re: [PATCH] runtime: Add support to manual BSP test cases
+References: <CAFzUWGkMqX_yUhE-+Mo+8Uu_MzeD7g_V+r8eAOs_72onvRDJmg@mail.gmail.com>
+	<CAMKF1soVjuxqEv0YECuAAxcWm7kWpm5k3Yo_ognnJo5eUhaXGQ@mail.gmail.com>
+	<CAFzUWG=XB-HXZ4RRNnxufiBm9zTsp-jKCP-BGgmFP8cJ1=tStw@mail.gmail.com>
+	<CAMKF1spoykTOLMb2wG9Yi8+eS9xt6GUfCpEnaHq_hUBctc5nEg@mail.gmail.com>
+	<CAFzUWGnkL0aYvG+NX9un8zV=ucYX8tjNumWbj=3TBtF0gFRgoQ@mail.gmail.com>
+In-Reply-To: <CAFzUWGnkL0aYvG+NX9un8zV=ucYX8tjNumWbj=3TBtF0gFRgoQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 13 Jul 2018 09:31:57 -0600
+Message-ID: <CAMKF1spKRGVcQLXn-FW+=579ELKXb3eNzg6i59XhAX+yg8=1AA@mail.gmail.com>
+To: Giordon Stark <kratsg@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: LLVM: error adding symbols: File in wrong format
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -126,297 +76,517 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jul 2018 14:52:24 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Fri, 13 Jul 2018 15:32:29 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Giordon
 
+I realised that you are on an older release can you cherry pick
 
-On 07/13/2018 05:08 AM, mohamad.noor.alim.hussin@intel.com wrote:
-> From: Mohamad Noor Alim Hussin <mohamad.noor.alim.hussin@intel.com>
+https://github.com/kraj/meta-clang/commit/e9def8f1
+
+I hope that will be helpful this was done for armv7ve/rpi3
+
+I think that you need to add following for your case. If it works you
+can send the patches for the branch you are on.
+
+TUNE_CCARGS_remove_toolchain-clang =3D "-march=3Darmv7-a"
+TUNE_CCARGS_append_toolchain-clang =3D
+"${@bb.utils.contains("TUNE_FEATURES", "armv7a", " -march=3Darmv7a", "",
+d)}"
+On Fri, Jul 13, 2018 at 8:00 AM Giordon Stark <kratsg@gmail.com> wrote:
 >
-> This is manual BSP test cases that have converted to auto test cases
-> for QA release. Manualbsp.py has dependency on file bsphardware that run
-> on hardware.
-How do the TestID get determined?
-
-Also, I think this patch needs to be cc'd to
-"openembedded-core@lists.openembedded.org"
+> Hi Khem,
 >
-> Signed-off-by: Mohamad Noor Alim Hussin <mohamad.noor.alim.hussin@intel.com>
-> ---
->  meta/lib/oeqa/runtime/cases/manualbsp.py | 122 ++++++++++++++++++++++++++++
->  meta/lib/oeqa/runtime/files/bsphardware  | 132 +++++++++++++++++++++++++++++++
->  2 files changed, 254 insertions(+)
->  create mode 100644 meta/lib/oeqa/runtime/cases/manualbsp.py
->  create mode 100755 meta/lib/oeqa/runtime/files/bsphardware
+> I've uploaded the gist here: https://gist.github.com/ef8b964d563b9b0c5249=
+b199033d7b6e
 >
-> diff --git a/meta/lib/oeqa/runtime/cases/manualbsp.py b/meta/lib/oeqa/runtime/cases/manualbsp.py
-> new file mode 100644
-> index 0000000..22d0d33
-> --- /dev/null
-> +++ b/meta/lib/oeqa/runtime/cases/manualbsp.py
-> @@ -0,0 +1,122 @@
-> +from oeqa.runtime.case import OERuntimeTestCase
-> +from oeqa.core.decorator.depends import OETestDepends
-> +from oeqa.core.decorator.oeid import OETestID
-> +import subprocess
-> +import time
-> +
-> +class BspRuntimeTest(OERuntimeTestCase):
-> +
-> +    @OETestID(240)
-> +    def test_check_bash(self):
-> +        status, output = self.target.run('which bash')
-> +        msg = ('bash shell not working as expected. '
-> +                'Status and output:%s and %s.' % (status, output))
-> +        self.assertEqual(status, 0, msg = msg)
-> +
-> +    @OETestID(228)
-> +    def test_runlevel_5(self):
-> +        status, output = self.target.run('init 5')
-> +        msg = ('System unable to init 5 '
-> +                'Status and output:%s and %s.' % (status, output))
-> +        self.assertEqual(status, 255, msg = msg)
-> +        time.sleep(2)
-> +        command = 'bsphardware -r 5'
-> +        status, output = self.target.run(command)
-> +        msg = ('System did not start from runlevel 5. '
-> +                'Status:%s.' % (status))
-> +        self.assertEqual(status, 0, msg = msg)
-> +
-> +    @OETestID(198)
-> +    def test_runlevel_3(self):
-> +        status, output = self.target.run('init 3')
-> +        msg = ('System unable to start with runlevel 3. '
-> +                'Status and output:%s and %s.' % (status, output))
-> +        self.assertEqual(status, 255, msg = msg)
-> +        time.sleep(2)
-> +        command = 'bsphardware -r 3'
-> +        status, output = self.target.run(command)
-> +        msg = ('Unable to change from runlevel 5 to 3. '
-> +                'Status and output:%s and %s.' % (status, output))
-> +        self.assertEqual(status, 0, msg = msg)
-> +
-> +class BspHardwareTest(OERuntimeTestCase):
-> +
-> +    @classmethod
-> +    def setUpClass(cls):
-> +        src = os.path.join(cls.tc.runtime_files_dir, 'bsphardware')
-> +        cls.tc.target.run('mkdir ~/test')
-> +        cls.tc.target.copyTo(src, '/usr/bin')
-> +
-> +    @classmethod
-> +    def tearDownClass(cls):
-> +        cls.tc.target.run('rm -rf ~/test')
-> +
-> +    @OETestID(216)
-> +    def test_USB_mount(self):
-> +        command = 'bsphardware -d sd -sp 1 -m ~/test/stick'
-> +        status, output = self.target.run(command)
-> +        msg = ('Unable to mount USB stick. '
-> +                'Status and output:%s and %s.' % (status, output))
-> +        self.assertEqual(status, 0, msg = msg)
-> +
-> +    @OETestID(217)
-> +    @OETestDepends(['manualbsp.BspHardwareTest.test_USB_write_file'])
-> +    def test_USB_read_file(self):
-> +        command = 'cat ~/test/stick/hello_stick'
-> +        status, output = self.target.run(command)
-> +        msg = ('Unable to read file from USB stick. '
-> +                'Status and output:%s and %s.' % (status, output))
-> +        self.assertEqual(status, 0, msg = msg)
-> +
-> +    @OETestDepends(['manualbsp.BspHardwareTest.test_USB_mount'])
-> +    @OETestID(219)
-> +    def test_USB_write_file(self):
-> +        command = 'touch ~/test/stick/hello_stick'
-> +        status, output = self.target.run(command)
-> +        msg = ('Status and  output:%s and %s.' % (status, output))
-> +        self.assertEqual(status, 0, msg = msg)
-> +
-> +    @OETestDepends(['manualbsp.BspHardwareTest.test_USB_mount'])
-> +    @OETestID(218)
-> +    def test_USB_unmount(self):
-> +        command = 'bsphardware -u ~/test/stick'
-> +        status, output = self.target.run(command)
-> +        msg = ('Unable to unmount USB stick. ' 
-> +                'Status and output:%s and %s.' % (status, output))
-> +        self.assertEqual(status, 0, msg = msg)
-> +
-> +    @OETestID(241)
-> +    def test_MicroSD_mount(self):
-> +        command = 'bsphardware -d mmc -sp p1 -m ~/test/microsd'
-> +        status, output = self.target.run(command)
-> +        msg = ('Unable to mount MicroSD. '
-> +                'Status and output:%s and %s.' %(status, output))
-> +        self.assertEqual(status, 0, msg = msg)
-> +
-> +    @OETestDepends(['manualbsp.BspHardwareTest.test_MicroSD_write_file'])
-> +    @OETestID(242)
-> +    def test_MicroSD_read_file(self):
-> +        command = 'cat ~/test/microsd/hello_mmc'
-> +        status, output = self.target.run(command)
-> +        msg = ('Unable to read MicroSD. '
-> +                'Status and output:%s and %s.' % (status, output))
-> +        self.assertEqual(status, 0, msg = msg)
-> +
-> +    @OETestDepends(['manualbsp.BspHardwareTest.test_MicroSD_mount'])
-> +    @OETestID(244)
-> +    def test_MicroSD_write_file(self):
-> +        command = 'touch ~/test/microsd/hello_mmc'
-> +        status, output = self.target.run(command)
-> +        msg = ('Unable to write to MicroSD. '
-> +                'Status and output:%s and %s.' % (status, output))
-> +        self.assertEqual(status, 0, msg = msg)
-> +
-> +    @OETestDepends(['manualbsp.BspHardwareTest.test_MicroSD_mount'])
-> +    @OETestID(243)
-> +    def test_MicroSD_unmount(self):
-> +        command = 'bsphardware -u ~/test/microsd'
-> +        status, output = self.target.run(command)
-> +        msg = ('Unable to unmount MicroSD. '
-> +                'Status and output:%s and %s.' % (status, output))
-> +        self.assertEqual(status, 0, msg = msg)
-> +
-> diff --git a/meta/lib/oeqa/runtime/files/bsphardware b/meta/lib/oeqa/runtime/files/bsphardware
-> new file mode 100755
-> index 0000000..2640acc
-> --- /dev/null
-> +++ b/meta/lib/oeqa/runtime/files/bsphardware
-> @@ -0,0 +1,132 @@
-> +#!/bin/sh
-> +
-> +# Description: This script used for Yocto Project BSP test.
-> +#              manualbsp.py script is depend on this script
-> +#              that available in poky/meta/lib/oeqa/runtime/cases/manualbsp.py.
-> +#              This script is should be located in
-> +#              poky/meta/lib/oeqa/runtime/cases/
-> +
-> +LOG_FILE="/tmp/bsphardware.log"
-> +
-> +usage() {
-> +echo "BSP hardware test is a script used to test hardware"
-> +echo "such as USB stick, micro SD and SSD hard disk on Yocto Project."$'\n'
-> +echo "Usage:"
-> +echo " -d, --device <keyword, e.g. sd/mmc>            Get device's name"
-> +echo " -sp, --setPartition <partition's number>       Set partition's number "
-> +echo " -m, --mount <path/to/mount>                    Mount the device to /path/to/mount"
-> +echo " -u, --umount <path/to/unmount>                 Unmont the mounted device"
-> +echo " -r, --runlevel <3|5>                           Get runlevel on current system"
-> +echo " -h, --help                                     Show the usage"$'\n'
-> +echo "Examples"
-> +echo " bsphardware -d sda -sp 1 -m ~/data   Mount /dev/sda1 on ~/data"
-> +}
-> +
-> +options() {
-> +SETPARTITION=""
-> +DEVICE=""
-> +while [[ $# -gt 0 ]]; do
-> +case "$1" in
-> +    -d|--device)
-> +        echo "[INFO]: get device's name" 2>&1 | tee -a $LOG_FILE
-> +        array_devices=()
-> +        index_device=()
-> +        array_devices=$(ls /dev/$2*)
-> +        for i in ${array_devices[@]}
-> +        do
-> +            index_device+=($i)
-> +        done
-> +        DEVICE="${index_device[0]}"
-> +        echo "[INFO]: Detected device: $DEVICE"$'\n' 2>&1 | tee -a $LOG_FILE
-> +        ;;
-> +    -sp| --setPartition)
-> +        echo "[INFO]: Set partition: $2" 2>&1 | tee -a $LOG_FILE
-> +        SETPARTITION=$2
-> +        ;;
-> +    -m|mount)
-> +        if [[ ! -d $2 ]];then
-> +            mkdir -p $2
-> +        fi
-> +        if [[ "$DEVICE" == "" || " $SETPARTITION" == "" ]]; then
-> +            echo "[ERROR]: Target device and partition not found." 2>&1 | tee -a $LOG_FILE 
-> +            echo "[INFO]: Use -d <device_keyword> -sp <partition's number> -m <dir>"  2>&1 | tee -a $LOG_FILE
-> +        else
-> +            echo "[INFO]: Mounting removable media..." 2>&1 | tee -a $LOG_FILE
-> +            echo "[DEBUG]: commandline: mount $DEVICE$SETPARTITION $2"$'\n' 2>&1 | tee -a $LOG_FILE > /dev/null
-> +            mount $DEVICE$SETPARTITION $2
-> +        fi
-> +        if [[ $? -eq 0 ]]; then
-> +            echo "[INFO]: Device $DEVICE$SETPARTITION mount successfully"$'\n' 2>&1 | tee -a $LOG_FILE
-> +            exit 0
-> +        else
-> +            echo "[ERROR]: Unable to mount device $DEVICE$SETPARTITION. Device does not exist"$'\n' 2>&1 | tee -a $LOG_FILE
-> +            exit 1
-> +        fi
-> +        ;;
-> +    -u|umount)
-> +        echo "[INFO]: Unmount $2" 2>&1 | tee -a $LOG_FILE
-> +        if [[ -d $2 ]]; then
-> +            echo "[DEBUG]: commandline: umount from $2" 2>&1 | tee -a $LOG_FILE > /dev/null
-> +            umount $2
-> +        else
-> +            echo "[Error]: No mount point on $2"$'\n' 2>&1 | tee -a $LOG_FILE
-> +            exit 1
-> +        fi
-> +        if [[ $? -eq 0 ]];then 
-> +            echo "[INFO]: Device $2 unmount successfully" 2>&1 | tee -a $LOG_FILE
-> +            echo "[INFO]: Removing mount point on $2" $'\n' 2>&1 | tee -a $LOG_FILE
-> +            rm -rf $2
-> +        else
-> +            echo "[ERROR]: Unable to unmount from $2"$'\n' 2>&1 | tee -a $LOG_FILE
-> +        fi
-> +        ;;
-> +    -r|--runlevel)
-> +        level=$(runlevel | cut -d " " -f2)
-> +        echo "[DEBUG]: commandline: runlevel | cut -d ' ' -f2" 2>&1 | tee -a $LOG_FILE > /dev/null
-> +        if [[ "$2" == "3" || "$2" == "5" ]]; then
-> +            if [[ "$level" == "3" && "$level" == "$2" ]]; then
-> +                echo "[DEBUG]: Test runlevel 3"  2>&1 | tee -a $LOG_FILE
-> +                echo "[INFO]: System start with runlevel: $level"$'\n' 2>&1 | tee -a $LOG_FILE
-> +                exit 0
-> +            elif [[ "$level" == "5" && "$level" == "$2" ]]; then
-> +                echo "[DEBUG]: Test runlevel 5" 2>&1 | tee -a $LOG_FILE > /dev/null
-> +                echo "[INFO]: System start with runlevel: $level"$'\n' 2>&1 | tee -a $LOG_FILE
-> +                exit 0
-> +            else
-> +                echo "[INFO]: System did not start with runlevel: $2"$'\n' 2>&1 | tee -a $LOG_FILE
-> +                exit 1
-> +            fi
-> +        else
-> +            echo "[ERROR]: Runlevel other than 3 & 5 are not allowed."$'\n' 2>&1 | tee -a $LOG_FILE
-> +            exit 1
-> +        fi
-> +        ;;
-> +    -h|--help)
-> +        usage
-> +        exit 0
-> +        ;;
-> +    *) 
-> +        echo "[Error]: Arguments $1 is not exists."$'\n' 2>&1 | tee -a $LOG_FILE
-> +        usage
-> +        exit 1
-> +        ;;
-> +esac
-> +shift
-> +shift
-> +done
-> +}
-> +
-> +main() {
-> +if [ "$#" == "0" ];then
-> +    usage
-> +    exit 1
-> +else
-> +    echo "[INFO]: Start-Date: $(date '+%Y-%m-%d %H:%M:%S')" 2>&1 | tee -a $LOG_FILE > /dev/null
-> +    echo "[DEBUG]: commandline: $0 ${POSITIONAL[*]}" 2>&1 | tee -a $LOG_FILE > /dev/null
-> +    options "${POSITIONAL[@]}"
-> +fi
-> +}
-> +
-> +POSITIONAL=()
-> +POSITIONAL+=("$@")
-> +main ${POSITIONAL[@]}
-
+> Looks like the error is:
+>
+> clang-5.0: error: the clang compiler does not support '-march=3Darmv7-a'
+>
+> Giordon
+>
+> On Fri, Jul 13, 2018 at 1:30 AM Khem Raj <raj.khem@gmail.com> wrote:
+>>
+>> Hi Giordon
+>>
+>> I think there is something else going on. Can you check
+>> /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/=
+root/6.14.00-r0/build/CMakeFiles/CMakeError.log
+>>
+>> and see what error message is being spit out by clang when its trying
+>> to compile the sample file to detect c++11
+>> On Thu, Jul 12, 2018 at 1:57 PM Giordon Stark <kratsg@gmail.com> wrote:
+>> >
+>> > Hi Khem,
+>> >
+>> > I added clang, removed llvm-native -- and now I get an llvm error -- s=
+upposedly because the llvm being used with yocto may be too old(?).
+>> >
+>> > kratsg@dc:/local/d4/gstark/poky/build$ bitbake root
+>> > Loading cache: 100% |#################################################=
+###########################################################################=
+############################################| Time: 0:00:00
+>> > Loaded 3854 entries from dependency cache.
+>> > Parsing recipes: 100% |###############################################=
+###########################################################################=
+############################################| Time: 0:00:03
+>> > Parsing of 2600 .bb files complete (2598 cached, 2 parsed). 3853 targe=
+ts, 163 skipped, 0 masked, 0 errors.
+>> > NOTE: Resolving any missing task queue dependencies
+>> >
+>> > Build Configuration:
+>> > BB_VERSION           =3D "1.36.0"
+>> > BUILD_SYS            =3D "x86_64-linux"
+>> > NATIVELSBSTRING      =3D "universal"
+>> > TARGET_SYS           =3D "arm-poky-linux-gnueabi"
+>> > MACHINE              =3D "zc702-zynq7"
+>> > DISTRO               =3D "poky"
+>> > DISTRO_VERSION       =3D "2.4.2"
+>> > TUNE_FEATURES        =3D "arm armv7a vfp thumb neon callconvention-har=
+d cortexa9"
+>> > TARGET_FPU           =3D "hard"
+>> > meta
+>> > meta-poky
+>> > meta-yocto-bsp       =3D "rocko:cca8bde9d700d68c5f36d7d4c47c048526aedf=
+c0"
+>> > meta-xilinx-bsp      =3D "rocko:7935ef724cd7359ed97e6ae3d90ebc8f07dd7e=
+1f"
+>> > meta-oe
+>> > meta-python          =3D "rocko:dacfa2b1920e285531bec55cd2f08743390aaf=
+57"
+>> > meta                 =3D "rocko:7dccdf82d49fb11cb2a7cb205ae08311e5d432=
+91"
+>> > meta-clang           =3D "rocko:a4c0cd28de9c3d5823be43150a76d221b08896=
+d6"
+>> > meta-l1calo          =3D "update/ROOT:0cfb5bfd77ec9bb9fb9afbf427178684=
+2a5dff8f"
+>> > workspace            =3D "rocko:cca8bde9d700d68c5f36d7d4c47c048526aedf=
+c0"
+>> >
+>> > Initialising tasks: 100% |############################################=
+###########################################################################=
+############################################| Time: 0:00:03
+>> > NOTE: Executing SetScene Tasks
+>> > NOTE: Executing RunQueue Tasks
+>> > ERROR: root-6.14.00-r0 do_configure: Function failed: do_configure (lo=
+g file is located at /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-p=
+oky-linux-gnueabi/root/6.14.00-r0/temp/log.do_configure.2984)
+>> > ERROR: Logfile of failure stored in: /local/d4/gstark/poky/build/tmp/w=
+ork/cortexa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/temp/log.do_configur=
+e.2984
+>> > Log data follows:
+>> > | DEBUG: Executing shell function do_configure
+>> > | -- The C compiler identification is Clang 5.0.1
+>> > | -- The CXX compiler identification is Clang 5.0.1
+>> > | -- Check for working C compiler: /local/d4/gstark/poky/build/tmp/wor=
+k/cortexa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot-native/=
+usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-clang
+>> > | -- Check for working C compiler: /local/d4/gstark/poky/build/tmp/wor=
+k/cortexa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot-native/=
+usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-clang -- works
+>> > | -- Detecting C compiler ABI info
+>> > | -- Detecting C compiler ABI info - done
+>> > | -- Detecting C compile features
+>> > | -- Detecting C compile features - done
+>> > | -- Check for working CXX compiler: /local/d4/gstark/poky/build/tmp/w=
+ork/cortexa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot-nativ=
+e/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-clang++
+>> > | -- Check for working CXX compiler: /local/d4/gstark/poky/build/tmp/w=
+ork/cortexa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot-nativ=
+e/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-clang++ -- works
+>> > | -- Detecting CXX compiler ABI info
+>> > | -- Detecting CXX compiler ABI info - done
+>> > | -- Detecting CXX compile features
+>> > | -- Detecting CXX compile features - done
+>> > | -- ROOT default compression algorithm is lz4
+>> > | -- Vc does not support arm. Support for Vc disabled.
+>> > | -- Found Clang. Major version 5, minor version 0
+>> > | -- Performing Test HAS_CXX11
+>> > | -- Performing Test HAS_CXX11 - Success
+>> > | -- Looking for pthread.h
+>> > | -- Looking for pthread.h - found
+>> > | -- Looking for pthread_create
+>> > | -- Looking for pthread_create - not found
+>> > | -- Looking for pthread_create in pthreads
+>> > | -- Looking for pthread_create in pthreads - not found
+>> > | -- Looking for pthread_create in pthread
+>> > | -- Looking for pthread_create in pthread - found
+>> > | -- Found Threads: TRUE
+>> > | -- Found a 64bit system
+>> > | -- Found CLANG compiler
+>> > | -- Performing Test GLIBCXX_USE_CXX11_ABI
+>> > | -- Performing Test GLIBCXX_USE_CXX11_ABI - Failed
+>> > | -- ROOT Platform: linux
+>> > | -- ROOT Architecture: linuxx8664gcc
+>> > | -- Build Type: RelWithDebInfo
+>> > | -- Compiler Flags: -march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=
+=3Dhard -mcpu=3Dcortex-a9 -mlittle-endian -D__extern_always_inline=3Dinline=
+ -no-integrated-as -Wno-error=3Dunused-command-line-argument -Qunused-argum=
+ents  --sysroot=3D/local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky=
+-linux-gnueabi/root/6.14.00-r0/recipe-sysroot  -O2 -pipe -g -feliminate-unu=
+sed-debug-types -fdebug-prefix-map=3D/local/d4/gstark/poky/build/tmp/work/c=
+ortexa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0=3D/usr/src/debug/root/6.1=
+4.00-r0 -fdebug-prefix-map=3D/local/d4/gstark/poky/build/tmp/work/cortexa9h=
+f-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot-native=3D -fdebug-=
+prefix-map=3D/local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky-linu=
+x-gnueabi/root/6.14.00-r0/recipe-sysroot=3D  -fvisibility-inlines-hidden -m=
+arch=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-a9 -mli=
+ttle-endian -D__extern_always_inline=3Dinline -no-integrated-as -Wno-error=
+=3Dunused-command-line-argument -Qunused-arguments  --sysroot=3D/local/d4/g=
+stark/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/root/6.14.00-r=
+0/recipe-sysroot -Wc++11-narrowing -Wsign-compare -Wsometimes-uninitialized=
+ -Wconditional-uninitialized -Wheader-guard -Warray-bounds -Wcomment -Wtaut=
+ological-compare -Wstrncat-size -Wloop-analysis -Wbool-conversion -pipe -m6=
+4  -Wshadow -Wall -W -Woverloaded-virtual -fsigned-char -pthread -std=3Dc++=
+11
+>> > | -- Looking for ZLib
+>> > | -- Found ZLIB: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-=
+poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libz.so (found ve=
+rsion "1.2.11")
+>> > | -- Looking for Freetype
+>> > | -- Found Freetype: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-n=
+eon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libfreetype.s=
+o (found version "2.8.0")
+>> > | -- Looking for PCRE
+>> > | -- Found PCRE: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-=
+poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/include
+>> > | -- Looking for LZMA
+>> > | -- Found LZMA includes at /local/d4/gstark/poky/build/tmp/work/corte=
+xa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/include
+>> > | -- Found LZMA library at /local/d4/gstark/poky/build/tmp/work/cortex=
+a9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/liblzma=
+.so
+>> > | -- Looking for xxHash
+>> > | -- Could NOT find xxHash (missing:  xxHash_LIBRARY xxHash_INCLUDE_DI=
+R)
+>> > | -- xxHash not found. Switching on builtin_xxhash option
+>> > | -- Looking for LZ4
+>> > | -- Found LZ4: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-p=
+oky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/liblz4.so (found v=
+ersion "1.7.5")
+>> > | -- Looking for X11
+>> > | -- Looking for XOpenDisplay in /local/d4/gstark/poky/build/tmp/work/=
+cortexa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/l=
+ibX11.so;/local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gn=
+ueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libXext.so
+>> > | -- Looking for XOpenDisplay in /local/d4/gstark/poky/build/tmp/work/=
+cortexa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/l=
+ibX11.so;/local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gn=
+ueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libXext.so - not found
+>> > | -- Looking for dnet_ntoa in dnet
+>> > | -- Looking for dnet_ntoa in dnet - not found
+>> > | -- Looking for dnet_ntoa in dnet_stub
+>> > | -- Looking for dnet_ntoa in dnet_stub - not found
+>> > | -- Looking for gethostbyname
+>> > | -- Looking for gethostbyname - not found
+>> > | -- Looking for gethostbyname in nsl
+>> > | -- Looking for gethostbyname in nsl - not found
+>> > | -- Looking for gethostbyname in bsd
+>> > | -- Looking for gethostbyname in bsd - not found
+>> > | -- Looking for connect
+>> > | -- Looking for connect - not found
+>> > | -- Looking for connect in socket
+>> > | -- Looking for connect in socket - not found
+>> > | -- Looking for remove
+>> > | -- Looking for remove - not found
+>> > | -- Looking for remove in posix
+>> > | -- Looking for remove in posix - not found
+>> > | -- Looking for shmat
+>> > | -- Looking for shmat - not found
+>> > | -- Looking for shmat in ipc
+>> > | -- Looking for shmat in ipc - not found
+>> > | -- Looking for IceConnectionNumber in ICE
+>> > | -- Looking for IceConnectionNumber in ICE - not found
+>> > | -- Found X11: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-p=
+oky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libX11.so
+>> > | -- X11_INCLUDE_DIR: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-=
+neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/include
+>> > | -- X11_LIBRARIES: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-ne=
+on-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libX11.so;/loc=
+al/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/root/6.=
+14.00-r0/recipe-sysroot/usr/lib/libXext.so
+>> > | -- X11_Xpm_INCLUDE_PATH: /local/d4/gstark/poky/build/tmp/work/cortex=
+a9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/include
+>> > | -- X11_Xpm_LIB: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon=
+-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libXpm.so
+>> > | -- X11_Xft_INCLUDE_PATH: /local/d4/gstark/poky/build/tmp/work/cortex=
+a9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/include
+>> > | -- X11_Xft_LIB: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon=
+-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libXft.so
+>> > | -- X11_Xext_INCLUDE_PATH:
+>> > | -- X11_Xext_LIB: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neo=
+n-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libXext.so
+>> > | -- Looking for GSL
+>> > | -- Found GSL: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-p=
+oky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/include (found suitabl=
+e version "1.15", minimum required is "1.10")
+>> > | -- Found PythonInterp: /local/d4/gstark/poky/build/tmp/work/cortexa9=
+hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot-native/usr/bin/py=
+thon-native/python (found version "2.7.13")
+>> > | -- Found PythonLibs: /local/d4/gstark/poky/build/tmp/work/cortexa9hf=
+-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libpython2.=
+7.so (found version "2.7.13")
+>> > | -- Looking for OpenGL
+>> > | -- Found OpenGL: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neo=
+n-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libGL.so
+>> > | -- Looking for GLEW
+>> > | -- Found GLEW: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-=
+poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/include
+>> > | -- Looking for gl2ps
+>> > | -- Could NOT find GL2PS (missing:  GL2PS_LIBRARY GL2PS_INCLUDE_DIR)
+>> > | -- gl2ps not found. Switching on builtin_gl2ps option
+>> > | -- Looking for LibXml2
+>> > | -- Found LibXml2: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-ne=
+on-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libxml2.so (fo=
+und version "2.9.4")
+>> > | -- Found OpenSSL: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-ne=
+on-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libcrypto.so (=
+found version "1.0.2n")
+>> > | -- Looking for Castor
+>> > | -- Could NOT find CASTOR (missing:  CASTOR_shift_LIBRARY CASTOR_INCL=
+UDE_DIR)
+>> > | -- Castor not found. Switching off castor option
+>> > | -- Looking for MySQL
+>> > | -- Could NOT find MYSQL (missing:  MYSQL_INCLUDE_DIR MYSQL_LIBRARIES=
+)
+>> > | -- MySQL not found. Switching off mysql option
+>> > | -- Looking for Oracle
+>> > | -- Oracle not found.
+>> > | -- Oracle: You can specify includes: -DORACLE_PATH_INCLUDES=3D/usr/i=
+nclude/oracle/10.2.0.3/client
+>> > | --    currently found includes:
+>> > | -- Oracle: You can specify libs: -DORACLE_PATH_LIB=3D/usr/lib/oracle=
+/10.2.0.3/client/lib
+>> > | --    currently found libs: ORACLE_LIBRARY_OCCI-NOTFOUND;ORACLE_LIBR=
+ARY_CLNTSH-NOTFOUND;ORACLE_LIBRARY_LNNZ-NOTFOUND
+>> > | -- Oracle not found. Switching off oracle option
+>> > | -- Looking for PostgreSQL
+>> > | -- Could NOT find PostgreSQL (missing:  POSTGRESQL_INCLUDE_DIR POSTG=
+RESQL_LIBRARY)
+>> > | -- PostgreSQL not found. Switching off pgsql option
+>> > | -- Looking for SQLite
+>> > | -- Found PkgConfig: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-=
+neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot-native/usr/bin/pkg-c=
+onfig (found version "0.29.2")
+>> > | -- Found Sqlite: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neo=
+n-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/include
+>> > | -- Looking for Pythia6
+>> > | -- Pythia6 not found. Switching off pythia6 option
+>> > | -- Looking for Pythia8
+>> > | -- Could NOT find Pythia8 (missing:  PYTHIA8_INCLUDE_DIR PYTHIA8_LIB=
+RARY)
+>> > | -- Pythia8 not found. Switching off pythia8 option
+>> > | -- Looking for FFTW3
+>> > | -- Found fftw3 includes at /local/d4/gstark/poky/build/tmp/work/cort=
+exa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/include
+>> > | -- Found fftw3 library at /local/d4/gstark/poky/build/tmp/work/corte=
+xa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libfft=
+w3.so
+>> > | -- Looking for CFITSIO
+>> > | -- Could NOT find CFITSIO (missing:  CFITSIO_INCLUDE_DIR CFITSIO_LIB=
+RARY)
+>> > | -- CFITSIO not found. You can enable the option 'builtin_cfitsio' to=
+ build the library internally'
+>> > | --                    For the time being switching off 'fitsio' opti=
+on
+>> > | -- Looking for XROOTD
+>> > | -- Found Xrootd version num: 4.8.3 (setting -DROOTXRDVERS=3D40008000=
+3)
+>> > | --              libXrdMain not found: xproofd will be a wrapper arou=
+nd xrootd
+>> > | --              include_dirs: /local/d4/gstark/poky/build/tmp/work/c=
+ortexa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/includ=
+e/xrootd;/local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gn=
+ueabi/root/6.14.00-r0/recipe-sysroot/usr/include/xrootd/private
+>> > | --              libraries: /local/d4/gstark/poky/build/tmp/work/cort=
+exa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libXr=
+dUtils.so;/local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky-linux-g=
+nueabi/root/6.14.00-r0/recipe-sysroot/usr/lib/libXrdClient.so;/local/d4/gst=
+ark/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/=
+recipe-sysroot/usr/lib/libXrdCl.so
+>> > | -- Could NOT find GFAL (missing:  GFAL_INCLUDE_DIR SRM_IFCE_INCLUDE_=
+DIR GFAL_LIBRARY)
+>> > | -- GFAL library not found. Set variable GFAL_DIR to point to your gf=
+al installation
+>> > |                       and the variable SRM_IFCE_DIR to the srm_ifce =
+installation
+>> > | -- For the time being switching OFF 'gfal' option
+>> > | -- Checking for module 'davix>=3D0.6.4'
+>> > | --   No package 'davix' found
+>> > | -- Looking for uuid_generate_random in uuid
+>> > | -- Looking for uuid_generate_random in uuid - not found
+>> > | -- Found uuid: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-=
+poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot/usr/include
+>> > | -- Davix not found, switching ON 'builtin_davix' option.
+>> > | -- Looking for clock_gettime
+>> > | -- Looking for clock_gettime - not found
+>> > | -- Looking for clock_gettime in rt
+>> > | -- Looking for clock_gettime in rt - not found
+>> > | -- Looking for TBB
+>> > | -- Could NOT find TBB (missing:  TBB_ROOT_DIR TBB_INCLUDE_DIR TBB_LI=
+BRARY)
+>> > | -- TBB not found. Switching on builtin_tbb option
+>> > | -- Performing Test CXX_HAS_mno_rtm
+>> > | -- Performing Test CXX_HAS_mno_rtm - Failed
+>> > | -- Looking for BLAS for optional parts of TMVA
+>> > | -- A library with BLAS API not found. Please specify library locatio=
+n.
+>> > | -- Using GSL CBLAS for optional parts of TMVA
+>> > | -- Enabled support for:  builtin_davix builtin_ftgl builtin_gl2ps bu=
+iltin_clang builtin_tbb builtin_xxhash cling cxx11 davix exceptions explici=
+tlink fftw3 gdml genvector http imt mathmore minuit2 opengl pch python roof=
+it shared sqlite ssl thread tmva tmva-cpu x11 xft xml xrootd
+>> > | -- Found LLVM_CONFIG as /local/d4/gstark/poky/build/tmp/work/cortexa=
+9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot-native/usr/bin/l=
+lvm-config
+>> > | -- Linker detection: GNU ld
+>> > | CMake Warning at /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neo=
+n-poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot-native/usr/lib/cmake/ll=
+vm/HandleLLVMOptions.cmake:185 (message):
+>> > |   -fPIC is not supported.
+>> > | Call Stack (most recent call first):
+>> > |   /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gn=
+ueabi/root/6.14.00-r0/recipe-sysroot-native/usr/lib/cmake/llvm/HandleLLVMOp=
+tions.cmake:213 (add_flag_or_print_warning)
+>> > |   interpreter/CMakeLists.txt:285 (include)
+>> > |
+>> > |
+>> > | CMake Error at /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-=
+poky-linux-gnueabi/root/6.14.00-r0/recipe-sysroot-native/usr/lib/cmake/llvm=
+/HandleLLVMOptions.cmake:402 (message):
+>> > |   LLVM requires C++11 support but the '-std=3Dc++11' flag isn't supp=
+orted.
+>> > | Call Stack (most recent call first):
+>> > |   interpreter/CMakeLists.txt:285 (include)
+>> > |
+>> > |
+>> > | -- Configuring incomplete, errors occurred!
+>> > | See also "/local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky-=
+linux-gnueabi/root/6.14.00-r0/build/CMakeFiles/CMakeOutput.log".
+>> > | See also "/local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky-=
+linux-gnueabi/root/6.14.00-r0/build/CMakeFiles/CMakeError.log".
+>> > | WARNING: /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky-l=
+inux-gnueabi/root/6.14.00-r0/temp/run.do_configure.2984:1 exit 1 from 'cmak=
+e $oecmake_sitefile /local/d4/gstark/poky/build/tmp/work/cortexa9hf-neon-po=
+ky-linux-gnueabi/root/6.14.00-r0/root-6.14.00 -DCMAKE_INSTALL_PREFIX:PATH=
+=3D/usr -DCMAKE_INSTALL_BINDIR:PATH=3Dbin -DCMAKE_INSTALL_SBINDIR:PATH=3Dsb=
+in -DCMAKE_INSTALL_LIBEXECDIR:PATH=3Dlibexec -DCMAKE_INSTALL_SYSCONFDIR:PAT=
+H=3D/etc -DCMAKE_INSTALL_SHAREDSTATEDIR:PATH=3D../com -DCMAKE_INSTALL_LOCAL=
+STATEDIR:PATH=3D/var -DCMAKE_INSTALL_LIBDIR:PATH=3Dlib -DCMAKE_INSTALL_INCL=
+UDEDIR:PATH=3Dinclude -DCMAKE_INSTALL_DATAROOTDIR:PATH=3Dshare -DCMAKE_INST=
+ALL_SO_NO_EXE=3D0 -DCMAKE_TOOLCHAIN_FILE=3D/local/d4/gstark/poky/build/tmp/=
+work/cortexa9hf-neon-poky-linux-gnueabi/root/6.14.00-r0/toolchain.cmake -DC=
+MAKE_VERBOSE_MAKEFILE=3D1 -DCMAKE_NO_SYSTEM_FROM_IMPORTED=3D1 -Drootfit=3DO=
+N -Dminuit2=3DON -Dpython=3DON -Dssl=3DON -Dxrootd=3DON -Dbuiltin_freetype=
+=3DOFF -Dbuiltin_llvm=3DOFF -Dbuiltin_glew=3DOFF -Dastiff=3DOFF -Dasimage=
+=3DOFF -Dbuiltin_afterimage=3DOFF -Dalien=3DOFF -Dvdt=3DOFF ${PACKAGECONFIG=
+_CONFARGS} -Wno-dev'
+>> > | ERROR: Function failed: do_configure (log file is located at /local/=
+d4/gstark/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/root/6.14.=
+00-r0/temp/log.do_configure.2984)
+>> > ERROR: Task (/local/d4/gstark/meta-l1calo/recipes-core/root/root_6.14.=
+00.bb:do_configure) failed with exit code '1'
+>> >
+>> >
+>> > On Wed, Jul 11, 2018 at 3:35 PM Khem Raj <raj.khem@gmail.com> wrote:
+>> >>
+>> >> Hi Giordon
+>> >>
+>> >> On Tue, Jul 10, 2018 at 10:36 AM Giordon Stark <kratsg@gmail.com> wro=
+te:
+>> >> >
+>> >> > Hi all,
+>> >> >
+>> >> > | /local/d4/gstark/poky/build/tmp/work/aarch64-poky-linux/root/6.14=
+.00-r0/recipe-sysroot-native/usr/lib/libLLVMSupport.a: error adding symbols=
+: File in wrong format
+>> >> > | clang-5.0: error: linker command failed with exit code 1 (use -v =
+to see invocation)
+>> >> > | interpreter/llvm/src/tools/clang/utils/TableGen/CMakeFiles/clang-=
+tblgen.dir/build.make:95: recipe for target 'interpreter/llvm/src/bin/clang=
+-tblgen' failed
+>> >> > | make[2]: *** [interpreter/llvm/src/bin/clang-tblgen] Error 1
+>> >> > | make[2]: Leaving directory '/local/d4/gstark/poky/build/tmp/work/=
+aarch64-poky-linux/root/6.14.00-r0/build'
+>> >> > | CMakeFiles/Makefile2:791: recipe for target 'interpreter/llvm/src=
+/tools/clang/utils/TableGen/CMakeFiles/clang-tblgen.dir/all' failed
+>> >> > | make[1]: *** [interpreter/llvm/src/tools/clang/utils/TableGen/CMa=
+keFiles/clang-tblgen.dir/all] Error 2
+>> >> > | make[1]: *** Waiting for unfinished jobs....
+>> >> >
+>> >> > Here's the full log: https://gist.github.com/3403addf74b5e902adec93=
+b75fb0e138
+>> >> >
+>> >> > Any ideas how to get a more verbose invocation if needed? I suspect=
+ the error is due to some pre-built libraries being shipped in this recipe,=
+ but I'm not sure what's causing the error in the first place.
+>> >> >
+>> >>
+>> >> it seems to be linking with native llvm libraries which might not be =
+intended.
+>> >>
+>> >> > Note: I am using meta-clang. The recipe I'm using looks like:
+>> >> >
+>> >> > SUMMARY =3D "Numerical data analysis framework (OO)"
+>> >> > DESCRIPTION =3D "Object oriented framework for large scale data ana=
+lysis"
+>> >> > HOMEPAGE =3D "http://root.cern.ch"
+>> >> > LICENSE =3D "LGPLv2.1"
+>> >> > LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D5ec773ab82cbea1f17ec5b98=
+e8ce60cf"
+>> >> > SRC_URI =3D "https://root.cern.ch/download/root_v${PV}.source.tar.g=
+z"
+>> >> >
+>> >> > S =3D "${WORKDIR}/${BPN}-${PV}"
+>> >> >
+>> >> > TOOLCHAIN =3D "clang"
+>> >> > #TARGET_CXXFLAGS_append_toolchain-clang =3D " -stdlib=3Dlibc++ "
+>> >> >
+>> >> > DEPENDS +=3D "llvm-native libpcre lz4 libx11 libxpm libxft gsl fftw=
+ libatomic-ops freetype glew xrootd"
+>> >> >
+>> >>
+>> >> it seems you really need llvm for target in dependencies so please
+>> >> remove llvm-native from DEPENDS
+>> >> and add clang to it.
+>> >>
+>> >> > inherit cmake pkgconfig pythonnative
+>> >> >
+>> >> >
+>> >> > do_configure_prepend(){
+>> >> > export FC=3D${GFORTRAN}
+>> >> > }
+>> >> >
+>> >> > EXTRA_OECMAKE =3D "\
+>> >> >     -Drootfit=3DON \
+>> >> >     -Dminuit2=3DON \
+>> >> >     -Dpython=3DON \
+>> >> >     -Dssl=3DON \
+>> >> >     -Dxrootd=3DON \
+>> >> >     -Dbuiltin_freetype=3DOFF \
+>> >> >     -Dbuiltin_llvm=3DOFF \
+>> >> >     -Dbuiltin_glew=3DOFF \
+>> >> >     -Dastiff=3DOFF \
+>> >> >     -Dasimage=3DOFF \
+>> >> >     -Dbuiltin_afterimage=3DOFF \
+>> >> >     -Dalien=3DOFF \
+>> >> >     -Dvdt=3DOFF \
+>> >> > "
+>> >> >
+>> >> > --
+>> >> > Giordon Stark
+>> >> > --
+>> >> > _______________________________________________
+>> >> > yocto mailing list
+>> >> > yocto@yoctoproject.org
+>> >> > https://lists.yoctoproject.org/listinfo/yocto
+>> >
+>> > --
+>> > Giordon Stark
+>
+> --
+> Giordon Stark
 
