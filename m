@@ -1,59 +1,26 @@
-Return-Path: <bluehills7@comcast.net>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 978B8E01664; Sun, 15 Jul 2018 18:20:12 -0700 (PDT)
+	id 4DC75E014F9; Sun, 15 Jul 2018 21:36:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bluehills7[at]comcast.net)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [69.252.207.37 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
-	Sun, 15 Jul 2018 18:20:12 PDT
-Received: from resqmta-ch2-05v.sys.comcast.net
-	(resqmta-ch2-05v.sys.comcast.net [69.252.207.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17189E00C1B
-	for <yocto@yoctoproject.org>; Sun, 15 Jul 2018 18:20:12 -0700 (PDT)
-Received: from resomta-ch2-03v.sys.comcast.net ([69.252.207.99])
-	by resqmta-ch2-05v.sys.comcast.net with ESMTP
-	id ersYf2Jw155XdesARfgpEe; Mon, 16 Jul 2018 01:19:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
-	s=q20161114; t=1531703951;
-	bh=euqocUG59AZdGaU2HLBboH1yoXHt79HA4NDGPLfw6Yg=;
-	h=Received:Received:From:Content-Type:Mime-Version:Subject:
-	Message-Id:Date:To;
-	b=G0zokOCxVSzlxLRVHOioTVwD7wIi3MNmPxxAVJgmM1wyJmRMLUiIFNKfVx9Dl3BF+
-	vBX3i/JcE/VLlpc3lKmeNaC1mWGb5qu+FkPg2cRz2kQc0QABnKbNa+Ixbfj1yRWdGq
-	kRcKGlUnfcZoMRRApkCb5qcZrqB1fn2N2oVEHkI/f2h/YtC0ya1wjemOVzpycOmCBN
-	LOO/I+sS1U9RmB/CCId9EiT4aMNWohOmiuBJE5k2EtPsdEyW9yRxhcXThrCMz45QqY
-	NW6gn7NCDQCi5Mzd07zdpc+B/G9k5JUBdM1TBSHL7bnrnpP5TUnmy1+0tPzMolcJw8
-	CnvUJwBUeeJcA==
-Received: from [IPv6:2601:18f:880:9aeb:6152:bab7:a364:5ed4]
-	([IPv6:2601:18f:880:9aeb:6152:bab7:a364:5ed4])
-	by resomta-ch2-03v.sys.comcast.net with ESMTPSA
-	id esAPfVP1oiX04esAQfTeCO; Mon, 16 Jul 2018 01:19:11 +0000
-From: Russell Peterson <bluehills7@comcast.net>
-Mime-Version: 1.0 (Mac OS X Mail 11.4 \(3445.8.2\))
-Message-Id: <32FF3687-3963-4F20-87DE-16DCBA134DAE@comcast.net>
-Date: Sun, 15 Jul 2018 21:19:08 -0400
-To: Yocto-mailing-list <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.3445.8.2)
-X-CMAE-Envelope: MS4wfOOpnF4juEhOh5FuaP/du5xIFEi+LNgNb0e+c2pu3zCN2aTVoAzu08ESzYRfPCf4rS7AfjP+acgGs+agUBP32kgLB7DNd53PcmmrACa0IWVFJSebP0xM
-	/J6cXH2MDL1vHOhq7GnURgdf+SjJqJxo3rsRDQtDDV2XXvzogT7PP7Weoltv4DgFNADbsTY2IgqOrPepjv/SuLCUuK2C2twFbSi7w/FMhZLoWL33H7O11uO/
-	l2N7w8JQI77yocOc4h8sywPZmCaFbgWFuhzMT/N/wnQ97zQYg+vJMwnOGAJphAcV
-Subject: openssl
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45828E00EAF
+	for <yocto@yoctoproject.org>; Sun, 15 Jul 2018 21:36:54 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 2EE7384A562F
+	for <yocto@yoctoproject.org>; Mon, 16 Jul 2018 00:36:53 -0400 (EDT)
+MIME-Version: 1.0
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 16 Jul 2018 04:36:53 -0000
+Message-ID: <20180716043653.27661.50350@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,70 +32,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jul 2018 01:20:12 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_54E82699-381A-447D-BF3D-C81C953DE9EA"
+X-List-Received-Date: Mon, 16 Jul 2018 04:36:55 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---Apple-Mail=_54E82699-381A-447D-BF3D-C81C953DE9EA
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+This mail was sent out by Recipe reporting system.
 
-Hello,
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-I=E2=80=99m looking to change to openssl version 1.1.  I=E2=80=99m using =
-the rocko branch.  I have set PREFERRED_VERSION_openssl to 1.1%=E2=80=A6 =
-but it doesn=E2=80=99t seem to work.
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-Anyone?
+You can check the detail information at:
 
-NOTE: Resolving any missing task queue dependencies
-NOTE: preferred version 1.1.% of openssl not available (for item =
-openssl10)
-NOTE: versions of openssl available: 1.0.2m
-NOTE: preferred version 1.1.% of openssl not available (for item =
-openssl-misc)
-NOTE: versions of openssl available: 1.0.2m
-NOTE: preferred version 1.1.% of openssl not available (for item =
-openssl-conf)
-NOTE: versions of openssl available: 1.0.2m
-NOTE: preferred version 1.1.% of openssl not available (for item =
-libcrypto)
-NOTE: versions of openssl available: 1.0.2m=
+http://recipes.yoctoproject.org/
 
---Apple-Mail=_54E82699-381A-447D-BF3D-C81C953DE9EA
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
+Package               Version          Upstream version      Maintainer           NoUpgradeReason
+--------------------  ---------------  --------------------  -------------------  ------------------------------
+libgloss              3.0.0            3.0.0.20180226        Alejandro Hernandez
+newlib                3.0.0            3.0.0.20180226        Alejandro Hernandez
+usbutils              009              010                   Alexander Kanavin
+librepo               1.8.1            1.9.0                 Alexander Kanavin
+gdbm                  1.14.1           1.16                  Alexander Kanavin
+vala                  0.40.4           0.40.7                Alexander Kanavin
+createrepo-c          0.10.0+gitX      0.11.0                Alexander Kanavin
+dnf                   2.7.5            3.0.3                 Alexander Kanavin
+libyaml               0.1.7            0.2.1                 Alexander Kanavin
+meson                 0.46.1           0.47.1                Alexander Kanavin
+ffmpeg                4.0              4.0.1                 Alexander Kanavin
+icu                   61.1             62.1                  Alexander Kanavin
+gptfdisk              1.0.3            1.0.4                 Alexander Kanavin
+btrfs-tools           4.16.1           4.17                  Alexander Kanavin
+babeltrace            1.5.5            1.5.6                 Alexander Kanavin
+sysprof               3.26.1           3.28.1                Alexander Kanavin    Waiting for resolution of h...
+cantarell-fonts       0.0.24           0.0.25                Alexander Kanavin
+libdnf                0.11.1           0.15.2                Alexander Kanavin
+epiphany              3.28.1.1         3.28.3.1              Alexander Kanavin
+ca-certificates       20170717         20180409              Alexander Kanavin
+busybox               1.27.2           1.29.1                Andrej Valek
+apt                   1.2.24           1.6.3                 Aníbal Limón
+apt-native            1.2.24           1.6.3                 Aníbal Limón
+dpkg                  1.18.24          1.19.0.5              Aníbal Limón
+libva-utils           2.1.0            2.2.0                 Anuj Mittal
+libva                 2.1.0            2.2.0                 Anuj Mittal
+gst-examples          0.0.1+gitX       0.0.1-new-commits...  Anuj Mittal
+bind                  9.11.3           9.13.2                Armin Kuster
+xf86-video-fbdev      0.4.4            0.5.0                 Armin Kuster
+curl                  7.60.0           7.61.0                Armin Kuster
+xf86-input-libinput   0.27.1           0.28.0                Armin Kuster
+xserver-xorg          1.19.6           1.20.0                Armin Kuster
+linux-libc-headers    4.15.7           4.17.6                Bruce Ashfield
+connman               1.35             1.36                  Changhyeok Bae
+iptables              1.6.2            1.8.0                 Changhyeok Bae
+iputils               s20161105        s20180629             Changhyeok Bae
+pciutils              3.5.6            3.6.1                 Chen Qi
+acl                   2.2.52           2.2.53                Chen Qi
+attr                  2.4.47           2.4.48                Chen Qi
+systemd-boot          237              239                   Chen Qi
+cups                  2.2.6            2.2.8                 Chen Qi
+systemd               237              239                   Chen Qi
+bison                 3.0.4            3.0.5                 Chen Qi
+sed                   4.2.2            4.5                   Chen Qi
+shadow                4.2.1            4.6                   Chen Qi
+sysstat               11.7.3           11.7.4                Chen Qi
+flex                  2.6.0            2.6.4                 Chen Qi
+coreutils             8.29             8.30                  Chen Qi
+weston                4.0.0            4.0.91                Denys Dmytriyenko
+wayland               1.15.0           1.15.91               Denys Dmytriyenko
+lzop                  1.03             1.04                  Denys Dmytriyenko
+xz                    5.2.3            5.2.4                 Denys Dmytriyenko
+python3               3.5.5            3.7.0                 Derek Straka
+python3-git           2.1.10           2.1.11                Derek Straka
+python3-gitdb         2.0.3            2.0.4                 Derek Straka
+python3-pycairo       1.15.6           1.17.1                Derek Straka
+python3-native        3.5.5            3.7.0                 Derek Straka
+acpica                20180508         20180629              Fathi Boudra
+gnupg                 2.2.8            2.2.9                 Hongxu Jia
+elfutils              0.172            0.173                 Hongxu Jia
+libgpg-error          1.31             1.32                  Hongxu Jia
+llvm                  6.0              6.0-new-commits-a...  Khem Raj
+mpfr                  3.1.5            4.0.1                 Khem Raj
+re2c                  0.16             1.0.1                 Khem Raj
+binutils              2.30             2.31                  Khem Raj
+u-boot-fw-utils       2018.05          2018.07               Marek Vasut
+u-boot-mkimage        2018.05          2018.07               Marek Vasut
+u-boot                2018.05          2018.07               Marek Vasut
+pango                 1.40.14          1.42.1                Maxin B. John
+piglit                1.0+gitrX        1.0-new-commits-a...  Maxin B. John
+libinput              1.11.0           1.11.2                Maxin B. John
+vulkan-demos          git              git-new-commits-a...  Maxin B. John
+perl                  5.24.1           5.28.0                Maxin B. John
+matchbox-terminal     0.1              0.2                   Maxin B. John
+puzzles               0.0+gitX         0.0-new-commits-a...  Maxin B. John
+ifupdown              0.8.16           0.8.33                Maxin B. John
+glib-networking       2.54.1           2.56.1                Maxin B. John
+harfbuzz              1.7.5            1.8.3                 Maxin B. John
+fontconfig            2.12.6           2.13.0                Maxin B. John
+shared-mime-info      1.9              1.10                  Maxin B. John
+vulkan                1.0.65.2         1.1.73.0              Maxin B. John
+gdk-pixbuf            2.36.11          2.36.12               Maxin B. John
+librsvg               2.40.20          2.42.5                Maxin B. John        Versions from 2.41.0 requir...
+pkgconf               1.4.2            1.5.1                 Maxin B. John
+sqlite3               3.23.1           3.24.0                Maxin B. John
+freetype              2.9              2.9.1                 Maxin B. John
+libical               2.0.0            3.0.3                 Maxin B. John
+perl-native           5.24.1           5.28.0                Maxin B. John
+binutils-cross-ca...  2.30             2.31                  No maintainer
+binutils-cross-i586   2.30             2.31                  No maintainer
+binutils-crosssdk...  2.30             2.31                  No maintainer
+libxcrypt             4.0.1            4.1.0                 No maintainer
+gcc-source-7.3.0      7.3.0            8.1.0                 No maintainer
+systemtap-native      3.2              3.3                   No maintainer
+nativesdk-meson       0.46.1           0.47.1                No maintainer
+mesa                  18.1.3           18.1.4                Otavio Salvador
+linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
+mesa-gl               18.1.3           18.1.4                Otavio Salvador
+build-compare         2015.02.10+gitX  2015.02.10-new-co...  Paul Eggleton
+build-appliance-i...  15.0.0           19.0.0                Richard Purdie
+lttng-tools           2.9.5            2.10.4                Richard Purdie
+qemu                  2.12.0           3.0.0-rc0             Richard Purdie
+gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
+nfs-utils             2.3.1            2.3.2                 Robert Yang
+squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
+strace                4.22             4.23                  Robert Yang
+e2fsprogs             1.44.2           1.44.3                Robert Yang
+base-passwd           3.5.29           3.5.45                Ross Burton          Version 3.5.38 requires cde...
+tcf-agent             1.4.0+gitX       1.7.0                 Ross Burton
+bc                    1.06             1.07.1                Ross Burton
+lsbinitscripts        9.79             10.00.0               Ross Burton
+sysvinit              2.88dsf          2.90                  Ross Burton
+pulseaudio            11.1             12.1                  Tanu Kaskinen
+systemtap-uprobes     3.2              3.3                   Victor Kamensky
+systemtap             3.2              3.3                   Victor Kamensky
+chkconfig             1.3.58           1.8                   Yi Zhao              Version 1.5 requires selinux
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D"">Hello,<div class=3D""><br class=3D""></div><div =
-class=3D"">I=E2=80=99m looking to change to openssl version 1.1. =
-&nbsp;I=E2=80=99m using the rocko branch. &nbsp;I have set =
-PREFERRED_VERSION_openssl to 1.1%=E2=80=A6 but it doesn=E2=80=99t seem =
-to work.</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Anyone?</div><div class=3D""><br class=3D""></div><div =
-class=3D""><div style=3D"font-family: Calibri; font-size: =
-14.666666984558105px;" class=3D"">NOTE: Resolving any missing task queue =
-dependencies</div><div style=3D"font-family: Calibri; font-size: =
-14.666666984558105px;" class=3D"">NOTE: preferred version 1.1.% of =
-openssl not available (for item openssl10)</div><div style=3D"font-family:=
- Calibri; font-size: 14.666666984558105px;" class=3D"">NOTE: versions of =
-openssl available: 1.0.2m</div><div style=3D"font-family: Calibri; =
-font-size: 14.666666984558105px;" class=3D"">NOTE: preferred version =
-1.1.% of openssl not available (for item openssl-misc)</div><div =
-style=3D"font-family: Calibri; font-size: 14.666666984558105px;" =
-class=3D"">NOTE: versions of openssl available: 1.0.2m</div><div =
-style=3D"font-family: Calibri; font-size: 14.666666984558105px;" =
-class=3D"">NOTE: preferred version 1.1.% of openssl not available (for =
-item openssl-conf)</div><div style=3D"font-family: Calibri; font-size: =
-14.666666984558105px;" class=3D"">NOTE: versions of openssl available: =
-1.0.2m</div><div style=3D"font-family: Calibri; font-size: =
-14.666666984558105px;" class=3D"">NOTE: preferred version 1.1.% of =
-openssl not available (for item libcrypto)</div><div style=3D"font-family:=
- Calibri; font-size: 14.666666984558105px;" class=3D"">NOTE: versions of =
-openssl available: 1.0.2m</div></div></body></html>=
+Upgradable count: 112
+Upgradable total count: 116
 
---Apple-Mail=_54E82699-381A-447D-BF3D-C81C953DE9EA--
+The based commit is:
+
+commit 22886cf6f37d9a5c6ff90e10e0c17ed7f6321305
+Author: Yi Zhao <yi.zhao@windriver.com>
+Date:   Wed Jul 11 11:23:44 2018 +0800
+
+    file: Security fix CVE-2018-10360
+    
+    CVE-2018-10360: The do_core_note function in readelf.c in libmagic.a in
+    file 5.33 allows remote attackers to cause a denial of service
+    (out-of-bounds read and application crash) via a crafted ELF file.
+    
+    References:
+    https://nvd.nist.gov/vuln/detail/CVE-2018-10360
+    
+    Patch from:
+    https://github.com/file/file/commit/a642587a9c9e2dd7feacdf513c3643ce26ad3c22
+    
+    Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+    Signed-off-by: Ross Burton <ross.burton@intel.com>
+
+Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
+
+
