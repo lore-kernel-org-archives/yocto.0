@@ -1,6 +1,6 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5D1F4E011F0; Mon, 16 Jul 2018 04:08:06 -0700 (PDT)
+	id 40120E011F0; Mon, 16 Jul 2018 04:14:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,56 +8,59 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.65 listed in list.dnswl.org]
+	*      [209.85.218.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f65.google.com (mail-oi0-f65.google.com
-	[209.85.218.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CBF3E00CEA
-	for <yocto@yoctoproject.org>; Mon, 16 Jul 2018 04:08:02 -0700 (PDT)
-Received: by mail-oi0-f65.google.com with SMTP id k12-v6so73947309oiw.8
-	for <yocto@yoctoproject.org>; Mon, 16 Jul 2018 04:08:02 -0700 (PDT)
+Received: from mail-oi0-f43.google.com (mail-oi0-f43.google.com
+	[209.85.218.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D10FE00CEA
+	for <yocto@yoctoproject.org>; Mon, 16 Jul 2018 04:14:20 -0700 (PDT)
+Received: by mail-oi0-f43.google.com with SMTP id r16-v6so74027603oie.3
+	for <yocto@yoctoproject.org>; Mon, 16 Jul 2018 04:14:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=NmSVoQb62ZjpQAwhUDRQfxLLra44zMDZSQk3jPLmx4g=;
-	b=HieQ+K38CUo3difxrGwlpko44TXyMuT4Htjvtd1o2jNLJVAyJXaT4ZqrS6OwH73zXT
-	QVRrA2aNElZzvq+Lztv9Tmf+Mfn1xhDgfOfwg93llbhHouwWyIhNCFpzP1YOysEbH5iE
-	Pxn3UtH9bViyqodBj9DrBgJR7QMYoYA34i59/7dwTmakSKow0u2NehpPFzta30nms9WT
-	ViNVwZfrr08GoFJVXEBvrc/SsbAMOLBYXrtp/xS6gZxfN4ajjJ5kfhfHDqJfip7xcViH
-	E0k/9Qd+d/WPJKBWNYTp33deEz/+CN/iPYC/rVJZJ9OfcMbEpGEzO6R3Q26CppysHIP4
-	GcGw==
+	:cc:content-transfer-encoding;
+	bh=6W8VZaWsMVZbwhE3IirzJHghkUi9T03L1FBkD+zLSMA=;
+	b=Gz3qKFF3C97OXSLwwx/npmyVQNVXY68pNa4iRrGMRstnY072QlV9a4xYDB3umamT2Z
+	rtMxAA/rPqJcZadPGos70UgeRSg/9gKfjrEKvdIOsiFtGP+C3GVe/tJya8N5oB7MK03N
+	J6eD/twdMZXHm8Y6gyvFQ0akfdEX5g/GlGttfktbHwpoX+BAiiedJbr6UYCbJy2robSH
+	5cPUYoRxaQlNotJY6V6Yn0ccvZrLsH6F1qJ8BkrCmEi/4f1Hwiu0QC+xWAaHbiZx8awG
+	0r9gLzc9k2hqCBQQsJYIJjHDW1EdK5mE49JCnvYcK0URuyGzD8te9GrPt3JemONxzjI8
+	prcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=NmSVoQb62ZjpQAwhUDRQfxLLra44zMDZSQk3jPLmx4g=;
-	b=SB/abbJN23Mi/sM6XAQE9RlESrIUzlVE3jKj0KZP6+lEYEs6mo558GPCB3q6u7xOgZ
-	vihr+V9IH3PgsLH7nKwHjEWRnhabYcbJlrMOwwJLuuCdl3e7GucqH5kZ3jI1GP4e7Wzx
-	mAejOLXW1y/ibI6MuvjontOG4CnghgnjTINfS2xheWQ9755hsec1bxDblaPtTDBOgAKq
-	wxpLhjL8lT6mWOBhG7AvL2Cj4q1cgLIKyaxCwKKJkTXw3tzMvlPZU7/M7BwqNPwJQ0WP
-	6e+RXLQWyOu8DLcdDg17S8cO6cQ2DidHseaSSXE8KKSGIsjAFWAPiZzzod2vJ1iGTpwp
-	3vSg==
-X-Gm-Message-State: AOUpUlGjkLx54Ec15jphnRNogScsA9zOuww8NAW3U1T+4/qF+cYHhWzh
-	TMCw3e3LNffpCOhTpgGpMk4chYM8PgetmatduGFg1w==
-X-Google-Smtp-Source: AAOMgpe0I0IvFkwnHs2eSAXOuFVKtjp8FxHYHUvAEcKNIaORDsP7uQVqOjIKFYW55FwR2TrceXHuaEwRQaFNFC6nq2M=
-X-Received: by 2002:aca:5dc5:: with SMTP id
-	r188-v6mr17978216oib.320.1531739282520; 
-	Mon, 16 Jul 2018 04:08:02 -0700 (PDT)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=6W8VZaWsMVZbwhE3IirzJHghkUi9T03L1FBkD+zLSMA=;
+	b=YLpwWFNtPGRNuK/EjLVfK/T80Q20Blp7bOvRSghJkVYK72r5XjwQ26yHBfhLQJs8sk
+	qlxYSPen364RUgYVP6MH5CiH5g0FXKT3UTdox1rKrrggLerjlZHiZyGP+NIxQxuZznBN
+	SnbJRoN4hecAFTFBTstw8NU8uySH0m4GnWv8+faPjluitoA7ER3CTc4GQLM7p8LJQ121
+	iWc4qWXlSEKwlwHu224nXL/a8CL6ytqlXyNsMsPtLrYvNADQWKdoSgiKSZm6INSV/D3r
+	MMEnbKMVhlF5uXnR5WDEYlUZuABFtX0vaHIUNxycTYzc9Mxj92bewkZbZyM7kRL2dULM
+	GonQ==
+X-Gm-Message-State: AOUpUlGpN3yP6W6zjjJePsZCW5PZ6qF5qrTLpA2Qu0d5cOW3uWaMm0wt
+	6Wtm1Db7moLFQ5rmH50Jc01H8xst14nq2jBrdEzgbQ==
+X-Google-Smtp-Source: AAOMgpcll1nSbgjwHP5xzUw9rBdsVlgd4aUNgwtsauUzg4ghuGn3T45sAHt7e4YU8b6+huEA9dXzgZW7r1nyfJxOFps=
+X-Received: by 2002:aca:5f56:: with SMTP id
+	t83-v6mr18733634oib.115.1531739659557; 
+	Mon, 16 Jul 2018 04:14:19 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ac9:6845:0:0:0:0:0 with HTTP; Mon, 16 Jul 2018 04:07:41
+Received: by 2002:ac9:6845:0:0:0:0:0 with HTTP; Mon, 16 Jul 2018 04:13:58
 	-0700 (PDT)
-In-Reply-To: <1531716895-78131-1-git-send-email-changqing.li@windriver.com>
-References: <1531716895-78131-1-git-send-email-changqing.li@windriver.com>
+In-Reply-To: <1dd08bd8322b48078abeac992cb89f9b@BN3PR73MB0070.mgdir.irco.com>
+References: <3d2df8a5ae76426ebc9562d88615fff3@BN3PR73MB0070.mgdir.irco.com>
+	<CAJTo0LYak86JDDX_7-cgJYcbrXTzP=W-jjoz5cmCZZ6MpDkP1g@mail.gmail.com>
+	<1dd08bd8322b48078abeac992cb89f9b@BN3PR73MB0070.mgdir.irco.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 16 Jul 2018 12:07:41 +0100
-Message-ID: <CAJTo0Lac1_2OH8TQTnw0YstFunfOSVh+cuHK7t6O+45fxP_H1w@mail.gmail.com>
-To: changqing.li@windriver.com
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: [PATCH] iucode-tool: add a service file (systemd)
+Date: Mon, 16 Jul 2018 12:13:58 +0100
+Message-ID: <CAJTo0LaYG8HU1A1tzo5Pq6d6u_ufQ94u26PBK-_CF6VuxHQ7_A@mail.gmail.com>
+To: "S, Karthikeyan" <Karthikeyan.S@trane.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Regarding build Yocto offline
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,89 +72,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jul 2018 11:08:06 -0000
+X-List-Received-Date: Mon, 16 Jul 2018 11:14:21 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Isn't this the worst way of doing a microcode update?  Specifically
-the documentation for -k says:
-
-"this update method  is  deprecated: it will be removed eventually
-from the kernel and from iucode_tool.
+Logs, please.
 
 Ross
 
-On 16 July 2018 at 05:54,  <changqing.li@windriver.com> wrote:
-> From: Changqing Li <changqing.li@windriver.com>
+On 16 July 2018 at 10:45, S, Karthikeyan <Karthikeyan.S@trane.com> wrote:
+> Hi,
+>    Thanks a lot for responding my message even in your busy schedule. As =
+for recipe, it was linux. When I was trying to build entire image "core-ima=
+ge-base", it was failed with "linux kernel recipe". Please find attached li=
+nux kernel bb files, all other remaining packages were built successfully.
 >
-> Add a service file (systemd), so that the microcode can be uploaded
-> automatically
+> Thanks,
+> Karthik
 >
-> Signed-off-by: Changqing Li <changqing.li@windriver.com>
-> ---
->  recipes-core/microcode/iucode-tool/iucode-tool.service | 11 +++++++++++
->  recipes-core/microcode/iucode-tool_2.3.1.bb            | 17 +++++++++++++++--
->  2 files changed, 26 insertions(+), 2 deletions(-)
->  create mode 100644 recipes-core/microcode/iucode-tool/iucode-tool.service
+> -----Original Message-----
+> From: Burton, Ross [mailto:ross.burton@intel.com]
+> Sent: Monday, July 16, 2018 2:57 PM
+> To: S, Karthikeyan <Karthikeyan.S@trane.com>
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Regarding build Yocto offline
 >
-> diff --git a/recipes-core/microcode/iucode-tool/iucode-tool.service b/recipes-core/microcode/iucode-tool/iucode-tool.service
-> new file mode 100644
-> index 0000000..6b134c3
-> --- /dev/null
-> +++ b/recipes-core/microcode/iucode-tool/iucode-tool.service
-> @@ -0,0 +1,11 @@
-> +[Unit]
-> +Description=Apply Cpu Microcode
-> +
-> +[Service]
-> +Type=oneshot
-> +KillMode=process
-> +RemainAfterExit=yes
-> +ExecStart=@SBINDIR@/iucode_tool -k @LIB@/firmware/intel-ucode/microcode.bin
-> +
-> +[Install]
-> +WantedBy=multi-user.target
-> diff --git a/recipes-core/microcode/iucode-tool_2.3.1.bb b/recipes-core/microcode/iucode-tool_2.3.1.bb
-> index df74a8e..1762468 100644
-> --- a/recipes-core/microcode/iucode-tool_2.3.1.bb
-> +++ b/recipes-core/microcode/iucode-tool_2.3.1.bb
-> @@ -18,16 +18,29 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe \
+> What recipe is failing?  It's most likely to be a recipe which is using a=
+ git tag instead of a git hash in the SRCREV.
 >
->  DEPENDS_append_libc-musl = " argp-standalone"
+> Ross
 >
-> -SRC_URI = "https://gitlab.com/iucode-tool/releases/raw/master/iucode-tool_${PV}.tar.xz"
-> +SRC_URI = "https://gitlab.com/iucode-tool/releases/raw/master/iucode-tool_${PV}.tar.xz \
-> +           file://iucode-tool.service \
-> +          "
->  SRC_URI_append_libc-musl = " file://0001-Makefile.am-Add-arg-parse-library-for-MUSL-support.patch"
+> On 13 July 2018 at 09:58, S, Karthikeyan <Karthikeyan.S@trane.com> wrote:
+>> Greetings,
+>>
+>>              Initially I was able to built with github access, but our
+>> requirement is to build offline(without Internet), I followed the
+>> steps given in
+>> https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__wiki.yoctoproject
+>> .org_wiki_How-5Fdo-5FI-23Q-3A-5FHow-5Fdo-5FI-5Fcreate-5Fmy-5Fown-5Fsou
+>> rce-5Fdownload-5Fmirror-5F.3F&d=3DDwIBaQ&c=3DRqOSY-j6o2m72bl3g1aM9A&r=3D=
+YbS5
+>> yltng6sM94fh7KTh4S4VmOewJypeQHV1NtdqqQc&m=3DP2cndFe0OX2zyu8XR1B5rdwBTlbc
+>> jdT4XVot9clBO6Y&s=3D25mwi0Mp0X78CdeZtKoVzQ0BeTqLR-q4tn1K0xZcpaU&e=3D
+>>
+>> I added following lines in conf/local.conf (Git enabled machine)
+>>
+>> SOURCE_MIRROR_URL ?=3D "file:///source_mirror/sources/"
+>>
+>> INHERIT +=3D "own-mirrors"
+>>
+>>  BB_GENERATE_MIRROR_TARBALLS =3D "1"
+>>
+>> and copied download directory to network disabled system and added
+>> following in conf/local.conf(network disabled system).
+>>
+>> SOURCE_MIRROR_URL ?=3D "file:///source_mirror/sources/"
+>>
+>>  INHERIT +=3D "own-mirrors"
+>>
+>>  BB_GENERATE_MIRROR_TARBALLS =3D "1"
+>>
+>>  BB_NO_NETWORK =3D "1"
+>>
+>> It was throwing error, saying that "Network is disabled through
+>> BB_NO_NETWORK=3D1" and build was failed. Please share me the exact
+>> procedure to build yocto offline.
+>>
+>>
+>>
+>>
+>>
+>> Thanks & Regards,
+>>
+>> Karthik S
+>>
+>>
+>>
+>>
+>> ________________________________
+>>
+>> The information contained in this message is privileged and intended
+>> only for the recipients named. If the reader is not a representative
+>> of the intended recipient, any review, dissemination or copying of
+>> this message or the information it contains is prohibited. If you have
+>> received this message in error, please immediately notify the sender,
+>> and delete the original message and attachments.
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__lists.yoctoprojec
+>> t.org_listinfo_yocto&d=3DDwIBaQ&c=3DRqOSY-j6o2m72bl3g1aM9A&r=3DYbS5yltng=
+6sM94fh7KTh4S4VmOewJypeQHV1NtdqqQc&m=3DP2cndFe0OX2zyu8XR1B5rdwBTlbcjdT4XVot=
+9clBO6Y&s=3Du-a0sJKO7HiDC_SADTXL06S-qN7DPan-UYMsYULz_T0&e=3D
+>>
 >
->  SRC_URI[md5sum] = "63b33cc0ea1f8c73b443412abbf39d6f"
->  SRC_URI[sha256sum] = "12b88efa4d0d95af08db05a50b3dcb217c0eb2bfc67b483779e33d498ddb2f95"
+> ________________________________
 >
-> -inherit autotools
-> +inherit autotools systemd
->
->  BBCLASSEXTEND = "native"
->
->  COMPATIBLE_HOST = "(i.86|x86_64).*-linux"
->
->  UPSTREAM_CHECK_URI = "https://gitlab.com/iucode-tool/releases"
-> +
-> +
-> +SYSTEMD_SERVICE_${PN} = "iucode-tool.service"
-> +SYSTEMD_AUTO_ENABLE_${PN} = "enable"
-> +
-> +do_install_append() {
-> +       install -d ${D}${systemd_unitdir}/system
-> +       install -m 0644 ${WORKDIR}/iucode-tool.service ${D}${systemd_unitdir}/system
-> +       sed -i -e 's,@SBINDIR@,${sbindir},g' ${D}${systemd_unitdir}/system/iucode-tool.service
-> +       sed -i -e 's,@LIB@,${base_libdir},g' ${D}${systemd_unitdir}/system/iucode-tool.service
-> +}
-> --
-> 2.7.4
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> The information contained in this message is privileged and intended only=
+ for the recipients named. If the reader is not a representative of the int=
+ended recipient, any review, dissemination or copying of this message or th=
+e information it contains is prohibited. If you have received this message =
+in error, please immediately notify the sender, and delete the original mes=
+sage and attachments.
 
