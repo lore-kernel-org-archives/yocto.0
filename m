@@ -1,92 +1,32 @@
-Return-Path: <dwatkins@sierrawireless.com>
+Return-Path: <jrswdnan22@snkmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1B114E0112F; Mon, 16 Jul 2018 00:08:49 -0700 (PDT)
+	id 30B80E01404; Mon, 16 Jul 2018 01:26:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.33.75 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [62.142.5.110 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 25319 seconds by postgrey-1.32 at yocto-www;
-	Mon, 16 Jul 2018 00:08:47 PDT
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
-	(mail-bn3nam01on0075.outbound.protection.outlook.com [104.47.33.75])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50648E00DFF
-	for <yocto@yoctoproject.org>; Mon, 16 Jul 2018 00:08:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=SierraWirelessInc.onmicrosoft.com; s=selector1-sierrawireless-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=SXHQTSJ4z+R73fLakAGBNocSqPZlVBFCR4aHrtJ2420=;
-	b=K2tPnspQobjeWRazAaBQwlm9P4PaGCWCKMtgK/XRMTRuFIp2DrlMVknYNsGpx5EinFdj2l7Xtr4tbzLMQ0iNeGDaH+Lf+A0c7nb/748e8dCRoUqJXxkUymsYXfkvaHWhVQL49ggCC5rT1Mi3URzQFKl5GFUCdPZMZa4HnmVm/f8=
-Received: from CY1PR02MB1413.namprd02.prod.outlook.com (10.161.171.15) by
-	CY1PR02MB1232.namprd02.prod.outlook.com (10.163.16.15) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.952.20; Sun, 15 Jul 2018 19:35:58 +0000
-Received: from CY1PR02MB1413.namprd02.prod.outlook.com
-	([fe80::84:ad3e:1faa:e3ba]) by CY1PR02MB1413.namprd02.prod.outlook.com
-	([fe80::84:ad3e:1faa:e3ba%6]) with mapi id 15.20.0952.021;
-	Sun, 15 Jul 2018 19:35:57 +0000
-From: Darcy Watkins <dwatkins@sierrawireless.com>
-To: Lukasz Zemla <Lukasz.Zemla@woodward.com>
-Thread-Topic: [yocto] How to split rootfs image?
-Thread-Index: AdQZS5X0tXCQjx8sQmGik2SID2V+EgDJ3e9c
-Date: Sun, 15 Jul 2018 19:35:57 +0000
-Message-ID: <F31553E2-DFC8-4532-B5E9-B951C0DF767D@sierrawireless.com>
-References: <CE2E43470FE5444A811B580382FE5EDF4C405D0DFA@KEMPMAIL2.woodward.com>
-In-Reply-To: <CE2E43470FE5444A811B580382FE5EDF4C405D0DFA@KEMPMAIL2.woodward.com>
-Accept-Language: en-CA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=dwatkins@sierrawireless.com; 
-x-originating-ip: [2001:569:722c:b900:e958:9d8e:6c23:4a40]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; CY1PR02MB1232;
-	7:9xFKn4semv5EFz9FdcVKbbFJHt6XImlEs7EDriqoSPa2kLeU7s3STQcd1feXlxlijMr7C8eS55GrsumEilQw1K/SjokplEYko8CaavHqE+vQoVAh3R4qEALz+a/4w6ENFQcfouqAp0DuGEJACaedZQTEnMt9l0cs7Biw5+fR+O3mCzF/9ZYe3BPLorMYycUaNJFZmYbiMdLgP6DalsGi1WV860h7AQTqoxkYTTPyaUS43N/VU8C5LJVivBFb9dxQ
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: 5b7bf536-a03e-4301-d08d-08d5ea8a3046
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652040)(8989117)(5600053)(711020)(48565401081)(2017052603328)(7153060)(7193020);
-	SRVR:CY1PR02MB1232; 
-x-ms-traffictypediagnostic: CY1PR02MB1232:
-x-microsoft-antispam-prvs: <CY1PR02MB1232031139D322B59F810517B25E0@CY1PR02MB1232.namprd02.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(189930954265078)(219636747203745)(219752817060721); 
-x-ms-exchange-senderadcheck: 1
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(8211001083)(6040522)(2401047)(5005006)(8121501046)(93006095)(93001095)(10201501046)(3231311)(944501410)(52105095)(3002001)(6055026)(149027)(150027)(6041310)(20161123562045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123564045)(20161123560045)(20161123558120)(6072148)(201708071742011)(7699016);
-	SRVR:CY1PR02MB1232; BCL:0; PCL:0; RULEID:; SRVR:CY1PR02MB1232; 
-x-forefront-prvs: 07349BFAD2
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(366004)(136003)(376002)(346002)(39850400004)(396003)(41034003)(504964003)(189003)(199004)(6306002)(7736002)(316002)(6506007)(53546011)(8676002)(82746002)(81166006)(105586002)(106356001)(575784001)(86362001)(11346002)(1680700002)(2900100001)(476003)(81156014)(76176011)(446003)(2616005)(486006)(102836004)(790700001)(6116002)(54896002)(229853002)(606006)(6512007)(6436002)(53936002)(33656002)(45080400002)(966005)(256004)(14444005)(6916009)(6486002)(5250100002)(2906002)(36756003)(5660300001)(68736007)(14454004)(236005)(478600001)(25786009)(97736004)(83716003)(6246003)(8936002)(46003)(99286004)(4326008);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR02MB1232;
-	H:CY1PR02MB1413.namprd02.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: sierrawireless.com does not
-	designate permitted sender hosts)
-x-microsoft-antispam-message-info: 3GI9jQvq3ehcgehNqCf5Ki+i/inBm4vAFsRoH3CQ1nUWACoNoQhqjYeBOywDF3ZU3DR6sz+wlq/jjutWRs10XJ1P7EOqmDqq1Hy2112FV2cgGliR+vGfEvnqdwceJ/vD+AacqSiGxpgGYRMR8xtD06zCggzOynGiLgcDnxZiLCY8EB27SRhAMEVAZ7gqKg0Tp0QWiS1ecWJ9Vyd0e/wWNutcta6Efoj86jjBp4r1T3peEPYzHQ+5H34tu4E9xQqHpTR9DVzRW9fpLVKVTR1W6vtYQy2YTgXarXAYUwliSv80DSW41gu9S2OtJ4PlwNXMvy0qacCgxHNsv1IV6OMX5MRX20vX9EM1XyodRAHp8dk=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from emh04.mail.saunalahti.fi (emh04.mail.saunalahti.fi
+	[62.142.5.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 085ECE00DE1
+	for <yocto@yoctoproject.org>; Mon, 16 Jul 2018 01:26:15 -0700 (PDT)
+Received: from uwe1 (unknown [193.65.204.41])
+	by emh04.mail.saunalahti.fi (Postfix) with ESMTP id 99FDE300AC;
+	Mon, 16 Jul 2018 11:26:13 +0300 (EEST)
+From: Uwe Geuder <jrswdnan22@snkmail.com>
+To: yocto@yoctoproject.org
+In-Reply-To: <823e9e2b6aac4afad307982d4757494e91a481db.camel@linuxfoundation.org>
+References: <87va9jw1me.fsf@snkmail.com>
+	<823e9e2b6aac4afad307982d4757494e91a481db.camel@linuxfoundation.org>
+Date: Mon, 16 Jul 2018 11:26:13 +0300
+Message-ID: <87d0vn60yi.fsf@snkmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: sierrawireless.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b7bf536-a03e-4301-d08d-08d5ea8a3046
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2018 19:35:57.7876 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR02MB1232
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to split rootfs image?
+Subject: Re: Why can diffsigs take sometimes really looooong?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -98,242 +38,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jul 2018 07:08:49 -0000
-Content-Language: en-CA
-Content-Type: multipart/alternative;
-	boundary="_000_F31553E2DFC84532B5E9B951C0DF767Dsierrawirelesscom_"
+X-List-Received-Date: Mon, 16 Jul 2018 08:26:18 -0000
+Content-Type: text/plain
 
---_000_F31553E2DFC84532B5E9B951C0DF767Dsierrawirelesscom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Thanks for your reply!
 
-SSBkaWQgc29tZXRoaW5nIHNpbWlsYXIgdG8gdGhpcyBhIHdoaWxlIGJhY2ssIGJ1dCBJIGRpZG7i
-gJl0IGNhcmUgYWJvdXQgdGhlIGltYWdlIGl0c2VsZiwganVzdCB0aGUgbWFuaWZlc3Qgc28gSSBj
-b3VsZCBnZW5lcmF0ZSBSUE0gbGlzdHMuDQoNClNvIHdlIHdvdWxkIGluc3RhbGwgdGhlIGJhc2Ug
-Y29udGVudCBmcm9tIGEgdGFyYmFsbCBhbmQgdGhlbiBpbnN0YWxsIHN1cHBsZW1lbnRhbCAvIG9w
-dGlvbmFsIGNvbnRlbnQgZnJvbSBSUE1zLg0KDQpJIHVzZWQgYSBmaWx0ZXIgaW4gbXkgc2NyaXB0
-IHRvIGV4Y2x1ZGUgdGhlIHJvb3RzIGJvb3RzdHJhcCBjb21wb25lbnRzIHdoZW4gSSBwcm9jZXNz
-ZWQgdGhyb3VnaCB0aGUgbWFuaWZlc3QuDQoNCg0KLS0tDQoNClJlZ2FyZHMsDQoNCkRhcmN5DQoN
-CkRhcmN5IFdhdGtpbnMgOjogIFNlbmlvciBTdGFmZiBFbmdpbmVlciwgRmlybXdhcmUNCg0KU0lF
-UlJBIFdJUkVMRVNTDQpEaXJlY3QgICsxIDYwNCAyMzMgNzk4OTx0ZWw6KzElMjA2MDQlMjAyMzMl
-MjA3OTg5PiAgIDo6ICBGYXggICsxIDYwNCAyMzEgMTEwOTx0ZWw6KzElMjA2MDQlMjAyMzElMjAx
-MTA5PiAgOjogIE1haW4gICsxIDYwNCAyMzEgMTEwMDx0ZWw6KzElMjA2MDQlMjAyMzElMjAxMTAw
-Pg0KMTM4MTEgV2lyZWxlc3MgV2F5ICA6OiBSaWNobW9uZCwgQkMgQ2FuYWRhIFY2ViAzQTQ8eC1h
-cHBsZS1kYXRhLWRldGVjdG9yczovLzMvMT4NCltNNV0NCmR3YXRraW5zQHNpZXJyYXdpcmVsZXNz
-LmNvbTxtYWlsdG86ZHdhdGtpbnNAc2llcnJhd2lyZWxlc3MuY29tPiA6OiB3d3cuc2llcnJhd2ly
-ZWxlc3MuY29tPGh0dHA6Ly93d3cuc2llcnJhd2lyZWxlc3MuY29tLz4NCg0KDQpPbiBKdWwgMTUs
-IDIwMTgsIGF0IDEyOjI0IFBNLCBMdWthc3ogWmVtbGEgPEx1a2Fzei5aZW1sYUB3b29kd2FyZC5j
-b208bWFpbHRvOkx1a2Fzei5aZW1sYUB3b29kd2FyZC5jb20+PiB3cm90ZToNCg0KDQpEZWFyIEFs
-bCwNCg0KDQoNCkJlY2F1c2Ugb2Ygc29tZSBmb3JtYWwgcmVhc29ucywgd2Ugd291bGQgbGlrZSB0
-byBzcGxpdCBvdXIgcm9vdGZzIGltYWdlIGludG8gMiBwYXJ0czoNCg0KMS4gYmFzZSBzeXN0ZW0g
-LSB0byBiZSByZXVzZWQgYmV0d2VlbiBkaWZmZXJlbnQgcHJvamVjdCB2YXJpYW50cywgdHlwaWNh
-bCByb290ZnMgY29udGVudC4NCg0KMi4gYXBwbGljYXRpb24vZGF0YSAtIGxlc3MgY3JpdGljYWwg
-YXBwbGljYXRpb24sIGNvbmZpZ3VyYXRpb24sIGRhdGEsIGxvZ3MuDQoNCg0KDQpIb3cgdG8gZ2Vu
-ZXJhdGUgaW4gWW9jdG8gYXBwbGljYXRpb24vZGF0YSBpbWFnZSgyKT8NCg0KSXQgaXMgYWJvdXQg
-Z2VuZXJhdGlvbiBvZiBlbXB0eSBpbWFnZSBjb250YWluaW5nIG9ubHkgcmVxdWVzdGVkIHBhY2th
-Z2VzLCBsaWtlIFBhY2thZ2UtQSwgUGFja2FnZS1CLi4uDQoNCg0KDQpXZSB0cmllZCBmb2xsb3dp
-bmc6DQoNCg0KDQppbmhlcml0IGltYWdlDQoNCklNQUdFX0ZFQVRVUkVTID0gIiINCg0KRElTVFJP
-X0ZFQVRVUkVTID0gIiINCg0KDQoNCklNQUdFX0lOU1RBTEwgPSAiIFwNCg0KICAgICAgICAgICAg
-ICAgUGFja2FnZS1BIFwNCg0KICAgICAgICAgICAgICAgUGFja2FnZS1CIFwNCg0KICAgICAgICAg
-ICAgICAgIg0KDQpJTUFHRV9GU1RZUEVTID0gInViaSB0YXIuZ3oiDQoNCg0KDQpCdXQgaXQgcHJv
-ZHVjZXMgY2xhc3NpY2FsIHJvb3RmcyBpbWFnZSB3aXRoICh1bndhbnRlZCk6IGJpbiwgYm9vdCwg
-ZXRjLCBsaWIuLi4gV2UnZCBwcmVmZXIgdG8gaGF2ZSBpdCBidWlsdCBpbiBhbiBlZmZpY2llbnQg
-d2F5LCBzbyB3ZSdkIGxpa2UgdG8gYXZvaWQgZ2VuZXJhdGluZyBmdWxsIGltYWdlIGFuZCB0aGVu
-IHJlbW92aW5nIGZpbGVzIGJ5IGhhbmQgaW4gcG9zdHByb2Nlc3MgY29tbWFuZC4NCg0KDQoNClRo
-YW5rIHlvdSBpbiBhZHZhbmNlLA0KDQpMdWthc3oNCg0KDQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXw0KKioqDQpUaGUgaW5mb3JtYXRpb24gaW4gdGhpcyBlbWFpbCBpcyBjb25maWRl
-bnRpYWwgYW5kIGludGVuZGVkIHNvbGVseSBmb3IgdGhlIGluZGl2aWR1YWwgb3IgZW50aXR5IHRv
-IHdob20gaXQgaXMgYWRkcmVzc2VkLiBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIGVtYWlsIGlu
-IGVycm9yIHBsZWFzZSBub3RpZnkgdGhlIHNlbmRlciBieSByZXR1cm4gZS1tYWlsLCBkZWxldGUg
-dGhpcyBlbWFpbCwgYW5kIHJlZnJhaW4gZnJvbSBhbnkgZGlzY2xvc3VyZSBvciBhY3Rpb24gYmFz
-ZWQgb24gdGhlIGluZm9ybWF0aW9uLg0KKioqDQoNCi0tDQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXw0KeW9jdG8gbWFpbGluZyBsaXN0DQp5b2N0b0B5b2N0
-b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KaHR0cHM6Ly9uYTAx
-LnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxvb2suY29tLz91cmw9aHR0cHMlM0ElMkYlMkZsaXN0
-cy55b2N0b3Byb2plY3Qub3JnJTJGbGlzdGluZm8lMkZ5b2N0byZhbXA7ZGF0YT0wMiU3QzAxJTdD
-ZHdhdGtpbnMlNDBzaWVycmF3aXJlbGVzcy5jb20lN0M5YTk4NTNhNjFmMDk0ODdiZjliMjA4ZDVl
-YTg4OTQxNiU3QzA4MDU5YTRjMjQ4NjQzZGQ4OWUzM2E3NDdlMGRjYmU4JTdDMSU3QzAlN0M2MzY2
-NzI3OTQ2OTU4NjYzODAmYW1wO3NkYXRhPXpNQzN0ZnBSdTl1a1pQNm8lMkJZbDBqOXpSUkU0YXBK
-SnZidFpjV1d4OTJXZyUzRCZhbXA7cmVzZXJ2ZWQ9MA0K
+On Sun, Jul 15, 2018 at 1:38 PM, Richard Purdie  wrote:
+> On Fri, 2018-07-13 at 19:18 +0300, Uwe Geuder wrote:
+>> At times I find the diffsigs command useful/educational to understand
+>> what is going on in my build.
+>>
+>> $ bitbake-diffsigs -t myimage do_image
+>>
+>> Often the result is shown in no time. However, recently I got some
+>> cases were it takes 150 (!) minutes to show a simple difference (1
+>> line
+>> changed in do_install of systemd).
+>>
+>> In comparision building after that change (with sstate) takes some 10
+>> minutes. And building everything from scratch (no sstate) takes just
+>> a
+>> bit over 50 minutes on the same machine.
+>>
+>> Of course the build can make good use of my 8 cores / 16 threads,
+>> whereas diffsigs seems to run in only 1 core. Still, shouldn't every
+>> build calculate all the dependencies, so running diffsigs should only
+>> be
+>> a small fraction of that work?
+>>
+>> Is there a natural explanation why diffsigs can sometimes be so slow?
+>> Just curious to understand what is going on there.
+>>
+>> I am on Rocko 2.4.3 if that makes a difference.
+>
+> Is your sstate directory on something slow like NFS?
+>
 
---_000_F31553E2DFC84532B5E9B951C0DF767Dsierrawirelesscom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+No, it is on the same ext4 as the rest of my build area. Backed by an
+Intel NVMe flash drive, so hopefully that is of reasonable quality...
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGRpcj0iYXV0byI+DQpJ
-IGRpZCBzb21ldGhpbmcgc2ltaWxhciB0byB0aGlzIGEgd2hpbGUgYmFjaywgYnV0IEkgZGlkbuKA
-mXQgY2FyZSBhYm91dCB0aGUgaW1hZ2UgaXRzZWxmLCBqdXN0IHRoZSBtYW5pZmVzdCBzbyBJIGNv
-dWxkIGdlbmVyYXRlIFJQTSBsaXN0cy4mbmJzcDsNCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlNv
-IHdlIHdvdWxkIGluc3RhbGwgdGhlIGJhc2UgY29udGVudCBmcm9tIGEgdGFyYmFsbCBhbmQgdGhl
-biBpbnN0YWxsIHN1cHBsZW1lbnRhbCAvIG9wdGlvbmFsIGNvbnRlbnQgZnJvbSBSUE1zLjwvZGl2
-Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+SSB1c2VkIGEgZmlsdGVyIGluIG15IHNjcmlwdCB0
-byBleGNsdWRlIHRoZSByb290cyBib290c3RyYXAgY29tcG9uZW50cyB3aGVuIEkgcHJvY2Vzc2Vk
-IHRocm91Z2ggdGhlIG1hbmlmZXN0LiZuYnNwOzxicj4NCjxicj4NCjxkaXYgaWQ9IkFwcGxlTWFp
-bFNpZ25hdHVyZSI+PGJyPg0KPGRpdj4tLS08L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbjogMGNtIDBjbSAwLjAwMDFwdDsi
-PjxiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyNTUs
-IDI1NSwgMjU1LCAwKTsiPlJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9iPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46IDBjbSAwY20gMC4wMDAxcHQ7Ij48Yj48c3Bh
-biBsYW5nPSJFTi1VUyIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1
-NSwgMCk7Ij4mbmJzcDs8L3NwYW4+PC9iPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
-PSJtYXJnaW46IDBjbSAwY20gMC4wMDAxcHQ7Ij48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
-ImJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMCk7Ij5EYXJjeTxvOnA+PC9v
-OnA+PC9zcGFuPjwvYj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAw
-Y20gMGNtIDAuMDAwMXB0OyI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJiYWNrZ3JvdW5k
-LWNvbG9yOiByZ2JhKDI1NSwgMjU1LCAyNTUsIDApOyI+Jm5ic3A7PC9zcGFuPjwvYj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0OyI+PGI+
-PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwgMjU1
-LCAyNTUsIDApOyI+RGFyY3kgV2F0a2lucyA6OiZuYnNwOyZuYnNwO1NlbmlvciBTdGFmZiBFbmdp
-bmVlciwgRmlybXdhcmU8bzpwPjwvbzpwPjwvc3Bhbj48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCIgc3R5bGU9Im1hcmdpbjogMGNtIDBjbSAwLjAwMDFwdDsiPjxiPjxzcGFuIGxhbmc9IkVO
-LVVTIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyNTUsIDI1NSwgMjU1LCAwKTsiPiZu
-YnNwOzwvc3Bhbj48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbjog
-MGNtIDBjbSAwLjAwMDFwdDsiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iYmFja2dyb3Vu
-ZC1jb2xvcjogcmdiYSgyNTUsIDI1NSwgMjU1LCAwKTsiPlNJRVJSQSBXSVJFTEVTUzxvOnA+PC9v
-OnA+PC9zcGFuPjwvYj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAw
-Y20gMGNtIDAuMDAwMXB0OyI+PHNwYW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1
-LCAyNTUsIDI1NSwgMCk7Ij48c3BhbiBsYW5nPSJFTi1VUyI+RGlyZWN0PC9zcGFuPjxzcGFuIGxh
-bmc9IkVOLVVTIj4mbmJzcDsmbmJzcDs8YSBocmVmPSJ0ZWw6JiM0MzsxJTIwNjA0JTIwMjMzJTIw
-Nzk4OSIgZGlyPSJsdHIiIHgtYXBwbGUtZGF0YS1kZXRlY3RvcnM9InRydWUiIHgtYXBwbGUtZGF0
-YS1kZXRlY3RvcnMtdHlwZT0idGVsZXBob25lIiB4LWFwcGxlLWRhdGEtZGV0ZWN0b3JzLXJlc3Vs
-dD0iMSI+JiM0MzsxDQogNjA0IDIzMyA3OTg5PC9hPiZuYnNwOyAmbmJzcDs6OiZuYnNwOyZuYnNw
-Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+RmF4Jm5ic3A7Jm5ic3A7PC9zcGFuPjxzcGFuIGxh
-bmc9IkVOLVVTIj48YSBocmVmPSJ0ZWw6JiM0MzsxJTIwNjA0JTIwMjMxJTIwMTEwOSIgZGlyPSJs
-dHIiIHgtYXBwbGUtZGF0YS1kZXRlY3RvcnM9InRydWUiIHgtYXBwbGUtZGF0YS1kZXRlY3RvcnMt
-dHlwZT0idGVsZXBob25lIiB4LWFwcGxlLWRhdGEtZGV0ZWN0b3JzLXJlc3VsdD0iMiI+JiM0Mzsx
-IDYwNCAyMzEgMTEwOTwvYT4mbmJzcDsgOjombmJzcDsmbmJzcDs8L3NwYW4+PHNwYW4gbGFuZz0i
-RU4tVVMiPk1haW48L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyZuYnNwOzxhIGhyZWY9
-InRlbDomIzQzOzElMjA2MDQlMjAyMzElMjAxMTAwIiBkaXI9Imx0ciIgeC1hcHBsZS1kYXRhLWRl
-dGVjdG9ycz0idHJ1ZSIgeC1hcHBsZS1kYXRhLWRldGVjdG9ycy10eXBlPSJ0ZWxlcGhvbmUiIHgt
-YXBwbGUtZGF0YS1kZXRlY3RvcnMtcmVzdWx0PSIzLzAiIHN0eWxlPSItd2Via2l0LXRleHQtZGVj
-b3JhdGlvbi1jb2xvcjogcmdiYSgxMDEsIDEwMSwgMTAxLCAwLjI1ODgyNCk7Ij4mIzQzOzENCiA2
-MDQgMjMxIDExMDA8L2E+PG86cD48L286cD48L3NwYW4+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46IDBjbSAwY20gMC4wMDAxcHQ7Ij48c3BhbiBsYW5nPSJF
-Ti1VUyIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMCk7Ij4x
-MzgxMSBXaXJlbGVzcyBXYXkmbmJzcDsgOjombmJzcDs8YSBocmVmPSJ4LWFwcGxlLWRhdGEtZGV0
-ZWN0b3JzOi8vMy8xIiBkaXI9Imx0ciIgeC1hcHBsZS1kYXRhLWRldGVjdG9ycz0idHJ1ZSIgeC1h
-cHBsZS1kYXRhLWRldGVjdG9ycy10eXBlPSJhZGRyZXNzIiB4LWFwcGxlLWRhdGEtZGV0ZWN0b3Jz
-LXJlc3VsdD0iMy8xIiBzdHlsZT0iLXdlYmtpdC10ZXh0LWRlY29yYXRpb24tY29sb3I6IHJnYmEo
-MTAxLCAxMDEsIDEwMSwgMC4yNTg4MjQpOyI+UmljaG1vbmQsDQogQkMgQ2FuYWRhIFY2ViAzQTQ8
-L2E+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1h
-cmdpbjogMGNtIDBjbSAwLjAwMDFwdDsiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iYmFja2dy
-b3VuZC1jb2xvcjogcmdiYSgyNTUsIDI1NSwgMjU1LCAwKTsiPltNNV08bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAwY20gMGNtIDAuMDAw
-MXB0OyI+PHNwYW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwg
-MCk7Ij48dT48c3BhbiBsYW5nPSJFTi1VUyI+PGEgaHJlZj0ibWFpbHRvOmR3YXRraW5zQHNpZXJy
-YXdpcmVsZXNzLmNvbSI+ZHdhdGtpbnNAc2llcnJhd2lyZWxlc3MuY29tPC9hPjwvc3Bhbj48L3U+
-PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOzo6Jm5ic3A7PGEgaHJlZj0iaHR0cDovL3d3dy5zaWVy
-cmF3aXJlbGVzcy5jb20vIj53d3cuc2llcnJhd2lyZWxlc3MuY29tPC9hPjxvOnA+PC9vOnA+PC9z
-cGFuPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAwY20g
-MGNtIDAuMDAwMXB0OyI+PG86cCBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyNTUsIDI1
-NSwgMjU1LCAwKTsiPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pjxicj4N
-Ck9uIEp1bCAxNSwgMjAxOCwgYXQgMTI6MjQgUE0sIEx1a2FzeiBaZW1sYSAmbHQ7PGEgaHJlZj0i
-bWFpbHRvOkx1a2Fzei5aZW1sYUB3b29kd2FyZC5jb20iPkx1a2Fzei5aZW1sYUB3b29kd2FyZC5j
-b208L2E+Jmd0OyB3cm90ZTo8YnI+DQo8YnI+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNp
-dGUiPg0KPGRpdj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdv
-cmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlv
-bnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3Nl
-LTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGli
-cmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlv
-bnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2lu
-OjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250
-LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1V
-Uzt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsN
-Cgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVk
-LCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5Nc29QbGFpblRl
-eHQsIGxpLk1zb1BsYWluVGV4dCwgZGl2Lk1zb1BsYWluVGV4dA0KCXttc28tc3R5bGUtcHJpb3Jp
-dHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IlBsYWluIFRleHQgQ2hhciI7DQoJbWFyZ2luOjBjbTsN
-CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWls
-eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpz
-cGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZv
-bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0Kc3Bh
-bi5QbGFpblRleHRDaGFyDQoJe21zby1zdHlsZS1uYW1lOiJQbGFpbiBUZXh0IENoYXIiOw0KCW1z
-by1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiUGxhaW4gVGV4dCI7DQoJZm9u
-dC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0
-eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7
-DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3Np
-emU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgNzAuODVwdCA3MC44
-NXB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHls
-ZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQi
-IHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+
-PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0
-IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPGRpdiBj
-bGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPjxzcGFuIGxhbmc9
-IkVOLVVTIj5EZWFyIEFsbCw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvUGxh
-aW5UZXh0Ij48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PHNwYW4gbGFuZz0iRU4tVVMiPkJlY2F1c2Ugb2Ygc29t
-ZSBmb3JtYWwgcmVhc29ucywgd2Ugd291bGQgbGlrZSB0byBzcGxpdCBvdXIgcm9vdGZzIGltYWdl
-IGludG8gMiBwYXJ0czoNCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFp
-blRleHQiPjxzcGFuIGxhbmc9IkVOLVVTIj4xLiBiYXNlIHN5c3RlbSAtIHRvIGJlIHJldXNlZCBi
-ZXR3ZWVuIGRpZmZlcmVudCBwcm9qZWN0IHZhcmlhbnRzLCB0eXBpY2FsIHJvb3RmcyBjb250ZW50
-Lg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PHNwYW4g
-bGFuZz0iRU4tVVMiPjIuIGFwcGxpY2F0aW9uL2RhdGEgLSBsZXNzIGNyaXRpY2FsIGFwcGxpY2F0
-aW9uLCBjb25maWd1cmF0aW9uLCBkYXRhLCBsb2dzLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29QbGFpblRleHQiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48c3BhbiBsYW5nPSJFTi1VUyI+
-SG93IHRvIGdlbmVyYXRlIGluIFlvY3RvIGFwcGxpY2F0aW9uL2RhdGEgaW1hZ2UoMik/DQo8bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48c3BhbiBsYW5nPSJF
-Ti1VUyI+SXQgaXMgYWJvdXQgZ2VuZXJhdGlvbiBvZiBlbXB0eSBpbWFnZSBjb250YWluaW5nIG9u
-bHkgcmVxdWVzdGVkIHBhY2thZ2VzLCBsaWtlIFBhY2thZ2UtQSwgUGFja2FnZS1CLi4uPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PHNwYW4gbGFuZz0iRU4t
-VVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQi
-PjxzcGFuIGxhbmc9IkVOLVVTIj5XZSB0cmllZCBmb2xsb3dpbmc6IDxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48c3BhbiBsYW5n
-PSJFTi1VUyI+aW5oZXJpdCBpbWFnZTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29QbGFpblRleHQiPjxzcGFuIGxhbmc9IkVOLVVTIj5JTUFHRV9GRUFUVVJFUyA9ICZxdW90OyZx
-dW90OyA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48c3Bh
-biBsYW5nPSJFTi1VUyI+RElTVFJPX0ZFQVRVUkVTID0gJnF1b3Q7JnF1b3Q7IDxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPjxzcGFuIGxhbmc9IkVOLVVTIj48
-bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48c3Bh
-biBsYW5nPSJFTi1VUyI+SU1BR0VfSU5TVEFMTCA9ICZxdW90OyBcPG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyBQYWNrYWdlLUEgXDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29QbGFpblRleHQiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsgUGFja2FnZS1CIFw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvUGxhaW5UZXh0Ij48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7ICZxdW90OyA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0
-Ij48c3BhbiBsYW5nPSJFTi1VUyI+SU1BR0VfRlNUWVBFUyA9ICZxdW90O3ViaSB0YXIuZ3omcXVv
-dDsgPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PHNwYW4g
-bGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Q
-bGFpblRleHQiPjxzcGFuIGxhbmc9IkVOLVVTIj5CdXQgaXQgcHJvZHVjZXMgY2xhc3NpY2FsIHJv
-b3RmcyBpbWFnZSB3aXRoICh1bndhbnRlZCk6IGJpbiwgYm9vdCwgZXRjLCBsaWIuLi4gV2UnZCBw
-cmVmZXIgdG8gaGF2ZSBpdCBidWlsdCBpbiBhbiBlZmZpY2llbnQgd2F5LCBzbyB3ZSdkIGxpa2Ug
-dG8gYXZvaWQgZ2VuZXJhdGluZyBmdWxsIGltYWdlIGFuZCB0aGVuIHJlbW92aW5nIGZpbGVzIGJ5
-IGhhbmQgaW4gcG9zdHByb2Nlc3MNCiBjb21tYW5kLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29QbGFpblRleHQiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij5UaGFuayB5b3UgaW4gYWR2YW5j
-ZSw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPkx1a2FzejxvOnA+PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rp
-dj4NCjxkaXY+DQo8cD48L3A+DQo8aHI+DQoqKio8YnI+DQpUaGUgaW5mb3JtYXRpb24gaW4gdGhp
-cyBlbWFpbCBpcyBjb25maWRlbnRpYWwgYW5kIGludGVuZGVkIHNvbGVseSBmb3IgdGhlIGluZGl2
-aWR1YWwgb3IgZW50aXR5IHRvIHdob20gaXQgaXMgYWRkcmVzc2VkLiBJZiB5b3UgaGF2ZSByZWNl
-aXZlZCB0aGlzIGVtYWlsIGluIGVycm9yIHBsZWFzZSBub3RpZnkgdGhlIHNlbmRlciBieSByZXR1
-cm4gZS1tYWlsLCBkZWxldGUgdGhpcyBlbWFpbCwgYW5kIHJlZnJhaW4gZnJvbSBhbnkgZGlzY2xv
-c3VyZSBvcg0KIGFjdGlvbiBiYXNlZCBvbiB0aGUgaW5mb3JtYXRpb24uPGJyPg0KKioqDQo8cD48
-L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0
-ZSI+DQo8ZGl2PjxzcGFuPi0tIDwvc3Bhbj48YnI+DQo8c3Bhbj5fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48YnI+DQo8c3Bhbj55b2N0byBtYWls
-aW5nIGxpc3Q8L3NwYW4+PGJyPg0KPHNwYW4+PGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJv
-amVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+PC9zcGFuPjxicj4NCjxzcGFuPjxh
-IGhyZWY9Imh0dHBzOi8vbmEwMS5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJs
-PWh0dHBzJTNBJTJGJTJGbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyUyRmxpc3RpbmZvJTJGeW9jdG8m
-YW1wO2FtcDtkYXRhPTAyJTdDMDElN0Nkd2F0a2lucyU0MHNpZXJyYXdpcmVsZXNzLmNvbSU3Qzlh
-OTg1M2E2MWYwOTQ4N2JmOWIyMDhkNWVhODg5NDE2JTdDMDgwNTlhNGMyNDg2NDNkZDg5ZTMzYTc0
-N2UwZGNiZTglN0MxJTdDMCU3QzYzNjY3Mjc5NDY5NTg2NjM4MCZhbXA7YW1wO3NkYXRhPXpNQzN0
-ZnBSdTl1a1pQNm8lMkJZbDBqOXpSUkU0YXBKSnZidFpjV1d4OTJXZyUzRCZhbXA7YW1wO3Jlc2Vy
-dmVkPTAiPmh0dHBzOi8vbmEwMS5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJs
-PWh0dHBzJTNBJTJGJTJGbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyUyRmxpc3RpbmZvJTJGeW9jdG8m
-YW1wO2FtcDtkYXRhPTAyJTdDMDElN0Nkd2F0a2lucyU0MHNpZXJyYXdpcmVsZXNzLmNvbSU3Qzlh
-OTg1M2E2MWYwOTQ4N2JmOWIyMDhkNWVhODg5NDE2JTdDMDgwNTlhNGMyNDg2NDNkZDg5ZTMzYTc0
-N2UwZGNiZTglN0MxJTdDMCU3QzYzNjY3Mjc5NDY5NTg2NjM4MCZhbXA7YW1wO3NkYXRhPXpNQzN0
-ZnBSdTl1a1pQNm8lMkJZbDBqOXpSUkU0YXBKSnZidFpjV1d4OTJXZyUzRCZhbXA7YW1wO3Jlc2Vy
-dmVkPTA8L2E+PC9zcGFuPjxicj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Jv
-ZHk+DQo8L2h0bWw+DQo=
+Here is the output of the time command from a new "record" diffsigs run
+shortly after my first posting
 
---_000_F31553E2DFC84532B5E9B951C0DF767Dsierrawirelesscom_--
+> real    244m8.594s
+> user    137m21.897s
+> sys     8m17.606s
+
+So there is already more than 2 hours of CPU usage. Because diffsigs
+seems to be single threaded, that is a lower bound even with the best
+filesystem/disk.
+
+This build environment has been in use in development work for a couple
+of days. So there are many different signatures. But that should not
+make any significant difference if I compare just the 2 last ones,
+should it?
+
+When I had such a long run for the first time I first thought I had run
+in an endless loop. strace showed that the same files were opened again
+and again. However, in the end the command completed. I haven't made an
+effort yet to understand the pattern how it opens these files.
+
+For clean builds with no previous sstate I need "only" something like
+
+> real	54m53.939s
+> user 3268446 - 103936 = 3164510 = 527m25.10s
+> system 820431 - 1345 = 136m30.86s
+
+(These numbers are from overlayfs over ext4 on the same disk. Don't have
+any numbers without the additional overlayfs handy right now. According
+to experience the additional overlayfs leads to very similar wall times,
+just significant extra system CPU time)
+
+
+Regards,
+
+Uwe Geuder
+Neuro Event Labs Oy
+Tampere, Finland
+uwe.gexder@neuroeventlabs.com (Bot check: fix one obvious typo)
+
