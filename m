@@ -1,36 +1,40 @@
-Return-Path: <mohamad.noor.alim.hussin@intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 75444E013C1; Mon, 16 Jul 2018 23:55:29 -0700 (PDT)
+	id 889D7E015DF; Tue, 17 Jul 2018 00:12:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A395E00C1B
-	for <yocto@yoctoproject.org>; Mon, 16 Jul 2018 23:55:27 -0700 (PDT)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35093E01593
+	for <yocto@yoctoproject.org>; Tue, 17 Jul 2018 00:12:17 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	16 Jul 2018 23:55:26 -0700
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	17 Jul 2018 00:12:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,364,1526367600"; d="scan'208";a="216611826"
-Received: from alim-desktop.png.intel.com ([172.30.199.42])
-	by orsmga004.jf.intel.com with ESMTP; 16 Jul 2018 23:55:25 -0700
-From: mohamad.noor.alim.hussin@intel.com
-To: yocto@yoctoproject.org,
-	richard.purdie@linuxfoundation.org
-Date: Tue, 17 Jul 2018 14:54:56 +0800
-Message-Id: <1531810496-2948-1-git-send-email-mohamad.noor.alim.hussin@intel.com>
-X-Mailer: git-send-email 2.7.4
-Cc: openembedded-core@lists.openembedded.org
-Subject: [PATCH] oeqa/runtime/cases/manualbsp: Add BSP testcases
+X-IronPort-AV: E=Sophos;i="5.51,364,1526367600"; d="scan'208";a="57089019"
+Received: from spalapa-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
+	([10.249.34.182])
+	by orsmga007.jf.intel.com with ESMTP; 17 Jul 2018 00:11:47 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 17 Jul 2018 09:11:46 +0200
+Message-ID: <6605202.trP80IfoMo@localhost.localdomain>
+Organization: Intel Corporation
+In-Reply-To: <CAJTo0LaBSZdOVh7QEWvtr=S+ft99J7W=dodXTK0OTJp9A9sDNA@mail.gmail.com>
+References: <CANmTPBYQtpFnEJccZ0aLQFXxViB6KB+4CemA+c9Y1EtX0j2P1Q@mail.gmail.com>
+	<CANmTPBY=pJajhhyr=9rBPpAQE_LSJyxxQk5YuJ+c-T9d9DmB-w@mail.gmail.com>
+	<CAJTo0LaBSZdOVh7QEWvtr=S+ft99J7W=dodXTK0OTJp9A9sDNA@mail.gmail.com>
+MIME-Version: 1.0
+Subject: Re: how to download a recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,312 +46,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jul 2018 06:55:29 -0000
+X-List-Received-Date: Tue, 17 Jul 2018 07:12:18 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: Mohamad Noor Alim Hussin <mohamad.noor.alim.hussin@intel.com>
+On Thursday, 12 July 2018 7:51:35 PM CEST Burton, Ross wrote:
+> On 12 July 2018 at 18:49, Simon Chamlian <simon.chamlian@mpbc.ca> wrote:
+> > for grpc, there are 2 of them:
+> >
+> > http://layers.openembedded.org/layerindex/recipe/72419/
+> > Layer meta-oe
+> > <http://layers.openembedded.org/layerindex/branch/master/layer/meta-oe/>
+> > (master branch)
+>
+> That's a bug in the tool, as meta-networking is a sublayer of meta-oe.  If
+> you look at the paths, they're the same file.
 
-Manualbsp.py contain test cases that was converted from manual testcases
-to auto which would run on Yocto reference boards such as Minnowboard,
-NUC, edgerouter and beaglebone. The testcase was added to support QA
-automation which target devices attached with removable media and would
-boot up using LAVA faramework. The testcase ID was taken form existing
-manual testcase on Testopia[1].
+That is indeed a bug in the layer index update script - at some point in the 
+past the recipe was moved and the move wasn't handled properly. I have a fix 
+and will be sending it shortly.
 
-There are 2 scripts called manualbsp.py and bsphardware that needed
-to execute the test cases.
+Cheers,
+Paul
 
-Manualbsp.py contain testcases that need to run on target devices.
-There are 2 classes in this patch, BSPRuntimeTest and BSPHardwareTest.
-BSPRuntimeTest class used to run test such as check runlevel 3 or 5
-at runtime and check bash package.
-
-BSPHardware class would run test on removeable media such as USB stick,
-hard disk and MicroSD. The test cases are mount/unmount, read & write
-to removable media.
-
-Bsphardware script was written to reduce complexity of code from
-Manualbsp.py. It is used for device detection, mount/unmount and
-check runlevel on target device under test. This script would copy
-to target device as Manualbsp.py depend on it.
-
-Reference:
-[1] https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=9635.
-
-Signed-off-by: Mohamad Noor Alim Hussin <mohamad.noor.alim.hussin@intel.com>
----
- meta/lib/oeqa/runtime/cases/manualbsp.py | 122 ++++++++++++++++++++++++++++
- meta/lib/oeqa/runtime/files/bsphardware  | 132 +++++++++++++++++++++++++++++++
- 2 files changed, 254 insertions(+)
- create mode 100644 meta/lib/oeqa/runtime/cases/manualbsp.py
- create mode 100755 meta/lib/oeqa/runtime/files/bsphardware
-
-diff --git a/meta/lib/oeqa/runtime/cases/manualbsp.py b/meta/lib/oeqa/runtime/cases/manualbsp.py
-new file mode 100644
-index 0000000..22d0d33
---- /dev/null
-+++ b/meta/lib/oeqa/runtime/cases/manualbsp.py
-@@ -0,0 +1,122 @@
-+from oeqa.runtime.case import OERuntimeTestCase
-+from oeqa.core.decorator.depends import OETestDepends
-+from oeqa.core.decorator.oeid import OETestID
-+import subprocess
-+import time
-+
-+class BspRuntimeTest(OERuntimeTestCase):
-+
-+    @OETestID(240)
-+    def test_check_bash(self):
-+        status, output = self.target.run('which bash')
-+        msg = ('bash shell not working as expected. '
-+                'Status and output:%s and %s.' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OETestID(228)
-+    def test_runlevel_5(self):
-+        status, output = self.target.run('init 5')
-+        msg = ('System unable to init 5 '
-+                'Status and output:%s and %s.' % (status, output))
-+        self.assertEqual(status, 255, msg = msg)
-+        time.sleep(2)
-+        command = 'bsphardware -r 5'
-+        status, output = self.target.run(command)
-+        msg = ('System did not start from runlevel 5. '
-+                'Status:%s.' % (status))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OETestID(198)
-+    def test_runlevel_3(self):
-+        status, output = self.target.run('init 3')
-+        msg = ('System unable to start with runlevel 3. '
-+                'Status and output:%s and %s.' % (status, output))
-+        self.assertEqual(status, 255, msg = msg)
-+        time.sleep(2)
-+        command = 'bsphardware -r 3'
-+        status, output = self.target.run(command)
-+        msg = ('Unable to change from runlevel 5 to 3. '
-+                'Status and output:%s and %s.' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+class BspHardwareTest(OERuntimeTestCase):
-+
-+    @classmethod
-+    def setUpClass(cls):
-+        src = os.path.join(cls.tc.runtime_files_dir, 'bsphardware')
-+        cls.tc.target.run('mkdir ~/test')
-+        cls.tc.target.copyTo(src, '/usr/bin')
-+
-+    @classmethod
-+    def tearDownClass(cls):
-+        cls.tc.target.run('rm -rf ~/test')
-+
-+    @OETestID(216)
-+    def test_USB_mount(self):
-+        command = 'bsphardware -d sd -sp 1 -m ~/test/stick'
-+        status, output = self.target.run(command)
-+        msg = ('Unable to mount USB stick. '
-+                'Status and output:%s and %s.' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OETestID(217)
-+    @OETestDepends(['manualbsp.BspHardwareTest.test_USB_write_file'])
-+    def test_USB_read_file(self):
-+        command = 'cat ~/test/stick/hello_stick'
-+        status, output = self.target.run(command)
-+        msg = ('Unable to read file from USB stick. '
-+                'Status and output:%s and %s.' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OETestDepends(['manualbsp.BspHardwareTest.test_USB_mount'])
-+    @OETestID(219)
-+    def test_USB_write_file(self):
-+        command = 'touch ~/test/stick/hello_stick'
-+        status, output = self.target.run(command)
-+        msg = ('Status and  output:%s and %s.' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OETestDepends(['manualbsp.BspHardwareTest.test_USB_mount'])
-+    @OETestID(218)
-+    def test_USB_unmount(self):
-+        command = 'bsphardware -u ~/test/stick'
-+        status, output = self.target.run(command)
-+        msg = ('Unable to unmount USB stick. ' 
-+                'Status and output:%s and %s.' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OETestID(241)
-+    def test_MicroSD_mount(self):
-+        command = 'bsphardware -d mmc -sp p1 -m ~/test/microsd'
-+        status, output = self.target.run(command)
-+        msg = ('Unable to mount MicroSD. '
-+                'Status and output:%s and %s.' %(status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OETestDepends(['manualbsp.BspHardwareTest.test_MicroSD_write_file'])
-+    @OETestID(242)
-+    def test_MicroSD_read_file(self):
-+        command = 'cat ~/test/microsd/hello_mmc'
-+        status, output = self.target.run(command)
-+        msg = ('Unable to read MicroSD. '
-+                'Status and output:%s and %s.' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OETestDepends(['manualbsp.BspHardwareTest.test_MicroSD_mount'])
-+    @OETestID(244)
-+    def test_MicroSD_write_file(self):
-+        command = 'touch ~/test/microsd/hello_mmc'
-+        status, output = self.target.run(command)
-+        msg = ('Unable to write to MicroSD. '
-+                'Status and output:%s and %s.' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OETestDepends(['manualbsp.BspHardwareTest.test_MicroSD_mount'])
-+    @OETestID(243)
-+    def test_MicroSD_unmount(self):
-+        command = 'bsphardware -u ~/test/microsd'
-+        status, output = self.target.run(command)
-+        msg = ('Unable to unmount MicroSD. '
-+                'Status and output:%s and %s.' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-diff --git a/meta/lib/oeqa/runtime/files/bsphardware b/meta/lib/oeqa/runtime/files/bsphardware
-new file mode 100755
-index 0000000..3973825
---- /dev/null
-+++ b/meta/lib/oeqa/runtime/files/bsphardware
-@@ -0,0 +1,132 @@
-+#!/bin/bash
-+
-+# Description: This script used for Yocto Project BSP test.
-+#              manualbsp.py script is depend on this script
-+#              that available in poky/meta/lib/oeqa/runtime/cases/manualbsp.py.
-+#              This script is should be located in
-+#              poky/meta/lib/oeqa/runtime/cases/
-+
-+LOG_FILE="/tmp/bsphardware.log"
-+
-+usage() {
-+echo "BSP hardware test is a script used to test hardware"
-+echo "such as USB stick, micro SD and SSD hard disk on Yocto Project."$'\n'
-+echo "Usage:"
-+echo " -d, --device <keyword, e.g. sd/mmc>            Get device's name"
-+echo " -sp, --setPartition <partition's number>       Set partition's number "
-+echo " -m, --mount <path/to/mount>                    Mount the device to /path/to/mount"
-+echo " -u, --umount <path/to/unmount>                 Unmont the mounted device"
-+echo " -r, --runlevel <3|5>                           Get runlevel on current system"
-+echo " -h, --help                                     Show the usage"$'\n'
-+echo "Examples"
-+echo " bsphardware -d sda -sp 1 -m ~/data   Mount /dev/sda1 on ~/data"
-+}
-+
-+options() {
-+SETPARTITION=""
-+DEVICE=""
-+while [[ $# -gt 0 ]]; do
-+case "$1" in
-+    -d|--device)
-+        echo "[INFO]: get device's name" 2>&1 | tee -a $LOG_FILE
-+        array_devices=()
-+        index_device=()
-+        array_devices=$(ls /dev/$2*)
-+        for i in ${array_devices[@]}
-+        do
-+            index_device+=($i)
-+        done
-+        DEVICE="${index_device[0]}"
-+        echo "[INFO]: Detected device: $DEVICE"$'\n' 2>&1 | tee -a $LOG_FILE
-+        ;;
-+    -sp| --setPartition)
-+        echo "[INFO]: Set partition: $2" 2>&1 | tee -a $LOG_FILE
-+        SETPARTITION=$2
-+        ;;
-+    -m|mount)
-+        if [[ ! -d $2 ]];then
-+            mkdir -p $2
-+        fi
-+        if [[ "$DEVICE" == "" || " $SETPARTITION" == "" ]]; then
-+            echo "[ERROR]: Target device and partition not found." 2>&1 | tee -a $LOG_FILE 
-+            echo "[INFO]: Use -d <device_keyword> -sp <partition's number> -m <dir>"  2>&1 | tee -a $LOG_FILE
-+        else
-+            echo "[INFO]: Mounting removable media..." 2>&1 | tee -a $LOG_FILE
-+            echo "[DEBUG]: commandline: mount $DEVICE$SETPARTITION $2"$'\n' 2>&1 | tee -a $LOG_FILE > /dev/null
-+            mount $DEVICE$SETPARTITION $2
-+        fi
-+        if [[ $? -eq 0 ]]; then
-+            echo "[INFO]: Device $DEVICE$SETPARTITION mount successfully"$'\n' 2>&1 | tee -a $LOG_FILE
-+            exit 0
-+        else
-+            echo "[ERROR]: Unable to mount device $DEVICE$SETPARTITION. Device does not exist"$'\n' 2>&1 | tee -a $LOG_FILE
-+            exit 1
-+        fi
-+        ;;
-+    -u|umount)
-+        echo "[INFO]: Unmount $2" 2>&1 | tee -a $LOG_FILE
-+        if [[ -d $2 ]]; then
-+            echo "[DEBUG]: commandline: umount from $2" 2>&1 | tee -a $LOG_FILE > /dev/null
-+            umount $2
-+        else
-+            echo "[Error]: No mount point on $2"$'\n' 2>&1 | tee -a $LOG_FILE
-+            exit 1
-+        fi
-+        if [[ $? -eq 0 ]];then 
-+            echo "[INFO]: Device $2 unmount successfully" 2>&1 | tee -a $LOG_FILE
-+            echo "[INFO]: Removing mount point on $2" $'\n' 2>&1 | tee -a $LOG_FILE
-+            rm -rf $2
-+        else
-+            echo "[ERROR]: Unable to unmount from $2"$'\n' 2>&1 | tee -a $LOG_FILE
-+        fi
-+        ;;
-+    -r|--runlevel)
-+        level=$(runlevel | cut -d " " -f2)
-+        echo "[DEBUG]: commandline: runlevel | cut -d ' ' -f2" 2>&1 | tee -a $LOG_FILE > /dev/null
-+        if [[ "$2" == "3" || "$2" == "5" ]]; then
-+            if [[ "$level" == "3" && "$level" == "$2" ]]; then
-+                echo "[DEBUG]: Test runlevel 3"  2>&1 | tee -a $LOG_FILE
-+                echo "[INFO]: System start with runlevel: $level"$'\n' 2>&1 | tee -a $LOG_FILE
-+                exit 0
-+            elif [[ "$level" == "5" && "$level" == "$2" ]]; then
-+                echo "[DEBUG]: Test runlevel 5" 2>&1 | tee -a $LOG_FILE > /dev/null
-+                echo "[INFO]: System start with runlevel: $level"$'\n' 2>&1 | tee -a $LOG_FILE
-+                exit 0
-+            else
-+                echo "[INFO]: System did not start with runlevel: $2"$'\n' 2>&1 | tee -a $LOG_FILE
-+                exit 1
-+            fi
-+        else
-+            echo "[ERROR]: Runlevel other than 3 & 5 are not allowed."$'\n' 2>&1 | tee -a $LOG_FILE
-+            exit 1
-+        fi
-+        ;;
-+    -h|--help)
-+        usage
-+        exit 0
-+        ;;
-+    *) 
-+        echo "[Error]: Arguments $1 is not exists."$'\n' 2>&1 | tee -a $LOG_FILE
-+        usage
-+        exit 1
-+        ;;
-+esac
-+shift
-+shift
-+done
-+}
-+
-+main() {
-+if [ "$#" == "0" ];then
-+    usage
-+    exit 1
-+esh vs shlse
-+    echo "[INFO]: Start-Date: $(date '+%Y-%m-%d %H:%M:%S')" 2>&1 | tee -a $LOG_FILE > /dev/null
-+    echo "[DEBUG]: commandline: $0 ${POSITIONAL[*]}" 2>&1 | tee -a $LOG_FILE > /dev/null
-+    options "${POSITIONAL[@]}"
-+fi
-+}
-+
-+POSITIONAL=()
-+POSITIONAL+=("$@")
-+main ${POSITIONAL[@]}
 -- 
-2.7.4
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
 
 
