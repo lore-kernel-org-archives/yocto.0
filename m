@@ -1,166 +1,48 @@
-Return-Path: <Karthikeyan.S@trane.com>
+Return-Path: <Karim.Gillani@gov.bc.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6BEA7E0120B; Mon, 16 Jul 2018 10:41:33 -0700 (PDT)
+	id 44A64E01287; Tue, 17 Jul 2018 10:10:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.37.111 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [142.34.224.138 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
-	(mail-cys01nam02on0111.outbound.protection.outlook.com
-	[104.47.37.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37481E008E0
-	for <yocto@yoctoproject.org>; Mon, 16 Jul 2018 10:41:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=irco.onmicrosoft.com; 
-	s=selector1-trane-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=NJG2x4Akvr3LFOERLAopJjeX/0F/hO/DAK3Qte5C0kI=;
-	b=WqRWRYT9zJZgxGpzJu0fHSCfO0S9MwK5bLgfTk9wDXApyPudnDowoXgVq5avvHO8Y8pbiAyf8bm1nfbsdxtap0DPM+OyjodPp0UbVDjStVuXDkcV3Kxl4UrmQQs8QQECuk87b7Zkekun0k7JVfaHfV1yUZZonVqet4HrxiIAsdo=
-Received: from DM5P154CA0006.NAMP154.PROD.OUTLOOK.COM (2603:10b6:23:68::16) by
-	CO1P154MB0038.NAMP154.PROD.OUTLOOK.COM (2603:10b6:110:6c::21) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.952.21; Mon, 16 Jul 2018 12:05:02 +0000
-Received: from VE1EUR03FT020.eop-EUR03.prod.protection.outlook.com
-	(2a01:111:f400:7e09::201) by DM5P154CA0006.outlook.office365.com
-	(2603:10b6:23:68::16) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.952.21 via
-	Frontend Transport; Mon, 16 Jul 2018 12:05:01 +0000
-Authentication-Results: spf=temperror (sender IP is 23.103.241.196)
-	smtp.mailfrom=trane.com; intel.com; dkim=none (message not signed)
-	header.d=none; intel.com;
-	dmarc=temperror action=none header.from=trane.com; 
-Received-SPF: TempError (protection.outlook.com: error in processing during
-	lookup of trane.com: DNS Timeout)
-Received: from 012-smtp-out.irco.com (23.103.241.196) by
-	VE1EUR03FT020.mail.protection.outlook.com (10.152.18.242) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.20.952.17 via Frontend Transport; Mon, 16 Jul 2018 12:04:59 +0000
-Received: from BN3PR73MB0070.mgdir.irco.com (141.251.167.18) by
-	BN3PR73MB0070.mgdir.irco.com (141.251.167.18) with Microsoft SMTP
-	Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.952.21; Mon, 16 Jul 2018 12:04:58 +0000
-Received: from BN3PR73MB0070.mgdir.irco.com ([141.251.167.18]) by
-	BN3PR73MB0070.mgdir.irco.com ([141.251.167.18]) with mapi id
-	15.20.0952.021; Mon, 16 Jul 2018 12:04:58 +0000
-From: "S, Karthikeyan" <Karthikeyan.S@trane.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Regarding build Yocto offline
-Thread-Index: AdQahxnZ7Ii3d13cRZK8OUwwttojeQAAITjQAJfiP4AAAFzBgAADXygAAAAU/HAAAE5ogAABUFKw
-Date: Mon, 16 Jul 2018 12:04:58 +0000
-Message-ID: <18573e27c770465cafc516a4f77dce32@BN3PR73MB0070.mgdir.irco.com>
-References: <3d2df8a5ae76426ebc9562d88615fff3@BN3PR73MB0070.mgdir.irco.com>
-	<CAJTo0LYak86JDDX_7-cgJYcbrXTzP=W-jjoz5cmCZZ6MpDkP1g@mail.gmail.com>
-	<1dd08bd8322b48078abeac992cb89f9b@BN3PR73MB0070.mgdir.irco.com>
-	<CAJTo0LaYG8HU1A1tzo5Pq6d6u_ufQ94u26PBK-_CF6VuxHQ7_A@mail.gmail.com>
-	<694c32fb54d546b7a958f039d234cbc2@BN3PR73MB0070.mgdir.irco.com>
-	<CAJTo0LY4N-cO6xvh353hH5PCRdDe5mSS6fQv=0vFHmq=ztwS0A@mail.gmail.com>
-In-Reply-To: <CAJTo0LY4N-cO6xvh353hH5PCRdDe5mSS6fQv=0vFHmq=ztwS0A@mail.gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 3870 seconds by postgrey-1.32 at yocto-www;
+	Tue, 17 Jul 2018 10:10:03 PDT
+Received: from outbound-kam-1.gov.bc.ca (outbound-kam-1.gov.bc.ca
+	[142.34.224.138])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46260E00BB5
+	for <yocto@yoctoproject.org>; Tue, 17 Jul 2018 10:10:02 -0700 (PDT)
+Received: from e3pmbx12.idir.BCGOV (e3pmbx12.idir.bcgov [142.34.177.196])
+	by outbound-kam-1.gov.bc.ca (8.14.4/8.14.4) with ESMTP id
+	w6HG5VYo001924
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 17 Jul 2018 09:05:32 -0700
+Received: from E3PMBX02.idir.BCGOV (142.34.177.191) by e3pmbx12.idir.BCGOV
+	(142.34.177.196) with Microsoft SMTP Server (TLS) id 15.0.1395.4;
+	Tue, 17 Jul 2018 09:05:31 -0700
+Received: from E3PMBX02.idir.BCGOV ([::1]) by E3PMBX02.idir.BCGOV ([::1]) with
+	mapi id 15.00.1395.000; Tue, 17 Jul 2018 09:05:31 -0700
+From: "Gillani, Karim CITZ:EX" <Karim.Gillani@gov.bc.ca>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [meta-raspberrypi] - X11 EGLSV2 Chromium
+Thread-Index: AdQd5yop0JtedX6nSKSNlLsl5GcBZg==
+Date: Tue, 17 Jul 2018 16:05:30 +0000
+Message-ID: <ce7fc3e6ee9d4a78bfb688737838f9b4@E3PMBX02.idir.BCGOV>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [141.251.147.5]
-x-ms-publictraffictype: Email
-X-MS-TrafficTypeDiagnostic: BN3PR73MB0070:|CO1P154MB0038:
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [142.32.124.172]
 MIME-Version: 1.0
-X-OrganizationHeadersPreserved: BN3PR73MB0070.mgdir.irco.com
-X-EOPAttributedMessage: 0
-X-CrossPremisesHeadersPromoted: VE1EUR03FT020.eop-EUR03.prod.protection.outlook.com
-X-CrossPremisesHeadersFiltered: VE1EUR03FT020.eop-EUR03.prod.protection.outlook.com
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:23.103.241.196; IPV:NLI; CTRY:; EFV:NLI;
-	SFV:NSPM;
-	SFS:(10019020)(376002)(346002)(396003)(366004)(136003)(39860400002)(2980300002)(3190300001)(189003)(199004)(13464003)(575784001)(6306002)(55016002)(93886005)(316002)(2900100001)(68736007)(50466002)(229853002)(2906002)(66066001)(9686003)(72206003)(966005)(63350400001)(478600001)(86362001)(446003)(3846002)(81166006)(81156014)(476003)(69596002)(126002)(8676002)(486006)(47776003)(356003)(6116002)(14444005)(5660300001)(23676004)(11346002)(336012)(6916009)(7736002)(305945005)(7696005)(5024004)(6246003)(53936002)(4326008)(156004)(76176011)(186003)(26005)(97736004)(24736004)(53546011)(108616005)(436003)(63370400001)(106466001)(956004)(2486003)(8936002)(102836004);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:CO1P154MB0038;
-	H:012-smtp-out.irco.com; FPR:; SPF:TempError; LANG:en;
-	PTR:InfoDomainNonexistent; MX:1; A:1; 
-X-Microsoft-Exchange-Diagnostics: 1; VE1EUR03FT020;
-	1:9sKar4nFqx8FD30vpMUn+C4MHddfmu45bmWDfNKQykX7Q4mF+0f2WU/A1A+1P3zTOWTefnjiNMxyVZEt6PQUhzgvQnm43+ZP7Wcg1cRCHWE7U2ka1Fq4OkqBuyHripTG
-X-MS-Office365-Filtering-Correlation-Id: 41193543-8a07-476a-ab0b-08d5eb145acb
-X-Microsoft-Antispam: UriScan:(223705240517415); BCL:0; PCL:0;
-	RULEID:(7020095)(4652040)(8989117)(5600053)(711020)(4534165)(4627221)(201703031133081)(201702281549075)(8990107)(2017052603328)(7153060)(7193020);
-	SRVR:CO1P154MB0038; 
-X-Microsoft-Exchange-Diagnostics: 1; CO1P154MB0038;
-	3:Jo8go8VVLdx3/izbp0PzF5Sdk2Sne99VR1Td7AEIYLO4pc1WEQP0PGmg1XdjkKyTV7ZxSsTq1rmYSSyAeQtpUh27+g3uZKFyFQbwaOjs6dXSHvBKhO0YxkBaNFMM6aWujjZUXum5qnlwkwWsJeR6v1RvHeWHTU24SuT67H8SPydIWRDEyvs0dsYCHHz1Gl2JCcrMaPweAmJVFsG2gvJiBkbMyDhQgy6VEv9SwE75Fz60/5zm9T53Kd5eZxCUCjfwD+G5tvBv+5tqTTKhodLH8aBDfyx4sytEIUjE1/pfVDi81JxTGZ4ZZLhWydQlIHR79whV1wbOqDXBXr4ohmHbKcIIellRDfDXxRfUgj5XBoMgsQJfVIrGC3YDw1t1gstqeOVxmjRNVEKnQo+NK7rwog==;
-	25:52mkNiGS/BCvZHXzh8vNKVXcxzoqPujIOLh+BNLTnw4LITWH6eJW9nMXu2pmVhg/iuZLxapQbFxK/cq4KiejraJImFPilM4re221zCawyYszglk5uXDh1GCH2MiU5+sN/2FMlIln4e1eVvIOSlnFO1USqCAHXj41AxsALTvy5gXKpqo7V5aLDsAJ0se3xfCfLWUmcKTbhGWJUx4KjVxiUb0WV0kP7ar3EYTDCvUEJoOj1q5EbYS0MazS00GaTZJSE3rJPaK84+pnYu5PQ31ovGiw4mi7NKt5O1ZR5Y3xe0BQFqSOmKrUo4NFoC0Uy7mxYFmi2afKgZrGltqKP8mv5A==
-X-Microsoft-Exchange-Diagnostics: 1; CO1P154MB0038;
-	31:KQhqNwMx2jzq4AyLLfDGEGyBSufXjoH9HQaEvy8K+bmfvORrLsdLShScqWBQDczmuG8iJJOIYZRRrKW0n+NUOJc4icTr39Fm+EpPYsUSf+OSx3Mgc90ncEC7CFFGCDSxnXK1b5vLNZZbpLS+EfoD5IZhk9bi33JQh+VxniLGYMBwT1yv2l87DwqZmOO/ZHSrvB0gp2Q1s1i9zx1k0FAaRN+X1c3KTpK7XXuc48AXRRQ=;
-	20:ElLmd8qp3NXmDzePDDoQ6VkZK0oIzx/mck5wiKSYBnp3S3nD6vhsCVN8bZ3bOh2/ruMy5BYytO5Sb9IH4jubK9qCpxQwthDospgkjuiVoVl+jscn5PWIIQIfAkRC8aJAMAHwbmz9pDykOSO8X/XsTbDN0y49qkxFntcigpcs9CCU6oEOWCzANXhBO6yjUyssafRq4G3InY4oy3nvAs9+a0+OaQ9CuDauf5OQ74y0DtYtypmmgz08rqM/7yMhX9iUQqvtvtIgxG5s9AAjbhQlc90U9rsYMNhrWThfSQFc+HN4x9RUQtnj5aaCYOc5f7+I4tZe58hlcfnZzUEK1IuE+Au1a/5xoZ+tSTJ+we+Bfr1CrVkZtNsxut+iYOq6YgPeWibkg9RxrGjQHAtq0bHIsjIMiNhwEc0Ixy6oBf5un1uZKqGefrfjjALndfS0zASasTpGZmS1Nq1cgwModkKi0MzwvzaqsSP8iAyHiyM5matWVA8wkAeqya7Tuae6gsdH
-X-Microsoft-Antispam-PRVS: <CO1P154MB00383BBB2E0DC829AC370556F15D0@CO1P154MB0038.NAMP154.PROD.OUTLOOK.COM>
-X-Exchange-Antispam-Report-Test: UriScan:(10436049006162)(223705240517415)(788757137089)(248517679984584)(228905959029699);
-X-MS-Exchange-SenderADCheck: 1
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(5005006)(8121501046)(3231311)(944501410)(52105095)(93006095)(93003095)(3002001)(10201501046)(6055026)(149027)(150027)(6041310)(20161123562045)(20161123564045)(20161123560045)(20161123558120)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(6072148)(201708071742011)(7699016);
-	SRVR:CO1P154MB0038; BCL:0; PCL:0; RULEID:; SRVR:CO1P154MB0038; 
-X-Microsoft-Exchange-Diagnostics: 1; CO1P154MB0038;
-	4:r/n0KZueF7KrdiqOYKqJ4nsiTdcap1dCiciMsDNgN816dIchNKk95/3fJjKOtuFS4c4gnv9NDBVw/uU9NGZZ4InIaOyG1Yhd856543Td7wKHePM13bmEhjOwjtIvgbr26Akzo+jTVDMRf+418xlRfrmKm0f47ieokg/X0an5LwvAXIuqKu37kR6AVZ38isEwfvFwb4lcBe5gOp0WKtovcDN4ZtQZBcZ56aVrN72GhfTI3csxtEaZmgoxTFgQa6pId3H2P5R3lMh7D2f7EtHL27mp5w3Gu8zg6a/oun0ErCLjzIHklvkOALz/NdpRKrkCLok756EVGBbxYJHQ7IZ+mqQL9XWPtIU+1S7+3zOvgdzl4oKSrcomXDhC2m83NdrM3ggs4VCoP67EgLL8B7twwULZJ/Sg4uXWVjDcV2e5BZvILjPMKsDNaW0PGlvlB1vM
-X-Forefront-PRVS: 073515755F
-X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtDTzFQMTU0TUIwMDM4OzIzOllQZ1czb0p6WnM5VVNURG9uaW9uOWREcFVQ?=
-	=?utf-8?B?YnR1c25qazNpYkxvcDBFSnV6eUtQQ1ZPTDkyT2hWSHM2L2pCbWFVNWZhT00r?=
-	=?utf-8?B?OEhJODV2K2Yvb1EzYXRZWWd0MDRoVjN5QndhVFIwRkx5ZWNUS3l1ZThZV1NN?=
-	=?utf-8?B?Tk9NNFMrTFNWQTh5dXZjd3NFeFNKeVV5MGlUTENpZTF1MUxrRHBNQUxIV1dl?=
-	=?utf-8?B?VC80SCtyVzFXYXl1Yi9RZy9BaUw4ZjQvQlhYSEJ2RE5aOEpQWVhla3U5Mlly?=
-	=?utf-8?B?TnMvdHJPQ2NtNHFob3AwTHkvcTVZR01nOTd6RTN1OUNvREQwVVZ3SHcrd1pQ?=
-	=?utf-8?B?a2FVNFliazhpSVBKYmJSczZ5bU5xUWVJOHlDdVJrUTJIRlRDUHA2Wk9pTXVa?=
-	=?utf-8?B?eFhEbzcxeGpIdkN1K3JmUlUxQmhYdmtOMExhVWE0WkE5Myt1L05TMG9ZamVV?=
-	=?utf-8?B?RXo4eTY2b0tJQnU3My9XZDgrYkk2WFBHSkZmWGVOUG5pTCtZZ2drUTBSblhD?=
-	=?utf-8?B?Wlc0V2Y2Q0tyNXF4MmNLRXZ5QzFOM05JcUdGaDdEMUM5aHlndTdGN1EwVEVl?=
-	=?utf-8?B?OEc1dDRXelVjK09TditJNksrWmM1VHBlRkpRZHVBTEFka2Era0IzeFBZT1NV?=
-	=?utf-8?B?QVdVY1VJelFVUjRsUFMybmd1K0NtQ3BSZk1oVlVPRThyY0J0aXF4emtBZHJo?=
-	=?utf-8?B?cXdhMEM3V3p4MmZwSW1rOWxyaHRqUkNwZEUwWGYzdVRaTjBWcUFMNnV1bGdV?=
-	=?utf-8?B?MDRoRWtGRlBMTVpmc2xveFNBU3dSMnBXOVpsbG5Dd3lDMHBNY1g2NlF3WGVQ?=
-	=?utf-8?B?T3JtVHBHUUhXUmNqNllwZnczNlhsZHZaRjNkcEIwOWdrY3hGS2kybjZhWk5N?=
-	=?utf-8?B?TjZNQlZtRE5MV0lOM0RaNThURXlkUzYraS9nRUNoK216WTNQdFIzY21hRVFO?=
-	=?utf-8?B?SGJyQktKSUZSZmZZSWdBVGlRRnZnV1U4N3Y3dmlhOFR1TUU1emZqNzZBSzRG?=
-	=?utf-8?B?dGhwMHRwMkVXbTZBcVo2UE1JaXQ0alB0THJzNHo0L1ExNDdSV2J3MGFUTTBu?=
-	=?utf-8?B?d1dPV0xhRTlLSGl4VG1wMERiYmw2UUkxeW9MQ1lUWnovOUlUSXpsUllzaFJa?=
-	=?utf-8?B?ODlEaDBXOVR6d2o2R3VOcGo4MzRNaE5IaFVsT0NNKzVqYUw5WGVKU3Z3M3Fy?=
-	=?utf-8?B?OGVMWGQ1RGhXOFN4djQyOGN0ZUhaemtSYUt2OVFMVmFrNHE2K1ByaVFYRG1p?=
-	=?utf-8?B?NUl6K2RqcjhrVHlibFZ5anN2WE03WUhIcUoxSVQ2bHhxWFlpU3dieTdXSjFR?=
-	=?utf-8?B?c2M1RmpWSTVnTlg2UlVnWHd2by9TcmQwcE5jQmpoa1ZydzNDZ2pFbjRBYU8y?=
-	=?utf-8?B?RzJkV0JYcnFPQWpJVVExNS9rdHkybnkyS3ZVM01kNFc1eW0vbmttT2xEejdZ?=
-	=?utf-8?B?bnhwVlJiT1pxOUZOcFRkZHBOcjc5WlZYZ3ZGVGdzcE44MVA4NTVFRE50WHRx?=
-	=?utf-8?B?WDNiL09lQ3pvQ0lyM21qdTVWcVVIdTRyeVQreUpZd2Z4Rm1GN3ZuRThDbXBR?=
-	=?utf-8?B?cDNOd3NSMGJzYlpVOW9BY1NtREVyVmVlY2hXdmJ1MXNRUEE5L2FQSVhEWHRH?=
-	=?utf-8?B?N3hhQnl3Q3p4VWlENmxLdVBOWVZMSzNCMFUrQVM4K3d4c3NVVnlId1BZTkll?=
-	=?utf-8?B?bnFYUWQzT0cyT0UxeDRIazJKS3I5SXUzSlhkbU5vN1VDNkowNERGMGZGbVNj?=
-	=?utf-8?B?NE40MnZlbGo1TEJiQlVXbWREbmUzOGRvNWNPSDhmMEZjQlplSEt3aWU3SnlR?=
-	=?utf-8?B?dCtUc1BMbWZvcWdzb1FsYkNhZzlOOWU3aWwrMWplK2RYcmZUZjZaSjZ6dzI3?=
-	=?utf-8?B?S1NNZFNJcFBaK2RHYW9JeXJ1b1NaZTloN2ltZGt3c0xjdUlWNmI0bmc3bHRy?=
-	=?utf-8?B?eWt6NXhQelBvVUNpOHlmTDZJL1lCWFJXOVhlTHhoejRGMW1DU2J6K3NvdFY5?=
-	=?utf-8?B?d2IyRlRpNWUzU3hhbC9MUGxJSU1LeU1BWTNmZz09?=
-X-Microsoft-Antispam-Message-Info: PDBB90IJsf/Xl256NhCEfWuF07l8WF5dlWRV07g+/foYAEt1MEe+eJta6yLgwQfLchZOJMhI6oCFQgcDi8lSrIPu90XB9pBYlwVo6QVo7BHhFzrG73IxWFgmMdAIOCWNWZdI70xtcux1M5s10mzlhuAZ+vx0ZSf/Wmg1hIipIuFobg1TNjybFEj0+MYyHEsjc6Yz50XHgJt2tVxnfPHoUhprL15S745nUkes7h4ytuFpSSo239dxuUT5Dwt+NwiW1JR7+NzvboJD8Y+dkFFd4VCkzKZYJJbvD1R6XqOUyi09CL5mvBDFEDkGo6SZrLuFMUAwAErJLcg43E1YKOJ/86wtwfxEWDYa6IoBqR228r4=
-X-Microsoft-Exchange-Diagnostics: 1; CO1P154MB0038;
-	6:QNjCG8yFW/CoE3Xhje/JdqmnX408LJo1kPV9z/cZ6Iq75X1Z7JqK3laIZ50koSSQjRIwPc7A7X1Jt1UGm+48N3B/Grt2gXYtIi8usVAbXNAokUdLRcjTGhaUakMhMCnwbMIHxJr+dVILUFz6Tf5IPI+2KEMoRk5GmszoyeEXjaNk+Mkl21/eHagRhBFKn+se7n+85Bv5qGcs/Gc+5xq6acYOQuzfKcVySeddF9rNIwUWrNnM3KU16o3l+1Sm+o/xHr2ImNB3ttw4zVugG5TDAdbCB364qnYvAr1URbitgwQ26toCGSD0UfIealqTu87j82AubVBpwhkz24JrN8EHUERDU24Z4dJEAseMQSx3X92kQqJ/czlKwsqdNO0YKb4RRpbGcOzh6L4JWD2XZ0SDJ9HPfdIeAcxe6Km4xZnL4GgY+i2H+lRngwtZIoy8+Qu4Qh4Asid7FBlR2Z+M0k3eHw==;
-	5:9FvSAtsYhhq10ZdDol+wEVz13edHiaCCYBK6jTPinToW55hm+eVoU9WZaudOXxow6ka4ZI9JcdoxrYwQUBqEgCTkVt9cP5IcrhDXIH3mi7EoFUWW9izL9kcTLcsAqW9apcgk4fUFKIfnYnHp038uNckGixGGGJtln7Ri5W8M+tQ=;
-	24:pftr2tLV63livMJGl5pFfqWTMjQQNE8UFIClgoehK2vaJNMCeH1jAbyQP0ySKSvmUTnZ8yWKVc0QwpoRNdPTgtQaelLyqYldMHRHDGbxp+c=
-SpamDiagnosticOutput: 1:99
-SpamDiagnosticMetadata: NSPM
-X-Microsoft-Exchange-Diagnostics: 1; CO1P154MB0038;
-	7:FkLLF03AgEeaECZLDFrB0AqQagEGnrMxQ9X7x4xFDMgWmFps1iHUoHo+E5J9nK6kb2XM2lwNVJk8eSpBrgkvhMh1EGssbZsQ/e/4ouEAifDtfsNpLxrpJVKg+jtGTVQbXSr8GZU+tfwxP9W30QwnXbyY4HtyxCGPGoqidzX0dP0dfVZbHg9cBRw6/bYzflQgPr3HfbFWzNL9yojuMiLgj1HhlJzHfQVUeoKbPgNQ9NGYetFwp5E6iA7av8iWEsPQ
-X-OriginatorOrg: trane.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2018 12:04:59.5776 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 41193543-8a07-476a-ab0b-08d5eb145acb
-X-MS-Exchange-CrossTenant-Id: abf9983b-ca77-4f20-9633-ca9c5a847041
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=abf9983b-ca77-4f20-9633-ca9c5a847041;
-	Ip=[23.103.241.196]; Helo=[012-smtp-out.irco.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1P154MB0038
+X-Scanned-By: MIMEDefang 2.70 on 142.34.224.138
 X-Mailman-Approved-At: Sun, 22 Jul 2018 15:36:54 -0700
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Regarding build Yocto offline
+Subject: [meta-raspberrypi] - X11 EGLSV2 Chromium
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -172,118 +54,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jul 2018 17:41:33 -0000
+X-List-Received-Date: Tue, 17 Jul 2018 17:10:04 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/alternative;
+	boundary="_000_ce7fc3e6ee9d4a78bfb688737838f9b4E3PMBX02idirBCGOV_"
 
-SGkgUm9zcywNCiAgICAgIEZyb20geW91ciByZXBseSBhbmQgZnJvbSB0aGUgYmVsb3cgbGluayAi
-IGh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvSG93X2RvX0kjTm9uLW5ldHdvcmtl
-ZF9CdWlsZHNfYW5kX0NhY2hlZF9HaXRfUmVzcG9zaXRvcmllcyINCkkgbWF5IGhhdmUgdG8gY2hh
-bmdlIHNvbWV0aGluZyBpbiBTUkNfVVJJIGFuZCBTUkNfUkVWIHZhcmlhYmxlIGFuZCB0aGlzIHdp
-bGwgd29yayBJIGd1ZXNzLCBQbGVhc2UgbGV0IG1lIGtub3cgd2hhdCBleGFjdGx5IEkgaGF2ZSB0
-byBkby4gVGhhbmtzIGZvciBzdXBwb3J0aW5nIHRoaXMgaXNzdWUuDQoNClRoYW5rcywNCkthcnRo
-aWsNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEJ1cnRvbiwgUm9zcyBbbWFp
-bHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0NClNlbnQ6IE1vbmRheSwgSnVseSAxNiwgMjAxOCA0
-OjU1IFBNDQpUbzogUywgS2FydGhpa2V5YW4gPEthcnRoaWtleWFuLlNAdHJhbmUuY29tPg0KQ2M6
-IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIFJlZ2FyZGluZyBi
-dWlsZCBZb2N0byBvZmZsaW5lDQoNClRoYXQgYnVpbGQgaXMgbm90IGJ1aWxkaW5nIHRoYXQgcmVj
-aXBlLCBiZWNhdXNlIHRoZSByZWNpcGUgeW91J3ZlIGF0dGFjaGVkIGhhcyBTUkNfVVJJPWEgbG9j
-YWwgZmlsZSwgYnV0IHRoZSBsb2cgY2xlYXJseSBzaG93cyBpdCBnb2luZyB0byBnaXRodWIuDQoN
-CkFzc3VtaW5nIHlvdSdyZSBhY3R1YWxseSB1c2luZyB0aGUgb3JpZ2luYWwgdmVyc2lvbiBvZiB0
-aGUgcmVjaXBlIGFuZCBub3QgdGhlIGVkaXRlZCB2ZXJzaW9uIHlvdSBzZW50LCB0aGVuIHRoZSBw
-cm9ibGVtIGlzIHRoYXQgdGhlIHJlY2lwZSBoYXMgU1JDUkVWPSR7QVVUT1JFVn0sIHdoaWNoIG1l
-YW5zICJhbHdheXMgZ28gYW5kIGdldCB0aGUgbGF0ZXN0IHJldmlzaW9uIi4gIFRoaXMgaXMgb2J2
-aW91c2x5IGluY29tcGF0aWJsZSB3aXRoIG9mZmxpbmUgYnVpbGRzLCBzbyB5b3UnbGwgd2FudCB0
-byByZXBsYWNlIHRoYXQgd2l0aCBhIHNwZWNpZmljIFNIQSB0byBidWlsZCAoYXMgdGhpcyBpcyBh
-biBvbGQga2VybmVsLCB0aGUgU0hBIG9mIHRoZSBicmFuY2ggd2lsbCBiZSBzdWZmaWNpZW50KS4N
-Cg0KUm9zcw0KDQpPbiAxNiBKdWx5IDIwMTggYXQgMTI6MTcsIFMsIEthcnRoaWtleWFuIDxLYXJ0
-aGlrZXlhbi5TQHRyYW5lLmNvbT4gd3JvdGU6DQo+IEhpIFJvc3MsDQo+ICAgICBTb3JyeSwgSSBk
-b27igJl0IGhhdmUgbG9nIGZpbGUsIEkgYW0gYXR0YWNoaW5nIHNjcmVlbnNob3QgaGVyZSBhbmQN
-Cj4gcGxlYXNlIGxldCBtZSBrbm93IGhvdyB0byBnZXQgbG9nIGZpbGVzDQo+DQo+DQo+IFRoYW5r
-cyAmIFJlZ2FyZHMsDQo+IEthcnRoaWsgUw0KPg0KPg0KPg0KPiAtLS0tLU9yaWdpbmFsIE1lc3Nh
-Z2UtLS0tLQ0KPiBGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5j
-b21dDQo+IFNlbnQ6IE1vbmRheSwgSnVseSAxNiwgMjAxOCA0OjQ0IFBNDQo+IFRvOiBTLCBLYXJ0
-aGlrZXlhbiA8S2FydGhpa2V5YW4uU0B0cmFuZS5jb20+DQo+IENjOiB5b2N0b0B5b2N0b3Byb2pl
-Y3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFJlZ2FyZGluZyBidWlsZCBZb2N0byBvZmZs
-aW5lDQo+DQo+IExvZ3MsIHBsZWFzZS4NCj4NCj4gUm9zcw0KPg0KPiBPbiAxNiBKdWx5IDIwMTgg
-YXQgMTA6NDUsIFMsIEthcnRoaWtleWFuIDxLYXJ0aGlrZXlhbi5TQHRyYW5lLmNvbT4gd3JvdGU6
-DQo+PiBIaSwNCj4+ICAgIFRoYW5rcyBhIGxvdCBmb3IgcmVzcG9uZGluZyBteSBtZXNzYWdlIGV2
-ZW4gaW4geW91ciBidXN5IHNjaGVkdWxlLiBBcyBmb3IgcmVjaXBlLCBpdCB3YXMgbGludXguIFdo
-ZW4gSSB3YXMgdHJ5aW5nIHRvIGJ1aWxkIGVudGlyZSBpbWFnZSAiY29yZS1pbWFnZS1iYXNlIiwg
-aXQgd2FzIGZhaWxlZCB3aXRoICJsaW51eCBrZXJuZWwgcmVjaXBlIi4gUGxlYXNlIGZpbmQgYXR0
-YWNoZWQgbGludXgga2VybmVsIGJiIGZpbGVzLCBhbGwgb3RoZXIgcmVtYWluaW5nIHBhY2thZ2Vz
-IHdlcmUgYnVpbHQgc3VjY2Vzc2Z1bGx5Lg0KPj4NCj4+IFRoYW5rcywNCj4+IEthcnRoaWsNCj4+
-DQo+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPj4gRnJvbTogQnVydG9uLCBSb3NzIFtt
-YWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KPj4gU2VudDogTW9uZGF5LCBKdWx5IDE2LCAy
-MDE4IDI6NTcgUE0NCj4+IFRvOiBTLCBLYXJ0aGlrZXlhbiA8S2FydGhpa2V5YW4uU0B0cmFuZS5j
-b20+DQo+PiBDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPj4gU3ViamVjdDogUmU6IFt5b2N0
-b10gUmVnYXJkaW5nIGJ1aWxkIFlvY3RvIG9mZmxpbmUNCj4+DQo+PiBXaGF0IHJlY2lwZSBpcyBm
-YWlsaW5nPyAgSXQncyBtb3N0IGxpa2VseSB0byBiZSBhIHJlY2lwZSB3aGljaCBpcyB1c2luZyBh
-IGdpdCB0YWcgaW5zdGVhZCBvZiBhIGdpdCBoYXNoIGluIHRoZSBTUkNSRVYuDQo+Pg0KPj4gUm9z
-cw0KPj4NCj4+IE9uIDEzIEp1bHkgMjAxOCBhdCAwOTo1OCwgUywgS2FydGhpa2V5YW4gPEthcnRo
-aWtleWFuLlNAdHJhbmUuY29tPiB3cm90ZToNCj4+PiBHcmVldGluZ3MsDQo+Pj4NCj4+PiAgICAg
-ICAgICAgICAgSW5pdGlhbGx5IEkgd2FzIGFibGUgdG8gYnVpbHQgd2l0aCBnaXRodWIgYWNjZXNz
-LCBidXQNCj4+PiBvdXIgcmVxdWlyZW1lbnQgaXMgdG8gYnVpbGQgb2ZmbGluZSh3aXRob3V0IElu
-dGVybmV0KSwgSSBmb2xsb3dlZA0KPj4+IHRoZSBzdGVwcyBnaXZlbiBpbg0KPj4+IGh0dHBzOi8v
-dXJsZGVmZW5zZS5wcm9vZnBvaW50LmNvbS92Mi91cmw/dT1odHRwcy0zQV9fd2lraS55b2N0b3By
-b2plDQo+Pj4gYw0KPj4+IHQNCj4+PiAub3JnX3dpa2lfSG93LTVGZG8tNUZJLTIzUS0zQS01Rkhv
-dy01RmRvLTVGSS01RmNyZWF0ZS01Rm15LTVGb3duLTVGcw0KPj4+IG8NCj4+PiB1DQo+Pj4gcmNl
-LTVGZG93bmxvYWQtNUZtaXJyb3ItNUYuM0YmZD1Ed0lCYVEmYz1ScU9TWS1qNm8ybTcyYmwzZzFh
-TTlBJnI9WWINCj4+PiBTDQo+Pj4gNQ0KPj4+IHlsdG5nNnNNOTRmaDdLVGg0UzRWbU9ld0p5cGVR
-SFYxTnRkcXFRYyZtPVAyY25kRmUwT1gyenl1OFhSMUI1cmR3QlRsDQo+Pj4gYiBjIGpkVDRYVm90
-OWNsQk82WSZzPTI1bXdpME1wMFg3OENkZVp0S29WelEwQmVUcUxSLXE0dG4xSzB4WmNwYVUmZT0N
-Cj4+Pg0KPj4+IEkgYWRkZWQgZm9sbG93aW5nIGxpbmVzIGluIGNvbmYvbG9jYWwuY29uZiAoR2l0
-IGVuYWJsZWQgbWFjaGluZSkNCj4+Pg0KPj4+IFNPVVJDRV9NSVJST1JfVVJMID89ICJmaWxlOi8v
-L3NvdXJjZV9taXJyb3Ivc291cmNlcy8iDQo+Pj4NCj4+PiBJTkhFUklUICs9ICJvd24tbWlycm9y
-cyINCj4+Pg0KPj4+ICBCQl9HRU5FUkFURV9NSVJST1JfVEFSQkFMTFMgPSAiMSINCj4+Pg0KPj4+
-IGFuZCBjb3BpZWQgZG93bmxvYWQgZGlyZWN0b3J5IHRvIG5ldHdvcmsgZGlzYWJsZWQgc3lzdGVt
-IGFuZCBhZGRlZA0KPj4+IGZvbGxvd2luZyBpbiBjb25mL2xvY2FsLmNvbmYobmV0d29yayBkaXNh
-YmxlZCBzeXN0ZW0pLg0KPj4+DQo+Pj4gU09VUkNFX01JUlJPUl9VUkwgPz0gImZpbGU6Ly8vc291
-cmNlX21pcnJvci9zb3VyY2VzLyINCj4+Pg0KPj4+ICBJTkhFUklUICs9ICJvd24tbWlycm9ycyIN
-Cj4+Pg0KPj4+ICBCQl9HRU5FUkFURV9NSVJST1JfVEFSQkFMTFMgPSAiMSINCj4+Pg0KPj4+ICBC
-Ql9OT19ORVRXT1JLID0gIjEiDQo+Pj4NCj4+PiBJdCB3YXMgdGhyb3dpbmcgZXJyb3IsIHNheWlu
-ZyB0aGF0ICJOZXR3b3JrIGlzIGRpc2FibGVkIHRocm91Z2gNCj4+PiBCQl9OT19ORVRXT1JLPTEi
-IGFuZCBidWlsZCB3YXMgZmFpbGVkLiBQbGVhc2Ugc2hhcmUgbWUgdGhlIGV4YWN0DQo+Pj4gcHJv
-Y2VkdXJlIHRvIGJ1aWxkIHlvY3RvIG9mZmxpbmUuDQo+Pj4NCj4+Pg0KPj4+DQo+Pj4NCj4+Pg0K
-Pj4+IFRoYW5rcyAmIFJlZ2FyZHMsDQo+Pj4NCj4+PiBLYXJ0aGlrIFMNCj4+Pg0KPj4+DQo+Pj4N
-Cj4+Pg0KPj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+Pj4NCj4+PiBUaGUg
-aW5mb3JtYXRpb24gY29udGFpbmVkIGluIHRoaXMgbWVzc2FnZSBpcyBwcml2aWxlZ2VkIGFuZCBp
-bnRlbmRlZA0KPj4+IG9ubHkgZm9yIHRoZSByZWNpcGllbnRzIG5hbWVkLiBJZiB0aGUgcmVhZGVy
-IGlzIG5vdCBhIHJlcHJlc2VudGF0aXZlDQo+Pj4gb2YgdGhlIGludGVuZGVkIHJlY2lwaWVudCwg
-YW55IHJldmlldywgZGlzc2VtaW5hdGlvbiBvciBjb3B5aW5nIG9mDQo+Pj4gdGhpcyBtZXNzYWdl
-IG9yIHRoZSBpbmZvcm1hdGlvbiBpdCBjb250YWlucyBpcyBwcm9oaWJpdGVkLiBJZiB5b3UNCj4+
-PiBoYXZlIHJlY2VpdmVkIHRoaXMgbWVzc2FnZSBpbiBlcnJvciwgcGxlYXNlIGltbWVkaWF0ZWx5
-IG5vdGlmeSB0aGUNCj4+PiBzZW5kZXIsIGFuZCBkZWxldGUgdGhlIG9yaWdpbmFsIG1lc3NhZ2Ug
-YW5kIGF0dGFjaG1lbnRzLg0KPj4+DQo+Pj4gLS0NCj4+PiBfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4+IHlvY3RvIG1haWxpbmcgbGlzdA0KPj4+IHlv
-Y3RvQHlvY3RvcHJvamVjdC5vcmcNCj4+PiBodHRwczovL3VybGRlZmVuc2UucHJvb2Zwb2ludC5j
-b20vdjIvdXJsP3U9aHR0cHMtM0FfX2xpc3RzLnlvY3RvcHJvag0KPj4+IGUNCj4+PiBjDQo+Pj4g
-dC5vcmdfbGlzdGluZm9feW9jdG8mZD1Ed0lCYVEmYz1ScU9TWS1qNm8ybTcyYmwzZzFhTTlBJnI9
-WWJTNXlsdG5nNnMNCj4+PiBNDQo+Pj4gOTRmaDdLVGg0UzRWbU9ld0p5cGVRSFYxTnRkcXFRYyZt
-PVAyY25kRmUwT1gyenl1OFhSMUI1cmR3QlRsYmNqZFQ0WFYNCj4+PiBvIHQ5Y2xCTzZZJnM9dS1h
-MHNKS083SGlEQ19TQURUWEwwNlMtcU43RFBhbi1VWU1zWVVMel9UMCZlPQ0KPj4+DQo+Pg0KPj4g
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+DQo+PiBUaGUgaW5mb3JtYXRpb24g
-Y29udGFpbmVkIGluIHRoaXMgbWVzc2FnZSBpcyBwcml2aWxlZ2VkIGFuZCBpbnRlbmRlZCBvbmx5
-IGZvciB0aGUgcmVjaXBpZW50cyBuYW1lZC4gSWYgdGhlIHJlYWRlciBpcyBub3QgYSByZXByZXNl
-bnRhdGl2ZSBvZiB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCBhbnkgcmV2aWV3LCBkaXNzZW1pbmF0
-aW9uIG9yIGNvcHlpbmcgb2YgdGhpcyBtZXNzYWdlIG9yIHRoZSBpbmZvcm1hdGlvbiBpdCBjb250
-YWlucyBpcyBwcm9oaWJpdGVkLiBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIG1lc3NhZ2UgaW4g
-ZXJyb3IsIHBsZWFzZSBpbW1lZGlhdGVseSBub3RpZnkgdGhlIHNlbmRlciwgYW5kIGRlbGV0ZSB0
-aGUgb3JpZ2luYWwgbWVzc2FnZSBhbmQgYXR0YWNobWVudHMuDQo+DQo+IF9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fDQo+DQo+IFRoZSBpbmZvcm1hdGlvbiBjb250YWluZWQgaW4gdGhp
-cyBtZXNzYWdlIGlzIHByaXZpbGVnZWQgYW5kIGludGVuZGVkIG9ubHkgZm9yIHRoZSByZWNpcGll
-bnRzIG5hbWVkLiBJZiB0aGUgcmVhZGVyIGlzIG5vdCBhIHJlcHJlc2VudGF0aXZlIG9mIHRoZSBp
-bnRlbmRlZCByZWNpcGllbnQsIGFueSByZXZpZXcsIGRpc3NlbWluYXRpb24gb3IgY29weWluZyBv
-ZiB0aGlzIG1lc3NhZ2Ugb3IgdGhlIGluZm9ybWF0aW9uIGl0IGNvbnRhaW5zIGlzIHByb2hpYml0
-ZWQuIElmIHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgbWVzc2FnZSBpbiBlcnJvciwgcGxlYXNlIGlt
-bWVkaWF0ZWx5IG5vdGlmeSB0aGUgc2VuZGVyLCBhbmQgZGVsZXRlIHRoZSBvcmlnaW5hbCBtZXNz
-YWdlIGFuZCBhdHRhY2htZW50cy4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18N
-Cg0KVGhlIGluZm9ybWF0aW9uIGNvbnRhaW5lZCBpbiB0aGlzIG1lc3NhZ2UgaXMgcHJpdmlsZWdl
-ZCBhbmQgaW50ZW5kZWQgb25seSBmb3IgdGhlIHJlY2lwaWVudHMgbmFtZWQuIElmIHRoZSByZWFk
-ZXIgaXMgbm90IGEgcmVwcmVzZW50YXRpdmUgb2YgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgYW55
-IHJldmlldywgZGlzc2VtaW5hdGlvbiBvciBjb3B5aW5nIG9mIHRoaXMgbWVzc2FnZSBvciB0aGUg
-aW5mb3JtYXRpb24gaXQgY29udGFpbnMgaXMgcHJvaGliaXRlZC4gSWYgeW91IGhhdmUgcmVjZWl2
-ZWQgdGhpcyBtZXNzYWdlIGluIGVycm9yLCBwbGVhc2UgaW1tZWRpYXRlbHkgbm90aWZ5IHRoZSBz
-ZW5kZXIsIGFuZCBkZWxldGUgdGhlIG9yaWdpbmFsIG1lc3NhZ2UgYW5kIGF0dGFjaG1lbnRzLg0K
+--_000_ce7fc3e6ee9d4a78bfb688737838f9b4E3PMBX02idirBCGOV_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+I am new to yocto and I am trying to build Chromium with userland. I am not=
+ sure what I am missing to have userland build libGLESv2.so, libGLESv2.so.2=
+ and libEGL.
+
+All builds great but when I start Chromium, it complains there is no libGLE=
+Sv2.so.2.
+I searched for libG* and only the following shows up:
+/usr/lib/libGL.so.1.2.0
+/usr/lib/libGL.so.1
+
+Can someone let me know what I am missing from my layer.conf?
+
+MACHINE =3D "raspberrypi3"
+
+GPU_MEM_256 =3D "128"
+GPU_MEM_512 =3D "196"
+GPU_MEM_1024 =3D "396"
+CORE_IMAGE_EXTRA_INSTALL +=3D "chromium-x11"
+PACKAGECONFIG_append_pn-chromium-x11 +=3D " use-egl proprietary-codecs"
+LICENSE_FLAGS_WHITELIST =3D " commercial_libav commercial_x264 commercial"
+PREFERRED_PROVIDER_virtual/egl =3D "userland"
+PREFERRED_PROVIDER_virtual/libgles2 =3D "userland"
+MACHINE_FEATURES_append +=3D " rpi"
+IMAGE_INSTALL_append =3D " fontconfig kernel-image kernel-devicetree"
+IMAGE_FEATURES_append =3D " ssh-server-dropbear hwcodecs x11"
+DISTRO_FEATURES_append +=3D " opengl x11 systemd"
+DISTRO_FEATURES_remove =3D "wayland"
+DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
+VIRTUAL-RUNTIME_init_manager =3D "systemd"
+VIRTUAL-RUNTIME_initscripts =3D ""
+
+And I am using bitbake core-image-minimal
+
+
+Thanks in advance..
+
+--_000_ce7fc3e6ee9d4a78bfb688737838f9b4E3PMBX02idirBCGOV_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://sc=
+hemas.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-=
+html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-CA" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I am new to yocto and I am trying to build Chromium =
+with userland. I am not sure what I am missing to have userland build libGL=
+ESv2.so, libGLESv2.so.2 and libEGL.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">All builds great but when I start Chromium, it compl=
+ains there is no libGLESv2.so.2.
+<o:p></o:p></p>
+<p class=3D"MsoNormal">I searched for libG* and only the following shows up=
+:<o:p></o:p></p>
+<p class=3D"MsoNormal">/usr/lib/libGL.so.1.2.0<o:p></o:p></p>
+<p class=3D"MsoNormal">/usr/lib/libGL.so.1<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can someone let me know what I am missing from my la=
+yer.conf?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">MACHINE =3D &quot;raspberrypi3&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">GPU_MEM_256 =3D &quot;128&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">GPU_MEM_512 =3D &quot;196&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">GPU_MEM_1024 =3D &quot;396&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">CORE_IMAGE_EXTRA_INSTALL &#43;=3D &quot;chromium-x11=
+&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">PACKAGECONFIG_append_pn-chromium-x11 &#43;=3D &quot;=
+ use-egl proprietary-codecs&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">LICENSE_FLAGS_WHITELIST =3D &quot; commercial_libav =
+commercial_x264 commercial&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">PREFERRED_PROVIDER_virtual/egl =3D &quot;userland&qu=
+ot;<o:p></o:p></p>
+<p class=3D"MsoNormal">PREFERRED_PROVIDER_virtual/libgles2 =3D &quot;userla=
+nd&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">MACHINE_FEATURES_append &#43;=3D &quot; rpi&quot;<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">IMAGE_INSTALL_append =3D &quot; fontconfig kernel-im=
+age kernel-devicetree&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">IMAGE_FEATURES_append =3D &quot; ssh-server-dropbear=
+ hwcodecs x11&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">DISTRO_FEATURES_append &#43;=3D &quot; opengl x11 sy=
+stemd&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">DISTRO_FEATURES_remove =3D &quot;wayland&quot;<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">DISTRO_FEATURES_BACKFILL_CONSIDERED =3D &quot;sysvin=
+it&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">VIRTUAL-RUNTIME_init_manager =3D &quot;systemd&quot;=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">VIRTUAL-RUNTIME_initscripts =3D &quot;&quot;<o:p></o=
+:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">And I am using bitbake core-image-minimal<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks in advance..<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_ce7fc3e6ee9d4a78bfb688737838f9b4E3PMBX02idirBCGOV_--
