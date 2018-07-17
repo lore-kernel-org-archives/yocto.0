@@ -1,61 +1,61 @@
-Return-Path: <vikram.chhibber@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E061E015B1; Tue, 17 Jul 2018 11:39:51 -0700 (PDT)
+	id B861DE0166E; Tue, 17 Jul 2018 11:51:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vikram.chhibber[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.51 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f51.google.com (mail-it0-f51.google.com
-	[209.85.214.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CE54E006B4
-	for <yocto@yoctoproject.org>; Tue, 17 Jul 2018 11:39:50 -0700 (PDT)
-Received: by mail-it0-f51.google.com with SMTP id p4-v6so560675itf.2
-	for <yocto@yoctoproject.org>; Tue, 17 Jul 2018 11:39:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=iBRtR9UOcNJ4WznMFWRQotDqtcjZLth8ROsM9SOlJIk=;
-	b=bocNuCIwBdHAMN2L6vcAVVlKNhx5KT9V8FIC411cBK20xrm6RjYLe3daZy/shZfUB1
-	j0yqkyKQfXrtryIuc9B/vYCPmp5e6wnl/AEmSIm2maCd33xzeLe/tjDL8oIfGJakZHYH
-	37fRqNTbyv7W0TI4DHxp8LK45W6NFxyJJYRiuYPO7ic09N7JqrdTZMcg5T0Ppk0FX+ki
-	afbxO5TKe5g+ORga3NZTt0JcWln4gZ4nmd05N4pxC07Un/D3s9zCjQce8psaHGuUKoUQ
-	kpbUhfUe2ZRu66A/wbP3sPVr1OGgeAiJoKduamzdm7PaQ1dI3GWi7PoMemD11L5lONm5
-	O7mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=iBRtR9UOcNJ4WznMFWRQotDqtcjZLth8ROsM9SOlJIk=;
-	b=sjnBSljDaWWGhBE+NDVXnAaBhqfKSPoySroZ+F+v+ijYGiEd5JyV7vjH6pGZOPNQiY
-	ABXUElQX9HpCe1hiRFLLhbv2kj5LbqpQNjnOH33sEEJ44eZfUdAE2TpxrJXt4eQHrHJI
-	DTvDtLAPUhpuPnpvPr0lvRmo/QWgyJ8XYzwCQhikyAAinZTAxABV927sv8fahj7jyYgt
-	rl2ppTSnYI7UuDrNA7fdYkTw1PWa71VTiWjSm1tUrWmjiCVFLjmX7N8BAclGsKdvGBQv
-	bBCaVUJqxufVoQvlQHPGH6/hDNv7dS7lPNL1RuJ/8KTxoHQ0Cw+fOcgy8B4DOTIm/v+4
-	8ULg==
-X-Gm-Message-State: AOUpUlFZMdQ/E//lFpcUd0HnLDd0ObYjVs4jbMlzCTm9ChJAjEaCX3zM
-	+zY+sbLaZC/b1otXurOGoHAK4Gc+cBZBdgL9IX6R
-X-Google-Smtp-Source: AAOMgpcRUOLmbu8Ji57ncCDb3u8gj0w4RzHs83iRyZ2j96iBzS6+FPagu0Xo6sLp3OPzIrat5KkVtwzr7aQgFWRakHs=
-X-Received: by 2002:a24:130c:: with SMTP id 12-v6mr2695577itz.35.1531852789695;
-	Tue, 17 Jul 2018 11:39:49 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C471E00B9C
+	for <yocto@yoctoproject.org>; Tue, 17 Jul 2018 11:51:23 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w6HIpMWx021064
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 17 Jul 2018 11:51:22 -0700 (PDT)
+Received: from soho-mhatle-m.local (172.25.36.228) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.399.0;
+	Tue, 17 Jul 2018 11:51:21 -0700
+To: Vikram Chhibber <vikram.chhibber@gmail.com>, <yocto@yoctoproject.org>
+References: <CALBAsRyftz1B2WKvH4Gf4eouyyfii5hjRyD9SqfGTK5XvinXHA@mail.gmail.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
+	xsBNBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
+	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
+	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
+	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
+	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
+	AAHNJU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT7CwHcEEwEIACEFAlYK
+	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
+	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
+	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
+	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
+	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
+	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrs7ATQRWCsRYAQgAwK3FuHCE+HW3YWdH
+	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
+	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
+	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
+	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
+	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABwsBfBBgBCAAJBQJWCsRYAhsMAAoJ
+	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
+	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
+	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
+	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
+	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
+Organization: Wind River Systems
+Message-ID: <f55dfea1-6c9f-dd41-0bd3-5fe93126b794@windriver.com>
+Date: Tue, 17 Jul 2018 13:51:20 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
+	Gecko/20100101 Thunderbird/52.9.1
 MIME-Version: 1.0
-From: Vikram Chhibber <vikram.chhibber@gmail.com>
-Date: Tue, 17 Jul 2018 11:39:38 -0700
-Message-ID: <CALBAsRyftz1B2WKvH4Gf4eouyyfii5hjRyD9SqfGTK5XvinXHA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Reg. rpm changelog
+In-Reply-To: <CALBAsRyftz1B2WKvH4Gf4eouyyfii5hjRyD9SqfGTK5XvinXHA@mail.gmail.com>
+Subject: Re: Reg. rpm changelog
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,31 +67,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jul 2018 18:39:51 -0000
-Content-Type: multipart/alternative; boundary="00000000000060c8fa057136457d"
+X-List-Received-Date: Tue, 17 Jul 2018 18:51:23 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---00000000000060c8fa057136457d
-Content-Type: text/plain; charset="UTF-8"
+On 7/17/18 1:39 PM, Vikram Chhibber wrote:
+> Hi All,
+> 
+> I use the rpm created from my recipe and I need to know if there is a way to add
+> changelog to this rpm. I should be able to use "rpm -q --changelog" option to
+> display this changelog.
+> 
+> Please let me know if this is possible.
 
-Hi All,
+No.  Others have talked about it, but changelog information is stored in the
+respective layers (.bb, .bbappend, .bbclass, etc) that make up the recipes and
+would have to be distilled..
 
-I use the rpm created from my recipe and I need to know if there is a way
-to add changelog to this rpm. I should be able to use "rpm -q --changelog"
-option to display this changelog.
+It should be possible, but nobody has done this that I know of.
 
-Please let me know if this is possible.
+(Rough way to do it.. find all of the files that went into a recipe.. then run a
+git scm command looking for changes to those files, capturing them in an RPM
+changelog like format.)
 
-Thanks
+--Mark
 
---00000000000060c8fa057136457d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> Thanks
+> 
+> 
 
-<div dir=3D"ltr"><font color=3D"#000000">Hi All,</font><div><font color=3D"=
-#000000"><br></font></div><div><font color=3D"#000000">I use the rpm create=
-d from my recipe and I need to know if there is a way to add changelog to t=
-his rpm. I should be able to use &quot;rpm -q --changelog&quot; option to d=
-isplay this changelog.</font></div><div><br></div><div>Please let me know i=
-f this is possible.</div><div><br></div><div>Thanks</div></div>
 
---00000000000060c8fa057136457d--
