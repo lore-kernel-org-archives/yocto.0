@@ -1,6 +1,6 @@
 Return-Path: <riccardo.casagrande@multiconn.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 95906E01476; Wed, 18 Jul 2018 01:05:19 -0700 (PDT)
+	id 40AAAE0153D; Wed, 18 Jul 2018 01:31:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,15 +13,15 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 Received: from mail.mmit.com.mt (mail.mmit.com.mt [176.56.128.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B313EE009AC
-	for <yocto@yoctoproject.org>; Wed, 18 Jul 2018 01:05:16 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F01AE01409
+	for <yocto@yoctoproject.org>; Wed, 18 Jul 2018 01:31:11 -0700 (PDT)
 Received: from multiconn.it [10.101.1.251] ([127.0.0.1])
-	by mail.mmit.com.mt (MM IT Mail Server v3.0) with ASMTP id IPW58344;
-	Wed, 18 Jul 2018 10:04:44 +0200
-Date: Wed, 18 Jul 2018 10:05:14 +0200
+	by mail.mmit.com.mt (MM IT Mail Server v3.0) with ASMTP id IPW71540;
+	Wed, 18 Jul 2018 10:30:40 +0200
+Date: Wed, 18 Jul 2018 10:31:10 +0200
 To: nick83ola <nick83ola@gmail.com>
 From: Riccardo Casagrande <riccardo.casagrande@multiconn.it>
-Message-ID: <ef482b5062725ca34719c56e122bce78@multiconn.it>
+Message-ID: <9dae947f494ec0fdb2a76c830358a838@multiconn.it>
 X-Mailer: IceWarp Mailer 10.2.2
 In-Reply-To: <CABPh3UMTUUkcF2LVTOXviJdXKHrVPLtNDjSX3hUr=9fwtHEexA@mail.gmail.com>
 References: <362c8e90951aaa3477aca5dbb7e02a0f@multiconn.it>
@@ -31,7 +31,7 @@ References: <362c8e90951aaa3477aca5dbb7e02a0f@multiconn.it>
 X-Priority: 3
 MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: [Spam - Sospetto] Re: IMX6Q add new sound simple sound card
+Subject: Re: IMX6Q add new sound simple sound card
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,11 +43,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jul 2018 08:05:19 -0000
+X-List-Received-Date: Wed, 18 Jul 2018 08:31:18 -0000
 Content-Type: multipart/alternative;
-	boundary="b1_ef482b5062725ca34719c56e122bce78"
+	boundary="b1_9dae947f494ec0fdb2a76c830358a838"
 
---b1_ef482b5062725ca34719c56e122bce78
+--b1_9dae947f494ec0fdb2a76c830358a838
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -55,10 +55,23 @@ Content-Transfer-Encoding: quoted-printable
 Hi Nick,
 
 
-I followed yours links and created new sound card and driver imx-itel. Now =
-the new sound card is installed and listed by ALSA but without any kind of =
-volume control, any suggestions? Anyway, now I'm going to check if outputs =
-send I2S data.
+moreover, I just tested the sound card with aplay command and this is the =
+output:
+--> ITEL imx-itel-hw-params NAME=3D202c000.ssi=C2=A0=20
+=C2=A0VALUE=3D0x00004001 SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF | =
+SND_SOC_DAIFMT_CBS_CFS
+
+
+
+--> ITEL imx-itel-hw-params set tdm slots channels=3D20
+
+
+--> ITEL imx-audmux-config set sysclk NAME=3D202c000.ssi
+aplay: pcm_write:1940: write error: Input/output error
+
+
+I'm working on an evaluation board of NXP, our hardware is not ready yet. =
+Is this the reason of the fail?
 
 
 Riccardo
@@ -270,17 +283,21 @@ https://lists.yoctoproject.org/listinfo/yocto =C2=A0
 
 
 
---b1_ef482b5062725ca34719c56e122bce78
+--b1_9dae947f494ec0fdb2a76c830358a838
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div>Hi Nick,</div><div><br></div><div>I followed yours links and created =
-new sound card and driver imx-itel. Now the new sound card is installed =
-and listed by ALSA but without any kind of volume control, any <span =
-id=3D"result_box" class=3D"short_text" lang=3D"en"><span =
-class=3D"">suggestions?</span></span> Anyway, now I'm going to check if =
-outputs send I2S =
-data.</div><div><br></div><div>Riccardo<br></div><blockquote =
+<div>Hi Nick,</div><div><br></div><div>moreover, I just tested the sound =
+card with aplay command and this is the output:</div><div>--&gt; ITEL =
+imx-itel-hw-params NAME=3D202c000.ssi&nbsp; <br>&nbsp;VALUE=3D0x00004001 =
+SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF | =
+SND_SOC_DAIFMT_CBS_CFS<br></div><div><br></div><div>--&gt; ITEL =
+imx-itel-hw-params set tdm slots =
+channels=3D20</div><div><br></div><div>--&gt; ITEL imx-audmux-config set =
+sysclk NAME=3D202c000.ssi<br>aplay: pcm_write:1940: write error: =
+Input/output error</div><div><br></div><div>I'm working on an evaluation =
+board of NXP, our hardware is not ready yet. Is this the reason of the =
+fail?</div><div><br></div><div>Riccardo<br></div><blockquote =
 class=3D"reply_block" style=3D"border-left: 2px solid blue; margin-left: =
 1em; padding-left: 1em"><hr size=3D"1">----- Messaggio Originale =
 -----<br>Da: "nick83ola" &lt;nick83ola@gmail.com&gt;<br>A: =
@@ -737,4 +754,4 @@ https://lists.yoctoproject.org/listinfo/yocto &nbsp;</a>
 
 
 
---b1_ef482b5062725ca34719c56e122bce78--
+--b1_9dae947f494ec0fdb2a76c830358a838--
