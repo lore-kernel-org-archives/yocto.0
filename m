@@ -1,39 +1,63 @@
-Return-Path: <raphael.kubo.da.costa@intel.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5586EE00E54; Wed, 18 Jul 2018 04:28:31 -0700 (PDT)
+	id 79FBCE01250; Wed, 18 Jul 2018 04:37:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.177 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF1EEE00874
-	for <yocto@yoctoproject.org>; Wed, 18 Jul 2018 04:28:29 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	18 Jul 2018 04:28:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,370,1526367600"; d="scan'208";a="67994536"
-Received: from rkubodac-desk.ger.corp.intel.com ([10.252.5.122])
-	by fmsmga002.fm.intel.com with ESMTP; 18 Jul 2018 04:28:28 -0700
-From: Raphael Kubo da Costa <raphael.kubo.da.costa@intel.com>
-To: <yocto@yoctoproject.org>
-In-Reply-To: <CAN3t-YDrMh-DjVeFWgvggMPVhNF6kGTOahVV8sPo8SsPnrMi5w@mail.gmail.com>
-	(Karim Gillani's message of "Tue, 17 Jul 2018 12:16:05 -0700")
-Organization: Intel Corporation
-References: <CAN3t-YDrMh-DjVeFWgvggMPVhNF6kGTOahVV8sPo8SsPnrMi5w@mail.gmail.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/25.3 (gnu/linux)
-Date: Wed, 18 Jul 2018 13:28:27 +0200
-Message-ID: <87y3e86aw4.fsf@rkubodac-desk.ger.corp.intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com
+	[209.85.208.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91DB1E009B9
+	for <yocto@yoctoproject.org>; Wed, 18 Jul 2018 04:37:54 -0700 (PDT)
+Received: by mail-lj1-f177.google.com with SMTP id f1-v6so2157142ljc.9
+	for <yocto@yoctoproject.org>; Wed, 18 Jul 2018 04:37:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=g143EVt6b4OIQNoImkoTI753GYtt88VVfZx7klsL/Jw=;
+	b=lsRI9dJt/liyZ7nhIlyE2P++HZiaNQbfkfs1kksBn1x7yTbSCRg1E85n5akxzjVcIq
+	kcEkqqTBn8Ds7KpxuUokzXgveuLIVePc7KFQCuRU0sNM0pcdxp3a0Ggxr5pnbKnALkxm
+	56U41UQFhRM2m0K2gbnr49NFUfTWj/ofMxcAMMHhP5HZ9hIKZEbzqNghvklvCoD8Z8RP
+	ASDc2pbhS15b6mK1WM5j+tt3TsjHqK9beQibGKmrOZgIqeEqvtcKp/8fsdlSiAuS7DqD
+	FhHTDveU2wnwwHN1e/JHSd9BJGa1U+mjFzPyYTJtI1fLCZjF8iA+twYetdEIvtj6gB6Y
+	IfAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=g143EVt6b4OIQNoImkoTI753GYtt88VVfZx7klsL/Jw=;
+	b=eiocXf9tNNbbi1Ia+m/l7U5SlEpiTwZzckfL3mNMDRrxDxXGBrWoNKdQGijV3Vkb/J
+	21qU9SyRZPZGDdCvmDWuB5uIkMbCESmW7/CiMHfZ8j662WvhVPDJOlPyU/fjD0GyKXPM
+	6RQSBrXEVKnKi167IB2NtnvLVMAGQgsBqMZhORzX4EGESsXeyewVOYp/jpEkRUca2HHc
+	pHPLBWffJgL/+9zPprIrSUcnT8YNe5xLanW2oUbln/iIX87nC/w8K1B38c3foaaKTGTv
+	bB7fcKI869IMaHC8Sxldpez+CswH4h5X5Myfg6v8QLYF8NkGEPxqEPS1sRxdIJDU5cxr
+	5GXg==
+X-Gm-Message-State: AOUpUlFrJmJfhwa8ktlH6BjitoCLK8bhYl5Flp1mT/pTvkEgf4DIuaxD
+	IrbwDJTB/jKKWLFVtuAkwv/ylWPK5HOYErQbG4bXnA==
+X-Google-Smtp-Source: AAOMgpdM+71uh7RcfeCsIOL+f+/ZI2kP8zzA/Y25NFOrBrf189JJbIZ6MRfw4YiiyOT6Ox/W3p0Do6NQBbGHVz7UaoU=
+X-Received: by 2002:a2e:44c6:: with SMTP id
+	b67-v6mr4283374ljf.102.1531913873205; 
+	Wed, 18 Jul 2018 04:37:53 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [meta-raspberrypi] - X11 EGLSV2 Chromium
+Received: by 2002:a19:7014:0:0:0:0:0 with HTTP; Wed, 18 Jul 2018 04:37:52
+	-0700 (PDT)
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Wed, 18 Jul 2018 13:37:52 +0200
+Message-ID: <CAGAf8Lxousw4NEGP_aHGzHiqvzkJNERFgGHMM1hxNyj6Km72aQ@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: [Chicken and Egg problem] Defining RDEPENDS of the package itself!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,15 +69,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jul 2018 11:28:31 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 18 Jul 2018 11:37:55 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Karim Gillani <karim@gillani.org> writes:
-> I am new to yocto and I am trying to build Chromium with userland. I am not sure what I am missing to have userland build libGLESv2.so, libGLESv2.so.2 and libEGL.
->
-> All builds great but when I start Chromium, it complains there is no libGLESv2.so.2.
+Hello YOCTO community,
 
-I don't test RPi3 builds myself, but this comment (as well as the rest
-of the thread) here might be of interest:
-https://github.com/OSSystems/meta-browser/issues/81#issuecomment-405124089
+Since I need to build the latest and the greatest Github creations
+from the independent contributors, I decided myself to write few YOCTO
+recipes and to get myself to this (un)pleasant learning path.
+
+I did few examples, simplistic ones, before I took more complex
+recipes to write.
+
+And... I need this one, Cannelloni, one defined here:
+https://github.com/mguentner/cannelloni
+
+I guess, I figured out couple of stuff, but the last one, RDEPENDS, I
+could not figure out.
+
+I can figure it out with normal Linux installation, and here is how it
+is solved in Run Time:
+
+export LD_LIBRARY_PATH=/usr/local/lib ## where DLL
+libcannelloni-common.so resides after installation!
+
+Here is what/how the actual error looks like: cannelloni.log (attached).
+
+Please, pay attention to the following log line:
+
+ERROR: cannelloni-1.0-r0 do_package_qa: QA Issue: package cannelloni
+contains bad RPATH
+/home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yocto-rocko/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/build:
+in file /home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yocto-rocko/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/packages-split/cannelloni/usr/bin/cannelloni
+[rpaths]
+ERROR: cannelloni-1.0-r0 do_package_qa: QA Issue: /usr/bin/cannelloni
+contained in package cannelloni requires libcannelloni-common.so, but
+no providers found in RDEPENDS_cannelloni? [file-rdeps]
+ERROR: cannelloni-1.0-r0 do_package_qa: QA run found fatal errors.
+Please consider fixing them.
+ERROR: cannelloni-1.0-r0 do_package_qa: Function failed: do_package_qa
+
+The cannelloni recipe is listed below:
+
+SUMMARY = "SocketCAN over Ethernet tunnel using UDP to transfer CAN
+frames between two machines"
+SECTION = "canapp"
+## LICENSE = "CLOSED"
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM =
+"file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+PR = "r0"
+
+DEPENDS = "${@bb.utils.contains('DISTRO_FEATURES', 'systemd',
+'systemd', '', d)}"
+## RDEPENDS_${PN} = "???"
+
+SRCREV = "e3ac7393b566345d057c2d17a4d328007caaacac"
+
+SRC_URI = "git://github.com/mguentner/cannelloni"
+
+S = "${WORKDIR}/git"
+
+inherit pkgconfig cmake
+inherit systemd
+
+EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=Release"
+
+do_install() {
+    install -d ${D}${bindir}
+    install -m 0755 cannelloni ${D}${bindir}
+}
+
+Thank you in advance,
+Zoran Stojsavljevic
 
