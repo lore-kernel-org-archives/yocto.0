@@ -1,54 +1,69 @@
-Return-Path: <Jeremy.Overesch@millerwelds.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83517E00DFD; Wed, 18 Jul 2018 09:55:14 -0700 (PDT)
+	id C35CAE00E27; Wed, 18 Jul 2018 10:06:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [206.197.156.65 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (armccurdy[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 1108 seconds by postgrey-1.32 at yocto-www;
-	Wed, 18 Jul 2018 09:55:12 PDT
-Received: from mailcuda.itwwelds.com (mailcuda.itwwelds.com [206.197.156.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD117E00972
-	for <yocto@yoctoproject.org>; Wed, 18 Jul 2018 09:55:12 -0700 (PDT)
-X-ASG-Debug-ID: 1531931803-08979511bb513ab0001-yzSStA
-Received: from webmail.itwwelds.com (exch13mb01.itwwelds.com [10.52.121.20])
-	by mailcuda.itwwelds.com with ESMTP id IAvoLB2w6h6EXMhV for
-	<yocto@yoctoproject.org>; Wed, 18 Jul 2018 11:36:43 -0500 (CDT)
-X-Barracuda-Envelope-From: Jeremy.Overesch@millerwelds.com
-X-ASG-Whitelist: Client
-Received: from EXCH13MB02.itwwelds.com (10.52.121.21) by
-	EXCH13MB01.itwwelds.com (10.52.121.20) with Microsoft SMTP Server (TLS)
-	id 15.0.1104.5; Wed, 18 Jul 2018 11:36:43 -0500
-Received: from EXCH13MB02.itwwelds.com ([fe80::994c:a14b:1d78:3bd3]) by
-	EXCH13MB02.itwwelds.com ([fe80::994c:a14b:1d78:3bd3%20]) with mapi id
-	15.00.1104.000; Wed, 18 Jul 2018 11:36:43 -0500
-From: Jeremy Overesch <Jeremy.Overesch@millerwelds.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: journald logs "lost" between firmware updates
-X-ASG-Orig-Subj: journald logs "lost" between firmware updates
-Thread-Index: AdQetIvkiL/kyrF7QK6eL6rGAd7/uw==
-Date: Wed, 18 Jul 2018 16:36:42 +0000
-Message-ID: <bdb6157bbe1e42ae8f6877d418e4404b@EXCH13MB02.itwwelds.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.46.101.16]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ua0-f172.google.com (mail-ua0-f172.google.com
+	[209.85.217.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6E91E00AC5
+	for <yocto@yoctoproject.org>; Wed, 18 Jul 2018 10:06:22 -0700 (PDT)
+Received: by mail-ua0-f172.google.com with SMTP id q12-v6so3383959ual.2
+	for <yocto@yoctoproject.org>; Wed, 18 Jul 2018 10:06:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=cTNLaPMde0gr3UKw7xjtA3R8Xrpi3lhRlpd1ZDghrIM=;
+	b=irZJaNUPVKz8Ho0rxb0PnG1os8GQEEaTpqqvs5Dhut7qVSr7H4+h4iD8yYmq5mBz8+
+	yWY/NrnQb+XuebxS1LPOD6bN7XLIRPu5kBdkdhfXGBaj0YXDinLbq6IVO8UiiQ3WGgb0
+	gKCu62j9ASrQbl3IpDZ7QlRldSsqQy+TGUzhq7ojqK0Kuwoo+wHvrdEft7HMoMJsAYTB
+	EYBEkUgeqwuJ/AeYWuqsq+OVD4/ABqFql3WfIHYjTG3+saFeyWE2+PqmI2ixiTNEAagX
+	X7Tk4ItnhInBpw8XNTI0u47DNXVTEeS/VJBVX8XMKYwAfHDIYqCfPKt6lwjPDeaU2vKI
+	KSRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=cTNLaPMde0gr3UKw7xjtA3R8Xrpi3lhRlpd1ZDghrIM=;
+	b=offYZAtX/oQBnpQTPrlzx/kO0czbyyGxXDn7YyCcfyFZz5JAPY7oJP62o381G3jLj6
+	xCJMIPyMsDnohRfQ9808/Ro2f6AGlkplZLEycKoZPitJNxJ4GkKeA1goG01F73A1PvQk
+	tj/qsQ1DINw5ECPRJTicAjEJKsPZvn5rwLFIG06XAEzrkl1NUB5tNPcsPapCpO++oCim
+	ofczJCKEfrYTL/8rc3H8ZW8D4+ZJQGTuGO/dhai1n5qBsP4ovDylwZKcHIz9rgc7RtZ6
+	AUXVwnsK176Z68u6S0fqrXGoV2/FRHfia0w6RMMN5r8k2/Xti/aYvYbK+o3yU1bKn7r/
+	YZ5w==
+X-Gm-Message-State: AOUpUlFLokvk1OyJM5X8v9ScDbKyWdcBbIppN7gp/hFLP2wD594j9zf2
+	qR3yzSuJ/iP5spN5/lODenv1jurjGoigFAJZjYc=
+X-Google-Smtp-Source: AAOMgpfQJ0rcjz0X52qpawdlKFUmbw3IGvGOyAZOTwj00sd/38G3WVy5+U4bndvny8NBVTuAs1CUNl4LEb4B+AiaREM=
+X-Received: by 2002:ab0:899:: with SMTP id
+	n25-v6mr4459446uaf.128.1531933581945; 
+	Wed, 18 Jul 2018 10:06:21 -0700 (PDT)
 MIME-Version: 1.0
-X-Barracuda-Connect: exch13mb01.itwwelds.com[10.52.121.20]
-X-Barracuda-Start-Time: 1531931803
-X-Barracuda-URL: https://mailcuda.itwwelds.com:443/cgi-mod/mark.cgi
-X-Barracuda-Scan-Msg-Size: 4872
-X-Virus-Scanned: by bsmtpd at itwwelds.com
-X-Barracuda-BRTS-Status: 1
-Subject: journald logs "lost" between firmware updates
+Received: by 2002:ab0:2a5:0:0:0:0:0 with HTTP;
+	Wed, 18 Jul 2018 10:06:21 -0700 (PDT)
+In-Reply-To: <CAGAf8LwUEFNu4icxvk0HivK93Yfx7f6-i5gjKa7CpT4NUUHiKQ@mail.gmail.com>
+References: <CAGAf8Lxousw4NEGP_aHGzHiqvzkJNERFgGHMM1hxNyj6Km72aQ@mail.gmail.com>
+	<CANNYZj_aBuEMf1=_xVDQTtqtzxhka5XgLyNVREZvFiFHS7pWZw@mail.gmail.com>
+	<CAGAf8LwUEFNu4icxvk0HivK93Yfx7f6-i5gjKa7CpT4NUUHiKQ@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Wed, 18 Jul 2018 10:06:21 -0700
+Message-ID: <CAJ86T=WMJ8zE3ciNdwkSaThdYHBwC9QytGWHKXiVVbue+6kVXg@mail.gmail.com>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [Chicken and Egg problem] Defining RDEPENDS of the package itself!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,135 +75,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jul 2018 16:55:14 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_bdb6157bbe1e42ae8f6877d418e4404bEXCH13MB02itwweldscom_"
+X-List-Received-Date: Wed, 18 Jul 2018 17:06:23 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---_000_bdb6157bbe1e42ae8f6877d418e4404bEXCH13MB02itwweldscom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-In my embedded system, I've created persistent storage on a separate filesy=
-stem for log files in /var/log.  This works well, until I do a firmware upd=
-ate.  When the firmware is updated, the entire root filesystem is rewritten=
-.  This means that the /etc/machine-id is also rewritten to a new, random n=
-umber.  As journald stores everything in /var/log/journal/<machine-id>, I g=
-et old logs that are no longer accessible and not purged, taking up disk sp=
-ace.  Is there any way to make the machine-id persistent across firmware up=
-dates?
-
-My initial thought would be to make /etc/machine-id into a symlink pointing=
- to /var/log/machine-id.  However, that results in a new problem.  On first=
- boot, the file wouldn't exist, making an invalid symlink.
-
-What is the proper way to go about keeping the machine-id consistent across=
- firmware updates?
-
-Thanks,
-Jeremy
-
-
-________________________________
-
-This message (including any attachments) is intended for the sole use of th=
-e intended recipient/s and may contain material that is CONFIDENTIAL AND PR=
-IVATE COMPANY INFORMATION. If you are not the intended recipient of this me=
-ssage, you are hereby notified that you must delete the message without dis=
-seminating, copying or taking any action in reliance upon it. If you have r=
-eceived this message in error, please notify the sender via return e-mail. =
-Thank you.
-
---_000_bdb6157bbe1e42ae8f6877d418e4404bEXCH13MB02itwweldscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Wed, Jul 18, 2018 at 7:04 AM, Zoran Stojsavljevic
+<zoran.stojsavljevic@gmail.com> wrote:
+> Yep. Did it. Some symlink is missing (I guess, symlink to
+> /usr/local/lib/libcannelloni-common.so???
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">In my embedded system, I&#8217;ve created persistent=
- storage on a separate filesystem for log files in /var/log.&nbsp; This wor=
-ks well, until I do a firmware update.&nbsp; When the firmware is updated, =
-the entire root filesystem is rewritten.&nbsp; This means
- that the /etc/machine-id is also rewritten to a new, random number.&nbsp; =
-As journald stores everything in /var/log/journal/&lt;machine-id&gt;, I get=
- old logs that are no longer accessible and not purged, taking up disk spac=
-e.&nbsp; Is there any way to make the machine-id
- persistent across firmware updates?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">My initial thought would be to make /etc/machine-id =
-into a symlink pointing to /var/log/machine-id.&nbsp; However, that results=
- in a new problem.&nbsp; On first boot, the file wouldn&#8217;t exist, maki=
-ng an invalid symlink.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">What is the proper way to go about keeping the machi=
-ne-id consistent across firmware updates?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Jeremy<b><span style=3D"font-size:9.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:#0F55A0"><o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<br>
-<hr>
-<font face=3D"Arial" color=3D"Gray" size=3D"1"><br>
-This message (including any attachments) is intended for the sole use of th=
-e intended recipient/s and may contain material that is CONFIDENTIAL AND PR=
-IVATE COMPANY INFORMATION. If you are not the intended recipient of this me=
-ssage, you are hereby notified that
- you must delete the message without disseminating, copying or taking any a=
-ction in reliance upon it. If you have received this message in error, plea=
-se notify the sender via return e-mail. Thank you.<br>
-</font>
-</body>
-</html>
+> Initialising tasks: 100%
+> |#############################################################################################################################################################|
+> Time: 0:00:00
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> ERROR: cannelloni-1.0-r0 do_package_qa: QA Issue: cannelloni rdepends on
+> cannelloni-dev [dev-deps]
+> ERROR: cannelloni-1.0-r0 do_package_qa: QA Issue: -dev package contains
+> non-symlink .so: cannelloni-dev path
+> '/work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/packages-split/cannelloni-dev/usr/lib/libcannelloni-common.so'
+> [dev-elf]
+> ERROR: cannelloni-1.0-r0 do_package_qa: QA run found fatal errors. Please
+> consider fixing them.
+> ERROR: cannelloni-1.0-r0 do_package_qa: Function failed: do_package_qa
+> ERROR: Logfile of failure stored in:
+> /home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yocto-rocko/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/temp/log.do_package_qa.7896
+> ERROR: Task
+> (/home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yocto-rocko/poky/meta-test-layer/recipes-canapp/cannelloni/cannelloni.bb:do_package_qa)
+> failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 539 tasks of which 532 didn't need to be
+> rerun and 1 failed.
+>
+> Summary: 1 task failed:
+>
+> /home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yocto-rocko/poky/meta-test-layer/recipes-canapp/cannelloni/cannelloni.bb:do_package_qa
+> Summary: There were 2 WARNING messages shown.
+> Summary: There were 4 ERROR messages shown, returning a non-zero exit code.
+>
+> How I can add this symlink (!) to this recipe?
 
---_000_bdb6157bbe1e42ae8f6877d418e4404bEXCH13MB02itwweldscom_--
+The error says "-dev package contains non-symlink .so".
+
+Simply adding a symlink somewhere will not help. The fix is to ensure
+that libcannelloni-common.so gets packaged in the main run-time
+package (and not in the -dev package).
+
+Reading the section about non-versioned shared libraries here might help:
+
+  https://wiki.yoctoproject.org/wiki/TipsAndTricks/Packaging_Prebuilt_Libraries
+
