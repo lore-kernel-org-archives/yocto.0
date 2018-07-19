@@ -1,37 +1,70 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AAA83E00ED7; Wed, 18 Jul 2018 22:15:15 -0700 (PDT)
+	id 7EC87E0167C; Thu, 19 Jul 2018 00:22:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.193 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8129E009B2
-	for <yocto@yoctoproject.org>; Wed, 18 Jul 2018 22:15:14 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w6J5FDDt014505
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 18 Jul 2018 22:15:13 -0700 (PDT)
-Received: from localhost (128.224.162.137) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.399.0;
-	Wed, 18 Jul 2018 22:15:12 -0700
-From: Yi Zhao <yi.zhao@windriver.com>
-To: <yocto@yoctoproject.org>, <joe_macdonald@mentor.com>, <flihp@twobit.us>,
-	<mark.hatle@windriver.com>
-Date: Thu, 19 Jul 2018 13:14:56 +0800
-Message-ID: <1531977296-32221-4-git-send-email-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1531977296-32221-1-git-send-email-yi.zhao@windriver.com>
-References: <1531977296-32221-1-git-send-email-yi.zhao@windriver.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com
+	[209.85.208.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6178E00D13
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 00:22:24 -0700 (PDT)
+Received: by mail-lj1-f193.google.com with SMTP id v9-v6so6316280ljk.4
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 00:22:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=00E2dVjRpVxNKOUs7HZTcy2JHlvaK9qSw5vNEQ9+NqU=;
+	b=f4lKqfaW/GNH/DMBD57ENbzO8tpHgTHCb5yIaKgrRhMS67HZAZ331FtbIyIPr7+RLl
+	u9ZnDWJsBQfdMKnFqiDiCcpTON20lxFatBnf+tjhrr59Od/jLuJdzZ6YTmf/hYhcDLr4
+	hgKdt1YKEJIVvRejc6JTTMNly2wFkpsZRSt0bjr056qrAOI4fKshp/aqicMRdL1+DzYx
+	BnDGKtBMiMKlnWGIkb/yn/9+gNlEjIAR1arlk+bdxZ5/PSNjpai/ZBcqWuUp0wTyOMHm
+	EO605jupH/Bi3Gep1f4pSOi7E/P5asI3c26tfGY1jSLKHB0hCo2ItAY7T7B7JCl90cDu
+	qs6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=00E2dVjRpVxNKOUs7HZTcy2JHlvaK9qSw5vNEQ9+NqU=;
+	b=BqG47+21H5OpRHzgGXoh45XounBafyUGwa+d0kd1L2frhQRI6VuDzDqRK2lzB+Ss4X
+	iI1eldaPbYaug+8kEkPEbhCsyXGhRkR1SkvLGbADK1AK2fI3Ga9o2NrF451zAxf/kAgO
+	o7PS8GbsOpMkPgm+dab5YYZECXk+O+J6pctlEVTJOSBDK7YGts4TDNN2NwPlqunP5xil
+	Vms5m+SAtT63WUAHrLUKyS0r4GETRSkHiTR9oltokYxPhzpt6VsS6s9xUlZe1cvgC7Dx
+	wbQj9OD0pqd8GO1+cYlI1vcuo8HO7tRQ94c6YsVj5lm74eb2CerzOHzwkhINrGqpRdyS
+	mssw==
+X-Gm-Message-State: AOUpUlHQh9aksX69H8j5etjxSuwiFtaXNQqwnNBbnyJcnXM/fxAJKWHI
+	3ZHESvTy+QYEvJIimcWCzuw3HOS4xOv+u1omWfI=
+X-Google-Smtp-Source: AAOMgpdcYv79VQR6Tj4fvGO45fUi9L4I5HnrsnyMBqkfJduhOPH8S25tFkN+MCHLiH3C/XPRybL5YDYJTEVUCaGe3Qg=
+X-Received: by 2002:a2e:8616:: with SMTP id
+	a22-v6mr7144179lji.43.1531984943790; 
+	Thu, 19 Jul 2018 00:22:23 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.137]
-Subject: [meta-selinux][PATCH 3/3] selinux-python: refresh patches to fix QA warning
+Received: by 2002:a19:7014:0:0:0:0:0 with HTTP; Thu, 19 Jul 2018 00:22:22
+	-0700 (PDT)
+In-Reply-To: <CAJ86T=WMJ8zE3ciNdwkSaThdYHBwC9QytGWHKXiVVbue+6kVXg@mail.gmail.com>
+References: <CAGAf8Lxousw4NEGP_aHGzHiqvzkJNERFgGHMM1hxNyj6Km72aQ@mail.gmail.com>
+	<CANNYZj_aBuEMf1=_xVDQTtqtzxhka5XgLyNVREZvFiFHS7pWZw@mail.gmail.com>
+	<CAGAf8LwUEFNu4icxvk0HivK93Yfx7f6-i5gjKa7CpT4NUUHiKQ@mail.gmail.com>
+	<CAJ86T=WMJ8zE3ciNdwkSaThdYHBwC9QytGWHKXiVVbue+6kVXg@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Thu, 19 Jul 2018 09:22:22 +0200
+Message-ID: <CAGAf8LxZcL-8fyDCJ2+0e2GgUmCGufY91aAHUepb60FUfuW=7A@mail.gmail.com>
+To: Andre McCurdy <armccurdy@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [Chicken and Egg problem] Defining RDEPENDS of the package itself!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,151 +76,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2018 05:15:15 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 19 Jul 2018 07:22:26 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Refresh patches with devtool command to fix do_patch warning
+Hello Andre,
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- .../fix-TypeError-for-seobject.py.patch             | 17 +++++++++--------
- .../selinux-python/fix-sepolicy-install-path.patch  | 21 ++++++++++++---------
- .../process-ValueError-for-sepolicy-seobject.patch  | 12 +++++-------
- 3 files changed, 26 insertions(+), 24 deletions(-)
+Thank you for the tips.
 
-diff --git a/recipes-security/selinux/selinux-python/fix-TypeError-for-seobject.py.patch b/recipes-security/selinux/selinux-python/fix-TypeError-for-seobject.py.patch
-index 993ff7e..62cdeee 100644
---- a/recipes-security/selinux/selinux-python/fix-TypeError-for-seobject.py.patch
-+++ b/recipes-security/selinux/selinux-python/fix-TypeError-for-seobject.py.patch
-@@ -1,4 +1,4 @@
--From a66c50c0e8cd3799fc2819835b872ab62419f684 Mon Sep 17 00:00:00 2001
-+From 98c2944ffa3e35095187e1df9ff33498bbd0fa54 Mon Sep 17 00:00:00 2001
- From: Wenzong Fan <wenzong.fan@windriver.com>
- Date: Tue, 1 Apr 2014 02:53:36 -0400
- Subject: [PATCH] policycoreutils: fix TypeError for seobject.py
-@@ -7,18 +7,19 @@ File "/usr/lib64/python2.7/site-packages/seobject.py", line 109, in log
-   message += " sename=" + sename
- TypeError: cannot concatenate 'str' and 'NoneType' objects
- 
--Uptream-Status: pending
-+Uptream-Status: Pending
- 
- Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
-+
- ---
-- semanage/seobject.py |    2 +-
-+ semanage/seobject.py | 2 +-
-  1 file changed, 1 insertion(+), 1 deletion(-)
- 
--Index: policycoreutils-2.5/semanage/seobject.py
--===================================================================
----- policycoreutils-2.5.orig/semanage/seobject.py	2016-02-25 13:41:38.035974459 -0500
--+++ policycoreutils-2.5/semanage/seobject.py	2016-02-25 13:43:42.075974072 -0500
--@@ -121,7 +121,7 @@
-+diff --git a/semanage/seobject.py b/semanage/seobject.py
-+index 70fd192..23ab77e 100644
-+--- a/semanage/seobject.py
-++++ b/semanage/seobject.py
-+@@ -146,7 +146,7 @@ except:
-  
-          def log(self, msg, name="", sename="", serole="", serange="", oldsename="", oldserole="", oldserange=""):
-              message = " %s name=%s" % (msg, name)
-diff --git a/recipes-security/selinux/selinux-python/fix-sepolicy-install-path.patch b/recipes-security/selinux/selinux-python/fix-sepolicy-install-path.patch
-index 617908a..1d54231 100644
---- a/recipes-security/selinux/selinux-python/fix-sepolicy-install-path.patch
-+++ b/recipes-security/selinux/selinux-python/fix-sepolicy-install-path.patch
-@@ -1,18 +1,24 @@
-+From 69e8697cd2ae48710ff8190bad3e61d2fd115b99 Mon Sep 17 00:00:00 2001
-+From: Xin Ouyang <Xin.Ouyang@windriver.com>
-+Date: Mon, 23 Sep 2013 21:17:59 +0800
- Subject: [PATCH] policycoreutils: fix install path for new pymodule sepolicy
- 
-+Uptream-Status: Pending
-+
- Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
- Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
-+
- ---
-- sepolicy/Makefile |    4 +++-
-+ sepolicy/Makefile | 4 +++-
-  1 file changed, 3 insertions(+), 1 deletion(-)
- 
- diff --git a/sepolicy/Makefile b/sepolicy/Makefile
--index 2b8716c..70f4bdd 100644
-+index 5a56e6c..82c3e36 100644
- --- a/sepolicy/Makefile
- +++ b/sepolicy/Makefile
--@@ -12,6 +12,8 @@ BASHCOMPLETIONDIR ?= $(DESTDIR)/usr/share/bash-completion/completions
-- SHAREDIR ?= $(PREFIX)/share/sandbox
-- override CFLAGS = -I$(PREFIX)/include -DPACKAGE="policycoreutils" -Wall -Werror -Wextra -W  -DSHARED -shared
-+@@ -12,6 +12,8 @@ SHAREDIR ?= $(PREFIX)/share/sandbox
-+ CFLAGS ?= -Wall -Werror -Wextra -W
-+ override CFLAGS += -DPACKAGE="policycoreutils" -DSHARED -shared
-  
- +PYLIBVER ?= $(shell python -c 'import sys;print "python%d.%d" % sys.version_info[0:2]')
- +
-@@ -20,7 +26,7 @@ index 2b8716c..70f4bdd 100644
-  
-  all: python-build
- @@ -30,7 +32,7 @@ test:
-- 	@python test_sepolicy.py -v
-+ 	@$(PYTHON) test_sepolicy.py -v
-  
-  install:
- -	$(PYTHON) setup.py install `test -n "$(DESTDIR)" && echo --root $(DESTDIR)`
-@@ -28,6 +34,3 @@ index 2b8716c..70f4bdd 100644
-  	[ -d $(BINDIR) ] || mkdir -p $(BINDIR)
-  	install -m 755 sepolicy.py $(BINDIR)/sepolicy
-  	(cd $(BINDIR); ln -sf sepolicy sepolgen)
---- 
--1.7.9.5
--
-diff --git a/recipes-security/selinux/selinux-python/process-ValueError-for-sepolicy-seobject.patch b/recipes-security/selinux/selinux-python/process-ValueError-for-sepolicy-seobject.patch
-index 1929aa5..b0bcd1d 100644
---- a/recipes-security/selinux/selinux-python/process-ValueError-for-sepolicy-seobject.patch
-+++ b/recipes-security/selinux/selinux-python/process-ValueError-for-sepolicy-seobject.patch
-@@ -1,4 +1,4 @@
--From b8e07bd0643b581ac33c96a1f94ae17c8df80ffd Mon Sep 17 00:00:00 2001
-+From 1a8bd0ca13746b5241af5736dee9a25ab360652b Mon Sep 17 00:00:00 2001
- From: Wenzong Fan <wenzong.fan@windriver.com>
- Date: Sun, 30 Mar 2014 22:25:59 -0400
- Subject: [PATCH] semanage: process ValueError for sepolicy, seobject
-@@ -7,15 +7,16 @@ The sepolicy, seobject modules raise many unprocessed ValueError, just
- process them in semanage to make the script proivdes error message but
- not error trace.
- 
--Uptream-Status: pending
-+Uptream-Status: Pending
- 
- Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
-+
- ---
-  semanage/semanage | 11 +++++++----
-  1 file changed, 7 insertions(+), 4 deletions(-)
- 
- diff --git a/semanage/semanage b/semanage/semanage
--index 19a6c51..c0083c6 100644
-+index 313537c..2977dd0 100644
- --- a/semanage/semanage
- +++ b/semanage/semanage
- @@ -25,8 +25,14 @@
-@@ -34,7 +35,7 @@ index 19a6c51..c0083c6 100644
-  PROGNAME = "policycoreutils"
-  try:
-      import gettext
--@@ -67,9 +73,6 @@ usage_interface_dict = {' --add': ('-t TYPE', '-r RANGE', 'interface'), ' --modi
-+@@ -73,9 +79,6 @@ usage_interface_dict = {' --add': ('-t TYPE', '-r RANGE', 'interface'), ' --modi
-  usage_boolean = "semanage boolean [-h] [-n] [-N] [-S STORE] ["
-  usage_boolean_dict = {' --modify': ('(', '--on', '|', '--off', ')', 'boolean'), ' --list': ('-C',), '  --extract': ('',), ' --deleteall': ('',)}
-  
-@@ -44,6 +45,3 @@ index 19a6c51..c0083c6 100644
-  class CheckRole(argparse.Action):
-  
-      def __call__(self, parser, namespace, value, option_string=None):
---- 
--2.7.4
--
--- 
-2.7.4
+Tried what you have suggested. I had some errors, again in
+do_install(), then I read .log, and fixed the paths.
 
+This is my recipe, important part of it, as of now:
+_______
+
+S = "${WORKDIR}/git"
+
+inherit pkgconfig cmake
+inherit systemd
+
+EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=Release"
+
+INSANE_SKIP_${PN} = "ldflags"
+INHIBIT_PACKAGE_STRIP = "1"
+INHIBIT_SYSROOT_STRIP = "1"
+SOLIBS = ".so"
+FILES_SOLIBSDEV = ""
+
+do_install () {
+    install -d ${D}${libdir}
+    install -m 0755 cannelloni ${D}${bindir}
+    install -m 0755 ${WORKDIR}/build/libcannelloni-common.so ${D}${libdir}
+}
+_______
+
+Where I modified install directories. ${libdir} is /usr/lib (instead
+/usr/local/lib), all cool with this one as well.
+
+(I guess, I could use LOCAL_LIB =  "/usr/local/lib", and then change
+${libdir} with ${LOCAL_LIB})
+
+I went further with bitbake. Now I am failing in do_package()
+(inherited from default), with the following ERRORs:
+
+ERROR: cannelloni-1.0-r0 do_package: QA Issue: cannelloni:
+Files/directories were installed but not shipped in any package:
+  /usr/bin
+Please set FILES such that these items are packaged. Alternatively if
+they are unneeded, avoid installing them or delete them within
+do_install.
+cannelloni: 1 installed and not shipped files. [installed-vs-shipped]
+ERROR: cannelloni-1.0-r0 do_package: Fatal QA errors found, failing task.
+ERROR: cannelloni-1.0-r0 do_package: Function failed: do_package
+ERROR: Logfile of failure stored in:
+/home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yocto-rocko/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/temp/log.do_package.3501
+ERROR: Task (/home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yocto-rocko/poky/meta-test-layer/recipes-canapp/cannelloni/cannelloni.bb:do_package)
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 535 tasks of which 524 didn't need to
+be rerun and 1 failed.
+
+Any take on that?
+_______
+
+Mirza,
+
+Actually, the recipe I am showing here is the GENIVI (the same you
+pointed to), but heavily modified. :-)
+
+And, yes, I am using latest sumo.
+
+Thank you all,
+Zoran
+_______
+
+On Wed, Jul 18, 2018 at 7:06 PM, Andre McCurdy <armccurdy@gmail.com> wrote:
+> On Wed, Jul 18, 2018 at 7:04 AM, Zoran Stojsavljevic
+> <zoran.stojsavljevic@gmail.com> wrote:
+>> Yep. Did it. Some symlink is missing (I guess, symlink to
+>> /usr/local/lib/libcannelloni-common.so???
+>>
+>> Initialising tasks: 100%
+>> |#############################################################################################################################################################|
+>> Time: 0:00:00
+>> NOTE: Executing SetScene Tasks
+>> NOTE: Executing RunQueue Tasks
+>> ERROR: cannelloni-1.0-r0 do_package_qa: QA Issue: cannelloni rdepends on
+>> cannelloni-dev [dev-deps]
+>> ERROR: cannelloni-1.0-r0 do_package_qa: QA Issue: -dev package contains
+>> non-symlink .so: cannelloni-dev path
+>> '/work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/packages-split/cannelloni-dev/usr/lib/libcannelloni-common.so'
+>> [dev-elf]
+>> ERROR: cannelloni-1.0-r0 do_package_qa: QA run found fatal errors. Please
+>> consider fixing them.
+>> ERROR: cannelloni-1.0-r0 do_package_qa: Function failed: do_package_qa
+>> ERROR: Logfile of failure stored in:
+>> /home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yocto-rocko/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/temp/log.do_package_qa.7896
+>> ERROR: Task
+>> (/home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yocto-rocko/poky/meta-test-layer/recipes-canapp/cannelloni/cannelloni.bb:do_package_qa)
+>> failed with exit code '1'
+>> NOTE: Tasks Summary: Attempted 539 tasks of which 532 didn't need to be
+>> rerun and 1 failed.
+>>
+>> Summary: 1 task failed:
+>>
+>> /home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yocto-rocko/poky/meta-test-layer/recipes-canapp/cannelloni/cannelloni.bb:do_package_qa
+>> Summary: There were 2 WARNING messages shown.
+>> Summary: There were 4 ERROR messages shown, returning a non-zero exit code.
+>>
+>> How I can add this symlink (!) to this recipe?
+>
+> The error says "-dev package contains non-symlink .so".
+>
+> Simply adding a symlink somewhere will not help. The fix is to ensure
+> that libcannelloni-common.so gets packaged in the main run-time
+> package (and not in the -dev package).
+>
+> Reading the section about non-versioned shared libraries here might help:
+>
+>   https://wiki.yoctoproject.org/wiki/TipsAndTricks/Packaging_Prebuilt_Libraries
 
