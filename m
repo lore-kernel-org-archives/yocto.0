@@ -1,6 +1,6 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3C164E01342; Thu, 19 Jul 2018 06:17:58 -0700 (PDT)
+	id BE573E01342; Thu, 19 Jul 2018 06:17:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,7 +12,7 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C75AE00EE0
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1159E01320
 	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 06:17:56 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
@@ -20,18 +20,18 @@ Received: from fmsmga001.fm.intel.com ([10.253.24.23])
 	by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
 	19 Jul 2018 06:17:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,374,1526367600"; d="scan'208";a="73712019"
+X-IronPort-AV: E=Sophos;i="5.51,374,1526367600"; d="scan'208";a="73712032"
 Received: from wulili-mobl.ger.corp.intel.com (HELO localhost.localdomain)
 	([10.252.50.201])
-	by fmsmga001.fm.intel.com with ESMTP; 19 Jul 2018 06:17:53 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 19 Jul 2018 06:17:55 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 19 Jul 2018 15:17:32 +0200
-Message-Id: <3fa8a75a2fda7e55af09ba32a6619220478f035f.1532006209.git.paul.eggleton@linux.intel.com>
+Date: Thu, 19 Jul 2018 15:17:34 +0200
+Message-Id: <be52a5a7b16f8d3557b24cd15fab4508af509568.1532006209.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1532006209.git.paul.eggleton@linux.intel.com>
 References: <cover.1532006209.git.paul.eggleton@linux.intel.com>
-Subject: [layerindex-web][PATCH 1/3] update: fix handling of moves outside of a layer
+Subject: [layerindex-web][PATCH 3/3] README: add an example virtualenv-based setup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,146 +45,68 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 19 Jul 2018 13:17:58 -0000
 
-If a file is moved (renamed) to a path outside of the layer, e.g.
-another layer within a multi-layer repository, then we need to treat it
-as a delete. Up until now we were updating the path and continuing, and
-then the recipe was also picked up as an add in the other layer, leading
-to duplicate recipe entries. I'd noticed these duplicates before but up
-until now I'd thought that they were due to another bug we already
-fixed, apparently not.
+A while ago I was trying to help someone new get started with a
+development setup for the layer index and it occurred to me that the
+virtualenv-based environment I am using for development isn't actually
+covered in the documentation, so I wrote something quick for them but
+didn't do anything further with it until now. Here it is in more fleshed
+out form for the README.
 
-In order to remove these erroneous duplicate entries in existing
-databases I have also added a layerindex/tools/fixup_duplicates.py
-script. I've also made the -r/--reload option delete them as well.
+Also clarify the python requirements for the update script a little bit.
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- layerindex/tools/fixup_duplicates.py | 69 ++++++++++++++++++++++++++++
- layerindex/update_layer.py           | 27 +++++++----
- 2 files changed, 87 insertions(+), 9 deletions(-)
- create mode 100644 layerindex/tools/fixup_duplicates.py
+ README | 37 +++++++++++++++++++++++++++++++++++--
+ 1 file changed, 35 insertions(+), 2 deletions(-)
 
-diff --git a/layerindex/tools/fixup_duplicates.py b/layerindex/tools/fixup_duplicates.py
-new file mode 100644
-index 00000000..5abe2c2d
---- /dev/null
-+++ b/layerindex/tools/fixup_duplicates.py
-@@ -0,0 +1,69 @@
-+#!/usr/bin/env python3
+diff --git a/README b/README
+index 72dce71d..d1b1f9bd 100644
+--- a/README
++++ b/README
+@@ -29,8 +29,41 @@ In order to make use of this application you will need:
+   in settings.py and have access to the database used by the web
+   application):
+   * Python 2.7.6+ / Python 3.4+ to match with the version of BitBake
+-    for the OpenEmbedded branch being parsed
+-  * GitPython (python-git) version 2.0 or later
++    for the OpenEmbedded branch being parsed (for modern versions it's
++    Python 3.)
++  * Python dependencies as per requirements.txt (we still need Django
++    etc. here since we interact with the database through Django's ORM.)
 +
-+# Fix recipes that were moved out
-+#
-+# Copyright (C) 2017 Intel Corporation
-+# Author: Paul Eggleton <paul.eggleton@linux.intel.com>
-+#
-+# Licensed under the MIT license, see COPYING.MIT for details
++Example virtualenv-based setup for the above:
 +
++Python's virtualenv provides an easy way to isolate the python dependencies
++of applications such as the layer index. Here's an example of setting up a
++virtualenv for the layer index that's particularly useful for development.
++(This assumes a Debian-based distribution, adjust accordingly for other
++distros).
 +
-+import sys
-+import os
++1. Install required host distro packages (some of these are required by
++   pip to build the dependencies; it's also assumed you want MariaDB as
++   the database backend):
 +
-+sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), '..')))
++   sudo apt-get install virtualenv libmariadb-client-lgpl-dev build-essential python3-dev libjpeg-dev libz-dev libfreetype6-dev mariadb-server rabbitmq-server
 +
-+import optparse
-+import utils
-+import logging
++2. Work around path issues (you may not need this):
 +
-+class DryRunRollbackException(Exception):
-+    pass
++   sudo ln -s /usr/bin/mariadb_config /usr/bin/mysql_config
 +
-+logger = utils.logger_create('LayerIndexFixup')
++3. Create a Python 3 virtualenv (path can be anywhere you like):
 +
++   virtualenv -p python3 /path/to/desired/venv
 +
++4. Activate the virtualenv:
 +
-+def main():
-+    parser = optparse.OptionParser(
-+        usage = """
-+    %prog [options""")
++   . /path/to/desired/venv/bin/activate
 +
-+    parser.add_option("-n", "--dry-run",
-+            help = "Don't write any data back to the database",
-+            action="store_true", dest="dryrun")
-+    parser.add_option("-d", "--debug",
-+            help = "Enable debug output",
-+            action="store_const", const=logging.DEBUG, dest="loglevel", default=logging.INFO)
-+    parser.add_option("-q", "--quiet",
-+            help = "Hide all output except error messages",
-+            action="store_const", const=logging.ERROR, dest="loglevel")
++5. Install requirements:
 +
-+    options, args = parser.parse_args(sys.argv)
++   pip install -r requirements.txt
 +
-+    utils.setup_django()
-+    import settings
-+    from layerindex.models import Recipe
-+    from django.db import transaction
-+
-+    logger.setLevel(options.loglevel)
-+
-+    try:
-+        with transaction.atomic():
-+            #LayerBranch.objects.filter(layermaintainer__isnull=True).delete()
-+            #LayerItem.objects.filter(layerbranch__isnull=True).filter(classic=False).delete()
-+            #LayerItem.objects.filter(layerbranch__isnull=True).filter(classic=False).delete()
-+            for recipe in Recipe.objects.filter(filepath__startswith='../'):
-+                print('Deleting erroneous recipe %s %s' % (recipe.layerbranch, recipe))
-+                recipe.delete()
-+
-+            if options.dryrun:
-+                raise DryRunRollbackException()
-+    except DryRunRollbackException:
-+        pass
-+
-+    sys.exit(0)
-+
-+
-+if __name__ == "__main__":
-+    main()
-diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
-index d34d8a59..2b39e8ef 100644
---- a/layerindex/update_layer.py
-+++ b/layerindex/update_layer.py
-@@ -502,6 +502,10 @@ def main():
-                         if skip:
-                             continue
-                         if oldpath.startswith(subdir_start):
-+                            if not newpath.startswith(subdir_start):
-+                                logger.debug("Treating rename of %s to %s as a delete since new path is outside layer" % (oldpath, newpath))
-+                                other_deletes.append(diffitem)
-+                                continue
-                             (oldtypename, oldfilepath, oldfilename) = recipeparse.detect_file_type(oldpath, subdir_start)
-                             (newtypename, newfilepath, newfilename) = recipeparse.detect_file_type(newpath, subdir_start)
-                             if oldtypename != newtypename:
-@@ -684,16 +688,21 @@ def main():
-                         # First, check which recipes still exist
-                         layerrecipe_values = layerrecipes.values('id', 'filepath', 'filename', 'pn')
-                         for v in layerrecipe_values:
--                            root = os.path.join(layerdir, v['filepath'])
--                            fullpath = os.path.join(root, v['filename'])
--                            preserve = True
--                            if os.path.exists(fullpath):
--                                for removedir in removedirs:
--                                    if fullpath.startswith(removedir):
--                                        preserve = False
--                                        break
--                            else:
-+                            if v['filepath'].startswith('../'):
-+                                # FIXME: These recipes were present due to a bug (not handling renames
-+                                # to paths outside the layer) - this can be removed at some point in the future
-                                 preserve = False
-+                            else:
-+                                root = os.path.join(layerdir, v['filepath'])
-+                                fullpath = os.path.join(root, v['filename'])
-+                                if os.path.exists(fullpath):
-+                                    preserve = True
-+                                    for removedir in removedirs:
-+                                        if fullpath.startswith(removedir):
-+                                            preserve = False
-+                                            break
-+                                else:
-+                                    preserve = False
  
-                             if preserve:
-                                 # Recipe still exists, update it
+ Setup instructions:
+ 
 -- 
 2.17.1
 
