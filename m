@@ -1,53 +1,71 @@
-Return-Path: <amanda.r.brindle@intel.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C387CE01083; Thu, 19 Jul 2018 12:01:54 -0700 (PDT)
+	id 19FF9E01422; Thu, 19 Jul 2018 13:21:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.136 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.221.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99D01E009CF
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 12:01:53 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	19 Jul 2018 12:01:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,375,1526367600"; d="scan'208,217";a="72791983"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga004.fm.intel.com with ESMTP; 19 Jul 2018 12:01:53 -0700
-Received: from orsmsx102.amr.corp.intel.com ([169.254.3.209]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.4.198]) with mapi id
-	14.03.0319.002; Thu, 19 Jul 2018 12:01:52 -0700
-From: "Brindle, Amanda R" <amanda.r.brindle@intel.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Thread-Topic: [yocto] Error Report Tool Purge
-Thread-Index: AdQfjDH1WILDIVXnTx6BT484Qx+58gAPhewAAA6AraA=
-Date: Thu, 19 Jul 2018 19:01:52 +0000
-Message-ID: <DE98B1892D46BB468E30D103AE07E7BC253E769E@ORSMSX102.amr.corp.intel.com>
-References: <DE98B1892D46BB468E30D103AE07E7BC253E765F@ORSMSX102.amr.corp.intel.com>
-	<CA+chaQduoRG0cbuxLracsNdeJvAZX2CwgrhYe2Wmr0BMKaBATQ@mail.gmail.com>
-In-Reply-To: <CA+chaQduoRG0cbuxLracsNdeJvAZX2CwgrhYe2Wmr0BMKaBATQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.200.100
-dlp-reaction: no-action
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZDlhNDM3MTgtNGI1MS00YmY4LWJhNGYtYjk2Y2QzY2Y2YjlhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoicWJtRWpNVm9odFpTM3ZRcjRhdmF5ZkllUmsyeURka2ZveEVZUFJDYTdzMzlIRjQyUDBIcVVQbk5GR1U2RThleSJ9
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Error Report Tool Purge
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+	[209.85.221.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82EDFE009CF
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 13:21:11 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id s11-v6so9227944wra.13
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 13:21:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:mime-version:content-transfer-encoding;
+	bh=qfu9yrP0/uYCEfasx8ypxJj7t7iNWe94vPacHDfuPdk=;
+	b=I8YAyiYkNfAfDK5CA5xIQxprlR5jIt5fuPSvQw78PxAsv/1SNXgW6qhIh/gjMwkeGQ
+	m0UNMRoW6whYfN5n1VRqrn2bFJCEX0qND+yBaGZnrKoHGlW7WAW64/iz01NSKU8Qx+a4
+	psSab8MnpAnMjvdmO5Z2q/T2/TxXZYe4A/Zqk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:mime-version:content-transfer-encoding;
+	bh=qfu9yrP0/uYCEfasx8ypxJj7t7iNWe94vPacHDfuPdk=;
+	b=lWHLrLnVrQT7mhKLCjOpQ9eMx66GVlINELYMdN777ApwoMZybCFjruRRazj9AihQTV
+	kWlFpHPe6kvCUM0ccwvNqXbpsHAQXvIy0Ua5LfJiV6wOvlVWJGWH0D+sOAA2aEAdefdn
+	L6sbOKvMviGPbUzJ0hss0RccuTUaq6yBOt987GWLdZ7SYP0C/mtN9qQ3D8UqbIpLkBXl
+	JPqNy567hsaXke3mwwPvNm6GJ1bYkyzMabHGO5TpEZbxvqTVcHOMbkq70MATPKhS24em
+	hGFWRXFZ0tqIq4l7foG8kYaJE7/ieOQySfjkyany7MaFN/K68S3Rfc8DZNgIQeTjWtqq
+	C0QA==
+X-Gm-Message-State: AOUpUlE5zNm+7dijCMXZBbmH+ouWwMvXsbMuQA+OW6TBe2R0C8sYwplE
+	vHDDCHCww4Yn+MA8jS5AdDWKmg==
+X-Google-Smtp-Source: AAOMgpdceR67WygNhst+hAxXwvPGSB/qyac64EbcdmxaaHMRdXtfLcNliJZJKNqiWARFB1UoSE9wUQ==
+X-Received: by 2002:a5d:4b90:: with SMTP id
+	b16-v6mr7990835wrt.168.1532031670246; 
+	Thu, 19 Jul 2018 13:21:10 -0700 (PDT)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+	by smtp.gmail.com with ESMTPSA id
+	d14-v6sm135370wrr.12.2018.07.19.13.21.08
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Thu, 19 Jul 2018 13:21:09 -0700 (PDT)
+Message-ID: <b35f09b4ef87677dfe95f795c7273878e3304848.camel@linuxfoundation.org>
+From: richard.purdie@linuxfoundation.org
+To: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "'yocto@yoctoproject.org'"
+	<yocto@yoctoproject.org>, "Jolley,
+	Stephen K" <stephen.k.jolley@intel.com>, 
+	"Eggleton, Paul" <paul.eggleton@intel.com>
+Date: Thu, 19 Jul 2018 21:21:07 +0100
+In-Reply-To: <9DDD2658D1FE414E99172D2DB1E4D04335E844C2@PGSMSX109.gar.corp.intel.com>
+References: <9DDD2658D1FE414E99172D2DB1E4D04335E844C2@PGSMSX109.gar.corp.intel.com>
+X-Mailer: Evolution 3.28.1-2 
+Mime-Version: 1.0
+Cc: "Kirkiris, Nectar" <nectar.kirkiris@intel.com>
+Subject: Re: QA cycle report for 2.2.4 RC1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,188 +77,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2018 19:01:54 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DE98B1892D46BB468E30D103AE07E7BC253E769EORSMSX102amrcor_"
+X-List-Received-Date: Thu, 19 Jul 2018 20:21:13 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---_000_DE98B1892D46BB468E30D103AE07E7BC253E769EORSMSX102amrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Thu, 2018-07-19 at 09:55 +0000, Yeoh, Ee Peng wrote:
+> This is the full report for 2.2.4.rc1:  
+> https://wiki.yoctoproject.org/wiki/WW28_-_2018-07-13_-_Full_Test_Cycl
+> e_2.2.4_rc1
+>  
+> ======= Summary ========
+>  
+> All planned tests were executed.  There were zero high milestone
+> defect.  Team had found 3 new defects [1] [2] [3] where runtime
+> test_parselogs testcase failed with error message inside dmesg
+> log.  While executing the runtime smart package manager tests on
+> target platform to install psplash, team discovered that the target
+> platform screen was splash with Yocto logo and the Yocto logo remain
+> after the tests completed, need further investigation to verify if
+> this was caused by post installation script from psplash.  For
+> performance test, regression on 2.2.3.rc2 faced with error where
+> SRCREV defined for distcc was no longer available.  For pTest, both
+> glib-2.0 and util-linux passrate decreased as compared to 2.2.3.rc2
+> as some new tests available in 2.2.4.rc1 were failing.   
+>  
+> ======= QA-Hints========
+>  
+> Found 3 non critical defects.  
+>  
+> ======= Bugs ========
+>  
+> New Bugs
+> [1] Bug 12854 - [2.2.4.rc1][BSP Auto] [genericx86-64 on MMAX64bit]
+> [test_parselogs] blk_update_request: I/O error, dev loop0
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12854
+> 
+> [2] Bug 12853 - [2.2.4.rc1][BSP Auto] [genericx86-64 on
+> NUC6][test_parselogs] drm:intel_dp_link_training_clock_recovery]
+> *ERROR* too many voltage retries, give up
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12853
+> 
+> [3] Bug 12852 - [2.2.4.rc1][BSP Auto] [genericx86-64-WIC on
+> NUC6][test_parselogs] snd_hda_intel 0000:00:1f.3: failed to add i915
+> component master  
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12852
 
-RXZlcnkgdGltZSBhIHNwZWNpZmljIHJlcG9ydCBpcyB2aXNpdGVkICh3aXRoIHRoZSBlbmQgb2Yg
-dGhlIFVSTCBiZWluZyAvRXJyb3JzL0RldGFpbHMvPGlkPiksIHdlIGFyZSB0cmFja2luZyBpZiB0
-aGUgcmVmZXJyZXIgaXMgYW5vdGhlciB3ZWJzaXRlLCB0aGUgcmVwb3J0aW5nIHRvb2wgaXRzZWxm
-LCBvciB1bmtub3duLiBJZiB0aGUgcmVmZXJyZXIgaXMgYW5vdGhlciB3ZWJzaXRlIG9yIHVua25v
-d24sIHRoZW4gd2Ugd29u4oCZdCBkZWxldGUgaXQuDQoNClRoZSBwdXJnZSBzY3JpcHQgZG9lcyBu
-b3QgbG9vayBhdCBsaW5rcyB0byB3aG9sZSBidWlsZHMsIHNvIGFzIGl0IGlzIHJpZ2h0IG5vdywg
-dGhvc2Ugd291bGQgZ2V0IGRlbGV0ZWQuIElmIGl04oCZcyBjb21tb24gdG8gbGluayB0byB3aG9s
-ZSBidWlsZHMsIHRob3VnaCwgSSBjYW4gYWRkIHNvbWV0aGluZyB0byB0aGUgc2NyaXB0IHRvIHNh
-dmUgcmVwb3J0cyBmcm9tIGEgdmlzaXRlZCBvciBsaW5rZWQgYnVpbGQuDQoNCi1BbWFuZGEgQnJp
-bmRsZQ0KDQpGcm9tOiBNYXJ0aW4gSmFuc2EgW21haWx0bzptYXJ0aW4uamFuc2FAZ21haWwuY29t
-XQ0KU2VudDogVGh1cnNkYXksIEp1bHkgMTksIDIwMTggMTE6MzggQU0NClRvOiBCcmluZGxlLCBB
-bWFuZGEgUiA8YW1hbmRhLnIuYnJpbmRsZUBpbnRlbC5jb20+DQpDYzogWW9jdG8gUHJvamVjdCA8
-eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IFJlOiBbeW9jdG9dIEVycm9yIFJlcG9y
-dCBUb29sIFB1cmdlDQoNCkknbSBqdXN0IGN1cmlvdXMsIGhvdyBhcmUgeW91IHRyYWNraW5nIHdo
-aWNoIHJlcG9ydHMgd2VyZSB2aWV3ZWQgb3IgbGlua2VkIHRvIChhbmQgbGlua2VkIGZyb20gd2hl
-cmUpPyBJIG9mdGVuIHVzZSBhIGxpbmsgdG8gaHR0cDovL2Vycm9ycy55b2N0b3Byb2plY3Qub3Jn
-IGluIHRoZSBtYWlsaW5nIGxpc3Qgb3IgdGhlIHJlY2lwZXMvY29tbWl0IG1lc3NhZ2UgaW5zdGVh
-ZCBvZiBjb3B5IHBhc3Rpbmcgd2hvbGUgYnVpbGQgZXJyb3IsIGJlY2F1c2UgaXQgYWxyZWFkeSBz
-aG9ydGVucyB0aGUgYnVpbGQgcGF0aHMgYW5kIHNob3dzIHVzZWZ1bCBhZGRpdGlvbmFsIGluZm9y
-bWF0aW9uIGFib3V0IHRoZSBlcnJvci4NCg0KVGhlIGxpbmtzIHRvIHdob2xlIGJ1aWxkcyBvbiBo
-dHRwOi8vZXJyb3JzLnlvY3RvcHJvamVjdC5vcmcgd2VyZSBhbHNvIG9mdGVuIGxpbmtlZCBmcm9t
-ICJiaXRiYWtlIHdvcmxkIHN0YXR1cyIgZS1tYWlscyBhbmQgd2lraSBsaWtlOg0KaHR0cHM6Ly93
-d3cub3BlbmVtYmVkZGVkLm9yZy93aWtpL0JpdGJha2VfV29ybGRfU3RhdHVzX1JvY2tvDQphbmQg
-b24gbWFueSBvZiB0aGVtIG5vYm9keSBjbGlja2VkIHlldCAtIHNob3VsZCBJIGV4cGVjdCB0aGF0
-IHRoZXNlIHdpbGwgbW9zdGx5IGdldCBicm9rZW4/DQoNClJlZ2FyZHMNCg0KDQoNCk9uIFRodSwg
-SnVsIDE5LCAyMDE4IGF0IDg6MzAgUE0gQnJpbmRsZSwgQW1hbmRhIFIgPGFtYW5kYS5yLmJyaW5k
-bGVAaW50ZWwuY29tPG1haWx0bzphbWFuZGEuci5icmluZGxlQGludGVsLmNvbT4+IHdyb3RlOg0K
-SGVsbG8sDQoNClRoZSBFcnJvciBSZXBvcnRpbmcgVG9vbOKAmXMgZGF0YWJhc2UgKGh0dHA6Ly9l
-cnJvcnMueW9jdG9wcm9qZWN0Lm9yZy9FcnJvcnMvTGF0ZXN0L0F1dG9idWlsZGVyLykgIGhhcyBn
-cm93biB0byBhIGh1Z2Ugc2l6ZSwgYW5kIHRoaXMgaXMgYWZmZWN0aW5nIHRoZSBwZXJmb3JtYW5j
-ZSBvZiB0aGUgYXBwbGljYXRpb24uIFdlIGFyZSBwbGFubmluZyB0byBydW4gYSBwdXJnZSB0byBn
-ZXQgcmlkIG9mIHJlcG9ydHMgdGhhdCB3ZSBkb27igJl0IG5lZWQuIFdlIHdpbGwga2VlcCByZXBv
-cnRzIGZyb20gdGhlIGxhc3QgdGhpcnR5IGRheXMsIGFzIHdlbGwgYXMgcmVwb3J0cyB0aGF0IGhh
-dmUgYmVlbiB2aWV3ZWQgb3IgbGlua2VkIHRvLiBJZiB5b3UgaGF2ZSBhIHNwZWNpZmljIHJlcG9y
-dCB0aGF0IHlvdSBkb27igJl0IHdhbnQgcHVyZ2VkLCBwbGVhc2UgbGV0IG1lIGtub3cgYnkgdGhl
-IGVuZCBvZiB0aGUgbW9udGguDQoNCkFtYW5kYSBCcmluZGxlLCBTb2Z0d2FyZSBFbmdpbmVlcg0K
-NTAzLTI2NC0zOTcwDQphbWFuZGEuci5icmluZGxlQGludGVsLmNvbTxtYWlsdG86YW1hbmRhLnIu
-YnJpbmRsZUBpbnRlbC5jb20+DQoNCi0tDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXw0KeW9jdG8gbWFpbGluZyBsaXN0DQp5b2N0b0B5b2N0b3Byb2plY3Qu
-b3JnPG1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KaHR0cHM6Ly9saXN0cy55b2N0b3By
-b2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo=
+Thanks. One of these was resolved by the triage team as WONTFIX since
+whilst there is a fix in master, backporting it has potential side
+effects and in their view would be too risky for a stable release.
 
---_000_DE98B1892D46BB468E30D103AE07E7BC253E769EORSMSX102amrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+The other two issues were identified as being due to changes in QA team
+hardware used for the testing and therefore are not regressions, just
+error messages that appear on the newer testing hardware.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
-CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
-c2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHls
-ZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
-CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4g
-MS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
-MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
-cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
-YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
-aWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1
-cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PGEgbmFtZT0iX01haWxFbmRDb21wb3NlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+
-RXZlcnkgdGltZSBhIHNwZWNpZmljIHJlcG9ydCBpcyB2aXNpdGVkICh3aXRoIHRoZSBlbmQgb2Yg
-dGhlIFVSTCBiZWluZyAvRXJyb3JzL0RldGFpbHMvJmx0O2lkJmd0OyksIHdlIGFyZSB0cmFja2lu
-ZyBpZiB0aGUgcmVmZXJyZXIgaXMgYW5vdGhlcg0KIHdlYnNpdGUsIHRoZSByZXBvcnRpbmcgdG9v
-bCBpdHNlbGYsIG9yIHVua25vd24uIElmIHRoZSByZWZlcnJlciBpcyBhbm90aGVyIHdlYnNpdGUg
-b3IgdW5rbm93biwgdGhlbiB3ZSB3b27igJl0IGRlbGV0ZSBpdC4NCjxvOnA+PC9vOnA+PC9zcGFu
-PjwvYT48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFG
-NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoZSBwdXJnZSBzY3JpcHQgZG9lcyBub3Qg
-bG9vayBhdCBsaW5rcyB0byB3aG9sZSBidWlsZHMsIHNvIGFzIGl0IGlzIHJpZ2h0IG5vdywgdGhv
-c2Ugd291bGQgZ2V0IGRlbGV0ZWQuIElmIGl04oCZcyBjb21tb24gdG8gbGluayB0byB3aG9sZSBi
-dWlsZHMsIHRob3VnaCwgSSBjYW4NCiBhZGQgc29tZXRoaW5nIHRvIHRoZSBzY3JpcHQgdG8gc2F2
-ZSByZXBvcnRzIGZyb20gYSB2aXNpdGVkIG9yIGxpbmtlZCBidWlsZC4gPG86cD4NCjwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFG
-NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPi1BbWFuZGEgQnJpbmRsZTxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
-MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48YSBuYW1lPSJfX19fX3JlcGx5c2VwYXJhdG9yIj48L2E+PGI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5G
-cm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4gTWFydGluIEphbnNhIFttYWlsdG86bWFy
-dGluLmphbnNhQGdtYWlsLmNvbV0NCjxicj4NCjxiPlNlbnQ6PC9iPiBUaHVyc2RheSwgSnVseSAx
-OSwgMjAxOCAxMTozOCBBTTxicj4NCjxiPlRvOjwvYj4gQnJpbmRsZSwgQW1hbmRhIFIgJmx0O2Ft
-YW5kYS5yLmJyaW5kbGVAaW50ZWwuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gWW9jdG8gUHJvamVj
-dCAmbHQ7eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyZndDs8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6
-IFt5b2N0b10gRXJyb3IgUmVwb3J0IFRvb2wgUHVyZ2U8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj5JJ20ganVzdCBjdXJpb3VzLCBob3cgYXJlIHlvdSB0cmFja2luZyB3aGlj
-aCByZXBvcnRzIHdlcmUgdmlld2VkIG9yIGxpbmtlZCB0byAoYW5kIGxpbmtlZCBmcm9tIHdoZXJl
-KT8gSSBvZnRlbiB1c2UgYSBsaW5rIHRvDQo8YSBocmVmPSJodHRwOi8vZXJyb3JzLnlvY3RvcHJv
-amVjdC5vcmciPmh0dHA6Ly9lcnJvcnMueW9jdG9wcm9qZWN0Lm9yZzwvYT4gaW4gdGhlIG1haWxp
-bmcgbGlzdCBvciB0aGUgcmVjaXBlcy9jb21taXQgbWVzc2FnZSBpbnN0ZWFkIG9mIGNvcHkgcGFz
-dGluZyB3aG9sZSBidWlsZCBlcnJvciwgYmVjYXVzZSBpdCBhbHJlYWR5IHNob3J0ZW5zIHRoZSBi
-dWlsZCBwYXRocyBhbmQgc2hvd3MgdXNlZnVsIGFkZGl0aW9uYWwgaW5mb3JtYXRpb24gYWJvdXQN
-CiB0aGUgZXJyb3IuPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij5UaGUgbGlua3MgdG8gd2hvbGUgYnVpbGRzIG9uJm5ic3A7PGEgaHJlZj0iaHR0cDovL2Vycm9y
-cy55b2N0b3Byb2plY3Qub3JnIj5odHRwOi8vZXJyb3JzLnlvY3RvcHJvamVjdC5vcmc8L2E+Jm5i
-c3A7d2VyZSBhbHNvIG9mdGVuIGxpbmtlZCBmcm9tICZxdW90O2JpdGJha2Ugd29ybGQgc3RhdHVz
-JnF1b3Q7IGUtbWFpbHMgYW5kIHdpa2kgbGlrZTo8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48YSBocmVmPSJodHRwczovL3d3dy5vcGVuZW1iZWRkZWQub3JnL3dp
-a2kvQml0YmFrZV9Xb3JsZF9TdGF0dXNfUm9ja28iPmh0dHBzOi8vd3d3Lm9wZW5lbWJlZGRlZC5v
-cmcvd2lraS9CaXRiYWtlX1dvcmxkX1N0YXR1c19Sb2NrbzwvYT48bzpwPjwvbzpwPjwvcD4NCjwv
-ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmFuZCBvbiBtYW55IG9mIHRoZW0gbm9i
-b2R5IGNsaWNrZWQgeWV0IC0gc2hvdWxkIEkgZXhwZWN0IHRoYXQgdGhlc2Ugd2lsbCBtb3N0bHkg
-Z2V0IGJyb2tlbj88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+UmVnYXJkczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBUaHUsIEp1bCAxOSwgMjAxOCBhdCA4OjMwIFBN
-IEJyaW5kbGUsIEFtYW5kYSBSICZsdDs8YSBocmVmPSJtYWlsdG86YW1hbmRhLnIuYnJpbmRsZUBp
-bnRlbC5jb20iPmFtYW5kYS5yLmJyaW5kbGVAaW50ZWwuY29tPC9hPiZndDsgd3JvdGU6PG86cD48
-L286cD48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXIt
-bGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNi4wcHQ7bWFyZ2lu
-LWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBpbiI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRv
-bS1hbHQ6YXV0byI+SGVsbG8sPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
-dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
-PiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
-YXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5UaGUgRXJyb3Ig
-UmVwb3J0aW5nIFRvb2zigJlzIGRhdGFiYXNlICg8YSBocmVmPSJodHRwOi8vZXJyb3JzLnlvY3Rv
-cHJvamVjdC5vcmcvRXJyb3JzL0xhdGVzdC9BdXRvYnVpbGRlci8iIHRhcmdldD0iX2JsYW5rIj5o
-dHRwOi8vZXJyb3JzLnlvY3RvcHJvamVjdC5vcmcvRXJyb3JzL0xhdGVzdC9BdXRvYnVpbGRlci88
-L2E+KQ0KICZuYnNwO2hhcyBncm93biB0byBhIGh1Z2Ugc2l6ZSwgYW5kIHRoaXMgaXMgYWZmZWN0
-aW5nIHRoZSBwZXJmb3JtYW5jZSBvZiB0aGUgYXBwbGljYXRpb24uIFdlIGFyZSBwbGFubmluZyB0
-byBydW4gYSBwdXJnZSB0byBnZXQgcmlkIG9mIHJlcG9ydHMgdGhhdCB3ZSBkb27igJl0IG5lZWQu
-IFdlIHdpbGwga2VlcCByZXBvcnRzIGZyb20gdGhlIGxhc3QgdGhpcnR5IGRheXMsIGFzIHdlbGwg
-YXMgcmVwb3J0cyB0aGF0IGhhdmUgYmVlbiB2aWV3ZWQgb3IgbGlua2VkDQogdG8uIElmIHlvdSBo
-YXZlIGEgc3BlY2lmaWMgcmVwb3J0IHRoYXQgeW91IGRvbuKAmXQgd2FudCBwdXJnZWQsIHBsZWFz
-ZSBsZXQgbWUga25vdyBieSB0aGUgZW5kIG9mIHRoZSBtb250aC48bzpwPjwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFy
-Z2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20t
-YWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij5BbWFuZGEgQnJpbmRsZSwg
-U29mdHdhcmUgRW5naW5lZXI8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
-OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij41MDMtMjY0LTM5NzANCjwvc3Bh
-bj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
-LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxNC4wcHQiPjxhIGhyZWY9Im1haWx0bzphbWFuZGEuci5icmluZGxlQGludGVsLmNv
-bSIgdGFyZ2V0PSJfYmxhbmsiPmFtYW5kYS5yLmJyaW5kbGVAaW50ZWwuY29tPC9hPjwvc3Bhbj48
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
-cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48
-L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+LS0gPGJyPg0KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQp5b2N0byBtYWls
-aW5nIGxpc3Q8YnI+DQo8YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyIgdGFy
-Z2V0PSJfYmxhbmsiPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+PGJyPg0KPGEgaHJlZj0iaHR0
-cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvIiB0YXJnZXQ9Il9ibGFu
-ayI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvPC9hPjxvOnA+
-PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRt
-bD4NCg==
+As such, I believe we should release 2.2.4.
 
---_000_DE98B1892D46BB468E30D103AE07E7BC253E769EORSMSX102amrcor_--
+Cheers,
+
+Richard
+
