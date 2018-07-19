@@ -1,63 +1,51 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <amanda.r.brindle@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4DC24E00EEE; Thu, 19 Jul 2018 11:38:12 -0700 (PDT)
+	id C387CE01083; Thu, 19 Jul 2018 12:01:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.54 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.136 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E85D9E009CF
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 11:38:10 -0700 (PDT)
-Received: by mail-wm0-f54.google.com with SMTP id f21-v6so7172150wmc.5
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 11:38:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=HbEOueJ4Toh1I05HRNsMKhnM/ZLW/HSTDxNw99jYYZg=;
-	b=b5woe1HopCliS/B3HCvYiYwdP8yivhabL/2LsnS0Q7mpuQ5PNu7QaOw9clNI9dR/Yz
-	s0FmxscALsi1tLdwDR2FXawrggpOGYUpD0sSBBCQSQLiTmF8V9nHqbFGCPHdjV23yH59
-	phtg9e4K6P9EEtiglslD9ybJl+sgE5XxX1hrEAY0Gw5g2b7ikh6zQkorKfzofYGT4FZ3
-	zGprl5s83ZK1BjO+JfaLERZDvoHiVqKXxEXn232H6ZYaXLfAIot73tLLzORMp5RxTcnT
-	ve1yiyLnx+hV2wwrBI8tsiSTVUFN+APp+IK+OAl1o10T4JT08aSjOEdS+HkJhq/y2gfn
-	4EtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=HbEOueJ4Toh1I05HRNsMKhnM/ZLW/HSTDxNw99jYYZg=;
-	b=DTkrd7CRv3+6Fl7VmiDPaMMedoGAp7SEeIhWVkEItvFLlFe2XxMFEykFY8RVMwtJ3b
-	bgaSNsS97hu+cbLYpuBXYecZ/cyHqMGoqzYKwc0pN9VwAtQoPQvZMP8reUK33l+Er/m4
-	WWmLSoS2R3F1RwybkDBgB/VJsWKrXGHF5kezaoMJhNfDSgAOlKdNXVbRua64ctiYR8+p
-	FAzWhilc67KX31IC4jwwGEyeaqLsl00bQDwGX0zzTLg8rBaYYJZ/j+lBwfhI2VgKlrHE
-	hKhfha/Gu25U1FLMRMm5PMt+++eLAOU3pTQDXGiIa4KgAdkuYmiJ8ypTWqRsdE6i/sE9
-	kkKg==
-X-Gm-Message-State: AOUpUlFqQDB59DDiOoy+cAIVMnY687LvAVwB+6lDsL0/DkiXgZms5wbd
-	T2zIoUeNKhB3pFMr1jkwCyzxRD96Y6br8Mp2aHM=
-X-Google-Smtp-Source: AAOMgpf1jT83TsdHdydqAie+qpwlMLSFTRAUAROzaOJXhHlo5MjVD4zKY4Xdm78ZnQLyJhc2TmZmDiliPX5bhlLlayo=
-X-Received: by 2002:a1c:b484:: with SMTP id
-	d126-v6mr4998515wmf.17.1532025490126; 
-	Thu, 19 Jul 2018 11:38:10 -0700 (PDT)
-MIME-Version: 1.0
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99D01E009CF
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 12:01:53 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	19 Jul 2018 12:01:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,375,1526367600"; d="scan'208,217";a="72791983"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by fmsmga004.fm.intel.com with ESMTP; 19 Jul 2018 12:01:53 -0700
+Received: from orsmsx102.amr.corp.intel.com ([169.254.3.209]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.4.198]) with mapi id
+	14.03.0319.002; Thu, 19 Jul 2018 12:01:52 -0700
+From: "Brindle, Amanda R" <amanda.r.brindle@intel.com>
+To: Martin Jansa <martin.jansa@gmail.com>
+Thread-Topic: [yocto] Error Report Tool Purge
+Thread-Index: AdQfjDH1WILDIVXnTx6BT484Qx+58gAPhewAAA6AraA=
+Date: Thu, 19 Jul 2018 19:01:52 +0000
+Message-ID: <DE98B1892D46BB468E30D103AE07E7BC253E769E@ORSMSX102.amr.corp.intel.com>
 References: <DE98B1892D46BB468E30D103AE07E7BC253E765F@ORSMSX102.amr.corp.intel.com>
-In-Reply-To: <DE98B1892D46BB468E30D103AE07E7BC253E765F@ORSMSX102.amr.corp.intel.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-Date: Thu, 19 Jul 2018 20:37:58 +0200
-Message-ID: <CA+chaQduoRG0cbuxLracsNdeJvAZX2CwgrhYe2Wmr0BMKaBATQ@mail.gmail.com>
-To: Amanda Brindle <amanda.r.brindle@intel.com>
+	<CA+chaQduoRG0cbuxLracsNdeJvAZX2CwgrhYe2Wmr0BMKaBATQ@mail.gmail.com>
+In-Reply-To: <CA+chaQduoRG0cbuxLracsNdeJvAZX2CwgrhYe2Wmr0BMKaBATQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.0.200.100
+dlp-reaction: no-action
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZDlhNDM3MTgtNGI1MS00YmY4LWJhNGYtYjk2Y2QzY2Y2YjlhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoicWJtRWpNVm9odFpTM3ZRcjRhdmF5ZkllUmsyeURka2ZveEVZUFJDYTdzMzlIRjQyUDBIcVVQbk5GR1U2RThleSJ9
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Error Report Tool Purge
 X-BeenThere: yocto@yoctoproject.org
@@ -71,125 +59,188 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2018 18:38:12 -0000
-Content-Type: multipart/alternative; boundary="000000000000203ca305715e7bc7"
+X-List-Received-Date: Thu, 19 Jul 2018 19:01:54 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DE98B1892D46BB468E30D103AE07E7BC253E769EORSMSX102amrcor_"
 
---000000000000203ca305715e7bc7
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_DE98B1892D46BB468E30D103AE07E7BC253E769EORSMSX102amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I'm just curious, how are you tracking which reports were viewed or linked
-to (and linked from where)? I often use a link to
-http://errors.yoctoproject.org in the mailing list or the recipes/commit
-message instead of copy pasting whole build error, because it already
-shortens the build paths and shows useful additional information about the
-error.
+RXZlcnkgdGltZSBhIHNwZWNpZmljIHJlcG9ydCBpcyB2aXNpdGVkICh3aXRoIHRoZSBlbmQgb2Yg
+dGhlIFVSTCBiZWluZyAvRXJyb3JzL0RldGFpbHMvPGlkPiksIHdlIGFyZSB0cmFja2luZyBpZiB0
+aGUgcmVmZXJyZXIgaXMgYW5vdGhlciB3ZWJzaXRlLCB0aGUgcmVwb3J0aW5nIHRvb2wgaXRzZWxm
+LCBvciB1bmtub3duLiBJZiB0aGUgcmVmZXJyZXIgaXMgYW5vdGhlciB3ZWJzaXRlIG9yIHVua25v
+d24sIHRoZW4gd2Ugd29u4oCZdCBkZWxldGUgaXQuDQoNClRoZSBwdXJnZSBzY3JpcHQgZG9lcyBu
+b3QgbG9vayBhdCBsaW5rcyB0byB3aG9sZSBidWlsZHMsIHNvIGFzIGl0IGlzIHJpZ2h0IG5vdywg
+dGhvc2Ugd291bGQgZ2V0IGRlbGV0ZWQuIElmIGl04oCZcyBjb21tb24gdG8gbGluayB0byB3aG9s
+ZSBidWlsZHMsIHRob3VnaCwgSSBjYW4gYWRkIHNvbWV0aGluZyB0byB0aGUgc2NyaXB0IHRvIHNh
+dmUgcmVwb3J0cyBmcm9tIGEgdmlzaXRlZCBvciBsaW5rZWQgYnVpbGQuDQoNCi1BbWFuZGEgQnJp
+bmRsZQ0KDQpGcm9tOiBNYXJ0aW4gSmFuc2EgW21haWx0bzptYXJ0aW4uamFuc2FAZ21haWwuY29t
+XQ0KU2VudDogVGh1cnNkYXksIEp1bHkgMTksIDIwMTggMTE6MzggQU0NClRvOiBCcmluZGxlLCBB
+bWFuZGEgUiA8YW1hbmRhLnIuYnJpbmRsZUBpbnRlbC5jb20+DQpDYzogWW9jdG8gUHJvamVjdCA8
+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IFJlOiBbeW9jdG9dIEVycm9yIFJlcG9y
+dCBUb29sIFB1cmdlDQoNCkknbSBqdXN0IGN1cmlvdXMsIGhvdyBhcmUgeW91IHRyYWNraW5nIHdo
+aWNoIHJlcG9ydHMgd2VyZSB2aWV3ZWQgb3IgbGlua2VkIHRvIChhbmQgbGlua2VkIGZyb20gd2hl
+cmUpPyBJIG9mdGVuIHVzZSBhIGxpbmsgdG8gaHR0cDovL2Vycm9ycy55b2N0b3Byb2plY3Qub3Jn
+IGluIHRoZSBtYWlsaW5nIGxpc3Qgb3IgdGhlIHJlY2lwZXMvY29tbWl0IG1lc3NhZ2UgaW5zdGVh
+ZCBvZiBjb3B5IHBhc3Rpbmcgd2hvbGUgYnVpbGQgZXJyb3IsIGJlY2F1c2UgaXQgYWxyZWFkeSBz
+aG9ydGVucyB0aGUgYnVpbGQgcGF0aHMgYW5kIHNob3dzIHVzZWZ1bCBhZGRpdGlvbmFsIGluZm9y
+bWF0aW9uIGFib3V0IHRoZSBlcnJvci4NCg0KVGhlIGxpbmtzIHRvIHdob2xlIGJ1aWxkcyBvbiBo
+dHRwOi8vZXJyb3JzLnlvY3RvcHJvamVjdC5vcmcgd2VyZSBhbHNvIG9mdGVuIGxpbmtlZCBmcm9t
+ICJiaXRiYWtlIHdvcmxkIHN0YXR1cyIgZS1tYWlscyBhbmQgd2lraSBsaWtlOg0KaHR0cHM6Ly93
+d3cub3BlbmVtYmVkZGVkLm9yZy93aWtpL0JpdGJha2VfV29ybGRfU3RhdHVzX1JvY2tvDQphbmQg
+b24gbWFueSBvZiB0aGVtIG5vYm9keSBjbGlja2VkIHlldCAtIHNob3VsZCBJIGV4cGVjdCB0aGF0
+IHRoZXNlIHdpbGwgbW9zdGx5IGdldCBicm9rZW4/DQoNClJlZ2FyZHMNCg0KDQoNCk9uIFRodSwg
+SnVsIDE5LCAyMDE4IGF0IDg6MzAgUE0gQnJpbmRsZSwgQW1hbmRhIFIgPGFtYW5kYS5yLmJyaW5k
+bGVAaW50ZWwuY29tPG1haWx0bzphbWFuZGEuci5icmluZGxlQGludGVsLmNvbT4+IHdyb3RlOg0K
+SGVsbG8sDQoNClRoZSBFcnJvciBSZXBvcnRpbmcgVG9vbOKAmXMgZGF0YWJhc2UgKGh0dHA6Ly9l
+cnJvcnMueW9jdG9wcm9qZWN0Lm9yZy9FcnJvcnMvTGF0ZXN0L0F1dG9idWlsZGVyLykgIGhhcyBn
+cm93biB0byBhIGh1Z2Ugc2l6ZSwgYW5kIHRoaXMgaXMgYWZmZWN0aW5nIHRoZSBwZXJmb3JtYW5j
+ZSBvZiB0aGUgYXBwbGljYXRpb24uIFdlIGFyZSBwbGFubmluZyB0byBydW4gYSBwdXJnZSB0byBn
+ZXQgcmlkIG9mIHJlcG9ydHMgdGhhdCB3ZSBkb27igJl0IG5lZWQuIFdlIHdpbGwga2VlcCByZXBv
+cnRzIGZyb20gdGhlIGxhc3QgdGhpcnR5IGRheXMsIGFzIHdlbGwgYXMgcmVwb3J0cyB0aGF0IGhh
+dmUgYmVlbiB2aWV3ZWQgb3IgbGlua2VkIHRvLiBJZiB5b3UgaGF2ZSBhIHNwZWNpZmljIHJlcG9y
+dCB0aGF0IHlvdSBkb27igJl0IHdhbnQgcHVyZ2VkLCBwbGVhc2UgbGV0IG1lIGtub3cgYnkgdGhl
+IGVuZCBvZiB0aGUgbW9udGguDQoNCkFtYW5kYSBCcmluZGxlLCBTb2Z0d2FyZSBFbmdpbmVlcg0K
+NTAzLTI2NC0zOTcwDQphbWFuZGEuci5icmluZGxlQGludGVsLmNvbTxtYWlsdG86YW1hbmRhLnIu
+YnJpbmRsZUBpbnRlbC5jb20+DQoNCi0tDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXw0KeW9jdG8gbWFpbGluZyBsaXN0DQp5b2N0b0B5b2N0b3Byb2plY3Qu
+b3JnPG1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KaHR0cHM6Ly9saXN0cy55b2N0b3By
+b2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo=
 
-The links to whole builds on http://errors.yoctoproject.org were also often
-linked from "bitbake world status" e-mails and wiki like:
-https://www.openembedded.org/wiki/Bitbake_World_Status_Rocko
-and on many of them nobody clicked yet - should I expect that these will
-mostly get broken?
+--_000_DE98B1892D46BB468E30D103AE07E7BC253E769EORSMSX102amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Regards
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
+Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
+dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
+CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
+c2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHls
+ZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
+CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4g
+MS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
+MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
+cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
+aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
+YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
+aWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1
+cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PGEgbmFtZT0iX01haWxFbmRDb21wb3NlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+
+RXZlcnkgdGltZSBhIHNwZWNpZmljIHJlcG9ydCBpcyB2aXNpdGVkICh3aXRoIHRoZSBlbmQgb2Yg
+dGhlIFVSTCBiZWluZyAvRXJyb3JzL0RldGFpbHMvJmx0O2lkJmd0OyksIHdlIGFyZSB0cmFja2lu
+ZyBpZiB0aGUgcmVmZXJyZXIgaXMgYW5vdGhlcg0KIHdlYnNpdGUsIHRoZSByZXBvcnRpbmcgdG9v
+bCBpdHNlbGYsIG9yIHVua25vd24uIElmIHRoZSByZWZlcnJlciBpcyBhbm90aGVyIHdlYnNpdGUg
+b3IgdW5rbm93biwgdGhlbiB3ZSB3b27igJl0IGRlbGV0ZSBpdC4NCjxvOnA+PC9vOnA+PC9zcGFu
+PjwvYT48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFG
+NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlRoZSBwdXJnZSBzY3JpcHQgZG9lcyBub3Qg
+bG9vayBhdCBsaW5rcyB0byB3aG9sZSBidWlsZHMsIHNvIGFzIGl0IGlzIHJpZ2h0IG5vdywgdGhv
+c2Ugd291bGQgZ2V0IGRlbGV0ZWQuIElmIGl04oCZcyBjb21tb24gdG8gbGluayB0byB3aG9sZSBi
+dWlsZHMsIHRob3VnaCwgSSBjYW4NCiBhZGQgc29tZXRoaW5nIHRvIHRoZSBzY3JpcHQgdG8gc2F2
+ZSByZXBvcnRzIGZyb20gYSB2aXNpdGVkIG9yIGxpbmtlZCBidWlsZC4gPG86cD4NCjwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFG
+NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPi1BbWFuZGEgQnJpbmRsZTxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
+MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48YSBuYW1lPSJfX19fX3JlcGx5c2VwYXJhdG9yIj48L2E+PGI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5G
+cm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4gTWFydGluIEphbnNhIFttYWlsdG86bWFy
+dGluLmphbnNhQGdtYWlsLmNvbV0NCjxicj4NCjxiPlNlbnQ6PC9iPiBUaHVyc2RheSwgSnVseSAx
+OSwgMjAxOCAxMTozOCBBTTxicj4NCjxiPlRvOjwvYj4gQnJpbmRsZSwgQW1hbmRhIFIgJmx0O2Ft
+YW5kYS5yLmJyaW5kbGVAaW50ZWwuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gWW9jdG8gUHJvamVj
+dCAmbHQ7eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyZndDs8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6
+IFt5b2N0b10gRXJyb3IgUmVwb3J0IFRvb2wgUHVyZ2U8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj5JJ20ganVzdCBjdXJpb3VzLCBob3cgYXJlIHlvdSB0cmFja2luZyB3aGlj
+aCByZXBvcnRzIHdlcmUgdmlld2VkIG9yIGxpbmtlZCB0byAoYW5kIGxpbmtlZCBmcm9tIHdoZXJl
+KT8gSSBvZnRlbiB1c2UgYSBsaW5rIHRvDQo8YSBocmVmPSJodHRwOi8vZXJyb3JzLnlvY3RvcHJv
+amVjdC5vcmciPmh0dHA6Ly9lcnJvcnMueW9jdG9wcm9qZWN0Lm9yZzwvYT4gaW4gdGhlIG1haWxp
+bmcgbGlzdCBvciB0aGUgcmVjaXBlcy9jb21taXQgbWVzc2FnZSBpbnN0ZWFkIG9mIGNvcHkgcGFz
+dGluZyB3aG9sZSBidWlsZCBlcnJvciwgYmVjYXVzZSBpdCBhbHJlYWR5IHNob3J0ZW5zIHRoZSBi
+dWlsZCBwYXRocyBhbmQgc2hvd3MgdXNlZnVsIGFkZGl0aW9uYWwgaW5mb3JtYXRpb24gYWJvdXQN
+CiB0aGUgZXJyb3IuPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5UaGUgbGlua3MgdG8gd2hvbGUgYnVpbGRzIG9uJm5ic3A7PGEgaHJlZj0iaHR0cDovL2Vycm9y
+cy55b2N0b3Byb2plY3Qub3JnIj5odHRwOi8vZXJyb3JzLnlvY3RvcHJvamVjdC5vcmc8L2E+Jm5i
+c3A7d2VyZSBhbHNvIG9mdGVuIGxpbmtlZCBmcm9tICZxdW90O2JpdGJha2Ugd29ybGQgc3RhdHVz
+JnF1b3Q7IGUtbWFpbHMgYW5kIHdpa2kgbGlrZTo8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48YSBocmVmPSJodHRwczovL3d3dy5vcGVuZW1iZWRkZWQub3JnL3dp
+a2kvQml0YmFrZV9Xb3JsZF9TdGF0dXNfUm9ja28iPmh0dHBzOi8vd3d3Lm9wZW5lbWJlZGRlZC5v
+cmcvd2lraS9CaXRiYWtlX1dvcmxkX1N0YXR1c19Sb2NrbzwvYT48bzpwPjwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmFuZCBvbiBtYW55IG9mIHRoZW0gbm9i
+b2R5IGNsaWNrZWQgeWV0IC0gc2hvdWxkIEkgZXhwZWN0IHRoYXQgdGhlc2Ugd2lsbCBtb3N0bHkg
+Z2V0IGJyb2tlbj88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+UmVnYXJkczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBUaHUsIEp1bCAxOSwgMjAxOCBhdCA4OjMwIFBN
+IEJyaW5kbGUsIEFtYW5kYSBSICZsdDs8YSBocmVmPSJtYWlsdG86YW1hbmRhLnIuYnJpbmRsZUBp
+bnRlbC5jb20iPmFtYW5kYS5yLmJyaW5kbGVAaW50ZWwuY29tPC9hPiZndDsgd3JvdGU6PG86cD48
+L286cD48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXIt
+bGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNi4wcHQ7bWFyZ2lu
+LWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBpbiI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRv
+bS1hbHQ6YXV0byI+SGVsbG8sPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
+PiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
+YXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5UaGUgRXJyb3Ig
+UmVwb3J0aW5nIFRvb2zigJlzIGRhdGFiYXNlICg8YSBocmVmPSJodHRwOi8vZXJyb3JzLnlvY3Rv
+cHJvamVjdC5vcmcvRXJyb3JzL0xhdGVzdC9BdXRvYnVpbGRlci8iIHRhcmdldD0iX2JsYW5rIj5o
+dHRwOi8vZXJyb3JzLnlvY3RvcHJvamVjdC5vcmcvRXJyb3JzL0xhdGVzdC9BdXRvYnVpbGRlci88
+L2E+KQ0KICZuYnNwO2hhcyBncm93biB0byBhIGh1Z2Ugc2l6ZSwgYW5kIHRoaXMgaXMgYWZmZWN0
+aW5nIHRoZSBwZXJmb3JtYW5jZSBvZiB0aGUgYXBwbGljYXRpb24uIFdlIGFyZSBwbGFubmluZyB0
+byBydW4gYSBwdXJnZSB0byBnZXQgcmlkIG9mIHJlcG9ydHMgdGhhdCB3ZSBkb27igJl0IG5lZWQu
+IFdlIHdpbGwga2VlcCByZXBvcnRzIGZyb20gdGhlIGxhc3QgdGhpcnR5IGRheXMsIGFzIHdlbGwg
+YXMgcmVwb3J0cyB0aGF0IGhhdmUgYmVlbiB2aWV3ZWQgb3IgbGlua2VkDQogdG8uIElmIHlvdSBo
+YXZlIGEgc3BlY2lmaWMgcmVwb3J0IHRoYXQgeW91IGRvbuKAmXQgd2FudCBwdXJnZWQsIHBsZWFz
+ZSBsZXQgbWUga25vdyBieSB0aGUgZW5kIG9mIHRoZSBtb250aC48bzpwPjwvbzpwPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFy
+Z2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20t
+YWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij5BbWFuZGEgQnJpbmRsZSwg
+U29mdHdhcmUgRW5naW5lZXI8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij41MDMtMjY0LTM5NzANCjwvc3Bh
+bj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxNC4wcHQiPjxhIGhyZWY9Im1haWx0bzphbWFuZGEuci5icmluZGxlQGludGVsLmNv
+bSIgdGFyZ2V0PSJfYmxhbmsiPmFtYW5kYS5yLmJyaW5kbGVAaW50ZWwuY29tPC9hPjwvc3Bhbj48
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48
+L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+LS0gPGJyPg0KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQp5b2N0byBtYWls
+aW5nIGxpc3Q8YnI+DQo8YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyIgdGFy
+Z2V0PSJfYmxhbmsiPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+PGJyPg0KPGEgaHJlZj0iaHR0
+cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvIiB0YXJnZXQ9Il9ibGFu
+ayI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvPC9hPjxvOnA+
+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRt
+bD4NCg==
 
-
-
-On Thu, Jul 19, 2018 at 8:30 PM Brindle, Amanda R <
-amanda.r.brindle@intel.com> wrote:
-
-> Hello,
->
->
->
-> The Error Reporting Tool=E2=80=99s database (
-> http://errors.yoctoproject.org/Errors/Latest/Autobuilder/)  has grown to
-> a huge size, and this is affecting the performance of the application. We
-> are planning to run a purge to get rid of reports that we don=E2=80=99t n=
-eed. We
-> will keep reports from the last thirty days, as well as reports that have
-> been viewed or linked to. If you have a specific report that you don=E2=
-=80=99t want
-> purged, please let me know by the end of the month.
->
->
->
-> Amanda Brindle, Software Engineer
->
-> 503-264-3970
->
-> amanda.r.brindle@intel.com
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---000000000000203ca305715e7bc7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I&#39;m just curious, how are you tracking which reports w=
-ere viewed or linked to (and linked from where)? I often use a link to <a h=
-ref=3D"http://errors.yoctoproject.org">http://errors.yoctoproject.org</a> i=
-n the mailing list or the recipes/commit message instead of copy pasting wh=
-ole build error, because it already shortens the build paths and shows usef=
-ul additional information about the error.<div><br></div><div>The links to =
-whole builds on=C2=A0<span style=3D"font-size:small;text-decoration-style:i=
-nitial;text-decoration-color:initial;float:none;display:inline"><a href=3D"=
-http://errors.yoctoproject.org">http://errors.yoctoproject.org</a><span>=C2=
-=A0were also often linked from &quot;bitbake world status&quot; e-mails and=
- wiki like:</span></span><div><a href=3D"https://www.openembedded.org/wiki/=
-Bitbake_World_Status_Rocko">https://www.openembedded.org/wiki/Bitbake_World=
-_Status_Rocko</a></div><div>and on many of them nobody clicked yet - should=
- I expect that these will mostly get broken?</div><div><br></div><div>Regar=
-ds</div><div><br><div><span style=3D"font-size:small;text-decoration-style:=
-initial;text-decoration-color:initial;float:none;display:inline"><span><br>=
-</span></span></div></div></div></div><br><div class=3D"gmail_quote"><div d=
-ir=3D"ltr">On Thu, Jul 19, 2018 at 8:30 PM Brindle, Amanda R &lt;<a href=3D=
-"mailto:amanda.r.brindle@intel.com">amanda.r.brindle@intel.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
-rder-left:1px #ccc solid;padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"m_8456782788349023426WordSection1">
-<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">The Error Reporting Tool=E2=80=99s database (<a href=
-=3D"http://errors.yoctoproject.org/Errors/Latest/Autobuilder/" target=3D"_b=
-lank">http://errors.yoctoproject.org/Errors/Latest/Autobuilder/</a>) =C2=A0=
-has grown to a huge size, and this is affecting the performance of
- the application. We are planning to run a purge to get rid of reports that=
- we don=E2=80=99t need. We will keep reports from the last thirty days, as =
-well as reports that have been viewed or linked to. If you have a specific =
-report that you don=E2=80=99t want purged, please
- let me know by the end of the month.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">Amanda Brindle, Sof=
-tware Engineer<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">503-264-3970 <u></u=
-><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt"><a href=3D"mailto:a=
-manda.r.brindle@intel.com" target=3D"_blank">amanda.r.brindle@intel.com</a>=
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-</div>
-
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
-
---000000000000203ca305715e7bc7--
+--_000_DE98B1892D46BB468E30D103AE07E7BC253E769EORSMSX102amrcor_--
