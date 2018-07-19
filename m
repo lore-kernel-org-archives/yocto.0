@@ -1,52 +1,65 @@
-Return-Path: <amanda.r.brindle@intel.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17936E01074; Thu, 19 Jul 2018 11:29:22 -0700 (PDT)
+	id 4DC24E00EEE; Thu, 19 Jul 2018 11:38:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC963E009CF
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 11:29:20 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	19 Jul 2018 11:29:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,375,1526367600"; d="scan'208,217";a="56299741"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
-	by fmsmga008.fm.intel.com with ESMTP; 19 Jul 2018 11:29:19 -0700
-Received: from orsmsx116.amr.corp.intel.com (10.22.240.14) by
-	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Thu, 19 Jul 2018 11:29:19 -0700
-Received: from orsmsx102.amr.corp.intel.com ([169.254.3.209]) by
-	ORSMSX116.amr.corp.intel.com ([169.254.7.98]) with mapi id
-	14.03.0319.002; Thu, 19 Jul 2018 11:29:19 -0700
-From: "Brindle, Amanda R" <amanda.r.brindle@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Error Report Tool Purge
-Thread-Index: AdQfjDH1WILDIVXnTx6BT484Qx+58g==
-Date: Thu, 19 Jul 2018 18:29:18 +0000
-Message-ID: <DE98B1892D46BB468E30D103AE07E7BC253E765F@ORSMSX102.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.200.100
-dlp-reaction: no-action
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiODZjNDlkZjgtZDI4MS00OWIzLTg4NDktMTlhNjRlNWNkYzVjIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiYm0rTHFVMjBmM1RqMDB3VHhFVjQ1UmVmZG9JVnFLK3Yzb21mVUFkeFF5Zjd3bEh3ak5cL3JCaFN4SVU0MnhaZXAifQ==
-x-originating-ip: [10.22.254.140]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E85D9E009CF
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 11:38:10 -0700 (PDT)
+Received: by mail-wm0-f54.google.com with SMTP id f21-v6so7172150wmc.5
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 11:38:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=HbEOueJ4Toh1I05HRNsMKhnM/ZLW/HSTDxNw99jYYZg=;
+	b=b5woe1HopCliS/B3HCvYiYwdP8yivhabL/2LsnS0Q7mpuQ5PNu7QaOw9clNI9dR/Yz
+	s0FmxscALsi1tLdwDR2FXawrggpOGYUpD0sSBBCQSQLiTmF8V9nHqbFGCPHdjV23yH59
+	phtg9e4K6P9EEtiglslD9ybJl+sgE5XxX1hrEAY0Gw5g2b7ikh6zQkorKfzofYGT4FZ3
+	zGprl5s83ZK1BjO+JfaLERZDvoHiVqKXxEXn232H6ZYaXLfAIot73tLLzORMp5RxTcnT
+	ve1yiyLnx+hV2wwrBI8tsiSTVUFN+APp+IK+OAl1o10T4JT08aSjOEdS+HkJhq/y2gfn
+	4EtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=HbEOueJ4Toh1I05HRNsMKhnM/ZLW/HSTDxNw99jYYZg=;
+	b=DTkrd7CRv3+6Fl7VmiDPaMMedoGAp7SEeIhWVkEItvFLlFe2XxMFEykFY8RVMwtJ3b
+	bgaSNsS97hu+cbLYpuBXYecZ/cyHqMGoqzYKwc0pN9VwAtQoPQvZMP8reUK33l+Er/m4
+	WWmLSoS2R3F1RwybkDBgB/VJsWKrXGHF5kezaoMJhNfDSgAOlKdNXVbRua64ctiYR8+p
+	FAzWhilc67KX31IC4jwwGEyeaqLsl00bQDwGX0zzTLg8rBaYYJZ/j+lBwfhI2VgKlrHE
+	hKhfha/Gu25U1FLMRMm5PMt+++eLAOU3pTQDXGiIa4KgAdkuYmiJ8ypTWqRsdE6i/sE9
+	kkKg==
+X-Gm-Message-State: AOUpUlFqQDB59DDiOoy+cAIVMnY687LvAVwB+6lDsL0/DkiXgZms5wbd
+	T2zIoUeNKhB3pFMr1jkwCyzxRD96Y6br8Mp2aHM=
+X-Google-Smtp-Source: AAOMgpf1jT83TsdHdydqAie+qpwlMLSFTRAUAROzaOJXhHlo5MjVD4zKY4Xdm78ZnQLyJhc2TmZmDiliPX5bhlLlayo=
+X-Received: by 2002:a1c:b484:: with SMTP id
+	d126-v6mr4998515wmf.17.1532025490126; 
+	Thu, 19 Jul 2018 11:38:10 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Error Report Tool Purge
+References: <DE98B1892D46BB468E30D103AE07E7BC253E765F@ORSMSX102.amr.corp.intel.com>
+In-Reply-To: <DE98B1892D46BB468E30D103AE07E7BC253E765F@ORSMSX102.amr.corp.intel.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+Date: Thu, 19 Jul 2018 20:37:58 +0200
+Message-ID: <CA+chaQduoRG0cbuxLracsNdeJvAZX2CwgrhYe2Wmr0BMKaBATQ@mail.gmail.com>
+To: Amanda Brindle <amanda.r.brindle@intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Error Report Tool Purge
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,106 +71,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2018 18:29:22 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DE98B1892D46BB468E30D103AE07E7BC253E765FORSMSX102amrcor_"
+X-List-Received-Date: Thu, 19 Jul 2018 18:38:12 -0000
+Content-Type: multipart/alternative; boundary="000000000000203ca305715e7bc7"
 
---_000_DE98B1892D46BB468E30D103AE07E7BC253E765FORSMSX102amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--000000000000203ca305715e7bc7
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+I'm just curious, how are you tracking which reports were viewed or linked
+to (and linked from where)? I often use a link to
+http://errors.yoctoproject.org in the mailing list or the recipes/commit
+message instead of copy pasting whole build error, because it already
+shortens the build paths and shows useful additional information about the
+error.
 
-The Error Reporting Tool's database (http://errors.yoctoproject.org/Errors/=
-Latest/Autobuilder/)  has grown to a huge size, and this is affecting the p=
-erformance of the application. We are planning to run a purge to get rid of=
- reports that we don't need. We will keep reports from the last thirty days=
-, as well as reports that have been viewed or linked to. If you have a spec=
-ific report that you don't want purged, please let me know by the end of th=
-e month.
+The links to whole builds on http://errors.yoctoproject.org were also often
+linked from "bitbake world status" e-mails and wiki like:
+https://www.openembedded.org/wiki/Bitbake_World_Status_Rocko
+and on many of them nobody clicked yet - should I expect that these will
+mostly get broken?
 
-Amanda Brindle, Software Engineer
-503-264-3970
-amanda.r.brindle@intel.com
+Regards
 
 
---_000_DE98B1892D46BB468E30D103AE07E7BC253E765FORSMSX102amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Thu, Jul 19, 2018 at 8:30 PM Brindle, Amanda R <
+amanda.r.brindle@intel.com> wrote:
+
+> Hello,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The Error Reporting Tool&#8217;s database (<a href=
-=3D"http://errors.yoctoproject.org/Errors/Latest/Autobuilder/">http://error=
-s.yoctoproject.org/Errors/Latest/Autobuilder/</a>) &nbsp;has grown to a hug=
-e size, and this is affecting the performance of
- the application. We are planning to run a purge to get rid of reports that=
- we don&#8217;t need. We will keep reports from the last thirty days, as we=
-ll as reports that have been viewed or linked to. If you have a specific re=
-port that you don&#8217;t want purged, please
- let me know by the end of the month.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">Amanda Brindle, Sof=
-tware Engineer<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">503-264-3970 <o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">amanda.r.brindle@in=
-tel.com<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+>
+>
+> The Error Reporting Tool=E2=80=99s database (
+> http://errors.yoctoproject.org/Errors/Latest/Autobuilder/)  has grown to
+> a huge size, and this is affecting the performance of the application. We
+> are planning to run a purge to get rid of reports that we don=E2=80=99t n=
+eed. We
+> will keep reports from the last thirty days, as well as reports that have
+> been viewed or linked to. If you have a specific report that you don=E2=
+=80=99t want
+> purged, please let me know by the end of the month.
+>
+>
+>
+> Amanda Brindle, Software Engineer
+>
+> 503-264-3970
+>
+> amanda.r.brindle@intel.com
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---_000_DE98B1892D46BB468E30D103AE07E7BC253E765FORSMSX102amrcor_--
+--000000000000203ca305715e7bc7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I&#39;m just curious, how are you tracking which reports w=
+ere viewed or linked to (and linked from where)? I often use a link to <a h=
+ref=3D"http://errors.yoctoproject.org">http://errors.yoctoproject.org</a> i=
+n the mailing list or the recipes/commit message instead of copy pasting wh=
+ole build error, because it already shortens the build paths and shows usef=
+ul additional information about the error.<div><br></div><div>The links to =
+whole builds on=C2=A0<span style=3D"font-size:small;text-decoration-style:i=
+nitial;text-decoration-color:initial;float:none;display:inline"><a href=3D"=
+http://errors.yoctoproject.org">http://errors.yoctoproject.org</a><span>=C2=
+=A0were also often linked from &quot;bitbake world status&quot; e-mails and=
+ wiki like:</span></span><div><a href=3D"https://www.openembedded.org/wiki/=
+Bitbake_World_Status_Rocko">https://www.openembedded.org/wiki/Bitbake_World=
+_Status_Rocko</a></div><div>and on many of them nobody clicked yet - should=
+ I expect that these will mostly get broken?</div><div><br></div><div>Regar=
+ds</div><div><br><div><span style=3D"font-size:small;text-decoration-style:=
+initial;text-decoration-color:initial;float:none;display:inline"><span><br>=
+</span></span></div></div></div></div><br><div class=3D"gmail_quote"><div d=
+ir=3D"ltr">On Thu, Jul 19, 2018 at 8:30 PM Brindle, Amanda R &lt;<a href=3D=
+"mailto:amanda.r.brindle@intel.com">amanda.r.brindle@intel.com</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"m_8456782788349023426WordSection1">
+<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">The Error Reporting Tool=E2=80=99s database (<a href=
+=3D"http://errors.yoctoproject.org/Errors/Latest/Autobuilder/" target=3D"_b=
+lank">http://errors.yoctoproject.org/Errors/Latest/Autobuilder/</a>) =C2=A0=
+has grown to a huge size, and this is affecting the performance of
+ the application. We are planning to run a purge to get rid of reports that=
+ we don=E2=80=99t need. We will keep reports from the last thirty days, as =
+well as reports that have been viewed or linked to. If you have a specific =
+report that you don=E2=80=99t want purged, please
+ let me know by the end of the month.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">Amanda Brindle, Sof=
+tware Engineer<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">503-264-3970 <u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt"><a href=3D"mailto:a=
+manda.r.brindle@intel.com" target=3D"_blank">amanda.r.brindle@intel.com</a>=
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
+
+--000000000000203ca305715e7bc7--
