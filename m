@@ -1,6 +1,6 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <amanda.r.brindle@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0E454E0124F; Thu, 19 Jul 2018 08:32:34 -0700 (PDT)
+	id 17936E01074; Thu, 19 Jul 2018 11:29:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,40 +13,40 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90949E00E83
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 08:32:33 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC963E009CF
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 11:29:20 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
 	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	19 Jul 2018 08:32:31 -0700
+	19 Jul 2018 11:29:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,375,1526367600"; d="scan'208,217";a="57803818"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
-	by orsmga007.jf.intel.com with ESMTP; 19 Jul 2018 08:32:31 -0700
-Received: from fmsmsx102.amr.corp.intel.com (10.18.124.200) by
-	FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Thu, 19 Jul 2018 08:32:30 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.66]) by
-	FMSMSX102.amr.corp.intel.com ([169.254.10.201]) with mapi id
-	14.03.0319.002; Thu, 19 Jul 2018 08:32:30 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+X-IronPort-AV: E=Sophos;i="5.51,375,1526367600"; d="scan'208,217";a="56299741"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+	by fmsmga008.fm.intel.com with ESMTP; 19 Jul 2018 11:29:19 -0700
+Received: from orsmsx116.amr.corp.intel.com (10.22.240.14) by
+	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Thu, 19 Jul 2018 11:29:19 -0700
+Received: from orsmsx102.amr.corp.intel.com ([169.254.3.209]) by
+	ORSMSX116.amr.corp.intel.com ([169.254.7.98]) with mapi id
+	14.03.0319.002; Thu, 19 Jul 2018 11:29:19 -0700
+From: "Brindle, Amanda R" <amanda.r.brindle@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Weekly Triage Meeting
-Thread-Index: AdQfbNxfM9IFJh8nS2i8tTk4U7jXsw==
-Date: Thu, 19 Jul 2018 15:32:29 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7364481@fmsmsx111.amr.corp.intel.com>
+Thread-Topic: Error Report Tool Purge
+Thread-Index: AdQfjDH1WILDIVXnTx6BT484Qx+58g==
+Date: Thu, 19 Jul 2018 18:29:18 +0000
+Message-ID: <DE98B1892D46BB468E30D103AE07E7BC253E765F@ORSMSX102.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNTNlMTBlYjEtMzY4Yy00ZmQ1LTk5NjQtMzNhYzIxNjY3ZmJjIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTUd5OGVjWlJQQTFXR2tkZm1Ra1hmMzh4amJaYlBlbjJNTXkzZk9DdnhCcmU2eG5DdUlzeHFzK1ppV2diQ2tvVyJ9
 dlp-product: dlpe-windows
 dlp-version: 11.0.200.100
 dlp-reaction: no-action
-x-originating-ip: [10.1.200.108]
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiODZjNDlkZjgtZDI4MS00OWIzLTg4NDktMTlhNjRlNWNkYzVjIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiYm0rTHFVMjBmM1RqMDB3VHhFVjQ1UmVmZG9JVnFLK3Yzb21mVUFkeFF5Zjd3bEh3ak5cL3JCaFN4SVU0MnhaZXAifQ==
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Weekly Triage Meeting
+Subject: Error Report Tool Purge
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,90 +58,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2018 15:32:34 -0000
+X-List-Received-Date: Thu, 19 Jul 2018 18:29:22 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7364481fmsmsx111amrcor_"
+	boundary="_000_DE98B1892D46BB468E30D103AE07E7BC253E765FORSMSX102amrcor_"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7364481fmsmsx111amrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_DE98B1892D46BB468E30D103AE07E7BC253E765FORSMSX102amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-QXR0ZW5kZWVzOiBLb3N0YSwgUmFuZHksIFN0ZXBoZW4sIEFudWosIEFtYW5kYSwgUmljaGFyZCwg
-Um9zcywgSm9zaHVhLCBBbGVqYW5kcm8sIFBhdWwsDQoNCldpa2k6IGh0dHBzOi8vd2lraS55b2N0
-b3Byb2plY3Qub3JnL3dpa2kvQnVnX1RyaWFnZQ0KDQpBUjogQW51aiDigJMgUmV2aWV3IDEyNzg5
-PGh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTI3ODk+
-Lg0KQVI6IFBhdWwg4oCTIENoZWNrIHdpdGggQWFyb24gYWJvdXQgMTI2OTg8aHR0cHM6Ly9idWd6
-aWxsYS55b2N0b3Byb2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0xMjY5OD4NCg0KVGhhbmtzLA0K
-DQpTdGVwaGVuIEsuIEpvbGxleQ0KWW9jdG8gUHJvamVjdCBQcm9ncmFtIE1hbmFnZXINCklOVEVM
-LCBNUyBKRjEtMjU1LCAyMTExIE4uRS4gMjV0aCBBdmVudWUsIEhpbGxzYm9ybywgT1IgOTcxMjQN
-CuKAoiAgICBDZWxsOiAgICAgICAgICAgICAgKDIwOCkgMjQ0LTQ0NjANCuKAoiBFbWFpbDogICAg
-ICAgICAgICAgICAgc3RlcGhlbi5rLmpvbGxleUBpbnRlbC5jb20NCg0KDQo=
+Hello,
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7364481fmsmsx111amrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+The Error Reporting Tool's database (http://errors.yoctoproject.org/Errors/=
+Latest/Autobuilder/)  has grown to a huge size, and this is affecting the p=
+erformance of the application. We are planning to run a purge to get rid of=
+ reports that we don't need. We will keep reports from the last thirty days=
+, as well as reports that have been viewed or linked to. If you have a spec=
+ific report that you don't want purged, please let me know by the end of th=
+e month.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
-dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
-LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
-ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
-PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
-Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+QXR0ZW5kZWVzOiBLb3N0YSwgUmFuZHksIFN0ZXBo
-ZW4sIEFudWosIEFtYW5kYSwgUmljaGFyZCwgUm9zcywgSm9zaHVhLCBBbGVqYW5kcm8sIFBhdWws
-IDwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIi
-IGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3Nw
-YW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xv
-cj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+V2lraTogPGEgaHJlZj0i
-aHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9CdWdfVHJpYWdlIj48Zm9udCBjb2xv
-cj0iIzA1NjNDMSI+PHU+aHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9CdWdfVHJp
-YWdlPC91PjwvZm9udD48L2E+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0i
-Q2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGli
-cmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7
-Ij5BUjogQW51aiDigJMgUmV2aWV3IDxhIGhyZWY9Imh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9q
-ZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTI3ODkiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT4x
-Mjc4OTwvdT48L2ZvbnQ+PC9hPi4gPC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFj
-ZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTFwdDsiPkFSOiBQYXVsIOKAkyBDaGVjayB3aXRoIEFhcm9uIGFib3V0IDxhIGhyZWY9Imh0
-dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTI2OTgiPjxm
-b250IGNvbG9yPSIjMDU2M0MxIj48dT4xMjY5ODwvdT48L2ZvbnQ+PC9hPjwvc3Bhbj48L2ZvbnQ+
-PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdE
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2
-Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+VGhhbmtzLDwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8
-ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48
-Zm9udCBzaXplPSI0IiBjb2xvcj0icHVycGxlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE2cHQ7
-Ij48Yj48aT5TdGVwaGVuIEsuIEpvbGxleTwvaT48L2I+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxk
-aXY+PGZvbnQgZmFjZT0iQ291cmllciBOZXciIHNpemU9IjEiIGNvbG9yPSJibHVlIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjhwdDsiPjxiPllvY3RvIFByb2plY3QgUHJvZ3JhbSBNYW5hZ2VyPC9i
-Pjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNvdXJpZXIgTmV3IiBzaXpl
-PSIyIiBjb2xvcj0iZnVjaHNpYSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyI+PGI+SU5U
-RUwsIE1TIEpGMS0yNTUsIDIxMTEgTi5FLiAyNXRoIEF2ZW51ZSwgSGlsbHNib3JvLCBPUiA5NzEy
-NCA8L2I+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgc2l6ZT0iMiI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZTo5cHQ7Ij48Zm9udCBmYWNlPSJXaW5nZGluZ3MiPig8L2ZvbnQ+PGZvbnQg
-ZmFjZT0iTVMgU2FucyBTZXJpZiIgY29sb3I9InRlYWwiPiZuYnNwOyZuYnNwOyZuYnNwOyA8L2Zv
-bnQ+PGZvbnQgZmFjZT0iQ29taWMgU2FucyBNUyIgc2l6ZT0iMSIgY29sb3I9InRlYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6OHB0OyI+PGI+Q2VsbDwvYj48L3NwYW4+PC9mb250Pjxmb250IGZh
-Y2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9yPSJ0ZWFsIj46Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8
-L2ZvbnQ+PGZvbnQgZmFjZT0iTVMgU2FucyBTZXJpZiIgY29sb3I9IiMxRjQ5N0QiPigyMDgpIDI0
-NC00NDYwPC9mb250Pjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IHNpemU9IjIiIGNv
-bG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjlwdDsiPjxmb250IGZhY2U9Ildp
-bmdkaW5ncyI+KiA8L2ZvbnQ+PGZvbnQgZmFjZT0iQ29taWMgU2FucyBNUyIgc2l6ZT0iMSIgY29s
-b3I9InRlYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OHB0OyI+PGI+RW1haWw8L2I+PC9zcGFu
-PjwvZm9udD48Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0idGVhbCI+OiZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOw0KPC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2Vy
-aWYiIGNvbG9yPSJibHVlIj48dT5zdGVwaGVuLmsuam9sbGV5QGludGVsLmNvbTwvdT48L2ZvbnQ+
-PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIg
-Y29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bh
-bj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8L3Nw
-YW4+PC9mb250Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+Amanda Brindle, Software Engineer
+503-264-3970
+amanda.r.brindle@intel.com
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7364481fmsmsx111amrcor_--
+
+--_000_DE98B1892D46BB468E30D103AE07E7BC253E765FORSMSX102amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The Error Reporting Tool&#8217;s database (<a href=
+=3D"http://errors.yoctoproject.org/Errors/Latest/Autobuilder/">http://error=
+s.yoctoproject.org/Errors/Latest/Autobuilder/</a>) &nbsp;has grown to a hug=
+e size, and this is affecting the performance of
+ the application. We are planning to run a purge to get rid of reports that=
+ we don&#8217;t need. We will keep reports from the last thirty days, as we=
+ll as reports that have been viewed or linked to. If you have a specific re=
+port that you don&#8217;t want purged, please
+ let me know by the end of the month.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">Amanda Brindle, Sof=
+tware Engineer<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">503-264-3970 <o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">amanda.r.brindle@in=
+tel.com<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_DE98B1892D46BB468E30D103AE07E7BC253E765FORSMSX102amrcor_--
