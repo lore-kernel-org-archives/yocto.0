@@ -1,72 +1,39 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9611FE016AC; Thu, 19 Jul 2018 06:18:37 -0700 (PDT)
+	id B26A5E011FD; Thu, 19 Jul 2018 07:02:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.171 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
-	[209.85.208.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 527C8E016B0
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 06:18:32 -0700 (PDT)
-Received: by mail-lj1-f171.google.com with SMTP id l15-v6so7447268lji.6
-	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 06:18:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=HrQWrf7S/YZyo3zdv1gGsZ2vdWPBVpgo70Uly1SAypU=;
-	b=LPYFUigcnnQZBqGDAyXOFglHvsuvf7LOheEDszfwSJpXZxibC0yfLKCLaMnLV22Tdx
-	kn8WNNzNZHaEfPd9a9vszQksdT4GQrTaSwUna/iCtZq2BS9UH5Sw12j8/++zWlYMNJDm
-	uNMQ/coXkCAu4cQENeit2Ax/bl5GNYo/U8g/s6OKFTSBbsRq5k9m3mZzYPgc9GVVZwZr
-	WgSCYhCOKLRczyeq10sRaw5EQOsw5o/neq7okXY98oSbbF8s1kkSasbQOX5qmlJCfTII
-	wj7+V2Pei0VfqsCziFxAwNyra7auEP1gn497xik0iKrGZTlwfX8jVnMc+3pXq1YHg+Pj
-	07sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=HrQWrf7S/YZyo3zdv1gGsZ2vdWPBVpgo70Uly1SAypU=;
-	b=sRtk9mJDRDsQT/5DdCZc858pT0mZvoBYlo74sG5DxGzjX0VMGfhx9iAbhLFgWr3o9Y
-	FKzUuHccU/I3eo5n5DAUaf86mUwmdfrb+xV2TqkaT8Ali/y2RCugsq294ivEaqg/440E
-	rTaCN4xvunXyOrNLxt4ix8TAdznp6296lVg3cGAflQ8qrVBj8yveSwO567HMT4GunTtd
-	W3YS7oXbp63cyeyUpSYT6fDGiAMIrxkIzueKb3l63GyBuaYRB8W4llcGusYkVTKv+VQX
-	ixWKK/HtGXfg2MiR+mTu3hQKmyb92zFlOIDeixcB/wxy1XXNjRT4epR6FDks2vKarUNq
-	/xEA==
-X-Gm-Message-State: AOUpUlGn6xEHuFlgddv7u1Hc9G+qv8njUa8ubFYYtQE3ovGVW/S8kXG7
-	Izr++OJRBMa8im3p48MJjqJqwDNxHdNoGrky+5yTm3VKORc=
-X-Google-Smtp-Source: AAOMgpdGzaukwQic79ypGPMruB92avEnfVODrfzGQTar6xl1JNv/O6l1krZcsWCcUY0tvewEXCdKKM+Wn/2mC75Idsg=
-X-Received: by 2002:a2e:44c6:: with SMTP id
-	b67-v6mr7636687ljf.102.1532006311597; 
-	Thu, 19 Jul 2018 06:18:31 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90B70E00EE3
+	for <yocto@yoctoproject.org>; Thu, 19 Jul 2018 07:02:51 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	19 Jul 2018 07:02:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,374,1526367600"; d="scan'208";a="247060870"
+Received: from wulili-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+	([10.252.50.201])
+	by fmsmga006.fm.intel.com with ESMTP; 19 Jul 2018 07:02:38 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Mauro Ziliani <mauro@faresoftware.it>
+Date: Thu, 19 Jul 2018 16:02:38 +0200
+Message-ID: <2219937.nEza9XO89O@localhost.localdomain>
+Organization: Intel Corporation
+In-Reply-To: <ee33909d-862b-cbd6-0e72-79dbf568b781@faresoftware.it>
+References: <ee33909d-862b-cbd6-0e72-79dbf568b781@faresoftware.it>
 MIME-Version: 1.0
-Received: by 2002:a19:7014:0:0:0:0:0 with HTTP; Thu, 19 Jul 2018 06:18:30
-	-0700 (PDT)
-In-Reply-To: <1532004653.3103.60.camel@genivi.org>
-References: <CAGAf8Lxousw4NEGP_aHGzHiqvzkJNERFgGHMM1hxNyj6Km72aQ@mail.gmail.com>
-	<CALw8SCUPA9Ud9e2JxzexLr2GrZsvPX_6eiTKvhjWz--rkz8OUw@mail.gmail.com>
-	<1531996869.3103.16.camel@genivi.org>
-	<CAGAf8LxRFrB+LboH7_odfmYQZBdAOM3c+4diJ6XW4rTgoQoEiA@mail.gmail.com>
-	<CAGAf8Lw0sQ10zoGLLW=o7ziYOaARKix=++=Tt_wnB4cYmHXHfw@mail.gmail.com>
-	<1532004653.3103.60.camel@genivi.org>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Thu, 19 Jul 2018 15:18:30 +0200
-Message-ID: <CAGAf8LzMyG1tY8rALo2tHWfxVQaxK-p2N1TWuJd3V8Ev=arx2w@mail.gmail.com>
-To: Gunnar Andersson <gandersson@genivi.org>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: cannelloni.bb (Was: [Chicken and Egg problem] Defining RDEPENDS of the package itself)
+Cc: yocto@yoctoproject.org
+Subject: Re: Setting recipe version inside an image recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,47 +45,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2018 13:18:37 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 19 Jul 2018 14:02:55 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-> :-)  I mentioned that in my original response.
+Hi Mauro
 
-I noticed after I sent my email. Sorry/apologies, I do too many
-different tasks, so I get very often scrambled. :-(
+On Thursday, 19 July 2018 2:36:18 PM CEST Mauro Ziliani wrote:
+> I'm working with Krogoth.
+> 
+> I'd like to do this.
+> 
+> - I have my application added to yocto tree by its own recipe myapp_git.bb
+> 
+> This recipe get the source code from a local git repository setting  
+> SRCREV for the last stable application source code.
+> 
+> SRCREV is fixed in myapp_git.bb
+> 
+> 
+> - I have the recipe for the final production image for the embedded  
+> system  myos.bb, which declare
+> 
+> IMAGE_INSTALL_append = " myapp "
+> 
+> The myos.bb compiles myapp with the version declare in myapp_git.bb recipe
+> 
+> 
+> I'd like to do that
+> 
+> - prepare a base recipe myos-base.inc  where I define all I need the 
+> produce the final image with
+> 
+> IMAGE_INSTALL_append = " myapp "
+> 
+> - prepare myos.bb recipe where I can fix the version of myapp.bb to a 
+> prpduction version
+> 
+> - prepare myos-test.bb recipre where I can fix the HEAD branch of git 
+> from I can download the  latest source code for test.
+> 
+> 
+> I try this
+> 
+> - inside myapp_git.bb I put SRCREV="${MYAPP_SRCREV}"
+> 
+> - inside myos.bb I set MYAPP_SRCREV="prodution-version-X" to download 
+> the tag/branch production-version-X
+> 
+> - inside myos-test.bb I set MYAPP_SRCREV="${AUTOREV}" to download the 
+> latest git commit
 
-> I will finish up that response later anyway so we can figure out a good strategy together.
+You cannot do this I'm afraid - in general you cannot set a variable in one
+recipe that will be read by another. See:
 
-Too many companies do this on their own, my best guess. VW, Audi, BMW,
-Daimler Benz... And their partners.
+https://wiki.yoctoproject.org/wiki/Technical_FAQ#How_do_I_change_how_my_recipe_is_built_depending_on_what_image_I.27m_building.3F
 
-Some better strategy (unification) would be well desired extras. :-)
+The only real way to do what you're looking for is to have two different
+recipes (where the name is actually different, not just the version). e.g. you
+could have myapp_git.bb and myapp-test_git.bb. You could use a common
+inc file and "require" that from both .bb files in order to keep the common
+parts in one place. Then you can specify the corresponding package name
+in each image recipe.
 
-Thank you,
-Zoran
-_______
+Cheers,
+Paul
 
-On Thu, Jul 19, 2018 at 2:50 PM, Gunnar Andersson <gandersson@genivi.org> wrote:
-> On Thu, 2018-07-19 at 14:44 +0200, Zoran Stojsavljevic wrote:
->> Actually, I ran into this:
->> http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-
->> extended/socketcan
->
-> :-)  I mentioned that in my original response.
->
->>
->> So here, I think, can-utils recipes should be revisited, cannelloni
->> recipe added, and also another application recipe added as well:
->> https://github.com/dschanoeh/socketcand/
->
-> Great, you're answering some of the follow-up questions I had.  I need to
-> task switch now, but I will finish up that response later anyway so we can
-> figure out a good strategy together.
->
-> - Gunnar
->
-> --
-> Gunnar Andersson <gandersson@genivi.org>
-> Development Lead
-> GENIVI Alliance
->
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
+
 
