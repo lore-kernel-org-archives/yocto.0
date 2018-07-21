@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 66CD7E01545; Sat, 21 Jul 2018 06:40:46 -0700 (PDT)
+	id 77EB3E00D00; Sat, 21 Jul 2018 10:35:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -21,46 +21,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-qt0-f194.google.com (mail-qt0-f194.google.com
 	[209.85.216.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3970E0086B
-	for <yocto@yoctoproject.org>; Sat, 21 Jul 2018 06:40:45 -0700 (PDT)
-Received: by mail-qt0-f194.google.com with SMTP id y5-v6so12707732qti.12
-	for <yocto@yoctoproject.org>; Sat, 21 Jul 2018 06:40:45 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0404BE006B4
+	for <yocto@yoctoproject.org>; Sat, 21 Jul 2018 10:35:05 -0700 (PDT)
+Received: by mail-qt0-f194.google.com with SMTP id c15-v6so13050222qtp.0
+	for <yocto@yoctoproject.org>; Sat, 21 Jul 2018 10:35:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=1R++0UF6cAZVbL5z2h9mca8OPtUTbaU8ahdlIGf0AWk=;
-	b=FB7rlsEzyLvXoZ2uQOand9KlpkF3x+FnJKSCYp45iaFF0J95Z1BjwcjN7yjnNsC2PM
-	YBJ9xTjbwq/b2e5WjZFwtNUXN3IKm1bPa2iE4VrfmKLkK6GHKsvulszPZMsDk3NVCg0Z
-	d9JKmhvPKZTF1VKtVl+i81LIa/3ZTv89pLpP32QKC7OJtjv7+qQ900VMGOTtkHjMNm0f
-	RvatioRF9HcTAE6b6FccfLdBlXDTv4xwyjA5GbXoAd0VrwiWY7GD0bWy8VmD1DhS8YNE
-	/UWFJe1C0uZjXUhFfBxxRy2PdwevE0eehj+4DkOM/rSlT2iv88CorjUJnlKO8b/rsGID
-	7JrQ==
+	:cc:content-transfer-encoding;
+	bh=+Oav+avpQepqKUBIFK4lJNV5EPKcYKNek8DzxhTowFs=;
+	b=iTIDFyGSyzvQ8FjbFVsPQiuhrL0tuzZHMmh7W/OK4eN3XaLn8RJUZ0PwXwjLGOzbW3
+	1PKUIw2DScJecW0CtJveIaP3IARDJ6Q5ygBovcdFTFgo6r2rZ4nWEh5OzN9u+Hbkx/+I
+	PdU6dUVNiQFZ9sL+wivv60kp3JGoBrIK+GMKZIQ/bNwi+Y5OB4lEoH9i5tLtumgW2hHp
+	rH13LD3xnoHOpMqCqxpFKzb4PUrTVXAAUstRHNWKumdi7ZIvvLs2IgqDLgfbVp9H2KuZ
+	7W7oIUFLvbf/lgWwMDdu/PzTIxpmvf05nws0Hu43w/z0rENSdJMqixbDGFLG5ZzRRscP
+	zwvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=1R++0UF6cAZVbL5z2h9mca8OPtUTbaU8ahdlIGf0AWk=;
-	b=BEqso0dsAnOWVnFMiFXSfHtYFM4CPFFVjZ4RCPBTH6ddvf4bZ+qsuiG7kADgP6ELVD
-	bsVouxPEu7uxpoHMXazedSe+T0Z97r5eqkFlmuVFyqJBpmRDlHTYvrTObdHRuxUvZJrr
-	euwzJAJMz1GxCQJrn6WUp78UPsgya42nZqx/miH+NFDuu3LRsggDDcRSrpNFSWsS6zoJ
-	wPkGMeDesI/kJlKgCNsiLR35WB7QmhothIxknw5qA1kiw8ndzG/mcquFKi+u9G07dCuT
-	xfU+2zwdnwLMnUGC9VlZjCNFLt1hJruyPZhLNg0DQXJP9IPVgGktJDFSPJArsRafqKTY
-	oDGw==
-X-Gm-Message-State: AOUpUlESFNocSa7f8F56JfzjRS2BmT8Mx0GTwGr4G4RZ6cVCdKTdfPjs
-	1+szgyRUTifYGzU/+za2zJFK3Wm4IxTSeIKkxpit7N5c
-X-Google-Smtp-Source: AAOMgpeybXwTdV1lL9BmJhfSd796dCJrN7DED+insg5hG5yKKNPjS1mZjrEdoFGCsw292GA8zfvk5jgOEIGpI2GgxO8=
-X-Received: by 2002:ac8:70c5:: with SMTP id
-	g5-v6mr5684097qtp.376.1532180444802; 
-	Sat, 21 Jul 2018 06:40:44 -0700 (PDT)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=+Oav+avpQepqKUBIFK4lJNV5EPKcYKNek8DzxhTowFs=;
+	b=BZXNE10WH7kXqm+0SuZKwbJH/pviasusKikFDbM693MuI6Oh1jGUxKM66+UfB0WVPB
+	2KEOfsENdZI++HdyHty9xHfolxdgCXC9OwbEL/MsnhQWWPN5/bTnnq9LL01RGKK/xGsd
+	c9RPfxAk+wsog1lMIec3rGJwbntvIgLfccdCDhM7qIYXWS5BLZDJ0iSu7b22pVuUftb9
+	4YVsASzn98QQs5s0Q1wsyQjEUaDmV4/2gqu0byIi37ySvzYftCtRv52kfWWl4wjdpHyo
+	I42U/N+fKPbA7aW0Rr3nlXYy7EkAU6c2JuHtKnffADkpUjseFkeukT3ZbM/FrO2pwy4h
+	Riaw==
+X-Gm-Message-State: AOUpUlGWukVi+eEiMUfa42tk0n2XeraLTmoejDftGG2lc3qDs0DlT17k
+	ITlMHnS6Kya/i1RLG27qtlfxDRrIpWZ3fbDdLGE=
+X-Google-Smtp-Source: AAOMgpe97Zg1sl5lkEI4QPKkPaGMXxPY1vKAt6WrmNE74nF90Cv5OwsatwwwZryDW3KnOjrwGOtMn6WIZxY4/By3TTY=
+X-Received: by 2002:ac8:2ad8:: with SMTP id
+	c24-v6mr6386363qta.117.1532194505251; 
+	Sat, 21 Jul 2018 10:35:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <53b38a65.2c07.164bb2b111f.Coremail.13824125580@163.com>
-	<CAJTo0LZ_tPA1JwfMjZrpNduwRHZ8W-M-5-yJzNMYM4y=J7TC8A@mail.gmail.com>
-In-Reply-To: <CAJTo0LZ_tPA1JwfMjZrpNduwRHZ8W-M-5-yJzNMYM4y=J7TC8A@mail.gmail.com>
+References: <16C5EFE1-1FE0-4E48-9797-EEC5E54033AB@comcast.net>
+In-Reply-To: <16C5EFE1-1FE0-4E48-9797-EEC5E54033AB@comcast.net>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 21 Jul 2018 06:40:18 -0700
-Message-ID: <CAMKF1sq96XL1pE8X9VuNqtVXnWpzdh7LD4cd6fLSY8rKK_coCA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>, 13824125580@163.com
-Subject: Re: why compile "xserver-xorg" package on wayland projects?
+Date: Sat, 21 Jul 2018 10:34:39 -0700
+Message-ID: <CAMKF1so968sUsO8bdbvndD=VyVO_rxriC3kssO_K4V875M-byg@mail.gmail.com>
+To: RUSSELL PETERSON <bluehills7@comcast.net>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: SDK and out of tree modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,56 +72,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Jul 2018 13:40:46 -0000
+X-List-Received-Date: Sat, 21 Jul 2018 17:35:06 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I have patches cooking see
+On Sat, Jul 21, 2018 at 6:20 AM Russell Peterson <bluehills7@comcast.net> w=
+rote:
+>
+> Hello,
+>
+> I have been building some modules using the SDK for a while now.  This is=
+ mostly for development flow purposes but we have had a few customers doing=
+ this as well.  To get this to work we always need to run =E2=80=9Cmake sil=
+entoldconfig scripts=E2=80=9D inside the RFS of the SDK on the build host. =
+ Many folks forget to do this this and thus many, many questions come my wa=
+y about the SDK being broken and they can=E2=80=99t build their modules (no=
+t all users are kernel experts or even intermediates=E2=80=A6 they just wan=
+t to apply a patch and quickly move on to their app).  Is there a way to do=
+ this auto-magically during the installation of the SDK by adding some type=
+ of scripts etc=E2=80=A6 to the recipe?  I assume it needs to be done at in=
+stall time since while the build host is x86=E2=80=A6 the exact linux distr=
+o is not known until then (or does that matter?).
+>
 
-http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/master
-On Sat, Jul 21, 2018 at 5:27 AM Burton, Ross <ross.burton@intel.com> wrote:
+are you using extensible SDK ? in that case I think do_make_scripts
+from module-base.bbclass should be helpful
+
+> =E2=80=94Russ
 >
-> It shouldn't complain, what is the error?  The reason it's being built
-> is because you've got X11 and Wayland enabled, so it's building
-> xwayland.  When you add wayland to DISTRO_FEATURES, also remove x11.
->
-> Ross
->
-> On 21 July 2018 at 05:48, tugouxp <13824125580@163.com> wrote:
-> > hi folks:
-> >     i am working on project with "DISTRO_FEATURE" set to "wayalnd",  during
-> > the compile procedure,  i saw the xserver pakage was compiled, which would
-> > complain compile error and stop the process.
-> >
-> > i try to debug the dependciy, it seems the "weston" package bring the
-> > xorg-server ,package in , so i try to change the default bb file of poky
-> > poky/meta/recipes-graphics/wayland/weston_2.0.0.bb
-> > and comment the following line
-> > #RDEPENDS_${PN}-xwayland += "xserver-xorg-xwayland"
-> > it seems work.
-> > i dont know the reason and want to know if any elegant way to dealt with
-> > this prolbems?
-> >
-> > thanks for your supply.
-> >
-> > NOTE: linux-tina: compiling from external source tree
-> > /home/caozilong/WorkSpace/glibc/repo/lichee/linux-4.4
-> > Currently  2 running tasks (2538 of 4483)  56%
-> > |############################################################################################
-> > |
-> > 0: linux-tina-4.4.89-r0 do_compile - 0s (pid 1550)
-> > 1: xserver-xorg-2_1.19.3-r0 do_configure - 0s (pid 1578)
-> >
-> >
-> >
-> >
-> >
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
 > --
 > _______________________________________________
 > yocto mailing list
