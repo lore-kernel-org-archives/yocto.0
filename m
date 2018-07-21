@@ -1,6 +1,6 @@
 Return-Path: <mohammad.rasim96@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AA203E011DA; Fri, 20 Jul 2018 22:38:08 -0700 (PDT)
+	id 382A2E00E97; Sat, 21 Jul 2018 00:55:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (mohammad.rasim96[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.44 listed in list.dnswl.org]
+	*      [209.85.160.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,53 +20,55 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl0-f44.google.com (mail-pl0-f44.google.com
-	[209.85.160.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53E8EE00C1B
-	for <yocto@yoctoproject.org>; Fri, 20 Jul 2018 22:38:07 -0700 (PDT)
-Received: by mail-pl0-f44.google.com with SMTP id m1-v6so1046863plt.6
-	for <yocto@yoctoproject.org>; Fri, 20 Jul 2018 22:38:07 -0700 (PDT)
+Received: from mail-pl0-f46.google.com (mail-pl0-f46.google.com
+	[209.85.160.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0145FE00D8E
+	for <yocto@yoctoproject.org>; Sat, 21 Jul 2018 00:55:25 -0700 (PDT)
+Received: by mail-pl0-f46.google.com with SMTP id b1-v6so6132810pls.5
+	for <yocto@yoctoproject.org>; Sat, 21 Jul 2018 00:55:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-language;
-	bh=arKi2JlrNve+EhqQ+qaRUksQo9/8ztRWka7dzqQ9zIs=;
-	b=dJmWr7duvSs5DM6RZbD2QUchj+NPKkdjt3xZ83GqdNXMxz3SshEM4zGtIBvtem5CJ3
-	D7p+64ib/+hJ0Wv4DOn+/4KMcm032ItgQxBDi8HtRPl7BoxHn9+fl/XhSgxcM5/FRHq/
-	HoTk6RAfNTrguoAvIphEBEASxegLseaXbXFMJD7J+zC2mjQAeYRMJCujPW/UNujBcuOM
-	BjcPlhdJK+QAYHQ5pKVzcE400Fe1F0yBaeVfixcFFjN5AvkYpPul1rujVk08Gc42ynVf
-	y0cCK/FBkKjKHoMLay6vIqL6mcUDtLMHgEuRAaifZ2g2PScRY0kvO0o8wSGXOzTRF0aI
-	rJ3A==
+	h=subject:from:to:references:message-id:date:user-agent:mime-version
+	:in-reply-to:content-language;
+	bh=7W0Wv+Q1kW3lsmxt9JEPBUPZDdE+rX7VH5uoXJtMcWw=;
+	b=exqKuUhpxdmO9tfiJ9Pq0xpWdWW4Zg1fUhVlPnekt6/2q54If9RgJLAJFWszwyuuro
+	3e87FXHQ0WNhXJWH8ShcVhh9NFvxHaSTwb1gER+LI6sveRdWhMAe0lahbe5xrzvQ/Cdz
+	6ieG7wAeYksVUjIS/v/cBddvC6RQMbsQGnj2fotpboNPxJPoNju2cQ96AlY2fFevpPJ+
+	2TPxD93T1y2diiaUhIt/dZoapDHXsfy0HNQtqnhHBZeKTlbtye1qBloVyvvta+vue36g
+	vMvp9rGp6y6pfhSGSFV33xdGKmUsxv6+PJ/y3ALuFnfvydT2yixqLNiABhAV4qVRg9TJ
+	dFvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-language;
-	bh=arKi2JlrNve+EhqQ+qaRUksQo9/8ztRWka7dzqQ9zIs=;
-	b=ZgZRRs7akT36rV39s2BR4E757Ea4qSC56URaP3XL/6FHToGBFYVGyZ216EpDwmqZj5
-	BRJTm7vH9v2v6BDPg/p/hzdiGAsXIit0Q7f3Iv6vvcTcKHSG9NpNyP/czUMx3W4xvd1g
-	RtNmzrki/bcy9Z9oV6tTztQ/mhwiQ7uUbhH2tItJyXtHqOehi8lzj5wEQhKenxL0QmcE
-	ka9aD1LoAogO9aQeQ+eNDqVCJv2ukxnUj6209/X5LTduk0bcekbUGtgmPYKonRTd4ct1
-	kmC0Fd6Kh7V+KYSQ1tmUY1F9UPun3eJ3u7jky06mq4AdtDIiS/S7NHECzHpTyD35QcrK
-	Kz2w==
-X-Gm-Message-State: AOUpUlHPTBiVDXfD/PSQ7vAtvMFXnJGtWKA8TUxAIyeUhVKnmAHP7tEA
-	VdgLzNvERnRJ2cWw1qNvDOkvLNOtAf8=
-X-Google-Smtp-Source: AAOMgpck1z/JeE7P+hyDoztmslmAnVxlL2hTKU0gSx7LLGrqDFOFlDWFjfdcdE7KYpecLshYPWMR7w==
-X-Received: by 2002:a17:902:2006:: with SMTP id
-	n6-v6mr4609438pla.325.1532151486391; 
-	Fri, 20 Jul 2018 22:38:06 -0700 (PDT)
+	h=x-gm-message-state:subject:from:to:references:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=7W0Wv+Q1kW3lsmxt9JEPBUPZDdE+rX7VH5uoXJtMcWw=;
+	b=Ed3WnerMW46TqkDbslcJlwTmtnxJJ18XQtx7931FNRZ/pbfvh0MImPvxdfHyX2Cf6V
+	xO2k3LA2ivUHqtEpVZULCjIrxZEBsP5LmanCtNvkaeh9ryBZFdlrqmjwF8umJgieE2N2
+	+kwX/GVTyIEqen/N4YI3Btgvf3uJCAVP5bSPcZs06ulcwqeSmMnJb3K5rWOZe4CbGBeX
+	ddal8n0OH/ptU3xSgkqgGtcdqwlkZzxLhOz3N78PlTGAVOpuWVuizjTHYj9eLWDYxAf4
+	hRo4ToB0487by4tm7DEtksDmna2tEzMzpu8m9MuJ75EkS6KMIzv7LNV2QTaKWtwgA0th
+	pQdw==
+X-Gm-Message-State: AOUpUlGaLk2sAYzpjO4DX9JJ/Shwb7haift+d6bxKZMrMaVMGl4sb8j4
+	NEalmBW7h4OCB8SUSXUJFJQGho/nClw=
+X-Google-Smtp-Source: AAOMgpezx+SJ9onWCNUen+XLtpswCmnPpL1AHnOreoXBbtwuMgg2+VNKw8DPb6cnjcLWjcD8CZiL8Q==
+X-Received: by 2002:a17:902:8a92:: with SMTP id
+	p18-v6mr5065369plo.148.1532159725000; 
+	Sat, 21 Jul 2018 00:55:25 -0700 (PDT)
 Received: from [10.211.4.220] (fp76f115f6.knge107.ap.nuro.jp. [118.241.21.246])
 	by smtp.gmail.com with ESMTPSA id
-	d81-v6sm10192618pfj.122.2018.07.20.22.38.03
+	g85-v6sm10185410pfk.39.2018.07.21.00.55.21
 	for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 20 Jul 2018 22:38:05 -0700 (PDT)
-To: yocto@yoctoproject.org
+	Sat, 21 Jul 2018 00:55:24 -0700 (PDT)
 From: MOHAMMAD RASIM <mohammad.rasim96@gmail.com>
-Message-ID: <051ffcba-0255-4d93-e8f8-01993e967ef2@gmail.com>
-Date: Sat, 21 Jul 2018 08:37:54 +0300
+To: yocto@yoctoproject.org
+References: <051ffcba-0255-4d93-e8f8-01993e967ef2@gmail.com>
+Message-ID: <2d030ea4-b2df-58fe-9947-e1c4e40ea17b@gmail.com>
+Date: Sat, 21 Jul 2018 10:55:13 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.9.1
 MIME-Version: 1.0
-Subject: bitbake is corrupting my files during unpacking
+In-Reply-To: <051ffcba-0255-4d93-e8f8-01993e967ef2@gmail.com>
+Subject: Re: bitbake is corrupting my files during unpacking
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,224 +80,306 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Jul 2018 05:38:08 -0000
+X-List-Received-Date: Sat, 21 Jul 2018 07:55:27 -0000
 Content-Type: multipart/alternative;
-	boundary="------------F4EB4F311838F48FCD99D4FE"
+	boundary="------------9B8763D0DE90E79FB5C2D556"
 Content-Language: en-US
 
---------------F4EB4F311838F48FCD99D4FE
+--------------9B8763D0DE90E79FB5C2D556
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Hi,
+well apparently this is caused by the unzip binary that is compiled by 
+the openembedded unzip recipe.
+If I unzip the same zip file with the unzip binary that is shipped with 
+my system(manjaro) then the files are not corrupted but when I use the 
+unzip binary compiled by the openembedded recipe I get error and file 
+corruptions.
+These are some of the errors I get when unzipping with the openembedded 
+unzip:
+lchmod (file attributes) error: Function not implemented
+linux-amlogic-amlogic-3.14-nougat/security/keys/request_key_auth.c -> /* 
+Request key authorisation token key definition.^J *^J * Copyright (C) 
+2005 Red Hat, Inc. All Rights Reserved.^J * Written by David Howells 
+(dhowells@redhat.com)^J *^J * This program is free software; you can 
+redistribute it and/or^J * modify it under the terms of the GNU General 
+Public License^J * as published by the Free Software Foundation; either 
+version^J * 2 of the License, or (at your option) any later version.^J 
+*^J * See Documentation/security/keys-request-key.txt^J */^J^J#include 
+<linux/module.h>^J#include <linux/sched.h>^J#include 
+<linux/err.h>^J#include <linux/seq_file.h>^J#include 
+<linux/slab.h>^J#include <asm/uaccess.h>^J#include 
+"internal.h"^J#include <keys/user-type.h>^J^Jstatic int 
+request_key_auth_instantiate(struct key *,^J^I^I^I^I^Istruct 
+key_preparsed_payload *);^Jstatic void request_key_auth_describe(const 
+struct key *, struct seq_file *);^Jstatic void 
+request_key_auth_revoke(struct key *);^Jstatic void 
+request_key_auth_destroy(struct key *);^Jstatic long 
+request_key_auth_read(const struct key *, char __user *, 
+size_t);^J^J/*^J * The request-key authorisation key type definition.^J 
+*/^Jstruct key_type key_type_request_key_auth = {^J^I.name^I^I= 
+".request_key_auth",^J^I.def_datalen^I= sizeof(struct 
+request_key_auth),^J^I.instantiate^I= 
+request_key_auth_instantiate,^J^I.describe^I= 
+request_key_auth_describe,^J^I.revoke^I^I= 
+request_key_auth_revoke,^J^I.destroy^I= 
+request_key_auth_destroy,^J^I.read^I^I= 
+request_key_auth_read,^J};^J^J/*^J * Instantiate a request-key 
+authorisation key.^J */^Jstatic int request_key_auth_instantiate(struct 
+key *key,^J^I^I^I^I^Istruct key_preparsed_payload 
+*prep)^J{^J^Ikey->payload.data = (struct request_key_auth 
+*)prep->data;^J^Ireturn 0;^J}^J^J/*^J * Describe an authorisation 
+token.^J */^Jstatic void request_key_auth_describe(const struct key 
+*key,^J^I^I^I^I struct seq_file *m)^J{^J^Istruct request_key_auth *rka = 
+key->payload.data;^J^J^Iseq_puts(m, "key:");^J^Iseq_puts(m, 
+key->description);^J^Iif (key_is_instantiated(key))^J^I^Iseq_printf(m, " 
+pid:%d ci:%zu", rka->pid, rka->callout_len);^J}^J^J/*^J * Read the 
+callout_info data (retrieves the callout information).^J * - the key's 
+semaphore is read-locked^J */^Jstatic long request_key_auth_read(const 
+struct key *key,^J^I^I^I^I  char __user *buffer, size_t 
+buflen)^J{^J^Istruct request_key_auth *rka = 
+key->payload.data;^J^Isize_t datalen;^J^Ilong ret;^J^J^Idatalen = 
+rka->callout_len;^J^Iret = datalen;^J^J^I/* we can return the data as is 
+*/^J^Iif (buffer && buflen > 0) {^J^I^Iif (buflen > 
+datalen)^J^I^I^Ibuflen = datalen;^J^J^I^Iif (copy_to_user(buffer, 
+rka->callout_info, buflen) != 0)^J^I^I^Iret = -EFAULT;^J^I}^J^J^Ireturn 
+ret;^J}^J^J/*^J * Handle revocation of an authorisation token key.^J *^J 
+* Called with the key sem write-locked.^J */^Jstatic void 
+request_key_auth_revoke(struct key *key)^J{^J^Istruct request_key_auth 
+*rka = key->payload.data;^J^J^Ikenter("{%d}", key->serial);^J^J^Iif 
+(rka->cred) {^J^I^Iput_cred(rka->cred);^J^I^Irka->cred = 
+NULL;^J^I}^J}^J^J/*^J * Destroy an instantiation authorisation token 
+key.^J */^Jstatic void request_key_auth_destroy(struct key 
+*key)^J{^J^Istruct request_key_auth *rka = 
+key->payload.data;^J^J^Ikenter("{%d}", key->serial);^J^J^Iif (rka->cred) 
+{^J^I^Iput_cred(rka->cred);^J^I^Irka->cred = 
+NULL;^J^I}^J^J^Ikey_put(rka->target_key);^J^Ikey_put(rka->dest_keyring);^J^Ikfree(rka->callout_info);^J^Ikfree(rka);^J}^J^J/*^J 
+* Create an authorisation token for /sbin/request-key or whoever to 
+gain^J * access to the caller's security data.^J */^Jstruct key 
+*request_key_auth_new(struct key *target, const void 
+*callout_info,^J^I^I^I^I size_t callout_len, struct key 
+*dest_keyring)^J{^J^Istruct request_key_auth *rka, *irka;^J^Iconst 
+struct cred *cred = current->cred;^J^Istruct key *authkey = 
+NULL;^J^Ichar desc[20];^J^Iint ret;^J^J^Ikenter("%d,", 
+target->serial);^J^J^I/* allocate a auth record */^J^Irka = 
+kmalloc(sizeof(*rka), GFP_KERNEL);^J^Iif (!rka) {^J^I^Ikleave(" = 
+-ENOMEM");^J^I^Ireturn ERR_PTR(-ENOMEM);^J^I}^J^Irka->callout_info = 
+kmalloc(callout_len, GFP_KERNEL);^J^Iif (!rka->callout_info) 
+{^J^I^Ikleave(" = -ENOMEM");^J^I^Ikfree(rka);^J^I^Ireturn 
+ERR_PTR(-ENOMEM);^J^I}^J^J^I/* see if the calling process is already 
+servicing the key request of^J^I * another process */^J^Iif 
+(cred->request_key_auth) {^J^I^I/* it is - use that instantiation 
+context here too 
+*/^J^I^Idown_read(&cred->request_key_auth->sem);^J^J^I^I/* if the auth 
+key has been revoked, then the key we're^J^I^I * servicing is already 
+instantiated */^J^I^Iif (test_bit(KEY_FLAG_REVOKED, 
+&cred->request_key_auth->flags))^J^I^I^Igoto 
+auth_key_revoked;^J^J^I^Iirka = 
+cred->request_key_auth->payload.data;^J^I^Irka->cred = 
+get_cred(irka->cred);^J^I^Irka->pid = 
+irka->pid;^J^J^I^Iup_read(&cred->request_key_auth->sem);^J^I}^J^Ielse 
+{^J^I^I/* it isn't - use this process as the context */^J^I^Irka->cred = 
+get_cred(cred);^J^I^Irka->pid = current->pid;^J^I}^J^J^Irka->target_key 
+= key_get(target);^J^Irka->dest_keyring = 
+key_get(dest_keyring);^J^Imemcpy(rka->callout_info, callout_info, 
+callout_len);^J^Irka->callout_len = callout_len;^J^J^I/* allocate the 
+auth key */^J^Isprintf(desc, "%x", target->serial);^J^J^Iauthkey = 
+key_alloc(&key_type_request_key_auth, desc,^J^I^I^I cred->fsuid, 
+cred->fsgid, cred,^J^I^I^I    KEY_POS_VIEW | KEY_POS_READ | 
+KEY_POS_SEARCH |^J^I^I^I    KEY_USR_VIEW, KEY_ALLOC_NOT_IN_QUOTA);^J^Iif 
+(IS_ERR(authkey)) {^J^I^Iret = PTR_ERR(authkey);^J^I^Igoto 
+error_alloc;^J^I}^J^J^I/* construct the auth key */^J^Iret = 
+key_instantiate_and_link(authkey, rka, 0, NULL, NULL);^J^Iif (ret < 
+0)^J^I^Igoto error_inst;^J^J^Ikleave(" = {%d,%d}", authkey->serial, 
+atomic_read(&authkey->usage));^J^Ireturn 
+authkey;^J^Jauth_key_revoked:^J^Iup_read(&cred->request_key_auth->sem);^J^Ikfree(rka->callout_info);^J^Ikfree(rka);^J^Ikleave("= 
+-EKEYREVOKED");^J^Ireturn 
+ERR_PTR(-EKEYREVOKED);^J^Jerror_inst:^J^Ikey_revoke(authkey);^J^Ikey_put(authkey);^Jerror_alloc:^J^Ikey_put(rka->target_key);^J^Ikey_put(rka->dest_keyring);^J^Ikfree(rka->callout_info);^J^Ikfree(rka);^J^Ikleave("= 
+%d", ret);^J^Ireturn ERR_PTR(ret);^J}^J^J/*^J * Search the current 
+process's keyrings for the authorisation key for^J * instantiation of a 
+key.^J */^Jstruct key *key_get_instantiation_authkey(key_serial_t 
+target_id)^J{^J^Ichar description[16];^J^Istruct keyring_search_context 
+ctx = {^J^I^I.index_key.type^I^I= 
+&key_type_request_key_auth,^J^I^I.index_key.description^I= 
+description,^J^I^I.cred^I^I^I= current_cred(),^J^I^I.match^I^I^I= 
+user_match,^J^I^I.match_data^I^I= description,^J^I^I.flags^I^I^I= 
+KEYRING_SEARCH_LOOKUP_DIRECT,^J^I};^J^Istruct key *authkey;^J^Ikey_ref_t 
+authkey_ref;^J^J^Isprintf(description, "%x", 
+target_id);^J^J^Iauthkey_ref = search_process_keyrings(&ctx);^J^J^Iif 
+(IS_ERR(authkey_ref)) {^J^I^Iauthkey = ERR_CAST(authkey_ref);^J^I^Iif 
+(authkey == ERR_PTR(-EAGAIN))^J^I^I^Iauthkey = 
+ERR_PTR(-ENOKEY);^J^I^Igoto error;^J^I}^J^J^Iauthkey = 
+key_ref_to_ptr(authkey_ref);^J^Iif (test_bit(KEY_FLAG_REVOKED, 
+&authkey->flags)) {^J^I^Ikey_put(authkey);^J^I^Iauthkey = 
+ERR_PTR(-EKEYREVOKED);^J^I}^J^Jerror:^J^Ireturn authkey;^J}^J
+symlink error: File name too long
+lchmod (file attributes) error: Function not implemented
+linux-amlogic-amlogic-3.14-nougat/tools/gator/daemon/k/perf_event.h -> 
+perf_event.3.12.h
+lchmod (file attributes) error: Function not implemented
 
-I'm new to openembedded and yocto. I'm using the openpli meta layers to 
-build openembedded https://github.com/OpenPLi/openpli-oe-core
+This error happens to multiple files where the file is symlinked to the 
+content of the file and not to a path !
+Where should I report this bug ? openembedded ? unzip upstream ?
 
-Now I'm trying to build a recipe for the kernel but I encountered a 
-strange issue, bitbake is corrupting my source files when unpacking from 
-zip file (http link of zip file) but not when using git to get the 
-source the files are fine and not corrupted, the downloaded zip file 
-itself is not corrupted and If I unzip it from the sources 
-directory(outside bitbake environment) then the resulting files are not 
-corrupted
-
-The zip file I'm downloading 
-https://github.com/PLi-metas/linux-amlogic/archive/amlogic-3.14-nougat.zip
-
-examples of corruption I saw :
-
-1- /drivers/w1/slaves/Kconfig (this file is converted to a broken 
-symlink not to a path but to the content of the file itself, see:
-
-file 
-build/tmp/work-shared/k2pro_s905/kernel-source/drivers/w1/slaves/Kconfig
-build/tmp/work-shared/k2pro_s905/kernel-source/drivers/w1/slaves/Kconfig: 
-broken symbolic link to #\012# 1-wire slaves 
-configuration\012#\012\012menu "1-wire Slaves"\012\012config 
-W1_SLAVE_THERM\012\011tristate "Thermal family 
-implementation"\012\011help\012\011  Say Y here if you want to connect 
-1-wire thermal sensors to your\012\011 wire.\012\012config 
-W1_SLAVE_SMEM\012\011tristate "Simple 64bit memory family 
-implementation"\012\011help\012\011  Say Y here if you want to connect 
-1-wire\012\011  simple 64bit memory rom(ds2401/ds2411/ds1990*) to your 
-wire.\012\012config W1_SLAVE_DS2408\012\011tristate "8-Channel 
-Addressable Switch (IO Expander) 0x29 family support 
-(DS2408)"\012\011help\012\011 Say Y here if you want to use a 
-1-wire\012\011  DS2408 8-Channel Addressable Switch device 
-support\012\012config W1_SLAVE_DS2408_READBACK\012\011bool "Read-back 
-values written to DS2408's output register"\012\011depends on 
-W1_SLAVE_DS2408\012\011default y\012\011help\012\011  Enabling this will 
-cause the driver to read back the values written\012\011  to the chip's 
-output register in order to detect errors.\012\012\011  This is slower 
-but useful when debugging chips and/or busses.\012\012config 
-W1_SLAVE_DS2413\012\011tristate "Dual Channel Addressable Switch 0x3a 
-family support (DS2413)"\012\011help\012\011  Say Y here if you want to 
-use a 1-wire\012\011  DS2413 Dual Channel Addressable Switch device 
-support\012\012config W1_SLAVE_DS2423\012\011tristate "Counter 1-wire 
-device (DS2423)"\012\011select CRC16\012\011help\012\011  If you enable 
-this you can read the counter values available\012\011  in the DS2423 
-chipset from the w1_slave file under the\012\011  sys file 
-system.\012\012\011  Say Y here if you want to use a 1-wire\012\011  
-counter family device (DS2423).\012\012config 
-W1_SLAVE_DS2431\012\011tristate "1kb EEPROM family support 
-(DS2431)"\012\011help\012\011  Say Y here if you want to use a 
-1-wire\012\011  1kb EEPROM family device (DS2431)\012\012config 
-W1_SLAVE_DS2433\012\011tristate "4kb EEPROM family support 
-(DS2433)"\012\011help\012\011  Say Y here if you want to use a 
-1-wire\012\011  4kb EEPROM family device (DS2433).\012\012config 
-W1_SLAVE_DS2433_CRC\012\011bool "Protect DS2433 data with a 
-CRC16"\012\011depends on W1_SLAVE_DS2433\012\011select 
-CRC16\012\011help\012\011  Say Y here to protect DS2433 data with a 
-CRC16.\012\011  Each block has 30 bytes of data and a two byte 
-CRC16.\012\011  Full block writes are only allowed if the CRC is 
-valid.\012\012config W1_SLAVE_DS2760\012\011tristate "Dallas 2760 
-battery monitor chip (HP iPAQ & others)"\012\011depends on 
-W1\012\011help\012\011  If you enable this you will have the DS2760 
-battery monitor\012\011  chip support.\012\012\011  The battery monitor 
-chip is used in many batteries/devices\012\011  as the one who is 
-responsible for charging/discharging/monitoring\012\011  Li+ 
-batteries.\012\012\011  If you are unsure, say N.\012\012config 
-W1_SLAVE_DS2780\012\011tristate "Dallas 2780 battery monitor 
-chip"\012\011depends on W1\012\011help\012\011  If you enable this you 
-will have the DS2780 battery monitor\012\011  chip support.\012\012\011  
-The battery monitor chip is used in many batteries/devices\012\011  as 
-the one who is responsible for charging/discharging/monitoring\012\011  
-Li+ batteries.\012\012\011  If you are unsure, say N.\012\012config 
-W1_SLAVE_DS2781\012\011tristate "Dallas 2781 battery monitor 
-chip"\012\011depends on W1\012\011help\012\011  If you enable this you 
-will have the DS2781 battery monitor\012\011  chip support.\012\012\011  
-The battery monitor chip is used in many batteries/devices\012\011  as 
-the one who is responsible for charging/discharging/monitoring\012\011  
-Li+ batteries.\012\012\011  If you are unsure, say N.\012\012config 
-W1_SLAVE_DS28E04\012\011tristate "4096-Bit Addressable 1-Wire EEPROM 
-with PIO (DS28E04-100)"\012\011depends on W1\012\011select 
-CRC16\012\011help\012\011  If you enable this you will have the 
-DS28E04-100\012\011  chip support.\012\012\011  Say Y here if you want 
-to use a 1-wire\012\011  4kb EEPROM with PIO family device 
-(DS28E04).\012\012\011  If you are unsure, say N.\012\012config 
-W1_SLAVE_BQ27000\012\011tristate "BQ27000 slave support"\012\011depends 
-on W1\012\011help\012\011  Say Y here if you want to use a hdq\012\011  
-bq27000 slave support.\012\012endmenu\012
-
-2- /linux-amlogic-amlogic-3.14-nougat/security/keys/request_key_auth.c 
-(this file is not extracted)
-
-
-
---------------F4EB4F311838F48FCD99D4FE
+--------------9B8763D0DE90E79FB5C2D556
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
 <html>
   <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body text="#000000" bgcolor="#FFFFFF">
-    <p>Hi,</p>
-    <p>I'm new to openembedded and yocto. I'm using the openpli meta
-      layers to build openembedded
-      <a class="moz-txt-link-freetext" href="https://github.com/OpenPLi/openpli-oe-core">https://github.com/OpenPLi/openpli-oe-core</a></p>
-    <p>Now I'm trying to build a recipe for the kernel but I encountered
-      a strange issue, bitbake is corrupting my source files when
-      unpacking from zip file (http link of zip file) but not when using
-      git to get the source the files are fine and not corrupted, the
-      downloaded zip file itself is not corrupted and If I unzip it from
-      the sources directory(outside bitbake environment) then the
-      resulting files are not corrupted <br>
-    </p>
-    <p>The zip file I'm downloading
-<a class="moz-txt-link-freetext" href="https://github.com/PLi-metas/linux-amlogic/archive/amlogic-3.14-nougat.zip">https://github.com/PLi-metas/linux-amlogic/archive/amlogic-3.14-nougat.zip</a></p>
-    <p>examples of corruption I saw :</p>
-    <p>1- /drivers/w1/slaves/Kconfig (this file is converted to a broken
-      symlink not to a path but to the content of the file itself, see:</p>
-    <p><samp>file 
-        build/tmp/work-shared/k2pro_s905/kernel-source/drivers/w1/slaves/Kconfig
-      </samp><samp><br>
-      </samp><samp>build/tmp/work-shared/k2pro_s905/kernel-source/drivers/w1/slaves/Kconfig:
-        broken symbolic link to #\012# 1-wire slaves
-        configuration\012#\012\012menu "1-wire Slaves"\012\012config
-        W1_SLAVE_THERM\012\011tristate "Thermal family
-        implementation"\012\011help\012\011  Say Y here if you want to
-        connect 1-wire thermal sensors to your\012\011 
-        wire.\012\012config W1_SLAVE_SMEM\012\011tristate "Simple 64bit
-        memory family implementation"\012\011help\012\011  Say Y here if
-        you want to connect 1-wire\012\011  simple 64bit memory
-        rom(ds2401/ds2411/ds1990*) to your wire.\012\012config
-        W1_SLAVE_DS2408\012\011tristate "8-Channel Addressable Switch
-        (IO Expander) 0x29 family support (DS2408)"\012\011help\012\011 
-        Say Y here if you want to use a 1-wire\012\011  DS2408 8-Channel
-        Addressable Switch device support\012\012config
-        W1_SLAVE_DS2408_READBACK\012\011bool "Read-back values written
-        to DS2408's output register"\012\011depends on
-        W1_SLAVE_DS2408\012\011default y\012\011help\012\011  Enabling
-        this will cause the driver to read back the values
-        written\012\011  to the chip's output register in order to
-        detect errors.\012\012\011  This is slower but useful when
-        debugging chips and/or busses.\012\012config
-        W1_SLAVE_DS2413\012\011tristate "Dual Channel Addressable Switch
-        0x3a family support (DS2413)"\012\011help\012\011  Say Y here if
-        you want to use a 1-wire\012\011  DS2413 Dual Channel
-        Addressable Switch device support\012\012config
-        W1_SLAVE_DS2423\012\011tristate "Counter 1-wire device
-        (DS2423)"\012\011select CRC16\012\011help\012\011  If you enable
-        this you can read the counter values available\012\011  in the
-        DS2423 chipset from the w1_slave file under the\012\011  sys
-        file system.\012\012\011  Say Y here if you want to use a
-        1-wire\012\011  counter family device (DS2423).\012\012config
-        W1_SLAVE_DS2431\012\011tristate "1kb EEPROM family support
-        (DS2431)"\012\011help\012\011  Say Y here if you want to use a
-        1-wire\012\011  1kb EEPROM family device (DS2431)\012\012config
-        W1_SLAVE_DS2433\012\011tristate "4kb EEPROM family support
-        (DS2433)"\012\011help\012\011  Say Y here if you want to use a
-        1-wire\012\011  4kb EEPROM family device (DS2433).\012\012config
-        W1_SLAVE_DS2433_CRC\012\011bool "Protect DS2433 data with a
-        CRC16"\012\011depends on W1_SLAVE_DS2433\012\011select
-        CRC16\012\011help\012\011  Say Y here to protect DS2433 data
-        with a CRC16.\012\011  Each block has 30 bytes of data and a two
-        byte CRC16.\012\011  Full block writes are only allowed if the
-        CRC is valid.\012\012config W1_SLAVE_DS2760\012\011tristate
-        "Dallas 2760 battery monitor chip (HP iPAQ &amp;
-        others)"\012\011depends on W1\012\011help\012\011  If you enable
-        this you will have the DS2760 battery monitor\012\011  chip
-        support.\012\012\011  The battery monitor chip is used in many
-        batteries/devices\012\011  as the one who is responsible for
-        charging/discharging/monitoring\012\011  Li+
-        batteries.\012\012\011  If you are unsure, say N.\012\012config
-        W1_SLAVE_DS2780\012\011tristate "Dallas 2780 battery monitor
-        chip"\012\011depends on W1\012\011help\012\011  If you enable
-        this you will have the DS2780 battery monitor\012\011  chip
-        support.\012\012\011  The battery monitor chip is used in many
-        batteries/devices\012\011  as the one who is responsible for
-        charging/discharging/monitoring\012\011  Li+
-        batteries.\012\012\011  If you are unsure, say N.\012\012config
-        W1_SLAVE_DS2781\012\011tristate "Dallas 2781 battery monitor
-        chip"\012\011depends on W1\012\011help\012\011  If you enable
-        this you will have the DS2781 battery monitor\012\011  chip
-        support.\012\012\011  The battery monitor chip is used in many
-        batteries/devices\012\011  as the one who is responsible for
-        charging/discharging/monitoring\012\011  Li+
-        batteries.\012\012\011  If you are unsure, say N.\012\012config
-        W1_SLAVE_DS28E04\012\011tristate "4096-Bit Addressable 1-Wire
-        EEPROM with PIO (DS28E04-100)"\012\011depends on
-        W1\012\011select CRC16\012\011help\012\011  If you enable this
-        you will have the DS28E04-100\012\011  chip
-        support.\012\012\011  Say Y here if you want to use a
-        1-wire\012\011  4kb EEPROM with PIO family device
-        (DS28E04).\012\012\011  If you are unsure, say N.\012\012config
-        W1_SLAVE_BQ27000\012\011tristate "BQ27000 slave
-        support"\012\011depends on W1\012\011help\012\011  Say Y here if
-        you want to use a hdq\012\011  bq27000 slave
-        support.\012\012endmenu\012</samp><br>
-    </p>
-    <p>2-
-      /linux-amlogic-amlogic-3.14-nougat/security/keys/request_key_auth.c
-      (this file is not extracted)<br>
-    </p>
-    <p><br>
-    </p>
+    well apparently this is caused by the unzip binary that is compiled
+    by the openembedded unzip recipe.<br>
+    If I unzip the same zip file with the unzip binary that is shipped
+    with my system(manjaro) then the files are not corrupted but when I
+    use the unzip binary compiled by the openembedded recipe I get error
+    and file corruptions.<br>
+    These are some of the errors I get when unzipping with the
+    openembedded unzip:<br>
+    <samp>lchmod (file attributes) error: Function not implemented</samp><samp><br>
+    </samp><samp> 
+      linux-amlogic-amlogic-3.14-nougat/security/keys/request_key_auth.c
+      -&gt; /* Request key authorisation token key definition.^J *^J *
+      Copyright (C) 2005 Red Hat, Inc. All Rights Reserved.^J * Written
+      by David Howells (<a class="moz-txt-link-abbreviated" href="mailto:dhowells@redhat.com">dhowells@redhat.com</a>)^J *^J * This program is
+      free software; you can redistribute it and/or^J * modify it under
+      the terms of the GNU General Public License^J * as published by
+      the Free Software Foundation; either version^J * 2 of the License,
+      or (at your option) any later version.^J *^J * See
+      Documentation/security/keys-request-key.txt^J */^J^J#include
+      &lt;linux/module.h&gt;^J#include &lt;linux/sched.h&gt;^J#include
+      &lt;linux/err.h&gt;^J#include &lt;linux/seq_file.h&gt;^J#include
+      &lt;linux/slab.h&gt;^J#include &lt;asm/uaccess.h&gt;^J#include
+      "internal.h"^J#include &lt;keys/user-type.h&gt;^J^Jstatic int
+      request_key_auth_instantiate(struct key *,^J^I^I^I^I^Istruct
+      key_preparsed_payload *);^Jstatic void
+      request_key_auth_describe(const struct key *, struct seq_file
+      *);^Jstatic void request_key_auth_revoke(struct key *);^Jstatic
+      void request_key_auth_destroy(struct key *);^Jstatic long
+      request_key_auth_read(const struct key *, char __user *,
+      size_t);^J^J/*^J * The request-key authorisation key type
+      definition.^J */^Jstruct key_type key_type_request_key_auth =
+      {^J^I.name^I^I= ".request_key_auth",^J^I.def_datalen^I=
+      sizeof(struct request_key_auth),^J^I.instantiate^I=
+      request_key_auth_instantiate,^J^I.describe^I=
+      request_key_auth_describe,^J^I.revoke^I^I=
+      request_key_auth_revoke,^J^I.destroy^I=
+      request_key_auth_destroy,^J^I.read^I^I=
+      request_key_auth_read,^J};^J^J/*^J * Instantiate a request-key
+      authorisation key.^J */^Jstatic int
+      request_key_auth_instantiate(struct key *key,^J^I^I^I^I^Istruct
+      key_preparsed_payload *prep)^J{^J^Ikey-&gt;payload.data = (struct
+      request_key_auth *)prep-&gt;data;^J^Ireturn 0;^J}^J^J/*^J *
+      Describe an authorisation token.^J */^Jstatic void
+      request_key_auth_describe(const struct key *key,^J^I^I^I^I     
+      struct seq_file *m)^J{^J^Istruct request_key_auth *rka =
+      key-&gt;payload.data;^J^J^Iseq_puts(m, "key:");^J^Iseq_puts(m,
+      key-&gt;description);^J^Iif
+      (key_is_instantiated(key))^J^I^Iseq_printf(m, " pid:%d ci:%zu",
+      rka-&gt;pid, rka-&gt;callout_len);^J}^J^J/*^J * Read the
+      callout_info data (retrieves the callout information).^J * - the
+      key's semaphore is read-locked^J */^Jstatic long
+      request_key_auth_read(const struct key *key,^J^I^I^I^I  char
+      __user *buffer, size_t buflen)^J{^J^Istruct request_key_auth *rka
+      = key-&gt;payload.data;^J^Isize_t datalen;^J^Ilong
+      ret;^J^J^Idatalen = rka-&gt;callout_len;^J^Iret = datalen;^J^J^I/*
+      we can return the data as is */^J^Iif (buffer &amp;&amp; buflen
+      &gt; 0) {^J^I^Iif (buflen &gt; datalen)^J^I^I^Ibuflen =
+      datalen;^J^J^I^Iif (copy_to_user(buffer, rka-&gt;callout_info,
+      buflen) != 0)^J^I^I^Iret = -EFAULT;^J^I}^J^J^Ireturn
+      ret;^J}^J^J/*^J * Handle revocation of an authorisation token
+      key.^J *^J * Called with the key sem write-locked.^J */^Jstatic
+      void request_key_auth_revoke(struct key *key)^J{^J^Istruct
+      request_key_auth *rka = key-&gt;payload.data;^J^J^Ikenter("{%d}",
+      key-&gt;serial);^J^J^Iif (rka-&gt;cred)
+      {^J^I^Iput_cred(rka-&gt;cred);^J^I^Irka-&gt;cred =
+      NULL;^J^I}^J}^J^J/*^J * Destroy an instantiation authorisation
+      token key.^J */^Jstatic void request_key_auth_destroy(struct key
+      *key)^J{^J^Istruct request_key_auth *rka =
+      key-&gt;payload.data;^J^J^Ikenter("{%d}", key-&gt;serial);^J^J^Iif
+      (rka-&gt;cred) {^J^I^Iput_cred(rka-&gt;cred);^J^I^Irka-&gt;cred =
+NULL;^J^I}^J^J^Ikey_put(rka-&gt;target_key);^J^Ikey_put(rka-&gt;dest_keyring);^J^Ikfree(rka-&gt;callout_info);^J^Ikfree(rka);^J}^J^J/*^J
+      * Create an authorisation token for /sbin/request-key or whoever
+      to gain^J * access to the caller's security data.^J */^Jstruct key
+      *request_key_auth_new(struct key *target, const void
+      *callout_info,^J^I^I^I^I size_t callout_len, struct key
+      *dest_keyring)^J{^J^Istruct request_key_auth *rka, *irka;^J^Iconst
+      struct cred *cred = current-&gt;cred;^J^Istruct key *authkey =
+      NULL;^J^Ichar desc[20];^J^Iint ret;^J^J^Ikenter("%d,",
+      target-&gt;serial);^J^J^I/* allocate a auth record */^J^Irka =
+      kmalloc(sizeof(*rka), GFP_KERNEL);^J^Iif (!rka) {^J^I^Ikleave(" =
+      -ENOMEM");^J^I^Ireturn
+      ERR_PTR(-ENOMEM);^J^I}^J^Irka-&gt;callout_info =
+      kmalloc(callout_len, GFP_KERNEL);^J^Iif (!rka-&gt;callout_info)
+      {^J^I^Ikleave(" = -ENOMEM");^J^I^Ikfree(rka);^J^I^Ireturn
+      ERR_PTR(-ENOMEM);^J^I}^J^J^I/* see if the calling process is
+      already servicing the key request of^J^I * another process
+      */^J^Iif (cred-&gt;request_key_auth) {^J^I^I/* it is - use that
+      instantiation context here too
+      */^J^I^Idown_read(&amp;cred-&gt;request_key_auth-&gt;sem);^J^J^I^I/*
+      if the auth key has been revoked, then the key we're^J^I^I *
+      servicing is already instantiated */^J^I^Iif
+      (test_bit(KEY_FLAG_REVOKED,
+      &amp;cred-&gt;request_key_auth-&gt;flags))^J^I^I^Igoto
+      auth_key_revoked;^J^J^I^Iirka =
+      cred-&gt;request_key_auth-&gt;payload.data;^J^I^Irka-&gt;cred =
+      get_cred(irka-&gt;cred);^J^I^Irka-&gt;pid =
+irka-&gt;pid;^J^J^I^Iup_read(&amp;cred-&gt;request_key_auth-&gt;sem);^J^I}^J^Ielse
+      {^J^I^I/* it isn't - use this process as the context
+      */^J^I^Irka-&gt;cred = get_cred(cred);^J^I^Irka-&gt;pid =
+      current-&gt;pid;^J^I}^J^J^Irka-&gt;target_key =
+      key_get(target);^J^Irka-&gt;dest_keyring =
+      key_get(dest_keyring);^J^Imemcpy(rka-&gt;callout_info,
+      callout_info, callout_len);^J^Irka-&gt;callout_len =
+      callout_len;^J^J^I/* allocate the auth key */^J^Isprintf(desc,
+      "%x", target-&gt;serial);^J^J^Iauthkey =
+      key_alloc(&amp;key_type_request_key_auth, desc,^J^I^I^I   
+      cred-&gt;fsuid, cred-&gt;fsgid, cred,^J^I^I^I    KEY_POS_VIEW |
+      KEY_POS_READ | KEY_POS_SEARCH |^J^I^I^I    KEY_USR_VIEW,
+      KEY_ALLOC_NOT_IN_QUOTA);^J^Iif (IS_ERR(authkey)) {^J^I^Iret =
+      PTR_ERR(authkey);^J^I^Igoto error_alloc;^J^I}^J^J^I/* construct
+      the auth key */^J^Iret = key_instantiate_and_link(authkey, rka, 0,
+      NULL, NULL);^J^Iif (ret &lt; 0)^J^I^Igoto
+      error_inst;^J^J^Ikleave(" = {%d,%d}", authkey-&gt;serial,
+      atomic_read(&amp;authkey-&gt;usage));^J^Ireturn
+authkey;^J^Jauth_key_revoked:^J^Iup_read(&amp;cred-&gt;request_key_auth-&gt;sem);^J^Ikfree(rka-&gt;callout_info);^J^Ikfree(rka);^J^Ikleave("=
+      -EKEYREVOKED");^J^Ireturn
+ERR_PTR(-EKEYREVOKED);^J^Jerror_inst:^J^Ikey_revoke(authkey);^J^Ikey_put(authkey);^Jerror_alloc:^J^Ikey_put(rka-&gt;target_key);^J^Ikey_put(rka-&gt;dest_keyring);^J^Ikfree(rka-&gt;callout_info);^J^Ikfree(rka);^J^Ikleave("=
+      %d", ret);^J^Ireturn ERR_PTR(ret);^J}^J^J/*^J * Search the current
+      process's keyrings for the authorisation key for^J * instantiation
+      of a key.^J */^Jstruct key
+      *key_get_instantiation_authkey(key_serial_t target_id)^J{^J^Ichar
+      description[16];^J^Istruct keyring_search_context ctx =
+      {^J^I^I.index_key.type^I^I=
+      &amp;key_type_request_key_auth,^J^I^I.index_key.description^I=
+      description,^J^I^I.cred^I^I^I= current_cred(),^J^I^I.match^I^I^I=
+      user_match,^J^I^I.match_data^I^I= description,^J^I^I.flags^I^I^I=
+      KEYRING_SEARCH_LOOKUP_DIRECT,^J^I};^J^Istruct key
+      *authkey;^J^Ikey_ref_t authkey_ref;^J^J^Isprintf(description,
+      "%x", target_id);^J^J^Iauthkey_ref =
+      search_process_keyrings(&amp;ctx);^J^J^Iif (IS_ERR(authkey_ref))
+      {^J^I^Iauthkey = ERR_CAST(authkey_ref);^J^I^Iif (authkey ==
+      ERR_PTR(-EAGAIN))^J^I^I^Iauthkey = ERR_PTR(-ENOKEY);^J^I^Igoto
+      error;^J^I}^J^J^Iauthkey = key_ref_to_ptr(authkey_ref);^J^Iif
+      (test_bit(KEY_FLAG_REVOKED, &amp;authkey-&gt;flags))
+      {^J^I^Ikey_put(authkey);^J^I^Iauthkey =
+      ERR_PTR(-EKEYREVOKED);^J^I}^J^Jerror:^J^Ireturn authkey;^J}^J</samp><samp><br>
+    </samp><samp>symlink error: File name too long</samp><samp><br>
+    </samp><samp>lchmod (file attributes) error: Function not
+      implemented</samp><samp><br>
+    </samp><samp> 
+      linux-amlogic-amlogic-3.14-nougat/tools/gator/daemon/k/perf_event.h
+      -&gt; perf_event.3.12.h</samp><samp><br>
+    </samp><samp>lchmod (file attributes) error: Function not
+      implemented</samp><samp><br>
+    </samp><br>
+    This error happens to multiple files where the file is symlinked to
+    the content of the file and not to a path !<br>
+    Where should I report this bug ? openembedded ? unzip upstream ? <br>
   </body>
 </html>
 
---------------F4EB4F311838F48FCD99D4FE--
+--------------9B8763D0DE90E79FB5C2D556--
