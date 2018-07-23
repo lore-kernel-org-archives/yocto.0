@@ -1,68 +1,50 @@
-Return-Path: <stevep@korgrd.com>
+Return-Path: <Karim.Gillani@gov.bc.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6BEDBE00CE0; Fri, 27 Jul 2018 06:02:51 -0700 (PDT)
+	id BFB4CE00A4C; Sun, 22 Jul 2018 21:00:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.213.178 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [142.34.224.138 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yb0-f178.google.com (mail-yb0-f178.google.com
-	[209.85.213.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 471BBE00C8B
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2018 06:02:50 -0700 (PDT)
-Received: by mail-yb0-f178.google.com with SMTP id s8-v6so1954459ybe.8
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2018 06:02:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=korgrd-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:subject:from:in-reply-to:date:cc:message-id:references
-	:to; bh=4roaAYzIrB7w9PIJkhoVVhDjYmkC5cB2cF++g69bpS4=;
-	b=i1ncec8ShBskZY5+ayuWfZ5SqX+N8acYQUAwjTO1QOrU3ullTECVjOoHQ3NNkd5xFI
-	y33jZKl3EuwCIAWiJ4eje+qfc4M3dKJTrWgrPLRPwBlFp7Zv4HrbFKkGNozODKwETYD2
-	ggh38GzSDMbLCc6wc7+jQ2MO4F+a7AXlaOOkna7EEkeSKf3UAUkkD4Jyg6j8d+Vs8UoG
-	ptvYaxGn8t+EOs9eCc+hBelJQTiWvm+AANbEnTZ6YsOMjH23NZ77/0otjN5OHsZdHrg5
-	0wITiYS/99YkxN0tdfLV8R8eIXqPidWWaZFkntOU84h9uZ67r5ynm1YMoaHDkodOi9DA
-	cuTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=4roaAYzIrB7w9PIJkhoVVhDjYmkC5cB2cF++g69bpS4=;
-	b=tPhlH78wCpu1zx9NNbEIx8+AiVPCtM0aAcwvYN7zsST5wAsP+nM3zerYFKsVwTn98a
-	jE9mVduGnqFH6WlB7qfqLwfOaCvxxcSqWk/eNoZbGuo/a/XX+sEHSjOJRaXhXVAB+yO2
-	ClkzRoBhCdLKoCNLvjF0klSyRl+Faj7feY6Zq/LWwAEUz0+nt1REqIE4wPVBZ9B25Vox
-	ZJyGgBdCy7tVxl0Ux3i9KSuhC06bHjPUI1rnh1o0x2+Dw0vAqSalk6iE0y4r1/I5A5jl
-	4ThR7w7eDFpOLIqbY8K4+HVxq2InzB+4Fi9mP/lbmeIPbgMoJ3fIg3j0Tz7LKPBy13CW
-	bz5w==
-X-Gm-Message-State: AOUpUlF5cCx/vKnTsOD9LbRNi0gZOqwJ9zk9PgIepRPAYzEv9DPKcb6Q
-	2p1GkgMowRxzKipzAOAHTUKZDwmahxE=
-X-Google-Smtp-Source: AAOMgpdQaEbooL4AjcHSB4gqhnQGvm35zt3frGTkVqvbNlKoBrAWFV3ZhcPJWo04wvHCRLhf/vAh+g==
-X-Received: by 2002:a25:b4f:: with SMTP id 76-v6mr3417015ybl.394.1532696568596;
-	Fri, 27 Jul 2018 06:02:48 -0700 (PDT)
-Received: from [192.168.1.2] (68-112-255-18.dhcp.oxfr.ma.charter.com.
-	[68.112.255.18]) by smtp.gmail.com with ESMTPSA id
-	c74-v6sm1711969ywh.17.2018.07.27.06.02.47
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 27 Jul 2018 06:02:47 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-From: Steve Pavao <stevep@korgrd.com>
-In-Reply-To: <e1e4423a-640f-4fcc-b5fe-2c9695fc7b0f@windriver.com>
-Date: Fri, 27 Jul 2018 09:02:46 -0400
-Message-Id: <3DF09C77-2F0A-4C0D-B5F2-D25DBFAE224B@korgrd.com>
-References: <4B83820E-84AB-43C5-9458-18EF4BCB3EFD@korgrd.com>
-	<e1e4423a-640f-4fcc-b5fe-2c9695fc7b0f@windriver.com>
-To: ChenQi <Qi.Chen@windriver.com>
-X-Mailer: Apple Mail (2.3273)
-Cc: yocto@yoctoproject.org
-Subject: Re: custom linux kernel recipe fails
+Received: from outbound-kam-1.gov.bc.ca (outbound-kam-1.gov.bc.ca
+	[142.34.224.138])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36039E00874
+	for <yocto@yoctoproject.org>; Sun, 22 Jul 2018 20:59:59 -0700 (PDT)
+Received: from e3pmbx12.idir.BCGOV (e3pmbx12.idir.bcgov [142.34.177.196])
+	by outbound-kam-1.gov.bc.ca (8.14.4/8.14.4) with ESMTP id
+	w6N3xvoI073971
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 22 Jul 2018 20:59:57 -0700
+Received: from E3PMBX02.idir.BCGOV (142.34.177.191) by e3pmbx12.idir.BCGOV
+	(142.34.177.196) with Microsoft SMTP Server (TLS) id 15.0.1395.4;
+	Sun, 22 Jul 2018 20:59:56 -0700
+Received: from E3PMBX02.idir.BCGOV ([::1]) by E3PMBX02.idir.BCGOV ([::1]) with
+	mapi id 15.00.1395.000; Sun, 22 Jul 2018 20:59:56 -0700
+From: "Gillani, Karim CITZ:EX" <Karim.Gillani@gov.bc.ca>
+To: Trevor Woerner <twoerner@gmail.com>
+Thread-Topic: [yocto] [meta-raspberrypi] - X11 EGLSV2 Chromium
+Thread-Index: AdQd5yop0JtedX6nSKSNlLsl5GcBZgEclRSAAAgYW4A=
+Date: Mon, 23 Jul 2018 03:59:56 +0000
+Message-ID: <0f2ce1eae64742d8a870a9c8b5cfa033@E3PMBX02.idir.BCGOV>
+References: <ce7fc3e6ee9d4a78bfb688737838f9b4@E3PMBX02.idir.BCGOV>
+	<CAHUNapR2MdFMg_5D_hiuAq5CO0t1FW=ghVoWRV2CY8Z8wSSViQ@mail.gmail.com>
+In-Reply-To: <CAHUNapR2MdFMg_5D_hiuAq5CO0t1FW=ghVoWRV2CY8Z8wSSViQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [142.34.224.130]
+MIME-Version: 1.0
+X-Scanned-By: MIMEDefang 2.70 on 142.34.224.138
+X-Mailman-Approved-At: Fri, 27 Jul 2018 08:34:41 -0700
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] - X11 EGLSV2 Chromium
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,200 +56,240 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jul 2018 13:02:51 -0000
+X-List-Received-Date: Mon, 23 Jul 2018 04:00:00 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_98CC42F5-FFAA-4B9C-A475-1275700D40DC"
+	boundary="_000_0f2ce1eae64742d8a870a9c8b5cfa033E3PMBX02idirBCGOV_"
 
---Apple-Mail=_98CC42F5-FFAA-4B9C-A475-1275700D40DC
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+--_000_0f2ce1eae64742d8a870a9c8b5cfa033E3PMBX02idirBCGOV_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+U3VyZSwgSSBoYXZlIHRyaWVkIHZhcmlvdXMgYnVpbGRzIGZyb20gUm9ja28sIFN1bW8gYW5kIE1h
+c3Rlci4NCg0KSGVyZSBpcyBvbmUgd2l0aCBNYXN0ZXIsIGFuZCBJIGFtIHJlYnVpbGRpbmcgd2l0
+aCBTdW1vIGFzIGxvbmcgdGVybSwgdGhhdCBpcyB3aGF0IEkgd291bGQgbGlrZSB0byB1c2UuDQoN
+Cg0KQnVpbGQgQ29uZmlndXJhdGlvbjoNCg0KQkJfVkVSU0lPTiAgICAgICAgICAgPSAiMS4zOS4w
+Ig0KDQpCVUlMRF9TWVMgICAgICAgICAgICA9ICJ4ODZfNjQtbGludXgiDQoNCk5BVElWRUxTQlNU
+UklORyAgICAgID0gInVuaXZlcnNhbCINCg0KVEFSR0VUX1NZUyAgICAgICAgICAgPSAiYXJtLXBv
+a3ktbGludXgtZ251ZWFiaSINCg0KTUFDSElORSAgICAgICAgICAgICAgPSAicmFzcGJlcnJ5cGkz
+Ig0KDQpESVNUUk8gICAgICAgICAgICAgICA9ICJwb2t5Ig0KDQpESVNUUk9fVkVSU0lPTiAgICAg
+ICA9ICIyLjUrc25hcHNob3QtMjAxODA3MTciDQoNClRVTkVfRkVBVFVSRVMgICAgICAgID0gImFy
+bSBhcm12N3ZlIHZmcCB0aHVtYiBuZW9uIHZmcHY0IGNhbGxjb252ZW50aW9uLWhhcmQgY29ydGV4
+YTciDQoNClRBUkdFVF9GUFUgICAgICAgICAgID0gImhhcmQiDQoNCm1ldGENCg0KbWV0YS1wb2t5
+DQoNCm1ldGEteW9jdG8tYnNwICAgICAgID0gIm1hc3RlcjowNWMzMmQyZGUxZWU0NjgxY2M3OGNi
+MTA3YTE1OGU5YWIyMmM5NjE5Ig0KDQptZXRhLW9lDQoNCm1ldGEtcHl0aG9uICAgICAgICAgID0g
+Im1hc3Rlcjo2YTBlZmVmMTVjZDYyNWQ0ZmI0ZjYwZTIyMzU0NTBkZTAyMjJjMzU3Ig0KDQptZXRh
+LXJhc3BiZXJyeXBpICAgICA9ICJtYXN0ZXI6Njg4OGE0OWFlODQ0NDUxMzZkMTM4MDg3MjkwZWZj
+ZjY3OTNjNDE0OSINCg0KbWV0YS1uZXR3b3JraW5nDQoNCm1ldGEtbXVsdGltZWRpYSAgICAgID0g
+Im1hc3Rlcjo2YTBlZmVmMTVjZDYyNWQ0ZmI0ZjYwZTIyMzU0NTBkZTAyMjJjMzU3Ig0KDQptZXRh
+LWJyb3dzZXIgICAgICAgICA9ICJtYXN0ZXI6ZDgwN2I5MDFiMGI2OGI0NzgwOTM5NjRiZDYwYTc3
+YjkzNzZiM2YxMiINCg0KbWV0YS1zYmMgICAgICAgICAgICAgPSAiPHVua25vd24+Ojx1bmtub3du
+PiINCg0KTm90ZSBtZXRhLXNiYywgaXMgbXkgY3VzdG9tIGxheWVyIHRvIGFkZCB3aWZpLCB1Zncs
+IGFuZCAobG9uZyB0ZXJtIOKAkyBtZW5kZXIpLg0KDQpBbHNvLCBoZXJlIGlzIHRoZSBTdW1vIEkg
+YW0gYnVpbGRpbmcgd2l0aCByaWdodCBub3cgKHVzaW5nIHRoZSBzYW1lIGxvY2FsLmNvbmYpDQoN
+Cg0KQnVpbGQgQ29uZmlndXJhdGlvbjoNCg0KQkJfVkVSU0lPTiAgICAgICAgICAgPSAiMS4zOC4w
+Ig0KDQpCVUlMRF9TWVMgICAgICAgICAgICA9ICJ4ODZfNjQtbGludXgiDQoNCk5BVElWRUxTQlNU
+UklORyAgICAgID0gInVidW50dS0xNi4wNCINCg0KVEFSR0VUX1NZUyAgICAgICAgICAgPSAiYXJt
+LXBva3ktbGludXgtZ251ZWFiaSINCg0KTUFDSElORSAgICAgICAgICAgICAgPSAicmFzcGJlcnJ5
+cGkzIg0KDQpESVNUUk8gICAgICAgICAgICAgICA9ICJwb2t5Ig0KDQpESVNUUk9fVkVSU0lPTiAg
+ICAgICA9ICIyLjUiDQoNClRVTkVfRkVBVFVSRVMgICAgICAgID0gImFybSBhcm12N3ZlIHZmcCB0
+aHVtYiBuZW9uIHZmcHY0IGNhbGxjb252ZW50aW9uLWhhcmQgY29ydGV4YTciDQoNClRBUkdFVF9G
+UFUgICAgICAgICAgID0gImhhcmQiDQoNCm1ldGENCg0KbWV0YS1wb2t5DQoNCm1ldGEteW9jdG8t
+YnNwICAgICAgID0gInN1bW86OTZmYmQzOWJhMzIzNjI0MTZjMThkOTBiYjdhODFlYjZhNzY5MTJl
+MCINCg0KbWV0YS1vZQ0KDQptZXRhLXB5dGhvbg0KDQptZXRhLW11bHRpbWVkaWENCg0KbWV0YS1u
+ZXR3b3JraW5nICAgICAgPSAic3VtbzpiMDk1MGFlZmY1YjYzMDI1NmJiNWUyNWNhMTVmNGQ1OWMx
+MTVlN2MxIg0KDQptZXRhLXJhc3BiZXJyeXBpICAgICA9ICJzdW1vOmNkYjJkYWQ1MjliYTEwMmZl
+YWJlYWM0ZTRmNThhMDlmZTc2ZWRmZDEiDQoNCm1ldGEtYnJvd3NlciAgICAgICAgID0gIm1hc3Rl
+cjpkODA3YjkwMWIwYjY4YjQ3ODA5Mzk2NGJkNjBhNzdiOTM3NmIzZjEyIg0KDQoNClRoYW5rcw0K
+DQoNCkZyb206IFRyZXZvciBXb2VybmVyIFttYWlsdG86dHdvZXJuZXJAZ21haWwuY29tXQ0KU2Vu
+dDogU3VuZGF5LCBKdWx5IDIyLCAyMDE4IDU6NDggUE0NClRvOiBHaWxsYW5pLCBLYXJpbSBDSVRa
+OkVYIDxLYXJpbS5HaWxsYW5pQGdvdi5iYy5jYT4NCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
+DQpTdWJqZWN0OiBSZTogW3lvY3RvXSBbbWV0YS1yYXNwYmVycnlwaV0gLSBYMTEgRUdMU1YyIENo
+cm9taXVtDQoNCkhpIEthcmltLA0KDQpDYW4geW91IHBsZWFzZSBhbHNvIGluY2x1ZGUgdGhlICJC
+dWlsZCBDb25maWd1cmF0aW9uIiBibG9jayB0aGF0J3MgcHJpbnRlZCBhdCB0aGUgc3RhcnQgb2Yg
+dGhlIGJ1aWxkPyBUaGF0IHdheSB3ZSBrbm93IHdoYXQgbGF5ZXJzIHlvdSdyZSB1c2luZywgYW5k
+IHdoaWNoIGJyYW5jaGVzL2NvbW1pdHMgb2YgdGhvc2UgbGF5ZXJzLg0KDQpCZXN0IHJlZ2FyZHMs
+DQogICAgVHJldm9yDQo=
 
-> On Jul 26, 2018, at 9:57 PM, ChenQi <Qi.Chen@windriver.com> wrote:
->=20
-> On 07/27/2018 12:56 AM, Steve Pavao wrote:
->> Hello -
->>=20
->> I=E2=80=99m trying to build using a custom 64-bit kernel at head of =
-sumo, but I get an error.  It seems that SRCPV cannot be resolved.    =
-Please send any ideas you may have about how I may adapt my recipe to =
-get it to work.
->>=20
->> Normally, I use the default meta-raspberrypi kernel, but for this =
-build, I am using PREFERRED_PROVIDER_virtual/kernel =3D =
-"linux-yocto-custom=E2=80=9D in my local.conf
->>=20
->> My simple kernel recipe is in linux-yocto-custom.bb.  (It is based on =
-the example recipe).
->>=20
->> inherit kernel
->> require recipes-kernel/linux/linux-yocto.inc
->>=20
->> PV =3D "${LINUX_VERSION}+git${SRCPV}"
->> PR =3D "r0"
->>=20
->> LINUX_VERSION ?=3D "4.14.4"
->> LINUX_VERSION_EXTENSION_append =3D "-xenomai-ipipe-arm64"
->>=20
->> SRC_URI =3D =
-"http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp;branch=3Dmaster=
-;nocheckout=3D1" =
-<http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp;branch=3Dmaster=
-;nocheckout=3D1>
->> SRCREV =3D "133bbf97672ff6e72fc21784b8ae44b194b76626"
->=20
-> Try:
-> SRC_URI =3D =
-"http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp;branch=3Dmaster=
-;nocheckout=3D1;name=3Dmachine" =
-<http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp;branch=3Dmaster=
-;nocheckout=3D1>
-> SRCREV_machine =3D "133bbf97672ff6e72fc21784b8ae44b194b76626"
-> Best Regards,
-> Chen Qi
+--_000_0f2ce1eae64742d8a870a9c8b5cfa033E3PMBX02idirBCGOV_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Thanks for the idea, Chean Qui.  I tried it, but I still got the same =
-WARNINGS and ERROR.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6ZHQ9InV1aWQ6QzJGNDEwMTAtNjVC
+My0xMWQxLUEyOUYtMDBBQTAwQzE0ODgyIiB4bWxuczptPSJodHRwOi8vc2NoZW1hcy5taWNyb3Nv
+ZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy9UUi9S
+RUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250
+ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1ldGEgbmFtZT0iR2VuZXJhdG9yIiBj
+b250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQgbWVkaXVtKSI+DQo8c3R5bGU+PCEt
+LQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiQ2Ft
+YnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0O30NCkBmb250LWZhY2UN
+Cgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9
+DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2
+Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250
+LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGlu
+aywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMw
+NTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNv
+SHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRG
+NzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1zb25v
+cm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCgltc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4tYm90
+dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21z
+by1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5z
+LXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxl
+LXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJ
+bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6
+NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3Mi4wcHQgNzIuMHB0IDcyLjBwdCA3Mi4wcHQ7fQ0K
+ZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1b
+aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1h
+eD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
+PG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9
+IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9k
+eSBsYW5nPSJFTi1DQSIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiPg0KPGRpdiBjbGFz
+cz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28t
+ZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+U3VyZSwgSSBoYXZlIHRyaWVkIHZhcmlvdXMgYnVpbGRz
+IGZyb20gUm9ja28sIFN1bW8gYW5kIE1hc3Rlci48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+SGVyZSBpcyBvbmUgd2l0aCBNYXN0
+ZXIsIGFuZCBJIGFtIHJlYnVpbGRpbmcgd2l0aCBTdW1vIGFzIGxvbmcgdGVybSwgdGhhdCBpcyB3
+aGF0IEkgd291bGQgbGlrZSB0byB1c2UuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBjbTttYXJnaW4tYm90
+dG9tOi4wMDAxcHQiPkJ1aWxkIENvbmZpZ3VyYXRpb246PG86cD48L286cD48L3A+DQo8cCBzdHls
+ZT0ibWFyZ2luOjBjbTttYXJnaW4tYm90dG9tOi4wMDAxcHQiPkJCX1ZFUlNJT04mbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgPSAmcXVv
+dDsxLjM5LjAmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGNtO21hcmdp
+bi1ib3R0b206LjAwMDFwdCI+QlVJTERfU1lTJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ID0gJnF1b3Q7eDg2XzY0LWxpbnV4
+JnF1b3Q7PG86cD48L286cD48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBjbTttYXJnaW4tYm90dG9t
+Oi4wMDAxcHQiPk5BVElWRUxTQlNUUklORyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA9
+ICZxdW90O3VuaXZlcnNhbCZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPHAgc3R5bGU9Im1hcmdpbjow
+Y207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij5UQVJHRVRfU1lTJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ID0gJnF1b3Q7YXJtLXBva3kt
+bGludXgtZ251ZWFiaSZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPHAgc3R5bGU9Im1hcmdpbjowY207
+bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij5NQUNISU5FJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ID0gJnF1
+b3Q7cmFzcGJlcnJ5cGkzJnF1b3Q7PG86cD48L286cD48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBj
+bTttYXJnaW4tYm90dG9tOi4wMDAxcHQiPkRJU1RSTyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyA9ICZxdW90O3Bva3kmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGNt
+O21hcmdpbi1ib3R0b206LjAwMDFwdCI+RElTVFJPX1ZFUlNJT04mbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsgPSAmcXVvdDsyLjUmIzQzO3NuYXBzaG90LTIwMTgwNzE3JnF1b3Q7
+PG86cD48L286cD48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBjbTttYXJnaW4tYm90dG9tOi4wMDAx
+cHQiPlRVTkVfRkVBVFVSRVMmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsgPSAmcXVvdDthcm0gYXJtdjd2ZSB2ZnAgdGh1bWIgbmVvbiB2ZnB2NCBjYWxsY29udmVudGlv
+bi1oYXJkIGNvcnRleGE3JnF1b3Q7PG86cD48L286cD48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBj
+bTttYXJnaW4tYm90dG9tOi4wMDAxcHQiPlRBUkdFVF9GUFUmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgPSAmcXVvdDtoYXJkJnF1b3Q7
+PG86cD48L286cD48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBjbTttYXJnaW4tYm90dG9tOi4wMDAx
+cHQiPm1ldGE8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGNtO21hcmdpbi1ib3R0
+b206LjAwMDFwdCI+bWV0YS1wb2t5PG86cD48L286cD48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBj
+bTttYXJnaW4tYm90dG9tOi4wMDAxcHQiPm1ldGEteW9jdG8tYnNwJm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7ID0gJnF1b3Q7bWFzdGVyOjA1YzMyZDJkZTFlZTQ2ODFjYzc4Y2Ix
+MDdhMTU4ZTlhYjIyYzk2MTkmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46
+MGNtO21hcmdpbi1ib3R0b206LjAwMDFwdCI+bWV0YS1vZTxvOnA+PC9vOnA+PC9wPg0KPHAgc3R5
+bGU9Im1hcmdpbjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij5tZXRhLXB5dGhvbiZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA9ICZxdW90O21h
+c3Rlcjo2YTBlZmVmMTVjZDYyNWQ0ZmI0ZjYwZTIyMzU0NTBkZTAyMjJjMzU3JnF1b3Q7PG86cD48
+L286cD48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBjbTttYXJnaW4tYm90dG9tOi4wMDAxcHQiPm1l
+dGEtcmFzcGJlcnJ5cGkmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgPSAmcXVvdDttYXN0ZXI6Njg4
+OGE0OWFlODQ0NDUxMzZkMTM4MDg3MjkwZWZjZjY3OTNjNDE0OSZxdW90OzxvOnA+PC9vOnA+PC9w
+Pg0KPHAgc3R5bGU9Im1hcmdpbjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij5tZXRhLW5ldHdv
+cmtpbmc8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGNtO21hcmdpbi1ib3R0b206
+LjAwMDFwdCI+bWV0YS1tdWx0aW1lZGlhJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ID0g
+JnF1b3Q7bWFzdGVyOjZhMGVmZWYxNWNkNjI1ZDRmYjRmNjBlMjIzNTQ1MGRlMDIyMmMzNTcmcXVv
+dDs8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGNtO21hcmdpbi1ib3R0b206LjAw
+MDFwdCI+bWV0YS1icm93c2VyJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7ID0gJnF1b3Q7bWFzdGVyOmQ4MDdiOTAxYjBiNjhiNDc4MDkzOTY0YmQ2MGE3N2I5
+Mzc2YjNmMTImcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGNtO21hcmdp
+bi1ib3R0b206LjAwMDFwdCI+bWV0YS1zYmMmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgPSAmcXVvdDsmbHQ7dW5r
+bm93biZndDs6Jmx0O3Vua25vd24mZ3Q7JnF1b3Q7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Tm90ZSBtZXRhLXNiYywgaXMgbXkgY3VzdG9t
+IGxheWVyIHRvIGFkZCB3aWZpLCB1ZncsIGFuZCAobG9uZyB0ZXJtIOKAkyBtZW5kZXIpLjxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28t
+ZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVT
+Ij5BbHNvLCBoZXJlIGlzIHRoZSBTdW1vIEkgYW0gYnVpbGRpbmcgd2l0aCByaWdodCBub3cgKHVz
+aW5nIHRoZSBzYW1lIGxvY2FsLmNvbmYpPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBjbTttYXJnaW4tYm90
+dG9tOi4wMDAxcHQiPkJ1aWxkIENvbmZpZ3VyYXRpb246PG86cD48L286cD48L3A+DQo8cCBzdHls
+ZT0ibWFyZ2luOjBjbTttYXJnaW4tYm90dG9tOi4wMDAxcHQiPkJCX1ZFUlNJT04mbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgPSAmcXVv
+dDsxLjM4LjAmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGNtO21hcmdp
+bi1ib3R0b206LjAwMDFwdCI+QlVJTERfU1lTJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ID0gJnF1b3Q7eDg2XzY0LWxpbnV4
+JnF1b3Q7PG86cD48L286cD48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBjbTttYXJnaW4tYm90dG9t
+Oi4wMDAxcHQiPk5BVElWRUxTQlNUUklORyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA9
+ICZxdW90O3VidW50dS0xNi4wNCZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPHAgc3R5bGU9Im1hcmdp
+bjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij5UQVJHRVRfU1lTJm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ID0gJnF1b3Q7YXJtLXBv
+a3ktbGludXgtZ251ZWFiaSZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPHAgc3R5bGU9Im1hcmdpbjow
+Y207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij5NQUNISU5FJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+ICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOz0g
+JnF1b3Q7cmFzcGJlcnJ5cGkzJnF1b3Q7PG86cD48L286cD48L3A+DQo8cCBzdHlsZT0ibWFyZ2lu
+OjBjbTttYXJnaW4tYm90dG9tOi4wMDAxcHQiPkRJU1RSTyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyA9ICZxdW90O3Bva3kmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46
+MGNtO21hcmdpbi1ib3R0b206LjAwMDFwdCI+RElTVFJPX1ZFUlNJT04mbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsgPSAmcXVvdDsyLjUmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxw
+IHN0eWxlPSJtYXJnaW46MGNtO21hcmdpbi1ib3R0b206LjAwMDFwdCI+VFVORV9GRUFUVVJFUyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA9ICZxdW90O2FybSBhcm12
+N3ZlIHZmcCB0aHVtYiBuZW9uIHZmcHY0IGNhbGxjb252ZW50aW9uLWhhcmQgY29ydGV4YTcmcXVv
+dDs8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGNtO21hcmdpbi1ib3R0b206LjAw
+MDFwdCI+VEFSR0VUX0ZQVSZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyA9ICZxdW90O2hhcmQmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxw
+IHN0eWxlPSJtYXJnaW46MGNtO21hcmdpbi1ib3R0b206LjAwMDFwdCI+bWV0YTxvOnA+PC9vOnA+
+PC9wPg0KPHAgc3R5bGU9Im1hcmdpbjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij5tZXRhLXBv
+a3k8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGNtO21hcmdpbi1ib3R0b206LjAw
+MDFwdCI+bWV0YS15b2N0by1ic3AmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsg
+PSAmcXVvdDtzdW1vOjk2ZmJkMzliYTMyMzYyNDE2YzE4ZDkwYmI3YTgxZWI2YTc2OTEyZTAmcXVv
+dDs8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGNtO21hcmdpbi1ib3R0b206LjAw
+MDFwdCI+bWV0YS1vZTxvOnA+PC9vOnA+PC9wPg0KPHAgc3R5bGU9Im1hcmdpbjowY207bWFyZ2lu
+LWJvdHRvbTouMDAwMXB0Ij5tZXRhLXB5dGhvbjxvOnA+PC9vOnA+PC9wPg0KPHAgc3R5bGU9Im1h
+cmdpbjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij5tZXRhLW11bHRpbWVkaWE8bzpwPjwvbzpw
+PjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGNtO21hcmdpbi1ib3R0b206LjAwMDFwdCI+bWV0YS1u
+ZXR3b3JraW5nJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ID0gJnF1b3Q7c3VtbzpiMDk1
+MGFlZmY1YjYzMDI1NmJiNWUyNWNhMTVmNGQ1OWMxMTVlN2MxJnF1b3Q7PG86cD48L286cD48L3A+
+DQo8cCBzdHlsZT0ibWFyZ2luOjBjbTttYXJnaW4tYm90dG9tOi4wMDAxcHQiPm1ldGEtcmFzcGJl
+cnJ5cGkmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgPSAmcXVvdDtzdW1vOmNkYjJkYWQ1MjliYTEw
+MmZlYWJlYWM0ZTRmNThhMDlmZTc2ZWRmZDEmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIHN0eWxl
+PSJtYXJnaW46MGNtO21hcmdpbi1ib3R0b206LjAwMDFwdCI+bWV0YS1icm93c2VyJm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ID0gJnF1b3Q7bWFzdGVyOmQ4
+MDdiOTAxYjBiNjhiNDc4MDkzOTY0YmQ2MGE3N2I5Mzc2YjNmMTImcXVvdDs8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFn
+ZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZh
+cmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPlRoYW5rczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+
+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGEgbmFt
+ZT0iX01haWxFbmRDb21wb3NlIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4t
+VVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvYT48L3A+DQo8c3BhbiBzdHlsZT0ibXNvLWJv
+b2ttYXJrOl9NYWlsRW5kQ29tcG9zZSI+PC9zcGFuPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+
+PHNwYW4gbGFuZz0iRU4tVVMiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyI+IFRy
+ZXZvciBXb2VybmVyIFttYWlsdG86dHdvZXJuZXJAZ21haWwuY29tXQ0KPGJyPg0KPGI+U2VudDo8
+L2I+IFN1bmRheSwgSnVseSAyMiwgMjAxOCA1OjQ4IFBNPGJyPg0KPGI+VG86PC9iPiBHaWxsYW5p
+LCBLYXJpbSBDSVRaOkVYICZsdDtLYXJpbS5HaWxsYW5pQGdvdi5iYy5jYSZndDs8YnI+DQo8Yj5D
+Yzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5
+b2N0b10gW21ldGEtcmFzcGJlcnJ5cGldIC0gWDExIEVHTFNWMiBDaHJvbWl1bTxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhpIEthcmltLDxvOnA+PC9vOnA+PC9wPg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Q2FuIHlvdSBwbGVhc2UgYWxzbyBpbmNsdWRlIHRo
+ZSAmcXVvdDtCdWlsZCBDb25maWd1cmF0aW9uJnF1b3Q7IGJsb2NrIHRoYXQncyBwcmludGVkIGF0
+IHRoZSBzdGFydCBvZiB0aGUgYnVpbGQ/IFRoYXQgd2F5IHdlIGtub3cgd2hhdCBsYXllcnMgeW91
+J3JlIHVzaW5nLCBhbmQgd2hpY2ggYnJhbmNoZXMvY29tbWl0cyBvZiB0aG9zZSBsYXllcnMuPG86
+cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
+YnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkJlc3Qg
+cmVnYXJkcyw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPiZuYnNwOyAmbmJzcDsgVHJldm9yPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-- Steve
-
->=20
->> SRC_URI[md5sum] =3D "a5cb3babd85a94fda2905cc3db5e7825"
->>=20
->> COMPATIBLE_MACHINE =3D "raspberrypi3-64"
->>=20
->> the error:
->>=20
->> WARNING: =
-/data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linu=
-x-yocto-custom.bb: Exception during build_dependencies for =
-PKG_kernel-base
->> WARNING: =
-/data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linu=
-x-yocto-custom.bb: Error during finalise of =
-/data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linu=
-x-yocto-custom.bb
->> ERROR: ExpansionError during parsing =
-/data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linu=
-x-yocto-custom.bb
->> Traceback (most recent call last):
->> bb.data_smart.ExpansionError: Failure expanding variable =
-PKG_kernel-base, expression was =
-kernel-${@legitimize_package_name('${@get_kernelversion_headers('/data/dev=
-elopment/lfs/yocto/build/spark/raspberrypi3-64/tmp/work/raspberrypi3_64-po=
-ky-linux/linux-yocto-custom/4.14.4+git${SRCPV}-r0/linux-raspberrypi3_64-st=
-andard-build')}')} which triggered exception SyntaxError: invalid syntax =
-(PKG_kernel-base, line 1)
->>=20
->=20
-
-
---Apple-Mail=_98CC42F5-FFAA-4B9C-A475-1275700D40DC
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Jul 26, 2018, at 9:57 PM, ChenQi &lt;<a =
-href=3D"mailto:Qi.Chen@windriver.com" =
-class=3D"">Qi.Chen@windriver.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D"">
- =20
-    <meta content=3D"text/html; charset=3Dutf-8" =
-http-equiv=3D"Content-Type" class=3D"">
- =20
-  <div bgcolor=3D"#FFFFFF" text=3D"#000000" class=3D"">
-    <div class=3D"moz-cite-prefix">On 07/27/2018 12:56 AM, Steve Pavao
-      wrote:<br class=3D"">
-    </div>
-    <blockquote =
-cite=3D"mid:4B83820E-84AB-43C5-9458-18EF4BCB3EFD@korgrd.com" type=3D"cite"=
- class=3D"">
-      <pre wrap=3D"" class=3D"">Hello -
-
-I=E2=80=99m trying to build using a custom 64-bit kernel at head of =
-sumo, but I get an error.  It seems that SRCPV cannot be resolved.    =
-Please send any ideas you may have about how I may adapt my recipe to =
-get it to work.
-
-Normally, I use the default meta-raspberrypi kernel, but for this build, =
-I am using PREFERRED_PROVIDER_virtual/kernel =3D "linux-yocto-custom=E2=80=
-=9D in my local.conf
-
-My simple kernel recipe is in linux-yocto-custom.bb.  (It is based on =
-the example recipe).
-
-inherit kernel
-require recipes-kernel/linux/linux-yocto.inc
-
-PV =3D "${LINUX_VERSION}+git${SRCPV}"
-PR =3D "r0"
-
-LINUX_VERSION ?=3D "4.14.4"
-LINUX_VERSION_EXTENSION_append =3D "-xenomai-ipipe-arm64"
-
-SRC_URI =3D <a class=3D"moz-txt-link-rfc2396E" =
-href=3D"http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp;branch=3D=
-master;nocheckout=3D1">"http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=
-=3Dhttp;branch=3Dmaster;nocheckout=3D1"</a>
-SRCREV =3D "133bbf97672ff6e72fc21784b8ae44b194b76626"</pre>
-    </blockquote>
-    <br class=3D"">
-    Try:<br class=3D"">
-    <pre wrap=3D"" class=3D"">SRC_URI =3D <a =
-class=3D"moz-txt-link-rfc2396E" =
-href=3D"http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp;branch=3D=
-master;nocheckout=3D1">"http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=
-=3Dhttp;branch=3Dmaster;nocheckout=3D1;name=3Dmachine"</a>
-SRCREV_machine =3D "133bbf97672ff6e72fc21784b8ae44b194b76626"</pre>
-    Best Regards,<br class=3D"">
-    Chen Qi<br class=3D""></div></div></blockquote><div><br =
-class=3D""></div><div>Thanks for the idea, Chean Qui. &nbsp;I tried it, =
-but I still got the same WARNINGS and ERROR.</div><div><br =
-class=3D""></div><div>- Steve</div><div><br class=3D""></div><blockquote =
-type=3D"cite" class=3D""><div class=3D""><div bgcolor=3D"#FFFFFF" =
-text=3D"#000000" class=3D"">
-    <br class=3D"">
-    <blockquote =
-cite=3D"mid:4B83820E-84AB-43C5-9458-18EF4BCB3EFD@korgrd.com" type=3D"cite"=
- class=3D"">
-      <pre wrap=3D"" class=3D"">SRC_URI[md5sum] =3D =
-"a5cb3babd85a94fda2905cc3db5e7825"
-
-COMPATIBLE_MACHINE =3D "raspberrypi3-64"
-
-the error:
-
-WARNING: =
-/data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linu=
-x-yocto-custom.bb: Exception during build_dependencies for =
-PKG_kernel-base
-WARNING: =
-/data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linu=
-x-yocto-custom.bb: Error during finalise of =
-/data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linu=
-x-yocto-custom.bb
-ERROR: ExpansionError during parsing =
-/data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linu=
-x-yocto-custom.bb
-Traceback (most recent call last):
-bb.data_smart.ExpansionError: Failure expanding variable =
-PKG_kernel-base, expression was =
-kernel-${@legitimize_package_name('${@get_kernelversion_headers('/data/dev=
-elopment/lfs/yocto/build/spark/raspberrypi3-64/tmp/work/raspberrypi3_64-po=
-ky-linux/linux-yocto-custom/4.14.4+git${SRCPV}-r0/linux-raspberrypi3_64-st=
-andard-build')}')} which triggered exception SyntaxError: invalid syntax =
-(PKG_kernel-base, line 1)
-
-</pre>
-    </blockquote><p class=3D""><br class=3D"">
-    </p>
-  </div>
-
-</div></blockquote></div><br class=3D""></body></html>=
-
---Apple-Mail=_98CC42F5-FFAA-4B9C-A475-1275700D40DC--
+--_000_0f2ce1eae64742d8a870a9c8b5cfa033E3PMBX02idirBCGOV_--
