@@ -1,20 +1,17 @@
-Return-Path: <mohammad.rasim96@gmail.com>
+Return-Path: <vikram.chhibber@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB327E00C74; Mon, 23 Jul 2018 08:37:51 -0700 (PDT)
+	id 03FFCE00C77; Mon, 23 Jul 2018 10:30:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_WEB autolearn=no version=3.3.1
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mohammad.rasim96[at]gmail.com)
-	*  1.5 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
-	*      [58.225.23.18 listed in dnsbl.sorbs.net]
+	mail provider *      (vikram.chhibber[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.46 listed in list.dnswl.org]
+	*      [209.85.223.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -23,55 +20,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl0-f46.google.com (mail-pl0-f46.google.com
-	[209.85.160.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32216E00A04
-	for <yocto@yoctoproject.org>; Mon, 23 Jul 2018 08:37:50 -0700 (PDT)
-Received: by mail-pl0-f46.google.com with SMTP id j8-v6so320812pll.12
-	for <yocto@yoctoproject.org>; Mon, 23 Jul 2018 08:37:50 -0700 (PDT)
+Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE966E00A04
+	for <yocto@yoctoproject.org>; Mon, 23 Jul 2018 10:30:41 -0700 (PDT)
+Received: by mail-io0-f174.google.com with SMTP id q9-v6so1206947ioj.8
+	for <yocto@yoctoproject.org>; Mon, 23 Jul 2018 10:30:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language;
-	bh=0x55d3hNALXzEow/0IQa2zn78kjwk98lARhTKtvT8O8=;
-	b=Ab+QxSJjIZJby6+9xkZT5tS3jqFVcNwL/tcplqGeZqT+QtXdEIWHWCc+5iR+bND7Zr
-	w0uxc4SSqP848PhJXgJt/ac1z53G6a2NQMrsnqMlGh00ekfeFkbq90l0BN9FXyiGN/QF
-	3RIUryECUL2lFh2caXIABReDUwXCLtWqeGGHdfT9BE5O7O36soCvcIVBw5mAWkhg6jag
-	inA0uczCi3yBUKv0OmiXxKWHuWEMO1ZusQBjb1LwTQCxLuaw2RZf39G1upUkfnz8cv8i
-	u651/JQbUGhF0GkJDBAYEtxRURX7anxFM+QCDWWUtP5DKTOJ3pXBPrmfO6HLlFiuNpnQ
-	wO+w==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=S9ZJGpILm51uFS7ngzBUr2GlB+ODeP9SaFiuCI753S8=;
+	b=iWABvcddKOIDj/pUX+5Oc9Lvt9PSZK0Gnd2gUm3XM5HUXqdEcnW7mUrTTnhwJjZyEs
+	MUEIZD00z0mo1iWnfjJXgtrZ8EVQtPc7CVggLWJXXrloqrPMjzjk7OGJbo0RM/T4mJwK
+	Kkx5MoLm1EMdSrL1yqRZ31K0JLODGZP1QgR/KQ+/xq4WkUFztpMI+h5Ih9SG7dneAPLI
+	ZzQZ1n85co7fIEKN5EYNZ3X0/XVt+5e9/yUR9mrjPLfjEC8M8MunLzwJgFueY4proB1r
+	HGDbqQOqUMu88E+VQT8ZTu/JihJWxGuVx26/XrCFC+ypsqwW0G+4VlsvX4/iwKAz/dBX
+	+Fjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=0x55d3hNALXzEow/0IQa2zn78kjwk98lARhTKtvT8O8=;
-	b=m8ic5uuot1YyMxGIGywXqEbJ7hJFzBYz+xPsj2bnUmnNgp5EOK/Gx1pdbs+R7qz/NJ
-	rf5MWRyeoSV5lXxVQMrVdjug8Pyjo23HmtqbY7ZSJKF+Jai+3N0mIDtse7087pAFqCsP
-	GAtMIVg3xHTZ4mvPvKXoqcU8K0aOpT8xkon4aL4l+1Vr2ZObeOOLwlDOYP2X6igbuRnP
-	mFWLEXM/v0/88uJM3NhfN08p1PJRl5lLuIHhC+C6BLR9GA10dpUwzEAtA/r9qY42ZoY6
-	bVIzHYYlY6RaZey6f5fDdSJTZ0F7eezyh4UFmJTX93qaBjqKtEscMtq4XivrXjsEd4sB
-	2qPw==
-X-Gm-Message-State: AOUpUlEzuroi9y3IEAZbP7trF/oqyrwcnv/vXUB8JY4NPTA41PFyCS5P
-	noP2PQaLy3Ww1JPg9HXLCQQ+X3Us9+b6vw==
-X-Google-Smtp-Source: AAOMgpd2V8WbFzRb6cs7sjJVX74cyHbM4He2Xm+LZUOIp7auqUbBCLiUh8m9QisxoCbTmPeHdOyyng==
-X-Received: by 2002:a17:902:70cc:: with SMTP id
-	l12-v6mr13406957plt.132.1532360270171; 
-	Mon, 23 Jul 2018 08:37:50 -0700 (PDT)
-Received: from [10.211.4.220] ([58.225.23.18])
-	by smtp.gmail.com with ESMTPSA id
-	2-v6sm6380328pfs.58.2018.07.23.08.37.46
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 23 Jul 2018 08:37:49 -0700 (PDT)
-To: Rudolf J Streif <rudolf.streif@gmail.com>, yocto@yoctoproject.org
-References: <1e741f3f-f20e-4e38-d9ec-643e22b34e2d@gmail.com>
-	<fa1281bd-1bb1-7126-d142-1ca4e599794a@gmail.com>
-From: MOHAMMAD RASIM <mohammad.rasim96@gmail.com>
-Message-ID: <e538eb13-26ff-edbb-cedd-f6fbfc2e6847@gmail.com>
-Date: Mon, 23 Jul 2018 18:37:39 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=S9ZJGpILm51uFS7ngzBUr2GlB+ODeP9SaFiuCI753S8=;
+	b=FC7yYsPuGJzzBv/9ZQzDW8k3QIeXQYhrdUgtPHnh5nWPXGkLs17gra/1qxUKXbjLC+
+	q6MfcsK9RjUOD+sW5xgEu9KvWhns2hrctHWSWs+n+YQ58io2bPNO3Dl6sBuSL4G1QceW
+	aCKICUTVxPT7BtW3xsL9V5Y3+5Vqd1TQ7IImDwQTufxpljtOvx1/FSf2JaejUOj/np3m
+	iT+gnl6WeIQdqP2ht+iX4URtKMffGxlNqucZmQF1fxtFS1cMt06OCw5RxrMuuBIVRAnU
+	M8D/uGjw/0Ge7P1tZETz2WBNnOQZs9lBPsVoQ3ozhIIabkkuxxkhq/m/y8SCZJ2y9BgB
+	86Bw==
+X-Gm-Message-State: AOUpUlHSF7b8HdTSvt12065FdsNSgnOXm2asCs4EV/i7bzjrazaAUJBt
+	r75BQ68h+RenqTCMSpz5mSMeHZJg4fptxd3leQ==
+X-Google-Smtp-Source: AAOMgpfJpu/jV6TTRYIlL2tVrEGSxLZ+jCIjlJNPB9yI+PECWTKnony2vwByBI1FdKDB1kwwVofHw6Yhwczfhqb8z9k=
+X-Received: by 2002:a6b:f308:: with SMTP id
+	m8-v6mr10600290ioh.253.1532367041294; 
+	Mon, 23 Jul 2018 10:30:41 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <fa1281bd-1bb1-7126-d142-1ca4e599794a@gmail.com>
-Subject: Re: How to tell bitbake my prefered terminal in for devshell and access bitbake datastore?
+References: <CALBAsRyftz1B2WKvH4Gf4eouyyfii5hjRyD9SqfGTK5XvinXHA@mail.gmail.com>
+	<f55dfea1-6c9f-dd41-0bd3-5fe93126b794@windriver.com>
+In-Reply-To: <f55dfea1-6c9f-dd41-0bd3-5fe93126b794@windriver.com>
+From: Vikram Chhibber <vikram.chhibber@gmail.com>
+Date: Mon, 23 Jul 2018 10:30:29 -0700
+Message-ID: <CALBAsRwS7cEcx1mp3GGx4vWeLzjW7i0MNcN-aO0o+Mog3xbdYQ@mail.gmail.com>
+To: mark.hatle@windriver.com
+Cc: yocto@yoctoproject.org
+Subject: Re: Reg. rpm changelog
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,135 +73,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jul 2018 15:37:51 -0000
-Content-Type: multipart/alternative;
-	boundary="------------98CF5FE47B7130FDFAFBA70E"
-Content-Language: en-US
+X-List-Received-Date: Mon, 23 Jul 2018 17:30:43 -0000
+Content-Type: multipart/alternative; boundary="000000000000297bce0571ae0100"
 
---------------98CF5FE47B7130FDFAFBA70E
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000297bce0571ae0100
+Content-Type: text/plain; charset="UTF-8"
 
+Thanks Mark. Is it possible to somehow use already created changelog while
+building rpm?
 
-Thanks, the OE_TERMINALvariable did it for me
+Thanks
 
->You cannot access d if you mean that
+On Tue, Jul 17, 2018 at 11:51 AM Mark Hatle <mark.hatle@windriver.com>
+wrote:
 
-I don't mean d the object but the variables that are accessed by 
-d.getVar method.
-
->all the variables are exported to the shell.
-
-What variables exactly? I just tried to echo some of the machine config 
-and recipe variables and they don't exist inside the devshell
-
-On 07/23/2018 06:05 PM, Rudolf J Streif wrote:
-> You can use the variable OE_TERMINAL to choose your preferred terminal.
-> By default it's set to auto and Bitbake figures out what terminal is
-> available on your system. Please refer to the manual at:
-> https://www.yoctoproject.org/docs/2.5/mega-manual/mega-manual.html#var-OE_TERMINAL.
+> On 7/17/18 1:39 PM, Vikram Chhibber wrote:
+> > Hi All,
+> >
+> > I use the rpm created from my recipe and I need to know if there is a
+> way to add
+> > changelog to this rpm. I should be able to use "rpm -q --changelog"
+> option to
+> > display this changelog.
+> >
+> > Please let me know if this is possible.
 >
->> Also, is it possible to access bitbake datastore from inside the
-> devshell(or devpyshell) ?
+> No.  Others have talked about it, but changelog information is stored in
+> the
+> respective layers (.bb, .bbappend, .bbclass, etc) that make up the recipes
+> and
+> would have to be distilled..
 >
-> You cannot access d if you mean that, however, all the variables are
-> exported to the shell.
+> It should be possible, but nobody has done this that I know of.
 >
-> :rjs
+> (Rough way to do it.. find all of the files that went into a recipe.. then
+> run a
+> git scm command looking for changes to those files, capturing them in an
+> RPM
+> changelog like format.)
+>
+> --Mark
+>
+> > Thanks
+> >
+> >
 >
 >
-> On 07/23/2018 02:49 AM, MOHAMMAD RASIM wrote:
->> Hi,
->>
->> when running bitbake with a recipe and giving the devshell as a
->> command bitbake runs the devshell inside xterm, on my other machine it
->> runs tmux.
->>
->> looking at the openembedded source code here
->> https://github.com/openembedded/openembedded-core/blob/master/meta/lib/oe/terminal.py
->>
->> I can see there are multiple classes for terminals that bitbake loop
->> through, but how can I tell bitbake that I prefer a certain terminal?
->>
->> Also, is it possible to access bitbake datastore from inside the
->> devshell(or devpyshell) ?
->>
->> Regards
->>
 
+--000000000000297bce0571ae0100
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------98CF5FE47B7130FDFAFBA70E
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+<div dir=3D"ltr">Thanks Mark. Is it possible to somehow use already created=
+ changelog while building rpm?<div><br></div><div>Thanks</div></div><br><di=
+v class=3D"gmail_quote"><div dir=3D"ltr">On Tue, Jul 17, 2018 at 11:51 AM M=
+ark Hatle &lt;<a href=3D"mailto:mark.hatle@windriver.com">mark.hatle@windri=
+ver.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On 7/17/18 1=
+:39 PM, Vikram Chhibber wrote:<br>
+&gt; Hi All,<br>
+&gt; <br>
+&gt; I use the rpm created from my recipe and I need to know if there is a =
+way to add<br>
+&gt; changelog to this rpm. I should be able to use &quot;rpm -q --changelo=
+g&quot; option to<br>
+&gt; display this changelog.<br>
+&gt; <br>
+&gt; Please let me know if this is possible.<br>
+<br>
+No.=C2=A0 Others have talked about it, but changelog information is stored =
+in the<br>
+respective layers (.bb, .bbappend, .bbclass, etc) that make up the recipes =
+and<br>
+would have to be distilled..<br>
+<br>
+It should be possible, but nobody has done this that I know of.<br>
+<br>
+(Rough way to do it.. find all of the files that went into a recipe.. then =
+run a<br>
+git scm command looking for changes to those files, capturing them in an RP=
+M<br>
+changelog like format.)<br>
+<br>
+--Mark<br>
+<br>
+&gt; Thanks<br>
+&gt; <br>
+&gt; <br>
+<br>
+</blockquote></div>
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    Thanks, the OE_TERMINAL<span class="permalink"> variable did it for
-      me<br>
-    </span><br>
-    <pre wrap="">&gt;You cannot access d if you mean that
-</pre>
-    I don't mean d the object but the variables that are accessed by
-    d.getVar method.<br>
-    <pre>&gt;all the variables are exported to the shell.</pre>
-    What variables exactly? I just tried to echo some of the machine
-    config and recipe variables and they don't exist inside the devshell<br>
-    <br>
-    <span class="permalink"></span>
-    <div class="moz-cite-prefix">On 07/23/2018 06:05 PM, Rudolf J Streif
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:fa1281bd-1bb1-7126-d142-1ca4e599794a@gmail.com">
-      <pre wrap="">You can use the variable OE_TERMINAL to choose your preferred terminal.
-By default it's set to auto and Bitbake figures out what terminal is
-available on your system. Please refer to the manual at:
-<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/docs/2.5/mega-manual/mega-manual.html#var-OE_TERMINAL">https://www.yoctoproject.org/docs/2.5/mega-manual/mega-manual.html#var-OE_TERMINAL</a>.
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">Also, is it possible to access bitbake datastore from inside the
-</pre>
-      </blockquote>
-      <pre wrap="">devshell(or devpyshell) ?
-
-You cannot access d if you mean that, however, all the variables are
-exported to the shell.
-
-:rjs
-
-
-On 07/23/2018 02:49 AM, MOHAMMAD RASIM wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">Hi,
-
-when running bitbake with a recipe and giving the devshell as a
-command bitbake runs the devshell inside xterm, on my other machine it
-runs tmux.
-
-looking at the openembedded source code here
-<a class="moz-txt-link-freetext" href="https://github.com/openembedded/openembedded-core/blob/master/meta/lib/oe/terminal.py">https://github.com/openembedded/openembedded-core/blob/master/meta/lib/oe/terminal.py</a>
-
-I can see there are multiple classes for terminals that bitbake loop
-through, but how can I tell bitbake that I prefer a certain terminal?
-
-Also, is it possible to access bitbake datastore from inside the
-devshell(or devpyshell) ?
-
-Regards
-
-</pre>
-      </blockquote>
-      <pre wrap="">
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------98CF5FE47B7130FDFAFBA70E--
+--000000000000297bce0571ae0100--
