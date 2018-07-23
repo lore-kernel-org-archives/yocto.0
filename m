@@ -1,36 +1,65 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6DFEE00C1E; Mon, 23 Jul 2018 03:19:52 -0700 (PDT)
+	id 91B48E00BB5; Mon, 23 Jul 2018 03:59:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 463A1E00B7D
-	for <yocto@yoctoproject.org>; Mon, 23 Jul 2018 03:19:52 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w6NAJoLk031460
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 23 Jul 2018 03:19:51 -0700
-Received: from pek-lpg-core1.wrs.com (128.224.156.132) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.399.0; Mon, 23 Jul 2018 03:19:50 -0700
-From: Robert Yang <liezhi.yang@windriver.com>
-To: <yocto@yoctoproject.org>, <paul.eggleton@linux.intel.com>
-Date: Mon, 23 Jul 2018 18:30:01 +0800
-Message-ID: <a08dc8b5ece1f1d3db4c1dc7278a38c980d7302f.1532341697.git.liezhi.yang@windriver.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1532341697.git.liezhi.yang@windriver.com>
-References: <cover.1532341697.git.liezhi.yang@windriver.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.47 listed in list.dnswl.org]
+Received: from mail-oi0-f47.google.com (mail-oi0-f47.google.com
+	[209.85.218.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14DF4E00AC5
+	for <yocto@yoctoproject.org>; Mon, 23 Jul 2018 03:59:52 -0700 (PDT)
+Received: by mail-oi0-f47.google.com with SMTP id s198-v6so314039oih.11
+	for <yocto@yoctoproject.org>; Mon, 23 Jul 2018 03:59:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=21srlEeZmip4h8FfG2uxA653GtvdNisTTxaxBoxZTK0=;
+	b=KV6QA7pxiJNE65/e93Xlhkqzy/kdErbIK2qd5T9mtUsd9rQR+qCn3mY7uOeHQw5ImQ
+	s/ME18CcvPRSs9cVA9ci//5S7KsrkCuVY1njh7ZFwOfoptd9L4qrZAzCbRVs952lKvl4
+	7u/NGebeO4VYrr3PUtGkv7npeYsmwlwyqa0FmPK1xOWy0fKz67AvCl407DGL5sM3gcdQ
+	GhSI2n7eJwyaZnO2F+4GxnOkW3HKqH9D/e2qrSAgZLXsToOdlNatLuYMxoiaojqjkYph
+	XMfsSwwuDX0fiIl+vXkHQ3LSDuijPu13BA4UE22HQp0j6TOlN2fK+Ma7JM140tqwdp2k
+	RWVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:content-transfer-encoding;
+	bh=21srlEeZmip4h8FfG2uxA653GtvdNisTTxaxBoxZTK0=;
+	b=KqXuM+Pax7Y/zj2afHftFQCU9omzC9gd5yA2u7Am2EV9jo6V3ezNXI9PgJYv9s7E/U
+	fF2FXaGLCiTksPbKb5WZn/3c8+GZ64Z+PItCEnvx7RG64fR51KNR65qq5nAP3v2Wn+Zz
+	C3tld9pyTKA2hT5r7ChZmSh6WeRqdPNimr2657W8X6PCbWpKH3dzX/fxxAvf/qPK4wtB
+	P9NnoEcFIgtnZVPWLXwHxos+/4WDoi3MzPEHKgA3qsX50CivKbbPB16MmS0WH7t3bXtS
+	7fba0h7FPJyVANjRInS3T+tyZB3tPS9S3DDzSau1ytQ2EbX27VDnN0liV5sws5jn4/0j
+	iamA==
+X-Gm-Message-State: AOUpUlHk1wCjesM2qb7zmfvgGTkCSyOOWdxYtkvaEsBP8+EucXkkG7mt
+	Msphr8r1+mOG2vLZNT1tV/+zU2oL6oa7j7YXUtvFdw==
+X-Google-Smtp-Source: AAOMgpe3paMYsroKI1wu321zo9VqXzp38v0MBJSUEsrS95d0/7GmMpIuGa7t5oTsQhaFGBBnewX71yvuShU5a1LjK/0=
+X-Received: by 2002:aca:f409:: with SMTP id
+	s9-v6mr8530826oih.102.1532343592593; 
+	Mon, 23 Jul 2018 03:59:52 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [layerindex-web][PATCH 1/1] import_layer.py: add -t option for layer_type
+Received: by 2002:ac9:6845:0:0:0:0:0 with HTTP; Mon, 23 Jul 2018 03:59:32
+	-0700 (PDT)
+In-Reply-To: <3c97b7e9.c148.164c6c42e67.Coremail.13824125580@163.com>
+References: <3fcef217.a96b.164c6616b92.Coremail.13824125580@163.com>
+	<CAJTo0LYL1eMn_-UceCKC9iKXw55DHAtW-QXQe6_3mTxEOHitWg@mail.gmail.com>
+	<3c97b7e9.c148.164c6c42e67.Coremail.13824125580@163.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 23 Jul 2018 11:59:32 +0100
+Message-ID: <CAJTo0LayFeK4Vx4VJqqVVKXuBsvxJhtq1NQhq3wG4jm7-ojjxw@mail.gmail.com>
+To: tugouxp <13824125580@163.com>, Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: "Unable to find header curl/curlbuild.h" error on porting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,78 +71,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jul 2018 10:19:52 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 23 Jul 2018 10:59:53 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Now the logic is:
-Use options.layer_type if specified, guess if not, default to 'M'.
+Please remember to CC the list to that everyone can see.
 
-Note choices=['A', 'B', 'S', 'D', 'M', ''], the '' is for default='', we can't
-use default='M' here, otherwise we don't know whether the 'M' is specified by
-user or not, we don't guess if it is specified by user, otherwise, guess.
+On 23 July 2018 at 11:51, tugouxp <13824125580@163.com> wrote:
+> hi burton:
+>   thanks for your answer. so  how to dealt with this, seems two selection=
+.
+>
+> 1. revert the version of curl
+> 2. remove =E2=80=9Coe_multilib_header=E2=80=9D
+>
+> i am a fresh man on yocto, so how to achieve the 2nd scheme?
 
-Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
----
- layerindex/tools/import_layer.py | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
+In the recipe there is a do_install_append block which calls
+oe_multiilb_header, delete it.
 
-diff --git a/layerindex/tools/import_layer.py b/layerindex/tools/import_layer.py
-index 2413cff..0d501f6 100755
---- a/layerindex/tools/import_layer.py
-+++ b/layerindex/tools/import_layer.py
-@@ -189,6 +189,10 @@ def main():
-     parser.add_option("-s", "--subdir",
-             help = "Specify subdirectory",
-             action="store", dest="subdir")
-+    parser.add_option("-t", "--type",
-+            help = "Specify layer type. A: Base, B: Machine(BSP), S: Software, D: Distribution, M: Miscellaneous",
-+            choices=['A', 'B', 'S', 'D', 'M', ''],
-+            action="store", dest="layer_type", default='')
-     parser.add_option("-n", "--dry-run",
-             help = "Don't write any data back to the database",
-             action="store_true", dest="dryrun")
-@@ -263,7 +267,6 @@ def main():
-             layer = LayerItem()
-             layer.name = layer_name
-             layer.status = 'P'
--            layer.layer_type = 'M'
-             layer.summary = 'tempvalue'
-             layer.description = layer.summary
- 
-@@ -349,11 +352,18 @@ def main():
- 
- 
-                 logger.info('Creating layer %s' % layer.name)
--                # Guess layer type
--                if glob.glob(os.path.join(layerdir, 'conf/distro/*.conf')):
-+                # Guess layer type if not specified
-+                if options.layer_type:
-+                    layer.layer_type = options.layer_type
-+                elif layer.name in ['openembedded-core', 'meta-oe']:
-+                    layer.layer_type = 'A'
-+                elif glob.glob(os.path.join(layerdir, 'conf/distro/*.conf')):
-                     layer.layer_type = 'D'
-                 elif glob.glob(os.path.join(layerdir, 'conf/machine/*.conf')):
-                     layer.layer_type = 'B'
-+                else:
-+                    layer.layer_type = 'M'
-+
-                 layer.save()
-                 layerbranch = LayerBranch()
-                 layerbranch.layer = layer
-@@ -411,11 +421,9 @@ def main():
- 
-                 if layer.name == 'openembedded-core':
-                     layer.summary = 'Core metadata'
--                    layer.layer_type = 'A'
-                 elif layer.name == 'meta-oe':
-                     layer.summary = 'Additional shared OE metadata'
-                     layer.description = layer.summary
--                    layer.layer_type = 'A'
- 
-                 if maintainers:
-                     maint_re = re.compile(r'^"?([^"@$<>]+)"? *<([^<> ]+)>[ -]*(.+)?$')
--- 
-2.7.4
-
+Ross
 
