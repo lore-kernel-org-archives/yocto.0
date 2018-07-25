@@ -1,17 +1,17 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <bluehills7@comcast.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E89FBE00BAF; Wed, 25 Jul 2018 01:23:39 -0700 (PDT)
+	id 67C51E00BAF; Wed, 25 Jul 2018 06:01:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.176 listed in list.dnswl.org]
+	mail provider *      (bluehills7[at]comcast.net)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [69.252.207.33 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,54 +19,50 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f176.google.com (mail-qt0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6647EE00B6C
-	for <yocto@yoctoproject.org>; Wed, 25 Jul 2018 01:23:37 -0700 (PDT)
-Received: by mail-qt0-f176.google.com with SMTP id n6-v6so6826148qtl.4
-	for <yocto@yoctoproject.org>; Wed, 25 Jul 2018 01:23:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=zW5GBCJ8sTPqvpKm0RxRIMNtnFj5fuYdYIOmBetVV2k=;
-	b=XHXKWKfYWWV3OMGCzDTsk8V9GNZb9JW066/mVNrPTE0+dimjm1YIPsFrVwW/cqJHfY
-	Mp8TKBtEVfnZyZnHCSmvIfOjFnjZPpt8A9Q17QALMK9AWUDHS5Lp6U6qZoFOuINxgIt+
-	CiQG8PjHY5loS/Mq36t1smcYxVlRlqaw7eZsLV7rtEZDBMbsdixhU/GQTKz6grcfbc72
-	Og6zOenaTzJAObJjCTEXGNr3dqSixiNfknL8DdXFAIVPnylho5tpyeKSN5UmR/FiTnHj
-	chcZU9UG8r3GuatLYU2OyGSNT4uQxy2LqJ2IONgVGeRMTeWZ5TePTdzZ8NSgVV8H8Px/
-	c/Pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=zW5GBCJ8sTPqvpKm0RxRIMNtnFj5fuYdYIOmBetVV2k=;
-	b=i+HrGgLd/mOYkFF5IFvw+qY2xwIygTZ4YE9WMfU0L+TbdqeIw0NtBTMPl+PrwvNaWS
-	JogRk5+F83gs/AcDb+0PCY8Xar0rNmshx9WdyROw2giTIOqd1tiSj9htKpXI8uETl9Gy
-	X7/dOQp/JLDaBx+nqnxAazxbPQS1eg6vmVKr/I8U51HWbJoDsr0GQPNreprN2rxH9GQU
-	jpPfKve2u6ftVrE2ZstgHggafSGL2Ave5roAGRhewfSPUDITj/caFtP3PrJkU/ecmdq+
-	+kOYyfeOUn9N29AuZvyh78vojXyGaSq7Kf2g6XwJ0Wm19SVIv1PWrXunY368oHdcmwZO
-	1RzQ==
-X-Gm-Message-State: AOUpUlFEY3v77ZfEoL5ovFLScZCW5We6KrpZl8QaQKJvy2cibawXMotc
-	0wg8euQyUVg9YvhfAMD4DvBbNAJgifLzHy7iuro=
-X-Google-Smtp-Source: AAOMgpcyOpUXidfvtnfkZkYBOh17vaf+2+oSCZPZmZUMnsuCceSkthIE62fy9TbtzvnwhwbOtvbaAbLRoIRLzQ1nA4w=
-X-Received: by 2002:a0c:9e2a:: with SMTP id
-	p42-v6mr18255642qve.54.1532507016698; 
-	Wed, 25 Jul 2018 01:23:36 -0700 (PDT)
+Received: from resqmta-ch2-01v.sys.comcast.net
+	(resqmta-ch2-01v.sys.comcast.net [69.252.207.33])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3C31E009B9
+	for <yocto@yoctoproject.org>; Wed, 25 Jul 2018 06:01:25 -0700 (PDT)
+Received: from resomta-ch2-15v.sys.comcast.net ([69.252.207.111])
+	by resqmta-ch2-01v.sys.comcast.net with ESMTP
+	id iHyefhHL0NCVoiJPwf2JjV; Wed, 25 Jul 2018 13:01:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+	s=q20161114; t=1532523684;
+	bh=XtiFjINzSBo29YcsKwB7rtc3zzALCTxVH/laec1ob5k=;
+	h=Received:Received:Date:From:Reply-To:To:Message-ID:Subject:
+	MIME-Version:Content-Type;
+	b=ASK3ODYOwSAIrUX+V50NezE1VwVQK33uXyPDKs55He0Jp+q9C8pPwQQTntOk8PX7J
+	l5Oe36Xnujsvili07+O2Z4JfTwK6j/8mLUvssF+ssGizhtzE9exsYpMuoMhIFHnAwd
+	RBSSrAIXg5pW2U3tZKbsOL9fNJSdzl4A3yucoO+iHvurzII72SY6mxHZ0cDaJ7U4A7
+	9luHIsKtM/AmU9joUylXd7w8LSdhurfYGRpSXzQ3eEnyYAb/rikqIMEDf/Bn9EMhNr
+	i2KtREKS0rmcE0expyL4ZThq/qo1SYdObSwaRPD973VjEDjHVAS7Mw7yzfN8GuVAhh
+	QVDKUJLTsJqPg==
+Received: from oxapp-ch2h-08o.email.comcast.net ([96.118.144.91])
+	by resomta-ch2-15v.sys.comcast.net with ESMTPS
+	id iJPwfCQDeMxseiJPwfUg6J; Wed, 25 Jul 2018 13:01:24 +0000
+Date: Wed, 25 Jul 2018 09:01:24 -0400 (EDT)
+From: RUSSELL PETERSON <bluehills7@comcast.net>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <2104577883.536094.1532523684485@connect.xfinity.com>
+In-Reply-To: <894173275.508644.1532435764564@connect.xfinity.com>
+References: <16C5EFE1-1FE0-4E48-9797-EEC5E54033AB@comcast.net>
+	<CAMKF1so968sUsO8bdbvndD=VyVO_rxriC3kssO_K4V875M-byg@mail.gmail.com>
+	<48A03EA7-A9B1-4249-8AF8-91EC5BA1CD38@comcast.net>
+	<894173275.508644.1532435764564@connect.xfinity.com>
 MIME-Version: 1.0
-Received: by 2002:a0c:ad5d:0:0:0:0:0 with HTTP; Wed, 25 Jul 2018 01:23:36
-	-0700 (PDT)
-In-Reply-To: <CAJ86T=WENY_jRwhSLJmLXjm7_RbnCJx-fqesWwJw7P2jZh=u4g@mail.gmail.com>
-References: <e90846d06efa4e6c8a9fc52370af9ada@sakuraus.com>
-	<CAJ86T=WENY_jRwhSLJmLXjm7_RbnCJx-fqesWwJw7P2jZh=u4g@mail.gmail.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 25 Jul 2018 10:23:36 +0200
-Message-ID: <CAGAf8LxYwcCUasWAghC431v3Htptfki8WfCxvTHB73Jjv9K75w@mail.gmail.com>
-To: Andre McCurdy <armccurdy@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Can't get *.a's into SDK sysroot
+X-Priority: 3
+Importance: Medium
+X-Mailer: Open-Xchange Mailer v7.8.4-Rev26
+X-Originating-IP: ::ffff:216.156.69.42
+X-Originating-Client: open-xchange-appsuite
+X-CMAE-Envelope: MS4wfJMKN6e/dNwEQBxc8mBbf1PXS2NBeCz8viK5dDBxzGyzWN8jbpYl2h5o0TfxqBFM+ixjxfsIIHK5ZEUAFWlK5n7wEgmPOwm4fZLJFY4o65MjTPPsspEm
+	+/JIm7Rf0Az4rOgUleqBtU2CwBqNr1M6/XgkywznCBGu+rAgJ1+gQynXu7AZDffsYF0QZOdMADfaKR2f9K6amgH1/DP4FdMjXD99OzgYtwq1rmnEfcbTa8Hb
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: SDK and out of tree modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: RUSSELL PETERSON <bluehills7@comcast.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -75,219 +71,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Jul 2018 08:23:40 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 25 Jul 2018 13:01:26 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello Andre,
+So, this seems broken to me.  I managed to get around this issue (sstate-co=
+ntrol/manifest-allarch-kernel-devsrc.populate_sysroot not found?) by append=
+ing PACKAGE_EXTRA_ARCHS with the MACHINE_ARCH for my bsp.  While PACKAGE_AR=
+CHS now has a duplicate in it (it already includes MACHINE_ARCH as well as =
+PACKAGE_EXTRA_ARCH), the python code in staging_populate_sysroot seems to r=
+equire this or it looks for the wrong manifest file.
 
-> RDEPENDS_${PN}-dev +=3D "${PN}-staticdev"
+Also, when building the eSDK, dnf seems very confused about what packages a=
+re compatible.  It's looking for my SoC arch packages... but then won't acc=
+ept aarch64 as being compatible.  I needed to set:
 
-I also read this email, and decided to investigate myself. Since I
-wrote meta-mylayer with cannelloni recipe in it.
+ALL_MULTILIB_PACKAGE_ARCHS =3D+ " ${PACKAGE_EXTRA_ARCHS_tune-${DEFAULTTUNE}=
+}"
 
-To find out if the recipe works correctly, and it is incorporated
-(upfront) in ROOTFS, I did the following:
-[1] Did the compilation of the clean tree;
-[2] After that, I did: bitbake -s | grep cannelloni -> yes, the build
-system sees it;
-[3] Changed to ${TMPDIR}/work and issued the command: find . -name cannello=
-ni
+to get /etc/dnf/vars/arch to update correctly.  This is a bit tedious.  I'm=
+ now having a similar issue because dnf doesn't seem to like an arch of x86=
+_64-nativesdk.  Do I update ALL_MULTILIB_PACKAGE_ARCHS again??  Ug.
 
-To my surprise, the search produced empty results.
+--Russ
+=20
 
-Then I added your line to the cannelloni recipe: RDEPENDS_${PN}-dev +=3D
-"${PN}-staticdev"
-
-Again, bitbake -c cleanall cannelloni, then bitbake cannelloni, and
-step [3] produced visible results.
-
-Now I see it in the .../tmp/work/...
-
-But, there were NOT any changes in: .../tmp/deploy/images/beaglebone/
-directory (in ${build} directory, I guess)???
-
-So, what I need to do to see build components changed (since I assume,
-cannelloni still did not make it in ROOTFS)???
-
-Thank you,
-Zoran
-_______
-
-On Wed, Jul 25, 2018 at 2:08 AM, Andre McCurdy <armccurdy@gmail.com> wrote:
-> On Tue, Jul 24, 2018 at 4:53 PM, Greg Wilson-Lindberg <GWilson@sakuraus.c=
-om>
-> wrote:
->>
->> I've created a recipe for Canfestival (a CAN bus CANOpen support library=
-).
->> I have had it building for a while, but I had the configuration set up t=
-o
->> build all parts of it as .so's. I need to change it so that parts of the
->> library are .a's. My problem is that I can't get the .a's to copy to the=
- SDK
->> sysroot /usr/lib directory. The .a's are in the canfestival image/usr/li=
-b &
->> sysroot-destdir/usr/lib directories, but nothing that I've tried has got=
-ten
->> them to the SDK sysroot.
->>
->>
->>
->> Here is the canfestival_3-asc.bb file that I'm using:
->>
->>
->>
->> SUMMARY =3D "Independent CANOpen=C2=AE stack"
->>
->> DESCRIPTION =3D "CanFestival focuses on providing an ANSI-C platform
->> independent \
->>
->>                CANOpen=C2=AE stack that can be built as master or slave =
-nodes
->> on PCs, \
->>
->>                Real-time IPCs, and Microcontrollers."
->>
->>
->>
->> HOMEPAGE =3D "http://www(dot)canfestival(dot)org/" // obfuscated to get =
-past
->> our email system
->>
->>
->>
->> SRCREV =3D "895:8973dd8be7e8"
->>
->>
->>
->> SRC_URI =3D
->> "hg://bitbucket.org/Mongo;protocol=3Dhttps;module=3Dcanfestival-3-asc \
->>
->>            file://canfestival_3-asc-configure.patch \
->>
->>            file://canfestival_3-asc-makefile.in.patch \
->>
->>            file://canfestival_3-asc-src_makefile.in.patch \
->>
->>            \
->>
->>            file://sdo.c.patch \
->>
->>            file://def.h.patch \
->>
->>            "
->>
->> PR =3D 'r01'
->>
->>
->>
->> LICENSE =3D "LGPLv2"
->>
->> LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D46ec399d3928b6c91e3634ab7263a=
-f44 \
->>
->>                     file://LICENCE;md5=3D085e7fb76fb3fa8ba9e9ed0ce95a43f=
-9"
->>
->>
->>
->> TARGET_CC_ARCH +=3D "${LDFLAGS}"
->>
->>
->>
->>
->>
->>
->>
->> do_configure() {
->>
->>     bbplain "Starting Configure"
->>
->>     #bbplain "rootfs: ${D}"
->>
->>     ./configure --target=3Dunix --prefix=3D${D}/usr/ --can=3Dsocket
->> --timers=3Dunix  --SDO_MAX_SIMULTANEOUS_TRANSFERS=3D30
->> --SDO_MAX_LENGTH_TRANSFER=3D4096 --MAX_NB_TIMER=3D128 --SDO_TIMEOUT_MS=
-=3D3000
->> --debug=3D"WAR"
->>
->>
->>
->>     bbplain "Configure Done"
->>
->> }
->>
->>
->>
->> do_compile() {
->>
->>     oe_runmake canfestival
->>
->> }
->>
->>
->>
->> do_install() {
->>
->>     bbplain "Starting Install"
->>
->>     #bbplain "rootfs: ${D}"
->>
->>     oe_runmake install PREFIX=3D${D}/usr/
->>
->>
->>
->>     bbplain "Install Done"
->>
->> }
->>
->>
->>
->> FILES_${PN}-dbg =3D "/usr/src/debug/canfestival"
->>
->> FILES_${PN}-dev =3D "/usr/lib/libcanfestival*.a
->> /usr/include/canfestival/*.h"
->>
->> FILES_${PN} =3D "/usr/lib/libcanfestival*.a /usr/lib/libcanfestival*.so"
->>
->>
->>
->> #PACKAGE_BEFORE_PN =3D "${PN}-info"
->>
->> #FILES_${PN}-info =3D "usr/lib/pkgconfig"
->>
->>
->>
->> I've fiddled with the various FILES lines, but nothing that I do gets th=
-e
->> .a files copied to the SDK sysroot /usr/lib directory.
->>
->>
->>
->> Any insight into what is going wrong would be greatly appreciated.
->
->
-> Assuming the static libs are being built and installed correctly they sho=
-uld
-> be packaged correctly by the default packaging rules. ie you shouldn't ne=
-ed
-> to tweak any FILES_xxx values.
->
-> However you will need to ensure that the -staticdev package gets included=
- in
-> the SDK. Assuming you always want the static libs for this particular rec=
-ipe
-> to be available then you can try adding the following to the recipe:
->
->   RDEPENDS_${PN}-dev +=3D "${PN}-staticdev"
->
->
->
-> --
+> On July 24, 2018 at 8:36 AM RUSSELL PETERSON <bluehills7@comcast.net> wro=
+te:
+>=20
+>=20
+> I am running Poky Rocko at the HEAD (just updated yesterday) and see the =
+following when I attempt to build the eSDK:
+>=20
+> sstate-control/manifest-allarch-kernel-devsrc.populate_sysroot not found?
+>=20
+> I see this has been an issue with others as well.  It looks like Paul had=
+ a fix around April but then the trail went silent so I'm not sure if there=
+ was a fix or if that fix went into Rocko.  Anyone?
+>=20
+> --Russ
+>=20
+> > On July 21, 2018 at 4:42 PM Russell Peterson <bluehills7@comcast.net> w=
+rote:
+> >=20
+> >=20
+> > No, just the standard SDK.  I was having issues building the eSDK back =
+when we used pyro and never fully figured it out=E2=80=A6 but we have since=
+ upgraded to rocko.  I should revisit the eSDK and see if it works for me n=
+ow or find the root cause since it sounds useful.
+> >=20
+> > Thanks, Khem.
+> >=20
+> > =E2=80=94Russ
+> >=20
+> >=20
+> > > On Jul 21, 2018, at 1:34 PM, Khem Raj <raj.khem@gmail.com> wrote:
+> > >=20
+> > > On Sat, Jul 21, 2018 at 6:20 AM Russell Peterson <bluehills7@comcast.=
+net> wrote:
+> > >>=20
+> > >> Hello,
+> > >>=20
+> > >> I have been building some modules using the SDK for a while now.  Th=
+is is mostly for development flow purposes but we have had a few customers =
+doing this as well.  To get this to work we always need to run =E2=80=9Cmak=
+e silentoldconfig scripts=E2=80=9D inside the RFS of the SDK on the build h=
+ost.  Many folks forget to do this this and thus many, many questions come =
+my way about the SDK being broken and they can=E2=80=99t build their module=
+s (not all users are kernel experts or even intermediates=E2=80=A6 they jus=
+t want to apply a patch and quickly move on to their app).  Is there a way =
+to do this auto-magically during the installation of the SDK by adding some=
+ type of scripts etc=E2=80=A6 to the recipe?  I assume it needs to be done =
+at install time since while the build host is x86=E2=80=A6 the exact linux =
+distro is not known until then (or does that matter?).
+> > >>=20
+> > >=20
+> > > are you using extensible SDK ? in that case I think do_make_scripts
+> > > from module-base.bbclass should be helpful
+> > >=20
+> > >> =E2=80=94Russ
+> > >>=20
+> > >> --
+> > >> _______________________________________________
+> > >> yocto mailing list
+> > >> yocto@yoctoproject.org
+> > >> https://lists.yoctoproject.org/listinfo/yocto
+> >=20
+> > --=20
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> --=20
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
 
