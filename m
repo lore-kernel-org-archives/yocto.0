@@ -1,65 +1,36 @@
-Return-Path: <simon.chamlian@mpbc.ca>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 69F83E00CE7; Wed, 25 Jul 2018 12:45:36 -0700 (PDT)
+	id 4112BE00CE7; Wed, 25 Jul 2018 14:11:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.220.179 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3216E00CC8
-	for <yocto@yoctoproject.org>; Wed, 25 Jul 2018 12:45:35 -0700 (PDT)
-Received: by mail-qk0-f179.google.com with SMTP id z74-v6so5699995qkb.10
-	for <yocto@yoctoproject.org>; Wed, 25 Jul 2018 12:45:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mpbc-ca.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=wJUNZsy3LyRVAKcTKO3H95nMSgTHF5eqcoLYxmUBCiY=;
-	b=fSwlCOnmvx+0LDfot45n934uS2qQSIYnnDnUKykLazG7fp2oop8gjEZr3JTacneLhg
-	1fFYdTWaab6vRzFj2Z7l7MLarfYZ4DG1XRwVV7xV8YMgoHk9+RCxjrd0uNPnrI6UxSjc
-	+jh9+tTRFoykKrbtRaSvARAVkSakTgb0QYgBkhuCvIzNF1jzA+jHHp3J8JhjesnepnX0
-	6Lu6L59s+eUV61/q6nUvjTWd7KNTLPLLMx2mBU9qtqhaZxm8VF1ypzXhiD1n5/hH9+u6
-	zH2kFS/HI8tS68khnfDoanXe6FEQ21z9QYkYWdJl0cq1opfshpWrTDmDQvqxtLAfiNjr
-	xRNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=wJUNZsy3LyRVAKcTKO3H95nMSgTHF5eqcoLYxmUBCiY=;
-	b=mv7DYARS5HUZSGDPpnHaFns/fzdsbESNq2x0byBH5mE5kgKjtvaCnxWbD41XbIYZUs
-	3w8hi54t6kXBoBSN9PXMcC5RoGRmXZhumncT1OHx8AJu/7Eo/7o9uPwlr7bSZY3XKXBN
-	kid9if8eADvsmjNDc4PCgsRmGfbxvI9M3G9AF6xdm+IKVEZXPtvPEwfvM1sZy83t33m3
-	eSmaFlvJ/YQ+14Hd+8rqlD+A2zYXhP8q1gTrr/qHKokUoxPqfURnqiUSiXG8A5tlRb6c
-	BiQvri0//Wk+Eqd6uBCCk6Uy1LgxOu19fN1rKwhRkn6I9DX7g8wBZoltrQmLjp/IGRwq
-	LBOQ==
-X-Gm-Message-State: AOUpUlH61OdAjqzA5bf6Np/gHPHBhNYLa8YF55DBFg008a8XWLNKlHEj
-	1OTpgjwY7c0Ce92KD4o/rTfhb1d43e1kP3+gC35WrQ==
-X-Google-Smtp-Source: AAOMgpeMDQ5SCb9FOwZJgXKur+khod2O252B6hB9dWUzrQOlPnV9YDGPSqJYmM68z5K0oiz8T2BV8lscJVL8KpMvclE=
-X-Received: by 2002:a37:c595:: with SMTP id
-	k21-v6mr20215524qkl.330.1532547935212; 
-	Wed, 25 Jul 2018 12:45:35 -0700 (PDT)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 942BAE00CC8;
+	Wed, 25 Jul 2018 14:11:46 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	25 Jul 2018 14:11:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,402,1526367600"; d="scan'208";a="57166062"
+Received: from kkkarthi-mobl.amr.corp.intel.com ([10.254.99.63])
+	by fmsmga007.fm.intel.com with ESMTP; 25 Jul 2018 14:11:42 -0700
+From: Tracy Graydon <tracy.graydon@intel.com>
+To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
+Message-ID: <a73ddecc-38cd-edaa-52c5-8ebf097171d8@intel.com>
+Date: Wed, 25 Jul 2018 14:11:42 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.1.0
 MIME-Version: 1.0
-Received: by 2002:ac8:856:0:0:0:0:0 with HTTP;
-	Wed, 25 Jul 2018 12:45:34 -0700 (PDT)
-In-Reply-To: <CAJ86T=VhRDCrir+7UTGurE32kgwAuRM2n3jWNFiofEA_uEehNg@mail.gmail.com>
-References: <CANmTPBb=YUAtLAqXz89GTbcpxt=o1uSRzaRhXVei8Dh6BtYEFg@mail.gmail.com>
-	<CAJ86T=VhRDCrir+7UTGurE32kgwAuRM2n3jWNFiofEA_uEehNg@mail.gmail.com>
-From: Simon Chamlian <simon.chamlian@mpbc.ca>
-Date: Wed, 25 Jul 2018 15:45:34 -0400
-Message-ID: <CANmTPBZrGCNFXvCwNmpbiCHfno3GXX5MAqj4hBgau6_xE7wf3g@mail.gmail.com>
-To: Andre McCurdy <armccurdy@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to enable http2 for Apache?
+Subject: [ANNOUNCEMENT] Yocto Project 2.2.4 (morty 16.0.4) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,73 +42,295 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Jul 2018 19:45:36 -0000
-Content-Type: multipart/alternative; boundary="00000000000047a9460571d81fe2"
+X-List-Received-Date: Wed, 25 Jul 2018 21:11:49 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---00000000000047a9460571d81fe2
-Content-Type: text/plain; charset="UTF-8"
+Hello,
 
-Trial and errors.
+The latest release of the Yocto Project 2.2.4 (morty-16.0.4) is now available for download at:
 
-Is there another way of enabling http2  ?
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.2.4/poky-morty-16.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.2.4/poky-morty-16.0.4.tar.bz2
 
-In general, if we wish to add flags to a compilation of a package, what is
-the proper way of doing it?
-Changing the local.conf or the recipe of a given package?
+A gpg signed version of these release notes is available at:
+
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.2.4/RELEASENOTES
+
+Full pass test report is available at:
+
+https://wiki.yoctoproject.org/wiki/WW28_-_2018-07-13_-_Full_Test_Cycle_2.2.4_rc1
+
+Thank you to everyone for your contributions to this release!
+
+Tracy Graydon
+Yocto Project Build and Release
+tracy.graydon@intel.com
 
 
+------------------
+yocto-2.2.4 Errata
+--------------------
+
+Release Name: eclipse-poky-neon-morty-16.0.4
+Branch: neon/morty
+Tag: neon/morty-16.0.4
+Hash: a5dbc01b96be55c4ec2f774af9996a8086e402ab
+md5: 729602a68642b33c340209e02caad8e2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.2.4/eclipse-poky-neon-morty-16.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.2.4/eclipse-poky-neon-morty-16.0.4.tar.bz2
+
+Release Name: eclipse-poky-oxygen-morty-16.0.4
+Branch: oxygen/morty
+Tag: oxygen/morty-16.0.4
+Hash: 020fc5814d2028654879356296b647002caf30b6
+md5: f247ab6afc58ab04cdac5edce1149f7f
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.2.4/eclipse-poky-oxygen-morty-16.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.2.4/eclipse-poky-oxygen-morty-16.0.4.tar.bz2
+
+Release Name: meta-qt3-morty-16.0.4
+Branch: morty
+Tag: morty-16.0.4
+Hash: f33b73a9563f2dfdfd0ee37b61d65d90197a456f
+md5: d3fcb000c74c412cc74afc39e3f0e365
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.2.4/meta-qt3-morty-16.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.2.4/meta-qt3-morty-16.0.4.tar.bz2
+
+Release Name: meta-qt4-morty-16.0.4
+Branch: morty
+Tag: morty-16.0.4
+Hash: f389368dc86e745df14cab9eeb9a94bc02bd273e
+md5: 22f8f65ac57f88525c37a5be13e0f6ab
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.2.4/meta-qt4-morty-16.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.2.4/meta-qt4-morty-16.0.4.tar.bz2
+
+Release Name: poky-morty-16.0.4
+Branch: morty
+Tag: morty-16.0.4
+Hash: df76669bdd70aa0d903c4211dde731221c7e756d
+md5: c3c59465832e77ea79fe7aa9f9bd0742
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.2.4/poky-morty-16.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.2.4/poky-morty-16.0.4.tar.bz2
 
 
+---------------
+ Known Issues
+---------------
+N/A
 
-On Wed, Jul 25, 2018 at 3:26 PM, Andre McCurdy <armccurdy@gmail.com> wrote:
 
-> On Wed, Jul 25, 2018 at 11:17 AM, Simon Chamlian <simon.chamlian@mpbc.ca>
-> wrote:
-> > Hi,
-> >
-> > What is the best way to enable http2 for Apache?
-> >
-> > Do I add
-> >
-> > COMMON_EXTRA_OECONF_append_pn-apache2 = "--enable-http2"
-> >
-> > in local.conf ?
->
-> No.
->
-> Wondering what process you went through to arrive at that?
->
+---------------
+Security Fixes
+---------------
+libvorbis: CVE-2018-5146
+libvorbis: CVE-2017-14632
+libvorbis: CVE-2017-14633
+libtirpc: Fix CVE-2017-8779
+gcc: Fix CVE-2016-6131 in libiberty
+glib.inc: set CVE_PRODUCT to glib
+glibc-common.inc: set CVE_PRODUCT to glibc
+sqlite3.inc: set CVE_PRODUCT to sqlite
+python.inc: set CVE_PRODUCT to python
+icu.inc: set CVE_PRODUCT to international_components_for_unicode
+bluez5.inc: set CVE_PRODUCT to bluez
+acpid.inc: set CVE_PRODUCT to acpid2
+binutils: CVE-2017-15938
+binutils: CVE-2017-15024
+binutils: CVE-2017-14729
+binutils: CVE-2017-9955
+binutils: CVE-2017-9954
+binutils: CVE-2017-9745
+binutils: CVE-2017-9756
+binutils: CVE-2017-9755
+binutils: CVE-2017-9753_and_CVE-2017-9754
+binutils: CVE-2017-9752
+binutils: CVE-2017-9750
+binutils: CVE-2017-9747
+binutils: CVE-2017-9748
+binutils: CVE-2017-9746
+binutils: CVE-2017-9749
+binutils: CVE-2017-9751
+binutils: CVE-2017-7299
+binutils: CVE-2017-8398
+binutils: CVE-2017-8394
+binutils: CVE-2017-8421
+binutils: CVE-2017-8396
+binutils: CVE-2017-8397
+binutils: CVE-2017-8395
+binutils: CVE-2017-8393
+binutils: CVE-2017-7304
+binutils: CVE-2017-7303
+binutils: CVE-2017-7302
+binutils: CVE-2017-7301
+binutils: CVE-2017-7227
+binutils: CVE-2017-7225
+binutils: CVE-2017-7224
+binutils: CVE-2017-7223
+binutils: CVE-2017-12450_12452_12453_12454_12456
+binutils: CVE-2017-12451
+binutils: CVE-2017-12449, CVE-2017_12455, CVE-2017-12457, CVE-2017-12458, CVE-2017-12459
+binutils: CVE-2017-12448
+binutils: CVE-2017-7226
+binutils: Security Fix CVE-2017-9041
+binutils: Security fix for CVE-2017-9040 and 2017-9042
+binutils: Security Fix CVE-2017-9039
+binutis: Security fix CVE-2017-9038
+binutis: Security fix CVE-2017-7614
 
---00000000000047a9460571d81fe2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Trial and errors. <br></div><div><br></div><div>Is th=
-ere another way of enabling http2=C2=A0 ?</div><div><br></div><div>In gener=
-al, if we wish to add flags to a compilation of a package, what is the prop=
-er way of doing it?</div><div>Changing the local.conf or the recipe of a gi=
-ven package?</div><div><br></div><div><br></div><div><br></div><div><br></d=
-iv></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed, =
-Jul 25, 2018 at 3:26 PM, Andre McCurdy <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:armccurdy@gmail.com" target=3D"_blank">armccurdy@gmail.com</a>&gt;</spa=
-n> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
-order-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On Wed, Jul 25=
-, 2018 at 11:17 AM, Simon Chamlian &lt;<a href=3D"mailto:simon.chamlian@mpb=
-c.ca">simon.chamlian@mpbc.ca</a>&gt; wrote:<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; What is the best way to enable http2 for Apache?<br>
-&gt;<br>
-&gt; Do I add<br>
-&gt;<br>
-&gt; COMMON_EXTRA_OECONF_append_pn-<wbr>apache2 =3D &quot;--enable-http2&qu=
-ot;<br>
-&gt;<br>
-&gt; in local.conf ?<br>
-<br>
-</span>No.<br>
-<br>
-Wondering what process you went through to arrive at that?<br>
-</blockquote></div><br></div>
+---------------
+Fixes
+---------------
+documentation: Updated manual revision tables with 2.2.4 release date
+documentation: Updated title page notes.
+build-appliance-image: Update to morty head revision
+poky: Bump distro version to 2.2.4
+ruby: Update to 2.4.4
+ruby: fix typo in gmp PACKAGECONFIG option
+ruby: remove spurious db build dependency
+test-dependencies.sh: remove /sysroots* between component builds
+sstate-diff-machines.sh: Replace MACHINE_ARCH only at the beginning and separated with dash
+sstate-sysroot-cruft.sh: Extend the whitelist
+byacc: Fic SRC_URI to use yocto sources loc.
+oe-selftest: no need to parse gpg output to determine the name of the signing key
+libmpc: fix SRC_URI
+sanity.bbclass: Improved error message
+package_manager: fix install_glob to use morty sdk pkgdir
+glibc-package: Avoid race sstate races with do_stash_locale
+image/packagegroup/populate_sdk: Drop do_populate_sysroot task properly
+toolchain-shar-extract: compare SDK and host gcc versions
+populate_sdk_base.bbclass: add documentation packages to SDKs if api-documentation is in DISTRO_FEATURES
+sdk: streamline locale removal
+sdk: generate locale archive and remove packages
+distcc: Change SRC_URI
+buildhistory: fix latest_srcrev in the common case
+selftest/signing: add --batch to gpg invocation when importing keys
+grub-efi: fix build failure
+lib/oe/terminal.py: use an absolute path to execute oe-gnome-terminal-phonehome
+e2fsprogs: fix compatibility with glibc 2.27
+qemu: fix memfd_create with glibc 2.27
+libc-package.bbclass: split binary localedata even more if asked to
+glibc: Separate locale files to their own sstate task
+glibc-locale.inc: avoid duplicate packages
+glibc-locale.inc: fix typo in comment
+archiver: avoid archiving source for glibc-locale
+cross-localedef-native: add way to specify which locale archive to write
+populate_sdk_base: depend on nativesdk-glibc-locale
+populate_sdk: install UTF-8 locales in SDKs
+sdk: only install locales if we're using glibc
+sdk: install specified locales into SDK
+package-manager: add install_glob()
+package_manager: improve install_complementary
+package_manager: flush installed_pkgs file before oe-pkgdata-util uses it
+package_manager: don't race on a file when installing complementary packages
+lib/oe/package_manager/sdk: Ensure do_populate_sdk_ext and do_populate_sdk repos don't conflict
+lib/oe/package_manager: bail if createrepo can't be found
+package_manager: remove strings and migrate to direct arrays
+lib/oe/package_manager: .deb pre/postinst args
+glibc: relocate locale paths in nativesdk
+glibc: don't use host locales in nativesdk
+default-distrovars: don't rename locales for nativesdk
+linux-firmware: Add reference to iwlwifi-8000C firmware
+linux-yocto-rt/4.1: update to include spectre fixes
+linux-yocto/4.1: updated to include spectre fixes
+linux-yocto-tiny/4.1: update with spectre fixes
+linux-yocto-tiny/4.1: update to 4.1.49 plus meltdown
+linux-yocto-rt/4.1: update to 4.1.49 plus meltdown
+linux-yocto/4.1: update to 4.1.49 plus meltdown
+world-broken.inc: blacklist portmap on musl
+uninative: Add compatiblity version check
+yocto-uninative: Upgrade to 1.8 version with glibc 2.27
+unfs3: Fix libtirpc usage for unfs3-native version
+unfs3: Fix build with musl
+libtirpc: Extend to native and nativesdk recipes
+libtirpc: stop dropping in NIS headers
+libtirpc: upgrade to 1.0.2
+libtirpc: Fix build error due to missing stdint.h> include
+libtirpc: Enable des APIs for musl
+libtirpc: Expose key_secretkey_is_set API
+libtirpc: Backport fixes from 1.0.2rc3
+gcc: Remove patch causing ICE on x86_64 valgrind compile
+gcc6: Backport few more patches
+gcc6: enable FL_LPAE flag for armv7ve cores
+gcc6: Fix unaligned STRD issue on ARM
+gcc6: Upgrade to 6.4
+gcc: Fix libssh_nonshared linker specs for ppc/musl
+gcc: Link libssp_nonshared.a only on musl targets
+gcc-runtime: Disable libitm on riscv
+gcc-6.3: Backport patch to fix ICE on ARM
+gcc-6.3.inc: Use ucontext_t not struct ucontext.
+gcc: Remove unused patch
+gcc-6: Add fix for missing no-PIE flags
+gcc-6: Sync gcc stddef.h with musl stddef.h
+gcc6: Upgrade to 6.3.0
+buildstats.bbclass: Avoid index exception in /proc/PID/io parsing
+gnutls_3.5.3.bb: Fix native build on distro with kernel < 3.4.17
+bitbake: providers: Fix determinism issue
+p11-kit: take source code from official git
+ruby: update to 2.4.3
+insane: consider INSANE_SKIP without package-specifier too
+portmaper: checkuri fails.
+gnu-efi: Fix build with gcc7
+linux-yocto/4.4: update to v4.4.113
+linux-yocto/4.4: update to 4.4.99
+linux-yocto/4.4: update to v4.4.93
+tzdata: update to 2018c
+tzcode: update to 2018c
+tzdata: update 2017c
+tzcode-native: update to 2017c
+tzcode-native: quote ${CC}
+tzdata: Install zone1970.tab
+tzdata: update to 2017b
+tzcode: update to 2017b
+linux-firmware: Bump to bf04291 revision
+linux-firmware: Split out the QAT firmware
+linux-firmware: make i.MX SDMA split complete
+linux-firmware: Split i.MX SDMA firmwares
+linux-firmware: package Broadcom BCM43362 firmware
+linux-firmware: bump to latest linux-firmware git revision
+linux-firmware: package Marvell PCIe WiFi firmwares
+linux-firmware: package ibt-firmware
+linux-firmware: package iwlfifi-3160-[10-17] firmware
+linux-firmware: add support for mt7601u WiFi chip
+linux-firmware: package Qualcomm QCA firmware
+linux-firmware: enable netronome firmware
+linux-firmware: Remove iwlwifi-8000C-19 SRC_URI
+linux-firmware: Avoid a dependency on python-core
+linux-firmware: Fix build failure when update SRCREV to latest HEAD
+linux-firmware: Set the license for carl9170 to GPLv2
+linux-firmware: update to revision a4dde74b
+firmware: use ${nonarch_base_libdir} for firmware installation.
+firmware: use ${nonarch_base_libdir} for firmware installation.
+linux-firmware: Add Marvell sd88xx WiFi firmwares
+linux-firmware: relocate ath9k_htc blobs to correct package
+Revert "linux-firmware: Modify firmware installation path"
+linux-firmware: Modify firmware installation path
+linux-firmware: remove alternatives for brcmfmac-stdio.bin
+linux-firmware: Split out Realtek chipsets rtl8188 rtl8723 rtl8821
+pax-utils: update SRC_URI
+documentation: Updated manual revision table for 2.2.4 release date
+dev-manual: Fixed variable link to DEFAULTTUNE variable
+documentation: Prepared for a 2.2.4 point release
+ref-manual, yocto-project-qs, poky.ent: Fixed CentOS package
+populate_sdk_ext: Set cleandirs correctly
+lib/oe/package_manager/sdk: Ensure do_populate_sdk_ext and do_populate_sdk repos don't conflict
+image: Fix previous broken commit to set expand parameter to getVar
+image: Expand PV to avoid AUTOREV parsing failures
+bitbake: bitbake-user-manual: Fixed porno hack for hello world example
+libunwind: Disable documentation explicitly
+webkitgtk: update to 2.18.5 (includes Spectre mitigations; see commit description)
+ruby: update to 2.4.0
+cmake: avoid configure failures if CFLAGS contains -Wstrict-prototypes
+Fix seg-fault in the linker when examining a corrupt binary.
+local.conf.sample: Weakly set BB_DISKMON_DIRS
+bitbake: toaster: remove cut and paste cruft
+bitbake: toaster: move sqlite database to TOASTER_DIR
+bitbake: toaster: bin/toaster whitelist TOASTER_DIR
+bitbake: fetch2: Do not fail to create symbolic links if they already exist
+bitbake: bitbake-layers: fix layerindex-fetch for Python 3
 
---00000000000047a9460571d81fe2--
