@@ -1,34 +1,72 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <mohammad.rasim96@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A39C5E00C1D; Wed, 25 Jul 2018 14:58:44 -0700 (PDT)
+	id 89A48E00CCE; Wed, 25 Jul 2018 20:44:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mohammad.rasim96[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.66 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 985D0E00C18
-	for <yocto@yoctoproject.org>; Wed, 25 Jul 2018 14:58:38 -0700 (PDT)
-Received: from hex ([192.168.3.34]) (authenticated bits=0)
-	by dan.rpsys.net (8.15.2/8.15.2/Debian-3) with ESMTPSA id
-	w6PLwX8q013394
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NOT); Wed, 25 Jul 2018 22:58:34 +0100
-Message-ID: <18ef0e1f0af7576bbdc5841c8eaa064bc865e0ff.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Matt Hoosier <matt.hoosier@gmail.com>, yocto@yoctoproject.org
-Date: Wed, 25 Jul 2018 22:58:33 +0100
-In-Reply-To: <CAJgxT3-Jrr2baQz8Y6c_VzNf0Jn6qSEfgNbDYu7xGN4g1PRT=A@mail.gmail.com>
-References: <CAJgxT3_QyunmpzGW69j27sR_BFvvhisQVtG+-uGnMxhsO8mCLg@mail.gmail.com>
-	<CAJgxT3-Jrr2baQz8Y6c_VzNf0Jn6qSEfgNbDYu7xGN4g1PRT=A@mail.gmail.com>
-X-Mailer: Evolution 3.28.1-2 
-Mime-Version: 1.0
-X-Virus-Scanned: clamav-milter 0.99.4 at dan
-X-Virus-Status: Clean
-Cc: bitbake-devel <bitbake-devel@lists.openembedded.org>
-Subject: Re: Ordering of anonymous Python functions and task signature calculations
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F18C7E00C80
+	for <yocto@yoctoproject.org>; Wed, 25 Jul 2018 20:44:30 -0700 (PDT)
+Received: by mail-wm0-f66.google.com with SMTP id f21-v6so475413wmc.5
+	for <yocto@yoctoproject.org>; Wed, 25 Jul 2018 20:44:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:references:to:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding:content-language;
+	bh=OXUXN7XlU+W78v+C8C2BGPju/EnCg6Uzej7U87kHEAs=;
+	b=VwVkarCKH2bvsf9RHqq5Oly9ulWuEy4bhOmX1lsmk+FyCxXAShZO2iPViOocKUYNHo
+	gP8E+xBgehXMXi5jqnnj1FxVyWUbLnqczpiyijs8nW6wHf0DqtbVYinYkCzS1wjFwJyu
+	e2fNb20DlMRFUg29v2B4Yifq68ul85M2iuhUdORiUNmYGrMycosMYJp7J7mPbHhrKnbz
+	JZEkxG2XEkhpALfhtug/YjdOivqbDMLIjmQMahvduK+n3Lki3H5gpI5jthv9OP4bSVoJ
+	WfmadvGEoVDBo5XLvycSn4s7cHvjx4RSiqa/s83+9U7zbRnPi6vzznJWuKm8ri8Ih68x
+	Gamw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:references:to:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=OXUXN7XlU+W78v+C8C2BGPju/EnCg6Uzej7U87kHEAs=;
+	b=bSMJ+5B5nByJ8PNTN6H1188PBG70IXTAdLcTla48Ir1j02GTCSysh5AXJ3XrkHtoou
+	2PzkjZYiTwIRJ77PFVjRvdqPqKezFAITzYaxTCzaIQpgyopBdYad4N7WodzPpi6eabEZ
+	c9P80XeVheDBvsRbtTg9Gf5bayOvTHM04SxpNKsAeTdvQWso7P2Fg4sIp+FYklZ//plT
+	Jzp3+zrTiSOo/u4Sl6a+ci+bd+qrKKYqDZUdhABxMw4HBtJk0TIZDJ7Nmr6tcyguaOPJ
+	nEoil/tFEucZlSVkaPmPgNg+rluiVNMK54VMvDhqqFPxnl8nvO5zBokA32iC+QDPD8XN
+	6qdQ==
+X-Gm-Message-State: AOUpUlEBS1QvUZyOwCInBHyBUp8lqh1o3WxUpzFhreEdzJss04iAx43q
+	QH1fdZtyJudYx5DH7Ca2kVKLRO6i1dY=
+X-Google-Smtp-Source: AAOMgpfrLqaLmo1PG03SWn3BqKnp4E+YMbUExSmBKyGvUy+sXgGUid7vyy5LF+59fJDp3S8OpNR43A==
+X-Received: by 2002:a1c:f46:: with SMTP id 67-v6mr298624wmp.122.1532576669728; 
+	Wed, 25 Jul 2018 20:44:29 -0700 (PDT)
+Received: from [192.168.88.227] ([37.237.211.27])
+	by smtp.gmail.com with ESMTPSA id
+	w8-v6sm208530wrp.72.2018.07.25.20.44.28 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 25 Jul 2018 20:44:28 -0700 (PDT)
+References: <1aa737c1-9930-4a32-2060-6c6103142d88@gmail.com>
+To: yocto@yoctoproject.org
+From: MOHAMMAD RASIM <mohammad.rasim96@gmail.com>
+X-Forwarded-Message-Id: <1aa737c1-9930-4a32-2060-6c6103142d88@gmail.com>
+Message-ID: <14049c37-db6d-c5b3-b60c-4cdfb00a6f44@gmail.com>
+Date: Thu, 26 Jul 2018 06:44:26 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
+MIME-Version: 1.0
+In-Reply-To: <1aa737c1-9930-4a32-2060-6c6103142d88@gmail.com>
+Subject: Re: can bitbake build offline ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,102 +78,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Jul 2018 21:58:44 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 26 Jul 2018 03:44:32 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US-large
 
-On Wed, 2018-07-25 at 08:47 -0500, Matt Hoosier wrote:
-> Quite a while ago I wrote the following message:
-> On Tue, Jan 24, 2017 at 11:55 AM Matt Hoosier <matt.hoosier@gmail.com
-> > wrote:
-> > In order to support a use-case that embeds information about the
-> > Git revision of Yocto itself that was used to make a build, I would
-> > like to run some arbitrary Python code and dump the results (Git
-> > SHA1's, tag names, etc) into a Bitbake variable.
-> > 
-> > The idea is that the variable would get consumed in a do_install()
-> > task to populate some cookie-crumb file in the package payload.
-> > 
-> > Something like:
-> > 
-> >   DEPENDS = "git-native"
-> > 
-> >   python () {
-> >     # This pseudocode isn't strictly functional for invoking Git,
-> > but you get the idea
-> >     d.setVar('GIT_INFO', subprocess.Popen(['git', 'rev-list',
-> > ...]).communicate().stdout)
-> >   }
-> > 
-> >   do_install () {
-> >     install -d ${D}/etc
-> >     echo "${GIT_INFO}" > ${D}/etc/git-info.txt
-> >   }
-> > 
-> > This all works on a fresh run, but Bitbake appears not to be
-> > evaluating the anonymous Python function on each execution. This
-> > leads it to have out-of-date information about the Git working copy
-> > when global state changes but happens not to impact the particular
-> > recipe holding this logic.
-> > 
-> > 
-> 
-> The replies given at the time were very helpful in letting me
-> accomplish my immediate goals, but I never really did get to the
-> bottom of the real question:
->  
-> > Is there any trick available to cause the Python function to
-> > execute (and hence update the value of ${GIT_INFO} each Bitbake
-> > execution so that the up-to-the-moment contents of it filter into
-> > the calculation of the signature for do_install()? Or am I just
-> > trying a wrong-headed approach and doing something illegitimate? 
-> > 
-> 
-> Some build systems I know of [1] that are based on hashes rather than
-> timestamps have a way that you can inform the task execution engine
-> to always poison the inputs to a certain task's up-to-dateness check.
-> Is there anything in Bitbake that would allow a declaration to force
-> such-and-such variable in a recipe always to be re-evaluated:
-> 
->   EXTERNALLY_INFLUENCED_VARIABLE = "${@int(random.random() * 10)}"
->   do_install[vardepsalwaysdirty] = " EXTERNALLY_INFLUENCED_VARIABLE "
-> 
->   do_install() {
->     echo '${ EXTERNALLY_INFLUENCED_VARIABLE }' > ${D}/etc/stuff.txt
->   }
-> 
-> Don't read too much into the example calling random() here. That's
-> not really what I want to do; the point is just that the variable's
-> value (though deterministic) isn't computed strictly from Bitbake
-> metadata. So I'm searching for a way to get the value of
-> EXTERNALLY_INFLUENCED_VARIABLE to be re-computed each time Bitbake
-> starts. If the computed value ends up matching what was seen on the
-> last execution, then any dependent tasks wouldn't need re-run.
-> 
-> Any ideas?
-> 
-> [1] I'm thinking particularly of Waf's hash-based task graph, which
-> supports annotations that can be used to always cause a task to be
-> re-run even if all the inputs feeding into it appear up-to-date.
+I tried that and bitbake still fails when disabling the network
 
-From a bitbake perspective there are two things you need to ensure
-here, that the recipe gets reparsed at every execution and that the
-task dependency exists. You have the dependency above and that is the
-easier piece to fix.
 
-If the recipe is reparsed, the anon python reruns and the task hash
-recalculated.
-
-If a recipe sets BB_DONT_CACHE, it will be reparsed upon each run and
-the hashes will dynamically change as you want. BB_SRCREV_POLICY !=
-"cache" uses that behind the scenes so that it can dynamically update
-srcrevs.
-
-Hope that helps...
-
-Cheers,
-
-Richard
-
+On 07/21/2018 11:42 AM, Alexander Kanavin wrote:
+> This page has a tip on what might be causing 'git ls-remote':
+>
+> https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_create_my_own_source_download_mirror_.3F
+>
+> Alex
+>
+> 2018-07-21 10:32 GMT+02:00 MOHAMMAD RASIM <mohammad.rasim96@gmail.com>:
+>> Hi, is there a way I can run a bitbake build offline? I have all the
+>> required sources of the target in the sources directory, and I have built
+>> the target multiple times with internet connection, but when I build offline
+>> it fails because it needs internet access during parsing recipes.
+>> Can I tell bitbake to skip running `git ls-remote` during parsing recipes so
+>> I can build offline?
+>>
+>> Thanks
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
 
