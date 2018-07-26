@@ -1,76 +1,67 @@
-Return-Path: <mohammad.rasim96@gmail.com>
+Return-Path: <matt.hoosier@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 61B21E00CE0; Thu, 26 Jul 2018 07:10:12 -0700 (PDT)
+	id 7240AE00CE0; Thu, 26 Jul 2018 07:23:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mohammad.rasim96[at]gmail.com)
+	mail provider *      (matt.hoosier[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.66 listed in list.dnswl.org]
+	*      [209.85.161.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12EBEE00CDD
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 07:10:10 -0700 (PDT)
-Received: by mail-wm0-f66.google.com with SMTP id r24-v6so2228816wmh.0
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 07:10:10 -0700 (PDT)
+Received: from mail-yw0-f196.google.com (mail-yw0-f196.google.com
+	[209.85.161.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0089AE00CDD
+	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 07:23:27 -0700 (PDT)
+Received: by mail-yw0-f196.google.com with SMTP id v197-v6so635095ywg.3
+	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 07:23:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-transfer-encoding:content-language;
-	bh=Q5gtbyLyu/3TeUJYXoN/qAHvMG/hSWAJD2xMabmgh7g=;
-	b=QRDOqqH1ynS4CLgiPqrW6hV0C+x+QG+kiggBU21uELPRAF4XXwhpORwi0KE0tvuqtL
-	6n3K4mpnRj8h4h9UjC5rEmzwZVO1Rca1woIfQv1W9jeru29P453Hyj3Rmr2G2L0Mrr0l
-	x8VBENK/mkguQF35TIvn+yjgBSrL6S9lCsziEV37nQtzt3H7as5j4SChmj8NEFFR/eX+
-	37fFG0tDZOe3/7C9KXStor561zTob5JBjSvJW3auRpGK3rw7UozLdGyaTmxvI+bvSnqi
-	TnCdEA3OD1hQACytbbcnoxqfAnTgKltgO7QZ9rPoG80PpSgGmcaovbkahmqe3KdfsT22
-	FZ8w==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=hgDw4GIkwEYglRkz3TPBdHOxPHdvFdhUlLrknmlf1EA=;
+	b=VM6wrkMPXrJwg5OSPSjTC4PDC4DiwwosIXcU5MOK5oIdJUEdVkrb3szoAZYRwhBbhH
+	R+fsKGgtzLtjU6/jekdFLr4moC3cQuSY+EQb5EdzDQDBP8GkDdugwbM/IWpjg291N00I
+	IE1kqv2Ocs3FPTKt7GpSbuBzetgoxUt1/MQsybG5Jv7+fMY84uBVSEEdijmZSxGVmihv
+	+7bpTFDP7QfakjCUUsz2POmzTFF1f6wA3A6MhRfT20kPNnlVtHzVAr1pTggmhoxEJcdj
+	h2Sgrd3iIQqqNITj3I2lb37e1eYW/ehBPNamJluki1PPNwndtIYxcbUZ/Aa+QQ4cgRB7
+	zXIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=Q5gtbyLyu/3TeUJYXoN/qAHvMG/hSWAJD2xMabmgh7g=;
-	b=Vz7QTkBtfYgsbQHQGDH+dk1VtSq6yw1FYNJ1vb3GFp9Z39E+jHf0aUiYS/hjPcvDRz
-	LuKN1fXAngCs2hDjPpe4JVe9V8oiC9g+a1v0Suo2+tk0mGnivZmfB6EZ3cSmOUUCUf+x
-	cE6i8mYLQV9Gj1rfs4rUIKlbl+yNGhO9vg3/NubAomVK9wBgN+QiSOUXHlSqYQCwifm6
-	d5w/mtflz/ZgMUtvlI61KdGKb4CuJDO16LoS8n6bTrK7jLMBPkFyCe/khVV6lesySfDc
-	p4kLzaucZaS7zmtDrD5Gae5P6A/F4UgFiCnXlW20QzjXcFbtCe4K96C2NQKXmedmTfFq
-	gNSg==
-X-Gm-Message-State: AOUpUlFdjLEK8PEgrfib0Fkx55siTRceJYyxDhuo7HL24uD/XEMM1YTN
-	WWkz/qd60JpmcM06cLI0a2t+lTIb3sDbNA==
-X-Google-Smtp-Source: AAOMgpcsiTTqV115MjeQi5JR1J11oSdEHaEzgmJUypAnABtWj/2Q5LAiSe7LZey1bS1CYWWFm/rhww==
-X-Received: by 2002:a1c:4d16:: with SMTP id
-	o22-v6mr1632080wmh.49.1532614209900; 
-	Thu, 26 Jul 2018 07:10:09 -0700 (PDT)
-Received: from [192.168.88.227] ([37.237.211.59])
-	by smtp.gmail.com with ESMTPSA id
-	g15-v6sm2112511wrh.48.2018.07.26.07.10.08
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 26 Jul 2018 07:10:09 -0700 (PDT)
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <1aa737c1-9930-4a32-2060-6c6103142d88@gmail.com>
-	<4930421.VRI8zmqDti@localhost.localdomain>
-	<a2a07618-2378-4563-109b-a6654ab29220@gmail.com>
-	<10152170.chYgiU6tNd@localhost.localdomain>
-From: MOHAMMAD RASIM <mohammad.rasim96@gmail.com>
-Message-ID: <d06b21ca-7564-f2a7-24e4-e9d63917e13b@gmail.com>
-Date: Thu, 26 Jul 2018 17:10:06 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=hgDw4GIkwEYglRkz3TPBdHOxPHdvFdhUlLrknmlf1EA=;
+	b=sYv+gToyc+OjRVDOidXRM9CnJxCMHqykfMSz4FAXO1P5TXB8PX/2QOZAIIR9cj3E76
+	TdREopUsriVv4BUQehJPn/2y4S/mTg5sc2EyMH86gV6lifds9sf2DU+Tu+j7NPaNu2jk
+	qEb9AGmEx8CZi9RpWSPBTXUP/jXWubJKJ70OIPDC25sw6DdH+2n5Nby9P+dP3btJLa6i
+	Ci7+fVgwiGjevXMKei/ZWxI9Dd75NYy5mY+W4V0uwUMH7+5V38Oi528p74Xt/2LTFjCd
+	dfivlLSPTGNDoCEeUmD9aXLaQgdQ2yWwEGffv9t5k91S6CPh4o5RSfvG5fdzG5sRI0cT
+	AdSA==
+X-Gm-Message-State: AOUpUlFTYny1Lt1E4Qpuytx5vKndQ694ffBCHfcn/CWT13W9Hgiki9tV
+	7+GdiYF+wu4paFzSmhIXdZ87gAoSCM7eIQ1Ik1Adp5bR
+X-Google-Smtp-Source: AAOMgpdxhLiwkS8+80C8Rwpxvn1kki7CPKvf4osK89PWYhD+MLqF92LgCUzBBxTiBnfzInmLQH9+gUX7PnICtLiXxtw=
+X-Received: by 2002:a81:b54:: with SMTP id 81-v6mr1063311ywl.363.1532615007167;
+	Thu, 26 Jul 2018 07:23:27 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <10152170.chYgiU6tNd@localhost.localdomain>
-Cc: yocto@yoctoproject.org
-Subject: Re: can bitbake build offline ?
+References: <CAJgxT3_QyunmpzGW69j27sR_BFvvhisQVtG+-uGnMxhsO8mCLg@mail.gmail.com>
+	<CAJgxT3-Jrr2baQz8Y6c_VzNf0Jn6qSEfgNbDYu7xGN4g1PRT=A@mail.gmail.com>
+	<18ef0e1f0af7576bbdc5841c8eaa064bc865e0ff.camel@linuxfoundation.org>
+In-Reply-To: <18ef0e1f0af7576bbdc5841c8eaa064bc865e0ff.camel@linuxfoundation.org>
+From: Matt Hoosier <matt.hoosier@gmail.com>
+Date: Thu, 26 Jul 2018 09:22:51 -0500
+Message-ID: <CAJgxT3_kmGREWd_0kuULP-NMCd1U39YbT+c9YAeZ+=aikK0aWA@mail.gmail.com>
+To: richard.purdie@linuxfoundation.org
+Cc: yocto@yoctoproject.org, bitbake-devel@lists.openembedded.org
+Subject: Re: Ordering of anonymous Python functions and task signature calculations
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,84 +73,306 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jul 2018 14:10:12 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US-large
+X-List-Received-Date: Thu, 26 Jul 2018 14:23:29 -0000
+Content-Type: multipart/alternative; boundary="0000000000001468e10571e7bda7"
 
-Wow that's a cool trick and it worked for me so ,thank you.
+--0000000000001468e10571e7bda7
+Content-Type: text/plain; charset="UTF-8"
 
-Also after some digging I found a solution that does exactly what I 
-described in my previous message(I think), and I'm gonna leave it here 
-in case someone face the same issue and find this message:
+Thanks for the reply.
 
-You can use set BB_SRCREV_POLICY = "cache" the local.conf which will 
-prevent the AUTOREV recipes from failing by using the local cache for 
-revisions
+On Wed, Jul 25, 2018 at 4:58 PM Richard Purdie <
+richard.purdie@linuxfoundation.org> wrote:
 
-https://www.yoctoproject.org/docs/2.1/bitbake-user-manual/bitbake-user-manual.html#var-BB_SRCREV_POLICY
-
-But If there is a new commits on the remote repo you probably need to 
-disable this and rebuild to let bitbake fetch the latest revision and 
-you can re enable it afterwards.
-
-
-Regards
-
-
-On 07/26/2018 01:40 PM, Paul Eggleton wrote:
-> On Thursday, 26 July 2018 12:09:46 PM CEST MOHAMMAD RASIM wrote:
->> Well, actually I used the find command in that wiki page to find the
->> recipe that uses tag name to chose github revision and it found only one
->> recipe
->>
->>   >meta-openembedded/meta-initramfs/recipes-devtools/mtd/ubi-utils-
->>   >klibc_1.5.1.bb
-> Hmm, right, it seems like you're using a previous branch - this got fixed
-> in a later update of that recipe.
+> On Wed, 2018-07-25 at 08:47 -0500, Matt Hoosier wrote:
+> > Quite a while ago I wrote the following message:
+> > On Tue, Jan 24, 2017 at 11:55 AM Matt Hoosier <matt.hoosier@gmail.com
+> > > wrote:
+> > > In order to support a use-case that embeds information about the
+> > > Git revision of Yocto itself that was used to make a build, I would
+> > > like to run some arbitrary Python code and dump the results (Git
+> > > SHA1's, tag names, etc) into a Bitbake variable.
+> > >
+> > > The idea is that the variable would get consumed in a do_install()
+> > > task to populate some cookie-crumb file in the package payload.
+> > >
+> > > Something like:
+> > >
+> > >   DEPENDS = "git-native"
+> > >
+> > >   python () {
+> > >     # This pseudocode isn't strictly functional for invoking Git,
+> > > but you get the idea
+> > >     d.setVar('GIT_INFO', subprocess.Popen(['git', 'rev-list',
+> > > ...]).communicate().stdout)
+> > >   }
+> > >
+> > >   do_install () {
+> > >     install -d ${D}/etc
+> > >     echo "${GIT_INFO}" > ${D}/etc/git-info.txt
+> > >   }
+> > >
+> > > This all works on a fresh run, but Bitbake appears not to be
+> > > evaluating the anonymous Python function on each execution. This
+> > > leads it to have out-of-date information about the Git working copy
+> > > when global state changes but happens not to impact the particular
+> > > recipe holding this logic.
+> > >
+> > >
+> >
+> > The replies given at the time were very helpful in letting me
+> > accomplish my immediate goals, but I never really did get to the
+> > bottom of the real question:
+> >
+> > > Is there any trick available to cause the Python function to
+> > > execute (and hence update the value of ${GIT_INFO} each Bitbake
+> > > execution so that the up-to-the-moment contents of it filter into
+> > > the calculation of the signature for do_install()? Or am I just
+> > > trying a wrong-headed approach and doing something illegitimate?
+> > >
+> >
+> > Some build systems I know of [1] that are based on hashes rather than
+> > timestamps have a way that you can inform the task execution engine
+> > to always poison the inputs to a certain task's up-to-dateness check.
+> > Is there anything in Bitbake that would allow a declaration to force
+> > such-and-such variable in a recipe always to be re-evaluated:
+> >
+> >   EXTERNALLY_INFLUENCED_VARIABLE = "${@int(random.random() * 10)}"
+> >   do_install[vardepsalwaysdirty] = " EXTERNALLY_INFLUENCED_VARIABLE "
+> >
+> >   do_install() {
+> >     echo '${ EXTERNALLY_INFLUENCED_VARIABLE }' > ${D}/etc/stuff.txt
+> >   }
+> >
+> > Don't read too much into the example calling random() here. That's
+> > not really what I want to do; the point is just that the variable's
+> > value (though deterministic) isn't computed strictly from Bitbake
+> > metadata. So I'm searching for a way to get the value of
+> > EXTERNALLY_INFLUENCED_VARIABLE to be re-computed each time Bitbake
+> > starts. If the computed value ends up matching what was seen on the
+> > last execution, then any dependent tasks wouldn't need re-run.
+> >
+> > Any ideas?
+> >
+> > [1] I'm thinking particularly of Waf's hash-based task graph, which
+> > supports annotations that can be used to always cause a task to be
+> > re-run even if all the inputs feeding into it appear up-to-date.
 >
->> I masked this recipe in the local.conf file and bitbake failed at
->> parsing other recipes, looking at those recipes I saw that they don't
->> use tag names but they use
->>
->>   >SRCREV = "${AUTOREV}"
->>
->> which is logical since bitbake has to issue ls-remote to know what is
->> the latest revision on the remote git repo (maybe the wiki page needs
->> update to point this ?)
->>
->> Now I can't remove this AUTOREV in these recipes since I need bitbake to
->> fetch the latest updates ( I push updates regularly on that repo and I
->> don't want to update the recipe file each time to add the latest revision)
->>
->> So, here comes the hard part, Is it possible to tell bitbake to issue
->> ls-remote if there is network and to use the latest fetched revision in
->> the sources directory if the network is disabled ? that way I can use
->> ${AUTOREV} in my recipes and bitbake will build from the local repo in
->> the sources directory unless there is network to update the local repo,
->> probably there is no such thing :) .
-> So there isn't a mechanism to do exactly that, no, however you can sort of
-> achieve the same thing if you set up a .inc file that sets the SRCREV values
-> for each recipe and sets BB_NO_NETWORK at the same time (though the
-> latter could still be separate). e.g. let's call it no_network.inc:
+> From a bitbake perspective there are two things you need to ensure
+> here, that the recipe gets reparsed at every execution
+
+
+Your advice about BB_DONT_CACHE does cause reparsing to get triggered. I
+can see that in logs.
+
+
+> and that the
+> task dependency exists. You have the dependency above and that is the
+> easier piece to fix.
 >
-> BB_NO_NETWORK = "1"
-> SRCREV_pn-abc = "b4c2bd84ee6f699e348d602a82d2d0963384cdea"
-> SRCREV_pn-xyz = "e3b30def2cd1c9ede7630489c3949a45b6eba6ee"
-> ..
+
+But this part I'm not seeing. The variable's value is always recalculated
+(sometimes more than once during a Bitbake run, but that's okay because
+it's idempotent), but the task only re-executes if the payload of the .bb
+file itself has changed. The blurb I wrote above:
+
+  do_install[vardepsalwaysdirty] = " EXTERNALLY_INFLUENCED_VARIABLE "
+
+is just some nonsense syntax I wrote there to illustrate my point. I don't
+think there's any var flag called "vardepsalwaysdirty". Did you have this
+line in mind when you were saying that I'd already gotten the task made
+dependent on the variable? Or were you just noting that the syntactic use
+of the variable inside of the task should engage the normal hash-based
+task-dependency calculation logic?
+
+
 >
-> Then to build offline you would just add the following to your config:
+> If the recipe is reparsed, the anon python reruns and the task hash
+> recalculated.
 >
-> require no_network.inc
+
+Is there anything extra I need to do to cause the reparsed variable's hash
+to cascade to the task?
+
+
 >
-> FYI you can enable buildhistory and use the buildhistory-collect-srcrevs
-> script to generate all those SRCREV lines so you don't have to do that
-> by hand:
+> If a recipe sets BB_DONT_CACHE, it will be reparsed upon each run and
+> the hashes will dynamically change as you want. BB_SRCREV_POLICY !=
+> "cache" uses that behind the scenes so that it can dynamically update
+> srcrevs.
 >
-> https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#maintaining-build-output-quality
+> Hope that helps...
 >
 > Cheers,
-> Paul
+>
+> Richard
+>
 >
 
+Thanks! -Matt
 
+--0000000000001468e10571e7bda7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div>Thanks for the reply.</div=
+><div dir=3D"ltr"><br></div><div dir=3D"ltr">On Wed, Jul 25, 2018 at 4:58 P=
+M Richard Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">=
+richard.purdie@linuxfoundation.org</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
+ding-left:1ex">On Wed, 2018-07-25 at 08:47 -0500, Matt Hoosier wrote:<br>
+&gt; Quite a while ago I wrote the following message:<br>
+&gt; On Tue, Jan 24, 2017 at 11:55 AM Matt Hoosier &lt;<a href=3D"mailto:ma=
+tt.hoosier@gmail.com" target=3D"_blank">matt.hoosier@gmail.com</a><br>
+&gt; &gt; wrote:<br>
+&gt; &gt; In order to support a use-case that embeds information about the<=
+br>
+&gt; &gt; Git revision of Yocto itself that was used to make a build, I wou=
+ld<br>
+&gt; &gt; like to run some arbitrary Python code and dump the results (Git<=
+br>
+&gt; &gt; SHA1&#39;s, tag names, etc) into a Bitbake variable.<br>
+&gt; &gt; <br>
+&gt; &gt; The idea is that the variable would get consumed in a do_install(=
+)<br>
+&gt; &gt; task to populate some cookie-crumb file in the package payload.<b=
+r>
+&gt; &gt; <br>
+&gt; &gt; Something like:<br>
+&gt; &gt; <br>
+&gt; &gt;=C2=A0 =C2=A0DEPENDS =3D &quot;git-native&quot;<br>
+&gt; &gt; <br>
+&gt; &gt;=C2=A0 =C2=A0python () {<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0# This pseudocode isn&#39;t strictly functiona=
+l for invoking Git,<br>
+&gt; &gt; but you get the idea<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0d.setVar(&#39;GIT_INFO&#39;, subprocess.Popen(=
+[&#39;git&#39;, &#39;rev-list&#39;,<br>
+&gt; &gt; ...]).communicate().stdout)<br>
+&gt; &gt;=C2=A0 =C2=A0}<br>
+&gt; &gt; <br>
+&gt; &gt;=C2=A0 =C2=A0do_install () {<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0install -d ${D}/etc<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0echo &quot;${GIT_INFO}&quot; &gt; ${D}/etc/git=
+-info.txt<br>
+&gt; &gt;=C2=A0 =C2=A0}<br>
+&gt; &gt; <br>
+&gt; &gt; This all works on a fresh run, but Bitbake appears not to be<br>
+&gt; &gt; evaluating the anonymous Python function on each execution. This<=
+br>
+&gt; &gt; leads it to have out-of-date information about the Git working co=
+py<br>
+&gt; &gt; when global state changes but happens not to impact the particula=
+r<br>
+&gt; &gt; recipe holding this logic.<br>
+&gt; &gt; <br>
+&gt; &gt; <br>
+&gt; <br>
+&gt; The replies given at the time were very helpful in letting me<br>
+&gt; accomplish my immediate goals, but I never really did get to the<br>
+&gt; bottom of the real question:<br>
+&gt;=C2=A0 <br>
+&gt; &gt; Is there any trick available to cause the Python function to<br>
+&gt; &gt; execute (and hence update the value of ${GIT_INFO} each Bitbake<b=
+r>
+&gt; &gt; execution so that the up-to-the-moment contents of it filter into=
+<br>
+&gt; &gt; the calculation of the signature for do_install()? Or am I just<b=
+r>
+&gt; &gt; trying a wrong-headed approach and doing something illegitimate? =
+<br>
+&gt; &gt; <br>
+&gt; <br>
+&gt; Some build systems I know of [1] that are based on hashes rather than<=
+br>
+&gt; timestamps have a way that you can inform the task execution engine<br=
+>
+&gt; to always poison the inputs to a certain task&#39;s up-to-dateness che=
+ck.<br>
+&gt; Is there anything in Bitbake that would allow a declaration to force<b=
+r>
+&gt; such-and-such variable in a recipe always to be re-evaluated:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0EXTERNALLY_INFLUENCED_VARIABLE =3D &quot;${@int(random.ran=
+dom() * 10)}&quot;<br>
+&gt;=C2=A0 =C2=A0do_install[vardepsalwaysdirty] =3D &quot; EXTERNALLY_INFLU=
+ENCED_VARIABLE &quot;<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0do_install() {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0echo &#39;${ EXTERNALLY_INFLUENCED_VARIABLE }&#39; =
+&gt; ${D}/etc/stuff.txt<br>
+&gt;=C2=A0 =C2=A0}<br>
+&gt; <br>
+&gt; Don&#39;t read too much into the example calling random() here. That&#=
+39;s<br>
+&gt; not really what I want to do; the point is just that the variable&#39;=
+s<br>
+&gt; value (though deterministic) isn&#39;t computed strictly from Bitbake<=
+br>
+&gt; metadata. So I&#39;m searching for a way to get the value of<br>
+&gt; EXTERNALLY_INFLUENCED_VARIABLE to be re-computed each time Bitbake<br>
+&gt; starts. If the computed value ends up matching what was seen on the<br=
+>
+&gt; last execution, then any dependent tasks wouldn&#39;t need re-run.<br>
+&gt; <br>
+&gt; Any ideas?<br>
+&gt; <br>
+&gt; [1] I&#39;m thinking particularly of Waf&#39;s hash-based task graph, =
+which<br>
+&gt; supports annotations that can be used to always cause a task to be<br>
+&gt; re-run even if all the inputs feeding into it appear up-to-date.<br>
+<br>
+From a bitbake perspective there are two things you need to ensure<br>
+here, that the recipe gets reparsed at every execution</blockquote><div><br=
+></div><div>Your advice about BB_DONT_CACHE does cause reparsing to get tri=
+ggered. I can see that in logs.</div><div>=C2=A0</div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
+left:1ex"> and that the<br>
+task dependency exists. You have the dependency above and that is the<br>
+easier piece to fix.<br></blockquote><div><br></div><div>But this part I&#3=
+9;m not seeing. The variable&#39;s value is always recalculated (sometimes =
+more than once during a Bitbake run, but that&#39;s okay because it&#39;s i=
+dempotent), but the task only re-executes if the payload of the .bb file it=
+self has changed. The blurb I wrote above:</div><div><br></div><div>=C2=A0=
+=C2=A0<span style=3D"font-size:small;background-color:rgb(255,255,255);text=
+-decoration-style:initial;text-decoration-color:initial;float:none;display:=
+inline">do_install[vardepsalwaysdirty] =3D &quot;<span>=C2=A0</span></span>=
+<span style=3D"font-size:small;text-decoration-style:initial;text-decoratio=
+n-color:initial;background-color:rgb(255,255,255);float:none;display:inline=
+">EXTERNALLY_INFLUENCED_VARIABLE</span><span style=3D"font-size:small;backg=
+round-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-=
+color:initial;float:none;display:inline"><span>=C2=A0</span>&quot;</span></=
+div><div><span style=3D"font-size:small;background-color:rgb(255,255,255);t=
+ext-decoration-style:initial;text-decoration-color:initial;float:none;displ=
+ay:inline"><br></span></div><div><span style=3D"font-size:small;background-=
+color:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:=
+initial;float:none;display:inline">is just some nonsense syntax I wrote the=
+re to illustrate my point. I don&#39;t think there&#39;s any var flag calle=
+d &quot;vardepsalwaysdirty&quot;. Did you have this line in mind when you w=
+ere saying that I&#39;d already gotten the task made dependent on the varia=
+ble? Or were you just noting that the syntactic use of the variable inside =
+of the task should engage the normal hash-based task-dependency calculation=
+ logic?</span></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<br>
+If the recipe is reparsed, the anon python reruns and the task hash<br>
+recalculated.<br></blockquote><div><br></div><div>Is there anything extra I=
+ need to do to cause the reparsed variable&#39;s hash to cascade to the tas=
+k?</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<br>
+If a recipe sets BB_DONT_CACHE, it will be reparsed upon each run and<br>
+the hashes will dynamically change as you want. BB_SRCREV_POLICY !=3D<br>
+&quot;cache&quot; uses that behind the scenes so that it can dynamically up=
+date<br>
+srcrevs.<br>
+<br>
+Hope that helps...<br>
+<br>
+Cheers,<br>
+<br>
+Richard<br>
+<br></blockquote><div><br></div><div><br></div><div>Thanks! -Matt=C2=A0</di=
+v></div></div>
+
+--0000000000001468e10571e7bda7--
