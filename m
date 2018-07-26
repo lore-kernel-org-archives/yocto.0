@@ -1,74 +1,60 @@
-Return-Path: <mohammad.rasim96@gmail.com>
+Return-Path: <simon.chamlian@mpbc.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CCC31E00CE0; Thu, 26 Jul 2018 13:04:32 -0700 (PDT)
+	id 652ECE00CE0; Thu, 26 Jul 2018 13:51:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mohammad.rasim96[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.52 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.216.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
-	[209.85.221.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5708DE00CDD
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 13:04:30 -0700 (PDT)
-Received: by mail-wr1-f52.google.com with SMTP id r16-v6so2873124wrt.11
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 13:04:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-transfer-encoding:content-language;
-	bh=cTG+8dJKas/WIESiRb0HFFiioiR5zsdpUUymU4Y8aU4=;
-	b=n+xP8P6N+SW1Mbxf2oOCQ//GoUQSRv+Fji2CC7j5WWvHS69/SDM2nMLea7fLAcyUGc
-	V6+O+T9j6feeCQYLgfLPZZxX683VEm8j+WpCRgMiJdRCUCI87JhuPa2nwpmiGYdbGjXy
-	yPZeLfS2Fo6UiqYKJ+dgRRC8RlfqS9JIrKrPnpbiImPQtEI13QKopc0Rkucq1ajQ74rr
-	dZeDWXzkzy5i0fq4oJZ1z8LuabtSIuO/7iVF0FnpLyUtY8WNglmMVcgPAwH8ceO1sbIL
-	/zIvkiIXpQlm8bncO7UASwIfVpgyh6/MkxaeDy9c662pefm58UXnnmIzd8OeCZ5s4NLG
-	iYdg==
+Received: from mail-qt0-f169.google.com (mail-qt0-f169.google.com
+	[209.85.216.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2FE4E00CDD
+	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 13:51:55 -0700 (PDT)
+Received: by mail-qt0-f169.google.com with SMTP id y19-v6so3007994qto.5
+	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 13:51:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mpbc-ca.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=oCHngxsDVu3c8Ce4IQxQebuLX2ahJUp6kCzgFJhb/fA=;
+	b=hiiKx4QJ6KGNNNG8THGQqXXUQDvvNmECZmYaN/SpuDjKo1F8GaW8r70qsIjuc6OHfS
+	biOUGCm1NbIuIN6tB4HoKM0KFCvAuYmI0bahuXK+VPAV/ameqX0A0c1qKB1h4oQ4dyP3
+	Yb83SZ3lQpI44LurylTGeOZ7Qn5HwfGKxPisLBqHpz2Pek+lBKgO5/PCF/eUZU3X5UJS
+	ohmlEjOb6P0RHhKGZstt8xt1+364PAK7xJM40RPhkJtbsHngNMqDk7tpDSPMSkioNjAR
+	W0+qwl/jJh1u4p+/sBMMosMG3O+g3dHuuEIV+J01tkJJ+RhKeF9E1XgNZAub8KhMYn+8
+	C7zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=cTG+8dJKas/WIESiRb0HFFiioiR5zsdpUUymU4Y8aU4=;
-	b=mrOSdiDcAvhEbDWnfUu+OoZ6fHGQWCTdwxAgO5VELQicriThg7MhBAUgU5lXbNyx7M
-	1bZysQ6uO4FtlzZZYfBfHZR8Xaietotd3UPy8bRQZved+BCtKAyxbiP6MxbpsTtYctPf
-	mHyn7wa0uiihpReyHmm1/J2rmjdW7PsWYvez72zwofm2nwbtOsZe8RFbh/BYphI9WMsN
-	o5FfKfFkws0Am027b88iioYJ6Q/Y0fgVFm1aJ8I+ov0dMxEi1g+cbA3hFWD+TIg4K7i6
-	1/K2LvJEcSAsNEC1sjWycPz2jE9IeGjxUOPzjOXE7Mc9Y7pc2owkeo0tz07rvq83tgRE
-	7h0Q==
-X-Gm-Message-State: AOUpUlFac8Gm9P+PtATst/bCGKyDySongDznYtmM49sJ5+YeHyoZn2Vk
-	PREbJHxee8ktlz9nlISuuPZ12etmExU=
-X-Google-Smtp-Source: AAOMgpef0HR5F65P5oKC0YpVVh9yYjjcOUOJR07mP1uhqwSR/RuftBLzZlz1Oh8y7gZo1DUkE8tIpQ==
-X-Received: by 2002:adf:e3c5:: with SMTP id k5-v6mr2725211wrm.94.1532635469112;
-	Thu, 26 Jul 2018 13:04:29 -0700 (PDT)
-Received: from [192.168.88.227] ([37.237.211.59])
-	by smtp.gmail.com with ESMTPSA id
-	l14-v6sm3366688wrw.65.2018.07.26.13.04.27
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 26 Jul 2018 13:04:28 -0700 (PDT)
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <91623c72-a336-09d8-26e6-c2dd14355045@gmail.com>
-	<2256317.g0Ya7sYkEM@localhost.localdomain>
-From: MOHAMMAD RASIM <mohammad.rasim96@gmail.com>
-Message-ID: <42e16100-64f7-64f3-1ddf-5bb248291b76@gmail.com>
-Date: Thu, 26 Jul 2018 23:04:22 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=oCHngxsDVu3c8Ce4IQxQebuLX2ahJUp6kCzgFJhb/fA=;
+	b=Dl1LiWk7UX858wSRCtmZ7gtKD9QlAmB4dwJA7aDdzafIaJhAHtDvx2/VNjI6GFstft
+	rkRuJZzldJYlhQbz/3sWcwUjmlPqI5i+CKZVn/FlWwhFVYjS1o5t2AzghR1VCXcb+4F8
+	pCkEwMR/+2ODUlwBwUS2h0A74drikv1zbRk7VVPZK8RVkxr3iWn0DiIUWwRioCuqNvCt
+	xtAFyu0Jv8QblFGHLNg+4e6D8pgWyTRhhk0H4QXrin7+hQvdzSkxww7rzLathgM8A0/+
+	1TK7kqgX/hlW1IYAglpPw6pHy4YCPWiREPa7sOb8nGKSgrmeAnzJtLMxTF7s4MmKPjrk
+	4niQ==
+X-Gm-Message-State: AOUpUlE6G7NrPLC/3fOuPmTiAf/w7rsqxvjOAvE20SawReNQIzh3VCwL
+	XpUXehsTiIfFDZUduhrH73xeQTbwOKWHbhUW6PIeiT7DhgzaLg==
+X-Google-Smtp-Source: AAOMgpdUYx6cQrgC/rALWwYFxUuq4pV4VcnhIwV1WaGakLSjnuDDyBEqWDKgBaR5Jx6EsKReHOzvWfv9bbkRVdevfc0=
+X-Received: by 2002:ac8:2432:: with SMTP id
+	c47-v6mr3511509qtc.355.1532638314860; 
+	Thu, 26 Jul 2018 13:51:54 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <2256317.g0Ya7sYkEM@localhost.localdomain>
-Cc: yocto@yoctoproject.org
-Subject: Re: How to force build of a blacklisted recipe?
+Received: by 2002:ac8:856:0:0:0:0:0 with HTTP;
+	Thu, 26 Jul 2018 13:51:54 -0700 (PDT)
+From: Simon Chamlian <simon.chamlian@mpbc.ca>
+Date: Thu, 26 Jul 2018 16:51:54 -0400
+Message-ID: <CANmTPBY1UhLdVCTEpD1SAbyLGfZKdCVBjdnq6SQEtjg0svwR6Q@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: net-snmp_5.7.3.bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,38 +66,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jul 2018 20:04:32 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US-large
+X-List-Received-Date: Thu, 26 Jul 2018 20:51:56 -0000
+Content-Type: multipart/alternative; boundary="00000000000053a6ee0571ed2a07"
 
-Thanks, that worked
+--00000000000053a6ee0571ed2a07
+Content-Type: text/plain; charset="UTF-8"
 
+Hi,
 
-On 07/26/2018 01:43 PM, Paul Eggleton wrote:
-> On Thursday, 26 July 2018 11:16:02 AM CEST MOHAMMAD RASIM wrote:
->> I'm trying to build dvb-apps recipe which is blacklisted and was removed
->> from the newer openembedded releases, but it exist in the release I work
->> with
->>
->> Now when I try to build the recipe I get this error:
->>
->>   >ERROR:
->> /home/oealliancebuilder/openpli-oe-core/meta-openembedded/meta-multimedia/
->> recipes-dvb/dvb-apps/dvb-apps_1.1.1.bb
->> was skipped: Recipe is blacklisted: Fails to build with RSS
->> http://errors.yoctoproject.org/Errors/Details/130603/ - the recipe will
->> be removed on 2017-09-01 unless the issue is fixed
->>
->> But I want to tell openembedded to override the blacklisting and build
->> the recipe anyway so I can investigate and hopefully fix the recipe. How
->> can I do that ?
-> You should be able to just set PNBLACKLIST[dvb-apps] = "" in a
-> dvb-apps_%.bbappend for the recipe in your own layer, and then the
-> blacklisting will be disabled for that recipe.
->
-> Cheers,
-> Paul
->
+I created a bbappend in the same directory where *net-snmp_5.7.3.bb
+<http://net-snmp_5.7.3.bb>* resides:
 
 
+/sources/meta-openembedded/meta-networking/recipes-protocols/net-snmp$ *cat
+net-snmp_5.7.3.bbappend*
+
+
+
+EXTRA_OECONF += " --enable-mini-agent --with-default-snmp-version=3
+--disable-debugging \
+                  --with-logfile='/var/log/snmp' --with-transports='UDP
+TCP' --enable-blumenthal-aes  "
+
+
+
+
+
+
+did
+
+$ *bitbake -c compile net-snmp*
+$ *MACHINE=imx7d-phyboard-zeta-**001 bitbake  fsl-image-pk-imx-15*
+
+
+Does not seem to make any difference. The manifest files for the rootfs are
+identical with the previous build without the bbappend.
+
+
+Any hints?
+
+Thanks,
+S
+
+--00000000000053a6ee0571ed2a07
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><br></div><div>Hi,</div><div><br></div><div><div> I c=
+reated a bbappend in the same directory where <b><a href=3D"http://net-snmp=
+_5.7.3.bb">net-snmp_5.7.3.bb</a></b> resides:</div><div><br><div style=3D"m=
+argin-left:40px"><span style=3D"font-family:monospace,monospace"></span><br=
+></div><div style=3D"margin-left:40px"><span style=3D"font-family:monospace=
+,monospace"></span><span style=3D"font-family:monospace,monospace">/<wbr>so=
+urces/meta-openembedded/<wbr>meta-networking/recipes-<wbr>protocols/net-snm=
+p$ <b>cat net-snmp_5.7.3.bbappend</b><br><br><br><br>EXTRA_OECONF +=3D &quo=
+t; --enable-mini-agent --with-default-snmp-version=3D3=C2=A0 --disable-debu=
+gging \<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --with-logfile=3D&#39;/var/log/snmp=
+&#39; --with-transports=3D&#39;UDP TCP&#39; --enable-blumenthal-aes=C2=A0 &=
+quot;<br><br><br><br></span></div></div><div><br></div><div><br></div><div>=
+<br></div><div>did <br></div><div><br></div><div><span style=3D"font-family=
+:monospace,monospace">$ <b>bitbake -c compile net-snmp</b></span></div><div=
+><span style=3D"font-family:monospace,monospace">$ <b>MACHINE=3Dimx7d-phybo=
+ard-zeta-</b></span><b><span style=3D"font-family:monospace,monospace">00<w=
+br>1 bitbake=C2=A0 fsl-image-pk-imx-15</span></b></div><br></div><div><br><=
+/div><div>Does not seem to make any difference. The manifest files for the =
+rootfs are identical with the previous build without the bbappend.</div><di=
+v><br></div><div><br></div><div class=3D"gmail_extra">Any hints?</div><div =
+class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Thanks,</div><di=
+v class=3D"gmail_extra">S<br></div><div class=3D"gmail_extra"><br></div></d=
+iv>
+
+--00000000000053a6ee0571ed2a07--
