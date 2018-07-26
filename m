@@ -1,67 +1,53 @@
-Return-Path: <matt.hoosier@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7240AE00CE0; Thu, 26 Jul 2018 07:23:29 -0700 (PDT)
+	id 85910E00CE0; Thu, 26 Jul 2018 07:56:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (matt.hoosier[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.196 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f196.google.com (mail-yw0-f196.google.com
-	[209.85.161.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0089AE00CDD
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 07:23:27 -0700 (PDT)
-Received: by mail-yw0-f196.google.com with SMTP id v197-v6so635095ywg.3
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 07:23:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=hgDw4GIkwEYglRkz3TPBdHOxPHdvFdhUlLrknmlf1EA=;
-	b=VM6wrkMPXrJwg5OSPSjTC4PDC4DiwwosIXcU5MOK5oIdJUEdVkrb3szoAZYRwhBbhH
-	R+fsKGgtzLtjU6/jekdFLr4moC3cQuSY+EQb5EdzDQDBP8GkDdugwbM/IWpjg291N00I
-	IE1kqv2Ocs3FPTKt7GpSbuBzetgoxUt1/MQsybG5Jv7+fMY84uBVSEEdijmZSxGVmihv
-	+7bpTFDP7QfakjCUUsz2POmzTFF1f6wA3A6MhRfT20kPNnlVtHzVAr1pTggmhoxEJcdj
-	h2Sgrd3iIQqqNITj3I2lb37e1eYW/ehBPNamJluki1PPNwndtIYxcbUZ/Aa+QQ4cgRB7
-	zXIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=hgDw4GIkwEYglRkz3TPBdHOxPHdvFdhUlLrknmlf1EA=;
-	b=sYv+gToyc+OjRVDOidXRM9CnJxCMHqykfMSz4FAXO1P5TXB8PX/2QOZAIIR9cj3E76
-	TdREopUsriVv4BUQehJPn/2y4S/mTg5sc2EyMH86gV6lifds9sf2DU+Tu+j7NPaNu2jk
-	qEb9AGmEx8CZi9RpWSPBTXUP/jXWubJKJ70OIPDC25sw6DdH+2n5Nby9P+dP3btJLa6i
-	Ci7+fVgwiGjevXMKei/ZWxI9Dd75NYy5mY+W4V0uwUMH7+5V38Oi528p74Xt/2LTFjCd
-	dfivlLSPTGNDoCEeUmD9aXLaQgdQ2yWwEGffv9t5k91S6CPh4o5RSfvG5fdzG5sRI0cT
-	AdSA==
-X-Gm-Message-State: AOUpUlFTYny1Lt1E4Qpuytx5vKndQ694ffBCHfcn/CWT13W9Hgiki9tV
-	7+GdiYF+wu4paFzSmhIXdZ87gAoSCM7eIQ1Ik1Adp5bR
-X-Google-Smtp-Source: AAOMgpdxhLiwkS8+80C8Rwpxvn1kki7CPKvf4osK89PWYhD+MLqF92LgCUzBBxTiBnfzInmLQH9+gUX7PnICtLiXxtw=
-X-Received: by 2002:a81:b54:: with SMTP id 81-v6mr1063311ywl.363.1532615007167;
-	Thu, 26 Jul 2018 07:23:27 -0700 (PDT)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEE6EE00CDD
+	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 07:56:16 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	26 Jul 2018 07:56:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,405,1526367600"; 
+	d="scan'208,217";a="249168954"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by fmsmga006.fm.intel.com with ESMTP; 26 Jul 2018 07:55:01 -0700
+Received: from fmsmsx122.amr.corp.intel.com (10.18.125.37) by
+	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Thu, 26 Jul 2018 07:55:01 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.66]) by
+	fmsmsx122.amr.corp.intel.com ([169.254.5.95]) with mapi id
+	14.03.0319.002; Thu, 26 Jul 2018 07:55:00 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Weekly Triage Meeting
+Thread-Index: AdQk7t5OQR3RMZEuSm6forcoOwT3DQ==
+Date: Thu, 26 Jul 2018 14:55:00 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7367952@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMWVjNjJmNTYtNThlMS00YWJjLWIzNmQtMDk0ZGIxZjFlNjAyIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTkY1KzBhU3ZMYU0yU05UbGdIXC90S1oyR0d0d3RGZFVaUVlxRXpscjJsb2JzNkNyWnVSVUE0bTBtcXVYMzBsTkUifQ==
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.108]
 MIME-Version: 1.0
-References: <CAJgxT3_QyunmpzGW69j27sR_BFvvhisQVtG+-uGnMxhsO8mCLg@mail.gmail.com>
-	<CAJgxT3-Jrr2baQz8Y6c_VzNf0Jn6qSEfgNbDYu7xGN4g1PRT=A@mail.gmail.com>
-	<18ef0e1f0af7576bbdc5841c8eaa064bc865e0ff.camel@linuxfoundation.org>
-In-Reply-To: <18ef0e1f0af7576bbdc5841c8eaa064bc865e0ff.camel@linuxfoundation.org>
-From: Matt Hoosier <matt.hoosier@gmail.com>
-Date: Thu, 26 Jul 2018 09:22:51 -0500
-Message-ID: <CAJgxT3_kmGREWd_0kuULP-NMCd1U39YbT+c9YAeZ+=aikK0aWA@mail.gmail.com>
-To: richard.purdie@linuxfoundation.org
-Cc: yocto@yoctoproject.org, bitbake-devel@lists.openembedded.org
-Subject: Re: Ordering of anonymous Python functions and task signature calculations
+Subject: Minutes: Yocto Project Weekly Triage Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,306 +59,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jul 2018 14:23:29 -0000
-Content-Type: multipart/alternative; boundary="0000000000001468e10571e7bda7"
+X-List-Received-Date: Thu, 26 Jul 2018 14:56:19 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7367952fmsmsx111amrcor_"
 
---0000000000001468e10571e7bda7
-Content-Type: text/plain; charset="UTF-8"
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7367952fmsmsx111amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Thanks for the reply.
+QXR0ZW5kZWVzOiBKb3NodWEgVy4sIFN0ZXBoZW4sIFJpY2hhcmQsIFJhbmR5LCBBbnVqLCBBbWFu
+ZGEsDQoNCldpa2k6IGh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvQnVnX1RyaWFn
+ZQ0KDQpBUjogU3RlcGhlbiDigJMgSGF2ZSBhIGRpc2N1c3Npb24gYWJvdXQgMi4yLjUgYW5kIDIu
+My41IGluIG5leHQgd2Vla+KAmXMgdHJpYWdlLg0KDQpUaGFua3MsDQoNClN0ZXBoZW4gSy4gSm9s
+bGV5DQpZb2N0byBQcm9qZWN0IFByb2dyYW0gTWFuYWdlcg0KSU5URUwsIE1TIEpGMS0yNTUsIDIx
+MTEgTi5FLiAyNXRoIEF2ZW51ZSwgSGlsbHNib3JvLCBPUiA5NzEyNA0K4oCiICAgIENlbGw6ICAg
+ICAgICAgICAgICAoMjA4KSAyNDQtNDQ2MA0K4oCiIEVtYWlsOiAgICAgICAgICAgICAgICBzdGVw
+aGVuLmsuam9sbGV5QGludGVsLmNvbQ0KDQoNCg==
 
-On Wed, Jul 25, 2018 at 4:58 PM Richard Purdie <
-richard.purdie@linuxfoundation.org> wrote:
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7367952fmsmsx111amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> On Wed, 2018-07-25 at 08:47 -0500, Matt Hoosier wrote:
-> > Quite a while ago I wrote the following message:
-> > On Tue, Jan 24, 2017 at 11:55 AM Matt Hoosier <matt.hoosier@gmail.com
-> > > wrote:
-> > > In order to support a use-case that embeds information about the
-> > > Git revision of Yocto itself that was used to make a build, I would
-> > > like to run some arbitrary Python code and dump the results (Git
-> > > SHA1's, tag names, etc) into a Bitbake variable.
-> > >
-> > > The idea is that the variable would get consumed in a do_install()
-> > > task to populate some cookie-crumb file in the package payload.
-> > >
-> > > Something like:
-> > >
-> > >   DEPENDS = "git-native"
-> > >
-> > >   python () {
-> > >     # This pseudocode isn't strictly functional for invoking Git,
-> > > but you get the idea
-> > >     d.setVar('GIT_INFO', subprocess.Popen(['git', 'rev-list',
-> > > ...]).communicate().stdout)
-> > >   }
-> > >
-> > >   do_install () {
-> > >     install -d ${D}/etc
-> > >     echo "${GIT_INFO}" > ${D}/etc/git-info.txt
-> > >   }
-> > >
-> > > This all works on a fresh run, but Bitbake appears not to be
-> > > evaluating the anonymous Python function on each execution. This
-> > > leads it to have out-of-date information about the Git working copy
-> > > when global state changes but happens not to impact the particular
-> > > recipe holding this logic.
-> > >
-> > >
-> >
-> > The replies given at the time were very helpful in letting me
-> > accomplish my immediate goals, but I never really did get to the
-> > bottom of the real question:
-> >
-> > > Is there any trick available to cause the Python function to
-> > > execute (and hence update the value of ${GIT_INFO} each Bitbake
-> > > execution so that the up-to-the-moment contents of it filter into
-> > > the calculation of the signature for do_install()? Or am I just
-> > > trying a wrong-headed approach and doing something illegitimate?
-> > >
-> >
-> > Some build systems I know of [1] that are based on hashes rather than
-> > timestamps have a way that you can inform the task execution engine
-> > to always poison the inputs to a certain task's up-to-dateness check.
-> > Is there anything in Bitbake that would allow a declaration to force
-> > such-and-such variable in a recipe always to be re-evaluated:
-> >
-> >   EXTERNALLY_INFLUENCED_VARIABLE = "${@int(random.random() * 10)}"
-> >   do_install[vardepsalwaysdirty] = " EXTERNALLY_INFLUENCED_VARIABLE "
-> >
-> >   do_install() {
-> >     echo '${ EXTERNALLY_INFLUENCED_VARIABLE }' > ${D}/etc/stuff.txt
-> >   }
-> >
-> > Don't read too much into the example calling random() here. That's
-> > not really what I want to do; the point is just that the variable's
-> > value (though deterministic) isn't computed strictly from Bitbake
-> > metadata. So I'm searching for a way to get the value of
-> > EXTERNALLY_INFLUENCED_VARIABLE to be re-computed each time Bitbake
-> > starts. If the computed value ends up matching what was seen on the
-> > last execution, then any dependent tasks wouldn't need re-run.
-> >
-> > Any ideas?
-> >
-> > [1] I'm thinking particularly of Waf's hash-based task graph, which
-> > supports annotations that can be used to always cause a task to be
-> > re-run even if all the inputs feeding into it appear up-to-date.
->
-> From a bitbake perspective there are two things you need to ensure
-> here, that the recipe gets reparsed at every execution
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
+dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
+LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
+ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
+PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
+Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+QXR0ZW5kZWVzOiBKb3NodWEgVy4sIFN0ZXBoZW4s
+IFJpY2hhcmQsIFJhbmR5LCBBbnVqLCBBbWFuZGEsPC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+
+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250
+IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExcHQ7Ij5XaWtpOiA8YSBocmVmPSJodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9y
+Zy93aWtpL0J1Z19UcmlhZ2UiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT5odHRwczovL3dpa2ku
+eW9jdG9wcm9qZWN0Lm9yZy93aWtpL0J1Z19UcmlhZ2U8L3U+PC9mb250PjwvYT48L3NwYW4+PC9m
+b250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFG
+NDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48
+L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0Qi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPkFSOiBTdGVwaGVuIOKAkyBIYXZlIGEgZGlz
+Y3Vzc2lvbiBhYm91dCAyLjIuNSBhbmQgMi4zLjUgaW4gbmV4dCB3ZWVr4oCZcyB0cmlhZ2UuPC9z
+cGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29s
+b3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48
+L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIj
+MUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5UaGFua3MsPC9zcGFuPjwvZm9u
+dD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5
+N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9k
+aXY+DQo8ZGl2Pjxmb250IHNpemU9IjQiIGNvbG9yPSJwdXJwbGUiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTZwdDsiPjxiPjxpPlN0ZXBoZW4gSy4gSm9sbGV5PC9pPjwvYj48L3NwYW4+PC9mb250
+PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDb3VyaWVyIE5ldyIgc2l6ZT0iMSIgY29sb3I9ImJs
+dWUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OHB0OyI+PGI+WW9jdG8gUHJvamVjdCBQcm9ncmFt
+IE1hbmFnZXI8L2I+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ291cmll
+ciBOZXciIHNpemU9IjIiIGNvbG9yPSJmdWNoc2lhIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEw
+cHQ7Ij48Yj5JTlRFTCwgTVMgSkYxLTI1NSwgMjExMSBOLkUuIDI1dGggQXZlbnVlLCBIaWxsc2Jv
+cm8sIE9SIDk3MTI0IDwvYj48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBzaXplPSIy
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjlwdDsiPjxmb250IGZhY2U9IldpbmdkaW5ncyI+KDwv
+Zm9udD48Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0idGVhbCI+Jm5ic3A7Jm5ic3A7
+Jm5ic3A7IDwvZm9udD48Zm9udCBmYWNlPSJDb21pYyBTYW5zIE1TIiBzaXplPSIxIiBjb2xvcj0i
+dGVhbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo4cHQ7Ij48Yj5DZWxsPC9iPjwvc3Bhbj48L2Zv
+bnQ+PGZvbnQgZmFjZT0iTVMgU2FucyBTZXJpZiIgY29sb3I9InRlYWwiPjombmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsNCjwvZm9udD48Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0iIzFGNDk3
+RCI+KDIwOCkgMjQ0LTQ0NjA8L2ZvbnQ+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQg
+c2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OXB0OyI+PGZv
+bnQgZmFjZT0iV2luZ2RpbmdzIj4qIDwvZm9udD48Zm9udCBmYWNlPSJDb21pYyBTYW5zIE1TIiBz
+aXplPSIxIiBjb2xvcj0idGVhbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo4cHQ7Ij48Yj5FbWFp
+bDwvYj48L3NwYW4+PC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9yPSJ0ZWFs
+Ij46Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8L2ZvbnQ+PGZvbnQgZmFjZT0i
+TVMgU2FucyBTZXJpZiIgY29sb3I9ImJsdWUiPjx1PnN0ZXBoZW4uay5qb2xsZXlAaW50ZWwuY29t
+PC91PjwvZm9udD48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJp
+IiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+
+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6
+ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48
+L2Rpdj4NCjwvc3Bhbj48L2ZvbnQ+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-
-Your advice about BB_DONT_CACHE does cause reparsing to get triggered. I
-can see that in logs.
-
-
-> and that the
-> task dependency exists. You have the dependency above and that is the
-> easier piece to fix.
->
-
-But this part I'm not seeing. The variable's value is always recalculated
-(sometimes more than once during a Bitbake run, but that's okay because
-it's idempotent), but the task only re-executes if the payload of the .bb
-file itself has changed. The blurb I wrote above:
-
-  do_install[vardepsalwaysdirty] = " EXTERNALLY_INFLUENCED_VARIABLE "
-
-is just some nonsense syntax I wrote there to illustrate my point. I don't
-think there's any var flag called "vardepsalwaysdirty". Did you have this
-line in mind when you were saying that I'd already gotten the task made
-dependent on the variable? Or were you just noting that the syntactic use
-of the variable inside of the task should engage the normal hash-based
-task-dependency calculation logic?
-
-
->
-> If the recipe is reparsed, the anon python reruns and the task hash
-> recalculated.
->
-
-Is there anything extra I need to do to cause the reparsed variable's hash
-to cascade to the task?
-
-
->
-> If a recipe sets BB_DONT_CACHE, it will be reparsed upon each run and
-> the hashes will dynamically change as you want. BB_SRCREV_POLICY !=
-> "cache" uses that behind the scenes so that it can dynamically update
-> srcrevs.
->
-> Hope that helps...
->
-> Cheers,
->
-> Richard
->
->
-
-Thanks! -Matt
-
---0000000000001468e10571e7bda7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div>Thanks for the reply.</div=
-><div dir=3D"ltr"><br></div><div dir=3D"ltr">On Wed, Jul 25, 2018 at 4:58 P=
-M Richard Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">=
-richard.purdie@linuxfoundation.org</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
-ding-left:1ex">On Wed, 2018-07-25 at 08:47 -0500, Matt Hoosier wrote:<br>
-&gt; Quite a while ago I wrote the following message:<br>
-&gt; On Tue, Jan 24, 2017 at 11:55 AM Matt Hoosier &lt;<a href=3D"mailto:ma=
-tt.hoosier@gmail.com" target=3D"_blank">matt.hoosier@gmail.com</a><br>
-&gt; &gt; wrote:<br>
-&gt; &gt; In order to support a use-case that embeds information about the<=
-br>
-&gt; &gt; Git revision of Yocto itself that was used to make a build, I wou=
-ld<br>
-&gt; &gt; like to run some arbitrary Python code and dump the results (Git<=
-br>
-&gt; &gt; SHA1&#39;s, tag names, etc) into a Bitbake variable.<br>
-&gt; &gt; <br>
-&gt; &gt; The idea is that the variable would get consumed in a do_install(=
-)<br>
-&gt; &gt; task to populate some cookie-crumb file in the package payload.<b=
-r>
-&gt; &gt; <br>
-&gt; &gt; Something like:<br>
-&gt; &gt; <br>
-&gt; &gt;=C2=A0 =C2=A0DEPENDS =3D &quot;git-native&quot;<br>
-&gt; &gt; <br>
-&gt; &gt;=C2=A0 =C2=A0python () {<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0# This pseudocode isn&#39;t strictly functiona=
-l for invoking Git,<br>
-&gt; &gt; but you get the idea<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0d.setVar(&#39;GIT_INFO&#39;, subprocess.Popen(=
-[&#39;git&#39;, &#39;rev-list&#39;,<br>
-&gt; &gt; ...]).communicate().stdout)<br>
-&gt; &gt;=C2=A0 =C2=A0}<br>
-&gt; &gt; <br>
-&gt; &gt;=C2=A0 =C2=A0do_install () {<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0install -d ${D}/etc<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0echo &quot;${GIT_INFO}&quot; &gt; ${D}/etc/git=
--info.txt<br>
-&gt; &gt;=C2=A0 =C2=A0}<br>
-&gt; &gt; <br>
-&gt; &gt; This all works on a fresh run, but Bitbake appears not to be<br>
-&gt; &gt; evaluating the anonymous Python function on each execution. This<=
-br>
-&gt; &gt; leads it to have out-of-date information about the Git working co=
-py<br>
-&gt; &gt; when global state changes but happens not to impact the particula=
-r<br>
-&gt; &gt; recipe holding this logic.<br>
-&gt; &gt; <br>
-&gt; &gt; <br>
-&gt; <br>
-&gt; The replies given at the time were very helpful in letting me<br>
-&gt; accomplish my immediate goals, but I never really did get to the<br>
-&gt; bottom of the real question:<br>
-&gt;=C2=A0 <br>
-&gt; &gt; Is there any trick available to cause the Python function to<br>
-&gt; &gt; execute (and hence update the value of ${GIT_INFO} each Bitbake<b=
-r>
-&gt; &gt; execution so that the up-to-the-moment contents of it filter into=
-<br>
-&gt; &gt; the calculation of the signature for do_install()? Or am I just<b=
-r>
-&gt; &gt; trying a wrong-headed approach and doing something illegitimate? =
-<br>
-&gt; &gt; <br>
-&gt; <br>
-&gt; Some build systems I know of [1] that are based on hashes rather than<=
-br>
-&gt; timestamps have a way that you can inform the task execution engine<br=
->
-&gt; to always poison the inputs to a certain task&#39;s up-to-dateness che=
-ck.<br>
-&gt; Is there anything in Bitbake that would allow a declaration to force<b=
-r>
-&gt; such-and-such variable in a recipe always to be re-evaluated:<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0EXTERNALLY_INFLUENCED_VARIABLE =3D &quot;${@int(random.ran=
-dom() * 10)}&quot;<br>
-&gt;=C2=A0 =C2=A0do_install[vardepsalwaysdirty] =3D &quot; EXTERNALLY_INFLU=
-ENCED_VARIABLE &quot;<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0do_install() {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0echo &#39;${ EXTERNALLY_INFLUENCED_VARIABLE }&#39; =
-&gt; ${D}/etc/stuff.txt<br>
-&gt;=C2=A0 =C2=A0}<br>
-&gt; <br>
-&gt; Don&#39;t read too much into the example calling random() here. That&#=
-39;s<br>
-&gt; not really what I want to do; the point is just that the variable&#39;=
-s<br>
-&gt; value (though deterministic) isn&#39;t computed strictly from Bitbake<=
-br>
-&gt; metadata. So I&#39;m searching for a way to get the value of<br>
-&gt; EXTERNALLY_INFLUENCED_VARIABLE to be re-computed each time Bitbake<br>
-&gt; starts. If the computed value ends up matching what was seen on the<br=
->
-&gt; last execution, then any dependent tasks wouldn&#39;t need re-run.<br>
-&gt; <br>
-&gt; Any ideas?<br>
-&gt; <br>
-&gt; [1] I&#39;m thinking particularly of Waf&#39;s hash-based task graph, =
-which<br>
-&gt; supports annotations that can be used to always cause a task to be<br>
-&gt; re-run even if all the inputs feeding into it appear up-to-date.<br>
-<br>
-From a bitbake perspective there are two things you need to ensure<br>
-here, that the recipe gets reparsed at every execution</blockquote><div><br=
-></div><div>Your advice about BB_DONT_CACHE does cause reparsing to get tri=
-ggered. I can see that in logs.</div><div>=C2=A0</div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
-left:1ex"> and that the<br>
-task dependency exists. You have the dependency above and that is the<br>
-easier piece to fix.<br></blockquote><div><br></div><div>But this part I&#3=
-9;m not seeing. The variable&#39;s value is always recalculated (sometimes =
-more than once during a Bitbake run, but that&#39;s okay because it&#39;s i=
-dempotent), but the task only re-executes if the payload of the .bb file it=
-self has changed. The blurb I wrote above:</div><div><br></div><div>=C2=A0=
-=C2=A0<span style=3D"font-size:small;background-color:rgb(255,255,255);text=
--decoration-style:initial;text-decoration-color:initial;float:none;display:=
-inline">do_install[vardepsalwaysdirty] =3D &quot;<span>=C2=A0</span></span>=
-<span style=3D"font-size:small;text-decoration-style:initial;text-decoratio=
-n-color:initial;background-color:rgb(255,255,255);float:none;display:inline=
-">EXTERNALLY_INFLUENCED_VARIABLE</span><span style=3D"font-size:small;backg=
-round-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-=
-color:initial;float:none;display:inline"><span>=C2=A0</span>&quot;</span></=
-div><div><span style=3D"font-size:small;background-color:rgb(255,255,255);t=
-ext-decoration-style:initial;text-decoration-color:initial;float:none;displ=
-ay:inline"><br></span></div><div><span style=3D"font-size:small;background-=
-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:=
-initial;float:none;display:inline">is just some nonsense syntax I wrote the=
-re to illustrate my point. I don&#39;t think there&#39;s any var flag calle=
-d &quot;vardepsalwaysdirty&quot;. Did you have this line in mind when you w=
-ere saying that I&#39;d already gotten the task made dependent on the varia=
-ble? Or were you just noting that the syntactic use of the variable inside =
-of the task should engage the normal hash-based task-dependency calculation=
- logic?</span></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-<br>
-If the recipe is reparsed, the anon python reruns and the task hash<br>
-recalculated.<br></blockquote><div><br></div><div>Is there anything extra I=
- need to do to cause the reparsed variable&#39;s hash to cascade to the tas=
-k?</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-<br>
-If a recipe sets BB_DONT_CACHE, it will be reparsed upon each run and<br>
-the hashes will dynamically change as you want. BB_SRCREV_POLICY !=3D<br>
-&quot;cache&quot; uses that behind the scenes so that it can dynamically up=
-date<br>
-srcrevs.<br>
-<br>
-Hope that helps...<br>
-<br>
-Cheers,<br>
-<br>
-Richard<br>
-<br></blockquote><div><br></div><div><br></div><div>Thanks! -Matt=C2=A0</di=
-v></div></div>
-
---0000000000001468e10571e7bda7--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7367952fmsmsx111amrcor_--
