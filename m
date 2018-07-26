@@ -1,53 +1,67 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85910E00CE0; Thu, 26 Jul 2018 07:56:19 -0700 (PDT)
+	id 9D698E00CEA; Thu, 26 Jul 2018 08:19:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEE6EE00CDD
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 07:56:16 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	26 Jul 2018 07:56:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,405,1526367600"; 
-	d="scan'208,217";a="249168954"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
-	by fmsmga006.fm.intel.com with ESMTP; 26 Jul 2018 07:55:01 -0700
-Received: from fmsmsx122.amr.corp.intel.com (10.18.125.37) by
-	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Thu, 26 Jul 2018 07:55:01 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.66]) by
-	fmsmsx122.amr.corp.intel.com ([169.254.5.95]) with mapi id
-	14.03.0319.002; Thu, 26 Jul 2018 07:55:00 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Weekly Triage Meeting
-Thread-Index: AdQk7t5OQR3RMZEuSm6forcoOwT3DQ==
-Date: Thu, 26 Jul 2018 14:55:00 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7367952@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMWVjNjJmNTYtNThlMS00YWJjLWIzNmQtMDk0ZGIxZjFlNjAyIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTkY1KzBhU3ZMYU0yU05UbGdIXC90S1oyR0d0d3RGZFVaUVlxRXpscjJsb2JzNkNyWnVSVUE0bTBtcXVYMzBsTkUifQ==
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.108]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f65.google.com (mail-oi0-f65.google.com
+	[209.85.218.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19DA0E00CE0
+	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 08:19:08 -0700 (PDT)
+Received: by mail-oi0-f65.google.com with SMTP id k12-v6so3587513oiw.8
+	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 08:19:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=XkoIfUYrmPcptPqDgd9PEvyU2ORMMAyQ6sLSckf7K68=;
+	b=Up3ZTThOG9LwXxJHolAZevFMgAH/4ErNeGR0zlv8t01sIpaeLJvMBVPVKEU5NUeurY
+	LQVf9qRWgNksCQT9ziNB51o62Lph87azzyE/RNe+mjQSq7dxmNeCLC5eHYZB9DouEfrB
+	m5njamPQyVElIR0vbigHnvpnWr1mJYAvqWZ3jC1giAwfi8O1fM7Bo7Q+jH/TK8df0cxn
+	so/egvl6qnR/qxTNOIuJoV3eX2if9bARrFuT+d/7tKOXhhUQRtuQ+BKOxuU51GO+Zgdc
+	jCUnw1OYpB8klo3KmEmny4N5WNgEPsJlsGqGN7F7Fvw0bR6mKnEjioolomkTs8Vwihar
+	tHGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=XkoIfUYrmPcptPqDgd9PEvyU2ORMMAyQ6sLSckf7K68=;
+	b=RsbviCAypUT/133Q57FVB8yxqF64con7o7nTbBzrPMCkpUGwNBjHVgigrSytrb3Bg8
+	qStaRnn9fGxjsdomiJXdNAYLA+8O7s1LZTDc/2hUouMeGv9IcA8sISDUXMaRuqYq+JkA
+	IuyWN/qT9/QDkHJWDGNH5DHQ+HU83HPIEGXJguLXyM8cv9pfIeAKziwvhVBzDK//fz9O
+	BtupDFtsEGSDuAB3DVEi+j5d9aaiewroqZV9BybCtJzAZd2utMJrMlyNV9KvbSReRLwH
+	Hi7dH0/dePoKPjqn2jYI6FIhbMan4uvK6qOCnjXwwsbwYddNTcv4d7DEDHF2BJjQ6pw5
+	OYuQ==
+X-Gm-Message-State: AOUpUlGDfPSi3qx3UE4iJPTbZRKBpHA7UzsVOCNTcZ9ond6Ksewt5DxQ
+	4Zv2QLLTFSUOI7kyjYeOUe68is3+JEUlqny9MEE=
+X-Google-Smtp-Source: AAOMgpfwbr5L0iYu2KUTtSbuunCljbKyDVPi9V70UlbVW6Ng+MVRtsInilXNsnJEHfaPcHIh15s+tCxol3BbMsvte9Y=
+X-Received: by 2002:aca:e80c:: with SMTP id
+	f12-v6mr2609353oih.38.1532618348584; 
+	Thu, 26 Jul 2018 08:19:08 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Weekly Triage Meeting
+Received: by 2002:a4a:90c5:0:0:0:0:0 with HTTP; Thu, 26 Jul 2018 08:19:08
+	-0700 (PDT)
+In-Reply-To: <CA+-BmJY3L5ur9MWSG4G-+T_5zd3H+8Wo0-cPD7qONimtoXfjUg@mail.gmail.com>
+References: <CA+-BmJY3L5ur9MWSG4G-+T_5zd3H+8Wo0-cPD7qONimtoXfjUg@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 26 Jul 2018 17:19:08 +0200
+Message-ID: <CANNYZj8uUuZeLB-ij=towgBEuhxKrLxgxK+XrKpGhCnZtPgECA@mail.gmail.com>
+To: Ayoub Zaki <ayoub.zaki@googlemail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Intel machine with 64 Bit kernel and 32 Bit user space
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,82 +73,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jul 2018 14:56:19 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7367952fmsmsx111amrcor_"
+X-List-Received-Date: Thu, 26 Jul 2018 15:19:09 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7367952fmsmsx111amrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+2018-07-26 14:56 GMT+02:00 Ayoub Zaki <ayoub.zaki@googlemail.com>:
+> Is it possible to define a MACHINE configuration with a 64 Bit kernel and 32
+> Bit user space ?
+>
+> The user space should not be using a  x32 ABI.
 
-QXR0ZW5kZWVzOiBKb3NodWEgVy4sIFN0ZXBoZW4sIFJpY2hhcmQsIFJhbmR5LCBBbnVqLCBBbWFu
-ZGEsDQoNCldpa2k6IGh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvQnVnX1RyaWFn
-ZQ0KDQpBUjogU3RlcGhlbiDigJMgSGF2ZSBhIGRpc2N1c3Npb24gYWJvdXQgMi4yLjUgYW5kIDIu
-My41IGluIG5leHQgd2Vla+KAmXMgdHJpYWdlLg0KDQpUaGFua3MsDQoNClN0ZXBoZW4gSy4gSm9s
-bGV5DQpZb2N0byBQcm9qZWN0IFByb2dyYW0gTWFuYWdlcg0KSU5URUwsIE1TIEpGMS0yNTUsIDIx
-MTEgTi5FLiAyNXRoIEF2ZW51ZSwgSGlsbHNib3JvLCBPUiA5NzEyNA0K4oCiICAgIENlbGw6ICAg
-ICAgICAgICAgICAoMjA4KSAyNDQtNDQ2MA0K4oCiIEVtYWlsOiAgICAgICAgICAgICAgICBzdGVw
-aGVuLmsuam9sbGV5QGludGVsLmNvbQ0KDQoNCg==
+I think (but I am not sure), that you can do it with multilib. Define
+a configuration like this:
+https://github.com/openembedded/openembedded-core/blob/master/meta-skeleton/conf/multilib-example.conf
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7367952fmsmsx111amrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Then build lib32-core-image-minimal. That image should include only 32
+bit user space, but the kernel will be 64 bit.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
-dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
-LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
-ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
-PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
-Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+QXR0ZW5kZWVzOiBKb3NodWEgVy4sIFN0ZXBoZW4s
-IFJpY2hhcmQsIFJhbmR5LCBBbnVqLCBBbWFuZGEsPC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+
-PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250
-IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjExcHQ7Ij5XaWtpOiA8YSBocmVmPSJodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9y
-Zy93aWtpL0J1Z19UcmlhZ2UiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT5odHRwczovL3dpa2ku
-eW9jdG9wcm9qZWN0Lm9yZy93aWtpL0J1Z19UcmlhZ2U8L3U+PC9mb250PjwvYT48L3NwYW4+PC9m
-b250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFG
-NDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48
-L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0Qi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPkFSOiBTdGVwaGVuIOKAkyBIYXZlIGEgZGlz
-Y3Vzc2lvbiBhYm91dCAyLjIuNSBhbmQgMi4zLjUgaW4gbmV4dCB3ZWVr4oCZcyB0cmlhZ2UuPC9z
-cGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29s
-b3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48
-L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIj
-MUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5UaGFua3MsPC9zcGFuPjwvZm9u
-dD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5
-N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9k
-aXY+DQo8ZGl2Pjxmb250IHNpemU9IjQiIGNvbG9yPSJwdXJwbGUiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTZwdDsiPjxiPjxpPlN0ZXBoZW4gSy4gSm9sbGV5PC9pPjwvYj48L3NwYW4+PC9mb250
-PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDb3VyaWVyIE5ldyIgc2l6ZT0iMSIgY29sb3I9ImJs
-dWUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OHB0OyI+PGI+WW9jdG8gUHJvamVjdCBQcm9ncmFt
-IE1hbmFnZXI8L2I+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ291cmll
-ciBOZXciIHNpemU9IjIiIGNvbG9yPSJmdWNoc2lhIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEw
-cHQ7Ij48Yj5JTlRFTCwgTVMgSkYxLTI1NSwgMjExMSBOLkUuIDI1dGggQXZlbnVlLCBIaWxsc2Jv
-cm8sIE9SIDk3MTI0IDwvYj48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBzaXplPSIy
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjlwdDsiPjxmb250IGZhY2U9IldpbmdkaW5ncyI+KDwv
-Zm9udD48Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0idGVhbCI+Jm5ic3A7Jm5ic3A7
-Jm5ic3A7IDwvZm9udD48Zm9udCBmYWNlPSJDb21pYyBTYW5zIE1TIiBzaXplPSIxIiBjb2xvcj0i
-dGVhbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo4cHQ7Ij48Yj5DZWxsPC9iPjwvc3Bhbj48L2Zv
-bnQ+PGZvbnQgZmFjZT0iTVMgU2FucyBTZXJpZiIgY29sb3I9InRlYWwiPjombmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsNCjwvZm9udD48Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0iIzFGNDk3
-RCI+KDIwOCkgMjQ0LTQ0NjA8L2ZvbnQ+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQg
-c2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OXB0OyI+PGZv
-bnQgZmFjZT0iV2luZ2RpbmdzIj4qIDwvZm9udD48Zm9udCBmYWNlPSJDb21pYyBTYW5zIE1TIiBz
-aXplPSIxIiBjb2xvcj0idGVhbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo4cHQ7Ij48Yj5FbWFp
-bDwvYj48L3NwYW4+PC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9yPSJ0ZWFs
-Ij46Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8L2ZvbnQ+PGZvbnQgZmFjZT0i
-TVMgU2FucyBTZXJpZiIgY29sb3I9ImJsdWUiPjx1PnN0ZXBoZW4uay5qb2xsZXlAaW50ZWwuY29t
-PC91PjwvZm9udD48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJp
-IiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+
-Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6
-ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48
-L2Rpdj4NCjwvc3Bhbj48L2ZvbnQ+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+Alex
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7367952fmsmsx111amrcor_--
