@@ -1,60 +1,39 @@
-Return-Path: <simon.chamlian@mpbc.ca>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 652ECE00CE0; Thu, 26 Jul 2018 13:51:56 -0700 (PDT)
+	id 17644E00CE7; Thu, 26 Jul 2018 18:54:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.216.169 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f169.google.com (mail-qt0-f169.google.com
-	[209.85.216.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2FE4E00CDD
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 13:51:55 -0700 (PDT)
-Received: by mail-qt0-f169.google.com with SMTP id y19-v6so3007994qto.5
-	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 13:51:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mpbc-ca.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=oCHngxsDVu3c8Ce4IQxQebuLX2ahJUp6kCzgFJhb/fA=;
-	b=hiiKx4QJ6KGNNNG8THGQqXXUQDvvNmECZmYaN/SpuDjKo1F8GaW8r70qsIjuc6OHfS
-	biOUGCm1NbIuIN6tB4HoKM0KFCvAuYmI0bahuXK+VPAV/ameqX0A0c1qKB1h4oQ4dyP3
-	Yb83SZ3lQpI44LurylTGeOZ7Qn5HwfGKxPisLBqHpz2Pek+lBKgO5/PCF/eUZU3X5UJS
-	ohmlEjOb6P0RHhKGZstt8xt1+364PAK7xJM40RPhkJtbsHngNMqDk7tpDSPMSkioNjAR
-	W0+qwl/jJh1u4p+/sBMMosMG3O+g3dHuuEIV+J01tkJJ+RhKeF9E1XgNZAub8KhMYn+8
-	C7zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=oCHngxsDVu3c8Ce4IQxQebuLX2ahJUp6kCzgFJhb/fA=;
-	b=Dl1LiWk7UX858wSRCtmZ7gtKD9QlAmB4dwJA7aDdzafIaJhAHtDvx2/VNjI6GFstft
-	rkRuJZzldJYlhQbz/3sWcwUjmlPqI5i+CKZVn/FlWwhFVYjS1o5t2AzghR1VCXcb+4F8
-	pCkEwMR/+2ODUlwBwUS2h0A74drikv1zbRk7VVPZK8RVkxr3iWn0DiIUWwRioCuqNvCt
-	xtAFyu0Jv8QblFGHLNg+4e6D8pgWyTRhhk0H4QXrin7+hQvdzSkxww7rzLathgM8A0/+
-	1TK7kqgX/hlW1IYAglpPw6pHy4YCPWiREPa7sOb8nGKSgrmeAnzJtLMxTF7s4MmKPjrk
-	4niQ==
-X-Gm-Message-State: AOUpUlE6G7NrPLC/3fOuPmTiAf/w7rsqxvjOAvE20SawReNQIzh3VCwL
-	XpUXehsTiIfFDZUduhrH73xeQTbwOKWHbhUW6PIeiT7DhgzaLg==
-X-Google-Smtp-Source: AAOMgpdUYx6cQrgC/rALWwYFxUuq4pV4VcnhIwV1WaGakLSjnuDDyBEqWDKgBaR5Jx6EsKReHOzvWfv9bbkRVdevfc0=
-X-Received: by 2002:ac8:2432:: with SMTP id
-	c47-v6mr3511509qtc.355.1532638314860; 
-	Thu, 26 Jul 2018 13:51:54 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 263F4E00CDF
+	for <yocto@yoctoproject.org>; Thu, 26 Jul 2018 18:54:10 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w6R1s8ZT008384
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 26 Jul 2018 18:54:09 -0700
+Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.399.0;
+	Thu, 26 Jul 2018 18:54:07 -0700
+To: Steve Pavao <stevep@korgrd.com>, <yocto@yoctoproject.org>
+References: <4B83820E-84AB-43C5-9458-18EF4BCB3EFD@korgrd.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <e1e4423a-640f-4fcc-b5fe-2c9695fc7b0f@windriver.com>
+Date: Fri, 27 Jul 2018 09:57:58 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Received: by 2002:ac8:856:0:0:0:0:0 with HTTP;
-	Thu, 26 Jul 2018 13:51:54 -0700 (PDT)
-From: Simon Chamlian <simon.chamlian@mpbc.ca>
-Date: Thu, 26 Jul 2018 16:51:54 -0400
-Message-ID: <CANmTPBY1UhLdVCTEpD1SAbyLGfZKdCVBjdnq6SQEtjg0svwR6Q@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: net-snmp_5.7.3.bbappend
+In-Reply-To: <4B83820E-84AB-43C5-9458-18EF4BCB3EFD@korgrd.com>
+X-Originating-IP: [128.224.162.218]
+Subject: Re: custom linux kernel recipe fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,75 +45,120 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jul 2018 20:51:56 -0000
-Content-Type: multipart/alternative; boundary="00000000000053a6ee0571ed2a07"
+X-List-Received-Date: Fri, 27 Jul 2018 01:54:12 -0000
+Content-Type: multipart/alternative;
+	boundary="------------9FD22762E51B815523AB9EB5"
 
---00000000000053a6ee0571ed2a07
-Content-Type: text/plain; charset="UTF-8"
+--------------9FD22762E51B815523AB9EB5
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
+On 07/27/2018 12:56 AM, Steve Pavao wrote:
+> Hello -
+>
+> I’m trying to build using a custom 64-bit kernel at head of sumo, but I get an error.  It seems that SRCPV cannot be resolved.    Please send any ideas you may have about how I may adapt my recipe to get it to work.
+>
+> Normally, I use the default meta-raspberrypi kernel, but for this build, I am using PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-custom” in my local.conf
+>
+> My simple kernel recipe is in linux-yocto-custom.bb.  (It is based on the example recipe).
+>
+> inherit kernel
+> require recipes-kernel/linux/linux-yocto.inc
+>
+> PV = "${LINUX_VERSION}+git${SRCPV}"
+> PR = "r0"
+>
+> LINUX_VERSION ?= "4.14.4"
+> LINUX_VERSION_EXTENSION_append = "-xenomai-ipipe-arm64"
+>
+> SRC_URI = "http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=http;branch=master;nocheckout=1"
+> SRCREV = "133bbf97672ff6e72fc21784b8ae44b194b76626"
 
-I created a bbappend in the same directory where *net-snmp_5.7.3.bb
-<http://net-snmp_5.7.3.bb>* resides:
+Try:
+
+SRC_URI ="http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=http;branch=master;nocheckout=1;name=machine"
+SRCREV_machine = "133bbf97672ff6e72fc21784b8ae44b194b76626"
+
+Best Regards,
+Chen Qi
+
+> SRC_URI[md5sum] = "a5cb3babd85a94fda2905cc3db5e7825"
+>
+> COMPATIBLE_MACHINE = "raspberrypi3-64"
+>
+> the error:
+>
+> WARNING: /data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linux-yocto-custom.bb: Exception during build_dependencies for PKG_kernel-base
+> WARNING: /data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linux-yocto-custom.bb: Error during finalise of /data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linux-yocto-custom.bb
+> ERROR: ExpansionError during parsing /data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linux-yocto-custom.bb
+> Traceback (most recent call last):
+> bb.data_smart.ExpansionError: Failure expanding variable PKG_kernel-base, expression was kernel-${@legitimize_package_name('${@get_kernelversion_headers('/data/development/lfs/yocto/build/spark/raspberrypi3-64/tmp/work/raspberrypi3_64-poky-linux/linux-yocto-custom/4.14.4+git${SRCPV}-r0/linux-raspberrypi3_64-standard-build')}')} which triggered exception SyntaxError: invalid syntax (PKG_kernel-base, line 1)
+>
 
 
-/sources/meta-openembedded/meta-networking/recipes-protocols/net-snmp$ *cat
-net-snmp_5.7.3.bbappend*
+--------------9FD22762E51B815523AB9EB5
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 07/27/2018 12:56 AM, Steve Pavao
+      wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:4B83820E-84AB-43C5-9458-18EF4BCB3EFD@korgrd.com"
+      type="cite">
+      <pre wrap="">Hello -
 
+I’m trying to build using a custom 64-bit kernel at head of sumo, but I get an error.  It seems that SRCPV cannot be resolved.    Please send any ideas you may have about how I may adapt my recipe to get it to work.
 
-EXTRA_OECONF += " --enable-mini-agent --with-default-snmp-version=3
---disable-debugging \
-                  --with-logfile='/var/log/snmp' --with-transports='UDP
-TCP' --enable-blumenthal-aes  "
+Normally, I use the default meta-raspberrypi kernel, but for this build, I am using PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-custom” in my local.conf
 
+My simple kernel recipe is in linux-yocto-custom.bb.  (It is based on the example recipe).
 
+inherit kernel
+require recipes-kernel/linux/linux-yocto.inc
 
+PV = "${LINUX_VERSION}+git${SRCPV}"
+PR = "r0"
 
+LINUX_VERSION ?= "4.14.4"
+LINUX_VERSION_EXTENSION_append = "-xenomai-ipipe-arm64"
 
+SRC_URI = <a class="moz-txt-link-rfc2396E" href="http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=http;branch=master;nocheckout=1">"http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=http;branch=master;nocheckout=1"</a>
+SRCREV = "133bbf97672ff6e72fc21784b8ae44b194b76626"</pre>
+    </blockquote>
+    <br>
+    Try:<br>
+    <pre wrap="">SRC_URI = <a class="moz-txt-link-rfc2396E" href="http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=http;branch=master;nocheckout=1">"http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=http;branch=master;nocheckout=1;name=machine"</a>
+SRCREV_machine = "133bbf97672ff6e72fc21784b8ae44b194b76626"</pre>
+    Best Regards,<br>
+    Chen Qi<br>
+    <br>
+    <blockquote
+      cite="mid:4B83820E-84AB-43C5-9458-18EF4BCB3EFD@korgrd.com"
+      type="cite">
+      <pre wrap="">
+SRC_URI[md5sum] = "a5cb3babd85a94fda2905cc3db5e7825"
 
-did
+COMPATIBLE_MACHINE = "raspberrypi3-64"
 
-$ *bitbake -c compile net-snmp*
-$ *MACHINE=imx7d-phyboard-zeta-**001 bitbake  fsl-image-pk-imx-15*
+the error:
 
+WARNING: /data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linux-yocto-custom.bb: Exception during build_dependencies for PKG_kernel-base
+WARNING: /data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linux-yocto-custom.bb: Error during finalise of /data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linux-yocto-custom.bb
+ERROR: ExpansionError during parsing /data/development/lfs/yocto/poky/meta-korg-spark/recipes-kernel/linux/linux-yocto-custom.bb
+Traceback (most recent call last):
+bb.data_smart.ExpansionError: Failure expanding variable PKG_kernel-base, expression was kernel-${@legitimize_package_name('${@get_kernelversion_headers('/data/development/lfs/yocto/build/spark/raspberrypi3-64/tmp/work/raspberrypi3_64-poky-linux/linux-yocto-custom/4.14.4+git${SRCPV}-r0/linux-raspberrypi3_64-standard-build')}')} which triggered exception SyntaxError: invalid syntax (PKG_kernel-base, line 1)
 
-Does not seem to make any difference. The manifest files for the rootfs are
-identical with the previous build without the bbappend.
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
 
-
-Any hints?
-
-Thanks,
-S
-
---00000000000053a6ee0571ed2a07
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><br></div><div>Hi,</div><div><br></div><div><div> I c=
-reated a bbappend in the same directory where <b><a href=3D"http://net-snmp=
-_5.7.3.bb">net-snmp_5.7.3.bb</a></b> resides:</div><div><br><div style=3D"m=
-argin-left:40px"><span style=3D"font-family:monospace,monospace"></span><br=
-></div><div style=3D"margin-left:40px"><span style=3D"font-family:monospace=
-,monospace"></span><span style=3D"font-family:monospace,monospace">/<wbr>so=
-urces/meta-openembedded/<wbr>meta-networking/recipes-<wbr>protocols/net-snm=
-p$ <b>cat net-snmp_5.7.3.bbappend</b><br><br><br><br>EXTRA_OECONF +=3D &quo=
-t; --enable-mini-agent --with-default-snmp-version=3D3=C2=A0 --disable-debu=
-gging \<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --with-logfile=3D&#39;/var/log/snmp=
-&#39; --with-transports=3D&#39;UDP TCP&#39; --enable-blumenthal-aes=C2=A0 &=
-quot;<br><br><br><br></span></div></div><div><br></div><div><br></div><div>=
-<br></div><div>did <br></div><div><br></div><div><span style=3D"font-family=
-:monospace,monospace">$ <b>bitbake -c compile net-snmp</b></span></div><div=
-><span style=3D"font-family:monospace,monospace">$ <b>MACHINE=3Dimx7d-phybo=
-ard-zeta-</b></span><b><span style=3D"font-family:monospace,monospace">00<w=
-br>1 bitbake=C2=A0 fsl-image-pk-imx-15</span></b></div><br></div><div><br><=
-/div><div>Does not seem to make any difference. The manifest files for the =
-rootfs are identical with the previous build without the bbappend.</div><di=
-v><br></div><div><br></div><div class=3D"gmail_extra">Any hints?</div><div =
-class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Thanks,</div><di=
-v class=3D"gmail_extra">S<br></div><div class=3D"gmail_extra"><br></div></d=
-iv>
-
---00000000000053a6ee0571ed2a07--
+--------------9FD22762E51B815523AB9EB5--
