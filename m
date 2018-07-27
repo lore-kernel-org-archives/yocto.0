@@ -1,67 +1,43 @@
-Return-Path: <stevep@korgrd.com>
+Return-Path: <Randy.MacLeod@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EABCDE00874; Fri, 27 Jul 2018 10:19:37 -0700 (PDT)
+	id C42D5E0086B; Fri, 27 Jul 2018 12:58:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.161.177 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f177.google.com (mail-yw0-f177.google.com
-	[209.85.161.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3407CE0049F
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2018 10:19:37 -0700 (PDT)
-Received: by mail-yw0-f177.google.com with SMTP id z143-v6so2125293ywa.7
-	for <yocto@yoctoproject.org>; Fri, 27 Jul 2018 10:19:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=korgrd-com.20150623.gappssmtp.com; s=20150623;
-	h=from:message-id:mime-version:date:subject:in-reply-to:to:references; 
-	bh=8yTiGKMd2a6I8yCKMsdkU9kQklPPApjD0baxdIHi4i4=;
-	b=xYIblasRUuJvxSibljARTplqehyrVgokpse00Q2xf7lrYzFo/o2QMMAOkK+2970o67
-	PDHUp3ab1Jtv0B93YRxcuFxw4NgCATK8vg2tzjMhQjCMk9a0izklg8fL3jmbR7hdYbpo
-	SEfpggQGdZi8SA06FcHNcpw7kvnfeqp4OclDlTRvpS1ENcEXxg7fjjF1sA6MqiiH6We8
-	xaTi0Cc6gd4AX+9AZbMKWFg8CYW050UbWu1ztTDx0lext7IMS7oZGFTbSQyiMjc0a5mv
-	FSOW0CJLvdB4JVKHqSzaxqn69KZW3Sg6IrQ0deRTcELyPgOc8K7g8sHSAkS6iT7jIE5v
-	pcRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:message-id:mime-version:date:subject
-	:in-reply-to:to:references;
-	bh=8yTiGKMd2a6I8yCKMsdkU9kQklPPApjD0baxdIHi4i4=;
-	b=Y6mmz3cLDShTU7/tuXKBrLViflwWJfV6Tm2z1NTk1usbBC5pX6rnzXZ0OVQzJpWaTZ
-	9uFi0Nu+8Fz5qPU5oLOnDAbTWYM54B+TfHkBX2RZg8eaS+tbHdBO4qjCNLAsFZXrx5ta
-	Mk0xQEF0b4Bf2tFa0XNlRX8W+yZdwUQJbP8FcG9DjuCksaIx9Ywisrgo8I5bqN2zzGog
-	5DlBp2stadD8eyhEvL7hhdfrm2CzbBm7NxGkGOVAn56eyTVi5Kg5cYGQ+NpbCrsjS83S
-	rbpncq/iqDDEHyzMXbaaixpqwEYSL/eF6zonTpo+kMYND4XUZQ+Fa+Wd9bdcwC3Fhltd
-	Oizg==
-X-Gm-Message-State: AOUpUlGkPFyEAmqsTSNBLbkswS1J/eJUyXUcxYQBxcmAnXWVJoQxofLR
-	E2C2Iqm7+RFMhjohFwhfI0manT9H6vY=
-X-Google-Smtp-Source: AAOMgpfA97szaY2CtEDMybvG7N/TId/IOhiIXSDCM+i8bambQVRzZ29OpvW/IQtraMDNZ1pl2NKcoQ==
-X-Received: by 2002:a0d:cbc7:: with SMTP id
-	n190-v6mr3934245ywd.54.1532711976234; 
-	Fri, 27 Jul 2018 10:19:36 -0700 (PDT)
-Received: from [192.168.1.2] (68-112-255-18.dhcp.oxfr.ma.charter.com.
-	[68.112.255.18]) by smtp.gmail.com with ESMTPSA id
-	f82-v6sm6437168ywf.58.2018.07.27.10.19.34
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 27 Jul 2018 10:19:35 -0700 (PDT)
-From: Steve Pavao <stevep@korgrd.com>
-Message-Id: <8C7D6A66-73BF-4F5D-8344-E242BAFAB02F@korgrd.com>
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-Date: Fri, 27 Jul 2018 13:19:34 -0400
-In-Reply-To: <4B83820E-84AB-43C5-9458-18EF4BCB3EFD@korgrd.com>
-To: yocto@yoctoproject.org
-References: <4B83820E-84AB-43C5-9458-18EF4BCB3EFD@korgrd.com>
-X-Mailer: Apple Mail (2.3273)
-Subject: Re: custom linux kernel recipe fails
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BD2BE0049F
+	for <yocto@yoctoproject.org>; Fri, 27 Jul 2018 12:58:08 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w6RJw0Ds021631
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 27 Jul 2018 12:58:01 -0700 (PDT)
+Received: from [172.25.44.2] (172.25.44.2) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.399.0;
+	Fri, 27 Jul 2018 12:58:00 -0700
+To: Aditya Tayade <Aditya.Tayade@kpit.com>,
+	"openembedded-issues@lists.openembedded.org"
+	<openembedded-issues@lists.openembedded.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>
+References: <MA1PR01MB053655685322C5FE49975DADEE550@MA1PR01MB0536.INDPRD01.PROD.OUTLOOK.COM>
+	<MAXPR01MB034862B6CB3CFEF598A3BA47912A0@MAXPR01MB0348.INDPRD01.PROD.OUTLOOK.COM>
+From: Randy MacLeod <randy.macleod@windriver.com>
+Message-ID: <98805952-f1f9-d24e-03c2-8f58fbc64d1b@windriver.com>
+Date: Fri, 27 Jul 2018 15:57:59 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
+MIME-Version: 1.0
+In-Reply-To: <MAXPR01MB034862B6CB3CFEF598A3BA47912A0@MAXPR01MB0348.INDPRD01.PROD.OUTLOOK.COM>
+X-Originating-IP: [172.25.44.2]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [oe] [meta-openembedded] Original ltrace_git.bb SRCREV commit used is now unavailable in git tarball from ltrace.org
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,108 +49,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jul 2018 17:19:38 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_A5BBA316-2718-42F8-8402-6E220C1B6D5D"
+X-List-Received-Date: Fri, 27 Jul 2018 19:58:09 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
---Apple-Mail=_A5BBA316-2718-42F8-8402-6E220C1B6D5D
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+On 07/27/2018 06:34 AM, Aditya Tayade wrote:
+> Hi,
+> 
+> 
+> Me too facing same issue. Any advice on this.
 
-On Jul 26, 2018, at 12:56 PM, Steve Pavao <stevep@korgrd.com> wrote:
->=20
-> I=E2=80=99m trying to build using a custom 64-bit kernel at head of =
-sumo, but I get an error.  It seems that SRCPV cannot be resolved.    =
-Please send any ideas you may have about how I may adapt my recipe to =
-get it to work.
+Archived versions to fix previous releases may be here:
+    https://alioth-archive.debian.org/git/collab-maint/
 
-[snip portion of recipe]
+for master, a commit to pull from ltrace.org makes sense
+to me but someone who follows debian development might
+be able to help locate the git repo. All I found was:
+    https://alioth-archive.debian.org/git/collab-maint/
+and a maze of twisty little hyperlinks.
 
-> SRC_URI =3D =
-"http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp;branch=3Dmaster=
-;nocheckout=3D1 =
-<http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp;branch=3Dmaster=
-;nocheckout=3D1>"
-> SRCREV =3D "133bbf97672ff6e72fc21784b8ae44b194b76626"
+Aditya, Nisha,
 
+Will you send a patch? See:
+    https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
 
-
-I was able to avoid the error by using the following line for the =
-SRC_URI instead:
-
-SRC_URI =3D "git://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp =
-<git://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp>=E2=80=9D
-
-- Steve
+../Randy
 
 
---Apple-Mail=_A5BBA316-2718-42F8-8402-6E220C1B6D5D
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
+> 
+> 
+> 
+> Regards,
+> 
+> Aditya Tayade
+> 
+> ________________________________
+> From: Nisha Parrakat
+> Sent: Tuesday, July 24, 2018 4:08:12 PM
+> To: openembedded-issues@lists.openembedded.org; openembedded-devel@lists.openembedded.org
+> Cc: yocto@yoctoproject.org
+> Subject: [meta-openembedded] Original ltrace_git.bb SRCREV commit used is now unavailable in git tarball from ltrace.org
+> 
+> 
+> Hi all,
+> 
+> 
+> ltrace recipe is pointing to a fetch url (git://anonscm.debian.org/collab-maint/ltrace.git;branch=master) that is discontinued now.
+> 
+> No ltrace found in alternate salsa.debian.org.
+> 
+> Tarball for ltrace is present in ltrace.org but the SRCREV in the mentioned in the original recipe is not found any more but we do see the same commit with another sha but a different git history.
+> 
+> 
+> Please advice if we should modify the SRCREV to reflect the new git source from ltrace.org?
+> 
+> 
+> original SRCREV in recipe c22d3594...
+> 
+> corresponding SRCREV coming from the git tarball is ea8928da...
+> 
+> 
+> Please advice .
+> 
+> 
+> 
+> 
+> Regards,
+> Ms Nisha Parrakat
+> KPIT Technologies Ltd, Pune, INDIA
+> 
+> 
+> This message contains information that may be privileged or confidential and is the property of the KPIT Technologies Ltd. It is intended only for the person to whom it is addressed. If you are not the intended recipient, you are not authorized to read, print, retain copy, disseminate, distribute, or use this message or any part thereof. If you receive this message in error, please notify the sender immediately and delete all copies of this message. KPIT Technologies Ltd. does not accept any liability for virus infected mails.
+> 
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D"">On Jul 26, 2018, at 12:56 PM, Steve Pavao &lt;<a =
-href=3D"mailto:stevep@korgrd.com" class=3D"">stevep@korgrd.com</a>&gt; =
-wrote:<br class=3D""><div><blockquote type=3D"cite" class=3D""><br =
-class=3D"Apple-interchange-newline"><div class=3D""><span =
-style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: none; =
-display: inline !important;" class=3D"">I=E2=80=99m trying to build =
-using a custom 64-bit kernel at head of sumo, but I get an error. =
-&nbsp;It seems that SRCPV cannot be resolved. &nbsp;&nbsp;&nbsp;Please =
-send any ideas you may have about how I may adapt my recipe to get it to =
-work.</span><br class=3D""></div></blockquote><br class=3D"">[snip =
-portion of recipe]<br class=3D""><br class=3D""><blockquote type=3D"cite" =
-class=3D""><div class=3D""><span style=3D"font-family: Helvetica; =
-font-size: 12px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; float: none; display: =
-inline !important;" class=3D"">SRC_URI =3D "</span><a =
-href=3D"http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp;branch=3D=
-master;nocheckout=3D1" style=3D"font-family: Helvetica; font-size: 12px; =
-font-style: normal; font-variant-caps: normal; font-weight: normal; =
-letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
-0px; text-transform: none; white-space: normal; widows: auto; =
-word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px;" =
-class=3D"">http://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp;branc=
-h=3Dmaster;nocheckout=3D1</a><span style=3D"font-family: Helvetica; =
-font-size: 12px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; float: none; display: =
-inline !important;" class=3D"">"</span><br style=3D"font-family: =
-Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px;" class=3D""><span =
-style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: none; =
-display: inline !important;" class=3D"">SRCREV =3D =
-"133bbf97672ff6e72fc21784b8ae44b194b76626"</span></div></blockquote></div>=
-<div class=3D""><br class=3D""></div><div class=3D""><br =
-class=3D""></div><div class=3D"">I was able to avoid the error by using =
-the following line for the SRC_URI instead:</div><div class=3D""><span =
-class=3D"" style=3D"float: none; display: inline !important;"><br =
-class=3D""></span></div><div class=3D""><span class=3D"" style=3D"float: =
-none; display: inline !important;">SRC_URI =3D "</span><a =
-href=3D"git://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp" =
-class=3D"">git://gitlab.denx.de/Xenomai/ipipe-arm64;protocol=3Dhttp</a><sp=
-an class=3D"" style=3D"float: none; display: inline =
-!important;">=E2=80=9D</span></div><div class=3D""><span class=3D"" =
-style=3D"float: none; display: inline !important;"><br =
-class=3D""></span></div><div class=3D""><span class=3D"" style=3D"float: =
-none; display: inline !important;">- Steve</span></div><div =
-class=3D""><span class=3D"" style=3D"float: none; display: inline =
-!important;"><br class=3D""></span></div></body></html>=
 
---Apple-Mail=_A5BBA316-2718-42F8-8402-6E220C1B6D5D--
+-- 
+# Randy MacLeod
+# Wind River Linux
+
