@@ -1,6 +1,6 @@
 Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C03BE008CA; Mon, 30 Jul 2018 09:37:21 -0700 (PDT)
+	id E07F2E008CA; Mon, 30 Jul 2018 09:41:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,38 +12,37 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 910 seconds by postgrey-1.32 at yocto-www;
-	Mon, 30 Jul 2018 09:37:19 PDT
 Received: from 15pmail.ess.barracuda.com (15pmail.ess.barracuda.com
 	[64.235.154.223])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2B0DE0080A
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2018 09:37:19 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 800D7E0080A
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2018 09:41:24 -0700 (PDT)
 Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx1403.ess.rzc.cudaops.com (version=TLSv1.2
+	mx1413.ess.rzc.cudaops.com (version=TLSv1.2
 	cipher=AES256-SHA256 bits=256 verify=NO);
-	Mon, 30 Jul 2018 16:37:16 +0000
+	Mon, 30 Jul 2018 16:41:21 +0000
 Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
 	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Mon, 30 Jul 2018 09:21:03 -0700
+	Mon, 30 Jul 2018 09:25:56 -0700
 Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Mon, 30 Jul 2018 09:21:03 -0700
+	([::1]) with mapi id 15.01.0669.032; Mon, 30 Jul 2018 09:25:56 -0700
 From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
 To: Bruce Ashfield <bruce.ashfield@windriver.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
 Thread-Topic: [yocto] Kernel configuration problems
-Thread-Index: AdQl83+2wf7UcfbhTUCg0nogyDuDZgBPzS+AADtL97U=
-Date: Mon, 30 Jul 2018 16:21:03 +0000
-Message-ID: <0a4277451cdb45279304566123be0ab2@sakuraus.com>
+Thread-Index: AdQl83+2wf7UcfbhTUCg0nogyDuDZgBPzS+AADtL97UAAF1PBQ==
+Date: Mon, 30 Jul 2018 16:25:56 +0000
+Message-ID: <191f048b6dbd4d9e92da73a550a0bb1c@sakuraus.com>
 References: <b33f8ef62bed47b3b9caee0478c376e8@sakuraus.com>,
-	<77a6f381-cc24-44b4-8fb7-3916c66c6f68@windriver.com>
-In-Reply-To: <77a6f381-cc24-44b4-8fb7-3916c66c6f68@windriver.com>
+	<77a6f381-cc24-44b4-8fb7-3916c66c6f68@windriver.com>,
+	<0a4277451cdb45279304566123be0ab2@sakuraus.com>
+In-Reply-To: <0a4277451cdb45279304566123be0ab2@sakuraus.com>
 Accept-Language: en-US
-X-MS-Has-Attach: yes
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.16.5.239]
 MIME-Version: 1.0
-X-BESS-ID: 1532968636-321459-13728-160273-1
+X-BESS-ID: 1532968876-531715-29214-383446-2
 X-BESS-VER: 2018.9-r1807242345
 X-BESS-Apparent-Source-IP: 12.26.104.5
 X-BESS-Envelope-From: GWilson@sakuraus.com
@@ -52,12 +51,12 @@ X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.196812
 	Rule breakdown below
 	pts rule name              description
 	---- ---------------------- --------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in 
-	message 
-	0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+	0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn'
+	t match header 
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
 	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
 X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_SC0_MISMATCH_TO,
+	KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, HTML_MESSAGE,
 	BSF_BESS_OUTBOUND
 X-BESS-Orig-Rcpt: yocto@yoctoproject.org
 X-BESS-BRTS-Status: 1
@@ -73,19 +72,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2018 16:37:21 -0000
-X-Groupsio-MsgNum: 41997
+X-List-Received-Date: Mon, 30 Jul 2018 16:41:25 -0000
 Content-Language: en-US
-Content-Type: multipart/mixed;
-	boundary="_006_0a4277451cdb45279304566123be0ab2sakurauscom_"
-
---_006_0a4277451cdb45279304566123be0ab2sakurauscom_
 Content-Type: multipart/alternative;
-	boundary="_000_0a4277451cdb45279304566123be0ab2sakurauscom_"
+	boundary="_000_191f048b6dbd4d9e92da73a550a0bb1csakurauscom_"
 
---_000_0a4277451cdb45279304566123be0ab2sakurauscom_
+--_000_191f048b6dbd4d9e92da73a550a0bb1csakurauscom_
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
+
+Hi Bruce,
+
+My Mail system sent my reply before I got done with the dir tree. Here is t=
+he completed tree:
+
+
+Qt-5.9.6
+     Yocto-mirror                                                     # Yoc=
+to build mirror
+     Yocto-build-RPi3                                              # Yocto =
+build root
+                build-raspberrypi                                   # build=
+ directory
+                sources                                                 # y=
+octo sources
+                       meta-sakura                                   # our =
+recipes
+                               recipes-kernel                        # dire=
+ctory for kernel changes
+                                       linux                               =
+# directory that contains .bbappend
+                                              files                        =
+ # directory that contains .cfg & .scc files
+
+Hope this all helps.
+
+Thanks,
+Greg
+
+
+________________________________
+From: Greg Wilson-Lindberg
+Sent: Monday, July 30, 2018 9:21:03 AM
+To: Bruce Ashfield; yocto@yoctoproject.org
+Subject: Re: [yocto] Kernel configuration problems
+
 
 Hi Bruce,
 
@@ -240,7 +271,7 @@ Bruce
 >
 >
 
---_000_0a4277451cdb45279304566123be0ab2sakurauscom_
+--_000_191f048b6dbd4d9e92da73a550a0bb1csakurauscom_
 Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
@@ -253,6 +284,97 @@ Content-Transfer-Encoding: quoted-printable
 ding-left: 4pt; border-left: #800000 2px solid; } --></style>
 </head>
 <body>
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hi Bruce,</p>
+<p>My Mail system sent my reply before I got done with the dir tree. Here i=
+s the completed tree:</p>
+<p><br>
+</p>
+<p></p>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+Qt-5.9.6</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+&nbsp; &nbsp; &nbsp;Yocto-mirror&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# Yoc=
+to build mirror</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+&nbsp; &nbsp; &nbsp;Yocto-build-RPi3&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Yocto build&nbsp;root</div=
+>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; build-raspberrypi&n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# build directory</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sources&nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp;# yocto sources</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp;meta-sakura&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# our =
+recipes</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;recipes-kernel&nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # directory for =
+kernel changes</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;linux&nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;# directory that contains .bbappend</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; files&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp;# directory that contains .cfg &amp; .scc fi=
+les</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+Hope this all helps.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+Thanks,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 16px; margin-top: 0px; margin-bottom: 0px;">
+Greg</div>
+<br>
+<p></p>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Greg Wilson-Lindberg<=
+br>
+<b>Sent:</b> Monday, July 30, 2018 9:21:03 AM<br>
+<b>To:</b> Bruce Ashfield; yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] Kernel configuration problems</font>
+<div>&nbsp;</div>
+</div>
+<div>
 <meta content=3D"text/html; charset=3DUTF-8">
 <style type=3D"text/css" style=3D"">
 <!--
@@ -458,48 +580,8 @@ br>
 &gt; <br>
 &gt; <br>
 </div>
-</span></font>
+</span></font></div>
 </body>
 </html>
 
---_000_0a4277451cdb45279304566123be0ab2sakurauscom_--
-
---_006_0a4277451cdb45279304566123be0ab2sakurauscom_
-Content-Type: application/octet-stream;
-	name="linux-raspberrypi_4.4.bbappend"
-Content-Description: linux-raspberrypi_4.4.bbappend
-Content-Disposition: attachment; filename="linux-raspberrypi_4.4.bbappend";
-	size=217; creation-date="Mon, 30 Jul 2018 16:14:59 GMT";
-	modification-date="Mon, 30 Jul 2018 16:14:59 GMT"
-Content-Transfer-Encoding: base64
-
-IyBTY3JpYmUgYWRkaXRpb25zIHRvIEtlcm5lbCBjb25maWd1cmF0aW9uCgpGSUxFU0VYVFJBUEFU
-SFNfcHJlcGVuZCA6PSAiJHtGSUxFX0RJUk5BTUV9L2ZpbGVzOiIKRklMRVNFWFRSQVBBVEhTX3By
-ZXBlbmQgOj0gIiR7RklMRV9ESVJOQU1FfS8ke1BOfToiCgpTUkNfVVJJICs9ICJmaWxlOi8vU2Ny
-aWJlLnNjYyIKU1JDX1VSSSArPSAiZmlsZTovL21jcDI1MXguYy5wYXRjaCIKCg==
-
---_006_0a4277451cdb45279304566123be0ab2sakurauscom_
-Content-Type: application/octet-stream; name="Scribe.cfg"
-Content-Description: Scribe.cfg
-Content-Disposition: attachment; filename="Scribe.cfg"; size=177;
-	creation-date="Mon, 30 Jul 2018 16:15:10 GMT";
-	modification-date="Mon, 30 Jul 2018 16:15:10 GMT"
-Content-Transfer-Encoding: base64
-
-IyBTY3JpYmUgYWRkaXRpb25zIHRvIGtlcm5lbCBjb25maWd1cmF0aW9uCgojIEVuYWJsZSBNQVg5
-NzY4CiNDT05GSUdfU09DX0FMTF9DT0RFQ1M9bQojQ09ORklHX0NPTVBJTEVfVEVTVD15CkNPTkZJ
-R19TTkRfU09DX01BWDk3Njg9eQoKIyBFbmFibGUgTUFYMTE2MDYKI0lJTz15CkNPTkZJR19NQVgx
-MzYzPW0K
-
---_006_0a4277451cdb45279304566123be0ab2sakurauscom_
-Content-Type: application/octet-stream; name="Scribe.scc"
-Content-Description: Scribe.scc
-Content-Disposition: attachment; filename="Scribe.scc"; size=70;
-	creation-date="Mon, 30 Jul 2018 16:15:10 GMT";
-	modification-date="Mon, 30 Jul 2018 16:15:10 GMT"
-Content-Transfer-Encoding: base64
-
-IyBTY3JpYmUgYWRkaXRpb25zIHRvIGtlcm5lbCBjb25maWd1cmF0aW9uCmtjb25mIGhhcmR3YXJl
-IFNjcmliZS5jZmcKCg==
-
---_006_0a4277451cdb45279304566123be0ab2sakurauscom_--
+--_000_191f048b6dbd4d9e92da73a550a0bb1csakurauscom_--
