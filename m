@@ -1,63 +1,39 @@
-Return-Path: <aaron@assonance.org>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2D6FDE00C33; Mon, 30 Jul 2018 19:56:59 -0700 (PDT)
+	id 70297E00C59; Tue, 31 Jul 2018 00:58:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.50 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f50.google.com (mail-it0-f50.google.com
-	[209.85.214.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 821E1E00AC8
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2018 19:56:58 -0700 (PDT)
-Received: by mail-it0-f50.google.com with SMTP id d70-v6so11056463ith.1
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2018 19:56:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=assonance-org.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=Nbgx0s7XhFDzU1+MuXurFdBPXIUdgw0TIogmlOhH8Q8=;
-	b=kHFAU3Sc8h7Gq3N6DK3EGpvSwBGmdkjW/Ybjhj1SrsdWkwavDawi99KVvmnr1N7DFp
-	1wJxRjef2BmBr7SrJwvi/ALkLUrmri3D4Op4TiOmqw1QsGT0GeQwmW7kjLj31faH+V4g
-	R/LKhM1BMH8qRezzWengmSgFTuW87kCo6HRkEbOeEzND0dz52gVQ5GIVuiZpN4dc98qa
-	64n3hmhegdwnx6hljNA99xNg9QMAoZoL4xT4t8eb7fYtedKuvNDc8zpBAHrKnrfWPK/D
-	P1AXXw3Yp3qQAIwHW65ZDTkn2POdQEmiFavjh+Kljz9A/FjS7f3+KPDRXilHwWioVnjP
-	Za3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=Nbgx0s7XhFDzU1+MuXurFdBPXIUdgw0TIogmlOhH8Q8=;
-	b=EdCdGO8WSHk6hNRuFXHWzz7JTvyyY3NqsnEJ9D1tsOBDQINEMXxSEjcRZ+QLVmd7V7
-	t3ZEgFiLlitVxC6X62ZVS7T9fZ8SprNSuaEvo4ldXdVkZvZS1rBhBn7ibNo7i/Fy8sKw
-	dHbXNfjDODdOg0yLUVPNDlM59pu8SHXSGZu3FXKGE1CtfkmObK1wH37QJiFI+XHZcrxn
-	rqzAMrglNPPTzsiS6sILJYLimfuklduPbTonIPElUEJgg4Bywos4NDg/Lx1ouLyt/4e5
-	88HplV1wFO+OoPGRSox2xAnyEMWBB2Qg7gBlGHUIcEoe2kXKGiJSDBqgMHBVrEnyt5yU
-	bsgg==
-X-Gm-Message-State: AOUpUlHkiymAW20qR4VWffn+hElgg8QkyB0jDmGmqoFqGDUL5rrfUJcP
-	eNMixBGDfthzQmLnAowpSw9NBxb4nFbnoiRv/S8Pipzy
-X-Google-Smtp-Source: AAOMgpfN9NJion+LDnNHA7gVjQyTqAkf+R7NVU9osmfwjJbOwdEKu+XrJCARRCx8MDVi5H7FSWPDHB23CPh7gMBfY00=
-X-Received: by 2002:a24:4511:: with SMTP id
-	y17-v6mr1576830ita.67.1533005817581; 
-	Mon, 30 Jul 2018 19:56:57 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA33EE00C1B
+	for <yocto@yoctoproject.org>; Tue, 31 Jul 2018 00:58:31 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w6V7wJdF004715
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 31 Jul 2018 00:58:19 -0700 (PDT)
+Received: from [128.224.162.161] (128.224.162.161) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.399.0;
+	Tue, 31 Jul 2018 00:58:19 -0700
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <cover.1532341697.git.liezhi.yang@windriver.com>
+	<a08dc8b5ece1f1d3db4c1dc7278a38c980d7302f.1532341697.git.liezhi.yang@windriver.com>
+	<1703434.H6ZhUBsmPD@localhost.localdomain>
+From: Robert Yang <liezhi.yang@windriver.com>
+Message-ID: <1f2cc75c-b0f0-9216-fbe9-def4c17e3fb6@windriver.com>
+Date: Tue, 31 Jul 2018 15:57:27 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
 MIME-Version: 1.0
-References: <CAGAf8LyOWR90ZL8o3H=MNJR3Mwt_Ycpdfx-N+fVcG_O2cwZWDQ@mail.gmail.com>
-	<CAGAf8LyucDcZD4q3ncreUM_cPdhf_JFpx+Vr4ut5vuaBHhRJWw@mail.gmail.com>
-In-Reply-To: <CAGAf8LyucDcZD4q3ncreUM_cPdhf_JFpx+Vr4ut5vuaBHhRJWw@mail.gmail.com>
-From: Aaron Cohen <aaron@assonance.org>
-Date: Mon, 30 Jul 2018 22:56:20 -0400
-Message-ID: <CAFSZm+hbw0kdACRpwwKuxeTEE_X8PnCOo2-RLtun43cB34gk_w@mail.gmail.com>
-To: zoran.stojsavljevic@gmail.com
+In-Reply-To: <1703434.H6ZhUBsmPD@localhost.localdomain>
 Cc: yocto@yoctoproject.org
-Subject: Re: do_configure for socketcand package failed
+Subject: Re: [layerindex-web][PATCH 1/1] import_layer.py: add -t option for layer_type
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,187 +45,206 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Jul 2018 02:56:59 -0000
-Content-Type: multipart/alternative; boundary="0000000000003226a5057242bb3a"
+X-List-Received-Date: Tue, 31 Jul 2018 07:58:33 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---0000000000003226a5057242bb3a
-Content-Type: text/plain; charset="UTF-8"
+Hi Paul,
 
-That configure script is looking for libconfig.
+On 07/24/2018 04:33 PM, Paul Eggleton wrote:
+> Hi Robert,
+> 
+> On Monday, 23 July 2018 12:30:01 PM CEST Robert Yang wrote:
+>> Now the logic is:
+>> Use options.layer_type if specified, guess if not, default to 'M'.
+>>
+>> Note choices=['A', 'B', 'S', 'D', 'M', ''], the '' is for default='', we can't
+>> use default='M' here, otherwise we don't know whether the 'M' is specified by
+>> user or not, we don't guess if it is specified by user, otherwise, guess.
+>>
+>> Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+>> ---
+>>   layerindex/tools/import_layer.py | 18 +++++++++++++-----
+>>   1 file changed, 13 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/layerindex/tools/import_layer.py b/layerindex/tools/import_layer.py
+>> index 2413cff..0d501f6 100755
+>> --- a/layerindex/tools/import_layer.py
+>> +++ b/layerindex/tools/import_layer.py
+>> @@ -189,6 +189,10 @@ def main():
+>>       parser.add_option("-s", "--subdir",
+>>               help = "Specify subdirectory",
+>>               action="store", dest="subdir")
+>> +    parser.add_option("-t", "--type",
+>> +            help = "Specify layer type. A: Base, B: Machine(BSP), S: Software, D: Distribution, M: Miscellaneous",
+>> +            choices=['A', 'B', 'S', 'D', 'M', ''],
+>> +            action="store", dest="layer_type", default='')
+> 
+> If it's practical to do, could you make this part of the code use
+> LayerItem.LAYER_TYPE_CHOICES from models.py so that this will work
+> if that is extended in future? Of course that will mean initialising Django
+> earlier, I'm not sure if that will have any side-effects that we wouldn't want.
+> If you could give that a try though that would be great.
 
-You need DEPENDS = "libconfig"
+I think that the easies way is move the definition of LAYER_TYPE_CHOICES
+to utils.py, then we can use utils.LAYER_TYPE_CHOICES in both models.py
+and tools/import_layer.py
 
-On Mon, Jul 30, 2018 at 4:20 AM Zoran Stojsavljevic <
-zoran.stojsavljevic@gmail.com> wrote:
+I've updated it in the repo:
 
-> Seems, that this does work?!
-> _______
->
-> SUMMARY = "Socketcand ..."
-> SECTION = "socketcan"
-> LICENSE = "GPLv2"
-> LIC_FILES_CHKSUM =
-> "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
-> PR = "r0"
->
-> RDEPENDS_${PN}-dev += "${PN}-staticdev"
->
-> SRCREV = "df7fb4ff8a4439d7737fe2df3540e1ab7465721a"
-> SRC_URI = "git://github.com/dschanoeh/socketcand.git;protocol=http"
->
-> S = "${WORKDIR}/git"
->
-> EXTRA_OECONF = "
-> --without-config
-> "
->
-> inherit autotools update-alternatives
-> inherit autotools-brokensep
-> _______
->
-> Any additional comments?
->
-> Thank you,
-> Zoran
->
-> On Mon, Jul 30, 2018 at 8:40 AM, Zoran Stojsavljevic
-> <zoran.stojsavljevic@gmail.com> wrote:
-> > Hello,
-> >
-> > I am writing the recipe for the socketcand package. It looks so far very
-> simple:
-> >
-> > PR = "r0"
-> >
-> > RDEPENDS_${PN}-dev += "${PN}-staticdev"
-> >
-> > SRCREV = "df7fb4ff8a4439d7737fe2df3540e1ab7465721a"
-> >
-> > SRC_URI = "git://github.com/dschanoeh/socketcand.git;protocol=http"
-> >
-> > S = "${WORKDIR}/git"
-> >
-> > inherit autotools
-> > _______
-> >
-> > I did install the following:
-> > sudo apt-get install autoconf
-> > sudo apt-get install libconfig-dev
-> >
-> > The error is in do_config():
-> >
-> > | checking for config_init in -lconfig... no
-> > | configure: error: in
-> >
-> `/home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yocto-rocko/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/socketcand/1.0-r0/build':
-> > | configure: error: config test failed (--without-config to disable)
-> >
-> > What should I include in the recipe to make it work (the both autoconf
-> >  and ./configure work normally for the normal installation)???
-> >
-> > Thank you,
-> > Zoran
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+   git://git.pokylinux.org/poky-contrib rbt/li
+   http://git.pokylinux.org/cgit.cgi//log/?h=rbt/li
 
---0000000000003226a5057242bb3a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+commit aeb1fd6a8f10b40637121643fc7df2f17c9cd87c
+Author: Robert Yang <liezhi.yang@windriver.com>
+Date:   Mon Jul 9 15:28:10 2018 +0800
 
-<div dir=3D"ltr"><div>That configure script is looking for libconfig.</div>=
-<div><br></div><div>You need DEPENDS =3D &quot;libconfig&quot;<br></div></d=
-iv><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Mon, Jul 30, 2018 at =
-4:20 AM Zoran Stojsavljevic &lt;<a href=3D"mailto:zoran.stojsavljevic@gmail=
-.com">zoran.stojsavljevic@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
-dding-left:1ex">Seems, that this does work?!<br>
-_______<br>
-<br>
-SUMMARY =3D &quot;Socketcand ...&quot;<br>
-SECTION =3D &quot;socketcan&quot;<br>
-LICENSE =3D &quot;GPLv2&quot;<br>
-LIC_FILES_CHKSUM =3D<br>
-&quot;file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=3D801f80980d171dd6425610833a=
-22dbe6&quot;<br>
-PR =3D &quot;r0&quot;<br>
-<br>
-RDEPENDS_${PN}-dev +=3D &quot;${PN}-staticdev&quot;<br>
-<br>
-SRCREV =3D &quot;df7fb4ff8a4439d7737fe2df3540e1ab7465721a&quot;<br>
-SRC_URI =3D &quot;git://<a href=3D"http://github.com/dschanoeh/socketcand.g=
-it;protocol=3Dhttp" rel=3D"noreferrer" target=3D"_blank">github.com/dschano=
-eh/socketcand.git;protocol=3Dhttp</a>&quot;<br>
-<br>
-S =3D &quot;${WORKDIR}/git&quot;<br>
-<br>
-EXTRA_OECONF =3D &quot;<br>
---without-config<br>
-&quot;<br>
-<br>
-inherit autotools update-alternatives<br>
-inherit autotools-brokensep<br>
-_______<br>
-<br>
-Any additional comments?<br>
-<br>
-Thank you,<br>
-Zoran<br>
-<br>
-On Mon, Jul 30, 2018 at 8:40 AM, Zoran Stojsavljevic<br>
-&lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zora=
-n.stojsavljevic@gmail.com</a>&gt; wrote:<br>
-&gt; Hello,<br>
-&gt;<br>
-&gt; I am writing the recipe for the socketcand package. It looks so far ve=
-ry simple:<br>
-&gt;<br>
-&gt; PR =3D &quot;r0&quot;<br>
-&gt;<br>
-&gt; RDEPENDS_${PN}-dev +=3D &quot;${PN}-staticdev&quot;<br>
-&gt;<br>
-&gt; SRCREV =3D &quot;df7fb4ff8a4439d7737fe2df3540e1ab7465721a&quot;<br>
-&gt;<br>
-&gt; SRC_URI =3D &quot;git://<a href=3D"http://github.com/dschanoeh/socketc=
-and.git;protocol=3Dhttp" rel=3D"noreferrer" target=3D"_blank">github.com/ds=
-chanoeh/socketcand.git;protocol=3Dhttp</a>&quot;<br>
-&gt;<br>
-&gt; S =3D &quot;${WORKDIR}/git&quot;<br>
-&gt;<br>
-&gt; inherit autotools<br>
-&gt; _______<br>
-&gt;<br>
-&gt; I did install the following:<br>
-&gt; sudo apt-get install autoconf<br>
-&gt; sudo apt-get install libconfig-dev<br>
-&gt;<br>
-&gt; The error is in do_config():<br>
-&gt;<br>
-&gt; | checking for config_init in -lconfig... no<br>
-&gt; | configure: error: in<br>
-&gt; `/home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yoct=
-o-rocko/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/socketcand/1=
-.0-r0/build&#39;:<br>
-&gt; | configure: error: config test failed (--without-config to disable)<b=
-r>
-&gt;<br>
-&gt; What should I include in the recipe to make it work (the both autoconf=
-<br>
-&gt;=C2=A0 and ./configure work normally for the normal installation)???<br=
->
-&gt;<br>
-&gt; Thank you,<br>
-&gt; Zoran<br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
+     import_layer.py: add -t option for layer_type
 
---0000000000003226a5057242bb3a--
+     Now the logic is:
+     Use options.layer_type if specified, and guess if not. Default to 'M'.
+
+     Note choices=['A', 'B', 'S', 'D', 'M', ''], the '' is for default='', we can't
+     use default='M' here, otherwise we don't know whether the 'M' is specified by
+     user or is the default value, we don't guess if it is specified by user,
+     otherwise, guess.
+
+     Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+
+diff --git a/layerindex/models.py b/layerindex/models.py
+index e5c8052..1ff653f 100644
+--- a/layerindex/models.py
++++ b/layerindex/models.py
+@@ -102,14 +102,8 @@ class LayerItem(models.Model):
+          ('P', 'Published'),
+          ('X', 'No update'),
+      )
+-    LAYER_TYPE_CHOICES = (
+-        ('A', 'Base'),
+-        ('B', 'Machine (BSP)'),
+-        ('S', 'Software'),
+-        ('D', 'Distribution'),
+-        ('W', 'WRTemplates'),
+-        ('M', 'Miscellaneous'),
+-    )
++    LAYER_TYPE_CHOICES = utils.LAYER_TYPE_CHOICES
++
+      name = models.CharField('Layer name', max_length=40, unique=True, 
+help_text='Name of the layer - must be unique and can only contain letters, 
+numbers and dashes')
+      status = models.CharField(max_length=1, choices=LAYER_STATUS_CHOICES, 
+default='N')
+      layer_type = models.CharField(max_length=1, choices=LAYER_TYPE_CHOICES)
+diff --git a/layerindex/tools/import_layer.py b/layerindex/tools/import_layer.py
+index 2413cff..5373cce 100755
+--- a/layerindex/tools/import_layer.py
++++ b/layerindex/tools/import_layer.py
+@@ -178,6 +178,21 @@ def get_github_layerinfo(layer_url, username = None, 
+password = None):
+
+      return (json_data, owner_json_data)
+
++def get_layer_type_choices():
++    """
++    Return help string and choices for --type.
++    """
++    help_str = "Specify layer type."
++    choices = []
++    for i in utils.LAYER_TYPE_CHOICES:
++        key, description = i
++        help_str += ' %s: %s,' % (key, description)
++        choices.append(key)
++
++    help_str = help_str.rstrip(',')
++    choices.append('')
++
++    return (help_str, choices)
+
+  def main():
+      valid_layer_name = re.compile('[-\w]+$')
+@@ -186,9 +201,15 @@ def main():
+          usage = """
+      %prog [options] <url> [name]""")
+
++    layer_type_help, layer_type_choices = get_layer_type_choices()
++
+      parser.add_option("-s", "--subdir",
+              help = "Specify subdirectory",
+              action="store", dest="subdir")
++    parser.add_option("-t", "--type",
++            help = layer_type_help,
++            choices = layer_type_choices,
++            action="store", dest="layer_type", default='')
+      parser.add_option("-n", "--dry-run",
+              help = "Don't write any data back to the database",
+              action="store_true", dest="dryrun")
+@@ -263,7 +284,6 @@ def main():
+              layer = LayerItem()
+              layer.name = layer_name
+              layer.status = 'P'
+-            layer.layer_type = 'M'
+              layer.summary = 'tempvalue'
+              layer.description = layer.summary
+
+@@ -349,11 +369,18 @@ def main():
+
+
+                  logger.info('Creating layer %s' % layer.name)
+-                # Guess layer type
+-                if glob.glob(os.path.join(layerdir, 'conf/distro/*.conf')):
++                # Guess layer type if not specified
++                if options.layer_type:
++                    layer.layer_type = options.layer_type
++                elif layer.name in ['openembedded-core', 'meta-oe']:
++                    layer.layer_type = 'A'
++                elif glob.glob(os.path.join(layerdir, 'conf/distro/*.conf')):
+                      layer.layer_type = 'D'
+                  elif glob.glob(os.path.join(layerdir, 'conf/machine/*.conf')):
+                      layer.layer_type = 'B'
++                else:
++                    layer.layer_type = 'M'
++
+                  layer.save()
+                  layerbranch = LayerBranch()
+                  layerbranch.layer = layer
+@@ -411,11 +438,9 @@ def main():
+
+                  if layer.name == 'openembedded-core':
+                      layer.summary = 'Core metadata'
+-                    layer.layer_type = 'A'
+                  elif layer.name == 'meta-oe':
+                      layer.summary = 'Additional shared OE metadata'
+                      layer.description = layer.summary
+-                    layer.layer_type = 'A'
+
+                  if maintainers:
+                      maint_re = re.compile(r'^"?([^"@$<>]+)"? *<([^<> ]+)>[ 
+-]*(.+)?$')
+diff --git a/layerindex/utils.py b/layerindex/utils.py
+index 861a841..5f44754 100644
+--- a/layerindex/utils.py
++++ b/layerindex/utils.py
+@@ -15,6 +15,15 @@ import fcntl
+  import signal
+  import codecs
+
++LAYER_TYPE_CHOICES = (
++    ('A', 'Base'),
++    ('B', 'Machine (BSP)'),
++    ('S', 'Software'),
++    ('D', 'Distribution'),
++    ('W', 'WRTemplates'),
++    ('M', 'Miscellaneous'),
++)
++
+  def get_branch(branchname):
+      from layerindex.models import Branch
+      res = list(Branch.objects.filter(name=branchname)[:1])
+
+// Robert
+> 
+> Thanks,
+> Paul
+> 
+
