@@ -1,66 +1,63 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <aaron@assonance.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1DF70E009AA; Mon, 30 Jul 2018 12:07:38 -0700 (PDT)
+	id 2D6FDE00C33; Mon, 30 Jul 2018 19:56:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.195 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f195.google.com (mail-qt0-f195.google.com
-	[209.85.216.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DABDEE0080A
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2018 12:07:36 -0700 (PDT)
-Received: by mail-qt0-f195.google.com with SMTP id q12-v6so13287510qtp.6
-	for <yocto@yoctoproject.org>; Mon, 30 Jul 2018 12:07:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=FHBXzaTSV1AN5+Jjhc/YzrcpQ7ojRc8XLIRY5HboyMY=;
-	b=Rvwv84NhBoHUbnPjRO+WkhMHrwADgysxB1yT7EDeYZHbPbC7K1HJ/HkMEb3A7y9yYK
-	BnY7Cz8uEPOzjMh8PQ34fyzPr1cN5JAq21IsmxB7Y1pJIKZjrVGPY+i1fCqSDx6EI/lC
-	vChya9hrrr4rqDsWVKG3XX1tR8Xp6eOLWkiiF17f9dtI2jG3dwbxzA5ulCu08O9yNYq9
-	GE4ZojHhkE7EeHywhEniY7r5JByx4YTqZ6jMMbhCVN42XMpiDRLrpiyon3sKaKWK0zSN
-	AVSMBIAv/W3tFsn3KjXOJb2fmWnItftQ7cG5gXUPzo/zbJHYI4kvWhnC//QANa7BbTTS
-	HwVA==
+Received: from mail-it0-f50.google.com (mail-it0-f50.google.com
+	[209.85.214.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 821E1E00AC8
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2018 19:56:58 -0700 (PDT)
+Received: by mail-it0-f50.google.com with SMTP id d70-v6so11056463ith.1
+	for <yocto@yoctoproject.org>; Mon, 30 Jul 2018 19:56:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=assonance-org.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=Nbgx0s7XhFDzU1+MuXurFdBPXIUdgw0TIogmlOhH8Q8=;
+	b=kHFAU3Sc8h7Gq3N6DK3EGpvSwBGmdkjW/Ybjhj1SrsdWkwavDawi99KVvmnr1N7DFp
+	1wJxRjef2BmBr7SrJwvi/ALkLUrmri3D4Op4TiOmqw1QsGT0GeQwmW7kjLj31faH+V4g
+	R/LKhM1BMH8qRezzWengmSgFTuW87kCo6HRkEbOeEzND0dz52gVQ5GIVuiZpN4dc98qa
+	64n3hmhegdwnx6hljNA99xNg9QMAoZoL4xT4t8eb7fYtedKuvNDc8zpBAHrKnrfWPK/D
+	P1AXXw3Yp3qQAIwHW65ZDTkn2POdQEmiFavjh+Kljz9A/FjS7f3+KPDRXilHwWioVnjP
+	Za3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=FHBXzaTSV1AN5+Jjhc/YzrcpQ7ojRc8XLIRY5HboyMY=;
-	b=ETSUUumkZs/oNXmI0qbPnAiEY2jTONAFUET5SFx+nsxIjvAvAF8TWRqqm7uyOM5dl6
-	7rt/u+IwJT/6GBMNufEAJWUDdLFNUausIyYH8ai6rQjF1aq3qUPN0r8qpjsBwKQjEmhw
-	R2OI41T02bUI9WTbP4CTNIofv8YvAfo4Dg0ahHHivQclsUSDYwaR/iu+PEWwlWvVJvws
-	93SZMtGzjTc9yjJ8Vvb1r5W75V9SdbzCvxPOEqip7ndIBVS8/3UKb9OrBjcsxVfmh84z
-	mj2p1spgxPErChn/CWuv615xyMOt0iqW3pAdQ0mVacaZUDAOfZYXYBFJAkTmheA+NAcq
-	6ZFQ==
-X-Gm-Message-State: AOUpUlGVpUfIJKuwS+3IJWQ9seq2Vd3MSpANKu2gCEGMJ70igbJ83tbo
-	6EZaSFQrUPeIbWfqan6kLKkJkgYL
-X-Google-Smtp-Source: AAOMgpfFN6wnXXuSY1hukF/onVKYLCvNBFdCOCS1Kan3oavRxMWwqUOBL05DrepOBR0JUTI/iN+z4A==
-X-Received: by 2002:a0c:8b67:: with SMTP id
-	d39-v6mr16367084qvc.180.1532977656005; 
-	Mon, 30 Jul 2018 12:07:36 -0700 (PDT)
-Received: from e6520.guest-wifi.scl.liberty.com ([4.16.80.121])
-	by smtp.gmail.com with ESMTPSA id
-	w79-v6sm9958327qkw.35.2018.07.30.12.07.35
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 30 Jul 2018 12:07:35 -0700 (PDT)
-From: Andre McCurdy <armccurdy@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon, 30 Jul 2018 12:07:27 -0700
-Message-Id: <1532977647-27563-1-git-send-email-armccurdy@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [meta-gplv2][PATCH] gnutls: update 3.3.29 -> 3.3.30
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=Nbgx0s7XhFDzU1+MuXurFdBPXIUdgw0TIogmlOhH8Q8=;
+	b=EdCdGO8WSHk6hNRuFXHWzz7JTvyyY3NqsnEJ9D1tsOBDQINEMXxSEjcRZ+QLVmd7V7
+	t3ZEgFiLlitVxC6X62ZVS7T9fZ8SprNSuaEvo4ldXdVkZvZS1rBhBn7ibNo7i/Fy8sKw
+	dHbXNfjDODdOg0yLUVPNDlM59pu8SHXSGZu3FXKGE1CtfkmObK1wH37QJiFI+XHZcrxn
+	rqzAMrglNPPTzsiS6sILJYLimfuklduPbTonIPElUEJgg4Bywos4NDg/Lx1ouLyt/4e5
+	88HplV1wFO+OoPGRSox2xAnyEMWBB2Qg7gBlGHUIcEoe2kXKGiJSDBqgMHBVrEnyt5yU
+	bsgg==
+X-Gm-Message-State: AOUpUlHkiymAW20qR4VWffn+hElgg8QkyB0jDmGmqoFqGDUL5rrfUJcP
+	eNMixBGDfthzQmLnAowpSw9NBxb4nFbnoiRv/S8Pipzy
+X-Google-Smtp-Source: AAOMgpfN9NJion+LDnNHA7gVjQyTqAkf+R7NVU9osmfwjJbOwdEKu+XrJCARRCx8MDVi5H7FSWPDHB23CPh7gMBfY00=
+X-Received: by 2002:a24:4511:: with SMTP id
+	y17-v6mr1576830ita.67.1533005817581; 
+	Mon, 30 Jul 2018 19:56:57 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAGAf8LyOWR90ZL8o3H=MNJR3Mwt_Ycpdfx-N+fVcG_O2cwZWDQ@mail.gmail.com>
+	<CAGAf8LyucDcZD4q3ncreUM_cPdhf_JFpx+Vr4ut5vuaBHhRJWw@mail.gmail.com>
+In-Reply-To: <CAGAf8LyucDcZD4q3ncreUM_cPdhf_JFpx+Vr4ut5vuaBHhRJWw@mail.gmail.com>
+From: Aaron Cohen <aaron@assonance.org>
+Date: Mon, 30 Jul 2018 22:56:20 -0400
+Message-ID: <CAFSZm+hbw0kdACRpwwKuxeTEE_X8PnCOo2-RLtun43cB34gk_w@mail.gmail.com>
+To: zoran.stojsavljevic@gmail.com
+Cc: yocto@yoctoproject.org
+Subject: Re: do_configure for socketcand package failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,66 +69,187 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jul 2018 19:07:38 -0000
+X-List-Received-Date: Tue, 31 Jul 2018 02:56:59 -0000
+Content-Type: multipart/alternative; boundary="0000000000003226a5057242bb3a"
 
-* Version 3.3.30 (released 2018-07-16)
+--0000000000003226a5057242bb3a
+Content-Type: text/plain; charset="UTF-8"
 
-** libgnutls: Corrected infinite loop when an incorrect PIN was provided
-   via pin-value or pin-source.
+That configure script is looking for libconfig.
 
-** gnutls-cli: backported the --sni-hostname option. This allows overriding the
-   hostname advertised to the peer.
+You need DEPENDS = "libconfig"
 
-** Improved counter-measures for TLS CBC record padding. Kenny Paterson, Eyal Ronen
-   and Adi Shamir reported that the existing counter-measures had certain issues and
-   were insufficient when the attacker has additional access to the CPU cache and
-   performs a chosen-plaintext attack. This affected the legacy CBC ciphersuites. [CVSS: medium]
+On Mon, Jul 30, 2018 at 4:20 AM Zoran Stojsavljevic <
+zoran.stojsavljevic@gmail.com> wrote:
 
-** The ciphers utilizing HMAC-SHA384 and SHA256 have been removed from the default
-   priority strings. They are not necessary for compatibility or other purpose and
-   provide no advantage over their SHA1 counter-parts, as they all depend on the legacy
-   TLS CBC block mode.
+> Seems, that this does work?!
+> _______
+>
+> SUMMARY = "Socketcand ..."
+> SECTION = "socketcan"
+> LICENSE = "GPLv2"
+> LIC_FILES_CHKSUM =
+> "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+> PR = "r0"
+>
+> RDEPENDS_${PN}-dev += "${PN}-staticdev"
+>
+> SRCREV = "df7fb4ff8a4439d7737fe2df3540e1ab7465721a"
+> SRC_URI = "git://github.com/dschanoeh/socketcand.git;protocol=http"
+>
+> S = "${WORKDIR}/git"
+>
+> EXTRA_OECONF = "
+> --without-config
+> "
+>
+> inherit autotools update-alternatives
+> inherit autotools-brokensep
+> _______
+>
+> Any additional comments?
+>
+> Thank you,
+> Zoran
+>
+> On Mon, Jul 30, 2018 at 8:40 AM, Zoran Stojsavljevic
+> <zoran.stojsavljevic@gmail.com> wrote:
+> > Hello,
+> >
+> > I am writing the recipe for the socketcand package. It looks so far very
+> simple:
+> >
+> > PR = "r0"
+> >
+> > RDEPENDS_${PN}-dev += "${PN}-staticdev"
+> >
+> > SRCREV = "df7fb4ff8a4439d7737fe2df3540e1ab7465721a"
+> >
+> > SRC_URI = "git://github.com/dschanoeh/socketcand.git;protocol=http"
+> >
+> > S = "${WORKDIR}/git"
+> >
+> > inherit autotools
+> > _______
+> >
+> > I did install the following:
+> > sudo apt-get install autoconf
+> > sudo apt-get install libconfig-dev
+> >
+> > The error is in do_config():
+> >
+> > | checking for config_init in -lconfig... no
+> > | configure: error: in
+> >
+> `/home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yocto-rocko/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/socketcand/1.0-r0/build':
+> > | configure: error: config test failed (--without-config to disable)
+> >
+> > What should I include in the recipe to make it work (the both autoconf
+> >  and ./configure work normally for the normal installation)???
+> >
+> > Thank you,
+> > Zoran
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-** API and ABI modifications:
-No changes since last version.
+--0000000000003226a5057242bb3a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Andre McCurdy <armccurdy@gmail.com>
----
- recipes-support/gnutls/gnutls_3.3.29.bb | 8 --------
- recipes-support/gnutls/gnutls_3.3.30.bb | 8 ++++++++
- 2 files changed, 8 insertions(+), 8 deletions(-)
- delete mode 100644 recipes-support/gnutls/gnutls_3.3.29.bb
- create mode 100644 recipes-support/gnutls/gnutls_3.3.30.bb
+<div dir=3D"ltr"><div>That configure script is looking for libconfig.</div>=
+<div><br></div><div>You need DEPENDS =3D &quot;libconfig&quot;<br></div></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Mon, Jul 30, 2018 at =
+4:20 AM Zoran Stojsavljevic &lt;<a href=3D"mailto:zoran.stojsavljevic@gmail=
+.com">zoran.stojsavljevic@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex">Seems, that this does work?!<br>
+_______<br>
+<br>
+SUMMARY =3D &quot;Socketcand ...&quot;<br>
+SECTION =3D &quot;socketcan&quot;<br>
+LICENSE =3D &quot;GPLv2&quot;<br>
+LIC_FILES_CHKSUM =3D<br>
+&quot;file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=3D801f80980d171dd6425610833a=
+22dbe6&quot;<br>
+PR =3D &quot;r0&quot;<br>
+<br>
+RDEPENDS_${PN}-dev +=3D &quot;${PN}-staticdev&quot;<br>
+<br>
+SRCREV =3D &quot;df7fb4ff8a4439d7737fe2df3540e1ab7465721a&quot;<br>
+SRC_URI =3D &quot;git://<a href=3D"http://github.com/dschanoeh/socketcand.g=
+it;protocol=3Dhttp" rel=3D"noreferrer" target=3D"_blank">github.com/dschano=
+eh/socketcand.git;protocol=3Dhttp</a>&quot;<br>
+<br>
+S =3D &quot;${WORKDIR}/git&quot;<br>
+<br>
+EXTRA_OECONF =3D &quot;<br>
+--without-config<br>
+&quot;<br>
+<br>
+inherit autotools update-alternatives<br>
+inherit autotools-brokensep<br>
+_______<br>
+<br>
+Any additional comments?<br>
+<br>
+Thank you,<br>
+Zoran<br>
+<br>
+On Mon, Jul 30, 2018 at 8:40 AM, Zoran Stojsavljevic<br>
+&lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zora=
+n.stojsavljevic@gmail.com</a>&gt; wrote:<br>
+&gt; Hello,<br>
+&gt;<br>
+&gt; I am writing the recipe for the socketcand package. It looks so far ve=
+ry simple:<br>
+&gt;<br>
+&gt; PR =3D &quot;r0&quot;<br>
+&gt;<br>
+&gt; RDEPENDS_${PN}-dev +=3D &quot;${PN}-staticdev&quot;<br>
+&gt;<br>
+&gt; SRCREV =3D &quot;df7fb4ff8a4439d7737fe2df3540e1ab7465721a&quot;<br>
+&gt;<br>
+&gt; SRC_URI =3D &quot;git://<a href=3D"http://github.com/dschanoeh/socketc=
+and.git;protocol=3Dhttp" rel=3D"noreferrer" target=3D"_blank">github.com/ds=
+chanoeh/socketcand.git;protocol=3Dhttp</a>&quot;<br>
+&gt;<br>
+&gt; S =3D &quot;${WORKDIR}/git&quot;<br>
+&gt;<br>
+&gt; inherit autotools<br>
+&gt; _______<br>
+&gt;<br>
+&gt; I did install the following:<br>
+&gt; sudo apt-get install autoconf<br>
+&gt; sudo apt-get install libconfig-dev<br>
+&gt;<br>
+&gt; The error is in do_config():<br>
+&gt;<br>
+&gt; | checking for config_init in -lconfig... no<br>
+&gt; | configure: error: in<br>
+&gt; `/home/netmodule.intranet/stojsavljevic/projects/beaglebone-black/yoct=
+o-rocko/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/socketcand/1=
+.0-r0/build&#39;:<br>
+&gt; | configure: error: config test failed (--without-config to disable)<b=
+r>
+&gt;<br>
+&gt; What should I include in the recipe to make it work (the both autoconf=
+<br>
+&gt;=C2=A0 and ./configure work normally for the normal installation)???<br=
+>
+&gt;<br>
+&gt; Thank you,<br>
+&gt; Zoran<br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
 
-diff --git a/recipes-support/gnutls/gnutls_3.3.29.bb b/recipes-support/gnutls/gnutls_3.3.29.bb
-deleted file mode 100644
-index 21099eb..0000000
---- a/recipes-support/gnutls/gnutls_3.3.29.bb
-+++ /dev/null
-@@ -1,8 +0,0 @@
--require gnutls.inc
--
--SRC_URI += " \
--    file://configure.ac-fix-sed-command.patch \
--    file://use-pkg-config-to-locate-zlib.patch \
--"
--SRC_URI[md5sum] = "de7a58232d42b1d71baf38a06dc34412"
--SRC_URI[sha256sum] = "fa9d13f1bc35b81fac85152906b8d4950f4f5a90d76d5b406c1167728770c94a"
-diff --git a/recipes-support/gnutls/gnutls_3.3.30.bb b/recipes-support/gnutls/gnutls_3.3.30.bb
-new file mode 100644
-index 0000000..6e9f026
---- /dev/null
-+++ b/recipes-support/gnutls/gnutls_3.3.30.bb
-@@ -0,0 +1,8 @@
-+require gnutls.inc
-+
-+SRC_URI += " \
-+    file://configure.ac-fix-sed-command.patch \
-+    file://use-pkg-config-to-locate-zlib.patch \
-+"
-+SRC_URI[md5sum] = "748f4c194a51ca9f2c02d9b7735262c2"
-+SRC_URI[sha256sum] = "41d70107ead3de2f12390909a05eefc9a88def6cd1f0d90ea82a7dac8b8effee"
--- 
-1.9.1
-
-
+--0000000000003226a5057242bb3a--
