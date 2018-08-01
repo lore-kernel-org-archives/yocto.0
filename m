@@ -1,6 +1,6 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <mhalstead@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B646E00848; Wed,  1 Aug 2018 12:16:59 -0700 (PDT)
+	id AB783E00848; Wed,  1 Aug 2018 13:59:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.167.48 listed in list.dnswl.org]
+	*      [209.85.218.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -18,44 +18,49 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
-	[209.85.167.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47D1AE00708
-	for <yocto@yoctoproject.org>; Wed,  1 Aug 2018 12:16:58 -0700 (PDT)
-Received: by mail-lf1-f48.google.com with SMTP id l16-v6so14089902lfc.13
-	for <yocto@yoctoproject.org>; Wed, 01 Aug 2018 12:16:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
+	[209.85.218.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A784E00708
+	for <yocto@yoctoproject.org>; Wed,  1 Aug 2018 13:59:43 -0700 (PDT)
+Received: by mail-oi0-f48.google.com with SMTP id s198-v6so37215494oih.11
+	for <yocto@yoctoproject.org>; Wed, 01 Aug 2018 13:59:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=gwbXOGxQGw9zA3jpxI//ObGQkroxy+pniSUWcgM4ies=;
-	b=QAk3nfXhMCQN1PvNlWp5hGoUmr75PMVnYeudd+lTSW0WwPOvxPZSPHodufSHWjNb0k
-	kTE3onVmIylFoGBvnhsB67QhSZ/qILeyzvUf2l6fYezEOOn070JPMCmSCEoJPzNgIDhw
-	rvjsTrEj5JxyQf+ktpVQQPcHvH+QlhyR2u1hY=
+	:cc; bh=xZEm9eheUmAPOVnt7ubfQ+Mo5dTRvGqtVIEf0K7DZUs=;
+	b=gEVY2+KxK0j0ggTscWcY1QgCAmYe7JPr5IGU+GOD93YFuN2C07Dmze6dAvQlMa4WLT
+	A7X9feOxPIh2iC0zHoUdFZQzJTQN2hbQ+XoYcstQdUI9GGEdCD1ZxBDgqRd4zNx8jYX0
+	aXTIrIzfhk8JSWV8sx+ZNonoqnHpq4mR2wO4A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=gwbXOGxQGw9zA3jpxI//ObGQkroxy+pniSUWcgM4ies=;
-	b=lDVRLP+0T0Zm3SBhZT/viezxJhuQBcHhjbk7jWZSw2FjtabtuTZiIhGDQGb95e10nJ
-	RP8vimEZ9q1lYlJ8jZwnSepPAmBZBQuhUkCB+7tCweDYIikKsh3wQx3wg51XM1Fdjulb
-	gKy0ZK7mUC+ex8BdQRsfSYwNv83heHSHCKeiZPXHd+GcqB7vrIkXMoE7OYDepivTumo1
-	N1fHfZFbcL0FgiyA8IXY004rO8q+b1VZKKhIBTJGiq1RmWGHUcMyYHWb3InuXcGyHyY2
-	NBcBQF3pxNal/k36uV8C4X+XHp68/W43U8mmLMhSbg3qWHlVhhBJMjtmah1mp69BCYkp
-	QGng==
-X-Gm-Message-State: AOUpUlFIJ2w1B8QkywMKANsuQBiXJSEC5wPwWWd8vKjLXMbdywoheIBy
-	PFpgbrZqsfKh0GYh4fulfDaAvryv9XHLBz4d2uDDsA==
-X-Google-Smtp-Source: AAOMgpdoENqjj0YPEd3YvNYwzO3iAp9Re0zDwKbO5t8203h81PoZ0nsqxx3uBFYq5D99YhgG3RLKsXW7J5q/IVPBN/M=
-X-Received: by 2002:a19:1604:: with SMTP id
-	m4-v6mr16179960lfi.120.1533151017141; 
-	Wed, 01 Aug 2018 12:16:57 -0700 (PDT)
+	bh=xZEm9eheUmAPOVnt7ubfQ+Mo5dTRvGqtVIEf0K7DZUs=;
+	b=krQnAxXSBnMq+WOndoq+SUcvjIgkEh6M6ZRbHbrGB1wjN15Ii3ryW6YyLssSiK7dJ/
+	8CfDpeqNS7sfew9xm7vDhIkAn672bodsiw02jDnojBHY4QSsG7cRFHBPuG041Ji8IJAB
+	3ATbBLJU1TcsFPS/WaMi+nWRguhB70Q81ZtIxhs1W8n0ZqogPfhUDOiLQulpizg2i8gc
+	bXX3d2M+0+AdFyitjsAm/yfyjRtuPEuUj/3AbwYE+rlr9xdnZCXQRnECKLzmXsrCgAFR
+	Lk6bQUZeiiW1iptrHEJY+is9rQcr0BEePgEFadXaPFUW33/wvaE69ejuu4IdfbVkYaAm
+	f/3g==
+X-Gm-Message-State: AOUpUlHA/hEmBJxvdsrjtYDX6I62v+j1bXXe9bzTPLiCag/uqB0A5L8Q
+	KzwDLrxVuEOd6x9QHOiVAKU++ppLnOEuhvHi6xDFDQ==
+X-Google-Smtp-Source: AAOMgpeYIw7MoOab/vO5TylrynXoc5lf7iTCCs9Da/V603zXODSHTb8F3MIo6ui5M1LjKg/LUR07qljf2rcMJ5sTPRA=
+X-Received: by 2002:aca:171a:: with SMTP id
+	j26-v6mr5420395oii.277.1533157182315; 
+	Wed, 01 Aug 2018 13:59:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <6e2f9d0c0420474c89b939e115bc2c67@XCGC3026.northgrum.com>
-In-Reply-To: <6e2f9d0c0420474c89b939e115bc2c67@XCGC3026.northgrum.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Wed, 1 Aug 2018 21:16:46 +0200
-Message-ID: <CAP71Wjx1RcfsnXg70zrGn11mbCZxAz6RGA5BhDS27Gw+Dw6J5w@mail.gmail.com>
-To: Shuchi.Anandpura@ngc.com
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Using FreeRADIUS on Yocto?
+References: <DE98B1892D46BB468E30D103AE07E7BC253E765F@ORSMSX102.amr.corp.intel.com>
+	<CA+chaQduoRG0cbuxLracsNdeJvAZX2CwgrhYe2Wmr0BMKaBATQ@mail.gmail.com>
+	<DE98B1892D46BB468E30D103AE07E7BC253E769E@ORSMSX102.amr.corp.intel.com>
+	<CA+chaQcPqae6YAan+HVcA2XssZ_4wqvrMYB5TjjQOTV-yPKO_g@mail.gmail.com>
+In-Reply-To: <CA+chaQcPqae6YAan+HVcA2XssZ_4wqvrMYB5TjjQOTV-yPKO_g@mail.gmail.com>
+From: Michael Halstead <mhalstead@linuxfoundation.org>
+Date: Wed, 1 Aug 2018 13:59:31 -0700
+Message-ID: <CADfgfoaVXfwLYPxAVONGn2Yu71F2aTbh3vtD-X+gBq=CbgDVmg@mail.gmail.com>
+To: Martin Jansa <martin.jansa@gmail.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>, "Brindle,
+	Amanda R" <amanda.r.brindle@intel.com>
+Subject: Re: Error Report Tool Purge
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,119 +72,303 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Aug 2018 19:16:59 -0000
-Content-Type: multipart/alternative; boundary="000000000000c39c7605726489e2"
+X-List-Received-Date: Wed, 01 Aug 2018 20:59:44 -0000
+Content-Type: multipart/alternative; boundary="0000000000003cb60f057265f9e0"
 
---000000000000c39c7605726489e2
+--0000000000003cb60f057265f9e0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-hi,
+Currently the database is 26GB. I'm going to start purging un-visited
+reports older than 180 days today. I see some good suggestions in this
+thread. Khem, would you open an enhancement request describing the counts
+you are interested in preserving?
 
-assuming you are referring to freeradius.org, it looks like this project is
-already integrated into meta-openembedded recipes layer, it was added about
-one year ago. While this layer is not part of the default Yocto Project
-releases (Poky), it is generally straight forward to add new layers into
-the build configuration and benefits from additional recipes/features.
+On Thu, Jul 19, 2018 at 11:08 PM Martin Jansa <martin.jansa@gmail.com>
+wrote:
 
-See:
-http://layers.openembedded.org/layerindex/recipe/67407/
-http://cgit.openembedded.org/meta-openembedded/tree/meta-networking/recipes=
--connectivity/freeradius/freeradius_3.0.17.bb
-
-cheers
-nicolas
-
-
-On Wed, Aug 1, 2018 at 5:20 PM Anandpura, Shuchi [US] (AS) <
-Shuchi.Anandpura@ngc.com> wrote:
-
-> Hi everyone!
+> OK, so it's only visited links, not linked from ML or wiki or whatever,
+> right?
+>
+> How huge the database is? I've checked our internal instance and on
+> relatively slow VM we have:
+> 47 472 724 Post_buildstatstask
+> 2 715 091 Post_build
+> 559 655 Post_buildfailure
+>
+> we use postgresql, the db currently has 20GB, which is quite big for VM
+> with 10GB RAM and 12 E5-2699 cores so it's slow as well, but not terribly
+> slow, individual builds or build-failures are really fast, there are some
+> bad queries in django which are terrible, but we're not using those usual=
+ly.
+>
+> Cheers,
 >
 >
+> On Thu, Jul 19, 2018 at 9:01 PM Brindle, Amanda R <
+> amanda.r.brindle@intel.com> wrote:
 >
-> I couldn=E2=80=99t find this too easily on the internet, but I was wonder=
-ing if
-> Yocto supports freeRADIUS. I know that Xilinx does not, but I have never
-> used Yocto (or even heard of it pretty recently), so I=E2=80=99m not full=
-y aware of
-> its capabilities and limitations.
->
->
->
-> If anybody has any insight on this, could you please let me know? I
-> apologize if this is the wrong mailing list for this.
->
->
->
-> Thank you so much!
->
->
->
-> *Shuchi Anandpura*
->
-> shuchi.anandpura@ngc.com
->
->
-> --
+>> Every time a specific report is visited (with the end of the URL being
+>> /Errors/Details/<id>), we are tracking if the referrer is another websit=
+e,
+>> the reporting tool itself, or unknown. If the referrer is another websit=
+e
+>> or unknown, then we won=E2=80=99t delete it.
+>>
+>>
+>>
+>> The purge script does not look at links to whole builds, so as it is
+>> right now, those would get deleted. If it=E2=80=99s common to link to wh=
+ole builds,
+>> though, I can add something to the script to save reports from a visited=
+ or
+>> linked build.
+>>
+>>
+>>
+>> -Amanda Brindle
+>>
+>>
+>>
+>> *From:* Martin Jansa [mailto:martin.jansa@gmail.com]
+>> *Sent:* Thursday, July 19, 2018 11:38 AM
+>> *To:* Brindle, Amanda R <amanda.r.brindle@intel.com>
+>> *Cc:* Yocto Project <yocto@yoctoproject.org>
+>> *Subject:* Re: [yocto] Error Report Tool Purge
+>>
+>>
+>>
+>> I'm just curious, how are you tracking which reports were viewed or
+>> linked to (and linked from where)? I often use a link to
+>> http://errors.yoctoproject.org in the mailing list or the recipes/commit
+>> message instead of copy pasting whole build error, because it already
+>> shortens the build paths and shows useful additional information about t=
+he
+>> error.
+>>
+>>
+>>
+>> The links to whole builds on http://errors.yoctoproject.org were also
+>> often linked from "bitbake world status" e-mails and wiki like:
+>>
+>> https://www.openembedded.org/wiki/Bitbake_World_Status_Rocko
+>>
+>> and on many of them nobody clicked yet - should I expect that these will
+>> mostly get broken?
+>>
+>>
+>>
+>> Regards
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> On Thu, Jul 19, 2018 at 8:30 PM Brindle, Amanda R <
+>> amanda.r.brindle@intel.com> wrote:
+>>
+>> Hello,
+>>
+>>
+>>
+>> The Error Reporting Tool=E2=80=99s database (
+>> http://errors.yoctoproject.org/Errors/Latest/Autobuilder/)  has grown to
+>> a huge size, and this is affecting the performance of the application. W=
+e
+>> are planning to run a purge to get rid of reports that we don=E2=80=99t =
+need. We
+>> will keep reports from the last thirty days, as well as reports that hav=
+e
+>> been viewed or linked to. If you have a specific report that you don=E2=
+=80=99t want
+>> purged, please let me know by the end of the month.
+>>
+>>
+>>
+>> Amanda Brindle, Software Engineer
+>>
+>> 503-264-3970
+>>
+>> amanda.r.brindle@intel.com
+>>
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>> --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 >
 
---000000000000c39c7605726489e2
+--0000000000003cb60f057265f9e0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">hi,<div><br></div><div>assuming you are referring to <a hr=
-ef=3D"http://freeradius.org">freeradius.org</a>, it looks like this project=
- is already integrated into meta-openembedded recipes layer, it was added a=
-bout one year ago. While this layer is not part of the default Yocto Projec=
-t releases (Poky), it is generally straight forward to add new layers into =
-the build configuration and benefits from additional recipes/features.</div=
-><div><br></div><div>See:</div><div><a href=3D"http://layers.openembedded.o=
-rg/layerindex/recipe/67407/">http://layers.openembedded.org/layerindex/reci=
-pe/67407/</a></div><div><a href=3D"http://cgit.openembedded.org/meta-openem=
-bedded/tree/meta-networking/recipes-connectivity/freeradius/freeradius_3.0.=
-17.bb">http://cgit.openembedded.org/meta-openembedded/tree/meta-networking/=
-recipes-connectivity/freeradius/freeradius_3.0.17.bb</a><br></div><div><br>=
-</div><div>cheers</div><div>nicolas</div><div><br></div></div><br><div clas=
-s=3D"gmail_quote"><div dir=3D"ltr">On Wed, Aug 1, 2018 at 5:20 PM Anandpura=
-, Shuchi [US] (AS) &lt;<a href=3D"mailto:Shuchi.Anandpura@ngc.com">Shuchi.A=
-nandpura@ngc.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<div dir=3D"ltr">Currently the database is 26GB. I&#39;m going to start pur=
+ging un-visited reports older than 180 days today. I see some good suggesti=
+ons in this thread. Khem, would you open an enhancement request describing =
+the counts you are interested in preserving?=C2=A0</div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr">On Thu, Jul 19, 2018 at 11:08 PM Martin Jansa =
+&lt;<a href=3D"mailto:martin.jansa@gmail.com">martin.jansa@gmail.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
+8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">OK, so it=
+&#39;s only visited links, not linked from ML or wiki or whatever, right?<d=
+iv><br></div><div>How huge the database is? I&#39;ve checked our internal i=
+nstance and on relatively slow VM we have:</div><div><span style=3D"font-si=
+ze:small;background-color:rgb(255,255,255);text-decoration-style:initial;te=
+xt-decoration-color:initial;float:none;display:inline">47 472 724=C2=A0Post=
+_buildstatstask</span><br></div><div>2 715 091=C2=A0Post_build<br></div><di=
+v>559 655=C2=A0Post_buildfailure<br></div><div><br></div><div>we use postgr=
+esql, the db currently has 20GB, which is quite big for VM with 10GB RAM an=
+d 12 E5-2699=C2=A0cores so it&#39;s slow as well, but not terribly slow, in=
+dividual builds or build-failures are really fast, there are some bad queri=
+es in django which are terrible, but we&#39;re not using those usually.</di=
+v><div><br></div><div>Cheers,</div><div><br></div></div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr">On Thu, Jul 19, 2018 at 9:01 PM Brindle, Amand=
+a R &lt;<a href=3D"mailto:amanda.r.brindle@intel.com" target=3D"_blank">ama=
+nda.r.brindle@intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
+ex">
 
 
 
 
 
-<div lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"m_-3842467562924122309WordSection1">
-<p class=3D"MsoNormal">Hi everyone!<u></u><u></u></p>
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"m_-2704937825272715670m_-6203912255561019796WordSection1">
+<p class=3D"MsoNormal"><a name=3D"m_-2704937825272715670_m_-620391225556101=
+9796__MailEndCompose"><span style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;color:#1f497d">Every time a specific report is visite=
+d (with the end of the URL being /Errors/Details/&lt;id&gt;), we are tracki=
+ng if the referrer is another
+ website, the reporting tool itself, or unknown. If the referrer is another=
+ website or unknown, then we won=E2=80=99t delete it.
+<u></u><u></u></span></a></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1f497d"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1f497d">The purge script does not look at lin=
+ks to whole builds, so as it is right now, those would get deleted. If it=
+=E2=80=99s common to link to whole builds, though, I can
+ add something to the script to save reports from a visited or linked build=
+. <u></u>
+<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1f497d"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1f497d">-Amanda Brindle<u></u><u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:#1f497d"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><a name=3D"m_-2704937825272715670_m_-620391225556101=
+9796______replyseparator"></a><b><span style=3D"font-size:11.0pt;font-famil=
+y:&quot;Calibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:=
+11.0pt;font-family:&quot;Calibri&quot;,sans-serif"> Martin Jansa [mailto:<a=
+ href=3D"mailto:martin.jansa@gmail.com" target=3D"_blank">martin.jansa@gmai=
+l.com</a>]
+<br>
+<b>Sent:</b> Thursday, July 19, 2018 11:38 AM<br>
+<b>To:</b> Brindle, Amanda R &lt;<a href=3D"mailto:amanda.r.brindle@intel.c=
+om" target=3D"_blank">amanda.r.brindle@intel.com</a>&gt;<br>
+<b>Cc:</b> Yocto Project &lt;<a href=3D"mailto:yocto@yoctoproject.org" targ=
+et=3D"_blank">yocto@yoctoproject.org</a>&gt;<br>
+<b>Subject:</b> Re: [yocto] Error Report Tool Purge<u></u><u></u></span></p=
+>
 <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I couldn=E2=80=99t find this too easily on the inter=
-net, but I was wondering if Yocto supports freeRADIUS. I know that Xilinx d=
-oes not, but I have never used Yocto (or even heard of it pretty recently),=
- so I=E2=80=99m not fully aware of its capabilities
- and limitations. <u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">I&#39;m just curious, how are you tracking which rep=
+orts were viewed or linked to (and linked from where)? I often use a link t=
+o
+<a href=3D"http://errors.yoctoproject.org" target=3D"_blank">http://errors.=
+yoctoproject.org</a> in the mailing list or the recipes/commit message inst=
+ead of copy pasting whole build error, because it already shortens the buil=
+d paths and shows useful additional information about
+ the error.<u></u><u></u></p>
+<div>
 <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">If anybody has any insight on this, could you please=
- let me know? I apologize if this is the wrong mailing list for this.<u></u=
-><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">The links to whole builds on=C2=A0<a href=3D"http://=
+errors.yoctoproject.org" target=3D"_blank">http://errors.yoctoproject.org</=
+a>=C2=A0were also often linked from &quot;bitbake world status&quot; e-mail=
+s and wiki like:<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal"><a href=3D"https://www.openembedded.org/wiki/Bitbake=
+_World_Status_Rocko" target=3D"_blank">https://www.openembedded.org/wiki/Bi=
+tbake_World_Status_Rocko</a><u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">and on many of them nobody clicked yet - should I ex=
+pect that these will mostly get broken?<u></u><u></u></p>
+</div>
+<div>
 <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Thank you so much!<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Regards<u></u><u></u></p>
+</div>
+<div>
 <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:14.0pt;font-family:DaunP=
-enh;color:#0070c0">Shuchi Anandpura<u></u><u></u></span></b></p>
-<p class=3D"MsoNormal"><a href=3D"mailto:shuchi.anandpura@ngc.com" target=
-=3D"_blank"><span style=3D"font-size:14.0pt;font-family:DaunPenh;color:#007=
-0c0">shuchi.anandpura@ngc.com</span></a><span style=3D"font-size:14.0pt;fon=
-t-family:DaunPenh;color:#0070c0"><u></u><u></u></span></p>
+<div>
 <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 </div>
 </div>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Thu, Jul 19, 2018 at 8:30 PM Brindle, Amanda R &l=
+t;<a href=3D"mailto:amanda.r.brindle@intel.com" target=3D"_blank">amanda.r.=
+brindle@intel.com</a>&gt; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border:none;border-left:solid #cccccc 1.0pt;padding:0i=
+n 0in 0in 6.0pt;margin-left:4.8pt;margin-right:0in">
+<div>
+<div>
+<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">The Error Reporting Tool=E2=80=99s database (<a href=
+=3D"http://errors.yoctoproject.org/Errors/Latest/Autobuilder/" target=3D"_b=
+lank">http://errors.yoctoproject.org/Errors/Latest/Autobuilder/</a>)
+ =C2=A0has grown to a huge size, and this is affecting the performance of t=
+he application. We are planning to run a purge to get rid of reports that w=
+e don=E2=80=99t need. We will keep reports from the last thirty days, as we=
+ll as reports that have been viewed or linked
+ to. If you have a specific report that you don=E2=80=99t want purged, plea=
+se let me know by the end of the month.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">Amanda Brindle, Sof=
+tware Engineer</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">503-264-3970
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt"><a href=3D"mailto:a=
+manda.r.brindle@intel.com" target=3D"_blank">amanda.r.brindle@intel.com</a>=
+</span><u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal">-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><u></u><u></u></p>
+</blockquote>
+</div>
+</div>
+</div>
 
+</blockquote></div>
 -- <br>
 _______________________________________________<br>
 yocto mailing list<br>
@@ -189,4 +378,4 @@ ect.org</a><br>
 " target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
 </blockquote></div>
 
---000000000000c39c7605726489e2--
+--0000000000003cb60f057265f9e0--
