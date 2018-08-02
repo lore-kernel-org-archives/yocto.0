@@ -1,68 +1,52 @@
-Return-Path: <ptsneves@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3C5A6E00AC8; Thu,  2 Aug 2018 07:53:07 -0700 (PDT)
+	id 89ADEE00AC8; Thu,  2 Aug 2018 08:11:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ptsneves[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
-	[209.85.221.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BCB5E00848
-	for <yocto@yoctoproject.org>; Thu,  2 Aug 2018 07:53:05 -0700 (PDT)
-Received: by mail-wr1-f47.google.com with SMTP id h15-v6so2430013wrs.7
-	for <yocto@yoctoproject.org>; Thu, 02 Aug 2018 07:53:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=2/Jg+0k7vCj7JGd4HKDSX18sIgdRm44wvjT//j2vZVs=;
-	b=Phknhr0CuTs9aFNNsW7i3W8wArNSiZtl8vXwR456pJ+g0TyC5XmqLkV77Bp7uzDweU
-	aAaVnCjjtWIDn8WGgIYD679odhjTNSEmAw8OUGOUtUy05XZgsW3UdocKOF347LMub8Va
-	XKvbuMHaEetKUkL3XHehKOxIj7740GFSEJLOoNZCObtVP0/48nZ1KOjEECXHTUswHO0u
-	HWA3HIIGlahiZd0L8BYB6h5jJu5jYEq+5JLnWPsqzz1I8B9mrHYLT0urdsyNy0H8HPaH
-	kltF7AHenyoWDAXxGRaN4RqgT/FFwjfe4c4vb02TEpHqKrWkCMeUn8r01zDnOFNZIVNe
-	O0zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=2/Jg+0k7vCj7JGd4HKDSX18sIgdRm44wvjT//j2vZVs=;
-	b=AfLAVfCdeayO5HlJQeg9a18L6XcxyaUmwbrZ7w+W6q5gEu0fbbsEoT201ErRQc+jjL
-	BlZ4jqYvoDAIt4S2TDdsn2lZjcrJL9nSqB9qGHa/8rft4J1uhP2MwXAOSl8NMSN6pvaH
-	F6ZnIBgCVSlvca2ZBqhM+HA4FDXd2jWNILebzM9KAkXpZsz1qdm0e/BDM3BX9+ZDQg28
-	ngm+MFmMAmnOJhekVawWdgYj6cpM3It8x+lep9DMdfkliQLh15IzcOX+by+V0AIksZl6
-	6EqAHwif7xDyaRJMqKI4FiihYpWLMf8KvlTYHiZvDEpIBwMHMutU2+ufBI3aINy7vNTH
-	dKxw==
-X-Gm-Message-State: AOUpUlErTZm2ziTV9dp6Gg7Edtuvzrh6KtRdev6qVovB4/jM+YYhfdLN
-	wl0NZgeUW21Kv2uLxYp4HhMgq2aHnrD7sXcuUMbmVx1oGw==
-X-Google-Smtp-Source: AAOMgpcBrSuORCYuUWDpl0f6qgbH1OFNlZMLN887CwudWE6REHVvNmkcKExRo+hJlmUdOHHrGFUW1gWk+xnZGiQgpf4=
-X-Received: by 2002:a5d:5641:: with SMTP id
-	j1-v6mr2318826wrw.209.1533221584985; 
-	Thu, 02 Aug 2018 07:53:04 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FAFDE00848
+	for <yocto@yoctoproject.org>; Thu,  2 Aug 2018 08:11:30 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	02 Aug 2018 08:11:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,436,1526367600"; d="scan'208,217";a="62801208"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+	by orsmga006.jf.intel.com with ESMTP; 02 Aug 2018 08:11:29 -0700
+Received: from fmsmsx120.amr.corp.intel.com (10.18.124.208) by
+	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Thu, 2 Aug 2018 08:11:29 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.66]) by
+	fmsmsx120.amr.corp.intel.com ([169.254.15.147]) with mapi id
+	14.03.0319.002; Thu, 2 Aug 2018 08:11:29 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Weekly Triage Meeting 
+Thread-Index: AdQqbFv5UvYB4Qi2RaanG9E2akFEcw==
+Date: Thu, 2 Aug 2018 15:11:28 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC736986C@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMjI5NjYwNDYtNWNlOC00NDZkLWI0MGQtZjk4MWZlYjg1YThjIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiM2VJMnRDMnB3VXRwNXhmSWJBWWtLVlZDQ2w1MG5rdnZTNW5QbXd2VHZMYzNjUlF3aXNBbTRCS0JjRHY0ckZyMiJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.106]
 MIME-Version: 1.0
-Received: by 2002:a1c:e719:0:0:0:0:0 with HTTP;
-	Thu, 2 Aug 2018 07:53:03 -0700 (PDT)
-In-Reply-To: <6111005.T3omFVPL6s@localhost.localdomain>
-References: <CAJO0J4g=yJLtdncAAJxdCA5vTOPnz5ZOt3hc6Q4eHOh18tm4-w@mail.gmail.com>
-	<6111005.T3omFVPL6s@localhost.localdomain>
-From: Paulo Neves <ptsneves@gmail.com>
-Date: Thu, 2 Aug 2018 16:53:03 +0200
-Message-ID: <CAJO0J4gX-dqwwkSS9dRvoSFS1Zt-xtiWs7dtod++aZUo44-0kw@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Cannot use any TEST_TARGET besides simpleremote or qemu
+Subject: Minutes: Yocto Project Weekly Triage Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,77 +58,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Aug 2018 14:53:07 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 02 Aug 2018 15:11:31 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC736986Cfmsmsx111amrcor_"
 
-Hello Paul,
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC736986Cfmsmsx111amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I find this functionality very useful for test benches of embedded
-systems. Now that you said it was broken i started pruning code and
-have 3 ways we can and save the current functionality:
-1 In the testimage.bbclass, pass the td variable to
-OERuntimeTestContextExecutor.getTarget(). Also greatly simplifying
-argument passing.
-2 In the testimage.bbclass add the td variable to the kwargs so that
-controllers can access the datastore at __init__ time.
-3 Have the user set a variable with a list of variables (!) that
-should available in kwargs.
+QXR0ZW5kZWVzOiBBcm1pbiwgU3RlcGhlbiwgQW1hbmRhLCBKb3NodWEsIFJpY2hhcmQsIFJvc3Ms
+IFBhdWwsIEJyaWFuLA0KDQpXaWtpOiBodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtp
+L0J1Z19UcmlhZ2UNCg0KQVI6IEFybWluIOKAkyBDb21tZW50IG9uIDEyODY1PGh0dHBzOi8vYnVn
+emlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTI4NjU+DQpBUjogQXJtaW4g
+4oCTIENsb3NlIDEyNzYxPGh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1
+Zy5jZ2k/aWQ9MTI3NjE+LCAxMjgzOTxodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcv
+c2hvd19idWcuY2dpP2lkPTEyODM5PiwgMTI4NTI8aHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2pl
+Y3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0xMjg1Mj4sIDEyODUzPGh0dHBzOi8vYnVnemlsbGEueW9j
+dG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTI4NTM+LCAxMjA3MDxodHRwczovL2J1Z3pp
+bGxhLnlvY3RvcHJvamVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTEyMDcwPiwgMTI3NjY8aHR0cHM6
+Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0xMjc2Nj4sIDEyNzc5
+PGh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTI3Nzk+
+LCAxMjgxMjxodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcvc2hvd19idWcuY2dpP2lk
+PTEyODEyPg0KQVI6IFBhdWwg4oCTIFJldmlldyBhbmQgdXBkYXRlIDEyMTAyPGh0dHBzOi8vYnVn
+emlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTIxMDI+DQpBUjogUmljaGFy
+ZCDigJMgUmV2aWV3IGFuZCB1cGRhdGUgMTI4NjY8aHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2pl
+Y3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0xMjg2Nj4NCg0KVGhhbmtzLA0KDQpTdGVwaGVuIEsuIEpv
+bGxleQ0KWW9jdG8gUHJvamVjdCBQcm9ncmFtIE1hbmFnZXINCklOVEVMLCBNUyBKRjEtMjU1LCAy
+MTExIE4uRS4gMjV0aCBBdmVudWUsIEhpbGxzYm9ybywgT1IgOTcxMjQNCuKAoiAgICBDZWxsOiAg
+ICAgICAgICAgICAgKDIwOCkgMjQ0LTQ0NjANCuKAoiBFbWFpbDogICAgICAgICAgICAgICAgc3Rl
+cGhlbi5rLmpvbGxleUBpbnRlbC5jb20NCg0KDQo=
 
-I will give it a try by simply passing td. This way we give all the
-information that controllers might need to work. As td is retrieved by
-the json file generated at the image creation time the external test
-(bitbakeless) functionality should be unaffected.
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC736986Cfmsmsx111amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Let me know if you have different opinions.
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
+dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
+LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
+ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
+PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
+Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+QXR0ZW5kZWVzOiBBcm1pbiwgU3RlcGhlbiwgQW1h
+bmRhLCBKb3NodWEsIFJpY2hhcmQsIFJvc3MsIFBhdWwsIEJyaWFuLCA8L3NwYW4+PC9mb250Pjwv
+ZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4N
+CjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTFwdDsiPldpa2k6IDxhIGhyZWY9Imh0dHBzOi8vd2lraS55b2N0
+b3Byb2plY3Qub3JnL3dpa2kvQnVnX1RyaWFnZSI+PGZvbnQgY29sb3I9IiMwNTYzQzEiPjx1Pmh0
+dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvQnVnX1RyaWFnZTwvdT48L2ZvbnQ+PC9h
+Pjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIi
+IGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3Nw
+YW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xv
+cj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+QVI6IEFybWluIOKAkyBD
+b21tZW50IG9uIDxhIGhyZWY9Imh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93
+X2J1Zy5jZ2k/aWQ9MTI4NjUiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT4xMjg2NTwvdT48L2Zv
+bnQ+PC9hPjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNp
+emU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5BUjog
+QXJtaW4g4oCTIENsb3NlIDxhIGhyZWY9Imh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9y
+Zy9zaG93X2J1Zy5jZ2k/aWQ9MTI3NjEiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT4xMjc2MTwv
+dT48L2ZvbnQ+PC9hPiwgPGEgaHJlZj0iaHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3Jn
+L3Nob3dfYnVnLmNnaT9pZD0xMjgzOSI+PGZvbnQgY29sb3I9IiMwNTYzQzEiPjx1PjEyODM5PC91
+PjwvZm9udD48L2E+LA0KPGEgaHJlZj0iaHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3Jn
+L3Nob3dfYnVnLmNnaT9pZD0xMjg1MiI+PGZvbnQgY29sb3I9IiMwNTYzQzEiPjx1PjEyODUyPC91
+PjwvZm9udD48L2E+LCA8YSBocmVmPSJodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcv
+c2hvd19idWcuY2dpP2lkPTEyODUzIj48Zm9udCBjb2xvcj0iIzA1NjNDMSI+PHU+MTI4NTM8L3U+
+PC9mb250PjwvYT4sIDxhIGhyZWY9Imh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9z
+aG93X2J1Zy5jZ2k/aWQ9MTIwNzAiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT4xMjA3MDwvdT48
+L2ZvbnQ+PC9hPiwNCjxhIGhyZWY9Imh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9z
+aG93X2J1Zy5jZ2k/aWQ9MTI3NjYiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT4xMjc2NjwvdT48
+L2ZvbnQ+PC9hPiwgPGEgaHJlZj0iaHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3JnL3No
+b3dfYnVnLmNnaT9pZD0xMjc3OSI+PGZvbnQgY29sb3I9IiMwNTYzQzEiPjx1PjEyNzc5PC91Pjwv
+Zm9udD48L2E+LCA8YSBocmVmPSJodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcvc2hv
+d19idWcuY2dpP2lkPTEyODEyIj48Zm9udCBjb2xvcj0iIzA1NjNDMSI+PHU+MTI4MTI8L3U+PC9m
+b250PjwvYT48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBz
+aXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+QVI6
+IFBhdWwg4oCTIFJldmlldyBhbmQgdXBkYXRlIDxhIGhyZWY9Imh0dHBzOi8vYnVnemlsbGEueW9j
+dG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTIxMDIiPjxmb250IGNvbG9yPSIjMDU2M0Mx
+Ij48dT4xMjEwMjwvdT48L2ZvbnQ+PC9hPjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250
+IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExcHQ7Ij5BUjogUmljaGFyZCDigJMgUmV2aWV3IGFuZCB1cGRhdGUgPGEgaHJlZj0i
+aHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0xMjg2NiI+
+PGZvbnQgY29sb3I9IiMwNTYzQzEiPjx1PjEyODY2PC91PjwvZm9udD48L2E+PC9zcGFuPjwvZm9u
+dD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5
+N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9k
+aXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5UaGFua3MsPC9zcGFuPjwvZm9udD48L2Rpdj4N
+CjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2
+Pjxmb250IHNpemU9IjQiIGNvbG9yPSJwdXJwbGUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTZw
+dDsiPjxiPjxpPlN0ZXBoZW4gSy4gSm9sbGV5PC9pPjwvYj48L3NwYW4+PC9mb250PjwvZGl2Pg0K
+PGRpdj48Zm9udCBmYWNlPSJDb3VyaWVyIE5ldyIgc2l6ZT0iMSIgY29sb3I9ImJsdWUiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6OHB0OyI+PGI+WW9jdG8gUHJvamVjdCBQcm9ncmFtIE1hbmFnZXI8
+L2I+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ291cmllciBOZXciIHNp
+emU9IjIiIGNvbG9yPSJmdWNoc2lhIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Ij48Yj5J
+TlRFTCwgTVMgSkYxLTI1NSwgMjExMSBOLkUuIDI1dGggQXZlbnVlLCBIaWxsc2Jvcm8sIE9SIDk3
+MTI0IDwvYj48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBzaXplPSIyIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjlwdDsiPjxmb250IGZhY2U9IldpbmdkaW5ncyI+KDwvZm9udD48Zm9u
+dCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0idGVhbCI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IDwv
+Zm9udD48Zm9udCBmYWNlPSJDb21pYyBTYW5zIE1TIiBzaXplPSIxIiBjb2xvcj0idGVhbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZTo4cHQ7Ij48Yj5DZWxsPC9iPjwvc3Bhbj48L2ZvbnQ+PGZvbnQg
+ZmFjZT0iTVMgU2FucyBTZXJpZiIgY29sb3I9InRlYWwiPjombmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsN
+CjwvZm9udD48Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0iIzFGNDk3RCI+KDIwOCkg
+MjQ0LTQ0NjA8L2ZvbnQ+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgc2l6ZT0iMiIg
+Y29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OXB0OyI+PGZvbnQgZmFjZT0i
+V2luZ2RpbmdzIj4qIDwvZm9udD48Zm9udCBmYWNlPSJDb21pYyBTYW5zIE1TIiBzaXplPSIxIiBj
+b2xvcj0idGVhbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo4cHQ7Ij48Yj5FbWFpbDwvYj48L3Nw
+YW4+PC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9yPSJ0ZWFsIj46Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8L2ZvbnQ+PGZvbnQgZmFjZT0iTVMgU2FucyBT
+ZXJpZiIgY29sb3I9ImJsdWUiPjx1PnN0ZXBoZW4uay5qb2xsZXlAaW50ZWwuY29tPC91PjwvZm9u
+dD48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIy
+IiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9z
+cGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjwv
+c3Bhbj48L2ZvbnQ+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-Paulo Neves
-
-On Thu, Aug 2, 2018 at 10:35 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> Hi Paulo,
->
-> On Thursday, 2 August 2018 12:11:37 AM BST Paulo Neves wrote:
->> I am trying to create my own test controller. After copy pasting and
->> adapting the skeleton from BeagleBoneTarget to
->> $MYLAYER/lib/oeqa/controllers I set the appropriate TEST_TARGET.
->>
->> When I run the testimage task I always have errors like in [1]. The
->> actual keyword that is unexpected changes from invocation to
->> invocation. There was a similar error previously reported in this
->> mailing list but the presented solution was to actually stop using the
->> TEST_TARGET variable, which is not applicable.
->>
->> I have tried setting TEST_TARGET to any of the proposed options in the
->> manual [2] and the same unhelping error shows. I know that some of
->> that these controller targets, are not appropriate for my target
->> (odroid [cortex-arm15]), but the errors seems to not be related to any
->> functionality or these boards.
->>
->> I have analyzed and cannot really understand also how all the example
->> targets classes have a constructor which takes the d variable, while
->> the context.py call has some more variables including a dictionary,
->> kwargs, which does not actually have the d variable.
->
-> I discovered this as well:
->
->   https://bugzilla.yoctoproject.org/show_bug.cgi?id=12842
->
-> This code got broken during the refactoring a while ago, and I think the
-> person doing the work considered it to be legacy functionality and was going
-> to remove it. Personally I'd like to see it stay and get fixed up, but the
-> issue is having the time to fix it and maintain it - if you do by any chance
-> then that would be great.
->
-> At the moment I believe "simpleremote" does still work, it's just the actual
-> classes that are broken, but I didn't give it extensive testing.
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
->
-
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC736986Cfmsmsx111amrcor_--
