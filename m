@@ -1,65 +1,56 @@
-Return-Path: <ptsneves@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CB8DBE003E4; Mon,  6 Aug 2018 04:35:53 -0700 (PDT)
+	id 0305FE006C7; Mon,  6 Aug 2018 09:55:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ptsneves[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.49 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.136 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f49.google.com (mail-wm0-f49.google.com [74.125.82.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 014A0E0034A
-	for <yocto@yoctoproject.org>; Mon,  6 Aug 2018 04:35:52 -0700 (PDT)
-Received: by mail-wm0-f49.google.com with SMTP id w24-v6so13922286wmc.1
-	for <yocto@yoctoproject.org>; Mon, 06 Aug 2018 04:35:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=ejbrs54BHqwwGr5OZJebrfuwvg+ZXLp64cSuOOffKeA=;
-	b=pkJyFxg6EUNMf+OnKrN/6CumoASek7hH6B/7I0IdYhHirV964K0OCWJhtH8PrMmwlZ
-	1ZX2xJvb49d3ffKCxIjnYS+k+Abonc98RG4frqAKVpN6rGXiW8RYzMa6aJ0Xvn0YxnFk
-	Y6bxep3UEFVi1/JF12mvQ5dHjRjQ2eEg1RoKJjb4nMFWWDP8LML96c9u7Cueuw+ftYyr
-	tCTRmfTdkzhW9kMxtBkcaM1Cz1fEkhEh1aZLX46EBfbAnX8YCvzcDtKbbgnCTqtOE8bA
-	7G5zV96sGYq10iIxspsTF7ze8WeyKK1Vv6Ohu/8HWSiMuQlsiaJO7yQDnI/C88VlVSFG
-	xG1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=ejbrs54BHqwwGr5OZJebrfuwvg+ZXLp64cSuOOffKeA=;
-	b=V3DF7dqDJeMh5mzexta9B0kc3VDKqzhOdYm2S2H3P4UtsIK8RgaJTrH72QrWxlwgQ3
-	ZJ1ZE+YyGjRr6pyGs8prms8MohCP9LaLRqewPUlNHOLJj10L40l4oXcDewxDjauKQOsw
-	fa8bYnx1FCjGW/2cYHdV5V12UkNcikl/coggYRxiaPdKQ5i+SciEWMtGMdi/Px8kIAD1
-	sWA4cor5sy/5r98ItXKjVN5Vd3w98LvEU6goTR+MzWlsPf7FgaCgtLUAsmoseyiZHyGN
-	Jw2ifAp92NXzj594Lzd7f+OJ4j0m2TBb5BUBn89pgSGUKQQD/xIuijcCNxv8EQQ/KcqJ
-	veuA==
-X-Gm-Message-State: AOUpUlEhwq4bcowCgcfVVxk+hBZspFLrw5Ce5SqDIinxgrD7dW8qFRsE
-	ecPJuxrM7nB/a5wJzKOk/jEI37lIXw==
-X-Google-Smtp-Source: AAOMgpcVRk8w5HXtmK/n7AtLD5OB7qF/6lCMxN8yblLeGzL+/vJ/7OBypnQTIkQOHOIEdMO1ssryQw==
-X-Received: by 2002:a1c:ca0f:: with SMTP id
-	a15-v6mr11037552wmg.102.1533555351950; 
-	Mon, 06 Aug 2018 04:35:51 -0700 (PDT)
-Received: from localhost.localdomain (64.196.28.37.rev.vodafone.pt.
-	[37.28.196.64]) by smtp.gmail.com with ESMTPSA id
-	i15-v6sm9874580wro.7.2018.08.06.04.35.50
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 06 Aug 2018 04:35:51 -0700 (PDT)
-From: Paulo Neves <ptsneves@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon,  6 Aug 2018 13:34:54 +0200
-Message-Id: <1533555294-11187-1-git-send-email-ptsneves@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [yocto-docs] documentation: Updated testimage targets.
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54000E006C7
+	for <yocto@yoctoproject.org>; Mon,  6 Aug 2018 09:55:32 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	06 Aug 2018 09:55:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.51,452,1526367600"; 
+	d="scan'208,217";a="251733796"
+Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
+	by fmsmga005.fm.intel.com with ESMTP; 06 Aug 2018 09:55:31 -0700
+Received: from fmsmsx122.amr.corp.intel.com (10.18.125.37) by
+	fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Mon, 6 Aug 2018 09:55:31 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.102]) by
+	fmsmsx122.amr.corp.intel.com ([169.254.5.243]) with mapi id
+	14.03.0319.002; Mon, 6 Aug 2018 09:55:31 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: Yocto Project Unassigned Bugs - Help Needed
+Thread-Index: AdQXlGn2RYGWCO8aQne3TGYivsbGuQ==
+Date: Mon, 6 Aug 2018 16:55:30 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7379D84@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.106]
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiOWM1NTVhNjktYmU4ZS00NzkzLTkyMDgtZGVlNGE1OTA2YTZmIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiaUlWbjdERDJ5eExEVTQ0dWhmcVE5RVV6NVQrT1dlMmtFek5FSTNwUjZ2TE5cL05hT2ZBdXpzZk1EV2tlUzRkNGQifQ==
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+MIME-Version: 1.0
+Subject: Yocto Project Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,98 +62,215 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Aug 2018 11:35:53 -0000
+X-List-Received-Date: Mon, 06 Aug 2018 16:55:33 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7379D84fmsmsx111amrcor_"
 
-The documentation of available names for TEST_TARGET have
-been updated to match the convention of using the
-class names of controllers.
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7379D84fmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Paulo Neves <ptsneves@gmail.com>
----
- documentation/dev-manual/dev-manual-common-tasks.xml |  8 ++++----
- documentation/ref-manual/ref-variables.xml           | 19 ++++---------------
- 2 files changed, 8 insertions(+), 19 deletions(-)
-
-diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
-index 0cb967f..2fcdad0 100644
---- a/documentation/dev-manual/dev-manual-common-tasks.xml
-+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
-@@ -11400,7 +11400,7 @@
-                             within a separately started QEMU or any
-                             other virtual machine manager.
-                             </para></listitem>
--                        <listitem><para><emphasis>"Systemd-bootTarget":</emphasis>
-+                        <listitem><para><emphasis>"SystemdbootTarget":</emphasis>
-                             Choose "Systemd-bootTarget" if your hardware is
-                             an EFI-based machine with
-                             <filename>systemd-boot</filename> as bootloader and
-@@ -11459,10 +11459,10 @@
-             </section>
- 
-             <section id='selecting-systemd-boottarget'>
--                <title>Selecting Systemd-bootTarget</title>
-+                <title>Selecting SystemdbootTarget</title>
- 
-                 <para>
--                    If you did not set <filename>TEST_TARGET</filename> to
-+                    If you did not set <filename>TEST_TARG
-                     "Systemd-bootTarget", then you do not need any information
-                     in this section.
-                     You can skip down to the
-@@ -11472,7 +11472,7 @@
- 
-                 <para>
-                     If you did set <filename>TEST_TARGET</filename> to
--                    "Systemd-bootTarget", you also need to perform a one-time
-+                    "SystemdbootTarget", you also need to perform a one-time
-                     setup of your master image by doing the following:
-                     <orderedlist>
-                         <listitem><para><emphasis>Set <filename>EFI_PROVIDER</filename>:</emphasis>
-diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
-index 2465553..a61fee6 100644
---- a/documentation/ref-manual/ref-variables.xml
-+++ b/documentation/ref-manual/ref-variables.xml
-@@ -15162,35 +15162,24 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR = "${INC_PR}.3"
-                     You can provide the following arguments with
-                     <filename>TEST_TARGET</filename>:
-                     <itemizedlist>
--                        <listitem><para><emphasis>"qemu" and "QemuTarget":</emphasis>
-+                        <listitem><para><emphasis>"QemuTarget":</emphasis>
-                             Boots a QEMU image and runs the tests.
-                             See the
-                             "<ulink url='&YOCTO_DOCS_DEV_URL;#qemu-image-enabling-tests'>Enabling Runtime Tests on QEMU</ulink>"
-                             section in the Yocto Project Development Tasks
-                             Manual for more information.
-                             </para></listitem>
--                        <listitem><para><emphasis>"simpleremote" and "SimpleRemoteTarget":</emphasis>
-+                        <listitem><para><emphasis>"SimpleRemoteTarget":</emphasis>
-                             Runs the tests on target hardware that is already
-                             up and running.
-                             The hardware can be on the network or it can be
-                             a device running an image on QEMU.
-                             You must also set
-                             <link linkend='var-TEST_TARGET_IP'><filename>TEST_TARGET_IP</filename></link>
--                            when you use "simpleremote" or "SimpleRemoteTarget".
-+                            when you use "SimpleRemoteTarget".
-                             <note>
-                                 This argument is defined in
--                                <filename>meta/lib/oeqa/targetcontrol.py</filename>.
--                                The small caps names are kept for compatibility
--                                reasons.
--                            </note>
--                            </para></listitem>
--                        <listitem><para><emphasis>"GummibootTarget":</emphasis>
--                            Automatically deploys and runs tests on an
--                            EFI-enabled machine that has a master image
--                            installed.
--                            <note>
--                                This argument is defined in
--                                <filename>meta/lib/oeqa/controllers/masterimage.py</filename>.
-+                                <filename>meta/lib/oeqa/controllers/simpleremote.py</filename>.
-                             </note>
-                             </para></listitem>
-                     </itemizedlist>
--- 
-2.7.4
+All,
 
 
+
+The triage team meets weekly and does its best to handle the bugs reported =
+into the bugzilla. The number of people attending that meeting has fallen, =
+as have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage team) a=
+re therefore going to start reporting out the currently 323 unassigned bugs=
+.
+
+
+
+We're hoping people may be able to spare some time now and again to help ou=
+t with these.
+
+
+
+Bugs are split into two types, "true bugs" where things don't work as they =
+should and "enhancements" which are features we'd want to add to the system=
+.
+
+
+
+There are also roughly three different "priority" classes right now, "2.6",=
+ "2.99" and "Future", the more pressing/urgent issues being in "2.6".
+
+
+
+Please review this link and if a bug is something you would be able to help=
+ with either take ownership of the bug, or send me (Stephen.k.jolley@intel.=
+com) an e-mail with the bug number you would like and I will assign it to y=
+ou (please make sure you have a bugzilla account).
+
+
+
+The list is at: https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bu=
+gs
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*    Cell:                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7379D84fmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:2 11 5 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle19
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoPlainText">All,<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The triage team meets weekly and does its best to=
+ handle the bugs reported into the bugzilla. The number of people attending=
+ that meeting has fallen, as have the number of people available to help fi=
+x bugs. One of the things we hear
+ users report is they don't know how to help. We (the triage team) are ther=
+efore going to start reporting out the currently 323 unassigned bugs.<o:p><=
+/o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">We're hoping people may be able to spare some tim=
+e now and again to help out with these.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Bugs are split into two types, &quot;true bugs&qu=
+ot; where things don't work as they should and &quot;enhancements&quot; whi=
+ch are features we'd want to add to the system.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">There are also roughly three different &quot;prio=
+rity&quot; classes right now, &quot;2.6&quot;, &quot;2.99&quot; and &quot;F=
+uture&quot;, the more pressing/urgent issues being in &quot;2.6&quot;.<o:p>=
+</o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Please review this link and if a bug is something=
+ you would be able to help with either take ownership of the bug, or send m=
+e (Stephen.k.jolley@intel.com) an e-mail with the bug number you would like=
+ and I will assign it to you (please
+ make sure you have a bugzilla account).<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The list is at: <a href=3D"https://wiki.yoctoproj=
+ect.org/wiki/Bug_Triage#Unassigned_Bugs">
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
+></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;,serif;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;,serif;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+,serif">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;,serif;color:teal">:</span><span =
+lang=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;,=
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC7379D84fmsmsx111amrcor_--
