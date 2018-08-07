@@ -1,29 +1,33 @@
-Return-Path: <georg-list@georglutz.de>
+Return-Path: <fabien.lahoudere@collabora.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A8BCE006F3; Tue,  7 Aug 2018 00:04:21 -0700 (PDT)
+	id 72168E006F3; Tue,  7 Aug 2018 01:35:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.235.227.227 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 301 seconds by postgrey-1.32 at yocto-www;
-	Tue, 07 Aug 2018 00:04:20 PDT
-Received: from mail.georglutz.de (mail.georglutz.de [85.214.67.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BD8EE006B3
-	for <yocto@yoctoproject.org>; Tue,  7 Aug 2018 00:04:20 -0700 (PDT)
-Received: from mail.georglutz.de ([::1])
-	by mail.georglutz.de with ESMTP; Tue, 07 Aug 2018 08:59:18 +0200
-	id 0000000008D00309.000000005B694346.00003D54
-MIME-Version: 1.0
-Date: Tue, 07 Aug 2018 08:59:18 +0200
-From: Georg Lutz <georg-list@georglutz.de>
-To: yocto@yoctoproject.org
-Message-ID: <4569b172e5361abb539dd4347c3d7c41@georglutz.de>
-X-Sender: georg-list@georglutz.de
-User-Agent: Roundcube Webmail/1.3.6
-Subject: git.yoctoproject.org - Certificate expired
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+X-Greylist: delayed 317 seconds by postgrey-1.32 at yocto-www;
+	Tue, 07 Aug 2018 01:35:08 PDT
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAC93E0043F
+	for <yocto@yoctoproject.org>; Tue,  7 Aug 2018 01:35:08 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: aragua) with ESMTPSA id EAC5D260F44
+Message-ID: <1533630587.8352.1.camel@collabora.co.uk>
+From: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
+To: openembedded-core@lists.openembedded.org, yocto@yoctoproject.org
+Date: Tue, 07 Aug 2018 10:29:47 +0200
+X-Mailer: Evolution 3.22.6-1+deb9u1 
+Mime-Version: 1.0
+Subject: Extract GPL sources
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,19 +39,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Aug 2018 07:04:21 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+X-List-Received-Date: Tue, 07 Aug 2018 08:35:09 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-Hi all,
+Hello
 
-the certificate installed under https://git.yoctoproject.org expired
-about one hour ago. My CI is not longer building.
+I need to extract all *GPL* sources patched related to an image in order to publish them.
+I want to do it automatically, ie 'bitbake myimage -c extract-gpl-sources'
+Is there a mechanism to do that?
+If not do you have any idea how I can implement it?
 
-Anyone else experiencing the same problem? Is a new certificate going to
-be installed soon?
+Thanks
 
-Regards
-   Georg
+-- 
+Fabien
 
