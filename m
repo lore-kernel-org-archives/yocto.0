@@ -1,49 +1,67 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34074E00805; Tue,  7 Aug 2018 08:42:44 -0700 (PDT)
+	id 07FCDE00875; Tue,  7 Aug 2018 09:16:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.218.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2266FE007D1
-	for <yocto@yoctoproject.org>; Tue,  7 Aug 2018 08:42:42 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	07 Aug 2018 08:42:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,455,1526367600"; d="scan'208,217";a="79287595"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
-	by fmsmga001.fm.intel.com with ESMTP; 07 Aug 2018 08:42:42 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.102]) by
-	FMSMSX108.amr.corp.intel.com ([169.254.9.123]) with mapi id
-	14.03.0319.002; Tue, 7 Aug 2018 08:42:41 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting
-Thread-Index: AdQuXgqy40W2BiN6SoaGFbO+eYJ+8A==
-Date: Tue, 7 Aug 2018 15:42:40 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC737A1B4@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMzQxMzcxMjUtYmQyZi00ZGIxLTk4ZmYtMTQwNjVlYTZlOTRlIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiejZoOHBtSUY4a1NTRkdCenNQcmljVVwvVmx0dGY1eDdJY0E0TzVRRHlNaDMrdDhTdzdHMmxqS0FuaFpIb0VWYnEifQ==
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.107]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f45.google.com (mail-oi0-f45.google.com
+	[209.85.218.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 893A2E00A39
+	for <yocto@yoctoproject.org>; Tue,  7 Aug 2018 09:16:22 -0700 (PDT)
+Received: by mail-oi0-f45.google.com with SMTP id w126-v6so29412420oie.7
+	for <yocto@yoctoproject.org>; Tue, 07 Aug 2018 09:16:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=H5lBxnKvEpEfdYF1bNkZgVmP28aHRaQQSz6YN1ux7vg=;
+	b=yO/tr8BCqtG2wTguATLJW27LckJOGeKSqAlU9n4cYwihcKS0zAAnTl+ajT2hNVqfDJ
+	tHtemajBBPnqlmS4BjO85MJbLJ4qGWThlEYL0MqVJ/H8Gn03lfihztDW/orjqX9iXTpq
+	7acI+AYQdHPBf/dhpbrV+UN0KLAOU3+jR9BKKDSpmb//W3AjwZbkResMMI2OK8T2o7rl
+	Ad/h7SyCMbECkXMrB4hDtIJ9n8pSyMZknxmwW5IWP++oplXuAnKMVhM+Yw2ewBXkvMhe
+	nwdwh/SCkSvJg2BbEhE3Xnmlm1EaG9dUodHzGRdgjxCYVWkG0MtIPnEBuCFUp3RyRG1H
+	VXOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=H5lBxnKvEpEfdYF1bNkZgVmP28aHRaQQSz6YN1ux7vg=;
+	b=UvFIf1LtnzabA6SY8kZ1f0mMOowfYsk3zDgiWrU1RKBUs8nv5Ki6FAmOsfCBNbk1rH
+	q1MBy9ZIS74uP0UnxM5SEOcyC0dIpyt1xkY9WI2pQpQq9u0XXJxxBoWQvg90iAXY8I5y
+	cNosvUZCbcO8Uy97uBjT/CU9u91Os8LlcxzSuCY990eOeMQDNSUmF2+N9LRFHKNo/gCN
+	4G9FmQaFmuvy6Z6R/WkNrjcdiRo4onEuIckK21S45Sej+0AogF8Zk5xrzJAWXQSwyrht
+	hSjd6WU7bdyxlt4oRTkhs3S+hRAICuMtpl4SzqsiBwfcg3j9JY34BE8+8KVUBgo9GqRA
+	XVhw==
+X-Gm-Message-State: AOUpUlH/81rRc7G23DvR24EeJ0dQWdpDLAiustjzkdM6oewZzFl0TKGc
+	3/x+Ay/qBTT0rw4FIRnP5ORTgoIXVaUzKUTAVWuqyHL8StM=
+X-Google-Smtp-Source: AA+uWPwP3F93Qom+5xzMqUhECqsymH9b9owAQfaFhqIidQbgZ6qV1516IAZzkCQFwkunwEut9z20lfazSxYVcyoWBPY=
+X-Received: by 2002:aca:5dc5:: with SMTP id
+	r188-v6mr20156405oib.320.1533658581816; 
+	Tue, 07 Aug 2018 09:16:21 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting
+Received: by 2002:ac9:6845:0:0:0:0:0 with HTTP;
+	Tue, 7 Aug 2018 09:16:01 -0700 (PDT)
+In-Reply-To: <VI1PR0501MB232004ED38D6B26C71CF66D4B8270@VI1PR0501MB2320.eurprd05.prod.outlook.com>
+References: <VI1PR0501MB2320523BE7412E38D0AB4525B82F0@VI1PR0501MB2320.eurprd05.prod.outlook.com>
+	<CAJTo0LawozrqGb4TsVFz+NzKyNGb-G96vYopsHNXvcJVj_DnDA@mail.gmail.com>
+	<VI1PR0501MB23209F21F954AA6AA3A0D7F0B82C0@VI1PR0501MB2320.eurprd05.prod.outlook.com>
+	<VI1PR0501MB232004ED38D6B26C71CF66D4B8270@VI1PR0501MB2320.eurprd05.prod.outlook.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 7 Aug 2018 17:16:01 +0100
+Message-ID: <CAJTo0LZeHJjqtn-rODXHeUQV0Ne=NmcX1GGwcTZDz6nkSA9Lyw@mail.gmail.com>
+To: Erik Nellessen <enellessen@phoenixcontact.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Non-deterministic build error in package gcc-source
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,130 +73,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Aug 2018 15:42:44 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC737A1B4fmsmsx111amrcor_"
+X-List-Received-Date: Tue, 07 Aug 2018 16:16:51 -0000
+Content-Type: multipart/alternative; boundary="000000000000f9ec010572dab6ec"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC737A1B4fmsmsx111amrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000f9ec010572dab6ec
+Content-Type: text/plain; charset="UTF-8"
 
-QXR0ZW5kZWVzOiBTdGVwaGVuLCBBcm1pbiwgVHJldm9yLCBSaWNoYXJkLCBOaWNrLCBBeW1hbiwg
-QWxleCwgQ2hyaXN0b3BoZXIsIFNjb3R0LCBEYXZpZCwgQWxlamFuZHJvLCBSb3NzLCBEZW55cywg
-Sm9zaHVhLCBNYW5qdSwgUmljaCwgUmFuZHksDQoNCllQIFN0YXR1czoNCuKAoiAgICAgICBZUCAy
-LjYgTTIgaXMgaW4gUUEuIFNlZSBodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpLzIu
-Nl9RQV9TdGF0dXMuICBJdCBpcyA5OSUgY29tcGxldGUgYW5kIHNob3VsZCBjb21wbGV0ZSB0aGlz
-IHdlZWsuDQrigKIgICAgICAgWVAgMi41LjEgaXMgaW4gUUEuIFNlZSBodHRwczovL3dpa2kueW9j
-dG9wcm9qZWN0Lm9yZy93aWtpLzIuNV9RQV9TdGF0dXMuICBJdCBqdXN0IHN0YXJ0ZWQgYW5kIGlz
-IDAlIGNvbXBsZXRlLg0KDQpPcGVucy9TdGF0dXM6DQpSaWNoYXJkIGdhdmUgYW4gdXBkYXRlIG9u
-IHRoZSB0ZWNobmljYWwgaXNzdWVzIHdlIGhhdmUgc2Vlbi4gIFNlZSB0aGUgd2Vla2x5IHN0YXR1
-cyByZXBvcnQuDQpEaXNjdXNzIHRoZSBzY2hlZHVsZSBjb21pbmcgdXAuICBOb3RlZCB0aGF0IHRo
-ZSBlcnJvciBsb2cgcHVyZ2UgaGFzIGhhcHBlbmVkLiBEaXNjdXNzZWQgdGhlIG5lZWQgb2YgZG9j
-dW1lbnRhdGlvbiBvbiB0aGUgbmV3IGZlYXR1cmVzIGJlaW5nIGFkZGVkLg0KQ2hyaXN0b3BoZXIg
-ZGlzY3Vzc2VkIGEgcGF0Y2ggaGUgaGFzIHN1Ym1pdHRlZCBhbmQgUm9zcyBpcyB3b3JraW5nIG9u
-IHRlc3RpbmcuICBUaGUgaXNzdWVzIGFyb3VuZCB0aGlzIHdlcmUgZGlzY3Vzc2VkLg0KQXltYW4g
-aXMgbmV3IHRvIHRoZSBwcm9qZWN0IGFuZCB3YXMgYXNraW5nIGhvdyBsb25nIGl0IHRha2VzIHRv
-IGNvbWUgdXAgdG8gc3BlZWQuICBSaWNoYXJkIGdhdmUgaGltIGZlZWRiYWNrIHRvIGdldCBoZWxw
-IG9uIHRoZSBtYWlsaW5nIGxpc3QgYW5kIHRoZSBJUkMgY2hhbm5lbCBkaXJlY3RseS4gIEJvb2tz
-IGFuZCBzdGFjayBvdmVyZmxvdyBhcmUgYWxzbyBhdmFpbGFibGUuICBBbHNvIGRpc2N1c3NlZCB0
-aGF0IGhlIHNob3VsZCB1c2UgdGhlIHF1aWNrIGRvY3VtZW50YXRpb24gb24gdGhlIFlQIHdlYnNp
-dGUuDQpSaWNoIHdhbnRzIHRvIGtub3cgaWYgYW55IHVwZGF0ZSBpcyBwbGFubmVkIHRvIHNlY3Vy
-ZSBib290IGxheWVycyBhcm91bmQgVFBNIDIuIEEgZGlzY3Vzc2lvbiBwcm9jZWVkZWQgYWJvdXQg
-aG93IHRvIGdldCB0aGUgdXBkYXRlcyBkb25lLg0KDQpUaGFua3MsDQoNClN0ZXBoZW4gSy4gSm9s
-bGV5DQpZb2N0byBQcm9qZWN0IFByb2dyYW0gTWFuYWdlcg0KSU5URUwsIE1TIEpGMS0yNTUsIDIx
-MTEgTi5FLiAyNXRoIEF2ZW51ZSwgSGlsbHNib3JvLCBPUiA5NzEyNA0K4oCiICAgIENlbGw6ICAg
-ICAgICAgICAgICAgICAgICAgICgyMDgpIDI0NC00NDYwDQrigKIgRW1haWw6ICAgICAgICAgICAg
-ICAgIHN0ZXBoZW4uay5qb2xsZXlAaW50ZWwuY29tDQoNCg0K
+> Anyhow I would still like to report the bug. Are there any other ways
+than using Bugzilla?
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC737A1B4fmsmsx111amrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+No, bugzilla is the only bug tracking system for oe-core.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
-dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
-LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
-ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
-PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
-Pg0KPGRpdj48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMXB0OyI+QXR0ZW5kZWVzOiBTdGVwaGVuLCBBcm1pbiwgVHJldm9yLCBSaWNoYXJkLCBOaWNr
-LCBBeW1hbiwgQWxleCwgQ2hyaXN0b3BoZXIsIFNjb3R0LCBEYXZpZCwgQWxlamFuZHJvLCBSb3Nz
-LCBEZW55cywgSm9zaHVhLCBNYW5qdSwgUmljaCwgUmFuZHksIDwvc3Bhbj48L2ZvbnQ+PC9kaXY+
-DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkFy
-aWFsIiBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5ZUCBTdGF0dXM6IDwv
-c3Bhbj48L2ZvbnQ+PC9kaXY+DQo8dWwgc3R5bGU9Im1hcmdpbjowO3BhZGRpbmctbGVmdDozNnB0
-OyI+DQo8Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
-MXB0OyI+DQo8bGk+WVAgMi42IE0yIGlzIGluIFFBLiBTZWUgPGEgaHJlZj0iaHR0cHM6Ly93aWtp
-LnlvY3RvcHJvamVjdC5vcmcvd2lraS8yLjZfUUFfU3RhdHVzIj48Zm9udCBjb2xvcj0iIzExNTVD
-QyI+PHU+aHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS8yLjZfUUFfU3RhdHU8L3U+
-PC9mb250Pjxmb250IGNvbG9yPSIjMTE1NUNDIj48dT5zPC91PjwvZm9udD48L2E+LiAmbmJzcDtJ
-dCBpcyA5OSUgY29tcGxldGUgYW5kIHNob3VsZCBjb21wbGV0ZSB0aGlzDQp3ZWVrLjwvbGk+PGxp
-PllQIDIuNS4xIGlzIGluIFFBLiBTZWUgPGEgaHJlZj0iaHR0cHM6Ly93aWtpLnlvY3RvcHJvamVj
-dC5vcmcvd2lraS8yLjVfUUFfU3RhdHVzIj48Zm9udCBjb2xvcj0iIzExNTVDQyI+PHU+aHR0cHM6
-Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS8yLjVfUUFfU3RhdHU8L3U+PC9mb250Pjxmb250
-IGNvbG9yPSIjMTE1NUNDIj48dT5zPC91PjwvZm9udD48L2E+LiAmbmJzcDtJdCBqdXN0IHN0YXJ0
-ZWQgYW5kIGlzIDAlIGNvbXBsZXRlLjwvbGk+PC9zcGFuPjwvZm9udD4NCjwvdWw+DQo8ZGl2Pjxm
-b250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsi
-PiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkFyaWFsIiBzaXpl
-PSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5PcGVucy9TdGF0dXM6PC9zcGFuPjwv
-Zm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9IjIiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTFwdDsiPlJpY2hhcmQgZ2F2ZSBhbiB1cGRhdGUgb24gdGhlIHRlY2huaWNh
-bCBpc3N1ZXMgd2UgaGF2ZSBzZWVuLiZuYnNwOyBTZWUgdGhlIHdlZWtseSBzdGF0dXMgcmVwb3J0
-LiA8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMiI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+RGlzY3VzcyB0aGUgc2NoZWR1bGUgY29taW5n
-IHVwLiZuYnNwOyBOb3RlZCB0aGF0IHRoZSBlcnJvciBsb2cgcHVyZ2UgaGFzIGhhcHBlbmVkLiBE
-aXNjdXNzZWQgdGhlIG5lZWQgb2YgZG9jdW1lbnRhdGlvbiBvbiB0aGUgbmV3IGZlYXR1cmVzIGJl
-aW5nIGFkZGVkLiA8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJBcmlhbCIg
-c2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Q2hyaXN0b3BoZXIgZGlzY3Vz
-c2VkIGEgcGF0Y2ggaGUgaGFzIHN1Ym1pdHRlZCBhbmQgUm9zcyBpcyB3b3JraW5nIG9uIHRlc3Rp
-bmcuICBUaGUgaXNzdWVzIGFyb3VuZCB0aGlzIHdlcmUgZGlzY3Vzc2VkLiA8L3NwYW4+PC9mb250
-PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMXB0OyI+QXltYW4gaXMgbmV3IHRvIHRoZSBwcm9qZWN0IGFuZCB3YXMgYXNraW5n
-IGhvdyBsb25nIGl0IHRha2VzIHRvIGNvbWUgdXAgdG8gc3BlZWQuJm5ic3A7IFJpY2hhcmQgZ2F2
-ZSBoaW0gZmVlZGJhY2sgdG8gZ2V0IGhlbHAgb24gdGhlIG1haWxpbmcgbGlzdCBhbmQgdGhlIElS
-QyBjaGFubmVsIGRpcmVjdGx5LiZuYnNwOyBCb29rcyBhbmQgc3RhY2sgb3ZlcmZsb3cNCmFyZSBh
-bHNvIGF2YWlsYWJsZS4gIEFsc28gZGlzY3Vzc2VkIHRoYXQgaGUgc2hvdWxkIHVzZSB0aGUgcXVp
-Y2sgZG9jdW1lbnRhdGlvbiBvbiB0aGUgWVAgd2Vic2l0ZS4gPC9zcGFuPjwvZm9udD48L2Rpdj4N
-CjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTFwdDsiPlJpY2ggd2FudHMgdG8ga25vdyBpZiBhbnkgdXBkYXRlIGlzIHBsYW5uZWQgdG8gc2Vj
-dXJlIGJvb3QgbGF5ZXJzIGFyb3VuZCBUUE0gMi4gQSBkaXNjdXNzaW9uIHByb2NlZWRlZCBhYm91
-dCBob3cgdG8gZ2V0IHRoZSB1cGRhdGVzIGRvbmUuPC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+
-PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0
-OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiIHNp
-emU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPlRoYW5rcyw8L3NwYW4+PC9mb250
-PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3
-RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rp
-dj4NCjxkaXY+PGZvbnQgc2l6ZT0iNCIgY29sb3I9InB1cnBsZSI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxNnB0OyI+PGI+PGk+U3RlcGhlbiBLLiBKb2xsZXk8L2k+PC9iPjwvc3Bhbj48L2ZvbnQ+
-PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNvdXJpZXIgTmV3IiBzaXplPSIxIiBjb2xvcj0iYmx1
-ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo4cHQ7Ij48Yj5Zb2N0byBQcm9qZWN0IFByb2dyYW0g
-TWFuYWdlcjwvYj48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDb3VyaWVy
-IE5ldyIgc2l6ZT0iMiIgY29sb3I9ImZ1Y2hzaWEiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTBw
-dDsiPjxiPklOVEVMLCBNUyBKRjEtMjU1LCAyMTExIE4uRS4gMjV0aCBBdmVudWUsIEhpbGxzYm9y
-bywgT1IgOTcxMjQgPC9iPjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IHNpemU9IjIi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6OXB0OyI+PGZvbnQgZmFjZT0iV2luZ2RpbmdzIj4oPC9m
-b250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9yPSJ0ZWFsIj4mbmJzcDsmbmJzcDsm
-bmJzcDsgPC9mb250Pjxmb250IGZhY2U9IkNvbWljIFNhbnMgTVMiIHNpemU9IjEiIGNvbG9yPSJ0
-ZWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjhwdDsiPjxiPkNlbGw8L2I+PC9zcGFuPjwvZm9u
-dD48Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0idGVhbCI+OiZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOw0K
-PC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9yPSIjMUY0OTdEIj4oMjA4KSAy
-NDQtNDQ2MDwvZm9udD48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBzaXplPSIyIiBj
-b2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5cHQ7Ij48Zm9udCBmYWNlPSJX
-aW5nZGluZ3MiPiogPC9mb250Pjxmb250IGZhY2U9IkNvbWljIFNhbnMgTVMiIHNpemU9IjEiIGNv
-bG9yPSJ0ZWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjhwdDsiPjxiPkVtYWlsPC9iPjwvc3Bh
-bj48L2ZvbnQ+PGZvbnQgZmFjZT0iTVMgU2FucyBTZXJpZiIgY29sb3I9InRlYWwiPjombmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsNCjwvZm9udD48Zm9udCBmYWNlPSJNUyBTYW5zIFNl
-cmlmIiBjb2xvcj0iYmx1ZSI+PHU+c3RlcGhlbi5rLmpvbGxleUBpbnRlbC5jb208L3U+PC9mb250
-Pjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIi
-IGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3Nw
-YW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPC9z
-cGFuPjwvZm9udD4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+Ross
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC737A1B4fmsmsx111amrcor_--
+--000000000000f9ec010572dab6ec
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><p style=3D"margin-top:0px;marg=
+in-bottom:0px;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif;fon=
+t-size:16px">&gt; Anyhow I would still like to report the bug. Are there an=
+y other ways than using Bugzilla?<br></p><div><br></div><div>No, bugzilla i=
+s the only bug tracking system for oe-core.</div><div><br></div><div>Ross</=
+div></div></div>
+
+--000000000000f9ec010572dab6ec--
