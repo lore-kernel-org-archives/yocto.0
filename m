@@ -1,35 +1,67 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <jdhanasekarmca@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 44B0FE008CA; Wed,  8 Aug 2018 07:11:58 -0700 (PDT)
+	id 0233CE00875; Wed,  8 Aug 2018 08:31:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jdhanasekarmca[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5CD4E00804
-	for <yocto@yoctoproject.org>; Wed,  8 Aug 2018 07:11:56 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	08 Aug 2018 07:11:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.51,457,1526367600"; d="scan'208";a="79591318"
-Received: from aqachmar-mobl.ger.corp.intel.com (HELO localhost.localdomain)
-	([10.252.50.207])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Aug 2018 07:10:44 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed,  8 Aug 2018 16:09:59 +0200
-Message-Id: <cover.1533734871.git.paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [layerindex-web][PATCH 00/31] Distro comparisons (cover letter only)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72C5BE00708
+	for <yocto@yoctoproject.org>; Wed,  8 Aug 2018 08:31:16 -0700 (PDT)
+Received: by mail-it0-f53.google.com with SMTP id h23-v6so4073274ita.5
+	for <yocto@yoctoproject.org>; Wed, 08 Aug 2018 08:31:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=f8HHrlkX4ZaEP1Asr5mDOa8zG1Dq1k2j3eWxB5yFvqQ=;
+	b=LwhifZmN07/95QOkwRKILS7jJTT5OBF5fEHKbvzkgDCE6NGEybjszBloHqcJ5N/0vO
+	fdKODUit9CWZNIQG9KsJNQ405XzCIg3ksGqgFkEH9J9joB53U90b0PtFZXTv+sz2eT7L
+	72WlLUS6F6IScFUt+oEiJgUzw+2d1JfM9BxoVfp+7ezXMISu3Vpm1lXqqA5QxlX/+aP4
+	XmPw1RT7p81S/mK//kiyHqQ+adO3SBeZFZWc6lqrjstLQebDy3bXPbfkMSI2FICwcjW7
+	WDPFzZQdUkkZ0zp3YTXXfHwW+oyOn757QT9/Bugzzndm/CfDankVg6XBJ0fV0FyZqg/k
+	6hxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=f8HHrlkX4ZaEP1Asr5mDOa8zG1Dq1k2j3eWxB5yFvqQ=;
+	b=fAYK1bT2yVidCbuVYXMmiuw+FX4dulDkuKDByeg3ZArs7jK7gwwIqY5qBcIRGSZ0lE
+	FOvd9W29jEhb7a0jrNEMvOyb0C8glh/Q+6piGNY5aLkxE7+bF28k3BxA/TV5zVJA70jB
+	X3SnqZklCjfZMKvok7ZjT0CF/RVxOKiA41YAFXvvagZursOPy75u0yNgl60Gq6jQB5Pj
+	rf6dU0ZofWI8Y+5vOG3woCiZo1ZrRuuQmPgtUpR9Spd4Qubet/8aCOY6zugBonwWET10
+	9VD/s1nlJNlFI4dSSxjJWNGsjcCrABWCYjdJJy83AuxHWRP5Y+fzwPaGmk+Yez/+lD79
+	0kQw==
+X-Gm-Message-State: AOUpUlG8VM5PnXtN816XdMVMdyWqJyiYHkoce59GGrMnZXzPXqaLjIyg
+	Sc0DY51TYp+6TFhWjIM0IBIeMWoGUGRjOuvz6mg=
+X-Google-Smtp-Source: AA+uWPzJQz8/tPbq5x+SNCAAQN5+p6Syj4YfcuMjpRLt40vUhO+G134KkZ25U2o5o6qru7kG/PuMk8sFn2bSyoxuqMA=
+X-Received: by 2002:a24:be8f:: with SMTP id
+	i137-v6mr2710447itf.61.1533742275426; 
+	Wed, 08 Aug 2018 08:31:15 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAE4v+fRrFSmqOR_rfkdhRTh7emfam5MPimncM7PgUJok+hTXeg@mail.gmail.com>
+	<d49dcac3-4e53-67c8-6b7e-6f6019b02fb6@intel.com>
+In-Reply-To: <d49dcac3-4e53-67c8-6b7e-6f6019b02fb6@intel.com>
+From: Dhanasekar Jaganathan <jdhanasekarmca@gmail.com>
+Date: Wed, 8 Aug 2018 21:01:02 +0530
+Message-ID: <CAE4v+fSOb=sYna8741eS83oc8FAuPf3vZh3+qABNxnUrrFRPfg@mail.gmail.com>
+To: Anuj Mittal <anuj.mittal@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-intel] Getting black screen for Install option
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,131 +73,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Aug 2018 14:11:58 -0000
+X-List-Received-Date: Wed, 08 Aug 2018 15:31:18 -0000
+Content-Type: multipart/alternative; boundary="0000000000008101110572ee332e"
 
-This set of changes builds upon the OE-Classic support we had previously
-to enable importing data from other Linux distributions (or indeed other
-operating systems) and linking and comparing the packages there to recipes
-in OE. The initial support is just for importing RPM spec files, using
-the assumption that they can be brought down locally (and scripts to
-fetch them are provided for Fedora and any nominated Github organisation).
-There is also basic support for importing Debian package info from a
-running system (i.e. from the output of apt-cache show "*").
-However, the data is not specific and in theory a script could be
-written to import from just about any system.
+--0000000000008101110572ee332e
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Anuj..... You want me to add this change in systemd-boot..? If wrong ,
+please correct me.
 
-The following changes since commit fca74f3ac3c6536c50cb0a518fe78447a284dc55:
+On Wed 8 Aug, 2018, 7:10 PM Anuj Mittal, <anuj.mittal@intel.com> wrote:
 
-  Update TODO list (2018-08-06 12:36:31 +0200)
+> On 08/08/2018 08:58 PM, Dhanasekar Jaganathan wrote:
+> >
+> > Hi All,
+> >
+> > I have created yocot bootable USB live image by this command "*sudo dd
+> > if=core-image-sato-intel-core2-32.hddimg of=/dev/sdb1"*
+> > "
+> >
+> > After power on my system, I have got three options,
+> >
+> > 1. boot
+> > 2. install
+> > 3. Reboot into firmware.
+> >
+> >
+> > When I select "install" to install yocto on mSata, I am getting black
+> > screen.
+> > I am using com port serial console for video propose. My board has no
+> > support for onboard or offboard VGA.
+> >
+>
+> May be try adding serial console 'console=ttyS0,115200' in kernel boot
+> line when using 'install'.
+>
+>
 
-are available in the Git repository at:
+--0000000000008101110572ee332e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-  git://git.yoctoproject.org/layerindex-web paule/otherdistro
-  http://git.yoctoproject.org/cgit.cgi//log/?h=paule/otherdistro
+<div dir=3D"auto">Hi Anuj..... You want me to add this change in systemd-bo=
+ot..? If wrong , please correct me.</div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr">On Wed 8 Aug, 2018, 7:10 PM Anuj Mittal, &lt;<a href=3D"mailt=
+o:anuj.mittal@intel.com">anuj.mittal@intel.com</a>&gt; wrote:<br></div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #c=
+cc solid;padding-left:1ex">On 08/08/2018 08:58 PM, Dhanasekar Jaganathan wr=
+ote:<br>
+&gt; <br>
+&gt; Hi All,<br>
+&gt; <br>
+&gt; I have created yocot bootable USB live image by this command &quot;*su=
+do dd<br>
+&gt; if=3Dcore-image-sato-intel-core2-32.hddimg of=3D/dev/sdb1&quot;*<br>
+&gt; &quot;<br>
+&gt; <br>
+&gt; After power on my system, I have got three options,<br>
+&gt; <br>
+&gt; 1. boot<br>
+&gt; 2. install<br>
+&gt; 3. Reboot into firmware.<br>
+&gt; <br>
+&gt; <br>
+&gt; When I select &quot;install&quot; to install yocto on mSata, I am gett=
+ing black<br>
+&gt; screen.<br>
+&gt; I am using com port serial console for video propose. My board has no<=
+br>
+&gt; support for onboard or offboard VGA.<br>
+&gt; <br>
+<br>
+May be try adding serial console &#39;console=3DttyS0,115200&#39; in kernel=
+ boot<br>
+line when using &#39;install&#39;.<br>
+<br>
+</blockquote></div>
 
-Paul Eggleton (31):
-  forms: clear out comparison recipe/layerbranch if status doesn't accept them
-  Add a script to import layers from an existing layer index
-  update_classic_status: fix matching on wrong layer
-  Add partial path macro for vcs URL fields
-  Add support for other distro comparisons
-  Add script to import from other distros
-  update_classic_status: update for other distro comparisons
-  update_classic_status: set cover_pn from pn for direct match
-  update_classic_status: use source URLs to match python/perl recipes
-  update_classic_status: look for certain prefixes in order to match
-  update_classic_status: add skip option
-  Allow searching for uncategorised recipes in the comparison search
-  Enhance filtering comparisons
-  views: fix unknown categories comparison stats graph to include "Not available"
-  Add "needs attention" flag for comparison recipes
-  Add support for importing Debian package info
-  Support reversed other distro recipe list / filtering
-  Support selecting more than one layer in other distro comparison search form
-  Support excluding inherited classes from other distro comparison reversed query
-  Add basic CSV export for other distro comparisons
-  Add ability to store extra URLs to be displayed for comparison recipes
-  rrs: show link to other distro comparison pages
-  Rename LayerItem classic field to comparison
-  Fix comparison layers showing up in dependencies list in edit layer page
-  Add ability to trigger comparison updates manually from UI
-  Add script to fetch all repos under a github organisation
-  Add script to fetch Fedora package sources
-  Show source URLs on recipe detail page
-  README: add setup info for other distro comparisons
-  Add side-by-side comparison detail and enhanced selection
-  Show links to include files on recipe detail
-
- README                                        |  82 ++-
- TODO                                          |   2 -
- layerindex/admin.py                           |   6 +
- layerindex/context_processors.py              |   4 +-
- layerindex/forms.py                           |  37 +-
- layerindex/migrations/0015_comparison.py      |  24 +
- .../migrations/0016_classicrecipe_delete.py   |  19 +
- .../0017_classicrecipe_needs_attention.py     |  19 +
- .../migrations/0018_layerrecipeextraurl.py    |  26 +
- .../0019_layeritem_classic_comparison.py      |  25 +
- layerindex/migrations/0020_update_manual.py   |  50 ++
- layerindex/models.py                          | 113 +++-
- layerindex/static/css/additional.css          |  20 +
- layerindex/tasks.py                           |  23 +
- layerindex/templatetags/extrafilters.py       |  35 ++
- layerindex/tools/fedora-fetch.py              | 170 ++++++
- layerindex/tools/github-fetch.py              | 135 +++++
- layerindex/tools/import_classic.py            |   2 +-
- layerindex/tools/import_classic_wiki.py       |   2 +-
- layerindex/tools/import_layers.py             | 251 ++++++++
- layerindex/tools/import_otherdistro.py        | 564 ++++++++++++++++++
- layerindex/tools/lib/__init__.py              |   0
- layerindex/tools/lib/rpmmacros.py             |  53 ++
- layerindex/tools/update_classic_status.py     | 187 +++++-
- layerindex/update.py                          |   8 +-
- layerindex/urls.py                            |  48 +-
- layerindex/urls_branch.py                     |   5 +-
- layerindex/utils.py                           |   3 +
- layerindex/views.py                           | 502 ++++++++++++++--
- templates/base.html                           |   2 +
- templates/base_toplevel.html                  |  16 +-
- templates/layerindex/classchecklist.html      |  21 +
- templates/layerindex/classic_base.html        |  33 +-
- templates/layerindex/classicrecipedetail.html | 184 ++----
- templates/layerindex/classicrecipes.html      | 324 +++++++++-
- templates/layerindex/classicrecipes_csv.txt   |   2 +
- templates/layerindex/classicstats.html        |  16 +-
- .../layerindex/comparisonrecipebase.html      | 229 +++++++
- .../layerindex/comparisonrecipeselect.html    | 119 ++++
- .../comparisonrecipeselectdetail.html         |  98 +++
- templates/layerindex/layerchecklist.html      |  21 +
- templates/layerindex/recipedetail.html        |  29 +
- templates/layerindex/task.html                |  47 ++
- templates/layerindex/updatedetail.html        |   9 +
- templates/layerindex/updatelist.html          |   3 +-
- templates/rrs/recipedetail.html               |  13 +-
- 46 files changed, 3296 insertions(+), 285 deletions(-)
- create mode 100644 layerindex/migrations/0015_comparison.py
- create mode 100644 layerindex/migrations/0016_classicrecipe_delete.py
- create mode 100644 layerindex/migrations/0017_classicrecipe_needs_attention.py
- create mode 100644 layerindex/migrations/0018_layerrecipeextraurl.py
- create mode 100644 layerindex/migrations/0019_layeritem_classic_comparison.py
- create mode 100644 layerindex/migrations/0020_update_manual.py
- create mode 100644 layerindex/templatetags/extrafilters.py
- create mode 100755 layerindex/tools/fedora-fetch.py
- create mode 100755 layerindex/tools/github-fetch.py
- create mode 100755 layerindex/tools/import_layers.py
- create mode 100755 layerindex/tools/import_otherdistro.py
- create mode 100644 layerindex/tools/lib/__init__.py
- create mode 100644 layerindex/tools/lib/rpmmacros.py
- create mode 100644 templates/layerindex/classchecklist.html
- create mode 100644 templates/layerindex/classicrecipes_csv.txt
- create mode 100644 templates/layerindex/comparisonrecipebase.html
- create mode 100644 templates/layerindex/comparisonrecipeselect.html
- create mode 100644 templates/layerindex/comparisonrecipeselectdetail.html
- create mode 100644 templates/layerindex/layerchecklist.html
- create mode 100644 templates/layerindex/task.html
-
--- 
-2.17.1
-
-
+--0000000000008101110572ee332e--
