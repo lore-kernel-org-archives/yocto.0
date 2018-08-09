@@ -1,96 +1,60 @@
-Return-Path: <alexandretm@amotus.ca>
+Return-Path: <mouhoune_samir@yahoo.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED0A8E00875; Thu,  9 Aug 2018 06:17:55 -0700 (PDT)
+	id 492FDE00AD1; Thu,  9 Aug 2018 06:48:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, FROM_EXCESS_BASE64, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.33.122 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mouhoune_samir[at]yahoo.fr)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [77.238.178.146 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-X-Greylist: delayed 1084 seconds by postgrey-1.32 at yocto-www;
-	Thu, 09 Aug 2018 06:17:50 PDT
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
-	(mail-bn3nam01on0122.outbound.protection.outlook.com [104.47.33.122])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52E4FE00DD0
-	for <yocto@yoctoproject.org>; Thu,  9 Aug 2018 06:17:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=amotus.onmicrosoft.com; s=selector1-amotus-ca;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=kYW9+KwapZEJ0vE+cjZgRRuVIVILkWGoGZJbkT57uW0=;
-	b=iSNVFdds/hyXou3jPVCnwIBuaHQqZ2CAGlIPnYShwHcg8ZTgrwL8rG4Fr9MZvq8iOcEYODJmHO4IAsUsOCnXO5M3ZPAMW3+jT70HoPOHDa0CXQOYedcjTRc/w8PUer8vBoWb0ClbBvRiLzXoV+WmEaTRDO6yvgx4VMQUNUaxNko=
-Received: from BN6PR1101MB2356.namprd11.prod.outlook.com (10.173.203.137) by
-	BN6PR1101MB2273.namprd11.prod.outlook.com (10.174.113.136) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1038.19; Thu, 9 Aug 2018 12:45:15 +0000
-Received: from BN6PR1101MB2356.namprd11.prod.outlook.com
-	([fe80::11e:691a:631f:21a4]) by
-	BN6PR1101MB2356.namprd11.prod.outlook.com
-	([fe80::11e:691a:631f:21a4%9]) with mapi id 15.20.1017.019;
-	Thu, 9 Aug 2018 12:45:15 +0000
-From: =?utf-8?B?TWF0aGlldSBBbGV4YW5kcmUtVMOpdHJlYXVsdA==?=
-	<alexandretm@amotus.ca>
-To: "Srinivasan, Raja" <rsrinivasan@abiomed.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: uBoot, kernel and device tree files
-Thread-Index: AdQvSH1kxyZSth4qQu+yA8y1Atl7eAAlkwsg
-Date: Thu, 9 Aug 2018 12:45:15 +0000
-Message-ID: <BN6PR1101MB235685B83EB09147FBBBB7E4B2250@BN6PR1101MB2356.namprd11.prod.outlook.com>
-References: <eac20ac1c8474178a386d580c971227b@USDVREX02.abiomed.com>
-In-Reply-To: <eac20ac1c8474178a386d580c971227b@USDVREX02.abiomed.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=alexandretm@amotus.ca; 
-x-originating-ip: [24.37.194.182]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; BN6PR1101MB2273;
-	6:FFp+BJYGOEK4kzLmjZLD8lR4yA3QB/Z1UnMABw3uaAYv8qrkrV2cS51nPKF7crPOK87YrFe4lvU+5saGW9HPa2ut22udWbKa6YCq6VBMZ6MfiB2Z4utwGIBEohY4K4q745f6h4ZQzpyNG1TylAKARNbF14tQqxKsLJAdm+vCobb19y4QXjtLDpKKdZb+1BQbb/PwIs2Y0/duphiaXZ0Xtbza6j/5Tq1FDtlsGja4xe5bVEYKmLwrs6xT1TxjiF2bGhHbTXdmUvR0CFFY1Vlc2pP0Buz/p/7hbr3qbaRY/zu2IFlvQnCR1f1yfS1GMzGYFMkS/Gz0DVVxEs8BqdFY2Sm0xWw+A9Q49fwfnLP7sLDH99y/3Cqzs3gWA9sJ3so/wZkCxNR3inlZXDpwjzo6EjR3xfIj9+jBKO9YgJv0IW21NtJPgoI1WtWDYr2xzL0R5VT1Qyf6gCqTnGXMv6UQmA==;
-	5:yG1T4rtinx5m6htxPy09eA1PnmFo9EfJkFry0+88Hh4tT/oN0i4dfapH7jhnlZCHy5rdfBSfvPiJ0UBjKGmFrPCVX+Sl37UIMMoin6JLkg7Y9kU+n1L+czvNIhy0ygzWVe3XqeTfCl7WO9HP4vJjsJeBVaybbHe9zilpJaFjrrM=;
-	7:bBDt6CKGb91Emvbh5P/bZbuGRykbEuJtRFdVzQ9N1sVlW7mUA+hd2M0GumXfhaFBRK5TDJ/60PKqDTuWd0wCuD+HiVM4OGuZ4iOLgJuL0+F6yNCEPl5WzjkR0B8vTKUZBSNOiNt7Ak2F+cldiVF6jbwNwBjieSchxyNZHzIhMda8Y/D/EtsLEfsplQ5nLAcJBl38TSZ7cnXM+n441kylPpu04zTCWXOVPzFKY4KEgbPOfXBUbX6ItN3nkNhpiFm3
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: 73c4a993-1384-4e1f-e9d6-08d5fdf5f4aa
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(7020095)(4652040)(7021125)(8989117)(4534165)(7022125)(4603075)(4627221)(201702281549075)(8990107)(7048125)(7024125)(7027125)(7028125)(7023125)(5600074)(711020)(2017052603328)(7153060)(7193020);
-	SRVR:BN6PR1101MB2273; 
-x-ms-traffictypediagnostic: BN6PR1101MB2273:
-x-microsoft-antispam-prvs: <BN6PR1101MB2273D4506A1C508BF91220BEB2250@BN6PR1101MB2273.namprd11.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(192374486261705)(223705240517415);
-x-ms-exchange-senderadcheck: 1
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(5005006)(8121501046)(10201501046)(3002001)(3231311)(944501410)(52105095)(93006095)(93001095)(149027)(150027)(6041310)(2016111802025)(20161123558120)(20161123564045)(20161123560045)(20161123562045)(6072148)(6043046)(201708071742011)(7699016);
-	SRVR:BN6PR1101MB2273; BCL:0; PCL:0; RULEID:;
-	SRVR:BN6PR1101MB2273; 
-x-forefront-prvs: 0759F7A50A
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39840400004)(346002)(376002)(136003)(396003)(366004)(55784004)(53484002)(199004)(189003)(469094003)(478600001)(85202003)(68736007)(5024004)(5660300001)(86362001)(99286004)(256004)(14444005)(105586002)(106356001)(6506007)(102836004)(55016002)(5250100002)(26005)(97736004)(186003)(6436002)(14454004)(53936002)(74482002)(446003)(476003)(66066001)(6246003)(2501003)(11346002)(9686003)(3846002)(85182001)(33656002)(8676002)(229853002)(6116002)(316002)(7696005)(2900100001)(76176011)(305945005)(110136005)(8936002)(2906002)(25786009)(74316002)(486006)(81156014)(81166006)(7736002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6PR1101MB2273;
-	H:BN6PR1101MB2356.namprd11.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amotus.ca does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: TPDz1mTTARhl3VIR0Ab7Tf1TUQ3S2E0BxcdMK8IH8aZnrVndgHbPDjsQlBwBdd0UjCucey5wYOSAhlpDkin3Q3xmjMpbRUvSJe1RHSdosylZ2vnBIP7w6dfCmkBd5zUez4ZT0zAl8z6ps9k4gt5AmurE/nP58c84ofKSty5Gyerxi5AnrwEff00jKBOWqEfH4s781R8FhiQsL8MvrZRuwygnGZc3V3k4z4g5Xa/2Cae0PYilumxzk/lxNVNPzKqEg75L3SJHGp5lVuuq2FlORxyKaSTjS8CZWAwHK+6o+F6q7wy0M0R9HdhLTtTpPHq/Xh2rHoaRLaoJiSv8oWsH18RfFst7IiYl6OC2/zUbacM=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from sonic308-18.consmr.mail.ir2.yahoo.com
+	(sonic308-18.consmr.mail.ir2.yahoo.com [77.238.178.146])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D27B2E00875
+	for <yocto@yoctoproject.org>; Thu,  9 Aug 2018 06:48:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.fr; s=s2048;
+	t=1533822517; bh=NLsFhu6QNTGy5ek66VN3nA0zgK18PKMQnDUVjkOYk7A=;
+	h=Date:From:To:Subject:References:From:Subject;
+	b=OcfyKN1PYTGxm40xam8Imd86mnxGJ3xTzOKOTY3Ri4pdrgi1IGPzrfv1D9ZBMzpTajemjVK/y94Ue8tBYZ6lO5W7E2jHBi6Zor9Qbut/9dRu4Aq6xg2oIB+aUZe9+SC/oVPT/ZxSufel88k+GdfHGdJgOZzycErIyowKMBkzj/PGhg3UOt22S6inVvVdG3IS21V8tHUji3uNJgx9xYc3JyWuRyi23uP/mY3jmWbk5gsYTUEY5oGrJbpM++9YDTB3/x/YsZkrAbEeG6Kva+xB2b8D4W4WywQeCm8gbIIYnjE+H49vDIpkIXVTxVj+Mm3Gj+uNJN+tAh8hXqLvrcMO7g==
+X-YMail-OSG: 31ZZemkVM1mFRH4FlDyhb3VdHHfDQwvAi1RbBH_vlZFuUBLuP4FXf.e4WJu6NIg
+	LA_Fp6q628zVnFGrBEd6BEdGjDf5SzIv25YVUUMNOgpq8sL9NMbYqQMLjAp73GnpdPMk5XovfTnl
+	TKBNeFW8awrNuKFHoyX5mdOIxKZ1VpMR72fguZl.ujIA6RzVMMN4FHXyJi_7BVTqLQTvTx094urE
+	IsTbfcQ47m.h32JrsZ9f4ssJ22WGP1664jzQfcvfNJJ1ls5MmoKL_a_x8nSzeaH5GnqZMC7WvCYZ
+	orNFeG2KSPxv5q4J_Rqw9grdDzJ0aY2AvdDBBX6VKj4_8dbXcXma8WDVhqt1CyjK2KkDh_AGA6tC
+	yjihm1raFqqUyyxzLVUs8ALGIe19NJcL2dETGGt2nGOLQepgEUZZ_.pBaLP28JgrSxyfCOqXs0xs
+	G0fHgSkPYXD5kCE.WzvuzidfvpH0FdurDK7FVFncZHXLWDXOjXLbcEKM4XD.VP511dd7tcjun2oo
+	c0CwveKEMbiIpyW4s7l1ktiyABMjFtVWCOR.JOMt17_COmHK2Xvba1pEI.b7xG47PjTFLLt7EzPP
+	B1yphWFDQ5.Gftd2J5I0XE4O8JRubaaWvrUkDEt2.RIIMiACdbnwYca6YctGS1z7T3dm7iD_oYxC
+	_m9wHINhf3cYdbr70AvDTQcXE6GnLLqAPvZKVj_G627PIGQKUlSkmgB2s.eXMqyVr4f4FvrVquAR
+	KJ9HJ25xynoXkuVO4KgiOabqusVV9USK.Ls2_DdqKY_vn_0mLn2_n9_x5UTyiu2gpjdxCeiaOrkH
+	UsO23vJisLvAsNMlsHeJs05__D_dFKXnfNBEPUdazXTwzjWH334sR4kMiP.8PA__E9C5lInkiW9P
+	EfraPCWah.1qGu1X_g8NmQ4PU2dkbXWttwOnn06VVCjWZNn56JgykBa7UomOvAQviyaGeOLW6wWo
+	C_kCzJgBcfxLVTkMmg1oe
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic308.consmr.mail.ir2.yahoo.com with HTTP;
+	Thu, 9 Aug 2018 13:48:37 +0000
+Date: Thu, 9 Aug 2018 13:48:33 +0000 (UTC)
+From: samir mouhoune <mouhoune_samir@yahoo.fr>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <2027135703.568646.1533822513889@mail.yahoo.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amotus.ca
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73c4a993-1384-4e1f-e9d6-08d5fdf5f4aa
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2018 12:45:15.4818 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eb1fb47f-d32e-4ec7-8cf5-9c91bb29593c
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1101MB2273
-Subject: Re: uBoot, kernel and device tree files
+References: <2027135703.568646.1533822513889.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.12206 YMailNorrin Mozilla/5.0 (X11;
+	Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+	Chrome/65.0.3325.162 Safari/537.36
+Subject: Device Tree Source is not correctly specified in fitImage signing process
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -102,42 +66,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Aug 2018 13:17:56 -0000
-Content-Language: fr-FR
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 09 Aug 2018 13:48:40 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_568645_1987946805.1533822513886"
 
-SGVsbG8gU3JpbmksDQoNCkkgdGhpbmsgd2hhdCB5b3UgYXJlIGxvb2tpbmcgZm9yIGlzIHRoZSBm
-aXRpbWFnZSwgaXQgd2lsbCBhbGxvdyB5b3UgdG8gYnVuZGxlIHRoZSBrZXJuZWwgYW5kIGRldmlj
-ZXRyZWUgdG9nZXRoZXIgaW4gYSBzaW5nbGUgZmlsZSBhbmQgaXQgYWxzbyBhbGxvd3MgeW91IGFk
-ZCBhIHNpZ25hdHVyZS4NCg0KVGhpcyBwcm9jZXNzIGlzIHdlbGwgaW50ZWdyYXRlZCBpbiB5b2N0
-bywgZnJvbSB3aGF0IEkgcmVtZW1iZXIgYWN0aXZhdGluZyB0aGUgZml0aW1hZ2UgaXMgcmVsYXRp
-dmVseSBlYXN5Og0KICAgLSBpbiB5b3VyIG1hY2hpbmUuY29uZg0KICAgICAgIC0gZGVjbGFyZSBL
-RVJORUxfQ0xBU1NFUyArPSAia2VybmVsLWZpdGltYWdlIiBhbmQgS0VSTkVMX0lNQUdFVFlQRSA9
-ICJmaXRpbWFnZSINCiAgIC0gaW4geW91ciB1LWJvb3QgZGVmY29uZmlnIChjb25maWdzL3lvdXJi
-b2FyZF9kZWZjb25maWcNCiAgICAgICAtIGVuYWJsZSBDT05GSUdfRklUPXkNCiAgIC0gaW4geW91
-ciBjb25maWcgaW5jbHVkZS9jb25maWdzL3lvdXJfYm9hcmQuaCBjaGFuZ2UgdGhlIHNjcmlwdCB0
-byBib290IHlvdXIgZml0aW1hZ2UNCg0KSSBob3BlIHRoaXMgaGVscHMsDQoNClJlZ2FyZHMsDQoN
-Ck1hdGhpZXUNCg0KPiAtLS0tLU1lc3NhZ2UgZCdvcmlnaW5lLS0tLS0NCj4gRGXCoDogeW9jdG8t
-Ym91bmNlc0B5b2N0b3Byb2plY3Qub3JnIDx5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmc+
-DQo+IERlIGxhIHBhcnQgZGUgU3Jpbml2YXNhbiwgUmFqYQ0KPiBFbnZvecOpwqA6IEF1Z3VzdCA4
-LCAyMDE4IDI6NTEgUE0NCj4gw4DCoDogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBPYmpldMKg
-OiBbeW9jdG9dIHVCb290LCBrZXJuZWwgYW5kIGRldmljZSB0cmVlIGZpbGVzDQo+IA0KPiBBbGwN
-Cj4gDQo+IA0KPiANCj4gV2UgYXJlIHVzaW5nIHJvY2tvLm9uIHZhcmlzY2l0ZSB2YXItc29tLW14
-Ni4NCj4gDQo+IEluIG9yZGVyIHRvIGluY3JlYXNlIHRoZSBzZWN1cml0eSBvZiBvdXIgc3lzdGVt
-IChkdXJpbmcgYSBzeXN0ZW0gdXBncmFkZSksIHdlDQo+IGFyZSBsb29raW5nIHRvIG1lcmdlIHVJ
-bWFnZSAoa2VybmVsIGltYWdlKSBhbmQgdGhlIGRldmljZSB0cmVlIGZpbGUgaW50byAxDQo+IGZp
-bGUuIEN1cnJlbnRseSB0aGVzZSBhcmUgMiBkaWZmZXJlbnQgZmlsZXMgYW5kIGFyZSB3b3JyaWVk
-IHRoYXQgYSBmaWxlIGNvcHkNCj4gb3BlcmF0aW9uIG1pZ2h0IGdldCBhYm9ydGVkLg0KPiANCj4g
-TXkgcmVzZWFyY2ggc28gZmFyIGluZGljYXRlcyBta3Vib290IGNhbiBiZSB1c2VkIHRvIG1lcmdl
-IHRoZXNlLiBidXQNCj4gaGF2aW5nIHRyb3VibGUgbWFraW5nIHRoaXMgd29yay4NCj4gDQo+IE5l
-ZWQgc29tZSBpZGVhcy4NCj4gDQo+IA0KPiANCj4gQW55IHBvaW50ZXJzIGFwcHJlY2lhdGVkLiBz
-cmluaQ0KPiANCj4gDQo+IA0KPiANCj4gDQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXw0KPiANCj4gDQo+IENPTkZJREVOVElBTElUWSBOT1RJQ0U6IFRoaXMgZW1haWwgbWVz
-c2FnZSBhbmQgYW55IGF0dGFjaG1lbnRzIGFyZQ0KPiBjb25maWRlbnRpYWwgYW5kIG1heSBiZSBw
-cml2aWxlZ2VkIGFuZCBhcmUgbWVhbnQgdG8gYmUgcmVhZCBieSB0aGUgaW50ZW5kZWQNCj4gcmVj
-aXBpZW50IG9ubHkuIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZCByZWNpcGllbnQsIHBsZWFz
-ZSBub3RpZnkgc2VuZGVyDQo+IGltbWVkaWF0ZWx5IGFuZCBkZXN0cm95IGFsbCBjb3BpZXMgb2Yg
-dGhpcyBtZXNzYWdlIGFuZCBhbnkgYXR0YWNobWVudHMNCj4gd2l0aG91dCByZWFkaW5nIG9yIGRp
-c2Nsb3NpbmcgdGhlaXIgY29udGVudHMuIFRoYW5rIHlvdQ0KPiANCj4gDQo+IA0KDQo=
+------=_Part_568645_1987946805.1533822513886
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+Hi All,
+I am trying to generate a signed fitImage for IMX6 (nitrogen6x) som=C2=A0 u=
+sing PYRO 2.3 branch.=C2=A0
+I my setup I had the following configs:=C2=A0
+KERNEL_DEVICETREE =3D "imx6q-sabrelite.dtb \=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 imx6q-nitrogen6x.dtb i=
+mx6dl-nitrogen6x.dtb \"=C2=A0 =C2=A0=C2=A0KERNEL_IMAGETYPE =3D "fitImage"KE=
+RNEL_CLASSES +=3D "kernel-fitimage"
+PREFERRED_PROVIDER_u-boot =3D "u-boot-boundary"PREFERRED_PROVIDER_virtual/b=
+ootloader ?=3D "u-boot-boundary"PREFERRED_PROVIDER_virtual/kernel ??=3D "li=
+nux-boundary"
+UBOOT_SIGN_ENABLE =3D "1"UBOOT_SIGN_KEYDIR =3D "/data_local/imx6/keys"UBOOT=
+_SIGN_KEYNAME =3D "ubootkey.key"UBOOT_MKIMAGE_DTCOPTS =3D "-I dts -O dtb -p=
+ 2000"
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS +=3D " \=C2=A0 =C2=A0 kernel-image \=C2=A0=
+ =C2=A0 kernel-devicetree \"...
+
+In uboot:=C2=A0 in include/configs/nitrogen6x.h=C2=A0 I added=C2=A0#define =
+CONFIG_OF_CONTROL#define CONFIG_OF_SEPARATE
+
+At the compilation I am getting The following error:=C2=A0=C2=A0 =C2=A0Devi=
+ce Tree Source is not correctly specified.
+=C2=A0 =C2=A0Please define 'CONFIG_DEFAULT_DEVICE_TREE'=C2=A0 =C2=A0or buil=
+d with 'DEVICE_TREE=3D<device_tree>' argument
+
+Any idea about the root cause?.=C2=A0 Idon't understand why I am getting th=
+is error.=C2=A0 In my config=C2=A0 =C2=A0I already set
+KERNEL_DEVICETREE =3D "imx6q-sabrelite.dtb \=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 imx6q-nitrogen6x.dtb i=
+mx6dl-nitrogen6x.dtb \"
+Thank you in advance for your support
+
+
+Cordialement, Best Regards,Samir MOUHOUNE
+
+------=_Part_568645_1987946805.1533822513886
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div style=3D"font-family:Helvetica Neue, Helvetic=
+a, Arial, sans-serif;font-size:13px;"><div style=3D"font-family:Helvetica N=
+eue, Helvetica, Arial, sans-serif;font-size:13px;"><div style=3D"font-famil=
+y:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><div style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;"><div>Hi All,</div><div><br></div><div>I am trying to generate a signed f=
+itImage for IMX6 (nitrogen6x) som&nbsp; using PYRO 2.3 branch.&nbsp;</div><=
+div><br></div><div>I my setup I had the following configs:&nbsp;</div><div>=
+<br></div><div><span><div>KERNEL_DEVICETREE =3D "imx6q-sabrelite.dtb \</div=
+><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; imx6q-nitrogen6x.dtb imx6dl-nitrogen6x.dtb \</div><div>"</di=
+v></span></div><div>&nbsp; &nbsp;&nbsp;</div><div><span><div>KERNEL_IMAGETY=
+PE =3D "fitImage"</div><div>KERNEL_CLASSES +=3D "kernel-fitimage"</div><div=
+><br></div><div>PREFERRED_PROVIDER_u-boot =3D "u-boot-boundary"</div><div>P=
+REFERRED_PROVIDER_virtual/bootloader ?=3D "u-boot-boundary"</div><div>PREFE=
+RRED_PROVIDER_virtual/kernel ??=3D "linux-boundary"</div><div><br></div><di=
+v>UBOOT_SIGN_ENABLE =3D "1"</div><div>UBOOT_SIGN_KEYDIR =3D "/data_local/im=
+x6/keys"</div><div>UBOOT_SIGN_KEYNAME =3D "ubootkey.key"</div><div>UBOOT_MK=
+IMAGE_DTCOPTS =3D "-I dts -O dtb -p 2000"</div><div><br></div><div><span><d=
+iv>MACHINE_ESSENTIAL_EXTRA_RDEPENDS +=3D " \</div><div>&nbsp; &nbsp; kernel=
+-image \</div><div>&nbsp; &nbsp; kernel-devicetree \</div><div>"</div><div>=
+.</div><div>.</div><div>.</div></span><br></div><div><br></div><div>In uboo=
+t:&nbsp; in include/configs/nitrogen6x.h&nbsp; I added&nbsp;</div><div><spa=
+n><div>#define CONFIG_OF_CONTROL</div><div>#define CONFIG_OF_SEPARATE</div>=
+<div><br></div><div><br></div><div>At the compilation I am getting The foll=
+owing error:&nbsp;</div><div>&nbsp; &nbsp;Device Tree Source is not correct=
+ly specified.<br></div><div><span><div>&nbsp; &nbsp;Please define 'CONFIG_D=
+EFAULT_DEVICE_TREE'</div><div>&nbsp; &nbsp;or build with 'DEVICE_TREE=3D&lt=
+;device_tree&gt;' argument</div></span><br></div><div><br></div><div>Any id=
+ea about the root cause?.&nbsp; Idon't understand why I am getting this err=
+or.&nbsp; In my config&nbsp; &nbsp;I already set</div><div><br></div><div><=
+span><div style=3D"color: rgb(0, 0, 0); font-family: &quot;Helvetica Neue&q=
+uot;, Helvetica, Arial, sans-serif;">KERNEL_DEVICETREE =3D "imx6q-sabrelite=
+.dtb \</div><div style=3D"color: rgb(0, 0, 0); font-family: &quot;Helvetica=
+ Neue&quot;, Helvetica, Arial, sans-serif;">&nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; imx6q-nitrogen6x.dtb i=
+mx6dl-nitrogen6x.dtb \</div><div style=3D"color: rgb(0, 0, 0); font-family:=
+ &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;">"</div></span><=
+br></div><div>Thank you in advance for your support</div></span><br></div><=
+/span><br></div><div><br></div><div class=3D"ydpc71b5cd7signature"><div><fo=
+nt style=3D"background-color:rgb(255, 255, 255);" color=3D"#0000ff">Cordial=
+ement, Best Regards,</font></div><div><font style=3D"background-color:rgb(2=
+55, 255, 255);" color=3D"#0000ff">Samir MOUHOUNE<br><var id=3D"ydpc71b5cd7y=
+ui-ie-cursor"></var></font></div></div></div></div></div></div></body></htm=
+l>
+
+------=_Part_568645_1987946805.1533822513886--
