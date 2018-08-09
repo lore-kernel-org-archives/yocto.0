@@ -1,6 +1,6 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2659BE00B5E; Thu,  9 Aug 2018 14:55:53 -0700 (PDT)
+	id 840C3E00B5E; Thu,  9 Aug 2018 16:04:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,53 +19,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.65 listed in list.dnswl.org]
-Received: from mail-yw1-f65.google.com (mail-yw1-f65.google.com
-	[209.85.161.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B00F3E009AC
-	for <yocto@yoctoproject.org>; Thu,  9 Aug 2018 14:55:52 -0700 (PDT)
-Received: by mail-yw1-f65.google.com with SMTP id q129-v6so6814578ywg.8
-	for <yocto@yoctoproject.org>; Thu, 09 Aug 2018 14:55:52 -0700 (PDT)
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
+	[209.85.210.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83A65E009AC
+	for <yocto@yoctoproject.org>; Thu,  9 Aug 2018 16:04:19 -0700 (PDT)
+Received: by mail-pf1-f169.google.com with SMTP id j26-v6so3539317pfi.10
+	for <yocto@yoctoproject.org>; Thu, 09 Aug 2018 16:04:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=AmUFdrjLKnFmGv35XUHsDMZOmMWhN0ITs7kOuj2uQpc=;
-	b=oQQI6eT3pVk7UvoU0YkY3hrCd4+zgWhBwtjAYKmgU75bSE1CsCDUeyYWagKyjqX9K5
-	A21KUcJM2WrAW4l8YMS/flvdYBWFiBRfilfFTvGRMZQz6cIgQai7BlQWPgfHarTNDQ7r
-	ZzldMVRbz38nSaewzqyYDUscMYNAxop98x023+H8pXZnp0OxApwwQuVBpklbz2e0kFMu
-	yCqbAxD053RccUxVyDFvL0AjQkOTCC0CjRWbolz2JUXJzYxlN1EOk7/UzKwEbI45oq5B
-	5yXOkktuqx/a6s6n+9mQ9q0LMQKge28oL2SLbPnAorjZB1V1dhTUWTEdLsOgbW/Nb5I3
-	7VNQ==
+	h=from:to:subject:date:message-id;
+	bh=MvJstjdIyfkAAOt0YJyLIHWcnycMWAtE3Sv9Rn6WoJI=;
+	b=s1W431WYxpOjtBRaSCJg7hssGfPK7P1xAtqcxfspJpYjP+H7NFJWZRB5pX/V3x6EWY
+	/GDU/KEG0F50CsS7jncjFhjLtJFPxkgYA1icUi/8gXeNPK2BR4qSgMw8QM9Y28P6TqRf
+	4XmOSabtUwmJCwb7U6bPWXwghQ6grO4OkoWjsHi4Gn+PEjjbB0ACk3NXYR3jz1iU8HG0
+	jQA6Q05UyHjb3kXNUiBEJ/fBmWGmmBuGvLXVkWICXaq2b0As63Th/W3YasFosNjGNscz
+	azPEXuamQbWBE/Pb+wb+n6tPH2RyK/Ry6NzoO8rkBBMTCvAJJTjS90VxXVpLYZ4Qxq7y
+	MVZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=AmUFdrjLKnFmGv35XUHsDMZOmMWhN0ITs7kOuj2uQpc=;
-	b=ndx3v7JMCguyP0T1cG7eg2sQKxfwBkKlo+T+JSE7vE17pW0jRmhoPp/J5FZP9KCoTl
-	fk1TqOztiwhPkBPy/36UXydHqxwdn88CXsb2NY7FMiFFDfIgPJ/i0INIjoUbrHt5dUJO
-	Y9K29ZYranJ8n2Y6IO85tw9LGHkOdW6nCIaaVej7OR3S97wOfht0ax4EgbklNuS19avR
-	17KV++ajvo/vJ5N4phiKRAMpzx/hAzNzDW2tRBRQa1wkCjeIBE+oJUr3rxfrnqESL8A+
-	kOwSq6lMZQ2MIcsGE0JQb/1ywMI4KzjxvjdgzgvWUbpqHZKkK/oqURcHTxF3PeE/iRSm
-	9q5Q==
-X-Gm-Message-State: AOUpUlGAH3D3sqFH/ZK/rB3yuJwhXqs8TRF49V6IaDo8bVctRP3TWy/d
-	wkVz3eK/9XovG30y7X8FIN4Kk0ZPoD3Y4Mnchpg=
-X-Google-Smtp-Source: AA+uWPx68ehEWWuCPPzn2aPIAaSStWc0KvRmToDWdE6/b1d/rsuHXJi1k1I7zbI/Bwitp2mNLD+bfUwe1Ncd5If5QCw=
-X-Received: by 2002:a1f:10ce:: with SMTP id 75-v6mr2494924vkq.83.1533851752017;
-	Thu, 09 Aug 2018 14:55:52 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:ab0:2a5:0:0:0:0:0 with HTTP;
-	Thu, 9 Aug 2018 14:55:51 -0700 (PDT)
-In-Reply-To: <ec4d265f-8924-82e4-f2e9-034f3e97d039@gmail.com>
-References: <AM6PR05MB4357C177898C18D4D17E2CC38A250@AM6PR05MB4357.eurprd05.prod.outlook.com>
-	<ec4d265f-8924-82e4-f2e9-034f3e97d039@gmail.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Thu, 9 Aug 2018 14:55:51 -0700
-Message-ID: <CAJ86T=WN1Em7RaHdR+sAsThGfBkjw8D-fdXARBPUQ8WmwHSjTA@mail.gmail.com>
-To: akuster808 <akuster808@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto userbase in numbers?
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=MvJstjdIyfkAAOt0YJyLIHWcnycMWAtE3Sv9Rn6WoJI=;
+	b=gRdHnzWdD959yCCI9lZupH6qe2e152992NmiXbXhbNmCDpAKx/F/EZIh7bnwUmZUTk
+	eNFZq2kLjAtkIidMnOeXPoAUPJqqOyQRZFncNWzxUrh8ZkAbcBAM6mMNJRuoSE6N2nQ1
+	jfymDaRV6rXgOT6IjFaY34V9NTj6fe3JdVEDg8ig3qnTH/wPxw9dDm5sGihSP+sKTsCd
+	99OFWBUixpmmcQe3pTuo29CP7qYRNTTxAlJ6FS87SMYtYwdEwqatu9jCmt0zdFWBNgzE
+	LqSaWji4wZbF+tyLRfuFpSb0FkujphJKZUFBV+KADzcxTTKbdlve/hhd42YzccwRQLs6
+	Hc0A==
+X-Gm-Message-State: AOUpUlGsk7kp04OXBXHxwcn2lP6UM8RzAIWdlI2rlonhcuLN0D585bqF
+	yFTeY73ofjSVxNUxilDEDfY=
+X-Google-Smtp-Source: AA+uWPwX1g+vqIFnrpGorNbSQYuAgSt31GcnW8Tdrc3glcDNRr6MoWYLkgjAOJA8HijUu7Art0muaw==
+X-Received: by 2002:a63:4c21:: with SMTP id
+	z33-v6mr3893529pga.383.1533855859176; 
+	Thu, 09 Aug 2018 16:04:19 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	16-v6sm13150200pfo.164.2018.08.09.16.04.18
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 09 Aug 2018 16:04:18 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: akuster808@gmail.com,
+	yocto@yoctoproject.org
+Date: Thu,  9 Aug 2018 16:04:15 -0700
+Message-Id: <20180809230417.15925-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH 1/3] libhtp: update to 0.5.27
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,30 +73,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Aug 2018 21:55:53 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 09 Aug 2018 23:04:20 -0000
 
-On Thu, Aug 9, 2018 at 2:42 PM, akuster808 <akuster808@gmail.com> wrote:
-> On 08/09/2018 10:19 AM, Frazer, Will wrote:
->
-> I was asked recently what a ballpark figure for the number of systems
-> running distributions built with yocto might be and I could not find
-> anything.
->
-> I realise it=E2=80=99s almost impossible to tell since technically everyo=
-ne builds a
-> different distro, but I don=E2=80=99t suppose anyone has come across any =
-estimates
-> anywhere ?
->
-> The Yocto Project does not have the ability to track which distributions =
-are
-> created from the OpenEmbedded build framework nor who uses Poky as a
-> starting point.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../suricata/{libhtp_0.5.25.bb => libhtp_0.5.27.bb}         | 0
+ recipes-security/suricata/suricata.inc                      | 6 +++---
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+ rename recipes-security/suricata/{libhtp_0.5.25.bb => libhtp_0.5.27.bb} (100%)
 
-Actually poky users probably do leave quite a detailed trail each time
-they build anything due to the default PREMIRRORS in the poky distro
-config. The downloads.yoctoproject.org logs could probably reveal a
-lot...
+diff --git a/recipes-security/suricata/libhtp_0.5.25.bb b/recipes-security/suricata/libhtp_0.5.27.bb
+similarity index 100%
+rename from recipes-security/suricata/libhtp_0.5.25.bb
+rename to recipes-security/suricata/libhtp_0.5.27.bb
+diff --git a/recipes-security/suricata/suricata.inc b/recipes-security/suricata/suricata.inc
+index a2d36eb..1f42121 100644
+--- a/recipes-security/suricata/suricata.inc
++++ b/recipes-security/suricata/suricata.inc
+@@ -2,8 +2,8 @@ HOMEPAGE = "http://suricata-ids.org/"
+ SECTION = "security Monitor/Admin"
+ LICENSE = "GPLv2"
+ 
+-VER = "4.0.0"
++VER = "4.0.5"
+ SRC_URI = "http://www.openinfosecfoundation.org/download/suricata-${VER}.tar.gz"
+ 
+-SRC_URI[md5sum] = "41fb91b4cbc6705b353e4bdd02c3df4b"
+-SRC_URI[sha256sum] = "6b8b183a8409829ca92c71854cc1abed45f04ccfb7f14c08211f4edf571fa577"
++SRC_URI[md5sum] = "ea0cb823d6a86568152f75ade6de442f"
++SRC_URI[sha256sum] = "74dacb4359d57fbd3452e384eeeb1dd77b6ae00f02e9994ad5a7b461d5f4c6c2"
+-- 
+2.17.1
+
 
