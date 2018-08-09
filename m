@@ -1,52 +1,60 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A8A54E00B5E; Thu,  9 Aug 2018 08:29:58 -0700 (PDT)
+	id DA505E00BAF; Thu,  9 Aug 2018 09:59:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [216.168.135.167 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48CDFE00AD1
-	for <yocto@yoctoproject.org>; Thu,  9 Aug 2018 08:29:58 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	09 Aug 2018 08:29:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.53,215,1531810800"; d="scan'208,217";a="74068541"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
-	by orsmga003.jf.intel.com with ESMTP; 09 Aug 2018 08:29:53 -0700
-Received: from fmsmsx102.amr.corp.intel.com (10.18.124.200) by
-	FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Thu, 9 Aug 2018 08:29:53 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.102]) by
-	FMSMSX102.amr.corp.intel.com ([169.254.10.133]) with mapi id
-	14.03.0319.002; Thu, 9 Aug 2018 08:29:53 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Weekly Triage Meeting
-Thread-Index: AdQv7Q7wNovej6fHQXiJQF600pkyhw==
-Date: Thu, 9 Aug 2018 15:29:52 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC737AC7E@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMDgyOWZhOGItZmI2Zi00NDU3LWJlMDMtOGM4N2U1YjIxMjE2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiOGlid2JJMkxtVmZhUU5KREdod3l4QUMrbHp0cjNJa0FuY3NTQVpGbnpGUU90OGJRUWduUDBRNXR0b25jR0hBdSJ9
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.106]
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BE99E00B58
+	for <yocto@yoctoproject.org>; Thu,  9 Aug 2018 09:59:04 -0700 (PDT)
+Received: (qmail 28225 invoked by uid 1003); 9 Aug 2018 16:59:06 -0000
+Received: from unknown (HELO ?10.20.1.152?) (philip@opensdr.com@12.168.209.2)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	9 Aug 2018 16:59:06 -0000
+To: "Srinivasan, Raja" <rsrinivasan@abiomed.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <eac20ac1c8474178a386d580c971227b@USDVREX02.abiomed.com>
+From: Philip Balister <philip@balister.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
+	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
+	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
+	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+	6eUfr0u7CwnEyqiQ
+Message-ID: <b094ecb8-0f6d-8fe4-c3df-452e1dd12eff@balister.org>
+Date: Thu, 9 Aug 2018 09:58:55 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.2
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Weekly Triage Meeting
+In-Reply-To: <eac20ac1c8474178a386d580c971227b@USDVREX02.abiomed.com>
+Subject: Re: uBoot, kernel and device tree files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,128 +66,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Aug 2018 15:29:58 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC737AC7Efmsmsx111amrcor_"
+X-List-Received-Date: Thu, 09 Aug 2018 16:59:05 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC737AC7Efmsmsx111amrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On 08/08/2018 11:51 AM, Srinivasan, Raja wrote:
+> All
+> 
+> We are using rocko.on variscite var-som-mx6.
+> 
+> In order to increase the security of our system (during a system upgrade), we are looking to merge uImage (kernel image) and the device tree file into 1 file. Currently these are 2 different files and are worried that a file copy operation might get aborted.
+> 
+> My research so far indicates mkuboot can be used to merge these. but having trouble making this work.
+> 
+> Need some ideas.
 
-QXR0ZW5kZWVzOiBBcm1pbiwgU3RlcGhlbiwgUmFuZHksIFJpY2hhcmQsIEpvc2h1YSwgVGltDQoN
-Cldpa2k6IGh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvQnVnX1RyaWFnZQ0KDQpX
-ZSBkaXNjdXNzIFlQIDIuNiBNMiBRQSByZXN1bHRzIGFuZCBhZ3JlZWQgdG8gbW92ZSB0b3dhcmQg
-cmVsZWFzZS4NCg0KQVI6IFBhdWwg4oCTIFJldmlldyBhbmQgdXBkYXRlIDEyMTAyPGh0dHBzOi8v
-YnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTIxMDI+DQpBUjogUmFu
-ZHkg4oCTIEFkZCBjb21tZW50IHRvIGJ1ZyAxMjgwNjxodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJv
-amVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTEyODA2Pg0KQVI6IFJhbmR5IOKAkyBDbG9zZSA3MzQ0
-PGh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NzM0ND4N
-CkFSOiBSYW5keSDigJMgRGlzY3VzcyA2ODM4PGh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0
-Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NjgzOD4sIDc1OTY8aHR0cHM6Ly9idWd6aWxsYS55b2N0b3By
-b2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD03NTk2PiwgNTY0ODxodHRwczovL2J1Z3ppbGxhLnlv
-Y3RvcHJvamVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTU2NDg+IHdpdGggRGF2aWQgaWYgdGhlc2Ug
-c3RpbGwgdmFsaWQuDQpBUjogU3RlcGhlbiDigJMgQ2hlY2sgd2l0aCBUcmFjeSBhYm91dCBidWcg
-NzQ3NjxodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTc0
-NzY+IGFuZCBpZiB3ZSBuZWVkIHRvIGZpbmQgYSBuZXcgb3duZXIuDQpBUjogUmljaGFyZCDigJMg
-RGlzY3VzcyB3aXRoIFJvc3MgYnVnIDQ0Nzk8aHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qu
-b3JnL3Nob3dfYnVnLmNnaT9pZD00NDc5Pg0KDQpUaGFua3MsDQoNClN0ZXBoZW4gSy4gSm9sbGV5
-DQpZb2N0byBQcm9qZWN0IFByb2dyYW0gTWFuYWdlcg0KSU5URUwsIE1TIEpGMS0yNTUsIDIxMTEg
-Ti5FLiAyNXRoIEF2ZW51ZSwgSGlsbHNib3JvLCBPUiA5NzEyNA0K4oCiICAgIENlbGw6ICAgICAg
-ICAgICAgICAoMjA4KSAyNDQtNDQ2MA0K4oCiIEVtYWlsOiAgICAgICAgICAgICAgICBzdGVwaGVu
-Lmsuam9sbGV5QGludGVsLmNvbQ0KDQoNCg==
+Read about fit images.
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC737AC7Efmsmsx111amrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Philip
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
-dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
-LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
-ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
-PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
-Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+QXR0ZW5kZWVzOiBBcm1pbiwgU3RlcGhlbiwgUmFu
-ZHksIFJpY2hhcmQsIEpvc2h1YSwgVGltPC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQg
-ZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9
-IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
-OjExcHQ7Ij5XaWtpOiA8YSBocmVmPSJodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtp
-L0J1Z19UcmlhZ2UiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT5odHRwczovL3dpa2kueW9jdG9w
-cm9qZWN0Lm9yZy93aWtpL0J1Z19UcmlhZ2U8L3U+PC9mb250PjwvYT48L3NwYW4+PC9mb250Pjwv
-ZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4N
-CjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTFwdDsiPldlIGRpc2N1c3MgWVAgMi42IE0yIFFBIHJlc3VsdHMg
-YW5kIGFncmVlZCB0byBtb3ZlIHRvd2FyZCByZWxlYXNlLjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8
-ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48
-Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMXB0OyI+QVI6IFBhdWwg4oCTIFJldmlldyBhbmQgdXBkYXRlIDxhIGhyZWY9
-Imh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTIxMDIi
-Pjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT4xMjEwMjwvdT48L2ZvbnQ+PC9hPjwvc3Bhbj48L2Zv
-bnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0
-OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5BUjogUmFuZHkg4oCTIEFkZCBjb21t
-ZW50IHRvIGJ1ZyA8YSBocmVmPSJodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcvc2hv
-d19idWcuY2dpP2lkPTEyODA2Ij48Zm9udCBjb2xvcj0iIzA1NjNDMSI+PHU+MTI4MDY8L3U+PC9m
-b250PjwvYT48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBz
-aXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+QVI6
-IFJhbmR5IOKAkyBDbG9zZSA8YSBocmVmPSJodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5v
-cmcvc2hvd19idWcuY2dpP2lkPTczNDQiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT43MzQ0PC91
-PjwvZm9udD48L2E+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJy
-aSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsi
-PkFSOiBSYW5keSDigJMgRGlzY3VzcyA8YSBocmVmPSJodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJv
-amVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTY4MzgiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT42
-ODM4PC91PjwvZm9udD48L2E+LCA8YSBocmVmPSJodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVj
-dC5vcmcvc2hvd19idWcuY2dpP2lkPTc1OTYiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT43NTk2
-PC91PjwvZm9udD48L2E+LA0KPGEgaHJlZj0iaHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qu
-b3JnL3Nob3dfYnVnLmNnaT9pZD01NjQ4Ij48Zm9udCBjb2xvcj0iIzA1NjNDMSI+PHU+NTY0ODwv
-dT48L2ZvbnQ+PC9hPiB3aXRoIERhdmlkIGlmIHRoZXNlIHN0aWxsIHZhbGlkLjwvc3Bhbj48L2Zv
-bnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0
-OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5BUjogU3RlcGhlbiDigJMgQ2hlY2sg
-d2l0aCBUcmFjeSBhYm91dCBidWcgPGEgaHJlZj0iaHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2pl
-Y3Qub3JnL3Nob3dfYnVnLmNnaT9pZD03NDc2Ij48Zm9udCBjb2xvcj0iIzA1NjNDMSI+PHU+NzQ3
-NjwvdT48L2ZvbnQ+PC9hPiBhbmQgaWYgd2UgbmVlZCB0byBmaW5kIGENCm5ldyBvd25lci4gPC9z
-cGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29s
-b3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPkFSOiBSaWNoYXJkIOKA
-kyBEaXNjdXNzIHdpdGggUm9zcyBidWcgPGEgaHJlZj0iaHR0cHM6Ly9idWd6aWxsYS55b2N0b3By
-b2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD00NDc5Ij48Zm9udCBjb2xvcj0iIzA1NjNDMSI+PHU+
-NDQ3OTwvdT48L2ZvbnQ+PC9hPjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9
-IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
-OjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxp
-YnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0
-OyI+VGhhbmtzLDwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmki
-IHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij4m
-bmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBzaXplPSI0IiBjb2xvcj0icHVy
-cGxlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE2cHQ7Ij48Yj48aT5TdGVwaGVuIEsuIEpvbGxl
-eTwvaT48L2I+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ291cmllciBO
-ZXciIHNpemU9IjEiIGNvbG9yPSJibHVlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjhwdDsiPjxi
-PllvY3RvIFByb2plY3QgUHJvZ3JhbSBNYW5hZ2VyPC9iPjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8
-ZGl2Pjxmb250IGZhY2U9IkNvdXJpZXIgTmV3IiBzaXplPSIyIiBjb2xvcj0iZnVjaHNpYSI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyI+PGI+SU5URUwsIE1TIEpGMS0yNTUsIDIxMTEgTi5F
-LiAyNXRoIEF2ZW51ZSwgSGlsbHNib3JvLCBPUiA5NzEyNCA8L2I+PC9zcGFuPjwvZm9udD48L2Rp
-dj4NCjxkaXY+PGZvbnQgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5cHQ7Ij48Zm9u
-dCBmYWNlPSJXaW5nZGluZ3MiPig8L2ZvbnQ+PGZvbnQgZmFjZT0iTVMgU2FucyBTZXJpZiIgY29s
-b3I9InRlYWwiPiZuYnNwOyZuYnNwOyZuYnNwOyA8L2ZvbnQ+PGZvbnQgZmFjZT0iQ29taWMgU2Fu
-cyBNUyIgc2l6ZT0iMSIgY29sb3I9InRlYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OHB0OyI+
-PGI+Q2VsbDwvYj48L3NwYW4+PC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9y
-PSJ0ZWFsIj46Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8L2ZvbnQ+PGZvbnQgZmFjZT0iTVMgU2Fu
-cyBTZXJpZiIgY29sb3I9IiMxRjQ5N0QiPigyMDgpIDI0NC00NDYwPC9mb250Pjwvc3Bhbj48L2Zv
-bnQ+PC9kaXY+DQo8ZGl2Pjxmb250IHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjlwdDsiPjxmb250IGZhY2U9IldpbmdkaW5ncyI+KiA8L2ZvbnQ+PGZvbnQg
-ZmFjZT0iQ29taWMgU2FucyBNUyIgc2l6ZT0iMSIgY29sb3I9InRlYWwiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6OHB0OyI+PGI+RW1haWw8L2I+PC9zcGFuPjwvZm9udD48Zm9udCBmYWNlPSJNUyBT
-YW5zIFNlcmlmIiBjb2xvcj0idGVhbCI+OiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-Ow0KPC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9yPSJibHVlIj48dT5zdGVw
-aGVuLmsuam9sbGV5QGludGVsLmNvbTwvdT48L2ZvbnQ+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxk
-aXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxm
-b250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsi
-PiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8L3NwYW4+PC9mb250Pg0KPC9ib2R5Pg0KPC9o
-dG1sPg0K
+> 
+> Any pointers appreciated. srini
+> 
+> 
+> 
+> ________________________________
+> 
+> CONFIDENTIALITY NOTICE: This email message and any attachments are confidential and may be privileged and are meant to be read by the intended recipient only. If you are not the intended recipient, please notify sender immediately and destroy all copies of this message and any attachments without reading or disclosing their contents. Thank you
+> 
+> 
+> 
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC737AC7Efmsmsx111amrcor_--
