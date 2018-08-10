@@ -1,61 +1,39 @@
-Return-Path: <nik2087@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42510E00708; Fri, 10 Aug 2018 01:40:23 -0700 (PDT)
+	id 23DA9E00B58; Fri, 10 Aug 2018 02:05:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (nik2087[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.45 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f45.google.com (mail-it0-f45.google.com
-	[209.85.214.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42B95E00708;
-	Fri, 10 Aug 2018 01:40:22 -0700 (PDT)
-Received: by mail-it0-f45.google.com with SMTP id h20-v6so1668295itf.2;
-	Fri, 10 Aug 2018 01:40:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=5253xE7nouC+7KYpvFbQqd98Ikuamh2JrjUiuzA9As8=;
-	b=kA/0ES5AC5Fgf6Vc9VZ2pZsaVkRYBoMOSsTZ1N2ZOcUyH1KXkVTaCycLSp0+OAD3hs
-	DbdE1+VHTwS2imytxP4uzGse7rWpFv6bAVY5FaHu9M1f5XBsiCG25EMsfrogj4OkHnYQ
-	PchgtcMRvnFpeSXXUR1SNEiZEjy0Cqxt2OagY+7aZFdM8b34ImmRp6HfK5vxz2G7/eSN
-	OzjfPuyrpeT4eVDCLFiBxHpfAeYa0jG4fg8Entw4JssY8f+Vkrup7dmXSR/QelvdQ4k6
-	u+ovNYzcBvNSxVuOE8MrnShR5WHLntECaDO5sWpBYhJ3x9MhIekH+jctHVZr/gWoN/0p
-	MsfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=5253xE7nouC+7KYpvFbQqd98Ikuamh2JrjUiuzA9As8=;
-	b=pEHeZfK23xCf7cxfPsHwJJpDguQm82OPsyYIJpq6BqpX3NdlevE5iamRFur967ekTC
-	wXqTJoRqy0segJ6PR7n490e0WGfaTYVRr7CtQuuwpe51ESG0dbDq1Qt9Ozi5pbHGiUjH
-	Tz0CqxnYCdSNR7/seYV9Zo6D2eGwoUUQ+cA4EYA7WLt+k3li6JFu6vqMNPXJVkce94wS
-	So63r6e28XOwqrbxkjog61NbNRpLrFU1sX3e4kRa4/NZ9XkqAG2END30j6QlOmHkZNG/
-	KM5Kf7dy0qGG+QPTQFxCfk9467YIhxLgucmT5lWqilEvVhb9Ld39JTnq86rk/Qf2zsIq
-	hpOg==
-X-Gm-Message-State: AOUpUlFebi1IzCWJuS2UIonLQV8KcGvt1ZJJd9WQnRtdthA/M4Mk8OrN
-	rIJWCUNa4ghTOhWmjpF4AfEPxeKLp9EzSw7N9JM7iPOUWUE=
-X-Google-Smtp-Source: AA+uWPxh5FaNRLNnDQgqtx4k2r/coS9KMbTofEkuC9WZ2GwEkTBYkGj8+biR1QAarJ1+mJaZmWCnZW+BcgQ4AaLT2YY=
-X-Received: by 2002:a02:8ac6:: with SMTP id
-	i6-v6mr4856902jal.122.1533890421240; 
-	Fri, 10 Aug 2018 01:40:21 -0700 (PDT)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF41CE00708
+	for <yocto@yoctoproject.org>; Fri, 10 Aug 2018 02:05:39 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	10 Aug 2018 02:05:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.53,218,1531810800"; d="scan'208";a="61386685"
+Received: from langkari-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
+	([10.249.36.135])
+	by fmsmga007.fm.intel.com with ESMTP; 10 Aug 2018 02:05:38 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Yuvarajesh Valleru <yv@iseg-hv.de>
+Date: Fri, 10 Aug 2018 11:05:37 +0200
+Message-ID: <2963881.7a0ibZn1QS@localhost.localdomain>
+Organization: Intel Corporation
+In-Reply-To: <71833f0b-4684-9a86-8a6d-fa51d49007a4@iseg-hv.de>
+References: <71833f0b-4684-9a86-8a6d-fa51d49007a4@iseg-hv.de>
 MIME-Version: 1.0
-From: Nikhil <nik2087@gmail.com>
-Date: Fri, 10 Aug 2018 14:10:04 +0530
-Message-ID: <CALY=dtKAB-=gqeSojqJrR4D77zD55f8g1f=_-rOHq2-kDeLnpg@mail.gmail.com>
-To: meta-freescale@yoctoproject.org, yocto@yoctoproject.org
-Subject: Howto overwrite CXXFLAGS in SDK Environment
+Cc: yocto@yoctoproject.org
+Subject: Re: Copy git hashes of recipes during the image build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,16 +45,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Aug 2018 08:40:23 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 10 Aug 2018 09:05:40 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hello community,
+Hi Rajesh,
 
-I am using Freescale community BSP - rocko release and have built and
-installed SDK.
-Is there a way to remove -g flag from being in the list of default
-options  for CXXFLAGS.  ?  Thanks.
+On Wednesday, 8 August 2018 8:52:10 AM CEST Yuvarajesh Valleru wrote:
+> I am building the custom yocto image regularly so that I do have so may 
+> versions of the image. But when an bug occured in older version images, 
+> I could not find the changes in source code because of AUTOREV. Is there 
+> any possibility to copy the hashes during the build and store in another 
+> recipe, so that I can have all my hashes in my target system.
 
-Regards
-Nikhil
+There is indeed a way to collect the revisions, and since the question has
+come up before I just wrote a FAQ entry about it:
+
+  https://wiki.yoctoproject.org/wiki/Technical_FAQ#How_do_I_collect_the_source_revisions_fetched_by_each_recipe.3F
+
+This wouldn't actually store the revisions in a form that you could then put
+into the image itself however. If you really wanted to do that you could in
+theory run buildhistory-collect-srcrevs from a recipe and then package its
+output though, I think that should work.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
+
 
