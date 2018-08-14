@@ -1,6 +1,6 @@
-Return-Path: <anuj.mittal@intel.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45C2CE009C2; Mon, 13 Aug 2018 19:27:05 -0700 (PDT)
+	id A20ADE00A38; Tue, 14 Aug 2018 00:19:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,34 +8,29 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+	*      [192.103.53.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCCAEE00948
-	for <yocto@yoctoproject.org>; Mon, 13 Aug 2018 19:27:04 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	13 Aug 2018 19:27:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.53,236,1531810800"; d="scan'208";a="248607503"
-Received: from anmitta2-mobl1.png.intel.com (HELO [10.221.21.0])
-	([10.221.21.0])
-	by orsmga005.jf.intel.com with ESMTP; 13 Aug 2018 19:27:03 -0700
-To: Changqing Li <changqing.li@windriver.com>, yocto@yoctoproject.org
-References: <1534137742-150133-1-git-send-email-changqing.li@windriver.com>
-	<d5570cbb-a327-6203-0fdb-f0056928c305@intel.com>
-	<fe24cd53-dac8-9356-b306-8c6f499f2b09@windriver.com>
-From: Anuj Mittal <anuj.mittal@intel.com>
-Message-ID: <0914d820-4082-e7e4-47a4-094948a80257@intel.com>
-Date: Tue, 14 Aug 2018 10:27:02 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A652E0096A
+	for <yocto@yoctoproject.org>; Tue, 14 Aug 2018 00:19:46 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w7E7JgEI018554
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 14 Aug 2018 00:19:43 -0700
+Received: from localhost (128.224.162.137) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.399.0;
+	Tue, 14 Aug 2018 00:19:42 -0700
+From: Yi Zhao <yi.zhao@windriver.com>
+To: <yocto@yoctoproject.org>, <joe_macdonald@mentor.com>, <flihp@twobit.us>,
+	<mark.hatle@windriver.com>
+Date: Tue, 14 Aug 2018 15:19:39 +0800
+Message-ID: <1534231180-14875-1-git-send-email-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <fe24cd53-dac8-9356-b306-8c6f499f2b09@windriver.com>
-Subject: Re: [PATCH][meta-dpdk] dpdk-dev-libibverbs: fix do_fetch error
+X-Originating-IP: [128.224.162.137]
+Subject: [meta-selinux][PATCH 1/2] policycoreutils: replace _virtclass-native with _class-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,48 +42,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Aug 2018 02:27:05 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 14 Aug 2018 07:19:47 -0000
+Content-Type: text/plain
 
-On 08/14/2018 09:37 AM, Changqing Li wrote:
-> 
-> 
-> On 08/13/2018 02:35 PM, Anuj Mittal wrote:
->> On 08/13/2018 01:22 PM, changqing.li@windriver.com wrote:
->>> From: Changqing Li <changqing.li@windriver.com>
->>>
->>> original URI have been deleted(don't know why). I noticed there is
->>> an official libibverbs(https://git.kernel.org/pub/scm/libs/infiniband
->>> /libibverbs.git),
->> The deprecation notice seems to imply that rdma-core on github should be
->> used instead and that's what debian does too. Perhaps that should be
->> used instead?
->>
->> https://tracker.debian.org/pkg/rdma-core
-> 
-> About you mentioned "deprecation notice " ,  I don't find it on original 
-> github of Mellanox
-> can you send me a link of this notice? Thanks.
+The _virtclass-native is obsolete and replaced by _class-native. In
+recent oe-core commit c5aa33ac483618bc23fbaccb0a18853186f9155d the
+_virtclass-native override was dropped entirely which caused
+refpolicy-mls do_install failed:
+  libsemanage.get_home_dirs: Error while fetching users.
+  Returning list so far.
+  libsemanage.semanage_validate_and_compile_fcontexts:
+  setfiles returned error code 1. (No such file or directory).
 
-https://git.kernel.org/pub/scm/libs/infiniband/libibverbs.git/commit/?id=1a6ab7f4c4aa048e8cf0c6cbed5935181f660bd8
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ recipes-security/selinux/policycoreutils.inc | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-And, this:
+diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-security/selinux/policycoreutils.inc
+index 1842fd8..7825a6c 100644
+--- a/recipes-security/selinux/policycoreutils.inc
++++ b/recipes-security/selinux/policycoreutils.inc
+@@ -128,7 +128,7 @@ BBCLASSEXTEND = "native"
+ 
+ PCU_NATIVE_CMDS = "setfiles semodule hll"
+ 
+-do_compile_virtclass-native() {
++do_compile_class-native() {
+ 	for PCU_CMD in ${PCU_NATIVE_CMDS} ; do
+ 		oe_runmake -C $PCU_CMD \
+ 			INCLUDEDIR='${STAGING_INCDIR}' \
+@@ -136,7 +136,7 @@ do_compile_virtclass-native() {
+ 	done
+ }
+ 
+-sysroot_stage_dirs_append_virtclass-native() {
++sysroot_stage_dirs_append_class-native() {
+ 	cp -R $from/${prefix}/libexec $to/${prefix}/libexec
+ }
+ 
+@@ -153,7 +153,7 @@ do_install_prepend() {
+ 	export SEMODULE_PATH=${sbindir} SYSTEMDDIR=${D}/${systemd_unitdir}
+ }
+ 
+-do_install_virtclass-native() {
++do_install_class-native() {
+ 	for PCU_CMD in ${PCU_NATIVE_CMDS} ; do
+ 	     oe_runmake -C $PCU_CMD install \
+ 			DESTDIR="${D}" \
+-- 
+2.7.4
 
-https://www.openfabrics.org/downloads/verbs/README.html
-
-> 
-> besides,  from https://tracker.debian.org/pkg/rdma-core,  I  can get the 
-> repo is here
-> https://github.com/linux-rdma/rdma-core,  but it is not only 
-> libibverbs,  it is source
-> include some other package,  I think it is not proper here.
-> 
-
-If you take a look at older version of libibverbs there, you'd see the
-code that we had. The later versions are pulling from rdma-core.
-
-You don't need to install everything, just the things that are needed
-for dpdk ...
 
