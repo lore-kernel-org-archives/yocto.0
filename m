@@ -1,46 +1,70 @@
-Return-Path: <w@tolkien.email>
+Return-Path: <srifenbark@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 93835E00566; Tue, 14 Aug 2018 10:29:49 -0700 (PDT)
+	id 18623E00BC8; Tue, 14 Aug 2018 10:30:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [185.70.40.27 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (srifenbark[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 347 seconds by postgrey-1.32 at yocto-www;
-	Tue, 14 Aug 2018 10:29:47 PDT
-Received: from mail4.protonmail.ch (mail4.protonmail.ch [185.70.40.27])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15497E0049F
-	for <yocto@yoctoproject.org>; Tue, 14 Aug 2018 10:29:47 -0700 (PDT)
-Date: Tue, 14 Aug 2018 17:23:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tolkien.email;
-	s=protonmail; t=1534267439;
-	bh=KOhYp7hcgCNdt1PM250ilozkXAXCN4kyGe9Kg6n3wUE=;
-	h=Date:To:From:Reply-To:Subject:Feedback-ID:From;
-	b=M0hzREieU/68W9isQgfhXxKpXOZBGO1cPFNACw4pgplX5WUVvp17NzXD4H16LGkpd
-	tIZUKfhBKB6mvD/hXTaW7rfvnKTm/xKgCtyIEgcpCrV7JumnBxGvR9D8XGfrgyRw6k
-	YxXfKgGnmbyjJsz7UFtOxV+tFpcYuMdY0iSgAdeM=
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Wolfgang Tolkien <w@tolkien.email>
-Message-ID: <mS53N569fcClyxgI3UBtt6uEVjgy0xehVx2O-uj8rDBcYewIzdYfU1i5a_LPyrp9LF_wPxqoK0Acu9_sltB6BEjvdL9x4CxiBxWCkXy7W1k=@tolkien.email>
-Feedback-ID: ViJOJooDpCW9ZJDpR0_AgFeSbLYnIh1UKu2DLqxShSUVxesnK5QhckaNHn9X6OllezKyU4UDbY3NFvyzyU-gCg==:Ext:ProtonMail
+Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com
+	[209.85.208.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5ABE3E009C2
+	for <yocto@yoctoproject.org>; Tue, 14 Aug 2018 10:30:54 -0700 (PDT)
+Received: by mail-ed1-f67.google.com with SMTP id t2-v6so10524293edr.5
+	for <yocto@yoctoproject.org>; Tue, 14 Aug 2018 10:30:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=SRKFUTVpRI4KOtBiCalIv4MI81fv0roXiWpneudk+PI=;
+	b=oRXop5ML0NCBnIunvDpq9wm60B8hDY4Zo2Sjff3qS+m6YhQp9LdrBCuOjx0k0n1MRp
+	5Xswm0vE5IwIo+e4nHhHPkG1J2Lbrm/zoR6oEBOxveHmMJzIa+YUF9Pv70HH8+erFNRG
+	Y7+8kx58fqVVgKuyxB6oPPYHLNE+86fp8I/P0F6CJLX5V11irGJXP3MoIwrzc7Oa0MOc
+	n87DAcHGrPICEgltWBH8czX2TLW40c5SFiKKqAqXktQ0g3AsU74JZbv5ewDKeWHkXHoi
+	G5v69PgN3ODIVF6iOyoEckQeHPfulMaQLQ9S0tKWYe4WmJGXNHcP3lKya5ozBhHiDN3b
+	CJHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=SRKFUTVpRI4KOtBiCalIv4MI81fv0roXiWpneudk+PI=;
+	b=jK6gqrQod0dU43somQX7Qs9RP9eO7fSu1GhYmDdpdFS8w4c5KJJmLywP+DBmKGMCbj
+	RL51V9bEqY5uYDISJEnzuAU5zY9qf4Sn8t0MssZSBlxpG27xmJgjG5nPIcOX1CRqwGyA
+	7P1mB/kXMPsmaNNO7smKhcvmStcOZhgOLExtLju8DQzd5MV1PKwBB0KGu6Ca2VcKn8Wp
+	pzCigDpuermMlcoJm/eojJJtu2+nLmk6//5alzWS3nVfk7PKkoJy9aGJ+Fs9WJLmSD/3
+	A4N2nohvJoFTWe0cPd/BhyKvG1cgbylAVvoKWEQ2MviWpMuX7Tt0pden/tz+CFVudzCM
+	MRrA==
+X-Gm-Message-State: AOUpUlEYI1W2zTMkCVQ7Nn+dC7SDxdXAaWcU27KHLCeAQaoF28RxjV7g
+	4ihTMRCNjj6og491NfcoFie/wCGDAw5zSqJgn6I=
+X-Google-Smtp-Source: AA+uWPwg8mUbOYOjnjQRkX2djj9YhBOB7hUCSZ5u5t8Fa6KLf1IMf1rP/HmXuv4BJhABrcQZ9RUrj5PRWd/piNH+HUg=
+X-Received: by 2002:aa7:d1cb:: with SMTP id
+	g11-v6mr27950871edp.163.1534267853453; 
+	Tue, 14 Aug 2018 10:30:53 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Creating meta-ocaml layer - how to handle system-wide OCaml library manager?
+References: <1509905058-65701-1-git-send-email-yevgenyp@pointgrab.com>
+	<14e3f1bc-7768-460c-e8fe-d696321d16f7@pointgrab.com>
+In-Reply-To: <14e3f1bc-7768-460c-e8fe-d696321d16f7@pointgrab.com>
+From: Scott Rifenbark <srifenbark@gmail.com>
+Date: Tue, 14 Aug 2018 10:30:41 -0700
+Message-ID: <CAFNP8OsKJOok3=RdBQCTd1AqSGVvf0xo1O2XRPdX2ttRe3a71Q@mail.gmail.com>
+To: yevgenyp@pointgrab.com
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [yocto-docs][PATCH] ref-manual: Removed misleading paragraph in siteinfo section
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Wolfgang Tolkien <w@tolkien.email>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -49,76 +73,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Aug 2018 17:29:49 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 14 Aug 2018 17:30:55 -0000
+Content-Type: multipart/alternative; boundary="00000000000065411e05736892aa"
+
+--00000000000065411e05736892aa
+Content-Type: text/plain; charset="UTF-8"
+
+Yevgeny and Richard,
+
+See the siteinfo.bbclass section here -
+https://yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#ref-classes-siteinfo
+.
+
+Paragraph removed.
+
+Thanks,
+Scott
+
+On Tue, Aug 14, 2018 at 4:38 AM Yevgeny Popovych <yevgenyp@pointgrab.com>
+wrote:
+
+> Hello Scott.
+>
+> siteinfo was removed from base.bbclass by Richard Purdie in 2010
+> (commit 185cb38f1319856b4bdaaf4d9a73b5056be53d54 in openembedded-core).
+>
+> Richard, can you confirm/reject this change?
+>
+> Thanks!
+>
+>
+> On 11/05/2017 08:04 PM, Yevgeny Popovych wrote:
+> > ..on the inclusion of siteinfo.bbclass in base.bbclass.
+> > This is not true since 2010.
+> >
+> > Signed-off-by: Yevgeny Popovych <yevgenyp@pointgrab.com>
+> > ---
+> >  documentation/ref-manual/ref-classes.xml | 6 ------
+> >  1 file changed, 6 deletions(-)
+> >
+> > diff --git a/documentation/ref-manual/ref-classes.xml
+> b/documentation/ref-manual/ref-classes.xml
+> > index 5961d3e..fe41f9e 100644
+> > --- a/documentation/ref-manual/ref-classes.xml
+> > +++ b/documentation/ref-manual/ref-classes.xml
+> > @@ -3134,12 +3134,6 @@ This check was removed for YP 2.3 release
+> >          and <filename><link
+> linkend='var-SITEINFO_BITS'>SITEINFO_BITS</link></filename>
+> >          that can be used elsewhere in the metadata.
+> >      </para>
+> > -
+> > -    <para>
+> > -        Because the
+> > -        <link
+> linkend='ref-classes-base'><filename>base</filename></link> class
+> > -        includes the <filename>siteinfo</filename> class, it is always
+> active.
+> > -    </para>
+> >  </section>
+> >
+> >  <section id='ref-classes-spdx'>
+> >
+>
+> --
+> Sincerely,
+> Yevgeny Popovych
+>
+
+--00000000000065411e05736892aa
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I need some help and direction:
+<div dir=3D"ltr"><div>Yevgeny and Richard, <br></div><div><br></div><div>Se=
+e the siteinfo.bbclass section here - <a href=3D"https://yoctoproject.org/d=
+ocs/2.6/ref-manual/ref-manual.html#ref-classes-siteinfo">https://yoctoproje=
+ct.org/docs/2.6/ref-manual/ref-manual.html#ref-classes-siteinfo</a>.</div><=
+div><br></div><div>Paragraph removed.</div><div><br></div><div>Thanks, <br>=
+</div><div>Scott<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"=
+ltr">On Tue, Aug 14, 2018 at 4:38 AM Yevgeny Popovych &lt;<a href=3D"mailto=
+:yevgenyp@pointgrab.com">yevgenyp@pointgrab.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
+ccc solid;padding-left:1ex">Hello Scott.<br>
+<br>
+siteinfo was removed from base.bbclass by Richard Purdie in 2010<br>
+(commit 185cb38f1319856b4bdaaf4d9a73b5056be53d54 in openembedded-core).<br>
+<br>
+Richard, can you confirm/reject this change?<br>
+<br>
+Thanks!<br>
+<br>
+<br>
+On 11/05/2017 08:04 PM, Yevgeny Popovych wrote:<br>
+&gt; ..on the inclusion of siteinfo.bbclass in base.bbclass.<br>
+&gt; This is not true since 2010.<br>
+&gt; <br>
+&gt; Signed-off-by: Yevgeny Popovych &lt;<a href=3D"mailto:yevgenyp@pointgr=
+ab.com" target=3D"_blank">yevgenyp@pointgrab.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 documentation/ref-manual/ref-classes.xml | 6 ------<br>
+&gt;=C2=A0 1 file changed, 6 deletions(-)<br>
+&gt; <br>
+&gt; diff --git a/documentation/ref-manual/ref-classes.xml b/documentation/=
+ref-manual/ref-classes.xml<br>
+&gt; index 5961d3e..fe41f9e 100644<br>
+&gt; --- a/documentation/ref-manual/ref-classes.xml<br>
+&gt; +++ b/documentation/ref-manual/ref-classes.xml<br>
+&gt; @@ -3134,12 +3134,6 @@ This check was removed for YP 2.3 release<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 and &lt;filename&gt;&lt;link linkend=
+=3D&#39;var-SITEINFO_BITS&#39;&gt;SITEINFO_BITS&lt;/link&gt;&lt;/filename&g=
+t;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 that can be used elsewhere in the me=
+tadata.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &lt;/para&gt;<br>
+&gt; -<br>
+&gt; -=C2=A0 =C2=A0 &lt;para&gt;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 Because the<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;link linkend=3D&#39;ref-classes-base&=
+#39;&gt;&lt;filename&gt;base&lt;/filename&gt;&lt;/link&gt; class<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 includes the &lt;filename&gt;siteinfo&lt;=
+/filename&gt; class, it is always active.<br>
+&gt; -=C2=A0 =C2=A0 &lt;/para&gt;<br>
+&gt;=C2=A0 &lt;/section&gt;<br>
+&gt;=C2=A0 <br>
+&gt;=C2=A0 &lt;section id=3D&#39;ref-classes-spdx&#39;&gt;<br>
+&gt; <br>
+<br>
+-- <br>
+Sincerely,<br>
+Yevgeny Popovych<br>
+</blockquote></div>
 
-I've started working on a 'meta-ocaml' layer to add support for the OCaml l=
-anguage to Yocto:
-
-https://gitlab.com/wtolkien/meta-ocaml
-
-However, many OCaml projects seem to rely on the 'findlib' library manager =
-(http://projects.camlcity.org/projects/findlib.html) which keeps all inform=
-ation in a fixed system-global path.
-
-This seems to conflict with Yocto's sysroot concept. Also, 'findlib' handle=
-s dependencies, which is obviously something Yocto would normally do.
-
-What's the best way to handle this? Try to make do without findlib? Ideally=
- I'd like to end up with an 'ocaml.bbclass' file that just needs to be incl=
-uded, but maybe that's not achievable?
-
-For example, here is findlib's default directory setup when installing it o=
-utside of Yocto:
-
-About the OCAML core installation:
-=C2=A0=C2=A0=C2=A0 Standard library:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /usr/loc=
-al/lib/ocaml
-=C2=A0=C2=A0=C2=A0 Binaries:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /usr/local/bin
-The directory of site-specific packages will be
-=C2=A0=C2=A0=C2=A0 site-lib:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /usr/local/lib/ocaml/site-lib
-The configuration file is written to:
-=C2=A0=C2=A0=C2=A0 findlib config file:=C2=A0=C2=A0 /usr/local/etc/findlib.=
-conf
-Software will be installed:
-=C2=A0=C2=A0=C2=A0 Libraries:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 in <site-lib>/findlib
-=C2=A0=C2=A0=C2=A0 Binaries:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /usr/local/bin
-=C2=A0=C2=A0=C2=A0 topfind script:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 /usr/local/lib/ocaml
-
-
-With Yocto (this doesn't seem right...):
-
-About the OCAML core installation:
-    Standard library:      /opt/src/sumo/build/tmp/work/x86_64-linux/ocaml-=
-native/4.03.0-r0/image/opt/src/sumo-test/build/tmp/work/x86_64-linux/ocaml-=
-native/4.03.0-r0/recipe-sysroot-native/usr/lib
-    Binaries:              /opt/src/sumo/build/tmp/work/x86_64-linux/findli=
-b-native/1.8.0-r0/recipe-sysroot-native/usr/bin
-The directory of site-specific packages will be
-    site-lib:              /opt/src/sumo/build/tmp/work/x86_64-linux/ocaml-=
-native/4.03.0-r0/image/opt/src/sumo-test/build/tmp/work/x86_64-linux/ocaml-=
-native/4.03.0-r0/recipe-sysroot-native/usr/site-lib
-The configuration file is written to:
-    findlib config file:   /opt/src/sumo/build/tmp/work/x86_64-linux/findli=
-b-native/1.8.0-r0/recipe-sysroot-native/usr/etc/findlib.conf
-Software will be installed:
-    Libraries:             in <site-lib>/findlib
-    Binaries:              /opt/src/sumo/build/tmp/work/x86_64-linux/findli=
-b-native/1.8.0-r0/recipe-sysroot-native/usr/bin
-    topfind script:        /opt/src/sumo/build/tmp/work/x86_64-linux/ocaml-=
-native/4.03.0-r0/image/opt/src/sumo-test/build/tmp/work/x86_64-linux/ocaml-=
-native/4.03.0-r0/recipe-sysroot-native/usr/lib
-
-
-Many thanks,
-Wolfgang
-
-
+--00000000000065411e05736892aa--
