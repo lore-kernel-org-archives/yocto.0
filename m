@@ -1,15 +1,17 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AD91BE00566; Tue, 14 Aug 2018 10:37:31 -0700 (PDT)
+	id EC751E00566; Tue, 14 Aug 2018 11:28:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.51 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (armccurdy[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -17,53 +19,49 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E039FE0049F
-	for <yocto@yoctoproject.org>; Tue, 14 Aug 2018 10:37:30 -0700 (PDT)
-Received: by mail-wm0-f51.google.com with SMTP id c14-v6so13086285wmb.4
-	for <yocto@yoctoproject.org>; Tue, 14 Aug 2018 10:37:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:mime-version:content-transfer-encoding;
-	bh=1g6quwedRl72WOAwTJVOM+OOrlhZAnXtzOFo+V6Y+b0=;
-	b=QpR49hIKikWnFdMZY6nhyjpjkINAttqhdH0304ceNQlO5rVm8ojggGN2NSQhS+Iy8R
-	lz2KPl/i/9Iwa7cV+diqlIOp+lPc1/HjeiJ8BVclRDSOdvAivE0V/BRJzWhcm3U9T4yg
-	tXeQK33w/kuPRHhdB9xx06+GS+ojChUVK61F4=
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com
+	[209.85.222.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1742E0049F
+	for <yocto@yoctoproject.org>; Tue, 14 Aug 2018 11:28:10 -0700 (PDT)
+Received: by mail-ua1-f49.google.com with SMTP id m13-v6so14252500uaq.7
+	for <yocto@yoctoproject.org>; Tue, 14 Aug 2018 11:28:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=JWwLa42Nb6s4tal2YbQyHtBotuheHDHbxpJJLiCYbjY=;
+	b=Z+9mclIhCk2A3SOo58CZayEl0FakHc6E8cjekVa4gk/iQ2lDKg2DnFlONTlMmVJX0F
+	Dk3qMzbdQR64ngJYnWIhav2SeRvxG4nBR2djiSgPOzzhrqe80XkLxsSpQgy5eN6AaKZ5
+	vpSTVdKpvFiQlCutfTMeBKXxmwm6Aevs4jh9yRz4TdISiBDu3UZwQyuvQxjU9GH4cjLk
+	yWXb1qMvLP+S81zMuOx6eDHla0jrVWBQ/2ip7q9d+uYFY9BHf81K41ejR9GmsdSMePSO
+	ZkAeF6v/II5lZmrTfZwLFjMfpNgySOEzHzOAFvG4AnoIDbihv6J8W58u9E4QhNs/mpjh
+	PtbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=1g6quwedRl72WOAwTJVOM+OOrlhZAnXtzOFo+V6Y+b0=;
-	b=oI+99Rd2FMAql4EUGWRBhyNORXtb5hdkM9QWnfsCMNR2A04SfZvoSdBqwUjIfotetc
-	n7XthrM6HHBN02L5JYrqlSZym7BoCbTLCoJ7OkzOqafVD3s2W57GklmKdssDe2Dyv9or
-	6vrFPTZX04U0tyxAKOm1gyBFhvqymYewOE/Mpv5tb6onPmRnfxP9LKTlRsFK4X+9YzTb
-	JWyQ5CDbc9HuhHiekvPRmeH/fjOFX4um77TFDiDdpStj22HWxQdDIUBlHZKV4BgxXdvQ
-	ACN88QXBZc+i1t59cvsg20BMcevVoVkSqw++xOrKlc9TPMvZhqSItu+FsR6T9Mh3YBio
-	Myrw==
-X-Gm-Message-State: AOUpUlE5tmLNT7JFDlCHqHGhpYxpd0Mb03kS6ktAhBRZx8MUX/H6R9PO
-	P/lA2V4reIRuDOKb3JW40gebEw==
-X-Google-Smtp-Source: AA+uWPzMGL3tn7rcy/dwSigzj0PUdjTO+s6qJbxvgi45eibn+PXZWwVePtxXs/MngSw+IHi+lmCASA==
-X-Received: by 2002:a1c:6354:: with SMTP id
-	x81-v6mr10528023wmb.23.1534268249874; 
-	Tue, 14 Aug 2018 10:37:29 -0700 (PDT)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	p11-v6sm14544886wrs.51.2018.08.14.10.37.27
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Tue, 14 Aug 2018 10:37:28 -0700 (PDT)
-Message-ID: <9ebfae05ec756956f1234c3fb10de302d857d94a.camel@linuxfoundation.org>
-From: richard.purdie@linuxfoundation.org
-To: Scott Rifenbark <srifenbark@gmail.com>, yevgenyp@pointgrab.com
-Date: Tue, 14 Aug 2018 18:37:26 +0100
-In-Reply-To: <CAFNP8OsKJOok3=RdBQCTd1AqSGVvf0xo1O2XRPdX2ttRe3a71Q@mail.gmail.com>
-References: <1509905058-65701-1-git-send-email-yevgenyp@pointgrab.com>
-	<14e3f1bc-7768-460c-e8fe-d696321d16f7@pointgrab.com>
-	<CAFNP8OsKJOok3=RdBQCTd1AqSGVvf0xo1O2XRPdX2ttRe3a71Q@mail.gmail.com>
-X-Mailer: Evolution 3.28.1-2 
-Mime-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto-docs][PATCH] ref-manual: Removed misleading paragraph in siteinfo section
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=JWwLa42Nb6s4tal2YbQyHtBotuheHDHbxpJJLiCYbjY=;
+	b=Ba3541jZydW/Cse15aewE4+qu1wujc6484CnIcPFchOLk8L+eyyLeIdRzWZSiA4+ma
+	JBZpqJyXtu9edGQGvYReRHnVh9Lf5ZAyGHWO3JEaQKf4/+Fc4jdbQuAADcAOxBhTFx54
+	bSC/n/ylfazBZTG6aGp7iolG4FZ/S/osrwlfeinn1/+E4+XeONP0WG5bcMkQTfGUoJdM
+	0afPNYNahrnDUssLOo1KuQuxiPwwnPigjlcr1Zc712NTT31spTgp3EbAfeVFHnjpILaC
+	YqwMBMAFeezc0GwqHXpBYv9Dhro2cbQ8DVJPilqlhyqzScFPaKB/bMwr6CwO7kV+R1TA
+	Prxg==
+X-Gm-Message-State: AOUpUlFh02VF+6Q0+Q3VfuzYpWUkKaf2ylqrS6pR6Xrczd0vInHgKzVt
+	YbRXKbuQvQW3pINcRe6FjPcxBaVs5/RZgca4lsvCvzSm
+X-Google-Smtp-Source: AA+uWPzp9z7OsLZJxLcQ6BFYDr/WVuTmbMjy1uVYuDgNJiBo7CwH/xhnTP4G8VGkWD05M5me4Ff3AW4XM6urzdqmz10=
+X-Received: by 2002:a1f:c252:: with SMTP id
+	s79-v6mr14647407vkf.127.1534271289351; 
+	Tue, 14 Aug 2018 11:28:09 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:ab0:2a5:0:0:0:0:0 with HTTP;
+	Tue, 14 Aug 2018 11:28:08 -0700 (PDT)
+In-Reply-To: <df04ced4f6dc42808b725892b0a59aff@4rf-nz-exchange.local.4rf.com>
+References: <df04ced4f6dc42808b725892b0a59aff@4rf-nz-exchange.local.4rf.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Tue, 14 Aug 2018 11:28:08 -0700
+Message-ID: <CAJ86T=XRZXCOZ2ghvjK1Fz+gCzX8AL4PFi5c3G1y3zM=kSdrWA@mail.gmail.com>
+To: Amol Lad <Amol.Lad@4rf.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Creating multiple filesystem images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,21 +73,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Aug 2018 17:37:31 -0000
+X-List-Received-Date: Tue, 14 Aug 2018 18:28:12 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
-On Tue, 2018-08-14 at 10:30 -0700, Scott Rifenbark wrote:
-> Yevgeny and Richard, 
-> 
-> See the siteinfo.bbclass section here - https://yoctoproject.org/docs
-> /2.6/ref-manual/ref-manual.html#ref-classes-siteinfo.
-> 
-> Paragraph removed.
+On Mon, Aug 13, 2018 at 8:23 AM, Amol Lad <Amol.Lad@4rf.com> wrote:
+> Hi,
+>
+> Currently when we build say core-image-minimal, we get a root file system
+> image (say ext4) after the build. However, I also need to create an ext4
+> image for /boot partition (which contains zImage and dtb). I do not want wic
+> image. How I can do this? i.e. I want two ext4 images after build: one root
+> file system and another with content of /boot folder. Please advise
 
-Looks good thanks.
+This isn't supported directly. However, if you look in
+meta/classes/image_types.bbclass -> oe_mkext234fs() you will find the
+commands which are run for the ext4 image type.
 
-Cheers,
-
-Richard
+By copying and extending that code, you can define your own custom
+image type (e.g. "ext4-split") which creates two ext4 images from the
+rootfs instead of one.
 
