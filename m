@@ -1,17 +1,15 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <mhalstead@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C04AAE0049F; Wed, 15 Aug 2018 09:47:19 -0700 (PDT)
+	id 1B1E8E00726; Wed, 15 Aug 2018 10:43:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.178 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.215.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,48 +18,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com
-	[209.85.208.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED3D2E0043F
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2018 09:47:17 -0700 (PDT)
-Received: by mail-lj1-f178.google.com with SMTP id y17-v6so1442644ljy.8
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2018 09:47:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=6EWmT25t0PPNQV9s9AzUUcBDvSGpzfDRnkVE6Hj6sus=;
-	b=Pn8+sxbqyQekN55J8C8tha1ybJojvhOqlqoDleNTygqStBylen0a+VtGqLfYfi2NqB
-	10F+JO2g+ZmTSRSgM11jieggjVDAF8RO7D5LVFcIJx8xgQxisPGpUjtHa8UzrFwFik08
-	iluWGKysBcdSRcCI7V/DHfrpGaICdo0RkQtO74Eg15RFiEvA6ISr6GxXOe6x3fTZTSMS
-	QmF8d8mf+L6yb7SJxx2Cd572OkjV239QXymfa1egh1khBUbGHaMa8eT7Q2uIirFBknO4
-	MvpQBsTBwbBZJCko61lcmgPyWlYGX98R5bbYuQpLNKlw21t2oYuZu5fiSBq84eMxFQYy
-	YmVw==
+Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
+	[209.85.215.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D8CDE0049A
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2018 10:43:00 -0700 (PDT)
+Received: by mail-pg1-f196.google.com with SMTP id w10-v6so818636pgv.2
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2018 10:43:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=from:to:subject:message-id:date:user-agent:mime-version
+	:content-language;
+	bh=aOem+ShycLtfhD1KIlmn4ljmGho6L1mbjuNqwbvep1s=;
+	b=IIz3rpgu0Z16OOM7LtbJi3F4a7CwQZjCc/BWuA+mSskIk2EFkbWEE6XfozoIaYzTEA
+	f7lh2xSHaL8cEZvRRO0TbMta4vrUJfKwDLNKqgxtT7f7nIE7xXIXhM6xoInlCrwkV7Z0
+	MxNl64nGq3/XlSfKC/05m2XZiDvFGTLkD0Mm8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=6EWmT25t0PPNQV9s9AzUUcBDvSGpzfDRnkVE6Hj6sus=;
-	b=LMv6CBA+GzCAV6IP5xeIjSqvet2D+7aKJtpjKoPXfQQ+9E+vh79AmhJ1ZrJ1eeXvOp
-	U5VlsXGl0ywVorf4PS6ReoVNUgZfxiEhX1t164lZVr0r2e2+gLcrBcDhtFzlNMe6IOOR
-	fGC6jMRgzNFjOtLiduCQQT92cnJ69BWPBUEsKLwRS6VC85e4yBdWBpBb5miJzXm9lAlY
-	xGHX/Z+v+89ZBkARZFCWi08QLNzkh2ANjo4KBJjU/7pgdsUoUp1c0BSETMQLIN6ijkT5
-	5m8h9nlDn7oix/VUf2g/F5EG+7Il+9wIQ06TnonVWn8wyfWV9JlL0m2BapdU3DEWsnzF
-	ObpA==
-X-Gm-Message-State: AOUpUlGPdQ1/cfHzfE2HSBZT2BSZSNi3w1ITwZsuBVLkbDcjvAm2B7vX
-	M33+sgU3giZP/L0Ce6D+1OXFkHTXv4ciBkMyHeI=
-X-Google-Smtp-Source: AA+uWPwCHQjhRDh/a1d0IIBQXKD56aZCs3sEQatdA8ugQC1qFPq/8qjJnl0UT0gHnc1BiE9R94EiB2IGb81nOwIoatM=
-X-Received: by 2002:a2e:9004:: with SMTP id h4-v6mr7570335ljg.44.1534351636686;
-	Wed, 15 Aug 2018 09:47:16 -0700 (PDT)
+	h=x-gm-message-state:from:to:subject:message-id:date:user-agent
+	:mime-version:content-language;
+	bh=aOem+ShycLtfhD1KIlmn4ljmGho6L1mbjuNqwbvep1s=;
+	b=pYmATmnefyrQosuHsroVbLjve3JNAXp7iAaMz5AoAnXVNJZsSh2Mm1qFJUIjyfbhzE
+	LvUVM/Mdrh1Hb8wcw08ej0/PrdbSfx9ncs095kC7VOX/zVdJ5NlzoN85SaQesGabu0Pw
+	idkDpVcJXTmJGoJK9bsQ2Kg5zzZ3ghmVu8SsnLZlYF+OTa3VNPn93HNLvLMe3Kvt6+1u
+	D0Kvq9vzJIiXM6mfvSYkE/yXwfjouupm1YaXqiln5CA/I3Rrl4zibLMon0E5MfwohI9F
+	X8YXQJDIU5S3CI9ZqmiUYjPmXMEVHilGkhOHxTc5NXbYxz8KEyuU05JxGVbrlGOXOEHe
+	b4gg==
+X-Gm-Message-State: AOUpUlHMfuvX+9KQGucycSRjDFvmWGyySoAmt3akaI+qs0oeHkgg5PEa
+	nKsU/P8+mx+YjgePOfjrbUdBnssPS+4bZA==
+X-Google-Smtp-Source: AA+uWPz9jsjYtsyXpVPmohBu9yC+BYUKNTUp3J+vz5hNgTqZku6qkDC6/g5mGameqOT4WCyLJXSKdQ==
+X-Received: by 2002:a63:d80f:: with SMTP id
+	b15-v6mr26250306pgh.347.1534354979910; 
+	Wed, 15 Aug 2018 10:42:59 -0700 (PDT)
+Received: from [192.168.17.78] (50-39-175-47.bvtn.or.frontiernet.net.
+	[50.39.175.47]) by smtp.gmail.com with ESMTPSA id
+	d10-v6sm22429991pgo.2.2018.08.15.10.42.59
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 15 Aug 2018 10:42:59 -0700 (PDT)
+From: Yocto Project Advocacy Group <mhalstead@linuxfoundation.org>
+X-Google-Original-From: Yocto Project Advocacy Group
+	<advocacy@yoctoproject.org>
+To: yocto@yoctoproject.org, yocto-announce@yoctoproject.org
+Message-ID: <532deb63-6b26-ba77-788f-ba4f507f8a5c@yoctoproject.org>
+Date: Wed, 15 Aug 2018 10:42:58 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
 MIME-Version: 1.0
-Received: by 2002:a19:2195:0:0:0:0:0 with HTTP; Wed, 15 Aug 2018 09:47:15
-	-0700 (PDT)
-In-Reply-To: <CALf_N3ZDG46vWe1UiwwjGuv7Q7MMTpJGUUn-RSmymLAc+KbfUw@mail.gmail.com>
-References: <CALf_N3ZDG46vWe1UiwwjGuv7Q7MMTpJGUUn-RSmymLAc+KbfUw@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Wed, 15 Aug 2018 12:47:15 -0400
-Message-ID: <CAHUNapR91Ro7PmoF54guDVQLcgvrkQmgYDDdaxiRn_Hh4CAXpQ@mail.gmail.com>
-To: Mark T <mtl1nuxd3v@gmail.com>
-Cc: andrew.bickford@sky.com, yocto <yocto@yoctoproject.org>
-Subject: Re: TPM2-TSS-1.1.0.bb does not use local files when BB_NO_NETWORK = "1"
+Subject: Yocto Project Dev Day Europe 2018 - Extend your Embedded Linux Conference experience
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,89 +75,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2018 16:47:20 -0000
-Content-Type: multipart/alternative; boundary="00000000000043ec2c05737c14b6"
+X-List-Received-Date: Wed, 15 Aug 2018 17:43:01 -0000
+Content-Type: multipart/alternative;
+	boundary="------------94D2729A95CF8EC5DC5136BC"
+Content-Language: en-US
 
---00000000000043ec2c05737c14b6
-Content-Type: text/plain; charset="UTF-8"
+--------------94D2729A95CF8EC5DC5136BC
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-which layer?
+Hello Everybody,
 
-meta-secure-core includes a fix for this, but in master
-https://github.com/jiazhang0/meta-secure-core/pull/63
+Yocto Project is pleased to announce the Yocto Project Developer Day
+Europe, Thursday, October 25, 2018, held in conjunction with the
+Embedded Linux Conference Europe (ELCE) in Edinburgh, UK. Join our
+knowledgeable and engaging instructors to learn about creating
+custom-build Linux distributions for embedded devices using the Yocto
+Project open source, high-quality infrastructure and tools, across
+multiple architectures. There are two ways to register – together with
+your ELCE registration or separate on the Yocto Project Developer Day
+registration page
+<https://www.yoctoproject.org/yocto-project-dev-day-europe-2018/>.
 
-there's also:
-https://wiki.yoctoproject.org/wiki/Technical_FAQ#How_do_I_do_an_offline_build_with_recipes_that_have_SRCREV_.3D_.22.24.7BAUTOREV.7D.22_set.3F
+Register now and save
+<https://www.regonline.com/registration/Checkin.aspx?EventID=2529346>.
 
-On Tue, Aug 14, 2018 at 9:37 AM, Mark T <mtl1nuxd3v@gmail.com> wrote:
+Best regards,
+Yocto Project Advocacy Team
 
-> Hi,
->
-> We have an issue doing an off-line build for TPM2-TSS-1.1.0.bb and
-> related packages.
->
-> Its fine when BB_NO_NETWORK is not set, build/downloads has the package
-> files and the .done. We then hold the .done and associated package files
-> locally and place them into downloads prior to building with BB_NO_NETWORK
-> = "1" - but the fetch fails as it will not accept the local files.
->
-> Any ideas on how to resolve this ?
->
-> We're using Morty. All other packages we use work fine with the local
-> files.
->
-> Cheers,
-> Mark
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+--------------94D2729A95CF8EC5DC5136BC
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
---00000000000043ec2c05737c14b6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+<html>
+  <head>
 
-<div dir=3D"ltr">which layer?<div><br></div><div>meta-secure-core includes =
-a fix for this, but in master</div><div><a href=3D"https://github.com/jiazh=
-ang0/meta-secure-core/pull/63">https://github.com/jiazhang0/meta-secure-cor=
-e/pull/63</a><br></div><div><br></div><div>there&#39;s also:</div><div><a h=
-ref=3D"https://wiki.yoctoproject.org/wiki/Technical_FAQ#How_do_I_do_an_offl=
-ine_build_with_recipes_that_have_SRCREV_.3D_.22.24.7BAUTOREV.7D.22_set.3F" =
-rel=3D"nofollow" style=3D"box-sizing:border-box;background-color:rgb(255,25=
-5,255);color:rgb(3,102,214);text-decoration:none;font-family:-apple-system,=
-BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Ap=
-ple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot=
-;;font-size:14px">https://wiki.yoctoproject.org/wiki/Technical_FAQ#How_do_I=
-_do_an_offline_build_with_recipes_that_have_SRCREV_.3D_.22.24.7BAUTOREV.7D.=
-22_set.3F</a></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail=
-_quote">On Tue, Aug 14, 2018 at 9:37 AM, Mark T <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:mtl1nuxd3v@gmail.com" target=3D"_blank">mtl1nuxd3v@gmail.com</=
-a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><di=
-v>Hi,</div><div><br></div><div>We have an issue doing an off-line build for=
- <a href=3D"http://TPM2-TSS-1.1.0.bb" target=3D"_blank">TPM2-TSS-1.1.0.bb</=
-a> and related packages.</div><div><br></div><div>Its fine when BB_NO_NETWO=
-RK is not set, build/downloads has the package files and the .done. We then=
- hold the .done and associated package files locally and place them into do=
-wnloads prior to building with BB_NO_NETWORK =3D &quot;1&quot; - but the fe=
-tch fails as it will not accept the local files.</div><div><br></div><div>A=
-ny ideas on how to resolve this ?</div><div><br></div><div>We&#39;re using =
-Morty. All other packages we use work fine with the local files.</div><div>=
-<br></div><div>Cheers,</div><div>Mark</div><div><br></div><div><br></div></=
-div>
-<br>-- <br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-<br></blockquote></div><br></div>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <span style="font-family:&quot;Cambria&quot;,serif">Hello Everybody,<br>
+      <br>
+    </span><span style="font-family:&quot;Cambria&quot;,serif">Yocto
+      Project is pleased to announce the Yocto Project Developer Day
+      Europe, Thursday, October 25, 2018, held in conjunction with the
+      Embedded Linux Conference Europe (ELCE) in Edinburgh, UK. Join our
+      knowledgeable and engaging instructors to learn about creating
+      custom-build Linux distributions for embedded devices using the
+      Yocto Project open source, high-quality infrastructure and tools,
+      across multiple architectures.
+    </span><span style="font-family:&quot;Cambria Math&quot;,serif">There
+      are two ways to register – together with your ELCE registration or
+      separate on the
+      <a
+        href="https://www.yoctoproject.org/yocto-project-dev-day-europe-2018/">Yocto
+        Project Developer Day registration page</a></span><span
+      style="font-family:&quot;Cambria&quot;,serif">.</span><span
+      style="font-family:&quot;Cambria&quot;,serif"><br>
+      <br>
+      <a
+href="https://www.regonline.com/registration/Checkin.aspx?EventID=2529346">Register
+        now and save</a>.</span><span
+      style="font-family:&quot;Cambria&quot;,serif"><br>
+      <br>
+      Best regards,</span>
+    <br>
+    <span style="font-family:&quot;Cambria&quot;,serif">Yocto Project
+      Advocacy Team</span>
+  </body>
+</html>
 
---00000000000043ec2c05737c14b6--
+--------------94D2729A95CF8EC5DC5136BC--
