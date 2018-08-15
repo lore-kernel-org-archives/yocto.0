@@ -1,122 +1,46 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2442E0043F; Tue, 14 Aug 2018 16:25:03 -0700 (PDT)
+	id A1D1FE00566; Tue, 14 Aug 2018 22:48:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.68 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f68.google.com (mail-oi0-f68.google.com
-	[209.85.218.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FE05E0043F
-	for <yocto@yoctoproject.org>; Tue, 14 Aug 2018 16:25:02 -0700 (PDT)
-Received: by mail-oi0-f68.google.com with SMTP id b15-v6so36742075oib.10
-	for <yocto@yoctoproject.org>; Tue, 14 Aug 2018 16:25:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=QkiV3B+SxxG0OMCKyzwV0DcvIbObSIlequWBDeGXMV0=;
-	b=Hk/W8ff2TZV+tA7bgTd2K0OG02ge60+pPgpMF+IGIsAfRarxPdMOOYdrPqdUIl69JN
-	imeDQB+gF/0pcRQl1LoT1E6QEn468XxYYyAxvr8lQq7tAUTefY+T/KKT5/gH8HSzrKQz
-	DOnnHiWthQeifEq8nfIX6akbT1cq0ONa8q7DTEZNkaaJaRrBWvo+bfFW2LQfpd9ju+d5
-	jLSvxGR32bUhmpdubxa/ML5BTkUoUKByFL5WdeRuinAsoVWBVFdHShNW4DWkVm4zo6Eb
-	Ct9QMnL68XmCC6XGia3rtHVT3U/5yXTXKF6pj34qBljZZMvGFP+uh35AeAakh5kRBF3i
-	ghHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-language;
-	bh=QkiV3B+SxxG0OMCKyzwV0DcvIbObSIlequWBDeGXMV0=;
-	b=jM5eZv9RRS0/tqYzz3QX8K/l43gG/A5vVQjWkGbpbQjcU021Szgkrc5oDm4Bnt8Zii
-	CemBfbqR5F0WpROdxWjrKrUemo1F9aI5sH8I31KLq+67iNIf5Arq8k05Szr8sA5dhwCz
-	RKLCN4zbNNkyHyCp+4+sKQoYYnf1pAFW460IFAgto1vxvBnmW8GcKAVFMdioQd6ei2+r
-	TqGiqo+S09JrCVgp66lEP40+zqaJ8yoGNYDfYbbhTFpLbD3U5gMsYfoP3JipVnImHmLT
-	lGS3xjob8g4VJVBfTiBZfqVDPw2Ij3bcka9rfcCZRk4BDHpKttkZHDMXu0W2O/BsbYJa
-	wl/Q==
-X-Gm-Message-State: AOUpUlGeUzBgG6HKWFXHug9OtULgaGr33R2br8tzkNKq2vS0+aOidYFO
-	YNdoYFrMSp1ta2ePSlfi12g=
-X-Google-Smtp-Source: AA+uWPzMHMw+N1GP1ri7bykgk0uE3bN/5arVzhZvjNhdZ7fwlc+OtqiwQ0ZkU55AwKeANDK322vtBQ==
-X-Received: by 2002:aca:51c2:: with SMTP id
-	f185-v6mr25184772oib.188.1534289101988; 
-	Tue, 14 Aug 2018 16:25:01 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:c33:a992:553:fc14:a9d6?
-	([2601:202:4180:c33:a992:553:fc14:a9d6])
-	by smtp.gmail.com with ESMTPSA id
-	t131-v6sm23454438oie.34.2018.08.14.16.25.00
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 14 Aug 2018 16:25:01 -0700 (PDT)
-To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-References: <9ADD3FDE8B189B4AA2F8A3C711F8155ECE46263B@FMSMSX112.amr.corp.intel.com>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
-	Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
-	mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
-	aquZVHNXxPwjKPaSEEYqQjFeiNgFTavV+AhM2dmPmGUWCX9RZisrqA4slGwEB0srMdFf12Zg
-	mD35Y9jZ80qpu5LPtJCFcsaAlebqR+dg36pIpiRR+olhN1wmC6LYP1vw6uMEYBjkTa2Rnb6+
-	C4FDzCJD4UCrUvLMNeTW810DY0bjMMj3SfmSGSfQUssaaaTXCVlLGuGxyCr/kza1rHaXMKum
-	Ek4EFj1fyn7AfkSLEHfJfY4sO1tpgigvs4eD/4ZSQEXSu/TjVvyKx4EvUbhlGMRyH2CPwD/H
-	7DFF8tcVtJvCwUUW+zKtjxjSSLrhniNMXAOQJZ6CdaqCe4OyJQT5aRdr+FWbBRjpaRCCf5nf
-	dTc88NMU9PrBT3vu0QJ5WNPO6MJpnb+d8iMNLZAz8tv8JMm2l+sMcNKSJ6lhX8peoBsfMVqc
-	FgiykEO0fUt7DCbUYR5tLjM/3E5tHvTjMooVJyOxoufVLYtTtQARAQABzSFha3VzdGVyODA4
-	IDxha3VzdGVyODA4QGdtYWlsLmNvbT7CwX0EEwEIACcFAlnlUP4CGyMFCQlmAYAFCwkIBwIG
-	FQgJCgsCBBYCAwECHgECF4AACgkQ7ou0mfRW5/kuhRAAlR2FTq5572jrX5nnPR7AqI2bvSVb
-	vqGLlvv739WhghvagbC+tu05QguopAhWW1/DcHK2+QtfIoC9UZrSW4RaO0CCo5sPjqK7l1KT
-	ngWX/rGjF6xTF2QN0U/btcpMyVN2CNtVLwsDF9e+GHKoUcnFkP+JP8vHGokN9k6E/c97hLaL
-	IJPeKl8LZXc2Efk+MaW1NXkfDJdcp/p+voajbihSQO6OZ/o+x9d2I3ZybKfTZ71+ek5Hxzjz
-	g6KkMOI7KJjlmBlrQFAtVbS+CFAKrwkYznE6ggkcmGv3N7DeUBTUR78hf+EZEAM+ajeLMtrG
-	rXE00pIb+gLGYPZxba5pCdQ+qWUW38qi9UnIRPm6fq7Ypx1r6XwJvbgCOkhbxo3D4YUdyC0b
-	FE9lgrg8htbc9in4j2+hVI6ALswNjLprzXdzdKrd+T3Egx36o3Z/qrYsW2o5/A5sVvvASVKi
-	wRPuEKhEhfmiHUPLvuKqhMoymHaz3fg5D2Q8G0gSDkLgeEpAjiWqf4+AGLx+MSDai7DSOsmI
-	t61kWxs7cFTB32UrB/TDoVNn3Fm88ZFQpA/bngikE9jgEm045mSY86fNlbFj2mcCd0Ha1i1n
-	aYc97RpgfjNMWyHDVHOGrNg/hJjkGa5RsAXkfyBwltHRw0Hj4urUQ3rr8um8PLe43SezPwXA
-	oRoyDxDOwU0EWeVQ/gEQALNHwj5VSPdnvXy1RXUuH+rclMx4x8zaqDyY0YqHfA7b/d8Y0VAt
-	Y6YpzDeFTwD8A0Wfb7kZ2mlDIE6ODCB71uT/E3C6b+FiiN+lgzslznjUW+9l8ddDhRrC8HMG
-	37vrXF5h++PTXUKEKUlkDib1w093tu3mlJXUvIAzl8CEHkptF6Br0L9XxFwuWoNUfjT9IorQ
-	0SVIhvq5PhVAITXUD5fD7/N8B4TYegmHFRo1UaaKSnSHwlJJkzKpeWOH8QTYrP0RHxX86Obv
-	IZuwbAo3F3oojcvLJt9NxWnbEmEALkleklLZnukgu7q5Wp1VDwhUbMFTLb6qmnBa/Xi30uOk
-	0l1TMHDbeQswvQDOZBAMukSRqyBetKxQ3iTfZ/3z1ubQRcVDbVlMDScSHQq0LK3F9yMOMM/6
-	0QPqJjl13xn/+Bn7WJiAIXXwzAV7uo6i0khFfjDtCDQ40aeffqOLxp1yMLkc3EKJGcQ5F6O2
-	ycEf4QXCYUbMXjxB0EJB8y7z+xOi5Mmd/pPlVmZ2gQK84NAL90p7n7jRlyf3gOUY+JOl4c5e
-	UFiIhOzmuqNrvPOiZ02GXh6SGUU5y7IgSoIKvXSFgHAn2OG/tcspBmkyv6IuNVpmbmEgYn4I
-	Rnt40UXVQkxTh0dENFhk2cjunMYozV/OqYCgmZLFSeJd8kAo4yn+yOtNABEBAAHCwWUEGAEI
-	AA8FAlnlUP4CGwwFCQlmAYAACgkQ7ou0mfRW5/nNcg//R63cbOS6zLtvdnPub3Ssp1Ft8Wmv
-	mni+kccuNApuDV7d63QckYxjAfUv2zYMLpbh87gVbLyCq9ASn552EbfRhTvHdk44CgbHBVcI
-	ZBEdZWgRR5ViJakQSYHpP2e5AGNFnx9gSIuRTaa5rvZM+4xeoZ2vJiq93TtaYPr7UFNfK+c4
-	vv4C66lkt9l95/I10eSc3RqbOKZW47emlg4X3ygEoB9k2lPrpspyf6sUuSEi0WrlSxoLAr6p
-	JG8rTUErYNeXe6JCdL31odDx1Dh5sdKIj2RicUYZNilxu9f1M7jZwf2ra1FGAlKj2ybqmgpZ
-	EFteaiCinEYsvDyZyOiWHjAFI+RZIPQQL3AnVp4l7wYD3r9hnqYPww0slyMDcb9262RoFkHq
-	dDwxPYarrNjWUpOzxB6bFxOgNRdCTgvQl8Ftk8a/yXB6vHeUSm1vPFCBxQPZytyfOLhEWm0J
-	/mkVL0Z6iRK3p1LKnpLYCS4/esL2u7RrhPyCs2SsL58YcQF/g+PpeT9geZ+oyZ/4IQ+TWJoU
-	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
-	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
-	8CS2NxU=
-Message-ID: <ca716515-653e-685a-1de6-d7c1ba48d8ff@gmail.com>
-Date: Tue, 14 Aug 2018 16:24:59 -0700
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 599DFE003D7
+	for <yocto@yoctoproject.org>; Tue, 14 Aug 2018 22:48:09 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w7F5m62E024470
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 14 Aug 2018 22:48:07 -0700 (PDT)
+Received: from [128.224.162.137] (128.224.162.137) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.399.0;
+	Tue, 14 Aug 2018 22:48:06 -0700
+To: Joe MacDonald <Joe_MacDonald@mentor.com>, Mark Hatle
+	<mark.hatle@windriver.com>, <flihp@twobit.us>
+References: <1523758104-25257-1-git-send-email-akuster@mvista.com>
+	<43b42f5a-57dd-2c82-92cc-ea2d742870b8@gmail.com>
+	<9c97d64c-07a4-7499-4a70-611d659d26d4@gmail.com>
+	<d7eb0b4a-e511-023c-3872-04b891bd0a4e@windriver.com>
+	<fd441792-54e6-e7a8-d6ce-f17f35de76a3@gmail.com>
+	<8fe4ffc7-4300-46c1-ae31-aee3861a66d6@windriver.com>
+	<20180514160956.njdfc4pycyd3snvl@mentor.com>
+From: Yi Zhao <yi.zhao@windriver.com>
+Message-ID: <eba96de4-51a4-0098-a5f9-62beec85ff22@windriver.com>
+Date: Wed, 15 Aug 2018 13:48:03 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.9.1
 MIME-Version: 1.0
-In-Reply-To: <9ADD3FDE8B189B4AA2F8A3C711F8155ECE46263B@FMSMSX112.amr.corp.intel.com>
-Subject: =?UTF-8?B?UmU6IFtPRS1jb3JlXSBZb2N0byBQcm9qZWN0IFN0YXR1cyBXVzMz4oCZMTg=?=
+In-Reply-To: <20180514160956.njdfc4pycyd3snvl@mentor.com>
+X-Originating-IP: [128.224.162.137]
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH] libselinux: python-importlib is now part of python*-core
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -128,1428 +52,397 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Aug 2018 23:25:03 -0000
+X-List-Received-Date: Wed, 15 Aug 2018 05:48:12 -0000
 Content-Type: multipart/alternative;
-	boundary="------------AFACE128A6DA0F3E1D3652A2"
+	boundary="------------997A5F58B8E5E5CB94C700F7"
 Content-Language: en-US
 
---------------AFACE128A6DA0F3E1D3652A2
-Content-Type: text/plain; charset=windows-1252
+--------------997A5F58B8E5E5CB94C700F7
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 
 
 
-On 08/14/2018 07:46 AM, Jolley, Stephen K wrote:
+Âú® 2018Âπ¥05Êúà15Êó• 00:09, Joe MacDonald ÂÜôÈÅì:
+> [Re: [yocto] [meta-selinux][PATCH] libselinux: python-importlib is now part of python*-core] On 18.05.14 (Mon 10:05) Mark Hatle wrote:
 >
-> Current Dev Position: YP 2.6 M3.
+>> On 5/11/18 1:19 PM, Rudolf J Streif wrote:
+>>> Thank you, Mark. Much appreciated and understood.
+>>>
+>>> Would you be open to tagging the layer for rocko to the right commit and
+>>> applying the patches sent to the mailing list by Armin and Kai to master
+>>> so that we have known points to move forward?
+>> I'm going to try to sync with Joe later today.  I'll make sure that we
+>> branch rocko..  If Joe can't get to the sumo work this week, I'll do
+>> my best to get it done.
+> Yeah, just keep everyone in the loop on this, Mark and I will
+> coordinate, I anticipate having the current meta-selinux queue cleaned
+> up this week.  I followed up last week to Armin indicating that I was
+> working on this, but as I'm sure anyone building meta-selinux right now
+> already knows, things are not happy there and corrective measures are
+> kind of involved.
 >
-> Next Deadline: YP 2.6 M3 Build Target is Aug. 27, 2018
->
-Thanks for the updates Steven.
->
-> †
->
-> SWAT Team Rotation:
->
-> ∑†††††††† SWAT lead is currently: Maxin
->
-> ∑†††††††† SWAT team rotation: Maxin -> Chen on Aug. 17, 2018
->
-> ∑†††††††† SWAT team rotation: Chen -> Paul on Aug. 24, 2018
->
-> ∑†††††††† https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
->
-> †
->
-> Key Status/Updates:
->
-> ∑†††††††† YP 2.6 M2 released on 8/10/18.
->
-> ∑†††††††† YP 2.5.1 is in QA. See
-> https://wiki.yoctoproject.org/wiki/2.5_QA_Status. †It is 98% complete
-> and should finish soon.
->
-> ∑†††††††† A summary of sstate usage was added to the initial build
-> output which gives numbers for the fraction of artefacts which are
-> being reused. We may need to tweak the presentation to the user but
-> its good information to provide and feedback on it is welcome.
->
-> ∑†††††††† Glibc 2.28 is proving to have a number of issues to
-> integrate including the significant size increase of its locale data,
-> creating locale archives is likely the way forward for images reducing
-> their size in core-image-lsb-sdk from ~900MB to ~220MB. The patches
-> remain -next whilst fixes for issues are confirmed.
->
-> ∑†††††††† Many other miscellaneous fixes were merged covering many
-> aspects of the system.
->
-> ∑†††††††† A potential DoS style issue was found in the bitbake
-> checksum code and in fixing it the improvement of the checksumming
-> code measurably improved (Thanks Ross!)
->
-Thanks Ross.
+> As for longer-term maintenance, meta-selinux and SELinux in general is
+> of particular interest to me personally, but much like Mark, I haven't
+> has as much time for the layer as it deserves lately, so if anyone wants
+> to volunteer to help out with it, by all means, let us know.
+Hi Joe, Mark and Philip
 
-> ∑†††††††† The sstate equivalency server work from Joshua/Garmin has
-> review still pending but the related persist_data improvements are
-> queued for merging.
->
-> ∑†††††††† The kernel-devsrc rework from Bruce/Windriver is pending
-> patch resubmission.
->
-> ∑†††††††† 2.4 (rocko) series stabilization continues for the next
-> point release 2.4.4
->
-> †
->
-> Planned Releases for YP 2.6:
->
-> ∑†††††††† YP 2.6 M3 Build Target is Aug. 27, 2018
->
-> ∑†††††††† YP 2.6 M3 Release Target is Sept. 7, 2018
->
-Is M3 feature freeze?
+I'm interested in this¬† and want to volunteer to help the meta-selinux 
+maintenance.¬† I have enough time to review and test the patches. There 
+are some pending patches from Wenzong which can not be merged into 
+master. Currently I'm working on them and will re-send them.
 
-- Armin
+Thanks,
+Yi
 
-> ∑†††††††† YP 2.6 M4 Build Target is Oct. 1, 2018
->
-> ∑†††††††† YP 2.6 M4 Release Target is Oct. 26, 2018
->
-> †
->
-> Planned upcoming dot releases:
->
-> ∑†††††††† YP 2.5.1 (Sumo) is in QA.
->
-> ∑†††††††† YP 2.4.4 (Rocko) will be targeted after YP 2.6 M4 is done.
->
-> ∑†††††††† YP 2.5.2 (Sumo) will be targeted after YP 2.4.4 is done.
->
-> †
->
-> Tracking Metrics:
->
-> ∑†††††††† WDD 2592 (last week
-> 2590)(https://wiki.yoctoproject.org/charts/combo.html)
->
-> ∑†††††††† Poky Patch Metrics †
->
-> o††† Total patches found: 1616 (last week 1608)
->
-> o††† Percentage of patches in the Pending State: 736 (46%) [last week
-> 730 (45%)]
->
 
-> †
 >
-> Key Status Links for YP:
->
-> https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.6_Status
->
-> https://wiki.yoctoproject.org/wiki/Yocto_2.6_Schedule
->
-> https://wiki.yoctoproject.org/wiki/Yocto_2.6_Features
->
-> †
->
-> The Status reports are now stored on the wiki at:
-> https://wiki.yoctoproject.org/wiki/Weekly_Status
->
-> †
->
-> [If anyone has suggestions for other information youíd like to see on
-> this weekly status update, let us know!]
->
-> †
 >
 > Thanks,
+> -J.
 >
-> †
+>> --Mark
+>>
+>>> Thank you,
+>>> Rudi
+>>>
+>>>
+>>> On 05/11/2018 10:45 AM, Mark Hatle wrote:
+>>>> On 5/11/18 12:28 PM, Rudolf J Streif wrote:
+>>>>> Echoing this: may I ask what the current maintenance status of
+>>>>> meta-selinux is. It appears that no updates have been made for more than
+>>>>> 9 months. This is of course not to blame anybody but out of concern that
+>>>>> the layer is falling behind even more and to find a solution.
+>>>> The answer is the current set of people are horribly overworked and busy, so
+>>>> day-to-day updates have been 'sparse'.
+>>>>
+>>>> Usually we update meta-selinux about the time of a release, and thus are due.
+>>>>
+>>>> The last update of meta-selinux was about the time of the Rocko release, so what
+>>>> is in master is definitely current as of Rocko.  (I did the last set of updates
+>>>> -- so I know it did work as of Rocko release.)  The master needs to be branched
+>>>> as Rocko... master needs to be updated to be Sumo compatible.
+>>>>
+>>>> My assumption is that once Sumo is formally released (any minute now), we'll
+>>>> collection all of the patches and get them into place and spend some time
+>>>> cleaning them up...
+>>>>
+>>>> It looks like Joe is already working through this effort.
+>>>>
+>>>> (Only speaking for myself,) I don't have time to do day-to-day maintenance of
+>>>> meta-selinux any longer -- nor do I have the indepth knowledge to understand
+>>>> when not to do something.  I filled this role purely out of necessity since
+>>>> nobody else was doing it.
+>>>>
+>>>> So with that said, if anyone wants to help, we're all open for help here...  I
+>>>> doubt there would be any objection to adding or replacing existing maintainers
+>>>> and/or giving more people push access.
+>>>>
+>>>>> In addition to Armin's patches there are two patches submitted by Kai
+>>>>> Kang at Windriver:
+>>>>>
+>>>>> * https://lists.yoctoproject.org/pipermail/yocto/2018-February/039917.html
+>>>>> * https://lists.yoctoproject.org/pipermail/yocto/2018-February/039918.html
+>>>>>
+>>>>> Curiously enough, the second patch has been applied to master but not
+>>>>> the first one.
+>>>>>
+>>>>>
+>>>>> There is also an issue with building SELinux with systemd. The layer
+>>>>> enables auditing:
+>>>>>
+>>>>> meta-selinux/classes/enable-audit.bbclass:PACKAGECONFIG[audit] =
+>>>>> "--enable-audit,--disable-audit,audit,"
+>>>>> meta-selinux/recipes-core/systemd/systemd_%.bbappend:inherit
+>>>>> ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'enable-audit', '', d)}
+>>>>>
+>>>>> Apparently the --enable-audit switch is passed to meson when running the
+>>>>> configure task, which meson does not appreciate. I am not that familiar
+>>>>> with the audit feature nor with meson, so I currently have no idea on
+>>>>> how to fix this the right way.
+>>>> audit feature is useful outside of selinux, so my understand was that audit
+>>>> itself was moving into core during the sumo time frame (if it hadn't already
+>>>> been oved.)
+>>>>
+>>>> I don't know anything about meson, so I can't speak to that...
+>>>>
+>>>>> Further, refpolicy_git does not build anymore as the YP specific patches
+>>>>> do not apply anymore since upstream changed.
+>>>> The refpolicy is and has always been crap.  I've been talking to a few people on
+>>>> IRC about working to replace the refpolicy with a policy that can be generated
+>>>> dynamically based on the contents of the recipes.  I don't know if that is
+>>>> really going to happen, but I hate the way it's currently implemented.
+>>>>
+>>>> One of the key issues about the refpolicy is that you need to be an expert at
+>>>> this (which I never claimed to be) in order to make any reasonable decision --
+>>>> add to that any specific policy needs to userstand overall system design, and I
+>>>> wouldn't trust any of the refpolicy items as they stand in meta-selinux.
+>>>>
+>>>> --Mark
+>>>>
+>>>>> Thanks,
+>>>>> Rudi
+>>>>>
+>>>>>
+>>>>>
+>>>>> On 05/07/2018 10:20 AM, akuster808 wrote:
+>>>>>> On 04/14/2018 07:08 PM, Armin Kuster wrote:
+>>>>>>> Missing or unbuildable dependency chain was: ['meta-world-pkgdata', 'restorecond', 'libselinux', 'python-importlib']
+>>>>>>>
+>>>>>>> Signed-off-by: Armin Kuster <akuster@mvista.com>
+>>>>>> ping
+>>>>>>> ---
+>>>>>>>   recipes-security/selinux/libselinux.inc | 2 +-
+>>>>>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>>>
+>>>>>>> diff --git a/recipes-security/selinux/libselinux.inc b/recipes-security/selinux/libselinux.inc
+>>>>>>> index bd5ce8d..51d0875 100644
+>>>>>>> --- a/recipes-security/selinux/libselinux.inc
+>>>>>>> +++ b/recipes-security/selinux/libselinux.inc
+>>>>>>> @@ -8,7 +8,7 @@ LICENSE = "PD"
+>>>>>>>   inherit lib_package pythonnative
+>>>>>>>   
+>>>>>>>   DEPENDS += "libsepol python libpcre swig-native"
+>>>>>>> -RDEPENDS_${PN}-python += "python-importlib"
+>>>>>>> +RDEPENDS_${PN}-python += "python-core"
+>>>>>>>   
+>>>>>>>   PACKAGES += "${PN}-python"
+>>>>>>>   FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
+>>>>>
+>>
 >
-> */Stephen K. Jolley/**//*
 >
-> *Yocto Project Program Manager*
->
-> *INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124 *
->
-> (††† *Cell*:††††††††††††††† (208) 244-4460
->
-> * *Email*:†††††††††††††††††††††††††††† _stephen.k.jolley@intel.com_
->
-> †
 >
 >
 >
 
 
---------------AFACE128A6DA0F3E1D3652A2
-Content-Type: text/html; charset=windows-1252
+--------------997A5F58B8E5E5CB94C700F7
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html;
-      charset=windows-1252">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body text="#000000" bgcolor="#FFFFFF">
     <p><br>
     </p>
     <br>
-    <div class="moz-cite-prefix">On 08/14/2018 07:46 AM, Jolley, Stephen
-      K wrote:<br>
+    <div class="moz-cite-prefix">Âú® 2018Âπ¥05Êúà15Êó• 00:09, Joe MacDonald ÂÜôÈÅì:<br>
     </div>
     <blockquote type="cite"
-cite="mid:9ADD3FDE8B189B4AA2F8A3C711F8155ECE46263B@FMSMSX112.amr.corp.intel.com">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:2 11 5 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:46497222;
-	mso-list-template-ids:-306775014;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:218398690;
-	mso-list-template-ids:-1491467040;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2
-	{mso-list-id:350036764;
-	mso-list-template-ids:646637278;}
-@list l2:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l2:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3
-	{mso-list-id:472867465;
-	mso-list-template-ids:-1177640642;}
-@list l3:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l3:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4
-	{mso-list-id:499544718;
-	mso-list-template-ids:274525736;}
-@list l4:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l4:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l4:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5
-	{mso-list-id:655375444;
-	mso-list-template-ids:1161988858;}
-@list l5:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l5:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l5:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6
-	{mso-list-id:821849258;
-	mso-list-template-ids:-172329626;}
-@list l6:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l6:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l6:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7
-	{mso-list-id:913274551;
-	mso-list-template-ids:956701084;}
-@list l7:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l7:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l7:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8
-	{mso-list-id:1506553632;
-	mso-list-template-ids:423005988;}
-@list l8:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l8:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l8:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9
-	{mso-list-id:1717243185;
-	mso-list-template-ids:-1609638740;}
-@list l9:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l9:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l9:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p style="margin:0in;margin-bottom:.0001pt"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current
-            Dev Position: YP 2.6 M3.</span><o:p></o:p></p>
-        <p style="margin:0in;margin-bottom:.0001pt"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next
-            Deadline: YP 2.6 M3 Build Target is Aug. 27, 2018</span></p>
-      </div>
+      cite="mid:20180514160956.njdfc4pycyd3snvl@mentor.com">
+      <pre wrap="">[Re: [yocto] [meta-selinux][PATCH] libselinux: python-importlib is now part of python*-core] On 18.05.14 (Mon 10:05) Mark Hatle wrote:
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">On 5/11/18 1:19 PM, Rudolf J Streif wrote:
+</pre>
+        <blockquote type="cite">
+          <pre wrap="">Thank you, Mark. Much appreciated and understood.
+
+Would you be open to tagging the layer for rocko to the right commit and
+applying the patches sent to the mailing list by Armin and Kai to master
+so that we have known points to move forward?
+</pre>
+        </blockquote>
+        <pre wrap="">
+I'm going to try to sync with Joe later today.  I'll make sure that we
+branch rocko..  If Joe can't get to the sumo work this week, I'll do
+my best to get it done.
+</pre>
+      </blockquote>
+      <pre wrap="">
+Yeah, just keep everyone in the loop on this, Mark and I will
+coordinate, I anticipate having the current meta-selinux queue cleaned
+up this week.  I followed up last week to Armin indicating that I was
+working on this, but as I'm sure anyone building meta-selinux right now
+already knows, things are not happy there and corrective measures are
+kind of involved.
+
+As for longer-term maintenance, meta-selinux and SELinux in general is
+of particular interest to me personally, but much like Mark, I haven't
+has as much time for the layer as it deserves lately, so if anyone wants
+to volunteer to help out with it, by all means, let us know.</pre>
     </blockquote>
-    Thanks for the updates Steven.<br>
-    <blockquote type="cite"
-cite="mid:9ADD3FDE8B189B4AA2F8A3C711F8155ECE46263B@FMSMSX112.amr.corp.intel.com">
-      <div class="WordSection1">
-        <p style="margin:0in;margin-bottom:.0001pt"><o:p></o:p></p>
-        <p class="MsoNormal"><o:p>†</o:p></p>
-        <p style="margin:0in;margin-bottom:.0001pt"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT
-            Team Rotation:</span><o:p></o:p></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l7
-          level1 lfo11;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT
-            lead is currently: Maxin<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l7
-          level1 lfo11;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT
-            team rotation: Maxin -&gt; Chen on Aug. 17, 2018<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l7
-          level1 lfo11;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT
-            team rotation: Chen -&gt; Paul on Aug. 24, 2018<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l7
-          level1 lfo11;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-            style="font-size:11.0pt;font-family:Consolas;color:black"><a
-href="https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team"
-              moz-do-not-send="true"><span style="color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif"><o:p>†</o:p></span></p>
-        <p style="margin:0in;margin-bottom:.0001pt"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key
-            Status/Updates:</span><o:p></o:p></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l8
-          level1 lfo12;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP
-            2.6 M2 released on 8/10/18.
-            <o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l8
-          level1 lfo12;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP
-            2.5.1 is in QA. See
-            <a href="https://wiki.yoctoproject.org/wiki/2.5_QA_Status"
-              moz-do-not-send="true"><span style="color:#1155CC">https://wiki.yoctoproject.org/wiki/2.5_QA_Status</span></a>.
-            †It is 98% complete and should finish soon.<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l8
-          level1 lfo12;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">A
-            summary of sstate usage was added to the initial build
-            output which gives numbers for the fraction of artefacts
-            which are being reused. We may need to tweak the
-            presentation to the user but its good information to provide
-            and feedback on it is welcome.<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l8
-          level1 lfo12;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Glibc
-            2.28 is proving to have a number of issues to integrate
-            including the significant size increase of its locale data,
-            creating locale archives is likely the way forward for
-            images reducing their size in core-image-lsb-sdk from ~900MB
-            to ~220MB. The patches remain -next whilst fixes for issues
-            are confirmed.<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l8
-          level1 lfo12;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Many
-            other miscellaneous fixes were merged covering many aspects
-            of the system.<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l8
-          level1 lfo12;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">A
-            potential DoS style issue was found in the bitbake checksum
-            code and in fixing it the improvement of the checksumming
-            code measurably improved (Thanks Ross!)</span></p>
-      </div>
-    </blockquote>
-    Thanks Ross.<br>
+    Hi Joe, Mark and Philip<br>
+    <br>
+    I'm interested in this¬† and want to volunteer to help the
+    meta-selinux maintenance.¬† I have enough time to review and test the
+    patches. There are some pending patches from Wenzong which can not
+    be merged into master. Currently I'm working on them and will
+    re-send them.<br>
+    <br>
+    Thanks,<br>
+    Yi<br>
+    <br>
     <br>
     <blockquote type="cite"
-cite="mid:9ADD3FDE8B189B4AA2F8A3C711F8155ECE46263B@FMSMSX112.amr.corp.intel.com">
-      <div class="WordSection1">
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l8
-          level1 lfo12;vertical-align:baseline"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l8
-          level1 lfo12;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">The
-            sstate equivalency server work from Joshua/Garmin has review
-            still pending but the related persist_data improvements are
-            queued for merging.<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l8
-          level1 lfo12;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">The
-            kernel-devsrc rework from Bruce/Windriver is pending patch
-            resubmission.<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l8
-          level1 lfo12;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">2.4
-            (rocko) series stabilization continues for the next point
-            release 2.4.4<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif"><o:p>†</o:p></span></p>
-        <p style="margin:0in;margin-bottom:.0001pt"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Planned
-            Releases for YP 2.6:</span><o:p></o:p></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l9
-          level1 lfo13;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP
-            2.6 M3 Build Target is Aug. 27, 2018<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l9
-          level1 lfo13;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP
-            2.6 M3 Release Target is Sept. 7, 2018</span></p>
-      </div>
-    </blockquote>
-    Is M3 feature freeze?<br>
-    <br>
-    - Armin<br>
-    <br>
-    <blockquote type="cite"
-cite="mid:9ADD3FDE8B189B4AA2F8A3C711F8155ECE46263B@FMSMSX112.amr.corp.intel.com">
-      <div class="WordSection1">
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l9
-          level1 lfo13;vertical-align:baseline"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l9
-          level1 lfo13;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP
-            2.6 M4 Build Target is Oct. 1, 2018<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l9
-          level1 lfo13;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP
-            2.6 M4 Release Target is Oct. 26, 2018<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif"><o:p>†</o:p></span></p>
-        <p style="margin:0in;margin-bottom:.0001pt"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Planned
-            upcoming dot releases:</span><o:p></o:p></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l6
-          level1 lfo14;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP
-            2.5.1 (Sumo) is in QA.<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l6
-          level1 lfo14;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP
-            2.4.4 (Rocko) will be targeted after YP 2.6 M4 is done.<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l6
-          level1 lfo14;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP
-            2.5.2 (Sumo) will be targeted after YP 2.4.4 is done.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif"><o:p>†</o:p></span></p>
-        <p style="margin:0in;margin-bottom:.0001pt"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking
-            Metrics:</span><o:p></o:p></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2
-          level1 lfo15;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">WDD
-            2592 (last week 2590)</span><span
-            style="font-size:11.0pt;font-family:Consolas;color:black"> (</span><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><a
-              href="https://wiki.yoctoproject.org/charts/combo.html"
-              moz-do-not-send="true"><span style="color:#1155CC">https://wiki.yoctoproject.org/charts/combo.html</span></a></span><span
-            style="font-size:11.0pt;font-family:Consolas;color:black">)</span><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"><o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2
-          level1 lfo15;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:Symbol;color:black"><span
-              style="mso-list:Ignore">∑<span style="font:7.0pt
-                &quot;Times New Roman&quot;">††††††††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Poky
-            Patch Metrics †</span><span
-            style="font-size:11.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2
-          level2 lfo15;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:&quot;Courier
-            New&quot;;color:black"><span style="mso-list:Ignore">o<span
-                style="font:7.0pt &quot;Times New Roman&quot;">†††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Total
-            patches found: 1616 (last week 1608)<o:p></o:p></span></p>
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2
-          level2 lfo15;vertical-align:baseline">
-          <!--[if !supportLists]--><span
-            style="font-size:10.0pt;font-family:&quot;Courier
-            New&quot;;color:black"><span style="mso-list:Ignore">o<span
-                style="font:7.0pt &quot;Times New Roman&quot;">†††
-              </span></span></span><!--[endif]--><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Percentage
-            of patches in the Pending State: 736 (46%) [last week 730
-            (45%)]</span></p>
-      </div>
-    </blockquote>
-    <br>
-    <blockquote type="cite"
-cite="mid:9ADD3FDE8B189B4AA2F8A3C711F8155ECE46263B@FMSMSX112.amr.corp.intel.com">
-      <div class="WordSection1">
-        <p
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margin-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2
-          level2 lfo15;vertical-align:baseline"><span
-            style="font-size:11.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif"><o:p>†</o:p></span></p>
-        <p style="margin:0in;margin-bottom:.0001pt"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key
-            Status Links for YP:</span><o:p></o:p></p>
-        <p style="margin:0in;margin-bottom:.0001pt"><a
-            href="https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.6_Status"
-            moz-do-not-send="true"><span
-              style="font-size:11.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.6_Status</span></a><o:p></o:p></p>
-        <p style="margin:0in;margin-bottom:.0001pt"><a
-            href="https://wiki.yoctoproject.org/wiki/Yocto_2.6_Schedule"
-            moz-do-not-send="true"><span
-              style="font-size:11.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.6_Schedule</span></a><o:p></o:p></p>
-        <p style="margin:0in;margin-bottom:.0001pt"><a
-            href="https://wiki.yoctoproject.org/wiki/Yocto_2.6_Features"
-            moz-do-not-send="true"><span
-              style="font-size:11.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.6_Features</span></a><o:p></o:p></p>
-        <p class="MsoNormal"><o:p>†</o:p></p>
-        <p style="margin:0in;margin-bottom:.0001pt"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">The
-            Status reports are now stored on the wiki at:
-          </span><a
-            href="https://wiki.yoctoproject.org/wiki/Weekly_Status"
-            moz-do-not-send="true"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.yoctoproject.org/wiki/Weekly_Status</span></a><o:p></o:p></p>
-        <p class="MsoNormal"><o:p>†</o:p></p>
-        <p style="margin:0in;margin-bottom:.0001pt"><span
-style="font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">[If
-            anyone has suggestions for other information youíd like to
-            see on this weekly status update, let us know!]</span><o:p></o:p></p>
-        <p class="MsoNormal"><span
-            style="font-family:&quot;Arial&quot;,sans-serif"><o:p>†</o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-family:&quot;Arial&quot;,sans-serif">Thanks,<o:p></o:p></span></p>
-        <p class="MsoNormal"><o:p>†</o:p></p>
-        <p class="MsoNormal"
-          style="page-break-after:avoid;text-autospace:none"><b><i><span
-                style="font-size:16.0pt;font-family:&quot;Times New
-                Roman&quot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span
-style="font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple"><o:p></o:p></span></i></b></p>
-        <p class="MsoNormal"><b><span
-              style="font-size:8.0pt;font-family:&quot;Courier
-              New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></span></b></p>
-        <p class="MsoNormal"
-          style="page-break-after:avoid;text-autospace:none"><b><span
-              style="font-size:10.0pt;font-family:&quot;Courier
-              New&quot;;color:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th
-              Avenue, Hillsboro, OR 97124
-              <o:p></o:p></span></b></p>
-        <p class="MsoNormal"><span
-            style="font-size:9.0pt;font-family:Wingdings;color:black">(</span><span
-            style="font-size:9.0pt;font-family:&quot;MS Sans
-            Serif&quot;;color:teal">†††
-          </span><b><span style="font-size:8.0pt;font-family:&quot;Comic
-              Sans MS&quot;;color:teal">Cell</span></b><span
-            style="font-size:9.0pt;font-family:&quot;MS Sans
-            Serif&quot;;color:teal">:†††††††††††††††
-          </span><span style="font-size:9.0pt;font-family:&quot;MS Sans
-            Serif&quot;">(208) 244-4460<span style="color:black"><o:p></o:p></span></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:9.0pt;font-family:Wingdings">* </span>
-          <b><span style="font-size:8.0pt;font-family:&quot;Comic Sans
-              MS&quot;;color:teal" lang="FR">Email</span></b><span
-            style="font-size:9.0pt;font-family:&quot;MS Sans
-            Serif&quot;;color:teal" lang="FR">:</span><span
-            style="font-size:9.0pt;font-family:&quot;MS Sans
-            Serif&quot;" lang="FR">††††††††††††††††††††††††††††
-            <u><span style="color:blue"><a class="moz-txt-link-abbreviated" href="mailto:stephen.k.jolley@intel.com">stephen.k.jolley@intel.com</a></span></u></span><span
-style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif"
-            lang="FR"><o:p></o:p></span></p>
-        <p class="MsoNormal"><o:p>†</o:p></p>
-      </div>
+      cite="mid:20180514160956.njdfc4pycyd3snvl@mentor.com">
+      <pre wrap="">
+
+
+Thanks,
+-J.
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">
+--Mark
+
+</pre>
+        <blockquote type="cite">
+          <pre wrap="">Thank you,
+Rudi
+
+
+On 05/11/2018 10:45 AM, Mark Hatle wrote:
+</pre>
+          <blockquote type="cite">
+            <pre wrap="">On 5/11/18 12:28 PM, Rudolf J Streif wrote:
+</pre>
+            <blockquote type="cite">
+              <pre wrap="">Echoing this: may I ask what the current maintenance status of
+meta-selinux is. It appears that no updates have been made for more than
+9 months. This is of course not to blame anybody but out of concern that
+the layer is falling behind even more and to find a solution.
+</pre>
+            </blockquote>
+            <pre wrap="">The answer is the current set of people are horribly overworked and busy, so
+day-to-day updates have been 'sparse'.
+
+Usually we update meta-selinux about the time of a release, and thus are due.
+
+The last update of meta-selinux was about the time of the Rocko release, so what
+is in master is definitely current as of Rocko.  (I did the last set of updates
+-- so I know it did work as of Rocko release.)  The master needs to be branched
+as Rocko... master needs to be updated to be Sumo compatible.
+
+My assumption is that once Sumo is formally released (any minute now), we'll
+collection all of the patches and get them into place and spend some time
+cleaning them up...
+
+It looks like Joe is already working through this effort.
+
+(Only speaking for myself,) I don't have time to do day-to-day maintenance of
+meta-selinux any longer -- nor do I have the indepth knowledge to understand
+when not to do something.  I filled this role purely out of necessity since
+nobody else was doing it.
+
+So with that said, if anyone wants to help, we're all open for help here...  I
+doubt there would be any objection to adding or replacing existing maintainers
+and/or giving more people push access.
+
+</pre>
+            <blockquote type="cite">
+              <pre wrap="">In addition to Armin's patches there are two patches submitted by Kai
+Kang at Windriver:
+
+* <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/pipermail/yocto/2018-February/039917.html">https://lists.yoctoproject.org/pipermail/yocto/2018-February/039917.html</a>
+* <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/pipermail/yocto/2018-February/039918.html">https://lists.yoctoproject.org/pipermail/yocto/2018-February/039918.html</a>
+
+Curiously enough, the second patch has been applied to master but not
+the first one.
+
+
+There is also an issue with building SELinux with systemd. The layer
+enables auditing:
+
+meta-selinux/classes/enable-audit.bbclass:PACKAGECONFIG[audit] =
+"--enable-audit,--disable-audit,audit,"
+meta-selinux/recipes-core/systemd/systemd_%.bbappend:inherit
+${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'enable-audit', '', d)}
+
+Apparently the --enable-audit switch is passed to meson when running the
+configure task, which meson does not appreciate. I am not that familiar
+with the audit feature nor with meson, so I currently have no idea on
+how to fix this the right way.
+</pre>
+            </blockquote>
+            <pre wrap="">audit feature is useful outside of selinux, so my understand was that audit
+itself was moving into core during the sumo time frame (if it hadn't already
+been oved.)
+
+I don't know anything about meson, so I can't speak to that...
+
+</pre>
+            <blockquote type="cite">
+              <pre wrap="">Further, refpolicy_git does not build anymore as the YP specific patches
+do not apply anymore since upstream changed.
+</pre>
+            </blockquote>
+            <pre wrap="">The refpolicy is and has always been crap.  I've been talking to a few people on
+IRC about working to replace the refpolicy with a policy that can be generated
+dynamically based on the contents of the recipes.  I don't know if that is
+really going to happen, but I hate the way it's currently implemented.
+
+One of the key issues about the refpolicy is that you need to be an expert at
+this (which I never claimed to be) in order to make any reasonable decision --
+add to that any specific policy needs to userstand overall system design, and I
+wouldn't trust any of the refpolicy items as they stand in meta-selinux.
+
+--Mark
+
+</pre>
+            <blockquote type="cite">
+              <pre wrap="">Thanks,
+Rudi
+
+
+
+On 05/07/2018 10:20 AM, akuster808 wrote:
+</pre>
+              <blockquote type="cite">
+                <pre wrap="">On 04/14/2018 07:08 PM, Armin Kuster wrote:
+</pre>
+                <blockquote type="cite">
+                  <pre wrap="">Missing or unbuildable dependency chain was: ['meta-world-pkgdata', 'restorecond', 'libselinux', 'python-importlib']
+
+Signed-off-by: Armin Kuster <a class="moz-txt-link-rfc2396E" href="mailto:akuster@mvista.com">&lt;akuster@mvista.com&gt;</a>
+</pre>
+                </blockquote>
+                <pre wrap="">ping
+</pre>
+                <blockquote type="cite">
+                  <pre wrap="">---
+ recipes-security/selinux/libselinux.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-security/selinux/libselinux.inc b/recipes-security/selinux/libselinux.inc
+index bd5ce8d..51d0875 100644
+--- a/recipes-security/selinux/libselinux.inc
++++ b/recipes-security/selinux/libselinux.inc
+@@ -8,7 +8,7 @@ LICENSE = "PD"
+ inherit lib_package pythonnative
+ 
+ DEPENDS += "libsepol python libpcre swig-native"
+-RDEPENDS_${PN}-python += "python-importlib"
++RDEPENDS_${PN}-python += "python-core"
+ 
+ PACKAGES += "${PN}-python"
+ FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
+</pre>
+                </blockquote>
+              </blockquote>
+              <pre wrap="">
+
+</pre>
+            </blockquote>
+          </blockquote>
+          <pre wrap="">
+</pre>
+        </blockquote>
+        <pre wrap="">
+
+</pre>
+      </blockquote>
+      <pre wrap="">
+
+
+
+</pre>
       <br>
       <fieldset class="mimeAttachmentHeader"></fieldset>
       <br>
@@ -1558,4 +451,4 @@ style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif"
   </body>
 </html>
 
---------------AFACE128A6DA0F3E1D3652A2--
+--------------997A5F58B8E5E5CB94C700F7--
