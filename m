@@ -1,71 +1,52 @@
-Return-Path: <matthias.schoepfer@googlemail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4015E007D1; Thu, 16 Aug 2018 07:20:31 -0700 (PDT)
+	id D6FD1E009AC; Thu, 16 Aug 2018 07:54:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (matthias.schoepfer[at]googlemail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.44 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
-	[209.85.208.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DB85E006B4
-	for <yocto@yoctoproject.org>; Thu, 16 Aug 2018 07:20:30 -0700 (PDT)
-Received: by mail-ed1-f44.google.com with SMTP id h1-v6so2782352eds.1
-	for <yocto@yoctoproject.org>; Thu, 16 Aug 2018 07:20:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20161025;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-language;
-	bh=oKS7gGXaLP2CIvUEsblW2Qa4M8RaxewxA3T7z/7Q5lA=;
-	b=TeaOPsk+50Gk5F193t58XSjrHv9gSjQPMcocCbcwnptoLDxJqO2DtibKGDbtD2hBSW
-	a68KtpSNnZY4XOe+y2pO9RGxo3fMhRCnY381EvK2p13HVMFO4L0FLfMa4ReWL+BSI3j2
-	BZ4bwf6kyvUCxxmItXYZqd6mQ51Eo67WRama2A60+S/Dwg5t8Qjf5lh7DeQZsfKjLqfB
-	2qEe8k7h3YFjacnkyi1hPJHNCl6+KeVp19f4DQBhCKMqKK9yAbQ4hcxUQwD9nGveuU02
-	jADZZv1A5Oky50WKYLPzIS5aRVUYivhEpTY5tpBlA8nUy9NLbuIqUKPAT74DaZUlpchW
-	UbWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-language;
-	bh=oKS7gGXaLP2CIvUEsblW2Qa4M8RaxewxA3T7z/7Q5lA=;
-	b=G7zB7BMQs9yjanxLj4KvWTvRh9iWcInSSrO8SClgM4VY89w6sJOa7l9HjFfl505E2+
-	hJHrKGQ8jAp8pLlYYSg57O/e77mc1YdYVGeQ/1u4acONh4JFcxiPxbOmyU3+WGZWRFnZ
-	T00b+pqW+BCNxQTe96XN5SBeD2X0kaYpnBFGfIPG4RvMloupWQQ+YPLZP12FSjjPUH93
-	+3nO/eyhBt73rNxujIzqw1HrHwZmN7kzNcNkcUhXSEJM6qNga1Ig0M0Utb6UzZCmnflM
-	riR+GtBsktdlq/BtOq+WLy9pXBwFs8WU71In+TwxdezhTDjXUOZXZmCuopOYn+rDYG2P
-	Tbgw==
-X-Gm-Message-State: AOUpUlHGqu5oMOSD6Vl3OeEpXUZ/mmYoESKlLpNiIL4BEXYvBr7phCkn
-	isZcnraAkl1dadtIzQXe4qyqmPEb
-X-Google-Smtp-Source: AA+uWPwLJVV+Mejga2Ei4ru5fO/Ce15Rg9Fh/Ci17p+nckcpfSdnSqOOiOkBsneEUWRKVTWeI9Cq1g==
-X-Received: by 2002:aa7:c910:: with SMTP id
-	b16-v6mr38702196edt.22.1534429229922; 
-	Thu, 16 Aug 2018 07:20:29 -0700 (PDT)
-Received: from [172.16.100.122] ([213.168.66.146])
-	by smtp.gmail.com with ESMTPSA id
-	x8-v6sm486260edr.24.2018.08.16.07.20.29 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 16 Aug 2018 07:20:29 -0700 (PDT)
-To: yocto@yoctoproject.org
-From: Matthias Schoepfer <matthias.schoepfer@googlemail.com>
-Message-ID: <634408b8-bb9e-2f06-2633-9b53ff1c568a@googlemail.com>
-Date: Thu, 16 Aug 2018 16:20:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AEB3E006B4
+	for <yocto@yoctoproject.org>; Thu, 16 Aug 2018 07:54:22 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	16 Aug 2018 07:54:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.53,247,1531810800"; d="scan'208,217";a="81904163"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by fmsmga001.fm.intel.com with ESMTP; 16 Aug 2018 07:54:12 -0700
+Received: from fmsmsx118.amr.corp.intel.com (10.18.116.18) by
+	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Thu, 16 Aug 2018 07:54:11 -0700
+Received: from fmsmsx112.amr.corp.intel.com ([169.254.5.84]) by
+	fmsmsx118.amr.corp.intel.com ([169.254.1.229]) with mapi id
+	14.03.0319.002; Thu, 16 Aug 2018 07:54:11 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Weekly Triage Meeting
+Thread-Index: AdQv7Q7wNovej6fHQXiJQF600pkyhw==
+Date: Thu, 16 Aug 2018 14:54:11 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECE466243@FMSMSX112.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMDgyOWZhOGItZmI2Zi00NDU3LWJlMDMtOGM4N2U1YjIxMjE2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiOGlid2JJMkxtVmZhUU5KREdod3l4QUMrbHp0cjNJa0FuY3NTQVpGbnpGUU90OGJRUWduUDBRNXR0b25jR0hBdSJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
 MIME-Version: 1.0
-Subject: sumo missing recipe for kernel 4.4
+Subject: Minutes: Yocto Project Weekly Triage Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,67 +58,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Aug 2018 14:20:31 -0000
-X-Groupsio-MsgNum: 42169
-Content-Type: multipart/mixed; boundary="------------B2E478A9FC77E44D83FD8D6A"
+X-List-Received-Date: Thu, 16 Aug 2018 14:54:23 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECE466243FMSMSX112amrcor_"
 
---------------B2E478A9FC77E44D83FD8D6A
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECE466243FMSMSX112amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi!
+QXR0ZW5kZWVzOiBBcm1pbiwgU3RlcGhlbiwgQW1hbmRhLCBKb3NodWEsIFJpY2hhcmQsIFJhbmR5
+LCBEYXZpZCwgQW51aiwNCg0KV2lraTogaHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lr
+aS9CdWdfVHJpYWdlDQoNCkFSOiBQYXVsIOKAkyBSZXZpZXcgYW5kIHVwZGF0ZSAxMjEwMjxodHRw
+czovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTEyMTAyPg0KDQpU
+aGFua3MsDQoNClN0ZXBoZW4gSy4gSm9sbGV5DQpZb2N0byBQcm9qZWN0IFByb2dyYW0gTWFuYWdl
+cg0KSU5URUwsIE1TIEpGMS0yNTUsIDIxMTEgTi5FLiAyNXRoIEF2ZW51ZSwgSGlsbHNib3JvLCBP
+UiA5NzEyNA0K4oCiICAgIENlbGw6ICAgICAgICAgICAgICAoMjA4KSAyNDQtNDQ2MA0K4oCiIEVt
+YWlsOiAgICAgICAgICAgICAgICBzdGVwaGVuLmsuam9sbGV5QGludGVsLmNvbQ0KDQoNCg==
 
-I might be a little late to the party but ... what is the rational
-behind removing kernel recipe for kernel 4.4 from sumo (and later). This
-is *the* kernel with the longest support as of now. When building an
-embedded system that needs updates for quite some years, I would go with
-4.4 right now...
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECE466243FMSMSX112amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Just wondering...
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
+dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
+LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
+ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
+PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
+Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+QXR0ZW5kZWVzOiBBcm1pbiwgU3RlcGhlbiwgQW1h
+bmRhLCBKb3NodWEsIFJpY2hhcmQsIFJhbmR5LCBEYXZpZCwgQW51aiwgPC9zcGFuPjwvZm9udD48
+L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0Qi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+
+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5XaWtpOiA8YSBocmVmPSJodHRwczovL3dpa2kueW9j
+dG9wcm9qZWN0Lm9yZy93aWtpL0J1Z19UcmlhZ2UiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT5o
+dHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL0J1Z19UcmlhZ2U8L3U+PC9mb250Pjwv
+YT48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIy
+IiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9z
+cGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29s
+b3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPkFSOiBQYXVsIOKAkyBS
+ZXZpZXcgYW5kIHVwZGF0ZSA8YSBocmVmPSJodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5v
+cmcvc2hvd19idWcuY2dpP2lkPTEyMTAyIj48Zm9udCBjb2xvcj0iIzA1NjNDMSI+PHU+MTIxMDI8
+L3U+PC9mb250PjwvYT48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxp
+YnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0
+OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIg
+c2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPlRo
+YW5rcyw8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXpl
+PSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7
+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgc2l6ZT0iNCIgY29sb3I9InB1cnBsZSI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxNnB0OyI+PGI+PGk+U3RlcGhlbiBLLiBKb2xsZXk8L2k+
+PC9iPjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNvdXJpZXIgTmV3IiBz
+aXplPSIxIiBjb2xvcj0iYmx1ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo4cHQ7Ij48Yj5Zb2N0
+byBQcm9qZWN0IFByb2dyYW0gTWFuYWdlcjwvYj48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48
+Zm9udCBmYWNlPSJDb3VyaWVyIE5ldyIgc2l6ZT0iMiIgY29sb3I9ImZ1Y2hzaWEiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTBwdDsiPjxiPklOVEVMLCBNUyBKRjEtMjU1LCAyMTExIE4uRS4gMjV0
+aCBBdmVudWUsIEhpbGxzYm9ybywgT1IgOTcxMjQgPC9iPjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8
+ZGl2Pjxmb250IHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OXB0OyI+PGZvbnQgZmFj
+ZT0iV2luZ2RpbmdzIj4oPC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9yPSJ0
+ZWFsIj4mbmJzcDsmbmJzcDsmbmJzcDsgPC9mb250Pjxmb250IGZhY2U9IkNvbWljIFNhbnMgTVMi
+IHNpemU9IjEiIGNvbG9yPSJ0ZWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjhwdDsiPjxiPkNl
+bGw8L2I+PC9zcGFuPjwvZm9udD48Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0idGVh
+bCI+OiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOw0KPC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2Vy
+aWYiIGNvbG9yPSIjMUY0OTdEIj4oMjA4KSAyNDQtNDQ2MDwvZm9udD48L3NwYW4+PC9mb250Pjwv
+ZGl2Pg0KPGRpdj48Zm9udCBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZTo5cHQ7Ij48Zm9udCBmYWNlPSJXaW5nZGluZ3MiPiogPC9mb250Pjxmb250IGZhY2U9
+IkNvbWljIFNhbnMgTVMiIHNpemU9IjEiIGNvbG9yPSJ0ZWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjhwdDsiPjxiPkVtYWlsPC9iPjwvc3Bhbj48L2ZvbnQ+PGZvbnQgZmFjZT0iTVMgU2FucyBT
+ZXJpZiIgY29sb3I9InRlYWwiPjombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsNCjwv
+Zm9udD48Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0iYmx1ZSI+PHU+c3RlcGhlbi5r
+LmpvbGxleUBpbnRlbC5jb208L3U+PC9mb250Pjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxm
+b250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBm
+YWNlPSJDYWxpYnJpIiBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJz
+cDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPC9zcGFuPjwvZm9udD4NCjwvYm9keT4NCjwvaHRtbD4N
+Cg==
 
-Regards,
-
-=C2=A0=C2=A0 Matthias
-
-
---------------B2E478A9FC77E44D83FD8D6A
-Content-Type: application/pgp-keys;
- name="pEpkey.asc"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: attachment;
- filename="pEpkey.asc"
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-mQENBFtGITgBCAC91l+KbxaKKHBzO/KzwcQ3SJhPm2BXfnXX9DMX2qK9d1m6qXrJ
-l465gSIsMPdSzaar/u9ZSlQJ1SQuhwLUXDEX1omH3UVArFhQQSaYOk+98lgzo/AW
-Xsh77fKy2idzlVGy685E3phqYUE35g9FgO11vbTPKqVzqfdFZtJa2KnpnbU0n12S
-jtYeD4ziZQR4nYa2h8/DrotA4dMaf8HkYbptC9i8bT0aAn2YYIRFNhVamN14La8l
-33qKB7ZoTah3Q9YPaefZ7hXPkR0Rt93oETkhwUq03SAPXypV86mtvFvAE4bZZkDv
-M7XBkSKs8KqxTnFUXGJBUJghmAKu9+uot6NBABEBAAG0RW1hdHRoaWFzLnNjaG9l
-cGZlckBnb29nbGVtYWlsLmNvbSA8bWF0dGhpYXMuc2Nob2VwZmVyQGdvb2dsZW1h
-aWwuY29tPokBVAQTAQgAPhYhBCh5MQUlF0JdgUEzOBhFS+UIjAUQBQJbRiE5AhsD
-BQkB4TOABQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEBhFS+UIjAUQrLcH/3Sb
-IWoUOGx9iy1fVNuSAkF1SFMJn11qrQPxrhHe4pc0jaLQSmnFwvsv2POuqSud+Lj8
-BShgyfpbetdgDJVbORhmqRP+TGGDP0iT3b2/b+Aw027Wljt18HKOCw28GQx+OYxA
-Y3DOK34aJNQq3+7ZvZM7lanc+ZutcfDFWo/FxMj3gXaZZ2SSsRrhyjYC+FaUguYM
-5QtyLaOJSpgviPdZWh1Lsp0AVyX9PCT2+PoFvt71YHja7zYFImiRHi7YDHsJaWWO
-XzXRSG3hWN256NRbU+g0UeD6DFT42RpabmnAXG/BDfQJEaH9P80RE+1214q1RKhG
-zwNMTBmiJj3a/7BjGgi5AQ0EW0YhOQEIAL4RfL8Ggghnz0K2Pb2c1WzSaSHULk5H
-gg2bctg0RAfH6peOJfX0zFKM82nwvSd5R+N6m2Y4ZgB39nI914DmbFjljqXCNduz
-+5PGbm4gkw8JYkSP6tctcyA5HfSkKEu7CzNG+gYfWjC5mxQmFmmUwEhvEJe3cSnk
-jrOJzboFuMPoP3XMpA2WXpSLxcEd65Y+493jRZybvfmuu9A4ZGOMFnewLV+eQP5R
-l5EGXLVNLJAUD72VOPezOtdAbzVx1iPnN+qk6KzqWYDXjzHxfI8o3+lECypBD3/q
-Q5xK2JhmfRusRTjVxB+Gxe5arFy4iPspWPhOKfNHbRptMecOGnQzBb8AEQEAAYkB
-PAQYAQgAJhYhBCh5MQUlF0JdgUEzOBhFS+UIjAUQBQJbRiE5AhsMBQkB4TOAAAoJ
-EBhFS+UIjAUQWUkIALI+fZIAWzvWu/kC3X/a5v5VvW+YHywnibZUHTlCaf5Et12+
-r9gxgCxdBOHLfP1Xx8uh+NhkZP0+IgrDK/dHReynlDCYLb4F810HitApJSr/4ZRk
-K1zLPW529PTOw+mGby2Kkc2L3kxKGepMFbo9zBMzdDNvLCVEXoUnEBq6ER/HhiKu
-+/3KzSd8RXXDxgYEj+jCIixVMThUM84jpPC3b0GeY3Uf7puVyZLLWgE1JKeAVW/d
-T84NrT/InD+n+HXvjQ53pbNeM2gMN7MyAzypLrJJVf/EvCs0VcqMF70VXr9AFiYZ
-AHpNeVoSTfZcx4z2jIsZc9OY7k5vcXNEHWToQQA=3D
-=3DGeio
------END PGP PUBLIC KEY BLOCK-----
-
---------------B2E478A9FC77E44D83FD8D6A--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECE466243FMSMSX112amrcor_--
