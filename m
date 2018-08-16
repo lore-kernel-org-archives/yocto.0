@@ -1,65 +1,71 @@
-Return-Path: <dhanush.ks@gmail.com>
+Return-Path: <matthias.schoepfer@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 279E8E00566; Thu, 16 Aug 2018 00:52:43 -0700 (PDT)
+	id A4015E007D1; Thu, 16 Aug 2018 07:20:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	SUBJ_ALL_CAPS,WEIRD_PORT autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (dhanush.ks[at]gmail.com)
+	mail provider *      (matthias.schoepfer[at]googlemail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.220.170 listed in list.dnswl.org]
-	*  1.5 SUBJ_ALL_CAPS Subject is all capitals
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+	*      [209.85.208.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f170.google.com (mail-qk0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7F26E003D7
-	for <yocto@yoctoproject.org>; Thu, 16 Aug 2018 00:52:42 -0700 (PDT)
-Received: by mail-qk0-f170.google.com with SMTP id z78-v6so533774qka.0
-	for <yocto@yoctoproject.org>; Thu, 16 Aug 2018 00:52:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=jgA+vUiov4EivEGPWM/x0aXBy8PMCPsfTZOq+PhphYw=;
-	b=OIIyKRzbMHMu+B9DA2j+EqbT5pmFg0lEwW4OvHhBftHSLEAwee4NiscdqrsZRnXf4+
-	YU6tujNWA6oZwlHnzyXOeEJ/zFRMAouZ7SMu/VcSzy8SNn7Pyt73GIrNqIHvYMr0Y3np
-	7pkL0SGn0s2jIYNZEtve6crm4c4iKIgsPpzgPM2ZjF/p2WeZf/kC0oCpsPZl6YLzWV2O
-	9Qs6cqFP9Uzz13FKcDzVLqbWhNTID7UUfoOxMWLxcg57p7lEGBJ3jEwOw41mkWUZYX5Z
-	wEGYIzT6ZDQPhyDMHdihkyzXj8PdararzYHFaHAKlZLW+ymv6pAwiyJfxDS8OBSKIqGN
-	BlJg==
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
+	[209.85.208.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DB85E006B4
+	for <yocto@yoctoproject.org>; Thu, 16 Aug 2018 07:20:30 -0700 (PDT)
+Received: by mail-ed1-f44.google.com with SMTP id h1-v6so2782352eds.1
+	for <yocto@yoctoproject.org>; Thu, 16 Aug 2018 07:20:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20161025;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-language;
+	bh=oKS7gGXaLP2CIvUEsblW2Qa4M8RaxewxA3T7z/7Q5lA=;
+	b=TeaOPsk+50Gk5F193t58XSjrHv9gSjQPMcocCbcwnptoLDxJqO2DtibKGDbtD2hBSW
+	a68KtpSNnZY4XOe+y2pO9RGxo3fMhRCnY381EvK2p13HVMFO4L0FLfMa4ReWL+BSI3j2
+	BZ4bwf6kyvUCxxmItXYZqd6mQ51Eo67WRama2A60+S/Dwg5t8Qjf5lh7DeQZsfKjLqfB
+	2qEe8k7h3YFjacnkyi1hPJHNCl6+KeVp19f4DQBhCKMqKK9yAbQ4hcxUQwD9nGveuU02
+	jADZZv1A5Oky50WKYLPzIS5aRVUYivhEpTY5tpBlA8nUy9NLbuIqUKPAT74DaZUlpchW
+	UbWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=jgA+vUiov4EivEGPWM/x0aXBy8PMCPsfTZOq+PhphYw=;
-	b=l/TYxpnwhXb+r7Is1cJ8R8reVexunHlcJckyeRRoSg28hm3uVn2fCXaJ+gvEjAfeEb
-	3/celMuoJVwaLClkdne6u0hl42+ZfZvuqJt/cRENzZiQUmnJ3CLyStlMik5258oNeJw3
-	mLrECggMuRGCMpDj5ArC3Hmo6urf0YPWoKwFdCQV0f3LMd3qjy8T7M7yV1LLxXHQtRz9
-	LpPiJ0UWetadWHKIOfphCbRl9V/R1/RpR7pcw7Dmh+5/iP6viB6MdxYThQF5rBCkydK2
-	3Q+aQMsd7yPqx+rWO4jcNcrhCM1BxREvgINq0sR5tUW34qfFFIYKCUBRA9YsNJ8G9WoR
-	dPUw==
-X-Gm-Message-State: AOUpUlFA9c4xRovodEOqyVu0pbRS4HS8EPF5PN/9WbnSTaNOHyBFdWNG
-	wRYx1LioFI0tst1LVN/Thz/BCJddApYXxT85gvUZXvC+wk0=
-X-Google-Smtp-Source: AA+uWPz3JXxvNxzHeMQQOR/Ov9Bk77TUpa1zwv9Mo6tixMcBjUEmpLUSk++0pr02kp7WAkLzxEO7ZLdDmc2EcFCpvPc=
-X-Received: by 2002:a37:2990:: with SMTP id
-	p16-v6mr27129709qkp.386.1534405961875; 
-	Thu, 16 Aug 2018 00:52:41 -0700 (PDT)
-MIME-Version: 1.0
-From: "Dhanush K.S" <dhanush.ks@gmail.com>
-Date: Thu, 16 Aug 2018 09:52:30 +0200
-Message-ID: <CAKPYHZ7ey2AXvFCY0nC6e4eNS6oA4Cdve38Ccrf1QUU0EitFoQ@mail.gmail.com>
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-language;
+	bh=oKS7gGXaLP2CIvUEsblW2Qa4M8RaxewxA3T7z/7Q5lA=;
+	b=G7zB7BMQs9yjanxLj4KvWTvRh9iWcInSSrO8SClgM4VY89w6sJOa7l9HjFfl505E2+
+	hJHrKGQ8jAp8pLlYYSg57O/e77mc1YdYVGeQ/1u4acONh4JFcxiPxbOmyU3+WGZWRFnZ
+	T00b+pqW+BCNxQTe96XN5SBeD2X0kaYpnBFGfIPG4RvMloupWQQ+YPLZP12FSjjPUH93
+	+3nO/eyhBt73rNxujIzqw1HrHwZmN7kzNcNkcUhXSEJM6qNga1Ig0M0Utb6UzZCmnflM
+	riR+GtBsktdlq/BtOq+WLy9pXBwFs8WU71In+TwxdezhTDjXUOZXZmCuopOYn+rDYG2P
+	Tbgw==
+X-Gm-Message-State: AOUpUlHGqu5oMOSD6Vl3OeEpXUZ/mmYoESKlLpNiIL4BEXYvBr7phCkn
+	isZcnraAkl1dadtIzQXe4qyqmPEb
+X-Google-Smtp-Source: AA+uWPwLJVV+Mejga2Ei4ru5fO/Ce15Rg9Fh/Ci17p+nckcpfSdnSqOOiOkBsneEUWRKVTWeI9Cq1g==
+X-Received: by 2002:aa7:c910:: with SMTP id
+	b16-v6mr38702196edt.22.1534429229922; 
+	Thu, 16 Aug 2018 07:20:29 -0700 (PDT)
+Received: from [172.16.100.122] ([213.168.66.146])
+	by smtp.gmail.com with ESMTPSA id
+	x8-v6sm486260edr.24.2018.08.16.07.20.29 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 16 Aug 2018 07:20:29 -0700 (PDT)
 To: yocto@yoctoproject.org
-Subject: BITBAKE ADD-LAYER | HELP!!
+From: Matthias Schoepfer <matthias.schoepfer@googlemail.com>
+Message-ID: <634408b8-bb9e-2f06-2633-9b53ff1c568a@googlemail.com>
+Date: Thu, 16 Aug 2018 16:20:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.0
+MIME-Version: 1.0
+Subject: sumo missing recipe for kernel 4.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,111 +77,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Aug 2018 07:52:43 -0000
-Content-Type: multipart/alternative; boundary="0000000000004c8610057388baf2"
+X-List-Received-Date: Thu, 16 Aug 2018 14:20:31 -0000
+X-Groupsio-MsgNum: 42169
+Content-Type: multipart/mixed; boundary="------------B2E478A9FC77E44D83FD8D6A"
+Content-Language: en-US
 
---0000000000004c8610057388baf2
-Content-Type: text/plain; charset="UTF-8"
+--------------B2E478A9FC77E44D83FD8D6A
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello MailingList,
+Hi!
 
-I just upgraded yocto to the latest release (Sumo 19.0 /Yocto 2.5.1).
-Currently i am trying to add the meta-openembedded layer to my
-conf/bblayers.conf using the command "bitbake-layers add-layer
-DIRECTORY_PATH/LAYER".
+I might be a little late to the party but ... what is the rational
+behind removing kernel recipe for kernel 4.4 from sumo (and later). This
+is *the* kernel with the longest support as of now. When building an
+embedded system that needs updates for quite some years, I would go with
+4.4 right now...
 
-But I am getting parseError at times.
+Just wondering...
 
+Regards,
 
-   - Is it absolutely necessary to checkout the meta-openembedded layer to
-   the same Branch as that of the Yocto Version? or is it alright to stay i=
-n
-   the master Branch?
-   - I can add the meta-oe sub-layer while on master but i get parseError
-   when on the Sumo branch.
-   - I am not able to add the meta-python and meta-networking sub-layers of
-   meta-openembedded to the conf/bblayers.conf file without getting parse
-   errors. (meta-networking sub-layer depends on meta-python, so until I
-   resolve that I cannot add this)
+=C2=A0=C2=A0 Matthias
 
 
-*[ac500v3@localhost build-2.5]$ bitbake-layers add-layer
-/opt/ac500/yocto/trunk/yocto/next/meta-openembedded/meta-python/*
-*NOTE: Starting bitbake server...*
-*Loading cache: 100%
-|##########################################################################=
-###########################################################################=
-###########################################################################=
-############|
-Time: 0:00:00*
-*Loaded 499 entries from dependency cache.*
-*ERROR: ParseError at
-/opt/ac500/yocto/trunk/yocto/next/meta-openembedded/meta-python/recipes-dev=
-tools/python/python-pbr_4.2.0.bb:3
-<http://python-pbr_4.2.0.bb:3>: Could not include required file
-recipes-devtools/python/python-pbr.inc
-                | ETA:  --:--:--*
-
-*Summary: There was 1 ERROR message shown, returning a non-zero exit code.*
-*ERROR: Parse failure with the specified layer added*
-
-What and where am I going wrong?
-
-
-Mit freundlichen Gr=C3=BC=C3=9Fen / Best Regards,
-Dhanush Keshava Reddy Soppahalli
-Mob: +4915216144064
-
---0000000000004c8610057388baf2
-Content-Type: text/html; charset="UTF-8"
+--------------B2E478A9FC77E44D83FD8D6A
+Content-Type: application/pgp-keys;
+ name="pEpkey.asc"
 Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+ filename="pEpkey.asc"
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
-serif">Hello MailingList,</div><div class=3D"gmail_default" style=3D"font-f=
-amily:georgia,serif"><br></div><div class=3D"gmail_default" style=3D"font-f=
-amily:georgia,serif">I just upgraded yocto to the latest release (Sumo 19.0=
- /Yocto 2.5.1). Currently i am trying to add the meta-openembedded layer to=
- my conf/bblayers.conf using the command &quot;bitbake-layers add-layer DIR=
-ECTORY_PATH/LAYER&quot;.=C2=A0</div><div class=3D"gmail_default" style=3D"f=
-ont-family:georgia,serif"><br></div><div class=3D"gmail_default" style=3D"f=
-ont-family:georgia,serif">But I am getting parseError at times.</div><div c=
-lass=3D"gmail_default" style=3D"font-family:georgia,serif"><br></div><div c=
-lass=3D"gmail_default"><ul><li><font face=3D"georgia, serif">Is it absolute=
-ly necessary to checkout the meta-openembedded layer to the same Branch as =
-that of the Yocto Version? or is it alright to stay in the master Branch?</=
-font></li><li><font face=3D"georgia, serif">I can add the meta-oe sub-layer=
- while on master but i get parseError when on the Sumo branch.</font></li><=
-li><font face=3D"georgia, serif">I am not able to add the meta-python and m=
-eta-networking sub-layers of meta-openembedded to the conf/bblayers.conf fi=
-le without getting parse errors. (meta-networking sub-layer depends on meta=
--python, so until I resolve that I cannot add this)</font></li></ul>=C2=A0<=
-i>[ac500v3@localhost build-2.5]$ bitbake-layers add-layer /opt/ac500/yocto/=
-trunk/yocto/next/meta-openembedded/meta-python/<br></i></div><div class=3D"=
-gmail_default"><i>NOTE: Starting bitbake server...</i></div><div class=3D"g=
-mail_default"><i>Loading cache: 100% |#####################################=
-###########################################################################=
-###########################################################################=
-#################################################| Time: 0:00:00</i></div><=
-div class=3D"gmail_default"><i>Loaded 499 entries from dependency cache.</i=
-></div><div class=3D"gmail_default"><i>ERROR: ParseError at /opt/ac500/yoct=
-o/trunk/yocto/next/meta-openembedded/meta-python/recipes-devtools/python/<a=
- href=3D"http://python-pbr_4.2.0.bb:3">python-pbr_4.2.0.bb:3</a>: Could not=
- include required file recipes-devtools/python/python-pbr.inc=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 | ETA:=C2=A0 --:--:--</i></div><div class=3D"gm=
-ail_default"><i><br></i></div><div class=3D"gmail_default"><i>Summary: Ther=
-e was 1 ERROR message shown, returning a non-zero exit code.</i></div><div =
-class=3D"gmail_default"><i>ERROR: Parse failure with the specified layer ad=
-ded</i></div><div class=3D"gmail_default"><i><br></i></div><div class=3D"gm=
-ail_default">What and where am I going wrong?</div><div class=3D"gmail_defa=
-ult"><br></div><div class=3D"gmail_default"><br></div><div><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div=
- dir=3D"ltr"><div><font face=3D"georgia, serif" color=3D"#666666">Mit=C2=A0=
-freundlichen=C2=A0Gr=C3=BC=C3=9Fen / Best Regards,</font><div><font face=3D=
-"georgia, serif" color=3D"#666666">Dhanush Keshava Reddy Soppahalli</font><=
-/div><div><font face=3D"georgia, serif" color=3D"#cc0000">Mob: +49152161440=
-64</font></div></div></div></div></div></div></div></div></div></div>
+-----BEGIN PGP PUBLIC KEY BLOCK-----
 
---0000000000004c8610057388baf2--
+mQENBFtGITgBCAC91l+KbxaKKHBzO/KzwcQ3SJhPm2BXfnXX9DMX2qK9d1m6qXrJ
+l465gSIsMPdSzaar/u9ZSlQJ1SQuhwLUXDEX1omH3UVArFhQQSaYOk+98lgzo/AW
+Xsh77fKy2idzlVGy685E3phqYUE35g9FgO11vbTPKqVzqfdFZtJa2KnpnbU0n12S
+jtYeD4ziZQR4nYa2h8/DrotA4dMaf8HkYbptC9i8bT0aAn2YYIRFNhVamN14La8l
+33qKB7ZoTah3Q9YPaefZ7hXPkR0Rt93oETkhwUq03SAPXypV86mtvFvAE4bZZkDv
+M7XBkSKs8KqxTnFUXGJBUJghmAKu9+uot6NBABEBAAG0RW1hdHRoaWFzLnNjaG9l
+cGZlckBnb29nbGVtYWlsLmNvbSA8bWF0dGhpYXMuc2Nob2VwZmVyQGdvb2dsZW1h
+aWwuY29tPokBVAQTAQgAPhYhBCh5MQUlF0JdgUEzOBhFS+UIjAUQBQJbRiE5AhsD
+BQkB4TOABQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEBhFS+UIjAUQrLcH/3Sb
+IWoUOGx9iy1fVNuSAkF1SFMJn11qrQPxrhHe4pc0jaLQSmnFwvsv2POuqSud+Lj8
+BShgyfpbetdgDJVbORhmqRP+TGGDP0iT3b2/b+Aw027Wljt18HKOCw28GQx+OYxA
+Y3DOK34aJNQq3+7ZvZM7lanc+ZutcfDFWo/FxMj3gXaZZ2SSsRrhyjYC+FaUguYM
+5QtyLaOJSpgviPdZWh1Lsp0AVyX9PCT2+PoFvt71YHja7zYFImiRHi7YDHsJaWWO
+XzXRSG3hWN256NRbU+g0UeD6DFT42RpabmnAXG/BDfQJEaH9P80RE+1214q1RKhG
+zwNMTBmiJj3a/7BjGgi5AQ0EW0YhOQEIAL4RfL8Ggghnz0K2Pb2c1WzSaSHULk5H
+gg2bctg0RAfH6peOJfX0zFKM82nwvSd5R+N6m2Y4ZgB39nI914DmbFjljqXCNduz
++5PGbm4gkw8JYkSP6tctcyA5HfSkKEu7CzNG+gYfWjC5mxQmFmmUwEhvEJe3cSnk
+jrOJzboFuMPoP3XMpA2WXpSLxcEd65Y+493jRZybvfmuu9A4ZGOMFnewLV+eQP5R
+l5EGXLVNLJAUD72VOPezOtdAbzVx1iPnN+qk6KzqWYDXjzHxfI8o3+lECypBD3/q
+Q5xK2JhmfRusRTjVxB+Gxe5arFy4iPspWPhOKfNHbRptMecOGnQzBb8AEQEAAYkB
+PAQYAQgAJhYhBCh5MQUlF0JdgUEzOBhFS+UIjAUQBQJbRiE5AhsMBQkB4TOAAAoJ
+EBhFS+UIjAUQWUkIALI+fZIAWzvWu/kC3X/a5v5VvW+YHywnibZUHTlCaf5Et12+
+r9gxgCxdBOHLfP1Xx8uh+NhkZP0+IgrDK/dHReynlDCYLb4F810HitApJSr/4ZRk
+K1zLPW529PTOw+mGby2Kkc2L3kxKGepMFbo9zBMzdDNvLCVEXoUnEBq6ER/HhiKu
++/3KzSd8RXXDxgYEj+jCIixVMThUM84jpPC3b0GeY3Uf7puVyZLLWgE1JKeAVW/d
+T84NrT/InD+n+HXvjQ53pbNeM2gMN7MyAzypLrJJVf/EvCs0VcqMF70VXr9AFiYZ
+AHpNeVoSTfZcx4z2jIsZc9OY7k5vcXNEHWToQQA=3D
+=3DGeio
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------B2E478A9FC77E44D83FD8D6A--
