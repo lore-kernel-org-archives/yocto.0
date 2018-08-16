@@ -1,66 +1,34 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80CA0E0079D; Wed, 15 Aug 2018 18:22:50 -0700 (PDT)
+	id 55B9EE00A39; Wed, 15 Aug 2018 19:13:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.195 listed in list.dnswl.org]
-Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com
-	[209.85.215.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54495E00726
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2018 18:22:48 -0700 (PDT)
-Received: by mail-pg1-f195.google.com with SMTP id y4-v6so1253502pgp.9
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2018 18:22:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=+zV85Jh7DMGKjo9DwgthNdHvKXKhwRTLaDnY3Zv7Fp8=;
-	b=eaLGzRdLcfSdEDw5CJ7x3u5RYKibCef6vijubSoERnoZcFg09pyrNk3wNHeI/ryaG7
-	KUzyG1xh7oY/G4ufQBbbnq5Ibvx6EDc7siVFlWFbRC3vdpzToYja7F/m5EuX/yy52Hxu
-	7EzIFWeheGerHPFgpuz/JYTwZyUFjQ9HYhHhcVvrphwYuZ8hblfSOUkuCMzgKXnJe0dg
-	EG89pY6F5GWX080OEXLInZbmD7QHRgwyc5K0YRE5K8+dzUCTMUUFcHTWl/hoAojFgJR/
-	E1Doi4MZGpqc089/T6hccuJK/mAb5WPk652iMjIrwSj/MQoHO9wlMhsXiQ1lXH3maITT
-	I7ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=+zV85Jh7DMGKjo9DwgthNdHvKXKhwRTLaDnY3Zv7Fp8=;
-	b=RPIbIvX4T+kVmV3kZexGs96SFlrByGIypKupG9yB6NA9vYDbl0KV4T5xQrw8ekUj3K
-	VUcDpiKp9nc/QF3T6ODSENpcFemzSALCzzAwzkbqHO2zKJ+YVEFWqFllvHsotErO8cXB
-	jeu50DRq7AyqlDLtWW68UDX2YJcUpQF0lZLsl8lDuYXgUmIRwEBgNg/L+zOxxNa3WoXu
-	5UMGWilhMsIjawOttVzVcDmS+Kr7HgtJqRzQvLDC24r+71UVLQtKAD9m3zunyW7+Hw05
-	6LQ+gjuL7Zq9CoUev++MELoQPVzIkzXGGD37MLH+E8NCtuWeKF0GDFX5+dq98O/omrw+
-	Sa9g==
-X-Gm-Message-State: AOUpUlGUZGKsQ5usHrFlPeQJRhgs8WTnU8/4aA6ympA19R0FfLCiFDbB
-	Zr65UTzrW5gEf9sg2c6fXKmo+ocr
-X-Google-Smtp-Source: AA+uWPwdkAOm4eC9uAHL9Tk+nPETS3C7Qz8HHymYRQS1B3NN60u39bWAdw7x+Lyxu1Hs+YtJz+m7GA==
-X-Received: by 2002:a63:ff4d:: with SMTP id
-	s13-v6mr27189753pgk.150.1534382567490; 
-	Wed, 15 Aug 2018 18:22:47 -0700 (PDT)
-Received: from localhost.localdomain ([2601:646:877f:9499::f217])
-	by smtp.gmail.com with ESMTPSA id
-	p73-v6sm45525787pfk.186.2018.08.15.18.22.46
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 15 Aug 2018 18:22:46 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Wed, 15 Aug 2018 18:22:40 -0700
-Message-Id: <20180816012240.21645-1-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.18.0
-Subject: [meta-selinux][PATCH] README: Document setting PREFERRED_VERSION for refpolicy
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F146E00754
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2018 19:13:06 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w7G2D57V017700
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2018 19:13:05 -0700
+Received: from pek-lpg-core1.wrs.com (128.224.156.132) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.399.0; Wed, 15 Aug 2018 19:13:03 -0700
+From: Robert Yang <liezhi.yang@windriver.com>
+To: <mark.hatle@windriver.com>, <yocto@yoctoproject.org>
+Date: Thu, 16 Aug 2018 10:23:39 +0800
+Message-ID: <1534386219-114680-1-git-send-email-liezhi.yang@windriver.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Subject: [prelink-cross][PATCH] src/dso.c: use ehdr.e_shstrndx as index
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,33 +40,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Aug 2018 01:22:50 -0000
+X-List-Received-Date: Thu, 16 Aug 2018 02:13:08 -0000
+Content-Type: text/plain
 
-When setting preferred version for a given refpolicy
-we also need to set the PV for refpolicy recipe since
-its part of the selinux packagegroup and will silently
-use git version
+According to struct elf32_hd, the e_shnum is section header number, and the
+index is e_shstrndx, not e_shnum.
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
+This can fix segmention fault when handle libqb.so.0.18.2 from libqb_1.0.3.
+It fails to handle libqb.so.0.18.2 and get errors:
+Symbol section index outside of section numbers
+
+Then segmentation fault, this is because the e_shnum is 34, while e_shstrndx is
+27 (it would be 33 when no errors), I've checked several elf files to confirm
+that the ones after e_shstrndx is NULL, so use e_shstrndx should be correct.
+
+Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
 ---
- README | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ src/dso.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/README b/README
-index 35e03f4..806d9c3 100644
---- a/README
-+++ b/README
-@@ -71,7 +71,8 @@ SRCREV for refpolicy and refpolicy-contrib as appropriate at refpolicy_git.inc
- to check refpolicy as per required commits.
+diff --git a/src/dso.c b/src/dso.c
+index ae5e04d..c59d81f 100644
+--- a/src/dso.c
++++ b/src/dso.c
+@@ -1659,7 +1659,7 @@ close_dso_1 (DSO *dso)
+     {
+       int i;
  
- * enable the preferred refpolicy-minimum:
--e.g. PREFERRED_VERSION_refpolicy-minimum = "2.20151208"
-+PREFERRED_VERSION_refpolicy-minimum = "2.20151208"
-+PREFERRED_VERSION_refpolicy = "2.20151208"
- 
- 
- Using different init manager
+-      for (i = 1; i < dso->ehdr.e_shnum; ++i)
++      for (i = 1; i < dso->ehdr.e_shstrndx; ++i)
+ 	{
+ 	  Elf_Scn *scn = dso->scn[i];
+ 	  Elf_Data *data = NULL;
 -- 
-2.18.0
+2.7.4
 
 
