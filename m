@@ -1,17 +1,14 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 71473E0049F; Wed, 15 Aug 2018 14:50:46 -0700 (PDT)
+	id 80CA0E0079D; Wed, 15 Aug 2018 18:22:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.220.195 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,52 +16,51 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f195.google.com (mail-qk0-f195.google.com
-	[209.85.220.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C59AE003D7
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2018 14:50:45 -0700 (PDT)
-Received: by mail-qk0-f195.google.com with SMTP id 13-v6so1913249qkl.9
-	for <yocto@yoctoproject.org>; Wed, 15 Aug 2018 14:50:45 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.195 listed in list.dnswl.org]
+Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com
+	[209.85.215.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54495E00726
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2018 18:22:48 -0700 (PDT)
+Received: by mail-pg1-f195.google.com with SMTP id y4-v6so1253502pgp.9
+	for <yocto@yoctoproject.org>; Wed, 15 Aug 2018 18:22:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=agd5hwA48Tny9H6VxolAlU0/9vDGAXTjk+jEgeCmWZ4=;
-	b=p3ndSnvmjt68GQsuJUfGsKY4oWaIPaRSsTfE8cGGvEqerb6rKaUe/1oTlRvdbtd2E4
-	R9MfAT395KTrF09ddftha9Ojta13RhRgvqEhFbR4QGkybXAP2uBHJqCPP0T2Nt91+i16
-	fnNAXxl5qvnIizlAQuDtywjPzH0+hrWIWqYfmgDPd8M7TO3vbZ9/JTbkqbuMa5Oxw27P
-	xSctajgxmh/6ybQkH+B8/eiF3N+brhdoH/fFj8GYhIYx6jL66zuOmweRaEmpF7mj0n+l
-	fRI9LX8V9RWMC7AquacMk7ipF3pzW16Qtf68ozZ4xtU/1LhJLdIviv4KyqRPzohiT6DT
-	qIlw==
+	h=from:to:cc:subject:date:message-id;
+	bh=+zV85Jh7DMGKjo9DwgthNdHvKXKhwRTLaDnY3Zv7Fp8=;
+	b=eaLGzRdLcfSdEDw5CJ7x3u5RYKibCef6vijubSoERnoZcFg09pyrNk3wNHeI/ryaG7
+	KUzyG1xh7oY/G4ufQBbbnq5Ibvx6EDc7siVFlWFbRC3vdpzToYja7F/m5EuX/yy52Hxu
+	7EzIFWeheGerHPFgpuz/JYTwZyUFjQ9HYhHhcVvrphwYuZ8hblfSOUkuCMzgKXnJe0dg
+	EG89pY6F5GWX080OEXLInZbmD7QHRgwyc5K0YRE5K8+dzUCTMUUFcHTWl/hoAojFgJR/
+	E1Doi4MZGpqc089/T6hccuJK/mAb5WPk652iMjIrwSj/MQoHO9wlMhsXiQ1lXH3maITT
+	I7ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=agd5hwA48Tny9H6VxolAlU0/9vDGAXTjk+jEgeCmWZ4=;
-	b=h1rvLn/E7Exp1JSkmtt7awbRP7A83x1nyEkVFkGy9ce3rO+9IJwtHdujJsv74m7lNG
-	UtRiVDZmr5TrCCU0Yf3VmF/l8Pyqjklz1pXNNewPva8o3ZwqLna8IqUUpLqXT6bkKatp
-	aCL2f88thiBGRiB6f1UlN7M3bOoAqrV7NumoYSvTtAiZr69niQWu+ID2FkRXFOmPuUmr
-	qhsLfein5av2/c312gJ1i1VCPF0AXosv7YX+ekcGxGW14I1K83MDYmBfO6qb6gNITitc
-	VZigrmXMF8tM+BTxiFByiyie4NlvAupmKHbdjqsDP6AwjP3wKOHkpvXzxIOyZPmLwqu9
-	orMw==
-X-Gm-Message-State: AOUpUlHiq3WMo8+hCtzO9Ak2KleK9FNoSE58/+9jKl++E7qWaPMc1viZ
-	FyQd86o+gr90/w1tatZDBvxr36UhR4bUqeKVTJs=
-X-Google-Smtp-Source: AA+uWPysxTjeF07hW9Zcr8B/yx2SmoS5/PaTi/xzWTfswAJaAob1Z9tC4JTCBwv+W0CLOVA4p3eYWgv29mozWT112tk=
-X-Received: by 2002:a37:a24f:: with SMTP id
-	l76-v6mr24507557qke.406.1534369845206; 
-	Wed, 15 Aug 2018 14:50:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <9987A072-988B-440A-9A7C-2132D963E7EA@korgrd.com>
-	<CAMKF1srjCWwcAKziq=yKRF1tZmmUBBT8reAqpTF5SMyMb2giQg@mail.gmail.com>
-	<96C9E43C-BDF8-4095-BDC8-09B4F59F6AF4@korgrd.com>
-	<CAMKF1srSZ4wkvdXfyKHo27aBLBx8vYWz3Ba2OP+aanr6BMZZOA@mail.gmail.com>
-	<FFE3E10D-0186-4906-81F6-E0E3A699F40B@korgrd.com>
-In-Reply-To: <FFE3E10D-0186-4906-81F6-E0E3A699F40B@korgrd.com>
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=+zV85Jh7DMGKjo9DwgthNdHvKXKhwRTLaDnY3Zv7Fp8=;
+	b=RPIbIvX4T+kVmV3kZexGs96SFlrByGIypKupG9yB6NA9vYDbl0KV4T5xQrw8ekUj3K
+	VUcDpiKp9nc/QF3T6ODSENpcFemzSALCzzAwzkbqHO2zKJ+YVEFWqFllvHsotErO8cXB
+	jeu50DRq7AyqlDLtWW68UDX2YJcUpQF0lZLsl8lDuYXgUmIRwEBgNg/L+zOxxNa3WoXu
+	5UMGWilhMsIjawOttVzVcDmS+Kr7HgtJqRzQvLDC24r+71UVLQtKAD9m3zunyW7+Hw05
+	6LQ+gjuL7Zq9CoUev++MELoQPVzIkzXGGD37MLH+E8NCtuWeKF0GDFX5+dq98O/omrw+
+	Sa9g==
+X-Gm-Message-State: AOUpUlGUZGKsQ5usHrFlPeQJRhgs8WTnU8/4aA6ympA19R0FfLCiFDbB
+	Zr65UTzrW5gEf9sg2c6fXKmo+ocr
+X-Google-Smtp-Source: AA+uWPwdkAOm4eC9uAHL9Tk+nPETS3C7Qz8HHymYRQS1B3NN60u39bWAdw7x+Lyxu1Hs+YtJz+m7GA==
+X-Received: by 2002:a63:ff4d:: with SMTP id
+	s13-v6mr27189753pgk.150.1534382567490; 
+	Wed, 15 Aug 2018 18:22:47 -0700 (PDT)
+Received: from localhost.localdomain ([2601:646:877f:9499::f217])
+	by smtp.gmail.com with ESMTPSA id
+	p73-v6sm45525787pfk.186.2018.08.15.18.22.46
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 15 Aug 2018 18:22:46 -0700 (PDT)
 From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 15 Aug 2018 14:50:19 -0700
-Message-ID: <CAMKF1srTyUpnqc2nSP6tscVGJpEEk0bcKvXhMuK40s9oES65NQ@mail.gmail.com>
-To: Steve Pavao <stevep@korgrd.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] core-image-minimal for raspberrypi3-64 manifest/sdimg contains no kernel modules
+To: yocto@yoctoproject.org
+Date: Wed, 15 Aug 2018 18:22:40 -0700
+Message-Id: <20180816012240.21645-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.18.0
+Subject: [meta-selinux][PATCH] README: Document setting PREFERRED_VERSION for refpolicy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,36 +72,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2018 21:50:46 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 16 Aug 2018 01:22:50 -0000
 
-On Wed, Aug 15, 2018 at 1:42 PM Steve Pavao <stevep@korgrd.com> wrote:
->
-> Hello,
->
-> > On Aug 15, 2018, at 4:27 PM, Khem Raj <raj.khem@gmail.com> wrote:
-> >
-> > On Wed, Aug 15, 2018 at 1:25 PM Steve Pavao <stevep@korgrd.com> wrote:
->
-> >> I would like to state my opinion though that to unconditionally warn t=
-he user to use core-image-minimal instead of rpi-hwup-image  (which definit=
-ely packages kernel modules if they are there) is not often the best advice=
- to give.
-> >
-> > This should be fixed in meta-raspberrypi, care to submit a patch
-> > to use core-image-base instead ?
->
-> Sure, I=E2=80=99ll submit a patch.  Should it unconditionally recommend c=
-ore-image-base, or should it still recommend core-image-minimal if the kern=
-el modules list is empty? (Could that condition possibly happen if the user=
- cleared it in local.conf?)
->
+When setting preferred version for a given refpolicy
+we also need to set the PV for refpolicy recipe since
+its part of the selinux packagegroup and will silently
+use git version
 
-fact that we added modules to original image. its better to recommend
-core-image-base
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ README | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-> Steve Pavao
-> Korg R&D
->
+diff --git a/README b/README
+index 35e03f4..806d9c3 100644
+--- a/README
++++ b/README
+@@ -71,7 +71,8 @@ SRCREV for refpolicy and refpolicy-contrib as appropriate at refpolicy_git.inc
+ to check refpolicy as per required commits.
+ 
+ * enable the preferred refpolicy-minimum:
+-e.g. PREFERRED_VERSION_refpolicy-minimum = "2.20151208"
++PREFERRED_VERSION_refpolicy-minimum = "2.20151208"
++PREFERRED_VERSION_refpolicy = "2.20151208"
+ 
+ 
+ Using different init manager
+-- 
+2.18.0
+
 
