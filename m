@@ -1,17 +1,21 @@
-Return-Path: <davis.roman84@gmail.com>
+Return-Path: <nader.hariri@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67115E00AB3; Fri, 17 Aug 2018 16:07:35 -0700 (PDT)
+	id F0B72E00AB3; Fri, 17 Aug 2018 19:44:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (davis.roman84[at]gmail.com)
+	mail provider *      (nader.hariri[at]hotmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.170 listed in list.dnswl.org]
+	*      [40.92.68.89 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,53 +24,80 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
-	[209.85.208.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4967E00828
-	for <yocto@yoctoproject.org>; Fri, 17 Aug 2018 16:07:33 -0700 (PDT)
-Received: by mail-lj1-f170.google.com with SMTP id l15-v6so7529258lji.6
-	for <yocto@yoctoproject.org>; Fri, 17 Aug 2018 16:07:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=Xdt4g1zlRxRZUWcw9c37HHo0zN7vtcHW2ycKYPolNRg=;
-	b=ApFA3lqoiATWU3m0Vtz9Bd7PmyGTngmeME/E8Z8UrEp8JuFR/J/2n/rH2JOigIqKlp
-	AC+Ea3MI2fBSPtopZziTLakyr//lWr7ZnhAY1V46sY2n/wm5KJFu9+wLl2wCBaaZjNyc
-	cov9Fi//bfTJE5fT/dHVGsC3qJVFj5MKzMj6j+bHACLo74PBEklc9AXMpCAztXUJW++q
-	3m3A3fu2ypzgNCZz5LUbn2K8EnuUVcgSS0vh4mfkojgu/jQ+YtZtGX3M7IBTVWWQ1FcE
-	Ozxv+tym6yZM390bSm65MTFsCw8C3d0YWGcwcIrFJ5CoTiYDEWKFTlB2kGQ4Ytb07rTA
-	P3uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=Xdt4g1zlRxRZUWcw9c37HHo0zN7vtcHW2ycKYPolNRg=;
-	b=s7Qtbzze+rigoY2vTF3U4yMResR0gdoZy8P0WKJ+AlS1mfsFQALXLc6ZA3kWBpvAH+
-	JaO7S4+uHJ48huxAiypSzxW2zarosj8fk2RdEIfGHqwDrit9u9Nd/QrkGOWmUP63GmRP
-	G+X1avg6mxKnW35Gre4l3Q1pldbfw0c2lTsHxWbRj8OIRXHSzB4cyExwyRrjdgdZHpfh
-	dN74uKwZCXGyHBDfjACZqv7K3WtTfyixfgvjcypVUeJQUtwvN+769syzBXbG90DYuDIb
-	V7UekAdRyRHkXz3urM5TnVoBHJsbqlU2ncwOVUFSk+raQJK1RgtScV5nYMCI4i8ve7Yb
-	xRqA==
-X-Gm-Message-State: AOUpUlHfcI/i0A1yRxJdyGa+irrmVt+q231PVQKtalnUDiB3X4FHMi93
-	rOojxmT4l4lmIvweH2EdRYEKWYRi95xVftij7tM=
-X-Google-Smtp-Source: AA+uWPz0Oj54loojZg15D+sZRKVPspTy2QC99lchpcmIXz00v4j0OBDgbRTwj+QGv456lYtUOlm2G6NplRWQ70smKLg=
-X-Received: by 2002:a2e:1609:: with SMTP id
-	w9-v6mr15471172ljd.120.1534547252549; 
-	Fri, 17 Aug 2018 16:07:32 -0700 (PDT)
+X-Greylist: delayed 50603 seconds by postgrey-1.32 at yocto-www;
+	Fri, 17 Aug 2018 19:44:33 PDT
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com
+	(mail-oln040092068089.outbound.protection.outlook.com [40.92.68.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73694E00848
+	for <yocto@yoctoproject.org>; Fri, 17 Aug 2018 19:44:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=xTv5oMN0aUg5BhLVjzBP2vpAEx7Jh+CRu1pk2m/a2FE=;
+	b=PuZlQs2VTW5I7J4p4jyqoIv2UBQeWEiR0VxPLwTy1Xr4H8NnzFjsvVThuJxBPbTRj3eSYqZUvHmDliutZKmha8AyOHK2pGz4O7HTtgtYqCKrAAMH766RFYWwyAN7UYQhQv/TcsjWko1KdZGbs+czvKaT7oW+SS2Esh3xKzE3jff4zqxfBDPWnlcbh1tHeH4ghXzPyUK59Pka//VfYIaeLyXaQE9NFX26XRbn6dzfuIZqO2ksK5cZ9S4WsKXOHVg7LSeioyjqsa/cah3IcO6VcveYZcC0VaLcoPDVugjLm+EMCSzcwGfjuV0n0fhWBspWcX4WKcilZzq0zpa1TxV8Ww==
+Received: from VE1EUR02FT058.eop-EUR02.prod.protection.outlook.com
+	(10.152.12.53) by VE1EUR02HT124.eop-EUR02.prod.protection.outlook.com
+	(10.152.13.230) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.1059.14;
+	Thu, 16 Aug 2018 14:07:35 +0000
+Received: from HE1PR06MB1689.eurprd06.prod.outlook.com (10.152.12.55) by
+	VE1EUR02FT058.mail.protection.outlook.com (10.152.13.52) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.1059.14 via Frontend Transport; Thu, 16 Aug 2018 14:07:35 +0000
+Received: from HE1PR06MB1689.eurprd06.prod.outlook.com
+	([fe80::45ed:e302:37fd:1957]) by
+	HE1PR06MB1689.eurprd06.prod.outlook.com
+	([fe80::45ed:e302:37fd:1957%5]) with mapi id 15.20.1038.025;
+	Thu, 16 Aug 2018 14:07:35 +0000
+From: Nader Hariri <nader.hariri@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: ptest-runner "No ptests found."
+Thread-Index: AQHUNWpiVp47iVBfjka016fW7Q5GIQ==
+Date: Thu, 16 Aug 2018 14:07:35 +0000
+Message-ID: <HE1PR06MB1689A8B4242EF071FDD42F78943E0@HE1PR06MB1689.eurprd06.prod.outlook.com>
+Accept-Language: fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:86E39329644AB9B6A3A6A74D8336AE043D8F2678BB541C311783744742D65433;
+	UpperCasedChecksum:35C420250279A270E368D5C81BE74856C88C94BA2B47E98FF1EE1A781605A708;
+	SizeAsReceived:6873; Count:44
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [d6m7gOk7yp6ewQaWPxcRZC5P5ec+qWE7]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; VE1EUR02HT124;
+	6:RLwVObctx2LnBvMZOj99gJDyZQLW4mRRVJr6oOTdDcpWiaHWWqRq44Fboa79AE/33Pk8QnO4lWUwgOKVyVSTFOwl7PbtZoU8si0xGHb2b+PX+toYlmTLGv76iCp3tBh0xySazp2sT9n7M4w+AlEKDZA1PeVlkBfAYSmLoYvPKdwVZBiB3DcLe1NNdTBK3ZJRhfunAjWlIyKroioh0CofrPXkSZtkZ8iu86s8o9Xl/a9O7ShIOvLlnV8e/JBZFSwpZI5+pcT4SopfVPXr3eGPTMhyJcz3b6Bk+ClUvBOxG++HRTOs+cTzSSIE55F4Bhx00esEqm0gRIziNBytGt31R7oTjCc27Kvx6jhksSZ08/WlPV+UsU7KTGleOAy3n44GKCqM3V4cEE60aS6OktShmB3MIkE2/exErkAwrEoLWXDNqn7RsfAsP7Wy5ghe8O/8wbdS7vG+QuPCKQx7w4wunw==;
+	5:oGpcYpP5bJb6tL0PQfRDMBG/f+1RRk8+BqtbRNCt0gfiedVwizRb8jwH36ZBHYTmYEvbJTSGkXMSCvyOKs6EYeiYapsANjLQXak/Nu6gBE2cS73swpZ5bKkg6EKkap2ZGeK/5dDubbxHALtOFW9hnwJged+xLwR3wYHWCY5MUgI=;
+	7:tL0YR2ynsMiwrnbni1J0xMBlhvTRqUzNhLJMCdTn4qLXP0c+Um0m6l8sfxTrVTrCw+o8f1Y+AGegI6JKdlMOTvjtX77A41NzhuW8p6MnHxtAE5jo9WXvOqGttrttDl9Sf8y26oRZv3v9fWi6mtkqj567BhA3THZLS+VgeLdKW3qwY0uyfBJ+vt4RivbwCTSf/AQBof29US2EaB9XOuv0v7sIoY+aNAaQbrLAw/YAzmDEnMsLQnAX2hdWOLtlQoB4
+x-incomingheadercount: 44
+x-eopattributedmessage: 0
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101475)(1601125500)(1701031045);
+	SRVR:VE1EUR02HT124; 
+x-ms-traffictypediagnostic: VE1EUR02HT124:
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(4566010)(82015058);
+	SRVR:VE1EUR02HT124; BCL:0; PCL:0; RULEID:; SRVR:VE1EUR02HT124; 
+x-forefront-prvs: 07665BE9D1
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(7070007)(199004)(189003)(2900100001)(6346003)(256004)(73972006)(82202002)(26005)(486006)(44832011)(476003)(8676002)(81156014)(1730700003)(56003)(102836004)(6506007)(106356001)(6916009)(606006)(2351001)(105586002)(5660300001)(104016004)(7696005)(99286004)(105004)(20460500001)(6436002)(25786009)(14454004)(966005)(55016002)(5640700003)(236005)(9686003)(54896002)(6306002)(8936002)(19627405001)(83332001)(33656002)(97736004)(74316002)(87572001)(2501003)(68736007)(5250100002)(86362001)(15852004);
+	DIR:OUT; SFP:1901; SCL:1; SRVR:VE1EUR02HT124;
+	H:HE1PR06MB1689.eurprd06.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: hotmail.com does not designate
+	permitted sender hosts)
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=nader.hariri@hotmail.com; 
+x-microsoft-antispam-message-info: Erwt+8I9B8gTwHRLYoXvTpJ4dIQ4/wTCDk2xdvxOcLxIRksC0sKK6O7yIQFJe1otmKR+vYlkrUNKrr36xXUEjH7726NGNdMNokexLvMx+Xtnw5Q6LT1UPJXPsVyzj8i+Aq7LNS14GBeUvl4Avfczl5ioOTW2hMywLF46aa12rBL2jUGUtDy2rYUPHlyTICQyWKUPvk3pLziXiWuO2vlbNYsRMMSTt9/bNA3a9Njo65c=
 MIME-Version: 1.0
-References: <CACfi_Z2Zvwiq-iB7ckmmT0LgthOPRxCMC6OCSW3ywbZ2=oSY4A@mail.gmail.com>
-	<CABcZANkABH+b1z+c-Ey9PrB7Sbj9NSM4KbA1cNsn0f-WAtLdXA@mail.gmail.com>
-	<CACfi_Z1xk+u+=Csd8rWxJ4-xSh7zWpD6jKXGLLvj23u0qr4Umg@mail.gmail.com>
-	<CABcZAN=aoUEWYuu6uLmSN2=JVgpAFT3adL2A7PjRLU5o-g34+Q@mail.gmail.com>
-In-Reply-To: <CABcZAN=aoUEWYuu6uLmSN2=JVgpAFT3adL2A7PjRLU5o-g34+Q@mail.gmail.com>
-From: Davis Roman <davis.roman84@gmail.com>
-Date: Fri, 17 Aug 2018 19:07:21 -0400
-Message-ID: <CACfi_Z3kSzJUZu2Y7tRA7iY7mRNAHQzmBp4KM2kBeK08HLHsww@mail.gmail.com>
-To: Christopher Larson <kergoth@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	bitbake-devel@lists.openembedded.org,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [bitbake-devel] how to store a modification of a bbclass in the poky layer in my own layer.
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: c001924d-3e68-4f40-89c2-901a49278da7
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61b6e508-799a-4b44-3961-08d603819dff
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: c001924d-3e68-4f40-89c2-901a49278da7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2018 14:07:35.5448 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1EUR02HT124
+Subject: ptest-runner "No ptests found."
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,373 +109,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Aug 2018 23:07:35 -0000
-Content-Type: multipart/alternative; boundary="000000000000e12ef30573a99fbf"
+X-List-Received-Date: Sat, 18 Aug 2018 02:44:36 -0000
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_HE1PR06MB1689A8B4242EF071FDD42F78943E0HE1PR06MB1689eurp_"
 
---000000000000e12ef30573a99fbf
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Christopher,
-
-I think I get it now.
-
-Thank you so much for your time!
-
-Davis
-
-On Fri, Aug 17, 2018, 6:57 PM Christopher Larson <kergoth@gmail.com> wrote:
-
-> Layer priority as defined by BBFILE_PRIORITY controls recipe selection,
-> not bbclass and config file parsing. See the bitbake reference manual for
-> more detail.
->
-> On Fri, Aug 17, 2018 at 3:54 PM Davis Roman <davis.roman84@gmail.com>
-> wrote:
->
->> Hi Christopher,
->>
->> I am very intrigued by your response.
->>
->> Initially I had mentioned that the 'bitbake-layers show-layers'
->> command indicates that my layer, meta-hon-grip, has a priority of 8
->> which is among the highest while the meta layer only has a priority of
->> 5.
->>
->> However, now that you mentioned the bblayers.conf file, I see that the
->> meta-hon-grip layer is defined after the meta layer.
->>
->> Therefore it appears to me that my bblayers.conf contradicts
->> 'bitbake-layers show-layers'
->>
->> Could you please help me make sense of this?
->>
->> Thank you,
->>
->> Davis
->>
->>
->>
->> --------------------------------------------------------------------------------------------
->>
->> POKY_BBLAYERS_CONF_VERSION = "2"
->>
->> BBPATH = "${TOPDIR}"
->> BSPDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True))
->> + '/../..')}"
->>
->> BBFILES ?= ""
->> BBLAYERS = " \
->>   ${BSPDIR}/sources/poky/meta \
->>   ${BSPDIR}/sources/poky/meta-poky \
->>   \
->>   ${BSPDIR}/sources/meta-openembedded/meta-oe \
->>   ${BSPDIR}/sources/meta-openembedded/meta-multimedia \
->>   \
->>   ${BSPDIR}/sources/meta-fsl-arm \
->>   ${BSPDIR}/sources/meta-fsl-arm-extra \
->>   ${BSPDIR}/sources/meta-fsl-demos \
->> "
->> ##Freescale Yocto Project Release layer
->> BBLAYERS += " ${BSPDIR}/sources/meta-fsl-bsp-release/imx/meta-bsp "
->> BBLAYERS += " ${BSPDIR}/sources/meta-fsl-bsp-release/imx/meta-sdk "
->> BBLAYERS += " ${BSPDIR}/sources/meta-browser "
->> BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-gnome "
->> BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-networking "
->> BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-python "
->> BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-filesystems "
->> BBLAYERS += " ${BSPDIR}/sources/meta-qt5 "
->> BBLAYERS += " ${BSPDIR}/sources/meta-hon-grip "
->> BBLAYERS += " ${BSPDIR}/sources/meta-java "
->> BBLAYERS += " ${BSPDIR}/sources/meta-swupdate "
->> BBLAYERS += " ${BSPDIR}/sources/meta-bc "
->> BBLAYERS += " ${BSPDIR}/sources/meta-updater "
->> BBLAYERS += " ${BSPDIR}/sources/meta-gplv2 "
->>
->> On Fri, Aug 17, 2018 at 6:01 PM, Christopher Larson <kergoth@gmail.com>
->> wrote:
->> > Your layer has to be before poky/meta in BBLAYERS, as that determines
->> > BBPATH, which is how bbclasses and config files are found (much like
->> PATH).
->> >
->> > On Fri, Aug 17, 2018 at 12:11 PM Davis Roman <davis.roman84@gmail.com>
->> > wrote:
->> >>
->> >> Hello!
->> >>
->> >>
->> >> I've made a modification in poky/meta/classes/libc-package.bbclass (
->> >> shown below)
->> >>
->> >> However I don't want this change to be stored here long term and
->> >> instead feel that it should live in my project specific layer,
->> >> meta-hon-grip.
->> >>
->> >> After checking with bitbake-layers, I saw that my layer has a higher
->> >> priority than the poky layer so my layer should be checked first ( or
->> >> so I thought)
->> >>
->> >> I copied the modified version of libc-packages.bbclass into
->> >> meta-hon-grip/classes and I restored the version in the poky layer to
->> >> its original state.
->> >>
->> >> After making this change, I found that the modified version in my
->> >> layer is not being used and instead the version in the poky layer is
->> >> the one in play.
->> >>
->> >> I'm trying to figure out what else to try.
->> >>
->> >> Any suggestions would be greatly appreciated!
->> >>
->> >> Thank you,
->> >>
->> >> Davis
->> >>
->> >> diff --git a/meta/classes/libc-package.bbclass
->> >> b/meta/classes/libc-package.bbclass
->> >> index 467d567..72d447a 100644
->> >> --- a/meta/classes/libc-package.bbclass
->> >> +++ b/meta/classes/libc-package.bbclass
->> >> @@ -287,7 +287,7 @@ python package_do_split_gconvs () {
->> >>                  bb.error("locale_arch_options not found for
->> >> target_arch=" + target_arch)
->> >>                  raise bb.build.FuncFailed("unknown arch:" +
->> >> target_arch + " for locale_arch_options")
->> >>
->> >> -            localedef_opts += " --force --old-style --no-archive
->> >> --prefix=%s \
->> >> +            localedef_opts += " --force --no-archive --prefix=%s \
->> >>                  --inputfile=%s/%s/i18n/locales/%s --charmap=%s %s/%s"
->> \
->> >>                  % (treedir, treedir, datadir, locale, encoding,
->> >> outputpath, name)
->> >>
->> >> @@ -295,7 +295,7 @@ python package_do_split_gconvs () {
->> >>                  (path, i18npath, gconvpath, localedef_opts)
->> >>          else: # earlier slower qemu way
->> >>              qemu = qemu_target_binary(d)
->> >> -            localedef_opts = "--force --old-style --no-archive
->> >> --prefix=%s \
->> >> +            localedef_opts = "--force --no-archive --prefix=%s \
->> >>                  --inputfile=%s/i18n/locales/%s --charmap=%s %s" \
->> >>                  % (treedir, datadir, locale, encoding, name)
->> >> --
->> >> _______________________________________________
->> >> bitbake-devel mailing list
->> >> bitbake-devel@lists.openembedded.org
->> >> http://lists.openembedded.org/mailman/listinfo/bitbake-devel
->> >
->> >
->> >
->> > --
->> > Christopher Larson
->> > kergoth at gmail dot com
->> > Founder - BitBake, OpenEmbedded, OpenZaurus
->> > Senior Software Engineer, Mentor Graphics
->>
->
->
-> --
-> Christopher Larson
-> kergoth at gmail dot com
-> Founder - BitBake, OpenEmbedded, OpenZaurus
-> Senior Software Engineer, Mentor Graphics
->
-
---000000000000e12ef30573a99fbf
-Content-Type: text/html; charset="UTF-8"
+--_000_HE1PR06MB1689A8B4242EF071FDD42F78943E0HE1PR06MB1689eurp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Hi Christopher,<div dir=3D"auto"><br></div><div dir=3D"au=
-to">I think I get it now.</div><div dir=3D"auto"><br></div><div dir=3D"auto=
-">Thank you so much for your time!</div><div dir=3D"auto"><br></div><div di=
-r=3D"auto">Davis</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
->On Fri, Aug 17, 2018, 6:57 PM Christopher Larson &lt;<a href=3D"mailto:ker=
-goth@gmail.com">kergoth@gmail.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex"><div dir=3D"ltr">Layer priority as defined by BBFILE_PRIORITY=
- controls recipe selection, not bbclass and config file parsing. See the bi=
-tbake reference manual for more detail.<br></div><br><div class=3D"gmail_qu=
-ote"><div dir=3D"ltr">On Fri, Aug 17, 2018 at 3:54 PM Davis Roman &lt;<a hr=
-ef=3D"mailto:davis.roman84@gmail.com" target=3D"_blank" rel=3D"noreferrer">=
-davis.roman84@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
-ex">Hi Christopher,<br>
-<br>
-I am very intrigued by your response.<br>
-<br>
-Initially I had mentioned that the &#39;bitbake-layers show-layers&#39;<br>
-command indicates that my layer, meta-hon-grip, has a priority of 8<br>
-which is among the highest while the meta layer only has a priority of<br>
-5.<br>
-<br>
-However, now that you mentioned the bblayers.conf file, I see that the<br>
-meta-hon-grip layer is defined after the meta layer.<br>
-<br>
-Therefore it appears to me that my bblayers.conf contradicts<br>
-&#39;bitbake-layers show-layers&#39;<br>
-<br>
-Could you please help me make sense of this?<br>
-<br>
-Thank you,<br>
-<br>
-Davis<br>
-<br>
-<br>
----------------------------------------------------------------------------=
------------------<br>
-<br>
-POKY_BBLAYERS_CONF_VERSION =3D &quot;2&quot;<br>
-<br>
-BBPATH =3D &quot;${TOPDIR}&quot;<br>
-BSPDIR :=3D &quot;${@os.path.abspath(os.path.dirname(d.getVar(&#39;FILE&#39=
-;, True))<br>
-+ &#39;/../..&#39;)}&quot;<br>
-<br>
-BBFILES ?=3D &quot;&quot;<br>
-BBLAYERS =3D &quot; \<br>
-=C2=A0 ${BSPDIR}/sources/poky/meta \<br>
-=C2=A0 ${BSPDIR}/sources/poky/meta-poky \<br>
-=C2=A0 \<br>
-=C2=A0 ${BSPDIR}/sources/meta-openembedded/meta-oe \<br>
-=C2=A0 ${BSPDIR}/sources/meta-openembedded/meta-multimedia \<br>
-=C2=A0 \<br>
-=C2=A0 ${BSPDIR}/sources/meta-fsl-arm \<br>
-=C2=A0 ${BSPDIR}/sources/meta-fsl-arm-extra \<br>
-=C2=A0 ${BSPDIR}/sources/meta-fsl-demos \<br>
-&quot;<br>
-##Freescale Yocto Project Release layer<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-fsl-bsp-release/imx/meta-bsp &q=
-uot;<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-fsl-bsp-release/imx/meta-sdk &q=
-uot;<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-browser &quot;<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-openembedded/meta-gnome &quot;<=
-br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-openembedded/meta-networking &q=
-uot;<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-openembedded/meta-python &quot;=
-<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-openembedded/meta-filesystems &=
-quot;<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-qt5 &quot;<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-hon-grip &quot;<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-java &quot;<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-swupdate &quot;<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-bc &quot;<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-updater &quot;<br>
-BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-gplv2 &quot;<br>
-<br>
-On Fri, Aug 17, 2018 at 6:01 PM, Christopher Larson &lt;<a href=3D"mailto:k=
-ergoth@gmail.com" target=3D"_blank" rel=3D"noreferrer">kergoth@gmail.com</a=
->&gt; wrote:<br>
-&gt; Your layer has to be before poky/meta in BBLAYERS, as that determines<=
-br>
-&gt; BBPATH, which is how bbclasses and config files are found (much like P=
-ATH).<br>
-&gt;<br>
-&gt; On Fri, Aug 17, 2018 at 12:11 PM Davis Roman &lt;<a href=3D"mailto:dav=
-is.roman84@gmail.com" target=3D"_blank" rel=3D"noreferrer">davis.roman84@gm=
-ail.com</a>&gt;<br>
-&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; Hello!<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; I&#39;ve made a modification in poky/meta/classes/libc-package.bbc=
-lass (<br>
-&gt;&gt; shown below)<br>
-&gt;&gt;<br>
-&gt;&gt; However I don&#39;t want this change to be stored here long term a=
-nd<br>
-&gt;&gt; instead feel that it should live in my project specific layer,<br>
-&gt;&gt; meta-hon-grip.<br>
-&gt;&gt;<br>
-&gt;&gt; After checking with bitbake-layers, I saw that my layer has a high=
-er<br>
-&gt;&gt; priority than the poky layer so my layer should be checked first (=
- or<br>
-&gt;&gt; so I thought)<br>
-&gt;&gt;<br>
-&gt;&gt; I copied the modified version of libc-packages.bbclass into<br>
-&gt;&gt; meta-hon-grip/classes and I restored the version in the poky layer=
- to<br>
-&gt;&gt; its original state.<br>
-&gt;&gt;<br>
-&gt;&gt; After making this change, I found that the modified version in my<=
-br>
-&gt;&gt; layer is not being used and instead the version in the poky layer =
-is<br>
-&gt;&gt; the one in play.<br>
-&gt;&gt;<br>
-&gt;&gt; I&#39;m trying to figure out what else to try.<br>
-&gt;&gt;<br>
-&gt;&gt; Any suggestions would be greatly appreciated!<br>
-&gt;&gt;<br>
-&gt;&gt; Thank you,<br>
-&gt;&gt;<br>
-&gt;&gt; Davis<br>
-&gt;&gt;<br>
-&gt;&gt; diff --git a/meta/classes/libc-package.bbclass<br>
-&gt;&gt; b/meta/classes/libc-package.bbclass<br>
-&gt;&gt; index 467d567..72d447a 100644<br>
-&gt;&gt; --- a/meta/classes/libc-package.bbclass<br>
-&gt;&gt; +++ b/meta/classes/libc-package.bbclass<br>
-&gt;&gt; @@ -287,7 +287,7 @@ python package_do_split_gconvs () {<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.e=
-rror(&quot;locale_arch_options not found for<br>
-&gt;&gt; target_arch=3D&quot; + target_arch)<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rais=
-e bb.build.FuncFailed(&quot;unknown arch:&quot; +<br>
-&gt;&gt; target_arch + &quot; for locale_arch_options&quot;)<br>
-&gt;&gt;<br>
-&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 localedef_opts +=3D &qu=
-ot; --force --old-style --no-archive<br>
-&gt;&gt; --prefix=3D%s \<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 localedef_opts +=3D &qu=
-ot; --force --no-archive --prefix=3D%s \<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 --in=
-putfile=3D%s/%s/i18n/locales/%s --charmap=3D%s %s/%s&quot; \<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 % (t=
-reedir, treedir, datadir, locale, encoding,<br>
-&gt;&gt; outputpath, name)<br>
-&gt;&gt;<br>
-&gt;&gt; @@ -295,7 +295,7 @@ python package_do_split_gconvs () {<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 (pat=
-h, i18npath, gconvpath, localedef_opts)<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 else: # earlier slower qemu way<=
-br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 qemu =3D qemu_targ=
-et_binary(d)<br>
-&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 localedef_opts =3D &quo=
-t;--force --old-style --no-archive<br>
-&gt;&gt; --prefix=3D%s \<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 localedef_opts =3D &quo=
-t;--force --no-archive --prefix=3D%s \<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 --in=
-putfile=3D%s/i18n/locales/%s --charmap=3D%s %s&quot; \<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 % (t=
-reedir, datadir, locale, encoding, name)<br>
-&gt;&gt; --<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; bitbake-devel mailing list<br>
-&gt;&gt; <a href=3D"mailto:bitbake-devel@lists.openembedded.org" target=3D"=
-_blank" rel=3D"noreferrer">bitbake-devel@lists.openembedded.org</a><br>
-&gt;&gt; <a href=3D"http://lists.openembedded.org/mailman/listinfo/bitbake-=
-devel" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.openemb=
-edded.org/mailman/listinfo/bitbake-devel</a><br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; Christopher Larson<br>
-&gt; kergoth at gmail dot com<br>
-&gt; Founder - BitBake, OpenEmbedded, OpenZaurus<br>
-&gt; Senior Software Engineer, Mentor Graphics<br>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"m=
-_-634991155681125989gmail_signature" data-smartmail=3D"gmail_signature"><di=
-v dir=3D"ltr"><div><div dir=3D"ltr">Christopher Larson<br>kergoth at gmail =
-dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br>Senior Software E=
-ngineer, Mentor Graphics</div></div></div></div>
-</blockquote></div>
+Hi, I am new to Yocto. I am working on ptest-runner.
 
---000000000000e12ef30573a99fbf--
+I followed the wiki https://wiki.yoctoproject.org/wiki/Ptest , but when I b=
+oot to my image and run ptest-runner I have the output : "No ptests found."
+
+Is this normal ? I thought that
+
+DISTRO_FEATURES_append =3D " ptest"
+
+and
+
+EXTRA_IMAGE_FEATURES +=3D "ptest-pkgs"
+
+ would install all the ptests for me in my image, apparently I am wrong but=
+ could you please explain to me why this is not the case i.e why ptests are=
+ not automatically installed in the image even though I included the above =
+lines in my local.conf ?
+
+Thx,
+raden
+
+--_000_HE1PR06MB1689A8B4242EF071FDD42F78943E0HE1PR06MB1689eurp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Hi, I am new to Yocto. I am working on ptest-runner.</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+I followed the wiki <a href=3D"https://wiki.yoctoproject.org/wiki/Ptest" id=
+=3D"LPlnk860589">
+https://wiki.yoctoproject.org/wiki/Ptest</a> , but when I boot to my image =
+and run ptest-runner I have the output : &quot;No ptests found.&quot;</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Is this normal ? I thought that
+<pre>DISTRO_FEATURES_append =3D &quot; ptest&quot; <br><br>and<br></pre>
+<pre>EXTRA_IMAGE_FEATURES &#43;=3D &quot;ptest-pkgs&quot;<br><br><div style=
+=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt"> would in=
+stall all the ptests for me in my image, apparently I am wrong but could yo=
+u please explain to me why this is not the case i.e why ptests are not auto=
+matically installed in the image even though I included the above lines in =
+my local.conf ?</div><div style=3D"font-family: Calibri, Helvetica, sans-se=
+rif; font-size: 12pt"><br></div><div style=3D"font-family: Calibri, Helveti=
+ca, sans-serif; font-size: 12pt">Thx, <br></div><div style=3D"font-family: =
+Calibri, Helvetica, sans-serif; font-size: 12pt">raden<br></div></pre>
+</div>
+</body>
+</html>
+
+--_000_HE1PR06MB1689A8B4242EF071FDD42F78943E0HE1PR06MB1689eurp_--
