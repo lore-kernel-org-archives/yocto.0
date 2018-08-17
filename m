@@ -1,6 +1,6 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <davis.roman84@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6422E00AB3; Fri, 17 Aug 2018 15:57:07 -0700 (PDT)
+	id 67115E00AB3; Fri, 17 Aug 2018 16:07:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kergoth[at]gmail.com)
+	mail provider *      (davis.roman84[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.218.51 listed in list.dnswl.org]
+	*      [209.85.208.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,48 +20,50 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f51.google.com (mail-oi0-f51.google.com
-	[209.85.218.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EAB6E00828
-	for <yocto@yoctoproject.org>; Fri, 17 Aug 2018 15:57:06 -0700 (PDT)
-Received: by mail-oi0-f51.google.com with SMTP id s198-v6so16651535oih.11
-	for <yocto@yoctoproject.org>; Fri, 17 Aug 2018 15:57:06 -0700 (PDT)
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
+	[209.85.208.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4967E00828
+	for <yocto@yoctoproject.org>; Fri, 17 Aug 2018 16:07:33 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id l15-v6so7529258lji.6
+	for <yocto@yoctoproject.org>; Fri, 17 Aug 2018 16:07:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=0JfYPNhnZHgl+pmS4IwTSCd9zSyFtSf11T+pQ8oTd5Y=;
-	b=ZzHBSb/f1J3EzyesGsP0HY+0p1WHHm3+DNjXFk5Q4YzTVhXtBlthrXrvLEqCI+G1Br
-	t7f+kTIxKGtW+ClzexCCiWcBiaJVW6j01rRVFmgSMuxO0bNJp0uFNTelKEZvxm9bOLn7
-	a+otXLUgTodRTLEBd98qmYItFg5XAPIlV+Jbt6njo7iwcp73dI/th5HniPwyCFptG792
-	rVbae/QUWhfb/BchJPeOot796Ui5/eJUd6hizwkEehfxynUcmTurLjI6XxfzizVPL5w4
-	kLI7VPJY4Y9F9ONk4wHH4aCHH7pFgOR7nveKStNnjbCgDj1ovcGWA00ENTkH3ixZkYh9
-	mZcQ==
+	:cc; bh=Xdt4g1zlRxRZUWcw9c37HHo0zN7vtcHW2ycKYPolNRg=;
+	b=ApFA3lqoiATWU3m0Vtz9Bd7PmyGTngmeME/E8Z8UrEp8JuFR/J/2n/rH2JOigIqKlp
+	AC+Ea3MI2fBSPtopZziTLakyr//lWr7ZnhAY1V46sY2n/wm5KJFu9+wLl2wCBaaZjNyc
+	cov9Fi//bfTJE5fT/dHVGsC3qJVFj5MKzMj6j+bHACLo74PBEklc9AXMpCAztXUJW++q
+	3m3A3fu2ypzgNCZz5LUbn2K8EnuUVcgSS0vh4mfkojgu/jQ+YtZtGX3M7IBTVWWQ1FcE
+	Ozxv+tym6yZM390bSm65MTFsCw8C3d0YWGcwcIrFJ5CoTiYDEWKFTlB2kGQ4Ytb07rTA
+	P3uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=0JfYPNhnZHgl+pmS4IwTSCd9zSyFtSf11T+pQ8oTd5Y=;
-	b=TJ4apwjKhYj07bUNYxbMqu5R0JRe7Y+7K3ZVgwad6042UOTbJrgfP2jju+KJxL0TRd
-	eDi2ByV2qL+qE/TFyRbuErwRvdSeBY1890GONSDH748s2r2f9FTsLNvs+j0k6H2wQmu+
-	vwajRsTmnMtMB1ftZntvAAMWlCJ4TY4fOGKqfntye2iopm7YndkleqHjiA3HXqMRiaWz
-	oEhKmRo96ulIOAfMB8Ps1cbYkQS7sKADNUtt44euHtIeqCpz6jdaTow0Lk00IKkEKHCb
-	Og8iFN6S9XoB1RHUL5oxEu0Uo4tEAMrVs5Vhrqr92EkCRe3wYsySnMptz7eqdKCGolib
-	xh8g==
-X-Gm-Message-State: AOUpUlGGBOw0QICKTZDtpNMTRyDJ5fZWBGVumD3pCLc9pZfJ4i+HJ6xp
-	zuMrYzwtBUuFXvYrm97y06NrAsexrhNNy/GCdDkaZQ==
-X-Google-Smtp-Source: ANB0VdYgVirN4YR4uGFDXJBTq1V/cHFaB+BlkIXKWR8Pvgjk13U4Zqh1PiQ+9qT8HJnyBGpNO5CDw85TByUD4hwV0Uc=
-X-Received: by 2002:aca:180b:: with SMTP id
-	h11-v6mr4816789oih.91.1534546625765; 
-	Fri, 17 Aug 2018 15:57:05 -0700 (PDT)
+	bh=Xdt4g1zlRxRZUWcw9c37HHo0zN7vtcHW2ycKYPolNRg=;
+	b=s7Qtbzze+rigoY2vTF3U4yMResR0gdoZy8P0WKJ+AlS1mfsFQALXLc6ZA3kWBpvAH+
+	JaO7S4+uHJ48huxAiypSzxW2zarosj8fk2RdEIfGHqwDrit9u9Nd/QrkGOWmUP63GmRP
+	G+X1avg6mxKnW35Gre4l3Q1pldbfw0c2lTsHxWbRj8OIRXHSzB4cyExwyRrjdgdZHpfh
+	dN74uKwZCXGyHBDfjACZqv7K3WtTfyixfgvjcypVUeJQUtwvN+769syzBXbG90DYuDIb
+	V7UekAdRyRHkXz3urM5TnVoBHJsbqlU2ncwOVUFSk+raQJK1RgtScV5nYMCI4i8ve7Yb
+	xRqA==
+X-Gm-Message-State: AOUpUlHfcI/i0A1yRxJdyGa+irrmVt+q231PVQKtalnUDiB3X4FHMi93
+	rOojxmT4l4lmIvweH2EdRYEKWYRi95xVftij7tM=
+X-Google-Smtp-Source: AA+uWPz0Oj54loojZg15D+sZRKVPspTy2QC99lchpcmIXz00v4j0OBDgbRTwj+QGv456lYtUOlm2G6NplRWQ70smKLg=
+X-Received: by 2002:a2e:1609:: with SMTP id
+	w9-v6mr15471172ljd.120.1534547252549; 
+	Fri, 17 Aug 2018 16:07:32 -0700 (PDT)
 MIME-Version: 1.0
 References: <CACfi_Z2Zvwiq-iB7ckmmT0LgthOPRxCMC6OCSW3ywbZ2=oSY4A@mail.gmail.com>
 	<CABcZANkABH+b1z+c-Ey9PrB7Sbj9NSM4KbA1cNsn0f-WAtLdXA@mail.gmail.com>
 	<CACfi_Z1xk+u+=Csd8rWxJ4-xSh7zWpD6jKXGLLvj23u0qr4Umg@mail.gmail.com>
-In-Reply-To: <CACfi_Z1xk+u+=Csd8rWxJ4-xSh7zWpD6jKXGLLvj23u0qr4Umg@mail.gmail.com>
-From: Christopher Larson <kergoth@gmail.com>
-Date: Fri, 17 Aug 2018 15:56:52 -0700
-Message-ID: <CABcZAN=aoUEWYuu6uLmSN2=JVgpAFT3adL2A7PjRLU5o-g34+Q@mail.gmail.com>
-To: davis.roman84@gmail.com
-Cc: yocto <yocto@yoctoproject.org>, bitbake-devel@lists.openembedded.org,
+	<CABcZAN=aoUEWYuu6uLmSN2=JVgpAFT3adL2A7PjRLU5o-g34+Q@mail.gmail.com>
+In-Reply-To: <CABcZAN=aoUEWYuu6uLmSN2=JVgpAFT3adL2A7PjRLU5o-g34+Q@mail.gmail.com>
+From: Davis Roman <davis.roman84@gmail.com>
+Date: Fri, 17 Aug 2018 19:07:21 -0400
+Message-ID: <CACfi_Z3kSzJUZu2Y7tRA7iY7mRNAHQzmBp4KM2kBeK08HLHsww@mail.gmail.com>
+To: Christopher Larson <kergoth@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	bitbake-devel@lists.openembedded.org,
 	Patches and discussions about the oe-core layer
 	<openembedded-core@lists.openembedded.org>
 Subject: Re: [bitbake-devel] how to store a modification of a bbclass in the poky layer in my own layer.
@@ -76,176 +78,197 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Aug 2018 22:57:07 -0000
-Content-Type: multipart/alternative; boundary="000000000000852a130573a97a40"
+X-List-Received-Date: Fri, 17 Aug 2018 23:07:35 -0000
+Content-Type: multipart/alternative; boundary="000000000000e12ef30573a99fbf"
 
---000000000000852a130573a97a40
+--000000000000e12ef30573a99fbf
 Content-Type: text/plain; charset="UTF-8"
 
-Layer priority as defined by BBFILE_PRIORITY controls recipe selection, not
-bbclass and config file parsing. See the bitbake reference manual for more
-detail.
+Hi Christopher,
 
-On Fri, Aug 17, 2018 at 3:54 PM Davis Roman <davis.roman84@gmail.com> wrote:
+I think I get it now.
 
-> Hi Christopher,
+Thank you so much for your time!
+
+Davis
+
+On Fri, Aug 17, 2018, 6:57 PM Christopher Larson <kergoth@gmail.com> wrote:
+
+> Layer priority as defined by BBFILE_PRIORITY controls recipe selection,
+> not bbclass and config file parsing. See the bitbake reference manual for
+> more detail.
 >
-> I am very intrigued by your response.
->
-> Initially I had mentioned that the 'bitbake-layers show-layers'
-> command indicates that my layer, meta-hon-grip, has a priority of 8
-> which is among the highest while the meta layer only has a priority of
-> 5.
->
-> However, now that you mentioned the bblayers.conf file, I see that the
-> meta-hon-grip layer is defined after the meta layer.
->
-> Therefore it appears to me that my bblayers.conf contradicts
-> 'bitbake-layers show-layers'
->
-> Could you please help me make sense of this?
->
-> Thank you,
->
-> Davis
->
->
->
-> --------------------------------------------------------------------------------------------
->
-> POKY_BBLAYERS_CONF_VERSION = "2"
->
-> BBPATH = "${TOPDIR}"
-> BSPDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True))
-> + '/../..')}"
->
-> BBFILES ?= ""
-> BBLAYERS = " \
->   ${BSPDIR}/sources/poky/meta \
->   ${BSPDIR}/sources/poky/meta-poky \
->   \
->   ${BSPDIR}/sources/meta-openembedded/meta-oe \
->   ${BSPDIR}/sources/meta-openembedded/meta-multimedia \
->   \
->   ${BSPDIR}/sources/meta-fsl-arm \
->   ${BSPDIR}/sources/meta-fsl-arm-extra \
->   ${BSPDIR}/sources/meta-fsl-demos \
-> "
-> ##Freescale Yocto Project Release layer
-> BBLAYERS += " ${BSPDIR}/sources/meta-fsl-bsp-release/imx/meta-bsp "
-> BBLAYERS += " ${BSPDIR}/sources/meta-fsl-bsp-release/imx/meta-sdk "
-> BBLAYERS += " ${BSPDIR}/sources/meta-browser "
-> BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-gnome "
-> BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-networking "
-> BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-python "
-> BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-filesystems "
-> BBLAYERS += " ${BSPDIR}/sources/meta-qt5 "
-> BBLAYERS += " ${BSPDIR}/sources/meta-hon-grip "
-> BBLAYERS += " ${BSPDIR}/sources/meta-java "
-> BBLAYERS += " ${BSPDIR}/sources/meta-swupdate "
-> BBLAYERS += " ${BSPDIR}/sources/meta-bc "
-> BBLAYERS += " ${BSPDIR}/sources/meta-updater "
-> BBLAYERS += " ${BSPDIR}/sources/meta-gplv2 "
->
-> On Fri, Aug 17, 2018 at 6:01 PM, Christopher Larson <kergoth@gmail.com>
+> On Fri, Aug 17, 2018 at 3:54 PM Davis Roman <davis.roman84@gmail.com>
 > wrote:
-> > Your layer has to be before poky/meta in BBLAYERS, as that determines
-> > BBPATH, which is how bbclasses and config files are found (much like
-> PATH).
-> >
-> > On Fri, Aug 17, 2018 at 12:11 PM Davis Roman <davis.roman84@gmail.com>
-> > wrote:
-> >>
-> >> Hello!
-> >>
-> >>
-> >> I've made a modification in poky/meta/classes/libc-package.bbclass (
-> >> shown below)
-> >>
-> >> However I don't want this change to be stored here long term and
-> >> instead feel that it should live in my project specific layer,
-> >> meta-hon-grip.
-> >>
-> >> After checking with bitbake-layers, I saw that my layer has a higher
-> >> priority than the poky layer so my layer should be checked first ( or
-> >> so I thought)
-> >>
-> >> I copied the modified version of libc-packages.bbclass into
-> >> meta-hon-grip/classes and I restored the version in the poky layer to
-> >> its original state.
-> >>
-> >> After making this change, I found that the modified version in my
-> >> layer is not being used and instead the version in the poky layer is
-> >> the one in play.
-> >>
-> >> I'm trying to figure out what else to try.
-> >>
-> >> Any suggestions would be greatly appreciated!
-> >>
-> >> Thank you,
-> >>
-> >> Davis
-> >>
-> >> diff --git a/meta/classes/libc-package.bbclass
-> >> b/meta/classes/libc-package.bbclass
-> >> index 467d567..72d447a 100644
-> >> --- a/meta/classes/libc-package.bbclass
-> >> +++ b/meta/classes/libc-package.bbclass
-> >> @@ -287,7 +287,7 @@ python package_do_split_gconvs () {
-> >>                  bb.error("locale_arch_options not found for
-> >> target_arch=" + target_arch)
-> >>                  raise bb.build.FuncFailed("unknown arch:" +
-> >> target_arch + " for locale_arch_options")
-> >>
-> >> -            localedef_opts += " --force --old-style --no-archive
-> >> --prefix=%s \
-> >> +            localedef_opts += " --force --no-archive --prefix=%s \
-> >>                  --inputfile=%s/%s/i18n/locales/%s --charmap=%s %s/%s" \
-> >>                  % (treedir, treedir, datadir, locale, encoding,
-> >> outputpath, name)
-> >>
-> >> @@ -295,7 +295,7 @@ python package_do_split_gconvs () {
-> >>                  (path, i18npath, gconvpath, localedef_opts)
-> >>          else: # earlier slower qemu way
-> >>              qemu = qemu_target_binary(d)
-> >> -            localedef_opts = "--force --old-style --no-archive
-> >> --prefix=%s \
-> >> +            localedef_opts = "--force --no-archive --prefix=%s \
-> >>                  --inputfile=%s/i18n/locales/%s --charmap=%s %s" \
-> >>                  % (treedir, datadir, locale, encoding, name)
-> >> --
-> >> _______________________________________________
-> >> bitbake-devel mailing list
-> >> bitbake-devel@lists.openembedded.org
-> >> http://lists.openembedded.org/mailman/listinfo/bitbake-devel
-> >
-> >
-> >
-> > --
-> > Christopher Larson
-> > kergoth at gmail dot com
-> > Founder - BitBake, OpenEmbedded, OpenZaurus
-> > Senior Software Engineer, Mentor Graphics
+>
+>> Hi Christopher,
+>>
+>> I am very intrigued by your response.
+>>
+>> Initially I had mentioned that the 'bitbake-layers show-layers'
+>> command indicates that my layer, meta-hon-grip, has a priority of 8
+>> which is among the highest while the meta layer only has a priority of
+>> 5.
+>>
+>> However, now that you mentioned the bblayers.conf file, I see that the
+>> meta-hon-grip layer is defined after the meta layer.
+>>
+>> Therefore it appears to me that my bblayers.conf contradicts
+>> 'bitbake-layers show-layers'
+>>
+>> Could you please help me make sense of this?
+>>
+>> Thank you,
+>>
+>> Davis
+>>
+>>
+>>
+>> --------------------------------------------------------------------------------------------
+>>
+>> POKY_BBLAYERS_CONF_VERSION = "2"
+>>
+>> BBPATH = "${TOPDIR}"
+>> BSPDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True))
+>> + '/../..')}"
+>>
+>> BBFILES ?= ""
+>> BBLAYERS = " \
+>>   ${BSPDIR}/sources/poky/meta \
+>>   ${BSPDIR}/sources/poky/meta-poky \
+>>   \
+>>   ${BSPDIR}/sources/meta-openembedded/meta-oe \
+>>   ${BSPDIR}/sources/meta-openembedded/meta-multimedia \
+>>   \
+>>   ${BSPDIR}/sources/meta-fsl-arm \
+>>   ${BSPDIR}/sources/meta-fsl-arm-extra \
+>>   ${BSPDIR}/sources/meta-fsl-demos \
+>> "
+>> ##Freescale Yocto Project Release layer
+>> BBLAYERS += " ${BSPDIR}/sources/meta-fsl-bsp-release/imx/meta-bsp "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-fsl-bsp-release/imx/meta-sdk "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-browser "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-gnome "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-networking "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-python "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-filesystems "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-qt5 "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-hon-grip "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-java "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-swupdate "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-bc "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-updater "
+>> BBLAYERS += " ${BSPDIR}/sources/meta-gplv2 "
+>>
+>> On Fri, Aug 17, 2018 at 6:01 PM, Christopher Larson <kergoth@gmail.com>
+>> wrote:
+>> > Your layer has to be before poky/meta in BBLAYERS, as that determines
+>> > BBPATH, which is how bbclasses and config files are found (much like
+>> PATH).
+>> >
+>> > On Fri, Aug 17, 2018 at 12:11 PM Davis Roman <davis.roman84@gmail.com>
+>> > wrote:
+>> >>
+>> >> Hello!
+>> >>
+>> >>
+>> >> I've made a modification in poky/meta/classes/libc-package.bbclass (
+>> >> shown below)
+>> >>
+>> >> However I don't want this change to be stored here long term and
+>> >> instead feel that it should live in my project specific layer,
+>> >> meta-hon-grip.
+>> >>
+>> >> After checking with bitbake-layers, I saw that my layer has a higher
+>> >> priority than the poky layer so my layer should be checked first ( or
+>> >> so I thought)
+>> >>
+>> >> I copied the modified version of libc-packages.bbclass into
+>> >> meta-hon-grip/classes and I restored the version in the poky layer to
+>> >> its original state.
+>> >>
+>> >> After making this change, I found that the modified version in my
+>> >> layer is not being used and instead the version in the poky layer is
+>> >> the one in play.
+>> >>
+>> >> I'm trying to figure out what else to try.
+>> >>
+>> >> Any suggestions would be greatly appreciated!
+>> >>
+>> >> Thank you,
+>> >>
+>> >> Davis
+>> >>
+>> >> diff --git a/meta/classes/libc-package.bbclass
+>> >> b/meta/classes/libc-package.bbclass
+>> >> index 467d567..72d447a 100644
+>> >> --- a/meta/classes/libc-package.bbclass
+>> >> +++ b/meta/classes/libc-package.bbclass
+>> >> @@ -287,7 +287,7 @@ python package_do_split_gconvs () {
+>> >>                  bb.error("locale_arch_options not found for
+>> >> target_arch=" + target_arch)
+>> >>                  raise bb.build.FuncFailed("unknown arch:" +
+>> >> target_arch + " for locale_arch_options")
+>> >>
+>> >> -            localedef_opts += " --force --old-style --no-archive
+>> >> --prefix=%s \
+>> >> +            localedef_opts += " --force --no-archive --prefix=%s \
+>> >>                  --inputfile=%s/%s/i18n/locales/%s --charmap=%s %s/%s"
+>> \
+>> >>                  % (treedir, treedir, datadir, locale, encoding,
+>> >> outputpath, name)
+>> >>
+>> >> @@ -295,7 +295,7 @@ python package_do_split_gconvs () {
+>> >>                  (path, i18npath, gconvpath, localedef_opts)
+>> >>          else: # earlier slower qemu way
+>> >>              qemu = qemu_target_binary(d)
+>> >> -            localedef_opts = "--force --old-style --no-archive
+>> >> --prefix=%s \
+>> >> +            localedef_opts = "--force --no-archive --prefix=%s \
+>> >>                  --inputfile=%s/i18n/locales/%s --charmap=%s %s" \
+>> >>                  % (treedir, datadir, locale, encoding, name)
+>> >> --
+>> >> _______________________________________________
+>> >> bitbake-devel mailing list
+>> >> bitbake-devel@lists.openembedded.org
+>> >> http://lists.openembedded.org/mailman/listinfo/bitbake-devel
+>> >
+>> >
+>> >
+>> > --
+>> > Christopher Larson
+>> > kergoth at gmail dot com
+>> > Founder - BitBake, OpenEmbedded, OpenZaurus
+>> > Senior Software Engineer, Mentor Graphics
+>>
+>
+>
+> --
+> Christopher Larson
+> kergoth at gmail dot com
+> Founder - BitBake, OpenEmbedded, OpenZaurus
+> Senior Software Engineer, Mentor Graphics
 >
 
-
--- 
-Christopher Larson
-kergoth at gmail dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Senior Software Engineer, Mentor Graphics
-
---000000000000852a130573a97a40
+--000000000000e12ef30573a99fbf
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Layer priority as defined by BBFILE_PRIORITY controls reci=
-pe selection, not bbclass and config file parsing. See the bitbake referenc=
-e manual for more detail.<br></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr">On Fri, Aug 17, 2018 at 3:54 PM Davis Roman &lt;<a href=3D"mailto:=
-davis.roman84@gmail.com">davis.roman84@gmail.com</a>&gt; wrote:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
-#ccc solid;padding-left:1ex">Hi Christopher,<br>
+<div dir=3D"auto">Hi Christopher,<div dir=3D"auto"><br></div><div dir=3D"au=
+to">I think I get it now.</div><div dir=3D"auto"><br></div><div dir=3D"auto=
+">Thank you so much for your time!</div><div dir=3D"auto"><br></div><div di=
+r=3D"auto">Davis</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+>On Fri, Aug 17, 2018, 6:57 PM Christopher Larson &lt;<a href=3D"mailto:ker=
+goth@gmail.com">kergoth@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"ltr">Layer priority as defined by BBFILE_PRIORITY=
+ controls recipe selection, not bbclass and config file parsing. See the bi=
+tbake reference manual for more detail.<br></div><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr">On Fri, Aug 17, 2018 at 3:54 PM Davis Roman &lt;<a hr=
+ef=3D"mailto:davis.roman84@gmail.com" target=3D"_blank" rel=3D"noreferrer">=
+davis.roman84@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
+ex">Hi Christopher,<br>
 <br>
 I am very intrigued by your response.<br>
 <br>
@@ -312,14 +335,16 @@ BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-updater &quot;<br>
 BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-gplv2 &quot;<br>
 <br>
 On Fri, Aug 17, 2018 at 6:01 PM, Christopher Larson &lt;<a href=3D"mailto:k=
-ergoth@gmail.com" target=3D"_blank">kergoth@gmail.com</a>&gt; wrote:<br>
+ergoth@gmail.com" target=3D"_blank" rel=3D"noreferrer">kergoth@gmail.com</a=
+>&gt; wrote:<br>
 &gt; Your layer has to be before poky/meta in BBLAYERS, as that determines<=
 br>
 &gt; BBPATH, which is how bbclasses and config files are found (much like P=
 ATH).<br>
 &gt;<br>
 &gt; On Fri, Aug 17, 2018 at 12:11 PM Davis Roman &lt;<a href=3D"mailto:dav=
-is.roman84@gmail.com" target=3D"_blank">davis.roman84@gmail.com</a>&gt;<br>
+is.roman84@gmail.com" target=3D"_blank" rel=3D"noreferrer">davis.roman84@gm=
+ail.com</a>&gt;<br>
 &gt; wrote:<br>
 &gt;&gt;<br>
 &gt;&gt; Hello!<br>
@@ -403,10 +428,10 @@ reedir, datadir, locale, encoding, name)<br>
 &gt;&gt; _______________________________________________<br>
 &gt;&gt; bitbake-devel mailing list<br>
 &gt;&gt; <a href=3D"mailto:bitbake-devel@lists.openembedded.org" target=3D"=
-_blank">bitbake-devel@lists.openembedded.org</a><br>
+_blank" rel=3D"noreferrer">bitbake-devel@lists.openembedded.org</a><br>
 &gt;&gt; <a href=3D"http://lists.openembedded.org/mailman/listinfo/bitbake-=
-devel" rel=3D"noreferrer" target=3D"_blank">http://lists.openembedded.org/m=
-ailman/listinfo/bitbake-devel</a><br>
+devel" rel=3D"noreferrer noreferrer" target=3D"_blank">http://lists.openemb=
+edded.org/mailman/listinfo/bitbake-devel</a><br>
 &gt;<br>
 &gt;<br>
 &gt;<br>
@@ -415,10 +440,11 @@ ailman/listinfo/bitbake-devel</a><br>
 &gt; kergoth at gmail dot com<br>
 &gt; Founder - BitBake, OpenEmbedded, OpenZaurus<br>
 &gt; Senior Software Engineer, Mentor Graphics<br>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"g=
-mail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><d=
-iv dir=3D"ltr">Christopher Larson<br>kergoth at gmail dot com<br>Founder - =
-BitBake, OpenEmbedded, OpenZaurus<br>Senior Software Engineer, Mentor Graph=
-ics</div></div></div></div>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"m=
+_-634991155681125989gmail_signature" data-smartmail=3D"gmail_signature"><di=
+v dir=3D"ltr"><div><div dir=3D"ltr">Christopher Larson<br>kergoth at gmail =
+dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br>Senior Software E=
+ngineer, Mentor Graphics</div></div></div></div>
+</blockquote></div>
 
---000000000000852a130573a97a40--
+--000000000000e12ef30573a99fbf--
