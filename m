@@ -1,68 +1,55 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4B40E00A86; Mon, 20 Aug 2018 08:17:03 -0700 (PDT)
+	id B9CF1E00A86; Mon, 20 Aug 2018 10:42:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.48 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kanavin[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.151 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
-	[209.85.218.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DF09E003D7
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2018 08:17:02 -0700 (PDT)
-Received: by mail-oi0-f48.google.com with SMTP id k12-v6so26404303oiw.8
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2018 08:17:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=S+MOIP6Z2maMt8fWl2nfzy3BuOy45MyxxKZcE20FGSU=;
-	b=ELN+EfhYVA9nB+VYWzSrHK35Qax2Kc8NjY4zYo2HJSVL4m7CQLS2Myqv2Aknl5/v7v
-	GFc39HoPTJbzv6MHDc/E+tWKWkLfjL0ruh+6ey6ON/KPxNkjrmoqSZHhUfY2QyPorkBO
-	mCFtvIhPVZLVbMY866Ypj8ea6Db20vgj+iByJzeP1PB1UOXEg0Ls774lhYs2jn/KAItF
-	nJMvXCz/AEl2XI2BoTQcwrdrpjwnus8u06v/QQ23fSsWQClwmKXypgRNnwgR6x8eYr3p
-	1AmScggEpMh6WRygrpzkuxws8vz96qqanwIF+4pK8ec5PDGFOMtIHIfzN+rN5bSkanfG
-	K9yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=S+MOIP6Z2maMt8fWl2nfzy3BuOy45MyxxKZcE20FGSU=;
-	b=qTCvFF27l2PXjOCTkklxAWNDqPyfqjtbUE5kehpULJ/8Z02B59JHa+rgf377BOc6iG
-	ZNYyNpCXQQDHxuUqEYrvMX4W5qUPyZxI93HwMIoxUhaoKunCWoCgFfFz2Uy9jXUa5Px7
-	k3+xZfL3WQEtIU3lGu8C1dgebgRYo2xAibXwBSlv963i2A0upd830cnOOHRnjIrY+nPw
-	6POWeZxFprDHf+1QMzHANPJOUTf7yCmQOlnTBnUiYrt3p/HbvLTO2lPiqj/ClLIAHjqL
-	zNC4h0/NvwEBOI/ywEnqsBiYdiNuO/KmMausSpxnHPah9heSlV1F0hL9suIMb96Z9D1V
-	2pfQ==
-X-Gm-Message-State: AOUpUlEtCTSJNhe0D/rKeE4chx5u0jF8nuP2l+u//2yfsLvX10y2Ob6s
-	28SV+5W9AfkuSmMsIoYTpCDa/R5X7HIjL99sDJ/DDqSr
-X-Google-Smtp-Source: AA+uWPzlzwuNlaWub/hVXs7XcGIlTZZ+wy5EIdHBEpeotY8wJAqCsTeyDsbl5X90Xtbz8FSEPnh1Tc4txJT/DtdDHaQ=
-X-Received: by 2002:aca:a8c1:: with SMTP id
-	r184-v6mr14742310oie.215.1534778222654; 
-	Mon, 20 Aug 2018 08:17:02 -0700 (PDT)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22CA9E003D7
+	for <yocto@yoctoproject.org>; Mon, 20 Aug 2018 10:42:18 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	20 Aug 2018 10:42:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.53,266,1531810800"; d="scan'208,217";a="78485743"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+	by fmsmga002.fm.intel.com with ESMTP; 20 Aug 2018 10:42:18 -0700
+Received: from fmsmsx125.amr.corp.intel.com (10.18.125.40) by
+	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Mon, 20 Aug 2018 10:42:18 -0700
+Received: from fmsmsx112.amr.corp.intel.com ([169.254.5.84]) by
+	FMSMSX125.amr.corp.intel.com ([169.254.2.116]) with mapi id
+	14.03.0319.002; Mon, 20 Aug 2018 10:42:17 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: Yocto Project Unassigned Bugs - Help Needed
+Thread-Index: AdQXlGn2RYGWCO8aQne3TGYivsbGuQ==
+Date: Mon, 20 Aug 2018 17:42:16 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECE4681DC@FMSMSX112.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.108]
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiOWM1NTVhNjktYmU4ZS00NzkzLTkyMDgtZGVlNGE1OTA2YTZmIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiaUlWbjdERDJ5eExEVTQ0dWhmcVE5RVV6NVQrT1dlMmtFek5FSTNwUjZ2TE5cL05hT2ZBdXpzZk1EV2tlUzRkNGQifQ==
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
 MIME-Version: 1.0
-Received: by 2002:a4a:90ed:0:0:0:0:0 with HTTP; Mon, 20 Aug 2018 08:17:02
-	-0700 (PDT)
-In-Reply-To: <0e7ab86ac1dc4ef2a81f178ff2f54d92@ifm.com>
-References: <0e7ab86ac1dc4ef2a81f178ff2f54d92@ifm.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 20 Aug 2018 17:17:02 +0200
-Message-ID: <CANNYZj88Oc1y-NzZ_pk+G_JomTYUpp3uK9wMRjj5XLVL=zq0DQ@mail.gmail.com>
-To: "Pandey, Kamal" <Kamal.Pandey@ifm.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: bitbake firefox using meta-browser layer
+Subject: Yocto Project Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,71 +61,215 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2018 15:17:03 -0000
-Content-Type: multipart/alternative; boundary="000000000000c5383b0573df6639"
+X-List-Received-Date: Mon, 20 Aug 2018 17:42:19 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECE4681DCFMSMSX112amrcor_"
 
---000000000000c5383b0573df6639
-Content-Type: text/plain; charset="UTF-8"
-
-2018-08-20 15:56 GMT+02:00 Pandey, Kamal <Kamal.Pandey@ifm.com>:
-
-> cd
-> /home/iepl/work/yocto_build/poky/build/tmp/work/aarch64-pdm3-linux/firefox/52.9.0esr-r0/firefox-52.9.0esr/firefox-build-dir
->
->
-> | /home/iepl/work/yocto_build/poky/build/tmp/work/aarch64-
-> pdm3-linux/firefox/52.9.0esr-r0/firefox-52.9.0esr/configure
-> --target=aarch64-pdm3-linux --host=x86_64-linux --with-toolchain-prefix=aarch64-pdm3-linux-
-> --build=x86_64-linux --prefix=/usr
-> | mozbuild.configure.options.InvalidOptionError: Unknown option: --build
->
-> | *** Fix above errors and then restart with\
-> Can anybody provide me a solution or at least a  hint, so that I can move
-> forward.
->
->
->
->
-
-The hint is in these lines. Mozilla's configure script thinks --build is
-not a valid option, so you need to figure out where it's coming from, and
-why it doesn't work.
-
-Alex
-
---000000000000c5383b0573df6639
-Content-Type: text/html; charset="UTF-8"
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECE4681DCFMSMSX112amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">2018-08-20 15:56 GMT+02:00 Pandey, Kamal <span dir=3D"ltr"=
->&lt;<a href=3D"mailto:Kamal.Pandey@ifm.com" target=3D"_blank">Kamal.Pandey=
-@ifm.com</a>&gt;</span>:<br><div class=3D"gmail_extra"><div class=3D"gmail_=
-quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex">
+All,
 
 
 
+The triage team meets weekly and does its best to handle the bugs reported =
+into the bugzilla. The number of people attending that meeting has fallen, =
+as have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage team) a=
+re therefore going to start reporting out the currently 314 unassigned bugs=
+.
 
 
-<div link=3D"#0563C1" vlink=3D"#954F72" lang=3D"EN-IN">
-<div class=3D"m_-1834361897274842709WordSection1">cd /home/iepl/work/yocto_=
-build/poky/build/tmp/work/aarch64-pdm3-linux/firefox/52.9.0esr-r0/firefox-5=
-2.9.0esr/firefox-build-dir
-<p class=3D"MsoNormal">| /home/iepl/work/yocto_build/<wbr>poky/build/tmp/wo=
-rk/aarch64-<wbr>pdm3-linux/firefox/52.9.0esr-<wbr>r0/firefox-52.9.0esr/conf=
-igure --target=3Daarch64-pdm3-linux --host=3Dx86_64-linux --with-toolchain-=
-prefix=3D<wbr>aarch64-pdm3-linux- --build=3Dx86_64-linux --prefix=3D/usr<u>=
-</u><u></u></p>| mozbuild.configure.options.InvalidOptionError: Unknown opt=
-ion: --build
-<p class=3D"MsoNormal">| *** Fix above errors and then restart with\<u></u>=
-<u></u></p>Can anybody provide me a solution or at least a=C2=A0 hint, so t=
-hat I can move forward.
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt;font-family:&quot;Trebuchet MS&quot;,sans-serif;color:black" lang=
-=3D"EN-US"><u></u>=C2=A0<u></u></span></p><br></div></div></blockquote><div=
-><br></div><div><br></div><div>The hint is in these lines. Mozilla&#39;s co=
-nfigure script thinks --build is not a valid option, so you need to figure =
-out where it&#39;s coming from, and why it doesn&#39;t work.</div><div><br>=
-</div><div>Alex<br></div></div></div></div>
 
---000000000000c5383b0573df6639--
+We're hoping people may be able to spare some time now and again to help ou=
+t with these.
+
+
+
+Bugs are split into two types, "true bugs" where things don't work as they =
+should and "enhancements" which are features we'd want to add to the system=
+.
+
+
+
+There are also roughly three different "priority" classes right now, "2.6",=
+ "2.99" and "Future", the more pressing/urgent issues being in "2.6".
+
+
+
+Please review this link and if a bug is something you would be able to help=
+ with either take ownership of the bug, or send me (Stephen.k.jolley@intel.=
+com) an e-mail with the bug number you would like and I will assign it to y=
+ou (please make sure you have a bugzilla account).
+
+
+
+The list is at: https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bu=
+gs
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*    Cell:                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECE4681DCFMSMSX112amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:2 11 5 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle19
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoPlainText">All,<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The triage team meets weekly and does its best to=
+ handle the bugs reported into the bugzilla. The number of people attending=
+ that meeting has fallen, as have the number of people available to help fi=
+x bugs. One of the things we hear
+ users report is they don't know how to help. We (the triage team) are ther=
+efore going to start reporting out the currently 314 unassigned bugs.<o:p><=
+/o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">We're hoping people may be able to spare some tim=
+e now and again to help out with these.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Bugs are split into two types, &quot;true bugs&qu=
+ot; where things don't work as they should and &quot;enhancements&quot; whi=
+ch are features we'd want to add to the system.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">There are also roughly three different &quot;prio=
+rity&quot; classes right now, &quot;2.6&quot;, &quot;2.99&quot; and &quot;F=
+uture&quot;, the more pressing/urgent issues being in &quot;2.6&quot;.<o:p>=
+</o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Please review this link and if a bug is something=
+ you would be able to help with either take ownership of the bug, or send m=
+e (Stephen.k.jolley@intel.com) an e-mail with the bug number you would like=
+ and I will assign it to you (please
+ make sure you have a bugzilla account).<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The list is at: <a href=3D"https://wiki.yoctoproj=
+ect.org/wiki/Bug_Triage#Unassigned_Bugs">
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
+></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;,serif;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;,serif;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+,serif">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;,serif;color:teal">:</span><span =
+lang=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;,=
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECE4681DCFMSMSX112amrcor_--
