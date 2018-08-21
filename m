@@ -1,21 +1,15 @@
-Return-Path: <nader.hariri@hotmail.com>
+Return-Path: <Kamal.Pandey@ifm.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BDF49E00A6B; Tue, 21 Aug 2018 03:28:49 -0700 (PDT)
+	id 7C68EE009E7; Tue, 21 Aug 2018 06:28:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
-	HTML_MESSAGE, 
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (nader.hariri[at]hotmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [40.92.72.58 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
-	but no 'Received:'
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [91.90.150.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -24,88 +18,66 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 42533 seconds by postgrey-1.32 at yocto-www;
-	Tue, 21 Aug 2018 03:28:47 PDT
-Received: from EUR03-VE1-obe.outbound.protection.outlook.com
-	(mail-oln040092072058.outbound.protection.outlook.com [40.92.72.58])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87D8CE009D4
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2018 03:28:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=E2hrqDycegKgkWV86usnwAJkSqvFf/VE790JlmQQli4=;
-	b=HWrHOYNe8TLyKuN4pE3XBCF3IEkgjG08BrNpuXf81QnkNBDXu9Vdn1cHMkjj3F3O2XPXXT9nbSnIqTfLmADujfzieulhaiN2G3Iuldi4sOhHdhjMYV1WKCBBUh7cObBDppiH3gCi7LjeHZdz0wKJTflJMOk2OZI5Xspol67UTDEag301pUJoP1neB8C5G3c3iGGpqGEb987gOP0HcwFR2CVoH2s8s1rCvAsSvGmskOhmPk3lBk6JP8NGWkjHYHAUnNhiHisfGAf6bvBZ+nocx/6T2ElaXdYTdxxJvxStGaxkhr+5xpoGSXUb9w6xNCj7fJEkmuNTQ+nWsjvxKkFLlQ==
-Received: from DB5EUR03FT028.eop-EUR03.prod.protection.outlook.com
-	(10.152.20.51) by DB5EUR03HT088.eop-EUR03.prod.protection.outlook.com
-	(10.152.21.13) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.20.1080.9;
-	Tue, 21 Aug 2018 07:54:55 +0000
-Received: from HE1PR06MB1689.eurprd06.prod.outlook.com (10.152.20.59) by
-	DB5EUR03FT028.mail.protection.outlook.com (10.152.20.99) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.20.1080.9 via Frontend Transport; Tue, 21 Aug 2018 07:54:55 +0000
-Received: from HE1PR06MB1689.eurprd06.prod.outlook.com
-	([fe80::45ed:e302:37fd:1957]) by
-	HE1PR06MB1689.eurprd06.prod.outlook.com
-	([fe80::45ed:e302:37fd:1957%6]) with mapi id 15.20.1059.023;
-	Tue, 21 Aug 2018 07:54:55 +0000
-From: Nader Hariri <nader.hariri@hotmail.com>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Thread-Topic: [yocto] ptest-runner "No ptests found."
-Thread-Index: AQHUNWpiVp47iVBfjka016fW7Q5GIaTIga2AgAAIAsSAAA10AIAADIMmgAAMGwCAASrUDw==
-Date: Tue, 21 Aug 2018 07:54:55 +0000
-Message-ID: <HE1PR06MB168946186F96B6517E7CB10494310@HE1PR06MB1689.eurprd06.prod.outlook.com>
-References: <HE1PR06MB1689A8B4242EF071FDD42F78943E0@HE1PR06MB1689.eurprd06.prod.outlook.com>
-	<CANNYZj94ivO54g88AT4g1KLTbtPHGfiFxA=Owvnvu=RqHYRVKg@mail.gmail.com>
-	<HE1PR06MB1689535B4BAC12A98F5883AC94320@HE1PR06MB1689.eurprd06.prod.outlook.com>
-	<CANNYZj8Vcx1D6Pr6rtj3NFXG0gsUgm1oMuNrpnYmTuVSAOT-9g@mail.gmail.com>
-	<HE1PR06MB16896228DCEB67A69FF9D43E94320@HE1PR06MB1689.eurprd06.prod.outlook.com>,
-	<CANNYZj_wDbKMA+d5sKgLjanukfeJLmj=Lj+5+6P1Pu=cGZeKtQ@mail.gmail.com>
-In-Reply-To: <CANNYZj_wDbKMA+d5sKgLjanukfeJLmj=Lj+5+6P1Pu=cGZeKtQ@mail.gmail.com>
-Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
+Received: from s2065.ppsmtp.net (s2065.ppsmtp.net [91.90.150.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF76AE00754
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2018 06:28:06 -0700 (PDT)
+Received: from pps.filterd (s2065.ppsmtp.net [127.0.0.1])
+	by s2065.ppsmtp.net (8.16.0.22/8.16.0.22) with SMTP id w7LDPhq3010020
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2018 15:28:05 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ifm.com;
+	h=from : to : subject :
+	date : message-id : mime-version : content-type; s=pps;
+	bh=8WJi2jqmMmaGUFe0D7os5kF/n5s8yUkjJmXAVNkGy5E=;
+	b=Q4fbuk1ReaNqfQDKoFju2x+WT0odklhNaLAONZ3GNwzb7uFupz14rbG+278jr8ikF1Xf
+	Q+11eCpWOKMlZ7rR6faNazMOOGI0ybQFsHEjBhg1X5quS0BpYTl3S3dX+Dq9Sepdlpnm
+	3kJqbkUqZkHCE0xJDy4VwBnwVMixbZKL8yPyxs2CeouuRQYecyf31pUnqbfs7ac4e9tw
+	Y/inEGwxPSngjNtsSJhciSMNI8gpa6ytybAF143kYi9S0B1nKunAFzHQ38X4a9FFjzO9
+	aqcC80J50jeWocAeWFKOBzH0ajnVvlk+9IkJatmN+dJX2ID4U4MecJADu5HV7R1jEVMh
+	4Q== 
+Received: from deesdmz227.dmz.es.de.ifm (mail27.ifm.com [194.156.152.227])
+	by s2065.ppsmtp.net with ESMTP id 2kxum1kgxt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2018 15:28:05 +0200
+Received: from deesdmz227.dmz.es.de.ifm (localhost [127.0.0.1])
+	by deesdmz227.dmz.es.de.ifm (Postfix) with ESMTP id DF733884445
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2018 15:28:04 +0200 (CEST)
+From: "Pandey, Kamal" <Kamal.Pandey@ifm.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: chromium is compiling but is not able to add in the image
+Thread-Index: AdQ5UPtFgaKPlaT/QnyZIeHR/YiQog==
+Date: Tue, 21 Aug 2018 13:28:03 +0000
+Message-ID: <fc50e40975134a01920906aad4ab0e75@ifm.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:6B9F041A471D969646821B1DFA40BC4ED1941826B6DCA0593A34B65220A1E594;
-	UpperCasedChecksum:64205A33E01B5555904829123CE89B8C56FAD80D92534D2334FD9C60F3F49731;
-	SizeAsReceived:7531; Count:47
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [bM+mv28xELC9PlGLhOLkDghHGqYzzT/i]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; DB5EUR03HT088;
-	6:3JW1m0N3kHCsEO0buEjdPJhUxWBl97XXbY2osRErTD7OIwDzQXmieozGwv26mG8G3rpv2z1rm2uIvDvuRYY6p6NsUcEYOySJ/AJnTQbGvmyXMQI9eBTa7DqokmwdIoITwKfllCyMYucixQ1SeUc0UQQHhwkc0goswdUnu6LGLPgi/rOE9zNfLaSacH1WfjEnXkIJD8zU07fLltU6UxSEg4Af7y2sLcUaA0jE/1Juk1J0LismbjniBpJfjo9BIYBFAxYJ78a7KrxtnS59qZhC6y7ycWcGT69vKEdDGHdI6h3i2VEDtlJEF2GZoAGNZy/44mMIG6nO4FmuylqCUG41ZDzLFntCD9qmsrJA0EGuKspU/DR0GcyPnYiGILZc33dU8INec8it4sFwNLLEx3jtAEGjglwF69nVZNlX2fJJ+HBfTnzPqVBM3VtPFXVuUjaktXpRr+TPfsseB2PNBcqwUA==;
-	5:n8P5ix3cwoL5Zea1YTQrHqq1KgH2h1yo8Xt9gQCzyby3ZxZSqstsJ+L+6VykwIx7xYC+E4mOyD/lqbp12PZN22pfXSmmlJ2/HzJTHujmeWy+bpBPsuRuH7Dt4J7eZF0ZiTjkfCAh4kIee2DpoWjPpVfvIN3SfYIdXYz++mGq9+Q=;
-	7:Dj4Nihfu2v+4xzlKYJrg2DW2ShW/LnhyrVebJkg8fGZvYvKevf+WJ3AGbCarpJPcXpzGZgOP29IVe2FFyDYHYYznBe/z3/1fe3E5MNxUBIAHmaL2lPfdNiTcbqyCd+XyibRUVH0tHopKzRkfxMPOLrSHIGTJuyF3QxV50YLDaCc7m5x5aLaJ2r9hhlGkbZBo3GNwzJi4uzb0pBe/8FcP+YZHSQ4QZwpJkVzMdla41F3OxokPbAL9amstF9Hy2ry+
-x-incomingheadercount: 47
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101475)(1601125500)(1701031045);
-	SRVR:DB5EUR03HT088; 
-x-ms-traffictypediagnostic: DB5EUR03HT088:
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(4566010)(82015058);
-	SRVR:DB5EUR03HT088; BCL:0; PCL:0; RULEID:; SRVR:DB5EUR03HT088; 
-x-forefront-prvs: 0771670921
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(7070007)(189003)(199004)(486006)(476003)(102836004)(6346003)(45080400002)(44832011)(446003)(11346002)(106356001)(4326008)(26005)(105586002)(6506007)(229853002)(19627405001)(39060400002)(20460500001)(8936002)(86362001)(74316002)(83332001)(105004)(99286004)(5250100002)(7696005)(14444005)(6246003)(76176011)(256004)(81156014)(6436002)(2900100001)(5660300001)(68736007)(8676002)(93886005)(73972006)(14454004)(87572001)(56003)(55016002)(104016004)(82202002)(9686003)(97736004)(6916009)(25786009)(54896002)(33656002)(15852004);
-	DIR:OUT; SFP:1901; SCL:1; SRVR:DB5EUR03HT088;
-	H:HE1PR06MB1689.eurprd06.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: hotmail.com does not designate
-	permitted sender hosts)
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=nader.hariri@hotmail.com; 
-x-microsoft-antispam-message-info: shmVREMUeW3189g0Yq56vweWlOXn8h4acBLMdN9mgxC9waroPuO9DJBR7GqatA7bJqeEQ8LnGbsMzhNlCqRKjNxcRWSEG5Yo9oT3rkMLBDs6L+XRPtWbv27Wy7gjdILduvYsciRipPEj3khHsII0sM6O1XnQx10bdy/VevrfIn4omV/FUxmDgiLrKGNKEmMmkd9cXl9/ZDBOk6FmGKZFacnqN/yJXj64jvTpEvPikag=
+x-originating-ip: [172.29.169.96]
+X-TM-AS-Product-Ver: SMEX-12.5.0.1300-8.2.1013-24044.006
+X-TM-AS-Result: No-15.302000-5.000000-10
+X-TMASE-MatchedRID: Me8Oc/WewGB5yhP+9izTu6MVgdN9w+TCKx5ICGp/WtEk8AGcFQJzlLad
+	9is5sQGlUAKWoPOnH7xqueEjGolvX8637+A5hpnFfPskp+yAAPEgXSmAKVRhN0Yx760ONDcWxLg
+	b7Z5yc7E1mAq5eAuCk0AYjz759+4GQCS4asNrH404jxClIfsQfkyQ5fRSh265zsQ8iRVyD46o0Z
+	qjXsGC+XG0WO1igPtfV+jea+FBPZZhaYhpKJchaGivjLE8DPtZIfZjRfGTydiQS5Fh6/hkz/kUm
+	y1Y1jH8ri+fKb6imlf2FqouNW+gyEobO+54PiwG5DSMPEZQAkNyWbKpy+Q0Yxu1IPIYKUTmRgL1
+	INAcPMZ5Cw/EpySY0s81NvjC6w1UatEKoWLrO2RoOA9kFf9sy+q9xwosX7inHOK4uESVf9XnOCp
+	4eeC28RS82DxBC+Jow6caqO6/jzIgKVZPw9kLsbMsPmSZxbpk7wh81EEBgXL+WGvUSbgO0qgFX2
+	xz5NjH4j4lr4Wn4RisEFKef8ZUxqf50/sZyNUdb/5HBZ6dvRh3Bf9JIqsoeEbaqUVvLFsiZilVR
+	kf5Si4RnSeHksbiGPcml4T4Z1GdgiIO7Sf/7rGL6bUMM+bbIpv8tNLRPUrWeNDQ2odiEiGMPHB6
+	kzvnku9+fDqfp2nFlhJUmT79N9R2R+fNS1wHmQ6w00GeWBFaIeaM1LLgEiKlPA9G9KhcvbLn+0V
+	m71LcuW3OvaGtWpIgBwKKRHe+r7RwCTIXsU9u8Bl7euilI+vjbkMKjasZy0DMZGacWDMxt4kTVd
+	rzLQU=
+X-TM-AS-User-Approved-Sender: Yes
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--15.302000-5.000000
+X-TMASE-Version: SMEX-12.5.0.1300-8.2.1013-24044.006
+x-tm-snts-smtp: 0CF0D90024CB66A7DEE8FDFEBD7207CD6062E72CE6A1E436A39CCEA68783006C2
+x-c2processedorg: 02c94ccb-b9eb-40fe-af38-4bcaa8aaafa4
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: c001924d-3e68-4f40-89c2-901a49278da7
-X-MS-Exchange-CrossTenant-Network-Message-Id: 566860d9-df48-484e-9739-08d6073b6268
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: c001924d-3e68-4f40-89c2-901a49278da7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Aug 2018 07:54:55.4560 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5EUR03HT088
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: ptest-runner "No ptests found."
+X-CompuMailGateway: Version: 7.00.0.18486.x86_64 COMPUMAIL Date:
+	20180821132804Z
+X-Proofpoint-ID: SID=2kxum1kgxt QID=2kxum1kgxt-1
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+	definitions=2018-08-21_07:, , signatures=0
+Subject: chromium is compiling but is not able to add in the image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -117,187 +89,257 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2018 10:28:49 -0000
-Content-Language: fr-FR
+X-List-Received-Date: Tue, 21 Aug 2018 13:28:08 -0000
+X-Groupsio-MsgNum: 42214
+Content-Language: en-US
+Content-Type: multipart/related;
+	boundary="_004_fc50e40975134a01920906aad4ab0e75ifmcom_";
+	type="multipart/alternative"
+
+--_004_fc50e40975134a01920906aad4ab0e75ifmcom_
 Content-Type: multipart/alternative;
-	boundary="_000_HE1PR06MB168946186F96B6517E7CB10494310HE1PR06MB1689eurp_"
+	boundary="_000_fc50e40975134a01920906aad4ab0e75ifmcom_"
 
---_000_HE1PR06MB168946186F96B6517E7CB10494310HE1PR06MB1689eurp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--_000_fc50e40975134a01920906aad4ab0e75ifmcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-ok, so I changed my local.conf from IMAGE_FEATURES_append =3D " ptest-pkgs"=
- to EXTRA_IMAGE_FEATURES =3D "ptest-pkgs", here are the logs:
+SSB0cmllZCBhZGRpbmcgY2hyb21pdW0gcGFja2FnZSB2aWEgdGhlIG1ldGEtYnJvd3NlciBsYXll
+ci4gSXQgaXMgY29tcGlsaW5nIHdoZW4gSSBydW4gJCBiaXRiYWtlIGNocm9taXVtIC4gQnV0IHdo
+ZW4gSSBydW4gJGJpdGJha2UgY29yZS1pbWFnZS1taW5pbWFsLXBkbTMuIEl04oCZcyBub3QgYWRk
+aW5nIGNocm9taXVtIHRvIHRoZSBpbWFnZSBhbmQgdGhyb3dpbmcgZXJyb3JzIGFzIHNob3duIGJl
+bG93Og0KDQpMb2FkaW5nIGNhY2hlOiAxMDAlIHwjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjfCBU
+aW1lOiAwOjAwOjAwDQpMb2FkZWQgMzI0OSBlbnRyaWVzIGZyb20gZGVwZW5kZW5jeSBjYWNoZS4N
+ClBhcnNpbmcgcmVjaXBlczogMTAwJSB8IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyN8IFRpbWU6IDA6
+MDA6MDINClBhcnNpbmcgb2YgMjM2OCAuYmIgZmlsZXMgY29tcGxldGUgKDIzNTIgY2FjaGVkLCAx
+NiBwYXJzZWQpLiAzMjYwIHRhcmdldHMsIDk5IHNraXBwZWQsIDEwIG1hc2tlZCwgMCBlcnJvcnMu
+DQpXQVJOSU5HOiBObyByZWNpcGVzIGF2YWlsYWJsZSBmb3I6DQogIC9ob21lL2llcGwvd29yay95
+b2N0b19idWlsZC9tZXRhLXhpbGlueC9tZXRhLXhpbGlueC1jb250cmliL3JlY2lwZXMta2VybmVs
+L2xpbnV4L2xpbnV4LXhsbnhfMjAxOC4xLmJiYXBwZW5kDQogIC9ob21lL2llcGwvd29yay95b2N0
+b19idWlsZC9tZXRhLXBkbTMvbWV0YS1pZm0tcGRtMy1ic3AvcmVjaXBlcy1leHRlbmRlZC9pbWFn
+ZXMvc3d1cGRhdGUtZ3VpLWltYWdlLmJiYXBwZW5kDQogIC9ob21lL2llcGwvd29yay95b2N0b19i
+dWlsZC9tZXRhLXBkbTMvbWV0YS1pZm0tcGRtMy1ic3AvcmVjaXBlcy1zdXBwb3J0L3Jlc2N1ZWd1
+aS9yZXNjdWVndWlfJS5iYmFwcGVuZA0KICAvaG9tZS9pZXBsL3dvcmsveW9jdG9fYnVpbGQvbWV0
+YS1wZG0zL21ldGEtaWZtLXBkbTMtYnNwL3JlY2lwZXMtc3VwcG9ydC9zd3VwZGF0ZS9zd3VwZGF0
+ZV8lLmJiYXBwZW5kDQogIC9ob21lL2llcGwvd29yay95b2N0b19idWlsZC9tZXRhLXBkbTMvbWV0
+YS1pZm0tcGRtMy9yZWNpcGVzLW1vbm8vbW9uby9tb25vLW5hdGl2ZV81LjQuMS42LmJiYXBwZW5k
+DQpOT1RFOiBSZXNvbHZpbmcgYW55IG1pc3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRlbmNpZXMNCkVS
+Uk9SOiBOb3RoaW5nIFJQUk9WSURFUyAnY2hyb21pdW0nIChidXQgL2hvbWUvaWVwbC93b3JrL3lv
+Y3RvX2J1aWxkL21ldGEtcGRtMy9tZXRhLWlmbS1wZG0zLWJzcC9yZWNpcGVzLWNvcmUvaW1hZ2Vz
+L2NvcmUtaW1hZ2UtbWluaW1hbC1wZG0zLmJiIFJERVBFTkRTIG9uIG9yIG90aGVyd2lzZSByZXF1
+aXJlcyBpdCkNCk5PVEU6IFJ1bnRpbWUgdGFyZ2V0ICdjaHJvbWl1bScgaXMgdW5idWlsZGFibGUs
+IHJlbW92aW5nLi4uDQpNaXNzaW5nIG9yIHVuYnVpbGRhYmxlIGRlcGVuZGVuY3kgY2hhaW4gd2Fz
+OiBbJ2Nocm9taXVtJ10NCkVSUk9SOiBSZXF1aXJlZCBidWlsZCB0YXJnZXQgJ2NvcmUtaW1hZ2Ut
+bWluaW1hbC1wZG0zJyBoYXMgbm8gYnVpbGRhYmxlIHByb3ZpZGVycy4NCk1pc3Npbmcgb3IgdW5i
+dWlsZGFibGUgZGVwZW5kZW5jeSBjaGFpbiB3YXM6IFsnY29yZS1pbWFnZS1taW5pbWFsLXBkbTMn
+LCAnY2hyb21pdW0nXQ0KDQpTdW1tYXJ5OiBUaGVyZSB3YXMgMSBXQVJOSU5HIG1lc3NhZ2Ugc2hv
+d24uDQpTdW1tYXJ5OiBUaGVyZSB3ZXJlIDIgRVJST1IgbWVzc2FnZXMgc2hvd24sIHJldHVybmlu
+ZyBhIG5vbi16ZXJvIGV4aXQgY29kZS4NClRoZSBiYmxheWVycy5jb25mIGZpbGUgaXMgdGFrZW4g
+Y2FyZSBvZmYuDQpJ4oCZdmUgYWRkZWQgdGhlIGxpbmUNCklNQUdFX0lOU1RBTExfYXBwZW5kID0g
+4oCcIGNocm9taXVt4oCdIGluIHRoZSBsb2NhbC5jb25mIGZpbGUgYWxvbmcgd2l0aCAgTElDRU5T
+RV9GTEFHX1dISVRFTElTVCA9IO+7vw0KIiBjb21tZXJjaWFsX2xpYmF2IGNvbW1lcmNpYWxfeDI2
+NCBjb21tZXJjaWFsIg0KQXBhcnQgZnJvbSB0aGF0IEZpcmVmb3ggaXMgYWJsZSB0byBjb21waWxl
+IGFuZCBpdOKAmXMgYmVlbiBhZGRlZCB0byB0aGUgaW1hZ2UuIENhbiBzb21lYm9keSB0ZWxsIG1l
+IHdoYXQgaXMgY2F1c2luZyB0aGlzIGlzc3VlLg0KDQpUaGFua3MsDQpCZXN0IFJlZ2FyZHMNCkth
+bWFsIFBhbmRleQ0KSnVuaW9yIFNvZnR3YXJlIEVuZ2luZWVyDQpbaWZtX2xvZ29fc3Fyc11pZm0g
+ZW5naW5lZXJpbmcgcHZ0LiBsdGQuDQpTdXJ2ZXkgTm8uIDEvMTAvMTYsIDNyZCBmbG9vciwgQWJv
+dmUgU0JJLCBCYXZkaGFuIEJyYW5jaCwgTi5ELkEuIFJvYWQsIEJhdmRoYW4sIFB1bmUsIEluZGlh
+IC0gNDExMDIxIHwgV2ViOiB3d3cuaWZtLmNvbTxodHRwOi8vd3d3LmlmbS5jb20vPiB8IFBob25l
+OiArOTEtMjAtMjI5NTE5MTAgRXh0bjoyMTUgfCBDSU46IFUyOTIxM1BOMjAxMEZUQzEzNjc2DQoN
+Cg==
 
-# $IMAGE_FEATURES [3 operations]
-#   set? /home/nader/poky-docker/workdir/poky/meta/conf/distro/include/defa=
-ult-distrovars.inc:23
-#     ""
-#   set /home/nader/poky-docker/workdir/poky/meta/conf/documentation.conf:2=
-10
-#     [doc] "The primary list of features to include in an image. Configure=
- this variable in an image recipe."
-#   append /home/nader/poky-docker/workdir/poky/meta/conf/bitbake.conf:806
-#     "${EXTRA_IMAGE_FEATURES}"
-# pre-expansion value:
-#   " ${EXTRA_IMAGE_FEATURES}"
-IMAGE_FEATURES=3D" ptest-pkgs"
+--_000_fc50e40975134a01920906aad4ab0e75ifmcom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-As we can see, I still have the suspicious space but it has shrunk from 2 s=
-paces to 1 space. And -ptest packages didn't get installed in my image.
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
+dD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPCEtLVtpZiAhbXNvXT48
+c3R5bGU+dlw6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kb1w6KiB7YmVoYXZpb3I6
+dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kd1w6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0K
+LnNoYXBlIHtiZWhhdmlvcjp1cmwoI2RlZmF1bHQjVk1MKTt9DQo8L3N0eWxlPjwhW2VuZGlmXS0t
+PjxzdHlsZT48IS0tDQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNlDQoJe2ZvbnQt
+ZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0K
+QGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUgNSAyIDIg
+MiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IlRyZWJ1Y2hldCBNUyI7DQoJ
+cGFub3NlLTE6MiAxMSA2IDMgMiAyIDIgMiAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWls
+eTpUYWhvbWE7DQoJcGFub3NlLTE6MiAxMSA2IDQgMyA1IDQgNCAyIDQ7fQ0KLyogU3R5bGUgRGVm
+aW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7
+bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsN
+Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgltc28tZmFyZWFzdC1sYW5ndWFn
+ZTpFTi1VUzt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0
+eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2
+aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5
+OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcHJlDQoJ
+e21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRNTCBQcmVmb3JtYXR0
+ZWQgQ2hhciI7DQoJbWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1z
+aXplOjEwLjBwdDsNCglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCnNwYW4uRW1haWxTdHls
+ZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLWNvbXBvc2U7DQoJZm9udC1mYW1pbHk6IkNh
+bGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQpzcGFuLkhUTUxQcmVmb3Jt
+YXR0ZWRDaGFyDQoJe21zby1zdHlsZS1uYW1lOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCglt
+c28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVk
+IjsNCglmb250LWZhbWlseToiQ291cmllciBOZXciOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVO
+LUlOO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVO
+LVVTO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJn
+aW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFn
+ZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxv
+OnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtl
+bmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJl
+ZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0
+PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tSU4iIGxpbms9IiMw
+NTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5JIHRyaWVkIGFkZGluZyBjaHJvbWl1bSBwYWNrYWdlIHZpYSB0aGUg
+bWV0YS1icm93c2VyIGxheWVyLiBJdCBpcyBjb21waWxpbmcgd2hlbiBJIHJ1bg0KPGI+PGk+JCBi
+aXRiYWtlIGNocm9taXVtPC9pPjwvYj48aT4gLjwvaT4gQnV0IHdoZW4gSSBydW4gPGI+PGk+JGJp
+dGJha2UgY29yZS1pbWFnZS1taW5pbWFsLXBkbTM8L2k+PC9iPi4gSXTigJlzIG5vdCBhZGRpbmcg
+Y2hyb21pdW0gdG8gdGhlIGltYWdlIGFuZCB0aHJvd2luZyBlcnJvcnMgYXMgc2hvd24gYmVsb3c6
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkxvYWRpbmcgY2FjaGU6IDEwMCUgfCMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyN8IFRpbWU6IDA6MDA6MDA8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPkxvYWRlZCAzMjQ5IGVudHJpZXMgZnJvbSBkZXBlbmRlbmN5IGNhY2hlLjxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+UGFyc2luZyByZWNpcGVzOiAxMDAlIHwj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjI3wgVGltZTogMDowMDowMjxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+UGFyc2luZyBvZiAyMzY4IC5iYiBmaWxlcyBjb21wbGV0ZSAoMjM1
+MiBjYWNoZWQsIDE2IHBhcnNlZCkuIDMyNjAgdGFyZ2V0cywgOTkgc2tpcHBlZCwgMTAgbWFza2Vk
+LCAwIGVycm9ycy48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPldBUk5JTkc6
+IE5vIHJlY2lwZXMgYXZhaWxhYmxlIGZvcjo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPiZuYnNwOyAvaG9tZS9pZXBsL3dvcmsveW9jdG9fYnVpbGQvbWV0YS14aWxpbngvbWV0
+YS14aWxpbngtY29udHJpYi9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC14bG54XzIwMTguMS5i
+YmFwcGVuZDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7IC9ob21l
+L2llcGwvd29yay95b2N0b19idWlsZC9tZXRhLXBkbTMvbWV0YS1pZm0tcGRtMy1ic3AvcmVjaXBl
+cy1leHRlbmRlZC9pbWFnZXMvc3d1cGRhdGUtZ3VpLWltYWdlLmJiYXBwZW5kPG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDsgL2hvbWUvaWVwbC93b3JrL3lvY3RvX2J1
+aWxkL21ldGEtcGRtMy9tZXRhLWlmbS1wZG0zLWJzcC9yZWNpcGVzLXN1cHBvcnQvcmVzY3VlZ3Vp
+L3Jlc2N1ZWd1aV8lLmJiYXBwZW5kPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij4mbmJzcDsgL2hvbWUvaWVwbC93b3JrL3lvY3RvX2J1aWxkL21ldGEtcGRtMy9tZXRhLWlmbS1w
+ZG0zLWJzcC9yZWNpcGVzLXN1cHBvcnQvc3d1cGRhdGUvc3d1cGRhdGVfJS5iYmFwcGVuZDxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7IC9ob21lL2llcGwvd29yay95
+b2N0b19idWlsZC9tZXRhLXBkbTMvbWV0YS1pZm0tcGRtMy9yZWNpcGVzLW1vbm8vbW9uby9tb25v
+LW5hdGl2ZV81LjQuMS42LmJiYXBwZW5kPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5OT1RFOiBSZXNvbHZpbmcgYW55IG1pc3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRlbmNpZXM8
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkVSUk9SOiBOb3RoaW5nIFJQUk9W
+SURFUyAnY2hyb21pdW0nIChidXQgL2hvbWUvaWVwbC93b3JrL3lvY3RvX2J1aWxkL21ldGEtcGRt
+My9tZXRhLWlmbS1wZG0zLWJzcC9yZWNpcGVzLWNvcmUvaW1hZ2VzL2NvcmUtaW1hZ2UtbWluaW1h
+bC1wZG0zLmJiIFJERVBFTkRTIG9uIG9yIG90aGVyd2lzZSByZXF1aXJlcyBpdCk8bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk5PVEU6IFJ1bnRpbWUgdGFyZ2V0ICdjaHJvbWl1
+bScgaXMgdW5idWlsZGFibGUsIHJlbW92aW5nLi4uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj5NaXNzaW5nIG9yIHVuYnVpbGRhYmxlIGRlcGVuZGVuY3kgY2hhaW4gd2FzOiBb
+J2Nocm9taXVtJ108bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkVSUk9SOiBS
+ZXF1aXJlZCBidWlsZCB0YXJnZXQgJ2NvcmUtaW1hZ2UtbWluaW1hbC1wZG0zJyBoYXMgbm8gYnVp
+bGRhYmxlIHByb3ZpZGVycy48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk1p
+c3Npbmcgb3IgdW5idWlsZGFibGUgZGVwZW5kZW5jeSBjaGFpbiB3YXM6IFsnY29yZS1pbWFnZS1t
+aW5pbWFsLXBkbTMnLCAnY2hyb21pdW0nXTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TdW1tYXJ5
+OiBUaGVyZSB3YXMgMSBXQVJOSU5HIG1lc3NhZ2Ugc2hvd24uPG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5TdW1tYXJ5OiBUaGVyZSB3ZXJlIDIgRVJST1IgbWVzc2FnZXMgc2hv
+d24sIHJldHVybmluZyBhIG5vbi16ZXJvIGV4aXQgY29kZS48bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPlRoZSBiYmxheWVycy5jb25mIGZpbGUgaXMgdGFrZW4gY2FyZSBvZmYu
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5J4oCZdmUgYWRkZWQgdGhlIGxp
+bmUgPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48aT5JTUFHRV9JTlNU
+QUxMX2FwcGVuZCA9IOKAnCBjaHJvbWl1beKAnTwvaT48L2I+IGluIHRoZSBsb2NhbC5jb25mIGZp
+bGUgYWxvbmcgd2l0aCAmbmJzcDs8Yj48aT5MSUNFTlNFX0ZMQUdfV0hJVEVMSVNUID0NCjwvaT48
+L2I+PGI+PGk+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+VGFob21hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tSU4iPu+7vzwv
+c3Bhbj48L2k+PC9iPjxiPjxpPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90OyxzZXJpZjttc28tZmFyZWFzdC1sYW5ndWFn
+ZTpFTi1JTiI+PG86cD48L286cD48L3NwYW4+PC9pPjwvYj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48Yj48aT48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tSU4iPiZxdW90
+OyBjb21tZXJjaWFsX2xpYmF2IGNvbW1lcmNpYWxfeDI2NCBjb21tZXJjaWFsPC9zcGFuPjwvaT48
+L2I+PGI+PGk+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q291cmllciBOZXcmcXVvdDs7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tSU4iPiZxdW90OzxvOnA+
+PC9vOnA+PC9zcGFuPjwvaT48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QXBhcnQgZnJv
+bSB0aGF0IEZpcmVmb3ggaXMgYWJsZSB0byBjb21waWxlIGFuZCBpdOKAmXMgYmVlbiBhZGRlZCB0
+byB0aGUgaW1hZ2UuIENhbiBzb21lYm9keSB0ZWxsIG1lIHdoYXQgaXMgY2F1c2luZyB0aGlzIGlz
+c3VlLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFua3MsPG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0idGV4dC1hdXRvc3BhY2U6bm9uZSI+PHNwYW4gbGFuZz0i
+RU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RyZWJ1Y2hl
+dCBNUyZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOkVO
+LUlOIj5CZXN0IFJlZ2FyZHMNCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiIHN0eWxlPSJ0ZXh0LWF1dG9zcGFjZTpub25lIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
+bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VHJlYnVjaGV0IE1TJnF1b3Q7
+LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2s7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tSU4iPkthbWFs
+IFBhbmRleTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
+PSJ0ZXh0LWF1dG9zcGFjZTpub25lIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6
+ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VHJlYnVjaGV0IE1TJnF1b3Q7LHNhbnMtc2VyaWY7
+Y29sb3I6YmxhY2s7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tSU4iPkp1bmlvciBTb2Z0d2FyZSBF
+bmdpbmVlcjwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOmJsYWNrO21zby1m
+YXJlYXN0LWxhbmd1YWdlOkVOLUlOIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIiBzdHlsZT0idGV4dC1hdXRvc3BhY2U6bm9uZSI+PHNwYW4gc3R5bGU9ImNvbG9y
+OmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUlOIj48aW1nIHdpZHRoPSIzMiIgaGVpZ2h0
+PSIzMiIgc3R5bGU9IndpZHRoOi4zMzMzaW47aGVpZ2h0Oi4zMzMzaW4iIGlkPSJQaWN0dXJlX3gw
+MDIwXzEiIHNyYz0iY2lkOmltYWdlMDAxLnBuZ0AwMUQ0Mzk3Ri5FQjkxRDVBMCIgYWx0PSJpZm1f
+bG9nb19zcXJzIj48L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RyZWJ1Y2hldCBNUyZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUlOIj5pZm0NCiBlbmdpbmVlcmluZyBwdnQu
+IGx0ZC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBs
+YW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZTo4LjBwdDtmb250LWZhbWlseTomcXVvdDtUcmVi
+dWNoZXQgTVMmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5ndWFn
+ZTpFTi1JTiI+U3VydmV5IE5vLiAxLzEwLzE2LCAzcmQgZmxvb3IsIEFib3ZlIFNCSSwgQmF2ZGhh
+biBCcmFuY2gsIE4uRC5BLiBSb2FkLCBCYXZkaGFuLCBQdW5lLCBJbmRpYSAtIDQxMTAyMSB8IFdl
+YjoNCjwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdl
+OkVOLUlOIj48YSBocmVmPSJodHRwOi8vd3d3LmlmbS5jb20vIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjguMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RyZWJ1Y2hldCBNUyZxdW90OyxzYW5zLXNlcmlm
+O2NvbG9yOmJsYWNrIj53d3cuaWZtLmNvbTwvc3Bhbj48L2E+PC9zcGFuPjxzcGFuIGxhbmc9IkVO
+LVVTIiBzdHlsZT0iZm9udC1zaXplOjguMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RyZWJ1Y2hldCBN
+UyZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUlO
+Ij4NCiB8IFBob25lOiAmIzQzOzkxLTIwLTIyOTUxOTEwIEV4dG46MjE1IHwgQ0lOOiBVMjkyMTNQ
+TjIwMTBGVEMxMzY3Njwvc3Bhbj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4t
+SU4iPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-Nader
-________________________________
-De : Alexander Kanavin <alex.kanavin@gmail.com>
-Envoy=E9 : lundi 20 ao=FBt 2018 16:54
-=C0 : Nader Hariri
-Cc : yocto@yoctoproject.org
-Objet : Re: [yocto] ptest-runner "No ptests found."
+--_000_fc50e40975134a01920906aad4ab0e75ifmcom_--
 
-2018-08-20 15:36 GMT+02:00 Nader Hariri <nader.hariri@hotmail.com>:
-> I ran 'bitbake -e <image>' as you have suggested. I can see from the logs
-> that the variable IMAGE_FEATURES does get appended the value of
-> ${EXTRA_IMAGE_FEATURES}, however I still have no -ptest packages in my
-> image. Is there anything wrong in my logs?
->
->
-> # $IMAGE_FEATURES [3 operations]
-> #   set?
-> /home/nader/poky-docker/workdir/poky/meta/conf/distro/include/default-dis=
-trovars.inc:23
-> #     ""
-> #   set
-> /home/nader/poky-docker/workdir/poky/meta/conf/documentation.conf:210
-> #     [doc] "The primary list of features to include in an image. Configu=
-re
-> this variable in an image recipe."
-> #   append /home/nader/poky-docker/workdir/poky/meta/conf/bitbake.conf:80=
-6
-> #     "${EXTRA_IMAGE_FEATURES}"
-> # pre-expansion value:
-> #   " ${EXTRA_IMAGE_FEATURES}"
-> IMAGE_FEATURES=3D"  ptest-pkgs"
+--_004_fc50e40975134a01920906aad4ab0e75ifmcom_
+Content-Type: image/png; name="image001.png"
+Content-Description: image001.png
+Content-Disposition: inline; filename="image001.png"; size=1601;
+	creation-date="Tue, 21 Aug 2018 13:28:03 GMT";
+	modification-date="Tue, 21 Aug 2018 13:28:03 GMT"
+Content-ID: <image001.png@01D4397F.EB91D5A0>
+Content-Transfer-Encoding: base64
 
-The space looks suspicious in there. Can you try to set
-EXTRA_IMAGE_FEATURES directly with =3D instead of appending to it?
+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
+RK5CYII=
 
-Alex
-
---_000_HE1PR06MB168946186F96B6517E7CB10494310HE1PR06MB1689eurp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-ok, so I changed my local.conf from <span>IMAGE_FEATURES_append =3D &quot; =
-ptest-pkgs&quot; to
-<span>EXTRA_IMAGE_FEATURES =3D &quot;ptest-pkgs&quot;, here are the logs:</=
-span></span></div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<span># $IMAGE_FEATURES [3 operations]<br>
-</span>
-<div># &nbsp; set? /home/nader/poky-docker/workdir/poky/meta/conf/distro/in=
-clude/default-distrovars.inc:23<br>
-</div>
-<div># &nbsp; &nbsp; &quot;&quot;<br>
-</div>
-<div># &nbsp; set /home/nader/poky-docker/workdir/poky/meta/conf/documentat=
-ion.conf:210<br>
-</div>
-<div># &nbsp; &nbsp; [doc] &quot;The primary list of features to include in=
- an image. Configure this variable in an image recipe.&quot;<br>
-</div>
-<div># &nbsp; append /home/nader/poky-docker/workdir/poky/meta/conf/bitbake=
-.conf:806<br>
-</div>
-<div># &nbsp; &nbsp; &quot;${EXTRA_IMAGE_FEATURES}&quot;<br>
-</div>
-<div># pre-expansion value:<br>
-</div>
-<div># &nbsp; &quot; ${EXTRA_IMAGE_FEATURES}&quot;<br>
-</div>
-<span>IMAGE_FEATURES=3D&quot; ptest-pkgs&quot;</span><br>
-<span><span></span><span></span></span></div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-<span></span><span></span></div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-As we can see, I still have the suspicious space but it has shrunk from 2 s=
-paces to 1 space. And -ptest packages didn't get installed in my image.</di=
-v>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-Nader<br>
-</div>
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
-=3D"Calibri, sans-serif" color=3D"#000000"><b>De :</b> Alexander Kanavin &l=
-t;alex.kanavin@gmail.com&gt;<br>
-<b>Envoy=E9 :</b> lundi 20 ao=FBt 2018 16:54<br>
-<b>=C0 :</b> Nader Hariri<br>
-<b>Cc&nbsp;:</b> yocto@yoctoproject.org<br>
-<b>Objet :</b> Re: [yocto] ptest-runner &quot;No ptests found.&quot;</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">2018-08-20 15:36 GMT&#43;02:00 Nader Hariri &lt;na=
-der.hariri@hotmail.com&gt;:<br>
-&gt; I ran 'bitbake -e &lt;image&gt;' as you have suggested. I can see from=
- the logs<br>
-&gt; that the variable IMAGE_FEATURES does get appended the value of<br>
-&gt; ${EXTRA_IMAGE_FEATURES}, however I still have no -ptest packages in my=
-<br>
-&gt; image. Is there anything wrong in my logs?<br>
-&gt;<br>
-&gt;<br>
-&gt; # $IMAGE_FEATURES [3 operations]<br>
-&gt; #&nbsp;&nbsp; set?<br>
-&gt; /home/nader/poky-docker/workdir/poky/meta/conf/distro/include/default-=
-distrovars.inc:23<br>
-&gt; #&nbsp;&nbsp;&nbsp;&nbsp; &quot;&quot;<br>
-&gt; #&nbsp;&nbsp; set<br>
-&gt; /home/nader/poky-docker/workdir/poky/meta/conf/documentation.conf:210<=
-br>
-&gt; #&nbsp;&nbsp;&nbsp;&nbsp; [doc] &quot;The primary list of features to =
-include in an image. Configure<br>
-&gt; this variable in an image recipe.&quot;<br>
-&gt; #&nbsp;&nbsp; append /home/nader/poky-docker/workdir/poky/meta/conf/bi=
-tbake.conf:806<br>
-&gt; #&nbsp;&nbsp;&nbsp;&nbsp; &quot;${EXTRA_IMAGE_FEATURES}&quot;<br>
-&gt; # pre-expansion value:<br>
-&gt; #&nbsp;&nbsp; &quot; ${EXTRA_IMAGE_FEATURES}&quot;<br>
-&gt; IMAGE_FEATURES=3D&quot;&nbsp; ptest-pkgs&quot;<br>
-<br>
-The space looks suspicious in there. Can you try to set<br>
-EXTRA_IMAGE_FEATURES directly with =3D instead of appending to it?<br>
-<br>
-Alex<br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_HE1PR06MB168946186F96B6517E7CB10494310HE1PR06MB1689eurp_--
+--_004_fc50e40975134a01920906aad4ab0e75ifmcom_--
