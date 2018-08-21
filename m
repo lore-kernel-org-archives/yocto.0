@@ -1,34 +1,74 @@
-Return-Path: <Changqing.Li@windriver.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 512A6E0096A; Mon, 20 Aug 2018 21:43:54 -0700 (PDT)
+	id 988F2E00A6B; Tue, 21 Aug 2018 01:30:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alex.kanavin[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F015BE0096A
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2018 21:43:51 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w7L4hpPs021798
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 20 Aug 2018 21:43:51 -0700
-Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.399.0; Mon, 20 Aug 2018 21:43:50 -0700
-From: <changqing.li@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 21 Aug 2018 12:43:49 +0800
-Message-ID: <1534826629-132855-1-git-send-email-changqing.li@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.42 listed in list.dnswl.org]
+Received: from mail-oi0-f42.google.com (mail-oi0-f42.google.com
+	[209.85.218.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55D37E009D4
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2018 01:30:20 -0700 (PDT)
+Received: by mail-oi0-f42.google.com with SMTP id 13-v6so30662878ois.1
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2018 01:30:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=HM0pZlM6o7jef8BnT9q4jYW47huwKDXeMxjj+unR4Wc=;
+	b=okApVNF8czxuSugEB+6lEdvVbDUlcze45mjAm33gJk4ecYYQtmJzk2xGS560a7rRFw
+	2aafj2YhkVNk9n/S2AO2FF9Z4KJdsIwXLv7Mu+Ow+mRYWOUIVY8wO5+CyWmEpJj0TsFE
+	oVrJ/E62GD0c4A8xhk/sPQFJubS6SzhdyX4DAvO0kJGQX/crngjQY4hk5lglRycg4xLF
+	uh/dObCQXGnJJ2s+AcCrId4Wd/j+QmxtdPLfhf4gYNm4120c5WweieaXy7E7uWtIvXDW
+	kf2L0tM3c9G8VXWJNCm+j3eZSmgV4SDfZZXaAPVff6EuZjrVPyl7mDOv6o1VAjjWYMwv
+	yK+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=HM0pZlM6o7jef8BnT9q4jYW47huwKDXeMxjj+unR4Wc=;
+	b=RUXk7Ci6ny4IUE/Q+b/QtKKiy8v2xXBkrFrtRlyzEf96G7iLpMQEkkOaO9JbvnoCAv
+	g7+7yJlXhk8dNWOCl1C7Lsw8Lr4gnWLOnvcPaW/Y0FM20f9r0tXmXnxaKEq/As0xOlgQ
+	WJd2xuhAiBwJUVAkVOwZW3dwIl0N1mnCleFSQYy09JNDu4t710BC6tRce2t6EuD3M8Ho
+	O9QkoS2mcK+iiJKtm4e2tAGwPaMPZv4tbqerbM1kkCnD67u7JAAt+NdabbUjS6Pc1UxC
+	Q2eEuNN2eQcaAk7E5MioBsNnkYjF61Eza7GFvLeuW86LjNO7oE5X7henxqIc4Bwzi91z
+	d4DA==
+X-Gm-Message-State: AOUpUlEwsHbQ83VOVhK8bwVXUFqBxTclaHmf0TxMT4n1nXqqge+eSK/i
+	uz1Np7zet5kusgBtklRVIqFr3bFw2jyBzRxKHO8=
+X-Google-Smtp-Source: AA+uWPx4bUNNyB4MZCdJNkFJWyPQjcxnZ/uBh+eEhoP+/HROSmI96mQ6jA7KdYVut0Uc7v9E/6LOFEBiOT2mAEQLx4k=
+X-Received: by 2002:aca:3ad4:: with SMTP id
+	h203-v6mr16528600oia.294.1534840219750; 
+	Tue, 21 Aug 2018 01:30:19 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [PATCH V2][meta-cgl] pacemaker: Upgrade 1.1.16 -> 1.1.19
+Received: by 2002:a4a:90ed:0:0:0:0:0 with HTTP; Tue, 21 Aug 2018 01:30:19
+	-0700 (PDT)
+In-Reply-To: <HE1PR06MB168946186F96B6517E7CB10494310@HE1PR06MB1689.eurprd06.prod.outlook.com>
+References: <HE1PR06MB1689A8B4242EF071FDD42F78943E0@HE1PR06MB1689.eurprd06.prod.outlook.com>
+	<CANNYZj94ivO54g88AT4g1KLTbtPHGfiFxA=Owvnvu=RqHYRVKg@mail.gmail.com>
+	<HE1PR06MB1689535B4BAC12A98F5883AC94320@HE1PR06MB1689.eurprd06.prod.outlook.com>
+	<CANNYZj8Vcx1D6Pr6rtj3NFXG0gsUgm1oMuNrpnYmTuVSAOT-9g@mail.gmail.com>
+	<HE1PR06MB16896228DCEB67A69FF9D43E94320@HE1PR06MB1689.eurprd06.prod.outlook.com>
+	<CANNYZj_wDbKMA+d5sKgLjanukfeJLmj=Lj+5+6P1Pu=cGZeKtQ@mail.gmail.com>
+	<HE1PR06MB168946186F96B6517E7CB10494310@HE1PR06MB1689.eurprd06.prod.outlook.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 21 Aug 2018 10:30:19 +0200
+Message-ID: <CANNYZj81Qien8_1LmvQ5Gr7njjo9cZn1gk9-G-437yQ1RNCVLA@mail.gmail.com>
+To: Nader Hariri <nader.hariri@hotmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: ptest-runner "No ptests found."
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,166 +80,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2018 04:43:54 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 21 Aug 2018 08:30:21 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Changqing Li <changqing.li@windriver.com>
+This looks like we *might* have a bug in here. Extra whitespace like
+this should not have such broken effects. Can you add some unrelated
+feature to IMAGE_FEATURES, so that we get a list without leading and
+trailing whitespaces?
 
-1. Upgrade pacemaker to 1.1.19
-2. fence_legacy/fence_pcmk in package pacemaker requires
-   /usr/bin/perl, but no providers found in
-   RDEPENDS_pacemaker, so add it
+Alex
 
-Signed-off-by: Changqing Li <changqing.li@windriver.com>
----
- ...-pacemaker-fix-compile-error-of-musl-libc.patch | 56 ++++++++++++++++++++++
- .../pacemaker/0001-pacemaker-fix-xml-config.patch  | 19 +++++---
- .../{pacemaker_1.1.16.bb => pacemaker_1.1.19.bb}   |  9 ++--
- 3 files changed, 74 insertions(+), 10 deletions(-)
- create mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-fix-compile-error-of-musl-libc.patch
- rename meta-cgl-common/recipes-cgl/pacemaker/{pacemaker_1.1.16.bb => pacemaker_1.1.19.bb} (93%)
-
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-fix-compile-error-of-musl-libc.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-fix-compile-error-of-musl-libc.patch
-new file mode 100644
-index 0000000..f8cbb7e
---- /dev/null
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-fix-compile-error-of-musl-libc.patch
-@@ -0,0 +1,56 @@
-+From 51b0df9242bb1e3eb41362381472a00727910f64 Mon Sep 17 00:00:00 2001
-+From: Changqing Li <changqing.li@windriver.com>
-+Date: Fri, 10 Aug 2018 15:08:31 +0800
-+Subject: [PATCH] pacemaker: fix compile error of musl libc
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Changqing Li <changqing.li@windriver.com>
-+---
-+ include/crm/stonith-ng.h | 1 +
-+ lib/cib/cib_remote.c     | 3 ---
-+ tools/crm_mon.c          | 2 +-
-+ 3 files changed, 2 insertions(+), 4 deletions(-)
-+
-+diff --git a/include/crm/stonith-ng.h b/include/crm/stonith-ng.h
-+index 56c1ec7..a637b47 100644
-+--- a/include/crm/stonith-ng.h
-++++ b/include/crm/stonith-ng.h
-+@@ -28,6 +28,7 @@
-+ #  include <dlfcn.h>
-+ #  include <errno.h>
-+ #  include <stdbool.h>
-++#  include <time.h>
-+ 
-+ /* TO-DO: Work out how to drop this requirement */
-+ #  include <libxml/tree.h>
-+diff --git a/lib/cib/cib_remote.c b/lib/cib/cib_remote.c
-+index 4d7b93b..8be8ecc 100644
-+--- a/lib/cib/cib_remote.c
-++++ b/lib/cib/cib_remote.c
-+@@ -53,9 +53,6 @@ typedef void gnutls_session_t;
-+ #endif
-+ 
-+ #include <arpa/inet.h>
-+-#ifndef ON_BSD
-+-#  include <sgtty.h>
-+-#endif
-+ 
-+ #define DH_BITS 1024
-+ 
-+diff --git a/tools/crm_mon.c b/tools/crm_mon.c
-+index 7c63803..1ae6c21 100644
-+--- a/tools/crm_mon.c
-++++ b/tools/crm_mon.c
-+@@ -553,7 +553,7 @@ main(int argc, char **argv)
-+ 
-+ #if !defined (ON_DARWIN) && !defined (ON_BSD)
-+     /* prevent zombies */
-+-    signal(SIGCLD, SIG_IGN);
-++    signal(SIGCHLD, SIG_IGN);
-+ #endif
-+ 
-+     if (crm_ends_with_ext(argv[0], ".cgi") == TRUE) {
-+-- 
-+2.7.4
-+
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-fix-xml-config.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-fix-xml-config.patch
-index c27052d..72c3a1e 100644
---- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-fix-xml-config.patch
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-fix-xml-config.patch
-@@ -1,27 +1,29 @@
--From a55e235f56bc6e894e79fa200c39678e06ef985e Mon Sep 17 00:00:00 2001
--From: Bian Naimeng <biannm@cn.fujitsu.com>
--Date: Fri, 3 Jul 2015 15:48:58 +0900
-+From ac1ff1d538d2be205fbcc9676c6497a1395b71d8 Mon Sep 17 00:00:00 2001
-+From: Changqing Li <changqing.li@windriver.com>
-+Date: Fri, 10 Aug 2018 14:59:33 +0800
- Subject: [PATCH] pacemaker: fix xml config
- 
- Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
- 
-+update to version 1.1.19
-+Signed-off-by: Changqing Li <changqing.li@windriver.com>
- ---
-  configure.ac | 17 ++++++-----------
-  1 file changed, 6 insertions(+), 11 deletions(-)
- 
- diff --git a/configure.ac b/configure.ac
--index 7195f9b..5e420f2 100644
-+index 3bf1914..345caeb 100644
- --- a/configure.ac
- +++ b/configure.ac
--@@ -557,7 +557,6 @@ AC_PATH_PROGS(TAR, tar)
-+@@ -555,7 +555,6 @@ AC_PATH_PROGS(TAR, tar)
-  AC_PATH_PROGS(MD5, md5)
-  AC_PATH_PROGS(TEST, test)
-- AC_PATH_PROGS(PKGCONFIG, pkg-config)
-+ PKG_PROG_PKG_CONFIG
- -AC_PATH_PROGS(XML2CONFIG, xml2-config)
-  AC_PATH_PROGS(VALGRIND_BIN, valgrind, /usr/bin/valgrind)
-  AC_DEFINE_UNQUOTED(VALGRIND_BIN, "$VALGRIND_BIN", Valgrind command)
-  
--@@ -807,17 +806,13 @@ dnl AC_CHECK_HEADERS(netinet/icmp6.h)
-+@@ -805,17 +804,13 @@ dnl AC_CHECK_HEADERS(netinet/icmp6.h)
-  dnl AC_CHECK_HEADERS(netinet/ip6.h)
-  dnl AC_CHECK_HEADERS(netinet/ip_icmp.h)
-  
-@@ -45,3 +47,6 @@ index 7195f9b..5e420f2 100644
-  
-  AC_CHECK_HEADERS(libxml/xpath.h)
-  AC_CHECK_HEADERS(libxslt/xslt.h)
-+-- 
-+2.7.4
-+
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.16.bb b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.19.bb
-similarity index 93%
-rename from meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.16.bb
-rename to meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.19.bb
-index 8726111..181c65f 100644
---- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.16.bb
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.19.bb
-@@ -24,8 +24,11 @@ SRC_URI = "https://github.com/ClusterLabs/${BPN}/archive/Pacemaker-${PV}.zip \
-            file://volatiles \
-            file://tmpfiles \
-           "
--SRC_URI[md5sum] = "6f60f733823d31acbef4556fb749c457"
--SRC_URI[sha256sum] = "2642264b27c584eff5747a2a34c7f2bff13d52741e4e5cc70f14b2b6cd1fe7d5"
-+
-+SRC_URI_append_libc-musl = "file://0001-pacemaker-fix-compile-error-of-musl-libc.patch"
-+
-+SRC_URI[md5sum] = "deb7017c5a9d3f39895d9ea2c34bc8eb"
-+SRC_URI[sha256sum] = "6e222046487c2dc6ae61d49089ecbf6a0bcb495e8cdcb76d115fd987d0df8f7f"
- 
- inherit autotools-brokensep pkgconfig systemd python-dir useradd
- 
-@@ -89,7 +92,7 @@ FILES_${PN} += " ${datadir}/snmp                             \
-                  ${libdir}/${PYTHON_DIR}/site-packages \
-                "
- FILES_${PN}-dbg += "${libdir}/corosync/lcrso/.debug"
--RDEPENDS_${PN} = "bash python libqb ${PN}-cli-utils"
-+RDEPENDS_${PN} = "bash python perl libqb ${PN}-cli-utils"
- 
- SYSTEMD_AUTO_ENABLE = "disable"
- 
--- 
-2.7.4
-
+2018-08-21 9:54 GMT+02:00 Nader Hariri <nader.hariri@hotmail.com>:
+> ok, so I changed my local.conf from IMAGE_FEATURES_append =3D " ptest-pkg=
+s" to
+> EXTRA_IMAGE_FEATURES =3D "ptest-pkgs", here are the logs:
+>
+> # $IMAGE_FEATURES [3 operations]
+> #   set?
+> /home/nader/poky-docker/workdir/poky/meta/conf/distro/include/default-dis=
+trovars.inc:23
+> #     ""
+> #   set
+> /home/nader/poky-docker/workdir/poky/meta/conf/documentation.conf:210
+> #     [doc] "The primary list of features to include in an image. Configu=
+re
+> this variable in an image recipe."
+> #   append /home/nader/poky-docker/workdir/poky/meta/conf/bitbake.conf:80=
+6
+> #     "${EXTRA_IMAGE_FEATURES}"
+> # pre-expansion value:
+> #   " ${EXTRA_IMAGE_FEATURES}"
+> IMAGE_FEATURES=3D" ptest-pkgs"
+>
+> As we can see, I still have the suspicious space but it has shrunk from 2
+> spaces to 1 space. And -ptest packages didn't get installed in my image.
+>
+> Nader
+> ________________________________
+> De : Alexander Kanavin <alex.kanavin@gmail.com>
+> Envoy=C3=A9 : lundi 20 ao=C3=BBt 2018 16:54
+> =C3=80 : Nader Hariri
+> Cc : yocto@yoctoproject.org
+> Objet : Re: [yocto] ptest-runner "No ptests found."
+>
+> 2018-08-20 15:36 GMT+02:00 Nader Hariri <nader.hariri@hotmail.com>:
+>> I ran 'bitbake -e <image>' as you have suggested. I can see from the log=
+s
+>> that the variable IMAGE_FEATURES does get appended the value of
+>> ${EXTRA_IMAGE_FEATURES}, however I still have no -ptest packages in my
+>> image. Is there anything wrong in my logs?
+>>
+>>
+>> # $IMAGE_FEATURES [3 operations]
+>> #   set?
+>>
+>> /home/nader/poky-docker/workdir/poky/meta/conf/distro/include/default-di=
+strovars.inc:23
+>> #     ""
+>> #   set
+>> /home/nader/poky-docker/workdir/poky/meta/conf/documentation.conf:210
+>> #     [doc] "The primary list of features to include in an image.
+>> Configure
+>> this variable in an image recipe."
+>> #   append /home/nader/poky-docker/workdir/poky/meta/conf/bitbake.conf:8=
+06
+>> #     "${EXTRA_IMAGE_FEATURES}"
+>> # pre-expansion value:
+>> #   " ${EXTRA_IMAGE_FEATURES}"
+>> IMAGE_FEATURES=3D"  ptest-pkgs"
+>
+> The space looks suspicious in there. Can you try to set
+> EXTRA_IMAGE_FEATURES directly with =3D instead of appending to it?
+>
+> Alex
 
