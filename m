@@ -1,6 +1,6 @@
-Return-Path: <paulsheer@gmail.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EA9B1E0097C; Tue, 21 Aug 2018 15:52:05 -0700 (PDT)
+	id 0F46EE0097C; Tue, 21 Aug 2018 16:46:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (paulsheer[at]gmail.com)
+	mail provider *      (armccurdy[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.218.48 listed in list.dnswl.org]
+	*      [209.85.213.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,45 +19,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
-	[209.85.218.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D67FE008D9
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2018 15:52:05 -0700 (PDT)
-Received: by mail-oi0-f48.google.com with SMTP id k12-v6so5041oiw.8
-	for <yocto@yoctoproject.org>; Tue, 21 Aug 2018 15:52:05 -0700 (PDT)
+Received: from mail-vk0-f45.google.com (mail-vk0-f45.google.com
+	[209.85.213.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD2E5E008D9
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2018 16:46:03 -0700 (PDT)
+Received: by mail-vk0-f45.google.com with SMTP id 125-v6so47092vke.11
+	for <yocto@yoctoproject.org>; Tue, 21 Aug 2018 16:46:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=al7W0ylFi/6SG2CI1sEjCopzn/ZEL4Vxv6BZuQUmQKA=;
-	b=OSDp8D8Yy1Y6TSh1xdeHsI7XpBv+lkXVBUrtGB8rD9ZTZ3u9EREvNx1G4PKyp4KEnu
-	yuzep9b8gffjP3jLT/ZnSjtht8gn3ZWIJhRt84WI1IaqLqHgwE1U5G7TZLCvo9j14dsE
-	v9eEpqhZP7zU0W32XnVGZ1cgMfDUHTJbq/8WpRVGCbHukfi3uoAkGXVDhnOnbF8yoneq
-	jXB6r2iCdakMm9qs/uIYsIAI8TodNwohpQK7mO3Ec1fjXMFML2xcGXdfLK91wwM55ZyR
-	wk69/IjmdKO30/vEUQFYKQRoEswufP6742N2QILIX/WGoRvfhpZ1Qze74PMeaqnFfDN8
-	/caQ==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=i1EjWfYJ/pzqQ8oXBM3IP/PAMYpHImyravS7M1j3ZSo=;
+	b=OdM7iWfXtz5+kNh02McJ0TlgO6QaamVIvQNQ0hHFb+QXm/eEhqiGjiaGWy39/9xIRV
+	fEDP3JOXiP71DqUEGHOEeyoGOkGMrZY16CmWFX7W4EC0R78HHc+P3nNhBdGgG548TNeh
+	divYT65KKk73nYM+uraOP2Z6CM6lRZJvLWZqVfqupxjuy9cApAy6LGmJbUBNfYLPgoqY
+	Mm0yNf1BOumQHQV9SkVfhq0MY/T2nmBoNqwu9MmGuXND7U8fb8dTzMyjG8lMVsKXdzy5
+	422GOeWC19UzvPt+jV3thYiDVlVPUILic2X2mm4Vsf0XUGhST8wlwcKhsErn3zrLUZxL
+	8XgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=al7W0ylFi/6SG2CI1sEjCopzn/ZEL4Vxv6BZuQUmQKA=;
-	b=nMiYy7TkYbpIz0TR1xkHqtpOsLc4dRltH+joVENXQ0GZtDERilv+/1N7PCVjCZx2Fh
-	p2FOUcYxN/Sn18BYaEvRw+/zRzlZJZARLa/ehtlXCaI79yHLFT8nQmOvcKiYXhaV4NIW
-	u1K6ld1TqYRn3OXS5be0bYYbRR9d56+Z3Crg6Ztcg3PmpRFlAU6t2nYamRGHzJ5u/3PJ
-	OHtshc3vk5tqaF7iBbeTbXAiQxki8h8P/UobQOTKvrSbD4GvZIoCe9ET3SDTtwGX/P5V
-	C3NS7NEgUmNNgnvdJOb3ZZQImpATpwNWT0mNf98AAM3HJXOYYgbtsH8X1b7bPZvxRK2w
-	Y9Jg==
-X-Gm-Message-State: APzg51BSDo7fAxIojbiTuykbtaf0YL2+MDaWvbbO7a8MUTZYO12bckjU
-	E0K1GM/6uK05ENbGO5wazPwpVQJLzBdfwGvMriukCg==
-X-Google-Smtp-Source: ANB0VdZMrdPO8uGiI3WbePn2916xC3OOPs+UwLw/ztitusYLC/gFOu0sNb/xqSjfwDAlibMhhuwWjjSRp0hFmYiD+C0=
-X-Received: by 2002:aca:d452:: with SMTP id
-	l79-v6mr1318097oig.222.1534891924812; 
-	Tue, 21 Aug 2018 15:52:04 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=i1EjWfYJ/pzqQ8oXBM3IP/PAMYpHImyravS7M1j3ZSo=;
+	b=qyKXqZglY3rjdNUcT71qEd8GQctrUEKjiqRU64KxizL8wEEeP6K0pI04dhVXq942Vl
+	a+sxRu45IaQixQZVXnpuUWP/OexjrJqJAeUdYD5CSTX/EAq6/yfzaPD3CEWNTKwbQ0gZ
+	r+QzHeeOsxWZwkVWL8y8tDanfVGDTz0c6VoGJIOi1BsZnE0QiBNmj7Gdg4dRi1QCuj8u
+	oFXBty6NBY+OThAVTbfydgE8P+aD157FZuFG41mp8GlcXWDXPLMCjQ47T3MQImshuuwB
+	3a4Sukub3acFTVYClVyzGsOilYwpF46OJwxqNGx7XBZHVz8tMcDo2HerKPoT9qUX688I
+	xCYw==
+X-Gm-Message-State: AOUpUlESIQWOF5cI37ZFOt3zuPBQXP/NbDaJ/61wppfeCQ0qWI9wvtFx
+	Tw9iLyugKKCw+2aOXML69ZY8SpFKWizraW82jNI=
+X-Google-Smtp-Source: AA+uWPzYWOTiKOdZvnjkSn8EofO2HHjIZvp6lrxDMb7KPmpXfTybmb5gOjRiItSBEmqZwxy4ypPBh4P3qUDUHxaaFV8=
+X-Received: by 2002:a1f:d844:: with SMTP id
+	p65-v6mr35250987vkg.54.1534895163169; 
+	Tue, 21 Aug 2018 16:46:03 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ac9:e0b:0:0:0:0:0 with HTTP;
-	Tue, 21 Aug 2018 15:52:04 -0700 (PDT)
-From: Paul Sheer <paulsheer@gmail.com>
-Date: Tue, 21 Aug 2018 17:52:04 -0500
-Message-ID: <CABxOuY_5=1XEg45janMNWmEidhkeB5b=7mfbQM4uAivhf1xfxg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Cleaning out build without re-downloading sources
+Received: by 2002:ab0:2a5:0:0:0:0:0 with HTTP;
+	Tue, 21 Aug 2018 16:46:02 -0700 (PDT)
+In-Reply-To: <CABxOuY_5=1XEg45janMNWmEidhkeB5b=7mfbQM4uAivhf1xfxg@mail.gmail.com>
+References: <CABxOuY_5=1XEg45janMNWmEidhkeB5b=7mfbQM4uAivhf1xfxg@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Tue, 21 Aug 2018 16:46:02 -0700
+Message-ID: <CAJ86T=W=TF0y_hd7ULb8S=gjpPSzSgOZkyJqE8fz4FyKYuWmMw@mail.gmail.com>
+To: Paul Sheer <paulsheer@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Cleaning out build without re-downloading sources
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,34 +73,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2018 22:52:06 -0000
+X-List-Received-Date: Tue, 21 Aug 2018 23:46:05 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Tue, Aug 21, 2018 at 3:52 PM, Paul Sheer <paulsheer@gmail.com> wrote:
+> Hi,
+>
+> I am trying to do a clean out all packages within my build due to a
+> change in my GCC environment.
+>
+> I updated my GCC so, for assurance reasons, I want a rebuild of everything.
+>
+> However I want to avoid re-downloading gigs of source packages.
+>
+> I am hoping there is a way, say, to restart all packages build from
+> the "unpack" step without doing the download step?
+>
+> This seems like a common use case.  Is it supported?
+>
+> The only help I could find is to run commands like,
+>
+> bitback -C xyz abc
+> bitback -c xyz abc
+>
+> Nothing I have tried forces a complete clean out of all builds (nor
+> the other options -- a restart from the unpack step).
+>
+> rm -rf ./tmp   works, but it also forces a download of every package :-(
 
-I am trying to do a clean out all packages within my build due to a
-change in my GCC environment.
+It shouldn't - at least not unless you've over-ridden the default
+location of the downloads directory and placed it under tmp?
 
-I updated my GCC so, for assurance reasons, I want a rebuild of everything.
+The default locations are:
 
-However I want to avoid re-downloading gigs of source packages.
+  DL_DIR ?= "${TOPDIR}/downloads"
+  SSTATE_DIR ?= "${TOPDIR}/sstate-cache"
+  TMPDIR = "${TOPDIR}/tmp"
 
-I am hoping there is a way, say, to restart all packages build from
-the "unpack" step without doing the download step?
+so removing tmp should not affect either downloads or sstate-cache.
 
-This seems like a common use case.  Is it supported?
-
-The only help I could find is to run commands like,
-
-bitback -C xyz abc
-bitback -c xyz abc
-
-Nothing I have tried forces a complete clean out of all builds (nor
-the other options -- a restart from the unpack step).
-
-rm -rf ./tmp   works, but it also forces a download of every package :-(
-
-Thanks
-
-Paul
+> Thanks
+>
+> Paul
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
