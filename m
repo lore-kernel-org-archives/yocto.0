@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 279F9E00529; Wed, 22 Aug 2018 11:09:14 -0700 (PDT)
+	id 08828E00474; Wed, 22 Aug 2018 11:16:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.220.174 listed in list.dnswl.org]
+	*      [209.85.220.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,47 +19,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f174.google.com (mail-qk0-f174.google.com
-	[209.85.220.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94993E003D7
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2018 11:09:13 -0700 (PDT)
-Received: by mail-qk0-f174.google.com with SMTP id 93-v6so1865688qks.3
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2018 11:09:13 -0700 (PDT)
+Received: from mail-qk0-f180.google.com (mail-qk0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5099E003D7
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2018 11:16:28 -0700 (PDT)
+Received: by mail-qk0-f180.google.com with SMTP id p71-v6so1860357qka.9
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2018 11:16:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=kkgRwM3QHqI+m5oavTxQlW9VNYsA2BdhNU0b3wS+b1Q=;
-	b=rDtW5l6BU07yo7xCxghxZL9zL/Y5Yu1sjrti21Q2rTZPqpa7T+wSj0wiVMG5k6wuvP
-	4QcMi9+GUw+G/CRU+2VzyoQ29+svVWVSAB/gpxGIESpdKdSl0B2hh+XZDW2y3hmZjnDh
-	6h/5Uh/akEktadgVZ1N+yPMFdUorcTuUBtO3Zfa4zJ0BeEA0kOcz3xZtiJyD9Sninzcl
-	ogmrW0n66TEGyWqvZDbVD16Tmkext5ma6QKn4OZHNjJ6OyV+I3ROMCduWrawJ7wWXsyE
-	OzevvgQzTez7h16Q1YqpWUpEVeGK03bYsGL/eQd4JbolnUe+hoUBqoUBvR37wqiRmrOl
-	Bk7Q==
+	:cc:content-transfer-encoding;
+	bh=7fLZ2CBjhaUD+kRdMaWX8zukyr9lqapqb/KUYN6rI6s=;
+	b=n1a10ENvvo84sUNAxLUb8YwZh8EXyyy91239Ol9HqJF4JQ4uI4sn56j+33YR/cnYIJ
+	A310ZAsEEuN/ckrAnCgvzTq+ApLpSvTRCD6ZFUA9HlndvWF9jR/7Y37/ruSuC4jqwc9m
+	iaGM0GNpBFo6WJNswJzSYzRbHAL1G1fmaKqWfBFafX59L/0QtJMSQKcVweT9DooN3Liv
+	9BuvLUE9cD4Aow+z4Wq/lLqIX/HfRM1pHZjlscegT4TPD7tiNh8t5InUKOLNxrci5PhK
+	wYXdics3qr5He9gwMzzwXMFuG2wvHvraQLkTfoDY6MtN8u8qdJoEQuRxvAwzT5gU0JWy
+	r4Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=kkgRwM3QHqI+m5oavTxQlW9VNYsA2BdhNU0b3wS+b1Q=;
-	b=quybSvmkA5EJ6BXe5FHJov5mR/11bEp3FYTzAeDaF5GEB/fDXyzcGWOnfBSptcJSHq
-	sA+UXpVwdGnc+Gx8ZiqBiBRj3J/lboqE4f6OEd87/pkQtXuxBQR2VlRCTXN4Lx9NGsz7
-	DCu08jqRsWqGkvHrtoQrUR14XFY4Z7S/8vWXnGAYvHq2BBSOFNAXQVwRv5dBxE+mSlGi
-	x6ZzSDrE2n+D9oFfLHYOTQfE0gWWe+upaGjTBKYghuZH6v+JGkdmw+bDYrlUxnd+Zlpa
-	A3pM9AWAcQ/Nt0vKsLgRAxfJWLtZzkqT0xAH021Rnk+7fyd8DplATT7k8qpOvCrH2MHQ
-	e1Sw==
-X-Gm-Message-State: AOUpUlGXXKOLzRIJIVeilIc4Oe0qy2CQwQN6LyE3U+bM0YDPXKrhqIRu
-	ImCN8DhXwODmiJPmAZguZmn4pP2CfOiF8uo1N28=
-X-Google-Smtp-Source: AA+uWPya2YmYVgxKtic7+PmvmW9GzuuflFFcC7K34MQ5GvMsSaobV80SwGUEC4/cUrlGmUtpDnNZ2WGhcgjkPkcN1QY=
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=7fLZ2CBjhaUD+kRdMaWX8zukyr9lqapqb/KUYN6rI6s=;
+	b=Vq9KZ+Z/ZxsV9FcnJhLej7z/uAz0LhbwIi5yWuLgRp7vbDsBclUs26FNks+8Q+VkvZ
+	8oa5Fqgaj/aMjgYDDd9pyvJkBwJ62nmdUtsJvkqAi8Jacf5+glJzvwVqGu2ZKLH9/u12
+	r3QpjQ6MFmENsxBgA7nR52/1RZ8EogBu2N3hGoIrlsSMiSL1jof+sRZjZD+OAT6Qd560
+	IFfupEM4voIM7FCHeVh5CuxmG9r58abV+EHePLSoWjMbR6fdRzmYKJPK8M2guv0lMySF
+	HxXZMt9dgvYtYxBF4mmHvtABbW8hHWxtljDuYLXN23Voz17vo226ceZpx/a0a4fRg7ja
+	vxrw==
+X-Gm-Message-State: AOUpUlH79dp5P0b/pJFAfKlPAzXb2tt4ue8Za2oTM1BcDHuTcqhysI8G
+	uOSZ6zDG7Yv0uj/ZaHo1snQzTlOf4F/gR4fK1iwyHUCr
+X-Google-Smtp-Source: AA+uWPyFu0fc4dDAFrgWKMUdrtzHEHJaUNmzNWuCBVwxYl2NMf3iCTUHoHPe5f2s8/pLAnz6cT9viRzrj7Rq/KAuy4k=
 X-Received: by 2002:a37:2e03:: with SMTP id
-	u3-v6mr52798492qkh.223.1534961352712; 
-	Wed, 22 Aug 2018 11:09:12 -0700 (PDT)
+	u3-v6mr52834348qkh.223.1534961788065; 
+	Wed, 22 Aug 2018 11:16:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAJO0J4i9QqAYO5AJb2qWhwO9yz6PhSr1Q9juGFA63G--Fjm8qw@mail.gmail.com>
-In-Reply-To: <CAJO0J4i9QqAYO5AJb2qWhwO9yz6PhSr1Q9juGFA63G--Fjm8qw@mail.gmail.com>
+References: <4b0fd208e0cf4fb3a1d1518047a47359@4rf-nz-exchange.local.4rf.com>
+In-Reply-To: <4b0fd208e0cf4fb3a1d1518047a47359@4rf-nz-exchange.local.4rf.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 22 Aug 2018 11:08:46 -0700
-Message-ID: <CAMKF1so_qG7+MLYcGhKVqNqzTa5QgP-KKL4RvJo=Lehw6vgypg@mail.gmail.com>
-To: Paulo Neves <ptsneves@gmail.com>
+Date: Wed, 22 Aug 2018 11:16:02 -0700
+Message-ID: <CAMKF1sqn4ULq_JAjRBDcvBpVsqvkNL6YaHxwYcu03PywrrrkKg@mail.gmail.com>
+To: Amol.Lad@4rf.com
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: nativesdk-gcc tries to link with host
+Subject: Re: Recipe re-build when variable in local.conf changes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,74 +72,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2018 18:09:14 -0000
+X-List-Received-Date: Wed, 22 Aug 2018 18:16:30 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 22, 2018 at 7:35 AM Paulo Neves <ptsneves@gmail.com> wrote:
+On Wed, Aug 22, 2018 at 8:21 AM Amol Lad <Amol.Lad@4rf.com> wrote:
 >
-> Hello,
+> Hi,
 >
-> I am trying to use nativesdk-gcc to have a gcc compiler for my sdk
-> machine. Everything looks to work correctly but some code make the
-> linker attempt to use host libraries.
 >
-> This is weird because this only happens when I use libraries that are
-> in the ${SDKROOT}/lib and not in ${SDKROOT}/usr/lib. Examples librt or
-> libpthread.
 >
-> An example program[1], build with [2] results in
-> //lib64/libpthread.so.0: undefined reference to `h_errno@GLIBC_PRIVATE'
-> //lib64/libpthread.so.0: undefined reference to
-> `__vdso_clock_gettime@GLIBC_PRIVATE'
-> //lib64/libpthread.so.0: undefined reference to
-> `__libc_dl_error_tsd@GLIBC_PRIVATE'
+> Is there a way to re-build a recipe if I change a variable in local.conf?
 >
-> One thing I noticed is that the sysroot of this nativesdk-gcc is not
-> poisoned. I am not sure if this on purpose or not because gcc-7.3.bb
-> requires  gcc-7.3.inc gcc-target.inc in this order. The problem is
-> that gcc-7.3.inc poisons the sysroot and gcc-target.inc "unpoisons"
-> the sysroot. Basically gcc-target overwrites EXTRA_OECONF_PATHS that
-> was set by gcc-7.3.inc.
 >
+>
+> I=E2=80=99ve defined a variable =E2=80=93 BUILDVERSION =3D =E2=80=9C1.0.0=
+=E2=80=9D in local.conf. There is a recipe which uses this variable, create=
+s a version file and populates it in the root file system. Now if I change =
+this variable to say =E2=80=9C2.0.0=E2=80=9D then how can I cause my recipe=
+ to re-build so it can pick up new value?
 
-target sysroot poisoning is naturally not needed we could do that but it is
-not useful, for nativesdk  it behaves like a native gcc except that it prefers
-the libraries from SDK rootfs, now should be limit it to just the
-rootfs and blind
-it from system rootfs .. may be I dont know if thats useful.
+this should cause dependent recipe to rebuild automatically,  if this
+recipe appears anywhere in your image creation dependency chain you
+dont have to do anything
+but if you are using it in a post processing function something like
+below might help
 
-> Let me know if you are aware of what is wrong.
-> Paulo Neves
->
-> [1] d.c
-> #define _GNU_SOURCE
->        #include <sched.h>
->        #include <unistd.h>
->        #include <stdlib.h>
->        #include <stdio.h>
->
->  #ifdef __STDC__
->  # include <limits.h>
->  #else
->  # include <assert.h>
->  #endif
->
->  #undef timer_create
->
->   char timer_create ();
->   int
->  main ()
->  {
->  return timer_create ();
->    ;
->    return 0;
->  }
->
-> [2] bash -c "PATH=./buildtools/sysroots/x86_64-pokysdk-linux/usr/bin/
-> && gcc -lrt d.c"
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+do_update_version[depends] +=3D "${PN}:do_image_complete"
+do_update_version[depends] +=3D "<your-recipe>:do_populate_sysroot"
+do_update_version[nostamp] =3D "1"
 
