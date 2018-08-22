@@ -1,38 +1,54 @@
-Return-Path: <Qi.Chen@windriver.com>
+Return-Path: <lbxhust@163.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21A40E00848; Wed, 22 Aug 2018 01:09:58 -0700 (PDT)
+	id BDEE9E006C7; Wed, 22 Aug 2018 01:39:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (lbxhust[at]163.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA554E006AF
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2018 01:09:57 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w7M89tlE029901
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 22 Aug 2018 01:09:55 -0700
-Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.399.0;
-	Wed, 22 Aug 2018 01:09:55 -0700
-To: Paul Sheer <paulsheer@gmail.com>, <yocto@yoctoproject.org>
-References: <CABxOuY_5=1XEg45janMNWmEidhkeB5b=7mfbQM4uAivhf1xfxg@mail.gmail.com>
-From: ChenQi <Qi.Chen@windriver.com>
-Message-ID: <dd057e86-090f-3070-630f-5afaca94475a@windriver.com>
-Date: Wed, 22 Aug 2018 16:14:25 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 912 seconds by postgrey-1.32 at yocto-www;
+	Wed, 22 Aug 2018 01:39:32 PDT
+Received: from m13-113.163.com (m13-113.163.com [220.181.13.113])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0598E003D7
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2018 01:39:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=a5zUJ
+	P8vewqhU4w6MOYZKPef+a5oL7wb7H0pjjUx/AA=; b=kOK8YAq865k1IjJ30GFxQ
+	YzW/ms1wotbhTFggRO/spZlb4TXWqGyrhrcMY7u2y2PO0J55zViJOV4XeOAL6MdE
+	Jm6KVT6Z08UnSwrrvzZJshkfPMyGLl7HKIu8hCd5a/1ULH7yOieAnXcO0LOkMeVJ
+	Orlu2jJbNKWbI5GXrqJfDI=
+Received: from lbxhust$163.com ( [122.13.158.26] ) by ajax-webmail-wmsvr113
+	(Coremail) ; Wed, 22 Aug 2018 16:24:13 +0800 (CST)
+X-Originating-IP: [122.13.158.26]
+Date: Wed, 22 Aug 2018 16:24:13 +0800 (CST)
+From: benxi <lbxhust@163.com>
+To: ChenQi <Qi.Chen@windriver.com>
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
+	20160729(86883.8884) Copyright (c) 2002-2018 www.mailtech.cn 163com
+In-Reply-To: <7ae3b24c-ff75-124b-4792-045eba18353f@windriver.com>
+References: <32f124db.694c.1655fe0c5fe.Coremail.lbxhust@163.com>
+	<7ae3b24c-ff75-124b-4792-045eba18353f@windriver.com>
+X-CM-CTRLDATA: YrJukmZvb3Rlcl9odG09NDAyMjo1Ng==
 MIME-Version: 1.0
-In-Reply-To: <CABxOuY_5=1XEg45janMNWmEidhkeB5b=7mfbQM4uAivhf1xfxg@mail.gmail.com>
-X-Originating-IP: [128.224.162.218]
-Subject: Re: Cleaning out build without re-downloading sources
+Message-ID: <107cb43d.a85a.16560bbeef2.Coremail.lbxhust@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: ccGowADXgdmtHX1bf8uAAA--.17988W
+X-CM-SenderInfo: xoe0x3lvw6il2tof0z/xtbBSQiq5FaDy5fg1gABsx
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Cc: yocto@yoctoproject.org
+Subject: Re: Id "s0" respawning too fast on Raspberry pi3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,47 +60,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2018 08:09:58 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 22 Aug 2018 08:39:33 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_160597_430507949.1534926253810"
 
-On 08/22/2018 06:52 AM, Paul Sheer wrote:
-> Hi,
->
-> I am trying to do a clean out all packages within my build due to a
-> change in my GCC environment.
->
-> I updated my GCC so, for assurance reasons, I want a rebuild of everything.
->
-> However I want to avoid re-downloading gigs of source packages.
->
-> I am hoping there is a way, say, to restart all packages build from
-> the "unpack" step without doing the download step?
->
-> This seems like a common use case.  Is it supported?
->
-> The only help I could find is to run commands like,
->
-> bitback -C xyz abc
-> bitback -c xyz abc
->
-> Nothing I have tried forces a complete clean out of all builds (nor
-> the other options -- a restart from the unpack step).
->
-> rm -rf ./tmp   works, but it also forces a download of every package :-(
->
-> Thanks
->
-> Paul
+------=_Part_160597_430507949.1534926253810
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: base64
 
-There is a separate directory, which is usually downloads/ under the 
-build directory, to keep downloaded git repos and tarballs.
+SGkgUWksClRoYW5rcyBmb3IgeW91ciByZXBseS4gSXQgaW5kZWVkIHNvbHZlcyB0aGUgcHJvYmxl
+bSwgaG93ZXZlciBJJ20gYWZyYWlkIHRoYXQgbW9kaWZ5aW5nIFNFUklBTF9DT05TT0xFUyBjYW4g
+aGF2ZSBzaWRlIGVmZmVjdHMgb24gb3RoZXIgcmVjaXBlcy4gSSBhbHNvIHdvbmRlciBpZiB0aGVy
+ZSAncmUgYW55IHdheSB0byBlbmFibGUgdHR5UzAgb24gbXkgcmFzcGJlcnJ5IHBpKFNpbmNlIEVO
+QUJMRV9VQVJUIGRvZXNuJ3Qgd29yaykuCgrU2iAyMDE4LTA4LTIyIDE1OjU5OjQ0o6wiQ2hlblFp
+IiA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPiDQtLXAo7oKCk9uIDA4LzIyLzIwMTggMTI6MjQgUE0s
+IGJlbnhpIHdyb3RlOgoKSGVsbG8gRXZlcnlvbmUsCiAgICBJIGJ1aWxkIGEgcnBpLWh3dXAtaW1h
+Z2UgYW5kIHJ1biBpdCBvbiBteSByYXNwYmVycnkgcGkzKE1vZGVsIEIgVjEuMikuIEFmdGVyIHRo
+ZSBzeXN0ZW0gYm9vdHMgdXAsIEkga2VlcCBzZWVpbmcgc3VjaCBtZXNzYWdlOiAKICAgIElOSVQ6
+IElkICJTMCIgcmVzcGF3bmluZyB0b28gZmFzdDogZGlzYWJsZWQgZm9yIDUgbWludXRlcy4KICAg
+IEkgbm90aWNlIHRoYXQgeW9jdG8gYWRkcyB0aGUgZm9sbG93aW5nIGxpbmUgdG8gL2V0Yy9pbml0
+dGFiIHdoZW4gaW5zdGFsbCBzeXN2aW5pdCwgc2luY2UgU2VyaWFsX0NvbnNvbGUgd2FzIHNldCBp
+biByYXNwYmVycnlwaTMtNjQuY29uZjoKICAgIFMwOjEyMzQ1OnJlc3Bhd246L2Jpbi9zdGFydF9n
+ZXR0eSAxMTUyMDAgdHR5UzAgdnQxMDIKICAgSSB0cnkgdG8gYWRkIEVOQUJMRV9VQVJUID0gIjEi
+IGluIGxvY2FsLmNvbmYgYnV0IHRoZSBtZXNzYWdlIGtlZXBzIGNvbWluZy4gVGhlIG1lc3NhZ2Ug
+Y2FuIGJlIGVsaW1pbmF0ZWQgYnkgY29tbWVudGluZyBvdXQgdGhlIGNvcnJlc3BvbmRpbmcgbGlu
+ZSBpbiAvZXRjL2luaXR0YWIuCiAgIFNvLCBpcyB0aGlzIGEgYnVnIG9mIG1ldGEtcmFzcGJlcnJ5
+cGk/IElzIHRoZXJlIGFueXdheSB0byBmaXggaXQgd2l0aG91dCBtb2RpZnlpbmcgc3lzdmluaXQn
+cyByZWNpcGVzIGFuZCAvZXRjL2luaXR0YWI/CgoKCkNvdWxkIHlvdSBwbGVhc2UgY2hlY2sgdGhl
+IFNFUklBTF9DT05TT0xFUyB2YXJpYWJsZSB0byBzZWUgaWYgbW9kaWZ5aW5nIGl0cyB2YWx1ZSBj
+b3VsZCBzb2x2ZSB0aGUgcHJvYmxlbT8KCkJlc3QgUmVnYXJkcywKQ2hlbiBRaQoKCgogCgoKCgoK
+Cg==
 
-[network]  ---> [downloads] ---> [tmp/work/xxxx]
+------=_Part_160597_430507949.1534926253810
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: base64
 
-So you don't have to worry about the downloading when you clean up tmp/.
+SGkgUWksPGJyPlRoYW5rcyBmb3IgeW91ciByZXBseS4gSXQgaW5kZWVkIHNvbHZlcyB0aGUgcHJv
+YmxlbSwgaG93ZXZlciBJJ20gYWZyYWlkIHRoYXQgbW9kaWZ5aW5nIFNFUklBTF9DT05TT0xFUyBj
+YW4gaGF2ZSBzaWRlIGVmZmVjdHMgb24gb3RoZXIgcmVjaXBlcy4gSSBhbHNvIHdvbmRlciBpZiB0
+aGVyZSAncmUgYW55IHdheSB0byBlbmFibGUgdHR5UzAgb24gbXkgcmFzcGJlcnJ5IHBpKFNpbmNl
+IEVOQUJMRV9VQVJUIGRvZXNuJ3Qgd29yaykuPGJyPjxicj7U2iAyMDE4LTA4LTIyIDE1OjU5OjQ0
+o6wiQ2hlblFpIiAmbHQ7UWkuQ2hlbkB3aW5kcml2ZXIuY29tJmd0OyDQtLXAo7o8YnI+IDxibG9j
+a3F1b3RlIGlkPSJpc1JlcGx5Q29udGVudCIgc3R5bGU9IlBBRERJTkctTEVGVDogMWV4OyBNQVJH
+SU46IDBweCAwcHggMHB4IDAuOGV4OyBCT1JERVItTEVGVDogI2NjYyAxcHggc29saWQiPgogIAog
+ICAgCiAgCiAgCiAgICA8ZGl2IGNsYXNzPSJtb3otY2l0ZS1wcmVmaXgiPk9uIDA4LzIyLzIwMTgg
+MTI6MjQgUE0sIGJlbnhpIHdyb3RlOjxicj4KICAgIDwvZGl2PgogICAgPGJsb2NrcXVvdGUgY2l0
+ZT0ibWlkOjMyZjEyNGRiLjY5NGMuMTY1NWZlMGM1ZmUuQ29yZW1haWwubGJ4aHVzdEAxNjMuY29t
+IiB0eXBlPSJjaXRlIj4KICAgICAgCiAgICAgIDxkaXYgc3R5bGU9ImxpbmUtaGVpZ2h0OjEuNztj
+b2xvcjojMDAwMDAwO2ZvbnQtc2l6ZToxNHB4O2ZvbnQtZmFtaWx5OkFyaWFsIj4KICAgICAgICA8
+ZGl2IHN0eWxlPSJsaW5lLWhlaWdodDoxLjc7Y29sb3I6IzAwMDAwMDtmb250LXNpemU6MTRweDtm
+b250LWZhbWlseTpBcmlhbCI+CiAgICAgICAgICA8ZGl2PkhlbGxvIEV2ZXJ5b25lLDwvZGl2Pgog
+ICAgICAgICAgPGRpdj4mbmJzcDsgJm5ic3A7IEkgYnVpbGQgYSBycGktaHd1cC1pbWFnZSBhbmQg
+cnVuIGl0IG9uIG15IHJhc3BiZXJyeQogICAgICAgICAgICBwaTMoTW9kZWwgQiBWMS4yKS4gQWZ0
+ZXIgdGhlIHN5c3RlbSBib290cyB1cCwgSSBrZWVwIHNlZWluZwogICAgICAgICAgICBzdWNoIG1l
+c3NhZ2U6Jm5ic3A7PC9kaXY+CiAgICAgICAgICA8ZGl2IHN0eWxlPSJib3gtc2l6aW5nOiBib3Jk
+ZXItYm94OyBtYXJnaW4tdG9wOiAwcHg7CiAgICAgICAgICAgIG1hcmdpbi1ib3R0b206IDE2cHg7
+IGNvbG9yOiByZ2IoMzYsIDQxLCA0Nik7IGZvbnQtZmFtaWx5OgogICAgICAgICAgICAtYXBwbGUt
+c3lzdGVtLCBzeXN0ZW0tdWksICZxdW90O1NlZ29lIFVJJnF1b3Q7LCBIZWx2ZXRpY2EsCiAgICAg
+ICAgICAgIEFyaWFsLCBzYW5zLXNlcmlmLCAmcXVvdDtBcHBsZSBDb2xvciBFbW9qaSZxdW90OywK
+ICAgICAgICAgICAgJnF1b3Q7U2Vnb2UgVUkgRW1vamkmcXVvdDssICZxdW90O1NlZ29lIFVJIFN5
+bWJvbCZxdW90OzsiPiZuYnNwOwogICAgICAgICAgICAmbmJzcDsmbmJzcDtJTklUOiBJZCAiUzAi
+IHJlc3Bhd25pbmcgdG9vIGZhc3Q6IGRpc2FibGVkIGZvciA1IG1pbnV0ZXMuPC9kaXY+CiAgICAg
+ICAgICA8ZGl2IHN0eWxlPSJib3gtc2l6aW5nOiBib3JkZXItYm94OyBtYXJnaW4tdG9wOiAwcHg7
+CiAgICAgICAgICAgIG1hcmdpbi1ib3R0b206IDE2cHg7IGNvbG9yOiByZ2IoMzYsIDQxLCA0Nik7
+IGZvbnQtZmFtaWx5OgogICAgICAgICAgICAtYXBwbGUtc3lzdGVtLCBzeXN0ZW0tdWksICZxdW90
+O1NlZ29lIFVJJnF1b3Q7LCBIZWx2ZXRpY2EsCiAgICAgICAgICAgIEFyaWFsLCBzYW5zLXNlcmlm
+LCAmcXVvdDtBcHBsZSBDb2xvciBFbW9qaSZxdW90OywKICAgICAgICAgICAgJnF1b3Q7U2Vnb2Ug
+VUkgRW1vamkmcXVvdDssICZxdW90O1NlZ29lIFVJIFN5bWJvbCZxdW90OzsiPiZuYnNwOwogICAg
+ICAgICAgICAmbmJzcDsgSSBub3RpY2UgdGhhdCB5b2N0byBhZGRzIHRoZSBmb2xsb3dpbmcgbGlu
+ZSB0bwogICAgICAgICAgICAvZXRjL2luaXR0YWIgd2hlbiBpbnN0YWxsIHN5c3Zpbml0LCBzaW5j
+ZSBTZXJpYWxfQ29uc29sZSB3YXMKICAgICAgICAgICAgc2V0IGluIHJhc3BiZXJyeXBpMy02NC5j
+b25mOjwvZGl2PgogICAgICAgICAgPGRpdiBzdHlsZT0iYm94LXNpemluZzogYm9yZGVyLWJveDsg
+bWFyZ2luLXRvcDogMHB4OwogICAgICAgICAgICBtYXJnaW4tYm90dG9tOiAxNnB4OyBjb2xvcjog
+cmdiKDM2LCA0MSwgNDYpOyBmb250LWZhbWlseToKICAgICAgICAgICAgLWFwcGxlLXN5c3RlbSwg
+c3lzdGVtLXVpLCAmcXVvdDtTZWdvZSBVSSZxdW90OywgSGVsdmV0aWNhLAogICAgICAgICAgICBB
+cmlhbCwgc2Fucy1zZXJpZiwgJnF1b3Q7QXBwbGUgQ29sb3IgRW1vamkmcXVvdDssCiAgICAgICAg
+ICAgICZxdW90O1NlZ29lIFVJIEVtb2ppJnF1b3Q7LCAmcXVvdDtTZWdvZSBVSSBTeW1ib2wmcXVv
+dDs7Ij4mbmJzcDsKICAgICAgICAgICAgJm5ic3A7IFMwOjEyMzQ1OnJlc3Bhd246L2Jpbi9zdGFy
+dF9nZXR0eSAxMTUyMDAgdHR5UzAgdnQxMDI8L2Rpdj4KICAgICAgICAgIDxkaXYgc3R5bGU9ImJv
+eC1zaXppbmc6IGJvcmRlci1ib3g7IG1hcmdpbi10b3A6IDBweDsKICAgICAgICAgICAgbWFyZ2lu
+LWJvdHRvbTogMTZweDsgY29sb3I6IHJnYigzNiwgNDEsIDQ2KTsgZm9udC1mYW1pbHk6CiAgICAg
+ICAgICAgIC1hcHBsZS1zeXN0ZW0sIHN5c3RlbS11aSwgJnF1b3Q7U2Vnb2UgVUkmcXVvdDssIEhl
+bHZldGljYSwKICAgICAgICAgICAgQXJpYWwsIHNhbnMtc2VyaWYsICZxdW90O0FwcGxlIENvbG9y
+IEVtb2ppJnF1b3Q7LAogICAgICAgICAgICAmcXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90OywgJnF1
+b3Q7U2Vnb2UgVUkgU3ltYm9sJnF1b3Q7OyI+Jm5ic3A7CiAgICAgICAgICAgICZuYnNwO0kgdHJ5
+IHRvIGFkZCBFTkFCTEVfVUFSVCA9ICIxIiBpbiBsb2NhbC5jb25mIGJ1dCB0aGUKICAgICAgICAg
+ICAgbWVzc2FnZSBrZWVwcyBjb21pbmcuIFRoZSBtZXNzYWdlIGNhbiBiZSBlbGltaW5hdGVkIGJ5
+CiAgICAgICAgICAgIGNvbW1lbnRpbmcgb3V0IHRoZSBjb3JyZXNwb25kaW5nIGxpbmUgaW4gL2V0
+Yy9pbml0dGFiLjwvZGl2PgogICAgICAgICAgPGRpdiBzdHlsZT0iYm94LXNpemluZzogYm9yZGVy
+LWJveDsgbWFyZ2luLXRvcDogMHB4OwogICAgICAgICAgICBtYXJnaW4tYm90dG9tOiAxNnB4OyBj
+b2xvcjogcmdiKDM2LCA0MSwgNDYpOyBmb250LWZhbWlseToKICAgICAgICAgICAgLWFwcGxlLXN5
+c3RlbSwgc3lzdGVtLXVpLCAmcXVvdDtTZWdvZSBVSSZxdW90OywgSGVsdmV0aWNhLAogICAgICAg
+ICAgICBBcmlhbCwgc2Fucy1zZXJpZiwgJnF1b3Q7QXBwbGUgQ29sb3IgRW1vamkmcXVvdDssCiAg
+ICAgICAgICAgICZxdW90O1NlZ29lIFVJIEVtb2ppJnF1b3Q7LCAmcXVvdDtTZWdvZSBVSSBTeW1i
+b2wmcXVvdDs7Ij4mbmJzcDsKICAgICAgICAgICAgJm5ic3A7U28sIGlzIHRoaXMgYSBidWcgb2Yg
+bWV0YS1yYXNwYmVycnlwaT8gSXMgdGhlcmUgYW55d2F5IHRvCiAgICAgICAgICAgIGZpeCBpdCB3
+aXRob3V0IG1vZGlmeWluZyBzeXN2aW5pdCdzIHJlY2lwZXMgYW5kCiAgICAgICAgICAgIC9ldGMv
+aW5pdHRhYj88L2Rpdj4KICAgICAgICA8L2Rpdj4KICAgICAgPC9kaXY+CiAgICAgIDxicj4KICAg
+ICAgPGJyPgogICAgPC9ibG9ja3F1b3RlPgogICAgPGJyPgogICAgQ291bGQgeW91IHBsZWFzZSBj
+aGVjayB0aGUgU0VSSUFMX0NPTlNPTEVTIHZhcmlhYmxlIHRvIHNlZSBpZgogICAgbW9kaWZ5aW5n
+IGl0cyB2YWx1ZSBjb3VsZCBzb2x2ZSB0aGUgcHJvYmxlbT88YnI+CiAgICA8YnI+CiAgICBCZXN0
+IFJlZ2FyZHMsPGJyPgogICAgQ2hlbiBRaTxicj4KICAgIDxicj4KICAgIDxibG9ja3F1b3RlIGNp
+dGU9Im1pZDozMmYxMjRkYi42OTRjLjE2NTVmZTBjNWZlLkNvcmVtYWlsLmxieGh1c3RAMTYzLmNv
+bSIgdHlwZT0iY2l0ZSI+PHNwYW4gdGl0bGU9Im5ldGVhc2Vmb290ZXIiPgogICAgICAgIDxwPiZu
+YnNwOzwvcD4KICAgICAgPC9zcGFuPjxicj4KICAgICAgPGZpZWxkc2V0IGNsYXNzPSJtaW1lQXR0
+YWNobWVudEhlYWRlciI+PC9maWVsZHNldD4KICAgICAgPGJyPgogICAgPC9ibG9ja3F1b3RlPgog
+ICAgPHA+PGJyPgogICAgPC9wPgogIAoKPC9ibG9ja3F1b3RlPjxicj48YnI+PHNwYW4gdGl0bGU9
+Im5ldGVhc2Vmb290ZXIiPjxwPiZuYnNwOzwvcD48L3NwYW4+
 
-Best Regards,
-Chen Qi
-
-
+------=_Part_160597_430507949.1534926253810--
