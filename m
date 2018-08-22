@@ -1,67 +1,41 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8B8BDE006C7; Wed, 22 Aug 2018 01:41:17 -0700 (PDT)
+	id 41F3BE006C7; Wed, 22 Aug 2018 02:03:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (alex.kanavin[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.41 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f41.google.com (mail-oi0-f41.google.com
-	[209.85.218.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3383BE003D7
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2018 01:41:17 -0700 (PDT)
-Received: by mail-oi0-f41.google.com with SMTP id s198-v6so1853224oih.11
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2018 01:41:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=UWgC/0y6KSmfDIk97kttSBK9u6BZDwYNabDxztC6a1o=;
-	b=KZdXgA+abqkOq33E37/gSAPU6kw/yb3aS4P9aaV42t651mwRLclCinDG5ufneZFCvr
-	zgIZAkNaziTyMLUet/oG6dVuNZWTtULwAC0hrznd8PlJL8RFZ7rr/ihZmOINuq0VC+bV
-	pmgwqQE7t8KNKBRCT1sdaaudlTdY1BQUbXT+7kb/HCLcFKcQlFkNyuTrlgpMUqjN2gj/
-	zOupO2hDc3stEfVLWSIIYrbk9VQZmKyVBgBue0jzcIw52D13V2v+lo7JRBao0uP+CLCb
-	zRcE7LNXdodmN8e01BAfrX2NhpUGRPgUrEAPa7AEz9snmj0GIzar2PTTYSgOw/uQ5JzH
-	7A/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=UWgC/0y6KSmfDIk97kttSBK9u6BZDwYNabDxztC6a1o=;
-	b=ljkDZuR0ze5cLL31Qft3iOjKg7MuJBYGq5JHa9+FiUl9liY2Doa2IiV6oGgNQnSf63
-	blxlhi7SFmVFRo0Zghze0nGOo7sUXI8r8iGGUWswQNgkFFe0ngGlKx1JLbGogDlUCNPn
-	AdL5rSmR1nGRcoaqKNgGZemJsBudqZ76ysfEhNUV4bNAoCHrNUxMB48UhQtx7G3lSVXE
-	0sfy2fjysAwyTwIiTKREOgaScOujlZcSYoqrgPWgf8ERasjMg02J8xpUQs8jhsKujIGG
-	hTjl4W7YR77IE6LwOpy1HIvlen9qUlAIDLiE8jW9C7ZmY7HY6X4bZRl01gpfEmyo+Ydd
-	QTtA==
-X-Gm-Message-State: APzg51BA2zZSacT55DszTCcHNJhBvZ8GsoDekYFaI2SAg5t/FMZG5x1D
-	dnnxJ3h6m49jbIUrfTLRKhT7kw/i95DUTYaMSFU=
-X-Google-Smtp-Source: ANB0VdaqtRiYUms6GwCu2kFaxmMR4kybNTINA/G+TMkzLy8an9Zkp/irAxgrh2EDRTZhIW8PVh6dTGnFo/zo+4c2h2Y=
-X-Received: by 2002:aca:d015:: with SMTP id
-	h21-v6mr3081152oig.142.1534927276618; 
-	Wed, 22 Aug 2018 01:41:16 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6EA6E003D7
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2018 02:03:37 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w7M93VsT024744
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 22 Aug 2018 02:03:31 -0700 (PDT)
+Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.399.0;
+	Wed, 22 Aug 2018 02:03:30 -0700
+To: benxi <lbxhust@163.com>
+References: <32f124db.694c.1655fe0c5fe.Coremail.lbxhust@163.com>
+	<7ae3b24c-ff75-124b-4792-045eba18353f@windriver.com>
+	<107cb43d.a85a.16560bbeef2.Coremail.lbxhust@163.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <7e21584d-4c34-c91e-6eed-d85728e5adf5@windriver.com>
+Date: Wed, 22 Aug 2018 17:08:01 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Received: by 2002:a4a:90ed:0:0:0:0:0 with HTTP; Wed, 22 Aug 2018 01:41:16
-	-0700 (PDT)
-In-Reply-To: <6a084eda5fcb4423a647bb998471e26d@AUSX13MPC104.AMER.DELL.COM>
-References: <6a084eda5fcb4423a647bb998471e26d@AUSX13MPC104.AMER.DELL.COM>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 22 Aug 2018 10:41:16 +0200
-Message-ID: <CANNYZj8A22yL9VU0Wp3OOXwZU6yR=fQXqeWSfKykDp_kkL6ZGQ@mail.gmail.com>
-To: Jack.Fewx@dell.com
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [pseudo] Pseudo 1.8+ xattr sqlite corruption
+In-Reply-To: <107cb43d.a85a.16560bbeef2.Coremail.lbxhust@163.com>
+X-Originating-IP: [128.224.162.218]
+Cc: yocto@yoctoproject.org
+Subject: Re: Id "s0" respawning too fast on Raspberry pi3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,22 +47,190 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2018 08:41:17 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 22 Aug 2018 09:03:39 -0000
+Content-Type: multipart/alternative;
+	boundary="------------AA58CE5B2B85FB2C3E061594"
 
-2018-08-20 20:45 GMT+02:00  <Jack.Fewx@dell.com>:
-> We are encountering a build problem after migrating to Poky 2.3 and Pseudo 1.8.1, and need help to resolve this.
-> It is hampering our development efforts, forcing us to rebuild images frequently.
+--------------AA58CE5B2B85FB2C3E061594
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+
+On 08/22/2018 04:24 PM, benxi wrote:
+> Hi Qi,
+> Thanks for your reply. It indeed solves the problem, however I'm 
+> afraid that modifying SERIAL_CONSOLES can have side effects on other 
+> recipes. I also wonder if there 're any way to enable ttyS0 on my 
+> raspberry pi(Since ENABLE_UART doesn't work).
 >
-> Background:
-> Our build applies SELinux file contexts, during build time since our rootfs is read-only
-> In Poky 2.0, using Pseudo 1.6.2 this works perfectly 100% of the time
 
-Pseudo is not an integral part of poky, and comes via a recipe build
-like anything else. You can play with that recipe, and establish which
-commit in pseudo's upstream git repo broke this. Also 2.3 is better
-than 2.0 but still kind of old. Do try this on the latest yocto
-release, or even on the master branch.
+The SERIAL_CONSOLES setting is _expected_ affect all recipes. That's why 
+it's usually set in some .conf file.
+Serial consoles will have different names and are device related. That's 
+why we have the variable SERIAL_CONSOLES.
 
-Alex
+I think you should just change SERIAL_CONSOLES to match the raspberry pi.
 
+Best Regards,
+Chen Qi
+
+> 在 2018-08-22 15:59:44，"ChenQi" <Qi.Chen@windriver.com> 写道：
+>
+>     On 08/22/2018 12:24 PM, benxi wrote:
+>>     Hello Everyone,
+>>         I build a rpi-hwup-image and run it on my raspberry pi3(Model
+>>     B V1.2). After the system boots up, I keep seeing such message:
+>>         INIT: Id "S0" respawning too fast: disabled for 5 minutes.
+>>         I notice that yocto adds the following line to /etc/inittab
+>>     when install sysvinit, since Serial_Console was set in
+>>     raspberrypi3-64.conf:
+>>     S0:12345:respawn:/bin/start_getty 115200 ttyS0 vt102
+>>        I try to add ENABLE_UART = "1" in local.conf but the message
+>>     keeps coming. The message can be eliminated by commenting out the
+>>     corresponding line in /etc/inittab.
+>>        So, is this a bug of meta-raspberrypi? Is there anyway to fix
+>>     it without modifying sysvinit's recipes and /etc/inittab?
+>>
+>>
+>
+>     Could you please check the SERIAL_CONSOLES variable to see if
+>     modifying its value could solve the problem?
+>
+>     Best Regards,
+>     Chen Qi
+>
+>>
+>>
+>
+>
+>
+
+
+--------------AA58CE5B2B85FB2C3E061594
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 08/22/2018 04:24 PM, benxi wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:107cb43d.a85a.16560bbeef2.Coremail.lbxhust@163.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      Hi Qi,<br>
+      Thanks for your reply. It indeed solves the problem, however I'm
+      afraid that modifying SERIAL_CONSOLES can have side effects on
+      other recipes. I also wonder if there 're any way to enable ttyS0
+      on my raspberry pi(Since ENABLE_UART doesn't work).<br>
+      <br>
+    </blockquote>
+    <br>
+    The SERIAL_CONSOLES setting is _expected_ affect all recipes. That's
+    why it's usually set in some .conf file.<br>
+    Serial consoles will have different names and are device related.
+    That's why we have the variable SERIAL_CONSOLES.<br>
+    <br>
+    I think you should just change SERIAL_CONSOLES to match the
+    raspberry pi.<br>
+    <br>
+    Best Regards,<br>
+    Chen Qi<br>
+    <br>
+    <blockquote
+      cite="mid:107cb43d.a85a.16560bbeef2.Coremail.lbxhust@163.com"
+      type="cite">在 2018-08-22 15:59:44，"ChenQi"
+      <a class="moz-txt-link-rfc2396E" href="mailto:Qi.Chen@windriver.com">&lt;Qi.Chen@windriver.com&gt;</a> 写道：<br>
+      <blockquote id="isReplyContent" style="PADDING-LEFT: 1ex; MARGIN:
+        0px 0px 0px 0.8ex; BORDER-LEFT: #ccc 1px solid">
+        <div class="moz-cite-prefix">On 08/22/2018 12:24 PM, benxi
+          wrote:<br>
+        </div>
+        <blockquote
+          cite="mid:32f124db.694c.1655fe0c5fe.Coremail.lbxhust@163.com"
+          type="cite">
+          <div
+            style="line-height:1.7;color:#000000;font-size:14px;font-family:Arial">
+            <div
+              style="line-height:1.7;color:#000000;font-size:14px;font-family:Arial">
+              <div>Hello Everyone,</div>
+              <div>    I build a rpi-hwup-image and run it on my
+                raspberry pi3(Model B V1.2). After the system boots up,
+                I keep seeing such message: </div>
+              <div style="box-sizing: border-box; margin-top: 0px;
+                margin-bottom: 16px; color: rgb(36, 41, 46);
+                font-family: -apple-system, system-ui, &quot;Segoe
+                UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple
+                Color Emoji&quot;, &quot;Segoe UI Emoji&quot;,
+                &quot;Segoe UI Symbol&quot;;">    INIT: Id "S0"
+                respawning too fast: disabled for 5 minutes.</div>
+              <div style="box-sizing: border-box; margin-top: 0px;
+                margin-bottom: 16px; color: rgb(36, 41, 46);
+                font-family: -apple-system, system-ui, &quot;Segoe
+                UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple
+                Color Emoji&quot;, &quot;Segoe UI Emoji&quot;,
+                &quot;Segoe UI Symbol&quot;;">    I notice that yocto
+                adds the following line to /etc/inittab when install
+                sysvinit, since Serial_Console was set in
+                raspberrypi3-64.conf:</div>
+              <div style="box-sizing: border-box; margin-top: 0px;
+                margin-bottom: 16px; color: rgb(36, 41, 46);
+                font-family: -apple-system, system-ui, &quot;Segoe
+                UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple
+                Color Emoji&quot;, &quot;Segoe UI Emoji&quot;,
+                &quot;Segoe UI Symbol&quot;;">   
+                S0:12345:respawn:/bin/start_getty 115200 ttyS0 vt102</div>
+              <div style="box-sizing: border-box; margin-top: 0px;
+                margin-bottom: 16px; color: rgb(36, 41, 46);
+                font-family: -apple-system, system-ui, &quot;Segoe
+                UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple
+                Color Emoji&quot;, &quot;Segoe UI Emoji&quot;,
+                &quot;Segoe UI Symbol&quot;;">   I try to add
+                ENABLE_UART = "1" in local.conf but the message keeps
+                coming. The message can be eliminated by commenting out
+                the corresponding line in /etc/inittab.</div>
+              <div style="box-sizing: border-box; margin-top: 0px;
+                margin-bottom: 16px; color: rgb(36, 41, 46);
+                font-family: -apple-system, system-ui, &quot;Segoe
+                UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple
+                Color Emoji&quot;, &quot;Segoe UI Emoji&quot;,
+                &quot;Segoe UI Symbol&quot;;">   So, is this a bug of
+                meta-raspberrypi? Is there anyway to fix it without
+                modifying sysvinit's recipes and /etc/inittab?</div>
+            </div>
+          </div>
+          <br>
+          <br>
+        </blockquote>
+        <br>
+        Could you please check the SERIAL_CONSOLES variable to see if
+        modifying its value could solve the problem?<br>
+        <br>
+        Best Regards,<br>
+        Chen Qi<br>
+        <br>
+        <blockquote
+          cite="mid:32f124db.694c.1655fe0c5fe.Coremail.lbxhust@163.com"
+          type="cite"><span title="neteasefooter">
+            <p> </p>
+          </span><br>
+          <fieldset class="mimeAttachmentHeader"></fieldset>
+          <br>
+        </blockquote>
+        <p><br>
+        </p>
+      </blockquote>
+      <br>
+      <br>
+      <span title="neteasefooter">
+        <p> </p>
+      </span>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------AA58CE5B2B85FB2C3E061594--
