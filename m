@@ -1,38 +1,36 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ACC19E00A85; Wed, 22 Aug 2018 08:09:54 -0700 (PDT)
+	id 93E11E00AB3; Wed, 22 Aug 2018 08:11:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F41D2E00726
-	for <yocto@yoctoproject.org>; Wed, 22 Aug 2018 08:09:53 -0700 (PDT)
-Received: from hex ([192.168.3.34]) (authenticated bits=0)
-	by dan.rpsys.net (8.15.2/8.15.2/Debian-10) with ESMTPSA id
-	w7MF9hi6027273
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NOT); Wed, 22 Aug 2018 16:09:45 +0100
-Message-ID: <340e2fcca899a6691605df89eb89f0e7e7802916.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Jack.Fewx@dell.com, jpewhacker@gmail.com, alex.kanavin@gmail.com,
-	seebs@seebs.net
-Date: Wed, 22 Aug 2018 16:09:43 +0100
-In-Reply-To: <0c3dff3db46a4a83a73a4ffe1c83535d@AUSX13MPC104.AMER.DELL.COM>
-References: <6a084eda5fcb4423a647bb998471e26d@AUSX13MPC104.AMER.DELL.COM>
-	<CANNYZj8A22yL9VU0Wp3OOXwZU6yR=fQXqeWSfKykDp_kkL6ZGQ@mail.gmail.com>
-	<6bdfdff49ca04924979eba1da729d7e1@AUSX13MPC104.AMER.DELL.COM>
-	<ca06666cf0377fda72a45581f14a2ba48591dc9b.camel@gmail.com>
-	<0c3dff3db46a4a83a73a4ffe1c83535d@AUSX13MPC104.AMER.DELL.COM>
-X-Mailer: Evolution 3.28.1-2 
-Mime-Version: 1.0
-X-Virus-Scanned: clamav-milter 0.100.1 at dan
-X-Virus-Status: Clean
-Cc: yocto@yoctoproject.org
-Subject: Re: [pseudo] Pseudo 1.8+ xattr sqlite corruption
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1017E00726
+	for <yocto@yoctoproject.org>; Wed, 22 Aug 2018 08:11:16 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w7MFBFVE027867
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 22 Aug 2018 08:11:15 -0700 (PDT)
+Received: from [128.224.56.93] (128.224.56.93) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.399.0;
+	Wed, 22 Aug 2018 08:11:15 -0700
+To: Sarayu Sivanandam <sarayu@m5nv.com>, <yocto@yoctoproject.org>
+References: <CAG3Cyz9ZqDr1fH5PhctavTzTdD6CHYu1J4yuEvkCMvDWqTRUOA@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <43ddb1df-5d4e-d077-f599-1739bb6b00bb@windriver.com>
+Date: Wed, 22 Aug 2018 11:11:14 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
+MIME-Version: 1.0
+In-Reply-To: <CAG3Cyz9ZqDr1fH5PhctavTzTdD6CHYu1J4yuEvkCMvDWqTRUOA@mail.gmail.com>
+Subject: Re: LXD on yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,30 +42,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Aug 2018 15:09:54 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 22 Aug 2018 15:11:18 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2018-08-22 at 14:54 +0000, Jack.Fewx@dell.com wrote:
-> So failure mode is the target filesystem is devoid of SELinux file
-> contexts, all files are unlabeled_t, which pretty much breaks
-> everything in enforcing mode.  So whatever the corruption
-> cause/effect in the Psuedo database, the end result is when
-> Mksquashfs runs it can't get labels for the files.
+On 08/22/2018 10:40 AM, Sarayu Sivanandam wrote:
+> Hi all, Is anyone currently working on creating a recipe for LXD? I want 
+> to create a recipe for LXD for my project and any inputs for the same is 
+> welcome. Thanks and Regards
+
+check on the meta-virtualization list. We already have lxc and the
+support tools, and lxd has been discussed there in the past.
+
+So asking there, will find you someone that may already have a recipe
+or is working on one.
+
+If you do write a recipe, meta-virt is the best place to send it, so
+you'll be on the right list for that as well.
+
+Bruce
+
 > 
-> There is no obvious differences in the pseudo.log files between good
-> and bad runs, so it's nothing Pseudo is screaming about.
+> Sarayu
 > 
-> I just found the Pseudo debug option flags, and how to insert them
-> using FAKEROOTENV += "PSEUDO_DEBUG=Dx", so I'm running builds trying
-> to get good and bad ones with the debug logs.
+> 
+> 
+> 
 
-Its not clear if you already tried this but if not, it'd probably be
-worth updating pseudo to the latest version too, see if it was some bug
-we already addressed in pseudo. I know we've had a few challenges
-supporting xattrs in there...
-
-Cheers,
-
-Richard
 
