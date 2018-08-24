@@ -1,46 +1,69 @@
-Return-Path: <gandersson@genivi.org>
+Return-Path: <daiane.list@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2D810E007AD; Fri, 24 Aug 2018 03:15:09 -0700 (PDT)
+	id 3AACAE007AD; Fri, 24 Aug 2018 05:00:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [38.101.164.234 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (daiane.list[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 424 seconds by postgrey-1.32 at yocto-www;
-	Fri, 24 Aug 2018 03:15:08 PDT
-Received: from smtp1.genivi.org (smtp1.genivi.org [38.101.164.234])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C468AE00720
-	for <yocto@yoctoproject.org>; Fri, 24 Aug 2018 03:15:08 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp1.genivi.org (Postfix) with ESMTP id C10435276;
-	Fri, 24 Aug 2018 03:08:03 -0700 (PDT)
-X-Virus-Scanned: Debian amavisd-new at smtp1.genivi.org
-Received: from smtp1.genivi.org ([127.0.0.1])
-	by localhost (smtp1.genivi.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id CGxugkqfLe9g; Fri, 24 Aug 2018 03:08:02 -0700 (PDT)
-Received: from android-a8ad607dc99b25c1 (h-244-80.A137.corp.bahnhof.se
-	[176.10.244.80])
-	by smtp1.genivi.org (Postfix) with ESMTPSA id 4A9C35275;
-	Fri, 24 Aug 2018 03:08:01 -0700 (PDT)
-Message-ID: <1535105270.7736.120.camel@genivi.org>
-From: Gunnar Andersson <gandersson@genivi.org>
-To: "Pandey, Kamal" <Kamal.Pandey@ifm.com>, Stefano Babic <sbabic@denx.de>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-In-Reply-To: <f843bc097fd44130b4e77f0f9f166190@ifm.com>
-References: <fc50e40975134a01920906aad4ab0e75@ifm.com>
-	<ef914983-18be-fb83-c66c-0a4f143bcd3f@denx.de>
-	<f843bc097fd44130b4e77f0f9f166190@ifm.com>
-Organization: GENIVI Alliance
-Date: Fri, 24 Aug 2018 12:07:50 +0200
-Mime-Version: 1.0
-X-Mailer: Evolution 3.26.6 (3.26.6-1.fc27) 
-Subject: Re: chromium is compiling but is not able to add in the image
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.180 listed in list.dnswl.org]
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com
+	[209.85.208.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA272E003D7;
+	Fri, 24 Aug 2018 05:00:56 -0700 (PDT)
+Received: by mail-lj1-f180.google.com with SMTP id u83-v6so6652211lje.12;
+	Fri, 24 Aug 2018 05:00:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:sender:from:date:message-id
+	:subject:to:cc;
+	bh=soRrtcvUdR+pG0r6/cGjhyzp+ir94N3uRpt5kD51MvM=;
+	b=SuFk+omfhp3lZMK/0gptaeeT5YvFJAmo0+u2baHE+LZ77CkD7dcubvBNxqxUVxPyLe
+	w/yUTgUEHdhNZ8eaynkG4B4e2trAJpQGgtpHGAUQkFLpNFRrM96+f9zfxz3tpMFpOA5C
+	+sYWyojY/F0nl4kcfFnKs/Km/rdnQZkyYUWKH1BnX89vbPMQdVsSJrzbH1w0/6Wcekp0
+	dBIS3EqOnTafKoM8Za9EwEW0CNMe9o2S7n9acSPfyn0oHT2rQ2741L5ULoAOO9PBbhRY
+	viQlLMOLQPtcU6108VSCm0AQ/wuCazEE6GHQ0ldqZJhR05TQqLOc503G0F/8rvBSF3gV
+	nC4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:sender:from
+	:date:message-id:subject:to:cc;
+	bh=soRrtcvUdR+pG0r6/cGjhyzp+ir94N3uRpt5kD51MvM=;
+	b=WuSnSkodiAjScEhFLvtUyg3HbcpxChj8l+R/r9e7r9HdKqDqUuzsXHIfBRW3urytjz
+	1pNNWU/CMCgvUm/LH872t3QEcTu4yNp/gawaXqPaQuOAgCAXKI+fW4kcqRfr3RXgHIGR
+	lbt8TLlmeDW4VtOrJ8JNWLBx0Fs/jbllKEGGNR4quf/2TaiTgfGzmFAalBJmfWmtKOLr
+	6+jbgjxDJzgORUpsTJWVvTz4OD5DLLnsD01b4SNBYGs22kUXUaOvB5rFm+kqIK/IbYIX
+	bapWCLcCBFEnHv5itadazI7VUIqZYDc7lhCXHitZYzU72j8xfgpN7/cjDbXk0USTq9hZ
+	Vvjg==
+X-Gm-Message-State: APzg51A4XCXGDRvo3A03M2GwzmkQZEtbK1+ZbClCwanWABVEApWoymB0
+	l2y5GJux1na/UPGr0BkhE4zaM0MMKs9aaJrXBYY=
+X-Google-Smtp-Source: ANB0VdaXJ9vvVP7PyLg75kvjORDiUG4+jErh/nh1PBbni6bzY2cun0eRKj10m5zNWtrHPA+3vA6+yELBwVduI6eBcfM=
+X-Received: by 2002:a2e:9883:: with SMTP id b3-v6mr1180285ljj.80.1535112055871;
+	Fri, 24 Aug 2018 05:00:55 -0700 (PDT)
+MIME-Version: 1.0
+References: <CALY=dtKAB-=gqeSojqJrR4D77zD55f8g1f=_-rOHq2-kDeLnpg@mail.gmail.com>
+In-Reply-To: <CALY=dtKAB-=gqeSojqJrR4D77zD55f8g1f=_-rOHq2-kDeLnpg@mail.gmail.com>
+Sender: angolini@gmail.com
+X-Google-Sender-Delegation: angolini@gmail.com
+From: Daiane Angolini <daiane.list@gmail.com>
+Date: Fri, 24 Aug 2018 09:00:44 -0300
+X-Google-Sender-Auth: xSrvbyUSLNF_Z0cCTJ59GKyGamQ
+Message-ID: <CA+jg_OXx3otk1BUo0HMsXySG_5R_NBs7qdmPMv+7BLKSVt3v_Q@mail.gmail.com>
+To: nik2087@gmail.com
+Cc: meta-freescale Mailing List <meta-freescale@yoctoproject.org>,
+	yocto@yoctoproject.org
+Subject: Re: Howto overwrite CXXFLAGS in SDK Environment
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,52 +75,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Aug 2018 10:15:09 -0000
+X-List-Received-Date: Fri, 24 Aug 2018 12:00:58 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
-On Fri, 2018-08-24 at 06:24 +0000, Pandey, Kamal wrote:
+On Fri, Aug 10, 2018 at 5:41 AM Nikhil <nik2087@gmail.com> wrote:
+>
+> Hello community,
+>
+> I am using Freescale community BSP - rocko release and have built and
+> installed SDK.
+> Is there a way to remove -g flag from being in the list of default
+> options  for CXXFLAGS.  ?  Thanks.
+>
 
-[trimmed]
+I think this is a good starting point:
+https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-CXXFLAGS
 
-> Apart of that, are you trying to get in running with something provided by
-> Marek for Mali (GPU support) ? I just warn that Chromium without GPU is
-> very slow and pratically unusable. Even with GPU support it looks quite
-> slow...
-> 
-> Are you enable x11 ? As far as I know, chromium is running just on top of
-> x11 - I added Marek in CC that can sugest something else.
-
-For what it's worth - lots of effort put in the last few years to run
-Chromium on Wayland (also for embedded).  It's running on weston in the GDP,
-see [1].  Looking at that might help the OP, but also other systems make use
-of these layers.
-
-The community GDP distro used meta-browser layer before but is for the
-moment on another fork that was developed by LG Electronics I believe,
-called meta-lgsvl-browser.  We typically follow the advice of some dedicated
-expert companies in this area.
-
-Hope this helps,
-
-- Gunnar
-
-[1] https://github.com/GENIVI/genivi-dev-platform
-
--- 
-Gunnar Andersson <gandersson@genivi.org>
-Development Lead
-GENIVI Alliance
-
-> Best regards,
-> Stefano Babic
-> 
+Daiane
+> Regards
+> Nikhil
 > --
-> =====================================================================
-> DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-> Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-> =====================================================================
-
-
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
