@@ -1,6 +1,6 @@
-Return-Path: <daiane.list@gmail.com>
+Return-Path: <jpewhacker@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3AACAE007AD; Fri, 24 Aug 2018 05:00:58 -0700 (PDT)
+	id B3FFCE00828; Fri, 24 Aug 2018 07:54:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (daiane.list[at]gmail.com)
+	mail provider *      (jpewhacker[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,54 +19,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.180 listed in list.dnswl.org]
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com
-	[209.85.208.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA272E003D7;
-	Fri, 24 Aug 2018 05:00:56 -0700 (PDT)
-Received: by mail-lj1-f180.google.com with SMTP id u83-v6so6652211lje.12;
-	Fri, 24 Aug 2018 05:00:56 -0700 (PDT)
+Received: from mail-it0-f67.google.com (mail-it0-f67.google.com
+	[209.85.214.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4ED51E0080F
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2018 07:54:07 -0700 (PDT)
+Received: by mail-it0-f67.google.com with SMTP id p16-v6so2307494itp.1
+	for <yocto@yoctoproject.org>; Fri, 24 Aug 2018 07:54:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:sender:from:date:message-id
-	:subject:to:cc;
-	bh=soRrtcvUdR+pG0r6/cGjhyzp+ir94N3uRpt5kD51MvM=;
-	b=SuFk+omfhp3lZMK/0gptaeeT5YvFJAmo0+u2baHE+LZ77CkD7dcubvBNxqxUVxPyLe
-	w/yUTgUEHdhNZ8eaynkG4B4e2trAJpQGgtpHGAUQkFLpNFRrM96+f9zfxz3tpMFpOA5C
-	+sYWyojY/F0nl4kcfFnKs/Km/rdnQZkyYUWKH1BnX89vbPMQdVsSJrzbH1w0/6Wcekp0
-	dBIS3EqOnTafKoM8Za9EwEW0CNMe9o2S7n9acSPfyn0oHT2rQ2741L5ULoAOO9PBbhRY
-	viQlLMOLQPtcU6108VSCm0AQ/wuCazEE6GHQ0ldqZJhR05TQqLOc503G0F/8rvBSF3gV
-	nC4w==
+	h=from:to:cc:subject:date:message-id;
+	bh=t9yoeFv/RuqV5W4oWp18nqXbevGgYQNjNk+Y4D057lM=;
+	b=N9v6YWOIPgEN7qPT4GrzF8d0f4cQOigmfmbfQjsCxA13zKhU8N5rPGaEepE/2UoQ2i
+	fsEQG4OpFdo96jr0IZJeLBpY+kUyjmyfRLAu4WSqZ7+3EYZOihVSgGiLzOVb1TWJuMTw
+	qbhwkx+WR3ziloOKww3sUOSUV0P3qy/HiiMFMvJyYx4vOvsIFlgmRI1NIlC4GBa5/d6v
+	zWGFyiyJgBAAawx01jWsoyKMB9t03bNVqWIpuVBXR8XV6lrcjIrUdJMJ/vbdzVv7GL9S
+	62x5bMYeQT0qbT5Lp2WFuzr+CmTt3m5TzBkX/RECevparMQHKYN+YUOEC9MbVOoJrS6O
+	YVUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:sender:from
-	:date:message-id:subject:to:cc;
-	bh=soRrtcvUdR+pG0r6/cGjhyzp+ir94N3uRpt5kD51MvM=;
-	b=WuSnSkodiAjScEhFLvtUyg3HbcpxChj8l+R/r9e7r9HdKqDqUuzsXHIfBRW3urytjz
-	1pNNWU/CMCgvUm/LH872t3QEcTu4yNp/gawaXqPaQuOAgCAXKI+fW4kcqRfr3RXgHIGR
-	lbt8TLlmeDW4VtOrJ8JNWLBx0Fs/jbllKEGGNR4quf/2TaiTgfGzmFAalBJmfWmtKOLr
-	6+jbgjxDJzgORUpsTJWVvTz4OD5DLLnsD01b4SNBYGs22kUXUaOvB5rFm+kqIK/IbYIX
-	bapWCLcCBFEnHv5itadazI7VUIqZYDc7lhCXHitZYzU72j8xfgpN7/cjDbXk0USTq9hZ
-	Vvjg==
-X-Gm-Message-State: APzg51A4XCXGDRvo3A03M2GwzmkQZEtbK1+ZbClCwanWABVEApWoymB0
-	l2y5GJux1na/UPGr0BkhE4zaM0MMKs9aaJrXBYY=
-X-Google-Smtp-Source: ANB0VdaXJ9vvVP7PyLg75kvjORDiUG4+jErh/nh1PBbni6bzY2cun0eRKj10m5zNWtrHPA+3vA6+yELBwVduI6eBcfM=
-X-Received: by 2002:a2e:9883:: with SMTP id b3-v6mr1180285ljj.80.1535112055871;
-	Fri, 24 Aug 2018 05:00:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <CALY=dtKAB-=gqeSojqJrR4D77zD55f8g1f=_-rOHq2-kDeLnpg@mail.gmail.com>
-In-Reply-To: <CALY=dtKAB-=gqeSojqJrR4D77zD55f8g1f=_-rOHq2-kDeLnpg@mail.gmail.com>
-Sender: angolini@gmail.com
-X-Google-Sender-Delegation: angolini@gmail.com
-From: Daiane Angolini <daiane.list@gmail.com>
-Date: Fri, 24 Aug 2018 09:00:44 -0300
-X-Google-Sender-Auth: xSrvbyUSLNF_Z0cCTJ59GKyGamQ
-Message-ID: <CA+jg_OXx3otk1BUo0HMsXySG_5R_NBs7qdmPMv+7BLKSVt3v_Q@mail.gmail.com>
-To: nik2087@gmail.com
-Cc: meta-freescale Mailing List <meta-freescale@yoctoproject.org>,
-	yocto@yoctoproject.org
-Subject: Re: Howto overwrite CXXFLAGS in SDK Environment
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=t9yoeFv/RuqV5W4oWp18nqXbevGgYQNjNk+Y4D057lM=;
+	b=e/9hJcccLDy4I6r3wYmVqAzd+aLOwSY4+8OVjYItk3wZKPGvcK0aplwtzDkNksO7do
+	aZpp/JT4A9VUmdbkJ4oXF9+TNDQYLHPzkShbNyw2eVzKJQmYIYayJhMIK23r2q8mK0Jj
+	O7Xu6PWgPuDnFoV7ptpcX6OiZPID/X/nLyI3lmbzytTH3t2B7Ld5YowUX9qyOn2UYX2T
+	K9vL/04TutgAUT9NP3aVcDbDmmgQBsecAf605wzQV3hlQOqG3GaRGlLpQusA6K433I+V
+	7JpWcPPABDUMDIe8AmLjlXGe6y8ualWh+/6BAHGebHlSfaxNO4BWF8f2BDaNqONCVwFp
+	QTzQ==
+X-Gm-Message-State: APzg51B6ey0bU7jI+U5Jlmhe6kXtfDTKFqwD/V9eM1os2h8zbheZ6I7K
+	mkEws1qD/bbJI9t9XL7/eo4QfWUB
+X-Google-Smtp-Source: ANB0Vdbbp5gTY4IVPDnnD8g+Ufptsz1HQaBtImpNORdi0j5WmZnpDCP8/m33CaNAMFOSRmr4sUHwhw==
+X-Received: by 2002:a24:b302:: with SMTP id
+	e2-v6mr1752711itf.132.1535122446451; 
+	Fri, 24 Aug 2018 07:54:06 -0700 (PDT)
+Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
+	by smtp.gmail.com with ESMTPSA id
+	c143-v6sm641584itc.23.2018.08.24.07.54.05
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Fri, 24 Aug 2018 07:54:05 -0700 (PDT)
+From: Joshua Watt <jpewhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri, 24 Aug 2018 09:53:47 -0500
+Message-Id: <20180824145347.15795-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-mingw][master/sumo][PATCH] swig: Add swig environment setup for SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,28 +73,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Aug 2018 12:00:58 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 24 Aug 2018 14:54:07 -0000
 
-On Fri, Aug 10, 2018 at 5:41 AM Nikhil <nik2087@gmail.com> wrote:
->
-> Hello community,
->
-> I am using Freescale community BSP - rocko release and have built and
-> installed SDK.
-> Is there a way to remove -g flag from being in the list of default
-> options  for CXXFLAGS.  ?  Thanks.
->
+Configures the mingw SDK environment to set the SWIG_LIB environment
+variable so that swig can find its core library. Otherwise, swig will
+look for a directory called "Lib" next to the executable.
 
-I think this is a good starting point:
-https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-CXXFLAGS
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+---
+ recipes-devtools/swig/swig_%.bbappend | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+ create mode 100644 recipes-devtools/swig/swig_%.bbappend
 
-Daiane
-> Regards
-> Nikhil
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+diff --git a/recipes-devtools/swig/swig_%.bbappend b/recipes-devtools/swig/swig_%.bbappend
+new file mode 100644
+index 0000000..de40609
+--- /dev/null
++++ b/recipes-devtools/swig/swig_%.bbappend
+@@ -0,0 +1,12 @@
++# A wrapper script won't work to set SWIG_LIB for a mingw SDK. Instead, add an
++# environment setup batch file to set SWIG_LIB when the SDK is configured.
++do_install_append_class-nativesdk_mingw32() {
++    install -d ${D}${SDKPATHNATIVE}/environment-setup.d
++
++    cat <<HEREDOC > ${D}${SDKPATHNATIVE}/environment-setup.d/swig.bat
++set SWIG_LIB=%OECORE_NATIVE_SYSROOT%\\usr\\share\\${BPN}\\${PV}
++HEREDOC
++}
++
++FILES_${PN}_append_class-nativesdk_mingw32 = " ${SDKPATHNATIVE}/environment-setup.d"
++
+-- 
+2.17.1
+
 
