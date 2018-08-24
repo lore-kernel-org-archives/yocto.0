@@ -1,64 +1,40 @@
-Return-Path: <stevep@korgrd.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C458E0043F; Thu, 23 Aug 2018 14:28:23 -0700 (PDT)
+	id 9ECCBE00720; Thu, 23 Aug 2018 20:08:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.213.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yb0-f170.google.com (mail-yb0-f170.google.com
-	[209.85.213.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFABCE003C1
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2018 14:28:22 -0700 (PDT)
-Received: by mail-yb0-f170.google.com with SMTP id c4-v6so2721517ybl.6
-	for <yocto@yoctoproject.org>; Thu, 23 Aug 2018 14:28:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=korgrd-com.20150623.gappssmtp.com; s=20150623;
-	h=from:content-transfer-encoding:mime-version:date:subject:message-id
-	:to; bh=M6tS50I0nAr2nmx4hCjET5ueIemnETXbONzZTwV3MhU=;
-	b=xTt89a917MjmXWjK2qiDRgkuX/G5Fm3CrE8A8HYzTBsPw970wiNWWhdzG/xckEGohT
-	wdWT22iwb7HZynLgFyLaVvElsxEgPoPwLrzcC7DIUKviHsgy9q+EhzUlrVrz9+S39Kce
-	qMdvnksVPTjr4EbrIzYxHlXCEuJ71+up+HJvI6qYnCW3ddqpzrtDhaT0fDUpILr3GRjx
-	SYOOQESdekq02L5kRgsvo6UhkZcPjlhFR/tY7CGUHfSSxLQc4uWbGJKlQEsI3e6HTd4T
-	nFLcTLAr71GREACeRzEvAXN0+fK3igbpDWAGb9ypOGIqqfomDazo1ltEX8/NWWKxriAa
-	mJqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:content-transfer-encoding:mime-version:date
-	:subject:message-id:to;
-	bh=M6tS50I0nAr2nmx4hCjET5ueIemnETXbONzZTwV3MhU=;
-	b=ba9sRAJ/IbXQdbf9H6Tso2B/qtCi6hL+DUvz+PBrZEaUcgIzdgMyHVQHp7LrwvPmKT
-	k4zuXtYShugX/a80l/pjMm/h+WR8toYED+3UlrcWGfDZd3DhBtp44iR7D+ogcA2pxezm
-	0jp2XIDE5Pv4dhjnLwD5BdmycNwd0K8IL7Wuj5aS9ZINs+iHvtWcLCsDbfb55PdeFOdY
-	tEjiaRpHF+pLJqKK7f+EwE0Vp/UdOwD7bqenYaImSPb/NjD6o9MwiKLGTiO3gnQ2fE+3
-	lFg5tWAHUyl/PDxbydu8gaFTJcU9jRkI5bhjFtvZpfkqMXS1vj4Nv53dz6vmLq2d81sn
-	YMTw==
-X-Gm-Message-State: AOUpUlHoYVsHEijBX9krmZLnneQTFFckIEGY4ptdegFvNqTo98rl7eZo
-	sup/7XzYjskN5tq4NtO21v51RMbf+IE=
-X-Google-Smtp-Source: AA+uWPz787tT7vF8bEBm6ZkNj9nsZ4K0q6VnkO6DKHMPxD4laMxsP0pkfE+AL7PAr4Mk4VWuKhGNLQ==
-X-Received: by 2002:a25:f212:: with SMTP id
-	i18-v6mr34270609ybe.267.1535059701760; 
-	Thu, 23 Aug 2018 14:28:21 -0700 (PDT)
-Received: from [192.168.1.2] (68-112-255-18.dhcp.oxfr.ma.charter.com.
-	[68.112.255.18]) by smtp.gmail.com with ESMTPSA id
-	o74-v6sm7745272ywo.54.2018.08.23.14.28.20
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 23 Aug 2018 14:28:20 -0700 (PDT)
-From: Steve Pavao <stevep@korgrd.com>
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-Date: Thu, 23 Aug 2018 17:28:19 -0400
-Message-Id: <89D3CE4C-5BA0-4A37-B1BB-58AB48DB9006@korgrd.com>
-To: Yocto Project <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.3273)
-Subject: [meta-raspberrypi] issue booting image containing alternate kernel
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 346C5E0043F
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2018 20:08:15 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w7O38DOH021957
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 23 Aug 2018 20:08:14 -0700
+Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.399.0;
+	Thu, 23 Aug 2018 20:08:12 -0700
+To: <yocto@yoctoproject.org>
+References: <CAMmNTe=6pGXZ2MgzE_orpchcQSCrgc0mS+30U0rFP9e_iXC0Ag@mail.gmail.com>
+	<CAMmNTenu-UJGScoGiT39PQUozApr5DqWEU=siF5-61Q98AkfLA@mail.gmail.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <6c8cc905-1ccd-aa05-fac8-8aa9a8a71c47@windriver.com>
+Date: Fri, 24 Aug 2018 11:12:45 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <CAMmNTenu-UJGScoGiT39PQUozApr5DqWEU=siF5-61Q98AkfLA@mail.gmail.com>
+X-Originating-IP: [128.224.162.218]
+Subject: Re: Unable to add a dev package to the Extended SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,52 +46,175 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Aug 2018 21:28:23 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 24 Aug 2018 03:08:15 -0000
+Content-Type: multipart/alternative;
+	boundary="------------BD8889D6C7219175BA8FF24C"
 
-Hello,
+--------------BD8889D6C7219175BA8FF24C
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Sometimes, I need to build an image containing the raspberrypi / linux =
-kernel as specified by the meta-raspberrypi layer recipes.  Other times, =
-I need to build an image containing the ipipe-arm64 kernel instead.  =
-This alternate kernel builds fine outside of Yocto and boots, so it =
-should also build fine from within Yocto and boot, too.
+I think using IMAGE_INSTALL_append = " curl", and then `bitbake 
+core-image-minimal -c populate_sdk_ext" is sufficient.
+After this, you can develop against curl libs/headers inside the sdk.
 
-I have a recipe to build this alternate kernel, and it works fine.  I =
-simply tweaked the machine=E2=80=99s metadata for the device tree =
-handling differences, and then specify PREFERRED_PROVIDER_virtual_kernel =
-in local.conf.  The build completes just fine.  Easy peasy.
+Best Regards,
+Chen Qi
 
-The problem occurs when I try to boot this alternate system.  (BTW, for =
-this alternate build, I am using kernel=3Du-boot.bin with a boot.scr =
-that specifies the proper dtb and has the same bootargs as my =
-cmdline.txt)
+On 08/23/2018 04:38 PM, Gabriele Favalessa wrote:
+> Hi!
+>
+> I'm attempting to add `curl-dev` to an Extensible SDK for yocto (sumo 
+> release) with target machine qemuarm.
+>
+> On a fresh checkout I've added to `conf/local.conf`
+>
+>   TOOLCHAIN_TARGET_TASK_append = " curl-dev"
+>
+> and then run `bitbake -c populate_sdk_ext core-image-minimal`.
+>
+> This is the error I get:
+>
+> ERROR: buildtools-tarball-1.0-r0 do_populate_sdk: Could not invoke 
+> dnf. Command '/vol/space/poky-sumo/build/tmp/work/x8
+> 6_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/recipe-sysroot-native/usr/bin/dnf 
+> -y -c /vol/space/poky-sumo/bui
+> ld/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/sdk/image/opt/poky/2.5.1/sysroots/none/etc/dnf/dnf
+> .conf 
+> --setopt=reposdir=/vol/space/poky-sumo/build/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/sd
+> k/image/opt/poky/2.5.1/sysroots/none/etc/yum.repos.d 
+> --repofrompath=oe-repo,/vol/space/poky-sumo/build/tmp/work/x86_64-
+> nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/oe-sdk-repo 
+> --installroot=/vol/space/poky-sumo/build/tmp/work/x86_64-
+> nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/sdk/image/opt/poky/2.5.1/sysroots/none 
+> --setopt=logdir=/vol/space/pok
+> y-sumo/build/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/temp 
+> --nogpgcheck install curl-dev' retu
+> rned 1:
+> Added oe-repo repo from 
+> /vol/space/poky-sumo/build/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/oe
+> -sdk-repo
+> Last metadata expiration check: 0:00:00 ago on Thu 23 Aug 2018 
+> 07:38:40 AM UTC.
+> Error:
+>  Problem: conflicting requests
+>   - package curl-dev-7.61.0-r0.armv5e does not have a compatible 
+> architecture
+>
+> (The full log is attached)
+>
+> I'm new to yocto and I have no clue how to proceed to fix the problem. 
+> I haven't found anything relevant in the official documentation or on 
+> the internet.
+>
+> Thanks
+>
+> Gabriele
+>
+>
 
-During the boot process, after many messages are output to the console, =
-the following message is displayed, and the boot appears delayed/hung:
 
-[    3.270764] random: crng init done
+--------------BD8889D6C7219175BA8FF24C
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 8bit
 
-After that time, the USB devices (keyboard and mouse) will regulary =
-disconnect/reconnect after some number of minutes pass.
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">I think using IMAGE_INSTALL_append = "
+      curl", and then `bitbake core-image-minimal -c populate_sdk_ext"
+      is sufficient.<br>
+      After this, you can develop against curl libs/headers inside the
+      sdk.<br>
+      <br>
+      Best Regards,<br>
+      Chen Qi<br>
+      <br>
+      On 08/23/2018 04:38 PM, Gabriele Favalessa wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAMmNTenu-UJGScoGiT39PQUozApr5DqWEU=siF5-61Q98AkfLA@mail.gmail.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <div dir="ltr">
+        <div class="gmail_quote">
+          <div dir="ltr">Hi! 
+            <div><br>
+            </div>
+            <div>I'm attempting to add `curl-dev` to an Extensible SDK
+              for yocto (sumo release) with target machine qemuarm. </div>
+            <div><br>
+            </div>
+            <div>On a fresh checkout I've added to `conf/local.conf`</div>
+            <div><br>
+            </div>
+            <div>  TOOLCHAIN_TARGET_TASK_append = " curl-dev"</div>
+            <div><br>
+            </div>
+            <div>and then run `bitbake -c populate_sdk_ext
+              core-image-minimal`.<br>
+            </div>
+            <div><br>
+            </div>
+            <div>This is the error I get:</div>
+            <div><br>
+            </div>
+            <div>
+              <div>ERROR: buildtools-tarball-1.0-r0 do_populate_sdk:
+                Could not invoke dnf. Command
+                '/vol/space/poky-sumo/build/tmp/work/x8</div>
+              <div>6_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/recipe-sysroot-native/usr/bin/dnf
+                -y -c /vol/space/poky-sumo/bui</div>
+              <div>ld/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/sdk/image/opt/poky/2.5.1/sysroots/none/etc/dnf/dnf</div>
+              <div>.conf
+--setopt=reposdir=/vol/space/poky-sumo/build/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/sd</div>
+              <div>k/image/opt/poky/2.5.1/sysroots/none/etc/yum.repos.d
+--repofrompath=oe-repo,/vol/space/poky-sumo/build/tmp/work/x86_64-</div>
+              <div>nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/oe-sdk-repo
+--installroot=/vol/space/poky-sumo/build/tmp/work/x86_64-</div>
+              <div>nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/sdk/image/opt/poky/2.5.1/sysroots/none
+                --setopt=logdir=/vol/space/pok</div>
+              <div>y-sumo/build/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/temp
+                --nogpgcheck install curl-dev' retu</div>
+              <div>rned 1:</div>
+              <div>Added oe-repo repo from
+/vol/space/poky-sumo/build/tmp/work/x86_64-nativesdk-pokysdk-linux/buildtools-tarball/1.0-r0/oe</div>
+              <div>-sdk-repo</div>
+              <div>Last metadata expiration check: 0:00:00 ago on Thu 23
+                Aug 2018 07:38:40 AM UTC.</div>
+              <div>Error: </div>
+              <div> Problem: conflicting requests</div>
+              <div>  - package curl-dev-7.61.0-r0.armv5e does not have a
+                compatible architecture</div>
+            </div>
+            <div><br>
+            </div>
+            <div>(The full log is attached)</div>
+            <div><br>
+            </div>
+            <div>I'm new to yocto and I have no clue how to proceed to
+              fix the problem. I haven't found anything relevant in the
+              official documentation or on the internet.</div>
+            <div><br>
+            </div>
+            <div>Thanks</div>
+            <div><br>
+            </div>
+            <div>Gabriele</div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
 
-The boot never finishes.
-
-Does anyone have any ideas what I can do in my Yocto configuration so I =
-can rebake and not experience this problem?
-
-Booting my system with the regular raspberrypi /linux kernel completes =
-OK and finishes with an X11 terminal on the HDMI.
-
-- Steve Pavao
-Korg R&D
-
-
-
-
-
-
-
-=20=
-
+--------------BD8889D6C7219175BA8FF24C--
