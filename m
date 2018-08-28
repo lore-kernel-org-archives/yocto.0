@@ -1,55 +1,68 @@
-Return-Path: <maxin.john@intel.com>
+Return-Path: <rohitj.chd@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E4EEE0043F; Tue, 28 Aug 2018 03:43:47 -0700 (PDT)
+	id A1F76E0043F; Tue, 28 Aug 2018 03:45:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rohitj.chd[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2680E003C1
-	for <yocto@yoctoproject.org>; Tue, 28 Aug 2018 03:43:46 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	28 Aug 2018 03:43:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.53,299,1531810800"; 
-	d="scan'208,217";a="257848238"
-Received: from irsmsx106.ger.corp.intel.com ([163.33.3.31])
-	by fmsmga005.fm.intel.com with ESMTP; 28 Aug 2018 03:43:45 -0700
-Received: from irsmsx103.ger.corp.intel.com ([169.254.3.234]) by
-	IRSMSX106.ger.corp.intel.com ([169.254.8.41]) with mapi id
-	14.03.0319.002; Tue, 28 Aug 2018 11:43:44 +0100
-From: "John, Maxin" <maxin.john@intel.com>
-To: Jon Szymaniak <jon.szymaniak.foss@gmail.com>, "bryan.fishell@gmail.com"
-	<bryan.fishell@gmail.com>
-Thread-Topic: [yocto] Tracking changes in image
-Thread-Index: AQHUPhiHzzBz0Ok0x0OBo8lMRhoGEaTUbpuAgACH/gA=
-Date: Tue, 28 Aug 2018 10:43:43 +0000
-Message-ID: <61C0517EAD808B429A1DE2DD9164D400328DAFE4@IRSMSX103.ger.corp.intel.com>
-References: <CAPC-RGmuQF54sdp8q6LLzt1VxhyoZFpeV63RQ6ot_GQoRe3=uQ@mail.gmail.com>
-	<CAPxrFVmyG=jgYNN0jMGQ1MTmjvFMpPmLhrpvhJWrCTUJd8rXjg@mail.gmail.com>
-In-Reply-To: <CAPxrFVmyG=jgYNN0jMGQ1MTmjvFMpPmLhrpvhJWrCTUJd8rXjg@mail.gmail.com>
-Accept-Language: fi-FI, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiODZkYzI0ZDEtYTc5OC00M2RkLThmZTktMTc4ODY5ZjgxZjU4IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoicXhoa3pqekdNZVU4Z21sbGRuZTZJaXRDVzFwQU5IZHhvWkh4Zm5ka0V2aXpPRmhZZElvaXRrZUx6WkJtSFgrRSJ9
-x-ctpclassification: CTP_NT
-x-originating-ip: [163.33.239.180]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.49 listed in list.dnswl.org]
+Received: from mail-it0-f49.google.com (mail-it0-f49.google.com
+	[209.85.214.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3734DE003C1
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2018 03:45:51 -0700 (PDT)
+Received: by mail-it0-f49.google.com with SMTP id 139-v6so1924954itf.0
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2018 03:45:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=date:subject:message-id:importance:from:to:mime-version;
+	bh=uO0+B8PvSmbZJ7To4b31vRSwsQ2koP0cYO0M3m2St8A=;
+	b=pAQbMc7FdEKkrlYgaiol+BNMuaX7Y0+nGk19iOez25Hy6ieXhUFmvC4IRkACB4ni19
+	0vYZGIJRrfD0LoJ8B/2NBbCkJym5XIFJp9+o9vNFAQfo+EZ+Hwzp6zyFqYsCTmGwP+ip
+	2i5HgWscaaqRYIhwZ6NzHbq2Uf+mktPfNSZ8NEKhvHhNH/n/MjCOE5PKNFVDwC/Srkf2
+	+hLFyvkD52FMFcTYi/NckObkeMYXv5PI0Z3Maby/5T4sTHB0R2XAV4BSJULjTitM+Fk4
+	YotmJnE6OEYMzNIqUGFcmbVoPpFSkpVihY+awWOKQHLQRx8Mx3+gghBqDbrfjdoCxlcn
+	1iNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:subject:message-id:importance:from:to
+	:mime-version;
+	bh=uO0+B8PvSmbZJ7To4b31vRSwsQ2koP0cYO0M3m2St8A=;
+	b=BgIr1nCgv+VEy1VGEPLRrnCUc+CfA1yxIOw2BlPC597XAgAW9Upzd7OzO4HrBX6wiQ
+	vkPYo+O/6xcWYE9a4Esuc6Q7aTrVXVgsA2+3BViCi3djD26VmBChe7wVpLVopBy/UmWo
+	uT0Swoa4yXLY70iba2I5QcRXAvNJfe5GOMFXYbw/8venU9Auz0/YcdhDyy5q7NTctxrI
+	7dtqYgx8davLKpIZayQg20ASF3SbJRO4X7Ye9JaXBO393FvgjYs0F8IrDZAmuRr53xP5
+	oHTxnHjSpHJpHqSHcxJO15gaDWIUHRl39skSl/2oAKNFHOA1EfZ7czH7yi0YrcmGgeob
+	BjoQ==
+X-Gm-Message-State: APzg51C/8coIsKOZdlcfPfP0/AvDZ+GXvOMlMLcoGFqlm18Jmbib9vjG
+	aVtsOOtT/eYe7KT0zD/S8sB5LyNe
+X-Google-Smtp-Source: ANB0VdaSoVt5b2oRjPRTiF92r1qGAqQiajw8Je31opxF2TYlvl/CFcsWuZ5KPYZrVvhJFG3k3JC6/g==
+X-Received: by 2002:a02:39a:: with SMTP id e26-v6mr712348jae.135.1535453150421;
+	Tue, 28 Aug 2018 03:45:50 -0700 (PDT)
+Received: from ?IPv6:2402:8100:3975:6d91::1? ([2402:8100:3975:6d91::1])
+	by smtp.gmail.com with ESMTPSA id
+	o18-v6sm348428ioa.83.2018.08.28.03.45.49
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 28 Aug 2018 03:45:50 -0700 (PDT)
+Date: Tue, 28 Aug 2018 16:15:46 +0530
+Message-ID: <fifdwqd2txkju4m028gqwx2d.1535453146632@email.android.com>
+Importance: normal
+From: "rohitj.chd" <rohitj.chd@gmail.com>
+To: yocto@yoctoproject.org, anil@sysplay.in
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Tracking changes in image
+Subject: Porting rtc-pcf85363.c file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,166 +74,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2018 10:43:47 -0000
-Content-Language: en-US
+X-List-Received-Date: Tue, 28 Aug 2018 10:45:51 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_61C0517EAD808B429A1DE2DD9164D400328DAFE4IRSMSX103gercor_"
+	boundary="--_com.samsung.android.email_1347906141790120"
 
---_000_61C0517EAD808B429A1DE2DD9164D400328DAFE4IRSMSX103gercor_
-Content-Type: text/plain; charset="utf-8"
+----_com.samsung.android.email_1347906141790120
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: base64
 
-SGkgQnJ5YW4sDQoNCkluIGFkZGl0aW9uIHRvIHdoYXQgSm9uIG1lbnRpb25lZCwg4oCcb3MtcmVs
-ZWFzZeKAnSBwYWNrYWdlIGluIG9lLWNvcmUgY291bGQgaGVscCBpbiB0cmFja2luZyB0aGUgb3Bl
-cmF0aW5nIHN5c3RlbSBpZGVudGlmaWNhdGlvbiBkYXRhIGluIGRlcGxveWVkIGltYWdlcy4NCg0K
-U2luY2UgeW91IGFyZSB1c2luZyB1LWJvb3QsIGEgY3VzdG9taXplZCBsb2dpYyBpbnZvbHZpbmcg
-ZW52aXJvbm1lbnQgdmFyaWFibGUgaW4gdS1ib290IGFuZCBhY2Nlc3NpbmcgaXQgZnJvbSB1c2Vy
-LXNwYWNlIHdpdGggdG9vbHMgbGlrZSDigJxmd19wcmludGVuduKAnSBhdmFpbGFibGUgZnJvbSB1
-LWJvb3QtZnd1dGlscyBzaG91bGQgaGVscCB0aGVyZS4NCg0KQmVzdCBSZWdhcmRzLA0KTWF4aW4N
-Cg0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91
-bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgSm9uIFN6eW1hbmlhaw0KU2VudDog
-VHVlc2RheSwgQXVndXN0IDI4LCAyMDE4IDY6MTggQU0NClRvOiBicnlhbi5maXNoZWxsQGdtYWls
-LmNvbQ0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIFRy
-YWNraW5nIGNoYW5nZXMgaW4gaW1hZ2UNCg0KT24gTW9uLCBBdWcgMjcsIDIwMTggYXQgMTA6MTMg
-QnJ5YW4gRmlzaGVsbCA8YnJ5YW4uZmlzaGVsbEBnbWFpbC5jb208bWFpbHRvOmJyeWFuLmZpc2hl
-bGxAZ21haWwuY29tPj4gd3JvdGU6DQpIaSwNCkkgd2FudCB0byBiZSBhYmxlIHRvIHRyYWNrIGRp
-ZmZlcmVudCBwYXJ0cyBvZiBteSBpbWFnZSwgYWNjZXNzaWJsZSBmcm9tIHdpdGhpbiB1c2Vyc3Bh
-Y2Ugc28gSSBjYW4gcHJvZ3JhbW1hdGljYWxseSAodmlhIGFuIGVudmlyb25tZW50IHZhcmlhYmxl
-IG9yIHNvbWV0aGluZykgd2hhdCB2ZXJzaW9uIG9mIG15IHBhdGNoZXMgaGF2ZSBiZWVuIGFwcGxp
-ZWQuIFVsdGltYXRlbHksIEkgd2FudCB0byBiZSBhYmxlIHRvIGFuc3dlciBxdWVzdGlvbnMgZnJv
-bSB0aGUgZmllbGQgdG8ga25vdyAnd2hhdCBjaGFuZ2VkJyBpbiBhIGRlcGxveWVkIGltYWdlLiBJ
-cyB0aGVyZSBhbHJlYWR5IGEgbWV0aG9kIHRvIGRvIHRoaXM/IEZvciBleGFtcGxlLCBvdXIgcHJv
-amVjdCBoYXMgdS1ib290LCBhIHpJbWFnZSBhbmQgcm9vdGZzLiBJcyB0aGVyZSBhIHdheSB0byB0
-ZWxsIHRoZSBwYXRjaGVkIHZlcnNpb24gKGZyb20gbXkgbGF5ZXIpIGZvciBlYWNoIG9mIHRob3Nl
-IHNvIEkgY2FuIGNvbm5lY3Qgd2hhdCBpcyBpbiB0aGUgZmllbGQgdG8gd2hhdCBpcyBpbiBteSBs
-YXllciBpbiB2ZXJzaW9uIGNvbnRyb2w/DQoNClRoYW5rcyBpbiBhZHZhbmNlDQoNCi0tDQoNClRh
-a2UgYSBsb29rIGF0IHRoZSBkb2N1bWVudGF0aW9uIGZvciB0aGUgQnVpbGQgSGlzdG9yeSBmZWF0
-dXJlLiBJIHRoaW5rIHRoYXQgbWF5IGJlIGEgZ29vZCBzdGFydGluZyBwb2ludCBmb3IgeW91Lg0K
-DQpodHRwczovL3d3dy55b2N0b3Byb2plY3Qub3JnL2RvY3MvMi41LjEvZGV2LW1hbnVhbC9kZXYt
-bWFudWFsLmh0bWwjbWFpbnRhaW5pbmctYnVpbGQtb3V0cHV0LXF1YWxpdHkNCg0KVWx0aW1hdGVs
-eSwgdGhlIEJ1aWxkIEhpc3RvcnkgcHJvdmlkZXMgeW91IHdpdGggdGhlICJ3aGF0IGNoYW5nZWQi
-IGluIHRlcm1zIG9mIGJ1aWxkIGFydGlmYWN0cywgd2hpY2ggeW91IGNhbiB0aGVuIHRyYWNlIGJh
-Y2sgdG8gaW5kaXZpZHVhbCBwYWNrYWdlcyBhbmQgcmVjaXBlcy4NCg0KT24gdGhlIG90aGVyIGhh
-bmQsIHZlcnNpb24gY29udHJvbCBvZiB5b3VyIG93biBZb2N0by9PRSBsYXllcnMgKHdoaWNoIGhh
-cyBub3RoaW5nIHRvIGRvIHdpdGggYnVpbGQgaGlzdG9yeSkgc2hvdWxkIGNhcHR1cmUgdGhlICJ3
-aHkgd2FzIFggY2hhbmdlZCIuICAgT2YgY291cnNlLCB0aGlzIHJlcXVpcmVzIHRoYXQgeW91ciBv
-cmdhbml6YXRpb24gdXNlcyB2ZXJzaW9uIGNvbnRyb2wgaW4gYSBkaXNjaXBsaW5lZCBtYW5uZXIg
-Zm9yIGFueSBsYXllciBtZXRhZGF0YSB0aGV5IG1haW50YWluLg0KDQpCZXR3ZWVuIHRoZXNlIHR3
-bywgeW91IHNob3VsZCBiZSBhYmxlIHRvIGRldmVsb3AgYSBwcmV0dHkgY2xlYXIgcGljdHVyZSBv
-ZiB0aGUgIndoYXQgYW5kIHdoeSIgd2l0aCByZXNwZWN0IHRvIGNoYW5nZXMgaW4gYW4gaW1hZ2Uu
-DQoNCg==
+CkhpwqBJIG5lZWQgdG8gcG9ydCBydGMtcGNmODUzNjMgZHJpdmVyIHRvIG9sZGVyIHZlcnNpb24g
+b2YgbGludXggLiBDYW4gYW55b25lIHN1Z2dlc3QgdGhlIHBhdGNoIHRoYXQgY2FuIGRpcmVjdGx5
+IHdvcmsgb3Igc3RlcHMgbmVlZCB0byBiZSBmb2xsb3dlZC4KClNlbnQgZnJvbSBteSBTYW1zdW5n
+IEdhbGF4eSBzbWFydHBob25lLg==
 
---_000_61C0517EAD808B429A1DE2DD9164D400328DAFE4IRSMSX103gercor_
-Content-Type: text/html; charset="utf-8"
+----_com.samsung.android.email_1347906141790120
+Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: base64
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
-CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
-c2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHls
-ZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
-CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzIu
-MHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3Jk
-U2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBl
-ZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0t
-LT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4N
-CjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1s
-PjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZs
-aW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5IaSBCcnlhbiw8YnI+DQo8YnI+
-DQpJbiBhZGRpdGlvbiB0byB3aGF0IEpvbiBtZW50aW9uZWQsIOKAnG9zLXJlbGVhc2XigJ0gcGFj
-a2FnZSBpbiBvZS1jb3JlIGNvdWxkIGhlbHAgaW4gdHJhY2tpbmcgdGhlIG9wZXJhdGluZyBzeXN0
-ZW0gaWRlbnRpZmljYXRpb24gZGF0YSBpbiBkZXBsb3llZCBpbWFnZXMuICZuYnNwOzxicj4NCjxi
-cj4NClNpbmNlIHlvdSBhcmUgdXNpbmcgdS1ib290LCBhIGN1c3RvbWl6ZWQgbG9naWMgaW52b2x2
-aW5nIGVudmlyb25tZW50IHZhcmlhYmxlIGluIHUtYm9vdCBhbmQgYWNjZXNzaW5nIGl0IGZyb20g
-dXNlci1zcGFjZSB3aXRoIHRvb2xzIGxpa2Ug4oCcZndfcHJpbnRlbnbigJ0gYXZhaWxhYmxlIGZy
-b20gdS1ib290LWZ3dXRpbHMgc2hvdWxkIGhlbHAgdGhlcmUuDQo8YSBuYW1lPSJfTWFpbEVuZENv
-bXBvc2UiPjxvOnA+PC9vOnA+PC9hPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkJl
-c3QgUmVnYXJkcyw8YnI+DQpNYXhpbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YSBuYW1lPSJfX19fX3JlcGx5c2Vw
-YXJhdG9yIj48L2E+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
-LXNlcmlmIj4geW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91
-bmNlc0B5b2N0b3Byb2plY3Qub3JnXQ0KPGI+T24gQmVoYWxmIE9mIDwvYj5Kb24gU3p5bWFuaWFr
-PGJyPg0KPGI+U2VudDo8L2I+IFR1ZXNkYXksIEF1Z3VzdCAyOCwgMjAxOCA2OjE4IEFNPGJyPg0K
-PGI+VG86PC9iPiBicnlhbi5maXNoZWxsQGdtYWlsLmNvbTxicj4NCjxiPkNjOjwvYj4geW9jdG9A
-eW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBUcmFja2lu
-ZyBjaGFuZ2VzIGluIGltYWdlPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPk9uIE1vbiwgQXVnIDI3LCAyMDE4IGF0IDEwOjEzIEJyeWFuIEZpc2hlbGwgJmx0Ozxh
-IGhyZWY9Im1haWx0bzpicnlhbi5maXNoZWxsQGdtYWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmJy
-eWFuLmZpc2hlbGxAZ21haWwuY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8L2Rp
-dj4NCjxkaXY+DQo8ZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1s
-ZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowY20gMGNtIDBjbSA2LjBwdDttYXJnaW4t
-bGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGNtIj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij5IaSwmbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5J
-IHdhbnQgdG8gYmUgYWJsZSB0byB0cmFjayBkaWZmZXJlbnQgcGFydHMgb2YgbXkgaW1hZ2UsIGFj
-Y2Vzc2libGUgZnJvbSB3aXRoaW4gdXNlcnNwYWNlIHNvIEkgY2FuIHByb2dyYW1tYXRpY2FsbHkg
-KHZpYSBhbiBlbnZpcm9ubWVudCB2YXJpYWJsZSBvciBzb21ldGhpbmcpIHdoYXQgdmVyc2lvbiBv
-ZiBteSBwYXRjaGVzIGhhdmUgYmVlbiBhcHBsaWVkLiBVbHRpbWF0ZWx5LCBJIHdhbnQgdG8gYmUg
-YWJsZSB0bw0KIGFuc3dlciBxdWVzdGlvbnMgZnJvbSB0aGUgZmllbGQgdG8ga25vdyAnd2hhdCBj
-aGFuZ2VkJyBpbiBhIGRlcGxveWVkIGltYWdlLiBJcyB0aGVyZSBhbHJlYWR5IGEgbWV0aG9kIHRv
-IGRvIHRoaXM/IEZvciBleGFtcGxlLCBvdXIgcHJvamVjdCBoYXMgdS1ib290LCBhIHpJbWFnZSBh
-bmQgcm9vdGZzLiBJcyB0aGVyZSBhIHdheSB0byB0ZWxsIHRoZSBwYXRjaGVkIHZlcnNpb24gKGZy
-b20gbXkgbGF5ZXIpIGZvciBlYWNoIG9mIHRob3NlIHNvIEkgY2FuDQogY29ubmVjdCB3aGF0IGlz
-IGluIHRoZSBmaWVsZCB0byB3aGF0IGlzIGluIG15IGxheWVyIGluIHZlcnNpb24gY29udHJvbD88
-bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhh
-bmtzIGluIGFkdmFuY2U8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8
-L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPi0tIDxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1
-b3RlPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
-PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGFrZSBhIGxvb2sgYXQgdGhlIGRv
-Y3VtZW50YXRpb24gZm9yIHRoZSBCdWlsZCBIaXN0b3J5IGZlYXR1cmUuIEkgdGhpbmsgdGhhdCBt
-YXkgYmUgYSBnb29kIHN0YXJ0aW5nIHBvaW50IGZvciB5b3UuPG86cD48L286cD48L3A+DQo8L2Rp
-dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwv
-ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YSBocmVmPSJodHRwczov
-L3d3dy55b2N0b3Byb2plY3Qub3JnL2RvY3MvMi41LjEvZGV2LW1hbnVhbC9kZXYtbWFudWFsLmh0
-bWwjbWFpbnRhaW5pbmctYnVpbGQtb3V0cHV0LXF1YWxpdHkiIHRhcmdldD0iX2JsYW5rIj5odHRw
-czovL3d3dy55b2N0b3Byb2plY3Qub3JnL2RvY3MvMi41LjEvZGV2LW1hbnVhbC9kZXYtbWFudWFs
-Lmh0bWwjbWFpbnRhaW5pbmctYnVpbGQtb3V0cHV0LXF1YWxpdHk8L2E+PG86cD48L286cD48L3A+
-DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlVsdGltYXRlbHksIHRoZSBC
-dWlsZCBIaXN0b3J5IHByb3ZpZGVzIHlvdSB3aXRoIHRoZSAmcXVvdDt3aGF0IGNoYW5nZWQmcXVv
-dDsgaW4gdGVybXMgb2YgYnVpbGQgYXJ0aWZhY3RzLCB3aGljaCB5b3UgY2FuIHRoZW4gdHJhY2Ug
-YmFjayB0byBpbmRpdmlkdWFsIHBhY2thZ2VzIGFuZCByZWNpcGVzLiZuYnNwOyAmbmJzcDs8bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gdGhl
-IG90aGVyIGhhbmQsIHZlcnNpb24gY29udHJvbCBvZiB5b3VyIG93biBZb2N0by9PRSBsYXllcnMg
-KHdoaWNoIGhhcyBub3RoaW5nIHRvIGRvIHdpdGggYnVpbGQgaGlzdG9yeSkgc2hvdWxkIGNhcHR1
-cmUgdGhlICZxdW90O3doeSB3YXMgWCBjaGFuZ2VkJnF1b3Q7LiZuYnNwOyAmbmJzcDtPZiBjb3Vy
-c2UsIHRoaXMgcmVxdWlyZXMgdGhhdCB5b3VyIG9yZ2FuaXphdGlvbiB1c2VzIHZlcnNpb24gY29u
-dHJvbCBpbiBhIGRpc2NpcGxpbmVkDQogbWFubmVyIGZvciBhbnkgbGF5ZXIgbWV0YWRhdGEgdGhl
-eSBtYWludGFpbi48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+QmV0d2VlbiB0aGVzZSB0d28sIHlvdSBzaG91bGQgYmUgYWJsZSB0byBkZXZlbG9w
-IGEgcHJldHR5IGNsZWFyIHBpY3R1cmUgb2YgdGhlICZxdW90O3doYXQgYW5kIHdoeSZxdW90OyB3
-aXRoIHJlc3BlY3QgdG8gY2hhbmdlcyBpbiBhbiBpbWFnZS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2
-Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9k
-aXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9o
-dG1sPg0K
+PGh0bWw+PGhlYWQ+PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0
+L2h0bWw7IGNoYXJzZXQ9VVRGLTgiPjwvaGVhZD48Ym9keT48ZGl2Pjxicj48L2Rpdj48ZGl2Pkhp
+Jm5ic3A7PC9kaXY+PGRpdj5JIG5lZWQgdG8gcG9ydCBydGMtcGNmODUzNjMgZHJpdmVyIHRvIG9s
+ZGVyIHZlcnNpb24gb2YgbGludXggLiBDYW4gYW55b25lIHN1Z2dlc3QgdGhlIHBhdGNoIHRoYXQg
+Y2FuIGRpcmVjdGx5IHdvcmsgb3Igc3RlcHMgbmVlZCB0byBiZSBmb2xsb3dlZC48L2Rpdj48ZGl2
+Pjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2IGlkPSJjb21wb3Nlcl9zaWduYXR1cmUiPjxk
+aXYgc3R5bGU9ImZvbnQtc2l6ZTo4NSU7Y29sb3I6IzU3NTc1NyIgZGlyPSJhdXRvIj5TZW50IGZy
+b20gbXkgU2Ftc3VuZyBHYWxheHkgc21hcnRwaG9uZS48L2Rpdj48L2Rpdj48L2JvZHk+PC9odG1s
+Pg==
 
---_000_61C0517EAD808B429A1DE2DD9164D400328DAFE4IRSMSX103gercor_--
+----_com.samsung.android.email_1347906141790120--
