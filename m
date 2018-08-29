@@ -1,58 +1,69 @@
-Return-Path: <gabriele@analyticsfire.com>
+Return-Path: <simon.chamlian@mpbc.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC7E9E00546; Wed, 29 Aug 2018 06:55:29 -0700 (PDT)
+	id CFB53E00950; Wed, 29 Aug 2018 07:33:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, HTML_OBFUSCATE_05_10,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.213.170 listed in list.dnswl.org]
+	*      [209.85.220.172 listed in list.dnswl.org]
+	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yb0-f170.google.com (mail-yb0-f170.google.com
-	[209.85.213.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62373E00460
-	for <yocto@yoctoproject.org>; Wed, 29 Aug 2018 06:55:28 -0700 (PDT)
-Received: by mail-yb0-f170.google.com with SMTP id z12-v6so2014918ybg.9
-	for <yocto@yoctoproject.org>; Wed, 29 Aug 2018 06:55:28 -0700 (PDT)
+Received: from mail-qk0-f172.google.com (mail-qk0-f172.google.com
+	[209.85.220.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0706E00474
+	for <yocto@yoctoproject.org>; Wed, 29 Aug 2018 07:33:24 -0700 (PDT)
+Received: by mail-qk0-f172.google.com with SMTP id h138-v6so3480607qke.8
+	for <yocto@yoctoproject.org>; Wed, 29 Aug 2018 07:33:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=analyticsfire-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=OhgcLu8CgK/SzywYuMwnCVUuvBqW1j0hBJ+brjcLEHk=;
-	b=SPAsb9N394vBw37qr9MXtnOP+eZ54+LzrZOTaLPPok7bBZ8Jc366+gH/fzE7Xftyzv
-	Gi/SznwZ9/8O6uFBCQ3GH4khg+mEbek+6LTubU8B30ZHHGNqaNrB57hRpQpJO7ZdEYFl
-	LlNy2RYq7l3swJWTHJ0hUGnHlAG6h7b/lobYBvDw05sQoYs62GQnPHzM5gznU1/XCg2Y
-	sAFcZ+JQf/dxiQhQtkh+L5Tepl2o8CuUukwE49u+hhy9xSmgNtY3+JEx0hz+bAeycVNy
-	rg+LKFGoh6OjDqJquuqfW2ihsZZ7gfNqb8ZwllfQxXJ6srUzFlgqdXUVvl7yq9gQCG6c
-	uEew==
+	d=mpbc-ca.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=LxP5TXSVgKOb5ktGwG1Z5NIINc0jm0luy1R6bSg4tzs=;
+	b=F+ZQBLnR+KgC3CJ6X+0MZYKwt48jkP3u/znrwt+SVwUnjGEgheHOUWM5leC6ghdvjB
+	N4es1oxQrU1tnrEqBTnQ051nbQdZMfltTXwllnlxLRgpABQcxr6dbQ8m1AaQu5hY67Uz
+	/8fpPc3z6lRy7XKbz67j+tWUwHn02j7JKTawFCeFfAUmZos0otQFD4P9EndfrsGJlsJl
+	Q1GCUGqQIhmLGYyeMkB9rBPyyG/gfeEn6XjLjdP5KJyss7gglPXOBb98UgeXV9LyQBWA
+	c8CrI7EqEh24vbODYJKCRQ4gR3bmraXU+mvYOUTioeWi/oV4smeLZ64QGZls0Zb1k0As
+	9FPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=OhgcLu8CgK/SzywYuMwnCVUuvBqW1j0hBJ+brjcLEHk=;
-	b=oD/qy9u/Qt41dZ5g981fe9mLUJlLgwfi0JYjIDuty7vm1/F36uQXPvEqbExwzZ5sU3
-	OiGVPWOq5GAiozBt7c/fc4apOMWo7Up/UeO4py4zJz8YskfcclRmkJe9Q7L1wVb4fcCO
-	cZ04QCiJToz6TGpG+KZ88rQ3Bah0O4yRQPVd3Ob+B0HQRBtfG5f5mUbIUXsj35IWu6PD
-	wez/onUmbKJfwqe5ZrAujYAsSjJIuAr9TSD/jBqHz4q8UWXGk8iTmzvGJsOhEE2S7Mj5
-	flQlbpvoJP4sF9anV3NY1J7lcXhBMSDH0EJLMp6MmDbmuxqfGrwj6cNOBZWVowK1bJeb
-	QCMw==
-X-Gm-Message-State: APzg51CC2mm7mODfxI9jnbxspgQ+D4uMsgZvKo/EwZ2qI0Ukys1rdgyw
-	uPX/IW6pZn1f1fW18MDnGgBF79wT1X5hWy8atVnr0lQE7YM=
-X-Google-Smtp-Source: ANB0Vdb5Y9Vci5FQvOxj3cSvYgG2PIEY95mzHZ2Cnh0NjKZMO9lAK+NNdPbXf94QrEizV0ANP658VfiCnuZD6HRb0zg=
-X-Received: by 2002:a25:f451:: with SMTP id
-	p17-v6mr3227675ybe.19.1535550927426; 
-	Wed, 29 Aug 2018 06:55:27 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=LxP5TXSVgKOb5ktGwG1Z5NIINc0jm0luy1R6bSg4tzs=;
+	b=fAKNOYKpy584vylRYp6PqkuJGwuATEjenzW6JyTQNXz/ykzlktr/px5Vs+Gy8b8P6o
+	sPUrkHcPJFOWKDTrle0aP19tWGd4Yps6g1044q83KI1nps/dcjeHBgpLb/7rTGbhefGt
+	5EAZmj5HYaLdirUSHRRB8Kl/A/X2iZoxUBIRLFxcaMkTkgCfFPS3vT1MpWOippaZQjE3
+	jNT1cLcEr1qOTpwA5crQw2Dd4jQ/N7zEgsXuwqIhODsC9xd+f2JqEFIPOMFzo7Svp72Q
+	49UjbXYxQ2vv7NlEuExkKKPneJg9p8i8v+QdjTsnlyzzPZjbZwb5XP8yPJsQDazmWK0M
+	R+Jg==
+X-Gm-Message-State: APzg51Dh+PFiSJIo+QnNCbVjfPLRx91wmKQcDtHD4nVnHhQTkp3Ivf6N
+	+1m86MeFd84XMknKFF26EKMSX3OBl6dog2YRCKrIiP1Po+xH1w==
+X-Google-Smtp-Source: ANB0VdbBPj0SM4SGZLTUQrmkmUcBnmPQZTkEjo6xXxi3MqhJR0+kW414cKukiePp/7tks6WEhBdPxIvKa6w1c77clfE=
+X-Received: by 2002:a37:6d44:: with SMTP id
+	i65-v6mr446352qkc.142.1535553203955; 
+	Wed, 29 Aug 2018 07:33:23 -0700 (PDT)
 MIME-Version: 1.0
-From: Gabriele Favalessa <gabriele@analyticsfire.com>
-Date: Wed, 29 Aug 2018 15:55:16 +0200
-Message-ID: <CAMmNTemi9+UoZg0vWvvFZu-ggnYHkDy5VARfHhm6tHjAWr7BGQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Extended SDK installation fails during git fetch of kernel source hosted on private repo
+Received: by 2002:aed:3e77:0:0:0:0:0 with HTTP; Wed, 29 Aug 2018 07:33:23
+	-0700 (PDT)
+In-Reply-To: <CANmTPBbrFpZPpvqUvsw3Gib4fEC=AOY=UrULik3v9tQRCKcM2Q@mail.gmail.com>
+References: <CANmTPBZCG842Rx_7GPaK8LeAwkLe5tHLw8K-yq3Rrs4whAzR1w@mail.gmail.com>
+	<CA+chaQev8r11E-j8TH8ZrqMjE3D8kpBdAxCfh0iofmhKfwXasQ@mail.gmail.com>
+	<CANmTPBbaJqA-PDXasQ37ZM43kU1iAe4SME_zWtSW8eKHf9UAxw@mail.gmail.com>
+	<CANmTPBbrFpZPpvqUvsw3Gib4fEC=AOY=UrULik3v9tQRCKcM2Q@mail.gmail.com>
+From: Simon Chamlian <simon.chamlian@mpbc.ca>
+Date: Wed, 29 Aug 2018 10:33:23 -0400
+Message-ID: <CANmTPBaOO4HguR3z=j4rUn1Bw=pFqf2KB5aKrUoYssv+whG0ow@mail.gmail.com>
+To: Martin Jansa <martin.jansa@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: net-snmp_5.8.bb failed to compile
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,248 +75,295 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Aug 2018 13:55:30 -0000
-Content-Type: multipart/alternative; boundary="000000000000906fd50574934fee"
+X-List-Received-Date: Wed, 29 Aug 2018 14:33:25 -0000
+Content-Type: multipart/alternative; boundary="000000000000417ac0057493d784"
 
---000000000000906fd50574934fee
+--000000000000417ac0057493d784
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Replacing 'filter'  by 'contains' will do the trick (will compile)
 
-I'm trying to install on ubuntu 17.04 an Extensible SDK that I have built,
-and it stops with an error:
-
--------------------------------------------------------
-sdk@sdk:~$ ./
-acme-linux-glibc-x86_64-acme-image-datalogger-cortexa7hf-neon-toolchain-ext=
--2.5.1.sh
--D
-=E2=80=A6
-+ sh -c . buildtools/environment-setup* >
-/home/sdk/acme-linux_sdk/preparing_build_system.log && cd
-/home/sdk/acme-linux_sdk/layers/poky && set /home/sdk/acme-linux_sdk && .
-/home/sdk/acme-linux_sdk/layers/poky/oe-init-build-env
-/home/sdk/acme-linux_sdk >>
-/home/sdk/acme-linux_sdk/preparing_build_system.log && python
-/home/sdk/acme-linux_sdk/ext-sdk-prepare.py
-/home/sdk/acme-linux_sdk/preparing_build_system.log 'acme-image-datalogger
-meta-extsdk-toolchain:do_populate_sysroot'
-WARNING:
-/home/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kernel/linux/
-linux-imx_4.9.11.bb: Exception during build_dependencies for AUTOREV
-WARNING:
-/home/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kernel/linux/
-linux-imx_4.9.11.bb: Error during finalise of
-/home/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kernel/linux/
-linux-imx_4.9.11.bb
-ERROR: ExpansionError during parsing
-/home/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kernel/linux/
-linux-imx_4.9.11.bb
-Traceback (most recent call last):
-bb.data_smart.ExpansionError: Failure expanding variable SRCPV, expression
-was ${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError:
-Fetcher failure: Fetch command export PSEUDO_DISABLED=3D1; export
-GIT_SSL_CAINFO=3D"/home/sdk/acme-linux_sdk/buildtools/sysroots/x86_64-acmes=
-dk-linux/etc/ssl/certs/ca-certificates.crt";
-export
-PATH=3D"/home/sdk/acme-linux_sdk/layers/poky/scripts:/home/sdk/acme-linux_s=
-dk/tmp/work/myboard-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot-n=
-ative/usr/bin/arm-acme-linux-gnueabi:/home/sdk/acme-linux_sdk/tmp/work/mybo=
-ard-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot/usr/bin/crossscri=
-pts:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-gnueabi/linux-imx/=
-4.9.11-r0/recipe-sysroot-native/usr/sbin:/home/sdk/acme-linux_sdk/tmp/work/=
-myboard-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot-native/usr/bi=
-n:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-gnueabi/linux-imx/4.=
-9.11-r0/recipe-sysroot-native/sbin:/home/sdk/acme-linux_sdk/tmp/work/myboar=
-d-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot-native/bin:/home/sd=
-k/acme-linux_sdk/layers/poky/bitbake/bin:/home/sdk/acme-linux_sdk/tmp/hostt=
-ools";
-export HOME=3D"/home/sdk"; git -c core.fsyncobjectfiles=3D0 ls-remote ssh:/=
-/
-git@github.com/Acme/linux-imx.git  failed with exit code 128, output:
-Permission denied (publickey).
-fatal: Could not read from remote repository.
-
-Please make sure you have the correct access rights
-and the repository exists.
+- PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'ipv6', d)}"
++PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6',
+'', d)}"
 
 
-ERROR: SDK preparation failed: error log written to
-/home/sdk/acme-linux_sdk/preparing_build_system.log
--------------------------------------------------------
+Note that I get the following warning:
 
-I tested the failing git command `git -c ls-remote ssh://
-git@github.com/Acme/linux-imx.git` directly from the command line and it
-succeeds without errors. I do have the ssh key in ssh-agent, so that's not
-surprise.
+WARNING: net-snmp-5.8-r0 do_package_qa: QA Issue: net-snmp-client rdepends
+on libpcap, but it isn't a build dependency, missing libpcap in DEPENDS or
+PACKAGECONFIG? [build-deps]
 
-It looks like during the SDK installation the ssh key is needed but for
-some reason the ssh-agent is not reachable (maybe the SSH_* env variables
-are not propagated by the script?)
 
-Is it unavoidable for the SDK to fetch from git during the installation? If
-it is unavoidable, how can I make the script fetch from a private github
-repo, given that the ssh-agent seems to be ignored?
+S.
 
-Just out of curiosity, I copy&pasted the failing command in the shell, and
-this time it ran without errors (again confirming that the ssh key is
-present.)
 
--------------------------------------------------------
-sdk@sdk:~$ sh -c . buildtools/environment-setup* >
-/home/sdk/acme-linux_sdk/preparing_build_system.log && cd /home/sdk/
-acme-linux_sdk/layers/poky && set /home/sdk/acme-linux_sdk && .
-/home/sdk/acme-linux_sdk/layers/poky/oe-init-build-env
-/home/sdk/acme-linux_sdk >>
-/home/sdk/acme-linux_sdk/preparing_build_system.log && python
-/home/sdk/acme-linux_sdk/ext-
-sdk-prepare.py /home/sdk/acme-linux_sdk/preparing_build_system.log
-'acme-image-datalogger meta-extsdk-toolchain:do_popu
-late_sysroot'
-Loading cache: 100%
-|##########################################################################=
-#########|
-Time: 0:00:00
-Parsing recipes: 100%
-|##########################################################################=
-#######|
-Time: 0:01:32
-Initialising tasks: 100%
-|##########################################################################=
-####|
-Time: 0:00:02
-Checking sstate mirror object availability: 100%
-|######################################################| Time: 0:00:00
-Loading cache: 100%
-|##########################################################################=
-#########|
-Time: 0:00:00
-Parsing recipes: 100%
-|##########################################################################=
-#######|
-Time: 0:00:07
-Initialising tasks: 100%
-|##########################################################################=
-####|
-Time: 0:00:00
--------------------------------------------------------
+On Tue, Aug 28, 2018 at 4:24 PM, Simon Chamlian <simon.chamlian@mpbc.ca>
+wrote:
 
-However the resulting SDK installation seems to be broken anyway (probably
-there are other steps after the one I re-run manually that where not
-executed because the toplevel script stopped with an error):
+> Will the following method work?
+>
+> yocto-layer create openembedded*2*
+>
+> and add the path in conf/bblayers.conf
+>
+> By doing this, I will have
+> openembedded   where  net-snmp version 5.7.3 resides
+> openembedded*2*  where  net-snmp version 5.8   resides
+>
+>
+> Then issuing bitbake net-snmp it will take the 5.8?
+>
+>
+>
+>
+>
+> On Tue, Aug 28, 2018 at 2:32 PM, Simon Chamlian <simon.chamlian@mpbc.ca>
+> wrote:
+>
+>> How can I avoid mixing branches.
+>>
+>> I already have a meta-openembedded layer, which supports net-snmp_5.7.3
+>> (which compiles but I want to update).
+>>
+>> Now I cloned a new meta-openembedded layer, which as net-snmp_5.8.
+>>
+>> How can I merge the layers (meta-openembedded that I have and the new
+>> cloned one)?
+>>
+>>
+>>
+>>
+>>
+>>
+>> On Tue, Aug 28, 2018 at 11:43 AM, Martin Jansa <martin.jansa@gmail.com>
+>> wrote:
+>>
+>>> Follow the READMEs and don't mix layers from different branches.
+>>>
+>>> You need to checkout all repositories with layers from the same branch
+>>> to be compatible. Now you're mixing newer meta-oe branch with older oe-core
+>>> branch which doesn't have bb.utils.filter function yet.
+>>>
+>>> On Tue, Aug 28, 2018 at 5:17 PM Simon Chamlian <simon.chamlian@mpbc.ca>
+>>> wrote:
+>>>
+>>>>
+>>>> Hi,
+>>>>
+>>>> Just download  net-snmp_5.8.bb but it failed to compile:
+>>>>
+>>>>
+>>>> $ bitbake net-snmp
+>>>> Loading cache: 100% |#############################
+>>>> ############################################################
+>>>> #######################################################################################|
+>>>> Time: 0:00:01
+>>>> Loaded 3093 entries from dependency cache.
+>>>> *ERROR:* ExpansionError during parsing /opt/PHYTEC_BSPs/yocto_imx7/so
+>>>> urces/meta-openembedded/meta-networking/recipes-protocols/net-snmp/
+>>>> net-snmp_5.8.bb                                               | ETA:
+>>>> --:--:--
+>>>> Traceback (most recent call last):
+>>>>   File "/opt/PHYTEC_BSPs/yocto_imx7/sources/poky/meta/classes/base.bbclass",
+>>>> line 375, in __anon_656__opt_PHYTEC_BSPs_yo
+>>>> cto_imx7_sources_poky_meta_classes_base_bbclass(d=<bb.data_smart.DataSmart
+>>>> object at 0x7fe0ee311be0>):
+>>>>              pkgconfig = (d.getVar('PACKAGECONFIG', True) or "").split()
+>>>>     >        pn = d.getVar("PN", True)
+>>>>
+>>>>   File "/opt/PHYTEC_BSPs/yocto_imx7/sources/poky/bitbake/lib/bb/data_smart.py",
+>>>> line 569, in DataSmart.getVar(var='PACKAGECONFIG', expand=True,
+>>>> noweakdefault=False, parsing=False):
+>>>>          def getVar(self, var, expand, noweakdefault=False,
+>>>> parsing=False):
+>>>>     >        return self.getVarFlag(var, "_content", expand,
+>>>> noweakdefault, parsing)
+>>>>
+>>>>   File "/opt/PHYTEC_BSPs/yocto_imx7/sources/poky/bitbake/lib/bb/data_smart.py",
+>>>> line 737, in DataSmart.getVarFlag(var='PACKAGECONFIG',
+>>>> flag='_content', expand=True, noweakdefault=False, parsing=False):
+>>>>                      cachename = var + "[" + flag + "]"
+>>>>     >            value = self.expand(value, cachename)
+>>>>
+>>>>   File "/opt/PHYTEC_BSPs/yocto_imx7/sources/poky/bitbake/lib/bb/data_smart.py",
+>>>> line 410, in DataSmart.expand(s="${@bb.utils.filter('DISTRO_FEATURES',
+>>>> 'ipv6', d)}", varname='PACKAGECONFIG'):
+>>>>          def expand(self, s, varname = None):
+>>>>     >        return self.expandWithRefs(s, varname).value
+>>>>
+>>>>   File "/opt/PHYTEC_BSPs/yocto_imx7/sources/poky/bitbake/lib/bb/data_smart.py",
+>>>> line 400, in DataSmart.expandWithRefs(s="${
+>>>> @bb.utils.filter('DISTRO_FEATURES', 'ipv6', d)}",
+>>>> varname='PACKAGECONFIG'):
+>>>>                  except Exception as exc:
+>>>>     >                raise ExpansionError(varname, s, exc) from exc
+>>>>
+>>>> bb.data_smart.ExpansionError: Failure expanding variable PACKAGECONFIG,
+>>>> expression was ${@bb.utils.filter('DISTRO_FEATURES', 'ipv6', d)} which
+>>>> triggered exception AttributeError: module 'bb.utils' has no attribute
+>>>> 'filter'
+>>>>
+>>>>
+>>>> Summary: There was 1 ERROR message shown, returning a non-zero exit
+>>>> code.
+>>>> $
+>>>>
+>>>> Any hints would be greatly appreciated.
+>>>>
+>>>> S
+>>>>
+>>>>
+>>>>
+>>>> --
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>
+>>>
+>>
+>
 
--------------------------------------------------------
-sdk@sdk:~/acme-linux_sdk$ source
-environment-setup-cortexa7hf-neon-acme-linux-gnueabi
-SDK environment now set up; additionally you may now run devtool to perform
-development tasks.
-Run devtool --help for further details.
-ERROR: this SDK was not fully installed and needs reinstalling
--------------------------------------------------------
-
-Thanks
-
-Gabriele
-
---000000000000906fd50574934fee
+--000000000000417ac0057493d784
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi,</div><div><br><=
-/div><div>I&#39;m trying to install on ubuntu 17.04 an Extensible SDK that =
-I have built, and it stops with an error:</div><div><br></div><div>--------=
------------------------------------------------</div><div>sdk@sdk:~$ ./<a h=
-ref=3D"http://acme-linux-glibc-x86_64-acme-image-datalogger-cortexa7hf-neon=
--toolchain-ext-2.5.1.sh">acme-linux-glibc-x86_64-acme-image-datalogger-cort=
-exa7hf-neon-toolchain-ext-2.5.1.sh</a> -D</div><div>=E2=80=A6</div><div>+ s=
-h -c . buildtools/environment-setup* &gt; /home/sdk/acme-linux_sdk/preparin=
-g_build_system.log &amp;&amp; cd /home/sdk/acme-linux_sdk/layers/poky &amp;=
-&amp; set /home/sdk/acme-linux_sdk &amp;&amp; . /home/sdk/acme-linux_sdk/la=
-yers/poky/oe-init-build-env /home/sdk/acme-linux_sdk &gt;&gt; /home/sdk/acm=
-e-linux_sdk/preparing_build_system.log &amp;&amp; python /home/sdk/acme-lin=
-ux_sdk/ext-sdk-prepare.py /home/sdk/acme-linux_sdk/preparing_build_system.l=
-og &#39;acme-image-datalogger meta-extsdk-toolchain:do_populate_sysroot&#39=
-;</div><div>WARNING: /home/sdk/acme-linux_sdk/layers/poky/meta-myboard/reci=
-pes-kernel/linux/<a href=3D"http://linux-imx_4.9.11.bb">linux-imx_4.9.11.bb=
-</a>: Exception during build_dependencies for AUTOREV</div><div>WARNING: /h=
-ome/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kernel/linux/<a hre=
-f=3D"http://linux-imx_4.9.11.bb">linux-imx_4.9.11.bb</a>: Error during fina=
-lise of /home/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kernel/li=
-nux/<a href=3D"http://linux-imx_4.9.11.bb">linux-imx_4.9.11.bb</a></div><di=
-v>ERROR: ExpansionError during parsing /home/sdk/acme-linux_sdk/layers/poky=
-/meta-myboard/recipes-kernel/linux/<a href=3D"http://linux-imx_4.9.11.bb">l=
-inux-imx_4.9.11.bb</a></div><div>Traceback (most recent call last):</div><d=
-iv>bb.data_smart.ExpansionError: Failure expanding variable SRCPV, expressi=
-on was ${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError: Fe=
-tcher failure: Fetch command export PSEUDO_DISABLED=3D1; export GIT_SSL_CAI=
-NFO=3D&quot;/home/sdk/acme-linux_sdk/buildtools/sysroots/x86_64-acmesdk-lin=
-ux/etc/ssl/certs/ca-certificates.crt&quot;; export PATH=3D&quot;/home/sdk/a=
-cme-linux_sdk/layers/poky/scripts:/home/sdk/acme-linux_sdk/tmp/work/myboard=
--acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot-native/usr/bin/arm-a=
-cme-linux-gnueabi:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-gnue=
-abi/linux-imx/4.9.11-r0/recipe-sysroot/usr/bin/crossscripts:/home/sdk/acme-=
-linux_sdk/tmp/work/myboard-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sy=
-sroot-native/usr/sbin:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-=
-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot-native/usr/bin:/home/sdk/acme-li=
-nux_sdk/tmp/work/myboard-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysr=
-oot-native/sbin:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-gnueab=
-i/linux-imx/4.9.11-r0/recipe-sysroot-native/bin:/home/sdk/acme-linux_sdk/la=
-yers/poky/bitbake/bin:/home/sdk/acme-linux_sdk/tmp/hosttools&quot;; export =
-HOME=3D&quot;/home/sdk&quot;; git -c core.fsyncobjectfiles=3D0 ls-remote ss=
-h://<a href=3D"http://git@github.com/Acme/linux-imx.git">git@github.com/Acm=
-e/linux-imx.git</a>=C2=A0 failed with exit code 128, output:</div><div>Perm=
-ission denied (publickey).</div><div>fatal: Could not read from remote repo=
-sitory.</div><div><br></div><div>Please make sure you have the correct acce=
-ss rights</div><div>and the repository exists.</div><div><br></div><div><br=
-></div><div>ERROR: SDK preparation failed: error log written to /home/sdk/a=
-cme-linux_sdk/preparing_build_system.log</div><div><div>-------------------=
-------------------------------------</div><br class=3D"gmail-Apple-intercha=
-nge-newline"></div><div>I tested the failing git command `git -c ls-remote =
-ssh://<a href=3D"http://git@github.com/Acme/linux-imx.git`">git@github.com/=
-Acme/linux-imx.git`</a> directly from the command line and it succeeds with=
-out errors. I do have the ssh key in ssh-agent, so that&#39;s not surprise.=
-<br></div><div><br></div><div>It looks like during the SDK installation the=
- ssh key is needed but for some reason the ssh-agent is not reachable (mayb=
-e the SSH_* env variables are not propagated by the script?)</div><div><br>=
-</div><div>Is it unavoidable for the SDK to fetch from git during the insta=
-llation? If it is unavoidable, how can I make the script fetch from a priva=
-te github repo, given that the ssh-agent seems to be ignored?</div><div><br=
-></div><div>Just out of curiosity, I copy&amp;pasted the failing command in=
- the shell, and this time it ran without errors (again confirming that the =
-ssh key is present.)</div><div><br></div><div>-----------------------------=
---------------------------</div><div>sdk@sdk:~$ sh -c . buildtools/environm=
-ent-setup* &gt; /home/sdk/acme-linux_sdk/preparing_build_system.log &amp;&a=
-mp; cd /home/sdk/</div><div>acme-linux_sdk/layers/poky &amp;&amp; set /home=
-/sdk/acme-linux_sdk &amp;&amp; . /home/sdk/acme-linux_sdk/layers/poky/oe-in=
-it-build-env</div><div>/home/sdk/acme-linux_sdk &gt;&gt; /home/sdk/acme-lin=
-ux_sdk/preparing_build_system.log &amp;&amp; python /home/sdk/acme-linux_sd=
-k/ext-</div><div>sdk-prepare.py /home/sdk/acme-linux_sdk/preparing_build_sy=
-stem.log &#39;acme-image-datalogger meta-extsdk-toolchain:do_popu</div><div=
->late_sysroot&#39;</div><div>Loading cache: 100% |#########################=
-##########################################################| Time: 0:00:00</=
-div><div>Parsing recipes: 100% |###########################################=
-######################################| Time: 0:01:32</div><div>Initialisin=
-g tasks: 100% |############################################################=
-##################| Time: 0:00:02</div><div>Checking sstate mirror object a=
-vailability: 100% |######################################################| =
-Time: 0:00:00</div><div>Loading cache: 100% |##############################=
-#####################################################| Time: 0:00:00</div><=
-div>Parsing recipes: 100% |################################################=
-#################################| Time: 0:00:07</div><div>Initialising tas=
-ks: 100% |#################################################################=
-#############| Time: 0:00:00</div><div><div>-------------------------------=
-------------------------</div><br class=3D"gmail-Apple-interchange-newline"=
-></div><div>However the resulting SDK installation seems to be broken anywa=
-y (probably there are other steps after the one I re-run manually that wher=
-e not executed because the toplevel script stopped with an error):</div><di=
-v><br></div><div>-------------------------------------------------------</d=
-iv><div>sdk@sdk:~/acme-linux_sdk$ source environment-setup-cortexa7hf-neon-=
-acme-linux-gnueabi</div><div>SDK environment now set up; additionally you m=
-ay now run devtool to perform development tasks.</div><div>Run devtool --he=
-lp for further details.</div><div>ERROR: this SDK was not fully installed a=
-nd needs reinstalling</div><div><div>--------------------------------------=
------------------</div><br class=3D"gmail-Apple-interchange-newline"></div>=
-<div>Thanks</div><div><br></div><div>Gabriele</div></div></div></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Replacing &#39;filter&#39;=C2=A0 by =
+&#39;contains&#39; will do the trick (will compile)<br></div><div><br></div=
+><div></div><div><div style=3D"margin-left:40px"><span style=3D"font-family=
+:monospace,monospace">- PACKAGECONFIG ??=3D &quot;${@bb.utils.filter(&#39;D=
+ISTRO_</span><wbr><span style=3D"font-family:monospace,monospace">FEATURES&=
+#39;, &#39;ipv6&#39;, d)}&quot;</span></div><div style=3D"margin-left:40px"=
+><span style=3D"font-family:monospace,monospace">+PACKAGECONFIG ??=3D &quot=
+;${@bb.utils.contains(&#39;DISTRO_</span><wbr><span style=3D"font-family:mo=
+nospace,monospace">FEATURES&#39;, &#39;ipv6&#39;, &#39;ipv6&#39;, &#39;&#39=
+;, d)}&quot;</span></div><div><br></div><br></div><div>Note that I get the =
+following warning:<br></div><div><span style=3D"font-family:monospace,monos=
+pace"><br>WARNING: net-snmp-5.8-r0 do_package_qa: QA Issue: net-snmp-client=
+ rdepends on libpcap, but it isn&#39;t a build dependency, missing libpcap =
+in DEPENDS or PACKAGECONFIG? [build-deps]</span></div><div><span style=3D"f=
+ont-family:monospace,monospace"><br></span></div><div><br></div><div>S.</di=
+v><div><br></div></div></div><div class=3D"gmail_extra"><br><div class=3D"g=
+mail_quote">On Tue, Aug 28, 2018 at 4:24 PM, Simon Chamlian <span dir=3D"lt=
+r">&lt;<a href=3D"mailto:simon.chamlian@mpbc.ca" target=3D"_blank">simon.ch=
+amlian@mpbc.ca</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div>Will the following method work?</div><di=
+v><br></div><div>yocto-layer create=20
+openembedded<b>2</b> <br></div><div><br></div><div>and add the path in conf=
+/bblayers.conf</div><div><br></div><div>By doing this, I will have <br></di=
+v><div>
+openembedded=C2=A0=C2=A0 where=C2=A0 net-snmp version 5.7.3 resides</div><d=
+iv>
+openembedded<b>2</b>=C2=A0 where=C2=A0 net-snmp version 5.8 =C2=A0=20
+ resides=C2=A0</div><div><br></div><div><br></div><div>Then issuing bitbake=
+ net-snmp it will take the 5.8?</div><div><br></div><div><br></div><div><br=
+></div><div><br></div></div></div><div class=3D"HOEnZb"><div class=3D"h5"><=
+div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Tue, Aug 28, 20=
+18 at 2:32 PM, Simon Chamlian <span dir=3D"ltr">&lt;<a href=3D"mailto:simon=
+.chamlian@mpbc.ca" target=3D"_blank">simon.chamlian@mpbc.ca</a>&gt;</span> =
+wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div>How can I avoid mixing branches.</div><div><br></div><div>I already ha=
+ve a meta-openembedded layer, which supports net-snmp_5.7.3 (which compiles=
+ but I want to update).</div><div><br></div><div>Now I cloned a new meta-op=
+enembedded layer, which as net-snmp_5.8.</div><div><br></div><div>How can I=
+ merge the layers (meta-openembedded that I have and the new cloned one)?</=
+div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></=
+div></div></div><div class=3D"m_-6953314575681119641HOEnZb"><div class=3D"m=
+_-6953314575681119641h5"><div class=3D"gmail_extra"><br><div class=3D"gmail=
+_quote">On Tue, Aug 28, 2018 at 11:43 AM, Martin Jansa <span dir=3D"ltr">&l=
+t;<a href=3D"mailto:martin.jansa@gmail.com" target=3D"_blank">martin.jansa@=
+gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=
+=3D"ltr">Follow the READMEs and don&#39;t mix layers from different branche=
+s.<div><br></div><div>You need to checkout all repositories with layers fro=
+m the same branch to be compatible. Now you&#39;re mixing newer meta-oe bra=
+nch with older oe-core branch which doesn&#39;t have bb.utils.filter functi=
+on yet.</div></div><br><div class=3D"gmail_quote"><div><div class=3D"m_-695=
+3314575681119641m_-6254070435289824073h5"><div dir=3D"ltr">On Tue, Aug 28, =
+2018 at 5:17 PM Simon Chamlian &lt;<a href=3D"mailto:simon.chamlian@mpbc.ca=
+" target=3D"_blank">simon.chamlian@mpbc.ca</a>&gt; wrote:<br></div></div></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
+t:1px #ccc solid;padding-left:1ex"><div><div class=3D"m_-695331457568111964=
+1m_-6254070435289824073h5"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div><br></div><div>Hi,</div><div><br></div><div>Just download=C2=A0 <a =
+href=3D"http://net-snmp_5.8.bb" target=3D"_blank">net-snmp_5.8.bb</a> but i=
+t failed to compile:</div><div><br></div><div><br></div><div><span style=3D=
+"font-family:monospace,monospace">$ bitbake net-snmp<br>Loading cache: 100%=
+ |#############################<wbr>##############################<wbr>####=
+##########################<wbr>##############################<wbr>#########=
+#####################<wbr>###########################| Time: 0:00:01<br>Loa=
+ded 3093 entries from dependency cache.<br><b>ERROR:</b> ExpansionError dur=
+ing parsing /opt/PHYTEC_BSPs/yocto_imx7/so<wbr>urces/meta-openembedded/meta=
+-n<wbr>etworking/recipes-protocols/ne<wbr>t-snmp/<a href=3D"http://net-snmp=
+_5.8.bb" target=3D"_blank">net-snmp_5.8.bb</a>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | ETA:=C2=A0 --:--:--<br>Traceback (mo=
+st recent call last):<br>=C2=A0 File &quot;/opt/PHYTEC_BSPs/yocto_imx7/s<wb=
+r>ources/poky/meta/classes/base.<wbr>bbclass&quot;, line 375, in __anon_656=
+__opt_PHYTEC_BSPs_yo<wbr>cto_imx7_sources_poky_meta_cla<wbr>sses_base_bbcla=
+ss(d=3D&lt;bb.data_s<wbr>mart.DataSmart object at 0x7fe0ee311be0&gt;):<br>=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pk=
+gconfig =3D (d.getVar(&#39;PACKAGECONFIG&#39;, True) or &quot;&quot;).split=
+()<br>=C2=A0=C2=A0=C2=A0 &gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pn =
+=3D d.getVar(&quot;PN&quot;, True)<br>=C2=A0=C2=A0=C2=A0=C2=A0 <br>=C2=A0 F=
+ile &quot;/opt/PHYTEC_BSPs/yocto_imx7/s<wbr>ources/poky/bitbake/lib/bb/dat<=
+wbr>a_smart.py&quot;, line 569, in DataSmart.getVar(var=3D&#39;PACKAGEC<wbr=
+>ONFIG&#39;, expand=3DTrue, noweakdefault=3DFalse, parsing=3DFalse):<br>=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 def getVar(self, var, expand,=
+ noweakdefault=3DFalse, parsing=3DFalse):<br>=C2=A0=C2=A0=C2=A0 &gt;=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return self.getVarFlag(var, &quot;_con=
+tent&quot;, expand, noweakdefault, parsing)<br>=C2=A0=C2=A0=C2=A0=C2=A0 <br=
+>=C2=A0 File &quot;/opt/PHYTEC_BSPs/yocto_imx7/s<wbr>ources/poky/bitbake/li=
+b/bb/dat<wbr>a_smart.py&quot;, line 737, in DataSmart.getVarFlag(var=3D&#39=
+;PACK<wbr>AGECONFIG&#39;, flag=3D&#39;_content&#39;, expand=3DTrue, noweakd=
+efault=3DFalse, parsing=3DFalse):<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 cachename =3D var + &quot;[&quot; + flag + &quot;]&quot;<br>=C2=
+=A0=C2=A0=C2=A0 &gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 value =3D self.expand(value, cachename)<br>=C2=A0=C2=A0=C2=A0=
+=C2=A0 <br>=C2=A0 File &quot;/opt/PHYTEC_BSPs/yocto_imx7/s<wbr>ources/poky/=
+bitbake/lib/bb/dat<wbr>a_smart.py&quot;, line 410, in DataSmart.expand(s=3D=
+&quot;${@bb.util<wbr>s.filter(&#39;DISTRO_FEATURES&#39;, &#39;ipv6&#39;, d)=
+}&quot;, varname=3D&#39;PACKAGECONFIG&#39;):<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 def expand(self, s, varname =3D None):<br>=C2=A0=C2=
+=A0=C2=A0 &gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return self.expand=
+WithRefs(s, varname).value<br>=C2=A0=C2=A0=C2=A0=C2=A0 <br>=C2=A0 File &quo=
+t;/opt/PHYTEC_BSPs/yocto_imx7/s<wbr>ources/poky/bitbake/lib/bb/dat<wbr>a_sm=
+art.py&quot;, line 400, in DataSmart.expandWithRefs(s=3D&quot;${<wbr>@bb.ut=
+ils.filter(&#39;DISTRO_FEATU<wbr>RES&#39;, &#39;ipv6&#39;, d)}&quot;, varna=
+me=3D&#39;PACKAGECONFIG&#39;):<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 except Exception =
+as exc:<br>=C2=A0=C2=A0=C2=A0 &gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 raise ExpansionError(va=
+rname, s, exc) from exc<br>=C2=A0=C2=A0=C2=A0=C2=A0 <br>bb.data_smart.Expan=
+sionError: Failure expanding variable PACKAGECONFIG, expression was ${@bb.u=
+tils.filter(&#39;DISTRO_FEA<wbr>TURES&#39;, &#39;ipv6&#39;, d)} which trigg=
+ered exception AttributeError: module &#39;bb.utils&#39; has no attribute &=
+#39;filter&#39;<br><br><br>Summary: There was 1 ERROR message shown, return=
+ing a non-zero exit code.<br>$ <br><br></span></div><div><span style=3D"fon=
+t-family:arial,helvetica,sans-serif">Any hints would be greatly appreciated=
+.</span></div><div><span style=3D"font-family:monospace,monospace"><br></sp=
+an></div><div><span style=3D"font-family:monospace,monospace">S</span></div=
+><div><span style=3D"font-family:monospace,monospace"><br></span></div><div=
+ class=3D"gmail_extra"><span style=3D"font-family:monospace,monospace"><br>=
+</span><br></div></div></div></div></div></div><span class=3D"m_-6953314575=
+681119641m_-6254070435289824073HOEnZb"><font color=3D"#888888">
+-- <br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
+br>
+</font></span></blockquote></div>
+</blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
 
---000000000000906fd50574934fee--
+--000000000000417ac0057493d784--
