@@ -1,61 +1,38 @@
-Return-Path: <bryan.fishell@gmail.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78A29E0090C; Tue, 28 Aug 2018 17:47:06 -0700 (PDT)
+	id 4F9A7E0090C; Tue, 28 Aug 2018 18:32:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bryan.fishell[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.44 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
-	[209.85.218.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15189E00718
-	for <yocto@yoctoproject.org>; Tue, 28 Aug 2018 17:47:05 -0700 (PDT)
-Received: by mail-oi0-f44.google.com with SMTP id y207-v6so6154039oie.13
-	for <yocto@yoctoproject.org>; Tue, 28 Aug 2018 17:47:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=55tM8fr8ScAjOEy1pgY7tzgwposaW0u2swC0pSFyb5s=;
-	b=HeczauXQ90EYOU8owbe7O9TAxdWnCs8yZuy2dOZmTcIcdnmjDOFJGh3rdLXyzK2bKR
-	gSm3dZa6hr0glpN29GQ0A+j/lT258j/itqowBz+DMl47NeLZTnXeREFUATopZVNlhSys
-	8USdebdwpSQJpCRb5lsOxXLlfK8Mqw+j5sq5KIHO1MRJWyFbvzM9hglC5NVAaNjPHgRI
-	iujVuB2PTbqEbZMDcgOrD/xy/kwPazl0QL68k5eQ11BL6mlsneUAWhHP7nPuOB3/S8fA
-	T1Pzktq/l/3pQ1Nypg5MaG8Sp3O+FHbS4kgo4t1tfcnvGXV6Kt1bE0rKWhf93JqwobM+
-	9XvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=55tM8fr8ScAjOEy1pgY7tzgwposaW0u2swC0pSFyb5s=;
-	b=auDcyTpESdR7MKTMcJRcWUrZuLP3kAjiT/EnooJt8cBRJURl6os2TSfY8AaMczCvZ6
-	0SJF9HOPzmqw3NWs3DuuPC7u2iTMF7ufG1+1+SjwcLIuvHZCPUeOWNtF6tTUt/Lz71xb
-	iQMcj2bJXJFzzFGS2wWlyRtVh/E6Kb+w8V3Oy+W+pr1gniF2Q8YDHdXkKyEzutjqvbdR
-	so2SzO+Al6FQxX3ANqPsHr2VY3en27HTzI4GNnNM35SwMfmc7ADhOVTL5Fg6yS6+ZsHm
-	/N6hJ4xa34flaMBb2+4SWnOr8u8SbgelqdOibiaA07hVQmSREHCrKtw/7jFM32mHjGRO
-	3c+A==
-X-Gm-Message-State: APzg51BlfuPybPgs+eKXsUZLxUS898dbkceh5Ddp02TSEEobvT0v2YZR
-	Qz+SjeMEeZ13IkVu1eg7u67Ku4cuAlrhhv/o//nHNQ==
-X-Google-Smtp-Source: ANB0Vdao3DWjrkYyyAfDWC+Vfv5HPtk9Phm+0OUigiXiZ3iLxg7WCOGw29lW7HT2hPE43IWZ++3br/K7vW8i+v8jNG4=
-X-Received: by 2002:aca:2808:: with SMTP id 8-v6mr486046oix.7.1535503625217;
-	Tue, 28 Aug 2018 17:47:05 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D3A3E00718
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2018 18:32:09 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w7T1W2W5024036
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 28 Aug 2018 18:32:03 -0700 (PDT)
+Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
+	Tue, 28 Aug 2018 18:32:01 -0700
+To: Martin Siegumfeldt <mns@gomspace.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <8261c343c1a643e2a3079b5d8fc458fc@gomspace.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <2ff7ed92-7fba-77b8-2966-f3f51ca5ff37@windriver.com>
+Date: Wed, 29 Aug 2018 09:36:41 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-From: Bryan Fishell <bryan.fishell@gmail.com>
-Date: Tue, 28 Aug 2018 20:46:21 -0400
-Message-ID: <CAPC-RGnevp9F7+38rDCNpuTMg-zHnO_KQHHd_8ro7WK1t25MRw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Morty (2.2.1) Build Verification
+In-Reply-To: <8261c343c1a643e2a3079b5d8fc458fc@gomspace.com>
+X-Originating-IP: [128.224.162.218]
+Subject: Re: Sequential generation of eSDK from with the same workspace fails for similar machines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,40 +44,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Aug 2018 00:47:06 -0000
-Content-Type: multipart/alternative; boundary="00000000000021ea9a0574884c98"
-
---00000000000021ea9a0574884c98
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-
-I've read that some of the ongoing initiatives of the Yocto project is to
-strive towards binary reproducible builds.
-
-I am using a test project with Morty (2.2.1). My custom BSP layer are
-currently local files.Ultimately I would like to:
-1. Know a method of how I can verify my build on two different hosts
-2. Is there a way I can append this verification method (hashes of SRCREV
-or something) into the os-release recipe so with whatever build
-verification (correlating build-metadata into the image so I can correspond
-it to version control to see what changed?)
-
-Thanks in advance
-
---00000000000021ea9a0574884c98
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Wed, 29 Aug 2018 01:32:10 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,=C2=A0<div><br></div><div>I&#39;ve read that some of th=
-e ongoing initiatives of the Yocto project is to strive towards binary repr=
-oducible builds.=C2=A0</div><div><br></div><div>I am using a test project w=
-ith Morty (2.2.1). My custom BSP layer are currently local files.Ultimately=
- I would like to:</div><div>1. Know a method of how I can verify my build o=
-n two different hosts</div><div>2. Is there a way I can append this verific=
-ation method (hashes of SRCREV or something) into the os-release recipe so =
-with whatever build verification (correlating build-metadata into the image=
- so I can correspond it to version control to see what changed?)</div><div>=
-<br></div><div>Thanks in advance</div></div>
+The problem is about two machines having the same TUNE_PKGARCH, and=20
+could be solved by setting TOOLCHAIN_OUTPUTNAME in your distro conf file =
 
---00000000000021ea9a0574884c98--
+to include MACHINE information.
+
+But I'm not sure if this is a bug and should be fixed. Let's wait for=20
+more opinions.
+
+Best Regards,
+Chen Qi
+
+On 08/28/2018 04:44 PM, Martin Siegumfeldt wrote:
+> Hi,
+>
+> I am subsequently trying to render eSDKs for two different machines fro=
+m within the same workspace.
+>
+> The first (succeeding) is built according to 'MACHINE=3D"zcu102-zynqmp"=
+ bitbake core-image-minimal -c populate_sdk_ext' whereas the second (MACH=
+INE=3D"zcu104-zynqmp" bitbake core-image-minimal -c populate_sdk_ext) fai=
+ls providing:
+>
+> ERROR: core-image-minimal-1.0-r0 do_populate_sdk_ext: The recipe core-i=
+mage-minimal is trying to install files into a shared area when those fil=
+es already exist. Those files and their manifest location are:
+>    /home/martin/work/z7000-distro/build/tmp/deploy/sdk/poky-glibc-x86_6=
+4-core-image-minimal-aarch64-toolchain-ext-2.5.1.testdata.json
+>      (matched in manifest-zcu102_zynqmp-core-image-minimal.populate_sdk=
+_ext)
+>    /home/martin/work/z7000-distro/build/tmp/deploy/sdk/poky-glibc-x86_6=
+4-core-image-minimal-aarch64-toolchain-ext-2.5.1.sh
+>      (matched in manifest-zcu102_zynqmp-core-image-minimal.populate_sdk=
+_ext)
+> Please verify which recipe should provide the above files.
+>
+> The build has stopped, as continuing in this scenario WILL break things=
+ - if not now, possibly in the future (we've seen builds fail several mon=
+ths later). If the system knew how to recover from this automatically it =
+would, however there are several different scenarios which can result in =
+this and we don't know which one this is. It may be you have switched pro=
+viders of something like virtual/kernel (e.g. from linux-yocto to linux-y=
+octo-dev), in that case you need to execute the clean task for both recip=
+es and it will resolve this error. It may be you changed DISTRO_FEATURES =
+from systemd to udev or vice versa. Cleaning those recipes should again r=
+esolve this error, however switching DISTRO_FEATURES on an existing build=
+ directory is not supported - you should really clean out tmp and rebuild=
+ (reusing sstate should be safe). It could be the overlapping files detec=
+ted are harmless in which case adding them to SSTATE_DUPWHITELIST may be =
+the correct solution. It could also be your
+>    build is including two different conflicting versions of things (e.g=
+=2E bluez 4 and bluez 5 and the correct solution for that would be to res=
+olve the conflict. If in doubt, please ask on the mailing list, sharing t=
+he error and filelist above.
+> ERROR: core-image-minimal-1.0-r0 do_populate_sdk_ext: If the above mess=
+age is too much, the simpler version is you're advised to wipe out tmp an=
+d rebuild (reusing sstate is fine). That will likely fix things in most (=
+but not all) cases.
+> ERROR: core-image-minimal-1.0-r0 do_populate_sdk_ext: Function failed: =
+sstate_task_postfunc
+> ERROR: Logfile of failure stored in: /home/martin/work/z7000-distro/bui=
+ld/tmp/work/zcu104_zynqmp-poky-linux/core-image-minimal/1.0-r0/temp/log.d=
+o_populate_sdk_ext.14111
+> ERROR: Task (/home/martin/work/z7000-distro/poky/meta/recipes-core/imag=
+es/core-image-minimal.bb:do_populate_sdk_ext) failed with exit code '1'
+>
+>
+> Since the machines are of the same CPU architecture and and the image b=
+eing the same, the previously built artifacts are about to be overwritten=
+=2E AFAICS images are neatly populated in subdirectories according to the=
+ machine name, however since the SDKs are not populated according to the =
+machine the above issue is encountered.
+>
+> Is this not a supported use case, or am I missing a configuration?
+>
+> Thanks,
+> Martin
+
+
+
+
