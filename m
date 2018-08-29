@@ -1,37 +1,58 @@
-Return-Path: <aaron.chun.yew.chan@intel.com>
+Return-Path: <gabriele@analyticsfire.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C3E69E00A6B; Wed, 29 Aug 2018 06:30:49 -0700 (PDT)
+	id EC7E9E00546; Wed, 29 Aug 2018 06:55:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.213.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C345BE0097D
-	for <yocto@yoctoproject.org>; Wed, 29 Aug 2018 06:30:48 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	29 Aug 2018 06:30:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.53,303,1531810800"; d="scan'208";a="87312220"
-Received: from centaurus01.png.intel.com ([10.221.183.13])
-	by orsmga002.jf.intel.com with ESMTP; 29 Aug 2018 06:30:47 -0700
-From: Aaron Chan <aaron.chun.yew.chan@intel.com>
-To: yocto@yoctoproject.org, richard.purdie@linuxfoundation.org,
-	paul.eggleton@intel.com, aaron.chun.yew.chan@intel.com
-Date: Wed, 29 Aug 2018 21:25:55 +0800
-Message-Id: <20180829132555.23054-6-aaron.chun.yew.chan@intel.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20180829132555.23054-1-aaron.chun.yew.chan@intel.com>
-References: <20180829132555.23054-1-aaron.chun.yew.chan@intel.com>
-Subject: [yocto-autobuilder-helper][PATCH 6/6] config-intelqa-x86_64-lava.json: Add extension to config.json to support BSP
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yb0-f170.google.com (mail-yb0-f170.google.com
+	[209.85.213.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62373E00460
+	for <yocto@yoctoproject.org>; Wed, 29 Aug 2018 06:55:28 -0700 (PDT)
+Received: by mail-yb0-f170.google.com with SMTP id z12-v6so2014918ybg.9
+	for <yocto@yoctoproject.org>; Wed, 29 Aug 2018 06:55:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=analyticsfire-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=OhgcLu8CgK/SzywYuMwnCVUuvBqW1j0hBJ+brjcLEHk=;
+	b=SPAsb9N394vBw37qr9MXtnOP+eZ54+LzrZOTaLPPok7bBZ8Jc366+gH/fzE7Xftyzv
+	Gi/SznwZ9/8O6uFBCQ3GH4khg+mEbek+6LTubU8B30ZHHGNqaNrB57hRpQpJO7ZdEYFl
+	LlNy2RYq7l3swJWTHJ0hUGnHlAG6h7b/lobYBvDw05sQoYs62GQnPHzM5gznU1/XCg2Y
+	sAFcZ+JQf/dxiQhQtkh+L5Tepl2o8CuUukwE49u+hhy9xSmgNtY3+JEx0hz+bAeycVNy
+	rg+LKFGoh6OjDqJquuqfW2ihsZZ7gfNqb8ZwllfQxXJ6srUzFlgqdXUVvl7yq9gQCG6c
+	uEew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=OhgcLu8CgK/SzywYuMwnCVUuvBqW1j0hBJ+brjcLEHk=;
+	b=oD/qy9u/Qt41dZ5g981fe9mLUJlLgwfi0JYjIDuty7vm1/F36uQXPvEqbExwzZ5sU3
+	OiGVPWOq5GAiozBt7c/fc4apOMWo7Up/UeO4py4zJz8YskfcclRmkJe9Q7L1wVb4fcCO
+	cZ04QCiJToz6TGpG+KZ88rQ3Bah0O4yRQPVd3Ob+B0HQRBtfG5f5mUbIUXsj35IWu6PD
+	wez/onUmbKJfwqe5ZrAujYAsSjJIuAr9TSD/jBqHz4q8UWXGk8iTmzvGJsOhEE2S7Mj5
+	flQlbpvoJP4sF9anV3NY1J7lcXhBMSDH0EJLMp6MmDbmuxqfGrwj6cNOBZWVowK1bJeb
+	QCMw==
+X-Gm-Message-State: APzg51CC2mm7mODfxI9jnbxspgQ+D4uMsgZvKo/EwZ2qI0Ukys1rdgyw
+	uPX/IW6pZn1f1fW18MDnGgBF79wT1X5hWy8atVnr0lQE7YM=
+X-Google-Smtp-Source: ANB0Vdb5Y9Vci5FQvOxj3cSvYgG2PIEY95mzHZ2Cnh0NjKZMO9lAK+NNdPbXf94QrEizV0ANP658VfiCnuZD6HRb0zg=
+X-Received: by 2002:a25:f451:: with SMTP id
+	p17-v6mr3227675ybe.19.1535550927426; 
+	Wed, 29 Aug 2018 06:55:27 -0700 (PDT)
+MIME-Version: 1.0
+From: Gabriele Favalessa <gabriele@analyticsfire.com>
+Date: Wed, 29 Aug 2018 15:55:16 +0200
+Message-ID: <CAMmNTemi9+UoZg0vWvvFZu-ggnYHkDy5VARfHhm6tHjAWr7BGQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Extended SDK installation fails during git fetch of kernel source hosted on private repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,216 +64,248 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Aug 2018 13:30:49 -0000
+X-List-Received-Date: Wed, 29 Aug 2018 13:55:30 -0000
+Content-Type: multipart/alternative; boundary="000000000000906fd50574934fee"
 
-config-intelqa on x86-64 is an extension to config.json where it
-contains the recipes and meta layers to build core-image-sato-sdk on
-various supported architectures in Yocto Project.
+--000000000000906fd50574934fee
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This is an initial release model on specifying the recipes use to build
-the embeddded linux images starting with x86-64 MTURBOT64 (Intel IA).
-With this reference, community will inherit the structure and model
-benchmark from config-intelqa-<arch>-lava.json to support and build
-own hardware on other architectures (e.g arm64, mips64, pcc, x86) on
-the same common CI infrastructure (Yocto Autobuilder).
+Hi,
 
-The config-intelqa-<arch>-lava.json will contain the consolidate data in
-autobuilder and LAVA (Linaro) to execute independent jobs configuration
-respectively. Architecture owners are to work with the respective
-maintainers and review their automated hardware tests to ensure common
-structure is agree by the current and/or new community.
+I'm trying to install on ubuntu 17.04 an Extensible SDK that I have built,
+and it stops with an error:
 
-Signed-off-by: Aaron Chan <aaron.chun.yew.chan@intel.com>
----
- config-intelqa-x86_64-lava.json | 163 ++++++++++++++++++++++++++++++++++++----
- 1 file changed, 149 insertions(+), 14 deletions(-)
+-------------------------------------------------------
+sdk@sdk:~$ ./
+acme-linux-glibc-x86_64-acme-image-datalogger-cortexa7hf-neon-toolchain-ext=
+-2.5.1.sh
+-D
+=E2=80=A6
++ sh -c . buildtools/environment-setup* >
+/home/sdk/acme-linux_sdk/preparing_build_system.log && cd
+/home/sdk/acme-linux_sdk/layers/poky && set /home/sdk/acme-linux_sdk && .
+/home/sdk/acme-linux_sdk/layers/poky/oe-init-build-env
+/home/sdk/acme-linux_sdk >>
+/home/sdk/acme-linux_sdk/preparing_build_system.log && python
+/home/sdk/acme-linux_sdk/ext-sdk-prepare.py
+/home/sdk/acme-linux_sdk/preparing_build_system.log 'acme-image-datalogger
+meta-extsdk-toolchain:do_populate_sysroot'
+WARNING:
+/home/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kernel/linux/
+linux-imx_4.9.11.bb: Exception during build_dependencies for AUTOREV
+WARNING:
+/home/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kernel/linux/
+linux-imx_4.9.11.bb: Error during finalise of
+/home/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kernel/linux/
+linux-imx_4.9.11.bb
+ERROR: ExpansionError during parsing
+/home/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kernel/linux/
+linux-imx_4.9.11.bb
+Traceback (most recent call last):
+bb.data_smart.ExpansionError: Failure expanding variable SRCPV, expression
+was ${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError:
+Fetcher failure: Fetch command export PSEUDO_DISABLED=3D1; export
+GIT_SSL_CAINFO=3D"/home/sdk/acme-linux_sdk/buildtools/sysroots/x86_64-acmes=
+dk-linux/etc/ssl/certs/ca-certificates.crt";
+export
+PATH=3D"/home/sdk/acme-linux_sdk/layers/poky/scripts:/home/sdk/acme-linux_s=
+dk/tmp/work/myboard-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot-n=
+ative/usr/bin/arm-acme-linux-gnueabi:/home/sdk/acme-linux_sdk/tmp/work/mybo=
+ard-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot/usr/bin/crossscri=
+pts:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-gnueabi/linux-imx/=
+4.9.11-r0/recipe-sysroot-native/usr/sbin:/home/sdk/acme-linux_sdk/tmp/work/=
+myboard-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot-native/usr/bi=
+n:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-gnueabi/linux-imx/4.=
+9.11-r0/recipe-sysroot-native/sbin:/home/sdk/acme-linux_sdk/tmp/work/myboar=
+d-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot-native/bin:/home/sd=
+k/acme-linux_sdk/layers/poky/bitbake/bin:/home/sdk/acme-linux_sdk/tmp/hostt=
+ools";
+export HOME=3D"/home/sdk"; git -c core.fsyncobjectfiles=3D0 ls-remote ssh:/=
+/
+git@github.com/Acme/linux-imx.git  failed with exit code 128, output:
+Permission denied (publickey).
+fatal: Could not read from remote repository.
 
-diff --git a/config-intelqa-x86_64-lava.json b/config-intelqa-x86_64-lava.json
-index 81e248d..450890c 100644
---- a/config-intelqa-x86_64-lava.json
-+++ b/config-intelqa-x86_64-lava.json
-@@ -1,23 +1,139 @@
- {
-+    "lava-defaults" : {
-+        "username" : "< LAVA user >",
-+        "token"    : "< LAVA token >",
-+        "server"   : "< LAVA server >:< LAVA port >",
-+        "interface": "< Board network interface >"
-+    },
-+    "lava-devices" : {
-+        "minnowboard" : {
-+            "job_name" : "Minnowboard Turbot with Yocto core-image-sato-sdk (intel-corei7-64)",
-+            "priority" : "medium",
-+            "visibility" : "public",
-+                "timeout" : {
-+                "job"        : { "minutes" : 180 },
-+                "action"     : { "minutes" : 60 },
-+                "connection" : { "minutes" : 60 }
-+            },
-+            "deploy" : {
-+              "timeout" : 60,
-+              "to" : "tftp",
-+              "kernel" : {
-+                "url"  : "${DEPLOY_DIR_IMAGE}bzImage",
-+                "type" : "BzImage"
-+              },
-+              "modules" : {
-+                "url" : "${DEPLOY_DIR_IMAGE}modules-intel-corei7-64.tgz",
-+                "compression" : "gz"
-+              },
-+              "nfsrootfs" : {
-+                "url" : "${DEPLOY_DIR_IMAGE}core-image-sato-sdk-intel-corei7-64.tar.gz",
-+                "compression" : "gz"
-+              },
-+              "os": "oe"
-+            },
-+            "boot" : {
-+                "timeout" : 60,
-+                "method"  : "grub",
-+                "commands" : "nfs",
-+                "auto_login" : {
-+                    "login_prompt" : "'intel-corei7-64 login:'",
-+                    "username" : "root"
-+                },
-+                "prompts" : "'root@intel-corei7-64:~#'"
-+            },
-+            "test" : {
-+                "timeout" : 3600,
-+                "name" : "yocto-bsp-test",
-+                "definitions" : {
-+                    "repository" : "https://git.yoctoproject.org/git/yocto-autobuilder-helper",
-+                    "from" : "git",
-+                    "path" : "lava-templates/auto-bsp-test.yaml",
-+                    "name" : "yocto-bsp-test"
-+                }
-+            }
-+        },
-+        "beaglebone-black" : {
-+            "job_name" : "Beaglebone with Yocto core-image-sato-sdk (ARM Cortex)",
-+            "priority" : "medium",
-+            "visibility" : "public",
-+            "timeout" : {
-+                "job"        : { "minutes" : 180 },
-+                "action"     : { "minutes" : 60 },
-+                "connection" : { "minutes" : 60 }
-+            }
-+        },
-+        "beaglebone-mx" : {},
-+        "x86" : {},
-+        "qemu" : {},
-+        "dragonboard-410c" : {},
-+        "mustang" : {}
-+    },
-     "overrides" : {
-         "nightly-x86-64-bsp" : {
--            "NEEDREPOS" : ["poky", "meta-intel", "meta-openembedded"],
--	    "step1" : {
--                "MACHINE" : "intel-corei7-64",
--                "SDKMACHINE" : "x86_64",
--                "extravars" : [
--                    "DISTRO_FEATURES_append = \" systemd\"",
--                    "IMAGE_INSTALL_append = \" udev util-linux systemd\"",
--                    "CORE_IMAGE_EXTRA_INSTALL_append += \"python3 python3-pip python-pip git socat apt dpkg openssh\"",
--                    "IMAGE_FSTYPES = \"tar.gz\""
-+            "MACHINE" : "intel-corei7-64",
-+            "DEPLOY_DIR" : "/srv/data/builds",
-+            "DEPLOY_DIR_IMAGE" : "${DEPLOY_DIR}/images/${MACHINE}/",
-+            "NEEDREPOS" : ["poky", "meta-intel", "meta-openembedded", "meta-security", "meta-ros", "meta-browser"],
-+            "step1" : {
-+                "SDKMACHINE": "x86_64",
-+                "WRITECONFIG": true,
-+                "extravars": [
-+                    "DISTRO_FEATURES_append = \" systemd ptest\"",
-+                    "VIRTUAL-RUNTIME_init_manager = \"systemd\"",
-+                    "DISTRO_FEATURES_BACKFILL_CONSIDERED = \"sysvinit\"",
-+                    "VIRTUAL-RUNTIME_initscripts = \"\"",
-+                    "IMAGE_INSTALL_append = \" php-cli udev util-linux systemd\"",
-+                    "EXTRA_IMAGE_FEATURES += \"ptest-pkgs\"",
-+                    "CORE_IMAGE_EXTRA_INSTALL_append += \"python3 python3-pip python3-netifaces python3-requests python3-jinja2 python3-twisted python-pip git socat apt dpkg openssh nfs-utils ufw nmap lshw php ser2net xterm xclock xrdb tigervnc x11vnc mailx p7zip firefox glmark2 e2fsprogs-ptest zlib-ptest\"",
-+                    "IMAGE_FSTYPES = \"tar.gz\"",
-+                    "TEST_SUITES_append = \" bspruntime usb microsd\"",
-+                    "TEST_TARGET_IP = ''",
-+                    "TEST_SERVER_IP = ''",
-+                    "TEST_TARGET = \"simpleremote\"",
-+                    "HARDWARE_TEST = \"1\""
-+                ],
-+                "ADDLAYER": [
-+                    "../meta-intel",
-+                    "../meta-openembedded/meta-oe",
-+                    "../meta-openembedded/meta-python",
-+                    "../meta-openembedded/meta-perl",
-+                    "../meta-openembedded/meta-networking",
-+                    "../meta-security",
-+                    "../meta-ros",
-+                    "../meta-browser"
-                 ],
--                "ADDLAYER" : [
-+                "BBTARGETS" : "core-image-sato-sdk",
-+                "EXTRAPLAINCMDS" : [
-+                    "../yocto-autobuilder-helper/scripts/publish-artefacts build /srv/data/builds nightly-x86-64-bsp;",
-+                    "../yocto-autobuilder-helper/lava/run-jinja-parser ../yocto-autobuilder-helper/lava-templates/generate-jobconfig.jinja2 nightly-x86-64-bsp None minnowboard",
-+                    "../yocto-autobuilder-helper/lava/trigger-lava-jobs nightly-x86-64-bsp.yaml build/conf/auto.conf /srv/data/LAVA/lava-job;"
-+                ]
-+            },
-+            "step2" : {
-+                "WRITECONFIG": false,
-+                "ADDLAYER": [
-                     "../meta-intel",
--                    "../meta-openembedded"
-+                    "../meta-openembedded/meta-oe",
-+                    "../meta-openembedded/meta-python",
-+                    "../meta-openembedded/meta-perl",
-+                    "../meta-openembedded/meta-networking",
-+                    "../meta-security",
-+                    "../meta-ros",
-+                    "../meta-browser"
-                 ],
--                "BBTARGETS" : "core-image-sato-sdk"
-+                "SANITYTARGETS": "core-image-sato-sdk:do_testimage",
-+                "EXTRAPLAINCMDS" : [
-+                    "../yocto-autobuilder-helper/lava/resume-lava-jobs --json board_info.json --cmd 'shutdown'"
-+                ]
-             }
--        }
-+        },
-+        "nightly-x86-bsp"    : {},
-+        "nightly-arm-bsp"    : {},
-+        "nightly-arm64-bsp"  : {},
-+        "nightly-mips-bsp"   : {},
-+        "nightly-mips64-bsp" : {},
-+        "nightly-ppc-bsp"    : {}
-     },
-     "repo-defaults" : {
-         "meta-intel" : {
-@@ -28,7 +144,26 @@
-         "meta-openembedded" : {
-             "url" : "git://git.openembedded.org/meta-openembedded",
-             "branch" : "master",
--            "revision" : "HEAD"
-+            "revision" : "HEAD",
-+            "no-layer-add" : true
-+        },
-+        "meta-security" : {
-+            "url" : "git://git.yoctoproject.org/meta-security",
-+            "branch" : "master",
-+            "revision" : "HEAD",
-+            "no-layer-add" : true
-+        },
-+        "meta-ros" : {
-+            "url" : "git://github.com/bmwcarit/meta-ros",
-+            "branch" : "master",
-+            "revision" : "HEAD",
-+            "no-layer-add" : true
-+        },
-+        "meta-browser" : {
-+            "url" : "git://github.com/OSSystems/meta-browser.git",
-+            "branch" : "master",
-+            "revision" : "HEAD",
-+            "no-layer-add" : true
-         }
-     }
- }
--- 
-2.11.0
+Please make sure you have the correct access rights
+and the repository exists.
 
 
+ERROR: SDK preparation failed: error log written to
+/home/sdk/acme-linux_sdk/preparing_build_system.log
+-------------------------------------------------------
+
+I tested the failing git command `git -c ls-remote ssh://
+git@github.com/Acme/linux-imx.git` directly from the command line and it
+succeeds without errors. I do have the ssh key in ssh-agent, so that's not
+surprise.
+
+It looks like during the SDK installation the ssh key is needed but for
+some reason the ssh-agent is not reachable (maybe the SSH_* env variables
+are not propagated by the script?)
+
+Is it unavoidable for the SDK to fetch from git during the installation? If
+it is unavoidable, how can I make the script fetch from a private github
+repo, given that the ssh-agent seems to be ignored?
+
+Just out of curiosity, I copy&pasted the failing command in the shell, and
+this time it ran without errors (again confirming that the ssh key is
+present.)
+
+-------------------------------------------------------
+sdk@sdk:~$ sh -c . buildtools/environment-setup* >
+/home/sdk/acme-linux_sdk/preparing_build_system.log && cd /home/sdk/
+acme-linux_sdk/layers/poky && set /home/sdk/acme-linux_sdk && .
+/home/sdk/acme-linux_sdk/layers/poky/oe-init-build-env
+/home/sdk/acme-linux_sdk >>
+/home/sdk/acme-linux_sdk/preparing_build_system.log && python
+/home/sdk/acme-linux_sdk/ext-
+sdk-prepare.py /home/sdk/acme-linux_sdk/preparing_build_system.log
+'acme-image-datalogger meta-extsdk-toolchain:do_popu
+late_sysroot'
+Loading cache: 100%
+|##########################################################################=
+#########|
+Time: 0:00:00
+Parsing recipes: 100%
+|##########################################################################=
+#######|
+Time: 0:01:32
+Initialising tasks: 100%
+|##########################################################################=
+####|
+Time: 0:00:02
+Checking sstate mirror object availability: 100%
+|######################################################| Time: 0:00:00
+Loading cache: 100%
+|##########################################################################=
+#########|
+Time: 0:00:00
+Parsing recipes: 100%
+|##########################################################################=
+#######|
+Time: 0:00:07
+Initialising tasks: 100%
+|##########################################################################=
+####|
+Time: 0:00:00
+-------------------------------------------------------
+
+However the resulting SDK installation seems to be broken anyway (probably
+there are other steps after the one I re-run manually that where not
+executed because the toplevel script stopped with an error):
+
+-------------------------------------------------------
+sdk@sdk:~/acme-linux_sdk$ source
+environment-setup-cortexa7hf-neon-acme-linux-gnueabi
+SDK environment now set up; additionally you may now run devtool to perform
+development tasks.
+Run devtool --help for further details.
+ERROR: this SDK was not fully installed and needs reinstalling
+-------------------------------------------------------
+
+Thanks
+
+Gabriele
+
+--000000000000906fd50574934fee
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi,</div><div><br><=
+/div><div>I&#39;m trying to install on ubuntu 17.04 an Extensible SDK that =
+I have built, and it stops with an error:</div><div><br></div><div>--------=
+-----------------------------------------------</div><div>sdk@sdk:~$ ./<a h=
+ref=3D"http://acme-linux-glibc-x86_64-acme-image-datalogger-cortexa7hf-neon=
+-toolchain-ext-2.5.1.sh">acme-linux-glibc-x86_64-acme-image-datalogger-cort=
+exa7hf-neon-toolchain-ext-2.5.1.sh</a> -D</div><div>=E2=80=A6</div><div>+ s=
+h -c . buildtools/environment-setup* &gt; /home/sdk/acme-linux_sdk/preparin=
+g_build_system.log &amp;&amp; cd /home/sdk/acme-linux_sdk/layers/poky &amp;=
+&amp; set /home/sdk/acme-linux_sdk &amp;&amp; . /home/sdk/acme-linux_sdk/la=
+yers/poky/oe-init-build-env /home/sdk/acme-linux_sdk &gt;&gt; /home/sdk/acm=
+e-linux_sdk/preparing_build_system.log &amp;&amp; python /home/sdk/acme-lin=
+ux_sdk/ext-sdk-prepare.py /home/sdk/acme-linux_sdk/preparing_build_system.l=
+og &#39;acme-image-datalogger meta-extsdk-toolchain:do_populate_sysroot&#39=
+;</div><div>WARNING: /home/sdk/acme-linux_sdk/layers/poky/meta-myboard/reci=
+pes-kernel/linux/<a href=3D"http://linux-imx_4.9.11.bb">linux-imx_4.9.11.bb=
+</a>: Exception during build_dependencies for AUTOREV</div><div>WARNING: /h=
+ome/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kernel/linux/<a hre=
+f=3D"http://linux-imx_4.9.11.bb">linux-imx_4.9.11.bb</a>: Error during fina=
+lise of /home/sdk/acme-linux_sdk/layers/poky/meta-myboard/recipes-kernel/li=
+nux/<a href=3D"http://linux-imx_4.9.11.bb">linux-imx_4.9.11.bb</a></div><di=
+v>ERROR: ExpansionError during parsing /home/sdk/acme-linux_sdk/layers/poky=
+/meta-myboard/recipes-kernel/linux/<a href=3D"http://linux-imx_4.9.11.bb">l=
+inux-imx_4.9.11.bb</a></div><div>Traceback (most recent call last):</div><d=
+iv>bb.data_smart.ExpansionError: Failure expanding variable SRCPV, expressi=
+on was ${@bb.fetch2.get_srcrev(d)} which triggered exception FetchError: Fe=
+tcher failure: Fetch command export PSEUDO_DISABLED=3D1; export GIT_SSL_CAI=
+NFO=3D&quot;/home/sdk/acme-linux_sdk/buildtools/sysroots/x86_64-acmesdk-lin=
+ux/etc/ssl/certs/ca-certificates.crt&quot;; export PATH=3D&quot;/home/sdk/a=
+cme-linux_sdk/layers/poky/scripts:/home/sdk/acme-linux_sdk/tmp/work/myboard=
+-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysroot-native/usr/bin/arm-a=
+cme-linux-gnueabi:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-gnue=
+abi/linux-imx/4.9.11-r0/recipe-sysroot/usr/bin/crossscripts:/home/sdk/acme-=
+linux_sdk/tmp/work/myboard-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sy=
+sroot-native/usr/sbin:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-=
+gnueabi/linux-imx/4.9.11-r0/recipe-sysroot-native/usr/bin:/home/sdk/acme-li=
+nux_sdk/tmp/work/myboard-acme-linux-gnueabi/linux-imx/4.9.11-r0/recipe-sysr=
+oot-native/sbin:/home/sdk/acme-linux_sdk/tmp/work/myboard-acme-linux-gnueab=
+i/linux-imx/4.9.11-r0/recipe-sysroot-native/bin:/home/sdk/acme-linux_sdk/la=
+yers/poky/bitbake/bin:/home/sdk/acme-linux_sdk/tmp/hosttools&quot;; export =
+HOME=3D&quot;/home/sdk&quot;; git -c core.fsyncobjectfiles=3D0 ls-remote ss=
+h://<a href=3D"http://git@github.com/Acme/linux-imx.git">git@github.com/Acm=
+e/linux-imx.git</a>=C2=A0 failed with exit code 128, output:</div><div>Perm=
+ission denied (publickey).</div><div>fatal: Could not read from remote repo=
+sitory.</div><div><br></div><div>Please make sure you have the correct acce=
+ss rights</div><div>and the repository exists.</div><div><br></div><div><br=
+></div><div>ERROR: SDK preparation failed: error log written to /home/sdk/a=
+cme-linux_sdk/preparing_build_system.log</div><div><div>-------------------=
+------------------------------------</div><br class=3D"gmail-Apple-intercha=
+nge-newline"></div><div>I tested the failing git command `git -c ls-remote =
+ssh://<a href=3D"http://git@github.com/Acme/linux-imx.git`">git@github.com/=
+Acme/linux-imx.git`</a> directly from the command line and it succeeds with=
+out errors. I do have the ssh key in ssh-agent, so that&#39;s not surprise.=
+<br></div><div><br></div><div>It looks like during the SDK installation the=
+ ssh key is needed but for some reason the ssh-agent is not reachable (mayb=
+e the SSH_* env variables are not propagated by the script?)</div><div><br>=
+</div><div>Is it unavoidable for the SDK to fetch from git during the insta=
+llation? If it is unavoidable, how can I make the script fetch from a priva=
+te github repo, given that the ssh-agent seems to be ignored?</div><div><br=
+></div><div>Just out of curiosity, I copy&amp;pasted the failing command in=
+ the shell, and this time it ran without errors (again confirming that the =
+ssh key is present.)</div><div><br></div><div>-----------------------------=
+--------------------------</div><div>sdk@sdk:~$ sh -c . buildtools/environm=
+ent-setup* &gt; /home/sdk/acme-linux_sdk/preparing_build_system.log &amp;&a=
+mp; cd /home/sdk/</div><div>acme-linux_sdk/layers/poky &amp;&amp; set /home=
+/sdk/acme-linux_sdk &amp;&amp; . /home/sdk/acme-linux_sdk/layers/poky/oe-in=
+it-build-env</div><div>/home/sdk/acme-linux_sdk &gt;&gt; /home/sdk/acme-lin=
+ux_sdk/preparing_build_system.log &amp;&amp; python /home/sdk/acme-linux_sd=
+k/ext-</div><div>sdk-prepare.py /home/sdk/acme-linux_sdk/preparing_build_sy=
+stem.log &#39;acme-image-datalogger meta-extsdk-toolchain:do_popu</div><div=
+>late_sysroot&#39;</div><div>Loading cache: 100% |#########################=
+##########################################################| Time: 0:00:00</=
+div><div>Parsing recipes: 100% |###########################################=
+######################################| Time: 0:01:32</div><div>Initialisin=
+g tasks: 100% |############################################################=
+##################| Time: 0:00:02</div><div>Checking sstate mirror object a=
+vailability: 100% |######################################################| =
+Time: 0:00:00</div><div>Loading cache: 100% |##############################=
+#####################################################| Time: 0:00:00</div><=
+div>Parsing recipes: 100% |################################################=
+#################################| Time: 0:00:07</div><div>Initialising tas=
+ks: 100% |#################################################################=
+#############| Time: 0:00:00</div><div><div>-------------------------------=
+------------------------</div><br class=3D"gmail-Apple-interchange-newline"=
+></div><div>However the resulting SDK installation seems to be broken anywa=
+y (probably there are other steps after the one I re-run manually that wher=
+e not executed because the toplevel script stopped with an error):</div><di=
+v><br></div><div>-------------------------------------------------------</d=
+iv><div>sdk@sdk:~/acme-linux_sdk$ source environment-setup-cortexa7hf-neon-=
+acme-linux-gnueabi</div><div>SDK environment now set up; additionally you m=
+ay now run devtool to perform development tasks.</div><div>Run devtool --he=
+lp for further details.</div><div>ERROR: this SDK was not fully installed a=
+nd needs reinstalling</div><div><div>--------------------------------------=
+-----------------</div><br class=3D"gmail-Apple-interchange-newline"></div>=
+<div>Thanks</div><div><br></div><div>Gabriele</div></div></div></div>
+
+--000000000000906fd50574934fee--
