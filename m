@@ -1,33 +1,40 @@
-Return-Path: <Mingli.Yu@windriver.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 274B1E00939; Tue, 28 Aug 2018 23:05:10 -0700 (PDT)
+	id 73F4AE00950; Wed, 29 Aug 2018 03:46:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.151 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC3ECE00848
-	for <yocto@yoctoproject.org>; Tue, 28 Aug 2018 23:05:09 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w7T658Ta019390
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 28 Aug 2018 23:05:08 -0700 (PDT)
-Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.408.0; Tue, 28 Aug 2018 23:05:07 -0700
-From: <mingli.yu@windriver.com>
-To: <yocto@yoctoproject.org>, <Joe_MacDonald@mentor.com>
-Date: Wed, 29 Aug 2018 14:05:06 +0800
-Message-ID: <1535522706-114428-1-git-send-email-mingli.yu@windriver.com>
-X-Mailer: git-send-email 2.7.4
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11944E0090C;
+	Wed, 29 Aug 2018 03:46:34 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	29 Aug 2018 03:46:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.53,301,1531810800"; d="scan'208";a="228572314"
+Received: from wklam-mobl2.gar.corp.intel.com (HELO localhost.localdomain)
+	([10.255.142.101])
+	by orsmga004.jf.intel.com with ESMTP; 29 Aug 2018 03:46:30 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 29 Aug 2018 22:46:27 +1200
+Message-ID: <2479608.PqWI51YQi8@localhost.localdomain>
+Organization: Intel Corporation
+In-Reply-To: <29e40b67-ec40-90ba-f454-aa66034dad71@windriver.com>
+References: <2274431.fXWzuTuIFg@localhost.localdomain>
+	<4442632.9cThEXArIQ@localhost.localdomain>
+	<29e40b67-ec40-90ba-f454-aa66034dad71@windriver.com>
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH] libselinux: fix usrmerge do_install
+Subject: Re: [layerindex-web] RFC: layer index docker fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,37 +46,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Aug 2018 06:05:10 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 29 Aug 2018 10:46:35 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: Mingli Yu <Mingli.Yu@windriver.com>
+Hi folks
 
-When usrmerge enabled in DISTRO_FEATURES,
-the binary actually installed under ${base_sbindir},
-so cannot remove ${D}${base_sbindir} when
-usrmerge enabled.
+I know Konrad promised to update the docker-compose setup to be closer
+to what we'd done recently with the docker setup, but I needed something
+urgently and wanted to learn how to use docker-compose anyway, so I've
+put this together:
 
-Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
----
- recipes-security/selinux/libselinux.inc | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+  http://git.yoctoproject.org/cgit/cgit.cgi/layerindex-web/log/?h=paule/docker-compose
 
-diff --git a/recipes-security/selinux/libselinux.inc b/recipes-security/selinux/libselinux.inc
-index 51d0875..ae47b5a 100644
---- a/recipes-security/selinux/libselinux.inc
-+++ b/recipes-security/selinux/libselinux.inc
-@@ -34,7 +34,9 @@ do_compile_append() {
- do_install_append() {
-     oe_runmake install-pywrap swigify \
-             PYSITEDIR=${D}${libdir}/python${PYTHON_BASEVERSION}/site-packages
--    rm -rf ${D}${base_sbindir}
-+    if ! ${@bb.utils.contains('DISTRO_FEATURES','usrmerge','true','false',d)}; then
-+        rm -rf ${D}${base_sbindir}
-+    fi
- }
- 
- BBCLASSEXTEND = "native"
+Let me know what you think - it works well enough for me here, although the
+setup commands are now a bit ugly on their own.
+
+Cheers,
+Paul
+
 -- 
-2.7.4
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
 
 
