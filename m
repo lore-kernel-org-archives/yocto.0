@@ -1,46 +1,61 @@
-Return-Path: <rsrinivasan@abiomed.com>
+Return-Path: <bryan.fishell@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6B952E0090C; Tue, 28 Aug 2018 14:26:03 -0700 (PDT)
+	id 78A29E0090C; Tue, 28 Aug 2018 17:47:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [216.205.24.188 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bryan.fishell[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 78 seconds by postgrey-1.32 at yocto-www;
-	Tue, 28 Aug 2018 14:26:01 PDT
-Received: from us-smtp-delivery-188.mimecast.com
-	(us-smtp-delivery-188.mimecast.com [216.205.24.188])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC7D4E00777
-	for <yocto@yoctoproject.org>; Tue, 28 Aug 2018 14:26:01 -0700 (PDT)
-Received: from mail.abiomed.com (webmail.abiomed.com [4.53.60.36]) (Using
-	TLS) by us-smtp-1.mimecast.com with ESMTP id
-	us-mta-199-6JNllV8sOy-k4NaTg6T_5A-1; Tue, 28 Aug 2018 17:24:40 -0400
-Received: from USDVREX02.abiomed.com (172.16.1.94) by USDVREX01.abiomed.com
-	(172.16.1.91) with Microsoft SMTP Server (TLS) id 15.0.1395.4;
-	Tue, 28 Aug 2018 17:24:39 -0400
-Received: from USDVREX02.abiomed.com ([fe80::ed18:25eb:f9e8:c0b7]) by
-	USDVREX02.abiomed.com ([fe80::ed18:25eb:f9e8:c0b7%12]) with mapi id
-	15.00.1395.000; Tue, 28 Aug 2018 17:24:39 -0400
-From: "Srinivasan, Raja" <rsrinivasan@abiomed.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Disable cert validation
-Thread-Index: AdQ/FUH1wO3lI5TBQVmSqbSqyH/pbQ==
-Date: Tue, 28 Aug 2018 21:24:39 +0000
-Message-ID: <ac79d3099e5b49eb9ea3a047620b960a@USDVREX02.abiomed.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.10.96.159]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
+	[209.85.218.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15189E00718
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2018 17:47:05 -0700 (PDT)
+Received: by mail-oi0-f44.google.com with SMTP id y207-v6so6154039oie.13
+	for <yocto@yoctoproject.org>; Tue, 28 Aug 2018 17:47:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=55tM8fr8ScAjOEy1pgY7tzgwposaW0u2swC0pSFyb5s=;
+	b=HeczauXQ90EYOU8owbe7O9TAxdWnCs8yZuy2dOZmTcIcdnmjDOFJGh3rdLXyzK2bKR
+	gSm3dZa6hr0glpN29GQ0A+j/lT258j/itqowBz+DMl47NeLZTnXeREFUATopZVNlhSys
+	8USdebdwpSQJpCRb5lsOxXLlfK8Mqw+j5sq5KIHO1MRJWyFbvzM9hglC5NVAaNjPHgRI
+	iujVuB2PTbqEbZMDcgOrD/xy/kwPazl0QL68k5eQ11BL6mlsneUAWhHP7nPuOB3/S8fA
+	T1Pzktq/l/3pQ1Nypg5MaG8Sp3O+FHbS4kgo4t1tfcnvGXV6Kt1bE0rKWhf93JqwobM+
+	9XvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=55tM8fr8ScAjOEy1pgY7tzgwposaW0u2swC0pSFyb5s=;
+	b=auDcyTpESdR7MKTMcJRcWUrZuLP3kAjiT/EnooJt8cBRJURl6os2TSfY8AaMczCvZ6
+	0SJF9HOPzmqw3NWs3DuuPC7u2iTMF7ufG1+1+SjwcLIuvHZCPUeOWNtF6tTUt/Lz71xb
+	iQMcj2bJXJFzzFGS2wWlyRtVh/E6Kb+w8V3Oy+W+pr1gniF2Q8YDHdXkKyEzutjqvbdR
+	so2SzO+Al6FQxX3ANqPsHr2VY3en27HTzI4GNnNM35SwMfmc7ADhOVTL5Fg6yS6+ZsHm
+	/N6hJ4xa34flaMBb2+4SWnOr8u8SbgelqdOibiaA07hVQmSREHCrKtw/7jFM32mHjGRO
+	3c+A==
+X-Gm-Message-State: APzg51BlfuPybPgs+eKXsUZLxUS898dbkceh5Ddp02TSEEobvT0v2YZR
+	Qz+SjeMEeZ13IkVu1eg7u67Ku4cuAlrhhv/o//nHNQ==
+X-Google-Smtp-Source: ANB0Vdao3DWjrkYyyAfDWC+Vfv5HPtk9Phm+0OUigiXiZ3iLxg7WCOGw29lW7HT2hPE43IWZ++3br/K7vW8i+v8jNG4=
+X-Received: by 2002:aca:2808:: with SMTP id 8-v6mr486046oix.7.1535503625217;
+	Tue, 28 Aug 2018 17:47:05 -0700 (PDT)
 MIME-Version: 1.0
-X-MC-Unique: 6JNllV8sOy-k4NaTg6T_5A-1
-Subject: Disable cert validation
+From: Bryan Fishell <bryan.fishell@gmail.com>
+Date: Tue, 28 Aug 2018 20:46:21 -0400
+Message-ID: <CAPC-RGnevp9F7+38rDCNpuTMg-zHnO_KQHHd_8ro7WK1t25MRw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Morty (2.2.1) Build Verification
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,136 +67,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2018 21:26:03 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_ac79d3099e5b49eb9ea3a047620b960aUSDVREX02abiomedcom_"
+X-List-Received-Date: Wed, 29 Aug 2018 00:47:06 -0000
+Content-Type: multipart/alternative; boundary="00000000000021ea9a0574884c98"
 
---_000_ac79d3099e5b49eb9ea3a047620b960aUSDVREX02abiomedcom_
-Content-Type: text/plain; charset=WINDOWS-1252
+--00000000000021ea9a0574884c98
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+I've read that some of the ongoing initiatives of the Yocto project is to
+strive towards binary reproducible builds.
+
+I am using a test project with Morty (2.2.1). My custom BSP layer are
+currently local files.Ultimately I would like to:
+1. Know a method of how I can verify my build on two different hosts
+2. Is there a way I can append this verification method (hashes of SRCREV
+or something) into the os-release recipe so with whatever build
+verification (correlating build-metadata into the image so I can correspond
+it to version control to see what changed?)
+
+Thanks in advance
+
+--00000000000021ea9a0574884c98
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-All
+<div dir=3D"ltr">Hi,=C2=A0<div><br></div><div>I&#39;ve read that some of th=
+e ongoing initiatives of the Yocto project is to strive towards binary repr=
+oducible builds.=C2=A0</div><div><br></div><div>I am using a test project w=
+ith Morty (2.2.1). My custom BSP layer are currently local files.Ultimately=
+ I would like to:</div><div>1. Know a method of how I can verify my build o=
+n two different hosts</div><div>2. Is there a way I can append this verific=
+ation method (hashes of SRCREV or something) into the os-release recipe so =
+with whatever build verification (correlating build-metadata into the image=
+ so I can correspond it to version control to see what changed?)</div><div>=
+<br></div><div>Thanks in advance</div></div>
 
-I have a situation where our device (yocto - Jethro) is failing to validate=
- a certificate.
-
-12520 EAP-TLS failed SSL/TLS handshake because the client rejected the ISE =
-local-certificate.
-
-I would like to disable the cert validation. Is there an nmcli command (or =
-some other way) that I could disable?
-
-Thanks, srini
-
-
-
-
-________________________________
-
-CONFIDENTIALITY NOTICE: This email message and any attachments are confiden=
-tial and may be privileged and are meant to be read by the intended recipie=
-nt only. If you are not the intended recipient, please notify sender immedi=
-ately and destroy all copies of this message and any attachments without re=
-ading or disclosing their contents. Thank you
-
---_000_ac79d3099e5b49eb9ea3a047620b960aUSDVREX02abiomedcom_
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-=09{font-family:Helvetica;
-=09panose-1:2 11 6 4 2 2 2 2 2 4;}
-@font-face
-=09{font-family:"MS Mincho";
-=09panose-1:2 2 6 9 4 2 5 8 3 4;}
-@font-face
-=09{font-family:"Cambria Math";
-=09panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-=09{font-family:Calibri;
-=09panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-=09{font-family:"\@MS Mincho";
-=09panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-=09{margin:0in;
-=09margin-bottom:.0001pt;
-=09font-size:11.0pt;
-=09font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-=09{mso-style-priority:99;
-=09color:#0563C1;
-=09text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-=09{mso-style-priority:99;
-=09color:#954F72;
-=09text-decoration:underline;}
-span.EmailStyle17
-=09{mso-style-type:personal-compose;
-=09font-family:"Calibri",sans-serif;
-=09color:windowtext;}
-.MsoChpDefault
-=09{mso-style-type:export-only;
-=09font-family:"Calibri",sans-serif;}
-@page WordSection1
-=09{size:8.5in 11.0in;
-=09margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-=09{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-<style type=3D"text/css">.style1 {font-family: "Times New Roman";}</style><=
-/head><body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">All<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have a situation where our device (yocto &#8211; J=
-ethro) is failing to validate a certificate.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;He=
-lvetica&quot;,sans-serif;color:#333333">12520 EAP-TLS failed SSL/TLS handsh=
-ake because the client rejected the ISE local-certificate.<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;He=
-lvetica&quot;,sans-serif;color:#333333"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;He=
-lvetica&quot;,sans-serif;color:#333333">I would like to disable the cert va=
-lidation. Is there an nmcli command (or some other way) that I could disabl=
-e?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;He=
-lvetica&quot;,sans-serif;color:#333333"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;He=
-lvetica&quot;,sans-serif;color:#333333">Thanks, srini</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<br>
-<hr>
-<font face=3D"Arial" color=3D"Gray" size=3D"1"><br>
-CONFIDENTIALITY NOTICE: This email message and any attachments are confiden=
-tial and may be privileged and are meant to be read by the intended recipie=
-nt only. If you are not the intended recipient, please notify sender immedi=
-ately and destroy all copies of
- this message and any attachments without reading or disclosing their conte=
-nts. Thank you<br>
-</font>
-
-
-<br /><br /><p style=3D"font-family: Verdana; font-size:10pt; color:#666666=
-;"></p><p style=3D"font-family: Verdana; font-size:8pt; color:#666666;"></p=
-></body></html>
-
---_000_ac79d3099e5b49eb9ea3a047620b960aUSDVREX02abiomedcom_--
+--00000000000021ea9a0574884c98--
