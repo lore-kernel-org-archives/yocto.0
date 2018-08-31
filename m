@@ -1,41 +1,63 @@
-Return-Path: <AMardegan@luxoft.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D6D4E009AA; Fri, 31 Aug 2018 06:09:13 -0700 (PDT)
+	id 50203E009AA; Fri, 31 Aug 2018 06:19:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [109.166.244.23 listed in list.dnswl.org]
+	*      [209.85.218.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from ORO-EDGE-03.luxoft.com (oro-edge-03.luxoft.com [109.166.244.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD4F1E007AD
-	for <yocto@yoctoproject.org>; Fri, 31 Aug 2018 06:09:11 -0700 (PDT)
-Received: from oro-exch-02.luxoft.com (172.25.192.33) by
-	oro-edge-03.luxoft.com (172.30.19.23) with Microsoft SMTP Server (TLS)
-	id 14.3.382.0; Fri, 31 Aug 2018 16:09:08 +0300
-Received: from oro-exch-03.luxoft.com (172.25.192.31) by
-	oro-exch-02.luxoft.com (172.25.192.33) with Microsoft SMTP Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P521) id
-	15.1.1466.3; Fri, 31 Aug 2018 16:09:09 +0300
-Received: from oro-exch-03.luxoft.com ([fe80::4935:509f:bc19:9ace]) by
-	oro-exch-03.luxoft.com ([fe80::4935:509f:bc19:9ace%13]) with mapi id
-	15.01.1466.003; Fri, 31 Aug 2018 16:09:15 +0300
-From: "Mardegan, Alberto" <AMardegan@luxoft.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Disabling building PTESTs in a bbappend
-Thread-Index: AQHUQSvR+FAY2Rq3jEia79PoJf72RA==
-Date: Fri, 31 Aug 2018 13:09:15 +0000
-Message-ID: <e941ec4d-4888-a7e3-fff1-89dcdcfb0831@luxoft.com>
-Accept-Language: it-IT, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.19.68]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
+	[209.85.218.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE001E007AD
+	for <yocto@yoctoproject.org>; Fri, 31 Aug 2018 06:19:04 -0700 (PDT)
+Received: by mail-oi0-f44.google.com with SMTP id b15-v6so21544557oib.10
+	for <yocto@yoctoproject.org>; Fri, 31 Aug 2018 06:19:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=nmdFbqth8IIPFCRq/AShYA9imsPeg64e8ZcQ1H9gEkw=;
+	b=KrsjispvBMOyhNE3gocc5dC4YMlcopAaIX4qT/2O0tbdhIvY6k8OmpQgzS+1M2xkF+
+	prgKOtiuDYMamqSDmzMpSvXLaBJBmfjfDU2EQY+1DBPiMFqhdz2pyknSEVEpr55Tuzji
+	/kWxsMX0bn5rWySI5vJeOMeYQYjvxwZNFvvXV+0097hOb/Gzs+Q1GIMMlQ/+jdcI6olo
+	JLjKhxBmGa2Kq335Crwet6QTn2oxvaaHcuvBIsCmWJZAUKvJ2B7KSBN9jptQqFwlByS0
+	IwldJtUijrr+Y5dHpYOtdmESAEvjor9Kb6eNa+IV/7KN1Gn7xpLLYmbFik3rchIFEEYC
+	QSjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=nmdFbqth8IIPFCRq/AShYA9imsPeg64e8ZcQ1H9gEkw=;
+	b=JDHF2N8ANGKZN8ORRmpgV9s+Cl0lwZaIGfZ93yHwVHA2HVtzaqVFVrZvmTMNDzUTcp
+	/BHFItvlnFwLNutWAGhuecNUBFhoVnNANWojH2/AuWLB8q7+wjsyj8tePBUgEKLEL8om
+	3IFde5Dm+3vlZdrbv05O3Y/we/nnezY0nSzic9lbTGOt4GEiwZhg6Mt3XxZldgK+Eg36
+	l5urmz+Zr4zk75l3hTgWh5Ls2qS90GwWa3nilEkVlduVhqcadJAIyK//QkaducLsiATc
+	obXWOTE6v/YlknUH4H7M36ZdBxGQj0UrVd6PsKtM9zkg+4Es3GrWGrjtFwsV8e14QDx1
+	rL1Q==
+X-Gm-Message-State: APzg51BkON2nhFTkrXVejdrJnSvX3d69dOtdYLSnYvVSLuvPyTjwLLHG
+	AqctJDvfqCMFJwCmkuuvsvrejeEbfCnWyjH9Omy87g==
+X-Google-Smtp-Source: ANB0Vda/k0Y0F1MQN4tkBgfQ7APN4YzECuZ6t37F0hJdWV3m7NKgkIk6JDLiSJEPrPVhq2q8aY+9e01mk3oGxUcCpoo=
+X-Received: by 2002:aca:a04:: with SMTP id 4-v6mr7534917oik.203.1535721544296; 
+	Fri, 31 Aug 2018 06:19:04 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Disabling building PTESTs in a bbappend
+Received: by 2002:ac9:7c0c:0:0:0:0:0 with HTTP; Fri, 31 Aug 2018 06:18:43
+	-0700 (PDT)
+In-Reply-To: <e941ec4d-4888-a7e3-fff1-89dcdcfb0831@luxoft.com>
+References: <e941ec4d-4888-a7e3-fff1-89dcdcfb0831@luxoft.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 31 Aug 2018 14:18:43 +0100
+Message-ID: <CAJTo0Lb94GwaNeHJ6Nfoyu=AnJSb5i05ZExbK35TbZALoF2o0g@mail.gmail.com>
+To: "Mardegan, Alberto" <AMardegan@luxoft.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Disabling building PTESTs in a bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,34 +69,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Aug 2018 13:09:13 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F86E0D664D908D42B5923C9F86D2695B@luxoft.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 31 Aug 2018 13:19:05 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgdGhlcmUhDQogIHRoZSBhcHBhcm1vciByZWNpcGUgZnJvbSB0aGUgbWV0YS1zZWN1cml0eSBs
-YXllciBmYWlscyB0byBidWlsZCBpbg0Kcm9ja28gZHVlIHRvIGFuIGVycm9yIHdoZW4gYnVpbGRp
-bmcgdGhlIHRlc3RzOyBJIHRyaWVkIHVwZGF0aW5nIHRvIHRoZQ0KbGF0ZXN0IGFwcGFybW9yIHZl
-cnNpb24sIGp1c3QgdG8gZmluZCBvdXQgdGhhdCB0aGUgdGVzdHMgZmFpbCB0byBidWlsZA0KaW4g
-c29tZSBvdGhlciBwbGFjZSAodGhlIHRlc3RzIGluY2x1ZGUgc3lzL2lvLmggLS0gd2hpY2ggcGFj
-a2FnZSBzaG91bGQNCnNoaXAgdGhpcyBmaWxlPykuLi4NCg0KQXQgdGhlIGVuZCBJIHRoaW5rIHRo
-YXQgdGhlIGZhc3Rlc3Qgd2F5IGZvciBtZSB0byBnZXQgYXBwYXJtb3IgdG8gYnVpbGQNCmlzIHRv
-IGRpc2FibGUgYnVpbGRpbmcgdGhlIHRlc3RzLiBCdXQgSSBjYW5ub3QgZmluZCBhbnkgaW5mbyBv
-biBob3cgaXQNCmNvdWxkIGJlIGRvbmUgaW4gYSAuYmJhcHBlbmQgZmlsZS4NCg0KSSB0cmllZA0K
-DQogICAgUFRFU1RfRU5BQkxFRF9hcHBhcm1vciA9ICcwJw0KDQpidXQgdGhhdCBkb2Vzbid0IHNl
-ZW0gdG8gd29yay4gU3VnZ2VzdGlvbnM/DQoNCk1lYW53aGlsZSwgd2hlcmUgZG9lcyBvbmUgZmls
-ZSBidWdzIGFnYWluc3QgdGhlIG1ldGEtc2VjdXJpdHkgbGF5ZXI/DQoNCkNpYW8sDQogIEFsYmVy
-dG8NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCg0KVGhpcyBlLW1haWwgYW5k
-IGFueSBhdHRhY2htZW50KHMpIGFyZSBpbnRlbmRlZCBvbmx5IGZvciB0aGUgcmVjaXBpZW50KHMp
-IG5hbWVkIGFib3ZlIGFuZCBvdGhlcnMgd2hvIGhhdmUgYmVlbiBzcGVjaWZpY2FsbHkgYXV0aG9y
-aXplZCB0byByZWNlaXZlIHRoZW0uIFRoZXkgbWF5IGNvbnRhaW4gY29uZmlkZW50aWFsIGluZm9y
-bWF0aW9uLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCBwbGVhc2UgZG8g
-bm90IHJlYWQgdGhpcyBlbWFpbCBvciBpdHMgYXR0YWNobWVudChzKS4gRnVydGhlcm1vcmUsIHlv
-dSBhcmUgaGVyZWJ5IG5vdGlmaWVkIHRoYXQgYW55IGRpc3NlbWluYXRpb24sIGRpc3RyaWJ1dGlv
-biBvciBjb3B5aW5nIG9mIHRoaXMgZS1tYWlsIGFuZCBhbnkgYXR0YWNobWVudChzKSBpcyBzdHJp
-Y3RseSBwcm9oaWJpdGVkLiBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIGUtbWFpbCBpbiBlcnJv
-ciwgcGxlYXNlIGltbWVkaWF0ZWx5IG5vdGlmeSB0aGUgc2VuZGVyIGJ5IHJlcGx5aW5nIHRvIHRo
-aXMgZS1tYWlsIGFuZCB0aGVuIGRlbGV0ZSB0aGlzIGUtbWFpbCBhbmQgYW55IGF0dGFjaG1lbnQo
-cykgb3IgY29waWVzIHRoZXJlb2YgZnJvbSB5b3VyIHN5c3RlbS4gVGhhbmsgeW91Lg0K
+In a local.conf:
+
+PTEST_ENABLE_pn-apparmor =3D "0"
+
+(the overrides are prefixed with pn-)
+
+In a bbappend just PTEST_ENABLE=3D"0" will work.
+
+Ross
+
+On 31 August 2018 at 14:09, Mardegan, Alberto <AMardegan@luxoft.com> wrote:
+> Hi there!
+>   the apparmor recipe from the meta-security layer fails to build in
+> rocko due to an error when building the tests; I tried updating to the
+> latest apparmor version, just to find out that the tests fail to build
+> in some other place (the tests include sys/io.h -- which package should
+> ship this file?)...
+>
+> At the end I think that the fastest way for me to get apparmor to build
+> is to disable building the tests. But I cannot find any info on how it
+> could be done in a .bbappend file.
+>
+> I tried
+>
+>     PTEST_ENABLED_apparmor =3D '0'
+>
+> but that doesn't seem to work. Suggestions?
+>
+> Meanwhile, where does one file bugs against the meta-security layer?
+>
+> Ciao,
+>   Alberto
+>
+> ________________________________
+>
+> This e-mail and any attachment(s) are intended only for the recipient(s) =
+named above and others who have been specifically authorized to receive the=
+m. They may contain confidential information. If you are not the intended r=
+ecipient, please do not read this email or its attachment(s). Furthermore, =
+you are hereby notified that any dissemination, distribution or copying of =
+this e-mail and any attachment(s) is strictly prohibited. If you have recei=
+ved this e-mail in error, please immediately notify the sender by replying =
+to this e-mail and then delete this e-mail and any attachment(s) or copies =
+thereof from your system. Thank you.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
