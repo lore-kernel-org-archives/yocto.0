@@ -1,66 +1,70 @@
-Return-Path: <akuster@mvista.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7EF6AE00874; Sun,  2 Sep 2018 07:51:20 -0700 (PDT)
+	id 24D9FE00A64; Sun,  2 Sep 2018 07:51:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.44 listed in list.dnswl.org]
+	*      [209.85.218.66 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
-	[209.85.218.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 126EFE00805
-	for <yocto@yoctoproject.org>; Sun,  2 Sep 2018 07:51:16 -0700 (PDT)
-Received: by mail-oi0-f44.google.com with SMTP id p84-v6so29560069oic.4
-	for <yocto@yoctoproject.org>; Sun, 02 Sep 2018 07:51:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-oi0-f66.google.com (mail-oi0-f66.google.com
+	[209.85.218.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BC29E00A4C
+	for <yocto@yoctoproject.org>; Sun,  2 Sep 2018 07:51:34 -0700 (PDT)
+Received: by mail-oi0-f66.google.com with SMTP id t68-v6so29495897oie.12
+	for <yocto@yoctoproject.org>; Sun, 02 Sep 2018 07:51:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=3+JDcdYisP6w/0IoUzehmjkh8mohjOEKM6gwqFDr2O8=;
-	b=xD7VpS75+xNM6rXUOlwyHh9p12HEnaA3vzXmFN0yFoTc9IJIoPru64eDvV5tLOgJYE
-	VD5lqSu9dBNG1gA2LnVs9gO0ubBA2wBXKvnYGdUr3Bh8dgA/+z2+HVdhGIVkWRyoB8yx
-	DhQlZ/FefdBhQ1aPPVc7VZx2i/hmiN06TZZ5zqFiG//u9dAHv89NN3o46MfCcf8JeReO
-	9k3W/lzNd25k2tBZX1V8NbtYlDgmMLR5EKoeVhYy3xDhItGShoJ7+W88mmRSt+PLuwdI
-	8ie0UNqsrC8N8GSygCTojGjVzEodmnzlFdH6sx0+W2kiaGLKlg3V30+xRLXkErL+EUFg
-	6M/w==
+	bh=6pC6sqc8OnzCUBVJ5mKszqVh9nEDlQ+eUsRJ6ovDEuo=;
+	b=BA5Qip1o8xwxus9+QuzUiwFv8Ocd9Yf7fy2iC3WZE3XbubMB2qmzO/krYX5Zc4laZS
+	XgAWxirxdQI6o6y9VKU76zVZ4Wh6Cm9SEPPCehiQV2tERoWWFLr2T1wbbJHE2eqS+tfc
+	gvRMqOHdiQllHJaz5tOtj5dB7OQekzOUZDB70zoiUiPr9g7iNEKpLYLm2nrVD7SOjU50
+	U1U7tKQZbbWy17o8N51oF49xMCoNyTY1CcFiWTyyZP+/FdxL0Gi+2cd/ceqXNPgVVWZx
+	3QOVJG1ZoEmZn5N35culfw+Wa6+013q7RBjvH7ylY0qF/ACs4NMom6VXRTz6ksRitll4
+	Cuqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=3+JDcdYisP6w/0IoUzehmjkh8mohjOEKM6gwqFDr2O8=;
-	b=rg9YlGmDNphpbp9h3/t5nAMNkqVMDskqVjeScQQ+ahlsdnCzEg4oNzpvs6rsXAya7Y
-	CI4ljWlxSTzhuOlDdMBlCDzBDoKjDCSxoABXz1EvaarsXV2R00r0Uy9YSJnTRzPHj6Xb
-	jrY4OOLZRVPZ7woVjMTE0L4vb/L+hIw55t30M9XmJaDC5d13/zTXUiv2SlZXzm2oSnXF
-	eT6d5fLueOIhOyUjKYcPNRdNYaf6xhR8+hjgIyNLzXZkPnME+zLI//icw68dj5nzL7kr
-	cm+NapqgsrMvOtNoDV+PTSuxYPe85KC93CgSwrsXIknFi8Kxf10l+ELDzA+xBtysDuuO
-	gJNg==
-X-Gm-Message-State: APzg51CHAk544kcC3EGGV+s/d71GEbdXRY50rZJc8FDBYybIKPZAos3O
-	DFjOd4KY555sG2cQ0dqy1Cspm4jJgCc=
-X-Google-Smtp-Source: ANB0VdbpAVDcfgm+ZMJR0zyLzWhwhZGFYXSTC23Ie6FhMPxsID7V6atKleBCukxokNd5uIH9zV7/cg==
-X-Received: by 2002:aca:c74d:: with SMTP id
-	x74-v6mr1436489oif.97.1535899876119; 
-	Sun, 02 Sep 2018 07:51:16 -0700 (PDT)
+	bh=6pC6sqc8OnzCUBVJ5mKszqVh9nEDlQ+eUsRJ6ovDEuo=;
+	b=KchIK1qoPEn222Eb+5K8RBWa9WZO10SucK+BSF9j2GwYfo42pHNmzm1pDwn3YHER1b
+	saZluws8BgJeImfwdMJNVHsDcWxJxvQfGFoD1CXaoPahFHZrjp0XARg4Qw/PendEL+8o
+	O0N6f8FfqFKuu+q+DcINunK6Dn7aIMHb93E8Dpj7UP2ZOUE1a5YriJAOiLv1jcjo0TaW
+	2nf0G7Usu7nNYJSNIwXf+A55kcV607Fv4ov7XU1C08tC5iKArhiv167C07yL5jmA6g7Z
+	qnw/G0ufuHD3BqL8Hzl8od2uatdNvV+IVqhbevP3+0u7id6vV3S2F2wcPTCJquiHoewm
+	8JeA==
+X-Gm-Message-State: APzg51Acj1PzTg1ZqUi8h4NJFHar+H3AHsiFNUyFxBEcMfvwGGiIjn8L
+	7SgIDCbYnvKq90vDiV0f9pHNzSry
+X-Google-Smtp-Source: ANB0VdYS0VooWMns1led6mY9UmLPa39qw5P8j5JEg1PUAIiEetvYj9wR8KYuaWpO0+CVruVY9HLE9Q==
+X-Received: by 2002:aca:acc8:: with SMTP id
+	v191-v6mr14866938oie.354.1535899893685; 
+	Sun, 02 Sep 2018 07:51:33 -0700 (PDT)
 Received: from ?IPv6:2601:202:4180:c33:c043:3fe4:1aa0:e88f?
 	([2601:202:4180:c33:c043:3fe4:1aa0:e88f])
 	by smtp.gmail.com with ESMTPSA id
-	w84-v6sm12079410oie.40.2018.09.02.07.51.14
+	p7-v6sm13784624oif.35.2018.09.02.07.51.32
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 02 Sep 2018 07:51:15 -0700 (PDT)
-To: mingli.yu@windriver.com, yocto@yoctoproject.org
-References: <1535435107-101357-1-git-send-email-mingli.yu@windriver.com>
-From: akuster <akuster@mvista.com>
+	Sun, 02 Sep 2018 07:51:33 -0700 (PDT)
+To: Yi Zhao <yi.zhao@windriver.com>, yocto@yoctoproject.org
+References: <1535699411-6135-1-git-send-email-yi.zhao@windriver.com>
+From: akuster808 <akuster808@gmail.com>
 Openpgp: preference=signencrypt
-Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
 	Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
 	mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
@@ -103,13 +107,13 @@ Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <49fff4dc-71e5-83d0-5be1-48dbc7d7e56b@mvista.com>
-Date: Sun, 2 Sep 2018 07:51:13 -0700
+Message-ID: <3c50ae61-ae5a-fb96-82dc-9f55af3843a1@gmail.com>
+Date: Sun, 2 Sep 2018 07:51:32 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.9.1
 MIME-Version: 1.0
-In-Reply-To: <1535435107-101357-1-git-send-email-mingli.yu@windriver.com>
-Subject: Re: [meta-security][PATCH] ecryptfs-utils: fix usrmerge install path
+In-Reply-To: <1535699411-6135-1-git-send-email-yi.zhao@windriver.com>
+Subject: Re: [meta-security][PATCH 1/2] samhain: upgrade 4.2.2 -> 4.2.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -121,62 +125,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 02 Sep 2018 14:51:20 -0000
+X-List-Received-Date: Sun, 02 Sep 2018 14:51:42 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
 
-On 08/27/2018 10:45 PM, mingli.yu@windriver.com wrote:
-> From: Mingli Yu <Mingli.Yu@windriver.com>
->
-> Update rootsbindir from /sbin to ${base_sbindir}
-> to fix below do_install error when usrmerge
-> enabled in DISTRO_FEATURES
-> | chmod: cannot access '/poky-build/tmp-glibc/work/core2-64-wrs-linux/ecryptfs-utils/111-r0/image/usr/sbin/mount.ecryptfs_private': No such file or directory
->
-> And pass "--with-pamdir=${base_libdir}/security"
-> to configure script to fix below warning when
-> usrmerge enabled in DISTRO_FEATURES
-> | WARNING: ecryptfs-utils-111-r0 do_package: QA Issue: ecryptfs-utils: Files/directories were installed but not shipped in any package:
->   /lib64/security/pam_ecryptfs.so
+On 08/31/2018 12:10 AM, Yi Zhao wrote:
+> Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 merged
-> Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
 > ---
->  recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
+>  .../samhain/{samhain-client_4.2.2.bb => samhain-client_4.2.4.bb}   | 0
+>  .../samhain/{samhain-server_4.2.2.bb => samhain-server_4.2.4.bb}   | 0
+>  .../{samhain-standalone_4.2.2.bb => samhain-standalone_4.2.4.bb}   | 0
+>  recipes-security/samhain/samhain.inc                               | 7 +++++--
+>  4 files changed, 5 insertions(+), 2 deletions(-)
+>  rename recipes-security/samhain/{samhain-client_4.2.2.bb => samhain-client_4.2.4.bb} (100%)
+>  rename recipes-security/samhain/{samhain-server_4.2.2.bb => samhain-server_4.2.4.bb} (100%)
+>  rename recipes-security/samhain/{samhain-standalone_4.2.2.bb => samhain-standalone_4.2.4.bb} (100%)
 >
-> diff --git a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
-> index f55b0c3..1f780f9 100644
-> --- a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
-> +++ b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
-> @@ -29,6 +29,7 @@ EXTRA_OECONF = "\
->      --libdir=${base_libdir} \
->      --disable-pywrap \
->      --disable-nls \
-> +    --with-pamdir=${base_libdir}/security \
->      "
+> diff --git a/recipes-security/samhain/samhain-client_4.2.2.bb b/recipes-security/samhain/samhain-client_4.2.4.bb
+> similarity index 100%
+> rename from recipes-security/samhain/samhain-client_4.2.2.bb
+> rename to recipes-security/samhain/samhain-client_4.2.4.bb
+> diff --git a/recipes-security/samhain/samhain-server_4.2.2.bb b/recipes-security/samhain/samhain-server_4.2.4.bb
+> similarity index 100%
+> rename from recipes-security/samhain/samhain-server_4.2.2.bb
+> rename to recipes-security/samhain/samhain-server_4.2.4.bb
+> diff --git a/recipes-security/samhain/samhain-standalone_4.2.2.bb b/recipes-security/samhain/samhain-standalone_4.2.4.bb
+> similarity index 100%
+> rename from recipes-security/samhain/samhain-standalone_4.2.2.bb
+> rename to recipes-security/samhain/samhain-standalone_4.2.4.bb
+> diff --git a/recipes-security/samhain/samhain.inc b/recipes-security/samhain/samhain.inc
+> index db96264..e127e91 100644
+> --- a/recipes-security/samhain/samhain.inc
+> +++ b/recipes-security/samhain/samhain.inc
+> @@ -19,8 +19,11 @@ SRC_URI = "http://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
+>             file://samhain.service \
+>             "
 >  
->  PACKAGECONFIG ??= "nss \
-> @@ -43,12 +44,16 @@ do_configure_prepend() {
->      export NSS_LIBS="-L${STAGING_BASELIBDIR} -lssl3 -lsmime3 -lnss3 -lsoftokn3 -lnssutil3"
->      export KEYUTILS_CFLAGS="-I${STAGING_INCDIR}"
->      export KEYUTILS_LIBS="-L${STAGING_LIBDIR} -lkeyutils"
-> +    sed -i -e "s;rootsbindir=\"/sbin\";rootsbindir=\"\${base_sbindir}\";g" ${S}/configure.ac
->  }
+> -SRC_URI[md5sum] = "f499d5d06bfd1d787073a45bf28dd60f"
+> -SRC_URI[sha256sum] = "0f3e64afb3f00064c9b136d34a72d580cd41248c5941eba0452f364a109003c7"
+> +SRC_URI[md5sum] = "08863fad583acc7293ef29b4528c837e"
+> +SRC_URI[sha256sum] = "0cd779b3666264e1f370f7ec37891f680b4caa04895fab8c5aa9a52e41ec885d"
+> +
+> +UPSTREAM_CHECK_URI = "https://www.la-samhna.de/samhain/archive.html"
+> +UPSTREAM_CHECK_REGEX = "samhain_signed-(?P<pver>(\d+(\.\d+)+))\.tar"
 >  
->  do_install_append() {
->      chmod 4755 ${D}${base_sbindir}/mount.ecryptfs_private
-> -    mkdir -p ${D}/${libdir}
-> -    mv ${D}/${base_libdir}/pkgconfig ${D}/${libdir}
-> +    # ${base_libdir} is identical to ${libdir} when usrmerge enabled
-> +    if ! ${@bb.utils.contains('DISTRO_FEATURES','usrmerge','true','false',d)}; then
-> +        mkdir -p ${D}/${libdir}
-> +        mv ${D}/${base_libdir}/pkgconfig ${D}/${libdir}
-> +    fi
->      sed -i -e 's:-I${STAGING_INCDIR}::' \
->             -e 's:-L${STAGING_LIBDIR}::' ${D}/${libdir}/pkgconfig/libecryptfs.pc
->      sed -i -e "s: ${base_sbindir}/cryptsetup: ${sbindir}/cryptsetup:" ${D}${bindir}/ecryptfs-setup-swap
+>  S = "${WORKDIR}/samhain-${PV}"
+>  
 
 
