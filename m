@@ -1,70 +1,66 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4829AE0080F; Sun,  2 Sep 2018 07:50:51 -0700 (PDT)
+	id 7EF6AE00874; Sun,  2 Sep 2018 07:51:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.218.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.68 listed in list.dnswl.org]
-Received: from mail-oi0-f68.google.com (mail-oi0-f68.google.com
-	[209.85.218.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 553AFE00A4F
-	for <yocto@yoctoproject.org>; Sun,  2 Sep 2018 07:50:50 -0700 (PDT)
-Received: by mail-oi0-f68.google.com with SMTP id r69-v6so29564769oie.3
-	for <yocto@yoctoproject.org>; Sun, 02 Sep 2018 07:50:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
+	[209.85.218.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 126EFE00805
+	for <yocto@yoctoproject.org>; Sun,  2 Sep 2018 07:51:16 -0700 (PDT)
+Received: by mail-oi0-f44.google.com with SMTP id p84-v6so29560069oic.4
+	for <yocto@yoctoproject.org>; Sun, 02 Sep 2018 07:51:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
 	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=gU1c8ghENbIScf/iZAiIirWUfK0ox+PgGkLX0J2L3tY=;
-	b=UOsISfb/ao9Rc0afTPBRCUarebeHQhUxStdYwdGdeTi3spQd7/wtvwJ1FnIboiKMqj
-	JdbsuVZBSropMtU/0fvMipMlp7qmqsH0/EgnPJUGtmgsAMQquucrWyBq93eE6t+ahv36
-	/+Z8RYPLNZqZS7+x3dxH3hftzKN7Cy/v/0Lc80BLWlp4T5UhiSKnx5OGbRUNkFT2LR5t
-	IhiS3s9rsM0r9P2DlfmAi629aX9psaglgbHkNJQdJAMsK1r6FZq4U036rT6l7N6zQm0j
-	rDb/0DGJIZA3YazSF1j0OUdJc3bBW9SyNdmftvdj4MdQUH3htGXFMI0f6ZBaRVAChPsA
-	BY/w==
+	bh=3+JDcdYisP6w/0IoUzehmjkh8mohjOEKM6gwqFDr2O8=;
+	b=xD7VpS75+xNM6rXUOlwyHh9p12HEnaA3vzXmFN0yFoTc9IJIoPru64eDvV5tLOgJYE
+	VD5lqSu9dBNG1gA2LnVs9gO0ubBA2wBXKvnYGdUr3Bh8dgA/+z2+HVdhGIVkWRyoB8yx
+	DhQlZ/FefdBhQ1aPPVc7VZx2i/hmiN06TZZ5zqFiG//u9dAHv89NN3o46MfCcf8JeReO
+	9k3W/lzNd25k2tBZX1V8NbtYlDgmMLR5EKoeVhYy3xDhItGShoJ7+W88mmRSt+PLuwdI
+	8ie0UNqsrC8N8GSygCTojGjVzEodmnzlFdH6sx0+W2kiaGLKlg3V30+xRLXkErL+EUFg
+	6M/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=gU1c8ghENbIScf/iZAiIirWUfK0ox+PgGkLX0J2L3tY=;
-	b=pkucx6uHHQmuQWmTZcG115ksiSmdANv5mURrV5dJEwX6f2ZJ8f/4F60lz9T/sfBNdS
-	MxrDiL/pkieyScxCQHqduQ3D8J7xVckNqirReCPLU9mjtylpIvE/rLcxYIqmBBeLpfkc
-	NjmQNNu/zA8HgACZpniZs5dllUxBSEARIU8JNJvj6TNgKlhQbWRQSJfV7hB9dnxSnohe
-	Fu9nNnelvxr9sTRiYZUeSPqrJWgHzD3Nj9vmcjHJ8g2vWKVjHM+MTKjRd6Uq7F6ZRNol
-	kqtRi0Wu1gmO6hjlldDduDce1eIQib9y9ntCu/Jg4TSe/UDFhbhS2JcyZkfaKmLEd9TN
-	q93A==
-X-Gm-Message-State: APzg51BraZtHWCaatYqiGd7Tv0EghEc4YUaVqgDL5mkwfe+/hh8vhxzG
-	MBk4yoea3q7z9H4lcPAkmAFi6y1t
-X-Google-Smtp-Source: ANB0Vdbt+7jIl09UFT+8u2LxTL5ZDwzXfWBneENMmTvveHP9XD7HkyqHEkuZqVFGt5i8KMseQvxmrg==
-X-Received: by 2002:aca:c00b:: with SMTP id
-	q11-v6mr15329642oif.330.1535899849752; 
-	Sun, 02 Sep 2018 07:50:49 -0700 (PDT)
+	bh=3+JDcdYisP6w/0IoUzehmjkh8mohjOEKM6gwqFDr2O8=;
+	b=rg9YlGmDNphpbp9h3/t5nAMNkqVMDskqVjeScQQ+ahlsdnCzEg4oNzpvs6rsXAya7Y
+	CI4ljWlxSTzhuOlDdMBlCDzBDoKjDCSxoABXz1EvaarsXV2R00r0Uy9YSJnTRzPHj6Xb
+	jrY4OOLZRVPZ7woVjMTE0L4vb/L+hIw55t30M9XmJaDC5d13/zTXUiv2SlZXzm2oSnXF
+	eT6d5fLueOIhOyUjKYcPNRdNYaf6xhR8+hjgIyNLzXZkPnME+zLI//icw68dj5nzL7kr
+	cm+NapqgsrMvOtNoDV+PTSuxYPe85KC93CgSwrsXIknFi8Kxf10l+ELDzA+xBtysDuuO
+	gJNg==
+X-Gm-Message-State: APzg51CHAk544kcC3EGGV+s/d71GEbdXRY50rZJc8FDBYybIKPZAos3O
+	DFjOd4KY555sG2cQ0dqy1Cspm4jJgCc=
+X-Google-Smtp-Source: ANB0VdbpAVDcfgm+ZMJR0zyLzWhwhZGFYXSTC23Ie6FhMPxsID7V6atKleBCukxokNd5uIH9zV7/cg==
+X-Received: by 2002:aca:c74d:: with SMTP id
+	x74-v6mr1436489oif.97.1535899876119; 
+	Sun, 02 Sep 2018 07:51:16 -0700 (PDT)
 Received: from ?IPv6:2601:202:4180:c33:c043:3fe4:1aa0:e88f?
 	([2601:202:4180:c33:c043:3fe4:1aa0:e88f])
 	by smtp.gmail.com with ESMTPSA id
-	j125-v6sm29543126oih.53.2018.09.02.07.50.48
+	w84-v6sm12079410oie.40.2018.09.02.07.51.14
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 02 Sep 2018 07:50:49 -0700 (PDT)
-To: Joe Slater <joe.slater@windriver.com>, yocto@yoctoproject.org
-References: <20180827214057.222319-1-joe.slater@windriver.com>
-From: akuster808 <akuster808@gmail.com>
+	Sun, 02 Sep 2018 07:51:15 -0700 (PDT)
+To: mingli.yu@windriver.com, yocto@yoctoproject.org
+References: <1535435107-101357-1-git-send-email-mingli.yu@windriver.com>
+From: akuster <akuster@mvista.com>
 Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
 	Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
 	mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
@@ -107,13 +103,13 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <0ec082c9-1278-fa8e-5247-2dd8344ea08e@gmail.com>
-Date: Sun, 2 Sep 2018 07:50:48 -0700
+Message-ID: <49fff4dc-71e5-83d0-5be1-48dbc7d7e56b@mvista.com>
+Date: Sun, 2 Sep 2018 07:51:13 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.9.1
 MIME-Version: 1.0
-In-Reply-To: <20180827214057.222319-1-joe.slater@windriver.com>
-Subject: Re: [meta-security][PATCH 1/1] keynote: add dependency on bison-native
+In-Reply-To: <1535435107-101357-1-git-send-email-mingli.yu@windriver.com>
+Subject: Re: [meta-security][PATCH] ecryptfs-utils: fix usrmerge install path
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -125,34 +121,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 02 Sep 2018 14:50:51 -0000
+X-List-Received-Date: Sun, 02 Sep 2018 14:51:20 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
 
-On 08/27/2018 02:40 PM, Joe Slater wrote:
-> bison/yacc is no longer automatically supplied.
+On 08/27/2018 10:45 PM, mingli.yu@windriver.com wrote:
+> From: Mingli Yu <Mingli.Yu@windriver.com>
 >
-> Signed-off-by: Joe Slater <joe.slater@windriver.com>
+> Update rootsbindir from /sbin to ${base_sbindir}
+> to fix below do_install error when usrmerge
+> enabled in DISTRO_FEATURES
+> | chmod: cannot access '/poky-build/tmp-glibc/work/core2-64-wrs-linux/ecryptfs-utils/111-r0/image/usr/sbin/mount.ecryptfs_private': No such file or directory
+>
+> And pass "--with-pamdir=${base_libdir}/security"
+> to configure script to fix below warning when
+> usrmerge enabled in DISTRO_FEATURES
+> | WARNING: ecryptfs-utils-111-r0 do_package: QA Issue: ecryptfs-utils: Files/directories were installed but not shipped in any package:
+>   /lib64/security/pam_ecryptfs.so
 merged
+> Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
 > ---
->  recipes-security/keynote/keynote_2.3.bb | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
 >
-> diff --git a/recipes-security/keynote/keynote_2.3.bb b/recipes-security/keynote/keynote_2.3.bb
-> index e692485..0300894 100644
-> --- a/recipes-security/keynote/keynote_2.3.bb
-> +++ b/recipes-security/keynote/keynote_2.3.bb
-> @@ -23,7 +23,7 @@ inherit autotools-brokensep ptest
->  SRC_URI[md5sum] = "a14553e6ad921b5c85026ce5bec3afe7"
->  SRC_URI[sha256sum] = "38d2acfa1c3630a07adcb5c8fe92d2aef7f0e6d242b8998b2bbb1c6e4c408d46"
+> diff --git a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
+> index f55b0c3..1f780f9 100644
+> --- a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
+> +++ b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
+> @@ -29,6 +29,7 @@ EXTRA_OECONF = "\
+>      --libdir=${base_libdir} \
+>      --disable-pywrap \
+>      --disable-nls \
+> +    --with-pamdir=${base_libdir}/security \
+>      "
 >  
-> -DEPENDS = "flex openssl"
-> +DEPENDS = "flex openssl bison-native"
+>  PACKAGECONFIG ??= "nss \
+> @@ -43,12 +44,16 @@ do_configure_prepend() {
+>      export NSS_LIBS="-L${STAGING_BASELIBDIR} -lssl3 -lsmime3 -lnss3 -lsoftokn3 -lnssutil3"
+>      export KEYUTILS_CFLAGS="-I${STAGING_INCDIR}"
+>      export KEYUTILS_LIBS="-L${STAGING_LIBDIR} -lkeyutils"
+> +    sed -i -e "s;rootsbindir=\"/sbin\";rootsbindir=\"\${base_sbindir}\";g" ${S}/configure.ac
+>  }
 >  
->  EXTRA_OEMAKE += "test-sample -j1"
->  
+>  do_install_append() {
+>      chmod 4755 ${D}${base_sbindir}/mount.ecryptfs_private
+> -    mkdir -p ${D}/${libdir}
+> -    mv ${D}/${base_libdir}/pkgconfig ${D}/${libdir}
+> +    # ${base_libdir} is identical to ${libdir} when usrmerge enabled
+> +    if ! ${@bb.utils.contains('DISTRO_FEATURES','usrmerge','true','false',d)}; then
+> +        mkdir -p ${D}/${libdir}
+> +        mv ${D}/${base_libdir}/pkgconfig ${D}/${libdir}
+> +    fi
+>      sed -i -e 's:-I${STAGING_INCDIR}::' \
+>             -e 's:-L${STAGING_LIBDIR}::' ${D}/${libdir}/pkgconfig/libecryptfs.pc
+>      sed -i -e "s: ${base_sbindir}/cryptsetup: ${sbindir}/cryptsetup:" ${D}${bindir}/ecryptfs-setup-swap
 
 
