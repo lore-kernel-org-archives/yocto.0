@@ -1,57 +1,59 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <brgl@bgdev.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 99BB8E0079D; Mon,  3 Sep 2018 08:54:14 -0700 (PDT)
+	id 17F43E007DA; Mon,  3 Sep 2018 08:59:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.136 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C41BDE00720
-	for <yocto@yoctoproject.org>; Mon,  3 Sep 2018 08:54:13 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	03 Sep 2018 08:54:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.53,325,1531810800"; 
-	d="scan'208,217";a="254162894"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
-	by orsmga005.jf.intel.com with ESMTP; 03 Sep 2018 08:53:29 -0700
-Received: from FMSMSX110.amr.corp.intel.com (10.18.116.10) by
-	FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 3 Sep 2018 08:53:29 -0700
-Received: from fmsmsx123.amr.corp.intel.com ([169.254.7.120]) by
-	FMSMSX110.amr.corp.intel.com ([169.254.14.76]) with mapi id
-	14.03.0319.002; Mon, 3 Sep 2018 08:53:28 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Unassigned Bugs - Help Needed
-Thread-Index: AdQXlGn2RYGWCO8aQne3TGYivsbGuQ==
-Date: Mon, 3 Sep 2018 15:53:28 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3390D@fmsmsx123.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiOWM1NTVhNjktYmU4ZS00NzkzLTkyMDgtZGVlNGE1OTA2YTZmIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiaUlWbjdERDJ5eExEVTQ0dWhmcVE5RVV6NVQrT1dlMmtFek5FSTNwUjZ2TE5cL05hT2ZBdXpzZk1EV2tlUzRkNGQifQ==
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A002FE00720
+	for <yocto@yoctoproject.org>; Mon,  3 Sep 2018 08:59:09 -0700 (PDT)
+Received: by mail-io0-f173.google.com with SMTP id v14-v6so753884iob.4
+	for <yocto@yoctoproject.org>; Mon, 03 Sep 2018 08:59:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=vK3LM9Bx8cbURpcTT6vX5Q5/FQPjQrrl7Un5hc0CtfA=;
+	b=YI04B6TOJ9DiEA8MK9yGIdDkdgJSvCaskhoOdxXNbVAZ2BYqRhCDFam/Qr5ZuE7SdY
+	sdG9wDIhMpDfVmYethnEDyJxyRVIgSMmzRCi1yLlCJvS7z5xCFlvFPu4DwibC2Kp9PZm
+	TWrJpY2cxvjXeFIT3NVntKl/Lh0Y/8/8RIkZHRaXl4Psk0Fm2QASRQTsZ6v4wP+yOna8
+	yf9MYEjT/tNvGBm/lG4C7mHKdXPCoK+AO2udSvgIVGYzrEIkvjvPhej85hAHSTLlYb/G
+	G276qXbn4QPbhGZlD4Dcjl7GBcAzt504liWf9EmTjxJF3rBodgUPZETbj7kvF6kHRmUW
+	rIoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=vK3LM9Bx8cbURpcTT6vX5Q5/FQPjQrrl7Un5hc0CtfA=;
+	b=QVnoTIZrSnzgkA36FsQiNXfJOuLkKdK70l+xuVLUpm+3DwJOx5mWYIR1meFj4N7tcF
+	peWzr9ZfBV6fkjeaS5NKFjplsRdZ0kRS2uqtLEWcjxVfjjHJum2Yslp2qO4VeYtiUUrm
+	5bBhFgglLmO1AuLxaLDHQKdvEOHYpWmPCzJTG+QgUetEu79kuN3Cv+nsnVVdYfIWAIcO
+	xLRPw8+ZX39Te0Ae4bkgZ0/v3cMolxtfUjefglTeZ+6CqXPu8K4u5JnurGlVI/ypm4X4
+	fp5B4FrUIfrP8D3+a0w1rzgb3vmm7Ed5+LqKaeF9kqOleyILc8iBh1RiU1ZU1ayhhOR8
+	ydBQ==
+X-Gm-Message-State: APzg51DBHSOy4jKZ0aLIYteMgxX0vVnCyj5SH2GqijAVXUyEcp7z88yu
+	u+OfIEnr7XNWnCnQAR+tbt/VLm6jStJS2BfK528rgr9xsYQ=
+X-Google-Smtp-Source: ANB0VdY16cf6xUUnqYN5OPfs38FSvXfMLmQQMDx10CIbqrjFPRw8dhTxR7fiddVoCVYr0vW+oQ3Q/R+1qwhQvL0uc/A=
+X-Received: by 2002:a6b:6401:: with SMTP id
+	t1-v6mr20863470iog.111.1535990348953; 
+	Mon, 03 Sep 2018 08:59:08 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Yocto Project Unassigned Bugs - Help Needed
+Received: by 2002:a6b:f205:0:0:0:0:0 with HTTP;
+	Mon, 3 Sep 2018 08:59:08 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 3 Sep 2018 17:59:08 +0200
+Message-ID: <CAMRc=Mec347nTORFRnFdHjB5We1Tu_5g78GWqpCj6aWZdNc9CQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: native perl build wants to run target shared object
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,214 +65,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Sep 2018 15:54:14 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3390Dfmsmsx123amrcor_"
+X-List-Received-Date: Mon, 03 Sep 2018 15:59:11 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3390Dfmsmsx123amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-All,
+I'm trying to add a recipe for a new perl package: linux-inotify.
 
+It's fairly standard package available in cpan[1].
 
+I added the following DEPENDS and RDEPENDS:
 
-The triage team meets weekly and does its best to handle the bugs reported =
-into the bugzilla. The number of people attending that meeting has fallen, =
-as have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage team) a=
-re therefore going to start reporting out the currently 313 unassigned bugs=
-.
+RDEPENDS_${PN} += " \
+    perl \
+    perl-module-base \
+"
 
+DEPENDS += " \
+    perl-native \
+    libmodule-build-perl-native \
+"
 
+But I'm getting the following build error:
 
-We're hoping people may be able to spare some time now and again to help ou=
-t with these.
+ERROR: linux-inotify-perl-0.05-r0 do_compile: oe_runmake failed
+ERROR: linux-inotify-perl-0.05-r0 do_compile: Function failed:
+do_compile (log file is located at
+/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/temp/log.do_compile.15693)
+ERROR: Logfile of failure stored in:
+/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/temp/log.do_compile.15693
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 40 PASTHRU_INC= -O2 -pipe -g
+-feliminate-unused-debug-types
+-fdebug-prefix-map=/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0=/usr/src/debug/linux-inotify-perl/0.05-r0
+-fdebug-prefix-map=/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/recipe-sysroot=
+-fdebug-prefix-map=/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/recipe-sysroot-native=
+ LD=aarch64-poky-linux-gcc
+--sysroot=/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/recipe-sysroot
+| /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/recipe-sysroot-native/usr/bin/perl-native/perl
+Build --makefile_env_macros 1
+| Can't load '/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/recipe-sysroot/usr/lib/perl/5.24.1/auto/File/Glob/Glob.so'
+for module File::Glob:
+/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/recipe-sysroot/usr/lib/perl/5.24.1/auto/File/Glob/Glob.so:
+cannot open shared object file: No such file or directory at
+/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/recipe-sysroot-native/usr/bin/perl-native/../../../usr/lib/perl-native/perl/5.24.1/XSLoader.pm
+line 96.
+|  at /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/recipe-sysroot/usr/lib/perl/5.24.1/File/Glob.pm
+line 68.
+| Compilation failed in require at
+/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/recipe-sysroot-native/usr/bin/perl-native/../../../usr/lib/perl-native/perl/vendor_perl/5.24.1/Module/Build/Base.pm
+line 1263.
+| BEGIN failed--compilation aborted at
+/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/recipe-sysroot-native/usr/bin/perl-native/../../../usr/lib/perl-native/perl/vendor_perl/5.24.1/Module/Build/Base.pm
+line 1263.
+| Compilation failed in require at
+/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/recipe-sysroot-native/usr/bin/perl-native/../../../usr/lib/perl-native/perl/vendor_perl/5.24.1/Module/Build.pm
+line 17.
+| BEGIN failed--compilation aborted at
+/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/recipe-sysroot-native/usr/bin/perl-native/../../../usr/lib/perl-native/perl/vendor_perl/5.24.1/Module/Build.pm
+line 17.
+| Compilation failed in require at Build line 47.
+| BEGIN failed--compilation aborted at Build line 47.
+| Makefile:33: recipe for target 'all' failed
+| make: *** [all] Error 2
+| ERROR: oe_runmake failed
+| WARNING: /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/temp/run.do_compile.15693:1
+exit 1 from 'exit 1'
+| ERROR: Function failed: do_compile (log file is located at
+/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/temp/log.do_compile.15693)
+ERROR: Task (/<snip!>/meta-<snip!>/recipes-perl/linux-inotify/linux-inotify-perl_0.05.bb:do_compile)
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 3669 tasks of which 3667 didn't need to
+be rerun and 1 failed.
 
+Apparently the XSLoader module tries to use glob but instead of
+loading the host shared object it opens the target shared object and
+fails.
 
+I couldn't find any reason nor fix for that. Would appreciate any help.
 
-Bugs are split into two types, "true bugs" where things don't work as they =
-should and "enhancements" which are features we'd want to add to the system=
-.
+Best regards,
+Bartosz Golaszewski
 
+[1] https://metacpan.org/pod/Linux::Inotify
 
-
-There are also roughly three different "priority" classes right now, "2.6",=
- "2.99" and "Future", the more pressing/urgent issues being in "2.6".
-
-
-
-Please review this link and if a bug is something you would be able to help=
- with either take ownership of the bug, or send me (Stephen.k.jolley@intel.=
-com) an e-mail with the bug number you would like and I will assign it to y=
-ou (please make sure you have a bugzilla account).
-
-
-
-The list is at: https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bu=
-gs
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*    Cell:                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3390Dfmsmsx123amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:2 11 5 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle19
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText">All,<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">The triage team meets weekly and does its best to=
- handle the bugs reported into the bugzilla. The number of people attending=
- that meeting has fallen, as have the number of people available to help fi=
-x bugs. One of the things we hear
- users report is they don't know how to help. We (the triage team) are ther=
-efore going to start reporting out the currently 313 unassigned bugs.<o:p><=
-/o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">We're hoping people may be able to spare some tim=
-e now and again to help out with these.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Bugs are split into two types, &quot;true bugs&qu=
-ot; where things don't work as they should and &quot;enhancements&quot; whi=
-ch are features we'd want to add to the system.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">There are also roughly three different &quot;prio=
-rity&quot; classes right now, &quot;2.6&quot;, &quot;2.99&quot; and &quot;F=
-uture&quot;, the more pressing/urgent issues being in &quot;2.6&quot;.<o:p>=
-</o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Please review this link and if a bug is something=
- you would be able to help with either take ownership of the bug, or send m=
-e (Stephen.k.jolley@intel.com) an e-mail with the bug number you would like=
- and I will assign it to you (please
- make sure you have a bugzilla account).<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">The list is at: <a href=3D"https://wiki.yoctoproj=
-ect.org/wiki/Bug_Triage#Unassigned_Bugs">
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
-></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3390Dfmsmsx123amrcor_--
