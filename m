@@ -1,65 +1,35 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8FA66E009D9; Tue,  4 Sep 2018 13:51:28 -0700 (PDT)
+	id A696DE00A4F; Tue,  4 Sep 2018 17:18:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.179 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com
-	[209.85.222.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A140E009B2
-	for <yocto@yoctoproject.org>; Tue,  4 Sep 2018 13:51:27 -0700 (PDT)
-Received: by mail-qk1-f179.google.com with SMTP id h138-v6so3423129qke.8
-	for <yocto@yoctoproject.org>; Tue, 04 Sep 2018 13:51:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=FLu8R/UeuhjSfHdY7DMcWOjNk1ndmwodhcUeTsCvxiQ=;
-	b=jMUxz6OF1YvAIvPVKEcsMOm9tLVYaVPfJin+yZAJRVHTPWgKIVcPmJQQKnDb5PH+Rd
-	kNwervoSw1NYpHPVmHEARlwTrTbwrfQplc8pLVjtH/xWx70aKyyf/uUCWTHOfJg612Jp
-	cTOu+SufdLhWcxVu4OCg/XEymFjNW4WkDXHSi2eQrQ7P+eQ9DukpPYQX3HMF7vwuP2Z4
-	CXBzjTvFdseszreVd04SC8WGJ0HoIVN8N4uZbyZgG4GSp8jI9iIzK/moLy4IwYxV6qme
-	9MmGcZ+neKbJvABUYjhrSVcklDiSJwI+vyWaeC5PxMZ32kaEk7HIQYrYb+gnGEvK+Nhv
-	sRuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=FLu8R/UeuhjSfHdY7DMcWOjNk1ndmwodhcUeTsCvxiQ=;
-	b=LBOOHz+Obx8Hk0YYE0E1a4fjIMbPRYXQtXn8mXTItlRQ6TcU4662hznQN4/Vf3kZhM
-	frejVHLUhyMnHLfa4jKqbXNwH/1vwGBrHLGJqpFVncBtYCJml/OMVxaT4WjTSGu/ZCpk
-	aK3dNwjbY6E/0g2EJ+/KiUG+c8toyof9wn3kQ3UjHVCUXqVAfevEudbpDUGcdyiK8ghJ
-	RuhBo4eooZ9Vm+JCgydt4i2KAVJOlyK5w4a9+2X+uK5NNdAUSaPHMYVevbaiAJH7Askn
-	xBgN8+wIvnUgkek2DaxEavFAiqcYJJWtLvSSVPG9GiRQ3JUGMad/PR9Fc2HthlWadh3x
-	V4HA==
-X-Gm-Message-State: APzg51AcmN3kHVagjZ68zSLA4BtID4uHeRNAtptWZieuxABZ0OysGsRT
-	KeE2GhKCVRijwQ9bEwewkIs6RFDSFQIvaChlFah841yz
-X-Google-Smtp-Source: ANB0Vdaw0zd12feQER7S2q1GvYJ7k/lRqCCkIa84J5fPAEjbI//MPqmKub6n7c92nlPlgmzst1h0Re9rWt7QfNoH7Kw=
-X-Received: by 2002:a37:a811:: with SMTP id
-	r17-v6mr30457676qke.81.1536094286572; 
-	Tue, 04 Sep 2018 13:51:26 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3283E00A38
+	for <yocto@yoctoproject.org>; Tue,  4 Sep 2018 17:18:34 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w850IU7S017428
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 4 Sep 2018 17:18:31 -0700 (PDT)
+Received: from localhost (128.224.162.137) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
+	Tue, 4 Sep 2018 17:18:28 -0700
+From: Yi Zhao <yi.zhao@windriver.com>
+To: <joe_macdonald@mentor.com>, <flihp@twobit.us>, <mark.hatle@windriver.com>, 
+	<yocto@yoctoproject.org>
+Date: Wed, 5 Sep 2018 08:18:11 +0800
+Message-ID: <1536106707-30781-1-git-send-email-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <CALDHXtdqVcXd5R10DRbnKubFGdvvin-3xQvaVjR=Tmyjh43UEw@mail.gmail.com>
-In-Reply-To: <CALDHXtdqVcXd5R10DRbnKubFGdvvin-3xQvaVjR=Tmyjh43UEw@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 4 Sep 2018 13:51:00 -0700
-Message-ID: <CAMKF1srDBvnRkx4BjU-D99vsVDs6jzM5VeewfRMScOeVmab_ZQ@mail.gmail.com>
-To: ravikiran.j@mistralsolutions.com
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Systemd based image freezing issue
+X-Originating-IP: [128.224.162.137]
+Subject: [meta-selinux][PATCH 00/16] selinux: upgrade 2.7 -> 2.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,74 +41,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Sep 2018 20:51:28 -0000
-Content-Type: text/plain; charset="UTF-8"
-
-On Tue, Sep 4, 2018 at 7:20 AM Ravikiran J
-<ravikiran.j@mistralsolutions.com> wrote:
->
-> Dear Yocto team,
->
-> We have build the systemd init  based core-image-minimal  image in Yocto version 2.2.2  Morty.
-> We are getting some systemd init failure with this image in our board.
->
+X-List-Received-Date: Wed, 05 Sep 2018 00:18:35 -0000
+Content-Type: text/plain
 
 
-whats the kernel version in use ? and please make sure that you have
-needed config options enabled in kernel .config
-https://github.com/systemd/systemd/blob/master/README#L34
 
+Yi Zhao (16):
+  selinux: uprev inc files to 2.8 (20180524)
+  libsepol: uprev to 2.8 (20180524)
+  libselinux: uprev to 2.8 (20180524)
+  libsemanage: uprev to 2.8 (20180524)
+  checkpolicy: uprev to 2.8 (20180524)
+  secilc: uprev to 2.8 (20180524)
+  policycoreutils: uprev to 2.8 (20180524)
+  mcstrans: uprev to 2.8 (20180524)
+  restorecond: uprev to 2.8 (20180524)
+  selinux-sandbox: uprev to 2.8 (20180524)
+  selinux-python: uprev to 2.8 (20180524)
+  semodule-utils: uprev to 2.8 (20180524)
+  selinux-dbus: uprev to 2.8 (20180524)
+  selinux-gui: uprev to 2.8 (20180524)
+  packagegroup-selinux-policycoreutils: remove
+    semodule-utils-semodule-deps
+  audit: uprev to 2.8.4
 
-> Following is the failed logs :
-> systemd[1]: System time before build time, advancing clock.
-> systemd[1]: systemd 230 running in system mode. (-PAM -AUDIT -SELINUX +IMA -APPARMOR +SMACK +SYSVINIT +UTMP -LIBCRYPTSETUP -GCRYPT -GNUTLS +ACL +XZ -LZ4 -SECCOMP +BLKID -ELFUTILS +KMOD -IDN)
-> systemd[1]: Detected architecture arm.
->
-> Welcome to Poky (Yocto Project Reference Distro) 2.2.2 (morty)!
->
-> systemd[1]: Set hostname to <rzn1d400-graco>.
-> systemd[1]: Initializing machine ID from random generator.
-> systemd[1]: Installed transient /etc/machine-id file.
-> systemd[1]: Cannot determine cgroup we are running in: No medium found
-> systemd[1]: Failed to allocate manager object: No medium found
-> [!!!!!!] Failed to allocate manager object, freezing.
-> systemd[1]: Freezing execution.
->
-> Kernel (Version 4.9) is build with CGROUPS enable, still it's not helping to initialize properly.
->
-> Systemd is enabled through the local.conf file of  the build with following options :
->
-> DISTRO_FEATURES_append = " systemd"
-> VIRTUAL-RUNTIME_init_manager = "systemd"
-> DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
-> VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
->
-> Note:
-> Systvinit based core-image-minimal image is working fine in our board.
->
->
-> Is there anything else needs to enable on the Linux kernel side and Yocto side build?
-> Kindly help us to resolve this issue.
->
->
-> Thanks and Regards,
-> Ravikiran J J
->
->
->
->
->
->
->
->
->
->
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+ .../audit/{audit_2.7.6.bb => audit_2.8.4.bb}       | 18 +++++++-------
+ .../packagegroup-selinux-policycoreutils.bb        |  1 -
+ recipes-security/selinux/checkpolicy.inc           |  1 -
+ recipes-security/selinux/checkpolicy_2.7.bb        |  7 ------
+ recipes-security/selinux/checkpolicy_2.8.bb        |  7 ++++++
+ recipes-security/selinux/libselinux.inc            |  2 +-
+ ...-Makefile-fix-includedir-in-libselinux.pc.patch | 20 ++++++++-------
+ .../{libselinux_2.7.bb => libselinux_2.8.bb}       |  6 ++---
+ recipes-security/selinux/libsemanage.inc           | 12 ++-------
+ ...-Makefile-fix-includedir-in-libselinux.pc.patch | 20 ++++++++-------
+ .../{libsemanage_2.7.bb => libsemanage_2.8.bb}     |  6 ++---
+ ...rc-Makefile-fix-includedir-in-libsepol.pc.patch | 13 +++++-----
+ recipes-security/selinux/libsepol_2.7.bb           |  9 -------
+ recipes-security/selinux/libsepol_2.8.bb           |  9 +++++++
+ recipes-security/selinux/mcstrans.inc              |  1 -
+ recipes-security/selinux/mcstrans_2.7.bb           |  7 ------
+ recipes-security/selinux/mcstrans_2.8.bb           |  7 ++++++
+ recipes-security/selinux/policycoreutils.inc       |  8 +++---
+ ...policycoreutils-fix-fixfiles-install-path.patch | 29 ++++++++++++++++++++++
+ ...icycoreutils-fix-load_policy-install-path.patch | 29 ++++++++++++++++++++++
+ .../policycoreutils-loadpolicy-symlink.patch       | 19 --------------
+ recipes-security/selinux/policycoreutils_2.7.bb    |  8 ------
+ recipes-security/selinux/policycoreutils_2.8.bb    |  8 ++++++
+ recipes-security/selinux/restorecond.inc           |  4 ---
+ recipes-security/selinux/restorecond_2.7.bb        |  7 ------
+ recipes-security/selinux/restorecond_2.8.bb        |  7 ++++++
+ recipes-security/selinux/secilc_2.7.bb             |  7 ------
+ recipes-security/selinux/secilc_2.8.bb             |  7 ++++++
+ recipes-security/selinux/selinux-dbus_2.7.bb       |  7 ------
+ recipes-security/selinux/selinux-dbus_2.8.bb       |  7 ++++++
+ recipes-security/selinux/selinux-gui_2.7.bb        |  7 ------
+ recipes-security/selinux/selinux-gui_2.8.bb        |  7 ++++++
+ recipes-security/selinux/selinux-python.inc        |  2 +-
+ .../selinux-python/fix-sepolicy-install-path.patch | 23 +++++++++--------
+ recipes-security/selinux/selinux-python_2.7.bb     |  7 ------
+ recipes-security/selinux/selinux-python_2.8.bb     |  7 ++++++
+ recipes-security/selinux/selinux-sandbox_2.7.bb    |  7 ------
+ recipes-security/selinux/selinux-sandbox_2.8.bb    |  7 ++++++
+ .../{selinux_20170804.inc => selinux_20180524.inc} |  2 +-
+ recipes-security/selinux/selinux_common.inc        |  9 ++++---
+ recipes-security/selinux/semodule-utils.inc        |  2 --
+ recipes-security/selinux/semodule-utils_2.7.bb     |  7 ------
+ recipes-security/selinux/semodule-utils_2.8.bb     |  7 ++++++
+ 43 files changed, 209 insertions(+), 178 deletions(-)
+ rename recipes-security/audit/{audit_2.7.6.bb => audit_2.8.4.bb} (91%)
+ delete mode 100644 recipes-security/selinux/checkpolicy_2.7.bb
+ create mode 100644 recipes-security/selinux/checkpolicy_2.8.bb
+ rename recipes-security/selinux/{libselinux_2.7.bb => libselinux_2.8.bb} (72%)
+ rename recipes-security/selinux/{libsemanage_2.7.bb => libsemanage_2.8.bb} (76%)
+ delete mode 100644 recipes-security/selinux/libsepol_2.7.bb
+ create mode 100644 recipes-security/selinux/libsepol_2.8.bb
+ delete mode 100644 recipes-security/selinux/mcstrans_2.7.bb
+ create mode 100644 recipes-security/selinux/mcstrans_2.8.bb
+ create mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-fix-fixfiles-install-path.patch
+ create mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-fix-load_policy-install-path.patch
+ delete mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-loadpolicy-symlink.patch
+ delete mode 100644 recipes-security/selinux/policycoreutils_2.7.bb
+ create mode 100644 recipes-security/selinux/policycoreutils_2.8.bb
+ delete mode 100644 recipes-security/selinux/restorecond_2.7.bb
+ create mode 100644 recipes-security/selinux/restorecond_2.8.bb
+ delete mode 100644 recipes-security/selinux/secilc_2.7.bb
+ create mode 100644 recipes-security/selinux/secilc_2.8.bb
+ delete mode 100644 recipes-security/selinux/selinux-dbus_2.7.bb
+ create mode 100644 recipes-security/selinux/selinux-dbus_2.8.bb
+ delete mode 100644 recipes-security/selinux/selinux-gui_2.7.bb
+ create mode 100644 recipes-security/selinux/selinux-gui_2.8.bb
+ delete mode 100644 recipes-security/selinux/selinux-python_2.7.bb
+ create mode 100644 recipes-security/selinux/selinux-python_2.8.bb
+ delete mode 100644 recipes-security/selinux/selinux-sandbox_2.7.bb
+ create mode 100644 recipes-security/selinux/selinux-sandbox_2.8.bb
+ rename recipes-security/selinux/{selinux_20170804.inc => selinux_20180524.inc} (84%)
+ delete mode 100644 recipes-security/selinux/semodule-utils_2.7.bb
+ create mode 100644 recipes-security/selinux/semodule-utils_2.8.bb
+
+-- 
+2.7.4
+
 
