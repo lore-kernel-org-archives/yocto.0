@@ -1,107 +1,62 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <stefano.cappa.ks89@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F1EEEE00A85; Wed,  5 Sep 2018 13:17:19 -0700 (PDT)
+	id 348E4E00A85; Wed,  5 Sep 2018 14:36:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (stefano.cappa.ks89[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.178 listed in list.dnswl.org]
+	*      [209.85.213.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
-	[209.85.210.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1F91E00A54
-	for <yocto@yoctoproject.org>; Wed,  5 Sep 2018 13:17:17 -0700 (PDT)
-Received: by mail-pf1-f178.google.com with SMTP id b11-v6so4046993pfo.3
-	for <yocto@yoctoproject.org>; Wed, 05 Sep 2018 13:17:17 -0700 (PDT)
+Received: from mail-vk0-f51.google.com (mail-vk0-f51.google.com
+	[209.85.213.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14EDBE00A54
+	for <yocto@yoctoproject.org>; Wed,  5 Sep 2018 14:36:55 -0700 (PDT)
+Received: by mail-vk0-f51.google.com with SMTP id t4-v6so3271731vke.9
+	for <yocto@yoctoproject.org>; Wed, 05 Sep 2018 14:36:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:openpgp:autocrypt:organization
-	:message-id:date:user-agent:mime-version:in-reply-to;
-	bh=tA8e5ZfZVVUnyFSFPC1jmH9E80Dt/sp++NepOowNjtk=;
-	b=m1AHh51kmWJruo9STBUH3fLi6ds4gJDT6GnuUAo9lpkXU/Fg5hHa405sI4OzXpuUMz
-	8842XqkKzIjGi45KczERRPG8cSIx0VNXl8k+HEZlah9rn+iEZp939ryENFP7+XMtxd7b
-	lGtdK3P+xndMPKRTAsPyd4kA99T8zVixga63GJb4z0bbG3BGET/RB/kBjScBYSyLf15i
-	5Hf8x1sT6jfkx7x0jZFuDbHu6MMar77b3zanOa8edR0a17SJtL04Mv7V/kKQmt0Zm7aM
-	yiybklDEBmkjHhI1D+5Ik+Wae4GLRgvcpVYc79q09lWjLVlD96wizxxKzWPHeUZWy7tY
-	KHqg==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=H7Y4lgLTExkKrSjsqEFqmqqyT8yhr9K6ZcuqFbIScJA=;
+	b=phPkleX+mlilhj/GgZ8Wh4FO+VtxPbQjQwWn1vv2sr+NkETV2LsA/EXskKJrZP2AGt
+	smypDfv5cclF/ZqUALsN7P4UQ5maR/inmuHWqIsc11DUb6gxhphsz5LpNERThEFhHgUc
+	GYt9Vu0yQYb6nBrKt6Ux3aDpDSfB0+JhSPbjMfjG9E1oDJtcIfMwl+FBzup7Lb+r6ZbI
+	JvO80m01FsFqnnfo8fBiEduZfIDYTTzqK+xJ2LYhMXeAOwDJIZ2+xCYoCGf5SaAfZizv
+	Ugf7OE8QdQ/IFM+dVzXL8MfOT6Bfp8NPjn5ncMMvGp1XHXu6VsPsXuBEu22mUyEsWGVd
+	ecnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:organization:message-id:date:user-agent:mime-version:in-reply-to;
-	bh=tA8e5ZfZVVUnyFSFPC1jmH9E80Dt/sp++NepOowNjtk=;
-	b=U7XoM33dYqvji60oQuR8y5PaeCJgTZ7FoAL9IqvpLDpzyDmHFMIphcUCHA+Mc/3mT+
-	k6Sz6x/Ogw6g6HJk46Y8nVLRcYWq98HX8lX/4JI38MWTDGuNxIuZ1iWydZTlA2UIXMNm
-	tC1FmW9N4HruHSRq5AzJROcJkq/MwO8MLNs6bm/IdwZbvv5JhBQt4BpJvFwru7i624Mm
-	GjRT5JRjXkc1ewXhcU6ziQVmg3bCeVoGCYh5DFxRWoCKPw9cDWQarmoTPc0e20/F3gY9
-	70ToFr7Ts4u03LEKWJILcvZt+QkQf36pYsPS78UF/Tp0IH2sySh83he2OMTNwRDjXvXK
-	i9AQ==
-X-Gm-Message-State: APzg51BznsMJGfG+i30UUwTkCKyA72QB3maqZHpP5dULuzvq/Dl8ziqT
-	Cpb510MV2hyKR16JzoI7jwwmlj/V
-X-Google-Smtp-Source: ANB0VdahlCtfrCoJTjc8iFXYzG1UgRbRt7ucWrKX2vhMBg9HwTHdpzlX9pjNpb83JAIMzAQZOBuvfQ==
-X-Received: by 2002:a62:225d:: with SMTP id
-	i90-v6mr42185643pfi.246.1536178636939; 
-	Wed, 05 Sep 2018 13:17:16 -0700 (PDT)
-Received: from hermes.local ([2601:646:877f:9499:3dff:4b7f:4b07:1058])
-	by smtp.gmail.com with ESMTPSA id
-	k69-v6sm2907556pgd.9.2018.09.05.13.17.15
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 05 Sep 2018 13:17:16 -0700 (PDT)
-To: Ravikiran J <ravikiran.j@mistralsolutions.com>,
-	Yocto Project <yocto@yoctoproject.org>
-References: <CALDHXte7Z+dLUv4LDZAuQMJSRQMmjAp=3AoSQCtnM5LrC99mhA@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=raj.khem@gmail.com; prefer-encrypt=mutual; keydata=
-	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
-Organization: HIMVIS LLC
-Message-ID: <83d74c67-18d3-df69-89ce-8c2408e53f21@gmail.com>
-Date: Wed, 5 Sep 2018 13:17:06 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.0
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=H7Y4lgLTExkKrSjsqEFqmqqyT8yhr9K6ZcuqFbIScJA=;
+	b=nlj8uovVhsk6hzKr5ka4UNeWkpTv2bi2d8LURjC07rL8LlAQyqKbVr05UXwSIGKKWd
+	zRSBgOV6mcMlnT86EVYmOwYRYAfwfkg2UPpdnW7HEZDzQx+mi5qbBmUyGIuHB9Uhorqk
+	6isMh3AaIyclCKCJDtk0DVQ9sBYriZC3ib52yfkIAQ92duxaOTUnE9ZkAeVy/FooxQUq
+	8U0xFX4f7Osh8NsZMcpSN+Cm6GCCSKnYB0Gb6fsx7Fdbat9FI/6puitgpAkt+Z4c2Lrg
+	8n0vilsUEddbLQF5OMqK23mYZR9hC3jzmuzBUSNKdF4g2HorcV9y8hUq4KzwR4ln9Hsq
+	upKA==
+X-Gm-Message-State: APzg51AvKscpTqRRmkfUuc1SCtfWyyfg1yOumCteqR5ytbdY0av8/5lZ
+	fEtqQiex9DjFV+oWwY/besXMSPstsku3ndUo1s6Osg==
+X-Google-Smtp-Source: ANB0VdaIPvc61OdC1wkwbBBbxPubEmceGsHUM/Zqbp82A2RH6CiKtJxRxyK9TsprkdAeKZYOkBBajsCnBeZJz4dL4dQ=
+X-Received: by 2002:a1f:a784:: with SMTP id
+	q126-v6mr19828499vke.70.1536183415027; 
+	Wed, 05 Sep 2018 14:36:55 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CALDHXte7Z+dLUv4LDZAuQMJSRQMmjAp=3AoSQCtnM5LrC99mhA@mail.gmail.com>
-Subject: Re: ERROR: No manifest generated
+From: Stefano Cappa <stefano.cappa.ks89@gmail.com>
+Date: Wed, 5 Sep 2018 23:36:43 +0200
+Message-ID: <CAKRytNw7itxZiWLtaac0hky8fBDFPwKULzWEkGtt8G1TLGn6eA@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Error in do_rootfs while builing on sumo with cmake the library called "libfmt" 4.1.0 (on rocko it was ok)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -113,114 +68,153 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Sep 2018 20:17:20 -0000
-X-Groupsio-MsgNum: 42389
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="3JtvgF0JHJ3HMyUOTakUEMYvXrJA2Z58f"
+X-List-Received-Date: Wed, 05 Sep 2018 21:36:58 -0000
+Content-Type: multipart/alternative; boundary="000000000000c33e5e057526926b"
 
---3JtvgF0JHJ3HMyUOTakUEMYvXrJA2Z58f
-Content-Type: multipart/mixed; boundary="jl6ydZwcxjjko2djTGdo1gz5A6K11a08u";
- protected-headers="v1"
-From: Khem Raj <raj.khem@gmail.com>
-To: Ravikiran J <ravikiran.j@mistralsolutions.com>,
- Yocto Project <yocto@yoctoproject.org>
-Message-ID: <83d74c67-18d3-df69-89ce-8c2408e53f21@gmail.com>
-Subject: Re: [yocto] ERROR: No manifest generated
-References: <CALDHXte7Z+dLUv4LDZAuQMJSRQMmjAp=3AoSQCtnM5LrC99mhA@mail.gmail.com>
-In-Reply-To: <CALDHXte7Z+dLUv4LDZAuQMJSRQMmjAp=3AoSQCtnM5LrC99mhA@mail.gmail.com>
+--000000000000c33e5e057526926b
+Content-Type: text/plain; charset="UTF-8"
 
---jl6ydZwcxjjko2djTGdo1gz5A6K11a08u
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+I created a custom meta-layer to build libfmt 4.1.0 (
+https://github.com/fmtlib/fmt).
+Since this library uses cmake, I created this receipe:
+
+--------------------------------
+*SUMMARY = "fmt"*
+*SECTION = "base"*
+
+*SRC_URI = "https://github.com/fmtlib/fmt/archive/${PV}.tar.gz
+<https://github.com/fmtlib/fmt/archive/${PV}.tar.gz>"*
+*S = "${WORKDIR}/fmt-${PV}"*
+
+*SRC_URI[md5sum] = "057d1fc49f6d3114e29e8cc72cf70e08"*
+*SRC_URI[sha256sum] =
+"46628a2f068d0e33c716be0ed9dcae4370242df135aed663a180b9fd8e36733d"*
+
+*inherit cmake*
+*EXTRA_OECMAKE = ""*
+--------------------------------
+
+Adding fmt as a dependency into my local.conf and running "bitbake fmt" I'm
+able to build the library without issues.
+
+But, when I run "bitbake my-image-name" to bundle everything I receive the
+error below (ONLY WITH SUMO, on ROCKO everything was perfect).
+The same receipe on rocko is absolutely ok. This error appears only on sumo.
+
+--------------------------------
+*ERROR: my-image-develop-1.0-r0 do_rootfs: Could not invoke dnf. Command
+'/home/ks89/git/poky/build/tmp/work/imx6ullevk-poky-linux-gnueabi/my-image-develop/1.0-r0/recipe-sysroot-native/usr/bin/dnf
+-y -c
+/home/ks89/git/poky/build/tmp/work/imx6ullevk-poky-linux-gnueabi/my-image-develop/1.0-r0/rootfs/etc/dnf/dnf.conf
+--setopt=reposdir=/home/ks89/git/poky/build/tmp/work/imx6ullevk-poky-linux-gnueabi/my-image-develop/1.0-r0/rootfs/etc/yum.repos.d
+--repofrompath=oe-repo,/home/ks89/git/poky/build/tmp/work/imx6ullevk-poky-linux-gnueabi/my-image-develop/1.0-r0/oe-rootfs-repo
+--installroot=/home/ks89/git/poky/build/tmp/work/imx6ullevk-poky-linux-gnueabi/my-image-develop/1.0-r0/rootfs
+--setopt=logdir=/home/ks89/git/poky/build/tmp/work/imx6ullevk-poky-linux-gnueabi/my-image-develop/1.0-r0/temp
+--nogpgcheck install mender rpm fmt shadow base-passwd dnf
+packagegroup-core-sdk packagegroup-core-boot run-postinsts
+packagegroup-core-standalone-sdk-target packagegroup-my-deps-develop'
+returned 1:*
+*Added oe-repo repo from
+/home/ks89/git/poky/build/tmp/work/imx6ullevk-poky-linux-gnueabi/my-image-develop/1.0-r0/oe-rootfs-repo*
+*Last metadata expiration check: 0:00:00 ago on Wed 05 Sep 2018 08:05:11 PM
+UTC.*
+*No match for argument: fmt*
+*Error: Unable to find a match*
+
+*ERROR: my-image-develop-1.0-r0 do_rootfs: Function failed: do_rootfs*
+*ERROR: Logfile of failure stored in:
+/home/ks89/git/poky/build/tmp/work/imx6ullevk-poky-linux-gnueabi/my-image-develop/1.0-r0/temp/log.do_rootfs.64931*
+*ERROR: Task
+(/home/ks89/git/poky/meta-custom-layer-sumo/meta-custom-layer-dev/recipes-core/images/my-image-develop.bb:do_rootfs)
+failed with exit code '1'*
+*NOTE: Tasks Summary: Attempted 3973 tasks of which 3655 didn't need to be
+rerun and 1 failed.*
+
+*Summary: 1 task failed:*
+*
+/home/ks89/git/poky/meta-custom-layer-sumo/meta-custom-layer-dev/recipes-core/images/my-image-develop.bb:do_rootfs*
+*Summary: There were 2 ERROR messages shown, returning a non-zero exit
+code.*
+--------------------------------
+
+
+*Do you have any suggestions? I'm completely blocked and I cannot update my
+device to sumo because this library is a dependency of another important
+library that I'm using.*
+*So, I have to add fmt.*
+
+Thank u,
+Ks89
+
+--000000000000c33e5e057526926b
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">I created a custom meta-layer to build libfmt 4.1.0 (<a hr=
+ef=3D"https://github.com/fmtlib/fmt">https://github.com/fmtlib/fmt</a>).<di=
+v>Since this library uses cmake, I created this receipe:</div><div><br></di=
+v><div>--------------------------------<br></div><div><div><i><font color=
+=3D"#0000ff">SUMMARY =3D &quot;fmt&quot;</font></i></div><div><i><font colo=
+r=3D"#0000ff">SECTION =3D &quot;base&quot;</font></i></div><div><i><font co=
+lor=3D"#0000ff"><br></font></i></div><div><i><font color=3D"#0000ff">SRC_UR=
+I =3D &quot;<a href=3D"https://github.com/fmtlib/fmt/archive/${PV}.tar.gz">=
+https://github.com/fmtlib/fmt/archive/${PV}.tar.gz</a>&quot;</font></i></di=
+v><div><i><font color=3D"#0000ff">S =3D &quot;${WORKDIR}/fmt-${PV}&quot;</f=
+ont></i></div><div><i><font color=3D"#0000ff"><br></font></i></div><div><i>=
+<font color=3D"#0000ff">SRC_URI[md5sum] =3D &quot;057d1fc49f6d3114e29e8cc72=
+cf70e08&quot;</font></i></div><div><i><font color=3D"#0000ff">SRC_URI[sha25=
+6sum] =3D &quot;46628a2f068d0e33c716be0ed9dcae4370242df135aed663a180b9fd8e3=
+6733d&quot;</font></i></div><div><i><font color=3D"#0000ff"><br></font></i>=
+</div><div><i><font color=3D"#0000ff">inherit cmake</font></i></div><div><i=
+><font color=3D"#0000ff">EXTRA_OECMAKE =3D &quot;&quot;</font></i></div></d=
+iv><div>--------------------------------<i><br></i></div><div><br></div><di=
+v>Adding fmt as a dependency into my local.conf and running &quot;bitbake f=
+mt&quot; I&#39;m able to build the library without issues.</div><div><br></=
+div><div>But, when I run &quot;bitbake my-image-name&quot; to bundle everyt=
+hing I receive the error below (ONLY WITH SUMO, on ROCKO everything was per=
+fect).</div><div>The same receipe on rocko is absolutely ok. This error app=
+ears only on sumo.</div><div><br></div><div>-------------------------------=
+-</div><div><div><font color=3D"#cc0000"><i><b>ERROR: my-image-develop-1.0-=
+r0 do_rootfs: Could not invoke dnf. </b>Command &#39;/home/ks89/git/poky/bu=
+ild/tmp/work/imx6ullevk-poky-linux-gnueabi/my-image-develop/1.0-r0/recipe-s=
+ysroot-native/usr/bin/dnf -y -c /home/ks89/git/poky/build/tmp/work/imx6ulle=
+vk-poky-linux-gnueabi/my-image-develop/1.0-r0/rootfs/etc/dnf/dnf.conf --set=
+opt=3Dreposdir=3D/home/ks89/git/poky/build/tmp/work/imx6ullevk-poky-linux-g=
+nueabi/my-image-develop/1.0-r0/rootfs/etc/yum.repos.d --repofrompath=3Doe-r=
+epo,/home/ks89/git/poky/build/tmp/work/imx6ullevk-poky-linux-gnueabi/my-ima=
+ge-develop/1.0-r0/oe-rootfs-repo --installroot=3D/home/ks89/git/poky/build/=
+tmp/work/imx6ullevk-poky-linux-gnueabi/my-image-develop/1.0-r0/rootfs --set=
+opt=3Dlogdir=3D/home/ks89/git/poky/build/tmp/work/imx6ullevk-poky-linux-gnu=
+eabi/my-image-develop/1.0-r0/temp --nogpgcheck install mender rpm fmt shado=
+w base-passwd dnf packagegroup-core-sdk packagegroup-core-boot run-postinst=
+s packagegroup-core-standalone-sdk-target packagegroup-my-deps-develop&#39;=
+ returned 1:</i></font></div><div><font color=3D"#cc0000"><i>Added oe-repo =
+repo from /home/ks89/git/poky/build/tmp/work/imx6ullevk-poky-linux-gnueabi/=
+my-image-develop/1.0-r0/oe-rootfs-repo</i></font></div><div><font color=3D"=
+#cc0000"><i>Last metadata expiration check: 0:00:00 ago on Wed 05 Sep 2018 =
+08:05:11 PM UTC.</i></font></div><div><font color=3D"#cc0000"><i>No match f=
+or argument: fmt</i></font></div><div><font color=3D"#cc0000"><i>Error: Una=
+ble to find a match</i></font></div><div><font color=3D"#cc0000"><i><br></i=
+></font></div><div><font color=3D"#cc0000"><i>ERROR: my-image-develop-1.0-r=
+0 do_rootfs: Function failed: do_rootfs</i></font></div><div><font color=3D=
+"#cc0000"><i>ERROR: Logfile of failure stored in: /home/ks89/git/poky/build=
+/tmp/work/imx6ullevk-poky-linux-gnueabi/my-image-develop/1.0-r0/temp/log.do=
+_rootfs.64931</i></font></div><div><font color=3D"#cc0000"><i>ERROR: Task (=
+/home/ks89/git/poky/meta-custom-layer-sumo/meta-custom-layer-dev/recipes-co=
+re/images/my-image-develop.bb:do_rootfs) failed with exit code &#39;1&#39;<=
+/i></font></div><div><font color=3D"#cc0000"><i>NOTE: Tasks Summary: Attemp=
+ted 3973 tasks of which 3655 didn&#39;t need to be rerun and 1 failed.</i><=
+/font></div><div><font color=3D"#cc0000"><i><br></i></font></div><div><font=
+ color=3D"#cc0000"><i>Summary: 1 task failed:</i></font></div><div><font co=
+lor=3D"#cc0000"><i>=C2=A0 /home/ks89/git/poky/meta-custom-layer-sumo/meta-c=
+ustom-layer-dev/recipes-core/images/my-image-develop.bb:do_rootfs</i></font=
+></div><div><font color=3D"#cc0000"><i>Summary: There were 2 ERROR messages=
+ shown, returning a non-zero exit code.</i></font></div></div><div>--------=
+------------------------<br></div><div><br></div><div><br></div><div><b>Do =
+you have any suggestions? I&#39;m completely blocked and I cannot update my=
+ device to sumo because this library is a dependency of another important l=
+ibrary that I&#39;m using.</b></div><div><b>So, I have to add fmt.</b></div=
+><div><b><font color=3D"#ff00ff"><br></font></b></div><div>Thank u,</div><d=
+iv>Ks89</div><div><br></div></div>
 
-
-On 9/4/18 10:39 PM, Ravikiran J wrote:
-> Dear Yocto team,
->=20
-> We have developed some recipe file to install=C2=A0 the firmware binary=
- in
-> the file system of Yocto.
-> Recipe file is working fine in *Yocto morty* version but when we tried
-> the same in the *Yocto sumo* version we got the following error for
-> *bitbake core-image-minimal*.
->=20
-> *ERROR: core-image-minimal-1.0-r0 do_rootfs: No manifest generated from=
-:
-> rtl-firmware in
-> /home/graco_sm/1.4.4/GRACO_SM_REL_V1.1/Software/U-Boot-and-Linux/sumo/p=
-oky/meta-graco/recipes-graco/firmware/rtl-firmware.bb
-> <http://rtl-firmware.bb>*
-> ERROR: core-image-minimal-1.0-r0 do_rootfs: Function failed: do_rootfs
-> ERROR: Logfile of failure stored in:
-> /home/graco_sm/1.4.4/GRACO_SM_REL_V1.1/Software/U-Boot-and-Linux/sumo/p=
-oky/build/tmp/work/rzn1d400_graco-poky-linux-gnueabi/core-image-minimal/1=
-=2E0-r0/temp/log.do_rootfs.28035
-> ERROR: Task
-> (/home/graco_sm/1.4.4/GRACO_SM_REL_V1.1/Software/U-Boot-and-Linux/sumo/=
-poky/meta/recipes-core/images/core-image-minimal.bb:do_rootfs)
-> failed with exit code '1'
->=20
->=20
-
-which version of yocto project release is in use here ?
-
-
-> Recipe file*rtl-firmware.bb <http://rtl-firmware.bb> *content*
-> *
-> *
-> *
-> DESCRIPTION =3D "RTL 8723BU BT firmware"
->=20
-> LICENSE =3D "MIT"
-> LIC_FILES_CHKSUM =3D
-> "file://${COREBASE}/LICENSE;md5=3D4d92cd373abda3937c2bc47fbc49d690"
->=20
-> PACKAGE_ARCH =3D "all"
-
-perhaps using inherit allarch  is better here.
-
->=20
-> SRC_URI +=3D " \
-> =C2=A0=C2=A0=C2=A0 file://rtl8723b_fw.bin \
-> "
->=20
-> do_install () {
-> =C2=A0=C2=A0=C2=A0 install -d ${D}${base_libdir}/firmware/
-> =C2=A0=C2=A0=C2=A0 install -m 755 ${WORKDIR}/rtl8723b_fw.bin ${D}${base=
-_libdir}/firmware/
-> }
->=20
-> FILES_${PN} +=3D " \
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${base_libdir}/firmware/rtl8=
-723b_fw.bin \
-> "*
-> *
->=20
-> What needs to be done for to avoiding manifest error=C2=A0 ?
-> Kindly help us to resolve this issue.
->=20
->=20
-> Thanks and Regards,
-> Ravikiran J J
->=20
->=20
-
-
---jl6ydZwcxjjko2djTGdo1gz5A6K11a08u--
-
---3JtvgF0JHJ3HMyUOTakUEMYvXrJA2Z58f
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCW5A5xQAKCRC7BTNVkZ0z
-FOXzAJ9w1SGJi10AEkzNfbqEI2fEzmBALwCfbtEUJ5oEPXRM96uWZgpoh9cAszg=
-=TB5v
------END PGP SIGNATURE-----
-
---3JtvgF0JHJ3HMyUOTakUEMYvXrJA2Z58f--
+--000000000000c33e5e057526926b--
