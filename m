@@ -1,65 +1,49 @@
-Return-Path: <ravikiran.j@mistralsolutions.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 040A8E0093B; Thu,  6 Sep 2018 07:03:08 -0700 (PDT)
+	id B0238E0093B; Thu,  6 Sep 2018 08:12:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, HTML_OBFUSCATE_05_10,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.216.180 listed in list.dnswl.org]
-	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f180.google.com (mail-qt0-f180.google.com
-	[209.85.216.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3D0FE007AD
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2018 07:03:05 -0700 (PDT)
-Received: by mail-qt0-f180.google.com with SMTP id h4-v6so12340840qtj.7
-	for <yocto@yoctoproject.org>; Thu, 06 Sep 2018 07:03:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mistralsolutions.com; s=dkim;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=+2ibM1T89EKK+kwr1DWbNJDCFQTxwX767GJsDZo1baA=;
-	b=UwOxRC/ZrSiGbPnK5JdMc6xRbEeiv0co010WFnIDpoUKdMzPSMZ8v/PsabeEJq1YwK
-	MysRTcy/AIcgXXiELeMwFcgFwCFn7V2Tyk4uqbhcLwl086uvKPBNY2OjdBrbnNoPzz4L
-	N0DGeAYzGb6KUh13V8/tMymIHY6MtKg3zDkK8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=+2ibM1T89EKK+kwr1DWbNJDCFQTxwX767GJsDZo1baA=;
-	b=DQmrfgJfSXrS2sytbq23kc4BkJ0OtZjqNjOF2WtCEME6A9C0BB7jz4L9FqU9btL5zF
-	rxc4b/Np7b+WvJ8z+zRdbfUSaJG+Cgv3GYy4qyRpM2geBgWu6m5mb/6bQEH66tr9C5Ln
-	U7cufTjlVh29Z1H8OUqHGE3pfz5K6IxrvZxW9miZfgp4Y6tG0CAXoz0eMzNw+UD/QrOv
-	vkonsKSnPBsjbgEA4Irg0LXLJ5yxTkj5Bsst430Nxg6r9l+8iqJ/XcROLmguRMEp5SbE
-	0pDGfYmxmR4S9yV2biM672IL+xdQGYvA2wCJG/tsx1k/szZWNvSLlRZcfAmybDIADY7Y
-	+Bxw==
-X-Gm-Message-State: APzg51DV3v3sWeXGCHxT3InmJB3JXGQBTlt9uXXVzeQiMyfEX/cdwj3P
-	w1L2clEr/Kc+JpcykDYYE+pfQ906bUZZx+g5SJ+SIw==
-X-Google-Smtp-Source: ANB0Vda5NlmmoLLea5JOFfYYDOyAQLviMr7L3WFb8vHOw3pTw/ktXge+8koys4jVnd59Twk1Y25sqok0MyMs+FCL2ts=
-X-Received: by 2002:a0c:8ab0:: with SMTP id 45-v6mr2168853qvv.49.1536242585027;
-	Thu, 06 Sep 2018 07:03:05 -0700 (PDT)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7B5FE00901
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2018 08:12:13 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	06 Sep 2018 08:12:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.53,338,1531810800"; d="scan'208,217";a="83606045"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+	by fmsmga002.fm.intel.com with ESMTP; 06 Sep 2018 08:11:23 -0700
+Received: from fmsmsx123.amr.corp.intel.com ([169.254.7.120]) by
+	FMSMSX105.amr.corp.intel.com ([169.254.4.225]) with mapi id
+	14.03.0319.002; Thu, 6 Sep 2018 08:11:23 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Weekly Triage Meeting
+Thread-Index: AdRF7ZC6x7lE3mjqT4WzdqmanFaVng==
+Date: Thu, 6 Sep 2018 15:11:22 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECEE34C16@fmsmsx123.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZGQ5NGJkODUtMGY1OS00MmI1LWI0NzYtOTgxOTFhMzJiNmI3IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiUk1qQnZ1d1ZUcytrQTlxNEtqNng0cEJ5SXYwTWdCK3lJVHBCa0NHTldQY282dlA2SW1pZEpmczdpTHA2NFZTNiJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.108]
 MIME-Version: 1.0
-Received: by 2002:ac8:3665:0:0:0:0:0 with HTTP;
-	Thu, 6 Sep 2018 07:03:04 -0700 (PDT)
-In-Reply-To: <83d74c67-18d3-df69-89ce-8c2408e53f21@gmail.com>
-References: <CALDHXte7Z+dLUv4LDZAuQMJSRQMmjAp=3AoSQCtnM5LrC99mhA@mail.gmail.com>
-	<83d74c67-18d3-df69-89ce-8c2408e53f21@gmail.com>
-From: Ravikiran J <ravikiran.j@mistralsolutions.com>
-Date: Thu, 6 Sep 2018 19:33:04 +0530
-Message-ID: <CALDHXtdab57WOn7fsm8W562G4E57w-7J59o7=qi345qAT7RQOA@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: ERROR: No manifest generated
+Subject: Minutes: Yocto Project Weekly Triage Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,184 +55,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2018 14:03:08 -0000
-Content-Type: multipart/alternative; boundary="00000000000091fa0205753459db"
+X-List-Received-Date: Thu, 06 Sep 2018 15:12:14 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE34C16fmsmsx123amrcor_"
 
---00000000000091fa0205753459db
-Content-Type: text/plain; charset="UTF-8"
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE34C16fmsmsx123amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Thu, Sep 6, 2018 at 1:47 AM, Khem Raj <raj.khem@gmail.com> wrote:
+QXR0ZW5kZWVzOiBBcm1pbiwgU3RlcGhlbiwgQW1hbmRhLCBSYW5keSwgUmljaGFyZCwgSm9zaHVh
+LCBSb3NzDQoNCldpa2k6IGh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvQnVnX1Ry
+aWFnZQ0KDQpBUjogUmljaGFyZCDigJMgRmlsZSBidWdzIHRvIHVwZGF0ZSBCaXRiYWtlIHdhcm5p
+bmdzLg0KDQpUaGFua3MsDQoNClN0ZXBoZW4gSy4gSm9sbGV5DQpZb2N0byBQcm9qZWN0IFByb2dy
+YW0gTWFuYWdlcg0KSU5URUwsIE1TIEpGMS0yNTUsIDIxMTEgTi5FLiAyNXRoIEF2ZW51ZSwgSGls
+bHNib3JvLCBPUiA5NzEyNA0K4oCiICAgIENlbGw6ICAgICAgICAgICAgICAoMjA4KSAyNDQtNDQ2
+MA0K4oCiIEVtYWlsOiAgICAgICAgICAgICAgICBzdGVwaGVuLmsuam9sbGV5QGludGVsLmNvbQ0K
+DQo=
 
->
->
-> On 9/4/18 10:39 PM, Ravikiran J wrote:
-> > Dear Yocto team,
-> >
-> > We have developed some recipe file to install  the firmware binary in
-> > the file system of Yocto.
-> > Recipe file is working fine in *Yocto morty* version but when we tried
-> > the same in the *Yocto sumo* version we got the following error for
-> > *bitbake core-image-minimal*.
-> >
-> > *ERROR: core-image-minimal-1.0-r0 do_rootfs: No manifest generated from:
-> > rtl-firmware in
-> > /home/graco_sm/1.4.4/GRACO_SM_REL_V1.1/Software/U-Boot-and-L
-> inux/sumo/poky/meta-graco/recipes-graco/firmware/rtl-firmware.bb
-> > <http://rtl-firmware.bb>*
-> > ERROR: core-image-minimal-1.0-r0 do_rootfs: Function failed: do_rootfs
-> > ERROR: Logfile of failure stored in:
-> > /home/graco_sm/1.4.4/GRACO_SM_REL_V1.1/Software/U-Boot-and-L
-> inux/sumo/poky/build/tmp/work/rzn1d400_graco-poky-linux-gnue
-> abi/core-image-minimal/1.0-r0/temp/log.do_rootfs.28035
-> > ERROR: Task
-> > (/home/graco_sm/1.4.4/GRACO_SM_REL_V1.1/Software/U-Boot-and-
-> Linux/sumo/poky/meta/recipes-core/images/core-image-minimal.bb:do_rootfs)
-> > failed with exit code '1'
-> >
-> >
->
-> which version of yocto project release is in use here ?
->
-*Yocto version 2.5*
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE34C16fmsmsx123amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
->
-> > Recipe file*rtl-firmware.bb <http://rtl-firmware.bb> *content*
-> > *
-> > *
-> > *
-> > DESCRIPTION = "RTL 8723BU BT firmware"
-> >
-> > LICENSE = "MIT"
-> > LIC_FILES_CHKSUM =
-> > "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
-> >
-> > PACKAGE_ARCH = "all"
->
-> perhaps using inherit allarch  is better here.
->
-> >
-> > SRC_URI += " \
-> >     file://rtl8723b_fw.bin \
-> > "
-> >
-> > do_install () {
-> >     install -d ${D}${base_libdir}/firmware/
-> >     install -m 755 ${WORKDIR}/rtl8723b_fw.bin
-> ${D}${base_libdir}/firmware/
-> > }
-> >
-> > FILES_${PN} += " \
-> >         ${base_libdir}/firmware/rtl8723b_fw.bin \
-> > "*
-> > *
-> >
-> > What needs to be done for to avoiding manifest error  ?
-> > Kindly help us to resolve this issue.s
-> >
-> >
-> > Thanks and Regards,
-> > Ravikiran J J
-> >
-> >
->
->
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
+dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
+LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
+ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
+PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
+Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+QXR0ZW5kZWVzOiBBcm1pbiwgU3RlcGhlbiwgQW1h
+bmRhLCBSYW5keSwgUmljaGFyZCwgSm9zaHVhLCBSb3NzPC9zcGFuPjwvZm9udD48L2Rpdj4NCjxk
+aXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxm
+b250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExcHQ7Ij5XaWtpOiA8YSBocmVmPSJodHRwczovL3dpa2kueW9jdG9wcm9qZWN0
+Lm9yZy93aWtpL0J1Z19UcmlhZ2UiPjxmb250IGNvbG9yPSIjMDU2M0MxIj48dT5odHRwczovL3dp
+a2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL0J1Z19UcmlhZ2U8L3U+PC9mb250PjwvYT48L3NwYW4+
+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0i
+IzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9u
+dD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5
+N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPkFSOiBSaWNoYXJkIOKAkyBGaWxlIGJ1
+Z3MgdG8gdXBkYXRlIEJpdGJha2Ugd2FybmluZ3MuPC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+
+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250
+IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExcHQ7Ij5UaGFua3MsPC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFj
+ZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IHNpemU9IjQi
+IGNvbG9yPSJwdXJwbGUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTZwdDsiPjxiPjxpPlN0ZXBo
+ZW4gSy4gSm9sbGV5PC9pPjwvYj48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNl
+PSJDb3VyaWVyIE5ldyIgc2l6ZT0iMSIgY29sb3I9ImJsdWUiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6OHB0OyI+PGI+WW9jdG8gUHJvamVjdCBQcm9ncmFtIE1hbmFnZXI8L2I+PC9zcGFuPjwvZm9u
+dD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ291cmllciBOZXciIHNpemU9IjIiIGNvbG9yPSJm
+dWNoc2lhIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQ7Ij48Yj5JTlRFTCwgTVMgSkYxLTI1
+NSwgMjExMSBOLkUuIDI1dGggQXZlbnVlLCBIaWxsc2Jvcm8sIE9SIDk3MTI0IDwvYj48L3NwYW4+
+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjlwdDsiPjxmb250IGZhY2U9IldpbmdkaW5ncyI+KDwvZm9udD48Zm9udCBmYWNlPSJNUyBTYW5z
+IFNlcmlmIiBjb2xvcj0idGVhbCI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IDwvZm9udD48Zm9udCBmYWNl
+PSJDb21pYyBTYW5zIE1TIiBzaXplPSIxIiBjb2xvcj0idGVhbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZTo4cHQ7Ij48Yj5DZWxsPC9iPjwvc3Bhbj48L2ZvbnQ+PGZvbnQgZmFjZT0iTVMgU2FucyBT
+ZXJpZiIgY29sb3I9InRlYWwiPjombmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsNCjwvZm9udD48Zm9udCBm
+YWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0iIzFGNDk3RCI+KDIwOCkgMjQ0LTQ0NjA8L2ZvbnQ+
+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0Qi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6OXB0OyI+PGZvbnQgZmFjZT0iV2luZ2RpbmdzIj4qIDwv
+Zm9udD48Zm9udCBmYWNlPSJDb21pYyBTYW5zIE1TIiBzaXplPSIxIiBjb2xvcj0idGVhbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZTo4cHQ7Ij48Yj5FbWFpbDwvYj48L3NwYW4+PC9mb250Pjxmb250
+IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9yPSJ0ZWFsIj46Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7DQo8L2ZvbnQ+PGZvbnQgZmFjZT0iTVMgU2FucyBTZXJpZiIgY29sb3I9ImJs
+dWUiPjx1PnN0ZXBoZW4uay5qb2xsZXlAaW50ZWwuY29tPC91PjwvZm9udD48L3NwYW4+PC9mb250
+PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPC9zcGFuPjwvZm9u
+dD4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
---00000000000091fa0205753459db
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Thu, Sep 6, 2018 at 1:47 AM, Khem Raj <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;=
-</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
-8ex;border-left:1px #ccc solid;padding-left:1ex"><span><br>
-<br>
-On 9/4/18 10:39 PM, Ravikiran J wrote:<br>
-&gt; Dear Yocto team,<br>
-&gt; <br>
-&gt; We have developed some recipe file to install=C2=A0 the firmware binar=
-y in<br>
-&gt; the file system of Yocto.<br>
-</span>&gt; Recipe file is working fine in *Yocto morty* version but when w=
-e tried<br>
-&gt; the same in the *Yocto sumo* version we got the following error for<br=
->
-&gt; *bitbake core-image-minimal*.<br>
-&gt; <br>
-&gt; *ERROR: core-image-minimal-1.0-r0 do_rootfs: No manifest generated fro=
-m:<br>
-&gt; rtl-firmware in<br>
-&gt; /home/graco_sm/1.4.4/GRACO_SM_<wbr>REL_V1.1/Software/U-Boot-and-L<wbr>=
-inux/sumo/poky/meta-graco/reci<wbr>pes-graco/firmware/<a href=3D"http://rtl=
--firmware.bb" rel=3D"noreferrer" target=3D"_blank">rtl-firmwar<wbr>e.bb</a>=
-<br>
-&gt; &lt;<a href=3D"http://rtl-firmware.bb" rel=3D"noreferrer" target=3D"_b=
-lank">http://rtl-firmware.bb</a>&gt;*<br>
-<span>&gt; ERROR: core-image-minimal-1.0-r0 do_rootfs: Function failed: do_=
-rootfs<br>
-&gt; ERROR: Logfile of failure stored in:<br>
-&gt; /home/graco_sm/1.4.4/GRACO_SM_<wbr>REL_V1.1/Software/U-Boot-and-L<wbr>=
-inux/sumo/poky/build/tmp/work/<wbr>rzn1d400_graco-poky-linux-gnue<wbr>abi/c=
-ore-image-minimal/1.0-r0/<wbr>temp/log.do_rootfs.28035<br>
-&gt; ERROR: Task<br>
-&gt; (/home/graco_sm/1.4.4/GRACO_SM<wbr>_REL_V1.1/Software/U-Boot-and-<wbr>=
-Linux/sumo/poky/meta/recipes-c<wbr>ore/images/core-image-minimal.<wbr>bb:do=
-_rootfs)<br>
-&gt; failed with exit code &#39;1&#39;<br>
-&gt; <br>
-&gt; <br>
-<br>
-</span>which version of yocto project release is in use here ?<br></blockqu=
-ote><span style=3D"color:rgb(0,0,255)"><b>Yocto version 2.5</b> </span><br>=
-</div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div>
-<br>
-&gt; Recipe file*<a href=3D"http://rtl-firmware.bb" rel=3D"noreferrer" targ=
-et=3D"_blank">rtl-firmware.bb</a> &lt;<a href=3D"http://rtl-firmware.bb" re=
-l=3D"noreferrer" target=3D"_blank">http://rtl-firmware.bb</a>&gt; *content*=
-<br>
-&gt; *<br>
-&gt; *<br>
-&gt; *<br>
-<span>&gt; DESCRIPTION =3D &quot;RTL 8723BU BT firmware&quot;<br>
-&gt; <br>
-&gt; LICENSE =3D &quot;MIT&quot;<br>
-&gt; LIC_FILES_CHKSUM =3D<br>
-&gt; &quot;file://${COREBASE}/LICENSE;md<wbr>5=3D4d92cd373abda3937c2bc47fbc=
-49<wbr>d690&quot;<br>
-&gt; <br>
-&gt; PACKAGE_ARCH =3D &quot;all&quot;<br>
-<br>
-</span>perhaps using inherit allarch=C2=A0 is better here.<br>
-<span><br>
-&gt; <br>
-&gt; SRC_URI +=3D &quot; \<br>
-&gt; =C2=A0=C2=A0=C2=A0 file://rtl8723b_fw.bin \<br>
-&gt; &quot;<br>
-&gt; <br>
-&gt; do_install () {<br>
-&gt; =C2=A0=C2=A0=C2=A0 install -d ${D}${base_libdir}/firmware/<br>
-&gt; =C2=A0=C2=A0=C2=A0 install -m 755 ${WORKDIR}/rtl8723b_fw.bin ${D}${bas=
-e_libdir}/firmware/<br>
-&gt; }<br>
-&gt; <br>
-&gt; FILES_${PN} +=3D &quot; \<br>
-&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${base_libdir}/firmware/rtl=
-872<wbr>3b_fw.bin \<br>
-</span>&gt; &quot;*<br>
-&gt; *<br>
-<div class=3D"m_-6542611349148730104m_9144511390783343929HOEnZb"><div class=
-=3D"m_-6542611349148730104m_9144511390783343929h5">&gt; <br>
-&gt; What needs to be done for to avoiding manifest error=C2=A0 ?<br>
-&gt; Kindly help us to resolve this issue.s <br>
-&gt; <br>
-&gt; <br>
-&gt; Thanks and Regards,<br>
-&gt; Ravikiran J J<br>
-&gt; <br>
-&gt; <br>
-<br>
-</div></div></div></blockquote></div><br></div></div>
-
---00000000000091fa0205753459db--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE34C16fmsmsx123amrcor_--
