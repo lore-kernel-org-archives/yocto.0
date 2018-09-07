@@ -1,65 +1,38 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49ADBE00950; Thu,  6 Sep 2018 14:00:32 -0700 (PDT)
+	id 65E4CE00971; Thu,  6 Sep 2018 20:31:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com
-	[209.85.221.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEF7CE00939
-	for <yocto@yoctoproject.org>; Thu,  6 Sep 2018 14:00:31 -0700 (PDT)
-Received: by mail-vk1-f180.google.com with SMTP id q184-v6so69342vke.7
-	for <yocto@yoctoproject.org>; Thu, 06 Sep 2018 14:00:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=QTxbWpqg6Ngg8vcXWq3eWKPKI+r7XMFVtl+iLBcbCk4=;
-	b=JUQ3fbJqKmku3Ozt5T95ZcBTwp4nxOa68bC12cYH5zW/lCiY0a5YrhRXvX/LCkTEYu
-	EV9y5vHwhr/ovD0ikT/sTGM5bULDvvy7FKPf4ikHxkpIt3Q/qsRhJjeHBhtlhwEOMi1X
-	FosioR60yCT9KmmaeYh5+OWjN8OLabD1rjFEF8C49OgPSv5PP0wHXftlbzcpZ8GVUT4e
-	q6pk7ehDC9s4g81J0k4dSdYJtFiyhSX0kpgaqQW7Wia0aeQgh9r5sDN92Qg7ah3YsGoz
-	Uy7r8gCLZV4ddpS4OBG0ecP1QwcoyXQEv+5kFvbOHrrUga9m9jlVyr+zbhdYx67L8ifx
-	N9dA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=QTxbWpqg6Ngg8vcXWq3eWKPKI+r7XMFVtl+iLBcbCk4=;
-	b=ag+sR93Lhz5xtbN1KOjRKwf3Wy2VlnwL6u/unYYLUgMWDJqxGViK5Lzub2KFrCGnOq
-	2of2jZQv060XHYFjiOhDuKC6of4UQIPRb6jP0wPNlPD2fqJN2yl0XwHK3TrrcR1UqVOO
-	VNZFIJCSPFR8/I13Du2VV/UIUFhqJsCEy0alMG58aa4FaMBbfipb1smqKHDQHcOyXmBJ
-	qOpZ6ceAccF83NzbNDdr4L7VD92Kk5W6lK0tW0lI724W8AMFj/wbqpdHD8w1PmklJ/Z0
-	PklyYhTFIaK2Y8PNpLLc/T4XjXPUn8TY+poGXNe/ihc2/SU32fQNMYa6xRqLYul43Hed
-	yMxA==
-X-Gm-Message-State: APzg51AwIp58/03+FItqSvzG1W28LToGk50RK3hRxTq4IyuOkYqi2xWT
-	izUfYf/1maCj8cZJ78QwOIvh35ojxs5RK9f//O8=
-X-Google-Smtp-Source: ANB0VdZXiiY22U0B7wwlLbrdhCGtsB/HKrP0/Bmnb0VOS7+zt2URv8r1pk5OqKEXJaYfyxbwObfT4Zgzik+/VnmfHYc=
-X-Received: by 2002:a1f:15c3:: with SMTP id
-	186-v6mr1582008vkv.83.1536267631116; 
-	Thu, 06 Sep 2018 14:00:31 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8BBDE00953
+	for <yocto@yoctoproject.org>; Thu,  6 Sep 2018 20:31:29 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w873VRc1014340
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 6 Sep 2018 20:31:27 -0700 (PDT)
+Received: from [128.224.162.137] (128.224.162.137) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
+	Thu, 6 Sep 2018 20:31:26 -0700
+To: <joe_macdonald@mentor.com>, <flihp@twobit.us>, <mark.hatle@windriver.com>, 
+	<yocto@yoctoproject.org>, Randy MacLeod <randy.macleod@windriver.com>
+References: <1536106707-30781-1-git-send-email-yi.zhao@windriver.com>
+From: Yi Zhao <yi.zhao@windriver.com>
+Message-ID: <e387d1aa-4892-53a6-7777-06daf2a9c7a3@windriver.com>
+Date: Fri, 7 Sep 2018 11:31:23 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
 MIME-Version: 1.0
-Received: by 2002:ab0:2904:0:0:0:0:0 with HTTP;
-	Thu, 6 Sep 2018 14:00:30 -0700 (PDT)
-In-Reply-To: <CALNvYWOaXtrpM1Zu+W4QVOE1viDgBLfTgZBQ1AP4njWZ+t=SVA@mail.gmail.com>
-References: <CACsVzKiq8gco767SGV_U-WiMNuvp-H+d_u030mBhzCPJzrkobw@mail.gmail.com>
-	<CALNvYWOaXtrpM1Zu+W4QVOE1viDgBLfTgZBQ1AP4njWZ+t=SVA@mail.gmail.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Thu, 6 Sep 2018 14:00:30 -0700
-Message-ID: <CAJ86T=WDxPryffxaPrKRgMZjDz7GRP=wUWQduHU_h4EzyR39sw@mail.gmail.com>
-To: =?UTF-8?Q?Erik_Bot=C3=B6?= <erik.boto@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: curl package config
+In-Reply-To: <1536106707-30781-1-git-send-email-yi.zhao@windriver.com>
+X-Originating-IP: [128.224.162.137]
+Subject: Re: [meta-selinux][PATCH 00/16] selinux: upgrade 2.7 -> 2.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,63 +44,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2018 21:00:32 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 07 Sep 2018 03:31:30 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-On Thu, Sep 6, 2018 at 12:10 PM, Erik Bot=C3=B6 <erik.boto@gmail.com> wrote=
-:
-> Hi,
+Ping
+
+
+//Yi
+
+
+在 2018年09月05日 08:18, Yi Zhao 写道:
 >
-> On Thu, Sep 6, 2018 at 8:01 PM Antonio Santagiuliana
-> <santantonioswap@gmail.com> wrote:
->>
->> Hello
->> I am trying to enable the SMB protocol when building curl library by Yoc=
-to
->> the original recipe is under meta/recipes-support/curl
->>
->> in my image's local.conf I have
->> IMAGE_INSTALL_append +=3D "curl-dev"
->>
->> curl is built correctly, but SMB is disabled
->>
->> So I tried to add a .bbappend file with same name as the recipe's name,
->> with this line only :
->> PACKAGECONFIG =3D "--enable-smb"
-
-This is just the wrong syntax. PACKAGECONFIG is not a list of
-configure options. It's a list of "features" to enable, which are then
-translated into appropriate configure options (and dependencies) based
-on rules defined in the recipe. Maybe look through some existing
-recipes in oe-core to get some idea of how the process works.
-
->> but I still have SMB disaabled on curl.
->>
->> Which is the right way to enable it with PACKAGECONFIG?
->> or another way ?
+> Yi Zhao (16):
+>    selinux: uprev inc files to 2.8 (20180524)
+>    libsepol: uprev to 2.8 (20180524)
+>    libselinux: uprev to 2.8 (20180524)
+>    libsemanage: uprev to 2.8 (20180524)
+>    checkpolicy: uprev to 2.8 (20180524)
+>    secilc: uprev to 2.8 (20180524)
+>    policycoreutils: uprev to 2.8 (20180524)
+>    mcstrans: uprev to 2.8 (20180524)
+>    restorecond: uprev to 2.8 (20180524)
+>    selinux-sandbox: uprev to 2.8 (20180524)
+>    selinux-python: uprev to 2.8 (20180524)
+>    semodule-utils: uprev to 2.8 (20180524)
+>    selinux-dbus: uprev to 2.8 (20180524)
+>    selinux-gui: uprev to 2.8 (20180524)
+>    packagegroup-selinux-policycoreutils: remove
+>      semodule-utils-semodule-deps
+>    audit: uprev to 2.8.4
 >
+>   .../audit/{audit_2.7.6.bb => audit_2.8.4.bb}       | 18 +++++++-------
+>   .../packagegroup-selinux-policycoreutils.bb        |  1 -
+>   recipes-security/selinux/checkpolicy.inc           |  1 -
+>   recipes-security/selinux/checkpolicy_2.7.bb        |  7 ------
+>   recipes-security/selinux/checkpolicy_2.8.bb        |  7 ++++++
+>   recipes-security/selinux/libselinux.inc            |  2 +-
+>   ...-Makefile-fix-includedir-in-libselinux.pc.patch | 20 ++++++++-------
+>   .../{libselinux_2.7.bb => libselinux_2.8.bb}       |  6 ++---
+>   recipes-security/selinux/libsemanage.inc           | 12 ++-------
+>   ...-Makefile-fix-includedir-in-libselinux.pc.patch | 20 ++++++++-------
+>   .../{libsemanage_2.7.bb => libsemanage_2.8.bb}     |  6 ++---
+>   ...rc-Makefile-fix-includedir-in-libsepol.pc.patch | 13 +++++-----
+>   recipes-security/selinux/libsepol_2.7.bb           |  9 -------
+>   recipes-security/selinux/libsepol_2.8.bb           |  9 +++++++
+>   recipes-security/selinux/mcstrans.inc              |  1 -
+>   recipes-security/selinux/mcstrans_2.7.bb           |  7 ------
+>   recipes-security/selinux/mcstrans_2.8.bb           |  7 ++++++
+>   recipes-security/selinux/policycoreutils.inc       |  8 +++---
+>   ...policycoreutils-fix-fixfiles-install-path.patch | 29 ++++++++++++++++++++++
+>   ...icycoreutils-fix-load_policy-install-path.patch | 29 ++++++++++++++++++++++
+>   .../policycoreutils-loadpolicy-symlink.patch       | 19 --------------
+>   recipes-security/selinux/policycoreutils_2.7.bb    |  8 ------
+>   recipes-security/selinux/policycoreutils_2.8.bb    |  8 ++++++
+>   recipes-security/selinux/restorecond.inc           |  4 ---
+>   recipes-security/selinux/restorecond_2.7.bb        |  7 ------
+>   recipes-security/selinux/restorecond_2.8.bb        |  7 ++++++
+>   recipes-security/selinux/secilc_2.7.bb             |  7 ------
+>   recipes-security/selinux/secilc_2.8.bb             |  7 ++++++
+>   recipes-security/selinux/selinux-dbus_2.7.bb       |  7 ------
+>   recipes-security/selinux/selinux-dbus_2.8.bb       |  7 ++++++
+>   recipes-security/selinux/selinux-gui_2.7.bb        |  7 ------
+>   recipes-security/selinux/selinux-gui_2.8.bb        |  7 ++++++
+>   recipes-security/selinux/selinux-python.inc        |  2 +-
+>   .../selinux-python/fix-sepolicy-install-path.patch | 23 +++++++++--------
+>   recipes-security/selinux/selinux-python_2.7.bb     |  7 ------
+>   recipes-security/selinux/selinux-python_2.8.bb     |  7 ++++++
+>   recipes-security/selinux/selinux-sandbox_2.7.bb    |  7 ------
+>   recipes-security/selinux/selinux-sandbox_2.8.bb    |  7 ++++++
+>   .../{selinux_20170804.inc => selinux_20180524.inc} |  2 +-
+>   recipes-security/selinux/selinux_common.inc        |  9 ++++---
+>   recipes-security/selinux/semodule-utils.inc        |  2 --
+>   recipes-security/selinux/semodule-utils_2.7.bb     |  7 ------
+>   recipes-security/selinux/semodule-utils_2.8.bb     |  7 ++++++
+>   43 files changed, 209 insertions(+), 178 deletions(-)
+>   rename recipes-security/audit/{audit_2.7.6.bb => audit_2.8.4.bb} (91%)
+>   delete mode 100644 recipes-security/selinux/checkpolicy_2.7.bb
+>   create mode 100644 recipes-security/selinux/checkpolicy_2.8.bb
+>   rename recipes-security/selinux/{libselinux_2.7.bb => libselinux_2.8.bb} (72%)
+>   rename recipes-security/selinux/{libsemanage_2.7.bb => libsemanage_2.8.bb} (76%)
+>   delete mode 100644 recipes-security/selinux/libsepol_2.7.bb
+>   create mode 100644 recipes-security/selinux/libsepol_2.8.bb
+>   delete mode 100644 recipes-security/selinux/mcstrans_2.7.bb
+>   create mode 100644 recipes-security/selinux/mcstrans_2.8.bb
+>   create mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-fix-fixfiles-install-path.patch
+>   create mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-fix-load_policy-install-path.patch
+>   delete mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-loadpolicy-symlink.patch
+>   delete mode 100644 recipes-security/selinux/policycoreutils_2.7.bb
+>   create mode 100644 recipes-security/selinux/policycoreutils_2.8.bb
+>   delete mode 100644 recipes-security/selinux/restorecond_2.7.bb
+>   create mode 100644 recipes-security/selinux/restorecond_2.8.bb
+>   delete mode 100644 recipes-security/selinux/secilc_2.7.bb
+>   create mode 100644 recipes-security/selinux/secilc_2.8.bb
+>   delete mode 100644 recipes-security/selinux/selinux-dbus_2.7.bb
+>   create mode 100644 recipes-security/selinux/selinux-dbus_2.8.bb
+>   delete mode 100644 recipes-security/selinux/selinux-gui_2.7.bb
+>   create mode 100644 recipes-security/selinux/selinux-gui_2.8.bb
+>   delete mode 100644 recipes-security/selinux/selinux-python_2.7.bb
+>   create mode 100644 recipes-security/selinux/selinux-python_2.8.bb
+>   delete mode 100644 recipes-security/selinux/selinux-sandbox_2.7.bb
+>   create mode 100644 recipes-security/selinux/selinux-sandbox_2.8.bb
+>   rename recipes-security/selinux/{selinux_20170804.inc => selinux_20180524.inc} (84%)
+>   delete mode 100644 recipes-security/selinux/semodule-utils_2.7.bb
+>   create mode 100644 recipes-security/selinux/semodule-utils_2.8.bb
 >
-> You just want to add "smb" to the variable PACKAGECONFIG in the bbappend.
-> But since the original recipe uses ??=3D to assign the default PACKAGECON=
-FIG
-> value you probably want to either redefine the whole variable as the
-> original recipe, but adding "smb"
-> PACKAGECONFIG =3D "${@bb.utils.filter('DISTRO_FEATURES', 'ipv6', d)} gnut=
-ls
-> libidn proxy threaded-resolver verbose zlib smb"
->
-> I think it could work if you use _append as well, since I think that's ad=
-ded
-> after the ??=3D operator is evaluated. So you can also try (note the spac=
-e
-> before smb):
-> PACKAGECONFIG_append =3D " smb"
 
-Using _append like this to add values to PACKAGECONFIG is the
-recommended way (ie don't try to use +=3D) for the reasons mentioned.
-
-Redefining the entire variable isn't necessary or recommended (it
-requires more maintenance to keep the .bbappend value in sync with any
-changes in the base recipe).
 
