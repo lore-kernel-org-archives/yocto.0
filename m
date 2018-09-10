@@ -1,71 +1,52 @@
-Return-Path: <joe@deserted.net>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85599E006F1; Sun,  9 Sep 2018 13:03:50 -0700 (PDT)
+	id 8C2D9E00A73; Mon, 10 Sep 2018 10:38:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.151 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io1-f66.google.com (mail-io1-f66.google.com
-	[209.85.166.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B94F5E00460
-	for <yocto@yoctoproject.org>; Sun,  9 Sep 2018 13:03:49 -0700 (PDT)
-Received: by mail-io1-f66.google.com with SMTP id y10-v6so5345749ioa.10
-	for <yocto@yoctoproject.org>; Sun, 09 Sep 2018 13:03:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=deserted-net.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:content-transfer-encoding:in-reply-to
-	:user-agent; bh=WcgjbEq5n6GfprkOnl6/Uh9B/EKqqKhZs/ndlmW/Su8=;
-	b=jBRqhWE4YjRXpN2eP8QTZpUOHdt8tT3PDywJfCoP3jHY2LJyifmj1wcEWLa6uXThto
-	wFXX5fpFiBRxSr+VKeestz+HegT06E75Pi4PTawEpgEf04u65UuRJfzs8ge3gl0kr3sH
-	fgDSbL9qhG92f9DtySZlAH0eJ32Sqain988i/2z0Y+9b5EKjYk7p0irBxPd+emzoWR5x
-	u1jmzt7BdDk7JywJZXi+5o8DnJ0INYmwzeD8XJQANjOgheyqhZ2rKxOOCPJT0eZSmp47
-	l8zkN1Ti5v3V/f5p3iq9j39EuHMmt7+yft0mdhFIlCKzgzOEMcDaBlJ3sD6hzc06Hb+a
-	Wv6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:content-transfer-encoding
-	:in-reply-to:user-agent;
-	bh=WcgjbEq5n6GfprkOnl6/Uh9B/EKqqKhZs/ndlmW/Su8=;
-	b=kDZbBzlRfbhSpyT2eF2a+vFnpq9yWGjp+8S5/sbExChxKRgaD7r25KaCoM4tqe4AgP
-	7hCfUFvFSttQBBG/pxK63jXKsXCSnG1iDezDxkFFee5O1btnvN9UlkRaVEUwY5teAOnW
-	saCYuaKHjb9R96lXO9CnllIBkxFxzF9f7+7WmWhuqbFj0dod4LVM6UuLZfrz08JtbWNc
-	UD9PXHFbslkkwLOY2wQ42GVTTARiW6WpGoVEXC2AUo5FIWfRbeuYhyK/BvOKnT9LogiC
-	SpQKqjv5Lc4Z2hC8866Zb9UqAmqh/vHiyNViRPPblQZsvk4VuLc2MaNeKijr9TPDgAD6
-	AEHg==
-X-Gm-Message-State: APzg51CUUx2pNARCGwDRnM38VrGxYBxuoFQdBkj+32WulbYbS86T0B0/
-	PRgJpjW6/c4rnM8/pUsyYOQ2Ci9WDtGieg==
-X-Google-Smtp-Source: ANB0VdYXGv9ZqTmpgBtv0onAtT92HBZvfOke9YSsC/iTmoV4fRNigWVlTo/E0ut+6I+Q2Y23V5TvsQ==
-X-Received: by 2002:a6b:f919:: with SMTP id
-	j25-v6mr13414412iog.280.1536523428819; 
-	Sun, 09 Sep 2018 13:03:48 -0700 (PDT)
-Received: from deserted.net (23-233-29-148.cpe.pppoe.ca. [23.233.29.148])
-	by smtp.gmail.com with ESMTPSA id
-	t134-v6sm6384582itb.41.2018.09.09.13.03.47
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 09 Sep 2018 13:03:47 -0700 (PDT)
-Received: by deserted.net (Postfix, from userid 1000)
-	id C829221A006B; Sun,  9 Sep 2018 16:03:45 -0400 (EDT)
-Date: Sun, 9 Sep 2018 16:03:45 -0400
-From: Joe MacDonald <joe@deserted.net>
-To: Eric Chanudet <chanudete@ainfosec.com>
-Message-ID: <20180909200344.GA21403@deserted.net>
-References: <20180909192432.29868-1-chanudete@ainfosec.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7942E00994
+	for <yocto@yoctoproject.org>; Mon, 10 Sep 2018 10:38:28 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	10 Sep 2018 10:38:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.53,356,1531810800"; d="scan'208,217";a="69783577"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by fmsmga008.fm.intel.com with ESMTP; 10 Sep 2018 10:38:27 -0700
+Received: from fmsmsx123.amr.corp.intel.com ([169.254.7.120]) by
+	FMSMSX103.amr.corp.intel.com ([169.254.2.126]) with mapi id
+	14.03.0319.002; Mon, 10 Sep 2018 10:38:26 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: Yocto Project Unassigned Bugs - Help Needed
+Thread-Index: AdQXlGn2RYGWCO8aQne3TGYivsbGuQ==
+Date: Mon, 10 Sep 2018 17:38:26 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECEE35FA3@fmsmsx123.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.108]
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiOWM1NTVhNjktYmU4ZS00NzkzLTkyMDgtZGVlNGE1OTA2YTZmIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiaUlWbjdERDJ5eExEVTQ0dWhmcVE5RVV6NVQrT1dlMmtFek5FSTNwUjZ2TE5cL05hT2ZBdXpzZk1EV2tlUzRkNGQifQ==
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
 MIME-Version: 1.0
-In-Reply-To: <20180909192432.29868-1-chanudete@ainfosec.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-704 http://www.vim.org
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-selinux][PATCH] policycorutils: package files in base_sbindir.
+Subject: Yocto Project Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,81 +58,215 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Sep 2018 20:03:50 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 10 Sep 2018 17:38:29 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE35FA3fmsmsx123amrcor_"
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE35FA3fmsmsx123amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Merged, thanks Eric.  Unfortunate oversight from a last minute change to
-handle some other changes around policycorutils.
+All,
 
--J.
 
-[[yocto] [meta-selinux][PATCH] policycorutils: package files in base_sbindi=
-r.] On 18.09.09 (Sun 19:25) Eric Chanudet wrote:
 
-> SBINDIR was changed to ${base_sbindir} in commit:
-> 8cc9c17 policycoreutils: fix installed-but-not-shipped on updated recipes
->=20
-> FILES_${PN}-* must now capture files installed in ${base_sbindir}
-> accordingly.
->=20
-> Signed-off-by: Eric Chanudet <chanudete@ainfosec.com>
-> ---
->  recipes-security/selinux/policycoreutils.inc | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
->=20
-> diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-secur=
-ity/selinux/policycoreutils.inc
-> index 98000de..85ff164 100644
-> --- a/recipes-security/selinux/policycoreutils.inc
-> +++ b/recipes-security/selinux/policycoreutils.inc
-> @@ -79,26 +79,25 @@ PACKAGES =3D+ "\
->  	${PN}-setsebool \
->  "
->  FILES_${PN}-fixfiles +=3D "${base_sbindir}/fixfiles"
-> -FILES_${PN}-genhomedircon +=3D "${sbindir}/genhomedircon"
-> +FILES_${PN}-genhomedircon +=3D "${base_sbindir}/genhomedircon"
->  FILES_${PN}-loadpolicy +=3D "\
->  	${base_sbindir}/load_policy \
-> -	${sbindir}/load_policy \
->  "
->  FILES_${PN}-newrole +=3D "\
->  	${bindir}/newrole \
->  	${@bb.utils.contains('DISTRO_FEATURES', 'pam', '${sysconfdir}/pam.d/new=
-role', '', d)} \
->  "
->  FILES_${PN}-runinit +=3D "\
-> -	${sbindir}/run_init \
-> -	${sbindir}/open_init_pty \
-> +	${base_sbindir}/run_init \
-> +	${base_sbindir}/open_init_pty \
->  	${@bb.utils.contains('DISTRO_FEATURES', 'pam', '${sysconfdir}/pam.d/run=
-_init', '', d)} \
->  "
->  FILES_${PN}-dbg +=3D "${prefix}/libexec/selinux/hll/.debug"
->  FILES_${PN}-secon +=3D "${bindir}/secon"
-> -FILES_${PN}-semodule +=3D "${sbindir}/semodule"
-> +FILES_${PN}-semodule +=3D "${base_sbindir}/semodule"
->  FILES_${PN}-hll +=3D "${prefix}/libexec/selinux/hll/*"
->  FILES_${PN}-sestatus +=3D "\
-> -	${sbindir}/sestatus \
-> +	${base_sbindir}/sestatus \
->  	${sysconfdir}/sestatus.conf \
->  "
->  FILES_${PN}-setfiles +=3D "\
-> @@ -106,7 +105,7 @@ FILES_${PN}-setfiles +=3D "\
->  	${base_sbindir}/setfiles \
->  "
->  FILES_${PN}-setsebool +=3D "\
-> -	${sbindir}/setsebool \
-> +	${base_sbindir}/setsebool \
->  	${datadir}/bash-completion/completions/setsebool \
->  "
-> =20
-> --=20
-> 2.18.0
---=20
--Joe MacDonald.
-:wq
+The triage team meets weekly and does its best to handle the bugs reported =
+into the bugzilla. The number of people attending that meeting has fallen, =
+as have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage team) a=
+re therefore going to start reporting out the currently 313 unassigned bugs=
+.
 
+
+
+We're hoping people may be able to spare some time now and again to help ou=
+t with these.
+
+
+
+Bugs are split into two types, "true bugs" where things don't work as they =
+should and "enhancements" which are features we'd want to add to the system=
+.
+
+
+
+There are also roughly five different "priority" classes right now, "2.6", =
+"2.7", "2.8", "2.99" and "Future", the more pressing/urgent issues being in=
+ "2.6" and then "2.7".
+
+
+
+Please review this link and if a bug is something you would be able to help=
+ with either take ownership of the bug, or send me (Stephen.k.jolley@intel.=
+com) an e-mail with the bug number you would like and I will assign it to y=
+ou (please make sure you have a bugzilla account).
+
+
+
+The list is at: https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bu=
+gs
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*    Cell:                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE35FA3fmsmsx123amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:2 11 5 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle19
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoPlainText">All,<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The triage team meets weekly and does its best to=
+ handle the bugs reported into the bugzilla. The number of people attending=
+ that meeting has fallen, as have the number of people available to help fi=
+x bugs. One of the things we hear
+ users report is they don't know how to help. We (the triage team) are ther=
+efore going to start reporting out the currently 313 unassigned bugs.<o:p><=
+/o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">We're hoping people may be able to spare some tim=
+e now and again to help out with these.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Bugs are split into two types, &quot;true bugs&qu=
+ot; where things don't work as they should and &quot;enhancements&quot; whi=
+ch are features we'd want to add to the system.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">There are also roughly five different &quot;prior=
+ity&quot; classes right now, &quot;2.6&quot;, &#8220;2.7&#8221;, &#8220;2.8=
+&#8221;, &quot;2.99&quot; and &quot;Future&quot;, the more pressing/urgent =
+issues being in &quot;2.6&quot; and then &#8220;2.7&#8221;.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Please review this link and if a bug is something=
+ you would be able to help with either take ownership of the bug, or send m=
+e (Stephen.k.jolley@intel.com) an e-mail with the bug number you would like=
+ and I will assign it to you (please
+ make sure you have a bugzilla account).<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The list is at: <a href=3D"https://wiki.yoctoproj=
+ect.org/wiki/Bug_Triage#Unassigned_Bugs">
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
+></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE35FA3fmsmsx123amrcor_--
