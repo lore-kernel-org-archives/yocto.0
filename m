@@ -1,61 +1,35 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC426E00C5F; Tue, 11 Sep 2018 00:45:13 -0700 (PDT)
+	id 89257E00B3E; Tue, 11 Sep 2018 01:38:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.182 listed in list.dnswl.org]
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com
-	[209.85.208.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBF03E00B5C
-	for <yocto@yoctoproject.org>; Tue, 11 Sep 2018 00:45:08 -0700 (PDT)
-Received: by mail-lj1-f182.google.com with SMTP id p10-v6so20078768ljg.2
-	for <yocto@yoctoproject.org>; Tue, 11 Sep 2018 00:45:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=rpfNY5GxnM9es7kT8VDKsrz8n5u2TQB6qlSh2yaqaUA=;
-	b=cGhEPN/uRpn//A7SEiGfIm02fmgHy5jqIKgGUHs3E7+0C/gYWwrMz6q+UMt7UbpTM4
-	0FGpuXvxGQkEfBbTyqKbWJh3D5LFqYh6oOsiQnys3pOrKRB2BXkYIBC3B/2B1Kq/RFFQ
-	s2zWh8r4r8hrM1kSsoP760UlzPsitL/AulD7g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=rpfNY5GxnM9es7kT8VDKsrz8n5u2TQB6qlSh2yaqaUA=;
-	b=jUBZdUJHd96z8zelq5lGxzRaDXlg5tvL+/6kzxkxih1kd35vhodg+feJA1hj0nLoGK
-	MeBFJWhLEbGZIdpcWFp33GUz8zHO+APU7DOvM2h92y0qSAbYBlXlGnKnBLajzBKHYfAR
-	FPX37xiNk28TNQoKheDdX81lzOOzK6dt/2pPw4ixMuBhYbH26T1WMjaxjmqw+mZM2tvt
-	NNGlmn4oGUZKC1YvztRcEavw7IqRSWy7s/VvRW04VyarzvgbFhgZnsqIS04S9HQb9rjc
-	1rDar/3PzaJbTxZyM2zfQVSQ1IjxMI5teLTksSTwNF5YazQjbvLwA0gwScvQgR71xgFZ
-	dHyg==
-X-Gm-Message-State: APzg51Ck+zYRxMl0GVHedwUtCFVJaS2zh9SZsvpL1nuTSVfKocEtqCbE
-	t/+cnLFLAvUSvcEoWXcENu8IQ1F6FlA1EOuOngAMox83rmE=
-X-Google-Smtp-Source: ANB0VdZ8uhW5STnban18r61MT9l2aTXDSr2ELDpyU4BIJhXoQ8C311QtN7uB9BUdvg/gDj1eTkgiN56hpHqtPyXWdWE=
-X-Received: by 2002:a2e:9854:: with SMTP id
-	e20-v6mr14673005ljj.143.1536651907773; 
-	Tue, 11 Sep 2018 00:45:07 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29348E00B23
+	for <yocto@yoctoproject.org>; Tue, 11 Sep 2018 01:38:51 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w8B8cAaK016050
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 11 Sep 2018 01:38:20 -0700
+Received: from pek-lpg-core1.wrs.com (128.224.156.132) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.408.0; Tue, 11 Sep 2018 01:37:59 -0700
+From: Robert Yang <liezhi.yang@windriver.com>
+To: <paul.eggleton@linux.intel.com>
+Date: Tue, 11 Sep 2018 16:48:55 +0800
+Message-ID: <cover.1536655311.git.liezhi.yang@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <AM6PR03MB43745DD71168DBF5624BB83B81050@AM6PR03MB4374.eurprd03.prod.outlook.com>
-In-Reply-To: <AM6PR03MB43745DD71168DBF5624BB83B81050@AM6PR03MB4374.eurprd03.prod.outlook.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Tue, 11 Sep 2018 09:44:56 +0200
-Message-ID: <CAP71WjxHtvjsq+nms7ShDGP2UEyv7T99pMAd9abnSNy_2n-LVg@mail.gmail.com>
-To: Adham.Elsafty@ideainmotion.org
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: I can't seem to include tc in my image
+Cc: yocto@yoctoproject.org
+Subject: [layerindex-web][V2 PATCH 0/1] import_layer.py: add -t option for layer_type
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,42 +41,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Sep 2018 07:45:14 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 11 Sep 2018 08:38:52 -0000
+Content-Type: text/plain
 
-hi,
+* V2:
+  - Make -t option use LAYER_TYPE_CHOICES from models.py.
 
-On Tue, Sep 11, 2018 at 9:16 AM Adham ElSafty
-<Adham.Elsafty@ideainmotion.org> wrote:
->
-> I am trying to use traffic control in my yocto image and I want to use tc=
-. I included the iproute2 package in my image and used the IMAGE_INSTALL_AP=
-PEND =3D =E2=80=9C iproute2=E2=80=9D in the local.conf file.
+* V1:
+  - Initial version
 
-Please use _append instead of _APPEND.
+// Robert
 
->
-> When I run the core-image-minimal I can=E2=80=99t seem to find any of the=
- iproute commands installed though.
->
-> Am I doing anything wrong or is anything missing?
->
->
->
-> Best Regards,
->
-> Adham ElSafty
->
-> R&D Embedded Software Engineer
->
-> Idea In Motion
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+The following changes since commit ac32edb5bdbdef30ccf3ef49af0977246571abaa:
+
+  TODO: add some more items (2018-09-06 11:08:43 +1200)
+
+are available in the git repository at:
+
+  git://git.pokylinux.org/poky-contrib rbt/li
+  http://git.pokylinux.org/cgit.cgi//log/?h=rbt/li
+
+Robert Yang (1):
+  import_layer.py: add -t option for layer_type
+
+ layerindex/tools/import_layer.py | 38 ++++++++++++++++++++++++++++++++------
+ 1 file changed, 32 insertions(+), 6 deletions(-)
+
+-- 
+2.7.4
+
 
