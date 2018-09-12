@@ -1,66 +1,72 @@
-Return-Path: <b.hutchman@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ECEA5E00566; Wed, 12 Sep 2018 08:12:34 -0700 (PDT)
+	id 9EC1FE00566; Wed, 12 Sep 2018 09:12:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (b.hutchman[at]gmail.com)
+	mail provider *      (twoerner[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.50 listed in list.dnswl.org]
+	*      [209.85.166.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 668FAE00519
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2018 08:12:34 -0700 (PDT)
-Received: by mail-wm0-f50.google.com with SMTP id y2-v6so2827222wma.1
-	for <yocto@yoctoproject.org>; Wed, 12 Sep 2018 08:12:34 -0700 (PDT)
+Received: from mail-io1-f68.google.com (mail-io1-f68.google.com
+	[209.85.166.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CD83E00519
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2018 09:12:16 -0700 (PDT)
+Received: by mail-io1-f68.google.com with SMTP id l14-v6so647630iob.7
+	for <yocto@yoctoproject.org>; Wed, 12 Sep 2018 09:12:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=+hvrvkz1JCjC5fTBbjnquZH22ArlHef3/WJ1MerjgBE=;
-	b=jukyCw3ysowUfNxXg+qS4BX//MCQljaenkpDIMND3TmJElsza9S8T9pzORtMtZU3rE
-	EPHVi6gsA3OsXmt/3Rbwl3zvmTmGVZkBH8PgvfzeS0MxBwTZrLyGEgGoQPhibpjC2/8u
-	m5W9timLDX/RgjrksAtXc6UdVFLBWlTpBnaK4qfGJ/j0nmPinYRnvNgo0r97T0shCGiy
-	QQIo8yxY29cssZyIU73AgCPJM2y5K7+Jw0gvL4/Fkhz2bh9dnjujtmEr7MHYPYW1d72e
-	fP6tdplbB//V7LSaHYvJyqq2c5hbGL9Fj/YENqT5rExtdgxxKaWl3wZb/CSHG2qRAWvr
-	gENw==
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=fJefRFB4ZZ8YIe4KG01e9257S3OPoexLgWuSuGZAVbI=;
+	b=SmvLXDJRsBG9KUTZVwRT2Rjj+Uj/YjQnr8PRARJfFZ77mT1PCzxzlCCqBT5WLWqM9F
+	CLOC+blIkMI9YpDgA6dWKrtavnlAnk1UTe6GLfPZjLWBb+X4+GX/WGfgu52hRCCb3PK1
+	M2nGjJKRAJ8bXD6Mu4qtDIbaXGG85UdY8Kt7ZPeb1f0rOLp6Be7i6Ydv84QcjOlu5S6z
+	38lgOvJxyoeA3QLTQJzQZ/S26GeR3MVkVLmvvqVrW/G01fp+TgEWe67AXG+3TiOMpJza
+	3AwTHumcKdb/1890JEhg+LpY3WpcFb7n63bOTwSBUxs77IpMrqaIoPLTjvQrt+jhi9i6
+	F3mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=+hvrvkz1JCjC5fTBbjnquZH22ArlHef3/WJ1MerjgBE=;
-	b=MvrqCjltRLhVzhmL0xM0KcHL2BuXwNx1exO6i9Hn01BarzI3OUH+a0ZXKAPa77KH/3
-	JuERKfms3w5WatNDo26UxhgiZoekz+5Jbj2QVKPSFAmbTg11HNe8jiN+ImtVcYxSaBf0
-	o8YFT+RNkLPKKBvRwI7eiy656tELQ3K2FDKUCg1Gnzv47rBkmfp+YBJ7pP2iQ7X0f8YN
-	Dr2PEV0fNJDzrvXsYsYv+7ScX8fi01bYijlNHcjUWDaK3yQk96MxrJi5mej9B62pVemY
-	MpdBbduX1WBXTMMwEZ1tjkMAEYsKmRFKK+2F4ZvjbbQfMxUBj3sbjCVDoHHoo6xAGLhL
-	8Phg==
-X-Gm-Message-State: APzg51BLYDFXkjJS4dS3Q2LAWzcliy5FohpuQr78Z8p6Ljm15hO3KjlG
-	2+6rCzNREyjRPzxmsq+Q3IyCu42mYUOf2ak3E1s=
-X-Google-Smtp-Source: ANB0VdYn31g09D2CzETIDZ2wjsH/WppdMFP9Asmp87WDK3rxvKi+HEztYr1vP13N8tO2J0RyBmYQT5UrEM6rObGZ8WQ=
-X-Received: by 2002:a1c:570a:: with SMTP id
-	l10-v6mr1889767wmb.56.1536765153319; 
-	Wed, 12 Sep 2018 08:12:33 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=fJefRFB4ZZ8YIe4KG01e9257S3OPoexLgWuSuGZAVbI=;
+	b=sg+RMPywJYe/Oa2IBySBkin8+IJHyTstTZ2fJaikuBxVwiTjQOLffixypzJc0nXxzv
+	iWphMxxTRlFQBit+zF0xDnlsrCZEcABaSxRujyt3vOrhbqgH5J2fI8tkc+Iev1c96u0n
+	i8wDLOH6Vd/rjiMfFI4JGuD0ZpiHhh1a/f1AyC1WhAmtLOihlCxhsZ2gmzC4DlIcY1Fd
+	hyWU0gR5NqWI1j4n2VdrVRyQ1J7OdD7yERBQBxTBUtMmZ+nMAIEJPDB4Kmi1caUSi7g1
+	Pqf2EYDhSuTegkEFzmSDdI7GpY6pgSnpmiLXzZPBDEg4KCgUWnvXNfaDp7cDjpuz4ms5
+	rU8Q==
+X-Gm-Message-State: APzg51CvTjvHt91I7Y0DUJfXDgGUs2I+R09mx+rCI+BCL+qHXV/50NH+
+	jbSHbr6z21dxqo7gqax4D0hwoEco
+X-Google-Smtp-Source: ANB0VdZJknbzYypAyKjSByAdZ/qUeBF47eun5LevIvi5qUtpGdGM0BZlyZN40FGk3X0Gc4pUPRsdqA==
+X-Received: by 2002:a5e:980c:: with SMTP id
+	s12-v6mr2480316ioj.113.1536768736368; 
+	Wed, 12 Sep 2018 09:12:16 -0700 (PDT)
+Received: from linux-uys3 ([206.248.190.95]) by smtp.gmail.com with ESMTPSA id
+	a6-v6sm354797ioq.73.2018.09.12.09.12.13
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 12 Sep 2018 09:12:15 -0700 (PDT)
+Date: Wed, 12 Sep 2018 12:12:10 -0400
+From: Trevor Woerner <twoerner@gmail.com>
+To: Shyam Saini <shyam.saini@amarulasolutions.com>
+Message-ID: <20180912161210.GA21553@linux-uys3>
+References: <20180912141004.7929-1-shyam.saini@amarulasolutions.com>
 MIME-Version: 1.0
-References: <CAFZh4h9v4DimM=XMsCVR1z3P+n1MvX1zxT93hH+pYV8o7a077A@mail.gmail.com>
-	<CANNYZj-Tu72fapYpUOcn-ME3qOL_8nhyvqDnjX22ubvOxsRX=A@mail.gmail.com>
-In-Reply-To: <CANNYZj-Tu72fapYpUOcn-ME3qOL_8nhyvqDnjX22ubvOxsRX=A@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-Date: Wed, 12 Sep 2018 11:12:21 -0400
-Message-ID: <CAFZh4h-iHs3xE2Ud_PhKd_FnMW5kVXmYWB_VGv2WDZcnYwUBkQ@mail.gmail.com>
-To: alex.kanavin@gmail.com
-Cc: yocto@yoctoproject.org
-Subject: Re: Is there a "yocto way" to rebuild sqlite amalgamation?
+In-Reply-To: <20180912141004.7929-1-shyam.saini@amarulasolutions.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: yocto@yoctoproject.org, michael@amarulasolutions.com,
+	jagan@amarulasolutions.com
+Subject: Re: [meta-rockchip] conf: machine: Add support for vyasa-rk3288
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,52 +78,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Sep 2018 15:12:35 -0000
-Content-Type: multipart/alternative; boundary="000000000000111e3c0575ae05e9"
+X-List-Received-Date: Wed, 12 Sep 2018 16:12:18 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---000000000000111e3c0575ae05e9
-Content-Type: text/plain; charset="UTF-8"
+Hello Shyam,
 
-On Wed, Sep 12, 2018 at 11:09 AM Alexander Kanavin <alex.kanavin@gmail.com>
-wrote:
+Thank you for your contribution!
 
-> These two are orthogonal. "amalgamation" is building sqlite from a
-> single source file for performance and simplicity reasons, which is
-> what yocto does as well, despite there being no mention of it in the
-> recipe. Enabling or disabling specific sqlite features can be done
-> regardless of whether amalgamation or original source code file bunch
-> is in use.
->
-> Alex
->
-> Thanks!  That is what I was hoping for.  I set the feature in my bbappends
-> file and went for broke and am just going for it rebuilding everything.
->
+I just have 3 small nits with your patch, which I am happy to fix myself
+without you needing to send a v2 (if that's okay with you):
 
-Regards,
+1. I see that there's a mistake in meta-rockchip's README file which I will
+   fix, the email subject should be prefixed with "[meta-rockchip][PATCH]".
+   Sorry! I will fix this in the README.
 
-Brian
+On Wed 2018-09-12 @ 07:40:04 PM, Shyam Saini wrote:
+> This patch adds initial support for the Amarula Vyasa Board.
 
---000000000000111e3c0575ae05e9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+2. I'm going to remove the following second sentence from the commit message.
+   In 2 years, reading the commit logs regarding future promises/TODOs will
+   seem funny. The sentence above fully explains this patch.
 
-<div dir=3D"ltr"><br><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Wed=
-, Sep 12, 2018 at 11:09 AM Alexander Kanavin &lt;<a href=3D"mailto:alex.kan=
-avin@gmail.com">alex.kanavin@gmail.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex"><div>These two are orthogonal. &quot;=
-amalgamation&quot; is building sqlite from a<br>
-single source file for performance and simplicity reasons, which is<br>
-what yocto does as well, despite there being no mention of it in the<br>
-recipe. Enabling or disabling specific sqlite features can be done<br>
-regardless of whether amalgamation or original source code file bunch<br>
-is in use.<br>
-<br>
-Alex<br>
-<br></div>Thanks!=C2=A0 That is what I was hoping for.=C2=A0 I set the feat=
-ure in my bbappends file and went for broke and am just going for it rebuil=
-ding everything.<br></blockquote><div><br></div><div>Regards,</div><div><br=
-></div><div>Brian<br></div></div></div>
+> With this patch, we would have working images for vyasa,
+> single gpt and wic image support would be added later on.
 
---000000000000111e3c0575ae05e9--
+
+> 
+> Signed-off-by: Shyam Saini <shyam.saini@amarulasolutions.com>
+> ---
+>  conf/machine/vyasa-rk3288.conf | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>  create mode 100644 conf/machine/vyasa-rk3288.conf
+> 
+> diff --git a/conf/machine/vyasa-rk3288.conf b/conf/machine/vyasa-rk3288.conf
+> new file mode 100644
+> index 000000000000..9c634325451e
+> --- /dev/null
+> +++ b/conf/machine/vyasa-rk3288.conf
+> @@ -0,0 +1,14 @@
+> +# Copyright (C) 2018 Amarula Solutions
+> +# Released under the MIT license (see COPYING.MIT for the terms)
+> +
+> +#@TYPE: Machine
+> +#@NAME: Amarula Vyasa RK3288
+> +#@DESCRIPTION: Amarula Vyasa is Rockchip RK3288 SOC based Single board computer with fully supported opensource software.
+> +
+> +require conf/machine/include/rk3288.inc
+> +
+> +KERNEL_IMAGETYPE = "uImage"
+> +KERNEL_DEVICETREE = "rk3288-vyasa.dtb"
+
+3. I'm going to add a space after += for consistency.
+
+> +KERNEL_EXTRA_ARGS +="LOADADDR=0x02000000"
+> +
+> +UBOOT_MACHINE = "vyasa-rk3288_defconfig"
+> -- 
+> 2.11.0
+> 
+
+Once again, thank you for your contribution!
+
