@@ -1,64 +1,71 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <idealsim@laposte.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3C938E006AF; Thu, 13 Sep 2018 05:00:40 -0700 (PDT)
+	id 85F4CE006C7; Thu, 13 Sep 2018 06:15:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (idealsim[at]laposte.net)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [194.117.213.98 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
-	[209.85.210.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEBB9E0053F
-	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 05:00:38 -0700 (PDT)
-Received: by mail-ot1-f44.google.com with SMTP id n5-v6so960820otl.5
-	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 05:00:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=xwsQIGx8eLPKIU+XQIydkm8QnqpDZEtxQvyN5phK/uI=;
-	b=rR7vK0ORev/fJOOumy4ywCr4xW0eyUqi2wzJHLZ4Hjpk+rCE4SBiiUsJLllOl2ov7O
-	89ICNrg2uHrym0V/QrqlmSeIxP/r3fCc38Dp8W2w9gSbW+RtZh5EnCdHzkGoex9UyElH
-	X5BdeEbrq97Y8z3HGm8D9wqVF9LEF3lh4fhc42Ql9n6ZnLy8q8CPoo/FsjXvjUtmyyqw
-	/fWBf2j8PoaOHd3Ewfc6+OCdL61CFbHz2oGSMt69jFIpXNtVjx65tUaCEhboa8U2FE72
-	BcyBpODEEtKM5XXbTCgxlXE14As32XnK96Mf/bnEwnQjOBEimFbDoBXrl8TucBjhrG3d
-	Z3nA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=xwsQIGx8eLPKIU+XQIydkm8QnqpDZEtxQvyN5phK/uI=;
-	b=dGxyFa1rLP0D5aRcgaAnDQx1sYsqXk3z+BltaZj11TJ5u3cZcuieMHs1BAwi/Gy9DE
-	vcYTXZ+TxdIACmCQYPSqiZxVpResxqUeKaTVzI31ygOccGFUIv0FwhOzSmGdgMXpaIgJ
-	8g79LZqXy4JLoZBFl4PXRf4r/0PjE+WbC5b/kHHBP/bBoM/Ag8nnNsmcRJVuzbsOdpVf
-	gpfNcInTwC6lBcQJf8yhFZd0jQH/lEl8EwIvuTBlnpilJk3uFmixoFkhXgs9zH8EOpn5
-	4hqjKIcr9KRf80FqKXeKUD+4XMRAke273uy2UgL/IqnYIH9uw2b+eZ/WlSPlq4ZfNCdL
-	3CHQ==
-X-Gm-Message-State: APzg51Ci6gSeYOry/UABTRLMOyqToQucpeTcGPGl8y2mstLCr0EYRNtz
-	6K9p/Sn/uvgk8ZROWq/wUzelLOxhWV1kJzbuJ5+yGJjX
-X-Google-Smtp-Source: ANB0Vda1KKFvc0POElbEb+0DfVPmYvv3W69QRm6VB2ACAf9BiHm49k9bRITdR/w6uJlOxKQtgXeM7Ok619YzfCCDUB0=
-X-Received: by 2002:a9d:3a5:: with SMTP id
-	f34-v6mr1029620otf.343.1536840038369; 
-	Thu, 13 Sep 2018 05:00:38 -0700 (PDT)
+Received: from smtp.laposte.net (smtpoutz23.laposte.net [194.117.213.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 353BCE00546
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 06:15:34 -0700 (PDT)
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout011 (Postfix) with ESMTP id DD9AF52E883
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 15:15:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1536844532; bh=l/Uq1JMC/DT+Pl/PhmkEL/KlUKpfhy1TM1L+YK3ByNs=;
+	h=Date:Subject:To:From;
+	b=FN6Xy+QHIE9scckKTn4ZnzE+uv6yZ0507lNEdQUNxfjmgzCS6fxY41XpC9XlQFocu
+	7Z4wjVNDcTGAofBjD0zPmswNOB65cnJ43VSDRz3bjYnfCV+h67MeUEJa5pzuYVFbOS
+	anPu7BpFPosxveAhX0xm8eavpGqM/Nx8J+ouEaafwpkvyxEKLYQ976NATx1vDbpgsu
+	52xQ4E0UpVGzptCJGUs1slvTRj9NP2SmI4aqFfxsnreW/SPt8RmW9qDtNFSCKiOpXu
+	UClApAMWDhuOt1VKbhijDGtncKjtfnTUsqAQQADujTrZz/8yUDMSdGUx3fr18rPmgI
+	rSeIqerZ5gYxw==
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout011 (Postfix) with ESMTP id CF28152EBD4
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 15:15:32 +0200 (CEST)
+Received: from lpn-prd-vrin004 (lpn-prd-vrin004.laposte [10.128.63.5])
+	by lpn-prd-vrout011 (Postfix) with ESMTP id CA3A152E946
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 15:15:32 +0200 (CEST)
+Received: from lpn-prd-vrin004 (localhost [127.0.0.1])
+	by lpn-prd-vrin004 (Postfix) with ESMTP id BA53A72895A
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 15:15:32 +0200 (CEST)
+Received: from pc-mls.ecafaros.local (unknown [212.234.36.135])
+	by lpn-prd-vrin004 (Postfix) with ESMTPA id 8E2417289AB
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 15:15:32 +0200 (CEST)
+Date: Thu, 13 Sep 2018 15:15:32 +0200
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 MIME-Version: 1.0
-Received: by 2002:ac9:7ac:0:0:0:0:0 with HTTP;
-	Thu, 13 Sep 2018 05:00:17 -0700 (PDT)
-In-Reply-To: <VI1PR01MB10704F587FD2BF06F1CAFEF1E01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com>
-References: <VI1PR01MB1070FFAC3C22FF063B0DCF36E01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com>
-	<CAJTo0LYqqOyBV_W7d-eskBrwMgSF=ba+T8VtxVg_aVguDgh4Jw@mail.gmail.com>
-	<VI1PR01MB1070D4F85BC847EF0C3F8651E01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com>
-	<CAJTo0LYsU+D+SP3s4Fwg4DYrv++kMmugv1RiVGU4ZFx_aKO=4w@mail.gmail.com>
-	<VI1PR01MB10704F587FD2BF06F1CAFEF1E01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 13 Sep 2018 13:00:17 +0100
-Message-ID: <CAJTo0LaFQtREQuX9xVtD3uno8G-OcorBMfjmXYmw0nhkfAUKOg@mail.gmail.com>
-To: Dudziak Krzysztof <Krzysztof.Dudziak@gemalto.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: inheriting native.bbclass explicitly
+From: idealsim <idealsim@laposte.net>
+Message-ID: <op.zo9636t6mnlnty@pc-mls.ecafaros.local>
+User-Agent: Opera Mail/1.0 (Win32)
+X-VR-FullState: 0
+X-VR-Score: 0
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrgedtjedrjeeigdeitdcutefuodetggdotefrodftvfcurfhrohhf
+X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecunecujfgurheptgffuffvggfg
+X-VR-Cause-3: hffkfgesthejredttderleenucfhrhhomhepihguvggrlhhsihhmuceoihguvggrlhhsihhmsehlrghp
+X-VR-Cause-4: ohhsthgvrdhnvghtqeenucffohhmrghinhepvghvvghnthdrfhhirhgvnecukfhppedvuddvrddvfeeg
+X-VR-Cause-5: rdefiedrudefheenucfrrghrrghmpehmohguvgepshhmthhpohhuthdpihhnvghtpedvuddvrddvfeeg
+X-VR-Cause-6: rdefiedrudefhedphhgvlhhopehptgdqmhhlshdrvggtrghfrghrohhsrdhlohgtrghlpdhmrghilhhf
+X-VR-Cause-7: rhhomhepihguvggrlhhsihhmsehlrghpohhsthgvrdhnvghtpdhrtghpthhtohephihotghtoheshiho
+X-VR-Cause-8: tghtohhprhhojhgvtghtrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+X-VR-AvState: No
+X-VR-State: 0
+X-VR-State: 0
+Subject: bitbake error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,16 +77,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Sep 2018 12:00:40 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 13 Sep 2018 13:15:35 -0000
+Content-Type: text/plain; charset=iso-8859-15; format=flowed; delsp=yes
+Content-Transfer-Encoding: 7bit
 
-On 13 September 2018 at 12:39, Dudziak Krzysztof
-<Krzysztof.Dudziak@gemalto.com> wrote:
-> Thanks for hints.
-> I don't want to have this package on target system.
-> You sound like inheriting explicitly had some major drawback of wide scope.
+Hi, i'm trying to build an image with Yocto on a new machine (ubuntu 16.04  
+LTS)but i have this error that i can't resolve. Can you help ?
 
-It won't be included in the image unless you add it to the image.
+ERROR: Execution of event handler 'uninative_event_fetchloader' failed
+Traceback (most recent call last):
+   File  
+"/home/b/yocto-krogoth/sources/poky/meta/classes/uninative.bbclass", line  
+55, in uninative_event_fetchloader(e=<bb.event.BuildStarted object at  
+0x7f2015027790>):
+              if not os.path.exists(tarballpath):
+     >            bb.utils.mkdirhier(tarballdir)
+                  if d.getVar("UNINATIVE_URL", True) == "unset":
+   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/utils.py", line  
+716, in  
+mkdirhier(directory='/home/b/yocto-krogoth/../../yocto/downloads//uninative/acf1e44a0ac2e855e81da6426197d36358bf7b4e88e552ef933128498c8910f8'):
+              if e.errno != errno.EEXIST:
+     >            raise e
 
-Ross
+OSError: [Errno 13] Permission denied: '/home/b/yocto-krogoth/../../yocto'
+
+ERROR: Command execution failed: Traceback (most recent call last):
+   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/command.py",  
+line 104, in runAsyncCommand
+     commandmethod(self.cmds_async, self, options)
+   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/command.py",  
+line 325, in buildTargets
+     command.cooker.buildTargets(pkgs_to_build, task)
+   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/cooker.py", line  
+1423, in buildTargets
+     bb.event.fire(bb.event.BuildStarted(buildname, ntargets), self.data)
+   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/event.py", line  
+178, in fire
+     fire_class_handlers(event, d)
+   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/event.py", line  
+110, in fire_class_handlers
+     execute_handler(name, handler, event, d)
+   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/event.py", line  
+82, in execute_handler
+     ret = handler(event)
+   File  
+"/home/b/yocto-krogoth/sources/poky/meta/classes/uninative.bbclass", line  
+55, in uninative_event_fetchloader
+     bb.utils.mkdirhier(tarballdir)
+   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/utils.py", line  
+716, in mkdirhier
+     raise e
+OSError: [Errno 13] Permission denied: '/home/b/yocto-krogoth/../../yocto'
 
