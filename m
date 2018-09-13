@@ -1,44 +1,67 @@
-Return-Path: <Randy.MacLeod@windriver.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2513E0093B; Thu, 13 Sep 2018 09:13:44 -0700 (PDT)
+	id B62E3E0093B; Thu, 13 Sep 2018 09:57:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00, HTML_FONT_FACE_BAD, 
-	HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  1.0 HTML_FONT_FACE_BAD BODY: HTML font face is not a word
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A79FE005B1
-	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 09:13:43 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w8DGDeel012663
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 13 Sep 2018 09:13:41 -0700 (PDT)
-Received: from [172.25.44.4] (172.25.44.4) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
-	Thu, 13 Sep 2018 09:13:40 -0700
-To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>, "Burton, Ross"
-	<ross.burton@intel.com>,
-	Armin Kuster <akuster808@gmail.com>, <amanda.r.brindle@intel.com>,
-	Yocto discussion list <yocto@yoctoproject.org>,
-	"Jolley, Stephen K" <stephen.k.jolley@intel.com>, "MacLeod, Randy"
-	<Randy.MacLeod@windriver.com>
-References: <9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3705A@fmsmsx123.amr.corp.intel.com>
-From: Randy MacLeod <randy.macleod@windriver.com>
-Message-ID: <6daf44be-7450-f24c-7fb1-9913a0bdc86f@windriver.com>
-Date: Thu, 13 Sep 2018 12:13:38 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f52.google.com (mail-oi0-f52.google.com
+	[209.85.218.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E0D1E005B1
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 09:57:17 -0700 (PDT)
+Received: by mail-oi0-f52.google.com with SMTP id t68-v6so10055491oie.12
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 09:57:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=cTazgHJEqEzxFGTSEYz6kV9OCWSkEs/aLWWOCLr0WjU=;
+	b=KlSsU0jkBYftjjzow9/3AQbA/lUnAzzT7xX5Dc4zHI2K42NoWEMaspkexEwK3vYht1
+	nR8ECpmYkD3prMxEV3R/3+ZxNxCWEqvQiDWZG7zIUrbROoppCR7raKFpnEymAyZfRIRQ
+	PgrOcBBr2vYMGFD+gKuoxbrrfx6qKJuCal7Fp1gcYKdSuwSh8SLwPhqN9fAQuwLcISxT
+	RVxoQk41rJ/uBj+AhiiBEDKbbMDbQIGJaYKmQs1vBlraPmgYBNiMUaPVWvWPmlOSMhbw
+	+7tQdxuBE/DztppPDNhPIBg/aonFcIXATEkEgP6/XgvcHS/taV91Xvgy1+JG7YN3D5Xu
+	hZYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=cTazgHJEqEzxFGTSEYz6kV9OCWSkEs/aLWWOCLr0WjU=;
+	b=Fu3s1MU24bgTXverVrO6r4Yfuj6RSXbsPUVbLjLGJVKaGkVndbFtxLm4l0iwdhG647
+	RMHca5qaOidZm26ZE0OKTz8LvHi1I6PUXKHPPrzidtfbVFG5/lYftFoLXb82ARHdDn6r
+	GHpCC3Aud9pOdM8cmqANitpR7qoKIzxzpVey9bJlLL2zI7P8nZmNVWDIUWe0p+PMHBeq
+	sguBZ9yTzJWLczzPptKVYVZtx588mBltL9RL0yhIVTNx4HpVG3oZjBuLS4u+JtCcVHCf
+	y3k4n5QefvHE/zQiWbWqzI+Cgbywa/4ESuohK6XWp2XLH/nLzaSzUr60TBh/uJR4xHKv
+	B4AQ==
+X-Gm-Message-State: APzg51AO9dKLJs3OSA3E3fZOGcZR9pmurUastq/+eAxtqVrwUFKNpl+s
+	xyhLzbwdZQNsoFqZlkjLE5b0i+xabdAzwTlrXZ6D0Q0eRs0=
+X-Google-Smtp-Source: ANB0Vdb2Spxgd9SorjaKa9jnSwQPzXuR7BpN1+d0ySpvV/+5yQnQOD4FdQwcwrGd5+mAj3AVmVhT7mCFkjU3W4nmgK0=
+X-Received: by 2002:aca:ba83:: with SMTP id
+	k125-v6mr6715221oif.226.1536857837377; 
+	Thu, 13 Sep 2018 09:57:17 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3705A@fmsmsx123.amr.corp.intel.com>
-X-Originating-IP: [172.25.44.4]
-Subject: Re: Notes: Yocto Project Weekly Triage Meeting
+Received: by 2002:a4a:b48b:0:0:0:0:0 with HTTP; Thu, 13 Sep 2018 09:57:16
+	-0700 (PDT)
+In-Reply-To: <op.zo9636t6mnlnty@pc-mls.ecafaros.local>
+References: <op.zo9636t6mnlnty@pc-mls.ecafaros.local>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 13 Sep 2018 18:57:16 +0200
+Message-ID: <CANNYZj9UKxFHObAuS-7x+bGLwcXakRJ-879Pf5W6iGwAxei0ng@mail.gmail.com>
+To: idealsim <idealsim@laposte.net>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: bitbake error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,172 +73,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Sep 2018 16:13:44 -0000
-Content-Type: multipart/alternative;
-	boundary="------------863AA5E842E6E6FBA6BB4182"
-Content-Language: en-GB
+X-List-Received-Date: Thu, 13 Sep 2018 16:57:18 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---------------863AA5E842E6E6FBA6BB4182
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+It seems as though the build system is unable to create this directory:
 
+/home/b/yocto-krogoth/../../yocto/downloads//uninative/acf1e44a0ac2e855e81da6426197d36358bf7b4e88e552ef933128498c8910f8
 
-On 09/13/2018 11:17 AM, Jolley, Stephen K wrote:
-> Attendees: Stephen, Armin, Joshua, Amanda, Richard, Ross, Randy, Anuj,
-> Wiki: _https://wiki.yoctoproject.org/wiki/Bug_Triage_
-> AR: Ross - Update _12921_ 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=12921> to NEEDINFO 
-> and add comment.
-> AR: Armin – Create selftest bug for _12921_ 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=12921>.
-> Discussed that we should expect M3 sometime next week.
-> AR: Amanda – Check _12332_ 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=12332> to see if it 
-> can be closed.
-> AR: Randy – Check _12774_ 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=12774> to see if it 
-> can be closed.
-> AR: Stephen – Check with David if _12785_ 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=12785> and _12891_ 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=12891> will be 
-> closed in M3.
-> Thanks,
-> */Stephen K. Jolley/*
-> *Yocto Project Program Manager*
-> *INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124 *
-> (*Cell*: (208) 244-4460
-> * *Email*: _stephen.k.jolley@intel.com_
+You probably have a permission problem there, working from /home/b but
+attempting to create /home/yocto.
 
+Alex
 
-This missed my email filters since I wasn't on the TO/CC list.
-I added people with an AR to the To: list since they may be
-in the same flooding even with filters email boat.
+2018-09-13 15:15 GMT+02:00 idealsim <idealsim@laposte.net>:
+> Hi, i'm trying to build an image with Yocto on a new machine (ubuntu 16.04
+> LTS)but i have this error that i can't resolve. Can you help ?
+>
+> ERROR: Execution of event handler 'uninative_event_fetchloader' failed
+> Traceback (most recent call last):
+>   File "/home/b/yocto-krogoth/sources/poky/meta/classes/uninative.bbclass",
+> line 55, in uninative_event_fetchloader(e=<bb.event.BuildStarted object at
+> 0x7f2015027790>):
+>              if not os.path.exists(tarballpath):
+>     >            bb.utils.mkdirhier(tarballdir)
+>                  if d.getVar("UNINATIVE_URL", True) == "unset":
+>   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/utils.py", line
+> 716, in
+> mkdirhier(directory='/home/b/yocto-krogoth/../../yocto/downloads//uninative/acf1e44a0ac2e855e81da6426197d36358bf7b4e88e552ef933128498c8910f8'):
+>              if e.errno != errno.EEXIST:
+>     >            raise e
+>
+> OSError: [Errno 13] Permission denied: '/home/b/yocto-krogoth/../../yocto'
+>
+> ERROR: Command execution failed: Traceback (most recent call last):
+>   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/command.py", line
+> 104, in runAsyncCommand
+>     commandmethod(self.cmds_async, self, options)
+>   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/command.py", line
+> 325, in buildTargets
+>     command.cooker.buildTargets(pkgs_to_build, task)
+>   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/cooker.py", line
+> 1423, in buildTargets
+>     bb.event.fire(bb.event.BuildStarted(buildname, ntargets), self.data)
+>   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/event.py", line
+> 178, in fire
+>     fire_class_handlers(event, d)
+>   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/event.py", line
+> 110, in fire_class_handlers
+>     execute_handler(name, handler, event, d)
+>   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/event.py", line
+> 82, in execute_handler
+>     ret = handler(event)
+>   File "/home/b/yocto-krogoth/sources/poky/meta/classes/uninative.bbclass",
+> line 55, in uninative_event_fetchloader
+>     bb.utils.mkdirhier(tarballdir)
+>   File "/home/b/yocto-krogoth/sources/poky/bitbake/lib/bb/utils.py", line
+> 716, in mkdirhier
+>     raise e
+> OSError: [Errno 13] Permission denied: '/home/b/yocto-krogoth/../../yocto'
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-
-
-Stephen,
-Can you please explicitly address anyone who has an AR next time?
-
-
-Thanks,
--- 
-# Randy MacLeod
-# Wind River Linux
-
-
---------------863AA5E842E6E6FBA6BB4182
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix"><br>
-      On 09/13/2018 11:17 AM, Jolley, Stephen K wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3705A@fmsmsx123.amr.corp.intel.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <meta name="Generator" content="Microsoft Exchange Server">
-      <!-- converted from rtf -->
-      <style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left: #800000 2px solid; } --></style>
-      <font face="Times New Roman" size="3"><span
-          style="font-size:12pt;"><a name="_MailEndCompose"
-            moz-do-not-send="true"></a>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;">Attendees: Stephen, Armin,
-                Joshua, Amanda, Richard, Ross, Randy, Anuj, </span></font></div>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;"> </span></font></div>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;">Wiki: <a
-                  href="https://wiki.yoctoproject.org/wiki/Bug_Triage"
-                  moz-do-not-send="true"><font color="#0563C1"><u>https://wiki.yoctoproject.org/wiki/Bug_Triage</u></font></a></span></font></div>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;"> </span></font></div>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;">AR: Ross - Update <a
-                  href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12921"
-                  moz-do-not-send="true"><font color="#0563C1"><u>12921</u></font></a>
-                to NEEDINFO and add comment.</span></font></div>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;">AR: Armin – Create selftest bug
-                for <a
-                  href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12921"
-                  moz-do-not-send="true"><font color="#0563C1"><u>12921</u></font></a>.
-              </span></font></div>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;">Discussed that we should expect
-                M3 sometime next week. </span></font></div>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;">AR: Amanda – Check <a
-                  href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12332"
-                  moz-do-not-send="true"><font color="#0563C1"><u>12332</u></font></a>
-                to see if it can be closed.</span></font></div>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;">AR: Randy – Check <a
-                  href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12774"
-                  moz-do-not-send="true"><font color="#0563C1"><u>12774</u></font></a>
-                to see if it can be closed.</span></font></div>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;">AR: Stephen – Check with David
-                if <a
-                  href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12785"
-                  moz-do-not-send="true"><font color="#0563C1"><u>12785</u></font></a>
-                and <a
-                  href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12891"
-                  moz-do-not-send="true"><font color="#0563C1"><u>12891</u></font></a>
-                will be closed in M3.</span></font></div>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;"> </span></font></div>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;">Thanks,</span></font></div>
-          <div><font color="#1F497D" face="Calibri" size="2"><span
-                style="font-size:11pt;"> </span></font></div>
-          <div><font color="purple" size="4"><span
-                style="font-size:16pt;"><b><i>Stephen K. Jolley</i></b></span></font></div>
-          <div><font color="blue" face="Courier New" size="1"><span
-                style="font-size:8pt;"><b>Yocto Project Program Manager</b></span></font></div>
-          <div><font color="fuchsia" face="Courier New" size="2"><span
-                style="font-size:10pt;"><b>INTEL, MS JF1-255, 2111 N.E.
-                  25th Avenue, Hillsboro, OR 97124 </b></span></font></div>
-          <div><font size="2"><span style="font-size:9pt;"><font
-                  face="Wingdings">(</font><font color="teal" face="MS
-                  Sans Serif">    </font><font color="teal" face="Comic
-                  Sans MS" size="1"><span style="font-size:8pt;"><b>Cell</b></span></font><font
-                  color="teal" face="MS Sans Serif">:             
-                </font><font color="#1F497D" face="MS Sans Serif">(208)
-                  244-4460</font></span></font></div>
-          <div><font color="#1F497D" size="2"><span
-                style="font-size:9pt;"><font face="Wingdings">* </font><font
-                  color="teal" face="Comic Sans MS" size="1"><span
-                    style="font-size:8pt;"><b>Email</b></span></font><font
-                  color="teal" face="MS Sans Serif">:               
-                </font><font color="blue" face="MS Sans Serif"><u><a class="moz-txt-link-abbreviated" href="mailto:stephen.k.jolley@intel.com">stephen.k.jolley@intel.com</a></u></font></span></font></div>
-          <div><font face="Calibri" size="2"><span
-                style="font-size:11pt;"> </span></font></div>
-        </span></font>
-    </blockquote>
-    <p><br>
-    </p>
-    <pre class="moz-signature" cols="72">This missed my email filters since I wasn't on the TO/CC list.
-I added people with an AR to the To: list since they may be
-in the same flooding even with filters email boat.
-
-
-
-Stephen, 
-Can you please explicitly address anyone who has an AR next time?
-
-
-Thanks,
--- 
-# Randy MacLeod
-# Wind River Linux
-</pre>
-  </body>
-</html>
-
---------------863AA5E842E6E6FBA6BB4182--
