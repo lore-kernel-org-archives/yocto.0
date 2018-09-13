@@ -1,60 +1,62 @@
-Return-Path: <richard.collins@guidedknowledge.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EEF8CE006AF; Thu, 13 Sep 2018 02:35:44 -0700 (PDT)
+	id DFF8EE006C7; Thu, 13 Sep 2018 02:38:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.180 listed in list.dnswl.org]
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com
-	[209.85.210.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 935F4E0053F
-	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 02:35:44 -0700 (PDT)
-Received: by mail-pf1-f180.google.com with SMTP id s13-v6so2416337pfi.7
-	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 02:35:44 -0700 (PDT)
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com
+	[209.85.210.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CC41E0053F
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 02:38:42 -0700 (PDT)
+Received: by mail-ot1-f48.google.com with SMTP id e18-v6so653396oti.8
+	for <yocto@yoctoproject.org>; Thu, 13 Sep 2018 02:38:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=guidedknowledge-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=jqd/5hD5kLqGRqgNoseNbfo4pXq/sPxwm/XBztAdsus=;
-	b=kZWoIpUw582MwWvJy5iANbSn+N+Ad9Tdsbptj1ku3K3L+GA9BDV6v2rchTKEiIKrOu
-	v2M+9Dw+B7u3lV1jZtpSATkjspstTnWSeRrVoQyX4zVOIIqzu67MMykPPpO6iCoiK5hA
-	wZYdmagkVYgoBmut8iij1Xj96K1JrfsajrbqwxkKY2Djy3GNXGymczSTOG4nPvW4hd6e
-	blE17Cz0QjjTXEZWjKZV9vIzAFO9b/LSWpd3K6lMi7d9xI7+yQ4lJQQj3UoiWurAwLBp
-	tA+ietqFKr3LpLp/amqEZN/VYeZpfTkxmILRfFiv4qI2ST6U/gmdobhTrpGLG2pXBJfW
-	vQDA==
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=NtAp3XJu5Ty6vIIe+lhGtc5NbZd8K4xV34TLCaspAbs=;
+	b=CT6hsJKZSdGl6R+PNz3Yc33e8i/Gd8w4QMltWnDyzZ/fpz21fD845h6V5Udd5203ox
+	2lQZ0Rtt9pmj/cnugX3H9PJmc5hnh5O60jn+/lfJCSMmr8n+Y7skWrP3kVwfn/s09mxv
+	p8tpfS3w8XOvXYrhXb06N++sk2MEk7DTFKnmRpJIAo9Ql4tvjzOfH5KVkngT/7yKw19U
+	Wo9kbjG9N8EzHIqcMwFjJaYIJTAEz0FY1izaOy7Nzxg/Rxjin0ORaK07K5AfImDgpGfA
+	hn4/r01a6SNkmkNDBS2T2xPmDX5m2GqDqYst3/9v+Yji9AQnzuD5z0xRewU14h85r4gm
+	1zpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=jqd/5hD5kLqGRqgNoseNbfo4pXq/sPxwm/XBztAdsus=;
-	b=stqmK03jBclydoVMkEg3KRYujtmalytTqWbXICdVM9xlMM4xGc6ENt2WrAce9JP+Nk
-	xPP/ed+kgg//cXyXx6p0+uz5Rw7RnO6Fz94RKUKd2wBA8GHCJ9XLABS/nvy2LsYVJ8Mp
-	Dn4motEd2IciZGxYl1JoTpm4QHYGSpC/i4FvpDexQOV0N2gzFQSWYgvIK2nDRp0G6XYL
-	/Kx4Zym+00N4yjFzYtFhP2laXbSxDlLIWvdLh1UfdsudP9lmBkpzvXmRlPftG5d43KOM
-	q7lopBwvZ66lYjqVqvzXjwDuW/QiRxJrxOho3CQITfXZNYs1JWXTFQMNLZfJ7h97Zt01
-	KpPw==
-X-Gm-Message-State: APzg51CNT0Aw9YwPcbCAWbX2yLv8Pzyk8eX7gRqFrIbUdm8o6dsCL/m1
-	32R/EcgV/Vdsdm5NV2byXFkFlkyskpEblVuoxYa9YfRFj/w=
-X-Google-Smtp-Source: ANB0VdZ4vNCAIDwq127N1kEfEf2d4eCuBIrasmBpQ568COrAYXUnDh+VIDfCVP18ToaioGGefnHXMmRK8av598noE54=
-X-Received: by 2002:a63:1b4e:: with SMTP id
-	b14-v6mr4953026pgm.303.1536831330885; 
-	Thu, 13 Sep 2018 02:35:30 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=NtAp3XJu5Ty6vIIe+lhGtc5NbZd8K4xV34TLCaspAbs=;
+	b=hQM8RC1vijfLbJQbGFgLOHgxMkjzVYv/vy3hfB1d7LH8PsnW2NniAigUTnXgL5B2Hi
+	2PrOfNEyDiAElmxB0JUDKq0NIDCt+mpGyGaiMRnlRkGL24M+nqZbMM9KHnXOoT2g+BSV
+	G5vs806sq3e+SGkF78kQxvJcK+87DTPa4/F19dRnQ/FGXjP9yPE4Yl5JfN4dFBe8Lpv8
+	FbqRl+cC9zR+4wCp37HyAT1aHRI0acH8ojVIB5QWK7BTOElmVrD3SdYAJ0tboC/h7YPo
+	30mviQQSBxMj+QaWRRRZGjuyrVNCnCDss15cZLEshV3dXMkriLu3eo4lhp0QKwZEeWzn
+	7qEA==
+X-Gm-Message-State: APzg51CJoJC6Mfy7aoJZQrES/CjF6HkyXSt/NCbxbM8h0eLQCjfZu5Vn
+	+zQIw6KfW4o0Vxw5gXyC8r8kYuw67Mbnm8FGhyg36A==
+X-Google-Smtp-Source: ANB0VdYh/QtKTHTyCGzOBdb715Q6DLNtoYvIQsVJ3o/Qo7l6bHFqx0V2QP0+Nqi8SDLJ4pBrino/PAZ9i1p5P67UlIw=
+X-Received: by 2002:a9d:2253:: with SMTP id
+	o77-v6mr730826ota.204.1536831521863; 
+	Thu, 13 Sep 2018 02:38:41 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a17:90a:3788:0:0:0:0 with HTTP; Thu, 13 Sep 2018 02:35:30
-	-0700 (PDT)
-From: Richard Collins <richard.collins@guidedknowledge.com>
-Date: Thu, 13 Sep 2018 10:35:30 +0100
-Message-ID: <CAD-1PJhoefkOVtzzYt2vijZCSVCgyf1FbfLjCofczs9Djp5DLA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: ext4 rootfs in wrong folder when trying to build sdcard image
+Received: by 2002:ac9:7ac:0:0:0:0:0 with HTTP;
+	Thu, 13 Sep 2018 02:38:21 -0700 (PDT)
+In-Reply-To: <VI1PR01MB1070A7E32F845C1CBA1D57B6E01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com>
+References: <VI1PR01MB1070FFAC3C22FF063B0DCF36E01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com>
+	<CAJTo0LYqqOyBV_W7d-eskBrwMgSF=ba+T8VtxVg_aVguDgh4Jw@mail.gmail.com>
+	<VI1PR01MB1070A7E32F845C1CBA1D57B6E01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 13 Sep 2018 10:38:21 +0100
+Message-ID: <CAJTo0LZoehiseEnzGPYiZKaFYT6FUO-1vY14f4Vf7qL7Bd2OpQ@mail.gmail.com>
+To: Dudziak Krzysztof <Krzysztof.Dudziak@gemalto.com>, 
+	Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: inheriting native.bbclass explicitly
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,60 +68,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Sep 2018 09:35:45 -0000
-Content-Type: multipart/alternative; boundary="0000000000008fa6050575bd6d7b"
-
---0000000000008fa6050575bd6d7b
+X-List-Received-Date: Thu, 13 Sep 2018 09:38:42 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-This is for a custom carrier board using the Phytec rk3288 SOM.
+Adding yocto@ back to CC.  Please remember to mail the list and not the sender.
 
-This worked for 2.2 morty.
+On 13 September 2018 at 10:34, Dudziak Krzysztof
+<Krzysztof.Dudziak@gemalto.com> wrote:
+> Will BBCLASSEXTEND=native fashion also build target system package?
+> This is what is not needed (autoconf-archive on target system).
+> Therefore thoughts turn to another approach.
 
-I have migrated to 2.5 sumo. I am using their rk3288_sd_image-phy.bbclass
-file. This file is only in the morty branch so I had to copy it into my bsp
-layer.
+BBCLASSEXTEND works by taking a target recipe and dynamically creating
+another version of it.
 
-I am still a bit of a Yocto noob so any help would be awesome.
+So autoconf-archive.bb is written as a target recipe but because it
+contains BBCLASSEXTEND="native nativesdk", there also exists
+autoconf-archive-native and nativesdk-autoconf-archive.
 
-When I build with
-*IMAGE_FSTYPES += " tar.gz ext4"*
-in the local conf the ext4 rootfs file is in the deploy folder.
+Ross
 
-When I build with
-*IMAGE_FSTYPES += " tar.gz ext4"*
-*IMAGE_FSTYPES_append_rk3288 = " sdcard"*
-in the local conf the ext4 rootfs file ends up in the temp folder and so
-the sdcard creation fails as it is looking for the ext4 file in the deploy
-folder.
-
-It's a really odd issue. :/
-
-Any ideas on where to look?
-
-Many thanks,
-Richard e Collins.
-
---0000000000008fa6050575bd6d7b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Th=
-is is for a custom carrier board using the Phytec rk3288 SOM.</div><div dir=
-=3D"ltr"><br></div><div dir=3D"ltr">This worked for 2.2 morty.<div><br></di=
-v><div>I have migrated to 2.5 sumo. I am using their=C2=A0rk3288_sd_image-p=
-hy.bbclass file. This file is only in the morty branch so I had to copy it =
-into my bsp layer.</div><div><br></div><div>I am still a bit of a Yocto noo=
-b so any help would be awesome.</div><div><br></div><div>When I build with<=
-/div><div><b>IMAGE_FSTYPES +=3D &quot; tar.gz ext4&quot;</b><br></div><div>=
-in the local conf the ext4 rootfs file is in the deploy folder.=C2=A0<br></=
-div><div><br></div><div>When I build with=C2=A0</div><div><b>IMAGE_FSTYPES =
-+=3D &quot; tar.gz ext4&quot;</b></div><div><b>IMAGE_FSTYPES_append_rk3288 =
-=3D &quot; sdcard&quot;</b></div><div>in the local conf the ext4 rootfs fil=
-e ends up in the temp folder and so the sdcard creation fails as it is look=
-ing for the ext4 file in the deploy folder.=C2=A0</div><div><br></div><div>=
-It&#39;s a really odd issue. :/</div><div><br></div><div>Any ideas on where=
- to look?=C2=A0</div><div><br></div><div>Many thanks,</div><div>Richard e C=
-ollins.</div></div></div></div></div></div>
-
---0000000000008fa6050575bd6d7b--
