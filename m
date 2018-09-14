@@ -1,6 +1,6 @@
 Return-Path: <Randy.MacLeod@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B82E1E0090C; Fri, 14 Sep 2018 11:50:19 -0700 (PDT)
+	id 546E4E0090C; Fri, 14 Sep 2018 12:41:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,23 +12,23 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1F31E00720
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4B45E00720
 	for <yocto@lists.yoctoproject.org>;
-	Fri, 14 Sep 2018 11:50:18 -0700 (PDT)
+	Fri, 14 Sep 2018 12:41:27 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w8EInVGr011002
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w8EJegCj011979
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 14 Sep 2018 11:49:42 -0700
+	Fri, 14 Sep 2018 12:40:52 -0700
 Received: from [172.25.44.4] (172.25.44.4) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
-	Fri, 14 Sep 2018 11:49:21 -0700
+	Fri, 14 Sep 2018 12:40:31 -0700
 To: Ayman Hassan <Ayman.Hassan@ideainmotion.org>,
 	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 References: <HE1PR0301MB2332FDB93B86A1BADB529411EC010@HE1PR0301MB2332.eurprd03.prod.outlook.com>
 From: Randy MacLeod <randy.macleod@windriver.com>
-Message-ID: <a952209b-5a08-454f-91a2-74a33feaad2f@windriver.com>
-Date: Fri, 14 Sep 2018 14:49:20 -0400
+Message-ID: <32500af9-9785-b5fb-8a0c-658afee4fa87@windriver.com>
+Date: Fri, 14 Sep 2018 15:40:30 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.9.1
 MIME-Version: 1.0
@@ -46,7 +46,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Sep 2018 18:50:19 -0000
+X-List-Received-Date: Fri, 14 Sep 2018 19:41:28 -0000
 Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
@@ -65,6 +65,7 @@ you can join #oe on Freenode to ask for help as well.
 > using Dropbear – but it’s not working – I get connection refused 
 > message. I couldn’t find tutorials to know how I can fix the problem.
 > 
+
 Did you build your image for qemux86-64 instead and try to use runqemu?
 As shown on:
  
