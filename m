@@ -1,65 +1,55 @@
-Return-Path: <seth.boll@gmail.com>
+Return-Path: <Jeremy.Overesch@millerwelds.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 501DFE0097C; Fri, 14 Sep 2018 05:39:02 -0700 (PDT)
+	id 970AAE009E7; Fri, 14 Sep 2018 05:49:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (seth.boll[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.169 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [206.197.156.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f169.google.com (mail-qt0-f169.google.com
-	[209.85.216.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4142FE006AF
-	for <yocto@yoctoproject.org>; Fri, 14 Sep 2018 05:39:01 -0700 (PDT)
-Received: by mail-qt0-f169.google.com with SMTP id h4-v6so8515583qtj.7
-	for <yocto@yoctoproject.org>; Fri, 14 Sep 2018 05:39:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=EoAZkx1U46NR9tEH12X8qgjzh1jMnZH1ieFKZQtXxTE=;
-	b=q6n0e6K8UYoApLzkop+KwJw7sPtyUztY7EkT6YzBE7lEuT3ZGD9noAMYexhiFkPGCc
-	lfI5zFcO2E3ek4In8hWdtU7kSD/eye//2InLHf9wmEddsClySZtAxnZNxofDMQ8dn+mO
-	9rh7UMdmpYgHqLske6juL27QR/hEfdCac/1xBlqbuodqcVI0HGCueDj2ghJ7/iaFzI9Z
-	c6uxt730Bl+MO4qj/Mg9epUrR8QHnjeCE86jR0RUF0233Ta6FOpxJPd+KGSnXjXMYnDr
-	KOg+uaIJuzT7v+lvtmVsA42D8MA8Ng6loswzuwPP/Cg0pde6iBo81PdI7qAx3sI5Jx1K
-	ghjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=EoAZkx1U46NR9tEH12X8qgjzh1jMnZH1ieFKZQtXxTE=;
-	b=TK8i3WMTwVV4Qo3uTcJowIZxNav6OUO7LZEXXeiFoRvSTdaJ+wu+RcquIZHWBk5gkf
-	TgtospH8Lbqsj/hN1PeAs5eyxQVV8M0lEOsP314ZwcKlrbqJS6E1IjgjyFKV/cn6Rx7s
-	Wee89pIigtM4R3nRqtynryyPX73XMc2Xk4Xvn8an8ZbLU6GPeCHN8o1d5QE9D4qB9Kv5
-	BQCxMfEsIlKoXeXtpGMW1DtGDdEn0Sa3kfxNQtThKPMYWn1kXXvbkhAwqYA/Yf4VtOA9
-	3Ai0vwms0svvOngLcJ75vc/bVf2/3nYrKbsijRwOi3npTX6xR8OqQMcnlyZeDA42UjjF
-	xG5w==
-X-Gm-Message-State: APzg51DhOaveXr6wM2bykM+C66zlAteOyLXVcLEeDpH0G5stbjQ56GNW
-	EPJLl+oScepleXdR2IJ9S2nPBx8xsfo8TFHuHgCsDvNN
-X-Google-Smtp-Source: ANB0VdbtPslP+Sl3S78gJYcMMBgPpkbmlmsoYzyim2Hi7q+hok6pz6NUA/vgwncTdx3rfpNKdgSGXgVvi0PSpfwDZEs=
-X-Received: by 2002:a0c:ad3a:: with SMTP id
-	u55-v6mr8623030qvc.132.1536928740442; 
-	Fri, 14 Sep 2018 05:39:00 -0700 (PDT)
+Received: from mailcuda.itwwelds.com (mailcuda.itwwelds.com [206.197.156.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50268E006AF
+	for <yocto@yoctoproject.org>; Fri, 14 Sep 2018 05:49:24 -0700 (PDT)
+X-ASG-Debug-ID: 1536929363-08979511b91242900001-yzSStA
+Received: from webmail.itwwelds.com (exch13mb01.itwwelds.com [10.52.121.20])
+	by mailcuda.itwwelds.com with ESMTP id sj68wW1rRvoyJuIu;
+	Fri, 14 Sep 2018 07:49:23 -0500 (CDT)
+X-Barracuda-Envelope-From: Jeremy.Overesch@millerwelds.com
+X-ASG-Whitelist: Client
+Received: from EXCH13MB02.itwwelds.com (10.52.121.21) by
+	EXCH13MB01.itwwelds.com (10.52.121.20) with Microsoft SMTP Server (TLS)
+	id 15.0.1104.5; Fri, 14 Sep 2018 07:49:23 -0500
+Received: from EXCH13MB02.itwwelds.com ([fe80::994c:a14b:1d78:3bd3]) by
+	EXCH13MB02.itwwelds.com ([fe80::994c:a14b:1d78:3bd3%20]) with mapi id
+	15.00.1104.000; Fri, 14 Sep 2018 07:49:23 -0500
+From: Jeremy Overesch <Jeremy.Overesch@millerwelds.com>
+To: Andre McCurdy <armccurdy@gmail.com>
+Thread-Topic: [yocto] Whitelist gdbserver
+X-ASG-Orig-Subj: RE: [yocto] Whitelist gdbserver
+Thread-Index: AdRLdyiBIbwfdViTQ3i20DK6Qz/jowAXqw+AABSyucA=
+Date: Fri, 14 Sep 2018 12:49:22 +0000
+Message-ID: <5283ddf66e9b4b6f853f504c08b32d0c@EXCH13MB02.itwwelds.com>
+References: <06a2ad55e4924b5982dfc2953e31a17a@EXCH13MB02.itwwelds.com>
+	<CAJ86T=VnFKKaFdH8M=hwOXCG5oR8pBPSZPJneZvOL1qn-E0S7Q@mail.gmail.com>
+In-Reply-To: <CAJ86T=VnFKKaFdH8M=hwOXCG5oR8pBPSZPJneZvOL1qn-E0S7Q@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.46.101.16]
 MIME-Version: 1.0
-References: <CA+JN8xO0_DYoR3Bt9qVaZFHQRwnyd=fskuMy+YYrX3yTrAiZVQ@mail.gmail.com>
-In-Reply-To: <CA+JN8xO0_DYoR3Bt9qVaZFHQRwnyd=fskuMy+YYrX3yTrAiZVQ@mail.gmail.com>
-From: Seth Bollinger <seth.boll@gmail.com>
-Date: Fri, 14 Sep 2018 07:38:49 -0500
-Message-ID: <CA+JN8xO6UDubtnF_yCuK4sHCji1EnsZLK=XcyUz07Ow6rY2PrQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: coreutils postinstall warning
+X-Barracuda-Connect: exch13mb01.itwwelds.com[10.52.121.20]
+X-Barracuda-Start-Time: 1536929363
+X-Barracuda-URL: https://mailcuda.itwwelds.com:443/cgi-mod/mark.cgi
+X-Barracuda-Scan-Msg-Size: 2436
+X-Virus-Scanned: by bsmtpd at itwwelds.com
+X-Barracuda-BRTS-Status: 1
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Whitelist gdbserver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,75 +61,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Sep 2018 12:39:02 -0000
-Content-Type: multipart/alternative; boundary="0000000000009e88860575d41b11"
+X-List-Received-Date: Fri, 14 Sep 2018 12:49:25 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---0000000000009e88860575d41b11
-Content-Type: text/plain; charset="UTF-8"
+VGhhbmtzIQ0KDQpJIHNlYXJjaGVkIGZvciAid2hpdGVsaXN0IiBpbiB0aGUgZG9jdW1lbnRhdGlv
+biwgYnV0IGl0IGRpZG4ndCBsaXN0IGFueXRoaW5nIGFib3V0IHdoaXRlbGlzdGluZyBhIHBhY2th
+Z2UgZXZlbiB0aG91Z2ggSSBrbmV3IGl0IHdhcyBwb3NzaWJsZS4gKGxpYmlkbiB3YXMgYmVpbmcg
+d2hpdGVsaXN0ZWQuKSAgQWxzbywgaXQgdHVybnMgb3V0IEkgaGFkIHRvIHdoaXRlbGlzdCAiZ2Ri
+IiBub3QganVzdCAiZ2Ric2VydmVyIiwgYmVjYXVzZSBnZGJzZXJ2ZXIgaXMgcGFydCBvZiB0aGUg
+Z2RiIHJlY2lwZS4NCg0KVGhhbmtzIGFnYWluLA0KSmVyZW15DQoNCi0tLS0tT3JpZ2luYWwgTWVz
+c2FnZS0tLS0tDQpGcm9tOiBBbmRyZSBNY0N1cmR5IDxhcm1jY3VyZHlAZ21haWwuY29tPg0KU2Vu
+dDogVGh1cnNkYXksIFNlcHRlbWJlciAxMywgMjAxOCA0OjUxIFBNDQpUbzogSmVyZW15IE92ZXJl
+c2NoIDxKZXJlbXkuT3ZlcmVzY2hAbWlsbGVyd2VsZHMuY29tPg0KQ2M6IHlvY3RvQHlvY3RvcHJv
+amVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIFdoaXRlbGlzdCBnZGJzZXJ2ZXINCg0KT24g
+VGh1LCBTZXAgMTMsIDIwMTggYXQgODo0MiBBTSwgSmVyZW15IE92ZXJlc2NoDQo8SmVyZW15Lk92
+ZXJlc2NoQG1pbGxlcndlbGRzLmNvbT4gd3JvdGU6DQo+IEhJIGFsbCwNCj4NCj4gSeKAmW0gYXR0
+ZW1wdGluZyB0byB3aGl0ZWxpc3QgZ2Ric2VydmVyIGp1c3QgZm9yIFNESyBwdXJwb3Nlcywgd2hp
+bGUga2VlcGluZw0KPiBhbGwgb3RoZXIgR1BMdjMgY29kZSBhcyBpbmNvbXBhdGlibGUgKHRoZXJl
+Zm9yZSB1bmJ1aWx0KS4gIEhvd2V2ZXIsDQo+IGV2ZXJ5dGhpbmcgSeKAmXZlIHRyaWVkIHN0aWxs
+IHJlc3VsdHMgaW4gZ2Ric2VydmVyIGJlaW5nIHJlbW92ZWQgZnJvbSBteSBTREsNCj4gYW5kIHRo
+ZXJlZm9yZSBmYWlsaW5nIHRvIGJ1aWxkLg0KPg0KPiBJbiBteSBsb2NhbC5jb25mLCBJIGhhdmUg
+dGhlIGZvbGxvd2luZyBsaW5lOg0KPg0KPiBJTkNPTVBBVElCTEVfTElDRU5TRSA9ICJHUEx2MyBM
+R1BMdjMgQUdQTHYzIg0KPg0KPiBUaHJvdWdoIHRoZSB5b2N0byBkb2N1bWVudGF0aW9uDQo+ICho
+dHRwczovL3d3dy55b2N0b3Byb2plY3Qub3JnL2RvY3MvMi40L21lZ2EtbWFudWFsL21lZ2EtbWFu
+dWFsLmh0bWwjbGljZW5zZS1mbGFnLW1hdGNoaW5nKSwNCj4gaXQgYXBwZWFycyB0aGF0IGFkZGlu
+ZyB0aGUgZm9sbG93aW5nICpzaG91bGQqIHdvcmssIHlldCBpdCBkb2VzbuKAmXQ6DQoNCkkgdGhp
+bmsgeW91IGFyZSBtaXhpbmcgdXAgIkxJQ0VOU0UiIGFuZCAiTElDRU5TRV9GTEFHUyIuIFRoZSB0
+d28gZG9uJ3QNCnJlYWxseSB3b3JrIHRvZ2V0aGVyLiBJdCdzIHBhcnRseSBleHBsYWluZWQgaW46
+DQoNCiAgaHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzIuNC9tZWdhLW1hbnVhbC9t
+ZWdhLW1hbnVhbC5odG1sI3Zhci1MSUNFTlNFX0ZMQUdTDQoNClNlZSB0aGUgTElDRU5TRV9GTEFH
+UyBjb21tZW50IHdoaWNoIHNheXMgIlRoaXMgdmFsdWUgaXMgaW5kZXBlbmRlbnQgb2YNCkxJQ0VO
+U0UgYW5kIGlzIHR5cGljYWxseSB1c2VkIHRvIG1hcmsgcmVjaXBlcyB0aGF0IG1pZ2h0IHJlcXVp
+cmUNCmFkZGl0aW9uYWwgbGljZW5zZXMgaW4gb3JkZXIgdG8gYmUgdXNlZCBpbiBhIGNvbW1lcmNp
+YWwgcHJvZHVjdC4gRm9yDQptb3JlIGluZm9ybWF0aW9uLCBzZWUgdGhlICJFbmFibGluZyBDb21t
+ZXJjaWFsbHkgTGljZW5zZWQgUmVjaXBlcyINCnNlY3Rpb24uIg0KDQpUbyB3aGl0ZWxpc3QgYSBy
+ZWNpcGUgd2hpY2ggaXMgYmVpbmcgZXhjbHVkZWQgZHVlIHRvDQpJTkNPTVBBVElCTEVfTElDRU5T
+RSwgdXNlIFdISVRFTElTVF9HUEwtMy4wLiBGb3IgZXhhbXBsZSBmb3INCmdkYnNlcnZlciwgdHJ5
+IHRoZSBmb2xsb3dpbmc6DQoNCiAgV0hJVEVMSVNUX0dQTC0zLjAgKz0gImdkYnNlcnZlciINCg0K
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCg0KVGhpcyBtZXNzYWdlIChpbmNsdWRp
+bmcgYW55IGF0dGFjaG1lbnRzKSBpcyBpbnRlbmRlZCBmb3IgdGhlIHNvbGUgdXNlIG9mIHRoZSBp
+bnRlbmRlZCByZWNpcGllbnQvcyBhbmQgbWF5IGNvbnRhaW4gbWF0ZXJpYWwgdGhhdCBpcyBDT05G
+SURFTlRJQUwgQU5EIFBSSVZBVEUgQ09NUEFOWSBJTkZPUk1BVElPTi4gSWYgeW91IGFyZSBub3Qg
+dGhlIGludGVuZGVkIHJlY2lwaWVudCBvZiB0aGlzIG1lc3NhZ2UsIHlvdSBhcmUgaGVyZWJ5IG5v
+dGlmaWVkIHRoYXQgeW91IG11c3QgZGVsZXRlIHRoZSBtZXNzYWdlIHdpdGhvdXQgZGlzc2VtaW5h
+dGluZywgY29weWluZyBvciB0YWtpbmcgYW55IGFjdGlvbiBpbiByZWxpYW5jZSB1cG9uIGl0LiBJ
+ZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIG1lc3NhZ2UgaW4gZXJyb3IsIHBsZWFzZSBub3RpZnkg
+dGhlIHNlbmRlciB2aWEgcmV0dXJuIGUtbWFpbC4gVGhhbmsgeW91Lg0K
 
-On Mon, Aug 20, 2018 at 8:16 AM Seth Bollinger <seth.boll@gmail.com> wrote:
-
-> Hello All,
->
-> We've been seeing the following warning for a while now.  Is this expected?
->
-> WARNING: manuf-image-1.0-r0 do_rootfs: Intentionally failing postinstall
-> scriptlets of ['coreutils'] to defer them to first boot is deprecated.
-> Please place them into pkg_postinst_ontarget_${PN} ().
->
-> From what I can see, it's being caused by update-alternatives.  Is there a
-> workaround for this?
->
-
-I'll answer my own question since it may be of value to someone else.
-
-coreutils, util-linux and busybox all provide overlapping utilities.  Most
-are covered by update alternatives, some are not.  If you have enabled one
-of those in busybox, then update alternatives will fail trying to make the
-symbolic link.  As I understand it (from the warning message) is that
-failing the postinst step used to be a way to ask to be executed at target
-runtime.  The solution is to have only one package provide the conflicting
-utility (or add alternatives to all packages that provide the utility).
-
-Here's an example error message:
-update-alternatives: Error: not linking
-/home/seth/projects/awusb/build/tmp/work/awusb1012-awusb-linux/awusb-image/1.0-r0/rootfs/usr/bin/unshare
-to /bin/busybox.nosuid since
-/home/seth/projects/awusb/build/tmp/work/awusb1012-awusb-linux/awusb-image/1.0-r0/rootfs/usr/bin/unshare
-exists and is not a link
-
-Seth
-
---0000000000009e88860575d41b11
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr">On Mon, Aug 20, 2018 at 8:16 AM Seth Bollinger &lt;<a href=3D"mail=
-to:seth.boll@gmail.com">seth.boll@gmail.com</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello All,=
-</div><div><br></div><div>We&#39;ve been seeing the following warning for a=
- while now.=C2=A0 Is this expected?</div><div><br></div><div>WARNING: manuf=
--image-1.0-r0 do_rootfs: Intentionally failing postinstall scriptlets of [&=
-#39;coreutils&#39;] to defer them to first boot is deprecated. Please place=
- them into pkg_postinst_ontarget_${PN} ().</div><div><br></div><div>From wh=
-at I can see, it&#39;s being caused by update-alternatives.=C2=A0 Is there =
-a workaround for this?</div></div></blockquote><div><br></div><div>I&#39;ll=
- answer my own question since it may be of value to someone else.</div><div=
-><br></div><div>coreutils, util-linux and busybox all provide overlapping u=
-tilities.=C2=A0 Most are covered by update alternatives, some are not.=C2=
-=A0 If you have enabled one of those in busybox, then update alternatives w=
-ill fail trying to make the symbolic link.=C2=A0 As I understand it (from t=
-he warning message) is that failing the postinst step used to be a way to a=
-sk to be executed at target runtime.=C2=A0 The solution is to have only one=
- package provide the conflicting utility (or add alternatives to all packag=
-es that provide the utility).</div><div><br></div><div>Here&#39;s an exampl=
-e error message:</div><div>update-alternatives: Error: not linking /home/se=
-th/projects/awusb/build/tmp/work/awusb1012-awusb-linux/awusb-image/1.0-r0/r=
-ootfs/usr/bin/unshare to /bin/busybox.nosuid since /home/seth/projects/awus=
-b/build/tmp/work/awusb1012-awusb-linux/awusb-image/1.0-r0/rootfs/usr/bin/un=
-share exists and is not a link</div><div><br></div><div>Seth<br></div></div=
-></div></div>
-
---0000000000009e88860575d41b11--
