@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9BCFCE00C49; Sun, 16 Sep 2018 08:57:44 -0700 (PDT)
+	id 3930AE00B9F; Sun, 16 Sep 2018 08:57:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.172 listed in list.dnswl.org]
+	*      [209.85.210.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,52 +19,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
-	[209.85.214.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFE55E00C20
-	for <yocto@yoctoproject.org>; Sun, 16 Sep 2018 08:57:43 -0700 (PDT)
-Received: by mail-pl1-f172.google.com with SMTP id f6-v6so6284667plo.1
-	for <yocto@yoctoproject.org>; Sun, 16 Sep 2018 08:57:43 -0700 (PDT)
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
+	[209.85.210.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE8B6E00A86
+	for <yocto@yoctoproject.org>; Sun, 16 Sep 2018 08:57:44 -0700 (PDT)
+Received: by mail-pf1-f182.google.com with SMTP id l9-v6so6397413pff.9
+	for <yocto@yoctoproject.org>; Sun, 16 Sep 2018 08:57:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=250rLp6QHJbcMbx5xDc97GuJk0GHUkWxbnbuAAzRJzs=;
-	b=fUKcGUHP0BZH71ue49sqE612vb0Xi1tEcYXctNZDcxRI4UPJPfVeBHWjnyrKClIqYz
-	ur7hEUoiFy0X21iUbBkGbkDEZpI0HPV4boMKVCPWAU66cUMYdvupbs4nFV0DGYiEYmzq
-	9K41CPz6AavqgXRWZ0qR/vegjpTogn+6GBKJG0bKDK14btT/yyr7zcrDUpSSGaE7DWAa
-	J+6yZ/SfyB1CVHPBN6AbPD6hprzmU3iwHZrwH/ze4U9gmuR7q1A5RdAki66rKblWryP4
-	CFj3vUBlc90j4v0yEXrQLlpeiDImZHalnpbWbGohwcax7E2NJGRyyLtNivIsBfZNz9gn
-	FGqQ==
+	bh=CBMvR6e8A01/P5QtsD0KrivIuothsFW8fnni53xWb2Y=;
+	b=WfnFRNrmDjjhrE94H2wmLtyvBeiR5gjCqbjHAgdCrd4h8BdUgzwusv4Uwu4Z+XsejH
+	Wh+EuQkr39eTccf4yJk3jFniNzQixrAENlaySB35l5CyQmTnC2zS34P7bKJf482Azpa+
+	S9VAHkHYVwmWDnJoyOWM9/T41sXBrT7lhgliQBcHMsNfu/wHcUoQ1BEi5N5zD9Jd+pID
+	R1U9ybAU8KMbil+xgctCJ3VaP1W6oOuZbcckaFCVnr3PvhdaOUerNowv6T2DblPSdCcF
+	p5hDEPKOnvw0F/GxFJaAq6vhDcn7l64EfjQ51a/XBzEOaWl8YfawbhdF3+d2N2UUuUWn
+	soKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=250rLp6QHJbcMbx5xDc97GuJk0GHUkWxbnbuAAzRJzs=;
-	b=iHF3xXCh0XMxtmL4sh6segPlDO7F75Qw+J5XslG5gi9BCZiSD5AgVO5XgJQSBXy+qj
-	MV8/00rcv+hNBD0qYQzCWmS+D4fEGqg0v7tTxwmCeEwYJAyQRMNFEgAIKp39aj2q2KLK
-	rapob7wgYpo/oaQsWXLrkQNdHbHVwpl4Nd2lqT6YKWzcrxazJHyK3q7RL15iTkXoRmLu
-	b2fF47toQFy2IjScxvmel4795Eb+XTAPlMSe/MU5dAzEP9mFIWrs958LdcL1jcDtKbFG
-	/QaMxL9QdUHhEDpRsKKxiSVvQxzsk8G5iTgJL0uE+5YVxixaMACNtphNhg+OJBFsU7Ka
-	hDMg==
-X-Gm-Message-State: APzg51C5lMA1hjCaKk4R527ToxHC1wEVB2Z60pQKLufC8mDMYxbnypsm
-	3qVslyaK5gt0UuBLiA+YXm0FV1Xi
-X-Google-Smtp-Source: ANB0VdaUYgDkKAOyGyAXu9YOiC3pjRRKmCEpWLx+BwqMCjAo+c3SH8xHF6DjFO3ZJEK6JtTVNSuvuQ==
-X-Received: by 2002:a17:902:6a8a:: with SMTP id
-	n10-v6mr21403381plk.288.1537113463205; 
-	Sun, 16 Sep 2018 08:57:43 -0700 (PDT)
+	bh=CBMvR6e8A01/P5QtsD0KrivIuothsFW8fnni53xWb2Y=;
+	b=tcuXR5vp84PjACoOoWX7uDfE4R5blJLZAzxnsWJCFSxiGB8Qv+2kl9V9WTyPUx9Rew
+	b3iBxjTZVMvuYJA2cO0B7AH87x+fg7CpItdZo7chUSEk+PthH33OP2vfboDGJHWb4sJ2
+	Ay93pcU1XbITBiR5A5X0rKFSYwabLJyHclRrmmCyC8xG+oTVvVWsH84ib92BVSwwT0Ws
+	eZX6ITwKhX3z4AsysdNyn2LsP0lPxtYTSiOGOe03E2Viy3xH5Akxxm+Fcmlzp1cR+y9u
+	mLXfzjqpzw643zUGOwGomnQUW5OtwTGKJsv0IA/BaNr9Vjm6NFxAoJCmkLwpn0V+98Sn
+	lEAg==
+X-Gm-Message-State: APzg51DQjtnRQFb9rV4dCJWXOuvV8OvObrRI3XDzuBmGyLn1ygN5lY7B
+	aYv8hPYNKZcxarPTrcguju19dYhW
+X-Google-Smtp-Source: ANB0VdZjLZw4zRZyL/URJAaddQ/8FLvoq+/7QWfyH1RneWMzaqOXcOeZiqUrUGD+pUdY9bFvq9Q6qA==
+X-Received: by 2002:a65:49cc:: with SMTP id
+	t12-v6mr20083849pgs.27.1537113464235; 
+	Sun, 16 Sep 2018 08:57:44 -0700 (PDT)
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
 	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	f13-v6sm14192326pgs.92.2018.09.16.08.57.42
+	f13-v6sm14192326pgs.92.2018.09.16.08.57.43
 	for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 16 Sep 2018 08:57:42 -0700 (PDT)
+	Sun, 16 Sep 2018 08:57:43 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun, 16 Sep 2018 08:57:10 -0700
-Message-Id: <20180916155719.9911-16-akuster808@gmail.com>
+Date: Sun, 16 Sep 2018 08:57:11 -0700
+Message-Id: <20180916155719.9911-17-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20180916155719.9911-1-akuster808@gmail.com>
 References: <20180916155719.9911-1-akuster808@gmail.com>
-Subject: [meta-security][PATCH 16/25] bastille: fix QA error
+Subject: [meta-security][PATCH 17/25] packagegroup-core-security: change scapy to python name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,28 +76,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 16 Sep 2018 15:57:44 -0000
-
-bastille_3.2.1.bb: cannot map 'allarch' to a linux kernel architecture
+X-List-Received-Date: Sun, 16 Sep 2018 15:57:45 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/bastille/bastille_3.2.1.bb | 2 +-
+ recipes-security/packagegroup/packagegroup-core-security.bb | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-security/bastille/bastille_3.2.1.bb b/recipes-security/bastille/bastille_3.2.1.bb
-index eee1a38..152c03a 100644
---- a/recipes-security/bastille/bastille_3.2.1.bb
-+++ b/recipes-security/bastille/bastille_3.2.1.bb
-@@ -9,7 +9,7 @@ DEPENDS = "virtual/kernel"
- RDEPENDS_${PN} = "perl bash tcl perl-module-getopt-long perl-module-text-wrap lib-perl perl-module-file-path perl-module-mime-base64 perl-module-file-find perl-module-errno perl-module-file-glob perl-module-tie-hash-namedcapture perl-module-file-copy perl-module-english perl-module-exporter perl-module-cwd libcurses-perl coreutils"
- FILES_${PN} += "/run/lock/subsys/bastille"
+diff --git a/recipes-security/packagegroup/packagegroup-core-security.bb b/recipes-security/packagegroup/packagegroup-core-security.bb
+index 6682d29..5317aee 100644
+--- a/recipes-security/packagegroup/packagegroup-core-security.bb
++++ b/recipes-security/packagegroup/packagegroup-core-security.bb
+@@ -27,7 +27,7 @@ RDEPENDS_packagegroup-security-utils = "\
+     checksec \
+     nmap \
+     pinentry \
+-    scapy \
++    python3-scapy \
+     ${@bb.utils.contains("DISTRO_FEATURES", "pax", "pax-utils", "",d)} \
+     "
  
--inherit allarch module-base
-+inherit module-base
- 
- SRC_URI = "http://sourceforge.net/projects/bastille-linux/files/bastille-linux/3.2.1/Bastille-3.2.1.tar.bz2 \
-            file://AccountPermission.pm \
 -- 
 2.17.1
 
