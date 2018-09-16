@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A111E00B93; Sun, 16 Sep 2018 08:57:47 -0700 (PDT)
+	id E04B8E00C15; Sun, 16 Sep 2018 08:57:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.173 listed in list.dnswl.org]
+	*      [209.85.210.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,52 +19,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
-	[209.85.214.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F251EE00AD8
-	for <yocto@yoctoproject.org>; Sun, 16 Sep 2018 08:57:46 -0700 (PDT)
-Received: by mail-pl1-f173.google.com with SMTP id g23-v6so6264889plq.9
-	for <yocto@yoctoproject.org>; Sun, 16 Sep 2018 08:57:46 -0700 (PDT)
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
+	[209.85.210.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C23DE00ADF
+	for <yocto@yoctoproject.org>; Sun, 16 Sep 2018 08:57:48 -0700 (PDT)
+Received: by mail-pf1-f177.google.com with SMTP id k19-v6so6421602pfi.1
+	for <yocto@yoctoproject.org>; Sun, 16 Sep 2018 08:57:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=orpnBncmW3LuVmokcGnNp+UykbqvjXGQoQarRWKRO28=;
-	b=uTkJhgrdSLH6dqqMEQ2xKH9N7rCocb7sUPhq9RJXG14TWTUqpEV8m0kl4/CB1gO3/k
-	dYRg7E8noGQc4H0cls5Bp7rFhU6YoJ2+Uv0pun2PxFvgBAgkQ5sMfXimep70xnDnO3++
-	u1k272E/JcqbhHXF2SgEVNcEb+pYbt13HAEkU6ucwKrD8XTXuN9U+kn7x/k8oEtP1sdm
-	1pjitcrb03mmUCRGthjRvCS1t73DGrZSh8y9i4vHknziGo63LzKWvsu+zxUyup1/pC43
-	5014MX9p6pZB7ixk4WLFfZZMMbzAlh/UOmFjJ8bvQNdwjPmuxTTRph/0z38c84gFdVvz
-	HZuA==
+	bh=Rc8pWVynxDbRlPzjU9LlkhMnG0ZeC1APVEEc60pM8qU=;
+	b=dW70WHjGhYa9vETpra7RpIor1JxGvnYqga2dLMeowB/vdiwW5/hFvbXm6QtKx5e29/
+	+5hbHItiIZV2qURqpXgiSEgEdlS4tkVEqItlueshgjOY9Uor3vuTm+Sm6eK9kdylNnjN
+	7wwuCj+nS0CVPKF5SYlD0uWqbNDimS0VQZDswJy6BP97a0xbwjxYA0enRmFk7XG52Ai1
+	Q9GxgCxp6XttmaMIwUOyDb7wmVncCsFsPWpE1eOW2fhLoCQ4bQZP/ETpsJDK7MHa6Kax
+	69mD2LyV5Uvlk+ZUCH+JHbwqyBkVwWRsnHfMt3qR7Ea7IVVTcPDD0R+AhDR9ahkMOW9V
+	N3dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=orpnBncmW3LuVmokcGnNp+UykbqvjXGQoQarRWKRO28=;
-	b=N0eJf+92PttGtt1wGGsqY5PgyDinETZdlkTnz7uc3wwzoiBg5gf2zWaE8Jr7APRylY
-	7slFnLN+QkjsrXlQzThnsNLVSeoicqiUN5P7X6ND8T+x257NvGJVqH+Wjjk25ui8KETD
-	+9GSDY7JFEuLmKtJL6m0wcLmj6ao7XM/yVY3DvPKsQPpMRtr774vr59vPygZCSPqR6BG
-	fsXQL99g5xoSjNujVLsBFqNzrrMYvKpVMSWEW9rpsQ6arOAVbOhJBgmVep5hQAkDyD4h
-	z+gNlnWZxXSs3XF+9iP/6KZJdbq0hRSQj7ViHfWY08ljJ66zAtJav/jfERp7TtKLOOha
-	uF2w==
-X-Gm-Message-State: APzg51DmiBIPi9puoyJAzQggP5UiAPYi/THlyy+vGhvEA56GlI7KewAw
-	Ucnpqnur/JUSMbZHKc1kZCYfo1FN
-X-Google-Smtp-Source: ANB0VdYMQN7QV92bDAgNOKOf5rRIyLeYuFsxgejp0C2dQwE4/hYvZw3EUGRwEEzPsUYeQMjn6LWHGw==
-X-Received: by 2002:a17:902:b089:: with SMTP id
-	p9-v6mr21193703plr.254.1537113466220; 
-	Sun, 16 Sep 2018 08:57:46 -0700 (PDT)
+	bh=Rc8pWVynxDbRlPzjU9LlkhMnG0ZeC1APVEEc60pM8qU=;
+	b=E8udxEHFlJAwVscmGPFscXGdUcEFHGs5xlXxbVI5bwRoRVjuRRmpZEEVesaBo6TawZ
+	9P4EKmQgg7pYMjUuva76k8fHLtbkUxUl2vz7YR9qBsDkmDOHm4EE7Hx4tng35CnDq+yX
+	kgm4/YZAGcqUTeKyvvrgyTkmgGmfA9eYPmeOyvHLsRoUtWyoBtb1sSgtFBxh8Ls0Uhk2
+	B5OsEx2KFX2glTcG2ZmEF1lxzf3iRul2NF9o1fd74tNpBM6TeSR2LKeEQJAVoTuzocCW
+	co0Ao2pc4w8PmLGHyQH/F6SMnZFjb+ErmnQalDdyUAUsrBCkH8jaroupUsLTPaJNfgbe
+	Jo0w==
+X-Gm-Message-State: APzg51BkSlfThXIRHKCE3GQDyJ8/bzjmxhBtG4yZsjXxnMsajbRbE7jT
+	28SQJJLhf2ImZoCQIMA1ouR+HlSz
+X-Google-Smtp-Source: ANB0VdaoeHm4nG/Om/kGUwX7ujp+jsT9vAhjRoZlys/izhYdmGRowmmsxHjl54erTIA3wtYv2KpbMA==
+X-Received: by 2002:a63:350f:: with SMTP id
+	c15-v6mr5739988pga.206.1537113467932; 
+	Sun, 16 Sep 2018 08:57:47 -0700 (PDT)
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
 	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	f13-v6sm14192326pgs.92.2018.09.16.08.57.45
+	f13-v6sm14192326pgs.92.2018.09.16.08.57.47
 	for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 16 Sep 2018 08:57:45 -0700 (PDT)
+	Sun, 16 Sep 2018 08:57:47 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun, 16 Sep 2018 08:57:13 -0700
-Message-Id: <20180916155719.9911-19-akuster808@gmail.com>
+Date: Sun, 16 Sep 2018 08:57:15 -0700
+Message-Id: <20180916155719.9911-21-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20180916155719.9911-1-akuster808@gmail.com>
 References: <20180916155719.9911-1-akuster808@gmail.com>
-Subject: [meta-security][PATCH 19/25] pcr-extend: fix building with openssl 1.1
+Subject: [meta-security][PATCH 21/25] libtpm: update to tip
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,80 +76,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 16 Sep 2018 15:57:47 -0000
+X-List-Received-Date: Sun, 16 Sep 2018 15:57:48 -0000
+
+LIC_FILES_CHKSUM changed do to "Extend license texts with TPM 2 specifics"
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../files/fix_openssl11_build.patch           | 45 +++++++++++++++++++
- .../recipes-tpm/pcr-extend/pcr-extend_git.bb  |  3 +-
- 2 files changed, 47 insertions(+), 1 deletion(-)
- create mode 100644 meta-tpm/recipes-tpm/pcr-extend/files/fix_openssl11_build.patch
+ meta-tpm/recipes-tpm/libtpm/libtpm_1.0.bb | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/meta-tpm/recipes-tpm/pcr-extend/files/fix_openssl11_build.patch b/meta-tpm/recipes-tpm/pcr-extend/files/fix_openssl11_build.patch
-new file mode 100644
-index 0000000..cf2d437
---- /dev/null
-+++ b/meta-tpm/recipes-tpm/pcr-extend/files/fix_openssl11_build.patch
-@@ -0,0 +1,45 @@
-+Enable building with openssl 1.1
-+
-+Upstream-Status: Pending
-+Signed-off-by: Armin Kuster <akuster808@gmail.com>
-+
-+Index: git/src/pcr-extend.c
-+===================================================================
-+--- git.orig/src/pcr-extend.c
-++++ git/src/pcr-extend.c
-+@@ -118,7 +118,7 @@ dump_buf (FILE *file, char *buf, size_t
-+ static unsigned char*
-+ sha1_file (FILE *file, unsigned int *hash_len)
-+ {
-+-    EVP_MD_CTX ctx = { 0 };
-++    EVP_MD_CTX *ctx = EVP_MD_CTX_new();
-+     unsigned char *buf = NULL, *hash = NULL;
-+     size_t num_read = 0;
-+ 
-+@@ -127,7 +127,7 @@ sha1_file (FILE *file, unsigned int *has
-+         perror ("malloc:\n");
-+         goto sha1_fail;
-+     }
-+-    if (EVP_DigestInit (&ctx, EVP_sha1 ()) == 0) {
-++    if (EVP_DigestInit (ctx, EVP_sha1 ()) == 0) {
-+         ERR_print_errors_fp (stderr);
-+         goto sha1_fail;
-+     }
-+@@ -135,7 +135,7 @@ sha1_file (FILE *file, unsigned int *has
-+         num_read = fread (buf, 1, BUF_SIZE, file);
-+         if (num_read <= 0)
-+             break;
-+-        if (EVP_DigestUpdate (&ctx, buf, num_read) == 0) {
-++        if (EVP_DigestUpdate (ctx, buf, num_read) == 0) {
-+             ERR_print_errors_fp (stderr);
-+             goto sha1_fail;
-+         }
-+@@ -149,7 +149,7 @@ sha1_file (FILE *file, unsigned int *has
-+         perror ("calloc of hash buffer:\n");
-+         goto sha1_fail;
-+     }
-+-    if (EVP_DigestFinal (&ctx, hash, hash_len) == 0) {
-++    if (EVP_DigestFinal (ctx, hash, hash_len) == 0) {
-+         ERR_print_errors_fp (stderr);
-+         goto sha1_fail;
-+     }
-diff --git a/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb b/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
-index 0cc4f63..f8347b7 100644
---- a/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
-+++ b/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
-@@ -9,7 +9,8 @@ DEPENDS = "libtspi"
- PV = "0.1+git${SRCPV}"
- SRCREV = "c02ad8f628b3d99f6d4c087b402fe31a40ee6316"
+diff --git a/meta-tpm/recipes-tpm/libtpm/libtpm_1.0.bb b/meta-tpm/recipes-tpm/libtpm/libtpm_1.0.bb
+index b29ec6b..a930d7b 100644
+--- a/meta-tpm/recipes-tpm/libtpm/libtpm_1.0.bb
++++ b/meta-tpm/recipes-tpm/libtpm/libtpm_1.0.bb
+@@ -1,11 +1,9 @@
+ SUMMARY = "LIBPM - Software TPM Library"
+ LICENSE = "BSD-3-Clause"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=97e5eea8d700d76b3ddfd35c4c96485f"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=e73f0786a936da3814896df06ad225a9"
  
--SRC_URI = "git://github.com/flihp/pcr-extend.git "
-+SRC_URI = "git://github.com/flihp/pcr-extend.git \
-+           file://fix_openssl11_build.patch "
+-SRCREV = "3388d45082bdc588c6fc0672f44d6d7d0aaa86ff"
+-SRC_URI = " \
+-	git://github.com/stefanberger/libtpms.git \
+-	"
++SRCREV = "4111bd1bcf721e6e7b5f11ed9c2b93083677aa25"
++SRC_URI = "git://github.com/stefanberger/libtpms.git"
  
- inherit autotools
- 
+ S = "${WORKDIR}/git"
+ inherit autotools-brokensep pkgconfig
 -- 
 2.17.1
 
