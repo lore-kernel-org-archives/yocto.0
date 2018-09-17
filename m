@@ -1,50 +1,40 @@
-Return-Path: <peter@berginkonsult.se>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0214FE00AD8; Sun, 16 Sep 2018 13:41:52 -0700 (PDT)
+	id 49A57E00AE0; Sun, 16 Sep 2018 20:45:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.30.210.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
-	Sun, 16 Sep 2018 13:41:50 PDT
-Received: from mailrelay1-1.pub.mailoutpod1-cph3.one.com
-	(mailrelay1-1.pub.mailoutpod1-cph3.one.com [46.30.210.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7FD4E007B3
-	for <yocto@yoctoproject.org>; Sun, 16 Sep 2018 13:41:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=berginkonsult.se; s=20140924;
-	h=content-transfer-encoding:content-type:mime-version:date:message-id:to:
-	subject:from:from;
-	bh=vIpT89RYnvL1t2ZoPq2/4Af7/aD0KIAactnFJtB6cZw=;
-	b=3clJaRUyutJdaOfyfO10jxAjOx5q1K0v43qXh9h4WEY/HOtx26fd+oBJ4Mqz8M+uQ5bthzcHhYwUZ
-	jFXz12BxT5/NFAlv7oJV1+PQwaZiC3r1sKDUH83YXpavLjA/Khz//01tKhLPC8O4i/pUbPMUySX//B
-	HP/IAIh4fQvDIy4Y=
-X-HalOne-Cookie: 7115a1d0635be4816483ce899130740651508f74
-X-HalOne-ID: cab3ca61-b9f0-11e8-942c-d0431ea8a283
-Received: from [192.168.100.114] (unknown [82.196.108.162])
-	by mailrelay1.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
-	id cab3ca61-b9f0-11e8-942c-d0431ea8a283;
-	Sun, 16 Sep 2018 20:40:48 +0000 (UTC)
-From: Peter Bergin <peter@berginkonsult.se>
-To: yocto@yoctoproject.org
-Message-ID: <f9f3b3b3-237b-55c2-531b-fa03a8e62f73@berginkonsult.se>
-Date: Sun, 16 Sep 2018 22:40:47 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80E03E00A73
+	for <yocto@yoctoproject.org>; Sun, 16 Sep 2018 20:45:35 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w8H3isaq021285
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 16 Sep 2018 20:45:04 -0700
+Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
+	Sun, 16 Sep 2018 20:44:43 -0700
+To: Dudziak Krzysztof <Krzysztof.Dudziak@gemalto.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <VI1PR01MB1070A5BD461FF0A3731BF9DCE01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <e9c94cb5-bbaa-16ec-b16b-c8fedad90aca@windriver.com>
+Date: Mon, 17 Sep 2018 11:49:53 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Subject: liblzma: memory allocation failed
+In-Reply-To: <VI1PR01MB1070A5BD461FF0A3731BF9DCE01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com>
+X-Originating-IP: [128.224.162.218]
+Subject: Re: Building, Using SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,56 +46,241 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 16 Sep 2018 20:41:52 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Mon, 17 Sep 2018 03:45:36 -0000
+Content-Type: multipart/alternative;
+	boundary="------------27E47C5D7E8138D636643CBA"
+
+--------------27E47C5D7E8138D636643CBA
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 
-Hi,
+On 09/13/2018 10:18 PM, Dudziak Krzysztof wrote:
+>
+> Hi,
+>
+> Alex Gonz�lez elaborates in his book Embedded Linux Development Using 
+> Yocto Projets (2nd Edition)
+>
+> SDK-related questions � basics, building, usage (chapter 4).
+>
+> 1.
+>
+> Downloading then installing precompiled SDK was one of all available 
+> options according to Alex.
+>
+> He elaborates how to find it on server in Internet, how to select 
+> needed one and install it.
+>
+> I wonder how to integrate downloaded and installed precompiled SDK
+>
+> to Poky release used on build system?
+>
 
-during the task do_package_write_rpm I get the error "liblzma: Memory 
-allocation failed". It happens during packaging of binary RPM packages. 
-The root cause seems to be the host environment that is used in our 
-project. We run our builds on a big server with 32 cores and 256GB of 
-physical RAM but each user has a limit of virtual memory usage to 32GB 
-(ulimit -v). The packaging in rpm-native has been parallelized in the 
-commit 
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/meta/recipes-devtools/rpm?id=84e0bb8d936f1b9094c9d5a92825e9d22e1bc7e3. 
-What seems to happen is that rpm-native put up 32 parallel tasks with 
-'#pragma omp', each task is using liblzma that also put up 32 tasks for 
-the compression work. The memory calculations in liblzma is based on the 
-amount of physical RAM but as the user is limited by 'ulimit -v' we get 
-into a OOM situation in liblzma.
+I'd suggest you not using precompiled SDK unless you are justing doing 
+some simple cross compilation that requires no additional libs, header 
+files, etc.
 
-Here is the code snippet from rpm-native/build/pack.c where it happens:
+> 2.
+>
+> Preparing / building SDK by oneself was further option with image 
+> target�s �populate_sdk� Bitbake task
+>
+> as the recommended way (according to Alex in chapter�s certain section).
+>
+> One would need only to start populate_sdk task for image which matches 
+> root file system of system in development.
+>
+> As soon as task completed SDK can be installed using generated script.
+>
+> But how does it work for first build where rootfs was not built in the 
+> past.
+>
+> Is in that case following procedure the proper one?
+>
+> step 1: bitbake <image-name> -c populate_sdk
+>
+> step 2: bitbake <image-name>
+>
 
-     #pragma omp parallel
-     #pragma omp single
-     // re-declaring task variable is necessary, or older gcc versions will produce code that segfaults
-     for (struct binaryPackageTaskData *task = tasks; task != NULL; task = task->next) {
-         if (task != tasks)
-         #pragma omp task
-         {
-             task->result = packageBinary(spec, task->pkg, cookie, cheating, &(task->filename), buildTime, buildHost);
-             rpmlog(RPMLOG_NOTICE, _("Finished binary package job, result %d, filename %s\n"), task->result, task->filename);
-         }
-     }
+The populate_sdk task directly installs rpm packages (nativesdk ones and 
+target ones) to form an SDK.
+It does not need rootfs to be generated first.
+
+Normally you use an SDK for a specific target.
+So the `bitbake IMAGE' is used to generate the image, and `bitbake IMAGE 
+-c populate_sdk' is used to generate the SDK for the image.
+
+Best Regards,
+Chen Qi
+
+> krzysiek
+>
+> ------------------------------------------------------------------------
+> This message and any attachments are intended solely for the 
+> addressees and may contain confidential information. Any unauthorized 
+> use or disclosure, either whole or partial, is prohibited.
+> E-mails are susceptible to alteration. Our company shall not be liable 
+> for the message if altered, changed or falsified. If you are not the 
+> intended recipient of this message, please delete it and notify the 
+> sender.
+> Although all reasonable efforts have been made to keep this 
+> transmission free from viruses, the sender will not be liable for 
+> damages caused by a transmitted virus.
+>
+>
 
 
-Steps to reproduce is to set 'ulimit -v' in your shell to, for example, 
-1/8 of the amount of physical RAM and then build for example 
-glibc-locale. I have tested this with rocko. If the '#pragma omp' 
-statements in code snippet above is removed the problem is solved. But 
-that not good as the parallel processing speed up the process.
+--------------27E47C5D7E8138D636643CBA
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 8bit
 
-Is the host environment used here with restricted virtual memory 
-supported by Yocto? If it is, someone that have any suggestion for a 
-solution on this issue?
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 09/13/2018 10:18 PM, Dudziak
+      Krzysztof wrote:<br>
+    </div>
+    <blockquote
+cite="mid:VI1PR01MB1070A5BD461FF0A3731BF9DCE01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal"><span lang="DE">Hi,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="DE"><o:p>�</o:p></span></p>
+        <p class="MsoNormal">Alex Gonz�lez elaborates in his book
+          Embedded Linux Development Using Yocto Projets (2nd Edition)<o:p></o:p></p>
+        <p class="MsoNormal">SDK-related questions � basics, building,
+          usage (chapter 4).<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+        <p class="MsoNormal">1.<o:p></o:p></p>
+        <p class="MsoNormal">Downloading then installing precompiled SDK
+          was one of all available options according to Alex.<o:p></o:p></p>
+        <p class="MsoNormal">He elaborates how to find it on server in
+          Internet, how to select needed one and install it.<o:p></o:p></p>
+        <p class="MsoNormal">I wonder how to integrate downloaded and
+          installed precompiled SDK<o:p></o:p></p>
+        <p class="MsoNormal">to Poky release used on build system?<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+      </div>
+    </blockquote>
+    <br>
+    I'd suggest you not using precompiled SDK unless you are justing
+    doing some simple cross compilation that requires no additional
+    libs, header files, etc.<br>
+    <br>
+    <blockquote
+cite="mid:VI1PR01MB1070A5BD461FF0A3731BF9DCE01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com"
+      type="cite">
+      <div class="WordSection1">
+        <p class="MsoNormal">2.<o:p></o:p></p>
+        <p class="MsoNormal">Preparing / building SDK by oneself was
+          further option with image target�s �populate_sdk� Bitbake task<o:p></o:p></p>
+        <p class="MsoNormal">as the recommended way (according to Alex
+          in chapter�s certain section).<o:p></o:p></p>
+        <p class="MsoNormal">One would need only to start populate_sdk
+          task for image which matches root file system of system in
+          development.<o:p></o:p></p>
+        <p class="MsoNormal">As soon as task completed SDK can be
+          installed using generated script.<o:p></o:p></p>
+        <p class="MsoNormal">But how does it work for first build where
+          rootfs was not built in the past.<o:p></o:p></p>
+        <p class="MsoNormal">Is in that case following procedure the
+          proper one?<o:p></o:p></p>
+        <p class="MsoNormal">step 1: bitbake &lt;image-name&gt; -c
+          populate_sdk<o:p></o:p></p>
+        <p class="MsoNormal">step 2: bitbake &lt;image-name&gt;<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+      </div>
+    </blockquote>
+    <br>
+    The populate_sdk task directly installs rpm packages (nativesdk ones
+    and target ones) to form an SDK.<br>
+    It does not need rootfs to be generated first.<br>
+    <br>
+    Normally you use an SDK for a specific target.<br>
+    So the `bitbake IMAGE' is used to generate the image, and `bitbake
+    IMAGE -c populate_sdk' is used to generate the SDK for the image.<br>
+    <br>
+    Best Regards,<br>
+    Chen Qi<br>
+    <br>
+    <blockquote
+cite="mid:VI1PR01MB1070A5BD461FF0A3731BF9DCE01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com"
+      type="cite">
+      <div class="WordSection1">
+        <p class="MsoNormal">krzysiek<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+        <p class="MsoNormal"><o:p>�</o:p></p>
+      </div>
+      <hr>
+      <span style="font-style:italic;font-size:10.0pt;font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;;color:maroon;mso-ansi-language:EN-US"
+        lang="EN-US">This message and any attachments are intended
+        solely for the addressees and may contain confidential
+        information. Any unauthorized use or disclosure, either whole or
+        partial, is prohibited.<br>
+        E-mails are susceptible to alteration. Our company shall not be
+        liable for the message if altered, changed or falsified. If you
+        are not the intended recipient of this message, please delete it
+        and notify the sender.<br>
+        Although all reasonable efforts have been made to keep this
+        transmission free from viruses, the sender will not be liable
+        for damages caused by a transmitted virus.</span>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
 
-Best regards,
-/Peter
-
-
-
-
-
+--------------27E47C5D7E8138D636643CBA--
