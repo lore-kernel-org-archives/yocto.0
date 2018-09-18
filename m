@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5ECC1E0095C; Tue, 18 Sep 2018 08:59:03 -0700 (PDT)
+	id 6786BE00BB5; Tue, 18 Sep 2018 08:59:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.195 listed in list.dnswl.org]
+	*      [209.85.210.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,49 +19,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com
-	[209.85.214.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6185E0090A
-	for <yocto@yoctoproject.org>; Tue, 18 Sep 2018 08:59:02 -0700 (PDT)
-Received: by mail-pl1-f195.google.com with SMTP id p5-v6so1220742plk.3
-	for <yocto@yoctoproject.org>; Tue, 18 Sep 2018 08:59:02 -0700 (PDT)
+Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
+	[209.85.210.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EC75E00C12
+	for <yocto@yoctoproject.org>; Tue, 18 Sep 2018 08:59:37 -0700 (PDT)
+Received: by mail-pf1-f196.google.com with SMTP id d4-v6so1241835pfn.0
+	for <yocto@yoctoproject.org>; Tue, 18 Sep 2018 08:59:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=9YDTIllGffTwCL4cEHb+AJNYT9gcJo1FEaieE7uwlhk=;
-	b=AUO16JMMpNm4rn3TpvNCzkFifKOzOjC3eTFxygeH6KaZikBcMQ99t2SNKwxfiuRY6m
-	ZX4DMgYLcCXuAGs5AmhM1M5FuV8upDI0TLQzVNgcs4w6cpkBR4k8QFisfHcNpjQ6V8Q/
-	Qdocb8AudUIQjpwGosKrWNz9whYU+GLZawqfHsPZfludgvXW+CO4pST7zBy8AZvGvQ5e
-	xDStquo9HPlvav0PmLSc1sg/Jf5ZNJoNELZYQitEE7RyqL2jx3nffXc0UCOWIzNrGGsZ
-	89Eo2X4xtQiket9Oy+El8ovL5HT6MsR7cMFphnLa4oUMRZeQW1+rpVdjL31nhIDB827V
-	0/Gg==
+	bh=7wiobfp6uF3fiKqLT1/3FkOg2/2DGcUFdNmZ4l0Xxxo=;
+	b=EwvksRGm0RGkVO8PkV2/NTsoN0LweRL05N6e7W2HhUmWMXawruNHZqyNNC9W+DHOUq
+	qgvJwfuqA77q5/eMnONhyiY1+IaPbUat0XH5di5pgO4o3p2zSi8mfipjDniDB5llW6gS
+	oTCUCVKODOjmg5S8r8aHVbcg4tsT2y036EcbrffPmLGarzLoPAZgFlAHJ0WocKjT3W55
+	RDN+UAiu1Rk3nZwSRJU6EbYC4BhsYMNzEcPwSwojtGDDA2hqMkhi9+GM1CLk33asESRF
+	20+j+YWsKsxWFJcv9mckaL2HoPNSDMy2LoGrxMZ7Ew77q5iTSRzwFDe3VH1PJ1bMJLbj
+	Fcmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=9YDTIllGffTwCL4cEHb+AJNYT9gcJo1FEaieE7uwlhk=;
-	b=bTS825Db32Jjk2VfJDG8CX6d/ZAuzucpqiR7tmqTO71nqa2dGaz7t+J3/bDLw73gsv
-	7DKnONgEFChiaePLB2OWBUvspxCZflkm9kZeCU7VZ573y9Hz4Piq0vASoPMog+75zW0A
-	1uK5X2Myym4+VN7fGhpXFXMTnC7u0533l0CV0TbR9Gze7LJyR+X7af5xCAZZ0KdsJkXy
-	nf2s0wjXHB+5vm/oCEdt2eHkQhxTrwUdgvD9BlU+FGgUWTCQOqOCuGH/dkUq9+XPk2ss
-	czM+ggo+MulBKv6kg9+dcA7VdvI6IQsvJwndqwvuTxjEZjQXbQ1lcLYyAt9Yh3BTPH1Y
-	YemA==
-X-Gm-Message-State: APzg51BdOmdyM8XOjjsHVN5JG3IIiE2Nq4yUJ5+ZxAV8yFq/fUM6Ut4N
-	mUYVQL1bjIgbvtu+rWvVNBGdTAPg
-X-Google-Smtp-Source: ANB0VdYtAYEeDARw2l0kgi0qy6PikUW8IiYbyBEOTl/dyqsucO/Uy8NQ4NtbYNaO/LPGfxWhXu9w6Q==
-X-Received: by 2002:a17:902:e85:: with SMTP id
-	5-v6mr29432744plx.73.1537286342249; 
-	Tue, 18 Sep 2018 08:59:02 -0700 (PDT)
+	bh=7wiobfp6uF3fiKqLT1/3FkOg2/2DGcUFdNmZ4l0Xxxo=;
+	b=Mx7wC51MI6VR8UTCieqDFef5vCxEQ7YWypvx8bfoLQj58Vz/QxePLd5iFlQjKIwv3l
+	09Ks4AH16LHQG9URBkOfvQPWxpngvE2IKztW28k/xdy4wKX0o7bEWsfmgLyEoej5af9B
+	G2b1pDjnPRpjxbZr2+kNaJYee79ngvkxdxVaTZmjwU7OeeEzhlh9Bz9E8tZ8RkOHwGvx
+	D/K4hOoHQglnJbltYe+Z47Gxdc3j9I8nXn+QHxNi+WEiENnWj2QcoSVLwuP3t7cG+oA/
+	JT8Y4r3slQpDxnDKb0TfeQaL5SvmWUF+0aUlS8MkE1UEzlqARkvD637c9YkfgUWhISZi
+	c1Mg==
+X-Gm-Message-State: APzg51BnbkdV6nOjZY7nvJLqCAI2FCdia/wcQn1/rIyZyrq/vPOhVQFI
+	PQuqLp/0W44GTSaQb8E7yokASda+
+X-Google-Smtp-Source: ANB0VdZZ+5BoIZ130B49vN5F4O1KV9jbcUhzsXqCo6ZIkmsFfnFxwKHcHG16RMwh83DZAYUyA6JD4Q==
+X-Received: by 2002:a63:3207:: with SMTP id
+	y7-v6mr28693198pgy.101.1537286376716; 
+	Tue, 18 Sep 2018 08:59:36 -0700 (PDT)
 Received: from ?IPv6:2601:202:4180:c33:78f4:40e4:a9bf:d5d1?
 	([2601:202:4180:c33:78f4:40e4:a9bf:d5d1])
 	by smtp.gmail.com with ESMTPSA id
-	g25-v6sm32421932pfd.23.2018.09.18.08.59.01
+	p3-v6sm23998016pfo.130.2018.09.18.08.59.35
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 18 Sep 2018 08:59:01 -0700 (PDT)
-To: Yi Zhao <yi.zhao@windriver.com>, yocto@yoctoproject.org
-References: <1536739792-20296-1-git-send-email-yi.zhao@windriver.com>
+	Tue, 18 Sep 2018 08:59:36 -0700 (PDT)
+To: Alex Kiernan <alex.kiernan@gmail.com>, yocto@yoctoproject.org
+References: <1537124372-21225-1-git-send-email-alex.kiernan@gmail.com>
 From: akuster808 <akuster808@gmail.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
@@ -107,13 +107,13 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <806720c5-6494-cdef-2100-0abc53d66121@gmail.com>
-Date: Tue, 18 Sep 2018 08:59:00 -0700
+Message-ID: <478a1ecb-fb5c-09e9-4d66-63dd40f9b674@gmail.com>
+Date: Tue, 18 Sep 2018 08:59:34 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.9.1
 MIME-Version: 1.0
-In-Reply-To: <1536739792-20296-1-git-send-email-yi.zhao@windriver.com>
-Subject: Re: [meta-security][PATCH] keynote: depend on openssl10
+In-Reply-To: <1537124372-21225-1-git-send-email-alex.kiernan@gmail.com>
+Subject: Re: [meta-security][PATCH] keyutils: Fix build with usrmerge
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -125,34 +125,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Sep 2018 15:59:03 -0000
+X-List-Received-Date: Tue, 18 Sep 2018 15:59:40 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
 
-On 09/12/2018 01:09 AM, Yi Zhao wrote:
-> Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-> ---
->  recipes-security/keynote/keynote_2.3.bb | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+On 09/16/2018 11:59 AM, Alex Kiernan wrote:
+> Update BINDIR and SBINDIR so keyutils builds with usrmerge
 >
-> diff --git a/recipes-security/keynote/keynote_2.3.bb b/recipes-security/keynote/keynote_2.3.bb
-> index 0300894..6ec26b8 100644
-> --- a/recipes-security/keynote/keynote_2.3.bb
-> +++ b/recipes-security/keynote/keynote_2.3.bb
-> @@ -23,7 +23,7 @@ inherit autotools-brokensep ptest
->  SRC_URI[md5sum] = "a14553e6ad921b5c85026ce5bec3afe7"
->  SRC_URI[sha256sum] = "38d2acfa1c3630a07adcb5c8fe92d2aef7f0e6d242b8998b2bbb1c6e4c408d46"
-
-merged. thanks,
-Armin
+> ERROR: keyutils-1.5.10-r0 do_package: QA Issue: keyutils: Files/directories were installed but not shipped in any package:
+>   /sbin/key.dns_resolver
+>   /sbin/request-key
+>   /bin/keyctl
+> Please set FILES such that these items are packaged. Alternatively if they are unneeded, avoid installing them or delete them within do_install.
+> keyutils: 3 installed and not shipped files. [installed-vs-shipped]
+>
+> Signed-off-by: Alex Kiernan <alex.kiernan@gmail.com>
+merged,
+Thanks,
+armin
+> ---
+>
+>  recipes-security/keyutils/keyutils_1.5.10.bb | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/recipes-security/keyutils/keyutils_1.5.10.bb b/recipes-security/keyutils/keyutils_1.5.10.bb
+> index 2ead8fa..a4222b9 100644
+> --- a/recipes-security/keyutils/keyutils_1.5.10.bb
+> +++ b/recipes-security/keyutils/keyutils_1.5.10.bb
+> @@ -27,6 +27,8 @@ SRC_URI[sha256sum] = "115c3deae7f181778fd0e0ffaa2dad1bf1fe2f5677cf2e0e348cdb7a1c
 >  
-> -DEPENDS = "flex openssl bison-native"
-> +DEPENDS = "flex openssl10 bison-native"
->  
->  EXTRA_OEMAKE += "test-sample -j1"
->  
+>  EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} -Wall' \
+>      NO_ARLIB=1 \
+> +    BINDIR=${base_bindir} \
+> +    SBINDIR=${base_sbindir} \
+>      LIBDIR=${base_libdir} \
+>      USRLIBDIR=${base_libdir} \
+>      BUILDFOR=${SITEINFO_BITS}-bit \
 
 
