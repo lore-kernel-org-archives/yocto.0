@@ -1,94 +1,62 @@
-Return-Path: <Krzysztof.Dudziak@gemalto.com>
+Return-Path: <warrenphd@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2366BE00A38; Mon, 17 Sep 2018 08:23:05 -0700 (PDT)
+	id 41844E00B47; Tue, 18 Sep 2018 02:33:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.2.56 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (warrenphd[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-db5eur01on0056.outbound.protection.outlook.com [104.47.2.56])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34F46E00474
-	for <yocto@yoctoproject.org>; Mon, 17 Sep 2018 08:23:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gemalto.com;
-	s=selector1;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=kITWVxCLFhoW4istR/vryvwf9abnWEbY/GwnTfunZOU=;
-	b=tmi79E0lYSWlgBmnHGPAS8iW95s15DtS3XVtXzlJwij9SiBPdcd/3X4WNNasYJbgT2MBYXSqTG0KabI6Q3f9H9ZkUvS/sETFt15VRaaBCe+I+gp0lYbN1RDDSDrDqBL/UgkI8qZeDRJPSCrzyQbeLze4lowsMlLWkJNRhUe1Ad0=
-Received: from VI1PR01MB1070.eurprd01.prod.exchangelabs.com (10.162.118.12) by
-	VI1PR01MB4077.eurprd01.prod.exchangelabs.com (20.177.54.75) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1143.13; Mon, 17 Sep 2018 15:08:04 +0000
-Received: from VI1PR01MB1070.eurprd01.prod.exchangelabs.com
-	([fe80::2148:c879:482f:ab44]) by
-	VI1PR01MB1070.eurprd01.prod.exchangelabs.com
-	([fe80::2148:c879:482f:ab44%2]) with mapi id 15.20.1143.017;
-	Mon, 17 Sep 2018 15:08:03 +0000
-From: Dudziak Krzysztof <Krzysztof.Dudziak@gemalto.com>
-To: ChenQi <Qi.Chen@windriver.com>
-Thread-Topic: [yocto] Building, Using SDK
-Thread-Index: AdRLadRy5X3gWC2YRBWzUE//nH8P7gCz6lGAABc94eA=
-Date: Mon, 17 Sep 2018 15:08:03 +0000
-Message-ID: <VI1PR01MB107006A429FF8CA52D1749DBE01E0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com>
-References: <VI1PR01MB1070A5BD461FF0A3731BF9DCE01A0@VI1PR01MB1070.eurprd01.prod.exchangelabs.com>
-	<e9c94cb5-bbaa-16ec-b16b-c8fedad90aca@windriver.com>
-In-Reply-To: <e9c94cb5-bbaa-16ec-b16b-c8fedad90aca@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=Krzysztof.Dudziak@gemalto.com; 
-x-originating-ip: [90.187.45.85]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; VI1PR01MB4077;
-	6:2v9Z0kUXgo4IEwQVpS1LMNlI/3Xbd3wVTdJHQr52tj6hhi+aYZuILME7JlyT9DDOZzxQ8ddp2NOQKpRFeWjHvm+mdKFfcLeIwJguKdA2jt9kCJKqnaAPHfuf4kJBlQeNdf84NyD4I6I6BfEWBCiBkVPw3EEyFIHD8IXUFi8bN8MN7mIDBvugsEE/CQ03LC5AaAHXyYVfjokL6ZLscu+WxKi43N/XGgY1hZugce47EfMOF38WtFiS7yDQ/IIL10Wc5/jXmZfP+NKX8zqOnlesxZimAG0WANkkRzyG32bu/ZT/3Ez8BChnLkd2MRdMN+IBSOmfCswRJHFTmTqGc8ZE0naZ2uw5Oqinh941Un8CkHrKfdjuMeorS801N5w9IwLhN1t3gaKHAvyiul/VhHczm+zamTLrrNytV6h0dHeYIppiM9OmD8jvga+w7m5PBsSZJDBrK7sTtFpamHPsGCJOHw==;
-	5:tQtrWRdtBMxfQh+uoVQAq3FdVIZpKAQlQdQ6r3btFZeATEWr6Dh81vS0Htdxdt59Na4u1MC/OLcrHAeBW2vfxgzsDTTdrtNIq77vzPW14zkjoldW3ZDqs9UmrV03TKow/g+2cAJr7a45hZcLmp38ZROO6ugTeQKPF++Couj1iDc=;
-	7:3Kk05kLMvOw6NxQu9IcP5bDsoehO2Jwh+36bVJU593dSJpB7CSQyhh1ftpY8iGXQdhzEezTvLTD7SKSWzcAchG+72ZneOulU6EFgwIhcpRWGyAtYLKOdJNmPPvIL1B/rfN0Q8/8DRcer0M7OBRqHDfea4mN+m/1MlQFgYOTnmIBdUiJqzdP5dAR1Cp55btC5LMvcnBh0m4MITCPGYLqVwHfyH8XWoK8x/XQpQIFGVh2U6hdc7+kkj7NAuQW+bY0R
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: ba0a8638-b82c-466b-dd1d-08d61caf5dc1
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(7020095)(4652040)(8989137)(4534165)(4627221)(201703031133081)(201702281549075)(8990107)(5600074)(711020)(2017052603328)(7153060)(7193020);
-	SRVR:VI1PR01MB4077; 
-x-ms-traffictypediagnostic: VI1PR01MB4077:
-x-microsoft-antispam-prvs: <VI1PR01MB4077395C2282184F5CE097AFE01E0@VI1PR01MB4077.eurprd01.prod.exchangelabs.com>
-x-exchange-antispam-report-test: UriScan:(158342451672863)(103651359005742);
-x-ms-exchange-senderadcheck: 1
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(8211001083)(6040522)(2401047)(5005006)(8121501046)(3231355)(944501410)(52105095)(93006095)(93001095)(10201501046)(3002001)(149027)(150027)(6041310)(20161123564045)(20161123558120)(20161123560045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123562045)(201708071742011)(7699050);
-	SRVR:VI1PR01MB4077; BCL:0; PCL:0; RULEID:; SRVR:VI1PR01MB4077; 
-x-forefront-prvs: 0798146F16
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(346002)(376002)(396003)(39860400002)(366004)(136003)(189003)(199004)(68736007)(6436002)(55016002)(305945005)(7736002)(316002)(478600001)(33656002)(74316002)(53936002)(3846002)(6116002)(8676002)(72206003)(14454004)(6246003)(25786009)(66066001)(9686003)(4326008)(99286004)(86362001)(2906002)(229853002)(5250100002)(105586002)(7696005)(81166006)(76176011)(476003)(6506007)(26005)(256004)(2900100001)(97736004)(446003)(5660300001)(8936002)(14444005)(5024004)(486006)(6916009)(186003)(102836004)(81156014)(106356001)(53546011)(11346002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:VI1PR01MB4077;
-	H:VI1PR01MB1070.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: gemalto.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: wleM0g4ooav8x1LqgU4wkxHNfGG50aGdk459I2HS2k0vTtVGNANZJrUben3Kv/PTLly+6G/T9g8KRKj1oZt98icfppwC9hpUqeB3KZY4QLKTCV3B8Lczi2SX6S79y03kJjojUvRxGW7bYFPggtRv5fwjmdpLN/lqwUy5V2nj9tIoLyPwKGfWlcaA0WX+26dpIQXTsxxiJy3alUV48KFKgNJCaaTDWYhLh85tvbFVgjLVJI5hcMdww7rdeWnCBlYhPS8KJTFHxNG+4plEzDZCBnYyjg86hKfHXV2TSJleNYC9d1UQt8ubiX2Gv+jXo1+gQ6FGqRsQ1QQylKQT4i3FMYrgZKUySeOE0ny7gDIgesg=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com
+	[209.85.166.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 625E2E00B43
+	for <yocto@yoctoproject.org>; Tue, 18 Sep 2018 02:33:17 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id n18-v6so963215ioa.9
+	for <yocto@yoctoproject.org>; Tue, 18 Sep 2018 02:33:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=2LGyUyZ4QqN8LzSk5tZ2bln2A5EAkvgA+3SkpKlE9bc=;
+	b=XoWggmifjyzD9HoSOngeAY0HU+D1DdbEhz8sytGSUHJi/vJPPqURsf/HJ5OfNPdsQR
+	dFOz/eK/fZnM4aw0BBE7hNwjvtUJes7PWd0nrGtd68MwGsaXGZTL8lEK7UjPPJ1O0CyI
+	gDvJkHmQmkEE12ok8addeGszMy+TyQBqQf74CxV2imVcP/zqWC5Oj+IOsvOb7ijmiXLN
+	OHRiOvWQw/Gq4K+kqzKZhLZBa7/nof6r9QSs0TIkGIchJPg7Jryhuv8Tb/ktfGipl2xW
+	2tozJR3ZJ+YP6mtoKRz9FFExu7dxVvd4JsOvAjKaNniR/qVbkf7wbbt9psWRMCKcvVZF
+	AKTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=2LGyUyZ4QqN8LzSk5tZ2bln2A5EAkvgA+3SkpKlE9bc=;
+	b=j6HgE0rNPyX/MErR5yEHO1nLFfb44H1939q3c0+0yzUNij5CeLhNiPViVuDbasghLn
+	qbDkCtJdQ45QQOizGutZDjiDzhaqZU3up2QGnLHkUWItK5iDxkRkpKwTeoOdb3vmNr4v
+	sL32ZzHx60g+8YiLS03RDBgdyZgoLVntihKtxpSzIEgVJCjNYggWQG9IkQkB+CsuBtAL
+	85/gF19Phl5k0fPPf823gW3m2U+R3LJTL0eEAttAbXxPCuTmLX6rH5xel7Pb+0g5v4PO
+	y73Jq+YFXcvIW9pJILNFLULt+vkJTQpd7Zu7S7FFDjEVLo9R9m1T6B13dgZUcr3hYX/J
+	EOuw==
+X-Gm-Message-State: APzg51BHBYhCN6+4JQ3GrHL64kr1Oge3ts8Bqfe3jKELhyBVQ5kqbnM4
+	3HOcOs79P72X2Gj1gbc4JWaXG/fN0LxvmKT9YKFuYOSX
+X-Google-Smtp-Source: ANB0VdaW9sBHZYxlq15xy8fNsSTdlWx8EoWEoqP8kB6BIUS2ArGEfl8D6hKN6LMvpgTj2HFMEJ1ms6lBQGSFe3KGwwo=
+X-Received: by 2002:a6b:5911:: with SMTP id
+	n17-v6mr25097108iob.68.1537263196395; 
+	Tue, 18 Sep 2018 02:33:16 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: gemalto.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba0a8638-b82c-466b-dd1d-08d61caf5dc1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Sep 2018 15:08:03.5713 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 37d0a9db-7c46-4096-bfe3-1add5b495d6d
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR01MB4077
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Building, Using SDK
+From: Phillip Warren <warrenphd@gmail.com>
+Date: Tue, 18 Sep 2018 04:33:04 -0500
+Message-ID: <CAOiuRWV-Z160=uJmaBeQ8B+m0mQ4RuQTOXOm7isfA71QSFgDMg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Adding SSL support to RabbitMQ Server 3.2.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -100,105 +68,397 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Sep 2018 15:23:05 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 18 Sep 2018 09:33:18 -0000
+Content-Type: multipart/alternative; boundary="000000000000bf66d5057621fa97"
 
-Hi,
-Thanks for feedback from you.
-Embedded system native package building and image creation might not be the=
- regular case
-as frequently embedded system do not provide power needed for that.
-So let's concentrate to cross-compilation.
+--000000000000bf66d5057621fa97
+Content-Type: text/plain; charset="UTF-8"
 
-One need first working toolchain.
-In next steps one can build BSP, user-space, image(-s).
-Is the sequence of step as presented previously the right one?
-step 1: bitbake <image-name> -c populate_sdk
-step : build bootloader, kernel
-step : bitbake <image-name>
+Hi, rookie here. I'm trying to enable SSL for RabbitMQ Server 3.2.4 on pyro.
 
-krzysiek
+Without modifying the build, I simply created /etc/rabbitmq/rabbitmq.config
+with the following entries:
 
-From: ChenQi [mailto:Qi.Chen@windriver.com]
-Sent: Monday, 17. September 2018 05:50
-To: Dudziak Krzysztof <Krzysztof.Dudziak@gemalto.com>; yocto@yoctoproject.o=
-rg
-Subject: Re: [yocto] Building, Using SDK
+[
 
-On 09/13/2018 10:18 PM, Dudziak Krzysztof wrote:
-Hi,
+  {rabbitmq_management,
 
-Alex Gonz=E1lez elaborates in his book Embedded Linux Development Using Yoc=
-to Projets (2nd Edition)
-SDK-related questions - basics, building, usage (chapter 4).
+  [
 
-1.
-Downloading then installing precompiled SDK was one of all available option=
-s according to Alex.
-He elaborates how to find it on server in Internet, how to select needed on=
-e and install it.
-I wonder how to integrate downloaded and installed precompiled SDK
-to Poky release used on build system?
+    {listener, [{port,     15671},
+
+                {ip,       "0.0.0.0"},
+
+                {ssl,      true},
+
+                {ssl_opts, [{cacertfile, "/etc/rabbitmq/root-ca.pem"},
+
+                            {certfile,   "/etc/rabbitmq/dev.pem"},
+
+                            {keyfile,    "/etc/rabbitmq/dev-np.key"}]}]}
+
+  ]}
+
+].
 
 
-I'd suggest you not using precompiled SDK unless you are justing doing some=
- simple cross compilation that requires no additional libs, header files, e=
-tc.
+and placed the cacertfile, certfile, and keyfile at /etc/rabbitmq/
 
 
-2.
-Preparing / building SDK by oneself was further option with image target's =
-'populate_sdk' Bitbake task
-as the recommended way (according to Alex in chapter's certain section).
-One would need only to start populate_sdk task for image which matches root=
- file system of system in development.
-As soon as task completed SDK can be installed using generated script.
-But how does it work for first build where rootfs was not built in the past=
-.
-Is in that case following procedure the proper one?
-step 1: bitbake <image-name> -c populate_sdk
-step 2: bitbake <image-name>
+RabbitMQ Server fails to start at boot.
+/var/log/rabbitmq/rabbitmq@{hostname}.log
+shows the following error:
 
 
-The populate_sdk task directly installs rpm packages (nativesdk ones and ta=
-rget ones) to form an SDK.
-It does not need rootfs to be generated first.
+=ERROR REPORT==== 17-Sep-2018::20:13:16 ===
+** Generic server rabbit_web_dispatch_registry terminating
+** Last message in was {add,rabbit_mgmt,
+                           [{port,15671},
+                            {ip,"0.0.0.0"},
+                            {ssl,true},
+                            {ssl_opts,
+                                [{cacertfile,"/etc/rabbitmq/root-ca.pem"},
+                                 {certfile,"/etc/rabbitmq/dcx-dev.pem"},
 
-Normally you use an SDK for a specific target.
-So the `bitbake IMAGE' is used to generate the image, and `bitbake IMAGE -c=
- populate_sdk' is used to generate the SDK for the image.
+ {keyfile,"/etc/rabbitmq/dcx-dev-np.key"}]}],
+                           #Fun<rabbit_web_dispatch.1.73001898>,
+                           #Fun<rabbit_mgmt_app.2.77843060>,
+                           {[],"RabbitMQ Management"}}
+** When Server state == undefined
+** Reason for termination ==
+** {could_not_start_listener,
+       [{port,15671},
+        {ip,"0.0.0.0"},
+        {ssl,true},
+        {ssl_opts,
+            [{cacertfile,"/etc/rabbitmq/root-ca.pem"},
+             {certfile,"/etc/rabbitmq/dcx-dev.pem"},
+             {keyfile,"/etc/rabbitmq/dcx-dev-np.key"}]}],
+       {'EXIT',
+           {{case_clause,{error,{"no such file or
+directory","crypto.app"}}},
+            [{mochiweb,ensure_started,1,
+                 [{file,"mochiweb-wrapper/mochiweb-git/src/mochiweb.erl"},
+                  {line,71}]},
+             {mochiweb_socket_server,prep_ssl,1,
+                 [{file,
+
+"mochiweb-wrapper/mochiweb-git/src/mochiweb_socket_server.erl"},
+                  {line,139}]},
+             {mochiweb_socket_server,start_server,2,
+                 [{file,
+
+"mochiweb-wrapper/mochiweb-git/src/mochiweb_socket_server.erl"},
+                  {line,130}]},
+             {supervisor,do_start_child,2,
+                 [{file,"supervisor.erl"},{line,310}]},
+             {supervisor,handle_start_child,2,
+                 [{file,"supervisor.erl"},{line,681}]},
+
+ {supervisor,handle_call,3,[{file,"supervisor.erl"},{line,390}]},
+             {gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,585}]},
+             {proc_lib,init_p_do_apply,3,
+                 [{file,"proc_lib.erl"},{line,239}]}]}}}
+
+After googling around, I'm going down the path of trying to build Erlang
+with SSL support. Please stop me if this isn't the proper approach!
+
+I clearly see in
+meta-cloud-services/meta-openstack/recipes-devtools/erlang/erlang-native_R16B03-1.bb
+a line that says:
+
+EXTRA_OECONF = '--without-ssl'
+
+
+To alter this statement, I wrote an erlang-native_R16B03-1.bbappend in my
+meta-layer and tried the following entries:
+
+*****************************************************************************************************
+
+DEPENDS += "ncurses-native openssl"
+EXTRA_OECONF = '--with-ssl=/usr/bin/openssl'
+
+This fails to build with the following error:
+
+configure: error: Invalid path to option --with-ssl=PATH
+
+configure: error: /bin/bash
+'build/tmp/work/x86_64-linux/erlang-native/R16B03-1-r0/otp_src_R16B03-1/erts/configure'
+failed for erts
+
+
+*****************************************************************************************************
+
+DEPENDS += "ncurses-native openssl"
+EXTRA_OECONF = '--with-ssl'
+
+
+Builds successfully but products the same error as above in
+/var/log/rabbitmq/rabbitmq@{hostname}.log
+
+*****************************************************************************************************
+
+DEPENDS += "ncurses-native openssl"
+EXTRA_OECONF = "--with-ssl=${STAGING_DIR_HOST}${layout_exec_prefix}"
+
+Builds successfully but products the same error as above
+in /var/log/rabbitmq/rabbitmq@{hostname}.log
+*****************************************************************************************************
+
+DEPENDS += "ncurses-native openssl"
+EXTRA_OECONF =  "--with-ssl use SSL"
+
+Builds successfully but products the same error as above
+in /var/log/rabbitmq/rabbitmq@{hostname}.log
+*****************************************************************************************************
+
+Detailed help is greatly appreciated. Seems like I'm missing something
+obvious.
 
 Best Regards,
-Chen Qi
+Phillip Warren
+
+--000000000000bf66d5057621fa97
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font face=3D"arial, helvetica,=
+ sans-serif">Hi, rookie here. I&#39;m trying to enable SSL for RabbitMQ Ser=
+ver 3.2.4 on pyro.</font></div><div dir=3D"ltr"><font face=3D"arial, helvet=
+ica, sans-serif"><br></font></div><div dir=3D"ltr"><font face=3D"arial, hel=
+vetica, sans-serif">Without modifying the build, I simply created /etc/rabb=
+itmq/rabbitmq.config with the following entries:</font><div><font face=3D"a=
+rial, helvetica, sans-serif"><br></font></div><div>
 
 
-krzysiek
+
+
+
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;line-height:normal"><font fac=
+e=3D"arial, helvetica, sans-serif">[</font></p>
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;line-height:normal"><font fac=
+e=3D"arial, helvetica, sans-serif"><span class=3D"gmail-Apple-converted-spa=
+ce">=C2=A0 </span>{rabbitmq_management,</font></p>
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;line-height:normal"><font fac=
+e=3D"arial, helvetica, sans-serif"><span class=3D"gmail-Apple-converted-spa=
+ce">=C2=A0 </span>[</font></p>
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;line-height:normal"><font fac=
+e=3D"arial, helvetica, sans-serif"><span class=3D"gmail-Apple-converted-spa=
+ce">=C2=A0 =C2=A0 </span>{listener, [{port, <span class=3D"gmail-Apple-conv=
+erted-space">=C2=A0 =C2=A0 </span>15671},</font></p>
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;line-height:normal"><font fac=
+e=3D"arial, helvetica, sans-serif"><span class=3D"gmail-Apple-converted-spa=
+ce">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 </span>{ip, <sp=
+an class=3D"gmail-Apple-converted-space">=C2=A0 =C2=A0 =C2=A0 </span>&quot;=
+0.0.0.0&quot;},</font></p>
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;line-height:normal"><font fac=
+e=3D"arial, helvetica, sans-serif"><span class=3D"gmail-Apple-converted-spa=
+ce">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 </span>{ssl,<sp=
+an class=3D"gmail-Apple-converted-space">=C2=A0 =C2=A0 =C2=A0 </span>true},=
+</font></p>
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;line-height:normal"><font fac=
+e=3D"arial, helvetica, sans-serif"><span class=3D"gmail-Apple-converted-spa=
+ce">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 </span>{ssl_opt=
+s, [{cacertfile, &quot;/etc/rabbitmq/root-ca.pem&quot;},</font></p>
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;line-height:normal"><font fac=
+e=3D"arial, helvetica, sans-serif"><span class=3D"gmail-Apple-converted-spa=
+ce">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 </span>{certfile, <span class=3D"gmail-Apple-co=
+nverted-space">=C2=A0 </span>&quot;/etc/rabbitmq/dev.pem&quot;},</font></p>
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;line-height:normal"><font fac=
+e=3D"arial, helvetica, sans-serif"><span class=3D"gmail-Apple-converted-spa=
+ce">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 </span>{keyfile,<span class=3D"gmail-Apple-conv=
+erted-space">=C2=A0 =C2=A0 </span>&quot;/etc/rabbitmq/dev-np.key&quot;}]}]}=
+</font></p>
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;line-height:normal"><font fac=
+e=3D"arial, helvetica, sans-serif"><span class=3D"gmail-Apple-converted-spa=
+ce">=C2=A0 </span>]}</font></p>
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;line-height:normal"><font fac=
+e=3D"arial, helvetica, sans-serif">].</font></p><p class=3D"gmail-p1" style=
+=3D"margin:0px;font-variant-numeric:normal;font-variant-east-asian:normal;f=
+ont-stretch:normal;line-height:normal"><font face=3D"arial, helvetica, sans=
+-serif"><br></font></p><p class=3D"gmail-p1" style=3D"margin:0px;font-varia=
+nt-numeric:normal;font-variant-east-asian:normal;font-stretch:normal;line-h=
+eight:normal"><font face=3D"arial, helvetica, sans-serif">and placed the=C2=
+=A0cacertfile, certfile, and keyfile=C2=A0at /etc/rabbitmq/</font></p><p cl=
+ass=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-varia=
+nt-east-asian:normal;font-stretch:normal;line-height:normal"><font face=3D"=
+arial, helvetica, sans-serif"><br></font></p><p class=3D"gmail-p1" style=3D=
+"margin:0px;font-variant-numeric:normal;font-variant-east-asian:normal;font=
+-stretch:normal;line-height:normal"><font face=3D"arial, helvetica, sans-se=
+rif">RabbitMQ Server fails to start at boot. /var/log/rabbitmq/rabbitmq@{ho=
+stname}.log shows the following error:</font></p><p class=3D"gmail-p1" styl=
+e=3D"margin:0px;font-variant-numeric:normal;font-variant-east-asian:normal;=
+font-stretch:normal;line-height:normal"><font face=3D"arial, helvetica, san=
+s-serif"><br></font></p><font face=3D"arial, helvetica, sans-serif"><div><d=
+iv style=3D""><font face=3D"arial, helvetica, sans-serif">=3DERROR REPORT=
+=3D=3D=3D=3D 17-Sep-2018::20:13:16 =3D=3D=3D</font></div><div style=3D""><f=
+ont face=3D"arial, helvetica, sans-serif">** Generic server rabbit_web_disp=
+atch_registry terminating=C2=A0</font></div><div style=3D""><font face=3D"a=
+rial, helvetica, sans-serif">** Last message in was {add,rabbit_mgmt,</font=
+></div><div style=3D""><font face=3D"arial, helvetica, sans-serif">=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0[{port,15671},</font></div><div style=3D""><font face=3D"a=
+rial, helvetica, sans-serif">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 {ip,&quot;0.0.0.0&quot=
+;},</font></div><div style=3D""><font face=3D"arial, helvetica, sans-serif"=
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 {ssl,true},</font></div><div style=3D""><font face=
+=3D"arial, helvetica, sans-serif">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 {ssl_opts,</font><=
+/div><div style=3D""><font face=3D"arial, helvetica, sans-serif">=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [{cacertfile,&quot;/etc/rabbitmq/root-ca.pem&qu=
+ot;},</font></div><div style=3D""><font face=3D"arial, helvetica, sans-seri=
+f">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0{certfile,&quot;/etc/rabbit=
+mq/dcx-dev.pem&quot;},</font></div><div style=3D""><font face=3D"arial, hel=
+vetica, sans-serif">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0{keyfile,&qu=
+ot;/etc/rabbitmq/dcx-dev-np.key&quot;}]}],</font></div><div style=3D""><fon=
+t face=3D"arial, helvetica, sans-serif">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#Fun&lt;rabbi=
+t_web_dispatch.1.73001898&gt;,</font></div><div style=3D""><font face=3D"ar=
+ial, helvetica, sans-serif">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0#Fun&lt;rabbit_mgmt_app=
+.2.77843060&gt;,</font></div><div style=3D""><font face=3D"arial, helvetica=
+, sans-serif">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0{[],&quot;RabbitMQ Management&quot;}}=
+</font></div></div>** When Server state =3D=3D undefined<br>** Reason for t=
+ermination =3D=3D <br>** {could_not_start_listener,<br>=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0[{port,15671},<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 {ip,&quot;0.0.0.0&quot=
+;},<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 {ssl,true},<br>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 {ssl_opts,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 [{cacertfile,&q=
+uot;/etc/rabbitmq/root-ca.pem&quot;},<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0{certfile,&quot;/etc/rabbitmq/dcx-dev.pem&quot;},<br>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0{keyfile,&quot;/etc/rabbitmq/dcx-d=
+ev-np.key&quot;}]}],<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0{&#39;EXIT&#39;,<br>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0{{case_clause,{error,{&quot;no such f=
+ile or directory&quot;,&quot;crypto.app&quot;}}},<br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 [{mochiweb,ensure_started,1,<br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0[{file,&quot;mochiweb-wrapper/moch=
+iweb-git/src/mochiweb.erl&quot;},<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 {line,71}]},<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0{mochiweb_socket_server,prep_ssl,1,<br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0[{file,<br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;mochiweb-wrap=
+per/mochiweb-git/src/mochiweb_socket_server.erl&quot;},<br>=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 {line,139}]},<br>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0{mochiweb_socket_server,start_serv=
+er,2,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0[{fi=
+le,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 &quot;mochiweb-wrapper/mochiweb-git/src/mochiweb_socket_server.e=
+rl&quot;},<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 {line,130}]},<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0{super=
+visor,do_start_child,2,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0[{file,&quot;supervisor.erl&quot;},{line,310}]},<br>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0{supervisor,handle_start_child,2,<=
+br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0[{file,&qu=
+ot;supervisor.erl&quot;},{line,681}]},<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0{supervisor,handle_call,3,[{file,&quot;supervisor.erl&quot=
+;},{line,390}]},<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0{gen_se=
+rver,handle_msg,5,[{file,&quot;gen_server.erl&quot;},{line,585}]},<br>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0{proc_lib,init_p_do_apply,3,<b=
+r>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0[{file,&quo=
+t;proc_lib.erl&quot;},{line,239}]}]}}}</font></div><div><font face=3D"arial=
+, helvetica, sans-serif"><br></font></div><div><font face=3D"arial, helveti=
+ca, sans-serif">After googling around,=C2=A0I&#39;m going down the path of =
+trying to build Erlang with SSL support. Please stop me if this isn&#39;t t=
+he proper approach!</font></div><div><font face=3D"arial, helvetica, sans-s=
+erif"><br></font></div><div><font face=3D"arial, helvetica, sans-serif">I c=
+learly see in meta-cloud-services/meta-openstack/recipes-devtools/erlang/er=
+lang-native_R16B03-1.bb a line that says:</font></div><div><font face=3D"ar=
+ial, helvetica, sans-serif"><br></font></div><div>
 
 
 
 
-________________________________________
-This message and any attachments are intended solely for the addressees and=
- may contain confidential information. Any unauthorized use or disclosure, =
-either whole or partial, is prohibited.
-E-mails are susceptible to alteration. Our company shall not be liable for =
-the message if altered, changed or falsified. If you are not the intended r=
-ecipient of this message, please delete it and notify the sender.
-Although all reasonable efforts have been made to keep this transmission fr=
-ee from viruses, the sender will not be liable for damages caused by a tran=
-smitted virus.
 
+<p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-stretch:normal;line-height:normal"><font fac=
+e=3D"arial, helvetica, sans-serif">EXTRA_OECONF =3D &#39;--without-ssl&#39;=
+</font></p><p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;font-stretch:normal;line-height:normal=
+"><font face=3D"arial, helvetica, sans-serif"><br></font></p><p class=3D"gm=
+ail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-variant-east-a=
+sian:normal;font-stretch:normal;line-height:normal"><font face=3D"arial, he=
+lvetica, sans-serif">To alter=C2=A0this statement, I wrote an=C2=A0erlang-n=
+ative_R16B03-1.bbappend in my meta-layer and tried the following=C2=A0entri=
+es:</font></p></div><div><font face=3D"arial, helvetica, sans-serif"><br cl=
+ass=3D"gmail-Apple-interchange-newline">***********************************=
+******************************************************************<br></fon=
+t></div><div><font face=3D"arial, helvetica, sans-serif"><br></font></div><=
+div><font face=3D"arial, helvetica, sans-serif">DEPENDS=C2=A0+=3D &quot;ncu=
+rses-native openssl&quot;</font></div><div><font face=3D"arial, helvetica, =
+sans-serif">EXTRA_OECONF =3D &#39;--with-ssl=3D/usr/bin/openssl&#39;</font>=
+</div><div><div><font face=3D"arial, helvetica, sans-serif"><br class=3D"gm=
+ail-Apple-interchange-newline">This fails to build with the following error=
+:</font></div><div><font face=3D"arial, helvetica, sans-serif"><br></font><=
+/div><div><p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:no=
+rmal;font-variant-east-asian:normal;font-stretch:normal;line-height:normal"=
+><font face=3D"arial, helvetica, sans-serif">configure: error: Invalid path=
+ to option --with-ssl=3DPATH</font></p><p class=3D"gmail-p1" style=3D"margi=
+n:0px;font-variant-numeric:normal;font-variant-east-asian:normal;font-stret=
+ch:normal;line-height:normal"><font face=3D"arial, helvetica, sans-serif">c=
+onfigure: error: /bin/bash &#39;build/tmp/work/x86_64-linux/erlang-native/R=
+16B03-1-r0/otp_src_R16B03-1/erts/configure&#39; failed for erts</font></p><=
+p class=3D"gmail-p1" style=3D"margin:0px;font-variant-numeric:normal;font-v=
+ariant-east-asian:normal;font-stretch:normal;line-height:normal"><font face=
+=3D"arial, helvetica, sans-serif"><br></font></p><p class=3D"gmail-p1" styl=
+e=3D"margin:0px;font-variant-numeric:normal;font-variant-east-asian:normal;=
+font-stretch:normal;line-height:normal"><font face=3D"arial, helvetica, san=
+s-serif">******************************************************************=
+***********************************</font></p></div></div><div><font face=
+=3D"arial, helvetica, sans-serif"><br></font></div><div><div><font face=3D"=
+arial, helvetica, sans-serif">DEPENDS=C2=A0+=3D &quot;ncurses-native openss=
+l&quot;</font></div><div><font face=3D"arial, helvetica, sans-serif">EXTRA_=
+OECONF =3D &#39;--with-ssl&#39;</font></div></div><div><p class=3D"gmail-p1=
+" style=3D"margin:0px;font-variant-numeric:normal;font-variant-east-asian:n=
+ormal;font-stretch:normal;line-height:normal"><font face=3D"arial, helvetic=
+a, sans-serif"><font style=3D""><br class=3D"gmail-Apple-interchange-newlin=
+e">Builds successfully but products the same error as above in=C2=A0</font>=
+/var/log/rabbitmq/rabbitmq@{hostname}.log<br></font></p><p class=3D"gmail-p=
+1" style=3D"margin:0px;font-variant-numeric:normal;font-variant-east-asian:=
+normal;font-stretch:normal;line-height:normal"><font face=3D"arial, helveti=
+ca, sans-serif">***********************************************************=
+******************************************<br></font></p></div><div><font f=
+ace=3D"arial, helvetica, sans-serif"><br></font></div><div><div><font face=
+=3D"arial, helvetica, sans-serif">DEPENDS=C2=A0+=3D &quot;ncurses-native op=
+enssl&quot;</font></div><div><font face=3D"arial, helvetica, sans-serif">EX=
+TRA_OECONF =3D &quot;--with-ssl=3D${STAGING_DIR_HOST}${layout_exec_prefix}&=
+quot;</font></div><div><font face=3D"arial, helvetica, sans-serif"><br clas=
+s=3D"gmail-Apple-interchange-newline">Builds successfully but products the =
+same error as above in=C2=A0/var/log/rabbitmq/rabbitmq@{hostname}.log<br></=
+font></div></div><div><font face=3D"arial, helvetica, sans-serif">*********=
+***************************************************************************=
+*****************</font></div><div><font face=3D"arial, helvetica, sans-ser=
+if"><br></font><div><font face=3D"arial, helvetica, sans-serif">DEPENDS=C2=
+=A0+=3D &quot;ncurses-native openssl&quot;</font></div><font face=3D"arial,=
+ helvetica, sans-serif">EXTRA_OECONF =3D=C2=A0 &quot;--with-ssl use SSL&quo=
+t;</font></div><div><font face=3D"arial, helvetica, sans-serif"><br></font>=
+</div><div><font face=3D"arial, helvetica, sans-serif">Builds successfully =
+but products the same error as above in=C2=A0/var/log/rabbitmq/rabbitmq@{ho=
+stname}.log</font></div><div><font face=3D"arial, helvetica, sans-serif">**=
+***************************************************************************=
+************************<br></font></div><div><font face=3D"arial, helvetic=
+a, sans-serif"><br></font></div><div><font face=3D"arial, helvetica, sans-s=
+erif">Detailed help is greatly appreciated. Seems like I&#39;m missing some=
+thing obvious.</font></div><div><font face=3D"arial, helvetica, sans-serif"=
+><br></font></div><div><div><font face=3D"arial, helvetica, sans-serif">Bes=
+t Regards,<br></font></div><font face=3D"arial, helvetica, sans-serif">Phil=
+lip Warren</font><br></div></div></div></div></div></div></div></div>
 
-________________________________
- This message and any attachments are intended solely for the addressees an=
-d may contain confidential information. Any unauthorized use or disclosure,=
- either whole or partial, is prohibited.
-E-mails are susceptible to alteration. Our company shall not be liable for =
-the message if altered, changed or falsified. If you are not the intended r=
-ecipient of this message, please delete it and notify the sender.
-Although all reasonable efforts have been made to keep this transmission fr=
-ee from viruses, the sender will not be liable for damages caused by a tran=
-smitted virus.
-
+--000000000000bf66d5057621fa97--
