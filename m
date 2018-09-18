@@ -1,70 +1,70 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6786BE00BB5; Tue, 18 Sep 2018 08:59:40 -0700 (PDT)
+	id 67DB8E0095C; Tue, 18 Sep 2018 09:00:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.196 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.210.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
-	[209.85.210.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EC75E00C12
-	for <yocto@yoctoproject.org>; Tue, 18 Sep 2018 08:59:37 -0700 (PDT)
-Received: by mail-pf1-f196.google.com with SMTP id d4-v6so1241835pfn.0
-	for <yocto@yoctoproject.org>; Tue, 18 Sep 2018 08:59:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com
+	[209.85.210.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F159E00971
+	for <yocto@yoctoproject.org>; Tue, 18 Sep 2018 09:00:38 -0700 (PDT)
+Received: by mail-pf1-f180.google.com with SMTP id j8-v6so1233105pff.6
+	for <yocto@yoctoproject.org>; Tue, 18 Sep 2018 09:00:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
 	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=7wiobfp6uF3fiKqLT1/3FkOg2/2DGcUFdNmZ4l0Xxxo=;
-	b=EwvksRGm0RGkVO8PkV2/NTsoN0LweRL05N6e7W2HhUmWMXawruNHZqyNNC9W+DHOUq
-	qgvJwfuqA77q5/eMnONhyiY1+IaPbUat0XH5di5pgO4o3p2zSi8mfipjDniDB5llW6gS
-	oTCUCVKODOjmg5S8r8aHVbcg4tsT2y036EcbrffPmLGarzLoPAZgFlAHJ0WocKjT3W55
-	RDN+UAiu1Rk3nZwSRJU6EbYC4BhsYMNzEcPwSwojtGDDA2hqMkhi9+GM1CLk33asESRF
-	20+j+YWsKsxWFJcv9mckaL2HoPNSDMy2LoGrxMZ7Ew77q5iTSRzwFDe3VH1PJ1bMJLbj
-	Fcmg==
+	bh=w3k69PVTAB9yt1RluzzqU2fhJ3U7/RXRqZArErJ3CcA=;
+	b=tvNtvUhivqpCV8K5dX/LfW4EfecKw16Qjws7F6HIuD6u6Hscon/mpvCRli2S0QWIHX
+	lTQh3XsRALDXMQk1w2H/BwFF1P8D4nscMQDcNJ2BzjwNOg+uGixddlDJy/NPA9n9V8r6
+	53/6wf1OWtcZ1OaEzzgrCH9Jl17JT34rstKFNzBKqeoAD61gbQBWLob6VNDIp6ScDZoa
+	hmWC3Xq/PdDA6E+KLJy4YF0E16NECdwnGPSZCnWJtk4zYAeBQ31dO2cR+dApIIMI+viV
+	0hmkOLUF4nhHPaq/cLEjpDVP5pluxa0Ae02cn43yZJO84/8/KPbhdqRFp+X3+ubYFXzV
+	CqUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=7wiobfp6uF3fiKqLT1/3FkOg2/2DGcUFdNmZ4l0Xxxo=;
-	b=Mx7wC51MI6VR8UTCieqDFef5vCxEQ7YWypvx8bfoLQj58Vz/QxePLd5iFlQjKIwv3l
-	09Ks4AH16LHQG9URBkOfvQPWxpngvE2IKztW28k/xdy4wKX0o7bEWsfmgLyEoej5af9B
-	G2b1pDjnPRpjxbZr2+kNaJYee79ngvkxdxVaTZmjwU7OeeEzhlh9Bz9E8tZ8RkOHwGvx
-	D/K4hOoHQglnJbltYe+Z47Gxdc3j9I8nXn+QHxNi+WEiENnWj2QcoSVLwuP3t7cG+oA/
-	JT8Y4r3slQpDxnDKb0TfeQaL5SvmWUF+0aUlS8MkE1UEzlqARkvD637c9YkfgUWhISZi
-	c1Mg==
-X-Gm-Message-State: APzg51BnbkdV6nOjZY7nvJLqCAI2FCdia/wcQn1/rIyZyrq/vPOhVQFI
-	PQuqLp/0W44GTSaQb8E7yokASda+
-X-Google-Smtp-Source: ANB0VdZZ+5BoIZ130B49vN5F4O1KV9jbcUhzsXqCo6ZIkmsFfnFxwKHcHG16RMwh83DZAYUyA6JD4Q==
-X-Received: by 2002:a63:3207:: with SMTP id
-	y7-v6mr28693198pgy.101.1537286376716; 
-	Tue, 18 Sep 2018 08:59:36 -0700 (PDT)
+	bh=w3k69PVTAB9yt1RluzzqU2fhJ3U7/RXRqZArErJ3CcA=;
+	b=a4/MyZMS/n5jn83Ku5ucSb6oS31I7wOC7bN/kuw2urqg8CZq3XzviphAVKXwKy7Zca
+	zw/POuj3zMlkVygCogSyWQkLSXyk4VgcHtnTfW1RmGp6yYtZHLPbHlF5MWcv89sUCBF5
+	2YDP4gISlqTy8lCf4L1XLtktxgAjdvRD8qj69JVvUdl+OCRWXYs/7mUoFjnHtyf7xax9
+	tm7ftZeVsNtCciAHPV2k4Ct2vPfxfosr553G9Sghsg5zNjRk80xiSoBSGBCFZTWl8k+p
+	qCrs/xzO9pVPVczsuobwii4uBGjERmZu9Fr+8jBmmGpCPT+ZCHi2cJ/hA28gXnf5paZP
+	/S2Q==
+X-Gm-Message-State: APzg51Bb518a+Kmtpw4GN3HcrI7yg29RL5K99AxVoL+D20Ws4ePemjgz
+	u8xBSa2NHVUpottVbsje/pw8Og==
+X-Google-Smtp-Source: ANB0VdbThn392Ovrj3XLm9i44ILmPWaQxpM+XYmbCnK8nCKaKTdPBsJX4/985IQ32ah6WmIEdqKN+Q==
+X-Received: by 2002:a62:ce03:: with SMTP id
+	y3-v6mr3783486pfg.140.1537286437834; 
+	Tue, 18 Sep 2018 09:00:37 -0700 (PDT)
 Received: from ?IPv6:2601:202:4180:c33:78f4:40e4:a9bf:d5d1?
 	([2601:202:4180:c33:78f4:40e4:a9bf:d5d1])
 	by smtp.gmail.com with ESMTPSA id
-	p3-v6sm23998016pfo.130.2018.09.18.08.59.35
+	b1-v6sm31421788pgi.91.2018.09.18.09.00.36
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 18 Sep 2018 08:59:36 -0700 (PDT)
-To: Alex Kiernan <alex.kiernan@gmail.com>, yocto@yoctoproject.org
-References: <1537124372-21225-1-git-send-email-alex.kiernan@gmail.com>
-From: akuster808 <akuster808@gmail.com>
+	Tue, 18 Sep 2018 09:00:36 -0700 (PDT)
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+	Yocto list discussion <yocto@yoctoproject.org>,
+	openembedded-devel <openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+References: <CAP71WjzxZy4AXfRnMT6Jt6Tf18RfA6goy6qi9E6N5eR_AGM1eg@mail.gmail.com>
+From: akuster <akuster@mvista.com>
 Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
 	Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
 	mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
@@ -107,13 +107,13 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <478a1ecb-fb5c-09e9-4d66-63dd40f9b674@gmail.com>
-Date: Tue, 18 Sep 2018 08:59:34 -0700
+Message-ID: <e1f5f06e-984a-90b2-3d67-27241395f380@mvista.com>
+Date: Tue, 18 Sep 2018 09:00:35 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.9.1
 MIME-Version: 1.0
-In-Reply-To: <1537124372-21225-1-git-send-email-alex.kiernan@gmail.com>
-Subject: Re: [meta-security][PATCH] keyutils: Fix build with usrmerge
+In-Reply-To: <CAP71WjzxZy4AXfRnMT6Jt6Tf18RfA6goy6qi9E6N5eR_AGM1eg@mail.gmail.com>
+Subject: Re: Demos for the Yocto Project booth at ELCE in Edinburgh
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -125,44 +125,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Sep 2018 15:59:40 -0000
+X-List-Received-Date: Tue, 18 Sep 2018 16:00:47 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
 
-On 09/16/2018 11:59 AM, Alex Kiernan wrote:
-> Update BINDIR and SBINDIR so keyutils builds with usrmerge
+On 09/18/2018 06:29 AM, Nicolas Dechesne wrote:
+> Dear all,
 >
-> ERROR: keyutils-1.5.10-r0 do_package: QA Issue: keyutils: Files/directories were installed but not shipped in any package:
->   /sbin/key.dns_resolver
->   /sbin/request-key
->   /bin/keyctl
-> Please set FILES such that these items are packaged. Alternatively if they are unneeded, avoid installing them or delete them within do_install.
-> keyutils: 3 installed and not shipped files. [installed-vs-shipped]
+> As usual, the Yocto Project will have a booth at the ELCE conference
+> in Edinburgh next month. While the booth is a great opportunity for
+> everyone to get a new sticker of your favorite project ;-) we are also
+> very excited when developers from our community get a chance to show
+> off the fun and cool things they build thanks to the Yocto Project!
 >
-> Signed-off-by: Alex Kiernan <alex.kiernan@gmail.com>
-merged,
-Thanks,
-armin
-> ---
+> If you want to bring any of your cool demo on the YP booth, please
+> send me an email so that we can plan and discuss any of the logistics!
+
+I will be bringing a demo.. Not sure it its cool though :)
+
+- armin
 >
->  recipes-security/keyutils/keyutils_1.5.10.bb | 2 ++
->  1 file changed, 2 insertions(+)
+> Also, don't forget the YP Dev Day Europe, which is right after ELCE,
+> in Edinburgh, more information can be found here:
+> https://www.yoctoproject.org/yocto-project-dev-day-europe-2018/
 >
-> diff --git a/recipes-security/keyutils/keyutils_1.5.10.bb b/recipes-security/keyutils/keyutils_1.5.10.bb
-> index 2ead8fa..a4222b9 100644
-> --- a/recipes-security/keyutils/keyutils_1.5.10.bb
-> +++ b/recipes-security/keyutils/keyutils_1.5.10.bb
-> @@ -27,6 +27,8 @@ SRC_URI[sha256sum] = "115c3deae7f181778fd0e0ffaa2dad1bf1fe2f5677cf2e0e348cdb7a1c
->  
->  EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} -Wall' \
->      NO_ARLIB=1 \
-> +    BINDIR=${base_bindir} \
-> +    SBINDIR=${base_sbindir} \
->      LIBDIR=${base_libdir} \
->      USRLIBDIR=${base_libdir} \
->      BUILDFOR=${SITEINFO_BITS}-bit \
+> cheers
+> nico
 
 
