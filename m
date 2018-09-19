@@ -1,37 +1,66 @@
-Return-Path: <seebs@seebs.net>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6189EE00B45; Tue, 18 Sep 2018 14:20:49 -0700 (PDT)
+	id 2EFDDE00A4F; Wed, 19 Sep 2018 01:07:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.51 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.seebs.net (mail.seebs.net [162.213.38.76])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BACEE00939
-	for <yocto@yoctoproject.org>; Tue, 18 Sep 2018 14:20:48 -0700 (PDT)
-Received: from seebsdell (unknown [38.32.44.26])
-	by mail.seebs.net (Postfix) with ESMTPSA id 7E85B2E8922;
-	Tue, 18 Sep 2018 16:20:48 -0500 (CDT)
-Date: Tue, 18 Sep 2018 16:20:48 -0500
-From: Seebs <seebs@seebs.net>
-To: Joshua Watt <jpewhacker@gmail.com>
-Message-ID: <20180918162048.35454f8d@seebsdell>
-In-Reply-To: <CAJdd5Gb64JqHY3gv=r+_ZnKpDzO63CLpOF0fP8MQy_Dd_bshQQ@mail.gmail.com>
-References: <6a084eda5fcb4423a647bb998471e26d@AUSX13MPC104.AMER.DELL.COM>
-	<CANNYZj8A22yL9VU0Wp3OOXwZU6yR=fQXqeWSfKykDp_kkL6ZGQ@mail.gmail.com>
-	<6bdfdff49ca04924979eba1da729d7e1@AUSX13MPC104.AMER.DELL.COM>
-	<ca06666cf0377fda72a45581f14a2ba48591dc9b.camel@gmail.com>
-	<0c3dff3db46a4a83a73a4ffe1c83535d@AUSX13MPC104.AMER.DELL.COM>
-	<340e2fcca899a6691605df89eb89f0e7e7802916.camel@linuxfoundation.org>
-	<767f0527074648f48702fedcdb928152@AUSX13MPC104.AMER.DELL.COM>
-	<20180918160944.43679aec@seebsdell>
-	<CAJdd5Gb64JqHY3gv=r+_ZnKpDzO63CLpOF0fP8MQy_Dd_bshQQ@mail.gmail.com>
-X-Mailer: Claws Mail 3.16.0 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f51.google.com (mail-oi0-f51.google.com
+	[209.85.218.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B0B1E0095C
+	for <yocto@yoctoproject.org>; Wed, 19 Sep 2018 01:07:10 -0700 (PDT)
+Received: by mail-oi0-f51.google.com with SMTP id x197-v6so4273704oix.5
+	for <yocto@yoctoproject.org>; Wed, 19 Sep 2018 01:07:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=wLJv/ukuEHssQrThSxYEHEp+lNPRJ1T3GSeStiSe7JU=;
+	b=ZNRCbBJgjnr5AabUKGc876OYlJ0kkbE0XCl30X9Dsyt0pB6lLXsAYooSEEiLSTbKQk
+	0UW9TuQt+T8H/MXChqFVGUrJiYrptyXYV8FP3bwQrM3dSIozpr7RFQ1oh9MFmLKSe4O5
+	Fo5qPrj+WAHzOTd85zsxuAELD3YKUkEYT2gg8hLIMcSlppUVD6m0Bgjx6pr3iBrf2xRM
+	cBeoAG9Sz7MqgUfdGq0DXgMdgBNaThM32IgqAy4jxa7TB3vhQ7mpeGlEGGhkzgPLkZkI
+	W1ExnmzcGNaiWSLkQuwrzsJJA4gC412dcFPMy9ZgPi+FdC90+ubRq1yVPTibr2LQGehU
+	c+RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=wLJv/ukuEHssQrThSxYEHEp+lNPRJ1T3GSeStiSe7JU=;
+	b=YUjgM+qzMBOW883MNRm5gHq+VVPJoIDWIt5aJ8Ec5gsails/tieCiXWKGADkZ9TD7S
+	7DGOPL2GTo+jwLVi7SkYbvs2v5MVdQex7PmoeE3cZLA/gvXZkjd7KcGYiF9DkOeCQK9U
+	ZR6XxXWPjOKapBANdt/7aci+JP0E6ugwqtT2HPdLwmT6q7Kz6OZ8jdp/ZA3sEftCcK+i
+	kzJerB7LvPY2PEXJkHdHsv2zuhATBmRx+Kb88Ri3IDgH9z4QV8m4uSMZNCGT1No7I0wN
+	A8pTcfY/kWQJ2fWs6BeV57MmBL86h/9aJZlUfKXbhzsUSPzRBjNN2gPU7yWbK6/RSbht
+	lZkw==
+X-Gm-Message-State: APzg51CzEStfsP1nE2H9QoNqnNc+oqBGeZXGlfAuJXovY0h7hbnFP8DK
+	4b75iFbaEDeoAAQKXPW8Mesc6GnsArGo5ho/nMnUoQ==
+X-Google-Smtp-Source: ANB0VdYcNDObwOAq0dnaWJ5fFhufxeJFY1Xzjk1XZddGe/uZojINs7Z/VE1k19T3T1zyqr8jAeb6s0GLpJJ4UKi7QoY=
+X-Received: by 2002:aca:bdc4:: with SMTP id n187-v6mr955170oif.3.1537344429869;
+	Wed, 19 Sep 2018 01:07:09 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [pseudo] Pseudo 1.8+ xattr sqlite corruption
+Received: by 2002:a4a:b48b:0:0:0:0:0 with HTTP; Wed, 19 Sep 2018 01:07:09
+	-0700 (PDT)
+In-Reply-To: <1537304423.12258.18.camel@rtfs.org>
+References: <1537304423.12258.18.camel@rtfs.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 19 Sep 2018 10:07:09 +0200
+Message-ID: <CANNYZj8nvG3ty5J0vrapSYK+=VQauNQF71dLnbY8gZAfPf19fg@mail.gmail.com>
+To: Fabian Sturm <f@rtfs.org>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Native yocto compile in docker container without cross compile
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,19 +72,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Sep 2018 21:20:49 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 19 Sep 2018 08:07:11 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 18 Sep 2018 16:16:22 -0500
-Joshua Watt <jpewhacker@gmail.com> wrote:
+I think what you are looking for is a Yocto generated SDK for your image?
 
-> Are the databases supposed to be shareable between different build
-> machines? IIRC, the answer is no. Could you store the native inode
-> type as a sqlite BLOB? Not necessarily a good idea.... Just an idea.
+bitbake -c populate_sdk <image>
 
-I think coercing the values into range is probably safer. It should be
-trivial enough...
+Alex
 
--s
+2018-09-18 23:00 GMT+02:00 Fabian Sturm <f@rtfs.org>:
+> Hi,
+>
+> I am wondering, there does not seem to be any information about native
+> compile of projects in a Yocto docker container. It seems that most of
+> the people use cross compile even though that imho is not necessary if
+> your target is x86 too. So here is what I want to do:
+>
+> - Create a docker container with Yocto Linux, possibly same as the
+> target image
+> - Install gcc, cmake, autotools etc. in the docker container
+> - Run the docker container on a vanilla Ubuntu Linux
+> - Run build jobs in this docker container directly
+>
+> Rational. I have several projects with fully functioning build systems,
+> e.g. make, cmake or autotools which I need to compile for different
+> platforms, e.g. Windows, Ubuntu Linux and Yocto Linux. I now don't want
+> to write recipes just for the Yocto cross compile which I need to
+> additionally maintain and I also don't want to make the original build
+> systems cross compile aware. This can soon get really hard if the build
+> system generates intermediate binaries that are called in the build
+> itself and if it is not prepared for this.
+> Since my target and host platform are both x86 I do not see the need
+> for a cross compile anyways. Usually it is necessary since the target
+> platform might be a very slow ARM system that can't handle all the
+> builds itself. But I do not have this limitation.
+>
+> With such a solution my original build systems should still be able to
+> run unmodified. Within the docker container the environment would be
+> almost the same as in an Ubuntu Linux. The compiler can be accessed
+> without any cross compile settings and any intermediate binaries can
+> also be directly executed etc.
+>
+> If there are some fundamental reasons why this is a bad idea, I would
+> like to know. I also would appreciate any tips on how to create such a
+> docker image. Usually my Yocto image for the target would not contain a
+> compiler or make tool. So I need a way to add those after the fact.
+>
+>
+> Thanks a lot!
+> Fabian
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
