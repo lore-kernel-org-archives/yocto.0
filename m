@@ -1,62 +1,35 @@
-Return-Path: <stefano.cappa.ks89@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF90AE00BB3; Wed, 19 Sep 2018 15:32:17 -0700 (PDT)
+	id 51614E00BB7; Wed, 19 Sep 2018 21:12:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (stefano.cappa.ks89[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.51 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com
-	[209.85.222.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 232D0E00B4C
-	for <yocto@yoctoproject.org>; Wed, 19 Sep 2018 15:32:17 -0700 (PDT)
-Received: by mail-ua1-f51.google.com with SMTP id i4-v6so3562168uak.0
-	for <yocto@yoctoproject.org>; Wed, 19 Sep 2018 15:32:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=S48WgVjV+5FeHcUq8EDOvb+eDtUJw7vEkXD2STHu8YI=;
-	b=SBjtrzJ71ih8nnz/WIkO4/GNCiDjKYXZnrCrz9ZSAd9CjAdt0jsOijDN2+9+TegC7f
-	+WEf/JawvcMxRCdrx7Y+kuuTjG3W4eE6RRdl3N+yf29puUrZdIGKRUsLFio3fc7nh4Fz
-	HFhcg2XXEO7BNwaHC5F/OKDIBU47IomemlTObvAFCYJa9mAIErRLmLjPmFbTaV9WP80/
-	Z1HC/j0DpTItilERjtSVSXOo6xs+OR1U+R9YRjKUt8xyT8CvT3Vx7AjlhXzU4MceRWHe
-	74GSbsXlkIrqkwuM6ZlfckXoBK8VEZEJe2lTtWyGvDyECnUCrMB+wGYKSeiWL8KrJC11
-	b18g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=S48WgVjV+5FeHcUq8EDOvb+eDtUJw7vEkXD2STHu8YI=;
-	b=DN7yUzHZI/HP4tCKvlWdRcFtmVP357RbyEU3mQ8CY9QSzgmhgERQ4RuaySx4QpjWL/
-	wPX37tTvDUiya8zOFc9g9WmE6TM0jGBcY/60kJiAeoAC8Nw1LTa2pbWsyFCcaW61zIMp
-	r8adqNI4qr/qstimW2uqSyR29jQRG7DItcxqWyfDdkNMvIRk1Revb0gcutpL+rz03nqU
-	sKvqIU5uL/fixBTZJoRC748jPUDenMGWInsOeJOIG9E+lkuiqQJpd7TwFNd8/BB3PYjx
-	G2/1a7XgioVwMcaJtVNpbygSCr25taBVI6A9QYVXg5aOvQE94lvRuUVYeH3fSjAEPXPU
-	8wMQ==
-X-Gm-Message-State: APzg51BdFegbHQazGBOXHPTRt76N6p/E8zd8W0Zs+ZIQnuTiWaWEw3tg
-	To3iLpUfeKKA/SnENheHsKytoB9aiuLl/uNQ3oxiwQ==
-X-Google-Smtp-Source: ANB0VdaACQuZuiiFPb446K+hJxO4dLVuYRD9iMOy2YAEh3nDrIicBqkFSvZcflL08Hski9Md5rZYEYoM6XGPMzUyLOg=
-X-Received: by 2002:ab0:590d:: with SMTP id
-	n13-v6mr12664092uad.123.1537396335835; 
-	Wed, 19 Sep 2018 15:32:15 -0700 (PDT)
-MIME-Version: 1.0
-From: Stefano Cappa <stefano.cappa.ks89@gmail.com>
-Date: Thu, 20 Sep 2018 00:32:04 +0200
-Message-ID: <CAKRytNy2F4xXcjdHpLJxW2WW5qWz_seO37DJNuS4qtzuTQpSmA@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [meta-selinux] cannot apply misc_create_inode.c-label_rootfs.patch from e2fsprogs
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3626AE00BAA
+	for <yocto@yoctoproject.org>; Wed, 19 Sep 2018 21:12:43 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	19 Sep 2018 21:12:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.53,397,1531810800"; d="scan'208";a="91658006"
+Received: from sprithvx-mobl1.gar.corp.intel.com (HELO localhost.localdomain)
+	([10.255.135.47])
+	by fmsmga001.fm.intel.com with ESMTP; 19 Sep 2018 21:12:40 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 20 Sep 2018 16:12:19 +1200
+Message-Id: <cover.1537416533.git.paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [layerindex-web][PATCH 00/10] Bootstrap 3, update task enhancements, etc. (cover letter only)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,59 +41,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Sep 2018 22:32:17 -0000
-Content-Type: multipart/alternative; boundary="00000000000079fe6c057640fa73"
+X-List-Received-Date: Thu, 20 Sep 2018 04:12:44 -0000
 
---00000000000079fe6c057640fa73
-Content-Type: text/plain; charset="UTF-8"
+A bit of a mixed bag: one bugfix, move to Bootstrap 3 for the frontend,
+some minor features and significant work on how update tasks for the
+other distro comparison functionality works.
 
-I have an iMX6 board with meta-freescale.
-I'm using yocto sumo with meta-security and I want to try to add
-meta-selinux (without meta-virtualization) to do some experiments.
 
-However, while building I receive this error:
+The following changes since commit 3aa6bf964d81a04b652499069f0454c546a5e296:
 
-ERROR: e2fsprogs-native-1.43.8-r0 do_patch: Command Error: 'quilt --quiltrc
-/home/ks89/git/poky/build/tmp/work/x86_64-linux/e2fsprogs-native/1.43.8-r0/recipe-sysroot-native/etc/quiltrc
-push' exited with 0  Output:
-Applying patch misc_create_inode.c-label_rootfs.patch
-patching file misc/create_inode.c
-Hunk #1 FAILED at 979.
-frHunk #2 FAILED at 987.
-2 out of 2 hunks FAILED -- rejects in file misc/create_inode.c
-Patch misc_create_inode.c-label_rootfs.patch does not apply (enforce with
--f)
-ERROR: e2fsprogs-native-1.43.8-r0 do_patch: Function failed: patch_do_patch
-ERROR: Logfile of failure stored in:
-/home/ks89/git/poky/build/tmp/work/x86_64-linux/e2fsprogs-native/1.43.8-r0/temp/log.do_patch.62867
-ERROR: Task
-(virtual:native:/home/ks89/git/poky/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.43.8.bb:do_patch)
-failed with exit code '1'
+  import_layer.py: add -t option for layer_type (2018-09-20 15:53:07 +1200)
 
-Is it safe to remove misc_create_inode.c-label_rootfs.patch without issues?
+are available in the Git repository at:
 
---00000000000079fe6c057640fa73
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+  git://git.yoctoproject.org/layerindex-web paule/fixes8
+  http://git.yoctoproject.org/cgit.cgi//log/?h=paule/fixes8
 
-<div dir=3D"ltr">I have an iMX6 board with meta-freescale.<div>I&#39;m usin=
-g yocto sumo with meta-security and I want to try to add meta-selinux (with=
-out meta-virtualization) to do some experiments.</div><div><br></div><div>H=
-owever, while building I receive this error:</div><div><div><br></div><div>=
-ERROR: e2fsprogs-native-1.43.8-r0 do_patch: Command Error: &#39;quilt --qui=
-ltrc /home/ks89/git/poky/build/tmp/work/x86_64-linux/e2fsprogs-native/1.43.=
-8-r0/recipe-sysroot-native/etc/quiltrc push&#39; exited with 0=C2=A0 Output=
-:</div><div>Applying patch misc_create_inode.c-label_rootfs.patch</div><div=
->patching file misc/create_inode.c</div><div>Hunk #1 FAILED at 979.</div><d=
-iv>frHunk #2 FAILED at 987.</div><div>2 out of 2 hunks FAILED -- rejects in=
- file misc/create_inode.c</div><div>Patch misc_create_inode.c-label_rootfs.=
-patch does not apply (enforce with -f)</div><div>ERROR: e2fsprogs-native-1.=
-43.8-r0 do_patch: Function failed: patch_do_patch</div><div>ERROR: Logfile =
-of failure stored in: /home/ks89/git/poky/build/tmp/work/x86_64-linux/e2fsp=
-rogs-native/1.43.8-r0/temp/log.do_patch.62867</div><div>ERROR: Task (virtua=
-l:native:/home/ks89/git/poky/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.43=
-.8.bb:do_patch) failed with exit code &#39;1&#39;</div></div><div><br></div=
-><div>Is it safe to remove misc_create_inode.c-label_rootfs.patch=C2=A0with=
-out issues?</div></div>
+Paul Eggleton (10):
+  import_otherdistro: fix update recording code
+  Upgrade to Bootstrap 3
+  Add admin link to tools dropdown menu
+  models: add a get_checkout_branch() function
+  Show actual branch on layer detail
+  Show update task output more smoothly
+  Show progress when running comparison update tasks
+  Properly show update task success/failure
+  Allow stopping update task
+  TODO: remove completed item
 
---00000000000079fe6c057640fa73--
+ README                                        |     4 +-
+ TODO                                          |     1 -
+ docker/settings.py                            |     4 +-
+ layerindex/forms.py                           |    35 +-
+ layerindex/migrations/0025_update_retcode.py  |    20 +
+ layerindex/models.py                          |    16 +-
+ layerindex/static/css/additional.css          |    59 +-
+ .../static/css/bootstrap-responsive.css       |  1109 --
+ .../static/css/bootstrap-responsive.min.css   |     9 -
+ layerindex/static/css/bootstrap-theme.css     |   587 +
+ layerindex/static/css/bootstrap-theme.css.map |     1 +
+ layerindex/static/css/bootstrap-theme.min.css |     6 +
+ .../static/css/bootstrap-theme.min.css.map    |     1 +
+ layerindex/static/css/bootstrap.css           | 10591 ++++++++--------
+ layerindex/static/css/bootstrap.css.map       |     1 +
+ layerindex/static/css/bootstrap.min.css       |    13 +-
+ layerindex/static/css/bootstrap.min.css.map   |     1 +
+ .../fonts/glyphicons-halflings-regular.eot    |   Bin 0 -> 20127 bytes
+ .../fonts/glyphicons-halflings-regular.svg    |   288 +
+ .../fonts/glyphicons-halflings-regular.ttf    |   Bin 0 -> 45404 bytes
+ .../fonts/glyphicons-halflings-regular.woff   |   Bin 0 -> 23424 bytes
+ .../fonts/glyphicons-halflings-regular.woff2  |   Bin 0 -> 18028 bytes
+ .../static/img/glyphicons-halflings-white.png |   Bin 8777 -> 0 bytes
+ .../static/img/glyphicons-halflings.png       |   Bin 12799 -> 0 bytes
+ layerindex/static/js/bootstrap.js             |  3331 ++---
+ layerindex/static/js/bootstrap.min.js         |    11 +-
+ layerindex/static/js/jquery-1.7.2.js          |  9404 --------------
+ layerindex/static/js/jquery-3.3.1.js          | 10364 +++++++++++++++
+ layerindex/tasks.py                           |    23 +-
+ layerindex/templatetags/extrafilters.py       |    21 +-
+ layerindex/tools/import_otherdistro.py        |    14 +-
+ layerindex/urls.py                            |     8 +-
+ layerindex/utils.py                           |   117 +-
+ layerindex/views.py                           |    52 +-
+ rrs/static/css/rrs-additional.css             |     7 +-
+ settings.py                                   |     7 +-
+ templates/base.html                           |    48 +-
+ templates/base_toplevel.html                  |    12 +-
+ templates/layerindex/about.html               |     4 +-
+ templates/layerindex/bulkchange.html          |    10 +-
+ templates/layerindex/bulkchangeedit.html      |     8 +-
+ templates/layerindex/bulkchangereview.html    |     8 +-
+ templates/layerindex/bulkchangesearch.html    |    22 +-
+ templates/layerindex/classes.html             |    19 +-
+ templates/layerindex/classic_base.html        |     4 +-
+ templates/layerindex/classicrecipedetail.html |     4 +-
+ templates/layerindex/classicrecipes.html      |   166 +-
+ templates/layerindex/classicstats.html        |     2 +-
+ .../layerindex/comparisonrecipebase.html      |    10 +-
+ .../layerindex/comparisonrecipeselect.html    |    97 +-
+ .../comparisonrecipeselectdetail.html         |    90 +-
+ templates/layerindex/deleteconfirm.html       |     4 +-
+ templates/layerindex/detail.html              |   122 +-
+ templates/layerindex/distros.html             |    20 +-
+ templates/layerindex/duplicates.html          |    92 +-
+ templates/layerindex/editlayer.html           |    32 +-
+ templates/layerindex/editlayernote.html       |     4 +-
+ templates/layerindex/layers.html              |    50 +-
+ templates/layerindex/machines.html            |    20 +-
+ templates/layerindex/profile.html             |     8 +-
+ templates/layerindex/recipedetail.html        |    30 +-
+ templates/layerindex/recipes.html             |    25 +-
+ templates/layerindex/reviewdetail.html        |    32 +-
+ templates/layerindex/reviewlist.html          |     6 +-
+ templates/layerindex/stats.html               |     2 +-
+ templates/layerindex/task.html                |    94 +-
+ templates/layerindex/updatedetail.html        |     6 +-
+ templates/layerindex/updatelist.html          |     9 +-
+ templates/pagination.html                     |     4 +-
+ templates/registration/login.html             |     2 +-
+ .../registration/password_change_form.html    |     2 +-
+ .../registration/password_reset_confirm.html  |     2 +-
+ .../registration/password_reset_form.html     |     2 +-
+ templates/registration/registration_form.html |     2 +-
+ templates/rrs/base_toplevel.html              |    81 +-
+ templates/rrs/maintainers.html                |    48 +-
+ templates/rrs/recipedetail.html               |    32 +-
+ templates/rrs/recipes.html                    |    48 +-
+ templates/rrs/rrs_stats.html                  |     2 +-
+ 79 files changed, 19611 insertions(+), 17779 deletions(-)
+ create mode 100644 layerindex/migrations/0025_update_retcode.py
+ delete mode 100644 layerindex/static/css/bootstrap-responsive.css
+ delete mode 100644 layerindex/static/css/bootstrap-responsive.min.css
+ create mode 100644 layerindex/static/css/bootstrap-theme.css
+ create mode 100644 layerindex/static/css/bootstrap-theme.css.map
+ create mode 100644 layerindex/static/css/bootstrap-theme.min.css
+ create mode 100644 layerindex/static/css/bootstrap-theme.min.css.map
+ create mode 100644 layerindex/static/css/bootstrap.css.map
+ create mode 100644 layerindex/static/css/bootstrap.min.css.map
+ create mode 100644 layerindex/static/fonts/glyphicons-halflings-regular.eot
+ create mode 100644 layerindex/static/fonts/glyphicons-halflings-regular.svg
+ create mode 100644 layerindex/static/fonts/glyphicons-halflings-regular.ttf
+ create mode 100644 layerindex/static/fonts/glyphicons-halflings-regular.woff
+ create mode 100644 layerindex/static/fonts/glyphicons-halflings-regular.woff2
+ delete mode 100644 layerindex/static/img/glyphicons-halflings-white.png
+ delete mode 100644 layerindex/static/img/glyphicons-halflings.png
+ delete mode 100644 layerindex/static/js/jquery-1.7.2.js
+ create mode 100644 layerindex/static/js/jquery-3.3.1.js
+
+-- 
+2.17.1
+
+
