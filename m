@@ -1,47 +1,70 @@
-Return-Path: <abuse@basmevissen.nl>
+Return-Path: <andrea.adami@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D941E00720; Thu, 20 Sep 2018 15:21:25 -0700 (PDT)
+	id E2523E00720; Thu, 20 Sep 2018 16:04:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_00, URIBL_DBL_ABUSE_MALW
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 2.5 URIBL_DBL_ABUSE_MALW Contains an abused malware URL
-	listed in the *      Spamhaus DBL blocklist
-	*      [URIs: linaro.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (andrea.adami[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82FDDE00474
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 15:21:23 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by hosting.emcodev.net (Postfix) with ESMTP id 198A712AE7A;
-	Fri, 21 Sep 2018 00:21:22 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at hosting.emcodev.net
-Received: from hosting.emcodev.net ([127.0.0.1])
-	by localhost (hosting.emcodev.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id rstmhfWqWnUw; Fri, 21 Sep 2018 00:21:07 +0200 (CEST)
-Received: from [192.168.5.84] (D47863BD.cm-1.dynamic.ziggo.nl [212.120.99.189])
-	(Authenticated sender: bas@emcodev.nl)
-	by hosting.emcodev.net (Postfix) with ESMTPSA id 9D0A212AE81;
-	Fri, 21 Sep 2018 00:21:07 +0200 (CEST)
-To: Evan O'Loughlin <evan.oloughlin@vitalograph.ie>
-References: <2EE3E45FEAD8944697CC29BFE83DD70F289B91F2@VitalExchange.vitalograph.local>
-	<af1c99f79f52abe4c72b0b20b8ddc02a@basmevissen.nl>
-	<2EE3E45FEAD8944697CC29BFE83DD70F289B92E6@VitalExchange.vitalograph.local>
-	<b332d979acdc58ec0977ac2c43f37d45@basmevissen.nl>
-	<2EE3E45FEAD8944697CC29BFE83DD70F289B931C@VitalExchange.vitalograph.local>
-	<47ce2f8e897e9f02943c4f9884e85488@basmevissen.nl>
-	<2EE3E45FEAD8944697CC29BFE83DD70F289B93D6@VitalExchange.vitalograph.local>
-From: Bas Mevissen <abuse@basmevissen.nl>
-Message-ID: <e1d342f5-7184-17e3-6c22-ac6a53cee430@basmevissen.nl>
-Date: Fri, 21 Sep 2018 00:21:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
+	[209.85.215.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48761E00474
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 16:04:54 -0700 (PDT)
+Received: by mail-pg1-f196.google.com with SMTP id 205-v6so4170111pgd.2
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 16:04:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=/mBqBnYvyNgpqls43N7EgRPpkEMSpw1v8nZAQm1PGXU=;
+	b=X5O96yVrmKd7PYkhW0yzQY1TNsQqfV3odY4+8rRoTld2ptsvOltF95s7C+d43eJ1dk
+	yW/hMN33B9kcnCGz8MIRWptZq2MbMZ5TK9AjNsseWXIxin7hr4vanzkHfvvEPw8aQDv7
+	rpGoQflbiXVzfPucbu3TM4LlfrNsQ21Sp8Vh/Wts1Jrf5SCgMpKphm+Q8+BcfZGQ8Kpu
+	9AzTgHM0CJTKglzyYJ4xXEZJ4p7oqAStc8GRktkXAwEUKeTYx713sQiXzwmXPVXptXf/
+	pEVQc10VtWjw2OwTrDG2IQUorO7P0LZpM3KMIWrH6f/ZrA1tyrovwla/lUHhCigrch1o
+	L8Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=/mBqBnYvyNgpqls43N7EgRPpkEMSpw1v8nZAQm1PGXU=;
+	b=e1KsnO+Fy4pYhL6oVXrWbcTwrXRVzuzUSF5lzLMk+YSbOj3epRm+PfGxSozANmdvmC
+	Wa/4dDLTxsus/VnQD6k6Q7fnd94pfgqnpcJopIqaatcWvXVXWyozduuZrk3j23kz5n9w
+	WTCEXwUKdJrRc2KWkqHc4h6AbQaU5wm2qSqGgwVTzREdJVP3AoAR7ECDAbmtypHQX840
+	ADZ4FKIOXnf+6x36wryp0FvUUGlCsvUvcQ7sYEE9wR4cXZRM6eAeldz/6uUj4N0b19w3
+	Dv9yK75hS76a0rXEot9B69ivYo9qGr3MPkAPXcag3OgqO08oQTqK1l/m3BEZMBTU42sw
+	a16g==
+X-Gm-Message-State: APzg51AIgjTL/w+m337Z1ivRSAGSMSZulyhg3QvRxo9bcAxNqg1JUYKT
+	k/7/IG0PDsD3j5nl3IsydbKiU0XhgP5nYfRXACeNPXfC
+X-Google-Smtp-Source: ANB0VdaGFzvEC/rQI6zBkT4PVYF0R5MBUUBnvobwSt+3fRJPYUyOsOxf/sX8vpG767JxyDctbk3BAH9Kz1PtCMXJiWY=
+X-Received: by 2002:a62:6711:: with SMTP id
+	b17-v6mr43621006pfc.243.1537484693622; 
+	Thu, 20 Sep 2018 16:04:53 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <2EE3E45FEAD8944697CC29BFE83DD70F289B93D6@VitalExchange.vitalograph.local>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto SDK generated - unable to compile application
+References: <f9f3b3b3-237b-55c2-531b-fa03a8e62f73@berginkonsult.se>
+	<d75c6307-7071-bbbc-5ace-4e1db0f15cea@windriver.com>
+	<c9071e74-5a04-408e-6a5b-87490fc9b167@berginkonsult.se>
+	<CAJTo0LbjCN31UUNUP9WX_NxMhoAr0xCt45WrQaWDvqovDeNhYw@mail.gmail.com>
+	<570c7242-e0a8-a65c-aa8f-93b4c331da08@berginkonsult.se>
+In-Reply-To: <570c7242-e0a8-a65c-aa8f-93b4c331da08@berginkonsult.se>
+From: Andrea Adami <andrea.adami@gmail.com>
+Date: Fri, 21 Sep 2018 01:04:41 +0200
+Message-ID: <CAAQYJAvccEtSj1VpXJ-KdaB8Q=s+rQ2SQ8oRn2Bo2ojo5+U3xg@mail.gmail.com>
+To: peter@berginkonsult.se
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: liblzma: memory allocation failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,381 +76,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2018 22:21:25 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
+X-List-Received-Date: Thu, 20 Sep 2018 23:04:54 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-
-
-On 9/20/18 3:32 PM, Evan O'Loughlin wrote:
->=20
-> ________________________________________
-> From: Bas Mevissen [abuse@basmevissen.nl]
-> Sent: 20 September 2018 13:23
-> To: Evan O'Loughlin
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Yocto SDK generated - unable to compile applicatio=
-n
->=20
-> On 2018-09-20 12:28, Evan O'Loughlin wrote:
->> ________________________________________
->> From: Bas Mevissen [abuse@basmevissen.nl]
->> Sent: 20 September 2018 10:50
->> To: Evan O'Loughlin
->> Cc: yocto@yoctoproject.org
->> Subject: Re: [yocto] Yocto SDK generated - unable to compile
->> application
->>
->> On 2018-09-20 11:40, Evan O'Loughlin wrote:
->>> -----Original Message-----
->>> From: Bas Mevissen [mailto:abuse@basmevissen.nl]
->>> Sent: 20 September 2018 10:12
->>> To: Evan O'Loughlin <evan.oloughlin@vitalograph.ie>
->>> Cc: yocto@yoctoproject.org
->>> Subject: Re: [yocto] Yocto SDK generated - unable to compile
->>> application
->>>
->>> On 2018-09-20 10:08, Evan O'Loughlin wrote:
->>>> Hello,
->>>>
->>>> I=92m having an issue when I try to use the SDK generated by my yoct=
-o
->>>> instance.
->>>> Currently I have yocto set-up to correctly build my image =96 this a=
-ll
->>>> works well.
->>>>
->>>> I've built the SDK in the following ways:
->>>>    * bitbake {image} =96c populate_sdk
->>>>    * bitbake meta-toolchain-qt5
->>>>    * bitbake {image-sdk} using a separate recipe with the options:
->>>>        - require {image}.bb
->>>>        - IMAGE_FEATURES +=3D " dev-pkgs tools-sdk tools-debug
->>>> eclipse-debug debug-tweaks"
->>>>        - IMAGE_INSTALL +=3D "kernel-devsrc"
->>>>        - inherit populate_sdk populate_sdk_qt5
->>>>
->>>>
->>>> When I try to use the generated SDKs I get the error below:
->>>> Simple helloworld app:
->>>>    #include <stdio.h>
->>>>    #include <stdlib.h>
->>>>    #include <stddef.h>
->>>>    #include <cstddef>
->>>>
->>>>    int main (int argc, char** argv)
->>>>    {
->>>>       printf("Hello World\n");
->>>>       return 0;
->>>>    }
->>>>
->>>> Compile error:
->>>>    ${CC} helloworld.c
->>>>    helloworld.c:4:19: fatal error: cstddef: No such file or director=
-y
->>>>    #include <cstddef>
->>>>                     ^
->>>>    compilation terminated
->>>>
->>>>
->>>> Have I missed a step in generating the SDK?
->>>>
->>>>
->>>
->>> No, your SDK looks fine. The solution is to just remove the line
->>>
->>> #include <cstddef>
->>>
->>> from your c sources or use the g++ compiler (called ${CXX) in
->>> Makefile) to compile the source.
->>>
->>>> Regards,
->>>> vitalEol
->>
->>> Hi Bas,
->>>
->>> I'm using the offending line in helloworld.c to highlight the issue
->>> I'm
->>> seeing.
->>>
->>> My main program is a Qt application where I see the same issue when
->>> trying to build in QtCreator.
->>>
->>> My issue relates to the fact that several include files are not
->>> readily available after 'sourcing' the environment setup.
->>>
->>> Do I need to adjust/include other recipes when building the SDK?
->>>
->>
->> I might be wrong, but this looks like you are using the gcc compiler
->> instead of the g++ one. See the second part of my answer.
->>
->> To check your environment, check in your sdk that the file cstddef
->> exists somewhere in /usr/include. Example from a Fedora Linux system:
->>
->> $ find /usr/include -name cstddef
->> /usr/include/c++/8/cstddef
->>
->> If I compile your example with "gcc" on that system, I get the same
->> error. With "g++", is is fine. It automatically find the cstddef heade=
-r
->> file in the /usr/include/c++/8 directory.
->>
->> Hope this helps,
->>
->> (and please do not top post as that makes a mail thread unreadable)
->>
->> -- Bas.
->>
->>
->>> Regards,
->>> Evan
->>>
->>
->> Hi Bas,
->>
->> Apologies for top-posting previously.
->>
->> using ${CC}, ${CPP} or ${CXX} all show the same error relating to not
->> finding the required include
->>
->> cstddef is available in the cross-compiler toolchain:
->> $ find . -name cstddef
->> ./sysroots/armv7ahf-neon-linux-gnueabi/usr/include/c++/6.2.1/cstddef
->> ./sysroots/armv7ahf-neon-linux-gnueabi/usr/include/boost/compatibility=
-/cpp_c_headers/cstddef
->>
->=20
-> That looks fine.
->=20
->> and is also available on my system:
->> $ find /usr/include -name cstddef
->> /usr/include/c++/5/cstddef
->> /usr/include/c++/4.7/cstddef
->> /usr/include/c++/4.8/cstddef
->>
->>
->> ${CC} --version && ${CPP} --version && ${CXX} --version
->> arm-linux-gnueabihf-gcc (Linaro GCC 6.2-2016.11) 6.2.1 20161016
->> Copyright (C) 2016 Free Software Foundation, Inc.
->> This is free software; see the source for copying conditions.  There i=
-s
->> NO
->> warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
->> PURPOSE.
->>
->> arm-linux-gnueabihf-gcc (Linaro GCC 6.2-2016.11) 6.2.1 20161016
->> Copyright (C) 2016 Free Software Foundation, Inc.
->> This is free software; see the source for copying conditions.  There i=
-s
->> NO
->> warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
->> PURPOSE.
->>
->> arm-linux-gnueabihf-g++ (Linaro GCC 6.2-2016.11) 6.2.1 20161016
->> Copyright (C) 2016 Free Software Foundation, Inc.
->> This is free software; see the source for copying conditions.  There i=
-s
->> NO
->> warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
->> PURPOSE.
->>
->=20
-> I tried with an Freescale i.MX6 SDK for Sumo and that compiled fine wit=
-h
-> ${CXX}.
->=20
-> It is a bit of guessing now. Maybe somewhat more information might help=
+On Thu, Sep 20, 2018 at 1:03 PM Peter Bergin <peter@berginkonsult.se> wrote=
 :
->=20
-> What version of Yocto are you using? What layers are included? What
-> machine?
->=20
-> Are you sure this is the cross compiler belonging to the SDK?
->=20
-> Did you maybe move the SDK install location and not adapt the
-> environment file?
-> Please check this with "echo ${SDKTARGETSYSROOT}" and "echo ${CXX}"
->=20
->=20
->>
->> Regards,
->> Evan
->=20
->=20
-> I'm using the yocto setup from Ti related to their processor-sdk v04.03=
-.00.05 (http://software-dl.ti.com/processor-sdk-linux/esd/AM335X/04_03_00=
-_05/index_FDS.html & http://software-dl.ti.com/processor-sdk-linux/esd/do=
-cs/04_03_00_05/linux/Overview.html#processor-sdk-linux-building-the-sdk)
-> Build Configuration:
-> BB_VERSION        =3D "1.32.0"
-> BUILD_SYS         =3D "x86_64-linux"
-> NATIVELSBSTRING   =3D "Ubuntu-16.04"
-> TARGET_SYS        =3D "arm-linux-gnueabi"
-> MACHINE           =3D "XYZ-PROD"
-> DISTRO            =3D "arago"
-> DISTRO_VERSION    =3D "2017.12"
-> TUNE_FEATURES     =3D "arm armv7a vfp thumb neon       callconvention-h=
-ard"
-> TARGET_FPU        =3D "hard"
-> meta-processor-sdk =3D "HEAD:92db4d8023d88ab59fab2953e7447ec0bd5a6db1"
-> meta-ros          =3D "HEAD:e2566402ab108a19634354a934788109422cf409"
-> meta-arago-distro=20
-> meta-arago-extras =3D "HEAD:5b2a44b0c4d989133bc13d59398fd10375d351bb"
-> meta-browser      =3D "HEAD:26d50665e2f7223c5f4ad7481a8d2431e7cb55fb"
-> meta-openamp      =3D "HEAD:8a214032bfb7e8124bc1485c70c69f7d60abb819"
-> meta-qt5          =3D "HEAD:2c9f0e4eb0e9097f6f872ec1e1d81768a8ab5f1b"
-> meta-networking  =20
-> meta-ruby        =20
-> meta-python      =20
-> meta-oe          =20
-> meta-gnome       =20
-> meta-multimedia   =3D "HEAD:b40116cf457b88a2db14b86fda9627fb34d56ae6"
-> meta-ti           =3D "HEAD:3dc08477529b31ce887bb22a08201a843ded48f0"
-> meta-linaro-toolchain=20
-> meta-optee        =3D "HEAD:d73e794c7e7ebb1cc5bf495a52a72b26fb118250"
-> meta              =3D "HEAD:39fd8c129e2bff7f2f1649b7f6e036ccc50fd5d8"
-> meta-XYZ  =3D "sdk_04.03.00.05_dev:61ec90da8c798b357a343b92d1e41c403e03=
-65d9"
-> workspace         =3D "<unknown>:<unknown>"
->=20
-> I'm using the same machine to build the image for my device & to genera=
-te the SDK.
-> bitbake {image} -c populate_sdk results in arago-2017.12-toolchain-2017=
-.12.sh installer which i use to install to ~/tiToolchain_SDKv4
->=20
-> The environment file is as follows - all paths are correct & accessible=
- :
-> export SDKTARGETSYSROOT=3D/home/micheal/tiToolchain_SDKv4/sysroots/armv=
-7ahf-neon-linux-gnueabi
-> export PATH=3D/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-lin=
-ux/usr/bin:/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/us=
-r/sbin:/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/bin:/h=
-ome/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/sbin:/home/mich=
-eal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/usr/bin/../x86_64-arago=
--linux/bin:/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/us=
-r/bin/arm-linux-gnueabi:/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-a=
-rago-linux/usr/bin/arm-linux-uclibc:/home/micheal/tiToolchain_SDKv4/sysro=
-ots/x86_64-arago-linux/usr/bin/arm-linux-musl:$PATH
-> export CCACHE_PATH=3D/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-ar=
-ago-linux/usr/bin:/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-l=
-inux/usr/bin/../x86_64-arago-linux/bin:/home/micheal/tiToolchain_SDKv4/sy=
-sroots/x86_64-arago-linux/usr/bin/arm-linux-gnueabi:/home/micheal/tiToolc=
-hain_SDKv4/sysroots/x86_64-arago-linux/usr/bin/arm-linux-uclibc:/home/mic=
-heal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/usr/bin/arm-linux-musl=
-:$CCACHE_PATH
-> export PKG_CONFIG_SYSROOT_DIR=3D$SDKTARGETSYSROOT
-> export PKG_CONFIG_PATH=3D$SDKTARGETSYSROOT/usr/lib/pkgconfig:$SDKTARGET=
-SYSROOT/usr/share/pkgconfig
-> export CONFIG_SITE=3D/home/micheal/tiToolchain_SDKv4/site-config-armv7a=
-hf-neon-linux-gnueabi
-> export OECORE_NATIVE_SYSROOT=3D"/home/micheal/tiToolchain_SDKv4/sysroot=
-s/x86_64-arago-linux"
-> export OECORE_TARGET_SYSROOT=3D"$SDKTARGETSYSROOT"
-> export OECORE_ACLOCAL_OPTS=3D"-I /home/micheal/tiToolchain_SDKv4/sysroo=
-ts/x86_64-arago-linux/usr/share/aclocal"
-> unset command_not_found_handle
-> export CC=3D"arm-linux-gnueabihf-gcc  -march=3Darmv7-a -marm -mfpu=3Dne=
-on  -mfloat-abi=3Dhard --sysroot=3D$SDKTARGETSYSROOT"
-> export CXX=3D"arm-linux-gnueabihf-g++  -march=3Darmv7-a -marm -mfpu=3Dn=
-eon  -mfloat-abi=3Dhard --sysroot=3D$SDKTARGETSYSROOT"
-> export CPP=3D"arm-linux-gnueabihf-gcc -E  -march=3Darmv7-a -marm -mfpu=3D=
-neon  -mfloat-abi=3Dhard --sysroot=3D$SDKTARGETSYSROOT"
-> export AS=3D"arm-linux-gnueabihf-as "
-> export LD=3D"arm-linux-gnueabihf-ld  --sysroot=3D$SDKTARGETSYSROOT"
-> export GDB=3Darm-linux-gnueabihf-gdb
-> export STRIP=3Darm-linux-gnueabihf-strip
-> export RANLIB=3Darm-linux-gnueabihf-ranlib
-> export OBJCOPY=3Darm-linux-gnueabihf-objcopy
-> export OBJDUMP=3Darm-linux-gnueabihf-objdump
-> export AR=3Darm-linux-gnueabihf-ar
-> export NM=3Darm-linux-gnueabihf-nm
-> export M4=3Dm4
-> export TARGET_PREFIX=3Darm-linux-gnueabihf-
-> export CONFIGURE_FLAGS=3D"--target=3Darm-linux-gnueabi --host=3Darm-lin=
-ux-gnueabi --build=3Dx86_64-linux --with-libtool-sysroot=3D$SDKTARGETSYSR=
-OOT"
-> export CFLAGS=3D" -isystem/home/micheal/gcc-linaro-6.2.1-2016.11-x86_64=
-_arm-linux-gnueabihf/arm-linux-gnueabihf/include  -O2 -pipe -g -feliminat=
-e-unused-debug-types "
-> export CXXFLAGS=3D" -isystem/home/micheal/gcc-linaro-6.2.1-2016.11-x86_=
-64_arm-linux-gnueabihf/arm-linux-gnueabihf/include  -O2 -pipe -g -felimin=
-ate-unused-debug-types "
-> export LDFLAGS=3D" -L/home/micheal/gcc-linaro-6.2.1-2016.11-x86_64_arm-=
-linux-gnueabihf/arm-linux-gnueabihf/lib -Wl,-rpath-link,/home/micheal/gcc=
--linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf/lib =
--Wl,-O1 -Wl,--hash-style=3Dgnu"
-> export CPPFLAGS=3D" -isystem/home/micheal/gcc-linaro-6.2.1-2016.11-x86_=
-64_arm-linux-gnueabihf/arm-linux-gnueabihf/include "
-> export KCFLAGS=3D"--sysroot=3D$SDKTARGETSYSROOT"
-> export OECORE_DISTRO_VERSION=3D"2017.12"
-> export OECORE_SDK_VERSION=3D"2017.12"
-> export ARCH=3Darm
-> export CROSS_COMPILE=3Darm-linux-gnueabihf-
->=20
-> # Append environment subscripts
-> if [ -d "$OECORE_TARGET_SYSROOT/environment-setup.d" ]; then
->     for envfile in $OECORE_TARGET_SYSROOT/environment-setup.d/*.sh; do
-> 	    . $envfile
->     done
-> fi
-> if [ -d "$OECORE_NATIVE_SYSROOT/environment-setup.d" ]; then
->     for envfile in $OECORE_NATIVE_SYSROOT/environment-setup.d/*.sh; do
-> 	    . $envfile
->     done
-> fi
->=20
->=20
->=20
-> echo ${SDKTARGETSYSROOT} && echo ${CXX}
-> /home/micheal/tiToolchain_SDKv4/sysroots/armv7ahf-neon-linux-gnueabi
-> arm-linux-gnueabihf-g++ -march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=
-=3Dhard --sysroot=3D/home/micheal/tiToolchain_SDKv4/sysroots/armv7ahf-neo=
-n-linux-gnueabi
->=20
->=20
-> Thanks for your help so far with this; I'm stumped as to why the header=
-s are not found.
->=20
+>
+> On 2018-09-17 10:27, Burton, Ross wrote:
+>
+> On Mon, 17 Sep 2018 at 08:13, Peter Bergin <peter@berginkonsult.se> wrote=
+:
+>
+> I'm pretty sure I have narrowed down the root cause to the restriction
+> of virtual memory and that liblzma base its memory calculations on
+> physical RAM.
+>
+> To prove this I added a printout in rpm-native/rpmio/rpmio.c and the
+> function lzopen_internal.
+>
+>          uint64_t memory_usage =3D lzma_stream_encoder_mt_memusage(&mt_op=
+tions);
+>         rpmlog(RPMLOG_NOTICE, "DBG: memory_usage %lu\n", memory_usage);
+>
+>
+> The value of memory_usage is the same regardless of which 'ulimit -v'
+> value I set. On the host with 256GB of physical RAM and 32GB of virtual
+> memory, memory_usage is ~5.1GB. On another host with 16GB of physical
+> RAM I get memory_usage of ~660MB.
+>
+> I guess you have not seen this kind of failure if you not have
+> restricted virutal memory on your host. If you want to try to reproduce
+> this set 'ulimit -v 8388608' (8GB) in your shell and then 'bitbake
+> glibc-locale -c package_write_rpm -f'.
+>
+> Wouldn't a solution be to change lzma to look at free memory, not
+> total physical memory?
+>
+> Ross
+>
+> I have been in contact with the maintainer of liblzma. There is currently=
+ no way to restrict the memory usage in liblzma during multi threaded compr=
+ession. He recommended to adjust the number of threads used during compress=
+ion. This kind of check is done for 32-bits but not when running 64-bits (i=
+n rpmio/rpmio.c lzopen_internal). To rewrite liblzma is another option but =
+I took an easier way out.
+>
+> I have come up with a patch (https://patchwork.openembedded.org/patch/155=
+017/) that solves my problem and do a restriction of memory usage when the =
+'ulimit -v' is set. The calculation is based on the assumption that lzopen_=
+internal is run in parallel with as many instances as cpu threads as '#prag=
+ma omp parallel' is used in build/pack.c.
+>
+> When running test on my machine with 4 cores 16GB of physical RAM and 'ul=
+imit -v 2097152' (2GB). It works good and the log shows:
+>
+> XZ: virtual memory restricted to 2147483648 and per CPU thread 536870912
+> XZ: Adjusted the number of threads from 4 to 3 to not exceed the memory u=
+sage limit of 2147483648 bytes
+>
+> Didn't get a clear answer if this is something Yocto/OE should support bu=
+t I hope my patch solves the issue and it will not affect the normal enviro=
+nments where 'ulimit -v' is not set.
+>
+> /Peter
+> --
 
-I downloaded their toolchain from
-https://releases.linaro.org/components/toolchain/binaries/6.2-2016.11/arm=
--linux-gnueabihf/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf.tar.=
-xz
+Peter,
+first of all sorry for butting-in again. My bad I misunderstood the point,
 
-This one seems fine:
+Looking properly at it, I see the sources do restrict only #if __WORDSIZE =
+=3D=3D 32.
 
-$ echo "#include <cstddef>" | ./bin/arm-linux-gnueabihf-cpp -E -x c++ -o
-/dev/null -
+Again, there is the other way to reduce total memory footprint just
+using lower preset in mt_options.
+As far as I see default is  #define LZMA_PRESET_DEFAULT     UINT32_C(6)
+so you could tr to modify   mt_options.preset to your needs.
+I think more threads is normally  better.
 
-(also works with -cpp replaced by -gcc and -g++)
+Cheers
+Andrea
 
-To see how a failure looks like, replace -x c++ with -x c:
-
-$ echo "#include <cstddef>" | ./bin/arm-linux-gnueabihf-cpp -E -x c -o
-/dev/null -
-<stdin>:1:19: fatal error: cstddef: No such file or directory
-compilation terminated.
-
-
-So maybe simply overwrite the toolchain in your SDK with the one from
-the link above. That will get you started at least.
-
-Otherwise, use strace to see where it looks for the cstddef file:
-
-echo "#include <cstddef>" | strace -f ${CXX} -E -x c++ -o /dev/null -
-2>&1 | grep cstddef
-
-Cheers,
-
-Bas.
-
-
->=20
-> Regards,
-> Evan
->=20
->=20
->=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
