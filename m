@@ -1,40 +1,63 @@
-Return-Path: <abuse@basmevissen.nl>
+Return-Path: <evan.oloughlin@vitalograph.ie>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2235E00BD2; Thu, 20 Sep 2018 05:24:15 -0700 (PDT)
+	id 15C7EE0097C; Thu, 20 Sep 2018 06:35:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.162.216.181 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD757E00BAA
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 05:24:13 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by hosting.emcodev.net (Postfix) with ESMTP id 24E8812AE49;
-	Thu, 20 Sep 2018 14:24:12 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at hosting.emcodev.net
-Received: from hosting.emcodev.net ([127.0.0.1])
-	by localhost (hosting.emcodev.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id YiR6nfPXiCJB; Thu, 20 Sep 2018 14:23:31 +0200 (CEST)
-Received: from emcodev.nl (localhost [127.0.0.1])
-	by hosting.emcodev.net (Postfix) with ESMTP id A115012AE53;
-	Thu, 20 Sep 2018 14:23:07 +0200 (CEST)
-MIME-Version: 1.0
-Date: Thu, 20 Sep 2018 14:23:06 +0200
-From: Bas Mevissen <abuse@basmevissen.nl>
-To: Evan O'Loughlin <evan.oloughlin@vitalograph.ie>
-In-Reply-To: <2EE3E45FEAD8944697CC29BFE83DD70F289B931C@VitalExchange.vitalograph.local>
+X-Greylist: delayed 165 seconds by postgrey-1.32 at yocto-www;
+	Thu, 20 Sep 2018 06:35:03 PDT
+Received: from smtp-out4.electric.net (smtp-out4.electric.net
+	[192.162.216.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84EFBE006AF
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 06:35:03 -0700 (PDT)
+Received: from 1g2z44-00080J-UH by out4b.electric.net with emc1-ok (Exim
+	4.90_1) (envelope-from <evan.oloughlin@vitalograph.ie>)
+	id 1g2z45-000876-UG; Thu, 20 Sep 2018 06:32:17 -0700
+Received: by emcmailer; Thu, 20 Sep 2018 06:32:17 -0700
+Received: from [176.58.6.8] (helo=VitalExchange.vitalograph.local)
+	by out4b.electric.net with esmtps (TLSv1.2:AES256-GCM-SHA384:256)
+	(Exim 4.90_1) (envelope-from <evan.oloughlin@vitalograph.ie>)
+	id 1g2z44-00080J-UH; Thu, 20 Sep 2018 06:32:16 -0700
+Received: from VITALEXCHANGE.vitalograph.local ([fe80::93c:7e0f:858e:c090]) by
+	VitalExchange.vitalograph.local ([fe80::93c:7e0f:858e:c090%12]) with
+	mapi id 14.03.0399.000; Thu, 20 Sep 2018 14:32:15 +0100
+From: Evan O'Loughlin <evan.oloughlin@vitalograph.ie>
+To: Bas Mevissen <abuse@basmevissen.nl>
+Thread-Topic: [yocto] Yocto SDK generated - unable to compile application
+Thread-Index: AQHUULkrB+PsRV1tME++SjwtRDDgE6T40b4AgAAXwvD///LzgIAAGSuvgAARigCAAB/e9g==
+Date: Thu, 20 Sep 2018 13:32:14 +0000
+Message-ID: <2EE3E45FEAD8944697CC29BFE83DD70F289B93D6@VitalExchange.vitalograph.local>
 References: <2EE3E45FEAD8944697CC29BFE83DD70F289B91F2@VitalExchange.vitalograph.local>
 	<af1c99f79f52abe4c72b0b20b8ddc02a@basmevissen.nl>
 	<2EE3E45FEAD8944697CC29BFE83DD70F289B92E6@VitalExchange.vitalograph.local>,
 	<b332d979acdc58ec0977ac2c43f37d45@basmevissen.nl>
-	<2EE3E45FEAD8944697CC29BFE83DD70F289B931C@VitalExchange.vitalograph.local>
-Message-ID: <47ce2f8e897e9f02943c4f9884e85488@basmevissen.nl>
-X-Sender: abuse@basmevissen.nl
-User-Agent: Roundcube Webmail/1.3.7
-Cc: yocto@yoctoproject.org
+	<2EE3E45FEAD8944697CC29BFE83DD70F289B931C@VitalExchange.vitalograph.local>,
+	<47ce2f8e897e9f02943c4f9884e85488@basmevissen.nl>
+In-Reply-To: <47ce2f8e897e9f02943c4f9884e85488@basmevissen.nl>
+Accept-Language: en-IE, en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.245.60]
+MIME-Version: 1.0
+X-Outbound-IP: 176.58.6.8
+X-Env-From: evan.oloughlin@vitalograph.ie
+X-Proto: esmtps
+X-Revdns: 
+X-HELO: VitalExchange.vitalograph.local
+X-TLS: TLSv1.2:AES256-GCM-SHA384:256
+X-Authenticated_ID: 
+X-PolicySMART: 14033467
+X-Virus-Status: Scanned by VirusSMART (c)
+X-Virus-Status: Scanned by VirusSMART (s)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Yocto SDK generated - unable to compile application
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -47,10 +70,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2018 12:24:15 -0000
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+X-List-Received-Date: Thu, 20 Sep 2018 13:35:06 -0000
+Content-Language: en-IE
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
+
+
+________________________________________
+From: Bas Mevissen [abuse@basmevissen.nl]
+Sent: 20 September 2018 13:23
+To: Evan O'Loughlin
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Yocto SDK generated - unable to compile application
 
 On 2018-09-20 12:28, Evan O'Loughlin wrote:
 > ________________________________________
@@ -58,9 +89,9 @@ On 2018-09-20 12:28, Evan O'Loughlin wrote:
 > Sent: 20 September 2018 10:50
 > To: Evan O'Loughlin
 > Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Yocto SDK generated - unable to compile=20
+> Subject: Re: [yocto] Yocto SDK generated - unable to compile
 > application
->=20
+>
 > On 2018-09-20 11:40, Evan O'Loughlin wrote:
 >> -----Original Message-----
 >> From: Bas Mevissen [mailto:abuse@basmevissen.nl]
@@ -69,19 +100,17 @@ On 2018-09-20 12:28, Evan O'Loughlin wrote:
 >> Cc: yocto@yoctoproject.org
 >> Subject: Re: [yocto] Yocto SDK generated - unable to compile
 >> application
->>=20
+>>
 >> On 2018-09-20 10:08, Evan O'Loughlin wrote:
 >>> Hello,
->>>=20
->>> I=E2=80=99m having an issue when I try to use the SDK generated by my=
- yocto
+>>>
+>>> I=92m having an issue when I try to use the SDK generated by my yocto
 >>> instance.
->>> Currently I have yocto set-up to correctly build my image =E2=80=93 t=
-his all
+>>> Currently I have yocto set-up to correctly build my image =96 this all
 >>> works well.
->>>=20
+>>>
 >>> I've built the SDK in the following ways:
->>>    * bitbake {image} =E2=80=93c populate_sdk
+>>>    * bitbake {image} =96c populate_sdk
 >>>    * bitbake meta-toolchain-qt5
 >>>    * bitbake {image-sdk} using a separate recipe with the options:
 >>>        - require {image}.bb
@@ -89,95 +118,95 @@ his all
 >>> eclipse-debug debug-tweaks"
 >>>        - IMAGE_INSTALL +=3D "kernel-devsrc"
 >>>        - inherit populate_sdk populate_sdk_qt5
->>>=20
->>>=20
+>>>
+>>>
 >>> When I try to use the generated SDKs I get the error below:
 >>> Simple helloworld app:
 >>>    #include <stdio.h>
 >>>    #include <stdlib.h>
 >>>    #include <stddef.h>
 >>>    #include <cstddef>
->>>=20
+>>>
 >>>    int main (int argc, char** argv)
 >>>    {
 >>>       printf("Hello World\n");
 >>>       return 0;
 >>>    }
->>>=20
+>>>
 >>> Compile error:
 >>>    ${CC} helloworld.c
 >>>    helloworld.c:4:19: fatal error: cstddef: No such file or directory
 >>>    #include <cstddef>
 >>>                     ^
 >>>    compilation terminated
->>>=20
->>>=20
+>>>
+>>>
 >>> Have I missed a step in generating the SDK?
->>>=20
->>>=20
->>=20
+>>>
+>>>
+>>
 >> No, your SDK looks fine. The solution is to just remove the line
->>=20
+>>
 >> #include <cstddef>
->>=20
+>>
 >> from your c sources or use the g++ compiler (called ${CXX) in
 >> Makefile) to compile the source.
->>=20
+>>
 >>> Regards,
 >>> vitalEol
->=20
+>
 >> Hi Bas,
->>=20
->> I'm using the offending line in helloworld.c to highlight the issue=20
+>>
+>> I'm using the offending line in helloworld.c to highlight the issue
 >> I'm
 >> seeing.
->>=20
+>>
 >> My main program is a Qt application where I see the same issue when
 >> trying to build in QtCreator.
->>=20
+>>
 >> My issue relates to the fact that several include files are not
 >> readily available after 'sourcing' the environment setup.
->>=20
+>>
 >> Do I need to adjust/include other recipes when building the SDK?
->>=20
->=20
+>>
+>
 > I might be wrong, but this looks like you are using the gcc compiler
 > instead of the g++ one. See the second part of my answer.
->=20
+>
 > To check your environment, check in your sdk that the file cstddef
 > exists somewhere in /usr/include. Example from a Fedora Linux system:
->=20
+>
 > $ find /usr/include -name cstddef
 > /usr/include/c++/8/cstddef
->=20
+>
 > If I compile your example with "gcc" on that system, I get the same
 > error. With "g++", is is fine. It automatically find the cstddef header
 > file in the /usr/include/c++/8 directory.
->=20
+>
 > Hope this helps,
->=20
+>
 > (and please do not top post as that makes a mail thread unreadable)
->=20
+>
 > -- Bas.
->=20
->=20
+>
+>
 >> Regards,
 >> Evan
->>=20
->=20
+>>
+>
 > Hi Bas,
->=20
+>
 > Apologies for top-posting previously.
->=20
+>
 > using ${CC}, ${CPP} or ${CXX} all show the same error relating to not
 > finding the required include
->=20
+>
 > cstddef is available in the cross-compiler toolchain:
 > $ find . -name cstddef
 > ./sysroots/armv7ahf-neon-linux-gnueabi/usr/include/c++/6.2.1/cstddef
-> ./sysroots/armv7ahf-neon-linux-gnueabi/usr/include/boost/compatibility/=
-cpp_c_headers/cstddef
->=20
+> ./sysroots/armv7ahf-neon-linux-gnueabi/usr/include/boost/compatibility/cp=
+p_c_headers/cstddef
+>
 
 That looks fine.
 
@@ -186,50 +215,185 @@ That looks fine.
 > /usr/include/c++/5/cstddef
 > /usr/include/c++/4.7/cstddef
 > /usr/include/c++/4.8/cstddef
->=20
->=20
+>
+>
 > ${CC} --version && ${CPP} --version && ${CXX} --version
 > arm-linux-gnueabihf-gcc (Linaro GCC 6.2-2016.11) 6.2.1 20161016
 > Copyright (C) 2016 Free Software Foundation, Inc.
-> This is free software; see the source for copying conditions.  There is=
-=20
+> This is free software; see the source for copying conditions.  There is
 > NO
-> warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR=20
+> warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
 > PURPOSE.
->=20
+>
 > arm-linux-gnueabihf-gcc (Linaro GCC 6.2-2016.11) 6.2.1 20161016
 > Copyright (C) 2016 Free Software Foundation, Inc.
-> This is free software; see the source for copying conditions.  There is=
-=20
+> This is free software; see the source for copying conditions.  There is
 > NO
-> warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR=20
+> warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
 > PURPOSE.
->=20
+>
 > arm-linux-gnueabihf-g++ (Linaro GCC 6.2-2016.11) 6.2.1 20161016
 > Copyright (C) 2016 Free Software Foundation, Inc.
-> This is free software; see the source for copying conditions.  There is=
-=20
+> This is free software; see the source for copying conditions.  There is
 > NO
-> warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR=20
+> warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
 > PURPOSE.
->=20
+>
 
-I tried with an Freescale i.MX6 SDK for Sumo and that compiled fine with=20
+I tried with an Freescale i.MX6 SDK for Sumo and that compiled fine with
 ${CXX}.
 
 It is a bit of guessing now. Maybe somewhat more information might help:
 
-What version of Yocto are you using? What layers are included? What=20
+What version of Yocto are you using? What layers are included? What
 machine?
 
 Are you sure this is the cross compiler belonging to the SDK?
 
-Did you maybe move the SDK install location and not adapt the=20
+Did you maybe move the SDK install location and not adapt the
 environment file?
 Please check this with "echo ${SDKTARGETSYSROOT}" and "echo ${CXX}"
 
 
->=20
+>
 > Regards,
 > Evan
+
+
+I'm using the yocto setup from Ti related to their processor-sdk v04.03.00.=
+05 (http://software-dl.ti.com/processor-sdk-linux/esd/AM335X/04_03_00_05/in=
+dex_FDS.html & http://software-dl.ti.com/processor-sdk-linux/esd/docs/04_03=
+_00_05/linux/Overview.html#processor-sdk-linux-building-the-sdk)
+Build Configuration:
+BB_VERSION        =3D "1.32.0"
+BUILD_SYS         =3D "x86_64-linux"
+NATIVELSBSTRING   =3D "Ubuntu-16.04"
+TARGET_SYS        =3D "arm-linux-gnueabi"
+MACHINE           =3D "XYZ-PROD"
+DISTRO            =3D "arago"
+DISTRO_VERSION    =3D "2017.12"
+TUNE_FEATURES     =3D "arm armv7a vfp thumb neon       callconvention-hard"
+TARGET_FPU        =3D "hard"
+meta-processor-sdk =3D "HEAD:92db4d8023d88ab59fab2953e7447ec0bd5a6db1"
+meta-ros          =3D "HEAD:e2566402ab108a19634354a934788109422cf409"
+meta-arago-distro=20
+meta-arago-extras =3D "HEAD:5b2a44b0c4d989133bc13d59398fd10375d351bb"
+meta-browser      =3D "HEAD:26d50665e2f7223c5f4ad7481a8d2431e7cb55fb"
+meta-openamp      =3D "HEAD:8a214032bfb7e8124bc1485c70c69f7d60abb819"
+meta-qt5          =3D "HEAD:2c9f0e4eb0e9097f6f872ec1e1d81768a8ab5f1b"
+meta-networking  =20
+meta-ruby        =20
+meta-python      =20
+meta-oe          =20
+meta-gnome       =20
+meta-multimedia   =3D "HEAD:b40116cf457b88a2db14b86fda9627fb34d56ae6"
+meta-ti           =3D "HEAD:3dc08477529b31ce887bb22a08201a843ded48f0"
+meta-linaro-toolchain=20
+meta-optee        =3D "HEAD:d73e794c7e7ebb1cc5bf495a52a72b26fb118250"
+meta              =3D "HEAD:39fd8c129e2bff7f2f1649b7f6e036ccc50fd5d8"
+meta-XYZ  =3D "sdk_04.03.00.05_dev:61ec90da8c798b357a343b92d1e41c403e0365d9=
+"
+workspace         =3D "<unknown>:<unknown>"
+
+I'm using the same machine to build the image for my device & to generate t=
+he SDK.
+bitbake {image} -c populate_sdk results in arago-2017.12-toolchain-2017.12.=
+sh installer which i use to install to ~/tiToolchain_SDKv4
+
+The environment file is as follows - all paths are correct & accessible :
+export SDKTARGETSYSROOT=3D/home/micheal/tiToolchain_SDKv4/sysroots/armv7ahf=
+-neon-linux-gnueabi
+export PATH=3D/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/u=
+sr/bin:/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/usr/sbin=
+:/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/bin:/home/mich=
+eal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/sbin:/home/micheal/tiTool=
+chain_SDKv4/sysroots/x86_64-arago-linux/usr/bin/../x86_64-arago-linux/bin:/=
+home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/usr/bin/arm-linu=
+x-gnueabi:/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/usr/b=
+in/arm-linux-uclibc:/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-l=
+inux/usr/bin/arm-linux-musl:$PATH
+export CCACHE_PATH=3D/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-=
+linux/usr/bin:/home/micheal/tiToolchain_SDKv4/sysroots/x86_64-arago-linux/u=
+sr/bin/../x86_64-arago-linux/bin:/home/micheal/tiToolchain_SDKv4/sysroots/x=
+86_64-arago-linux/usr/bin/arm-linux-gnueabi:/home/micheal/tiToolchain_SDKv4=
+/sysroots/x86_64-arago-linux/usr/bin/arm-linux-uclibc:/home/micheal/tiToolc=
+hain_SDKv4/sysroots/x86_64-arago-linux/usr/bin/arm-linux-musl:$CCACHE_PATH
+export PKG_CONFIG_SYSROOT_DIR=3D$SDKTARGETSYSROOT
+export PKG_CONFIG_PATH=3D$SDKTARGETSYSROOT/usr/lib/pkgconfig:$SDKTARGETSYSR=
+OOT/usr/share/pkgconfig
+export CONFIG_SITE=3D/home/micheal/tiToolchain_SDKv4/site-config-armv7ahf-n=
+eon-linux-gnueabi
+export OECORE_NATIVE_SYSROOT=3D"/home/micheal/tiToolchain_SDKv4/sysroots/x8=
+6_64-arago-linux"
+export OECORE_TARGET_SYSROOT=3D"$SDKTARGETSYSROOT"
+export OECORE_ACLOCAL_OPTS=3D"-I /home/micheal/tiToolchain_SDKv4/sysroots/x=
+86_64-arago-linux/usr/share/aclocal"
+unset command_not_found_handle
+export CC=3D"arm-linux-gnueabihf-gcc  -march=3Darmv7-a -marm -mfpu=3Dneon  =
+-mfloat-abi=3Dhard --sysroot=3D$SDKTARGETSYSROOT"
+export CXX=3D"arm-linux-gnueabihf-g++  -march=3Darmv7-a -marm -mfpu=3Dneon =
+ -mfloat-abi=3Dhard --sysroot=3D$SDKTARGETSYSROOT"
+export CPP=3D"arm-linux-gnueabihf-gcc -E  -march=3Darmv7-a -marm -mfpu=3Dne=
+on  -mfloat-abi=3Dhard --sysroot=3D$SDKTARGETSYSROOT"
+export AS=3D"arm-linux-gnueabihf-as "
+export LD=3D"arm-linux-gnueabihf-ld  --sysroot=3D$SDKTARGETSYSROOT"
+export GDB=3Darm-linux-gnueabihf-gdb
+export STRIP=3Darm-linux-gnueabihf-strip
+export RANLIB=3Darm-linux-gnueabihf-ranlib
+export OBJCOPY=3Darm-linux-gnueabihf-objcopy
+export OBJDUMP=3Darm-linux-gnueabihf-objdump
+export AR=3Darm-linux-gnueabihf-ar
+export NM=3Darm-linux-gnueabihf-nm
+export M4=3Dm4
+export TARGET_PREFIX=3Darm-linux-gnueabihf-
+export CONFIGURE_FLAGS=3D"--target=3Darm-linux-gnueabi --host=3Darm-linux-g=
+nueabi --build=3Dx86_64-linux --with-libtool-sysroot=3D$SDKTARGETSYSROOT"
+export CFLAGS=3D" -isystem/home/micheal/gcc-linaro-6.2.1-2016.11-x86_64_arm=
+-linux-gnueabihf/arm-linux-gnueabihf/include  -O2 -pipe -g -feliminate-unus=
+ed-debug-types "
+export CXXFLAGS=3D" -isystem/home/micheal/gcc-linaro-6.2.1-2016.11-x86_64_a=
+rm-linux-gnueabihf/arm-linux-gnueabihf/include  -O2 -pipe -g -feliminate-un=
+used-debug-types "
+export LDFLAGS=3D" -L/home/micheal/gcc-linaro-6.2.1-2016.11-x86_64_arm-linu=
+x-gnueabihf/arm-linux-gnueabihf/lib -Wl,-rpath-link,/home/micheal/gcc-linar=
+o-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf/lib -Wl,-O1 =
+-Wl,--hash-style=3Dgnu"
+export CPPFLAGS=3D" -isystem/home/micheal/gcc-linaro-6.2.1-2016.11-x86_64_a=
+rm-linux-gnueabihf/arm-linux-gnueabihf/include "
+export KCFLAGS=3D"--sysroot=3D$SDKTARGETSYSROOT"
+export OECORE_DISTRO_VERSION=3D"2017.12"
+export OECORE_SDK_VERSION=3D"2017.12"
+export ARCH=3Darm
+export CROSS_COMPILE=3Darm-linux-gnueabihf-
+
+# Append environment subscripts
+if [ -d "$OECORE_TARGET_SYSROOT/environment-setup.d" ]; then
+    for envfile in $OECORE_TARGET_SYSROOT/environment-setup.d/*.sh; do
+	    . $envfile
+    done
+fi
+if [ -d "$OECORE_NATIVE_SYSROOT/environment-setup.d" ]; then
+    for envfile in $OECORE_NATIVE_SYSROOT/environment-setup.d/*.sh; do
+	    . $envfile
+    done
+fi
+
+
+
+echo ${SDKTARGETSYSROOT} && echo ${CXX}
+/home/micheal/tiToolchain_SDKv4/sysroots/armv7ahf-neon-linux-gnueabi
+arm-linux-gnueabihf-g++ -march=3Darmv7-a -marm -mfpu=3Dneon -mfloat-abi=3Dh=
+ard --sysroot=3D/home/micheal/tiToolchain_SDKv4/sysroots/armv7ahf-neon-linu=
+x-gnueabi
+
+
+Thanks for your help so far with this; I'm stumped as to why the headers ar=
+e not found.
+
+
+Regards,
+Evan
+
+
+
 
