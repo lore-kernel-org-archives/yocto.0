@@ -1,65 +1,55 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <peter@berginkonsult.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C46B9E00BC1; Thu, 20 Sep 2018 03:43:16 -0700 (PDT)
+	id BA631E00BD2; Thu, 20 Sep 2018 04:03:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.210.44 listed in list.dnswl.org]
+	*      [46.30.210.185 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
-	[209.85.210.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A141AE00AB3
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 03:43:15 -0700 (PDT)
-Received: by mail-ot1-f44.google.com with SMTP id o13-v6so8934666otl.4
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 03:43:15 -0700 (PDT)
+Received: from mailrelay4-1.pub.mailoutpod1-cph3.one.com
+	(mailrelay4-1.pub.mailoutpod1-cph3.one.com [46.30.210.185])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C074E00BAA
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 04:03:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=o+CdwPR/UNv64WJeNpE7wwiiPvFmA8LqC9DO4RshYg8=;
-	b=xGCH/eR1C2Nq50dhMGhH/dwr3/l3ETUKXbBKIwdFI4U8VMJ9tB/ZpMHxB0ydfkSCzK
-	uJ8MjAtxtV8jeEKCzg+Vry042j6nryuIoAAkLeARZGD4kiuvia2qAxGFfCuKvdO0A0jF
-	BKhdLbJlUJXetyaCrOWPmijGE7CRSLJiCKsq9OANuN0t5RLupgs6ZNwsdF/1C8vSNwwT
-	KtcR7+46++klPN9x0ddTv0Lac9pXPD8JIbrtFOkuTELVUBy1kHC4KlazVpX25X4XCXqz
-	IM1Xbi/BlPm8Z3JSuDLRRRLJDPpFo9oYzk159YAMMebBy0GO5voyI6NdvQUQYQWCqRmz
-	VUFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=o+CdwPR/UNv64WJeNpE7wwiiPvFmA8LqC9DO4RshYg8=;
-	b=pgUrDDYNpGLdmpqobs6saIJSN1DOGnbjAcBORhurnxXOShoUtbEt6O/coEqtx11gcJ
-	0Rky29wLxI4XqshuiiofwdVbBczFSweA5epY6VDEm2aQhJUQHBvlv/w/xpUQymaHtGqH
-	S1wNA1LA3bT9aBM/fnlIW6r50smoVfdNn5ZFD/CAP2A/SesGm0yu655sVSGcMzhSmHNm
-	5yUG50/cmQW02T26xWVAYxGQsXF54d1WkiTf7wcmwK8E25pZ9bCNezWuzQz+wdsKb73q
-	6YIqXIqRBdxiH6tZdbvSwypmro+yfdkj2RM76BUvrGkDCVY6lTSzIb52JTYFrPIIbRqN
-	fyaA==
-X-Gm-Message-State: APzg51AzP9voEPhUs0OqCISp6WansSQemcqLo24L6fJyEEH2dO/4UC0L
-	VIf3Atl0qTvA8qzxgrH1IL0hueoZsxiKJEmoYnFFHA==
-X-Google-Smtp-Source: ANB0VdZF1YPOBXrDxQfIvcU7NiwGMjrSFS7XrmGfWD+J5h494ZbjkeU1oB2/6LvSuCUyN0riMT9H1+vcebDYYcfH4j0=
-X-Received: by 2002:a9d:798a:: with SMTP id
-	h10-v6mr22300139otm.13.1537440194732; 
-	Thu, 20 Sep 2018 03:43:14 -0700 (PDT)
+	d=berginkonsult.se; s=20140924;
+	h=content-type:in-reply-to:mime-version:date:message-id:references:cc:to:
+	subject:from:from;
+	bh=HTRf65DH9rTCtLMde2wKjH3LKHxFfWMiY04l3hKLuA4=;
+	b=bGvYoehT1SnfBVe38Av3xXlBl9iNgZbfGqcIDPhZOgKZo8NC9sHH3fusnqQLKzr6IZfiKxGkOf9fm
+	Mvd6ofIadk1OtGDKKGefPk1MXsVnJ4yGP7bUb4ImO9PMFzJ00QCOCRSt+KZyLZPOXCPrvFy1c9FIEX
+	OiBjmq8Sm06lLEw0=
+X-HalOne-Cookie: f268f1dc94f69c244c1d0603ef92a933610cd8fb
+X-HalOne-ID: bdb01ad0-bcc4-11e8-86b6-d0431ea8bb10
+Received: from [192.168.0.101] (unknown [37.199.77.136])
+	by mailrelay4.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+	id bdb01ad0-bcc4-11e8-86b6-d0431ea8bb10;
+	Thu, 20 Sep 2018 11:03:04 +0000 (UTC)
+From: Peter Bergin <peter@berginkonsult.se>
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <f9f3b3b3-237b-55c2-531b-fa03a8e62f73@berginkonsult.se>
+	<d75c6307-7071-bbbc-5ace-4e1db0f15cea@windriver.com>
+	<c9071e74-5a04-408e-6a5b-87490fc9b167@berginkonsult.se>
+	<CAJTo0LbjCN31UUNUP9WX_NxMhoAr0xCt45WrQaWDvqovDeNhYw@mail.gmail.com>
+Message-ID: <570c7242-e0a8-a65c-aa8f-93b4c331da08@berginkonsult.se>
+Date: Thu, 20 Sep 2018 13:02:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
 MIME-Version: 1.0
-References: <HE1P195MB03625FB2341F7F8FBD894D2DC11D0@HE1P195MB0362.EURP195.PROD.OUTLOOK.COM>
-	<CAJTo0LYxMCH2BXsMreV=MxHqT4uFNPADHiNqRmxqQDcyzqPDuA@mail.gmail.com>
-	<HE1P195MB036230695B60D23AA37F8D95C1130@HE1P195MB0362.EURP195.PROD.OUTLOOK.COM>
-	<CAJTo0LZiVgrVaoaUgEkki8NFKVNa1hN+b0csKkLnQusENEDFrw@mail.gmail.com>
-	<HE1P195MB036259A2AA8B02E857F2E4DEC1130@HE1P195MB0362.EURP195.PROD.OUTLOOK.COM>
-In-Reply-To: <HE1P195MB036259A2AA8B02E857F2E4DEC1130@HE1P195MB0362.EURP195.PROD.OUTLOOK.COM>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 20 Sep 2018 11:43:03 +0100
-Message-ID: <CAJTo0LYi6OTzfdpH4dCii+ugHhUcAmjmqqt12h-n_N-hLiz3FQ@mail.gmail.com>
-To: MohamedYouseif@outlook.com
+In-Reply-To: <CAJTo0LbjCN31UUNUP9WX_NxMhoAr0xCt45WrQaWDvqovDeNhYw@mail.gmail.com>
 Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Adding nInvaders game package recipe
+Subject: Re: liblzma: memory allocation failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,61 +61,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2018 10:43:16 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 20 Sep 2018 11:03:07 -0000
+Content-Type: multipart/alternative;
+	boundary="------------0751917437DF2C9E3E87A694"
+Content-Language: en-US
 
-So your makefile is explictly saying "ignore the value from the
-environment, always use gcc on the host".
+--------------0751917437DF2C9E3E87A694
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Delete that line from the makefile, the default is good and then the
-environment value to set CC to the cross compiler will work.
-
-This is why people shouldn't hand-code Makefiles: it is harder than it
-looks.  This makefile probably isn't respecting CFLAGS/LD/LDFLAGS
-either.
-
-Ross
-On Thu, 20 Sep 2018 at 11:00, Mohamed Youseif
-<MohamedYouseif@outlook.com> wrote:
->
-> I had run the command and it prints out that:
->
-> nInvaders: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=73d88937de4f28a243ba40001af8dbd5c1ca3ac8, not stripped
->
-> the ${CC} in makefile is defined as
-> CC=gcc
-> ________________________________
-> From: Burton, Ross <ross.burton@intel.com>
-> Sent: Thursday, September 20, 2018 11:28 AM
-> To: MohamedYouseif@outlook.com
-> Cc: Yocto-mailing-list
-> Subject: Re: [yocto] Adding nInvaders game package recipe
->
-> On Thu, 20 Sep 2018 at 10:01, Mohamed Youseif
-> <MohamedYouseif@outlook.com> wrote:
-> > I had changed the source of my package, and create a new recipe for my package so it fetches from SourceForge, the new recipe does not inherit Autotools and modify the do_compile, do_install as following:
-> > do_compile () {
-> >       oe_runmake
-> > }
-> >
-> > do_install () {
-> >       :
-> > }
-> >
-> > but i had modified the do_install task to add it to my image and now it is like this
-> > do_install () {
-> >
-> >       install -d ${D}${bindir}
-> >       install -m 0755 nInvaders ${D}${bindir}
-> > }
-> >
-> > then i run "bitbake ninvaders" to check that all tasks will be passed but i got that error for do_package task
-> >
-> > arm-poky-linux-gnueabi-objcopy:/home/yusuf/rpi/build/tmp_sumo_RPI/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/ninvaders/0.1.1-r0/package/usr/bin/nInvaders: File format not recognized
->
-> Run 'file' on that binary.  It's possible that your hand-coded
-> makefile isn't respecting $CC and it built using the host native
-> compiler.
+On 2018-09-17 10:27, Burton, Ross wrote:
+> On Mon, 17 Sep 2018 at 08:13, Peter Bergin<peter@berginkonsult.se>  wrote:
+>> I'm pretty sure I have narrowed down the root cause to the restriction
+>> of virtual memory and that liblzma base its memory calculations on
+>> physical RAM.
+>>
+>> To prove this I added a printout in rpm-native/rpmio/rpmio.c and the
+>> function lzopen_internal.
+>>
+>>           uint64_t memory_usage = lzma_stream_encoder_mt_memusage(&mt_options);
+>>          rpmlog(RPMLOG_NOTICE, "DBG: memory_usage %lu\n", memory_usage);
+>>
+>>
+>> The value of memory_usage is the same regardless of which 'ulimit -v'
+>> value I set. On the host with 256GB of physical RAM and 32GB of virtual
+>> memory, memory_usage is ~5.1GB. On another host with 16GB of physical
+>> RAM I get memory_usage of ~660MB.
+>>
+>> I guess you have not seen this kind of failure if you not have
+>> restricted virutal memory on your host. If you want to try to reproduce
+>> this set 'ulimit -v 8388608' (8GB) in your shell and then 'bitbake
+>> glibc-locale -c package_write_rpm -f'.
+> Wouldn't a solution be to change lzma to look at free memory, not
+> total physical memory?
 >
 > Ross
+I have been in contact with the maintainer of liblzma. There is 
+currently no way to restrict the memory usage in liblzma during multi 
+threaded compression. He recommended to adjust the number of threads 
+used during compression. This kind of check is done for 32-bits but not 
+when running 64-bits (in rpmio/rpmio.c lzopen_internal). To rewrite 
+liblzma is another option but I took an easier way out.
 
+I have come up with a patch 
+(https://patchwork.openembedded.org/patch/155017/) that solves my 
+problem and do a restriction of memory usage when the 'ulimit -v' is 
+set. The calculation is based on the assumption that lzopen_internal is 
+run in parallel with as many instances as cpu threads as '#pragma omp 
+parallel' is used in build/pack.c.
+
+When running test on my machine with 4 cores 16GB of physical RAM and 
+'ulimit -v 2097152' (2GB). It works good and the log shows:
+
+XZ: virtual memory restricted to 2147483648 and per CPU thread 536870912
+XZ: Adjusted the number of threads from 4 to 3 to not exceed the memory 
+usage limit of 2147483648 bytes
+
+Didn't get a clear answer if this is something Yocto/OE should support 
+but I hope my patch solves the issue and it will not affect the normal 
+environments where 'ulimit -v' is not set.
+
+/Peter
+
+--------------0751917437DF2C9E3E87A694
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">On 2018-09-17 10:27, Burton, Ross
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAJTo0LbjCN31UUNUP9WX_NxMhoAr0xCt45WrQaWDvqovDeNhYw@mail.gmail.com">
+      <pre wrap="">On Mon, 17 Sep 2018 at 08:13, Peter Bergin <a class="moz-txt-link-rfc2396E" href="mailto:peter@berginkonsult.se">&lt;peter@berginkonsult.se&gt;</a> wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">I'm pretty sure I have narrowed down the root cause to the restriction
+of virtual memory and that liblzma base its memory calculations on
+physical RAM.
+
+To prove this I added a printout in rpm-native/rpmio/rpmio.c and the
+function lzopen_internal.
+
+         uint64_t memory_usage = lzma_stream_encoder_mt_memusage(&amp;mt_options);
+        rpmlog(RPMLOG_NOTICE, "DBG: memory_usage %lu\n", memory_usage);
+
+
+The value of memory_usage is the same regardless of which 'ulimit -v'
+value I set. On the host with 256GB of physical RAM and 32GB of virtual
+memory, memory_usage is ~5.1GB. On another host with 16GB of physical
+RAM I get memory_usage of ~660MB.
+
+I guess you have not seen this kind of failure if you not have
+restricted virutal memory on your host. If you want to try to reproduce
+this set 'ulimit -v 8388608' (8GB) in your shell and then 'bitbake
+glibc-locale -c package_write_rpm -f'.
+</pre>
+      </blockquote>
+      <pre wrap="">Wouldn't a solution be to change lzma to look at free memory, not
+total physical memory?
+
+Ross
+</pre>
+    </blockquote>
+    I have been in contact with the maintainer of liblzma. There is
+    currently no way to restrict the memory usage in liblzma during
+    multi threaded compression. He recommended to adjust the number of
+    threads used during compression. This kind of check is done for
+    32-bits but not when running 64-bits (in rpmio/rpmio.c
+    lzopen_internal). To rewrite liblzma is another option but I took an
+    easier way out.<br>
+    <br>
+    I have come up with a patch
+    (<a class="moz-txt-link-freetext" href="https://patchwork.openembedded.org/patch/155017/">https://patchwork.openembedded.org/patch/155017/</a>) that solves my
+    problem and do a restriction of memory usage when the 'ulimit -v' is
+    set. The calculation is based on the assumption that lzopen_internal
+    is run in parallel with as many instances as cpu threads as '#pragma
+    omp parallel' is used in build/pack.c. <br>
+    <br>
+    When running test on my machine with 4 cores 16GB of physical RAM
+    and 'ulimit -v 2097152' (2GB). It works good and the log shows:<br>
+    <br>
+    XZ: virtual memory restricted to 2147483648 and per CPU thread
+    536870912<br>
+    XZ: Adjusted the number of threads from 4 to 3 to not exceed the
+    memory usage limit of 2147483648 bytes<br>
+    <br>
+    Didn't get a clear answer if this is something Yocto/OE should
+    support but I hope my patch solves the issue and it will not affect
+    the normal environments where 'ulimit -v' is not set.<br>
+    <br>
+    /Peter<br>
+  </body>
+</html>
+
+--------------0751917437DF2C9E3E87A694--
