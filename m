@@ -1,38 +1,59 @@
-Return-Path: <abuse@basmevissen.nl>
+Return-Path: <evan.oloughlin@vitalograph.ie>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B78BFE00BD2; Thu, 20 Sep 2018 02:50:18 -0700 (PDT)
+	id 4A48CE00BC1; Thu, 20 Sep 2018 03:29:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.162.217.188 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4AEDE00BAA
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 02:50:17 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by hosting.emcodev.net (Postfix) with ESMTP id 8EBA012AE49;
-	Thu, 20 Sep 2018 11:50:16 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at hosting.emcodev.net
-Received: from hosting.emcodev.net ([127.0.0.1])
-	by localhost (hosting.emcodev.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id wxXpel43tjSW; Thu, 20 Sep 2018 11:50:16 +0200 (CEST)
-Received: from emcodev.nl (localhost [127.0.0.1])
-	by hosting.emcodev.net (Postfix) with ESMTP id 0151D12ADBB;
-	Thu, 20 Sep 2018 11:50:15 +0200 (CEST)
-MIME-Version: 1.0
-Date: Thu, 20 Sep 2018 11:50:15 +0200
-From: Bas Mevissen <abuse@basmevissen.nl>
-To: Evan O'Loughlin <evan.oloughlin@vitalograph.ie>
-In-Reply-To: <2EE3E45FEAD8944697CC29BFE83DD70F289B92E6@VitalExchange.vitalograph.local>
+Received: from smtp-out6.electric.net (smtp-out6.electric.net
+	[192.162.217.188])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 300A3E00AB3
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 03:28:59 -0700 (PDT)
+Received: from 1g2wCa-0007me-Vk by out6c.electric.net with emc1-ok (Exim
+	4.90_1) (envelope-from <evan.oloughlin@vitalograph.ie>)
+	id 1g2wCg-00086k-VD; Thu, 20 Sep 2018 03:28:58 -0700
+Received: by emcmailer; Thu, 20 Sep 2018 03:28:58 -0700
+Received: from [176.58.6.8] (helo=VitalExchange.vitalograph.local)
+	by out6c.electric.net with esmtps (TLSv1.2:AES256-GCM-SHA384:256)
+	(Exim 4.90_1) (envelope-from <evan.oloughlin@vitalograph.ie>)
+	id 1g2wCa-0007me-Vk; Thu, 20 Sep 2018 03:28:52 -0700
+Received: from VITALEXCHANGE.vitalograph.local ([fe80::93c:7e0f:858e:c090]) by
+	VitalExchange.vitalograph.local ([fe80::93c:7e0f:858e:c090%12]) with
+	mapi id 14.03.0399.000; Thu, 20 Sep 2018 11:28:22 +0100
+From: Evan O'Loughlin <evan.oloughlin@vitalograph.ie>
+To: Bas Mevissen <abuse@basmevissen.nl>
+Thread-Topic: [yocto] Yocto SDK generated - unable to compile application
+Thread-Index: AQHUULkrB+PsRV1tME++SjwtRDDgE6T40b4AgAAXwvD///LzgIAAGSuv
+Date: Thu, 20 Sep 2018 10:28:22 +0000
+Message-ID: <2EE3E45FEAD8944697CC29BFE83DD70F289B931C@VitalExchange.vitalograph.local>
 References: <2EE3E45FEAD8944697CC29BFE83DD70F289B91F2@VitalExchange.vitalograph.local>
 	<af1c99f79f52abe4c72b0b20b8ddc02a@basmevissen.nl>
-	<2EE3E45FEAD8944697CC29BFE83DD70F289B92E6@VitalExchange.vitalograph.local>
-Message-ID: <b332d979acdc58ec0977ac2c43f37d45@basmevissen.nl>
-X-Sender: abuse@basmevissen.nl
-User-Agent: Roundcube Webmail/1.3.7
-Cc: yocto@yoctoproject.org
+	<2EE3E45FEAD8944697CC29BFE83DD70F289B92E6@VitalExchange.vitalograph.local>,
+	<b332d979acdc58ec0977ac2c43f37d45@basmevissen.nl>
+In-Reply-To: <b332d979acdc58ec0977ac2c43f37d45@basmevissen.nl>
+Accept-Language: en-IE, en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.245.60]
+MIME-Version: 1.0
+X-Outbound-IP: 176.58.6.8
+X-Env-From: evan.oloughlin@vitalograph.ie
+X-Proto: esmtps
+X-Revdns: 
+X-HELO: VitalExchange.vitalograph.local
+X-TLS: TLSv1.2:AES256-GCM-SHA384:256
+X-Authenticated_ID: 
+X-PolicySMART: 14033467
+X-Virus-Status: Scanned by VirusSMART (c)
+X-Virus-Status: Scanned by VirusSMART (s)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Yocto SDK generated - unable to compile application
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -45,10 +66,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2018 09:50:18 -0000
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+X-List-Received-Date: Thu, 20 Sep 2018 10:29:01 -0000
+Content-Language: en-IE
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
+
+
+________________________________________
+From: Bas Mevissen [abuse@basmevissen.nl]
+Sent: 20 September 2018 10:50
+To: Evan O'Loughlin
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Yocto SDK generated - unable to compile application
 
 On 2018-09-20 11:40, Evan O'Loughlin wrote:
 > -----Original Message-----
@@ -56,21 +85,19 @@ On 2018-09-20 11:40, Evan O'Loughlin wrote:
 > Sent: 20 September 2018 10:12
 > To: Evan O'Loughlin <evan.oloughlin@vitalograph.ie>
 > Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Yocto SDK generated - unable to compile=20
+> Subject: Re: [yocto] Yocto SDK generated - unable to compile
 > application
->=20
+>
 > On 2018-09-20 10:08, Evan O'Loughlin wrote:
 >> Hello,
->>=20
->> I=E2=80=99m having an issue when I try to use the SDK generated by my =
-yocto
+>>
+>> I=92m having an issue when I try to use the SDK generated by my yocto
 >> instance.
->> Currently I have yocto set-up to correctly build my image =E2=80=93 th=
-is all
+>> Currently I have yocto set-up to correctly build my image =96 this all
 >> works well.
->>=20
+>>
 >> I've built the SDK in the following ways:
->>    * bitbake {image} =E2=80=93c populate_sdk
+>>    * bitbake {image} =96c populate_sdk
 >>    * bitbake meta-toolchain-qt5
 >>    * bitbake {image-sdk} using a separate recipe with the options:
 >>        - require {image}.bb
@@ -78,69 +105,68 @@ is all
 >> eclipse-debug debug-tweaks"
 >>        - IMAGE_INSTALL +=3D "kernel-devsrc"
 >>        - inherit populate_sdk populate_sdk_qt5
->>=20
->>=20
+>>
+>>
 >> When I try to use the generated SDKs I get the error below:
 >> Simple helloworld app:
 >>    #include <stdio.h>
 >>    #include <stdlib.h>
 >>    #include <stddef.h>
 >>    #include <cstddef>
->>=20
+>>
 >>    int main (int argc, char** argv)
 >>    {
 >>       printf("Hello World\n");
 >>       return 0;
 >>    }
->>=20
+>>
 >> Compile error:
 >>    ${CC} helloworld.c
 >>    helloworld.c:4:19: fatal error: cstddef: No such file or directory
 >>    #include <cstddef>
 >>                     ^
 >>    compilation terminated
->>=20
->>=20
+>>
+>>
 >> Have I missed a step in generating the SDK?
->>=20
->>=20
->=20
+>>
+>>
+>
 > No, your SDK looks fine. The solution is to just remove the line
->=20
+>
 > #include <cstddef>
->=20
+>
 > from your c sources or use the g++ compiler (called ${CXX) in
 > Makefile) to compile the source.
->=20
+>
 >> Regards,
 >> vitalEol
 
 > Hi Bas,
->=20
-> I'm using the offending line in helloworld.c to highlight the issue I'm=
-=20
+>
+> I'm using the offending line in helloworld.c to highlight the issue I'm
 > seeing.
->=20
+>
 > My main program is a Qt application where I see the same issue when
 > trying to build in QtCreator.
->=20
+>
 > My issue relates to the fact that several include files are not
 > readily available after 'sourcing' the environment setup.
->=20
+>
 > Do I need to adjust/include other recipes when building the SDK?
->=20
+>
 
-I might be wrong, but this looks like you are using the gcc compiler=20
+I might be wrong, but this looks like you are using the gcc compiler
 instead of the g++ one. See the second part of my answer.
 
-To check your environment, check in your sdk that the file cstddef=20
+To check your environment, check in your sdk that the file cstddef
 exists somewhere in /usr/include. Example from a Fedora Linux system:
 
 $ find /usr/include -name cstddef
 /usr/include/c++/8/cstddef
 
-If I compile your example with "gcc" on that system, I get the same=20
-error. With "g++", is is fine. It automatically find the cstddef header=20
+If I compile your example with "gcc" on that system, I get the same
+error. With "g++", is is fine. It automatically find the cstddef header
 file in the /usr/include/c++/8 directory.
 
 Hope this helps,
@@ -152,5 +178,45 @@ Hope this helps,
 
 > Regards,
 > Evan
->=20
+>
+
+Hi Bas,
+
+Apologies for top-posting previously.
+
+using ${CC}, ${CPP} or ${CXX} all show the same error relating to not findi=
+ng the required include
+
+cstddef is available in the cross-compiler toolchain:
+$ find . -name cstddef
+./sysroots/armv7ahf-neon-linux-gnueabi/usr/include/c++/6.2.1/cstddef
+./sysroots/armv7ahf-neon-linux-gnueabi/usr/include/boost/compatibility/cpp_=
+c_headers/cstddef
+
+and is also available on my system:
+$ find /usr/include -name cstddef
+/usr/include/c++/5/cstddef
+/usr/include/c++/4.7/cstddef
+/usr/include/c++/4.8/cstddef
+
+
+${CC} --version && ${CPP} --version && ${CXX} --version
+arm-linux-gnueabihf-gcc (Linaro GCC 6.2-2016.11) 6.2.1 20161016
+Copyright (C) 2016 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+arm-linux-gnueabihf-gcc (Linaro GCC 6.2-2016.11) 6.2.1 20161016
+Copyright (C) 2016 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+arm-linux-gnueabihf-g++ (Linaro GCC 6.2-2016.11) 6.2.1 20161016
+Copyright (C) 2016 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+Regards,
+Evan
 
