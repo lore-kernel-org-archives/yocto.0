@@ -1,60 +1,65 @@
-Return-Path: <evan.oloughlin@vitalograph.ie>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4A48CE00BC1; Thu, 20 Sep 2018 03:29:01 -0700 (PDT)
+	id C46B9E00BC1; Thu, 20 Sep 2018 03:43:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [192.162.217.188 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.210.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp-out6.electric.net (smtp-out6.electric.net
-	[192.162.217.188])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 300A3E00AB3
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 03:28:59 -0700 (PDT)
-Received: from 1g2wCa-0007me-Vk by out6c.electric.net with emc1-ok (Exim
-	4.90_1) (envelope-from <evan.oloughlin@vitalograph.ie>)
-	id 1g2wCg-00086k-VD; Thu, 20 Sep 2018 03:28:58 -0700
-Received: by emcmailer; Thu, 20 Sep 2018 03:28:58 -0700
-Received: from [176.58.6.8] (helo=VitalExchange.vitalograph.local)
-	by out6c.electric.net with esmtps (TLSv1.2:AES256-GCM-SHA384:256)
-	(Exim 4.90_1) (envelope-from <evan.oloughlin@vitalograph.ie>)
-	id 1g2wCa-0007me-Vk; Thu, 20 Sep 2018 03:28:52 -0700
-Received: from VITALEXCHANGE.vitalograph.local ([fe80::93c:7e0f:858e:c090]) by
-	VitalExchange.vitalograph.local ([fe80::93c:7e0f:858e:c090%12]) with
-	mapi id 14.03.0399.000; Thu, 20 Sep 2018 11:28:22 +0100
-From: Evan O'Loughlin <evan.oloughlin@vitalograph.ie>
-To: Bas Mevissen <abuse@basmevissen.nl>
-Thread-Topic: [yocto] Yocto SDK generated - unable to compile application
-Thread-Index: AQHUULkrB+PsRV1tME++SjwtRDDgE6T40b4AgAAXwvD///LzgIAAGSuv
-Date: Thu, 20 Sep 2018 10:28:22 +0000
-Message-ID: <2EE3E45FEAD8944697CC29BFE83DD70F289B931C@VitalExchange.vitalograph.local>
-References: <2EE3E45FEAD8944697CC29BFE83DD70F289B91F2@VitalExchange.vitalograph.local>
-	<af1c99f79f52abe4c72b0b20b8ddc02a@basmevissen.nl>
-	<2EE3E45FEAD8944697CC29BFE83DD70F289B92E6@VitalExchange.vitalograph.local>,
-	<b332d979acdc58ec0977ac2c43f37d45@basmevissen.nl>
-In-Reply-To: <b332d979acdc58ec0977ac2c43f37d45@basmevissen.nl>
-Accept-Language: en-IE, en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.245.60]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
+	[209.85.210.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A141AE00AB3
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 03:43:15 -0700 (PDT)
+Received: by mail-ot1-f44.google.com with SMTP id o13-v6so8934666otl.4
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 03:43:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=o+CdwPR/UNv64WJeNpE7wwiiPvFmA8LqC9DO4RshYg8=;
+	b=xGCH/eR1C2Nq50dhMGhH/dwr3/l3ETUKXbBKIwdFI4U8VMJ9tB/ZpMHxB0ydfkSCzK
+	uJ8MjAtxtV8jeEKCzg+Vry042j6nryuIoAAkLeARZGD4kiuvia2qAxGFfCuKvdO0A0jF
+	BKhdLbJlUJXetyaCrOWPmijGE7CRSLJiCKsq9OANuN0t5RLupgs6ZNwsdF/1C8vSNwwT
+	KtcR7+46++klPN9x0ddTv0Lac9pXPD8JIbrtFOkuTELVUBy1kHC4KlazVpX25X4XCXqz
+	IM1Xbi/BlPm8Z3JSuDLRRRLJDPpFo9oYzk159YAMMebBy0GO5voyI6NdvQUQYQWCqRmz
+	VUFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=o+CdwPR/UNv64WJeNpE7wwiiPvFmA8LqC9DO4RshYg8=;
+	b=pgUrDDYNpGLdmpqobs6saIJSN1DOGnbjAcBORhurnxXOShoUtbEt6O/coEqtx11gcJ
+	0Rky29wLxI4XqshuiiofwdVbBczFSweA5epY6VDEm2aQhJUQHBvlv/w/xpUQymaHtGqH
+	S1wNA1LA3bT9aBM/fnlIW6r50smoVfdNn5ZFD/CAP2A/SesGm0yu655sVSGcMzhSmHNm
+	5yUG50/cmQW02T26xWVAYxGQsXF54d1WkiTf7wcmwK8E25pZ9bCNezWuzQz+wdsKb73q
+	6YIqXIqRBdxiH6tZdbvSwypmro+yfdkj2RM76BUvrGkDCVY6lTSzIb52JTYFrPIIbRqN
+	fyaA==
+X-Gm-Message-State: APzg51AzP9voEPhUs0OqCISp6WansSQemcqLo24L6fJyEEH2dO/4UC0L
+	VIf3Atl0qTvA8qzxgrH1IL0hueoZsxiKJEmoYnFFHA==
+X-Google-Smtp-Source: ANB0VdZF1YPOBXrDxQfIvcU7NiwGMjrSFS7XrmGfWD+J5h494ZbjkeU1oB2/6LvSuCUyN0riMT9H1+vcebDYYcfH4j0=
+X-Received: by 2002:a9d:798a:: with SMTP id
+	h10-v6mr22300139otm.13.1537440194732; 
+	Thu, 20 Sep 2018 03:43:14 -0700 (PDT)
 MIME-Version: 1.0
-X-Outbound-IP: 176.58.6.8
-X-Env-From: evan.oloughlin@vitalograph.ie
-X-Proto: esmtps
-X-Revdns: 
-X-HELO: VitalExchange.vitalograph.local
-X-TLS: TLSv1.2:AES256-GCM-SHA384:256
-X-Authenticated_ID: 
-X-PolicySMART: 14033467
-X-Virus-Status: Scanned by VirusSMART (c)
-X-Virus-Status: Scanned by VirusSMART (s)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto SDK generated - unable to compile application
+References: <HE1P195MB03625FB2341F7F8FBD894D2DC11D0@HE1P195MB0362.EURP195.PROD.OUTLOOK.COM>
+	<CAJTo0LYxMCH2BXsMreV=MxHqT4uFNPADHiNqRmxqQDcyzqPDuA@mail.gmail.com>
+	<HE1P195MB036230695B60D23AA37F8D95C1130@HE1P195MB0362.EURP195.PROD.OUTLOOK.COM>
+	<CAJTo0LZiVgrVaoaUgEkki8NFKVNa1hN+b0csKkLnQusENEDFrw@mail.gmail.com>
+	<HE1P195MB036259A2AA8B02E857F2E4DEC1130@HE1P195MB0362.EURP195.PROD.OUTLOOK.COM>
+In-Reply-To: <HE1P195MB036259A2AA8B02E857F2E4DEC1130@HE1P195MB0362.EURP195.PROD.OUTLOOK.COM>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 20 Sep 2018 11:43:03 +0100
+Message-ID: <CAJTo0LYi6OTzfdpH4dCii+ugHhUcAmjmqqt12h-n_N-hLiz3FQ@mail.gmail.com>
+To: MohamedYouseif@outlook.com
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Adding nInvaders game package recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,157 +71,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2018 10:29:01 -0000
-Content-Language: en-IE
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 20 Sep 2018 10:43:16 -0000
+Content-Type: text/plain; charset="UTF-8"
 
+So your makefile is explictly saying "ignore the value from the
+environment, always use gcc on the host".
 
-________________________________________
-From: Bas Mevissen [abuse@basmevissen.nl]
-Sent: 20 September 2018 10:50
-To: Evan O'Loughlin
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Yocto SDK generated - unable to compile application
+Delete that line from the makefile, the default is good and then the
+environment value to set CC to the cross compiler will work.
 
-On 2018-09-20 11:40, Evan O'Loughlin wrote:
-> -----Original Message-----
-> From: Bas Mevissen [mailto:abuse@basmevissen.nl]
-> Sent: 20 September 2018 10:12
-> To: Evan O'Loughlin <evan.oloughlin@vitalograph.ie>
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Yocto SDK generated - unable to compile
-> application
+This is why people shouldn't hand-code Makefiles: it is harder than it
+looks.  This makefile probably isn't respecting CFLAGS/LD/LDFLAGS
+either.
+
+Ross
+On Thu, 20 Sep 2018 at 11:00, Mohamed Youseif
+<MohamedYouseif@outlook.com> wrote:
 >
-> On 2018-09-20 10:08, Evan O'Loughlin wrote:
->> Hello,
->>
->> I=92m having an issue when I try to use the SDK generated by my yocto
->> instance.
->> Currently I have yocto set-up to correctly build my image =96 this all
->> works well.
->>
->> I've built the SDK in the following ways:
->>    * bitbake {image} =96c populate_sdk
->>    * bitbake meta-toolchain-qt5
->>    * bitbake {image-sdk} using a separate recipe with the options:
->>        - require {image}.bb
->>        - IMAGE_FEATURES +=3D " dev-pkgs tools-sdk tools-debug
->> eclipse-debug debug-tweaks"
->>        - IMAGE_INSTALL +=3D "kernel-devsrc"
->>        - inherit populate_sdk populate_sdk_qt5
->>
->>
->> When I try to use the generated SDKs I get the error below:
->> Simple helloworld app:
->>    #include <stdio.h>
->>    #include <stdlib.h>
->>    #include <stddef.h>
->>    #include <cstddef>
->>
->>    int main (int argc, char** argv)
->>    {
->>       printf("Hello World\n");
->>       return 0;
->>    }
->>
->> Compile error:
->>    ${CC} helloworld.c
->>    helloworld.c:4:19: fatal error: cstddef: No such file or directory
->>    #include <cstddef>
->>                     ^
->>    compilation terminated
->>
->>
->> Have I missed a step in generating the SDK?
->>
->>
+> I had run the command and it prints out that:
 >
-> No, your SDK looks fine. The solution is to just remove the line
+> nInvaders: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=73d88937de4f28a243ba40001af8dbd5c1ca3ac8, not stripped
 >
-> #include <cstddef>
+> the ${CC} in makefile is defined as
+> CC=gcc
+> ________________________________
+> From: Burton, Ross <ross.burton@intel.com>
+> Sent: Thursday, September 20, 2018 11:28 AM
+> To: MohamedYouseif@outlook.com
+> Cc: Yocto-mailing-list
+> Subject: Re: [yocto] Adding nInvaders game package recipe
 >
-> from your c sources or use the g++ compiler (called ${CXX) in
-> Makefile) to compile the source.
+> On Thu, 20 Sep 2018 at 10:01, Mohamed Youseif
+> <MohamedYouseif@outlook.com> wrote:
+> > I had changed the source of my package, and create a new recipe for my package so it fetches from SourceForge, the new recipe does not inherit Autotools and modify the do_compile, do_install as following:
+> > do_compile () {
+> >       oe_runmake
+> > }
+> >
+> > do_install () {
+> >       :
+> > }
+> >
+> > but i had modified the do_install task to add it to my image and now it is like this
+> > do_install () {
+> >
+> >       install -d ${D}${bindir}
+> >       install -m 0755 nInvaders ${D}${bindir}
+> > }
+> >
+> > then i run "bitbake ninvaders" to check that all tasks will be passed but i got that error for do_package task
+> >
+> > arm-poky-linux-gnueabi-objcopy:/home/yusuf/rpi/build/tmp_sumo_RPI/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/ninvaders/0.1.1-r0/package/usr/bin/nInvaders: File format not recognized
 >
->> Regards,
->> vitalEol
-
-> Hi Bas,
+> Run 'file' on that binary.  It's possible that your hand-coded
+> makefile isn't respecting $CC and it built using the host native
+> compiler.
 >
-> I'm using the offending line in helloworld.c to highlight the issue I'm
-> seeing.
->
-> My main program is a Qt application where I see the same issue when
-> trying to build in QtCreator.
->
-> My issue relates to the fact that several include files are not
-> readily available after 'sourcing' the environment setup.
->
-> Do I need to adjust/include other recipes when building the SDK?
->
-
-I might be wrong, but this looks like you are using the gcc compiler
-instead of the g++ one. See the second part of my answer.
-
-To check your environment, check in your sdk that the file cstddef
-exists somewhere in /usr/include. Example from a Fedora Linux system:
-
-$ find /usr/include -name cstddef
-/usr/include/c++/8/cstddef
-
-If I compile your example with "gcc" on that system, I get the same
-error. With "g++", is is fine. It automatically find the cstddef header
-file in the /usr/include/c++/8 directory.
-
-Hope this helps,
-
-(and please do not top post as that makes a mail thread unreadable)
-
--- Bas.
-
-
-> Regards,
-> Evan
->
-
-Hi Bas,
-
-Apologies for top-posting previously.
-
-using ${CC}, ${CPP} or ${CXX} all show the same error relating to not findi=
-ng the required include
-
-cstddef is available in the cross-compiler toolchain:
-$ find . -name cstddef
-./sysroots/armv7ahf-neon-linux-gnueabi/usr/include/c++/6.2.1/cstddef
-./sysroots/armv7ahf-neon-linux-gnueabi/usr/include/boost/compatibility/cpp_=
-c_headers/cstddef
-
-and is also available on my system:
-$ find /usr/include -name cstddef
-/usr/include/c++/5/cstddef
-/usr/include/c++/4.7/cstddef
-/usr/include/c++/4.8/cstddef
-
-
-${CC} --version && ${CPP} --version && ${CXX} --version
-arm-linux-gnueabihf-gcc (Linaro GCC 6.2-2016.11) 6.2.1 20161016
-Copyright (C) 2016 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-arm-linux-gnueabihf-gcc (Linaro GCC 6.2-2016.11) 6.2.1 20161016
-Copyright (C) 2016 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-arm-linux-gnueabihf-g++ (Linaro GCC 6.2-2016.11) 6.2.1 20161016
-Copyright (C) 2016 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-
-Regards,
-Evan
+> Ross
 
