@@ -1,6 +1,6 @@
 Return-Path: <seebs@seebs.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2D85EE006AF; Thu, 20 Sep 2018 13:46:58 -0700 (PDT)
+	id 94CD3E006AF; Thu, 20 Sep 2018 13:50:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,15 +9,15 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mail.seebs.net (mail.seebs.net [162.213.38.76])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD09BE00519
-	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 13:46:57 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38A58E00519
+	for <yocto@yoctoproject.org>; Thu, 20 Sep 2018 13:50:27 -0700 (PDT)
 Received: from seebsdell (unknown [38.32.44.26])
-	by mail.seebs.net (Postfix) with ESMTPSA id 542F72E8925;
-	Thu, 20 Sep 2018 15:46:57 -0500 (CDT)
-Date: Thu, 20 Sep 2018 15:46:56 -0500
+	by mail.seebs.net (Postfix) with ESMTPSA id C537D2E8936;
+	Thu, 20 Sep 2018 15:50:26 -0500 (CDT)
+Date: Thu, 20 Sep 2018 15:50:26 -0500
 From: Seebs <seebs@seebs.net>
 To: <Jack.Fewx@dell.com>
-Message-ID: <20180920154656.6dc19bc3@seebsdell>
+Message-ID: <20180920155026.43686693@seebsdell>
 In-Reply-To: <7fa6c890755b4712828365593fcfe088@AUSX13MPC104.AMER.DELL.COM>
 References: <6a084eda5fcb4423a647bb998471e26d@AUSX13MPC104.AMER.DELL.COM>
 	<CANNYZj8A22yL9VU0Wp3OOXwZU6yR=fQXqeWSfKykDp_kkL6ZGQ@mail.gmail.com>
@@ -47,23 +47,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2018 20:46:58 -0000
+X-List-Received-Date: Thu, 20 Sep 2018 20:50:27 -0000
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Thu, 20 Sep 2018 20:41:02 +0000
-<Jack.Fewx@dell.com> wrote:
-
-> Okay, so I found the problem, and I have a patch for it.  Throughout
-> the pseudo_db.c code, the handling of the msg->ino objects is not
-> consistent.  Many get passed to the sqlite3_bind_int64 function, but
-> NOT ALL.  9 instances in the code, including all of them in the xattr
-> code use only sqlite3_bind_int which truncates the integers to signed
-> 32-bits.
-
-D'oh. I should have noticed that since I was looking at the code.
-
-Thanks, that's a very good fix.
+Nice catch. Merged a patch that applies this also.
 
 -s
 
