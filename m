@@ -1,53 +1,39 @@
-Return-Path: <13824125580@163.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9640CE00BB7; Wed, 19 Sep 2018 23:30:44 -0700 (PDT)
+	id 7682DE00BB7; Wed, 19 Sep 2018 23:34:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_LOCAL_DIGITS,
-	FROM_LOCAL_HEX, HTML_MESSAGE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FROM_LOCAL_DIGITS From: localpart has long digit
-	sequence
-	*  0.0 FROM_LOCAL_HEX From: localpart has long hexadecimal sequence
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (13824125580[at]163.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 909 seconds by postgrey-1.32 at yocto-www;
-	Wed, 19 Sep 2018 23:30:43 PDT
-Received: from m13-56.163.com (m13-56.163.com [220.181.13.56])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8020E00BAA
-	for <yocto@yoctoproject.org>; Wed, 19 Sep 2018 23:30:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=rCusf
-	a/NreDFTerfyLWs4X4qP0YYq7vGYXuR+z2wmm4=; b=RIHNVT8Bm5npFK4CRdSh5
-	ki78Ax5f5KZv2Efe2h8gFaydjRE/9JiNv4ewhmyAYYfBYjBu2suJYwvgWnbBz/zg
-	AlqXR1Ydxc5+0V7dR7PM+BzSKTx8CRc/ALYodw3Lx724qPv7dgZvEkV1GWIi+Z0H
-	WMHRoqRPm9WymNLCLKnqXE=
-Received: from 13824125580$163.com ( [221.4.213.95] ) by
-	ajax-webmail-wmsvr56 (Coremail) ; Thu, 20 Sep 2018 14:15:26 +0800 (CST)
-X-Originating-IP: [221.4.213.95]
-Date: Thu, 20 Sep 2018 14:15:26 +0800 (CST)
-From: tugouxp <13824125580@163.com>
-To: yocto@yoctoproject.org
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
-	20160729(86883.8884) Copyright (c) 2002-2018 www.mailtech.cn 163com
-X-CM-CTRLDATA: +jwvF2Zvb3Rlcl9odG09NDI5OjYx
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 030D2E00BAA
+	for <yocto@yoctoproject.org>; Wed, 19 Sep 2018 23:34:57 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w8K6XRD1001258
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 19 Sep 2018 23:34:27 -0700
+Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
+	Wed, 19 Sep 2018 23:34:14 -0700
+To: <yocto@yoctoproject.org>
+References: <65839221.8839.165f59e72fc.Coremail.13824125580@163.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <3466d7d7-26ad-4c3a-bb19-695ff9bc7766@windriver.com>
+Date: Thu, 20 Sep 2018 14:39:29 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Message-ID: <65839221.8839.165f59e72fc.Coremail.13824125580@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: OMGowAB3f6P+OqNboW+aAA--.48336W
-X-CM-SenderInfo: bprtmjyurskkiyq6il2tof0z/1tbipR-HQlUMMqPa9QABsZ
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-Subject: why must add the "mesa" dependent on bbfiles which already has a "libmali.so" for mali gpu based system?
+In-Reply-To: <65839221.8839.165f59e72fc.Coremail.13824125580@163.com>
+X-Originating-IP: [128.224.162.218]
+Subject: Re: why must add the "mesa" dependent on bbfiles which already has a "libmali.so" for mali gpu based system?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,32 +45,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Sep 2018 06:30:44 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_130223_1427172819.1537424126715"
+X-List-Received-Date: Thu, 20 Sep 2018 06:34:59 -0000
+Content-Type: multipart/alternative;
+	boundary="------------976DFDF7A0C6EC8461819524"
 
-------=_Part_130223_1427172819.1537424126715
-Content-Type: text/plain; charset=GBK
-Content-Transfer-Encoding: base64
+--------------976DFDF7A0C6EC8461819524
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-aGkgZm9sa3M6CgoKICAgb24gbXkgIHlvY3RvIHByb2JqZWN0IGlmIHRoZSBtZXNhIGRlcGVucyBy
-ZW1vdmVkIGZyb20gdGhlIHJlY2lwZSwgdGhlIGNvbXBpbGUgY2FudCBnbyB0aHJvdWdoLCBpIGRv
-bnQga25vdyB3aHkgIGJlY2F1c2UgaSBoYXZlIGFscmVhZHkgaGFzIGEgIm9wZW5nbCIgaW1wbGVt
-ZW50YXRpb24gYnkKbGliTWFsaS5zbyBsaWJyYXJ5LgoKCnNvLCBjYW4geW91IHRlbGwgbWUgd2h5
-PyB0aGFua3MgZm9yIHlvdXIgc3VwcG9ydC4g
+Which recipe and what configuration?
 
-------=_Part_130223_1427172819.1537424126715
-Content-Type: text/html; charset=GBK
-Content-Transfer-Encoding: base64
 
-PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
-Zm9udC1mYW1pbHk6QXJpYWwiPjxkaXY+aGkgZm9sa3M6PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRp
-dj4mbmJzcDsgJm5ic3A7b24gbXkmbmJzcDsgeW9jdG8gcHJvYmplY3QgaWYgdGhlIG1lc2EgZGVw
-ZW5zIHJlbW92ZWQgZnJvbSB0aGUgcmVjaXBlLCB0aGUgY29tcGlsZSBjYW50IGdvIHRocm91Z2gs
-IGkgZG9udCBrbm93IHdoeSZuYnNwOyBiZWNhdXNlIGkgaGF2ZSBhbHJlYWR5IGhhcyBhICJvcGVu
-Z2wiIGltcGxlbWVudGF0aW9uIGJ5PC9kaXY+PGRpdj5saWJNYWxpLnNvIGxpYnJhcnkuPC9kaXY+
-PGRpdj48YnI+PC9kaXY+PGRpdj5zbywgY2FuIHlvdSB0ZWxsIG1lIHdoeT8gdGhhbmtzIGZvciB5
-b3VyIHN1cHBvcnQuJm5ic3A7PC9kaXY+PC9kaXY+PGJyPjxicj48c3BhbiB0aXRsZT0ibmV0ZWFz
-ZWZvb3RlciI+PHA+PGJyLz4mbmJzcDs8L3A+PC9zcGFuPg==
+On 09/20/2018 02:15 PM, tugouxp wrote:
+> hi folks:
+>
+>    on my  yocto probject if the mesa depens removed from the recipe, 
+> the compile cant go through, i dont know why because i have already 
+> has a "opengl" implementation by
+> libMali.so library.
+>
+> so, can you tell me why? thanks for your support.
+>
+>
+>
+>
+>
 
-------=_Part_130223_1427172819.1537424126715--
+
+--------------976DFDF7A0C6EC8461819524
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">Which recipe and what configuration?<br>
+      <br>
+      <br>
+      On 09/20/2018 02:15 PM, tugouxp wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:65839221.8839.165f59e72fc.Coremail.13824125580@163.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <div
+        style="line-height:1.7;color:#000000;font-size:14px;font-family:Arial">
+        <div>hi folks:</div>
+        <div><br>
+        </div>
+        <div>   on my  yocto probject if the mesa depens removed from
+          the recipe, the compile cant go through, i dont know why 
+          because i have already has a "opengl" implementation by</div>
+        <div>libMali.so library.</div>
+        <div><br>
+        </div>
+        <div>so, can you tell me why? thanks for your support. </div>
+      </div>
+      <br>
+      <br>
+      <span title="neteasefooter">
+        <p><br>
+           </p>
+      </span><br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------976DFDF7A0C6EC8461819524--
