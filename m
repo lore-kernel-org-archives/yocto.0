@@ -1,14 +1,17 @@
-Return-Path: <okaya@kernel.org>
+Return-Path: <henriklindblomster@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 86887E00AE0; Fri, 21 Sep 2018 15:12:38 -0700 (PDT)
+	id 38C06E00AC8; Fri, 21 Sep 2018 22:27:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.145.29.99 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (henriklindblomster[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,32 +19,55 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65FB2E00AC8
-	for <yocto@yoctoproject.org>; Fri, 21 Sep 2018 15:12:37 -0700 (PDT)
-Received: from
-	sinanubuntu1604.mkjiurmyylmellclgttazegk5f.bx.internal.cloudapp.net
-	(unknown [137.117.33.58])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id 0C85D21476;
-	Fri, 21 Sep 2018 22:12:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=default; t=1537567957;
-	bh=ZB4Ogc/z9e+bSXSLbZWIYHDJqhBSephK7nXZRp1dIGY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=NL8+ypD+AxnCHEPF/ZGbcnwmhNNNSJ3kbyKkxzg+F01avJWB9mY8iSJyo5xmpP0O2
-	ZKK0EnbCctfXJgPK0y99c2MqI/2fZ/1UrfUjkp0ZmqvQ3T6TMucQ9oJvT1QKI8Kxok
-	ph0ENBVPCtaTlNBHipKf3gZqOc7N/AT1SnGt0UgQ=
-From: Sinan Kaya <okaya@kernel.org>
-To: yocto@yoctoproject.org
-Date: Fri, 21 Sep 2018 22:12:34 +0000
-Message-Id: <20180921221234.23154-3-okaya@kernel.org>
-X-Mailer: git-send-email 2.19.0
-In-Reply-To: <20180921221234.23154-1-okaya@kernel.org>
-References: <20180921221234.23154-1-okaya@kernel.org>
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com
+	[209.85.208.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8FD8E00AAA
+	for <yocto@yoctoproject.org>; Fri, 21 Sep 2018 22:27:26 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id m84-v6so13809625lje.10
+	for <yocto@yoctoproject.org>; Fri, 21 Sep 2018 22:27:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:references:date:in-reply-to:message-id
+	:user-agent:mime-version;
+	bh=7LLqcA6sSRjrmvg5Zo9zkVpRnpXURABjCaQzTSGoi5Y=;
+	b=eQObMYA2OlxNcZD7gn19SuIeALJHkARnUp3vc77CvzhTit7ZvIkZ+tHYuNE2DTiBOa
+	CDU5qmB5kScPTV3sew40ZHvVjYlY60VMyynYghnXviVuReVJ8uCe9iqnBFcNYfGQclNH
+	467rMLlT4UOOe0rEuJYDiyCDCUhug+xSDjFBDgo9Pm1XjvN3xBWf/pFCHJjQu6mmNSpI
+	N6N95fJMq4RwezSq2aY+n5NH+DQpYJTAZYkH6/s73Y7I4WwKeL+nmM+6pNhQzQ7H7RJr
+	XRY8CF/3+L7AgDj+sQpk2iYMdHTYWK89WxTmUKAbsg/suvG+ZLQBRsz6WJ4xTOEFMH9O
+	w72A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:references:date:in-reply-to
+	:message-id:user-agent:mime-version;
+	bh=7LLqcA6sSRjrmvg5Zo9zkVpRnpXURABjCaQzTSGoi5Y=;
+	b=Gs5JggLIARsW6kWGy4oacRE2a+N96QAtwjaVdcbxhI3qZ4GrshMay/AgUkKP7aWnpx
+	QY8ID4Jc6muD2Jd8o18nE/8Ze9VlI/PO+u9dYT0EVrzxjE4f02ykZtQYwfYE6MLDyndc
+	2kxi3qbsuzwqRHtguJVhstn45Ug7/ao4BgQU2V3qnsaGqUtQ9pjOWJilatomUGoOq9ms
+	CYp5mqAX/ZoBRTXzrI43RoBdfIZ+cqkAOBKxTTVA0ne61r9SWELY8WnLLZnHAuUDDkhb
+	mOFDzLvSqc3Yw9pzT/RhroFwlt/PSIYVeGPzAHUMno6C4TyGMaZFtBmHVRtjcmgKn1k5
+	x+nQ==
+X-Gm-Message-State: ABuFfoh5PmwoDPaMSiC/7YyulN98hvQ7akPI9az3qPrkNf8LkZer2IIP
+	v+suRCdhDFLw0gv2NiWNfIZRv6SKzZQ=
+X-Google-Smtp-Source: ACcGV626rbdZKkeZlGomRD16Nvz7CQt2HuhJtAKSnTNqbopPNQPKO/fBUv3OEkWxPgKbODwaho9ysg==
+X-Received: by 2002:a2e:8905:: with SMTP id d5-v6mr4850160lji.97.1537594045361;
+	Fri, 21 Sep 2018 22:27:25 -0700 (PDT)
+Received: from gauss (89-27-124-25.bb.dnainternet.fi. [89.27.124.25])
+	by smtp.gmail.com with ESMTPSA id
+	m12-v6sm5304543ljh.24.2018.09.21.22.27.24
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 21 Sep 2018 22:27:24 -0700 (PDT)
+From: Henrik Lindblom <henriklindblomster@gmail.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+References: <CAFZh4h9v4DimM=XMsCVR1z3P+n1MvX1zxT93hH+pYV8o7a077A@mail.gmail.com>
+	<CANNYZj-Tu72fapYpUOcn-ME3qOL_8nhyvqDnjX22ubvOxsRX=A@mail.gmail.com>
+Date: Sat, 22 Sep 2018 08:27:22 +0300
+In-Reply-To: <CANNYZj-Tu72fapYpUOcn-ME3qOL_8nhyvqDnjX22ubvOxsRX=A@mail.gmail.com>
+	(Alexander Kanavin's message of "Wed, 12 Sep 2018 17:09:34 +0200")
+Message-ID: <87in2yje4l.fsf@gmail.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/25.1 (gnu/linux)
 MIME-Version: 1.0
-Subject: [PATCH v1 3/3] sqlite3: CVE-2018-8740
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Is there a "yocto way" to rebuild sqlite amalgamation?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,97 +79,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Sep 2018 22:12:38 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 22 Sep 2018 05:27:28 -0000
+Content-Type: text/plain
 
-* CVE-2018-8740
-In SQLite through 3.22.0, databases whose schema is corrupted
-using a CREATE TABLE AS statement could cause a NULL pointer dereference,
-related to build.c and prepare.c.
+Alexander Kanavin <alex.kanavin@gmail.com> writes:
 
-Affects sqlite3 <= 3.22.0
+> These two are orthogonal. "amalgamation" is building sqlite from a
+> single source file for performance and simplicity reasons, which is
+> what yocto does as well, despite there being no mention of it in the
+> recipe. Enabling or disabling specific sqlite features can be done
+> regardless of whether amalgamation or original source code file bunch
+> is in use.
+>
+> Alex
+>
 
-Upstream-Status: Backport [ https://www.sqlite.org/cgi/src/vdiff?from=1774f1c3baf0bc3d&to=d75e67654aa9620b&diff=1&w]
-CVE: CVE-2018-8740
-Ref: https://access.redhat.com/security/cve/cve-2018-8740
-Signed-off-by: Sinan Kaya <okaya@kernel.org>
----
- .../sqlite/files/CVE-2018-8740.patch          | 52 +++++++++++++++++++
- meta/recipes-support/sqlite/sqlite3_3.22.0.bb |  1 +
- 2 files changed, 53 insertions(+)
- create mode 100644 meta/recipes-support/sqlite/files/CVE-2018-8740.patch
+This is true for most features, but not necessarily for
+SQLITE_ENABLE_UPDATE_DELETE_LIMIT. Since said feature affects the
+supported SQL syntax (e.g. "DELETE FROM foo LIMIT 1" results in a parse
+error without the extension) the parser needs to be configured &
+generated to support this. The amalgamated version contains a
+preconfigured parser, which may or may not have been configured with
+SQLITE_ENABLE_UPDATE_DELETE_LIMIT. See
+https://www.sqlite.org/howtocompile.html#building_the_amalgamation for
+details. So the presence of the feature in the amalgamated sqlite3.c
+really depends how the file was generated in the first place.
 
-diff --git a/meta/recipes-support/sqlite/files/CVE-2018-8740.patch b/meta/recipes-support/sqlite/files/CVE-2018-8740.patch
-new file mode 100644
-index 0000000000..7cec1f489c
---- /dev/null
-+++ b/meta/recipes-support/sqlite/files/CVE-2018-8740.patch
-@@ -0,0 +1,52 @@
-+From 19aed4d2be46c4516caf2bee31f79044bbd1d57d Mon Sep 17 00:00:00 2001
-+From: Sinan Kaya <okaya@kernel.org>
-+Date: Fri, 21 Sep 2018 16:22:01 +0000
-+Subject: [PATCH] sqlite3: CVE-2018-8740
-+
-+port from:
-+https://www.sqlite.org/cgi/src/vdiff?from=1774f1c3baf0bc3d&to=d75e67654aa9620b&diff=1&w
-+
-+CVE detail:
-+https://nvd.nist.gov/vuln/detail/CVE-2018-8740
-+
-+Signed-off-by: Sinan Kaya <okaya@kernel.org>
-+---
-+ sqlite3.c | 8 +++++---
-+ 1 file changed, 5 insertions(+), 3 deletions(-)
-+
-+diff --git a/sqlite3.c b/sqlite3.c
-+index 73c69ef..6863bc6 100644
-+--- a/sqlite3.c
-++++ b/sqlite3.c
-+@@ -103474,8 +103474,6 @@ SQLITE_PRIVATE void sqlite3EndTable(
-+   p = pParse->pNewTable;
-+   if( p==0 ) return;
-+ 
-+-  assert( !db->init.busy || !pSelect );
-+-
-+   /* If the db->init.busy is 1 it means we are reading the SQL off the
-+   ** "sqlite_master" or "sqlite_temp_master" table on the disk.
-+   ** So do not write to the disk again.  Extract the root page number
-+@@ -103486,6 +103484,10 @@ SQLITE_PRIVATE void sqlite3EndTable(
-+   ** table itself.  So mark it read-only.
-+   */
-+   if( db->init.busy ){
-++    if( pSelect ){
-++     sqlite3ErrorMsg(pParse, "");
-++     return;
-++    }
-+     p->tnum = db->init.newTnum;
-+     if( p->tnum==1 ) p->tabFlags |= TF_Readonly;
-+   }
-+@@ -117813,7 +117815,7 @@ static void corruptSchema(
-+     char *z;
-+     if( zObj==0 ) zObj = "?";
-+     z = sqlite3MPrintf(db, "malformed database schema (%s)", zObj);
-+-    if( zExtra ) z = sqlite3MPrintf(db, "%z - %s", z, zExtra);
-++    if( zExtra && zExtra[0] ) z = sqlite3MPrintf(db, "%z - %s", z, zExtra);
-+     sqlite3DbFree(db, *pData->pzErrMsg);
-+     *pData->pzErrMsg = z;
-+   }
-+-- 
-+2.19.0
-+
-diff --git a/meta/recipes-support/sqlite/sqlite3_3.22.0.bb b/meta/recipes-support/sqlite/sqlite3_3.22.0.bb
-index ef88659e97..b90f89886a 100644
---- a/meta/recipes-support/sqlite/sqlite3_3.22.0.bb
-+++ b/meta/recipes-support/sqlite/sqlite3_3.22.0.bb
-@@ -5,6 +5,7 @@ LIC_FILES_CHKSUM = "file://sqlite3.h;endline=11;md5=786d3dc581eff03f4fd9e4a77ed0
- 
- SRC_URI = "\
-   http://www.sqlite.org/2018/sqlite-autoconf-${SQLITE_PV}.tar.gz \
-+  file://CVE-2018-8740.patch \
-   "
- SRC_URI[md5sum] = "96b5648d542e8afa6ab7ffb8db8ddc3d"
- SRC_URI[sha256sum] = "2824ab1238b706bc66127320afbdffb096361130e23291f26928a027b885c612"
--- 
-2.19.0
+Cheers,
+Henrik
 
+> 2018-09-12 16:54 GMT+02:00 Brian Hutchinson <b.hutchman@gmail.com>:
+>> I need to enable SQLITE_ENABLE_UPDATE_DELETE_LIMIT and while
+>> researching how
+>> to do that I read the "amalgamation" needs to be rebuilt.  Sqlite
+>> site gives
+>> instructions on how to do that but I was wondering if this is really
+>> necessary in a yocto environment.  I did some searches in recipies
+>> and the
+>> work directory where sqlite3 was built and do not get any hits at
+>> all on
+>> "amalgamation".
+>>
+>> Any words of wisdom?  I never heard of sqlite amalgamation or had to
+>> deal
+>> with it before so this is a new one on me.
+>>
+>> Regards,
+>>
+>> Brian
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
 
