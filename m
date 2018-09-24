@@ -1,39 +1,51 @@
-Return-Path: <jef.driesen@niko.eu>
+Return-Path: <okaya@kernel.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06CBBE00A4F; Mon, 24 Sep 2018 05:22:06 -0700 (PDT)
+	id 12CCBE00A9C; Mon, 24 Sep 2018 07:27:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [195.130.132.51 listed in list.dnswl.org]
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.145.29.99 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 300 seconds by postgrey-1.32 at yocto-www;
-	Mon, 24 Sep 2018 05:22:03 PDT
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be
-	[195.130.132.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF6CDE003DB
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2018 05:22:03 -0700 (PDT)
-Received: from barracuda.home.lan
-	([IPv6:2a02:1810:4f00:f900:208:9bff:fec2:1e15])
-	by baptiste.telenet-ops.be with bizsmtp
-	id fQH11y00X2H4v4V01QH1Bh; Mon, 24 Sep 2018 14:17:01 +0200
-Received: from w7pt-jdi.1.0.0.1 (84-199-78-189.ifiber.telenet-ops.be
-	[84.199.78.189])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0848E00566
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2018 07:27:56 -0700 (PDT)
+Received: from [10.80.45.152] (unknown [71.69.156.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by barracuda.home.lan (Postfix) with ESMTPSA id C7B254080D;
-	Mon, 24 Sep 2018 14:17:00 +0200 (CEST)
-From: Jef Driesen <jef.driesen@niko.eu>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Date: Mon, 24 Sep 2018 14:16:41 +0200
-Message-Id: <1537791401-12098-1-git-send-email-jef.driesen@niko.eu>
-X-Mailer: git-send-email 2.7.4
-Cc: yocto@yoctoproject.org
-Subject: [PATCH] msbuild: add ca-certificates for curl
+	by mail.kernel.org (Postfix) with ESMTPSA id 0C3C121480;
+	Mon, 24 Sep 2018 14:27:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=default; t=1537799276;
+	bh=aRkNkKdPsOtRqIXA/DLHIOWguecoJXtgQ5Y/85youOA=;
+	h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+	b=EDhdmCupBTZVw/+C0tGXvCza8gJSMuOTcWBm9F+4469SHuHySt8uyKutTRfcNcC/4
+	bVUEXtJaJjJ6c/SIxJfnYJ8tRqJh3tFEjU5wirXpqd+vMEDFhe5G0CmDoMMtSdQ/58
+	DseTmhANLVMBpSXnXnn2AW8UeGUS5kFbcOJscnyo=
+To: akuster <akuster@mvista.com>, akuster808 <akuster808@gmail.com>,
+	yocto@yoctoproject.org
+References: <36756321-d4b5-b3fb-39a7-7303793ad723@kernel.org>
+	<23c30a05-03bf-daf9-fa02-4152f29befc7@gmail.com>
+	<3d9fa759-08a4-319d-bc78-dcc86ece44ce@kernel.org>
+	<1ad18ccd-6f59-cfa3-f920-256db4c6cd6e@mvista.com>
+From: Sinan Kaya <okaya@kernel.org>
+Message-ID: <b70a9d8e-0245-1788-9607-56ed20f213ae@kernel.org>
+Date: Mon, 24 Sep 2018 10:27:54 -0400
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
+MIME-Version: 1.0
+In-Reply-To: <1ad18ccd-6f59-cfa3-f920-256db4c6cd6e@mvista.com>
+Cc: Sasha Levin <Alexander.Levin@microsoft.com>
+Subject: Re: [RFC] CVEs on sumo branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,41 +57,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Sep 2018 12:22:06 -0000
+X-List-Received-Date: Mon, 24 Sep 2018 14:27:57 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-The msbuild bootstrap scripts uses curl to download some pre-build files. The
-ca-certificates are required in order to support https. The CURL_CA_BUNDLE is
-used to override the built-in path, because this is hardcoded to curl's own
-sysroot, which may already be removed when building msbuild.
+On 9/22/2018 10:46 AM, akuster wrote:
+>> Signed-off-by: Zheng Ruoqin<zhengrq.fnst@cn.fujitsu.com>
+>>      Signed-off-by: Richard Purdie<richard.purdie@linuxfoundation.org>
+>>
+>> What does it take to move this in the right direction?
+> bring it to my attention like you have.
+> 
+> backported it for the next build round.
 
-Signed-off-by: Jef Driesen <jef.driesen@niko.eu>
----
- recipes-mono/msbuild/msbuild_git.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Here is another one.
 
-diff --git a/recipes-mono/msbuild/msbuild_git.bb b/recipes-mono/msbuild/msbuild_git.bb
-index 8a89543..6a6761a 100644
---- a/recipes-mono/msbuild/msbuild_git.bb
-+++ b/recipes-mono/msbuild/msbuild_git.bb
-@@ -4,7 +4,7 @@ SECTION = "console/apps"
- LICENSE = "MIT"
- DEPENDS = " \
- 			coreutils-native findutils-native curl-native \
--			unzip-native mono-native \
-+			unzip-native mono-native ca-certificates-native \
- 		"
- 
- LIC_FILES_CHKSUM = "file://LICENSE;md5=768c552053144071f8ef7e5621714b0a"
-@@ -23,7 +23,7 @@ SRC_URI = " \
- S = "${WORKDIR}/git"
- 
- do_compile () {
--	./cibuild.sh --scope Compile --host Mono --target Mono --config Release --bootstrap-only
-+	CURL_CA_BUNDLE=${STAGING_DIR_NATIVE}/etc/ssl/certs/ca-certificates.crt ./cibuild.sh --scope Compile --host Mono --target Mono --config Release --bootstrap-only
- }
- 
- do_install () {
--- 
-2.7.4
+https://patches.openembedded.org/patch/154290/
 
+I'll post
+
+gnupg: CVE-2018-9234
+
+shortly.
 
