@@ -1,14 +1,15 @@
-Return-Path: <jpewhacker@gmail.com>
+Return-Path: <peter@berginkonsult.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9620E0090C; Sun, 23 Sep 2018 20:24:43 -0700 (PDT)
+	id 867E3E00A9B; Mon, 24 Sep 2018 00:08:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jpewhacker[at]gmail.com)
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.30.210.183 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,54 +17,41 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.46 listed in list.dnswl.org]
-Received: from mail-yw1-f46.google.com (mail-yw1-f46.google.com
-	[209.85.161.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3022FE0090C
-	for <yocto@yoctoproject.org>; Sun, 23 Sep 2018 20:24:41 -0700 (PDT)
-Received: by mail-yw1-f46.google.com with SMTP id j131-v6so7359402ywc.13
-	for <yocto@yoctoproject.org>; Sun, 23 Sep 2018 20:24:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=/Ztq6F7qgBU8ldfCFs5PQh7I6nXQQKJtsHEqnbup8ak=;
-	b=mkQnXRTVtRQir8FShVt/uGDo4ei5RoBM3w/vcAZqQun18eoPhP+yAJAfW4ePM4jomX
-	HV/VOd1Ycd9i24IY/ZTzXMtXTONvlC2PncXZm7ZbK+MWNjNzlP3+vLsJdEw4dMnuKl6j
-	Bo3VGyakZawXR6GVD7EnLjGaNJzw8yvD/BktfeDSsVUmZGj+DWNKzAe+m6r4db4gnbe1
-	BlS/BCFkxkLMud4qjhaMbk55a73HV1jK3flLvNAo7QXsuOdALKEJGPkPQnC+WTEwoShf
-	ljmli5HdIQbBOio+aoi/1kOjdT3rEGXPC11JmOKov1jz2jGI1sc2FzAy0rI5EbW8e0K6
-	8l8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=/Ztq6F7qgBU8ldfCFs5PQh7I6nXQQKJtsHEqnbup8ak=;
-	b=YzDy3ZDGX5TQu+Cz6S34vLmj97z4jYpy9xdgsONxR+1mOG7M+a0Im9PX4d1RISVd7a
-	SNTD9Vb4uMq/5CbwRK4aNGTz66BTeHpwaPZQIGVWM3IBLXF86zR5FgKvcPKvThns3ae0
-	aEcKqVfSl2FPT1q+IHnU+RbGuwB2S7F2hnlwmTFDo6pwDXcJaNgfTWoK2t3XJbx0vjzA
-	2zcqAYdEDs+m67kQnkTW63mFXdooGpX1T5fOwrOqcyinuoxlMkvNfj6qRuruH8NKiZpz
-	wxj6u8MqUlrQj9rYgz4PM639YOyfPDI8q/njDba6CdsupPakqe+qU9v04dxayJLqi6ZV
-	BCGg==
-X-Gm-Message-State: APzg51CQ4jAGE5Og6C7SF0A4igqoNyFYr46sdY37ad+acGTpOW5dCGkr
-	+PY5NLQAtgu8RPEHfigBxX8dtYCd
-X-Google-Smtp-Source: ANB0VdaRmNHIjXyneajbljSGe25YZuny37RrDPGrAjD1VuYLCFox8roBiRTZpQsSoTc9LBrIHTU5DQ==
-X-Received: by 2002:a0d:e10b:: with SMTP id
-	k11-v6mr3733705ywe.78.1537759480284; 
-	Sun, 23 Sep 2018 20:24:40 -0700 (PDT)
-Received: from localhost.localdomain
-	([2605:a601:21d1:5200:620a:c230:ada8:3135])
-	by smtp.gmail.com with ESMTPSA id
-	b71-v6sm1269196ywa.48.2018.09.23.20.24.39
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Sun, 23 Sep 2018 20:24:39 -0700 (PDT)
-From: Joshua Watt <jpewhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sun, 23 Sep 2018 22:24:21 -0500
-Message-Id: <20180924032421.9679-1-JPEWhacker@gmail.com>
-X-Mailer: git-send-email 2.17.1
-Cc: juan.m.cruz.alcaraz@linux.intel.com
-Subject: [yocto-docs][PATCH] documentation: Document debug-with-srcpkg
+Received: from mailrelay2-1.pub.mailoutpod1-cph3.one.com
+	(mailrelay2-1.pub.mailoutpod1-cph3.one.com [46.30.210.183])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4411FE0090C
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2018 00:08:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=berginkonsult.se; s=20140924;
+	h=content-transfer-encoding:content-type:in-reply-to:mime-version:date:
+	message-id:from:references:cc:to:subject:from;
+	bh=SzTpqXK3hJj+BaG71cAmZRJjdn6IbK5IcYfa3eVSiIw=;
+	b=ch6yK11CgS9fB2DaPNjwi+WL128RdMjcxv+MTnlrdD/Ds3VlJbbTsVqf8cCN7UzVeNGXcBiPHHz+z
+	Csag+tA/NsRZhcdzhz8rV5e2G8Q5q+LHU5Wf+YuEQp5N+xJXA2ghwhMx6v46IoUoXzlvzJ9aHTMfVs
+	v2lNpkQ6JDtG89uE=
+X-HalOne-Cookie: 096b48f23f73dc1ee4e63e00ba37064dc7f29785
+X-HalOne-ID: a37f3843-bfc8-11e8-9b9d-d0431ea8a290
+Received: from [192.168.0.101] (unknown [176.71.129.70])
+	by mailrelay2.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+	id a37f3843-bfc8-11e8-9b9d-d0431ea8a290;
+	Mon, 24 Sep 2018 07:08:29 +0000 (UTC)
+To: Andrea Adami <andrea.adami@gmail.com>
+References: <f9f3b3b3-237b-55c2-531b-fa03a8e62f73@berginkonsult.se>
+	<d75c6307-7071-bbbc-5ace-4e1db0f15cea@windriver.com>
+	<c9071e74-5a04-408e-6a5b-87490fc9b167@berginkonsult.se>
+	<CAJTo0LbjCN31UUNUP9WX_NxMhoAr0xCt45WrQaWDvqovDeNhYw@mail.gmail.com>
+	<570c7242-e0a8-a65c-aa8f-93b4c331da08@berginkonsult.se>
+	<CAAQYJAvccEtSj1VpXJ-KdaB8Q=s+rQ2SQ8oRn2Bo2ojo5+U3xg@mail.gmail.com>
+	<CAAQYJAs7Wi5S1Qf2-TgQZC76wf7NxEATnr2dR1pfVi6r3zn30Q@mail.gmail.com>
+From: Peter Bergin <peter@berginkonsult.se>
+Message-ID: <f6f533e1-7215-6eb0-c9bb-a25a158521a7@berginkonsult.se>
+Date: Mon, 24 Sep 2018 09:08:27 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
+MIME-Version: 1.0
+In-Reply-To: <CAAQYJAs7Wi5S1Qf2-TgQZC76wf7NxEATnr2dR1pfVi6r3zn30Q@mail.gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: liblzma: memory allocation failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,34 +63,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Sep 2018 03:24:43 -0000
+X-List-Received-Date: Mon, 24 Sep 2018 07:08:33 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-Adds documentation for the "debug-with-srcpkg" option for the
-PACKAGE_DEBUG_SPLIT_STYLE variable
+On 2018-09-24 00:06, Andrea Adami wrote:
+> On Fri, Sep 21, 2018 at 1:04 AM Andrea Adami <andrea.adami@gmail.com> wrote:
+>> On Thu, Sep 20, 2018 at 1:03 PM Peter Bergin <peter@berginkonsult.se> wrote:
+>>> On 2018-09-17 10:27, Burton, Ross wrote:
+>>>
+>>> On Mon, 17 Sep 2018 at 08:13, Peter Bergin <peter@berginkonsult.se> wrote:
+>>>
+>>> I'm pretty sure I have narrowed down the root cause to the restriction
+>>> of virtual memory and that liblzma base its memory calculations on
+>>> physical RAM.
+>>>
+>>> To prove this I added a printout in rpm-native/rpmio/rpmio.c and the
+>>> function lzopen_internal.
+>>>
+>>>           uint64_t memory_usage = lzma_stream_encoder_mt_memusage(&mt_options);
+>>>          rpmlog(RPMLOG_NOTICE, "DBG: memory_usage %lu\n", memory_usage);
+>>>
+>>>
+>>> The value of memory_usage is the same regardless of which 'ulimit -v'
+>>> value I set. On the host with 256GB of physical RAM and 32GB of virtual
+>>> memory, memory_usage is ~5.1GB. On another host with 16GB of physical
+>>> RAM I get memory_usage of ~660MB.
+>>>
+>>> I guess you have not seen this kind of failure if you not have
+>>> restricted virutal memory on your host. If you want to try to reproduce
+>>> this set 'ulimit -v 8388608' (8GB) in your shell and then 'bitbake
+>>> glibc-locale -c package_write_rpm -f'.
+>>>
+>>> Wouldn't a solution be to change lzma to look at free memory, not
+>>> total physical memory?
+>>>
+>>> Ross
+>>>
+>>> I have been in contact with the maintainer of liblzma. There is currently no way to restrict the memory usage in liblzma during multi threaded compression. He recommended to adjust the number of threads used during compression. This kind of check is done for 32-bits but not when running 64-bits (in rpmio/rpmio.c lzopen_internal). To rewrite liblzma is another option but I took an easier way out.
+>>>
+>>> I have come up with a patch (https://patchwork.openembedded.org/patch/155017/) that solves my problem and do a restriction of memory usage when the 'ulimit -v' is set. The calculation is based on the assumption that lzopen_internal is run in parallel with as many instances as cpu threads as '#pragma omp parallel' is used in build/pack.c.
+>>>
+>>> When running test on my machine with 4 cores 16GB of physical RAM and 'ulimit -v 2097152' (2GB). It works good and the log shows:
+>>>
+>>> XZ: virtual memory restricted to 2147483648 and per CPU thread 536870912
+>>> XZ: Adjusted the number of threads from 4 to 3 to not exceed the memory usage limit of 2147483648 bytes
+>>>
+>>> Didn't get a clear answer if this is something Yocto/OE should support but I hope my patch solves the issue and it will not affect the normal environments where 'ulimit -v' is not set.
+>>>
+>>> /Peter
+>>> --
+>> Peter,
+>> first of all sorry for butting-in again. My bad I misunderstood the point,
+>>
+>> Looking properly at it, I see the sources do restrict only #if __WORDSIZE == 32.
+>>
+>> Again, there is the other way to reduce total memory footprint just
+>> using lower preset in mt_options.
+>> As far as I see default is  #define LZMA_PRESET_DEFAULT     UINT32_C(6)
+>> so you could tr to modify   mt_options.preset to your needs.
+>> I think more threads is normally  better.
+>>
+>> Cheers
+>> Andrea
+>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>
+> Well,
+> call it luck, I now get similar problems with
+> -  opkg-utils: use multithreaded xz when building packages
+>     369c43cca4f0
+>
+> I build in tmpfs (8GB) and have 8 cores.
+> Strange enough, it does happen with only one machine of our bsp (akita).
+>
+> Build Configuration:
+> BB_VERSION           = "1.39.1"
+> BUILD_SYS            = "x86_64-linux"
+> NATIVELSBSTRING      = "ubuntu-16.04"
+> TARGET_SYS           = "arm-oe-linux-gnueabi"
+> MACHINE              = "akita"
+> DISTRO               = "nodistro"
+> DISTRO_VERSION       = "nodistro.0"
+> TUNE_FEATURES        = "arm armv5 thumb dsp"
+> TARGET_FPU           = "soft"
+> meta                 = "master:8cc08e44cf3e969c124456d459c6c06a76cad018"
+> meta-handheld        = "master:61e16e253ea870b87592075efd87727e8b5c574d"
+> meta-initramfs
+> meta-oe              = "master:7ac8d82fec470a8c8e66cfc4216381e2364cb4b2"
+>
+> ...
+> Installing kernel-module-nls-cp1251-4.14.62-handheld (4.14) on root
+> Downloading file:/tmp/build/tmp-glibc/work/akita-oe-linux-gnueabi/core-image-base/1.0-r0/oe-rootfs-repo/akita/kernel-module-nls-cp1251-4.14.62-handheld_4.14-r0_akita.ipk.
+> Installing kernel-mo
+> ERROR: core-image-base-1.0-r0 do_rootfs: Function failed: do_rootfs
+> ERROR: Logfile of failure stored in:
+> /tmp/build/tmp-glibc/work/akita-oe-linux-gnueabi/core-image-base/1.0-r0/temp/log.do_rootfs.28481
+> ERROR: Task (/oe/oe-core/meta/recipes-core/images/core-image-base.bb:do_rootfs)
+> failed with exit code '1'
+> ...
+>
+> and in dmesg you see opkg segfaulting and OOM kicking in.
+> It is the same issue...unnoticed building for other similar devices
+> (spitz). Maybe it did not happen using musl as TC_LIBC.
+>
+> Reverting the patch fixes that.
+> Ross, worth opening a bug?
+>
+> Cheers
+> Andrea
+Andrea,
 
-Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
----
- documentation/ref-manual/ref-variables.xml | 6 ++++++
- 1 file changed, 6 insertions(+)
+do you have any virtual memory restrictions (ulimit -v) or overcommit 
+settings (vm.overcommit_memory)  on your build host?
 
-diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
-index 05487cf83f6..1bc6e2b77d5 100644
---- a/documentation/ref-manual/ref-variables.xml
-+++ b/documentation/ref-manual/ref-variables.xml
-@@ -9646,6 +9646,12 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR = "${INC_PR}.3"
-                             ".debug" previously described with the exception
-                             that no source files are installed.
-                             </para></listitem>.
-+                        <listitem><para>
-+                            "debug-with-srcpkg": The same behavior as
-+                            ".debug" previously described with the exception
-+                            that all source files are placed in a separate
-+                            <filename>*-src</filename> pkg.
-+                            </para></listitem>
-                     </itemizedlist>
-                 </para>
- 
--- 
-2.17.1
+Regarding my problem with rpm and liblzma when virtual memory is 
+restricted I have supplied a patch to oe-core 
+https://patchwork.openembedded.org/patch/155017/ with a suggested solution.
 
+Regards,
+/Peter
 
