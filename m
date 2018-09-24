@@ -1,67 +1,54 @@
-Return-Path: <srifenbark@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A3D3CE00AC5; Mon, 24 Sep 2018 08:17:42 -0700 (PDT)
+	id 7B187E00AC5; Mon, 24 Sep 2018 08:35:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (srifenbark[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.51 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
-	[209.85.208.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0FB9E00566
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2018 08:17:41 -0700 (PDT)
-Received: by mail-ed1-f51.google.com with SMTP id f38-v6so16620185edd.8
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2018 08:17:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=h/p2QbEb9fMt6ytRwDqKR4W1qTPOW1iEJwadnRdyqHk=;
-	b=osjJ0Ko6LBvd5LUsw9niSafGfA+LNBP9egrLJOX25H8IrDcPglxKmlLodNr/IrbRRG
-	4Y43IqxMcjIBuCP31by8EjKo1smRHtl600YLDNcGJYYDIprp1p6/PNIyilChqQfO5h2l
-	mLbqq0PuLksnn9lTEk6Jz2j1bd6wv3Jb/Vge8hmProAYHv3HyIhrUqr9WcfH8PbOhp7a
-	YvpBVv85oXyQpi7KO4LzxWDDdyCkPr+enLRNMuGU4QOjIl+ZQR4Rt/nt3S3mjVPNWYON
-	SWd0ttMV4xUILgybLDSS8wfxzHTEs+kL4dFLmyl5z6nUSLFOJ8APjSJz9rp3iuGDfplO
-	LSBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=h/p2QbEb9fMt6ytRwDqKR4W1qTPOW1iEJwadnRdyqHk=;
-	b=AVjwGPCcgvLybDUEhoZc7BUYMYfwUX+DsPloGGtE/KOBhZ3bk6PQSxqanT4WHYacGN
-	WQuvRb84PNAp6nZ7h7M8E1ra4lhMCc3Q/bwjDUfGbidxsXuyI9W2A43Cy4r07YjMJq3l
-	hb8j9FG9Basu9Yv6Zau4VZ1pB3Wp6UFpc5TE8T3s3xatB1H2Ursozkl7Dvjttz5Lgs9G
-	Nj80H4GOth4Q0nBLsDpc3JJPdKrL+qYkg0jWqPeQGln78Io/lv8lJlq9whJCgpmEyRVr
-	y1xNXBHsrTgXNEkau4hwitZsy5/XnvtAwfIBQKLorxp+wRQToF1DXniPOGb0X96Kut3S
-	0uOA==
-X-Gm-Message-State: ABuFfog9PgvM+LnPWws30Ba/gsPQ3V/cTEjfERYSt1ewXocOcCUTlswJ
-	mYZiXV8ii2J6GwLpLmNPDqo/Pgj4mi9u9sb3LXM=
-X-Google-Smtp-Source: ACcGV61QyA2nJUww1/yMR4AfCpEcNA5zYciBvnd+SHrRskqatZubmH+iGJfgVSpPyBSZSNc3tRrt8fzBAmfUEF8V/PY=
-X-Received: by 2002:a50:a3cb:: with SMTP id
-	t11-v6mr18864631edb.238.1537802260935; 
-	Mon, 24 Sep 2018 08:17:40 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9B24E00566
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2018 08:35:18 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	24 Sep 2018 08:35:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.54,298,1534834800"; d="scan'208,217";a="75781213"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+	by orsmga008.jf.intel.com with ESMTP; 24 Sep 2018 08:34:15 -0700
+Received: from fmsmsx154.amr.corp.intel.com (10.18.116.70) by
+	FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Mon, 24 Sep 2018 08:33:52 -0700
+Received: from fmsmsx123.amr.corp.intel.com ([169.254.7.84]) by
+	FMSMSX154.amr.corp.intel.com ([169.254.6.126]) with mapi id
+	14.03.0319.002; Mon, 24 Sep 2018 08:33:52 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: Yocto Project Unassigned Bugs - Help Needed
+Thread-Index: AdRUG3den5c8kH6JR5OKxqhg9AfC3w==
+Date: Mon, 24 Sep 2018 15:33:51 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3DAFD@fmsmsx123.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNmNlNDYxYTEtMTdmZC00OGVhLTk3MDgtNTk1OTY4OGJkM2M0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTDVVbFNtUVFKNGJheHBqZGk0T0ViMUpRdm5wSkxGRmNZXC9GYWtSc1FcL1dKUlM4QkM4WGlyZWk0ZlJINmhcL1RRWCJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.108]
 MIME-Version: 1.0
-References: <20180924032421.9679-1-JPEWhacker@gmail.com>
-In-Reply-To: <20180924032421.9679-1-JPEWhacker@gmail.com>
-From: Scott Rifenbark <srifenbark@gmail.com>
-Date: Mon, 24 Sep 2018 08:17:28 -0700
-Message-ID: <CAFNP8OuvyGYDeUG63p0BbjKPfkR69Oq3DWC5qb7Pud27oR8QzQ@mail.gmail.com>
-To: Joshua Watt <jpewhacker@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	juan.m.cruz.alcaraz@linux.intel.com
-Subject: Re: [yocto-docs][PATCH] documentation: Document debug-with-srcpkg
+Subject: Yocto Project Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,115 +60,219 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Sep 2018 15:17:42 -0000
-Content-Type: multipart/alternative; boundary="0000000000007f7b3505769f7d0f"
+X-List-Received-Date: Mon, 24 Sep 2018 15:35:20 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3DAFDfmsmsx123amrcor_"
 
---0000000000007f7b3505769f7d0f
-Content-Type: text/plain; charset="UTF-8"
-
-Joshua,
-
-Thanks for the patch.  I have appliied it.  You can see it at
-https://yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#var-PACKAGE_DEBUG_SPLIT_STYLE
-.
-
-Scott
-
-On Sun, Sep 23, 2018 at 8:24 PM Joshua Watt <jpewhacker@gmail.com> wrote:
-
-> Adds documentation for the "debug-with-srcpkg" option for the
-> PACKAGE_DEBUG_SPLIT_STYLE variable
->
-> Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
-> ---
->  documentation/ref-manual/ref-variables.xml | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/documentation/ref-manual/ref-variables.xml
-> b/documentation/ref-manual/ref-variables.xml
-> index 05487cf83f6..1bc6e2b77d5 100644
-> --- a/documentation/ref-manual/ref-variables.xml
-> +++ b/documentation/ref-manual/ref-variables.xml
-> @@ -9646,6 +9646,12 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR
-> = "${INC_PR}.3"
->                              ".debug" previously described with the
-> exception
->                              that no source files are installed.
->                              </para></listitem>.
-> +                        <listitem><para>
-> +                            "debug-with-srcpkg": The same behavior as
-> +                            ".debug" previously described with the
-> exception
-> +                            that all source files are placed in a separate
-> +                            <filename>*-src</filename> pkg.
-> +                            </para></listitem>
->                      </itemizedlist>
->                  </para>
->
-> --
-> 2.17.1
->
->
-
---0000000000007f7b3505769f7d0f
-Content-Type: text/html; charset="UTF-8"
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3DAFDfmsmsx123amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Joshua, <br></div><div><br></div><di=
-v>Thanks for the patch.=C2=A0 I have appliied it.=C2=A0 You can see it at <=
-a href=3D"https://yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#var-=
-PACKAGE_DEBUG_SPLIT_STYLE">https://yoctoproject.org/docs/2.6/ref-manual/ref=
--manual.html#var-PACKAGE_DEBUG_SPLIT_STYLE</a>.</div><div><br></div><div>Sc=
-ott<br></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On=
- Sun, Sep 23, 2018 at 8:24 PM Joshua Watt &lt;<a href=3D"mailto:jpewhacker@=
-gmail.com">jpewhacker@gmail.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex">Adds documentation for the &quot;debug-with-srcpkg&quot; opti=
-on for the<br>
-PACKAGE_DEBUG_SPLIT_STYLE variable<br>
-<br>
-Signed-off-by: Joshua Watt &lt;<a href=3D"mailto:JPEWhacker@gmail.com" targ=
-et=3D"_blank">JPEWhacker@gmail.com</a>&gt;<br>
----<br>
-=C2=A0documentation/ref-manual/ref-variables.xml | 6 ++++++<br>
-=C2=A01 file changed, 6 insertions(+)<br>
-<br>
-diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref=
--manual/ref-variables.xml<br>
-index 05487cf83f6..1bc6e2b77d5 100644<br>
---- a/documentation/ref-manual/ref-variables.xml<br>
-+++ b/documentation/ref-manual/ref-variables.xml<br>
-@@ -9646,6 +9646,12 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR =
-=3D &quot;${INC_PR}.3&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;.debug&quot; previously described with=
- the exception<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0that no source files are installed.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;&lt;/listitem&gt;.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 &lt;listitem&gt;&lt;para&gt;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 &quot;debug-with-srcpkg&quot;: The same behavior a=
-s<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 &quot;.debug&quot; previously described with the e=
-xception<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 that all source files are placed in a separate<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 &lt;filename&gt;*-src&lt;/filename&gt; pkg.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 &lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0&lt;/itemizedlist&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;=
-<br>
-<br>
--- <br>
-2.17.1<br>
-<br>
-</blockquote></div>
+All,
 
---0000000000007f7b3505769f7d0f--
+
+
+The triage team meets weekly and does its best to handle the bugs reported =
+into the bugzilla. The number of people attending that meeting has fallen, =
+as have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage team) a=
+re therefore going to start reporting out the currently 308 unassigned bugs=
+.
+
+
+
+We're hoping people may be able to spare some time now and again to help ou=
+t with these.
+
+
+
+Bugs are split into two types, "true bugs" where things don't work as they =
+should and "enhancements" which are features we'd want to add to the system=
+.
+
+
+
+There are also roughly five different "priority" classes right now, "2.6", =
+"2.7", "2.8", "2.99" and "Future", the more pressing/urgent issues being in=
+ "2.6" and then "2.7".
+
+
+
+Please review this link and if a bug is something you would be able to help=
+ with either take ownership of the bug, or send me (Stephen.k.jolley@intel.=
+com<mailto:Stephen.k.jolley@intel.com>) an e-mail with the bug number you w=
+ould like and I will assign it to you (please make sure you have a bugzilla=
+ account).
+
+
+
+The list is at: https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bu=
+gs
+
+
+Thanks,
+
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*    Cell:                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3DAFDfmsmsx123amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:2 11 5 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoPlainText">All,<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The triage team meets weekly and does its best to=
+ handle the bugs reported into the bugzilla. The number of people attending=
+ that meeting has fallen, as have the number of people available to help fi=
+x bugs. One of the things we hear
+ users report is they don't know how to help. We (the triage team) are ther=
+efore going to start reporting out the currently 308 unassigned bugs.<o:p><=
+/o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">We're hoping people may be able to spare some tim=
+e now and again to help out with these.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Bugs are split into two types, &quot;true bugs&qu=
+ot; where things don't work as they should and &quot;enhancements&quot; whi=
+ch are features we'd want to add to the system.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">There are also roughly five different &quot;prior=
+ity&quot; classes right now, &quot;2.6&quot;, &#8220;2.7&#8221;, &#8220;2.8=
+&#8221;, &quot;2.99&quot; and &quot;Future&quot;, the more pressing/urgent =
+issues being in &quot;2.6&quot; and then &#8220;2.7&#8221;.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Please review this link and if a bug is something=
+ you would be able to help with either take ownership of the bug, or send m=
+e (<a href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com=
+</a>) an e-mail with the bug number
+ you would like and I will assign it to you (please make sure you have a bu=
+gzilla account).<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The list is at: <a href=3D"https://wiki.yoctoproj=
+ect.org/wiki/Bug_Triage#Unassigned_Bugs">
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
+></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE3DAFDfmsmsx123amrcor_--
