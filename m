@@ -1,40 +1,53 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <okaya@kernel.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB0F6E00B6F; Mon, 24 Sep 2018 14:57:00 -0700 (PDT)
+	id 59DBDE00BA2; Mon, 24 Sep 2018 22:24:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50D2DE00B0B
-	for <yocto@yoctoproject.org>; Mon, 24 Sep 2018 14:57:00 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	24 Sep 2018 14:56:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.54,299,1534834800"; d="scan'208";a="76942877"
-Received: from hhooy-mobl.gar.corp.intel.com (HELO localhost.localdomain)
-	([10.255.133.199])
-	by orsmga006.jf.intel.com with ESMTP; 24 Sep 2018 14:56:50 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Clay D. Montgomery" <clay@montgomery1.com>
-Date: Tue, 25 Sep 2018 09:56:47 +1200
-Message-ID: <3397048.O472oMH2vK@localhost.localdomain>
-Organization: Intel Corporation
-In-Reply-To: <5B4BBCA3.3040800@montgomery1.com>
-References: <5B496B75.8020408@montgomery1.com>
-	<5B4BBCA3.3040800@montgomery1.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [198.145.29.99 listed in list.dnswl.org]
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12684E00B9D
+	for <yocto@yoctoproject.org>; Mon, 24 Sep 2018 22:24:11 -0700 (PDT)
+Received: from [192.168.0.106] (cpe-174-109-247-98.nc.res.rr.com
+	[174.109.247.98])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mail.kernel.org (Postfix) with ESMTPSA id 5B22120877;
+	Tue, 25 Sep 2018 05:24:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=default; t=1537853050;
+	bh=4ERnUzFca7vmdnlPgP8xr4MEDqBa7Lm1yaJZjiV6HvQ=;
+	h=Subject:From:To:Cc:References:Date:In-Reply-To:From;
+	b=zgKylWu8+jKCTubOwP51gBVbjsInCtgepNJCIBJkahjHvHXTGlAgGDv/q+oy8nQDF
+	VXrz9UUzttNA3i6icrzZXtExEYF2YCNqWlyTCp5nCXwly6FXQZSLRZ6lrTVo7MIt0I
+	CDHC/wJfSf10y79KRFsrX+b4NWYpQ/8/5fCRSJWQ=
+From: Sinan Kaya <okaya@kernel.org>
+To: akuster <akuster@mvista.com>, akuster808 <akuster808@gmail.com>,
+	yocto@yoctoproject.org
+References: <36756321-d4b5-b3fb-39a7-7303793ad723@kernel.org>
+	<23c30a05-03bf-daf9-fa02-4152f29befc7@gmail.com>
+	<3d9fa759-08a4-319d-bc78-dcc86ece44ce@kernel.org>
+	<1ad18ccd-6f59-cfa3-f920-256db4c6cd6e@mvista.com>
+	<b70a9d8e-0245-1788-9607-56ed20f213ae@kernel.org>
+Message-ID: <91d585bd-c381-86db-28cc-7e90aba7da83@kernel.org>
+Date: Tue, 25 Sep 2018 01:24:09 -0400
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: How to debug unbuildable module error?
+In-Reply-To: <b70a9d8e-0245-1788-9607-56ed20f213ae@kernel.org>
+Cc: Sasha Levin <Alexander.Levin@microsoft.com>
+Subject: Re: [RFC] CVEs on sumo branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,38 +59,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Sep 2018 21:57:00 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 25 Sep 2018 05:24:11 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-Hi Clay
-
-Somewhat late, but I stumbled across this this morning
-
-On Monday, 16 July 2018 9:29:07 AM NZST Clay D. Montgomery wrote:
+On 9/24/2018 10:27 AM, Sinan Kaya wrote:
+> Here is another one.
 > 
-> Is there a way to get bitbake to provide more information about why a 
-> module is unbuildable?
-> 
-> I am trying to build this example:
-> 
->   poky/meta-skeleton/recipes-kernel/hello-mod/hello-mod_0.1.bb
-> 
-> However, bitbake always reports:
-> 
->   "Runtime target 'hello-mod' is unbuildable, removing..."
+> https://patches.openembedded.org/patch/154290/
 
-The actual issue will be printed above this message. Usually it's because the 
-recipe depends upon something else that could not be built (and the reason for 
-that will be in the message above).
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
-
+I see you pulled this into rucko-nmut. It is also needed for the sumo
+branch.
 
