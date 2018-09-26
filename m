@@ -1,66 +1,61 @@
-Return-Path: <tokes_atti@yahoo.com>
+Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4765E00A16; Wed, 26 Sep 2018 13:50:59 -0700 (PDT)
+	id E718BE00A16; Wed, 26 Sep 2018 17:13:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (tokes_atti[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.6.129.82 listed in list.dnswl.org]
-Received: from sonic317-27.consmr.mail.bf2.yahoo.com
-	(sonic317-27.consmr.mail.bf2.yahoo.com [74.6.129.82])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9868DE00953
-	for <yocto@yoctoproject.org>; Wed, 26 Sep 2018 13:50:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1537995057; bh=bDTOXHjGNzckWLkrT7cV8cTpJRWhaMgGCB0acy+a9U8=;
-	h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject;
-	b=feKkSBdPFWS6agN2QMvJ86FPQkmYdpg9kdURb+cb6BZ8RA4aHGyrFtp7Fiv27mdy/X2SNb2UNqfEGEHqXVhE/L7LRLmKVH05t5mZDoL/QH1Y1xG9BYW++JIfYMAWVspBIyDMQ7lE3ywOiDzDy7oci86D6x3NHejh4cHV7exmWh+yPAvIwk4EdxjCPy/0I341+AqLenBoLchzcxCT2Q4sp1kKm7bloUcvDU/GJr/eQOa2IkJytTCOTvZ2VDZcVNcRymP8OL7wT9W/FOg+zA8mfKZBNtymQmmFSK3KYoQkS6rVnuL+Mx3nwgBSBQp/WLjDO9SfJYhR55nfvllhrap9tg==
-X-YMail-OSG: 5jAY4BYVM1lL7AfyIoJ822F1WUuj48vj6Y1hQGXvrG4ZUOPjU3mAo4GD5BR_PgH
-	t0HB9MA.aGM1A.kY5uYXmH4G.8sv028vbaXLW7dklSnjPBjy3JuF9WhJATMlxrxPbyF75q.eJING
-	Nc3QipNXV.yF.vQvd4uIvql1xeppM6in50kIQWPCHpTWfoIkAecelSNG7dzTmEPdKHpgdR006DH1
-	cK7nma1Ic1ySpvJeAhaaTmXmLTu_5im3byhNQLvvMTE9cchjPxZUYneu0_Yx3VF8E4GdM_0NaC0_
-	hVEYGg1aenAXgMiCd1oV0cOSt7ukaGpn_nbzjpqfTs.XLrWvyH6jB7McHmao4RRqQid3_G68JE.5
-	Vu.WqDcE4rLO.VzNZP4hLr5LadnlT6DdJ89oODQFXM_sGBs2_zPotptNwApOlzNEPp.Qz36lZRj8
-	CQhIr5OVHxhjwC90GlMtVOshfuMSI0tQr0iquPpZA5J_cxaDN9o3Dz8EW6zot2YrljW5vunhgiC0
-	9.P.LtebLSTkUXphbnjaLFDMZl6e.eoOJC8uxS4fY1bMj5LKpWWu8e_nX0_UCmfWBpe7hBkisUxC
-	QLgTOqZFgSZH4I4ngenLQjcXyqO30vfsIuUChXGNgaIy1zcZW9YXok9tmDBy_026RdKANt71ZhuA
-	bCx.tLP5HaDTANHuznGWVVQt2ld3C5v5L9iCBfPwRYGWXzNPzIzbT9Sm.Cp4fBF2MHE6HFmjgnwp
-	s9m5zneNa7FmfL_5nHRkPFwVJ7s99lV_qXupyY5X5uPa3Ham63gF.SxUAWBe2klpu_osYiiS.1TU
-	exJZe_yqB2ZofRyNFa_tKjgdPQM6J4U9aKLYvd3iwcuqr14cDPYGH.HqV5d7x4z1kqKConBV8YY7
-	yabqCzC42U3_67Cv1LkqI.Senyj6Goz9GAHWzNleUelUJCNWGJ1jNBMsbhnX5cHHNHmzrMEqGW3W
-	eWFHUoqfvkbhS1wTB8JWMmTqrvw8EqnwkcrVNepfWwPwFJQzwXw5reZZNXLY.K4oVi4oMd7UX7dL
-	D2ntFOy2YbzTx96NIf.tFQO_uvRpdq03ZlA--
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic317.consmr.mail.bf2.yahoo.com with HTTP;
-	Wed, 26 Sep 2018 20:50:57 +0000
-Date: Wed, 26 Sep 2018 20:50:54 +0000 (UTC)
-From: =?UTF-8?Q?T=C5=91k=C3=A9s_Attila?= <tokes_atti@yahoo.com>
-To: Yocto Mail List <yocto@yoctoproject.org>
-Message-ID: <1964648708.3138789.1537995054327@mail.yahoo.com>
-In-Reply-To: <582483277.2725642.1537947920034@mail.yahoo.com>
-References: <582483277.2725642.1537947920034.ref@mail.yahoo.com>
-	<582483277.2725642.1537947920034@mail.yahoo.com>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [64.235.154.226 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 905 seconds by postgrey-1.32 at yocto-www;
+	Wed, 26 Sep 2018 17:13:29 PDT
+Received: from 15pmail.ess.barracuda.com (15pmail.ess.barracuda.com
+	[64.235.154.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21DA0E0097D
+	for <yocto@yoctoproject.org>; Wed, 26 Sep 2018 17:13:28 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
+	mx1402.ess.rzc.cudaops.com (version=TLSv1.2
+	cipher=AES256-SHA256 bits=256 verify=NO);
+	Thu, 27 Sep 2018 00:13:27 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
+	Wed, 26 Sep 2018 16:43:16 -0700
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+	([::1]) with mapi id 15.01.0669.032; Wed, 26 Sep 2018 16:43:16 -0700
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: can't get header files from recipe included in SDK build
+Thread-Index: AQHUVfA+Dx+D1zHYD0SobZAtFmOQqw==
+Date: Wed, 26 Sep 2018 23:43:16 +0000
+Message-ID: <c629d3876eed4da1872ce4f4aa9157af@sakuraus.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.239]
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.12487 YMailNorrin Mozilla/5.0 (X11;
-	Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
-	Chrome/69.0.3497.100 Safari/537.36
-Subject: Re: PetaLinux build fails because of locale errors logged by do_rootfs (Ubuntu 18.04 LST)
+X-BESS-ID: 1538007207-321458-15455-13081-1
+X-BESS-VER: 2018.12-r1809142233
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.200463
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
+	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, HTML_MESSAGE
+X-BESS-BRTS-Status: 1
+Subject: can't get header files from recipe included in SDK build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: =?UTF-8?Q?T=C5=91k=C3=A9s_Attila?= <tokes_atti@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -69,172 +64,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Sep 2018 20:50:59 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 27 Sep 2018 00:13:30 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_c629d3876eed4da1872ce4f4aa9157afsakurauscom_"
+
+--_000_c629d3876eed4da1872ce4f4aa9157afsakurauscom_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-Got some more details on this...
-
-Apparently, the errors are generated because of the use of Python 3.5.3 inc=
-luded in Yocto / PetaLinux.
-
-The "Failed to set locale, defaulting to C" message seems to be logged from=
- dnf, i18n.py/setup_locale():
-
-def setup_locale():
-=C2=A0 =C2=A0 try:
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 dnf.pycomp.setlocale(locale.LC_ALL, '')
-=C2=A0 =C2=A0 except locale.Error as e:
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 # default to C locale if we get a failure.
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 print('Failed to set locale, defaulting to C', =
-file=3Dsys.stderr)
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 os.environ['LC_ALL'] =3D 'C'
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 dnf.pycomp.setlocale(locale.LC_ALL, 'C')
-(https://github.com/rpm-software-management/dnf/blob/master/dnf/i18n.py#L80=
-)
-
-The call that fails is dnf.pycomp.locale.setlocale(locale.LC_ALL, ''), whic=
-h calls locale.setlocale(locale.LC_ALL, '') under the hood.
-
-During petalinux-build, I observed a couple of bitbake processes running wi=
-th a Python 3.5.3 included in Yocto. Ex:
-
-21093 /media/bluetiger/Data/Xilinx/PetaLinux/components/yocto/source/aarch6=
-4/buildtools/sysroots/x86_64-petalinux-linux/usr/bin/python3.5 /media/bluet=
-iger/Data/Xilinx/PetaLinux/components/yocto/source/aarch64/layers/core/bitb=
-ake/bin/bitbake-worker decafbad
-
-A quick tests shows that with the Python 3.5.3 included in the Yocto/PetaLi=
-nux package the locale.setlocale(locale.LC_ALL, '') call fails, while the P=
-ython 3.6.6 installed on Ubuntu 18.04.1 LTS works as expected.
-
-Python 3.5.3 included in Yocto (PetaLinux):
-
-bluetiger@Attila-Laptop:x86_64-petalinux-linux$ pwd
-/media/bluetiger/Data/Xilinx/PetaLinux/components/yocto/source/aarch64/buil=
-dtools/sysroots/x86_64-petalinux-linux
-bluetiger@Attila-Laptop:x86_64-petalinux-linux$ ./usr/bin/python3.5
-Python 3.5.3 (default, Jun=C2=A0 7 2018, 20:28:47)=C2=A0
-[GCC 7.2.0] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> import locale
->>> locale.setlocale(locale.LC_ALL, '')
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module>
-File "/media/bluetiger/Data/Xilinx/PetaLinux/components/yocto/source/aarch6=
-4/buildtools/sysroots/x86_64-petalinux-linux/usr/lib/python3.5/locale.py", =
-line 594, in setlocale
-return _setlocale(category, locale)
-locale.Error: unsupported locale setting
->>>=C2=A0
-
-Python 3.6.6 installed on Ubuntu 18.04.1 LTS:
-
-bluetiger@Attila-Laptop:~$ python3
-Python 3.6.6 (default, Sep 12 2018, 18:26:19)=C2=A0
-[GCC 8.0.1 20180414 (experimental) [trunk revision 259383]] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> import locale
->>> locale.setlocale(locale.LC_ALL, '')
-'en_US.UTF-8'
->>>=C2=A0
-
-My initial idea was to comment out the print() command from the i18n.py/set=
-up_locale(), but I not sure where the file is located. Any idea where the f=
-ile is located?
-
-An another solution would be to somehow force bitbake to use the Python 3.6=
-.6 installed on the system.
-
-Or do you have other suggestions on how to fix this?
-
-Thanks,
-Attila
+I've got a recipe that I've created for a package that creates some .so lib=
+s and I'm having trouble getting the associated header files included in th=
+e SDK build.
 
 
-On Wednesday, September 26, 2018, 10:45:20 AM GMT+3, T=C5=91k=C3=A9s Attila=
- <tokes_atti@yahoo.com> wrote:
->Hi Yocto Team,
->
->First of all sorry for spamming your mailing list, but I'm kind of out ide=
-as with this...
->
->I'm trying to build PetaLinux on Ubuntu 18.04 LTS, but the build is failin=
-g because of some (probably harmless) locale related errors the do_rootfs s=
-ubtask logs:
->
->bluetiger@Attila-Laptop:xilinx-ultra96-reva-2018.2$ petalinux-build[INFO] =
-building project
->[INFO] sourcing bitbake
->INFO: bitbake petalinux-user-image
->WARNING: Host distribution "ubuntu-18.04" has not been validated with this=
- version of the build system; you may possibly experience unexpected failur=
-es. It is recommended that you use a tested distribution.
->...
->WARNING: petalinux-user-image-1.0-r0 do_rootfs: [log_check] petalinux-user=
--image: found 1 warning message in the logfile:
->[log_check] warning: %post(sysvinit-inittab-2.88dsf-r10.ultra96_zynqmp) sc=
-riptlet failed, exit status 1
->
->ERROR: petalinux-user-image-1.0-r0 do_rootfs: [log_check] petalinux-user-i=
-mage: found 4 error messages in the logfile:
->[log_check] Failed to set locale, defaulting to C
->[log_check] Failed to set locale, defaulting to C
->[log_check] Failed to set locale, defaulting to C
->[log_check] Failed to set locale, defaulting to C
->
->
->ERROR: petalinux-user-image-1.0-r0 do_rootfs: Function failed: do_rootfs
->ERROR: Logfile of failure stored in: /media/bluetiger/Data/PetaLinux-Ultra=
-96/xilinx-ultra96-reva-2018.2/build/tmp/work/ultra96_zynqmp-xilinx-linux/pe=
-talinux-user-image/1.0-r0/temp/log.do_rootfs.5592
->ERROR: Task (/media/bluetiger/Data/PetaLinux-Ultra96/xilinx-ultra96-reva-2=
-018.2/project-spec/meta-plnx-generated/recipes-core/images/petalinux-user-i=
-mage.bb:do_rootfs) failed with exit code '1'
->NOTE: Tasks Summary: Attempted 10052 tasks of which 10051 didn't need to b=
-e rerun and 1 failed.
->
->Summary: 1 task failed:
->/media/bluetiger/Data/PetaLinux-Ultra96/xilinx-ultra96-reva-2018.2/project=
--spec/meta-plnx-generated/recipes-core/images/petalinux-user-image.bb:do_ro=
-otfs
->Summary: There were 2 WARNING messages shown.
->
->Summary: There were 2 ERROR messages shown, returning a non-zero exit code=
-.
->The locales seems to be just fine on the machine:
->
->bluetiger@Attila-Laptop:~$ localeLANG=3Den_US.UTF-8
->LANGUAGE=3Den_US.UTF-8
->LC_CTYPE=3D"en_US.UTF-8"
->LC_NUMERIC=3D"en_US.UTF-8"
->LC_TIME=3D"en_US.UTF-8"
->LC_COLLATE=3D"en_US.UTF-8"
->LC_MONETARY=3D"en_US.UTF-8"
->LC_MESSAGES=3D"en_US.UTF-8"
->LC_PAPER=3D"en_US.UTF-8"
->LC_NAME=3D"en_US.UTF-8"
->LC_ADDRESS=3D"en_US.UTF-8"
->LC_TELEPHONE=3D"en_US.UTF-8"
->LC_MEASUREMENT=3D"en_US.UTF-8"
->LC_IDENTIFICATION=3D"en_US.UTF-8"
->LC_ALL=3Den_US.UTF-8
->
->
->Does anyone know what causes the problem? Is there a way to fix / workarou=
-nd it?
->Yesterday, I had a similar problem with bitbake's sanity checks, but I sol=
-ved that by commenting out some code in sanity_check_locale() from sanity.b=
-bclass.
->
->Is this something Ubuntu 18.04 related? If I understood correctly Ubuntu 1=
-8.04 is not officially supported. But maybe it would worth checking what ca=
-uses this error.
->
->I would really appreciate any help on this...
->
->Thanks,
->Attila
+The FILES lines that I have are:
 
+FILES_${PN}-dbg =3D "/usr/src/debug/canfestival"
+FILES_${PN}-dev =3D "/usr/lib/libcanfestival*.a /usr/include/canfestival/*.=
+h"
+FILES_${PN} =3D "/usr/lib/libcanfestival*.a /usr/lib/libcanfestival*.so"
+#FILES_${PN} =3D "/usr/include/canfestival/*.h /usr/lib/libcanfestival*.so"
+
+
+As you can see I have even tried to include the headers with the FILES_${PN=
+} spec. The headers exist in the package/usr/include/canfestival directory,=
+ and also in the packages-split/canfestival-dev directory. But when I use t=
+he FILES_${PN} line with the headers in it the files don't end up in the pa=
+ckages-split/canfestival directory.
+
+Despite the fact that the files exist in the packages-split/canfestival-dev=
+ directory they don't get transferred to the SYSROOT that is built by the S=
+DK build.
+
+I'm obviously missing something, any enlightenment would be greatly appreci=
+ated.
+
+
+I don't currently have the build set up to create any .a files so those are=
+ just ignored (I hope).
+
+
+This is being built with Yocto 2.2.4 Morty.
+
+
+Thanks in advance for any help.
+
+Regards,
+
+Greg Wilson-Lindberg
+
+--_000_c629d3876eed4da1872ce4f4aa9157afsakurauscom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>I've got a recipe that I've created for a package that creates some .so =
+libs&nbsp;and I'm having trouble getting the associated header files includ=
+ed in the SDK build.</p>
+<p><br>
+</p>
+<p>The FILES lines that I have are:</p>
+<p></p>
+<div style=3D"color: #000000;background-color: #ffffff; font-style: normal;=
+ font-weight: normal; text-decoration: none;">
+<pre>FILES_${PN}-dbg =3D &quot;/usr/src/debug/canfestival&quot;=0A=
+FILES_${PN}-dev =3D &quot;/usr/lib/libcanfestival*.a /usr/include/canfestiv=
+al/*.h&quot;=0A=
+FILES_${PN} =3D &quot;/usr/lib/libcanfestival*.a /usr/lib/libcanfestival*.s=
+o&quot;=0A=
+#FILES_${PN} =3D &quot;/usr/include/canfestival/*.h /usr/lib/libcanfestival=
+*.so&quot;=0A=
+</pre>
+</div>
+As you can see I have even tried to include the headers with the&nbsp;FILES=
+_${PN} spec. The headers exist in the package/usr/include/canfestival direc=
+tory, and also in the packages-split/canfestival-dev directory. But when I =
+use the&nbsp;FILES_${PN} line with the headers
+ in it the files don't end up in the&nbsp;<span style=3D"font-family: Calib=
+ri, Arial, Helvetica, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Sego=
+e UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Androi=
+d Emoji&quot;, EmojiSymbols; font-size: 16px;">packages-split/canfestival d=
+irectory.</span>
+<p></p>
+<p>Despite the fact that the files exist in the&nbsp;packages-split/canfest=
+ival-dev directory they don't get transferred&nbsp;to the SYSROOT that is b=
+uilt by the SDK build.</p>
+<p>I'm obviously missing something, any enlightenment would be greatly appr=
+eciated.</p>
+<p><br>
+</p>
+<p>I don't currently have the build set up to create any .a files so those =
+are just ignored (I hope).</p>
+<p><br>
+</p>
+<p>This is being built with Yocto 2.2.4 Morty.</p>
+<p><br>
+</p>
+<p>Thanks in advance for any help.</p>
+<p>Regards,</p>
+<p>Greg Wilson-Lindberg</p>
+</div>
+</body>
+</html>
+
+--_000_c629d3876eed4da1872ce4f4aa9157afsakurauscom_--
