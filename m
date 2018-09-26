@@ -1,58 +1,35 @@
-Return-Path: <aaron@assonance.org>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 327BCE00718; Tue, 25 Sep 2018 19:03:36 -0700 (PDT)
+	id 9C1CAE00718; Tue, 25 Sep 2018 22:27:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.175 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-it1-f175.google.com (mail-it1-f175.google.com
-	[209.85.166.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79D8EE006AF
-	for <yocto@yoctoproject.org>; Tue, 25 Sep 2018 19:03:35 -0700 (PDT)
-Received: by mail-it1-f175.google.com with SMTP id h3-v6so886276ita.2
-	for <yocto@yoctoproject.org>; Tue, 25 Sep 2018 19:03:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=assonance-org.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=RdYVHklMnCHhKBnu142rk93mit6+C0S5ygRkdWZG98I=;
-	b=q1xdYfbG5Z225ivWiwIeVEu2htp33nF5wxPFajSYPRmZUSDFz4zyV8J1C30sQKnAys
-	GcgOogwGNnZLbPb6c9lw03Ag3XTOlzkRxVIy8ff1bK3EjA2NZaCVM5A70Jy9nWXYeWnP
-	6PjYBfvY0jdTAYWpY4wHnPUxxq7C2rC9/oZYnAsapgNGK/q4l1KwtHbHHmMqEmU0m9Uc
-	RqErZrBZDeR6zSub/kxbMXGwUq1W4NufGyfWVgLOEqBQNMGWX4FVJkh2zBAO/IXj7lBt
-	e/9VsI9/gZ7w4iMQaSium64juFachOGPm76EIaGvzQW7dHtkYePXjaBMDUbrwTMx68zj
-	eqXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=RdYVHklMnCHhKBnu142rk93mit6+C0S5ygRkdWZG98I=;
-	b=jVH+7vEN2m87/xFBs3PMwbHsvc+XnY5BOSy+Cg0TYk2EHUphi5TwuJSMxddPuW5dkM
-	gh0QcbW9RyBJ2DjnMyAHXbLXsk4gpxubVcCMMW2/gcEEPkKgnC2GywpYEhFhiKuJb+mV
-	bWtYeiwtAQB4MtoA9amKrPXcAIE08ApXdp+3JByg5hy7h85K9NHAbHSWq7LEP2ECzdpz
-	lcXWiEbTWawN7azmVBcotE6eZDxAQeNNAnqE0ob5DNBPiLakAx8dVldPR3i2W9HH66ay
-	UdGY6TKy776+Kmp3Hs7TckytHKLYPDQfnPvWzcES017t7CYiBqp+Ty4/HgPK9O74tRQt
-	c2vQ==
-X-Gm-Message-State: ABuFfojg48LAjrKtDFjXSQVVuVOvPXVNi5E3dfZauab8AxzgvUWLp31u
-	hfWMnuD1rh2wabZnn+z/E645GDV/2vm2csdxm9by8CsUduI=
-X-Google-Smtp-Source: ACcGV63zHbu7GRudYoBvY19oO/YHPcFYxwL2M9ouK5acMC92OvB9ukynFOAvj/Usd8r7peZq1kR+wPh93kcxlk6choQ=
-X-Received: by 2002:a24:620f:: with SMTP id
-	d15-v6mr3293307itc.135.1537927414427; 
-	Tue, 25 Sep 2018 19:03:34 -0700 (PDT)
-MIME-Version: 1.0
-From: Aaron Cohen <aaron@assonance.org>
-Date: Tue, 25 Sep 2018 22:03:32 -0400
-Message-ID: <CAFSZm+i0xsg+teZ8+cTWkH_HdBr5nvE2s4WyKe=QZJn5ojh8uQ@mail.gmail.com>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.55.52.151 listed in list.dnswl.org]
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98A8EE006AF
+	for <yocto@yoctoproject.org>; Tue, 25 Sep 2018 22:27:55 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	25 Sep 2018 22:27:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.54,304,1534834800"; d="scan'208";a="93778834"
+Received: from nsankark-mobl2.gar.corp.intel.com (HELO localhost.localdomain)
+	([10.249.72.216])
+	by orsmga001.jf.intel.com with ESMTP; 25 Sep 2018 22:27:52 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Subject: Is KCONFIG_MODE test backwards in kernel-yocto.bbclass?
+Date: Wed, 26 Sep 2018 17:27:34 +1200
+Message-Id: <cover.1537939505.git.paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [layerindex-web][PATCH 0/5] More minor fixes (cover letter only)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,35 +41,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Sep 2018 02:03:36 -0000
-Content-Type: multipart/alternative; boundary="0000000000003a50240576bca1fc"
+X-List-Received-Date: Wed, 26 Sep 2018 05:27:56 -0000
 
---0000000000003a50240576bca1fc
-Content-Type: text/plain; charset="UTF-8"
+A tweak for the other distro comparison modals, some fixes for the
+browse/search forms on the machines/distros/classes pages, and a fix for
+where bitbake-cookerdaemon.log gets written out when parsing.
 
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/kernel-yocto.bbclass#n297
 
-With no KCONFIG_MODE specified, we check if the user has copied a defconfig
-to workdir, and then use allnoconfig if so. Shouldn't we be using
-alldefconfig in this case?
+The following changes since commit 5edeb03cb1a50d68dc2b60c21f807c1f5c2db295:
 
-The result currently is that if you use a defconfig file that you add to
-SRC_URI, much of it won't work, because it's been set to no by allnoconfig,
-and it's not super-obvious, to me at least, why.
+  TODO: remove completed item (2018-09-20 16:04:49 +1200)
 
---0000000000003a50240576bca1fc
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+are available in the Git repository at:
 
-<div dir=3D"ltr"><div dir=3D"ltr"><a href=3D"http://git.yoctoproject.org/cg=
-it/cgit.cgi/poky/tree/meta/classes/kernel-yocto.bbclass#n297">http://git.yo=
-ctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/kernel-yocto.bbclass#n2=
-97</a><br></div><div dir=3D"ltr"><br></div><div>With no KCONFIG_MODE specif=
-ied, we check if the user has copied a defconfig to workdir, and then use a=
-llnoconfig if so. Shouldn&#39;t we be using alldefconfig in this case?</div=
-><div><br></div><div>The result currently is that if you use a defconfig fi=
-le that you add to SRC_URI, much of it won&#39;t work, because it&#39;s bee=
-n set to no by allnoconfig, and it&#39;s not super-obvious, to me at least,=
- why.</div></div>
+  git://git.yoctoproject.org/layerindex-web paule/fixes9
+  http://git.yoctoproject.org/cgit.cgi/layerindex-web/log/?h=paule/fixes9
 
---0000000000003a50240576bca1fc--
+Paul Eggleton (5):
+  comparison: use style on hidden select instead of CSS class to hide
+  comparisonrecipeselect: fix logic for setting modal title
+  Select input box on machine/distro/class pages
+  Ensure browse buttons clear input text
+  recipeparse: fix bitbake-cookerdaemon.log being written out to meta/
+
+ TODO                                          |  2 --
+ layerindex/recipeparse.py                     |  5 +++++
+ layerindex/static/css/additional.css          |  4 ----
+ templates/layerindex/classes.html             | 19 +++++++++++++++--
+ .../layerindex/comparisonrecipeselect.html    | 21 ++++++++-----------
+ .../comparisonrecipeselectdetail.html         |  2 +-
+ templates/layerindex/distros.html             | 19 +++++++++++++++--
+ templates/layerindex/machines.html            | 19 +++++++++++++++--
+ templates/layerindex/recipes.html             |  4 ++--
+ 9 files changed, 68 insertions(+), 27 deletions(-)
+
+-- 
+2.17.1
+
+
