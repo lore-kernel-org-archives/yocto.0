@@ -1,37 +1,60 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <kbassford@apertussolutions.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F41F6E00718; Wed, 26 Sep 2018 05:35:26 -0700 (PDT)
+	id 90B4DE00953; Wed, 26 Sep 2018 06:46:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48FA4E00566
-	for <yocto@yoctoproject.org>; Wed, 26 Sep 2018 05:35:25 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w8QCYbaK020102
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 26 Sep 2018 05:34:59 -0700
-Received: from server.local (128.224.21.73) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.408.0;
-	Wed, 26 Sep 2018 05:34:46 -0700
-To: Aaron Cohen <aaron@assonance.org>, <yocto@yoctoproject.org>
-References: <CAFSZm+i0xsg+teZ8+cTWkH_HdBr5nvE2s4WyKe=QZJn5ojh8uQ@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <15314cda-58ee-ec35-4186-75484539bbe6@windriver.com>
-Date: Wed, 26 Sep 2018 08:34:46 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.9.1
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [135.84.80.216 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 902 seconds by postgrey-1.32 at yocto-www;
+	Wed, 26 Sep 2018 06:46:40 PDT
+Received: from sender-of-o51.zoho.com (sender-of-o51.zoho.com [135.84.80.216])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DCE7E006F1
+	for <yocto@yoctoproject.org>; Wed, 26 Sep 2018 06:46:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1537968697; cv=none; d=zoho.com; s=zohoarc; 
+	b=iEE2HDLDbe4Qz2ghTInrGsP8ZWvFIffHbTWXOaog+rGUY+bECgKg3w5HM3DY5ae80IRz63uvQVKbW0mhx94lNFod3HPdoIOh/f/8iAVe0f/Q5uf/OB/DWGUQ94DboTT/ibmEoyw8yCEXZrmZA7H3hnUxlAhUaKkMNUun0vae9WQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zoho.com;
+	s=zohoarc; t=1537968697;
+	h=Content-Type:Content-Transfer-Encoding:Date:From:MIME-Version:Message-ID:Subject:To:ARC-Authentication-Results;
+	bh=TSBEOx5Pu3FCfCNjaa0Rnvu4c7hcZl88axLGzWxBR4A=; 
+	b=gY/BRlXMrFbr8NbCL8qd4bZRicsUtgFMIgViz7SHfaxIyRgrUW4PI8T14afLRPLC4VsDqj15PZTN9fCE7M6ap1LktF5lQoTtfy14mT6GU902P6L1vNWM2TgbHDBRbh6Dnb+iqqIL7xHDnIFHoZCCAK3jnn0ptUP0Ryl8U9XpVIA=
+ARC-Authentication-Results: i=1; mx.zoho.com;
+	dkim=pass  header.i=apertussolutions.com;
+	spf=pass  smtp.mailfrom=kbassford@apertussolutions.com;
+	dmarc=pass header.from=<kbassford@apertussolutions.com>
+	header.from=<kbassford@apertussolutions.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1537968697; 
+	s=zoho; d=apertussolutions.com;
+	i=kbassford@apertussolutions.com; 
+	h=Date:From:To:Message-ID:In-Reply-To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	l=1583; bh=TSBEOx5Pu3FCfCNjaa0Rnvu4c7hcZl88axLGzWxBR4A=;
+	b=XZ60dh3tVtLWvGRfGS8rHlyvUvlTkerJmc5SMvC4hWm8DC3q/SPJVU9wp4zadEA+
+	NiQf9OLDpffpQ3EzZOKM3A9WGWZqIbHqOT0H7kV08XHPpb3JYm4ml8Z17D5Wq8edIg+
+	qnMJXNdtfeaL8HAAA3aYTrGJ4Hfla0/ehZf1SBPQ=
+Received: from mail.zoho.com by mx.zohomail.com
+	with SMTP id 1537968694718182.84174681022535;
+	Wed, 26 Sep 2018 06:31:34 -0700 (PDT)
+Date: Wed, 26 Sep 2018 09:31:34 -0400
+From: Ken Bassford <kbassford@apertussolutions.com>
+To: "yocto Mail list" <yocto@yoctoproject.org>
+Message-ID: <1661613e486.f5f6798c369397.3628233815132925426@apertussolutions.com>
+In-Reply-To: 
 MIME-Version: 1.0
-In-Reply-To: <CAFSZm+i0xsg+teZ8+cTWkH_HdBr5nvE2s4WyKe=QZJn5ojh8uQ@mail.gmail.com>
-Subject: Re: Is KCONFIG_MODE test backwards in kernel-yocto.bbclass?
+X-Priority: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
+Subject: Proper convention for naming guest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,35 +66,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Sep 2018 12:35:27 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
+X-List-Received-Date: Wed, 26 Sep 2018 13:46:41 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 2018-09-25 10:03 PM, Aaron Cohen wrote:
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/kernel-yocto.bbclass#n297
-> 
-> With no KCONFIG_MODE specified, we check if the user has copied a 
-> defconfig to workdir, and then use allnoconfig if so. Shouldn't we be 
-> using alldefconfig in this case?
-> 
-> The result currently is that if you use a defconfig file that you add to 
-> SRC_URI, much of it won't work, because it's been set to no by 
-> allnoconfig, and it's not super-obvious, to me at least, why.
+Hi Folks,
 
-Nope. This is fully intentional. The defconfig is traditionally
-a complete .config that specifies all values. As such, we clear
-the settings with allnoconfig and then apply it to the tree.
+I'm rather new to Yocto so please forgive me (and please correct me) if I have some of the terminology wrong.
 
-If you want a minimal .config (like fragments, etc), that adds
-only non-default settings, we use alldefconfig and then apply
-the fragments.
+I am currently building a Xen dom0 with two guest domain images running under the dom0.  These directories for building each of these images are located under the meta-virtualization directory in the build environment as recipe directories (recipe-xxx).  Dom0 and each of the images work fine.
 
-Cheers,
+The trouble I am having is that I wanted to give each domU a unique name/hostname to make networking and management easier so I don't have to manually set them up each time one is modified.  Since each recipe only consisted of several sub-directories containing .bb files, I created a "base-files_3.0.14.bbappend" to each recipe's 'image' sub-directory (consisting of one line: hostname_pn-base-files = "<name of host>").  Now it seams that every time meta-virtualization is called bitbake "sees" the first .bbappend it comes across and tries to change the hostname regardless of which recipe I am building (i.e. If you run "bitbake -e base-files | grep ''hostname" it will always result in the same custom hostname).  Obviously this is not the proper way to set the hostname.
 
-Bruce
+What is the proper way to go about this?  Can I set it on the bitbake command line for building the image?
 
-> 
-> 
+I'd like for the hostname to be tied to the custom image recipe I am building.  If I don't specifically call one of my custom recipes, neither should automatically be changing the hostname.
+
+Thank you in advance for your time.
+
+Sincerely,
+Ken Bassford
+Apertus Solutions
+
+
 
 
