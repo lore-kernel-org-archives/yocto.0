@@ -1,67 +1,64 @@
-Return-Path: <schnitzeltony@gmail.com>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 27941E00B77; Thu, 27 Sep 2018 13:59:17 -0700 (PDT)
+	id C4C5EE00B6C; Thu, 27 Sep 2018 14:29:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.178 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (schnitzeltony[at]gmail.com)
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com
-	[209.85.167.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58784E0090A
-	for <yocto@yoctoproject.org>; Thu, 27 Sep 2018 13:59:16 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id 13-v6so3480868ois.1
-	for <yocto@yoctoproject.org>; Thu, 27 Sep 2018 13:59:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com
+	[209.85.208.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2823E0090A
+	for <yocto@yoctoproject.org>; Thu, 27 Sep 2018 14:29:07 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id w4-v6so3868192ljd.2
+	for <yocto@yoctoproject.org>; Thu, 27 Sep 2018 14:29:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
 	:cc:content-transfer-encoding;
-	bh=75/KIYZ+wT5oTVv53FOAWfBJbJF2lxxVXk94XASuxYo=;
-	b=AYrif/MNPFo8DdwD6GtSJOQGeXUEJo9jkkz2NCaoC7MBcH6QT7kn1RXO3wTtI9OE+t
-	1MOB4e3RsEaKo75PvW9g4WwrXcJpw9Rf6aa7i3EFo8iJ6z+UgcGeQUyf8OYn6ppVetzI
-	MkIlQp9QTEaPdM7W3fZC/d0rptmdLBmiYbL+QF90Bx9PjpYXztYaSn5XYlyb4Mb13so1
-	hREwS9Tq5NvfOSTBLOSTeEXyn/lGlsNeeJOnH1YCz8UgVjPz20ojzuy/fWuwXZE5eNL0
-	QoG87rqMYBHkIEQFG6YV/sMcJcFMRDe3Db82qmbNlNJoaGP1Ae8Dimfe1dm3QpR61LQ7
-	9qiA==
+	bh=x7EVLwUjAnHLm5AfM0gQVVnsxuwozNa4OtykZil/PHs=;
+	b=LxgWlFvnnRBhgYeKnZor3Pv2GkMsey0B5/FBEBH+JsFmmK6Qf08efnq9Pp9h+dDR3s
+	f0GK9rHUfdFsaN5jG1kj/x/jP7o3ytRDug0xs5vr92tzVAuk+pRGwBuoLuYG1xoW1rBw
+	0bI6wfbGrYNtEPFAvivlJoSCG7xJ7ZWZMVKXw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=75/KIYZ+wT5oTVv53FOAWfBJbJF2lxxVXk94XASuxYo=;
-	b=nPjcKPDjfhYk6cL2Os2AQaWjfqXERm+wkpavE0nu0RIJr2eCkCbTU8k2iLnidxneTV
-	Sg9b68R9u/Kj1ccVF82e3l3Nx7dVQEbTgV0XnIiZ7Hjap/0S29f8stLpHMm3MfSSDB12
-	dUV/pOZ9ltI6NaiIJKH3oNfnmQPWvwCm8Wv3nuYiZ3T5dR4AMxUvmMA5yCkp30E3xegN
-	tYWkai1pYF9U3qR6sCxN3I0faDZdl5vNqP8dPrzdXhCHzHovoKTCRTW3Hb7SE5UL9g3Q
-	/Tk63kqLUjICdVJySPKzyeXtNhkQ5daK3JjysFa6TPbwrkFJETt5NccJlobUby6sQ+fa
-	kATw==
-X-Gm-Message-State: ABuFfoij3IBcSmZELIMYBE4jI03Y/rTtsFjvYIxc+gC5wEaZk1HTpIoZ
-	tCzGWGeWCwYV5LdB/veAVlf/yBesxaI6IN7dgHM=
-X-Google-Smtp-Source: ACcGV60mjsjpkrM33xP5oEt9VHi531DvHK4ecE1AiTE2oV8YFE+0wF4noDqlBw6viWQNsci2bxYOVQDADXklK/c6EYs=
-X-Received: by 2002:aca:ed57:: with SMTP id
-	l84-v6mr4297268oih.188.1538081955707; 
-	Thu, 27 Sep 2018 13:59:15 -0700 (PDT)
+	bh=x7EVLwUjAnHLm5AfM0gQVVnsxuwozNa4OtykZil/PHs=;
+	b=SSFF10DhE4caofoywFSR/LmnxcnIMrN6rhKDPna6Ts4FfNANgfIYC1Qa6nIuLLtuXJ
+	Z8HDztlBQ5JrWulNBB8RXMjWoGM74tOtlDHt1KyDjAbT4vvqFcms/KKNGdLIG3VStn1L
+	NypkMBiQJcJBcNcmZ+7uUQz57VDV5R/iSmO7mMYIi5W+M8GB9VqpgDZiKF7zmvAAbaLb
+	rd9pS9nsYB4M0sgVCGkxhnCuqdRxrpHLXyaPVPPMEOYIdfj6jus0gauD7XdZ3vuSXbwY
+	ZCfNKuDF2riFPCjZgpUrxl/sGEghGJP37ZHUNduYMnbpYUjzs9Y7gycD76EcY6Drao08
+	o/vQ==
+X-Gm-Message-State: ABuFfojn/bboZainSrGTu+yzZohcrS2GIT9nvMLje2pplrWXXCmbqYxR
+	NPpNTynYhGnyK1c5Jkg63J9C9NZZ7x4mFGD/IoLSj/vD
+X-Google-Smtp-Source: ACcGV60tDUaI12GBbL6iq4bUDi1d5/9U/EfJJhtLjaueWVKF5+FFXZWyLDpHOKG+b3AmU06mkTOX/ZOGLaaQaO3rMUo=
+X-Received: by 2002:a2e:6598:: with SMTP id
+	e24-v6mr6230970ljf.99.1538083746662; 
+	Thu, 27 Sep 2018 14:29:06 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ac9:490c:0:0:0:0:0 with HTTP; Thu, 27 Sep 2018 13:59:15
-	-0700 (PDT)
-In-Reply-To: <1721109.tuLG3TFsTU@localhost.localdomain>
 References: <1721109.tuLG3TFsTU@localhost.localdomain>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@gmail.com>
-Date: Thu, 27 Sep 2018 22:59:15 +0200
-Message-ID: <CALbNGRRhGOx7rcZq=kFypcPC=BWoPtimH-oFqpJXfmoT4eHgww@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	openembeded-devel <openembedded-devel@lists.openembedded.org>,
+In-Reply-To: <1721109.tuLG3TFsTU@localhost.localdomain>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Thu, 27 Sep 2018 23:28:55 +0200
+Message-ID: <CAP71WjzUkYnazb3VHzEHgEDHoRqKdOT89Waw_hAy6pRyh8=BNA@mail.gmail.com>
+To: "Eggleton, Paul" <paul.eggleton@intel.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>,
+	openembedded-devel <openembedded-devel@lists.openembedded.org>,
 	Patches and discussions about the oe-core layer
 	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] layers.openembedded.org upgraded
+Subject: Re: layers.openembedded.org upgraded
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,12 +70,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Sep 2018 20:59:17 -0000
+X-List-Received-Date: Thu, 27 Sep 2018 21:29:08 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 27, 2018 at 10:42 PM, Paul Eggleton <paul.eggleton@intel.com> w=
-rote:
+On Thu, Sep 27, 2018 at 10:43 PM Paul Eggleton <paul.eggleton@intel.com> wr=
+ote:
+>
 > Hi all,
 >
 > I'm very happy to announce that we've finally been able to upgrade the la=
@@ -149,6 +147,13 @@ ion
 > Halstead, Yi Zhao, Konrad Scherer, Robert Yang and An=C3=ADbal Lim=C3=B3n=
  for making
 > this upgrade possible.
+
+Paul, and everyone above, many thanks for your contributions to the
+Layer Index which is definitely a great tool for our community! It
+encourages and simplifies reuse and sharing of all recipes! The update
+looks really good, and as Andreas says, the top #3 features will make
+a big difference.
+
 >
 >
 > Also integrated were the Recipe Reporting System (RRS) which powers
@@ -167,8 +172,11 @@ king
 > Cheers,
 > Paul
 >
-As daily user of layerindex I think particularly the first three
-features are very helpful. Thanks a lot!
-
-Andreas
+> --
+> Paul Eggleton
+> Intel Open Source Technology Centre--
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
