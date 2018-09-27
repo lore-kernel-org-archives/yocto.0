@@ -1,49 +1,60 @@
-Return-Path: <desai@uni-bremen.de>
+Return-Path: <kbassford@apertussolutions.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4F84E00A94; Thu, 27 Sep 2018 01:56:11 -0700 (PDT)
+	id 3457AE00A9B; Thu, 27 Sep 2018 05:57:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [134.102.50.17 listed in list.dnswl.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [135.84.80.216 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 982 seconds by postgrey-1.32 at yocto-www;
-	Thu, 27 Sep 2018 01:56:09 PDT
-Received: from smtp.uni-bremen.de (gabriel-vm-2.zfn.uni-bremen.de
-	[134.102.50.17])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C615CE00A54
-	for <yocto@yoctoproject.org>; Thu, 27 Sep 2018 01:56:09 -0700 (PDT)
-Received: from uni-bremen.de (webmail-1.zfn.uni-bremen.de [134.102.50.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.uni-bremen.de (Postfix) with ESMTPSA id EB1E9275C0
-	for <yocto@yoctoproject.org>; Thu, 27 Sep 2018 10:39:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=uni-bremen.de; s=dkim;
-	t=1538037585; bh=RA9IpoEcU2jpCMHSSO/GcR/aYbPjcxOrrgSd/GM+3/U=;
-	h=To:Date:From;
-	b=LwE22UxRLgXge/09ZDapu25NPUe2Bp71PhbnuNrutsaDQBPEE7raK/4gjqyLpPEQw
-	RTG/hLoFQ/q5kASZF57Lf95T+UnbUY1noA+x9NdPbdw1ouljPdicnez+nu60CvauHr
-	/2b5tVggNButS3EC4gM7DUIsWPXgFRIC/T3b7Kug=
-To: yocto@yoctoproject.org
-Date: Thu, 27 Sep 2018 10:39:43 +0200
-Message-ID: <001401d4563d$a32ce810$e986b830$@uni-bremen.de>
+Received: from sender-of-o51.zoho.com (sender-of-o51.zoho.com [135.84.80.216])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20424E0097D
+	for <yocto@yoctoproject.org>; Thu, 27 Sep 2018 05:57:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1538053034; cv=none; d=zoho.com; s=zohoarc; 
+	b=Pp/46iloyrdw+V0HQ8eRJST6F7V4X+XNchj9p5u3XVHOxu7ljUZX+RCnekgfGXRg5PkMO0tX372Hv0SqWq82mTqVL2gpf/uCFVUOvcz2yza/tuEtvIcLOlSBvx9ugKIxShyaGAEnP/BX6KWb5DfSWyYyrsCgqGsyeaxcUpgnZNM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zoho.com;
+	s=zohoarc; t=1538053034;
+	h=Content-Type:Content-Transfer-Encoding:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To:ARC-Authentication-Results;
+	bh=vjNnp3JFgJnF+bXZuyJqe9mHWlP3cOE4SzxiBFvHp64=; 
+	b=SmTWWljAAhepJxQRK9JlHp6IZvwy7ndUf1LBdTjyNh3CiywFhruoFxYi98jsQB05dqVUfdfzdNTfPxWLrU18zgaiy2YbB60uUn/X15pWd3WPFoSTLkjhwEA+lkukljQWsOnBIv+39IyTdNs6IHYd/wwBttJAITokulqtLcH5ulw=
+ARC-Authentication-Results: i=1; mx.zoho.com;
+	dkim=pass  header.i=apertussolutions.com;
+	spf=pass  smtp.mailfrom=kbassford@apertussolutions.com;
+	dmarc=pass header.from=<kbassford@apertussolutions.com>
+	header.from=<kbassford@apertussolutions.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1538053034; 
+	s=zoho; d=apertussolutions.com;
+	i=kbassford@apertussolutions.com; 
+	h=Date:From:To:Message-ID:In-Reply-To:References:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	l=2548; bh=vjNnp3JFgJnF+bXZuyJqe9mHWlP3cOE4SzxiBFvHp64=;
+	b=k2KMlpIyZXWfPK6STvXmbSb9XYSrknJ41LOGJ3HsnlDLN7i4K/lTebzjxNU2CZn2
+	6PoeaLos5nD66JbTfJjQL/GoVnJ2Xhj2QIt3RQgBI5XBNqQBmAiHeq5BBpIm8EOWcTq
+	J4mo0LFyVjstmKIfXda4QnhViScDzQTEQz6ijQWQ=
+Received: from mail.zoho.com by mx.zohomail.com
+	with SMTP id 1538053032734913.2354175078036;
+	Thu, 27 Sep 2018 05:57:12 -0700 (PDT)
+Date: Thu, 27 Sep 2018 08:57:12 -0400
+From: Ken Bassford <kbassford@apertussolutions.com>
+To: "yocto Mail list" <yocto@yoctoproject.org>
+Message-ID: <1661b1acb1d.caacf768168697.6326896293055027310@apertussolutions.com>
+In-Reply-To: <16617101250.ad4efaf326593.815754531547370500@apertussolutions.com>
+References: <1661613e486.f5f6798c369397.3628233815132925426@apertussolutions.com>
+	<16617101250.ad4efaf326593.815754531547370500@apertussolutions.com>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdRWO95KieAgVHqWRH2MapDqeTGNDg==
-User-Agent: Horde Application Framework 5
-From: Shantanoo Desai <desai@uni-bremen.de>
-Subject: Strange behavior with python recipe
+X-Priority: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
+Subject: Re: Proper convention for naming guest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,318 +66,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Sep 2018 08:56:11 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0015_01D4564E.66B73EB0"
-Content-Language: de
-
-------=_NextPart_000_0015_01D4564E.66B73EB0
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Thu, 27 Sep 2018 12:57:18 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-Hello all, 
-
- 
-
-I am working with the following:
-
- 
-
-.       Hardware: Phytec-imx6-Mira Development board
-
-.       Branch: krogoth
-
-.       Bitbake Version: 1.30
-
-.       Workflow tool: devtool
-
-.       Build Env: Debian 9.4 server
-
- 
-
-I want to use the pynmea2 and influxdb-python modules on the embedded board
-for application development. I added them using devtool and the recipes were
-created accordingly.
-
-I added the necessary RDEPENDS to the recipes and structured them to the
-meta-python layer i.e. pynmea2.inc and pynmea2_1.7.1.bb (similar for
-influxdb-python)
-
- 
-
-My application needs to be with python3 hence in the recipes I added `inhert
-setuptools3 pypi` so that it builds for python3. I added these recipes in my
-`local.conf` file.
-
- 
-
-Strangely, there is no `datetime` module available in the python3 shell when
-I import these modules on the hardware. This same `datetime` module is
-however available on python2 shell.
-
- 
-
-I explicitly added the `python3-datetime` in the `local.conf` file but still
-the module is unavailable on hardware.
-
- 
-
-Links to necessary files and query:
-
- 
-
-Stackexchange Query:
-https://stackoverflow.com/questions/52519565/no-module-named-datetime-in-pyt
-hon3-when-creating-a-recipe-for-yocto-but-datet/52528150#52528150
-
-Github Gists of the recipes:
-https://gist.github.com/shantanoo-desai/fc00836d399f8592a30efe1ec9c56213
-
- 
-
-I am not sure why isn't this python3-datetime module available on board even
-though I have explicitly mentioned it in the RDEPENDS and
-IMAGE_INSTALL_append ?
-
- 
-
-Any help would be appreciated. (First time poster in the mailing-list but
-willing to learn the right etiquettes for asking queries here!)
-
- 
-
-Regards,
-
-Shan
+ > Hi Folks, 
+ >  
+ > Managed to get what I wanted via a combination of ... 
+ >   my xl create image.conf file(s) ... 
+ > """ 
+ > # Guest name 
+ > name = "<hostname here>" 
+ > hostname = "<hostname here>" 
+ > """ 
+ >   and adding the following to my bb image recipe(s) .... 
+ > """ 
+ > # Set hostname 
+ > run_postprocess() { 
+ >     echo "<hostname here" > ${IMAGE_ROOTFS}/etc/hostname 
+ > } 
+ >  
+ > ROOTFS_POSTPROCESS_COMMAND += " run_postprocess ; " 
+ > """ 
+ > Not the most elegant, but it will do. 
+ >  
+ > Sincerely, 
+ > Ken Bassford 
+ > Apertus Solutions 
+ > (U) 301-490-4299 (x1292) 
+ >  
+ > ---- On Wed, 26 Sep 2018 09:31:34 -0400 Ken Bassford <kbassford@apertussolutions.com> wrote ---- 
+ >  
+ >  > Hi Folks,  
+ >  >   
+ >  > I'm rather new to Yocto so please forgive me (and please correct me) if I have some of the terminology wrong.  
+ >  >   
+ >  > I am currently building a Xen dom0 with two guest domain images running under the dom0.  These directories for building each of these images are located under the meta-virtualization directory in the build environment as recipe directories (recipe-xxx).  Dom0 and each of the images work fine.  
+ >  >   
+ >  > The trouble I am having is that I wanted to give each domU a unique name/hostname to make networking and management easier so I don't have to manually set them up each time one is modified.  Since each recipe only consisted of several sub-directories containing .bb files, I created a "base-files_3.0.14.bbappend" to each recipe's 'image' sub-directory (consisting of one line: hostname_pn-base-files = "<name of host>").  Now it seams that every time meta-virtualization is called bitbake "sees" the first .bbappend it comes across and tries to change the hostname regardless of which recipe I am building (i.e. If you run "bitbake -e base-files | grep ''hostname" it will always result in the same custom hostname).  Obviously this is not the proper way to set the hostname.  
+ >  >   
+ >  > What is the proper way to go about this?  Can I set it on the bitbake command line for building the image?  
+ >  >   
+ >  > I'd like for the hostname to be tied to the custom image recipe I am building.  If I don't specifically call one of my custom recipes, neither should automatically be changing the hostname.  
+ >  >   
+ >  > Thank you in advance for your time.  
+ >  >   
+ >  > Sincerely,  
+ >  > Ken Bassford  
+ >  > Apertus Solutions  
+ >  >   
+ >  >   
+ >  >   
+ >  > --  
+ >  > _______________________________________________  
+ >  > yocto mailing list  
+ >  > yocto@yoctoproject.org  
+ >  > https://lists.yoctoproject.org/listinfo/yocto  
+ >  >  
+ > 
 
 
-------=_NextPart_000_0015_01D4564E.66B73EB0
-Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1933513082;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-185287968 2051814884 134807555 134807557 =
-134807553 134807555 134807557 134807553 134807555 134807557;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal><span lang=3DEN-US>Hello all, <o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>I am working with the =
-following:<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoListParagraph =
-style=3D'text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if =
-!supportLists]><span lang=3DEN-US style=3D'font-family:Symbol'><span =
-style=3D'mso-list:Ignore'>&middot;<span style=3D'font:7.0pt "Times New =
-Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-</span></span></span><![endif]><span lang=3DEN-US>Hardware: =
-Phytec-imx6-Mira Development board<o:p></o:p></span></p><p =
-class=3DMsoListParagraph style=3D'text-indent:-18.0pt;mso-list:l0 level1 =
-lfo1'><![if !supportLists]><span lang=3DEN-US =
-style=3D'font-family:Symbol'><span =
-style=3D'mso-list:Ignore'>&middot;<span style=3D'font:7.0pt "Times New =
-Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-</span></span></span><![endif]><span lang=3DEN-US>Branch: =
-krogoth<o:p></o:p></span></p><p class=3DMsoListParagraph =
-style=3D'text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if =
-!supportLists]><span lang=3DEN-US style=3D'font-family:Symbol'><span =
-style=3D'mso-list:Ignore'>&middot;<span style=3D'font:7.0pt "Times New =
-Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-</span></span></span><![endif]><span lang=3DEN-US>Bitbake Version: =
-1.30<o:p></o:p></span></p><p class=3DMsoListParagraph =
-style=3D'text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if =
-!supportLists]><span lang=3DEN-US style=3D'font-family:Symbol'><span =
-style=3D'mso-list:Ignore'>&middot;<span style=3D'font:7.0pt "Times New =
-Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-</span></span></span><![endif]><span lang=3DEN-US>Workflow tool: =
-devtool<o:p></o:p></span></p><p class=3DMsoListParagraph =
-style=3D'text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if =
-!supportLists]><span lang=3DEN-US style=3D'font-family:Symbol'><span =
-style=3D'mso-list:Ignore'>&middot;<span style=3D'font:7.0pt "Times New =
-Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-</span></span></span><![endif]><span lang=3DEN-US>Build Env: Debian 9.4 =
-server<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>I want to use the pynmea2 and influxdb-python modules on =
-the embedded board for application development. I added them using =
-devtool and the recipes were created =
-accordingly.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>I added the necessary RDEPENDS to the recipes and =
-structured them to the meta-python layer i.e. pynmea2.inc and =
-pynmea2_1.7.1.bb (similar for influxdb-python)<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>My application needs to be with =
-python3 hence in the recipes I added `inhert setuptools3 pypi` so that =
-it builds for python3. I added these recipes in my `local.conf` =
-file.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Strangely, there is no `datetime` module available in the =
-python3 shell when I import these modules on the hardware. This same =
-`datetime` module is however available on python2 =
-shell.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>I explicitly added the `python3-datetime` in the =
-`local.conf` file but still the module is unavailable on =
-hardware.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Links to necessary files and query:<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Stackexchange Query: <a =
-href=3D"https://stackoverflow.com/questions/52519565/no-module-named-date=
-time-in-python3-when-creating-a-recipe-for-yocto-but-datet/52528150#52528=
-150">https://stackoverflow.com/questions/52519565/no-module-named-datetim=
-e-in-python3-when-creating-a-recipe-for-yocto-but-datet/52528150#52528150=
-</a><o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Github =
-Gists of the recipes: <a =
-href=3D"https://gist.github.com/shantanoo-desai/fc00836d399f8592a30efe1ec=
-9c56213">https://gist.github.com/shantanoo-desai/fc00836d399f8592a30efe1e=
-c9c56213</a><o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>I am not sure why isn&#8217;t this python3-datetime module =
-available on board even though I have explicitly mentioned it in the =
-RDEPENDS and IMAGE_INSTALL_append ?<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Any help would be appreciated. =
-(First time poster in the mailing-list but willing to learn the right =
-etiquettes for asking queries here!)<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Regards,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US>Shan<o:p></o:p></span></p></div></body></html>
-
-------=_NextPart_000_0015_01D4564E.66B73EB0--
