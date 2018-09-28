@@ -1,46 +1,63 @@
-Return-Path: <Randy.MacLeod@windriver.com>
+Return-Path: <akykumarkumhar@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B92F1E00754; Thu, 27 Sep 2018 17:02:24 -0700 (PDT)
+	id 059B6E00A9A; Thu, 27 Sep 2018 22:43:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.51 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akykumarkumhar[at]gmail.com)
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF600E00519
-	for <yocto@yoctoproject.org>; Thu, 27 Sep 2018 17:02:23 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w8S01DFO006277
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 27 Sep 2018 17:01:23 -0700
-Received: from [172.25.44.4] (172.25.44.4) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
-	Thu, 27 Sep 2018 17:01:02 -0700
-To: Paul Eggleton <paul.eggleton@intel.com>
-References: <1721109.tuLG3TFsTU@localhost.localdomain>
-	<CAP71WjzUkYnazb3VHzEHgEDHoRqKdOT89Waw_hAy6pRyh8=BNA@mail.gmail.com>
-	<156dc277-4255-aaf3-cb9f-f25a4481189f@windriver.com>
-	<1907640.U4zZL0Bqpb@localhost.localdomain>
-From: Randy MacLeod <randy.macleod@windriver.com>
-Message-ID: <ca07c8cc-7ff0-eba4-e235-0707c6c8ada1@windriver.com>
-Date: Thu, 27 Sep 2018 20:01:01 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
+	[209.85.208.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C615E0090A
+	for <yocto@yoctoproject.org>; Thu, 27 Sep 2018 22:43:18 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id f4-v6so7088245edq.3
+	for <yocto@yoctoproject.org>; Thu, 27 Sep 2018 22:43:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=RRWZAMzuNv7SWhuV2V9UnDodKThOV9J4MhRQxB7fVII=;
+	b=KZBjT34qgMJHLpYmpqwulUH2O8CxEfBKiUcaoa0SU0xPZC/cdbGbb/JukTJvtHHGYY
+	OTGDUXBsS9qO80iaP09UxwjLh4UBKAec05JUPqltaznhRqVvvY0740mUGTxm4tb/CXFH
+	X1OtcygfG43GFfjOrB8ZZn7KoZWxZr8S78Lm5bEb+dNC55LpbGIhiXD0uElU2BlRgkxm
+	HVbCdsXWTo9C+E3HJZQ3RqEE8uWSU/x4jNlQK0rxhbgyQoXDKLyDpti2A7hzx7HcR0QZ
+	KZRKJa6OOh6u7sbI0ZPME+P9ynnIRGA6rR6Rlpcmr0VgRmL7J1ozYBIIMr7jlZa64mAi
+	lmPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=RRWZAMzuNv7SWhuV2V9UnDodKThOV9J4MhRQxB7fVII=;
+	b=oAPVPfpO3uNSkIRbkotsHkGT85+vobO1g96I9+2Xe6SC1dPWSgK/leFdT1VLwPI4+W
+	qWtd6uzK4lZXnj3Eb8g5bW8RZaBfIsiiyra/bahRtqRI94ZzvUXAbdum+SR8U/eXyrvD
+	i7lSvBaS7PnFyqHfnnIFDHni1RYIH8KVGObmAPC2noiDX2Rf01D0ARbx3oNaRcIlcBaN
+	LTRTea2HYhBQNf88mI65IMDc11m5X5I4yvAajOibSmh0iFMK2vZRzEXqtdrXYe7Pcvso
+	0luf0q5Uqh0zXuWi2ayzwoP7AToEHAGrMMH8NIcRXrEURIan59awGDksT8ebF6vIgBti
+	z/RA==
+X-Gm-Message-State: ABuFfogGb8001YC1iGyDCv8JCXCwD6W84Zc488jNeZK4q35rTuJPbgOL
+	FX+IUMnwLzPO2BIAv6dk+SuCx84mQWlGPNXYaoLICw==
+X-Google-Smtp-Source: ACcGV60o4gro2KdJmEHmdWieadc9scOVKIepClB00WrqWueygy5HzaXihB5GpfnXHfvnL1wspjaQjKDKEBfHN0dmpzw=
+X-Received: by 2002:a17:906:6ad4:: with SMTP id
+	q20-v6mr782385ejs.235.1538113397426; 
+	Thu, 27 Sep 2018 22:43:17 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1907640.U4zZL0Bqpb@localhost.localdomain>
-X-Originating-IP: [172.25.44.4]
-Cc: yocto@yoctoproject.org,
-	openembedded-devel <openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] layers.openembedded.org upgraded
+From: Akshay Kumar <akykumarkumhar@gmail.com>
+Date: Fri, 28 Sep 2018 11:13:06 +0530
+Message-ID: <CACnLeH9TBz8-h1E9FAtGKv3TgHXz1sDRYNrZWAwOAnVv47revw@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Thu, 27 Sep 2018 23:41:40 -0700
+Subject: Build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,354 +69,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Sep 2018 00:02:24 -0000
-Content-Type: multipart/alternative;
-	boundary="------------94AFE5B296EC9983A122A7D4"
-Content-Language: en-GB
+X-List-Received-Date: Fri, 28 Sep 2018 05:43:19 -0000
+Content-Type: multipart/alternative; boundary="000000000000ad8ff60576e7ee2a"
 
---------------94AFE5B296EC9983A122A7D4
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000ad8ff60576e7ee2a
+Content-Type: text/plain; charset="UTF-8"
 
-On 09/27/2018 07:33 PM, Paul Eggleton wrote:
-> Hi Randy
->
-> On Friday, 28 September 2018 11:22:29 AM NZST Randy MacLeod wrote:
->> On 09/27/2018 05:28 PM, Nicolas Dechesne wrote:
->>> On Thu, Sep 27, 2018 at 10:43 PM Paul Eggleton <paul.eggleton@intel.com> wrote:
->>>> I'm very happy to announce that we've finally been able to upgrade the layer
->>>> index at http://layers.openembedded.org to the latest revision on master,
->>>> incorporating quite a bit of work that's been going on for the past few
->>>> months. Improvements now visible:
->> Nice new features, thanks!
->>
->> The "Branch:" and "Filter layers" selection menus don't work
->> for me when using Firefox 62.0 (64-bit) on Ubuntu-18.04.
->>
->> Google Chrome Version 69.0.3497.100 (Official Build) (64-bit)
->> works fine.
-> Hmm, I do my development with Firefox and I just checked - with Firefox
-> 62.0 (64-bit) here on Fedora 28 both work. Do you perhaps have an add-on
-> enabled that might prevent these from working? I believe they both rely on
-> javascript (the filter dropdown definitely does).
+Hi team,
 
-Does anyone else see this problem?
-I've also asked on IRC.
+I am complete new to yocto, for one project I have complied a c++ file
+using gtest framework and now I want to use the executable in my qemu can
+you please help me over internet I am getting too confused.
+Please reply ASAP.
+Thanks
 
-I did have Firefox Lightbeam (disabled) and Quiick Java but I removed 
-them both,
-re-stared FF and still no joy/menus.
+--000000000000ad8ff60576e7ee2a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"auto">Hi team,<div dir=3D"auto"><br></div><div dir=3D"auto">I a=
+m complete new to yocto, for one project I have complied a c++ file using g=
+test framework and now I want to use the executable in my qemu can you plea=
+se help me over internet I am getting too confused.</div><div dir=3D"auto">=
+Please reply ASAP.</div><div dir=3D"auto">Thanks</div></div>
 
-Looking at:
-Menu->Web Developer -> Browser Console ( Control+Shift+J )
-I see:
-
-Error: Syntax error, unrecognized expression: # jquery-3.3.1.js:1541:8 
-<https://layers.openembedded.org/static/js/jquery-3.3.1.js>
-Sizzle</Sizzle.error 
-https://layers.openembedded.org/static/js/jquery-3.3.1.js:1541:8 
-Sizzle</Sizzle.tokenize 
-https://layers.openembedded.org/static/js/jquery-3.3.1.js:2193:4 
-Sizzle</Sizzle.select 
-https://layers.openembedded.org/static/js/jquery-3.3.1.js:2620:20 Sizzle 
-https://layers.openembedded.org/static/js/jquery-3.3.1.js:845:9 find 
-https://layers.openembedded.org/static/js/jquery-3.3.1.js:2873:4 
-jQuery.fn.init 
-https://layers.openembedded.org/static/js/jquery-3.3.1.js:2983:14 jQuery 
-https://layers.openembedded.org/static/js/jquery-3.3.1.js:139:10 
-getParent https://layers.openembedded.org/static/js/bootstrap.js:754:27 
-clearMenus/< 
-https://layers.openembedded.org/static/js/bootstrap.js:741:7 each 
-https://layers.openembedded.org/static/js/jquery-3.3.1.js:354:10 each 
-https://layers.openembedded.org/static/js/jquery-3.3.1.js:189:10 
-clearMenus https://layers.openembedded.org/static/js/bootstrap.js:740:5 
-dispatch 
-https://layers.openembedded.org/static/js/jquery-3.3.1.js:5182:16 
-add/elemData.handle 
-https://layers.openembedded.org/static/js/jquery-3.3.1.js:4991:6
-
-Does that help at all?
-
-../Randy
-
-
-
->
-> Cheers,
-> Paul
->
-
--- 
-# Randy MacLeod
-# Wind River Linux
-
-
---------------94AFE5B296EC9983A122A7D4
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 09/27/2018 07:33 PM, Paul Eggleton
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:1907640.U4zZL0Bqpb@localhost.localdomain">
-      <pre wrap="">Hi Randy
-
-On Friday, 28 September 2018 11:22:29 AM NZST Randy MacLeod wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">On 09/27/2018 05:28 PM, Nicolas Dechesne wrote:
-</pre>
-        <blockquote type="cite">
-          <pre wrap="">On Thu, Sep 27, 2018 at 10:43 PM Paul Eggleton <a class="moz-txt-link-rfc2396E" href="mailto:paul.eggleton@intel.com">&lt;paul.eggleton@intel.com&gt;</a> wrote:
-</pre>
-          <blockquote type="cite">
-            <pre wrap="">I'm very happy to announce that we've finally been able to upgrade the layer
-index at <a class="moz-txt-link-freetext" href="http://layers.openembedded.org">http://layers.openembedded.org</a> to the latest revision on master,
-incorporating quite a bit of work that's been going on for the past few
-months. Improvements now visible:
-</pre>
-          </blockquote>
-        </blockquote>
-        <pre wrap="">
-Nice new features, thanks!
-
-The "Branch:" and "Filter layers" selection menus don't work
-for me when using Firefox 62.0 (64-bit) on Ubuntu-18.04.
-
-Google Chrome Version 69.0.3497.100 (Official Build) (64-bit)
-works fine.
-</pre>
-      </blockquote>
-      <pre wrap="">
-Hmm, I do my development with Firefox and I just checked - with Firefox
-62.0 (64-bit) here on Fedora 28 both work. Do you perhaps have an add-on
-enabled that might prevent these from working? I believe they both rely on
-javascript (the filter dropdown definitely does).</pre>
-    </blockquote>
-    <br>
-    Does anyone else see this problem?<br>
-    I've also asked on IRC.<br>
-    <br>
-    I did have Firefox Lightbeam (disabled) and Quiick Java but I
-    removed them both,<br>
-    re-stared FF and still no joy/menus.<br>
-    <br>
-    <br>
-    Looking at:<br>
-    Menu-&gt;Web Developer -&gt; Browser Console ( Control+Shift+J )<br>
-    I see:<br>
-    <br>
-    <span class="message-body-wrapper"><span class="message-flex-body"><span
-          class="message-body devtools-monospace">Error: Syntax error,
-          unrecognized expression: #</span> </span></span><span
-      class="message-body-wrapper"><span class="message-flex-body"><span
-          class="message-location devtools-monospace"><span
-            data-url="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-            class="frame-link" data-line="1541" data-column="8"><a
-              href="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/jquery-3.3.1.js:1541:8"><span
-                  class="frame-link-filename">jquery-3.3.1.js</span><span
-                  class="frame-link-line">:1541:8</span></span></a></span></span></span>
-      <div class="stacktrace devtools-monospace">
-        <div class="stack-trace"> <span
-            data-url="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-            class="frame-link" data-line="1541" data-column="8"><span
-              class="frame-link-function-display-name">Sizzle&lt;/Sizzle.error</span>
-            <a
-              href="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/jquery-3.3.1.js:1541:8"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/jquery-3.3.1.js</span><span
-                  class="frame-link-line">:1541:8</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-            class="frame-link" data-line="2193" data-column="4"><span
-              class="frame-link-function-display-name">Sizzle&lt;/Sizzle.tokenize</span>
-            <a
-              href="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/jquery-3.3.1.js:2193:4"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/jquery-3.3.1.js</span><span
-                  class="frame-link-line">:2193:4</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-            class="frame-link" data-line="2620" data-column="20"><span
-              class="frame-link-function-display-name">Sizzle&lt;/Sizzle.select</span>
-            <a
-              href="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/jquery-3.3.1.js:2620:20"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/jquery-3.3.1.js</span><span
-                  class="frame-link-line">:2620:20</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-            class="frame-link" data-line="845" data-column="9"><span
-              class="frame-link-function-display-name">Sizzle</span> <a
-href="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/jquery-3.3.1.js:845:9"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/jquery-3.3.1.js</span><span
-                  class="frame-link-line">:845:9</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-            class="frame-link" data-line="2873" data-column="4"><span
-              class="frame-link-function-display-name">find</span> <a
-              href="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/jquery-3.3.1.js:2873:4"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/jquery-3.3.1.js</span><span
-                  class="frame-link-line">:2873:4</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-            class="frame-link" data-line="2983" data-column="14"><span
-              class="frame-link-function-display-name">jQuery.fn.init</span>
-            <a
-              href="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/jquery-3.3.1.js:2983:14"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/jquery-3.3.1.js</span><span
-                  class="frame-link-line">:2983:14</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-            class="frame-link" data-line="139" data-column="10"><span
-              class="frame-link-function-display-name">jQuery</span> <a
-href="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/jquery-3.3.1.js:139:10"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/jquery-3.3.1.js</span><span
-                  class="frame-link-line">:139:10</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/bootstrap.js"
-            class="frame-link" data-line="754" data-column="27"><span
-              class="frame-link-function-display-name">getParent</span>
-            <a
-              href="https://layers.openembedded.org/static/js/bootstrap.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/bootstrap.js:754:27"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/bootstrap.js</span><span
-                  class="frame-link-line">:754:27</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/bootstrap.js"
-            class="frame-link" data-line="741" data-column="7"><span
-              class="frame-link-function-display-name">clearMenus/&lt;</span>
-            <a
-              href="https://layers.openembedded.org/static/js/bootstrap.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/bootstrap.js:741:7"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/bootstrap.js</span><span
-                  class="frame-link-line">:741:7</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-            class="frame-link" data-line="354" data-column="10"><span
-              class="frame-link-function-display-name">each</span> <a
-              href="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/jquery-3.3.1.js:354:10"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/jquery-3.3.1.js</span><span
-                  class="frame-link-line">:354:10</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-            class="frame-link" data-line="189" data-column="10"><span
-              class="frame-link-function-display-name">each</span> <a
-              href="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/jquery-3.3.1.js:189:10"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/jquery-3.3.1.js</span><span
-                  class="frame-link-line">:189:10</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/bootstrap.js"
-            class="frame-link" data-line="740" data-column="5"><span
-              class="frame-link-function-display-name">clearMenus</span>
-            <a
-              href="https://layers.openembedded.org/static/js/bootstrap.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/bootstrap.js:740:5"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/bootstrap.js</span><span
-                  class="frame-link-line">:740:5</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-            class="frame-link" data-line="5182" data-column="16"><span
-              class="frame-link-function-display-name">dispatch</span> <a
-href="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/jquery-3.3.1.js:5182:16"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/jquery-3.3.1.js</span><span
-                  class="frame-link-line">:5182:16</span></span></a></span>
-          <span
-            data-url="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-            class="frame-link" data-line="4991" data-column="6"><span
-              class="frame-link-function-display-name">add/elemData.handle</span>
-            <a
-              href="https://layers.openembedded.org/static/js/jquery-3.3.1.js"
-              class="frame-link-source" draggable="false"><span
-                class="frame-link-source-inner" title="View source in
-                Debugger →
-                https://layers.openembedded.org/static/js/jquery-3.3.1.js:4991:6"><span
-                  class="frame-link-filename">https://layers.openembedded.org/static/js/jquery-3.3.1.js</span><span
-                  class="frame-link-line">:4991:6</span></span></a><br>
-            <br>
-            Does that help at all?<br>
-            <br>
-            ../Randy<br>
-            <br>
-            <br>
-            <br>
-          </span>
-        </div>
-      </div>
-    </span>
-    <blockquote type="cite"
-      cite="mid:1907640.U4zZL0Bqpb@localhost.localdomain">
-      <pre wrap="">
-
-Cheers,
-Paul
-
-</pre>
-    </blockquote>
-    <p><br>
-    </p>
-    <pre class="moz-signature" cols="72">-- 
-# Randy MacLeod
-# Wind River Linux
-</pre>
-  </body>
-</html>
-
---------------94AFE5B296EC9983A122A7D4--
+--000000000000ad8ff60576e7ee2a--
