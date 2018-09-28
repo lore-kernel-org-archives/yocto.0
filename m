@@ -1,67 +1,62 @@
-Return-Path: <bkylerussell@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF62AE00A86; Fri, 28 Sep 2018 07:59:47 -0700 (PDT)
+	id 4C984E009E7; Fri, 28 Sep 2018 08:19:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.215.195 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (bkylerussell[at]gmail.com)
-Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com
-	[209.85.215.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 861E5E00A0C
-	for <yocto@yoctoproject.org>; Fri, 28 Sep 2018 07:57:22 -0700 (PDT)
-Received: by mail-pg1-f195.google.com with SMTP id z3-v6so4654691pgv.8
-	for <yocto@yoctoproject.org>; Fri, 28 Sep 2018 07:57:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=zjweB36W9bUAC+ffZBMzdjZz6zHcEvQVKJB1eukVtp4=;
-	b=H21WLRG6eBUJPCtTwUKrY53Je6B/0YD558R/7Dah2P7e0t33rSf0n8zBQwA6u60uK1
-	YX0IBNPC/hAY0RvOolqZQ4PyoDLEcWx6ERPrHBgGgMYBKLVCmP1ccgPEZi5BVRpuOYsf
-	qorNEKlrb3VOUiakVa3ELFCzPjHqmivMpAYqqc0U/qsHDL9yJqugBJf3KI5p7XS8N/Hy
-	SpQBtcdfz6LD0DnaMjP7qLNDmPoTAK2idt/pwYxxoRw1eIqezy3rm6ST83YajnMmZ/Hv
-	bQD0ZjJ8fDhTZ2cbEXQ+sXQJi7EvrtP8QPKu6guoFWifPuoFILrSUIzZFKMEn2aBnApp
-	zd+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=zjweB36W9bUAC+ffZBMzdjZz6zHcEvQVKJB1eukVtp4=;
-	b=bwZuDW9G9QJHNt7kam94+I79s9KkglpxMpHaGHOseMrgj6wTVVEaoIRm27Pxa4QVSV
-	EFM6uWXWCtER/s6LN3okjRxvwcm3PNgh5ZC76aqknee+MCvNnGLlFYkOVXuglWaWDP+K
-	RAyHpR/x+1E9s4uQz29FUVct+nSP3tnAVFDDI7qH2F1aWsu8Wc1ztZLdmr5CThlhBR4k
-	kFebZ+Mq42l1jCmynntrGPtjyoy2a2P20kkpZWNfjBKEJAXEsTcT9/wviaxHsPKkaN4/
-	Y8bKwBYs4jnWUo+XjU/KZaZ3I3aPb9AVDmSa+6CfhoQ/N6qO8niFC/8vGnf6Wrjgj2pl
-	ZHdQ==
-X-Gm-Message-State: ABuFfoi0Gb2mST86F/HQeRZKGraqzz1Cip3oCE29N3MFhk7N2h6Gex3t
-	7R1VMvW3A+/k0QxXjtQgswQ=
-X-Google-Smtp-Source: ACcGV60XXWrLsoyJY1UOoXGK7o5IS0mYahk1sH3SrxFWyL7ucykVMv4IT1cbffCg8x63ZysFV5X1FA==
-X-Received: by 2002:a63:d0e:: with SMTP id
-	c14-v6mr15322893pgl.281.1538146642039; 
-	Fri, 28 Sep 2018 07:57:22 -0700 (PDT)
-Received: from brrussell-Latitude-E6530.dhcp.lexmark.com ([192.146.101.90])
-	by smtp.gmail.com with ESMTPSA id
-	o20-v6sm10854616pfj.35.2018.09.28.07.57.21
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 28 Sep 2018 07:57:21 -0700 (PDT)
-From: Kyle Russell <bkylerussell@gmail.com>
-To: mark.hatle@windriver.com
-Date: Fri, 28 Sep 2018 10:57:11 -0400
-Message-Id: <20180928145711.6958-1-bkylerussell@gmail.com>
-X-Mailer: git-send-email 2.17.1
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2726AE009CF
+	for <yocto@yoctoproject.org>; Fri, 28 Sep 2018 08:19:10 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w8SFJAIj010088
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 28 Sep 2018 08:19:10 -0700 (PDT)
+Received: from soho-mhatle-m.local (172.25.36.227) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
+	Fri, 28 Sep 2018 08:19:09 -0700
+To: Kyle Russell <bkylerussell@gmail.com>
+References: <20180928145556.6710-1-bkylerussell@gmail.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
+	xsBNBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
+	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
+	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
+	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
+	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
+	AAHNJU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT7CwHcEEwEIACEFAlYK
+	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
+	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
+	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
+	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
+	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
+	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrs7ATQRWCsRYAQgAwK3FuHCE+HW3YWdH
+	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
+	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
+	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
+	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
+	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABwsBfBBgBCAAJBQJWCsRYAhsMAAoJ
+	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
+	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
+	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
+	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
+	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
+Organization: Wind River Systems
+Message-ID: <09052b65-6820-8549-ebab-986a750b0eb4@windriver.com>
+Date: Fri, 28 Sep 2018 10:19:08 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
+	Gecko/20100101 Thunderbird/52.9.1
+MIME-Version: 1.0
+In-Reply-To: <20180928145556.6710-1-bkylerussell@gmail.com>
 Cc: yocto@yoctoproject.org
-Subject: [prelink-cross][PATCH] Support copy relocations in .data.rel.ro
+Subject: Re: [prelink-cross][PATCH] rtld: get machine from undef_map for protected symbols
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,157 +68,184 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Sep 2018 14:59:47 -0000
+X-List-Received-Date: Fri, 28 Sep 2018 15:19:12 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-binutils-2.28 (17026142ef35b62ac88bfe517b4160614902cb28) adds support
-for copying read-only dynamic symbols into .data.rel.ro instead of .bss
-since .bss is technically writable.  This causes prelink to error out on
-any binary containing COPY relocations in .data.rel.ro.
+On 9/28/18 9:55 AM, Kyle Russell wrote:
+> Avoids rtld segfault when _dl_lookup_symbol_x is called with NULL
+> for skip_map on a protected symbol relocation.
+> 
+> Global protected symbols may not actually require a copy relocaton,
+> in which case skip_map is undefined, so use the undef_map to determine
+> the symbol arch.
 
-Read-only variables defined in shared libraries should be copied directly
-into the space allocated for them in .data.rel.ro by the linker.
+Thank you.  Any objections with me adding a 'Signed-off-by: ' line with your name?
 
-To achieve this, we determine whether either of the two sections
-containing copy relocations is .data.rel.ro.  If so, we relocate the
-symbol memory directly into the existing section instead of constructing
-a new .(s)dynbss section once prelink_build_conflicts() returns.
+I'm going to start enforcing submissions need a signed-off-by line per the terms
+of the "Developer's Certificate of Origin",
 
-Fixes cxx1.sh, cxx2.sh, and cxx3.sh on Fedora 28 (which uses
-binutils-2.29).
----
- src/conflict.c | 51 +++++++++++++++++++++++++++++++++++++-------------
- src/undo.c     |  9 +++++++++
- 2 files changed, 47 insertions(+), 13 deletions(-)
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin
 
-diff --git a/src/conflict.c b/src/conflict.c
-index 9ae2ddb..5613ace 100644
---- a/src/conflict.c
-+++ b/src/conflict.c
-@@ -450,7 +450,7 @@ get_relocated_mem (struct prelink_info *info, DSO *dso, GElf_Addr addr,
- int
- prelink_build_conflicts (struct prelink_info *info)
- {
--  int i, ndeps = info->ent->ndepends + 1;
-+  int i, reset_dynbss = 0, reset_sdynbss = 0, ndeps = info->ent->ndepends + 1;
-   struct prelink_entry *ent;
-   int ret = 0;
-   DSO *dso;
-@@ -675,6 +675,11 @@ prelink_build_conflicts (struct prelink_info *info)
- 		     dso->filename);
- 	      goto error_out;
- 	    }
-+
-+	  name = strptr (dso, dso->ehdr.e_shstrndx, dso->shdr[bss1].sh_name);
-+	  if (strcmp(name, ".data.rel.ro") == 0)
-+	    reset_sdynbss = 1;
-+
- 	  firstbss2 = i;
- 	  info->sdynbss_size = cr.rela[i - 1].r_offset - cr.rela[0].r_offset;
- 	  info->sdynbss_size += cr.rela[i - 1].r_addend;
-@@ -702,6 +707,10 @@ prelink_build_conflicts (struct prelink_info *info)
- 	    }
- 	}
- 
-+      name = strptr (dso, dso->ehdr.e_shstrndx, dso->shdr[bss2].sh_name);
-+      if (strcmp(name, ".data.rel.ro") == 0)
-+        reset_dynbss = 1;
-+
-       info->dynbss_size = cr.rela[cr.count - 1].r_offset
- 			  - cr.rela[firstbss2].r_offset;
-       info->dynbss_size += cr.rela[cr.count - 1].r_addend;
-@@ -719,9 +728,9 @@ prelink_build_conflicts (struct prelink_info *info)
- 	  && strcmp (name = strptr (dso, dso->ehdr.e_shstrndx,
- 				    dso->shdr[bss1].sh_name),
- 		     ".dynbss") != 0
--	  && strcmp (name, ".sdynbss") != 0)
-+	  && strcmp (name, ".sdynbss") != 0 && strcmp (name, ".data.rel.ro") != 0)
- 	{
--	  error (0, 0, "%s: COPY relocations don't point into .bss or .sbss section",
-+	  error (0, 0, "%s: COPY relocations don't point into .bss, .sbss, or .data.rel.ro sections",
- 		 dso->filename);
- 	  goto error_out;
- 	}
-@@ -730,9 +739,9 @@ prelink_build_conflicts (struct prelink_info *info)
- 	  && strcmp (name = strptr (dso, dso->ehdr.e_shstrndx,
- 				    dso->shdr[bss2].sh_name),
- 		     ".dynbss") != 0
--	  && strcmp (name, ".sdynbss") != 0)
-+	  && strcmp (name, ".sdynbss") != 0 && strcmp (name, ".data.rel.ro") != 0)
- 	{
--	  error (0, 0, "%s: COPY relocations don't point into .bss or .sbss section",
-+	  error (0, 0, "%s: COPY relocations don't point into .bss, .sbss, or .data.rel.ro section",
- 		 dso->filename);
- 	  goto error_out;
- 	}
-@@ -768,16 +777,21 @@ prelink_build_conflicts (struct prelink_info *info)
- 	      }
- 
- 	  assert (j < ndeps);
-+	  GElf_Addr symaddr = s->u.ent->base + s->value;
-+	  char *buf;
-+
- 	  if (i < firstbss2)
--	    j = get_relocated_mem (info, ndso, s->u.ent->base + s->value,
--				   info->sdynbss + cr.rela[i].r_offset
--				   - info->sdynbss_base, cr.rela[i].r_addend,
--				   cr.rela[i].r_offset);
-+	    if (reset_sdynbss)
-+	      buf = get_data(dso, cr.rela[i].r_offset, NULL, NULL);
-+	    else
-+	      buf = info->sdynbss + cr.rela[i].r_offset - info->sdynbss_base;
- 	  else
--	    j = get_relocated_mem (info, ndso, s->u.ent->base + s->value,
--				   info->dynbss + cr.rela[i].r_offset
--				   - info->dynbss_base, cr.rela[i].r_addend,
--				   cr.rela[i].r_offset);
-+	    if (reset_dynbss)
-+	      buf = get_data(dso, cr.rela[i].r_offset, NULL, NULL);
-+	    else
-+	      buf = info->dynbss + cr.rela[i].r_offset - info->dynbss_base;
-+
-+	  j = get_relocated_mem (info, ndso, symaddr, buf, cr.rela[i].r_addend, cr.rela[i].r_offset);
- 
- 	  switch (j)
- 	    {
-@@ -815,6 +829,17 @@ prelink_build_conflicts (struct prelink_info *info)
-     if (info->dsos[i])
-       close_dso (info->dsos[i]);
- 
-+  if (reset_sdynbss)
-+    {
-+      free (info->sdynbss);
-+      info->sdynbss = NULL;
-+    }
-+
-+  if (reset_dynbss)
-+    {
-+      free (info->dynbss);
-+      info->dynbss = NULL;
-+    }
-   info->dsos = NULL;
-   free (cr.rela);
-   return ret;
-diff --git a/src/undo.c b/src/undo.c
-index 8a55bf2..4c38dab 100644
---- a/src/undo.c
-+++ b/src/undo.c
-@@ -633,6 +633,15 @@ prelink_undo (DSO *dso)
- 	      d->d_buf = NULL;
- 	      dso->shdr[i].sh_type = SHT_NOBITS;
- 	    }
-+	  else if (dso->shdr[i].sh_type == SHT_PROGBITS
-+		   && strcmp (name, ".data.rel.ro") == 0)
-+	    {
-+	      scn = dso->scn[i];
-+	      d = elf_getdata (scn, NULL);
-+	      assert (d != NULL && elf_getdata (scn, d) == NULL);
-+	      assert (d->d_size == dso->shdr[i].sh_size);
-+	      assert (memset(d->d_buf, 0, d->d_size) == d->d_buf);
-+	    }
- 	  else if (dso->shdr[i].sh_type == SHT_RELA
- 		   && shdr[i].sh_type == SHT_REL)
- 	    {
--- 
-2.17.1
+(While it is not yet a requirement, I'd like to start doing it now.)
+
+Thanks!
+--Mark
+
+> ---
+>  src/rtld/dl-lookupX.h   |  6 +++---
+>  testsuite/Makefile.am   |  2 +-
+>  testsuite/reloc12.c     | 19 +++++++++++++++++++
+>  testsuite/reloc12.h     | 11 +++++++++++
+>  testsuite/reloc12.sh    | 20 ++++++++++++++++++++
+>  testsuite/reloc12lib1.c | 11 +++++++++++
+>  testsuite/reloc12lib2.c | 16 ++++++++++++++++
+>  7 files changed, 81 insertions(+), 4 deletions(-)
+>  create mode 100644 testsuite/reloc12.c
+>  create mode 100644 testsuite/reloc12.h
+>  create mode 100755 testsuite/reloc12.sh
+>  create mode 100644 testsuite/reloc12lib1.c
+>  create mode 100644 testsuite/reloc12lib2.c
+> 
+> diff --git a/src/rtld/dl-lookupX.h b/src/rtld/dl-lookupX.h
+> index 425bb4b..250c509 100644
+> --- a/src/rtld/dl-lookupX.h
+> +++ b/src/rtld/dl-lookupX.h
+> @@ -679,10 +679,10 @@ _dl_lookup_symbol_x (const char *undef_name, struct link_map *undef_map,
+>  	    if (do_lookup_x (undef_name, new_hash, &old_hash, *ref,
+>  			     &protected_value, *scope, i, version, flags,
+>  			     skip_map,
+> -			     (ELF_RTYPE_CLASS_EXTERN_PROTECTED_DATA(skip_map->machine)
+> +			     (ELF_RTYPE_CLASS_EXTERN_PROTECTED_DATA(undef_map->machine)
+>  			      && ELFW(ST_TYPE) ((*ref)->st_info) == STT_OBJECT
+> -			      && type_class == ELF_RTYPE_CLASS_EXTERN_PROTECTED_DATA(skip_map->machine))
+> -			     ? ELF_RTYPE_CLASS_EXTERN_PROTECTED_DATA(skip_map->machine)
+> +			      && type_class == ELF_RTYPE_CLASS_EXTERN_PROTECTED_DATA(undef_map->machine))
+> +			     ? ELF_RTYPE_CLASS_EXTERN_PROTECTED_DATA(undef_map->machine)
+>  			     : ELF_RTYPE_CLASS_PLT, NULL) != 0)
+>  	      break;
+>  
+> diff --git a/testsuite/Makefile.am b/testsuite/Makefile.am
+> index 030f65b..21de6a9 100644
+> --- a/testsuite/Makefile.am
+> +++ b/testsuite/Makefile.am
+> @@ -5,7 +5,7 @@ AM_CFLAGS = -Wall
+>  
+>  TESTS = movelibs.sh \
+>  	reloc1.sh reloc2.sh reloc3.sh reloc4.sh reloc5.sh reloc6.sh \
+> -	reloc7.sh reloc8.sh reloc9.sh reloc10.sh reloc11.sh \
+> +	reloc7.sh reloc8.sh reloc9.sh reloc10.sh reloc11.sh reloc12.sh \
+>  	shuffle1.sh shuffle2.sh shuffle3.sh shuffle4.sh shuffle5.sh \
+>  	shuffle6.sh shuffle7.sh shuffle8.sh shuffle9.sh undo1.sh \
+>  	layout1.sh layout2.sh unprel1.sh \
+> diff --git a/testsuite/reloc12.c b/testsuite/reloc12.c
+> new file mode 100644
+> index 0000000..cfa8888
+> --- /dev/null
+> +++ b/testsuite/reloc12.c
+> @@ -0,0 +1,19 @@
+> +#include "reloc12.h"
+> +#include <stdlib.h>
+> +
+> +int main()
+> +{
+> +  A* ptr = find('b');
+> +  if(b(ptr) != 0)
+> +    abort();
+> +
+> +  ptr = find('a');
+> +  if(b(ptr) != 1)
+> +    abort();
+> +
+> +  ptr = find('r');
+> +  if(b(ptr) != 2)
+> +    abort();
+> +
+> +  exit(0);
+> +}
+> diff --git a/testsuite/reloc12.h b/testsuite/reloc12.h
+> new file mode 100644
+> index 0000000..8e09405
+> --- /dev/null
+> +++ b/testsuite/reloc12.h
+> @@ -0,0 +1,11 @@
+> +typedef struct
+> +  {
+> +    char a;
+> +    int b;
+> +  } A;
+> +
+> +extern A foo[] __attribute ((visibility ("protected")));
+> +
+> +A* find(char a);
+> +char a(const A*);
+> +int b(const A*);
+> diff --git a/testsuite/reloc12.sh b/testsuite/reloc12.sh
+> new file mode 100755
+> index 0000000..a8a43c7
+> --- /dev/null
+> +++ b/testsuite/reloc12.sh
+> @@ -0,0 +1,20 @@
+> +#!/bin/bash
+> +. `dirname $0`/functions.sh
+> +rm -f reloc12 reloc12lib*.so reloc12.log
+> +rm -f prelink.cache
+> +$RUN_HOST $CC -shared -O2 -fpic -o reloc12lib1.so $srcdir/reloc12lib1.c
+> +$RUN_HOST $CC -shared -O2 -fpic -o reloc12lib2.so $srcdir/reloc12lib2.c
+> +BINS="reloc12"
+> +LIBS="reloc12lib1.so reloc12lib2.so"
+> +$RUN_HOST $CCLINK -o reloc12 $srcdir/reloc12.c -Wl,--rpath-link,. ${LIBS}
+> +savelibs
+> +echo $PRELINK ${PRELINK_OPTS--vm} ./reloc12 > reloc12.log
+> +$RUN_HOST $PRELINK ${PRELINK_OPTS--vm} ./reloc12 >> reloc12.log 2>&1 || exit 1
+> +grep -q ^`echo $PRELINK | sed 's/ .*$/: /'` reloc12.log && exit 2
+> +if [ "x$CROSS" = "x" ]; then
+> + $RUN LD_LIBRARY_PATH=. ./reloc12 || exit 3
+> +fi
+> +$RUN_HOST $READELF -a ./reloc12 >> reloc12.log 2>&1 || exit 4
+> +# So that it is not prelinked again
+> +chmod -x ./reloc12
+> +comparelibs >> reloc12.log 2>&1 || exit 5
+> diff --git a/testsuite/reloc12lib1.c b/testsuite/reloc12lib1.c
+> new file mode 100644
+> index 0000000..db7e64f
+> --- /dev/null
+> +++ b/testsuite/reloc12lib1.c
+> @@ -0,0 +1,11 @@
+> +#include "reloc12.h"
+> +
+> +char a(const A *d)
+> +{
+> +  return d ? d->a : 0;
+> +}
+> +
+> +int b(const A *d)
+> +{
+> +  return d ? d->b : -1;
+> +}
+> diff --git a/testsuite/reloc12lib2.c b/testsuite/reloc12lib2.c
+> new file mode 100644
+> index 0000000..ffa60a0
+> --- /dev/null
+> +++ b/testsuite/reloc12lib2.c
+> @@ -0,0 +1,16 @@
+> +#include "reloc12.h"
+> +
+> +A foo[] = {
+> +  { 'b', 0 },
+> +  { 'a', 1 },
+> +  { 'r', 2 }
+> +};
+> +
+> +A* find(char a)
+> +{
+> +  for(A* ptr = foo; ptr < foo + sizeof(foo)/sizeof(foo[0]); ptr++)
+> +    if(ptr->a == a)
+> +      return ptr;
+> +
+> +  return 0;
+> +}
+> 
 
 
