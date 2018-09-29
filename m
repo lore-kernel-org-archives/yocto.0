@@ -1,33 +1,35 @@
 Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD256E00A0A; Sat, 29 Sep 2018 02:25:57 -0700 (PDT)
+	id 241DBE00A9C; Sat, 29 Sep 2018 02:26:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
 	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB0ACE009D9
-	for <yocto@yoctoproject.org>; Sat, 29 Sep 2018 02:25:56 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w8T9Pu4X019490
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2FB1E00BA3
+	for <yocto@yoctoproject.org>; Sat, 29 Sep 2018 02:26:44 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w8T9QiWt019552
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sat, 29 Sep 2018 02:25:56 -0700 (PDT)
+	for <yocto@yoctoproject.org>; Sat, 29 Sep 2018 02:26:44 -0700 (PDT)
 Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.408.0; Sat, 29 Sep 2018 02:25:55 -0700
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.408.0; Sat, 29 Sep 2018 02:26:43 -0700
 From: <changqing.li@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Sat, 29 Sep 2018 17:25:53 +0800
-Message-ID: <1538213153-18548-1-git-send-email-changqing.li@windriver.com>
+Date: Sat, 29 Sep 2018 17:26:19 +0800
+Message-ID: <1538213181-18700-2-git-send-email-changqing.li@windriver.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1538213181-18700-1-git-send-email-changqing.li@windriver.com>
+References: <1538213181-18700-1-git-send-email-changqing.li@windriver.com>
 MIME-Version: 1.0
-Subject: [PATCH][meta-security] bseccomp: fix do package qa warning
+Subject: [PATCH][meta-virtualization] docker: fix package qa warning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,34 +41,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Sep 2018 09:25:57 -0000
+X-List-Received-Date: Sat, 29 Sep 2018 09:26:49 -0000
 Content-Type: text/plain
 
 From: Changqing Li <changqing.li@windriver.com>
 
-Fix below warning:
-
-lib32-libseccomp-2.3.3-r0 do_package: QA Issue: lib32-libseccomp:
-Files/directories were installed but not shipped in any package:
+fix below warning:
+do_package_qa: QA Issue: ELF binary 'xxx/usr/bin/docker'
+has relocations in .text [textrel]
 
 Signed-off-by: Changqing Li <changqing.li@windriver.com>
 ---
- recipes-security/libseccomp/libseccomp_2.3.3.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-containers/docker/docker_git.bb            |  1 +
+ .../files/0001-fix-do_package_qa-error.patch       | 31 ++++++++++++++++++++++
+ 2 files changed, 32 insertions(+)
+ create mode 100644 recipes-containers/docker/files/0001-fix-do_package_qa-error.patch
 
-diff --git a/recipes-security/libseccomp/libseccomp_2.3.3.bb b/recipes-security/libseccomp/libseccomp_2.3.3.bb
-index 0a8a679..9c66db6 100644
---- a/recipes-security/libseccomp/libseccomp_2.3.3.bb
-+++ b/recipes-security/libseccomp/libseccomp_2.3.3.bb
-@@ -35,7 +35,7 @@ do_install_ptest() {
-     done
- }
+diff --git a/recipes-containers/docker/docker_git.bb b/recipes-containers/docker/docker_git.bb
+index 73e0120..1a8d1a6 100644
+--- a/recipes-containers/docker/docker_git.bb
++++ b/recipes-containers/docker/docker_git.bb
+@@ -28,6 +28,7 @@ SRC_URI = "\
+ 	file://docker.init \
+ 	file://hi.Dockerfile \
+         file://0001-libnetwork-use-GO-instead-of-go.patch \
++        file://0001-fix-do_package_qa-error.patch \
+ 	"
  
--FILES_${PN} = "${bindir} ${libdir}/${PN}.so*"
-+FILES_${PN} = "${bindir} ${libdir}/${BPN}.so*"
- FILES_${PN}-dbg += "${libdir}/${PN}/tests/.debug/* ${libdir}/${PN}/tools/.debug"
- 
- RDEPENDS_${PN}-ptest = "bash"
+ # Apache-2.0 for docker
+diff --git a/recipes-containers/docker/files/0001-fix-do_package_qa-error.patch b/recipes-containers/docker/files/0001-fix-do_package_qa-error.patch
+new file mode 100644
+index 0000000..79e71a5
+--- /dev/null
++++ b/recipes-containers/docker/files/0001-fix-do_package_qa-error.patch
+@@ -0,0 +1,31 @@
++From 56c865e2a7269d63f0780b4cd1ed6fdb18e3ff1b Mon Sep 17 00:00:00 2001
++From: Changqing Li <changqing.li@windriver.com>
++Date: Wed, 26 Sep 2018 17:41:59 +0800
++Subject: [PATCH] fix do_package_qa error
++
++fix below error:
++do_package_qa: QA Issue: ELF binary 'xxx/usr/bin/docker' 
++has relocations in .text [textrel]
++
++Upstream-Status: Inappropriate [oe-specific]
++
++Signed-off-by: Changqing Li <changqing.li@windriver.com>
++---
++ cli/scripts/build/dynbinary | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/cli/scripts/build/dynbinary b/cli/scripts/build/dynbinary
++index 3c32ed3..938e086 100755
++--- a/cli/scripts/build/dynbinary
+++++ b/cli/scripts/build/dynbinary
++@@ -9,6 +9,6 @@ source ./scripts/build/.variables
++ 
++ echo "Building dynamically linked $TARGET"
++ export CGO_ENABLED=1
++-go build -o "${TARGET}" -tags pkcs11 --ldflags "${LDFLAGS}" "${SOURCE}"
+++go build -o "${TARGET}" -tags pkcs11 --ldflags "${LDFLAGS}" -buildmode=pie "${SOURCE}" 
++ 
++ ln -sf "$(basename "${TARGET}")" build/docker
++-- 
++2.7.4
++
 -- 
 2.7.4
 
