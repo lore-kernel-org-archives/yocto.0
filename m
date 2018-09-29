@@ -1,61 +1,33 @@
-Return-Path: <outbackdingo@gmail.com>
+Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC7D7E00A0A; Fri, 28 Sep 2018 23:46:11 -0700 (PDT)
+	id DD256E00A0A; Sat, 29 Sep 2018 02:25:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.46 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (outbackdingo[at]gmail.com)
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
-	[209.85.128.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 712C2E009D9
-	for <yocto@yoctoproject.org>; Fri, 28 Sep 2018 23:46:09 -0700 (PDT)
-Received: by mail-wm1-f46.google.com with SMTP id r63-v6so56715wma.4
-	for <yocto@yoctoproject.org>; Fri, 28 Sep 2018 23:46:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=SylxjWX1XNcO7qSzm32m04kHp56U8NcUw1eK1r3qVxw=;
-	b=laq9uWHkRJ9tjdIl0TzxhCzDtbaVRpwWK+S0DKI7mYE9Rs/IjRS80DGftmpTQYzqL4
-	eClqafDShfYRZ9r2Mpvkbok1UduZStwS/oL+UZxnxJ0odsCDaclfTIO9KCCXBOvMbmb8
-	jx139VikzqOpOGqQe5OsESzjHsoRaO1ADuEbUaRrnYCKs7gkOIp7ARWc2cJyYvBX97RF
-	PlJt4TRbPQ+ovERU8VfmPqQvJNEkX5+Y864DQDRjmawn4DqD6fHMbfD7K6Zj3C6uTID0
-	kbMHRN+bMErW6XCpW2ZQp+xqDWFQoGlj2RSvNXVTPnaj+0gAkON9N2OarbaRDILfHNii
-	w23g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=SylxjWX1XNcO7qSzm32m04kHp56U8NcUw1eK1r3qVxw=;
-	b=B8pMGkq0ldXq1Ke5bXZv78BPlTb7Sy53mRaks64PJK2DyFs9loSUq8L0dx4TBlJ0rN
-	ORL6WioeQGC/jy8ykZ0xcukkvXxqjPQexnj47zofgXImxBhjgxfAREnD/XRgIhz17c2d
-	zBI/XyxehAR70E1w90ar6GQ2oFTZEAd8HcbN7OTBqzRwcumbVkv8wkDC5XOtL4s2tpsA
-	kYjAFlNFFkFwLV3QvreyaVtn42EgFFsJD3OOt+80r3NAxnPSERGHlPnXf9XTIrgP7qSi
-	GYFPgYM82jxxDStP8u1fqV1gXHZAsvupp3nqgd6tTu9JsXkDTC9Xiaw5B2F1XpCNQrJX
-	bg3g==
-X-Gm-Message-State: ABuFfojzsq5/0omklsOAC4DAHcAkRvhbhpFTmYkBxx1wifCRzVPcIb8R
-	ReK5cQKn4Nshs2lzFNaWcGdaZcsxT8oGGBP8BJ4NEgAw
-X-Google-Smtp-Source: ACcGV617g3HqVx5qPXvGQwB49VFGCQ25O8R1NHk9WeOd2tR2lctj8yw8BEGJsskTci2N+8FPnzaepSLXAPqTJVe4xQY=
-X-Received: by 2002:a1c:908b:: with SMTP id
-	s133-v6mr3582431wmd.69.1538203568099; 
-	Fri, 28 Sep 2018 23:46:08 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB0ACE009D9
+	for <yocto@yoctoproject.org>; Sat, 29 Sep 2018 02:25:56 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w8T9Pu4X019490
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Sat, 29 Sep 2018 02:25:56 -0700 (PDT)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.408.0; Sat, 29 Sep 2018 02:25:55 -0700
+From: <changqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Sat, 29 Sep 2018 17:25:53 +0800
+Message-ID: <1538213153-18548-1-git-send-email-changqing.li@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-From: Outback Dingo <outbackdingo@gmail.com>
-Date: Sat, 29 Sep 2018 13:45:31 +0700
-Message-ID: <CAKYr3zzFeej=AvTO-m+ixSd3608qeiL2DL1N3pSTgwcr0Uh+=w@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Yocto poky headless Pi 0 W - OTG /RNDIS
+Subject: [PATCH][meta-security] bseccomp: fix do package qa warning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,50 +39,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Sep 2018 06:46:11 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Sat, 29 Sep 2018 09:25:57 -0000
+Content-Type: text/plain
 
-Headless Raspberry PI 0 W cant get OTG rndis up, i followed the guide and set
-ENABLE_UART = "1"
-ENABLE_DWC2_PERIPHERAL = "1"
+From: Changqing Li <changqing.li@windriver.com>
 
-current config is
+Fix below warning:
 
-MACHINE ??= "raspberrypi0-wifi"
-SERIAL_CONSOLE = ""
-ENABLE_UART = "1"
-ENABLE_DWC2_PERIPHERAL = "1"
-DISABLE_RPI_BOOT_LOGO = "1"
-DISABLE_OVERSCAN = "1"
-DISABLE_SPLASH = "1"
-BOOT_DELAY = "0"
-GPU_MEM_256 = "128"
-GPU_MEM_512 = "196"
-GPU_MEM_1024 = "396"
-DISTRO_FEATURES_remove = "x11"
-DISTRO_FEATURES_append = " opengl"
-PACKAGE_CLASSES = "package_ipk"
-IMAGE_INSTALL_append = " chrony"
-IMAGE_INSTALL_append = " linux-firmware-bcm43430 wpa-supplicant"
-IMAGE_FSTYPES = "tar.bz2 ext4 rpi-sdimg"
-SDIMG_ROOTFS_TYPE = "ext4"
-CORE_IMAGE_EXTRA_INSTALL += "openssh"
-DISTRO_FEATURES_append += "bluez5 bluetooth wifi"
+lib32-libseccomp-2.3.3-r0 do_package: QA Issue: lib32-libseccomp:
+Files/directories were installed but not shipped in any package:
 
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
+---
+ recipes-security/libseccomp/libseccomp_2.3.3.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-as following the docs it stated
-ENABLE_UART = "1"
-ENABLE_DWC2_PERIPHERAL = "1"
+diff --git a/recipes-security/libseccomp/libseccomp_2.3.3.bb b/recipes-security/libseccomp/libseccomp_2.3.3.bb
+index 0a8a679..9c66db6 100644
+--- a/recipes-security/libseccomp/libseccomp_2.3.3.bb
++++ b/recipes-security/libseccomp/libseccomp_2.3.3.bb
+@@ -35,7 +35,7 @@ do_install_ptest() {
+     done
+ }
+ 
+-FILES_${PN} = "${bindir} ${libdir}/${PN}.so*"
++FILES_${PN} = "${bindir} ${libdir}/${BPN}.so*"
+ FILES_${PN}-dbg += "${libdir}/${PN}/tests/.debug/* ${libdir}/${PN}/tools/.debug"
+ 
+ RDEPENDS_${PN}-ptest = "bash"
+-- 
+2.7.4
 
-for OTG, buut i dont seem to see any rndis on my laptop via thhe
-second poort, Rasbian / DietPI work fine, so do i need to edit the
-config.txt and cmdline.txt like in Raspbian? also do we need a ssh
-file in boot as also with Raspbian ?
-
-Edit the file config.txt and add dtoverlay=dwc2 on its own line at the end.
-Edit the file cmdline.txt and add modules-load=dwc2,g_ether right
-after it says rootwait
-
-
-Thanks in Advance
 
