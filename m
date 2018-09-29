@@ -1,46 +1,67 @@
-Return-Path: <Randy.MacLeod@windriver.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 92007E00950; Sat, 29 Sep 2018 10:40:43 -0700 (PDT)
+	id 1234CE00ABE; Sat, 29 Sep 2018 11:31:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C07D6E00826
-	for <yocto@yoctoproject.org>; Sat, 29 Sep 2018 10:40:42 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w8THedkT007745
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sat, 29 Sep 2018 10:40:39 -0700 (PDT)
-Received: from [172.25.44.4] (172.25.44.4) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
-	Sat, 29 Sep 2018 10:40:38 -0700
-From: Randy MacLeod <randy.macleod@windriver.com>
-To: Paul Eggleton <paul.eggleton@intel.com>
-References: <1721109.tuLG3TFsTU@localhost.localdomain>
-	<CAP71WjzUkYnazb3VHzEHgEDHoRqKdOT89Waw_hAy6pRyh8=BNA@mail.gmail.com>
-	<156dc277-4255-aaf3-cb9f-f25a4481189f@windriver.com>
-	<1907640.U4zZL0Bqpb@localhost.localdomain>
-	<ca07c8cc-7ff0-eba4-e235-0707c6c8ada1@windriver.com>
-	<d8427b2a-b63f-e19c-1fc7-6cb365dc63ff@windriver.com>
-Message-ID: <300c15ce-48f1-dde7-c231-b604b38d0922@windriver.com>
-Date: Sat, 29 Sep 2018 13:40:30 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
-MIME-Version: 1.0
-In-Reply-To: <d8427b2a-b63f-e19c-1fc7-6cb365dc63ff@windriver.com>
-X-Originating-IP: [172.25.44.4]
-Cc: yocto@yoctoproject.org,
-	openembedded-devel <openembedded-devel@lists.openembedded.org>, Patches and
-	discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] layers.openembedded.org upgraded
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.193 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
+Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
+	[209.85.215.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03E8FE0097C
+	for <yocto@yoctoproject.org>; Sat, 29 Sep 2018 11:31:45 -0700 (PDT)
+Received: by mail-pg1-f193.google.com with SMTP id i4-v6so6081501pgq.9
+	for <yocto@yoctoproject.org>; Sat, 29 Sep 2018 11:31:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=WX+dCMeDTCXgVU6ScUh+rMuhY164O6ekI5hBRcS1Eh8=;
+	b=PhuOtXLonCtP1k/NFab58l3G7Y4aqBxXpxwkAnrAClo16E/1eWc8kwJ2XnWWBd59YU
+	EfyImvPaYHtilBXH4vuMm0L5/XlqfbExwD65qgCFjsgRYqvGZ8nfnROYQs858LCF2yel
+	xHQ15bsEQIw4jU+yalKrRfjyMxPPenMkyaPfuJRQkn7HqaNUgNE6p7VG/tRW6IcrAJ6J
+	FmYvHhWAcLgRmdwBuv5K7cJ0SG4pmBeV2xfSQQ4LLe6y6lLfqnsXL+I+65p5CInKQ9jR
+	AkbWIZ42L/kWZZsoacjbKshTva6dG3aBKchH1NR/6PQqmX6rY8fITeF8swGIrk2IBfEI
+	L7gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=WX+dCMeDTCXgVU6ScUh+rMuhY164O6ekI5hBRcS1Eh8=;
+	b=MjhaDeB08RYx84acNynYtRt4eeo/nEO4hAERaKmSBFdA8Vr67exDzJ6OhcxQVrlgpt
+	j4FlrqyX9lLZCPZOM/nDSYwHWj5elAAynH1CIFBPUEZK/8vUd8+eeAXRPKo1lDYZSKoX
+	vaqywGzUhFwKTZ/mtlxpwMAZg6bwqmveyPwxkLdgEZdEu8n7FJurcKR+URWXyGONKVVE
+	7U7FJoeBI8JrphcLUnMLveBqZQBjSwUi+YRnSF9C1GYK0+G7tD/wdf0uNE8qMgxdDtwm
+	1SN86m2IlDcngNbKiRzK9ujUtI3GeglYCasyJXB9ejW9CciEYO4jD0YfdZkdXsTXeP6G
+	ordg==
+X-Gm-Message-State: ABuFfojYiuN/u1gyuGiW0d4//LkGhOzO0xuW/ZIXF3aCRdKgH0m31MWG
+	7Sf+LKjn/uOGxuURIfnyOkg=
+X-Google-Smtp-Source: ACcGV61Olw18XESF2bLboBZgId0CK65215XbFlkUy0nMMKrkxNNtxElwjoFOsdmp6zJyfwdHZu+upQ==
+X-Received: by 2002:a62:7043:: with SMTP id
+	l64-v6mr4110491pfc.65.1538245905470; 
+	Sat, 29 Sep 2018 11:31:45 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	l185-v6sm17077606pga.5.2018.09.29.11.31.44
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 29 Sep 2018 11:31:44 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: akuster808@gmail.com,
+	yocto@yoctoproject.org
+Date: Sat, 29 Sep 2018 11:31:43 -0700
+Message-Id: <20180929183143.22778-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH] packagegroup-security-tpm2: cleanup to reflect tss changes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,183 +73,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Sep 2018 17:40:43 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 29 Sep 2018 18:31:47 -0000
 
-On 09/28/2018 03:22 PM, Randy MacLeod wrote:
-> On 09/27/2018 08:01 PM, Randy MacLeod wrote:
->> On 09/27/2018 07:33 PM, Paul Eggleton wrote:
->>> Hi Randy
->>>
->>> On Friday, 28 September 2018 11:22:29 AM NZST Randy MacLeod wrote:
->>>> On 09/27/2018 05:28 PM, Nicolas Dechesne wrote:
->>>>> On Thu, Sep 27, 2018 at 10:43 PM Paul 
->>>>> Eggleton<paul.eggleton@intel.com>  wrote:
->>>>>> I'm very happy to announce that we've finally been able to upgrade 
->>>>>> the layer
->>>>>> index athttp://layers.openembedded.org  to the latest revision on 
->>>>>> master,
->>>>>> incorporating quite a bit of work that's been going on for the 
->>>>>> past few
->>>>>> months. Improvements now visible:
->>>> Nice new features, thanks!
->>>>
->>>> The "Branch:" and "Filter layers" selection menus don't work
->>>> for me when using Firefox 62.0 (64-bit) on Ubuntu-18.04.
->>>>
->>>> Google Chrome Version 69.0.3497.100 (Official Build) (64-bit)
->>>> works fine.
->>> Hmm, I do my development with Firefox and I just checked - with Firefox
->>> 62.0 (64-bit) here on Fedora 28 both work. Do you perhaps have an add-on
->>> enabled that might prevent these from working? I believe they both 
->>> rely on
->>> javascript (the filter dropdown definitely does).
->>
->> Does anyone else see this problem?
->> I've also asked on IRC.
->>
->> I did have Firefox Lightbeam (disabled) and Quiick Java but I removed 
->> them both,
->> re-started FF and still no joy/menus.
-> 
-> One co-worker said that it works for him using
->      Firefox 62.0 (64-bit) on Ubuntu-18.04
-> he has uBlock and Ghostery
-> and another has no problems with the new code when using:
->      Firefox 52.8.0 (32-bit)
-> 
-> ( 32 bit!! yikes! :)  )
-> 
-> I've restarted FF again, cut back on the crazy number of tabs
-> and the problem persists. Let me know if you know of any other
-> sites that use this JS code and I'd be happy to test with my
-> setup. I'll likey also reboot (sigh) and if needed try using a
-> test account on the laptop.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../recipes-core/packagegroup/packagegroup-security-tpm2.bb    | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-It works for me now but it's not clear why. It seems that
-it was a problem with my firefox profile.
-
-Work log below in case it might help someone else.
-
-../Randy
-
-
-I rebooted:
-   - still no menu.
-I logged out and then into another account on the same laptop:
-   - it worked.
-I created another firefox profile in my usual account:
-   - it worked.
-I deleted that profile and used my default profile:
-   - still no menu.
-While visiting layers.openembedded.org, I opened the firefox
-console using Shift+Control+K
-   - I re-loaded the site.
-   - it worked!
-I closed the console:
-   - it worked!
-I restarted firefox:
-   - it still works!
-
-Hmmm, oh well.
-
-../Randy
-
-> 
-> 
-> According my read of the traceback, the failing code is in:
-> view-source:https://layers.openembedded.org/static/js/jquery-3.3.1.js
-> 
-> ...
-> Sizzle.matchesSelector = function( elem, expr ) {
->      // Set document vars if needed
->      if ( ( elem.ownerDocument || elem ) !== document ) {
->          setDocument( elem );
->      }
-> 
->      // Make sure that attribute selectors are quoted
->      expr = expr.replace( rattributeQuotes, "='$1']" );
-> 
->      if ( support.matchesSelector && documentIsHTML &&
->          !compilerCache[ expr + " " ] &&
->          ( !rbuggyMatches || !rbuggyMatches.test( expr ) ) &&
->          ( !rbuggyQSA     || !rbuggyQSA.test( expr ) ) ) {
-> 
->          try {
->              var ret = matches.call( elem, expr );
-> 
->              // IE 9's matchesSelector returns false on disconnected nodes
->              if ( ret || support.disconnectedMatch ||
->                      // As well, disconnected nodes are said to be in a 
-> document
->                      // fragment in IE 9
->                      elem.document && elem.document.nodeType !== 11 ) {
->                  return ret;
->              }
->          } catch (e) {}
->      }
-> 
->      return Sizzle( expr, document, null, [ elem ] ).length > 0;
-> };
-> 
-> I don't see any relevant issues here:
->     https://github.com/jquery/sizzle/issues/
-> but I don't speak javascript.
-> 
-> ../Randy
->>
->>
->> Looking at:
->> Menu->Web Developer -> Browser Console ( Control+Shift+J )
->> I see:
->>
->> Error: Syntax error, unrecognized expression: # jquery-3.3.1.js:1541:8 
->> <https://layers.openembedded.org/static/js/jquery-3.3.1.js>
->> Sizzle</Sizzle.error 
->> https://layers.openembedded.org/static/js/jquery-3.3.1.js:1541:8 
->> Sizzle</Sizzle.tokenize 
->> https://layers.openembedded.org/static/js/jquery-3.3.1.js:2193:4 
->> Sizzle</Sizzle.select 
->> https://layers.openembedded.org/static/js/jquery-3.3.1.js:2620:20 
->> Sizzle https://layers.openembedded.org/static/js/jquery-3.3.1.js:845:9 
->> find https://layers.openembedded.org/static/js/jquery-3.3.1.js:2873:4 
->> jQuery.fn.init 
->> https://layers.openembedded.org/static/js/jquery-3.3.1.js:2983:14 
->> jQuery 
->> https://layers.openembedded.org/static/js/jquery-3.3.1.js:139:10 
->> getParent 
->> https://layers.openembedded.org/static/js/bootstrap.js:754:27 
->> clearMenus/< 
->> https://layers.openembedded.org/static/js/bootstrap.js:741:7 each 
->> https://layers.openembedded.org/static/js/jquery-3.3.1.js:354:10 each 
->> https://layers.openembedded.org/static/js/jquery-3.3.1.js:189:10 
->> clearMenus 
->> https://layers.openembedded.org/static/js/bootstrap.js:740:5 dispatch 
->> https://layers.openembedded.org/static/js/jquery-3.3.1.js:5182:16 
->> add/elemData.handle 
->> https://layers.openembedded.org/static/js/jquery-3.3.1.js:4991:6
->>
->> Does that help at all?
->>
->> ../Randy
->>
->>
->>
->>> Cheers,
->>> Paul
->>>
->>
->> -- 
->> # Randy MacLeod
->> # Wind River Linux
->>
-> 
-> 
-
-
+diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
+index 13b505f..363367c 100644
+--- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
++++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
+@@ -12,7 +12,6 @@ RDEPENDS_packagegroup-security-tpm2 = " \
+     tpm2.0-tools \
+     trousers \
+     libtss2 \
+-    libtctidevice \
+-    libtctisocket \
++    libtss2-tcti-device \
+     resourcemgr \
+     "
 -- 
-# Randy MacLeod
-# Wind River Linux
+2.17.1
+
 
