@@ -1,123 +1,96 @@
-Return-Path: <Jef.Driesen@niko.eu>
+Return-Path: <a.spin@datawatt.nl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E33C2E00AB3; Mon,  1 Oct 2018 22:26:58 -0700 (PDT)
+	id 079BCE00AB3; Tue,  2 Oct 2018 00:16:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [40.107.8.45 listed in list.dnswl.org]
+	*      [104.47.2.87 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 46885 seconds by postgrey-1.32 at yocto-www;
-	Mon, 01 Oct 2018 22:26:56 PDT
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com
-	(mail-eopbgr80045.outbound.protection.outlook.com [40.107.8.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2344AE0097C
-	for <yocto@yoctoproject.org>; Mon,  1 Oct 2018 22:26:56 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 2124 seconds by postgrey-1.32 at yocto-www;
+	Tue, 02 Oct 2018 00:16:09 PDT
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0087.outbound.protection.outlook.com [104.47.2.87])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09474E0097C
+	for <yocto@yoctoproject.org>; Tue,  2 Oct 2018 00:16:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=nikogroup.onmicrosoft.com; s=selector1-niko-eu;
+	d=datawatt.onmicrosoft.com; s=selector1-datawatt-nl;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=SMXiAGHQpjeQPg7SMBL9Mwl35/vdnTKj6Ky7ZBZRQJY=;
-	b=gvnOaJ/QtO3q3w10YUXNvdkQCyHetN6J6ROzyXdDncRNX+vHgcQnn9xaFOLjYlMlRB9VfII/4Wo1wNX3aUIvOPVjgyG0h7CZpZOJ8g8v80/MXZjLfQKDFt1jLBFsZajrRI8VcGueHUoBTbwh3haLV1Wi9WdZGHUjrLnA7paUI50=
-Authentication-Results: spf=none (sender IP is )
-	smtp.mailfrom=Jef.Driesen@niko.eu; 
-Received: from [0.0.0.0] (81.82.27.10) by
-	VI1PR08MB0382.eurprd08.prod.outlook.com (2a01:111:e400:5829::24) with
+	bh=bN5Jg7ngPnzj2D83w2kRc+8x+kNjooG5d6wDCkMteSg=;
+	b=kQson0SLDnzhSBaqeCAwzOwZ0vRoCzPmLeUMHf4t/JkW+N+cZKyoBjD5wtpYJ/oAM25bf3/JA5fnA78Wb5exqJcQCqtkV8zlkkbmJIJ+Q1gh5xY/L/wXhOlqnsCXacBKE+I4F2byAZBU0obcZNAPMFgV0huVj6lfSjyCxNClSZw=
+Received: from AM0PR0102MB3570.eurprd01.prod.exchangelabs.com
+	(2603:10a6:208:4::15) by AM0PR0102MB3570.eurprd01.prod.exchangelabs.com
+	(2603:10a6:208:4::15) with TransportReplication id Version 15.20 (Build
+	1143.19); Mon, 1 Oct 2018 21:44:01 +0000
+Received: from VI1PR0102MB3359.eurprd01.prod.exchangelabs.com (52.134.7.15) by
+	VI1PR0102MB3584.eurprd01.prod.exchangelabs.com (52.134.13.16) with
 	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1185.22;
-	Mon, 1 Oct 2018 13:51:55 +0000
-To: yocto@yoctoproject.org
-From: Jef Driesen <jef.driesen@niko.eu>
-Message-ID: <efd194b4-ab20-ccfc-7697-ae8e370515a0@niko.eu>
-Date: Mon, 1 Oct 2018 15:51:50 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
-MIME-Version: 1.0
-X-Originating-IP: [81.82.27.10]
-X-ClientProxiedBy: VI1P194CA0051.EURP194.PROD.OUTLOOK.COM
-	(2603:10a6:803:3c::40) To VI1PR08MB0382.eurprd08.prod.outlook.com
-	(2a01:111:e400:5829::24)
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c2c90c46-3184-4812-143f-08d627a50caa
-X-Microsoft-Antispam: BCL:0; PCL:0;
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1143.18; Mon, 1 Oct 2018 14:50:56 +0000
+Received: from VI1PR0102MB3359.eurprd01.prod.exchangelabs.com
+	([fe80::b4a4:ec81:fc6d:468]) by
+	VI1PR0102MB3359.eurprd01.prod.exchangelabs.com
+	([fe80::b4a4:ec81:fc6d:468%5])
+	with mapi id 15.20.1185.024; Mon, 1 Oct 2018 14:50:56 +0000
+From: Alberto Spin <a.spin@datawatt.nl>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [mono][msbuild][nuget] Building c# application for mono
+Thread-Index: AdRZlYWObtD1BokhQfOjDkLL3kEPqg==
+Date: Mon, 1 Oct 2018 14:50:55 +0000
+Message-ID: <VI1PR0102MB3359BFFD10CD302A9AD7E03E9BEF0@VI1PR0102MB3359.eurprd01.prod.exchangelabs.com>
+Accept-Language: en-US, nl-NL
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=a.spin@datawatt.nl; 
+x-originating-ip: [213.126.127.90]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; AM0PR0102MB3570;
+	6:dgb+EirafyFUE56UYs7R0kyoC7ATI5I42OmUt2Kkp1xFgpFlV0u1ZapgGW2S/YVSSGp93ZYBT2p5g1SKZYK8XTPlKdjdpdHqCGViU5UawAimnDBvoBjL0/xJDH4brBdlg9PP06xxMha1sCRC6XNg+LIeNDaJXATBgSQyShrP9kdHdDalwOO/KtJ6fVVd4YS1M2RRbfmEj33FOZ7wahLMqEt+QhQTgaIfzJv2nUbeT0w4E2GqidUwcbCMII6SFZ75v42vhleo5An6Xh7qbi0ZYMC5dAvUaZKUYYUFe9pyHAq8JmXKFrx9+gVmv8V5zw69F+GIs50iu7BY/nz37aWXC880qJZXvHtAkFv5DeuKnvvSFKY98M6uAL01/egegNjzwr5qAOofwIqUaQgDJawYt/uS9LlSZvlAu9+7Riy8KmuovRgzqdegHOjenEwsMVUtKTZd0RxiRVGXWYl9xzfbFg==;
+	5:yBI3u0Ia3wJSIwuZyvkCzFYN7ZMgljJ32QEiYnJAaURXItsf6g1l5XmRxY8VRvVj/1PYu8I8C54+rS627uxOiOXZoVDWLZUXRAc+MAiTfrNPFQXH07RpNJ4GjH1zy4rdVOsQgrLhAGu1NJnreAhny/1bKwD8ToYg2lhL6Yzy8CU=;
+	7:pgvlmi9O4Z+HmcAhjSY6vPWPd2kHDECMYVjQD4zLSNum4k2DzZMUEE/9ADg9DB4lqzX7qCq+V0OdHevBMNPDHffh9qCSPVRrYU49+iqaAq/E0p/7RbP7+Jcr64UyH4NdkO6JlZu0IqH5bw6RXJ06U268pW1oeSlBV6sTHKEMSSPrYAsSo1slSnavr22Ap72x/Gg2+bYFjSYXFrMbpbOO7o3RShr1D/VdEFfq0UOxJDWS73gabqGywT4HON72qfUQ
+x-ms-exchange-antispam-srfa-diagnostics: SOS;
+x-ms-office365-filtering-correlation-id: 0b4b4a74-57a4-40b7-5171-08d627ad4afc
+x-microsoft-antispam: BCL:0; PCL:0;
 	RULEID:(7020095)(4652040)(7021125)(8989299)(4534165)(7022125)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600074)(711020)(2017052603328)(7153060)(7193020);
-	SRVR:VI1PR08MB0382; 
-X-Microsoft-Exchange-Diagnostics: 1; VI1PR08MB0382;
-	3:hUUT18ibnNK1mKmpko/DdA0IUNzMrnYaeTl4fTryb7WB0BGY3GmDskJfcJ6jxujTYDQcEcVbBDqymqg9AWK0eB1rVNjnVMMbQ/c1X1UYxN17/vNm+2yKnYDejj3F06SON7K2csreQrMtd1ANnkQxEJWSLp2ROdCLcidaQUbHFT3X1W+PYUJlIwDrYspd22En1FUIcTuq2b0Dh5lLRaHNlCfxNm1OohRCET+DRDzYqZI9eJpCDDYpjTBXTSQvN/Ea;
-	25:rfkk6nri+TdvjSqukX6huVmgxErKlUk9J4x7dwgfXww5608Nx98K+K1OtZwUvLfsXv3EoEKpcds5KrPbh/3B73KaVZ+0cy7s4cx2jKWGLo4zwiJ3LlcA2jM1yRy10OabOinrTgfWmzur9mnU8zcbgIeVR9dBqPjwPhqm/fEp0BefvXQUoYLyUgH8ss3Z+o7cMK+JKQwBbmULHOdcd/X/rYCbjdF1f5/9kNsjXbmrkEf/+9V2LOGGPjInvmcCncQxn698swLjPRfr0hvwHWEBHrA770HaempfPDQtbIXt5XKXSjDisyJbBmfAYIJAphqlMfXJ77Kfy1jWAaE8+L8EOw==;
-	31:C9CqkFqAhPIXQVhUf4ld5rprlqSnG9WDT+MtX+lxyB9zcYflEhkedvzZuW9Y/EcpW1AN+t8XdRjnuPk/2ij2Bz2rxJAMD7thXkZRY8UWS72jZe8zYqMLXdaYLOavQDl7xw5G7CZCGhjyVREBLVJsgSLkBLZL/kX3pNG15Xu4Jp3pUD4YiKzpl4kRUysqdVPkBE+byfCtMBEhP0AWcuxWA8jjzGDCc0XBA7xIeMM7rf4=
-X-MS-TrafficTypeDiagnostic: VI1PR08MB0382:
-X-Microsoft-Antispam-PRVS: <VI1PR08MB03822C87BDF5629F423E00ACE2EF0@VI1PR08MB0382.eurprd08.prod.outlook.com>
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-MS-Exchange-SenderADCheck: 1
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
-	RULEID:(8211001083)(6040522)(2401047)(5005006)(8121501046)(3002001)(3231355)(944501410)(52105095)(10201501046)(93006095)(93001095)(149066)(150057)(6041310)(2016111802025)(20161123558120)(20161123562045)(20161123564045)(20161123560045)(6043046)(201708071742011)(7699051);
-	SRVR:VI1PR08MB0382; BCL:0; PCL:0; RULEID:; SRVR:VI1PR08MB0382; 
-X-Microsoft-Exchange-Diagnostics: 1; VI1PR08MB0382;
-	4:I9WmxDXl1KQ0BsbP9kGqn31lw9qtf8Tk8Jq1irfuBlxaUGNa+5xIo+aaSlhKBMxvT3+6RyWreW0tqYJ8yULYU5Jj1r+xoxU+gV4nF5obrGh2AAN+xgv/9mKWm1bSwUqDXmM2pqiuafJoCAakF6I6h2dYJ/pYWj/EENaHnD2RYFjHLWPPuNspIcahFj2alaceUWajfSdfjcbd8A7y16QQjqZCbJcfJLk/GyDytoa86ZR3EXYu6JUpLNCvC7v9vyR1eXJwnYUodEWo9LINoPER8Q==
-X-Forefront-PRVS: 0812095267
-X-Forefront-Antispam-Report: SFV:NSPM;
-	SFS:(10009020)(6049001)(366004)(39850400004)(396003)(376002)(136003)(346002)(199004)(189003)(16576012)(6916009)(6666003)(52146003)(106356001)(67846002)(74482002)(386003)(23676004)(2486003)(47776003)(36756003)(2351001)(65826007)(97736004)(105586002)(72206003)(26005)(2906002)(2616005)(86362001)(508600001)(49976009)(316002)(486006)(31696002)(65956001)(66066001)(58126008)(186003)(16526019)(65806001)(956004)(25786009)(64126003)(230700001)(8936002)(6116002)(3846002)(44832011)(476003)(52116002)(81166006)(81156014)(8676002)(31686004)(68736007)(50466002)(2361001)(305945005)(7736002)(5660300001)(34290500001)(53936002)(6486002)(28096004)(78286006);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:VI1PR08MB0382; H:[0.0.0.0]; FPR:;
-	SPF:None; LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-Received-SPF: None (protection.outlook.com: niko.eu does not designate
+	SRVR:VI1PR0102MB3584; 
+x-ms-traffictypediagnostic: AM0PR0102MB3570:
+x-microsoft-antispam-prvs: <AM0PR0102MB357028010D66D2E41BE1B86A9BEF0@AM0PR0102MB3570.eurprd01.prod.exchangelabs.com>
+x-exchange-antispam-report-test: UriScan:(21748063052155)(28532068793085)(190501279198761)(227612066756510);
+x-ms-exchange-senderadcheck: 1
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040522)(2401047)(8121501046)(5005006)(10201501046)(3002001)(3231355)(944501410)(52105095)(93006095)(93001095)(149066)(150057)(6041310)(20161123564045)(20161123560045)(20161123562045)(2016111802025)(20161123558120)(6043046)(201708071742011)(7699051);
+	SRVR:AM0PR0102MB3570; BCL:0; PCL:0; RULEID:;
+	SRVR:AM0PR0102MB3570; 
+x-forefront-prvs: 0812095267
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(346002)(376002)(136003)(366004)(396003)(39830400003)(199004)(189003)(174874002)(6916009)(9686003)(8558605004)(53936002)(6436002)(7736002)(33656002)(6306002)(55016002)(74482002)(5640700003)(74316002)(66066001)(106356001)(105586002)(54896002)(14444005)(256004)(25786009)(486006)(5630700001)(5660300001)(68736007)(8936002)(6506007)(1857600001)(5250100002)(2900100001)(26005)(186003)(476003)(71190400001)(99286004)(316002)(2351001)(102836004)(14454004)(790700001)(3846002)(6116002)(86362001)(97736004)(508600001)(81166006)(1730700003)(8676002)(45080400002)(2501003)(7696005)(81156014)(2906002)(71200400001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:AM0PR0102MB3570;
+	H:VI1PR0102MB3359.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: datawatt.nl does not designate
 	permitted sender hosts)
-X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtWSTFQUjA4TUIwMzgyOzIzOmMzVkcyc2o1ODdmamp5YUhMMFc0NVJUcXBY?=
-	=?utf-8?B?aTNERWpCSkt1bnRMQmhTRDg4Qmxva05SSDM1R1pYY0w5aG1DNHlSZXo0cy9M?=
-	=?utf-8?B?L0JqdVRHRWd6TUFDRWxVS1dhNkQ2NnM1eXVaTkZ6MWVzeE9HNU1WTmNlbnRS?=
-	=?utf-8?B?Z296OHRkcVFKaXMrRkdndjM2dGFlYWdZcklIWVZaS2xrb05hMlZ0T3NjVmQr?=
-	=?utf-8?B?SDFtWmh2L1RONGxEbi96TStYVEtRMmtzdnRoOVFMT1BPN0JMRjJ4aDQya0Vr?=
-	=?utf-8?B?MFZzc0xhdU5HZkdXUldhM0pQWlY3SDVBYjN2Z25FVXgzREkrNGUwSGFrN2JI?=
-	=?utf-8?B?V3RVR1lmNWlrdnptOGNhaDJNeGVUN1VaYy8rQ2VwN2p4SUg3Y1lBd05oRkZR?=
-	=?utf-8?B?bWQzMjVPU3VwdWVPdUR5L2dScW53ams1VGhzMGZ6NElCSmpkNWUvZ0Z0V1Zu?=
-	=?utf-8?B?UnNGNHhpMmgwQzlTS2l3bHpNbWRnK2ErRC9xdVFVTzRUSGlkbGRjMVMyNXhD?=
-	=?utf-8?B?QW9SQ0x2Y3B6eXg2c2ZHZGZmS2I4U2VnY3Z4Nkd6SVNzZnkxbisxOVloTlli?=
-	=?utf-8?B?c2I4a1MxWFdqcHhlY2V6N1RYcklkUENDblQvSVMrZTJURS95d0xZUnFMZmZO?=
-	=?utf-8?B?SkNzQ2ZTbURVeGNnVkNEa0NXTmgwOHpXamZxZXI3Qzh4K1J2QWxDUGVIb096?=
-	=?utf-8?B?eUNCREM5Mnp5b2tzZ05BRlBkSlFub1dHQzFmK3VpVndUalloMWJUbVg4cUEx?=
-	=?utf-8?B?SEVXK3VneFlQMW5RYkV3N2lPVjhKcjNXdjhKTVp1UTkzRlFHOURNSDBzczh4?=
-	=?utf-8?B?WkcrYTM0dXN3OGYzT2MxNVhoVll1M3JrRVptZFhiNHYxME5wWnA4N28vY1Rh?=
-	=?utf-8?B?NkN5Yit6dHVnRGk5ZnNjcmFWOHVDNlo5WG9ZMU1xV2R6anZDTU1iRjZOdzNS?=
-	=?utf-8?B?YTlxOThiQ2FUQXdQYnhDQnJ1c0RVV1hEbklpT3F5WHBiM05iODhZdHEzQVRJ?=
-	=?utf-8?B?VXpSSGl1ZmdHZDFRRGlTNlJyZ1c1SWMzVkpySng2QmwxWGhJTlBSTERKQmIx?=
-	=?utf-8?B?dXVHZXNDOXZNVlF4a29HQkhIbUV1eE9qaVgzTEZhaHNOQ2R1b1hUT3VvTm9q?=
-	=?utf-8?B?WUhwSjhrZVRNUUdSRXVoZXFhR1J5dXRYRXZlUGFUWC9rUDAvZXBxdWpMbm9G?=
-	=?utf-8?B?dGlCVG5yVWM1aU1sL2x0dG8rRGgvVEFsVk5hNGk4cFNzUkZocDBKTjNoTlZL?=
-	=?utf-8?B?bERhcDU5NW16MWxRZk5RM2NEd3VBekVRUkxKc0trQ2YxdU02K1RIcXNTL3R6?=
-	=?utf-8?B?bHk1WGtrWlN3SEpBbllMZTgvenBKcFlmbWhvWXhWM1dNSFNUVDArTXBUSGhw?=
-	=?utf-8?B?S1ZHTCsvbUViUkdLM0NwWHNLZyt6aXdJNnV5cDFNY1lVcjJYcVVseGJ1WXZK?=
-	=?utf-8?B?NndZR2FlUHVBRWdLWGlWcFR3ajBwUTIzaGU4dlYzakt5bWU3L3BQZk11ZWs4?=
-	=?utf-8?B?Y0RZcDdTWWhZNmdYRnZ0L09XdE5IV1ZaZXdKcU04Sk1BL3dCSVZkck1FUDQ2?=
-	=?utf-8?B?S0U2Y21yc1NzbU9VR0lsMGwrUHU1V1lOYU9VOEFyVkZOV2FadWtsNGQzdzVQ?=
-	=?utf-8?B?NjhFOXlvcGhrbVN2R0tZS1lWdlZQOCtoZ0h0SXRiaHdOdTVXRFFBM0gyUVov?=
-	=?utf-8?B?L0hybWl0RDZZSGlKakVYd0NlWGFnWWR5ZjNVUnY5dE1tTmlYWXV2ZEJnUFlS?=
-	=?utf-8?B?T0VHQzRpUzUzYVNKWStwYWZwNnhkQ2VkVGNkS3FjWjR3cVE2T1p6aDBzMmhl?=
-	=?utf-8?B?emtIT0ZDSVFuWG9WNWhGcjhvZ0xlUmtweUErU1NvVXIxZnIzU25WZ3ZhUkpy?=
-	=?utf-8?B?c24vTzQ0QnZoeXRuaU5uWEF1S1dJTmxqeEJuZnQ3U0VLazZ0cTZQbmtwVjVH?=
-	=?utf-8?B?V00zL2VUSEUrblN6MGtHQlNtcTlyU0M4K1ZRMUg0czM5NnQ0bmlFTnNIQ2do?=
-	=?utf-8?Q?wb1qXw?=
-X-Microsoft-Antispam-Message-Info: z/zUBMCp2yDHbnsuUY3zUoSJgFoksMuMfmpZ6Kk0jW8axW3oNq0RyZD4Z5YndyZHkXGnjPHi9NzYm7qFjdgTXujY7L7FMTmjBSXCyVBehHJ3aW+TEDGu0DCGEr9d2TEoVUq7ZvXxwollauDC59H0sh8SwK1eDzHYCx12n1brCjtAWC58mZ9Wp8R9mle0JDi/e3BlIrBlj4WPjlCh/qqjbH2TQzsHQX42btY0pgwDJt0ZAW7QHYx+Bji45A2S6615651iL/Z8Em0O9+TzpBag9PI9o97OGQenamj3O57UcLPI2b8BijPFR/YbaoU54D07n8Rtv189iZMsJSSKmfNQLLyLY0donHPVFL5r/2EKYy4=
-X-Microsoft-Exchange-Diagnostics: 1; VI1PR08MB0382;
-	6:d1pdp4876UQhEsJVMqy59F+XQqi6x0RtqJzW+z/V4AoXhUpnv/FxdJ2Ud3c0w5UF2ZHdVGui/hEmlRIo58quZ0k9afgMk0LOoQG7d7jhNKzIEQrMjxRalQq+ddpz2ggemhK5sRGg/p02plcD+/SwQvSxeO89Py48ec6lvwbIQqpuRf6yBfahCAxHIOQ1kCFQdUfGEb/bMDnvAJ/tt7SVohEdmXsO3dowSRBgDAhExxQ9SDk9cwXDiamS/IxhqagyLaGD9sUa3yorjZe1hiu7KVbMW2fEvzd3q5ta0iZNvHuyR4pLDXrwxEnUOIh9RUc8VQwm9hKubCEZ3N3Rr1Z6bi4z/+e4GSdY5LwHoOmjyCStANgaj2ZtCGF1gZiuJhUcPNU0pZ8uZy2qWxDrFIzpEWEXFiZwUgRmgtyop+tdVIcmXpYsfOce30mqTJ7d/ePpCHPulFsEbGQuq6uPkv/DIA==;
-	5:auZb6Bek9xhmD2sxCYAc79q+X8wOsaZqN45DHpMY7DQKEjj8SM6wr/vRqblTZ1mcDSQS5gZd28KGbWRA+U3UO01ScU7F/SWjsP1+onR90neiPuzjx147+v6br2wN8b9RrFlRaojgtH8RXuMfzJ2b3/0mH4f+5TEHqbIv2F4WFdo=;
-	7:exEmkW50py9Nhd5ReFuJ5Fk2Q9zSm145JRnRjqU3dM5bESPp+oIlU9g2WGlizSW70p4csMk1nZx6J50imXwO3lkKchkqVh7KcWDWtE9wNxtJ7jy1v1DMkNmxDjqTxsHVtI1bTIlKXAtkISFR7axtcA7P+JqwydsIGFTsAiLRZI/B0Q5YK4xzEhN1Rh9LpWmk8w2h9BMySv6G8la/lhi4ASUV2SnftUrUh+BXsZtwolRdHkdKK/CJ+/CVZ68nY6mO
-SpamDiagnosticOutput: 1:99
-SpamDiagnosticMetadata: NSPM
-X-OriginatorOrg: niko.eu
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2018 13:51:55.2251 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c2c90c46-3184-4812-143f-08d627a50caa
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: a4faf0fe-ff3f-4912-b675-3cfe1470e385
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR08MB0382
-Subject: Custom image type with dependencies
+x-microsoft-antispam-message-info: 1AkQvj+G+lwXCak1lqC9CGZLqAkXA2U9vU7ihdM/KP8nXdPfipSMsirZu1VS5AQGcctDX6iN0gMqguKJWM2TazK0BStKn255Zb+G/8Dk3XoHAUgqjnTcV7ITBEMfzDkN7ro/xPoO8RdkWq4MdcY/3aw0//CEOU9PcR2t2zQjMBU3dXEZ6VqmfxFHILKt1Z/e6SKX1Toesf3v+zC5X0dBjG5DKzNcn82XOZ+am+8t4lc50pkXPkbdPKSLYpJD4oYioVJ3c6uSZuZPdYqkZ/xycSljbOY0GElsbk1j/1EcdP1poSZGSd9HspNcYzCGvXd23M4mS12LrmuWoMMFtz/d5soXq43eAHHTn397q+lzApc=
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: datawatt.nl
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b4b4a74-57a4-40b7-5171-08d627ad4afc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2018 14:50:55.9448 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 5afcf6a4-fc33-42be-9014-b6cf5e6ea885
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR0102MB3570
+Subject: [mono][msbuild][nuget] Building c# application for mono
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -129,55 +102,281 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Oct 2018 05:26:58 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Tue, 02 Oct 2018 07:16:13 -0000
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/alternative;
+	boundary="_000_VI1PR0102MB3359BFFD10CD302A9AD7E03E9BEF0VI1PR0102MB3359_"
 
-Hi,
+--_000_VI1PR0102MB3359BFFD10CD302A9AD7E03E9BEF0VI1PR0102MB3359_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-We use a gpg signed tarball as our image format. This is implemented 
-using CONVERSIONTYPES:
+Hello,
 
-CONVERSIONTYPES += "gpg"
-CONVERSION_CMD_gpg = "gpg --batch --yes -s ${IMAGE_NAME}.rootfs.${type}"
-CONVERSION_DEPENDS_gpg = "gnupg"
+I'm trying to build my c# application for mono with yocto, by using nuget a=
+nd msbuild.
 
-And then in the image recipe:
+I encountered several problems:
 
-IMAGE_FSTYPES += "tar tar.gpg"
+MsBuild:
 
-This works, except for one thing. The above is a simplification and the 
-actual signing is done by a script. It does not only sign the tarball, 
-but also adds a few extra files.
+  *   During the build of msbuild the cibuild.sh script is invoked. This sc=
+ript uses the tool 'curl' to download the msbuild.zip form Microsoft. This =
+action failes with a certificate error because there are no certificates pr=
+esent. I fixed this issue with a bbappend script for msbuild which contains=
+:
+                DEPENDS +=3D "ca-certificates"
 
-But how do I fetch the script, and those extra files? I tried to use 
-SRC_URI, as you would do in a regular recipe. But that doesn't work 
-because image.bbclass contains:
+Nuget:
 
-do_fetch[noexec] = "1"
+  *   When trying to restore the packages for my c# application, the execut=
+ion of Nuget fails because it has no certificates.
+  *   Apparently NuGet is using the mono certificate store, because it fail=
+s to detect the certificates present in:  /recipe-sysroot-native/etc/ssl/ce=
+rts
+  *   I also verified that the mono certificate store is empty by issuing t=
+he command: certmgr -list -c Trust
 
-Next, I tried to create a native "gpgsign" recipe containing my script 
-and its dependencies. I then added the dependency:
+I tried to extend the recipe that builds my c# application with a do_config=
+ure task, in which I'm trying to synchronize the mono certificate store wit=
+h the ca-certifates.crt.
+                cert-sync ${sysconfdir}/ssl/certs/ca-certificates.crt
 
-CONVERSION_DEPENDS_gpg = "gpgsign-native"
+But the cert-sync tool somehow wants to use a path outside my build environ=
+ment /usr/share/.mono, which fails with an access denied error.
 
-assuming it would put my script in the native sysroot of the image. But 
-that doesn't seem to work. The only thing that happens are some 
-gpgsign-native files in these directories:
+Can anybody help me to get past this problem?
 
-./recipe-sysroot-native/installeddeps/
-./recipe-sysroot-native/sysroot-providers/
+Kind Regards,
 
-But no files are added in:
+Alberto Spin
 
-./recipe-sysroot-native/
+Branch: Rocko
+Mono 5.4.1.6
+Nuget 4.1
+Msbuild 15.4
 
-If I do the same with for example xz-native, then the xz binaries are 
-added to the native sysroot, and then compressing the image works fine. 
-But not for my gpg signing.
 
-What am I doing wrong?
 
-Jef
 
+--_000_VI1PR0102MB3359BFFD10CD302A9AD7E03E9BEF0VI1PR0102MB3359_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1954362348;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1546115154 147490326 68354051 68354053 68354049 683=
+54051 68354053 68354049 68354051 68354053;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:Calibri;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"NL" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I&#8217;m trying to build my c#=
+ application for mono with yocto, by using nuget and msbuild.<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I encountered several problems:=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">MsBuild:<o:p></o:p></span></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 =
+lfo1"><span lang=3D"EN-US">During the build of msbuild the cibuild.sh scrip=
+t is invoked. This script uses the tool &#8216;curl&#8216; to download the =
+msbuild.zip form Microsoft. This action failes with
+ a certificate error because there are no certificates present. I fixed thi=
+s issue with a bbappend script for msbuild which contains:<o:p></o:p></span=
+></li></ul>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span st=
+yle=3D"font-size:8.0pt;font-family:Consolas">DEPENDS &#43;=3D &quot;ca-cert=
+ificates&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Nuget:<o:p></o:p></span></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 =
+lfo1"><span lang=3D"EN-US">When trying to restore the packages for my c# ap=
+plication, the execution of Nuget fails because it has no certificates.<o:p=
+></o:p></span></li><li class=3D"MsoListParagraph" style=3D"margin-left:0cm;=
+mso-list:l0 level1 lfo1"><span lang=3D"EN-US">Apparently NuGet is using the=
+ mono certificate store, because it fails to detect the certificates presen=
+t in: &nbsp;/recipe-sysroot-native/etc/ssl/certs<o:p></o:p></span></li><li =
+class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 lfo1=
+"><span lang=3D"EN-US">I also verified that the mono certificate store is e=
+mpty by issuing the command: certmgr -list -c Trust<o:p></o:p></span></li><=
+/ul>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I tried to extend the recipe th=
+at builds my c# application with a do_configure task, in which I&#8217;m tr=
+ying to synchronize the mono certificate store with the ca-certifates.crt.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cert-sync ${sys=
+confdir}/ssl/certs/ca-certificates.crt<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">But the cert-sync tool somehow =
+wants to use a path outside my build environment /usr/share/.mono, which fa=
+ils with an access denied error.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Can anybody help me to get past=
+ this problem?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Kind Regards,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Alberto Spin<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Branch: Rocko<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Mono 5.4.1.6<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Nuget 4.1<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Msbuild 15.4<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_VI1PR0102MB3359BFFD10CD302A9AD7E03E9BEF0VI1PR0102MB3359_--
