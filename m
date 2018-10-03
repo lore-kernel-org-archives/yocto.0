@@ -1,65 +1,41 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <anuj.mittal@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0A340E00994; Wed,  3 Oct 2018 01:16:21 -0700 (PDT)
+	id 193A9E00AD1; Wed,  3 Oct 2018 01:38:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.194 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
-Received: from mail-qk1-f194.google.com (mail-qk1-f194.google.com
-	[209.85.222.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F215EE0095C
-	for <yocto@yoctoproject.org>; Wed,  3 Oct 2018 01:16:18 -0700 (PDT)
-Received: by mail-qk1-f194.google.com with SMTP id c126-v6so2889713qkd.7
-	for <yocto@yoctoproject.org>; Wed, 03 Oct 2018 01:16:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=E1kkWpKTp+E1TYuR7izQ/QuSYFsu4rL/OKwHDviRSik=;
-	b=GFw6ruEG2vbB7ecCYESa+ifM4tXwVbQW8f5A29r/x8zaan8AlVGsXUm863dEdeeei9
-	IB2PzBn4IG4NcVDlmNKf8VbGDjOwg423ajvd1Kaxc23GvvS6gLW+Jrx0jMudYoxvnPPj
-	kXWnShwEcvn5Rj5H7jeHozUZ/5LhTdBpJvMQhNWvpV9Crq8/tPU+tZzFHWm9GGXmJ0rk
-	RAmRcLEQscxEIvkFF27+aTfmxpSScLFEL6/xOKnwKUgVWzjfhm5IOqRxC9yI3yuoIdGL
-	ia3nMB9bpG8ofPofV2fLIaUK69+Sceo+BgfWbmUVLeuVF+uF0fvhXZKu8qWgvRO/i5VC
-	SUow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=E1kkWpKTp+E1TYuR7izQ/QuSYFsu4rL/OKwHDviRSik=;
-	b=ZKAvzCsnPlVqDU9p/9xJcL3dy+Gi1LjD1mO7q6w3DtBsMa9NlRp5iVgaUbetLElI2X
-	+BnzXnYemJ9JZzgEvRPBv8Df3TVLVvpA7hBfStnWfqp0bdfCynyLFGW6c2GNktq2nI/r
-	33b6iVLO4NQ2ceGhrcIM4hfqI4ms2J4BwDnj41D2kL12D+1pHTQeduQ/nl5FfqQURfYH
-	lqiAcjvGjCyiSLQNQcpOi8uNievIkHjc7uFoHPNB7xGY4bVqHgPKf5cRnhapUl4DcB9T
-	zpqxFqsnePbfojfbcaxKeGPkGDtHgT4Zu+ISOKoglB00gyDnRxUtutkqNyyMwMbcvARN
-	7Usg==
-X-Gm-Message-State: ABuFfoiYrnJ6V1596ecbLrFiLiFHz/uy3IKnIpd53MHpFy6qXBLphhK1
-	XelqKz3gqpJmqubXch7qn4ITXNRemzv2FsAf1BcvvWkYuk8=
-X-Google-Smtp-Source: ACcGV61tV8CT8Js1l0V/7AFXPB3HMrzVp/KWqqC+dcS5b8nSexf3Bkso3XMqM5mX3KDkjQNhwTLi33nBvR+NA9DbAto=
-X-Received: by 2002:a37:98c3:: with SMTP id
-	a186-v6mr260301qke.128.1538554577983; 
-	Wed, 03 Oct 2018 01:16:17 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2BA2E0095C;
+	Wed,  3 Oct 2018 01:38:02 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	03 Oct 2018 01:38:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.54,335,1534834800"; d="scan'208";a="85356300"
+Received: from anmitta2-mobl1.png.intel.com (HELO [10.221.21.255])
+	([10.221.21.255])
+	by FMSMGA003.fm.intel.com with ESMTP; 03 Oct 2018 01:37:51 -0700
+To: "Muhlenkamp, Lewis" <lewis.muhlenkamp@stryker.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>
+References: <CY1PR01MB185241745662704F7F200C5E8FE80@CY1PR01MB1852.prod.exchangelabs.com>
+From: Anuj Mittal <anuj.mittal@intel.com>
+Message-ID: <a2cbdc03-c196-869f-fc8f-520ad7d508df@intel.com>
+Date: Wed, 3 Oct 2018 16:37:51 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
 MIME-Version: 1.0
-References: <286078d59ba1400fb6646b0e6057add6@sakuraus.com>
-In-Reply-To: <286078d59ba1400fb6646b0e6057add6@sakuraus.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 3 Oct 2018 10:16:06 +0200
-Message-ID: <CAGAf8LzFnwi_WJUmW__LxgJ4XLgyOCXRARwyQ-dnec1GeKKgzg@mail.gmail.com>
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: changing kernel config in Morty build
+In-Reply-To: <CY1PR01MB185241745662704F7F200C5E8FE80@CY1PR01MB1852.prod.exchangelabs.com>
+Subject: Re: [meta-intel] ac_nonexistent.h error in do_configure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,148 +47,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Oct 2018 08:16:21 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 03 Oct 2018 08:38:04 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-Hello Greg,
+On 10/02/2018 11:53 PM, Muhlenkamp, Lewis wrote:
+> configure:4485: x86_64-oe-linux-gcc -E
+> --sysroot=/home/lmuhlenkamp/build-target02/tmp-glibc/work/corei7-64-oe-linux/xf86-video-intel/2_2.99.917+gitAUTOINC+e4fe79cf0d-r0/recipe-sysroot 
+> -m64 -march=nehalem -mtune=generic -mfpmath=sse -msse4.2  conftest.c
+> 
+> conftest.c:11:10: fatal error: ac_nonexistent.h: No such file or directory
+> 
+> #include <ac_nonexistent.h>
+> 
+>           ^~~~~~~~~~~~~~~~~~
+> 
+> compilation terminated.
+> 
+> configure:4485: $? = 1
+> 
+> configure: failed program was:
+> 
+> | /* confdefs.h */
+> 
+> | #define PACKAGE_NAME "xf86-video-intel"
+> 
+> | #define PACKAGE_TARNAME "xf86-video-intel"
+> 
+> | #define PACKAGE_VERSION "2.99.917"
+> 
+> | #define PACKAGE_STRING "xf86-video-intel 2.99.917"
+> 
+> | #define PACKAGE_BUGREPORT
+> "https://bugs.freedesktop.org/enter_bug.cgi?product=xorg"
+> 
+> | #define PACKAGE_URL ""
+> 
+> | #define PACKAGE "xf86-video-intel"
+> 
+> | #define VERSION "2.99.917"
+> 
+> | /* end confdefs.h.  */
+> 
+> | #include <ac_nonexistent.h>
+> 
+> === End excerpt ===
+> 
+>  
+> 
 
-Not sure if this can help, since I do Sumo. This works for Sumo, no
-idea if ths works for Morty.
-https://www.yoctoproject.org/docs/2.5/kernel-dev/kernel-dev.html#using-an-in-tree-defconfig-file
+This check is supposed to fail. This is a sanity test, that header isn't
+supposed to exist and autoconf expects this compilation error. I don't
+think this is the actual point of failure.
 
-Hope this helps,
-Zoran
-_______
+Thanks,
 
-On Tue, Oct 2, 2018 at 11:39 PM Greg Wilson-Lindberg
-<GWilson@sakuraus.com> wrote:
->
-> I'm trying to change some kernel configuration flags in a raspberrypi3 Morty build and I get warnings that it isn't working.
->
->
-> Here is the build info and warnings:
->
->
-> Build Configuration:
-> BB_VERSION        = "1.32.0"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "universal"
-> TARGET_SYS        = "arm-poky-linux-gnueabi"
-> MACHINE           = "raspberrypi3"
-> DISTRO            = "b2qt"
-> DISTRO_VERSION    = "2.2.4"
-> TUNE_FEATURES     = "arm armv7ve vfp thumb neon vfpv4 callconvention-hard cortexa7"
-> TARGET_FPU        = "hard"
-> SDKMACHINE        = "x86_64"
-> meta
-> meta-poky         = "HEAD:df76669bdd70aa0d903c4211dde731221c7e756d"
-> meta-raspberrypi  = "HEAD:2a192261a914892019f4f428d7462bb3c585ebac"
-> meta-oe
-> meta-python
-> meta-networking
-> meta-initramfs
-> meta-multimedia   = "HEAD:b40116cf457b88a2db14b86fda9627fb34d56ae6"
-> meta-boot2qt
-> meta-raspberrypi-extras = "<unknown>:<unknown>"
-> meta-mingw        = "HEAD:1c2e155111dce94423cc227ea69f7f50f316c78e"
-> meta-qt5          = "HEAD:49e9d9a73b5c6e3d6eab88dc0005305e85b1a62d"
-> meta-sakura       = "<unknown>:<unknown>"
->
-> Initialising tasks: 100% |#############################################################################################################################################| Time: 0:00:00
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> WARNING: linux-raspberrypi-1_4.4.50+gitAUTOINC+04c8e47067-r0 do_kernel_configcheck: [kernel config]: specified values did not make it into the kernel's final configuration:
->
-> ---------- CONFIG_SND_SOC_MAX9768 -----------------
-> Config: CONFIG_SND_SOC_MAX9768
-> From: /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work-shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
-> Requested value:  CONFIG_SND_SOC_MAX9768=y
-> Actual value:
->
-> Config 'SND_SOC_MAX9768' has the following conditionals:
->
-> Dependency values are:
->
->
-> ---------- CONFIG_MAX1363 -----------------
-> Config: CONFIG_MAX1363
-> From: /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work-shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
-> Requested value:  CONFIG_MAX1363=m
-> Actual value:     # CONFIG_MAX1363 is not set
->
-> Config 'MAX1363' has the following conditionals:
->   I2C (value: "y")
-> Dependency values are:
->   I2C [y]
->
-> ---------- CONFIG_CAN_EMS_USB -----------------
-> Config: CONFIG_CAN_EMS_USB
-> From: /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work-shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
-> Requested value:  CONFIG_CAN_EMS_USB=m
-> Actual value:     # CONFIG_CAN_EMS_USB is not set
->
-> Config 'CAN_EMS_USB' has the following conditionals:
->   (none)
-> Dependency values are:
->
->
-> Here is my linux-raspberrypi_4.4.bbappend for the kernel:
->
-> # Scribe additions to Kernel configuration
->
-> FILESEXTRAPATHS_prepend := "${FILE_DIRNAME}/files:"
-> FILESEXTRAPATHS_prepend := "${FILE_DIRNAME}/${PN}:"
->
-> SRC_URI += "file://Scribe.scc"
-> SRC_URI += "file://mcp251x.c.patch"
->
->
-> The Scribe.scc file:
->
-> # Scribe additions to kernel configuration
-> kconf hardware Scribe.cfg
->
->
-> And the Scribe.cfg file:
->
-> # Scribe additions to kernel configuration
->
-> # Enable MAX9768
-> #CONFIG_SOC_ALL_CODECS=m
-> #CONFIG_COMPILE_TEST=y
-> CONFIG_SND_SOC_MAX9768=y
->
-> # Enable MAX11606
-> #IIO=y
-> CONFIG_MAX1363=m
->
-> # Enable EMS CPC-USB
-> CONFIG_CAN_EMS_USB=m
->
-> Here is my directory tree:
->
-> Qt-5.9.6
->
->      Yocto-mirror                                                     # Yocto build mirror
->      Yocto-build-RPi3                                              # Yocto build root
->                 build-raspberrypi                                   # build directory
->                 sources                                                 # yocto sources
->                        meta-sakura                                   # our recipes
->                                recipes-kernel                        # directory for kernel changes
->                                        linux                               # directory that contains linux-raspberrypi_4.4.bbappend
->                                               files                         # directory that contains .scc & .cfg files
->
-> As seen above none of the changes are accepted although there is nothing that blocks any of them.
->
-> Any help understanding this would be greatly appreciated.
->
-> Regards,
->
-> Greg Wilson-Lindberg
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Anuj
+
 
