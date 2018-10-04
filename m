@@ -1,64 +1,43 @@
-Return-Path: <philip@balister.org>
+Return-Path: <mauro@faresoftware.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5BCA9E00B6C; Thu,  4 Oct 2018 05:27:07 -0700 (PDT)
+	id D6D63E00519; Thu,  4 Oct 2018 07:10:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [216.168.135.166 listed in list.dnswl.org]
-X-Greylist: delayed 400 seconds by postgrey-1.32 at yocto-www;
-	Thu, 04 Oct 2018 05:27:05 PDT
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DBC9E00B47
-	for <yocto@yoctoproject.org>; Thu,  4 Oct 2018 05:27:05 -0700 (PDT)
-Received: (qmail 19043 invoked by uid 1003); 4 Oct 2018 12:20:24 -0000
-Received: from unknown (HELO ?192.168.11.100?)
-	(philip@opensdr.com@73.152.143.112)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	4 Oct 2018 12:20:24 -0000
-To: "openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	"openembedded-members@lists.openembedded.org"
-	<openembedded-members@lists.openembedded.org>,
-	Yocto Project <yocto@yoctoproject.org>
-From: Philip Balister <philip@balister.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
-	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
-	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
-	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
-	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
-	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
-	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
-	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
-	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
-	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
-	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
-	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
-	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
-	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
-	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
-	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
-	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
-	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
-	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
-	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
-	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
-	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
-	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
-	6eUfr0u7CwnEyqiQ
-Message-ID: <9db03bdc-26c5-1b8b-17d3-2192dfe785b2@balister.org>
-Date: Thu, 4 Oct 2018 08:20:23 -0400
+	*      [62.149.158.131 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Thu, 04 Oct 2018 07:10:49 PDT
+Received: from smtpcmd04131.aruba.it (smtpcmd04131.aruba.it [62.149.158.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E70FE00519
+	for <yocto@yoctoproject.org>; Thu,  4 Oct 2018 07:10:49 -0700 (PDT)
+Received: from [10.0.3.94] ([78.6.3.122]) by smtpcmd04.ad.aruba.it with bizsmtp
+	id jS9k1y00Y2dwwGE01S9kaF; Thu, 04 Oct 2018 16:09:45 +0200
+To: Yocto Project <yocto@yoctoproject.org>
+From: Mauro Ziliani <mauro@faresoftware.it>
+Message-ID: <09858a99-6bc3-ecd9-3ec6-94c3d7cf2cfe@faresoftware.it>
+Date: Thu, 4 Oct 2018 16:09:44 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
+	Thunderbird/52.9.1
 MIME-Version: 1.0
-Subject: OEDEM in Edinburgh in 2 weeks
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1538662185; bh=TYxzgt3i3t1sqSraVHj96OS0CextL2edxXZGdKgkJgQ=;
+	h=To:From:Subject:Date:MIME-Version:Content-Type;
+	b=PkfzXI+xW1JEkQEYALXBgDoxPALc1iiicbK5VkFVJ8Eb+QolIwyJaFg76Zq0Y9ZCP
+	4FDBrsc4/wsDMl8tUO4qkaugXWeg7PBZIomDgxoOps9/Y+KM5NvPJPJndxZw/YEvy6
+	PTWf8Mer088VsV6RavEqUcHM9A7FOgOppmD0zF0cqwgdTLJeuJDm0z9J6MAu40SBqQ
+	RUcBTdi5JQYuqxVlSJZoGbK/SjQlODnWQF3fdS+DkTPud3EtR5LEeIO+QVEkFKK86d
+	VXdQ5X4ehHV7s2oYCcxdesgo9Tg8i00rUDro9Q/dyeG+q4B9dp19TNoTpeQYo90wIK
+	xD1iJayieghhA==
+Subject: Software upgrade tools: which?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,20 +49,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Oct 2018 12:27:07 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
+X-List-Received-Date: Thu, 04 Oct 2018 14:10:50 -0000
+Content-Type: text/plain; charset=iso-8859-15
 Content-Transfer-Encoding: 8bit
+Content-Language: it
 
-OEDEM is basically full at this time.
+Hi all.
 
-https://www.openembedded.org/wiki/OEDEM_2018
+I'm looking for a good layer to add in my BSP to solve the problem of
+upgrading the system and the application.
 
-We have had the room rearranged to seat 45 people and I am not sure how
-we would handle anyone over this. If you know you can't make it, could
-you please remove your name from the attendee list. We'd like to get a
-better idea of how many people on the waiting list we can accommodate.
-There are some long time contributors on the wait list we'd like to get in.
+I'm working on a project the involves an imx6dlsabresd derived board and
+Krogoth ver 15.0.3.
 
-Philip
+
+In the first versione the project used an x86-board and Ubuntu 14.04.
+The update system choosed was deb/apt.
+
+Due to quickly change of the main board to an imx6 with yocto, the
+package-management is deb/apt even with Yocto.
+
+I need to insert a set of system upgrade tools which can help to restore
+the previous versions if something goes wrong during the update.
+the update should be mainly by usb pendrive, but online is the next choice.
+
+Can you suggest me some good tools to integrate?
+
+Best regards,
+  MZ
 
