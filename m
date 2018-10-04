@@ -1,39 +1,64 @@
-Return-Path: <abuse@basmevissen.nl>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B9733E00B3E; Thu,  4 Oct 2018 03:29:16 -0700 (PDT)
+	id 5BCA9E00B6C; Thu,  4 Oct 2018 05:27:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E07DE00ADD
-	for <yocto@yoctoproject.org>; Thu,  4 Oct 2018 03:29:14 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by hosting.emcodev.net (Postfix) with ESMTP id D115D12B107;
-	Thu,  4 Oct 2018 12:29:13 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at hosting.emcodev.net
-Received: from hosting.emcodev.net ([127.0.0.1])
-	by localhost (hosting.emcodev.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id EVsHBS7KFNvi; Thu,  4 Oct 2018 12:29:13 +0200 (CEST)
-Received: from emcodev.nl (localhost [127.0.0.1])
-	by hosting.emcodev.net (Postfix) with ESMTP id 7053312B135;
-	Thu,  4 Oct 2018 12:29:13 +0200 (CEST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [216.168.135.166 listed in list.dnswl.org]
+X-Greylist: delayed 400 seconds by postgrey-1.32 at yocto-www;
+	Thu, 04 Oct 2018 05:27:05 PDT
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DBC9E00B47
+	for <yocto@yoctoproject.org>; Thu,  4 Oct 2018 05:27:05 -0700 (PDT)
+Received: (qmail 19043 invoked by uid 1003); 4 Oct 2018 12:20:24 -0000
+Received: from unknown (HELO ?192.168.11.100?)
+	(philip@opensdr.com@73.152.143.112)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	4 Oct 2018 12:20:24 -0000
+To: "openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>,
+	"openembedded-members@lists.openembedded.org"
+	<openembedded-members@lists.openembedded.org>,
+	Yocto Project <yocto@yoctoproject.org>
+From: Philip Balister <philip@balister.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
+	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
+	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
+	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+	6eUfr0u7CwnEyqiQ
+Message-ID: <9db03bdc-26c5-1b8b-17d3-2192dfe785b2@balister.org>
+Date: Thu, 4 Oct 2018 08:20:23 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.2
 MIME-Version: 1.0
-Date: Thu, 04 Oct 2018 12:29:13 +0200
-From: Bas Mevissen <abuse@basmevissen.nl>
-To: Jakob Hasse <jakob.hasse@qiio.com>
-In-Reply-To: <bc248826-1929-09f6-f91d-9f16e8a4bc68@qiio.com>
-References: <500fb248-a378-fbc6-6fa9-e1d658320651@qiio.com>
-	<bc248826-1929-09f6-f91d-9f16e8a4bc68@qiio.com>
-Message-ID: <d1e61b0acd90ab337c4e3c0db8d865d9@basmevissen.nl>
-X-Sender: abuse@basmevissen.nl
-User-Agent: Roundcube Webmail/1.3.7
-Cc: Yocto List <yocto@yoctoproject.org>,
-	Andrii Voloshyn <andrii.voloshyn@qiio.com>
-Subject: Re: git works standalone, but not within yocto for certain ssh uri format
+Subject: OEDEM in Edinburgh in 2 weeks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,50 +70,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Oct 2018 10:29:16 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 04 Oct 2018 12:27:07 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 8bit
 
-On 2018-10-03 08:14, Jakob Hasse wrote:
+OEDEM is basically full at this time.
 
-> Hello again,
-> 
-> I looked up the git man page and confirmed that the given SSH URI is 
-> valid, in fact, the "v3" is just part of the path. No need to 
-> explicitly specify a port number. As already mentioned, git works fine 
-> when cloning standalone.
-> Furthermore, if I add a slash after the colon, the Yocto fetcher works 
-> fine:
-> 
-> SRC_URI = 
-> "gitsm://my-company@vs-ssh.visualstudio.com:/v3/my-company/IoTSolutions/my-app"
-> 
-> Is there a workaround for this problem? Has anyone experienced this 
-> before?
+https://www.openembedded.org/wiki/OEDEM_2018
 
-No experience with Azure. On Bitbucket, a private Git repo might be 
-defined with:
+We have had the room rearranged to seat 45 people and I am not sure how
+we would handle anyone over this. If you know you can't make it, could
+you please remove your name from the attendee list. We'd like to get a
+better idea of how many people on the waiting list we can accommodate.
+There are some long time contributors on the wait list we'd like to get in.
 
-SRC_URI = "git://git@bitbucket.org/<project>/<repo>.git;protocol=ssh"
-
-So in your case I think it should look like:
-
-SRC_URI = 
-"gitsm://git@vs-ssh.visualstudio.com/v3/my-company/IoTSolutions/my-app.git;protocol=ssh"
-
-(or try omitting the .git from the SRC_URI)
-
-Regards,
-
--- Bas.
-
-
-
-
-
-
-
-
-
+Philip
 
