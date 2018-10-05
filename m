@@ -1,38 +1,61 @@
-Return-Path: <Awais_Belal@mentor.com>
+Return-Path: <brgl@bgdev.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DB85AE006AF; Thu,  4 Oct 2018 23:34:23 -0700 (PDT)
+	id 21FE8E006AF; Fri,  5 Oct 2018 05:59:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB21EE0053F
-	for <yocto@yoctoproject.org>; Thu,  4 Oct 2018 23:34:22 -0700 (PDT)
-Received: from nat-ies.mentorg.com ([192.94.31.2]
-	helo=SVR-IES-MBX-03.mgc.mentorg.com)
-	by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
-	id 1g8Jgr-0005Pq-NB from Awais_Belal@mentor.com 
-	for yocto@yoctoproject.org; Thu, 04 Oct 2018 23:34:21 -0700
-Received: from P7520.pkl.mentorg.com (137.202.0.90) by
-	SVR-IES-MBX-03.mgc.mentorg.com (139.181.222.3) with Microsoft SMTP
-	Server (TLS) id 15.0.1320.4; Fri, 5 Oct 2018 07:34:17 +0100
-From: Awais Belal <awais_belal@mentor.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 5 Oct 2018 11:34:00 +0500
-Message-ID: <1538721240-17988-1-git-send-email-awais_belal@mentor.com>
-X-Mailer: git-send-email 2.7.4
+	*      [209.85.166.53 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
+	[209.85.166.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1860E00519
+	for <yocto@yoctoproject.org>; Fri,  5 Oct 2018 05:59:17 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id p4-v6so10591567iom.3
+	for <yocto@yoctoproject.org>; Fri, 05 Oct 2018 05:59:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=llHsADIT77NGwTGbDbv5AOx2caFuw0zhURxz34o8o1g=;
+	b=TplJlxZI18Kk+7dctdCFfvIu1lTAxb//th/x/TOtWbg6CEEFU6keoNzlYFCUiJADk/
+	lUNEc/WTY2PPtLhpvlP9olTWYhXN277UrW3HAJzpNPHJ3FO+SnYLXzeOE94MVrbjUOlk
+	ziVvENGYjYFke+r/atEMLVm1WhCAQGUc1vMdhqJ7eLBsWRRjTlfTvw77IaFI3uSAzSvD
+	tFCMYZlsJUw2+BOK//dWqX1PCAu3zCAgmdGdLoecLSwDpX7mR8p17H5dNGua2RZZg2zT
+	J7iurvLCcXwJDJCmGLZJq7BGgr/DzVYoSh4TKT8EnopQfmlbPhHV/D0wWI5Rgw8T44EN
+	oIkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:content-transfer-encoding;
+	bh=llHsADIT77NGwTGbDbv5AOx2caFuw0zhURxz34o8o1g=;
+	b=Oa5dsYJZY9/yIDqt5BW47cVf1Vp6Lrm51F4dXpT62Xq8Yp+fT5YZkrB04nQ0XeeiIw
+	PIyTUdn9/DdC+N8bZrC6M1NZXAvLXLBC/ckozmmxRINdjlc1NhwvWrEmYJgrHJHSX1ne
+	i+PVlwlbDUj/eE+/PzYScZcYZT8gN7V297lieXL4FSFAcRzZNMx3foADm0fNQTQgACdt
+	nv5EQM0BujB20zeWFTpOqEERBAIHnO4S+SFj8S98eq6864hzwzmvzr7GlipF1D18COJR
+	h2JWhUD/p5aKr8zCdKCraJzGxmfK7wZXdhODZ7LPHGImKFAIms/hbp4FjyHD21BO7Bea
+	bAiw==
+X-Gm-Message-State: ABuFfogymVg39s7tfo/SD5VfZZWc9acuuaTfyv+CJqeTlX7hiANf3Cr1
+	RY8XEhV3WWwrgBS5caf016YltmuIX3HVngAVlZAWGmKX
+X-Google-Smtp-Source: ACcGV637m45bYbh6r4VZk9gQ8IUH8Ddtj3Za130dAw74auuMlS+Y3SBwkwOuPJdlEQifxA03kizTF3Yu+hV7oDnEzTs=
+X-Received: by 2002:a5e:aa02:: with SMTP id
+	s2-v6mr7730223ioe.187.1538744357126; 
+	Fri, 05 Oct 2018 05:59:17 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [137.202.0.90]
-X-ClientProxiedBy: svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1) To
-	SVR-IES-MBX-03.mgc.mentorg.com (139.181.222.3)
-X-Mailman-Approved-At: Fri, 05 Oct 2018 00:53:07 -0700
-Subject: [meta-selinux][PATCH] refpolicy_git.inc: lock SRCREVs on the actual version hashes
+References: <CAMRc=Mec347nTORFRnFdHjB5We1Tu_5g78GWqpCj6aWZdNc9CQ@mail.gmail.com>
+In-Reply-To: <CAMRc=Mec347nTORFRnFdHjB5We1Tu_5g78GWqpCj6aWZdNc9CQ@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Fri, 5 Oct 2018 14:59:06 +0200
+Message-ID: <CAMRc=Md51NwYZ172Kh6Rr1mbhkb30Vyd+Lh241h_59c7zAU6dw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: native perl build wants to run target shared object
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,49 +67,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Oct 2018 06:34:23 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 05 Oct 2018 12:59:20 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Using AUTOREV in the main repository has its downsides.
-1. The checked out version isn't actually the version depicted
-   by PV.
-2. Breaks builds in scenarios where network isn't available
-   or BB_NO_NETWORK is used even after sources are already
-   fetched.
+pon., 3 wrz 2018 o 17:59 Bartosz Golaszewski <brgl@bgdev.pl> napisa=C5=82(a=
+):
+>
+> Hi,
+>
+> I'm trying to add a recipe for a new perl package: linux-inotify.
+>
+> It's fairly standard package available in cpan[1].
+>
+> I added the following DEPENDS and RDEPENDS:
+>
+> RDEPENDS_${PN} +=3D " \
+>     perl \
+>     perl-module-base \
+> "
+>
+> DEPENDS +=3D " \
+>     perl-native \
+>     libmodule-build-perl-native \
+> "
+>
+> But I'm getting the following build error:
+>
+> ERROR: linux-inotify-perl-0.05-r0 do_compile: oe_runmake failed
+> ERROR: linux-inotify-perl-0.05-r0 do_compile: Function failed:
+> do_compile (log file is located at
+> /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/tem=
+p/log.do_compile.15693)
+> ERROR: Logfile of failure stored in:
+> /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/tem=
+p/log.do_compile.15693
+> Log data follows:
+> | DEBUG: Executing shell function do_compile
+> | NOTE: make -j 40 PASTHRU_INC=3D -O2 -pipe -g
+> -feliminate-unused-debug-types
+> -fdebug-prefix-map=3D/<snip!>/build/tmp/work/aarch64-poky-linux/linux-ino=
+tify-perl/0.05-r0=3D/usr/src/debug/linux-inotify-perl/0.05-r0
+> -fdebug-prefix-map=3D/<snip!>/build/tmp/work/aarch64-poky-linux/linux-ino=
+tify-perl/0.05-r0/recipe-sysroot=3D
+> -fdebug-prefix-map=3D/<snip!>/build/tmp/work/aarch64-poky-linux/linux-ino=
+tify-perl/0.05-r0/recipe-sysroot-native=3D
+>  LD=3Daarch64-poky-linux-gcc
+> --sysroot=3D/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl=
+/0.05-r0/recipe-sysroot
+> | /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/r=
+ecipe-sysroot-native/usr/bin/perl-native/perl
+> Build --makefile_env_macros 1
+> | Can't load '/<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-pe=
+rl/0.05-r0/recipe-sysroot/usr/lib/perl/5.24.1/auto/File/Glob/Glob.so'
+> for module File::Glob:
+> /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/rec=
+ipe-sysroot/usr/lib/perl/5.24.1/auto/File/Glob/Glob.so:
+> cannot open shared object file: No such file or directory at
+> /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/rec=
+ipe-sysroot-native/usr/bin/perl-native/../../../usr/lib/perl-native/perl/5.=
+24.1/XSLoader.pm
+> line 96.
+> |  at /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-=
+r0/recipe-sysroot/usr/lib/perl/5.24.1/File/Glob.pm
+> line 68.
+> | Compilation failed in require at
+> /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/rec=
+ipe-sysroot-native/usr/bin/perl-native/../../../usr/lib/perl-native/perl/ve=
+ndor_perl/5.24.1/Module/Build/Base.pm
+> line 1263.
+> | BEGIN failed--compilation aborted at
+> /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/rec=
+ipe-sysroot-native/usr/bin/perl-native/../../../usr/lib/perl-native/perl/ve=
+ndor_perl/5.24.1/Module/Build/Base.pm
+> line 1263.
+> | Compilation failed in require at
+> /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/rec=
+ipe-sysroot-native/usr/bin/perl-native/../../../usr/lib/perl-native/perl/ve=
+ndor_perl/5.24.1/Module/Build.pm
+> line 17.
+> | BEGIN failed--compilation aborted at
+> /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/rec=
+ipe-sysroot-native/usr/bin/perl-native/../../../usr/lib/perl-native/perl/ve=
+ndor_perl/5.24.1/Module/Build.pm
+> line 17.
+> | Compilation failed in require at Build line 47.
+> | BEGIN failed--compilation aborted at Build line 47.
+> | Makefile:33: recipe for target 'all' failed
+> | make: *** [all] Error 2
+> | ERROR: oe_runmake failed
+> | WARNING: /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/=
+0.05-r0/temp/run.do_compile.15693:1
+> exit 1 from 'exit 1'
+> | ERROR: Function failed: do_compile (log file is located at
+> /<snip!>/build/tmp/work/aarch64-poky-linux/linux-inotify-perl/0.05-r0/tem=
+p/log.do_compile.15693)
+> ERROR: Task (/<snip!>/meta-<snip!>/recipes-perl/linux-inotify/linux-inoti=
+fy-perl_0.05.bb:do_compile)
+> failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 3669 tasks of which 3667 didn't need to
+> be rerun and 1 failed.
+>
+> Apparently the XSLoader module tries to use glob but instead of
+> loading the host shared object it opens the target shared object and
+> fails.
+>
+> I couldn't find any reason nor fix for that. Would appreciate any help.
+>
+> Best regards,
+> Bartosz Golaszewski
+>
+> [1] https://metacpan.org/pod/Linux::Inotify
 
-1 is self explanatory, for 2 whenever SRCREV is set to AUTOREV and
-SRCPV is used in PV the fetcher tries to access the network in order
-to determine SRCPV (bb.fetch2.get_srcrev) and fails for obvious
-reasons during parsing even when versioned recipes are used as
-PREFERRED_VERSION because parsing still happens for recipes that are
-in BB's search paths and we see.
-Traceback (most recent call last):
-bb.data_smart.ExpansionError: Failure expanding variable SRCPV, expression was ${@bb.fetch2.get_srcrev(d)} which triggered exception NetworkAccess: Network access disabled through BB_NO_NETWORK (or set indirectly due to use of BB_FETCH_PREMIRRORONLY) but access requested with command git -c core.fsyncobjectfiles=0 ls-remote git://github.com/TresysTechnology/refpolicy.git  (for url git://github.com/TresysTechnology/refpolicy.git)
+I still wasn't able to figure out the problem. Any help is appreciated.
 
-So we lock the REVs and do that with a soft assignment which
-allows overriding the REVs from elsewhere.
-
-Signed-off-by: Awais Belal <awais_belal@mentor.com>
----
- recipes-security/refpolicy/refpolicy_git.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/recipes-security/refpolicy/refpolicy_git.inc b/recipes-security/refpolicy/refpolicy_git.inc
-index f71eb35..6c318ab 100644
---- a/recipes-security/refpolicy/refpolicy_git.inc
-+++ b/recipes-security/refpolicy/refpolicy_git.inc
-@@ -3,8 +3,8 @@ PV = "2.20170805+git${SRCPV}"
- SRC_URI = "git://github.com/TresysTechnology/refpolicy.git;protocol=git;branch=master;name=refpolicy;destsuffix=refpolicy"
- SRC_URI += "git://github.com/TresysTechnology/refpolicy-contrib.git;protocol=git;branch=master;name=refpolicy-contrib;destsuffix=refpolicy/policy/modules/contrib"
- 
--SRCREV_refpolicy = "${AUTOREV}"
--SRCREV_refpolicy-contrib = "${AUTOREV}"
-+SRCREV_refpolicy ?= "794ed7efd0eca19d0353659a1ec9d4ef4e4b751c"
-+SRCREV_refpolicy-contrib ?= "a393275a6ecb76311323726a029767a3a01e109e"
- SRCREV_FORMAT = "refpolicy.refpolicy-contrib"
- 
- FILESEXTRAPATHS_prepend := "${THISDIR}/refpolicy-git:"
--- 
-2.7.4
-
+Bart
 
