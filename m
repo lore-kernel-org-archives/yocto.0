@@ -1,70 +1,38 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <sscott@san.rr.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C172E00A0C; Fri,  5 Oct 2018 18:13:08 -0700 (PDT)
+	id 69EC1E00A0C; Fri,  5 Oct 2018 22:17:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.175 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com
-	[209.85.160.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7C2BE009CF
-	for <yocto@yoctoproject.org>; Fri,  5 Oct 2018 18:13:07 -0700 (PDT)
-Received: by mail-qt1-f175.google.com with SMTP id c56-v6so15730296qtd.11
-	for <yocto@yoctoproject.org>; Fri, 05 Oct 2018 18:13:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=GjLXJkkZLprEcNvt3i/RSzWETN6CVtjXd3ZYb4vwaM8=;
-	b=HrE/a+mb8NBzq1FQD+MgVEVyGqk9R8Su1SUw2r+5arytz7Uh+fL7KLyxyLIpxVSiLV
-	o4fn8a3jH5SJQTf/3OBjI1yD/hF21IYTLd6einQhasSzy0mdtXcLFwJT8QHsDDy9C65e
-	0MhNJSfxpxjAqdqFIBH6aInBkRECfI6TlfcNFfR0kz1FWfUy16HTEFGjI4HkJFf7/4p4
-	zVc/rywXWV8LJPNUnm1T4XhqvW0iIGIaUqkNx8Pj0CPr7VHsLNn5Ej5BIm86Da+Itnoj
-	Nr9t1TYR7M9scE+0NdV40kQMVxrw0yDowdmFBiYKaAo8pUQmaoTUyc86zrBVZ5aNSGsg
-	sEig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=GjLXJkkZLprEcNvt3i/RSzWETN6CVtjXd3ZYb4vwaM8=;
-	b=AmiYCgPL0lXV3itoU/+LcmSJKCuhGDWa4GUOWblG89TFhhXYrJ+ZtezPqOTm1WYisr
-	yXHkpm0E2iQt52m9kmeXenOXgwSKyqYVLoasUxDaaeWEJB9Blcni3j7Frs+nMh4slox+
-	Mz4B43VpBhx5bSvjm/rCcnlQB1Xz6YQuDhN11pxis7ewxW9U3PH3eeeDP3TAngAaYV7T
-	LgPZkb1qiasD+yU3lLgzj+DFyQeg+SfpovW7CmtdH3nQkN/axCLQeGleXWankoksLOBW
-	8KO3Kl/tkBLYPuquy06fh0OclOJLcweeyMrhcKr6TtBgDd3RF0gFTPajIWReEosmWiGd
-	DcPg==
-X-Gm-Message-State: ABuFfoj6YT9g4zPghaM98yvYcJNBXT8tLgzqUJsixpbV3A/Q0/w8Gw5G
-	LtHsyvBiPfl+gtckQQ13jpTT/XlXDHlDmpFVxj4=
-X-Google-Smtp-Source: ACcGV61LCR0okJHM2egKcsn+DPQpqwwSLrs5HU5qUPg+nBs99yYnfJkAHe/TKhUlEO1T28IMRZge1Uogha8DlOmxZU0=
-X-Received: by 2002:ac8:7584:: with SMTP id
-	s4-v6mr11808543qtq.161.1538788386967; 
-	Fri, 05 Oct 2018 18:13:06 -0700 (PDT)
+	*      [107.14.166.232 listed in list.dnswl.org]
+X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
+	Fri, 05 Oct 2018 22:17:31 PDT
+Received: from cdptpa-cmomta02.email.rr.com (cdptpa-outbound-snat.email.rr.com
+	[107.14.166.232])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23EF8E0097D
+	for <yocto@yoctoproject.org>; Fri,  5 Oct 2018 22:17:31 -0700 (PDT)
+Received: from boobie ([75.80.138.87]) by cmsmtp with ESMTP
+	id 8ex1g72vxgKPo8ex3gpNLQ; Sat, 06 Oct 2018 05:16:30 +0000
+From: "Steve Scott" <sscott@san.rr.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 5 Oct 2018 22:16:35 -0700
+Message-ID: <001201d45d33$c247aee0$46d70ca0$@san.rr.com>
 MIME-Version: 1.0
-References: <CAFd=ocjm2E-pKH5sDbradN=qsTMYAvcWKyjXa2An-Rnb7MKWwA@mail.gmail.com>
-	<CAK18fxFLb2dMSrXJ9PKtsEP60GE7un+VSJvZ==HiAf7PNUCHbQ@mail.gmail.com>
-In-Reply-To: <CAK18fxFLb2dMSrXJ9PKtsEP60GE7un+VSJvZ==HiAf7PNUCHbQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 5 Oct 2018 18:12:40 -0700
-Message-ID: <CAMKF1srZcR7YGuQ4JdV7qcYLR3-u-eZ19KTew4Ha4AfoCNxyPA@mail.gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: markus4dev@gmail.com, Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Problem enabling w1-gpio
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdRdL81nUvKzxSbUQge2cfkGtbj4VA==
+X-CMAE-Envelope: MS4wfIASiU7F40cclkoAFFUjgObfadKhZFyT0PFMTJQWtTv63xrWkY9fUaSawU7d9qxj224bvrAhlOKVsyYqbibhJbA+HSz7w4DgTE63Nst7XN+LoalNzQSS
+	M1b0G/j0fv4QbiKCw7WF03BLNQawyBKHkYmLj4TcphU/aoOCVPSd1Jf33Usle5SXHpxmZoXtHOunfA==
+Subject: how to install files in nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: sscott@san.rr.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -73,55 +41,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Oct 2018 01:13:08 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 06 Oct 2018 05:17:32 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
-On Fri, Oct 5, 2018 at 9:27 AM Andrei Gherzan <andrei@gherzan.ro> wrote:
->
-> Hi Markus,
->
-> On Fri, Oct 5, 2018 at 4:28 PM Markus W <markus4dev@gmail.com> wrote:
->>
->> Hi!
->>
->> I'm creating a yocto image (sumo) for the raspberrypi and got stuck on h=
-ow to enable the one-wire interface on boot.
->>
->> I have enabled the SPI bus and I2C in my local.conf file.
->>
->> ENABLE_SPI_BUS =3D "1"
->> ENABLE_I2C =3D "1"
->>
->> and checked that they are loaded on boot.
->>
->> I'm struggling to figure out where to set  "dtoverlay=3Dw1-gpio" and how=
- to enable the w1-gpio module on boot. The /boot/config.txt file doesn't ex=
-ist by default after startup. If I create this file with the line above dir=
-ectly on the rpi and reboot it, the w1-gpio interface is still not enabled.
->
->
-> /boot when you run up the image is on the rootfs while the file you are l=
-ooking for is in the boot partition. You will need to mount (or set a boot =
-mount - fstab, systemd etc) the boot partition (p1) and you will see the fi=
-le afterwards. Alternatively, just mount the SD card's partitions on your w=
-orking station and modify the file offline.
->
+Hi:
 
-if one starts using wic image instead of old sd-card image types then
-boot is automounted.
+I'm a list newbie, so let me know if this should be posted somewhere else.
 
-Just add
+I am able to generate a standard SDK with native and target
+sysroots. The target sysroot has header files for my custom
+libraries. The header files are generally installed in
+<path-to-sdk-target-sysroot>/usr/include/  
 
-IMAGE_FSTYPES +=3D "wic.xz"
+We use cmake and googletest running on the *host* for testing some of
+our libraries. So I need to build googletest and the test apps using the
+host (x86_64) tools. The test apps need to include the target's library
+header files.
 
-for nice xz compressed wic image.
+I tried specifying the SDK's *target* usr/include as an include directory to
+the compiler, but files in this tree preempted the standard compiler (g++)
+system include files. I can avoid this problem by installing the library
+header files under the SDK's native sysroot; i.e. in 
+<path-to-sdk-native-sysroot>/usr/include/ 
+and setting this directory as an include directory on the compiler
+command line.
 
-> ---
-> Andrei
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+However, I cannot grok how to get these files into the SDK's native
+tree. It seems related to  
+   BBCLASSEXTEND = "native nativesdk"
+but I'm just chasing my tail trying to figure out the magic incantation.
+
+Does anyone know how to do this? Or is there a better approach?
+
+Thanks.
+
+-steve scott
+
+
+
+
 
