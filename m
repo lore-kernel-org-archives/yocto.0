@@ -1,63 +1,60 @@
-Return-Path: <mathewkunjumontharakan@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6BA80E00AB3; Mon,  8 Oct 2018 00:05:47 -0700 (PDT)
+	id A47B4E00901; Mon,  8 Oct 2018 04:10:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (mathewkunjumontharakan[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.66 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.177 listed in list.dnswl.org]
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com
-	[209.85.167.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 079B7E00920
-	for <yocto@yoctoproject.org>; Mon,  8 Oct 2018 00:05:46 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id j68-v6so14972505oib.7
-	for <yocto@yoctoproject.org>; Mon, 08 Oct 2018 00:05:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=gJU/aCukU1briC62O4L67//GevNj4niECLURixRvglA=;
-	b=KEhKPl23ki4DelvX8DsquQVRtMft+cA/WoCJ8/mq3X0quQEKuq5wGlh4a+mVEIZAyp
-	zu7bmLQzAcTWSrqHRmF2xAcxipmxSSJ320gMeYPV1NPuAoydufWoRhIy7adN/v2owbFF
-	3H32nIBD1/iGaqhCkQRTyD/RuCHp4QxH+f+j2J/ajM94XDyPtqRb6Vb0iQGqhEf93z3D
-	zFRFeyBaqBxoy+aq5Ni1YEaxFcO0PCXmd0Yp6x/o5fo7EleRP6TUsUJDGR3Yr4M1XSu+
-	NFilZIdEam4RLUQVhjeBoOizkXtQNqcAHCG4lI1AZir+nZwOj+zONWGRwbyD+yB6Urfr
-	ACyw==
+Received: from mail-ot1-f66.google.com (mail-ot1-f66.google.com
+	[209.85.210.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EE42E007B3
+	for <yocto@yoctoproject.org>; Mon,  8 Oct 2018 04:10:42 -0700 (PDT)
+Received: by mail-ot1-f66.google.com with SMTP id i12-v6so19243205otl.1
+	for <yocto@yoctoproject.org>; Mon, 08 Oct 2018 04:10:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=KWO+bfopBHSPMnjaoH32hBQy3UTA2CgVdgR1TrzuhAE=;
+	b=vJkrweVjg6Qg0Gd6B/hkPHvK1eXSWzqlAtDEibEw4Farh/dIgGCTz4dUTY0L2mUxrU
+	HQQkvyolZN2K6arJ/d5mhALaGCuNPNQh80amFjZyaAq1TH3s+wDAB9KqkTnLJKvpfKVD
+	3b4otff5LiF3SlykYmG15joo4p+aK+pA7uocxZyH/IZIIdocB44rama/UhfJOAMoyCB2
+	rKNL5kyI/LRcTCmJoAuy1zkThgb6z+WQqFQZqB4EDgFKDHKdTdbhGMG1DfM91EI1+lCr
+	R7DEh4Z6OSlmkeGicN2FWUBz8IYuGr26BVy2SXRxily0/zZL8GeuILci+WqgHaYR6hZq
+	1/WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=gJU/aCukU1briC62O4L67//GevNj4niECLURixRvglA=;
-	b=HAG+qd/Aju8l/zTIkdb2yWAwrJUcPsK94RjvJ3rNjifRnAJWCzn2PCrWplG9oRXUiC
-	uy35gyZD+i5JU3TK4VmDI6sWrKzJX/PqwV+LkGfT4bHDDiRBYm1tn1XrWcILKQXA3LvX
-	nJK7FpRiYvtetr0HkN4mXbK3mQMs1B0K1i2QBIGmtMyVOMV1an7FVRYr1fv2YbBixAGl
-	ohCpHI8ELbIMk5yADaInP+8Nhl/bkj9Rpf/pqilria7ZzltUifH/wVuLjOwig+ux4J0s
-	Ub1CEKyxT9rgTp9wFz6FY83xzVSJeEse+dgNu50Vu8WRc1+vm6c3YyurVbQAF3jTMrft
-	Ze6w==
-X-Gm-Message-State: ABuFfohwEhjMy9TkMiMFvO9dSkSb8HAUKtK2ZKJI0c06iByeNASmJ0MM
-	2Vp2y8Ny0bmJRpRnEd4VKmKBjUxksSWYXMlAZXuQ2OVp
-X-Google-Smtp-Source: ACcGV63y8mfXPh8NgDJlv/rjvvezPEIx2k5Qr3T8vAc7gmJMUDlYoOVFCXRXJbQqzyQP0nzWyqoIYEIiUngth27hQos=
-X-Received: by 2002:aca:4d51:: with SMTP id
-	a78-v6mr4051386oib.205.1538982346145; 
-	Mon, 08 Oct 2018 00:05:46 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=KWO+bfopBHSPMnjaoH32hBQy3UTA2CgVdgR1TrzuhAE=;
+	b=ETyc5u/9IF6LOOg3kQZFgCsxZ71C0SYYPFmPIc5Jr+9YNDz0Ky7UeQWGCsTNS0hvPF
+	IrEiyt6iKNVI0L/G2wUG+MbMCfNH1SP+FrmgVZuZ90/yzm+wX/I9WqBYW9R8uKATP3sc
+	BKpXWdt3857zxdALk3I1iqYrM/nFfqbvxO6Bukbg+lCaErySEZlleEnYz6Dwy1Zy/kxH
+	gQ2/Xn2P0KbPMHW/n065VIOFo0FLnT7AJgOgCF7QOHVkbZcRQnhiz0xASPTYoSADSnSO
+	qug7zzM2agbOI7Q5buXujSVNYvQVmM9GHnZrvkNjnBcDx3v0tOJorDb+7jS9qO73iBXY
+	bqNA==
+X-Gm-Message-State: ABuFfoiO/Cmn8vbRG8SaMiy0tfqYP1nP0soLAPqoAjxbu7HoeyKZWGXi
+	H0QQ4TQXKVKAvjKQ9N6r/r7ToJzUU0oMtTaKBo1lxUEt
+X-Google-Smtp-Source: ACcGV635l4EeOB7DMxpiYG8a4i0Ul4f8M6iHiJ6KN27sSD1pXBH+/EcT7Et2JiCW4eXWwdb5GdZiKltNnBFAEsrAZ3w=
+X-Received: by 2002:a9d:3e50:: with SMTP id h16mr5795392otg.8.1538997041679;
+	Mon, 08 Oct 2018 04:10:41 -0700 (PDT)
 MIME-Version: 1.0
-From: Mathew K Tharakan <mathewkunjumontharakan@gmail.com>
-Date: Mon, 8 Oct 2018 12:35:34 +0530
-Message-ID: <CA+JFif2f8xZ2aZ8cL-orkAVsQMsuf4yxTZ2H4kqW478jWPyXjQ@mail.gmail.com>
-To: Yocto-mailing-list <yocto@yoctoproject.org>
-X-Mailman-Approved-At: Mon, 08 Oct 2018 00:59:55 -0700
-Subject: Industrial IO drivers
+References: <001201d45d33$c247aee0$46d70ca0$@san.rr.com>
+In-Reply-To: <001201d45d33$c247aee0$46d70ca0$@san.rr.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 8 Oct 2018 12:10:30 +0100
+Message-ID: <CAJTo0LaK6P5x1ciFJZDFudnemD4i7eEtVYbC2pV-GuPah2RHKw@mail.gmail.com>
+To: sscott@san.rr.com
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: how to install files in nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,47 +66,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Oct 2018 07:05:47 -0000
-Content-Type: multipart/alternative; boundary="0000000000000ec5730577b24033"
-
---0000000000000ec5730577b24033
+X-List-Received-Date: Mon, 08 Oct 2018 11:10:42 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Sat, 6 Oct 2018 at 06:18, Steve Scott <sscott@san.rr.com> wrote:
+> I am able to generate a standard SDK with native and target
+> sysroots. The target sysroot has header files for my custom
+> libraries. The header files are generally installed in
+> <path-to-sdk-target-sysroot>/usr/include/
+>
+> We use cmake and googletest running on the *host* for testing some of
+> our libraries. So I need to build googletest and the test apps using the
+> host (x86_64) tools. The test apps need to include the target's library
+> header files.
+>
+> I tried specifying the SDK's *target* usr/include as an include directory to
+> the compiler, but files in this tree preempted the standard compiler (g++)
+> system include files. I can avoid this problem by installing the library
+> header files under the SDK's native sysroot; i.e. in
+> <path-to-sdk-native-sysroot>/usr/include/
+> and setting this directory as an include directory on the compiler
+> command line.
+>
+> However, I cannot grok how to get these files into the SDK's native
+> tree. It seems related to
+>    BBCLASSEXTEND = "native nativesdk"
+> but I'm just chasing my tail trying to figure out the magic incantation.
+>
+> Does anyone know how to do this? Or is there a better approach?
 
-I'm working on iMX6ULL evaluation kit. We are using the Yocto Project.
+Assuming the recipe is correctly written, simply adding:
 
-I was trying to interface a heart rate sensor with the processor. I
-configured it as an IIO device and wrote a device driver for that.
-All functionalities are working fine.
+BBCLASSEXTEND = "native nativesdk"
 
-But I'm facing some timing issues in the system. I would like to Toggle one
-GPIO on arrival of ADC Ready interrupts. It takes 50 - 120 usec to toggle.
-Also, It follows different timings when the IIO trigger buffer is enabled.
-I need to reduce this timing to less than 10usec. For that, I would like to
-get more details about interrupt handling in IIO drivers.
+Will give your recipe (eg foo.bb) native and nativesdk variant
+(foo-native and nativesdk-foo).  The class extension automatically
+changes the paths so in general that's all you need to do.  Then just
+add nativesdk-foo to your SDK using TOOLCHAIN_HOST_TASK_append = "
+nativesdk-foo".
 
-I would like to know why this time delay occurs.
+Ross
 
-Thanks and Regards,
-Mathew K Tharakan
-
---0000000000000ec5730577b24033
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div><div><div>Hi,<br><br></div>I&#39;=
-m working on iMX6ULL evaluation kit. We are using the=C2=A0Yocto Project.<b=
-r><br></div>I was trying to interface a heart rate sensor with the processo=
-r. I configured it as an IIO device and wrote a device driver for that. <br=
->All functionalities are working fine.<br><br></div>But I&#39;m facing some=
- timing issues in the system. I would like to Toggle one GPIO on arrival of=
- ADC Ready interrupts. It takes 50 - 120 usec to toggle. <br></div><div>Als=
-o, It follows different timings when the IIO trigger buffer is enabled. <br=
-></div>I need to reduce this timing to less than 10usec. For that, I would =
-like to get more details about interrupt handling in IIO drivers. <br><br><=
-/div>I would like to know why this time delay occurs.<br><br></div>Thanks a=
-nd Regards,<br></div>Mathew K Tharakan<br><div><div><div><br><div><div><div=
-><br><div><br></div></div></div></div></div></div></div></div>
-
---0000000000000ec5730577b24033--
