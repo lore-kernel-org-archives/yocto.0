@@ -1,33 +1,33 @@
 Return-Path: <Hongxu.Jia@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 705F8E00A86; Sun,  7 Oct 2018 23:13:58 -0700 (PDT)
+	id 8B96DE00A86; Sun,  7 Oct 2018 23:19:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BC68E00901
-	for <yocto@yoctoproject.org>; Sun,  7 Oct 2018 23:13:57 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w986Dlqv011718
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34FC8E00901
+	for <yocto@yoctoproject.org>; Sun,  7 Oct 2018 23:19:10 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w986J7I1012919
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 7 Oct 2018 23:13:47 -0700 (PDT)
+	Sun, 7 Oct 2018 23:19:07 -0700 (PDT)
 Received: from pek-lpg-core1-vm2.wrs.com (128.224.156.107) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.408.0; Sun, 7 Oct 2018 23:13:46 -0700
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.408.0; Sun, 7 Oct 2018 23:18:54 -0700
 From: Hongxu Jia <hongxu.jia@windriver.com>
-To: <adrian.dudau@enea.com>, <yocto@yoctoproject.org>
-Date: Mon, 8 Oct 2018 14:23:57 +0800
-Message-ID: <1538979837-6809-1-git-send-email-hongxu.jia@windriver.com>
+To: <joe_macdonald@mentor.com>, <yocto@yoctoproject.org>
+Date: Mon, 8 Oct 2018 14:29:05 +0800
+Message-ID: <1538980145-6906-1-git-send-email-hongxu.jia@windriver.com>
 X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Subject: [meta-cgl][PATCH] layer.conf: update LAYERSERIES_COMPAT `sumo' -> `thud'
+Subject: [meta-selinux][PATCH] layer.conf: update LAYERSERIES_COMPAT `sumo' -> `thud'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,7 +39,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Oct 2018 06:13:58 -0000
+X-List-Received-Date: Mon, 08 Oct 2018 06:19:10 -0000
 Content-Type: text/plain
 
 Since `9ec5a8a layer.conf: Drop sumo from LAYERSERIES_CORENAMES' and
@@ -48,21 +48,22 @@ update LAYERSERIES_COMPAT `sumo' -> `thud'
 
 Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
 ---
- meta-cgl-common/conf/layer.conf | 2 +-
+ conf/layer.conf | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-cgl-common/conf/layer.conf b/meta-cgl-common/conf/layer.conf
-index 4b8552f..bf2c93e 100644
---- a/meta-cgl-common/conf/layer.conf
-+++ b/meta-cgl-common/conf/layer.conf
-@@ -13,6 +13,6 @@ BBFILE_PRIORITY_cgl-common = "7"
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 0f9ea41..5fecac6 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -18,7 +18,7 @@ BBFILE_PRIORITY_selinux = "5"
+ # cause compatibility issues with other layers
+ LAYERVERSION_selinux = "1"
  
- LAYERDEPENDS_cgl-common = "core openembedded-layer networking-layer perl-layer filesystems-layer security selinux"
+-LAYERSERIES_COMPAT_selinux = "sumo"
++LAYERSERIES_COMPAT_selinux = "thud"
  
--LAYERSERIES_COMPAT_cgl-common = "sumo"
-+LAYERSERIES_COMPAT_cgl-common = "thud"
- 
- require conf/distro/include/cgl_common_security_flags.inc
+ LAYERDEPENDS_selinux = " \
+     core \
 -- 
 2.7.4
 
