@@ -1,43 +1,56 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 285F9E00B5E; Mon,  8 Oct 2018 19:51:46 -0700 (PDT)
+	id 17B25E0095C; Tue,  9 Oct 2018 07:49:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_MED,SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
 	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+	*      [192.55.52.136 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C25B4E00A86
-	for <yocto@yoctoproject.org>; Mon,  8 Oct 2018 19:51:43 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w992owN1011700
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 8 Oct 2018 19:51:08 -0700
-Received: from server.local (128.224.21.82) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.408.0;
-	Mon, 8 Oct 2018 19:50:47 -0700
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <286078d59ba1400fb6646b0e6057add6@sakuraus.com>
-	<16551d421c7747ab9ae52856a668d750@sakuraus.com>
-	<a3fc06bf-e202-dec1-8618-f7f89e1c8a93@windriver.com>
-	<7b74cef2003b44909e3033efa1d4305a@sakuraus.com>
-	<772b7fca373e4a9085660b8a79a36673@sakuraus.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <445024a9-2d4c-e583-b57a-dd536d193ea0@windriver.com>
-Date: Mon, 8 Oct 2018 22:50:47 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.9.1
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10E2EE00718
+	for <yocto@yoctoproject.org>; Tue,  9 Oct 2018 07:49:33 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	09 Oct 2018 07:49:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.54,360,1534834800"; d="scan'208,217";a="98748650"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+	by orsmga002.jf.intel.com with ESMTP; 09 Oct 2018 07:49:28 -0700
+Received: from fmsmsx102.amr.corp.intel.com (10.18.124.200) by
+	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Tue, 9 Oct 2018 07:49:27 -0700
+Received: from fmsmsx123.amr.corp.intel.com ([169.254.7.84]) by
+	FMSMSX102.amr.corp.intel.com ([169.254.10.220]) with mapi id
+	14.03.0319.002; Tue, 9 Oct 2018 07:49:26 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: =?Windows-1252?Q?Yocto_Project_Status_WW41=9218?=
+Thread-Index: AdRf3KlY1cvGtT+USuKHuKCEnXQpgw==
+Date: Tue, 9 Oct 2018 14:49:25 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECEE42669@fmsmsx123.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYTQyZGU3NGQtNzllZS00YzJlLWE1YzctZTE4YzNjMWI0NjVhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTHNTdTM3R1l5dFBCbFBCd1R2dlBGOG51MXlcL3dRTDNXTkR0MU40SjNzOU9PZ3gxRzc0b3dqc2s2cDA0RVB3UDAifQ==
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
 MIME-Version: 1.0
-In-Reply-To: <772b7fca373e4a9085660b8a79a36673@sakuraus.com>
-Subject: Re: changing kernel config in Morty build
+Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1c0MeKAmTE4?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,759 +62,1245 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Oct 2018 02:51:46 -0000
-Content-Type: multipart/alternative;
-	boundary="------------048215331ACCA7539004C98D"
+X-List-Received-Date: Tue, 09 Oct 2018 14:49:35 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE42669fmsmsx123amrcor_"
 
---------------048215331ACCA7539004C98D
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE42669fmsmsx123amrcor_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-On 2018-10-05 7:26 PM, Greg Wilson-Lindberg wrote:
-> Hi Bruce,
-> I've been able to reproduce the problem in a more minimal environment.
->
-> To build a basic Yocto Raspberry Pi environment I based my build on the instructions found here:
-> https://themeaningfulengineer.github.io/exploring-yocto-with-raspberrypi/
->
-> The steps that I actually executed are:
->
-> git clone -b morty --single-branch git://git.yoctoproject.org/poky
-> cd poky/
-> git clone -b morty http://git.yoctoproject.org/git/meta-raspberrypi
-> source oe-init-build-env rpi-build
->
-> In rpi-build/conf/local.conf I changed the MACHINE assignment to "raspberrypi2" from "qemu86"
->
-> In rpi-build/conf/bblayers.conf I added "  /home/gwilson/Qt/poky/meta-raspberrypi \" to pick up the raspberry layer.
->
-> At this point I ran:
-> bitbake rpi-hwup-image
->
-> to verify that the environment was correct. The build finished with only a couple of warnings about checksum problems and using alternate mirrors.
-> I then copied in my kernel scripts and added in the directory to the bblayers file.
-> When I rebuilt with these changes I get the same warnings/errors about changing the kernel config that I get with my full build environment.
-> I've attached my meta-test directory with the kernel configuration .bbappend and .scc & .cfg files, and the final bblayers.conf & local.conf files.
-> Thank you for taking a look at this.
-Thanks Greg,
+Current Dev Position: YP 2.6 M4.
 
-I was able to reproduce the problem a few minutes ago, but will have to 
-look at the root cause in the morning!
-
-Bruce
-
-> Regards,
-> Greg Wilson-Lindberg
->
->
-> ------------------------------------------------------------------------
-> *From:* yocto-bounces@yoctoproject.org 
-> <yocto-bounces@yoctoproject.org> on behalf of Greg Wilson-Lindberg 
-> <GWilson@sakuraus.com>
-> *Sent:* Friday, October 5, 2018 9:23:52 AM
-> *To:* Bruce Ashfield; yocto@yoctoproject.org
-> *Subject:* Re: [yocto] changing kernel config in Morty build
-> Hi Bruce,
-> I'll do my best to get something for you.
-> Thanks,
->
-> Greg Wilson-Lindberg
-> Principal Firmware Engineer | Sakura Finetek USA, Inc.
->
-> 1750 W 214th Street | Torrance, CA 90501 | U.S.A.
-> T: +1 310 783 5075
-> F: +1 310 618 6902 | E: gwilson@sakuraus.com
-> www.sakuraus.com <http://www.sakuraus.com>
->
->
->
->
->
-> Confidentiality Notice: This e-mail transmission may contain 
-> confidential or legally privileged information that is intended only 
-> for the individual or entity named in the e-mail address. If you are 
-> not the intended recipient, you are hereby notified that any 
-> disclosure, copying, distribution, or reliance upon the contents of 
-> this e-mail is strictly prohibited. If you have received this e-mail 
-> transmission in error, please reply to the sender, so that Sakura 
-> Finetek USA, Inc. can arrange for proper delivery, and then please 
-> delete the message from your inbox. Thank you.
->
->
->
-> > -----Original Message-----
-> > From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
-> > Sent: Friday, October 05, 2018 08:46 AM
-> > To: Greg Wilson-Lindberg <GWilson@sakuraus.com>; yocto@yoctoproject.org
-> > Subject: Re: [yocto] changing kernel config in Morty build
-> >
-> > On 2018-10-04 4:38 PM, Greg Wilson-Lindberg wrote:
-> > > Does anybody else have any idea about what is going on here?
-> > >
-> >
-> > I can't tell from the information provided.
-> >
-> > But if you can send me a set of layers to clone, and configure 
-> locally, I can figure it
-> > out.
-> >
-> > Cheers,
-> >
-> > Bruce
-> >
-> > > Yocto is seeing my request to change the kernel config, suggests that
-> > > the change is acceptable, but then doesn't make it.
-> > >
-> > > Thanks in advance for any insight,
-> > >
-> > > Greg
-> > >
-> > > **
-> > >
-> > > *From:*Greg Wilson-Lindberg
-> > > *Sent:* Tuesday, October 02, 2018 02:22 PM
-> > > *To:* yocto@yoctoproject.org
-> > > *Subject:* changing kernel config in Morty build
-> > >
-> > > I'm trying to change some kernel configuration flags in a
-> > > raspberrypi3 Morty build and I get warnings that it isn't working.
-> > >
-> > > Here is the build info and warnings:
-> > >
-> > > Build Configuration:
-> > >
-> > > BB_VERSION        = "1.32.0"
-> > >
-> > > BUILD_SYS         = "x86_64-linux"
-> > >
-> > > NATIVELSBSTRING   = "universal"
-> > >
-> > > TARGET_SYS        = "arm-poky-linux-gnueabi"
-> > >
-> > > MACHINE           = "raspberrypi3"
-> > >
-> > > DISTRO            = "b2qt"
-> > >
-> > > DISTRO_VERSION    = "2.2.4"
-> > >
-> > > TUNE_FEATURES     = "arm armv7ve vfp thumb neon vfpv4
-> > > callconvention-hard cortexa7"
-> > >
-> > > TARGET_FPU        = "hard"
-> > >
-> > > SDKMACHINE        = "x86_64"
-> > >
-> > > meta
-> > >
-> > > meta-poky         = "HEAD:df76669bdd70aa0d903c4211dde731221c7e756d"
-> > >
-> > > meta-raspberrypi  = "HEAD:2a192261a914892019f4f428d7462bb3c585ebac"
-> > >
-> > > meta-oe
-> > >
-> > > meta-python
-> > >
-> > > meta-networking
-> > >
-> > > meta-initramfs
-> > >
-> > > meta-multimedia   = "HEAD:b40116cf457b88a2db14b86fda9627fb34d56ae6"
-> > >
-> > > meta-boot2qt
-> > >
-> > > meta-raspberrypi-extras = "<unknown>:<unknown>"
-> > >
-> > > meta-mingw        = "HEAD:1c2e155111dce94423cc227ea69f7f50f316c78e"
-> > >
-> > > meta-qt5          = "HEAD:49e9d9a73b5c6e3d6eab88dc0005305e85b1a62d"
-> > >
-> > > meta-sakura       = "<unknown>:<unknown>"
-> > >
-> > > Initialising tasks: 100%
-> > >
-> > |###################################################################
-> > ##
-> > >
-> > |###################################################################
-> > ##
-> > > |###|
-> > > Time: 0:00:00
-> > >
-> > > NOTE: Executing SetScene Tasks
-> > >
-> > > NOTE: Executing RunQueue Tasks
-> > >
-> > > WARNING: linux-raspberrypi-1_4.4.50+gitAUTOINC+04c8e47067-r0
-> > > do_kernel_configcheck: [kernel config]: specified values did not make
-> > > it into the kernel's final configuration:
-> > >
-> > > ---------- CONFIG_SND_SOC_MAX9768 -----------------
-> > >
-> > > Config: CONFIG_SND_SOC_MAX9768
-> > >
-> > > From:
-> > > /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work
-> > > -shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
-> > >
-> > > Requested value:  CONFIG_SND_SOC_MAX9768=y
-> > >
-> > > Actual value:
-> > >
-> > > Config 'SND_SOC_MAX9768' has the following conditionals:
-> > >
-> > > Dependency values are:
-> > >
-> > > ---------- CONFIG_MAX1363 -----------------
-> > >
-> > > Config: CONFIG_MAX1363
-> > >
-> > > From:
-> > > /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work
-> > > -shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
-> > >
-> > > Requested value:  CONFIG_MAX1363=m
-> > >
-> > > Actual value:     # CONFIG_MAX1363 is not set
-> > >
-> > > Config 'MAX1363' has the following conditionals:
-> > >
-> > >    I2C (value: "y")
-> > >
-> > > Dependency values are:
-> > >
-> > >    I2C [y]
-> > >
-> > > ---------- CONFIG_CAN_EMS_USB -----------------
-> > >
-> > > Config: CONFIG_CAN_EMS_USB
-> > >
-> > > From:
-> > > /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work
-> > > -shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
-> > >
-> > > Requested value:  CONFIG_CAN_EMS_USB=m
-> > >
-> > > Actual value:     # CONFIG_CAN_EMS_USB is not set
-> > >
-> > > Config 'CAN_EMS_USB' has the following conditionals:
-> > >
-> > >    (none)
-> > >
-> > > Dependency values are:
-> > >
-> > > Here is my
-> > >
-> > > linux-raspberrypi_4.4.bbappend for the kernel:
-> > >
-> > > # Scribe additions to Kernel configuration
-> > >
-> > > FILESEXTRAPATHS_prepend := "${FILE_DIRNAME}/files:"
-> > >
-> > > FILESEXTRAPATHS_prepend := "${FILE_DIRNAME}/${PN}:"
-> > >
-> > > SRC_URI += "file://Scribe.scc <file:///%5C%5CScribe.scc>"
-> > >
-> > > SRC_URI += "file://mcp251x.c.patch <file:///%5C%5Cmcp251x.c.patch>"
-> > >
-> > > The Scribe.scc file:
-> > >
-> > > # Scribe additions to kernel configuration
-> > >
-> > > kconf hardware Scribe.cfg
-> > >
-> > > And the Scribe.cfg file:
-> > >
-> > > # Scribe additions to kernel configuration
-> > >
-> > > # Enable MAX9768
-> > >
-> > > #CONFIG_SOC_ALL_CODECS=m
-> > >
-> > > #CONFIG_COMPILE_TEST=y
-> > >
-> > > CONFIG_SND_SOC_MAX9768=y
-> > >
-> > > # Enable MAX11606
-> > >
-> > > #IIO=y
-> > >
-> > > CONFIG_MAX1363=m
-> > >
-> > > # Enable EMS CPC-USB
-> > >
-> > > CONFIG_CAN_EMS_USB=m
-> > >
-> > > Here is my directory tree:
-> > >
-> > > Qt-5.9.6
-> > >
-> > >       Yocto-mirror
-> > > # Yocto build mirror
-> > >
-> > >       Yocto-build-RPi3                   #
-> > > Yocto build root
-> > >
-> > >                  build-raspberrypi                    #
-> > > build directory
-> > >
-> > >                  sources
-> > >   # yocto sources
-> > >
-> > >                         meta-sakura
-> > > # our recipes
-> > >
-> > >                                 recipes-kernel
-> > > # directory for kernel changes
-> > >
-> > >                                         linux
-> > >     # directory that contains linux-raspberrypi_4.4.bbappend
-> > >
-> > > files
-> > >       # directory that contains .scc & .cfg files
-> > >
-> > > As seen above none of the changes are accepted although there is
-> > > nothing that blocks any of them.
-> > >
-> > > Any help understanding this would be greatly appreciated.
-> > >
-> > > Regards,
-> > >
-> > > Greg Wilson-Lindberg
-> > >
-> > >
-> > >
->
-> -- 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Next Deadline: YP 2.6 M4 Build Target is Oct. 1, 2018
 
 
+SWAT Team Rotation:
 
---------------048215331ACCA7539004C98D
-Content-Type: text/html; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
+=B7         SWAT lead is currently: Paul
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;
-      charset=windows-1252">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <div class="moz-cite-prefix">On 2018-10-05 7:26 PM, Greg
-      Wilson-Lindberg wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:772b7fca373e4a9085660b8a79a36673@sakuraus.com">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Exchange Server">
-      <!-- converted from text -->
-      <style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left: #800000 2px solid; } --></style>
-      <meta content="text/html; charset=UTF-8">
-      <style type="text/css" style="">
-<!--
+=B7         SWAT team rotation: Paul -> Ross on Oct. 12, 2018
+
+=B7         SWAT team rotation: Ross -> Amanda on Oct. 17, 2018
+
+=B7         https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Tea=
+m
+
+
+Key Status/Updates:
+
+=B7         2.6 M3 rc1 has been built and is in QA; currently 100% complete=
+.  See https://wiki.yoctoproject.org/wiki/2.6_QA_Status.  The report should=
+ be published soon.
+
+=B7         The build appliance issue identified last week is not a blockin=
+g issue for 2.6 M3 and has a simple fix now included in master.
+
+=B7         We=92re now past feature freeze and all major changes planned f=
+or 2.6 have been merged so only bug fixes will be accepted now.
+
+=B7         The reproducibility problem for non-IA binaries in the debug sy=
+mbol sections has been investigated and a fix has been merged in master.
+
+=B7         There were fixes merged to the gitsm bitbake fetcher which caus=
+ed other breakage. The known breakage has now been fixed, if further proble=
+ms are seen, please report them ASAP.
+
+=B7         We are now into 2.6 M4=92s window so we will likely branch for =
+thud and build rc1 as soon as the report for M3 is out and that milestone r=
+elease is made.
+
+
+Planned Releases for YP 2.6:
+
+=B7         YP 2.6 M3 Release Target was Sept. 7, 2018
+
+=B7         YP 2.6 M4 Build Target is Oct. 1, 2018
+
+=B7         YP 2.6 M4 Release Target is Oct. 26, 2018
+
+
+Planned upcoming dot releases:
+
+=B7         YP 2.4.4 (Rocko) will be targeted after YP 2.6 M4 is done.
+
+=B7         YP 2.5.2 (Sumo) will be targeted after YP 2.4.4 is done.
+
+
+Tracking Metrics:
+
+=B7         WDD 2527 (last week 2534) (https://wiki.yoctoproject.org/charts=
+/combo.html)
+
+=B7         Poky Patch Metrics
+
+o    Total patches found: 1665 (last week 1657)
+
+o    Percentage of patches in the Pending State: 735 (44%) [last week 732 (=
+44%)]
+
+
+Key Status Links for YP:
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.6_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.6_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.6_Features
+
+
+The Status reports are now stored on the wiki at: https://wiki.yoctoproject=
+.org/wiki/Weekly_Status
+
+
+[If anyone has suggestions for other information you=92d like to see on thi=
+s weekly status update, let us know!]
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+=95    Cell:                (208) 244-4460
+=95 Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE42669fmsmsx123amrcor_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:2 11 5 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
 p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-      <div dir="ltr">
-        <div id="x_divtagdefaultwrapper" style="font-size:12pt;
-          color:#000000; font-family:Calibri,Arial,Helvetica,sans-serif">
-          <div style="color:#000000; background-color:#ffffff;
-            font-style:normal; font-weight:normal; text-decoration:none">
-            <pre>Hi Bruce,
-I've been able to reproduce the problem in a more minimal environment.
-
-To build a basic Yocto Raspberry Pi environment I based my build on the instructions found here:
-<a class="moz-txt-link-freetext" href="https://themeaningfulengineer.github.io/exploring-yocto-with-raspberrypi/">https://themeaningfulengineer.github.io/exploring-yocto-with-raspberrypi/</a>
-
-The steps that I actually executed are:
-
-git clone -b morty --single-branch <a class="moz-txt-link-freetext" href="git://git.yoctoproject.org/poky">git://git.yoctoproject.org/poky</a>
-cd poky/
-git clone -b morty <a class="moz-txt-link-freetext" href="http://git.yoctoproject.org/git/meta-raspberrypi">http://git.yoctoproject.org/git/meta-raspberrypi</a>
-source oe-init-build-env rpi-build
-
-In rpi-build/conf/local.conf I changed the MACHINE assignment to "raspberrypi2" from "qemu86"
-
-In rpi-build/conf/bblayers.conf I added "  /home/gwilson/Qt/poky/meta-raspberrypi \" to pick up the raspberry layer.
-
-At this point I ran:
-bitbake rpi-hwup-image
-
-to verify that the environment was correct. The build finished with only a couple of warnings about checksum problems and using alternate mirrors.</pre>
-            <pre>I then copied in my kernel scripts and added in the directory to the bblayers file. </pre>
-            <pre>When I rebuilt with these changes I get the same warnings/errors about changing the kernel config that I get with my full build environment.
-</pre>
-            <pre><pre style="font-size:16px">I've attached my meta-test directory with the kernel configuration .bbappend and .scc &amp; .cfg files, and the final bblayers.conf &amp; local.conf files.</pre><pre style="font-size:16px">Thank you for taking a look at this.</pre></pre>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    Thanks Greg,<br>
-    <br>
-    I was able to reproduce the problem a few minutes ago, but will have
-    to look at the root cause in the morning!<br>
-    <br>
-    Bruce<br>
-    <br>
-    <blockquote type="cite"
-      cite="mid:772b7fca373e4a9085660b8a79a36673@sakuraus.com">
-      <div dir="ltr">
-        <div id="x_divtagdefaultwrapper" style="font-size:12pt;
-          color:#000000; font-family:Calibri,Arial,Helvetica,sans-serif">
-          <div style="color:#000000; background-color:#ffffff;
-            font-style:normal; font-weight:normal; text-decoration:none">
-            <pre><pre style="font-size:16px">Regards,</pre><pre style="font-size:16px">Greg Wilson-Lindberg</pre>
-</pre>
-          </div>
-          <br>
-        </div>
-        <hr tabindex="-1" style="display:inline-block; width:98%">
-        <div id="x_divRplyFwdMsg" dir="ltr"><font style="font-size:11pt"
-            face="Calibri, sans-serif" color="#000000"><b>From:</b>
-            <a class="moz-txt-link-abbreviated" href="mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yoctoproject.org</a>
-            <a class="moz-txt-link-rfc2396E" href="mailto:yocto-bounces@yoctoproject.org">&lt;yocto-bounces@yoctoproject.org&gt;</a> on behalf of Greg
-            Wilson-Lindberg <a class="moz-txt-link-rfc2396E" href="mailto:GWilson@sakuraus.com">&lt;GWilson@sakuraus.com&gt;</a><br>
-            <b>Sent:</b> Friday, October 5, 2018 9:23:52 AM<br>
-            <b>To:</b> Bruce Ashfield; <a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-            <b>Subject:</b> Re: [yocto] changing kernel config in Morty
-            build</font>
-          <div> </div>
-        </div>
-      </div>
-      <font size="2"><span style="font-size:10pt;">
-          <div class="PlainText">Hi Bruce,<br>
-            I'll do my best to get something for you.<br>
-            Thanks,<br>
-            <br>
-            Greg Wilson-Lindberg  <br>
-            Principal Firmware Engineer | Sakura Finetek USA, Inc.  <br>
-             <br>
-            1750 W 214th Street | Torrance, CA 90501 | U.S.A.  <br>
-            T: +1 310 783 5075  <br>
-            F: +1 310 618 6902 | E: <a class="moz-txt-link-abbreviated" href="mailto:gwilson@sakuraus.com">gwilson@sakuraus.com</a>      <br>
-            <a href="http://www.sakuraus.com" moz-do-not-send="true">www.sakuraus.com</a>           
-            <br>
-             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            Confidentiality Notice: This e-mail transmission may contain
-            confidential or legally privileged information that is
-            intended only for the individual or entity named in the
-            e-mail address. If you are not the intended recipient, you
-            are hereby notified that any disclosure, copying,
-            distribution, or reliance upon the contents of this e-mail
-            is strictly prohibited. If you have received this e-mail
-            transmission in error, please reply to the sender, so that
-            Sakura Finetek USA, Inc. can arrange for proper delivery,
-            and then please delete the message from your inbox. Thank
-            you.<br>
-            <br>
-            <br>
-            <br>
-            &gt; -----Original Message-----<br>
-            &gt; From: Bruce Ashfield [<a
-              href="mailto:bruce.ashfield@windriver.com"
-              moz-do-not-send="true">mailto:bruce.ashfield@windriver.com</a>]<br>
-            &gt; Sent: Friday, October 05, 2018 08:46 AM<br>
-            &gt; To: Greg Wilson-Lindberg <a class="moz-txt-link-rfc2396E" href="mailto:GWilson@sakuraus.com">&lt;GWilson@sakuraus.com&gt;</a>;
-            <a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-            &gt; Subject: Re: [yocto] changing kernel config in Morty
-            build<br>
-            &gt; <br>
-            &gt; On 2018-10-04 4:38 PM, Greg Wilson-Lindberg wrote:<br>
-            &gt; &gt; Does anybody else have any idea about what is
-            going on here?<br>
-            &gt; &gt;<br>
-            &gt; <br>
-            &gt; I can't tell from the information provided.<br>
-            &gt; <br>
-            &gt; But if you can send me a set of layers to clone, and
-            configure locally, I can figure it<br>
-            &gt; out.<br>
-            &gt; <br>
-            &gt; Cheers,<br>
-            &gt; <br>
-            &gt; Bruce<br>
-            &gt; <br>
-            &gt; &gt; Yocto is seeing my request to change the kernel
-            config, suggests that<br>
-            &gt; &gt; the change is acceptable, but then doesn't make
-            it.<br>
-            &gt; &gt;<br>
-            &gt; &gt; Thanks in advance for any insight,<br>
-            &gt; &gt;<br>
-            &gt; &gt; Greg<br>
-            &gt; &gt;<br>
-            &gt; &gt; **<br>
-            &gt; &gt;<br>
-            &gt; &gt; *From:*Greg Wilson-Lindberg<br>
-            &gt; &gt; *Sent:* Tuesday, October 02, 2018 02:22 PM<br>
-            &gt; &gt; *To:* <a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-            &gt; &gt; *Subject:* changing kernel config in Morty build<br>
-            &gt; &gt;<br>
-            &gt; &gt; I'm trying to change some kernel configuration
-            flags in a<br>
-            &gt; &gt; raspberrypi3 Morty build and I get warnings that
-            it isn't working.<br>
-            &gt; &gt;<br>
-            &gt; &gt; Here is the build info and warnings:<br>
-            &gt; &gt;<br>
-            &gt; &gt; Build Configuration:<br>
-            &gt; &gt;<br>
-            &gt; &gt; BB_VERSION        = "1.32.0"<br>
-            &gt; &gt;<br>
-            &gt; &gt; BUILD_SYS         = "x86_64-linux"<br>
-            &gt; &gt;<br>
-            &gt; &gt; NATIVELSBSTRING   = "universal"<br>
-            &gt; &gt;<br>
-            &gt; &gt; TARGET_SYS        = "arm-poky-linux-gnueabi"<br>
-            &gt; &gt;<br>
-            &gt; &gt; MACHINE           = "raspberrypi3"<br>
-            &gt; &gt;<br>
-            &gt; &gt; DISTRO            = "b2qt"<br>
-            &gt; &gt;<br>
-            &gt; &gt; DISTRO_VERSION    = "2.2.4"<br>
-            &gt; &gt;<br>
-            &gt; &gt; TUNE_FEATURES     = "arm armv7ve vfp thumb neon
-            vfpv4<br>
-            &gt; &gt; callconvention-hard cortexa7"<br>
-            &gt; &gt;<br>
-            &gt; &gt; TARGET_FPU        = "hard"<br>
-            &gt; &gt;<br>
-            &gt; &gt; SDKMACHINE        = "x86_64"<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta-poky         =
-            "HEAD:df76669bdd70aa0d903c4211dde731221c7e756d"<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta-raspberrypi  =
-            "HEAD:2a192261a914892019f4f428d7462bb3c585ebac"<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta-oe<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta-python<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta-networking<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta-initramfs<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta-multimedia   =
-            "HEAD:b40116cf457b88a2db14b86fda9627fb34d56ae6"<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta-boot2qt<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta-raspberrypi-extras =
-            "&lt;unknown&gt;:&lt;unknown&gt;"<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta-mingw        =
-            "HEAD:1c2e155111dce94423cc227ea69f7f50f316c78e"<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta-qt5          =
-            "HEAD:49e9d9a73b5c6e3d6eab88dc0005305e85b1a62d"<br>
-            &gt; &gt;<br>
-            &gt; &gt; meta-sakura       =
-            "&lt;unknown&gt;:&lt;unknown&gt;"<br>
-            &gt; &gt;<br>
-            &gt; &gt; Initialising tasks: 100%<br>
-            &gt; &gt;<br>
-            &gt;
-            |###################################################################<br>
-            &gt; ##<br>
-            &gt; &gt;<br>
-            &gt;
-            |###################################################################<br>
-            &gt; ##<br>
-            &gt; &gt; |###|<br>
-            &gt; &gt; Time: 0:00:00<br>
-            &gt; &gt;<br>
-            &gt; &gt; NOTE: Executing SetScene Tasks<br>
-            &gt; &gt;<br>
-            &gt; &gt; NOTE: Executing RunQueue Tasks<br>
-            &gt; &gt;<br>
-            &gt; &gt; WARNING:
-            linux-raspberrypi-1_4.4.50+gitAUTOINC+04c8e47067-r0<br>
-            &gt; &gt; do_kernel_configcheck: [kernel config]: specified
-            values did not make<br>
-            &gt; &gt; it into the kernel's final configuration:<br>
-            &gt; &gt;<br>
-            &gt; &gt; ---------- CONFIG_SND_SOC_MAX9768
-            -----------------<br>
-            &gt; &gt;<br>
-            &gt; &gt; Config: CONFIG_SND_SOC_MAX9768<br>
-            &gt; &gt;<br>
-            &gt; &gt; From:<br>
-            &gt; &gt;
-            /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work<br>
-            &gt; &gt;
-            -shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg<br>
-            &gt; &gt;<br>
-            &gt; &gt; Requested value:  CONFIG_SND_SOC_MAX9768=y<br>
-            &gt; &gt;<br>
-            &gt; &gt; Actual value:<br>
-            &gt; &gt;<br>
-            &gt; &gt; Config 'SND_SOC_MAX9768' has the following
-            conditionals:<br>
-            &gt; &gt;<br>
-            &gt; &gt; Dependency values are:<br>
-            &gt; &gt;<br>
-            &gt; &gt; ---------- CONFIG_MAX1363 -----------------<br>
-            &gt; &gt;<br>
-            &gt; &gt; Config: CONFIG_MAX1363<br>
-            &gt; &gt;<br>
-            &gt; &gt; From:<br>
-            &gt; &gt;
-            /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work<br>
-            &gt; &gt;
-            -shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg<br>
-            &gt; &gt;<br>
-            &gt; &gt; Requested value:  CONFIG_MAX1363=m<br>
-            &gt; &gt;<br>
-            &gt; &gt; Actual value:     # CONFIG_MAX1363 is not set<br>
-            &gt; &gt;<br>
-            &gt; &gt; Config 'MAX1363' has the following conditionals:<br>
-            &gt; &gt;<br>
-            &gt; &gt;    I2C (value: "y")<br>
-            &gt; &gt;<br>
-            &gt; &gt; Dependency values are:<br>
-            &gt; &gt;<br>
-            &gt; &gt;    I2C [y]<br>
-            &gt; &gt;<br>
-            &gt; &gt; ---------- CONFIG_CAN_EMS_USB -----------------<br>
-            &gt; &gt;<br>
-            &gt; &gt; Config: CONFIG_CAN_EMS_USB<br>
-            &gt; &gt;<br>
-            &gt; &gt; From:<br>
-            &gt; &gt;
-            /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work<br>
-            &gt; &gt;
-            -shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg<br>
-            &gt; &gt;<br>
-            &gt; &gt; Requested value:  CONFIG_CAN_EMS_USB=m<br>
-            &gt; &gt;<br>
-            &gt; &gt; Actual value:     # CONFIG_CAN_EMS_USB is not set<br>
-            &gt; &gt;<br>
-            &gt; &gt; Config 'CAN_EMS_USB' has the following
-            conditionals:<br>
-            &gt; &gt;<br>
-            &gt; &gt;    (none)<br>
-            &gt; &gt;<br>
-            &gt; &gt; Dependency values are:<br>
-            &gt; &gt;<br>
-            &gt; &gt; Here is my<br>
-            &gt; &gt;<br>
-            &gt; &gt; linux-raspberrypi_4.4.bbappend for the kernel:<br>
-            &gt; &gt;<br>
-            &gt; &gt; # Scribe additions to Kernel configuration<br>
-            &gt; &gt;<br>
-            &gt; &gt; FILESEXTRAPATHS_prepend :=
-            "${FILE_DIRNAME}/files:"<br>
-            &gt; &gt;<br>
-            &gt; &gt; FILESEXTRAPATHS_prepend :=
-            "${FILE_DIRNAME}/${PN}:"<br>
-            &gt; &gt;<br>
-            &gt; &gt; SRC_URI += "<a class="moz-txt-link-freetext" href="file://Scribe.scc">file://Scribe.scc</a> &lt;<a
-              href="file:///%5C%5CScribe.scc" moz-do-not-send="true">file:///%5C%5CScribe.scc</a>&gt;"<br>
-            &gt; &gt;<br>
-            &gt; &gt; SRC_URI += "<a class="moz-txt-link-freetext" href="file://mcp251x.c.patch">file://mcp251x.c.patch</a> &lt;<a
-              href="file:///%5C%5Cmcp251x.c.patch"
-              moz-do-not-send="true">file:///%5C%5Cmcp251x.c.patch</a>&gt;"<br>
-            &gt; &gt;<br>
-            &gt; &gt; The Scribe.scc file:<br>
-            &gt; &gt;<br>
-            &gt; &gt; # Scribe additions to kernel configuration<br>
-            &gt; &gt;<br>
-            &gt; &gt; kconf hardware Scribe.cfg<br>
-            &gt; &gt;<br>
-            &gt; &gt; And the Scribe.cfg file:<br>
-            &gt; &gt;<br>
-            &gt; &gt; # Scribe additions to kernel configuration<br>
-            &gt; &gt;<br>
-            &gt; &gt; # Enable MAX9768<br>
-            &gt; &gt;<br>
-            &gt; &gt; #CONFIG_SOC_ALL_CODECS=m<br>
-            &gt; &gt;<br>
-            &gt; &gt; #CONFIG_COMPILE_TEST=y<br>
-            &gt; &gt;<br>
-            &gt; &gt; CONFIG_SND_SOC_MAX9768=y<br>
-            &gt; &gt;<br>
-            &gt; &gt; # Enable MAX11606<br>
-            &gt; &gt;<br>
-            &gt; &gt; #IIO=y<br>
-            &gt; &gt;<br>
-            &gt; &gt; CONFIG_MAX1363=m<br>
-            &gt; &gt;<br>
-            &gt; &gt; # Enable EMS CPC-USB<br>
-            &gt; &gt;<br>
-            &gt; &gt; CONFIG_CAN_EMS_USB=m<br>
-            &gt; &gt;<br>
-            &gt; &gt; Here is my directory tree:<br>
-            &gt; &gt;<br>
-            &gt; &gt; Qt-5.9.6<br>
-            &gt; &gt;<br>
-            &gt; &gt;       Yocto-mirror<br>
-            &gt; &gt; # Yocto build mirror<br>
-            &gt; &gt;<br>
-            &gt; &gt;       Yocto-build-RPi3                           
-                              #<br>
-            &gt; &gt; Yocto build root<br>
-            &gt; &gt;<br>
-            &gt; &gt;                  build-raspberrypi               
-                               #<br>
-            &gt; &gt; build directory<br>
-            &gt; &gt;<br>
-            &gt; &gt;                  sources<br>
-            &gt; &gt;   # yocto sources<br>
-            &gt; &gt;<br>
-            &gt; &gt;                         meta-sakura<br>
-            &gt; &gt; # our recipes<br>
-            &gt; &gt;<br>
-            &gt; &gt;                                 recipes-kernel<br>
-            &gt; &gt; # directory for kernel changes<br>
-            &gt; &gt;<br>
-            &gt; &gt;                                         linux<br>
-            &gt; &gt;     # directory that contains
-            linux-raspberrypi_4.4.bbappend<br>
-            &gt; &gt;<br>
-            &gt; &gt;                                               
-            files<br>
-            &gt; &gt;       # directory that contains .scc &amp; .cfg
-            files<br>
-            &gt; &gt;<br>
-            &gt; &gt; As seen above none of the changes are accepted
-            although there is<br>
-            &gt; &gt; nothing that blocks any of them.<br>
-            &gt; &gt;<br>
-            &gt; &gt; Any help understanding this would be greatly
-            appreciated.<br>
-            &gt; &gt;<br>
-            &gt; &gt; Regards,<br>
-            &gt; &gt;<br>
-            &gt; &gt; Greg Wilson-Lindberg<br>
-            &gt; &gt;<br>
-            &gt; &gt;<br>
-            &gt; &gt;<br>
-            <br>
-            -- <br>
-            _______________________________________________<br>
-            yocto mailing list<br>
-            <a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-            <a href="https://lists.yoctoproject.org/listinfo/yocto"
-              moz-do-not-send="true">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-          </div>
-        </span></font>
-    </blockquote>
-    <p><br>
-    </p>
-  </body>
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:54623109;
+	mso-list-template-ids:-963871646;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:211116231;
+	mso-list-template-ids:250098806;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:349769739;
+	mso-list-template-ids:948597836;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3
+	{mso-list-id:527375657;
+	mso-list-template-ids:-465960882;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4
+	{mso-list-id:1125731762;
+	mso-list-template-ids:-769986256;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l4:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5
+	{mso-list-id:1339429084;
+	mso-list-template-ids:-148741634;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l5:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l5:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6
+	{mso-list-id:1587613893;
+	mso-list-template-ids:884921426;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l6:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7
+	{mso-list-id:1696736159;
+	mso-list-template-ids:-1485773228;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8
+	{mso-list-id:1872764300;
+	mso-list-template-ids:-1823170506;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l8:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l8:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9
+	{mso-list-id:1899389786;
+	mso-list-template-ids:-1915844848;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l9:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current Dev Positi=
+on: YP 2.6 M4.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP =
+2.6 M4 Build Target is Oct. 1, 2018</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT Team Rotation=
+:</span><o:p></o:p></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l4 level1 lfo=
+6;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">SWAT lead is currently: Paul<o:p>=
+</o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l4 level1 lfo=
+6;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation: Paul -&gt; Ro=
+ss on Oct. 12, 2018<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l4 level1 lfo=
+6;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation: Ross -&gt; Am=
+anda on Oct. 17, 2018<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l4 level1 lfo=
+6;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+Consolas;color:black"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_B=
+uild_Failure_Swat_Team"><span style=3D"color:#1155CC">https://wiki.yoctopro=
+ject.org/wiki/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status/Updates=
+:</span><o:p></o:p></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
+7;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">2.6 M3 rc1 has been built and is =
+in QA; currently 100% complete. &nbsp;See
+<a href=3D"https://wiki.yoctoproject.org/wiki/2.6_QA_Status"><span style=3D=
+"color:#1155CC">https://wiki.yoctoproject.org/wiki/2.6_QA_Status</span></a>=
+. &nbsp;The report should be published soon.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
+7;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">The build appliance issue identif=
+ied last week is not a blocking issue for 2.6 M3 and has a simple fix now i=
+ncluded in master.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
+7;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">We=92re now past feature freeze a=
+nd all major changes planned for 2.6 have been merged so only bug fixes wil=
+l be accepted now.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
+7;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">The reproducibility problem for n=
+on-IA binaries in the debug symbol sections has been investigated and a fix=
+ has been merged in master.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
+7;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">There were fixes merged to the gi=
+tsm bitbake fetcher which caused other breakage. The known breakage has now=
+ been fixed, if further problems are seen, please
+ report them ASAP.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l3 level1 lfo=
+7;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">We are now into 2.6 M4=92s window=
+ so we will likely branch for thud and build rc1 as soon as the report for =
+M3 is out and that milestone release is made.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Planned Releases f=
+or YP 2.6:</span><o:p></o:p></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
+8;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">YP 2.6 M3 Release Target was Sept=
+. 7, 2018<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
+8;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">YP 2.6 M4 Build Target is Oct. 1,=
+ 2018<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
+8;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">YP 2.6 M4 Release Target is Oct. =
+26, 2018<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Planned upcoming d=
+ot releases:</span><o:p></o:p></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
+9;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">YP 2.4.4 (Rocko) will be targeted=
+ after YP 2.6 M4 is done.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l2 level1 lfo=
+9;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">YP 2.5.2 (Sumo) will be targeted =
+after YP 2.4.4 is done.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking Metrics:<=
+/span><o:p></o:p></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+10;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">WDD 2527 (last week 2534)</span><=
+span style=3D"font-size:11.0pt;font-family:Consolas;color:black"> (</span><=
+span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;col=
+or:black"><a href=3D"https://wiki.yoctoproject.org/charts/combo.html"><span=
+ style=3D"color:#1155CC">https://wiki.yoctoproject.org/charts/combo.html</s=
+pan></a></span><span style=3D"font-size:11.0pt;font-family:Consolas;color:b=
+lack">)</span><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;=
+,sans-serif;color:black"><o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+10;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">Poky Patch Metrics &nbsp;</span><=
+span style=3D"font-size:11.0pt;font-family:Consolas;color:black"><o:p></o:p=
+></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level2 lf=
+o10;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&quot;Cour=
+ier New&quot;;color:black"><span style=3D"mso-list:Ignore">o<span style=3D"=
+font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">Total patches found: 1665 (last w=
+eek 1657)<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level2 lf=
+o10;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&quot;Cour=
+ier New&quot;;color:black"><span style=3D"mso-list:Ignore">o<span style=3D"=
+font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">Percentage of patches in the Pend=
+ing State: 735 (44%) [last week 732 (44%)]</span><span style=3D"font-size:1=
+1.0pt;font-family:Consolas;color:black"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status Links f=
+or YP:</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_Project_v2.6_Status"><span style=3D"font-size:11.0pt=
+;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
+to_Project_v2.6_Status</span></a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_2.6_Schedule"><span style=3D"font-size:11.0pt;font-f=
+amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.6_=
+Schedule</span></a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_2.6_Features"><span style=3D"font-size:11.0pt;font-f=
+amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.6_=
+Features</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">The Status reports=
+ are now stored on the wiki at:
+</span><a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#11=
+55CC">https://wiki.yoctoproject.org/wiki/Weekly_Status</span></a><o:p></o:p=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">[If anyone has sug=
+gestions for other information you=92d like to see on this weekly status up=
+date, let us know!]</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif">Thanks,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
 </html>
 
---------------048215331ACCA7539004C98D--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE42669fmsmsx123amrcor_--
