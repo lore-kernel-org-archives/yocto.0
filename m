@@ -1,42 +1,63 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <aaron.biver@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5B605E00B6F; Tue,  9 Oct 2018 20:16:52 -0700 (PDT)
+	id 31F7DE00971; Tue,  9 Oct 2018 14:40:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38226E0097C
-	for <yocto@yoctoproject.org>; Tue,  9 Oct 2018 20:16:51 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w9A3GBdF013614
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 9 Oct 2018 20:16:22 -0700
-Received: from server.local (147.11.119.160) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.408.0;
-	Tue, 9 Oct 2018 20:16:01 -0700
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <286078d59ba1400fb6646b0e6057add6@sakuraus.com>
-	<16551d421c7747ab9ae52856a668d750@sakuraus.com>
-	<a3fc06bf-e202-dec1-8618-f7f89e1c8a93@windriver.com>
-	<7b74cef2003b44909e3033efa1d4305a@sakuraus.com>
-	<772b7fca373e4a9085660b8a79a36673@sakuraus.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <42ca53b6-4264-642a-c654-f34740d813e8@windriver.com>
-Date: Tue, 9 Oct 2018 23:16:00 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.9.1
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (aaron.biver[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.53 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
+	[209.85.167.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2A4CE00950
+	for <yocto@yoctoproject.org>; Tue,  9 Oct 2018 14:40:27 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id d4-v6so2430755lfa.3
+	for <yocto@yoctoproject.org>; Tue, 09 Oct 2018 14:40:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=3jST/LLxunGViFcCfSvo7aeLvE7hLyhDCmAPRrdfam0=;
+	b=mo3OJx4uj4hmD2VnvR0zgISxT0CnpUrTzQNOgn8WvaTn1DOboqoyS2J29jtdsanVjo
+	kGZR7uBt+eWc2pU/dvvvNeGdF+Sd/lb5R682cK3BMx//y+NuDOoYki6hZ2V15LAEDbZs
+	g6GbTsS+YoZdnuGwagTJfYNqGzwhoVA4KRZpKvmWUdN/Nxxatw221qxxf9aM3EpbkNka
+	N681A+pCpakusNOG5eTFQq2jLX0/IX51CLXQ1cV726KgXgi1lIGvbdm4knIVSuPiSYmf
+	kFhsP6yaK0uMwD773odBuQfODCxyo+TiDP24rTv9c/z+aqFqzKFrsRD3h3NJKWkBFGOn
+	VrlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=3jST/LLxunGViFcCfSvo7aeLvE7hLyhDCmAPRrdfam0=;
+	b=obSVen+gdGeLFHeXStBTyDI70VjrbMB+dtGoQPuiEwQ02rXaIb5qmGY/NKdfmAHr3U
+	YQZz1G4FGCozeZam7vXWNNS8OjNazzcUhPlZ8W1qIbehcNk+/R7c24jmgpb2VlozDO0x
+	NsrG2q3lRvWxc5q/zeduc4i6oYY726NwFiaY7lMCQqbjmLoiPEuVbFJfZZWvSHFdeCgw
+	3fQMazBeHhmDUni4ddgeGwddgq6xPa7+SEvT4d+ccDc678yMtboGtxKpv9oibgogcfbB
+	/ZaEoMvqtc4nWN5DQLMhmcz1wAxjOEG31c00K881bH5V3SneUOEghSyaxKke/8KCophn
+	Dg9Q==
+X-Gm-Message-State: ABuFfohXvffJUHrTNdlpUshAGgzHGBPNP+vzziTQBcwhfhhK/fVBNdN7
+	Ee40MnWW+o6k3im9y5CKAL+mNWCjiQqdM0heiavZkQ==
+X-Google-Smtp-Source: ACcGV60wDkEr+lvaGaffkcRIpvC3WA7vBBEdqR7S8Hplf8lEekJRGjchDL3Owfh/N7Xw9nLjxo0yPkU4sHkCvsgGHtQ=
+X-Received: by 2002:a19:eadb:: with SMTP id
+	y88-v6mr16097982lfi.1.1539121225814; 
+	Tue, 09 Oct 2018 14:40:25 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <772b7fca373e4a9085660b8a79a36673@sakuraus.com>
-Subject: Re: changing kernel config in Morty build
+From: A <aaron.biver@gmail.com>
+Date: Tue, 9 Oct 2018 17:40:15 -0400
+Message-ID: <CAMd7AX9wj=Xtbw2jQTzGOH0e3h0BBX7rCK4A+U9o8CwkDdi1Bw@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Wed, 10 Oct 2018 01:48:05 -0700
+Subject: Installing linux image with two separate flash partitions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,356 +69,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2018 03:16:52 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 09 Oct 2018 21:40:28 -0000
+Content-Type: multipart/alternative; boundary="000000000000ee5c2c0577d29558"
 
-On 2018-10-05 7:26 PM, Greg Wilson-Lindberg wrote:
-> Hi Bruce,
-> I've been able to reproduce the problem in a more minimal environment.
-> 
-> To build a basic Yocto Raspberry Pi environment I based my build on the instructions found here:
-> https://themeaningfulengineer.github.io/exploring-yocto-with-raspberrypi/
-> 
-> The steps that I actually executed are:
-> 
-> git clone -b morty --single-branch git://git.yoctoproject.org/poky
-> cd poky/
-> git clone -b morty http://git.yoctoproject.org/git/meta-raspberrypi
-> source oe-init-build-env rpi-build
-> 
-> In rpi-build/conf/local.conf I changed the MACHINE assignment to "raspberrypi2" from "qemu86"
-> 
-> In rpi-build/conf/bblayers.conf I added "  /home/gwilson/Qt/poky/meta-raspberrypi \" to pick up the raspberry layer.
-> 
-> At this point I ran:
-> bitbake rpi-hwup-image
-> 
-> to verify that the environment was correct. The build finished with only a couple of warnings about checksum problems and using alternate mirrors.
-> 
-> I then copied in my kernel scripts and added in the directory to the bblayers file.
-> 
-> When I rebuilt with these changes I get the same warnings/errors about changing the kernel config that I get with my full build environment.
-> 
-> I've attached my meta-test directory with the kernel configuration .bbappend and .scc & .cfg files, and the final bblayers.conf & local.conf files.
+--000000000000ee5c2c0577d29558
+Content-Type: text/plain; charset="UTF-8"
 
-Thanks for the layers and cut & paste instructions. They helped
-a lot.
+I'm currently using petalinux to build a image.ub that works fine for me so
+far (petalinux hides many things from me, but is bitbake under the hood).
 
-.. even with that start, it took me a bit to figure things out.
+However, this image will get stored into a flash device which I intend to
+configure with three partitions
+1) uboot
+2) linux
+3) an extra jffs2 with data and executables from my linux recipes
 
-In the end, I can't actually figure out how to get the fragment
-working with the rpi kernel configuration routines as they stand
-in the morty timeframe.
+I currently build this third partition manually with mkfs.jffs2, after my
+bitbake recipe has completed.
+However, since the openembedded framework is pretty nifty and extensible,
+I'd like to be able to have this in a recipe.
 
-in recipes-kernel/linux/linux-rpi.inc, there's a do_configure_prepend
-routine who's first action is to clear ${B}/.config .. which is where
-the kernel-yocto bbclass would have put the merged config + fragment.
-(The defconfig is also a placeholder defconfig, I could work around
-that, but in the end, it doesn't matter since that routine zeros out
-anything that has merged).
+So far, I've thought to store the things for partition #3 in a STAGING_*
+area, and create a new recipe that will DEPEND on those other recipes.  The
+new recipe will do a mkfs.jffs2 command in its do_compile().  Then I would
+find that jffs file in the build subdirectories somewhere, and assemble it
+into the larger image for insertion into the flash device.
 
-So as I see it, you'll either need to carry your own defconfig, patch
-the in-tree defconfig that is used, or write routines in your bbappend
-to modify the configuration directly. I admit to not looking to see
-if the techniques to do this are described anywhere, since I was just
-trying to sort out why the fragment wasn't being properly applied.
+However, a) I'm not sure if this is the best way do do this, and b) I have
+a "DEPEND" statement, but the "do_stage()" function of the dependency still
+doesn't appear to have been invoked.
 
-Sorry I couldn't be of more help.
+All advice welcome.
 
-Cheers,
+-Aaron
 
-Bruce
+--000000000000ee5c2c0577d29558
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Thank you for taking a look at this.
-> 
-> Regards,
-> 
-> Greg Wilson-Lindberg
-> 
-> 
-> 
-> ------------------------------------------------------------------------
-> *From:* yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> 
-> on behalf of Greg Wilson-Lindberg <GWilson@sakuraus.com>
-> *Sent:* Friday, October 5, 2018 9:23:52 AM
-> *To:* Bruce Ashfield; yocto@yoctoproject.org
-> *Subject:* Re: [yocto] changing kernel config in Morty build
-> Hi Bruce,
-> I'll do my best to get something for you.
-> Thanks,
-> 
-> Greg Wilson-Lindberg
-> Principal Firmware Engineer | Sakura Finetek USA, Inc.
-> 
-> 1750 W 214th Street | Torrance, CA 90501 | U.S.A.
-> T: +1 310 783 5075
-> F: +1 310 618 6902 | E: gwilson@sakuraus.com
-> www.sakuraus.com <http://www.sakuraus.com>
-> 
-> 
-> 
-> 
-> 
-> Confidentiality Notice: This e-mail transmission may contain 
-> confidential or legally privileged information that is intended only for 
-> the individual or entity named in the e-mail address. If you are not the 
-> intended recipient, you are hereby notified that any disclosure, 
-> copying, distribution, or reliance upon the contents of this e-mail is 
-> strictly prohibited. If you have received this e-mail transmission in 
-> error, please reply to the sender, so that Sakura Finetek USA, Inc. can 
-> arrange for proper delivery, and then please delete the message from 
-> your inbox. Thank you.
-> 
-> 
-> 
->> -----Original Message-----
->> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->> Sent: Friday, October 05, 2018 08:46 AM
->> To: Greg Wilson-Lindberg <GWilson@sakuraus.com>; yocto@yoctoproject.org
->> Subject: Re: [yocto] changing kernel config in Morty build
->> 
->> On 2018-10-04 4:38 PM, Greg Wilson-Lindberg wrote:
->> > Does anybody else have any idea about what is going on here?
->> >
->> 
->> I can't tell from the information provided.
->> 
->> But if you can send me a set of layers to clone, and configure locally, I can figure it
->> out.
->> 
->> Cheers,
->> 
->> Bruce
->> 
->> > Yocto is seeing my request to change the kernel config, suggests that
->> > the change is acceptable, but then doesn't make it.
->> >
->> > Thanks in advance for any insight,
->> >
->> > Greg
->> >
->> > **
->> >
->> > *From:*Greg Wilson-Lindberg
->> > *Sent:* Tuesday, October 02, 2018 02:22 PM
->> > *To:* yocto@yoctoproject.org
->> > *Subject:* changing kernel config in Morty build
->> >
->> > I'm trying to change some kernel configuration flags in a
->> > raspberrypi3 Morty build and I get warnings that it isn't working.
->> >
->> > Here is the build info and warnings:
->> >
->> > Build Configuration:
->> >
->> > BB_VERSION        = "1.32.0"
->> >
->> > BUILD_SYS         = "x86_64-linux"
->> >
->> > NATIVELSBSTRING   = "universal"
->> >
->> > TARGET_SYS        = "arm-poky-linux-gnueabi"
->> >
->> > MACHINE           = "raspberrypi3"
->> >
->> > DISTRO            = "b2qt"
->> >
->> > DISTRO_VERSION    = "2.2.4"
->> >
->> > TUNE_FEATURES     = "arm armv7ve vfp thumb neon vfpv4
->> > callconvention-hard cortexa7"
->> >
->> > TARGET_FPU        = "hard"
->> >
->> > SDKMACHINE        = "x86_64"
->> >
->> > meta
->> >
->> > meta-poky         = "HEAD:df76669bdd70aa0d903c4211dde731221c7e756d"
->> >
->> > meta-raspberrypi  = "HEAD:2a192261a914892019f4f428d7462bb3c585ebac"
->> >
->> > meta-oe
->> >
->> > meta-python
->> >
->> > meta-networking
->> >
->> > meta-initramfs
->> >
->> > meta-multimedia   = "HEAD:b40116cf457b88a2db14b86fda9627fb34d56ae6"
->> >
->> > meta-boot2qt
->> >
->> > meta-raspberrypi-extras = "<unknown>:<unknown>"
->> >
->> > meta-mingw        = "HEAD:1c2e155111dce94423cc227ea69f7f50f316c78e"
->> >
->> > meta-qt5          = "HEAD:49e9d9a73b5c6e3d6eab88dc0005305e85b1a62d"
->> >
->> > meta-sakura       = "<unknown>:<unknown>"
->> >
->> > Initialising tasks: 100%
->> >
->> |###################################################################
->> ##
->> >
->> |###################################################################
->> ##
->> > |###|
->> > Time: 0:00:00
->> >
->> > NOTE: Executing SetScene Tasks
->> >
->> > NOTE: Executing RunQueue Tasks
->> >
->> > WARNING: linux-raspberrypi-1_4.4.50+gitAUTOINC+04c8e47067-r0
->> > do_kernel_configcheck: [kernel config]: specified values did not make
->> > it into the kernel's final configuration:
->> >
->> > ---------- CONFIG_SND_SOC_MAX9768 -----------------
->> >
->> > Config: CONFIG_SND_SOC_MAX9768
->> >
->> > From:
->> > /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work
->> > -shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
->> >
->> > Requested value:  CONFIG_SND_SOC_MAX9768=y
->> >
->> > Actual value:
->> >
->> > Config 'SND_SOC_MAX9768' has the following conditionals:
->> >
->> > Dependency values are:
->> >
->> > ---------- CONFIG_MAX1363 -----------------
->> >
->> > Config: CONFIG_MAX1363
->> >
->> > From:
->> > /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work
->> > -shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
->> >
->> > Requested value:  CONFIG_MAX1363=m
->> >
->> > Actual value:     # CONFIG_MAX1363 is not set
->> >
->> > Config 'MAX1363' has the following conditionals:
->> >
->> >    I2C (value: "y")
->> >
->> > Dependency values are:
->> >
->> >    I2C [y]
->> >
->> > ---------- CONFIG_CAN_EMS_USB -----------------
->> >
->> > Config: CONFIG_CAN_EMS_USB
->> >
->> > From:
->> > /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work
->> > -shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
->> >
->> > Requested value:  CONFIG_CAN_EMS_USB=m
->> >
->> > Actual value:     # CONFIG_CAN_EMS_USB is not set
->> >
->> > Config 'CAN_EMS_USB' has the following conditionals:
->> >
->> >    (none)
->> >
->> > Dependency values are:
->> >
->> > Here is my
->> >
->> > linux-raspberrypi_4.4.bbappend for the kernel:
->> >
->> > # Scribe additions to Kernel configuration
->> >
->> > FILESEXTRAPATHS_prepend := "${FILE_DIRNAME}/files:"
->> >
->> > FILESEXTRAPATHS_prepend := "${FILE_DIRNAME}/${PN}:"
->> >
->> > SRC_URI += "file://Scribe.scc <file:///%5C%5CScribe.scc>"
->> >
->> > SRC_URI += "file://mcp251x.c.patch <file:///%5C%5Cmcp251x.c.patch>"
->> >
->> > The Scribe.scc file:
->> >
->> > # Scribe additions to kernel configuration
->> >
->> > kconf hardware Scribe.cfg
->> >
->> > And the Scribe.cfg file:
->> >
->> > # Scribe additions to kernel configuration
->> >
->> > # Enable MAX9768
->> >
->> > #CONFIG_SOC_ALL_CODECS=m
->> >
->> > #CONFIG_COMPILE_TEST=y
->> >
->> > CONFIG_SND_SOC_MAX9768=y
->> >
->> > # Enable MAX11606
->> >
->> > #IIO=y
->> >
->> > CONFIG_MAX1363=m
->> >
->> > # Enable EMS CPC-USB
->> >
->> > CONFIG_CAN_EMS_USB=m
->> >
->> > Here is my directory tree:
->> >
->> > Qt-5.9.6
->> >
->> >       Yocto-mirror
->> > # Yocto build mirror
->> >
->> >       Yocto-build-RPi3                                              #
->> > Yocto build root
->> >
->> >                  build-raspberrypi                                   #
->> > build directory
->> >
->> >                  sources
->> >   # yocto sources
->> >
->> >                         meta-sakura
->> > # our recipes
->> >
->> >                                 recipes-kernel
->> > # directory for kernel changes
->> >
->> >                                         linux
->> >     # directory that contains linux-raspberrypi_4.4.bbappend
->> >
->> >                                                files
->> >       # directory that contains .scc & .cfg files
->> >
->> > As seen above none of the changes are accepted although there is
->> > nothing that blocks any of them.
->> >
->> > Any help understanding this would be greatly appreciated.
->> >
->> > Regards,
->> >
->> > Greg Wilson-Lindberg
->> >
->> >
->> >
-> 
-> -- 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+<div dir=3D"ltr"><div><br></div><div>I&#39;m currently using petalinux to b=
+uild a image.ub that works fine for me so far (petalinux hides many things =
+from me, but is bitbake under the hood).</div><div><br></div><div>However, =
+this image will get stored into a flash device which I intend to configure =
+with three partitions</div><div>1) uboot</div><div>2) linux=C2=A0</div><div=
+>3) an extra jffs2 with data and executables from my linux recipes=C2=A0</d=
+iv><div><br></div><div>I currently build this third partition manually with=
+ mkfs.jffs2, after my bitbake recipe has completed.=C2=A0=C2=A0</div><div>H=
+owever, since the openembedded framework is pretty nifty and extensible, I&=
+#39;d like to be able to have this in a recipe.</div><div><br></div><div>So=
+ far, I&#39;ve thought to store the things for partition #3 in a STAGING_* =
+area, and create a new recipe that will DEPEND on those other recipes.=C2=
+=A0 The new recipe will do a mkfs.jffs2 command in its do_compile().=C2=A0 =
+Then I would find that jffs file in the build subdirectories somewhere, and=
+ assemble it into the larger image for insertion into the flash device.</di=
+v><div><br></div><div>However, a) I&#39;m not sure if this is the best way =
+do do this, and b) I have a &quot;DEPEND&quot; statement, but the &quot;do_=
+stage()&quot; function of the dependency still doesn&#39;t appear to have b=
+een invoked.</div><div><br></div><div>All advice welcome.</div><div><br></d=
+iv><div>-Aaron</div><div><br></div><div>=C2=A0</div></div>
 
-
+--000000000000ee5c2c0577d29558--
