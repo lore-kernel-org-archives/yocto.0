@@ -1,58 +1,40 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <sscott@san.rr.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 343FFE009CA; Mon,  8 Oct 2018 09:22:50 -0700 (PDT)
+	id 71BB0E00A86; Mon,  8 Oct 2018 18:33:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2BC4E00950
-	for <yocto@yoctoproject.org>; Mon,  8 Oct 2018 09:22:48 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	08 Oct 2018 09:22:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.54,357,1534834800"; 
-	d="scan'208,217";a="270538276"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
-	by fmsmga006.fm.intel.com with ESMTP; 08 Oct 2018 09:21:50 -0700
-Received: from fmsmsx158.amr.corp.intel.com (10.18.116.75) by
-	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 8 Oct 2018 09:21:50 -0700
-Received: from fmsmsx123.amr.corp.intel.com ([169.254.7.84]) by
-	fmsmsx158.amr.corp.intel.com ([169.254.15.101]) with mapi id
-	14.03.0319.002; Mon, 8 Oct 2018 09:21:49 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: YP 2.7 Planning
-Thread-Index: AdRfIsZ9XZFLvLVyS1+NO4aPeSQvxg==
-Date: Mon, 8 Oct 2018 16:21:48 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECEE42309@fmsmsx123.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNTk1NTczZjMtYmVjMi00NWNlLThiY2EtNWY4YjEzYjM5YTk0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTDNwYWZheTRydFo4YzVUdytiWHd0cXE4ZGU3VWE3OGthNERsVnNGQjExUzVcL20reXNNRTBwXC9NTDM1QkxPbmhSIn0=
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.106]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [107.14.166.226 listed in list.dnswl.org]
+Received: from cdptpa-cmomta02.email.rr.com (cdptpa-outbound-snat.email.rr.com
+	[107.14.166.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9946DE009CA
+	for <yocto@yoctoproject.org>; Mon,  8 Oct 2018 18:33:11 -0700 (PDT)
+Received: from boobie ([75.80.138.87]) by cmsmtp with ESMTP
+	id 9ggSg6edWMMN09ggUgiorJ; Tue, 09 Oct 2018 01:19:39 +0000
+From: "Steve Scott" <sscott@san.rr.com>
+To: "'Burton, Ross'" <ross.burton@intel.com>
+References: <001201d45d33$c247aee0$46d70ca0$@san.rr.com>
+	<CAJTo0LaK6P5x1ciFJZDFudnemD4i7eEtVYbC2pV-GuPah2RHKw@mail.gmail.com>
+In-Reply-To: <CAJTo0LaK6P5x1ciFJZDFudnemD4i7eEtVYbC2pV-GuPah2RHKw@mail.gmail.com>
+Date: Mon, 8 Oct 2018 18:19:38 -0700
+Message-ID: <003301d45f6e$27ba9e90$772fdbb0$@san.rr.com>
 MIME-Version: 1.0
-Subject: YP 2.7 Planning
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQEi7z2YG29jC9R8A/BBkmb10HMoDgLUP5o+pmJbdKA=
+X-CMAE-Envelope: MS4wfLDSb8eAOSg8T/GRGw4pgD6noMM41NpeQoq0sBX2pV/SOg1EJcwtvBo2dFCWl3w3So0A8XQd4zPlqwQVVzYs5fvYoQIGbmdLo0UG+iZUkpNSQ/s3mFW8
+	t3yXRx/yRYADEerkIoZuM1nDOF3BykrSQEW9ZeyG4cVCwQflYpTQ9OCr+6GmVFNMqAgM9/NFl+FB6w==
+Cc: 'Yocto-mailing-list' <yocto@yoctoproject.org>
+Subject: Re: how to install files in nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: sscott@san.rr.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,170 +43,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Oct 2018 16:22:50 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE42309fmsmsx123amrcor_"
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE42309fmsmsx123amrcor_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 09 Oct 2018 01:33:13 -0000
+Content-Type: text/plain;
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Language: en-us
 
-All,
+Thanks Ross. That helped me pull it all together.
 
-We have begun planning for YP 2.7.   In prior versions, items that we didn'=
-t have the bandwidth to do were assigned the target milestone of 2.99.  Sin=
-ce YP 2.7 planning has just begun, I would like each of you to review the b=
-ugs and enhancements in YP 2.99 and determine if you will have the bandwidt=
-h to own any of them in YP 2.7.
+-steve
 
-In addition to reviewing the bugs under your name, also review any under th=
-e unassigned name to see if you have both an interest and the time to own a=
-ny of those in YP 2.7.
+> -----Original Message-----
+> From: Burton, Ross [mailto:ross.burton@intel.com]
+> Sent: Monday, October 08, 2018 4:11 AM
+> To: sscott@san.rr.com
+> Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+> Subject: Re: [yocto] how to install files in nativesdk
+>=20
+> On Sat, 6 Oct 2018 at 06:18, Steve Scott <sscott@san.rr.com> wrote:
+> > I am able to generate a standard SDK with native and target =
+sysroots.
+> > The target sysroot has header files for my custom libraries. The
+> > header files are generally installed in
+> > <path-to-sdk-target-sysroot>/usr/include/
+> >
+> > We use cmake and googletest running on the *host* for testing some =
+of
+> > our libraries. So I need to build googletest and the test apps using
+> > the host (x86_64) tools. The test apps need to include the target's
+> > library header files.
+> >
+> > I tried specifying the SDK's *target* usr/include as an include
+> > directory to the compiler, but files in this tree preempted the
+> > standard compiler (g++) system include files. I can avoid this =
+problem
+> > by installing the library header files under the SDK's native =
+sysroot;
+> > i.e. in <path-to-sdk-native-sysroot>/usr/include/
+> > and setting this directory as an include directory on the compiler
+> > command line.
+> >
+> > However, I cannot grok how to get these files into the SDK's native
+> > tree. It seems related to
+> >    BBCLASSEXTEND =3D "native nativesdk"
+> > but I'm just chasing my tail trying to figure out the magic =
+incantation.
+> >
+> > Does anyone know how to do this? Or is there a better approach?
+>=20
+> Assuming the recipe is correctly written, simply adding:
+>=20
+> BBCLASSEXTEND =3D "native nativesdk"
+>=20
+> Will give your recipe (eg foo.bb) native and nativesdk variant =
+(foo-native and
+> nativesdk-foo).  The class extension automatically changes the paths =
+so in
+> general that's all you need to do.  Then just add nativesdk-foo to =
+your SDK
+> using TOOLCHAIN_HOST_TASK_append =3D "
+> nativesdk-foo".
+>=20
+> Ross
 
-Link for bugs in YP 2.99 by owner: https://wiki.yoctoproject.org/wiki/Bug_T=
-riage#2.99_Bugs_by_Owner
-Link for enhancements in YP 2.99 by owner: https://wiki.yoctoproject.org/wi=
-ki/Bug_Triage#2.99_Enhancements_by_Owner
 
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*    Cell:                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE42309fmsmsx123amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:2 11 5 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">We have begun planning for YP 2.7.&nbsp;&nbsp; In pr=
-ior versions, items that we didn&#8217;t have the bandwidth to do were assi=
-gned the target milestone of 2.99.&nbsp;&nbsp;Since YP 2.7 planning has jus=
-t begun, I would like each of you to review the bugs and enhancements
- in YP 2.99 and determine if you will have the bandwidth to own any of them=
- in YP 2.7.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">In addition to reviewing the bugs under your name, a=
-lso review any under the unassigned name to see if you have both an interes=
-t and the time to own any of those in YP 2.7.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Link for bugs in YP 2.99 by owner: <a href=3D"https:=
-//wiki.yoctoproject.org/wiki/Bug_Triage#2.99_Bugs_by_Owner">
-https://wiki.yoctoproject.org/wiki/Bug_Triage#2.99_Bugs_by_Owner</a><o:p></=
-o:p></p>
-<p class=3D"MsoNormal">Link for enhancements in YP 2.99 by owner: <a href=
-=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#2.99_Enhancements_by_Owne=
-r">
-https://wiki.yoctoproject.org/wiki/Bug_Triage#2.99_Enhancements_by_Owner</a=
-><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECEE42309fmsmsx123amrcor_--
