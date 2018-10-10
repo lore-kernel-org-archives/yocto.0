@@ -1,82 +1,65 @@
-Return-Path: <irving@irving-st.id.au>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67002E0095C; Wed, 10 Oct 2018 05:49:32 -0700 (PDT)
+	id 9ACF8E006AF; Wed, 10 Oct 2018 06:29:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.180 listed in list.dnswl.org]
+	*      [209.85.222.172 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com
-	[209.85.215.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E18FFE006AF
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 05:49:30 -0700 (PDT)
-Received: by mail-pg1-f180.google.com with SMTP id a5-v6so2460544pgv.13
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 05:49:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=irving-st.id.au; s=googledkim1;
-	h=sender:reply-to:to:from:subject:message-id:date:user-agent
-	:mime-version:content-language:content-transfer-encoding;
-	bh=XM2gId+ojmFtb6oVstfNaP9SjfeF1et8ocDN5qb8/zM=;
-	b=TehalekKakrxHP49FqHBSYbXvfg5SjWuBajMqIfmhKuKnjsKKYhuIT5M6ziS7Adt20
-	A8jhpsg9hHNPK9AfTbUpU3d4NPuj3G7+llXGuZIO4Rp5wdI7juxA5o1rYFEhymE+zjgy
-	MOFf38H86et6Z/q2pzpS3GBGls67wcWr/vo+s=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ssfivy-com.20150623.gappssmtp.com; s=20150623;
-	h=sender:reply-to:to:from:subject:message-id:date:user-agent
-	:mime-version:content-language:content-transfer-encoding;
-	bh=XM2gId+ojmFtb6oVstfNaP9SjfeF1et8ocDN5qb8/zM=;
-	b=fjcpSUdjL+qgBSiwXp5lTBElkVvQEhXChqmLRu/6UeeWT1zjwCw65wsLtlXYLvoXAC
-	/meWnaK7JLie5IBic34Me2CMS2b5nCXSOPA40d8Wya0hFKAHMCJwchEN8+ND7F57uUhJ
-	7PuPOnmCu9eNWgScwMy+4fbv5t4zodPRZmlaRt4HidkVJFj39BPNHyESJNdFtFrKVY9r
-	zffwaMXmo5a/RyVo5H5yk6jHK9SIDdsBgJMK+UQ1ap8huI3ZYlyNfYBdF6Vc2QaO6zMT
-	NBqm5RvlI3tGoG+t9io+WzSdQWv+0BAH1Gn5AwHT8RRrj+zU+DYCzYDHu+FGpoAO2oEZ
-	ouPA==
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
+	[209.85.222.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E98FAE006AF
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 06:29:18 -0700 (PDT)
+Received: by mail-qk1-f172.google.com with SMTP id m8-v6so3107639qka.12
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 06:29:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=2Aqw2+xEUVvhgMnMivZiXmpOVCsXODo7XQz4D/w6htM=;
+	b=HTIUUJya2MuhdoGtLqAV4suEFsyvGqHQcYNZHokCHvfg5YdJwCo87Wrz427HOg/coV
+	7RT8fF0Zo6k3Ssc7WDBzFUnLQi/cqM+mc91bk7EQk8wMVRXEfN2CeMvXeXOBcWefbk1M
+	vjUlHgKwcY+UIpdQRsQlxicMN/UIfXGZNPW6lfsH1omBY4AMifb0+vBJCWf5am6aTN6F
+	H3MH24lyB3SmYh9u+0YFypLZs7RLz+QNC2GGhGmVSFJTlwBEU61hIFIki/ugaBiY3Hu/
+	WCsROLyPvyTHkFV8QoBviZZ8+cYR5/bUPWt6fC4XbGdM8/klJoClsyKWW5A1VqKZAXBT
+	tDbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:sender:reply-to:to:from:subject:message-id:date
-	:user-agent:mime-version:content-language:content-transfer-encoding;
-	bh=XM2gId+ojmFtb6oVstfNaP9SjfeF1et8ocDN5qb8/zM=;
-	b=gX8teeRIdDaYst5V+Y3Sz1vLQya0JlmxgloNNsqxoUQjKgqw4r9fnX/amOiB7uLTCf
-	nsMtnOSMHup2dhtZxVitTcbYCHm58VN6w3wpp5c4PqLT7zhYGiiSmCRvT84QkE5O1lDI
-	TKKk67l+3VYj2w5pMIrcpodbTGQqf4WzpDuZ59YfzIKXmNn46Czg6IwafkRmwVdVoRUE
-	xQKxpC8FXO5JIxXf7HKCv1avu3Z8a8+Te57kNJ/m2y9+yu0u1BxO2cUGltUIS8rfLXIs
-	fEQ3+6/JnaaBmOkDPoP/wwt5hY5e2r0Hui8AbSklhIGUar6W/7cu5NIrcy3HYqU8fetF
-	AsAA==
-X-Gm-Message-State: ABuFfoivb5COhbfDRmPvlcgOeG6Ey8jLxcC59Ysl3DxzOB06tQybF1K6
-	9ftgXy9PLfKEZdXnjwGefxiAjQ6A+Dc=
-X-Google-Smtp-Source: ACcGV635G8j6ZdnSCI62gyNM6GZRsn8Gt0HkB+nuerj9N4P70u0HcsIvg0Rissttxf6aFJGec7FK2Q==
-X-Received: by 2002:a63:164d:: with SMTP id
-	13-v6mr25639902pgw.103.1539175769659; 
-	Wed, 10 Oct 2018 05:49:29 -0700 (PDT)
-Received: from ?IPv6:2001:44b8:3152:ab00:50f3:4be3:6d8e:6fe9?
-	(2001-44b8-3152-ab00-50f3-4be3-6d8e-6fe9.static.ipv6.internode.on.net.
-	[2001:44b8:3152:ab00:50f3:4be3:6d8e:6fe9])
-	by smtp.googlemail.com with ESMTPSA id
-	u13-v6sm2737425pgp.18.2018.10.10.05.49.26
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 10 Oct 2018 05:49:28 -0700 (PDT)
-Sender: Irving Tjiptowarsono <irving@irving-st.id.au>
-To: Yocto discussion list <yocto@yoctoproject.org>
-From: Irving ST <irving@ssfivy.com>
-Message-ID: <40fafb67-907b-3be5-aa51-d217a78a30b8@ssfivy.com>
-Date: Wed, 10 Oct 2018 23:49:22 +1100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=2Aqw2+xEUVvhgMnMivZiXmpOVCsXODo7XQz4D/w6htM=;
+	b=Gw6My6QSW5KrJwgRFX90O39guanN1MqycDtUk1B0meZ/sYG3MuSOR+h/BBzdFX9I7n
+	HYxB1FsEdgFEucf0YT+fm9vdW/bufRk8NSf45Fj6vo7uf59nQ3IdTUyjKGYbzIP7qKqT
+	5XstU5Tqy46gsHVy3z5LcvyY4jqWMF5Cb7Aq+AQjg9tS9Y+Q5zpai8HGlHvmtQrEsFyQ
+	13wkZVf1lO2G68segItQKkQNX3jMfbliQGNz8c/tN3zRZ+rokXXlzoE0d4ErHx+Anuyo
+	FS7w/yCGbjQXx/Ibb3ZQjC+/iqA2kmqNQoc87yWUcz34fX1RemHyme/H+XjkhOLD7+J/
+	6Uxw==
+X-Gm-Message-State: ABuFfoie/IVmRu3sy40RnM1FK1BUmQC5mdygneiH1YK7YEXNiLcWqn7U
+	3VpzBZI1SVTdMt6qZkLIk/QHwhvACq1wM/OQS88vfhxyOkw=
+X-Google-Smtp-Source: ACcGV60li5ZvF3/Szwfd1QuU4I1eta77eGd99oHnroQcUAiujHYW3VLNCyDOKY9q5R9LVMmWwADRcMwagYYKScO1tA4=
+X-Received: by 2002:a37:d784:: with SMTP id
+	t4-v6mr19011306qkt.212.1539178157702; 
+	Wed, 10 Oct 2018 06:29:17 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Steps to enable u-boot signed verified images?
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Wed, 10 Oct 2018 15:29:05 +0200
+Message-ID: <CAGAf8Ly_txg3AQNqOM+Rg0Oy-RdS_96y328GwXw7Qu=iDx1yfg@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Sumo distro problem with dhcp packet?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: irving@ssfivy.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -85,88 +68,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2018 12:49:32 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 10 Oct 2018 13:29:19 -0000
+Content-Type: multipart/alternative; boundary="0000000000005605030577dfd70b"
 
-Hello,
+--0000000000005605030577dfd70b
+Content-Type: text/plain; charset="UTF-8"
 
-I'm trying to make u-boot perform signature verification of fitImages. I
-have problems getting it to work, and the documentation seems to be
-scattered in different places on the internet (I found plenty
-descriptions of the concept, but I haven't seen detailed step-by-step
-instructions on how to actually do it).
+Hello.
 
-This is on an NXP i.MX7 Dual chip, using yocto 2.5, linux-fslc-imx 4.9,
-and u-boot 2017.07 with vendor-specific patches to enable hardware
-support and the like.
+I need on my test initramfs YOCTO image to add dhcp package (both dhcp
+server and client).
 
-According to:
--
-https://git.yoctoproject.org/cgit.cgi/poky/plain/meta/classes/uboot-sign.bbclass
-I set these variables in the machine config file :
+For the beginning, I traced it, where it is:
+.../poky/meta/recipes-connectivity/dchp
 
-    UBOOT_SIGN_KEYDIR
-    UBOOT_SIGN_KEYNAME
-    UBOOT_MKIMAGE_DTCOPTS
-    UBOOT_SIGN_ENABLE
-    KERNEL_CLASSES
-    KERNEL_IMAGETYPE
+and decided to test it adding it to ...poky/build/conf/local.conf for the
+starters:
+CORE_IMAGE_EXTRA_INSTALL_append = "openssh dhcp cmake... "
 
-According to:
--
-https://github.com/u-boot/u-boot/blob/master/doc/uImage.FIT/verified-boot.txt
-- https://github.com/u-boot/u-boot/blob/master/doc/uImage.FIT/signature.txt
-- https://github.com/u-boot/u-boot/blob/master/doc/README.fdt-control
-I added the following configuration in u-boot defconfig:
+But it produced the following error:
+[user@fedora28-ssd conf]$ bitbake -k core-image-base
 
-    CONFIG_SECURE_BOOT=y
-    CONFIG_SPL_DRIVERS_MISC_SUPPORT=y
-    CONFIG_FIT=y
-    CONFIG_FIT_VERBOSE=y
-    CONFIG_FIT_SIGNATURE=y
-    CONFIG_RSA=y
-    CONFIG_OF_CONTROL=y
-    CONFIG_OF_SEPARATE=y
+   [snap]
 
-This causes u-boot compilation failure, with the relevant line being:
+ERROR: Nothing RPROVIDES 'dhcp' (but
+/home/user/projects2/beaglebone-black/sumo/poky/meta/recipes-core/images/
+core-image-base.bb RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'dhcp' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['dhcp']
+ERROR: Nothing RPROVIDES 'core-image-base'
+No eligible RPROVIDERs exist for 'core-image-base'
+NOTE: Runtime target 'core-image-base' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['core-image-base']
 
-| make[2]: *** No rule to make target 'arch/arm/dts/unset.dts', needed
-by 'arch/arm/dts/unset.dtb'.  Stop.
+I added another package, dhcpcd, which is located in the another layer:
+CORE_IMAGE_EXTRA_INSTALL_append = "openssh dhcpcd cmake... "
 
-If I added CONFIG_DEFAULT_DEVICE_TREE in u-boot defconfig, the
-compilation failure goes away.
-Am I correct that I need to provide the same device tree source to this
-uboot config as the one I give to my kernel?
-Or is there a way to not need to specify this config, considering the
-only reason I enabled CONFIG_OF_CONTROL is because the current scheme in
-yocto requires it?
+so this one worked/was integrated seamlessly.
 
+What is the catch 22 here?
 
-Anyway, I tried setting this config to "imx7d-sdb" to see what happens,
-and I got error from bitbake (relevant parts only):
+Thank you,
+Zoran
 
-    | uboot-mkimage: Can't open
-/workdir/build/upstream/tmp/deploy/images/<my-machine-name>/u-boot.dtb:
-No such file or directory
-    | uboot-mkimage Can't add hashes to FIT blob: -5
-    | WARNING: exit code 255 from a shell command.
-    | ERROR: Function failed: do_assemble_fitimage (log file is located
-at
-/workdir/build/upstream/tmp/work/<my-machine-name>-poky-linux-gnueabi/linux-fslc-imx/4.9-1.0.x+gitAUTOINC+953c6e30c9-r0/temp/log.do_assemble_fitimage.883)
-    ERROR: Task
-(/workdir/upstream/meta-freescale/recipes-kernel/linux/linux-fslc-imx_4.9-1.0.x.bb:do_assemble_fitimage)
-failed with exit code '1'
+--0000000000005605030577dfd70b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>He=
+llo.<br></div><div><br></div><div>I need on my test initramfs YOCTO image t=
+o add dhcp package (both dhcp server and client).</div><div><br></div><div>=
+For the beginning, I traced it, where it is:</div><div>.../poky/meta/recipe=
+s-connectivity/dchp<br></div><div><br></div><div>and decided to test it add=
+ing it to ...poky/build/conf/local.conf for the starters:</div><div>CORE_IM=
+AGE_EXTRA_INSTALL_append =3D &quot;openssh dhcp cmake... &quot;<br></div><d=
+iv><br></div><div>But it produced the following error:</div><div>[user@fedo=
+ra28-ssd conf]$ bitbake -k core-image-base</div><div><br></div><div>=C2=A0=
+=C2=A0 [snap]<br></div><div><br>ERROR: Nothing RPROVIDES &#39;dhcp&#39; (bu=
+t /home/user/projects2/beaglebone-black/sumo/poky/meta/recipes-core/images/=
+<a href=3D"http://core-image-base.bb">core-image-base.bb</a> RDEPENDS on or=
+ otherwise requires it)<br>NOTE: Runtime target &#39;dhcp&#39; is unbuildab=
+le, removing...<br>Missing or unbuildable dependency chain was: [&#39;dhcp&=
+#39;]<br>ERROR: Nothing RPROVIDES &#39;core-image-base&#39;<br>No eligible =
+RPROVIDERs exist for &#39;core-image-base&#39;<br>NOTE: Runtime target &#39=
+;core-image-base&#39; is unbuildable, removing...<br>Missing or unbuildable=
+ dependency chain was: [&#39;core-image-base&#39;]<br></div><div><br></div>=
+<div>I added another package, dhcpcd, which is located in the another layer=
+:</div><div>CORE_IMAGE_EXTRA_INSTALL_append =3D &quot;openssh dhcpcd cmake.=
+.. &quot;</div><div><br></div><div> so this one worked/was integrated seaml=
+essly.</div><div><br></div><div>What is the catch 22 here? <br></div><div><=
+br></div><div>Thank you,</div><div>Zoran</div><div><br></div></div></div></=
+div></div>
 
-u-boot.dtb file is indeed not present on disk, so my next step is to
-figure out why.
-In the meantime, is there anything obvious that I am currently still
-missing? I would be very happy if someone knows a good detailed guide to
-implement this, since I have not found any.
-
-
-Regards,
-Irving
-
+--0000000000005605030577dfd70b--
