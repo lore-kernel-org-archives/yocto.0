@@ -1,61 +1,73 @@
-Return-Path: <simon.chamlian@mpbc.ca>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1ABFBE00AB3; Wed, 10 Oct 2018 13:04:09 -0700 (PDT)
+	id C6B51E00AB3; Wed, 10 Oct 2018 13:10:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (martin.jansa[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.174 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.128.53 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com
-	[209.85.160.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DC4CE00718
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 13:04:07 -0700 (PDT)
-Received: by mail-qt1-f174.google.com with SMTP id j46-v6so7203454qtc.9
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 13:04:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mpbc-ca.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=i02mX+M0Z1ow0JGOtctyvbg7nS/mRI0h3wiiqWBWFko=;
-	b=j48uEsyhqgntK9MFXzQibvP0BpgjcsDg+yhBqkTGPR0sSC+90GDuOvpnHcZ7ZL+RsO
-	erO6jLiq8PEt1Npi5+p3/QY9tjD5wUt+zNTJPHUtJQGx+JR+920ZnmxCp6R6d1OQdHi1
-	vale7+y+vcPq/64CryOQB9O5em+9bjClovTLbCpQpCANr4IvB2Kw1sf9cZkUMz1EUGI3
-	jZlbI5QrHyVKykQpSfohNBzgMw9rFnz0rSjtFlAmcCEsSo4WyyZ/Mq5B1Oubjb8IXtcu
-	etg9NTsIjQXnOWjPf/tv7w6EihdoUnMIBxSXHGCg1HUWY0IAU6mfegFj9kqsN/yI8I3z
-	U15w==
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+	[209.85.128.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F92FE003D9
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 13:10:06 -0700 (PDT)
+Received: by mail-wm1-f53.google.com with SMTP id y144-v6so7008158wmd.4
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 13:10:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=11aN/aY4IHQULKn83hkoNtHGZM10aMuXkHhEx/A+/+8=;
+	b=cpX7XTIpMpd2P2g0FIMNblu3OBClkFAvrZPf6QwnpBrREAzEtx6tU2IkPCRCW8zvxo
+	ZBGWljubCFnxLCnN478qkOj2naV1bdEChnmJv5tAXqoRUtuML7gB9MLmSwpvLh5tve1T
+	HubKgVJ99La9Ki6Cqv4R+Ku7PYQV67JiQ62UmxSYwxOxRfidiz6lTqw80BFtJurkOkfC
+	40p98Eqilj0WkhlRd7dyr0nG1kSOcUy4umuhCNt1XEGETyDrW/MmOUQb1SVnBLBV1qPR
+	/kbHo4YAzFJazdzLRx32tmiNY4Og5F2KBCfVDtjaEirEY2FXaCtLapDBlec+IkAa9wXE
+	6hmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=i02mX+M0Z1ow0JGOtctyvbg7nS/mRI0h3wiiqWBWFko=;
-	b=UZyBqAvgdMYpM7+kE2CoZKUYF8ZPjpdCo20Bjshl/3XE/dWU+ZlBLlv0O5SGnappNJ
-	uzeD4Uh+AkBI6d6JSRRHlDKDB+5qTmY2FikvXvJPvQcNoIne8gRvpjr91chC3zlrW376
-	73FllMn6zld0AsWhUOOJMYYV+dKKeZuzvIz5z3nTpFeFCTqotchB6quP8Kj3SZr6LoMw
-	Z/UW4qwhvHG9aCNQTrJdnzMzz/VmBkxUTyB0qiLE9Zd7Sj3WQ0EIqIuGo3TezP2sd44U
-	55dQLdVAOHr70VsHs8nmhkCFmX46x5e8BfduEYe27Lfy5chWcW/jjRZC+QhCvu9Yt0yN
-	TGVg==
-X-Gm-Message-State: ABuFfogEAlzJg50dv1YHFYc+Vrf0dl/6+Jvw8aiP1VgjEcRGRpCJhN3H
-	nRHcr/+PJtCh6LrKnIuEysij9R03vwsLW+tLPxWDRH8StqQ4Yw==
-X-Google-Smtp-Source: ACcGV61kfCANB638bqTscYQngj0d7WqxLgk8bXvYJ2SQn3mvFSJDS9Cqi1fa91afXLeCxSbubFxJK3C8uHaku1KTsco=
-X-Received: by 2002:ac8:45d5:: with SMTP id
-	e21-v6mr24054024qto.261.1539201847206; 
-	Wed, 10 Oct 2018 13:04:07 -0700 (PDT)
-MIME-Version: 1.0
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=11aN/aY4IHQULKn83hkoNtHGZM10aMuXkHhEx/A+/+8=;
+	b=IJy3bcW3TgW8Atn1eg9znEOvon74rqmdNuSSrWVzrZCU6LZyYyx6pSk0GUgGw6IUwA
+	wJzWNnGTdYa/Fd0ZRTv1wUhcWKcXhGz73VPSWc+NU7fyz5u9Pwnu+f+aGtvAUDBCYsoy
+	lgijJjopUg/S4PxDngPINac7og/RBAo0QhCYQI8TnZXAoEo37bP/v/m8e9N8W6PaVOeB
+	c3lUgICdDO3RweZvPhl3gPc30sYQxOF2B9izhIyt0+l2pHh5AeOVjN9gY9djNWCMBPzi
+	yAnUenrvsG3n5jcmForjhdXhJaio+wnCXWucfUfpwVuQ1MHFdsWZ8MFaghH4WJX3zN55
+	s3uQ==
+X-Gm-Message-State: ABuFfoj5KKpxTL03/3taDfhfDZQq9/Zbvn7QhbjFXZ8Tmq0B+6O6noB8
+	bDPII+8dFKRwmbjs2FqbLpw=
+X-Google-Smtp-Source: ACcGV62H+FW8yjCcMDvoNVe6OooB+ttRnj5yZ0ds8bxM0njO5rUrLvIjllXfBrMGs85wgZAePWfr4w==
+X-Received: by 2002:a1c:5e49:: with SMTP id
+	s70-v6mr2011261wmb.131.1539202205186; 
+	Wed, 10 Oct 2018 13:10:05 -0700 (PDT)
+Received: from localhost ([217.30.68.212]) by smtp.gmail.com with ESMTPSA id
+	e196-v6sm11463512wmf.43.2018.10.10.13.10.03
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Wed, 10 Oct 2018 13:10:04 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Wed, 10 Oct 2018 22:10:06 +0200
+To: Simon Chamlian <simon.chamlian@mpbc.ca>
+Message-ID: <20181010201006.GA1350@jama>
 References: <CANmTPBb3rEK8t6j+bUX92dS7UZCQpu0-ZoEGCDzgq7FBgZUXOA@mail.gmail.com>
-In-Reply-To: <CANmTPBb3rEK8t6j+bUX92dS7UZCQpu0-ZoEGCDzgq7FBgZUXOA@mail.gmail.com>
-From: Simon Chamlian <simon.chamlian@mpbc.ca>
-Date: Wed, 10 Oct 2018 16:03:55 -0400
-Message-ID: <CANmTPBaHBNZT=391K72aYVm4Gbj6Pn=XGYZf1ObJN+Umws+1fQ@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: failed to compile php_7.2.10.bb
+	<CANmTPBaHBNZT=391K72aYVm4Gbj6Pn=XGYZf1ObJN+Umws+1fQ@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CANmTPBaHBNZT=391K72aYVm4Gbj6Pn=XGYZf1ObJN+Umws+1fQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: failed to compile php_7.2.10.bb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,154 +79,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2018 20:04:09 -0000
-Content-Type: multipart/alternative; boundary="0000000000005738f20577e55b7c"
+X-List-Received-Date: Wed, 10 Oct 2018 20:10:06 -0000
+X-Groupsio-MsgNum: 42732
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="uAKRQypu60I7Lcqm"
+Content-Disposition: inline
 
---0000000000005738f20577e55b7c
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-
-I tried to bitbake php_7.2.10.bb and I am getting the following error.
-
-Did anyone tried to compile php_7.2.10.bb ?
-
-Any clue on what the issue can be ?
-
-*$ bitbake php*
-Loading cache: 100%
-|###########################################################################################################################################|
-Time: 0:00:01
-Loaded 3104 entries from dependency cache.
-ERROR: ExpansionError during parsing
-/opt/PHYTEC_BSPs/yocto_imx7/sources/meta-openembedded/meta-oe/recipes-devtools/php/
-php_7.2.10.bb
-| ETA:  --:--:--
-Traceback (most recent call last):
-  File
-"/opt/PHYTEC_BSPs/yocto_imx7/sources/poky/meta/classes/base.bbclass", line
-375, in
-__anon_656__opt_PHYTEC_BSPs_yocto_imx7_sources_poky_meta_classes_base_bbclass(d=<bb.data_smart.DataSmart
-object at 0x7f9ee5719860>):
-             pkgconfig = (d.getVar('PACKAGECONFIG', True) or "").split()
-    >        pn = d.getVar("PN", True)
-
-  File
-"/opt/PHYTEC_BSPs/yocto_imx7/sources/poky/bitbake/lib/bb/data_smart.py",
-line 569, in DataSmart.getVar(var='PACKAGECONFIG', expand=True,
-noweakdefault=False, parsing=False):
-         def getVar(self, var, expand, noweakdefault=False, parsing=False):
-    >        return self.getVarFlag(var, "_content", expand, noweakdefault,
-parsing)
-
-  File
-"/opt/PHYTEC_BSPs/yocto_imx7/sources/poky/bitbake/lib/bb/data_smart.py",
-line 737, in DataSmart.getVarFlag(var='PACKAGECONFIG', flag='_content',
-expand=True, noweakdefault=False, parsing=False):
-                     cachename = var + "[" + flag + "]"
-    >            value = self.expand(value, cachename)
-
-  File
-"/opt/PHYTEC_BSPs/yocto_imx7/sources/poky/bitbake/lib/bb/data_smart.py",
-line 410, in DataSmart.expand(s="mysql sqlite3 imap opcache
-openssl                    ${@bb.utils.filter('DISTRO_FEATURES', 'ipv6
-pam', d)}  apache2 sqlite3 pgsql ", varname='PACKAGECONFIG'):
-         def expand(self, s, varname = None):
-    >        return self.expandWithRefs(s, varname).value
-
-  File
-"/opt/PHYTEC_BSPs/yocto_imx7/sources/poky/bitbake/lib/bb/data_smart.py",
-line 400, in DataSmart.expandWithRefs(s="mysql sqlite3 imap opcache
-openssl                    ${@bb.utils.filter('DISTRO_FEATURES', 'ipv6
-pam', d)}  apache2 sqlite3 pgsql ", varname='PACKAGECONFIG'):
-                 except Exception as exc:
-    >                raise ExpansionError(varname, s, exc) from exc
-
-bb.data_smart.ExpansionError: Failure expanding variable PACKAGECONFIG,
-expression was mysql sqlite3 imap opcache openssl
-${@bb.utils.filter('DISTRO_FEATURES', 'ipv6 pam', d)}  apache2 sqlite3
-pgsql  which triggered exception AttributeError: module 'bb.utils' has no
-attribute 'filter'
-
-
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-*$*
-
-Thanks,
-S.
-
---0000000000005738f20577e55b7c
-Content-Type: text/html; charset="UTF-8"
+--uAKRQypu60I7Lcqm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi,</div><div><br><=
-/div><div>I tried to bitbake <span style=3D"color:rgb(0,0,0)"><span style=
-=3D"font-family:monospace,monospace"><a href=3D"http://php_7.2.10.bb">php_7=
-.2.10.bb</a> and</span></span> I am getting the following error.<br></div><=
-div><br></div><div>Did anyone tried to compile <a href=3D"http://php_7.2.10=
-.bb">php_7.2.10.bb</a> ?=C2=A0 <br></div><div><br></div><div>Any clue on wh=
-at the issue can be ?</div><div><br></div><div><span style=3D"font-family:m=
-onospace,monospace"><b>$ bitbake php</b><br>Loading cache: 100% |##########=
-###########################################################################=
-######################################################| Time: 0:00:01<br>Lo=
-aded 3104 entries from dependency cache.<br><span style=3D"color:rgb(255,0,=
-0)">ERROR: ExpansionError during parsing /opt/PHYTEC_BSPs/yocto_imx7/source=
-s/meta-openembedded/meta-oe/recipes-devtools/php/<a href=3D"http://php_7.2.=
-10.bb">php_7.2.10.bb</a>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span>=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | ETA:=C2=A0 --:--:--<br>Traceback (most rec=
-ent call last):<br>=C2=A0 File &quot;/opt/PHYTEC_BSPs/yocto_imx7/sources/po=
-ky/meta/classes/base.bbclass&quot;, line 375, in __anon_656__opt_PHYTEC_BSP=
-s_yocto_imx7_sources_poky_meta_classes_base_bbclass(d=3D&lt;bb.data_smart.D=
-ataSmart object at 0x7f9ee5719860&gt;):<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pkgconfig =3D (d.getVar(&#39;PAC=
-KAGECONFIG&#39;, True) or &quot;&quot;).split()<br>=C2=A0=C2=A0=C2=A0 &gt;=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pn =3D d.getVar(&quot;PN&quot;, =
-True)<br>=C2=A0=C2=A0=C2=A0=C2=A0 <br>=C2=A0 File &quot;/opt/PHYTEC_BSPs/yo=
-cto_imx7/sources/poky/bitbake/lib/bb/data_smart.py&quot;, line 569, in Data=
-Smart.getVar(var=3D&#39;PACKAGECONFIG&#39;, expand=3DTrue, noweakdefault=3D=
-False, parsing=3DFalse):<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 def getVar(self, var, expand, noweakdefault=3DFalse, parsing=3DFalse):<=
-br>=C2=A0=C2=A0=C2=A0 &gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return=
- self.getVarFlag(var, &quot;_content&quot;, expand, noweakdefault, parsing)=
-<br>=C2=A0=C2=A0=C2=A0=C2=A0 <br>=C2=A0 File &quot;/opt/PHYTEC_BSPs/yocto_i=
-mx7/sources/poky/bitbake/lib/bb/data_smart.py&quot;, line 737, in DataSmart=
-.getVarFlag(var=3D&#39;PACKAGECONFIG&#39;, flag=3D&#39;_content&#39;, expan=
-d=3DTrue, noweakdefault=3DFalse, parsing=3DFalse):<br>=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 cachename =3D var + &quot;[&quot; + flag + &quot;]=
-&quot;<br>=C2=A0=C2=A0=C2=A0 &gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 value =3D self.expand(value, cachename)<br>=C2=A0=
-=C2=A0=C2=A0=C2=A0 <br>=C2=A0 File &quot;/opt/PHYTEC_BSPs/yocto_imx7/source=
-s/poky/bitbake/lib/bb/data_smart.py&quot;, line 410, in DataSmart.expand(s=
-=3D&quot;mysql sqlite3 imap opcache openssl=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 ${@bb.utils.filter(&#39;DISTRO_FEATURES&#39;, &#39;ipv6 pam&#39;,=
- d)}=C2=A0 apache2 sqlite3 pgsql &quot;, varname=3D&#39;PACKAGECONFIG&#39;)=
-:<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 def expand(self, s, v=
-arname =3D None):<br>=C2=A0=C2=A0=C2=A0 &gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 return self.expandWithRefs(s, varname).value<br>=C2=A0=C2=A0=
-=C2=A0=C2=A0 <br>=C2=A0 File &quot;/opt/PHYTEC_BSPs/yocto_imx7/sources/poky=
-/bitbake/lib/bb/data_smart.py&quot;, line 400, in DataSmart.expandWithRefs(=
-s=3D&quot;mysql sqlite3 imap opcache openssl=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 ${@bb.utils.filter(&#39;DISTRO_FEATURES&#39;, &#39;ipv6 pam&#39;,=
- d)}=C2=A0 apache2 sqlite3 pgsql &quot;, varname=3D&#39;PACKAGECONFIG&#39;)=
-:<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 except Exception as exc:<br>=C2=A0=C2=A0=C2=A0 =
-&gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 raise ExpansionError(varname, s, exc) from exc<br>=C2=
-=A0=C2=A0=C2=A0=C2=A0 <br>bb.data_smart.ExpansionError: Failure expanding v=
-ariable PACKAGECONFIG, expression was mysql sqlite3 imap opcache openssl=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${@bb.utils.filter(&#39;DISTRO_FEATURE=
-S&#39;, &#39;ipv6 pam&#39;, d)}=C2=A0 apache2 sqlite3 pgsql=C2=A0 which tri=
-ggered exception AttributeError: module &#39;bb.utils&#39; has no attribute=
- &#39;filter&#39;<br><br><br>Summary: There was 1 ERROR message shown, retu=
-rning a non-zero exit code.<br><b>$</b> <br></span><br></div><div>Thanks,</=
-div><div>S.</div><br></div></div></div>
+On Wed, Oct 10, 2018 at 04:03:55PM -0400, Simon Chamlian wrote:
+> Hi,
+>=20
+> I tried to bitbake php_7.2.10.bb and I am getting the following error.
+>=20
+> Did anyone tried to compile php_7.2.10.bb ?
+>=20
+> Any clue on what the issue can be ?
+>=20
+> bb.data_smart.ExpansionError: Failure expanding variable PACKAGECONFIG,
+> expression was mysql sqlite3 imap opcache openssl
+> ${@bb.utils.filter('DISTRO_FEATURES', 'ipv6 pam', d)}  apache2 sqlite3
+> pgsql  which triggered exception AttributeError: module 'bb.utils' has no
+> attribute 'filter'
 
---0000000000005738f20577e55b7c--
+You're missing different versions of oe-core and meta-oe, use both from
+the same branch and it will work.
+
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--uAKRQypu60I7Lcqm
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCW75cmwAKCRA3VSO3ZXaA
+HLHiAKCbbCelrAPm8V7M5CtkOlbJkErZyQCcDgbMOWW+J0KdfjmrG+dLn+lqCnw=
+=lgVx
+-----END PGP SIGNATURE-----
+
+--uAKRQypu60I7Lcqm--
