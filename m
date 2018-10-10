@@ -1,62 +1,65 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9ACF8E006AF; Wed, 10 Oct 2018 06:29:19 -0700 (PDT)
+	id 3CE41E00AB3; Wed, 10 Oct 2018 06:56:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.172 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
-	[209.85.222.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E98FAE006AF
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 06:29:18 -0700 (PDT)
-Received: by mail-qk1-f172.google.com with SMTP id m8-v6so3107639qka.12
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 06:29:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=2Aqw2+xEUVvhgMnMivZiXmpOVCsXODo7XQz4D/w6htM=;
-	b=HTIUUJya2MuhdoGtLqAV4suEFsyvGqHQcYNZHokCHvfg5YdJwCo87Wrz427HOg/coV
-	7RT8fF0Zo6k3Ssc7WDBzFUnLQi/cqM+mc91bk7EQk8wMVRXEfN2CeMvXeXOBcWefbk1M
-	vjUlHgKwcY+UIpdQRsQlxicMN/UIfXGZNPW6lfsH1omBY4AMifb0+vBJCWf5am6aTN6F
-	H3MH24lyB3SmYh9u+0YFypLZs7RLz+QNC2GGhGmVSFJTlwBEU61hIFIki/ugaBiY3Hu/
-	WCsROLyPvyTHkFV8QoBviZZ8+cYR5/bUPWt6fC4XbGdM8/klJoClsyKWW5A1VqKZAXBT
-	tDbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=2Aqw2+xEUVvhgMnMivZiXmpOVCsXODo7XQz4D/w6htM=;
-	b=Gw6My6QSW5KrJwgRFX90O39guanN1MqycDtUk1B0meZ/sYG3MuSOR+h/BBzdFX9I7n
-	HYxB1FsEdgFEucf0YT+fm9vdW/bufRk8NSf45Fj6vo7uf59nQ3IdTUyjKGYbzIP7qKqT
-	5XstU5Tqy46gsHVy3z5LcvyY4jqWMF5Cb7Aq+AQjg9tS9Y+Q5zpai8HGlHvmtQrEsFyQ
-	13wkZVf1lO2G68segItQKkQNX3jMfbliQGNz8c/tN3zRZ+rokXXlzoE0d4ErHx+Anuyo
-	FS7w/yCGbjQXx/Ibb3ZQjC+/iqA2kmqNQoc87yWUcz34fX1RemHyme/H+XjkhOLD7+J/
-	6Uxw==
-X-Gm-Message-State: ABuFfoie/IVmRu3sy40RnM1FK1BUmQC5mdygneiH1YK7YEXNiLcWqn7U
-	3VpzBZI1SVTdMt6qZkLIk/QHwhvACq1wM/OQS88vfhxyOkw=
-X-Google-Smtp-Source: ACcGV60li5ZvF3/Szwfd1QuU4I1eta77eGd99oHnroQcUAiujHYW3VLNCyDOKY9q5R9LVMmWwADRcMwagYYKScO1tA4=
-X-Received: by 2002:a37:d784:: with SMTP id
-	t4-v6mr19011306qkt.212.1539178157702; 
-	Wed, 10 Oct 2018 06:29:17 -0700 (PDT)
+	*      [216.168.135.167 listed in list.dnswl.org]
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4955FE00A94
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 06:56:48 -0700 (PDT)
+Received: (qmail 15531 invoked by uid 1003); 10 Oct 2018 13:56:51 -0000
+Received: from unknown (HELO ?192.168.11.100?)
+	(philip@opensdr.com@73.152.143.112)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	10 Oct 2018 13:56:51 -0000
+To: "openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>,
+	"openembedded-members@lists.openembedded.org"
+	<openembedded-members@lists.openembedded.org>,
+	Yocto Project <yocto@yoctoproject.org>
+References: <9db03bdc-26c5-1b8b-17d3-2192dfe785b2@balister.org>
+From: Philip Balister <philip@balister.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
+	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
+	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
+	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+	6eUfr0u7CwnEyqiQ
+Message-ID: <94aee98b-8427-93cf-3062-6f322226dd14@balister.org>
+Date: Wed, 10 Oct 2018 09:56:46 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.2
 MIME-Version: 1.0
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 10 Oct 2018 15:29:05 +0200
-Message-ID: <CAGAf8Ly_txg3AQNqOM+Rg0Oy-RdS_96y328GwXw7Qu=iDx1yfg@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Sumo distro problem with dhcp packet?
+In-Reply-To: <9db03bdc-26c5-1b8b-17d3-2192dfe785b2@balister.org>
+Subject: Re: OEDEM in Edinburgh in 2 weeks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,76 +71,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2018 13:29:19 -0000
-Content-Type: multipart/alternative; boundary="0000000000005605030577dfd70b"
+X-List-Received-Date: Wed, 10 Oct 2018 13:56:49 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 
---0000000000005605030577dfd70b
-Content-Type: text/plain; charset="UTF-8"
+On 10/04/2018 08:20 AM, Philip Balister wrote:
+> OEDEM is basically full at this time.
+> 
+> https://www.openembedded.org/wiki/OEDEM_2018
+> 
+> We have had the room rearranged to seat 45 people and I am not sure how
+> we would handle anyone over this. If you know you can't make it, could
+> you please remove your name from the attendee list. We'd like to get a
+> better idea of how many people on the waiting list we can accommodate.
+> There are some long time contributors on the wait list we'd like to get in.
 
-Hello.
+OK, I've had the room arranged for 50 people. Everyone who is signed up
+has a chair. Thanks for your interest in OpenEmbedded.
 
-I need on my test initramfs YOCTO image to add dhcp package (both dhcp
-server and client).
+See you all soon!
 
-For the beginning, I traced it, where it is:
-.../poky/meta/recipes-connectivity/dchp
+Philip
 
-and decided to test it adding it to ...poky/build/conf/local.conf for the
-starters:
-CORE_IMAGE_EXTRA_INSTALL_append = "openssh dhcp cmake... "
+> 
+> Philip
+> 
 
-But it produced the following error:
-[user@fedora28-ssd conf]$ bitbake -k core-image-base
-
-   [snap]
-
-ERROR: Nothing RPROVIDES 'dhcp' (but
-/home/user/projects2/beaglebone-black/sumo/poky/meta/recipes-core/images/
-core-image-base.bb RDEPENDS on or otherwise requires it)
-NOTE: Runtime target 'dhcp' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['dhcp']
-ERROR: Nothing RPROVIDES 'core-image-base'
-No eligible RPROVIDERs exist for 'core-image-base'
-NOTE: Runtime target 'core-image-base' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['core-image-base']
-
-I added another package, dhcpcd, which is located in the another layer:
-CORE_IMAGE_EXTRA_INSTALL_append = "openssh dhcpcd cmake... "
-
-so this one worked/was integrated seamlessly.
-
-What is the catch 22 here?
-
-Thank you,
-Zoran
-
---0000000000005605030577dfd70b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>He=
-llo.<br></div><div><br></div><div>I need on my test initramfs YOCTO image t=
-o add dhcp package (both dhcp server and client).</div><div><br></div><div>=
-For the beginning, I traced it, where it is:</div><div>.../poky/meta/recipe=
-s-connectivity/dchp<br></div><div><br></div><div>and decided to test it add=
-ing it to ...poky/build/conf/local.conf for the starters:</div><div>CORE_IM=
-AGE_EXTRA_INSTALL_append =3D &quot;openssh dhcp cmake... &quot;<br></div><d=
-iv><br></div><div>But it produced the following error:</div><div>[user@fedo=
-ra28-ssd conf]$ bitbake -k core-image-base</div><div><br></div><div>=C2=A0=
-=C2=A0 [snap]<br></div><div><br>ERROR: Nothing RPROVIDES &#39;dhcp&#39; (bu=
-t /home/user/projects2/beaglebone-black/sumo/poky/meta/recipes-core/images/=
-<a href=3D"http://core-image-base.bb">core-image-base.bb</a> RDEPENDS on or=
- otherwise requires it)<br>NOTE: Runtime target &#39;dhcp&#39; is unbuildab=
-le, removing...<br>Missing or unbuildable dependency chain was: [&#39;dhcp&=
-#39;]<br>ERROR: Nothing RPROVIDES &#39;core-image-base&#39;<br>No eligible =
-RPROVIDERs exist for &#39;core-image-base&#39;<br>NOTE: Runtime target &#39=
-;core-image-base&#39; is unbuildable, removing...<br>Missing or unbuildable=
- dependency chain was: [&#39;core-image-base&#39;]<br></div><div><br></div>=
-<div>I added another package, dhcpcd, which is located in the another layer=
-:</div><div>CORE_IMAGE_EXTRA_INSTALL_append =3D &quot;openssh dhcpcd cmake.=
-.. &quot;</div><div><br></div><div> so this one worked/was integrated seaml=
-essly.</div><div><br></div><div>What is the catch 22 here? <br></div><div><=
-br></div><div>Thank you,</div><div>Zoran</div><div><br></div></div></div></=
-div></div>
-
---0000000000005605030577dfd70b--
