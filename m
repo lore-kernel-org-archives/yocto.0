@@ -1,56 +1,42 @@
-Return-Path: <sangeeta.jain@intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52961E00994; Tue,  9 Oct 2018 18:46:47 -0700 (PDT)
+	id 5B605E00B6F; Tue,  9 Oct 2018 20:16:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [192.55.52.136 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B6D0E00971
-	for <yocto@yoctoproject.org>; Tue,  9 Oct 2018 18:46:45 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	09 Oct 2018 18:46:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.54,362,1534834800"; 
-	d="scan'208,217";a="269974151"
-Received: from kmsmsx151.gar.corp.intel.com ([172.21.73.86])
-	by fmsmga005.fm.intel.com with ESMTP; 09 Oct 2018 18:35:34 -0700
-Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.248]) by
-	KMSMSX151.gar.corp.intel.com ([169.254.10.74]) with mapi id
-	14.03.0319.002; Wed, 10 Oct 2018 09:35:32 +0800
-From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Jolley, Stephen K"
-	<stephen.k.jolley@intel.com>, "Eggleton, Paul" <paul.eggleton@intel.com>,
-	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
-	"Graydon, Tracy" <tracy.graydon@intel.com>, "Erway, Tracey M"
-	<tracey.m.erway@intel.com>
-Thread-Topic: QA cycle report for 2.6 M3 RC1
-Thread-Index: AdRgOYbYRIE8mqhWSdSYDWOrET+WYQ==
-Date: Wed, 10 Oct 2018 01:35:32 +0000
-Message-ID: <015AB11D45F2C442929CB2765DAE738634CBBC72@PGSMSX110.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMTk0YjQxZGYtYWRiNC00OTM5LWI5MWItNzEzYmY2YTMxMGVhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiVG5HYm9JaFlWcGowWlUzZjVPdE95b1dWaitlNEJXeWZUZDYwclwvYURUQXFrbU1MbHpyeDdjWFlmbGsxajNWTVYifQ==
-x-originating-ip: [172.30.20.206]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38226E0097C
+	for <yocto@yoctoproject.org>; Tue,  9 Oct 2018 20:16:51 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w9A3GBdF013614
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 9 Oct 2018 20:16:22 -0700
+Received: from server.local (147.11.119.160) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.408.0;
+	Tue, 9 Oct 2018 20:16:01 -0700
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <286078d59ba1400fb6646b0e6057add6@sakuraus.com>
+	<16551d421c7747ab9ae52856a668d750@sakuraus.com>
+	<a3fc06bf-e202-dec1-8618-f7f89e1c8a93@windriver.com>
+	<7b74cef2003b44909e3033efa1d4305a@sakuraus.com>
+	<772b7fca373e4a9085660b8a79a36673@sakuraus.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <42ca53b6-4264-642a-c654-f34740d813e8@windriver.com>
+Date: Tue, 9 Oct 2018 23:16:00 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
+	Gecko/20100101 Thunderbird/52.9.1
 MIME-Version: 1.0
-Cc: "Kirkiris, Nectar" <nectar.kirkiris@intel.com>
-Subject: QA cycle report for 2.6 M3 RC1
+In-Reply-To: <772b7fca373e4a9085660b8a79a36673@sakuraus.com>
+Subject: Re: changing kernel config in Morty build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,750 +48,356 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2018 01:46:47 -0000
+X-List-Received-Date: Wed, 10 Oct 2018 03:16:52 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_015AB11D45F2C442929CB2765DAE738634CBBC72PGSMSX110garcor_"
+Content-Transfer-Encoding: 8bit
+
+On 2018-10-05 7:26 PM, Greg Wilson-Lindberg wrote:
+> Hi Bruce,
+> I've been able to reproduce the problem in a more minimal environment.
+> 
+> To build a basic Yocto Raspberry Pi environment I based my build on the instructions found here:
+> https://themeaningfulengineer.github.io/exploring-yocto-with-raspberrypi/
+> 
+> The steps that I actually executed are:
+> 
+> git clone -b morty --single-branch git://git.yoctoproject.org/poky
+> cd poky/
+> git clone -b morty http://git.yoctoproject.org/git/meta-raspberrypi
+> source oe-init-build-env rpi-build
+> 
+> In rpi-build/conf/local.conf I changed the MACHINE assignment to "raspberrypi2" from "qemu86"
+> 
+> In rpi-build/conf/bblayers.conf I added "  /home/gwilson/Qt/poky/meta-raspberrypi \" to pick up the raspberry layer.
+> 
+> At this point I ran:
+> bitbake rpi-hwup-image
+> 
+> to verify that the environment was correct. The build finished with only a couple of warnings about checksum problems and using alternate mirrors.
+> 
+> I then copied in my kernel scripts and added in the directory to the bblayers file.
+> 
+> When I rebuilt with these changes I get the same warnings/errors about changing the kernel config that I get with my full build environment.
+> 
+> I've attached my meta-test directory with the kernel configuration .bbappend and .scc & .cfg files, and the final bblayers.conf & local.conf files.
+
+Thanks for the layers and cut & paste instructions. They helped
+a lot.
+
+.. even with that start, it took me a bit to figure things out.
+
+In the end, I can't actually figure out how to get the fragment
+working with the rpi kernel configuration routines as they stand
+in the morty timeframe.
+
+in recipes-kernel/linux/linux-rpi.inc, there's a do_configure_prepend
+routine who's first action is to clear ${B}/.config .. which is where
+the kernel-yocto bbclass would have put the merged config + fragment.
+(The defconfig is also a placeholder defconfig, I could work around
+that, but in the end, it doesn't matter since that routine zeros out
+anything that has merged).
+
+So as I see it, you'll either need to carry your own defconfig, patch
+the in-tree defconfig that is used, or write routines in your bbappend
+to modify the configuration directly. I admit to not looking to see
+if the techniques to do this are described anywhere, since I was just
+trying to sort out why the fragment wasn't being properly applied.
+
+Sorry I couldn't be of more help.
+
+Cheers,
+
+Bruce
+
+> 
+> Thank you for taking a look at this.
+> 
+> Regards,
+> 
+> Greg Wilson-Lindberg
+> 
+> 
+> 
+> ------------------------------------------------------------------------
+> *From:* yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> 
+> on behalf of Greg Wilson-Lindberg <GWilson@sakuraus.com>
+> *Sent:* Friday, October 5, 2018 9:23:52 AM
+> *To:* Bruce Ashfield; yocto@yoctoproject.org
+> *Subject:* Re: [yocto] changing kernel config in Morty build
+> Hi Bruce,
+> I'll do my best to get something for you.
+> Thanks,
+> 
+> Greg Wilson-Lindberg
+> Principal Firmware Engineer | Sakura Finetek USA, Inc.
+> 
+> 1750 W 214th Street | Torrance, CA 90501 | U.S.A.
+> T: +1 310 783 5075
+> F: +1 310 618 6902 | E: gwilson@sakuraus.com
+> www.sakuraus.com <http://www.sakuraus.com>
+> 
+> 
+> 
+> 
+> 
+> Confidentiality Notice: This e-mail transmission may contain 
+> confidential or legally privileged information that is intended only for 
+> the individual or entity named in the e-mail address. If you are not the 
+> intended recipient, you are hereby notified that any disclosure, 
+> copying, distribution, or reliance upon the contents of this e-mail is 
+> strictly prohibited. If you have received this e-mail transmission in 
+> error, please reply to the sender, so that Sakura Finetek USA, Inc. can 
+> arrange for proper delivery, and then please delete the message from 
+> your inbox. Thank you.
+> 
+> 
+> 
+>> -----Original Message-----
+>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>> Sent: Friday, October 05, 2018 08:46 AM
+>> To: Greg Wilson-Lindberg <GWilson@sakuraus.com>; yocto@yoctoproject.org
+>> Subject: Re: [yocto] changing kernel config in Morty build
+>> 
+>> On 2018-10-04 4:38 PM, Greg Wilson-Lindberg wrote:
+>> > Does anybody else have any idea about what is going on here?
+>> >
+>> 
+>> I can't tell from the information provided.
+>> 
+>> But if you can send me a set of layers to clone, and configure locally, I can figure it
+>> out.
+>> 
+>> Cheers,
+>> 
+>> Bruce
+>> 
+>> > Yocto is seeing my request to change the kernel config, suggests that
+>> > the change is acceptable, but then doesn't make it.
+>> >
+>> > Thanks in advance for any insight,
+>> >
+>> > Greg
+>> >
+>> > **
+>> >
+>> > *From:*Greg Wilson-Lindberg
+>> > *Sent:* Tuesday, October 02, 2018 02:22 PM
+>> > *To:* yocto@yoctoproject.org
+>> > *Subject:* changing kernel config in Morty build
+>> >
+>> > I'm trying to change some kernel configuration flags in a
+>> > raspberrypi3 Morty build and I get warnings that it isn't working.
+>> >
+>> > Here is the build info and warnings:
+>> >
+>> > Build Configuration:
+>> >
+>> > BB_VERSION        = "1.32.0"
+>> >
+>> > BUILD_SYS         = "x86_64-linux"
+>> >
+>> > NATIVELSBSTRING   = "universal"
+>> >
+>> > TARGET_SYS        = "arm-poky-linux-gnueabi"
+>> >
+>> > MACHINE           = "raspberrypi3"
+>> >
+>> > DISTRO            = "b2qt"
+>> >
+>> > DISTRO_VERSION    = "2.2.4"
+>> >
+>> > TUNE_FEATURES     = "arm armv7ve vfp thumb neon vfpv4
+>> > callconvention-hard cortexa7"
+>> >
+>> > TARGET_FPU        = "hard"
+>> >
+>> > SDKMACHINE        = "x86_64"
+>> >
+>> > meta
+>> >
+>> > meta-poky         = "HEAD:df76669bdd70aa0d903c4211dde731221c7e756d"
+>> >
+>> > meta-raspberrypi  = "HEAD:2a192261a914892019f4f428d7462bb3c585ebac"
+>> >
+>> > meta-oe
+>> >
+>> > meta-python
+>> >
+>> > meta-networking
+>> >
+>> > meta-initramfs
+>> >
+>> > meta-multimedia   = "HEAD:b40116cf457b88a2db14b86fda9627fb34d56ae6"
+>> >
+>> > meta-boot2qt
+>> >
+>> > meta-raspberrypi-extras = "<unknown>:<unknown>"
+>> >
+>> > meta-mingw        = "HEAD:1c2e155111dce94423cc227ea69f7f50f316c78e"
+>> >
+>> > meta-qt5          = "HEAD:49e9d9a73b5c6e3d6eab88dc0005305e85b1a62d"
+>> >
+>> > meta-sakura       = "<unknown>:<unknown>"
+>> >
+>> > Initialising tasks: 100%
+>> >
+>> |###################################################################
+>> ##
+>> >
+>> |###################################################################
+>> ##
+>> > |###|
+>> > Time: 0:00:00
+>> >
+>> > NOTE: Executing SetScene Tasks
+>> >
+>> > NOTE: Executing RunQueue Tasks
+>> >
+>> > WARNING: linux-raspberrypi-1_4.4.50+gitAUTOINC+04c8e47067-r0
+>> > do_kernel_configcheck: [kernel config]: specified values did not make
+>> > it into the kernel's final configuration:
+>> >
+>> > ---------- CONFIG_SND_SOC_MAX9768 -----------------
+>> >
+>> > Config: CONFIG_SND_SOC_MAX9768
+>> >
+>> > From:
+>> > /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work
+>> > -shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
+>> >
+>> > Requested value:  CONFIG_SND_SOC_MAX9768=y
+>> >
+>> > Actual value:
+>> >
+>> > Config 'SND_SOC_MAX9768' has the following conditionals:
+>> >
+>> > Dependency values are:
+>> >
+>> > ---------- CONFIG_MAX1363 -----------------
+>> >
+>> > Config: CONFIG_MAX1363
+>> >
+>> > From:
+>> > /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work
+>> > -shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
+>> >
+>> > Requested value:  CONFIG_MAX1363=m
+>> >
+>> > Actual value:     # CONFIG_MAX1363 is not set
+>> >
+>> > Config 'MAX1363' has the following conditionals:
+>> >
+>> >    I2C (value: "y")
+>> >
+>> > Dependency values are:
+>> >
+>> >    I2C [y]
+>> >
+>> > ---------- CONFIG_CAN_EMS_USB -----------------
+>> >
+>> > Config: CONFIG_CAN_EMS_USB
+>> >
+>> > From:
+>> > /home/gwilson/Qt/Qt-5.9.6/Yocto-build-RPi3/build-raspberrypi3/tmp/work
+>> > -shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
+>> >
+>> > Requested value:  CONFIG_CAN_EMS_USB=m
+>> >
+>> > Actual value:     # CONFIG_CAN_EMS_USB is not set
+>> >
+>> > Config 'CAN_EMS_USB' has the following conditionals:
+>> >
+>> >    (none)
+>> >
+>> > Dependency values are:
+>> >
+>> > Here is my
+>> >
+>> > linux-raspberrypi_4.4.bbappend for the kernel:
+>> >
+>> > # Scribe additions to Kernel configuration
+>> >
+>> > FILESEXTRAPATHS_prepend := "${FILE_DIRNAME}/files:"
+>> >
+>> > FILESEXTRAPATHS_prepend := "${FILE_DIRNAME}/${PN}:"
+>> >
+>> > SRC_URI += "file://Scribe.scc <file:///%5C%5CScribe.scc>"
+>> >
+>> > SRC_URI += "file://mcp251x.c.patch <file:///%5C%5Cmcp251x.c.patch>"
+>> >
+>> > The Scribe.scc file:
+>> >
+>> > # Scribe additions to kernel configuration
+>> >
+>> > kconf hardware Scribe.cfg
+>> >
+>> > And the Scribe.cfg file:
+>> >
+>> > # Scribe additions to kernel configuration
+>> >
+>> > # Enable MAX9768
+>> >
+>> > #CONFIG_SOC_ALL_CODECS=m
+>> >
+>> > #CONFIG_COMPILE_TEST=y
+>> >
+>> > CONFIG_SND_SOC_MAX9768=y
+>> >
+>> > # Enable MAX11606
+>> >
+>> > #IIO=y
+>> >
+>> > CONFIG_MAX1363=m
+>> >
+>> > # Enable EMS CPC-USB
+>> >
+>> > CONFIG_CAN_EMS_USB=m
+>> >
+>> > Here is my directory tree:
+>> >
+>> > Qt-5.9.6
+>> >
+>> >       Yocto-mirror
+>> > # Yocto build mirror
+>> >
+>> >       Yocto-build-RPi3                                              #
+>> > Yocto build root
+>> >
+>> >                  build-raspberrypi                                   #
+>> > build directory
+>> >
+>> >                  sources
+>> >   # yocto sources
+>> >
+>> >                         meta-sakura
+>> > # our recipes
+>> >
+>> >                                 recipes-kernel
+>> > # directory for kernel changes
+>> >
+>> >                                         linux
+>> >     # directory that contains linux-raspberrypi_4.4.bbappend
+>> >
+>> >                                                files
+>> >       # directory that contains .scc & .cfg files
+>> >
+>> > As seen above none of the changes are accepted although there is
+>> > nothing that blocks any of them.
+>> >
+>> > Any help understanding this would be greatly appreciated.
+>> >
+>> > Regards,
+>> >
+>> > Greg Wilson-Lindberg
+>> >
+>> >
+>> >
+> 
+> -- 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
---_000_015AB11D45F2C442929CB2765DAE738634CBBC72PGSMSX110garcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hello All,
-
-
-
-This is the full report for 2.6 M3 RC1:
-
-https://wiki.yoctoproject.org/wiki/WW41_-_2018-10-03_-_Full_Test_Cycle_2.6_=
-M3_RC1
-
-
-
-
-
-Summary
-
-
-
-All planned tests were executed.
-
-
-
-Total Test Executed - 3358
-
-Passed Test - 3332
-
-Failed Test - 20
-
-Blocked Test - 6
-
-
-
-There were zero high priority defect.  Team had found 5 new defects. ptest =
-for 8 modules failed in current release but passed in previous 2.6 M1 rc1. =
- Present status of bugs for respective modules is as  follows:
-
-
-
-ModuleName  -  BugId  -  Present Status
-
-
-
-e2fsprogs        - 12946     - Accepted, in discussion
-
-gdbm              - 12954     - New
-
-glib-2.0              - 12851     - Won't fix
-
-pango                - 12947     - Fixed
-
-perl                    - 12787      - Accepted for previous release; Failu=
-res observed in current release also
-
-python              - 12788     - Fixed
-
-strace               - 12948     - New
-
-valgrind           - 12837      - New (Bug is open since 2.6 M1)
-
-
-
-Performance test :  rootfs performance on ubuntu1604 degraded by  11.05% in=
- 2.6 M3 RC1 w.r.t. 2.6 M2 RC1
-
-
-
-QA-Hints
-
-
-
-Team has observed in ptest report,  it is showing that "openssl" is not exe=
-cuted for current release.
-
-But while analyzing ptest logs, following is mentioned in summary for opens=
-sl:
-
-Test Summary Report
-
--------------------
-
-../test/recipes/01-test_symbol_presence.t        (Wstat: 512 Tests: 4 Faile=
-d: 2)
-
-  Failed tests:  2, 4
-
-  Non-zero exit status: 2
-
-Files=3D152, Tests=3D1360, 71 wallclock secs ( 1.41 usr  0.14 sys + 69.96 c=
-usr 13.14 csys =3D 84.65 CPU)
-
-Result: FAIL
-
-END: /usr/lib/openssl/ptest
-
-
-
-
-
-QA Team is investigating more to reach out the correct status and root caus=
-e of openssl ptest failures.
-
-
-
-New Bugs
-
-
-
-[1] Bug 12950<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12950> - =
- [Yocto-2.6_M3.rc1] [MANUAL_SCRIPTS_OE-Core] [Case 2021] [Cross_tap]semanti=
-c error: while resolving probe point: identifier 'syscall' at trace_open.st=
-p
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12950
-
-
-
-[2] Bug 12952<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12952> - =
-[QA 2.6.M3 rc1 ][BSP/Mturbot] Not able to see login prompt when using seria=
-l
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12952
-
-
-[3] Bug 12946<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12946> - =
-[2.6 M3 RC1] e2fsprogs ptest failed
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12946
-
-[4] Bug 12954<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12954> - =
-[2.6 M3 RC1] gdbm ptest failures
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12954
-
-[5] Bug 12948<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12948> - =
-[2.6 M3 RC1] strace ptest failed
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12948
-
-
-Thanks & Regards,
-Sangeeta Jain
-
-
---_000_015AB11D45F2C442929CB2765DAE738634CBBC72PGSMSX110garcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:"Courier New";
-	mso-fareast-language:EN-MY;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle21
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle22
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle23
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle24
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle25
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle26
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle29
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:963269561;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1068689962 67698703 67698713 67698715 67698703 67698=
-713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l1
-	{mso-list-id:973027202;
-	mso-list-template-ids:1866107058;}
-@list l1:level1
-	{mso-level-start-at:2;
-	mso-level-tab-stop:36.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l2
-	{mso-list-id:1016536560;
-	mso-list-template-ids:1867659804;}
-@list l3
-	{mso-list-id:1063718303;
-	mso-list-template-ids:-1914686496;}
-@list l3:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:36.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:72.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:108.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:144.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:180.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:216.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:252.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:288.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:324.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l4
-	{mso-list-id:1092820311;
-	mso-list-template-ids:-1642937296;}
-@list l4:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:36.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l4:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:72.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l4:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:108.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l4:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:144.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l4:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:180.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l4:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:216.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l4:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:252.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l4:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:288.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l4:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:324.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l5
-	{mso-list-id:1964770521;
-	mso-list-type:hybrid;
-	mso-list-template-ids:2057981476 -1188900008 1141440515 1141440517 1141440=
-513 1141440515 1141440517 1141440513 1141440515 1141440517;}
-@list l5:level1
-	{mso-level-start-at:2;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;}
-@list l5:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l5:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l5:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l5:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l5:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l5:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l5:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l5:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-MY" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Hello All,<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">This is the full report for 2.6 M3 RC1:&nbsp;
-<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black"><a href=3D"https://wiki.yoctoproject.org/wiki/WW41_-_2018-10-=
-03_-_Full_Test_Cycle_2.6_M3_RC1">https://wiki.yoctoproject.org/wiki/WW41_-_=
-2018-10-03_-_Full_Test_Cycle_2.6_M3_RC1</a><o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black">Summary<o:p></o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">All planned tests were executed.<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Total Test Executed &#8211; 3358<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Passed Test &#8211; 3332<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Failed Test &#8211; 20<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Blocked Test - 6<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
-0pt;font-family:&quot;Times New Roman&quot;,serif;color:black">There were z=
-ero high priority defect.&nbsp; Team had found 5 new defects. ptest for </s=
-pan><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;=
-,serif">8 modules</span><span lang=3D"EN-US" style=3D"font-size:12.0pt;font=
--family:&quot;Times New Roman&quot;,serif;color:black"> failed in current r=
-elease but passed in previous 2.6 M1 rc1.&nbsp;&nbsp;</span><span lang=3D"E=
-N-US" style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,ser=
-if">Present status of bugs for respective modules is as <span style=3D"colo=
-r:black">&nbsp;</span>follows:<o:p></o:p></span></pre>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
-0pt;font-family:&quot;Times New Roman&quot;,serif"><o:p>&nbsp;</o:p></span>=
-</pre>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
-0pt;font-family:&quot;Times New Roman&quot;,serif">ModuleName &nbsp;&#8211;=
- &nbsp;BugId &nbsp;&#8211; &nbsp;Present Status<o:p></o:p></span></pre>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
-0pt;font-family:&quot;Times New Roman&quot;,serif"><o:p>&nbsp;</o:p></span>=
-</pre>
-<pre style=3D"background:white"><span style=3D"font-size:12.0pt;font-family=
-:&quot;Times New Roman&quot;,serif;color:black">e2fsprogs &nbsp;&nbsp;&nbsp=
-;&nbsp;</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New R=
-oman&quot;,serif"> <span style=3D"color:black">&nbsp;&nbsp;&#8211; 12946&nb=
-sp;&nbsp;&nbsp; &nbsp;- Accepted, in discussion</span></span><span lang=3D"=
-EN-US" style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,se=
-rif"><o:p></o:p></span></pre>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
-0pt;font-family:&quot;Times New Roman&quot;,serif">gdbm &nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8211; 12954&nb=
-sp;&nbsp;&nbsp; &nbsp;- New<o:p></o:p></span></pre>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">glib-2.0=
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&=
-#8211; 12851&nbsp;&nbsp;&nbsp; &nbsp;- Won&#8217;t fix<span style=3D"color:=
-black"><o:p></o:p></span></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">pango &n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbs=
-p;&nbsp;&#8211; 12947&nbsp;&nbsp;&nbsp; &nbsp;- Fixed<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">perl &nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&#8211; 12787&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;=
-- Accepted for previous release; Failures observed in current release also<=
-o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">python&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&#8=
-211; 12788&nbsp;&nbsp;&nbsp; &nbsp;- Fixed<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">strace&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nb=
-sp;&#8211; 12948 &nbsp;&nbsp;&nbsp;&nbsp;- New<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">valgrind=
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&#8211; 12837 &nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;- New (Bug is open since 2.6 M1)<o:p></o:p></span>=
-</p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
-sp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">Performa=
-nce test : &nbsp;rootfs performance on ubuntu1604 degraded by &nbsp;11.05% =
-in 2.6 M3 RC1 w.r.t. 2.6 M2 RC1<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
-sp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black">QA-Hints&nbsp;<o:p></o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black"><o:p>&nbsp;</o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">Team has=
- observed in ptest report,&nbsp; it is showing that &#8220;openssl&#8221; i=
-s not executed for current release.
-<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">But whil=
-e analyzing ptest logs, following is mentioned in summary for openssl:<o:p>=
-</o:p></span></p>
-<p style=3D"margin-left:4.8pt"><span lang=3D"EN-US">Test Summary Report<o:p=
-></o:p></span></p>
-<p style=3D"margin-left:4.8pt"><span lang=3D"EN-US">-------------------<o:p=
-></o:p></span></p>
-<p style=3D"margin-left:4.8pt"><span lang=3D"EN-US">../test/recipes/01-test=
-_symbol_presence.t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Wstat: 512 Te=
-sts: 4 Failed: 2)<o:p></o:p></span></p>
-<p style=3D"margin-left:4.8pt"><span lang=3D"EN-US">&nbsp; Failed tests:&nb=
-sp; 2, 4<o:p></o:p></span></p>
-<p style=3D"margin-left:4.8pt"><span lang=3D"EN-US">&nbsp; Non-zero exit st=
-atus: 2<o:p></o:p></span></p>
-<p style=3D"margin-left:4.8pt"><span lang=3D"EN-US">Files=3D152, Tests=3D13=
-60, 71 wallclock secs ( 1.41 usr&nbsp; 0.14 sys &#43; 69.96 cusr 13.14 csys=
- =3D 84.65 CPU)<o:p></o:p></span></p>
-<p style=3D"margin-left:4.8pt"><span lang=3D"EN-US">Result: FAIL<o:p></o:p>=
-</span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">END: /us=
-r/lib/openssl/ptest<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">QA Team =
-is investigating more to reach out the correct status and root cause of ope=
-nssl ptest failures.<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
-sp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black">New Bugs<o:p></o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black"><o:p>&nbsp;</o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">[1]
-</span><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12950=
-"><span style=3D"color:#333333">Bug&nbsp;12950</span></a> -
-<span style=3D"color:black">&nbsp;[Yocto-2.6_M3.rc1] [MANUAL_SCRIPTS_OE-Cor=
-e] [Case 2021] [Cross_tap]semantic error: while resolving probe point: iden=
-tifier 'syscall' at trace_open.stp</span><span lang=3D"EN-US" style=3D"colo=
-r:black"><o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black"><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=
-=3D12950">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12950</a><o:p=
-></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">[2]
-<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12952"><span=
- style=3D"color:black;text-decoration:none">Bug&nbsp;12952</span></a>&nbsp;=
--&nbsp;[QA 2.6.M3 rc1 ][BSP/Mturbot] Not able to see login prompt when usin=
-g serial<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span class=3D"MsoHyperlink">=
-<span lang=3D"EN-US"><a href=3D"https://bugzilla.yoctoproject.org/show_bug.=
-cgi?id=3D12952">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12952</=
-a></span><o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"font-family:&quot;Verdana&quot;,sans-serif;color:black"><o:p>&nbsp;</o:=
-p></span></b></p>
-<p class=3D"MsoNormal">[3<span lang=3D"EN-US" style=3D"color:black">] <a hr=
-ef=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12946">
-<span style=3D"color:black;text-decoration:none">Bug&nbsp;12946</span></a>&=
-nbsp;-&nbsp;[2.6 M3 RC1] e2fsprogs ptest failed<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><a href=3D"https://bugzilla.yoctoproject.org/show_bu=
-g.cgi?id=3D12946">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12946=
-</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">[4] <a href=3D"https://bugzilla.yoctoproject.org/sho=
-w_bug.cgi?id=3D12954">
-<span style=3D"color:windowtext;text-decoration:none">Bug&nbsp;12954</span>=
-</a>&nbsp;-&nbsp;[2.6 M3 RC1] gdbm ptest failures<b><span style=3D"font-siz=
-e:12.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:black">&nbsp;</sp=
-an></b><o:p></o:p></p>
-<p class=3D"MsoNormal"><a href=3D"https://bugzilla.yoctoproject.org/show_bu=
-g.cgi?id=3D12954">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12954=
-</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">[5] <a href=3D"https://bugzilla.yoctoproject.org/sho=
-w_bug.cgi?id=3D12948">
-<span style=3D"color:windowtext;text-decoration:none">Bug&nbsp;12948</span>=
-</a>&nbsp;-&nbsp;[2.6 M3 RC1] strace ptest failed<b><span style=3D"font-siz=
-e:12.0pt;font-family:&quot;Verdana&quot;,sans-serif;color:black">&nbsp;<o:p=
-></o:p></span></b></p>
-<p class=3D"MsoNormal"><a href=3D"https://bugzilla.yoctoproject.org/show_bu=
-g.cgi?id=3D12948">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12948=
-</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards,<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Sangeeta Jain<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_015AB11D45F2C442929CB2765DAE738634CBBC72PGSMSX110garcor_--
