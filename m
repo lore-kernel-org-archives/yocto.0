@@ -1,64 +1,82 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <irving@irving-st.id.au>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23A21E0095C; Wed, 10 Oct 2018 02:13:11 -0700 (PDT)
+	id 67002E0095C; Wed, 10 Oct 2018 05:49:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.53 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.215.180 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com
-	[209.85.210.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED46AE006AF
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 02:13:09 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id w67so4615063ota.7
-	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 02:13:09 -0700 (PDT)
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com
+	[209.85.215.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E18FFE006AF
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 05:49:30 -0700 (PDT)
+Received: by mail-pg1-f180.google.com with SMTP id a5-v6so2460544pgv.13
+	for <yocto@yoctoproject.org>; Wed, 10 Oct 2018 05:49:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=zNelJTIo47HEX4G3Jr/2uP3IEBWNc5U/TGvxJcueNJs=;
-	b=grjsVpj9CmjaubRLOPjGDMtInDoDNJOwBuHeR1EDuefs9hUtFFfQpRJ9yuC693fVgJ
-	178b0lWtfjnx3wrH2jpjeMTtDsqLeosVfB1G2yxBTBNOIdYnrwDW9GFPV79hqdM2oqPk
-	mqVVN4tpfM2pDLUEFTWfDHsSTEXxVvWea/Kb+Ft7Z8O2FkSWXCDpEjiDdICU3nszrcJv
-	V1DMNLm7W/HTb6crev6bDzxgkAE+eKVHqQlhZw60gT2JB3/KQP7ytBfEW+vy5QQkBLwX
-	N3s4+tjxMPXSR8BzAL0dv2m4240r9kj5ti2xMMd8QmIGks4xm6mwD8odDXm14ZTDysT9
-	nUYg==
+	d=irving-st.id.au; s=googledkim1;
+	h=sender:reply-to:to:from:subject:message-id:date:user-agent
+	:mime-version:content-language:content-transfer-encoding;
+	bh=XM2gId+ojmFtb6oVstfNaP9SjfeF1et8ocDN5qb8/zM=;
+	b=TehalekKakrxHP49FqHBSYbXvfg5SjWuBajMqIfmhKuKnjsKKYhuIT5M6ziS7Adt20
+	A8jhpsg9hHNPK9AfTbUpU3d4NPuj3G7+llXGuZIO4Rp5wdI7juxA5o1rYFEhymE+zjgy
+	MOFf38H86et6Z/q2pzpS3GBGls67wcWr/vo+s=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ssfivy-com.20150623.gappssmtp.com; s=20150623;
+	h=sender:reply-to:to:from:subject:message-id:date:user-agent
+	:mime-version:content-language:content-transfer-encoding;
+	bh=XM2gId+ojmFtb6oVstfNaP9SjfeF1et8ocDN5qb8/zM=;
+	b=fjcpSUdjL+qgBSiwXp5lTBElkVvQEhXChqmLRu/6UeeWT1zjwCw65wsLtlXYLvoXAC
+	/meWnaK7JLie5IBic34Me2CMS2b5nCXSOPA40d8Wya0hFKAHMCJwchEN8+ND7F57uUhJ
+	7PuPOnmCu9eNWgScwMy+4fbv5t4zodPRZmlaRt4HidkVJFj39BPNHyESJNdFtFrKVY9r
+	zffwaMXmo5a/RyVo5H5yk6jHK9SIDdsBgJMK+UQ1ap8huI3ZYlyNfYBdF6Vc2QaO6zMT
+	NBqm5RvlI3tGoG+t9io+WzSdQWv+0BAH1Gn5AwHT8RRrj+zU+DYCzYDHu+FGpoAO2oEZ
+	ouPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=zNelJTIo47HEX4G3Jr/2uP3IEBWNc5U/TGvxJcueNJs=;
-	b=bnQvZrOEdj03tUD0iCHZIIcq/yV/ZLqF3dSEFBE69jXvxQ1IhnSQ8iSVYRKQED3OgK
-	YFMUr+FidFo0PRCpJfiHaj9x6Fj22UdES87GrLxmzJ2pkzhghLoVt4rCLbYRPt2kTfbf
-	WDH4DoA5wDpCTkuV/XOqjs/sKj2Xl3wAESbATj6FZ8foM43TEZls0QNLxLEF/81PrRwX
-	u7kJ6zLzpnk8ZpW9g7Fj6boGe5riDAQuzeTTacvjFx7lCYtncrG1ZHcFJbI3dwhqnMpu
-	iYUN/lRF8bFeFW1PawEdHxOhrlHb0020N2BKugvXOI6jFN3NABvVyFJtGZzVA/Ic+l6f
-	/Ugg==
-X-Gm-Message-State: ABuFfoiFdNOYLd/hJXbffFxGBXfZrPaolcSJ/IOUvGWd/xT2K0myBYIm
-	12jBbwaL8cRznDr4XIYGuZjIecQYGQioeh8Np0TxLA==
-X-Google-Smtp-Source: ACcGV63fHr/mTQPid8gxl8sGTHD6dAPhAPpnVanNj11ggGeoRbjaYrinGUUB6bU5RarNLlO2KxxMz4CHe5yOCWiJH9I=
-X-Received: by 2002:a9d:30ae:: with SMTP id s46mr16982495otc.132.1539162789141;
-	Wed, 10 Oct 2018 02:13:09 -0700 (PDT)
+	h=x-gm-message-state:sender:reply-to:to:from:subject:message-id:date
+	:user-agent:mime-version:content-language:content-transfer-encoding;
+	bh=XM2gId+ojmFtb6oVstfNaP9SjfeF1et8ocDN5qb8/zM=;
+	b=gX8teeRIdDaYst5V+Y3Sz1vLQya0JlmxgloNNsqxoUQjKgqw4r9fnX/amOiB7uLTCf
+	nsMtnOSMHup2dhtZxVitTcbYCHm58VN6w3wpp5c4PqLT7zhYGiiSmCRvT84QkE5O1lDI
+	TKKk67l+3VYj2w5pMIrcpodbTGQqf4WzpDuZ59YfzIKXmNn46Czg6IwafkRmwVdVoRUE
+	xQKxpC8FXO5JIxXf7HKCv1avu3Z8a8+Te57kNJ/m2y9+yu0u1BxO2cUGltUIS8rfLXIs
+	fEQ3+6/JnaaBmOkDPoP/wwt5hY5e2r0Hui8AbSklhIGUar6W/7cu5NIrcy3HYqU8fetF
+	AsAA==
+X-Gm-Message-State: ABuFfoivb5COhbfDRmPvlcgOeG6Ey8jLxcC59Ysl3DxzOB06tQybF1K6
+	9ftgXy9PLfKEZdXnjwGefxiAjQ6A+Dc=
+X-Google-Smtp-Source: ACcGV635G8j6ZdnSCI62gyNM6GZRsn8Gt0HkB+nuerj9N4P70u0HcsIvg0Rissttxf6aFJGec7FK2Q==
+X-Received: by 2002:a63:164d:: with SMTP id
+	13-v6mr25639902pgw.103.1539175769659; 
+	Wed, 10 Oct 2018 05:49:29 -0700 (PDT)
+Received: from ?IPv6:2001:44b8:3152:ab00:50f3:4be3:6d8e:6fe9?
+	(2001-44b8-3152-ab00-50f3-4be3-6d8e-6fe9.static.ipv6.internode.on.net.
+	[2001:44b8:3152:ab00:50f3:4be3:6d8e:6fe9])
+	by smtp.googlemail.com with ESMTPSA id
+	u13-v6sm2737425pgp.18.2018.10.10.05.49.26
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 10 Oct 2018 05:49:28 -0700 (PDT)
+Sender: Irving Tjiptowarsono <irving@irving-st.id.au>
+To: Yocto discussion list <yocto@yoctoproject.org>
+From: Irving ST <irving@ssfivy.com>
+Message-ID: <40fafb67-907b-3be5-aa51-d217a78a30b8@ssfivy.com>
+Date: Wed, 10 Oct 2018 23:49:22 +1100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
 MIME-Version: 1.0
-References: <6e68dfa9ccbd4e569c5ed30ec5fb84a1@BN1PR68MB021.017d.mgd.msft.net>
-In-Reply-To: <6e68dfa9ccbd4e569c5ed30ec5fb84a1@BN1PR68MB021.017d.mgd.msft.net>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 10 Oct 2018 10:12:57 +0100
-Message-ID: <CAJTo0LZi_=OXujjXyPBTs1AqKZa4Lu51SQKY6MG-ZOz2rs6M6Q@mail.gmail.com>
-To: Pascal.Mues@aptiv.com
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: if for SRCREV
+Subject: Steps to enable u-boot signed verified images?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: irving@ssfivy.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -67,152 +85,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Oct 2018 09:13:11 -0000
-Content-Type: multipart/alternative; boundary="0000000000004c73150577dc4380"
+X-List-Received-Date: Wed, 10 Oct 2018 12:49:32 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---0000000000004c73150577dc4380
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hello,
 
-A fairly standard way of doing this is to have an include file that
-overrides SRCREV for the recipes that you'd like to build from HEAD.  See,
-for example, the poky-bleeding.conf distro which includes
-poky-floating-revisions.inc.
+I'm trying to make u-boot perform signature verification of fitImages. I
+have problems getting it to work, and the documentation seems to be
+scattered in different places on the internet (I found plenty
+descriptions of the concept, but I haven't seen detailed step-by-step
+instructions on how to actually do it).
 
-You could have an include file which does the same so you toggle
-"development build" in once place (eg by including that file in local.conf)
-and everything which needs to switch to HEAD does.
+This is on an NXP i.MX7 Dual chip, using yocto 2.5, linux-fslc-imx 4.9,
+and u-boot 2017.07 with vendor-specific patches to enable hardware
+support and the like.
 
-Ross
-Ross
+According to:
+-
+https://git.yoctoproject.org/cgit.cgi/poky/plain/meta/classes/uboot-sign.bbclass
+I set these variables in the machine config file :
 
-On Wed, 10 Oct 2018 at 09:51, Mues, Pascal <Pascal.Mues@aptiv.com> wrote:
+    UBOOT_SIGN_KEYDIR
+    UBOOT_SIGN_KEYNAME
+    UBOOT_MKIMAGE_DTCOPTS
+    UBOOT_SIGN_ENABLE
+    KERNEL_CLASSES
+    KERNEL_IMAGETYPE
 
-> Hello,
->
->
->
-> on my recipe I would like to distinguish between release and other build.
->
-> The release shall just stay on a fixed =E2=80=9Cstable=E2=80=9D version =
-=E2=80=93 where the other
-> stuff shall just build latest greatest.
->
-> The easiest idea was have an environment variable set and check on recipe
-> if this exist to switch the srcrev for Git.
->
-> As a pseudo code:
->
->
->
-> if env(Release)
->
->    SRCREV =3D "613b64e3ba8e796e27e86560020d39d9dfd0407d"
->
-> else
->
->    SRCREV =3D "autorev"
->
->
->
-> Unfortunately, I wasn=E2=80=99t able to find anything how this could be d=
-one.
->
-> Someone can help?
->
->
->
-> BR
->
-> Pascal
-> *************************************************************************=
-***************
-> Note: If the reader of this message is not the intended recipient, or an
-> employee or agent responsible for delivering this message to the intended
-> recipient, you are hereby notified that any dissemination, distribution o=
-r
-> copying of this communication is strictly prohibited. If you have receive=
-d
-> this communication in error, please notify us immediately by replying to
-> the message and deleting it from your computer. Thank you.
-> *************************************************************************=
-***************
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+According to:
+-
+https://github.com/u-boot/u-boot/blob/master/doc/uImage.FIT/verified-boot.txt
+- https://github.com/u-boot/u-boot/blob/master/doc/uImage.FIT/signature.txt
+- https://github.com/u-boot/u-boot/blob/master/doc/README.fdt-control
+I added the following configuration in u-boot defconfig:
 
---0000000000004c73150577dc4380
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+    CONFIG_SECURE_BOOT=y
+    CONFIG_SPL_DRIVERS_MISC_SUPPORT=y
+    CONFIG_FIT=y
+    CONFIG_FIT_VERBOSE=y
+    CONFIG_FIT_SIGNATURE=y
+    CONFIG_RSA=y
+    CONFIG_OF_CONTROL=y
+    CONFIG_OF_SEPARATE=y
 
-<div dir=3D"ltr">A fairly standard way of doing this is to have an include =
-file that overrides SRCREV for the recipes that you&#39;d like to build fro=
-m HEAD.=C2=A0 See, for example, the poky-bleeding.conf distro which include=
-s poky-floating-revisions.inc.<div><br></div><div>You could have an include=
- file which does the same so you toggle &quot;development build&quot; in on=
-ce place (eg by including that file in local.conf) and everything which nee=
-ds to switch to HEAD does.</div><div><br></div><div>Ross</div><div>Ross</di=
-v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Wed, 10 Oct 2018=
- at 09:51, Mues, Pascal &lt;<a href=3D"mailto:Pascal.Mues@aptiv.com">Pascal=
-.Mues@aptiv.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+This causes u-boot compilation failure, with the relevant line being:
+
+| make[2]: *** No rule to make target 'arch/arm/dts/unset.dts', needed
+by 'arch/arm/dts/unset.dtb'.  Stop.
+
+If I added CONFIG_DEFAULT_DEVICE_TREE in u-boot defconfig, the
+compilation failure goes away.
+Am I correct that I need to provide the same device tree source to this
+uboot config as the one I give to my kernel?
+Or is there a way to not need to specify this config, considering the
+only reason I enabled CONFIG_OF_CONTROL is because the current scheme in
+yocto requires it?
 
 
+Anyway, I tried setting this config to "imx7d-sdb" to see what happens,
+and I got error from bitbake (relevant parts only):
+
+    | uboot-mkimage: Can't open
+/workdir/build/upstream/tmp/deploy/images/<my-machine-name>/u-boot.dtb:
+No such file or directory
+    | uboot-mkimage Can't add hashes to FIT blob: -5
+    | WARNING: exit code 255 from a shell command.
+    | ERROR: Function failed: do_assemble_fitimage (log file is located
+at
+/workdir/build/upstream/tmp/work/<my-machine-name>-poky-linux-gnueabi/linux-fslc-imx/4.9-1.0.x+gitAUTOINC+953c6e30c9-r0/temp/log.do_assemble_fitimage.883)
+    ERROR: Task
+(/workdir/upstream/meta-freescale/recipes-kernel/linux/linux-fslc-imx_4.9-1.0.x.bb:do_assemble_fitimage)
+failed with exit code '1'
 
 
+u-boot.dtb file is indeed not present on disk, so my next step is to
+figure out why.
+In the meantime, is there anything obvious that I am currently still
+missing? I would be very happy if someone knows a good detailed guide to
+implement this, since I have not found any.
 
-<div lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"m_4242844129550882828WordSection1">
-<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">on my recipe I would like to distinguish between rel=
-ease and other build.<u></u><u></u></p>
-<p class=3D"MsoNormal">The release shall just stay on a fixed =E2=80=9Cstab=
-le=E2=80=9D version =E2=80=93 where the other stuff shall just build latest=
- greatest.<u></u><u></u></p>
-<p class=3D"MsoNormal">The easiest idea was have an environment variable se=
-t and check on recipe if this exist to switch the srcrev for Git.<u></u><u>=
-</u></p>
-<p class=3D"MsoNormal"><span lang=3D"PT-BR">As a pseudo code: <u></u><u></u=
-></span></p>
-<p class=3D"MsoNormal"><span lang=3D"PT-BR"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal">if env(Release)<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0 =C2=A0<span lang=3D"PT-BR">SRCREV =3D &quot;6=
-13b64e3ba8e796e27e86560020d39d9dfd0407d&quot;<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"PT-BR">else<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"PT-BR">=C2=A0=C2=A0 SRCREV =3D &quot;a=
-utorev&quot;<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"PT-BR"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal">Unfortunately, I wasn=E2=80=99t able to find anythin=
-g how this could be done.<u></u><u></u></p>
-<p class=3D"MsoNormal">Someone can help?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">BR<u></u><u></u></p>
-<p class=3D"MsoNormal">Pascal<u></u><u></u></p>
-</div>
-***************************************************************************=
-************* Note: If the reader of this message is not the intended recip=
-ient, or an employee or agent responsible for delivering this message to th=
-e intended recipient, you are hereby
- notified that any dissemination, distribution or copying of this communica=
-tion is strictly prohibited. If you have received this communication in err=
-or, please notify us immediately by replying to the message and deleting it=
- from your computer. Thank you.
- **************************************************************************=
-**************
-</div>
 
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
+Regards,
+Irving
 
---0000000000004c73150577dc4380--
