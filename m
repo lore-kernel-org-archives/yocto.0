@@ -1,67 +1,62 @@
-Return-Path: <bkylerussell@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 730B6E00B77; Fri, 12 Oct 2018 08:37:24 -0700 (PDT)
+	id A050DE00B93; Fri, 12 Oct 2018 14:06:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (bkylerussell[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.194 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-it1-f194.google.com (mail-it1-f194.google.com
-	[209.85.166.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9475E00B6C
-	for <yocto@yoctoproject.org>; Fri, 12 Oct 2018 08:37:23 -0700 (PDT)
-Received: by mail-it1-f194.google.com with SMTP id i191-v6so18775772iti.5
-	for <yocto@yoctoproject.org>; Fri, 12 Oct 2018 08:37:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=nznHHp7ldEWrXTJ81qwMY9F2+wvVah+Y2Fx4zgaAjrc=;
-	b=ZPS6J5dSWTZ6VkyPSr/76E2g90UEJilgeI+IBTrzthFZCtfY/h5+3oEtUoCos0Za9f
-	HrDHBYX2xpbiAbP3EkwfUhSPx/pgjuVh9Cv6S5rAMIPi/h9dnSWdUj7a6aDOKC18ORhb
-	yhFEvYcIESjxrDkgTrlK9tATr/qTfnVjpUDC4smVDOo1YdQPUdYQkANLvxUeRg2hGqzm
-	Y054Dx+qRQsLq5VmlEwMr4wZhoOxqYHb0gY3ydQtjBrxApU7YNfrG6RjP4Y+xSYFHV0X
-	ey5t/HQSKAQSPU+lCQND2TsTlyNZ35fdNQl5ttgaUx+p1oBg4Esk9+dRIQsaqbWUTxm3
-	pPaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=nznHHp7ldEWrXTJ81qwMY9F2+wvVah+Y2Fx4zgaAjrc=;
-	b=Nitjdy8z32KYPks+R9SB/P2HM8aOs1oRMFAi8Y5PvBby0y71FWGq0Sj5h7m52/xVCy
-	Ppf8kO8J+jL02UxloGAn8/yp2/DQC/50ITMuFXmvVW11Dthu6xJkaIGIxCComyfhH8iE
-	6aJOt7f/DVVqYSNSAuQqn8DN8lh4vqI1S9eQRRhhgNZ7WilEkatvkk6j7jYb7kKaDXpe
-	JNaABs2Y7IPsv0GRMZYJDd5tLWNZ5bhSltYvHEXcBjfeD6tKZ2EuJ2f2Ch/wVSI/bylt
-	yBLmJcrUjoHOnTjI/YN6A5oFcCyoHmsMBK0zDpHyyYTHarE109gIXWZqPC74hB6WPLHs
-	h6+g==
-X-Gm-Message-State: ABuFfoi42AwT8co2aFXVphth1QtN/hzx6FUzC4rfH5b7hlkMeIkaE8Se
-	4Jh8vRDW97pi5hjK7kBGGiY=
-X-Google-Smtp-Source: ACcGV60aZOaptklyFdwxTQbKmBip0RrACm4kIWwp3pRsfxi81SR9xci2N0h/7goPs6Tzc6yzxxYWFQ==
-X-Received: by 2002:a02:c7cc:: with SMTP id
-	s12-v6mr5503012jao.10.1539358642835; 
-	Fri, 12 Oct 2018 08:37:22 -0700 (PDT)
-Received: from brrussell-Latitude-E6530.dhcp.lexmark.com ([192.146.101.90])
-	by smtp.gmail.com with ESMTPSA id
-	j19-v6sm735761itb.25.2018.10.12.08.37.22
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 12 Oct 2018 08:37:22 -0700 (PDT)
-From: Kyle Russell <bkylerussell@gmail.com>
-To: mark.hatle@windriver.com
-Date: Fri, 12 Oct 2018 11:37:15 -0400
-Message-Id: <20181012153715.27876-1-bkylerussell@gmail.com>
-X-Mailer: git-send-email 2.17.1
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7927CE00B6F
+	for <yocto@yoctoproject.org>; Fri, 12 Oct 2018 14:06:06 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w9CL5wmN024725
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 12 Oct 2018 14:05:58 -0700 (PDT)
+Received: from soho-mhatle-m.local (172.25.36.227) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
+	Fri, 12 Oct 2018 14:05:57 -0700
+To: Sergei Trofimovich <slyfox@gentoo.org>
+References: <20181010205022.23695-1-slyfox@gentoo.org>
+From: Mark Hatle <mark.hatle@windriver.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
+	xsBNBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
+	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
+	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
+	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
+	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
+	AAHNJU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT7CwHcEEwEIACEFAlYK
+	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
+	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
+	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
+	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
+	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
+	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrs7ATQRWCsRYAQgAwK3FuHCE+HW3YWdH
+	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
+	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
+	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
+	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
+	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABwsBfBBgBCAAJBQJWCsRYAhsMAAoJ
+	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
+	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
+	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
+	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
+	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
+Organization: Wind River Systems
+Message-ID: <ae0f9cb7-5f2f-e95b-6b1e-0f138b91061d@windriver.com>
+Date: Fri, 12 Oct 2018 16:05:57 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:52.0)
+	Gecko/20100101 Thunderbird/52.9.1
+MIME-Version: 1.0
+In-Reply-To: <20181010205022.23695-1-slyfox@gentoo.org>
 Cc: yocto@yoctoproject.org
-Subject: [prelink-cross][PATCH] Add option to return an error if all binaries cannot be prelinked
+Subject: Re: [prelink-cross] [PATCH] x86_64: allow prelinking of PIE executables with COPY relocs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,107 +68,155 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Oct 2018 15:37:24 -0000
+X-List-Received-Date: Fri, 12 Oct 2018 21:06:07 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-Otherwise, there's no way to validate whether or not the operation
-was actually successful without rescanning.
+On 10/10/18 3:50 PM, Sergei Trofimovich wrote:
+> COPY relocs are fine to have in PIE executables (as opposed to
+> shared libraries).
+> 
+> By enabling prelink on PIEs we achieve a few goals:
+> - prelink more PIE files on system: nicer for uniformity,
+> - avoid spurious warnings about shared libraries with COPY relocs
+> 
+> It's usefult to prelink PIEs when kernel ASLR is disabled:
+> kernel.randomize_va_space=0 + PIE-randomization patches.
+> 
+> I have gcc built as `--enable-default-pie` (generates PIE
+> executables by default).
+> 
+> Testsute results before the change:
+>   PASS:  14
+>   FAIL:  31
+> 
+> After the change:
+>   PASS:  32
+>   FAIL:  13
 
-Signed-off-by: Kyle Russell <bkylerussell@gmail.com>
----
- src/doit.c    | 16 +++++++++++-----
- src/main.c    |  8 +++++++-
- src/prelink.h |  2 +-
- 3 files changed, 19 insertions(+), 7 deletions(-)
+After applying this patch, I think it uncovered another issue.
 
-diff --git a/src/doit.c b/src/doit.c
-index 1e32ad5..3784866 100644
---- a/src/doit.c
-+++ b/src/doit.c
-@@ -237,11 +237,11 @@ error_out:
-   return;
- }
- 
--void
-+int
- prelink_all (void)
- {
-   struct collect_ents l;
--  int i;
-+  int i, fails = 0;
- 
-   l.ents =
-     (struct prelink_entry **) alloca (prelink_entry_count
-@@ -250,7 +250,13 @@ prelink_all (void)
-   htab_traverse (prelink_filename_htab, find_ents, &l);
- 
-   for (i = 0; i < l.nents; ++i)
--    if (l.ents[i]->done == 1
--	|| (l.ents[i]->done == 0 && l.ents[i]->type == ET_EXEC))
--      prelink_ent (l.ents[i]);
-+    {
-+      if (l.ents[i]->done == 1
-+         || (l.ents[i]->done == 0 && l.ents[i]->type == ET_EXEC))
-+	prelink_ent (l.ents[i]);
-+      if (l.ents[i]->type == ET_UNPRELINKABLE)
-+	fails++;
-+    }
-+
-+  return fails;
- }
-diff --git a/src/main.c b/src/main.c
-index 0cea86d..6ba89d5 100644
---- a/src/main.c
-+++ b/src/main.c
-@@ -47,6 +47,7 @@ int one_file_system;
- int enable_cxx_optimizations = 1;
- int exec_shield;
- int undo, verify;
-+int errors;
- enum verify_method_t verify_method;
- int quick;
- int compute_checksum;
-@@ -90,6 +91,7 @@ static struct argp_option options[] = {
-   {"black-list",	'b', "PATH", 0, "Blacklist path" },
-   {"cache-file",	'C', "CACHE", 0, "Use CACHE as cache file" },
-   {"config-file",	'c', "CONF", 0, "Use CONF as configuration file" },
-+  {"errors",            'e', 0, 0,  "Returns an error if all binaries are not prelinkable" },
-   {"force",		'f', 0, 0,  "Force prelinking" },
-   {"dereference",	'h', 0, 0,  "Follow symlinks when processing directory trees from command line" },
-   {"one-file-system",	'l', 0, 0,  "Stay in local file system when processing directories from command line" },
-@@ -139,6 +141,9 @@ parse_opt (int key, char *arg, struct argp_state *state)
-       if (add_to_blacklist (arg, dereference, one_file_system))
- 	exit (EXIT_FAILURE);
-       break;
-+    case 'e':
-+      errors = 1;
-+      break;
-     case 'f':
-       force = 1;
-       break;
-@@ -524,7 +529,8 @@ main (int argc, char *argv[])
-     prelink_load_cache ();
- 
-   layout_libs ();
--  prelink_all ();
-+  if(prelink_all () && errors)
-+    return EXIT_FAILURE;
- 
-   if (! no_update && ! dry_run)
-     prelink_save_cache (all);
-diff --git a/src/prelink.h b/src/prelink.h
-index 93dbf7a..c7b57e2 100644
---- a/src/prelink.h
-+++ b/src/prelink.h
-@@ -574,7 +574,7 @@ int get_relocated_mem (struct prelink_info *info, DSO *dso, GElf_Addr addr,
- 
- int layout_libs (void);
- 
--void prelink_all (void);
-+int prelink_all (void);
- 
- int undo_all (void);
- 
--- 
-2.17.1
+See:
+
+http://git.yoctoproject.org/cgit/cgit.cgi/prelink-cross/log/?h=cross_prelink_staging
+
+specifically:
+
+http://git.yoctoproject.org/cgit/cgit.cgi/prelink-cross/commit/?h=cross_prelink_staging&id=b10e14218646d8b74773b82b0f8b395bce698fa2
+
+
+Running the test suite, I was getting 4 failures that each manifested themselves as:
+
+FAIL: layout1.sh  ../src/prelink: testsuite/layout1: section file offsets not
+monotonically increasing
+FAIL: cxx2.sh     ../src/prelink: testsuite/cxx2: section file offsets not
+monotonically increasing
+FAIL: cxx3.sh     ../src/prelink: testsuite/cxx3: section file offsets not
+monotonically increasing
+FAIL: quick1.sh   ../src/prelink: testsuite/quick1.tree/usr/bin/bin3: section
+file offsets not monotonically increasing
+
+Before this patch they would report:
+
+   COPY relocations don't point into .bss or .sbss section
+
+So I suspect that enabling the PIE executable prelinking has either triggered a
+corner case or uncovered a bug in the existing function.
+
+What I am seeing happen, if I dump the sections is:
+
+   section 15 .fini file offset range 000012f4 and 000012fd
+   section 16 .gnu.conflict file offset range 00001300 and 00002080
+   section 17 .rodata file offset range 00002000 and 000020a3
+   section 18 .eh_frame_hdr file offset range 000020a4 and 00002118
+
+When the .gnu.conflict section is added and processed, it ends up inserting
+immediately after .fini.   It then ends up taking more space then the gap allows
+for (by 0x80 bytes in this case.)
+
+I looked at the code for a couple of hours, and I'm not making any real progress
+on it.
+
+Do you have time to investigate this?
+
+My little hack is enough to identify when this over write happens and abort..
+but I suspect it's probably fixable instead.  (I don't intend to keep the hack
+commit when transferring this over....)
+
+--Mark
+
+> Signed-off-by: Sergei Trofimovich <slyfox@gentoo.org>
+> ---
+>  src/arch-x86_64.c |  4 ++--
+>  src/dso.c         | 19 +++++++++++++++++++
+>  src/prelink.h     |  1 +
+>  3 files changed, 22 insertions(+), 2 deletions(-)
+> 
+> diff --git a/src/arch-x86_64.c b/src/arch-x86_64.c
+> index 5c95f47..2f6c551 100644
+> --- a/src/arch-x86_64.c
+> +++ b/src/arch-x86_64.c
+> @@ -179,7 +179,7 @@ x86_64_prelink_rela (struct prelink_info *info, GElf_Rela *rela,
+>  		    value + rela->r_addend - info->resolvetls->offset);
+>        break;
+>      case R_X86_64_COPY:
+> -      if (dso->ehdr.e_type == ET_EXEC)
+> +      if (dso->ehdr.e_type == ET_EXEC || dso_is_pie(dso))
+>  	/* COPY relocs are handled specially in generic code.  */
+>  	return 0;
+>        error (0, 0, "%s: R_X86_64_COPY reloc in shared library?", dso->filename);
+> @@ -503,7 +503,7 @@ x86_64_undo_prelink_rela (DSO *dso, GElf_Rela *rela, GElf_Addr relaaddr)
+>        write_le32 (dso, rela->r_offset, 0);
+>        break;
+>      case R_X86_64_COPY:
+> -      if (dso->ehdr.e_type == ET_EXEC)
+> +      if (dso->ehdr.e_type == ET_EXEC || dso_is_pie(dso))
+>  	/* COPY relocs are handled specially in generic code.  */
+>  	return 0;
+>        error (0, 0, "%s: R_X86_64_COPY reloc in shared library?", dso->filename);
+> diff --git a/src/dso.c b/src/dso.c
+> index a5fcec5..9fcfc3d 100644
+> --- a/src/dso.c
+> +++ b/src/dso.c
+> @@ -1106,6 +1106,25 @@ dso_is_rdwr (DSO *dso)
+>    return dso->elfro != NULL;
+>  }
+>  
+> +/* Return true is DSO is position independent executable.
+> +
+> +   There is no simple way to distinct between shared library
+> +   and PIE executable.  Use presence of interpreter as a heuristic.  */
+> +
+> +int dso_is_pie(DSO *dso)
+> +{
+> +  int i;
+> +
+> +  if (dso->ehdr.e_type != ET_DYN)
+> +    return 0;
+> +
+> +  for (i = 0; i < dso->ehdr.e_phnum; ++i)
+> +    if (dso->phdr[i].p_type == PT_INTERP)
+> +      return 1;
+> +
+> +  return 0;
+> +}
+> +
+>  GElf_Addr
+>  adjust_old_to_new (DSO *dso, GElf_Addr addr)
+>  {
+> diff --git a/src/prelink.h b/src/prelink.h
+> index 93dbf7a..d8a00c6 100644
+> --- a/src/prelink.h
+> +++ b/src/prelink.h
+> @@ -298,6 +298,7 @@ int reopen_dso (DSO *dso, struct section_move *move, const char *);
+>  int adjust_symbol_p (DSO *dso, GElf_Sym *sym);
+>  int check_dso (DSO *dso);
+>  int dso_is_rdwr (DSO *dso);
+> +int dso_is_pie(DSO *dso);
+>  void read_dynamic (DSO *dso);
+>  int set_dynamic (DSO *dso, GElf_Word tag, GElf_Addr value, int fatal);
+>  int addr_to_sec (DSO *dso, GElf_Addr addr);
+> 
 
 
