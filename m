@@ -1,66 +1,67 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <bkylerussell@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E66AE00B6C; Fri, 12 Oct 2018 07:48:56 -0700 (PDT)
+	id 730B6E00B77; Fri, 12 Oct 2018 08:37:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D67BE00A0A
-	for <yocto@yoctoproject.org>; Fri, 12 Oct 2018 07:48:55 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w9CElbPt032719
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 12 Oct 2018 07:48:28 -0700
-Received: from soho-mhatle-m.local (172.25.36.227) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
-	Fri, 12 Oct 2018 07:48:11 -0700
-To: Kyle Russell <bkylerussell@gmail.com>
-References: <20180928145711.6958-1-bkylerussell@gmail.com>
-	<CAFrQVPNVbc750sJteTEw+Y7ywL0VHjBFOgbU9+ZHR9ndxwPxsg@mail.gmail.com>
-	<e66b33f3-68d2-31d0-1c7a-06d7cbf435bb@windriver.com>
-	<CAFrQVPOvvqShu1_qU0it_tWO1d7cRQwasOueOPQFZwSdmFHYLg@mail.gmail.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
-	xsBNBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
-	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
-	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
-	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
-	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
-	AAHNJU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT7CwHcEEwEIACEFAlYK
-	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
-	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
-	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
-	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
-	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
-	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrs7ATQRWCsRYAQgAwK3FuHCE+HW3YWdH
-	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
-	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
-	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
-	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
-	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABwsBfBBgBCAAJBQJWCsRYAhsMAAoJ
-	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
-	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
-	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
-	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
-	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
-Organization: Wind River Systems
-Message-ID: <225a4506-8b51-0b2e-b117-3d7997040364@windriver.com>
-Date: Fri, 12 Oct 2018 09:48:11 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:52.0)
-	Gecko/20100101 Thunderbird/52.9.1
-MIME-Version: 1.0
-In-Reply-To: <CAFrQVPOvvqShu1_qU0it_tWO1d7cRQwasOueOPQFZwSdmFHYLg@mail.gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: [prelink-cross][PATCH] Support copy relocations in .data.rel.ro
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (bkylerussell[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.194 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-it1-f194.google.com (mail-it1-f194.google.com
+	[209.85.166.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9475E00B6C
+	for <yocto@yoctoproject.org>; Fri, 12 Oct 2018 08:37:23 -0700 (PDT)
+Received: by mail-it1-f194.google.com with SMTP id i191-v6so18775772iti.5
+	for <yocto@yoctoproject.org>; Fri, 12 Oct 2018 08:37:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=nznHHp7ldEWrXTJ81qwMY9F2+wvVah+Y2Fx4zgaAjrc=;
+	b=ZPS6J5dSWTZ6VkyPSr/76E2g90UEJilgeI+IBTrzthFZCtfY/h5+3oEtUoCos0Za9f
+	HrDHBYX2xpbiAbP3EkwfUhSPx/pgjuVh9Cv6S5rAMIPi/h9dnSWdUj7a6aDOKC18ORhb
+	yhFEvYcIESjxrDkgTrlK9tATr/qTfnVjpUDC4smVDOo1YdQPUdYQkANLvxUeRg2hGqzm
+	Y054Dx+qRQsLq5VmlEwMr4wZhoOxqYHb0gY3ydQtjBrxApU7YNfrG6RjP4Y+xSYFHV0X
+	ey5t/HQSKAQSPU+lCQND2TsTlyNZ35fdNQl5ttgaUx+p1oBg4Esk9+dRIQsaqbWUTxm3
+	pPaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=nznHHp7ldEWrXTJ81qwMY9F2+wvVah+Y2Fx4zgaAjrc=;
+	b=Nitjdy8z32KYPks+R9SB/P2HM8aOs1oRMFAi8Y5PvBby0y71FWGq0Sj5h7m52/xVCy
+	Ppf8kO8J+jL02UxloGAn8/yp2/DQC/50ITMuFXmvVW11Dthu6xJkaIGIxCComyfhH8iE
+	6aJOt7f/DVVqYSNSAuQqn8DN8lh4vqI1S9eQRRhhgNZ7WilEkatvkk6j7jYb7kKaDXpe
+	JNaABs2Y7IPsv0GRMZYJDd5tLWNZ5bhSltYvHEXcBjfeD6tKZ2EuJ2f2Ch/wVSI/bylt
+	yBLmJcrUjoHOnTjI/YN6A5oFcCyoHmsMBK0zDpHyyYTHarE109gIXWZqPC74hB6WPLHs
+	h6+g==
+X-Gm-Message-State: ABuFfoi42AwT8co2aFXVphth1QtN/hzx6FUzC4rfH5b7hlkMeIkaE8Se
+	4Jh8vRDW97pi5hjK7kBGGiY=
+X-Google-Smtp-Source: ACcGV60aZOaptklyFdwxTQbKmBip0RrACm4kIWwp3pRsfxi81SR9xci2N0h/7goPs6Tzc6yzxxYWFQ==
+X-Received: by 2002:a02:c7cc:: with SMTP id
+	s12-v6mr5503012jao.10.1539358642835; 
+	Fri, 12 Oct 2018 08:37:22 -0700 (PDT)
+Received: from brrussell-Latitude-E6530.dhcp.lexmark.com ([192.146.101.90])
+	by smtp.gmail.com with ESMTPSA id
+	j19-v6sm735761itb.25.2018.10.12.08.37.22
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 12 Oct 2018 08:37:22 -0700 (PDT)
+From: Kyle Russell <bkylerussell@gmail.com>
+To: mark.hatle@windriver.com
+Date: Fri, 12 Oct 2018 11:37:15 -0400
+Message-Id: <20181012153715.27876-1-bkylerussell@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Cc: yocto@yoctoproject.org
+Subject: [prelink-cross][PATCH] Add option to return an error if all binaries cannot be prelinked
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,234 +73,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Oct 2018 14:48:56 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 12 Oct 2018 15:37:24 -0000
 
-On 10/12/18 9:06 AM, Kyle Russell wrote:
-> Do you want me to just resent my last two patches?  I don't mind if that would
-> be easier, and I'll remember to add the Signed-off-by. :)
+Otherwise, there's no way to validate whether or not the operation
+was actually successful without rescanning.
 
-I was able to pull them from the mailing list archives and have them applied to
-my local tree.  I have a few other patches and then I'll be pushing to the
-staging tree.
+Signed-off-by: Kyle Russell <bkylerussell@gmail.com>
+---
+ src/doit.c    | 16 +++++++++++-----
+ src/main.c    |  8 +++++++-
+ src/prelink.h |  2 +-
+ 3 files changed, 19 insertions(+), 7 deletions(-)
 
---Mark
-
-> On Fri, Oct 12, 2018 at 10:00 AM Mark Hatle <mark.hatle@windriver.com
-> <mailto:mark.hatle@windriver.com>> wrote:
-> 
->     On 10/4/18 9:12 AM, Kyle Russell wrote:
->     > Hey Mark,
->     >
->     > Do you think this approach is reasonable?  If so, I have another patch I'd
->     like
->     > to propose that would enable us to better catch error scenarios (like the last
->     > two patches address) that we might encounter during do_image_prelink.  We just
->     > happened to detect these last two issues even though image_prelink didn't fail
->     > the build, so I'd like to provide an option to enable a little more assertive
->     > error path, if desired.
-> 
->     I'm getting caught back up on my prelink 'TODO' set.  The approach seems
->     reasonable to me.  However, I appear to have lost the reference to the original
->     patch email.
-> 
->     I'm going to try to reapply from this email (or the list archive), but I may
->     need you to resend it.  I'll let you [and others know] once I get these things
->     merged.
-> 
->     Thanks!
->     --Mark
-> 
->     > Thanks,
->     > Kyle
->     >
->     > On Fri, Sep 28, 2018 at 10:57 AM Kyle Russell <bkylerussell@gmail.com
->     <mailto:bkylerussell@gmail.com>
->     > <mailto:bkylerussell@gmail.com <mailto:bkylerussell@gmail.com>>> wrote:
->     >
->     >     binutils-2.28 (17026142ef35b62ac88bfe517b4160614902cb28) adds support
->     >     for copying read-only dynamic symbols into .data.rel.ro
->     <http://data.rel.ro> <http://data.rel.ro>
->     >     instead of .bss
->     >     since .bss is technically writable.  This causes prelink to error out on
->     >     any binary containing COPY relocations in .data.rel.ro
->     <http://data.rel.ro> <http://data.rel.ro>.
->     >
->     >     Read-only variables defined in shared libraries should be copied directly
->     >     into the space allocated for them in .data.rel.ro <http://data.rel.ro>
->     <http://data.rel.ro> by
->     >     the linker.
->     >
->     >     To achieve this, we determine whether either of the two sections
->     >     containing copy relocations is .data.rel.ro <http://data.rel.ro>
->     <http://data.rel.ro>.  If so, we
->     >     relocate the
->     >     symbol memory directly into the existing section instead of constructing
->     >     a new .(s)dynbss section once prelink_build_conflicts() returns.
->     >
->     >     Fixes cxx1.sh, cxx2.sh, and cxx3.sh on Fedora 28 (which uses
->     >     binutils-2.29).
->     >     ---
->     >      src/conflict.c | 51 +++++++++++++++++++++++++++++++++++++-------------
->     >      src/undo.c     |  9 +++++++++
->     >      2 files changed, 47 insertions(+), 13 deletions(-)
->     >
->     >     diff --git a/src/conflict.c b/src/conflict.c
->     >     index 9ae2ddb..5613ace 100644
->     >     --- a/src/conflict.c
->     >     +++ b/src/conflict.c
->     >     @@ -450,7 +450,7 @@ get_relocated_mem (struct prelink_info *info, DSO
->     *dso,
->     >     GElf_Addr addr,
->     >      int
->     >      prelink_build_conflicts (struct prelink_info *info)
->     >      {
->     >     -  int i, ndeps = info->ent->ndepends + 1;
->     >     +  int i, reset_dynbss = 0, reset_sdynbss = 0, ndeps =
->     info->ent->ndepends + 1;
->     >        struct prelink_entry *ent;
->     >        int ret = 0;
->     >        DSO *dso;
->     >     @@ -675,6 +675,11 @@ prelink_build_conflicts (struct prelink_info *info)
->     >                          dso->filename);
->     >                   goto error_out;
->     >                 }
->     >     +
->     >     +         name = strptr (dso, dso->ehdr.e_shstrndx,
->     dso->shdr[bss1].sh_name);
->     >     +         if (strcmp(name, ".data.rel.ro <http://data.rel.ro>
->     <http://data.rel.ro>") == 0)
->     >     +           reset_sdynbss = 1;
->     >     +
->     >               firstbss2 = i;
->     >               info->sdynbss_size = cr.rela[i - 1].r_offset -
->     cr.rela[0].r_offset;
->     >               info->sdynbss_size += cr.rela[i - 1].r_addend;
->     >     @@ -702,6 +707,10 @@ prelink_build_conflicts (struct prelink_info *info)
->     >                 }
->     >             }
->     >
->     >     +      name = strptr (dso, dso->ehdr.e_shstrndx, dso->shdr[bss2].sh_name);
->     >     +      if (strcmp(name, ".data.rel.ro <http://data.rel.ro>
->     <http://data.rel.ro>") == 0)
->     >     +        reset_dynbss = 1;
->     >     +
->     >            info->dynbss_size = cr.rela[cr.count - 1].r_offset
->     >                               - cr.rela[firstbss2].r_offset;
->     >            info->dynbss_size += cr.rela[cr.count - 1].r_addend;
->     >     @@ -719,9 +728,9 @@ prelink_build_conflicts (struct prelink_info *info)
->     >               && strcmp (name = strptr (dso, dso->ehdr.e_shstrndx,
->     >                                         dso->shdr[bss1].sh_name),
->     >                          ".dynbss") != 0
->     >     -         && strcmp (name, ".sdynbss") != 0)
->     >     +         && strcmp (name, ".sdynbss") != 0 && strcmp (name,
->     ".data.rel.ro <http://data.rel.ro>
->     >     <http://data.rel.ro>") != 0)
->     >             {
->     >     -         error (0, 0, "%s: COPY relocations don't point into .bss or
->     .sbss
->     >     section",
->     >     +         error (0, 0, "%s: COPY relocations don't point into .bss, .sbss,
->     >     or .data.rel.ro <http://data.rel.ro> <http://data.rel.ro> sections",
->     >                      dso->filename);
->     >               goto error_out;
->     >             }
->     >     @@ -730,9 +739,9 @@ prelink_build_conflicts (struct prelink_info *info)
->     >               && strcmp (name = strptr (dso, dso->ehdr.e_shstrndx,
->     >                                         dso->shdr[bss2].sh_name),
->     >                          ".dynbss") != 0
->     >     -         && strcmp (name, ".sdynbss") != 0)
->     >     +         && strcmp (name, ".sdynbss") != 0 && strcmp (name,
->     ".data.rel.ro <http://data.rel.ro>
->     >     <http://data.rel.ro>") != 0)
->     >             {
->     >     -         error (0, 0, "%s: COPY relocations don't point into .bss or
->     .sbss
->     >     section",
->     >     +         error (0, 0, "%s: COPY relocations don't point into .bss, .sbss,
->     >     or .data.rel.ro <http://data.rel.ro> <http://data.rel.ro> section",
->     >                      dso->filename);
->     >               goto error_out;
->     >             }
->     >     @@ -768,16 +777,21 @@ prelink_build_conflicts (struct prelink_info *info)
->     >                   }
->     >
->     >               assert (j < ndeps);
->     >     +         GElf_Addr symaddr = s->u.ent->base + s->value;
->     >     +         char *buf;
->     >     +
->     >               if (i < firstbss2)
->     >     -           j = get_relocated_mem (info, ndso, s->u.ent->base + s->value,
->     >     -                                  info->sdynbss + cr.rela[i].r_offset
->     >     -                                  - info->sdynbss_base,
->     cr.rela[i].r_addend,
->     >     -                                  cr.rela[i].r_offset);
->     >     +           if (reset_sdynbss)
->     >     +             buf = get_data(dso, cr.rela[i].r_offset, NULL, NULL);
->     >     +           else
->     >     +             buf = info->sdynbss + cr.rela[i].r_offset -
->     info->sdynbss_base;
->     >               else
->     >     -           j = get_relocated_mem (info, ndso, s->u.ent->base + s->value,
->     >     -                                  info->dynbss + cr.rela[i].r_offset
->     >     -                                  - info->dynbss_base,
->     cr.rela[i].r_addend,
->     >     -                                  cr.rela[i].r_offset);
->     >     +           if (reset_dynbss)
->     >     +             buf = get_data(dso, cr.rela[i].r_offset, NULL, NULL);
->     >     +           else
->     >     +             buf = info->dynbss + cr.rela[i].r_offset -
->     info->dynbss_base;
->     >     +
->     >     +         j = get_relocated_mem (info, ndso, symaddr, buf,
->     >     cr.rela[i].r_addend, cr.rela[i].r_offset);
->     >
->     >               switch (j)
->     >                 {
->     >     @@ -815,6 +829,17 @@ prelink_build_conflicts (struct prelink_info *info)
->     >          if (info->dsos[i])
->     >            close_dso (info->dsos[i]);
->     >
->     >     +  if (reset_sdynbss)
->     >     +    {
->     >     +      free (info->sdynbss);
->     >     +      info->sdynbss = NULL;
->     >     +    }
->     >     +
->     >     +  if (reset_dynbss)
->     >     +    {
->     >     +      free (info->dynbss);
->     >     +      info->dynbss = NULL;
->     >     +    }
->     >        info->dsos = NULL;
->     >        free (cr.rela);
->     >        return ret;
->     >     diff --git a/src/undo.c b/src/undo.c
->     >     index 8a55bf2..4c38dab 100644
->     >     --- a/src/undo.c
->     >     +++ b/src/undo.c
->     >     @@ -633,6 +633,15 @@ prelink_undo (DSO *dso)
->     >                   d->d_buf = NULL;
->     >                   dso->shdr[i].sh_type = SHT_NOBITS;
->     >                 }
->     >     +         else if (dso->shdr[i].sh_type == SHT_PROGBITS
->     >     +                  && strcmp (name, ".data.rel.ro <http://data.rel.ro>
->     <http://data.rel.ro>") == 0)
->     >     +           {
->     >     +             scn = dso->scn[i];
->     >     +             d = elf_getdata (scn, NULL);
->     >     +             assert (d != NULL && elf_getdata (scn, d) == NULL);
->     >     +             assert (d->d_size == dso->shdr[i].sh_size);
->     >     +             assert (memset(d->d_buf, 0, d->d_size) == d->d_buf);
->     >     +           }
->     >               else if (dso->shdr[i].sh_type == SHT_RELA
->     >                        && shdr[i].sh_type == SHT_REL)
->     >                 {
->     >     --
->     >     2.17.1
->     >
-> 
+diff --git a/src/doit.c b/src/doit.c
+index 1e32ad5..3784866 100644
+--- a/src/doit.c
++++ b/src/doit.c
+@@ -237,11 +237,11 @@ error_out:
+   return;
+ }
+ 
+-void
++int
+ prelink_all (void)
+ {
+   struct collect_ents l;
+-  int i;
++  int i, fails = 0;
+ 
+   l.ents =
+     (struct prelink_entry **) alloca (prelink_entry_count
+@@ -250,7 +250,13 @@ prelink_all (void)
+   htab_traverse (prelink_filename_htab, find_ents, &l);
+ 
+   for (i = 0; i < l.nents; ++i)
+-    if (l.ents[i]->done == 1
+-	|| (l.ents[i]->done == 0 && l.ents[i]->type == ET_EXEC))
+-      prelink_ent (l.ents[i]);
++    {
++      if (l.ents[i]->done == 1
++         || (l.ents[i]->done == 0 && l.ents[i]->type == ET_EXEC))
++	prelink_ent (l.ents[i]);
++      if (l.ents[i]->type == ET_UNPRELINKABLE)
++	fails++;
++    }
++
++  return fails;
+ }
+diff --git a/src/main.c b/src/main.c
+index 0cea86d..6ba89d5 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -47,6 +47,7 @@ int one_file_system;
+ int enable_cxx_optimizations = 1;
+ int exec_shield;
+ int undo, verify;
++int errors;
+ enum verify_method_t verify_method;
+ int quick;
+ int compute_checksum;
+@@ -90,6 +91,7 @@ static struct argp_option options[] = {
+   {"black-list",	'b', "PATH", 0, "Blacklist path" },
+   {"cache-file",	'C', "CACHE", 0, "Use CACHE as cache file" },
+   {"config-file",	'c', "CONF", 0, "Use CONF as configuration file" },
++  {"errors",            'e', 0, 0,  "Returns an error if all binaries are not prelinkable" },
+   {"force",		'f', 0, 0,  "Force prelinking" },
+   {"dereference",	'h', 0, 0,  "Follow symlinks when processing directory trees from command line" },
+   {"one-file-system",	'l', 0, 0,  "Stay in local file system when processing directories from command line" },
+@@ -139,6 +141,9 @@ parse_opt (int key, char *arg, struct argp_state *state)
+       if (add_to_blacklist (arg, dereference, one_file_system))
+ 	exit (EXIT_FAILURE);
+       break;
++    case 'e':
++      errors = 1;
++      break;
+     case 'f':
+       force = 1;
+       break;
+@@ -524,7 +529,8 @@ main (int argc, char *argv[])
+     prelink_load_cache ();
+ 
+   layout_libs ();
+-  prelink_all ();
++  if(prelink_all () && errors)
++    return EXIT_FAILURE;
+ 
+   if (! no_update && ! dry_run)
+     prelink_save_cache (all);
+diff --git a/src/prelink.h b/src/prelink.h
+index 93dbf7a..c7b57e2 100644
+--- a/src/prelink.h
++++ b/src/prelink.h
+@@ -574,7 +574,7 @@ int get_relocated_mem (struct prelink_info *info, DSO *dso, GElf_Addr addr,
+ 
+ int layout_libs (void);
+ 
+-void prelink_all (void);
++int prelink_all (void);
+ 
+ int undo_all (void);
+ 
+-- 
+2.17.1
 
 
