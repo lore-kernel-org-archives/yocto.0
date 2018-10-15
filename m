@@ -1,66 +1,61 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2C842E00A0C; Mon, 15 Oct 2018 11:53:48 -0700 (PDT)
+	id 34069E00AC5; Mon, 15 Oct 2018 11:54:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marek.belisko[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.44 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.210.66 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
-	[209.85.128.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C765E003D9
-	for <yocto@yoctoproject.org>; Mon, 15 Oct 2018 11:53:47 -0700 (PDT)
-Received: by mail-wm1-f44.google.com with SMTP id r63-v6so19984639wma.4
-	for <yocto@yoctoproject.org>; Mon, 15 Oct 2018 11:53:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-ot1-f66.google.com (mail-ot1-f66.google.com
+	[209.85.210.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE850E00AD1
+	for <yocto@yoctoproject.org>; Mon, 15 Oct 2018 11:54:07 -0700 (PDT)
+Received: by mail-ot1-f66.google.com with SMTP id q50so19989516otd.0
+	for <yocto@yoctoproject.org>; Mon, 15 Oct 2018 11:54:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=wkK8jgNdXeuK1dc5MTy8AZLygKjaqDEqFF5O18p4EjY=;
-	b=Qa4LYeND3WrMKBrQBD+/wgv24E1kc1tfhSY4qiOUdBY0/wtLMptnS6D8GnF0uH6ppl
-	R9TO/6Xgro2MBLniSzCBpfqIazEYwBrzciJe+Ng3n4nrg8UhVks/Zai3bx00FGvoAWqN
-	mJ0hJJcGvASMkh165YALJNE7RHNITiGvCFSI+VnFkD3bOwfQoShinX2rX+8B2fFhg1IC
-	xU39G0KTi528EEeP1FJ6ToVxiDk15kU5J6fZJvPuFlbVqrSLmV0DjFtooknKQGu+eAHE
-	7VsLgUvG+MhcL1d/wS4pMLJ1DDJ1hQ2Qe23ptPfggCU6DLZ+eOOMvGgO/DoNFbCOy7wP
-	/img==
+	:cc; bh=2S8xzv8vIDz/GlTLxXk/8RxpYmzW1aoBkNNfPo0hn2E=;
+	b=JQH9UTiNke2ZABqqydwEAyPCKBGdsyvCPd4Rm7UXRaDFgXp9vbKdC4TzlfMaaBsXj4
+	N+Kd96MScZONKJBfmWQI9D1BdNPsfOLUFJG9zDRCi7sbJsvy/3aNG+V96EvrfgXsHI7E
+	FjyVCmetjopPljlXu6J/GenDCE+fBrIAIDRJJlm16ecD6egORoZk6sTjzxKsWQFkNHkB
+	kMNKH7OWxVv+t3TYouudd8+fMayh8oUFw7J3Xaf0IfU5eOZcsbPXyynHGuoLfpNTOKRw
+	z22cYEECJEjq1EQkkJt2c15mUesDNs9CAhja6U4h7QTz7ApUzQU52ByfnATWcLzHf38f
+	XthQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=wkK8jgNdXeuK1dc5MTy8AZLygKjaqDEqFF5O18p4EjY=;
-	b=DjL6E26UFTtC4ntdTa1VrtjpjxNpU0RGetV9FtunvfX8nX8qBHQRnQDnHXxVaCa6Cl
-	mtjzSzgroa89bdlxIHCEuWTWWmWCwpmut8oz1HXZ89k/39jTN/Dj1Pe97UZcuiJdlIpa
-	G+yXOAepbPlPVTMiea30u+lCvKy1wIfHjLnQhk9edDagDmos9pA34+q71jExnORNRLf/
-	3kT6EPs++3LuKDDbx69aX0JKz6a7WfvuK75sCJguzi31UYlZpetk5jZ4JewY/1yb5lES
-	w9s4+/mjAoh3wc+yYJCXDvL9CgYmrhYsrawA13WfYxditrM9wiD6JWGa5uXNJp0C/zn8
-	UdVQ==
-X-Gm-Message-State: ABuFfohVaPiXgYEhEQuajTYpyXtk4ZTHDq3RVeEi17sfd76UbCBpqmgy
-	kjw3bvYSRQJnnk+M76/vpA5/wtbopDqbsWY4FNo=
-X-Google-Smtp-Source: ACcGV62wTEqFalZyxvabzRzUjnHrw2T0MInqur+J3ujdHc8E0llIkuHjeAeFfNp3cme1vhxIGwaQSl9kLOZvzWqSYEo=
-X-Received: by 2002:a1c:9947:: with SMTP id
-	b68-v6mr13324933wme.22.1539629626484; 
-	Mon, 15 Oct 2018 11:53:46 -0700 (PDT)
+	bh=2S8xzv8vIDz/GlTLxXk/8RxpYmzW1aoBkNNfPo0hn2E=;
+	b=hMoc0OrT2haHn6LfACQV/0Mvpqh6HNfgdyRCTIYMe4ADlUnTopAKjwQC4Bc0HooCC9
+	8aHf+gmvSLeDJdyurR6VuCoOCUPfADpq6CHHQHdaeeG2ybdaycT3hzOIt1vQ5Mt0WOEW
+	UuOBfVB4ZDbA54iij9RNmC/EMOpKgjTiqnmSeXvI7UaNdEYhIldD/6yvxyNI2imSRKfW
+	PrfNLkhhUx1rei8jjgJGerijKiyJ5rwG/u7k80Ty62N52lDssihU/PzD27cq60yc+nnP
+	X6nVQtjAUsaqGDb39nPSA4pXBz/SWOKtC3pCNq2IdlA7NFA1CNXJZ5a2xcH0t+yS11ys
+	ZSPQ==
+X-Gm-Message-State: ABuFfogq+B4ui8YYDF3npSO7cmb6epMyNyf2cGVFk96gs55mwEIWgREq
+	ulEVyV24CAyT/ABvbi0SMZVd1wH2CAcJgY173a6ERQ==
+X-Google-Smtp-Source: ACcGV60PLHl+tdtvIR2LoL4T1wCvSIl2dNnwFVrEAW1mFY91rMBNqFap5PTv41QVQz5ohbcJ73hfuNKnWImwI+9DI1o=
+X-Received: by 2002:a9d:3e50:: with SMTP id h16mr10731499otg.8.1539629646985; 
+	Mon, 15 Oct 2018 11:54:06 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAAfyv36x=np5fcK96ozCHoXe-CFjvpMTdJDA4shpXBMRvd10Hg@mail.gmail.com>
 	<CAJTo0LYbBU4s7w7TEDJwt6Wp8Vr9bsFCxmf1WYM-sX_=5wWkDA@mail.gmail.com>
 	<f0a632a1a5264a72d4be11ee371f7d64@basmevissen.nl>
 In-Reply-To: <f0a632a1a5264a72d4be11ee371f7d64@basmevissen.nl>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Mon, 15 Oct 2018 20:53:34 +0200
-Message-ID: <CAAfyv37MtT+VzEu2eHZtE_KSvGO=tE6Ynk2CZmAt2O3fCttE_g@mail.gmail.com>
-To: abuse@basmevissen.nl
-Cc: yocto <yocto@yoctoproject.org>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 15 Oct 2018 19:53:55 +0100
+Message-ID: <CAJTo0Lbrf_n0LbCo0undU6=cCSnGbekg6V3Yg2saFqdjPpmFxA@mail.gmail.com>
+To: Bas Mevissen <abuse@basmevissen.nl>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: permissions when installing scripts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -73,20 +68,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Oct 2018 18:53:48 -0000
+X-List-Received-Date: Mon, 15 Oct 2018 18:54:12 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Bas,
+cp -a will preserve ownership, which you don't want.
 
-On Mon, Oct 15, 2018 at 8:45 PM Bas Mevissen <abuse@basmevissen.nl> wrote:
+Ross
+On Mon, 15 Oct 2018 at 19:45, Bas Mevissen <abuse@basmevissen.nl> wrote:
 >
 >
 >
 > cp -a or --preserve(=<something>) optionally combined with other options
 > does the trick. However, using install is the better solution.
-But -p will keep current user and not root used when installed in
-final rootfs (also QA report warnings about host contamination).
-I think I'll stick with install ;). Thanks.
 >
 >
 > -- Bas.
@@ -128,20 +121,4 @@ I think I'll stick with install ;). Thanks.
 > >> yocto@yoctoproject.org
 > >> https://lists.yoctoproject.org/listinfo/yocto
 >
-
-BR,
-
-marek
-
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
-
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
 
