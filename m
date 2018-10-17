@@ -1,71 +1,65 @@
-Return-Path: <marwen.brikcha@gmail.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17F5AE00BBF; Wed, 17 Oct 2018 00:32:19 -0700 (PDT)
+	id 890C9E00BC8; Wed, 17 Oct 2018 01:37:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marwen.brikcha[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.175 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.45 listed in list.dnswl.org]
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com
-	[209.85.166.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA465E00B5E
-	for <yocto@yoctoproject.org>; Wed, 17 Oct 2018 00:32:18 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id s6-v6so7610055ioa.11
-	for <yocto@yoctoproject.org>; Wed, 17 Oct 2018 00:32:18 -0700 (PDT)
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com
+	[209.85.160.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FE28E00BBF
+	for <yocto@yoctoproject.org>; Wed, 17 Oct 2018 01:37:50 -0700 (PDT)
+Received: by mail-qt1-f175.google.com with SMTP id l9-v6so29037125qtf.5
+	for <yocto@yoctoproject.org>; Wed, 17 Oct 2018 01:37:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=u6k7qipKYUp93y+XvOKMvPne62Lgemwbu1Lp9fresGY=;
-	b=VvN7gGu1B2PE4hUc1ZVsHGgonih6VKPp7izdiwVBCc59yYDsu6M90KEsO1Ipx3acWB
-	tvxmNRhyRNjSuIvtsYd8OxiARjNKvhkZUTPJ/0tHpujgrhEyeq1SBjXdkzlphwDVGYKQ
-	yWTSJ0TKBNed1KVUxTd/IqigY+kvYhQZvD7rY531/uzXLiCobyjfKaZZXJkUJY3ylKWG
-	JwenAU8DyUJQHw+OyZE9UZUc75Nh6R2a5VvDDaF7FposHKOqUaEps8cPz+Le+sYKcOEO
-	Ix9GdfakAaQ7YVzNb8GX69f1+4Ug6HTigyqAqLHnPaNfYA4kq9522jVwM39LIQ8M4jSu
-	8ODw==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=ajs8r7uFpUYBRB6EtKeGgxQg28eDSMCj+FLn+6q3Dzk=;
+	b=rN3wajb1ttO/sapByD7QBsF4JsD694hueW0kX0nkxujh4XRvWY29BgB87qz1GwtfLz
+	SXyxBpw2FdsfD8fgkbe9u6WMBvkl2Ir6nGSJ8xKlnjoBn+7dM8n9tCIOUdHzd7++qdM1
+	D6RVB9EajBQA5aoXnOMwvMbR5aKeq8oa+3xkga75HWBxYKcDf5wuuetg3G4adgB61XWb
+	Vu7kqbogqclqUVhRl2yqnvhCXwsCZs9BBogwC3Xvvtb7i2TFbrsA8VeVz0NEGIzoDc4j
+	E53tk2TL0Z/zaln2Yj4wAODo9+0DCJKs4LVkw4L3emRi3o+1JaOOxs1Jsnxf9qf/yWyr
+	AM7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=u6k7qipKYUp93y+XvOKMvPne62Lgemwbu1Lp9fresGY=;
-	b=n3+qGqZJuIU0rn562FyVhGXMvBtFhy946U9iwN0btA7TAIRG0+S41GFC/abie+s5I2
-	ASTTyNx9CBeP22HbQKEwnDpuUvq+bN5HJrI3OGj4YYSsE6TI++GLObtho8wMGvv1ri55
-	U2BMfnuMmZEE2WM5OqszmlfCLW0zaJKOvH9j63f6azTeReXOsNcPX+T3gRXHBg/FVaMq
-	G/JiixBx8lDkplJaE1AXe5G9I+lc7d4Rx/LSqshNGotRTYcvB9xsWx6TP337rKEm7BjB
-	kN9wBXoQrueT8KmChk3LZFb7RqbnmMTyAloZAX2pAKn0F9mPQf2KPh8fpxqc94XMUfLF
-	JQeA==
-X-Gm-Message-State: ABuFfohk7QsCQqq/cICJRpTou80WTWVUCRm+C2h9dn+uIoivmkBMmg0f
-	ONTvDLcNdu1Z2s8eWE84eCAuV6Rq/E0o5yQV4o1mRTWx
-X-Google-Smtp-Source: ACcGV63FajiP4NzMZUMc/bYxM50nkxqRDZlC+kHA687UW25kj7U+sk+zFlPUB8jXvG5eYSqHPv8mMSmtOjzmB5Ys0Dc=
-X-Received: by 2002:a6b:e91a:: with SMTP id
-	u26-v6mr15582402iof.200.1539761537879; 
-	Wed, 17 Oct 2018 00:32:17 -0700 (PDT)
+	:message-id:subject:to;
+	bh=ajs8r7uFpUYBRB6EtKeGgxQg28eDSMCj+FLn+6q3Dzk=;
+	b=hK54PgkN7Prvt5jJ8jeJhPyepqV9ogXK9TgFtULlg0PiY/nLSmf9K8z9TB8IQO9+Lh
+	MFgOjkQSH5tDLpcbTXjqYpeo1V7c/5orm6HgYZtPTBwI7f40uH+O4wrSrh1F3k08fwLI
+	6Kk/Dsv4WAXyghSAeI0FBlDYFWezSJxBuILGucc1u8wmIyFpSnwtqVdFjYK1oiP89M8Q
+	A1WVa6d05B7dIs/OAOWBcvOLkWaezORCJUHDCJmyMfLUUWrlwlBEPw0rWX2K7iwAqWCF
+	/XnsikLMJN8z7yIr2FO3FNRxikN2kIZpclkZZs8UzaIalXma+QwY0calz5x9vcRb/wyP
+	x1eQ==
+X-Gm-Message-State: ABuFfohQp3D+i7Tn8xuXL49ocVgdFQhEVGYLQp+gd3SWraxGtzVhBU4e
+	5ZUnj0huzWPwOfZamm73xPK4BAr1AFwtZfkkE7IBP+qPETY=
+X-Google-Smtp-Source: ACcGV62A92EzqdKGRhZGkmISdg7CqeS8wg76tgclLbbOPQEoRrRge3jF32Q0asXJue05PzGdbiAyhJpFQPF3XAnz8o0=
+X-Received: by 2002:a0c:c901:: with SMTP id r1mr24984255qvj.170.1539765469578; 
+	Wed, 17 Oct 2018 01:37:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAFjmEbDYvLenPW1D4=x+HxOmC4JUiJ4495xCbYzp6BZkxbAzwA@mail.gmail.com>
-	<CAJTo0LZPS49=UK5E_1AJZa7tW7frxv8E4NRHMXRca3iW-e=asQ@mail.gmail.com>
-	<CAFjmEbC2Vpe7wa+_ys0MmKFRkoWk2wgP1PE8rhTmJx6ev5EenA@mail.gmail.com>
-	<CAJTo0LY3H1rckDOU-S05XzzEFRBeRrOci2D49Bu-YTZe2+4+sQ@mail.gmail.com>
-	<CAFjmEbBJUJaGHc-zf8YTSRPsA=Nigd0YLDTwVTe=vJYXar60cg@mail.gmail.com>
-	<CAJTo0LZxz-1E68vDX24v_LirA1+mCjA+irDeBEdVcQ8+oQb+fw@mail.gmail.com>
-In-Reply-To: <CAJTo0LZxz-1E68vDX24v_LirA1+mCjA+irDeBEdVcQ8+oQb+fw@mail.gmail.com>
-From: Marwen BRIKCHA <marwen.brikcha@gmail.com>
-Date: Wed, 17 Oct 2018 09:32:06 +0200
-Message-ID: <CAFjmEbD7DHsCmGNLQSoQQPt_P7eU8V65yOAp+N-XRh3EduLNcw@mail.gmail.com>
-To: ross.burton@intel.com
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto Poky 2.4.1 - Remove python3 from build
+References: <CAGAf8Ly_txg3AQNqOM+Rg0Oy-RdS_96y328GwXw7Qu=iDx1yfg@mail.gmail.com>
+	<14f3ead713e649f48582d18ddd477d3c@advaoptical.com>
+	<CAGAf8LwAQsBHNNCp8uL4pU5tPGGKVKvnVDF6dcdv-VtMHDGRVg@mail.gmail.com>
+In-Reply-To: <CAGAf8LwAQsBHNNCp8uL4pU5tPGGKVKvnVDF6dcdv-VtMHDGRVg@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Wed, 17 Oct 2018 10:37:38 +0200
+Message-ID: <CAGAf8LwzrRh6j0n9yqpvv6x1Y7AKhDX7FcREdSzpauYga2QDkw@mail.gmail.com>
+To: KZertsekel@advaoptical.com, Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Sumo distro problem with dhcp packet?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,66 +71,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Oct 2018 07:32:19 -0000
-Content-Type: multipart/alternative; boundary="0000000000008112f7057867ab20"
-
---0000000000008112f7057867ab20
+X-List-Received-Date: Wed, 17 Oct 2018 08:37:51 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Yes. I've seen compilation log and it does do_install in final image.
-It's installed in /usr/lib64/python3.5 on RootFS.
+Hello Kosta and others,
 
-Le mer. 17 oct. 2018, =C3=A0 00 h 48, Burton, Ross <ross.burton@intel.com> =
-a
-=C3=A9crit :
+I am a bit behind on a schedule on this one. Albeit I followed the
+advise, This does work for compiling and adding all these packages to
+the ROOTFS. I see that after I added all them, I see the
+initramfs.tar.xz expanded in
+...poky/build/tmp/deploy/image/beagleboneblack/ directory.
 
-> On Tue, 16 Oct 2018 at 14:06, Marwen BRIKCHA <marwen.brikcha@gmail.com>
-> wrote:
+But after I do the testing with initramfs, with all these packages
+added. I do not find anything in the ROOTFS even what it should be
+lookalike DHCP.
+
+After trying # which dhclient, or # which dhcp-client, or # which
+dhcp... It finds nothing!
+
+Then, the next step was to find /etc/dhcp/ or similar. There is
+nothing lookalike dhcp/ or dhcp* in /etc, which shows that these lines
+in dhcp.inc recipe are not executed:
+
+do_install_append () {
+       install -d ${D}${sysconfdir}/init.d
+       install -d ${D}${sysconfdir}/default
+       install -d ${D}${sysconfdir}/dhcp
+       install -m 0755 ${WORKDIR}/init-relay ${D}${sysconfdir}/init.d/dhcp-relay
+       install -m 0644 ${WORKDIR}/default-relay
+${D}${sysconfdir}/default/dhcp-relay
+       install -m 0755 ${WORKDIR}/init-server
+${D}${sysconfdir}/init.d/dhcp-server
+       install -m 0644 ${WORKDIR}/default-server
+${D}${sysconfdir}/default/dhcp-server
+
+       rm -f ${D}${sysconfdir}/dhclient.conf*
+       rm -f ${D}${sysconfdir}/dhcpd.conf*
+
+In addition, when I execute: $ bitbake -c cleanall dhcp, it says that
+it executes thee tasks, and none of them are actually executed (0
+executed).
+
+I also recompiled form scratch the whole sumo BBB build, but this did
+NOT solve the problem.
+
+Any hint how I should proceed?
+
+Thank you,
+Zoran
+_______
+
+On Thu, Oct 11, 2018 at 1:40 PM Zoran Stojsavljevic
+<zoran.stojsavljevic@gmail.com> wrote:
+>
+> Hello Kosta,
+>
+> > For example, you can do the below:
+> > CORE_IMAGE_EXTRA_INSTALL_append = "openssh dhcp-client dhcp-server cmake... "
+>
+> I added to this example dhcp-relay, just to test the whole build, and
+> it does work. Actually, I need only dhcp-client for the target (since
+> I have dhcp-server on the ETH interface on the opposite (VM) side).
+>
+> Thank you for the help!
+> Zoran
+> _______
+> On Wed, Oct 10, 2018 at 5:57 PM Kosta Zertsekel
+> <KZertsekel@advaoptical.com> wrote:
 > >
-> > because, when i run :
-> > :
-> > $> bitbake -v opencv
-> > I can see that python3 is fetched, configure, ... etc
-> > So, i think it the responsible for this.
->
-> Please remember to CC the list.
->
-> Python being built doesn't lead to Python being installed in the
-> image.  Have a look at the image manifest (in deploy/images) or look
-> at what is actually installed inside the image.
->
-> Ross
->
+> > You need to take a look at the available dhcp packages
+> > for dhcp recipe here:
+> > https://git.yoctoproject.org/clean/cgit.cgi/poky/tree/meta/recipes-connectivity/dhcp/dhcp.inc#n100
+> >
+> > PACKAGES += "dhcp-libs dhcp-server dhcp-server-config dhcp-client dhcp-relay dhcp-omshell"
+> >
+> > For example, you can do the below:
+> > CORE_IMAGE_EXTRA_INSTALL_append = "openssh dhcp-client dhcp-server cmake... "
+> >
+> > Thanks,
+> > --- Kosta Z
+> > ________________________________
+> > From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on behalf of Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+> > Sent: Wednesday, 10 October 2018 16:29:05
+> > To: Yocto Project
+> > Subject: [yocto] Sumo distro problem with dhcp packet?
+> >
+> > Hello.
+> >
+> > I need on my test initramfs YOCTO image to add dhcp package (both dhcp server and client).
+> >
+> > For the beginning, I traced it, where it is:
+> > .../poky/meta/recipes-connectivity/dchp
+> >
+> > and decided to test it adding it to ...poky/build/conf/local.conf for the starters:
+> > CORE_IMAGE_EXTRA_INSTALL_append = "openssh dhcp cmake... "
+> >
+> > But it produced the following error:
+> > [user@fedora28-ssd conf]$ bitbake -k core-image-base
+> >
+> >    [snap]
+> >
+> > ERROR: Nothing RPROVIDES 'dhcp' (but /home/user/projects2/beaglebone-black/sumo/poky/meta/recipes-core/images/core-image-base.bb RDEPENDS on or otherwise requires it)
+> > NOTE: Runtime target 'dhcp' is unbuildable, removing...
+> > Missing or unbuildable dependency chain was: ['dhcp']
+> > ERROR: Nothing RPROVIDES 'core-image-base'
+> > No eligible RPROVIDERs exist for 'core-image-base'
+> > NOTE: Runtime target 'core-image-base' is unbuildable, removing...
+> > Missing or unbuildable dependency chain was: ['core-image-base']
+> >
+> > I added another package, dhcpcd, which is located in the another layer:
+> > CORE_IMAGE_EXTRA_INSTALL_append = "openssh dhcpcd cmake... "
+> >
+> > so this one worked/was integrated seamlessly.
+> >
+> > What is the catch 22 here?
+> >
+> > Thank you,
+> > Zoran
+> >
 
---0000000000008112f7057867ab20
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Yes. I&#39;ve seen compilation log and it does do_install =
-in final image.<div>It&#39;s installed in /usr/lib64/python3.5 on RootFS.</=
-div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">Le mer. 17 oct. 2=
-018, =C3=A0 00 h 48, Burton, Ross &lt;<a href=3D"mailto:ross.burton@intel.c=
-om" target=3D"_blank">ross.burton@intel.com</a>&gt; a =C3=A9crit=C2=A0:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
-eft:1px #ccc solid;padding-left:1ex">On Tue, 16 Oct 2018 at 14:06, Marwen B=
-RIKCHA &lt;<a href=3D"mailto:marwen.brikcha@gmail.com" target=3D"_blank">ma=
-rwen.brikcha@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; because, when i run :<br>
-&gt; :<br>
-&gt; $&gt; bitbake -v opencv<br>
-&gt; I can see that python3 is fetched, configure, ... etc<br>
-&gt; So, i think it the responsible for this.<br>
-<br>
-Please remember to CC the list.<br>
-<br>
-Python being built doesn&#39;t lead to Python being installed in the<br>
-image.=C2=A0 Have a look at the image manifest (in deploy/images) or look<b=
-r>
-at what is actually installed inside the image.<br>
-<br>
-Ross<br>
-</blockquote></div>
-
---0000000000008112f7057867ab20--
