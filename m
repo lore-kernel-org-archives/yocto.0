@@ -1,54 +1,54 @@
-Return-Path: <okaya@kernel.org>
+Return-Path: <Aaron_Wright@selinc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C868AE00994; Thu, 18 Oct 2018 13:48:36 -0700 (PDT)
+	id C9EB7E00994; Thu, 18 Oct 2018 13:59:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,KHOP_DYNAMIC,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [148.163.147.191 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [198.145.29.99 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F138E00971
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 13:48:36 -0700 (PDT)
-Received: from [10.80.45.152] (unknown [71.69.156.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id 8B3A62145D;
-	Thu, 18 Oct 2018 20:48:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=default; t=1539895716;
-	bh=h9vLzrc8jTBslYAufs4u3QlGmX/MbR3BBU43lSQAVfs=;
-	h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-	b=B9gm/pCepX+2JD1gnp17LQgdLIkXOi7RX/wCjHU5ZWB/04PM3tUWVvmI6lhHEz1Sx
-	p2NHcDG0KF3xKR3jMQ2UH9nZ9NFj7nqWIYMWfTBYLbZ16Uk+nGPj9XyFH8LpSBoAzU
-	EYxp+Q0e5txpW3vsD9gA1lfkMkiWwy3YHf4rJHbw=
-To: Joe MacDonald <Joe_MacDonald@mentor.com>,
-	Mark Hatle <mark.hatle@windriver.com>
-References: <ead8ad97-856d-03bb-4444-dc6e4a472d61@kernel.org>
-	<20181017232705.HQN68.75473.root@cdptpa-web09>
-	<CAKRytNw_TCeqAfN9TG2y6L6WAO+FNZkzE2S7DWyBM9OzWZQ18Q@mail.gmail.com>
-	<004d01d466e9$3c7daf70$b5790e50$@san.rr.com>
-	<0cba098f-4179-ec8a-73a5-bb2815806e59@kernel.org>
-	<9dd76a25-1560-5bca-64d3-e6dd57a44ccc@windriver.com>
-	<20181018190803.GB25172@mentor.com>
-From: Sinan Kaya <okaya@kernel.org>
-Message-ID: <da77004b-e0df-82c1-7f87-9ccba1a33ea3@kernel.org>
-Date: Thu, 18 Oct 2018 16:48:34 -0400
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
+	*  2.0 KHOP_DYNAMIC Relay looks like a dynamic address
+Received: from mx0a-000e8d01.pphosted.com (mx0a-000e8d01.pphosted.com
+	[148.163.147.191])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6A3EE00971
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 13:59:13 -0700 (PDT)
+Received: from pps.filterd (m0136170.ppops.net [127.0.0.1])
+	by mx0b-000e8d01.pphosted.com (8.16.0.22/8.16.0.22) with SMTP id
+	w9IKrHSL012672
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 13:59:13 -0700
+Received: from edison.ad.selinc.com (edison.selinc.com [74.117.212.50])
+	by mx0b-000e8d01.pphosted.com with ESMTP id 2n6ckurjk8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 13:59:12 -0700
+In-Reply-To: <2196576.1fsnYOVap6@localhost.localdomain>
+References: <OF38E74854.80860B87-ON88258329.0081F4B2-8825832A.0060D044@selinc.com>
+	<57ADD8B0-DA93-4895-95E5-FD13C6597D89@gmail.com>
+	<2196576.1fsnYOVap6@localhost.localdomain>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20181018190803.GB25172@mentor.com>
+X-KeepSent: D6FF77C4:D7AA8A19-8825832A:0072D44B;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0.1FP5 Octobe4, 2013
+Message-ID: <OFD6FF77C4.D7AA8A19-ON8825832A.0072D44B-8825832A.00734852@selinc.com>
+From: Aaron_Wright@selinc.com
+Date: Thu, 18 Oct 2018 13:59:11 -0700
+X-MIMETrack: Serialize by Router on Edison/SEL(Release 9.0.1FP9 HF139|October
+	06, 2017) at 10/18/2018 01:59:12 PM,
+	Serialize complete at 10/18/2018 01:59:12 PM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+	definitions=2018-10-18_10:, , signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	priorityscore=1501
+	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+	clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+	mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+	scancount=1 engine=8.0.1-1807170000 definitions=main-1810180175
 Cc: yocto@yoctoproject.org
-Subject: Re: [selinux] sumo compilation
+Subject: Re: Working on Dependent Recipes in eSDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,17 +60,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Oct 2018 20:48:36 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 18 Oct 2018 20:59:14 -0000
+Content-Type: text/plain; charset="US-ASCII"
 
-On 10/18/2018 3:08 PM, Joe MacDonald wrote:
->> Sorry, I thought it had been created.  I'm going to be traveling the
->> next few days to ELC-E, but I will try to get to it if someone else
->> does not first.
-> Yeah, Mark and I are both going to be at ELC-E this week, we'll get it
-> sorted out.
+> Paul Eggleton <paul.eggleton@linux.intel.com> wrote on 10/18/2018 
+12:30:07 PM:
+>
+> I think we would *like* this to be possible, from what I can tell I 
+think the 
+> issue is that the copies of the library in the sysroots of other 
+dependent 
+> recipes aren't being updated. The eSDK (and devtool) were originally 
+written 
+> when there weren't recipe-specific sysroots, and this stuff was a bit 
+simpler.
+> 
+> Moving back to the full build system won't automatically fix this, 
+though it 
+> does make workarounds possible - you'd need to rebuild the dependent 
+recipes 
+> to get their sysroots updated.
+> 
+> Cheers,
+> Paul
+> ... snip ...
 
-thanks.
+I put together a devtool plugin to almost do what I want:
+
+> from devtool import exec_build_env_command, DevtoolError
+> 
+> def sdk_sysroot(args, config, basepath, workspace):
+>     """Entry point for the devtool sdk-sysroot command"""
+> 
+>     try:
+>         exec_build_env_command(config.init_path, basepath, 'bitbake 
+build-sysroots', watch=True)
+>     except bb.process.ExecutionError as e:
+>         raise DevtoolError('Failed to bitbake build-sysroots:\n%s' % 
+(str(e)))
+> 
+> def register_commands(subparsers, context):
+>     """Register devtool subcommands from the sdk plugin"""
+>     if context.fixed_setup:
+>         parser_sdk_sysroot = subparsers.add_parser(
+>             'sdk-sysroot',
+>             help='Update the SDK sysroot',
+>             description='Updates the SDK sysroot so that changes made to 
+recipes in the workspace will be available,',
+>             group='sdk')
+>         parser_sdk_sysroot.set_defaults(func=sdk_sysroot)
+
+This allows me to "devtool modify <DEPENDENT_RECIPE>", edit the code, 
+"devtool build <DEPENDENT_RECIPE>", "devtool sdk-sysroot", and use the new 
+code from the dependent recipe immediately.
+
+This makes me wonder if "bitbake build-sysroots" should not be a part of 
+"devtool build", like it is for "devtool sdk-install" (where I stole it 
+from).
 
