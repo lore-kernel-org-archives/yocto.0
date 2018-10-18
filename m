@@ -1,66 +1,67 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B58FE00994; Thu, 18 Oct 2018 08:49:38 -0700 (PDT)
+	id 582ECE00BC2; Thu, 18 Oct 2018 09:01:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.195 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qk1-f195.google.com (mail-qk1-f195.google.com
-	[209.85.222.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6837E00971
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 08:49:36 -0700 (PDT)
-Received: by mail-qk1-f195.google.com with SMTP id x8-v6so19077462qka.4
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 08:49:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=lzXXqftjfi/e0mBOk6D1kL3zuwyyS2ZRWND06hbq9SA=;
-	b=WicYu4n84oBjg2pupwEHieKuXY0qqPJXTzU4CRJHaJwM2MxzUjF7n6X8ExSQ+5Heh+
-	uRHSvj6Bo6NjmO8lBIm5MDVHs8dMNlPNTlpQSmC0+Yh1yy3S8uTK7QOrMrKOvxKQwFcn
-	DNBDfo82WxT/RdmlnTdBES8FoucI8ccqPbU+AjLObHSvqsKsoaFq4HN+tjg8ZQA3Er2s
-	VUbGZFiFRm3Gpsr+cByChxJmQinH4GYfoFn0MeL3ByVPdLXG9ZIONktCfJMW3LrDzNxi
-	5RZ6AdLhnhbwEZD7hfWbUAbmxzv3e6PHmdFLrmdjcVI9Fpix413QWL4+T8z0yg8j5ARU
-	ldfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=lzXXqftjfi/e0mBOk6D1kL3zuwyyS2ZRWND06hbq9SA=;
-	b=cFjWSHcpwwPrxh8g6Ut1OZREHPT4FKtMbrRmkeRYozK+1IcC96cdwSXbhZBirEac6Y
-	33/pPx/Nqa7cQ/h1QVjHmRrdkSLpB31tM5t2GBgeTLKbxCqQFKvJxJIkTf7H3jUSjU+G
-	OOpGVnwfmweiGpmp530x7BSbV3Ogcc5YXgeBINtCY9FPOSVLCOf+ElxHasDam0+DNK1D
-	XI/pSy0s2Mp1ANOuxf0mb2T+dsvE71zWYXBgMJt7LkT7X9w6quifCCX3F4bGBfF4JWuq
-	Jvkl4DEkWwtQfZyZodfIaCrLklOPTlpDnutEEOWriOl033IzSXzj57EMivThXiAYB/4A
-	Ky7Q==
-X-Gm-Message-State: ABuFfoh/POGPWBmyU//kvju3NWX3FO+ylrrYSuBi2E6dl0cDXGyXQtki
-	3rQ1S0iAUhVuuxZEsSYhogfFGN9CbPbivlO1v3+1YDBM
-X-Google-Smtp-Source: ACcGV61TEctg8q/U/+ecCcVsXbdZcNejrJnC1xGZsMe2RilkzBT0lr/elk9J0FSQi+W6AUrUo2+eXk4bgg4wU73t34U=
-X-Received: by 2002:a37:31cf:: with SMTP id
-	x198-v6mr28984408qkx.206.1539877775898; 
-	Thu, 18 Oct 2018 08:49:35 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DBA3E0097C
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 09:01:18 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w9IG0xQB014037
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 18 Oct 2018 09:00:59 -0700 (PDT)
+Received: from soho-mhatle-m.local (172.25.36.227) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
+	Thu, 18 Oct 2018 09:00:59 -0700
+To: Sinan Kaya <okaya@kernel.org>, <sscott@san.rr.com>, "'Stefano Cappa'"
+	<stefano.cappa.ks89@gmail.com>
+References: <ead8ad97-856d-03bb-4444-dc6e4a472d61@kernel.org>
+	<20181017232705.HQN68.75473.root@cdptpa-web09>
+	<CAKRytNw_TCeqAfN9TG2y6L6WAO+FNZkzE2S7DWyBM9OzWZQ18Q@mail.gmail.com>
+	<004d01d466e9$3c7daf70$b5790e50$@san.rr.com>
+	<0cba098f-4179-ec8a-73a5-bb2815806e59@kernel.org>
+From: Mark Hatle <mark.hatle@windriver.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
+	xsBNBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
+	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
+	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
+	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
+	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
+	AAHNJU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT7CwHcEEwEIACEFAlYK
+	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
+	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
+	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
+	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
+	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
+	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrs7ATQRWCsRYAQgAwK3FuHCE+HW3YWdH
+	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
+	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
+	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
+	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
+	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABwsBfBBgBCAAJBQJWCsRYAhsMAAoJ
+	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
+	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
+	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
+	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
+	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
+Organization: Wind River Systems
+Message-ID: <9dd76a25-1560-5bca-64d3-e6dd57a44ccc@windriver.com>
+Date: Thu, 18 Oct 2018 11:00:58 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:52.0)
+	Gecko/20100101 Thunderbird/52.9.1
 MIME-Version: 1.0
-References: <CAKPYHZ4VV_+PpwJE_=EVq2HNxfU4PuCjg-2T+AueB+9Jv1eG9A@mail.gmail.com>
-In-Reply-To: <CAKPYHZ4VV_+PpwJE_=EVq2HNxfU4PuCjg-2T+AueB+9Jv1eG9A@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 18 Oct 2018 08:49:09 -0700
-Message-ID: <CAMKF1soa4UorFpZkwfZhSMe-8V4FkXP+OVGpG-0kZgmUsih5oQ@mail.gmail.com>
-To: dhanush.ks@gmail.com
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Busybox_1.23.2 fails at do_compile on Poky-Sumo
+In-Reply-To: <0cba098f-4179-ec8a-73a5-bb2815806e59@kernel.org>
+Cc: yocto@yoctoproject.org
+Subject: Re: [selinux] sumo compilation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,159 +73,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Oct 2018 15:49:38 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 18 Oct 2018 16:01:19 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Always send the Build Configuration that bitbake prints on top of
-build. So someone can get some additional information about your build
-to help you better.
-On Thu, Oct 18, 2018 at 1:03 AM Dhanush K.S <dhanush.ks@gmail.com> wrote:
->
-> Hello Yocto,
->
-> I'm currently building an image with the busybox_1.23.2.bb recipe include=
-d, using Yocto Sumo 2.5 with the Bitbake version 1.37.0. It is running on a=
- CentOS host building images for the target ARM cortexa8. This busybox reci=
-pe is placed in another custom layer. Though this recipe compiles without e=
-rrors in Poky-Fido, in Poky-Sumo I get compilation errors due to missing he=
-ader files. I have pasted a part of the log.do.compile file with the error.
->
-> # merged configuration written to .config (needs make)
-> #
-> NOTE: make -j 2 LD=3Darm-poky-linux-gnueabi-gcc  -march=3Darmv7-a -mfpu=
-=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-a8 --sysroot=3D/opt/ac500/yocto/b=
-ranches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-neon-=
-poky-linux-gnueabi/busybox/1.23.2-r0/recipe-sysroot V=3D1 ARCH=3Darm CROSS_=
-COMPILE=3Darm-poky-linux-gnueabi- SKIP_STRIP=3Dy busybox_unstripped
-> rm -f .kernelrelease
-> echo 1.23.2 > .kernelrelease
-> /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/w=
-ork/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2/scr=
-ipts/gen_build_files.sh /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/bui=
-ld_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2=
--r0/busybox-1.23.2 /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_ar=
-m-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/b=
-usybox-1.23.2
-> make -f /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-=
-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.=
-23.2/Makefile silentoldconfig
-> make -f scripts/Makefile.build obj=3Dscripts/basic
-> /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/w=
-ork/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2/scr=
-ipts/gen_build_files.sh /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/bui=
-ld_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2=
--r0/busybox-1.23.2 /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_ar=
-m-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/b=
-usybox-1.23.2
-> mkdir -p include
-> make -f scripts/Makefile.build obj=3Dscripts/kconfig silentoldconfig
-> scripts/kconfig/conf -s Config.in
-> #
-> # using defaults found in .config
-> #
-> make -C /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-=
-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.=
-23.2 KBUILD_SRC=3D .kernelrelease
-> rm -f .kernelrelease
-> echo 1.23.2 > .kernelrelease
-> make -f scripts/Makefile.build obj=3Dscripts/basic
-> make -f scripts/Makefile.build obj=3Dapplets
->   scripts/basic/split-include include/autoconf.h include/config
->   gcc -Wp,-MD,applets/.usage.d  -Wall -Wstrict-prototypes -O2 -fomit-fram=
-e-pointer      -Iinclude -Iinclude -o applets/usage applets/usage.c
->   gcc -Wp,-MD,applets/.applet_tables.d  -Wall -Wstrict-prototypes -O2 -fo=
-mit-frame-pointer       -o applets/applet_tables applets/applet_tables.c
->   /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp=
-/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2/s=
-cripts/mkconfigs include/bbconfigopts.h include/bbconfigopts_bz2.h
-> make -f scripts/Makefile.build obj=3Dscripts
->   applets/usage_compressed include/usage_compressed.h applets
->   applets/applet_tables include/applet_tables.h include/NUM_APPLETS.h
->   gcc -Wp,-MD,applets/.usage_pod.d  -Wall -Wstrict-prototypes -O2 -fomit-=
-frame-pointer      -Iinclude -Iinclude -o applets/usage_pod applets/usage_p=
-od.c
->   arm-poky-linux-gnueabi-gcc -Wp,-MD,applets/.applets.o.d   -std=3Dgnu99 =
--Iinclude -Ilibbb  -include include/autoconf.h -D_GNU_SOURCE -DNDEBUG -D_LA=
-RGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=3D64 -D"BB_VER=3DK=
-BUILD_STR(1.23.2)" -DBB_BT=3DAUTOCONF_TIMESTAMP  -Wall -Wshadow -Wwrite-str=
-ings -Wundef -Wstrict-prototypes -Wunused -Wunused-parameter -Wunused-funct=
-ion -Wunused-value -Wmissing-prototypes -Wmissing-declarations -Wno-format-=
-security -Wdeclaration-after-statement -Wold-style-definition -fno-builtin-=
-strlen -finline-limit=3D0 -fomit-frame-pointer -ffunction-sections -fdata-s=
-ections -fno-guess-branch-probability -funsigned-char -static-libgcc -falig=
-n-functions=3D1 -falign-jumps=3D1 -falign-labels=3D1 -falign-loops=3D1 -fno=
--unwind-tables -fno-asynchronous-unwind-tables -Os -O2 -pipe -g -feliminate=
--unused-debug-types -fdebug-prefix-map=3D/opt/ac500/yocto/branches/DEVEL_ne=
-xtYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnuea=
-bi/busybox/1.23.2-r0=3D/usr/src/debug/busybox/1.23.2-r0 -fdebug-prefix-map=
-=3D/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/=
-work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/recipe-sysroot=3D=
- -fdebug-prefix-map=3D/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build=
-_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r=
-0/recipe-sysroot-native=3D -mtune=3Dcortex-a8  -O2 -pipe -g -feliminate-unu=
-sed-debug-types -fdebug-prefix-map=3D/opt/ac500/yocto/branches/DEVEL_nextYo=
-cto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/b=
-usybox/1.23.2-r0=3D/usr/src/debug/busybox/1.23.2-r0 -fdebug-prefix-map=3D/o=
-pt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/=
-cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/recipe-sysroot=3D -fde=
-bug-prefix-map=3D/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-=
-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/rec=
-ipe-sysroot-native=3D  -mtune=3Dcortex-a8   -D"KBUILD_STR(s)=3D#s" -D"KBUIL=
-D_BASENAME=3DKBUILD_STR(applets)"  -D"KBUILD_MODNAME=3DKBUILD_STR(applets)"=
- -c -o applets/applets.o applets/applets.c
-> In file included from /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/bui=
-ld_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2=
--r0/recipe-sysroot-native/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux=
--gnueabi/7.3.0/include-fixed/syslimits.h:7:0,
->                  from /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/bui=
-ld_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2=
--r0/recipe-sysroot-native/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux=
--gnueabi/7.3.0/include-fixed/limits.h:34,
->                  from include/platform.h:141,
->                  from include/libbb.h:13,
->                  from include/busybox.h:8,
->                  from applets/applets.c:9:
-> /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/w=
-ork/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/recipe-sysroot-nat=
-ive/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/7.3.0/include=
--fixed/limits.h:194:61: error: no include path in which to search for limit=
-s.h
->  #include_next <limits.h>  /* recurse down to the real one */
->                                                              ^
-> In file included from include/libbb.h:13:0,
->                  from include/busybox.h:8,
->                  from applets/applets.c:9:
-> include/platform.h:152:11: fatal error: byteswap.h: No such file or direc=
-tory
->  # include <byteswap.h>
->            ^~~~~~~~~~~~
-> compilation terminated.
-> make[1]: *** [scripts/Makefile.build:198: applets/applets.o] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:373: applets_dir] Error 2
-> ERROR: oe_runmake failed
-> WARNING: /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex=
--a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/temp/run.=
-do_compile.26870:1 exit 1 from 'exit 1'
-> ERROR: Function failed: do_compile (log file is located at /opt/ac500/yoc=
-to/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-n=
-eon-poky-linux-gnueabi/busybox/1.23.2-r0/temp/log.do_compile.26870)
->
-> Both limits.h and byteswap.h don't exist in Poky-Fido as well, but compil=
-es without problems, unlike on Sumo. Does this have to do with the wrong To=
-olchains used or due to glibc (FYI: glibc_2.27 is been used)? If it has to =
-do with the Toolchains, which one should I be using and how do I go about i=
-t?
->
-> Thanks!
-> Regards,
->
-> Mit freundlichen Gr=C3=BC=C3=9Fen / Best Regards,
-> Dhanush
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+On 10/18/18 9:49 AM, Sinan Kaya wrote:
+> CC'ing the selinux maintainers:
+> 
+> I was told that using the master branch and reverting the e2fs change
+> (http://git.yoctoproject.org/cgit/cgit.cgi/meta-selinux/commit/?id=78eca8242ea5397c4dc0654d62244453b4260151) 
+> works on sumo.
+> 
+> Stefano's suggestion unfortunately didn't work.
+> 
+> Maybe, it is time to create the sumo branch?
+
+Sorry, I thought it had been created.  I'm going to be traveling the next few
+days to ELC-E, but I will try to get to it if someone else does not first.
+
+--Mark
+
+> On 10/18/2018 9:48 AM, Steve Scott wrote:
+>> I did not try it on sumo.
+>>
+>>   
+>>
+>> From: Stefano Cappa [mailto:stefano.cappa.ks89@gmail.com]
+>> Sent: Wednesday, October 17, 2018 11:15 PM
+>> To: sscott@san.rr.com
+>> Cc: Sinan Kaya <okaya@kernel.org>; yocto@yoctoproject.org
+>> Subject: Re: [yocto] [selinux] sumo compilation
+>>
+>>   
+>>
+>> Exactly the same issue since September.
+>>
+>>   
+>>
+>> Here is my discussion https://lists.yoctoproject.org/pipermail/yocto/2018-September/042711.html. With that trick did you find a solution also on sumo?
+>>
+>>   
+>>
+>> Il gio 18 ott 2018, 01:42 <sscott@san.rr.com <mailto:sscott@san.rr.com> > ha scritto:
+>>
+>>
+>> It was broken in rocko too. I added this to local.conf to workaround the problem:
+>>
+>> PREFERRED_VERSION_refpolicy-standard = "2.20170204"
+>>
+>> -steve
+>>
+>> ---- Sinan Kaya <okaya@kernel.org <mailto:okaya@kernel.org> > wrote:
+>>> Hi,
+>>>
+>>> We realized today that SELinux does not compile on sumo branch.
+>>>
+>>> Is it possible for someone to branch the last working version to a sumo branch?
+>>>
+>>> http://git.yoctoproject.org/cgit/cgit.cgi/meta-selinux/refs/
+>>>
+>>> NOTE: Running task 352 of 2707
+>>> (virtual:native:/sources/poky/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.43.8.bb <http://e2fsprogs_1.43.8.bb> :do_patch)
+>>> NOTE: recipe e2fsprogs-native-1.43.8-r0: task do_patch: Started
+>>> NOTE: Running task 1413 of 2707
+>>> (/sources/poky/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.43.8.bb:do_patch)
+>>> NOTE: recipe e2fsprogs-1.43.8-r0: task do_patch: Started
+>>> ERROR: e2fsprogs-native-1.43.8-r0 do_patch: Command Error: 'quilt --quiltrc
+>>> Applying patch misc_create_inode.c-label_rootfs.patch
+>>> patching file misc/create_inode.c
+>>> Hunk #1 FAILED at 979.
+>>> Hunk #2 FAILED at 987.
+>>>
+>>> Sinan
+>>> -- 
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+> 
+
 
