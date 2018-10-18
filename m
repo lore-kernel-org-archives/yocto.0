@@ -1,51 +1,38 @@
-Return-Path: <okaya@kernel.org>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B29E1E00994; Thu, 18 Oct 2018 08:05:44 -0700 (PDT)
+	id 06795E00994; Thu, 18 Oct 2018 08:38:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.145.29.99 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 595B4E00971
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 08:05:44 -0700 (PDT)
-Received: from [10.80.45.152] (unknown [71.69.156.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id D64F72098A;
-	Thu, 18 Oct 2018 15:05:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=default; t=1539875144;
-	bh=un0anHn8NgyKFgkuOXNEfbM86N0/hE1cyjvkXAw9ynA=;
-	h=Subject:From:To:Cc:References:Date:In-Reply-To:From;
-	b=pkT2L+TgjJlqurgGHaDZI1dtS4DU8tO3B1toKIhptk9ZyoaYDebhEuwtw309EUOLF
-	waTt2OQQoBOFjbmz56Z6blpD2upuNL5Eox8bjjGSJrgplTZu0xRTKg31jYtox4UZ/G
-	QOzQtqgRjc3r5K4viBHZLNWVAzMMwwrWOtg57ww0=
-From: Sinan Kaya <okaya@kernel.org>
-To: sscott@san.rr.com, 'Stefano Cappa' <stefano.cappa.ks89@gmail.com>
-References: <ead8ad97-856d-03bb-4444-dc6e4a472d61@kernel.org>
-	<20181017232705.HQN68.75473.root@cdptpa-web09>
-	<CAKRytNw_TCeqAfN9TG2y6L6WAO+FNZkzE2S7DWyBM9OzWZQ18Q@mail.gmail.com>
-	<004d01d466e9$3c7daf70$b5790e50$@san.rr.com>
-	<0cba098f-4179-ec8a-73a5-bb2815806e59@kernel.org>
-Message-ID: <895d95f5-3624-4ec5-80ca-e8fac42ac2d6@kernel.org>
-Date: Thu, 18 Oct 2018 11:05:42 -0400
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E62E1E00971;
+	Thu, 18 Oct 2018 08:38:55 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w9IFcp4l010822
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 18 Oct 2018 08:38:52 -0700 (PDT)
+Received: from [128.224.56.49] (128.224.56.49) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
+	Thu, 18 Oct 2018 08:38:51 -0700
+To: <kai.kang@windriver.com>, <yocto@yoctoproject.org>,
+	"meta-virtualization@yoctoproject.org"
+	<meta-virtualization@yoctoproject.org>
+References: <20181016014519.9084-1-kai.kang@windriver.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <c62fad2e-16b2-9144-c4bc-18652948d8e5@windriver.com>
+Date: Thu, 18 Oct 2018 11:38:50 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <0cba098f-4179-ec8a-73a5-bb2815806e59@kernel.org>
-Cc: yocto@yoctoproject.org
-Subject: Re: [selinux] sumo compilation
+In-Reply-To: <20181016014519.9084-1-kai.kang@windriver.com>
+Subject: Re: [meta-virtualization][PATCH] libvirt: remove qemu from PACKAGECONFIG for mips n32 and n64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,88 +44,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Oct 2018 15:05:44 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Thu, 18 Oct 2018 15:38:57 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-Sorry for confusing names, not enough coffee yet...
+Wrong mailing list. Use meta-virtualization for these patches.
 
-I was trying to say that Steve's suggestion to use
+I'm cross posting this there, for the archives.
 
-PREFERRED_VERSION_refpolicy-standard = "2.20170204"
+I've grabbed and merged this change (but could easily have missed
+it, since it was the wrong list and I wasn't directly copied).
 
-didn't work on sumo branch.
+Bruce
 
-On 10/18/2018 10:49 AM, Sinan Kaya wrote:
-> CC'ing the selinux maintainers:
+On 10/15/18 9:45 PM, kai.kang@windriver.com wrote:
+> From: Kai Kang <kai.kang@windriver.com>
 > 
-> I was told that using the master branch and reverting the e2fs change
-> (http://git.yoctoproject.org/cgit/cgit.cgi/meta-selinux/commit/?id=78eca8242ea5397c4dc0654d62244453b4260151) 
-> works on sumo.
+> PACKAGECONFIG 'qemu' causes libvirt depends on package qemu. But qemu
+> is not compatible with mips n32 and n64. So remove 'qemu' from
+> PACKAGECONFIG for mips n32 and n64.
 > 
-> Stefano's suggestion unfortunately didn't work.
+> Signed-off-by: Kai Kang <kai.kang@windriver.com>
+> Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
+> ---
+>   recipes-extended/libvirt/libvirt_4.7.0.bb | 4 ++++
+>   1 file changed, 4 insertions(+)
 > 
-> Maybe, it is time to create the sumo branch?
-> 
-> On 10/18/2018 9:48 AM, Steve Scott wrote:
->> I did not try it on sumo.
->>
->>
->> From: Stefano Cappa [mailto:stefano.cappa.ks89@gmail.com]
->> Sent: Wednesday, October 17, 2018 11:15 PM
->> To: sscott@san.rr.com
->> Cc: Sinan Kaya <okaya@kernel.org>; yocto@yoctoproject.org
->> Subject: Re: [yocto] [selinux] sumo compilation
->>
->>
->> Exactly the same issue since September.
->>
->>
->> Here is my discussion 
->> https://lists.yoctoproject.org/pipermail/yocto/2018-September/042711.html. 
->> With that trick did you find a solution also on sumo?
->>
->>
->> Il gio 18 ott 2018, 01:42 <sscott@san.rr.com <mailto:sscott@san.rr.com> > ha 
->> scritto:
->>
->>
->> It was broken in rocko too. I added this to local.conf to workaround the problem:
->>
->> PREFERRED_VERSION_refpolicy-standard = "2.20170204"
->>
->> -steve
->>
->> ---- Sinan Kaya <okaya@kernel.org <mailto:okaya@kernel.org> > wrote:
->>> Hi,
->>>
->>> We realized today that SELinux does not compile on sumo branch.
->>>
->>> Is it possible for someone to branch the last working version to a sumo branch?
->>>
->>> http://git.yoctoproject.org/cgit/cgit.cgi/meta-selinux/refs/
->>>
->>> NOTE: Running task 352 of 2707
->>> (virtual:native:/sources/poky/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.43.8.bb 
->>> <http://e2fsprogs_1.43.8.bb> :do_patch)
->>> NOTE: recipe e2fsprogs-native-1.43.8-r0: task do_patch: Started
->>> NOTE: Running task 1413 of 2707
->>> (/sources/poky/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.43.8.bb:do_patch)
->>> NOTE: recipe e2fsprogs-1.43.8-r0: task do_patch: Started
->>> ERROR: e2fsprogs-native-1.43.8-r0 do_patch: Command Error: 'quilt --quiltrc
->>> Applying patch misc_create_inode.c-label_rootfs.patch
->>> patching file misc/create_inode.c
->>> Hunk #1 FAILED at 979.
->>> Hunk #2 FAILED at 987.
->>>
->>> Sinan
->>> -- 
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
+> diff --git a/recipes-extended/libvirt/libvirt_4.7.0.bb b/recipes-extended/libvirt/libvirt_4.7.0.bb
+> index 47275ae..a1175f5 100644
+> --- a/recipes-extended/libvirt/libvirt_4.7.0.bb
+> +++ b/recipes-extended/libvirt/libvirt_4.7.0.bb
+> @@ -186,6 +186,10 @@ PACKAGECONFIG ??= "qemu yajl uml openvz vmware vbox esx iproute2 lxc test \
+>                      ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'polkit', '', d)} \
+>                     "
+>   
+> +# qemu is NOT compatible with mips64
+> +PACKAGECONFIG_remove_mipsarchn32 = "qemu"
+> +PACKAGECONFIG_remove_mipsarchn64 = "qemu"
+> +
+>   # enable,disable,depends,rdepends
+>   #
+>   PACKAGECONFIG[qemu] = "--with-qemu,--without-qemu,qemu,"
 > 
 
 
