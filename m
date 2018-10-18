@@ -1,6 +1,6 @@
-Return-Path: <dhanush.ks@gmail.com>
+Return-Path: <tomasz.dziendzielski@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BECF0E00B5E; Thu, 18 Oct 2018 01:02:41 -0700 (PDT)
+	id C6000E00B81; Thu, 18 Oct 2018 01:55:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,53 +10,59 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (dhanush.ks[at]gmail.com)
+	provider *      (tomasz.dziendzielski[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.49 listed in list.dnswl.org]
+	*      [209.85.166.49 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
-	[209.85.221.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD730E00A0C
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 01:02:39 -0700 (PDT)
-Received: by mail-wr1-f49.google.com with SMTP id n11-v6so32451416wru.13
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 01:02:39 -0700 (PDT)
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com
+	[209.85.166.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AD63E00A0C
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 01:55:51 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id l25-v6so20515292ioj.0
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 01:55:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=O3nHeZM7U6PtEnbVqz09TxQRj/Go8ysvRgiILMeGJFw=;
-	b=PnurtPgV/vKhKuQshNmJyQH2GJHsK5spIuBAJUWcntJNhYLbA3ABAxBAJv4YYh3IbJ
-	ZMPYFpRTxzJRyYEJ06sHCUZY5TcrWE3pI7nLCewDCm2/UQB8/jOf8g1lEJuLPAxf/bic
-	KxSlYc/PfKy6EIJ55VIqyZuvArtjrFb7fpQYMJM1AqMC/lk4l14iAWtiwIKm2A1NyGwg
-	t+LqaLNFookSCObHNzR2Y0hDX5l+l9C9bDYV89OY1fghTLVIUK7/3ZtuF8tRXs+JhNWh
-	apD99Dz9GA0o4zSk7HTOw6yNjS4WIDvgzfYIAofE614KMSGMU8NthTLv15/zRFw+28vq
-	mPmQ==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=E3bx5YfIgGxSCbqeSvA7iMv6nvjWR0qWoWkoBgwvl3c=;
+	b=ZPXpzWidLD1Ylvv3lMTkV44kAIOJcnP2smC2xIvlN80gmAAAMyIqylpkh7rdU5grrv
+	WH8gCdmZ94bMUN0WuNPETdzmebxbd4AVWni3gTVIdjm0Zd0cEGw9Q4iVZmaBZwmLmbPx
+	iekDls818RMN3/Ceq820ziPUDH5IPJ9QTZI3TnPwIyUAXyLZnCiyquTHuI548pR2Ykyu
+	8h4rjVEtuJDECWNlWSPwtzRQy3jtd7nB6RgLNF/9C4jad1ealThlo8PeBLVO1XNgPn+J
+	T0amdSbw2ZaN3ZePQjX1a1oXNt8BbCEvOU0JdChECRfFOB3mpzMICkoQqAd0ZyeTNeKm
+	zB8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=O3nHeZM7U6PtEnbVqz09TxQRj/Go8ysvRgiILMeGJFw=;
-	b=P6CqEObb0GFhREgafD4ehibtq6dAAWsiJ+LsORuHV5sNbf4wb9FFIjkpoYr4u9Mj7V
-	DIGWzPePNEL+jBJ2cNzajSEbXgqWC13DUt6gafJ+LcXNz9GZZVoY64pV3WzPWv3r3Q9Z
-	ugLk6TG7ZAOtt2jHwImKZQ/iiJalRsphkNOotoffU+WVJcLDeIIGPlqYsMS8d8ZoXUXD
-	po+2sxv6bIV8N8LOzq6Hb0yNER2/cvVNUMsepmfVGk0eypo9B4K0sYpgb4SMfHt7TLUx
-	qCeRu+KlX2wTSoorMoLegPVeSGvhnJwWxYHxWuJUXHVgDE4MbIGT+nYe3pWZTdSJ6Xvb
-	vfoQ==
-X-Gm-Message-State: ABuFfohPDlxaHUXoVxmeLbph5sw8CmlhkUgQnBfilDLzFbrOzUlrkPyT
-	N4TTDkSsAXoNatLExO20yI+lRqNisBVNRp7vDFiYMqpyMiU=
-X-Google-Smtp-Source: ACcGV62RVJ/Dex7JCgHw81j8/K6bUaa8GxiGX9J2hbzjKh2oYDDXZv9d8uBgpFlsyygWfUA/20EUyAyuMaGIz11cVew=
-X-Received: by 2002:a5d:6b4f:: with SMTP id
-	x15-v6mr26484505wrw.304.1539849758295; 
-	Thu, 18 Oct 2018 01:02:38 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=E3bx5YfIgGxSCbqeSvA7iMv6nvjWR0qWoWkoBgwvl3c=;
+	b=jBUq3/+zGct1anaN+kEvhIhAugNoQ3G52ZWrgQhBSbi0CYxCGMbXhOT4sTxiL4aC7S
+	nIXxs96xxsFh8SvqIqxRL3+REv2wXbZNIyX2tYwaEIScPSRqpu99c7gWioeXzUmReUV5
+	1UYVe1MPqrYaYJvOeDCXYwGbMeb1WPZomBG+gWFZOS8Plezyw3f5WV5TPMHbUWklpnIk
+	hrlulJsPaVYQ7U81LZnFkqqN4h4ZEKHLogOOydjp6UqXB65pusQqoY6ILwhmLX+bQj5J
+	hRlccd+pen8djuaeR4kLSvcAKOk0mXm6HqkPqazOqxBuR4mB8TYFCBkiWIj7KcqN9LB8
+	q3HA==
+X-Gm-Message-State: ABuFfoiEBQq791yB3nga55FEbSAb+cjJP77TSrxRC7/cbX37s6DD9Nys
+	qpKSSlbyAUwb7u1pVFSoWbrKFshFcgEbDfRtnok=
+X-Google-Smtp-Source: ACcGV632kOwn6o1u0ynpiEcG8aqmJ9SrR6QRtRfWkuAX1seIbqpP6z4BU+j4Gp40qCwooH6cqu7Nrr8073TMRsiFGi0=
+X-Received: by 2002:a6b:e802:: with SMTP id
+	f2-v6mr18930227ioh.19.1539852951348; 
+	Thu, 18 Oct 2018 01:55:51 -0700 (PDT)
 MIME-Version: 1.0
-From: "Dhanush K.S" <dhanush.ks@gmail.com>
-Date: Thu, 18 Oct 2018 10:02:28 +0200
-Message-ID: <CAKPYHZ4VV_+PpwJE_=EVq2HNxfU4PuCjg-2T+AueB+9Jv1eG9A@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Busybox_1.23.2 fails at do_compile on Poky-Sumo
+References: <CAJkqNs1qEJHk-knxqZ-+P1VSOjgeZt9x=RjMWSV1QUt5J3i-aw@mail.gmail.com>
+	<CAJTo0LYGf_waBvUe22FY+vA7s4eNMPfZqH8JUoMGUQqyAiWWcA@mail.gmail.com>
+	<CAJkqNs0bzNNuaXEAfWXvKw507iMv+OJ-uhLOr09g5K5gXTPgdA@mail.gmail.com>
+In-Reply-To: <CAJkqNs0bzNNuaXEAfWXvKw507iMv+OJ-uhLOr09g5K5gXTPgdA@mail.gmail.com>
+From: Tomasz Dziendzielski <tomasz.dziendzielski@gmail.com>
+Date: Thu, 18 Oct 2018 10:56:22 +0200
+Message-ID: <CAJkqNs3qrO21DyFy6DZYtDs816fR23eyuXCxNL0uVt3Uea3hig@mail.gmail.com>
+To: ross.burton@intel.com
+Cc: yocto@yoctoproject.org
+Subject: Re: archiver.bbclass: do_dumpdata - shell format
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,382 +74,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Oct 2018 08:02:41 -0000
-Content-Type: multipart/alternative; boundary="000000000000d9cff705787c351e"
+X-List-Received-Date: Thu, 18 Oct 2018 08:55:53 -0000
+Content-Type: multipart/alternative; boundary="0000000000002bebc205787cf425"
 
---000000000000d9cff705787c351e
+--0000000000002bebc205787cf425
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Yocto,
+So what is the proper solution?
 
-I'm currently building an image with the busybox_1.23.2.bb recipe included,
-using Yocto Sumo 2.5 with the Bitbake version 1.37.0. It is running on a
-CentOS host building images for the target ARM cortexa8. This busybox
-recipe is placed in another custom layer. Though this recipe compiles
-without errors in Poky-Fido, in Poky-Sumo I get compilation errors due to
-missing header files. I have pasted a part of the log.do.compile file with
-the error.
+Best regards,
+Tomasz Dziendzielski
 
-*# merged configuration written to .config (needs make)*
-*#*
-*NOTE: make -j 2 LD=3Darm-poky-linux-gnueabi-gcc  -march=3Darmv7-a -mfpu=3D=
-neon
--mfloat-abi=3Dhard -mcpu=3Dcortex-a8
---sysroot=3D/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-corte=
-x-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/recipe-s=
-ysroot
-V=3D1 ARCH=3Darm CROSS_COMPILE=3Darm-poky-linux-gnueabi- SKIP_STRIP=3Dy
-busybox_unstripped*
-*rm -f .kernelrelease*
-*echo 1.23.2 > .kernelrelease*
-*/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wo=
-rk/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2/scri=
-pts/gen_build_files.sh
-/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wor=
-k/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2
-/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wor=
-k/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2*
-*make -f
-/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wor=
-k/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2/Makef=
-ile
-silentoldconfig*
-*make -f scripts/Makefile.build obj=3Dscripts/basic*
-*/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wo=
-rk/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2/scri=
-pts/gen_build_files.sh
-/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wor=
-k/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2
-/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wor=
-k/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2*
-*mkdir -p include*
-*make -f scripts/Makefile.build obj=3Dscripts/kconfig silentoldconfig*
-*scripts/kconfig/conf -s Config.in*
-*#*
-*# using defaults found in .config*
-*#*
-*make -C
-/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wor=
-k/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2
-KBUILD_SRC=3D .kernelrelease*
-*rm -f .kernelrelease*
-*echo 1.23.2 > .kernelrelease*
-*make -f scripts/Makefile.build obj=3Dscripts/basic*
-*make -f scripts/Makefile.build obj=3Dapplets*
-*  scripts/basic/split-include include/autoconf.h include/config*
-*  gcc -Wp,-MD,applets/.usage.d  -Wall -Wstrict-prototypes -O2
--fomit-frame-pointer      -Iinclude -Iinclude -o applets/usage
-applets/usage.c  *
-*  gcc -Wp,-MD,applets/.applet_tables.d  -Wall -Wstrict-prototypes -O2
--fomit-frame-pointer       -o applets/applet_tables
-applets/applet_tables.c  *
-*
-/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wor=
-k/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2/scrip=
-ts/mkconfigs
-include/bbconfigopts.h include/bbconfigopts_bz2.h*
-*make -f scripts/Makefile.build obj=3Dscripts*
-*  applets/usage_compressed include/usage_compressed.h applets*
-*  applets/applet_tables include/applet_tables.h include/NUM_APPLETS.h*
-*  gcc -Wp,-MD,applets/.usage_pod.d  -Wall -Wstrict-prototypes -O2
--fomit-frame-pointer      -Iinclude -Iinclude -o applets/usage_pod
-applets/usage_pod.c  *
-*  arm-poky-linux-gnueabi-gcc -Wp,-MD,applets/.applets.o.d   -std=3Dgnu99
--Iinclude -Ilibbb  -include include/autoconf.h -D_GNU_SOURCE -DNDEBUG
--D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=3D64
--D"BB_VER=3DKBUILD_STR(1.23.2)" -DBB_BT=3DAUTOCONF_TIMESTAMP  -Wall -Wshado=
-w
--Wwrite-strings -Wundef -Wstrict-prototypes -Wunused -Wunused-parameter
--Wunused-function -Wunused-value -Wmissing-prototypes
--Wmissing-declarations -Wno-format-security -Wdeclaration-after-statement
--Wold-style-definition -fno-builtin-strlen -finline-limit=3D0
--fomit-frame-pointer -ffunction-sections -fdata-sections
--fno-guess-branch-probability -funsigned-char -static-libgcc
--falign-functions=3D1 -falign-jumps=3D1 -falign-labels=3D1 -falign-loops=3D=
-1
--fno-unwind-tables -fno-asynchronous-unwind-tables -Os -O2 -pipe -g
--feliminate-unused-debug-types
--fdebug-prefix-map=3D/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_=
-arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0=
-=3D/usr/src/debug/busybox/1.23.2-r0
--fdebug-prefix-map=3D/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_=
-arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0=
-/recipe-sysroot=3D
--fdebug-prefix-map=3D/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_=
-arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0=
-/recipe-sysroot-native=3D
--mtune=3Dcortex-a8  -O2 -pipe -g -feliminate-unused-debug-types
--fdebug-prefix-map=3D/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_=
-arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0=
-=3D/usr/src/debug/busybox/1.23.2-r0
--fdebug-prefix-map=3D/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_=
-arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0=
-/recipe-sysroot=3D
--fdebug-prefix-map=3D/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_=
-arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0=
-/recipe-sysroot-native=3D
--mtune=3Dcortex-a8   -D"KBUILD_STR(s)=3D#s"
--D"KBUILD_BASENAME=3DKBUILD_STR(applets)"
--D"KBUILD_MODNAME=3DKBUILD_STR(applets)" -c -o applets/applets.o
-applets/applets.c*
-*In file included from
-/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wor=
-k/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/recipe-sysroot-nativ=
-e/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/7.3.0/include-f=
-ixed/syslimits.h:7:0,*
-*                 from
-/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wor=
-k/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/recipe-sysroot-nativ=
-e/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/7.3.0/include-f=
-ixed/limits.h:34,*
-*                 from include/platform.h:141,*
-*                 from include/libbb.h:13,*
-*                 from include/busybox.h:8,*
-*                 from applets/applets.c:9:*
-*/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wo=
-rk/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/recipe-sysroot-nati=
-ve/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/7.3.0/include-=
-fixed/limits.h:194:61:
-error: no include path in which to search for limits.h*
-* #include_next <limits.h>  /* recurse down to the real one */*
-*                                                             ^*
-*In file included from include/libbb.h:13:0,*
-*                 from include/busybox.h:8,*
-*                 from applets/applets.c:9:*
-*include/platform.h:152:11: fatal error: byteswap.h: No such file or
-directory*
-* # include <byteswap.h>*
-*           ^~~~~~~~~~~~*
-*compilation terminated.*
-*make[1]: *** [scripts/Makefile.build:198: applets/applets.o] Error 1*
-*make[1]: *** Waiting for unfinished jobs....*
-*make: *** [Makefile:373: applets_dir] Error 2*
-*ERROR: oe_runmake failed*
-*WARNING:
-/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wor=
-k/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/temp/run.do_compile.=
-26870:1
-exit 1 from 'exit 1'*
-*ERROR: Function failed: do_compile (log file is located at
-/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/wor=
-k/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/temp/log.do_compile.=
-26870)*
+wt., 16 pa=C5=BA 2018 o 16:00 Tomasz Dziendzielski <
+tomasz.dziendzielski@gmail.com> napisa=C5=82(a):
 
-Both limits.h and byteswap.h don't exist in Poky-Fido as well, but compiles
-without problems, unlike on Sumo. Does this have to do with the wrong
-Toolchains used or due to glibc (FYI: glibc_2.27 is been used)? If it has
-to do with the Toolchains, which one should I be using and how do I go
-about it?
+> Yes, I want to source the data files. I'm trying to adapt devtool the way
+> it's creating the workspace, then I'm sourcing a script with all the
+> necessary variables and then interactively run commands by hand.
+> I was thinking about the devshell but in devshell variables like ${S},
+> ${B} are not set and developers would need to set it manually. Or maybe
+> this is where we should do the change and inject exporting that variables
+> in devshell?
+>
+> >it's shell-like but not actually shell.
+> So we should not state that this can be sourced by a shell. It's stated i=
+n
+> bitbake/lib/bb/data.py few times.
+> Or fix it and make it possible to source.
+>
+> Best regards,
+> Tomasz Dziendzielski
+>
+> wt., 16 pa=C5=BA 2018 o 15:00 Burton, Ross <ross.burton@intel.com> napisa=
+=C5=82(a):
+>
+>> Do you actually want to source the data files, and if so why?  As with
+>> the bitbake -e output, it's shell-like but not actually shell.
+>>
+>> Ross
+>> On Tue, 16 Oct 2018 at 13:44, Tomasz Dziendzielski
+>> <tomasz.dziendzielski@gmail.com> wrote:
+>> >
+>> > Hi,
+>> > when using archiver.bbclass the do_dumpdata task is using
+>> bb.data.emit_env function, which should emit variables "in a format such
+>> that it can be sourced by a shell.".
+>> > The problem is that the *-showdata.dump file can't be properly sourced=
+,
+>> because variables are not in a correct format.
+>> >
+>> > There are many lines like:
+>> > PREFERRED_PROVIDER_virtual/fakeroot-native=3D"pseudo-native"
+>> > The variables with slash are considered to be a directory and the ones
+>> with dash are considered to be a command.
+>> > Also shell cannot properly set the variables like FOO_machine.
+>> >
+>> > Should it be sourced with some specific shell or is that function wron=
+g
+>> and should be fixed?
+>> >
+>> > Best regards,
+>> > Tomasz Dziendzielski
+>> > --
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
 
-Thanks!
-Regards,
-
-Mit freundlichen Gr=C3=BC=C3=9Fen / Best Regards,
-Dhanush
-
---000000000000d9cff705787c351e
+--0000000000002bebc205787cf425
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
-t-family:georgia,serif">Hello Yocto,</div><div class=3D"gmail_default" styl=
-e=3D"font-family:georgia,serif"><br></div><div class=3D"gmail_default" styl=
-e=3D"font-family:georgia,serif">I&#39;m currently building an image with th=
-e <a href=3D"http://busybox_1.23.2.bb">busybox_1.23.2.bb</a> recipe include=
-d, using Yocto Sumo 2.5 with the Bitbake version 1.37.0. It is running on a=
- CentOS host building images for the target ARM cortexa8. This busybox reci=
-pe is placed in another custom layer. Though this recipe compiles without e=
-rrors in Poky-Fido, in Poky-Sumo I get compilation errors due to missing he=
-ader files. I have pasted a part of the log.do.compile file with the error.=
-</div><div class=3D"gmail_default" style=3D"font-family:georgia,serif"><br>=
-</div><div class=3D"gmail_default" style=3D""><div class=3D"gmail_default" =
-style=3D""><font face=3D"times new roman, serif"><i># merged configuration =
-written to .config (needs make)</i></font></div><div class=3D"gmail_default=
-" style=3D""><font face=3D"times new roman, serif"><i>#</i></font></div><di=
-v class=3D"gmail_default" style=3D""><font face=3D"times new roman, serif">=
-<i>NOTE: make -j 2 LD=3Darm-poky-linux-gnueabi-gcc=C2=A0 -march=3Darmv7-a -=
-mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-a8 --sysroot=3D/opt/ac500/yoc=
-to/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-n=
-eon-poky-linux-gnueabi/busybox/1.23.2-r0/recipe-sysroot V=3D1 ARCH=3Darm CR=
-OSS_COMPILE=3Darm-poky-linux-gnueabi- SKIP_STRIP=3Dy busybox_unstripped</i>=
-</font></div><div class=3D"gmail_default" style=3D""><font face=3D"times ne=
-w roman, serif"><i>rm -f .kernelrelease</i></font></div><div class=3D"gmail=
-_default" style=3D""><font face=3D"times new roman, serif"><i>echo 1.23.2 &=
-gt; .kernelrelease</i></font></div><div class=3D"gmail_default" style=3D"">=
-<font face=3D"times new roman, serif"><i>/opt/ac500/yocto/branches/DEVEL_ne=
-xtYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnuea=
-bi/busybox/1.23.2-r0/busybox-1.23.2/scripts/gen_build_files.sh /opt/ac500/y=
-octo/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf=
--neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2 /opt/ac500/yocto/=
-branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-neon=
--poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2</i></font></div><div c=
-lass=3D"gmail_default" style=3D""><font face=3D"times new roman, serif"><i>=
-make -f /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8=
-/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23=
-.2/Makefile silentoldconfig</i></font></div><div class=3D"gmail_default" st=
-yle=3D""><font face=3D"times new roman, serif"><i>make -f scripts/Makefile.=
-build obj=3Dscripts/basic</i></font></div><div class=3D"gmail_default" styl=
-e=3D""><font face=3D"times new roman, serif"><i>/opt/ac500/yocto/branches/D=
-EVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linu=
-x-gnueabi/busybox/1.23.2-r0/busybox-1.23.2/scripts/gen_build_files.sh /opt/=
-ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/cor=
-texa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2 /opt/ac500=
-/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8=
-hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2</i></font></div=
-><div class=3D"gmail_default" style=3D""><font face=3D"times new roman, ser=
-if"><i>mkdir -p include</i></font></div><div class=3D"gmail_default" style=
-=3D""><font face=3D"times new roman, serif"><i>make -f scripts/Makefile.bui=
-ld obj=3Dscripts/kconfig silentoldconfig</i></font></div><div class=3D"gmai=
-l_default" style=3D""><font face=3D"times new roman, serif"><i>scripts/kcon=
-fig/conf -s Config.in</i></font></div><div class=3D"gmail_default" style=3D=
-""><font face=3D"times new roman, serif"><i>#</i></font></div><div class=3D=
-"gmail_default" style=3D""><font face=3D"times new roman, serif"><i># using=
- defaults found in .config</i></font></div><div class=3D"gmail_default" sty=
-le=3D""><font face=3D"times new roman, serif"><i>#</i></font></div><div cla=
-ss=3D"gmail_default" style=3D""><font face=3D"times new roman, serif"><i>ma=
-ke -C /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/t=
-mp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/busybox-1.23.2=
- KBUILD_SRC=3D .kernelrelease</i></font></div><div class=3D"gmail_default" =
-style=3D""><font face=3D"times new roman, serif"><i>rm -f .kernelrelease</i=
-></font></div><div class=3D"gmail_default" style=3D""><font face=3D"times n=
-ew roman, serif"><i>echo 1.23.2 &gt; .kernelrelease</i></font></div><div cl=
-ass=3D"gmail_default" style=3D""><font face=3D"times new roman, serif"><i>m=
-ake -f scripts/Makefile.build obj=3Dscripts/basic</i></font></div><div clas=
-s=3D"gmail_default" style=3D""><font face=3D"times new roman, serif"><i>mak=
-e -f scripts/Makefile.build obj=3Dapplets</i></font></div><div class=3D"gma=
-il_default" style=3D""><font face=3D"times new roman, serif"><i>=C2=A0 scri=
-pts/basic/split-include include/autoconf.h include/config</i></font></div><=
-div class=3D"gmail_default" style=3D""><font face=3D"times new roman, serif=
-"><i>=C2=A0 gcc -Wp,-MD,applets/.usage.d=C2=A0 -Wall -Wstrict-prototypes -O=
-2 -fomit-frame-pointer=C2=A0 =C2=A0 =C2=A0 -Iinclude -Iinclude -o applets/u=
-sage applets/usage.c=C2=A0=C2=A0</i></font></div><div class=3D"gmail_defaul=
-t" style=3D""><font face=3D"times new roman, serif"><i>=C2=A0 gcc -Wp,-MD,a=
-pplets/.applet_tables.d=C2=A0 -Wall -Wstrict-prototypes -O2 -fomit-frame-po=
-inter=C2=A0 =C2=A0 =C2=A0 =C2=A0-o applets/applet_tables applets/applet_tab=
-les.c=C2=A0=C2=A0</i></font></div><div class=3D"gmail_default" style=3D""><=
-font face=3D"times new roman, serif"><i>=C2=A0 /opt/ac500/yocto/branches/DE=
-VEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux=
--gnueabi/busybox/1.23.2-r0/busybox-1.23.2/scripts/mkconfigs include/bbconfi=
-gopts.h include/bbconfigopts_bz2.h</i></font></div><div class=3D"gmail_defa=
-ult" style=3D""><font face=3D"times new roman, serif"><i>make -f scripts/Ma=
-kefile.build obj=3Dscripts</i></font></div><div class=3D"gmail_default" sty=
-le=3D""><font face=3D"times new roman, serif"><i>=C2=A0 applets/usage_compr=
-essed include/usage_compressed.h applets</i></font></div><div class=3D"gmai=
-l_default" style=3D""><font face=3D"times new roman, serif"><i>=C2=A0 apple=
-ts/applet_tables include/applet_tables.h include/NUM_APPLETS.h</i></font></=
-div><div class=3D"gmail_default" style=3D""><font face=3D"times new roman, =
-serif"><i>=C2=A0 gcc -Wp,-MD,applets/.usage_pod.d=C2=A0 -Wall -Wstrict-prot=
-otypes -O2 -fomit-frame-pointer=C2=A0 =C2=A0 =C2=A0 -Iinclude -Iinclude -o =
-applets/usage_pod applets/usage_pod.c=C2=A0=C2=A0</i></font></div><div clas=
-s=3D"gmail_default" style=3D""><font face=3D"times new roman, serif"><i>=C2=
-=A0 arm-poky-linux-gnueabi-gcc -Wp,-MD,applets/.applets.o.d=C2=A0 =C2=A0-st=
-d=3Dgnu99 -Iinclude -Ilibbb=C2=A0 -include include/autoconf.h -D_GNU_SOURCE=
- -DNDEBUG -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=3D6=
-4 -D&quot;BB_VER=3DKBUILD_STR(1.23.2)&quot; -DBB_BT=3DAUTOCONF_TIMESTAMP=C2=
-=A0 -Wall -Wshadow -Wwrite-strings -Wundef -Wstrict-prototypes -Wunused -Wu=
-nused-parameter -Wunused-function -Wunused-value -Wmissing-prototypes -Wmis=
-sing-declarations -Wno-format-security -Wdeclaration-after-statement -Wold-=
-style-definition -fno-builtin-strlen -finline-limit=3D0 -fomit-frame-pointe=
-r -ffunction-sections -fdata-sections -fno-guess-branch-probability -funsig=
-ned-char -static-libgcc -falign-functions=3D1 -falign-jumps=3D1 -falign-lab=
-els=3D1 -falign-loops=3D1 -fno-unwind-tables -fno-asynchronous-unwind-table=
-s -Os -O2 -pipe -g -feliminate-unused-debug-types -fdebug-prefix-map=3D/opt=
-/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/co=
-rtexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0=3D/usr/src/debug/busybox=
-/1.23.2-r0 -fdebug-prefix-map=3D/opt/ac500/yocto/branches/DEVEL_nextYocto/y=
-octo/build_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybo=
-x/1.23.2-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/ac500/yocto/branche=
-s/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-l=
-inux-gnueabi/busybox/1.23.2-r0/recipe-sysroot-native=3D -mtune=3Dcortex-a8=
-=C2=A0 -O2 -pipe -g -feliminate-unused-debug-types -fdebug-prefix-map=3D/op=
-t/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/c=
-ortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0=3D/usr/src/debug/busybo=
-x/1.23.2-r0 -fdebug-prefix-map=3D/opt/ac500/yocto/branches/DEVEL_nextYocto/=
-yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busyb=
-ox/1.23.2-r0/recipe-sysroot=3D -fdebug-prefix-map=3D/opt/ac500/yocto/branch=
-es/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-=
-linux-gnueabi/busybox/1.23.2-r0/recipe-sysroot-native=3D=C2=A0 -mtune=3Dcor=
-tex-a8=C2=A0 =C2=A0-D&quot;KBUILD_STR(s)=3D#s&quot; -D&quot;KBUILD_BASENAME=
-=3DKBUILD_STR(applets)&quot;=C2=A0 -D&quot;KBUILD_MODNAME=3DKBUILD_STR(appl=
-ets)&quot; -c -o applets/applets.o applets/applets.c</i></font></div><div c=
-lass=3D"gmail_default" style=3D""><font face=3D"times new roman, serif"><i>=
-In file included from /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build=
-_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r=
-0/recipe-sysroot-native/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux-g=
-nueabi/7.3.0/include-fixed/syslimits.h:7:0,</i></font></div><div class=3D"g=
-mail_default" style=3D""><font face=3D"times new roman, serif"><i>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from /opt/ac500/yoct=
-o/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-ne=
-on-poky-linux-gnueabi/busybox/1.23.2-r0/recipe-sysroot-native/usr/lib/arm-p=
-oky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/7.3.0/include-fixed/limits.h:3=
-4,</i></font></div><div class=3D"gmail_default" style=3D""><font face=3D"ti=
-mes new roman, serif"><i>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0from include/platform.h:141,</i></font></div><div class=3D"gma=
-il_default" style=3D""><font face=3D"times new roman, serif"><i>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from include/libbb.h:13=
-,</i></font></div><div class=3D"gmail_default" style=3D""><font face=3D"tim=
-es new roman, serif"><i>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0from include/busybox.h:8,</i></font></div><div class=3D"gmail_=
-default" style=3D""><font face=3D"times new roman, serif"><i>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from applets/applets.c:9:</=
-i></font></div><div class=3D"gmail_default" style=3D""><font face=3D"times =
-new roman, serif"><i>/opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_=
-arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0=
-/recipe-sysroot-native/usr/lib/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gn=
-ueabi/7.3.0/include-fixed/limits.h:194:61: error: no include path in which =
-to search for limits.h</i></font></div><div class=3D"gmail_default" style=
-=3D""><font face=3D"times new roman, serif"><i>=C2=A0#include_next &lt;limi=
-ts.h&gt;=C2=A0 /* recurse down to the real one */</i></font></div><div clas=
-s=3D"gmail_default" style=3D""><font face=3D"times new roman, serif"><i>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^</i></fo=
-nt></div><div class=3D"gmail_default" style=3D""><font face=3D"times new ro=
-man, serif"><i>In file included from include/libbb.h:13:0,</i></font></div>=
-<div class=3D"gmail_default" style=3D""><font face=3D"times new roman, seri=
-f"><i>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from in=
-clude/busybox.h:8,</i></font></div><div class=3D"gmail_default" style=3D"">=
-<font face=3D"times new roman, serif"><i>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0from applets/applets.c:9:</i></font></div><div =
-class=3D"gmail_default" style=3D""><font face=3D"times new roman, serif"><i=
->include/platform.h:152:11: fatal error: byteswap.h: No such file or direct=
-ory</i></font></div><div class=3D"gmail_default" style=3D""><font face=3D"t=
-imes new roman, serif"><i>=C2=A0# include &lt;byteswap.h&gt;</i></font></di=
-v><div class=3D"gmail_default" style=3D""><font face=3D"times new roman, se=
-rif"><i>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~~~~~~~~~~~</i></font></d=
-iv><div class=3D"gmail_default" style=3D""><font face=3D"times new roman, s=
-erif"><i>compilation terminated.</i></font></div><div class=3D"gmail_defaul=
-t" style=3D""><font face=3D"times new roman, serif"><i>make[1]: *** [script=
-s/Makefile.build:198: applets/applets.o] Error 1</i></font></div><div class=
-=3D"gmail_default" style=3D""><font face=3D"times new roman, serif"><i>make=
-[1]: *** Waiting for unfinished jobs....</i></font></div><div class=3D"gmai=
-l_default" style=3D""><font face=3D"times new roman, serif"><i>make: *** [M=
-akefile:373: applets_dir] Error 2</i></font></div><div class=3D"gmail_defau=
-lt" style=3D""><font face=3D"times new roman, serif"><i>ERROR: oe_runmake f=
-ailed</i></font></div><div class=3D"gmail_default" style=3D""><font face=3D=
-"times new roman, serif"><i>WARNING: /opt/ac500/yocto/branches/DEVEL_nextYo=
-cto/yocto/build_arm-cortex-a8/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/b=
-usybox/1.23.2-r0/temp/run.do_compile.26870:1 exit 1 from &#39;exit 1&#39;</=
-i></font></div><div class=3D"gmail_default" style=3D""><font face=3D"times =
-new roman, serif"><i>ERROR: Function failed: do_compile (log file is locate=
-d at /opt/ac500/yocto/branches/DEVEL_nextYocto/yocto/build_arm-cortex-a8/tm=
-p/work/cortexa8hf-neon-poky-linux-gnueabi/busybox/1.23.2-r0/temp/log.do_com=
-pile.26870)</i></font></div><div class=3D"gmail_default" style=3D"font-fami=
-ly:georgia,serif"><br></div><div class=3D"gmail_default" style=3D"font-fami=
-ly:georgia,serif">Both limits.h and byteswap.h don&#39;t exist in Poky-Fido=
- as well, but compiles without problems, unlike on Sumo. Does this have to =
-do with the wrong Toolchains used or due to glibc (FYI: glibc_2.27 is been =
-used)? If it has to do with the Toolchains, which one should I be using and=
- how do I go about it?</div><div class=3D"gmail_default" style=3D"font-fami=
-ly:georgia,serif"><br></div><div class=3D"gmail_default" style=3D"font-fami=
-ly:georgia,serif">Thanks!</div><div class=3D"gmail_default" style=3D"font-f=
-amily:georgia,serif">Regards,</div><div class=3D"gmail_default" style=3D"fo=
-nt-family:georgia,serif"><br></div></div><div><div dir=3D"ltr" class=3D"gma=
-il_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font face=
-=3D"georgia, serif" color=3D"#666666">Mit=C2=A0freundlichen=C2=A0Gr=C3=BC=
-=C3=9Fen / Best Regards,</font><div><font face=3D"georgia, serif" color=3D"=
-#666666">Dhanush=C2=A0<br></font></div></div></div></div></div></div></div>=
-</div>
+<div dir=3D"ltr"><div>So what is the proper solution?</div><div><br></div><=
+div>Best regards,</div><div>Tomasz Dziendzielski<br></div><div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr">wt., 16 pa=C5=BA 2018 o 16:00=C2=A0Toma=
+sz Dziendzielski &lt;<a href=3D"mailto:tomasz.dziendzielski@gmail.com">toma=
+sz.dziendzielski@gmail.com</a>&gt; napisa=C5=82(a):<br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
+adding-left:1ex"><div dir=3D"ltr"><div>Yes, I want to source the data files=
+. I&#39;m trying to adapt devtool=20
+the way it&#39;s creating the workspace, then I&#39;m sourcing a script wit=
+h all
+ the necessary variables and then interactively run commands by hand. <br><=
+/div><div>I
+ was thinking about the devshell but in devshell variables like ${S},=20
+${B} are not set and developers would need to set it manually. Or maybe=20
+this is where we should do the change and inject exporting that=20
+variables in devshell?<br></div><span class=3D"m_-4831254567820543335gmail-=
+im"><div><br></div><div>&gt;it&#39;s shell-like but not actually shell.</di=
+v></span><div>So we should not state that this can be sourced by a shell. I=
+t&#39;s stated in bitbake/lib/bb/data.py few times.</div><div>Or fix it and=
+ make it possible to source.<br></div><div><br></div><div>Best regards,</di=
+v><div>Tomasz Dziendzielski</div></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr">wt., 16 pa=C5=BA 2018 o 15:00=C2=A0Burton, Ross &lt;<a href=3D"=
+mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&g=
+t; napisa=C5=82(a):<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Do you actually=
+ want to source the data files, and if so why?=C2=A0 As with<br>
+the bitbake -e output, it&#39;s shell-like but not actually shell.<br>
+<br>
+Ross<br>
+On Tue, 16 Oct 2018 at 13:44, Tomasz Dziendzielski<br>
+&lt;<a href=3D"mailto:tomasz.dziendzielski@gmail.com" target=3D"_blank">tom=
+asz.dziendzielski@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt; when using archiver.bbclass the do_dumpdata task is using bb.data.emit=
+_env function, which should emit variables &quot;in a format such that it c=
+an be sourced by a shell.&quot;.<br>
+&gt; The problem is that the *-showdata.dump file can&#39;t be properly sou=
+rced, because variables are not in a correct format.<br>
+&gt;<br>
+&gt; There are many lines like:<br>
+&gt; PREFERRED_PROVIDER_virtual/fakeroot-native=3D&quot;pseudo-native&quot;=
+<br>
+&gt; The variables with slash are considered to be a directory and the ones=
+ with dash are considered to be a command.<br>
+&gt; Also shell cannot properly set the variables like FOO_machine.<br>
+&gt;<br>
+&gt; Should it be sourced with some specific shell or is that function wron=
+g and should be fixed?<br>
+&gt;<br>
+&gt; Best regards,<br>
+&gt; Tomasz Dziendzielski<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
+oproject.org</a><br>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
+br>
+</blockquote></div>
+</blockquote></div></div></div>
 
---000000000000d9cff705787c351e--
+--0000000000002bebc205787cf425--
