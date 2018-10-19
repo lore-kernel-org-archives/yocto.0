@@ -1,48 +1,45 @@
-Return-Path: <stefan@agner.ch>
+Return-Path: <flowers.joseph@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF8A2E00971; Fri, 19 Oct 2018 08:46:54 -0700 (PDT)
+	id C68ECE0097C; Fri, 19 Oct 2018 14:17:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [178.209.48.109 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-X-Greylist: delayed 506 seconds by postgrey-1.32 at yocto-www;
-	Fri, 19 Oct 2018 08:46:53 PDT
-Received: from mail.kmu-office.ch (mail.kmu-office.ch [178.209.48.109])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F107DE003D9
-	for <yocto@yoctoproject.org>; Fri, 19 Oct 2018 08:46:53 -0700 (PDT)
-Received: from linuxdev2.toradex.int (unknown [46.140.72.82])
-	by mail.kmu-office.ch (Postfix) with ESMTPSA id 9DC405C0AF7;
-	Fri, 19 Oct 2018 17:38:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
-	t=1539963505;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	to:to:cc:cc:mime-version:content-type:content-transfer-encoding:
-	in-reply-to:references; bh=7UMqKNrLN9vupFxiLdL12Dp6LGnpCkQizRPfRHmuIJg=;
-	b=x21nZLnNb5cel3WAFEiWkz6LHo8OeE363ZXx9JIo3yH5dOuOVWMu9wda7qg/LuNUX/65pU
-	psNn5JwDkPGw9GKZ/ZwTvOJ910lVPTghumGc6daARjQ+KyiJk7kVqcBeOk7ms5l8qeNBgN
-	xjnvp9qrpWNqr6XMbE3KC1eZCf/8CME=
-From: Stefan Agner <stefan@agner.ch>
-To: opkg-devel@googlegroups.com, alejandro.delcastillo@ni.com,
-	yocto@yoctoproject.org
-Date: Fri, 19 Oct 2018 17:38:21 +0200
-Message-Id: <20181019153821.21177-1-stefan@agner.ch>
-X-Mailer: git-send-email 2.13.6
-Cc: Stefan Agner <stefan.agner@toradex.com>, stefan@agner.ch,
-	openembedded-core@lists.openembedded.org, ricardo@foundries.io
-Subject: [opkg-utils PATCH] opkg-make-index: use ctime instead of mtime
+	*      [209.85.166.46 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com
+	[209.85.166.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EC28E00920
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2018 14:17:51 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id y10-v6so23812089ioa.10
+	for <yocto@yoctoproject.org>; Fri, 19 Oct 2018 14:17:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=t+RcebuP871sVrBwUZc6XgKlNAe0AKxn2yp7jwq4874=;
+	b=ei2lg2pB01BJsav+G4KP5Lpashqus0LMiAD2e+czRnVG0M5t1dYQKyKd7iRbjmt4gq
+	dovzBfru6YLI9oskvBLVPqudYEk1uv+yk1e7+2S6Wsr94XswoNlcPzz+u5XECMcBrXFJ
+	OLjqVXIvA+db4Q5KkjBdBfRe/JEGqipKQkLaBCNeHflCfYaZ1aXmT8caBzpxykwKnd/A
+	/6Xf6lIlu8pMavoUH0/bhQepw+IJ13bVUldt1tRk7i4O1IfMZaEMsKA4xz27wk/wNn0M
+	tBnK91r20l2LVJLUgqgktePgykwC+Hp6r3uRtkXfn+FkL6OtBtcSlDX7SJQtvMVVjjbb
+	C4qw==
+X-Gm-Message-State: AGRZ1gKK+5nKpvxK8yC533Y41KZZtAvakZSZyvWQCHi7gr7tRc/vI1JP
+	+KJhl6kyvVXi1VoOMZG0KUgQ427RFjt95fbu94Ys
+X-Google-Smtp-Source: AJdET5coisk4fKty1qSfWSWEEZPmi1TWZpO80TfvG5iTaBMoNvo0ZOa4hAz2ohL6gJ7Pkytf1ijLf9j2ZtUhBpBlWmo=
+X-Received: by 2002:a6b:15c2:: with SMTP id
+	185-v6mr4329158iov.161.1539983870624; 
+	Fri, 19 Oct 2018 14:17:50 -0700 (PDT)
+MIME-Version: 1.0
+From: Joe Flowers <joe.flowers@nofreewill.com>
+Date: Fri, 19 Oct 2018 17:17:40 -0400
+Message-ID: <CA+4=ZEM9oFXNUTU8EKb_e2rCzpqZLw6Yc7dQV4mVMH2TbzRiaw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: SUSE SLES target OS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,59 +51,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Oct 2018 15:46:54 -0000
+X-List-Received-Date: Fri, 19 Oct 2018 21:17:51 -0000
+Content-Type: multipart/alternative; boundary="00000000000091896a05789b6fac"
 
-From: Stefan Agner <stefan.agner@toradex.com>
+--00000000000091896a05789b6fac
+Content-Type: text/plain; charset="UTF-8"
 
-When using sstate, two parallel builds can produce two packages
-with the same mtime but different checksums. When later one of
-those two builds fetches the others ipk, the package index does
-not get udpated properly (since mtime matches). This ends up with
-messages such as:
-  Downloading file:/../tmp/work/../image/...ipk.
-  Removing corrupt package file /../sysroot/../var/cache/opkg/volatile/...ipk
+Hello everyone,
 
-However, in that case, ctime is different. Use ctime instead of
-mtime to prevent failures like this.
+I need to get started on a Yocto set that will build a minimal core for a
+target OS of SUSE Linux Enterprise Server on x64 target hardware like a
+MinnowBoard.
 
-Suggested-by: Khem Raj <raj.khem@gmail.com>
-Signed-off-by: Stefan Agner <stefan.agner@toradex.com>
----
-This addresses the issue discussed here:
-http://lists.openembedded.org/pipermail/openembedded-core/2018-October/156348.html
+I have scoured the web, SUSE, and this list's (Yocto Project) archives, but
+have run into no pointers.  My guess is that it is right under my nose that
+can be seen with more experience rather than being hidden behind private
+walls.
 
- opkg-make-index | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Will someone please get me started on the pointers and downloads I need to
+get started?
 
-diff --git a/opkg-make-index b/opkg-make-index
-index 3227fc0..db7bf64 100755
---- a/opkg-make-index
-+++ b/opkg-make-index
-@@ -115,12 +115,12 @@ for abspath in files:
-      pkg = None
-      fnameStat = os.stat(abspath)
-      if filename in old_pkg_hash:
--          if filename in pkgsStamps and int(fnameStat.st_mtime) == pkgsStamps[filename]:
-+          if filename in pkgsStamps and int(fnameStat.st_ctime) == pkgsStamps[filename]:
-             if (verbose):
-                sys.stderr.write("Found %s in Packages\n" % (filename,))
-             pkg = old_pkg_hash[filename]
-           else:
--               sys.stderr.write("Found %s in Packages, but mtime differs - re-reading\n" % (filename,))
-+               sys.stderr.write("Found %s in Packages, but ctime differs - re-reading\n" % (filename,))
- 
-      if not pkg:
-           if (verbose):
-@@ -137,7 +137,7 @@ for abspath in files:
-      else:
-           old_filename = ""
-      s = packages.add_package(pkg, opt_a)
--     pkgsStamps[filename] = fnameStat.st_mtime
-+     pkgsStamps[filename] = fnameStat.st_ctime
-      if s == 0:
-           if old_filename:
-                # old package was displaced by newer
--- 
-2.13.6
+I have already run through a tutorial on creating a core OS using Yocto for
+a WandBoard target hardware.
 
 
+Thank you !
+
+Joe
+--------------
+
+--00000000000091896a05789b6fac
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello everyone,<div><br></div><div>I need to get started o=
+n a Yocto set that will build a minimal core for a target OS of SUSE Linux =
+Enterprise Server on x64 target hardware like a MinnowBoard.</div><div><br>=
+</div><div>I have scoured the web, SUSE, and this list&#39;s (Yocto Project=
+) archives, but have run into no pointers.=C2=A0 My guess is that it is rig=
+ht under my nose that can be seen with more experience rather than being hi=
+dden behind private walls.</div><div><br></div><div>Will someone please get=
+ me started on the pointers and downloads I need to get started?</div><div>=
+<br></div><div>I have already run through a tutorial on creating a core OS =
+using Yocto for a WandBoard target hardware.</div><div><br></div><div><br><=
+/div><div>Thank you !</div><div><br></div><div>Joe</div><div>--------------=
+</div><div><br></div></div>
+
+--00000000000091896a05789b6fac--
