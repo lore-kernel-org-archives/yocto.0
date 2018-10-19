@@ -1,67 +1,39 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 14A91E00A54; Thu, 18 Oct 2018 18:41:34 -0700 (PDT)
+	id 8201BE00BC2; Thu, 18 Oct 2018 19:22:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.195 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com
-	[209.85.214.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FA65E0097C
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 18:41:33 -0700 (PDT)
-Received: by mail-pl1-f195.google.com with SMTP id p5-v6so215797plq.8
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 18:41:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=LxJvrugRBrJw9TXP9tZdloONRP1cw+1QRf+YRRqsNmU=;
-	b=oqGbOINdzLT0JgLPTC9Qs5v4iNDoO8qXEPdHxaWb1X6iQfC/+1eeNgzgvj6+jlsA49
-	tBRZ6mp7Tknx27OVqutf6FF8TtDYikMH9B3bDUylMzRZNjOF+qGsB1CZ/ClC7inyvZ6E
-	zN3KGrefDyEw6w9KSEZ+TVJSFOSuFh/J5TSHhHRpnIumDXa54QBdIq5K2xomOTQxrg/C
-	DcRHLsl/8NASEgUm3zgOJzVzZjr5+udDx1FBpi2UcOBggnQjMvPsHHJ/MxZ2KDAiUfQX
-	J0t3O6vEYKWaQJNshO25EgmqsYzO+gMVec1Q6AOW8UFm2tqToduBgyUC/eAy0zC7ekCk
-	uwdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=LxJvrugRBrJw9TXP9tZdloONRP1cw+1QRf+YRRqsNmU=;
-	b=TN1C7QLfpGaiH0ivHbUUAlHVZTH64Mtz8M4NXUxIEOdi04gD1OT90pp7h/ed9nC7v0
-	qvSLx0veNzljtWTX2JCSf1/cjAzanK+SO417H9upJ1ntOdlKjydJnE8zcNjsKdOZOGLC
-	Rx/jztVUgDnSDJl0Tx2MHx2NK7+gYn4igjmHJd/iIJy/d1XSAaNpXa9DEjyoEXiBVhug
-	d4xpgkmT9sR0PuNtu+r/RYAjCQoYiU2/MAXeDvapfzdXl169D6ZdaJcbZzumCbSEEsHh
-	Oixw80FfJy5ETQHlIFKznI5ngmjeufSU2ph0rmwoJ2buugV9vXVYDi2MH7XX4Jc+gLdf
-	9WjQ==
-X-Gm-Message-State: ABuFfog3yHlEORjuc/6M+Ejk+D3Jjp5i8AMBIQ/M312b0iSbhJuyZjJM
-	C/Bam64UZTuCpjzTowDOJwkPhKPXjUw=
-X-Google-Smtp-Source: ACcGV62NhC75VwR/Ds5TbUqcKlFItiLDiAOZ0PUbblcRsL6iF6Z9iqgxF2MjFcqpMDrSSs2O7Qsjnw==
-X-Received: by 2002:a17:902:9:: with SMTP id
-	9-v6mr32152543pla.293.1539913292702; 
-	Thu, 18 Oct 2018 18:41:32 -0700 (PDT)
-Received: from akuster-ThinkPad-T460s.mvista.com ([109.144.216.73])
-	by smtp.gmail.com with ESMTPSA id
-	y185-v6sm34032168pgd.8.2018.10.18.18.41.31
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 18 Oct 2018 18:41:32 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu, 18 Oct 2018 18:41:28 -0700
-Message-Id: <1539913288-2889-1-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-security][PATCH] suricata: fix QA error
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E832E00994
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 19:22:11 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w9J2M99Z012204
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 18 Oct 2018 19:22:09 -0700 (PDT)
+Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
+	Thu, 18 Oct 2018 19:22:08 -0700
+To: "Mohammad, Jamal M" <MohammadJamal.Mohiuddin@ncr.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <DM5PR15MB1913BD8745ECEE34DF9A86E0F0F80@DM5PR15MB1913.namprd15.prod.outlook.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <9adf959e-b09f-dc4e-acbf-e6859e3572fd@windriver.com>
+Date: Fri, 19 Oct 2018 10:28:06 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <DM5PR15MB1913BD8745ECEE34DF9A86E0F0F80@DM5PR15MB1913.namprd15.prod.outlook.com>
+X-Originating-IP: [128.224.162.218]
+Subject: Re: conflicting requests error while building SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,42 +45,312 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Oct 2018 01:41:34 -0000
+X-List-Received-Date: Fri, 19 Oct 2018 02:22:12 -0000
+Content-Type: multipart/alternative;
+	boundary="------------8844102C5093404062AE3DF4"
 
-ollected errors:
- * check_data_file_clashes: Package suricata wants to install file .../1.0-r0/rootfs/var/run
-	But that file is already provided by package  * base-files
+--------------8844102C5093404062AE3DF4
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/suricata/suricata_4.0.5.bb | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+This is the current RDEPENDS setting in kernel-devsrc.bb recipe:
 
-diff --git a/recipes-security/suricata/suricata_4.0.5.bb b/recipes-security/suricata/suricata_4.0.5.bb
-index b30e9c5..90b4638 100644
---- a/recipes-security/suricata/suricata_4.0.5.bb
-+++ b/recipes-security/suricata/suricata_4.0.5.bb
-@@ -69,6 +69,10 @@ do_install_append () {
-          -e s:/bin/kill:${base_bindir}/kill:g \
-          -e s:/usr/lib:${libdir}:g \
-          ${WORKDIR}/suricata.service > ${D}${systemd_unitdir}/system/suricata.service
-+
-+    # Remove /var/run as it is created on startup
-+    rm -rf ${D}${localstatedir}/run
-+
- }
- 
- pkg_postinst_ontarget_${PN} () {
-@@ -80,7 +84,7 @@ fi
- SYSTEMD_PACKAGES = "${PN}"
- 
- PACKAGES =+ "${PN}-socketcontrol"
--FILES_${PN} += "${systemd_unitdir} /run"
-+FILES_${PN} += "${systemd_unitdir}"
- FILES_${PN}-socketcontrol = "${bindir}/suricatasc ${PYTHON_SITEPACKAGES_DIR}"
- 
- CONFFILES_${PN} = "${sysconfdir}/suricata/suricata.yaml"
--- 
-2.7.4
+RDEPENDS_${PN} = "bc python flex bison ${TCLIBC}-utils"
+# 4.15+ needs these next two RDEPENDS
+RDEPENDS_${PN} += "openssl-dev util-linux"
+# and x86 needs a bit more for 4.15+
+RDEPENDS_${PN} += "${@bb.utils.contains('ARCH', 'x86', 'elfutils', '', d)}"
+
+I think you need to update the RDEPENDS to "bc python flex bison 
+${TCLIBC}-utils" for the sumo branch?
+Could you please try it out and do some testing followed by a patch if 
+all work out well?
+
+Best Regards,
+Chen Qi
+
+On 10/18/2018 11:50 PM, Mohammad, Jamal M wrote:
+>
+> Hi Guys,
+>
+> I got the following conflicting requests error while building SDK
+>
+> I am using sumo branch , and generic core-intel-i7-64 machine 
+> configuration.
+>
+> Running the following command: bitbake -c populate_sdk core-image-minimal
+>
+> Fails at the last step with the following error.
+>
+> ERROR: core-image-minimal-1.0-r0 do_populate_sdk: Could not invoke 
+> dnf. Command 
+> '/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/recipe-sysroot-native/usr/bin/dnf 
+> -y -c 
+> /home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/sdk/image/opt/poky/2.5/sysroots/corei7-64-poky-linux/etc/dnf/dnf.conf 
+> --setopt=reposdir=/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/sdk/image/opt/poky/2.5/sysroots/corei7-64-poky-linux/etc/yum.repos.d 
+> --repofrompath=oe-repo,/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/oe-sdk-repo 
+> --installroot=/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/sdk/image/opt/poky/2.5/sysroots/corei7-64-poky-linux 
+> --setopt=logdir=/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/temp 
+> --nogpgcheck install lib32-dpkg lib32-libstdc++6 
+> lib32-packagegroup-core-standalone-sdk-target lib32-libx11-6 
+> lib32-ncurses lib32-libgcc1 lib32-libgnutls30 lib32-libfreetype6 
+> lib32-libc6 run-postinsts libgnutls30 dpkg kernel-devsrc 
+> packagegroup-core-standalone-sdk-target packagegroup-core-boot 
+> target-sdk-provides-dummy' returned 1:
+>
+> Added oe-repo repo from 
+> /home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/oe-sdk-repo
+>
+> Last metadata expiration check: 0:00:02 ago on Thu 18 Oct 2018 
+> 01:12:30 PM UTC.
+>
+> Error:
+>
+>  Problem: conflicting requests
+>
+>   - nothing provides /usr/bin/python needed by 
+> kernel-devsrc-1.0-r0.intel_corei7_64
+>
+> ERROR: core-image-minimal-1.0-r0 do_populate_sdk: Function failed: 
+> do_populate_sdk
+>
+> ERROR: Logfile of failure stored in: 
+> /home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/temp/log.do_populate_sdk.11307
+>
+> ERROR: Task 
+> (/home/jamal/repotest1/sources/poky/meta/recipes-core/images/core-image-minimal.bb:do_populate_sdk) 
+> failed with exit code '1'
+>
+> I found similar error in yocto mailing list, but unable to 
+> understand.. Can you please help me to resolve this issue.. Thanks for 
+> your time
+>
+> https://lists.yoctoproject.org/pipermail/yocto/2018-February/039941.html
+>
+> I have /usr/bin/python in my system
+>
+> Thanks and Regards,
+>
+> Jamal,
+>
+> NCR Corporation
+>
+>
+>
 
 
+--------------8844102C5093404062AE3DF4
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">This is the current RDEPENDS setting in
+      kernel-devsrc.bb recipe:<br>
+      <br>
+      RDEPENDS_${PN} = "bc python flex bison ${TCLIBC}-utils"<br>
+      # 4.15+ needs these next two RDEPENDS<br>
+      RDEPENDS_${PN} += "openssl-dev util-linux"<br>
+      # and x86 needs a bit more for 4.15+<br>
+      RDEPENDS_${PN} += <a class="moz-txt-link-rfc2396E" href="mailto:${@bb.utils.contains('ARCH','x86','elfutils','',d)}">"${@bb.utils.contains('ARCH', 'x86', 'elfutils',
+      '', d)}"</a><br>
+      <br>
+      I think you need to update the RDEPENDS to "bc python flex bison
+      ${TCLIBC}-utils" for the sumo branch?<br>
+      Could you please try it out and do some testing followed by a
+      patch if all work out well?<br>
+      <br>
+      Best Regards,<br>
+      Chen Qi<br>
+      <br>
+      On 10/18/2018 11:50 PM, Mohammad, Jamal M wrote:<br>
+    </div>
+    <blockquote
+cite="mid:DM5PR15MB1913BD8745ECEE34DF9A86E0F0F80@DM5PR15MB1913.namprd15.prod.outlook.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal">Hi Guys,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">I got the following conflicting requests
+          error while building SDK<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">I am using sumo branch , and generic
+          core-intel-i7-64 machine configuration.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Running the following command: bitbake -c
+          populate_sdk core-image-minimal<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Fails at the last step with the following
+          error.<o:p></o:p></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;margin-left:0in;text-autospace:none"><span
+            style="font-size:10.0pt"><o:p> </o:p></span></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;margin-left:0in;text-autospace:none"><span
+            style="font-size:10.0pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:black">ERROR:
+            core-image-minimal-1.0-r0 do_populate_sdk: Could not invoke
+            dnf. Command
+'/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/recipe-sysroot-native/usr/bin/dnf
+            -y -c
+/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/sdk/image/opt/poky/2.5/sysroots/corei7-64-poky-linux/etc/dnf/dnf.conf
+--setopt=reposdir=/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/sdk/image/opt/poky/2.5/sysroots/corei7-64-poky-linux/etc/yum.repos.d
+--repofrompath=oe-repo,/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/oe-sdk-repo
+--installroot=/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/sdk/image/opt/poky/2.5/sysroots/corei7-64-poky-linux
+--setopt=logdir=/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/temp
+            --nogpgcheck install lib32-dpkg lib32-libstdc++6
+            lib32-packagegroup-core-standalone-sdk-target lib32-libx11-6
+            lib32-ncurses lib32-libgcc1 lib32-libgnutls30
+            lib32-libfreetype6 lib32-libc6 run-postinsts libgnutls30
+            dpkg kernel-devsrc packagegroup-core-standalone-sdk-target
+            packagegroup-core-boot target-sdk-provides-dummy' returned
+            1:</span><o:p></o:p></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;margin-left:0in;text-autospace:none"><span
+            style="font-size:10.0pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:black">Added oe-repo repo from
+/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/oe-sdk-repo</span><o:p></o:p></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;margin-left:0in;text-autospace:none"><span
+            style="font-size:10.0pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:black">Last metadata expiration
+            check: 0:00:02 ago on Thu 18 Oct 2018 01:12:30 PM UTC.</span><o:p></o:p></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;margin-left:0in;text-autospace:none"><span
+            style="font-size:10.0pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:black">Error:
+          </span><o:p></o:p></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;margin-left:0in;text-autospace:none"><span
+            style="font-size:10.0pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:black"> Problem: conflicting
+            requests</span><o:p></o:p></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;margin-left:0in;text-autospace:none"><span
+            style="font-size:10.0pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:black">  - nothing provides
+            /usr/bin/python needed by
+            kernel-devsrc-1.0-r0.intel_corei7_64</span><o:p></o:p></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;margin-left:0in;text-autospace:none"><span
+            style="font-size:10.0pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:black"> </span><o:p></o:p></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;margin-left:0in;text-autospace:none"><span
+            style="font-size:10.0pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:black">ERROR:
+            core-image-minimal-1.0-r0 do_populate_sdk: Function failed:
+            do_populate_sdk</span><o:p></o:p></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;margin-left:0in;text-autospace:none"><span
+            style="font-size:10.0pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:black">ERROR: Logfile of failure
+            stored in:
+/home/jamal/repotest1/yocto_intel_build/tmp/work/intel_corei7_64-poky-linux/core-image-minimal/1.0-r0/temp/log.do_populate_sdk.11307</span><o:p></o:p></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0in;margin-bottom:2.0pt;margin-left:0in;text-autospace:none"><span
+            style="font-size:10.0pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:black">ERROR: Task
+(/home/jamal/repotest1/sources/poky/meta/recipes-core/images/core-image-minimal.bb:do_populate_sdk)
+            failed with exit code '1'
+          </span><o:p></o:p></p>
+        <p class="MsoNormal" style="text-autospace:none"><span
+            style="font-size:9.5pt"> </span><o:p></o:p></p>
+        <p class="MsoNormal">I found similar error in yocto mailing
+          list, but unable to understand.. Can you please help me to
+          resolve this issue.. Thanks for your time<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p
+style="margin:0in;margin-bottom:.0001pt;background:white;vertical-align:baseline"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"><a
+              moz-do-not-send="true"
+href="https://lists.yoctoproject.org/pipermail/yocto/2018-February/039941.html"><span
+                style="color:windowtext;text-decoration:none">https://lists.yoctoproject.org/pipermail/yocto/2018-February/039941.html</span></a><o:p></o:p></span></p>
+        <p
+style="margin:0in;margin-bottom:.0001pt;background:white;vertical-align:baseline"><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"><o:p> </o:p></span></p>
+        <p
+style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:12.0pt;margin-left:0in;background:white;vertical-align:baseline;font-variant-ligatures:
+          normal;font-variant-caps: normal;font-variant-numeric:
+          inherit;font-variant-east-asian: inherit;font-stretch:
+          inherit;line-height:inherit;box-sizing: inherit;orphans:
+          2;widows: 2;-webkit-text-stroke-width:
+          0px;text-decoration-style: initial;text-decoration-color:
+          initial;word-spacing:0px">
+          <span
+            style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">I
+            have /usr/bin/python in my system<o:p></o:p></span></p>
+        <p class="MsoNormal">Thanks and Regards,<o:p></o:p></p>
+        <p class="MsoNormal">Jamal,<o:p></o:p></p>
+        <p class="MsoNormal">NCR Corporation<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------8844102C5093404062AE3DF4--
