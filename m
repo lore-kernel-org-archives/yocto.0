@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3968BE00994; Thu, 18 Oct 2018 14:18:42 -0700 (PDT)
+	id 14A91E00A54; Thu, 18 Oct 2018 18:41:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,56 +10,58 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.196 listed in list.dnswl.org]
+	*      [209.85.214.195 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f196.google.com (mail-qk1-f196.google.com
-	[209.85.222.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE6C5E00971
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 14:18:41 -0700 (PDT)
-Received: by mail-qk1-f196.google.com with SMTP id 12-v6so19748475qkj.10
-	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 14:18:41 -0700 (PDT)
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com
+	[209.85.214.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FA65E0097C
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 18:41:33 -0700 (PDT)
+Received: by mail-pl1-f195.google.com with SMTP id p5-v6so215797plq.8
+	for <yocto@yoctoproject.org>; Thu, 18 Oct 2018 18:41:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=RMonT61Fj5xu8dhdsoZPDY/LocuOy+nn71nfuHzaxaQ=;
-	b=vXJgvxv0fG21fRcUO58RDgYOWX369dgT0CBpF2f576LNV5gBs2tuYO19UaF6qRu911
-	F78m4jw9rUg/JRNzeG6wLpJzGpoYAg6ydIONHTCAa3kQY0xyLRxBybIm4CDvnYR0lMQE
-	3YLtcaZ98kwlHY2GHVSmolZ7Hs0xIfXMJ6sQFwAUb7VZS8lBNZR9wi+3MlSL8J4HRbZL
-	9NNas0MHETHcLHkdZFyo4KvidJ+bFqhDN6AahIT2WuNxsnhhk/xsFHHx4TljjOEGbgIB
-	vdKqUqgma6MB40e6UPrcaU2wcM9PD4+ITzSCR7q0nqApV8iXd+wsoswjMe6pjyvIRZBK
-	50Vg==
+	h=from:to:subject:date:message-id;
+	bh=LxJvrugRBrJw9TXP9tZdloONRP1cw+1QRf+YRRqsNmU=;
+	b=oqGbOINdzLT0JgLPTC9Qs5v4iNDoO8qXEPdHxaWb1X6iQfC/+1eeNgzgvj6+jlsA49
+	tBRZ6mp7Tknx27OVqutf6FF8TtDYikMH9B3bDUylMzRZNjOF+qGsB1CZ/ClC7inyvZ6E
+	zN3KGrefDyEw6w9KSEZ+TVJSFOSuFh/J5TSHhHRpnIumDXa54QBdIq5K2xomOTQxrg/C
+	DcRHLsl/8NASEgUm3zgOJzVzZjr5+udDx1FBpi2UcOBggnQjMvPsHHJ/MxZ2KDAiUfQX
+	J0t3O6vEYKWaQJNshO25EgmqsYzO+gMVec1Q6AOW8UFm2tqToduBgyUC/eAy0zC7ekCk
+	uwdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=RMonT61Fj5xu8dhdsoZPDY/LocuOy+nn71nfuHzaxaQ=;
-	b=UQFsj47U9oGm1BUGBJ+ojF4c4V4J58jhoHCFyzs4N/FqpGeYUS/bBrEbkKUqD++Q2t
-	z8XPppl5QAX0TgoWVNVdBWi9T31OIqROrIXDzOL9tEIcap61WpUhgF05L92YqrbqMhT8
-	EiJ78ASoT6wKsenSU6OqYiuxipHyNGgx1yTNW0ZYfyCxjE7+hWxDD11hZmURi2o50WI6
-	yQOodSedkQkWcW+PYntG/itKcd9Drj06Jh4hQKYcnuyH2SnNW/wjPMfIQ1z7YJ9AWxoJ
-	PuGJ1baw71+CJGtf/IiYSilFx1HrtJ0IvQUJ7MBPdfAKkgWDYzPvjRl/OvFWOm/9ZJ9M
-	l2CA==
-X-Gm-Message-State: ABuFfoiphXi66zi/dnoJEhosNU1MMThR1NcxQ0z5XR22o6HQPGhvF19P
-	abEFhujuIcm5PBLdEebWw5EpKbNPo7Zh/Jjbh6DMryxpVVI=
-X-Google-Smtp-Source: ACcGV636A3sUb1p9+pDevSGIUni4/2D5ACZAY+YKBLP/HBZPuejLmKpcpWdhU/43AICiljd6loVKmiOQOAWPqR/oees=
-X-Received: by 2002:a37:9d55:: with SMTP id
-	g82-v6mr30341774qke.315.1539897520809; 
-	Thu, 18 Oct 2018 14:18:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAK4Yt2n4wcXKfFz4a5_3kD68B7OCsY1qOf5N5vMAsPa_P4CB0Q@mail.gmail.com>
-In-Reply-To: <CAK4Yt2n4wcXKfFz4a5_3kD68B7OCsY1qOf5N5vMAsPa_P4CB0Q@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 18 Oct 2018 14:18:14 -0700
-Message-ID: <CAMKF1spSOwQrENtecNGpBO8czUHH28Upc=-f3zbT0pjcv8K-dA@mail.gmail.com>
-To: zoleelikesdebian@gmail.com
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: modify a recipe file - proftpd
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=LxJvrugRBrJw9TXP9tZdloONRP1cw+1QRf+YRRqsNmU=;
+	b=TN1C7QLfpGaiH0ivHbUUAlHVZTH64Mtz8M4NXUxIEOdi04gD1OT90pp7h/ed9nC7v0
+	qvSLx0veNzljtWTX2JCSf1/cjAzanK+SO417H9upJ1ntOdlKjydJnE8zcNjsKdOZOGLC
+	Rx/jztVUgDnSDJl0Tx2MHx2NK7+gYn4igjmHJd/iIJy/d1XSAaNpXa9DEjyoEXiBVhug
+	d4xpgkmT9sR0PuNtu+r/RYAjCQoYiU2/MAXeDvapfzdXl169D6ZdaJcbZzumCbSEEsHh
+	Oixw80FfJy5ETQHlIFKznI5ngmjeufSU2ph0rmwoJ2buugV9vXVYDi2MH7XX4Jc+gLdf
+	9WjQ==
+X-Gm-Message-State: ABuFfog3yHlEORjuc/6M+Ejk+D3Jjp5i8AMBIQ/M312b0iSbhJuyZjJM
+	C/Bam64UZTuCpjzTowDOJwkPhKPXjUw=
+X-Google-Smtp-Source: ACcGV62NhC75VwR/Ds5TbUqcKlFItiLDiAOZ0PUbblcRsL6iF6Z9iqgxF2MjFcqpMDrSSs2O7Qsjnw==
+X-Received: by 2002:a17:902:9:: with SMTP id
+	9-v6mr32152543pla.293.1539913292702; 
+	Thu, 18 Oct 2018 18:41:32 -0700 (PDT)
+Received: from akuster-ThinkPad-T460s.mvista.com ([109.144.216.73])
+	by smtp.gmail.com with ESMTPSA id
+	y185-v6sm34032168pgd.8.2018.10.18.18.41.31
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 18 Oct 2018 18:41:32 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 18 Oct 2018 18:41:28 -0700
+Message-Id: <1539913288-2889-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-security][PATCH] suricata: fix QA error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,54 +73,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Oct 2018 21:18:42 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 19 Oct 2018 01:41:34 -0000
 
-On Thu, Oct 18, 2018 at 2:10 PM Zolee K <zoleelikesdebian@gmail.com> wrote:
->
-> Hehttp://cgit.openembedded.org/meta-openembedded/tree/meta-networking/recipes-daemons/proftpd/proftpd_1.3.6.bb?h=master#n99llo,
->
-> I'm very new to the Yocto Project and I got a Barix module that is to be developped with Yocto.
-> I managed to insert the desired programs into the linux image (nano, rsync, mc, proftpd, vlc) by modifying a recipe file but now I'd like to make some changes. I thought I would start with modifying the proftpd.conf file.
->
-> As I read the manuals it is clear to me that the best way to do this to make .append files.
->
-> I created my own proftpd.conf file, modified it a bit, example I only renamed the default server name. After that I modified the bb recipe file's sources section this way:
->
-> SRC_URI = "ftp://ftp.proftpd.org/distrib/source/${BPN}-${PV}.tar.gz \
-> file://proftpd.conf \
-> file://basic.conf.patch \
-> file://proftpd-basic.init \
-> file://default \
-> file://close-RequireValidShell-check.patch \
-> file://contrib.patch \
-> file://build_fixup.patch \
-> file://proftpd.service \
-> "
-> The red one is a new file among the other patch files however my slight changes will not bitbake. The proftpd is going to be in the image, but with a its default proftpd.conf file. It looks like my config file never gets inserted in the target.
->
-> Could you please help me out how should I start with this proftpd customisation?
->
+ollected errors:
+ * check_data_file_clashes: Package suricata wants to install file .../1.0-r0/rootfs/var/run
+	But that file is already provided by package  * base-files
 
-so you can have sed ops to do the needed tweaks in existing conf flile
-in the bbappend e.g.
-do_install_append () {
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/suricata/suricata_4.0.5.bb | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-sed .....
-}
+diff --git a/recipes-security/suricata/suricata_4.0.5.bb b/recipes-security/suricata/suricata_4.0.5.bb
+index b30e9c5..90b4638 100644
+--- a/recipes-security/suricata/suricata_4.0.5.bb
++++ b/recipes-security/suricata/suricata_4.0.5.bb
+@@ -69,6 +69,10 @@ do_install_append () {
+          -e s:/bin/kill:${base_bindir}/kill:g \
+          -e s:/usr/lib:${libdir}:g \
+          ${WORKDIR}/suricata.service > ${D}${systemd_unitdir}/system/suricata.service
++
++    # Remove /var/run as it is created on startup
++    rm -rf ${D}${localstatedir}/run
++
+ }
+ 
+ pkg_postinst_ontarget_${PN} () {
+@@ -80,7 +84,7 @@ fi
+ SYSTEMD_PACKAGES = "${PN}"
+ 
+ PACKAGES =+ "${PN}-socketcontrol"
+-FILES_${PN} += "${systemd_unitdir} /run"
++FILES_${PN} += "${systemd_unitdir}"
+ FILES_${PN}-socketcontrol = "${bindir}/suricatasc ${PYTHON_SITEPACKAGES_DIR}"
+ 
+ CONFFILES_${PN} = "${sysconfdir}/suricata/suricata.yaml"
+-- 
+2.7.4
 
-see here
-
-http://cgit.openembedded.org/meta-openembedded/tree/meta-networking/recipes-daemons/proftpd/proftpd_1.3.6.bb?h=master#n99
-
-
-
-> Thanks,
->
-> Zoli
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
