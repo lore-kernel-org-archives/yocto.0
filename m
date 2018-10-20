@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC53AE009CA; Sat, 20 Oct 2018 15:47:17 -0700 (PDT)
+	id 18F78E0096A; Sat, 20 Oct 2018 15:48:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,57 +13,57 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.66 listed in list.dnswl.org]
+	*      [209.85.221.65 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
-	[209.85.221.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32D7EE008DB
-	for <yocto@yoctoproject.org>; Sat, 20 Oct 2018 15:47:17 -0700 (PDT)
-Received: by mail-wr1-f66.google.com with SMTP id i4-v6so2235711wrr.13
-	for <yocto@yoctoproject.org>; Sat, 20 Oct 2018 15:47:16 -0700 (PDT)
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
+	[209.85.221.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89BB8E009CA
+	for <yocto@yoctoproject.org>; Sat, 20 Oct 2018 15:48:44 -0700 (PDT)
+Received: by mail-wr1-f65.google.com with SMTP id w5-v6so40950939wrt.2
+	for <yocto@yoctoproject.org>; Sat, 20 Oct 2018 15:48:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:cc:subject:date:message-id;
-	bh=5RQqewa0TTSwSFrYrciB2Fc59WuM6MJnwyFnql5BAUk=;
-	b=tasz975pZQ9POSHnLupxH36A7r3zS6OzsDjBqLYUGjNwKDiOWpypQmj5eEcg8n4OEA
-	hDwx7W1diyHfa0mSs0hhNyhLKUX4DlAvQC4GNwvU3MGcn1UjEDaD+xfBfWq/1AIS6xDs
-	tg1WqZibmI0M8u6VTcQue/kFfwmzT4re2tW15oB7Z+kgXWV1wSta6sc8MYGROiUaC7vt
-	4EJvglcjooIXUT627XHO8SN6xa5Acd74XnKIerSuPVc0akwki/IUU6W2m24PkJNJGbyF
-	K+TMILq7czd8fJZ90Tm6QsFdSaLMWl4p8TL1nQ9+qUgUJedpklUhkhhieplRYAs/HzkG
-	PpBQ==
+	bh=jV2U2kVY8pspNd0hFar+nHH+oPW0tkweTVtp5RAlDLY=;
+	b=F9ZlqoaHDwWKLpWeNwJO8tsECmyCtV18O8oEJfA0RrJ16je6pBs0utME+2nGifPclW
+	Hf71wBKx1x4tm5KWkpiPEiNhM+HHzRDZ2qiqbAC1C8VxlYbltX8FO5upMw+fRGE+w4xy
+	478YNnnPU0yGxt9C8mehxAg54TUG8XzHA3F5MHPqEPdsR0d58WmDMy+PzC8uKh7AC6uT
+	xny/F0kgUdkoaZQ2m9qbhRwaMMS+t3fz33MxtPAflbcU8n8eScTfUJh9Yl7nFFDE1fHe
+	7EG6KMeNXkr+6+IE9mgL0KB/TJlr0L5ek09ME+D6Fy8IwMKiULX4XBgWHzsOqhBIkGMg
+	IQhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=5RQqewa0TTSwSFrYrciB2Fc59WuM6MJnwyFnql5BAUk=;
-	b=iBuYqtWiJkTYm7rsXdDs3n5r/WKZ5w5vbxBL00odfATskNTp2LlUSndy/IGF65AEbV
-	wYjLjJSecSy2IHYYr0GTRvTOWddizFtKip/ROoTrea5nsfwWS8lduT1Cbn1iXwRTmZ9l
-	wtrHuEwmj13+wIe5qYMLFS0Ucp/vdU7TA4xj+6dJI+Oqq9Mb/+zzAcVDpYEabE5zdYse
-	slTvFaIA2hbxwShx/7R+fdx+TumYSptep2/dEltWhpTE905MJTLngtjrQ9w8SzPY+Hy+
-	EZh3LgiSiwlmu00RyV2wjCLm4SijnwbizRILsYXTITCJMtAc+Aty2s62Z0Xp3i2eDgQ1
-	yLlg==
-X-Gm-Message-State: ABuFfojUGUFGutRlyERjgDmTvTW69ArHjd/ATdJ3rB874AzCygowXGz6
-	fKmehrgt7BpmAwOwE396t8pHOJJ0aQk=
-X-Google-Smtp-Source: ACcGV60d+VVWvPxERx9Gt+sQ86TTQXEQZk9+jdk11P2YLIn09+21ZQN3NvqrmMKYaEXD+2ObWI2qvQ==
-X-Received: by 2002:a05:6000:111:: with SMTP id
-	o17mr41079132wrx.279.1540075635868; 
-	Sat, 20 Oct 2018 15:47:15 -0700 (PDT)
+	bh=jV2U2kVY8pspNd0hFar+nHH+oPW0tkweTVtp5RAlDLY=;
+	b=DDRY86NoTVlUeY0VjVzR9Vf/EkJxauLPIX1LlBmjCwlrqwVBL+CqMOfYY7exkH5aXZ
+	GOjPFXfBOXcbZMiN8p/AyXzG0taCus6TA2uC3lM6XNDTyjAnlVW62RZR8qS3fhNeciEQ
+	BbEvezuTdWJqpXyyDSl4AzR8jmHyF9OQvk2knbNEbZU/f3PAeMT5zpb04bki4nv/BadX
+	20NHBHDK0KGpA7ercZ74ZUi6eW/D60Jy1YblPIZghISW6u5KRpIii6UeskRHjwzjPjqp
+	CxVZBC27l1H5gjnbxsjt3MqamPpXOAGxso2RlNttFUUuabbDV3p8CuyOPx6IjGLq7bRL
+	Paqg==
+X-Gm-Message-State: ABuFfoi0Cuqk0HpjV5S/mwlRk2ETzZ0Vu5ekN9ejaU+t9MLQxGHn+vGj
+	DeMIgUt7H/Gegy1ymw7dvJP7ORrEBHw=
+X-Google-Smtp-Source: ACcGV627lOeXOiHJB5Wo37cVfNz9SC3qYFWUpQsUaT81atAvJ5VUryzhQqzO3Xsn6F6RvPN6k6tv3g==
+X-Received: by 2002:adf:f44b:: with SMTP id
+	f11-v6mr38358371wrp.305.1540075723247; 
+	Sat, 20 Oct 2018 15:48:43 -0700 (PDT)
 Received: from akuster-ThinkPad-T460s ([109.144.218.73])
 	by smtp.gmail.com with ESMTPSA id
-	a84-v6sm5457785wmf.46.2018.10.20.15.47.13
+	63-v6sm6361186wmd.5.2018.10.20.15.48.41
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 20 Oct 2018 15:47:15 -0700 (PDT)
+	Sat, 20 Oct 2018 15:48:42 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 X-Google-Original-From: "Armin Kuster" <akuster@akuster-ThinkPad-T460s>
 Received: by akuster-ThinkPad-T460s (sSMTP sendmail emulation);
-	Sat, 20 Oct 2018 23:47:12 +0100
+	Sat, 20 Oct 2018 23:48:40 +0100
 To: yocto@yoctoproject.org
-Date: Sat, 20 Oct 2018 23:47:06 +0100
-Message-Id: <1540075626-21543-1-git-send-email-akuster@mvista.com>
+Date: Sat, 20 Oct 2018 23:48:38 +0100
+Message-Id: <1540075718-4145-1-git-send-email-akuster@mvista.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] meta-qt3: update LAYERSERIES_COMPAT to thud
+Subject: [PATCH] meta-qt4: update LAYERSERIES_COMPAT to thud
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,7 +75,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Oct 2018 22:47:17 -0000
+X-List-Received-Date: Sat, 20 Oct 2018 22:48:45 -0000
 
 Signed-off-by: Armin Kuster <akuster@mvista.com>
 ---
@@ -83,15 +83,15 @@ Signed-off-by: Armin Kuster <akuster@mvista.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/conf/layer.conf b/conf/layer.conf
-index cfcad24..c4c165a 100644
+index 915d89c..8218dcd 100644
 --- a/conf/layer.conf
 +++ b/conf/layer.conf
-@@ -8,4 +8,4 @@ BBFILE_COLLECTIONS += "qt3"
- BBFILE_PATTERN_qt3 = "^${LAYERDIR}/"
- BBFILE_PRIORITY_qt3 = "6"
+@@ -8,4 +8,4 @@ BBFILE_COLLECTIONS += "qt4-layer"
+ BBFILE_PATTERN_qt4-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_qt4-layer = "6"
  
--LAYERSERIES_COMPAT_qt3 = "sumo"
-+LAYERSERIES_COMPAT_qt3 = "thud"
+-LAYERSERIES_COMPAT_qt4-layer = "sumo"
++LAYERSERIES_COMPAT_qt4-layer = "thud"
 -- 
 2.7.4
 
