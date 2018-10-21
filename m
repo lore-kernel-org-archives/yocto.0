@@ -1,62 +1,51 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <flowers.joseph@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4BD8AE00826; Sun, 21 Oct 2018 09:24:49 -0700 (PDT)
+	id 92149E00826; Sun, 21 Oct 2018 09:32:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.50 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com
-	[209.85.210.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A49FEE003DB
-	for <yocto@yoctoproject.org>; Sun, 21 Oct 2018 09:24:48 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id o14so37728294oth.4
-	for <yocto@yoctoproject.org>; Sun, 21 Oct 2018 09:24:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=kNBAPaum9JI8J0XHjZO1ntZv8p698HWh2j+UBmwkDuc=;
-	b=Fj/fZ7/SrAm1s0P3TqwfeDh9cBBBFi824njviL/EvGOxBDlDvN5Dgkx5RfLPPi7AoP
-	hTvLIfSlA3/6yGbSfW5LZRgCDYWkpD2UZZWTL3ymYEyvjM1YS8SxmqgvsutMFT9rmtJX
-	5JfsIyIMW9GuWLe6rYa1sRf6MRaOxEhUl/J1Z02VKA/A/a6I6MfmwPdNlSZWFvSBQ5Gk
-	ZnXrXC/7sIZNeSANid0OK70DUs5a2daPdqgX7bDsme5Mwn+L5hBXURW2QujBGiIAkW8c
-	7r8InRx5tX+fXEEhui6/6RgP0Q7fvKHihA43pJ6Ik6ylnyoty2hjrww5/Mm/Ew8ycitL
-	dnsw==
+	*      [209.85.166.175 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-it1-f175.google.com (mail-it1-f175.google.com
+	[209.85.166.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99A66E003DB
+	for <yocto@yoctoproject.org>; Sun, 21 Oct 2018 09:32:39 -0700 (PDT)
+Received: by mail-it1-f175.google.com with SMTP id i76-v6so9740150ita.3
+	for <yocto@yoctoproject.org>; Sun, 21 Oct 2018 09:32:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=kNBAPaum9JI8J0XHjZO1ntZv8p698HWh2j+UBmwkDuc=;
-	b=h7No7+2S9TGCKh3Ek0fi/aqG2Zs0yw5wxBaOx+pdVXo+H/2vwrrKnDWo279tSYuQV0
-	GanM1w6TSRcpDPJAOEmFRbw2go9FpLoINr+etZvjfQNS6cqsB+q2r+DA2UECwsE4bPGr
-	Xm4IK1Sywt+TyBm4XBjI9QcFHsKyiMsEVS53Owmj3/qT616dAAXMXhi/OyT0Saw/zASQ
-	h2Mf4jBpymcgJ1Dav7cb5nrlAWMSJ5RHOGU8GKh5D6aLGqayr3eNeaabvMpe+bKRtpyS
-	nKy+BJDa76txKxRGGCXg2JVOG/G7zKhnF4K4w2W/VsEHmTVs4mM+2I7fUA9iWwlBFCfL
-	v/9Q==
-X-Gm-Message-State: ABuFfojcAutRAxh9SFchYLTpAU2eKVPTtPEGhv1E8HNebswiRPTMY0q5
-	ar2bYIk0d67UsVgQRgVesxrMHp43EKNJwTxtiDKw8w==
-X-Google-Smtp-Source: ACcGV61k/f61gtBLY5M+ri7DQIF2QBD6sLZh3WXKgOATg53hodOEYHiwUl1jQvFfhd998eRdjHTYPDEeyFDBdTXOEcI=
-X-Received: by 2002:a9d:30ae:: with SMTP id s46mr29284693otc.132.1540139088086;
-	Sun, 21 Oct 2018 09:24:48 -0700 (PDT)
+	:message-id:subject:to:cc;
+	bh=za4LKrXwHsWzP89/IXzabR0bA37XfDBeaawafwlSBuk=;
+	b=s3U+d3Y2/Z/sxmkzHjrsYM1xbSBRvbx/i54lQWHkt8Ov8SHC8mq/hv1Chwa1KZa5bx
+	Olr1rWpXFFsM8miUqYH6eYIANH2zTQdTn+xsQmNTelGdRaBbUC1XzuKE/ZUedVkaEmpa
+	ITZqUsX3Lr4WFleIp3xqXb36fP0xKTI+7YWGNu8N2G2Uj+oAp/Oxy4Ge0DrXvnLEaI2T
+	1yBoqyw/mD40Yl4LAqy4rqiqR3AbNVjMGvYp4Qm2vglv92kmxo9kTu0y7PRUbi41rQNy
+	hwPEQ++xIKw9GDeuMFpkcl3Zdz+10TtGg00UciQR8xlUQP0MA659Nea2dpV5qBtyrVh7
+	Jr3Q==
+X-Gm-Message-State: ABuFfojsc80axlNZjt9VZ5fmhaaaWUHd2mccxFDvY8lE/g0f7YSP0Mpp
+	9Que9ton8AUeBQKPxLDm14CZ24KZ1HLZzekmAQ==
+X-Google-Smtp-Source: ACcGV606TK/WVmIIqAx5xZUcepjITLIvySgGrcHpxgx5K1QBn0VpjZe0m6MC2a7ephyUAweke4JxmKI1Qrb0k8KFd2o=
+X-Received: by 2002:a02:8986:: with SMTP id
+	p6-v6mr31793449jaj.139.1540139558837; 
+	Sun, 21 Oct 2018 09:32:38 -0700 (PDT)
 MIME-Version: 1.0
 References: <CA+4=ZEM9oFXNUTU8EKb_e2rCzpqZLw6Yc7dQV4mVMH2TbzRiaw@mail.gmail.com>
 	<2DE4399C-7659-49BD-AF9E-259315E5D1DD@gmail.com>
 	<CA+4=ZENx5DtdAUMH5Paia2Sv395=yrHH+t+puHeb9jwCi2w+kw@mail.gmail.com>
-In-Reply-To: <CA+4=ZENx5DtdAUMH5Paia2Sv395=yrHH+t+puHeb9jwCi2w+kw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Sun, 21 Oct 2018 17:24:35 +0100
-Message-ID: <CAJTo0LaQJL_b-m8BLun+5HLnb_6vMe+XFySjLswOQ+UxGtK9=w@mail.gmail.com>
-To: joe.flowers@nofreewill.com
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+	<CAJTo0LaQJL_b-m8BLun+5HLnb_6vMe+XFySjLswOQ+UxGtK9=w@mail.gmail.com>
+In-Reply-To: <CAJTo0LaQJL_b-m8BLun+5HLnb_6vMe+XFySjLswOQ+UxGtK9=w@mail.gmail.com>
+From: Joe Flowers <joe.flowers@nofreewill.com>
+Date: Sun, 21 Oct 2018 12:32:26 -0400
+Message-ID: <CA+4=ZEMQPbxZ4_S8d5_PXx5y6TdhAMt_NP945W-6AjEp4UFGyg@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: yocto@yoctoproject.org
 Subject: Re: SUSE SLES target OS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -69,72 +58,169 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 21 Oct 2018 16:24:49 -0000
+X-List-Received-Date: Sun, 21 Oct 2018 16:32:40 -0000
+Content-Type: multipart/alternative; boundary="0000000000004f27ac0578bfaf90"
+
+--0000000000004f27ac0578bfaf90
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-If you want to rebuild Suse then the recommended tool is OBS, as
-that's what is used to build Suse.
+Thank you. All of this is very helpful.
 
-Obviously, building your own SLES isn't SLES, just something that
-looks like SLES (says a Centos just looks like, but isn't, RHEL).
+On Sun, Oct 21, 2018, 12:24 PM Burton, Ross <ross.burton@intel.com> wrote:
 
-Ross
-On Fri, 19 Oct 2018 at 22:43, Joe Flowers <joe.flowers@nofreewill.com> wrot=
-e:
+> If you want to rebuild Suse then the recommended tool is OBS, as
+> that's what is used to build Suse.
 >
-> Yes, unfortunately, I mean SLES.
+> Obviously, building your own SLES isn't SLES, just something that
+> looks like SLES (says a Centos just looks like, but isn't, RHEL).
 >
-> Your answer implies that to create a minimal SLES build I will have to ab=
-andon Yocto and look for another build (or reduction) solution as I know th=
-is has been done by non-SUSE entities.
+> Ross
+> On Fri, 19 Oct 2018 at 22:43, Joe Flowers <joe.flowers@nofreewill.com>
+> wrote:
+> >
+> > Yes, unfortunately, I mean SLES.
+> >
+> > Your answer implies that to create a minimal SLES build I will have to
+> abandon Yocto and look for another build (or reduction) solution as I kno=
+w
+> this has been done by non-SUSE entities.
+> >
+> >
+> > On Fri, Oct 19, 2018 at 5:33 PM Ismael Mart=C3=ADnez Dibene <
+> imdibene@gmail.com> wrote:
+> >>
+> >> Do you mean OpenSuse? Since SLES is only build/provide to you by SUSE
+> directly, it would be the same as trying to build your own RHEL instead o=
+f
+> fedora. That would be difficult without theirs repositories ;-)
+> >>
+> >> Saludos / Regards / Mit Freundlichen gr=C3=BC=C3=9Fen / Atenciosamente
+> >> Ismael Mart=C3=ADnez Dibene
+> >>
+> >> > Am 19.10.2018 um 16:17 schrieb Joe Flowers <
+> joe.flowers@nofreewill.com>:
+> >> >
+> >> > Hello everyone,
+> >> >
+> >> > I need to get started on a Yocto set that will build a minimal core
+> for a target OS of SUSE Linux Enterprise Server on x64 target hardware li=
+ke
+> a MinnowBoard.
+> >> >
+> >> > I have scoured the web, SUSE, and this list's (Yocto Project)
+> archives, but have run into no pointers.  My guess is that it is right
+> under my nose that can be seen with more experience rather than being
+> hidden behind private walls.
+> >> >
+> >> > Will someone please get me started on the pointers and downloads I
+> need to get started?
+> >> >
+> >> > I have already run through a tutorial on creating a core OS using
+> Yocto for a WandBoard target hardware.
+> >> >
+> >> >
+> >> > Thank you !
+> >> >
+> >> > Joe
+> >> > --------------
+> >> >
+> >> > --
+> >> > _______________________________________________
+> >> > yocto mailing list
+> >> > yocto@yoctoproject.org
+> >> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
 >
->
-> On Fri, Oct 19, 2018 at 5:33 PM Ismael Mart=C3=ADnez Dibene <imdibene@gma=
-il.com> wrote:
->>
->> Do you mean OpenSuse? Since SLES is only build/provide to you by SUSE di=
-rectly, it would be the same as trying to build your own RHEL instead of fe=
-dora. That would be difficult without theirs repositories ;-)
->>
->> Saludos / Regards / Mit Freundlichen gr=C3=BC=C3=9Fen / Atenciosamente
->> Ismael Mart=C3=ADnez Dibene
->>
->> > Am 19.10.2018 um 16:17 schrieb Joe Flowers <joe.flowers@nofreewill.com=
->:
->> >
->> > Hello everyone,
->> >
->> > I need to get started on a Yocto set that will build a minimal core fo=
-r a target OS of SUSE Linux Enterprise Server on x64 target hardware like a=
- MinnowBoard.
->> >
->> > I have scoured the web, SUSE, and this list's (Yocto Project) archives=
-, but have run into no pointers.  My guess is that it is right under my nos=
-e that can be seen with more experience rather than being hidden behind pri=
-vate walls.
->> >
->> > Will someone please get me started on the pointers and downloads I nee=
-d to get started?
->> >
->> > I have already run through a tutorial on creating a core OS using Yoct=
-o for a WandBoard target hardware.
->> >
->> >
->> > Thank you !
->> >
->> > Joe
->> > --------------
->> >
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
+--0000000000004f27ac0578bfaf90
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Thank you. All of this is very helpful.</div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr">On Sun, Oct 21, 2018, 12:24 PM Burton, =
+Ross &lt;<a href=3D"mailto:ross.burton@intel.com">ross.burton@intel.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
+0 .8ex;border-left:1px #ccc solid;padding-left:1ex">If you want to rebuild =
+Suse then the recommended tool is OBS, as<br>
+that&#39;s what is used to build Suse.<br>
+<br>
+Obviously, building your own SLES isn&#39;t SLES, just something that<br>
+looks like SLES (says a Centos just looks like, but isn&#39;t, RHEL).<br>
+<br>
+Ross<br>
+On Fri, 19 Oct 2018 at 22:43, Joe Flowers &lt;<a href=3D"mailto:joe.flowers=
+@nofreewill.com" target=3D"_blank" rel=3D"noreferrer">joe.flowers@nofreewil=
+l.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Yes, unfortunately, I mean SLES.<br>
+&gt;<br>
+&gt; Your answer implies that to create a minimal SLES build I will have to=
+ abandon Yocto and look for another build (or reduction) solution as I know=
+ this has been done by non-SUSE entities.<br>
+&gt;<br>
+&gt;<br>
+&gt; On Fri, Oct 19, 2018 at 5:33 PM Ismael Mart=C3=ADnez Dibene &lt;<a hre=
+f=3D"mailto:imdibene@gmail.com" target=3D"_blank" rel=3D"noreferrer">imdibe=
+ne@gmail.com</a>&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; Do you mean OpenSuse? Since SLES is only build/provide to you by S=
+USE directly, it would be the same as trying to build your own RHEL instead=
+ of fedora. That would be difficult without theirs repositories ;-)<br>
+&gt;&gt;<br>
+&gt;&gt; Saludos / Regards / Mit Freundlichen gr=C3=BC=C3=9Fen / Atenciosam=
+ente<br>
+&gt;&gt; Ismael Mart=C3=ADnez Dibene<br>
+&gt;&gt;<br>
+&gt;&gt; &gt; Am 19.10.2018 um 16:17 schrieb Joe Flowers &lt;<a href=3D"mai=
+lto:joe.flowers@nofreewill.com" target=3D"_blank" rel=3D"noreferrer">joe.fl=
+owers@nofreewill.com</a>&gt;:<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; Hello everyone,<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; I need to get started on a Yocto set that will build a minima=
+l core for a target OS of SUSE Linux Enterprise Server on x64 target hardwa=
+re like a MinnowBoard.<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; I have scoured the web, SUSE, and this list&#39;s (Yocto Proj=
+ect) archives, but have run into no pointers.=C2=A0 My guess is that it is =
+right under my nose that can be seen with more experience rather than being=
+ hidden behind private walls.<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; Will someone please get me started on the pointers and downlo=
+ads I need to get started?<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; I have already run through a tutorial on creating a core OS u=
+sing Yocto for a WandBoard target hardware.<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; Thank you !<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; Joe<br>
+&gt;&gt; &gt; --------------<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; --<br>
+&gt;&gt; &gt; _______________________________________________<br>
+&gt;&gt; &gt; yocto mailing list<br>
+&gt;&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank" r=
+el=3D"noreferrer">yocto@yoctoproject.org</a><br>
+&gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=
+=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
+/listinfo/yocto</a><br>
+&gt;<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank" rel=3D"nor=
+eferrer">yocto@yoctoproject.org</a><br>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer noreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo=
+/yocto</a><br>
+</blockquote></div>
+
+--0000000000004f27ac0578bfaf90--
