@@ -1,61 +1,46 @@
-Return-Path: <sunil.mukundan@gmail.com>
+Return-Path: <gandersson@genivi.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49BBCE00A1A; Mon, 22 Oct 2018 05:47:24 -0700 (PDT)
+	id F1A2DE00A1A; Mon, 22 Oct 2018 06:15:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (sunil.mukundan[at]gmail.com)
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.169 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
-	[209.85.160.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDE53E00826
-	for <yocto@yoctoproject.org>; Mon, 22 Oct 2018 05:47:23 -0700 (PDT)
-Received: by mail-qt1-f169.google.com with SMTP id a10-v6so1677054qtp.2
-	for <yocto@yoctoproject.org>; Mon, 22 Oct 2018 05:47:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=r+8OTT8nlJ05pQW4RF5RbF7zkFpfEEf+YaxxHYd4mww=;
-	b=Ht/Z2/OKScia2Blj4z85MA3GhLAEwGohoCYaTfyeDDQldtBwlJ4jvbeL1WXCuzGns5
-	w8IiSNZT3FXeVHy3rnvBNLF10BC20yeNJK+MKqQNARXv7CejmtSRiZtfrLw+bepejQWv
-	B6f6WGV5qiRIPjcwNmaOWa1vSxBwEb+T9PwZELFPJ7cx2muiaz+OoP3sr7AFm0E9YOfk
-	hF6KYJtPwL9TLh6QGVphMqvczYzn/5ipEY3r2sOJU8WJ93vjXCVGeZBm+cA1Q19JhmgA
-	7Cet9/peGB7iTgUyzpUFCcoSlnhEELfmixz3FWPg/zXq+azDqQUQzPspZ2u0yhhwRG2Q
-	Y6iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=r+8OTT8nlJ05pQW4RF5RbF7zkFpfEEf+YaxxHYd4mww=;
-	b=g7+EOEMXe5N/hDJxzmr2nmkmK00R4X8A8liP15406dQLG7NcD0hc7ilu5LWwl9c6yL
-	nAIpsvGojLnUhS36B1guPdItCT9dZX3KcT3wfAL9a5hK03RcHV/sUnzbCSR2JXuDAxWU
-	FXm5dnYLHhdcO+m8Rr6tKRLM97GvpD8eOD9JbXSv8TSyQM+dvvZoPDsLK1Vytmlmle62
-	V1GK7KeL27+pYfv/XhmgD/cmlpFECRnsj29cvyIyb+52xmEpdS5xRhUiPFF2+gqx2qtR
-	QVbmjWLtCaXp2B/0GhJEjHjWm8j2ejwJh9DSdmdPD4vOdGC2+ohI18rIqD6jbcn+RfaP
-	TxvA==
-X-Gm-Message-State: ABuFfojItem1XTakP7YVf0SWAf4U++RVrCUvngu5Ypa5HDkobS4FDJJB
-	rT7ms6op5oW2uDgQFN/1Jn20S5wX09lg/asj5MQHy7Fl
-X-Google-Smtp-Source: AJdET5cZ+fkKaVxyJoDTdDsEEL4k8nD+FIue77lO00xAWXu5d9cSyf+BmbTyRCHe4DziHrprNv3nugNzE2wZrK0/tKE=
-X-Received: by 2002:ac8:35d9:: with SMTP id
-	l25-v6mr13159404qtb.165.1540212442739; 
-	Mon, 22 Oct 2018 05:47:22 -0700 (PDT)
-MIME-Version: 1.0
-From: Sunil Mukundan <sunil.mukundan@gmail.com>
-Date: Mon, 22 Oct 2018 18:17:12 +0530
-Message-ID: <CAD0Q=Of26LUD-3pVPp0GGjLAv9JMCdqGaL4GCMhoPS3KTz5kOg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: eSDK installation failing with sig computed mismatch with sig locked
+	*      [38.101.164.234 listed in list.dnswl.org]
+X-Greylist: delayed 301 seconds by postgrey-1.32 at yocto-www;
+	Mon, 22 Oct 2018 06:15:04 PDT
+Received: from smtp1.genivi.org (smtp1.genivi.org [38.101.164.234])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61FA9E00826
+	for <yocto@yoctoproject.org>; Mon, 22 Oct 2018 06:15:04 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp1.genivi.org (Postfix) with ESMTP id B33506680;
+	Mon, 22 Oct 2018 06:10:02 -0700 (PDT)
+X-Virus-Scanned: Debian amavisd-new at smtp1.genivi.org
+Received: from smtp1.genivi.org ([127.0.0.1])
+	by localhost (smtp1.genivi.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id jV5vgHFJUYDW; Mon, 22 Oct 2018 06:09:57 -0700 (PDT)
+Received: from Jakobs-Air.localdomain (h-244-80.A137.corp.bahnhof.se
+	[176.10.244.80])
+	by smtp1.genivi.org (Postfix) with ESMTPSA id B8995667B;
+	Mon, 22 Oct 2018 06:09:56 -0700 (PDT)
+Message-ID: <1540213783.7688.234.camel@genivi.org>
+From: Gunnar Andersson <gandersson@genivi.org>
+To: Joe Flowers <joe.flowers@nofreewill.com>, imdibene@gmail.com
+In-Reply-To: <CA+4=ZENx5DtdAUMH5Paia2Sv395=yrHH+t+puHeb9jwCi2w+kw@mail.gmail.com>
+References: <CA+4=ZEM9oFXNUTU8EKb_e2rCzpqZLw6Yc7dQV4mVMH2TbzRiaw@mail.gmail.com>
+	<2DE4399C-7659-49BD-AF9E-259315E5D1DD@gmail.com>
+	<CA+4=ZENx5DtdAUMH5Paia2Sv395=yrHH+t+puHeb9jwCi2w+kw@mail.gmail.com>
+Organization: GENIVI Alliance
+Date: Mon, 22 Oct 2018 15:09:43 +0200
+Mime-Version: 1.0
+X-Mailer: Evolution 3.26.6 (3.26.6-1.fc27) 
+Cc: yocto@yoctoproject.org
+Subject: Re: SUSE SLES target OS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,46 +52,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Oct 2018 12:47:24 -0000
+X-List-Received-Date: Mon, 22 Oct 2018 13:15:05 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi
+On Fri, 2018-10-19 at 17:43 -0400, Joe Flowers wrote:
+> Yes, unfortunately, I mean SLES.
+> 
+> Your answer implies that to create a minimal SLES build I will have to
+> abandon Yocto and look for another build (or reduction) solution as I know
+> this has been done by non-SUSE entities.
 
-I built an extensible SDK and when installing the SDK, i see the
-following WARNINGS first
+Hmm...  Very interesting, but strange... but interesting... question.  Makes
+me wonder why you are so set on building SLES for an embedded board?
+But that's not for me to second-guess.  :-)
 
-WARNING: The netmap-modules:do_fetch sig is computed to be
-b53fa14a73271b9f0ce564e413f32468, but the sig is locked to
-614da4fb9135f1f97b291ff05494f53c in SIGGEN_LOCKEDSIGS_t-genericx86-64
-The netmap:do_fetch sig is computed to be
-b53fa14a73271b9f0ce564e413f32468, but the sig is locked to
-614da4fb9135f1f97b291ff05494f53c in SIGGEN_LOCKEDSIGS_t-genericx86-64
-The netmap:do_populate_lic sig is computed to be
-45b8ffb273c02b2fcd201347e4137e19, but the sig is locked to
-d4c3de4ecfdc1d70a4129dfbcc68b71d in SIGGEN_LOCKEDSIGS_t-genericx86-64
-The netmap-modules:do_populate_lic sig is computed to be
-45b8ffb273c02b2fcd201347e4137e19, but the sig is locked to
-d4c3de4ecfdc1d70a4129dfbcc68b71d in SIGGEN_LOCKEDSIGS_t-genericx86-64
+As pointed out the family of OpenEmbedded-based systems provide their own
+set of build recipes ("layers") and several different reference
+distributions (with appropriate patches and so on).  
 
-These WARNINGS then (probably) result in the following errors
-ERROR: Task netmap.do_prepare_recipe_sysroot attempted to execute unexpectedly
-ERROR: Task netmap.do_configure attempted to execute unexpectedly
-ERROR: Task netmap.do_compile attempted to execute unexpectedly
-ERROR: Task netmap.do_install attempted to execute unexpectedly
-ERROR: Task netmap.do_package attempted to execute unexpectedly and
-should have been setscened
-ERROR: Task netmap.do_packagedata attempted to execute unexpectedly
-and should have been setscened
-ERROR: Task netmap-modules.do_populate_lic attempted to execute
-unexpectedly and should have been setscened
-ERROR: Task netmap.do_populate_lic attempted to execute unexpectedly
-and should have been setscened
+For source availability, I liked the analogy with building RHEL vs Fedora,
+although on that side CentOS source distribution is available as a very
+close duplicate of RHEL.  If you wanted to do something similar to meta-
+debian what basis were you thinking of using in order to create your own
+SLES if not OpenSUSE?  (Actually answering that would veer the thread off-
+topic for the list I imagine, I'm just curious).
 
-Could someone help me with what could be going wrong?
+Related to the topic, the only similar ideas that I have seen floated in the
+past involved using Debian source code with OE/Yocto build system.  I
+suppose the idea for that would be that you have a strong handling of
+security updates a compatible basic distro and of course a very large amount
+of packages.  
 
-I used the usual 'bitbake -c populate_sdk_ext core-image-minimal'
-command to build the SDK.
+I still think it's a fairly strange approach since building Debian using
+Debian tooling might suffice in that case (e.g. [2]).  You might get a bit
+of a larger ecosystem of available BSPs in OpenEmbedded/Yocto environment
+and a few additional embedded-targeted components (but a lot are built
+with fairly standard setups like cmake anyway).  It wasn't clear if you need
+a lot of different hardwares or just any board like minnowboard.
 
-thanks,
-Sunil Mukundan
+I was going to link the meta-debian layer, but it seems the Linutronix
+slides cover this and more alternatives, so (for those interested in the
+Debian/Yocto idea I mean) just start with that slide deck (and search
+GitHub).
+
+[1] https://linutronix.de/en/open-source/vortraege.php (look for slides &
+video)
+[2] https://apertis.org (not Yocto)
+
+HTH,
+- Gunnar
+
+-- 
+Gunnar Andersson <gandersson@genivi.org>
+Development Lead
+GENIVI Alliance
+
+
 
