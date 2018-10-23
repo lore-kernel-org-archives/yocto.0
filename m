@@ -1,69 +1,62 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <dhanush.ks@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DEFB9E00BC6; Tue, 23 Oct 2018 00:58:59 -0700 (PDT)
+	id 10298E00BC6; Tue, 23 Oct 2018 02:59:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (dhanush.ks[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.49 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marek.belisko[at]gmail.com)
+	*      [209.85.221.52 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
-	[209.85.128.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEE07E00BBF
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2018 00:58:56 -0700 (PDT)
-Received: by mail-wm1-f49.google.com with SMTP id z25-v6so10969422wmf.1
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2018 00:58:56 -0700 (PDT)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
+	[209.85.221.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43F39E00BBF
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2018 02:59:13 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id g9-v6so974337wrq.4
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2018 02:59:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=Xw/mcBG7M14I5tl7qbVAckq1zBuLdtWiK4tEZz8H82I=;
-	b=O6J12JeflDiuOUvgPZBhSOm6oKmZySDzX5uerCQY2tJRrvJ3v/oFpMUYqPb7ZvCfnZ
-	ZHuiGbe5wMyYM25b9GMOojZrmBpkzgmYHthwyuQumGw/YCPLD3nu/m8N1/bBACoNL7ie
-	719gPbSfj0IFABdBiyPNFDoMFlYE8n3brmTB825gPSA7GXhF2vmddFNmiHL0vXNuQPex
-	2Ub71gOVtu5dIvDJPbYh/XhfdqvEdKEXTZtDmUWOgPV5vUu0ABiDLHtnotBKoUQ+mvvJ
-	8hO0WvLiz7117Y+r/KWW77c+nClFbfOrvzwgp9VBMfwS8p2dgsWmd6jmviLrPLCPqmeO
-	c2FA==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=6qNV1JAHEDSTauimt01hTdBEQkvln27NJTYQG0YkLSI=;
+	b=QFF5IEAiN2EAfTSsi95lIE19UOxxSlNj/0rzmeidvLCxo+PDwHU2Gdi1pOZbFZHFCG
+	Awyvhu9Ws1HJ9Kb6EuFZQ+h2xwX5pSmO/WhXcZYGmBZfEqCK5verqcUmH5KPo1GxZmKa
+	rQn+k8mv+as5Lt9AIaA40e1pK76q7Bdm2j2TMO7WRYbRLfLv6pc3evhtGP7v2suUy31E
+	XBz/8rVgfFX0+A/UCOj4NMiESK2PBJAQnSFb8vUV+x9yWCFGqoA0BapAF1xzlxgS0tXB
+	Q2AjOnzKFwbzmjcnU+7kK58iDrQmZrFLLtHmb5Z2VoCG5eTX6KA5d1e/xtD5xGsMFapA
+	X5yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=Xw/mcBG7M14I5tl7qbVAckq1zBuLdtWiK4tEZz8H82I=;
-	b=SMDXeMRk5nxETKOb9D5UyjTe28TIdPtBnm7n0NcK4JHaWXHXgbyHsbKG8B+OYpLvWU
-	TxXkOl+nUv/FeiR+GoW5RIBASaSf4x0rg+6H2D7imlGzyghTefDW3O3DWHzAlXT5d/C6
-	lzH1VLsDLHHKGwAsepiCth5vt9QoZyDNTblYMAr6iYUsP32EGRbM6XQgwo9d3XZZPe2h
-	Tf3/xaPS92ivxQ76Ef091JbuiVRle2oJ53s5VH9Ki+j+tkQQc0fEe7RK0QFOvqKb6Tyr
-	sBaqF6U0Tf5NlfpbNFZRyj56aPt/jFBdQy8mbQDdzjiaXnYp9CcsgdaRM2XurbHbsvTG
-	Qf4w==
-X-Gm-Message-State: ABuFfoiC+C8El5IRhQY1BmE1pyEM4yKzqYMBtlJZ0aG/HlfvaUZPtecS
-	sDXrDK1PsKcYMWxz/uK1WceyYwCOaohIsqioHa8=
-X-Google-Smtp-Source: AJdET5dMiIzh0jsvqafTNGAw1Xsb47T0VORBds67c4wLLL6T+np5eo9kFebvdj7bB6zaobYQ4t1bdG/V7MyzuyuR5c4=
-X-Received: by 2002:a1c:a345:: with SMTP id
-	m66-v6mr19767251wme.104.1540281535490; 
-	Tue, 23 Oct 2018 00:58:55 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=6qNV1JAHEDSTauimt01hTdBEQkvln27NJTYQG0YkLSI=;
+	b=gAumk2zACObHeZQYZRvybNBBoyHnSrfMmaJMnED9kwOt6o1jr2wuBaHjWd/diUiN99
+	J3nyLD4RJwwHRzgh3VOcESu8VVlIHZNNlq1DhDfOVxxGNjvxmRAIlf37NiYDghmqQ+bP
+	aAtDQghIXHfDmQdeoguTm0jAUmM3TYRzoSTTWxGZPcFxZxODf5d8qgPiEm5R7bJxaxLD
+	tlsZ1dlDzWdd8XThpB+ELzSCF3zzNQslX5vzIG4GNd6xqmFBfAImrkDX/i/CrBs7RDPV
+	+HYPRM2M12ir9T2+eGES1zvBsEBbiLYOAE9f0cXsxd9n8/umyxOdfp9ZStKBHKY7+gT7
+	w3ZA==
+X-Gm-Message-State: ABuFfohTOH0obhcPHoNUtyVTB5ZwzkMENI5rT+yNzxxWNk40FmaCR0cZ
+	TxPub2yb6ZvardzBFGUoV+drpxYgBmDhxajN5wGtePktvD0=
+X-Google-Smtp-Source: ACcGV63cZaJ69Ku0MNfp93o09PAW8S52MoVrz+1xHLXyM/IuvLsAOHbE639UDJdL9ooZBG6VcHgDeeV3aZv5ihvMqqU=
+X-Received: by 2002:adf:8065:: with SMTP id
+	92-v6mr48618519wrk.23.1540288751718; 
+	Tue, 23 Oct 2018 02:59:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAAfyv36Z66HkMd1rKhetiGHDajWrbxDgXjEpcUqp=_-zxTb4Hg@mail.gmail.com>
-	<CAMKF1sr=HnXP1X45Kjc3Tdga9oC1uTwRZzkzv=crZ1WyNueYTQ@mail.gmail.com>
-	<CAAfyv35oixBvF3qYd+jv1COChJsdi5f0V_ApYxGt6aRJgH7Aew@mail.gmail.com>
-	<CAMKF1sqVSf4pcw+Jfme3j1xah9S7+=3z77DAc4prZf57zODmFQ@mail.gmail.com>
-	<CAAfyv34pq55FZsvGn3q97cp1p4T0TkzTGYDyu=+qPLaqhF0p2Q@mail.gmail.com>
-In-Reply-To: <CAAfyv34pq55FZsvGn3q97cp1p4T0TkzTGYDyu=+qPLaqhF0p2Q@mail.gmail.com>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Tue, 23 Oct 2018 09:58:42 +0200
-Message-ID: <CAAfyv34R3FQEmLbYGaoDDrnW-XmNAdx7FrO3zSS=1xp6J5H5Sw@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: master-next : QA issue with glibc locale
+From: "Dhanush K.S" <dhanush.ks@gmail.com>
+Date: Tue, 23 Oct 2018 11:58:59 +0200
+Message-ID: <CAKPYHZ5SaK_jM+5bseW4LnqF5mSLi8-9N-e_0y+70fEQm6UQWw@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Busybox_1.23.2 fails at do_compile on Poky-Sumo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,987 +68,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2018 07:59:00 -0000
+X-List-Received-Date: Tue, 23 Oct 2018 09:59:14 -0000
+Content-Type: multipart/alternative; boundary="000000000000e5d5840578e26b15"
+
+--000000000000e5d5840578e26b15
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 22, 2018 at 11:01 AM Belisko Marek <marek.belisko@gmail.com> wrote:
->
-> Hi Khem,
-> On Mon, Oct 22, 2018 at 12:31 AM Khem Raj <raj.khem@gmail.com> wrote:
-> >
-> > On Sun, Oct 21, 2018 at 7:42 PM Belisko Marek <marek.belisko@gmail.com> wrote:
-> > >
-> > > Hi Khem,
-> > >
-> > > On Sun, Oct 21, 2018 at 8:40 PM Khem Raj <raj.khem@gmail.com> wrote:
-> > > >
-> > > >
-> > > >
-> > > > On Sun, Oct 21, 2018 at 7:27 PM Belisko Marek <marek.belisko@gmail.com> wrote:
-> > > >>
-> > > >> Hi,
-> > > >>
-> > > >> I had problem with rocko see here [1] but issue is still present in
-> > > >> poky master-next also:
-> > > >
-> > > >
-> > > > Is it using stock poky or are there any customizations if yes then please share those too
-> > > Nope any customizations just stock poky (master-next
-> > > 32bfcbed083622de7462d0c563a7070acd7efe9b)
-> >
-> > interesting, I dont have is reproducble so cant see much through the
-> > issue . but does
-> > the workaround suggested in
-> > https://bugzilla.yoctoproject.org/show_bug.cgi?id=12265
-> > help where you disable cross-localedef
-> I tried suggested workaround (wipe all stuff except downloads and
-> re-run again) and hit this:
->
-> ERROR: core-image-base-1.0-r0 do_rootfs: Unable to install packages.
-> Command '/home/marek/projects/yocto/poky/build/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-base/1.0-r0/recipe-sysroot-native/usr/bin/opkg
-> --volatile-cache -f
-> /home/marek/projects/yocto/poky/build/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-base/1.0-r0/opkg.conf
-> -t /home/marek/projects/yocto/poky/build/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-base/1.0-r0/temp/ipktemp/
-> -o /home/marek/projects/yocto/poky/build/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-base/1.0-r0/rootfs
->  --force_postinstall --prefer-arch-to-version   install
-> locale-base-en-gb locale-base-en-us' returned 255:
-> Collected errors:
->  * opkg_prepare_url_for_install: Couldn't find anything to satisfy
-> 'locale-base-en-gb'.
->  * rm_r: Failed to open dir
-> /home/marek/projects/yocto/poky/build/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-base/1.0-r0/temp/ipktemp//opkg-o8sLzj:
-> No such file or directory.
->
-> ERROR: core-image-base-1.0-r0 do_rootfs: Function failed: do_rootfs
-> ERROR: Logfile of failure stored in:
-> /home/marek/projects/yocto/poky/build/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-base/1.0-r0/temp/log.do_rootfs.2729
-> ERROR: Task (/home/marek/projects/yocto/poky//meta/recipes-core/images/core-image-base.bb:do_rootfs)
-> failed with exit code '1'
->
-> I have same with below patch (when workaround QA issue). I have
-> meta-java in bblayers and building openjdk-8 (but I don't think this
-> could have some influence). Thanks.
+Hello Yocto,
 
-Looks like issue is with core-image-base. When build
-core-image-minimal issue vanished (with workaround from bugzilla)
-> >
-> > > >>
-> > > >>
-> > > >>
-> > > >> ERROR: glibc-locale-2.28-r0 do_package: QA Issue: glibc-locale:
-> > > >> Files/directories were installed but not shipped in any package:
-> > > >>   /usr/share/i18n
-> > > >>   /usr/share/i18n/charmaps
-> > > >>   /usr/share/i18n/locales
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-2.gz
-> > > >>   /usr/share/i18n/charmaps/T.61-8BIT.gz
-> > > >>   /usr/share/i18n/charmaps/IBM855.gz
-> > > >>   /usr/share/i18n/charmaps/IBM1163.gz
-> > > >>   /usr/share/i18n/charmaps/IBM1129.gz
-> > > >>   /usr/share/i18n/charmaps/SHIFT_JIS.gz
-> > > >>   /usr/share/i18n/charmaps/CWI.gz
-> > > >>   /usr/share/i18n/charmaps/CP1253.gz
-> > > >>   /usr/share/i18n/charmaps/IBM880.gz
-> > > >>   /usr/share/i18n/charmaps/T.101-G2.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-5.gz
-> > > >>   /usr/share/i18n/charmaps/CP1250.gz
-> > > >>   /usr/share/i18n/charmaps/INIS-8.gz
-> > > >>   /usr/share/i18n/charmaps/SHIFT_JISX0213.gz
-> > > >>   /usr/share/i18n/charmaps/IBM297.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_10367-BOX.gz
-> > > >>   /usr/share/i18n/charmaps/CP1257.gz
-> > > >>   /usr/share/i18n/charmaps/JIS_C6220-1969-RO.gz
-> > > >>   /usr/share/i18n/charmaps/IBM278.gz
-> > > >>   /usr/share/i18n/charmaps/IBM858.gz
-> > > >>   /usr/share/i18n/charmaps/KSC5636.gz
-> > > >>   /usr/share/i18n/charmaps/IBM285.gz
-> > > >>   /usr/share/i18n/charmaps/INIS.gz
-> > > >>   /usr/share/i18n/charmaps/EUC-TW.gz
-> > > >>   /usr/share/i18n/charmaps/IBM274.gz
-> > > >>   /usr/share/i18n/charmaps/IBM038.gz
-> > > >>   /usr/share/i18n/charmaps/DS_2089.gz
-> > > >>   /usr/share/i18n/charmaps/GB2312.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-UK.gz
-> > > >>   /usr/share/i18n/charmaps/GOST_19768-74.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-IR-209.gz
-> > > >>   /usr/share/i18n/charmaps/BS_4730.gz
-> > > >>   /usr/share/i18n/charmaps/IT.gz
-> > > >>   /usr/share/i18n/charmaps/IBM918.gz
-> > > >>   /usr/share/i18n/charmaps/MAC-CYRILLIC.gz
-> > > >>   /usr/share/i18n/charmaps/CP10007.gz
-> > > >>   /usr/share/i18n/charmaps/BS_VIEWDATA.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_646.IRV.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-FI-SE.gz
-> > > >>   /usr/share/i18n/charmaps/NF_Z_62-010.gz
-> > > >>   /usr/share/i18n/charmaps/KOI8-R.gz
-> > > >>   /usr/share/i18n/charmaps/IBM280.gz
-> > > >>   /usr/share/i18n/charmaps/IBM857.gz
-> > > >>   /usr/share/i18n/charmaps/JIS_C6229-1984-KANA.gz
-> > > >>   /usr/share/i18n/charmaps/EUC-JISX0213.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-7.gz
-> > > >>   /usr/share/i18n/charmaps/CSN_369103.gz
-> > > >>   /usr/share/i18n/charmaps/GEORGIAN-ACADEMY.gz
-> > > >>   /usr/share/i18n/charmaps/NS_4551-1.gz
-> > > >>   /usr/share/i18n/charmaps/IBM1164.gz
-> > > >>   /usr/share/i18n/charmaps/WINDOWS-31J.gz
-> > > >>   /usr/share/i18n/charmaps/GBK.gz
-> > > >>   /usr/share/i18n/charmaps/PT2.gz
-> > > >>   /usr/share/i18n/charmaps/NATS-SEFI.gz
-> > > >>   /usr/share/i18n/charmaps/TSCII.gz
-> > > >>   /usr/share/i18n/charmaps/JIS_C6220-1969-JP.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-10.gz
-> > > >>   /usr/share/i18n/charmaps/IBM290.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-US.gz
-> > > >>   /usr/share/i18n/charmaps/ISIRI-3342.gz
-> > > >>   /usr/share/i18n/charmaps/JIS_C6229-1984-HAND.gz
-> > > >>   /usr/share/i18n/charmaps/MIK.gz
-> > > >>   /usr/share/i18n/charmaps/HP-THAI8.gz
-> > > >>   /usr/share/i18n/charmaps/TCVN5712-1.gz
-> > > >>   /usr/share/i18n/charmaps/DIN_66003.gz
-> > > >>   /usr/share/i18n/charmaps/CP774.gz
-> > > >>   /usr/share/i18n/charmaps/JOHAB.gz
-> > > >>   /usr/share/i18n/charmaps/IBM904.gz
-> > > >>   /usr/share/i18n/charmaps/LATIN-GREEK-1.gz
-> > > >>   /usr/share/i18n/charmaps/IBM863.gz
-> > > >>   /usr/share/i18n/charmaps/HP-ROMAN8.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_5428.gz
-> > > >>   /usr/share/i18n/charmaps/IEC_P27-1.gz
-> > > >>   /usr/share/i18n/charmaps/CP1254.gz
-> > > >>   /usr/share/i18n/charmaps/CP1125.gz
-> > > >>   /usr/share/i18n/charmaps/KOI-8.gz
-> > > >>   /usr/share/i18n/charmaps/JIS_C6229-1984-A.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-9.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_646.BASIC.gz
-> > > >>   /usr/share/i18n/charmaps/IBM860.gz
-> > > >>   /usr/share/i18n/charmaps/IBM891.gz
-> > > >>   /usr/share/i18n/charmaps/NF_Z_62-010_1973.gz
-> > > >>   /usr/share/i18n/charmaps/CP773.gz
-> > > >>   /usr/share/i18n/charmaps/NS_4551-2.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-13.gz
-> > > >>   /usr/share/i18n/charmaps/ANSI_X3.4-1968.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-ES-A.gz
-> > > >>   /usr/share/i18n/charmaps/IBM284.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-1.gz
-> > > >>   /usr/share/i18n/charmaps/CP770.gz
-> > > >>   /usr/share/i18n/charmaps/CSA_Z243.4-1985-1.gz
-> > > >>   /usr/share/i18n/charmaps/ANSI_X3.110-1983.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-IS-FRISS.gz
-> > > >>   /usr/share/i18n/charmaps/MAC-IS.gz
-> > > >>   /usr/share/i18n/charmaps/TIS-620.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_6937-2-25.gz
-> > > >>   /usr/share/i18n/charmaps/RK1048.gz
-> > > >>   /usr/share/i18n/charmaps/IBM1133.gz
-> > > >>   /usr/share/i18n/charmaps/GREEK7-OLD.gz
-> > > >>   /usr/share/i18n/charmaps/CP737.gz
-> > > >>   /usr/share/i18n/charmaps/IBM037.gz
-> > > >>   /usr/share/i18n/charmaps/IBM866NAV.gz
-> > > >>   /usr/share/i18n/charmaps/CP1255.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_6937.gz
-> > > >>   /usr/share/i18n/charmaps/IBM256.gz
-> > > >>   /usr/share/i18n/charmaps/CSA_Z243.4-1985-2.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-DK-NO-A.gz
-> > > >>   /usr/share/i18n/charmaps/IBM874.gz
-> > > >>   /usr/share/i18n/charmaps/JUS_I.B1.003-MAC.gz
-> > > >>   /usr/share/i18n/charmaps/ES.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_5427-EXT.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_5427.gz
-> > > >>   /usr/share/i18n/charmaps/KOI8-T.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-PT.gz
-> > > >>   /usr/share/i18n/charmaps/BIG5-HKSCS.gz
-> > > >>   /usr/share/i18n/charmaps/IBM423.gz
-> > > >>   /usr/share/i18n/charmaps/IBM869.gz
-> > > >>   /usr/share/i18n/charmaps/IBM905.gz
-> > > >>   /usr/share/i18n/charmaps/MAC-CENTRALEUROPE.gz
-> > > >>   /usr/share/i18n/charmaps/IBM1161.gz
-> > > >>   /usr/share/i18n/charmaps/CP949.gz
-> > > >>   /usr/share/i18n/charmaps/IBM1160.gz
-> > > >>   /usr/share/i18n/charmaps/NEXTSTEP.gz
-> > > >>   /usr/share/i18n/charmaps/ECMA-CYRILLIC.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-FR.gz
-> > > >>   /usr/share/i18n/charmaps/ES2.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-3.gz
-> > > >>   /usr/share/i18n/charmaps/IBM862.gz
-> > > >>   /usr/share/i18n/charmaps/IBM852.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-14.gz
-> > > >>   /usr/share/i18n/charmaps/VIDEOTEX-SUPPL.gz
-> > > >>   /usr/share/i18n/charmaps/SEN_850200_B.gz
-> > > >>   /usr/share/i18n/charmaps/MAC-UK.gz
-> > > >>   /usr/share/i18n/charmaps/JUS_I.B1.002.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-9E.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-AT-DE-A.gz
-> > > >>   /usr/share/i18n/charmaps/IBM437.gz
-> > > >>   /usr/share/i18n/charmaps/IBM851.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-6.gz
-> > > >>   /usr/share/i18n/charmaps/UTF-8.gz
-> > > >>   /usr/share/i18n/charmaps/IBM864.gz
-> > > >>   /usr/share/i18n/charmaps/EUC-JP-MS.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-DK-NO.gz
-> > > >>   /usr/share/i18n/charmaps/CP1252.gz
-> > > >>   /usr/share/i18n/charmaps/MSZ_7795.3.gz
-> > > >>   /usr/share/i18n/charmaps/IBM922.gz
-> > > >>   /usr/share/i18n/charmaps/CP1258.gz
-> > > >>   /usr/share/i18n/charmaps/HP-TURKISH8.gz
-> > > >>   /usr/share/i18n/charmaps/CP1251.gz
-> > > >>   /usr/share/i18n/charmaps/HP-GREEK8.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-4.gz
-> > > >>   /usr/share/i18n/charmaps/GB_1988-80.gz
-> > > >>   /usr/share/i18n/charmaps/ASMO_449.gz
-> > > >>   /usr/share/i18n/charmaps/CP771.gz
-> > > >>   /usr/share/i18n/charmaps/INVARIANT.gz
-> > > >>   /usr/share/i18n/charmaps/IBM281.gz
-> > > >>   /usr/share/i18n/charmaps/EUC-KR.gz
-> > > >>   /usr/share/i18n/charmaps/IBM875.gz
-> > > >>   /usr/share/i18n/charmaps/SAMI-WS2.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-ES.gz
-> > > >>   /usr/share/i18n/charmaps/IBM870.gz
-> > > >>   /usr/share/i18n/charmaps/IBM868.gz
-> > > >>   /usr/share/i18n/charmaps/IBM856.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_6937-2-ADD.gz
-> > > >>   /usr/share/i18n/charmaps/EUC-JP.gz
-> > > >>   /usr/share/i18n/charmaps/BRF.gz
-> > > >>   /usr/share/i18n/charmaps/IBM1047.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_8859-SUPP.gz
-> > > >>   /usr/share/i18n/charmaps/KOI8-RU.gz
-> > > >>   /usr/share/i18n/charmaps/IBM273.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-CA-FR.gz
-> > > >>   /usr/share/i18n/charmaps/IBM850.gz
-> > > >>   /usr/share/i18n/charmaps/GB18030.gz
-> > > >>   /usr/share/i18n/charmaps/IBM866.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-11.gz
-> > > >>   /usr/share/i18n/charmaps/IBM1026.gz
-> > > >>   /usr/share/i18n/charmaps/SEN_850200_C.gz
-> > > >>   /usr/share/i18n/charmaps/BIG5.gz
-> > > >>   /usr/share/i18n/charmaps/KOI8-U.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_8859-1,GL.gz
-> > > >>   /usr/share/i18n/charmaps/IBM865.gz
-> > > >>   /usr/share/i18n/charmaps/ARMSCII-8.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_10646.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_11548-1.gz
-> > > >>   /usr/share/i18n/charmaps/IBM871.gz
-> > > >>   /usr/share/i18n/charmaps/JIS_X0201.gz
-> > > >>   /usr/share/i18n/charmaps/SAMI.gz
-> > > >>   /usr/share/i18n/charmaps/GEORGIAN-PS.gz
-> > > >>   /usr/share/i18n/charmaps/VISCII.gz
-> > > >>   /usr/share/i18n/charmaps/IBM1124.gz
-> > > >>   /usr/share/i18n/charmaps/PT154.gz
-> > > >>   /usr/share/i18n/charmaps/IBM424.gz
-> > > >>   /usr/share/i18n/charmaps/PT.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-IT.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-FI-SE-A.gz
-> > > >>   /usr/share/i18n/charmaps/IBM277.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-IR-197.gz
-> > > >>   /usr/share/i18n/charmaps/GREEK-CCITT.gz
-> > > >>   /usr/share/i18n/charmaps/IBM861.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-AT-DE.gz
-> > > >>   /usr/share/i18n/charmaps/ISO_2033-1983.gz
-> > > >>   /usr/share/i18n/charmaps/JIS_C6229-1984-HAND-ADD.gz
-> > > >>   /usr/share/i18n/charmaps/MAC-SAMI.gz
-> > > >>   /usr/share/i18n/charmaps/NC_NC00-10.gz
-> > > >>   /usr/share/i18n/charmaps/IBM1132.gz
-> > > >>   /usr/share/i18n/charmaps/IBM420.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-IR-90.gz
-> > > >>   /usr/share/i18n/charmaps/NATS-DANO.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-16.gz
-> > > >>   /usr/share/i18n/charmaps/CP775.gz
-> > > >>   /usr/share/i18n/charmaps/NATS-DANO-ADD.gz
-> > > >>   /usr/share/i18n/charmaps/DEC-MCS.gz
-> > > >>   /usr/share/i18n/charmaps/IBM500.gz
-> > > >>   /usr/share/i18n/charmaps/LATIN-GREEK.gz
-> > > >>   /usr/share/i18n/charmaps/IBM1162.gz
-> > > >>   /usr/share/i18n/charmaps/CP772.gz
-> > > >>   /usr/share/i18n/charmaps/IBM275.gz
-> > > >>   /usr/share/i18n/charmaps/T.61-7BIT.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-8.gz
-> > > >>   /usr/share/i18n/charmaps/IBM903.gz
-> > > >>   /usr/share/i18n/charmaps/IBM1004.gz
-> > > >>   /usr/share/i18n/charmaps/EBCDIC-ES-S.gz
-> > > >>   /usr/share/i18n/charmaps/MACINTOSH.gz
-> > > >>   /usr/share/i18n/charmaps/GREEK7.gz
-> > > >>   /usr/share/i18n/charmaps/JUS_I.B1.003-SERB.gz
-> > > >>   /usr/share/i18n/charmaps/HP-ROMAN9.gz
-> > > >>   /usr/share/i18n/charmaps/INIS-CYRILLIC.gz
-> > > >>   /usr/share/i18n/charmaps/ISO-8859-15.gz
-> > > >>   /usr/share/i18n/charmaps/JIS_C6229-1984-B-ADD.gz
-> > > >>   /usr/share/i18n/charmaps/NATS-SEFI-ADD.gz
-> > > >>   /usr/share/i18n/charmaps/CP1256.gz
-> > > >>   /usr/share/i18n/charmaps/CSA_Z243.4-1985-GR.gz
-> > > >>   /usr/share/i18n/charmaps/JIS_C6229-1984-B.gz
-> > > >>   /usr/share/i18n/locales/niu_NU
-> > > >>   /usr/share/i18n/locales/en_IE
-> > > >>   /usr/share/i18n/locales/sl_SI
-> > > >>   /usr/share/i18n/locales/fi_FI@euro
-> > > >>   /usr/share/i18n/locales/mg_MG
-> > > >>   /usr/share/i18n/locales/sm_WS
-> > > >>   /usr/share/i18n/locales/kl_GL
-> > > >>   /usr/share/i18n/locales/aa_ER@saaho
-> > > >>   /usr/share/i18n/locales/es_ES
-> > > >>   /usr/share/i18n/locales/ar_TN
-> > > >>   /usr/share/i18n/locales/lb_LU
-> > > >>   /usr/share/i18n/locales/sgs_LT
-> > > >>   /usr/share/i18n/locales/ca_ES@euro
-> > > >>   /usr/share/i18n/locales/ti_ER
-> > > >>   /usr/share/i18n/locales/ta_LK
-> > > >>   /usr/share/i18n/locales/ha_NG
-> > > >>   /usr/share/i18n/locales/st_ZA
-> > > >>   /usr/share/i18n/locales/niu_NZ
-> > > >>   /usr/share/i18n/locales/es_CU
-> > > >>   /usr/share/i18n/locales/translit_small
-> > > >>   /usr/share/i18n/locales/ve_ZA
-> > > >>   /usr/share/i18n/locales/kn_IN
-> > > >>   /usr/share/i18n/locales/el_CY
-> > > >>   /usr/share/i18n/locales/ak_GH
-> > > >>   /usr/share/i18n/locales/ca_FR
-> > > >>   /usr/share/i18n/locales/fr_BE@euro
-> > > >>   /usr/share/i18n/locales/POSIX
-> > > >>   /usr/share/i18n/locales/ga_IE
-> > > >>   /usr/share/i18n/locales/ar_IQ
-> > > >>   /usr/share/i18n/locales/translit_compat
-> > > >>   /usr/share/i18n/locales/mi_NZ
-> > > >>   /usr/share/i18n/locales/ur_PK
-> > > >>   /usr/share/i18n/locales/br_FR
-> > > >>   /usr/share/i18n/locales/ar_SS
-> > > >>   /usr/share/i18n/locales/mhr_RU
-> > > >>   /usr/share/i18n/locales/kk_KZ
-> > > >>   /usr/share/i18n/locales/mjw_IN
-> > > >>   /usr/share/i18n/locales/en_NZ
-> > > >>   /usr/share/i18n/locales/en_ZW
-> > > >>   /usr/share/i18n/locales/gd_GB
-> > > >>   /usr/share/i18n/locales/fil_PH
-> > > >>   /usr/share/i18n/locales/fr_LU@euro
-> > > >>   /usr/share/i18n/locales/iu_CA
-> > > >>   /usr/share/i18n/locales/es_AR
-> > > >>   /usr/share/i18n/locales/es_MX
-> > > >>   /usr/share/i18n/locales/rw_RW
-> > > >>   /usr/share/i18n/locales/ru_UA
-> > > >>   /usr/share/i18n/locales/sat_IN
-> > > >>   /usr/share/i18n/locales/be_BY@latin
-> > > >>   /usr/share/i18n/locales/ar_LY
-> > > >>   /usr/share/i18n/locales/lg_UG
-> > > >>   /usr/share/i18n/locales/tcy_IN
-> > > >>   /usr/share/i18n/locales/nb_NO
-> > > >>   /usr/share/i18n/locales/en_IE@euro
-> > > >>   /usr/share/i18n/locales/de_DE
-> > > >>   /usr/share/i18n/locales/es_GT
-> > > >>   /usr/share/i18n/locales/ar_MA
-> > > >>   /usr/share/i18n/locales/os_RU
-> > > >>   /usr/share/i18n/locales/ber_MA
-> > > >>   /usr/share/i18n/locales/zh_CN
-> > > >>   /usr/share/i18n/locales/oc_FR
-> > > >>   /usr/share/i18n/locales/byn_ER
-> > > >>   /usr/share/i18n/locales/aa_ET
-> > > >>   /usr/share/i18n/locales/wae_CH
-> > > >>   /usr/share/i18n/locales/de_LU
-> > > >>   /usr/share/i18n/locales/brx_IN
-> > > >>   /usr/share/i18n/locales/az_AZ
-> > > >>   /usr/share/i18n/locales/sc_IT
-> > > >>   /usr/share/i18n/locales/agr_PE
-> > > >>   /usr/share/i18n/locales/hak_TW
-> > > >>   /usr/share/i18n/locales/cmn_TW
-> > > >>   /usr/share/i18n/locales/uz_UZ
-> > > >>   /usr/share/i18n/locales/ks_IN
-> > > >>   /usr/share/i18n/locales/hr_HR
-> > > >>   /usr/share/i18n/locales/pap_AW
-> > > >>   /usr/share/i18n/locales/gez_ER
-> > > >>   /usr/share/i18n/locales/el_GR
-> > > >>   /usr/share/i18n/locales/ca_AD
-> > > >>   /usr/share/i18n/locales/li_BE
-> > > >>   /usr/share/i18n/locales/wa_BE
-> > > >>   /usr/share/i18n/locales/tn_ZA
-> > > >>   /usr/share/i18n/locales/i18n_ctype
-> > > >>   /usr/share/i18n/locales/uk_UA
-> > > >>   /usr/share/i18n/locales/ig_NG
-> > > >>   /usr/share/i18n/locales/nhn_MX
-> > > >>   /usr/share/i18n/locales/bhb_IN
-> > > >>   /usr/share/i18n/locales/bs_BA
-> > > >>   /usr/share/i18n/locales/ko_KR
-> > > >>   /usr/share/i18n/locales/nr_ZA
-> > > >>   /usr/share/i18n/locales/en_CA
-> > > >>   /usr/share/i18n/locales/miq_NI
-> > > >>   /usr/share/i18n/locales/fr_FR
-> > > >>   /usr/share/i18n/locales/el_GR@euro
-> > > >>   /usr/share/i18n/locales/dsb_DE
-> > > >>   /usr/share/i18n/locales/lzh_TW
-> > > >>   /usr/share/i18n/locales/de_BE
-> > > >>   /usr/share/i18n/locales/yo_NG
-> > > >>   /usr/share/i18n/locales/nl_BE
-> > > >>   /usr/share/i18n/locales/es_CR
-> > > >>   /usr/share/i18n/locales/en_SG
-> > > >>   /usr/share/i18n/locales/ca_IT
-> > > >>   /usr/share/i18n/locales/es_DO
-> > > >>   /usr/share/i18n/locales/or_IN
-> > > >>   /usr/share/i18n/locales/quz_PE
-> > > >>   /usr/share/i18n/locales/es_NI
-> > > >>   /usr/share/i18n/locales/ss_ZA
-> > > >>   /usr/share/i18n/locales/id_ID
-> > > >>   /usr/share/i18n/locales/nds_NL
-> > > >>   /usr/share/i18n/locales/ia_FR
-> > > >>   /usr/share/i18n/locales/tr_TR
-> > > >>   /usr/share/i18n/locales/sw_TZ
-> > > >>   /usr/share/i18n/locales/translit_narrow
-> > > >>   /usr/share/i18n/locales/i18n
-> > > >>   /usr/share/i18n/locales/de_IT
-> > > >>   /usr/share/i18n/locales/mn_MN
-> > > >>   /usr/share/i18n/locales/nl_NL
-> > > >>   /usr/share/i18n/locales/ug_CN
-> > > >>   /usr/share/i18n/locales/br_FR@euro
-> > > >>   /usr/share/i18n/locales/nso_ZA
-> > > >>   /usr/share/i18n/locales/de_LU@euro
-> > > >>   /usr/share/i18n/locales/es_EC
-> > > >>   /usr/share/i18n/locales/en_SC
-> > > >>   /usr/share/i18n/locales/so_ET
-> > > >>   /usr/share/i18n/locales/eo
-> > > >>   /usr/share/i18n/locales/sq_AL
-> > > >>   /usr/share/i18n/locales/iso14651_t1_pinyin
-> > > >>   /usr/share/i18n/locales/ff_SN
-> > > >>   /usr/share/i18n/locales/ayc_PE
-> > > >>   /usr/share/i18n/locales/chr_US
-> > > >>   /usr/share/i18n/locales/bo_IN
-> > > >>   /usr/share/i18n/locales/gez_ER@abegede
-> > > >>   /usr/share/i18n/locales/sv_FI
-> > > >>   /usr/share/i18n/locales/translit_fraction
-> > > >>   /usr/share/i18n/locales/ar_DZ
-> > > >>   /usr/share/i18n/locales/an_ES
-> > > >>   /usr/share/i18n/locales/es_CL
-> > > >>   /usr/share/i18n/locales/ar_YE
-> > > >>   /usr/share/i18n/locales/ru_RU
-> > > >>   /usr/share/i18n/locales/crh_UA
-> > > >>   /usr/share/i18n/locales/gl_ES@euro
-> > > >>   /usr/share/i18n/locales/ce_RU
-> > > >>   /usr/share/i18n/locales/ts_ZA
-> > > >>   /usr/share/i18n/locales/af_ZA
-> > > >>   /usr/share/i18n/locales/sq_MK
-> > > >>   /usr/share/i18n/locales/ar_KW
-> > > >>   /usr/share/i18n/locales/tl_PH
-> > > >>   /usr/share/i18n/locales/bn_IN
-> > > >>   /usr/share/i18n/locales/szl_PL
-> > > >>   /usr/share/i18n/locales/ps_AF
-> > > >>   /usr/share/i18n/locales/hi_IN
-> > > >>   /usr/share/i18n/locales/te_IN
-> > > >>   /usr/share/i18n/locales/cv_RU
-> > > >>   /usr/share/i18n/locales/mag_IN
-> > > >>   /usr/share/i18n/locales/mni_IN
-> > > >>   /usr/share/i18n/locales/bem_ZM
-> > > >>   /usr/share/i18n/locales/tt_RU@iqtelif
-> > > >>   /usr/share/i18n/locales/ast_ES
-> > > >>   /usr/share/i18n/locales/tpi_PG
-> > > >>   /usr/share/i18n/locales/dz_BT
-> > > >>   /usr/share/i18n/locales/et_EE
-> > > >>   /usr/share/i18n/locales/ku_TR
-> > > >>   /usr/share/i18n/locales/nl_NL@euro
-> > > >>   /usr/share/i18n/locales/hu_HU
-> > > >>   /usr/share/i18n/locales/zh_SG
-> > > >>   /usr/share/i18n/locales/iso14651_t1
-> > > >>   /usr/share/i18n/locales/om_ET
-> > > >>   /usr/share/i18n/locales/translit_combining
-> > > >>   /usr/share/i18n/locales/cy_GB
-> > > >>   /usr/share/i18n/locales/zh_HK
-> > > >>   /usr/share/i18n/locales/bho_NP
-> > > >>   /usr/share/i18n/locales/ms_MY
-> > > >>   /usr/share/i18n/locales/hy_AM
-> > > >>   /usr/share/i18n/locales/pa_PK
-> > > >>   /usr/share/i18n/locales/is_IS
-> > > >>   /usr/share/i18n/locales/ml_IN
-> > > >>   /usr/share/i18n/locales/de_AT
-> > > >>   /usr/share/i18n/locales/nds_DE
-> > > >>   /usr/share/i18n/locales/pap_CW
-> > > >>   /usr/share/i18n/locales/sv_FI@euro
-> > > >>   /usr/share/i18n/locales/am_ET
-> > > >>   /usr/share/i18n/locales/lij_IT
-> > > >>   /usr/share/i18n/locales/ht_HT
-> > > >>   /usr/share/i18n/locales/pt_PT
-> > > >>   /usr/share/i18n/locales/es_ES@euro
-> > > >>   /usr/share/i18n/locales/en_ZM
-> > > >>   /usr/share/i18n/locales/gez_ET
-> > > >>   /usr/share/i18n/locales/aa_ER
-> > > >>   /usr/share/i18n/locales/de_CH
-> > > >>   /usr/share/i18n/locales/wo_SN
-> > > >>   /usr/share/i18n/locales/en_IL
-> > > >>   /usr/share/i18n/locales/tr_CY
-> > > >>   /usr/share/i18n/locales/fy_DE
-> > > >>   /usr/share/i18n/locales/my_MM
-> > > >>   /usr/share/i18n/locales/pa_IN
-> > > >>   /usr/share/i18n/locales/gv_GB
-> > > >>   /usr/share/i18n/locales/es_UY
-> > > >>   /usr/share/i18n/locales/fy_NL
-> > > >>   /usr/share/i18n/locales/zu_ZA
-> > > >>   /usr/share/i18n/locales/to_TO
-> > > >>   /usr/share/i18n/locales/fi_FI
-> > > >>   /usr/share/i18n/locales/fo_FO
-> > > >>   /usr/share/i18n/locales/eu_ES@euro
-> > > >>   /usr/share/i18n/locales/uz_UZ@cyrillic
-> > > >>   /usr/share/i18n/locales/en_ZA
-> > > >>   /usr/share/i18n/locales/ne_NP
-> > > >>   /usr/share/i18n/locales/pt_PT@euro
-> > > >>   /usr/share/i18n/locales/dv_MV
-> > > >>   /usr/share/i18n/locales/hif_FJ
-> > > >>   /usr/share/i18n/locales/translit_font
-> > > >>   /usr/share/i18n/locales/th_TH
-> > > >>   /usr/share/i18n/locales/sa_IN
-> > > >>   /usr/share/i18n/locales/bn_BD
-> > > >>   /usr/share/i18n/locales/en_NG
-> > > >>   /usr/share/i18n/locales/en_IN
-> > > >>   /usr/share/i18n/locales/pt_BR
-> > > >>   /usr/share/i18n/locales/sah_RU
-> > > >>   /usr/share/i18n/locales/zh_TW
-> > > >>   /usr/share/i18n/locales/ca_ES
-> > > >>   /usr/share/i18n/locales/ber_DZ
-> > > >>   /usr/share/i18n/locales/gl_ES
-> > > >>   /usr/share/i18n/locales/translit_cjk_compat
-> > > >>   /usr/share/i18n/locales/ga_IE@euro
-> > > >>   /usr/share/i18n/locales/bho_IN
-> > > >>   /usr/share/i18n/locales/it_IT
-> > > >>   /usr/share/i18n/locales/nan_TW@latin
-> > > >>   /usr/share/i18n/locales/translit_circle
-> > > >>   /usr/share/i18n/locales/sid_ET
-> > > >>   /usr/share/i18n/locales/en_GB
-> > > >>   /usr/share/i18n/locales/translit_wide
-> > > >>   /usr/share/i18n/locales/az_IR
-> > > >>   /usr/share/i18n/locales/aa_DJ
-> > > >>   /usr/share/i18n/locales/be_BY
-> > > >>   /usr/share/i18n/locales/the_NP
-> > > >>   /usr/share/i18n/locales/mai_IN
-> > > >>   /usr/share/i18n/locales/gu_IN
-> > > >>   /usr/share/i18n/locales/kok_IN
-> > > >>   /usr/share/i18n/locales/sr_RS
-> > > >>   /usr/share/i18n/locales/hsb_DE
-> > > >>   /usr/share/i18n/locales/translit_cjk_variants
-> > > >>   /usr/share/i18n/locales/so_SO
-> > > >>   /usr/share/i18n/locales/sd_IN
-> > > >>   /usr/share/i18n/locales/ar_QA
-> > > >>   /usr/share/i18n/locales/tg_TJ
-> > > >>   /usr/share/i18n/locales/iso14651_t1_common
-> > > >>   /usr/share/i18n/locales/ca_ES@valencia
-> > > >>   /usr/share/i18n/locales/fur_IT
-> > > >>   /usr/share/i18n/locales/sr_RS@latin
-> > > >>   /usr/share/i18n/locales/so_DJ
-> > > >>   /usr/share/i18n/locales/li_NL
-> > > >>   /usr/share/i18n/locales/ar_AE
-> > > >>   /usr/share/i18n/locales/fr_BE
-> > > >>   /usr/share/i18n/locales/cs_CZ
-> > > >>   /usr/share/i18n/locales/hne_IN
-> > > >>   /usr/share/i18n/locales/nl_BE@euro
-> > > >>   /usr/share/i18n/locales/yi_US
-> > > >>   /usr/share/i18n/locales/mr_IN
-> > > >>   /usr/share/i18n/locales/anp_IN
-> > > >>   /usr/share/i18n/locales/sd_IN@devanagari
-> > > >>   /usr/share/i18n/locales/yue_HK
-> > > >>   /usr/share/i18n/locales/es_PA
-> > > >>   /usr/share/i18n/locales/wa_BE@euro
-> > > >>   /usr/share/i18n/locales/en_BW
-> > > >>   /usr/share/i18n/locales/vi_VN
-> > > >>   /usr/share/i18n/locales/bi_VU
-> > > >>   /usr/share/i18n/locales/mk_MK
-> > > >>   /usr/share/i18n/locales/es_PR
-> > > >>   /usr/share/i18n/locales/lv_LV
-> > > >>   /usr/share/i18n/locales/shs_CA
-> > > >>   /usr/share/i18n/locales/tk_TM
-> > > >>   /usr/share/i18n/locales/csb_PL
-> > > >>   /usr/share/i18n/locales/sr_ME
-> > > >>   /usr/share/i18n/locales/nan_TW
-> > > >>   /usr/share/i18n/locales/mfe_MU
-> > > >>   /usr/share/i18n/locales/pl_PL
-> > > >>   /usr/share/i18n/locales/de_AT@euro
-> > > >>   /usr/share/i18n/locales/ik_CA
-> > > >>   /usr/share/i18n/locales/cns11643_stroke
-> > > >>   /usr/share/i18n/locales/fr_CH
-> > > >>   /usr/share/i18n/locales/ar_JO
-> > > >>   /usr/share/i18n/locales/en_AG
-> > > >>   /usr/share/i18n/locales/fa_IR
-> > > >>   /usr/share/i18n/locales/translit_neutral
-> > > >>   /usr/share/i18n/locales/mt_MT
-> > > >>   /usr/share/i18n/locales/nn_NO
-> > > >>   /usr/share/i18n/locales/ar_OM
-> > > >>   /usr/share/i18n/locales/de_LI
-> > > >>   /usr/share/i18n/locales/lt_LT
-> > > >>   /usr/share/i18n/locales/unm_US
-> > > >>   /usr/share/i18n/locales/fr_CA
-> > > >>   /usr/share/i18n/locales/sk_SK
-> > > >>   /usr/share/i18n/locales/ta_IN
-> > > >>   /usr/share/i18n/locales/as_IN
-> > > >>   /usr/share/i18n/locales/kw_GB
-> > > >>   /usr/share/i18n/locales/xh_ZA
-> > > >>   /usr/share/i18n/locales/ks_IN@devanagari
-> > > >>   /usr/share/i18n/locales/si_LK
-> > > >>   /usr/share/i18n/locales/en_HK
-> > > >>   /usr/share/i18n/locales/es_BO
-> > > >>   /usr/share/i18n/locales/wal_ET
-> > > >>   /usr/share/i18n/locales/ar_EG
-> > > >>   /usr/share/i18n/locales/es_HN
-> > > >>   /usr/share/i18n/locales/it_CH
-> > > >>   /usr/share/i18n/locales/es_SV
-> > > >>   /usr/share/i18n/locales/ro_RO
-> > > >>   /usr/share/i18n/locales/bg_BG
-> > > >>   /usr/share/i18n/locales/mai_NP
-> > > >>   /usr/share/i18n/locales/ja_JP
-> > > >>   /usr/share/i18n/locales/tig_ER
-> > > >>   /usr/share/i18n/locales/ky_KG
-> > > >>   /usr/share/i18n/locales/lo_LA
-> > > >>   /usr/share/i18n/locales/ln_CD
-> > > >>   /usr/share/i18n/locales/shn_MM
-> > > >>   /usr/share/i18n/locales/es_CO
-> > > >>   /usr/share/i18n/locales/eu_ES
-> > > >>   /usr/share/i18n/locales/es_US
-> > > >>   /usr/share/i18n/locales/gez_ET@abegede
-> > > >>   /usr/share/i18n/locales/es_PY
-> > > >>   /usr/share/i18n/locales/se_NO
-> > > >>   /usr/share/i18n/locales/so_KE
-> > > >>   /usr/share/i18n/locales/es_VE
-> > > >>   /usr/share/i18n/locales/es_PE
-> > > >>   /usr/share/i18n/locales/om_KE
-> > > >>   /usr/share/i18n/locales/en_PH
-> > > >>   /usr/share/i18n/locales/sw_KE
-> > > >>   /usr/share/i18n/locales/bo_CN
-> > > >>   /usr/share/i18n/locales/ur_IN
-> > > >>   /usr/share/i18n/locales/fr_FR@euro
-> > > >>   /usr/share/i18n/locales/sv_SE
-> > > >>   /usr/share/i18n/locales/yuw_PG
-> > > >>   /usr/share/i18n/locales/tt_RU
-> > > >>   /usr/share/i18n/locales/de_BE@euro
-> > > >>   /usr/share/i18n/locales/doi_IN
-> > > >>   /usr/share/i18n/locales/ar_LB
-> > > >>   /usr/share/i18n/locales/en_AU
-> > > >>   /usr/share/i18n/locales/nl_AW
-> > > >>   /usr/share/i18n/locales/en_US
-> > > >>   /usr/share/i18n/locales/ar_SY
-> > > >>   /usr/share/i18n/locales/ar_SA
-> > > >>   /usr/share/i18n/locales/he_IL
-> > > >>   /usr/share/i18n/locales/ka_GE
-> > > >>   /usr/share/i18n/locales/ti_ET
-> > > >>   /usr/share/i18n/locales/ar_SD
-> > > >>   /usr/share/i18n/locales/translit_hangul
-> > > >>   /usr/share/i18n/locales/it_IT@euro
-> > > >>   /usr/share/i18n/locales/en_DK
-> > > >>   /usr/share/i18n/locales/da_DK
-> > > >>   /usr/share/i18n/locales/ar_IN
-> > > >>   /usr/share/i18n/locales/ar_BH
-> > > >>   /usr/share/i18n/locales/de_DE@euro
-> > > >>   /usr/share/i18n/locales/kab_DZ
-> > > >>   /usr/share/i18n/locales/fr_LU
-> > > >>   /usr/share/i18n/locales/km_KH
-> > > >>   /usr/share/i18n/locales/raj_IN
-> > > >>   /usr/lib/gconv/IBM4909.so
-> > > >>   /usr/lib/gconv/ISO8859-9E.so
-> > > >>   /usr/lib/gconv/ISO8859-6.so
-> > > >>   /usr/lib/gconv/NATS-SEFI.so
-> > > >>   /usr/lib/gconv/EBCDIC-PT.so
-> > > >>   /usr/lib/gconv/SHIFT_JISX0213.so
-> > > >>   /usr/lib/gconv/ARMSCII-8.so
-> > > >>   /usr/lib/gconv/UNICODE.so
-> > > >>   /usr/lib/gconv/IBM1166.so
-> > > >>   /usr/lib/gconv/CP1258.so
-> > > >>   /usr/lib/gconv/ISO8859-13.so
-> > > >>   /usr/lib/gconv/IBM9448.so
-> > > >>   /usr/lib/gconv/IBM865.so
-> > > >>   /usr/lib/gconv/KOI8-R.so
-> > > >>   /usr/lib/gconv/CP1256.so
-> > > >>   /usr/lib/gconv/IBM290.so
-> > > >>   /usr/lib/gconv/IBM280.so
-> > > >>   /usr/lib/gconv/IBM4971.so
-> > > >>   /usr/lib/gconv/EBCDIC-ES-S.so
-> > > >>   /usr/lib/gconv/IBM852.so
-> > > >>   /usr/lib/gconv/IBM1160.so
-> > > >>   /usr/lib/gconv/IBM275.so
-> > > >>   /usr/lib/gconv/IBM937.so
-> > > >>   /usr/lib/gconv/IBM277.so
-> > > >>   /usr/lib/gconv/ISO_5427-EXT.so
-> > > >>   /usr/lib/gconv/EBCDIC-FI-SE.so
-> > > >>   /usr/lib/gconv/IBM880.so
-> > > >>   /usr/lib/gconv/ISO-IR-209.so
-> > > >>   /usr/lib/gconv/IBM943.so
-> > > >>   /usr/lib/gconv/IBM1097.so
-> > > >>   /usr/lib/gconv/IBM1145.so
-> > > >>   /usr/lib/gconv/ISO-2022-CN-EXT.so
-> > > >>   /usr/lib/gconv/IBM935.so
-> > > >>   /usr/lib/gconv/IBM1133.so
-> > > >>   /usr/lib/gconv/ASMO_449.so
-> > > >>   /usr/lib/gconv/GEORGIAN-PS.so
-> > > >>   /usr/lib/gconv/ISO646.so
-> > > >>   /usr/lib/gconv/IBM868.so
-> > > >>   /usr/lib/gconv/CP775.so
-> > > >>   /usr/lib/gconv/CP932.so
-> > > >>   /usr/lib/gconv/IBM1154.so
-> > > >>   /usr/lib/gconv/EBCDIC-FI-SE-A.so
-> > > >>   /usr/lib/gconv/ISO8859-4.so
-> > > >>   /usr/lib/gconv/IBM1147.so
-> > > >>   /usr/lib/gconv/IBM16804.so
-> > > >>   /usr/lib/gconv/IBM1167.so
-> > > >>   /usr/lib/gconv/GBBIG5.so
-> > > >>   /usr/lib/gconv/TCVN5712-1.so
-> > > >>   /usr/lib/gconv/KOI8-RU.so
-> > > >>   /usr/lib/gconv/IBM1140.so
-> > > >>   /usr/lib/gconv/IBM1112.so
-> > > >>   /usr/lib/gconv/IBM1124.so
-> > > >>   /usr/lib/gconv/gconv-modules
-> > > >>   /usr/lib/gconv/IBM284.so
-> > > >>   /usr/lib/gconv/IBM856.so
-> > > >>   /usr/lib/gconv/GEORGIAN-ACADEMY.so
-> > > >>   /usr/lib/gconv/IBM5347.so
-> > > >>   /usr/lib/gconv/HP-ROMAN9.so
-> > > >>   /usr/lib/gconv/KOI-8.so
-> > > >>   /usr/lib/gconv/CSN_369103.so
-> > > >>   /usr/lib/gconv/IBM9066.so
-> > > >>   /usr/lib/gconv/BRF.so
-> > > >>   /usr/lib/gconv/MIK.so
-> > > >>   /usr/lib/gconv/IBM930.so
-> > > >>   /usr/lib/gconv/CP1257.so
-> > > >>   /usr/lib/gconv/VISCII.so
-> > > >>   /usr/lib/gconv/IBM1144.so
-> > > >>   /usr/lib/gconv/EUC-KR.so
-> > > >>   /usr/lib/gconv/EBCDIC-US.so
-> > > >>   /usr/lib/gconv/GBK.so
-> > > >>   /usr/lib/gconv/IBM901.so
-> > > >>   /usr/lib/gconv/IBM862.so
-> > > >>   /usr/lib/gconv/IBM1142.so
-> > > >>   /usr/lib/gconv/UTF-7.so
-> > > >>   /usr/lib/gconv/IEC_P27-1.so
-> > > >>   /usr/lib/gconv/ISO8859-14.so
-> > > >>   /usr/lib/gconv/IBM297.so
-> > > >>   /usr/lib/gconv/ISO_6937.so
-> > > >>   /usr/lib/gconv/IBM1123.so
-> > > >>   /usr/lib/gconv/EBCDIC-AT-DE.so
-> > > >>   /usr/lib/gconv/CP1250.so
-> > > >>   /usr/lib/gconv/EBCDIC-AT-DE-A.so
-> > > >>   /usr/lib/gconv/EBCDIC-IS-FRISS.so
-> > > >>   /usr/lib/gconv/CP1125.so
-> > > >>   /usr/lib/gconv/IBM850.so
-> > > >>   /usr/lib/gconv/IBM905.so
-> > > >>   /usr/lib/gconv/IBM903.so
-> > > >>   /usr/lib/gconv/ISO-2022-CN.so
-> > > >>   /usr/lib/gconv/ISO8859-16.so
-> > > >>   /usr/lib/gconv/CP1253.so
-> > > >>   /usr/lib/gconv/PT154.so
-> > > >>   /usr/lib/gconv/IBM851.so
-> > > >>   /usr/lib/gconv/IBM874.so
-> > > >>   /usr/lib/gconv/EUC-CN.so
-> > > >>   /usr/lib/gconv/IBM875.so
-> > > >>   /usr/lib/gconv/GREEK-CCITT.so
-> > > >>   /usr/lib/gconv/INIS-CYRILLIC.so
-> > > >>   /usr/lib/gconv/TIS-620.so
-> > > >>   /usr/lib/gconv/ISO8859-3.so
-> > > >>   /usr/lib/gconv/ISO8859-1.so
-> > > >>   /usr/lib/gconv/IBM1143.so
-> > > >>   /usr/lib/gconv/ISO_6937-2.so
-> > > >>   /usr/lib/gconv/IBM1141.so
-> > > >>   /usr/lib/gconv/ISO_10367-BOX.so
-> > > >>   /usr/lib/gconv/EUC-TW.so
-> > > >>   /usr/lib/gconv/HP-THAI8.so
-> > > >>   /usr/lib/gconv/libJIS.so
-> > > >>   /usr/lib/gconv/ISO_11548-1.so
-> > > >>   /usr/lib/gconv/IBM1399.so
-> > > >>   /usr/lib/gconv/IBM420.so
-> > > >>   /usr/lib/gconv/IBM1137.so
-> > > >>   /usr/lib/gconv/IBM038.so
-> > > >>   /usr/lib/gconv/ECMA-CYRILLIC.so
-> > > >>   /usr/lib/gconv/CP10007.so
-> > > >>   /usr/lib/gconv/IBM1371.so
-> > > >>   /usr/lib/gconv/IBM855.so
-> > > >>   /usr/lib/gconv/IBM1390.so
-> > > >>   /usr/lib/gconv/IBM871.so
-> > > >>   /usr/lib/gconv/SAMI-WS2.so
-> > > >>   /usr/lib/gconv/MACINTOSH.so
-> > > >>   /usr/lib/gconv/ISO-IR-197.so
-> > > >>   /usr/lib/gconv/libGB.so
-> > > >>   /usr/lib/gconv/INIS.so
-> > > >>   /usr/lib/gconv/LATIN-GREEK.so
-> > > >>   /usr/lib/gconv/IBM273.so
-> > > >>   /usr/lib/gconv/IBM918.so
-> > > >>   /usr/lib/gconv/IBM1130.so
-> > > >>   /usr/lib/gconv/DEC-MCS.so
-> > > >>   /usr/lib/gconv/IBM1153.so
-> > > >>   /usr/lib/gconv/JOHAB.so
-> > > >>   /usr/lib/gconv/IBM858.so
-> > > >>   /usr/lib/gconv/EBCDIC-ES.so
-> > > >>   /usr/lib/gconv/ISO_2033.so
-> > > >>   /usr/lib/gconv/LATIN-GREEK-1.so
-> > > >>   /usr/lib/gconv/INIS-8.so
-> > > >>   /usr/lib/gconv/IBM9030.so
-> > > >>   /usr/lib/gconv/KOI8-T.so
-> > > >>   /usr/lib/gconv/ISO8859-8.so
-> > > >>   /usr/lib/gconv/IBM1155.so
-> > > >>   /usr/lib/gconv/KOI8-U.so
-> > > >>   /usr/lib/gconv/IBM933.so
-> > > >>   /usr/lib/gconv/IBM1008.so
-> > > >>   /usr/lib/gconv/IBM1364.so
-> > > >>   /usr/lib/gconv/IBM274.so
-> > > >>   /usr/lib/gconv/ISO8859-15.so
-> > > >>   /usr/lib/gconv/IBM860.so
-> > > >>   /usr/lib/gconv/IBM891.so
-> > > >>   /usr/lib/gconv/GREEK7-OLD.so
-> > > >>   /usr/lib/gconv/IBM861.so
-> > > >>   /usr/lib/gconv/IBM1026.so
-> > > >>   /usr/lib/gconv/EBCDIC-DK-NO.so
-> > > >>   /usr/lib/gconv/EUC-JP.so
-> > > >>   /usr/lib/gconv/IBM904.so
-> > > >>   /usr/lib/gconv/MAC-SAMI.so
-> > > >>   /usr/lib/gconv/EUC-JP-MS.so
-> > > >>   /usr/lib/gconv/CP1255.so
-> > > >>   /usr/lib/gconv/EBCDIC-IT.so
-> > > >>   /usr/lib/gconv/CP773.so
-> > > >>   /usr/lib/gconv/IBM902.so
-> > > >>   /usr/lib/gconv/MAC-IS.so
-> > > >>   /usr/lib/gconv/UTF-32.so
-> > > >>   /usr/lib/gconv/ISO-2022-KR.so
-> > > >>   /usr/lib/gconv/CWI.so
-> > > >>   /usr/lib/gconv/IBM037.so
-> > > >>   /usr/lib/gconv/EBCDIC-FR.so
-> > > >>   /usr/lib/gconv/ISIRI-3342.so
-> > > >>   /usr/lib/gconv/IBM1158.so
-> > > >>   /usr/lib/gconv/CP1251.so
-> > > >>   /usr/lib/gconv/IBM1129.so
-> > > >>   /usr/lib/gconv/IBM4899.so
-> > > >>   /usr/lib/gconv/EBCDIC-UK.so
-> > > >>   /usr/lib/gconv/IBM1046.so
-> > > >>   /usr/lib/gconv/ISO8859-2.so
-> > > >>   /usr/lib/gconv/IBM256.so
-> > > >>   /usr/lib/gconv/IBM1161.so
-> > > >>   /usr/lib/gconv/UTF-16.so
-> > > >>   /usr/lib/gconv/CP771.so
-> > > >>   /usr/lib/gconv/ISO8859-7.so
-> > > >>   /usr/lib/gconv/IBM437.so
-> > > >>   /usr/lib/gconv/IBM869.so
-> > > >>   /usr/lib/gconv/libJISX0213.so
-> > > >>   /usr/lib/gconv/MAC-UK.so
-> > > >>   /usr/lib/gconv/IBM281.so
-> > > >>   /usr/lib/gconv/IBM1163.so
-> > > >>   /usr/lib/gconv/IBM278.so
-> > > >>   /usr/lib/gconv/GBGBK.so
-> > > >>   /usr/lib/gconv/IBM857.so
-> > > >>   /usr/lib/gconv/IBM285.so
-> > > >>   /usr/lib/gconv/IBM922.so
-> > > >>   /usr/lib/gconv/ISO_5428.so
-> > > >>   /usr/lib/gconv/IBM870.so
-> > > >>   /usr/lib/gconv/HP-ROMAN8.so
-> > > >>   /usr/lib/gconv/IBM866NAV.so
-> > > >>   /usr/lib/gconv/EBCDIC-ES-A.so
-> > > >>   /usr/lib/gconv/ISO8859-9.so
-> > > >>   /usr/lib/gconv/IBM866.so
-> > > >>   /usr/lib/gconv/IBM1025.so
-> > > >>   /usr/lib/gconv/BIG5HKSCS.so
-> > > >>   /usr/lib/gconv/IBM921.so
-> > > >>   /usr/lib/gconv/RK1048.so
-> > > >>   /usr/lib/gconv/CP772.so
-> > > >>   /usr/lib/gconv/ISO8859-11.so
-> > > >>   /usr/lib/gconv/IBM1008_420.so
-> > > >>   /usr/lib/gconv/T.61.so
-> > > >>   /usr/lib/gconv/HP-TURKISH8.so
-> > > >>   /usr/lib/gconv/CP1252.so
-> > > >>   /usr/lib/gconv/MAC-CENTRALEUROPE.so
-> > > >>   /usr/lib/gconv/ISO-2022-JP.so
-> > > >>   /usr/lib/gconv/IBM1148.so
-> > > >>   /usr/lib/gconv/IBM423.so
-> > > >>   /usr/lib/gconv/IBM864.so
-> > > >>   /usr/lib/gconv/CP737.so
-> > > >>   /usr/lib/gconv/IBM1004.so
-> > > >>   /usr/lib/gconv/libCNS.so
-> > > >>   /usr/lib/gconv/CP1254.so
-> > > >>   /usr/lib/gconv/IBM12712.so
-> > > >>   /usr/lib/gconv/IBM932.so
-> > > >>   /usr/lib/gconv/IBM1132.so
-> > > >>   /usr/lib/gconv/EBCDIC-CA-FR.so
-> > > >>   /usr/lib/gconv/HP-GREEK8.so
-> > > >>   /usr/lib/gconv/IBM939.so
-> > > >>   /usr/lib/gconv/BIG5.so
-> > > >>   /usr/lib/gconv/GREEK7.so
-> > > >>   /usr/lib/gconv/libISOIR165.so
-> > > >>   /usr/lib/gconv/ISO8859-5.so
-> > > >>   /usr/lib/gconv/CP774.so
-> > > >>   /usr/lib/gconv/IBM424.so
-> > > >>   /usr/lib/gconv/IBM803.so
-> > > >>   /usr/lib/gconv/IBM1164.so
-> > > >>   /usr/lib/gconv/EUC-JISX0213.so
-> > > >>   /usr/lib/gconv/IBM1157.so
-> > > >>   /usr/lib/gconv/IBM1162.so
-> > > >>   /usr/lib/gconv/libKSC.so
-> > > >>   /usr/lib/gconv/UHC.so
-> > > >>   /usr/lib/gconv/IBM500.so
-> > > >>   /usr/lib/gconv/ISO8859-10.so
-> > > >>   /usr/lib/gconv/IBM1047.so
-> > > >>   /usr/lib/gconv/ANSI_X3.110.so
-> > > >>   /usr/lib/gconv/NATS-DANO.so
-> > > >>   /usr/lib/gconv/IBM1149.so
-> > > >>   /usr/lib/gconv/CP770.so
-> > > >>   /usr/lib/gconv/ISO-2022-JP-3.so
-> > > >>   /usr/lib/gconv/IBM4517.so
-> > > >>   /usr/lib/gconv/TSCII.so
-> > > >>   /usr/lib/gconv/IBM1146.so
-> > > >>   /usr/lib/gconv/IBM1388.so
-> > > >>   /usr/lib/gconv/SJIS.so
-> > > >>   /usr/lib/gconv/ISO_5427.so
-> > > >>   /usr/lib/gconv/IBM1156.so
-> > > >>   /usr/lib/gconv/IBM863.so
-> > > >>   /usr/lib/gconv/IBM1122.so
-> > > >>   /usr/lib/gconv/EBCDIC-DK-NO-A.so
-> > > >>   /usr/lib/gconv/GB18030.so
-> > > >>   /usr/lib/gconv/GOST_19768-74.so
-> > > >> Please set FILES such that these items are packaged. Alternatively if
-> > > >> they are unneeded, avoid installing them or delete them within
-> > > >> do_install.
-> > > >> glibc-locale: 843 installed and not shipped files. [installed-vs-shipped]
-> > > >> ERROR: glibc-locale-2.28-r0 do_package: Fatal QA errors found, failing task.
-> > > >> ERROR: glibc-locale-2.28-r0 do_package: Function failed: do_package
-> > > >>
-> > > >> When apply simple patch to avoid QA issue like:
-> > > >> diff --git a/meta/recipes-core/glibc/glibc-locale_2.28.bb
-> > > >> b/meta/recipes-core/glibc/glibc-locale_2.28.bb
-> > > >> index f7702e0..6f58316 100644
-> > > >> --- a/meta/recipes-core/glibc/glibc-locale_2.28.bb
-> > > >> +++ b/meta/recipes-core/glibc/glibc-locale_2.28.bb
-> > > >> @@ -1 +1,3 @@
-> > > >>  require glibc-locale.inc
-> > > >> +
-> > > >> +INSANE_SKIP_${PN} = "installed-vs-shipped"
-> > > >>
-> > > >> then core-image-base failed with:
-> > > >>
-> > > >> ERROR: core-image-base-1.0-r0 do_rootfs: Unable to install packages.
-> > > >> Command '/home/marek/projects/yocto/poky/build/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-base/1.0-r0/recipe-sysroot-native/usr/bin/opkg
-> > > >> --volatile-cache -f
-> > > >> /home/marek/projects/yocto/poky/build/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-base/1.0-r0/opkg.conf
-> > > >> -t /home/marek/projects/yocto/poky/build/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-base/1.0-r0/temp/ipktemp/
-> > > >> -o /home/marek/projects/yocto/poky/build/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-base/1.0-r0/rootfs
-> > > >>  --force_postinstall --prefer-arch-to-version   install
-> > > >> locale-base-en-gb locale-base-en-us' returned 255:
-> > > >> Collected errors:
-> > > >>  * opkg_prepare_url_for_install: Couldn't find anything to satisfy
-> > > >> 'locale-base-en-gb'.
-> > > >>  * rm_r: Failed to open dir
-> > > >> /home/marek/projects/yocto/poky/build/tmp/work/beaglebone_yocto-poky-linux-gnueabi/core-image-base/1.0-r0/temp/ipktemp//opkg-yuugJp:
-> > > >> No such file or directory.
-> > > >>
-> > > >> Is there some fix pending for that. Thanks.
-> > > >>
-> > > >> [1] - https://lists.yoctoproject.org/pipermail/yocto/2017-October/038517.html
-> > > >>
-> > > >> BR,
-> > > >>
-> > > >> marek
-> > > >>
-> > > >> --
-> > > >> as simple and primitive as possible
-> > > >> -------------------------------------------------
-> > > >> Marek Belisko - OPEN-NANDRA
-> > > >> Freelance Developer
-> > > >>
-> > > >> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> > > >> Tel: +421 915 052 184
-> > > >> skype: marekwhite
-> > > >> twitter: #opennandra
-> > > >> web: http://open-nandra.com
-> > > >> --
-> > > >> _______________________________________________
-> > > >> yocto mailing list
-> > > >> yocto@yoctoproject.org
-> > > >> https://lists.yoctoproject.org/listinfo/yocto
-> > >
-> > >
-> > >
-> > > BR,
-> > >
-> > > marek
+I'm currently building an image with the busybox_1.23.2.bb recipe included,
+using Yocto Sumo 2.5 with the Bitbake version 1.37.0. It is running on a
+CentOS host building images for the target ARM cortexa8. This busybox
+recipe is placed in another custom layer. Though this recipe compiles
+without errors in Poky-Fido, in Poky-Sumo I get compilation errors due to
+missing header files. Please take a look at the link below for the
+log.do_compile output.
 
+https://pastebin.com/yYXJnC2e
 
+Both limits.h and byteswap.h don't exist in Poky-Fido as well, but compiles
+without problems, unlike on Sumo. Does this have to do with the wrong
+Toolchains used or due to glibc (FYI: glibc_2.27 is been used)? If it has
+to do with the Toolchains, which one should I be using and how do I go
+about it? Could someone please point me in the right direction?
 
-BR,
+Here is the Build Config:
 
-marek
+Build Configuration:
+BB_VERSION           =3D "1.37.0"
+BUILD_SYS            =3D "x86_64-linux"
+NATIVELSBSTRING      =3D "universal-4.8"
+TARGET_SYS           =3D "arm-poky-linux-gnueabi"
+MACHINE              =3D "arm-cortex-a8"
+DISTRO               =3D "poky"
+DISTRO_VERSION       =3D "2.5"
+TUNE_FEATURES        =3D "arm armv7a vfp neon callconvention-hard cortexa8"
+TARGET_FPU           =3D "hard"
+meta-networking
+meta-python          =3D "master:45ee3c0e98bd3ed81419aaeae1e7324e486161a2"
+meta-userbsp-ti
+meta
+meta-poky
+meta-yocto-bsp
+meta-user-common      =3D "<unknown>:<unknown>"
+meta-oe              =3D "master:45ee3c0e98bd3ed81419aaeae1e7324e486161a2"
+workspace            =3D "<unknown>:<unknown>"
 
+Thanks in advance!
+Regards,
+Mit freundlichen Gr=C3=BC=C3=9Fen / Best Regards,
+Dhanush
+
+--000000000000e5d5840578e26b15
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default"><div class=
+=3D"gmail_default" style=3D"font-family:georgia,serif">Hello Yocto,</div><d=
+iv class=3D"gmail_default" style=3D"font-family:georgia,serif"><br></div><d=
+iv class=3D"gmail_default" style=3D"font-family:georgia,serif">I&#39;m curr=
+ently building an image with the=C2=A0<a href=3D"http://busybox_1.23.2.bb/"=
+ target=3D"_blank">busybox_1.23.2.bb</a>=C2=A0recipe included, using Yocto =
+Sumo 2.5 with the Bitbake version 1.37.0. It is running on a CentOS host bu=
+ilding images for the target ARM cortexa8. This busybox recipe is placed in=
+ another custom layer. Though this recipe compiles without errors in Poky-F=
+ido, in Poky-Sumo I get compilation errors due to missing header files. Ple=
+ase take a look at the link below for the log.do_compile output.</div><div =
+class=3D"gmail_default" style=3D"font-family:georgia,serif"><br></div><div =
+class=3D"gmail_default"><font face=3D"georgia, serif"><a href=3D"https://pa=
+stebin.com/yYXJnC2e">https://pastebin.com/yYXJnC2e</a></font><br></div><div=
+ class=3D"gmail_default"><font face=3D"georgia, serif"><br></font></div><di=
+v class=3D"gmail_default" style=3D"font-family:georgia,serif"><div class=3D=
+"gmail_default">Both limits.h and byteswap.h don&#39;t exist in Poky-Fido a=
+s well, but compiles without problems, unlike on Sumo. Does this have to do=
+ with the wrong Toolchains used or due to glibc (FYI: glibc_2.27 is been us=
+ed)? If it has to do with the Toolchains, which one should I be using and h=
+ow do I go about it? Could someone please point me in the right direction?=
+=C2=A0</div><br class=3D"gmail-Apple-interchange-newline"></div><div class=
+=3D"gmail_default" style=3D"font-family:georgia,serif">Here is the Build Co=
+nfig:</div><div class=3D"gmail_default" style=3D"font-family:georgia,serif"=
+><br></div><div class=3D"gmail_default" style=3D"font-family:georgia,serif"=
+><div class=3D"gmail_default">Build Configuration:</div><div class=3D"gmail=
+_default">BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;1.37=
+.0&quot;</div><div class=3D"gmail_default">BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =3D &quot;x86_64-linux&quot;</div><div class=3D"gmail_=
+default">NATIVELSBSTRING=C2=A0 =C2=A0 =C2=A0 =3D &quot;universal-4.8&quot;<=
+/div><div class=3D"gmail_default">TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0=3D &quot;arm-poky-linux-gnueabi&quot;</div><div class=3D"gmail_d=
+efault">MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;a=
+rm-cortex-a8&quot;</div><div class=3D"gmail_default">DISTRO=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;poky&quot;</div><div cla=
+ss=3D"gmail_default">DISTRO_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;2.5=
+&quot;</div><div class=3D"gmail_default">TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =3D &quot;arm armv7a vfp neon callconvention-hard cortexa8&quot;</di=
+v><div class=3D"gmail_default">TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0=3D &quot;hard&quot;</div><div class=3D"gmail_default">meta-networki=
+ng=C2=A0 =C2=A0 =C2=A0=C2=A0</div><div class=3D"gmail_default">meta-python=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;master:45ee3c0e98bd3ed81419aae=
+ae1e7324e486161a2&quot;</div><div class=3D"gmail_default">meta-userbsp-ti=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div><div class=3D"gmail_default">meta=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</div><div class=
+=3D"gmail_default">meta-poky=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0=
+</div><div class=3D"gmail_default">meta-yocto-bsp=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0</div><div class=3D"gmail_default">meta-user-common=C2=A0 =C2=A0 =C2=A0 =
+=3D &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;</div><div class=3D"gmail_de=
+fault">meta-oe=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;ma=
+ster:45ee3c0e98bd3ed81419aaeae1e7324e486161a2&quot;</div><div class=3D"gmai=
+l_default">workspace=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;&lt=
+;unknown&gt;:&lt;unknown&gt;&quot;</div></div><div class=3D"gmail_default" =
+style=3D"font-family:georgia,serif"><br></div><div class=3D"gmail_default" =
+style=3D"font-family:georgia,serif">Thanks in advance!</div><div class=3D"g=
+mail_default" style=3D"font-family:georgia,serif">Regards,</div></div><div>=
+<div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><font face=3D"georgia, serif" color=3D"#666666">Mit=C2=
+=A0freundlichen=C2=A0Gr=C3=BC=C3=9Fen / Best Regards,</font><div><font face=
+=3D"georgia, serif" color=3D"#666666">Dhanush<br></font></div></div></div><=
+/div></div></div></div></div>
+
+--000000000000e5d5840578e26b15--
