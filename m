@@ -1,66 +1,33 @@
-Return-Path: <sunil.mukundan@gmail.com>
+Return-Path: <kristupas.savickas@teltonika.lt>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 86882E00BC2; Mon, 22 Oct 2018 20:28:47 -0700 (PDT)
+	id 58E66E00BC6; Mon, 22 Oct 2018 23:13:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (sunil.mukundan[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.178 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
-	[209.85.222.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA838E00BB7
-	for <yocto@yoctoproject.org>; Mon, 22 Oct 2018 20:28:46 -0700 (PDT)
-Received: by mail-qk1-f178.google.com with SMTP id m8-v6so26796424qka.12
-	for <yocto@yoctoproject.org>; Mon, 22 Oct 2018 20:28:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=sVxIVc/zIn4OKMHhnQgRHmY/3wPZwWf3ucugOFeSzY4=;
-	b=g4LexBpnxEQyEKUPC8seqfK8oY6mDqa+Ab3T6O2hk030xLW65thsTvbLIBCiMT8Q3u
-	75jlX2g/HXmDida1yzpQVwa369bb2EXUBgY2JxwCFyBM61z2eHIJbL2dQWbr2FjAn8o4
-	rmsojVS6xT2+gC51iPiaoNk+gwMrvZIHI94DKuCDS0J0rSCp9guuHUseA/LWaPIQyWpi
-	CpVyOg9w2Px2V9sCIdJbPRCSrnhMz9jYehHtAcNWbRDq6lY4GAxC7RC7rMDeYYst/0zX
-	cOn5A6k1OWFkae/zB6CPHiLeeVilXjATySjQ1RqPQAEmBf9WHv2HdkD91wJethpY0f1a
-	/0+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=sVxIVc/zIn4OKMHhnQgRHmY/3wPZwWf3ucugOFeSzY4=;
-	b=sOcHiUxkCgO5ZMKdsF3mHpZmYf7o1PrVYmPPY6UfiQKDhe6sQ5CImZ9ONf2GJECEIj
-	350eyy30wKqwSDWsRP6xKSaISW07gCcgcqUjr8wNBnI696AUyGdf34FGZBNf5fmXBbZ8
-	VUs84ZacIvmo5do/AsgFwhsko3zMwkecvq+7vG2aWo6URbsL/Bmky+/AZ4itVEphue3g
-	NWvWiRSZa1IJRZIluUB8CxU57tgL9ntzFvG+iIjJR8S62RnQ2O6zNJQ9JMD/6lsKqxiA
-	/qovLyMzrgb3O5wQoYuyp/Fu7l2Cf7gHDrNkge7xpkj1yZvJg/iN7Cz/WYcPtwba3nZd
-	kjhw==
-X-Gm-Message-State: ABuFfoj12DAEbcPOUAOyHHquA4KDVPD8x08Q9h66RWIxIhJCEy5OSnSQ
-	NniATM9b2SYCM70Ayi38mZz6WiBATgTgtWJQYOqOCH3g
-X-Google-Smtp-Source: ACcGV62voc0t0NKeNDwUmDVdip4U7oDyDh+VFLoLlwAPCIpEv8HQivoDmFs7fRjKhaWni8Ek+g/iOpL09ltJgSbAgx4=
-X-Received: by 2002:a37:7dc4:: with SMTP id
-	y187-v6mr46847981qkc.211.1540265325989; 
-	Mon, 22 Oct 2018 20:28:45 -0700 (PDT)
+	*      [92.61.46.25 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 599 seconds by postgrey-1.32 at yocto-www;
+	Mon, 22 Oct 2018 23:13:47 PDT
+Received: from mail.teltonika.lt (mail.teltonika.lt [92.61.46.25])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC2A7E00BBF
+	for <yocto@yoctoproject.org>; Mon, 22 Oct 2018 23:13:47 -0700 (PDT)
+Received: from [192.168.90.159] (88-119-152-93.static.zebra.lt [88.119.152.93])
+	by mail.teltonika.lt (Postfix) with ESMTPSA id 4092D2460FDD
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2018 09:03:47 +0300 (EEST)
+To: yocto@yoctoproject.org
+From: Kristupas Savickas <kristupas.savickas@teltonika.lt>
+Message-ID: <3c8fcce7-e642-a8f2-b599-a85f487038e1@teltonika.lt>
+Date: Tue, 23 Oct 2018 09:03:47 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
 MIME-Version: 1.0
-References: <CAD0Q=Of26LUD-3pVPp0GGjLAv9JMCdqGaL4GCMhoPS3KTz5kOg@mail.gmail.com>
-	<38dd2f69-d260-d297-538f-d1bfc79dc9a2@windriver.com>
-In-Reply-To: <38dd2f69-d260-d297-538f-d1bfc79dc9a2@windriver.com>
-From: Sunil Mukundan <sunil.mukundan@gmail.com>
-Date: Tue, 23 Oct 2018 08:58:35 +0530
-Message-ID: <CAD0Q=OfY6PU7Oabf_W_XZtRh3bK+vswUiXOuPqw4qAhhbZdOug@mail.gmail.com>
-To: Qi.Chen@windriver.com
-Cc: yocto@yoctoproject.org
-Subject: Re: eSDK installation failing with sig computed mismatch with sig locked
+Subject: Removing hostapd init file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,71 +39,245 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Oct 2018 03:28:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 23 Oct 2018 06:13:49 -0000
+Content-Type: multipart/alternative;
+	boundary="------------B4C80F40FE36334CCB7D553E"
+Content-Language: en-US
 
-Thanks Chen Qi for the response. Please find my response below
+--------------B4C80F40FE36334CCB7D553E
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
->What does the SRC_URI for the recipe look like?
+Greetings,
 
-SRC_URI = "git://github.com/luigirizzo/netmap.git"
+I'm trying to remove the hostapd init file as I'll handle startup of it 
+on my own. I've created a .bbappend file in my layer to do this:
 
-Thanks
-Sunil Mukundan
-On Tue, Oct 23, 2018 at 6:58 AM ChenQi <Qi.Chen@windriver.com> wrote:
->
-> I think the main problem is do_fetch sig mismatch.
-> What does the SRC_URI for the recipe look like?
->
-> Best Regards,
-> Chen  Qi
->
->
-> On 10/22/2018 08:47 PM, Sunil Mukundan wrote:
-> > Hi
-> >
-> > I built an extensible SDK and when installing the SDK, i see the
-> > following WARNINGS first
-> >
-> > WARNING: The netmap-modules:do_fetch sig is computed to be
-> > b53fa14a73271b9f0ce564e413f32468, but the sig is locked to
-> > 614da4fb9135f1f97b291ff05494f53c in SIGGEN_LOCKEDSIGS_t-genericx86-64
-> > The netmap:do_fetch sig is computed to be
-> > b53fa14a73271b9f0ce564e413f32468, but the sig is locked to
-> > 614da4fb9135f1f97b291ff05494f53c in SIGGEN_LOCKEDSIGS_t-genericx86-64
-> > The netmap:do_populate_lic sig is computed to be
-> > 45b8ffb273c02b2fcd201347e4137e19, but the sig is locked to
-> > d4c3de4ecfdc1d70a4129dfbcc68b71d in SIGGEN_LOCKEDSIGS_t-genericx86-64
-> > The netmap-modules:do_populate_lic sig is computed to be
-> > 45b8ffb273c02b2fcd201347e4137e19, but the sig is locked to
-> > d4c3de4ecfdc1d70a4129dfbcc68b71d in SIGGEN_LOCKEDSIGS_t-genericx86-64
-> >
-> > These WARNINGS then (probably) result in the following errors
-> > ERROR: Task netmap.do_prepare_recipe_sysroot attempted to execute unexpectedly
-> > ERROR: Task netmap.do_configure attempted to execute unexpectedly
-> > ERROR: Task netmap.do_compile attempted to execute unexpectedly
-> > ERROR: Task netmap.do_install attempted to execute unexpectedly
-> > ERROR: Task netmap.do_package attempted to execute unexpectedly and
-> > should have been setscened
-> > ERROR: Task netmap.do_packagedata attempted to execute unexpectedly
-> > and should have been setscened
-> > ERROR: Task netmap-modules.do_populate_lic attempted to execute
-> > unexpectedly and should have been setscened
-> > ERROR: Task netmap.do_populate_lic attempted to execute unexpectedly
-> > and should have been setscened
-> >
-> > Could someone help me with what could be going wrong?
-> >
-> > I used the usual 'bitbake -c populate_sdk_ext core-image-minimal'
-> > command to build the SDK.
-> >
-> > thanks,
-> > Sunil Mukundan
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+    do_install_append() {
+         rm -rf ${D}${sysconfdir}/init.d
+    }
 
+However, this results in a compilation warning when building my image 
+and the ipk-postinst is still being run on my target:
+
+    WARNING: tlt-image-1.0-r0 do_rootfs: hostapd.postinst returned 1,
+    marking as unpacked only, configuration required on target.
+    WARNING: tlt-image-1.0-r0 do_rootfs: Intentionally failing
+    postinstall scriptlets of ['hostapd'] to defer them to first boot is
+    deprecated. Please place them into pkg_postinst_ontarget_${PN} ().
+    If deferring to first boot wasn't the intent, then scriptlet failure
+    may mean an issue in the recipe, or a regression elsewhere.
+    Details of the failure are in
+    /home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/temp/log.do_rootfs.
+    WARNING: tlt-image-1.0-r0 do_rootfs: [log_check] tlt-image: found 1
+    warning message in the logfile:
+    [log_check] WARNING: Intentionally failing postinstall scriptlets of
+    ['hostapd'] to defer them to first boot is deprecated. Please place
+    them into pkg_postinst_ontarget_${PN} ().
+
+
+I tried setting INITSCRIPT_NAME to "" in my .bbappend, but it fails with 
+an error during do_rootfs task of my image:
+
+    cat
+    build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/temp/log.do_rootfs.24919
+    | grep hostapd
+    NOTE: Found hostapd-dbg_2.6-r0_armv7ahf-neon.ipk in Packages, but
+    mtime differs - re-reading
+    Found hostapd-dev_2.6-r0_armv7ahf-neon.ipk in Packages, but mtime
+    differs - re-reading
+    Found hostapd_2.6-r0_armv7ahf-neon.ipk in Packages, but mtime
+    differs - re-reading
+    NOTE: Installing the following packages: android-system-core-adbd
+    android-system-core-liblog android-system-core-usb ap6212 avlcommd
+    base-files base-passwd boot-config config-backup curl dnsmasq
+    dropbear ethtool eventslog factory-restore firewall3 fsl-rc-local
+    gps-control gps-utils gpsd gpsd-conf gsmd hostapd iio-utils iiod
+    iproute2 iptables iputils iw kernel-modules libcutils0 libglib-2.0-0
+    libnl-3-200 libstdc++6 libtlt-lua libxml2 lsm6dsl-rebind lsqlite3
+    luci lucihttp mnf-info motion-monitor mtd-utils-ubifs netifd openssl
+    os-release packagegroup-core-boot perl ppp preinit procd qmuxd
+    recgend rpcd run-postinsts shadow sms-utilities sqlite3 storage
+    sysntpd system sysup tlt-base-files tlt-connection-manager
+    tlt-eventslog-lua tzdata ubus uhttpd update-rc.d ustream-ssl
+    NOTE:
+    /home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg
+    --volatile-cache -f
+    /home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/opkg.conf
+    -t
+    /home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/temp/ipktemp/
+    -o
+    /home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/rootfs
+    --force_postinstall --prefer-arch-to-version
+    --no-install-recommends  --force-overwrite install
+    android-system-core-adbd android-system-core-liblog
+    android-system-core-usb ap6212 avlcommd base-files base-passwd
+    boot-config config-backup curl dnsmasq dropbear ethtool eventslog
+    factory-restore firewall3 fsl-rc-local gps-control gps-utils gpsd
+    gpsd-conf gsmd hostapd iio-utils iiod iproute2 iptables iputils iw
+    kernel-modules libcutils0 libglib-2.0-0 libnl-3-200 libstdc++6
+    libtlt-lua libxml2 lsm6dsl-rebind lsqlite3 luci lucihttp mnf-info
+    motion-monitor mtd-utils-ubifs netifd openssl os-release
+    packagegroup-core-boot perl ppp preinit procd qmuxd recgend rpcd
+    run-postinsts shadow sms-utilities sqlite3 storage sysntpd system
+    sysup tlt-base-files tlt-connection-manager tlt-eventslog-lua tzdata
+    ubus uhttpd update-rc.d ustream-ssl
+    ERROR: Unable to install packages. Command
+    '/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg
+    --volatile-cache -f
+    /home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/opkg.conf
+    -t
+    /home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/temp/ipktemp/
+    -o
+    /home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/rootfs
+    --force_postinstall --prefer-arch-to-version
+    --no-install-recommends  --force-overwrite install
+    android-system-core-adbd android-system-core-liblog
+    android-system-core-usb ap6212 avlcommd base-files base-passwd
+    boot-config config-backup curl dnsmasq dropbear ethtool eventslog
+    factory-restore firewall3 fsl-rc-local gps-control gps-utils gpsd
+    gpsd-conf gsmd hostapd iio-utils iiod iproute2 iptables iputils iw
+    kernel-modules libcutils0 libglib-2.0-0 libnl-3-200 libstdc++6
+    libtlt-lua libxml2 lsm6dsl-rebind lsqlite3 luci lucihttp mnf-info
+    motion-monitor mtd-utils-ubifs netifd openssl os-release
+    packagegroup-core-boot perl ppp preinit procd qmuxd recgend rpcd
+    run-postinsts shadow sms-utilities sqlite3 storage sysntpd system
+    sysup tlt-base-files tlt-connection-manager tlt-eventslog-lua tzdata
+    ubus uhttpd update-rc.d ustream-ssl' returned 255:
+    Installing hostapd (2.6) on root
+    Downloading
+    file:/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/deploy/ipk/armv7ahf-neon/hostapd_2.6-r0_armv7ahf-neon.ipk.
+    To remove package debris, try `opkg remove hostapd`.
+    To re-attempt the install, try `opkg install hostapd`.
+      * preinst_configure: Aborting installation of hostapd.
+
+Any pointers of how I could accomplish my goal?
+
+
+
+--------------B4C80F40FE36334CCB7D553E
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Greetings,</p>
+    <p>I'm trying to remove the hostapd init file as I'll handle startup
+      of it on my own. I've created a .bbappend file in my layer to do
+      this:</p>
+    <blockquote>
+      <p>do_install_append() {<br>
+            rm -rf ${D}${sysconfdir}/init.d<br>
+        }<br>
+      </p>
+    </blockquote>
+    <p>However, this results in a compilation warning when building my
+      image and the ipk-postinst is still being run on my target:</p>
+    <blockquote>
+      <p>WARNING: tlt-image-1.0-r0 do_rootfs: hostapd.postinst returned
+        1, marking as unpacked only, configuration required on target.<br>
+        WARNING: tlt-image-1.0-r0 do_rootfs: Intentionally failing
+        postinstall scriptlets of ['hostapd'] to defer them to first
+        boot is deprecated. Please place them into
+        pkg_postinst_ontarget_${PN} ().<br>
+        If deferring to first boot wasn't the intent, then scriptlet
+        failure may mean an issue in the recipe, or a regression
+        elsewhere.<br>
+        Details of the failure are in
+/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/temp/log.do_rootfs.<br>
+        WARNING: tlt-image-1.0-r0 do_rootfs: [log_check] tlt-image:
+        found 1 warning message in the logfile:<br>
+        [log_check] WARNING: Intentionally failing postinstall
+        scriptlets of ['hostapd'] to defer them to first boot is
+        deprecated. Please place them into pkg_postinst_ontarget_${PN}
+        ().</p>
+      <p><br>
+      </p>
+    </blockquote>
+    <p>I tried setting INITSCRIPT_NAME to "" in my .bbappend, but it
+      fails with an error during do_rootfs task of my image:</p>
+    <blockquote>cat
+build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/temp/log.do_rootfs.24919
+      | grep hostapd<br>
+      NOTE: Found hostapd-dbg_2.6-r0_armv7ahf-neon.ipk in Packages, but
+      mtime differs - re-reading<br>
+      Found hostapd-dev_2.6-r0_armv7ahf-neon.ipk in Packages, but mtime
+      differs - re-reading<br>
+      Found hostapd_2.6-r0_armv7ahf-neon.ipk in Packages, but mtime
+      differs - re-reading<br>
+      NOTE: Installing the following packages: android-system-core-adbd
+      android-system-core-liblog android-system-core-usb ap6212 avlcommd
+      base-files base-passwd boot-config config-backup curl dnsmasq
+      dropbear ethtool eventslog factory-restore firewall3 fsl-rc-local
+      gps-control gps-utils gpsd gpsd-conf gsmd hostapd iio-utils iiod
+      iproute2 iptables iputils iw kernel-modules libcutils0
+      libglib-2.0-0 libnl-3-200 libstdc++6 libtlt-lua libxml2
+      lsm6dsl-rebind lsqlite3 luci lucihttp mnf-info motion-monitor
+      mtd-utils-ubifs netifd openssl os-release packagegroup-core-boot
+      perl ppp preinit procd qmuxd recgend rpcd run-postinsts shadow
+      sms-utilities sqlite3 storage sysntpd system sysup tlt-base-files
+      tlt-connection-manager tlt-eventslog-lua tzdata ubus uhttpd
+      update-rc.d ustream-ssl<br>
+      NOTE:
+/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg
+      --volatile-cache -f
+/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/opkg.conf
+      -t
+/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/temp/ipktemp/
+      -o
+/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/rootfs 
+      --force_postinstall --prefer-arch-to-version
+      --no-install-recommends  --force-overwrite install
+      android-system-core-adbd android-system-core-liblog
+      android-system-core-usb ap6212 avlcommd base-files base-passwd
+      boot-config config-backup curl dnsmasq dropbear ethtool eventslog
+      factory-restore firewall3 fsl-rc-local gps-control gps-utils gpsd
+      gpsd-conf gsmd hostapd iio-utils iiod iproute2 iptables iputils iw
+      kernel-modules libcutils0 libglib-2.0-0 libnl-3-200 libstdc++6
+      libtlt-lua libxml2 lsm6dsl-rebind lsqlite3 luci lucihttp mnf-info
+      motion-monitor mtd-utils-ubifs netifd openssl os-release
+      packagegroup-core-boot perl ppp preinit procd qmuxd recgend rpcd
+      run-postinsts shadow sms-utilities sqlite3 storage sysntpd system
+      sysup tlt-base-files tlt-connection-manager tlt-eventslog-lua
+      tzdata ubus uhttpd update-rc.d ustream-ssl<br>
+      ERROR: Unable to install packages. Command
+'/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg
+      --volatile-cache -f
+/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/opkg.conf
+      -t
+/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/temp/ipktemp/
+      -o
+/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/work/fml001-oe-linux-gnueabi/tlt-image/1.0-r0/rootfs 
+      --force_postinstall --prefer-arch-to-version
+      --no-install-recommends  --force-overwrite install
+      android-system-core-adbd android-system-core-liblog
+      android-system-core-usb ap6212 avlcommd base-files base-passwd
+      boot-config config-backup curl dnsmasq dropbear ethtool eventslog
+      factory-restore firewall3 fsl-rc-local gps-control gps-utils gpsd
+      gpsd-conf gsmd hostapd iio-utils iiod iproute2 iptables iputils iw
+      kernel-modules libcutils0 libglib-2.0-0 libnl-3-200 libstdc++6
+      libtlt-lua libxml2 lsm6dsl-rebind lsqlite3 luci lucihttp mnf-info
+      motion-monitor mtd-utils-ubifs netifd openssl os-release
+      packagegroup-core-boot perl ppp preinit procd qmuxd recgend rpcd
+      run-postinsts shadow sms-utilities sqlite3 storage sysntpd system
+      sysup tlt-base-files tlt-connection-manager tlt-eventslog-lua
+      tzdata ubus uhttpd update-rc.d ustream-ssl' returned 255:<br>
+      Installing hostapd (2.6) on root<br>
+      Downloading
+<a class="moz-txt-link-freetext" href="file:/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/deploy/ipk/armv7ahf-neon/hostapd_2.6-r0_armv7ahf-neon.ipk">file:/home/kristupas/projects/fml-linux-sdk-qtel/oe-core/build/tmp-glibc/deploy/ipk/armv7ahf-neon/hostapd_2.6-r0_armv7ahf-neon.ipk</a>.<br>
+      To remove package debris, try `opkg remove hostapd`.<br>
+      To re-attempt the install, try `opkg install hostapd`.<br>
+       * preinst_configure: Aborting installation of hostapd.<br>
+    </blockquote>
+    <p>Any pointers of how I could accomplish my goal?<br>
+    </p>
+    <p><br>
+    </p>
+  </body>
+</html>
+
+--------------B4C80F40FE36334CCB7D553E--
