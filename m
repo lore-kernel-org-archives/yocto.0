@@ -1,70 +1,62 @@
-Return-Path: <a.strunin13@gmail.com>
+Return-Path: <zoleelikesdebian@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DBE51E00950; Wed, 24 Oct 2018 01:09:53 -0700 (PDT)
+	id E8045E00901; Wed, 24 Oct 2018 06:36:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (a.strunin13[at]gmail.com)
+	provider *      (zoleelikesdebian[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.54 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.49 listed in list.dnswl.org]
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
-	[209.85.221.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D691E008D7
-	for <yocto@yoctoproject.org>; Wed, 24 Oct 2018 01:09:52 -0700 (PDT)
-Received: by mail-wr1-f49.google.com with SMTP id i4-v6so4468507wrr.13
-	for <yocto@yoctoproject.org>; Wed, 24 Oct 2018 01:09:52 -0700 (PDT)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com
+	[209.85.208.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B576E003DB
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2018 06:36:43 -0700 (PDT)
+Received: by mail-ed1-f54.google.com with SMTP id b7-v6so5063838edd.9
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2018 06:36:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding:content-language;
-	bh=IurGephf8zYAEGQWpokwBWGy6YJFRRzu6522UmDpaDQ=;
-	b=l7i0RDAwlu+qhv3X6WIeOfSSw/TobKSNtv0u/orLNq2lddXTEuOS4XTRL1tkMTfd9L
-	tejAItzsSLapBeiMWc+BT0MuTB6GxP1mjJX+OD0BgtqunbeBQWI4SMid9yMQ4J1P8QLB
-	Ka4ucGz22yRZHHff3/3sJgIKnvcBrUpjvv02XpSfxLcV52WyqUB6lm9+4udB984iU/dJ
-	ptOX1LbqIQHVHIhL2Uaoz90AXstCgz72YdLb7Qu246qfcCVQyl4oI6NKyNEkjHAXPg1Y
-	RA1awu1bWLHp+CkAp4DZ6jg8R+zBFLZT4f+noouSlTpXknKULb2cTkhhoZeQVaSDN6oP
-	WGbg==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=EIlMwMjPxgHKHvM8cY4Dng6wGBjOSALy/UoU+MmISEw=;
+	b=C1/zyVrjXJyYjlmEGupfjkPQx84F7JTDadL5r6IyUH96nWqlJoBQonaSGYttOQYoC0
+	9l2WgBjJpp4P5m5WsoJQTUZXaGan7ByFj53aF0d3Z3tL7OTt5UWeHiLYPkK6n0O6WfN4
+	Cnh/s+UTJ3aIpvAzSP7gQs8D2rGCWH44ezs1y4EzYdOl2nlyg69hrkQVEygmZglvTaiM
+	KAJkwTu6CCy0K4advquuqkyfOuhjdWctTkxTilN/UzJwEwSi/yWuSOHsszEpktdCKI8Y
+	1Hm1KYmyD2KLZ+guMd57p1/S8HZKq7WT5S2T+0kx06rlusWU5VJizdGnqmgzniPeNoPi
+	raSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding:content-language;
-	bh=IurGephf8zYAEGQWpokwBWGy6YJFRRzu6522UmDpaDQ=;
-	b=n1U6bP3KEkisu2SK2msqxjZrsDYyqwymUMct7NRo38ku+22lrsgXZcPp+pz60+NL9d
-	Ye9EUHhd7dnH+y1GFoSak03bUH9HNX5HO66W/FfcYXdtY/PkJci0HZQPI8NERFEK+qWS
-	Kzl3iVGxqyei4RJn4ZBqVHupOWyTh/x5mjNPIu5ZlB0efc96g8WErKbloC839elBAtYk
-	EdR7i3Vcb6EAaapqNf4jtixfiqXTwp7joXSkkAyUUHi6iR78vtp8HGHCs2y227G+pBYu
-	ErlT03GaiHffpbp8tCSw+gn4ZWpDv7lGu4oWSeFLOxG79cAySPYxxHpvQb0BPqJ383sE
-	ZR6Q==
-X-Gm-Message-State: AGRZ1gKEsta4VoGMNjavOs9YS5m+AjbpZiA5mM9nQ01xCSK3MyjUvCdF
-	k2Ksm/hLwZNImJVdrwMQNqkYKwA8v0o=
-X-Google-Smtp-Source: AJdET5eJW8zuq2Huoen/VwMxjG8jl+fS2sQqocVpezXLauWN44ngv6eVg/XxKZQqhs5BK+APbRJp1g==
-X-Received: by 2002:adf:bc84:: with SMTP id
-	g4-v6mr1810161wrh.250.1540368590776; 
-	Wed, 24 Oct 2018 01:09:50 -0700 (PDT)
-Received: from [192.168.111.127] (host-85-237-33-147.dsl.sura.ru.
-	[85.237.33.147]) by smtp.gmail.com with ESMTPSA id
-	g9-v6sm3528608wrw.81.2018.10.24.01.09.49 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 24 Oct 2018 01:09:49 -0700 (PDT)
-To: yocto <yocto@yoctoproject.org>
-From: Andrey Strunin <a.strunin13@gmail.com>
-Message-ID: <1da7bfff-fc83-c9b6-97cf-f18cd5ee937e@gmail.com>
-Date: Wed, 24 Oct 2018 11:09:48 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.2.1
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=EIlMwMjPxgHKHvM8cY4Dng6wGBjOSALy/UoU+MmISEw=;
+	b=g0/MmSXMcBzla+fxMynt5t1NnmAQsb0KW/7LTNqe3KZ222XoKb/DXxfu+9q8Q+CoaB
+	Mg3gkxQjorIG/F8cuerNs6ttcfmfTNn2xJRyx+TkoXX4IOAV1h3tjIu1G86Zyez8FI1w
+	0ObIlVdnNudfzA08PjkQ/hzbm9QMRivjjd39FJRGKiQ3W44ygmiahDARGeiAB/t+iS7i
+	J4v9Sb4Pkkcbrw7MeQrw5ggE1qsrLI6MFLkO/La4kw87KDoM+zDiJoN3Wc7ZjdJsPbu8
+	TVo9txn3Mgs7LOr0Gb4OkfpD+olQedxfslo/am5X+y1tJ+BvWUsYfQrtS/SN1GBS2oNN
+	qasA==
+X-Gm-Message-State: AGRZ1gKV2TP8DvXVay+npZdY3cYTHzeXTg1dbekkjfVnoPN2p6Y9B8NI
+	aEkuLedC50uW1D0sT5l20Q2LSwxOfbU4OVr6if5LmyS/6A==
+X-Google-Smtp-Source: AJdET5diI3b5vs3P26kOokH+NfXjtU+s9KeXo4u0xxX0tYGzTLGs+gIddA4P7oUHpMpDVPF9xvhxfOqrKMekeGS51gY=
+X-Received: by 2002:a17:906:b819:: with SMTP id
+	dv25-v6mr1432538ejb.70.1540388202318; 
+	Wed, 24 Oct 2018 06:36:42 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Force recipe(non library) to build 32bit packages(only) for 64bit machine
+From: Zolee K <zoleelikesdebian@gmail.com>
+Date: Wed, 24 Oct 2018 15:36:31 +0200
+Message-ID: <CAK4Yt2=yFrCDFbuCGAz9=a5nt_gDw8U4VPJ20Y4zbkMF4vL_Qw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: adding new layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,19 +68,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2018 08:09:53 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Wed, 24 Oct 2018 13:36:44 -0000
+Content-Type: multipart/alternative; boundary="0000000000009d8fd40578f99334"
 
-Hi, folks!
+--0000000000009d8fd40578f99334
+Content-Type: text/plain; charset="UTF-8"
 
-My machine configuration is Mips64 and I use MULTILIB. It works ok, but 
-there is a question...
-Is it possible to build a recipe(non library) only for 32bit?
-I know about lib32-${libname} notation, but what about non-libraries?
-The sources I have to compile aren't build on 64bit at all (or build but 
-doesn't work properly)
-So, I have to build ONLY 32 bit version.
+Hi,
 
+I created a new layer, modified the conf file content according to the
+decumentation:
+# We have a conf and classes directory, add to BBPATH
+BBPATH .= ":${LAYERDIR}"
 
+# We have recipes-* directories, add to BBFILES
+BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+            ${LAYERDIR}/recipes-*/*/*.bbappend"
+
+BBFILE_COLLECTIONS += "saxo"
+BBFILE_PATTERN_saxo = "^${LAYERDIR}/"
+BBFILE_PRIORITY_saxo = "4"
+
+I copied the proftpd folder with a working bbappend file into the meta-saxo
+folder. But during bitbake I got an error massage:
+Warning: No bb files matched BBFILE_PATTERN_saxo
+'^/home/kz/oe-core/build/../stuff/meta-saxo/'
+
+I played around with the priority without success.
+
+Do you have any idea what am I doing wrong? I'd like to collect all my
+modifications in 1 layer.
+
+Thanks,
+
+Zoli
+
+--0000000000009d8fd40578f99334
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi,</div><div><br><=
+/div><div>I created a new layer, modified the conf file content according t=
+o the decumentation:</div><div># We have a conf and classes directory, add =
+to BBPATH<br><font size=3D"1">BBPATH .=3D &quot;:${LAYERDIR}&quot;<br><br>#=
+ We have recipes-* directories, add to BBFILES<br>BBFILES +=3D &quot;${LAYE=
+RDIR}/recipes-*/*/*.bb \<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 ${LAYERDIR}/recipes-*/*/*.bbappend&quot;<br><br>BBFIL=
+E_COLLECTIONS +=3D &quot;saxo&quot;<br>BBFILE_PATTERN_saxo =3D &quot;^${LAY=
+ERDIR}/&quot;<br>BBFILE_PRIORITY_saxo =3D &quot;4&quot;</font></div><div><f=
+ont size=3D"1"><br></font></div><div><font size=3D"2">I copied the proftpd =
+folder with a working bbappend file into the meta-saxo folder. But during b=
+itbake I got an error massage:</font><br></div><div><font size=3D"1">Warnin=
+g: No bb files matched BBFILE_PATTERN_saxo &#39;^/home/kz/oe-core/build/../=
+stuff/meta-saxo/&#39;</font></div><div><font size=3D"1"><br></font></div><d=
+iv><font size=3D"2">I played around with the priority without success.</fon=
+t></div><div><font size=3D"2"><br></font></div><div><font size=3D"2">Do you=
+ have any idea what am I doing wrong? I&#39;d like to collect all my modifi=
+cations in 1 layer.</font></div><div><font size=3D"2"><br></font></div><div=
+><font size=3D"2">Thanks,</font></div><div><font size=3D"2"><br></font></di=
+v><div><font size=3D"2">Zoli</font><br></div></div></div></div>
+
+--0000000000009d8fd40578f99334--
