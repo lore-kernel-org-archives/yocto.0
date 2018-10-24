@@ -1,67 +1,78 @@
-Return-Path: <sunil.mukundan@gmail.com>
+Return-Path: <rregar@cisco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73C93E00901; Tue, 23 Oct 2018 21:36:27 -0700 (PDT)
+	id 8A847E00950; Tue, 23 Oct 2018 21:46:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI,SPF_HELO_PASS,
+	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (sunil.mukundan[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.169 listed in list.dnswl.org]
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [173.37.142.88 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
+	white-list
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
-	[209.85.222.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7250DE008D7
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2018 21:36:26 -0700 (PDT)
-Received: by mail-qk1-f169.google.com with SMTP id p3-v6so2363380qkb.5
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2018 21:36:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=AGpSvQV24XPFyPMFJILAHKsfis/00AjeW+MfEiwIMDQ=;
-	b=ttl+zX2hhveoyS+6E6chjPKbUw+eVacSLeKZqckGRM83RvYz5rB5LAezqcpmtbpnw0
-	NMjN8aIOf2+Q/H4SR4hBUQcf3vutc3gGIcMxxvo1BNzv3HfRXAxQinfalmroo2o3u3Ig
-	I7IgOuaNmE0tRXFfWmgJ2qIZSprTebCLSamXHxnsZ0iCOXcKeK6lSh82RScUEgn2umi6
-	Vr6f3DZfpNsVPk4q0H8H8UCNw5T+JtFyl2Exz4DR8C8ecX7XL86Co9mNFSuCsWcxrwu+
-	YL3zMkztpHON3l37RS79nT1JcIPB8dVNb2k+QbUsWjqzuGqePwgd/6LObJeLbMThRadi
-	VzsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=AGpSvQV24XPFyPMFJILAHKsfis/00AjeW+MfEiwIMDQ=;
-	b=fGtDRaT+j8DDMcPjrp4J6wm79NoC6tD+i6RaAAtGmXJ/1BDakjfPP43wfqYlhg/wOv
-	jUACD0d1nKE/He5+e5K1Ar7vx55ScwXOcOZxEF9fbiRzRjgZ57DbzLLso+CPP89J3CHj
-	iDp0al429zEZd1boqEGOr+UBxKGSZCRN+pb3ZiYVVs3JCarozWI58QI7H+MD2J3UEzkU
-	PEn4eOmgvYdN2EAbozWQmsmBF1XKRW/8LHo/X6O4CiQNuTgzffsICIA456Vped87KxVY
-	r6st6nnQIL8B/WWRxs+WtsyvyQkaAtADoDdix47PZVHrBTuuwyBR7/sDpJnCfX6fzX49
-	x+OQ==
-X-Gm-Message-State: AGRZ1gL1rQOAKS9leSczzosDRf/UKJbdI8vjs0WMP25KmhX9wjctrRd+
-	WRLwMuDODlAb13SMOLcDQxID9V3OLReGHTKzqptVYAZm
-X-Google-Smtp-Source: AJdET5fYtnHz4aSPlXCFjDGBuyi3TBci/HTowhN+QYTpBypKoObCHpSy3nf53glB04E0h65VHmulzw9ggRmRyd2kgYM=
-X-Received: by 2002:a37:c08f:: with SMTP id v15mr958608qkv.256.1540355785613; 
-	Tue, 23 Oct 2018 21:36:25 -0700 (PDT)
+X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
+	Tue, 23 Oct 2018 21:46:49 PDT
+Received: from alln-iport-1.cisco.com (alln-iport-1.cisco.com [173.37.142.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B901EE008D7
+	for <yocto@yoctoproject.org>; Tue, 23 Oct 2018 21:46:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=cisco.com; i=@cisco.com; l=14814; q=dns/txt;
+	s=iport; t=1540356409; x=1541566009;
+	h=from:to:subject:date:message-id:mime-version;
+	bh=tg6NowCw1gvg0vX+9KUH0vWPQ+zZX/z+5nwDA1RaeP0=;
+	b=bo4Vq28QQ3uc7rBISvzVlwoIwPm/oKzdKaE7YaiHmT8I+gJimZv1jp6U
+	DuZnn4yiSq7PBUnR4lLwpaxTAUJj437Q8wot0BKxR3v2mniIJM5nmXtXi
+	isYcS7L9tWDZXbucUsiVxDxG6c+I00u5ixrYS8zhp650+AhqfH+DLcH6N s=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0AzAAAj+M9b/5hdJa1jHAEBAQQBAQc?=
+	=?us-ascii?q?EAQGBUQcBAQsBgQ13Zn8oCoNriBiMHoFokXKFSoF6CwEBG4RqgnIhNA0NAQM?=
+	=?us-ascii?q?BAQIBAQJtHAELhWRoAUoCBDAnBIM0AYEdZKhMgS4fhRyEa4tiF4FBP4E4DBO?=
+	=?us-ascii?q?KTTGCJgKOOJAbCQKGZIoSF4IejhWUKoIkAhEUgSYdOCeBLnAVZQGCQQmMbYN?=
+	=?us-ascii?q?hb4sNgR8BAQ?=
+X-IronPort-AV: E=Sophos;i="5.54,418,1534809600"; 
+	d="scan'208,217";a="190707245"
+Received: from rcdn-core-1.cisco.com ([173.37.93.152])
+	by alln-iport-1.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	24 Oct 2018 04:45:47 +0000
+Received: from XCH-RTP-004.cisco.com (xch-rtp-004.cisco.com [64.101.220.144])
+	by rcdn-core-1.cisco.com (8.15.2/8.15.2) with ESMTPS id
+	w9O4jknc000816
+	(version=TLSv1.2 cipher=AES256-SHA bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2018 04:45:47 GMT
+Received: from xch-rtp-001.cisco.com (64.101.220.141) by XCH-RTP-004.cisco.com
+	(64.101.220.144) with Microsoft SMTP Server (TLS) id 15.0.1395.4;
+	Wed, 24 Oct 2018 00:45:46 -0400
+Received: from xch-rtp-001.cisco.com ([64.101.220.141]) by
+	XCH-RTP-001.cisco.com ([64.101.220.141]) with mapi id 15.00.1395.000;
+	Wed, 24 Oct 2018 00:45:46 -0400
+From: "Ram Regar (rregar)" <rregar@cisco.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: help required to build 32-bit executable using yocto gcc 
+Thread-Index: AQHUa1Rt2quNXSitKUaz8zI5fMsIJA==
+Date: Wed, 24 Oct 2018 04:45:46 +0000
+Message-ID: <AF5CE264-534C-4BD6-8739-B4CC7D8FDFD6@cisco.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/f.26.0.170902
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.24.108.88]
 MIME-Version: 1.0
-References: <CAD0Q=Of26LUD-3pVPp0GGjLAv9JMCdqGaL4GCMhoPS3KTz5kOg@mail.gmail.com>
-	<38dd2f69-d260-d297-538f-d1bfc79dc9a2@windriver.com>
-	<CAD0Q=OfY6PU7Oabf_W_XZtRh3bK+vswUiXOuPqw4qAhhbZdOug@mail.gmail.com>
-In-Reply-To: <CAD0Q=OfY6PU7Oabf_W_XZtRh3bK+vswUiXOuPqw4qAhhbZdOug@mail.gmail.com>
-From: Sunil Mukundan <sunil.mukundan@gmail.com>
-Date: Wed, 24 Oct 2018 10:06:14 +0530
-Message-ID: <CAD0Q=OcVwUSa3D+5zVgr49Kfx_vsmiioOpucXzvhZ9Ymr33+Mw@mail.gmail.com>
-To: Qi.Chen@windriver.com
-Cc: yocto@yoctoproject.org
-Subject: Re: eSDK installation failing with sig computed mismatch with sig locked
+X-Outbound-SMTP-Client: 64.101.220.144, xch-rtp-004.cisco.com
+X-Outbound-Node: rcdn-core-1.cisco.com
+Subject: help required to build 32-bit executable using yocto gcc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,212 +84,206 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2018 04:36:27 -0000
-Content-Type: multipart/alternative; boundary="0000000000006de4060578f20756"
+X-List-Received-Date: Wed, 24 Oct 2018 04:46:50 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_AF5CE264534C4BD68739B4CC7D8FDFD6ciscocom_"
 
---0000000000006de4060578f20756
-Content-Type: text/plain; charset="UTF-8"
+--_000_AF5CE264534C4BD68739B4CC7D8FDFD6ciscocom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Chen Qi
+SGksDQoNCkkgYW0gbG9va2luZyB0byB1c2UgZ2NjIGJ1aWx0IGJ5IHlvY3RvIHNkayB3aXRoIOKA
+k20zMiBvcHRpb24uDQoNCkkgY2hhbmdlZCBNQUNISU5FIHRvIGdlbmVyaWN4ODYtNjQgbG9jYWwu
+Y29uZiBhbmQgYWxzbyBhZGRlZCB0aGVzZSBsaW5lcyB0byBiZSBhYmxlIHRvIGFkZCBtdWx0aWxp
+YiBzdXBwb3J0IHdpdGggZ2NjLg0KDQpJTUFHRV9JTlNUQUxMX2FwcGVuZCA9ICIgZ2xpYmMtc3Rh
+dGljZGV2Ig0KTk8zMkxJQlMgPSAiMCINCg0KcmVxdWlyZSBjb25mL211bHRpbGliLmNvbmYNCk1V
+TFRJTElCUyA9ICJtdWx0aWxpYjpsaWIzMiINCkRFRkFVTFRUVU5FX3ZpcnRjbGFzcy1tdWx0aWxp
+Yi1saWIzMiA9ICJ4ODYiDQoNCkJ1dCBJIGdldCB0aGVzZSB0aGVzZSBlcnJvcnMuIEkgYW0gdXNp
+bmcgZGl6enkgYnJhbmNoLCBhIGJpdCBvbGQgYnV0IEkgYmVsaWV2ZSB0aGlzIGJyYW5jaCBhbHNv
+IHN1cHBvcnQg4oCTbTMyIGluIGdjYyB0aGF0IGl0IGJ1aWxkIGludGVybmFsbHkuIEdjYyBjYW4g
+Z2VuZXJhdGUgNjQgYml0IGJpbmFyaWVzIGJ1dCBub3QgMzItYml0IGJpbmFyaWVzLg0KDQpbZGl6
+enlAZGl6enktY2VudG9zNyBjb3JlLW1pbmltYWxdJCB4ODZfNjQtcG9reS1saW51eC1nY2MgLW0z
+MiAtbWFyY2g9Y29yZTIgLW10dW5lPWNvcmUyIC1tc3NlMyAtbWZwbWF0aD1zc2UgLS1zeXNyb290
+PS9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1taW5pbWFsL3N5c3Jv
+b3RzL2NvcmUyLTY0LXBva3ktbGludXggfi90aHJlYWQuYw0KL2hvbWUvZGl6enkvcG9reS9idWls
+ZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGlu
+dXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9saWJleGVjL3g4Nl82NC1wb2t5LWxp
+bnV4L2djYy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDogc2tpcHBpbmcgaW5jb21wYXRpYmxl
+IC9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1taW5pbWFsL3N5c3Jv
+b3RzL2NvcmUyLTY0LXBva3ktbGludXgvdXNyL2xpYjY0L3g4Nl82NC1wb2t5LWxpbnV4LzQuOS4x
+L2xpYmdjYy5hIHdoZW4gc2VhcmNoaW5nIGZvciAtbGdjYw0KL2hvbWUvZGl6enkvcG9reS9idWls
+ZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGlu
+dXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9saWJleGVjL3g4Nl82NC1wb2t5LWxp
+bnV4L2djYy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDogY2Fubm90IGZpbmQgLWxnY2MNCi9o
+b21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1taW5pbWFsL3N5c3Jvb3Rz
+L3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9iaW4veDg2XzY0LXBva3ktbGludXgvLi4vLi4vbGli
+ZXhlYy94ODZfNjQtcG9reS1saW51eC9nY2MveDg2XzY0LXBva3ktbGludXgvNC45LjEvbGQ6IHNr
+aXBwaW5nIGluY29tcGF0aWJsZSAvaG9tZS9kaXp6eS9wb2t5L2J1aWxkL3RtcC9kZXBsb3kvc2Rr
+L2NvcmUtbWluaW1hbC9zeXNyb290cy9jb3JlMi02NC1wb2t5LWxpbnV4L3Vzci9saWI2NC9saWJj
+LnNvIHdoZW4gc2VhcmNoaW5nIGZvciAtbGMNCi9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2Rl
+cGxveS9zZGsvY29yZS1taW5pbWFsL3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9i
+aW4veDg2XzY0LXBva3ktbGludXgvLi4vLi4vbGliZXhlYy94ODZfNjQtcG9reS1saW51eC9nY2Mv
+eDg2XzY0LXBva3ktbGludXgvNC45LjEvbGQ6IHNraXBwaW5nIGluY29tcGF0aWJsZSAvaG9tZS9k
+aXp6eS9wb2t5L2J1aWxkL3RtcC9kZXBsb3kvc2RrL2NvcmUtbWluaW1hbC9zeXNyb290cy9jb3Jl
+Mi02NC1wb2t5LWxpbnV4L3Vzci9saWI2NC9saWJjLmEgd2hlbiBzZWFyY2hpbmcgZm9yIC1sYw0K
+L2hvbWUvZGl6enkvcG9reS9idWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9v
+dHMveDg2XzY0LXBva3lzZGstbGludXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9s
+aWJleGVjL3g4Nl82NC1wb2t5LWxpbnV4L2djYy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDog
+Y2Fubm90IGZpbmQgLWxjDQovaG9tZS9kaXp6eS9wb2t5L2J1aWxkL3RtcC9kZXBsb3kvc2RrL2Nv
+cmUtbWluaW1hbC9zeXNyb290cy94ODZfNjQtcG9reXNkay1saW51eC91c3IvYmluL3g4Nl82NC1w
+b2t5LWxpbnV4Ly4uLy4uL2xpYmV4ZWMveDg2XzY0LXBva3ktbGludXgvZ2NjL3g4Nl82NC1wb2t5
+LWxpbnV4LzQuOS4xL2xkOiBza2lwcGluZyBpbmNvbXBhdGlibGUgL2hvbWUvZGl6enkvcG9reS9i
+dWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMvY29yZTItNjQtcG9reS1s
+aW51eC91c3IvbGliNjQveDg2XzY0LXBva3ktbGludXgvNC45LjEvbGliZ2NjLmEgd2hlbiBzZWFy
+Y2hpbmcgZm9yIC1sZ2NjDQovaG9tZS9kaXp6eS9wb2t5L2J1aWxkL3RtcC9kZXBsb3kvc2RrL2Nv
+cmUtbWluaW1hbC9zeXNyb290cy94ODZfNjQtcG9reXNkay1saW51eC91c3IvYmluL3g4Nl82NC1w
+b2t5LWxpbnV4Ly4uLy4uL2xpYmV4ZWMveDg2XzY0LXBva3ktbGludXgvZ2NjL3g4Nl82NC1wb2t5
+LWxpbnV4LzQuOS4xL2xkOiBjYW5ub3QgZmluZCAtbGdjYw0KL2hvbWUvZGl6enkvcG9reS9idWls
+ZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGlu
+dXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9saWJleGVjL3g4Nl82NC1wb2t5LWxp
+bnV4L2djYy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDogc2tpcHBpbmcgaW5jb21wYXRpYmxl
+IC9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1taW5pbWFsL3N5c3Jv
+b3RzL2NvcmUyLTY0LXBva3ktbGludXgvbGliNjQvbGliZ2NjX3Muc28gd2hlbiBzZWFyY2hpbmcg
+Zm9yIC1sZ2NjX3MNCi9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1t
+aW5pbWFsL3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9iaW4veDg2XzY0LXBva3kt
+bGludXgvLi4vLi4vbGliZXhlYy94ODZfNjQtcG9reS1saW51eC9nY2MveDg2XzY0LXBva3ktbGlu
+dXgvNC45LjEvbGQ6IGNhbm5vdCBmaW5kIC1sZ2NjX3MNCmNvbGxlY3QyOiBlcnJvcjogbGQgcmV0
+dXJuZWQgMSBleGl0IHN0YXR1cw0KW2Rpenp5QGRpenp5LWNlbnRvczcgY29yZS1taW5pbWFsXSQN
+Cg0KVGhhbmtzIGZvciB5b3VyIGhlbHAgaW4gYWR2YW5jZS4NCg0KVGhhbmtzDQpSYW0gUmVnYXIN
+Cg==
 
-We got some help from the Yocto team and this seems to be a known issue.
-Basically the recipe had these two lines below
-SRCREV = "${AUTOREV}"
-PV = "master+git${SRCPV}"
+--_000_AF5CE264534C4BD68739B4CC7D8FDFD6ciscocom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <85B146D0D63EB24DAC8788B32B896A1C@emea.cisco.com>
+Content-Transfer-Encoding: base64
 
-These lines force the eSDK to pull the latest code if there is a change in
-the revision in the upstream git repo.
-Looks like this is a known issue (
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=11350). We are looking at
-using specific
-revisions of the upstream repo to fix this.
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iVGl0bGUiIGNvbnRlbnQ9IiI+DQo8bWV0YSBuYW1lPSJLZXl3b3JkcyIgY29udGVu
+dD0iIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUg
+KGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8N
+CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6TWFuZ2FsOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSAy
+IDMgMyAyIDI7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglw
+YW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZp
+bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
+YXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBl
+cmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1k
+ZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93
+ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNv
+cmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpw
+ZXJzb25hbC1jb21wb3NlOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNv
+bG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5tc29JbnMNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9u
+bHk7DQoJbXNvLXN0eWxlLW5hbWU6IiI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTsNCglj
+b2xvcjp0ZWFsO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5
+Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9u
+MQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47
+fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPg0K
+PC9oZWFkPg0KPGJvZHkgYmdjb2xvcj0id2hpdGUiIGxhbmc9IkVOLVVTIiBsaW5rPSIjMDU2M0Mx
+IiB2bGluaz0iIzk1NEY3MiI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxNC4wcHQiPkhpLDxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTQuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+SSBhbSBsb29raW5nIHRvIHVzZSBnY2Mg
+YnVpbHQgYnkgeW9jdG8gc2RrIHdpdGgg4oCTbTMyIG9wdGlvbi48bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+
+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxNC4wcHQiPkkgY2hhbmdlZCBNQUNISU5FIHRvIGdlbmVyaWN4ODYt
+NjQgbG9jYWwuY29uZiBhbmQgYWxzbyBhZGRlZCB0aGVzZSBsaW5lcyB0byBiZSBhYmxlIHRvIGFk
+ZCBtdWx0aWxpYiBzdXBwb3J0IHdpdGggZ2NjLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij48bzpwPiZuYnNw
+OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjE0LjBwdCI+SU1BR0VfSU5TVEFMTF9hcHBlbmQgPSAmcXVvdDsgZ2xpYmMtc3RhdGlj
+ZGV2JnF1b3Q7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxNC4wcHQiPk5PMzJMSUJTID0gJnF1b3Q7MCZxdW90OzxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTQuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+cmVxdWlyZSBjb25mL211bHRp
+bGliLmNvbmY8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+TVVMVElMSUJTID0gJnF1b3Q7bXVsdGlsaWI6bGli
+MzImcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+REVGQVVMVFRVTkVfdmlydGNsYXNzLW11bHRpbGli
+LWxpYjMyID0gJnF1b3Q7eDg2JnF1b3Q7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxNC4wcHQiPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTQuMHB0Ij5CdXQgSSBnZXQgdGhlc2UgdGhlc2UgZXJyb3JzLiBJIGFtIHVzaW5nIGRpenp5
+IGJyYW5jaCwgYSBiaXQgb2xkIGJ1dCBJIGJlbGlldmUgdGhpcyBicmFuY2ggYWxzbyBzdXBwb3J0
+IOKAk20zMiBpbiBnY2MgdGhhdCBpdCBidWlsZCBpbnRlcm5hbGx5LiBHY2MgY2FuIGdlbmVyYXRl
+IDY0IGJpdCBiaW5hcmllcyBidXQgbm90IDMyLWJpdCBiaW5hcmllcy4NCjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQu
+MHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+W2Rpenp5QGRpenp5LWNlbnRvczcgY29yZS1t
+aW5pbWFsXSQgeDg2XzY0LXBva3ktbGludXgtZ2NjIC1tMzIgLW1hcmNoPWNvcmUyIC1tdHVuZT1j
+b3JlMiAtbXNzZTMgLW1mcG1hdGg9c3NlIC0tc3lzcm9vdD0vaG9tZS9kaXp6eS9wb2t5L2J1aWxk
+L3RtcC9kZXBsb3kvc2RrL2NvcmUtbWluaW1hbC9zeXNyb290cy9jb3JlMi02NC1wb2t5LWxpbnV4
+IH4vdGhyZWFkLmMNCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij4vaG9tZS9kaXp6eS9wb2t5L2J1aWxkL3Rt
+cC9kZXBsb3kvc2RrL2NvcmUtbWluaW1hbC9zeXNyb290cy94ODZfNjQtcG9reXNkay1saW51eC91
+c3IvYmluL3g4Nl82NC1wb2t5LWxpbnV4Ly4uLy4uL2xpYmV4ZWMveDg2XzY0LXBva3ktbGludXgv
+Z2NjL3g4Nl82NC1wb2t5LWxpbnV4LzQuOS4xL2xkOiBza2lwcGluZyBpbmNvbXBhdGlibGUgL2hv
+bWUvZGl6enkvcG9reS9idWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMv
+Y29yZTItNjQtcG9reS1saW51eC91c3IvbGliNjQveDg2XzY0LXBva3ktbGludXgvNC45LjEvbGli
+Z2NjLmENCiB3aGVuIHNlYXJjaGluZyBmb3IgLWxnY2M8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+L2hvbWUv
+ZGl6enkvcG9reS9idWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMveDg2
+XzY0LXBva3lzZGstbGludXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9saWJleGVj
+L3g4Nl82NC1wb2t5LWxpbnV4L2djYy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDogY2Fubm90
+IGZpbmQgLWxnY2M8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+L2hvbWUvZGl6enkvcG9reS9idWlsZC90bXAv
+ZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGludXgvdXNy
+L2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9saWJleGVjL3g4Nl82NC1wb2t5LWxpbnV4L2dj
+Yy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDogc2tpcHBpbmcgaW5jb21wYXRpYmxlIC9ob21l
+L2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1taW5pbWFsL3N5c3Jvb3RzL2Nv
+cmUyLTY0LXBva3ktbGludXgvdXNyL2xpYjY0L2xpYmMuc28NCiB3aGVuIHNlYXJjaGluZyBmb3Ig
+LWxjPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxNC4wcHQiPi9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9z
+ZGsvY29yZS1taW5pbWFsL3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9iaW4veDg2
+XzY0LXBva3ktbGludXgvLi4vLi4vbGliZXhlYy94ODZfNjQtcG9reS1saW51eC9nY2MveDg2XzY0
+LXBva3ktbGludXgvNC45LjEvbGQ6IHNraXBwaW5nIGluY29tcGF0aWJsZSAvaG9tZS9kaXp6eS9w
+b2t5L2J1aWxkL3RtcC9kZXBsb3kvc2RrL2NvcmUtbWluaW1hbC9zeXNyb290cy9jb3JlMi02NC1w
+b2t5LWxpbnV4L3Vzci9saWI2NC9saWJjLmENCiB3aGVuIHNlYXJjaGluZyBmb3IgLWxjPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxNC4wcHQiPi9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1t
+aW5pbWFsL3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9iaW4veDg2XzY0LXBva3kt
+bGludXgvLi4vLi4vbGliZXhlYy94ODZfNjQtcG9reS1saW51eC9nY2MveDg2XzY0LXBva3ktbGlu
+dXgvNC45LjEvbGQ6IGNhbm5vdCBmaW5kIC1sYzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij4vaG9tZS9kaXp6
+eS9wb2t5L2J1aWxkL3RtcC9kZXBsb3kvc2RrL2NvcmUtbWluaW1hbC9zeXNyb290cy94ODZfNjQt
+cG9reXNkay1saW51eC91c3IvYmluL3g4Nl82NC1wb2t5LWxpbnV4Ly4uLy4uL2xpYmV4ZWMveDg2
+XzY0LXBva3ktbGludXgvZ2NjL3g4Nl82NC1wb2t5LWxpbnV4LzQuOS4xL2xkOiBza2lwcGluZyBp
+bmNvbXBhdGlibGUgL2hvbWUvZGl6enkvcG9reS9idWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1p
+bmltYWwvc3lzcm9vdHMvY29yZTItNjQtcG9reS1saW51eC91c3IvbGliNjQveDg2XzY0LXBva3kt
+bGludXgvNC45LjEvbGliZ2NjLmENCiB3aGVuIHNlYXJjaGluZyBmb3IgLWxnY2M8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjE0LjBwdCI+L2hvbWUvZGl6enkvcG9reS9idWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmlt
+YWwvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGludXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51
+eC8uLi8uLi9saWJleGVjL3g4Nl82NC1wb2t5LWxpbnV4L2djYy94ODZfNjQtcG9reS1saW51eC80
+LjkuMS9sZDogY2Fubm90IGZpbmQgLWxnY2M8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+L2hvbWUvZGl6enkv
+cG9reS9idWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMveDg2XzY0LXBv
+a3lzZGstbGludXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9saWJleGVjL3g4Nl82
+NC1wb2t5LWxpbnV4L2djYy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDogc2tpcHBpbmcgaW5j
+b21wYXRpYmxlIC9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1taW5p
+bWFsL3N5c3Jvb3RzL2NvcmUyLTY0LXBva3ktbGludXgvbGliNjQvbGliZ2NjX3Muc28NCiB3aGVu
+IHNlYXJjaGluZyBmb3IgLWxnY2NfczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij4vaG9tZS9kaXp6eS9wb2t5
+L2J1aWxkL3RtcC9kZXBsb3kvc2RrL2NvcmUtbWluaW1hbC9zeXNyb290cy94ODZfNjQtcG9reXNk
+ay1saW51eC91c3IvYmluL3g4Nl82NC1wb2t5LWxpbnV4Ly4uLy4uL2xpYmV4ZWMveDg2XzY0LXBv
+a3ktbGludXgvZ2NjL3g4Nl82NC1wb2t5LWxpbnV4LzQuOS4xL2xkOiBjYW5ub3QgZmluZCAtbGdj
+Y19zPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxNC4wcHQiPmNvbGxlY3QyOiBlcnJvcjogbGQgcmV0dXJuZWQgMSBleGl0
+IHN0YXR1czxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij5bZGl6enlAZGl6enktY2VudG9zNyBjb3JlLW1pbmlt
+YWxdJDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTQuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5UaGFua3MgZm9yIHlvdXIgaGVscCBpbiBhZHZhbmNlLjxvOnA+PC9v
+OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5UaGFua3M8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPlJhbSBSZWdhcjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-Thanks for your help
-
-Best
-Sunil Mukundan
-
-
-On Tue, Oct 23, 2018 at 8:58 AM Sunil Mukundan <sunil.mukundan@gmail.com>
-wrote:
-
-> Thanks Chen Qi for the response. Please find my response below
->
-> >What does the SRC_URI for the recipe look like?
->
-> SRC_URI = "git://github.com/luigirizzo/netmap.git"
->
-> Thanks
-> Sunil Mukundan
-> On Tue, Oct 23, 2018 at 6:58 AM ChenQi <Qi.Chen@windriver.com> wrote:
-> >
-> > I think the main problem is do_fetch sig mismatch.
-> > What does the SRC_URI for the recipe look like?
-> >
-> > Best Regards,
-> > Chen  Qi
-> >
-> >
-> > On 10/22/2018 08:47 PM, Sunil Mukundan wrote:
-> > > Hi
-> > >
-> > > I built an extensible SDK and when installing the SDK, i see the
-> > > following WARNINGS first
-> > >
-> > > WARNING: The netmap-modules:do_fetch sig is computed to be
-> > > b53fa14a73271b9f0ce564e413f32468, but the sig is locked to
-> > > 614da4fb9135f1f97b291ff05494f53c in SIGGEN_LOCKEDSIGS_t-genericx86-64
-> > > The netmap:do_fetch sig is computed to be
-> > > b53fa14a73271b9f0ce564e413f32468, but the sig is locked to
-> > > 614da4fb9135f1f97b291ff05494f53c in SIGGEN_LOCKEDSIGS_t-genericx86-64
-> > > The netmap:do_populate_lic sig is computed to be
-> > > 45b8ffb273c02b2fcd201347e4137e19, but the sig is locked to
-> > > d4c3de4ecfdc1d70a4129dfbcc68b71d in SIGGEN_LOCKEDSIGS_t-genericx86-64
-> > > The netmap-modules:do_populate_lic sig is computed to be
-> > > 45b8ffb273c02b2fcd201347e4137e19, but the sig is locked to
-> > > d4c3de4ecfdc1d70a4129dfbcc68b71d in SIGGEN_LOCKEDSIGS_t-genericx86-64
-> > >
-> > > These WARNINGS then (probably) result in the following errors
-> > > ERROR: Task netmap.do_prepare_recipe_sysroot attempted to execute
-> unexpectedly
-> > > ERROR: Task netmap.do_configure attempted to execute unexpectedly
-> > > ERROR: Task netmap.do_compile attempted to execute unexpectedly
-> > > ERROR: Task netmap.do_install attempted to execute unexpectedly
-> > > ERROR: Task netmap.do_package attempted to execute unexpectedly and
-> > > should have been setscened
-> > > ERROR: Task netmap.do_packagedata attempted to execute unexpectedly
-> > > and should have been setscened
-> > > ERROR: Task netmap-modules.do_populate_lic attempted to execute
-> > > unexpectedly and should have been setscened
-> > > ERROR: Task netmap.do_populate_lic attempted to execute unexpectedly
-> > > and should have been setscened
-> > >
-> > > Could someone help me with what could be going wrong?
-> > >
-> > > I used the usual 'bitbake -c populate_sdk_ext core-image-minimal'
-> > > command to build the SDK.
-> > >
-> > > thanks,
-> > > Sunil Mukundan
-> >
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->
-
---0000000000006de4060578f20756
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><font face=3D"monospace, monospace">Hi Chen Qi<br><br>We g=
-ot some help from the Yocto team and this seems to be a known issue. Basica=
-lly the recipe had these two lines below<br>SRCREV =3D &quot;${AUTOREV}&quo=
-t;<br>PV =3D &quot;master+git${SRCPV}&quot;</font><div><font face=3D"monosp=
-ace, monospace"><br></font></div><div><font face=3D"monospace, monospace">T=
-hese lines force the eSDK to pull the latest code if there is a change in t=
-he revision in the upstream git repo.=C2=A0</font></div><div><font face=3D"=
-monospace, monospace">Looks like this=C2=A0</font><span style=3D"font-famil=
-y:monospace,monospace">is a known issue (</span><a href=3D"https://bugzilla=
-.yoctoproject.org/show_bug.cgi?id=3D11350" rel=3D"noreferrer" target=3D"_bl=
-ank">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11350</a>). <font =
-face=3D"monospace, monospace">We are looking at using specific</font></div>=
-<div><font face=3D"monospace, monospace">revisions of the upstream repo to =
-fix this.</font></div><div><font face=3D"monospace, monospace"><br></font><=
-/div><div><font face=3D"monospace, monospace">Thanks for your help</font></=
-div><div><font face=3D"monospace, monospace"><br></font></div><div><font fa=
-ce=3D"monospace, monospace">Best</font></div><div><font face=3D"monospace, =
-monospace">Sunil Mukundan</font></div></div><br><br><div class=3D"gmail_quo=
-te"><div dir=3D"ltr">On Tue, Oct 23, 2018 at 8:58 AM Sunil Mukundan &lt;<a =
-href=3D"mailto:sunil.mukundan@gmail.com">sunil.mukundan@gmail.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
-;border-left:1px #ccc solid;padding-left:1ex">Thanks Chen Qi for the respon=
-se. Please find my response below<br>
-<br>
-&gt;What does the SRC_URI for the recipe look like?<br>
-<br>
-SRC_URI =3D &quot;git://<a href=3D"http://github.com/luigirizzo/netmap.git"=
- rel=3D"noreferrer" target=3D"_blank">github.com/luigirizzo/netmap.git</a>&=
-quot;<br>
-<br>
-Thanks<br>
-Sunil Mukundan<br>
-On Tue, Oct 23, 2018 at 6:58 AM ChenQi &lt;<a href=3D"mailto:Qi.Chen@windri=
-ver.com" target=3D"_blank">Qi.Chen@windriver.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; I think the main problem is do_fetch sig mismatch.<br>
-&gt; What does the SRC_URI for the recipe look like?<br>
-&gt;<br>
-&gt; Best Regards,<br>
-&gt; Chen=C2=A0 Qi<br>
-&gt;<br>
-&gt;<br>
-&gt; On 10/22/2018 08:47 PM, Sunil Mukundan wrote:<br>
-&gt; &gt; Hi<br>
-&gt; &gt;<br>
-&gt; &gt; I built an extensible SDK and when installing the SDK, i see the<=
-br>
-&gt; &gt; following WARNINGS first<br>
-&gt; &gt;<br>
-&gt; &gt; WARNING: The netmap-modules:do_fetch sig is computed to be<br>
-&gt; &gt; b53fa14a73271b9f0ce564e413f32468, but the sig is locked to<br>
-&gt; &gt; 614da4fb9135f1f97b291ff05494f53c in SIGGEN_LOCKEDSIGS_t-genericx8=
-6-64<br>
-&gt; &gt; The netmap:do_fetch sig is computed to be<br>
-&gt; &gt; b53fa14a73271b9f0ce564e413f32468, but the sig is locked to<br>
-&gt; &gt; 614da4fb9135f1f97b291ff05494f53c in SIGGEN_LOCKEDSIGS_t-genericx8=
-6-64<br>
-&gt; &gt; The netmap:do_populate_lic sig is computed to be<br>
-&gt; &gt; 45b8ffb273c02b2fcd201347e4137e19, but the sig is locked to<br>
-&gt; &gt; d4c3de4ecfdc1d70a4129dfbcc68b71d in SIGGEN_LOCKEDSIGS_t-genericx8=
-6-64<br>
-&gt; &gt; The netmap-modules:do_populate_lic sig is computed to be<br>
-&gt; &gt; 45b8ffb273c02b2fcd201347e4137e19, but the sig is locked to<br>
-&gt; &gt; d4c3de4ecfdc1d70a4129dfbcc68b71d in SIGGEN_LOCKEDSIGS_t-genericx8=
-6-64<br>
-&gt; &gt;<br>
-&gt; &gt; These WARNINGS then (probably) result in the following errors<br>
-&gt; &gt; ERROR: Task netmap.do_prepare_recipe_sysroot attempted to execute=
- unexpectedly<br>
-&gt; &gt; ERROR: Task netmap.do_configure attempted to execute unexpectedly=
-<br>
-&gt; &gt; ERROR: Task netmap.do_compile attempted to execute unexpectedly<b=
-r>
-&gt; &gt; ERROR: Task netmap.do_install attempted to execute unexpectedly<b=
-r>
-&gt; &gt; ERROR: Task netmap.do_package attempted to execute unexpectedly a=
-nd<br>
-&gt; &gt; should have been setscened<br>
-&gt; &gt; ERROR: Task netmap.do_packagedata attempted to execute unexpected=
-ly<br>
-&gt; &gt; and should have been setscened<br>
-&gt; &gt; ERROR: Task netmap-modules.do_populate_lic attempted to execute<b=
-r>
-&gt; &gt; unexpectedly and should have been setscened<br>
-&gt; &gt; ERROR: Task netmap.do_populate_lic attempted to execute unexpecte=
-dly<br>
-&gt; &gt; and should have been setscened<br>
-&gt; &gt;<br>
-&gt; &gt; Could someone help me with what could be going wrong?<br>
-&gt; &gt;<br>
-&gt; &gt; I used the usual &#39;bitbake -c populate_sdk_ext core-image-mini=
-mal&#39;<br>
-&gt; &gt; command to build the SDK.<br>
-&gt; &gt;<br>
-&gt; &gt; thanks,<br>
-&gt; &gt; Sunil Mukundan<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
-</blockquote></div>
-
---0000000000006de4060578f20756--
+--_000_AF5CE264534C4BD68739B4CC7D8FDFD6ciscocom_--
