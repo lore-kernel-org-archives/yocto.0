@@ -1,78 +1,70 @@
-Return-Path: <rregar@cisco.com>
+Return-Path: <a.strunin13@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8A847E00950; Tue, 23 Oct 2018 21:46:50 -0700 (PDT)
+	id DBE51E00950; Wed, 24 Oct 2018 01:09:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI,SPF_HELO_PASS,
-	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [173.37.142.88 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
-	white-list
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (a.strunin13[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
-	Tue, 23 Oct 2018 21:46:49 PDT
-Received: from alln-iport-1.cisco.com (alln-iport-1.cisco.com [173.37.142.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B901EE008D7
-	for <yocto@yoctoproject.org>; Tue, 23 Oct 2018 21:46:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=cisco.com; i=@cisco.com; l=14814; q=dns/txt;
-	s=iport; t=1540356409; x=1541566009;
-	h=from:to:subject:date:message-id:mime-version;
-	bh=tg6NowCw1gvg0vX+9KUH0vWPQ+zZX/z+5nwDA1RaeP0=;
-	b=bo4Vq28QQ3uc7rBISvzVlwoIwPm/oKzdKaE7YaiHmT8I+gJimZv1jp6U
-	DuZnn4yiSq7PBUnR4lLwpaxTAUJj437Q8wot0BKxR3v2mniIJM5nmXtXi
-	isYcS7L9tWDZXbucUsiVxDxG6c+I00u5ixrYS8zhp650+AhqfH+DLcH6N s=;
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0AzAAAj+M9b/5hdJa1jHAEBAQQBAQc?=
-	=?us-ascii?q?EAQGBUQcBAQsBgQ13Zn8oCoNriBiMHoFokXKFSoF6CwEBG4RqgnIhNA0NAQM?=
-	=?us-ascii?q?BAQIBAQJtHAELhWRoAUoCBDAnBIM0AYEdZKhMgS4fhRyEa4tiF4FBP4E4DBO?=
-	=?us-ascii?q?KTTGCJgKOOJAbCQKGZIoSF4IejhWUKoIkAhEUgSYdOCeBLnAVZQGCQQmMbYN?=
-	=?us-ascii?q?hb4sNgR8BAQ?=
-X-IronPort-AV: E=Sophos;i="5.54,418,1534809600"; 
-	d="scan'208,217";a="190707245"
-Received: from rcdn-core-1.cisco.com ([173.37.93.152])
-	by alln-iport-1.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	24 Oct 2018 04:45:47 +0000
-Received: from XCH-RTP-004.cisco.com (xch-rtp-004.cisco.com [64.101.220.144])
-	by rcdn-core-1.cisco.com (8.15.2/8.15.2) with ESMTPS id
-	w9O4jknc000816
-	(version=TLSv1.2 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 24 Oct 2018 04:45:47 GMT
-Received: from xch-rtp-001.cisco.com (64.101.220.141) by XCH-RTP-004.cisco.com
-	(64.101.220.144) with Microsoft SMTP Server (TLS) id 15.0.1395.4;
-	Wed, 24 Oct 2018 00:45:46 -0400
-Received: from xch-rtp-001.cisco.com ([64.101.220.141]) by
-	XCH-RTP-001.cisco.com ([64.101.220.141]) with mapi id 15.00.1395.000;
-	Wed, 24 Oct 2018 00:45:46 -0400
-From: "Ram Regar (rregar)" <rregar@cisco.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: help required to build 32-bit executable using yocto gcc 
-Thread-Index: AQHUa1Rt2quNXSitKUaz8zI5fMsIJA==
-Date: Wed, 24 Oct 2018 04:45:46 +0000
-Message-ID: <AF5CE264-534C-4BD6-8739-B4CC7D8FDFD6@cisco.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/f.26.0.170902
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.24.108.88]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.49 listed in list.dnswl.org]
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+	[209.85.221.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D691E008D7
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2018 01:09:52 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id i4-v6so4468507wrr.13
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2018 01:09:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding:content-language;
+	bh=IurGephf8zYAEGQWpokwBWGy6YJFRRzu6522UmDpaDQ=;
+	b=l7i0RDAwlu+qhv3X6WIeOfSSw/TobKSNtv0u/orLNq2lddXTEuOS4XTRL1tkMTfd9L
+	tejAItzsSLapBeiMWc+BT0MuTB6GxP1mjJX+OD0BgtqunbeBQWI4SMid9yMQ4J1P8QLB
+	Ka4ucGz22yRZHHff3/3sJgIKnvcBrUpjvv02XpSfxLcV52WyqUB6lm9+4udB984iU/dJ
+	ptOX1LbqIQHVHIhL2Uaoz90AXstCgz72YdLb7Qu246qfcCVQyl4oI6NKyNEkjHAXPg1Y
+	RA1awu1bWLHp+CkAp4DZ6jg8R+zBFLZT4f+noouSlTpXknKULb2cTkhhoZeQVaSDN6oP
+	WGbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding:content-language;
+	bh=IurGephf8zYAEGQWpokwBWGy6YJFRRzu6522UmDpaDQ=;
+	b=n1U6bP3KEkisu2SK2msqxjZrsDYyqwymUMct7NRo38ku+22lrsgXZcPp+pz60+NL9d
+	Ye9EUHhd7dnH+y1GFoSak03bUH9HNX5HO66W/FfcYXdtY/PkJci0HZQPI8NERFEK+qWS
+	Kzl3iVGxqyei4RJn4ZBqVHupOWyTh/x5mjNPIu5ZlB0efc96g8WErKbloC839elBAtYk
+	EdR7i3Vcb6EAaapqNf4jtixfiqXTwp7joXSkkAyUUHi6iR78vtp8HGHCs2y227G+pBYu
+	ErlT03GaiHffpbp8tCSw+gn4ZWpDv7lGu4oWSeFLOxG79cAySPYxxHpvQb0BPqJ383sE
+	ZR6Q==
+X-Gm-Message-State: AGRZ1gKEsta4VoGMNjavOs9YS5m+AjbpZiA5mM9nQ01xCSK3MyjUvCdF
+	k2Ksm/hLwZNImJVdrwMQNqkYKwA8v0o=
+X-Google-Smtp-Source: AJdET5eJW8zuq2Huoen/VwMxjG8jl+fS2sQqocVpezXLauWN44ngv6eVg/XxKZQqhs5BK+APbRJp1g==
+X-Received: by 2002:adf:bc84:: with SMTP id
+	g4-v6mr1810161wrh.250.1540368590776; 
+	Wed, 24 Oct 2018 01:09:50 -0700 (PDT)
+Received: from [192.168.111.127] (host-85-237-33-147.dsl.sura.ru.
+	[85.237.33.147]) by smtp.gmail.com with ESMTPSA id
+	g9-v6sm3528608wrw.81.2018.10.24.01.09.49 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 24 Oct 2018 01:09:49 -0700 (PDT)
+To: yocto <yocto@yoctoproject.org>
+From: Andrey Strunin <a.strunin13@gmail.com>
+Message-ID: <1da7bfff-fc83-c9b6-97cf-f18cd5ee937e@gmail.com>
+Date: Wed, 24 Oct 2018 11:09:48 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
 MIME-Version: 1.0
-X-Outbound-SMTP-Client: 64.101.220.144, xch-rtp-004.cisco.com
-X-Outbound-Node: rcdn-core-1.cisco.com
-Subject: help required to build 32-bit executable using yocto gcc
+Subject: Force recipe(non library) to build 32bit packages(only) for 64bit machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,206 +76,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2018 04:46:50 -0000
+X-List-Received-Date: Wed, 24 Oct 2018 08:09:53 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_AF5CE264534C4BD68739B4CC7D8FDFD6ciscocom_"
 
---_000_AF5CE264534C4BD68739B4CC7D8FDFD6ciscocom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hi, folks!
 
-SGksDQoNCkkgYW0gbG9va2luZyB0byB1c2UgZ2NjIGJ1aWx0IGJ5IHlvY3RvIHNkayB3aXRoIOKA
-k20zMiBvcHRpb24uDQoNCkkgY2hhbmdlZCBNQUNISU5FIHRvIGdlbmVyaWN4ODYtNjQgbG9jYWwu
-Y29uZiBhbmQgYWxzbyBhZGRlZCB0aGVzZSBsaW5lcyB0byBiZSBhYmxlIHRvIGFkZCBtdWx0aWxp
-YiBzdXBwb3J0IHdpdGggZ2NjLg0KDQpJTUFHRV9JTlNUQUxMX2FwcGVuZCA9ICIgZ2xpYmMtc3Rh
-dGljZGV2Ig0KTk8zMkxJQlMgPSAiMCINCg0KcmVxdWlyZSBjb25mL211bHRpbGliLmNvbmYNCk1V
-TFRJTElCUyA9ICJtdWx0aWxpYjpsaWIzMiINCkRFRkFVTFRUVU5FX3ZpcnRjbGFzcy1tdWx0aWxp
-Yi1saWIzMiA9ICJ4ODYiDQoNCkJ1dCBJIGdldCB0aGVzZSB0aGVzZSBlcnJvcnMuIEkgYW0gdXNp
-bmcgZGl6enkgYnJhbmNoLCBhIGJpdCBvbGQgYnV0IEkgYmVsaWV2ZSB0aGlzIGJyYW5jaCBhbHNv
-IHN1cHBvcnQg4oCTbTMyIGluIGdjYyB0aGF0IGl0IGJ1aWxkIGludGVybmFsbHkuIEdjYyBjYW4g
-Z2VuZXJhdGUgNjQgYml0IGJpbmFyaWVzIGJ1dCBub3QgMzItYml0IGJpbmFyaWVzLg0KDQpbZGl6
-enlAZGl6enktY2VudG9zNyBjb3JlLW1pbmltYWxdJCB4ODZfNjQtcG9reS1saW51eC1nY2MgLW0z
-MiAtbWFyY2g9Y29yZTIgLW10dW5lPWNvcmUyIC1tc3NlMyAtbWZwbWF0aD1zc2UgLS1zeXNyb290
-PS9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1taW5pbWFsL3N5c3Jv
-b3RzL2NvcmUyLTY0LXBva3ktbGludXggfi90aHJlYWQuYw0KL2hvbWUvZGl6enkvcG9reS9idWls
-ZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGlu
-dXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9saWJleGVjL3g4Nl82NC1wb2t5LWxp
-bnV4L2djYy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDogc2tpcHBpbmcgaW5jb21wYXRpYmxl
-IC9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1taW5pbWFsL3N5c3Jv
-b3RzL2NvcmUyLTY0LXBva3ktbGludXgvdXNyL2xpYjY0L3g4Nl82NC1wb2t5LWxpbnV4LzQuOS4x
-L2xpYmdjYy5hIHdoZW4gc2VhcmNoaW5nIGZvciAtbGdjYw0KL2hvbWUvZGl6enkvcG9reS9idWls
-ZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGlu
-dXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9saWJleGVjL3g4Nl82NC1wb2t5LWxp
-bnV4L2djYy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDogY2Fubm90IGZpbmQgLWxnY2MNCi9o
-b21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1taW5pbWFsL3N5c3Jvb3Rz
-L3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9iaW4veDg2XzY0LXBva3ktbGludXgvLi4vLi4vbGli
-ZXhlYy94ODZfNjQtcG9reS1saW51eC9nY2MveDg2XzY0LXBva3ktbGludXgvNC45LjEvbGQ6IHNr
-aXBwaW5nIGluY29tcGF0aWJsZSAvaG9tZS9kaXp6eS9wb2t5L2J1aWxkL3RtcC9kZXBsb3kvc2Rr
-L2NvcmUtbWluaW1hbC9zeXNyb290cy9jb3JlMi02NC1wb2t5LWxpbnV4L3Vzci9saWI2NC9saWJj
-LnNvIHdoZW4gc2VhcmNoaW5nIGZvciAtbGMNCi9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2Rl
-cGxveS9zZGsvY29yZS1taW5pbWFsL3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9i
-aW4veDg2XzY0LXBva3ktbGludXgvLi4vLi4vbGliZXhlYy94ODZfNjQtcG9reS1saW51eC9nY2Mv
-eDg2XzY0LXBva3ktbGludXgvNC45LjEvbGQ6IHNraXBwaW5nIGluY29tcGF0aWJsZSAvaG9tZS9k
-aXp6eS9wb2t5L2J1aWxkL3RtcC9kZXBsb3kvc2RrL2NvcmUtbWluaW1hbC9zeXNyb290cy9jb3Jl
-Mi02NC1wb2t5LWxpbnV4L3Vzci9saWI2NC9saWJjLmEgd2hlbiBzZWFyY2hpbmcgZm9yIC1sYw0K
-L2hvbWUvZGl6enkvcG9reS9idWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9v
-dHMveDg2XzY0LXBva3lzZGstbGludXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9s
-aWJleGVjL3g4Nl82NC1wb2t5LWxpbnV4L2djYy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDog
-Y2Fubm90IGZpbmQgLWxjDQovaG9tZS9kaXp6eS9wb2t5L2J1aWxkL3RtcC9kZXBsb3kvc2RrL2Nv
-cmUtbWluaW1hbC9zeXNyb290cy94ODZfNjQtcG9reXNkay1saW51eC91c3IvYmluL3g4Nl82NC1w
-b2t5LWxpbnV4Ly4uLy4uL2xpYmV4ZWMveDg2XzY0LXBva3ktbGludXgvZ2NjL3g4Nl82NC1wb2t5
-LWxpbnV4LzQuOS4xL2xkOiBza2lwcGluZyBpbmNvbXBhdGlibGUgL2hvbWUvZGl6enkvcG9reS9i
-dWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMvY29yZTItNjQtcG9reS1s
-aW51eC91c3IvbGliNjQveDg2XzY0LXBva3ktbGludXgvNC45LjEvbGliZ2NjLmEgd2hlbiBzZWFy
-Y2hpbmcgZm9yIC1sZ2NjDQovaG9tZS9kaXp6eS9wb2t5L2J1aWxkL3RtcC9kZXBsb3kvc2RrL2Nv
-cmUtbWluaW1hbC9zeXNyb290cy94ODZfNjQtcG9reXNkay1saW51eC91c3IvYmluL3g4Nl82NC1w
-b2t5LWxpbnV4Ly4uLy4uL2xpYmV4ZWMveDg2XzY0LXBva3ktbGludXgvZ2NjL3g4Nl82NC1wb2t5
-LWxpbnV4LzQuOS4xL2xkOiBjYW5ub3QgZmluZCAtbGdjYw0KL2hvbWUvZGl6enkvcG9reS9idWls
-ZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGlu
-dXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9saWJleGVjL3g4Nl82NC1wb2t5LWxp
-bnV4L2djYy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDogc2tpcHBpbmcgaW5jb21wYXRpYmxl
-IC9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1taW5pbWFsL3N5c3Jv
-b3RzL2NvcmUyLTY0LXBva3ktbGludXgvbGliNjQvbGliZ2NjX3Muc28gd2hlbiBzZWFyY2hpbmcg
-Zm9yIC1sZ2NjX3MNCi9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1t
-aW5pbWFsL3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9iaW4veDg2XzY0LXBva3kt
-bGludXgvLi4vLi4vbGliZXhlYy94ODZfNjQtcG9reS1saW51eC9nY2MveDg2XzY0LXBva3ktbGlu
-dXgvNC45LjEvbGQ6IGNhbm5vdCBmaW5kIC1sZ2NjX3MNCmNvbGxlY3QyOiBlcnJvcjogbGQgcmV0
-dXJuZWQgMSBleGl0IHN0YXR1cw0KW2Rpenp5QGRpenp5LWNlbnRvczcgY29yZS1taW5pbWFsXSQN
-Cg0KVGhhbmtzIGZvciB5b3VyIGhlbHAgaW4gYWR2YW5jZS4NCg0KVGhhbmtzDQpSYW0gUmVnYXIN
-Cg==
+My machine configuration is Mips64 and I use MULTILIB. It works ok, but 
+there is a question...
+Is it possible to build a recipe(non library) only for 32bit?
+I know about lib32-${libname} notation, but what about non-libraries?
+The sources I have to compile aren't build on 64bit at all (or build but 
+doesn't work properly)
+So, I have to build ONLY 32 bit version.
 
---_000_AF5CE264534C4BD68739B4CC7D8FDFD6ciscocom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <85B146D0D63EB24DAC8788B32B896A1C@emea.cisco.com>
-Content-Transfer-Encoding: base64
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iVGl0bGUiIGNvbnRlbnQ9IiI+DQo8bWV0YSBuYW1lPSJLZXl3b3JkcyIgY29udGVu
-dD0iIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUg
-KGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8N
-CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6TWFuZ2FsOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSAy
-IDMgMyAyIDI7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglw
-YW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZp
-bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
-YXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBl
-cmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1k
-ZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93
-ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNv
-cmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpw
-ZXJzb25hbC1jb21wb3NlOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNv
-bG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5tc29JbnMNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9u
-bHk7DQoJbXNvLXN0eWxlLW5hbWU6IiI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTsNCglj
-b2xvcjp0ZWFsO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5
-Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9u
-MQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47
-fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPg0K
-PC9oZWFkPg0KPGJvZHkgYmdjb2xvcj0id2hpdGUiIGxhbmc9IkVOLVVTIiBsaW5rPSIjMDU2M0Mx
-IiB2bGluaz0iIzk1NEY3MiI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxNC4wcHQiPkhpLDxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTQuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+SSBhbSBsb29raW5nIHRvIHVzZSBnY2Mg
-YnVpbHQgYnkgeW9jdG8gc2RrIHdpdGgg4oCTbTMyIG9wdGlvbi48bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+
-PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxNC4wcHQiPkkgY2hhbmdlZCBNQUNISU5FIHRvIGdlbmVyaWN4ODYt
-NjQgbG9jYWwuY29uZiBhbmQgYWxzbyBhZGRlZCB0aGVzZSBsaW5lcyB0byBiZSBhYmxlIHRvIGFk
-ZCBtdWx0aWxpYiBzdXBwb3J0IHdpdGggZ2NjLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjE0LjBwdCI+SU1BR0VfSU5TVEFMTF9hcHBlbmQgPSAmcXVvdDsgZ2xpYmMtc3RhdGlj
-ZGV2JnF1b3Q7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxNC4wcHQiPk5PMzJMSUJTID0gJnF1b3Q7MCZxdW90OzxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTQuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+cmVxdWlyZSBjb25mL211bHRp
-bGliLmNvbmY8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+TVVMVElMSUJTID0gJnF1b3Q7bXVsdGlsaWI6bGli
-MzImcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+REVGQVVMVFRVTkVfdmlydGNsYXNzLW11bHRpbGli
-LWxpYjMyID0gJnF1b3Q7eDg2JnF1b3Q7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxNC4wcHQiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTQuMHB0Ij5CdXQgSSBnZXQgdGhlc2UgdGhlc2UgZXJyb3JzLiBJIGFtIHVzaW5nIGRpenp5
-IGJyYW5jaCwgYSBiaXQgb2xkIGJ1dCBJIGJlbGlldmUgdGhpcyBicmFuY2ggYWxzbyBzdXBwb3J0
-IOKAk20zMiBpbiBnY2MgdGhhdCBpdCBidWlsZCBpbnRlcm5hbGx5LiBHY2MgY2FuIGdlbmVyYXRl
-IDY0IGJpdCBiaW5hcmllcyBidXQgbm90IDMyLWJpdCBiaW5hcmllcy4NCjxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQu
-MHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+W2Rpenp5QGRpenp5LWNlbnRvczcgY29yZS1t
-aW5pbWFsXSQgeDg2XzY0LXBva3ktbGludXgtZ2NjIC1tMzIgLW1hcmNoPWNvcmUyIC1tdHVuZT1j
-b3JlMiAtbXNzZTMgLW1mcG1hdGg9c3NlIC0tc3lzcm9vdD0vaG9tZS9kaXp6eS9wb2t5L2J1aWxk
-L3RtcC9kZXBsb3kvc2RrL2NvcmUtbWluaW1hbC9zeXNyb290cy9jb3JlMi02NC1wb2t5LWxpbnV4
-IH4vdGhyZWFkLmMNCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij4vaG9tZS9kaXp6eS9wb2t5L2J1aWxkL3Rt
-cC9kZXBsb3kvc2RrL2NvcmUtbWluaW1hbC9zeXNyb290cy94ODZfNjQtcG9reXNkay1saW51eC91
-c3IvYmluL3g4Nl82NC1wb2t5LWxpbnV4Ly4uLy4uL2xpYmV4ZWMveDg2XzY0LXBva3ktbGludXgv
-Z2NjL3g4Nl82NC1wb2t5LWxpbnV4LzQuOS4xL2xkOiBza2lwcGluZyBpbmNvbXBhdGlibGUgL2hv
-bWUvZGl6enkvcG9reS9idWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMv
-Y29yZTItNjQtcG9reS1saW51eC91c3IvbGliNjQveDg2XzY0LXBva3ktbGludXgvNC45LjEvbGli
-Z2NjLmENCiB3aGVuIHNlYXJjaGluZyBmb3IgLWxnY2M8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+L2hvbWUv
-ZGl6enkvcG9reS9idWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMveDg2
-XzY0LXBva3lzZGstbGludXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9saWJleGVj
-L3g4Nl82NC1wb2t5LWxpbnV4L2djYy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDogY2Fubm90
-IGZpbmQgLWxnY2M8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+L2hvbWUvZGl6enkvcG9reS9idWlsZC90bXAv
-ZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGludXgvdXNy
-L2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9saWJleGVjL3g4Nl82NC1wb2t5LWxpbnV4L2dj
-Yy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDogc2tpcHBpbmcgaW5jb21wYXRpYmxlIC9ob21l
-L2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1taW5pbWFsL3N5c3Jvb3RzL2Nv
-cmUyLTY0LXBva3ktbGludXgvdXNyL2xpYjY0L2xpYmMuc28NCiB3aGVuIHNlYXJjaGluZyBmb3Ig
-LWxjPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxNC4wcHQiPi9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9z
-ZGsvY29yZS1taW5pbWFsL3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9iaW4veDg2
-XzY0LXBva3ktbGludXgvLi4vLi4vbGliZXhlYy94ODZfNjQtcG9reS1saW51eC9nY2MveDg2XzY0
-LXBva3ktbGludXgvNC45LjEvbGQ6IHNraXBwaW5nIGluY29tcGF0aWJsZSAvaG9tZS9kaXp6eS9w
-b2t5L2J1aWxkL3RtcC9kZXBsb3kvc2RrL2NvcmUtbWluaW1hbC9zeXNyb290cy9jb3JlMi02NC1w
-b2t5LWxpbnV4L3Vzci9saWI2NC9saWJjLmENCiB3aGVuIHNlYXJjaGluZyBmb3IgLWxjPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxNC4wcHQiPi9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1t
-aW5pbWFsL3N5c3Jvb3RzL3g4Nl82NC1wb2t5c2RrLWxpbnV4L3Vzci9iaW4veDg2XzY0LXBva3kt
-bGludXgvLi4vLi4vbGliZXhlYy94ODZfNjQtcG9reS1saW51eC9nY2MveDg2XzY0LXBva3ktbGlu
-dXgvNC45LjEvbGQ6IGNhbm5vdCBmaW5kIC1sYzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij4vaG9tZS9kaXp6
-eS9wb2t5L2J1aWxkL3RtcC9kZXBsb3kvc2RrL2NvcmUtbWluaW1hbC9zeXNyb290cy94ODZfNjQt
-cG9reXNkay1saW51eC91c3IvYmluL3g4Nl82NC1wb2t5LWxpbnV4Ly4uLy4uL2xpYmV4ZWMveDg2
-XzY0LXBva3ktbGludXgvZ2NjL3g4Nl82NC1wb2t5LWxpbnV4LzQuOS4xL2xkOiBza2lwcGluZyBp
-bmNvbXBhdGlibGUgL2hvbWUvZGl6enkvcG9reS9idWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1p
-bmltYWwvc3lzcm9vdHMvY29yZTItNjQtcG9reS1saW51eC91c3IvbGliNjQveDg2XzY0LXBva3kt
-bGludXgvNC45LjEvbGliZ2NjLmENCiB3aGVuIHNlYXJjaGluZyBmb3IgLWxnY2M8bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
-OjE0LjBwdCI+L2hvbWUvZGl6enkvcG9reS9idWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmlt
-YWwvc3lzcm9vdHMveDg2XzY0LXBva3lzZGstbGludXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51
-eC8uLi8uLi9saWJleGVjL3g4Nl82NC1wb2t5LWxpbnV4L2djYy94ODZfNjQtcG9reS1saW51eC80
-LjkuMS9sZDogY2Fubm90IGZpbmQgLWxnY2M8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE0LjBwdCI+L2hvbWUvZGl6enkv
-cG9reS9idWlsZC90bXAvZGVwbG95L3Nkay9jb3JlLW1pbmltYWwvc3lzcm9vdHMveDg2XzY0LXBv
-a3lzZGstbGludXgvdXNyL2Jpbi94ODZfNjQtcG9reS1saW51eC8uLi8uLi9saWJleGVjL3g4Nl82
-NC1wb2t5LWxpbnV4L2djYy94ODZfNjQtcG9reS1saW51eC80LjkuMS9sZDogc2tpcHBpbmcgaW5j
-b21wYXRpYmxlIC9ob21lL2Rpenp5L3Bva3kvYnVpbGQvdG1wL2RlcGxveS9zZGsvY29yZS1taW5p
-bWFsL3N5c3Jvb3RzL2NvcmUyLTY0LXBva3ktbGludXgvbGliNjQvbGliZ2NjX3Muc28NCiB3aGVu
-IHNlYXJjaGluZyBmb3IgLWxnY2NfczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij4vaG9tZS9kaXp6eS9wb2t5
-L2J1aWxkL3RtcC9kZXBsb3kvc2RrL2NvcmUtbWluaW1hbC9zeXNyb290cy94ODZfNjQtcG9reXNk
-ay1saW51eC91c3IvYmluL3g4Nl82NC1wb2t5LWxpbnV4Ly4uLy4uL2xpYmV4ZWMveDg2XzY0LXBv
-a3ktbGludXgvZ2NjL3g4Nl82NC1wb2t5LWxpbnV4LzQuOS4xL2xkOiBjYW5ub3QgZmluZCAtbGdj
-Y19zPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxNC4wcHQiPmNvbGxlY3QyOiBlcnJvcjogbGQgcmV0dXJuZWQgMSBleGl0
-IHN0YXR1czxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTQuMHB0Ij5bZGl6enlAZGl6enktY2VudG9zNyBjb3JlLW1pbmlt
-YWxdJDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTQuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj5UaGFua3MgZm9yIHlvdXIgaGVscCBpbiBhZHZhbmNlLjxvOnA+PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj5UaGFua3M8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPlJhbSBSZWdhcjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
-
---_000_AF5CE264534C4BD68739B4CC7D8FDFD6ciscocom_--
