@@ -1,60 +1,39 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3F5DCE00AD8; Wed, 24 Oct 2018 13:10:55 -0700 (PDT)
+	id 72E3DE00AD8; Wed, 24 Oct 2018 13:16:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.53 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com
-	[209.85.210.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D84D4E00994
-	for <yocto@yoctoproject.org>; Wed, 24 Oct 2018 13:10:54 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id c32so6339532otb.8
-	for <yocto@yoctoproject.org>; Wed, 24 Oct 2018 13:10:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=2BltFLEUp88O6LtjQcJarnw/KOv/WvAfjkpX0SH/9g8=;
-	b=iOc/oL6vU3BJKU+4h7rdwagYZgcFwhvILdOBpZy7SiXeAaqO09xyHTeXQ2Trfz2POV
-	A1rwdVtioormGgtIutHkNmK6u6LoXazPlSg3jAgXv6kb4AdliVQneTu+RC36AhrukWn/
-	vOrK9PR+e+ryD8udZeFLIZ4VtCIreo3yP7tU2pwp8OGSFOlaIwpdoE1STwJA0Jehdi0D
-	FuxO2ZuqbvfYeCE7wVlDQXUAN/kbXRE3Zx2Iod4fOsydMJejxhxIyOnm/7gGwtPhNZCM
-	P1vID+1gLtWPhUS3cQbnRsvyr88lNZxCIZ1Hdr91a8ixWOfD4M2txHp0San6MBZn+nBG
-	qiPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=2BltFLEUp88O6LtjQcJarnw/KOv/WvAfjkpX0SH/9g8=;
-	b=otSmROue1Drfn3XYk4cLqtSRVD0Jubrd9OaCajwwLheVHBqbxwMn8hVVI0DKe+cuCF
-	8pzRQnrJT8uXUQJkGwxw5hUiOYLtk9itt56mnHmx4yqSdWS2k8/OXuGeTix1wfKa0wVk
-	TWSLM5/92L3GhzCkRlwGF5a03Agffv9kJMlL+x+9XLes2l5DjL1FUMDbYiHh7YX6Cfr6
-	1NaTmaaE7uyPUlm9j3Saytc3tk1AN2r917ZMv5KYTNdBVd7vckqapr3HG8+Has6r2Ihh
-	+iP9QMA0Hp+FedxmlUlP2Je6UWseiGKg0znzQGhIDoCUaWdN/XKJCNv0QHFvSGIicAnm
-	PI+A==
-X-Gm-Message-State: AGRZ1gL8ymxZXwNeYb08f+OHAxPcFF1qT9Fa5Avfx0yw7pdafCOtUSzx
-	FCzRO8GtsaM7Nn0zZuu2kE73t+BwYHBu1P/O4BSTIw==
-X-Google-Smtp-Source: AJdET5fI8SO9RX6BNQp1VQH/H3dmInpwkFAolABAzAoCofaEVp4X5HmdZp/Xpa1/Tb0Bw1YrYMC40x0/KijGgzB1bH0=
-X-Received: by 2002:a9d:70d8:: with SMTP id w24mr2413402otj.147.1540411854279; 
-	Wed, 24 Oct 2018 13:10:54 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F05C2E00994
+	for <yocto@yoctoproject.org>; Wed, 24 Oct 2018 13:16:18 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	24 Oct 2018 13:16:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.54,421,1534834800"; d="scan'208";a="103001725"
+Received: from aballal-mobl1.gar.corp.intel.com (HELO localhost.localdomain)
+	([10.249.69.49])
+	by orsmga002.jf.intel.com with ESMTP; 24 Oct 2018 13:16:15 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Zolee K <zoleelikesdebian@gmail.com>
+Date: Thu, 25 Oct 2018 09:16:11 +1300
+Message-ID: <5563927.Rnuf27eHl3@localhost.localdomain>
+Organization: Intel Corporation
+In-Reply-To: <CAK4Yt2=yFrCDFbuCGAz9=a5nt_gDw8U4VPJ20Y4zbkMF4vL_Qw@mail.gmail.com>
+References: <CAK4Yt2=yFrCDFbuCGAz9=a5nt_gDw8U4VPJ20Y4zbkMF4vL_Qw@mail.gmail.com>
 MIME-Version: 1.0
-References: <1da7bfff-fc83-c9b6-97cf-f18cd5ee937e@gmail.com>
-In-Reply-To: <1da7bfff-fc83-c9b6-97cf-f18cd5ee937e@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 24 Oct 2018 21:10:44 +0100
-Message-ID: <CAJTo0LZmopD+Xxq=fo8VfFpdaf8QLJ8hNU+X_sWttVTbxe=3rA@mail.gmail.com>
-To: a.strunin13@gmail.com
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Force recipe(non library) to build 32bit packages(only) for 64bit machine
+Cc: yocto@yoctoproject.org
+Subject: Re: adding new layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,21 +45,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Oct 2018 20:10:55 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 24 Oct 2018 20:16:19 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, 24 Oct 2018 at 09:11, Andrey Strunin <a.strunin13@gmail.com> wrote:
-> My machine configuration is Mips64 and I use MULTILIB. It works ok, but
-> there is a question...
-> Is it possible to build a recipe(non library) only for 32bit?
-> I know about lib32-${libname} notation, but what about non-libraries?
-> The sources I have to compile aren't build on 64bit at all (or build but
-> doesn't work properly)
-> So, I have to build ONLY 32 bit version.
+Hi Zoli
 
-The notation isn't lib32-[library name] but lib32-[recipe name], so
-just prefix any recipe with lib32- and it will built for 32-bit
-(assuming that is how you configured multilib, of course).
+On Thursday, 25 October 2018 2:36:31 AM NZDT Zolee K wrote:
+> I created a new layer, modified the conf file content according to the
+> decumentation:
+> # We have a conf and classes directory, add to BBPATH
+> BBPATH .= ":${LAYERDIR}"
+> 
+> # We have recipes-* directories, add to BBFILES
+> BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>             ${LAYERDIR}/recipes-*/*/*.bbappend"
+> 
+> BBFILE_COLLECTIONS += "saxo"
+> BBFILE_PATTERN_saxo = "^${LAYERDIR}/"
+> BBFILE_PRIORITY_saxo = "4"
+> 
+> I copied the proftpd folder with a working bbappend file into the meta-saxo
+> folder. But during bitbake I got an error massage:
+> Warning: No bb files matched BBFILE_PATTERN_saxo
+> '^/home/kz/oe-core/build/../stuff/meta-saxo/'
+> 
+> I played around with the priority without success.
+> 
+> Do you have any idea what am I doing wrong? I'd like to collect all my
+> modifications in 1 layer.
 
-Ross
+If you have .bbappend file(s) but no .bb files in your layer you would expect 
+that message, it's telling you one of the entries in BBFILES is not matching. 
+There are several options here:
+
+1) You can ignore the warning (it's just a warning)
+
+2) Remove the .bb entry from BBFILES in meta-saxo/conf/layer.conf (you can add 
+it back if and when you need it - of course that does mean you could forget to 
+do that and then wonder why adding a .bb file doesn't work)
+
+3) Set BBFILE_PATTERN_IGNORE_EMPTY_saxo = "1" to disable the warning.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
+
 
