@@ -1,67 +1,39 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D2BFE00B23; Thu, 25 Oct 2018 00:22:36 -0700 (PDT)
+	id 75847E00C95; Thu, 25 Oct 2018 03:38:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.195 listed in list.dnswl.org]
-Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com
-	[209.85.214.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E876CE00AD8
-	for <yocto@yoctoproject.org>; Thu, 25 Oct 2018 00:22:34 -0700 (PDT)
-Received: by mail-pl1-f195.google.com with SMTP id f10-v6so3456188plr.1
-	for <yocto@yoctoproject.org>; Thu, 25 Oct 2018 00:22:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=PnUIZGj9OSzaRdD28oyzExokY7PTPI1giSMqi+1QqNg=;
-	b=dqa8w9J2uNqje7hE5a3rHBxSXEoEqfKUn9LQX/chwNBolLRTAXjLGgvY863yCpFwvd
-	kajxwEOBDOKrc+2cgIZHhcQbVAOPivmVa17Azude/wFnJYCWyWDXGStPtADYqNdSF/4T
-	cs7JRxgFjXjpo8S2pac0zmwNtIiL/ulCE63dgEOgHOOgezq8D4LesZ56aOXoDwvkoa8s
-	2Q9CdLSC1maTEYoECJinfBnUtU1OnPOLXNO69PW7SeRlfK+viXsM2oGhlspxHtbbJwN/
-	KQ+8h+Wr9nsiLg8Utermmr/WTYWPZsZkhsEDYqyXCuGlmbva25I28RKE8e9tcaUaCQq5
-	4PXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=PnUIZGj9OSzaRdD28oyzExokY7PTPI1giSMqi+1QqNg=;
-	b=lbJ3z3Far5OfEMUq64Wh9Jiepm2Ed+k7L/AeA8iDUBEZIY86vmD+qtl8N9WLA3FJTP
-	o2QQKdbueRTDvWjGraRTteXK37oQFtFLxdzjmQi0pxxdekfBRDV8FiI1VKBu1jfQllBR
-	dlFeV9HTjKKFcaa2oJsaQR52T/gmYvGsH3/CQqKETkkgahLu1VA9I1psYzH3tgb2qa7k
-	iC4vD8DLTxNtfrJg9tuHyYYpNzrfkG1P6ZCrBXNpHm/QTkAV5VoyOVhNhIn5eUCaMXf5
-	QQYUgZh2IrtEBhWckCY+9t/272nO+b2NslKhPPXH6CcN+CL1RB8xvvX49VN6bllFdkk0
-	sYVw==
-X-Gm-Message-State: AGRZ1gKtURKTuX3t1V7ugr6slaCJp8BT0Jv4Cn/IdM0F0BK1aCE85Rf3
-	OKqd2wo1xWBrvhmaCHrPFRXX0RfpF4w=
-X-Google-Smtp-Source: AJdET5dEnqev2qDdxzaBU7qsY72vG0Mg7i6uE1r3fxHNo88RtMOVB1fV9Zl2wFQL9oMb45gymNq6lg==
-X-Received: by 2002:a17:902:22a:: with SMTP id
-	39-v6mr411746plc.267.1540452154009; 
-	Thu, 25 Oct 2018 00:22:34 -0700 (PDT)
-Received: from akuster-ThinkPad-T460s.mvista.com ([185.7.230.213])
-	by smtp.gmail.com with ESMTPSA id
-	h3-v6sm2168053pfa.128.2018.10.25.00.22.32
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 25 Oct 2018 00:22:33 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu, 25 Oct 2018 08:22:29 +0100
-Message-Id: <1540452149-22872-1-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-security][PATCH] os-release: remove OS_RELEASE_FEILD extending
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BDB6E00C93
+	for <yocto@yoctoproject.org>; Thu, 25 Oct 2018 03:38:52 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w9PAbwZQ011296
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 25 Oct 2018 03:38:08 -0700
+Received: from [128.224.22.63] (128.224.22.63) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
+	Thu, 25 Oct 2018 03:37:47 -0700
+To: =?UTF-8?Q?Urs_F=c3=a4ssler?= <urs.fassler@bbv.ch>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"bruce.ashfield@gmail.com" <bruce.ashfield@gmail.com>
+References: <20181022090723.13828-1-urs.fassler@bbv.ch>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <48731278-b544-2e0c-ab69-af122b2b190c@windriver.com>
+Date: Thu, 25 Oct 2018 06:37:45 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
+MIME-Version: 1.0
+In-Reply-To: <20181022090723.13828-1-urs.fassler@bbv.ch>
+Subject: Re: [yocto-docs][PATCH v2] kernel-dev: note about the change detection of kernel feature files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,26 +45,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Oct 2018 07:22:36 -0000
+X-List-Received-Date: Thu, 25 Oct 2018 10:38:53 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-depends on the OS_RELEASRE_FEILD os-release changes in core
-otherwise yocto-check-layer will fail
+On 10/22/18 5:07 AM, Urs Fässler wrote:
+> It is not the expected behavior that changes on the .cfg files only
+> referenced from .scc files are not detected.
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- meta-security-compliance/recipes-core/os-release/os-release.bbappend | 3 ---
- 1 file changed, 3 deletions(-)
+This looks good to me.
 
-diff --git a/meta-security-compliance/recipes-core/os-release/os-release.bbappend b/meta-security-compliance/recipes-core/os-release/os-release.bbappend
-index e9fd44a..604bacb 100644
---- a/meta-security-compliance/recipes-core/os-release/os-release.bbappend
-+++ b/meta-security-compliance/recipes-core/os-release/os-release.bbappend
-@@ -1,4 +1 @@
--OS_RELEASE_FIELDS += "CPE_NAME"
--
- CPE_NAME="cpe:/o:openembedded:nodistro:0"
--
--- 
-2.7.4
+Also note that I have an outstanding bugzilla to see if I can invalidate
+stamps, etc, when these elements change .. so at that point, I'd be able
+to fixup this documentation section.
+
+Bruce
+
+> 
+> Signed-off-by: Urs Fässler <urs.fassler@bbv.ch>
+> Signed-off-by: Pascal Bach <pascal.bach@siemens.com>
+> ---
+>   documentation/kernel-dev/kernel-dev-common.xml | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/documentation/kernel-dev/kernel-dev-common.xml b/documentation/kernel-dev/kernel-dev-common.xml
+> index 83b02b1c1..2e421e7ba 100644
+> --- a/documentation/kernel-dev/kernel-dev-common.xml
+> +++ b/documentation/kernel-dev/kernel-dev-common.xml
+> @@ -2623,6 +2623,10 @@
+>               <filename>.scc</filename> file in the
+>               <filename>SRC_URI</filename> statement to reference multiple kernel
+>               features.
+> +            <note>
+> +                Bitbake only detects changes on files listed in
+> +                <filename>SRC_URI</filename>.
+> +            </note>
+>           </para>
+>   
+>           <para>
+> 
 
 
