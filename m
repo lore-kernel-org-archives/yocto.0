@@ -1,66 +1,55 @@
-Return-Path: <srifenbark@gmail.com>
+Return-Path: <Aaron_Wright@selinc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 74FA7E00994; Thu, 25 Oct 2018 08:27:02 -0700 (PDT)
+	id ADAFDE00994; Thu, 25 Oct 2018 08:28:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,KHOP_DYNAMIC,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (srifenbark[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.44 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
-	[209.85.208.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4391E008E3
-	for <yocto@yoctoproject.org>; Thu, 25 Oct 2018 08:27:01 -0700 (PDT)
-Received: by mail-ed1-f44.google.com with SMTP id e5-v6so8875601eds.6
-	for <yocto@yoctoproject.org>; Thu, 25 Oct 2018 08:27:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=xxc0li/mgKcfrIo5Bzji8zPTS7Z0pUPNeeVQfMOj3zU=;
-	b=R7IfZYaeP6pTy+vOjmzO11IgPYDV6g8lTAlRQNghkbL75O0spBURhHFj4Jtp1KFNkP
-	Eqd4PQv/r/phPMrjGNFVdolfUTUJf3CMeEeVvEoYtqArPCAtvEohtNxqYNKDBvivZ3PY
-	TM8AVrpPTYSmOk0DG/3GbiyVUMkR52PiuBnlZMgtVaXp6anAeq6LdSgAFDNvmqZI+Ca7
-	Sk+iwJ77qFDLAl8XTnLl6Qkq15Dp8kHvsAL8oseYEcURorfwDU3BcSQkGTMVJMNUnfqV
-	CmxtaZZW60ZGlGyLs0z4WF+q0ap8TcZpRYmnyo2S5DtZjTKxQhYsBFcXOpaBM9tIZPEL
-	Vvfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=xxc0li/mgKcfrIo5Bzji8zPTS7Z0pUPNeeVQfMOj3zU=;
-	b=So8pGdih8ESa28Ls2DjbKGKVsN5VOKx/6T8nl32n/bx6DybkANM2Usq21byXiOYq4X
-	Cfiw+nZyfFqlkNBKcGAv3fqaYTacoWlbAJxsv+kfyc8p9Wi67jb3uywn5W3gI+3ZLgCH
-	bNYvNuEUmpBz1nMW7BiNcNB0/ycyek8hqfo7W1Tx4G+Zl/i4Xd6BytxKU3QggJFax7By
-	fsXEE25sVpLhtGjARXpNxiqGskQ82d+oVTejlZFojVLNInl8oMYYZXiIVTKIf3AmuNJp
-	K/P8S7qBnouucP+j0d7mGNYnQF7a/gi8fmis2T//+B8Rp7GeB2xotFiALzyDYBKYyarB
-	P0Cw==
-X-Gm-Message-State: AGRZ1gLjTe/bRlgfMQ/Ju8ALRUAxhSoAWllaq/MvVyRisPNykcGg+xnm
-	yyKLD5t1jKpKA43TKyplDCsOp1XIHbU8RIjXl3U=
-X-Google-Smtp-Source: AJdET5eWq7kT4G1SYdtUUZRtAeefD9v0qUbjEPm40pwvwrRbz9xwPw0XMDw3BNjb2rQeXy0sYiMZM7zVpTozM+OY+is=
-X-Received: by 2002:a50:a955:: with SMTP id
-	m21-v6mr1758709edc.234.1540481220729; 
-	Thu, 25 Oct 2018 08:27:00 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [148.163.147.191 listed in list.dnswl.org]
+	*  2.0 KHOP_DYNAMIC Relay looks like a dynamic address
+Received: from mx0a-000e8d01.pphosted.com (mx0a-000e8d01.pphosted.com
+	[148.163.147.191])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22468E008E3
+	for <yocto@yoctoproject.org>; Thu, 25 Oct 2018 08:28:49 -0700 (PDT)
+Received: from pps.filterd (m0136170.ppops.net [127.0.0.1])
+	by mx0b-000e8d01.pphosted.com (8.16.0.22/8.16.0.22) with SMTP id
+	w9PFODWo004898; Thu, 25 Oct 2018 08:28:47 -0700
+Received: from edison.ad.selinc.com (edison.selinc.com [74.117.212.50])
+	by mx0b-000e8d01.pphosted.com with ESMTP id 2n9p759j59-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Thu, 25 Oct 2018 08:28:47 -0700
+In-Reply-To: <886965e3-607b-6132-7c47-ecb03e604703@windriver.com>
+References: <OF38E74854.80860B87-ON88258329.0081F4B2-8825832A.0060D044@selinc.com>
+	<57ADD8B0-DA93-4895-95E5-FD13C6597D89@gmail.com>
+	<2196576.1fsnYOVap6@localhost.localdomain>
+	<OFD6FF77C4.D7AA8A19-ON8825832A.0072D44B-8825832A.00734852@selinc.com>
+	<886965e3-607b-6132-7c47-ecb03e604703@windriver.com>
+To: ChenQi <Qi.Chen@windriver.com>
 MIME-Version: 1.0
-References: <CAC4hrmo3G1FGCT40+oX-v1kU8M6ew-XG_xm6Aq6X04fOFFF1Rw@mail.gmail.com>
-In-Reply-To: <CAC4hrmo3G1FGCT40+oX-v1kU8M6ew-XG_xm6Aq6X04fOFFF1Rw@mail.gmail.com>
-From: Scott Rifenbark <srifenbark@gmail.com>
-Date: Thu, 25 Oct 2018 08:26:49 -0700
-Message-ID: <CAFNP8Oufyf8o6eosni5CCSRMOnf9MBC5oLRu=bDs8G52y67qrg@mail.gmail.com>
-To: bhavin.maru@vvdntech.in
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Need Help To Solve Errors while build of Yocto Project
+X-KeepSent: DAF9168D:125D4284-88258331:0052C4D4;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0.1FP5 Octobe4, 2013
+Message-ID: <OFDAF9168D.125D4284-ON88258331.0052C4D4-88258331.0055058E@selinc.com>
+From: Aaron_Wright@selinc.com
+Date: Thu, 25 Oct 2018 08:28:40 -0700
+X-MIMETrack: Serialize by Router on Edison/SEL(Release 9.0.1FP9 HF139|October
+	06, 2017) at 10/25/2018 08:28:46 AM,
+	Serialize complete at 10/25/2018 08:28:46 AM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+	definitions=2018-10-25_07:, , signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	priorityscore=1501
+	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+	clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+	mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+	scancount=1 engine=8.0.1-1807170000 definitions=main-1810250129
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: Working on Dependent Recipes in eSDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,84 +61,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Oct 2018 15:27:02 -0000
-Content-Type: multipart/alternative; boundary="000000000000f1de5b05790f3b20"
+X-List-Received-Date: Thu, 25 Oct 2018 15:28:50 -0000
+Content-Type: text/plain; charset="US-ASCII"
 
---000000000000f1de5b05790f3b20
-Content-Type: text/plain; charset="UTF-8"
+> ChenQi <Qi.Chen@windriver.com> wrote on 10/22/2018 07:04:32 PM:
+> 
+> Hi Aaron,
+> 
+> The main pain for now is that `devtool sdk-install <DEPEND_RECIPE>' does 
 
-Hi,
+> not work as expected, right?
+> I just checked the codes of sdk-install, and found that it does not fit 
+> the current RSS design.
+> I'd like to check with you if this is the major concern from your team?
+> Do you have some other concerns?
+> I'll open enhancements/bugs on bugzilla and hopefully will work on them 
+> in the 2.7 development cycle.
+> 
+> Best Regards,
+> Chen Qi
+> 
+> ... snip ...
 
-I am not a developer but according to that manual, one of the requirements
-is Python 3.4 or greater.  I see Python2 stuff in the attached screen
-shots.  Someone else could probably be more definitive.  That might not be
-the reason but you could try with Python 3.
+Well, I'm not quite sure how "devtool sdk-install <DEPENDENT_RECIPE>" 
+relates after "devtool modify <DEPENDENT_RECIPE>" has been called. 
 
-https://www.yoctoproject.org/docs/2.5.1/brief-yoctoprojectqs/brief-yoctoprojectqs.html#brief-compatible-distro
+My developers use devtool to install dependent recipes into the eSDK when
+they start working on something. Often they find that they need to make a
+change in the library code that a dependent recipe provides. In effect,
+they are developing a patch for the dependent recipe. So they use devtool
+to say they're going to modify that dependent recipe, and they go and
+make the changes they want. Then what? How do they get those changes,
+that patch, available to the eSDK?
 
-Scott
+Any changes made to the library code provided by the dependent recipe are
+not available to the eSDK, except through devtool commands. In effect
+there are two different worlds at play, the eSDK sysroots versus the
+recipe sysroots. The devtool commands seem to make use of the recipe
+sysroots, but in my mind that defeats the purpose of an eSDK. So I made
+a plug-in for devtool were I can force the eSDK sysroots to be updated.
+I'm not sure how that works, but it seems to propagate the workspace 
+(recipe sysroot land) to the eSDK, so changes that developers make are
+now available for use.
 
-On Thu, Oct 25, 2018 at 8:13 AM Bhavin Dharmendrabhai Maru <
-bhavin.maru@vvdntech.in> wrote:
+I want my developers to use the toolchain (cmake, make, gcc, etc) 
+provided by the eSDK and by things installed into it 
+(devtool sdk-install), rather than having to use devtool as their
+iterative build command.
 
-> Hi Support Team,
->
-> I am new to yocto project and start to build yocto project by the steps
-> provided in below link:
->
-> https://www.yoctoproject.org/docs/2.5.1/brief-yoctoprojectqs/brief-yoctoprojectqs.html
->
-> I am getting errors when i give *$ bitbake core-image-sato *command.
-> details screenshot of errors are attached with this email for your
-> reference.
->
-> Kindly help me to solve these errors. Any help in this will be appreciated.
->
-> Thanks and Regards,
-> Bhavin Maru
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+Ultimately, I would like to be able to skip my devtool plug-in, as it 
+requires the use of "devtool build <DEPENDENT_RECIPE>" and 
+"devtool sdk-sysroot" each time a dependent recipe is modified. But I am
+not sure how that would work, other than the devtool build command 
+should be updating the eSDK sysroots itself.
 
---000000000000f1de5b05790f3b20
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi, <br></div><div><br></div><div>I =
-am not a developer but according to that manual, one of the requirements is=
- Python 3.4 or greater.=C2=A0 I see Python2 stuff in the attached screen sh=
-ots.=C2=A0 Someone else could probably be more definitive.=C2=A0 That might=
- not be the reason but you could try with Python 3.<br></div><div><br></div=
-><div><a href=3D"https://www.yoctoproject.org/docs/2.5.1/brief-yoctoproject=
-qs/brief-yoctoprojectqs.html#brief-compatible-distro">https://www.yoctoproj=
-ect.org/docs/2.5.1/brief-yoctoprojectqs/brief-yoctoprojectqs.html#brief-com=
-patible-distro</a></div><div><br></div><div>Scott<br></div></div></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr">On Thu, Oct 25, 2018 at 8:13 AM=
- Bhavin Dharmendrabhai Maru &lt;<a href=3D"mailto:bhavin.maru@vvdntech.in">=
-bhavin.maru@vvdntech.in</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
-ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi Support Team,<div><br></div><div>I=
- am new to yocto=C2=A0project and start to build yocto=C2=A0project by the =
-steps provided in below link:</div><div><a href=3D"https://www.yoctoproject=
-.org/docs/2.5.1/brief-yoctoprojectqs/brief-yoctoprojectqs.html" target=3D"_=
-blank">https://www.yoctoproject.org/docs/2.5.1/brief-yoctoprojectqs/brief-y=
-octoprojectqs.html</a></div><div><br></div><div>I am getting errors when i =
-give=C2=A0<span style=3D"color:rgb(51,51,51)"><b>$ bitbake core-image-sato=
-=C2=A0</b>command. details screenshot of errors are attached with this=C2=
-=A0email for your reference.</span></div><div><br></div><div>Kindly help me=
- to solve=C2=A0these errors. Any help in this will be appreciated.</div><di=
-v><div><br></div></div><div>Thanks and=C2=A0Regards,</div><div>Bhavin Maru<=
-/div></div></div>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
-
---000000000000f1de5b05790f3b20--
