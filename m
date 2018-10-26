@@ -1,56 +1,97 @@
-Return-Path: <flowers.joseph@gmail.com>
+Return-Path: <radoslaw.chmielarz@leica-geosystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2F552E00C12; Mon, 29 Oct 2018 20:24:18 -0700 (PDT)
+	id C6D0CE00BC4; Sat, 27 Oct 2018 04:13:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.182 listed in list.dnswl.org]
+	*      [40.107.0.135 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-it1-f182.google.com (mail-it1-f182.google.com
-	[209.85.166.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAA03E00BC8
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 20:24:16 -0700 (PDT)
-Received: by mail-it1-f182.google.com with SMTP id p64-v6so12132148itp.0
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 20:24:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=kJcExgNSV+H4f1citBUlpWro2BzQL3YMdK2QuKhnrrY=;
-	b=ApLcGCyoVJJY7ynVeSNEjG5Y11NXJOpfDKnVSobWlbw0d3PiJ7RSqXTLbS7eUQ0LqO
-	8zUF1hPYB+JLHBikRpaQoQQ9T+xcLOHfhrjf18FpbuwR3PnCXHafGwIcORlSPsMA5W41
-	hK6OoyUvlX82UBljTk748NaXks6DzLMjcmvfnsp/EVoV5pCbho/M9yLlqfoDYtjybsYB
-	0fTLNozwVt6Pf9XkeCDh6OItzlZA9ph7eoHStRP0AIwYYAGTwWKAqDQQBgD93r4SozT0
-	0+dtiF2idYI//APwERNuvrYUCeJjbNdqDUa9WcdH4qNYTlJ/iZkQBgajr9iI2OxfbR0y
-	No+Q==
-X-Gm-Message-State: AGRZ1gJ98qXIk07kbcwxFbHCI4X3T7XwG7mpYqxxGAppP28mM8xrJKz7
-	1aVhE+FuCnjYtqhnFRMeur0tnfn+a7MqOKkw7djggfQ=
-X-Google-Smtp-Source: AJdET5c5wPp9s9Rr0FKkift5oY1q0kt77Ux2lx4PaswiCuOTr9blouWM2nynT1VpeJf50r0pENke346dJMc7P86i+c4=
-X-Received: by 2002:a24:7f52:: with SMTP id
-	r79-v6mr243350itc.100.1540869856062; 
-	Mon, 29 Oct 2018 20:24:16 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 54204 seconds by postgrey-1.32 at yocto-www;
+	Sat, 27 Oct 2018 04:13:53 PDT
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com
+	(mail-eopbgr00135.outbound.protection.outlook.com [40.107.0.135])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AFA2E00AB9
+	for <yocto@yoctoproject.org>; Sat, 27 Oct 2018 04:13:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com; 
+	s=selector1;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=OpDZbFl3CGiVoFgjthASJY7hCykYbZ1Fn/mcXcrm0zQ=;
+	b=DtYUFkBJMd9vJfcHvWYeUriGonGus/QORhHQT9HrQzPu+rSCmxBpj72ZhxH53dZtrPUU1Nqx+jZ/qWd545BLr6UPp+z0FNW714MJoPUit6CyZevq4nc4GpQ/7Nhe2pZ4CcckmYx17LwOpbxO49IAcGZxweij96bRqB3kmQtcpxE=
+Received: from AM5PR0602MB2802.eurprd06.prod.outlook.com (10.175.39.151) by
+	AM5PR0602MB3234.eurprd06.prod.outlook.com (10.167.170.151) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1273.25; Fri, 26 Oct 2018 12:38:52 +0000
+Received: from AM5PR0602MB2802.eurprd06.prod.outlook.com
+	([fe80::d000:7ca0:c36a:6e0a]) by
+	AM5PR0602MB2802.eurprd06.prod.outlook.com
+	([fe80::d000:7ca0:c36a:6e0a%2]) with mapi id 15.20.1273.025;
+	Fri, 26 Oct 2018 12:38:52 +0000
+From: CHMIELARZ Radoslaw <radoslaw.chmielarz@leica-geosystems.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Moving to Yocto 2.3 - recipe-specific sysroots - improving the
+	documentation
+Thread-Index: AdRtJbL7Sh2+bMD5S7Wgz5ZgxX8v8w==
+Date: Fri, 26 Oct 2018 12:38:52 +0000
+Message-ID: <AM5PR0602MB2802B8C31D3325291398D156B1F00@AM5PR0602MB2802.eurprd06.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=radoslaw.chmielarz@leica-geosystems.com; 
+x-originating-ip: [193.8.40.126]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; AM5PR0602MB3234;
+	6:aqh6P3UluBM1QMDA4Ptd5uhd+c++NEzgbIy8afVX+VAjzHAFxmg2Qfvqa8GNXs8vaTFRkR6tHqn00fElNwWNggdw7bEo0nMywqlJovAMY/gWeT2C+ZvrjF/1xQXjNX1JqvnClP0sGd/lGbl3oIRW6iwwP5UP4N/6UTPWO4zRg4lzbdAC+ZF+sE1nPPvYc8iCbv7n2wP7Dc/hCo2aWLLN5oPlBN05MN7Z9R55sj3WY7jsyj17aNjo+a4+wpu5iXoEYivJuIpS/XILq0HnlD8nXAz5oocdLxa2W1R1MwErNGVbPfKGEFi8s8ODaqC41xSzWfYRQasab39pEW/aK/PvwEhnnhIY8RYI+GBIK8yV6+1igwop/F3T/q+6uZ08DHJB3gDrDVNmU++M03Z8KCfPURQwGI0wHfw8O5XK0azaB7fdRn5CNI3tyj5RppFrSk5hHZih3j3tRCdyvUHXlB6YYQ==;
+	5:PKAPglldYH2SwW6K80aBHsb191T/qOoGvSECvQShEfSrGqeUPIeNA+gKHOA888OK4buRjTBPqmXFb6LzmIJLCOQrVNZljqeDSsWuzh5QQ2TlA4KJnHfyzFBClHGdKWquXq2zOop4tNAdYS9Y1FV8+VfmaE7foKA4Fs7f24R8w1o=;
+	7:gDVOaEHO3Z+jiUkzefo4ybHjj3roO5cmb54YIt6gQiGhwGcjgmEWAo3sVncTvEAXfo94csrC6Ka92RDkGs/di7e25bre3iCuSP5fDDo4fl0pgj2L6QoOzOKBcbGTDJqibcErUR+PnGK+HVbITOwMhQ==
+x-ms-exchange-antispam-srfa-diagnostics: SOS;
+x-ms-office365-filtering-correlation-id: 9756026c-f660-4f9f-718b-08d63b3ffcc7
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600074)(711020)(4618075)(2017052603328)(7153060)(7193020);
+	SRVR:AM5PR0602MB3234; 
+x-ms-traffictypediagnostic: AM5PR0602MB3234:
+x-microsoft-antispam-prvs: <AM5PR0602MB3234FF657B5A5FF47909985CB1F00@AM5PR0602MB3234.eurprd06.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(21748063052155)(28532068793085)(190501279198761)(227612066756510);
+x-ms-exchange-senderadcheck: 1
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(8211001083)(6040522)(2401047)(8121501046)(5005006)(3002001)(10201501046)(93006095)(93001095)(3231355)(944501410)(52105095)(6055026)(148016)(149066)(150057)(6041310)(20161123558120)(20161123562045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123564045)(20161123560045)(201708071742011)(7699051)(76991095);
+	SRVR:AM5PR0602MB3234; BCL:0; PCL:0; RULEID:;
+	SRVR:AM5PR0602MB3234; 
+x-forefront-prvs: 083751FCA6
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(136003)(346002)(396003)(366004)(376002)(39850400004)(53754006)(189003)(199004)(606006)(2906002)(7696005)(5630700001)(33656002)(53936002)(105586002)(106356001)(256004)(26005)(186003)(74316002)(14454004)(25786009)(66066001)(476003)(7736002)(97736004)(478600001)(102836004)(6506007)(99286004)(19627235002)(86362001)(2501003)(486006)(5640700003)(81166006)(5250100002)(6436002)(68736007)(316002)(8676002)(81156014)(1730700003)(8936002)(236005)(54896002)(6306002)(9686003)(2351001)(2900100001)(71190400001)(71200400001)(3846002)(6116002)(790700001)(5660300001)(55016002)(6916009);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:AM5PR0602MB3234;
+	H:AM5PR0602MB2802.eurprd06.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: leica-geosystems.com does not
+	designate permitted sender hosts)
+x-microsoft-antispam-message-info: e8T4UpyWvuViVr7hV8VooRBjIBBneMa25FNJEaEAxos7zUEnIW0gGrOTcDnnNn9YH5POUWZ4AGis13vIZwLq37LEZdm9UG2cIAyh/uQX9HzWZuLyA2Gj9FpY/ZjQwzY7cSsi8mgYdsMqjVilPS1H4ePZkEPCav141+tvcXcLpLonI8WAje34dFR81jazCHQpm88QycB78qu6Z2r6JQXggtApIJOwcrgIDD4FU2aBX8TagtdFX53SpZfGkQHzlfUzwS8kYy4HbiRgglXzMj+e6xbmt6jhBttszUxXBM/Nyo/TMrZM4E46Kp9ovXSGdeO4A8TTsRijD7zDV8Jw5WUBcSD8IbY/lD1/1vayQ4hKloM=
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-References: <CA+4=ZEPrnNxV5HAwZ-KA98vFLHzqYbo0MHAb+mj+aq_cr=pHig@mail.gmail.com>
-	<CAJTo0LbZTFEEeaZ1hn-7D5XJnurXBDK6FRMT-79wJ8rMWTNicA@mail.gmail.com>
-	<CA+4=ZEMiTA8OZSqibcnfU=_POt8+68hwcx9EGX7Ahy2R6TZOiA@mail.gmail.com>
-	<CAJTo0LY+hMQgq4U6caqvChq4HUhj0P9OE+rD1ZGCgCH59oYP4Q@mail.gmail.com>
-	<CA+4=ZENGPKV6hQbyQ_o3GEtsmuAnFsGhPFHv20iSRODgba=LLA@mail.gmail.com>
-	<CAJTo0LagPTdQ__2OfiKjwtDhe8=4T7aOqY3EjnAuqwKQdftnmw@mail.gmail.com>
-	<CA+4=ZEM-=P=17WC9JCqpana8EwCum3cANGuhUo60ryqbP29hYQ@mail.gmail.com>
-	<CA+4=ZENpQUTdffak4PxDOvJO2Z4ZfdzrqKR5vVVnryiH_cVybA@mail.gmail.com>
-In-Reply-To: <CA+4=ZENpQUTdffak4PxDOvJO2Z4ZfdzrqKR5vVVnryiH_cVybA@mail.gmail.com>
-From: Joe Flowers <joe.flowers@nofreewill.com>
-Date: Mon, 29 Oct 2018 23:24:04 -0400
-Message-ID: <CA+4=ZEN9=ZaRf+t4ezJPBrNhs3GNLb8MwjkoX=DzvT1ftaGhdA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: "bitbake core-image-sato" yields "No package 'gdk-x11-3.0' found" build failure
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9756026c-f660-4f9f-718b-08d63b3ffcc7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Oct 2018 12:38:52.8270 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0602MB3234
+X-Mailman-Approved-At: Tue, 30 Oct 2018 00:04:14 -0700
+Subject: Moving to Yocto 2.3 - recipe-specific sysroots - improving the documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,519 +103,302 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Oct 2018 03:24:18 -0000
-Content-Type: multipart/alternative; boundary="0000000000006a739c057969b89c"
+X-List-Received-Date: Sat, 27 Oct 2018 11:13:56 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_AM5PR0602MB2802B8C31D3325291398D156B1F00AM5PR0602MB2802_"
 
---0000000000006a739c057969b89c
-Content-Type: text/plain; charset="UTF-8"
-
-Contents of gdk-x11-3.0.pc:
----------
-prefix=/usr
-exec_prefix=${prefix}
-libdir=/usr/lib/x86_64-linux-gnu
-includedir=${prefix}/include
-targets=x11 broadway wayland mir
-
-Name: GDK
-Description: GTK+ Drawing Kit
-Version: 3.18.9
-Requires: pango pangocairo gdk-pixbuf-2.0 >= 2.30.0 cairo >= 1.14.0
-cairo-gobject >= 1.14.0
-Requires.private: gio-unix-2.0 >= 2.45.8 fontconfig x11 xext xinerama xi
-xrandr xcursor xfixes xcomposite xdamage wayland-client >= 1.5.91 xkbcommon
->= 0.2.0 wayland-cursor >= 1.5.91 wayland-egl mirclient >= 0.11.0 mircookie
->= 0.17.0  cairo-xlib cairo cairo cairo epoxy >= 1.0
-Libs: -L${libdir} -lgdk-3
-Cflags: -I${includedir}/gtk-3.0
-
----------
-
-
-On Mon, Oct 29, 2018 at 11:14 PM Joe Flowers <joe.flowers@nofreewill.com>
-wrote:
-
-> My bad.
->
-> It looks like it is here:
-> /usr/lib/x86_64-linux-gnu/pkgconfig/gdk-x11-3.0.pc
->
->
->
-> joe@ubuntu:/opt/yocto$ find / -name *.pc* 1> ~/find5.txt 2>/dev/null
-> joe@ubuntu:/opt/yocto$ cat ~/find5.txt | grep gdk | grep x11
-> /usr/lib/x86_64-linux-gnu/pkgconfig/gdk-x11-3.0.pc
-> joe@ubuntu:/opt/yocto$ ls -lart
-> /usr/lib/x86_64-linux-gnu/pkgconfig/gdk-x11-3.0.pc
-> -rw-r--r-- 1 root root 616 Apr  5  2017
-> /usr/lib/x86_64-linux-gnu/pkgconfig/gdk-x11-3.0.pc
-> joe@ubuntu:/opt/yocto$
->
->
->
-> On Mon, Oct 29, 2018 at 11:04 PM Joe Flowers <joe.flowers@nofreewill.com>
-> wrote:
->
->> Thanks, Ross.
->>
->> Below is the output you requested.  gdk-x11-3.0.pc does not seem to exist.
->>
->> Below, should that be "wandboard" and not "qemux86" ?
->>
->> joe@ubuntu:/opt/yocto/build$
->> joe@ubuntu:/opt/yocto/build$ oe-pkgdata-util find-path '*/gdk-x11-3.0.pc'
->> ERROR: Unable to find pkgdata directory
->> /opt/yocto/build/tmp/pkgdata/qemux86
->> joe@ubuntu:/opt/yocto/build$ cd ..
->> joe@ubuntu:/opt/yocto$ oe-pkgdata-util find-path '*/gdk-x11-3.0.pc'
->> ERROR: Unable to find pkgdata directory
->> /opt/yocto/build/tmp/pkgdata/qemux86
->> joe@ubuntu:/opt/yocto$
->> joe@ubuntu:/opt/yocto$
->> joe@ubuntu:/opt/yocto$ find /opt/yocto -name *.pc* 1> ~/find4.txt
->> 2>/dev/null
->> joe@ubuntu:/opt/yocto$ cat ~/find4.txt | grep gdk | grep x11
->> joe@ubuntu:/opt/yocto$
->>
->>
->> Thank you!
->>
->>
->> On Mon, Oct 29, 2018 at 5:03 PM Burton, Ross <ross.burton@intel.com>
->> wrote:
->>
->>> That is... interesting.
->>>
->>> Can you verify that this file has been built by gtk+3?
->>>
->>> $ oe-pkgdata-util find-path '*/gdk-x11-3.0.pc'
->>> gtk+3-dev: /usr/lib/pkgconfig/gdk-x11-3.0.pc
->>>
->>> If so can you find any gdk-x11-3.0.pc files under
->>>
->>> /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/recipe-sysroot?
->>>  Probably under usr/lib/pkgconfig.
->>>
->>> Ross
->>> On Mon, 29 Oct 2018 at 19:34, Joe Flowers <joe.flowers@nofreewill.com>
->>> wrote:
->>> >
->>> > HI Ross,
->>> >
->>> > It still doesn't work.
->>> >
->>> >
->>> > local.conf
->>> > https://pastebin.com/2Ng0wSCi
->>> >
->>> >
->>> > log.do_configure.27655
->>> > https://pastebin.com/4EX9vqmK
->>> >
->>> >
->>> > config.log
->>> > https://pastebin.com/DY2FnM7w
->>> >
->>> >
->>> > Thanks for trying to help me.
->>> >
->>> > Joe
->>> > ----------------
->>> >
->>> >
->>> > On Mon, Oct 29, 2018 at 11:43 AM Burton, Ross <ross.burton@intel.com>
->>> wrote:
->>> >>
->>> >> x11 is in the default DISTRO_FEATURES for poky, so you don't need to
->>> add that.
->>> >>
->>> >> If core-image-x11 works then core-image-sato should build fine.  Try
->>> >> deleting your tmp/ and trying again, if that doesn't work then
->>> >> pastebin both temp/log.do_configure and config.log from the recipe
->>> >> that is failing (matchbox-panel).
->>> >>
->>> >> Ross
->>> >> On Mon, 29 Oct 2018 at 13:21, Joe Flowers <joe.flowers@nofreewill.com>
->>> wrote:
->>> >> >
->>> >> > Thanks, Ross.
->>> >> >
->>> >> > 1.
->>> >> > Both of these commands worked:
->>> >> >
->>> >> > MACHINE=wandboard bitbake core-image-x11
->>> >> > MACHINE=wandboard bitbake gtk+3
->>> >> >
->>> >> > 2.
->>> >> > I've attached my local.conf.
->>> >> >
->>> >> > If the attachment does not go through, then I will copy and paste
->>> it into my next message.
->>> >> >
->>> >> > Thanks!
->>> >> >
->>> >> > Joe
->>> >> > -------------------------------
->>> >> >
->>> >> >
->>> >> > On Mon, Oct 29, 2018 at 7:54 AM Burton, Ross <ross.burton@intel.com>
->>> wrote:
->>> >> >>
->>> >> >> Can you share your local.conf?  Does bitbake gtk+3 work?
->>> >> >>
->>> >> >> Ross
->>> >> >> On Mon, 29 Oct 2018 at 06:42, Joe Flowers <
->>> joe.flowers@nofreewill.com> wrote:
->>> >> >> >
->>> >> >> > Hello everyone,
->>> >> >> >
->>> >> >> > 1.
->>> >> >> > I am trying to build a core-image-sato image for a WandBoard but
->>> am getting stuck at this error message:
->>> >> >> >
->>> >> >> > "| No package 'gdk-x11-3.0' found"
->>> >> >> >
->>> >> >> > See below for more details.
->>> >> >> >
->>> >> >> >
->>> >> >> > 2.
->>> >> >> > I have grepped this list's archives and run into someone with
->>> the same problem, but a solution was never included in the thread.
->>> >> >> >
->>> >> >> >
->>> https://lists.yoctoproject.org/pipermail/yocto/2017-December/039149.html
->>> >> >> >
->>> >> >> >
->>> >> >> > Help please.
->>> >> >> >
->>> >> >> > Joe
->>> >> >> >
->>> >> >> > ------------------------------
->>> >> >> >
->>> >> >> > Command
->>> >> >> >
->>> >> >> > MACHINE=wandboard bitbake core-image-sato
->>> >> >> >
->>> >> >> > produces this error message:
->>> >> >> >
->>> >> >> > ...
->>> >> >> > ...
->>> >> >> > | checking for pkg-config...
->>> /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/recipe-sysroot-native/usr/bin/pkg-config
->>> >> >> > | configure: WARNING: using cross tools not prefixed with host
->>> triplet
->>> >> >> > | checking pkg-config is at least version 0.9.0... yes
->>> >> >> > | checking for glib-2.0
->>> >> >> > |                   gmodule-export-2.0
->>> >> >> > |                   x11
->>> >> >> > |                   gdk-x11-3.0
->>> >> >> > |                   gtk+-3.0... no
->>> >> >> > | configure: error: Package requirements (glib-2.0
->>> >> >> > |                   gmodule-export-2.0
->>> >> >> > |                   x11
->>> >> >> > |                   gdk-x11-3.0
->>> >> >> > |                   gtk+-3.0) were not met:
->>> >> >> > |
->>> >> >> > | No package 'gdk-x11-3.0' found
->>> >> >> > |
->>> >> >> > | Consider adjusting the PKG_CONFIG_PATH environment variable if
->>> you
->>> >> >> > | installed software in a non-standard prefix.
->>> >> >> > |
->>> >> >> > | Alternatively, you may set the environment variables
->>> MATCHBOX_PANEL_CFLAGS
->>> >> >> > | and MATCHBOX_PANEL_LIBS to avoid the need to call pkg-config.
->>> >> >> > | See the pkg-config man page for more details.
->>> >> >> > | NOTE: The following config.log files may provide further
->>> information.
->>> >> >> > | NOTE:
->>> /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/build/config.log
->>> >> >> > | ERROR: configure failed
->>> >> >> > | WARNING: exit code 1 from a shell command.
->>> >> >> > | ERROR: Function failed: do_configure (log file is located at
->>> /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/temp/log.do_configure.40754)
->>> >> >> > ERROR: Task
->>> (/opt/yocto/sources/poky/meta/recipes-sato/matchbox-panel-2/matchbox-panel-2_2.11.bb:do_configure)
->>> failed with exit code '1'
->>> >> >> > NOTE: Tasks Summary: Attempted 3024 tasks of which 2828 didn't
->>> need to be rerun and 1 failed.
->>> >> >> >
->>> >> >> > Summary: 1 task failed:
->>> >> >> >
->>>  /opt/yocto/sources/poky/meta/recipes-sato/matchbox-panel-2/matchbox-panel-2_2.11.bb:
->>> do_configure
->>> >> >> > Summary: There were 2 ERROR messages shown, returning a non-zero
->>> exit code.
->>> >> >> > joe@ubuntu:/opt/yocto/build$
->>> >> >> >
->>> >> >> > ------------------------------
->>> >> >> >
->>> >> >> > --
->>> >> >> > _______________________________________________
->>> >> >> > yocto mailing list
->>> >> >> > yocto@yoctoproject.org
->>> >> >> > https://lists.yoctoproject.org/listinfo/yocto
->>>
->>
-
---0000000000006a739c057969b89c
-Content-Type: text/html; charset="UTF-8"
+--_000_AM5PR0602MB2802B8C31D3325291398D156B1F00AM5PR0602MB2802_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Contents of gdk-x11-3.0.pc:</div><di=
-v>---------</div><div>prefix=3D/usr</div><div>exec_prefix=3D${prefix}</div>=
-<div>libdir=3D/usr/lib/x86_64-linux-gnu</div><div>includedir=3D${prefix}/in=
-clude</div><div>targets=3Dx11 broadway wayland mir</div><div><br></div><div=
->Name: GDK</div><div>Description: GTK+ Drawing Kit</div><div>Version: 3.18.=
-9</div><div>Requires: pango pangocairo gdk-pixbuf-2.0 &gt;=3D 2.30.0 cairo =
-&gt;=3D 1.14.0 cairo-gobject &gt;=3D 1.14.0</div><div>Requires.private: gio=
--unix-2.0 &gt;=3D 2.45.8 fontconfig x11 xext xinerama xi xrandr xcursor xfi=
-xes xcomposite xdamage wayland-client &gt;=3D 1.5.91 xkbcommon &gt;=3D 0.2.=
-0 wayland-cursor &gt;=3D 1.5.91 wayland-egl mirclient &gt;=3D 0.11.0 mircoo=
-kie &gt;=3D 0.17.0=C2=A0 cairo-xlib cairo cairo cairo epoxy &gt;=3D 1.0</di=
-v><div>Libs: -L${libdir} -lgdk-3=C2=A0</div><div>Cflags: -I${includedir}/gt=
-k-3.0=C2=A0</div><div><br></div><div>---------</div><div><br></div></div></=
-div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Mon, Oct 29, 2018 at=
- 11:14 PM Joe Flowers &lt;<a href=3D"mailto:joe.flowers@nofreewill.com">joe=
-.flowers@nofreewill.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
-ex"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">My bad.<div><br></di=
-v><div>It looks like it is here:</div><div><div>/usr/lib/x86_64-linux-gnu/p=
-kgconfig/gdk-x11-3.0.pc</div><br class=3D"m_-3259737103488081962gmail-Apple=
--interchange-newline"></div><div><br></div><div><br></div><div><div><div>jo=
-e@ubuntu:/opt/yocto$ find / -name *.pc* 1&gt; ~/find5.txt 2&gt;/dev/null</d=
-iv><div>joe@ubuntu:/opt/yocto$ cat ~/find5.txt | grep gdk | grep x11</div><=
-div>/usr/lib/x86_64-linux-gnu/pkgconfig/gdk-x11-3.0.pc</div><div>joe@ubuntu=
-:/opt/yocto$ ls -lart /usr/lib/x86_64-linux-gnu/pkgconfig/gdk-x11-3.0.pc</d=
-iv><div>-rw-r--r-- 1 root root 616 Apr=C2=A0 5=C2=A0 2017 /usr/lib/x86_64-l=
-inux-gnu/pkgconfig/gdk-x11-3.0.pc</div><div>joe@ubuntu:/opt/yocto$</div></d=
-iv></div><div><br></div><div><br></div></div></div></div><br><div class=3D"=
-gmail_quote"><div dir=3D"ltr">On Mon, Oct 29, 2018 at 11:04 PM Joe Flowers =
-&lt;<a href=3D"mailto:joe.flowers@nofreewill.com" target=3D"_blank">joe.flo=
-wers@nofreewill.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
-<div dir=3D"ltr"><div dir=3D"ltr">Thanks, Ross.</div><div dir=3D"ltr"><br><=
-/div><div dir=3D"ltr">Below is the output you requested.=C2=A0 gdk-x11-3.0.=
-pc does not seem to exist.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr"=
->Below, should that be &quot;wandboard&quot; and not &quot;qemux86&quot;=C2=
-=A0?=C2=A0<br><div><br></div><div><div>joe@ubuntu:/opt/yocto/build$</div><d=
-iv>joe@ubuntu:/opt/yocto/build$ oe-pkgdata-util find-path &#39;*/gdk-x11-3.=
-0.pc&#39;</div><div>ERROR: Unable to find pkgdata directory /opt/yocto/buil=
-d/tmp/pkgdata/qemux86</div><div>joe@ubuntu:/opt/yocto/build$ cd ..</div><di=
-v>joe@ubuntu:/opt/yocto$ oe-pkgdata-util find-path &#39;*/gdk-x11-3.0.pc&#3=
-9;</div><div>ERROR: Unable to find pkgdata directory /opt/yocto/build/tmp/p=
-kgdata/qemux86</div><div>joe@ubuntu:/opt/yocto$</div><div>joe@ubuntu:/opt/y=
-octo$</div><div>joe@ubuntu:/opt/yocto$ find /opt/yocto -name *.pc* 1&gt; ~/=
-find4.txt 2&gt;/dev/null</div><div>joe@ubuntu:/opt/yocto$ cat ~/find4.txt |=
- grep gdk | grep x11</div><div>joe@ubuntu:/opt/yocto$</div></div><div><br><=
-/div><div><br></div><div>Thank you!</div><div><br></div></div></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr">On Mon, Oct 29, 2018 at 5:03 PM Bu=
-rton, Ross &lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">r=
-oss.burton@intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
->That is... interesting.<br>
-<br>
-Can you verify that this file has been built by gtk+3?<br>
-<br>
-$ oe-pkgdata-util find-path &#39;*/gdk-x11-3.0.pc&#39;<br>
-gtk+3-dev: /usr/lib/pkgconfig/gdk-x11-3.0.pc<br>
-<br>
-If so can you find any gdk-x11-3.0.pc files under<br>
-/opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel=
--2/2.11-r0/recipe-sysroot?<br>
-=C2=A0Probably under usr/lib/pkgconfig.<br>
-<br>
-Ross<br>
-On Mon, 29 Oct 2018 at 19:34, Joe Flowers &lt;<a href=3D"mailto:joe.flowers=
-@nofreewill.com" target=3D"_blank">joe.flowers@nofreewill.com</a>&gt; wrote=
-:<br>
-&gt;<br>
-&gt; HI Ross,<br>
-&gt;<br>
-&gt; It still doesn&#39;t work.<br>
-&gt;<br>
-&gt;<br>
-&gt; local.conf<br>
-&gt; <a href=3D"https://pastebin.com/2Ng0wSCi" rel=3D"noreferrer" target=3D=
-"_blank">https://pastebin.com/2Ng0wSCi</a><br>
-&gt;<br>
-&gt;<br>
-&gt; log.do_configure.27655<br>
-&gt; <a href=3D"https://pastebin.com/4EX9vqmK" rel=3D"noreferrer" target=3D=
-"_blank">https://pastebin.com/4EX9vqmK</a><br>
-&gt;<br>
-&gt;<br>
-&gt; config.log<br>
-&gt; <a href=3D"https://pastebin.com/DY2FnM7w" rel=3D"noreferrer" target=3D=
-"_blank">https://pastebin.com/DY2FnM7w</a><br>
-&gt;<br>
-&gt;<br>
-&gt; Thanks for trying to help me.<br>
-&gt;<br>
-&gt; Joe<br>
-&gt; ----------------<br>
-&gt;<br>
-&gt;<br>
-&gt; On Mon, Oct 29, 2018 at 11:43 AM Burton, Ross &lt;<a href=3D"mailto:ro=
-ss.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt; wrote:=
-<br>
-&gt;&gt;<br>
-&gt;&gt; x11 is in the default DISTRO_FEATURES for poky, so you don&#39;t n=
-eed to add that.<br>
-&gt;&gt;<br>
-&gt;&gt; If core-image-x11 works then core-image-sato should build fine.=C2=
-=A0 Try<br>
-&gt;&gt; deleting your tmp/ and trying again, if that doesn&#39;t work then=
-<br>
-&gt;&gt; pastebin both temp/log.do_configure and config.log from the recipe=
-<br>
-&gt;&gt; that is failing (matchbox-panel).<br>
-&gt;&gt;<br>
-&gt;&gt; Ross<br>
-&gt;&gt; On Mon, 29 Oct 2018 at 13:21, Joe Flowers &lt;<a href=3D"mailto:jo=
-e.flowers@nofreewill.com" target=3D"_blank">joe.flowers@nofreewill.com</a>&=
-gt; wrote:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Thanks, Ross.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; 1.<br>
-&gt;&gt; &gt; Both of these commands worked:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; MACHINE=3Dwandboard bitbake core-image-x11<br>
-&gt;&gt; &gt; MACHINE=3Dwandboard bitbake gtk+3<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; 2.<br>
-&gt;&gt; &gt; I&#39;ve attached my local.conf.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; If the attachment does not go through, then I will copy and p=
-aste it into my next message.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Thanks!<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Joe<br>
-&gt;&gt; &gt; -------------------------------<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; On Mon, Oct 29, 2018 at 7:54 AM Burton, Ross &lt;<a href=3D"m=
-ailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt=
-; wrote:<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Can you share your local.conf?=C2=A0 Does bitbake gtk+3 w=
-ork?<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Ross<br>
-&gt;&gt; &gt;&gt; On Mon, 29 Oct 2018 at 06:42, Joe Flowers &lt;<a href=3D"=
-mailto:joe.flowers@nofreewill.com" target=3D"_blank">joe.flowers@nofreewill=
-.com</a>&gt; wrote:<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Hello everyone,<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; 1.<br>
-&gt;&gt; &gt;&gt; &gt; I am trying to build a core-image-sato image for a W=
-andBoard but am getting stuck at this error message:<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; &quot;| No package &#39;gdk-x11-3.0&#39; found&quot;=
-<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; See below for more details.<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; 2.<br>
-&gt;&gt; &gt;&gt; &gt; I have grepped this list&#39;s archives and run into=
- someone with the same problem, but a solution was never included in the th=
-read.<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/pipermail/=
-yocto/2017-December/039149.html" rel=3D"noreferrer" target=3D"_blank">https=
-://lists.yoctoproject.org/pipermail/yocto/2017-December/039149.html</a><br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Help please.<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Joe<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; ------------------------------<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Command<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; MACHINE=3Dwandboard bitbake core-image-sato<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; produces this error message:<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; ...<br>
-&gt;&gt; &gt;&gt; &gt; ...<br>
-&gt;&gt; &gt;&gt; &gt; | checking for pkg-config... /opt/yocto/build/tmp/wo=
-rk/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/recipe-sysro=
-ot-native/usr/bin/pkg-config<br>
-&gt;&gt; &gt;&gt; &gt; | configure: WARNING: using cross tools not prefixed=
- with host triplet<br>
-&gt;&gt; &gt;&gt; &gt; | checking pkg-config is at least version 0.9.0... y=
-es<br>
-&gt;&gt; &gt;&gt; &gt; | checking for glib-2.0<br>
-&gt;&gt; &gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0gmodule-export-2.0<br>
-&gt;&gt; &gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0x11<br>
-&gt;&gt; &gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0gdk-x11-3.0<br>
-&gt;&gt; &gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0gtk+-3.0... no<br>
-&gt;&gt; &gt;&gt; &gt; | configure: error: Package requirements (glib-2.0<b=
-r>
-&gt;&gt; &gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0gmodule-export-2.0<br>
-&gt;&gt; &gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0x11<br>
-&gt;&gt; &gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0gdk-x11-3.0<br>
-&gt;&gt; &gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0gtk+-3.0) were not met:<br>
-&gt;&gt; &gt;&gt; &gt; |<br>
-&gt;&gt; &gt;&gt; &gt; | No package &#39;gdk-x11-3.0&#39; found<br>
-&gt;&gt; &gt;&gt; &gt; |<br>
-&gt;&gt; &gt;&gt; &gt; | Consider adjusting the PKG_CONFIG_PATH environment=
- variable if you<br>
-&gt;&gt; &gt;&gt; &gt; | installed software in a non-standard prefix.<br>
-&gt;&gt; &gt;&gt; &gt; |<br>
-&gt;&gt; &gt;&gt; &gt; | Alternatively, you may set the environment variabl=
-es MATCHBOX_PANEL_CFLAGS<br>
-&gt;&gt; &gt;&gt; &gt; | and MATCHBOX_PANEL_LIBS to avoid the need to call =
-pkg-config.<br>
-&gt;&gt; &gt;&gt; &gt; | See the pkg-config man page for more details.<br>
-&gt;&gt; &gt;&gt; &gt; | NOTE: The following config.log files may provide f=
-urther information.<br>
-&gt;&gt; &gt;&gt; &gt; | NOTE: /opt/yocto/build/tmp/work/cortexa9hf-neon-po=
-ky-linux-gnueabi/matchbox-panel-2/2.11-r0/build/config.log<br>
-&gt;&gt; &gt;&gt; &gt; | ERROR: configure failed<br>
-&gt;&gt; &gt;&gt; &gt; | WARNING: exit code 1 from a shell command.<br>
-&gt;&gt; &gt;&gt; &gt; | ERROR: Function failed: do_configure (log file is =
-located at /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/mat=
-chbox-panel-2/2.11-r0/temp/log.do_configure.40754)<br>
-&gt;&gt; &gt;&gt; &gt; ERROR: Task (/opt/yocto/sources/poky/meta/recipes-sa=
-to/matchbox-panel-2/matchbox-panel-2_2.11.bb:do_configure) failed with exit=
- code &#39;1&#39;<br>
-&gt;&gt; &gt;&gt; &gt; NOTE: Tasks Summary: Attempted 3024 tasks of which 2=
-828 didn&#39;t need to be rerun and 1 failed.<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; Summary: 1 task failed:<br>
-&gt;&gt; &gt;&gt; &gt;=C2=A0 =C2=A0/opt/yocto/sources/poky/meta/recipes-sat=
-o/matchbox-panel-2/matchbox-panel-2_2.11.bb:do_configure<br>
-&gt;&gt; &gt;&gt; &gt; Summary: There were 2 ERROR messages shown, returnin=
-g a non-zero exit code.<br>
-&gt;&gt; &gt;&gt; &gt; joe@ubuntu:/opt/yocto/build$<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; ------------------------------<br>
-&gt;&gt; &gt;&gt; &gt;<br>
-&gt;&gt; &gt;&gt; &gt; --<br>
-&gt;&gt; &gt;&gt; &gt; _______________________________________________<br>
-&gt;&gt; &gt;&gt; &gt; yocto mailing list<br>
-&gt;&gt; &gt;&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"=
-_blank">yocto@yoctoproject.org</a><br>
-&gt;&gt; &gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/y=
-octo" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/l=
-istinfo/yocto</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
+Hi all,
 
---0000000000006a739c057969b89c--
+I think the documentation on migrating between Yocto 2.2 and 2.3 needs more=
+ clarification as to how did the sysroots have changed.
+
+I wanted to migrate our build system from 2.2 to 2.5 and one package in par=
+ticular has caused me a day worth of scratching my head and trying differen=
+t ideas.
+We have a custom recipe for openssh-server which among other things had a l=
+ine:
+EXTRA_OECONF +=3D "--with-ssl-dir=3D${STAGING_DIR}/${MACHINE}/usr/local/ope=
+nssl-1.0"
+
+This is due the fact that openssl-1.0 is being installed to /usr/local/open=
+ssl-1.0.
+
+Now when trying to migrate I have noticed that STAGING_DIR is not populated=
+ any more and this is clearly explained by the documentation. What is not e=
+xplained however is how to get the files from other recipes. The documentat=
+ion simply states that each recipe has its own staging directory. Hence wha=
+t I have tried to is steer this directory to the staging directory of opens=
+sl-1.0.
+
+Of course the real solution is that openssh-server recipe installs header f=
+iles of all packages in DEPENDS into openssh-server STAGING_DIR_TARGET (in =
+my case, could be other STAGING_* directories apart from STAGING_DIR which =
+is empty right now) and the simple solution was to change the above line to=
+:
+EXTRA_OECONF +=3D "--with-ssl-dir=3D${STAGING_DIR_TARGET}/usr/local/openssl=
+-1.0"
+
+And thus to save other people time I think it would be best to add another =
+point to the documentation (https://www.yoctoproject.org/docs/2.5.1/ref-man=
+ual/ref-manual.html#migration-2.3-recipe-specific-sysroots)
+"Consider the following:
+[..]
+
+  *   Examine the recipes that use STAGING_DIR: STAGING_DIR is a shared dir=
+ectory not populated any more. Instead if You want to use files from anothe=
+r recipe in Your recipe include that recipe in DEPENDS variable which will =
+copy the files from another recipe into Your recipe's staging directories. =
+Now You can refer to those files using STAGING_DIR* pointing to Your recipe=
+'s staging directories. For example instead of:
+EXTRA_OECONF +=3D "--with-ssl-dir=3D${STAGING_DIR}/${MACHINE}/usr/local/ope=
+nssl-1.0"
+                Write the following:
+                               DEPENDS +=3D "openssl-1.0"
+EXTRA_OECONF +=3D "--with-ssl-dir=3D${STAGING_DIR_TARGET}/usr/local/openssl=
+-1.0"
+"
+
+Of course this can be made more general and a precaution could be added tha=
+t this is taken care of by most of the packages. Maybe in my case it could =
+also be changed to be automatic but this I haven't yet explored.
+
+Cheers,
+Radek Chmielarz
+Leica Geosystems AG
+
+--_000_AM5PR0602MB2802B8C31D3325291398D156B1F00AM5PR0602MB2802_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:372922146;
+	mso-list-type:hybrid;
+	mso-list-template-ids:963790364 2105941344 134676483 134676485 134676481 1=
+34676483 134676485 134676481 134676483 134676485;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:Calibri;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE-CH" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"PL">Hi all,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"PL"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I think the documentation on mi=
+grating between Yocto 2.2 and 2.3 needs more clarification as to how did th=
+e sysroots have changed.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I wanted to migrate our build s=
+ystem from 2.2 to 2.5 and one package in particular has caused me a day wor=
+th of scratching my head and trying different ideas.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">We have a custom recipe for ope=
+nssh-server which among other things had a line:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">EXTRA_OECONF &#43;=3D &quot;--w=
+ith-ssl-dir=3D${STAGING_DIR}/${MACHINE}/usr/local/openssl-1.0&quot;<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">This is due the fact that opens=
+sl-1.0 is being installed to /usr/local/openssl-1.0.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Now when trying to migrate I ha=
+ve noticed that STAGING_DIR is not populated any more and this is clearly e=
+xplained by the documentation. What is not explained however is how to get =
+the files from other recipes. The documentation
+ simply states that each recipe has its own staging directory. Hence what I=
+ have tried to is steer this directory to the staging directory of openssl-=
+1.0.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Of course the real solution is =
+that openssh-server recipe installs header files of all packages in DEPENDS=
+ into openssh-server STAGING_DIR_TARGET (in my case, could be other STAGING=
+_* directories apart from STAGING_DIR
+ which is empty right now) and the simple solution was to change the above =
+line to:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">EXTRA_OECONF &#43;=3D &quot;--w=
+ith-ssl-dir=3D${STAGING_DIR_TARGET}/usr/local/openssl-1.0&quot;<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">And thus to save other people t=
+ime I think it would be best to add another point to the documentation (<a =
+href=3D"https://www.yoctoproject.org/docs/2.5.1/ref-manual/ref-manual.html#=
+migration-2.3-recipe-specific-sysroots">https://www.yoctoproject.org/docs/2=
+.5.1/ref-manual/ref-manual.html#migration-2.3-recipe-specific-sysroots</a>)=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&#8220;Consider the following:<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">[..]<o:p></o:p></span></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 =
+lfo1"><span lang=3D"EN-US">Examine the recipes that use STAGING_DIR: STAGIN=
+G_DIR is a shared directory not populated any more. Instead if You want to =
+use files from another recipe in Your
+ recipe include that recipe in DEPENDS variable which will copy the files f=
+rom another recipe into Your recipe&#8217;s staging directories. Now You ca=
+n refer to those files using STAGING_DIR* pointing to Your recipe&#8217;s s=
+taging directories. For example instead of:<o:p></o:p></span></li></ul>
+<p class=3D"MsoNormal" style=3D"margin-left:35.4pt;text-indent:35.4pt"><spa=
+n lang=3D"EN-US">EXTRA_OECONF &#43;=3D &quot;--with-ssl-dir=3D${STAGING_DIR=
+}/${MACHINE}/usr/local/openssl-1.0&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Write the follo=
+wing:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+DEPENDS &#43;=3D &#8220;openssl-1.0&#8221;<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:35.4pt;text-indent:35.4pt"><spa=
+n lang=3D"EN-US">EXTRA_OECONF &#43;=3D &quot;--with-ssl-dir=3D${STAGING_DIR=
+_TARGET}/usr/local/openssl-1.0&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&#8220;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Of course this can be made more=
+ general and a precaution could be added that this is taken care of by most=
+ of the packages. Maybe in my case it could also be changed to be automatic=
+ but this I haven&#8217;t yet explored.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Cheers,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Radek Chmielarz<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Leica Geosystems AG<o:p></o:p><=
+/span></p>
+</div>
+</body>
+</html>
+
+--_000_AM5PR0602MB2802B8C31D3325291398D156B1F00AM5PR0602MB2802_--
