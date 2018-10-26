@@ -1,68 +1,63 @@
-Return-Path: <mans.zigher@gmail.com>
+Return-Path: <jostorha@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0E73AE00BDC; Fri, 26 Oct 2018 01:28:58 -0700 (PDT)
+	id 21D40E00BC1; Fri, 26 Oct 2018 06:02:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
-	HTML_FONT_FACE_BAD, 
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, WEIRD_PORT autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (mans.zigher[at]gmail.com)
+	provider *      (jostorha[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.195 listed in list.dnswl.org]
+	*      [209.85.167.171 listed in list.dnswl.org]
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  1.0 HTML_FONT_FACE_BAD BODY: HTML font face is not a word
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-Received: from mail-oi1-f195.google.com (mail-oi1-f195.google.com
-	[209.85.167.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 815A5E00AD8
-	for <yocto@yoctoproject.org>; Fri, 26 Oct 2018 01:28:57 -0700 (PDT)
-Received: by mail-oi1-f195.google.com with SMTP id e3-v6so290544oiy.6
-	for <yocto@yoctoproject.org>; Fri, 26 Oct 2018 01:28:57 -0700 (PDT)
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com
+	[209.85.167.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D0E9E00AB3
+	for <yocto@yoctoproject.org>; Fri, 26 Oct 2018 06:02:26 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id c25-v6so917118oiy.0
+	for <yocto@yoctoproject.org>; Fri, 26 Oct 2018 06:02:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=a7d7qhcRe6nYYl9I/JRDzFT0eqkbfV/VpMtKOCGByiM=;
-	b=kdAPS0Jg0LJSBcv/YMWJHIC3M5fsPujVSL1zXOnC2lDAhEd0MODnrxmGE678YECudL
-	XhRRLx82bMaCDak3DRUs3CDruH4TEMD1na5qLNMomLgMFS+jAsI1GEFaeNDHLVIxALcS
-	3mhHlTJWUN1UqkbL1J18PS5aalMEPxSh9kU7PQaZLi5hbmmronaTV6DGZaplTK0yUB4+
-	OawFdTvjxjmbBOtVM3Xh8piHsRpZMPOIjAicZwOIRoIqYZFaA6po13/iyCpHJW3HtWnH
-	zuy319N2tF8OIdQe+S5AQa7ICGO/awJaiS978XY95Qqk7LAfNW1I1e2rWk5bteNTn6na
-	1Crw==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=riwjYV8itIPBfhwm+YxBfvxdGEzhJfM5PGg5mNSgWJg=;
+	b=FVoBqpmfsBANsa5m5PPqC/puTeEKXzFLa8BNIgB3YXkzCbxv77SK5Rpnto4g880tQT
+	uqsuTBhfu8rTc7VL/mtuxRcrRsoD+bDECclCNR6KVxGp1Gd18hgxyNi+ePQ026qhm/Uv
+	emm4EJ1lAtDlEpH6wODqKVlDS3xu5Tf3/OBcnZJd+9XF6pMRX7cfkQZtTaWSonYuDp7X
+	g7aDGWv7po9Hj1mXVyj+kXfWzP4UJOXQlbFmUpsjnvEgfX+zwznSZA/QmaDI4QHNMv4r
+	pYkOJ7+rLjkuPDDxWsILrgUdoPvxZ1qDwhF9EqS7n06Rt0wyLmqi+q6P3+sSp6DsvbgA
+	VA7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=a7d7qhcRe6nYYl9I/JRDzFT0eqkbfV/VpMtKOCGByiM=;
-	b=kymAyL8GPZWsFA4txRUBvf/Tz3xb48cY/bVVFtkmtt3XJMBWoz2G/UBu0T48KcQYCE
-	8iCVgwJsDIfsakwqQj/kMxPcGdyIolqw1fny4GF7Ky/RMPINEtOHORH1os/A3mwRMOAp
-	yUGf118ntILh+hL7e78z78DEoThZnf1Cqz81KIJhLTc/B0xZmIA2a/HmfC8KNfknm/jI
-	H1Y5I6Cuv5t62jxXV/0jGjo1P4g/Diof1bfxMhL8EG8VuLi0ggCV73vzkiWRmiiexhW+
-	9Jv/nZ4uEfDvH822PhKKIsUIo25KSrNblB6AS/ZpLjv/j8f6Y9l7G52P//n6+b+cio6H
-	DKwQ==
-X-Gm-Message-State: AGRZ1gKKQEbBsbiDSaXkofkIYG8q5z6NhJQnLwirpJvEeEzbt8Fggai/
-	r77mn5M7x2uP9YZeZZTL0ID+4V+FPli7HbXEYhRdKHHh7Og=
-X-Google-Smtp-Source: AJdET5c4tpfcthbCmwIZdSa6IyBaJQ61znr/xFigq39Cjl57WuGWKSZNkczHZQJbEKtrafSkwS0ZXElg9awUdD5d7MY=
-X-Received: by 2002:a54:4d8b:: with SMTP id
-	y11-v6mr1601804oix.168.1540542536455; 
-	Fri, 26 Oct 2018 01:28:56 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=riwjYV8itIPBfhwm+YxBfvxdGEzhJfM5PGg5mNSgWJg=;
+	b=kKY4o9WrUp/0uwAmeC51MgXcz5PArVJNqpbJ5iIcBMtFI/yOCs/CEgeW5kpvpQ6SWg
+	FfcseIxMueNs1tGOTyUOzc5kWTf+tPBi/lAP4SbiFjlDkJs/muRGPcaIvjU/OP5eGhFp
+	MAG7LdFeL7EdGaJCRNBOnf91RBd1xjAeGxW7y8S/876hZHAwyy8WPtNpqrzyfg3GokV8
+	HqV5UhxngAlSHxq6VtPGMRRlkcjmQq1zSmLFulgh9b4SGGGUH5hwVLzKQCmjP5La5N3F
+	SmpPj+mpjM2+amAQAnvqkG1P6MHxdiNaBG0Slw8bYWUGSIc+nEhiAO3dmi4Wun5Q+9vu
+	j/+Q==
+X-Gm-Message-State: AGRZ1gJ5hFHkwb43yc2K+MRHGAMSKCP1YngUoAK3JomnXD4e4T/OF+PG
+	0qCjICps5Aj2RrIEWDjal0lgWBkVSB/0YOXxhQ/XNDDg
+X-Google-Smtp-Source: AJdET5fth9hgF9xpNH8H4Y7HHRwUDY9BBkRerYd25R4uqBKXf4gI9TJemcuq4ZNzNWcTYU7M8U4u//aiJzMD0KiRLEg=
+X-Received: by 2002:aca:c28b:: with SMTP id
+	s133-v6mr2167024oif.219.1540558941838; 
+	Fri, 26 Oct 2018 06:02:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEhQi8nL7haOo+ogungBB_1hR0rRqNszFkgEHyr_SYE1dq477w@mail.gmail.com>
-In-Reply-To: <CAEhQi8nL7haOo+ogungBB_1hR0rRqNszFkgEHyr_SYE1dq477w@mail.gmail.com>
-From: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
-Date: Fri, 26 Oct 2018 10:28:45 +0200
-Message-ID: <CAEhQi8=Ocn_uVL5a4ri=9T9YKbNb1gcN3Y=cqK1-dATB7qea1A@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [SDK] including kernel devsrc to the SDK failes
+From: Jon Ove Storhaug <jostorha@gmail.com>
+Date: Fri, 26 Oct 2018 15:02:11 +0200
+Message-ID: <CAAzHaFTJEtUE8zxGok5M08FbpQ1i+2VzStBZVmge3KDBTststA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: nodejs project including zeromq fails to build with yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,187 +69,237 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Oct 2018 08:28:58 -0000
-Content-Type: multipart/alternative; boundary="000000000000a59a5f05791d82fa"
+X-List-Received-Date: Fri, 26 Oct 2018 13:02:28 -0000
+Content-Type: multipart/alternative; boundary="0000000000007be1a1057921545a"
 
---000000000000a59a5f05791d82fa
+--0000000000007be1a1057921545a
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-So it looks like the number of /bin/awk have increased so the patch will
-fix one problem but there is more to fix. I have a "workaround" even though
-I am not so sure it is a workaround or not. The problem is fixed adding to
-kernel-devsrc.bbappend
+Hi,
 
-do_install_append() {
-# This fixes the rpm dependency failure on install of kernel-devsrc
-depending on /bin/awk
-cd ${D} || true
-for i in $(grep -srI "!/bin/awk" | cut -d":" -f1); do
-sed -i -e "s#!/bin/awk#!/usr/bin/env awk#g" $i
-done
-}
+I have a nodejs project which is including zeromq. I have made a simple
+version of this project here: https://gitlab.com/jostor/my-npm-pkg.git
+I am building for raspberry pi3. This is what I do:
+devtool add https://gitlab.com/jostor/my-npm-pkg.git
+devtool build my-npm-pkg
 
-The original solution can be found at
+This fails with this output:
+ERROR: my-npm-pkg-1.0.0+git999-r0 do_compile: Function failed: do_compile
+(log file is located at
+/workdir/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1.0.0+git999-r0/temp/log.do_compile.5090)
+ERROR: Logfile of failure stored in:
+/workdir/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1.0.0+git999-r0/temp/log.do_compile.5090
+Log data follows:
+| DEBUG: Executing python function externalsrc_compile_prefunc
+| NOTE: my-npm-pkg: compiling from external source tree
+/workdir/poky/build/workspace/sources/my-npm-pkg
+| DEBUG: Python function externalsrc_compile_prefunc finished
+| DEBUG: Executing shell function do_compile
+| npm WARN using --force I sure hope you know what you are doing.
+|
+| > zeromq@5.1.0 install
+/workdir/poky/build/workspace/sources/my-npm-pkg/node_modules/zeromq
+| > node scripts/prebuild-install.js || (node scripts/preinstall.js &&
+node-gyp rebuild)
+|
+|
+| prebuild-install WARN install No prebuilt binaries found (target=8.9.4
+runtime=node arch=arm platform=linux)
+|
+| Building libzmq for linux
+| checking for a BSD-compatible install...
+/workdir/poky/build/tmp/hosttools/install -c
+| checking whether build environment is sane... yes
+| checking for a thread-safe mkdir -p...
+/workdir/poky/build/tmp/hosttools/mkdir -p
+| checking for gawk... gawk
+| checking whether make sets $(MAKE)... yes
+| checking whether make supports nested variables... yes
+| checking whether UID '1000' is supported by ustar format... yes
+| checking whether GID '1000' is supported by ustar format... yes
+| checking how to create a ustar tar archive... gnutar
+| checking whether make supports nested variables... (cached) yes
+| checking for gcc... arm-poky-linux-gnueabi-gcc  -march=armv7ve -marm
+-mfpu=neon-vfpv4 -mfloat-abi=hard -mcpu=cortex-a7
+--sysroot=/workdir/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1.0.0+git999-r0/recipe-sysroot
+| checking whether the C compiler works... yes
+| checking for C compiler default output file name... a.out
+| checking for suffix of executables...
+| checking whether we are cross compiling... configure: error: in
+`/workdir/poky/build/workspace/sources/my-npm-pkg/node_modules/zeromq/zmq/zeromq-4.2.2':
+| configure: error: cannot run C compiled programs.
+| If you meant to cross compile, use `--host'.
+| See `config.log' for more details
+| child process exited with code 1
+| make: Entering directory
+'/workdir/poky/build/workspace/sources/my-npm-pkg/node_modules/zeromq/build'
+|   CXX(target) Release/obj.target/zmq/binding.o
+| ../binding.cc:28:10: fatal error: zmq.h: No such file or directory
+|  #include <zmq.h>
+|           ^~~~~~~
+| compilation terminated.
+| zmq.target.mk:93: recipe for target 'Release/obj.target/zmq/binding.o'
+failed
+| make: *** [Release/obj.target/zmq/binding.o] Error 1
+| make: Leaving directory
+'/workdir/poky/build/workspace/sources/my-npm-pkg/node_modules/zeromq/build'
+| gyp ERR! build error
+| gyp ERR! stack Error: `make` failed with exit code: 2
+| gyp ERR! stack     at ChildProcess.onExit
+(/workdir/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1.0.0+git999-r0/recipe-sysroot-native/usr/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:258:23)
+| gyp ERR! stack     at emitTwo (events.js:126:13)
+| gyp ERR! stack     at ChildProcess.emit (events.js:214:7)
+| gyp ERR! stack     at Process.ChildProcess._handle.onexit
+(internal/child_process.js:198:12)
+| gyp ERR! System Linux 4.15.0-36-generic
+| gyp ERR! command
+"/workdir/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1.0.0+git999-r0/recipe-sysroot-native/usr/bin/node"
+"/workdir/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1.0.0+git999-r0/recipe-sysroot-native/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js"
+"rebuild"
+| gyp ERR! cwd
+/workdir/poky/build/workspace/sources/my-npm-pkg/node_modules/zeromq
+| gyp ERR! node -v v8.9.4
+| gyp ERR! node-gyp -v v3.6.2
+| gyp ERR! not ok
+| npm WARN my-npm-pkg@1.0.0 No description
+| npm WARN my-npm-pkg@1.0.0 No repository field.
+|
+| npm ERR! code ELIFECYCLE
+| npm ERR! errno 1
+| npm ERR! zeromq@5.1.0 install: `node scripts/prebuild-install.js || (node
+scripts/preinstall.js && node-gyp rebuild)`
+| npm ERR! Exit status 1
+| npm ERR!
+| npm ERR! Failed at the zeromq@5.1.0 install script.
+| npm ERR! This is probably not a problem with npm. There is likely
+additional logging output above.
+|
+| npm ERR! A complete log of this run can be found in:
+| npm ERR!
+ /workdir/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1.0.0+git999-r0/npm_cache/_logs/2018-10-26T12_49_46_985Z-debug.log
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_compile (log file is located at
+/workdir/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1.0.0+git999-r0/temp/log.do_compile.5090)
+ERROR: Task
+(/workdir/poky/build/workspace/recipes/my-npm-pkg/my-npm-pkg_git.bb:do_compile)
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 439 tasks of which 436 didn't need to be
+rerun and 1 failed.
 
-https://gerrit.automotivelinux.org/gerrit/gitweb?p=3DAGL/meta-agl.git;a=3Db=
-lobdiff;f=3Dmeta-agl-bsp/meta-ti/recipes-kernel/linux/linux-ti-staging_%25.=
-bbappend;h=3D43fa494a26c132b875c177acf0389163d5e34c06;hp=3Db2e5431400acef0a=
-5372e5490ac4f464482d4b3b;hb=3D4bfc821810cdee47611c6d3e94d771971f51fa75;hpb=
-=3D1cf6b17fd15fde569374c85d4df722784f4e9c67
+Summary: 1 task failed:
+  /workdir/poky/build/workspace/recipes/my-npm-pkg/my-npm-pkg_git.bb:
+do_compile
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
 
-The best solution might be to add kernel patches but since the number of
-/bin/awk have increased I think that this is fine in the kernel universe
-but a problem in poky universe. So by adding it to kernel-devsrc it will
-make sure that when the kernel get's tainted in the future it will not
-break the rpm build. This is a "bug" only when using rpm ipk will not
-detect it as a problem.
 
-BR
-M=C3=A5ns Zigher
+If I instead of building this with yocto, are using npm install, it will
+build without failing.
+Can anyone help me with this? Thanks in advance for your help!
 
-Den tors 25 okt. 2018 kl 13:19 skrev M=C3=A5ns Zigher <mans.zigher@gmail.co=
-m>:
+Best Regards,
+Jon Ove
 
-> Hi,
->
-> I am trying to add the kernel devsrc to the SDK but I am getting the
-> following error
->
-> Problem: conflicting requests
->   - nothing provides /bin/awk needed by kernel-devsrc-1.0-r0.imx8mqevk
->
-> I have applied the following patch to try and fix this problem.
->
->
-> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto/commit/?id=3D8af11c=
-1cdd8fa08217e702b57cf96e9030db52b2
->
-> I have verified that it was applied and run kernel-devsrc works. The erro=
-r
-> is from do_populate_sdk and I am suspecting that the problem is related t=
-o
-> me using rpm. I believe rpm might be to smart in this case detecting the
-> dependency and resulting dnf from failing when running the task
-> do_populate_sdk. Any suggestion on how to get forward on this error. I
-> would like to run dnf manually to check any dependency of the kernel-devs=
-rc
-> rpm package but cannot figure out how.
->
-> BR
-> M=C3=A5ns Zigher
->
-
---000000000000a59a5f05791d82fa
+--0000000000007be1a1057921545a
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">So it looks like the number of /bin/awk have increased so =
-the patch will fix one problem but there is more to fix. I have a &quot;wor=
-karound&quot; even though I am not so sure it is a workaround or not. The p=
-roblem is fixed adding to kernel-devsrc.bbappend<div><br></div><div><span s=
-tyle=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&q=
-uot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;=
-,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;;font-size:14px">do_=
-install_append() {</span><br style=3D"box-sizing:border-box;color:rgb(36,41=
-,46);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helv=
-etica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&q=
-uot;,&quot;Segoe UI Symbol&quot;;font-size:14px"><span style=3D"color:rgb(3=
-6,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,=
-Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emo=
-ji&quot;,&quot;Segoe UI Symbol&quot;;font-size:14px"># This fixes the rpm d=
-ependency failure on install of kernel-devsrc depending on /bin/awk</span><=
-br style=3D"box-sizing:border-box;color:rgb(36,41,46);font-family:-apple-sy=
-stem,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&qu=
-ot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol=
-&quot;;font-size:14px"><span style=3D"color:rgb(36,41,46);font-family:-appl=
-e-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif=
-,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Sy=
-mbol&quot;;font-size:14px">cd ${D} || true</span><br style=3D"box-sizing:bo=
-rder-box;color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&=
-quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot=
-;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;;font-size:14px"><s=
-pan style=3D"color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFo=
-nt,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&=
-quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;;font-size:14px=
-">for i in $(grep -srI &quot;!/bin/awk&quot; | cut -d&quot;:&quot; -f1); do=
-</span><br style=3D"box-sizing:border-box;color:rgb(36,41,46);font-family:-=
-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-s=
-erif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe U=
-I Symbol&quot;;font-size:14px"><span style=3D"color:rgb(36,41,46);font-fami=
-ly:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sa=
-ns-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Seg=
-oe UI Symbol&quot;;font-size:14px">sed -i -e &quot;s#!/bin/awk#!/usr/bin/en=
-v awk#g&quot; $i</span><br style=3D"box-sizing:border-box;color:rgb(36,41,4=
-6);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvet=
-ica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quo=
-t;,&quot;Segoe UI Symbol&quot;;font-size:14px"><span style=3D"color:rgb(36,=
-41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,He=
-lvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji=
-&quot;,&quot;Segoe UI Symbol&quot;;font-size:14px">done</span><br style=3D"=
-box-sizing:border-box;color:rgb(36,41,46);font-family:-apple-system,BlinkMa=
-cSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Col=
-or Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;;font-=
-size:14px"><span style=3D"color:rgb(36,41,46);font-family:-apple-system,Bli=
-nkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple=
- Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;;f=
-ont-size:14px">}</span><br></div><div><span style=3D"color:rgb(36,41,46);fo=
-nt-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,A=
-rial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&q=
-uot;Segoe UI Symbol&quot;;font-size:14px"><br></span></div><div><font color=
-=3D"#24292e" face=3D"-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica=
-, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol"><s=
-pan style=3D"font-size:14px">The original solution=C2=A0can be found at</sp=
-an></font></div><div><span style=3D"color:rgb(36,41,46);font-family:-apple-=
-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&=
-quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symb=
-ol&quot;;font-size:14px"><br></span></div><div><a href=3D"https://gerrit.au=
-tomotivelinux.org/gerrit/gitweb?p=3DAGL/meta-agl.git;a=3Dblobdiff;f=3Dmeta-=
-agl-bsp/meta-ti/recipes-kernel/linux/linux-ti-staging_%25.bbappend;h=3D43fa=
-494a26c132b875c177acf0389163d5e34c06;hp=3Db2e5431400acef0a5372e5490ac4f4644=
-82d4b3b;hb=3D4bfc821810cdee47611c6d3e94d771971f51fa75;hpb=3D1cf6b17fd15fde5=
-69374c85d4df722784f4e9c67" rel=3D"nofollow" style=3D"box-sizing:border-box;=
-color:rgb(3,102,214);outline-width:0px;font-family:-apple-system,BlinkMacSy=
-stemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color =
-Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;;font-siz=
-e:14px">https://gerrit.automotivelinux.org/gerrit/gitweb?p=3DAGL/meta-agl.g=
-it;a=3Dblobdiff;f=3Dmeta-agl-bsp/meta-ti/recipes-kernel/linux/linux-ti-stag=
-ing_%25.bbappend;h=3D43fa494a26c132b875c177acf0389163d5e34c06;hp=3Db2e54314=
-00acef0a5372e5490ac4f464482d4b3b;hb=3D4bfc821810cdee47611c6d3e94d771971f51f=
-a75;hpb=3D1cf6b17fd15fde569374c85d4df722784f4e9c67</a><span style=3D"color:=
-rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&q=
-uot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe U=
-I Emoji&quot;,&quot;Segoe UI Symbol&quot;;font-size:14px"><br></span></div>=
-<div><br></div><div>The best solution might be to add kernel patches but si=
-nce the number of /bin/awk have increased I think that this is fine in the =
-kernel universe but a problem in poky universe. So by adding it to kernel-d=
-evsrc it will make sure that when the kernel get&#39;s tainted in the futur=
-e it will not break the rpm build. This is a &quot;bug&quot; only when usin=
-g rpm ipk will not detect it as a problem.</div><div><br></div><div>BR</div=
-><div>M=C3=A5ns Zigher=C2=A0</div></div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr">Den tors 25 okt. 2018 kl 13:19 skrev M=C3=A5ns Zigher &lt;<a h=
-ref=3D"mailto:mans.zigher@gmail.com">mans.zigher@gmail.com</a>&gt;:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
-1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
-=3D"ltr"><div>Hi,</div><div><br></div><div>I am trying to add the kernel de=
-vsrc to the SDK but I am getting the following error</div><div><br></div><d=
-iv>Problem: conflicting requests=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<br></div><div>=C2=A0 - nothing provides /bin=
-/awk needed by kernel-devsrc-1.0-r0.imx8mqevk</div><div><br></div><div>I ha=
-ve applied the following patch to try and fix this problem.</div><div><br><=
-/div><div><a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto/=
-commit/?id=3D8af11c1cdd8fa08217e702b57cf96e9030db52b2" target=3D"_blank">ht=
-tp://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto/commit/?id=3D8af11c1cdd=
-8fa08217e702b57cf96e9030db52b2</a><br></div><div><br></div><div>I have veri=
-fied that it was applied and run kernel-devsrc works. The error is from do_=
-populate_sdk and I am suspecting that the problem is related to me using rp=
-m. I believe rpm might be to smart in this case detecting the dependency an=
-d resulting dnf from failing when running the task do_populate_sdk. Any sug=
-gestion on how to get forward on this error. I would like to run dnf manual=
-ly to check any dependency of the kernel-devsrc rpm package but cannot figu=
-re out how.</div><div><br></div><div>BR</div><div>M=C3=A5ns Zigher</div></d=
-iv></div></div>
-</blockquote></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr">Hi,<div><br></div><div>I have a nodejs project which is including=
+ zeromq. I have made a simple version of this project here:=C2=A0<a href=3D=
+"https://gitlab.com/jostor/my-npm-pkg.git">https://gitlab.com/jostor/my-npm=
+-pkg.git</a></div><div>I am building for raspberry pi3. This is what I do:=
+=C2=A0</div><div><div>devtool add <a href=3D"https://gitlab.com/jostor/my-n=
+pm-pkg.git">https://gitlab.com/jostor/my-npm-pkg.git</a></div></div><div>de=
+vtool build my-npm-pkg<br></div><div><br></div><div>This fails with this ou=
+tput:</div><div><div>ERROR: my-npm-pkg-1.0.0+git999-r0 do_compile: Function=
+ failed: do_compile (log file is located at /workdir/poky/build/tmp/work/co=
+rtexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1.0.0+git999-r0/temp/log.=
+do_compile.5090)</div><div>ERROR: Logfile of failure stored in: /workdir/po=
+ky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1.0.0=
++git999-r0/temp/log.do_compile.5090</div><div>Log data follows:</div><div>|=
+ DEBUG: Executing python function externalsrc_compile_prefunc</div><div>| N=
+OTE: my-npm-pkg: compiling from external source tree /workdir/poky/build/wo=
+rkspace/sources/my-npm-pkg</div><div>| DEBUG: Python function externalsrc_c=
+ompile_prefunc finished</div><div>| DEBUG: Executing shell function do_comp=
+ile</div><div>| npm WARN using --force I sure hope you know what you are do=
+ing.</div><div>|</div><div>| &gt; zeromq@5.1.0 install /workdir/poky/build/=
+workspace/sources/my-npm-pkg/node_modules/zeromq</div><div>| &gt; node scri=
+pts/prebuild-install.js || (node scripts/preinstall.js &amp;&amp; node-gyp =
+rebuild)</div><div>|</div><div>|</div><div>| prebuild-install WARN install =
+No prebuilt binaries found (target=3D8.9.4 runtime=3Dnode arch=3Darm platfo=
+rm=3Dlinux)</div><div>|</div><div>| Building libzmq for linux</div><div>| c=
+hecking for a BSD-compatible install... /workdir/poky/build/tmp/hosttools/i=
+nstall -c</div><div>| checking whether build environment is sane... yes</di=
+v><div>| checking for a thread-safe mkdir -p... /workdir/poky/build/tmp/hos=
+ttools/mkdir -p</div><div>| checking for gawk... gawk</div><div>| checking =
+whether make sets $(MAKE)... yes</div><div>| checking whether make supports=
+ nested variables... yes</div><div>| checking whether UID &#39;1000&#39; is=
+ supported by ustar format... yes</div><div>| checking whether GID &#39;100=
+0&#39; is supported by ustar format... yes</div><div>| checking how to crea=
+te a ustar tar archive... gnutar</div><div>| checking whether make supports=
+ nested variables... (cached) yes</div><div>| checking for gcc... arm-poky-=
+linux-gnueabi-gcc=C2=A0 -march=3Darmv7ve -marm -mfpu=3Dneon-vfpv4 -mfloat-a=
+bi=3Dhard -mcpu=3Dcortex-a7 --sysroot=3D/workdir/poky/build/tmp/work/cortex=
+a7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1.0.0+git999-r0/recipe-sysroo=
+t</div><div>| checking whether the C compiler works... yes</div><div>| chec=
+king for C compiler default output file name... a.out</div><div>| checking =
+for suffix of executables...</div><div>| checking whether we are cross comp=
+iling... configure: error: in `/workdir/poky/build/workspace/sources/my-npm=
+-pkg/node_modules/zeromq/zmq/zeromq-4.2.2&#39;:</div><div>| configure: erro=
+r: cannot run C compiled programs.</div><div>| If you meant to cross compil=
+e, use `--host&#39;.</div><div>| See `config.log&#39; for more details</div=
+><div>| child process exited with code 1</div><div>| make: Entering directo=
+ry &#39;/workdir/poky/build/workspace/sources/my-npm-pkg/node_modules/zerom=
+q/build&#39;</div><div>|=C2=A0 =C2=A0CXX(target) Release/obj.target/zmq/bin=
+ding.o</div><div>| ../binding.cc:28:10: fatal error: zmq.h: No such file or=
+ directory</div><div>|=C2=A0 #include &lt;zmq.h&gt;</div><div>|=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~~~~~~</div><div>| compilation terminated.<=
+/div><div>| <a href=3D"http://zmq.target.mk:93">zmq.target.mk:93</a>: recip=
+e for target &#39;Release/obj.target/zmq/binding.o&#39; failed</div><div>| =
+make: *** [Release/obj.target/zmq/binding.o] Error 1</div><div>| make: Leav=
+ing directory &#39;/workdir/poky/build/workspace/sources/my-npm-pkg/node_mo=
+dules/zeromq/build&#39;</div><div>| gyp ERR! build error</div><div>| gyp ER=
+R! stack Error: `make` failed with exit code: 2</div><div>| gyp ERR! stack=
+=C2=A0 =C2=A0 =C2=A0at ChildProcess.onExit (/workdir/poky/build/tmp/work/co=
+rtexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1.0.0+git999-r0/recipe-sy=
+sroot-native/usr/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:25=
+8:23)</div><div>| gyp ERR! stack=C2=A0 =C2=A0 =C2=A0at emitTwo (events.js:1=
+26:13)</div><div>| gyp ERR! stack=C2=A0 =C2=A0 =C2=A0at ChildProcess.emit (=
+events.js:214:7)</div><div>| gyp ERR! stack=C2=A0 =C2=A0 =C2=A0at Process.C=
+hildProcess._handle.onexit (internal/child_process.js:198:12)</div><div>| g=
+yp ERR! System Linux 4.15.0-36-generic</div><div>| gyp ERR! command &quot;/=
+workdir/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm=
+-pkg/1.0.0+git999-r0/recipe-sysroot-native/usr/bin/node&quot; &quot;/workdi=
+r/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm-pkg/1=
+.0.0+git999-r0/recipe-sysroot-native/usr/lib/node_modules/npm/node_modules/=
+node-gyp/bin/node-gyp.js&quot; &quot;rebuild&quot;</div><div>| gyp ERR! cwd=
+ /workdir/poky/build/workspace/sources/my-npm-pkg/node_modules/zeromq</div>=
+<div>| gyp ERR! node -v v8.9.4</div><div>| gyp ERR! node-gyp -v v3.6.2</div=
+><div>| gyp ERR! not ok</div><div>| npm WARN my-npm-pkg@1.0.0 No descriptio=
+n</div><div>| npm WARN my-npm-pkg@1.0.0 No repository field.</div><div>|</d=
+iv><div>| npm ERR! code ELIFECYCLE</div><div>| npm ERR! errno 1</div><div>|=
+ npm ERR! zeromq@5.1.0 install: `node scripts/prebuild-install.js || (node =
+scripts/preinstall.js &amp;&amp; node-gyp rebuild)`</div><div>| npm ERR! Ex=
+it status 1</div><div>| npm ERR!</div><div>| npm ERR! Failed at the zeromq@=
+5.1.0 install script.</div><div>| npm ERR! This is probably not a problem w=
+ith npm. There is likely additional logging output above.</div><div>|</div>=
+<div>| npm ERR! A complete log of this run can be found in:</div><div>| npm=
+ ERR!=C2=A0 =C2=A0 =C2=A0/workdir/poky/build/tmp/work/cortexa7hf-neon-vfpv4=
+-poky-linux-gnueabi/my-npm-pkg/1.0.0+git999-r0/npm_cache/_logs/2018-10-26T1=
+2_49_46_985Z-debug.log</div><div>| WARNING: exit code 1 from a shell comman=
+d.</div><div>| ERROR: Function failed: do_compile (log file is located at /=
+workdir/poky/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/my-npm=
+-pkg/1.0.0+git999-r0/temp/log.do_compile.5090)</div><div>ERROR: Task (/work=
+dir/poky/build/workspace/recipes/my-npm-pkg/my-npm-pkg_git.bb:do_compile) f=
+ailed with exit code &#39;1&#39;</div><div>NOTE: Tasks Summary: Attempted 4=
+39 tasks of which 436 didn&#39;t need to be rerun and 1 failed.</div><div><=
+br></div><div>Summary: 1 task failed:</div><div>=C2=A0 /workdir/poky/build/=
+workspace/recipes/my-npm-pkg/my-npm-pkg_git.bb:do_compile</div><div>Summary=
+: There was 1 ERROR message shown, returning a non-zero exit code.</div></d=
+iv><div><br></div><div><br></div><div>If I instead of building this with yo=
+cto, are using npm install, it will build without failing.=C2=A0</div><div>=
+Can anyone help me with this? Thanks in advance for your help!</div><div><b=
+r></div><div>Best Regards,</div><div>Jon Ove</div><div><br></div><div><br><=
+/div><div><br></div></div></div></div></div></div>
 
---000000000000a59a5f05791d82fa--
+--0000000000007be1a1057921545a--
