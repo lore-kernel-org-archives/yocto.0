@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9AE70E00A54; Fri, 26 Oct 2018 23:25:03 -0700 (PDT)
+	id B34BAE00BD0; Fri, 26 Oct 2018 23:25:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,55 +13,58 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.65 listed in list.dnswl.org]
+	*      [209.85.221.68 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
-	[209.85.128.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BED7E00A54
-	for <yocto@yoctoproject.org>; Fri, 26 Oct 2018 23:25:02 -0700 (PDT)
-Received: by mail-wm1-f65.google.com with SMTP id q12-v6so497219wmq.0
-	for <yocto@yoctoproject.org>; Fri, 26 Oct 2018 23:25:02 -0700 (PDT)
+Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com
+	[209.85.221.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76579E00A4F
+	for <yocto@yoctoproject.org>; Fri, 26 Oct 2018 23:25:04 -0700 (PDT)
+Received: by mail-wr1-f68.google.com with SMTP id u1-v6so3354271wrn.0
+	for <yocto@yoctoproject.org>; Fri, 26 Oct 2018 23:25:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=B88upFd5sUCbzAlb6+v1WpNY+58fPoX5bKdSyzFEewI=;
-	b=LwewAb7r1Y0TYwvegXQlzsS6YW6R0puWK/NBJX1/Vt2iRYx6wOi4p2xNMRauv96aK8
-	DG4W3SO1AW1h3jz6UuAN9DVGfkS1HoHsU4Ct50kSWwHZMun12T4audvFu5vZNzmUHwkq
-	bpyFUnaI1Vyvdz6DXd8pgyiHiNL3lFV6wsv0ymS5iEOVZu2zBBoULgkRqPAAEkmM45S+
-	tq55K+/vZmR93ALr50TAzs8zMXAaQXmIqnUQTgmDEMWw90qeDJTlI4/1TDoNnVYYKRfF
-	JUEV9hNPLZbUNr30jZa69vphaHpXap0sRv2wmTWq2z7gf90gNWafTHvABJvwXHwMpxaV
-	vkkg==
+	h=from:to:subject:date:message-id:in-reply-to:references;
+	bh=pOZOJAfhWbSNrp2bTJ9VdrN/ByT6WYmyfqM3iKOv2Rw=;
+	b=T4Ch6xOYuD+QjyWe3MXaqP0p36DX2L4ZRA2zvnOE76hJReBxtf9wJb02ABqc1k8aVt
+	bdO1APU0QB9rmlMkiImwCpcyeNb+pMLWhWimkUsq/1jD8l9sSIw3brBlKyKTQIS2dvdZ
+	4/oINxCyyBkEpo0JfoiI0GmFiKuhsAWvanLiKcx+SNrJSskUe2bhhKi1XzFFiQ5eg8x+
+	qB+Ek+4ubTvO2pK0g9AIZ4YbISov/yFlIaNpWnQwGh+xGajm0RIZWyT3YG0boPJ4/v4Q
+	+pn8k+9ahYnH5N1a8KdOH/qsz1dIu5dZxNtAaOYlmj7XoPC0OrCXSl+0GQ8kquQw8UMh
+	jfWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=B88upFd5sUCbzAlb6+v1WpNY+58fPoX5bKdSyzFEewI=;
-	b=eD6wRL+aHmW3y5OBqQNhgDhmL/h5XCctEe30OTocmTVqZ+RGNGMhWQDxUL1lzztyxB
-	dRxkukvCTnyj9FnRutUDGKo0qQUgtLsB7r8pvbAl9lsq0rL4l11FaS/5Wtf/YOwmwblq
-	I6WFbWxgXp5uZ61kNCwlFdoPHBkX8h1+djlCHjHGRRSMJNJzi+nu5vQ/4TP3d/Oj/02X
-	ek/iELuuKUY47t8Ir1qqd/d100v85or6OiL1YpEOCHqKSrxa6suRQzx2a7+fru9lCRmP
-	YMGXhpdbZHpUtNOdmQ12fzcZ4cft/XqABSbpPlUTg0zfndfiQpJOQRLViEcqNB5Pcs78
-	HzsA==
-X-Gm-Message-State: AGRZ1gLvbTKYi0mDyNOvGGCLa54F9dOGZO/Etn6BOeH4EB5+lyCtR8Bj
-	qy3HcDHeTZUuacKRXXOqNdR7y/tQPVM=
-X-Google-Smtp-Source: AJdET5cIxy04avX9Vi56ODjubCdmtYYHZDqoV+46kX/dEb+5lv9QBMGJ1UqdAu5X6mf0eWa53XtC5A==
-X-Received: by 2002:a1c:7617:: with SMTP id
-	r23-v6mr3980008wmc.97.1540621500798; 
-	Fri, 26 Oct 2018 23:25:00 -0700 (PDT)
+	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+	:references;
+	bh=pOZOJAfhWbSNrp2bTJ9VdrN/ByT6WYmyfqM3iKOv2Rw=;
+	b=axDNMSFpbG3IrZWP3BHYalMLhsxJMYKvjHAu45qR/Xe61CRBCUNOk7ufSXPCCXqXvn
+	TA6NIWLdw32CC6bq3CZSkEfEAyxrwQtOPB7FuoTDtdAIx+eG9VEpUj9XQVAR1xZCfuid
+	3C6wFVuEpF91VhIAxXiFryhk3YUg7f7pjRg5A0cg9ZJk6gJt+0Jv3XJSwQtho+J7++SE
+	oqd6Zxj1+ILF0KmRLwkOxjSFuy2SpE732aeFgOTUYFWpAdZZBCScdPtyi/7nhhIK/IMM
+	1tpbDKp29+EmUte9VCcz3Ppri/N+wg9up39dHZGXYnpHGozgjFkgZqjiYmKZSGq2RxFm
+	Pcdg==
+X-Gm-Message-State: AGRZ1gKoSstCLjjptXyD6ZLjon5yONhIrIZJEz52VumFxkvWUciJ5NNG
+	shcWQFWvK6dogQHS7EnIEnrxwVgDsls=
+X-Google-Smtp-Source: AJdET5e0PDzR5rtlN+7x2pPIrokC1zW0fuVf9Pgyie7NjLcrzsI2L92lTDyu8wLtS4iInbBys2O0tA==
+X-Received: by 2002:adf:c6c7:: with SMTP id
+	c7-v6mr8283615wrh.243.1540621503138; 
+	Fri, 26 Oct 2018 23:25:03 -0700 (PDT)
 Received: from localhost.localdomain ([195.11.164.221])
 	by smtp.gmail.com with ESMTPSA id
-	c24-v6sm21528848wre.44.2018.10.26.23.24.59
+	c24-v6sm21528848wre.44.2018.10.26.23.25.02
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 26 Oct 2018 23:24:59 -0700 (PDT)
+	Fri, 26 Oct 2018 23:25:02 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org,
 	akuster808@gmail.com
-Date: Sat, 27 Oct 2018 07:24:54 +0100
-Message-Id: <1540621496-21289-1-git-send-email-akuster808@gmail.com>
+Date: Sat, 27 Oct 2018 07:24:56 +0100
+Message-Id: <1540621496-21289-3-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [meta-security][PATCH 1/3] tpm2-abrmd: update to 2.0.2
+In-Reply-To: <1540621496-21289-1-git-send-email-akuster808@gmail.com>
+References: <1540621496-21289-1-git-send-email-akuster808@gmail.com>
+Subject: [meta-security][PATCH 3/3] swtpm: switch to stable branch and clean up recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,57 +76,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 Oct 2018 06:25:03 -0000
+X-List-Received-Date: Sat, 27 Oct 2018 06:25:05 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../tpm2-abrmd/{tpm2-abrmd_2.0.1.bb => tpm2-abrmd_2.0.2.bb}      | 9 ++++-----
- .../{tpm2simulator-native_138.bb => tpm2simulator_138.bb}        | 0
- 2 files changed, 4 insertions(+), 5 deletions(-)
- rename meta-tpm/recipes-tpm/tpm2-abrmd/{tpm2-abrmd_2.0.1.bb => tpm2-abrmd_2.0.2.bb} (86%)
- rename meta-tpm/recipes-tpm/tpm2simulator/{tpm2simulator-native_138.bb => tpm2simulator_138.bb} (100%)
+ meta-tpm/recipes-tpm/swtpm/swtpm_1.0.bb | 22 +++++-----------------
+ 1 file changed, 5 insertions(+), 17 deletions(-)
 
-diff --git a/meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.0.1.bb b/meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.0.2.bb
-similarity index 86%
-rename from meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.0.1.bb
-rename to meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.0.2.bb
-index 31e90f8..951556d 100644
---- a/meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.0.1.bb
-+++ b/meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.0.2.bb
-@@ -9,15 +9,16 @@ SECTION = "security/tpm"
- LICENSE = "BSD-2-Clause"
- LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=500b2e742befc3da00684d8a1d5fd9da"
+diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_1.0.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_1.0.bb
+index e0c5ffe..3fe1393 100644
+--- a/meta-tpm/recipes-tpm/swtpm/swtpm_1.0.bb
++++ b/meta-tpm/recipes-tpm/swtpm/swtpm_1.0.bb
+@@ -3,22 +3,21 @@ LICENSE = "BSD-3-Clause"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=fe8092c832b71ef20dfe4c6d3decb3a8"
+ SECTION = "apps"
  
--DEPENDS += "autoconf-archive dbus glib-2.0 pkgconfig tpm2.0-tss glib-2.0-native \
-+DEPENDS = "autoconf-archive dbus glib-2.0 tpm2.0-tss glib-2.0-native \
-             libtss2 libtss2-mu libtss2-tcti-device libtss2-tcti-mssim"
+-DEPENDS = "libtasn1 expect socat glib-2.0 libtpm libtpm-native"
++DEPENDS = "libtasn1 expect socat glib-2.0 net-tools-native libtpm libtpm-native"
  
-+
- SRC_URI = "\
-     git://github.com/01org/tpm2-abrmd.git \
-     file://tpm2-abrmd-init.sh \
-     file://tpm2-abrmd.default \
- "
--SRCREV = "80f8966b90d6394ad568e362d2936b333c2822bb"
-+SRCREV = "d0120ace58d97bc9520c0d558657eaca87ae73b1"
+ # configure checks for the tools already during compilation and
+ # then swtpm_setup needs them at runtime
+ DEPENDS += "tpm-tools-native expect-native socat-native"
+ 
+-SRCREV = "66b42f52ef363998cb57f039889d59381d20bdf1"
+-SRC_URI = "git://github.com/stefanberger/swtpm.git \
+-           file://fix_lib_search_path.patch \
++SRCREV = "94bb9f2d716d09bcc6cd2a2e033018f8592008e7"
++SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=tpm2-preview.v2 \
+            file://fix_fcntl_h.patch \
+            file://ioctl_h.patch \
+            "
  
  S = "${WORKDIR}/git"
  
-@@ -34,9 +35,7 @@ USERADD_PACKAGES = "${PN}"
- GROUPADD_PARAM_${PN} = "tss"
- USERADD_PARAM_${PN} = "--system -M -d /var/lib/tpm -s /bin/false -g tss tss"
+-inherit autotools-brokensep pkgconfig
++inherit autotools pkgconfig
+ PARALLEL_MAKE = ""
  
--PACKAGECONFIG ?="udev"
--PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES','systemd','systemd', '', d)}"
+ TSS_USER="tss"
+@@ -35,21 +34,12 @@ EXTRA_OECONF += "--with-tss-user=${TSS_USER} --with-tss-group=${TSS_GROUP}"
+ 
+ export SEARCH_DIR = "${STAGING_LIBDIR_NATIVE}"
+ 
+-# dup bootstrap 
+-do_configure_prepend () {
+-	libtoolize --force --copy
+-	autoheader
+-	aclocal
+-	automake --add-missing -c
+-	autoconf
+-}
 -
-+PACKAGECONFIG ?="${@bb.utils.contains('DISTRO_FEATURES','systemd','systemd', '', d)}"
- PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir}, --with-systemdsystemunitdir=no"
+ USERADD_PACKAGES = "${PN}"
+ GROUPADD_PARAM_${PN} = "--system ${TSS_USER}"
+ USERADD_PARAM_${PN} = "--system -g ${TSS_GROUP} --home-dir  \
+     --no-create-home  --shell /bin/false ${BPN}"
  
- do_install_append() {
-diff --git a/meta-tpm/recipes-tpm/tpm2simulator/tpm2simulator-native_138.bb b/meta-tpm/recipes-tpm/tpm2simulator/tpm2simulator_138.bb
-similarity index 100%
-rename from meta-tpm/recipes-tpm/tpm2simulator/tpm2simulator-native_138.bb
-rename to meta-tpm/recipes-tpm/tpm2simulator/tpm2simulator_138.bb
+-RDEPENDS_${PN} = "libtpm expect socat bash"
++RDEPENDS_${PN} = "libtpm expect socat bash tpm-tools"
+ 
+ BBCLASSEXTEND = "native nativesdk"
+ 
+@@ -58,5 +48,3 @@ python() {
+         'filesystems-layer' not in d.getVar('BBFILE_COLLECTIONS').split():
+         raise bb.parse.SkipRecipe('Cuse enabled which requires meta-filesystems to be present.')
+ }
+-
+-RDEPENDS_${PN} += "tpm-tools"
 -- 
 2.7.4
 
