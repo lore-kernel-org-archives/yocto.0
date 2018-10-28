@@ -1,70 +1,71 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2B407E00AC5; Sun, 28 Oct 2018 11:50:33 -0700 (PDT)
+	id D75C5E00BFD; Sun, 28 Oct 2018 11:50:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.196 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.194 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
-	[209.85.210.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7710E00718
-	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 11:50:32 -0700 (PDT)
-Received: by mail-pf1-f194.google.com with SMTP id f26-v6so2882038pfn.9
-	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 11:50:32 -0700 (PDT)
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com
+	[209.85.214.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7255FE00C15
+	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 11:50:34 -0700 (PDT)
+Received: by mail-pl1-f196.google.com with SMTP id x6-v6so2736154pln.0
+	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 11:50:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=Df5TMKNBOdZ5gRUEUa55wqmDv4k+k9LiegK4Hk7/kTk=;
-	b=UWJ1X0SRKFjFwnwae5TqyCz7pyJOiz6FJGZ6BS9S+9HM/uhdYJY5Op/DPHby7o8IlR
-	ByM1mXF6xU/HLdVtBrPYHJds3FrVjmQslC78+ybvX8gz2rYPxi4lEZVTr+BxP+Z/cikZ
-	ayYz7TvqSb2F9Ne2CBezEd2KPQXgxpusbRrLuaA9nHd9lVldoQtn7sT+kwN3LR5HEFdR
-	7R940W08ZHFNkK/X497u7qo1m6iIRhCH1QKCJ/k0C2PSREcYzxvkbBlu1Hn0qwtCR/nZ
-	lT53xA53ZkXXvfJgfEPbg44T6XpTns+hoGaL5Fmt8nE7P6SMnzILhr1cUVrkxAD/IFf+
-	advg==
+	bh=YDJGWtP/9mqN4VHOCormlqRXHtFQSxO654LajoBxDuw=;
+	b=YCjwpj7R86Uk7TxHYh0YoM3w7r9Vix0xdN/8nt1NkQQ9d4dyY3kWQwWg3o0o1EJr7R
+	46TVT7utXN9vpByHQHmstIKEouRdlorMhrB6i4fQBoVHugMbcpPPfGYFsQH59EV/Y0Yu
+	/0aCpls/6Wb6nS5cFSYNn7BuY7FRp3STbBxL1VqWuBTvnPn7euxku44GGyC36/nm9FqI
+	ZctXb1dDgQhctmmt6T1rOSov/yCarR6F0Dict3n63xGpARhaowT/ZHMGaosb25A45DVx
+	ivv7WgtpVi5Mqr67FP2JuyCTj0t2UmeZwHyzxdp9DGVwhOm/TCr7gSs0ai0f9DrUmpn0
+	LiPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=Df5TMKNBOdZ5gRUEUa55wqmDv4k+k9LiegK4Hk7/kTk=;
-	b=DFo7uSCHh/mp7edarAWXsbXPu+1eIAm9vi0GaIYUDhd0M6Cf/q83axy+DNtVON6qpy
-	X974A8el7xO5K96OHm7h9hQi250cH1TMXC9GP8XvYNpfLmnhaPOvDegok5k0PxjtM4IX
-	VyGtjqyg0ZVNjNbyiAjBrIjCNNSZVbIUlXFO0XEzt2zvnctFOG1Asg1+w5l3k94En/qf
-	cJf4b6g/zx75TUUp9CnCbwE5/vkhgBs1s5lt7Nuxg+9xk5IP7xHaP8ILZYb/PiwOkUzf
-	Ve3ly6A5BePMB7tyWE+fvJNaGoGTDrJ93l/x9qqxFbScq32JSxBFpq99YEcKRT1YT7AY
-	Tt+w==
-X-Gm-Message-State: AGRZ1gJlsG5YwIz47q4VBtOeyT0otuKGvk02zT0iR6XmgcQG9j/Zj1bI
-	c6vHQp/DLoLnG0IqBFI4f4vLcdaf
-X-Google-Smtp-Source: AJdET5craZ+bUAX5BsiesM5d9B/AMeLK6F91DIf6V9LMr/rTixoY8G6j8S/Q7/BJjcI0rQpWxBTewQ==
-X-Received: by 2002:a63:4a4a:: with SMTP id j10-v6mr3726479pgl.0.1540752632089;
-	Sun, 28 Oct 2018 11:50:32 -0700 (PDT)
+	bh=YDJGWtP/9mqN4VHOCormlqRXHtFQSxO654LajoBxDuw=;
+	b=pldiJqnol4TOG4YmpFmv8Ppr2xeHbslmfqZwf/55O+P1VA+5+lt4Eb0oqi2B2S/GW2
+	3xq3zHzGf4i8KfTj2aGV5z5wiBl7wVga6pPmY7BveAmwqtGY6IiusAKye8N2dPhzSr6i
+	8lOgRlliYU6zT22OI4WXpJTRS8xGR/2V8DmaNXVgZ5t8/Hl/yPiHHs47gEJ+pqqhUEHd
+	3+i17UCqZpiAqHY7GizSWRIOTAKr3EkCrXn20EJHzjGMTJwk2oofPQ2cz/UY9C2Ip0jt
+	SwLuvtyIDlEmcEVgf189H/ySZ50IshDk1IlvLi6KVJt3IubSDlnXOP6MyLUDUrB5RzCL
+	GsKA==
+X-Gm-Message-State: AGRZ1gJYZ6Uk8cONjYQZhQU4K+0T2OL5rvkrTmXiS31LO+Lyo/n3h9iW
+	LbkCIZ+nkshwklgpNi2bRkxnzX7F
+X-Google-Smtp-Source: AJdET5e8xiLZ4wJtT/rpIhDwWy/zAsObStebrMgxSJbjeL7lOvnYhJ/VvUYFJyK25HvCGegifz49UQ==
+X-Received: by 2002:a17:902:e00a:: with SMTP id
+	ca10-v6mr11235842plb.166.1540752633933; 
+	Sun, 28 Oct 2018 11:50:33 -0700 (PDT)
 Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net
 	([2601:202:4180:c33:dd9d:5398:e0dd:9d0f])
 	by smtp.gmail.com with ESMTPSA id
-	y144-v6sm25394451pfb.81.2018.10.28.11.50.31
+	y144-v6sm25394451pfb.81.2018.10.28.11.50.33
 	for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 28 Oct 2018 11:50:31 -0700 (PDT)
+	Sun, 28 Oct 2018 11:50:33 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun, 28 Oct 2018 18:50:18 +0000
-Message-Id: <1540752628-10832-3-git-send-email-akuster808@gmail.com>
+Date: Sun, 28 Oct 2018 18:50:20 +0000
+Message-Id: <1540752628-10832-5-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1540752628-10832-1-git-send-email-akuster808@gmail.com>
 References: <1540752628-10832-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 03/13] packagegroup-security-tpm2: add and remove packages
+Subject: [meta-security][PATCH 05/13] packagegroup-core-security: add few more ptest packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,29 +77,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 28 Oct 2018 18:50:33 -0000
+X-List-Received-Date: Sun, 28 Oct 2018 18:50:34 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ recipes-security/packagegroup/packagegroup-core-security.bb | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-index 099e01c..c4c8fb2 100644
---- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-+++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-@@ -1,4 +1,4 @@
--DESCRIPTION = "Security packagegroup for Poky"
-+DESCRIPTION = "TPM2 packagegroup for Security"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302 \
-                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-@@ -14,5 +14,5 @@ RDEPENDS_packagegroup-security-tpm2 = " \
-     libtss2 \
-     libtss2-tcti-device \
-     libtss2-tcti-mssim \
--    resourcemgr \
-+    tpm2-abrmd \
+diff --git a/recipes-security/packagegroup/packagegroup-core-security.bb b/recipes-security/packagegroup/packagegroup-core-security.bb
+index 653d87b..9cf233f 100644
+--- a/recipes-security/packagegroup/packagegroup-core-security.bb
++++ b/recipes-security/packagegroup/packagegroup-core-security.bb
+@@ -65,7 +65,7 @@ RDEPENDS_packagegroup-security-ids = " \
+ SUMMARY_packagegroup-security-mac = "Security Mandatory Access Control systems"
+ RDEPENDS_packagegroup-security-mac = " \
+     ${@bb.utils.contains("DISTRO_FEATURES", "tomoyo", "ccs-tools", "",d)} \
+-    ${@bb.utils.contains("DISTRO_FEATURES", "apparmor", "", "",d)} \
++    ${@bb.utils.contains("DISTRO_FEATURES", "apparmor", "apparmor", "",d)} \
+     ${@bb.utils.contains("DISTRO_FEATURES", "smack", "smack", "",d)} \
+     "
+ 
+@@ -76,5 +76,7 @@ RDEPENDS_packagegroup-security-ptest = " \
+     keyutils-ptest \
+     libseccomp-ptest \
+     python-scapy-ptest \
++    ${@bb.utils.contains("DISTRO_FEATURES", "apparmor", "apparmor-ptest", "",d)} \
++    ${@bb.utils.contains("DISTRO_FEATURES", "smack", "smack-ptest", "",d)} \
+     ptest-runner \
      "
 -- 
 2.7.4
