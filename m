@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D75C5E00BFD; Sun, 28 Oct 2018 11:50:34 -0700 (PDT)
+	id EB624E00C09; Sun, 28 Oct 2018 11:50:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.196 listed in list.dnswl.org]
+	*      [209.85.210.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
@@ -19,53 +19,53 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com
-	[209.85.214.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7255FE00C15
-	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 11:50:34 -0700 (PDT)
-Received: by mail-pl1-f196.google.com with SMTP id x6-v6so2736154pln.0
-	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 11:50:34 -0700 (PDT)
+Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
+	[209.85.210.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3056E00AC5
+	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 11:50:33 -0700 (PDT)
+Received: by mail-pf1-f196.google.com with SMTP id l81-v6so2896424pfg.3
+	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 11:50:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=YDJGWtP/9mqN4VHOCormlqRXHtFQSxO654LajoBxDuw=;
-	b=YCjwpj7R86Uk7TxHYh0YoM3w7r9Vix0xdN/8nt1NkQQ9d4dyY3kWQwWg3o0o1EJr7R
-	46TVT7utXN9vpByHQHmstIKEouRdlorMhrB6i4fQBoVHugMbcpPPfGYFsQH59EV/Y0Yu
-	/0aCpls/6Wb6nS5cFSYNn7BuY7FRp3STbBxL1VqWuBTvnPn7euxku44GGyC36/nm9FqI
-	ZctXb1dDgQhctmmt6T1rOSov/yCarR6F0Dict3n63xGpARhaowT/ZHMGaosb25A45DVx
-	ivv7WgtpVi5Mqr67FP2JuyCTj0t2UmeZwHyzxdp9DGVwhOm/TCr7gSs0ai0f9DrUmpn0
-	LiPA==
+	bh=pOZOJAfhWbSNrp2bTJ9VdrN/ByT6WYmyfqM3iKOv2Rw=;
+	b=CLijvFxQNOmX4ZROKys46s6ZDDH43UqWTFZMtNJww9d5sNmktlzDQ0yv0jj2A9ciUW
+	khACJKawpBLvp7Pb652Pw1xOJG8SmfRSgJBbvhAAI7t0mWo4kzga/FsRMdVUF0WKOaea
+	/dcpWGfaWl1KxeFCJGafnab7/887Ac1htX3+U4Yy5iEaolcH7YQw0dijq2uzhDVDKaQU
+	h8qmNq2mHxCy/zU2dQg3q4VM/BhFUPwgRfsyWYD1xORM4cuV9DuDOTxCnq8p/CdHOCtz
+	SllZCFal5EGZLfTujeG+3v+Zn14opTTKCem3stp6ljX5FrSBWtA3Hr1PefAhtr/JY3hN
+	yN4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=YDJGWtP/9mqN4VHOCormlqRXHtFQSxO654LajoBxDuw=;
-	b=pldiJqnol4TOG4YmpFmv8Ppr2xeHbslmfqZwf/55O+P1VA+5+lt4Eb0oqi2B2S/GW2
-	3xq3zHzGf4i8KfTj2aGV5z5wiBl7wVga6pPmY7BveAmwqtGY6IiusAKye8N2dPhzSr6i
-	8lOgRlliYU6zT22OI4WXpJTRS8xGR/2V8DmaNXVgZ5t8/Hl/yPiHHs47gEJ+pqqhUEHd
-	3+i17UCqZpiAqHY7GizSWRIOTAKr3EkCrXn20EJHzjGMTJwk2oofPQ2cz/UY9C2Ip0jt
-	SwLuvtyIDlEmcEVgf189H/ySZ50IshDk1IlvLi6KVJt3IubSDlnXOP6MyLUDUrB5RzCL
-	GsKA==
-X-Gm-Message-State: AGRZ1gJYZ6Uk8cONjYQZhQU4K+0T2OL5rvkrTmXiS31LO+Lyo/n3h9iW
-	LbkCIZ+nkshwklgpNi2bRkxnzX7F
-X-Google-Smtp-Source: AJdET5e8xiLZ4wJtT/rpIhDwWy/zAsObStebrMgxSJbjeL7lOvnYhJ/VvUYFJyK25HvCGegifz49UQ==
-X-Received: by 2002:a17:902:e00a:: with SMTP id
-	ca10-v6mr11235842plb.166.1540752633933; 
+	bh=pOZOJAfhWbSNrp2bTJ9VdrN/ByT6WYmyfqM3iKOv2Rw=;
+	b=cofCM83+pnrpK3/rVSSKVbP5B5c8BwP72Zy/EAqKloFw1X55X3pSEkt1GV8pB7VMKr
+	h/hBG8DyhlUmiFR5gcqjMl8fx2D0qceM2Z8+/SlTunRCFPtiw7Ij93IIN8c7v1QMuZeQ
+	69hT/Kl8eAwRBMZgpaMkbf4/Scs3Pe8yFWl1R4/ajpbfvLQInswhpTUQskHjuKzUpy4j
+	IKm8SzdlwR82hz55DsThp3XK+RAXwR5niy1FUGU+blZyqHjxuyxbWNaGEtAgnlIHZdAI
+	Shs4/Ux2eaG88VH8vgdhpW0Y1PohWaNdro5IVLS3eQpnXuTSj+yiNMOGKzFJg+McQb6w
+	ue/A==
+X-Gm-Message-State: AGRZ1gJOigZiK7lmtyPnMFUOpDWXDyK2989DcBLWMJnwYOSnOI4mjit1
+	sLpUTzfYY+fbeV/qK9KoeSSgoE/T
+X-Google-Smtp-Source: AJdET5etIG3Q1m/q7IIR59ry1VZGfhD3aSbgC8Z2KSdtyOoGAPfXta7J9wdSzYQe9v3bj5OWqAFWFQ==
+X-Received: by 2002:a62:8647:: with SMTP id
+	x68-v6mr12578378pfd.252.1540752633009; 
 	Sun, 28 Oct 2018 11:50:33 -0700 (PDT)
 Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net
 	([2601:202:4180:c33:dd9d:5398:e0dd:9d0f])
 	by smtp.gmail.com with ESMTPSA id
-	y144-v6sm25394451pfb.81.2018.10.28.11.50.33
+	y144-v6sm25394451pfb.81.2018.10.28.11.50.32
 	for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 28 Oct 2018 11:50:33 -0700 (PDT)
+	Sun, 28 Oct 2018 11:50:32 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun, 28 Oct 2018 18:50:20 +0000
-Message-Id: <1540752628-10832-5-git-send-email-akuster808@gmail.com>
+Date: Sun, 28 Oct 2018 18:50:19 +0000
+Message-Id: <1540752628-10832-4-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1540752628-10832-1-git-send-email-akuster808@gmail.com>
 References: <1540752628-10832-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 05/13] packagegroup-core-security: add few more ptest packages
+Subject: [meta-security][PATCH 04/13] swtpm: switch to stable branch and clean up recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,34 +77,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 28 Oct 2018 18:50:34 -0000
+X-List-Received-Date: Sun, 28 Oct 2018 18:50:35 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/packagegroup/packagegroup-core-security.bb | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ meta-tpm/recipes-tpm/swtpm/swtpm_1.0.bb | 22 +++++-----------------
+ 1 file changed, 5 insertions(+), 17 deletions(-)
 
-diff --git a/recipes-security/packagegroup/packagegroup-core-security.bb b/recipes-security/packagegroup/packagegroup-core-security.bb
-index 653d87b..9cf233f 100644
---- a/recipes-security/packagegroup/packagegroup-core-security.bb
-+++ b/recipes-security/packagegroup/packagegroup-core-security.bb
-@@ -65,7 +65,7 @@ RDEPENDS_packagegroup-security-ids = " \
- SUMMARY_packagegroup-security-mac = "Security Mandatory Access Control systems"
- RDEPENDS_packagegroup-security-mac = " \
-     ${@bb.utils.contains("DISTRO_FEATURES", "tomoyo", "ccs-tools", "",d)} \
--    ${@bb.utils.contains("DISTRO_FEATURES", "apparmor", "", "",d)} \
-+    ${@bb.utils.contains("DISTRO_FEATURES", "apparmor", "apparmor", "",d)} \
-     ${@bb.utils.contains("DISTRO_FEATURES", "smack", "smack", "",d)} \
-     "
+diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_1.0.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_1.0.bb
+index e0c5ffe..3fe1393 100644
+--- a/meta-tpm/recipes-tpm/swtpm/swtpm_1.0.bb
++++ b/meta-tpm/recipes-tpm/swtpm/swtpm_1.0.bb
+@@ -3,22 +3,21 @@ LICENSE = "BSD-3-Clause"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=fe8092c832b71ef20dfe4c6d3decb3a8"
+ SECTION = "apps"
  
-@@ -76,5 +76,7 @@ RDEPENDS_packagegroup-security-ptest = " \
-     keyutils-ptest \
-     libseccomp-ptest \
-     python-scapy-ptest \
-+    ${@bb.utils.contains("DISTRO_FEATURES", "apparmor", "apparmor-ptest", "",d)} \
-+    ${@bb.utils.contains("DISTRO_FEATURES", "smack", "smack-ptest", "",d)} \
-     ptest-runner \
-     "
+-DEPENDS = "libtasn1 expect socat glib-2.0 libtpm libtpm-native"
++DEPENDS = "libtasn1 expect socat glib-2.0 net-tools-native libtpm libtpm-native"
+ 
+ # configure checks for the tools already during compilation and
+ # then swtpm_setup needs them at runtime
+ DEPENDS += "tpm-tools-native expect-native socat-native"
+ 
+-SRCREV = "66b42f52ef363998cb57f039889d59381d20bdf1"
+-SRC_URI = "git://github.com/stefanberger/swtpm.git \
+-           file://fix_lib_search_path.patch \
++SRCREV = "94bb9f2d716d09bcc6cd2a2e033018f8592008e7"
++SRC_URI = "git://github.com/stefanberger/swtpm.git;branch=tpm2-preview.v2 \
+            file://fix_fcntl_h.patch \
+            file://ioctl_h.patch \
+            "
+ 
+ S = "${WORKDIR}/git"
+ 
+-inherit autotools-brokensep pkgconfig
++inherit autotools pkgconfig
+ PARALLEL_MAKE = ""
+ 
+ TSS_USER="tss"
+@@ -35,21 +34,12 @@ EXTRA_OECONF += "--with-tss-user=${TSS_USER} --with-tss-group=${TSS_GROUP}"
+ 
+ export SEARCH_DIR = "${STAGING_LIBDIR_NATIVE}"
+ 
+-# dup bootstrap 
+-do_configure_prepend () {
+-	libtoolize --force --copy
+-	autoheader
+-	aclocal
+-	automake --add-missing -c
+-	autoconf
+-}
+-
+ USERADD_PACKAGES = "${PN}"
+ GROUPADD_PARAM_${PN} = "--system ${TSS_USER}"
+ USERADD_PARAM_${PN} = "--system -g ${TSS_GROUP} --home-dir  \
+     --no-create-home  --shell /bin/false ${BPN}"
+ 
+-RDEPENDS_${PN} = "libtpm expect socat bash"
++RDEPENDS_${PN} = "libtpm expect socat bash tpm-tools"
+ 
+ BBCLASSEXTEND = "native nativesdk"
+ 
+@@ -58,5 +48,3 @@ python() {
+         'filesystems-layer' not in d.getVar('BBFILE_COLLECTIONS').split():
+         raise bb.parse.SkipRecipe('Cuse enabled which requires meta-filesystems to be present.')
+ }
+-
+-RDEPENDS_${PN} += "tpm-tools"
 -- 
 2.7.4
 
