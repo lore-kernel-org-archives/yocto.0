@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C0702E00C1D; Sun, 28 Oct 2018 11:50:37 -0700 (PDT)
+	id 854B4E00C41; Sun, 28 Oct 2018 11:50:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,59 +13,58 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.195 listed in list.dnswl.org]
+	*      [209.85.215.193 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
-	[209.85.210.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 652D2E00C06
-	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 11:50:37 -0700 (PDT)
-Received: by mail-pf1-f195.google.com with SMTP id u4-v6so511885pfh.12
-	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 11:50:37 -0700 (PDT)
+Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
+	[209.85.215.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45610E00C15
+	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 11:50:38 -0700 (PDT)
+Received: by mail-pg1-f193.google.com with SMTP id 32-v6so2802441pgu.2
+	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 11:50:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=i6qF6MuqIKhsdqEuywaAIU8sYfsfrB15uvQJaouLz8U=;
-	b=ttW8vraEVoZ15Yy2EVXmAOWjhkXbjyeUXhS2+1muWgw0XxJXR6EdsvsHLpDUsgN7rA
-	hn/TXF2OoKTOc5J1tMI4ufZ5TzknD3I8dZ/Z7abKXnkkZFV3xfbsz7TmnA1tSJpoVNR1
-	y72cHmcpGKKnt/0PW0GmYI7vuR5RtDfvD0xOOkFdyTGx7213SEzTTaPQcTqJhqJHhfYP
-	SXraK0I/foNcbcrRmix7k4+HEdZN6orvg/uM8S9k7DAr4qnQ+h1waDxZ7NvGJ5+BUTM4
-	xdxn9obkZW7jCDkKgluT4NkzJbVPhYSp5Lw06Nz77xoBksR0d06OscgNYQCpgjOPRChl
-	Ho+g==
+	bh=GBospG562buS+rEa2JR629DldbqL9JDQ1ESdykRq6dg=;
+	b=JGfJPsH59saucbOflqV6Gtq01Z9RBm9i82DHevyy+F/BC9sj1AZQ/KAAqNtEiDGcd+
+	76vYR1pfAxz/GNkn5R8FJpMXVAdLMfnpva7z4UHvVlV6blLDFZ6aqGc+AFPoddBMqSRm
+	GEpZo+pFQ25YQo/JV2AEt/z6C5Ok2UYUF5SHIBd/VxPwFVU3Sa3QhePpN8vp0tltLweq
+	Bi/QjjtpDhNxFYzthDdXq8TuOAUw9K/luiUUpYWjdLe8zW94tc+vl21Nam6xPEN0XGk+
+	BSHRxs8Yap8LdArqvtL/9nyr0Uo4j0RRsxBW4m8w59bTpOhH13zpnkYBvbUrxiusNV1e
+	0ITQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=i6qF6MuqIKhsdqEuywaAIU8sYfsfrB15uvQJaouLz8U=;
-	b=FovpDaaEvIx+EaAk93T3dmZi5s5pDNYsdmU+IB9NEX5vV+RHeadngKWXIfZ2Cqrx7h
-	wXWkia/I23YWjObPQcBp3A2jzXtN3iw914Ml8EBHQjILJb612jn7xN1IGjhXaKaG/3Gj
-	BozTrKRUjxtHCqi9T1IzFGhcpy9PVyRaKUYKhqqQGrhODtTUkZEMqU7AJUSqGf5cz2qA
-	mpV2VidC1iAd0FNrkVRVMw18If1DD+s829oxM9MoLjZng+7YpTEMUhdFXnn+oxlug6ky
-	cIRnJJxod5CNBLWR9b9GRPcZmptNc5bZZcr/Aq4CGZE1jgE5utIdDjPXv7Jh7z4obhRJ
-	k/WQ==
-X-Gm-Message-State: AGRZ1gLqgXGT2aySVh5oP80XMNGGJTRVn6w9bBaxUYIm784eozwDPc5f
-	6ZcUH/C2StVenzbRA+9PeQ5LWRT+
-X-Google-Smtp-Source: AJdET5f8EzYDs7t+W9RcgkUegdv4Jzku8JILHoBJ6J2C3zdfiN7nWaNEN/c9YjXCY5F7+KfEoaFAyQ==
-X-Received: by 2002:a63:6dc8:: with SMTP id
-	i191mr10690820pgc.215.1540752636729; 
-	Sun, 28 Oct 2018 11:50:36 -0700 (PDT)
+	bh=GBospG562buS+rEa2JR629DldbqL9JDQ1ESdykRq6dg=;
+	b=Iz3Pe4EZrdQWN0+G1JJTYq120Ezr7dUB6EieID5TjovG98eJnXMZtGTQ+iBuMokxk9
+	WZBTY4Ix37susZg897mGbU77LQyJGNWDSBPfvASdAvPxfhsOotulbmqc7gcyVN4KqH9y
+	+Uuxau71l+Soj9MbGZEIoM7dFe04DOtZovtIjsuay22WLtIZJ+1pNwOXO8gPFMZINzEd
+	04MjiRLqsK6bKJh2sjLK/IIPVqpKVAW90VpZw6dyZOUUnLBNZ7vkI16xNZVBfUnI7fvL
+	pWxOExhpi42d1RTktJdBzXxHmSMdfhYcL8SoX3edkcsV0qt5RzwnWtx4SClXFI5NmeBM
+	OtSg==
+X-Gm-Message-State: AGRZ1gLk/fO4oviJAb495j4ac0p7TulMQmpWEtEhDk1eRHo/oHCfzgZN
+	nCI/5grv3o0IZkznFro01arrqe2C
+X-Google-Smtp-Source: AJdET5d+zku/gEarnBHoOMJlPZAMhAjwPV2+172sgjBy0XDZTW53wO+V7EoAPpoGiaTJa7YxO6jXtQ==
+X-Received: by 2002:a63:1157:: with SMTP id 23mr11096119pgr.245.1540752637563; 
+	Sun, 28 Oct 2018 11:50:37 -0700 (PDT)
 Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net
 	([2601:202:4180:c33:dd9d:5398:e0dd:9d0f])
 	by smtp.gmail.com with ESMTPSA id
-	y144-v6sm25394451pfb.81.2018.10.28.11.50.35
+	y144-v6sm25394451pfb.81.2018.10.28.11.50.36
 	for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 28 Oct 2018 11:50:36 -0700 (PDT)
+	Sun, 28 Oct 2018 11:50:37 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun, 28 Oct 2018 18:50:23 +0000
-Message-Id: <1540752628-10832-8-git-send-email-akuster808@gmail.com>
+Date: Sun, 28 Oct 2018 18:50:24 +0000
+Message-Id: <1540752628-10832-9-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1540752628-10832-1-git-send-email-akuster808@gmail.com>
 References: <1540752628-10832-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 08/13] security-build-image: remove X11
+Subject: [meta-security][PATCH 09/13] tripwire: add ptest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,28 +76,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 28 Oct 2018 18:50:37 -0000
+X-List-Received-Date: Sun, 28 Oct 2018 18:50:41 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/images/security-build-image.bb | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ recipes-security/tripwire/files/run-ptest     | 3 +++
+ recipes-security/tripwire/tripwire_2.4.3.6.bb | 9 ++++++++-
+ 2 files changed, 11 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-security/tripwire/files/run-ptest
 
-diff --git a/recipes-security/images/security-build-image.bb b/recipes-security/images/security-build-image.bb
-index 1a7af86..a8757f9 100644
---- a/recipes-security/images/security-build-image.bb
-+++ b/recipes-security/images/security-build-image.bb
-@@ -6,9 +6,7 @@ IMAGE_INSTALL = "\
-     packagegroup-base \
-     packagegroup-core-boot \
-     packagegroup-core-security \
--    os-release \
--    ${@bb.utils.contains("DISTRO_FEATURES", "x11", "packagegroup-xfce-base", "", d)} \
--    ${CORE_IMAGE_EXTRA_INSTALL}"
-+    os-release" 
+diff --git a/recipes-security/tripwire/files/run-ptest b/recipes-security/tripwire/files/run-ptest
+new file mode 100644
+index 0000000..aedfddc
+--- /dev/null
++++ b/recipes-security/tripwire/files/run-ptest
+@@ -0,0 +1,3 @@
++#!/bin/sh
++
++./twtest.pl
+diff --git a/recipes-security/tripwire/tripwire_2.4.3.6.bb b/recipes-security/tripwire/tripwire_2.4.3.6.bb
+index 465960f..59d1f35 100644
+--- a/recipes-security/tripwire/tripwire_2.4.3.6.bb
++++ b/recipes-security/tripwire/tripwire_2.4.3.6.bb
+@@ -16,11 +16,12 @@ SRC_URI = "\
+ 	file://twcfg.txt \
+ 	file://twinstall.sh \
+ 	file://twpol-yocto.txt \
++	file://run-ptest \
+        "
  
- IMAGE_LINGUAS ?= " "
+ S = "${WORKDIR}/git"
  
+-inherit autotools-brokensep update-rc.d
++inherit autotools-brokensep update-rc.d ptest
+ 
+ INITSCRIPT_NAME = "tripwire"
+ INITSCRIPT_PARAMS = "start 40 S ."
+@@ -58,9 +59,15 @@ do_install () {
+     install -m 0644 ${WORKDIR}/tripwire.txt ${D}${docdir}/${BPN}
+ }
+ 
++do_install_ptest_append () {
++	install -d ${D}${PTEST_PATH}/tests
++	cp -a ${S}/src/test-harness/* ${D}${PTEST_PATH}
++}
+ 
+ FILES_${PN} += "${libdir} ${docdir}/${PN}/*"
+ FILES_${PN}-dbg += "${sysconfdir}/${PN}/.debug"
+ FILES_${PN}-staticdev += "${localstatedir}/lib/${PN}/lib*.a"
++FILES_${PN}-ptest += "${PTEST_PATH}/tests "
+ 
+ RDEPENDS_${PN} += " perl nano msmtp cronie"
++RDEPENDS_${PN}-ptest = " perl lib-perl"
 -- 
 2.7.4
 
