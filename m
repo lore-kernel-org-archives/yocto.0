@@ -1,85 +1,122 @@
-Return-Path: <matt.office@impsoftware.org>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 439EAE00BD2; Sat, 27 Oct 2018 13:39:05 -0700 (PDT)
+	id 9A03DE009AA; Sun, 28 Oct 2018 08:27:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust *      [69.89.18.3 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 1477 seconds by postgrey-1.32 at yocto-www;
-	Sat, 27 Oct 2018 13:39:03 PDT
-Received: from gproxy2-pub.mail.unifiedlayer.com
-	(gproxy2-pub.mail.unifiedlayer.com [69.89.18.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C86F1E00A25
-	for <yocto@yoctoproject.org>; Sat, 27 Oct 2018 13:39:03 -0700 (PDT)
-Received: from cmgw15.unifiedlayer.com (unknown [10.9.0.15])
-	by gproxy2.mail.unifiedlayer.com (Postfix) with ESMTP id 509191E09F0
-	for <yocto@yoctoproject.org>; Sat, 27 Oct 2018 14:14:25 -0600 (MDT)
-Received: from host194.hostmonster.com ([74.220.207.194]) by cmsmtp with ESMTP
-	id GUyXgrn5qj0soGUyXgRNOR; Sat, 27 Oct 2018 14:14:25 -0600
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=impsoftware.org; s=default;
-	h=Content-Type:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Sender:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=7sPvSr7v9iie8iw6kgfIhgUQV5lESFcanDgVVZXbk0c=;
-	b=CH4JfV/PxLcP4aLX63x6jX8ee
-	84Zad6mNsaEVqcbNpKYDGd+KckrLkmiyB5Jr+oKgrvR+r9T8haifCR8asxedIO0WfAf8X1WtVJGuy
-	k0kTCl1gron5JTDuJNI9sQE2O6;
-Received: from [63.140.26.14] (port=57576 helo=[192.168.112.60])
-	by host194.hostmonster.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.91)
-	(envelope-from <matt.office@impsoftware.org>)
-	id 1gGUyW-00154k-Q6; Sat, 27 Oct 2018 14:14:24 -0600
-To: Jon Szymaniak <jon.szymaniak.foss@gmail.com>, matt@impsoftware.org
-References: <5c997a41-6069-1579-27d3-72975ab195a6@impsoftware.org>
-	<CAPxrFVmj-1R9xZELyegVGW+A+HxFQ1V=5frUzqfn6HjgxH03ig@mail.gmail.com>
-From: Matt Ervin <matt.office@impsoftware.org>
-Organization: imp software
-Message-ID: <a860b8fa-16cf-2cef-8a28-7f071be1765e@impsoftware.org>
-Date: Sat, 27 Oct 2018 13:14:21 -0700
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.179 listed in list.dnswl.org]
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com
+	[209.85.210.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 249E7E00872
+	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 08:27:48 -0700 (PDT)
+Received: by mail-pf1-f179.google.com with SMTP id a19-v6so2764152pfo.8
+	for <yocto@yoctoproject.org>; Sun, 28 Oct 2018 08:27:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=xR+esvJugwl1Wxq1B7bdrBfiqZ5UbhG2DvDdzvbkHps=;
+	b=pesiH8Jq1PU/BHYE3c+/XEHoV9p0c5biGn+OLGlPBHWYgXgphV9qti2s3qLh0YyG3y
+	FYn4y2WoXLu5cU03DttbKcJv/U79rk64THQMWjQlsvUPpNUwZX3jKRJRLE+10AqZe1b1
+	Fld1DGOAiATzG468rYesiAw2tnJGXSFKFmWev1Xfd5yyerfTRwamHbuAwikNEAwFaNHZ
+	Mlf1GdhUshP9snuI7x2p/tM40ZECDE6MTIrZxcTH861Joia7iGs2MURwwdBKzLvcwZaf
+	m8l4JNEr/ZTkvP6I+YQtwXTDuYMTnQtY1m480+y5MuNq7GcielGEEJ52oAPWvQq0LoMK
+	TXmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-transfer-encoding:content-language;
+	bh=xR+esvJugwl1Wxq1B7bdrBfiqZ5UbhG2DvDdzvbkHps=;
+	b=JlD+2953uw5ARDVEe16APChO/1L09Usth6V/RbICqTzvKaIVfG7O5H4bga1hi3W8nH
+	5pigaG2MSGeWisetXdQXVaIX3wVhn5V5IFZFYXlV3ypkejcHOUTOCHm7WIfWiVKzucRL
+	IP7v5AANtVwZ5fuNNuhUviamRWi0FkonizXCvX2TFv9yo0zZZG/eUXwxgv2kpcXZT80K
+	2uEXWVkkzmaUXiDOdAbbw072FYZR2T54aJA2hXpC7leWm9V0731ZSKVSzBQF+qggS3Dt
+	R9ZGuYDVpB6v5czjsc5ZNMLuOjq0CXADqVUGokk0bYY5ttG/jzw0mk3hsL7ss+j9OdUi
+	msWw==
+X-Gm-Message-State: AGRZ1gIpdaEo+59kJMADy3ed8awkt7DAMc9zapPRtPFxDayx1jSxq/1T
+	y+qCudXvUhiVYAKgbVyyR7iVUoGk
+X-Google-Smtp-Source: AJdET5c3trd/FrjZdsse2S+LXmY78sfb/07xPcXedoQJDSG77aCWLE8TbWL8tBM3HZR+fxnloupCHg==
+X-Received: by 2002:a62:5982:: with SMTP id
+	k2-v6mr11346433pfj.180.1540740468180; 
+	Sun, 28 Oct 2018 08:27:48 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:c33:dd9d:5398:e0dd:9d0f?
+	([2601:202:4180:c33:dd9d:5398:e0dd:9d0f])
+	by smtp.gmail.com with ESMTPSA id
+	g7-v6sm1407674pfo.139.2018.10.28.08.27.46
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 28 Oct 2018 08:27:47 -0700 (PDT)
+To: Anders Montonen <Anders.Montonen@iki.fi>, yocto@yoctoproject.org
+References: <943A040F-0297-4CB9-B4AB-FECBBFF17A0C@iki.fi>
+From: akuster808 <akuster808@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+	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
+	8CS2NxU=
+Message-ID: <94c69dbc-f1e6-f51e-3200-d37edb531bd7@gmail.com>
+Date: Sun, 28 Oct 2018 15:27:46 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <CAPxrFVmj-1R9xZELyegVGW+A+HxFQ1V=5frUzqfn6HjgxH03ig@mail.gmail.com>
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - host194.hostmonster.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - impsoftware.org
-X-BWhitelist: no
-X-Source-IP: 63.140.26.14
-X-Source-L: No
-X-Exim-ID: 1gGUyW-00154k-Q6
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.112.60]) [63.140.26.14]:57576
-X-Source-Auth: matt.office@impsoftware.org
-X-Email-Count: 2
-X-Source-Cap: aW1wc29mdHc7aW1wc29mdHc7aG9zdDE5NC5ob3N0bW9uc3Rlci5jb20=
-X-Local-Domain: yes
-Cc: yocto@yoctoproject.org
-Subject: Re: NVIDIA or AMD accelerated graphics on x86 or x86-64 machine architecture
+In-Reply-To: <943A040F-0297-4CB9-B4AB-FECBBFF17A0C@iki.fi>
+Subject: Re: tzdata overwrites existing localtime/zoneinfo?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: matt@impsoftware.org
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -88,267 +125,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 Oct 2018 20:39:05 -0000
-Content-Type: multipart/alternative;
-	boundary="------------D860FB833C30E0233A2DBD7E"
+X-List-Received-Date: Sun, 28 Oct 2018 15:27:49 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
 
---------------D860FB833C30E0233A2DBD7E
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
 
-Hi Jon,
-
-Q: 1) Which OakLabs layer you using, and what exactly the failures 
-messages are?
-
-A: I’m using the Oak Labs repo located here: 
-https://github.com/OakLabsInc/meta-nvidia
-I have the “pyro” branch checked out, as it’s the only branch in the 
-repo, and I followed the instructions in the “README” to add the recipe 
-to my build by modifying my “local.conf” file.  This is the output it 
-produces:
-
-$ bitbake sockeye-gm
-WARNING: Layer nvidia should set LAYERSERIES_COMPAT_nvidia in its 
-conf/layer.conf file to list the core layer names it is compatible with.
-WARNING: Layer nvidia should set LAYERSERIES_COMPAT_nvidia in its 
-conf/layer.conf file to list the core layer names it is compatible with.
-WARNING: Host distribution "ubuntu-18.04" has not been validated with 
-this version of the build system; you may possibly experience unexpected 
-failures. It is recommended that you use a tested distribution.
-Parsing recipes: 100% 
-|########################################################################################################################################################| 
-Time: 0:00:21
-Parsing of 1553 .bb files complete (0 cached, 1553 parsed). 2188 
-targets, 73 skipped, 0 masked, 0 errors.
-ERROR: No recipes available for:
-/home/peniwize/yocto/poky/meta-nvidia/recipes-graphics/mesa/mesa_17.0.2.bbappend
-/home/peniwize/yocto/poky/meta-nvidia/recipes-graphics/xorg-xserver/xserver-xorg_1.19.1.bbappend
-
-Q: 2) Which NVIDIA and AMD devices you need to support? Specifically 
-which drivers do you want installed?
-
-A: I’m planning to use an NVIDIA 1050 ti, if I can get the NVIDIA 
-drivers working with Yocto.  The latest driver installer can be 
-downloaded from: 
-https://us.download.nvidia.com/XFree86/Linux-x86_64/410.73/NVIDIA-Linux-x86_64-410.73.run, 
-which I found from https://www.geforce.com/drivers/results/139110, which 
-I found from https://www.geforce.com/drivers.
-
-I’m not certain about which AMD device I would use.  I’m trying to find 
-out which devices are supported by Yocto to see if I can find a hardware 
-provider for any of them.  I currently have one hardware provider that 
-offers these AMD devices:
-
-AMD Embedded Radeon™ GFX-E9175
-AMD Radeon™ RX 560 GFX-AR560F16-5A
-AMD Radeon™ Pro WX 5100 GFX-5100 Radeon Pro
-AMD Radeon™ HD7750 GPU
-AMD Radeon™ E6760 Embedded GPU
-AMD Radeon™ E6760 Embedded GPU
-AMD Radeon™ E6760 Embedded GPU
-
-A quick google search for drivers led me to: 
-https://www.amd.com/en/support/graphics/radeon-500-series/radeon-rx-500-series/radeon-rx-560. 
-It looks like I can download rpm’s or deb’s so perhaps I can extract the 
-required drivers directly from those packages and use them verbatim.  
-I’ve never used a Radeon so I don’t know it it requires kernel modules 
-or if there is any compilation involved with installing its drivers like 
-there is with NVIDIA drivers.
-
-Thanks for the help!
-
-- Matt
-
-On 10/27/18 11:36 AM, Jon Szymaniak wrote:
-> On Fri, Oct 26, 2018 at 15:51 Matt Ervin <matt.office@impsoftware.org 
-> <mailto:matt.office@impsoftware.org>> wrote:
+On 10/25/18 5:43 PM, Anders Montonen wrote:
+> Hi,
 >
->     I’m creating a poky (sumo branch) based OS image for x86_64 PC
->     hardware. It’s an embedded device that is essentially a desktop PC
->     in a box with additional features. My device requires accelerated
->     graphics (either NVIDIA or AMD, not Intel) and I’m having
->     difficulty identifying which layer and recipe to use for either
->     device. Are there any recipes that encapsulate the NVIDIA Linux
->     desktop binary drivers for x86? If not then are there any
->     consultants willing to sell me some time to help me create one, or
->     to create one for me? I did some google searching and found a
->     layer from OakLabs, but it doesn’t work (at least not with the
->     sumo branch). The README file in the recipe also states that it’s
->     likely to break the build, and it did produce errors for me. I’m
->     not familiar with AMD on Linux so I don’t know if the
->     xf86-video-ati recipe in the meta-oe layer provides accelerated
->     desktop drivers or, if it does, which AMD devices it supports. I’m
->     obviously very new to Yocto so any guidance is greatly appreciated.
->
->
->
->     - Matt
->
->
-> Hi Matt,
->
-> Any chance you share a bit more info including:
->
-> 1) Which OakLabs layer you using, and what exactly the failures 
-> messages are?
->
-> 2) Which NVIDIA and AMD devices you need to support?  Specifically 
-> which drivers do you want installed?
->
->
-> Thanks,
-> Jon
+> It seems to me that the tzdata package will overwrite whatever the current time zone is with its default. This is not great if you’re upgrading the package on an existing system. Should the creation of the file and link be removed from the do_install and only be done in the pkg_postinst?
 
---------------D860FB833C30E0233A2DBD7E
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Timely email.. 2018g just got release. I will take a look at this issue
+shortly.
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <p>Hi Jon,<br>
-      <br>
-      Q: 1) Which OakLabs layer you using, and what exactly the failures
-      messages are?<br>
-      <br>
-      A: I’m using the Oak Labs repo located here:
-      <a class="moz-txt-link-freetext" href="https://github.com/OakLabsInc/meta-nvidia">https://github.com/OakLabsInc/meta-nvidia</a><br>
-      I have the “pyro” branch checked out, as it’s the only branch in
-      the repo, and I followed the instructions in the “README” to add
-      the recipe to my build by modifying my “local.conf” file.  This is
-      the output it produces:<br>
-      <br>
-      $ bitbake sockeye-gm<br>
-      WARNING: Layer nvidia should set LAYERSERIES_COMPAT_nvidia in its
-      conf/layer.conf file to list the core layer names it is compatible
-      with.<br>
-      WARNING: Layer nvidia should set LAYERSERIES_COMPAT_nvidia in its
-      conf/layer.conf file to list the core layer names it is compatible
-      with.<br>
-      WARNING: Host distribution "ubuntu-18.04" has not been validated
-      with this version of the build system; you may possibly experience
-      unexpected failures. It is recommended that you use a tested
-      distribution.<br>
-      Parsing recipes: 100%
-|########################################################################################################################################################|
-      Time: 0:00:21<br>
-      Parsing of 1553 .bb files complete (0 cached, 1553 parsed). 2188
-      targets, 73 skipped, 0 masked, 0 errors.<br>
-      ERROR: No recipes available for:<br>
-       
-/home/peniwize/yocto/poky/meta-nvidia/recipes-graphics/mesa/mesa_17.0.2.bbappend<br>
-       
-/home/peniwize/yocto/poky/meta-nvidia/recipes-graphics/xorg-xserver/xserver-xorg_1.19.1.bbappend<br>
-      <br>
-      Q: 2) Which NVIDIA and AMD devices you need to support? 
-      Specifically which drivers do you want installed?<br>
-      <br>
-      A: I’m planning to use an NVIDIA 1050 ti, if I can get the NVIDIA
-      drivers working with Yocto.  The latest driver installer can be
-      downloaded from:
-<a class="moz-txt-link-freetext" href="https://us.download.nvidia.com/XFree86/Linux-x86_64/410.73/NVIDIA-Linux-x86_64-410.73.run">https://us.download.nvidia.com/XFree86/Linux-x86_64/410.73/NVIDIA-Linux-x86_64-410.73.run</a>,
-      which I found from <a class="moz-txt-link-freetext" href="https://www.geforce.com/drivers/results/139110">https://www.geforce.com/drivers/results/139110</a>,
-      which I found from <a class="moz-txt-link-freetext" href="https://www.geforce.com/drivers">https://www.geforce.com/drivers</a>.<br>
-      <br>
-      I’m not certain about which AMD device I would use.  I’m trying to
-      find out which devices are supported by Yocto to see if I can find
-      a hardware provider for any of them.  I currently have one
-      hardware provider that offers these AMD devices:<br>
-      <br>
-      AMD Embedded Radeon™ GFX-E9175<br>
-      AMD Radeon™ RX 560 GFX-AR560F16-5A<br>
-      AMD Radeon™ Pro WX 5100 GFX-5100 Radeon Pro<br>
-      AMD Radeon™ HD7750 GPU<br>
-      AMD Radeon™ E6760 Embedded GPU<br>
-      AMD Radeon™ E6760 Embedded GPU<br>
-      AMD Radeon™ E6760 Embedded GPU<br>
-      <br>
-      A quick google search for drivers led me to:
-<a class="moz-txt-link-freetext" href="https://www.amd.com/en/support/graphics/radeon-500-series/radeon-rx-500-series/radeon-rx-560">https://www.amd.com/en/support/graphics/radeon-500-series/radeon-rx-500-series/radeon-rx-560</a>. 
-      It looks like I can download rpm’s or deb’s so perhaps I can
-      extract the required drivers directly from those packages and use
-      them verbatim.  I’ve never used a Radeon so I don’t know it it
-      requires kernel modules or if there is any compilation involved
-      with installing its drivers like there is with NVIDIA drivers.<br>
-      <br>
-      Thanks for the help!<br>
-      <br>
-      - Matt<br>
-      <br>
-    </p>
-    <div class="moz-cite-prefix">On 10/27/18 11:36 AM, Jon Szymaniak
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAPxrFVmj-1R9xZELyegVGW+A+HxFQ1V=5frUzqfn6HjgxH03ig@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div>On Fri, Oct 26, 2018 at 15:51 Matt Ervin &lt;<a
-          href="mailto:matt.office@impsoftware.org"
-          moz-do-not-send="true">matt.office@impsoftware.org</a>&gt;
-        wrote:<br>
-      </div>
-      <div>
-        <div class="gmail_quote">
-          <blockquote class="gmail_quote" style="margin:0 0 0
-            .8ex;border-left:1px #ccc solid;padding-left:1ex">
-            <div bgcolor="#FFFFFF" text="#000000">
-              <p> </p>
-              <p style="margin-bottom:0in;line-height:100%">I’m creating
-                a poky (sumo branch) based OS image for x86_64 PC
-                hardware. It’s an embedded device that is essentially a
-                desktop PC in a box with additional features. My device
-                requires accelerated graphics (either NVIDIA or AMD, not
-                Intel) and I’m having difficulty identifying which layer
-                and recipe to use for either device. Are there any
-                recipes that encapsulate the NVIDIA Linux desktop binary
-                drivers for x86? If not then are there any consultants
-                willing to sell me some time to help me create one, or
-                to create one for me? I did some google searching and
-                found a layer from OakLabs, but it doesn’t work (at
-                least not with the sumo branch). The README file in the
-                recipe also states that it’s likely to break the build,
-                and it did produce errors for me. I’m not familiar with
-                AMD on Linux so I don’t know if the xf86-video-ati
-                recipe in the meta-oe layer provides accelerated desktop
-                drivers or, if it does, which AMD devices it supports.
-                I’m obviously very new to Yocto so any guidance is
-                greatly appreciated.</p>
-            </div>
-            <div bgcolor="#FFFFFF" text="#000000">
-              <p style="margin-bottom:0in;line-height:100%"><br>
-                <br>
-                - Matt</p>
-            </div>
-          </blockquote>
-          <div dir="auto"><br>
-          </div>
-          <div dir="auto">Hi Matt,</div>
-          <div dir="auto"><br>
-          </div>
-          <div dir="auto">Any chance you share a bit more info
-            including:</div>
-          <div dir="auto"><br>
-          </div>
-          <div dir="auto">1) Which OakLabs layer you using, and what
-            exactly the failures messages are?</div>
-          <div dir="auto"><br>
-          </div>
-          <div dir="auto">2) Which NVIDIA and AMD devices you need to
-            support?  Specifically which drivers do you want installed?</div>
-          <div dir="auto"><br>
-          </div>
-          <div dir="auto"><br>
-          </div>
-          <div dir="auto">Thanks,</div>
-          <div dir="auto">Jon</div>
-        </div>
-      </div>
-    </blockquote>
-  </body>
-</html>
 
---------------D860FB833C30E0233A2DBD7E--
+- armin
+
+>
+> Regards,
+> Anders Montonen
+
