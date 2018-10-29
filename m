@@ -1,115 +1,52 @@
-Return-Path: <akuster@mvista.com>
+Return-Path: <flowers.joseph@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8145FE00C31; Mon, 29 Oct 2018 12:19:24 -0700 (PDT)
+	id 6F218E00C12; Mon, 29 Oct 2018 12:33:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.196 listed in list.dnswl.org]
+	*      [209.85.166.180 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
-	[209.85.210.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09476E00BBF
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 12:18:21 -0700 (PDT)
-Received: by mail-pf1-f196.google.com with SMTP id j22-v6so702461pfh.3
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 12:18:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mvista-com.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=MfT/ShHjSuMAyYJdS2PzzG3eqWA5Q47e6CrlynKhVSs=;
-	b=O4kt2CgyMfTRf7dGhh70Z2P2sI1EHCznmIJCbvGd10qzTH2wmgxHRqqncCNHwXj/MC
-	ciOHftgvpQCWlrgfid6qF7wYT/ye5TH38KOeThTPd6hccTw5lS1M7YcNV+CW7oTiBKbE
-	20XmFOYLqBkB8gZtQx0SOboDSHW6LpXnr7lWzrFJXR0CSwe3lygpBdP2C5H8kdvX0s5r
-	6srg8XQstPbBsZtikGfzpyvEs6e4U0J8uwowUAgNAlpP6AAcQ7k3NRzpT61clLi6C/Y6
-	IJqdLHNvXQX6lM2C4EGqBW4qNBtGJ2KWjtEZ0OjE05+i44l9qCQ0jlhwXE4mSECZPCaI
-	6+nw==
+Received: from mail-it1-f180.google.com (mail-it1-f180.google.com
+	[209.85.166.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5D56E00BC8
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 12:33:57 -0700 (PDT)
+Received: by mail-it1-f180.google.com with SMTP id t4-v6so2592392itf.1
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 12:33:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-language;
-	bh=MfT/ShHjSuMAyYJdS2PzzG3eqWA5Q47e6CrlynKhVSs=;
-	b=m4QK/iKhkVwtnDh5INU7yYQuf67p6fWo/4MtNjXdt7Oxs2qrGmMQYJqcYuNntVw9FI
-	JuNSMc7YRRCHY4YvvAvCe590oC13a0q6ntT83HefphaowelvjoVSiKl9zWpbeC+IvNG2
-	W5lMUKjsPNeULCFoYaSfYU3OQXxEcvcUp8JmZqVl3rz1zZlViKLz2ZJKhoj9tAattLZI
-	nFAtDchNZd5kHWawbRKNuMgpj0ftWtFUoNqqs+9IJSIQ3lA/d6MIDsvW8E6gnYSyfA0D
-	hKLturFCmOU3UcaPdAr2AevF/hIQoaiD11H8uO3p6dFFXnZjglEDjzuBweD1MBhkH31I
-	PBeQ==
-X-Gm-Message-State: AGRZ1gKNrRYoLz45ZPKvCeaDwqdEn0XZH2oSa1DhLSm2aMaash/Q859N
-	7eUqWH7tVgfcwU/Cn7RUEPm+CwRHZRU=
-X-Google-Smtp-Source: AJdET5f2cyPSTCRTXdrMtzj5oEqojtfcP5MoKl85oxpbZyelK8LgFwgCjz1z/WveOPKU2mH4pwPW1A==
-X-Received: by 2002:a62:50ca:: with SMTP id
-	g71-v6mr6817983pfj.62.1540840700996; 
-	Mon, 29 Oct 2018 12:18:20 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:c33:3405:5320:ca09:da28?
-	([2601:202:4180:c33:3405:5320:ca09:da28])
-	by smtp.gmail.com with ESMTPSA id
-	x189-v6sm15933383pfb.162.2018.10.29.12.18.19
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 29 Oct 2018 12:18:19 -0700 (PDT)
-To: Joe MacDonald <joe@deserted.net>, yocto@yoctoproject.org
-References: <CANBf+V1cOSgDpoKvmz4shhZEjCKXtYAe9gz13K2PPjuTWf7KRA@mail.gmail.com>
-From: akuster <akuster@mvista.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
-	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
-	8CS2NxU=
-Message-ID: <534cc424-18d3-1d7f-dd75-a0d16d9a1959@mvista.com>
-Date: Mon, 29 Oct 2018 12:18:18 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.2.1
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=I6spG27YylnTJPdZkfrkGtrKat2WYygAFDdMDzLV05Q=;
+	b=bc0si797GoKRalk45vgd5xcYEIgngvObA7BYI6AOdb6XIw0RDYZlozr84Ljt7xgZZn
+	GZMOy/ps8LvG2c42+cnvbhilHzinziis2LvSfO3Gz9XTDN+x1iFUFwhvd/odeNlt8ZPC
+	8VzNAyxjAjMfc/4ZlIo+BeVDrYnPkXylB2YkW+jfJUU33M/ky86FvJwIqwfCrqb22Cm5
+	J+2NBqwWnmxZwOw3xRIBStp9Aj9sFAmLpgpm/fAmh3GuP8+uQ0YpRG/wB8mjKNwZlpt4
+	c86MEukn4t3IVxEzBQAMEp4Ayw7fvZqI9NyaHf+0y1PnPUVDuatrjBhdVYLgUe7/dbgP
+	bsNQ==
+X-Gm-Message-State: AGRZ1gJQTt89rSQ3VPX0KMwbx0LpDcC8Mt/la4q9vpnKgH9qMLhQIdO+
+	w3XNw944ag/XYbl1smlDbhjgX6pwN3GvjlFmLg==
+X-Google-Smtp-Source: AJdET5dhJW6ddPIZU4LLoVKfGek8qOGqWhr8PYB8fTZLkUS2yfNp3IqwR9saq85gUcOUFk80Xk98z0V7oliTpvvZKnc=
+X-Received: by 2002:a02:9bac:: with SMTP id
+	p41-v6mr10579060jak.1.1540841637003; 
+	Mon, 29 Oct 2018 12:33:57 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CANBf+V1cOSgDpoKvmz4shhZEjCKXtYAe9gz13K2PPjuTWf7KRA@mail.gmail.com>
-Subject: Re: [meta-selinux][sumo][PATCH 0/7] Refpolicy updates for sumo
+References: <CA+4=ZEPrnNxV5HAwZ-KA98vFLHzqYbo0MHAb+mj+aq_cr=pHig@mail.gmail.com>
+	<CAJTo0LbZTFEEeaZ1hn-7D5XJnurXBDK6FRMT-79wJ8rMWTNicA@mail.gmail.com>
+	<CA+4=ZEMiTA8OZSqibcnfU=_POt8+68hwcx9EGX7Ahy2R6TZOiA@mail.gmail.com>
+	<CAJTo0LY+hMQgq4U6caqvChq4HUhj0P9OE+rD1ZGCgCH59oYP4Q@mail.gmail.com>
+In-Reply-To: <CAJTo0LY+hMQgq4U6caqvChq4HUhj0P9OE+rD1ZGCgCH59oYP4Q@mail.gmail.com>
+From: Joe Flowers <joe.flowers@nofreewill.com>
+Date: Mon, 29 Oct 2018 15:33:47 -0400
+Message-ID: <CA+4=ZENGPKV6hQbyQ_o3GEtsmuAnFsGhPFHv20iSRODgba=LLA@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: "bitbake core-image-sato" yields "No package 'gdk-x11-3.0' found" build failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -121,90 +58,330 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2018 19:19:24 -0000
-Content-Type: multipart/alternative;
-	boundary="------------80269B61853720AD3C9B89E6"
-Content-Language: en-US
+X-List-Received-Date: Mon, 29 Oct 2018 19:33:58 -0000
+Content-Type: multipart/alternative; boundary="0000000000006dc5280579632686"
 
---------------80269B61853720AD3C9B89E6
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+--0000000000006dc5280579632686
+Content-Type: text/plain; charset="UTF-8"
+
+HI Ross,
+
+It still doesn't work.
 
 
-On 10/29/18 11:31 AM, Joe MacDonald wrote:
-> I'm sending this out  as a follow-up to our discussion from last week.
-> This set will be placed on the newly-created 'sumo' branch.  I plan to
-> follow up with a slightly different version for a new 'thud' branch as
-> well, at which point things should be stable enough on those two
-> branches that I can finish up the refpolicy update (2.20180701) I'd
-> started a little while ago.  After that, I think top of my list is to
-> clean up some (I think unintended) behaviour in the _git recipe variants.
+local.conf
+https://pastebin.com/2Ng0wSCi
+
+
+log.do_configure.27655
+https://pastebin.com/4EX9vqmK
+
+
+config.log
+https://pastebin.com/DY2FnM7w
+
+
+Thanks for trying to help me.
+
+Joe
+----------------
+
+
+On Mon, Oct 29, 2018 at 11:43 AM Burton, Ross <ross.burton@intel.com> wrote:
+
+> x11 is in the default DISTRO_FEATURES for poky, so you don't need to add
+> that.
 >
-> Comments / suggestions / etc. more than welcome.
-
-
-so this is not based on Master?
-
-- armin
-
+> If core-image-x11 works then core-image-sato should build fine.  Try
+> deleting your tmp/ and trying again, if that doesn't work then
+> pastebin both temp/log.do_configure and config.log from the recipe
+> that is failing (matchbox-panel).
 >
-> -- 
-> Joe MacDonald
-> :wq
+> Ross
+> On Mon, 29 Oct 2018 at 13:21, Joe Flowers <joe.flowers@nofreewill.com>
+> wrote:
+> >
+> > Thanks, Ross.
+> >
+> > 1.
+> > Both of these commands worked:
+> >
+> > MACHINE=wandboard bitbake core-image-x11
+> > MACHINE=wandboard bitbake gtk+3
+> >
+> > 2.
+> > I've attached my local.conf.
+> >
+> > If the attachment does not go through, then I will copy and paste it
+> into my next message.
+> >
+> > Thanks!
+> >
+> > Joe
+> > -------------------------------
+> >
+> >
+> > On Mon, Oct 29, 2018 at 7:54 AM Burton, Ross <ross.burton@intel.com>
+> wrote:
+> >>
+> >> Can you share your local.conf?  Does bitbake gtk+3 work?
+> >>
+> >> Ross
+> >> On Mon, 29 Oct 2018 at 06:42, Joe Flowers <joe.flowers@nofreewill.com>
+> wrote:
+> >> >
+> >> > Hello everyone,
+> >> >
+> >> > 1.
+> >> > I am trying to build a core-image-sato image for a WandBoard but am
+> getting stuck at this error message:
+> >> >
+> >> > "| No package 'gdk-x11-3.0' found"
+> >> >
+> >> > See below for more details.
+> >> >
+> >> >
+> >> > 2.
+> >> > I have grepped this list's archives and run into someone with the
+> same problem, but a solution was never included in the thread.
+> >> >
+> >> >
+> https://lists.yoctoproject.org/pipermail/yocto/2017-December/039149.html
+> >> >
+> >> >
+> >> > Help please.
+> >> >
+> >> > Joe
+> >> >
+> >> > ------------------------------
+> >> >
+> >> > Command
+> >> >
+> >> > MACHINE=wandboard bitbake core-image-sato
+> >> >
+> >> > produces this error message:
+> >> >
+> >> > ...
+> >> > ...
+> >> > | checking for pkg-config...
+> /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/recipe-sysroot-native/usr/bin/pkg-config
+> >> > | configure: WARNING: using cross tools not prefixed with host triplet
+> >> > | checking pkg-config is at least version 0.9.0... yes
+> >> > | checking for glib-2.0
+> >> > |                   gmodule-export-2.0
+> >> > |                   x11
+> >> > |                   gdk-x11-3.0
+> >> > |                   gtk+-3.0... no
+> >> > | configure: error: Package requirements (glib-2.0
+> >> > |                   gmodule-export-2.0
+> >> > |                   x11
+> >> > |                   gdk-x11-3.0
+> >> > |                   gtk+-3.0) were not met:
+> >> > |
+> >> > | No package 'gdk-x11-3.0' found
+> >> > |
+> >> > | Consider adjusting the PKG_CONFIG_PATH environment variable if you
+> >> > | installed software in a non-standard prefix.
+> >> > |
+> >> > | Alternatively, you may set the environment variables
+> MATCHBOX_PANEL_CFLAGS
+> >> > | and MATCHBOX_PANEL_LIBS to avoid the need to call pkg-config.
+> >> > | See the pkg-config man page for more details.
+> >> > | NOTE: The following config.log files may provide further
+> information.
+> >> > | NOTE:
+> /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/build/config.log
+> >> > | ERROR: configure failed
+> >> > | WARNING: exit code 1 from a shell command.
+> >> > | ERROR: Function failed: do_configure (log file is located at
+> /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/temp/log.do_configure.40754)
+> >> > ERROR: Task
+> (/opt/yocto/sources/poky/meta/recipes-sato/matchbox-panel-2/matchbox-panel-2_2.11.bb:do_configure)
+> failed with exit code '1'
+> >> > NOTE: Tasks Summary: Attempted 3024 tasks of which 2828 didn't need
+> to be rerun and 1 failed.
+> >> >
+> >> > Summary: 1 task failed:
+> >> >
+>  /opt/yocto/sources/poky/meta/recipes-sato/matchbox-panel-2/matchbox-panel-2_2.11.bb:
+> do_configure
+> >> > Summary: There were 2 ERROR messages shown, returning a non-zero exit
+> code.
+> >> > joe@ubuntu:/opt/yocto/build$
+> >> >
+> >> > ------------------------------
+> >> >
+> >> > --
+> >> > _______________________________________________
+> >> > yocto mailing list
+> >> > yocto@yoctoproject.org
+> >> > https://lists.yoctoproject.org/listinfo/yocto
 >
 
---------------80269B61853720AD3C9B89E6
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+--0000000000006dc5280579632686
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 10/29/18 11:31 AM, Joe MacDonald
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CANBf+V1cOSgDpoKvmz4shhZEjCKXtYAe9gz13K2PPjuTWf7KRA@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">
-        <div>I'm sending this out  as a follow-up to our discussion
-          from last week. This set will be placed on the newly-created
-          'sumo' branch.  I plan to follow up with a slightly different
-          version for a new 'thud' branch as well, at which point things
-          should be stable enough on those two branches that I can
-          finish up the refpolicy update (2.20180701) I'd started a
-          little while ago.  After that, I think top of my list is to
-          clean up some (I think unintended) behaviour in the _git
-          recipe variants.</div>
-        <div><br>
-        </div>
-        <div>Comments / suggestions / etc. more than welcome.</div>
-      </div>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>so this is not based on Master? <br>
-    </p>
-    <p>- armin<br>
-    </p>
-    <blockquote type="cite"
-cite="mid:CANBf+V1cOSgDpoKvmz4shhZEjCKXtYAe9gz13K2PPjuTWf7KRA@mail.gmail.com">
-      <div dir="ltr">
-        <div><br>
-        </div>
-        -- <br>
-        <div dir="ltr" class="gmail_signature"
-          data-smartmail="gmail_signature">Joe MacDonald<br>
-          :wq</div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-    </blockquote>
-  </body>
-</html>
+<div dir=3D"ltr"><div dir=3D"ltr">HI Ross,<div><br></div><div>It still does=
+n&#39;t work.</div><div><br></div><div><br></div><div><div>local.conf</div>=
+<div><a href=3D"https://pastebin.com/2Ng0wSCi">https://pastebin.com/2Ng0wSC=
+i</a><br></div><div><br></div><div><br></div><div>log.do_configure.27655</d=
+iv><div><a href=3D"https://pastebin.com/4EX9vqmK">https://pastebin.com/4EX9=
+vqmK</a><br></div><div><br></div><div><br></div><div>config.log=C2=A0=C2=A0=
+<br></div><div><a href=3D"https://pastebin.com/DY2FnM7w">https://pastebin.c=
+om/DY2FnM7w</a><br></div><div><br></div></div><div><br></div><div>Thanks fo=
+r trying to help me.</div><div><br></div><div>Joe</div><div>---------------=
+-</div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+>On Mon, Oct 29, 2018 at 11:43 AM Burton, Ross &lt;<a href=3D"mailto:ross.b=
+urton@intel.com">ross.burton@intel.com</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
+;padding-left:1ex">x11 is in the default DISTRO_FEATURES for poky, so you d=
+on&#39;t need to add that.<br>
+<br>
+If core-image-x11 works then core-image-sato should build fine.=C2=A0 Try<b=
+r>
+deleting your tmp/ and trying again, if that doesn&#39;t work then<br>
+pastebin both temp/log.do_configure and config.log from the recipe<br>
+that is failing (matchbox-panel).<br>
+<br>
+Ross<br>
+On Mon, 29 Oct 2018 at 13:21, Joe Flowers &lt;<a href=3D"mailto:joe.flowers=
+@nofreewill.com" target=3D"_blank">joe.flowers@nofreewill.com</a>&gt; wrote=
+:<br>
+&gt;<br>
+&gt; Thanks, Ross.<br>
+&gt;<br>
+&gt; 1.<br>
+&gt; Both of these commands worked:<br>
+&gt;<br>
+&gt; MACHINE=3Dwandboard bitbake core-image-x11<br>
+&gt; MACHINE=3Dwandboard bitbake gtk+3<br>
+&gt;<br>
+&gt; 2.<br>
+&gt; I&#39;ve attached my local.conf.<br>
+&gt;<br>
+&gt; If the attachment does not go through, then I will copy and paste it i=
+nto my next message.<br>
+&gt;<br>
+&gt; Thanks!<br>
+&gt;<br>
+&gt; Joe<br>
+&gt; -------------------------------<br>
+&gt;<br>
+&gt;<br>
+&gt; On Mon, Oct 29, 2018 at 7:54 AM Burton, Ross &lt;<a href=3D"mailto:ros=
+s.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt; wrote:<=
+br>
+&gt;&gt;<br>
+&gt;&gt; Can you share your local.conf?=C2=A0 Does bitbake gtk+3 work?<br>
+&gt;&gt;<br>
+&gt;&gt; Ross<br>
+&gt;&gt; On Mon, 29 Oct 2018 at 06:42, Joe Flowers &lt;<a href=3D"mailto:jo=
+e.flowers@nofreewill.com" target=3D"_blank">joe.flowers@nofreewill.com</a>&=
+gt; wrote:<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; Hello everyone,<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; 1.<br>
+&gt;&gt; &gt; I am trying to build a core-image-sato image for a WandBoard =
+but am getting stuck at this error message:<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; &quot;| No package &#39;gdk-x11-3.0&#39; found&quot;<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; See below for more details.<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; 2.<br>
+&gt;&gt; &gt; I have grepped this list&#39;s archives and run into someone =
+with the same problem, but a solution was never included in the thread.<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/pipermail/yocto/201=
+7-December/039149.html" rel=3D"noreferrer" target=3D"_blank">https://lists.=
+yoctoproject.org/pipermail/yocto/2017-December/039149.html</a><br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; Help please.<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; Joe<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; ------------------------------<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; Command<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; MACHINE=3Dwandboard bitbake core-image-sato<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; produces this error message:<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; ...<br>
+&gt;&gt; &gt; ...<br>
+&gt;&gt; &gt; | checking for pkg-config... /opt/yocto/build/tmp/work/cortex=
+a9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/recipe-sysroot-native=
+/usr/bin/pkg-config<br>
+&gt;&gt; &gt; | configure: WARNING: using cross tools not prefixed with hos=
+t triplet<br>
+&gt;&gt; &gt; | checking pkg-config is at least version 0.9.0... yes<br>
+&gt;&gt; &gt; | checking for glib-2.0<br>
+&gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0gmodule-export-2.0<br>
+&gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0x11<br>
+&gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0gdk-x11-3.0<br>
+&gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0gtk+-3.0... no<br>
+&gt;&gt; &gt; | configure: error: Package requirements (glib-2.0<br>
+&gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0gmodule-export-2.0<br>
+&gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0x11<br>
+&gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0gdk-x11-3.0<br>
+&gt;&gt; &gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0gtk+-3.0) were not met:<br>
+&gt;&gt; &gt; |<br>
+&gt;&gt; &gt; | No package &#39;gdk-x11-3.0&#39; found<br>
+&gt;&gt; &gt; |<br>
+&gt;&gt; &gt; | Consider adjusting the PKG_CONFIG_PATH environment variable=
+ if you<br>
+&gt;&gt; &gt; | installed software in a non-standard prefix.<br>
+&gt;&gt; &gt; |<br>
+&gt;&gt; &gt; | Alternatively, you may set the environment variables MATCHB=
+OX_PANEL_CFLAGS<br>
+&gt;&gt; &gt; | and MATCHBOX_PANEL_LIBS to avoid the need to call pkg-confi=
+g.<br>
+&gt;&gt; &gt; | See the pkg-config man page for more details.<br>
+&gt;&gt; &gt; | NOTE: The following config.log files may provide further in=
+formation.<br>
+&gt;&gt; &gt; | NOTE: /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-=
+gnueabi/matchbox-panel-2/2.11-r0/build/config.log<br>
+&gt;&gt; &gt; | ERROR: configure failed<br>
+&gt;&gt; &gt; | WARNING: exit code 1 from a shell command.<br>
+&gt;&gt; &gt; | ERROR: Function failed: do_configure (log file is located a=
+t /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-pan=
+el-2/2.11-r0/temp/log.do_configure.40754)<br>
+&gt;&gt; &gt; ERROR: Task (/opt/yocto/sources/poky/meta/recipes-sato/matchb=
+ox-panel-2/matchbox-panel-2_2.11.bb:do_configure) failed with exit code &#3=
+9;1&#39;<br>
+&gt;&gt; &gt; NOTE: Tasks Summary: Attempted 3024 tasks of which 2828 didn&=
+#39;t need to be rerun and 1 failed.<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; Summary: 1 task failed:<br>
+&gt;&gt; &gt;=C2=A0 =C2=A0/opt/yocto/sources/poky/meta/recipes-sato/matchbo=
+x-panel-2/matchbox-panel-2_2.11.bb:do_configure<br>
+&gt;&gt; &gt; Summary: There were 2 ERROR messages shown, returning a non-z=
+ero exit code.<br>
+&gt;&gt; &gt; joe@ubuntu:/opt/yocto/build$<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; ------------------------------<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; --<br>
+&gt;&gt; &gt; _______________________________________________<br>
+&gt;&gt; &gt; yocto mailing list<br>
+&gt;&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">y=
+octo@yoctoproject.org</a><br>
+&gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/y=
+octo</a><br>
+</blockquote></div></div>
 
---------------80269B61853720AD3C9B89E6--
+--0000000000006dc5280579632686--
