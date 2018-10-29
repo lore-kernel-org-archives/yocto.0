@@ -1,45 +1,41 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <alberto@albeus.eu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B509DE00BD0; Mon, 29 Oct 2018 08:21:01 -0700 (PDT)
+	id DC3ACE00BC2; Mon, 29 Oct 2018 08:42:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE886E00A1A
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 08:21:00 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w9TFJmsw010343
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 29 Oct 2018 08:20:09 -0700
-Received: from server.local (128.224.22.13) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.408.0;
-	Mon, 29 Oct 2018 08:19:48 -0700
-To: Bas Mevissen <abuse@basmevissen.nl>
-References: <CAEhQi8nL7haOo+ogungBB_1hR0rRqNszFkgEHyr_SYE1dq477w@mail.gmail.com>
-	<CAEhQi8=Ocn_uVL5a4ri=9T9YKbNb1gcN3Y=cqK1-dATB7qea1A@mail.gmail.com>
-	<6f0c2b95-348c-6cb0-dbb0-8a43da878eaa@windriver.com>
-	<CAMKF1sq85puYF3C0T9sfNBVFOtHbwd9AkqVrXNYM9caFMN2nOg@mail.gmail.com>
-	<7568962f-b428-6eee-2cb5-dc471610c1fe@windriver.com>
-	<CAMKF1sq1Lyk_ymMw8Lj9o8+0o_s57kN6EqhpXdHbmyaB_Yys2A@mail.gmail.com>
-	<31158489-66b5-4afd-4c27-75dd489beadd@windriver.com>
-	<31f15aa8b84113eaed970edb2b7b4b14@basmevissen.nl>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <50cfb0cf-d9c8-48ec-2d3d-d30858fe98f4@windriver.com>
-Date: Mon, 29 Oct 2018 11:19:48 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.9.1
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [5.144.164.174 listed in list.dnswl.org]
+Received: from m-r2.th.seeweb.it (m-rb.th.seeweb.it [5.144.164.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87537E00AC5
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 08:42:09 -0700 (PDT)
+Received: from zazen.local.albeus.eu
+	(host105-154-dynamic.252-95-r.retail.telecomitalia.it
+	[95.252.154.105])
+	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 456013EE6D;
+	Mon, 29 Oct 2018 16:42:08 +0100 (CET)
+Received: by zazen.local.albeus.eu (Postfix, from userid 1000)
+	id 2C94849949F; Mon, 29 Oct 2018 16:42:07 +0100 (CET)
+Date: Mon, 29 Oct 2018 16:42:07 +0100
+From: Alberto Eusebi <alberto@albeus.eu>
+To: "Burton, Ross" <ross.burton@intel.com>
+Message-ID: <20181029154206.GA13658@zazen.local.albeus.eu>
+References: <20181015161520.GA17645@zazen.local.albeus.eu>
+	<CAJTo0LYgWV2UxHEpMJ7DVWLsTZ19uDfdS=6weowdQ2m5+um71w@mail.gmail.com>
+	<20181017131731.GA16630@zazen.local.albeus.eu>
+	<CAJTo0LYNLOs=k3sw_y37fD9XH6YebjcLy4+m06GS2tU7d_URgg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <31f15aa8b84113eaed970edb2b7b4b14@basmevissen.nl>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [SDK] including kernel devsrc to the SDK failes
+In-Reply-To: <CAJTo0LYNLOs=k3sw_y37fD9XH6YebjcLy4+m06GS2tU7d_URgg@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Add python2 as native package in openembedded sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,164 +47,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2018 15:21:01 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 29 Oct 2018 15:42:10 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 2018-10-29 11:18 AM, Bas Mevissen wrote:
-> On 2018-10-29 16:14, Bruce Ashfield wrote:
->> On 2018-10-29 11:12 AM, Khem Raj wrote:
->>> On Mon, Oct 29, 2018 at 6:46 AM Bruce Ashfield
->>> <bruce.ashfield@windriver.com> wrote:
->>>>
->>>>
->>>>
->>>> On 10/29/2018 9:10 AM, Khem Raj wrote:
->>>>> On Fri, Oct 26, 2018 at 6:54 AM Bruce Ashfield
->>>>> <bruce.ashfield@windriver.com> wrote:
->>>>>>
->>>>>>
->>>>>>
->>>>>> On 10/26/2018 4:28 AM, Måns Zigher wrote:
->>>>>>> So it looks like the number of /bin/awk have increased so the 
->>>>>>> patch will
->>>>>>> fix one problem but there is more to fix. I have a "workaround" 
->>>>>>> evenYup. That works too (as would a variable from the env), but 
->>>>>>> we'll still
->>> need a sed based patch in the short term.
->>>>>>> though I am not so sure it is a workaround or not. The problem is 
->>>>>>> fixed
->>>>>>> adding to kernel-devsrc.bbappend
->>>>>>>
->>>>>>> do_install_append() {
->>>>>>> # This fixes the rpm dependency failure on install of kernel-devsrc
->>>>>>> depending on /bin/awk
->>>>>>> cd ${D} || true
->>>>>>> for i in $(grep -srI "!/bin/awk" | cut -d":" -f1); do
->>>>>>> sed -i -e "s#!/bin/awk#!/usr/bin/env awk#g" $i
->>>>>>> done
->>>>>>> }
->>>>>>>
->>>>>>> The original solution can be found at
->>>>>>>
->>>>>>> https://gerrit.automotivelinux.org/gerrit/gitweb?p=AGL/meta-agl.git;a=blobdiff;f=meta-agl-bsp/meta-ti/recipes-kernel/linux/linux-ti-staging_%25.bbappend;h=43fa494a26c132b875c177acf0389163d5e34c06;hp=b2e5431400acef0a5372e5490ac4f464482d4b3b;hb=4bfc821810cdee47611c6d3e94d771971f51fa75;hpb=1cf6b17fd15fde569374c85d4df722784f4e9c67 
->>>>>>>
->>>>>>>
->>>>>>> The best solution might be to add kernel patches but since the 
->>>>>>> number of
->>>>>>> /bin/awk have increased I think that this is fine in the kernel 
->>>>>>> universe
->>>>>>> but a problem in poky universe. So by adding it to kernel-devsrc 
->>>>>>> it will
->>>>>>> make sure that when the kernel get's tainted in the future it 
->>>>>>> will not
->>>>>>> break the rpm build. This is a "bug" only when using rpm ipk will 
->>>>>>> not
->>>>>>> detect it as a problem.
->>>>>>
->>>>>> I'm ok with this type of solution as well, since this is similar
->>>>>> to what we've had to do with perf in the past (sed and modify versus
->>>>>> patching). I can always patch and fix things in linux-yocto, but then
->>>>>> another other kernel still suffers the issue.
->>>>>
->>>>>
->>>>> can we fix it in upstream kernel to use something like
->>>>> #!/usr/bin/env awk
->>>>> may be ?
->>>>
->>>>
->>>> Yup. That works too (as would a variable from the env), but we'll still
->>>> need a sed based patch in the short term.
->>>>
->>>
->>> short term is fine, but I think this should be fixed in upstream kernel.
->>
->> Also agreed. That was my primary suggestion as well, since even with
->> that slow pace, we'd have it in all the kernel trees by the next
->> Yocto release window.
->>
+On Wednesday 17 October 2018, alle 14:27, Burton, Ross wrote:
+> On Wed, 17 Oct 2018 at 14:18, Alberto Eusebi <alberto@albeus.eu> wrote:
+> > On Monday 15 October 2018, alle 17:57, Burton, Ross wrote:
+> > > Add nativesdk-python-core and nativesdk-python-modules to
+> > > TOOLCHAIN_HOST_TASK (using _append).
+> >
 > 
-> I would recommend to keep some kind of automated hot patching in as not 
-> all vendor kernels will catch up that quickly, if ever.
-
-That is what we normally do. See the old perf patches. They test for
-the issue, and then sed the change if required.
-
-Bruce
-
+> > But the resulting script don't work, it only unpacks the sysroots and then stalls:
+> >
+> >    __________________________________________________________________________________________________________________________
+> >    # ./angstrom-glibc-x86_64-armv7at2hf-neon-v2017.12-toolchain.sh -d 4.9
+> >    Angstrom SDK installer version nodistro.0
+> >    =========================================
+> >    You are about to install the SDK to "/opt/toradex_sdk/imx6/4.9". Proceed[Y/n]?
+> >    Extracting SDK.........................................................................................................done
+> >    Setting it up...ls: cannot access '/opt/toradex_sdk/imx6/4.9/environment-setup-*': No such file or directory
+> >    __________________________________________________________________________________________________________________________
 > 
-> -- Bas.
-> 
->> Bruce
->>
->>>
->>>> Bruce
->>>>
->>>>>
->>>>>>
->>>>>> It would be better if folks with this problem also send patches 
->>>>>> upstream
->>>>>> to allow us to vary the location of awk via a variable, since that 
->>>>>> would
->>>>>> eventually fix all kernels without needing any modifications .. 
->>>>>> but that
->>>>>> is a medium term time play, versus doing the sed operation.
->>>>>>
->>>>>> If you have a patch to kernel-devsrc in master, feel free to send it
->>>>>> and cc' me, and I can pull it into my queue, test and then send it in
->>>>>> my next pull request.
->>>>>>
->>>>>> Bruce
->>>>>>
->>>>>>>
->>>>>>> BR
->>>>>>> Måns Zigher
->>>>>>>
->>>>>>> Den tors 25 okt. 2018 kl 13:19 skrev Måns Zigher 
->>>>>>> <mans.zigher@gmail.com
->>>>>>> <mailto:mans.zigher@gmail.com>>:
->>>>>>>
->>>>>>>       Hi,
->>>>>>>
->>>>>>>       I am trying to add the kernel devsrc to the SDK but I am 
->>>>>>> getting the
->>>>>>>       following error
->>>>>>>
->>>>>>>       Problem: conflicting requests
->>>>>>>          - nothing provides /bin/awk needed by 
->>>>>>> kernel-devsrc-1.0-r0.imx8mqevk
->>>>>>>
->>>>>>>       I have applied the following patch to try and fix this 
->>>>>>> problem.
->>>>>>>
->>>>>>> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto/commit/?id=8af11c1cdd8fa08217e702b57cf96e9030db52b2 
->>>>>>>
->>>>>>>
->>>>>>>       I have verified that it was applied and run kernel-devsrc 
->>>>>>> works. The
->>>>>>>       error is from do_populate_sdk and I am suspecting that the 
->>>>>>> problem
->>>>>>>       is related to me using rpm. I believe rpm might be to smart 
->>>>>>> in this
->>>>>>>       case detecting the dependency and resulting dnf from 
->>>>>>> failing when
->>>>>>>       running the task do_populate_sdk. Any suggestion on how to get
->>>>>>>       forward on this error. I would like to run dnf manually to 
->>>>>>> check any
->>>>>>>       dependency of the kernel-devsrc rpm package but cannot 
->>>>>>> figure out how.
->>>>>>>
->>>>>>>       BR
->>>>>>>       Måns Zigher
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>> -- 
->>>>>> _______________________________________________
->>>>>> yocto mailing list
->>>>>> yocto@yoctoproject.org
->>>>>> https://lists.yoctoproject.org/listinfo/yocto
-> 
+> Sounds like you broke the SDK.  How did you set TOOLCHAIN_HOST_TASK?
 
+Hi Ross,
+thank you. Your reply solved my problem. I appled it in a wrong way: i used
+"+=" in variable. Now I used _append as you recommended.
+
+Thank you very much for your support!
+
+Cheers
+Albeus
 
