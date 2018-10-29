@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <marek.belisko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DFB06E00BC2; Mon, 29 Oct 2018 08:56:20 -0700 (PDT)
+	id 607E9E00BC2; Mon, 29 Oct 2018 09:04:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,56 +10,51 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+	provider *      (marek.belisko[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.50 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.179 listed in list.dnswl.org]
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com
-	[209.85.160.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9D2AE00A1A
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 08:56:19 -0700 (PDT)
-Received: by mail-qt1-f179.google.com with SMTP id g10-v6so9789378qtq.6
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 08:56:19 -0700 (PDT)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+	[209.85.221.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 439E0E00BBF
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 09:04:35 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id i17-v6so9260199wre.7
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 09:04:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=Ikhu0E7tjgSJFkSO5sbVSyqoF8qH0dlkSxO/6mfB65k=;
-	b=DV3JUsdqxJLFnLqc/1f2Q4ghl7P1gDQb5tXgCfqNQqNOGpvhXVIqO6o/pK0HRRhMUi
-	uiyqYcdgjFdt99TqkJbPMvZ7GrDGkeVMG5CZlivPVb4fAorwyKtgze05mDhFj8naZYA0
-	wDnQ198MBdtDl4I3ZwsXUtNJWCyKQSi/v8uYy2P6xkMz9c+EPxWLS/pjC5IOjJKWdUln
-	7gDBa+gRG8dN0o6lctqAL4LTvXdYkOGq0SNU+gPtekMXVmdkgzzp7xl8WZVKUQu7sqtc
-	ak+49UWxAjrf1okeKASrM0dbqMeb5p/8Ma+lUiGa5rwiB0FamWYgN/hoMwqx2wu0Ckw3
-	rpiQ==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Hq1CALX0nkaCly627XH8I+QzYpLVZtm+Felgg07MAeY=;
+	b=f66LIWQT+7ha1BCKAEgQOSfJCJ9ShLcVS2uBvKIyC1dX6H7jLvMuUtJW957vx5QHDS
+	Lbo+g16u45ZDEnby49q9yOtrRsI/ZnSnnkLVc7jfV7iTsEqm6k99KoB/XlVHx+4s0HZn
+	VUEh5sSrXxNrgf+FabWlJ6djF6Lm5Dzs0w25vu3tmarNFV0vMVBieUPUNXBVQvsrHSxb
+	Yy2BauR1dcbPyc4Tb2kXgw43in/6yyLSXvzTfehh4kxPE2WxzuULEfJcg+2ls8MK+PpY
+	UreTCpYfwgY4S54EOJGILotSY5/D8Y2WjNlHZ1lH6BR/yl0T1xUKrm+yclFuF3NyXO9q
+	snKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=Ikhu0E7tjgSJFkSO5sbVSyqoF8qH0dlkSxO/6mfB65k=;
-	b=muOnxZMq4ECjQRVdH85DhW6c7kPmgrC8KfX1g2DjcPnoOjER98keSmLZhvQeWunXv0
-	udrS0bIR5PZETso8tevT6W0kXbIW3KoUvXVz/Z58RpHO3RNxVf/g3XvMoVt6rApbnDc/
-	/SIT4pY/NjV4BAMevDttVsgtqIo1ABT87SDY9Hm32nxjYlAvdCl6mmczLKKlmryjRIBo
-	TxDwSilQf/6QCUb3D6AkwmkOMnwknsAd+yYEuYIfwkUmW0Ku5GGGI7aTqL0RTipdSXzC
-	42SilLz3T8WLwdB+BPHY4SpHv7ED81dcIUgfA/lsE7zuQ6xOnaiZcU6oB7bjohtcsUia
-	lcAg==
-X-Gm-Message-State: AGRZ1gIAqb13euZuW5d3ECRHsKha5iapPa/MGU8WYX0jSBmc6Qk0Ifb8
-	ZMB8yFb/oRHuTN/wylYoZXWJPoeSDurKJlLaoylYgn6n5t8=
-X-Google-Smtp-Source: AJdET5ca+FjfTnZSsLSESm8Kht4WcEuAzZrlZhROqe5cfw2nMk5j3Yk2q4QJO/D8SClawU8fsyVb7xFFaI9p2tHmQGQ=
-X-Received: by 2002:ac8:3693:: with SMTP id
-	a19-v6mr13085527qtc.236.1540828578905; 
-	Mon, 29 Oct 2018 08:56:18 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Hq1CALX0nkaCly627XH8I+QzYpLVZtm+Felgg07MAeY=;
+	b=hyYicGPpWBxWQPAF7Ugd38lx1ZPwDwbHcH+6smAed49kyrvrgMgjEOH+8UC0uXXE+t
+	YKZbcPjAPjCZPS3Ss5u809My6e+8VzZmlAAz2OiEDfcwgriy0QFMoco1ELwMVwG4Fj/O
+	igB0Bt7ipnn6T3+l4hSPTQEge+maGpU2LYe/U8IlfL1ehLMzHOixE6MXOW1Q2iM6xAyW
+	f0O5TptALIulbkFjcw1iYCFkV4NrA23PX/uY9d6QrLe9LXJV5Vlt+24stq4U77+bNb/1
+	gawGwzT25iG5v80rllRGx8nuhlB4ekuC4QoTHG6qZmI42erVUp8e1QZg8puesdOvnnWM
+	wlbg==
+X-Gm-Message-State: AGRZ1gL9Xj/cfCuPlaJtPJU4imgzHQK54XDnmGXyEd2XGKXZW5my7h51
+	0n2hkSkS6jm4+K48ex9Sdoa3M9AN6VbY/+F0/sDvkc8R
+X-Google-Smtp-Source: AJdET5cpBHJRwFzf7xZwZ8s6Q/D/YX8vxJoWKyIgqMUqMjq441d1YxEPmrq4tPN/wuvyXl0sNE/nhEGZz/FjauCIqas=
+X-Received: by 2002:adf:a3c5:: with SMTP id m5-v6mr16364905wrb.1.1540829074096;
+	Mon, 29 Oct 2018 09:04:34 -0700 (PDT)
 MIME-Version: 1.0
-References: <f416d79a-a303-0b48-746f-dcd6a5c5a4bf@faresoftware.it>
-In-Reply-To: <f416d79a-a303-0b48-746f-dcd6a5c5a4bf@faresoftware.it>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 29 Oct 2018 08:55:52 -0700
-Message-ID: <CAMKF1spMUEj-p1cMH=8gA6Y7Hf0JJjeejJhi0Ft=UgmLkmDwWg@mail.gmail.com>
-To: Mauro Ziliani <mauro@faresoftware.it>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Layers for AMD Geode LX 800
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Mon, 29 Oct 2018 17:04:22 +0100
+Message-ID: <CAAfyv36m-6dc-XYCOotNMLMLk98VBE7jSTG6XuoRj7XS6hOxaw@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: intel-nuc: hddimg EFI_PROVIDER for final install
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,31 +66,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2018 15:56:21 -0000
+X-List-Received-Date: Mon, 29 Oct 2018 16:04:37 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-there is meta-amd layer and its possible that it supported it may be
-some older branches also read this
+Hi,
 
-https://lists.yoctoproject.org/pipermail/yocto/2013-September/016081.html
-On Wed, Oct 24, 2018 at 11:07 AM Mauro Ziliani <mauro@faresoftware.it> wrote:
->
-> Hi all.
->
-> Do you know if there is some layers ready for the board in subject?
->
-> It is an IBASE IB550F.
->
->
-> Thanks all
->
->
-> Mauro
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+I'm trying to build hddimg for intel-nuc. Basically default
+EFI_PROVIDER is systemd-boot but I want to use grub-efi so I've
+updated variable accordingly. I have some changes in grub-efi (more
+rootfs partitions + data). When trying to start hddimg it will start
+grub with grub.cfg with my changes and not one which should be used
+for "live" boot. I don't have an idea hos sysconfig found updated
+grub.cfg and not one for live boot. Any ideas or I need to change also
+something else? Thanks.
+
+BR,
+
+marek
+
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
 
