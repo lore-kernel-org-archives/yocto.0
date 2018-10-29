@@ -1,64 +1,47 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <desai@uni-bremen.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06B99E00BBF; Mon, 29 Oct 2018 09:37:28 -0700 (PDT)
+	id 12DDEE00BBF; Mon, 29 Oct 2018 09:41:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.222.175 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.102.50.17 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com
-	[209.85.222.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4742CE00AC5
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 09:37:26 -0700 (PDT)
-Received: by mail-qk1-f175.google.com with SMTP id o89so5336337qko.0
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 09:37:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=rUHUytVf21RSXo0/Zv2vr+az+yO2MgTRm4PhmyQlzZw=;
-	b=DZw3bKonkPlFl4CEXCjEGJFUray6MVshr6vFncWA99Ny6qEt/rTTKdz1MKUZe97n88
-	h5YOfNWP9G6IXv3r7KK604KHFRpY3AUNhe//Ee7VjG1cwMhwlNUQ4dn0ryJznwEwE9+V
-	cWBhzsz02FH+TsJft2JTIsYJjM4hrRNoogl4kNE59BOxpBV1fSVXtR14OPA7x6tZMPUL
-	62l0mMbWu9ivMiNuTeyNCluSQo7d8a8wtjG6i7cYDXLD7SpKa63oryHtYS1cUYWWZabk
-	VVhzGp2HO7/9PLydyUQXAw0tSpo5LQXY5uw4ya4bofGK0MvA//SyiFicPTyFl4Jbxv+R
-	+1WA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=rUHUytVf21RSXo0/Zv2vr+az+yO2MgTRm4PhmyQlzZw=;
-	b=aPdvTpb9/YDCHg5gircG0oqjy3lee6XI52ku5QXfXZlQRDOVZeeE/Ecms/85yvXUc6
-	LoKb7pGXnMZPxpZUfTDG7rgEQIpjgQA6LnLqNBjy2D5Kp0RYClR5TSIz/J46wUJnevc5
-	co+EKzeVBSKlX9w0u3R4TQ5KVHwFmAun9kfXui0YFd7RzcmYzceRCCMhaSgx9ZqFVQb+
-	iSqoYf5rY/1AdozA0nexLjfycDsg4s9gwmdzkhFi4J8uu7eSv7ASawMdRpPsF7RCCkIs
-	nOXqpxOEmBhR4aZBDhXHNxOcawwfmri+a6B1sgPE8JQGm2WwJOcqbfwIZ1owqnkETMG/
-	j7EQ==
-X-Gm-Message-State: AGRZ1gIYxEPfVRgr0M+zBjGPJia/Z3huAlcRbfUItELQq/zNkCd+NtwT
-	XIFVx0/UdAHeLM0cgT4IyLB9/6NsqwOsKorF/XY=
-X-Google-Smtp-Source: AJdET5cqY6j4Z2Y00eYLQtLnIyaiiwyTiJo7NQ65XlHqaufKm9t1uqirYIUbd7u6HVar5PP6wwQeeOHPPew1udJLA20=
-X-Received: by 2002:a37:d408:: with SMTP id l8mr7723870qki.315.1540831045653; 
-	Mon, 29 Oct 2018 09:37:25 -0700 (PDT)
+Received: from smtp.uni-bremen.de (gabriel-vm-2.zfn.uni-bremen.de
+	[134.102.50.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97D3FE00718
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 09:41:15 -0700 (PDT)
+Received: from uni-bremen.de (webmail-1.zfn.uni-bremen.de [134.102.50.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.uni-bremen.de (Postfix) with ESMTPSA id 0AF9126FE6
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 17:41:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=uni-bremen.de; s=dkim;
+	t=1540831274; bh=sftZElT0AqObLsWNqWgXrXoa8QrAa+U5b4RVAWksGig=;
+	h=To:Date:From;
+	b=Ajm4NENntBowjn8Xs3JzPdqK9o6rqSncyMOgoTVpzFgWylckjmqOREU5X7OR3YR5W
+	oxsIc9guESh6wXlkSEPMCgNL9nyhs0ACqqJnM8869q5BkwBx7mkgWdZ+pkgap7elfm
+	3quaGb5aYSsvrMH3XYeGQZmplFplqVLwtquw++L4=
+To: yocto@yoctoproject.org
+Date: Mon, 29 Oct 2018 17:41:13 +0100
+Message-ID: <003001d46fa6$3438d0e0$9caa72a0$@uni-bremen.de>
 MIME-Version: 1.0
-References: <CAC4hrmo3G1FGCT40+oX-v1kU8M6ew-XG_xm6Aq6X04fOFFF1Rw@mail.gmail.com>
-In-Reply-To: <CAC4hrmo3G1FGCT40+oX-v1kU8M6ew-XG_xm6Aq6X04fOFFF1Rw@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 29 Oct 2018 09:36:59 -0700
-Message-ID: <CAMKF1sq0iaQWyE2Wp1uWi-KmocT7mxFeZXsUH2MGc0J_b3zM7g@mail.gmail.com>
-To: bhavin.maru@vvdntech.in
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Need Help To Solve Errors while build of Yocto Project
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdRvpZw73kQ55XEXSbm0Z5z67zVy1A==
+User-Agent: Horde Application Framework 5
+From: Shantanoo Desai <desai@uni-bremen.de>
+Subject: How to create a golang recipe using devtool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,32 +53,138 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2018 16:37:28 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 29 Oct 2018 16:41:17 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0031_01D46FAE.95FE9870"
+Content-Language: de
 
-On Thu, Oct 25, 2018 at 8:13 AM Bhavin Dharmendrabhai Maru
-<bhavin.maru@vvdntech.in> wrote:
->
-> Hi Support Team,
->
-> I am new to yocto project and start to build yocto project by the steps provided in below link:
-> https://www.yoctoproject.org/docs/2.5.1/brief-yoctoprojectqs/brief-yoctoprojectqs.html
->
-> I am getting errors when i give $ bitbake core-image-sato command. details screenshot of errors are attached with this email for your reference.
->
-> Kindly help me to solve these errors. Any help in this will be appreciated.
+------=_NextPart_000_0031_01D46FAE.95FE9870
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-in local.conf try to add
-PACKAGECONFIG_append_pn-qemu-native = " sdl"
+How do I create a recipe for golang open-source repositories using devtool?
 
-see if that works
+ 
 
->
-> Thanks and Regards,
-> Bhavin Maru
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Does it require having Golang installed on the Host machine?
 
+ 
+
+I understand that one needs to add `inherit go` within the recipe but I am
+looking for a more concrete example as a reference.
+
+ 
+
+Initial Steps:
+
+ 
+
+Devtool add [recipe-url]
+
+Devtool edit-recipe recipename
+
+ 
+
+>> add inherit go in the recipe
+
+ 
+
+And then what?
+
+ 
+
+ 
+
+Regards,
+
+ 
+
+Shan
+
+
+------=_NextPart_000_0031_01D46FAE.95FE9870
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span lang=3DEN-US>How do I create a recipe for golang =
+open-source repositories using devtool?<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Does it require having Golang =
+installed on the Host machine?<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>I understand that one needs to add =
+`inherit go` within the recipe but I am looking for a more concrete =
+example as a reference.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Initial Steps:<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><i><span lang=3DEN-US>Devtool add =
+[recipe-url]<o:p></o:p></span></i></p><p class=3DMsoNormal><i><span =
+lang=3DEN-US>Devtool edit-recipe recipename<o:p></o:p></span></i></p><p =
+class=3DMsoNormal><i><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></i></p><p =
+class=3DMsoNormal><i><span lang=3DEN-US>&gt;&gt; add inherit go in the =
+recipe<o:p></o:p></span></i></p><p class=3DMsoNormal><i><span =
+lang=3DEN-US> <o:p></o:p></span></i></p><p class=3DMsoNormal><i><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></i></p><p =
+class=3DMsoNormal><i><span lang=3DEN-US>And then =
+what?<o:p></o:p></span></i></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Regards,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Shan<o:p></o:p></span></p></div></body></html>
+
+------=_NextPart_000_0031_01D46FAE.95FE9870--
