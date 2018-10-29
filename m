@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8BE1EE00BC8; Mon, 29 Oct 2018 09:15:55 -0700 (PDT)
+	id 06708E00BC2; Mon, 29 Oct 2018 09:29:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.222.196 listed in list.dnswl.org]
+	*      [209.85.160.195 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
@@ -19,46 +19,52 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f196.google.com (mail-qk1-f196.google.com
-	[209.85.222.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C511E00AC5
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 09:15:54 -0700 (PDT)
-Received: by mail-qk1-f196.google.com with SMTP id u68so1316087qkg.9
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 09:15:54 -0700 (PDT)
+Received: from mail-qt1-f195.google.com (mail-qt1-f195.google.com
+	[209.85.160.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30D43E00AC5
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 09:29:30 -0700 (PDT)
+Received: by mail-qt1-f195.google.com with SMTP id g10-v6so9933222qtq.6
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 09:29:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=TWlZewlZxOUiiv26vcCTFOLDrpjYezw+VnPQyZoe7KE=;
-	b=dl8ju3+7Xmkuln9JUPaf3eLy+r+I4Hv1my0YA0lLLfu7nAVL+ADLwnG1Pwf0m7/YCG
-	Cp8Iqg0AOysFxn2Z/HDPWi73PmXTBrAjpCen49PiQp3OvrTuxy136rBCYGbz+XtY1z4Y
-	BGGwX2C37/gtEJ8waM92kJNvtb2OBjDjEe072Ij3l7hEqWozPz5FMv+5gEiv/RlUuQJC
-	GIywcQ9pEQ1HXAxTWgbupVpb+umXfmXVXEWGoelIN5j7CS2W44DBQJpJHHARQgMJioS1
-	KBtkKhfdYL2Iiyvpq/yIEIN2PMRkKcAvR4cJWZm+TGtTO5rojHfvEPG2+h1N54HpYKi1
-	FXfw==
+	:cc; bh=extTm9iOACi2Umv9GTw9Ym0FmE6GBEYc73T86JSM2Uc=;
+	b=VPXfQxQ7omi4ITM/dKEFsGs6aIuJo5p0A8A81FK35gg+loz2x4U7fbOJu/YNxQR1hv
+	2E7+sEoIXAJENVqlzlXNT2ZkzR7kCyi6xE+6B52y5Pb9LDbbparr9pFftQRS677wC1nI
+	oExXmyw43kzNT9l3iZ3Rhxwsdso8sundd1Z2IbZTi70uRZ4LWuM/1HjzLAu3eMmgQEPa
+	RKsHk0WBg25yZwii65Wq3sidIck/fymRNthwEWDbWUD0Zg2JBU/dBGmjNuy0YijHz0Kr
+	k5EVNm6opuogkiIc0lhZ/amce+LVuzkZDiL+/9wswUB6NP3tI2iJo5TagveHG0A+L1pi
+	zy+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=TWlZewlZxOUiiv26vcCTFOLDrpjYezw+VnPQyZoe7KE=;
-	b=bP1Rtr/oeLUKSiCvfZrf35hpWzNjnExO95idqGKoV09NEn/SrFQwGU2F89hOnd/i/F
-	MrWrwOoB2RM1M5pr4/xy6Jua92J7gwPiyyDYZSW2x/Fj9/qTT47JAcjdPzom84z50Y6y
-	jPS+Rm5+47hbPbQhwBYlM2b36dCb565vJ9JopDItdxMwktxJfOA6xqV6G4XJeVQu1KGn
-	izu4neQzO92o7Ok39toPZ6mWGVOHBG6p5KSRu3BhujWBTQ83yOeovAPDEI6vPqSCiqa2
-	7oMNM1cCcu5uOabGN1wrSYIdSf75k2zEdHBEmIWDaB97KKvUai8btriR0DcICHKdLfnx
-	vy6g==
-X-Gm-Message-State: AGRZ1gIgavSQoW1O0nja+JbNwy33tZpQlmYsODNNit7R4WS8GCrto0YZ
-	SbzK07WY9Ag7hsu7cIf+09Q+igo/VvzXUStevZREQ2jn
-X-Google-Smtp-Source: AJdET5dUUZZWgChfYegO4PWlLHsTwj2IukhXzb2Hu4rp9gx0FgJ5gyFTkOjsloJ1Lwaf2kBzYmopJ+Yqm/7VVN3NFTc=
-X-Received: by 2002:a37:4c41:: with SMTP id z62mr2205814qka.206.1540829753259; 
-	Mon, 29 Oct 2018 09:15:53 -0700 (PDT)
+	bh=extTm9iOACi2Umv9GTw9Ym0FmE6GBEYc73T86JSM2Uc=;
+	b=ueWkeOBtafs9Ny5ftqrdvYKZY8WPP20h45WduPgsPx1bDnQD429D3aOwXNHhYyk6VB
+	Yw86F/e3xdqT173P9wwuDGyl7LjKlx40JKyOGh25TFFbtU8XLfaXa7kWXxEWF4Q1G0s4
+	XbAQ2VVANYd7PYOhw7FwlBowvxaaRz8AwbtslI8P3ZGFHFd2GOQxgvDLcI2xjHOEcIfF
+	fktOh3ME2RwfbaI1aqZKaN/qfEZKwZdOH4pAx05LlBZx7/eE4QCv8vzAq9zdxXFFet2Q
+	1jdSAvVv8xmaGS/yZgLm7afzMhPhn98TUkFWL3wfj8WrKCsb5VMgcXLF6Eml10vsMzyZ
+	cR8Q==
+X-Gm-Message-State: AGRZ1gKsEA2Wz2+BO+LOO4pKybMFnnzkHGQ1kqk04oniuYbzq8OGoTlg
+	98UziV+/xGlaBYQtFP+9Utq/2f4prMYQPL7kcTo6ikXennA=
+X-Google-Smtp-Source: AJdET5cGSooDacZPtwhw62G4xREtqDBwBDg68ENVwbL/Jmb1z3CPzASwVoOhwf77SpBhG/h1zAHfgAQTXvzrEHrW7+c=
+X-Received: by 2002:ad4:41d0:: with SMTP id a16mr3547105qvq.55.1540830569151; 
+	Mon, 29 Oct 2018 09:29:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <8be59efc-16c2-711d-047b-84fa1c916b09@slscorp.com>
-In-Reply-To: <8be59efc-16c2-711d-047b-84fa1c916b09@slscorp.com>
+References: <OF38E74854.80860B87-ON88258329.0081F4B2-8825832A.0060D044@selinc.com>
+	<57ADD8B0-DA93-4895-95E5-FD13C6597D89@gmail.com>
+	<2196576.1fsnYOVap6@localhost.localdomain>
+	<OFD6FF77C4.D7AA8A19-ON8825832A.0072D44B-8825832A.00734852@selinc.com>
+	<886965e3-607b-6132-7c47-ecb03e604703@windriver.com>
+	<OFDAF9168D.125D4284-ON88258331.0052C4D4-88258331.0055058E@selinc.com>
+In-Reply-To: <OFDAF9168D.125D4284-ON88258331.0052C4D4-88258331.0055058E@selinc.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 29 Oct 2018 09:15:27 -0700
-Message-ID: <CAMKF1sqEwRUY+dTs=etHZRttBYRjCmUhWDBq-PthuM+K=isWRw@mail.gmail.com>
-To: hitendra.prajapati@slscorp.com
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Openjdk-8(Version 162b12) crash during runtime
+Date: Mon, 29 Oct 2018 09:29:02 -0700
+Message-ID: <CAMKF1spEcYKNjdKK+fmhYrsfoZYYAb+URR58EDFC7syLoV_Zxg@mail.gmail.com>
+To: Aaron_Wright@selinc.com
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Working on Dependent Recipes in eSDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,52 +76,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2018 16:15:55 -0000
+X-List-Received-Date: Mon, 29 Oct 2018 16:29:31 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Oct 23, 2018 at 3:49 PM Hitendra Prajapati
-<hitendra.prajapati@slscorp.com> wrote:
+On Thu, Oct 25, 2018 at 8:29 AM <Aaron_Wright@selinc.com> wrote:
 >
-> I want to run latest java (version 162b12) which is given in latest
-> meta-java branch (sumo) for the colibri-imx6 module(armv7 architecture)
-> from Toradex.
+> > ChenQi <Qi.Chen@windriver.com> wrote on 10/22/2018 07:04:32 PM:
+> >
+> > Hi Aaron,
+> >
+> > The main pain for now is that `devtool sdk-install <DEPEND_RECIPE>' does
 >
-> Currently I'm using latest poky version Sumo, and all the latest branch
-> for different layers.
+> > not work as expected, right?
+> > I just checked the codes of sdk-install, and found that it does not fit
+> > the current RSS design.
+> > I'd like to check with you if this is the major concern from your team?
+> > Do you have some other concerns?
+> > I'll open enhancements/bugs on bugzilla and hopefully will work on them
+> > in the 2.7 development cycle.
+> >
+> > Best Regards,
+> > Chen Qi
+> >
+> > ... snip ...
 >
-> I'm able to compile latest java successfully., but when i'm trying to
-> run on module its show following error.
+> Well, I'm not quite sure how "devtool sdk-install <DEPENDENT_RECIPE>"
+> relates after "devtool modify <DEPENDENT_RECIPE>" has been called.
 >
-> GCC version: 7.3.0
+> My developers use devtool to install dependent recipes into the eSDK when
+> they start working on something. Often they find that they need to make a
+> change in the library code that a dependent recipe provides. In effect,
+> they are developing a patch for the dependent recipe. So they use devtool
+> to say they're going to modify that dependent recipe, and they go and
+> make the changes they want. Then what? How do they get those changes,
+> that patch, available to the eSDK?
 >
+> Any changes made to the library code provided by the dependent recipe are
+> not available to the eSDK, except through devtool commands. In effect
+> there are two different worlds at play, the eSDK sysroots versus the
+> recipe sysroots. The devtool commands seem to make use of the recipe
+> sysroots, but in my mind that defeats the purpose of an eSDK. So I made
+> a plug-in for devtool were I can force the eSDK sysroots to be updated.
+> I'm not sure how that works, but it seems to propagate the workspace
+> (recipe sysroot land) to the eSDK, so changes that developers make are
+> now available for use.
 >
-> #
-> # A fatal error has been detected by the Java Runtime Environment:
-> #
-> #  Internal Error (os_linux_zero.cpp:254), pid=14001, tid=0x7683a460
-> #  fatal error: caught unhandled signal 11
-> #
-> # JRE version:  (8.0_162-b12) (build )
-> # Java VM: OpenJDK Zero VM (25.162-b12 interpreted mode linux-arm )
-> # Core dump written. Default location: /home/root/core or core.14001
-> #
-> # If you would like to submit a bug report, please visit:
-> #   http://bugreport.java.com/bugreport/crash.jsp
-> #
+> I want my developers to use the toolchain (cmake, make, gcc, etc)
+> provided by the eSDK and by things installed into it
+> (devtool sdk-install), rather than having to use devtool as their
+> iterative build command.
 >
-> for more information you can check attachment.
->
-> please help me on this issue.
->
+> Ultimately, I would like to be able to skip my devtool plug-in, as it
+> requires the use of "devtool build <DEPENDENT_RECIPE>" and
+> "devtool sdk-sysroot" each time a dependent recipe is modified. But I am
+> not sure how that would work, other than the devtool build command
+> should be updating the eSDK sysroots itself.
 
-zeroVM is dying and dumping core, in any case using zeroVM would be
-very slow for you in real world cases since its just an interpreter,
-you might want to build with
-some sort of JVM e.g. hotspot etc.
+I think you have two options here
 
-> Regards,
-> Hitendra Prajapati
->
+1. Feedback the tweaks to packages back into source and re-generate
+SDK and if you setup SDK feeds then users/devs can simply do
+devtool sdk-update
+and this time the package in question will get updated in their SDKs
+with the change that was initiated.
+
+second option could be to generate a downstream derivative SDK using
+devtool build-sdk and use this SDK
+
+
 > --
 > _______________________________________________
 > yocto mailing list
