@@ -1,47 +1,58 @@
-Return-Path: <desai@uni-bremen.de>
+Return-Path: <joe@deserted.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 12DDEE00BBF; Mon, 29 Oct 2018 09:41:17 -0700 (PDT)
+	id EF0CBE00BC8; Mon, 29 Oct 2018 11:31:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [134.102.50.17 listed in list.dnswl.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.53 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from smtp.uni-bremen.de (gabriel-vm-2.zfn.uni-bremen.de
-	[134.102.50.17])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97D3FE00718
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 09:41:15 -0700 (PDT)
-Received: from uni-bremen.de (webmail-1.zfn.uni-bremen.de [134.102.50.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.uni-bremen.de (Postfix) with ESMTPSA id 0AF9126FE6
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 17:41:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=uni-bremen.de; s=dkim;
-	t=1540831274; bh=sftZElT0AqObLsWNqWgXrXoa8QrAa+U5b4RVAWksGig=;
-	h=To:Date:From;
-	b=Ajm4NENntBowjn8Xs3JzPdqK9o6rqSncyMOgoTVpzFgWylckjmqOREU5X7OR3YR5W
-	oxsIc9guESh6wXlkSEPMCgNL9nyhs0ACqqJnM8869q5BkwBx7mkgWdZ+pkgap7elfm
-	3quaGb5aYSsvrMH3XYeGQZmplFplqVLwtquw++L4=
-To: yocto@yoctoproject.org
-Date: Mon, 29 Oct 2018 17:41:13 +0100
-Message-ID: <003001d46fa6$3438d0e0$9caa72a0$@uni-bremen.de>
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
+	[209.85.166.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D09F1E00AC5
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 11:31:58 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id n18-v6so5609578ioa.9
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 11:31:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=deserted-net.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to:cc;
+	bh=gt+8vbVEJGoQDdD+vPhiieuuvwXltQ5W3Gd0WVqpyuc=;
+	b=UldnzG6MHnVkS/lsIEPIYqa1rcJ9QKkjnWU9L2RU7BlK0/1bM5rqKQyZS1VYeR2f7Q
+	ismomwm6bUTN6brZWJIhcSB8pf0Kxm4ukcSkFPFdYuEYT86uL+7jP0B7BpZ4oTu4eBKa
+	/dQ2e9wmOQQB1QSa964IsasyvNv9YFp0Rnto7y7onDuO26AOH2HXiDvnKSyGXnaHjc2W
+	OZN1c5JLKmh2xVoEHTvdNuQAiFlNRZ7jkzcEFsipzjRKf0QJecRfLzWzUYTJv2oRzsia
+	t+GBhCbvkkwNncQZumdKtWb1vgPevBNf1ZeolzK4qw/o1Zla1iYXrDqcJOSFsr1BZ/DK
+	/vAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+	bh=gt+8vbVEJGoQDdD+vPhiieuuvwXltQ5W3Gd0WVqpyuc=;
+	b=LPTDH5xdc50ftdXsvli/cfK8n4r3XmcrFviEwGN0NxvaSuChsm3/XD7XkV61FFxGV9
+	zvOmhmLMAPblv0joR2w2MsNIU+LWK+FZRs3HbPtOrpo4JNHiPFgAUDVNzCLGczKJTZjZ
+	9sjGr280O7GTkk19LcyVvx95kqca32FwYBft3J9HtlHetcIQ1zU5PMBMJgumrK7s/7cL
+	NSRCOMTaGzM3M9HfUDLRwP79GEKdbayfTQSDhsmosfIyfnHacUxtapkaIFrub8mciUCd
+	yYYj3ZFTLh6REqKSZcVPdACN+WTwsOVO6ZIYPfNG5XPOaDObj1jDOUmsd1RM8UL4aWSY
+	QbWQ==
+X-Gm-Message-State: AGRZ1gJHHMujO9ekDXtTPJB2eNxypOwVS2WOk47HLREjPqkSJkz8Ap1+
+	djxekHUB24hqOydFRNpZNIGKcF07lcbeVZOacfTrvLW2+xbAnw==
+X-Google-Smtp-Source: AJdET5fWBKWxMm6VQxp0Yb7Sudh2rcCpZdyACcY/G3axjP/zyhcvxuI4phBfCGmIeoFLeOcWiNm+bzQeLCP8yr2e/mU=
+X-Received: by 2002:a6b:bd45:: with SMTP id
+	n66-v6mr9338436iof.25.1540837917715; 
+	Mon, 29 Oct 2018 11:31:57 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdRvpZw73kQ55XEXSbm0Z5z67zVy1A==
-User-Agent: Horde Application Framework 5
-From: Shantanoo Desai <desai@uni-bremen.de>
-Subject: How to create a golang recipe using devtool
+From: Joe MacDonald <joe@deserted.net>
+Date: Mon, 29 Oct 2018 14:31:46 -0400
+Message-ID: <CANBf+V1cOSgDpoKvmz4shhZEjCKXtYAe9gz13K2PPjuTWf7KRA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: [meta-selinux][sumo][PATCH 0/7] Refpolicy updates for sumo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,138 +64,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2018 16:41:17 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0031_01D46FAE.95FE9870"
-Content-Language: de
+X-List-Received-Date: Mon, 29 Oct 2018 18:32:00 -0000
+Content-Type: multipart/alternative; boundary="000000000000be2680057962482b"
 
-------=_NextPart_000_0031_01D46FAE.95FE9870
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+--000000000000be2680057962482b
+Content-Type: text/plain; charset="UTF-8"
 
-How do I create a recipe for golang open-source repositories using devtool?
+I'm sending this out  as a follow-up to our discussion from last week. This
+set will be placed on the newly-created 'sumo' branch.  I plan to follow up
+with a slightly different version for a new 'thud' branch as well, at which
+point things should be stable enough on those two branches that I can
+finish up the refpolicy update (2.20180701) I'd started a little while
+ago.  After that, I think top of my list is to clean up some (I think
+unintended) behaviour in the _git recipe variants.
 
- 
+Comments / suggestions / etc. more than welcome.
 
-Does it require having Golang installed on the Host machine?
+-- 
+Joe MacDonald
+:wq
 
- 
-
-I understand that one needs to add `inherit go` within the recipe but I am
-looking for a more concrete example as a reference.
-
- 
-
-Initial Steps:
-
- 
-
-Devtool add [recipe-url]
-
-Devtool edit-recipe recipename
-
- 
-
->> add inherit go in the recipe
-
- 
-
-And then what?
-
- 
-
- 
-
-Regards,
-
- 
-
-Shan
-
-
-------=_NextPart_000_0031_01D46FAE.95FE9870
-Content-Type: text/html;
-	charset="us-ascii"
+--000000000000be2680057962482b
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
-HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal><span lang=3DEN-US>How do I create a recipe for golang =
-open-source repositories using devtool?<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Does it require having Golang =
-installed on the Host machine?<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>I understand that one needs to add =
-`inherit go` within the recipe but I am looking for a more concrete =
-example as a reference.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Initial Steps:<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><i><span lang=3DEN-US>Devtool add =
-[recipe-url]<o:p></o:p></span></i></p><p class=3DMsoNormal><i><span =
-lang=3DEN-US>Devtool edit-recipe recipename<o:p></o:p></span></i></p><p =
-class=3DMsoNormal><i><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></i></p><p =
-class=3DMsoNormal><i><span lang=3DEN-US>&gt;&gt; add inherit go in the =
-recipe<o:p></o:p></span></i></p><p class=3DMsoNormal><i><span =
-lang=3DEN-US> <o:p></o:p></span></i></p><p class=3DMsoNormal><i><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></i></p><p =
-class=3DMsoNormal><i><span lang=3DEN-US>And then =
-what?<o:p></o:p></span></i></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Regards,<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Shan<o:p></o:p></span></p></div></body></html>
+<div dir=3D"ltr"><div>I&#39;m sending this out=C2=A0 as a follow-up to our =
+discussion from=C2=A0last week. This set will be placed on the newly-create=
+d &#39;sumo&#39; branch.=C2=A0 I plan to follow up with a slightly differen=
+t version for a new &#39;thud&#39; branch as well, at which point things sh=
+ould be stable enough on those two branches that I can finish up the refpol=
+icy update (2.20180701) I&#39;d started a little while ago.=C2=A0 After tha=
+t, I think top of my list is to clean up some (I think unintended) behaviou=
+r in the _git recipe variants.</div><div><br></div><div>Comments / suggesti=
+ons / etc. more than welcome.</div><div><br></div>-- <br><div dir=3D"ltr" c=
+lass=3D"gmail_signature" data-smartmail=3D"gmail_signature">Joe MacDonald<b=
+r>:wq</div></div>
 
-------=_NextPart_000_0031_01D46FAE.95FE9870--
+--000000000000be2680057962482b--
