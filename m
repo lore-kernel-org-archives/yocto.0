@@ -1,49 +1,62 @@
-Return-Path: <flowers.joseph@gmail.com>
+Return-Path: <zoleelikesdebian@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA3E4E009AA; Mon, 29 Oct 2018 06:20:51 -0700 (PDT)
+	id C076AE009AA; Mon, 29 Oct 2018 06:28:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (zoleelikesdebian[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.50 listed in list.dnswl.org]
+	*      [209.85.208.47 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com
-	[209.85.166.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9BAAE00872
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 06:20:50 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id c6-v6so4893209iob.11
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 06:20:50 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
+	[209.85.208.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE885E00826
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 06:28:11 -0700 (PDT)
+Received: by mail-ed1-f47.google.com with SMTP id t10-v6so7258650eds.12
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 06:28:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=XS9c5KmeFEhg5fdR0/m0THcau1KgZl3xz3dzmuM8kEY=;
+	b=M5BqhgUbc5IHBqFLJE6xHSmBVlhfcx71ygBMrqMaHmObnQfdd+s2nvqGV733dV6cEy
+	aIteVhTx57HJhJsqGYYC4QlgMCabzlfmWAKD2nsbnNdAZUUzkl6cdUPIXXQMvb1rGDcl
+	mLm86BQ3itbpgBN5ZkRHOWYFI5rPt5Hac0cZyFNMvgynufoTdpqtDrr63L7pr+5KaAfo
+	7sJWV6teqCE/JY5w7JvojJFEix2jrc4O7TltHRhLzVAVJl8cYNRzbbLuB6Yyz9dHrGzg
+	acY4CHigVe+caePk5xVWGDssLqaYEv0NBahcAtRENI5Z3x71u2wckHUM501Wcov/hj/J
+	2l1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=T73e92y8yo/+UbD+pDoRvHYo2RyiDL7pJkeZheN+wFc=;
-	b=HcxNyyO/DQDQ+M0DXacbrw614wyvDnoyLT/v+LxQdBRoJc2RAXXg2Fe1DLNnYaznJ/
-	rZaTcpb5L2wc5lqI3Ero9pp8/TbZSGUo6iRq6QqjiES86QgnSgqlfRrjt2ffZzWdYWhA
-	IM8SZVcNyY1+xLS4SzyuY2LKg0CIwS+XdObVqaGzpllqm6yXWMsAxIsBIe1dmZrSsLFH
-	wBQsBJ9nhJ4o4pX70WxX5CNvAnCbkli3aK6GUtZ+QzhGi84WFsJzExHbvjh5Nig4aSoA
-	QyWbTqP9978xLXSly5zilyChOT78pJkfNGl2SlANe1DY0DWvzJE3O1FVFa8WRNVTCKM7
-	UChA==
-X-Gm-Message-State: AGRZ1gIcZ5reuj3ARj2whgjW6QEVElauxkEb11J0h0idsAyJ9W9Ak82U
-	70glTGv54S1nuZ4/H+Fj7RtPceL6F/iGB+PvqA==
-X-Google-Smtp-Source: AJdET5c1N1DfyjzWG4TlkLnHKApHy+FItzEIhU5G0Es8+Krx12uXYwj7HKpnuhYVAuV6Zr93o+P/MSD3bg8AHTNijPc=
-X-Received: by 2002:a6b:e801:: with SMTP id f1-v6mr8103177ioh.19.1540819249920;
-	Mon, 29 Oct 2018 06:20:49 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=XS9c5KmeFEhg5fdR0/m0THcau1KgZl3xz3dzmuM8kEY=;
+	b=XUu6VtbTNJXeoVYBRBq/mOIo1HBSV6fCUNsSvJAN4K5apqknPM0KnEnLNUP+bCyK1f
+	eIxnRz2350pTxi5usGYBjxL1fgXvXm2G0JFeDIBWgMoEHsffwZH42kKclNC5NFm5DtxJ
+	RoMZIQqqgFVqVwigbRUrs59T0eRqcWaZrWFCFfd6p0Z6TZyt7RsKIyiulhJBFi3pqddV
+	/TGfpVGDcq7JTrHlI6ic+edlxI751yyNxzzlXk7ZuRtMO+5RbbCLq5vM7IieYbxxmWV6
+	XVqPx4BSDvclnTtmpA9bFGXom/a/21hPVaD9BWhqvyVAZdRXwioauIu447Is6D1OrNNs
+	kLtw==
+X-Gm-Message-State: AGRZ1gIRKVF0LSXTVEmMDwq6beCOTMXWRKM7ETv3hjYHkEBTo69ad/Ph
+	PQsBlk6qNWiouLY49LXwTwDoANlPJn4HrjjXxfevyTl2ig==
+X-Google-Smtp-Source: AJdET5f4O/hoFDnjR0XA9l3v/SjBfmdOsdraOtHEhnxMRAOM2YT9npg1nNBsgc1A0aFrXcvFO52JcSU9jzIHgZM/L/g=
+X-Received: by 2002:a50:ee91:: with SMTP id
+	f17-v6mr13666427edr.136.1540819690474; 
+	Mon, 29 Oct 2018 06:28:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <CA+4=ZEPrnNxV5HAwZ-KA98vFLHzqYbo0MHAb+mj+aq_cr=pHig@mail.gmail.com>
-	<CAJTo0LbZTFEEeaZ1hn-7D5XJnurXBDK6FRMT-79wJ8rMWTNicA@mail.gmail.com>
-In-Reply-To: <CAJTo0LbZTFEEeaZ1hn-7D5XJnurXBDK6FRMT-79wJ8rMWTNicA@mail.gmail.com>
-From: Joe Flowers <joe.flowers@nofreewill.com>
-Date: Mon, 29 Oct 2018 09:20:40 -0400
-Message-ID: <CA+4=ZEMiTA8OZSqibcnfU=_POt8+68hwcx9EGX7Ahy2R6TZOiA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: "bitbake core-image-sato" yields "No package 'gdk-x11-3.0' found" build failure
+From: Zolee K <zoleelikesdebian@gmail.com>
+Date: Mon, 29 Oct 2018 14:27:59 +0100
+Message-ID: <CAK4Yt2nqnLp8PgtVHn+sktegHP31C2s4wgxp9NQuh4-navWLKA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: adding own shell script to the image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,445 +68,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2018 13:20:51 -0000
-X-Groupsio-MsgNum: 42938
-Content-Type: multipart/mixed; boundary="0000000000000e2c5e05795df052"
+X-List-Received-Date: Mon, 29 Oct 2018 13:28:13 -0000
+Content-Type: multipart/alternative; boundary="000000000000504e7a05795e0a8f"
 
---0000000000000e2c5e05795df052
-Content-Type: multipart/alternative; boundary="0000000000000e2c5a05795df050"
-
---0000000000000e2c5a05795df050
+--000000000000504e7a05795e0a8f
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks, Ross.
+Hi All,
 
-1.
-Both of these commands worked:
+I'm struggling with this:
 
-MACHINE=wandboard bitbake core-image-x11
-MACHINE=wandboard bitbake gtk+3
+The error message:
 
-2.
-I've attached my local.conf.
+/home/..../recipes-z/testing/testing.bb: Unable to get checksum for testing
+SRC_URI entry testscript: *file could not be found*
+Which I don't understand, since the file is definitaly there:-(
+Could you please help me out with this?
 
-If the attachment does not go through, then I will copy and paste it into
-my next message.
+#############################################
+this is my test folder:
 
-Thanks!
+testing/
+=E2=94=9C=E2=94=80=E2=94=80 file
+=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 testscript
+=E2=94=94=E2=94=80=E2=94=80 testing.bb
+#############################################
+cat testing/testing.bb
+DESCRIPTION =3D "test script"
+LICENSE =3D "Z"
+SRC_URI =3D "file://testscript"
+SRC_URI[md5sum] =3D "e51375ed8c617ea7a6ac39b81c757e39"
+do_install() {
+    install -d ${D}${bindir}
+    install -m 0770 testscript ${D}${bindir}
+}
+###############################################
+cat testing/file/testscript
+#!/bin/sh
+echo "hello world"
 
-Joe
--------------------------------
-
-
-On Mon, Oct 29, 2018 at 7:54 AM Burton, Ross <ross.burton@intel.com> wrote:
-
-> Can you share your local.conf?  Does bitbake gtk+3 work?
->
-> Ross
-> On Mon, 29 Oct 2018 at 06:42, Joe Flowers <joe.flowers@nofreewill.com>
-> wrote:
-> >
-> > Hello everyone,
-> >
-> > 1.
-> > I am trying to build a core-image-sato image for a WandBoard but am
-> getting stuck at this error message:
-> >
-> > "| No package 'gdk-x11-3.0' found"
-> >
-> > See below for more details.
-> >
-> >
-> > 2.
-> > I have grepped this list's archives and run into someone with the same
-> problem, but a solution was never included in the thread.
-> >
-> > https://lists.yoctoproject.org/pipermail/yocto/2017-December/039149.html
-> >
-> >
-> > Help please.
-> >
-> > Joe
-> >
-> > ------------------------------
-> >
-> > Command
-> >
-> > MACHINE=wandboard bitbake core-image-sato
-> >
-> > produces this error message:
-> >
-> > ...
-> > ...
-> > | checking for pkg-config...
-> /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/recipe-sysroot-native/usr/bin/pkg-config
-> > | configure: WARNING: using cross tools not prefixed with host triplet
-> > | checking pkg-config is at least version 0.9.0... yes
-> > | checking for glib-2.0
-> > |                   gmodule-export-2.0
-> > |                   x11
-> > |                   gdk-x11-3.0
-> > |                   gtk+-3.0... no
-> > | configure: error: Package requirements (glib-2.0
-> > |                   gmodule-export-2.0
-> > |                   x11
-> > |                   gdk-x11-3.0
-> > |                   gtk+-3.0) were not met:
-> > |
-> > | No package 'gdk-x11-3.0' found
-> > |
-> > | Consider adjusting the PKG_CONFIG_PATH environment variable if you
-> > | installed software in a non-standard prefix.
-> > |
-> > | Alternatively, you may set the environment variables
-> MATCHBOX_PANEL_CFLAGS
-> > | and MATCHBOX_PANEL_LIBS to avoid the need to call pkg-config.
-> > | See the pkg-config man page for more details.
-> > | NOTE: The following config.log files may provide further information.
-> > | NOTE:
-> /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/build/config.log
-> > | ERROR: configure failed
-> > | WARNING: exit code 1 from a shell command.
-> > | ERROR: Function failed: do_configure (log file is located at
-> /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/temp/log.do_configure.40754)
-> > ERROR: Task
-> (/opt/yocto/sources/poky/meta/recipes-sato/matchbox-panel-2/matchbox-panel-2_2.11.bb:do_configure)
-> failed with exit code '1'
-> > NOTE: Tasks Summary: Attempted 3024 tasks of which 2828 didn't need to
-> be rerun and 1 failed.
-> >
-> > Summary: 1 task failed:
-> >
->  /opt/yocto/sources/poky/meta/recipes-sato/matchbox-panel-2/matchbox-panel-2_2.11.bb:
-> do_configure
-> > Summary: There were 2 ERROR messages shown, returning a non-zero exit
-> code.
-> > joe@ubuntu:/opt/yocto/build$
-> >
-> > ------------------------------
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->
-
---0000000000000e2c5a05795df050
+--000000000000504e7a05795e0a8f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Thanks, Ross.<div><br></div><div>1.</div>=
-<div><div>Both of these commands worked:</div><div><br></div><div>MACHINE=
-=3Dwandboard bitbake core-image-x11</div><div>MACHINE=3Dwandboard bitbake g=
-tk+3</div></div><div><br></div><div>2.</div><div>I&#39;ve attached my local=
-.conf.</div><div><br></div><div>If the attachment does not go through, then=
- I will copy and paste it into my next message.</div><div><br></div><div>Th=
-anks!</div><div><br></div><div>Joe</div><div>------------------------------=
--</div><div><br></div><div><br></div></div><div class=3D"gmail_quote"><div =
-dir=3D"ltr">On Mon, Oct 29, 2018 at 7:54 AM Burton, Ross &lt;<a href=3D"mai=
-lto:ross.burton@intel.com">ross.burton@intel.com</a>&gt; wrote:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
-#ccc solid;padding-left:1ex">Can you share your local.conf?=C2=A0 Does bitb=
-ake gtk+3 work?<br>
-<br>
-Ross<br>
-On Mon, 29 Oct 2018 at 06:42, Joe Flowers &lt;<a href=3D"mailto:joe.flowers=
-@nofreewill.com" target=3D"_blank">joe.flowers@nofreewill.com</a>&gt; wrote=
-:<br>
-&gt;<br>
-&gt; Hello everyone,<br>
-&gt;<br>
-&gt; 1.<br>
-&gt; I am trying to build a core-image-sato image for a WandBoard but am ge=
-tting stuck at this error message:<br>
-&gt;<br>
-&gt; &quot;| No package &#39;gdk-x11-3.0&#39; found&quot;<br>
-&gt;<br>
-&gt; See below for more details.<br>
-&gt;<br>
-&gt;<br>
-&gt; 2.<br>
-&gt; I have grepped this list&#39;s archives and run into someone with the =
-same problem, but a solution was never included in the thread.<br>
-&gt;<br>
-&gt; <a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2017-Decembe=
-r/039149.html" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproj=
-ect.org/pipermail/yocto/2017-December/039149.html</a><br>
-&gt;<br>
-&gt;<br>
-&gt; Help please.<br>
-&gt;<br>
-&gt; Joe<br>
-&gt;<br>
-&gt; ------------------------------<br>
-&gt;<br>
-&gt; Command<br>
-&gt;<br>
-&gt; MACHINE=3Dwandboard bitbake core-image-sato<br>
-&gt;<br>
-&gt; produces this error message:<br>
-&gt;<br>
-&gt; ...<br>
-&gt; ...<br>
-&gt; | checking for pkg-config... /opt/yocto/build/tmp/work/cortexa9hf-neon=
--poky-linux-gnueabi/matchbox-panel-2/2.11-r0/recipe-sysroot-native/usr/bin/=
-pkg-config<br>
-&gt; | configure: WARNING: using cross tools not prefixed with host triplet=
-<br>
-&gt; | checking pkg-config is at least version 0.9.0... yes<br>
-&gt; | checking for glib-2.0<br>
-&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-gmodule-export-2.0<br>
-&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-x11<br>
-&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-gdk-x11-3.0<br>
-&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-gtk+-3.0... no<br>
-&gt; | configure: error: Package requirements (glib-2.0<br>
-&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-gmodule-export-2.0<br>
-&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-x11<br>
-&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-gdk-x11-3.0<br>
-&gt; |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-gtk+-3.0) were not met:<br>
-&gt; |<br>
-&gt; | No package &#39;gdk-x11-3.0&#39; found<br>
-&gt; |<br>
-&gt; | Consider adjusting the PKG_CONFIG_PATH environment variable if you<b=
-r>
-&gt; | installed software in a non-standard prefix.<br>
-&gt; |<br>
-&gt; | Alternatively, you may set the environment variables MATCHBOX_PANEL_=
-CFLAGS<br>
-&gt; | and MATCHBOX_PANEL_LIBS to avoid the need to call pkg-config.<br>
-&gt; | See the pkg-config man page for more details.<br>
-&gt; | NOTE: The following config.log files may provide further information=
-.<br>
-&gt; | NOTE: /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/m=
-atchbox-panel-2/2.11-r0/build/config.log<br>
-&gt; | ERROR: configure failed<br>
-&gt; | WARNING: exit code 1 from a shell command.<br>
-&gt; | ERROR: Function failed: do_configure (log file is located at /opt/yo=
-cto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11=
--r0/temp/log.do_configure.40754)<br>
-&gt; ERROR: Task (/opt/yocto/sources/poky/meta/recipes-sato/matchbox-panel-=
-2/matchbox-panel-2_2.11.bb:do_configure) failed with exit code &#39;1&#39;<=
-br>
-&gt; NOTE: Tasks Summary: Attempted 3024 tasks of which 2828 didn&#39;t nee=
-d to be rerun and 1 failed.<br>
-&gt;<br>
-&gt; Summary: 1 task failed:<br>
-&gt;=C2=A0 =C2=A0/opt/yocto/sources/poky/meta/recipes-sato/matchbox-panel-2=
-/matchbox-panel-2_2.11.bb:do_configure<br>
-&gt; Summary: There were 2 ERROR messages shown, returning a non-zero exit =
-code.<br>
-&gt; joe@ubuntu:/opt/yocto/build$<br>
-&gt;<br>
-&gt; ------------------------------<br>
-&gt;<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
-</blockquote></div></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi All,</div><div><br></div><div>I&#=
+39;m struggling with this:</div><div><br></div><div>The error message:<br><=
+br>/home/..../recipes-z/testing/<a href=3D"http://testing.bb">testing.bb</a=
+>: Unable to get checksum for testing SRC_URI entry testscript: <b>file cou=
+ld not be found</b></div><div>Which I don&#39;t understand, since the file =
+is definitaly there:-(</div><div>Could you please help me out with this?<b>=
+<br></b></div><div><b></b></div><div><br><font size=3D"1">#################=
+############################<br>this is my test folder:<br><br>testing/<br>=
+=E2=94=9C=E2=94=80=E2=94=80 file<br>=E2=94=82=C2=A0=C2=A0 =E2=94=94=E2=94=
+=80=E2=94=80 testscript<br>=E2=94=94=E2=94=80=E2=94=80 <a href=3D"http://te=
+sting.bb">testing.bb</a><br>#############################################<b=
+r>cat testing/<a href=3D"http://testing.bb">testing.bb</a><br>DESCRIPTION =
+=3D &quot;test script&quot;<br>LICENSE =3D &quot;Z&quot;<br>SRC_URI =3D &qu=
+ot;file://testscript&quot;<br>SRC_URI[md5sum] =3D &quot;e51375ed8c617ea7a6a=
+c39b81c757e39&quot;<br>do_install() {<br>=C2=A0=C2=A0=C2=A0 install -d ${D}=
+${bindir}<br>=C2=A0=C2=A0=C2=A0 install -m 0770 testscript ${D}${bindir}<br=
+>}<br>###############################################<br>cat testing/file/t=
+estscript<br>#!/bin/sh<br>echo &quot;hello world&quot;</font><br></div></di=
+v></div>
 
---0000000000000e2c5a05795df050--
-
---0000000000000e2c5e05795df052
-Content-Type: application/octet-stream; name="local.conf"
-Content-Disposition: attachment; filename="local.conf"
-Content-Transfer-Encoding: base64
-Content-ID: <f_jnubzlv40>
-X-Attachment-Id: f_jnubzlv40
-
-IwojIFRoaXMgZmlsZSBpcyB5b3VyIGxvY2FsIGNvbmZpZ3VyYXRpb24gZmlsZSBhbmQgaXMgd2hl
-cmUgYWxsIGxvY2FsIHVzZXIgc2V0dGluZ3MKIyBhcmUgcGxhY2VkLiBUaGUgY29tbWVudHMgaW4g
-dGhpcyBmaWxlIGdpdmUgc29tZSBndWlkZSB0byB0aGUgb3B0aW9ucyBhIG5ldyB1c2VyCiMgdG8g
-dGhlIHN5c3RlbSBtaWdodCB3YW50IHRvIGNoYW5nZSBidXQgcHJldHR5IG11Y2ggYW55IGNvbmZp
-Z3VyYXRpb24gb3B0aW9uIGNhbgojIGJlIHNldCBpbiB0aGlzIGZpbGUuIE1vcmUgYWR2ZW50dXJv
-dXMgdXNlcnMgY2FuIGxvb2sgYXQgbG9jYWwuY29uZi5leHRlbmRlZAojIHdoaWNoIGNvbnRhaW5z
-IG90aGVyIGV4YW1wbGVzIG9mIGNvbmZpZ3VyYXRpb24gd2hpY2ggY2FuIGJlIHBsYWNlZCBpbiB0
-aGlzIGZpbGUKIyBidXQgbmV3IHVzZXJzIGxpa2VseSB3b24ndCBuZWVkIGFueSBvZiB0aGVtIGlu
-aXRpYWxseS4KIwojIExpbmVzIHN0YXJ0aW5nIHdpdGggdGhlICcjJyBjaGFyYWN0ZXIgYXJlIGNv
-bW1lbnRlZCBvdXQgYW5kIGluIHNvbWUgY2FzZXMgdGhlCiMgZGVmYXVsdCB2YWx1ZXMgYXJlIHBy
-b3ZpZGVkIGFzIGNvbW1lbnRzIHRvIHNob3cgcGVvcGxlIGV4YW1wbGUgc3ludGF4LiBFbmFibGlu
-ZwojIHRoZSBvcHRpb24gaXMgYSBxdWVzdGlvbiBvZiByZW1vdmluZyB0aGUgIyBjaGFyYWN0ZXIg
-YW5kIG1ha2luZyBhbnkgY2hhbmdlIHRvIHRoZQojIHZhcmlhYmxlIGFzIHJlcXVpcmVkLgoKIwoj
-IE1hY2hpbmUgU2VsZWN0aW9uCiMKIyBZb3UgbmVlZCB0byBzZWxlY3QgYSBzcGVjaWZpYyBtYWNo
-aW5lIHRvIHRhcmdldCB0aGUgYnVpbGQgd2l0aC4gVGhlcmUgYXJlIGEgc2VsZWN0aW9uCiMgb2Yg
-ZW11bGF0ZWQgbWFjaGluZXMgYXZhaWxhYmxlIHdoaWNoIGNhbiBib290IGFuZCBydW4gaW4gdGhl
-IFFFTVUgZW11bGF0b3I6CiMKI01BQ0hJTkUgPz0gInFlbXVhcm0iCiNNQUNISU5FID89ICJxZW11
-YXJtNjQiCiNNQUNISU5FID89ICJxZW11bWlwcyIKI01BQ0hJTkUgPz0gInFlbXVtaXBzNjQiCiNN
-QUNISU5FID89ICJxZW11cHBjIgojTUFDSElORSA/PSAicWVtdXg4NiIKI01BQ0hJTkUgPz0gInFl
-bXV4ODYtNjQiCiMKIyBUaGVyZSBhcmUgYWxzbyB0aGUgZm9sbG93aW5nIGhhcmR3YXJlIGJvYXJk
-IHRhcmdldCBtYWNoaW5lcyBpbmNsdWRlZCBmb3IgCiMgZGVtb25zdHJhdGlvbiBwdXJwb3NlczoK
-IwojTUFDSElORSA/PSAiYmVhZ2xlYm9uZSIKI01BQ0hJTkUgPz0gImdlbmVyaWN4ODYiCiNNQUNI
-SU5FID89ICJnZW5lcmljeDg2LTY0IgojTUFDSElORSA/PSAibXBjODMxNWUtcmRiIgojTUFDSElO
-RSA/PSAiZWRnZXJvdXRlciIKIwojIFRoaXMgc2V0cyB0aGUgZGVmYXVsdCBtYWNoaW5lIHRvIGJl
-IHFlbXV4ODYgaWYgbm8gb3RoZXIgbWFjaGluZSBpcyBzZWxlY3RlZDoKTUFDSElORSA/Pz0gInFl
-bXV4ODYiCgojCiMgV2hlcmUgdG8gcGxhY2UgZG93bmxvYWRzCiMKIyBEdXJpbmcgYSBmaXJzdCBi
-dWlsZCB0aGUgc3lzdGVtIHdpbGwgZG93bmxvYWQgbWFueSBkaWZmZXJlbnQgc291cmNlIGNvZGUg
-dGFyYmFsbHMKIyBmcm9tIHZhcmlvdXMgdXBzdHJlYW0gcHJvamVjdHMuIFRoaXMgY2FuIHRha2Ug
-YSB3aGlsZSwgcGFydGljdWxhcmx5IGlmIHlvdXIgbmV0d29yawojIGNvbm5lY3Rpb24gaXMgc2xv
-dy4gVGhlc2UgYXJlIGFsbCBzdG9yZWQgaW4gRExfRElSLiBXaGVuIHdpcGluZyBhbmQgcmVidWls
-ZGluZyB5b3UKIyBjYW4gcHJlc2VydmUgdGhpcyBkaXJlY3RvcnkgdG8gc3BlZWQgdXAgdGhpcyBw
-YXJ0IG9mIHN1YnNlcXVlbnQgYnVpbGRzLiBUaGlzIGRpcmVjdG9yeQojIGlzIHNhZmUgdG8gc2hh
-cmUgYmV0d2VlbiBtdWx0aXBsZSBidWlsZHMgb24gdGhlIHNhbWUgbWFjaGluZSB0b28uCiMKIyBU
-aGUgZGVmYXVsdCBpcyBhIGRvd25sb2FkcyBkaXJlY3RvcnkgdW5kZXIgVE9QRElSIHdoaWNoIGlz
-IHRoZSBidWlsZCBkaXJlY3RvcnkuCiMKI0RMX0RJUiA/PSAiJHtUT1BESVJ9L2Rvd25sb2FkcyIK
-CiMKIyBXaGVyZSB0byBwbGFjZSBzaGFyZWQtc3RhdGUgZmlsZXMKIwojIEJpdEJha2UgaGFzIHRo
-ZSBjYXBhYmlsaXR5IHRvIGFjY2VsZXJhdGUgYnVpbGRzIGJhc2VkIG9uIHByZXZpb3VzbHkgYnVp
-bHQgb3V0cHV0LgojIFRoaXMgaXMgZG9uZSB1c2luZyAic2hhcmVkIHN0YXRlIiBmaWxlcyB3aGlj
-aCBjYW4gYmUgdGhvdWdodCBvZiBhcyBjYWNoZSBvYmplY3RzCiMgYW5kIHRoaXMgb3B0aW9uIGRl
-dGVybWluZXMgd2hlcmUgdGhvc2UgZmlsZXMgYXJlIHBsYWNlZC4KIwojIFlvdSBjYW4gd2lwZSBv
-dXQgVE1QRElSIGxlYXZpbmcgdGhpcyBkaXJlY3RvcnkgaW50YWN0IGFuZCB0aGUgYnVpbGQgd291
-bGQgcmVnZW5lcmF0ZQojIGZyb20gdGhlc2UgZmlsZXMgaWYgbm8gY2hhbmdlcyB3ZXJlIG1hZGUg
-dG8gdGhlIGNvbmZpZ3VyYXRpb24uIElmIGNoYW5nZXMgd2VyZSBtYWRlCiMgdG8gdGhlIGNvbmZp
-Z3VyYXRpb24sIG9ubHkgc2hhcmVkIHN0YXRlIGZpbGVzIHdoZXJlIHRoZSBzdGF0ZSB3YXMgc3Rp
-bGwgdmFsaWQgd291bGQKIyBiZSB1c2VkIChkb25lIHVzaW5nIGNoZWNrc3VtcykuCiMKIyBUaGUg
-ZGVmYXVsdCBpcyBhIHNzdGF0ZS1jYWNoZSBkaXJlY3RvcnkgdW5kZXIgVE9QRElSLgojCiNTU1RB
-VEVfRElSID89ICIke1RPUERJUn0vc3N0YXRlLWNhY2hlIgoKIwojIFdoZXJlIHRvIHBsYWNlIHRo
-ZSBidWlsZCBvdXRwdXQKIwojIFRoaXMgb3B0aW9uIHNwZWNpZmllcyB3aGVyZSB0aGUgYnVsayBv
-ZiB0aGUgYnVpbGRpbmcgd29yayBzaG91bGQgYmUgZG9uZSBhbmQKIyB3aGVyZSBCaXRCYWtlIHNo
-b3VsZCBwbGFjZSBpdHMgdGVtcG9yYXJ5IGZpbGVzIGFuZCBvdXRwdXQuIEtlZXAgaW4gbWluZCB0
-aGF0CiMgdGhpcyBpbmNsdWRlcyB0aGUgZXh0cmFjdGlvbiBhbmQgY29tcGlsYXRpb24gb2YgbWFu
-eSBhcHBsaWNhdGlvbnMgYW5kIHRoZSB0b29sY2hhaW4KIyB3aGljaCBjYW4gdXNlIEdpZ2FieXRl
-cyBvZiBoYXJkIGRpc2sgc3BhY2UuCiMKIyBUaGUgZGVmYXVsdCBpcyBhIHRtcCBkaXJlY3Rvcnkg
-dW5kZXIgVE9QRElSLgojCiNUTVBESVIgPSAiJHtUT1BESVJ9L3RtcCIKCiMKIyBEZWZhdWx0IHBv
-bGljeSBjb25maWcKIwojIFRoZSBkaXN0cmlidXRpb24gc2V0dGluZyBjb250cm9scyB3aGljaCBw
-b2xpY3kgc2V0dGluZ3MgYXJlIHVzZWQgYXMgZGVmYXVsdHMuCiMgVGhlIGRlZmF1bHQgdmFsdWUg
-aXMgZmluZSBmb3IgZ2VuZXJhbCBZb2N0byBwcm9qZWN0IHVzZSwgYXQgbGVhc3QgaW5pdGlhbGx5
-LgojIFVsdGltYXRlbHkgd2hlbiBjcmVhdGluZyBjdXN0b20gcG9saWN5LCBwZW9wbGUgd2lsbCBs
-aWtlbHkgZW5kIHVwIHN1YmNsYXNzaW5nIAojIHRoZXNlIGRlZmF1bHRzLgojCkRJU1RSTyA/PSAi
-cG9reSIKIyBBcyBhbiBleGFtcGxlIG9mIGEgc3ViY2xhc3MgdGhlcmUgaXMgYSAiYmxlZWRpbmci
-IGVkZ2UgcG9saWN5IGNvbmZpZ3VyYXRpb24KIyB3aGVyZSBtYW55IHZlcnNpb25zIGFyZSBzZXQg
-dG8gdGhlIGFic29sdXRlIGxhdGVzdCBjb2RlIGZyb20gdGhlIHVwc3RyZWFtIAojIHNvdXJjZSBj
-b250cm9sIHN5c3RlbXMuIFRoaXMgaXMganVzdCBtZW50aW9uZWQgaGVyZSBhcyBhbiBleGFtcGxl
-LCBpdHMgbm90CiMgdXNlZnVsIHRvIG1vc3QgbmV3IHVzZXJzLgojIERJU1RSTyA/PSAicG9reS1i
-bGVlZGluZyIKCiMKIyBQYWNrYWdlIE1hbmFnZW1lbnQgY29uZmlndXJhdGlvbgojCiMgVGhpcyB2
-YXJpYWJsZSBsaXN0cyB3aGljaCBwYWNrYWdpbmcgZm9ybWF0cyB0byBlbmFibGUuIE11bHRpcGxl
-IHBhY2thZ2UgYmFja2VuZHMKIyBjYW4gYmUgZW5hYmxlZCBhdCBvbmNlIGFuZCB0aGUgZmlyc3Qg
-aXRlbSBsaXN0ZWQgaW4gdGhlIHZhcmlhYmxlIHdpbGwgYmUgdXNlZAojIHRvIGdlbmVyYXRlIHRo
-ZSByb290IGZpbGVzeXN0ZW1zLgojIE9wdGlvbnMgYXJlOgojICAtICdwYWNrYWdlX2RlYicgZm9y
-IGRlYmlhbiBzdHlsZSBkZWIgZmlsZXMKIyAgLSAncGFja2FnZV9pcGsnIGZvciBpcGsgZmlsZXMg
-YXJlIHVzZWQgYnkgb3BrZyAoYSBkZWJpYW4gc3R5bGUgZW1iZWRkZWQgcGFja2FnZSBtYW5hZ2Vy
-KQojICAtICdwYWNrYWdlX3JwbScgZm9yIHJwbSBzdHlsZSBwYWNrYWdlcwojIEUuZy46IFBBQ0tB
-R0VfQ0xBU1NFUyA/PSAicGFja2FnZV9ycG0gcGFja2FnZV9kZWIgcGFja2FnZV9pcGsiCiMgV2Ug
-ZGVmYXVsdCB0byBycG06ClBBQ0tBR0VfQ0xBU1NFUyA/PSAicGFja2FnZV9ycG0iCgojCiMgU0RL
-IHRhcmdldCBhcmNoaXRlY3R1cmUKIwojIFRoaXMgdmFyaWFibGUgc3BlY2lmaWVzIHRoZSBhcmNo
-aXRlY3R1cmUgdG8gYnVpbGQgU0RLIGl0ZW1zIGZvciBhbmQgbWVhbnMKIyB5b3UgY2FuIGJ1aWxk
-IHRoZSBTREsgcGFja2FnZXMgZm9yIGFyY2hpdGVjdHVyZXMgb3RoZXIgdGhhbiB0aGUgbWFjaGlu
-ZSB5b3UgYXJlCiMgcnVubmluZyB0aGUgYnVpbGQgb24gKGkuZS4gYnVpbGRpbmcgaTY4NiBwYWNr
-YWdlcyBvbiBhbiB4ODZfNjQgaG9zdCkuCiMgU3VwcG9ydGVkIHZhbHVlcyBhcmUgaTY4NiBhbmQg
-eDg2XzY0CiNTREtNQUNISU5FID89ICJpNjg2IgoKIwojIEV4dHJhIGltYWdlIGNvbmZpZ3VyYXRp
-b24gZGVmYXVsdHMKIwojIFRoZSBFWFRSQV9JTUFHRV9GRUFUVVJFUyB2YXJpYWJsZSBhbGxvd3Mg
-ZXh0cmEgcGFja2FnZXMgdG8gYmUgYWRkZWQgdG8gdGhlIGdlbmVyYXRlZAojIGltYWdlcy4gU29t
-ZSBvZiB0aGVzZSBvcHRpb25zIGFyZSBhZGRlZCB0byBjZXJ0YWluIGltYWdlIHR5cGVzIGF1dG9t
-YXRpY2FsbHkuIFRoZQojIHZhcmlhYmxlIGNhbiBjb250YWluIHRoZSBmb2xsb3dpbmcgb3B0aW9u
-czoKIyAgImRiZy1wa2dzIiAgICAgICAtIGFkZCAtZGJnIHBhY2thZ2VzIGZvciBhbGwgaW5zdGFs
-bGVkIHBhY2thZ2VzCiMgICAgICAgICAgICAgICAgICAgICAoYWRkcyBzeW1ib2wgaW5mb3JtYXRp
-b24gZm9yIGRlYnVnZ2luZy9wcm9maWxpbmcpCiMgICJkZXYtcGtncyIgICAgICAgLSBhZGQgLWRl
-diBwYWNrYWdlcyBmb3IgYWxsIGluc3RhbGxlZCBwYWNrYWdlcwojICAgICAgICAgICAgICAgICAg
-ICAgKHVzZWZ1bCBpZiB5b3Ugd2FudCB0byBkZXZlbG9wIGFnYWluc3QgbGlicyBpbiB0aGUgaW1h
-Z2UpCiMgICJwdGVzdC1wa2dzIiAgICAgLSBhZGQgLXB0ZXN0IHBhY2thZ2VzIGZvciBhbGwgcHRl
-c3QtZW5hYmxlZCBwYWNrYWdlcwojICAgICAgICAgICAgICAgICAgICAgKHVzZWZ1bCBpZiB5b3Ug
-d2FudCB0byBydW4gdGhlIHBhY2thZ2UgdGVzdCBzdWl0ZXMpCiMgICJ0b29scy1zZGsiICAgICAg
-LSBhZGQgZGV2ZWxvcG1lbnQgdG9vbHMgKGdjYywgbWFrZSwgcGtnY29uZmlnIGV0Yy4pCiMgICJ0
-b29scy1kZWJ1ZyIgICAgLSBhZGQgZGVidWdnaW5nIHRvb2xzIChnZGIsIHN0cmFjZSkKIyAgImVj
-bGlwc2UtZGVidWciICAtIGFkZCBFY2xpcHNlIHJlbW90ZSBkZWJ1Z2dpbmcgc3VwcG9ydAojICAi
-dG9vbHMtcHJvZmlsZSIgIC0gYWRkIHByb2ZpbGluZyB0b29scyAob3Byb2ZpbGUsIGx0dG5nLCB2
-YWxncmluZCkKIyAgInRvb2xzLXRlc3RhcHBzIiAtIGFkZCB1c2VmdWwgdGVzdGluZyB0b29scyAo
-dHNfcHJpbnQsIGFwbGF5LCBhcmVjb3JkIGV0Yy4pCiMgICJkZWJ1Zy10d2Vha3MiICAgLSBtYWtl
-IGFuIGltYWdlIHN1aXRhYmxlIGZvciBkZXZlbG9wbWVudAojICAgICAgICAgICAgICAgICAgICAg
-ZS5nLiBzc2ggcm9vdCBhY2Nlc3MgaGFzIGEgYmxhbmsgcGFzc3dvcmQKIyBUaGVyZSBhcmUgb3Ro
-ZXIgYXBwbGljYXRpb24gdGFyZ2V0cyB0aGF0IGNhbiBiZSB1c2VkIGhlcmUgdG9vLCBzZWUKIyBt
-ZXRhL2NsYXNzZXMvaW1hZ2UuYmJjbGFzcyBhbmQgbWV0YS9jbGFzc2VzL2NvcmUtaW1hZ2UuYmJj
-bGFzcyBmb3IgbW9yZSBkZXRhaWxzLgojIFdlIGRlZmF1bHQgdG8gZW5hYmxpbmcgdGhlIGRlYnVn
-Z2luZyB0d2Vha3MuCkVYVFJBX0lNQUdFX0ZFQVRVUkVTID89ICJkZWJ1Zy10d2Vha3MiCgojCiMg
-QWRkaXRpb25hbCBpbWFnZSBmZWF0dXJlcwojCiMgVGhlIGZvbGxvd2luZyBpcyBhIGxpc3Qgb2Yg
-YWRkaXRpb25hbCBjbGFzc2VzIHRvIHVzZSB3aGVuIGJ1aWxkaW5nIGltYWdlcyB3aGljaAojIGVu
-YWJsZSBleHRyYSBmZWF0dXJlcy4gU29tZSBhdmFpbGFibGUgb3B0aW9ucyB3aGljaCBjYW4gYmUg
-aW5jbHVkZWQgaW4gdGhpcyB2YXJpYWJsZQojIGFyZToKIyAgIC0gJ2J1aWxkc3RhdHMnIGNvbGxl
-Y3QgYnVpbGQgc3RhdGlzdGljcwojICAgLSAnaW1hZ2UtbWtsaWJzJyB0byByZWR1Y2Ugc2hhcmVk
-IGxpYnJhcnkgZmlsZXMgc2l6ZSBmb3IgYW4gaW1hZ2UKIyAgIC0gJ2ltYWdlLXByZWxpbmsnIGlu
-IG9yZGVyIHRvIHByZWxpbmsgdGhlIGZpbGVzeXN0ZW0gaW1hZ2UKIyBOT1RFOiBpZiBsaXN0aW5n
-IG1rbGlicyAmIHByZWxpbmsgYm90aCwgdGhlbiBtYWtlIHN1cmUgbWtsaWJzIGlzIGJlZm9yZSBw
-cmVsaW5rCiMgTk9URTogbWtsaWJzIGFsc28gbmVlZHMgdG8gYmUgZXhwbGljaXRseSBlbmFibGVk
-IGZvciBhIGdpdmVuIGltYWdlLCBzZWUgbG9jYWwuY29uZi5leHRlbmRlZApVU0VSX0NMQVNTRVMg
-Pz0gImJ1aWxkc3RhdHMgaW1hZ2UtbWtsaWJzIGltYWdlLXByZWxpbmsiCgojCiMgUnVudGltZSB0
-ZXN0aW5nIG9mIGltYWdlcwojCiMgVGhlIGJ1aWxkIHN5c3RlbSBjYW4gdGVzdCBib290aW5nIHZp
-cnR1YWwgbWFjaGluZSBpbWFnZXMgdW5kZXIgcWVtdSAoYW4gZW11bGF0b3IpCiMgYWZ0ZXIgYW55
-IHJvb3QgZmlsZXN5c3RlbXMgYXJlIGNyZWF0ZWQgYW5kIHJ1biB0ZXN0cyBhZ2FpbnN0IHRob3Nl
-IGltYWdlcy4gVG8KIyBlbmFibGUgdGhpcyB1bmNvbW1lbnQgdGhpcyBsaW5lLiBTZWUgY2xhc3Nl
-cy90ZXN0aW1hZ2UoLWF1dG8pLmJiY2xhc3MgZm9yCiMgZnVydGhlciBkZXRhaWxzLgojVEVTVF9J
-TUFHRSA9ICIxIgojCiMgSW50ZXJhY3RpdmUgc2hlbGwgY29uZmlndXJhdGlvbgojCiMgVW5kZXIg
-Y2VydGFpbiBjaXJjdW1zdGFuY2VzIHRoZSBzeXN0ZW0gbWF5IG5lZWQgaW5wdXQgZnJvbSB5b3Ug
-YW5kIHRvIGRvIHRoaXMgaXQKIyBjYW4gbGF1bmNoIGFuIGludGVyYWN0aXZlIHNoZWxsLiBJdCBu
-ZWVkcyB0byBkbyB0aGlzIHNpbmNlIHRoZSBidWlsZCBpcwojIG11bHRpdGhyZWFkZWQgYW5kIG5l
-ZWRzIHRvIGJlIGFibGUgdG8gaGFuZGxlIHRoZSBjYXNlIHdoZXJlIG1vcmUgdGhhbiBvbmUgcGFy
-YWxsZWwKIyBwcm9jZXNzIG1heSByZXF1aXJlIHRoZSB1c2VyJ3MgYXR0ZW50aW9uLiBUaGUgZGVm
-YXVsdCBpcyBpdGVyYXRlIG92ZXIgdGhlIGF2YWlsYWJsZQojIHRlcm1pbmFsIHR5cGVzIHRvIGZp
-bmQgb25lIHRoYXQgd29ya3MuCiMKIyBFeGFtcGxlcyBvZiB0aGUgb2NjYXNpb25zIHRoaXMgbWF5
-IGhhcHBlbiBhcmUgd2hlbiByZXNvbHZpbmcgcGF0Y2hlcyB3aGljaCBjYW5ub3QKIyBiZSBhcHBs
-aWVkLCB0byB1c2UgdGhlIGRldnNoZWxsIG9yIHRoZSBrZXJuZWwgbWVudWNvbmZpZwojCiMgU3Vw
-cG9ydGVkIHZhbHVlcyBhcmUgYXV0bywgZ25vbWUsIHhmY2UsIHJ4dnQsIHNjcmVlbiwga29uc29s
-ZSAoS0RFIDMueCBvbmx5KSwgbm9uZQojIE5vdGU6IGN1cnJlbnRseSwgS29uc29sZSBzdXBwb3J0
-IG9ubHkgd29ya3MgZm9yIEtERSAzLnggZHVlIHRvIHRoZSB3YXkKIyBuZXdlciBLb25zb2xlIHZl
-cnNpb25zIGJlaGF2ZQojT0VfVEVSTUlOQUwgPSAiYXV0byIKIyBCeSBkZWZhdWx0IGRpc2FibGUg
-aW50ZXJhY3RpdmUgcGF0Y2ggcmVzb2x1dGlvbiAodGFza3Mgd2lsbCBqdXN0IGZhaWwgaW5zdGVh
-ZCk6ClBBVENIUkVTT0xWRSA9ICJub29wIgoKIwojIERpc2sgU3BhY2UgTW9uaXRvcmluZyBkdXJp
-bmcgdGhlIGJ1aWxkCiMKIyBNb25pdG9yIHRoZSBkaXNrIHNwYWNlIGR1cmluZyB0aGUgYnVpbGQu
-IElmIHRoZXJlIGlzIGxlc3MgdGhhdCAxR0Igb2Ygc3BhY2Ugb3IgbGVzcwojIHRoYW4gMTAwSyBp
-bm9kZXMgaW4gYW55IGtleSBidWlsZCBsb2NhdGlvbiAoVE1QRElSLCBETF9ESVIsIFNTVEFURV9E
-SVIpLCBncmFjZWZ1bGx5CiMgc2h1dGRvd24gdGhlIGJ1aWxkLiBJZiB0aGVyZSBpcyBsZXNzIHRo
-YXQgMTAwTUIgb3IgMUsgaW5vZGVzLCBwZXJmb3JtIGEgaGFyZCBhYm9ydAojIG9mIHRoZSBidWls
-ZC4gVGhlIHJlYXNvbiBmb3IgdGhpcyBpcyB0aGF0IHJ1bm5pbmcgY29tcGxldGVseSBvdXQgb2Yg
-c3BhY2UgY2FuIGNvcnJ1cHQKIyBmaWxlcyBhbmQgZGFtYWdlcyB0aGUgYnVpbGQgaW4gd2F5cyB3
-aGljaCBtYXkgbm90IGJlIGVhc2lseSByZWNvdmVyYWJsZS4KIyBJdCdzIG5lY2VzYXJ5IHRvIG1v
-bml0b3IgL3RtcCwgaWYgdGhlcmUgaXMgbm8gc3BhY2UgbGVmdCB0aGUgYnVpbGQgd2lsbCBmYWls
-CiMgd2l0aCB2ZXJ5IGV4b3RpYyBlcnJvcnMuCkJCX0RJU0tNT05fRElSUyA/Pz0gIlwKICAgIFNU
-T1BUQVNLUywke1RNUERJUn0sMUcsMTAwSyBcCiAgICBTVE9QVEFTS1MsJHtETF9ESVJ9LDFHLDEw
-MEsgXAogICAgU1RPUFRBU0tTLCR7U1NUQVRFX0RJUn0sMUcsMTAwSyBcCiAgICBTVE9QVEFTS1Ms
-L3RtcCwxMDBNLDEwMEsgXAogICAgQUJPUlQsJHtUTVBESVJ9LDEwME0sMUsgXAogICAgQUJPUlQs
-JHtETF9ESVJ9LDEwME0sMUsgXAogICAgQUJPUlQsJHtTU1RBVEVfRElSfSwxMDBNLDFLIFwKICAg
-IEFCT1JULC90bXAsMTBNLDFLIgoKIwojIFNoYXJlZC1zdGF0ZSBmaWxlcyBmcm9tIG90aGVyIGxv
-Y2F0aW9ucwojCiMgQXMgbWVudGlvbmVkIGFib3ZlLCBzaGFyZWQgc3RhdGUgZmlsZXMgYXJlIHBy
-ZWJ1aWx0IGNhY2hlIGRhdGEgb2JqZWN0cyB3aGljaCBjYW4KIyB1c2VkIHRvIGFjY2VsZXJhdGUg
-YnVpbGQgdGltZS4gVGhpcyB2YXJpYWJsZSBjYW4gYmUgdXNlZCB0byBjb25maWd1cmUgdGhlIHN5
-c3RlbQojIHRvIHNlYXJjaCBvdGhlciBtaXJyb3IgbG9jYXRpb25zIGZvciB0aGVzZSBvYmplY3Rz
-IGJlZm9yZSBpdCBidWlsZHMgdGhlIGRhdGEgaXRzZWxmLgojCiMgVGhpcyBjYW4gYmUgYSBmaWxl
-c3lzdGVtIGRpcmVjdG9yeSwgb3IgYSByZW1vdGUgdXJsIHN1Y2ggYXMgaHR0cCBvciBmdHAuIFRo
-ZXNlCiMgd291bGQgY29udGFpbiB0aGUgc3N0YXRlLWNhY2hlIHJlc3VsdHMgZnJvbSBwcmV2aW91
-cyBidWlsZHMgKHBvc3NpYmx5IGZyb20gb3RoZXIKIyBtYWNoaW5lcykuIFRoaXMgdmFyaWFibGUg
-d29ya3MgbGlrZSBmZXRjaGVyIE1JUlJPUlMvUFJFTUlSUk9SUyBhbmQgcG9pbnRzIHRvIHRoZQoj
-IGNhY2hlIGxvY2F0aW9ucyB0byBjaGVjayBmb3IgdGhlIHNoYXJlZCBvYmplY3RzLgojIE5PVEU6
-IGlmIHRoZSBtaXJyb3IgdXNlcyB0aGUgc2FtZSBzdHJ1Y3R1cmUgYXMgU1NUQVRFX0RJUiwgeW91
-IG5lZWQgdG8gYWRkIFBBVEgKIyBhdCB0aGUgZW5kIGFzIHNob3duIGluIHRoZSBleGFtcGxlcyBi
-ZWxvdy4gVGhpcyB3aWxsIGJlIHN1YnN0aXR1dGVkIHdpdGggdGhlCiMgY29ycmVjdCBwYXRoIHdp
-dGhpbiB0aGUgZGlyZWN0b3J5IHN0cnVjdHVyZS4KI1NTVEFURV9NSVJST1JTID89ICJcCiNmaWxl
-Oi8vLiogaHR0cDovL3NvbWVzZXJ2ZXIudGxkL3NoYXJlL3NzdGF0ZS9QQVRIO2Rvd25sb2FkZmls
-ZW5hbWU9UEFUSCBcbiBcCiNmaWxlOi8vLiogZmlsZTovLy9zb21lL2xvY2FsL2Rpci9zc3RhdGUv
-UEFUSCIKCgojCiMgUWVtdSBjb25maWd1cmF0aW9uCiMKIyBCeSBkZWZhdWx0IHFlbXUgd2lsbCBi
-dWlsZCB3aXRoIGEgYnVpbHRpbiBWTkMgc2VydmVyIHdoZXJlIGdyYXBoaWNhbCBvdXRwdXQgY2Fu
-IGJlCiMgc2Vlbi4gVGhlIHR3byBsaW5lcyBiZWxvdyBlbmFibGUgdGhlIFNETCBiYWNrZW5kIHRv
-by4gQnkgZGVmYXVsdCBsaWJzZGwtbmF0aXZlIHdpbGwKIyBiZSBidWlsdCwgaWYgeW91IHdhbnQg
-dG8gdXNlIHlvdXIgaG9zdCdzIGxpYlNETCBpbnN0ZWFkIG9mIHRoZSBtaW5pbWFsIGxpYnNkbCBi
-dWlsdAojIGJ5IGxpYnNkbC1uYXRpdmUgdGhlbiB1bmNvbW1lbnQgdGhlIEFTU1VNRV9QUk9WSURF
-RCBsaW5lIGJlbG93LgpQQUNLQUdFQ09ORklHX2FwcGVuZF9wbi1xZW11LW5hdGl2ZSA9ICIgc2Rs
-IgpQQUNLQUdFQ09ORklHX2FwcGVuZF9wbi1uYXRpdmVzZGstcWVtdSA9ICIgc2RsIgojQVNTVU1F
-X1BST1ZJREVEICs9ICJsaWJzZGwtbmF0aXZlIgoKIyBDT05GX1ZFUlNJT04gaXMgaW5jcmVhc2Vk
-IGVhY2ggdGltZSBidWlsZC9jb25mLyBjaGFuZ2VzIGluY29tcGF0aWJseSBhbmQgaXMgdXNlZCB0
-bwojIHRyYWNrIHRoZSB2ZXJzaW9uIG9mIHRoaXMgZmlsZSB3aGVuIGl0IHdhcyBnZW5lcmF0ZWQu
-IFRoaXMgY2FuIHNhZmVseSBiZSBpZ25vcmVkIGlmCiMgdGhpcyBkb2Vzbid0IG1lYW4gYW55dGhp
-bmcgdG8geW91LgpDT05GX1ZFUlNJT04gPSAiMSIKCgpBQ0NFUFRfRlNMX0VVTEEgPSAiMSIKRElT
-VFJPX0ZFQVRVUkVTX2FwcGVuZCA9ICIgeDExIgoK
-
---0000000000000e2c5e05795df052--
+--000000000000504e7a05795e0a8f--
