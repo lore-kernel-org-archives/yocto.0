@@ -1,61 +1,41 @@
-Return-Path: <dimtass@gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 901E7E00BC6; Mon, 29 Oct 2018 06:43:46 -0700 (PDT)
+	id 990D8E00BC6; Mon, 29 Oct 2018 06:46:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.210.45 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (dimtass[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com
-	[209.85.210.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF910E00BBF
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 06:43:45 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id p23so7542462otf.11
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 06:43:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=c8uNFLmt0YbSRIlQ1rNoTEEy8MY6XaNQ//5VtUlRVjk=;
-	b=Bqfc0yeLjFipCw5TaPJDeyXekVSfOfxUO3JPQYMwGfwH+t7XW/mMlnJOurgIBx4HpY
-	JY1Hz1ugEnZjf3yM41Fr0gIImYT40pbQ7G4/vEqBspjjiJm5j37MuzDssv12s2OWoIrE
-	Ibvahpg6yrcloMqhupqPyu3aF8FbFZF404Q7k5QjKHeK4FVdo4W7p4Sk2nca/kN9Pgqn
-	xgve5yoRUKIh+1mDWaQsVpgPVAIJ3kc2y8fKAgNZOKEwAflgQB3ywJt9rG938wk6E8Sc
-	CaHww1+bGiweWKQ+QuKBsVRr5T2mTTDY2LokHd9Rk14twZTyTkW+iS5GSAGSvMS0056q
-	AnBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=c8uNFLmt0YbSRIlQ1rNoTEEy8MY6XaNQ//5VtUlRVjk=;
-	b=nrWYpkC3kOb6tPs/2XBCIQ5t3Z4VATX9igkZUtQbOHB0Jn0mXr/4mnRImodCBGwhgW
-	ctdjSMLN2E/2wsXZJLk7V8176/1oQggzYbXJgB6IymzNEu3QteEd9G0IccqnRWHMLywy
-	fcBvptC4yLyErHiByPS2Ab3r/gRPr1Cjs0c0kNJTqs/UBb3YvymDNPNgz6npAfKVCXp0
-	NqU13QA5X0GGHkKoC8uhpuSsQHRNp6aqD2z2vCSZqwNnwr8IH74D3RewV3N7D0QdjsZl
-	fSuE7ZhscQ7HjgFLDlkfm6sWMHo4nXAh1UUe7H7JRstuTbSSQS45ocobuz45//lHNy9i
-	/mDQ==
-X-Gm-Message-State: AGRZ1gJnRfs5IgG2j9bopk5IFO/X6Nfhe7HB3lN9hCVCgpEwcgRSEwfd
-	pHsHzhWleKMouyBq3PAP5aD/z0XxCsbJ34dES9zV8hN3
-X-Google-Smtp-Source: AJdET5cJHBBfKTT13OqnxiTqR6Ljy1F+Khx0TZfOJu6Hhx3j7LMHbZ+jZkHUnVHeVw/8HAD9N2Jx7atbABj7CpeacZQ=
-X-Received: by 2002:a9d:56c8:: with SMTP id b8mr4653455otj.306.1540820624719; 
-	Mon, 29 Oct 2018 06:43:44 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D237AE00BBF
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 06:46:05 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w9TDjCdV007287
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 29 Oct 2018 06:45:39 -0700
+Received: from [128.224.22.130] (128.224.22.130) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.408.0;
+	Mon, 29 Oct 2018 06:45:06 -0700
+To: Khem Raj <raj.khem@gmail.com>
+References: <CAEhQi8nL7haOo+ogungBB_1hR0rRqNszFkgEHyr_SYE1dq477w@mail.gmail.com>
+	<CAEhQi8=Ocn_uVL5a4ri=9T9YKbNb1gcN3Y=cqK1-dATB7qea1A@mail.gmail.com>
+	<6f0c2b95-348c-6cb0-dbb0-8a43da878eaa@windriver.com>
+	<CAMKF1sq85puYF3C0T9sfNBVFOtHbwd9AkqVrXNYM9caFMN2nOg@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <7568962f-b428-6eee-2cb5-dc471610c1fe@windriver.com>
+Date: Mon, 29 Oct 2018 09:45:00 -0400
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
 MIME-Version: 1.0
-From: Dimitris Tassopoulos <dimtass@gmail.com>
-Date: Mon, 29 Oct 2018 14:43:33 +0100
-Message-ID: <CACKFPN2C-=XWKStypsyUHr0ddyPrLX9-y4qJGJ+zO98=-F9vWA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: nativesdk-libxcrypt-4.0.1 is failing
+In-Reply-To: <CAMKF1sq85puYF3C0T9sfNBVFOtHbwd9AkqVrXNYM9caFMN2nOg@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [SDK] including kernel devsrc to the SDK failes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,68 +47,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2018 13:43:46 -0000
-Content-Type: multipart/alternative; boundary="000000000000ffdc4905795e418c"
+X-List-Received-Date: Mon, 29 Oct 2018 13:46:06 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
---000000000000ffdc4905795e418c
-Content-Type: text/plain; charset="UTF-8"
 
-Hi all,
 
-it seems that the libxcrypt recipe in poky is failing because the git repo
-doesn't have a master branch anymore. The default branch has changed
-to `develop` and the recipe can't fetch the repo when I'm building the SDK
-for my image.
+On 10/29/2018 9:10 AM, Khem Raj wrote:
+> On Fri, Oct 26, 2018 at 6:54 AM Bruce Ashfield
+> <bruce.ashfield@windriver.com> wrote:
+>>
+>>
+>>
+>> On 10/26/2018 4:28 AM, Måns Zigher wrote:
+>>> So it looks like the number of /bin/awk have increased so the patch will
+>>> fix one problem but there is more to fix. I have a "workaround" even
+>>> though I am not so sure it is a workaround or not. The problem is fixed
+>>> adding to kernel-devsrc.bbappend
+>>>
+>>> do_install_append() {
+>>> # This fixes the rpm dependency failure on install of kernel-devsrc
+>>> depending on /bin/awk
+>>> cd ${D} || true
+>>> for i in $(grep -srI "!/bin/awk" | cut -d":" -f1); do
+>>> sed -i -e "s#!/bin/awk#!/usr/bin/env awk#g" $i
+>>> done
+>>> }
+>>>
+>>> The original solution can be found at
+>>>
+>>> https://gerrit.automotivelinux.org/gerrit/gitweb?p=AGL/meta-agl.git;a=blobdiff;f=meta-agl-bsp/meta-ti/recipes-kernel/linux/linux-ti-staging_%25.bbappend;h=43fa494a26c132b875c177acf0389163d5e34c06;hp=b2e5431400acef0a5372e5490ac4f464482d4b3b;hb=4bfc821810cdee47611c6d3e94d771971f51fa75;hpb=1cf6b17fd15fde569374c85d4df722784f4e9c67
+>>>
+>>> The best solution might be to add kernel patches but since the number of
+>>> /bin/awk have increased I think that this is fine in the kernel universe
+>>> but a problem in poky universe. So by adding it to kernel-devsrc it will
+>>> make sure that when the kernel get's tainted in the future it will not
+>>> break the rpm build. This is a "bug" only when using rpm ipk will not
+>>> detect it as a problem.
+>>
+>> I'm ok with this type of solution as well, since this is similar
+>> to what we've had to do with perf in the past (sed and modify versus
+>> patching). I can always patch and fix things in linux-yocto, but then
+>> another other kernel still suffers the issue.
+> 
+> 
+> can we fix it in upstream kernel to use something like
+> #!/usr/bin/env awk
+> may be ?
 
-A temporary solution is to override the URL with a bbappend, but in general
-this has broken the recipe. This is the error that I'm getting.
 
-WARNING: nativesdk-libxcrypt-4.0.1-r0 do_fetch: Failed to fetch URL git://
-github.com/besser82/libxcrypt.git;branch=master, attempting MIRRORS if
-available
-ERROR: nativesdk-libxcrypt-4.0.1-r0 do_fetch: Fetcher failure: Unable to
-find revision 089479bb24acd168613757a6f12d63caa95416b4 in branch master
-even from upstream
-ERROR: nativesdk-libxcrypt-4.0.1-r0 do_fetch: Fetcher failure for URL:
-'git://github.com/besser82/libxcrypt.git;branch=master'. Unable to fetch
-URL from any source.
-ERROR: nativesdk-libxcrypt-4.0.1-r0 do_fetch: Function failed: base_do_fetch
-ERROR: Logfile of failure stored in:
-/rnd/yocto/nativeos/build/tmp/work/x86_64-nativesdk-nativeosmassdk-linux/nativesdk-libxcrypt/4.0.1-r0/temp/log.do_fetch.19081
-ERROR: Task
-(virtual:nativesdk:/rnd/yocto/nativeos/sources/poky/meta/recipes-core/libxcrypt/libxcrypt_4.0.1.bb:do_fetch)
-failed with exit code '1'
+Yup. That works too (as would a variable from the env), but we'll still
+need a sed based patch in the short term.
 
-P.S another good reason to enable the own mirrors early in the development
-phase.
+Bruce
 
---000000000000ffdc4905795e418c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> 
+>>
+>> It would be better if folks with this problem also send patches upstream
+>> to allow us to vary the location of awk via a variable, since that would
+>> eventually fix all kernels without needing any modifications .. but that
+>> is a medium term time play, versus doing the sed operation.
+>>
+>> If you have a patch to kernel-devsrc in master, feel free to send it
+>> and cc' me, and I can pull it into my queue, test and then send it in
+>> my next pull request.
+>>
+>> Bruce
+>>
+>>>
+>>> BR
+>>> Måns Zigher
+>>>
+>>> Den tors 25 okt. 2018 kl 13:19 skrev Måns Zigher <mans.zigher@gmail.com
+>>> <mailto:mans.zigher@gmail.com>>:
+>>>
+>>>      Hi,
+>>>
+>>>      I am trying to add the kernel devsrc to the SDK but I am getting the
+>>>      following error
+>>>
+>>>      Problem: conflicting requests
+>>>         - nothing provides /bin/awk needed by kernel-devsrc-1.0-r0.imx8mqevk
+>>>
+>>>      I have applied the following patch to try and fix this problem.
+>>>
+>>>      http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto/commit/?id=8af11c1cdd8fa08217e702b57cf96e9030db52b2
+>>>
+>>>      I have verified that it was applied and run kernel-devsrc works. The
+>>>      error is from do_populate_sdk and I am suspecting that the problem
+>>>      is related to me using rpm. I believe rpm might be to smart in this
+>>>      case detecting the dependency and resulting dnf from failing when
+>>>      running the task do_populate_sdk. Any suggestion on how to get
+>>>      forward on this error. I would like to run dnf manually to check any
+>>>      dependency of the kernel-devsrc rpm package but cannot figure out how.
+>>>
+>>>      BR
+>>>      Måns Zigher
+>>>
+>>>
+>>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi all,<div><br></div><div>it seems that =
-the libxcrypt recipe in poky is failing because the git repo<br>doesn&#39;t=
- have a master branch anymore. The default branch has changed<br>to `develo=
-p` and the recipe can&#39;t fetch the repo when I&#39;m building the SDK</d=
-iv><div>for my image.</div><div><br></div><div>A temporary solution is to o=
-verride the URL with a bbappend, but in general<br>this has broken the reci=
-pe. This is the error that I&#39;m getting.</div><div><br></div><div><div>W=
-ARNING: nativesdk-libxcrypt-4.0.1-r0 do_fetch: Failed to fetch URL git://<a=
- href=3D"http://github.com/besser82/libxcrypt.git;branch=3Dmaster">github.c=
-om/besser82/libxcrypt.git;branch=3Dmaster</a>, attempting MIRRORS if availa=
-ble</div><div>ERROR: nativesdk-libxcrypt-4.0.1-r0 do_fetch: Fetcher failure=
-: Unable to find revision 089479bb24acd168613757a6f12d63caa95416b4 in branc=
-h master even from upstream</div><div>ERROR: nativesdk-libxcrypt-4.0.1-r0 d=
-o_fetch: Fetcher failure for URL: &#39;git://<a href=3D"http://github.com/b=
-esser82/libxcrypt.git;branch=3Dmaster">github.com/besser82/libxcrypt.git;br=
-anch=3Dmaster</a>&#39;. Unable to fetch URL from any source.</div><div>ERRO=
-R: nativesdk-libxcrypt-4.0.1-r0 do_fetch: Function failed: base_do_fetch</d=
-iv><div>ERROR: Logfile of failure stored in: /rnd/yocto/nativeos/build/tmp/=
-work/x86_64-nativesdk-nativeosmassdk-linux/nativesdk-libxcrypt/4.0.1-r0/tem=
-p/log.do_fetch.19081</div><div>ERROR: Task (virtual:nativesdk:/rnd/yocto/na=
-tiveos/sources/poky/meta/recipes-core/libxcrypt/libxcrypt_4.0.1.bb:do_fetch=
-) failed with exit code &#39;1&#39;</div></div><div><br></div><div>P.S anot=
-her good reason to enable the own mirrors early in the development phase.</=
-div></div></div>
-
---000000000000ffdc4905795e418c--
