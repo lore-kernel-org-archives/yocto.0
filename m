@@ -1,66 +1,65 @@
 Return-Path: <joe.macdonald@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E6EF3E00C31; Mon, 29 Oct 2018 11:33:11 -0700 (PDT)
+	id 2DAACE00BBF; Mon, 29 Oct 2018 11:33:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.166.193 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.194 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f194.google.com (mail-it1-f194.google.com
-	[209.85.166.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C3FCE00C75
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 11:33:04 -0700 (PDT)
-Received: by mail-it1-f194.google.com with SMTP id i191-v6so10668373iti.5
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 11:33:04 -0700 (PDT)
+Received: from mail-it1-f193.google.com (mail-it1-f193.google.com
+	[209.85.166.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4BAAE00AC5
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 11:33:05 -0700 (PDT)
+Received: by mail-it1-f193.google.com with SMTP id e81-v6so10912652itc.1
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 11:33:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=wNFpf7KEozozOop0HgmXjqaWoeulxd5FYZlLYMkio94=;
-	b=ojRNwUy/UXC7EsL+LTvGH4kxiEmy+dtwCvPWL1DAkJfDJGK35doweO0C1Xtnhhg0AQ
-	xhG/guZZtpYuWFmQ3jb44Ldklc4YYC5BmX2Y20L/io+2b/12oxuVD1medTtHa3+TdxI5
-	jQwXn4/x3HOcmQ1LvaPM2DR+hbdGSxiDijBNtCNu56ebVmCN25yJNRK802RuAAjGtGC4
-	gY3SH/HdjjLQJFvJjOgV/XkG7aL3cLB1+aF4yp4TmppM8c8EvjkET9ARfrmyYjePQ8Os
-	v04vbwFvk56eDTGJa7dq9jkjQFFFMT1GpPDSdFcuFdSMmVu0/dJnZdFPjZnRrcucOGAI
-	BNow==
+	bh=DKQp1BHFlyJxGC6Q5XGI666LPN5iVHXMPwPol9Ovd9w=;
+	b=H5MsXFvJvi4ytOMQuNg9KKG2tG5U7bIXUrdfN8yUF2hBEnpELyekcmutk+NGli9aED
+	CzyANNISarrK64uvInWxBoQJUlUMysDvk9eIATL8hry2ppUvSnITyufxQGN8oQI80nxb
+	vvahItbleZzl2S6km05zlsFIj/8TPcD9WaYAP8HHhk+oCLxHZ3i7kforWKFQRpEbP5LP
+	T+7yzQTkZsTmVuC3PsEtM5ChfIcrkLrIa75EQADKD2MeYh7r5p5zJI5piBbEpMRw/H7M
+	eJ6wmKi0BR6L97o1LtQqYzVvlnTQjgxw6fukx1ME4YQjPm/lfuX8UhPI1fhg3/Y8bdT0
+	LRcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
 	:in-reply-to:references;
-	bh=wNFpf7KEozozOop0HgmXjqaWoeulxd5FYZlLYMkio94=;
-	b=na3z3WjDTVRbBIHIYj7e1m9sBpaG7KBl7e2KDZV8trfwms8tV9uYGfEAH9dMWQVXUM
-	IGn97O6A4DQ4PaT9JVA48/25dYDCq9qh2U6dBid73G/YUmt3pmfOHXfTP0AjPoFpseXs
-	ZeO7lX3p1Pf3nEbEFMxRG6m8oyAa1SVbqNwdqQkX02Y1SKmBs3siA4NIJwfROyx51FV1
-	+E+V7y4t/JAAzWwfW1njs0o/ohjp4Algd5kBP/e1s07bwn23O9qlZ0f9k8TrlrncvkGJ
-	hrdFN+2fAJuciaum8ovUTfsnVcqEHTFCbgbD8IjQyIN5TF9/8OCbWzOb9mglvMtunI5v
-	qQIw==
-X-Gm-Message-State: AGRZ1gI4wtVQ3lyaGGGuC0am3CZcfVFKW5HfdMJKYiWbM0d3JJ+htikp
-	ozxTpyzpIQikjOEzhUPGzoUy8NfH+1c=
-X-Google-Smtp-Source: AJdET5dl9MGjv/62hzm0hMN4EftzyKdjHVcCTWKJlthsHCBFknUtyL+xm5+ovJA2eVezWYKQ7aC0tA==
-X-Received: by 2002:a24:c1c5:: with SMTP id
-	e188-v6mr10415675itg.174.1540837983316; 
-	Mon, 29 Oct 2018 11:33:03 -0700 (PDT)
+	bh=DKQp1BHFlyJxGC6Q5XGI666LPN5iVHXMPwPol9Ovd9w=;
+	b=WYokq2lsPUmuFGIaszlpJzXxH+VxWY36ZZ+mV9X8As7rOBlQ9BupByNbRmS3zjbIsx
+	pzMJ56G7F7URjDDX935B0zh4thF4mCp6g1jeRG+DZ5lC6WdXIkEtjh5Jjvsi+PhZFPRe
+	THsS3sb1NOqYe6ih6/UcXmpLGKRnBU1mDKKAMLW/COcpPKuZm2MproNjKuk5kuK5qlUt
+	sR72w5gKk1ScUFDAhx0xL2KAZfdzmDhqP3yUQCrVHBtM6ObJt9NwX9ZNzuRKAr/JNw7C
+	Sxyokaerggj82VJ3ftfIN1Bv8b65bnPO105BJh9cC1GW07tmYACPoKFEGXM3T6rSru7b
+	LZsw==
+X-Gm-Message-State: AGRZ1gLJer/cTT8fMWMhseNbwuyzzwliTQlhaTtfEiU/A3A/TnKPwkBU
+	mqRY95PlrG9SzuPekZoHdpiHsIgxuMg=
+X-Google-Smtp-Source: AJdET5eJj/FidZes8DDr+ib3yoQ0A+IMLjNa83gPJT5lSs/NSmJY0lY5l1NvqDJW7UqWJviTUFYcdA==
+X-Received: by 2002:a24:5050:: with SMTP id m77-v6mr1606774itb.2.1540837985076;
+	Mon, 29 Oct 2018 11:33:05 -0700 (PDT)
 Received: from burninator2.deserted.net (23-233-29-148.cpe.pppoe.ca.
 	[23.233.29.148]) by smtp.gmail.com with ESMTPSA id
-	y11-v6sm7152984ioa.24.2018.10.29.11.33.02
+	y11-v6sm7152984ioa.24.2018.10.29.11.33.03
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 29 Oct 2018 11:33:02 -0700 (PDT)
+	Mon, 29 Oct 2018 11:33:04 -0700 (PDT)
 Sender: Joe MacDonald <joe.macdonald@gmail.com>
 From: Joe MacDonald <joe@deserted.net>
 To: yocto@yoctoproject.org
-Date: Mon, 29 Oct 2018 14:32:54 -0400
-Message-Id: <20181029183257.20970-4-joe@deserted.net>
+Date: Mon, 29 Oct 2018 14:32:55 -0400
+Message-Id: <20181029183257.20970-5-joe@deserted.net>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20181029183257.20970-1-joe@deserted.net>
 References: <CANBf+V1cOSgDpoKvmz4shhZEjCKXtYAe9gz13K2PPjuTWf7KRA@mail.gmail.com>
 	<20181029183257.20970-1-joe@deserted.net>
-Subject: [meta-selinux][sumo][PATCH 4/7] libpcre_selinux.inc: fix do_install failure if .so file does not exist
+Subject: [meta-selinux][sumo][PATCH 5/7] refpolicy_git.inc: lock SRCREVs on the actual version hashes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,33 +71,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2018 18:33:11 -0000
+X-List-Received-Date: Mon, 29 Oct 2018 18:33:12 -0000
 
-From: Chen Qi <Qi.Chen@windriver.com>
+From: Awais Belal <awais_belal@mentor.com>
 
-In case of the existence of meta-mingw, the library is .dll instead of
-.so and these .dll files are in ${bindir}.
+Using AUTOREV in the main repository has its downsides.
+1. The checked out version isn't actually the version depicted
+   by PV.
+2. Breaks builds in scenarios where network isn't available
+   or BB_NO_NETWORK is used even after sources are already
+   fetched.
 
-We need to check the existence of the .so file before doing readlink,
-otherwise do_install fails.
+1 is self explanatory, for 2 whenever SRCREV is set to AUTOREV and
+SRCPV is used in PV the fetcher tries to access the network in order
+to determine SRCPV (bb.fetch2.get_srcrev) and fails for obvious
+reasons during parsing even when versioned recipes are used as
+PREFERRED_VERSION because parsing still happens for recipes that are
+in BB's search paths and we see.
+Traceback (most recent call last):
+bb.data_smart.ExpansionError: Failure expanding variable SRCPV, expression was ${@bb.fetch2.get_srcrev(d)} which triggered exception NetworkAccess: Network access disabled through BB_NO_NETWORK (or set indirectly due to use of BB_FETCH_PREMIRRORONLY) but access requested with command git -c core.fsyncobjectfiles=0 ls-remote git://github.com/TresysTechnology/refpolicy.git  (for url git://github.com/TresysTechnology/refpolicy.git)
 
-Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
+So we lock the REVs and do that with a soft assignment which
+allows overriding the REVs from elsewhere.
+
+Signed-off-by: Awais Belal <awais_belal@mentor.com>
 Signed-off-by: Joe MacDonald <joe@deserted.net>
 ---
- recipes-support/libpcre/libpcre_selinux.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-security/refpolicy/refpolicy_git.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-support/libpcre/libpcre_selinux.inc b/recipes-support/libpcre/libpcre_selinux.inc
-index 59c0184..d886792 100644
---- a/recipes-support/libpcre/libpcre_selinux.inc
-+++ b/recipes-support/libpcre/libpcre_selinux.inc
-@@ -1,5 +1,5 @@
- do_install_append () {
--	if [ ! ${D}${libdir} -ef ${D}${base_libdir} ]; then
-+	if [ ! ${D}${libdir} -ef ${D}${base_libdir} -a -e ${D}${libdir}/libpcre.so ]; then
- 		realsofile=`readlink ${D}${libdir}/libpcre.so`
- 		mkdir -p ${D}/${base_libdir}/
- 		mv -f ${D}${libdir}/libpcre.so.* ${D}${base_libdir}/
+diff --git a/recipes-security/refpolicy/refpolicy_git.inc b/recipes-security/refpolicy/refpolicy_git.inc
+index f71eb35..6c318ab 100644
+--- a/recipes-security/refpolicy/refpolicy_git.inc
++++ b/recipes-security/refpolicy/refpolicy_git.inc
+@@ -3,8 +3,8 @@ PV = "2.20170805+git${SRCPV}"
+ SRC_URI = "git://github.com/TresysTechnology/refpolicy.git;protocol=git;branch=master;name=refpolicy;destsuffix=refpolicy"
+ SRC_URI += "git://github.com/TresysTechnology/refpolicy-contrib.git;protocol=git;branch=master;name=refpolicy-contrib;destsuffix=refpolicy/policy/modules/contrib"
+ 
+-SRCREV_refpolicy = "${AUTOREV}"
+-SRCREV_refpolicy-contrib = "${AUTOREV}"
++SRCREV_refpolicy ?= "794ed7efd0eca19d0353659a1ec9d4ef4e4b751c"
++SRCREV_refpolicy-contrib ?= "a393275a6ecb76311323726a029767a3a01e109e"
+ SRCREV_FORMAT = "refpolicy.refpolicy-contrib"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/refpolicy-git:"
 -- 
 2.17.1
 
