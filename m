@@ -1,40 +1,69 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CD0E6E00BC2; Mon, 29 Oct 2018 08:14:04 -0700 (PDT)
+	id B3EE8E00BC8; Mon, 29 Oct 2018 08:16:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F36F5E00718
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 08:14:03 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w9TFE2Ef026184
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 29 Oct 2018 08:14:02 -0700 (PDT)
-Received: from server.local (128.224.22.13) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.408.0;
-	Mon, 29 Oct 2018 08:14:01 -0700
-To: Khem Raj <raj.khem@gmail.com>
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.195 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f195.google.com (mail-qt1-f195.google.com
+	[209.85.160.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18F82E00BBF
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 08:15:59 -0700 (PDT)
+Received: by mail-qt1-f195.google.com with SMTP id i15-v6so9644320qtr.0
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 08:15:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=qrtcLeUY7nmU0R28iqG0yUuvdNV0IUjPglfb++yHMX0=;
+	b=GM6ZjIejlIBxNmqmrtEPsvxmoYI0GEVzD9seYOchc17TZ8wTxJwUOcPD7p7RoqJSst
+	KrkhMllEe3yJeapnQLtddzj7DhsMA6GeuFqSoda4A4UyHngfZPdajm0g9s9Gf0tdeZNn
+	CjPfOrPq9mY/0gouByBgCe567cJnE3hpqXOxLan95xcsQXJCbqjnfYfLoIu78UK27PMq
+	i5v+ePrXZeyOY4DjILOlJdOp3y0tyMf3DzNNZmS54UyebXETOm5H6tFbgoT8UgrWGd4T
+	qrYHBza+brQzyLC7pQj5qXMxhVd+18TUe38gO1Us4LFrmJkmE9ARzf4Vg8ZregxK00nz
+	r6gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=qrtcLeUY7nmU0R28iqG0yUuvdNV0IUjPglfb++yHMX0=;
+	b=ulyoO7SAtLycGm3HqHVOQKaSjrKm1aYhdJgwo5DhJCQSrkK9f1+MawzMmca7UNipH7
+	T0Y0wyO5wBVpxhByzecFVRpubqTTIuUIMTQRBi/p5kOem1LRDcWl/hoXTHEc4tUSSqHG
+	qBLID9wxAW4/ZeTpvbCjoYgRQ8A5mjfn7PqpqmkG+wQtIoWn5+nB9i398QnYNEn/qeym
+	e2c30LtYwsMRGutrAjn8pbWHcnq0+hpANBh7VhLdQU7sasUixjCChy+Jq3YoNXmB6h15
+	sAaQwvBMXdWDgXU3Nt8LMop4EHj/r1W5E1tdzSfgs8UOoFEo86dV+VYpFrwDpyH7nrqW
+	mTHA==
+X-Gm-Message-State: AGRZ1gLTUEvFtC7Fns1cn5yx6xGpUSPNO2+HVK1yyK1XTSrg3SkEZ1ZQ
+	nUptQK1Yf4HaScDF/z2Al1AItzFQjwGcUdRoeI4=
+X-Google-Smtp-Source: AJdET5ew/jXyWRZ/MlsySkXaxTrQnZPDrSFhgjzA3z1PPGKk3NI+d0ZzO2juyCcHNZQpEJkKc2X5MEItkOYwhnM71ng=
+X-Received: by 2002:a0c:ad47:: with SMTP id v7mr13492314qvc.228.1540826159247; 
+	Mon, 29 Oct 2018 08:15:59 -0700 (PDT)
+MIME-Version: 1.0
 References: <CAEhQi8nL7haOo+ogungBB_1hR0rRqNszFkgEHyr_SYE1dq477w@mail.gmail.com>
 	<CAEhQi8=Ocn_uVL5a4ri=9T9YKbNb1gcN3Y=cqK1-dATB7qea1A@mail.gmail.com>
 	<6f0c2b95-348c-6cb0-dbb0-8a43da878eaa@windriver.com>
 	<CAMKF1sq85puYF3C0T9sfNBVFOtHbwd9AkqVrXNYM9caFMN2nOg@mail.gmail.com>
 	<7568962f-b428-6eee-2cb5-dc471610c1fe@windriver.com>
 	<CAMKF1sq1Lyk_ymMw8Lj9o8+0o_s57kN6EqhpXdHbmyaB_Yys2A@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <31158489-66b5-4afd-4c27-75dd489beadd@windriver.com>
-Date: Mon, 29 Oct 2018 11:14:00 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.9.1
-MIME-Version: 1.0
-In-Reply-To: <CAMKF1sq1Lyk_ymMw8Lj9o8+0o_s57kN6EqhpXdHbmyaB_Yys2A@mail.gmail.com>
+	<31158489-66b5-4afd-4c27-75dd489beadd@windriver.com>
+In-Reply-To: <31158489-66b5-4afd-4c27-75dd489beadd@windriver.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 29 Oct 2018 08:15:32 -0700
+Message-ID: <CAMKF1spJdrgZSFZfgKNEar3LXTmAPLz160_Pi3vU8N3NUw79eA@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: [SDK] including kernel devsrc to the SDK failes
 X-BeenThere: yocto@yoctoproject.org
@@ -48,125 +77,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2018 15:14:04 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 29 Oct 2018 15:16:00 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2018-10-29 11:12 AM, Khem Raj wrote:
-> On Mon, Oct 29, 2018 at 6:46 AM Bruce Ashfield
-> <bruce.ashfield@windriver.com> wrote:
->>
->>
->>
->> On 10/29/2018 9:10 AM, Khem Raj wrote:
->>> On Fri, Oct 26, 2018 at 6:54 AM Bruce Ashfield
->>> <bruce.ashfield@windriver.com> wrote:
->>>>
->>>>
->>>>
->>>> On 10/26/2018 4:28 AM, Måns Zigher wrote:
->>>>> So it looks like the number of /bin/awk have increased so the patch will
->>>>> fix one problem but there is more to fix. I have a "workaround" evenYup. That works too (as would a variable from the env), but we'll still
-> need a sed based patch in the short term.
->>>>> though I am not so sure it is a workaround or not. The problem is fixed
->>>>> adding to kernel-devsrc.bbappend
->>>>>
->>>>> do_install_append() {
->>>>> # This fixes the rpm dependency failure on install of kernel-devsrc
->>>>> depending on /bin/awk
->>>>> cd ${D} || true
->>>>> for i in $(grep -srI "!/bin/awk" | cut -d":" -f1); do
->>>>> sed -i -e "s#!/bin/awk#!/usr/bin/env awk#g" $i
->>>>> done
->>>>> }
->>>>>
->>>>> The original solution can be found at
->>>>>
->>>>> https://gerrit.automotivelinux.org/gerrit/gitweb?p=AGL/meta-agl.git;a=blobdiff;f=meta-agl-bsp/meta-ti/recipes-kernel/linux/linux-ti-staging_%25.bbappend;h=43fa494a26c132b875c177acf0389163d5e34c06;hp=b2e5431400acef0a5372e5490ac4f464482d4b3b;hb=4bfc821810cdee47611c6d3e94d771971f51fa75;hpb=1cf6b17fd15fde569374c85d4df722784f4e9c67
->>>>>
->>>>> The best solution might be to add kernel patches but since the number of
->>>>> /bin/awk have increased I think that this is fine in the kernel universe
->>>>> but a problem in poky universe. So by adding it to kernel-devsrc it will
->>>>> make sure that when the kernel get's tainted in the future it will not
->>>>> break the rpm build. This is a "bug" only when using rpm ipk will not
->>>>> detect it as a problem.
->>>>
->>>> I'm ok with this type of solution as well, since this is similar
->>>> to what we've had to do with perf in the past (sed and modify versus
->>>> patching). I can always patch and fix things in linux-yocto, but then
->>>> another other kernel still suffers the issue.
->>>
->>>
->>> can we fix it in upstream kernel to use something like
->>> #!/usr/bin/env awk
->>> may be ?
->>
->>
->> Yup. That works too (as would a variable from the env), but we'll still
->> need a sed based patch in the short term.
->>
-> 
-> short term is fine, but I think this should be fixed in upstream kernel.
+On Mon, Oct 29, 2018 at 8:14 AM Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+>
+> On 2018-10-29 11:12 AM, Khem Raj wrote:
+> > On Mon, Oct 29, 2018 at 6:46 AM Bruce Ashfield
+> > <bruce.ashfield@windriver.com> wrote:
+> >>
+> >>
+> >>
+> >> On 10/29/2018 9:10 AM, Khem Raj wrote:
+> >>> On Fri, Oct 26, 2018 at 6:54 AM Bruce Ashfield
+> >>> <bruce.ashfield@windriver.com> wrote:
+> >>>>
+> >>>>
+> >>>>
+> >>>> On 10/26/2018 4:28 AM, M=C3=A5ns Zigher wrote:
+> >>>>> So it looks like the number of /bin/awk have increased so the patch=
+ will
+> >>>>> fix one problem but there is more to fix. I have a "workaround" eve=
+nYup. That works too (as would a variable from the env), but we'll still
+> > need a sed based patch in the short term.
+> >>>>> though I am not so sure it is a workaround or not. The problem is f=
+ixed
+> >>>>> adding to kernel-devsrc.bbappend
+> >>>>>
+> >>>>> do_install_append() {
+> >>>>> # This fixes the rpm dependency failure on install of kernel-devsrc
+> >>>>> depending on /bin/awk
+> >>>>> cd ${D} || true
+> >>>>> for i in $(grep -srI "!/bin/awk" | cut -d":" -f1); do
+> >>>>> sed -i -e "s#!/bin/awk#!/usr/bin/env awk#g" $i
+> >>>>> done
+> >>>>> }
+> >>>>>
+> >>>>> The original solution can be found at
+> >>>>>
+> >>>>> https://gerrit.automotivelinux.org/gerrit/gitweb?p=3DAGL/meta-agl.g=
+it;a=3Dblobdiff;f=3Dmeta-agl-bsp/meta-ti/recipes-kernel/linux/linux-ti-stag=
+ing_%25.bbappend;h=3D43fa494a26c132b875c177acf0389163d5e34c06;hp=3Db2e54314=
+00acef0a5372e5490ac4f464482d4b3b;hb=3D4bfc821810cdee47611c6d3e94d771971f51f=
+a75;hpb=3D1cf6b17fd15fde569374c85d4df722784f4e9c67
+> >>>>>
+> >>>>> The best solution might be to add kernel patches but since the numb=
+er of
+> >>>>> /bin/awk have increased I think that this is fine in the kernel uni=
+verse
+> >>>>> but a problem in poky universe. So by adding it to kernel-devsrc it=
+ will
+> >>>>> make sure that when the kernel get's tainted in the future it will =
+not
+> >>>>> break the rpm build. This is a "bug" only when using rpm ipk will n=
+ot
+> >>>>> detect it as a problem.
+> >>>>
+> >>>> I'm ok with this type of solution as well, since this is similar
+> >>>> to what we've had to do with perf in the past (sed and modify versus
+> >>>> patching). I can always patch and fix things in linux-yocto, but the=
+n
+> >>>> another other kernel still suffers the issue.
+> >>>
+> >>>
+> >>> can we fix it in upstream kernel to use something like
+> >>> #!/usr/bin/env awk
+> >>> may be ?
+> >>
+> >>
+> >> Yup. That works too (as would a variable from the env), but we'll stil=
+l
+> >> need a sed based patch in the short term.
+> >>
+> >
+> > short term is fine, but I think this should be fixed in upstream kernel=
+.
+>
+> Also agreed. That was my primary suggestion as well, since even with
+> that slow pace, we'd have it in all the kernel trees by the next
+> Yocto release window.
 
-Also agreed. That was my primary suggestion as well, since even with
-that slow pace, we'd have it in all the kernel trees by the next
-Yocto release window.
-
-Bruce
-
-> 
->> Bruce
->>
->>>
->>>>
->>>> It would be better if folks with this problem also send patches upstream
->>>> to allow us to vary the location of awk via a variable, since that would
->>>> eventually fix all kernels without needing any modifications .. but that
->>>> is a medium term time play, versus doing the sed operation.
->>>>
->>>> If you have a patch to kernel-devsrc in master, feel free to send it
->>>> and cc' me, and I can pull it into my queue, test and then send it in
->>>> my next pull request.
->>>>
->>>> Bruce
->>>>
->>>>>
->>>>> BR
->>>>> Måns Zigher
->>>>>
->>>>> Den tors 25 okt. 2018 kl 13:19 skrev Måns Zigher <mans.zigher@gmail.com
->>>>> <mailto:mans.zigher@gmail.com>>:
->>>>>
->>>>>       Hi,
->>>>>
->>>>>       I am trying to add the kernel devsrc to the SDK but I am getting the
->>>>>       following error
->>>>>
->>>>>       Problem: conflicting requests
->>>>>          - nothing provides /bin/awk needed by kernel-devsrc-1.0-r0.imx8mqevk
->>>>>
->>>>>       I have applied the following patch to try and fix this problem.
->>>>>
->>>>>       http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto/commit/?id=8af11c1cdd8fa08217e702b57cf96e9030db52b2
->>>>>
->>>>>       I have verified that it was applied and run kernel-devsrc works. The
->>>>>       error is from do_populate_sdk and I am suspecting that the problem
->>>>>       is related to me using rpm. I believe rpm might be to smart in this
->>>>>       case detecting the dependency and resulting dnf from failing when
->>>>>       running the task do_populate_sdk. Any suggestion on how to get
->>>>>       forward on this error. I would like to run dnf manually to check any
->>>>>       dependency of the kernel-devsrc rpm package but cannot figure out how.
->>>>>
->>>>>       BR
->>>>>       Måns Zigher
->>>>>
->>>>>
->>>>>
->>>> --
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
-
+thats reasonable
 
