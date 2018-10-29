@@ -1,62 +1,65 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87F09E00BBF; Mon, 29 Oct 2018 08:43:18 -0700 (PDT)
+	id DFB06E00BC2; Mon, 29 Oct 2018 08:56:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.52 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com
-	[209.85.210.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2D37E00A1A
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 08:43:17 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id g25so8013500otl.0
-	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 08:43:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.179 listed in list.dnswl.org]
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com
+	[209.85.160.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9D2AE00A1A
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 08:56:19 -0700 (PDT)
+Received: by mail-qt1-f179.google.com with SMTP id g10-v6so9789378qtq.6
+	for <yocto@yoctoproject.org>; Mon, 29 Oct 2018 08:56:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=YJ3K6QVz9pm0dqSF6UZ/AzW+JMFtChqUzb4kdPjClHw=;
-	b=ck0cxRtio7JrEKmPckunOyaEbPvXVzDjvEB6pBtRiLDOIpnIB3SskN0NJQUBUVfA4i
-	8Vj6GEyVewrMcoliws8Ocd8rcqz6zpJvayDg+fPAWe209CFDK9AttTGScI4r3hy5TLmS
-	q4NFy2fMSGHy7LacD+9G8gw+BfXYzxpF/gWM5+ZAWdxENP6YVQxyqiok2/0821y1hb8a
-	P1yVf8Mt5TrYmZyrc64n4D4ruU7tvJHjH6IozcV2KjKTWqhT9QjQmO9uLi0GWOThMGgP
-	yMv/epTYCa7E9v/DxfYKx247HY8zmBabn7YKutlcYJoLuCnlOOP/cwmyGk/jUppqsusp
-	zwKg==
+	:cc; bh=Ikhu0E7tjgSJFkSO5sbVSyqoF8qH0dlkSxO/6mfB65k=;
+	b=DV3JUsdqxJLFnLqc/1f2Q4ghl7P1gDQb5tXgCfqNQqNOGpvhXVIqO6o/pK0HRRhMUi
+	uiyqYcdgjFdt99TqkJbPMvZ7GrDGkeVMG5CZlivPVb4fAorwyKtgze05mDhFj8naZYA0
+	wDnQ198MBdtDl4I3ZwsXUtNJWCyKQSi/v8uYy2P6xkMz9c+EPxWLS/pjC5IOjJKWdUln
+	7gDBa+gRG8dN0o6lctqAL4LTvXdYkOGq0SNU+gPtekMXVmdkgzzp7xl8WZVKUQu7sqtc
+	ak+49UWxAjrf1okeKASrM0dbqMeb5p/8Ma+lUiGa5rwiB0FamWYgN/hoMwqx2wu0Ckw3
+	rpiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=YJ3K6QVz9pm0dqSF6UZ/AzW+JMFtChqUzb4kdPjClHw=;
-	b=PvV8r+rvztv4E9oAIPCl9iPATA85nCZ9LsyCTyvFEHqMUT5ZcqG5SaF7IdMvw9Pyxe
-	vN+ZhYacsN4KIB/gthqNycUKzNTaiUmrZtXV9OYkuT1Kneiyp9kR13kLg6vTbwYBBOSS
-	VmHbGls5jfn76oxndX++bH2Ys9/BEQ0O/jtPBqaN7QuIaJGl2PB5t7r3zfpToICDrpuV
-	QQSsk1RF5OMyxrT21PcflDMBXR88qdEs3Wh7pw39nyspAow6fGH+yTYFMDiwyMyTepfn
-	5YNU7aK6bLA2KjRlaQ8bpSfI/T0loD4RNy78+uo+K0iBvnSn0GAZXs4S2pRNeeJSNBN5
-	iX0Q==
-X-Gm-Message-State: AGRZ1gKBH5rd3N1UqF++ghQ63MnqwAEA7MTrf51RC2Ksi2V2cNSIcL1k
-	+SNILnV165nndeLTmfKWVz5TSNfftMVhyW8UdzIswA==
-X-Google-Smtp-Source: AJdET5dAuZNQs6aNLQewPDn/YlNFW42jsxZT1JQ2fEFMFN7/slxvr+7r0ojzWZw41pMPEll+hJcJB6rknCHo6CrSsVE=
-X-Received: by 2002:a9d:30ae:: with SMTP id s46mr9750775otc.132.1540827796921; 
-	Mon, 29 Oct 2018 08:43:16 -0700 (PDT)
+	bh=Ikhu0E7tjgSJFkSO5sbVSyqoF8qH0dlkSxO/6mfB65k=;
+	b=muOnxZMq4ECjQRVdH85DhW6c7kPmgrC8KfX1g2DjcPnoOjER98keSmLZhvQeWunXv0
+	udrS0bIR5PZETso8tevT6W0kXbIW3KoUvXVz/Z58RpHO3RNxVf/g3XvMoVt6rApbnDc/
+	/SIT4pY/NjV4BAMevDttVsgtqIo1ABT87SDY9Hm32nxjYlAvdCl6mmczLKKlmryjRIBo
+	TxDwSilQf/6QCUb3D6AkwmkOMnwknsAd+yYEuYIfwkUmW0Ku5GGGI7aTqL0RTipdSXzC
+	42SilLz3T8WLwdB+BPHY4SpHv7ED81dcIUgfA/lsE7zuQ6xOnaiZcU6oB7bjohtcsUia
+	lcAg==
+X-Gm-Message-State: AGRZ1gIAqb13euZuW5d3ECRHsKha5iapPa/MGU8WYX0jSBmc6Qk0Ifb8
+	ZMB8yFb/oRHuTN/wylYoZXWJPoeSDurKJlLaoylYgn6n5t8=
+X-Google-Smtp-Source: AJdET5ca+FjfTnZSsLSESm8Kht4WcEuAzZrlZhROqe5cfw2nMk5j3Yk2q4QJO/D8SClawU8fsyVb7xFFaI9p2tHmQGQ=
+X-Received: by 2002:ac8:3693:: with SMTP id
+	a19-v6mr13085527qtc.236.1540828578905; 
+	Mon, 29 Oct 2018 08:56:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <CA+4=ZEPrnNxV5HAwZ-KA98vFLHzqYbo0MHAb+mj+aq_cr=pHig@mail.gmail.com>
-	<CAJTo0LbZTFEEeaZ1hn-7D5XJnurXBDK6FRMT-79wJ8rMWTNicA@mail.gmail.com>
-	<CA+4=ZEMiTA8OZSqibcnfU=_POt8+68hwcx9EGX7Ahy2R6TZOiA@mail.gmail.com>
-In-Reply-To: <CA+4=ZEMiTA8OZSqibcnfU=_POt8+68hwcx9EGX7Ahy2R6TZOiA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 29 Oct 2018 15:43:05 +0000
-Message-ID: <CAJTo0LY+hMQgq4U6caqvChq4HUhj0P9OE+rD1ZGCgCH59oYP4Q@mail.gmail.com>
-To: joe.flowers@nofreewill.com
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: "bitbake core-image-sato" yields "No package 'gdk-x11-3.0' found" build failure
+References: <f416d79a-a303-0b48-746f-dcd6a5c5a4bf@faresoftware.it>
+In-Reply-To: <f416d79a-a303-0b48-746f-dcd6a5c5a4bf@faresoftware.it>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 29 Oct 2018 08:55:52 -0700
+Message-ID: <CAMKF1spMUEj-p1cMH=8gA6Y7Hf0JJjeejJhi0Ft=UgmLkmDwWg@mail.gmail.com>
+To: Mauro Ziliani <mauro@faresoftware.it>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Layers for AMD Geode LX 800
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,115 +71,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Oct 2018 15:43:18 -0000
+X-List-Received-Date: Mon, 29 Oct 2018 15:56:21 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-x11 is in the default DISTRO_FEATURES for poky, so you don't need to add that.
+there is meta-amd layer and its possible that it supported it may be
+some older branches also read this
 
-If core-image-x11 works then core-image-sato should build fine.  Try
-deleting your tmp/ and trying again, if that doesn't work then
-pastebin both temp/log.do_configure and config.log from the recipe
-that is failing (matchbox-panel).
-
-Ross
-On Mon, 29 Oct 2018 at 13:21, Joe Flowers <joe.flowers@nofreewill.com> wrote:
+https://lists.yoctoproject.org/pipermail/yocto/2013-September/016081.html
+On Wed, Oct 24, 2018 at 11:07 AM Mauro Ziliani <mauro@faresoftware.it> wrote:
 >
-> Thanks, Ross.
+> Hi all.
 >
-> 1.
-> Both of these commands worked:
+> Do you know if there is some layers ready for the board in subject?
 >
-> MACHINE=wandboard bitbake core-image-x11
-> MACHINE=wandboard bitbake gtk+3
->
-> 2.
-> I've attached my local.conf.
->
-> If the attachment does not go through, then I will copy and paste it into my next message.
->
-> Thanks!
->
-> Joe
-> -------------------------------
+> It is an IBASE IB550F.
 >
 >
-> On Mon, Oct 29, 2018 at 7:54 AM Burton, Ross <ross.burton@intel.com> wrote:
->>
->> Can you share your local.conf?  Does bitbake gtk+3 work?
->>
->> Ross
->> On Mon, 29 Oct 2018 at 06:42, Joe Flowers <joe.flowers@nofreewill.com> wrote:
->> >
->> > Hello everyone,
->> >
->> > 1.
->> > I am trying to build a core-image-sato image for a WandBoard but am getting stuck at this error message:
->> >
->> > "| No package 'gdk-x11-3.0' found"
->> >
->> > See below for more details.
->> >
->> >
->> > 2.
->> > I have grepped this list's archives and run into someone with the same problem, but a solution was never included in the thread.
->> >
->> > https://lists.yoctoproject.org/pipermail/yocto/2017-December/039149.html
->> >
->> >
->> > Help please.
->> >
->> > Joe
->> >
->> > ------------------------------
->> >
->> > Command
->> >
->> > MACHINE=wandboard bitbake core-image-sato
->> >
->> > produces this error message:
->> >
->> > ...
->> > ...
->> > | checking for pkg-config... /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/recipe-sysroot-native/usr/bin/pkg-config
->> > | configure: WARNING: using cross tools not prefixed with host triplet
->> > | checking pkg-config is at least version 0.9.0... yes
->> > | checking for glib-2.0
->> > |                   gmodule-export-2.0
->> > |                   x11
->> > |                   gdk-x11-3.0
->> > |                   gtk+-3.0... no
->> > | configure: error: Package requirements (glib-2.0
->> > |                   gmodule-export-2.0
->> > |                   x11
->> > |                   gdk-x11-3.0
->> > |                   gtk+-3.0) were not met:
->> > |
->> > | No package 'gdk-x11-3.0' found
->> > |
->> > | Consider adjusting the PKG_CONFIG_PATH environment variable if you
->> > | installed software in a non-standard prefix.
->> > |
->> > | Alternatively, you may set the environment variables MATCHBOX_PANEL_CFLAGS
->> > | and MATCHBOX_PANEL_LIBS to avoid the need to call pkg-config.
->> > | See the pkg-config man page for more details.
->> > | NOTE: The following config.log files may provide further information.
->> > | NOTE: /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/build/config.log
->> > | ERROR: configure failed
->> > | WARNING: exit code 1 from a shell command.
->> > | ERROR: Function failed: do_configure (log file is located at /opt/yocto/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/matchbox-panel-2/2.11-r0/temp/log.do_configure.40754)
->> > ERROR: Task (/opt/yocto/sources/poky/meta/recipes-sato/matchbox-panel-2/matchbox-panel-2_2.11.bb:do_configure) failed with exit code '1'
->> > NOTE: Tasks Summary: Attempted 3024 tasks of which 2828 didn't need to be rerun and 1 failed.
->> >
->> > Summary: 1 task failed:
->> >   /opt/yocto/sources/poky/meta/recipes-sato/matchbox-panel-2/matchbox-panel-2_2.11.bb:do_configure
->> > Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
->> > joe@ubuntu:/opt/yocto/build$
->> >
->> > ------------------------------
->> >
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
+> Thanks all
+>
+>
+> Mauro
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
