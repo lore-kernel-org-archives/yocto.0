@@ -1,38 +1,61 @@
-Return-Path: <Qi.Chen@windriver.com>
+Return-Path: <tomasz.dziendzielski@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 79381E00C37; Tue, 30 Oct 2018 01:49:30 -0700 (PDT)
+	id 4C1D4E00C12; Tue, 30 Oct 2018 02:50:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (tomasz.dziendzielski[at]gmail.com)
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C370E0097C
-	for <yocto@yoctoproject.org>; Tue, 30 Oct 2018 01:49:29 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w9U8nRdN005724
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 30 Oct 2018 01:49:27 -0700 (PDT)
-Received: from [128.224.162.218] (128.224.162.218) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
-	Tue, 30 Oct 2018 01:49:27 -0700
-To: Zolee K <zoleelikesdebian@gmail.com>, <yocto@yoctoproject.org>
-References: <CAK4Yt2n8Zy98t4zdyo9RtamVuZgnuabnNNCwsP7kx=ueXi+FMw@mail.gmail.com>
-From: ChenQi <Qi.Chen@windriver.com>
-Message-ID: <2beed052-9e1c-84fd-0d60-a7529d284ff4@windriver.com>
-Date: Tue, 30 Oct 2018 16:55:39 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.178 listed in list.dnswl.org]
+Received: from mail-it1-f178.google.com (mail-it1-f178.google.com
+	[209.85.166.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F329DE00BC8
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2018 02:50:36 -0700 (PDT)
+Received: by mail-it1-f178.google.com with SMTP id r5-v6so10977355ith.2
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2018 02:50:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=/O/PaNrusuQGnVS0n0ivij/tPUQlXNznp84y6TeIy9Q=;
+	b=B/fjaLPPZbdyPrIHAc1eLEp2Hc2dqKZVnruVBMtIVK+ZFwl8yU/RG2OvksjiS/dk+E
+	oh537EZVyVJU2f6HNwT0f9vMdxGCgwUd4AbBHgnc4d6ew0V/jjA5PVPky7HnKVKgZ1VT
+	xxSrhboHnEwBRvHBVbgLc3suw5EoS0loUuw3vhzsDxgVitfZ21AOu7czZleE/0z40ZLN
+	wxatQWeQufp+QzXAzGXoNHuwUDPgtdGqUiou7wvKp9XsMNk6PILlcNqdfSvlXr8EjU00
+	G0+bn3FkUy32p6kr8QKS27/REZd3h32Mu4wqINgkzPY/QesBORGJSk3LO0HY1OkcIM6H
+	d7zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=/O/PaNrusuQGnVS0n0ivij/tPUQlXNznp84y6TeIy9Q=;
+	b=ZU7zFai+Af61T+XP/eQ3PUPLO0ea58uuCK/KXbzGADMpOY40zx+PHzOtDhNUoV4M8l
+	5YCb7tcXqB2nQZc1Lb5Cwk0Tk7IpTiu0YcdE1J6zb8SCUIyuDcloOiAwoVxJ5HhZbq03
+	THkKNywo0WzF79wGBWozwUpSbIHIVy6C1xt2k+VB19Qstni+TV2Q+9kYI180yn2CjMJN
+	43SSKCGsql9wpteca5fFKJSeYwefS05L1BtwXRwbXinuhxyxkTwErxSLv8HN67TH28jZ
+	A9n1Bi4z02pEXTFe1xY3GzrSA3UUM4+wehQxtpHrzkKcGTYtvhJJdLPL72VSdMThanHi
+	BaNw==
+X-Gm-Message-State: AGRZ1gLmkf+BZsw83lJqetRKhvDv5CxRDFMnw6UYFd1hYWC8njf7kzdq
+	JIhadyku26D4JYCf++v3TyB30Tn/FBJms7yZ7u735hbaqI8=
+X-Google-Smtp-Source: AJdET5f8HomvjIY4+FEm/qyJ5eWP9m2P5kbTPmyuVzZ2CE6xSEdYRGp+WsWaznc4/0JcB5x7UnbGbDbUQ23VsqREIcI=
+X-Received: by 2002:a24:6f05:: with SMTP id x5-v6mr907890itb.111.1540893036099;
+	Tue, 30 Oct 2018 02:50:36 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAK4Yt2n8Zy98t4zdyo9RtamVuZgnuabnNNCwsP7kx=ueXi+FMw@mail.gmail.com>
-X-Originating-IP: [128.224.162.218]
-Subject: Re: include own script
+From: Tomasz Dziendzielski <tomasz.dziendzielski@gmail.com>
+Date: Tue, 30 Oct 2018 10:51:06 +0100
+Message-ID: <CAJkqNs1Y9-vwwZ2AyQWU7Qe0HTz8usOzOsc6nreEWfVQXq-HZg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: do_unpack: already exists and is not an empty directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,161 +67,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Oct 2018 08:49:30 -0000
-Content-Type: multipart/alternative;
-	boundary="------------2A36EAB24D69372047640414"
+X-List-Received-Date: Tue, 30 Oct 2018 09:50:37 -0000
+Content-Type: multipart/alternative; boundary="0000000000000dbce905796f1e19"
 
---------------2A36EAB24D69372047640414
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000000dbce905796f1e19
+Content-Type: text/plain; charset="UTF-8"
 
-On 10/30/2018 04:42 PM, Zolee K wrote:
-> Hi All,
->
->
-> Could you help me out with this? I've been experimenting with this 
-> without success, some of you have given me suggestions but neither of 
-> them worked yet.
->
-> ###############
->
-> /recipes-z/testing$ cat testscript.bb <http://testscript.bb>
-> DESCRIPTION = "test script"
-> LICENSE = "Zoli"
->
-> SRC_URI = "file://testscript"
->
-> SRC_URI[md5sum] = "e51375ed8c617ea7a6ac39b81c757e39"
->
-> FILESEXTRAPATHS_prepend := "${THISDIR}/file:"
->
-> S= "${WORKDIR}"
->
-> do_install() {
->     install -d ${D}${bindir}
->     install -m 0770 testscript ${D}${bindir}
-> }
->
-> #################
->
-> recipes-z/testing$ cat files/testscript
-> #!/bin/sh
->
-> echo "hello world"
->
-> ################
->
-> ERROR: testscript-1.0-r0 do_populate_lic: Fatal QA errors found, 
-> failing task.
-> ERROR: testscript-1.0-r0 do_populate_lic: Function failed: 
-> populate_lic_qa_checksum
-> ERROR: Logfile of failure stored in: 
-> /home/kerenyiz/oe-core/build/tmp-glibc/work/cortexa7hf-neon-vfpv4-oe-linux-gnueabi/testscript/1.0-r0/temp/log.do_populate_lic.4044
-> ERROR: Task 
-> (/home/..../recipes-z/testing/testscript.bb:do_populate_lic) failed 
-> with exit code '1'
->
->
->
-I guess the problem is about LIC_FILES_CHKSUM. Your LICENSE is set to 
-'Zoli'. So where do you put your Zoli license and what's the checksum of 
-it? How about using the following two lines if you do not care about 
-license?
+Hi,
+in some recipes that fetches git repository and has S variable set to
+"${WORKDIR}/git/foo" once per many builds we're having error:
 
-LICENSE = "CLOSED"
-LIC_FILES_CHKSUM = ""
+fatal: destination path
+'foobar/work/x86_64-linux/squashfs-tools-native/4.2-r2/git' already
+exists and is not an empty directory.
 
-Best Regards,
+It happens for squashfs-tools-native, vim-native (and maybe more of
+them but we didn't find it yet).
 
-Chen Qi
+I think this happens because of the race condition.
 
+If the S = "${WORKDIR}/git/foo" and B=${S}, then during do_unpack in
+parallel the ${B} directory is created and git repository is extracted
+to the place where ${B} directory already exists.
 
---------------2A36EAB24D69372047640414
-Content-Type: text/html; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
+Is this issue known?
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 10/30/2018 04:42 PM, Zolee K wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAK4Yt2n8Zy98t4zdyo9RtamVuZgnuabnNNCwsP7kx=ueXi+FMw@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <div dir="ltr">
-        <div dir="ltr">
-          <div>Hi All,</div>
-          <div><br>
-          </div>
-          <div><br>
-          </div>
-          <div>Could you help me out with this? I've been experimenting
-            with this without success, some of you have given me
-            suggestions but neither of them worked yet.<br>
-          </div>
-          <div><br>
-          </div>
-          <div>###############<br>
-            <br>
-            /recipes-z/testing$ cat <a moz-do-not-send="true"
-              href="http://testscript.bb">testscript.bb</a> <br>
-            DESCRIPTION = "test script"<br>
-            LICENSE = "Zoli"<br>
-            <br>
-            SRC_URI = <a class="moz-txt-link-rfc2396E" href="file://testscript">"file://testscript"</a><br>
-            <br>
-            SRC_URI[md5sum] = "e51375ed8c617ea7a6ac39b81c757e39"<br>
-            <br>
-            FILESEXTRAPATHS_prepend := "${THISDIR}/file:"<br>
-            <br>
-            S= "${WORKDIR}"<br>
-            <br>
-            do_install() {<br>
-                install -d ${D}${bindir}<br>
-                install -m 0770 testscript ${D}${bindir}<br>
-            }<br>
-            <br>
-            #################<br>
-            <br>
-            recipes-z/testing$ cat files/testscript <br>
-            #!/bin/sh<br>
-            <br>
-            echo "hello world"<br>
-            <br>
-            ################<br>
-            <br>
-            ERROR: testscript-1.0-r0 do_populate_lic: Fatal QA errors
-            found, failing task.<br>
-            ERROR: testscript-1.0-r0 do_populate_lic: Function failed:
-            populate_lic_qa_checksum<br>
-            ERROR: Logfile of failure stored in:
-/home/kerenyiz/oe-core/build/tmp-glibc/work/cortexa7hf-neon-vfpv4-oe-linux-gnueabi/testscript/1.0-r0/temp/log.do_populate_lic.4044<br>
-            ERROR: Task
-            (/home/..../recipes-z/testing/testscript.bb:do_populate_lic)
-            failed with exit code '1'<br>
-            <br>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <p>I guess the problem is about LIC_FILES_CHKSUM. Your LICENSE is
-      set to 'Zoli'. So where do you put your Zoli license and what's
-      the checksum of it? How about using the following two lines if you
-      do not care about license?</p>
-    <p>LICENSE = "CLOSED"<br>
-      LIC_FILES_CHKSUM = ""</p>
-    <p>Best Regards,</p>
-    <p>Chen Qi<br>
-    </p>
-  </body>
-</html>
+Best regards,
 
---------------2A36EAB24D69372047640414--
+Tomasz Dziendzielski
+
+--0000000000000dbce905796f1e19
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,</div><div>in some recipes that fetches git reposi=
+tory and has S variable set to &quot;${WORKDIR}/git/foo&quot; once per many=
+ builds we&#39;re having error:<br><pre class=3D"gmail-console-output"><spa=
+n style=3D"font-family:arial,helvetica,sans-serif">fatal: destination path =
+&#39;foobar/work/x86_64-linux/squashfs-tools-native/4.2-r2/git&#39; already=
+ exists and is not an empty directory.<br></span></pre><pre class=3D"gmail-=
+console-output"><span style=3D"font-family:arial,helvetica,sans-serif">It h=
+appens for squashfs-tools-native, vim-native (and maybe more of them but we=
+ didn&#39;t find it yet).<br></span></pre><pre class=3D"gmail-console-outpu=
+t"><span style=3D"font-family:arial,helvetica,sans-serif">I think this happ=
+ens because of the race condition.<br></span></pre><pre class=3D"gmail-cons=
+ole-output"><span style=3D"font-family:arial,helvetica,sans-serif">If the S=
+ =3D &quot;${WORKDIR}/git/foo&quot; and B=3D${S}, then during do_unpack in =
+parallel the ${B} directory is created and git repository is extracted to t=
+he place where ${B} directory already exists.<br></span></pre><pre class=3D=
+"gmail-console-output"><span style=3D"font-family:arial,helvetica,sans-seri=
+f">Is this issue known?<br><br></span></pre><pre class=3D"gmail-console-out=
+put"><span style=3D"font-family:arial,helvetica,sans-serif">Best regards,<b=
+r></span></pre><pre class=3D"gmail-console-output"><span style=3D"font-fami=
+ly:arial,helvetica,sans-serif">Tomasz Dziendzielski<br></span></pre></div><=
+/div>
+
+--0000000000000dbce905796f1e19--
