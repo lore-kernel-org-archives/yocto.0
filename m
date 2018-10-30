@@ -1,60 +1,93 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <rksyeung@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56CB9E00950; Tue, 30 Oct 2018 10:59:57 -0700 (PDT)
+	id 62AFCE00950; Tue, 30 Oct 2018 11:59:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (rksyeung[at]hotmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.49 listed in list.dnswl.org]
+	no *      trust *      [40.92.5.58 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
-	[209.85.167.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77864E008D7
-	for <yocto@yoctoproject.org>; Tue, 30 Oct 2018 10:59:56 -0700 (PDT)
-Received: by mail-lf1-f49.google.com with SMTP id p17so3152447lfh.4
-	for <yocto@yoctoproject.org>; Tue, 30 Oct 2018 10:59:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=3yJgfEihC5N8uOU9KZ0yG3veNgeuY+sQXxavqfk2yPE=;
-	b=FW4MJsfCXrFGOaJY8sGXleanCBAMzSqeL71kyQOifADphyVS3g0Oqz3JeDqZPddZ6K
-	OsOvzz2BBgVwa3eFh3GShJaXNFcgB+3sE/keL50I/cdZLdwaT2wsLkJZ29NRGTxu05x/
-	/LN4gQxlL9tCmGlmpJ4Sd+1pm7GZKSpW/nB20=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=3yJgfEihC5N8uOU9KZ0yG3veNgeuY+sQXxavqfk2yPE=;
-	b=GtCT/Fc9eJVeETIeIf+gN0efu0HHnWF0WypeLe5QaLA5g3eB8YwPpvRYBLOyfQEOD8
-	nzkswp8HxznABbVxpFZD+XpSUd9h8o9QUcEpKF51QCVkRBmatXgyNhFhX2OCPjWaxkP7
-	Xu77mHVfkbFdXhvs64kWTdtBcTQ8hmPOrByEjdl4kdJdwYfgVhLySfSfQe+qAgf5t94A
-	EtBycFimfzvX3/ZlDpynkcZ0toDfyWb7G8h0M6aKUd59/QWqZTInEDGCSvT1NUL2TMh2
-	IqaZRc1SONZZHUEFJc0rDesO7MKdjLLGxMRs7Gl31M2SFjhpwpJvFB3gxc/9L/ZF0NrX
-	37OA==
-X-Gm-Message-State: AGRZ1gL90t5DmxKrad82yU1l/G653DIwlO+bCB91ambAPkh/st0w0v5w
-	kiRRpTCUSKYYGfXf0IkZLd9yQyXfKNlMdTd9E0UYVw==
-X-Google-Smtp-Source: AJdET5dlZJU6Yyk84Qu9DnEYDeAqzHbyLM+6p+vHSzczpdO+xm14l3EeTOE9NZ/2PpbXSw2bO3Bw5S+9JaGAnx1xwtc=
-X-Received: by 2002:a19:ab1a:: with SMTP id
-	u26-v6mr2690293lfe.103.1540922395066; 
-	Tue, 30 Oct 2018 10:59:55 -0700 (PDT)
+X-Greylist: delayed 43361 seconds by postgrey-1.32 at yocto-www;
+	Tue, 30 Oct 2018 11:59:34 PDT
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+	(mail-oln040092005058.outbound.protection.outlook.com [40.92.5.58])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DF61E008D7
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2018 11:59:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=v4kvyKscQRZwirBzw1MuXORKYc+j4zH4RR9x/CKw+Cw=;
+	b=nEczodi6FwSXfadmaVidpda9WxsUDOOR8r4NbuEIB65N5cOWA6YPQQfAoaEt+0BPLSwoPJAxr+gyk04kmYgdJco55i5T5nDAxNe2htoUhSbQvLUTemqpX56DH/aji97xQDEU6JD3zddGORzUwWCdmwBhosNwfRWfLTCtazhRoO5HVEPqflPvkHBQBYbXKhyy/UQk48zoDa7MEKVH943z6wLz5jK2hv5dfYpfkIa1ZQEGioysqYdKJf+W/p3SknD6JS7+jbwtJARwbCPE5Mr428T5Yd2xg5KIng1CHOTdCCQ63S3xRQyFN0n88vnSgpbNGYPCkOdxLVoIZk7oSmDsmw==
+Received: from BL2NAM02FT004.eop-nam02.prod.protection.outlook.com
+	(10.152.76.51) by BL2NAM02HT233.eop-nam02.prod.protection.outlook.com
+	(10.152.77.208) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1294.14;
+	Tue, 30 Oct 2018 02:23:44 +0000
+Received: from CY4PR19MB1093.namprd19.prod.outlook.com (10.152.76.60) by
+	BL2NAM02FT004.mail.protection.outlook.com (10.152.76.168) with
+	Microsoft SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+	15.20.1294.14 via Frontend Transport; Tue, 30 Oct 2018 02:23:44 +0000
+Received: from CY4PR19MB1093.namprd19.prod.outlook.com
+	([fe80::4cd:8af7:32fd:6c3c]) by CY4PR19MB1093.namprd19.prod.outlook.com
+	([fe80::4cd:8af7:32fd:6c3c%8]) with mapi id 15.20.1273.027;
+	Tue, 30 Oct 2018 02:23:44 +0000
+From: Raymond Yeung <rksyeung@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: How to update YP kernel image (run-time)
+Thread-Index: AQHUb/eUjDRm7mG5z0uEWa2wJi8/bg==
+Date: Tue, 30 Oct 2018 02:23:44 +0000
+Message-ID: <CY4PR19MB1093B30D2DC8617F1A0783C5C5CC0@CY4PR19MB1093.namprd19.prod.outlook.com>
+References: <mailman.4187.1540841639.2881.yocto@yoctoproject.org>
+In-Reply-To: <mailman.4187.1540841639.2881.yocto@yoctoproject.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:912A91E7B849E1A32A03E34E4F9C726A02D8B2FA5C427CD1B77A142DF4EC3167;
+	UpperCasedChecksum:CF2DF5A5D9251BBECBE51AA4D010904339E1DB274526FB889B1642BB8FA7C055;
+	SizeAsReceived:6997; Count:46
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [NMUhrNGlk/ZQNgw6mOKsF5FDa3vJcWO1]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; BL2NAM02HT233;
+	6:Ce4RqVvW3f1voIkiCrj2CCKfnnGS77W6Oc+eXjOyn1NLbb1e4y+nKj9BBqm3MD2ZAeRrnqY4/PLybNBlyI0vDZdIVlUmom1fo4SWQq6sflXB0awOAh68Qxlj+sEmfOTVSiS1ejPLgW935EWmBU8tdmJlYRuHRhLuqmebZE9V1M08mjmP2we5Y0Pt1rc7BtGiCkuCrgh5RWwIdw/Qv5Y12mnVSUj4F2ldmky/HYENbksNjTAwu7vxaJMglf5fGBuUvTV0iQJpJkJbjy4IPuvC4GpBv1A6A8TLzO66Tpq2hj6/5mVW/Sr/nLa0fXRSLeLSrGY5f08Mt90TF+DFhHz3M44ReKd6bV86kabCezKKrm7gRpVgvWK5V2hnSdvsUUcri0TLIHeqSSmbPXkwUYhL102q/GpS1wOFB/vXZcDV4z9Miiwl+//FtI1lxQ6rUEbytwzmK8JYgwx3WNtaHirw8Q==;
+	5:rKVrFpUyT976ghQPQXQ8o6mNu+LwToTH+dd/6ord4MU+cht8AWUDIuCFCUZ+GPCX8I4H3uRcRU2UUPrFNyDPeR8ZJEcRarjTKjki+15Qoyst7pTgd+5aNGAyVIZG64vvqXhyIZTY2Qa/HJnO/6QBcHdJO/+2FAkDyCbzjoC0YpA=;
+	7:Urah65jJvo5nA2lt+GG6ipZhMIZJVdbdCdyiE6ueTBJH/PXbaqvrS7LiyIgA0O4nl3pw0EcUGwQK6Xk1sWlEevaUOESGTjcbNYuBSvMIGn1AHL3eHNZF8BVzYD2SoMSCRQyXqsFtHizL5ZFxEEdSWw==
+x-incomingheadercount: 46
+x-eopattributedmessage: 0
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1601125500)(1603101475)(1701031045);
+	SRVR:BL2NAM02HT233; 
+x-ms-traffictypediagnostic: BL2NAM02HT233:
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(4566010)(82015058);
+	SRVR:BL2NAM02HT233; BCL:0; PCL:0; RULEID:; SRVR:BL2NAM02HT233; 
+x-microsoft-antispam-message-info: ghBMSmsjdBFCz1QKud7PFLhaOdzWJQuJun6YXzLGzZVZVxpoGsBTpwFQhZ1VRAxC
 MIME-Version: 1.0
-References: <28fb384c-5521-f1d9-076e-f25c9c04b125@gmail.com>
-In-Reply-To: <28fb384c-5521-f1d9-076e-f25c9c04b125@gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Tue, 30 Oct 2018 18:59:42 +0100
-Message-ID: <CAP71WjxiavLMpJS9mC72cOb5kBxfk7qPHB-bD8xW1AoNVZ4GkQ@mail.gmail.com>
-To: xerofoify <xerofoify@gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Help with Nano Recipe
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa2ffa8f-677c-49e3-6650-08d63e0eb724
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 5dab7a8a-ebdc-4bd9-9cfd-67cde50b170b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Oct 2018 02:23:44.2271 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL2NAM02HT233
+Subject: How to update YP kernel image (run-time)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,99 +99,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Oct 2018 17:59:57 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 30 Oct 2018 18:59:36 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY4PR19MB1093B30D2DC8617F1A0783C5C5CC0CY4PR19MB1093namp_"
 
-On Tue, Oct 30, 2018 at 5:38 PM nick <xerofoify@gmail.com> wrote:
->
-> Greetings All,
-> I am trying to get the below recipe to build:
-> SUMMARY = "Recipe to build the 'nano' editor"
->
-> PN = "nano"
-> PV = "2.2.6"
-> LICENSE="GPLv3"
->
-> SITE = "http://www.nano-editor.org/dist"
-> PV_MAJOR = "${@d.getVar('PV',d,1).split('.')[0]}"
-> PV_MINOR = "${@d.getVar('PV',d,1).split('.')[1]}"
-> LIC_FILES_CHKSUM = "${SITE}/v${PV_MAJOR}.${PV_MINOR}/COPYING;md5=f27defe1e96c2e1ecd4e0c9be8967949"
->
-> SRC_URI = "${SITE}/v${PV_MAJOR}.${PV_MINOR}/${PN}-${PV}.tar.gz"
-> SRC_URI[md5sum] = "03233ae480689a008eb98feb1b599807"
-> SRC_URI[sha256sum] = \
-> "be68e133b5e81df41873d32c517b3e5950770c00fc5f4dd23810cd635abce67a"
-> LIC_FILES_CHKSUM = "${SITE}/v${PV_MAJOR}.${PV_MINOR}/COPYING;md5=f27defe1e96c2e1ecd4e0c9be8967949
+--_000_CY4PR19MB1093B30D2DC8617F1A0783C5C5CC0CY4PR19MB1093namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-You are missing a quote at the end.
+Let's say I've a working run-time system running 2016 April release (Krogot=
+h) Poky image.  I've it installed previously from a USB thumb drive onto a =
+much bigger SSD with all partitions setup.  I don't need to change the part=
+ition from here onward.
 
->
->
-> python do_fetch() {
->     bb.plain("Downloading source tarball from ${SRC_URI} ...")
->     src_uri = (d.getVar('SRC_URI', True) or "").split()
->     if len(src_uri) == 0:
->        bb.fatal("Empty URI")
->     try:
->        fetcher = bb.fetch2.Fetch(src_uri, d)
->        fetcher.download()
->     except bb.fetch2.BBFetchException:
->        bb.fatal("Could not fetch source tarball.")
->     bb.plain("Download successful.")
-> }
+Is there an easy way to replace it with, say 2017 Oct release (Rocko) Poky =
+image (and vice versa)?  E.g. by replacing just one file (e.g. bzImage)?  O=
+r is there a script that would take care of it?  What happens to all the ex=
+isting directories, e.g. /etc, /bin etc.?
 
-It is very unusual to implement a recipe this way , and you should
-rely on base classes to do that for you. For reference there is a
-recipe for 'nano' in meta-oe already.
+I've been trying to adapt init_install.sh under poky/meta/recipes-core/init=
+rdScripts/files, but it seems to assume I've a separate device (like USB dr=
+ive).
 
-http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-support/nano/nano_3.0.bb?h=master
+Thanks,
+Raymond
 
->
-> addtask fetch before do_build
->
-> python do_unpack() {
->     bb.plain("Unpacking source tarball ...")
->     os.system("tar x -C ${WORKDIR} -f ${DL_DIR}/${P}.tar.gz")
->     bb.plain("Unpacked source tarball.")
-> }
->
-> addtask unpack before do_build after do_fetch
->
-> python do_configure() {
->     bb.plain("Configuring source package ...")
->     os.system("cd ${WORKDIR}/${P} && ./configure")
->     bb.plain("Configured source package.")
-> }
->
-> addtask configure before do_build after do_unpack
->
-> python do_compile() {
->     bb.plain("Compiling package...")
->     os.system("cd ${WORKDIR}/${P} && make")
->     bb.plain("Compiled package.")
-> }
->
-> addtask compile before do_build after do_configure
->
-> do_clean[nostamp] = "1"
-> do_clean() {
->     rm -rf ${WORKDIR}/${P}
->     rm -f ${TMPDIR}/stamps/*
-> }
->
-> addtask clean
->
-> And am working why this error is occuring:
-> ERROR: ParseError at /tmp/bbhello/meta-hello/recipes-editor/nano/nano.bb:15: unparsed line: 'LIC_FILES_CHKSUM = "${SITE}/v${PV_MAJOR}.${PV_MINOR}/COPYING;md5=f27defe1e96c2e1ecd4e0c9be8967949'
->
-> I looked through the logs already and it was reported but only changed the file number seemed to change it. I am wondering if there is a better
-> solution or why that's a bad CHSUM variable according to bitbake.
->
-> Thanks,
-> Nick
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+--_000_CY4PR19MB1093B30D2DC8617F1A0783C5C5CC0CY4PR19MB1093namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+Let's say I've a working run-time system running 2016 April release (Krogot=
+h) Poky image. &nbsp;I've it installed previously from a USB thumb drive on=
+to a much bigger SSD with all partitions setup. &nbsp;I don't need to chang=
+e the partition from here onward.</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+Is there an easy way to replace it with, say 2017 Oct release (Rocko) Poky =
+image (and vice versa)? &nbsp;E.g. by replacing just one file (e.g. bzImage=
+)? &nbsp;Or is there a script that would take care of it? &nbsp;What happen=
+s to all the existing directories, e.g. /etc, /bin
+ etc.?</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+I've been trying to adapt init_install.sh under poky/meta/recipes-core/init=
+rdScripts/files, but it seems to assume I've a separate device (like USB dr=
+ive).</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+Thanks,</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+Raymond</div>
+</body>
+</html>
+
+--_000_CY4PR19MB1093B30D2DC8617F1A0783C5C5CC0CY4PR19MB1093namp_--
