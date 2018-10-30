@@ -1,61 +1,67 @@
-Return-Path: <tomasz.dziendzielski@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4C1D4E00C12; Tue, 30 Oct 2018 02:50:37 -0700 (PDT)
+	id A6F9AE00BD0; Tue, 30 Oct 2018 04:03:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (tomasz.dziendzielski[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.43 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.178 listed in list.dnswl.org]
-Received: from mail-it1-f178.google.com (mail-it1-f178.google.com
-	[209.85.166.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F329DE00BC8
-	for <yocto@yoctoproject.org>; Tue, 30 Oct 2018 02:50:36 -0700 (PDT)
-Received: by mail-it1-f178.google.com with SMTP id r5-v6so10977355ith.2
-	for <yocto@yoctoproject.org>; Tue, 30 Oct 2018 02:50:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=/O/PaNrusuQGnVS0n0ivij/tPUQlXNznp84y6TeIy9Q=;
-	b=B/fjaLPPZbdyPrIHAc1eLEp2Hc2dqKZVnruVBMtIVK+ZFwl8yU/RG2OvksjiS/dk+E
-	oh537EZVyVJU2f6HNwT0f9vMdxGCgwUd4AbBHgnc4d6ew0V/jjA5PVPky7HnKVKgZ1VT
-	xxSrhboHnEwBRvHBVbgLc3suw5EoS0loUuw3vhzsDxgVitfZ21AOu7czZleE/0z40ZLN
-	wxatQWeQufp+QzXAzGXoNHuwUDPgtdGqUiou7wvKp9XsMNk6PILlcNqdfSvlXr8EjU00
-	G0+bn3FkUy32p6kr8QKS27/REZd3h32Mu4wqINgkzPY/QesBORGJSk3LO0HY1OkcIM6H
-	d7zw==
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com
+	[209.85.166.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D9ADE00AC5
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2018 04:03:39 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id q4-v6so6934337iob.8
+	for <yocto@yoctoproject.org>; Tue, 30 Oct 2018 04:03:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=0BQv97GI6HEbNuNJlAsQH7HmVDpfOAR6D1nAS4RKMpU=;
+	b=YcyQEfYSJMGPCw2X99qdbQJpZ5hI6Nv3HOVaJa/ooCfkZrR1qlXcBbE2xJyiql3rAc
+	5sgQABelIJC44sWToqTc6nyLPglltsQ0pjX9s0cYxXh6QQS2qF6PcPWpXOdI3Z0vHH//
+	TpfflX88U4JT/Y9Kt0bEFrSyQ8G47W7fD9L1lu1HOqCQxLJnXRSapKyUh08D9EmhWQ+i
+	XxGWPhFnxyMrdmSQVKxAAO915Ib8REFcMmGHokuwGKWhRMUhEYWPRfhgx6m7iQgHTJ1m
+	kNVjxOF1YW6IER4J3ZQFW35SH72QhgI6NPI3jNHKFR6FJoaZhBjZqOqUSqFZo/ecyPvq
+	g2iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=/O/PaNrusuQGnVS0n0ivij/tPUQlXNznp84y6TeIy9Q=;
-	b=ZU7zFai+Af61T+XP/eQ3PUPLO0ea58uuCK/KXbzGADMpOY40zx+PHzOtDhNUoV4M8l
-	5YCb7tcXqB2nQZc1Lb5Cwk0Tk7IpTiu0YcdE1J6zb8SCUIyuDcloOiAwoVxJ5HhZbq03
-	THkKNywo0WzF79wGBWozwUpSbIHIVy6C1xt2k+VB19Qstni+TV2Q+9kYI180yn2CjMJN
-	43SSKCGsql9wpteca5fFKJSeYwefS05L1BtwXRwbXinuhxyxkTwErxSLv8HN67TH28jZ
-	A9n1Bi4z02pEXTFe1xY3GzrSA3UUM4+wehQxtpHrzkKcGTYtvhJJdLPL72VSdMThanHi
-	BaNw==
-X-Gm-Message-State: AGRZ1gLmkf+BZsw83lJqetRKhvDv5CxRDFMnw6UYFd1hYWC8njf7kzdq
-	JIhadyku26D4JYCf++v3TyB30Tn/FBJms7yZ7u735hbaqI8=
-X-Google-Smtp-Source: AJdET5f8HomvjIY4+FEm/qyJ5eWP9m2P5kbTPmyuVzZ2CE6xSEdYRGp+WsWaznc4/0JcB5x7UnbGbDbUQ23VsqREIcI=
-X-Received: by 2002:a24:6f05:: with SMTP id x5-v6mr907890itb.111.1540893036099;
-	Tue, 30 Oct 2018 02:50:36 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=0BQv97GI6HEbNuNJlAsQH7HmVDpfOAR6D1nAS4RKMpU=;
+	b=cucPL+8Fncx6DUalA29V6TuuRxVKPkAyJOnMQ/qFaxhn9P0F8u6PhGrlg+YktLGaja
+	+WIDqpeo30f8qv8sHVd2DGCR+RZRS2YFUJP19I/1sCY9xb8p8ML0rWjIB4g7/1+PcQB0
+	aDd90BGkDqUNwvei6yjW2FcOcG0v35vTNIyYCZh8S6JKFsx8czBqsZ/1rbP3wunFhy8N
+	01d49BAwd+c3MWLIaCS06e9zr20lw1F0wRelbfuTcLnbpPmG9tHcxJPLGuYvos4U38Le
+	k6xMEYhCFEuBuoTmmTKfwHmbDQNNnHaKqujjpYOhTGF3kWg5QS7kAv+enxJH1jWKP1nR
+	rWkw==
+X-Gm-Message-State: AGRZ1gKCnMO3S552eFnVsROBoSlHstvNutXSTre1xZHwsQhie/rFBhNT
+	PeDzTUsGKFI66LwvaZIffaDmFMeCgrPIq9TAKi/Fmsdo3Mg=
+X-Google-Smtp-Source: AJdET5cbwlu7pdLF7Vk7Z2zQUGnvgAX3iUuhT+nC39TQYGs0f7HqZLh0Hw9eITDJ/c6kYxNd2uKuo8pBBthHDr2f50s=
+X-Received: by 2002:a6b:fb18:: with SMTP id
+	h24-v6mr4089227iog.270.1540897419012; 
+	Tue, 30 Oct 2018 04:03:39 -0700 (PDT)
 MIME-Version: 1.0
-From: Tomasz Dziendzielski <tomasz.dziendzielski@gmail.com>
-Date: Tue, 30 Oct 2018 10:51:06 +0100
-Message-ID: <CAJkqNs1Y9-vwwZ2AyQWU7Qe0HTz8usOzOsc6nreEWfVQXq-HZg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: do_unpack: already exists and is not an empty directory
+References: <CA+4=ZEPrnNxV5HAwZ-KA98vFLHzqYbo0MHAb+mj+aq_cr=pHig@mail.gmail.com>
+	<CAJTo0LbZTFEEeaZ1hn-7D5XJnurXBDK6FRMT-79wJ8rMWTNicA@mail.gmail.com>
+	<CA+4=ZEMiTA8OZSqibcnfU=_POt8+68hwcx9EGX7Ahy2R6TZOiA@mail.gmail.com>
+	<CAJTo0LY+hMQgq4U6caqvChq4HUhj0P9OE+rD1ZGCgCH59oYP4Q@mail.gmail.com>
+	<CA+4=ZENGPKV6hQbyQ_o3GEtsmuAnFsGhPFHv20iSRODgba=LLA@mail.gmail.com>
+	<CAJTo0LagPTdQ__2OfiKjwtDhe8=4T7aOqY3EjnAuqwKQdftnmw@mail.gmail.com>
+	<CA+4=ZEM-=P=17WC9JCqpana8EwCum3cANGuhUo60ryqbP29hYQ@mail.gmail.com>
+In-Reply-To: <CA+4=ZEM-=P=17WC9JCqpana8EwCum3cANGuhUo60ryqbP29hYQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 30 Oct 2018 11:03:27 +0000
+Message-ID: <CAJTo0LYaG0=3-qgB0r-87nh-VVvft6YB-OR5kyD7hP22R=aQZw@mail.gmail.com>
+To: joe.flowers@nofreewill.com
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: "bitbake core-image-sato" yields "No package 'gdk-x11-3.0' found" build failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,59 +73,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Oct 2018 09:50:37 -0000
-Content-Type: multipart/alternative; boundary="0000000000000dbce905796f1e19"
-
---0000000000000dbce905796f1e19
+X-List-Received-Date: Tue, 30 Oct 2018 11:03:40 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
-in some recipes that fetches git repository and has S variable set to
-"${WORKDIR}/git/foo" once per many builds we're having error:
+On Tue, 30 Oct 2018 at 03:05, Joe Flowers <joe.flowers@nofreewill.com> wrote:
+> Below is the output you requested.  gdk-x11-3.0.pc does not seem to exist.
+>
+> Below, should that be "wandboard" and not "qemux86" ?
+>
+> joe@ubuntu:/opt/yocto/build$
+> joe@ubuntu:/opt/yocto/build$ oe-pkgdata-util find-path '*/gdk-x11-3.0.pc'
+> ERROR: Unable to find pkgdata directory /opt/yocto/build/tmp/pkgdata/qemux86
+> joe@ubuntu:/opt/yocto/build$ cd ..
+> joe@ubuntu:/opt/yocto$ oe-pkgdata-util find-path '*/gdk-x11-3.0.pc'
+> ERROR: Unable to find pkgdata directory /opt/yocto/build/tmp/pkgdata/qemux86
+> joe@ubuntu:/opt/yocto$
+> joe@ubuntu:/opt/yocto$
+> joe@ubuntu:/opt/yocto$ find /opt/yocto -name *.pc* 1> ~/find4.txt 2>/dev/null
+> joe@ubuntu:/opt/yocto$ cat ~/find4.txt | grep gdk | grep x11
+> joe@ubuntu:/opt/yocto$
 
-fatal: destination path
-'foobar/work/x86_64-linux/squashfs-tools-native/4.2-r2/git' already
-exists and is not an empty directory.
+Yes, the pkgdata directory should be wandaboard but you haven't set
+that in local.conf (you should), you've been setting it in the
+environment so you need to set it in the environment when calling
+oe-pkgdata-util (this is why you should set it in local.conf).
 
-It happens for squashfs-tools-native, vim-native (and maybe more of
-them but we didn't find it yet).
+Was this after building gtk+3? If I'm reading your build paths
+correctly, what is the content of
+/opt/yocto/build/tmp/sysroots-components/cortexa9hf-neon-poky-linux-gnueabi/gtk+3/usr/lib/pkgconfig/
 
-I think this happens because of the race condition.
+Any file on the host isn't what we're after, they're not used in cross
+compilation.
 
-If the S = "${WORKDIR}/git/foo" and B=${S}, then during do_unpack in
-parallel the ${B} directory is created and git repository is extracted
-to the place where ${B} directory already exists.
+Ross
 
-Is this issue known?
-
-Best regards,
-
-Tomasz Dziendzielski
-
---0000000000000dbce905796f1e19
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi,</div><div>in some recipes that fetches git reposi=
-tory and has S variable set to &quot;${WORKDIR}/git/foo&quot; once per many=
- builds we&#39;re having error:<br><pre class=3D"gmail-console-output"><spa=
-n style=3D"font-family:arial,helvetica,sans-serif">fatal: destination path =
-&#39;foobar/work/x86_64-linux/squashfs-tools-native/4.2-r2/git&#39; already=
- exists and is not an empty directory.<br></span></pre><pre class=3D"gmail-=
-console-output"><span style=3D"font-family:arial,helvetica,sans-serif">It h=
-appens for squashfs-tools-native, vim-native (and maybe more of them but we=
- didn&#39;t find it yet).<br></span></pre><pre class=3D"gmail-console-outpu=
-t"><span style=3D"font-family:arial,helvetica,sans-serif">I think this happ=
-ens because of the race condition.<br></span></pre><pre class=3D"gmail-cons=
-ole-output"><span style=3D"font-family:arial,helvetica,sans-serif">If the S=
- =3D &quot;${WORKDIR}/git/foo&quot; and B=3D${S}, then during do_unpack in =
-parallel the ${B} directory is created and git repository is extracted to t=
-he place where ${B} directory already exists.<br></span></pre><pre class=3D=
-"gmail-console-output"><span style=3D"font-family:arial,helvetica,sans-seri=
-f">Is this issue known?<br><br></span></pre><pre class=3D"gmail-console-out=
-put"><span style=3D"font-family:arial,helvetica,sans-serif">Best regards,<b=
-r></span></pre><pre class=3D"gmail-console-output"><span style=3D"font-fami=
-ly:arial,helvetica,sans-serif">Tomasz Dziendzielski<br></span></pre></div><=
-/div>
-
---0000000000000dbce905796f1e19--
