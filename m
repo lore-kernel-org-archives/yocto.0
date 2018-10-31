@@ -1,33 +1,37 @@
-Return-Path: <jairo@futurasmus-knxlab.es>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 59AA0E00B5E; Wed, 31 Oct 2018 07:00:59 -0700 (PDT)
+	id 9D19DE00B5E; Wed, 31 Oct 2018 07:24:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [37.187.160.104 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.knx-group.net (www.futurasmus-knxgroup.org
-	[37.187.160.104])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 9A54EE00AE0
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2018 07:00:57 -0700 (PDT)
-Received: from PC-008 (215.red-88-0-69.dynamicip.rima-tde.net [88.0.69.215])
-	by mail.knx-group.net ; Wed, 31 Oct 2018 15:00:54 +0100
-Message-ID: <2d4fc304068a8bd6e6559cdb5a86a02d458f295e.camel@futurasmus-knxlab.es>
-From: Jairo <jairo@futurasmus-knxlab.es>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, Dimitris Tassopoulos
-	<dimtass@gmail.com>, yocto@yoctoproject.org
-Date: Wed, 31 Oct 2018 15:00:49 +0100
-In-Reply-To: <a0b30c78-7a0f-582b-07dc-23c989dc2f36@windriver.com>
-References: <ac25a5b004fb50f504cb455375de268710121957.camel@futurasmus-knxlab.es>
-	<a0b30c78-7a0f-582b-07dc-23c989dc2f36@windriver.com>
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Mime-Version: 1.0
-Subject: Re: [avahi] add service into rocko
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74E47E00AE0
+	for <yocto@yoctoproject.org>; Wed, 31 Oct 2018 07:24:36 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w9VENnce025919
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 31 Oct 2018 07:24:05 -0700
+Received: from [128.224.56.49] (128.224.56.49) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
+	Wed, 31 Oct 2018 07:23:51 -0700
+To: <hs@denx.de>, <yocto@yoctoproject.org>
+References: <6c9102d2-91dc-41be-3aec-ab60d4688af5@denx.de>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <2d8e6033-d507-b462-6eb9-e45237d0a204@windriver.com>
+Date: Wed, 31 Oct 2018 10:23:50 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
+MIME-Version: 1.0
+In-Reply-To: <6c9102d2-91dc-41be-3aec-ab60d4688af5@denx.de>
+Subject: Re: thud, beaglebone-yocto.conf: SERIAL_CONSOLES setting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,64 +43,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Oct 2018 14:00:59 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 31 Oct 2018 14:24:37 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Wow thank you.
-with:
-IMAGE_INSTALL_append =3D "avahi-daemon"
-it seems to work, it's a bit confusing but I think I got it, hehehe,
-thanks Bruce and Dimitris
+On 10/31/18 9:23 AM, Heiko Schocher wrote:
+> Hello all,
+> 
+> just builded core-image-minimal with current head of thud branch for
+> the beaglebone-yocto machine, with linux 4.14.x LTS "Linux version 
+> 4.14.78",
+> installed the resulting sd card image and boot it, and get:
+> 
+> INIT: Id "O0" respawning too fast: disabled for
+> 5 minutes
+> 
+> Reason seems to be:
+> 
+> meta-yocto-bsp/conf/machine/beaglebone-yocto.conf
+> 
+> SERIAL_CONSOLES = "115200;ttyO0"
+> 
+> shouldn't this be
+> 
+> SERIAL_CONSOLES = "115200;ttyS0"
+> 
+> With this fix, sd card image boot fine ... may I oversee seomthing
+> obvious ?
 
+Doesn't look like it.
 
-El mi=C3=A9, 31-10-2018 a las 08:57 -0400, Bruce Ashfield escribi=C3=B3:
-> On 10/31/18 7:03 AM, Jairo wrote:
-> > Hi all,
-> >=20
-> > I need to install an avahi service on rocko for (a node of) node-
-> > red.
-> >=20
-> > OK, I have an avahi_0.6.32.bb recipe at 'sources/poky/meta/recipes-
-> > connectivity/avahi/' which path is added at bblayers.conf file.
-> >=20
-> > but if I add the package at local.conf file like this:
-> >=20
-> > IMAGE_INSTALL_append =3D " avahi"
-> >=20
-> > when I try to make an image, bitbake can't find avahi
-> >=20
-> >     Collected errors:
-> >      * opkg_prepare_url_for_install: Couldn't find anything to
-> > satisfy
-> > 'avahi'.
-> >=20
-> > What I'm doing wrong?
->=20
-> The recipe name and the packages that you install are not (always)
-> the same thing.
->=20
-> i.e. in the recipe:
->=20
-> PACKAGES =3D+ "libavahi-gobject avahi-daemon libavahi-common libavahi-
-> core=20
-> libavahi-client avahi-dnsconfd libavahi-glib avahi-autoipd avahi-
-> utils"
->=20
->=20
-> So depending on the functionality that you want, you'd be installing
-> one or more of those packages to your image. (I'm betting you just
-> want avahi-daemon).
->=20
-> Bruce
->=20
-> >=20
-> > Thanks,
-> > Jairo
-> >=20
-> >=20
->=20
->=20
+I'd suggest sending a patch to the yocto mailing list, that
+way folks can comment directly and it can be pulled into
+point releases, etc.
 
+Bruce
+
+> 
+> bye,
+> Heiko
 
 
