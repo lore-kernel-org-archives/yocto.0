@@ -1,38 +1,33 @@
-Return-Path: <Kexin.Hao@windriver.com>
+Return-Path: <jrswdnan22@snkmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 79B42E00BC6; Wed, 31 Oct 2018 19:21:20 -0700 (PDT)
+	id 2BFFCE00BCC; Thu,  1 Nov 2018 03:12:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6631FE00B5E
-	for <yocto@yoctoproject.org>; Wed, 31 Oct 2018 19:21:18 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id wA12JwJM013198
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 31 Oct 2018 19:20:45 -0700
-Received: from pek-khao-d2 (147.11.105.123) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
-	Wed, 31 Oct 2018 19:20:11 -0700
-Date: Thu, 1 Nov 2018 10:18:54 +0800
-From: Kevin Hao <kexin.hao@windriver.com>
-To: Heiko Schocher <hs@denx.de>
-Message-ID: <20181101021854.GT24227@pek-khao-d2>
-References: <6c9102d2-91dc-41be-3aec-ab60d4688af5@denx.de>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [195.197.172.111 listed in list.dnswl.org]
+X-Greylist: delayed 343 seconds by postgrey-1.32 at yocto-www;
+	Thu, 01 Nov 2018 03:12:32 PDT
+Received: from gw03.mail.saunalahti.fi (gw03.mail.saunalahti.fi
+	[195.197.172.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCF8EE00B9D
+	for <yocto@yoctoproject.org>; Thu,  1 Nov 2018 03:12:32 -0700 (PDT)
+Received: from linux.suse (91-157-44-75.elisa-laajakaista.fi [91.157.44.75])
+	by gw03.mail.saunalahti.fi (Postfix) with ESMTP id 1ED272001A;
+	Thu,  1 Nov 2018 12:06:45 +0200 (EET)
+From: Uwe Geuder <jrswdnan22@snkmail.com>
+To: yocto@yoctoproject.org
+In-Reply-To: <3c8fcce7-e642-a8f2-b599-a85f487038e1@teltonika.lt>
+References: <3c8fcce7-e642-a8f2-b599-a85f487038e1@teltonika.lt>
+Date: Thu, 01 Nov 2018 12:06:44 +0200
+Message-ID: <87va5hf6x7.fsf@linux.suse>
 MIME-Version: 1.0
-In-Reply-To: <6c9102d2-91dc-41be-3aec-ab60d4688af5@denx.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Originating-IP: [147.11.105.123]
-Cc: yocto@yoctoproject.org
-Subject: Re: thud, beaglebone-yocto.conf: SERIAL_CONSOLES setting
+Subject: Re: Removing hostapd init file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,74 +39,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2018 02:21:20 -0000
-X-Groupsio-MsgNum: 43017
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="GAoked8QSizNecZ5"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 01 Nov 2018 10:12:34 -0000
+Content-Type: text/plain
 
---GAoked8QSizNecZ5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, Oct 23, 2018 at 9:14 AM Kristupas Savickas kristupas.savickas-at-teltonika.lt wrote:
+>
+> Greetings,
+>
+> I'm trying to remove the hostapd init file as I'll handle startup of it on my own. I've created a .bbappend file in my layer to do this:
+>
+> do_install_append() {
+>     rm -rf ${D}${sysconfdir}/init.d
+> }
+>
+> However, this results in a compilation warning when building my image
+> and the ipk-postinst is still being run on my target:
+[...]
+> I tried setting INITSCRIPT_NAME to "" in my .bbappend, but it fails
+> with an error during do_rootfs task of my image:
+[...]
 
-On Wed, Oct 31, 2018 at 02:23:00PM +0100, Heiko Schocher wrote:
-> Hello all,
->=20
-> just builded core-image-minimal with current head of thud branch for
-> the beaglebone-yocto machine, with linux 4.14.x LTS "Linux version 4.14.7=
-8",
-> installed the resulting sd card image and boot it, and get:
->=20
-> INIT: Id "O0" respawning too fast: disabled for
-> 5 minutes
->=20
-> Reason seems to be:
->=20
-> meta-yocto-bsp/conf/machine/beaglebone-yocto.conf
->=20
-> SERIAL_CONSOLES =3D "115200;ttyO0"
->=20
-> shouldn't this be
->=20
-> SERIAL_CONSOLES =3D "115200;ttyS0"
->=20
-> With this fix, sd card image boot fine ... may I oversee seomthing
-> obvious ?
+I guess the problem is that the recipe inherits update-rc.d class and
+that class wants to work with the init script. Unfortunately
+uninheriting a class in a bbappend is not possible AFAIK. I am not
+familiar with the details of the class whether there is a way to tell it
+to do nothing.
+ 
+> Any pointers of how I could accomplish my goal?
+>
 
-No, it should be 'ttyO0'. It is set by the omap serial driver. You can
-refer the following in platform_data/serial-omap.h:
-  #define OMAP_SERIAL_NAME        "ttyO"
+What about 
 
-Thanks,
-Kevin
+  do_install_append() {
+      (echo "#!/bin/sh" ; echo true) > ${D}${sysconfdir}/init.d/hostapd    
+  }
 
->=20
-> bye,
-> Heiko
-> --=20
-> DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-> Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
---GAoked8QSizNecZ5
-Content-Type: application/pgp-signature; name="signature.asc"
+Just guessing. Untested and I have not worked with sysv init for
+years... Maybe update-rc.d requires the typcial comment section at the
+beginning. If so you just add it. 
 
------BEGIN PGP SIGNATURE-----
+Or actually if update-rc.d refers to the comment section in the
+beginning of the script you could add a patch that changes the
+Default-Start: value to empty (or some runlevel you do not use).
 
-iQEzBAEBCAAdFiEEHc6qFoLCZqgJD98Zk1jtMN6usXEFAlvaYo4ACgkQk1jtMN6u
-sXGgkwf/XvQJs8ACb4aR9rCvSA6Fsqh4vT2ef9DQ0fs5DTe44p/ofBfg+38lZN/e
-WY/tmTpgd3yIo1JGP4ITMrFkIZthXaPcOjvDTHGqilvRl9K0MMOD5GY+QAFJDqRx
-vd3YkBFhfcEgWTOqmSTcHyGwN1Z5xwRNeiNdJoiVobTr50ss64mnvDpJPaXlVvw6
-arrhhvIaISuE5/Zoe73uj0dF2IfMJhc+QpH9La7/l/9uRuWf80BHb3N1iJLS8IBC
-AYwvVEThU8LLeAq0ue0epQkeF3nZuTUFcEJ3gahVK1sIl2meCCbBX9UdzBc1HSp2
-+qYEuJaAv3wLYSamlGmTAwVk1trvxQ==
-=laN2
------END PGP SIGNATURE-----
+Regards,
 
---GAoked8QSizNecZ5--
+Uwe Geuder
+Neuro Event Labs Oy
+Tampere, Finland
+uwe.gexder at neuroeventlabs.com (Bot check: fix one obvious typo)
+
