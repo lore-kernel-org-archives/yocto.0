@@ -1,119 +1,68 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0348E00A0A; Thu,  1 Nov 2018 08:32:34 -0700 (PDT)
+	id D079CE00C09; Thu,  1 Nov 2018 08:49:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.170 listed in list.dnswl.org]
+	provider *      (twoerner[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
-	[209.85.210.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 735CAE00971;
-	Thu,  1 Nov 2018 08:32:34 -0700 (PDT)
-Received: by mail-pf1-f170.google.com with SMTP id f78-v6so9516560pfe.1;
-	Thu, 01 Nov 2018 08:32:34 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.45 listed in list.dnswl.org]
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
+	[209.85.167.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CB30E00A0A;
+	Thu,  1 Nov 2018 08:49:04 -0700 (PDT)
+Received: by mail-lf1-f45.google.com with SMTP id n26-v6so14562292lfl.1;
+	Thu, 01 Nov 2018 08:49:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=SnqfG8gf+g/OQh/GpnxAx6tZaWrG4sAs/sdFkXaJT7w=;
-	b=rldXe3prKo1mZR53vhmxKhl92vlkDN3Ylts13wHQodgZlDmbgE1lBy+mOyWLE8I9Hd
-	CzJrjTeaNhgTxsa0ux/2/efFmQLm2AbFoNb803vaflROEmmiFcfgbE9TNS2Im1+BYyDw
-	blPgRoQv3WpuKvXnnH6huzt+LFu0KTgiF0L+0UfclL7TuBI53jAQZzyU684jrVpV7A3F
-	M+9InTRH2qrSs0CX5mgJMRNfRpqsbvZczkugr57QqpWXjT4xIviKLbjIwm7QxU0r/YjW
-	e1GoXlRXc/nAvQI/5BdIdYkYa8WOozypHupyB5BbtTxQob7TpA1qeYFpUatV5BqStA1X
-	/5zA==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=ur5tvb+wVM5ka1nQqR0wU03QMc8ES2MqyoiDDZFpN1I=;
+	b=k/1topItkPxiYAMfZxIDbN3EPKlbaGOZVOgU8gFxZZ9gsRP1XWsnniwdoiQzss9aD0
+	hIzODND07d6RYFqOwn7vuvy0cLMR1jw5/ds2oqsDGEZ+ZvNRUyDiByxDPWFkFwnpRw8L
+	NGos/QgU9GgKmyLwsyOdJa6rOfhiWxTAtAxXLHl4dLold8f7ve1qYVZ7Be6k6Am+IJv4
+	5/ptzebmrK9ysRPNSWOnnG5kt+R3MgQ6upVfQPx35TWnmBGEt9zQwvFbMRTZCuv8URuS
+	fBfYkwL+mrOsEay1QrJXLEJZS3OEcNmjn2wSzs52OLiLhlNr1rj8X4aiaz9ALPulkKvj
+	ALiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-transfer-encoding:content-language;
-	bh=SnqfG8gf+g/OQh/GpnxAx6tZaWrG4sAs/sdFkXaJT7w=;
-	b=GhDN9bX68J2nT3ZKJM5NHUxiw789a5wQFNlpDTnlAuAPWpPnihDJiZH+Xdso2yfyu4
-	kDuem7JJKGeEhhWw+FzeohZ8JbvO5dPac8i/+HBoq3q8KkdDquhQls7pMh6CplPP+A4d
-	S5fbOU2hopijYmRkEe80Uh4gFUyO06Pw1z40AVGiDkk+EWsBg7UVH0mP1/nWlU2PenEl
-	VMB0u4ITkAtBOD3El+JQ0dfKOG3/eB43eBSlitIyQnjqES221hhmB2E6G8+urID6OS3H
-	NGahpKsw7FbZNOQkAXb5Rgsc/Q8oWwLWSA/6M+tN28qKus0Y6jGzN5OwlCHBmil7gANa
-	qCPQ==
-X-Gm-Message-State: AGRZ1gLkL6YGQJyqDHREtmFcfuzMsNRrc8biLI3THNg7XmaHlWMlDsgm
-	3wKr6N37FSdm4AggXOQQ51K53Sse
-X-Google-Smtp-Source: AJdET5ckHTaE2QtvXJmT9Tcc2zifi0Xq+YVq5MHh/DmVLMUP1hMJ3zeNLn5HBiR35+/hqPAnX44fRQ==
-X-Received: by 2002:a63:515b:: with SMTP id
-	r27-v6mr7604441pgl.419.1541086353496; 
-	Thu, 01 Nov 2018 08:32:33 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:c33:9100:7129:ced8:dfd3?
-	([2601:202:4180:c33:9100:7129:ced8:dfd3])
-	by smtp.gmail.com with ESMTPSA id
-	s2-v6sm33406593pgo.90.2018.11.01.08.32.31
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 01 Nov 2018 08:32:32 -0700 (PDT)
-To: Trevor Woerner <twoerner@gmail.com>, yocto@yoctoproject.org,
-	openembedded-core@lists.openembedded.org, yocto-advocacy@yoctoproject.org
-References: <20181101140417.GA12376@linux-uys3>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	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
-	8CS2NxU=
-Message-ID: <6b8e3db1-d7f1-8abb-dc79-c3fa1c03b97d@gmail.com>
-Date: Thu, 1 Nov 2018 08:32:31 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.2.1
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=ur5tvb+wVM5ka1nQqR0wU03QMc8ES2MqyoiDDZFpN1I=;
+	b=PAX6SUN2b/4dItkehZEyA/cb+3MFRk9xqR5N0yGR7GJF5vLC1Qd/fYN5ETb0uAA0Fz
+	Z6Bw/tL/ur4AxYU9SuynDzne8SGoNIeZTSK/doesaEGQ/kJlVsUlr6FQghhCNHOvGmce
+	RSQ3tfJzf0ZMAy6OjQbzIQvX9VqDVOp1CBrWBV0td8aMe0jhkz1jfljmDLQkQQNxowZl
+	FTyXv/3z+6uQCHT0H+HK8fkXGC0YJYnRjbBsucdKFRh0y6o6ey7/G3SWsZYpczMagYOD
+	4JIU9V1vSPwpsLtWw7R/0S8ChuESS9QE354FYADhvmwAWzuvYf01lzc2uWa/UzsN8X+6
+	NJhA==
+X-Gm-Message-State: AGRZ1gJxj/g5ubVKsrCw7S4jhwEax0F+fbFs9h5d+POTiRFCtD3oZDpp
+	1nf1lxIb/ktujV5fgbOoTIQPNQ5p6+F5h29Vejk=
+X-Google-Smtp-Source: AJdET5f2gnXYP8kKsijqhVn1NVdD8+JbHLyLBsNubfGxqL4Cz6uS72ih0jElOCu3Q7aGFjInVWCDCxRPZuRIP3y2Xuo=
+X-Received: by 2002:a19:5f1e:: with SMTP id t30mr4588053lfb.76.1541087343013; 
+	Thu, 01 Nov 2018 08:49:03 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20181101140417.GA12376@linux-uys3>
+References: <20181101140417.GA12376@linux-uys3>
+	<6b8e3db1-d7f1-8abb-dc79-c3fa1c03b97d@gmail.com>
+In-Reply-To: <6b8e3db1-d7f1-8abb-dc79-c3fa1c03b97d@gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Thu, 1 Nov 2018 15:48:51 +0000
+Message-ID: <CAHUNapQP5JxaGu9XnOdHAvJOS3LXYs=2u5Mumty9s_uSXZY=bA@mail.gmail.com>
+To: akuster808 <akuster808@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	yocto-advocacy@yoctoproject.org,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
 Subject: Re: [OE-core] OEDAM @ SCaLE 2019
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -126,52 +75,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Nov 2018 15:32:35 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Thu, 01 Nov 2018 15:49:05 -0000
+Content-Type: multipart/alternative; boundary="000000000000a613f405799c5b1c"
 
-Trevor,
+--000000000000a613f405799c5b1c
+Content-Type: text/plain; charset="UTF-8"
 
+On Thu, Nov 1, 2018 at 3:32 PM akuster808 <akuster808@gmail.com> wrote:
 
-On 11/1/18 7:04 AM, Trevor Woerner wrote:
-> Hello Fellow YP/OE Enthusiasts!
+> Trevor,
 >
-> There were discussions at our recent OEDEM regarding:
-> - our next developers meeting
-> - SCaLE 2019
-> - expanding/adding to the YP/OE presence at conferences (i.e. our own
->   miniconf?)
 >
-> Please see time indices: 12:13 and 16:45
+> On 11/1/18 7:04 AM, Trevor Woerner wrote:
+> > Please see time indices: 12:13 and 16:45
+> >
 > https://docs.google.com/document/d/1YDAHjIOXCIgvSZVOKCYLxa8h26dkruX8zspoge7zCpk
-
-Could you please give us a day's notice the next time so we can properly
-set the perms for our minutes.
-
-- armin
-
 >
-> Unfortunately, although lots of opinions were expressed, nothing concrete was
-> decided. Many people pointed out that their travel budgets are already
-> strained or maxed out, so adding another conference would be difficult if not
-> impossible. It's unclear how many "core" YP/OE people might show up at next
-> year's SCaLE. Also, given that this year's ELC scheduling hiccup is a one-off,
-> maybe it doesn't make as much sense to put in all the work required to run an
-> OEDAM at SCaLE if it's only ever going to happen once. Therefore I think I can
-> safely say the organizing committee for YP/OE Things at SCaLE 2019 is leaning
-> towards not running an OEDAM.
+> Could you please give us a day's notice the next time so we can properly
+> set the perms for our minutes.
 >
-> It's not too late to change our plans. If a large number of core people reply
-> to this email saying they want and OEDAM in March and will be available in
-> Pasadena, then we could accommodate it. It's just that we didn't leave
-> Edinburgh with the feeling that an OEDAM at SCaLE was feasible. Also, at this
-> point SCaLE isn't on the radars of many of the core YP/OE people, and
-> currently the conference tends to attract users rather than developers (or so
-> is my impression).
 >
-> Thoughts?
->
-> Best regards,
-> 	Trevor
+Will do, sorry!
 
+--000000000000a613f405799c5b1c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr">On Thu, Nov 1,=
+ 2018 at 3:32 PM akuster808 &lt;<a href=3D"mailto:akuster808@gmail.com">aku=
+ster808@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Tr=
+evor,<br>
+<br>
+<br>
+On 11/1/18 7:04 AM, Trevor Woerner wrote:<br>
+&gt; Please see time indices: 12:13 and 16:45<br>
+&gt; <a href=3D"https://docs.google.com/document/d/1YDAHjIOXCIgvSZVOKCYLxa8=
+h26dkruX8zspoge7zCpk" rel=3D"noreferrer" target=3D"_blank">https://docs.goo=
+gle.com/document/d/1YDAHjIOXCIgvSZVOKCYLxa8h26dkruX8zspoge7zCpk</a><br>
+<br>
+Could you please give us a day&#39;s notice the next time so we can properl=
+y<br>
+set the perms for our minutes.<br>
+<br></blockquote><div><br></div><div>Will do, sorry! </div></div></div>
+
+--000000000000a613f405799c5b1c--
