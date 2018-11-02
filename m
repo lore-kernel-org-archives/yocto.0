@@ -1,62 +1,66 @@
-Return-Path: <zoleelikesdebian@gmail.com>
+Return-Path: <erik.boto@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C1E20E00C10; Fri,  2 Nov 2018 01:27:46 -0700 (PDT)
+	id DA20EE00C09; Fri,  2 Nov 2018 01:55:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoleelikesdebian[at]gmail.com)
+	provider *      (erik.boto[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.47 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.214.181 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
-	[209.85.208.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1632E00A10
-	for <yocto@yoctoproject.org>; Fri,  2 Nov 2018 01:27:44 -0700 (PDT)
-Received: by mail-ed1-f47.google.com with SMTP id u12-v6so1199416eds.4
-	for <yocto@yoctoproject.org>; Fri, 02 Nov 2018 01:27:44 -0700 (PDT)
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
+	[209.85.214.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76C34E00971
+	for <yocto@yoctoproject.org>; Fri,  2 Nov 2018 01:55:08 -0700 (PDT)
+Received: by mail-pl1-f181.google.com with SMTP id b5-v6so701121pla.6
+	for <yocto@yoctoproject.org>; Fri, 02 Nov 2018 01:55:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=8NoiBK+8QjmClSVunXaiefTeNyq3O97Ku6orgMHm12k=;
-	b=rdLFfShUoE7veX61gyxEl7y1oOlMly+rEHdBUcBoWyOmxHHvc4me0bCji7Upe64WPK
-	xVlY+YEgW+gV94aq9jxzSFuyu5JpM0dCsU7CklyeAZPB5VGI3ixiUwOXOMt7Yht0RQld
-	sbZX1wARfZRc/LnplP1gwed44jU6yKF5Sa71+/QkC/oexTNny1+FitG84FLhiqgIQYBC
-	g1ho2ALwileS98sJB3Vcgn+Id6t1kGQ1kKa5dxdORoAJ3Jajy/SOpuiqyNklc40u+xOM
-	ti5nliTfzniHdzfN23NM2kr5N9iJ3/hY8At7StihBTfvQfM2FVSAbY5AYx3wbyHKyCFB
-	LYZA==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=9sF9tAYhQP+sulbZpRQ29nLBK1aC0ythd9SZeN6LsA8=;
+	b=uHtG/3c54kICVemFEl/Im7kEoJuMyrsLRprWv28XZgQJibrmSBOtTsS4SRdoIa1FoF
+	MEE4iOsgG4GK9Fqz5kkem4raoIHRqtzsnIFwVeCzGFhfidspjD9xjTuRoQQHz6Wq5rOq
+	IqUM3skJDYi/VT1fC3ECYM2JaAI5zyXXsicZwnRrYo6imQQ79wfQIABjCkZCJb0tzLYv
+	SCpa/2GQWyEEe6YQsUzCLf6qK2Vk6GLJu2FgevYl9XDOWE1z9+uJ4O05VtZ+pW1c4P4/
+	iswUQanqPmT485GYlGO+YwNDrtF4KlDF5iEZgRW01JPVWXMSw9Xg2AKIuyfbtKoBlk7D
+	716A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=8NoiBK+8QjmClSVunXaiefTeNyq3O97Ku6orgMHm12k=;
-	b=J+wlP4KZRZAN4yvFLuhfxL7TpFccrBVulFTcHeae+LAdhhHTA3NFR3o9XU+QCRHNMk
-	/2sAF8txyNPTc0IMryz3IoWUUoGQyrqnAd8sq6lkJlpRTrbP386Ukvah6VC+/ECXp1Za
-	+3LHjUgUnt40FxA+zcy5gta5xC4N4bJUFHqoxRg14Tkx5+v++iBh9ejzoj/XlUYu7lN5
-	2gZdT8GCAMR95n6UZEjuyMw5EpIgZS0wDpVZRBGV3XFrqXmUiBwTOfh4z2A1lmNBpbbJ
-	gZiyiwxHQfylIOPl3cUbnuT9PK5OpHoV3O6cHZwTtZ8Zu2/X7WAxbipL8INAvUOGklY7
-	jRvw==
-X-Gm-Message-State: AGRZ1gKHCjYOjkgC2m5N/skK1Oe3XGplJIHfpowZO3XIwHb7sjijn/y2
-	Tcn+F0PVY6WSmqfXWqOB5qJIGU3FH58XuKrcpjmq
-X-Google-Smtp-Source: AJdET5evFm5QIJM2LYmzaBNmfgl1jmTMyvl6e2iokt9OVR5bJRtLeLDZbSIW7j3akIoy/BYVg0QL7XCoZTHO5Hs9Be0=
-X-Received: by 2002:a17:906:b7d1:: with SMTP id
-	fy17-v6mr5907183ejb.70.1541147263877; 
-	Fri, 02 Nov 2018 01:27:43 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=9sF9tAYhQP+sulbZpRQ29nLBK1aC0ythd9SZeN6LsA8=;
+	b=YsKgI0cDR+q99OhNOzJnQUwOW5LrDuuI7svMTbiFGFeL3Tu12fk7Q+4DxIwQURV+0j
+	1it6uPzWLDt22VRKxRxdEkM31gE2nZsfxkSIKoH7/wUgJEySrhsXzYa8ODYrcqdr8U97
+	fZIREejQTiSnxUSl1ognyqGdHKD1DC01GFRn6/aFbCF9Fe0MyQBr/kcOc2+lS84W2UHG
+	9/D3o6NTVEFv9S93KvJnM/j0bwZ0iAVQNLkbnrG4dfiesAKSXY6t14M8rgho8kw87KHk
+	r6i896xtKAuBJO3eIbljj5KU7yUGhuu9J57L5g7A1n4FK8Tr+2oNSMMg1xlsMkOFrw37
+	FBxA==
+X-Gm-Message-State: AGRZ1gJowlz3GpjrWFjud/wrYR/i4Hl2IWvCQ7WHEOfsELl1aD3ZLqiM
+	FtIVENUR1iZSEMOSR/m+ZEbQ/NAHoot1GukDLVunhTAT
+X-Google-Smtp-Source: AJdET5dygej21MJa0Jdr+HtpI+47PCEBCDYJ0lELzOmyzM1wd/AbEkC4Gt5fHkvj1vq/krIFaMjThbagi/tzCQhyRi4=
+X-Received: by 2002:a17:902:6f16:: with SMTP id
+	w22-v6mr11117939plk.309.1541148907836; 
+	Fri, 02 Nov 2018 01:55:07 -0700 (PDT)
 MIME-Version: 1.0
-From: Zolee K <zoleelikesdebian@gmail.com>
-Date: Fri, 2 Nov 2018 09:27:33 +0100
-Message-ID: <CAK4Yt2m6UT_HaA72q43ppbPzvpSJF6QvmRkUeFXFSqJK+uBtcQ@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: force a factory-preset sdk to quemu
+References: <0f39aeec-de33-54c1-d1c3-e5953cec912e@berginkonsult.se>
+In-Reply-To: <0f39aeec-de33-54c1-d1c3-e5953cec912e@berginkonsult.se>
+From: =?UTF-8?Q?Erik_Bot=C3=B6?= <erik.boto@gmail.com>
+Date: Fri, 2 Nov 2018 09:54:56 +0100
+Message-ID: <CALNvYWPONCQ6SEoCeaqX3LvR2W1RoFZghgabbE56J5v9eMXZpg@mail.gmail.com>
+To: peter@berginkonsult.se
+Cc: yocto@yoctoproject.org
+Subject: Re: Can not build SDK in rocko 'nothing provides /usr/bin/python...'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,34 +72,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Nov 2018 08:27:46 -0000
-Content-Type: multipart/alternative; boundary="00000000000035c5750579aa4f90"
-
---00000000000035c5750579aa4f90
+X-List-Received-Date: Fri, 02 Nov 2018 08:55:08 -0000
 Content-Type: text/plain; charset="UTF-8"
-
-Hi All,
-
-I got my board with Yocto based SDK but there is no quemu in the configfile
-by default. Is it possible to add quemu capability manually to
-factory-preset sdk? Id like to run the linux in an emulated enviroment, its
-quiet boring to burn the sd card for each and every minor changes that I
-make.
-
-Thank,
-
-Zoli
-
---00000000000035c5750579aa4f90
-Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Hi All,</div><div dir=3D"auto"><br></div><div dir=3D"auto=
-">I got my board with Yocto based SDK but there is no quemu in the configfi=
-le by default. Is it possible to add quemu capability manually to factory-p=
-reset sdk? Id like to run the linux in an emulated enviroment, its quiet bo=
-ring to burn the sd card for each and every minor changes that I make.</div=
-><div dir=3D"auto"><br></div><div dir=3D"auto">Thank,</div><div dir=3D"auto=
-"><br></div><div dir=3D"auto">Zoli</div>
+On Fri, Nov 2, 2018 at 8:30 AM Peter Bergin <peter@berginkonsult.se> wrote:
+>
+> Hi,
+>
+> I'm working in rocko branch and trying to build a SDK with kernel-devsrc =
+on a standard qemux86 machine. During task populate_sdk I get the following=
+ error:
+>
+> ERROR: core-image-base-1.0-r0 do_populate_sdk: Could not invoke dnf. Comm=
+and '/work/yocto/rocko/qemux86/tmp/work/qemux86-poky-linux/core-image-base/=
+1.0-r0/recipe-sysroot-native/usr/bin/dnf -y -c /work/yocto/rocko/qemux86/tm=
+p/work/qemux86-poky-linux/core-image-base/1.0-r0/sdk/image/opt/poky/2.4.3/s=
+ysroots/i586-poky-linux/etc/dnf/dnf.conf --setopt=3Dreposdir=3D/work/yocto/=
+rocko/qemux86/tmp/work/qemux86-poky-linux/core-image-base/1.0-r0/sdk/image/=
+opt/poky/2.4.3/sysroots/i586-poky-linux/etc/yum.repos.d --repofrompath=3Doe=
+-repo,/work/yocto/rocko/qemux86/tmp/work/qemux86-poky-linux/core-image-base=
+/1.0-r0/oe-sdk-repo --installroot=3D/work/yocto/rocko/qemux86/tmp/work/qemu=
+x86-poky-linux/core-image-base/1.0-r0/sdk/image/opt/poky/2.4.3/sysroots/i58=
+6-poky-linux --setopt=3Dlogdir=3D/work/yocto/rocko/qemux86/tmp/work/qemux86=
+-poky-linux/core-image-base/1.0-r0/temp --nogpgcheck install packagegroup-c=
+ore-standalone-sdk-target run-postinsts psplash packagegroup-base-extended =
+packagegroup-core-boot linux-libc-headers-dev kernel-devsrc' returned 1:
+> Added oe-repo repo from /work/yocto/rocko/qemux86/tmp/work/qemux86-poky-l=
+inux/core-image-base/1.0-r0/oe-sdk-repo
+> Last metadata expiration check: 0:00:00 ago on Fri 02 Nov 2018 07:14:37 A=
+M UTC.
+> Error:
+>  Problem: conflicting requests
+>   - nothing provides /usr/bin/python needed by kernel-devsrc-1.0-r0.qemux=
+86
+>
+> ERROR: core-image-base-1.0-r0 do_populate_sdk: Function failed: do_popula=
+te_sdk
+> ERROR: Logfile of failure stored in: /work/yocto/rocko/qemux86/tmp/work/q=
+emux86-poky-linux/core-image-base/1.0-r0/temp/log.do_populate_sdk.25760
+> ERROR: Task (/work/yocto/rocko/layers/poky/meta/recipes-core/images/core-=
+image-base.bb:do_populate_sdk) failed with exit code '1'
+>
+> Any ideas about what the problem is and how to fix?
 
---00000000000035c5750579aa4f90--
+I had a quick look at how the kernel-devsrc recipe looks in master,
+and there they have added python to RDEPENDS. Adding that should pull
+python in to the SDK as well.
+
+See http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-kernel=
+/linux/kernel-devsrc.bb?h=3Dmaster#n234
+
+Cheers,
+Erik
+>
+> My addition to standard Yocto configuration is:
+>
+> TOOLCHAIN_TARGET_TASK_append =3D " \
+>     kernel-devsrc \
+>     linux-libc-headers-dev \
+> "
+>
+> I first build image with 'bitbake core-image-base' then I got the error w=
+hen building SDK with 'bitbake core-image-base -c populate_sdk'
+>
+>
+> Thanks,
+> /Peter
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
