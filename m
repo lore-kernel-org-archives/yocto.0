@@ -1,40 +1,65 @@
-Return-Path: <Kexin.Hao@windriver.com>
+Return-Path: <zertsekel@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83DC3E00C10; Fri,  2 Nov 2018 02:01:43 -0700 (PDT)
+	id E0D7DE00C15; Fri,  2 Nov 2018 02:08:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12C2EE00A10
-	for <yocto@yoctoproject.org>; Fri,  2 Nov 2018 02:01:42 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id wA290VA1031699
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 2 Nov 2018 02:01:12 -0700
-Received: from pek-khao-d2 (147.11.105.123) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
-	Fri, 2 Nov 2018 02:00:33 -0700
-Date: Fri, 2 Nov 2018 16:59:16 +0800
-From: Kevin Hao <kexin.hao@windriver.com>
-To: Heiko Schocher <hs@denx.de>
-Message-ID: <20181102085916.GA31329@pek-khao-d2>
-References: <6c9102d2-91dc-41be-3aec-ab60d4688af5@denx.de>
-	<20181101021854.GT24227@pek-khao-d2>
-	<13692616-30d3-1bae-71b7-1ed2373a9a61@denx.de>
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (zertsekel[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.178 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-it1-f178.google.com (mail-it1-f178.google.com
+	[209.85.166.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6498FE00A10
+	for <yocto@yoctoproject.org>; Fri,  2 Nov 2018 02:08:00 -0700 (PDT)
+Received: by mail-it1-f178.google.com with SMTP id d6so2237765itl.4
+	for <yocto@yoctoproject.org>; Fri, 02 Nov 2018 02:08:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=VK7TZGxxX9YYGUPk8yL/MiqPdWUoMuAwT1xbU4Axzeg=;
+	b=hr4Dy37X7VFp11NKp5O1FCGqJI9iNNOy2TB1lBO4SQxLGBOqJF+s3Ftb7Sgp5HqLhS
+	OV0c4BT2s/bYYlL7HQQPmXIm9qVmV5Apj59wpv9hezOpai8xuP+rq29mKwoH3xlk7bhs
+	XLUM9Wkgs/pgBhtpIuNgOl1FCjC7XU67fgvxGbiFh0VFej8M/XWVh3GMKf/neUrehI/c
+	SyDxTEC/CqLN9nH2IXFZL4fEwCLL6QYFhzpLaZujLaBeBLNdTKerfYQJmj37boQc1VXZ
+	poZOPyczaztp8GLxVdt/Qm0OJTAqc53mY6+tfx6d6+4h+KH9aquVm5wqo94BWt9B8gg4
+	h8rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=VK7TZGxxX9YYGUPk8yL/MiqPdWUoMuAwT1xbU4Axzeg=;
+	b=FnBvgs7yrkwUd5GbMbtVruu57H5PU6i5Dum9h9flR2WRV/wQFQ0oMXw98EWBM+Bp5M
+	ofLLJohF967Kw9hATyYsrFkRRhVJywxEcpLzcvD7WoehvwOJcfQx/bzWXuFZX/DhSrg6
+	C6ysEt73hJCchUye3inoze2qLjw6E9q6CJruN7HnBhMDSGN4l72vg6db1kZCmbF4BkPo
+	BmM316Fpe1AMRP0DLEWBUedkDRB/oexskZb90nLzzxVtKbTas4MOU8mnaWkNu1Fel4Uf
+	6QOuOgnudnWGiHep4QCTja8wiABttSKnHve17oTfhkJz2fSwD+h4J4use2AHxXX54X4l
+	J8Wg==
+X-Gm-Message-State: AGRZ1gLI56ouzOT7JGQCa05sOBTfiqg4/d6JtMGL++hADJT+vbBfg8pR
+	D87ygYXO+Mm1UXUwy5lAo+0k5TBR5lsgQcaQUxI=
+X-Google-Smtp-Source: AJdET5f5dcHGh3kqZhT4UkCpmH/7NIVkKpOsm3FVSR+fdAc5+BtTQPXq62EeSZ3lmLfsNKaQM9ffMNFah6X89zQPEwE=
+X-Received: by 2002:a24:b648:: with SMTP id d8-v6mr37836itj.115.1541149679785; 
+	Fri, 02 Nov 2018 02:07:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <13692616-30d3-1bae-71b7-1ed2373a9a61@denx.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Originating-IP: [147.11.105.123]
+References: <CAK4Yt2m6UT_HaA72q43ppbPzvpSJF6QvmRkUeFXFSqJK+uBtcQ@mail.gmail.com>
+In-Reply-To: <CAK4Yt2m6UT_HaA72q43ppbPzvpSJF6QvmRkUeFXFSqJK+uBtcQ@mail.gmail.com>
+From: Kosta Zertsekel <zertsekel@gmail.com>
+Date: Fri, 2 Nov 2018 11:07:48 +0200
+Message-ID: <CADxo8W+-OLoDq=y8QNxskHvQnM_6dKYyhzhF6zvp28mL=HJD2w@mail.gmail.com>
+To: Zolee K <zoleelikesdebian@gmail.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: thud, beaglebone-yocto.conf: SERIAL_CONSOLES setting
+Subject: Re: force a factory-preset sdk to quemu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,118 +71,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Nov 2018 09:01:43 -0000
-X-Groupsio-MsgNum: 43037
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xHFwDpU9dbj6ez1V"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 02 Nov 2018 09:08:02 -0000
+Content-Type: multipart/alternative; boundary="000000000000359aa00579aadf0c"
 
---xHFwDpU9dbj6ez1V
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--000000000000359aa00579aadf0c
+Content-Type: text/plain; charset="UTF-8"
+
+On Fri, Nov 2, 2018, 10:28 Zolee K wrote:
+
+> I got my board with Yocto based SDK but there is no quemu in the
+> configfile by default. Is it possible to add quemu capability manually to
+> factory-preset sdk?
+>
+If Yocto SDK you have is actually Yocto eSDK (extended SDK), you can try
+the below:
+$ MACHINE=qemux86 bitbake build-image
+
+--- Kosta Z
+
+>
+
+--000000000000359aa00579aadf0c
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 02, 2018 at 09:01:34AM +0100, Heiko Schocher wrote:
-> Hello Kevin,
->=20
-> Am 01.11.2018 um 03:18 schrieb Kevin Hao:
-> > On Wed, Oct 31, 2018 at 02:23:00PM +0100, Heiko Schocher wrote:
-> > > Hello all,
-> > >=20
-> > > just builded core-image-minimal with current head of thud branch for
-> > > the beaglebone-yocto machine, with linux 4.14.x LTS "Linux version 4.=
-14.78",
-> > > installed the resulting sd card image and boot it, and get:
-> > >=20
-> > > INIT: Id "O0" respawning too fast: disabled for
-> > > 5 minutes
-> > >=20
-> > > Reason seems to be:
-> > >=20
-> > > meta-yocto-bsp/conf/machine/beaglebone-yocto.conf
-> > >=20
-> > > SERIAL_CONSOLES =3D "115200;ttyO0"
-> > >=20
-> > > shouldn't this be
-> > >=20
-> > > SERIAL_CONSOLES =3D "115200;ttyS0"
-> > >=20
-> > > With this fix, sd card image boot fine ... may I oversee seomthing
-> > > obvious ?
-> >=20
-> > No, it should be 'ttyO0'. It is set by the omap serial driver. You can
-> > refer the following in platform_data/serial-omap.h:
-> >    #define OMAP_SERIAL_NAME        "ttyO"
->=20
-> Yes, you are right, but I see with linux kernel 4.14.78 from
->=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?=
-h=3Dlinux-4.14.y&id=3De7405910ca5553eae8744af4e5c03e64ee048cb1
->=20
-> and I see:
->=20
-> [    0.000000] Linux version 4.14.78 (oe-user@oe-host) (gcc version 8.2.0
-> (GCC)) #1 Thu Nov 1 10:51:09 UTC 2018
-> [    0.000000] CPU: ARMv7 Processor [413fc082] revision 2 (ARMv7), cr=3D1=
-0c5387d
-> [    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing ins=
-truction cache
-> [    0.000000] OF: fdt: Machine model: TI AM335x BeagleBone Black
-> [...]
-> [    0.362878] Serial: 8250/16550 driver, 6 ports, IRQ sharing disabled
-> [    0.365758] 44e09000.serial: ttyS0 at MMIO 0x44e09000 (irq =3D 30, bas=
-e_baud =3D 3000000) is a 8250
-> [    1.030465] console [ttyS0] enabled
->=20
-> So definitely a ttyS0 ...
+<div dir=3D"auto"><div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr">=
+On Fri, Nov 2, 2018, 10:28 Zolee K wrote:</div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1e=
+x"><div dir=3D"auto">I got my board with Yocto based SDK but there is no qu=
+emu in the configfile by default. Is it possible to add quemu capability ma=
+nually to factory-preset sdk?</div></blockquote></div><div dir=3D"auto">If =
+Yocto SDK you have is actually Yocto eSDK (extended SDK), you can try the b=
+elow:</div><div dir=3D"auto">$ MACHINE=3Dqemux86 bitbake build-image</div><=
+div dir=3D"auto"><br></div><div dir=3D"auto">--- Kosta Z</div><div class=3D=
+"gmail_quote" dir=3D"auto"><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+</blockquote></div></div>
 
-OK, so you don't use the linux-yocto kernel, you must not use the Yocto ker=
-nel
-meta either. The reason that you got a ttyS0 here is that you use the
-8250_omap.c driver. But in Yocto we use the omap-serial.c driver. You can
-workaround this issue by enabling SERIAL_8250_OMAP_TTYO_FIXUP.
-
-Thanks,
-Kevin
-
->=20
-> bye,
-> Heiko
-> >=20
-> > Thanks,
-> > Kevin
-> >=20
-> > >=20
-> > > bye,
-> > > Heiko
-> > > --=20
-> > > DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-> > > HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-> > > Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
-> > > --=20
-> > > _______________________________________________
-> > > yocto mailing list
-> > > yocto@yoctoproject.org
-> > > https://lists.yoctoproject.org/listinfo/yocto
->=20
-> --=20
-> DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-> Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
-
---xHFwDpU9dbj6ez1V
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEHc6qFoLCZqgJD98Zk1jtMN6usXEFAlvcEeQACgkQk1jtMN6u
-sXEG9QgAr/1ouNGzb+fWtAnN/s0bee344COvZi4czuKjRtMsqasG+ejIZEMk4r9y
-22dmtd2NvcT1G7ob0vIoL9JUuZHR4zMHeP4q4azOUooxTUaovlJaNw/Eoocab9fK
-BKNNRXZDu5aMFNZoI28bBHmGUVec4CBpI3/4JBVXON+w0rjV5wGerKb86ypxL90k
-J67MPrrLSMoqIdO2mv/5FNWVemLrdl9Np1doJamGx+qBUYQAsqBmvQe3YEl2aJuR
-ymxxQvSwBvmNe2sYHD8S6MbvBw6UPoXuidWSplG2LXTx9QKSTmGgl717aZ76tbUY
-SIMOXujY0CoiUMOkhktuxGESMq1L3A==
-=NYRU
------END PGP SIGNATURE-----
-
---xHFwDpU9dbj6ez1V--
+--000000000000359aa00579aadf0c--
