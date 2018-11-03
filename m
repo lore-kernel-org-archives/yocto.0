@@ -1,41 +1,31 @@
-Return-Path: <Kexin.Hao@windriver.com>
+Return-Path: <jrswdnan22@snkmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0657E00A4F; Sat,  3 Nov 2018 01:38:40 -0700 (PDT)
+	id E629CE00AB3; Sat,  3 Nov 2018 07:24:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD62DE00A10
-	for <yocto@yoctoproject.org>; Sat,  3 Nov 2018 01:38:39 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id wA38cU65014057
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sat, 3 Nov 2018 01:38:30 -0700 (PDT)
-Received: from pek-khao-d2 (147.11.105.123) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
-	Sat, 3 Nov 2018 01:38:30 -0700
-Date: Sat, 3 Nov 2018 16:37:13 +0800
-From: Kevin Hao <kexin.hao@windriver.com>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20181103083713.GA4438@pek-khao-d2>
-References: <6c9102d2-91dc-41be-3aec-ab60d4688af5@denx.de>
-	<20181101021854.GT24227@pek-khao-d2>
-	<13692616-30d3-1bae-71b7-1ed2373a9a61@denx.de>
-	<20181102085916.GA31329@pek-khao-d2>
-	<CAMKF1sov=e1z8wH0ckXozz3RK1Uz-7Ja+uzguqTTCxBPHiipyw@mail.gmail.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [195.197.172.115 listed in list.dnswl.org]
+Received: from gw01.mail.saunalahti.fi (gw01.mail.saunalahti.fi
+	[195.197.172.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A648FE008D7
+	for <yocto@yoctoproject.org>; Sat,  3 Nov 2018 07:24:19 -0700 (PDT)
+Received: from linux.suse (91-157-44-75.elisa-laajakaista.fi [91.157.44.75])
+	by gw01.mail.saunalahti.fi (Postfix) with ESMTP id 0487240679;
+	Sat,  3 Nov 2018 16:24:15 +0200 (EET)
+From: Uwe Geuder <jrswdnan22@snkmail.com>
+To: yocto@yoctoproject.org
+In-Reply-To: <AM5PR0602MB2802CE6D0351FEED6E8088E1B1CC0@AM5PR0602MB2802.eurprd06.prod.outlook.com>
+References: <AM5PR0602MB2802CE6D0351FEED6E8088E1B1CC0@AM5PR0602MB2802.eurprd06.prod.outlook.com>
+Date: Sat, 03 Nov 2018 16:24:15 +0200
+Message-ID: <87sh0idysw.fsf@linux.suse>
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1sov=e1z8wH0ckXozz3RK1Uz-7Ja+uzguqTTCxBPHiipyw@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Originating-IP: [147.11.105.123]
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: thud, beaglebone-yocto.conf: SERIAL_CONSOLES setting
+Subject: Re: Kernel development using externalsrc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,190 +37,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 03 Nov 2018 08:38:41 -0000
-X-Groupsio-MsgNum: 43055
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="6TrnltStXW4iwmi0"
-Content-Disposition: inline
-
---6TrnltStXW4iwmi0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Sat, 03 Nov 2018 14:24:22 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 02, 2018 at 07:27:04AM -0700, Khem Raj wrote:
-> On Fri, Nov 2, 2018 at 2:02 AM Kevin Hao <kexin.hao@windriver.com> wrote:
-> >
-> > On Fri, Nov 02, 2018 at 09:01:34AM +0100, Heiko Schocher wrote:
-> > > Hello Kevin,
-> > >
-> > > Am 01.11.2018 um 03:18 schrieb Kevin Hao:
-> > > > On Wed, Oct 31, 2018 at 02:23:00PM +0100, Heiko Schocher wrote:
-> > > > > Hello all,
-> > > > >
-> > > > > just builded core-image-minimal with current head of thud branch =
-for
-> > > > > the beaglebone-yocto machine, with linux 4.14.x LTS "Linux versio=
-n 4.14.78",
-> > > > > installed the resulting sd card image and boot it, and get:
-> > > > >
-> > > > > INIT: Id "O0" respawning too fast: disabled for
-> > > > > 5 minutes
-> > > > >
-> > > > > Reason seems to be:
-> > > > >
-> > > > > meta-yocto-bsp/conf/machine/beaglebone-yocto.conf
-> > > > >
-> > > > > SERIAL_CONSOLES =3D "115200;ttyO0"
-> > > > >
-> > > > > shouldn't this be
-> > > > >
-> > > > > SERIAL_CONSOLES =3D "115200;ttyS0"
-> > > > >
-> > > > > With this fix, sd card image boot fine ... may I oversee seomthing
-> > > > > obvious ?
-> > > >
-> > > > No, it should be 'ttyO0'. It is set by the omap serial driver. You =
-can
-> > > > refer the following in platform_data/serial-omap.h:
-> > > >    #define OMAP_SERIAL_NAME        "ttyO"
-> > >
-> > > Yes, you are right, but I see with linux kernel 4.14.78 from
-> > >
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/comm=
-it/?h=3Dlinux-4.14.y&id=3De7405910ca5553eae8744af4e5c03e64ee048cb1
-> > >
-> > > and I see:
-> > >
-> > > [    0.000000] Linux version 4.14.78 (oe-user@oe-host) (gcc version 8=
-=2E2.0
-> > > (GCC)) #1 Thu Nov 1 10:51:09 UTC 2018
-> > > [    0.000000] CPU: ARMv7 Processor [413fc082] revision 2 (ARMv7), cr=
-=3D10c5387d
-> > > [    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing=
- instruction cache
-> > > [    0.000000] OF: fdt: Machine model: TI AM335x BeagleBone Black
-> > > [...]
-> > > [    0.362878] Serial: 8250/16550 driver, 6 ports, IRQ sharing disabl=
-ed
-> > > [    0.365758] 44e09000.serial: ttyS0 at MMIO 0x44e09000 (irq =3D 30,=
- base_baud =3D 3000000) is a 8250
-> > > [    1.030465] console [ttyS0] enabled
-> > >
-> > > So definitely a ttyS0 ...
-> >
-> > OK, so you don't use the linux-yocto kernel, you must not use the Yocto=
- kernel
-> > meta either.
->=20
-> I dont think there is such a rule.
+On Fri, Nov 2, 2018 at 5:47 PM CHMIELARZ Radoslaw radoslaw.chmielarz-at-lei=
+ca-geosystems.com wrote:
 
-I don't get what you mean about such a rule. I didn't say anything about th=
-at.
-I just pointed out why Heiko get stuck by that issue and how to workaround =
-it.
+> The company I work for uses yocto to build an image with a custom
+> linux kernel. The documentation
+> (https://www.yoctoproject.org/docs/2.5.1/kernel-dev/kernel-dev.html)
+> suggests a setup where the kernel is under git and the kernel recipe
+> specifies this git repository hence the workflow is the following:
+>
+> Make changes in local kernel directory
+> Submit changes to git (and presumably push to shared space)
+> Run yocto build which fetches the changes
+>
+> However since I don=E2=80=99t want to push the changes to git server befo=
+re I
+> test locally I have added the kernel sources using
+> externalsrc.=20
 
-> meta-yocto-bsps are meant as
-> references and people might want to enhance them.
+Devtool is of course what they recommend, but can always change the git
+repo to a local one in a .bbappend, so you save the push step and Yocto
+build saves fetching over the network. (Making a git commit for each
+build attempt is very little overhead and I would recommend it anyway as
+a good working practice. You can clean up using "git rebase -i" once you
+are happy with your code and before you publish it.)
 
-Of course, that is also why we are continually working on it.
+In one of my development branches I find
 
->=20
->  The reason that you got a ttyS0 here is that you use the
-> > 8250_omap.c driver. But in Yocto we use the omap-serial.c driver. You c=
-an
-> > workaround this issue by enabling SERIAL_8250_OMAP_TTYO_FIXUP.
-> >
->=20
-> omap serial is obsolete why does linux-yocto keeps using it.
+SRC_URI =3D "\
+  git:///home/myname/projects/yoctobuild/pkgsrc/somerepo/;protocol=3Dfile;b=
+ranch=3Ddebug/#675-v2.16.0 \
+  file://some.patch \
+  file://other.patch \
+"
 
-I guess that the original reason that we use this should be something like =
-the
-comments in the omap-serial.c:
- * Note: This driver is made separate from 8250 driver as we cannot
- * over load 8250 driver with omap platform specific configuration for
- * features like DMA, it makes easier to implement features like DMA and
- * hardware flow control and software flow control configuration with
- * this driver as required for the omap-platform.
+SRCREV =3D "${AUTOREV}"
 
-Yes, it has been a long time since the comments were written and even befor=
-e the
-birth of the 8250_omap.c. But I am just not sure that the 8250_omap driver
-is mature enough so we can switch to it safely and we also don't get any se=
-rial
-issue so far. That is why we leave it as is. And it also seem that the omap=
--serial.c
-is also enabled by default in both the multi_v7_defconfig and omap2plus_def=
-config
-in the latest kernel:
-  $ git grep "CONFIG_SERIAL_OMAP" arch/arm/
-  arch/arm/configs/multi_v7_defconfig:CONFIG_SERIAL_OMAP=3Dy
-  arch/arm/configs/multi_v7_defconfig:CONFIG_SERIAL_OMAP_CONSOLE=3Dy
-  arch/arm/configs/omap2plus_defconfig:CONFIG_SERIAL_OMAP=3Dy
-  arch/arm/configs/omap2plus_defconfig:CONFIG_SERIAL_OMAP_CONSOLE=3Dy
+I have not done it for the kernel, but I see no reason why it would not
+work there.
 
-But if you are pretty sure that the 8250_omap.c is mature enough and also
-provide more functions than omap-serial.c, please send a patch and we can
-definitely switch the serial driver to that.
+(Obviously the absolute path is nothing you would be able to share
+unmodified with others. Maybe it can be made a bit more portable using
+${THISDIR}, but I have not had any need to try it.)=20
 
-> seondly, machine config should enable both consoles ttyO0 and ttyS0 if
-> you know that at least one kernel is using ttyO0
+> Unfortunately this has the drawback that
+> linux-libc-headers runs do_configure and do_install phase which
+> invalidates glibc-initial and requires a recompilation of a couple of
+> hundreds of packages. I would like to avoid it.
+>
 
-Yes, this is an option to fix this issue. Do you mind send a patch?
+How editing the kernel source would cause rebuilds trailing
+linux-libc-haeaders I cannot see in my build here
 
-Thanks,
-Kevin
+$ bitbake-diffsigs -t linux-libc-headers configure
+NOTE: Starting bitbake server...
+ERROR: Only one matching sigdata file found for the specified task (linux-l=
+ibc-headers do_configure)
 
->=20
-> > Thanks,
-> > Kevin
-> >
-> > >
-> > > bye,
-> > > Heiko
-> > > >
-> > > > Thanks,
-> > > > Kevin
-> > > >
-> > > > >
-> > > > > bye,
-> > > > > Heiko
-> > > > > --
-> > > > > DENX Software Engineering GmbH,      Managing Director: Wolfgang =
-Denk
-> > > > > HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Ger=
-many
-> > > > > Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@den=
-x.de
-> > > > > --
-> > > > > _______________________________________________
-> > > > > yocto mailing list
-> > > > > yocto@yoctoproject.org
-> > > > > https://lists.yoctoproject.org/listinfo/yocto
-> > >
-> > > --
-> > > DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-> > > HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-> > > Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
+Well, maybe I have never changed the kernel in this build area, so let's
+check what it depends on:
+=20
+$ bitbake-dumpsig -t linux-libc-headers configure
+NOTE: Starting bitbake server...
+ERROR: Metadata does not support finding signature data files
 
---6TrnltStXW4iwmi0
-Content-Type: application/pgp-signature; name="signature.asc"
+Hmm, no idea what that means. Until someone tells us what's wrong let's
+use stamp files instead
 
------BEGIN PGP SIGNATURE-----
+$ bitbake-dumpsig tmp/stamps/corei7-64-poky-linux/linux-libc-headers/4.15.7=
+-r0.do_configure.sigdata...
+This task depends on the checksums of files: []
+Hash for dependent task
+/home/geuder/projects/yoctobuild/meta-nel/poky/meta/recipes-kernel/linux-li=
+bc-headers/linux-libc-headers_4.15.7.bb.do_prepare_recipe_sysroot is 5ac6ad=
+cdd9edfe2705fd461a42942613
 
-iQEzBAEBCAAdFiEEHc6qFoLCZqgJD98Zk1jtMN6usXEFAlvdXjkACgkQk1jtMN6u
-sXFTtAgAsBaH5AE+a3X6uoqgDfUZBymG/J3u+RYbR/lvcCBQ0XDqj2zrpvHjnOjy
-My71qrCR3uWCzm0bIcFZjQsQgEhfmSFLfoJrEOaIWZO0Q6sXov7Ba9AIFvL0Y4N8
-7onJroDwDjDU8QJXI3SEPXsHDjtuxCLB9D3FHv2/xiCXVnqbr+IhmAJXAjP9tL0Q
-aFNLJMG7mEGFRPd+58t6iExCmcPNRAuyan2lOggVM+miXPZYQzIEd0aq6Oin+neP
-qCe/suex7TbCfVh7Pcz+EPWDn1UnZebuB/Nqg/Ry3H3IgQl6nu9aeApP2ZFssiVF
-47svStuKCD7emRjDDgvqllROfRcI3Q==
-=YBLM
------END PGP SIGNATURE-----
+$ bitbake-dumpsig tmp/stamps/corei7-64-poky-linux/linux-libc-headers/4.15.7=
+-r0.do_prepare_recipe_sysroot.sigdata...
+This task depends on the checksums of files: []
+Hash for dependent task /home/geuder/projects/yoctobuild/meta-nel/poky/meta=
+/recipes-kernel/linux-libc-headers/linux-libc-headers_4.15.7.bb.do_fetch is=
+ 362b694aea2202ce72ad259579d001ad
 
---6TrnltStXW4iwmi0--
+$ bitbake-dumpsig tmp/stamps/corei7-64-poky-linux/linux-libc-headers/4.15.7=
+-r0.do_fetch.sigdata...
+Variable SRC_URI value is ${KERNELORG_MIRROR}/linux/kernel/v${HEADER_FETCH_=
+VER}/linux-${PV}.tar.${KORG_ARCHIVE_COMPRESSION}
+Tasks this task depends on: []
+This task depends on the checksums of files: []
+
+So my build gets kernel headers from kernel.org (mirror), it does not
+use the kernel source I use to build my kernel. Maybe that's different
+for you?
+
+Of course the output of the bitbake-dumpsig commands is massively
+shortened, I just picked those lines that seemed likely candidates to
+cause rebuilds.  To get the whole truth in your build call...
+
+$ bitbake-diffsigs -t linux-libc-headers configure
+
+... after you made a small kernel edit and rebuilt.
+
+Regards,
+
+Uwe
+
+Uwe Geuder
+Neuro Event Labs Oy
+Tampere, Finland
+uwe.gexder at neuroeventlabs.com (Bot check: fix one obvious typo)
+
