@@ -1,62 +1,78 @@
-Return-Path: <hliu@deeper.network>
+Return-Path: <yocto.user.mailinglist@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 680DFE00AD8; Sat,  3 Nov 2018 20:36:45 -0700 (PDT)
+	id 5FA97E00B5E; Sun,  4 Nov 2018 02:10:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (yocto.user.mailinglist[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.43 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.128.48 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com
-	[209.85.222.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3B3BE009B2
-	for <yocto@yoctoproject.org>; Sat,  3 Nov 2018 20:36:43 -0700 (PDT)
-Received: by mail-ua1-f43.google.com with SMTP id w19so2011127uaj.3
-	for <yocto@yoctoproject.org>; Sat, 03 Nov 2018 20:36:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=deeper.network; s=google;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=VHO8+9FGS4XjbAzgqGKRNYNRQbOYgPebwe+shJoP73o=;
-	b=YnJyK3FJTh3kZQhCZuDru8c2rwRelnj1+xUaaqx3qddaBpYsAk6rgIBQqRtuAwSarF
-	7OCPOMc1VUMTCTskbx3yknnHV5iMTF5oYIy1szwyZE3pHzAPa+9tqh3wcfabB0tDvdz4
-	7bu00doROfe8FtCIFB7dC4E8eq/Ml7AA1ZLSjE2U48mUvVt+qsMIjANEJOfQ88DC7AbV
-	HTkhQ6MP6w5OA7jz5mmpdF3JX5elvUKWB5pAMUsmgfJdbcJIJNmmzaBnHT3s520t6Yn8
-	nBm8PHDxDKaZtC8UVsZAjt0JwKqqkTx5Ux745roXda67RJTPoj+Wt3/h3gKflQcLrCHh
-	2SjA==
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+	[209.85.128.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7DA2E00AB3
+	for <yocto@yoctoproject.org>; Sun,  4 Nov 2018 02:10:03 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id w7-v6so5469542wmc.1
+	for <yocto@yoctoproject.org>; Sun, 04 Nov 2018 02:10:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=qh0SRINQOInnHNu2bgCpTctH2oz3lIUw4l1+HAaBz3s=;
+	b=BfOkOVSRMC9ZAGIXQKVZoGHt/c3Ed7Uy7l7S37mUDXpWnJRX22FZMa3h4PkGiXjNqZ
+	o0uI1UdxZeYPzc45SPYljywReHXFm3ZDApMvITCzAd8bevZDRtlD1W1NCXh7txUjwy3k
+	WmbpTWEkyf+HfEaN/XVdiYfTSZQW2ytKeDkAorbjYPdY6HwY0SGo3+qSYU2oYHTHXNdp
+	K3C/GaTsF89zqF+8+gaI8OOI9PZ8Cw0iXWwhKtPXrdkx0ot5WsJstcPQwVZBwgjFgIGd
+	LNfCrIT25RhgNsqNJLSfUXPQ7aq85kRAF24Qe0PNuZwLaBe3iN6I1FBmRX6a/6y7sB4P
+	lylw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=VHO8+9FGS4XjbAzgqGKRNYNRQbOYgPebwe+shJoP73o=;
-	b=d6/8Ez21zUaqiM4uUPHeoLUsd0RUnCidWMxOUdEI8IG2JqTRvf15tp2xFlaJIzTxwZ
-	4D2FSZq1iKgGAPpW+HS++y94BCbm86yaOdEElf9MIpu/d7g1VLr98qqevggE267oY4E0
-	3CCy1VFDDm3zclgKDgiJ+NMd8o42YJC/2GyewX80gxanrWafSZIa54IScCIR39vwwr4V
-	SSGLQfSWWuntCc9/CqA/wyrB2bed5lVCPq5OM1mmdmnNWWJbHl7AHQ8C2xpGPLVn9b3S
-	/Ft3jxR+C9YAiKJL4KL/xUqY7nkbNVYcSQbS/x/LjSq1ZElbhvYiHW02hy9WoJibGug1
-	u3sw==
-X-Gm-Message-State: AGRZ1gLOdS34FYbzvdV5jyYo3RdvCwjeN5RtlfrKe2VzVoVnJqERIhvl
-	KY+CMd5nfhwHjvsNc0vQwq6mLBkJtUX55TU6JyG0fw==
-X-Google-Smtp-Source: AJdET5dF/xbEtI+ciY2CgmH5JGn9NOyiN6gUTbfQev3Ja+jEZz3QQst7L9uEvYFKEqv3zvpymphTKkq+bhLRZnJfT7E=
-X-Received: by 2002:ab0:45e2:: with SMTP id u89mr4862520uau.13.1541302603329; 
-	Sat, 03 Nov 2018 20:36:43 -0700 (PDT)
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=qh0SRINQOInnHNu2bgCpTctH2oz3lIUw4l1+HAaBz3s=;
+	b=gGO5um6hp3g5c/SCWNwgwbg/LqW3sveLw22QdPYMhaqn/AMdfS7+VTmeeVFiTzp7U/
+	jccYn8Z0Mz5l1vpMxVVNKZXsoVwRYDtmVYjoIW+oRSTHyPwVpPxTkmtOWbXpVNgACMjv
+	FT41G24CxWjdHwR55ouEnrN1kQKa1AdqZvTrX/hCuEpPfgmtsxMsn/DxaAyvkXCU++RZ
+	V4/ExQUKhfUiO8HlrvPzdLOgfwZcSZqrWTqy0LAvcF9z0MhlA8/wQsKi5A5zfdZmGqF7
+	p0AsQNcwSY3KvXcpXoaovn6bbYdFQ+5ZaP2Nm21kH3KKM2jo/ZGffW+oBQrXTuaUNSay
+	xfZQ==
+X-Gm-Message-State: AGRZ1gL8sgjA2T22Wo5MnGujxSmaL0ezMINvW5dmEvXczlXTPrFpBK9E
+	YjRuQozndC82ftMi7ASv71E=
+X-Google-Smtp-Source: AJdET5dvIanq9Nb78gyvTDE2kyh6KMLW2RENlF28L+/AErc5VJCeVh4NwfEQ9J/fh0M103Tu5YKe9w==
+X-Received: by 2002:a1c:cb89:: with SMTP id
+	b131-v6mr2941974wmg.115.1541326202764; 
+	Sun, 04 Nov 2018 02:10:02 -0800 (PST)
+Received: from [192.168.42.50] (ppp-2-86-134-137.home.otenet.gr.
+	[2.86.134.137]) by smtp.gmail.com with ESMTPSA id
+	66-v6sm1644949wmp.28.2018.11.04.02.10.01
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 04 Nov 2018 02:10:02 -0800 (PST)
+To: Khem Raj <raj.khem@gmail.com>, Kevin Hao <kexin.hao@windriver.com>
+References: <6c9102d2-91dc-41be-3aec-ab60d4688af5@denx.de>
+	<20181101021854.GT24227@pek-khao-d2>
+	<13692616-30d3-1bae-71b7-1ed2373a9a61@denx.de>
+	<20181102085916.GA31329@pek-khao-d2>
+	<CAMKF1sov=e1z8wH0ckXozz3RK1Uz-7Ja+uzguqTTCxBPHiipyw@mail.gmail.com>
+From: Robert Berger <yocto.user.mailinglist@gmail.com>
+Message-ID: <de1a10ff-5d08-191d-3452-e548929affee@gmail.com>
+Date: Sun, 4 Nov 2018 12:10:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
 MIME-Version: 1.0
-References: <CAOCk6Ow+ZJEg9MofbiTpzNekesnOW4dY3g9B9Ubo3A-32AY_fg@mail.gmail.com>
-	<d3e14b32-a518-931b-53b7-2d639b7ad0e8@windriver.com>
-In-Reply-To: <d3e14b32-a518-931b-53b7-2d639b7ad0e8@windriver.com>
-From: Hui Liu <hliu@deeper.network>
-Date: Sat, 3 Nov 2018 20:36:32 -0700
-Message-ID: <CAOCk6OwXg6paw+LpELNHqS+Vp6c8KcnBfMo-cH3Dqjf8ad49pQ@mail.gmail.com>
-To: mark.hatle@windriver.com
-Cc: yocto@yoctoproject.org
-Subject: Re: How to avoid stripping libthread_db to enable gdb thread debugging?
+In-Reply-To: <CAMKF1sov=e1z8wH0ckXozz3RK1Uz-7Ja+uzguqTTCxBPHiipyw@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: thud, beaglebone-yocto.conf: SERIAL_CONSOLES setting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,99 +84,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 04 Nov 2018 03:36:45 -0000
-Content-Type: multipart/alternative; boundary="00000000000029ca430579ce7a09"
+X-List-Received-Date: Sun, 04 Nov 2018 10:10:04 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---00000000000029ca430579ce7a09
-Content-Type: text/plain; charset="UTF-8"
+Hi,
 
-Thanks mark. glibc-dbg resolved this issue.
+On 02.11.18 16:27, Khem Raj wrote:
+> 
+> omap serial is obsolete why does linux-yocto keeps using it.
+> seondly, machine config should enable both consoles ttyO0 and ttyS0 if
+> you know that at least one kernel is using ttyO0
+> 
+How about picking whatever works for you in the kernel conf and in 
+machine conf?
 
-On Fri, Nov 2, 2018 at 11:21 AM Mark Hatle <mark.hatle@windriver.com> wrote:
+SERIAL_CONSOLES = "115200;ttyS0 115200;ttyO0"
+SERIAL_CONSOLES_CHECK = "${SERIAL_CONSOLES}"
 
-> On 11/2/18 1:03 PM, Hui Liu wrote:
-> > Hi,
-> >
-> > I add gdb to my recipe, and found gdb can't enable thread debugging.
-> >
-> > The warning from gdb is:
-> >
-> > warning: Unable to find libthread_db matching inferior's thread library,
-> thread
-> > debugging will not be available
-> >
-> > After some investigation, I found it is due to libthread_db is stripped:
-> >
-> > nm lib/libthread_db.so.1
-> > nm: lib/libthread_db.so.1: no symbols
-> >
-> > Could you let me know how to avoid this?
->
-> You need to install the dbg package.  This contains the symbols necessary
-> for
-> debugging.  You can install it for either cross or local (on target)
-> debugging.
-> In the cross-debuging case, you should not need it on the target.
->
-> --Mark
->
-> > --
-> > Thanks,
-> > Hui
-> >
-> >
->
->
+Like this on the first boot either ttyO0 or ttyS0 should be picked 
+automatically.
 
--- 
-Thanks,
-Hui
+Regards,
+Robert
 
---00000000000029ca430579ce7a09
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Thanks mark.=C2=A0glibc-dbg resolved this=
- issue.=C2=A0</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On=
- Fri, Nov 2, 2018 at 11:21 AM Mark Hatle &lt;<a href=3D"mailto:mark.hatle@w=
-indriver.com">mark.hatle@windriver.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
-;padding-left:1ex">On 11/2/18 1:03 PM, Hui Liu wrote:<br>
-&gt; Hi,<br>
-&gt; <br>
-&gt; I add gdb to my recipe, and found gdb can&#39;t enable thread debuggin=
-g.<br>
-&gt; <br>
-&gt; The warning from gdb is:<br>
-&gt; <br>
-&gt; warning: Unable to find libthread_db matching inferior&#39;s thread li=
-brary, thread<br>
-&gt; debugging will not be available<br>
-&gt; <br>
-&gt; After some investigation, I found it is due to libthread_db is strippe=
-d:<br>
-&gt; <br>
-&gt; nm lib/libthread_db.so.1<br>
-&gt; nm: lib/libthread_db.so.1: no symbols<br>
-&gt; <br>
-&gt; Could you let me know how to avoid this?<br>
-<br>
-You need to install the dbg package.=C2=A0 This contains the symbols necess=
-ary for<br>
-debugging.=C2=A0 You can install it for either cross or local (on target) d=
-ebugging.<br>
-In the cross-debuging case, you should not need it on the target.<br>
-<br>
---Mark<br>
-<br>
-&gt; -- <br>
-&gt; Thanks,<br>
-&gt; Hui<br>
-&gt; <br>
-&gt; <br>
-<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"l=
-tr">Thanks,<div>Hui</div></div></div>
-
---00000000000029ca430579ce7a09--
