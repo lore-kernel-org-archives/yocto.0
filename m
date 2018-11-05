@@ -1,32 +1,55 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B602E00A54; Mon,  5 Nov 2018 09:11:20 -0800 (PST)
+	id A32C2E00A9B; Mon,  5 Nov 2018 12:45:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,KHOP_DYNAMIC
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.7 KHOP_DYNAMIC Relay looks like a dynamic address
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B73EDE009AA
-	for <yocto@yoctoproject.org>; Mon,  5 Nov 2018 09:11:19 -0800 (PST)
-Received: from hex ([192.168.3.34]) (authenticated bits=0)
-	by dan.rpsys.net (8.15.2/8.15.2/Debian-10) with ESMTPSA id
-	wA5HBF1d031321
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NOT); Mon, 5 Nov 2018 17:11:16 GMT
-Message-ID: <d73ad6ed5c8af98ca7fdff6aeb42f4395028d7cd.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: openembedded-core <openembedded-core@lists.openembedded.org>, Yocto
-	discussion list <yocto@yoctoproject.org>
-Date: Mon, 05 Nov 2018 17:11:15 +0000
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Mime-Version: 1.0
-X-Virus-Scanned: clamav-milter 0.100.2 at dan
-X-Virus-Status: Clean
-Subject: Yocto Project Source Mirroring - Now working correctly
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13899E00A54
+	for <yocto@yoctoproject.org>; Mon,  5 Nov 2018 12:45:20 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	05 Nov 2018 12:45:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.54,469,1534834800"; 
+	d="scan'208,217";a="103654090"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+	by fmsmga004.fm.intel.com with ESMTP; 05 Nov 2018 12:45:19 -0800
+Received: from fmsmsx116.amr.corp.intel.com (10.18.116.20) by
+	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
+	(TLS) id 14.3.408.0; Mon, 5 Nov 2018 12:45:19 -0800
+Received: from fmsmsx124.amr.corp.intel.com ([169.254.8.91]) by
+	fmsmsx116.amr.corp.intel.com ([169.254.2.70]) with mapi id
+	14.03.0415.000; Mon, 5 Nov 2018 12:45:18 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Reminder: Yocto Project Technical Team Meeting @ Monthly from
+	8am to 8:30am on the first Tuesday (PDT) 
+Thread-Index: AdRDwt7sFZP+MREwTy2sfh2AAG3lOg==
+Date: Mon, 5 Nov 2018 20:45:18 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECFD3D7A6@fmsmsx124.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMmQ2MTYzYzItOTFkNi00MzNmLWI3YTItYjM0MTc1ZjlhYWE0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiV3RSZmc5NnFxNzJCbUsyYmVJMkdTVEJwV1ZXXC9DbHlKNWYzaU5EdXFkK2FZb3V3NTZGUThiTHZHNFFoOUNucTcifQ==
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+MIME-Version: 1.0
+Subject: Reminder: Yocto Project Technical Team Meeting @ Monthly from 8am to 8:30am on the first Tuesday (PDT)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,33 +61,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Nov 2018 17:11:20 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 05 Nov 2018 20:45:21 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD3D7A6fmsmsx124amrcor_"
 
-Hi,
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD3D7A6fmsmsx124amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-At ELC-E/OEDEM there were reports of problems with the project's source
-mirroring. We've also had reports of problems with people using http
-only connections without access to git (e.g. being behind http only
-proxies).
+QWxsLA0KDQpKdXN0IGEgcmVtaW5kZXIgd2Ugd2lsbCBob2xkIHRoZSBtb250aGx5IFlvY3RvIFBy
+b2plY3QgVGVjaG5pY2FsIE1lZXRpbmcgYXQgOGFtIFBEVCB0b21vcnJvdy4gIFdlIHdpbGwgY29u
+dGludWUgdGhlIFlQIDIuNyBQbGFubmluZyBlZmZvcnQgYXQgdGhpcyB0aW1lLiAgSWYgeW91IHdp
+c2ggdG8gc2VlIHRoZSBub3RlcyBwbGVhc2UgcmVxdWVzdCBhY2Nlc3MgdG8gdGhlIGdvb2dsZSBk
+b2M6IGh0dHBzOi8vZG9jcy5nb29nbGUuY29tL2RvY3VtZW50L2QvMTVqQjZuVUpVMndydG51Nncw
+N0w5UlpwTmxqNkFveFNUUEVYNWFFTHRzMWcvZWRpdD91c3A9c2hhcmluZy4gIEkgaGF2ZSBwb3N0
+ZWQgbXkgcHJvcG9zZWQgcmVsZWFzZSBzY2hlZHVsZSBpbiB0aGlzIGRvY3VtZW50IGFuZCB3ZSB3
+aWxsIGRpc2N1c3MgdGhhdCBmaXJzdCBpbiB0aGUgbWVldGluZy4NCg0KWW9jdG8gUHJvamVjdCBU
+ZWNobmljYWwgVGVhbSBNZWV0aW5nOiBXZSBlbmNvdXJhZ2UgcGVvcGxlIGF0dGVuZGluZyB0aGUg
+bWVldGluZyB0byBsb2dvbiBhbmQgYW5ub3VuY2UgdGhlbXNlbHZlcyBvbiB0aGUgWW9jdG8gUHJv
+amVjdCBJUkMgY2hhbmNlbCBkdXJpbmcgdGhlIG1lZXRpbmcgKG9wdGlvbmFsKToNCllvY3RvIElS
+QzogaHR0cDovL3dlYmNoYXQuZnJlZW5vZGUubmV0Lz9jaGFubmVscz0jeW9jdG8NCg0KV2lraTog
+aHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9wdWJsaWMtdmlydHVhbC1tZWV0aW5ncy8NCg0K
+V2hlbiAgICAgICAgICAgIE1vbnRobHkgZnJvbSA4YW0gdG8gODozMGFtIG9uIHRoZSBmaXJzdCBU
+dWVzZGF5IFBhY2lmaWMgVGltZQ0KV2hlcmUgICAgICAgICAgIFpvb20gTWVldGluZzogaHR0cHM6
+Ly96b29tLnVzL2ovOTkwODkyNzEyDQoNClRoYW5rcywNCg0KU3RlcGhlbiBLLiBKb2xsZXkNCllv
+Y3RvIFByb2plY3QgUHJvZ3JhbSBNYW5hZ2VyDQpJTlRFTCwgTVMgSkYxLTI1NSwgMjExMSBOLkUu
+IDI1dGggQXZlbnVlLCBIaWxsc2Jvcm8sIE9SIDk3MTI0DQrigKIgICAgQ2VsbDogICAgICAgICAg
+ICAgICgyMDgpIDI0NC00NDYwDQrigKIgRW1haWw6ICAgICAgICAgICAgICAgIHN0ZXBoZW4uay5q
+b2xsZXlAaW50ZWwuY29tDQoNCg==
 
-Michael and I have looked into it and there were some problems caused
-by the new autobuilder changes and switches between NAS systems on that
-infrastructure. Those are now resolved and all data has been updated.
-The git mirroring issues were also resolved by tweaking some of the
-mirroring commands.
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD3D7A6fmsmsx124amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-In order to stop this regressing again without us noticing, I've also
-written an oe-selftest which will ensure this continue to work as
-intended and alert us if it doesn't.
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
+dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
+LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
+ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
+PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
+Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+QWxsLDwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2
+Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9u
+dCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMXB0OyI+SnVzdCBhIHJlbWluZGVyIHdlIHdpbGwgaG9sZCB0aGUgbW9udGhseSBZ
+b2N0byBQcm9qZWN0IFRlY2huaWNhbCBNZWV0aW5nIGF0IDhhbSBQRFQgdG9tb3Jyb3cuJm5ic3A7
+IFdlIHdpbGwgY29udGludWUgdGhlIFlQIDIuNyBQbGFubmluZyBlZmZvcnQgYXQgdGhpcyB0aW1l
+LiZuYnNwOyBJZiB5b3Ugd2lzaCB0byBzZWUgdGhlDQpub3RlcyBwbGVhc2UgcmVxdWVzdCBhY2Nl
+c3MgdG8gdGhlIGdvb2dsZSBkb2M6IDxhIGhyZWY9Imh0dHBzOi8vZG9jcy5nb29nbGUuY29tL2Rv
+Y3VtZW50L2QvMTVqQjZuVUpVMndydG51NncwN0w5UlpwTmxqNkFveFNUUEVYNWFFTHRzMWcvZWRp
+dD91c3A9c2hhcmluZyI+PGZvbnQgY29sb3I9IiMwNTYzQzEiPjx1Pmh0dHBzOi8vZG9jcy5nb29n
+bGUuY29tL2RvY3VtZW50L2QvMTVqQjZuVUpVMndydG51NncwN0w5UlpwTmxqNkFveFNUUEVYNWFF
+THRzMWcvZWRpdD91c3A9c2hhcmluZzwvdT48L2ZvbnQ+PC9hPi4mbmJzcDsNCkkgaGF2ZSBwb3N0
+ZWQgbXkgcHJvcG9zZWQgcmVsZWFzZSBzY2hlZHVsZSBpbiB0aGlzIGRvY3VtZW50IGFuZCB3ZSB3
+aWxsIGRpc2N1c3MgdGhhdCBmaXJzdCBpbiB0aGUgbWVldGluZy4gPC9zcGFuPjwvZm9udD48L2Rp
+dj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8
+ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExcHQ7Ij5Zb2N0byBQcm9qZWN0IFRlY2huaWNhbCBUZWFtIE1lZXRp
+bmc6IFdlIGVuY291cmFnZSBwZW9wbGUgYXR0ZW5kaW5nIHRoZSBtZWV0aW5nIHRvIGxvZ29uIGFu
+ZCBhbm5vdW5jZSB0aGVtc2VsdmVzIG9uIHRoZSBZb2N0byBQcm9qZWN0IElSQyBjaGFuY2VsIGR1
+cmluZyB0aGUgbWVldGluZyAob3B0aW9uYWwpOjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxm
+b250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExcHQ7Ij5Zb2N0byBJUkM6IDxhIGhyZWY9Imh0dHA6Ly93ZWJjaGF0LmZyZWVu
+b2RlLm5ldC8/Y2hhbm5lbHM9I3lvY3RvIj48Zm9udCBjb2xvcj0iIzA1NjNDMSI+PHU+aHR0cDov
+L3dlYmNoYXQuZnJlZW5vZGUubmV0Lz9jaGFubmVscz0jeW9jdG88L3U+PC9mb250PjwvYT48L3Nw
+YW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xv
+cj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwv
+Zm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMx
+RjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPldpa2k6IDxhIGhyZWY9Imh0dHBz
+Oi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvcHVibGljLXZpcnR1YWwtbWVldGluZ3MvIj48Zm9udCBj
+b2xvcj0iIzA1NjNDMSI+PHU+aHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9wdWJsaWMtdmly
+dHVhbC1tZWV0aW5ncy88L3U+PC9mb250PjwvYT48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48
+Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQg
+ZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTFwdDsiPldoZW4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgTW9udGhseSBmcm9tIDhhbSB0byA4OjMwYW0gb24g
+dGhlIGZpcnN0IFR1ZXNkYXkgUGFjaWZpYyBUaW1lPC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+
+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTFwdDsiPldoZXJlJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFpvb20gTWVldGluZzogPGEgaHJlZj0iaHR0cHM6
+Ly96b29tLnVzL2ovOTkwODkyNzEyIj48Zm9udCBjb2xvcj0iIzA1NjNDMSI+PHU+aHR0cHM6Ly96
+b29tLnVzL2ovOTkwODkyNzEyPC91PjwvZm9udD48L2E+IDwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8
+ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48
+Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMXB0OyI+VGhhbmtzLDwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250
+IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBzaXpl
+PSI0IiBjb2xvcj0icHVycGxlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE2cHQ7Ij48Yj48aT5T
+dGVwaGVuIEsuIEpvbGxleTwvaT48L2I+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQg
+ZmFjZT0iQ291cmllciBOZXciIHNpemU9IjEiIGNvbG9yPSJibHVlIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjhwdDsiPjxiPllvY3RvIFByb2plY3QgUHJvZ3JhbSBNYW5hZ2VyPC9iPjwvc3Bhbj48
+L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNvdXJpZXIgTmV3IiBzaXplPSIyIiBjb2xv
+cj0iZnVjaHNpYSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyI+PGI+SU5URUwsIE1TIEpG
+MS0yNTUsIDIxMTEgTi5FLiAyNXRoIEF2ZW51ZSwgSGlsbHNib3JvLCBPUiA5NzEyNCA8L2I+PC9z
+cGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZTo5cHQ7Ij48Zm9udCBmYWNlPSJXaW5nZGluZ3MiPig8L2ZvbnQ+PGZvbnQgZmFjZT0iTVMg
+U2FucyBTZXJpZiIgY29sb3I9InRlYWwiPiZuYnNwOyZuYnNwOyZuYnNwOyA8L2ZvbnQ+PGZvbnQg
+ZmFjZT0iQ29taWMgU2FucyBNUyIgc2l6ZT0iMSIgY29sb3I9InRlYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6OHB0OyI+PGI+Q2VsbDwvYj48L3NwYW4+PC9mb250Pjxmb250IGZhY2U9Ik1TIFNh
+bnMgU2VyaWYiIGNvbG9yPSJ0ZWFsIj46Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8L2ZvbnQ+PGZv
+bnQgZmFjZT0iTVMgU2FucyBTZXJpZiIgY29sb3I9IiMxRjQ5N0QiPigyMDgpIDI0NC00NDYwPC9m
+b250Pjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IHNpemU9IjIiIGNvbG9yPSIjMUY0
+OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjlwdDsiPjxmb250IGZhY2U9IldpbmdkaW5ncyI+
+KiA8L2ZvbnQ+PGZvbnQgZmFjZT0iQ29taWMgU2FucyBNUyIgc2l6ZT0iMSIgY29sb3I9InRlYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6OHB0OyI+PGI+RW1haWw8L2I+PC9zcGFuPjwvZm9udD48
+Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0idGVhbCI+OiZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOw0KPC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9y
+PSJibHVlIj48dT5zdGVwaGVuLmsuam9sbGV5QGludGVsLmNvbTwvdT48L2ZvbnQ+PC9zcGFuPjwv
+Zm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjwvc3Bhbj48
+L2ZvbnQ+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-If anyone does see any further oddities, please let Michael and myself
-know.
-
-Cheers,
-
-Richard
-
-
-
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD3D7A6fmsmsx124amrcor_--
