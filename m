@@ -1,67 +1,32 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1442E00A6B; Mon,  5 Nov 2018 08:57:54 -0800 (PST)
+	id 9B602E00A54; Mon,  5 Nov 2018 09:11:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,KHOP_DYNAMIC
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.175 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com
-	[209.85.222.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 171FDE00A4F
-	for <yocto@yoctoproject.org>; Mon,  5 Nov 2018 08:57:53 -0800 (PST)
-Received: by mail-qk1-f175.google.com with SMTP id u68so15891894qkg.9
-	for <yocto@yoctoproject.org>; Mon, 05 Nov 2018 08:57:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=X8/icMFjK7WGRblGK/CcyO9LHhbVl4zTZEv5/kSQe/c=;
-	b=G+v3MOslDbHiPClXLH/sL+Z6aRMCNwaKZr2HY3GnmrjnAYsyKEBCMzzwEMZJLFxvo8
-	85Sh0UXY7qyIX4ft/c4PGSFhPD8ksiHqofmxu0/zyOfsf1l/jTXLWu+y3ZKtRlu2Vvzt
-	/u0P0G3424IMGvewCi63XXB4IBAibL8raCPJCiTk7AFi7hDDiST6bPTDeftNBFohG4MF
-	bhDoX1Vj8C14eCFkb5LdE6kusI7PC3x2Vsb4Dj9fIdExTVQV7xhOIVdQHyCoaoMHh0OF
-	X0fJcYCOSHYx8cTXicIGfS5XgK0EjLM+jVof26NwRb4cc7aA3QxunrEoy8X+mggVe6ZD
-	Om3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=X8/icMFjK7WGRblGK/CcyO9LHhbVl4zTZEv5/kSQe/c=;
-	b=eQHB9LaDZ+fjBRte+N5tiKj1xGBUnvHG3tiFoEL9cYijEhJdCm7x7V3e7Xdc0I7je+
-	jXfncDoOH18moJGUU7r6SsrbNhfM8ol/w7Bifd2H163qknR9T7gunjFS1jOtc+6BuWAP
-	iFFKh0O6D+v/BxRlqGr4Fj/c778c/mv0LIspn/xrqjAX+UWb2UdQVuMIT6zzLtCWPKgQ
-	m7kFkMGsAuY/c15T2Ewx7NI2qZgwJ/RlxD5OCMU0ieG/LqJOMKnBdADTRUd0a53kyRo2
-	zPunig6B2+mDYwGBhsKxFM+ifEpNkPrON5Pe56mgvgvEQxbv1dyMThDl0dshKe1lcbcx
-	i97A==
-X-Gm-Message-State: AGRZ1gL9r9Cl8Itni8FCPIztdBG3Sn1yG5xYW4+gwc4XF7p+goczJqqY
-	f5eyGlkmfy/tcAJ12RFo1P5CDaEoQHyrfF8I+4kLJx15
-X-Google-Smtp-Source: AJdET5cNGs8wKFTIGyQEB5MRpubc/dWBfW/YGoZNDE+Vcf/tkDFsYT0NxFTD/i/agnbDcOPQAz6KA2OyIfd6aiVoOMA=
-X-Received: by 2002:a37:d408:: with SMTP id l8mr21229728qki.315.1541437072952; 
-	Mon, 05 Nov 2018 08:57:52 -0800 (PST)
-MIME-Version: 1.0
-References: <CAHXEV+nwa30psLMVwg-B+-KHouLG9LOEW_oYsaFhYjTWuBB+xw@mail.gmail.com>
-	<CAMKF1sq0ynsF_-=VsJnmJS3huRouDbQRPAJ_9Z0T4uofHikvFA@mail.gmail.com>
-	<CAHXEV+nsaKzsABQUnimHxRoQ_oQK4KaSALnJt-YGss=tTzTF1w@mail.gmail.com>
-In-Reply-To: <CAHXEV+nsaKzsABQUnimHxRoQ_oQK4KaSALnJt-YGss=tTzTF1w@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 5 Nov 2018 08:57:23 -0800
-Message-ID: <CAMKF1sps7_VYRGP3ZdCWN8yGUEM+q9Nn6tNwsQorW_+rXiSzGg@mail.gmail.com>
-To: =?UTF-8?B?Sm/Do28gR29uw6dhbHZlcw==?= <joao.jfgoncalves@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Install a pre-build ipkg package at build time
+	*  0.7 KHOP_DYNAMIC Relay looks like a dynamic address
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B73EDE009AA
+	for <yocto@yoctoproject.org>; Mon,  5 Nov 2018 09:11:19 -0800 (PST)
+Received: from hex ([192.168.3.34]) (authenticated bits=0)
+	by dan.rpsys.net (8.15.2/8.15.2/Debian-10) with ESMTPSA id
+	wA5HBF1d031321
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NOT); Mon, 5 Nov 2018 17:11:16 GMT
+Message-ID: <d73ad6ed5c8af98ca7fdff6aeb42f4395028d7cd.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: openembedded-core <openembedded-core@lists.openembedded.org>, Yocto
+	discussion list <yocto@yoctoproject.org>
+Date: Mon, 05 Nov 2018 17:11:15 +0000
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+X-Virus-Scanned: clamav-milter 0.100.2 at dan
+X-Virus-Status: Clean
+Subject: Yocto Project Source Mirroring - Now working correctly
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,92 +38,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Nov 2018 16:57:55 -0000
+X-List-Received-Date: Mon, 05 Nov 2018 17:11:20 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Mon, Nov 5, 2018 at 7:44 AM Jo=C3=A3o Gon=C3=A7alves
-<joao.jfgoncalves@gmail.com> wrote:
->
-> Thanks, I didn't know that I could point SRC_URI to a ipk just like a reg=
-ullar tar file.
-> I did that, pointed to our ipk server and it could download the ipk file.
-> However during the do_rootfs task i got the following error:
->
-> ERROR: kelvin-base-image-2.8b4-r0 do_rootfs: Error executing a python fun=
-ction in exec_python_func() autogenerated:
->
-> The stack trace of python calls that resulted in this exception/failure w=
-as:
-> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:license_create_manifest(d)
->      0003:
-> File: '/home/joao/imx6/build/../layers/openembedded-core/meta/classes/lic=
-ense.bbclass', lineno: 48, function: license_create_manifest
->      0044:    pkg_dic =3D {}
->      0045:    for pkg in sorted(image_list_installed_packages(d)):
->      0046:        pkg_info =3D os.path.join(d.getVar('PKGDATA_DIR'),
->      0047:                                'runtime-reverse', pkg)
->  *** 0048:        pkg_name =3D os.path.basename(os.readlink(pkg_info))
->      0049:
->      0050:        pkg_dic[pkg_name] =3D oe.packagedata.read_pkgdatafile(p=
-kg_info)
->      0051:        if not "LICENSE" in pkg_dic[pkg_name].keys():
->      0052:            pkg_lic_name =3D "LICENSE_" + pkg_name
-> Exception: FileNotFoundError: [Errno 2] No such file or directory: '/home=
-/joao/imx6/build/tmp-glibc/pkgdata/apalis-imx6/runtime-reverse/python36'
->
-> ERROR: kelvin-base-image-2.8b4-r0 do_rootfs: Function failed: license_cre=
-ate_manifest
-> ERROR: Logfile of failure stored in: /home/joao/imx6/build/tmp-glibc/work=
-/apalis_imx6-angstrom-linux-gnueabi/kelvin-base-image/2.8b4-r0/temp/log.do_=
-rootfs.1303
-> ERROR: Task (/home/joao/imx6/layers/meta-kelvin/recipes-images/images/kel=
-vin-base-image_0.2.bb:do_rootfs) failed with exit code '1'
->
-> I used "CLOSED" as license, i also tried put a MIT license the on "file:.=
-." of the recipe. I got the same error. Maybe it is because I do not have a=
- license file inside the ipk package, I'll test put a license file in a pac=
-kage and try to install it.
+Hi,
 
-hopefully this will fix it.
+At ELC-E/OEDEM there were reports of problems with the project's source
+mirroring. We've also had reports of problems with people using http
+only connections without access to git (e.g. being behind http only
+proxies).
 
-> I'am using a set of layers provided by our board vendor and they are usin=
-g rocko version.
->
-> I could "hide" the problem by putting  the whole body of the license_crea=
-te_manifest function of the license.bbclass inside a try-except block.
-> It worked but that's not a solution.
->
-> Khem Raj <raj.khem@gmail.com> escreveu no dia sexta, 2/11/2018 =C3=A0(s) =
-16:50:
->>
->> On Fri, Nov 2, 2018 at 8:48 AM Jo=C3=A3o Gon=C3=A7alves
->> <joao.jfgoncalves@gmail.com> wrote:
->> >
->> > Hi all,
->> >
->> > I have some pre-build opkg packages and I need to install them on my t=
-arget image, is this possible?
->> > I tried to use the bin_package class but I didn't found any example, I=
-'m also not sure if it can be used this way or just to install the data fil=
-es extracted from the ipkg file. Anyway I also tried to extract the binary =
-files form the package and use the bin_package class to install them, but w=
-ith no success.
->> >
->> > Does anyone have any example of this?
->> >
->>
->> once you point SRC_URI to your ipk
->> inherit bin_package should be then able to help in repackaging it
->> you have to post specific errors so we can see what might be going on
->>
->> > Thanks,
->> > Jo=C3=A3o Gon=C3=A7alves
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
+Michael and I have looked into it and there were some problems caused
+by the new autobuilder changes and switches between NAS systems on that
+infrastructure. Those are now resolved and all data has been updated.
+The git mirroring issues were also resolved by tweaking some of the
+mirroring commands.
+
+In order to stop this regressing again without us noticing, I've also
+written an oe-selftest which will ensure this continue to work as
+intended and alert us if it doesn't.
+
+If anyone does see any further oddities, please let Michael and myself
+know.
+
+Cheers,
+
+Richard
+
+
 
