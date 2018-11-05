@@ -1,63 +1,61 @@
-Return-Path: <markus4dev@gmail.com>
+Return-Path: <dimtass@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9945FE00A9B; Mon,  5 Nov 2018 13:10:05 -0800 (PST)
+	id 9B353E00AC5; Mon,  5 Nov 2018 14:22:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (markus4dev[at]gmail.com)
+	provider *      (dimtass[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.52 listed in list.dnswl.org]
+	*      [209.85.210.65 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
-	[209.85.221.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE6AFE00A54
-	for <yocto@yoctoproject.org>; Mon,  5 Nov 2018 13:10:04 -0800 (PST)
-Received: by mail-wr1-f52.google.com with SMTP id k15-v6so8138773wre.12
-	for <yocto@yoctoproject.org>; Mon, 05 Nov 2018 13:10:04 -0800 (PST)
+Received: from mail-ot1-f65.google.com (mail-ot1-f65.google.com
+	[209.85.210.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24F61E00A6B
+	for <yocto@yoctoproject.org>; Mon,  5 Nov 2018 14:22:20 -0800 (PST)
+Received: by mail-ot1-f65.google.com with SMTP id z33so9493732otz.11
+	for <yocto@yoctoproject.org>; Mon, 05 Nov 2018 14:22:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to
-	:content-transfer-encoding;
-	bh=XQMB99JQLw4g5wOQfn52dlgbxfdtIFNPTisVkdBtwfU=;
-	b=CBtGgKXSkxCG/fxXC2/d3eQO01M68vn4xPczf19F/dJ8S7Fmrd3rruj80RW1ANKRxn
-	Hq623jHQNoOKJFVatcg4w8E2WbAGaSjKWQuvRJktEC/ISQ/31t+elQA1ALRJu4zD9k7h
-	WUYJ80+OW8J4BLghS4F3LNAS7uM+3sKNziK961kZpFIAerOoHfDjkMjTpKlE1GcHmxlM
-	X5YAPKzjdWuOPlwZNc4rmkp95UGO9DlQxfdk7I6/Quy4kLkPbawmZE+lTRnj/EV2khyf
-	srTH1sYeCn/FP3Qpm0DDS0tUEZGZ1xAecktCw01cZu9dpT9XwpEISsycqjjdN83Wnkkl
-	cVVQ==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Gag3B74+YU8w15mfPj7HCQgBl2I/DIEDRUG5cE0d8aQ=;
+	b=bQtxUf7ula4kufBodKK6iYXt3pmb6Dx/1PB2oJeh9n/vFZvXSlGB4eqqbBCpx2wUye
+	aK7TUhcfEdSlKbTOXCSTj7V/vBMbJhT/zLVTFiwejFaOAVHaBsBco/yVKKaKIi5ot0Wz
+	56Gqh4xfbgm0/1tkhZBhgudwSLJ00FuihW9lYRNzkhA8ddtPysOY8/8GJcIbhm0R5YpC
+	9L0893Dj3zvQXPAis8YdbRqEzLKzNvVALtQsaZqdcIwyw4BHZWMEGLeFZ0u5oRyvLWfO
+	b3Ph4ilVOG5vt+QCFk+bX6BPfdGUf3dUFMmSPMhIleOmQTA/vCTu0DenlxCxxz+dvzbW
+	+Tsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
-	:content-transfer-encoding;
-	bh=XQMB99JQLw4g5wOQfn52dlgbxfdtIFNPTisVkdBtwfU=;
-	b=baDfjkuY3JLuUgNg89eQ9RFhyt8WGwjbfTVsQD7Gu7PO4nSuuyCwRx1Aum+paLhWUY
-	tPgUV+S8sIiuU/G7ZIxvUtrQo3rOzUeP1cUOVcMxAP+ZdbTRE7OoOUeJQseBxXaF+zUx
-	hYlAAbD2yt30WlEH/JC0visz9ONgRzrjQZS5dSPrTlnhjHZ3Q46h5dwp4YH+6YJGjZma
-	M/IjK7T/NuwfQxRQw/cVyYJMZQ5jnGw7ozvf3b4tVnBxpTt7Z0PeIZ5yBZ6FjbYKiihc
-	YDZ0gZf89kQRB2guUiUu7B/WCqYjK3sjgKt12L/JTByoq92/PPavl4UIb6s+trZtHS6T
-	z3ow==
-X-Gm-Message-State: AGRZ1gIc7A8xUcB7/N+7JjgF9S1Q4k3Kr+V04NTHCq1SQyuFKwVHkDEo
-	2cs1/Txu6/zEZx4AiIsz3erVOI3BsEBWkHZaGsblhygr
-X-Google-Smtp-Source: AJdET5ehuE+XdQ1tvBfdo26aj2rNM3cd7tkag9awDXhNVwIWLI8TS8Kg/T2Uw2fQhBp9WLVZ3y0ZDRrCu3xh8Wc+URw=
-X-Received: by 2002:adf:c084:: with SMTP id
-	d4-v6mr20801432wrf.268.1541452203700; 
-	Mon, 05 Nov 2018 13:10:03 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Gag3B74+YU8w15mfPj7HCQgBl2I/DIEDRUG5cE0d8aQ=;
+	b=pkvFEIpJRa+vFcFC/shPOUt6vKzgiEpVtiWmHgloCg55xQFiY9u+ArqENBj7X/HhrL
+	Sr1vkTogeRLs1tTawD6Wl3Z79I0jltvUSS/hy4ueNf7kHq38u1C9nTw2pxM5CqpfnbBm
+	rXNNFiVzSqegHalmCwdVlRhBge6NhAlgnF7kxXucD8fjJaFPxQXoQNZoToE+cjE+6FYl
+	OIvzLlMdIDLXowB8CbxR1/MjRG3rg6EFlRXpXtoSZAdU82Olzi9YezscMr40F2GGV15o
+	rnsDrHSIj6Hr7/JkiKP8rnAQxkRTvGHvffNQRADMrez2Boxc1cnktUMXG+mr8DtgOrtr
+	+Qxg==
+X-Gm-Message-State: AGRZ1gIKHcH+JeMEZY9l+32UQKlBD7zUt7kqddKB21hSfD67mRWfntjJ
+	/iYvlXYcmBrXtcQ54vDJpIl7GzEL3KSnt2gkfHAFsXBg
+X-Google-Smtp-Source: AJdET5e+4Z8Rqf7VeDWijkE10jDkViaJjDdxaOfwaf3+Nps11ve1y5AK9gbCf7G9WeXi6qz9WfJLdlYHleBtd0+naEw=
+X-Received: by 2002:a9d:2e0a:: with SMTP id q10mr15308031otb.176.1541456540146;
+	Mon, 05 Nov 2018 14:22:20 -0800 (PST)
 MIME-Version: 1.0
-From: Markus W <markus4dev@gmail.com>
-Date: Mon, 5 Nov 2018 22:10:00 +0100
-Message-ID: <CAFd=ocgvmSf1zyWWw3A1=+Hr=WeD0ixdf5xLAT-TWg3hhKTqXw@mail.gmail.com>
+From: Dimitris Tassopoulos <dimtass@gmail.com>
+Date: Mon, 5 Nov 2018 23:22:09 +0100
+Message-ID: <CACKFPN13i-2bd=jPNusxZvUURza7KD4pXbJa4WDSyZM_jEq1FA@mail.gmail.com>
 To: yocto@yoctoproject.org
-Subject: [meta-raspberrypi]
+Subject: [yocto-docs][PATCH] Added info for ovfm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,41 +67,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Nov 2018 21:10:05 -0000
+X-List-Received-Date: Mon, 05 Nov 2018 22:22:21 -0000
+Content-Type: multipart/alternative; boundary="0000000000008320d50579f25152"
+
+--0000000000008320d50579f25152
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi!
+Hi all, since I don't have permission to push, I'm sending the patch by
+email.
+This is the commit message and patch
 
-I want to append the rules in the
-recipe-core/udev/udev-rules-rpi/99-com.rules with the rules below from
-within my own recipe. I can=C2=B4t figure out how to do that.
+Added description of the ovmf option in runqemu
 
-I have tried to add those rules as separate rules file in a recipe in
-my own layer. After the build I can see that the rules file is in the
-correct directory /etc/udev/rules.d (next to 99-com.rules) but the
-rules didn't get applied. The groups below I have created by
-inheriting the useradd class (GROUPADD_PARAM_${PN} =3D "-r spi; -r i2c;
--r gpio") in a different layer with a higher priority than the layer
-with the rules recipe.
+The current documentation doesn't have any info for the ovmf option.
+In case you build a QEMU image with the grub-efi bootloader, then the
+qemu image needs the ovmf firmware to boot. Therefore, when using the
+runqemu script you need to pass the ovmf option. I believe this is
+needed as without this info there's no hint how to boot a UEFI image.
 
-Not sure why this is not working. Any suggestions?
+I've added a sample example with the other existing ones and the option
+in the dev-manual-qemu.xml. I've also linked the grub-efi to the class,
+so it's linked in the mega-manual. I've build the documentation:
 
-90-interfaces.rules file:
+$ make DOC=mega-manual
 
-SUBSYSTEM=3D=3D"input", GROUP=3D"input", MODE=3D"0660"
-SUBSYSTEM=3D=3D"i2c-dev", GROUP=3D"i2c", MODE=3D"0660"
-SUBSYSTEM=3D=3D"spidev", GROUP=3D"spi", MODE=3D"0660"
-SUBSYSTEM=3D=3D"bcm2835-gpiomem", GROUP=3D"gpio", MODE=3D"0660"
+and tested the edit and that the link works.
 
-SUBSYSTEM=3D=3D"gpio", GROUP=3D"gpio", MODE=3D"0660"
-SUBSYSTEM=3D=3D"gpio*", PROGRAM=3D"/bin/sh -c '\
-chown -R root:gpio /sys/class/gpio && chmod -R 770 /sys/class/gpio;\
-chown -R root:gpio /sys/devices/virtual/gpio && chmod -R 770
-/sys/devices/virtual/gpio;\
-chown -R root:gpio /sys$devpath && chmod -R 770 /sys$devpath\
-'"
+index 4e7b5de4e..365b5c577 100644
+@@ -508,6 +508,7 @@
+        runqemu tmp/deploy/images/qemux86/&lt;qemuboot.conf&gt;
+        runqemu qemux86-64 core-image-sato ext4
+        runqemu qemux86-64 wic-image-minimal wic
++       runqemu qemux86-64 core-image-minimal wic ovmf
+        runqemu path/to/bzImage-qemux86.bin path/to/nfsrootdir/ serial
+        runqemu qemux86
+iso/hddimg/wic.vmdk/wic.qcow2/wic.vdi/ramfs/cpio.gz...
+        runqemu qemux86 qemuparams="-m 256"
+@@ -678,6 +679,12 @@ qemux86" or "qemux86-64".
+                     <filename>publicvnc</filename>:
+                     Enables a VNC server open to all hosts.
+                     </para></listitem>
++                    <listitem><para>
++                    <filename>ovmf</filename>:
++                    Enables support for UEFI within QEMU. This option can
+be used with the
++                    <link
+linkend='ref-classes-grub-efi'><filename>grub-efi</filename></link>
++                    class.
++                    </para></listitem>
+             </itemizedlist>
+         </para>
+     </section>
+
 
 Regards,
-Markus
+Dimitris
 
+--0000000000008320d50579f25152
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Hi all, since I don&#39;=
+t have permission to push, I&#39;m sending the patch by email.<div>This is =
+the commit message and patch</div><div><br></div><div><div>Added descriptio=
+n of the ovmf option in runqemu</div><div><br></div><div>The current docume=
+ntation doesn&#39;t have any info for the ovmf option.</div><div>In case yo=
+u build a QEMU image with the grub-efi bootloader, then the</div><div>qemu =
+image needs the ovmf firmware to boot. Therefore, when using the</div><div>=
+runqemu script you need to pass the ovmf option. I believe this is</div><di=
+v>needed as without this info there&#39;s no hint how to boot a UEFI image.=
+</div><div><br></div><div>I&#39;ve added a sample example with the other ex=
+isting ones and the option</div><div>in the dev-manual-qemu.xml. I&#39;ve a=
+lso linked the grub-efi to the class,</div><div>so it&#39;s linked in the m=
+ega-manual. I&#39;ve build the documentation:</div><div><br></div><div>$ ma=
+ke DOC=3Dmega-manual</div><div><br></div><div>and tested the edit and that =
+the link works.</div></div><div><br></div><div><div>index 4e7b5de4e..365b5c=
+577 100644</div><div>@@ -508,6 +508,7 @@</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 runqemu tmp/deploy/images/qemux86/&amp;lt;qemuboot.conf&amp;gt;</div><d=
+iv>=C2=A0 =C2=A0 =C2=A0 =C2=A0 runqemu qemux86-64 core-image-sato ext4</div=
+><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 runqemu qemux86-64 wic-image-minimal wic<=
+/div><div>+=C2=A0 =C2=A0 =C2=A0 =C2=A0runqemu qemux86-64 core-image-minimal=
+ wic ovmf</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 runqemu path/to/bzImage-qem=
+ux86.bin path/to/nfsrootdir/ serial</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 r=
+unqemu qemux86 iso/hddimg/wic.vmdk/wic.qcow2/wic.vdi/ramfs/cpio.gz...</div>=
+<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 runqemu qemux86 qemuparams=3D&quot;-m 256&=
+quot;</div><div>@@ -678,6 +679,12 @@ qemux86&quot; or &quot;qemux86-64&quot=
+;.</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0&lt;filename&gt;publicvnc&lt;/filename&gt;:</div><div>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Enable=
+s a VNC server open to all hosts.</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;&lt;/listitem&gt;=
+</div><div>+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 &lt;listitem&gt;&lt;para&gt;</div><div>+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;filename&gt;ovmf&lt;/filename=
+&gt;:</div><div>+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 Enables support for UEFI within QEMU. This option can be used=
+ with the</div><div>+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 &lt;link linkend=3D&#39;ref-classes-grub-efi&#39;&gt;&lt;=
+filename&gt;grub-efi&lt;/filename&gt;&lt;/link&gt;</div><div>+=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 class.</div><div>+=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;/=
+para&gt;&lt;/listitem&gt;</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&lt;/itemizedlist&gt;</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0&lt;/para&gt;</div><div>=C2=A0 =C2=A0 =C2=A0&lt;/section&gt;</div></div>=
+<div><br></div><div><br></div><div>Regards,</div><div>Dimitris</div></div><=
+/div></div>
+
+--0000000000008320d50579f25152--
