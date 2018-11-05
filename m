@@ -1,41 +1,44 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <Kexin.Hao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7622EE009AA; Sun,  4 Nov 2018 19:32:35 -0800 (PST)
+	id B7670E009AA; Sun,  4 Nov 2018 21:27:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	SUBJ_OBFU_PUNCT_FEW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
 	*      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F3EAE008D7
-	for <yocto@yoctoproject.org>; Sun,  4 Nov 2018 19:32:34 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	04 Nov 2018 19:32:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.54,466,1534834800"; d="scan'208";a="246987316"
-Received: from zhiyionk-mobl1.gar.corp.intel.com (HELO localhost.localdomain)
-	([10.255.168.156])
-	by orsmga004.jf.intel.com with ESMTP; 04 Nov 2018 19:32:30 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Scott Rifenbark <srifenbark@gmail.com>
-Date: Mon, 05 Nov 2018 16:32:26 +1300
-Message-ID: <4820003.uEWOQMMmpA@localhost.localdomain>
-Organization: Intel Corporation
-In-Reply-To: <CAFNP8OvFy2n7SMe5de66EcdM3URFm-b+dpcqS09hW0CMa9rNaA@mail.gmail.com>
-References: <2829165.0Ht5z2aexs@localhost.localdomain>
-	<CAFNP8OvFy2n7SMe5de66EcdM3URFm-b+dpcqS09hW0CMa9rNaA@mail.gmail.com>
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* 0.7 SUBJ_OBFU_PUNCT_FEW Possible punctuation-obfuscated Subject:
+	header
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB123E008D7
+	for <yocto@yoctoproject.org>; Sun,  4 Nov 2018 21:27:28 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id wA55RIHr019953
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 4 Nov 2018 21:27:18 -0800 (PST)
+Received: from pek-khao-d2 (147.11.105.123) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
+	Sun, 4 Nov 2018 21:27:18 -0800
+Date: Mon, 5 Nov 2018 13:26:00 +0800
+From: Kevin Hao <kexin.hao@windriver.com>
+To: Robert Berger <yocto.user.mailinglist@gmail.com>
+Message-ID: <20181105052558.GB22875@pek-khao-d2>
+References: <6c9102d2-91dc-41be-3aec-ab60d4688af5@denx.de>
+	<20181101021854.GT24227@pek-khao-d2>
+	<13692616-30d3-1bae-71b7-1ed2373a9a61@denx.de>
+	<20181102085916.GA31329@pek-khao-d2>
+	<CAMKF1sov=e1z8wH0ckXozz3RK1Uz-7Ja+uzguqTTCxBPHiipyw@mail.gmail.com>
+	<de1a10ff-5d08-191d-3452-e548929affee@gmail.com>
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: 2.6 migration guide
+In-Reply-To: <de1a10ff-5d08-191d-3452-e548929affee@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Originating-IP: [147.11.105.123]
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: thud, beaglebone-yocto.conf: SERIAL_CONSOLES setting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,33 +50,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Nov 2018 03:32:35 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 05 Nov 2018 05:27:29 -0000
+X-Groupsio-MsgNum: 43068
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="V0207lvV8h4k8FAm"
+Content-Disposition: inline
 
-On Wednesday, 31 October 2018 11:06:31 AM NZDT Scott Rifenbark wrote:
-> I have an initial section at
-> https://yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#moving-to-the-yocto-project-2.6-release,
-> which is based on Richard's input.  I am sure there are more items.
+--V0207lvV8h4k8FAm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-OK, so I have removed Richard's items from the wiki page (since they're now
-in the manual) and added items I have gathered from reviewing all of the 
-git commits in the release. Let me know if you need clarification on anything
-- everyone else, let us know if I missed or messed up something.
+On Sun, Nov 04, 2018 at 12:10:00PM +0200, Robert Berger wrote:
+> Hi,
+>=20
+> On 02.11.18 16:27, Khem Raj wrote:
+> >=20
+> > omap serial is obsolete why does linux-yocto keeps using it.
+> > seondly, machine config should enable both consoles ttyO0 and ttyS0 if
+> > you know that at least one kernel is using ttyO0
+> >=20
+> How about picking whatever works for you in the kernel conf and in machine
+> conf?
+>=20
+> SERIAL_CONSOLES =3D "115200;ttyS0 115200;ttyO0"
+> SERIAL_CONSOLES_CHECK =3D "${SERIAL_CONSOLES}"
+>=20
+> Like this on the first boot either ttyO0 or ttyS0 should be picked
+> automatically.
 
-  https://wiki.yoctoproject.org/wiki/FutureMigrationGuide
+Yes, this is doable. Would you mind send a patch?
 
-BTW I think the section on postinstalls (from Richard's input) is a little terse
-and needs expansion - most importantly it needs to describe what actions the
-user might need to take. I'll take care of this on review if nobody else does.
+Thanks,
+Kevin
 
-Cheers,
-Paul
+>=20
+> Regards,
+> Robert
 
--- 
+--V0207lvV8h4k8FAm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Paul Eggleton
-Intel Open Source Technology Centre
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAEBCAAdFiEEHc6qFoLCZqgJD98Zk1jtMN6usXEFAlvf1GUACgkQk1jtMN6u
+sXFRhwf+M2BbAJzsvCRxWtFajeP/erWJJgrPxWt5Y3ICSfyXp497PEDeIKEO9uOR
+lO2W2mKPTiRrS1GCGnTZ+ta+wbdyvtFakOSvIHlVt+0CW1A9K+3oRIPPd6+yj2Yt
+g9fvql5yLldbaX3joBeKNJKI3RIz0yBT/MveZTyLKpO+PvzwQg6Vszd0pgV3dcYD
+owuTSyyO/mduNuU00M4MhznRGQBmLlo9ebkjK/CGOsgv/BBff4YfuHEH0Ex4mL9G
+3bHAi96ZEpmiSkeNawQKWbN06/9alzpOGAWERu2m0pTltTZYD/QWb2OxX8w9p+z5
+QunUWUeuNq7HTCidMR8WrKyQnqIZ5w==
+=R+xY
+-----END PGP SIGNATURE-----
 
-
+--V0207lvV8h4k8FAm--
