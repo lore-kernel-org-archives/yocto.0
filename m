@@ -1,68 +1,58 @@
-Return-Path: <markus4dev@gmail.com>
+Return-Path: <hs@denx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B29FAE00AD1; Mon,  5 Nov 2018 20:56:46 -0800 (PST)
+	id 6165FE00AD1; Tue,  6 Nov 2018 00:10:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (markus4dev[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.45 listed in list.dnswl.org]
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
-	[209.85.221.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5270DE00A9B
-	for <yocto@yoctoproject.org>; Mon,  5 Nov 2018 20:56:45 -0800 (PST)
-Received: by mail-wr1-f45.google.com with SMTP id o15-v6so8284176wrv.4
-	for <yocto@yoctoproject.org>; Mon, 05 Nov 2018 20:56:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:content-transfer-encoding;
-	bh=XQMB99JQLw4g5wOQfn52dlgbxfdtIFNPTisVkdBtwfU=;
-	b=ngu6pfYqCsTk2Jbx6cRtjWm+AouRQ0HXbTJpSj1uMGhZF61IBmuR2joWDWEdbbLNrn
-	alETtejejY6Kev50WPfVhGlTfZV9bmWS2ZutLDen49GMl0C9f7mrAXKRrJQho8MCkVze
-	nv7tsD0T/FzUIGTI6vcAAOZ7gRfNlJGnh5aeTXMBxVxhSv/wXWlKmmHJLlrHjvpjHnwV
-	/XpAM+cS3EYd9EBGflbRBkPiEUQywM16FdV0CYtlont/f8AUZHltdJciEOdPJ1l/0v2O
-	MhurVkjTxdBRhl3yh7vXcsP2Nta4PFPXYWXbBt4n96jutzh7CBMcSHPqsdfndmr3l/gh
-	0Iag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:content-transfer-encoding;
-	bh=XQMB99JQLw4g5wOQfn52dlgbxfdtIFNPTisVkdBtwfU=;
-	b=aWCJuQX3TCvCqU8sJ3G5HnAJhHPWb91cn2t2F36A2l6KMyBNTKLOW93OxNdPt5k3I3
-	WTAmQ+9XgTAR5hBTTL84U/7mRTUKvxvauIbGIzrOcnSrOn2szrnwNGhJii3yZyDo8Mkr
-	NmUjDmP7XKpEaKn+iQK4j8sxFDCkabshzJbMQh9Jsi9+mqW/ONw27PZlcTbD0Pww70hX
-	15W2fz2A/jQ29alMw1/T9rEfqcCv4vt/Q/ttch73c62/mfsqeJq8f0Dm55z/tVEDfA6Y
-	U5jzR1yVZmYJBhLcuRjgZoL6GCTdPVQbqeNXHtOWX8NJut4xI4k6QT3vFdeXoDt0oKLW
-	fm1w==
-X-Gm-Message-State: AGRZ1gL3y5k89Y0mBWhqqKM57gJVeQgaffcKYlJ70a7X17HodcuPb9n1
-	m6WdUxd7IbiQZK51mBwrFYKhtH8M2Q1PQ1gzg63PWg==
-X-Google-Smtp-Source: AJdET5ff2c5TRkleYzKqy9cthIoomrQ1JoOuBJGjoODpxS0PM4QufjIiBNf4wFyQI7aShDHArU2/P2LH6AUq9cIzGRg=
-X-Received: by 2002:adf:cc81:: with SMTP id
-	p1-v6mr3917962wrj.139.1541480204115; 
-	Mon, 05 Nov 2018 20:56:44 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.18.0.9 listed in list.dnswl.org]
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AED01E00A9B
+	for <yocto@yoctoproject.org>; Tue,  6 Nov 2018 00:10:05 -0800 (PST)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+	by mail-out.m-online.net (Postfix) with ESMTP id 42q2K71s6nz1r01c;
+	Tue,  6 Nov 2018 09:10:03 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+	by mail.m-online.net (Postfix) with ESMTP id 42q2K71WBPz1qql8;
+	Tue,  6 Nov 2018 09:10:03 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new,
+	port 10024)
+	with ESMTP id Tskdc4ItK4En; Tue,  6 Nov 2018 09:10:02 +0100 (CET)
+X-Auth-Info: iaXlxcZOArYKANk/H+lqKkmmKsCmbtZmE2ZvBo1rT20=
+Received: from [192.168.1.106] (87-97-41-122.pool.invitel.hu [87.97.41.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail.mnet-online.de (Postfix) with ESMTPSA;
+	Tue,  6 Nov 2018 09:10:02 +0100 (CET)
+To: Kevin Hao <kexin.hao@windriver.com>,
+	Robert Berger <yocto.user.mailinglist@gmail.com>
+References: <6c9102d2-91dc-41be-3aec-ab60d4688af5@denx.de>
+	<20181101021854.GT24227@pek-khao-d2>
+	<13692616-30d3-1bae-71b7-1ed2373a9a61@denx.de>
+	<20181102085916.GA31329@pek-khao-d2>
+	<CAMKF1sov=e1z8wH0ckXozz3RK1Uz-7Ja+uzguqTTCxBPHiipyw@mail.gmail.com>
+	<de1a10ff-5d08-191d-3452-e548929affee@gmail.com>
+	<20181105052558.GB22875@pek-khao-d2>
+From: Heiko Schocher <hs@denx.de>
+Message-ID: <27e9ae41-5873-a476-0293-e929825e81bc@denx.de>
+Date: Tue, 6 Nov 2018 09:10:01 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.2
 MIME-Version: 1.0
-References: <CAFd=ocgvmSf1zyWWw3A1=+Hr=WeD0ixdf5xLAT-TWg3hhKTqXw@mail.gmail.com>
-In-Reply-To: <CAFd=ocgvmSf1zyWWw3A1=+Hr=WeD0ixdf5xLAT-TWg3hhKTqXw@mail.gmail.com>
-From: Markus W <markus4dev@gmail.com>
-Date: Tue, 6 Nov 2018 05:56:42 +0100
-Message-ID: <CAFd=ocgFTMXeUxwFqkffhrk91KsXkSPR+chzyiGKqQTG+fs=dw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: [meta-raspberrypi] Problem with adding udev rules
+In-Reply-To: <20181105052558.GB22875@pek-khao-d2>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: thud, beaglebone-yocto.conf: SERIAL_CONSOLES setting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: hs@denx.de
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -71,41 +61,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Nov 2018 04:56:46 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 06 Nov 2018 08:10:07 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Hi!
+Hello Kevin, Robert,
 
-I want to append the rules in the
-recipe-core/udev/udev-rules-rpi/99-com.rules with the rules below from
-within my own recipe. I can=C2=B4t figure out how to do that.
+Am 05.11.2018 um 06:26 schrieb Kevin Hao:
+> On Sun, Nov 04, 2018 at 12:10:00PM +0200, Robert Berger wrote:
+>> Hi,
+>>
+>> On 02.11.18 16:27, Khem Raj wrote:
+>>>
+>>> omap serial is obsolete why does linux-yocto keeps using it.
+>>> seondly, machine config should enable both consoles ttyO0 and ttyS0 if
+>>> you know that at least one kernel is using ttyO0
+>>>
+>> How about picking whatever works for you in the kernel conf and in machine
+>> conf?
+>>
+>> SERIAL_CONSOLES = "115200;ttyS0 115200;ttyO0"
+>> SERIAL_CONSOLES_CHECK = "${SERIAL_CONSOLES}"
+>>
+>> Like this on the first boot either ttyO0 or ttyS0 should be picked
+>> automatically.
+> 
+> Yes, this is doable. Would you mind send a patch?
 
-I have tried to add those rules as separate rules file in a recipe in
-my own layer. After the build I can see that the rules file is in the
-correct directory /etc/udev/rules.d (next to 99-com.rules) but the
-rules didn't get applied. The groups below I have created by
-inheriting the useradd class (GROUPADD_PARAM_${PN} =3D "-r spi; -r i2c;
--r gpio") in a different layer with a higher priority than the layer
-with the rules recipe.
+Sorry for answering so late... good hint, I missed SERIAL_CONSOLES_CHECK
 
-Not sure why this is not working. Any suggestions?
+I try this change and report, give me some time...
 
-90-interfaces.rules file:
-
-SUBSYSTEM=3D=3D"input", GROUP=3D"input", MODE=3D"0660"
-SUBSYSTEM=3D=3D"i2c-dev", GROUP=3D"i2c", MODE=3D"0660"
-SUBSYSTEM=3D=3D"spidev", GROUP=3D"spi", MODE=3D"0660"
-SUBSYSTEM=3D=3D"bcm2835-gpiomem", GROUP=3D"gpio", MODE=3D"0660"
-
-SUBSYSTEM=3D=3D"gpio", GROUP=3D"gpio", MODE=3D"0660"
-SUBSYSTEM=3D=3D"gpio*", PROGRAM=3D"/bin/sh -c '\
-chown -R root:gpio /sys/class/gpio && chmod -R 770 /sys/class/gpio;\
-chown -R root:gpio /sys/devices/virtual/gpio && chmod -R 770
-/sys/devices/virtual/gpio;\
-chown -R root:gpio /sys$devpath && chmod -R 770 /sys$devpath\
-'"
-
-Regards,
-Markus
+bye,
+Heiko
+-- 
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
 
