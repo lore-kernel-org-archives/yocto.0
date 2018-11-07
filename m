@@ -1,66 +1,123 @@
-Return-Path: <dimtass@gmail.com>
+Return-Path: <MohammadJamal.Mohiuddin@ncr.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 005F9E00C1C; Wed,  7 Nov 2018 01:19:08 -0800 (PST)
+	id A6274E00C1C; Wed,  7 Nov 2018 01:21:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,KHOP_DYNAMIC,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (dimtass[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.54 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [148.163.152.55 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com
-	[209.85.210.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4B7AE00C19
-	for <yocto@yoctoproject.org>; Wed,  7 Nov 2018 01:19:07 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id c32so14146688otb.8
-	for <yocto@yoctoproject.org>; Wed, 07 Nov 2018 01:19:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=qq3eu6LzUWTKgOnJWKIklnSaA6na0+1mbG58lqCbIpU=;
-	b=VXumyJudczNee/WibZAZQo1n8r2t/KpUXh/OIUkMMPA7V+INGUQ/w+Zf2Sl5qd/bYE
-	OHWpqdsyMdr5HOU7pCAeCNDu/X7r05sBpQWPfUiwzhamVIsf6jDXV8Hq1aJXJ9kEUpSc
-	UjIxs9tn9LKzYfINkjcMyazMRS1QZGnkIi3MRcDREGiJWMtwhtKGq3sAyZ+c4t/6XHJ3
-	NTLVAFLsFQL4gUOExKW0FgPo+S0QN1IcLirOTRpLEXrB6uHy2yd7J0mDGzhCNBE9xO54
-	PuO+JCj1QGUMiyN+fOnkkvDDXN97SgN649bguvMoMEcurmwlcJ1VjE5hrZj5z4mgzcGZ
-	y5Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=qq3eu6LzUWTKgOnJWKIklnSaA6na0+1mbG58lqCbIpU=;
-	b=QpVDhklbjhwH3V4xuAMjUNVW5KBWh3D0tWLy85LnTW6xwTp+ACXW3OJbHVIW+F8T9G
-	mvADY+UZIsaCt2/Vs9TZu8vUeVv6qT5qit6PYs2Vs59flPi2gv2bSifO1fYh73r/Uesq
-	nvnRMemSoyBcMmqeSALytfO3364WoG5vyVf0jy4IFQZ6YT4ROzpkknIauE/iqIXZ9lqf
-	OqSBbq4VyEyqnzaqTUe9RvADtQP5BjY8z1lq9SbxQM5LiTjqjrMXz8xeHikHRxbUPVkW
-	gAWtn9bHgbwB1qfWjlB0ok4/+eC28PADVonTEEC4mhmSSOJ3WyNpnfQtvc1hST4euKLs
-	V7Cw==
-X-Gm-Message-State: AGRZ1gIxeKoOJz7mEbPzDsEN5WPKfgBptM+D696KiI0p+qyFyIO6EfUG
-	oiKFyaR0hAasIH/UhyVPciaAbC2Bd7E4wVhXwVuqGTrl
-X-Google-Smtp-Source: AJdET5cO3yW2CBNLM+HfnOCcSsGxi47pGRg31zm6eMT9iv4eSxx5NckiUXJAS8SSdOeFS1FR3QG3mQ0KGvZvFHnea1U=
-X-Received: by 2002:a9d:3c4f:: with SMTP id j15mr555401ote.47.1541582347056;
-	Wed, 07 Nov 2018 01:19:07 -0800 (PST)
+	*  0.7 KHOP_DYNAMIC Relay looks like a dynamic address
+Received: from mx0b-00209e01.pphosted.com (mx0b-00209e01.pphosted.com
+	[148.163.152.55])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62398E00C19
+	for <yocto@yoctoproject.org>; Wed,  7 Nov 2018 01:21:40 -0800 (PST)
+Received: from pps.filterd (m0094032.ppops.net [127.0.0.1])
+	by mx0b-00209e01.pphosted.com (8.16.0.22/8.16.0.22) with SMTP id
+	wA79JGVt007497
+	for <yocto@yoctoproject.org>; Wed, 7 Nov 2018 04:21:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ncr.com;
+	h=from : to : subject :
+	date : message-id : content-type : mime-version; s=mail;
+	bh=2wWbIwbAxHjk5qMQutDGOgVcM2noZCgfTaziGWHXxIU=;
+	b=T6g/tZSAREFe8uTtu80ehfth7RHdkiP6gw/ueRlYZPDun2c/iaj8EF7ItwMWtH6bD4In
+	WAoNrGim1/RNQapOJ3qNjuixVTbraO1XchL1DIXpTvGSNcldvJ1bKCEGIwJkRyTIrfWF
+	UzfKlE/apE8MlzqhPJ9HL5IrZcdDs4ehDWmiVwzfdOtrQJqv5GrBtBXL1qIse8jXo30g
+	4RwgcOTUREy1OOmVsiGw4BovmRsVkgdhdZ6+6V4F8DNppYZFz8Lmvat5pxdMYtkDt0t8
+	uiT+D0ZeQDFRt7fDcw3+65YJAtQSrxiofKppGxCb2GBBtqt/pYnLK0z1vwvVSWEPRUc7
+	Ow== 
+Received: from nam01-bn3-obe.outbound.protection.outlook.com
+	(mail-bn3nam01lp0182.outbound.protection.outlook.com
+	[216.32.180.182])
+	by mx0b-00209e01.pphosted.com with ESMTP id 2nkvre05xv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
+	for <yocto@yoctoproject.org>; Wed, 07 Nov 2018 04:21:39 -0500
+Received: from DM5PR15MB1913.namprd15.prod.outlook.com (10.174.247.141) by
+	DM5PR15MB1818.namprd15.prod.outlook.com (10.174.247.7) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1294.25; Wed, 7 Nov 2018 09:21:37 +0000
+Received: from DM5PR15MB1913.namprd15.prod.outlook.com
+	([fe80::7d1f:70f2:7b3a:ef41]) by
+	DM5PR15MB1913.namprd15.prod.outlook.com
+	([fe80::7d1f:70f2:7b3a:ef41%5]) with mapi id 15.20.1294.034;
+	Wed, 7 Nov 2018 09:21:37 +0000
+From: "Mohammad, Jamal M" <MohammadJamal.Mohiuddin@ncr.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Thread-Topic: lib32-ncurses not installing in rootfs
+Thread-Index: AdR2evPOy7Ra1pToQYKtScxdl/2mjQ==
+Date: Wed, 7 Nov 2018 09:21:37 +0000
+Message-ID: <DM5PR15MB1913AB2A45AB39D4E13747C0F0C40@DM5PR15MB1913.namprd15.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Enabled=True;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_SiteId=ae4df1f7-611e-444f-897e-f964e1205171;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Owner=mm185399@ncr.com; 
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_SetDate=2018-11-07T09:21:34.7072577Z;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Name=Confidential;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Application=Microsoft
+	Azure Information Protection;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Extended_MSFT_Method=Manual;
+	Sensitivity=Confidential
+x-originating-ip: [124.123.53.238]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; DM5PR15MB1818;
+	6:BZ1Vu69nhW3sxVqE0rxaK9NPtlCsYgqz8e63O0y9kZ9wIn+WhjdW9t0OVOnZYPr+L/W8/Bc9BHpFimEneHV6S+5ZBMOz8E21TwPlT0/GzShrJlS50+z7QB67ssJkNE2SdfClxwhdGJfGuK6ApHOc8KQKN9GMH81cbV1rzykmDLpRc0DEMa8FkKaPcPqjSnb4J7+UFovLrphuG4xrNsZWbbGy5KY+5UvHTa8pGPukfTW1LPAgdE2GNF9fgjeRESMf5OrxXuj6V49nq0irolUGTCk5lZRWaOWH4gmrrvi/ZNur2x1EBXYUr95ZDH4eobO/3yde58ttAhXmm99WgKok2NP35RCGMGsD91ncEWuMF7RB1qeUlsvXzbvtfaq/HfMGdobkUMwTQRBjS0YTJCQM2NfVAJANM60ai2D5CQIf9e2jMW9ivR40zxpYC20QOh4LYEoYcEnSu/jUHiq+mZVriA==;
+	5:Euwyxvkku2OoOFj060bK3xhR1rFO9OX/kIN38JwnrQ5v7ZoHoo3241zeAkOEftS5CkVty4GScgKWqfUhF+bw095R3rW5aD1dK/90Ls+ZD57lMomYWFXDCHPUGwpy0LdB2ijy4Uhe2Psc92czDFh3poE9x/TC8J4SCi7sTmEgF2U=;
+	7:tJwqz5/WKkGUMAbmfwd+pejyX93zwVYgqtsUylkORND49ZG8JOsqWRJkbTHtBeBCIuzy/J0E26e1rpY6knbzY/Zgjn1uZBEjMAa3ZZx80uJmHJfFXq4OUBb6snV2aRWx9/9vzTprRrRfXmIdNuhAhg==
+x-ms-exchange-antispam-srfa-diagnostics: SOS;
+x-ms-office365-filtering-correlation-id: 4e839284-65c6-401e-7de6-08d644926b54
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(7020095)(4652040)(8989299)(5600074)(711020)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7153060)(7193020);
+	SRVR:DM5PR15MB1818; 
+x-ms-traffictypediagnostic: DM5PR15MB1818:
+x-from-ncr-tenant: Processed
+x-microsoft-antispam-prvs: <DM5PR15MB18187ED072BDF351237880A5F0C40@DM5PR15MB1818.namprd15.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(21748063052155)(28532068793085)(190501279198761)(227612066756510);
+x-ms-exchange-senderadcheck: 1
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(8211001083)(6040522)(2401047)(5005006)(8121501046)(93006095)(93001095)(3002001)(3231382)(944501410)(52105095)(10201501046)(6055026)(148016)(149066)(150057)(6041310)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123562045)(20161123564045)(20161123558120)(20161123560045)(201708071742011)(7699051)(76991095);
+	SRVR:DM5PR15MB1818; BCL:0; PCL:0; RULEID:; SRVR:DM5PR15MB1818; 
+x-forefront-prvs: 08497C3D99
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(136003)(376002)(39860400002)(396003)(366004)(346002)(199004)(189003)(81156014)(8936002)(81166006)(86362001)(25786009)(74316002)(6916009)(7696005)(97736004)(476003)(6436002)(486006)(71200400001)(256004)(78486014)(9326002)(72206003)(71190400001)(68736007)(2900100001)(7736002)(99286004)(478600001)(8676002)(53936002)(106356001)(14454004)(5660300001)(33656002)(66066001)(54896002)(105586002)(55016002)(6506007)(6306002)(9686003)(26005)(186003)(2906002)(3846002)(790700001)(102836004)(6116002)(316002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR15MB1818;
+	H:DM5PR15MB1913.namprd15.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: ncr.com does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: AMOa9QBenCPFPn0drxsKxQomMwP+ts1aJo/OtMF/GLAsaP4UD00LdAUfWbd18CgkTysOyjx3RmAYDVZ1bEX6op5s9lAVqa5hGFTHR+uG0csefQLWk9kJeshrNOa2nD4d+eeXmgttVK+1use9MZzqVsu6lVYg7wwNyC7h518sQ0ts2Mz5k3RUCCA/qGJALcHVeB7jpZiAjnq1Phq5XhtwG1xra3NvqIDKJft0q8w465WcaCIkE6NmZlP/PoFlH+ClrgzgkYol1hbSfF3OHMvvB9GLTLGjg1AjCuWKf4R2dejrEpYX1eGfLQ+KUPHd0Zdi1rYgNthYtKYoOuV0dkzNYX/sfinXQo+SiTrm81uaA1M=
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-References: <CACKFPN2VuVTRr=eMqoDxsTjH8YcDcSBzgRs2Y07XD20mm2d66Q@mail.gmail.com>
-	<edf7530b3fc884d7fed1ee02a5745ba73fa71d18.camel@intel.com>
-In-Reply-To: <edf7530b3fc884d7fed1ee02a5745ba73fa71d18.camel@intel.com>
-From: Dimitris Tassopoulos <dimtass@gmail.com>
-Date: Wed, 7 Nov 2018 10:18:55 +0100
-Message-ID: <CACKFPN3_46iG1PQn5ATFDw88Etpr6oP3Unng-tryyLbEzMFA8g@mail.gmail.com>
-To: anuj.mittal@intel.com
-Cc: yocto@yoctoproject.org
-Subject: Re: [poky] bug #8729 grub bootloader
+X-OriginatorOrg: ncr.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e839284-65c6-401e-7de6-08d644926b54
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Nov 2018 09:21:37.4686 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: ae4df1f7-611e-444f-897e-f964e1205171
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR15MB1818
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+	definitions=2018-11-07_07:, , signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	priorityscore=1501
+	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+	clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+	mlxlogscore=702 adultscore=0 classifier=spam adjust=0 reason=mlx
+	scancount=1 engine=8.0.1-1807170000 definitions=main-1811070086
+Subject: lib32-ncurses not installing in rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,145 +129,164 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Nov 2018 09:19:09 -0000
-Content-Type: multipart/alternative; boundary="00000000000030400e057a0f9c1a"
+X-List-Received-Date: Wed, 07 Nov 2018 09:21:41 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DM5PR15MB1913AB2A45AB39D4E13747C0F0C40DM5PR15MB1913namp_"
 
---00000000000030400e057a0f9c1a
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Anuj,
-
-thanks for the reply. First I need to say that it was insightful from your
-side to use virtual/grub-bootconf
-and this made things much easier. I only had to add `BBCLASSEXTEND =
-"native"` in the grub-efi in
-order to get `grub-editconf` for the host and create environment files on
-the fly.
-
-I had a look in your recommendation and it works after some tweaking. The `
-efi-bootdisk.wks.im` file
-has an example of this case, as your links suggested. It seems though that
-the environment variable
-`${IMAGE_ROOTFS}` in the file is not translated correctly during the
-bitbake build and it fails with an
-error. For example in my case the error was:
-
-Couldn't get bitbake variable from
-/rnd/yocto/grub-dev/build/tmp/sysroots/qemux86/imgdata/${IMAGE_ROOTFS}/boot.env.
-
-After I changed the `${ROOTFS}` in `--rootfs-dir=${IMAGE_ROOTFS}/boot` with
-the absolute path
-then it worked. For me it's nor an issue but it's good for you to know.
-Without someone pointing this
-out it would be very difficult to discover the above use-case as it's not
-clearly documented.
-
-Also, it would be nice when bitbake detects that both `loader=grub-efi` and
-`grub-efi_%.bb` are used
-to print a warning about this overlapping and suggest the use of
-`--rootfs-dir` and `--exclude-path`.
-
-I'll continue from this point now.
-
-Thanks again,
-Dimitris
-
-On Wed, Nov 7, 2018 at 1:58 AM Mittal, Anuj <anuj.mittal@intel.com> wrote:
-
-> Hi Dimitris
->
-> On Tue, 2018-11-06 at 16:12 +0100, Dimitris Tassopoulos wrote:
-> >
-> > In this case the bootimg-efi.py script creates the extra partition, a
-> > different grub.cfg and also
-> > edits the /etc/fstab and mounts this partition over /boot and
-> > therefore virtual/grub-bootconf
-> > becomes unused.
-> >
-> > This raises the following questions:
-> > - Why there are two different facilities to achieve the same thing?
-> > - Why the second overrides the first one, instead of sharing the same
-> > files?
-> > - How to proceed from now on?
-> >
->
-> I think this needed --exclude-path in wks to be used to take effect.
-> Please see:
->
->
->
-> http://lists.openembedded.org/pipermail/openembedded-core/2018-February/147837.html
->
-> and bug:
->
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=10073
->
-
---00000000000030400e057a0f9c1a
-Content-Type: text/html; charset="UTF-8"
+--_000_DM5PR15MB1913AB2A45AB39D4E13747C0F0C40DM5PR15MB1913namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
-r=3D"ltr"><div dir=3D"ltr">Hi Anuj,<div><br></div><div>thanks for the reply=
-. First I need to say that it was insightful from your side to use virtual/=
-grub-bootconf</div><div>and this made things much easier. I only had to add=
- `BBCLASSEXTEND =3D &quot;native&quot;` in the grub-efi in</div><div>order =
-to get `grub-editconf` for the host and create environment files on the fly=
-.</div><div><br></div><div>I had a look in your recommendation and it works=
- after some tweaking. The `<a href=3D"http://efi-bootdisk.wks.im">efi-bootd=
-isk.wks.im</a>` file</div><div>has an example of this case, as your links s=
-uggested. It seems though that the environment variable</div><div>`${IMAGE_=
-ROOTFS}` in the file is not translated correctly during the bitbake build a=
-nd it fails with an</div><div>error. For example in my case the error was:<=
-/div><div><br></div><div>Couldn&#39;t get bitbake variable from /rnd/yocto/=
-grub-dev/build/tmp/sysroots/qemux86/imgdata/${IMAGE_ROOTFS}/boot.env.<br></=
-div><div><br></div><div>After I changed the `${ROOTFS}` in `--rootfs-dir=3D=
-${IMAGE_ROOTFS}/boot` with the absolute path</div><div>then it worked. For =
-me it&#39;s nor an issue but it&#39;s good for you to know. Without someone=
- pointing this</div><div>out it would be very difficult to discover the abo=
-ve use-case as it&#39;s not clearly documented.</div><div><br></div><div>Al=
-so, it would be nice when bitbake detects that both `loader=3Dgrub-efi` and=
- `grub-efi_%.bb` are used</div><div>to print a warning about this overlappi=
-ng and suggest the use of `--rootfs-dir` and `--exclude-path`.</div><div><b=
-r></div><div>I&#39;ll continue from this point now.</div><div><br></div><di=
-v>Thanks again,</div><div>Dimitris</div></div></div></div></div></div></div=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Wed, Nov 7, 2018 at 1:5=
-8 AM Mittal, Anuj &lt;<a href=3D"mailto:anuj.mittal@intel.com">anuj.mittal@=
-intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi Dimit=
-ris<br>
-<br>
-On Tue, 2018-11-06 at 16:12 +0100, Dimitris Tassopoulos wrote:<br>
-&gt; <br>
-&gt; In this case the bootimg-efi.py script creates the extra partition, a<=
-br>
-&gt; different grub.cfg and also<br>
-&gt; edits the /etc/fstab and mounts this partition over /boot and<br>
-&gt; therefore virtual/grub-bootconf<br>
-&gt; becomes unused.<br>
-&gt; <br>
-&gt; This raises the following questions:<br>
-&gt; - Why there are two different facilities to achieve the same thing?<br=
->
-&gt; - Why the second overrides the first one, instead of sharing the same<=
-br>
-&gt; files?<br>
-&gt; - How to proceed from now on?<br>
-&gt; <br>
-<br>
-I think this needed --exclude-path in wks to be used to take effect.<br>
-Please see:<br>
-<br>
-<br>
-<a href=3D"http://lists.openembedded.org/pipermail/openembedded-core/2018-F=
-ebruary/147837.html" rel=3D"noreferrer" target=3D"_blank">http://lists.open=
-embedded.org/pipermail/openembedded-core/2018-February/147837.html</a><br>
-<br>
-and bug:<br>
-<br>
-<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10073" rel=
-=3D"noreferrer" target=3D"_blank">https://bugzilla.yoctoproject.org/show_bu=
-g.cgi?id=3D10073</a><br>
-</blockquote></div>
+Hi Guys,
+I am trying to add 32-bit ncurses into my root file system
+I am using intel yocto bsp sumo branch
+Here is my local.conf:
 
---00000000000030400e057a0f9c1a--
+require conf/multilib.conf
+DEFAULTTUNE_virtclass-multilib-lib32 =3D "x86"
+IMAGE_INSTALL_append =3D " dpkg gnutls lib32-glibc lib32-libgcc lib32-libst=
+dc++ lib32-gnutls lib32-freetype lib32    -libx11 lib32-ncurses lib32-dpkg =
+python3-six"
+
+ncurses folder is present in tmp
+build/tmp/work/x86-pokymllib32-linux/lib32-ncurses/6.0+20171125-r0
+
+The image folder is created and has the libraries
+build/tmp/work/x86-pokymllib32-linux/lib32-ncurses/6.0+20171125-r0/image/li=
+b
+libncurses.so.5  libncurses.so.5.9  libncursesw.so.5  libncursesw.so.5.9  l=
+ibtinfo.so.5  libtinfo.so.5.9
+
+But these files are not present in root file system.
+How can i debug or what should be my next step to get them into root file s=
+ystem. which log files should I look
+Thanks for your time.
+
+Regards,
+Jamal,
+Software Specialist,
+NCR Corporation
+
+--_000_DM5PR15MB1913AB2A45AB39D4E13747C0F0C40DM5PR15MB1913namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+code
+	{mso-style-priority:99;
+	font-family:"Courier New";}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Guys,<o:p></o:p></p>
+<p class=3D"MsoNormal">I am trying to add 32-bit ncurses into my root file =
+system<o:p></o:p></p>
+<p class=3D"MsoNormal">I am using intel yocto bsp sumo branch<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">Here is my local.conf:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">require conf/multilib.conf<o:p></o:p></p>
+<p class=3D"MsoNormal">DEFAULTTUNE_virtclass-multilib-lib32 =3D &quot;x86&q=
+uot;<o:p></o:p></p>
+<p class=3D"MsoNormal">IMAGE_INSTALL_append =3D &quot; dpkg gnutls lib32-gl=
+ibc lib32-libgcc lib32-libstdc&#43;&#43; lib32-gnutls lib32-freetype lib32&=
+nbsp;&nbsp;&nbsp; -libx11 lib32-ncurses lib32-dpkg python3-six&quot;<o:p></=
+o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">ncurses folder is present in tmp<o:p></o:p></p>
+<p class=3D"MsoNormal">build/tmp/work/x86-pokymllib32-linux/lib32-ncurses/6=
+.0&#43;20171125-r0<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The image folder is created and has the libraries<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">build/tmp/work/x86-pokymllib32-linux/lib32-ncurses/6=
+.0&#43;20171125-r0/image/lib<o:p></o:p></p>
+<p class=3D"MsoNormal">libncurses.so.5&nbsp; libncurses.so.5.9&nbsp; libncu=
+rsesw.so.5&nbsp; libncursesw.so.5.9&nbsp; libtinfo.so.5&nbsp; libtinfo.so.5=
+.9<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">But these files are not present in root file system.=
+<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"font-variant-ligatures: normal;font-variant=
+-caps: normal;font-variant-numeric: inherit;font-variant-east-asian: inheri=
+t;font-stretch: inherit;line-height:inherit;box-sizing: inherit;orphans: 2;=
+widows: 2;-webkit-text-stroke-width: 0px;text-decoration-style: initial;tex=
+t-decoration-color: initial;word-spacing:0px">
+How can i debug or what should be my next step to get them into root file s=
+ystem. which log files should I look<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"font-variant-ligatures: normal;font-variant=
+-caps: normal;font-variant-numeric: inherit;font-variant-east-asian: inheri=
+t;font-stretch: inherit;line-height:inherit;box-sizing: inherit;orphans: 2;=
+widows: 2;-webkit-text-stroke-width: 0px;text-decoration-style: initial;tex=
+t-decoration-color: initial;word-spacing:0px">
+Thanks for your time.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Jamal,<o:p></o:p></p>
+<p class=3D"MsoNormal">Software Specialist,<o:p></o:p></p>
+<p class=3D"MsoNormal">NCR Corporation<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_DM5PR15MB1913AB2A45AB39D4E13747C0F0C40DM5PR15MB1913namp_--
