@@ -1,72 +1,52 @@
-Return-Path: <outbackdingo@gmail.com>
+Return-Path: <stefan@agner.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AB4CFE009AA; Wed,  7 Nov 2018 03:59:36 -0800 (PST)
+	id EFEC4E009AA; Wed,  7 Nov 2018 04:07:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (outbackdingo[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.43 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
-	[209.85.128.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB55EE00720
-	for <yocto@yoctoproject.org>; Wed,  7 Nov 2018 03:59:35 -0800 (PST)
-Received: by mail-wm1-f43.google.com with SMTP id b203-v6so15541794wme.5
-	for <yocto@yoctoproject.org>; Wed, 07 Nov 2018 03:59:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=nDOwhsR4/tl1RNdJWieJQvabPlx2BC+xe45aK8eBoy8=;
-	b=moFzAMBnhdFk0WWk4PtkKgXGK2oE7gPsT+DNu50Joo+c4BxVjQsql7H+4xAQTc5bYG
-	zc5ExAGA1jHahVZ0qYVKaINZ6IzrPZJMwvsXwIsLmdOUgkAp7NoXX+1Bej9RHO6iq1z+
-	b+HML34us2/8gkCiTiaeUqhs/UUEJIRvGVmM+K+EBPilJnqLUeG2+j6KbiKZxcy91Hf3
-	gKTLdu+437pJgQcAvFnvQ0QuO4T8I7MWSHZL+d5qLdwz+bvPZTtKZr/Nc41WXpHZYoVV
-	k5OWv/XfyYPWmMtnOCk0GotF8Ux/8Igyg7z8Q0x2PardPHMpLp/olG3JL5lheIUw+wxL
-	XUaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=nDOwhsR4/tl1RNdJWieJQvabPlx2BC+xe45aK8eBoy8=;
-	b=OtXJy4C1SdjyUNGSAyU3+esZV1FJhC19/glurqXT09M/XptlOFsunocSzEH9bioHRC
-	TY8lQZXN7PjErAQZiOdwXx1hgKs8nc7vrgZ5+nujoWznMofSmzrF1n4GZSfzqBU3VfTB
-	DrdWl7Sm5yP1klRKxP2PqFDKA+kE6v7h9uzAsI5/lMwuWCCvKUzcjIu2FJ27PjODGxnM
-	5qtBT0gDq9VoPNkTqR90nQOESoUO4NN4dipBPjvGvGTHBFcoDdqLnaYpzr+do2hcolXK
-	KP7RuCGTwOXuG54xmU+UpB/0ubsQ0CjiIQkM+Yw1scvbWO3lxN1tUgYT4TSeC2Rkdhnt
-	W8Zg==
-X-Gm-Message-State: AGRZ1gIRuEPh2j+RfnH+YuObxyg8LqhpfSoNdwv83p9AAmX5hUQep4va
-	QEXnVwq2Rs35nqBI90CdmgFZUSqZX7e9C+SZXlQ=
-X-Google-Smtp-Source: AJdET5d+HWUuewv0OpuJrEznSgpKPW7dnnkf8lqHnIP1iRjb3zL2S3SaYseYU+Zfh1uOzAdDTXLOF6bFS4sXlxzDCQg=
-X-Received: by 2002:a7b:c0cc:: with SMTP id
-	s12-v6mr1864486wmh.39.1541591974628; 
-	Wed, 07 Nov 2018 03:59:34 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [178.209.48.109 listed in list.dnswl.org]
+Received: from mail.kmu-office.ch (mail.kmu-office.ch [178.209.48.109])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 678B0E00950
+	for <yocto@yoctoproject.org>; Wed,  7 Nov 2018 04:07:14 -0800 (PST)
+Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
+	by mail.kmu-office.ch (Postfix) with ESMTPSA id 400B35C0379;
+	Wed,  7 Nov 2018 13:07:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
+	t=1541592433;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	content-transfer-encoding:content-transfer-encoding:
+	in-reply-to:in-reply-to:references:references;
+	bh=umQIS/zy1T71qlMYhsG3FiIukr+cfpP37EyamZegfw0=;
+	b=JnEoO00opA+aTJkz+JLeIK574ZD1G4XahAtCETP5/hZmizdOdQB6CJMCpHWcjDZFoWXzU0
+	zOeKIzRFU4v0kIA7EQplPLBc4+L59MGTzLSs2RVOW/8FxT+N96Hs/rw88z1WyIRKZPhDZE
+	KQXHdDVGWP3G4gg8Yiok9ENUBSw4QHo=
 MIME-Version: 1.0
-References: <CAFd=ocgvmSf1zyWWw3A1=+Hr=WeD0ixdf5xLAT-TWg3hhKTqXw@mail.gmail.com>
-	<CAFd=ocgFTMXeUxwFqkffhrk91KsXkSPR+chzyiGKqQTG+fs=dw@mail.gmail.com>
-	<CAKYr3zz47i3op=suFL92h0=XTkxKdV+Pnvcra+40A96-xyzbjA@mail.gmail.com>
-	<CAFd=ocgqbG=_Ff49BPHMFG=wxKt+TcdKQy1hY3CgzHJPYan3nQ@mail.gmail.com>
-	<CAKYr3zw7aPNR0KvD+Ym5JPG6b3+GRhZm0R==eSu410y2zpA8hA@mail.gmail.com>
-	<CAKYr3zzDbGptzGwWe5nrZ__+C-XdjEAUTVAqyvVU0tgythzO7w@mail.gmail.com>
-	<CAFd=ociMVxtmLLJe3rpxpVnqOXkaVRXzstzSoOsnUqz-MBXUrQ@mail.gmail.com>
-In-Reply-To: <CAFd=ociMVxtmLLJe3rpxpVnqOXkaVRXzstzSoOsnUqz-MBXUrQ@mail.gmail.com>
-From: Outback Dingo <outbackdingo@gmail.com>
-Date: Wed, 7 Nov 2018 18:58:58 +0700
-Message-ID: <CAKYr3zyntyR6-sVaMaJjoxECSfmW4Oh75QsXuV8imdGRHRWw3w@mail.gmail.com>
-To: markus4dev@gmail.com
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi] Problem with adding udev rules
+Date: Wed, 07 Nov 2018 13:07:13 +0100
+From: Stefan Agner <stefan@agner.ch>
+To: opkg-devel@googlegroups.com, alejandro.delcastillo@ni.com
+In-Reply-To: <670d0eab-f33b-8883-2cdf-d83c1701789b@ni.com>
+References: <20181019153821.21177-1-stefan@agner.ch>
+	<670d0eab-f33b-8883-2cdf-d83c1701789b@ni.com>
+Message-ID: <11acdfc51839b0ac3392e31f38fd08a8@agner.ch>
+X-Sender: stefan@agner.ch
+User-Agent: Roundcube Webmail/1.3.7
+Cc: Stefan Agner <stefan.agner@toradex.com>, yocto@yoctoproject.org,
+	openembedded-core@lists.openembedded.org, ricardo@foundries.io
+Subject: Re: [opkg-devel] [opkg-utils PATCH] opkg-make-index: use ctime instead of mtime
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,125 +58,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Nov 2018 11:59:36 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 07 Nov 2018 12:07:17 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-couldnt this have been a udev_append.bb
+Hi Alejandro,
 
-instead of writing your own my-rules
-On Wed, Nov 7, 2018 at 6:46 PM Markus W <markus4dev@gmail.com> wrote:
->
-> This my bb file and than I have added the following to local.conf IMAGE_I=
-NSTALL_append =3D " my-rules ...".
->
-> SUMMARY =3D "My rules"
-> LICENSE =3D "CLOSED"
-> PR =3D "r1"
->
-> SRC_URI =3D "file://90-interfaces.rules"
->
-> do_install[nostamp] =3D "1"
-> do_unpack[nostamp] =3D "1"
->
-> do_install () {
->     install -d ${D}${sysconfdir}/udev/rules.d
->     install -m 0666 ${WORKDIR}/90-interfaces.rules ${D}/etc/udev/rules.d/=
-90-interfaces.rules
->
-> }
->
-> FILES_${PN} +=3D " /etc/udev/rules.d/90-interfaces.rules"
->
-> PACKAGES =3D "${PN}"
-> PROVIDES =3D "my-rules"
->
-> Hope this helps
->
-> /Markus
->
-> On Wed, 7 Nov 2018 at 12:41, Outback Dingo <outbackdingo@gmail.com> wrote=
-:
+On 22.10.2018 16:45, Alejandro Del Castillo wrote:
+> makes sense, sounds like this is going to fix a bunch of nasty 
+> intermittent failures, thanks!
+> 
+> merged
+
+Thanks for merging!
+
+With the merge in opkg-utils this is not yet actively used in OE of
+course. So my question: Is there a new release of opkg-utils planned
+anytime soon? Or should that be added as a patch in the OE recipe for
+now?
+
+--
+Stefan
+
+> 
+> On 10/19/18 10:38 AM, Stefan Agner wrote:
+>> From: Stefan Agner <stefan.agner@toradex.com>
 >>
->> so curious, as im trying to add 2 udev rules also that i require in my
->> build, so how was your recipe configured?
+>> When using sstate, two parallel builds can produce two packages
+>> with the same mtime but different checksums. When later one of
+>> those two builds fetches the others ipk, the package index does
+>> not get udpated properly (since mtime matches). This ends up with
+>> messages such as:
+>>    Downloading file:/../tmp/work/../image/...ipk.
+>>    Removing corrupt package file /../sysroot/../var/cache/opkg/volatile/...ipk
 >>
->> mine keeps telling me i have a conflict between packages as they both
->> install files to the same name and same place
->> On Wed, Nov 7, 2018 at 4:53 PM Outback Dingo <outbackdingo@gmail.com> wr=
-ote:
->> >
->> >
->> >
->> > On Wed, Nov 7, 2018, 16:44 Markus W <markus4dev@gmail.com wrote:
->> >>
->> >> I have resolved this issue. My problem was that in my layer I have a
->> >> recipe-core and within that I had the following structure
->> >> udev/udev-extra-rules and udev-extra-rules.bb file and a files dir on
->> >> the same level.
->> >>
->> >> By renaming udev/udev-extra-rules to my-udev/my-udev-extra-rules it
->> >> suddenly worked.
->> >>
->> >> Cool
->> >>
->> >>
->> >> Regards,
->> >> Markus
->> >>
->> >> On Tue, 6 Nov 2018 at 14:06, Outback Dingo <outbackdingo@gmail.com> w=
-rote:
->> >> >
->> >> > On Tue, Nov 6, 2018 at 11:57 AM Markus W <markus4dev@gmail.com> wro=
-te:
->> >> > >
->> >> > > Hi!
->> >> > >
->> >> > > I want to append the rules in the
->> >> > > recipe-core/udev/udev-rules-rpi/99-com.rules with the rules below=
- from
->> >> > > within my own recipe. I can=C2=B4t figure out how to do that.
->> >> > >
->> >> > > I have tried to add those rules as separate rules file in a recip=
-e in
->> >> > > my own layer. After the build I can see that the rules file is in=
- the
->> >> > > correct directory /etc/udev/rules.d (next to 99-com.rules) but th=
-e
->> >> > > rules didn't get applied. The groups below I have created by
->> >> > > inheriting the useradd class (GROUPADD_PARAM_${PN} =3D "-r spi; -=
-r i2c;
->> >> > > -r gpio") in a different layer with a higher priority than the la=
-yer
->> >> > > with the rules recipe.
->> >> > >
->> >> > > Not sure why this is not working. Any suggestions?
->> >> > >
->> >> > > 90-interfaces.rules file:
->> >> > >
->> >> > > SUBSYSTEM=3D=3D"input", GROUP=3D"input", MODE=3D"0660"
->> >> > > SUBSYSTEM=3D=3D"i2c-dev", GROUP=3D"i2c", MODE=3D"0660"
->> >> > > SUBSYSTEM=3D=3D"spidev", GROUP=3D"spi", MODE=3D"0660"
->> >> > > SUBSYSTEM=3D=3D"bcm2835-gpiomem", GROUP=3D"gpio", MODE=3D"0660"
->> >> > >
->> >> > > SUBSYSTEM=3D=3D"gpio", GROUP=3D"gpio", MODE=3D"0660"
->> >> > > SUBSYSTEM=3D=3D"gpio*", PROGRAM=3D"/bin/sh -c '\
->> >> > > chown -R root:gpio /sys/class/gpio && chmod -R 770 /sys/class/gpi=
-o;\
->> >> > > chown -R root:gpio /sys/devices/virtual/gpio && chmod -R 770
->> >> > > /sys/devices/virtual/gpio;\
->> >> > > chown -R root:gpio /sys$devpath && chmod -R 770 /sys$devpath\
->> >> > > '"
->> >> > >
->> >> >
->> >> > might help to post the recipe used.....
->> >> >
->> >> >
->> >> > > Regards,
->> >> > > Markus
->> >> > > --
->> >> > > _______________________________________________
->> >> > > yocto mailing list
->> >> > > yocto@yoctoproject.org
->> >> > > https://lists.yoctoproject.org/listinfo/yocto
+>> However, in that case, ctime is different. Use ctime instead of
+>> mtime to prevent failures like this.
+>>
+>> Suggested-by: Khem Raj <raj.khem@gmail.com>
+>> Signed-off-by: Stefan Agner <stefan.agner@toradex.com>
+>> ---
+>> This addresses the issue discussed here:
+>> https://urldefense.proofpoint.com/v2/url?u=http-3A__lists.openembedded.org_pipermail_openembedded-2Dcore_2018-2DOctober_156348.html&d=DwIBaQ&c=I_0YwoKy7z5LMTVdyO6YCiE2uzI1jjZZuIPelcSjixA&r=wNcrL2akRn6jfxhHaKavUrJB_C9JAMXtynjLd8ZzgXQ&m=Innit37H69hUyZPGuuhwO6R5CbUNNTfXQwxbqsEA2NE&s=oFvqASrFTgasDqZ901HeIBFSsf6Cn4FcBieOOBU4MdI&e=
+>>
+>>   opkg-make-index | 6 +++---
+>>   1 file changed, 3 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/opkg-make-index b/opkg-make-index
+>> index 3227fc0..db7bf64 100755
+>> --- a/opkg-make-index
+>> +++ b/opkg-make-index
+>> @@ -115,12 +115,12 @@ for abspath in files:
+>>        pkg = None
+>>        fnameStat = os.stat(abspath)
+>>        if filename in old_pkg_hash:
+>> -          if filename in pkgsStamps and int(fnameStat.st_mtime) == pkgsStamps[filename]:
+>> +          if filename in pkgsStamps and int(fnameStat.st_ctime) == pkgsStamps[filename]:
+>>               if (verbose):
+>>                  sys.stderr.write("Found %s in Packages\n" % (filename,))
+>>               pkg = old_pkg_hash[filename]
+>>             else:
+>> -               sys.stderr.write("Found %s in Packages, but mtime differs - re-reading\n" % (filename,))
+>> +               sys.stderr.write("Found %s in Packages, but ctime differs - re-reading\n" % (filename,))
+>>
+>>        if not pkg:
+>>             if (verbose):
+>> @@ -137,7 +137,7 @@ for abspath in files:
+>>        else:
+>>             old_filename = ""
+>>        s = packages.add_package(pkg, opt_a)
+>> -     pkgsStamps[filename] = fnameStat.st_mtime
+>> +     pkgsStamps[filename] = fnameStat.st_ctime
+>>        if s == 0:
+>>             if old_filename:
+>>                  # old package was displaced by newer
+>>
+> 
+> -- 
+> Cheers,
+> 
+> Alejandro
 
