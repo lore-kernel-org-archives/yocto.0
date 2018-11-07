@@ -1,6 +1,6 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E7C9DE00AB9; Tue,  6 Nov 2018 17:07:07 -0800 (PST)
+	id 86EF9E00C10; Tue,  6 Nov 2018 17:09:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,113 +10,56 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.194 listed in list.dnswl.org]
+	*      [209.85.160.194 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
-	[209.85.214.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91A4CE00A0C
-	for <yocto@yoctoproject.org>; Tue,  6 Nov 2018 17:07:04 -0800 (PST)
-Received: by mail-pl1-f194.google.com with SMTP id c13-v6so7039405plz.13
-	for <yocto@yoctoproject.org>; Tue, 06 Nov 2018 17:07:04 -0800 (PST)
+Received: from mail-qt1-f194.google.com (mail-qt1-f194.google.com
+	[209.85.160.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA0E0E00AB9
+	for <yocto@yoctoproject.org>; Tue,  6 Nov 2018 17:09:23 -0800 (PST)
+Received: by mail-qt1-f194.google.com with SMTP id b22-v6so4950292qtr.11
+	for <yocto@yoctoproject.org>; Tue, 06 Nov 2018 17:09:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=pV0UA4W1ReqB0xKmjYwF+FcdmWtZHxRohSMbS5cf2Ck=;
-	b=a213exgqTBa3QLuiNOqhOGFVsuUDehsEah3LTXFAFWq1xv0TRmxoFQ+Ajmf5jEDZqF
-	SjgLkfk6b4xkqrGQnN3xwT4BFAhPe+LIpE8QsUuzL9ovf8WW3/ScV44xvxcv/ML9WqHt
-	pCnDdCt0oiQBk1NfrT523dUxLyAUPtkBsmC5U/zS0xTLTTl4HeRDzFP32NZRvhQXQkV3
-	XniqAJ+rAJSa8AoX2t2K5pQ/8z3mTLeju7VpqlsNIYFreYwzt9jJlEWUtyx2MDAsrcqq
-	svy852Gmu2PP3oEruGMqxeLHIYHmOK8pcEUuNGb3Soz+vNDOlTnYtJoeQDluHkABMIyx
-	iSEA==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=RNPS+48pH1kx37Q7EPoBqy+x3jQOqV3TZwuETWXz9b8=;
+	b=mYDYCCxzM66LbYmjzCVnVDescG0T/fTtZ4Fvcytrml5gGRG2gAKxzynGHZY/m7RnyX
+	SYOBhz9i5cXXZCHHKEIxtLkpOmJ9TV4WjMOy+SiZL/KUHjrCaLMkoMBVHIobByeZiUAi
+	a2NkYLOb23+o663934L7vWBwgflwRchBEY2sC3b2rjEhmuR9HzR5Bbj2GaHVJJiBosY1
+	gWIt/QGD4vf1BEK5YvKqtDXVz7uQA83Z6aVFBoYuDWp5KUIb+ZeybEBgpocYhxIypO+B
+	Lc+/hFaiAR5Trjd8HOYid2zxVrAPebI9763b4ZYNJlIlQkbwhBknjsBjU7i9SZMXG/+n
+	S1Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-transfer-encoding:content-language;
-	bh=pV0UA4W1ReqB0xKmjYwF+FcdmWtZHxRohSMbS5cf2Ck=;
-	b=YTcR7c7RS/xL8kMl2e+C594q220Wem9FPhvDr0ZBuORUQ/JRX5CQi0g3xEdtVlgNxt
-	SnBMu44vkWEJzTccqiISICbGq0CU5EkOQ9uAfy39Z+5KXpBSOhl9WweQqm7puiDHO2cm
-	TgjM17bQZLGvh4xOOKhJuuqq2FV8cStlhwauKN0VCB3hxcNuJu7IMGIqFOX03k/1RRsk
-	aaju3Q2XKkSi6M5uO1ANHGPijc8iHEOlCO2h0MSvW5+iqZ2DbNtxqxb8ZSowR57DN2la
-	3Vc2sTY8lWl72N7GCynqJ+6Is0jXKmvP+Fiwz1oLkBsAAkPRYckcl+/XMQho4UngQwle
-	maFA==
-X-Gm-Message-State: AGRZ1gLPJykizBYn9IIMXMJFAz13raGBrzelyxKidxkg9TcENqwzIaBl
-	vAp4MyEfg0B0APzGk0tZSN1rZQsv
-X-Google-Smtp-Source: AJdET5fEATN5YzsHegJhPhdCydJNdyWNZqwGzJO80p5YRstE3O4ubRppC6DCLPXpnzhCyLcp9q19Fg==
-X-Received: by 2002:a17:902:a717:: with SMTP id
-	w23-v6mr28505715plq.24.1541552823478; 
-	Tue, 06 Nov 2018 17:07:03 -0800 (PST)
-Received: from ?IPv6:2601:202:4180:c33:bd6f:ce:d9fb:a281?
-	([2601:202:4180:c33:bd6f:ce:d9fb:a281])
-	by smtp.gmail.com with ESMTPSA id
-	t1-v6sm19218560pfm.169.2018.11.06.17.07.02
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 06 Nov 2018 17:07:02 -0800 (PST)
-To: Bruce Ashfield <bruce.ashfield@windriver.com>,
-	Khem Raj <raj.khem@gmail.com>
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=RNPS+48pH1kx37Q7EPoBqy+x3jQOqV3TZwuETWXz9b8=;
+	b=ljcuSYElR8oDGj/dwUBslVvBmNsJf++upkAEMBGH6EdOf7X+kLQZdm+qvKCIAv9q6m
+	bFoLUl58d19RAIBK1c6BNpBDpc0tO0V92P1r//+S/MaNhKUX9PYV1Btfwi8p1RhuBa+v
+	Ct4qSgCYqOMrg3+nkPxwue74BqyJijHjoov8J0FpjGWJVKLM7ROw9qyYhEXTLoebgt5j
+	0ORB2tlIXO+21TdIZeFQQENmVPDcit+OEiCFO+XoF0fBKBfBpmCPLHRLEOifR/k3qpbm
+	4xbJMVcJGtlS3PBX6XkWkl/Pc6Amzmw6X1ALkXkztsxuPKYv9a9Uz7wxuBMxvpPQmI2S
+	kLWg==
+X-Gm-Message-State: AGRZ1gIP9PFS58PTxJiLDBMDH4tJe/kHMfBqFjkWRfCMlWyWrxtsapE0
+	iKYQbAjYdYSJG2wKR33KIRYhYNZMmesbO91S+8raEhU2
+X-Google-Smtp-Source: AJdET5edZQns8LhRMtfT0Oy8TlauOOBXL1PkcDq8LgpuQY67L9+RMIgxK6ZXLTU42UvaOPWFcdL5YaPpcU+rY70C0lc=
+X-Received: by 2002:ad4:41d0:: with SMTP id a16mr28056621qvq.55.1541552963047; 
+	Tue, 06 Nov 2018 17:09:23 -0800 (PST)
+MIME-Version: 1.0
 References: <1541541389-21595-1-git-send-email-akuster@mvista.com>
 	<CAMKF1srk1bH1zbYy_r2yKErnNz0OWQOgOgt1YJwLdjK2Xr8fXQ@mail.gmail.com>
 	<c59e74fd-868c-225a-3799-eaf5000f59af@gmail.com>
 	<1a3be576-c416-2c6a-6b0d-674b61a1363c@windriver.com>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
-	Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
-	mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
-	aquZVHNXxPwjKPaSEEYqQjFeiNgFTavV+AhM2dmPmGUWCX9RZisrqA4slGwEB0srMdFf12Zg
-	mD35Y9jZ80qpu5LPtJCFcsaAlebqR+dg36pIpiRR+olhN1wmC6LYP1vw6uMEYBjkTa2Rnb6+
-	C4FDzCJD4UCrUvLMNeTW810DY0bjMMj3SfmSGSfQUssaaaTXCVlLGuGxyCr/kza1rHaXMKum
-	Ek4EFj1fyn7AfkSLEHfJfY4sO1tpgigvs4eD/4ZSQEXSu/TjVvyKx4EvUbhlGMRyH2CPwD/H
-	7DFF8tcVtJvCwUUW+zKtjxjSSLrhniNMXAOQJZ6CdaqCe4OyJQT5aRdr+FWbBRjpaRCCf5nf
-	dTc88NMU9PrBT3vu0QJ5WNPO6MJpnb+d8iMNLZAz8tv8JMm2l+sMcNKSJ6lhX8peoBsfMVqc
-	FgiykEO0fUt7DCbUYR5tLjM/3E5tHvTjMooVJyOxoufVLYtTtQARAQABzSFha3VzdGVyODA4
-	IDxha3VzdGVyODA4QGdtYWlsLmNvbT7CwX0EEwEIACcFAlnlUP4CGyMFCQlmAYAFCwkIBwIG
-	FQgJCgsCBBYCAwECHgECF4AACgkQ7ou0mfRW5/kuhRAAlR2FTq5572jrX5nnPR7AqI2bvSVb
-	vqGLlvv739WhghvagbC+tu05QguopAhWW1/DcHK2+QtfIoC9UZrSW4RaO0CCo5sPjqK7l1KT
-	ngWX/rGjF6xTF2QN0U/btcpMyVN2CNtVLwsDF9e+GHKoUcnFkP+JP8vHGokN9k6E/c97hLaL
-	IJPeKl8LZXc2Efk+MaW1NXkfDJdcp/p+voajbihSQO6OZ/o+x9d2I3ZybKfTZ71+ek5Hxzjz
-	g6KkMOI7KJjlmBlrQFAtVbS+CFAKrwkYznE6ggkcmGv3N7DeUBTUR78hf+EZEAM+ajeLMtrG
-	rXE00pIb+gLGYPZxba5pCdQ+qWUW38qi9UnIRPm6fq7Ypx1r6XwJvbgCOkhbxo3D4YUdyC0b
-	FE9lgrg8htbc9in4j2+hVI6ALswNjLprzXdzdKrd+T3Egx36o3Z/qrYsW2o5/A5sVvvASVKi
-	wRPuEKhEhfmiHUPLvuKqhMoymHaz3fg5D2Q8G0gSDkLgeEpAjiWqf4+AGLx+MSDai7DSOsmI
-	t61kWxs7cFTB32UrB/TDoVNn3Fm88ZFQpA/bngikE9jgEm045mSY86fNlbFj2mcCd0Ha1i1n
-	aYc97RpgfjNMWyHDVHOGrNg/hJjkGa5RsAXkfyBwltHRw0Hj4urUQ3rr8um8PLe43SezPwXA
-	oRoyDxDOwU0EWeVQ/gEQALNHwj5VSPdnvXy1RXUuH+rclMx4x8zaqDyY0YqHfA7b/d8Y0VAt
-	Y6YpzDeFTwD8A0Wfb7kZ2mlDIE6ODCB71uT/E3C6b+FiiN+lgzslznjUW+9l8ddDhRrC8HMG
-	37vrXF5h++PTXUKEKUlkDib1w093tu3mlJXUvIAzl8CEHkptF6Br0L9XxFwuWoNUfjT9IorQ
-	0SVIhvq5PhVAITXUD5fD7/N8B4TYegmHFRo1UaaKSnSHwlJJkzKpeWOH8QTYrP0RHxX86Obv
-	IZuwbAo3F3oojcvLJt9NxWnbEmEALkleklLZnukgu7q5Wp1VDwhUbMFTLb6qmnBa/Xi30uOk
-	0l1TMHDbeQswvQDOZBAMukSRqyBetKxQ3iTfZ/3z1ubQRcVDbVlMDScSHQq0LK3F9yMOMM/6
-	0QPqJjl13xn/+Bn7WJiAIXXwzAV7uo6i0khFfjDtCDQ40aeffqOLxp1yMLkc3EKJGcQ5F6O2
-	ycEf4QXCYUbMXjxB0EJB8y7z+xOi5Mmd/pPlVmZ2gQK84NAL90p7n7jRlyf3gOUY+JOl4c5e
-	UFiIhOzmuqNrvPOiZ02GXh6SGUU5y7IgSoIKvXSFgHAn2OG/tcspBmkyv6IuNVpmbmEgYn4I
-	Rnt40UXVQkxTh0dENFhk2cjunMYozV/OqYCgmZLFSeJd8kAo4yn+yOtNABEBAAHCwWUEGAEI
-	AA8FAlnlUP4CGwwFCQlmAYAACgkQ7ou0mfRW5/nNcg//R63cbOS6zLtvdnPub3Ssp1Ft8Wmv
-	mni+kccuNApuDV7d63QckYxjAfUv2zYMLpbh87gVbLyCq9ASn552EbfRhTvHdk44CgbHBVcI
-	ZBEdZWgRR5ViJakQSYHpP2e5AGNFnx9gSIuRTaa5rvZM+4xeoZ2vJiq93TtaYPr7UFNfK+c4
-	vv4C66lkt9l95/I10eSc3RqbOKZW47emlg4X3ygEoB9k2lPrpspyf6sUuSEi0WrlSxoLAr6p
-	JG8rTUErYNeXe6JCdL31odDx1Dh5sdKIj2RicUYZNilxu9f1M7jZwf2ra1FGAlKj2ybqmgpZ
-	EFteaiCinEYsvDyZyOiWHjAFI+RZIPQQL3AnVp4l7wYD3r9hnqYPww0slyMDcb9262RoFkHq
-	dDwxPYarrNjWUpOzxB6bFxOgNRdCTgvQl8Ftk8a/yXB6vHeUSm1vPFCBxQPZytyfOLhEWm0J
-	/mkVL0Z6iRK3p1LKnpLYCS4/esL2u7RrhPyCs2SsL58YcQF/g+PpeT9geZ+oyZ/4IQ+TWJoU
-	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
-	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
-	8CS2NxU=
-Message-ID: <1c979ece-ba16-454a-bebb-5a81fcb455c0@gmail.com>
-Date: Tue, 6 Nov 2018 17:07:01 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.2.1
-MIME-Version: 1.0
 In-Reply-To: <1a3be576-c416-2c6a-6b0d-674b61a1363c@windriver.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 6 Nov 2018 17:08:56 -0800
+Message-ID: <CAMKF1soQh66Z6FYLV9aDn2W0+KyBU5UHBW=s3atv5ZS=sCuJzw@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: [yocto-kernel-cache][v4.4][PATCH] kver: bump to v4.4.147
 X-BeenThere: yocto@yoctoproject.org
@@ -130,67 +73,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Nov 2018 01:07:08 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
+X-List-Received-Date: Wed, 07 Nov 2018 01:09:25 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-
-On 11/6/18 2:42 PM, Bruce Ashfield wrote:
+On Tue, Nov 6, 2018 at 2:42 PM Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+>
 > On 2018-11-06 5:10 PM, akuster808 wrote:
->>
->> On 11/6/18 2:05 PM, Khem Raj wrote:
->>> On Tue, Nov 6, 2018 at 1:57 PM Armin Kuster<akuster808@gmail.com>=C2=A0=
-
->>> wrote:
->>>> Signed-off-by: Armin Kuster<akuster@mvista.com>
->>>> ---
->>>> =C2=A0 kver | 2 +-
->>>> =C2=A0 1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/kver b/kver
->>>> index 7b008cd..5ccc572 100644
->>>> --- a/kver
->>>> +++ b/kver
->>>> @@ -1 +1 @@
->>>> -v4.4.141
->>>> +v4.4.147
->>> why not 4.4.162
->>
->> because linux-yocto-4.4
->> <http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-4.4/> is not
->> at 4.4.162. I am just trying to use the latest in that kernel repo.
+> >
+> > On 11/6/18 2:05 PM, Khem Raj wrote:
+> >> On Tue, Nov 6, 2018 at 1:57 PM Armin Kuster<akuster808@gmail.com>  wrote:
+> >>> Signed-off-by: Armin Kuster<akuster@mvista.com>
+> >>> ---
+> >>>   kver | 2 +-
+> >>>   1 file changed, 1 insertion(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/kver b/kver
+> >>> index 7b008cd..5ccc572 100644
+> >>> --- a/kver
+> >>> +++ b/kver
+> >>> @@ -1 +1 @@
+> >>> -v4.4.141
+> >>> +v4.4.147
+> >> why not 4.4.162
+> >
+> > because linux-yocto-4.4
+> > <http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-4.4/> is not at
+> > 4.4.162. I am just trying to use the latest in that kernel repo.
 >
 > Did you want .162 ? I have a whole set of -stable updates staged
 > here, but haven't pushed anything since releases are imminent.
-
-We are a day or two away from freezing for a Rocko QA run so if I can
-get it sometime tomorrow, I should be able to=C2=A0 get some runtime on t=
-hat
-update otherwise no need to rush things.
-
-- armin
-
 >
 > But in the case of 4.4, I could lift my freeze, given that the kernel
 > recipe isn't active in master, hence the release schedule is
 > different.
->
 
+No, we can wait and backport if needed.
+
+>
 > Bruce
 >
->>
->>
->> - armin
->>
->>>> --=20
->>>> 2.7.4
->>>>
->>>> --=20
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
+> >
+> >
+> > - armin
+> >
+> >>> --
+> >>> 2.7.4
+> >>>
+> >>> --
+> >>> _______________________________________________
+> >>> yocto mailing list
+> >>> yocto@yoctoproject.org
+> >>> https://lists.yoctoproject.org/listinfo/yocto
 >
-
 
