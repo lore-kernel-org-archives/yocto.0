@@ -1,63 +1,73 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <markus4dev@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00E3AE009AA; Wed,  7 Nov 2018 04:48:53 -0800 (PST)
+	id 4FC98E009AA; Wed,  7 Nov 2018 05:20:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (markus4dev[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.45 listed in list.dnswl.org]
+	*      [209.85.221.48 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com
-	[209.85.166.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6DC4E00950
-	for <yocto@yoctoproject.org>; Wed,  7 Nov 2018 04:48:52 -0800 (PST)
-Received: by mail-io1-f45.google.com with SMTP id t81-v6so11764177iod.10
-	for <yocto@yoctoproject.org>; Wed, 07 Nov 2018 04:48:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
+	[209.85.221.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4A21E00950
+	for <yocto@yoctoproject.org>; Wed,  7 Nov 2018 05:20:42 -0800 (PST)
+Received: by mail-wr1-f48.google.com with SMTP id 74-v6so17352771wrb.13
+	for <yocto@yoctoproject.org>; Wed, 07 Nov 2018 05:20:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=L7d1zdC/VQUEcGsFq6Ir1dUBb7US0TX3NlNFTlLJPz4=;
-	b=YwRddr9XC42NYBxf/d2FduJ+bLBd2bJ/Us3DkKMvLPUkUJVBPmPGLHpB5MLq0qZayp
-	jWGBqjN4ikvCCyqzn31UIDzjID0JqCx9+evzqmI45+zM1ltDwU7ssYtJFId4rxaKjcrk
-	7M5hsSx8i7+0d2cATf646mEZoaws9g6tnMQWMWqlczBdmRGNa2Vu8LlrEU9L50Bh5yk5
-	cZPbyyeRitmQ0elSODbS+vmiIO3RUdkykvAAXxqEOa72bgsjjgBc4wb4K2y5kD93XVgR
-	BAC1vn8p3THHT2d9dSmAYws0cBlZLVaFiFVVs3gGhzgQDWf5oKSwF9n2Sxf9jOXWnvO1
-	PLcw==
+	:cc; bh=ZSIIo9Pt3cBvty8f0EZshhJNVxubQ9NVyzQLCwTlMRw=;
+	b=XbeApYXA87aIuZ9y1BmYoTG5Yy/VOUC7cDoBd4GrbWltB7jbLdEeOpbon6B2s4RC9L
+	KnQGxeZDUYPsxmUs0bRMy5L1V7Y3vPSaVXqDbdart8jV6Y65fFZzpsWNIIvT4ispexeL
+	IWlyQHaD3iQvK5odWK+JVkIkCosN+Pbpv3Wx/1OxjAaUlKqmyltmjHQGRQpnJoiTJFLW
+	fv6rUKGIv/3tHuyqwaYuqEDyhN+UaMxTM3EY96InG7wLdp8YfsKb4dC1isVldanL3xHh
+	3nauX08mM1j56aJYGRl5BA59kCYEN1ojeww+0YFP2TL/NdCs1lkvdm2p5YW2ppyzuf97
+	ICoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=L7d1zdC/VQUEcGsFq6Ir1dUBb7US0TX3NlNFTlLJPz4=;
-	b=WoxPloxTHmb2iNyBeB+n9kuXIQAg3hWQvqG8p/tUj6K8DjKpQSXSHwea/uns8XVnlY
-	6GU0D9msvbXFI941pbjhfBc9AlEts3ndPE/xD49GCYgzxWZcMA6nhnNPGy4oZMmL7IO4
-	+beJIunGyOdy1J0/ukO2Yewrimll4uGmBlAY6nX88E17picFt7n29LqW0t+6tkudz5Sh
-	9fB/uSrURTXT3sXjOjRjEWZX5TgGceVJPiZFJk6ejn5prWFEPi8Y4EqFPzHGa6oQkWQB
-	vKA73MMitqQQcNgROjeExehyR+Wuatvab3/ph+PocYTfXtEvOA6cX7zHuxDP/Pp93nM+
-	q6lw==
-X-Gm-Message-State: AGRZ1gJVveOrofwTVXmp1ZbFCVieMzxUtSi+OvgCUtgUMtJbiyMzhJbD
-	yjWb4dq2iYKunkrL2+0DWhveU/Bwwg5ew3SbOCJrTQ==
-X-Google-Smtp-Source: AJdET5f21i2eSpB5RMuO42Mnqzx5WDDdJXjovcwDJ1mFPPJ1oxizr4eoUwy1AMcJKP3394Cp1mqQrNsIQ/wvLmSTL0k=
-X-Received: by 2002:a6b:1602:: with SMTP id 2-v6mr41726iow.201.1541594932200; 
-	Wed, 07 Nov 2018 04:48:52 -0800 (PST)
+	bh=ZSIIo9Pt3cBvty8f0EZshhJNVxubQ9NVyzQLCwTlMRw=;
+	b=l2W5/6sfiGcmUVi8NGCYCnQ21DFpGrx0G1G/ElxNlhs8RjNP+siREWv+pYENo5C61c
+	YRGMNPwIj4weZB+FM38xAuwP8SCMyCFOQwchjQUeGHqHhsJ1eAMu5D6Xw8OgO28wx8ok
+	5C0/yQKOEA6e56gmUHImrYr5HwDmVD4/mhCxgmITYG2NWkRHJ0KdgO1V133S0JSGeSjw
+	/4WZwaOe6MubUszjSpYDQCKHhBaujdGjuMOGOSLDbL4Ec9E3ligami9C4tJJiNRblsLM
+	jkYicc4c+eD1tFCLAHXu7V63Cof0ElGZveFy8IilUK+LBNagrTd6tBeuXXZ9+9PvQVuU
+	cV9A==
+X-Gm-Message-State: AGRZ1gLmghJPpGkf6Psx3iK2Y+CSHiBfNca+Z8/Sv1raXdmcBQIIB1Jh
+	/GCytsDWR0YLp8ZkAKVZbaKxF16WixiH5t3aDJg=
+X-Google-Smtp-Source: AJdET5cKxu8dPgSgJX13OrtB12dCCsU8vesHofHtaMXmKQobbHsHAc0NRY5BA1K96oOITIqMAkCwT+wGJHgdaaUQJxw=
+X-Received: by 2002:a5d:4a11:: with SMTP id
+	m17-v6mr154410wrq.259.1541596842035; 
+	Wed, 07 Nov 2018 05:20:42 -0800 (PST)
 MIME-Version: 1.0
-References: <DM5PR15MB1913AB2A45AB39D4E13747C0F0C40@DM5PR15MB1913.namprd15.prod.outlook.com>
-	<4bdb31ad-0680-364f-e03a-adb208843b0c@windriver.com>
-	<DM5PR15MB19136741E6F723877E25D769F0C40@DM5PR15MB1913.namprd15.prod.outlook.com>
-In-Reply-To: <DM5PR15MB19136741E6F723877E25D769F0C40@DM5PR15MB1913.namprd15.prod.outlook.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 7 Nov 2018 12:48:39 +0000
-Message-ID: <CAJTo0LbkXG4WMg=xht0p3Ho9Jgg3XdTUiRjOawt0-6QjhkmdjQ@mail.gmail.com>
-To: "Mohammad, Jamal M" <MohammadJamal.Mohiuddin@ncr.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: lib32-ncurses not installing in rootfs
+References: <CAFd=ocgvmSf1zyWWw3A1=+Hr=WeD0ixdf5xLAT-TWg3hhKTqXw@mail.gmail.com>
+	<CAFd=ocgFTMXeUxwFqkffhrk91KsXkSPR+chzyiGKqQTG+fs=dw@mail.gmail.com>
+	<CAKYr3zz47i3op=suFL92h0=XTkxKdV+Pnvcra+40A96-xyzbjA@mail.gmail.com>
+	<CAFd=ocgqbG=_Ff49BPHMFG=wxKt+TcdKQy1hY3CgzHJPYan3nQ@mail.gmail.com>
+	<CAKYr3zw7aPNR0KvD+Ym5JPG6b3+GRhZm0R==eSu410y2zpA8hA@mail.gmail.com>
+	<CAKYr3zzDbGptzGwWe5nrZ__+C-XdjEAUTVAqyvVU0tgythzO7w@mail.gmail.com>
+	<CAFd=ociMVxtmLLJe3rpxpVnqOXkaVRXzstzSoOsnUqz-MBXUrQ@mail.gmail.com>
+	<CAKYr3zyntyR6-sVaMaJjoxECSfmW4Oh75QsXuV8imdGRHRWw3w@mail.gmail.com>
+In-Reply-To: <CAKYr3zyntyR6-sVaMaJjoxECSfmW4Oh75QsXuV8imdGRHRWw3w@mail.gmail.com>
+From: Markus W <markus4dev@gmail.com>
+Date: Wed, 7 Nov 2018 14:20:40 +0100
+Message-ID: <CAFd=ociLMjLcUsyXvw21DwM7wFtCAkv6Pb5wQ75=UKiQ19gPUw@mail.gmail.com>
+To: outbackdingo@gmail.com
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi] Problem with adding udev rules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,353 +79,295 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Nov 2018 12:48:54 -0000
-Content-Type: multipart/alternative; boundary="0000000000005263ef057a128a06"
+X-List-Received-Date: Wed, 07 Nov 2018 13:20:45 -0000
+Content-Type: multipart/alternative; boundary="000000000000280d55057a12fc5e"
 
---0000000000005263ef057a128a06
+--000000000000280d55057a12fc5e
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-The curses libraries are split up further, have a look at what else is in
-packages-split, or even better use oe-pkgdata-util:
+Probably, I'm learning ;-)
 
-$ oe-pkgdata-util list-pkg-files -p lib32-ncurses
-...
-lib32-ncurses-libncurses:
-        /lib/libncurses.so.5
-        /lib/libncurses.so.5.9
-lib32-ncurses-libncursesw:
-        /lib/libncursesw.so.5
-        /lib/libncursesw.so.5.9
-lib32-ncurses-libpanel:
-        /usr/lib/libpanel.so.5
-        /usr/lib/libpanel.so.5.9
-...
+On Wed, 7 Nov 2018 at 12:59, Outback Dingo <outbackdingo@gmail.com> wrote:
 
-$ oe-pkgdata-util find-path */libncurses.so.*
-lib32-ncurses-dbg: /lib/.debug/libncurses.so.5.9
-lib32-ncurses-libncurses: /lib/libncurses.so.5
-lib32-ncurses-libncurses: /lib/libncurses.so.5.9
-
-Ross
-
-On Wed, 7 Nov 2018 at 09:39, Mohammad, Jamal M <
-MohammadJamal.Mohiuddin@ncr.com> wrote:
-
-> There are many directories inside packages-split folder , lib32-ncurses,
-> lib32-ncurses-dbg, lib32-ncurses-dev, lib32-ncurses-doc
->
->
->
-> Looking into lib32-ncurses,
->
->
->
-> lib32-ncurses
->
-> =E2=94=94=E2=94=80=E2=94=80 usr
->
->     =E2=94=9C=E2=94=80=E2=94=80 bin
->
->     =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 tput
->
->     =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 tset
->
->     =E2=94=94=E2=94=80=E2=94=80 share
->
->         =E2=94=94=E2=94=80=E2=94=80 tabset
->
->             =E2=94=9C=E2=94=80=E2=94=80 std
->
->             =E2=94=9C=E2=94=80=E2=94=80 stdcrt
->
->             =E2=94=9C=E2=94=80=E2=94=80 vt100
->
->             =E2=94=94=E2=94=80=E2=94=80 vt300
->
->
->
-> It doesn=E2=80=99t have lib folder, so where are the libncurses.so missin=
-g..
->
->
->
-> *From:* ChenQi [mailto:Qi.Chen@windriver.com]
-> *Sent:* Wednesday, November 7, 2018 3:04 PM
-> *To:* Mohammad, Jamal M <MohammadJamal.Mohiuddin@ncr.com>;
-> Yocto-mailing-list <yocto@yoctoproject.org>
-> *Subject:* Re: [yocto] lib32-ncurses not installing in rootfs
->
->
->
-> **External Message* - Use caution before opening links or attachments*
->
->
->
-> Check the packages-split/ directory to see how files are put in each
-> package.
-> I guess these files are packages into other packages derived from the
-> ncurses recipe.
->
-> Best Regards,
-> Chen Qi
->
-> On 11/07/2018 05:21 PM, Mohammad, Jamal M wrote:
->
-> Hi Guys,
->
-> I am trying to add 32-bit ncurses into my root file system
->
-> I am using intel yocto bsp sumo branch
->
-> Here is my local.conf:
->
->
->
-> require conf/multilib.conf
->
-> DEFAULTTUNE_virtclass-multilib-lib32 =3D "x86"
->
-> IMAGE_INSTALL_append =3D " dpkg gnutls lib32-glibc lib32-libgcc
-> lib32-libstdc++ lib32-gnutls lib32-freetype lib32    -libx11 lib32-ncurse=
-s
-> lib32-dpkg python3-six"
->
->
->
-> ncurses folder is present in tmp
->
-> build/tmp/work/x86-pokymllib32-linux/lib32-ncurses/6.0+20171125-r0
->
->
->
-> The image folder is created and has the libraries
->
->
-> build/tmp/work/x86-pokymllib32-linux/lib32-ncurses/6.0+20171125-r0/image/=
-lib
->
-> libncurses.so.5  libncurses.so.5.9  libncursesw.so.5  libncursesw.so.5.9
-> libtinfo.so.5  libtinfo.so.5.9
->
->
->
-> But these files are not present in root file system.
->
-> How can i debug or what should be my next step to get them into root file
-> system. which log files should I look
->
-> Thanks for your time.
->
->
->
-> Regards,
->
-> Jamal,
->
-> Software Specialist,
->
-> NCR Corporation
->
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> couldnt this have been a udev_append.bb
+>
+> instead of writing your own my-rules
+> On Wed, Nov 7, 2018 at 6:46 PM Markus W <markus4dev@gmail.com> wrote:
+> >
+> > This my bb file and than I have added the following to local.conf
+> IMAGE_INSTALL_append =3D " my-rules ...".
+> >
+> > SUMMARY =3D "My rules"
+> > LICENSE =3D "CLOSED"
+> > PR =3D "r1"
+> >
+> > SRC_URI =3D "file://90-interfaces.rules"
+> >
+> > do_install[nostamp] =3D "1"
+> > do_unpack[nostamp] =3D "1"
+> >
+> > do_install () {
+> >     install -d ${D}${sysconfdir}/udev/rules.d
+> >     install -m 0666 ${WORKDIR}/90-interfaces.rules
+> ${D}/etc/udev/rules.d/90-interfaces.rules
+> >
+> > }
+> >
+> > FILES_${PN} +=3D " /etc/udev/rules.d/90-interfaces.rules"
+> >
+> > PACKAGES =3D "${PN}"
+> > PROVIDES =3D "my-rules"
+> >
+> > Hope this helps
+> >
+> > /Markus
+> >
+> > On Wed, 7 Nov 2018 at 12:41, Outback Dingo <outbackdingo@gmail.com>
+> wrote:
+> >>
+> >> so curious, as im trying to add 2 udev rules also that i require in my
+> >> build, so how was your recipe configured?
+> >>
+> >> mine keeps telling me i have a conflict between packages as they both
+> >> install files to the same name and same place
+> >> On Wed, Nov 7, 2018 at 4:53 PM Outback Dingo <outbackdingo@gmail.com>
+> wrote:
+> >> >
+> >> >
+> >> >
+> >> > On Wed, Nov 7, 2018, 16:44 Markus W <markus4dev@gmail.com wrote:
+> >> >>
+> >> >> I have resolved this issue. My problem was that in my layer I have =
+a
+> >> >> recipe-core and within that I had the following structure
+> >> >> udev/udev-extra-rules and udev-extra-rules.bb file and a files dir
+> on
+> >> >> the same level.
+> >> >>
+> >> >> By renaming udev/udev-extra-rules to my-udev/my-udev-extra-rules it
+> >> >> suddenly worked.
+> >> >>
+> >> >> Cool
+> >> >>
+> >> >>
+> >> >> Regards,
+> >> >> Markus
+> >> >>
+> >> >> On Tue, 6 Nov 2018 at 14:06, Outback Dingo <outbackdingo@gmail.com>
+> wrote:
+> >> >> >
+> >> >> > On Tue, Nov 6, 2018 at 11:57 AM Markus W <markus4dev@gmail.com>
+> wrote:
+> >> >> > >
+> >> >> > > Hi!
+> >> >> > >
+> >> >> > > I want to append the rules in the
+> >> >> > > recipe-core/udev/udev-rules-rpi/99-com.rules with the rules
+> below from
+> >> >> > > within my own recipe. I can=C2=B4t figure out how to do that.
+> >> >> > >
+> >> >> > > I have tried to add those rules as separate rules file in a
+> recipe in
+> >> >> > > my own layer. After the build I can see that the rules file is
+> in the
+> >> >> > > correct directory /etc/udev/rules.d (next to 99-com.rules) but
+> the
+> >> >> > > rules didn't get applied. The groups below I have created by
+> >> >> > > inheriting the useradd class (GROUPADD_PARAM_${PN} =3D "-r spi;=
+ -r
+> i2c;
+> >> >> > > -r gpio") in a different layer with a higher priority than the
+> layer
+> >> >> > > with the rules recipe.
+> >> >> > >
+> >> >> > > Not sure why this is not working. Any suggestions?
+> >> >> > >
+> >> >> > > 90-interfaces.rules file:
+> >> >> > >
+> >> >> > > SUBSYSTEM=3D=3D"input", GROUP=3D"input", MODE=3D"0660"
+> >> >> > > SUBSYSTEM=3D=3D"i2c-dev", GROUP=3D"i2c", MODE=3D"0660"
+> >> >> > > SUBSYSTEM=3D=3D"spidev", GROUP=3D"spi", MODE=3D"0660"
+> >> >> > > SUBSYSTEM=3D=3D"bcm2835-gpiomem", GROUP=3D"gpio", MODE=3D"0660"
+> >> >> > >
+> >> >> > > SUBSYSTEM=3D=3D"gpio", GROUP=3D"gpio", MODE=3D"0660"
+> >> >> > > SUBSYSTEM=3D=3D"gpio*", PROGRAM=3D"/bin/sh -c '\
+> >> >> > > chown -R root:gpio /sys/class/gpio && chmod -R 770
+> /sys/class/gpio;\
+> >> >> > > chown -R root:gpio /sys/devices/virtual/gpio && chmod -R 770
+> >> >> > > /sys/devices/virtual/gpio;\
+> >> >> > > chown -R root:gpio /sys$devpath && chmod -R 770 /sys$devpath\
+> >> >> > > '"
+> >> >> > >
+> >> >> >
+> >> >> > might help to post the recipe used.....
+> >> >> >
+> >> >> >
+> >> >> > > Regards,
+> >> >> > > Markus
+> >> >> > > --
+> >> >> > > _______________________________________________
+> >> >> > > yocto mailing list
+> >> >> > > yocto@yoctoproject.org
+> >> >> > > https://lists.yoctoproject.org/listinfo/yocto
 >
 
---0000000000005263ef057a128a06
+--000000000000280d55057a12fc5e
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">The cur=
-ses libraries are split up further, have a look at what else is in packages=
--split, or even better use oe-pkgdata-util:</div><div dir=3D"ltr"><br></div=
-><div dir=3D"ltr">$ oe-pkgdata-util list-pkg-files -p lib32-ncurses<div>...=
-</div><div><div>lib32-ncurses-libncurses:</div><div>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 /lib/libncurses.so.5</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 /lib/libn=
-curses.so.5.9</div><div>lib32-ncurses-libncursesw:</div><div>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 /lib/libncursesw.so.5</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 /=
-lib/libncursesw.so.5.9</div><div>lib32-ncurses-libpanel:</div><div>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 /usr/lib/libpanel.so.5</div><div>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 /usr/lib/libpanel.so.5.9</div></div><div>...</div><div><br></div><di=
-v><div>$ oe-pkgdata-util find-path */libncurses.so.*</div><div>lib32-ncurse=
-s-dbg: /lib/.debug/libncurses.so.5.9</div><div>lib32-ncurses-libncurses: /l=
-ib/libncurses.so.5</div><div>lib32-ncurses-libncurses: /lib/libncurses.so.5=
-.9</div></div><div><br></div><div>Ross</div></div></div></div></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr">On Wed, 7 Nov 2018 at 09:39, Moham=
-mad, Jamal M &lt;<a href=3D"mailto:MohammadJamal.Mohiuddin@ncr.com">Mohamma=
-dJamal.Mohiuddin@ncr.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
-1ex">
-
-
-
-
-
-<div bgcolor=3D"white" lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"m_8553149051529753677WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">There are many dire=
-ctories inside packages-split folder , lib32-ncurses, lib32-ncurses-dbg, li=
-b32-ncurses-dev, lib32-ncurses-doc<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext"><u></u>=C2=A0<u></u=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">Looking into lib32-=
-ncurses,<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext"><u></u>=C2=A0<u></u=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">lib32-ncurses<u></u=
-><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">=E2=94=94=E2=94=80=
-=E2=94=80 usr<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">=C2=A0=C2=A0=C2=A0 =
-</span><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:window=
-text">=E2=94=9C</span><span style=3D"color:windowtext">=E2=94=80=E2=94=80</=
-span><span style=3D"color:windowtext"> bin<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">=C2=A0=C2=A0=C2=A0 =
-=E2=94=82=C2=A0=C2=A0 </span><span style=3D"font-family:&quot;Arial&quot;,s=
-ans-serif;color:windowtext">=E2=94=9C</span><span style=3D"color:windowtext=
-">=E2=94=80=E2=94=80</span><span style=3D"color:windowtext"> tput<u></u><u>=
-</u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">=C2=A0=C2=A0=C2=A0 =
-=E2=94=82=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=94=80 tset<u></u><u></u></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">=C2=A0=C2=A0=C2=A0 =
-=E2=94=94=E2=94=80=E2=94=80 share<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=94=80 tabset<u></u><u></u></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--family:&quot;Arial&quot;,sans-serif;color:windowtext">=E2=94=9C</span><spa=
-n style=3D"color:windowtext">=E2=94=80=E2=94=80</span><span style=3D"color:=
-windowtext"> std<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--family:&quot;Arial&quot;,sans-serif;color:windowtext">=E2=94=9C</span><spa=
-n style=3D"color:windowtext">=E2=94=80=E2=94=80</span><span style=3D"color:=
-windowtext"> stdcrt<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--family:&quot;Arial&quot;,sans-serif;color:windowtext">=E2=94=9C</span><spa=
-n style=3D"color:windowtext">=E2=94=80=E2=94=80</span><span style=3D"color:=
-windowtext"> vt100<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=94=
-=80 vt300<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext"><u></u>=C2=A0<u></u=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext">It doesn=E2=80=99t =
-have lib folder, so where are the libncurses.so missing..
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:windowtext"><u></u>=C2=A0<u></u=
-></span></p>
-<div>
-<div style=3D"border:none;border-top:solid #e1e1e1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"color:windowtext">From:</span></b>=
-<span style=3D"color:windowtext"> ChenQi [mailto:<a href=3D"mailto:Qi.Chen@=
-windriver.com" target=3D"_blank">Qi.Chen@windriver.com</a>]
+<div dir=3D"ltr">Probably, I&#39;m learning ;-)</div><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr">On Wed, 7 Nov 2018 at 12:59, Outback Dingo &lt;<a=
+ href=3D"mailto:outbackdingo@gmail.com">outbackdingo@gmail.com</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex">couldnt this have been a <a href=
+=3D"http://udev_append.bb" rel=3D"noreferrer" target=3D"_blank">udev_append=
+.bb</a><br>
 <br>
-<b>Sent:</b> Wednesday, November 7, 2018 3:04 PM<br>
-<b>To:</b> Mohammad, Jamal M &lt;<a href=3D"mailto:MohammadJamal.Mohiuddin@=
-ncr.com" target=3D"_blank">MohammadJamal.Mohiuddin@ncr.com</a>&gt;; Yocto-m=
-ailing-list &lt;<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank"=
->yocto@yoctoproject.org</a>&gt;<br>
-<b>Subject:</b> Re: [yocto] lib32-ncurses not installing in rootfs<u></u><u=
-></u></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<table class=3D"m_8553149051529753677MsoNormalTable" border=3D"0" cellspaci=
-ng=3D"3" cellpadding=3D"0" style=3D"background:yellow">
-<tbody>
-<tr>
-<td style=3D"padding:.75pt .75pt .75pt .75pt">
-<p class=3D"MsoNormal"><b>*External Message* - Use caution before opening l=
-inks or attachments</b><u></u><u></u></p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Check the packages-split/ directory to see how files=
- are put in each package.<br>
-I guess these files are packages into other packages derived from the ncurs=
-es recipe.<br>
+instead of writing your own my-rules<br>
+On Wed, Nov 7, 2018 at 6:46 PM Markus W &lt;<a href=3D"mailto:markus4dev@gm=
+ail.com" target=3D"_blank">markus4dev@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; This my bb file and than I have added the following to local.conf IMAG=
+E_INSTALL_append =3D &quot; my-rules ...&quot;.<br>
+&gt;<br>
+&gt; SUMMARY =3D &quot;My rules&quot;<br>
+&gt; LICENSE =3D &quot;CLOSED&quot;<br>
+&gt; PR =3D &quot;r1&quot;<br>
+&gt;<br>
+&gt; SRC_URI =3D &quot;file://90-interfaces.rules&quot;<br>
+&gt;<br>
+&gt; do_install[nostamp] =3D &quot;1&quot;<br>
+&gt; do_unpack[nostamp] =3D &quot;1&quot;<br>
+&gt;<br>
+&gt; do_install () {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0install -d ${D}${sysconfdir}/udev/rules.d<br>
+&gt;=C2=A0 =C2=A0 =C2=A0install -m 0666 ${WORKDIR}/90-interfaces.rules ${D}=
+/etc/udev/rules.d/90-interfaces.rules<br>
+&gt;<br>
+&gt; }<br>
+&gt;<br>
+&gt; FILES_${PN} +=3D &quot; /etc/udev/rules.d/90-interfaces.rules&quot;<br=
+>
+&gt;<br>
+&gt; PACKAGES =3D &quot;${PN}&quot;<br>
+&gt; PROVIDES =3D &quot;my-rules&quot;<br>
+&gt;<br>
+&gt; Hope this helps<br>
+&gt;<br>
+&gt; /Markus<br>
+&gt;<br>
+&gt; On Wed, 7 Nov 2018 at 12:41, Outback Dingo &lt;<a href=3D"mailto:outba=
+ckdingo@gmail.com" target=3D"_blank">outbackdingo@gmail.com</a>&gt; wrote:<=
+br>
+&gt;&gt;<br>
+&gt;&gt; so curious, as im trying to add 2 udev rules also that i require i=
+n my<br>
+&gt;&gt; build, so how was your recipe configured?<br>
+&gt;&gt;<br>
+&gt;&gt; mine keeps telling me i have a conflict between packages as they b=
+oth<br>
+&gt;&gt; install files to the same name and same place<br>
+&gt;&gt; On Wed, Nov 7, 2018 at 4:53 PM Outback Dingo &lt;<a href=3D"mailto=
+:outbackdingo@gmail.com" target=3D"_blank">outbackdingo@gmail.com</a>&gt; w=
+rote:<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; On Wed, Nov 7, 2018, 16:44 Markus W &lt;<a href=3D"mailto:mar=
+kus4dev@gmail.com" target=3D"_blank">markus4dev@gmail.com</a> wrote:<br>
+&gt;&gt; &gt;&gt;<br>
+&gt;&gt; &gt;&gt; I have resolved this issue. My problem was that in my lay=
+er I have a<br>
+&gt;&gt; &gt;&gt; recipe-core and within that I had the following structure=
 <br>
-Best Regards,<br>
-Chen Qi<br>
+&gt;&gt; &gt;&gt; udev/udev-extra-rules and <a href=3D"http://udev-extra-ru=
+les.bb" rel=3D"noreferrer" target=3D"_blank">udev-extra-rules.bb</a> file a=
+nd a files dir on<br>
+&gt;&gt; &gt;&gt; the same level.<br>
+&gt;&gt; &gt;&gt;<br>
+&gt;&gt; &gt;&gt; By renaming udev/udev-extra-rules to my-udev/my-udev-extr=
+a-rules it<br>
+&gt;&gt; &gt;&gt; suddenly worked.<br>
+&gt;&gt; &gt;&gt;<br>
+&gt;&gt; &gt;&gt; Cool<br>
+&gt;&gt; &gt;&gt;<br>
+&gt;&gt; &gt;&gt;<br>
+&gt;&gt; &gt;&gt; Regards,<br>
+&gt;&gt; &gt;&gt; Markus<br>
+&gt;&gt; &gt;&gt;<br>
+&gt;&gt; &gt;&gt; On Tue, 6 Nov 2018 at 14:06, Outback Dingo &lt;<a href=3D=
+"mailto:outbackdingo@gmail.com" target=3D"_blank">outbackdingo@gmail.com</a=
+>&gt; wrote:<br>
+&gt;&gt; &gt;&gt; &gt;<br>
+&gt;&gt; &gt;&gt; &gt; On Tue, Nov 6, 2018 at 11:57 AM Markus W &lt;<a href=
+=3D"mailto:markus4dev@gmail.com" target=3D"_blank">markus4dev@gmail.com</a>=
+&gt; wrote:<br>
+&gt;&gt; &gt;&gt; &gt; &gt;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; Hi!<br>
+&gt;&gt; &gt;&gt; &gt; &gt;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; I want to append the rules in the<br>
+&gt;&gt; &gt;&gt; &gt; &gt; recipe-core/udev/udev-rules-rpi/99-com.rules wi=
+th the rules below from<br>
+&gt;&gt; &gt;&gt; &gt; &gt; within my own recipe. I can=C2=B4t figure out h=
+ow to do that.<br>
+&gt;&gt; &gt;&gt; &gt; &gt;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; I have tried to add those rules as separate rul=
+es file in a recipe in<br>
+&gt;&gt; &gt;&gt; &gt; &gt; my own layer. After the build I can see that th=
+e rules file is in the<br>
+&gt;&gt; &gt;&gt; &gt; &gt; correct directory /etc/udev/rules.d (next to 99=
+-com.rules) but the<br>
+&gt;&gt; &gt;&gt; &gt; &gt; rules didn&#39;t get applied. The groups below =
+I have created by<br>
+&gt;&gt; &gt;&gt; &gt; &gt; inheriting the useradd class (GROUPADD_PARAM_${=
+PN} =3D &quot;-r spi; -r i2c;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; -r gpio&quot;) in a different layer with a high=
+er priority than the layer<br>
+&gt;&gt; &gt;&gt; &gt; &gt; with the rules recipe.<br>
+&gt;&gt; &gt;&gt; &gt; &gt;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; Not sure why this is not working. Any suggestio=
+ns?<br>
+&gt;&gt; &gt;&gt; &gt; &gt;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; 90-interfaces.rules file:<br>
+&gt;&gt; &gt;&gt; &gt; &gt;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; SUBSYSTEM=3D=3D&quot;input&quot;, GROUP=3D&quot=
+;input&quot;, MODE=3D&quot;0660&quot;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; SUBSYSTEM=3D=3D&quot;i2c-dev&quot;, GROUP=3D&qu=
+ot;i2c&quot;, MODE=3D&quot;0660&quot;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; SUBSYSTEM=3D=3D&quot;spidev&quot;, GROUP=3D&quo=
+t;spi&quot;, MODE=3D&quot;0660&quot;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; SUBSYSTEM=3D=3D&quot;bcm2835-gpiomem&quot;, GRO=
+UP=3D&quot;gpio&quot;, MODE=3D&quot;0660&quot;<br>
+&gt;&gt; &gt;&gt; &gt; &gt;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; SUBSYSTEM=3D=3D&quot;gpio&quot;, GROUP=3D&quot;=
+gpio&quot;, MODE=3D&quot;0660&quot;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; SUBSYSTEM=3D=3D&quot;gpio*&quot;, PROGRAM=3D&qu=
+ot;/bin/sh -c &#39;\<br>
+&gt;&gt; &gt;&gt; &gt; &gt; chown -R root:gpio /sys/class/gpio &amp;&amp; c=
+hmod -R 770 /sys/class/gpio;\<br>
+&gt;&gt; &gt;&gt; &gt; &gt; chown -R root:gpio /sys/devices/virtual/gpio &a=
+mp;&amp; chmod -R 770<br>
+&gt;&gt; &gt;&gt; &gt; &gt; /sys/devices/virtual/gpio;\<br>
+&gt;&gt; &gt;&gt; &gt; &gt; chown -R root:gpio /sys$devpath &amp;&amp; chmo=
+d -R 770 /sys$devpath\<br>
+&gt;&gt; &gt;&gt; &gt; &gt; &#39;&quot;<br>
+&gt;&gt; &gt;&gt; &gt; &gt;<br>
+&gt;&gt; &gt;&gt; &gt;<br>
+&gt;&gt; &gt;&gt; &gt; might help to post the recipe used.....<br>
+&gt;&gt; &gt;&gt; &gt;<br>
+&gt;&gt; &gt;&gt; &gt;<br>
+&gt;&gt; &gt;&gt; &gt; &gt; Regards,<br>
+&gt;&gt; &gt;&gt; &gt; &gt; Markus<br>
+&gt;&gt; &gt;&gt; &gt; &gt; --<br>
+&gt;&gt; &gt;&gt; &gt; &gt; _______________________________________________=
 <br>
-On 11/07/2018 05:21 PM, Mohammad, Jamal M wrote:<u></u><u></u></p>
-</div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<p class=3D"MsoNormal">Hi Guys,<u></u><u></u></p>
-<p class=3D"MsoNormal">I am trying to add 32-bit ncurses into my root file =
-system<u></u><u></u></p>
-<p class=3D"MsoNormal">I am using intel yocto bsp sumo branch<u></u><u></u>=
-</p>
-<p class=3D"MsoNormal">Here is my local.conf:<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">require conf/multilib.conf<u></u><u></u></p>
-<p class=3D"MsoNormal">DEFAULTTUNE_virtclass-multilib-lib32 =3D &quot;x86&q=
-uot;<u></u><u></u></p>
-<p class=3D"MsoNormal">IMAGE_INSTALL_append =3D &quot; dpkg gnutls lib32-gl=
-ibc lib32-libgcc lib32-libstdc++ lib32-gnutls lib32-freetype lib32=C2=A0=C2=
-=A0=C2=A0 -libx11 lib32-ncurses lib32-dpkg python3-six&quot;<u></u><u></u><=
-/p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">ncurses folder is present in tmp<u></u><u></u></p>
-<p class=3D"MsoNormal">build/tmp/work/x86-pokymllib32-linux/lib32-ncurses/6=
-.0+20171125-r0<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">The image folder is created and has the libraries<u>=
-</u><u></u></p>
-<p class=3D"MsoNormal">build/tmp/work/x86-pokymllib32-linux/lib32-ncurses/6=
-.0+20171125-r0/image/lib<u></u><u></u></p>
-<p class=3D"MsoNormal">libncurses.so.5=C2=A0 libncurses.so.5.9=C2=A0 libncu=
-rsesw.so.5=C2=A0 libncursesw.so.5.9=C2=A0 libtinfo.so.5=C2=A0 libtinfo.so.5=
-.9<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">But these files are not present in root file system.=
-<u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"font-variant-ligatures:normal;font-variant-=
-caps:normal;font-variant-numeric:inherit;font-variant-east-asian:inherit;fo=
-nt-stretch:inherit;line-height:inherit;box-sizing:inherit;text-decoration-s=
-tyle:initial;text-decoration-color:initial;word-spacing:0px">
-How can i debug or what should be my next step to get them into root file s=
-ystem. which log files should I look<u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"font-variant-ligatures:normal;font-variant-=
-caps:normal;font-variant-numeric:inherit;font-variant-east-asian:inherit;fo=
-nt-stretch:inherit;line-height:inherit;box-sizing:inherit;text-decoration-s=
-tyle:initial;text-decoration-color:initial;word-spacing:0px">
-Thanks for your time.<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Regards,<u></u><u></u></p>
-<p class=3D"MsoNormal">Jamal,<u></u><u></u></p>
-<p class=3D"MsoNormal">Software Specialist,<u></u><u></u></p>
-<p class=3D"MsoNormal">NCR Corporation<u></u><u></u></p>
-<p class=3D"MsoNormal"><br>
-<br>
-<u></u><u></u></p>
-</blockquote>
-<p><u></u>=C2=A0<u></u></p>
-</div>
-</div>
-
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt;&gt; &gt;&gt; &gt; &gt; yocto mailing list<br>
+&gt;&gt; &gt;&gt; &gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org" targe=
+t=3D"_blank">yocto@yoctoproject.org</a><br>
+&gt;&gt; &gt;&gt; &gt; &gt; <a href=3D"https://lists.yoctoproject.org/listi=
+nfo/yocto" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.=
+org/listinfo/yocto</a><br>
 </blockquote></div>
 
---0000000000005263ef057a128a06--
+--000000000000280d55057a12fc5e--
