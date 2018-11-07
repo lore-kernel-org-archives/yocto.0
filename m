@@ -1,6 +1,6 @@
-Return-Path: <alan.martinovic@senic.com>
+Return-Path: <mauro@faresoftware.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 190B8E009B2; Wed,  7 Nov 2018 03:02:21 -0800 (PST)
+	id 8EBC6E009B2; Wed,  7 Nov 2018 03:14:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,50 +8,38 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [62.149.158.217 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.181 listed in list.dnswl.org]
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com
-	[209.85.167.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC2A6E00950
-	for <yocto@yoctoproject.org>; Wed,  7 Nov 2018 03:02:19 -0800 (PST)
-Received: by mail-oi1-f181.google.com with SMTP id x63-v6so9743898oix.9
-	for <yocto@yoctoproject.org>; Wed, 07 Nov 2018 03:02:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=senic-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=zmmJ0q6ARt9OQCX/IjrIQ/lKGx9whk/jiA2ZrrmoKzU=;
-	b=tcLrThPD7redVQj9UzTSBNgbbYYO5lehuOiZLL/AKcRkWnZ7vvQOlTrUMGCTfsN22/
-	MMwwbojH6WDHNV83Bi/7VgWqk9IN8hfs5XP3t9ns8mh4J3Rl4gmBwEdcsTapu7Y9AIce
-	aEqhiOiQjelMqZPgbDyyKHjqdLk6eqBWpEZJpD5tUpDb50ZVHyB2/dIfG5v2UU6+lXOC
-	+K7EiFYPKK+Ys+QQQPWZ3tAT56l+8OXCMsLJjOhOUTTMdhZvnfpEflCZNGUII/6sJjFX
-	QWvn9fmgLVNOl7j9W6PQRXxCSBaKVmR3P681rInr7VY4rg+fc0VvX8UnEbuwk91iBM0U
-	Jl2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=zmmJ0q6ARt9OQCX/IjrIQ/lKGx9whk/jiA2ZrrmoKzU=;
-	b=JibWUYxHjmc8gvpYlZLt4A90Ktm1G2Ksp7tWCXBV5N8ug7igBboHcVCAW3D0upbTCK
-	HuTDC0ytOLH60Lw9dZekGPbDvQvAS8DaR5/f459m71sd2jS6rtfbOZ2W9/gt/f5RUyRA
-	upiisK0AUIr9xWLGdi3ROqBRRhrD8dvlnG5dXINWBYwYiEEwHTvGi4Xg3wevooCJlC9+
-	/wl7dSm+ldYitk60IBbOsrx09nIi3I56A/gzVKJHwDVuMCGx+AM/o7ESvqY9FSd6vqeS
-	8xETVKscK///CrUXh8l2jx9k8YleyqLA4geVheEqHS1FUNvByxltrZmSDiJPaduRH3Z/
-	TX/Q==
-X-Gm-Message-State: AGRZ1gJvgQAVI+UvXbhgoFO1GOniAEh0aFySbP5IiZbP34EY0U/piZYh
-	rWbzxcSugbcco02fiRmQNnmuPHxD200+fiySbcvPM46aHXU=
-X-Google-Smtp-Source: AJdET5c/tSpQLpDbQYsOeQrH3R8GCTJZT+nq33gx+QaMdTUqpWSJne1be1FusGZkeyGRQnsjFoOl/48aKSD3i9aZBnk=
-X-Received: by 2002:aca:cc41:: with SMTP id
-	c62-v6mr685580oig.150.1541588539041; 
-	Wed, 07 Nov 2018 03:02:19 -0800 (PST)
+Received: from smtpcmd01217.aruba.it (smtpcmd01217.aruba.it [62.149.158.217])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87D53E00720
+	for <yocto@yoctoproject.org>; Wed,  7 Nov 2018 03:14:44 -0800 (PST)
+Received: from [10.0.3.97] ([78.6.3.122]) by smtpcmd01.ad.aruba.it with bizsmtp
+	id wzEg1y01k2dwwGE01zEhP5; Wed, 07 Nov 2018 12:14:42 +0100
+To: Khem Raj <raj.khem@gmail.com>
+References: <40261230-160a-83b8-b0f2-eb996ab1fd7b@faresoftware.it>
+	<CAMKF1spFYQJ_CNeS=ogO2U797tDq7-1qLAz6C-edmXu6Eft87w@mail.gmail.com>
+From: Mauro Ziliani <mauro@faresoftware.it>
+Message-ID: <a427f106-c74a-9299-c056-5006cd0f0dbb@faresoftware.it>
+Date: Wed, 7 Nov 2018 12:14:40 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
 MIME-Version: 1.0
-From: Alan Martinovic <alan.martinovic@senic.com>
-Date: Wed, 7 Nov 2018 12:02:08 +0100
-Message-ID: <CAOT_U5Y954ToaeuAXDtTiR=a_uO4G3aSt01+1rnzYYG7hu6g6w@mail.gmail.com>
-To: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Check final recipe state
+In-Reply-To: <CAMKF1spFYQJ_CNeS=ogO2U797tDq7-1qLAz6C-edmXu6Eft87w@mail.gmail.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1541589282; bh=nSGmUlNyGoQZeDl40t7uf6hayRGFJOXAFth3n9nBTEo=;
+	h=Subject:To:From:Date:MIME-Version:Content-Type;
+	b=CCh9zRNzDUzoQ6C98DyFBFqhrFqsFDIjPHMkb+eDGN1RqYYjfPNi9ZRAQknLIFTa5
+	WGclNnAbVSphh3LVQUtyo3Tz1nhb3Es4aWoKMDDefjBW+xWEhBKClG6s5IJ4bAYQas
+	JtaB0+2yyWRBTWZ/WeEE8K/pq61R3VL3G0OoJCFUhZ1hRmkdViAGUowwvsarF/m0iq
+	CRlrStxqdAC7HfvoQgbTwNb/f5N6IMdUBFxbY2jEaA1LQkVGsT/tApeInwMn+bbP1z
+	HuGwFtJlBtzoOTc90Fw6xuuYxSs7sGCV702Bs3PcqoHLVIk8acH8/rMLMzBKS+zh0Y
+	sTkuxP4c8EC/w==
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Yocto and Debian package repositories
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,25 +51,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Nov 2018 11:02:21 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 07 Nov 2018 11:14:46 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: it
 
-Hi,
-looking for a way to inspect the appearance of the final recipe
-after all the .bbappend files have been applied.
+Thank you for your answer.
 
-Example:
-    meta-openembedded/meta-oe/recipes-extended/rsyslog/rsyslog_8.29.0.bb
+My system is produced only from Yoctk Krogoth with deb package, and
+package-management turned on into EXTRAS_DISTRO_FEATURES.
 
-gets appended with:
-    meta-mylayer/recipes-extended/rsyslog/rsyslog_8.29.0.bbappend
+The server repository is only my server and there are only the debs
+built with yocto.
 
-I'm conceptually perceiving that as being merged together into a
-single "final recipe" during the build.
-Is there a way to get how that "final recipe" might look like?
+So I think the dependecies are always ok, because non other repos are used.
 
-(know about the -e flag, exploring it there is something less verbose)
 
-Be Well,
-Alan
+Mauro
+
+
+Il 30/10/2018 22:21, Khem Raj ha scritto:
+> On Tue, Oct 30, 2018 at 8:14 AM Mauro Ziliani <mauro@faresoftware.it> wrote:
+>> Hi all.
+>>
+>> I often work with Debian and I build my own repository accessible with apt.
+>>
+>> I look that when I build the image recipe many deb pacakages are
+>> produced with Packages and Release ready.
+>>
+>> How can I use this pakcages to upload all packages to a Debian customer
+>> server?
+> So I am assuming you are thinking of installing these .debs onto a
+> debian base target
+> if so then its not quite the right direction. with OE build system we
+> can generate output packages
+> as ipks, rpms, debs and tarballs, its just another output format but
+> is not meant to be consumed
+> on rpm-like or deb-like linux systems which are built using non-OE
+> distros, because packages have
+> dependencies and sometimes version specific dependencies which may not
+> match between two ecosystems.
+>
+>> Best regards,
+>>
+>>   MZ
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+
 
