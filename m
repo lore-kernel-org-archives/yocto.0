@@ -1,69 +1,34 @@
-Return-Path: <joao.jfgoncalves@gmail.com>
+Return-Path: <rpurdie@rpsys.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21D06E00A54; Mon,  5 Nov 2018 07:44:55 -0800 (PST)
+	id E13CEE00C1B; Wed,  7 Nov 2018 00:49:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,KHOP_DYNAMIC
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (joao.jfgoncalves[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.177 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-Received: from mail-it1-f177.google.com (mail-it1-f177.google.com
-	[209.85.166.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37F6DE00A1A
-	for <yocto@yoctoproject.org>; Mon,  5 Nov 2018 07:44:53 -0800 (PST)
-Received: by mail-it1-f177.google.com with SMTP id w7-v6so13214708itd.1
-	for <yocto@yoctoproject.org>; Mon, 05 Nov 2018 07:44:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=tl/7/JCaxo8qlsuoy6uJCovl0lcROz70G3KMR+m3Jlw=;
-	b=jXRnLaMqvVwg2kIk1ztzR+breqJiOwklYOZngIyuXDa8gmqGPSnzRGvrSSEsVpfhm0
-	FfWntvqMhSIbeBgDu2KiA9cgZDcoe1Ifwgx7AhLlFEtXjtftxIdffmxZORJPvyq2+xos
-	UBFqIYv2jd24g5Kan8zkuXVMZOIX9hLRZRL5oSOEd0ISKet/X+y3DjbWwQGGhmoAHQYA
-	fGqL2vo4FoSDgnBGa7Oj0fdXA4V5tSfCIkF0ys5lT8tN6NWuYGFkMRdbOiLKHPuMW2WK
-	pqgjPZuqf884+6TPzqgkiQVzoQcBGIXgPgb6qfiA4UJ3z6P5575s5tDmnTytrxD+ja6t
-	C1gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=tl/7/JCaxo8qlsuoy6uJCovl0lcROz70G3KMR+m3Jlw=;
-	b=fttX0j6S5zOmSOLGmJkMYNz/N0vlv/nsMAVDvjWyDsr3ykLFn/ZL+5E0JgnycmqAM0
-	UQt0wfK4I7JOm1RZ8HjkbsbjyDqEntbRjV+O1xHinevfeFfADOCpR9OQevhZAuCwjZHA
-	eRmiRrY/VgNHZRf9vgbXZy/hUd0AFfHQRFL8e862oHbeORoEZkYLnJC0BQ0BPNjB+M0q
-	FV+H9AAHELG+556o0R6cZOANSTRIKw0hkbzrc2QgNIDVAiCShZ8sEGMrUR70tI59Vre0
-	2teedNHTTdKdgslyhGGu4g4ruyVp3MZ1LzDPX61o3AFsJEI+K/OgvrUYKoJaEEpH5Sw1
-	GxXA==
-X-Gm-Message-State: AGRZ1gKhLH+dQSIrZUxaeS2my+m1uWKuGtu9ficJzG7hdcoL/hD4nFMQ
-	N0oVtVRrBSYO2qYBNsD2Q0AyyqVu2/MbT0mh4dI=
-X-Google-Smtp-Source: AJdET5c4RUOTJ2t0dMhalvasfWBASoOdlwGsqz3ifyWxCbbmV+ImGfs2sMoZ5k1t4IhmZaj/5l1MX8xyGR1b7l34rg0=
-X-Received: by 2002:a24:4052:: with SMTP id
-	n79-v6mr6396297ita.99.1541432692492; 
-	Mon, 05 Nov 2018 07:44:52 -0800 (PST)
-MIME-Version: 1.0
-References: <CAHXEV+nwa30psLMVwg-B+-KHouLG9LOEW_oYsaFhYjTWuBB+xw@mail.gmail.com>
-	<CAMKF1sq0ynsF_-=VsJnmJS3huRouDbQRPAJ_9Z0T4uofHikvFA@mail.gmail.com>
-In-Reply-To: <CAMKF1sq0ynsF_-=VsJnmJS3huRouDbQRPAJ_9Z0T4uofHikvFA@mail.gmail.com>
-From: =?UTF-8?B?Sm/Do28gR29uw6dhbHZlcw==?= <joao.jfgoncalves@gmail.com>
-Date: Mon, 5 Nov 2018 15:44:40 +0000
-Message-ID: <CAHXEV+nsaKzsABQUnimHxRoQ_oQK4KaSALnJt-YGss=tTzTF1w@mail.gmail.com>
-To: raj.khem@gmail.com
+	*  0.7 KHOP_DYNAMIC Relay looks like a dynamic address
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADCF0E00C18
+	for <yocto@yoctoproject.org>; Wed,  7 Nov 2018 00:49:54 -0800 (PST)
+Received: from hex ([192.168.3.34]) (authenticated bits=0)
+	by dan.rpsys.net (8.15.2/8.15.2/Debian-10) with ESMTPSA id
+	wA78nlAI018641
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NOT); Wed, 7 Nov 2018 08:49:48 GMT
+Message-ID: <834c1ee7298d63a5f8c5ab42686d31919a2e2e9b.camel@rpsys.net>
+From: Richard Purdie <rpurdie@rpsys.net>
+To: Chen Qi <Qi.Chen@windriver.com>, yocto@yoctoproject.org
+Date: Wed, 07 Nov 2018 08:49:47 +0000
+In-Reply-To: <1541138580-15360-1-git-send-email-Qi.Chen@windriver.com>
+References: <1541138580-15360-1-git-send-email-Qi.Chen@windriver.com>
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+X-Virus-Scanned: clamav-milter 0.100.2 at dan
+X-Virus-Status: Clean
 X-Mailman-Approved-At: Wed, 07 Nov 2018 02:14:04 -0800
-Cc: yocto@yoctoproject.org
-Subject: Re: Install a pre-build ipkg package at build time
+Subject: Re: [patchtest-oe][PATCH] test_patch_cve.py: fix cve tag checking logic
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,182 +40,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Nov 2018 15:44:55 -0000
-Content-Type: multipart/alternative; boundary="00000000000014cd830579ecc420"
-
---00000000000014cd830579ecc420
+X-List-Received-Date: Wed, 07 Nov 2018 08:49:56 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-Thanks, I didn't know that I could point SRC_URI to a ipk just like a
-regullar tar file.
-I did that, pointed to our ipk server and it could download the ipk file.
-However during the do_rootfs task i got the following error:
+On Fri, 2018-11-02 at 14:03 +0800, Chen Qi wrote:
+> The current logic for checking cve tag is not correct. It errors
+> out if and only if the patch contains a line which begins with
+> CVE-YYYY-XXXX and contains nothing else.
+> 
+> It will not error out if the patch contains no CVE information, nor
+> will it error out if the patch contains line like below.
+> 
+> 'Fix CVE-YYYY-XXXX'
+> 
+> I can see that the cve tag checking logic tries to ensure the patch
+> contains something like 'CVE: CVE-YYYY-XXXX'. So fix to implement
+> such
+> logic.
+> 
+> Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
+> ---
+>  tests/test_patch_cve.py | 15 ++++++++-------
+>  1 file changed, 8 insertions(+), 7 deletions(-)
 
-ERROR: kelvin-base-image-2.8b4-r0 do_rootfs: Error executing a python
-function in exec_python_func() autogenerated:
+Thanks, good find.
 
-The stack trace of python calls that resulted in this exception/failure was=
-:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-     0001:
- *** 0002:license_create_manifest(d)
-     0003:
-File:
-'/home/joao/imx6/build/../layers/openembedded-core/meta/classes/license.bbc=
-lass',
-lineno: 48, function: license_create_manifest
-     0044:    pkg_dic =3D {}
-     0045:    for pkg in sorted(image_list_installed_packages(d)):
-     0046:        pkg_info =3D os.path.join(d.getVar('PKGDATA_DIR'),
-     0047:                                'runtime-reverse', pkg)
- *** 0048:        pkg_name =3D os.path.basename(os.readlink(pkg_info))
-     0049:
-     0050:        pkg_dic[pkg_name] =3D
-oe.packagedata.read_pkgdatafile(pkg_info)
-     0051:        if not "LICENSE" in pkg_dic[pkg_name].keys():
-     0052:            pkg_lic_name =3D "LICENSE_" + pkg_name
-Exception: FileNotFoundError: [Errno 2] No such file or directory:
-'/home/joao/imx6/build/tmp-glibc/pkgdata/apalis-imx6/runtime-reverse/python=
-36'
+I've merged this and I believe the instance should have it applied now
+too.
 
-ERROR: kelvin-base-image-2.8b4-r0 do_rootfs: Function failed:
-license_create_manifest
-ERROR: Logfile of failure stored in:
-/home/joao/imx6/build/tmp-glibc/work/apalis_imx6-angstrom-linux-gnueabi/kel=
-vin-base-image/2.8b4-r0/temp/log.do_rootfs.1303
-ERROR: Task
-(/home/joao/imx6/layers/meta-kelvin/recipes-images/images/kelvin-base-image=
-_0.2.bb:do_rootfs)
-failed with exit code '1'
+Cheers,
 
-I used "CLOSED" as license, i also tried put a MIT license the on "file:.."
-of the recipe. I got the same error. Maybe it is because I do not have a
-license file inside the ipk package, I'll test put a license file in a
-package and try to install it.
-I'am using a set of layers provided by our board vendor and they are using
-rocko version.
+Richard
 
-I could "hide" the problem by putting  the whole body of
-the license_create_manifest function of the license.bbclass inside a
-try-except block.
-It worked but that's not a solution.
 
-Khem Raj <raj.khem@gmail.com> escreveu no dia sexta, 2/11/2018 =C3=A0(s) 16=
-:50:
-
-> On Fri, Nov 2, 2018 at 8:48 AM Jo=C3=A3o Gon=C3=A7alves
-> <joao.jfgoncalves@gmail.com> wrote:
-> >
-> > Hi all,
-> >
-> > I have some pre-build opkg packages and I need to install them on my
-> target image, is this possible?
-> > I tried to use the bin_package class but I didn't found any example, I'=
-m
-> also not sure if it can be used this way or just to install the data file=
-s
-> extracted from the ipkg file. Anyway I also tried to extract the binary
-> files form the package and use the bin_package class to install them, but
-> with no success.
-> >
-> > Does anyone have any example of this?
-> >
->
-> once you point SRC_URI to your ipk
-> inherit bin_package should be then able to help in repackaging it
-> you have to post specific errors so we can see what might be going on
->
-> > Thanks,
-> > Jo=C3=A3o Gon=C3=A7alves
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->
-
---00000000000014cd830579ecc420
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Thanks, I didn&#39;t kno=
-w that I could point SRC_URI to a ipk just like a regullar tar file.<div>I =
-did that, pointed to our ipk server and it could download the ipk file.<br>=
-<div>However during the do_rootfs task i got the following error:</div></di=
-v><div><br></div><div><div>ERROR: kelvin-base-image-2.8b4-r0 do_rootfs: Err=
-or executing a python function in exec_python_func() autogenerated:</div><d=
-iv><br></div><div>The stack trace of python calls that resulted in this exc=
-eption/failure was:</div><div>File: &#39;exec_python_func() autogenerated&#=
-39;, lineno: 2, function: &lt;module&gt;</div><div>=C2=A0 =C2=A0 =C2=A00001=
-:</div><div>=C2=A0*** 0002:license_create_manifest(d)</div><div>=C2=A0 =C2=
-=A0 =C2=A00003:</div><div>File: &#39;/home/joao/imx6/build/../layers/openem=
-bedded-core/meta/classes/license.bbclass&#39;, lineno: 48, function: licens=
-e_create_manifest</div><div>=C2=A0 =C2=A0 =C2=A00044:=C2=A0 =C2=A0 pkg_dic =
-=3D {}</div><div>=C2=A0 =C2=A0 =C2=A00045:=C2=A0 =C2=A0 for pkg in sorted(i=
-mage_list_installed_packages(d)):</div><div>=C2=A0 =C2=A0 =C2=A00046:=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 pkg_info =3D os.path.join(d.getVar(&#39;PKGDATA_DIR&#=
-39;),</div><div>=C2=A0 =C2=A0 =C2=A00047:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 &#39;runtime-reverse&#39;, pkg)</div><div>=C2=A0*** 0048:=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 pkg_name =3D os.path.basename(os.readlink(pkg_info))</div><di=
-v>=C2=A0 =C2=A0 =C2=A00049:</div><div>=C2=A0 =C2=A0 =C2=A00050:=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 pkg_dic[pkg_name] =3D oe.packagedata.read_pkgdatafile(pkg=
-_info)</div><div>=C2=A0 =C2=A0 =C2=A00051:=C2=A0 =C2=A0 =C2=A0 =C2=A0 if no=
-t &quot;LICENSE&quot; in pkg_dic[pkg_name].keys():</div><div>=C2=A0 =C2=A0 =
-=C2=A00052:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pkg_lic_name =3D &quot=
-;LICENSE_&quot; + pkg_name</div><div>Exception: FileNotFoundError: [Errno 2=
-] No such file or directory: &#39;/home/joao/imx6/build/tmp-glibc/pkgdata/a=
-palis-imx6/runtime-reverse/python36&#39;</div><div><br></div><div>ERROR: ke=
-lvin-base-image-2.8b4-r0 do_rootfs: Function failed: license_create_manifes=
-t</div><div>ERROR: Logfile of failure stored in: /home/joao/imx6/build/tmp-=
-glibc/work/apalis_imx6-angstrom-linux-gnueabi/kelvin-base-image/2.8b4-r0/te=
-mp/log.do_rootfs.1303</div><div>ERROR: Task (/home/joao/imx6/layers/meta-ke=
-lvin/recipes-images/images/kelvin-base-image_0.2.bb:do_rootfs) failed with =
-exit code &#39;1&#39;</div></div><div><br></div><div>I used &quot;CLOSED&qu=
-ot; as license, i also tried put a MIT license the on &quot;file:..&quot; o=
-f the recipe. I got the same error. Maybe it is because I do not have a lic=
-ense file inside the ipk package, I&#39;ll test put a license file in a pac=
-kage and try to install it.</div><div>I&#39;am using a set of layers provid=
-ed by our board vendor and they are using rocko version.</div><div><br></di=
-v><div>I could &quot;hide&quot; the problem by putting=C2=A0 the whole body=
- of the=C2=A0license_create_manifest function of the license.bbclass inside=
- a try-except block.</div><div>It worked but that&#39;s not a solution.</di=
-v></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">Khem Ra=
-j &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; escr=
-eveu no dia sexta, 2/11/2018 =C3=A0(s) 16:50:<br></div><blockquote class=3D=
-"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding=
--left:1ex">On Fri, Nov 2, 2018 at 8:48 AM Jo=C3=A3o Gon=C3=A7alves<br>
-&lt;<a href=3D"mailto:joao.jfgoncalves@gmail.com" target=3D"_blank">joao.jf=
-goncalves@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hi all,<br>
-&gt;<br>
-&gt; I have some pre-build opkg packages and I need to install them on my t=
-arget image, is this possible?<br>
-&gt; I tried to use the bin_package class but I didn&#39;t found any exampl=
-e, I&#39;m also not sure if it can be used this way or just to install the =
-data files extracted from the ipkg file. Anyway I also tried to extract the=
- binary files form the package and use the bin_package class to install the=
-m, but with no success.<br>
-&gt;<br>
-&gt; Does anyone have any example of this?<br>
-&gt;<br>
-<br>
-once you point SRC_URI to your ipk<br>
-inherit bin_package should be then able to help in repackaging it<br>
-you have to post specific errors so we can see what might be going on<br>
-<br>
-&gt; Thanks,<br>
-&gt; Jo=C3=A3o Gon=C3=A7alves<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
-</blockquote></div>
-
---00000000000014cd830579ecc420--
