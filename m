@@ -1,39 +1,49 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <anuj.mittal@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D6548E00AB9; Tue,  6 Nov 2018 14:42:05 -0800 (PST)
+	id 2A960E00BFD; Tue,  6 Nov 2018 16:58:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57A72E0097C
-	for <yocto@yoctoproject.org>; Tue,  6 Nov 2018 14:42:04 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id wA6Mg2aj013511
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 6 Nov 2018 14:42:02 -0800 (PST)
-Received: from server.local (128.224.22.207) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.408.0;
-	Tue, 6 Nov 2018 14:42:01 -0800
-To: akuster808 <akuster808@gmail.com>, Khem Raj <raj.khem@gmail.com>
-References: <1541541389-21595-1-git-send-email-akuster@mvista.com>
-	<CAMKF1srk1bH1zbYy_r2yKErnNz0OWQOgOgt1YJwLdjK2Xr8fXQ@mail.gmail.com>
-	<c59e74fd-868c-225a-3799-eaf5000f59af@gmail.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <1a3be576-c416-2c6a-6b0d-674b61a1363c@windriver.com>
-Date: Tue, 6 Nov 2018 17:42:00 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:52.0)
-	Gecko/20100101 Thunderbird/52.9.1
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC3FBE00A6B
+	for <yocto@yoctoproject.org>; Tue,  6 Nov 2018 16:58:30 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	06 Nov 2018 16:58:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.54,473,1534834800"; d="scan'208";a="84520628"
+Received: from pgsmsx102.gar.corp.intel.com ([10.221.44.80])
+	by fmsmga008.fm.intel.com with ESMTP; 06 Nov 2018 16:58:29 -0800
+Received: from pgsmsx109.gar.corp.intel.com (10.221.44.109) by
+	PGSMSX102.gar.corp.intel.com (10.221.44.80) with Microsoft SMTP Server
+	(TLS) id 14.3.408.0; Wed, 7 Nov 2018 08:58:28 +0800
+Received: from pgsmsx105.gar.corp.intel.com ([169.254.4.31]) by
+	PGSMSX109.gar.corp.intel.com ([169.254.14.66]) with mapi id
+	14.03.0415.000; Wed, 7 Nov 2018 08:58:28 +0800
+From: "Mittal, Anuj" <anuj.mittal@intel.com>
+To: "dimtass@gmail.com" <dimtass@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [poky] bug #8729 grub bootloader
+Thread-Index: AQHUdeNS7OE3XxN2LE6bXzBoME+BzqVC+BiA
+Date: Wed, 7 Nov 2018 00:58:27 +0000
+Message-ID: <edf7530b3fc884d7fed1ee02a5745ba73fa71d18.camel@intel.com>
+References: <CACKFPN2VuVTRr=eMqoDxsTjH8YcDcSBzgRs2Y07XD20mm2d66Q@mail.gmail.com>
+In-Reply-To: <CACKFPN2VuVTRr=eMqoDxsTjH8YcDcSBzgRs2Y07XD20mm2d66Q@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.221.21.114]
 MIME-Version: 1.0
-In-Reply-To: <c59e74fd-868c-225a-3799-eaf5000f59af@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [yocto-kernel-cache][v4.4][PATCH] kver: bump to v4.4.147
+Subject: Re: [poky] bug #8729 grub bootloader
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,53 +55,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Nov 2018 22:42:05 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Wed, 07 Nov 2018 00:58:33 -0000
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <0137F6034C1A6949A926EC25C1C66511@intel.com>
+Content-Transfer-Encoding: base64
 
-On 2018-11-06 5:10 PM, akuster808 wrote:
-> 
-> On 11/6/18 2:05 PM, Khem Raj wrote:
->> On Tue, Nov 6, 2018 at 1:57 PM Armin Kuster<akuster808@gmail.com>  wrote:
->>> Signed-off-by: Armin Kuster<akuster@mvista.com>
->>> ---
->>>   kver | 2 +-
->>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/kver b/kver
->>> index 7b008cd..5ccc572 100644
->>> --- a/kver
->>> +++ b/kver
->>> @@ -1 +1 @@
->>> -v4.4.141
->>> +v4.4.147
->> why not 4.4.162
-> 
-> because linux-yocto-4.4 
-> <http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-4.4/> is not at 
-> 4.4.162. I am just trying to use the latest in that kernel repo.
-
-Did you want .162 ? I have a whole set of -stable updates staged
-here, but haven't pushed anything since releases are imminent.
-
-But in the case of 4.4, I could lift my freeze, given that the kernel
-recipe isn't active in master, hence the release schedule is
-different.
-
-Bruce
-
-> 
-> 
-> - armin
-> 
->>> --
->>> 2.7.4
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
-
+SGkgRGltaXRyaXMNCg0KT24gVHVlLCAyMDE4LTExLTA2IGF0IDE2OjEyICswMTAwLCBEaW1pdHJp
+cyBUYXNzb3BvdWxvcyB3cm90ZToNCj4gDQo+IEluIHRoaXMgY2FzZSB0aGUgYm9vdGltZy1lZmku
+cHkgc2NyaXB0IGNyZWF0ZXMgdGhlIGV4dHJhIHBhcnRpdGlvbiwgYQ0KPiBkaWZmZXJlbnQgZ3J1
+Yi5jZmcgYW5kIGFsc28NCj4gZWRpdHMgdGhlIC9ldGMvZnN0YWIgYW5kIG1vdW50cyB0aGlzIHBh
+cnRpdGlvbiBvdmVyIC9ib290IGFuZA0KPiB0aGVyZWZvcmUgdmlydHVhbC9ncnViLWJvb3Rjb25m
+DQo+IGJlY29tZXMgdW51c2VkLg0KPiANCj4gVGhpcyByYWlzZXMgdGhlIGZvbGxvd2luZyBxdWVz
+dGlvbnM6DQo+IC0gV2h5IHRoZXJlIGFyZSB0d28gZGlmZmVyZW50IGZhY2lsaXRpZXMgdG8gYWNo
+aWV2ZSB0aGUgc2FtZSB0aGluZz8NCj4gLSBXaHkgdGhlIHNlY29uZCBvdmVycmlkZXMgdGhlIGZp
+cnN0IG9uZSwgaW5zdGVhZCBvZiBzaGFyaW5nIHRoZSBzYW1lDQo+IGZpbGVzPw0KPiAtIEhvdyB0
+byBwcm9jZWVkIGZyb20gbm93IG9uPw0KPiANCg0KSSB0aGluayB0aGlzIG5lZWRlZCAtLWV4Y2x1
+ZGUtcGF0aCBpbiB3a3MgdG8gYmUgdXNlZCB0byB0YWtlIGVmZmVjdC4NClBsZWFzZSBzZWU6DQoN
+Cg0KaHR0cDovL2xpc3RzLm9wZW5lbWJlZGRlZC5vcmcvcGlwZXJtYWlsL29wZW5lbWJlZGRlZC1j
+b3JlLzIwMTgtRmVicnVhcnkvMTQ3ODM3Lmh0bWwNCg0KYW5kIGJ1ZzoNCg0KaHR0cHM6Ly9idWd6
+aWxsYS55b2N0b3Byb2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDA3Mw0K
 
