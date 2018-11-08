@@ -1,62 +1,29 @@
-Return-Path: <mhalstead@linuxfoundation.org>
+Return-Path: <pokybuild@debian8.yocto.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13334E00A54; Thu,  8 Nov 2018 06:36:02 -0800 (PST)
+	id DE03DE00720; Thu,  8 Nov 2018 10:21:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00, DKIM_ADSP_NXDOMAIN, 
+	RDNS_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.66 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com
-	[209.85.128.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9BD8E00720
-	for <yocto@yoctoproject.org>; Thu,  8 Nov 2018 06:36:00 -0800 (PST)
-Received: by mail-wm1-f66.google.com with SMTP id f19-v6so1693402wmb.0
-	for <yocto@yoctoproject.org>; Thu, 08 Nov 2018 06:36:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=from:to:cc:subject:date:message-id;
-	bh=YCFqzs22kiITnqvLAkfmhhD2fTrw84xaKAZxvplsIRg=;
-	b=LJPhePV+J/vpl3CN5aaeBd6R1ExqROow4Hr9HPUQcVUj4mTEJ1/tIWpzwEaGwIJR9j
-	F7OX4NQ5tTmyGmdktgUO28A59/exEVqcwq00qwZUywcdrcfaOj5rT4nVX92HZOf43aSC
-	DFtTZT1jWgTco+6LTA65sEMPhhAfhH2siwscs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=YCFqzs22kiITnqvLAkfmhhD2fTrw84xaKAZxvplsIRg=;
-	b=DNN8fAz8zRDStB4BwM2/fL1gEbxHGmzvaRcy1ORZCEus35/S1jS2wbYdyMQb7/K7Si
-	gvbH/6vSn1ThQentFdvTUOemr1TICb3KxmAw68mwJogNa+jn7OtzsuLxZQ4kLkYOIi7s
-	n5iUIknkyaE3habxkdPmFlSXuEgbCxyxD/9n/EQ41BmD/uDZ/+eZ9MvIXZKXAaikwmdi
-	vmlftH2sOXo3PH2uXh5kVFSYa2Ssxmt9QouOpaew/iXgdkG7O8uySsz8tdxcdnj0DQ20
-	mH6kP0V2Qvsz2KZgGfLNX7vhIaIyIWAXVQJycNvxKtRL5A0uOlyARDknNvYq3Dd2GYJu
-	57Tg==
-X-Gm-Message-State: AGRZ1gJKkWp2Aa2JEZHlkhksd/AgfNaclmfMBuIehHId8W8ued4rgwMQ
-	pg1yoR26Jj3pfCPxWMGrbuHhR/3vTkmMnA==
-X-Google-Smtp-Source: AJdET5c/cogLMgUFm/MGd/FDzjMpygWDDTYm4E1OBHppfOGtXm4xrXM7D1MlbbLSZrojSX8WPGbEQw==
-X-Received: by 2002:a1c:a905:: with SMTP id s5-v6mr1422599wme.75.1541687759298;
-	Thu, 08 Nov 2018 06:35:59 -0800 (PST)
-Received: from yct-lpt.int.rpsys.net (5751f4a1.skybroadband.com.
-	[87.81.244.161]) by smtp.gmail.com with ESMTPSA id
-	y2-v6sm8651486wrh.53.2018.11.08.06.35.58
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Thu, 08 Nov 2018 06:35:58 -0800 (PST)
-From: Michael Halstead <mhalstead@linuxfoundation.org>
+	* 0.9 DKIM_ADSP_NXDOMAIN No valid author signature and domain not in
+	DNS
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from debian8-ty-1.yocto.io (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE31BE00720;
+	Thu,  8 Nov 2018 10:21:14 -0800 (PST)
+Received: by debian8-ty-1.yocto.io (Postfix, from userid 6000)
+	id A72E91A009E; Thu,  8 Nov 2018 18:21:14 +0000 (UTC)
 To: yocto@yoctoproject.org
-Date: Thu,  8 Nov 2018 06:35:51 -0800
-Message-Id: <20181108143551.6056-1-mhalstead@linuxfoundation.org>
-X-Mailer: git-send-email 2.17.2
-Cc: rpurdie@linuxfoundation.org
-Subject: [yocto-autobuilder-helper][PATCH] config.json: Remove sstate, add oe-selftest, and replace beaglebone
+Message-Id: <20181108182114.A72E91A009E@debian8-ty-1.yocto.io>
+Date: Thu,  8 Nov 2018 18:21:14 +0000 (UTC)
+From: pokybuild@debian8.yocto.io (Poky Build User)
+X-Mailman-Approved-At: Thu, 08 Nov 2018 10:23:17 -0800
+Cc: otavio@ossystems.com.br, joshua.g.lock@intel.com,
+	rebecca.swee.fun.chang@intel.com, aaron.chun.yew.chan@intel.com
+Subject: QA notification for completed autobuilder build (yocto-2.4.4.rc1)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,54 +35,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Nov 2018 14:36:02 -0000
+X-List-Received-Date: Thu, 08 Nov 2018 18:21:16 -0000
 
-We want to build everything without sstate during bringup testing.
-Adding oe-selftest will catch errors other targets wouldn't.  We just want to
-test on qemuarm64 and qemux86-64 architectures so remove beaglebone as an
-unneeded third. This takes advantage of the template as well.
 
-Signed-off-by: Michael Halstead <mhalstead@linuxfoundation.org>
----
- config.json | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+A build flagged for QA (yocto-2.4.4.rc1) was completed on the autobuilder and is available at:
 
-diff --git a/config.json b/config.json
-index 2945155..abc5928 100644
---- a/config.json
-+++ b/config.json
-@@ -146,16 +146,27 @@
-             }
-         },
-        "nightly-bringup" : {
--            "MACHINE" : "qemuarm",
-             "TEMPLATE" : "nightly-arch",
-+            "SSTATEDIR" : [],
-+            "MACHINE" : "qemuarm64",
-             "step2" : {
--                "MACHINE" : "beaglebone-yocto",
--                "BBTARGETS" : "core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato-sdk-ptest core-image-sato:do_populate_sdk"
-+                "MACHINE" : "qemux86-64"
-             },
-             "step5" : {
-                 "MACHINE" : "qemux86-64",
-                 "SDKMACHINE" : "x86_64",
-                 "BBTARGETS" : "core-image-minimal:do_populate_sdk_ext core-image-sato:do_populate_sdk"
-+            },
-+            "step6" : {
-+                "MACHINE" : "qemux86-64",
-+                "SDKMACHINE" : "x86_64",
-+                "PACKAGE_CLASSES" : "package_rpm",
-+                "PRSERV" : false,
-+                "extravars" : [
-+                    "RPM_GPG_SIGN_CHUNK = '1'"
-+                ],
-+                "EXTRACMDS" : ["checkvnc; DISPLAY=:1 oe-selftest --skip-tests distrodata.Distrodata.test_checkpkg -j 15"],
-+                "ADDLAYER" : ["${BUILDDIR}/../meta-selftest"]
-             }
-         },
-         "nightly-mips" : {
--- 
-2.17.2
 
+    https://autobuilder.yocto.io/pub/releases/yocto-2.4.4.rc1
+
+
+Build hash information: 
+
+bitbake: 8bd16328a9332c57b03198826e22b48fadcd21d9
+eclipse-poky-neon: 6d0598b1d567a07bd20c5c99c65a404844a8f8c3
+eclipse-poky-oxygen: b9eef4c1b3e14cfc0c81c902c3e52d864dfc3a76
+meta-gplv2: f875c60ecd6f30793b80a431a2423c4b98e51548
+meta-intel: 4ee8ff5ebe0657bd376d7a79703a21ec070ee779
+meta-mingw: 1cc620b38f6f30a0bdd181783297998fe073387f
+meta-qt3: 8ef7261a331e0869a0461ab2fb44e39980cedc02
+meta-qt4: e290738759ef3f39c9e079eaa9b606a62107e5ba
+oecore: 8a2c177c7dad5c838b3c6abd3088a2bc3896a6a3
+poky: 940da2e688cc6ae3cc3d95842033c3e51bd9fe29
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
 
