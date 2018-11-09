@@ -1,62 +1,92 @@
-Return-Path: <anibal.limon@linaro.org>
+Return-Path: <alexandretm@amotus.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63BDEE00A10; Fri,  9 Nov 2018 12:59:18 -0800 (PST)
+	id 4275FE00C18; Fri,  9 Nov 2018 13:43:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.52 listed in list.dnswl.org]
+	*      [104.47.42.124 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com
-	[209.85.217.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87200E0053F
-	for <yocto@yoctoproject.org>; Fri,  9 Nov 2018 12:59:16 -0800 (PST)
-Received: by mail-vs1-f52.google.com with SMTP id 124so1817889vsp.12
-	for <yocto@yoctoproject.org>; Fri, 09 Nov 2018 12:59:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=iERnXdF8d31YtvgFSJ4whPn/YMbHZcVyHVFv8bX3rAc=;
-	b=F3ui5crbYY0Wh8RD8U9dTaRL51mvWB7evqu/IQGBkhX7QJq78XkzDj4KjPnQjhDZH0
-	PhLJxUZRF/0nLyHQiIzjAbNLKeQMOrW4fmp6EQyKV9TkGic2HqmU/5tp/9ZWhlrFrEVP
-	aBSzGB7gCV2c5E8jzsZHFE2UPS0Ddcxnmr4qo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=iERnXdF8d31YtvgFSJ4whPn/YMbHZcVyHVFv8bX3rAc=;
-	b=Mh/SsFHtCKTQ1/CsmwQulmc2p+6UYFbfJa4dBSkXDAVdNrOr5d9ZiHoqhV9xq/wfES
-	ytGIY/R7oyRX1ruFOTU5ReItliL0HwBUbvsbOddfrP051V7O/0LV7SaGtxey7tC1kvzj
-	YFmBqGz4zr6rvA7E2pVAJI6LaP/gq8zTxBFtPMI8XK2UVLOLNP4kbnx8TJfVKEBDbhqs
-	6AmEkVoj8WK269Vl8EkzMqBG6kQV8xc+/jd0b1y2S81w3hfj0gBNqkYSwYxyOnu/2oII
-	B0Q3r/8m2XMN4/FI89hj0kUFbsMbI+tUr61cV3pgOTUry232NxczB2Ealmj7Sp4531rV
-	EvtQ==
-X-Gm-Message-State: AGRZ1gKUZ8Vfy8zHK7zwsP5XX/5U/DH5q3W8DxOJ1Xi4i1KvLx8Ym/Cn
-	kVZ7oiXJEAhB02kUcC74tIizeD1LUXAu/xJnhXHsRA==
-X-Google-Smtp-Source: AJdET5fCP+3Kb/E7QLD+mYGA64F2wSwRLzh02dr6KhywCYxSCZqrdPw4R/nDzBn27Lwzhc2cDz1Gr4blxrKPV0LjyUU=
-X-Received: by 2002:a67:1d03:: with SMTP id d3mr1136574vsd.154.1541797155784; 
-	Fri, 09 Nov 2018 12:59:15 -0800 (PST)
+X-Greylist: delayed 1102 seconds by postgrey-1.32 at yocto-www;
+	Fri, 09 Nov 2018 13:43:30 PST
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com
+	(mail-by2nam03on0124.outbound.protection.outlook.com [104.47.42.124])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1765E00A0A
+	for <yocto@yoctoproject.org>; Fri,  9 Nov 2018 13:43:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=amotus.onmicrosoft.com; s=selector1-amotus-ca;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=WoEZqaJc101KJsqvzI8Pt1blim4abjF6RAfR/pMAbVc=;
+	b=a4y6vSuziqziAzcN6d4JpKrk1H+A0xu8m77zdE3Mg/udsPl2Z9fG8VuKlsQOr6FH6W1kBugr9uH/K73ldlN5gsivsCPWk5p/CKeXXdJOpY4ZA4GHiLEjAHUiUAw58TeBUNe/tXCgIx1xHEOtJ4N8v3jrmRKbEXjJnBEYnSbolnA=
+Received: from BN6PR1101MB2356.namprd11.prod.outlook.com (10.173.203.137) by
+	BN6PR1101MB2355.namprd11.prod.outlook.com (10.173.203.136) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1294.20; Fri, 9 Nov 2018 21:11:00 +0000
+Received: from BN6PR1101MB2356.namprd11.prod.outlook.com
+	([fe80::9cf2:e26d:8f5e:685d]) by
+	BN6PR1101MB2356.namprd11.prod.outlook.com
+	([fe80::9cf2:e26d:8f5e:685d%4]) with mapi id 15.20.1294.034;
+	Fri, 9 Nov 2018 21:11:00 +0000
+From: =?iso-8859-1?Q?Mathieu_Alexandre-T=E9treault?= <alexandretm@amotus.ca>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Issue using UEFI with rootfs(squashfs) generated as a wic
+Thread-Index: AQHUeGxHYyh9AhCRt0WuqAVWG75nlQ==
+Date: Fri, 9 Nov 2018 21:10:59 +0000
+Message-ID: <BN6PR1101MB23560D97352B710A1B9A37C2B2C60@BN6PR1101MB2356.namprd11.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=alexandretm@amotus.ca; 
+x-originating-ip: [24.37.194.182]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; BN6PR1101MB2355;
+	6:eXB+WZyeILkizlOR0B/AMxjOAEwlQV+IkwhRAXAKN462b+lrwoSuzNa4vxj6L7yNkbvMCXG2SU1alc6ljBtB1vZ5FUeETlPRW9yMb1aCRh0JL8OwJYWwt2A+Nk5VV1P02EYXu8yvedJ7wb7MDomuScrag3W5kvPPppOq/tvt3ocwsXmOTMbd8Ez6HPDFUvF76xcDy3pCza6miN4eUcYnmyV9lGM6j0pRcN+VXxr9qrYBzB0OtJWCROtFEHyw8TNlKDhzfx3Nsscidz4SEYryrQFe58aXtF6zlyW3dGRME6yNHqicQiRZ4dm6Nsd+5jCd86xxMeH6HdaXduvyuunLD73oXooiLTH2w2WfJn3/rRiErTvV5ylraoqlODzKnWsBdBJJXsYQvqIj0xLjAbf1U9mdEaEU3Qme9t+Kzq8+HikkGjXi9qBDc4HXJDCKFaPaE9xTpSAR0R2ml83SUYR+UA==;
+	5:lHZH1TYn5wqBYab4TanzTa3Z8UgEbmZ6ahfUTHYHq/rVIfpmYWMlDF7APFR3GI8RXKMSB+RhWlxDA7Dg2dHjT7CaLF93T2g+NYuD9WoB4wX4WqJfz0ROnf97Wuyd8NywZjIFZKmb4vXV+ZjBmMZWVg7spJiHLJvidYrPMdzVQFA=;
+	7:g/fKt1Yh6+0E7a+oUii4ig1cy/SMQfrojp471mPnSZPPvlHxpAqqmcwlaiVOCNntu9UzIsJBxf93l9ZP31XZrVnoYXeO0zzzmwqtby5JLxqQ+d+rj6d6X9AMHBXDm5PtgIROCKhJeYxcW0O+Fj7rgQ==
+x-ms-exchange-antispam-srfa-diagnostics: SOS;
+x-ms-office365-filtering-correlation-id: 8c8fdb4a-e987-41fd-3672-08d64687d966
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600074)(711020)(2017052603328)(7153060)(7193020);
+	SRVR:BN6PR1101MB2355; 
+x-ms-traffictypediagnostic: BN6PR1101MB2355:
+x-microsoft-antispam-prvs: <BN6PR1101MB2355DB228D0A77CD0D7651DDB2C60@BN6PR1101MB2355.namprd11.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-ms-exchange-senderadcheck: 1
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040522)(2401047)(8121501046)(5005006)(93006095)(93001095)(10201501046)(3231382)(944501410)(52105095)(3002001)(148016)(149066)(150057)(6041310)(20161123564045)(20161123562045)(2016111802025)(20161123560045)(20161123558120)(6043046)(201708071742011)(7699051)(76991095);
+	SRVR:BN6PR1101MB2355; BCL:0; PCL:0; RULEID:;
+	SRVR:BN6PR1101MB2355; 
+x-forefront-prvs: 08512C5403
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(366004)(39840400004)(396003)(376002)(346002)(136003)(199004)(189003)(3846002)(2501003)(6116002)(186003)(26005)(6916009)(316002)(508600001)(7736002)(53936002)(7696005)(97736004)(2906002)(14454004)(5660300001)(86362001)(6506007)(74316002)(33656002)(102836004)(6606003)(486006)(256004)(2351001)(71200400001)(55016002)(54896002)(5640700003)(68736007)(71190400001)(81156014)(81166006)(19627405001)(6436002)(99286004)(1730700003)(105586002)(74482002)(66066001)(25786009)(106356001)(476003)(8936002)(9686003)(2900100001)(8676002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6PR1101MB2355;
+	H:BN6PR1101MB2356.namprd11.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: amotus.ca does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: gajaLXlZKc6nlZmgFVgwmioifDrd5Lui/sLrEf1nHIvMhPqi1baTGlFhObI1L/6CVI0Qj2BcRJiOGi4glCstpzYcMZvyO1oxJFn3PFnmBRWBDciLSmhOlZTbH09f+RrAEeqh37wnFkjfmRJA6CDrE+oW/yhvVmy5hxKaqRtt2qceF8bZc59zCuvl5MFiEb5mCddu+DJhFJmiw1lo5h3LkYvz5PrzWhXOeH5YeDjjtDZ/21DfzHfPwnFYTa1dqxc/Mv02Ci0Eit7AVvweHnb7YkHg/i8IR7w6l1LPgw+uLxGQOeMmyIIeIVlm85GV2c3b67E6ITaCyV3Fs0m02KjU0AaOElJv1TEEEjsO0uq15WQ=
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-References: <CA+_Aqivq7XN8Q_fu43EFwhWs377vduoR9D5gVGBqS7gJgzKxNw@mail.gmail.com>
-	<446afa92a1440c604e2074ab70f506fe3e46a0d5.camel@linuxfoundation.org>
-	<AA9B40170ABA1047B45E714CB2B866B7069B514E@PGSMSX103.gar.corp.intel.com>
-In-Reply-To: <AA9B40170ABA1047B45E714CB2B866B7069B514E@PGSMSX103.gar.corp.intel.com>
-From: Anibal Limon <anibal.limon@linaro.org>
-Date: Fri, 9 Nov 2018 14:59:04 -0600
-Message-ID: <CA+_Aqis35mG154_4Jzhk_o0txdri=otjfqq678nBSpRNEx-xUA@mail.gmail.com>
-To: aaron.chun.yew.chan@intel.com
-Cc: yocto@yoctoproject.org, timothy.t.orling@intel.com
-Subject: Re: [RFC] Yocto Autobuilder and LAVA Integration
+X-OriginatorOrg: amotus.ca
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8c8fdb4a-e987-41fd-3672-08d64687d966
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Nov 2018 21:10:59.9816 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eb1fb47f-d32e-4ec7-8cf5-9c91bb29593c
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1101MB2355
+Subject: Issue using UEFI with rootfs(squashfs) generated as a wic
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,507 +98,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Nov 2018 20:59:18 -0000
-Content-Type: multipart/alternative; boundary="000000000000c96282057a419f06"
+X-List-Received-Date: Fri, 09 Nov 2018 21:43:32 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR1101MB23560D97352B710A1B9A37C2B2C60BN6PR1101MB2356_"
 
---000000000000c96282057a419f06
-Content-Type: text/plain; charset="UTF-8"
+--_000_BN6PR1101MB23560D97352B710A1B9A37C2B2C60BN6PR1101MB2356_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, 8 Nov 2018 at 20:49, Chan, Aaron Chun Yew <
-aaron.chun.yew.chan@intel.com> wrote:
-
-> Hi Anibal/RP,
->
-> > In order to do a distributed Boards testing the Yocto Autobuilder
-> > needs to publish in some place accessible the artifacts (image,
-> > kernel, etc) to flash/boot the board and the test suite expected to
-> > execute.
->
-> [Reply] That is correct, since Linaro have this in place to use
-> https://archive.validation.linaro.org/directories/ and I have look into
-> this as well, we can leverage on this
->               but I am up for any suggestion you might have. So the idea
-> here is that we have a placeholder to store the publish artifacts remotel=
-y
-> and deploy using
->               native curl command with token access. Then based on your
-> LAVA job definitions we can instruct LAVA to source the images via https.
->               Having said that, the deploy stage in LAVA must have some
-> capabilities to read a token file in the LAVA job defintion and pick up t=
-he
-> binaries from public repo (git LFS).
->
->               In order for Board Distributed Tests to happen, there are 2
-> items in my wish lists
->
->               1. Public hosting of binary repository - with access contro=
-l
->
-
-For publish the artifacts (Rootfs, Kernel image, Test suite), if there is a
-public build a token isn't needed like targeting some boards already
-commercialized and can be published anywhere like in
-http://downloads.yoctoproject.org.
+Hello,
 
 
->               2. Ease Handshaking between two(2) different systems CI
-> (e.g. Jenkins/Autobuilder) with LAVA
->                    a. Exchange build property (metadata) - includes
-> hardware info, system info
->
+The platform is running on a i7 CPU and is using UEFI to load the kernel. T=
+he image that we are currently building is loading
 
-You can add meta-data to a LAVA test definition.
-
-                   b. Test reporting results
->
-
-For notify job results LAVA test definition support the notify block in
-test jobs or you can poll the API using for both needs a LAVA token.
+out of a USB stick wish was working until I switched the rootfs type to squ=
+ashfs.
 
 
-
->
-> > I created a simple LAVA test definition that allows run testimage
-> > (oe-test runtime) in my own LAVA LAB, is very simplistic only has a
-> > regex to parse results and uses lava-target-ip and lava-echo-ipv4 to
-> > get target and server IP addresses.
->
-> [Reply] Although the lava test shell have these capabilities to use
-> lava-target-ip or/and lava-echo-ipv4 this only works within LAVA scope, t=
-he
-> way we retrieve the Ipv4
->               address is reading the logs from LAVA thru XML-RPC and grep
-> the pattern matching string which contains IP even before the HW get
-> initialize entirely then parse
->               IP back to the Yocto Autobuilder.
->
->
-> http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder-helper/tree/l=
-ava/trigger-lava-jobs
+Systemd-boot is as the boot loader.
 
 
-Yes, that's my idea the Yocto Autobuilder dosen't need to know about
-particular network configuration in tha LAVA server for execute the job, in
-this way the Yocto Autobuilder can communicate with LAVA server to retrieve
-the testing job results, and in a case that needs to debug the board LAVA
-support hacking sessions to allow connect to the board outside the LAB.
-
-https://validation.linaro.org/static/docs/v2/hacking-session.html
+So far what I noticed is the boot.conf use the options LABEL=3Dboot but the=
+ kernel is unable to read a LABEL from the squashfs.
 
 
->
->
-> > Some of the tasks, I identified,  (if is accepted)
-> >
-> > - Yocto-aubuilder-helper: Implement/adapt to cover this new behavior ,
-> > move the EXTRA_PLAIN_CMDS to a class.
-> > - Poky/OE: Review/fix test-export or provide other mechanism to export
-> > the test suite. > - Poky/OE: Review/fix test-export or provide other
-> mechanism to export
-> > the test suite.
->
-> [Reply] I would like to understand further what is the implementation her=
-e
-> and how it addresses the problems that we have today. I believe in the
-> past, Tim has tried
->               to enable testexport and transfer the testexport into the
-> DUT but it was not very successful and we found breakage.
->
+On the other hand I tried to adding "root=3D/dev/sdb2 rootfstype=3Dsquashfs=
+" to the boot.conf using a systemd-bootconf_%.bbappend
 
-Agree, The testexport functionality is on not usage so there are some bugs
-on it.
+Using the define ROOT, APPEND_append gave me no result, I always end up wit=
+h options LABEL=3Dboot  rootwait console=3Dtty0
 
 
->
-> > -  Yocto-aubuilder-helper: Create a better approach to re-use LAVA job
-> > templates across boards.
->
-> [Reply] I couldn=E2=80=99t be more supportive on this having a common LAV=
-A job
-> template across boards but I would like to stress this, we don=E2=80=99t =
-exactly
-> know how
->               community will define their own LAVA job definition,
-> therefore what I had in mind as per today is to create a placeholde where
-> LAVA job templates
->               can be define and other boards/community can reuse the same
-> template if it fits their use cases. In general the templates we have tod=
-ay
-> are
->               created to fit into Yocto Project use cases.
->
+I also tried  overridding build_efi_cfg() from meta/classes/systemd-boot-cf=
+g.bbclass from my systemd-bootconf_%.bbappend and copy my files, but it alw=
+ays
 
-Agree, I not mean a single template but a manner to add easily new LAVA
-templates for boards in Yocto Autobuilder, this involves some base LAVA job
-templates and a set of scripts to
-generate the final template, like you are doing. For example there are
-different ways to deploy a board but the login process is the same for
-core-image's (login as root wo passwd).
+get over-written some how.
+
+
+Any advise would be greatly appreciated on how to modify the boot.conf file=
+ to allow loading a squashfs.
+
 
 Cheers,
-Anibal
 
 
->
-> Lastly  there are some works I've done on provisiong QEMU on LAVA
-> sourceing from Yocto Project public releases, I am looking at where we ca=
-n
-> upstream this
-> https://github.com/lab-github/yoctoproject-lava-test-shell
->
-> Thanks!
->
-> Cheers,
-> Aaron Chan
-> Open Source Technology Center Intel
->
-> -----Original Message-----
-> From: richard.purdie@linuxfoundation.org [mailto:
-> richard.purdie@linuxfoundation.org]
-> Sent: Thursday, November 8, 2018 6:45 AM
-> To: Anibal Limon <anibal.limon@linaro.org>; yocto@yoctoproject.org
-> Cc: Nicolas Dechesne <nicolas.dechesne@linaro.org>; Chan, Aaron Chun Yew =
-<
-> aaron.chun.yew.chan@intel.com>
-> Subject: Re: [RFC] Yocto Autobuilder and LAVA Integration
->
-> Hi Anibal,
->
-> On Wed, 2018-11-07 at 16:25 -0600, Anibal Limon wrote:
-> > We know the need to execute OE testimage over real HW not only QEMU,
-> >
-> > I'm aware that currently there is an implementation on the Yocto
-> > Autobuilder Helper , this initial implementation looks pretty well
-> > separating parts for template generation [1] and the script to send
-> > jobs to LAVA [2].
-> >
-> > There are some limitations.
-> >
-> > - Requires that the boards are accessible trough SSH (same network?)
-> > by the Autobuilder, so no distributed LAB testing.
-> > - LAVA doesn't know about test results because the execution is
-> > injected via SSH.
-> >
-> > In order to do a distributed Boards testing the Yocto Autobuilder
-> > needs to publish in some place accessible the artifacts (image,
-> > kernel, etc) to flash/boot the board and the test suite expected to
-> > execute.
-> >
-> > Currently there is a functionality called testexport (not too
-> > used/maintained) that allows you to export the test suite.
->
-> I continue to have mixed feelings about testexport. It adds complexity bu=
-t
-> I'm not sure its actually worth it.
->
-> An alternative would be to specify a set of commit hashes for the
-> configuration under test (poky or oe-core+bitbake and any other layers),
-> then have LAVA obtain those pieces and run the tests directly.
->
-> Its worth considering that we already now have two difference pieces of
-> code trying to package up the build system/layers, eSDK and testexport.
-> Ideally if we had some kind of standardised layer setup/configuration
-> approach we'd then just have a config file to share, then the tools could
-> recreate the environment and allow the tests to be run there without
-> testexport. Layer-setup is itself a harder subject but for example the
-> layer setup code in autobuilder-helper could easily be reused as things
-> stand today...
->
-> In fact the more I think about it, the more I think we may want to do it
-> that way...
->
-> > I created a simple LAVA test definition that allows run testimage
-> > (oe-test runtime) in my own LAVA LAB, is very simplistic only has a
-> > regex to parse results and uses lava-target-ip and lava-echo-ipv4 to
-> > get target and server IP addresses.
-> >
-> > In this way the LAVA server handles all the testing and finally the
-> > Yocto Autobuilder can get/poll an event to know what was the actual
-> > result of the job and the job could be send to different LAVA LAB's.
->
-> That does sound useful and is likely a way we could end up doing this.
-> Its probably worth highlighting that we now have a way of summarising the
-> result of the test in the form of the json file the tests all generate.
-> Sharing that back to the Yocto autobuilder would give us the test results
-> we need.
->
-> > Some of the tasks, I identified,  (if is accepted)
-> >
-> > - Yocto-aubuilder-helper: Implement/adapt to cover this new behavior ,
-> > move the EXTRA_PLAIN_CMDS to a class.
-> > -  Yocto-aubuilder-helper: Create a better approach to re-use LAVA job
-> > templates across boards.
-> > - Poky/OE: Review/fix test-export or provide other mechanism to export
-> > the test suite.
->
-> I think some of these are also independent of each other and good things
-> to work on regardless...
->
-> I would like to hear feedback from those at Intel using LAVA who submitte=
-d
-> the existing code.
->
-> Cheers,
->
-> Richard
->
->
+Mathieu
 
---000000000000c96282057a419f06
-Content-Type: text/html; charset="UTF-8"
+--_000_BN6PR1101MB23560D97352B710A1B9A37C2B2C60BN6PR1101MB2356_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br><br><div class=3D"gmail_quote"><div d=
-ir=3D"ltr">On Thu, 8 Nov 2018 at 20:49, Chan, Aaron Chun Yew &lt;<a href=3D=
-"mailto:aaron.chun.yew.chan@intel.com">aaron.chun.yew.chan@intel.com</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Anib=
-al/RP,<br>
-<br>
-&gt; In order to do a distributed Boards testing the Yocto Autobuilder <br>
-&gt; needs to publish in some place accessible the artifacts (image, <br>
-&gt; kernel, etc) to flash/boot the board and the test suite expected to <b=
-r>
-&gt; execute.<br>
-<br>
-[Reply] That is correct, since Linaro have this in place to use <a href=3D"=
-https://archive.validation.linaro.org/directories/" rel=3D"noreferrer" targ=
-et=3D"_blank">https://archive.validation.linaro.org/directories/</a> and I =
-have look into this as well, we can leverage on this <br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 but I am up for any sugges=
-tion you might have. So the idea here is that we have a placeholder to stor=
-e the publish artifacts remotely and deploy using <br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 native curl command with t=
-oken access. Then based on your LAVA job definitions we can instruct LAVA t=
-o source the images via https.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Having said that, the depl=
-oy stage in LAVA must have some capabilities to read a token file in the LA=
-VA job defintion and pick up the binaries from public repo (git LFS).<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 In order for Board Distrib=
-uted Tests to happen, there are 2 items in my wish lists<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 1. Public hosting of binar=
-y repository - with access control <br></blockquote><div><br></div><div>For=
- publish the artifacts (Rootfs, Kernel image, Test suite), if there is a pu=
-blic build a token isn&#39;t needed like targeting some boards already comm=
-ercialized and can be published anywhere like in <a href=3D"http://download=
-s.yoctoproject.org">http://downloads.yoctoproject.org</a>.</div><div>=C2=A0=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex">
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 2. Ease Handshaking betwee=
-n two(2) different systems CI (e.g. Jenkins/Autobuilder) with LAVA <br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0a. Exc=
-hange build property (metadata) - includes hardware info, system info <br><=
-/blockquote><div><br></div><div>You can add meta-data to a LAVA test defini=
-tion.=C2=A0</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex">
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0b. Tes=
-t reporting results<br></blockquote><div>=C2=A0</div><div>For notify job re=
-sults LAVA test definition support the notify block in test jobs or you can=
- poll the API using for both needs a LAVA token.</div><div><br></div><div>=
-=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-&gt; I created a simple LAVA test definition that allows run testimage <br>
-&gt; (oe-test runtime) in my own LAVA LAB, is very simplistic only has a <b=
-r>
-&gt; regex to parse results and uses lava-target-ip and lava-echo-ipv4 to <=
-br>
-&gt; get target and server IP addresses.<br>
-<br>
-[Reply] Although the lava test shell have these capabilities to use lava-ta=
-rget-ip or/and lava-echo-ipv4 this only works within LAVA scope, the way we=
- retrieve the Ipv4<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 address is reading the log=
-s from LAVA thru XML-RPC and grep the pattern matching string which contain=
-s IP even before the HW get initialize entirely then parse<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 IP back to the Yocto Autob=
-uilder. <br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"http://git.yoct=
-oproject.org/cgit/cgit.cgi/yocto-autobuilder-helper/tree/lava/trigger-lava-=
-jobs" rel=3D"noreferrer" target=3D"_blank">http://git.yoctoproject.org/cgit=
-/cgit.cgi/yocto-autobuilder-helper/tree/lava/trigger-lava-jobs</a></blockqu=
-ote><div><br></div><div>Yes, that&#39;s my idea the Yocto Autobuilder dosen=
-&#39;t need to know about particular network configuration in tha LAVA serv=
-er for execute the job, in this way the Yocto Autobuilder can communicate w=
-ith LAVA server to retrieve the testing job results, and in a case that nee=
-ds to debug the board LAVA support hacking sessions to allow connect to the=
- board outside the LAB.</div><div><br></div><div><a href=3D"https://validat=
-ion.linaro.org/static/docs/v2/hacking-session.html">https://validation.lina=
-ro.org/static/docs/v2/hacking-session.html</a><br></div><div>=C2=A0</div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex"><br>
-<br>
-&gt; Some of the tasks, I identified,=C2=A0 (if is accepted)<br>
-&gt; <br>
-&gt; - Yocto-aubuilder-helper: Implement/adapt to cover this new behavior ,=
- <br>
-&gt; move the EXTRA_PLAIN_CMDS to a class.<br>
-&gt; - Poky/OE: Review/fix test-export or provide other mechanism to export=
- <br>
-&gt; the test suite. &gt; - Poky/OE: Review/fix test-export or provide othe=
-r mechanism to export <br>
-&gt; the test suite.<br>
-<br>
-[Reply] I would like to understand further what is the implementation here =
-and how it addresses the problems that we have today. I believe in the past=
-, Tim has tried<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 to enable testexport and t=
-ransfer the testexport into the DUT but it was not very successful and we f=
-ound breakage.<br></blockquote><div><br></div><div>Agree, The testexport fu=
-nctionality is on not usage so there are some bugs on it.</div><div>=C2=A0<=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-&gt; -=C2=A0 Yocto-aubuilder-helper: Create a better approach to re-use LAV=
-A job <br>
-&gt; templates across boards.<br>
-<br>
-[Reply] I couldn=E2=80=99t be more supportive on this having a common LAVA =
-job template across boards but I would like to stress this, we don=E2=80=99=
-t exactly know how <br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 community will define thei=
-r own LAVA job definition, therefore what I had in mind as per today is to =
-create a placeholde where LAVA job templates <br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 can be define and other bo=
-ards/community can reuse the same template if it fits their use cases. In g=
-eneral the templates we have today are <br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 created to fit into Yocto =
-Project use cases.=C2=A0 <br></blockquote><div><br></div>Agree, I not mean =
-a single template but a manner to add easily new LAVA templates for boards =
-in Yocto Autobuilder, this involves some base LAVA job templates and a set =
-of scripts to</div><div class=3D"gmail_quote">generate the final template, =
-like you are doing. For example there are different ways to deploy a board =
-but the login process is the same for core-image&#39;s (login as root wo pa=
-sswd).<br><div><br></div><div>Cheers,</div><div>Anibal</div><div>=C2=A0</di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-Lastly=C2=A0 there are some works I&#39;ve done on provisiong QEMU on LAVA =
-sourceing from Yocto Project public releases, I am looking at where we can =
-upstream this<br>
-<a href=3D"https://github.com/lab-github/yoctoproject-lava-test-shell" rel=
-=3D"noreferrer" target=3D"_blank">https://github.com/lab-github/yoctoprojec=
-t-lava-test-shell</a><br>
-<br>
-Thanks!<br>
-<br>
-Cheers,<br>
-Aaron Chan<br>
-Open Source Technology Center Intel <br>
-<br>
------Original Message-----<br>
-From: <a href=3D"mailto:richard.purdie@linuxfoundation.org" target=3D"_blan=
-k">richard.purdie@linuxfoundation.org</a> [mailto:<a href=3D"mailto:richard=
-.purdie@linuxfoundation.org" target=3D"_blank">richard.purdie@linuxfoundati=
-on.org</a>] <br>
-Sent: Thursday, November 8, 2018 6:45 AM<br>
-To: Anibal Limon &lt;<a href=3D"mailto:anibal.limon@linaro.org" target=3D"_=
-blank">anibal.limon@linaro.org</a>&gt;; <a href=3D"mailto:yocto@yoctoprojec=
-t.org" target=3D"_blank">yocto@yoctoproject.org</a><br>
-Cc: Nicolas Dechesne &lt;<a href=3D"mailto:nicolas.dechesne@linaro.org" tar=
-get=3D"_blank">nicolas.dechesne@linaro.org</a>&gt;; Chan, Aaron Chun Yew &l=
-t;<a href=3D"mailto:aaron.chun.yew.chan@intel.com" target=3D"_blank">aaron.=
-chun.yew.chan@intel.com</a>&gt;<br>
-Subject: Re: [RFC] Yocto Autobuilder and LAVA Integration<br>
-<br>
-Hi Anibal,<br>
-<br>
-On Wed, 2018-11-07 at 16:25 -0600, Anibal Limon wrote:<br>
-&gt; We know the need to execute OE testimage over real HW not only QEMU,<b=
-r>
-&gt; <br>
-&gt; I&#39;m aware that currently there is an implementation on the Yocto <=
-br>
-&gt; Autobuilder Helper , this initial implementation looks pretty well <br=
->
-&gt; separating parts for template generation [1] and the script to send <b=
-r>
-&gt; jobs to LAVA [2].<br>
-&gt; <br>
-&gt; There are some limitations.<br>
-&gt; <br>
-&gt; - Requires that the boards are accessible trough SSH (same network?) <=
-br>
-&gt; by the Autobuilder, so no distributed LAB testing.<br>
-&gt; - LAVA doesn&#39;t know about test results because the execution is <b=
-r>
-&gt; injected via SSH.<br>
-&gt; <br>
-&gt; In order to do a distributed Boards testing the Yocto Autobuilder <br>
-&gt; needs to publish in some place accessible the artifacts (image, <br>
-&gt; kernel, etc) to flash/boot the board and the test suite expected to <b=
-r>
-&gt; execute.<br>
-&gt; <br>
-&gt; Currently there is a functionality called testexport (not too<br>
-&gt; used/maintained) that allows you to export the test suite.<br>
-<br>
-I continue to have mixed feelings about testexport. It adds complexity but =
-I&#39;m not sure its actually worth it.<br>
-<br>
-An alternative would be to specify a set of commit hashes for the configura=
-tion under test (poky or oe-core+bitbake and any other layers), then have L=
-AVA obtain those pieces and run the tests directly.<br>
-<br>
-Its worth considering that we already now have two difference pieces of cod=
-e trying to package up the build system/layers, eSDK and testexport.<br>
-Ideally if we had some kind of standardised layer setup/configuration appro=
-ach we&#39;d then just have a config file to share, then the tools could re=
-create the environment and allow the tests to be run there without testexpo=
-rt. Layer-setup is itself a harder subject but for example the layer setup =
-code in autobuilder-helper could easily be reused as things stand today...<=
-br>
-<br>
-In fact the more I think about it, the more I think we may want to do it th=
-at way...<br>
-<br>
-&gt; I created a simple LAVA test definition that allows run testimage <br>
-&gt; (oe-test runtime) in my own LAVA LAB, is very simplistic only has a <b=
-r>
-&gt; regex to parse results and uses lava-target-ip and lava-echo-ipv4 to <=
-br>
-&gt; get target and server IP addresses.<br>
-&gt; <br>
-&gt; In this way the LAVA server handles all the testing and finally the <b=
-r>
-&gt; Yocto Autobuilder can get/poll an event to know what was the actual <b=
-r>
-&gt; result of the job and the job could be send to different LAVA LAB&#39;=
-s.<br>
-<br>
-That does sound useful and is likely a way we could end up doing this.<br>
-Its probably worth highlighting that we now have a way of summarising the r=
-esult of the test in the form of the json file the tests all generate. Shar=
-ing that back to the Yocto autobuilder would give us the test results we ne=
-ed.<br>
-<br>
-&gt; Some of the tasks, I identified,=C2=A0 (if is accepted)<br>
-&gt; <br>
-&gt; - Yocto-aubuilder-helper: Implement/adapt to cover this new behavior ,=
- <br>
-&gt; move the EXTRA_PLAIN_CMDS to a class.<br>
-&gt; -=C2=A0 Yocto-aubuilder-helper: Create a better approach to re-use LAV=
-A job <br>
-&gt; templates across boards.<br>
-&gt; - Poky/OE: Review/fix test-export or provide other mechanism to export=
- <br>
-&gt; the test suite.<br>
-<br>
-I think some of these are also independent of each other and good things to=
- work on regardless...<br>
-<br>
-I would like to hear feedback from those at Intel using LAVA who submitted =
-the existing code.<br>
-<br>
-Cheers,<br>
-<br>
-Richard<br>
-<br>
-</blockquote></div></div></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">Hello,</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">The platform is running on a i7 C=
+PU and is using UEFI to load the kernel. The image that we are currently bu=
+ilding is loading</p>
+<p style=3D"margin-top:0;margin-bottom:0">out of a USB stick wish was worki=
+ng until I switched the rootfs type to squashfs.</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">Systemd-boot is as the boot loade=
+r.</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">So far what I noticed is the boot=
+.conf use the options LABEL=3Dboot but the kernel&nbsp;is unable to read a =
+LABEL from the squashfs.</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">On the other hand I tried to addi=
+ng &quot;root=3D/dev/sdb2 rootfstype=3Dsquashfs&quot; to the boot.conf usin=
+g a systemd-bootconf_%.bbappend</p>
+<p style=3D"margin-top:0;margin-bottom:0">Using the define ROOT, APPEND_app=
+end gave me no result, I always end up with options LABEL=3Dboot&nbsp; root=
+wait console=3Dtty0</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">I also tried&nbsp; overridding bu=
+ild_efi_cfg() from meta/classes/systemd-boot-cfg.bbclass from my systemd-bo=
+otconf_%.bbappend and copy my files, but it always</p>
+<p style=3D"margin-top:0;margin-bottom:0">get over-written some how.</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">Any advise would be greatly appre=
+ciated on how to modify the boot.conf file to allow loading a squashfs.</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">Cheers,</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">Mathieu</p>
+<p style=3D"margin-top:0;margin-bottom:0"></p>
+</div>
+</body>
+</html>
 
---000000000000c96282057a419f06--
+--_000_BN6PR1101MB23560D97352B710A1B9A37C2B2C60BN6PR1101MB2356_--
