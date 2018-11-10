@@ -1,92 +1,126 @@
-Return-Path: <alexandretm@amotus.ca>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4275FE00C18; Fri,  9 Nov 2018 13:43:32 -0800 (PST)
+	id C2B97E00C18; Fri,  9 Nov 2018 18:44:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [104.47.42.124 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.215.176 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 1102 seconds by postgrey-1.32 at yocto-www;
-	Fri, 09 Nov 2018 13:43:30 PST
-Received: from NAM03-BY2-obe.outbound.protection.outlook.com
-	(mail-by2nam03on0124.outbound.protection.outlook.com [104.47.42.124])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1765E00A0A
-	for <yocto@yoctoproject.org>; Fri,  9 Nov 2018 13:43:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=amotus.onmicrosoft.com; s=selector1-amotus-ca;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=WoEZqaJc101KJsqvzI8Pt1blim4abjF6RAfR/pMAbVc=;
-	b=a4y6vSuziqziAzcN6d4JpKrk1H+A0xu8m77zdE3Mg/udsPl2Z9fG8VuKlsQOr6FH6W1kBugr9uH/K73ldlN5gsivsCPWk5p/CKeXXdJOpY4ZA4GHiLEjAHUiUAw58TeBUNe/tXCgIx1xHEOtJ4N8v3jrmRKbEXjJnBEYnSbolnA=
-Received: from BN6PR1101MB2356.namprd11.prod.outlook.com (10.173.203.137) by
-	BN6PR1101MB2355.namprd11.prod.outlook.com (10.173.203.136) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1294.20; Fri, 9 Nov 2018 21:11:00 +0000
-Received: from BN6PR1101MB2356.namprd11.prod.outlook.com
-	([fe80::9cf2:e26d:8f5e:685d]) by
-	BN6PR1101MB2356.namprd11.prod.outlook.com
-	([fe80::9cf2:e26d:8f5e:685d%4]) with mapi id 15.20.1294.034;
-	Fri, 9 Nov 2018 21:11:00 +0000
-From: =?iso-8859-1?Q?Mathieu_Alexandre-T=E9treault?= <alexandretm@amotus.ca>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Issue using UEFI with rootfs(squashfs) generated as a wic
-Thread-Index: AQHUeGxHYyh9AhCRt0WuqAVWG75nlQ==
-Date: Fri, 9 Nov 2018 21:10:59 +0000
-Message-ID: <BN6PR1101MB23560D97352B710A1B9A37C2B2C60@BN6PR1101MB2356.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=alexandretm@amotus.ca; 
-x-originating-ip: [24.37.194.182]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; BN6PR1101MB2355;
-	6:eXB+WZyeILkizlOR0B/AMxjOAEwlQV+IkwhRAXAKN462b+lrwoSuzNa4vxj6L7yNkbvMCXG2SU1alc6ljBtB1vZ5FUeETlPRW9yMb1aCRh0JL8OwJYWwt2A+Nk5VV1P02EYXu8yvedJ7wb7MDomuScrag3W5kvPPppOq/tvt3ocwsXmOTMbd8Ez6HPDFUvF76xcDy3pCza6miN4eUcYnmyV9lGM6j0pRcN+VXxr9qrYBzB0OtJWCROtFEHyw8TNlKDhzfx3Nsscidz4SEYryrQFe58aXtF6zlyW3dGRME6yNHqicQiRZ4dm6Nsd+5jCd86xxMeH6HdaXduvyuunLD73oXooiLTH2w2WfJn3/rRiErTvV5ylraoqlODzKnWsBdBJJXsYQvqIj0xLjAbf1U9mdEaEU3Qme9t+Kzq8+HikkGjXi9qBDc4HXJDCKFaPaE9xTpSAR0R2ml83SUYR+UA==;
-	5:lHZH1TYn5wqBYab4TanzTa3Z8UgEbmZ6ahfUTHYHq/rVIfpmYWMlDF7APFR3GI8RXKMSB+RhWlxDA7Dg2dHjT7CaLF93T2g+NYuD9WoB4wX4WqJfz0ROnf97Wuyd8NywZjIFZKmb4vXV+ZjBmMZWVg7spJiHLJvidYrPMdzVQFA=;
-	7:g/fKt1Yh6+0E7a+oUii4ig1cy/SMQfrojp471mPnSZPPvlHxpAqqmcwlaiVOCNntu9UzIsJBxf93l9ZP31XZrVnoYXeO0zzzmwqtby5JLxqQ+d+rj6d6X9AMHBXDm5PtgIROCKhJeYxcW0O+Fj7rgQ==
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: 8c8fdb4a-e987-41fd-3672-08d64687d966
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600074)(711020)(2017052603328)(7153060)(7193020);
-	SRVR:BN6PR1101MB2355; 
-x-ms-traffictypediagnostic: BN6PR1101MB2355:
-x-microsoft-antispam-prvs: <BN6PR1101MB2355DB228D0A77CD0D7651DDB2C60@BN6PR1101MB2355.namprd11.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-ms-exchange-senderadcheck: 1
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(8121501046)(5005006)(93006095)(93001095)(10201501046)(3231382)(944501410)(52105095)(3002001)(148016)(149066)(150057)(6041310)(20161123564045)(20161123562045)(2016111802025)(20161123560045)(20161123558120)(6043046)(201708071742011)(7699051)(76991095);
-	SRVR:BN6PR1101MB2355; BCL:0; PCL:0; RULEID:;
-	SRVR:BN6PR1101MB2355; 
-x-forefront-prvs: 08512C5403
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(366004)(39840400004)(396003)(376002)(346002)(136003)(199004)(189003)(3846002)(2501003)(6116002)(186003)(26005)(6916009)(316002)(508600001)(7736002)(53936002)(7696005)(97736004)(2906002)(14454004)(5660300001)(86362001)(6506007)(74316002)(33656002)(102836004)(6606003)(486006)(256004)(2351001)(71200400001)(55016002)(54896002)(5640700003)(68736007)(71190400001)(81156014)(81166006)(19627405001)(6436002)(99286004)(1730700003)(105586002)(74482002)(66066001)(25786009)(106356001)(476003)(8936002)(9686003)(2900100001)(8676002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6PR1101MB2355;
-	H:BN6PR1101MB2356.namprd11.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amotus.ca does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: gajaLXlZKc6nlZmgFVgwmioifDrd5Lui/sLrEf1nHIvMhPqi1baTGlFhObI1L/6CVI0Qj2BcRJiOGi4glCstpzYcMZvyO1oxJFn3PFnmBRWBDciLSmhOlZTbH09f+RrAEeqh37wnFkjfmRJA6CDrE+oW/yhvVmy5hxKaqRtt2qceF8bZc59zCuvl5MFiEb5mCddu+DJhFJmiw1lo5h3LkYvz5PrzWhXOeH5YeDjjtDZ/21DfzHfPwnFYTa1dqxc/Mv02Ci0Eit7AVvweHnb7YkHg/i8IR7w6l1LPgw+uLxGQOeMmyIIeIVlm85GV2c3b67E6ITaCyV3Fs0m02KjU0AaOElJv1TEEEjsO0uq15WQ=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 958C1E00A0A
+	for <yocto@yoctoproject.org>; Fri,  9 Nov 2018 18:44:05 -0800 (PST)
+Received: by mail-pg1-f176.google.com with SMTP id 80so1637092pge.4
+	for <yocto@yoctoproject.org>; Fri, 09 Nov 2018 18:44:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=w1fTrSlma1+1X6oY4Xm9iua8uPGEnGOf3VMatLyu/Nc=;
+	b=DxbG3awBFKj4GoaaoP76iGU8XwvFYlYI0bX92T1IbJMXjR7FMwvlfHBCKKtopXRyEm
+	/0wXM+26IQKMDGqO13m2Sro9lAv1xN+6Cw3QS3zVDPKQEK6pbLx8o8uDv262jECs/49d
+	0NyP8OZbE8OqW+YTqEn9piPkCNfR6WyWd6T0JAbevkLMkIW64+VHuA6Lnr5UXptRS6nJ
+	3aFKluAgRdAMXsVdhz4CIOUusmLqwfb0xLPS7svhZfUTAMooNaNI1lu6X+t9X0nj/XXZ
+	XH558mgssVz8V8MXwC6TPz9Fyo7VOUota91ZSRYtfrFQqfBcX7XyIyvvKJ3wwb5BqOeq
+	QW+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-language;
+	bh=w1fTrSlma1+1X6oY4Xm9iua8uPGEnGOf3VMatLyu/Nc=;
+	b=NLNQav+/EeLyD/ji9clmN2fFTA+4eI2/WAIcJpG9vUg4vVFAUSAyuv8EKZ2xz+nycu
+	KCU8o38rTnKB5TIk51hD6E1QPlGyqa/KDLtT0aJlZmyBI8lDrT7lI2HvdM2pnAmGG6Mo
+	wsHKtOTgJL4GL5w7amuaQV9eoAVA3wjLGLJPlYcFAvoslVqYHSt8tkrfbltFGAGBtrZ3
+	HDqvAZJMW5/46vITqktn1j1hXna3d4P6tPOksrDgrOneCmlwR+hEJUyB3Wr7onNn2KLw
+	+/JgWlvPYAQE4IUOMuuwuo3CrO+w6GwHyog5Tj4Jkw5k51m5eVNGgtcEYiwN2CnF2+1N
+	9HRg==
+X-Gm-Message-State: AGRZ1gIACOFUHhoD6GpkupchL9a587dr2lWGEL7f0TXa7ZOVok0XSmDU
+	eegoNhQKaZSmPvBVyyQ36RA=
+X-Google-Smtp-Source: AJdET5fvmSzcAQHkQIOeT2kSCK3DQgEN/TwAl3X8Zi/gQPULXCVpUoOPj7+hsX0SLfZ6PknNbbn4Fg==
+X-Received: by 2002:a62:5982:: with SMTP id
+	k2-v6mr11205887pfj.180.1541817844975; 
+	Fri, 09 Nov 2018 18:44:04 -0800 (PST)
+Received: from ?IPv6:2601:202:4180:c33:d54:e739:cec5:49dd?
+	([2601:202:4180:c33:d54:e739:cec5:49dd])
+	by smtp.gmail.com with ESMTPSA id
+	o12-v6sm9702248pfh.20.2018.11.09.18.44.03
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 09 Nov 2018 18:44:03 -0800 (PST)
+To: "Jain, Sangeeta" <sangeeta.jain@intel.com>,
+	"Jolley, Stephen K" <stephen.k.jolley@intel.com>,
+	"Eggleton, Paul" <paul.eggleton@intel.com>,
+	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
+	"Graydon, Tracy" <tracy.graydon@intel.com>,
+	"Erway, Tracey M" <tracey.m.erway@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <015AB11D45F2C442929CB2765DAE738634CE695E@PGSMSX110.gar.corp.intel.com>
+From: akuster808 <akuster808@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+	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
+	8CS2NxU=
+Message-ID: <9f1410e1-841a-f21c-5428-a04959934bcf@gmail.com>
+Date: Fri, 9 Nov 2018 18:44:01 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
 MIME-Version: 1.0
-X-OriginatorOrg: amotus.ca
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c8fdb4a-e987-41fd-3672-08d64687d966
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Nov 2018 21:10:59.9816 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eb1fb47f-d32e-4ec7-8cf5-9c91bb29593c
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1101MB2355
-Subject: Issue using UEFI with rootfs(squashfs) generated as a wic
+In-Reply-To: <015AB11D45F2C442929CB2765DAE738634CE695E@PGSMSX110.gar.corp.intel.com>
+Cc: "Kirkiris, Nectar" <nectar.kirkiris@intel.com>
+Subject: Re: QA cycle report for 2.6 M4 RC1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -98,113 +132,464 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Nov 2018 21:43:32 -0000
-Content-Language: en-US
+X-List-Received-Date: Sat, 10 Nov 2018 02:44:06 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_BN6PR1101MB23560D97352B710A1B9A37C2B2C60BN6PR1101MB2356_"
+	boundary="------------9581D1196F9ED61DDB2CD30E"
+Content-Language: en-US
 
---_000_BN6PR1101MB23560D97352B710A1B9A37C2B2C60BN6PR1101MB2356_
-Content-Type: text/plain; charset="iso-8859-1"
+--------------9581D1196F9ED61DDB2CD30E
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+
+On 11/9/18 1:24 AM, Jain, Sangeeta wrote:
+>
+> =A0
+>
+> Hello All,
+>
+> =A0
+>
+Thank you to the Intel and Wind QA teams for performing these tasks.
 
 
-The platform is running on a i7 CPU and is using UEFI to load the kernel. T=
-he image that we are currently building is loading
-
-out of a USB stick wish was working until I switched the rootfs type to squ=
-ashfs.
+Will the Build appliance failure keep it from functioning ?
 
 
-Systemd-boot is as the boot loader.
+- armin
 
 
-So far what I noticed is the boot.conf use the options LABEL=3Dboot but the=
- kernel is unable to read a LABEL from the squashfs.
+> This is the full report for 2.6 M4 RC1:=A0
+>
+> https://wiki.yoctoproject.org/wiki/WW44_-_2018-10-30_-_Full_Test_Cycle_=
+2.6_M4_RC1
+>
+> =A0
+>
+> =A0
+>
+> *Summary*
+>
+> =A0
+>
+> All planned tests were executed.
+>
+> =A0
+>
+> Total Test Executed =96 3339
+>
+> Passed Test =96 3322
+>
+> Failed Test =96 7
+>
+> Blocked Test - 4
+>
+> =A0
+>
+> There were zero high priority defect.=A0 Team had found 4 new defects.
+> ptest for 1modulefailed in current release but passed in previous 2.6
+> M3 rc1.=A0=A0For Openssl no test was executed in current release as wel=
+l
+> as previous release. Present status of bugs for respective modules is
+> as =A0follows:
+> =A0
+> ModuleName =A0=96 =A0BugId =A0=96 =A0Present Status
+> =A0
+> gstreamer =A0=A0=A0=A0=A0=A0=96 12990=A0=A0=A0 =A0- New
+> =A0
+> Note: For busybox, pass rate is lower than previous release, but no
+> test cases which passes in previous release failed in current release.
+> Lower pass rate is due to new test cases added in this release. No bug
+> filed.
+>
+> =A0
+>
+> *Performance test*
+>
+> =A0
+>
+> =A0rootfs performance on ubuntu1604 upgraded by =A013.04% in 2.6 M3 RC1=
 
+> w.r.t. 2.6 M2 RC1
+>
+> =A0
+>
+> *QA-Hints=A0*
+>
+> *=A0*
+>
+> For performance test, in this release, QA team has performed analysis
+> on results from =93yocto-perf=94 mailing list, rather than on results f=
+rom
+> Linux foundation machines.
+>
+> Weobserved two major difference between machines used to run
+> Performance test by =93yocto-perf=94 mailing list and Linux Foundation
+> machines:
+>
+> =A0
+>
+> 1) Mailing List data points was not constant, sometime more, sometime l=
+ess
+>
+> 2) Mailing List used machine with different spec
+>
+> *=A0*
+>
+> *New Bugs*
+>
+> *=A0*
+>
+> [1] Bug=A012974 - =A0[2.6 M4 RC1] [OE-Core] Crosstap doesn't work on 2.=
+6
+> M4 RC1
+>
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12974
+>
+> =A0
+>
+> =A0[2] Bug=A0129
+> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12952>79=A0-=A0[2.=
+6 M4
+> rc1] test_recipetool_create_cmake failed on Fedora 27
+>
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12979
+>
+> *=A0*
+>
+> [3] Bug=A0129
+> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12946>91 - [2.6 M4=
 
-On the other hand I tried to adding "root=3D/dev/sdb2 rootfstype=3Dsquashfs=
-" to the boot.conf using a systemd-bootconf_%.bbappend
+> RC1][Build-Appliance] Bitbake build-appliance-image getting failed
+> during building image due to webkitgtk package
+>
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991
+>
+> =A0
+>
+> [4] Bug=A0129
+> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12954>92 - [2.6 M4=
 
-Using the define ROOT, APPEND_append gave me no result, I always end up wit=
-h options LABEL=3Dboot  rootwait console=3Dtty0
+> rc1] test_devtool_add_fetch_git failed on Fedora 27
+>
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12992
+>
+> =A0
+>
+> Thanks & Regards,
+>
+> Sangeeta Jain
+>
+> =A0
+>
+>
 
-
-I also tried  overridding build_efi_cfg() from meta/classes/systemd-boot-cf=
-g.bbclass from my systemd-bootconf_%.bbappend and copy my files, but it alw=
-ays
-
-get over-written some how.
-
-
-Any advise would be greatly appreciated on how to modify the boot.conf file=
- to allow loading a squashfs.
-
-
-Cheers,
-
-
-Mathieu
-
---_000_BN6PR1101MB23560D97352B710A1B9A37C2B2C60BN6PR1101MB2356_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--------------9581D1196F9ED61DDB2CD30E
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p style=3D"margin-top:0;margin-bottom:0">Hello,</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">The platform is running on a i7 C=
-PU and is using UEFI to load the kernel. The image that we are currently bu=
-ilding is loading</p>
-<p style=3D"margin-top:0;margin-bottom:0">out of a USB stick wish was worki=
-ng until I switched the rootfs type to squashfs.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Systemd-boot is as the boot loade=
-r.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">So far what I noticed is the boot=
-.conf use the options LABEL=3Dboot but the kernel&nbsp;is unable to read a =
-LABEL from the squashfs.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">On the other hand I tried to addi=
-ng &quot;root=3D/dev/sdb2 rootfstype=3Dsquashfs&quot; to the boot.conf usin=
-g a systemd-bootconf_%.bbappend</p>
-<p style=3D"margin-top:0;margin-bottom:0">Using the define ROOT, APPEND_app=
-end gave me no result, I always end up with options LABEL=3Dboot&nbsp; root=
-wait console=3Dtty0</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">I also tried&nbsp; overridding bu=
-ild_efi_cfg() from meta/classes/systemd-boot-cfg.bbclass from my systemd-bo=
-otconf_%.bbappend and copy my files, but it always</p>
-<p style=3D"margin-top:0;margin-bottom:0">get over-written some how.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Any advise would be greatly appre=
-ciated on how to modify the boot.conf file to allow loading a squashfs.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Cheers,</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Mathieu</p>
-<p style=3D"margin-top:0;margin-bottom:0"></p>
-</div>
-</body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 11/9/18 1:24 AM, Jain, Sangeeta
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:015AB11D45F2C442929CB2765DAE738634CE695E@PGSMSX110.gar.corp.intel.com">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";
+	mso-fareast-language:EN-MY;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle22
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle23
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle24
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle25
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle26
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle27
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle28
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal"><a name="_____replyseparator"
+            moz-do-not-send="true"></a><o:p> </o:p></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US">Hello All,<o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US"> </span></p>
+      </div>
+    </blockquote>
+    <p>Thank you to the Intel and Wind QA teams for performing these
+      tasks.</p>
+    <p><br>
+    </p>
+    <p>Will the Build appliance failure keep it from functioning ?</p>
+    <p><br>
+    </p>
+    <p>- armin<br>
+    </p>
+    <p><br>
+    </p>
+    <blockquote type="cite"
+cite="mid:015AB11D45F2C442929CB2765DAE738634CE695E@PGSMSX110.gar.corp.intel.com">
+      <div class="WordSection1">
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US"><o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US">This is the full report for
+            2.6 M4 RC1: 
+            <o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><a
+href="https://wiki.yoctoproject.org/wiki/WW44_-_2018-10-30_-_Full_Test_Cycle_2.6_M4_RC1"
+            moz-do-not-send="true"><span lang="EN-US">https://wiki.yoctoproject.org/wiki/WW44_-_2018-10-30_-_Full_Test_Cycle_2.6_M4_RC1</span></a><span
+            style="color:black" lang="EN-US"><o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US"><o:p> </o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US"> <o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><b><span
+              style="color:black" lang="EN-US">Summary<o:p></o:p></span></b></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US"> <o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US">All planned tests were
+            executed.<o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US"><o:p> </o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US">Total Test Executed – 3339<o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US">Passed Test – 3322<o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US">Failed Test – 7<o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US">Blocked Test - 4<o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US"> <o:p></o:p></span></p>
+        <pre style="background:white"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;color:black" lang="EN-US">There were zero high priority defect.  Team had found 4 new defects. <o:p></o:p></span></pre>
+        <pre style="background:white"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;color:black" lang="EN-US">ptest for 1</span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif"> module</span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;color:black" lang="EN-US"> failed in current release but passed in previous 2.6 M3 rc1.  For Openssl no test was executed in current release as well as previous release. </span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif" lang="EN-US">Present status of bugs for respective modules is as <span style="color:black"> </span>follows:<o:p></o:p></span></pre>
+        <pre style="background:white"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif" lang="EN-US"><o:p> </o:p></span></pre>
+      </div>
+    </blockquote>
+    <blockquote type="cite"
+cite="mid:015AB11D45F2C442929CB2765DAE738634CE695E@PGSMSX110.gar.corp.intel.com">
+      <div class="WordSection1">
+        <pre style="background:white"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif" lang="EN-US">ModuleName  –  BugId  –  Present Status<o:p></o:p></span></pre>
+        <pre style="background:white"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif" lang="EN-US"><o:p> </o:p></span></pre>
+        <pre style="background:white"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;color:black">gstreamer     </span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif"> <span style="color:black">  – 12990     - New</span></span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif" lang="EN-US"><o:p></o:p></span></pre>
+        <pre style="background:white"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif" lang="EN-US"><o:p> </o:p></span></pre>
+        <pre style="background:white"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif" lang="EN-US">Note: For busybox, pass rate is lower than previous release, but no test cases which passes in previous release failed in current release. Lower pass rate is due to new test cases added in this release. No bug filed.</span></pre>
+      </div>
+    </blockquote>
+    <blockquote type="cite"
+cite="mid:015AB11D45F2C442929CB2765DAE738634CE695E@PGSMSX110.gar.corp.intel.com">
+      <div class="WordSection1">
+        <pre style="background:white"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif" lang="EN-US"><o:p>
+</o:p></span></pre>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US"><o:p> </o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><b><span
+              lang="EN-US">Performance test</span></b><span lang="EN-US">
+            <o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US"><o:p> </o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US"> rootfs
+            performance on ubuntu1604 upgraded by  13.04% in 2.6 M3 RC1
+            w.r.t. 2.6 M2 RC1<o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US"><o:p> </o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><b><span
+              style="color:black" lang="EN-US">QA-Hints <o:p></o:p></span></b></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><b><span
+              style="color:black" lang="EN-US"><o:p> </o:p></span></b></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US">For performance test, in
+            this release, QA team has performed analysis on results from
+            “yocto-perf” mailing list, rather than on results from Linux
+            foundation machines.<o:p></o:p></span></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0cm;margin-bottom:2.0pt;margin-left:0cm;text-autospace:none"><span
+            style="color:black" lang="EN-US">We</span><span
+            style="color:black"> observed two major difference between
+            machines used to run Performance test by
+          </span><span style="color:black" lang="EN-US">“yocto-perf”
+            mailing list and </span>
+          <span style="color:black">Linux Foundation machines:<o:p></o:p></span></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0cm;margin-bottom:2.0pt;margin-left:0cm;text-autospace:none"><span
+            style="color:black"><o:p> </o:p></span></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0cm;margin-bottom:2.0pt;margin-left:0cm;text-autospace:none"><span
+            style="color:black">1) Mailing List data points was not
+            constant, sometime more, sometime less</span><span
+            lang="EN-US"><o:p></o:p></span></p>
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0cm;margin-bottom:2.0pt;margin-left:0cm;text-autospace:none"><span
+            style="color:black">2) Mailing List used machine with
+            different spec</span></p>
+      </div>
+    </blockquote>
+    <blockquote type="cite"
+cite="mid:015AB11D45F2C442929CB2765DAE738634CE695E@PGSMSX110.gar.corp.intel.com">
+      <div class="WordSection1">
+        <p class="MsoNormal"
+style="mso-margin-top-alt:2.0pt;margin-right:0cm;margin-bottom:2.0pt;margin-left:0cm;text-autospace:none"><span
+            lang="EN-US"><o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><b><span
+              style="color:black" lang="EN-US"><o:p> </o:p></span></b></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><b><span
+              style="color:black" lang="EN-US">New Bugs<o:p></o:p></span></b></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><b><span
+              style="color:black" lang="EN-US"><o:p> </o:p></span></b></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US">[1]
+          </span>Bug 12974 - <span style="color:black"> [2.6 M4 RC1]
+            [OE-Core] Crosstap doesn't work on 2.6 M4 RC1</span><span
+            style="color:black" lang="EN-US"><o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><a
+            href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12974"
+            moz-do-not-send="true"><span lang="EN-US">https://bugzilla.yoctoproject.org/show_bug.cgi?id=12974</span></a><span
+            lang="EN-US"><o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US"><o:p> </o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><span
+            style="color:black" lang="EN-US"> [2]
+          </span><a
+            href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12952"
+            moz-do-not-send="true"><span
+              style="color:black;text-decoration:none" lang="EN-US">Bug 129</span></a>79<span
+            style="color:black" lang="EN-US"> - [2.6 M4 rc1]
+            test_recipetool_create_cmake failed on Fedora 27<o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><a
+            href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12979"
+            moz-do-not-send="true"><span lang="EN-US">https://bugzilla.yoctoproject.org/show_bug.cgi?id=12979</span></a><span
+            lang="EN-US"><o:p></o:p></span></p>
+        <p style="margin:0cm;margin-bottom:.0001pt"><b><span
+              style="font-family:&quot;Verdana&quot;,sans-serif;color:black"
+              lang="EN-US"><o:p> </o:p></span></b></p>
+        <p class="MsoNormal">[3<span style="color:black" lang="EN-US">]
+          </span><a
+            href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12946"
+            moz-do-not-send="true"><span
+              style="color:black;text-decoration:none" lang="EN-US">Bug 129</span></a>91
+          - [2.6 M4 RC1][Build-Appliance] Bitbake build-appliance-image
+          getting failed during building image due to webkitgtk package<span
+            style="color:black" lang="EN-US"><o:p></o:p></span></p>
+        <p class="MsoNormal"><a
+            href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12991"
+            moz-do-not-send="true">https://bugzilla.yoctoproject.org/show_bug.cgi?id=12991</a><o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">[4] <a
+            href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12954"
+            moz-do-not-send="true">
+            <span style="color:windowtext;text-decoration:none">Bug 129</span></a>92
+          - [2.6 M4 rc1] test_devtool_add_fetch_git failed on Fedora 27<o:p></o:p></p>
+        <p class="MsoNormal"><a
+            href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=12992"
+            moz-do-not-send="true">https://bugzilla.yoctoproject.org/show_bug.cgi?id=12992</a><o:p></o:p></p>
+        <p class="MsoNormal"><span lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">Thanks &amp; Regards,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">Sangeeta Jain<o:p></o:p></span></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+    </blockquote>
+  </body>
 </html>
 
---_000_BN6PR1101MB23560D97352B710A1B9A37C2B2C60BN6PR1101MB2356_--
+--------------9581D1196F9ED61DDB2CD30E--
