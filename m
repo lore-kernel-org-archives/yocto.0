@@ -1,66 +1,56 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <alan.martinovic@senic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1795DE0090E; Mon, 12 Nov 2018 01:46:00 -0800 (PST)
+	id CD433E0090E; Mon, 12 Nov 2018 03:52:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marek.belisko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.54 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
-	[209.85.128.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4943DE007B3
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 01:45:59 -0800 (PST)
-Received: by mail-wm1-f54.google.com with SMTP id f10-v6so7750199wme.3
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 01:45:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=KOydYqvYCAcAqy2cHO8CnR5chyzOdM50Y0miFvPO0Y4=;
-	b=mz1+dS3jksorwNWSlUvzYQqjSD6uLg0DqqH/jTYDeVdWS/zTr6SwUfwAnxzvL/xQz9
-	4EYvysTptmP1EVI6cTfmf9wwaCewX7F6oCCKiImN3RNKWUMmoRoXkPojU4nwDou/PoSW
-	9E98YYoKwDvB2dk+DaK84k4oNpZef6ZOVSs3Z5drssdUPa6brt+375rtTkG0HB+WrzDB
-	/5EhUBt2dsHQZfkGb0F2huO4vcjF2cCqB/1q20XVcfrdM7LkqsEzMBQ/HkGVsmRWC0q0
-	pkgmVCF4OTnx6G3xopxkYe98elffD/UIPyCv9pw6JSTsDb/9WmAhaqwiqVmpHP/S7k0k
-	MmXQ==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.54 listed in list.dnswl.org]
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com
+	[209.85.210.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23ED1E007B3
+	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 03:52:12 -0800 (PST)
+Received: by mail-ot1-f54.google.com with SMTP id w25so6957018otm.13
+	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 03:52:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=senic-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=vtJX7R4Xv8zwIMOWnzlqL4t+BKsDGlgZoStcfQHq1ag=;
+	b=j2sJtdWTQZ/IqUcpaEMx5RAhsQHyeI+HfZSZ2rWXjM3S0wRxCheUntAUfXAguWgCs/
+	t4E5THwUiF2X2EG+SbiGVOwjx187nUtwc6hlxnRiTkmCGn16ZO3RarXY+87bZ9EALSRv
+	kCPBtXo6zo50n97X37QfKaHN0t0TPggmHXa5euATYrBo8F2Rp5xz9pmssQ03+ppNlPiE
+	ewhd9as0yuK8JF14JM9I0tyndrog67U0zOHdvuUAdGWgDq/SOqtX2duT6HDTt2tMagts
+	eAl1TiLUvqkqa19uJKrLf+FJ7+SANVvrEwxO4Em2/Es4eOPKt9gq/F3XITs879XubONV
+	jxRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=KOydYqvYCAcAqy2cHO8CnR5chyzOdM50Y0miFvPO0Y4=;
-	b=DFUeJhbZ/Q6uuzzbgFAtK1niagywS7PTjTvtKXLH6R7mq3UwZ7Db+WkrccAHqH7jiK
-	VCVSR8e7CoBxChJIRL0kOWfmXAN9jHNKoYVwQ/Hh2lIvdv4w/LtItP3M+K+QERuj3UUw
-	zPwOu0d7RepDyP/6s9y2arLs3NlzTEVW82nZcFKdXDH5azA0BZi9AC5DBfQ7e/WANOKl
-	UbNuhfsDuqwh5CfkekywF6ZldvIWOZYLkv3jiNwee7jpKy4b4HTu/VW7iU7wPRXO3Jtz
-	btqhfeJmqoTqo5RVeYfYKjzfBwoICyqjcHa5XVAePIpYNwT7elqb6zgfTxIhlVrRUYsq
-	olOA==
-X-Gm-Message-State: AGRZ1gJD3AULBQrphEB1edb9V1Lt5Gil+V9JKnA8cBnQPsiqYgQa4Zx8
-	B9JvPBcTuDx25HHPdcSaRnFbDfuMf3BNjYCbbVU=
-X-Google-Smtp-Source: AJdET5coxK3XSHLZ1oTMhOf6pV3Gtrg7Ul5oiRRa2PSNtfyzG4JE8eCvliVzpUwFtXh1BsFevC/AycWvGM5Mqi0oaW0=
-X-Received: by 2002:a1c:a641:: with SMTP id
-	p62-v6mr7371435wme.40.1542015958292; 
-	Mon, 12 Nov 2018 01:45:58 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=vtJX7R4Xv8zwIMOWnzlqL4t+BKsDGlgZoStcfQHq1ag=;
+	b=C/ysr95dpnrn74+tvT5SesxXC+ue0eyeof2kD6yGXnLFfN+uxh0M4fkcyme7HGRaVe
+	xB40dVwASjrnvsO1YkT0HlVmocimtNXYHp0soW4RayKQ4D8CjE/rgcnuP8wbX+SHxLEM
+	I97bvv6y2igom9N9COlFk8mKgc1q69gtGFyGoRg1volV+ipRSB3aprBbNnhJ3QJq65Va
+	itG+ENdWT0/enGyUWurdEJ/6iPLco/AoCfiO4EmLDyavEiaYJArPJ3d7GDbrNo4HRYLb
+	R5G4VS6LFyxGFS64rh8lwx0RPuKoQ4Kg37kMgQh4qfqj9GiFvBHYx/8fT2O0ZQfVjggS
+	HGMQ==
+X-Gm-Message-State: AGRZ1gLL07SxoBGWCPOu8gxy+HiuXxcWCZfg8q7mQmcFPU4bqUGz7R0A
+	zlFA6xKyUQGYt6xscFUWTlGr91JeY+dNdeHkBSvpIYILOSQ=
+X-Google-Smtp-Source: AJdET5cYEYfae1kdydnbFwV7DHJIDw6hDSmlnjS0X1ykCBS/6tYtlSICHUX8FQsiGSsKnLyC4HpNlVcx8RK+4aHq8nk=
+X-Received: by 2002:a9d:40cd:: with SMTP id t13mr341317oti.98.1542023531202;
+	Mon, 12 Nov 2018 03:52:11 -0800 (PST)
 MIME-Version: 1.0
-References: <CAAfyv34hdgkOrO0JB0ADVDYsZfBoNULDu9k9w7RLjg4LcZTdYw@mail.gmail.com>
-	<CAKYr3zzd_k-DJvZQ-zSG4WGUUMh6rmwm4w0Vrv_ov1HxRWbFnw@mail.gmail.com>
-In-Reply-To: <CAKYr3zzd_k-DJvZQ-zSG4WGUUMh6rmwm4w0Vrv_ov1HxRWbFnw@mail.gmail.com>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Mon, 12 Nov 2018 10:45:46 +0100
-Message-ID: <CAAfyv36-G4cHiRagoBPEL6Xy+ap1Hgn+8ztbbrJ8oQFPhRaeKQ@mail.gmail.com>
-To: outbackdingo@gmail.com
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: using pip3-native to install python requirements
+From: Alan Martinovic <alan.martinovic@senic.com>
+Date: Mon, 12 Nov 2018 12:52:00 +0100
+Message-ID: <CAOT_U5Y5cpc5e0wLm92PDZxjjTVedxc6enHrVV4-8GN-ZFcYQQ@mail.gmail.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: CONFFILES journey form source dir to rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,73 +62,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Nov 2018 09:46:00 -0000
+X-List-Received-Date: Mon, 12 Nov 2018 11:52:12 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Nov 12, 2018 at 10:35 AM Outback Dingo <outbackdingo@gmail.com> wrote:
->
-> On Mon, Nov 12, 2018 at 3:22 PM Belisko Marek <marek.belisko@gmail.com> wrote:
-> >
-> > Hi,
-> >
-> > I'm having recipe for custom python3 application whcih need to install
-> > ~20 python dependencies. I've create requirements.txt and using pip on
-> > PC I can install necessary python packages. When try to use
-> > pip3-native (as DEPENDS) and call pip3 I get some errors:
-> >
-> > pkg_resources.VersionConflict: (pip 8.1.1
-> > (/usr/lib/python3/dist-packages), Requirement.parse('pip==9.0.1'))
-> >
-> > I would like to ask it pip3 can be used (didn't find any other
-> > occurrence in poky) or should I add python dependencies as RDEPENDS ?
->
-> i believe you just need to add inherit setuptools3 to the recipe your
-> trying to use pip3 for
-Well application doesn't contain setup.py (after inheriting setuptool3 I get:)
-recipe-sysroot-native/usr/bin/python3-native/python3: can't open file
-'setup.py': [Errno 2] No such file or directory
-| ERROR: python3 setup.py build_ext execution failed.
+Hi,
+I'm trying to understand how a conf file finds its way from source to
+the rootfs.
 
-So is the correct way to create setup.py which will internall somehow
-add all required external modules to be installed. Thanks.
->
-> > Thanks.
-> >
-> > BR,
-> >
-> > marek
-> >
-> >
-> > --
-> > as simple and primitive as possible
-> > -------------------------------------------------
-> > Marek Belisko - OPEN-NANDRA
-> > Freelance Developer
-> >
-> > Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> > Tel: +421 915 052 184
-> > skype: marekwhite
-> > twitter: #opennandra
-> > web: http://open-nandra.com
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
+The example is use is `journald.conf` from systemd.
+The file originates from systemd source:
+    work/cortexa7hf-neon-vfpv4-senic-linux-gnueabi/systemd/1_234-r0/git/src/journal/journald.conf
 
-BR,
+In the environment is only mentioned as a part of the CONFFILES.
+[output of `bitbake systemd -e` formated for readability]:
 
-marek
+    # $CONFFILES [2 operations]
+    #   set /mnt/data/alan/work/senic-os/oe/meta/conf/documentation.conf:116
+    #     [doc] "Identifies editable or configurable files that are
+part of a package."
+    #   override[systemd]:rename from CONFFILES_${PN} data.py:116 [expandKeys]
+    #     "${sysconfdir}/machine-id
+           ${sysconfdir}/systemd/coredump.conf
+           ${sysconfdir}/systemd/journald.conf
+           ${sysconfdir}/systemd/logind.conf
+           ${sysconfdir}/systemd/system.conf
+           ${sysconfdir}/systemd/user.conf"
+    # pre-expansion value:
+    #   "None"
+    #
+    # $CONFFILES_systemd
+    #   rename from CONFFILES_${PN} data.py:116 [expandKeys]
+    #     "${sysconfdir}/machine-id
+           ${sysconfdir}/systemd/coredump.conf
+           ${sysconfdir}/systemd/journald.conf
+           ${sysconfdir}/systemd/logind.conf
+           ${sysconfdir}/systemd/system.conf
+           ${sysconfdir}/systemd/user.conf"
+    CONFFILES_systemd="/etc/machine-id
+            /etc/systemd/coredump.conf
+            /etc/systemd/journald.conf
+            /etc/systemd/logind.conf
+            /etc/systemd/system.conf
+            /etc/systemd/user.conf"
 
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+The file successfully ends up at `/etc/systemd/journald.conf`.
+
+Why isn't there an action in the environment showing the copying of
+journald.conf
+from `...git/src/journal/journald.conf` to
+`${sysconfdir}/systemd/journald.conf`?
+
+
+Disclaimer:
+There were also some sed related actions with the file in the environment
+which I dropped to reduce noise.
+
+Be Well,
+Alan
 
