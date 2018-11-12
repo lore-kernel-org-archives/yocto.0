@@ -1,60 +1,62 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <theknoppix@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B320E0090E; Mon, 12 Nov 2018 00:21:41 -0800 (PST)
+	id 10C90E00A85; Mon, 12 Nov 2018 00:28:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marek.belisko[at]gmail.com)
+	provider *      (theknoppix[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.52 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.46 listed in list.dnswl.org]
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
-	[209.85.221.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F207E007B3
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 00:21:39 -0800 (PST)
-Received: by mail-wr1-f46.google.com with SMTP id j26-v6so8235690wre.1
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 00:21:39 -0800 (PST)
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
+	[209.85.128.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A713E007B3
+	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 00:28:24 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id f10-v6so7498729wme.3
+	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 00:28:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=7ZYk27bykSxUx7R6wu49cBxaR8dNBGUjToeCmuKAoiU=;
-	b=c79QG+KMLznRo638czt/LiQVyJtk/MQn9rObOhoOiJijf33EVXdeqQ60MGmpViAImv
-	KEt+bbtbnVf36bJjA+AGDy8TRiTyqhQE/EsPnTDda8ufa6rJYXF0+G+ge7QtjBjvTyR0
-	iL7e3tAdr65OXRJsJYNbKmzml56ONcWgpEw5z5vpj22zSGEUFkQEQb13Brtc2PRyh/5X
-	fQfBNrIOMDyJX31NopKTWEWO63qi71KpbVBUhLMc5ZkVdsf+40SJCJK3FheRh7QImpyG
-	0Qs9+XstZBTDRYrgykIN9j1iBTpWAqWUqTGMMrJU5oI8mmOkqLFgUSOIbZe96J6E4l8S
-	95/A==
+	bh=MIh3PHlUnqvTpdzc6JzUCqh27paWK3RTGyBN7FVvFNE=;
+	b=Jfny0JpVEbZhbWVXu1kI8ebUmpRoLu+OZJiVX3uHccas30NcurcgW8WGa/hgZ0u/Wf
+	1uAJOKj2otOD9ZUs+2gmveQ+lkJcsD6PwUk2DQ3rNeH5/rX0QHg54NDekC+GxDGKhHMx
+	0inaoHpsihXtvlPpfqF9y9jOIVGDSF7Gi/EgiN979ZE70SyMxlqI/Rb5NuIQmuYUECJm
+	jtZ6XzmpxvwooqomJejm0qJ/2glrLWjY78pa4kDndmS06JXKHd5MfFmzTxwN9r6+stgU
+	vrMJP2EXyaYecw2IfRbSqkNhr9AstDHBPclbtErIyvZTTsbuujhlGe+xOV9iuD44tJxT
+	st0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=7ZYk27bykSxUx7R6wu49cBxaR8dNBGUjToeCmuKAoiU=;
-	b=SFskUxsxP6l/cBITIgqM2Qubnzyp+DdtUSe/Ma7kHWSPBytJx2iVPesiujvdljL12c
-	RjWM5oHdTHBLFJenUcfyhXnYgiKo1emZiFgw+lTaZy105Mh5eYLmkTtb7ekX3PXUp/hu
-	cY8uHwDM4c81w+TokrCFaH7JFOXzGg5C5z/BYCcwVuSw72aheleRG6wdXiJ4rdF6n4Ne
-	ndl24lUB+Szu5Mmisyej5BlKTQ2Wd+XJJzYgY7I8F3OWIbB/b9oyAlLDIlQ4rtrcCt8k
-	Jmz05QkOhAn4P5fx7hKLMXTMDFiO2nDpq4RSaCTNK/YboUoGOx2tPQohUOz9g1VE9i9Y
-	LSrA==
-X-Gm-Message-State: AGRZ1gIiYi5QkesP7j245a8L1iCRTWT9VK4uHuAJtVGJeFfXMWZnJicY
-	tl4lI7tdpieqXj7wnfQ/if1IIfPEx37bwguJgvKIFt2sv3I=
-X-Google-Smtp-Source: AJdET5cz2IEZpBrxw5eK5fC5ZAws/U+jvbAulvUtB9d4wGqeAhFwHPHk0ychBg9x31Eactn11MArxY74y1TEAqtOLrs=
-X-Received: by 2002:adf:9563:: with SMTP id 90-v6mr40473wrs.60.1542010898226; 
-	Mon, 12 Nov 2018 00:21:38 -0800 (PST)
+	bh=MIh3PHlUnqvTpdzc6JzUCqh27paWK3RTGyBN7FVvFNE=;
+	b=KkTlPZjYGjrkm5TPrvPumtAlMroAmnuv/su/C34J5FCG2nrpX5PH1KDqxJoFS7MXV2
+	k0cMcbpCmofFZUDyZ8IWYd1HBGfMPCXtszTV9eN/U4EIC9YeeVqQfQPpSfDKq+SHGeyp
+	dGYi6HxFZnGxZoN79e+mfj8z6JFDzf6Tksz2Z7r87KGnpigiXpl4L/CkABESqS83AIV+
+	v7uCuLBHsg6AlDK/AHVbs9XkqREBuDBWdRCbmPy0KPV/c3byR2pJAPTFc3TbDgY8KAy2
+	el8zL0slgqU3pgo3pGN6VPj5uoOv7SFxBvoGYwtRyfYiFf+xF8w4bnoCByldsvpp+jh3
+	hYVg==
+X-Gm-Message-State: AGRZ1gJiryRdehuV75duw7eZpElr+xFwM1ll7RIjJT6ZttgA3JJs51rW
+	bLeXSxCO+rnYPOL+GhWDCgpqSQMmjsfZqkOc0TO8xevl
+X-Google-Smtp-Source: AJdET5eQ6Q4HUCdiWZn/MsZPeOTR/V0IVS7H15FlvhLkaOw3DnYhK8xKfxDS0/x+D24aQzYSmrMgup5HlQltkprClZU=
+X-Received: by 2002:a1c:9c85:: with SMTP id
+	f127-v6mr6642083wme.73.1542011303294; 
+	Mon, 12 Nov 2018 00:28:23 -0800 (PST)
 MIME-Version: 1.0
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Mon, 12 Nov 2018 09:21:27 +0100
-Message-ID: <CAAfyv34hdgkOrO0JB0ADVDYsZfBoNULDu9k9w7RLjg4LcZTdYw@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: using pip3-native to install python requirements
+From: Knoppix <theknoppix@gmail.com>
+Date: Mon, 12 Nov 2018 11:28:12 +0300
+Message-ID: <CAD9sEJs7BXpc=FYM4sUAtrQKRbZ92aJz+mSGHuT+V2hFR+sRJg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: yocto x64-linux with bootia32.efi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,37 +68,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Nov 2018 08:21:41 -0000
+X-List-Received-Date: Mon, 12 Nov 2018 08:28:25 -0000
+Content-Type: multipart/alternative; boundary="000000000000f8fcf1057a737b3f"
+
+--000000000000f8fcf1057a737b3f
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+I Searched this question on google, stackoverflow but I did not find.
 
-I'm having recipe for custom python3 application whcih need to install
-~20 python dependencies. I've create requirements.txt and using pip on
-PC I can install necessary python packages. When try to use
-pip3-native (as DEPENDS) and call pip3 I get some errors:
+I am using DISTRO=3Dpoky MACHINE=3Dintel-corei7-64 IMAGE=3Dcore-image-x11 s=
+ceme.
+The machine which I want to install image, doesn=E2=80=99t allow bootx64 bu=
+t it
+works when I install x32 efi.
+I checked this (I copied first bootia32.efi and then bootx64.efi) and as I
+understand my machine has x64 arch but only support x32-efi.
 
-pkg_resources.VersionConflict: (pip 8.1.1
-(/usr/lib/python3/dist-packages), Requirement.parse('pip==9.0.1'))
+So how can I build an image which is intel-corei7-64 but has grup-efi 32
+bit?
+Would you advice me please to *what should I read to accomplish and learn *
+this?
 
-I would like to ask it pip3 can be used (didn't find any other
-occurrence in poky) or should I add python dependencies as RDEPENDS ?
-Thanks.
+--000000000000f8fcf1057a737b3f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-BR,
+<div dir=3D"ltr"><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-famil=
+y:Helvetica;font-size:15px;font-style:normal;font-variant-caps:normal;font-=
+weight:normal;letter-spacing:normal;text-align:start;text-indent:0px;text-t=
+ransform:none;white-space:normal;word-spacing:0px;text-decoration:none"></d=
+iv><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-family:Helvetica;fo=
+nt-size:15px;font-style:normal;font-variant-caps:normal;font-weight:normal;=
+letter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;=
+white-space:normal;word-spacing:0px;text-decoration:none">I Searched this q=
+uestion on google, stackoverflow but I did not find.</div><div class=3D"gma=
+il-" style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:15px;font-st=
+yle:normal;font-variant-caps:normal;font-weight:normal;letter-spacing:norma=
+l;text-align:start;text-indent:0px;text-transform:none;white-space:normal;w=
+ord-spacing:0px;text-decoration:none"><br class=3D"gmail-"></div><div class=
+=3D"gmail-" style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:15px;=
+font-style:normal;font-variant-caps:normal;font-weight:normal;letter-spacin=
+g:normal;text-align:start;text-indent:0px;text-transform:none;white-space:n=
+ormal;word-spacing:0px;text-decoration:none">I am using DISTRO=3Dpoky MACHI=
+NE=3Dintel-corei7-64 IMAGE=3Dcore-image-x11 sceme.</div><div class=3D"gmail=
+-" style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:15px;font-styl=
+e:normal;font-variant-caps:normal;font-weight:normal;letter-spacing:normal;=
+text-align:start;text-indent:0px;text-transform:none;white-space:normal;wor=
+d-spacing:0px;text-decoration:none">The machine which I want to install ima=
+ge, doesn=E2=80=99t allow bootx64 but it works when I install x32 efi.</div=
+><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-family:Helvetica;font=
+-size:15px;font-style:normal;font-variant-caps:normal;font-weight:normal;le=
+tter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;wh=
+ite-space:normal;word-spacing:0px;text-decoration:none">I checked this (I c=
+opied first bootia32.efi and then bootx64.efi) and as I understand my machi=
+ne has x64 arch but only support x32-efi.</div><div class=3D"gmail-" style=
+=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:15px;font-style:normal=
+;font-variant-caps:normal;font-weight:normal;letter-spacing:normal;text-ali=
+gn:start;text-indent:0px;text-transform:none;white-space:normal;word-spacin=
+g:0px;text-decoration:none"><br class=3D"gmail-"></div><div class=3D"gmail-=
+" style=3D"color:rgb(0,0,0);font-family:Helvetica;font-size:15px;font-style=
+:normal;font-variant-caps:normal;font-weight:normal;letter-spacing:normal;t=
+ext-align:start;text-indent:0px;text-transform:none;white-space:normal;word=
+-spacing:0px;text-decoration:none">So how can I build an image which is int=
+el-corei7-64 but has grup-efi 32 bit?</div><div class=3D"gmail-" style=3D"c=
+olor:rgb(0,0,0);font-family:Helvetica;font-size:15px;font-style:normal;font=
+-variant-caps:normal;font-weight:normal;letter-spacing:normal;text-align:st=
+art;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px=
+;text-decoration:none">Would you advice me please to<span class=3D"gmail-Ap=
+ple-converted-space">=C2=A0</span><b class=3D"gmail-">what should I read to=
+ accomplish and learn=C2=A0</b>this?</div></div>
 
-marek
-
-
---
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
-
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
-
+--000000000000f8fcf1057a737b3f--
