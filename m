@@ -1,61 +1,70 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <markus4dev@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 084C4E00A85; Mon, 12 Nov 2018 04:30:55 -0800 (PST)
+	id 8F04AE00A85; Mon, 12 Nov 2018 05:09:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (markus4dev[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.177 listed in list.dnswl.org]
+	*      [209.85.221.44 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f177.google.com (mail-it1-f177.google.com
-	[209.85.166.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CD10E007B3
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 04:30:54 -0800 (PST)
-Received: by mail-it1-f177.google.com with SMTP id j79-v6so12910787itb.2
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 04:30:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+	[209.85.221.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACECBE007B3
+	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 05:09:00 -0800 (PST)
+Received: by mail-wr1-f44.google.com with SMTP id u5-v6so3999897wrn.9
+	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 05:09:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=eeURqYzGpgVgK9aYBQMk1buTxpOiHGxt2p8u60IYNt4=;
-	b=qfTh7S52uXDUe5kcYNezhfEodnuJJfXwjkIuA/moFDD6mZdy/d3oJpx1cSVpxVeppX
-	igt0tzvRqWHuD2Xkc3P7hWPydxFaUcf+sz+aRcz7nZXcmYMvRFcEL522dFR+JNdFfgfO
-	vpNQ9grpX1/NZKgAkR9G5Lfic5xu5aJ2tPQdcoqZErOqliRqaaKb6QZox4PmSiS86zT6
-	hyo1O7XiRbNyHPyzyzJ+ihI0E6pJ0Ha7NaLL51FpqYG5gbN31SBUZMQryNQhbFsuxPgu
-	wJCFhdqEh6OG1N6Mvq+OPzPCVI+uxEol4YKHJO5RWDbw4XBxtwU6LB7z5Rjg74/AYO3s
-	7eXg==
+	:cc; bh=XMgoj244W5cV2HmtJ/H4PlMOKFPNHSkcs/WjZdQlTEs=;
+	b=U56FnFzpkOlurCVr0dhhX2wQZqzOiFZZdaL1jbXMtSPMHUTbruYM+bGka7eTvHjlXk
+	6hzIeZ6fII6BRjTk9wpREsE4GIS18VerZ6ZXKJrVGLPq/jhn4KJM/arDR21sNcJClAJM
+	7eHdIrGY1j1+PcOCzdlnoMkFki0R/P08ozJbcd17BMDWruNGEtCJHTQ9LIpwJl+YP/Et
+	CTRUV36QxtsCz6wQB1Zhomacekh2JFh1aY7uiKTdSddN6jjOsoWRu397gnf5vGQ9KrFF
+	W1+9I0+B7IZatd2iD7HrxlPI1S/mvR2fzMM08FnFqgS3wjRLmMCKb5Xj8GaHOWLAZ6MG
+	Tn6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=eeURqYzGpgVgK9aYBQMk1buTxpOiHGxt2p8u60IYNt4=;
-	b=su+WlkbPF3jLkzkFbmO9GVSzwT8UPXWVM9xwFkgR6QPU/E47fu9qsRXWjlYoKH258y
-	Hn8rYo0xX2Fbigtclt9w5G9RZYb85unaWN9jpPyV85o/39hmYGTAeIsNB9uDxd5jiWAS
-	gBrop4z0w6RJhmhTCBCaJzdZUPujkE3FSKYb8j4krVQwLc4QuThptdB1Z/xjSzb2Svng
-	RA5TWauZ6/1LywuHm4fLI0vJ1ljW7lCzINnuO9hfhj6qm9uP2vgd5wOChPv3clDJkzjN
-	fjxebW+QD+7ESnf/ErnSKwvgW3iSkfoo4vXwakXX8KEmUlYSHH/A3cleT1OZHkFCSeHN
-	LM3Q==
-X-Gm-Message-State: AGRZ1gLhulQb0sHGlpY0gKSBQBRiqmi2RPDMkuBIaJYQFIjPx9M4zOr7
-	dY4UjwG+Pb2KqcQ7hfLdLid2XpKpsfl125ieUc30ltZh
-X-Google-Smtp-Source: AJdET5db67wWswtohFQbiJREksD6YTbrr0DFR1xVRqsDxhqmSfJXu2m3NZiIr4FyalIWvJyzITy0M3TF6da/DrLe0h0=
-X-Received: by 2002:a24:9142:: with SMTP id
-	i63-v6mr12364193ite.130.1542025853812; 
-	Mon, 12 Nov 2018 04:30:53 -0800 (PST)
+	bh=XMgoj244W5cV2HmtJ/H4PlMOKFPNHSkcs/WjZdQlTEs=;
+	b=XtaaPiMzye3zjJxjff21moXBs3bAAfwmf1M0UI7FP1n/E8Cy21Euaj/5mXMUDs0kCe
+	DbU3aIWoclXlYvpGedMVme7mpa/TkOud0Pz2xD07Nsx6urYc89RC4tddm8EhhhP/Izs6
+	xXPXUn6wGZFGb13SbvieO2W6AUzFZiJIm+CD0UWU2Wz0f0kDYVkNk+3kN5YbJbbX7cDD
+	s8Ze509kWmSiguq7fA7NPE16KKlOmWPW66b1gxV6423Osw/O1AZGBS7CMurwhNHGofi0
+	Z0R95j48o3ccF7FqFoCKafyforhPcb0S6e4J/WID9OcBwLnnHGPicFq+MCbWO5wRDOGl
+	i8ug==
+X-Gm-Message-State: AGRZ1gIOH/9ylQ1H0Nt9+rHaFq+s9/HXKcZgkQEqu1jwpSCymlcyDdNn
+	wDLpnTaIB5d5d+E80PMgbA27BhzCm5ZDviB+FSRk3t4E
+X-Google-Smtp-Source: AJdET5fjfTgB2CvDxTBzQRZSpQO0AXD/lWOYc5CuM+Bj8m+6FTelLcaGPLm3gvQ5vxtPrfCwTgAl8sosrbqOS+J8br4=
+X-Received: by 2002:a5d:4a11:: with SMTP id
+	m17-v6mr865298wrq.259.1542028139553; 
+	Mon, 12 Nov 2018 05:08:59 -0800 (PST)
 MIME-Version: 1.0
-References: <CAOT_U5Y5cpc5e0wLm92PDZxjjTVedxc6enHrVV4-8GN-ZFcYQQ@mail.gmail.com>
-In-Reply-To: <CAOT_U5Y5cpc5e0wLm92PDZxjjTVedxc6enHrVV4-8GN-ZFcYQQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 12 Nov 2018 12:30:42 +0000
-Message-ID: <CAJTo0Lbnde9NX7XYGzD2UU78-R6bCjN8RvRPMvomYDnnV66sgQ@mail.gmail.com>
-To: Alan Martinovic <alan.martinovic@senic.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: CONFFILES journey form source dir to rootfs
+References: <CAFd=ochAjUo7FfHQJFcQHYE7Y2jRD8UHUhRBpGvvTRLLgfwK=Q@mail.gmail.com>
+	<CAFd=ocj4eHG89wt7yM0_w3YqrM9788+CZp=gDXgQfQsE6+9v2Q@mail.gmail.com>
+	<3658853.D14kAIKcfP@stinger>
+	<CAFd=ocgV2baea-PsHJ9N9OiTS-rTQ-mux=7qwxmCU=Y8JBJ+Aw@mail.gmail.com>
+	<87zhuiz5cx.fsf@snkmail.com>
+In-Reply-To: <87zhuiz5cx.fsf@snkmail.com>
+From: Markus W <markus4dev@gmail.com>
+Date: Mon, 12 Nov 2018 14:09:10 +0100
+Message-ID: <CAFd=ociPq2njZqnx_ruRK_Pe5ECDMMo+kP5SE82iVBauqaEF-w@mail.gmail.com>
+To: jrswdnan22@snkmail.com
+Cc: yocto@yoctoproject.org
+Subject: Re: Set linux capabilities on binary on a recipe in meta-oe layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,73 +76,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Nov 2018 12:30:55 -0000
+X-List-Received-Date: Mon, 12 Nov 2018 13:09:01 -0000
+Content-Type: multipart/alternative; boundary="0000000000007de8fe057a77677d"
+
+--0000000000007de8fe057a77677d
 Content-Type: text/plain; charset="UTF-8"
 
-The standard do_install (which calls make install) copies the file
-from the source tree to the staging directory.
+Thanks Uwe!
 
-Ross
-On Mon, 12 Nov 2018 at 11:52, Alan Martinovic <alan.martinovic@senic.com> wrote:
->
-> Hi,
-> I'm trying to understand how a conf file finds its way from source to
-> the rootfs.
->
-> The example is use is `journald.conf` from systemd.
-> The file originates from systemd source:
->     work/cortexa7hf-neon-vfpv4-senic-linux-gnueabi/systemd/1_234-r0/git/src/journal/journald.conf
->
-> In the environment is only mentioned as a part of the CONFFILES.
-> [output of `bitbake systemd -e` formated for readability]:
->
->     # $CONFFILES [2 operations]
->     #   set /mnt/data/alan/work/senic-os/oe/meta/conf/documentation.conf:116
->     #     [doc] "Identifies editable or configurable files that are
-> part of a package."
->     #   override[systemd]:rename from CONFFILES_${PN} data.py:116 [expandKeys]
->     #     "${sysconfdir}/machine-id
->            ${sysconfdir}/systemd/coredump.conf
->            ${sysconfdir}/systemd/journald.conf
->            ${sysconfdir}/systemd/logind.conf
->            ${sysconfdir}/systemd/system.conf
->            ${sysconfdir}/systemd/user.conf"
->     # pre-expansion value:
->     #   "None"
->     #
->     # $CONFFILES_systemd
->     #   rename from CONFFILES_${PN} data.py:116 [expandKeys]
->     #     "${sysconfdir}/machine-id
->            ${sysconfdir}/systemd/coredump.conf
->            ${sysconfdir}/systemd/journald.conf
->            ${sysconfdir}/systemd/logind.conf
->            ${sysconfdir}/systemd/system.conf
->            ${sysconfdir}/systemd/user.conf"
->     CONFFILES_systemd="/etc/machine-id
->             /etc/systemd/coredump.conf
->             /etc/systemd/journald.conf
->             /etc/systemd/logind.conf
->             /etc/systemd/system.conf
->             /etc/systemd/user.conf"
+I tried the global approach by adding the following to my local.conf file:
+
+ROOTFS_POSTPROCESS_COMMAND += "my_setcap_function"
+
+my_setcap_function() {
+    setcap cap_net_raw+eip ${IMAGE_ROOTFS}/usr/bin/node
+}
+
+But got the following warning:
+WARNING: core-image-full-cmdline-1.0-r0 do_rootfs: Function
+my_setcap_function doesn't exist
+
+I have tried to add the function into a recipe but this doesn't work
+either. Where should the function be defined?
+
+Regards,
+Markus
+
+
+On Fri, 9 Nov 2018 at 15:35, Uwe Geuder <jrswdnan22@snkmail.com> wrote:
+
+> Hi!
 >
 >
-> The file successfully ends up at `/etc/systemd/journald.conf`.
+> On Fri, Nov 9, 2018 at 12:16 PM Markus W markus4dev-at-gmail.com wrote:
 >
-> Why isn't there an action in the environment showing the copying of
-> journald.conf
-> from `...git/src/journal/journald.conf` to
-> `${sysconfdir}/systemd/journald.conf`?
+> > On Thu, 8 Nov 2018 at 22:53, Piotr Tworek <tworaz666@gmail.com> wrote:
+> ...
+> >> pkg_postinst_ontarget_${PN} () {
+> >>    setcap cap_net_raw+eip $D${bindir}/node
+> >> }
+> ...
+> > How can this be achieved when the rootfs is created and not on first
+> > boot? I would like not to ship libcap binaries with the target in
+> > production.
 >
+> Ideally I would do it "locally" in do_install of the node recipe (you can
+> append extra statements to the task in your own .bbappend in your own
+> layer, don't edit existing recipes)
 >
-> Disclaimer:
-> There were also some sed related actions with the file in the environment
-> which I dropped to reduce noise.
+> That of course requires that the package manager preserves the
+> capabilites. I have no experience which package manager would do
+> or not do that.
 >
-> Be Well,
-> Alan
+> "Globally" you can do it by appending a new function to
+> ROOTFS_POSTPROCESS_COMMAND
+>
+> https://www.yoctoproject.org/docs/2.5.1/mega-manual/mega-manual.html#var-
+> ROOTFS_POSTPROCESS_COMMAND
+>
+> This is done in your image recipe.
+>
+> Regards,
+>
+> Uwe Geuder
+> Neuro Event Labs Oy
+> Tampere, Finland
+> uwe.gexder@neuroeventlabs.com (Bot check: fix one obvious typo)
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+>
 
+--0000000000007de8fe057a77677d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Thanks =
+Uwe!<div><br></div><div>I tried the global approach by adding the following=
+ to my local.conf file:</div><div><br></div><div><div>ROOTFS_POSTPROCESS_CO=
+MMAND +=3D &quot;my_setcap_function&quot;</div><div><br></div><div>my_setca=
+p_function() {</div><div>=C2=A0 =C2=A0 setcap cap_net_raw+eip ${IMAGE_ROOTF=
+S}/usr/bin/node</div><div>}</div></div><div><br></div><div>But got the foll=
+owing warning:</div><div>WARNING: core-image-full-cmdline-1.0-r0 do_rootfs:=
+ Function my_setcap_function doesn&#39;t exist<br></div><div><br></div><div=
+>I have tried to add the function into a recipe but this doesn&#39;t work e=
+ither. Where should the function be defined?</div><div><br></div><div>Regar=
+ds,</div><div>Markus</div><div><br></div></div></div></div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr">On Fri, 9 Nov 2018 at 15:35, Uwe Geud=
+er &lt;<a href=3D"mailto:jrswdnan22@snkmail.com">jrswdnan22@snkmail.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
+0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi!<br>
+<br>
+<br>
+On Fri, Nov 9, 2018 at 12:16 PM Markus W <a href=3D"http://markus4dev-at-gm=
+ail.com" rel=3D"noreferrer" target=3D"_blank">markus4dev-at-gmail.com</a> w=
+rote:<br>
+<br>
+&gt; On Thu, 8 Nov 2018 at 22:53, Piotr Tworek &lt;<a href=3D"mailto:tworaz=
+666@gmail.com" target=3D"_blank">tworaz666@gmail.com</a>&gt; wrote:<br>
+...<br>
+&gt;&gt; pkg_postinst_ontarget_${PN} () {<br>
+&gt;&gt;=C2=A0 =C2=A0 setcap cap_net_raw+eip $D${bindir}/node<br>
+&gt;&gt; }<br>
+...<br>
+&gt; How can this be achieved when the rootfs is created and not on first<b=
+r>
+&gt; boot? I would like not to ship libcap binaries with the target in<br>
+&gt; production.<br>
+<br>
+Ideally I would do it &quot;locally&quot; in do_install of the node recipe =
+(you can<br>
+append extra statements to the task in your own .bbappend in your own<br>
+layer, don&#39;t edit existing recipes)<br>
+<br>
+That of course requires that the package manager preserves the<br>
+capabilites. I have no experience which package manager would do<br>
+or not do that.<br>
+<br>
+&quot;Globally&quot; you can do it by appending a new function to ROOTFS_PO=
+STPROCESS_COMMAND<br>
+<br>
+<a href=3D"https://www.yoctoproject.org/docs/2.5.1/mega-manual/mega-manual.=
+html#var-" rel=3D"noreferrer" target=3D"_blank">https://www.yoctoproject.or=
+g/docs/2.5.1/mega-manual/mega-manual.html#var-</a><br>
+ROOTFS_POSTPROCESS_COMMAND<br>
+<br>
+This is done in your image recipe.<br>
+<br>
+Regards,<br>
+<br>
+Uwe Geuder<br>
+Neuro Event Labs Oy<br>
+Tampere, Finland<br>
+<a href=3D"mailto:uwe.gexder@neuroeventlabs.com" target=3D"_blank">uwe.gexd=
+er@neuroeventlabs.com</a> (Bot check: fix one obvious typo)<br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
+
+--0000000000007de8fe057a77677d--
