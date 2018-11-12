@@ -1,26 +1,61 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <ravchand_jm@yahoo.co.in>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D3BB8E00A85; Sun, 11 Nov 2018 21:37:48 -0800 (PST)
+	id 3BEB7E00A85; Sun, 11 Nov 2018 21:58:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34864E00872
-	for <yocto@yoctoproject.org>; Sun, 11 Nov 2018 21:37:48 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 6D30C84A1851
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 00:37:46 -0500 (EST)
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ravchand_jm[at]yahoo.co.in)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [106.10.241.41 listed in list.dnswl.org]
+Received: from sonic307-24.consmr.mail.sg3.yahoo.com
+	(sonic307-24.consmr.mail.sg3.yahoo.com [106.10.241.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA4B0E007B3
+	for <yocto@yoctoproject.org>; Sun, 11 Nov 2018 21:58:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.co.in; s=s2048;
+	t=1542002296; bh=OCQ4B1tDZBZg/9r1DYUExiT8jPQVVtyxjvw7qS6qN8s=;
+	h=Date:From:To:Subject:References:From:Subject;
+	b=ndUNEuMe8n2bdsGc1ECEMtCuaXt5MrFE5+rmT9oEcQqNGmJWd2echkqHfvcrfhrsoISiIO4eNhW+1Lv5LpgathkqRnSvoHRQjlWPe+hdpf+Mwi+gnvPl37nSIZ5pBafLp+rvrBrAmXX7WOgwO42b7ABDPIP0xsphsoAMGmgkPNBoO/BDVL2TXk6t3FNOpEgNdgo57XAVUncJKInZfBr1MNJ9kNaTZ4UkbGWk8Co8xwryPFt/w1w8UDbeszK/2ypIU0nfcQUkn32uzUBF0WlHRxWgUwsSHQ3Uh5p8Mx1FzN+L1MyT96T7ayGrDKu1mJk9JtzITlT4m6WJxa9G0Qu0mw==
+X-YMail-OSG: 4ej.XOgVM1kVNAjcJJOcZhypujFWL5VGYEUWUueUN7DJ6n9Y3pAGvI8kUkl8zqI
+	F1I27V.NfXljTWCCNrmqdjZWdHAgQFapkaENtcfX_CJYGXJoGTxVFEzROzBcZpH1ffBx2_Bql9EB
+	oStZPvHYdBioMD7Pl26ubjsJL4cqYWPwHBV7jDt86DULHkRO2jTJzQHmmzAlgEsKvgPe_q1CgR22
+	q_NfuUHhlYnyenI1HAHrhcX24jrlBWsQr7fRSuaAgRttdcbJ.bRYtDtoPuAe0kwSk5GxRCFjJyvg
+	RzUWwjoEdZd6Xt21f2I_0QgRdHLi8x6w2Ym_1yUQRZCi58ziDzpEakn4OtwFbmcJG5LWq_3pww1j
+	VSFd8Z56xIX7zg6xfkSZ.z5XGaSE7psivWw2hqBC.MFShUsrIYDVRUWOCSmbKmJCctXK.0VkhI9r
+	Flr9DwkfeZwOiPB1b7mpF1KkZuTuYJt1i19tOZtYGSBrt7Nt94k2wruTr3VW_n__YGblVjkTDHEY
+	.pqxJJFYQL70NPVwtHq.fBNcrQvGBgr96pYdjM4ORChDvBLVprKxtT8RnM96BNqh5eQ7OCO1Dr6q
+	CTBkqL3CC2qgba30iyCTFrYrFb.UOHgMphxfXKZn.7GG6jK3vYrH.367FJEVJKcthyGQPMbfupi.
+	g5RiiM3B5bTxPO_39I55Nt3OQy6icsr3ED_x21aozyZ97opjhC1r3p.lnsQPPt19ikeCnOBs86KW
+	ukynRc13IFQGJzzgVX6b.NKaBQpI9WYtLLLuayyUbIMC.S16og8TzzLYgWv3NsK36W6vUbSa0P7C
+	u7pKrH5OAntK_BmfUzFnOy6MY.rKRUidnzwwiLuLqqBAlqdHm4kw8cs2O3iNKmG4CeiP9yHqpsV5
+	WZpY7uWL.Q3D8nFytDBfaxCKaWkgUKuLKDn16aPBFOOFBz0PEzjAB6PdKiERS130B3KDPP2RpH4g
+	W95ZAJES8scWLmJj4uNHvTjxxmq01pkJcrH.grX17Hu9We93D8SetuYIbvf2fPiDBn8djznWao5f
+	IhsJJ4.qssV080iAO6uLADZSlXzqonmz0eNn5jUw-
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic307.consmr.mail.sg3.yahoo.com with HTTP;
+	Mon, 12 Nov 2018 05:58:16 +0000
+Date: Mon, 12 Nov 2018 05:58:16 +0000 (UTC)
+From: ravi chandran <ravchand_jm@yahoo.co.in>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <818319704.721300.1542002296272@mail.yahoo.com>
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 12 Nov 2018 05:37:46 -0000
-Message-ID: <20181112053746.20501.84487@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+References: <818319704.721300.1542002296272.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.12732 YMailNorrin Mozilla/5.0 (Windows NT 6.1; Win64;
+	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77
+	Safari/537.36
+Subject: lib32-glibc headers populated instead glibc headers in the SDK toolchain - yocto 2.2.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,225 +67,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Nov 2018 05:37:48 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 12 Nov 2018 05:58:20 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_721299_220827740.1542002296268"
 
-This mail was sent out by Recipe reporting system.
+------=_Part_721299_220827740.1542002296268
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hi all,
+I am working as integrator in one project where both lib32 & lib64 need to be supported. Hence, lib32-glibc & glibc both are there in yocto build. In the final toolchain, after running "bitbake <image> -c populate-sdk", it is randomly, lib32-glibc headers are getting populated instead of glibc headers.
+Ex: in the toolchain, <sysroots_dir>/aarch64/usr/include/bits/endian.h - lib32-glibc header file content seen instead glibc header file content.
+Please let me know if anybody has any solution/work-around for this.
+Thanks in advance,Ravi
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+------=_Part_721299_220827740.1542002296268
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-You can check the detail information at:
+<html><head></head><body><div class="ydp1e9d5e49yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><span><div>Hi all,</div><div><br></div><div>I am working as integrator in one project where both lib32 &amp; lib64 need to be supported. Hence, lib32-glibc &amp; glibc both are there in yocto build. In the final toolchain, after running "bitbake &lt;image&gt; -c populate-sdk", it is randomly, lib32-glibc headers are getting populated instead of glibc headers.</div><div><br></div><div>Ex: in the toolchain, &lt;sysroots_dir&gt;/aarch64/usr/include/bits/endian.h - lib32-glibc header file content seen instead glibc header file content.</div><div><br></div><div>Please let me know if anybody has any solution/work-around for this.</div><div><br></div><div>Thanks in advance,</div><div>Ravi</div></span></div></body></html>
 
-http://recipes.yoctoproject.org/
-
-Package               Version          Upstream version      Maintainer           NoUpgradeReason
---------------------  ---------------  --------------------  -------------------  ------------------------------
-libgloss              3.0.0            3.0.0.20180831        Alejandro Hernandez
-newlib                3.0.0            3.0.0.20180831        Alejandro Hernandez
-dnf                   2.7.5            4.0.4                 Alexander Kanavin
-libdnf                0.11.1           0.22.0                Alexander Kanavin
-librepo               1.8.1            1.9.2                 Alexander Kanavin
-ffmpeg                4.0.2            4.1                   Alexander Kanavin
-btrfs-tools           4.17.1           4.19                  Alexander Kanavin
-dmidecode             3.1              3.2                   Alexander Kanavin
-sysprof               3.30.0           3.30.2                Alexander Kanavin    Waiting for resolution of h...
-tiff                  4.0.9            4.0.10                Alexander Kanavin
-epiphany              3.28.3.1         3.30.2                Alexander Kanavin
-webkitgtk             2.20.5           2.22.3                Alexander Kanavin
-gdbm                  1.18             1.18.1                Alexander Kanavin
-icu                   62.1             63.1                  Alexander Kanavin
-vala                  0.42.0           0.42.3                Alexander Kanavin
-meson                 0.47.2           0.48.2                Alexander Kanavin
-lighttpd              1.4.50           1.4.51                Alexander Kanavin
-psmisc                23.1             23.2                  Alexander Kanavin
-busybox               1.29.2           1.29.3                Andrej Valek
-apt                   1.2.24           1.7.0                 Aníbal Limón
-dpkg                  1.18.24          1.19.2                Aníbal Limón
-apt-native            1.2.24           1.7.0                 Aníbal Limón
-libva                 2.2.0            2.3.0                 Anuj Mittal
-gst-examples          0.0.1+gitX       0.0.1-new-commits...  Anuj Mittal
-gstreamer1.0-omx      1.14.2           1.14.4                Anuj Mittal
-gstreamer1.0-plug...  1.14.2           1.14.4                Anuj Mittal
-gstreamer1.0-rtsp...  1.14.2           1.14.4                Anuj Mittal
-gstreamer1.0-plug...  1.14.2           1.14.4                Anuj Mittal
-gst-validate          1.14.2           1.14.4                Anuj Mittal
-gstreamer1.0-plug...  1.14.2           1.14.4                Anuj Mittal
-gstreamer1.0-plug...  1.14.2           1.14.4                Anuj Mittal
-gstreamer1.0          1.14.2           1.14.4                Anuj Mittal
-gstreamer1.0-vaapi    1.14.2           1.14.4                Anuj Mittal
-gstreamer1.0-python   1.14.2           1.14.4                Anuj Mittal
-gstreamer1.0-libav    1.14.2           1.14.4                Anuj Mittal
-bind                  9.11.4           9.13.3                Armin Kuster
-openssh               7.8p1+git        7.9.                  Armin Kuster
-libsm                 1.2.2            1.2.3                 Armin Kuster
-libx11-diet           1.6.6            1.6.7                 Armin Kuster
-libx11                1.6.6            1.6.7                 Armin Kuster
-libxcb                1.13             1.13.1                Armin Kuster
-xkeyboard-config      2.24             2.25                  Armin Kuster
-xserver-xorg          1.20.1           1.20.3                Armin Kuster
-kexec-tools           2.0.17           2.0.18                Armin Kuster
-curl                  7.61.0           7.62.0                Armin Kuster
-gnutls                3.6.3            3.6.4                 Armin Kuster
-nspr                  4.19             4.20                  Armin Kuster
-nss                   3.39             3.40                  Armin Kuster
-libpcre2              10.31            10.32                 Armin Kuster
-xf86-input-libinput   0.28.0           0.28.1                Armin Kuster
-linux-yocto           4.18.14+gitX     4.18.17               Bruce Ashfield
-linux-yocto-rt        4.18.14+gitX     4.18.17               Bruce Ashfield
-linux-yocto-tiny      4.18.14+gitX     4.18.17               Bruce Ashfield
-linux-libc-headers    4.18             4.19.1                Bruce Ashfield
-kmscube               git              git-new-commits-a...  Carlos Rafael Giani
-connman               1.35             1.36                  Changhyeok Bae
-iproute2              4.18.0           4.19.0                Changhyeok Bae
-ethtool               4.17             4.19                  Changhyeok Bae
-iptables              1.6.2            1.8.1                 Changhyeok Bae
-util-linux            2.32.1           2.33                  Chen Qi
-acl                   2.2.52           2.2.53                Chen Qi
-attr                  2.4.47           2.4.48                Chen Qi
-systemd-conf          1.0              239                   Chen Qi
-at                    3.1.20           3.1.23                Chen Qi
-cups                  2.2.8            2.2.9                 Chen Qi
-sed                   4.2.2            4.5                   Chen Qi
-sudo                  1.8.23           1.8.25p1              Chen Qi
-sysstat               11.7.4           12.1.1                Chen Qi
-bison                 3.0.4            3.2.1                 Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-lz4                   1.8.2            1.8.3                 Denys Dmytriyenko
-lzop                  1.03             1.04                  Denys Dmytriyenko
-hdparm                9.56             9.58                  Denys Dmytriyenko
-python3-gitdb         2.0.4            2.0.5                 Derek Straka
-python3-pycairo       1.15.6           1.18.0                Derek Straka
-python3-numpy         1.14.5           1.15.4                Derek Straka
-python-numpy          1.14.5           1.15.4                Derek Straka
-python3-pygobject     3.28.3           3.30.2                Derek Straka
-python3               3.5.6            3.7.1                 Derek Straka
-python3-pbr           4.2.0            5.1.1                 Derek Straka
-python3-setuptools    40.0.0           40.5.0                Derek Straka
-python3-pip           18.0             18.1                  Derek Straka
-python-setuptools     40.0.0           40.5.0                Derek Straka
-python3-native        3.5.6            3.7.1                 Derek Straka
-acpica                20180508         20181031              Fathi Boudra
-gnupg                 2.2.9            2.2.11                Hongxu Jia
-ncurses               6.1+20180630     6.1+20181013          Hongxu Jia
-apr                   1.6.3            1.6.5                 Hongxu Jia
-man-db                2.8.3            2.8.4                 Hongxu Jia
-gpgme                 1.11.1           1.12.0                Hongxu Jia
-libgcrypt             1.8.3            1.8.4                 Hongxu Jia
-help2man-native       1.47.6           1.47.8                Hongxu Jia
-rpcbind               0.2.4            1.2.5                 Hongxu Jia
-binutils              2.31             2.31.1                Khem Raj
-go-native             1.11.1           1.11.2                Khem Raj
-go                    1.11.1           1.11.2                Khem Raj
-u-boot-fw-utils       2018.07          2018.09               Marek Vasut
-u-boot-mkimage        2018.07          2018.09               Marek Vasut
-u-boot                2018.07          2018.09               Marek Vasut
-prelink               1.0+gitX         1.0-new-commits-a...  Mark Hatle
-db                    5.3.28           5.3.28+dfsg1          Mark Hatle
-rpm                   4.14.2           4.14.2.1              Mark Hatle
-libxcrypt             4.1.1            4.3.3                 No maintainer
-gcc-source-7.3.0      7.3.0            8.2.0                 No maintainer
-go-cross-canadian...  1.11.1           1.11.2                No maintainer
-nativesdk-meson       0.47.2           0.48.2                No maintainer
-binutils-cross-ca...  2.31             2.31.1                No maintainer
-binutils-cross-i586   2.31             2.31.1                No maintainer
-go-crosssdk-x86_64    1.11.1           1.11.2                No maintainer
-binutils-crosssdk...  2.31             2.31.1                No maintainer
-go-cross-i586         1.11.1           1.11.2                No maintainer
-go-runtime            1.11.1           1.11.2                No maintainer
-mesa                  18.1.9           18.2.4                Otavio Salvador
-linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
-libdrm                2.4.94           2.4.96                Otavio Salvador
-mesa-gl               18.1.9           18.2.4                Otavio Salvador
-cmake                 3.12.2           3.12.4                Pascal Bach
-cmake-native          3.12.2           3.12.4                Pascal Bach
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Paul Eggleton
-build-appliance-i...  15.0.0           19.0.1                Richard Purdie
-lttng-modules         2.10.7           2.10.8                Richard Purdie
-lttng-tools           2.9.5            2.10.5                Richard Purdie
-nasm                  2.13.03          2.14                  Richard Purdie
-subversion            1.10.0           1.11.0                Richard Purdie
-lttng-ust             2.10.1           2.10.2                Richard Purdie
-gnu-config            20180713+gitX    20180713-new-comm...  Robert Yang
-nfs-utils             2.3.1            2.3.3                 Robert Yang
-e2fsprogs             1.44.3           1.44.4                Robert Yang
-git                   2.18.1           2.19.1                Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-strace                4.24             4.25                  Robert Yang
-ccache                3.4.2            3.5                   Robert Yang
-mklibs-native         0.1.43           0.1.44                Robert Yang
-piglit                1.0+gitrX        1.0-new-commits-a...  Ross Burton
-libinput              1.11.3           1.12.3                Ross Burton
-libsoup-2.4           2.62.3           2.64.2                Ross Burton
-gtk-icon-utils-na...  3.22.30          3.24.1                Ross Burton
-ruby                  2.5.1            2.5.3                 Ross Burton
-libpcap               1.8.1            1.9.0                 Ross Burton
-gsettings-desktop...  3.28.0           3.28.1                Ross Burton
-base-passwd           3.5.29           3.5.45                Ross Burton          Version 3.5.38 requires cde...
-glib-2.0              2.58.0           2.58.1                Ross Burton
-glib-networking       2.54.1           2.58.0                Ross Burton
-sysvinit              2.88dsf          2.91                  Ross Burton
-ofono                 1.24             1.26                  Ross Burton
-mtools                4.0.18           4.0.20                Ross Burton
-at-spi2-atk           2.26.2           2.30.0                Ross Burton
-vulkan-demos          git              git-new-commits-a...  Ross Burton
-perl                  5.24.4           5.28.0                Ross Burton
-puzzles               0.0+gitX         0.0-new-commits-a...  Ross Burton
-at-spi2-core          2.28.0           2.30.0                Ross Burton
-atk                   2.28.1           2.30.0                Ross Burton
-ifupdown              0.8.16           0.8.33                Ross Burton
-libevdev              1.5.9            1.6.0                 Ross Burton
-libical               2.0.0            3.0.4                 Ross Burton
-sqlite3               3.23.1           3.25.3                Ross Burton
-vte                   0.52.2           0.54.2                Ross Burton
-libepoxy              1.5.2            1.5.3                 Ross Burton
-lsbinitscripts        9.79             10.01                 Ross Burton
-libsolv               0.6.35           0.7.1                 Ross Burton
-mdadm                 4.0              4.1                   Ross Burton
-eudev                 3.2.5            3.2.7                 Ross Burton
-adwaita-icon-theme    3.28.0           3.30.0                Ross Burton
-gdk-pixbuf            2.36.11          2.38.0                Ross Burton
-gtk+3                 3.22.30          3.24.1                Ross Burton
-librsvg               2.40.20          2.44.8                Ross Burton          Versions from 2.41.0 requir...
-cairo                 1.14.12          1.16.2                Ross Burton
-pkgconf               1.5.3            1.5.4                 Ross Burton
-fontconfig            2.12.6           2.13.1                Ross Burton
-harfbuzz              1.8.8            2.1.1                 Ross Burton
-perl-native           5.24.4           5.28.0                Ross Burton
-alsa-lib              1.1.6            1.1.7                 Tanu Kaskinen
-alsa-tools            1.1.6            1.1.7                 Tanu Kaskinen
-alsa-utils            1.1.6            1.1.7                 Tanu Kaskinen
-sbc                   1.3              1.4                   Tanu Kaskinen
-alsa-plugins          1.1.6            1.1.7                 Tanu Kaskinen
-alsa-utils-scripts    1.1.6            1.1.7                 Tanu Kaskinen
-liberror-perl         0.17026          0.17027               Tim Orling
-gnu-efi               3.0.8            3.0.9                 Yi Zhao
-file                  5.34             5.35                  Yi Zhao
-chkconfig             1.3.58           1.8                   Yi Zhao              Version 1.5 requires selinux
-ltp                   20180515         20180926              Yi Zhao
-json-glib             1.4.2            1.4.4                 Yi Zhao
-libsdl2               2.0.8            2.0.9                 Yi Zhao
-
-Upgradable count: 180
-Upgradable total count: 184
-
-The based commit is:
-
-commit f0394e80a37f1da47042a1aa0487594f390603f9
-Author: Ross Burton <ross.burton@intel.com>
-Date:   Fri Nov 9 16:53:11 2018 +0000
-
-    curl: actually apply latest CVE patches
-    
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
-
-
+------=_Part_721299_220827740.1542002296268--
