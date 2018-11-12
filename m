@@ -1,17 +1,16 @@
-Return-Path: <ravchand_jm@yahoo.co.in>
+Return-Path: <marek.belisko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3BEB7E00A85; Sun, 11 Nov 2018 21:58:20 -0800 (PST)
+	id 0B320E0090E; Mon, 12 Nov 2018 00:21:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (ravchand_jm[at]yahoo.co.in)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	provider *      (marek.belisko[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -19,43 +18,43 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [106.10.241.41 listed in list.dnswl.org]
-Received: from sonic307-24.consmr.mail.sg3.yahoo.com
-	(sonic307-24.consmr.mail.sg3.yahoo.com [106.10.241.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA4B0E007B3
-	for <yocto@yoctoproject.org>; Sun, 11 Nov 2018 21:58:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.co.in; s=s2048;
-	t=1542002296; bh=OCQ4B1tDZBZg/9r1DYUExiT8jPQVVtyxjvw7qS6qN8s=;
-	h=Date:From:To:Subject:References:From:Subject;
-	b=ndUNEuMe8n2bdsGc1ECEMtCuaXt5MrFE5+rmT9oEcQqNGmJWd2echkqHfvcrfhrsoISiIO4eNhW+1Lv5LpgathkqRnSvoHRQjlWPe+hdpf+Mwi+gnvPl37nSIZ5pBafLp+rvrBrAmXX7WOgwO42b7ABDPIP0xsphsoAMGmgkPNBoO/BDVL2TXk6t3FNOpEgNdgo57XAVUncJKInZfBr1MNJ9kNaTZ4UkbGWk8Co8xwryPFt/w1w8UDbeszK/2ypIU0nfcQUkn32uzUBF0WlHRxWgUwsSHQ3Uh5p8Mx1FzN+L1MyT96T7ayGrDKu1mJk9JtzITlT4m6WJxa9G0Qu0mw==
-X-YMail-OSG: 4ej.XOgVM1kVNAjcJJOcZhypujFWL5VGYEUWUueUN7DJ6n9Y3pAGvI8kUkl8zqI
-	F1I27V.NfXljTWCCNrmqdjZWdHAgQFapkaENtcfX_CJYGXJoGTxVFEzROzBcZpH1ffBx2_Bql9EB
-	oStZPvHYdBioMD7Pl26ubjsJL4cqYWPwHBV7jDt86DULHkRO2jTJzQHmmzAlgEsKvgPe_q1CgR22
-	q_NfuUHhlYnyenI1HAHrhcX24jrlBWsQr7fRSuaAgRttdcbJ.bRYtDtoPuAe0kwSk5GxRCFjJyvg
-	RzUWwjoEdZd6Xt21f2I_0QgRdHLi8x6w2Ym_1yUQRZCi58ziDzpEakn4OtwFbmcJG5LWq_3pww1j
-	VSFd8Z56xIX7zg6xfkSZ.z5XGaSE7psivWw2hqBC.MFShUsrIYDVRUWOCSmbKmJCctXK.0VkhI9r
-	Flr9DwkfeZwOiPB1b7mpF1KkZuTuYJt1i19tOZtYGSBrt7Nt94k2wruTr3VW_n__YGblVjkTDHEY
-	.pqxJJFYQL70NPVwtHq.fBNcrQvGBgr96pYdjM4ORChDvBLVprKxtT8RnM96BNqh5eQ7OCO1Dr6q
-	CTBkqL3CC2qgba30iyCTFrYrFb.UOHgMphxfXKZn.7GG6jK3vYrH.367FJEVJKcthyGQPMbfupi.
-	g5RiiM3B5bTxPO_39I55Nt3OQy6icsr3ED_x21aozyZ97opjhC1r3p.lnsQPPt19ikeCnOBs86KW
-	ukynRc13IFQGJzzgVX6b.NKaBQpI9WYtLLLuayyUbIMC.S16og8TzzLYgWv3NsK36W6vUbSa0P7C
-	u7pKrH5OAntK_BmfUzFnOy6MY.rKRUidnzwwiLuLqqBAlqdHm4kw8cs2O3iNKmG4CeiP9yHqpsV5
-	WZpY7uWL.Q3D8nFytDBfaxCKaWkgUKuLKDn16aPBFOOFBz0PEzjAB6PdKiERS130B3KDPP2RpH4g
-	W95ZAJES8scWLmJj4uNHvTjxxmq01pkJcrH.grX17Hu9We93D8SetuYIbvf2fPiDBn8djznWao5f
-	IhsJJ4.qssV080iAO6uLADZSlXzqonmz0eNn5jUw-
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic307.consmr.mail.sg3.yahoo.com with HTTP;
-	Mon, 12 Nov 2018 05:58:16 +0000
-Date: Mon, 12 Nov 2018 05:58:16 +0000 (UTC)
-From: ravi chandran <ravchand_jm@yahoo.co.in>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <818319704.721300.1542002296272@mail.yahoo.com>
+	*      [209.85.221.46 listed in list.dnswl.org]
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
+	[209.85.221.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F207E007B3
+	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 00:21:39 -0800 (PST)
+Received: by mail-wr1-f46.google.com with SMTP id j26-v6so8235690wre.1
+	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 00:21:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=7ZYk27bykSxUx7R6wu49cBxaR8dNBGUjToeCmuKAoiU=;
+	b=c79QG+KMLznRo638czt/LiQVyJtk/MQn9rObOhoOiJijf33EVXdeqQ60MGmpViAImv
+	KEt+bbtbnVf36bJjA+AGDy8TRiTyqhQE/EsPnTDda8ufa6rJYXF0+G+ge7QtjBjvTyR0
+	iL7e3tAdr65OXRJsJYNbKmzml56ONcWgpEw5z5vpj22zSGEUFkQEQb13Brtc2PRyh/5X
+	fQfBNrIOMDyJX31NopKTWEWO63qi71KpbVBUhLMc5ZkVdsf+40SJCJK3FheRh7QImpyG
+	0Qs9+XstZBTDRYrgykIN9j1iBTpWAqWUqTGMMrJU5oI8mmOkqLFgUSOIbZe96J6E4l8S
+	95/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=7ZYk27bykSxUx7R6wu49cBxaR8dNBGUjToeCmuKAoiU=;
+	b=SFskUxsxP6l/cBITIgqM2Qubnzyp+DdtUSe/Ma7kHWSPBytJx2iVPesiujvdljL12c
+	RjWM5oHdTHBLFJenUcfyhXnYgiKo1emZiFgw+lTaZy105Mh5eYLmkTtb7ekX3PXUp/hu
+	cY8uHwDM4c81w+TokrCFaH7JFOXzGg5C5z/BYCcwVuSw72aheleRG6wdXiJ4rdF6n4Ne
+	ndl24lUB+Szu5Mmisyej5BlKTQ2Wd+XJJzYgY7I8F3OWIbB/b9oyAlLDIlQ4rtrcCt8k
+	Jmz05QkOhAn4P5fx7hKLMXTMDFiO2nDpq4RSaCTNK/YboUoGOx2tPQohUOz9g1VE9i9Y
+	LSrA==
+X-Gm-Message-State: AGRZ1gIiYi5QkesP7j245a8L1iCRTWT9VK4uHuAJtVGJeFfXMWZnJicY
+	tl4lI7tdpieqXj7wnfQ/if1IIfPEx37bwguJgvKIFt2sv3I=
+X-Google-Smtp-Source: AJdET5cz2IEZpBrxw5eK5fC5ZAws/U+jvbAulvUtB9d4wGqeAhFwHPHk0ychBg9x31Eactn11MArxY74y1TEAqtOLrs=
+X-Received: by 2002:adf:9563:: with SMTP id 90-v6mr40473wrs.60.1542010898226; 
+	Mon, 12 Nov 2018 00:21:38 -0800 (PST)
 MIME-Version: 1.0
-References: <818319704.721300.1542002296272.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.12732 YMailNorrin Mozilla/5.0 (Windows NT 6.1; Win64;
-	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77
-	Safari/537.36
-Subject: lib32-glibc headers populated instead glibc headers in the SDK toolchain - yocto 2.2.2
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Mon, 12 Nov 2018 09:21:27 +0100
+Message-ID: <CAAfyv34hdgkOrO0JB0ADVDYsZfBoNULDu9k9w7RLjg4LcZTdYw@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: using pip3-native to install python requirements
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,24 +66,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Nov 2018 05:58:20 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_721299_220827740.1542002296268"
+X-List-Received-Date: Mon, 12 Nov 2018 08:21:41 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-------=_Part_721299_220827740.1542002296268
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Hi,
 
-Hi all,
-I am working as integrator in one project where both lib32 & lib64 need to be supported. Hence, lib32-glibc & glibc both are there in yocto build. In the final toolchain, after running "bitbake <image> -c populate-sdk", it is randomly, lib32-glibc headers are getting populated instead of glibc headers.
-Ex: in the toolchain, <sysroots_dir>/aarch64/usr/include/bits/endian.h - lib32-glibc header file content seen instead glibc header file content.
-Please let me know if anybody has any solution/work-around for this.
-Thanks in advance,Ravi
+I'm having recipe for custom python3 application whcih need to install
+~20 python dependencies. I've create requirements.txt and using pip on
+PC I can install necessary python packages. When try to use
+pip3-native (as DEPENDS) and call pip3 I get some errors:
 
-------=_Part_721299_220827740.1542002296268
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+pkg_resources.VersionConflict: (pip 8.1.1
+(/usr/lib/python3/dist-packages), Requirement.parse('pip==9.0.1'))
 
-<html><head></head><body><div class="ydp1e9d5e49yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><span><div>Hi all,</div><div><br></div><div>I am working as integrator in one project where both lib32 &amp; lib64 need to be supported. Hence, lib32-glibc &amp; glibc both are there in yocto build. In the final toolchain, after running "bitbake &lt;image&gt; -c populate-sdk", it is randomly, lib32-glibc headers are getting populated instead of glibc headers.</div><div><br></div><div>Ex: in the toolchain, &lt;sysroots_dir&gt;/aarch64/usr/include/bits/endian.h - lib32-glibc header file content seen instead glibc header file content.</div><div><br></div><div>Please let me know if anybody has any solution/work-around for this.</div><div><br></div><div>Thanks in advance,</div><div>Ravi</div></span></div></body></html>
+I would like to ask it pip3 can be used (didn't find any other
+occurrence in poky) or should I add python dependencies as RDEPENDS ?
+Thanks.
 
-------=_Part_721299_220827740.1542002296268--
+BR,
+
+marek
+
+
+--
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
+
