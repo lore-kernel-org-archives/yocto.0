@@ -1,6 +1,6 @@
-Return-Path: <alan.martinovic@senic.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 11902E00AD1; Mon, 12 Nov 2018 06:33:03 -0800 (PST)
+	id D1A90E00B77; Mon, 12 Nov 2018 07:38:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,50 +10,52 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.48 listed in list.dnswl.org]
+	*      [209.85.166.41 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0810E00AD1
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 06:33:02 -0800 (PST)
-Received: by mail-ot1-f48.google.com with SMTP id z33so8108320otz.11
-	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 06:33:02 -0800 (PST)
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com
+	[209.85.166.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52DDBE00AD1
+	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 07:38:13 -0800 (PST)
+Received: by mail-io1-f41.google.com with SMTP id u15so2287350iof.12
+	for <yocto@yoctoproject.org>; Mon, 12 Nov 2018 07:38:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=senic-com.20150623.gappssmtp.com; s=20150623;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=6sKBGe7mR66zqXKzV3exeuoF07ga1bPRynQAVUCMk9A=;
-	b=Ds/sybB86fZTKdxppxrd1GAQVwebd64CYoRgHybx0swkdboyomeR7NQ7nl/rbmT39j
-	domGXFT7IbgOX1yqgn/0DjLyqqruIHyNDee0cCqgG2IUSVTn2lBRtgYhGgQ42fy3Irfb
-	vlN4lPaMiWNpGZBWmh2bk/2D/sDfK/og3OXni2Ygqz24ZHOE8e2ZqYxU7rTTH+8BzYrG
-	DHbR2mycKJYwF89pI7Uvy3328gzq1fCf38S+afsYlJ3Gl7d5psPFoo/Mnd9k8qCOFq6d
-	VOuVVNpiOfOfnKzEp7ZYN/U0t83FpR4UIArYPq96XgOJRqqmBt2etVEFcgL1ZMm4nDzq
-	6yRA==
+	:cc; bh=6Ju51xfZPRmHyStTFfKuj1CluRiJ8GgzP3rZHlDH19Y=;
+	b=Fmw761VB29+Ozm/qlclxtgpBB+TtmqffTKO46/GMRLH4R8IIYdndhg3VtG48Xi/+DQ
+	5lh4dfnjBJI61We/zNXWpvjjy3yVmQ1geGy4go8XL3GsOM4oUtYOARLef4Rkbzh+Dywh
+	KXmk1W2YWxbalM5MkUL+4Y+wFLDQyaz0H6h9fTLsJuW3iK6aECqH4dVxapt8/g/zGEz5
+	2zZg7HXzVlRtlnfBwVIMxuoJam6P2ty3JVhYsqz7r5kvfeXUoW3H/DJ62HXjXacGobWn
+	7Y0+GCv9951n63hhq9Hr0E2zFGhFmTgRIuWCJn2ETkEcAivHQEcFNyNndgESH8X7sWIH
+	KLNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=6sKBGe7mR66zqXKzV3exeuoF07ga1bPRynQAVUCMk9A=;
-	b=LfC4DPKn5PwGI2vmZS/dXnxriyuwh05qMB8klD2117uWQzDVb4K5smTj0YLZyqHUEd
-	wC8Hn1nDVv5H+hxKL9EfgcmBPik4DQkHjCBX/PNv2veZ88Mblge/yK+Jzq4sQXoEQpG4
-	JaWlYOxNJKiXeyTX3hxARbR48eR9DhBFlN7q5xY4efFI3HLdfiYX2agCKd+ZEwljwvly
-	VZfgeAh6/0qPOCJzcv1gyCKh31ixR/+2JXvIuc8YkxA8J48GU5ODlvnd+8ndhioXTSrz
-	zbXmysrcIh5T3s30rGoZn0cRP49Jp6zMwRKXlFjs1IYSJM0IjpV2M2ke71GbR0acSlDz
-	K2Nw==
-X-Gm-Message-State: AGRZ1gJsd4XmX+np5i7xTgmNun2UsKmtnIv7LbKfttLBvJoNXOvmy6X2
-	KhJaNpoQMWBYHZqUqTOK1Q/k5QR04QYOuCiN8Ht+xw==
-X-Google-Smtp-Source: AJdET5fLJAcZNtvW2Y9we5fhOkEa5IUckc0/60DXt6m7OBih7qBmPrsHN8sD/6JDf26FqXIbkAf3Nl7oI2hnS6UrMVw=
-X-Received: by 2002:a9d:5549:: with SMTP id h9mr626565oti.83.1542033177028;
-	Mon, 12 Nov 2018 06:32:57 -0800 (PST)
+	bh=6Ju51xfZPRmHyStTFfKuj1CluRiJ8GgzP3rZHlDH19Y=;
+	b=TtC42YWTSMQ8Yzq2AB7MXFEqpMdXpG9Ha3gPZXM7yQqwA5ikw8Qdpq5iS/UfkzbSlU
+	3TKdGcYASqewRNX6DwbtHET+LQLllXczhtKTkFHmO+wOjiDdaV9DcZcuXmvuXY/hz49S
+	bbIcxj4LGvi9E1WtGEOUxy71AXdJy5KJs+F/N9LDRiA+vay/tILKVrbTM5corN6pqdNE
+	dfL+DAy/D19cMpikOjHx9HXpfZtXL0hPsOqZitk5UV5i3ewVnFd9MjclUkFX/0uLHuad
+	lDcWTc+d+DzgvyUO8+GXslOhR25FCsezSQgEMfneDZROBbmJddKyhIogfI/jHtw3dD11
+	tSWw==
+X-Gm-Message-State: AGRZ1gJxrcl7AZduikSt+abs5lyMMAMH9irt6FBWQVMmXXs9FWeffZZc
+	Gc0IyQAYgwgvrgrH0izYk/13bTqPNI5PIcmJ7JHNSA==
+X-Google-Smtp-Source: AJdET5cuDZWFkoCggo7Fx7KpAnQzhIDZrD8puAhYyhSA4TOPxhD+TjcZFEVep4TjI1NBJFZKC3dNculn8IO76xu1Dt8=
+X-Received: by 2002:a6b:fb0a:: with SMTP id
+	h10-v6mr954955iog.270.1542037092719; 
+	Mon, 12 Nov 2018 07:38:12 -0800 (PST)
 MIME-Version: 1.0
 References: <CAOT_U5Y5cpc5e0wLm92PDZxjjTVedxc6enHrVV4-8GN-ZFcYQQ@mail.gmail.com>
 	<CAJTo0Lbnde9NX7XYGzD2UU78-R6bCjN8RvRPMvomYDnnV66sgQ@mail.gmail.com>
-In-Reply-To: <CAJTo0Lbnde9NX7XYGzD2UU78-R6bCjN8RvRPMvomYDnnV66sgQ@mail.gmail.com>
-From: Alan Martinovic <alan.martinovic@senic.com>
-Date: Mon, 12 Nov 2018 15:32:45 +0100
-Message-ID: <CAOT_U5bPpZ4rWUN=2cF5NS5fs08S5i80iJy60Lx=ZB_OpyrDVg@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
+	<CAOT_U5bPpZ4rWUN=2cF5NS5fs08S5i80iJy60Lx=ZB_OpyrDVg@mail.gmail.com>
+In-Reply-To: <CAOT_U5bPpZ4rWUN=2cF5NS5fs08S5i80iJy60Lx=ZB_OpyrDVg@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 12 Nov 2018 15:38:01 +0000
+Message-ID: <CAJTo0LZj7zyYwwKjm=s7xSiA5twPpu49DvV0Fgkjt9XdcRb5NA@mail.gmail.com>
+To: Alan Martinovic <alan.martinovic@senic.com>
 Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: CONFFILES journey form source dir to rootfs
 X-BeenThere: yocto@yoctoproject.org
@@ -67,84 +69,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Nov 2018 14:33:03 -0000
+X-List-Received-Date: Mon, 12 Nov 2018 15:38:13 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-> The standard do_install (which calls make install) copies the file
-> from the source tree to the staging directory.
-
-What's the reason for not seeing that in `bitbake -e systemd`?
-
-
-Be Well,
-Alan
-
-On Mon, Nov 12, 2018 at 1:30 PM Burton, Ross <ross.burton@intel.com> wrote:
+On Mon, 12 Nov 2018 at 14:33, Alan Martinovic <alan.martinovic@senic.com> wrote:
+> > The standard do_install (which calls make install) copies the file
+> > from the source tree to the staging directory.
 >
-> The standard do_install (which calls make install) copies the file
-> from the source tree to the staging directory.
->
-> Ross
-> On Mon, 12 Nov 2018 at 11:52, Alan Martinovic <alan.martinovic@senic.com> wrote:
-> >
-> > Hi,
-> > I'm trying to understand how a conf file finds its way from source to
-> > the rootfs.
-> >
-> > The example is use is `journald.conf` from systemd.
-> > The file originates from systemd source:
-> >     work/cortexa7hf-neon-vfpv4-senic-linux-gnueabi/systemd/1_234-r0/git/src/journal/journald.conf
-> >
-> > In the environment is only mentioned as a part of the CONFFILES.
-> > [output of `bitbake systemd -e` formated for readability]:
-> >
-> >     # $CONFFILES [2 operations]
-> >     #   set /mnt/data/alan/work/senic-os/oe/meta/conf/documentation.conf:116
-> >     #     [doc] "Identifies editable or configurable files that are
-> > part of a package."
-> >     #   override[systemd]:rename from CONFFILES_${PN} data.py:116 [expandKeys]
-> >     #     "${sysconfdir}/machine-id
-> >            ${sysconfdir}/systemd/coredump.conf
-> >            ${sysconfdir}/systemd/journald.conf
-> >            ${sysconfdir}/systemd/logind.conf
-> >            ${sysconfdir}/systemd/system.conf
-> >            ${sysconfdir}/systemd/user.conf"
-> >     # pre-expansion value:
-> >     #   "None"
-> >     #
-> >     # $CONFFILES_systemd
-> >     #   rename from CONFFILES_${PN} data.py:116 [expandKeys]
-> >     #     "${sysconfdir}/machine-id
-> >            ${sysconfdir}/systemd/coredump.conf
-> >            ${sysconfdir}/systemd/journald.conf
-> >            ${sysconfdir}/systemd/logind.conf
-> >            ${sysconfdir}/systemd/system.conf
-> >            ${sysconfdir}/systemd/user.conf"
-> >     CONFFILES_systemd="/etc/machine-id
-> >             /etc/systemd/coredump.conf
-> >             /etc/systemd/journald.conf
-> >             /etc/systemd/logind.conf
-> >             /etc/systemd/system.conf
-> >             /etc/systemd/user.conf"
-> >
-> >
-> > The file successfully ends up at `/etc/systemd/journald.conf`.
-> >
-> > Why isn't there an action in the environment showing the copying of
-> > journald.conf
-> > from `...git/src/journal/journald.conf` to
-> > `${sysconfdir}/systemd/journald.conf`?
-> >
-> >
-> > Disclaimer:
-> > There were also some sed related actions with the file in the environment
-> > which I dropped to reduce noise.
-> >
-> > Be Well,
-> > Alan
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
+> What's the reason for not seeing that in `bitbake -e systemd`?
+
+It is there:
+
+do_install() {
+        meson_do_install
+...
+}
+
+do_install calls meson_do_install which calls ninja install, which
+copies the file from the build directory to the staging directory,
+which is then used in packaging.
+
+Ross
 
