@@ -1,62 +1,61 @@
-Return-Path: <samuli.piippo@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5491E00C45; Tue, 13 Nov 2018 01:56:58 -0800 (PST)
+	id 6151FE00C41; Tue, 13 Nov 2018 02:17:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (samuli.piippo[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.175 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.180 listed in list.dnswl.org]
-Received: from mail-it1-f180.google.com (mail-it1-f180.google.com
-	[209.85.166.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52D54E00C41
-	for <yocto@yoctoproject.org>; Tue, 13 Nov 2018 01:56:58 -0800 (PST)
-Received: by mail-it1-f180.google.com with SMTP id t189-v6so13046418itf.1
-	for <yocto@yoctoproject.org>; Tue, 13 Nov 2018 01:56:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to:cc;
-	bh=95R0+hVu1nrFRVbyaEgsyONVoaVIcjd3WfABVsUMIz8=;
-	b=h6pWvlPJ0NYpnbdstjo38OrXhIjB+oT7scvfMoeDEgKGrdWxI2c1muy2Nw3iBvYktJ
-	R1QmnIVvQOKzNiIXGn6Q1lvjV1YvFTbiSED9ycJniHkDV6uyw1zmSfG7Yn1lENH91Tc2
-	v5KL028yPFljNRR3fgBcpk66Fv42m8L1xOuLozuVWp3yLAWEZxCGGkfY0qXW3uSj0qPr
-	CjH9opOLDiepa74+TIYVnkRKX4U/Q3S+DzsLZXycEx+45IS68J7Rm2ew5mFkWml9ixDB
-	cvTX5SOTGk0rrPvWoH29tIQKISszJ+AyYXxvnjCtNcVIP4cFhpobeH5D5Dyxxy9NZ0yx
-	wGrg==
+Received: from mail-it1-f175.google.com (mail-it1-f175.google.com
+	[209.85.166.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE033E00B45
+	for <yocto@yoctoproject.org>; Tue, 13 Nov 2018 02:17:44 -0800 (PST)
+Received: by mail-it1-f175.google.com with SMTP id e11so17601811itl.5
+	for <yocto@yoctoproject.org>; Tue, 13 Nov 2018 02:17:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=oqKOgXDQLinuyyA1x2lNi9OBZbcMEfA1nz4XSauDeVc=;
+	b=yRQDT2DpdOkzaXQtAZlx8dUzJg3w/tcX+c30MCOgIExj9wTZLvz/CLtO+AizVjM5HT
+	FIS8+8skbNrws1vP8YYlOgVMpfSYyGj67O9BuJJdgARrD2tZTmc9FCH7qBpoWal5q1EO
+	4WW01nFNyq1deoDqO0XwftA+20luJR8BwX2N+VawgmqZoshHpdrdfP6z9UJ1Dj2YWVsr
+	XxjP5MCclrBoFiil/cW8a8vQ1iQ/TQL+tz6BLR/BaIcY/4JfdU0b0RhCuKmsra8kqymk
+	FUawW4S7BYm4NXSv/UzhFBmgOyBGoiJ8vFVG82/bAJq2+5BY7KAxtNXv9CyWsDwU/hqk
+	AJ2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-	bh=95R0+hVu1nrFRVbyaEgsyONVoaVIcjd3WfABVsUMIz8=;
-	b=NPLwlzym/2FEide7fZoj/jxKi/gUipVDY+IiWRH5IXHlGsRZ3GcNXO58Z0t8VyGoVD
-	zPNLx9/SoEOnOzD7shZVwoWIz0LwIZHATMOzPkBJR5MuT+Q24aE+NZQt8OGijImIheDS
-	eZ19+8O8Wk4WkuALlUv9fCf5UY/4CPpJP7cWKe+Y0IqdLbrJBLWWrBB/fSc3j6iRpzbq
-	i6bA9rzZ2bPwODxRvz7RTS4P1LhpNUILH7gLxjrnFrlGCBiNcCfZyvRKw3kIUVc2CTUx
-	LgocZx0XISvFWUIfp3+N/Acpd0Bqdy1Zael90ZaXwEz100QhAUz+BCRgOCCSc5kQn+rN
-	LKGQ==
-X-Gm-Message-State: AGRZ1gJeM+MfvHs7pduAzJWtG8W2G6W8cqBG1wotU9r9NKkYnC5mGpKm
-	2zr83XPeCm5j1UbFfyj2COX+Na9H0gO51iTSTLOrXw==
-X-Google-Smtp-Source: AJdET5cq2ejKaZTccOlEeH3Ogo7SoVY6DLC0Bjz5oSOkvTX4Lo9J76kZ0XcPFXM1//+ip3cKplej5duSvGpacOMQdB0=
-X-Received: by 2002:a24:4a10:: with SMTP id
-	k16-v6mr2974734itb.170.1542103017298; 
-	Tue, 13 Nov 2018 01:56:57 -0800 (PST)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=oqKOgXDQLinuyyA1x2lNi9OBZbcMEfA1nz4XSauDeVc=;
+	b=mCy0WvqjGO/9GTn7TBG1MrQOdhfRZb/XPTI2GKKJWA/5o4XrhzhW5XRBQlo0qMrSja
+	SwegS6jcJRTZ3VONWNzfr61L+vTbldd0o0RA5YmfiS5L2+Y01U8Cg3MEeqJi+KUbsgh5
+	GNX3Ip/zXbZRPtKH+mG2yqkvw2bPBbELHb4oH3o2sllu1b8OhNLVzCmfJKBVRXARF4cx
+	qZJh54o/hd68OZzoTfK+oh7FlhA89LZj/yrk0lHAqSCEcvtSYNpsP4iV636yXJD+LLF0
+	IfL36aKq3O/cExqGBax5NLXV/14uEbMSxY6FR+JMLNkCWFA+QS+8NXxZSKJ9+b83/q7a
+	G1Mw==
+X-Gm-Message-State: AGRZ1gLwo1HIzZRere26Cky5H9ySZ7yD9cxU36KzDWS4z/BfSOUL90H8
+	e6WItxuCtXQAfYG827aacxtTPHx8N7lsJDw9vVkRSo7H
+X-Google-Smtp-Source: AJdET5c2x9CPQKh8wTjJAe0xIboIGJ1vZVYdIiPdud+Z8wT80/AoTuG+R84oIzSl5Jh0hHiREDRr+CYY/Da1vPSId0A=
+X-Received: by 2002:a24:ce45:: with SMTP id
+	v66-v6mr2835266itg.26.1542104264327; 
+	Tue, 13 Nov 2018 02:17:44 -0800 (PST)
 MIME-Version: 1.0
-From: Samuli Piippo <samuli.piippo@gmail.com>
-Date: Tue, 13 Nov 2018 11:56:46 +0200
-Message-ID: <CABXoSoXbsZTmZokUW5sfuw2xHP4cENo7iuE5kgffQ-WPOzS-Bg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: meta-mingw: unable to run executables on Windows
+References: <CABXoSoXbsZTmZokUW5sfuw2xHP4cENo7iuE5kgffQ-WPOzS-Bg@mail.gmail.com>
+In-Reply-To: <CABXoSoXbsZTmZokUW5sfuw2xHP4cENo7iuE5kgffQ-WPOzS-Bg@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 13 Nov 2018 10:17:33 +0000
+Message-ID: <CAJTo0Lbk4CEX3PU=k7t8BAsyiPH=4mE3fRe7hWK8p3tndDRVzA@mail.gmail.com>
+To: samuli.piippo@gmail.com
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: meta-mingw: unable to run executables on Windows
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,34 +67,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Nov 2018 09:56:58 -0000
-Content-Type: multipart/alternative; boundary="0000000000008da429057a88d69d"
-
---0000000000008da429057a88d69d
+X-List-Received-Date: Tue, 13 Nov 2018 10:17:46 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Tue, 13 Nov 2018 at 09:57, Samuli Piippo <samuli.piippo@gmail.com> wrote:
+> I've just upgraded poky and meta-mingw layers from sumo to thud and as a result a lot of the executables in the toolchain no longer run correctly on Windows.
+>
+> I've built meta-toolchain for SDKMACHINE=x86_64-mingw32. From that, gcc/g++ work fine on Windows 10, but ar, as, objdumb, and others hang for ~30 seconds and exit without any output.
+>
+> Has anyone else seen this?
 
-I've just upgraded poky and meta-mingw layers from sumo to thud and as a
-result a lot of the executables in the toolchain no longer run correctly on
-Windows.
+I suspect we need to find a maintainer who actually uses meta-mingw
+and can actually test it.  Would you be willing to bisect thud to sumo
+to identify where it breaks?
 
-I've built meta-toolchain for SDKMACHINE=x86_64-mingw32. From that, gcc/g++
-work fine on Windows 10, but ar, as, objdumb, and others hang for ~30
-seconds and exit without any output.
+Ross
 
-Has anyone else seen this?
-
---0000000000008da429057a88d69d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I&#39;ve just upgraded p=
-oky and meta-mingw layers from sumo to thud and as a result a lot of the ex=
-ecutables in the toolchain no longer run correctly on Windows.</div><div><b=
-r></div><div>I&#39;ve built meta-toolchain for SDKMACHINE=3Dx86_64-mingw32.=
- From that, gcc/g++ work fine on Windows 10, but ar, as, objdumb, and other=
-s hang for ~30 seconds and exit without any output.</div><div><br></div><di=
-v>Has anyone else seen this?</div></div>
-
---0000000000008da429057a88d69d--
