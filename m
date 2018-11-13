@@ -1,47 +1,62 @@
-Return-Path: <anuj.mittal@intel.com>
+Return-Path: <samuli.piippo@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C5C07E00C43; Tue, 13 Nov 2018 01:40:11 -0800 (PST)
+	id B5491E00C45; Tue, 13 Nov 2018 01:56:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AEC6E00C3C;
-	Tue, 13 Nov 2018 01:40:11 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	13 Nov 2018 01:40:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.54,498,1534834800"; d="scan'208";a="105821384"
-Received: from pgsmsx108.gar.corp.intel.com ([10.221.44.103])
-	by fmsmga004.fm.intel.com with ESMTP; 13 Nov 2018 01:40:09 -0800
-Received: from pgsmsx105.gar.corp.intel.com ([169.254.4.31]) by
-	PGSMSX108.gar.corp.intel.com ([169.254.8.100]) with mapi id
-	14.03.0415.000; Tue, 13 Nov 2018 17:40:08 +0800
-From: "Mittal, Anuj" <anuj.mittal@intel.com>
-To: "theknoppix@gmail.com" <theknoppix@gmail.com>,
-	"meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [meta-intel] fb: switching to inteldrmfb from efi vga
-Thread-Index: AQHUezOsguJaRGLZMk+2GMx8D84bEKVM7TWA
-Date: Tue, 13 Nov 2018 09:40:08 +0000
-Message-ID: <8bfde938743cce2dc00e203514d81800f9e80b57.camel@intel.com>
-References: <CAD9sEJtuq21Y6-auquC+AW8a92TDYXxLw6W340NT3ef=khxwZA@mail.gmail.com>
-In-Reply-To: <CAD9sEJtuq21Y6-auquC+AW8a92TDYXxLw6W340NT3ef=khxwZA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.255.170.71]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (samuli.piippo[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.180 listed in list.dnswl.org]
+Received: from mail-it1-f180.google.com (mail-it1-f180.google.com
+	[209.85.166.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52D54E00C41
+	for <yocto@yoctoproject.org>; Tue, 13 Nov 2018 01:56:58 -0800 (PST)
+Received: by mail-it1-f180.google.com with SMTP id t189-v6so13046418itf.1
+	for <yocto@yoctoproject.org>; Tue, 13 Nov 2018 01:56:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to:cc;
+	bh=95R0+hVu1nrFRVbyaEgsyONVoaVIcjd3WfABVsUMIz8=;
+	b=h6pWvlPJ0NYpnbdstjo38OrXhIjB+oT7scvfMoeDEgKGrdWxI2c1muy2Nw3iBvYktJ
+	R1QmnIVvQOKzNiIXGn6Q1lvjV1YvFTbiSED9ycJniHkDV6uyw1zmSfG7Yn1lENH91Tc2
+	v5KL028yPFljNRR3fgBcpk66Fv42m8L1xOuLozuVWp3yLAWEZxCGGkfY0qXW3uSj0qPr
+	CjH9opOLDiepa74+TIYVnkRKX4U/Q3S+DzsLZXycEx+45IS68J7Rm2ew5mFkWml9ixDB
+	cvTX5SOTGk0rrPvWoH29tIQKISszJ+AyYXxvnjCtNcVIP4cFhpobeH5D5Dyxxy9NZ0yx
+	wGrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+	bh=95R0+hVu1nrFRVbyaEgsyONVoaVIcjd3WfABVsUMIz8=;
+	b=NPLwlzym/2FEide7fZoj/jxKi/gUipVDY+IiWRH5IXHlGsRZ3GcNXO58Z0t8VyGoVD
+	zPNLx9/SoEOnOzD7shZVwoWIz0LwIZHATMOzPkBJR5MuT+Q24aE+NZQt8OGijImIheDS
+	eZ19+8O8Wk4WkuALlUv9fCf5UY/4CPpJP7cWKe+Y0IqdLbrJBLWWrBB/fSc3j6iRpzbq
+	i6bA9rzZ2bPwODxRvz7RTS4P1LhpNUILH7gLxjrnFrlGCBiNcCfZyvRKw3kIUVc2CTUx
+	LgocZx0XISvFWUIfp3+N/Acpd0Bqdy1Zael90ZaXwEz100QhAUz+BCRgOCCSc5kQn+rN
+	LKGQ==
+X-Gm-Message-State: AGRZ1gJeM+MfvHs7pduAzJWtG8W2G6W8cqBG1wotU9r9NKkYnC5mGpKm
+	2zr83XPeCm5j1UbFfyj2COX+Na9H0gO51iTSTLOrXw==
+X-Google-Smtp-Source: AJdET5cq2ejKaZTccOlEeH3Ogo7SoVY6DLC0Bjz5oSOkvTX4Lo9J76kZ0XcPFXM1//+ip3cKplej5duSvGpacOMQdB0=
+X-Received: by 2002:a24:4a10:: with SMTP id
+	k16-v6mr2974734itb.170.1542103017298; 
+	Tue, 13 Nov 2018 01:56:57 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [meta-intel] fb: switching to inteldrmfb from efi vga
+From: Samuli Piippo <samuli.piippo@gmail.com>
+Date: Tue, 13 Nov 2018 11:56:46 +0200
+Message-ID: <CABXoSoXbsZTmZokUW5sfuw2xHP4cENo7iuE5kgffQ-WPOzS-Bg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: meta-mingw: unable to run executables on Windows
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,29 +68,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Nov 2018 09:40:11 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F8A2F9B1103247489DB99195BD026B8B@intel.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 13 Nov 2018 09:56:58 -0000
+Content-Type: multipart/alternative; boundary="0000000000008da429057a88d69d"
 
-T24gVHVlLCAyMDE4LTExLTEzIGF0IDEyOjMwICswMzAwLCBLbm9wcGl4IHdyb3RlOg0KPiB5b2N0
-byBhbmQgbWV0YS1pbnRlbDogMi41LjEvc3Vtbw0KPiBrZXJuZWw9bGludXgteW9jdG8tNC4xNS4x
-OA0KPiBtYWNoaW5lPWludGVsLWNvcmVpNy02NA0KPiBkaXN0cm89cG9reQ0KPiANCj4gdGhlIHBy
-b2JsZW0gaXM6DQo+IHdoZW4gSSBib290IHRoZSBzeXN0ZW0gaXQgY29tZXMgdG8gdGhpcyBtZXNz
-YWdlIGFuZCBmcm96ZWVzOiAiIGZiOg0KPiBzd2l0Y2hpbmcgdG8gYW1kZ3B1ZHJtZmIgZnJvbSBl
-ZmkgdmdhIg0KDQpUaGlzIGVycm9yIHNheXMgYW1kZ3B1IHdoaWxlIHRoZSBzdWJqZWN0IHNheXMg
-aW50ZWwgZHJpdmVyIC4uLiBXaGljaA0Kb25lIGFyZSB5b3UgdXNpbmcgYW5kIG9uIHdoaWNoIGdy
-YXBoaWNzIGNhcmQ/DQoNCkRvZXMgaXQgd29yayBpZiB5b3UgdXNlIDQuMTQga2VybmVsPw0KDQo+
-IA0KPiBJIHNlYXJjaGVkIGEgbG90LCB0aGVyZSBpcyBhIHdvcmthcm91bmQgdG8gc29sdmUgcHJv
-YmxlbSAoYWRkDQo+IG5vbW9kZXNldCB0byBncnViIHBhcmFtcykgYnV0IHdoZW4gaSBzZXQgdGhp
-cyBzcGxhc2ggc2NyZWVuIGRvZXNuJ3QNCj4gd29yay4gKGFsc28gc29tZW9uZSBvbiBzdGFja292
-ZXJmbG93IHNheXMgd2hlbiB5b3UgZG8gbm9tb2Rlc2V0IHlvdQ0KPiBjYW5ub3QgdXNlIGdyYXBo
-aWNhbCBhY2NlbGVyYXRpb24uKQ0KPiANCj4gVGhlcmUgYXJlIGEgbG90IG9mIG9sZCBtZXNzYWdl
-cyBhYm91dCB0aGlzIHNwZXNpZmljIHByb2JsZW0gd2hpY2gNCj4gdGhleQ0KPiBzYXkgIml0IGlz
-IHNvbHZlZCBpbiBuZXcgdmVyc2lvbiBvZiBrZXJuZWwiIG9yICJhIG5ldyBpbnRlbCBkcm0tZml4
-DQo+IHdpbGwgc29sdmUiIGJ1dCBJIGNhbWUgYWNjcm9zIHRoZSBwcm9ibGVtIG5vdy4NCj4gDQo+
-IFdvdWxkIHlvdSBwbGVhc2UgYWR2aWNlIG1lIGFueSB0dXRvcmlhbCB0byBsZWFybiB3aGF0J3Mg
-Z29pbmcgb24/DQo+IA0KPiAoRXhjdXNlIG1lIGZvciBteSBlbmdsaXNoLCBJIGFtIG5vdCBuYXRp
-dmUpDQoNCg==
+--0000000000008da429057a88d69d
+Content-Type: text/plain; charset="UTF-8"
 
+Hi,
+
+I've just upgraded poky and meta-mingw layers from sumo to thud and as a
+result a lot of the executables in the toolchain no longer run correctly on
+Windows.
+
+I've built meta-toolchain for SDKMACHINE=x86_64-mingw32. From that, gcc/g++
+work fine on Windows 10, but ar, as, objdumb, and others hang for ~30
+seconds and exit without any output.
+
+Has anyone else seen this?
+
+--0000000000008da429057a88d69d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I&#39;ve just upgraded p=
+oky and meta-mingw layers from sumo to thud and as a result a lot of the ex=
+ecutables in the toolchain no longer run correctly on Windows.</div><div><b=
+r></div><div>I&#39;ve built meta-toolchain for SDKMACHINE=3Dx86_64-mingw32.=
+ From that, gcc/g++ work fine on Windows 10, but ar, as, objdumb, and other=
+s hang for ~30 seconds and exit without any output.</div><div><br></div><di=
+v>Has anyone else seen this?</div></div>
+
+--0000000000008da429057a88d69d--
