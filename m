@@ -1,61 +1,37 @@
-Return-Path: <ravchand_jm@yahoo.co.in>
+Return-Path: <jrswdnan22@snkmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1CD8DE00C43; Tue, 13 Nov 2018 02:25:53 -0800 (PST)
+	id 5CEE5E00C43; Tue, 13 Nov 2018 05:43:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (ravchand_jm[at]yahoo.co.in)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [106.10.244.39 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from sonic311-22.consmr.mail.sg3.yahoo.com
-	(sonic311-22.consmr.mail.sg3.yahoo.com [106.10.244.39])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52233E00C3C
-	for <yocto@yoctoproject.org>; Tue, 13 Nov 2018 02:25:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.co.in; s=s2048;
-	t=1542104750; bh=rKlJu1Q8f6PeSGicAw38YZfc6JqxueMngCw6OPGr5uo=;
-	h=Date:From:To:Subject:References:From:Subject;
-	b=NxwdKQ5JiCvAa1mNjQ7ln5Navt95I1LYExPp2tcKuXObnyluSPk/woRl60WqkS0aUDZ1TiKamfilkea89E2562kfR2hwdz7FmxNW0BU46SSw0JvpUdhVyO7lYoGMfrdhyWQITIsFp/45xC1LmmM2QcZy9YprozvtmPiBMXDXjsTCPqfnW+LEBCZrtA5ZCUACRuQVryMdbwEc7a6f5grBCSQsL3YIVsf5M7UDbxJwagCylsw2ZlDLt+2PiVh1QHGbcYjtrYqv8wy8/ha93ijjKH2NllEcPHV6e/kuMddaVkzrNJh6agQGKilm/1DXWsuPJMyIo/AfaSAjmgKDK5HTLA==
-X-YMail-OSG: kLZIYxEVM1m4B.u4Sl46hA3Z_wOFMnpXE4wpf4CzSpLYzU5Qx8K9tTHEoP9TJT3
-	ckFyGSfvVnXvSRnQKxHL7CF1wl87cEy9_6vRPax.481Jfvg7_3Pep97Hvtvx_QIjeJH4BoHdfJDH
-	uJNYdnxzCzMfH.sfFPtO.dTHxxOBNaQ3VjMPZfSOZ1gjxUPKpllF3ANwMHTtypLsbP0Eer_MdqCI
-	2u6oDISldRJXO_nan.jQuuSG.3k22v49ed6Rif0zIWa52jQ1e4hMm0xhEDnva5u3HQQWUEgAl7YM
-	xpU1P0mhgiz.skgrVsnhZMCfSoWPFuEKBoUsMMEDNkBekLBnVqnKNB3y7GHdMjJzWYlnQBhqFP0c
-	mcm6vyDOpDLih593_F8Nne4m4gEHoIdG064Snt8pIN_lPv71XkqaqT7EEke8L6DFtU7oHCIvzwqA
-	2BtrqNamIp8YwkFjtAIo4vw34fhYyKAdQ7XZrMc7L3RTBuZSk2ALuCxpZh_VHpMXaZJt7lhZH8bQ
-	EF1YKITe5SPe4czA3KJuRcVJwwuQZULl3RzFIlduUCB7A8_1xBPodcMr4u7wrS3UaZZFy0vNls6v
-	YVAZu_.h85rApZ8cwQpneMAzP5rkb8eSTYG8VOgoeRbeBuYlsDlgcS4uoSWmQfrRWe3qHiJ8s1Cq
-	3GY9_brXGRjleAAx4W6h2ydx6BsxEBhHXvl4KDNZ__SWbPYx4gW1piZETsipCistnYPEgIO6zJKD
-	kz3TTWB2FePx_Iq4cdK5XRTfGImLwVtMgX7RkLLh8KTDIA.sGwJBa9jl5rjI1UgHL.zj7lgibpKu
-	zMYjiEF2QyMs2aREFyzoQYgRgSJyrAmxWFsz.QY8vf.jf9Nun6QMU09Ivr8g95PCkp4pLxT3lvm_
-	sI.DHNVrLiNOYwOfxjvn1CfQ7KyNCcQLy7NN9Lmzhp.dbi15kUsTL1mxinl9VF1uwFd7j6gnqcMg
-	zWlkfCOuiWymksY9QKjXs0883.hCgVDyYv_ZEJNYTy8LJJSb6yfRIf0VjKw2YbMY.oUTiFi3ONGy
-	0AtQrvwv9KE_y59S4pawDcNSjNGR_Yb_R1ePU75U7
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic311.consmr.mail.sg3.yahoo.com with HTTP;
-	Tue, 13 Nov 2018 10:25:50 +0000
-Date: Tue, 13 Nov 2018 10:25:49 +0000 (UTC)
-From: ravi chandran <ravchand_jm@yahoo.co.in>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <452939319.1586293.1542104749758@mail.yahoo.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [62.142.5.116 listed in list.dnswl.org]
+Received: from emh06.mail.saunalahti.fi (emh06.mail.saunalahti.fi
+	[62.142.5.116])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 561B4E00C3C
+	for <yocto@yoctoproject.org>; Tue, 13 Nov 2018 05:43:33 -0800 (PST)
+Received: from uwe1 (unknown [193.65.204.42])
+	by emh06.mail.saunalahti.fi (Postfix) with ESMTP id 2086730065;
+	Tue, 13 Nov 2018 15:43:32 +0200 (EET)
+From: Uwe Geuder <jrswdnan22@snkmail.com>
+To: yocto@yoctoproject.org
+In-Reply-To: <CAFd=ociPq2njZqnx_ruRK_Pe5ECDMMo+kP5SE82iVBauqaEF-w@mail.gmail.com>
+References: <CAFd=ochAjUo7FfHQJFcQHYE7Y2jRD8UHUhRBpGvvTRLLgfwK=Q@mail.gmail.com>
+	<CAFd=ocj4eHG89wt7yM0_w3YqrM9788+CZp=gDXgQfQsE6+9v2Q@mail.gmail.com>
+	<3658853.D14kAIKcfP@stinger>
+	<CAFd=ocgV2baea-PsHJ9N9OiTS-rTQ-mux=7qwxmCU=Y8JBJ+Aw@mail.gmail.com>
+	<87zhuiz5cx.fsf@snkmail.com>
+	<CAFd=ociPq2njZqnx_ruRK_Pe5ECDMMo+kP5SE82iVBauqaEF-w@mail.gmail.com>
+	<0cbd0504-0890-64d8-c074-3857bb7cbd10@topic.nl>
+Date: Tue, 13 Nov 2018 15:43:31 +0200
+Message-ID: <871s7pozy4.fsf@snkmail.com>
 MIME-Version: 1.0
-References: <452939319.1586293.1542104749758.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.12732 YMailNorrin Mozilla/5.0 (Windows NT 6.1; Win64;
-	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77
-	Safari/537.36
-Subject: lib32-glibc headers populated instead glibc headers in the SDK toolchain - yocto 2.2.2
+Subject: Re: Set linux capabilities on binary on a recipe in meta-oe layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,46 +43,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Nov 2018 10:25:53 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_1586292_328686942.1542104749749"
+X-List-Received-Date: Tue, 13 Nov 2018 13:43:35 -0000
+Content-Type: text/plain
 
-------=_Part_1586292_328686942.1542104749749
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+On Mon, Nov 12, 2018 at 3:09 PM Markus W markus4dev-at-gmail.com wrote:
+>
+> Thanks Uwe!
+>
+> I tried the global approach by adding the following to my local.conf file:
+>
+> ROOTFS_POSTPROCESS_COMMAND += "my_setcap_function"
+>
+> my_setcap_function() {
+>     setcap cap_net_raw+eip ${IMAGE_ROOTFS}/usr/bin/node
+> }
+>
+> But got the following warning:
+> WARNING: core-image-full-cmdline-1.0-r0 do_rootfs: Function my_setcap_function doesn't exist
+>
+> I have tried to add the function into a recipe but this doesn't work either. Where should the function be defined?
+>
 
-Hi all,
-I am working in one project where both lib32 & lib64 need to be supported. Hence, lib32-glibc & glibc both are there in yocto build. In the final toolchain, after running "bitbake <image> -c populate-sdk", it is randomly, lib32-glibc headers are getting populated instead of glibc headers.
-Ex: in the toolchain, <sysroots_dir>/aarch64/usr/include/bits/endian.h - lib32-glibc header file content seen instead glibc header file content.
-Please let me know if anybody has any solution/work-around for this.
-Thanks in advance,Ravi
+As I wrote
 
-------=_Part_1586292_328686942.1542104749749
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+>> This is done in your image recipe.
 
-<html><head></head><body><div class=3D"ydp437c0028yahoo-style-wrap" style=
-=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
-;"><span><div style=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-=
-serif; font-size: 16px;">Hi all,</div><div style=3D"font-family: Helvetica =
-Neue, Helvetica, Arial, sans-serif; font-size: 16px;"><br></div><div style=
-=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 1=
-6px;">I am working in one project where both lib32 &amp; lib64 need to be s=
-upported. Hence, lib32-glibc &amp; glibc both are there in yocto build. In =
-the final toolchain, after running "bitbake &lt;image&gt; -c populate-sdk",=
- it is randomly, lib32-glibc headers are getting populated instead of glibc=
- headers.</div><div style=3D"font-family: Helvetica Neue, Helvetica, Arial,=
- sans-serif; font-size: 16px;"><br></div><div style=3D"font-family: Helveti=
-ca Neue, Helvetica, Arial, sans-serif; font-size: 16px;">Ex: in the toolcha=
-in, &lt;sysroots_dir&gt;/aarch64/usr/include/bits/endian.h - lib32-glibc he=
-ader file content seen instead glibc header file content.</div><div style=
-=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 1=
-6px;"><br></div><div style=3D"font-family: Helvetica Neue, Helvetica, Arial=
-, sans-serif; font-size: 16px;">Please let me know if anybody has any solut=
-ion/work-around for this.</div><div style=3D"font-family: Helvetica Neue, H=
-elvetica, Arial, sans-serif; font-size: 16px;"><br></div><div style=3D"font=
--family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 16px;">Th=
-anks in advance,</div><div style=3D"font-family: Helvetica Neue, Helvetica,=
- Arial, sans-serif; font-size: 16px;">Ravi</div></span></div></body></html>
+At least this is where I do it and it works for me.
 
-------=_Part_1586292_328686942.1542104749749--
+My use of "global" was probably not so lucky, I did not mean bitbake
+configuration.  I just meant that it is done in the image recipe and not
+in the node recipe.
+
+You can always use "bitbake -e" to check variable and recipe function
+definitions if you are wondering what is really going on. I often
+understand problems when looking at the listing produced by this
+command. In your case "bitbake -e core-image-full-cmdline"
+
+There are also other functions in the value of ROOTFS_POSTPROCESS_COMMAND so as
+
+
+On Tue, Nov 13, 2018 at 4:09 AM Mike Looijmans mike.looijmans-at-topic.nl wrote:
+>
+> Also, there's a semicolon missing:
+> ROOTFS_POSTPROCESS_COMMAND += "my_setcap_function;"
+>
+
+The final value of ROOTFS_POSTPROCESS_COMMAND as shown by "bitbake -e"
+should be list of function names separated by semicolons.
+
+My previous link was broken, hopefully this time it survives intact...
+
+https://www.yoctoproject.org/docs/2.5.1/mega-manual/mega-manual.html#var-ROOTFS_POSTPROCESS_COMMAND
+
+> Sometimes the problem is that parts of the underscored function name are seen
+> as overrides, so you should try using "mysetcapfunction" instead as a name.
+>
+
+That has never happened to me and I use underscores in my function
+names. But I could imagine that it's possible in some case. I would
+strongly expect to see such issue in the output of "bitbake -e", too.
+
+
+Regards,
+
+Uwe Geuder
+Neuro Event Labs Oy
+Tampere, Finland
+uwe.gexder@neuroeventlabs.com (Bot check: fix one obvious typo)
+
