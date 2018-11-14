@@ -1,66 +1,64 @@
-Return-Path: <theknoppix@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 18095E00C49; Wed, 14 Nov 2018 03:46:31 -0800 (PST)
+	id 78535E00C3D; Wed, 14 Nov 2018 03:49:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.166.172 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (theknoppix[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.54 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
-	[209.85.128.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B118AE00C10
-	for <yocto@yoctoproject.org>; Wed, 14 Nov 2018 03:46:29 -0800 (PST)
-Received: by mail-wm1-f54.google.com with SMTP id t15-v6so14511110wmt.0
-	for <yocto@yoctoproject.org>; Wed, 14 Nov 2018 03:46:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-it1-f172.google.com (mail-it1-f172.google.com
+	[209.85.166.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBF8DE00BBF
+	for <yocto@yoctoproject.org>; Wed, 14 Nov 2018 03:49:02 -0800 (PST)
+Received: by mail-it1-f172.google.com with SMTP id r12-v6so23399323ita.3
+	for <yocto@yoctoproject.org>; Wed, 14 Nov 2018 03:49:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=6iBLNxfDWXldcLFGjxCzxUiB8iHyF+Rm2y4lDHuOQbw=;
-	b=lDny4CKt4CLeF1EzyfHtDWm1NldRPjo36XLxv6dJh/DNXpppD6rHFOuIk1oOZVZ5mN
-	OroVOQimG9EWgB5gF6ee/QClMY+R+DWw5lzLHl3qY/w16QwWSSwLrgYuec6BBg/ryhL9
-	PlEuJ9MlOjpphCvUWuIendUvNwI5AVqcde+RpIx09XYC6RJcS8bC4tyHtGqOF1WP1C+l
-	FaQvlBidt78zb/nWIw04xZTjOxbzsycRokUD1Ugl3MbR38Ct49drGoYMlxH5hSBSlP1S
-	ZVVguLeIsAQutbPe22WiL+/eZp3WSFYDLdkfBKjJiKs2EqFMYfdO0cFO/qqedFUNFe3l
-	SOKw==
+	:cc; bh=sT5RBlJtgDnGuVQCayTe7DyQ1HKxcL2gH7DaEF+VFzY=;
+	b=OU7FtAy5Tef71Q1UKewZ3wKiKao2nXdAHSTHhNUhAok+UUrQJMwNkXKstSb6BpbL5V
+	EV9QCTgXEkEgU/Zb+o/a9qFSSMAkPSLZM1d+FQjCWsAWJg7XMhjGRAshOAe3dsXzwVNf
+	Izb2VZAilVy0NmX1splFxnoWELzu78+Df245Pl5wTprIKxaPMiJqhMlW0qJMiLwXBd3t
+	bVpakxggAMtDWM7wj2WU3gAwpnEfSltuIh7AKdFvL5i3C1T1BjbdWqLTP9EuWNLLlZ24
+	tLp0ePrVDpS5gW9Npwl1M9bK/aTAlRm2pC0kHMQt+yCllxJM9yRDi/ynrN9fEPq3vKnM
+	41+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=6iBLNxfDWXldcLFGjxCzxUiB8iHyF+Rm2y4lDHuOQbw=;
-	b=H/lXIhnn5CUAVItRaAV3Clafzjp7pZNkDxbI89KuCxy8tEhWakRTAGeKnM2zrPCpfd
-	m/Ur57O3ZGgGNkZI7+pURqjk6agpPe99uMtWW2sPuqoieNV6rN/pnWH5cSUCHDwCrO+r
-	DLLSxIToSpSTJCS3ngzmFHXjQlnAKH57efd8icz6KvTRgwp9ZyfnoIMkD1aIRZfgS0OR
-	v1QYBywY/Jydxg2k8c21kMkpL34TI44MvxlrIRIaEjFmXa4qlt2I7IHqSfAQR2rlIfOJ
-	ZiA8GJRDkpoMw/xtHXpRv8GEQlfy0705tY0WVVU8D6qOA9SKElROEbE05jxICx0nMocx
-	9vHQ==
-X-Gm-Message-State: AGRZ1gI72TUot3vvYm8fZSh5F4dUs0ALzrFph5oKdkerqBXc40LVLrWY
-	8LEAr1Ka6XKe26XaHj7E3YpFwe9z8iKUxL/3ft0=
-X-Google-Smtp-Source: AJdET5fwUsWOPmS0ojJJJGAxCjaTSBFF7FnOXDGxe3SsYkBOPozov06BZAZXbW5PI3UWkLF7JSzTk8tYjONfU3BcXo4=
-X-Received: by 2002:a1c:a184:: with SMTP id
-	k126-v6mr1677337wme.32.1542195988396; 
-	Wed, 14 Nov 2018 03:46:28 -0800 (PST)
+	bh=sT5RBlJtgDnGuVQCayTe7DyQ1HKxcL2gH7DaEF+VFzY=;
+	b=AHq5x3e0XbC/iOAX5CCeYFYRbx3+use5DbeiCd8UGliw49RY3agmqocPrlsWKIjwEP
+	hqLNeOnIJUaqPvrIvjVLS5K4TILTkGWkEQsqiQGvBXCq4dQD+2PTqenlRUKX8rHYgWTp
+	BWnResFWjYxWd3eDLV9pARAqP3MmSlFuA6Npz7WIQYFru8akYjpsQ9BHcZtD00v/oatC
+	WmnfvZOmu8Sb4MeXWv2A/oYOEduXQEQTpJUb3w6crFZlcwv04ffozGXM63Buj/eeB3W6
+	I5kWFIUh8FpXe+Ns4Dbn+S7iySd4EV86//yCX4ObGup5FkKD16uCV0VVk8dggj0NwAxT
+	w8OQ==
+X-Gm-Message-State: AGRZ1gIGF91EZj4xPUxu0o0vK3T6j7m/L6QkpWMefXQdCDe9Hj0Tbppi
+	Uq48HwbxjKbZIOH20btpu7xBHWurgT30RLvxPYc7ZQ==
+X-Google-Smtp-Source: AFSGD/UG3jsoNaJ1amf6bT/YTSB7RpkW6npz8I8L9QARIbIhAXqoeSuvBADjFByGpAuOrNSVAlxICG9DKkpxUMmN3TI=
+X-Received: by 2002:a24:9142:: with SMTP id
+	i63-v6mr1766177ite.130.1542196142287; 
+	Wed, 14 Nov 2018 03:49:02 -0800 (PST)
 MIME-Version: 1.0
 References: <CAD9sEJu_CbZYAGCiytx1GuM+HEQ+ar8mRG+aWG55dRe_okpK8Q@mail.gmail.com>
 	<CAJTo0LY4jYkwWH0LEjzoAmjPWpm3W7P0m45YSWC7CfTW11P_CQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LY4jYkwWH0LEjzoAmjPWpm3W7P0m45YSWC7CfTW11P_CQ@mail.gmail.com>
-From: Knoppix <theknoppix@gmail.com>
-Date: Wed, 14 Nov 2018 14:46:16 +0300
-Message-ID: <CAD9sEJsfnEMaPpREK26BoXqteh+3yXw3Uy6jQThBJMnnomJ3EA@mail.gmail.com>
-To: ross.burton@intel.com
-Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+	<CAD9sEJsfnEMaPpREK26BoXqteh+3yXw3Uy6jQThBJMnnomJ3EA@mail.gmail.com>
+In-Reply-To: <CAD9sEJsfnEMaPpREK26BoXqteh+3yXw3Uy6jQThBJMnnomJ3EA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 14 Nov 2018 11:48:51 +0000
+Message-ID: <CAJTo0LbnVE9zCecktM+qchTDEn1gPwcXj8bfUb5erOhFtJqJug@mail.gmail.com>
+To: theknoppix@gmail.com
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
+	OE-core <openembedded-core@lists.openembedded.org>
 Subject: Re: [OE-core] meta-gnome: what are dependencies for gnome-full-desktop (gnome interface)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -73,77 +71,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Nov 2018 11:46:31 -0000
-Content-Type: multipart/alternative; boundary="0000000000001006a5057a9e7c42"
+X-List-Received-Date: Wed, 14 Nov 2018 11:49:03 -0000
+Content-Type: multipart/alternative; boundary="0000000000003c472a057a9e8551"
 
---0000000000001006a5057a9e7c42
+--0000000000003c472a057a9e8551
 Content-Type: text/plain; charset="UTF-8"
 
-My question were implement the missing recipes for yocto->meta-gnome
-To start from point I did want to learn dependency graphic of gnome3.
-I subscripted devel right know.
+On Wed, 14 Nov 2018 at 11:46, Knoppix <theknoppix@gmail.com> wrote:
 
-Mr Burton: Thank you.
-
-On Wed, Nov 14, 2018 at 2:25 PM Burton, Ross <ross.burton@intel.com> wrote:
-
-> On Wed, 14 Nov 2018 at 08:42, Knoppix <theknoppix@gmail.com> wrote:
->
->> (Excuse me for my english I am not native)
->>
->> One disappointment for me was learn that meta-gnome is not
->> fully-supported for running desktop. So i want to write all remain recipes
->> to use desktop environment. I want to start from scratch (except from
->> meta-debian-recipes) because for learn gnome world.
->>
->> Dear friends, how can I learn what are the necessary binaries&libraries
->> for gnome interface (i.e: desktop window&display-manager panel, topbar,
->> settings and other UI full-desktop-environment) to use on yocto project?
->> Which project is I should start to write its recipe?
->>
->
-> If you just want to know what the GNOME dependencies are then you should
-> be asking GNOME.  GNOME has a build tool called jhbuild, the module sets in
-> tht list all of the dependencies required.
->
-> Note that there's a series to add the GNOME 3 desktop to meta-gnome under
-> review on the openembedded-devel list, so working on that would avoid
-> duplication of effort.
->
-> Ross
+> My question were implement the missing recipes for yocto->meta-gnome
+> To start from point I did want to learn dependency graphic of gnome3.
+> I subscripted devel right know.
 >
 
---0000000000001006a5057a9e7c42
+Just to repeat: all of the recipes you'll need to write are on the oe-devel
+list now.  They need work and testing, and your contributions are welcome.
+
+--0000000000003c472a057a9e8551
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>My question were implement the missing recipes for yo=
-cto-&gt;meta-gnome</div><div>To start from point I did want to learn depend=
-ency graphic of gnome3.</div><div>I subscripted devel right know.<br></div>=
-<div><br></div><div>Mr Burton: Thank you.<br></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr">On Wed, Nov 14, 2018 at 2:25 PM Burton, Ross &lt;<a=
- href=3D"mailto:ross.burton@intel.com">ross.burton@intel.com</a>&gt; wrote:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
-er-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">On Wed, 14 Nov 20=
-18 at 08:42, Knoppix &lt;<a href=3D"mailto:theknoppix@gmail.com" target=3D"=
-_blank">theknoppix@gmail.com</a>&gt; wrote:<br><div class=3D"gmail_quote"><=
-blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
- #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div>(Excuse me for my engli=
-sh I am not native)<br></div><div><br></div><div>One disappointment for me =
-was learn that meta-gnome is not fully-supported for running desktop. So i =
-want to write all remain recipes to use desktop environment. I want to star=
-t from scratch (except from meta-debian-recipes) because for learn gnome wo=
-rld.</div><div><br></div><div>Dear friends, how can I learn what are the ne=
-cessary binaries&amp;libraries for gnome interface (i.e: desktop window&amp=
-;display-manager panel, topbar, settings and other UI full-desktop-environm=
-ent) to use on yocto project? Which project is I should start to write its =
-recipe?</div></div></blockquote><div><br></div><div>If you just want to kno=
-w what the GNOME dependencies are then you should be asking GNOME.=C2=A0 GN=
-OME has a build tool called jhbuild, the module sets in tht list all of the=
- dependencies required.</div><div><br></div><div>Note that there&#39;s a se=
-ries to add the GNOME 3 desktop to meta-gnome under review on the openembed=
-ded-devel list, so working on that would avoid duplication of effort.</div>=
-<div><br></div><div>Ross</div></div></div>
-</blockquote></div></div>
+<div dir=3D"ltr">On Wed, 14 Nov 2018 at 11:46, Knoppix &lt;<a href=3D"mailt=
+o:theknoppix@gmail.com">theknoppix@gmail.com</a>&gt; wrote:<br><div class=
+=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
+ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div>My qu=
+estion were implement the missing recipes for yocto-&gt;meta-gnome</div><di=
+v>To start from point I did want to learn dependency graphic of gnome3.</di=
+v><div>I subscripted devel right know.</div></div></blockquote><div>=C2=A0<=
+/div><div>Just to repeat: all of the recipes you&#39;ll need to write are o=
+n the oe-devel list now.=C2=A0 They need work and testing, and your contrib=
+utions are welcome.</div></div></div>
 
---0000000000001006a5057a9e7c42--
+--0000000000003c472a057a9e8551--
