@@ -1,65 +1,67 @@
-Return-Path: <okonopli@cisco.com>
+Return-Path: <ste.lendl@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 94747E00901; Thu, 15 Nov 2018 05:25:43 -0800 (PST)
+	id AC3D3E00901; Thu, 15 Nov 2018 06:14:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_HI, SPF_HELO_PASS,
-	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [173.38.203.52 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
-	white-list
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ste.lendl[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.65 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Thu, 15 Nov 2018 05:25:42 PST
-Received: from aer-iport-2.cisco.com (aer-iport-2.cisco.com [173.38.203.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86929E00872
-	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 05:25:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=cisco.com; i=@cisco.com; l=3166; q=dns/txt; s=iport;
-	t=1542288342; x=1543497942;
-	h=to:from:subject:message-id:date:mime-version:
-	content-transfer-encoding;
-	bh=BhaaVchT9YPxe7yuRw5gP78N95O21aarkkddL5F8lWA=;
-	b=kfawEvb4C1wT1FEpJvZuxlDXDD/McKLJm7JT8LV5jzfBgnMQN3PdmVZ7
-	45TBgNJKlSssfUNlqCrZ8P200rAj+wdtltstJCm/ovATmLoomxir+V3gR
-	LeChAy0DqzgjuyJOkP3iuK8DWMw21TN4cl7XTnNy+LyW9LupmUq40gE2I g=;
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0ANAAArcu1b/xbLJq1jGwEBAQEDAQE?=
-	=?us-ascii?q?BBwMBAQGBUQYBAQELAYNZEieDeIgYX4x7iUKJKoR3gXoLAQGIXjQJDQEDAQE?=
-	=?us-ascii?q?CAQECbSiFZgQLAQVaHAImAmwGAgEBgx2BdQ2MRptQfDOFQIRlgQuLEYFAP4E?=
-	=?us-ascii?q?4im2CVwKfD1UJkR4GGIlahxsBLJc0AhEUgUY4gVVwFTuCbJBcPQMwjjUBAQ?=
-X-IronPort-AV: E=Sophos;i="5.56,236,1539648000"; 
-   d="scan'208";a="8066622"
-Received: from aer-iport-nat.cisco.com (HELO aer-core-4.cisco.com)
-	([173.38.203.22])
-	by aer-iport-2.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	15 Nov 2018 13:24:36 +0000
-Received: from [10.63.15.135] ([10.63.15.135]) (authenticated bits=0)
-	by aer-core-4.cisco.com (8.15.2/8.15.2) with ESMTPSA id wAFDOXrS015270
-	(version=TLSv1.2 cipher=AES256-SHA bits=256 verify=NO)
-	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 13:24:36 GMT
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
+	[209.85.221.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57EB0E008D7
+	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 06:14:08 -0800 (PST)
+Received: by mail-wr1-f65.google.com with SMTP id j10so7167940wru.4
+	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 06:14:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=9P92Adi/BtIq2xjHT8cT3EJC+R1XPPuW4ccnGkHIfVA=;
+	b=o1ltzKINuxrc8lCiJENqqy+vJLz1w1irAYsqVB9z1o3/KQtlBj0/WsSxZULc+x867d
+	fhQpeXG4wLziZuQaI9VYvS0KdwGkyp9MHf4vbszBC4YrY2UOhxm+8Ha84LVojThd/lDA
+	VynxQTwJ9dk9KlUYTqnkKiFfWyz+pNY2mnar/kI665XGgIfk4N4t2LkMI8YAsjj8ZNQ7
+	mtsNpsWjiI1iL6iXKdh/aEqPEOtgczUsyxaqeQ22lzrAwQ3zzBdD+4FFwRYsBNKkt2Yd
+	NK24o+9krO63rcpZShZzXfo8mLR6DFMRzmkttV5CVhsMlSqczYjLuvcZ3sBnecn53/aZ
+	9zog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=9P92Adi/BtIq2xjHT8cT3EJC+R1XPPuW4ccnGkHIfVA=;
+	b=jrM90rKerntuSCc7kjnx2+J+4whE0dhFsKKWTRpE/gsYrLJgafpaJUFmKw5sPBflTM
+	K+FN5uPKCofGSyPuTDs3f8GO+dUOURnM6+mxbysrsboWqfvvijCmJmEXIlrPYF5BqiyT
+	CGmb139t9n/BvJBGl8ClyhvhSyMdqCOg0N8V+tbJcGP68aKwWiHAnwE3jxjsRxNmukca
+	MyK/ehJfG8PuoyeKczQuvQu3PaDzR++NXBA7L8tH8smkqOFlfXm0dUO+NOIsmPezrPT2
+	Owja+W8lnAg9LP+tyipVXM6jJK9E2EgfJlfSXnyF6GeVtCVB5LwJs4sUHwr6ARDhLVHb
+	WJpA==
+X-Gm-Message-State: AGRZ1gJ4N/7NlhovwFrfaekE2eYCTD+Wo5UBfAdV4xkChmq3hGynvlJ7
+	9ztZHR+0cadmMGnVsS+VNFDMtWR0FH0=
+X-Google-Smtp-Source: AJdET5d2HGxDBrNG/MIHD522LDWuZDws/CJ8kM4HaoBT48UVaZ4ZUBmsDHtqavZlwU6aH3GMSZhs8g==
+X-Received: by 2002:adf:8444:: with SMTP id
+	62-v6mr6030265wrf.251.1542291245351; 
+	Thu, 15 Nov 2018 06:14:05 -0800 (PST)
+Received: from localhost ([212.69.186.40]) by smtp.gmail.com with ESMTPSA id
+	y83-v6sm19427361wmb.20.2018.11.15.06.14.02
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Thu, 15 Nov 2018 06:14:02 -0800 (PST)
+From: Stefan Lendl <ste.lendl@gmail.com>
 To: yocto@yoctoproject.org
-From: Oleksii Konoplitskyi <okonopli@cisco.com>
-Message-ID: <11e8dff4-67b3-2a90-40ac-e9443589b866@cisco.com>
-Date: Thu, 15 Nov 2018 15:24:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.2.1
-MIME-Version: 1.0
-X-Authenticated-User: okonopli
-X-Outbound-SMTP-Client: 10.63.15.135, [10.63.15.135]
-X-Outbound-Node: aer-core-4.cisco.com
-Subject: [PATCH] ref-manual: add EXCLUDE_PACKAGES_FROM_SHLIBS description
+Date: Thu, 15 Nov 2018 15:13:59 +0100
+Message-Id: <20181115141359.31763-1-ste.lendl@gmail.com>
+X-Mailer: git-send-email 2.14.5
+X-Mailman-Approved-At: Thu, 15 Nov 2018 06:28:55 -0800
+Cc: Stefan Lendl <ste.lendl@gmail.com>
+Subject: [PATCH] Use lynis download link from github releases
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,81 +73,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Nov 2018 13:25:43 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-List-Received-Date: Thu, 15 Nov 2018 14:14:09 -0000
 
-Some packages containing shared libraries might be registered as shlib
-providers when they shouldn't (for example, the lib is for their private use
-and must not generate any dependency).
+Unlike the official download page, it also works for older releases
 
-EXCLUDE_FROM_SHLIBS is targeted at that, but it could be set for entire 
-recipe
-only.
-
-Variable EXCLUDE_PACKAGES_FROM_SHLIBS allows to set list of packages 
-that are
-not candidates for shlib providers.
-
-Signed-off-by: Oleksii Konoplitskyi <okonopli@cisco.com>
+Signed-off-by: Stefan Lendl <ste.lendl@gmail.com>
 ---
-  documentation/ref-manual/ref-variables.xml | 28 
-++++++++++++++++++++++++++++
-  1 file changed, 28 insertions(+)
+ meta-security-compliance/recipes-auditors/lynis/lynis_2.5.1.bb | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/documentation/ref-manual/ref-variables.xml 
-b/documentation/ref-manual/ref-variables.xml
-index 595f2db..98d3f86 100644
---- a/documentation/ref-manual/ref-variables.xml
-+++ b/documentation/ref-manual/ref-variables.xml
-@@ -4289,6 +4289,34 @@
-              </glossdef>
-          </glossentry>
-
-+        <glossentry 
-id='var-EXCLUDE_PACKAGES_FROM_SHLIBS'><glossterm>EXCLUDE_PACKAGES_FROM_SHLIBS</glossterm>
-+            <info>
-+                EXCLUDE_PACKAGES_FROM_SHLIBS[doc] = "Causes the 
-OpenEmbedded build system's shared libraries resolver to exclude 
-packages when scanning for shared libraries."
-+            </info>
-+            <glossdef>
-+                <para role="glossdeffirst">
-+<!--                <para role="glossdeffirst"><imagedata 
-fileref="figures/define-generic.png" /> -->
-+                    Triggers the OpenEmbedded build system's shared 
-libraries
-+                    resolver to exclude packages when scanning for
-+                    shared libraries.
-+                    The 
-<filename>EXCLUDE_PACKAGES_FROM_SHLIBS</filename> variable is
-+                    similar to the
-+                    <link 
-linkend='var-EXCLUDE_FROM_SHLIBS'><filename>EXCLUDE_FROM_SHLIBS</filename></link>
-+                    variable, which excludes all the packages provided 
-by recipe
-+                    and not excludes particular package.
-+                </para>
-+
-+                <para>
-+                    Use the
-+ <filename>EXCLUDE_PACKAGES_FROM_SHLIBS</filename> variable as a list 
-of packages that
-+                    are not candidates for shared libraries providers:
-+                    <literallayout class='monospaced'>
-+     EXCLUDE_PACKAGES_FROM_SHLIBS += "glibc-ptest glibc-dev"
-+                    </literallayout>
-+                </para>
-+            </glossdef>
-+        </glossentry>
-+
-          <glossentry 
-id='var-EXCLUDE_FROM_WORLD'><glossterm>EXCLUDE_FROM_WORLD</glossterm>
-              <info>
-                  EXCLUDE_FROM_WORLD[doc] = "Directs BitBake to exclude 
-a recipe from world builds (i.e. bitbake world)."
+diff --git a/meta-security-compliance/recipes-auditors/lynis/lynis_2.5.1.bb b/meta-security-compliance/recipes-auditors/lynis/lynis_2.5.1.bb
+index c25b804..1ee71ef 100644
+--- a/meta-security-compliance/recipes-auditors/lynis/lynis_2.5.1.bb
++++ b/meta-security-compliance/recipes-auditors/lynis/lynis_2.5.1.bb
+@@ -6,12 +6,12 @@ HOMEDIR = "https://cisofy.com/"
+ LICENSE = "GPL-3.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=3edd6782854304fd11da4975ab9799c1"
+ 
+-SRC_URI = "https://cisofy.com/files/${BPN}-${PV}.tar.gz"
++SRC_URI = "https://github.com/CISOfy/lynis/archive/${PV}.tar.gz"
+ 
+-SRC_URI[md5sum] = "5b9da89c616344bbc73cbc5688a4a0bd"
+-SRC_URI[sha256sum] = "7a09c6fc71c65d572ca702df7b4394d71f9037484062ef71b76f59a2c498b029"
++SRC_URI[md5sum] = "f91840acc0801b77844363fc55c5d688"
++SRC_URI[sha256sum] = "e143eaefec3222f98a0f74dd6dcb3818aa348dea3d0379bd3a45455911b6ee2a"
+ 
+-S = "${WORKDIR}/${BPN}"
++S = "${WORKDIR}/${BPN}-${PV}"
+ 
+ inherit autotools-brokensep
+ 
 -- 
-2.7.4
+2.14.5
 
 
