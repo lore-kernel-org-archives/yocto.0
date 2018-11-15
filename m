@@ -1,96 +1,54 @@
-Return-Path: <samuli.piippo@qt.io>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 937D7E0095C; Thu, 15 Nov 2018 08:03:50 -0800 (PST)
+	id A0E9CE0097C; Thu, 15 Nov 2018 08:12:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [40.107.4.135 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-X-Greylist: delayed 11344 seconds by postgrey-1.32 at yocto-www;
-	Thu, 15 Nov 2018 08:03:47 PST
-Received: from EUR03-DB5-obe.outbound.protection.outlook.com
-	(mail-eopbgr40135.outbound.protection.outlook.com [40.107.4.135])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FA32E008D7
-	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 08:03:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=qtcompany.onmicrosoft.com; s=selector1-qt-io;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=BMPNef7KVol7ETK8UwSlTDo2XFd4yXw/ry/hEirvqDI=;
-	b=dGaNZbDI9FRO+cYW7mm2c04ZTXtCDtFgeiNT80u3WiJiS8RLTl68Fj3IV3C0UDkIxBI1phlE+LwJGQMwa/KBEzszCtjv52oNK3SwMz1IG7VlsVpQIFMMcYZV5GSrRQgeAp/IukRhHjQldoheyCwKf5K7t295KGrOtiX7z+ov7b8=
-Received: from HE1PR0201MB2265.eurprd02.prod.outlook.com (10.168.145.136) by
-	HE1PR0201MB2217.eurprd02.prod.outlook.com (10.168.31.6) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1294.25; Thu, 15 Nov 2018 09:28:52 +0000
-Received: from HE1PR0201MB2265.eurprd02.prod.outlook.com
-	([fe80::e588:a17c:cfbc:83f9]) by
-	HE1PR0201MB2265.eurprd02.prod.outlook.com
-	([fe80::e588:a17c:cfbc:83f9%6]) with mapi id 15.20.1294.045;
-	Thu, 15 Nov 2018 09:28:52 +0000
-From: Samuli Piippo <samuli.piippo@qt.io>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [meta-mingw][PATCH 1/2] winpthreads: use posix threads library
-	from mingw64
-Thread-Index: AQHUfMWfo4EEInMzi0ud1wCRvP7GTg==
-Date: Thu, 15 Nov 2018 09:28:52 +0000
-Message-ID: <20181115092658.29152-1-samuli.piippo@qt.io>
-Accept-Language: en-GB, en-US
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FC2FE0095C
+	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 08:12:34 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	15 Nov 2018 08:12:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.56,236,1539673200"; d="scan'208,217";a="92320882"
+Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
+	by orsmga008.jf.intel.com with ESMTP; 15 Nov 2018 08:12:27 -0800
+Received: from fmsmsx116.amr.corp.intel.com (10.18.116.20) by
+	fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server
+	(TLS) id 14.3.408.0; Thu, 15 Nov 2018 08:12:17 -0800
+Received: from fmsmsx124.amr.corp.intel.com ([169.254.8.91]) by
+	fmsmsx116.amr.corp.intel.com ([169.254.2.70]) with mapi id
+	14.03.0415.000; Thu, 15 Nov 2018 08:12:17 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "theyoctoproject@gmail.com" <theyoctoproject@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Invitation: Yocto Project Weekly Triage Meeting @
+	Weekly from 7:30am to 8:30am on Thursday (PDT) (yocto@yoctoproject.org)
+Thread-Index: AQHT86VCPnsom91+SUa9h5s6d2wUv6Q/Y5wggRKw6mA=
+Date: Thu, 15 Nov 2018 16:12:16 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECFD43726@fmsmsx124.amr.corp.intel.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [192.89.120.53]
-x-mailer: git-send-email 2.17.1
-x-clientproxiedby: AM6P192CA0077.EURP192.PROD.OUTLOOK.COM
-	(2603:10a6:209:8d::18) To HE1PR0201MB2265.eurprd02.prod.outlook.com
-	(2603:10a6:3:7f::8)
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=samuli.piippo@qt.io; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; HE1PR0201MB2217;
-	6:2ZnWlyvPFzReC2WYK3SEWoGmHfnBV6jwB9/fdFnjqlr5q8zJMOlqlbWl6KVCEBMTIgpLHuvJOifjlh6rTAdIjAttjxV6o/t//OdUGyKxzBb7ifUWqUH/G29QX+xauxYFkT+vQ8Ak9//8UmwXPvid/oME9ebUfQPgd/2s7/8Rkf81+WxbsxEI+2bBqTLj1gRW+8oSJX7GEPeIWbA0rMeSWhNk17kqXBQ0GFEPOHIh0oaL4C3R+RRXXZu5enG6bqVikG57BasYMfl6t7SYtVyZcD9tbH+Abl1iq57+QGFj7J1EWHvv802eCewGieTlmMMcFtyU94d+GlzBNKayxrNkK3XXLwO8RE4W9YxyLH6S0Z5PS/CC0vvsI30cBlGdyHguAJDdlT30UxQ7kJemBcsksRCCy+sgv9aq6UoIUZTP1LDAKCJEFyYTXtqgDyBpAfhY34bCWsmUH73JBiy/iju1VA==;
-	5:86YhdNPjWN2lHATRdfcUo7kvk7pgccQnXiR2lYLmu+44RSSAERu39y1Be5/M0f8GSDN5m1RaaJrAZ595LlUxTqRLIRmHwy6kiwJ5vKQxCgvL94a5VMasdj5MnMwGlRaECwpIYPtwag0aFzw4uxWFZjCK9QFrPJYZ5/c2weEKi08=;
-	7:PSKzd9dVLivclRRQRfJPFhSs1VY4yKMyNfIymZZapkjEuOf4qxyfCswTl1DjFnzU8aErbgdtNpII0GDluHoHff+/nwSWL6CRYLkREr3BsIIYtNeDGxm2fS08NOUF2t8vys9k3UGeHwQs+P8qkJip8A==
-x-ms-office365-filtering-correlation-id: e4e71f16-1634-4ac0-4b5f-08d64adcc1c5
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390098)(7020095)(4652040)(8989299)(5600074)(711020)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7153060)(7193020);
-	SRVR:HE1PR0201MB2217; 
-x-ms-traffictypediagnostic: HE1PR0201MB2217:
-x-microsoft-antispam-prvs: <HE1PR0201MB2217DAE5845F2ABFAE8070BBE9DC0@HE1PR0201MB2217.eurprd02.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(788757137089);
-x-ms-exchange-senderadcheck: 1
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(8121501046)(5005006)(3002001)(10201501046)(93006095)(93001095)(3231415)(944501410)(4982022)(52105112)(148016)(149066)(150057)(6041310)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123558120)(20161123560045)(20161123562045)(20161123564045)(201708071742011)(7699051)(76991095);
-	SRVR:HE1PR0201MB2217; BCL:0; PCL:0; RULEID:;
-	SRVR:HE1PR0201MB2217; 
-x-forefront-prvs: 08572BD77F
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(346002)(366004)(396003)(376002)(39850400004)(136003)(189003)(199004)(66066001)(316002)(68736007)(71190400001)(71200400001)(186003)(1857600001)(36756003)(26005)(966005)(1730700003)(305945005)(476003)(2906002)(81156014)(8676002)(81166006)(2616005)(8936002)(6116002)(3846002)(486006)(1076002)(256004)(6916009)(14444005)(6486002)(2501003)(44832011)(50226002)(7736002)(386003)(14454004)(52116002)(5660300001)(33896004)(99286004)(2900100001)(74482002)(575784001)(86362001)(102836004)(6506007)(105586002)(106356001)(25786009)(2351001)(4326008)(6306002)(6512007)(6436002)(5640700003)(97736004)(53376002)(478600001)(53936002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1PR0201MB2217;
-	H:HE1PR0201MB2265.eurprd02.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: qt.io does not designate permitted
-	sender hosts)
-x-microsoft-antispam-message-info: VjPJy4EUezOX3DBfMbcmLzg0UjN8ThLos7jnLBVBAFvTdkXMLMoWmPi+CHRuJ948OgKdnp7NnKVXj+0Tnlj/l7Qap3TN6CnCOgZeHZJ+vf6bSOIPMITfrvP3TnqCmMoa1hSpKrJNKx/ZtCqT2knPV7fyjI61YW45Yl43qpaqIldChot5UC9Q/eoyJqxwf2R2vVXsQB9zRYiTYh9WBpfZK7sI6LoJPPlWDEjvCDuMM8/row3TiteZxMTXKmT1mHf9lhjmPjhhupfLRALm4ZXpudhxbceq+T9xYxCEcUrMFBc4YAH8GbqHnDSdwBaaTOXrAeb3EHm1HKKP6i5Y0inCpE+vW5eYIfwMG0YPCjEXZPs=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMzJjZDM3MTMtNWE3Ni00NDUyLWI5NmItYzBlMGE0YTg5NGViIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTDRvRGhsODkwM1dPNmRcL2tpVmpQMjV1Y2xXWjhZOGpLb21MMjNRemdoRVVuOXJuSDdCUHVDSkk1TGpLSEltc0IifQ==
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.107]
 MIME-Version: 1.0
-X-OriginatorOrg: qt.io
-X-MS-Exchange-CrossTenant-Network-Message-Id: e4e71f16-1634-4ac0-4b5f-08d64adcc1c5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2018 09:28:52.5728 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 20d0b167-794d-448a-9d01-aaeccc1124ac
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0201MB2217
-Subject: [meta-mingw][PATCH 1/2] winpthreads: use posix threads library from mingw64
+Subject: Re: Invitation: Yocto Project Weekly Triage Meeting @ Weekly from 7:30am to 8:30am on Thursday (PDT) (yocto@yoctoproject.org)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -102,203 +60,275 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Nov 2018 16:03:50 -0000
+X-List-Received-Date: Thu, 15 Nov 2018 16:12:35 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD43726fmsmsx124amrcor_"
 
-Use the winpthreads library available in the mingw64 and
-change the thread model from win32 to posix to get access
-to c++11 features.
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD43726fmsmsx124amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Signed-off-by: Samuli Piippo <samuli.piippo@qt.io>
----
- conf/machine-sdk/include/mingw32-common.inc   |  2 -
- recipes-core/gettext/gettext_0.19.%.bbappend  |  5 +-
- recipes-devtools/gcc/gcc-runtime_%.bbappend   |  2 +-
- recipes-devtools/gcc/libgcc_%.bbappend        |  2 +
- .../nativesdk-mingw-w64-headers_5.0.3.bb      |  5 ++
- .../nativesdk-mingw-w64-winpthreads_5.0.3.bb  | 31 ++++++++++++
- .../pthreads-win32/pthreads-win32_2.9.1.bb    | 47 -------------------
- 7 files changed, 40 insertions(+), 54 deletions(-)
- create mode 100644 recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthre=
-ads_5.0.3.bb
- delete mode 100644 recipes-devtools/pthreads-win32/pthreads-win32_2.9.1.bb
+VGhpcyBpcyBUaGFua3NnaXZpbmcuICAgSSB3aWxsIGJlIGNhbmNlbGVkLg0KDQpUaGFua3MsDQoN
+ClN0ZXBoZW4NCg0KDQotLS0tLU9yaWdpbmFsIEFwcG9pbnRtZW50LS0tLS0NCkZyb206IHRoZXlv
+Y3RvcHJvamVjdEBnbWFpbC5jb20gW21haWx0bzp0aGV5b2N0b3Byb2plY3RAZ21haWwuY29tXQ0K
+U2VudDogVGh1cnNkYXksIE1heSAyNCwgMjAxOCAyOjE3IFBNDQpUbzogdGhleW9jdG9wcm9qZWN0
+QGdtYWlsLmNvbTsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogW3lvY3RvXSBJbnZp
+dGF0aW9uOiBZb2N0byBQcm9qZWN0IFdlZWtseSBUcmlhZ2UgTWVldGluZyBAIFdlZWtseSBmcm9t
+IDc6MzBhbSB0byA4OjMwYW0gb24gVGh1cnNkYXkgKFBEVCkgKHlvY3RvQHlvY3RvcHJvamVjdC5v
+cmcpDQpXaGVuOiBUaHVyc2RheSwgTm92ZW1iZXIgMjIsIDIwMTggNzozMCBBTS04OjMwIEFNIEFt
+ZXJpY2EvTG9zX0FuZ2VsZXMuDQpXaGVyZTogWm9vbSBNZWV0aW5nOiBodHRwczovL3pvb20udXMv
+ai80NTQzNjc2MDMNCg0KDQptb3JlIGRldGFpbHMgwrs8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9j
+YWxlbmRhci9ldmVudD9hY3Rpb249VklFVyZlaWQ9TmpsaU9HNDBiR2xtY0RObGREaHBNREpsTldk
+d01HZzVaR3NnZVc5amRHOUFlVzlqZEc5d2NtOXFaV04wTG05eVp3JnRvaz1NalVqZEdobGVXOWpk
+Rzl3Y205cVpXTjBRR2R0WVdsc0xtTnZiV00zTnpZNE1qazRZVEEyTlRoa1l6Wm1OVEEzTXpObFl6
+WmhZems1TVRWaFpUZGlOVEU1Wm1RJmN0ej1BbWVyaWNhJTJGTG9zX0FuZ2VsZXMmaGw9ZW4mZXM9
+MD4NCg0KWW9jdG8gUHJvamVjdCBXZWVrbHkgVHJpYWdlIE1lZXRpbmcNCldoZW4NCiAgICAgICAg
+V2Vla2x5IGZyb20gNzozMGFtIHRvIDg6MzBhbSBvbiBUaHVyc2RheSBQYWNpZmljIFRpbWUNCg0K
+V2hlcmUNCiAgICAgICAgWm9vbSBNZWV0aW5nOiBodHRwczovL3pvb20udXMvai80NTQzNjc2MDMg
+KG1hcDxodHRwczovL21hcHMuZ29vZ2xlLmNvbS9tYXBzP3E9Wm9vbStNZWV0aW5nOitodHRwczov
+L3pvb20udXMvai80NTQzNjc2MDMmaGw9ZW4+KQ0KDQpDYWxlbmRhcg0KICAgICAgICB5b2N0b0B5
+b2N0b3Byb2plY3Qub3JnDQoNCldobw0KICAgICAgICDigKINCiAgICAgICAgdGhleW9jdG9wcm9q
+ZWN0QGdtYWlsLmNvbSAtIG9yZ2FuaXplcg0KDQrigKINCiAgICAgICAgeW9jdG9AeW9jdG9wcm9q
+ZWN0Lm9yZw0KDQoNCg0KWW9jdG8gUHJvamVjdCBXZWVrbHkgVHJpYWdlIE1lZXRpbmcgRGV0YWls
+cw0KDQpXaWtpOiBodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL0J1Z19UcmlhZ2U8
+aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw/cT1odHRwcyUzQSUyRiUyRndpa2kueW9jdG9wcm9q
+ZWN0Lm9yZyUyRndpa2klMkZCdWdfVHJpYWdlJnNhPUQmdXNkPTImdXNnPUFGUWpDTkVfbzJCb0Z2
+WDhjeVF3UDVRazRmbHdtN3hBU0E+DQoNCllvY3RvIElSQzogaHR0cDovL3dlYmNoYXQuZnJlZW5v
+ZGUubmV0Lz9jaGFubmVscz0jeW9jdG88aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw/cT1odHRw
+JTNBJTJGJTJGd2ViY2hhdC5mcmVlbm9kZS5uZXQlMkYlM0ZjaGFubmVscyUzRCUyM3lvY3RvJnNh
+PUQmdXNkPTImdXNnPUFGUWpDTkVoOU9RcnMxWUJjdzdJQXktdHZHZjBpbHpjR0E+IC0gV2hlbiB5
+b3Ugam9pbiBzdGF0ZSB5b3VyIG5hbWUgb24gdGhlIGJyaWRnZSBvciBJUkMuDQpXZSB1c2UgYSBa
+b29tIEJyaWRnZSBhdDogaHR0cHM6Ly96b29tLnVzL2ovNDU0MzY3NjAzPGh0dHBzOi8vd3d3Lmdv
+b2dsZS5jb20vdXJsP3E9aHR0cHMlM0ElMkYlMkZ6b29tLnVzJTJGaiUyRjQ1NDM2NzYwMyZzYT1E
+JnVzZD0yJnVzZz1BRlFqQ05Idmkxb3N0cjVLNUJRRmVLX2M5bzRpNjBKbXJBPg0KDQoNCkdvaW5n
+PyAgIEFsbCBldmVudHMgaW4gdGhpcyBzZXJpZXM6ICAgWWVzPGh0dHBzOi8vd3d3Lmdvb2dsZS5j
+b20vY2FsZW5kYXIvZXZlbnQ/YWN0aW9uPVJFU1BPTkQmZWlkPU5qbGlPRzQwYkdsbWNETmxkRGhw
+TURKbE5XZHdNR2c1WkdzZ2VXOWpkRzlBZVc5amRHOXdjbTlxWldOMExtOXladyZyc3Q9MSZ0b2s9
+TWpVamRHaGxlVzlqZEc5d2NtOXFaV04wUUdkdFlXbHNMbU52YldNM056WTRNams0WVRBMk5UaGtZ
+elptTlRBM016TmxZelpoWXprNU1UVmhaVGRpTlRFNVptUSZjdHo9QW1lcmljYSUyRkxvc19Bbmdl
+bGVzJmhsPWVuJmVzPTA+IC0gTWF5YmU8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9jYWxlbmRhci9l
+dmVudD9hY3Rpb249UkVTUE9ORCZlaWQ9TmpsaU9HNDBiR2xtY0RObGREaHBNREpsTldkd01HZzVa
+R3NnZVc5amRHOUFlVzlqZEc5d2NtOXFaV04wTG05eVp3JnJzdD0zJnRvaz1NalVqZEdobGVXOWpk
+Rzl3Y205cVpXTjBRR2R0WVdsc0xtTnZiV00zTnpZNE1qazRZVEEyTlRoa1l6Wm1OVEEzTXpObFl6
+WmhZems1TVRWaFpUZGlOVEU1Wm1RJmN0ej1BbWVyaWNhJTJGTG9zX0FuZ2VsZXMmaGw9ZW4mZXM9
+MD4gLSBObzxodHRwczovL3d3dy5nb29nbGUuY29tL2NhbGVuZGFyL2V2ZW50P2FjdGlvbj1SRVNQ
+T05EJmVpZD1OamxpT0c0MGJHbG1jRE5sZERocE1ESmxOV2R3TUdnNVpHc2dlVzlqZEc5QWVXOWpk
+Rzl3Y205cVpXTjBMbTl5WncmcnN0PTImdG9rPU1qVWpkR2hsZVc5amRHOXdjbTlxWldOMFFHZHRZ
+V2xzTG1OdmJXTTNOelk0TWprNFlUQTJOVGhrWXpabU5UQTNNek5sWXpaaFl6azVNVFZoWlRkaU5U
+RTVabVEmY3R6PUFtZXJpY2ElMkZMb3NfQW5nZWxlcyZobD1lbiZlcz0wPiAgICBtb3JlIG9wdGlv
+bnMgwrs8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9jYWxlbmRhci9ldmVudD9hY3Rpb249VklFVyZl
+aWQ9TmpsaU9HNDBiR2xtY0RObGREaHBNREpsTldkd01HZzVaR3NnZVc5amRHOUFlVzlqZEc5d2Nt
+OXFaV04wTG05eVp3JnRvaz1NalVqZEdobGVXOWpkRzl3Y205cVpXTjBRR2R0WVdsc0xtTnZiV00z
+TnpZNE1qazRZVEEyTlRoa1l6Wm1OVEEzTXpObFl6WmhZems1TVRWaFpUZGlOVEU1Wm1RJmN0ej1B
+bWVyaWNhJTJGTG9zX0FuZ2VsZXMmaGw9ZW4mZXM9MD4NCkludml0YXRpb24gZnJvbSBHb29nbGUg
+Q2FsZW5kYXI8aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9jYWxlbmRhci8+DQoNCllvdSBhcmUgcmVj
+ZWl2aW5nIHRoaXMgY291cnRlc3kgZW1haWwgYXQgdGhlIGFjY291bnQgeW9jdG9AeW9jdG9wcm9q
+ZWN0Lm9yZyBiZWNhdXNlIHlvdSBhcmUgYW4gYXR0ZW5kZWUgb2YgdGhpcyBldmVudC4NClRvIHN0
+b3AgcmVjZWl2aW5nIGZ1dHVyZSB1cGRhdGVzIGZvciB0aGlzIGV2ZW50LCBkZWNsaW5lIHRoaXMg
+ZXZlbnQuIEFsdGVybmF0aXZlbHkgeW91IGNhbiBzaWduIHVwIGZvciBhIEdvb2dsZSBhY2NvdW50
+IGF0IGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vY2FsZW5kYXIvIGFuZCBjb250cm9sIHlvdXIgbm90
+aWZpY2F0aW9uIHNldHRpbmdzIGZvciB5b3VyIGVudGlyZSBjYWxlbmRhci4NCkZvcndhcmRpbmcg
+dGhpcyBpbnZpdGF0aW9uIGNvdWxkIGFsbG93IGFueSByZWNpcGllbnQgdG8gbW9kaWZ5IHlvdXIg
+UlNWUCByZXNwb25zZS4gTGVhcm4gTW9yZTxodHRwczovL3N1cHBvcnQuZ29vZ2xlLmNvbS9jYWxl
+bmRhci9hbnN3ZXIvMzcxMzUjZm9yd2FyZGluZz4uDQogPDwgRmlsZTogaW52aXRlLmljcyA+PiAg
+PDwgRmlsZTogQVRUMDAwMDEudHh0ID4+DQoNCg==
 
-diff --git a/conf/machine-sdk/include/mingw32-common.inc b/conf/machine-sdk=
-/include/mingw32-common.inc
-index cd56380..733d092 100644
---- a/conf/machine-sdk/include/mingw32-common.inc
-+++ b/conf/machine-sdk/include/mingw32-common.inc
-@@ -1,8 +1,6 @@
- SDK_OS =3D "mingw32"
- NATIVESDKLIBC =3D "libc-mingw"
-=20
--GCCTHREADS_mingw32 =3D "win32"
--
- PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-for-gcc_mingw32 =3D=
- "nativesdk-mingw-w64-runtime"
- PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-initial_mingw32 =3D=
- "nativesdk-mingw-w64-runtime"
- PREFERRED_PROVIDER_virtual/nativesdk-libc =3D "nativesdk-mingw-w64-runtime=
-"
-diff --git a/recipes-core/gettext/gettext_0.19.%.bbappend b/recipes-core/ge=
-ttext/gettext_0.19.%.bbappend
-index b26b734..21749f3 100644
---- a/recipes-core/gettext/gettext_0.19.%.bbappend
-+++ b/recipes-core/gettext/gettext_0.19.%.bbappend
-@@ -1,7 +1,4 @@
--DEPENDS_append_mingw32 =3D " pthreads-win32"
--LDFLAGS_prepend_mingw32 =3D " -lpthread "
--
--EXTRA_OECONF_append_mingw32 =3D " --enable-threads=3Dwindows --enable-stat=
-ic"
-+EXTRA_OECONF_append_mingw32 =3D " --enable-static"
-=20
- FILESEXTRAPATHS_prepend_mingw32 :=3D "${THISDIR}/${BPN}:"
- SRC_URI_append_mingw32 =3D " \
-diff --git a/recipes-devtools/gcc/gcc-runtime_%.bbappend b/recipes-devtools=
-/gcc/gcc-runtime_%.bbappend
-index 1641cb9..f14edf1 100644
---- a/recipes-devtools/gcc/gcc-runtime_%.bbappend
-+++ b/recipes-devtools/gcc/gcc-runtime_%.bbappend
-@@ -11,4 +11,4 @@ RUNTIMETARGET_remove_mingw32 =3D "libitm"
- # mingw builds
- RUNTIMETARGET_remove_mingw32 =3D "libmpx"
-=20
--DEPENDS_append_mingw32 =3D " pthreads-win32"
-+DEPENDS_append_mingw32 =3D " nativesdk-mingw-w64-winpthreads"
-diff --git a/recipes-devtools/gcc/libgcc_%.bbappend b/recipes-devtools/gcc/=
-libgcc_%.bbappend
-index 2a95d02..f542cfc 100644
---- a/recipes-devtools/gcc/libgcc_%.bbappend
-+++ b/recipes-devtools/gcc/libgcc_%.bbappend
-@@ -1,3 +1,5 @@
-+DEPENDS_append_mingw32 =3D " nativesdk-mingw-w64-winpthreads"
-+
- FILES_${PN}_append_mingw32 =3D " ${bindir}/libgcc*.dll"
- FILES_${PN}-dev_append_mingw32 =3D " ${base_libdir}/libgcc*.a"
-=20
-diff --git a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_5.0.3.b=
-b b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_5.0.3.bb
-index e129c32..009e5af 100644
---- a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_5.0.3.bb
-+++ b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-headers_5.0.3.bb
-@@ -31,4 +31,9 @@ do_compile() {
- 	:
- }
-=20
-+do_install_append() {
-+    # install correct pthread headers
-+    install -m 0644 -t ${D}${includedir} ${S}/../mingw-w64-libraries/winpt=
-hreads/include/*.h
-+}
-+
- FILES_${PN} +=3D "${exec_prefix}/${TARGET_SYS}"
-diff --git a/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_5.0=
-.3.bb b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_5.0.3.bb
-new file mode 100644
-index 0000000..1308760
---- /dev/null
-+++ b/recipes-devtools/mingw-w64/nativesdk-mingw-w64-winpthreads_5.0.3.bb
-@@ -0,0 +1,31 @@
-+DESCRIPTION =3D "Winpthreads runtime libraries from MinGW-w64 project"
-+LICENSE =3D "ZPL-2.1"
-+LIC_FILES_CHKSUM =3D "file://../../COPYING;md5=3Dbb936f0e04d8f1e19ad545100=
-cee9654"
-+
-+COMPATIBLE_HOST =3D ".*-mingw.*"
-+
-+SRC_URI =3D "${SOURCEFORGE_MIRROR}/project/mingw-w64/mingw-w64/mingw-w64-r=
-elease/mingw-w64-v${PV}.tar.bz2"
-+SRC_URI[md5sum] =3D "5524c20312560cc8683b7d8ee292cb8c"
-+SRC_URI[sha256sum] =3D "2a601db99ef579b9be69c775218ad956a24a09d7dabc9ff6c5=
-bd60da9ccc9cb4"
-+
-+S =3D "${WORKDIR}/mingw-w64-v${PV}/mingw-w64-libraries/winpthreads"
-+B =3D "${WORKDIR}/build-${TARGET_SYS}"
-+
-+inherit autotools nativesdk
-+
-+INHIBIT_DEFAULT_DEPS =3D "1"
-+DEPENDS =3D "nativesdk-mingw-w64-runtime virtual/${TARGET_PREFIX}gcc-initi=
-al"
-+
-+do_configure() {
-+    oe_runconf
-+}
-+
-+STAGINGCC =3D "gcc-cross-initial-${TARGET_ARCH}"
-+STAGINGCC_class-nativesdk =3D "gcc-crosssdk-initial-${SDK_SYS}"
-+TOOLCHAIN_OPTIONS =3D " --sysroot=3D${STAGING_DIR_TARGET}"
-+PATH_prepend =3D "${STAGING_BINDIR_TOOLCHAIN}.${STAGINGCC}:"
-+
-+do_install_append() {
-+    # headers are already installed by mingw-w64-headers
-+    rm -rf ${D}${includedir}
-+}
-diff --git a/recipes-devtools/pthreads-win32/pthreads-win32_2.9.1.bb b/reci=
-pes-devtools/pthreads-win32/pthreads-win32_2.9.1.bb
-deleted file mode 100644
-index e4a0f80..0000000
---- a/recipes-devtools/pthreads-win32/pthreads-win32_2.9.1.bb
-+++ /dev/null
-@@ -1,47 +0,0 @@
--DESCRIPTION =3D "A Win32 implementation of the POSIX standard threads API"
--HOMEPAGE =3D "http://www.sourceware.org/pthreads-win32"
--LICENSE =3D "LGPLv2.1"
--LIC_FILES_CHKSUM =3D "file://COPYING.LIB;md5=3D7fbc338309ac38fefcd64b04bb9=
-03e34"
--
--BBCLASSEXTEND =3D "nativesdk"
--
--COMPATIBLE_HOST =3D ".*-mingw.*"
--
--## Replace dots with dashes
--PVdash =3D "2-9-1"
--
--## cvs -d :pserver:anonymous@sourceware.org:/cvs/pthreads-win32 checkout p=
-threads
--SRC_URI =3D "ftp://sourceware.org/pub/pthreads-win32/pthreads-w32-${PVdash=
-}-release.tar.gz"
--SRC_URI[md5sum] =3D "36ba827d6aa0fa9f9ae740a35626e2e3"
--SRC_URI[sha256sum] =3D "e6aca7aea8de33d9c8580bcb3a0ea3ec0a7ace4ba3f4e263ac=
-7c7b66bc95fb4d"
--
--## Reference: http://sourceware.org/ml/pthreads-win32/2009/msg00030/w64sup=
-.patch
--#SRC_URI +=3D "file://w64sup.patch"
--
--S =3D "${WORKDIR}/pthreads-w32-${PVdash}-release"
--
--INHIBIT_DEFAULT_DEPS =3D "1"
--DEPENDS =3D "virtual/${SDK_PREFIX}gcc libgcc virtual/libc"
--
--do_configure_prepend() {
--    ## First reset all permissions because all are executable
--    find . -type f -exec chmod 644 {} \;
--    ## Make a copy of config.h
--    cp config.h pthreads_win32_config.h
--}
--
--do_compile() {
--    make -f GNUmakefile CROSS=3D${SDK_PREFIX} CC=3D"${CC}" RC=3D"${WINDRES=
-}" clean GC
--}
--
--do_install() {
--    install -d -m 0755 ${D}${bindir}
--    install -d -m 0755 ${D}${includedir}
--    install -d -m 0755 ${D}${libdir}
--
--    install -m 0644 ${S}/pthread.h ${S}/sched.h ${S}/semaphore.h ${D}${inc=
-ludedir}/
--
--    install -m 0644 ${S}/libpthreadGC2.a ${D}${libdir}/libpthread.dll.a
--    install -m 0644 ${S}/pthreadGC2.dll ${D}${bindir}/libpthread-2.dll
--    install -m 0644 ${S}/pthreadGC2.dll ${D}${bindir}/pthreadGC2.dll
--}
---=20
-2.17.1
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD43726fmsmsx124amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
+dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
+LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
+ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
+PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
+Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+VGhpcyBpcyBUaGFua3NnaXZpbmcuJm5ic3A7Jm5i
+c3A7IEkgd2lsbCBiZSBjYW5jZWxlZC48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBm
+YWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0i
+Q2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTFwdDsiPlRoYW5rcyw8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxp
+YnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0
+OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIg
+c2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPlN0
+ZXBoZW48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXpl
+PSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7
+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIg
+Y29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bh
+bj48L2ZvbnQ+PC9kaXY+DQo8YSBuYW1lPSJfX19fX3JlcGx5c2VwYXJhdG9yIj48L2E+DQo8ZGl2
+Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFw
+dDsiPi0tLS0tT3JpZ2luYWwgQXBwb2ludG1lbnQtLS0tLTxicj4NCg0KPGI+RnJvbTo8L2I+IHRo
+ZXlvY3RvcHJvamVjdEBnbWFpbC5jb20gWzxhIGhyZWY9Im1haWx0bzp0aGV5b2N0b3Byb2plY3RA
+Z21haWwuY29tIj5tYWlsdG86dGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbTwvYT5dDQo8YnI+DQoN
+CjxiPlNlbnQ6PC9iPiBUaHVyc2RheSwgTWF5IDI0LCAyMDE4IDI6MTcgUE08YnI+DQoNCjxiPlRv
+OjwvYj4gdGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbTsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxi
+cj4NCg0KPGI+U3ViamVjdDo8L2I+IFt5b2N0b10gSW52aXRhdGlvbjogWW9jdG8gUHJvamVjdCBX
+ZWVrbHkgVHJpYWdlIE1lZXRpbmcgQCBXZWVrbHkgZnJvbSA3OjMwYW0gdG8gODozMGFtIG9uIFRo
+dXJzZGF5IChQRFQpICh5b2N0b0B5b2N0b3Byb2plY3Qub3JnKTxicj4NCg0KPGI+V2hlbjo8L2I+
+IFRodXJzZGF5LCBOb3ZlbWJlciAyMiwgMjAxOCA3OjMwIEFNLTg6MzAgQU0gQW1lcmljYS9Mb3Nf
+QW5nZWxlcy48YnI+DQoNCjxiPldoZXJlOjwvYj4gWm9vbSBNZWV0aW5nOiA8YSBocmVmPSJodHRw
+czovL3pvb20udXMvai80NTQzNjc2MDMiPmh0dHBzOi8vem9vbS51cy9qLzQ1NDM2NzYwMzwvYT48
+L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0K
+PGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGEgbmFtZT0iQk1fQkVHSU4iPjwv
+YT4NCjx0YWJsZSB3aWR0aD0iNzM4IiBzdHlsZT0id2lkdGg6NDQyLjhwdDttYXJnaW4tbGVmdDo1
+LjRwdDsiPg0KPGNvbCB3aWR0aD0iNzM4IiBzdHlsZT0id2lkdGg6NDQyLjhwdDsiPg0KPHRyPg0K
+PHRkPjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTFwdDsiPjxhIGhyZWY9Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vY2FsZW5kYXIvZXZlbnQ/YWN0
+aW9uPVZJRVcmYW1wO2VpZD1OamxpT0c0MGJHbG1jRE5sZERocE1ESmxOV2R3TUdnNVpHc2dlVzlq
+ZEc5QWVXOWpkRzl3Y205cVpXTjBMbTl5WncmYW1wO3Rvaz1NalVqZEdobGVXOWpkRzl3Y205cVpX
+TjBRR2R0WVdsc0xtTnZiV00zTnpZNE1qazRZVEEyTlRoa1l6Wm1OVEEzTXpObFl6WmhZems1TVRW
+aFpUZGlOVEU1Wm1RJmFtcDtjdHo9QW1lcmljYSUyRkxvc19BbmdlbGVzJmFtcDtobD1lbiZhbXA7
+ZXM9MCI+PGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9IjEiIGNvbG9yPSIjMjIwMENDIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjcuNXB0OyI+PGI+PHU+bW9yZQ0KZGV0YWlscyDCuzwvdT48L2I+PC9z
+cGFuPjwvZm9udD48L2E+PGJyPg0KDQo8ZGl2Pjxmb250IGZhY2U9IkFyaWFsIiBzaXplPSIyIiBj
+b2xvcj0iIzIyMjIyMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjVwdDsiPjxiPllvY3RvIFBy
+b2plY3QgV2Vla2x5IFRyaWFnZSBNZWV0aW5nPC9iPjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8dGFi
+bGU+DQo8Y29sIHdpZHRoPSI5MCIgc3R5bGU9IndpZHRoOjU0cHQ7Ij4NCjxjb2wgd2lkdGg9IjY0
+OCIgc3R5bGU9IndpZHRoOjM4OC44cHQ7Ij4NCjx0cj4NCjx0ZD48Zm9udCBmYWNlPSJBcmlhbCIg
+c2l6ZT0iMSIgY29sb3I9IiM4ODg4ODgiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41cHQ7Ij5X
+aGVuPC9zcGFuPjwvZm9udD48L3RkPg0KPHRkIHN0eWxlPSJ0ZXh0LWluZGVudDowLjZwdDsiPiZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA8Zm9udCBmYWNlPSJBcmlh
+bCIgc2l6ZT0iMSIgY29sb3I9IiMyMjIyMjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41cHQ7
+Ij5XZWVrbHkgZnJvbSA3OjMwYW0gdG8gODozMGFtIG9uIFRodXJzZGF5IDwvc3Bhbj48L2ZvbnQ+
+PGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9IjEiIGNvbG9yPSIjODg4ODg4Ij48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjcuNXB0OyI+UGFjaWZpYyBUaW1lPC9zcGFuPjwvZm9udD48L3RkPg0KPHRkPiZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA8L3RkPg0KPC90cj4NCjx0
+cj4NCjx0ZD48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMSIgY29sb3I9IiM4ODg4ODgiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6Ny41cHQ7Ij5XaGVyZTwvc3Bhbj48L2ZvbnQ+PC90ZD4NCjx0ZCBz
+dHlsZT0idGV4dC1pbmRlbnQ6MC42cHQ7Ij4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsgPGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9IjEiIGNvbG9yPSIjMjIyMjIyIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjcuNXB0OyI+Wm9vbSBNZWV0aW5nOg0KPGEgaHJlZj0iaHR0
+cHM6Ly96b29tLnVzL2ovNDU0MzY3NjAzIj5odHRwczovL3pvb20udXMvai80NTQzNjc2MDM8L2E+
+ICg8L3NwYW4+PC9mb250PjxhIGhyZWY9Imh0dHBzOi8vbWFwcy5nb29nbGUuY29tL21hcHM/cT1a
+b29tJiM0MztNZWV0aW5nOiYjNDM7aHR0cHM6Ly96b29tLnVzL2ovNDU0MzY3NjAzJmFtcDtobD1l
+biI+PGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9IjEiIGNvbG9yPSIjMjIwMENDIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjcuNXB0OyI+PHU+bWFwPC91Pjwvc3Bhbj48L2ZvbnQ+PC9hPjxmb250IGZh
+Y2U9IkFyaWFsIiBzaXplPSIxIiBjb2xvcj0iIzIyMjIyMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZTo3LjVwdDsiPik8L3NwYW4+PC9mb250PjwvdGQ+DQo8dGQ+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDwvdGQ+DQo8L3RyPg0KPHRyPg0KPHRkPjxmb250IGZhY2U9
+IkFyaWFsIiBzaXplPSIxIiBjb2xvcj0iIzg4ODg4OCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo3
+LjVwdDsiPkNhbGVuZGFyPC9zcGFuPjwvZm9udD48L3RkPg0KPHRkIHN0eWxlPSJ0ZXh0LWluZGVu
+dDowLjZwdDsiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA8Zm9u
+dCBmYWNlPSJBcmlhbCIgc2l6ZT0iMSIgY29sb3I9IiMyMjIyMjIiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6Ny41cHQ7Ij55b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9zcGFuPjwvZm9udD48L3RkPg0K
+PHRkPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA8L3RkPg0KPC90
+cj4NCjx0cj4NCjx0ZD48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMSIgY29sb3I9IiM4ODg4ODgi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41cHQ7Ij5XaG88L3NwYW4+PC9mb250PjwvdGQ+DQo8
+dGQ+DQo8dGFibGU+DQo8Y29sIHdpZHRoPSIxMCIgc3R5bGU9IndpZHRoOjZwdDsiPg0KPGNvbCB3
+aWR0aD0iNzI4IiBzdHlsZT0id2lkdGg6NDM2LjhwdDsiPg0KPHRyPg0KPHRkIHN0eWxlPSJ0ZXh0
+LWluZGVudDowLjZwdDsiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyA8Zm9udCBmYWNlPSJDb3VyaWVyIE5ldyIgc2l6ZT0iMSIgY29sb3I9IiMyMjIyMjIiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6Ny41cHQ7Ij7igKI8L3NwYW4+PC9mb250PjwvdGQ+DQo8dGQgc3R5
+bGU9InRleHQtaW5kZW50OjAuNnB0OyI+PGZvbnQgc2l6ZT0iMyI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMnB0OyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDxm
+b250IGZhY2U9IkFyaWFsIiBzaXplPSIxIiBjb2xvcj0iIzIyMjIyMiI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZTo3LjVwdDsiPnRoZXlvY3RvcHJvamVjdEBnbWFpbC5jb208L3NwYW4+PC9mb250Pjxm
+b250IGZhY2U9IkFyaWFsIiBzaXplPSIxIiBjb2xvcj0iIzg4ODg4OCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZTo2LjVwdDsiPg0KLSBvcmdhbml6ZXI8L3NwYW4+PC9mb250Pjwvc3Bhbj48L2ZvbnQ+
+PC90ZD4NCjx0ZD4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgPC90
+ZD4NCjwvdHI+DQo8dHI+DQo8dGQgc3R5bGU9InRleHQtaW5kZW50OjAuNnB0OyI+PGZvbnQgZmFj
+ZT0iQ291cmllciBOZXciIHNpemU9IjEiIGNvbG9yPSIjMjIyMjIyIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjcuNXB0OyI+4oCiPC9zcGFuPjwvZm9udD48L3RkPg0KPHRkIHN0eWxlPSJ0ZXh0LWlu
+ZGVudDowLjZwdDsiPjxmb250IHNpemU9IjMiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsi
+PiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA8Zm9udCBmYWNlPSJB
+cmlhbCIgc2l6ZT0iMSIgY29sb3I9IiMyMjIyMjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41
+cHQ7Ij55b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9zcGFuPjwvZm9udD48L3NwYW4+PC9mb250Pjwv
+dGQ+DQo8dGQ+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDwvdGQ+
+DQo8L3RyPg0KPC90YWJsZT4NCjxkaXY+Jm5ic3A7PC9kaXY+DQo8L3RkPg0KPHRkPiZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA8L3RkPg0KPC90cj4NCjwvdGFibGU+
+DQo8ZGl2Pjxmb250IGZhY2U9IkFyaWFsIiBzaXplPSIxIiBjb2xvcj0iIzIyMjIyMiI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZTo3LjVwdDsiPllvY3RvIFByb2plY3QgV2Vla2x5IFRyaWFnZSBNZWV0
+aW5nIERldGFpbHM8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdiBzdHlsZT0ibWFyZ2luLXRvcDox
+NHB0OyI+PGZvbnQgY29sb3I9IiMyMjIyMjIiPjxicj4NCg0KPGZvbnQgZmFjZT0iQXJpYWwiIHNp
+emU9IjEiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41cHQ7Ij5XaWtpOiA8L3NwYW4+PC9mb250
+PjxhIGhyZWY9Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vdXJsP3E9aHR0cHMlM0ElMkYlMkZ3aWtp
+LnlvY3RvcHJvamVjdC5vcmclMkZ3aWtpJTJGQnVnX1RyaWFnZSZhbXA7c2E9RCZhbXA7dXNkPTIm
+YW1wO3VzZz1BRlFqQ05FX28yQm9Gdlg4Y3lRd1A1UWs0Zmx3bTd4QVNBIj48Zm9udCBmYWNlPSJB
+cmlhbCIgc2l6ZT0iMSIgY29sb3I9ImJsdWUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41cHQ7
+Ij48dT5odHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL0J1Z19UcmlhZ2U8L3U+PC9z
+cGFuPjwvZm9udD48L2E+PC9mb250PjwvZGl2Pg0KPGRpdiBzdHlsZT0ibWFyZ2luLXRvcDoxNHB0
+OyI+PGZvbnQgY29sb3I9IiMyMjIyMjIiPjxicj4NCg0KPGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9
+IjEiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41cHQ7Ij5Zb2N0byBJUkM6IDwvc3Bhbj48L2Zv
+bnQ+PGEgaHJlZj0iaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS91cmw/cT1odHRwJTNBJTJGJTJGd2Vi
+Y2hhdC5mcmVlbm9kZS5uZXQlMkYlM0ZjaGFubmVscyUzRCUyM3lvY3RvJmFtcDtzYT1EJmFtcDt1
+c2Q9MiZhbXA7dXNnPUFGUWpDTkVoOU9RcnMxWUJjdzdJQXktdHZHZjBpbHpjR0EiPjxmb250IGZh
+Y2U9IkFyaWFsIiBzaXplPSIxIiBjb2xvcj0iYmx1ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo3
+LjVwdDsiPjx1Pmh0dHA6Ly93ZWJjaGF0LmZyZWVub2RlLm5ldC8/Y2hhbm5lbHM9I3lvY3RvPC91
+Pjwvc3Bhbj48L2ZvbnQ+PC9hPjxmb250IGZhY2U9IkFyaWFsIiBzaXplPSIxIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjcuNXB0OyI+DQotIFdoZW4geW91IGpvaW4gc3RhdGUgeW91ciBuYW1lIG9u
+IHRoZSBicmlkZ2Ugb3IgSVJDLjwvc3Bhbj48L2ZvbnQ+PC9mb250PjwvZGl2Pg0KPGRpdiBzdHls
+ZT0ibWFyZ2luLXRvcDoxNHB0OyI+PGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9IjEiIGNvbG9yPSIj
+MjIyMjIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjcuNXB0OyI+V2UgdXNlIGEgWm9vbSBCcmlk
+Z2UgYXQ6IDxhIGhyZWY9Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vdXJsP3E9aHR0cHMlM0ElMkYl
+MkZ6b29tLnVzJTJGaiUyRjQ1NDM2NzYwMyZhbXA7c2E9RCZhbXA7dXNkPTImYW1wO3VzZz1BRlFq
+Q05Idmkxb3N0cjVLNUJRRmVLX2M5bzRpNjBKbXJBIj48Zm9udCBjb2xvcj0iYmx1ZSI+PHU+aHR0
+cHM6Ly96b29tLnVzL2ovNDU0MzY3NjAzPC91PjwvZm9udD48L2E+PC9zcGFuPjwvZm9udD48L2Rp
+dj4NCjxkaXYgc3R5bGU9Im1hcmdpbi10b3A6MTRwdDsiPiZuYnNwOzwvZGl2Pg0KPGRpdiBzdHls
+ZT0ibWFyZ2luLXRvcDoxNHB0OyI+Jm5ic3A7PC9kaXY+DQo8ZGl2IHN0eWxlPSJtYXJnaW4tdG9w
+OjE0cHQ7Ij48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMSIgY29sb3I9IiM4ODg4ODgiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6Ny41cHQ7Ij5Hb2luZz8mbmJzcDsmbmJzcDsgPGZvbnQgY29sb3I9
+IiMyMjIyMjIiPkFsbCBldmVudHMgaW4gdGhpcyBzZXJpZXM6Jm5ic3A7Jm5ic3A7IDwvZm9udD48
+YSBocmVmPSJodHRwczovL3d3dy5nb29nbGUuY29tL2NhbGVuZGFyL2V2ZW50P2FjdGlvbj1SRVNQ
+T05EJmFtcDtlaWQ9TmpsaU9HNDBiR2xtY0RObGREaHBNREpsTldkd01HZzVaR3NnZVc5amRHOUFl
+VzlqZEc5d2NtOXFaV04wTG05eVp3JmFtcDtyc3Q9MSZhbXA7dG9rPU1qVWpkR2hsZVc5amRHOXdj
+bTlxWldOMFFHZHRZV2xzTG1OdmJXTTNOelk0TWprNFlUQTJOVGhrWXpabU5UQTNNek5sWXpaaFl6
+azVNVFZoWlRkaU5URTVabVEmYW1wO2N0ej1BbWVyaWNhJTJGTG9zX0FuZ2VsZXMmYW1wO2hsPWVu
+JmFtcDtlcz0wIj48Zm9udCBjb2xvcj0iIzIyMDBDQyI+PGI+PHU+WWVzPC91PjwvYj48L2ZvbnQ+
+PC9hPjxmb250IGNvbG9yPSIjMjIyMjIyIj4NCi0gPC9mb250PjxhIGhyZWY9Imh0dHBzOi8vd3d3
+Lmdvb2dsZS5jb20vY2FsZW5kYXIvZXZlbnQ/YWN0aW9uPVJFU1BPTkQmYW1wO2VpZD1OamxpT0c0
+MGJHbG1jRE5sZERocE1ESmxOV2R3TUdnNVpHc2dlVzlqZEc5QWVXOWpkRzl3Y205cVpXTjBMbTl5
+WncmYW1wO3JzdD0zJmFtcDt0b2s9TWpVamRHaGxlVzlqZEc5d2NtOXFaV04wUUdkdFlXbHNMbU52
+YldNM056WTRNams0WVRBMk5UaGtZelptTlRBM016TmxZelpoWXprNU1UVmhaVGRpTlRFNVptUSZh
+bXA7Y3R6PUFtZXJpY2ElMkZMb3NfQW5nZWxlcyZhbXA7aGw9ZW4mYW1wO2VzPTAiPjxmb250IGNv
+bG9yPSIjMjIwMENDIj48Yj48dT5NYXliZTwvdT48L2I+PC9mb250PjwvYT48Zm9udCBjb2xvcj0i
+IzIyMjIyMiI+DQotIDwvZm9udD48YSBocmVmPSJodHRwczovL3d3dy5nb29nbGUuY29tL2NhbGVu
+ZGFyL2V2ZW50P2FjdGlvbj1SRVNQT05EJmFtcDtlaWQ9TmpsaU9HNDBiR2xtY0RObGREaHBNREps
+Tldkd01HZzVaR3NnZVc5amRHOUFlVzlqZEc5d2NtOXFaV04wTG05eVp3JmFtcDtyc3Q9MiZhbXA7
+dG9rPU1qVWpkR2hsZVc5amRHOXdjbTlxWldOMFFHZHRZV2xzTG1OdmJXTTNOelk0TWprNFlUQTJO
+VGhrWXpabU5UQTNNek5sWXpaaFl6azVNVFZoWlRkaU5URTVabVEmYW1wO2N0ej1BbWVyaWNhJTJG
+TG9zX0FuZ2VsZXMmYW1wO2hsPWVuJmFtcDtlcz0wIj48Zm9udCBjb2xvcj0iIzIyMDBDQyI+PGI+
+PHU+Tm88L3U+PC9iPjwvZm9udD48L2E+PGZvbnQgY29sb3I9IiMyMjIyMjIiPiZuYnNwOyZuYnNw
+OyZuYnNwOw0KPC9mb250PjxhIGhyZWY9Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vY2FsZW5kYXIv
+ZXZlbnQ/YWN0aW9uPVZJRVcmYW1wO2VpZD1OamxpT0c0MGJHbG1jRE5sZERocE1ESmxOV2R3TUdn
+NVpHc2dlVzlqZEc5QWVXOWpkRzl3Y205cVpXTjBMbTl5WncmYW1wO3Rvaz1NalVqZEdobGVXOWpk
+Rzl3Y205cVpXTjBRR2R0WVdsc0xtTnZiV00zTnpZNE1qazRZVEEyTlRoa1l6Wm1OVEEzTXpObFl6
+WmhZems1TVRWaFpUZGlOVEU1Wm1RJmFtcDtjdHo9QW1lcmljYSUyRkxvc19BbmdlbGVzJmFtcDto
+bD1lbiZhbXA7ZXM9MCI+PGZvbnQgY29sb3I9IiMyMjAwQ0MiPjx1Pm1vcmUNCm9wdGlvbnMgwrs8
+L3U+PC9mb250PjwvYT48L3NwYW4+PC9mb250PjwvZGl2Pg0KPC9zcGFuPjwvZm9udD48L3RkPg0K
+PC90cj4NCjx0cj4NCjx0ZCBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojRjZGNkY2OyI+PGZvbnQg
+ZmFjZT0iQXJpYWwiIHNpemU9IjEiIGNvbG9yPSIjODg4ODg4Ij48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjYuNXB0O2JhY2tncm91bmQtY29sb3I6I0Y2RjZGNjsiPjxzcGFuIHN0eWxlPSJiYWNrZ3Jv
+dW5kLWNvbG9yOndoaXRlOyI+SW52aXRhdGlvbiBmcm9tIDwvc3Bhbj48YSBocmVmPSJodHRwczov
+L3d3dy5nb29nbGUuY29tL2NhbGVuZGFyLyI+PGZvbnQgY29sb3I9ImJsdWUiPjxzcGFuIHN0eWxl
+PSJiYWNrZ3JvdW5kLWNvbG9yOndoaXRlOyI+PHU+R29vZ2xlDQpDYWxlbmRhcjwvdT48L3NwYW4+
+PC9mb250PjwvYT4NCjxkaXYgc3R5bGU9Im1hcmdpbi10b3A6MTRwdDsiPjxzcGFuIHN0eWxlPSJi
+YWNrZ3JvdW5kLWNvbG9yOndoaXRlOyI+WW91IGFyZSByZWNlaXZpbmcgdGhpcyBjb3VydGVzeSBl
+bWFpbCBhdCB0aGUgYWNjb3VudCB5b2N0b0B5b2N0b3Byb2plY3Qub3JnIGJlY2F1c2UgeW91IGFy
+ZSBhbiBhdHRlbmRlZSBvZiB0aGlzIGV2ZW50Ljwvc3Bhbj48L2Rpdj4NCjxkaXYgc3R5bGU9Im1h
+cmdpbi10b3A6MTRwdDsiPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOndoaXRlOyI+VG8g
+c3RvcCByZWNlaXZpbmcgZnV0dXJlIHVwZGF0ZXMgZm9yIHRoaXMgZXZlbnQsIGRlY2xpbmUgdGhp
+cyBldmVudC4gQWx0ZXJuYXRpdmVseSB5b3UgY2FuIHNpZ24gdXAgZm9yIGEgR29vZ2xlIGFjY291
+bnQgYXQNCjxhIGhyZWY9Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vY2FsZW5kYXIvIj5odHRwczov
+L3d3dy5nb29nbGUuY29tL2NhbGVuZGFyLzwvYT4gYW5kIGNvbnRyb2wgeW91ciBub3RpZmljYXRp
+b24gc2V0dGluZ3MgZm9yIHlvdXIgZW50aXJlIGNhbGVuZGFyLjwvc3Bhbj48L2Rpdj4NCjxkaXYg
+c3R5bGU9Im1hcmdpbi10b3A6MTRwdDsiPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOndo
+aXRlOyI+Rm9yd2FyZGluZyB0aGlzIGludml0YXRpb24gY291bGQgYWxsb3cgYW55IHJlY2lwaWVu
+dCB0byBtb2RpZnkgeW91ciBSU1ZQIHJlc3BvbnNlLiA8L3NwYW4+PGEgaHJlZj0iaHR0cHM6Ly9z
+dXBwb3J0Lmdvb2dsZS5jb20vY2FsZW5kYXIvYW5zd2VyLzM3MTM1I2ZvcndhcmRpbmciPjxmb250
+IGNvbG9yPSJibHVlIj48c3BhbiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjp3aGl0ZTsiPjx1Pkxl
+YXJuDQpNb3JlPC91Pjwvc3Bhbj48L2ZvbnQ+PC9hPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNv
+bG9yOndoaXRlOyI+Ljwvc3Bhbj48L2Rpdj4NCjwvc3Bhbj48L2ZvbnQ+PC90ZD4NCjwvdHI+DQo8
+L3RhYmxlPg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExcHQ7Ij4gJmx0OyZsdDsgRmlsZTogaW52aXRlLmljcyAmZ3Q7Jmd0OyZuYnNw
+OyAmbHQ7Jmx0OyBGaWxlOiBBVFQwMDAwMS50eHQgJmd0OyZndDsgPC9zcGFuPjwvZm9udD48L2Rp
+dj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjwvc3Bhbj48L2ZvbnQ+DQo8
+L2JvZHk+DQo8L2h0bWw+DQo=
 
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD43726fmsmsx124amrcor_--
