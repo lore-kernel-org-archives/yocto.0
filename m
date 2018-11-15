@@ -1,61 +1,66 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <ste.lendl@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3877AE00971; Thu, 15 Nov 2018 06:37:04 -0800 (PST)
+	id 10340E00A1A; Thu, 15 Nov 2018 06:39:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ste.lendl[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.196 listed in list.dnswl.org]
+	*      [209.85.128.67 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f196.google.com (mail-it1-f196.google.com
-	[209.85.166.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0484E008D7
-	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 06:37:02 -0800 (PST)
-Received: by mail-it1-f196.google.com with SMTP id f84-v6so8380130ita.1
-	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 06:37:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=IiISrmzeNs7nFugHib0KW/q/aI0YT8EpbmGOUoqkezI=;
-	b=biSkn43YZACMnLDkZ9mdOZqJr7+tLGw03NrGVjRfDajHO+FkXj1YCIJb9WlW28lTk2
-	3XqQcSTmeAE6PhdNaz8iRUbIJm2xSzarqWcKnItXMi7cFvMdnmzBi+Ho8/WJU/LbrgLl
-	NUa/vht6+J/3RuZFjeANo8walE2z1RmnT1I1+DIAZ9BIhKVNofm++Swe/VHkKniAX/HO
-	8Ubkb/hXcheSGp1I8Up1MJNKhNLkCaNNXve04tDyxhuJcJrQmIfkXfpJSmhLH00yhq8+
-	AaI+pXMNdauxqcz97NCvYOoSm4IVnnYogqm6Hjq0N7c1EBM1fFvirT8suMMZ6qucthLh
-	HVUQ==
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com
+	[209.85.128.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53CD3E00971
+	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 06:39:07 -0800 (PST)
+Received: by mail-wm1-f67.google.com with SMTP id p2-v6so18130252wmc.2
+	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 06:39:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=9P92Adi/BtIq2xjHT8cT3EJC+R1XPPuW4ccnGkHIfVA=;
+	b=nZTEavvo8X8aVzrOMkSMU3fF+QcUWlD2LuoGCMQ37M4xApuJ4GL12GWAOmr/97J+b2
+	Dxn98Th6FvzikTS6XB1nU+uBJsGhUlNshT95hgHwxQkra/VfVEov2sBKRcMGxp1jsYp2
+	Nu7FftRtV7/aimJ7ZGmgAQv/Kv0/CdutJD5tFg1QvAZZPyLrJ8AZDoM/T3KCtFQFXoG+
+	7HwMu0RHsC1mbyhIDypOo4xzeeenz2+DjtXMbeJRahp867pRHLFVi6+eVtGB2iVO7U9H
+	f2E2cBoEl5gTe5ezfG9av5kVuCu8UzM5RyzUU/gHB71irFoa2SGb05B4FUYzDVf508PS
+	mgTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=IiISrmzeNs7nFugHib0KW/q/aI0YT8EpbmGOUoqkezI=;
-	b=lDDKF3ohGHMMr23czEipdiljveQVUe7fA5gstHI04hLSsd/KSO5I4zy/SIISF25KZQ
-	njXhJ5LXbiozUyvI3m3fQrMFIzrX/cApiQ2d7nRq9XqS4Fu6RZwxJtJW+ZO8a2wAHhzc
-	E/+pJphxCQ0qNenR0o+qLWi9CidKrlt1M1ofcpUvVpL3DNJwEPRyh0JhPIu8BimHPJyd
-	PFMjpIRyXEeINh7bb8cfDBsKU+vmIrdDNt3kr+n9SB9HxBBbx2nKazGZHE1E7cVwhuWz
-	2acAPvimAdZDq71Xd6gi5x2ppEoSvw+biG3x9b2xtg2T3wgNy5gNRXhH2ShbXxkPA5yI
-	cZpA==
-X-Gm-Message-State: AGRZ1gJLxkzz6lXzYFOfNPlJiDnKUHH5KvD+Df6H41L3DjCgrhMZetH2
-	0289D60IUtucnJwdGXF4H16VMFVdjgAz/zyTNEzPWA==
-X-Google-Smtp-Source: AFSGD/V2IZib6m2A3IAzopycLZ1ZLPi5jIBBQEh8SEaV3g5VhM1QBIXTKX9qjcVY3gnN8j/RRZ106yx81zE/a3qd9uQ=
-X-Received: by 2002:a24:1d8e:: with SMTP id
-	136-v6mr5632650itj.62.1542292622448; 
-	Thu, 15 Nov 2018 06:37:02 -0800 (PST)
-MIME-Version: 1.0
-References: <20181115141359.31763-1-ste.lendl@gmail.com>
-In-Reply-To: <20181115141359.31763-1-ste.lendl@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 15 Nov 2018 14:36:50 +0000
-Message-ID: <CAJTo0Lb1eO+xz_c9UMnx2-3Sh4DFb3bi-amKqr9YsLrhD_V2_Q@mail.gmail.com>
-To: ste.lendl@gmail.com
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: [PATCH] Use lynis download link from github releases
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=9P92Adi/BtIq2xjHT8cT3EJC+R1XPPuW4ccnGkHIfVA=;
+	b=lqn3rQulAjpfuQf8USrcVBkg+DU0BIGfCqlzAILfieSO+1xrM2xxq+jc6Bz/Zd+/7R
+	1t/gfn+2WvmO5hzk+72JToTua8+1xPtg4ot9jJtEVYZ/zvDldUFgATyuUFEgZhNDQJ40
+	uzk97fvBOmC1XDdmVQ7YGsRVeFb8hUMgWvel8kSwrlStTbRyV5MRQM0uTiSgG/N2F47S
+	NTRg3ZefSuAM+5kB77P0fATrzwL93qHgvH40PI4RxAsDmeiLAQ2OxEEN/5nD23Lv2XFn
+	C8dSU5+Oex6EFy0qgMCCWAiWLmmGnHJYJaTKhCrhrgNpkrzfTM155Vw9gpXpIuWgq1Fa
+	OjcA==
+X-Gm-Message-State: AGRZ1gIP7xP+e/mWtUXlzKQIpUtu2ZXhpWGjPIBjZD04mBHw7uVP88u3
+	CBcLtgfac2xCyOJOZncXfiONos4xH2g=
+X-Google-Smtp-Source: AJdET5fKizUEcHdn0YLlMwoN9mmyzlEC2c3gneFOpAGZaz7LkinA5fmdF0QawCLByi3fLJaalTfGzw==
+X-Received: by 2002:a1c:3a06:: with SMTP id
+	h6-v6mr5560946wma.114.1542292745140; 
+	Thu, 15 Nov 2018 06:39:05 -0800 (PST)
+Received: from localhost ([212.69.186.40]) by smtp.gmail.com with ESMTPSA id
+	i13sm11897638wrw.32.2018.11.15.06.39.03
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Thu, 15 Nov 2018 06:39:03 -0800 (PST)
+From: Stefan Lendl <ste.lendl@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 15 Nov 2018 15:39:01 +0100
+Message-Id: <20181115143901.7279-1-ste.lendl@gmail.com>
+X-Mailer: git-send-email 2.14.5
+Cc: Stefan Lendl <ste.lendl@gmail.com>
+Subject: [PATCH] Use lynis download link from github releases
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,19 +72,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Nov 2018 14:37:04 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 15 Nov 2018 14:39:08 -0000
 
-On Thu, 15 Nov 2018 at 14:29, Stefan Lendl <ste.lendl@gmail.com> wrote:
-> -SRC_URI = "https://cisofy.com/files/${BPN}-${PV}.tar.gz"
-> +SRC_URI = "https://github.com/CISOfy/lynis/archive/${PV}.tar.gz"
+Unlike the official download page, it also works for older releases
 
-NAK.
+Signed-off-by: Stefan Lendl <ste.lendl@gmail.com>
+---
+ meta-security-compliance/recipes-auditors/lynis/lynis_2.5.1.bb | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Those tarballs are generated on demand by github so over time *will*
-change.  If they don't host generated tarballs (similar URL but the
-filename isn't the tag name) then the only alternative is to use the
-git fetcher.
+diff --git a/meta-security-compliance/recipes-auditors/lynis/lynis_2.5.1.bb b/meta-security-compliance/recipes-auditors/lynis/lynis_2.5.1.bb
+index c25b804..1ee71ef 100644
+--- a/meta-security-compliance/recipes-auditors/lynis/lynis_2.5.1.bb
++++ b/meta-security-compliance/recipes-auditors/lynis/lynis_2.5.1.bb
+@@ -6,12 +6,12 @@ HOMEDIR = "https://cisofy.com/"
+ LICENSE = "GPL-3.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=3edd6782854304fd11da4975ab9799c1"
+ 
+-SRC_URI = "https://cisofy.com/files/${BPN}-${PV}.tar.gz"
++SRC_URI = "https://github.com/CISOfy/lynis/archive/${PV}.tar.gz"
+ 
+-SRC_URI[md5sum] = "5b9da89c616344bbc73cbc5688a4a0bd"
+-SRC_URI[sha256sum] = "7a09c6fc71c65d572ca702df7b4394d71f9037484062ef71b76f59a2c498b029"
++SRC_URI[md5sum] = "f91840acc0801b77844363fc55c5d688"
++SRC_URI[sha256sum] = "e143eaefec3222f98a0f74dd6dcb3818aa348dea3d0379bd3a45455911b6ee2a"
+ 
+-S = "${WORKDIR}/${BPN}"
++S = "${WORKDIR}/${BPN}-${PV}"
+ 
+ inherit autotools-brokensep
+ 
+-- 
+2.14.5
 
-Ross
 
