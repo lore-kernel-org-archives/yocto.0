@@ -1,68 +1,62 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F3A91E00C19; Wed, 14 Nov 2018 17:59:20 -0800 (PST)
+	id 7C8FDE00C4E; Wed, 14 Nov 2018 18:41:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (kergoth[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.194 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-oi1-f194.google.com (mail-oi1-f194.google.com
-	[209.85.167.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6543DE00A6B
-	for <yocto@yoctoproject.org>; Wed, 14 Nov 2018 17:59:20 -0800 (PST)
-Received: by mail-oi1-f194.google.com with SMTP id r127-v6so15463101oie.3
-	for <yocto@yoctoproject.org>; Wed, 14 Nov 2018 17:59:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=kpCgRGKCfsnNA55fGU+TPTSpnyjwKw5GMheZtE5aWt8=;
-	b=cJjLPI2M4iK/NPJEeX5Wpsf+4hTKVzTTR12CoooXM6SSVtU54LMfAZlsnOErok3Iaz
-	dIg5Wl8WBcJd5qFc05iEKyXLa6umNeiz4t2kaKCTIHExxoDCqg48bYcBYLKLm4B4lKVz
-	zobTWN5bpqTN+0lZSapMiEXZatW9blcyNgkVTPrCFzdBxfwpg2PzZt+ERvUKQiIlM7rv
-	+gOxEnqAD7mwXY4T9ZWzCLCw5A6ij229aQRrUlWBhNgrNq17xbWevOC1Es2KVw+FdZYh
-	jkz3aczru6dBqsXON/otJMrAtkNWB+qssLqi4COp5CHckSATB4rNsNlSYlh4eYRKn9qi
-	bmRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=kpCgRGKCfsnNA55fGU+TPTSpnyjwKw5GMheZtE5aWt8=;
-	b=r2osbE//eVicatyjaNFPBskQw5eoKvz5d2yJH6bcYgqfKBTQ+DfIUTBc8Dy/VKV43o
-	mrHvxHQ9wzELmmQ+cAzEbI03lCXP28lcVrzhAFXa3SP+aG94ByaRwBPnMlR9ch9aA6+j
-	5JMYPds4N+bDM//bV+gyc/zWKUQgY2DUhTuA3Ft+nE6kItjRwWMnkn/dZ/eA1tCwYWrY
-	b7bgd/G0lMs6BZ85wvZ6kKHjpVJFZQNQXHu0fcTk36+yutuRcsfQMtF+rZZHk2oGfhoP
-	xYrdPRohxXAm/DoVRMBib7OVBKKip96Mo0tdakYyvdJGYiE/4kGuduzGY4s4yl19euyE
-	lILw==
-X-Gm-Message-State: AGRZ1gK4MRBCcG3obta5CX1V64Yc7z1dspieVEcCYIg+Sv8RcVux+kfZ
-	ssVRAidYARqO3xgHm1QfCDDClccydSMhGxlCvsY=
-X-Google-Smtp-Source: AJdET5cPG2MB8M4goymiBTngP6qTgOCK9zjANF5ZWTZzamudpjD8pNPPergrmsR/betF8jiinaQ9CYsPYU1TN5jaZ7g=
-X-Received: by 2002:aca:dbd4:: with SMTP id
-	s203-v6mr2373560oig.109.1542247159559; 
-	Wed, 14 Nov 2018 17:59:19 -0800 (PST)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13E97E00A6B
+	for <yocto@yoctoproject.org>; Wed, 14 Nov 2018 18:41:15 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id wAF2fEHU027334
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 14 Nov 2018 18:41:14 -0800 (PST)
+Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
+	Wed, 14 Nov 2018 18:41:13 -0800
+From: Mark Hatle <mark.hatle@windriver.com>
+To: Samuli Piippo <samuli.piippo@gmail.com>, <yocto@yoctoproject.org>
+References: <CABXoSoXbsZTmZokUW5sfuw2xHP4cENo7iuE5kgffQ-WPOzS-Bg@mail.gmail.com>
+	<377de133-4849-78e0-e8dc-69a79c487069@windriver.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
+	xsBNBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
+	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
+	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
+	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
+	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
+	AAHNJU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT7CwHcEEwEIACEFAlYK
+	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
+	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
+	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
+	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
+	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
+	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrs7ATQRWCsRYAQgAwK3FuHCE+HW3YWdH
+	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
+	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
+	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
+	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
+	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABwsBfBBgBCAAJBQJWCsRYAhsMAAoJ
+	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
+	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
+	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
+	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
+	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
+Organization: Wind River Systems
+Message-ID: <4fd5b99a-9d4a-629f-8d65-20786f984a38@windriver.com>
+Date: Wed, 14 Nov 2018 20:41:13 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:52.0)
+	Gecko/20100101 Thunderbird/52.9.1
 MIME-Version: 1.0
-References: <CACfi_Z3yjSK95o843HqpubqKgx=f-3u3e3GwGz65enKYTmbS6Q@mail.gmail.com>
-In-Reply-To: <CACfi_Z3yjSK95o843HqpubqKgx=f-3u3e3GwGz65enKYTmbS6Q@mail.gmail.com>
-From: Christopher Larson <kergoth@gmail.com>
-Date: Wed, 14 Nov 2018 18:59:07 -0700
-Message-ID: <CABcZANk279D1gPSb3eib0XpdUmEAz5TRB8DKt6NBALfKVU6cOA@mail.gmail.com>
-To: davis.roman84@gmail.com
-Cc: yocto <yocto@yoctoproject.org>, bitbake-devel@lists.openembedded.org,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [bitbake-devel] difference between DEPLOYDIR vs D
+In-Reply-To: <377de133-4849-78e0-e8dc-69a79c487069@windriver.com>
+Subject: Re: meta-mingw: unable to run executables on Windows
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,75 +68,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Nov 2018 01:59:21 -0000
-Content-Type: multipart/alternative; boundary="0000000000001a009b057aaa66ce"
+X-List-Received-Date: Thu, 15 Nov 2018 02:41:16 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---0000000000001a009b057aaa66ce
-Content-Type: text/plain; charset="UTF-8"
+On 11/14/18 9:54 AM, Mark Hatle wrote:
+> On 11/13/18 3:56 AM, Samuli Piippo wrote:
+>> Hi,
+>>
+>> I've just upgraded poky and meta-mingw layers from sumo to thud and as a result
+>> a lot of the executables in the toolchain no longer run correctly on Windows.
+> 
+> Which version of windows?
+> 
+>> I've built meta-toolchain for SDKMACHINE=x86_64-mingw32. From that, gcc/g++ work
+>> fine on Windows 10, but ar, as, objdumb, and others hang for ~30 seconds and
+>> exit without any output.
+>>
+>> Has anyone else seen this?
+> 
+> I've run a toolchain made on mingw after sumo, but before thud's release.  I'll
+> see if I can find a VM and give it a try later today.
 
-IIrc DEPLOYDIR contents get copied to DEPLOY_DIR by sstate for the
-do_deploy task. I.e. tmp/deploy/. This is independent of packaging.
+I'm running on Windows 7 for my testing (ya, I know old.. but it's what I got.)
 
-On Wed, Nov 14, 2018 at 5:38 PM Davis Roman <davis.roman84@gmail.com> wrote:
+Can you try adding the following to your conf/local.conf: GCCPIE_mingw32 = ""
 
-> Hello,
->
-> I'm trying to understand the correlation between the $DEPLOYDIR and $D
-> variables.
->
-> They both seem very similar.
->
-> Do files from DEPLOYDIR eventually get copied to D in order to finally
-> make its way into the final package?
->
-> If so, why bother with  DEPLOYDIR and instead just copy straight into D?
->
-> Thank you,
->
-> Davis
-> --
-> _______________________________________________
-> bitbake-devel mailing list
-> bitbake-devel@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/bitbake-devel
->
+I found that the SDK was not working properly here as well, but only binutils.
+The above seems to fix the issue.  (You do have to rebuild your SDK.)
+
+> --Mark
+> 
 
 
--- 
-Christopher Larson
-kergoth at gmail dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Senior Software Engineer, Mentor Graphics
-
---0000000000001a009b057aaa66ce
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">IIrc DEPLOYDIR contents get copied to DEPLOY_DIR by sstate=
- for the do_deploy task. I.e. tmp/deploy/. This is independent of packaging=
-.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Wed, Nov 14, 2018=
- at 5:38 PM Davis Roman &lt;<a href=3D"mailto:davis.roman84@gmail.com">davi=
-s.roman84@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
-<div dir=3D"ltr">Hello,=C2=A0<div><br></div><div>I&#39;m trying to understa=
-nd the correlation between the $DEPLOYDIR and $D variables.=C2=A0</div><div=
-><br></div><div>They both seem very similar.</div><div><br></div><div>Do fi=
-les from DEPLOYDIR eventually get copied to D in order to finally make its =
-way into the final package?</div><div><br></div><div>If so, why bother with=
-=C2=A0 DEPLOYDIR and instead just copy straight into D?</div><div><br></div=
-><div>Thank you,</div><div><br>Davis</div></div>
--- <br>
-_______________________________________________<br>
-bitbake-devel mailing list<br>
-<a href=3D"mailto:bitbake-devel@lists.openembedded.org" target=3D"_blank">b=
-itbake-devel@lists.openembedded.org</a><br>
-<a href=3D"http://lists.openembedded.org/mailman/listinfo/bitbake-devel" re=
-l=3D"noreferrer" target=3D"_blank">http://lists.openembedded.org/mailman/li=
-stinfo/bitbake-devel</a><br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"l=
-tr"><div><div dir=3D"ltr">Christopher Larson<br>kergoth at gmail dot com<br=
->Founder - BitBake, OpenEmbedded, OpenZaurus<br>Senior Software Engineer, M=
-entor Graphics</div></div></div></div>
-
---0000000000001a009b057aaa66ce--
