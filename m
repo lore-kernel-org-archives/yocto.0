@@ -1,66 +1,66 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 089E0E00872; Thu, 15 Nov 2018 06:41:19 -0800 (PST)
+	id 74E1CE0095C; Thu, 15 Nov 2018 06:48:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.66 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f66.google.com (mail-io1-f66.google.com
-	[209.85.166.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD1DAE00872
-	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 06:41:07 -0800 (PST)
-Received: by mail-io1-f66.google.com with SMTP id w7so6903873iom.12
-	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 06:41:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=AX9z8vyjQayM1QzT3sjfvE25EPeoOSM0B6fWQsDpobE=;
-	b=vJLj9um+TG3AP/J77eA3aNUiLyxfEWmmzvxqp7b+9sGseU4JNfeIeIyuethb5Gng1H
-	vIHFsEFp4SXdkwWqi9RoPESt2okrHtr59YzqPVuxo5LQIzoOX237zs1ArYHQoBhONUKk
-	ZbNtmAqxm/UyI0Z4Lyf7Z1wPcsqSON6s7IvcDVxtHGJnYyhsv8TngUfVYO7sYxz1Sh06
-	KKeqK6iChCbqx8WTFBU509WZxVk+8GcV9tsAie5n1mXM1tDS3/aqcZZQ+BOipdU97kAI
-	TpgJZgBoKxypskw5tKq7m06ihXMN0R/xeemu/0TPSfxysR/xWH6wfIrHEuFP17BObLGR
-	Eg4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=AX9z8vyjQayM1QzT3sjfvE25EPeoOSM0B6fWQsDpobE=;
-	b=TnMUK3A64IHoDDE7qtt5Uwe86DlKMNgOYw3erKjJ/1yZktzS6uVUHgK+Ym+KXQbKkF
-	YwSF4EbNZMmy365AVuXXEQUOiI+NC9WFyd1pa0aKVzPyiWomoUH5p8Jsi7CUKliDCuSg
-	gW5j6bFuNrwaxljM1g2bVOguVBX93RyfLDG6GcWUVowp1IfOn66itAdWsHAEuxzfPKJ/
-	S5IDmmjyDNeUM2xP2z51lIvmQIEGQimBtQ8IqiuqZQ9PPXSnZoPTV+enhxwqFEY4jV9a
-	YvKUjGJQd63eOEVXcpFQprZQYzxcZC+K14FR8e488bczAC78fqdQilG+YwtiHtGSlsAJ
-	LRnw==
-X-Gm-Message-State: AA+aEWZpbwYoGCcj+WMXaG+vlc5qfxQPSX1jMxZnBcD8OotAPKB5HEdt
-	sUWjsjF1NF/48u4FF8IFi3b49ncy+QzB4ttxr8nqxg==
-X-Google-Smtp-Source: AFSGD/UHRaUmPFk755ocUFgWwJa0or9rhQOn6TdC7hjW81poTtn4E9waHOByfgDIoXIHBZjndp9ndkXyTNdP19/b8fw=
-X-Received: by 2002:a6b:1602:: with SMTP id 2-v6mr4880731iow.201.1542292867119;
-	Thu, 15 Nov 2018 06:41:07 -0800 (PST)
-MIME-Version: 1.0
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D094DE008D7
+	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 06:48:12 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id wAFElWp6030745
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 15 Nov 2018 06:47:42 -0800
+Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
+	Thu, 15 Nov 2018 06:47:21 -0800
+To: Khem Raj <raj.khem@gmail.com>, Joshua Watt <jpewhacker@gmail.com>
 References: <CABXoSoXbsZTmZokUW5sfuw2xHP4cENo7iuE5kgffQ-WPOzS-Bg@mail.gmail.com>
 	<377de133-4849-78e0-e8dc-69a79c487069@windriver.com>
 	<4fd5b99a-9d4a-629f-8d65-20786f984a38@windriver.com>
 	<CAJdd5GZJ7SakYHNL3HgbPS3ZkmHvweicr6mU75ui8HA4kK3qog@mail.gmail.com>
 	<CAMKF1sqvJpYzPRHJv3qQfWCkzA0pc5X5GAkOrcBJ=53-Y6kFVA@mail.gmail.com>
-	<CABXoSoUqzDtrdea7rFkF0xiXULR4sto+gqcXL4L8TpZy8Ni7bQ@mail.gmail.com>
-	<CAJTo0LapW-sOMR8uC4+LMWbUznHDLzQx8gsnV6hyoL=w+6A5Fw@mail.gmail.com>
-	<CABXoSoUU9F3xbzFR-mru1ZrD72-DgwBb1tFEwQVxt-JRfgwSsw@mail.gmail.com>
-In-Reply-To: <CABXoSoUU9F3xbzFR-mru1ZrD72-DgwBb1tFEwQVxt-JRfgwSsw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 15 Nov 2018 14:40:54 +0000
-Message-ID: <CAJTo0LYhdm3Gi7R3gnmYksWYrs14tH7r=zAMCDaShegOrhpW1g@mail.gmail.com>
-To: Samuli Piippo <samuli.piippo@gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+From: Mark Hatle <mark.hatle@windriver.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
+	xsBNBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
+	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
+	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
+	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
+	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
+	AAHNJU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT7CwHcEEwEIACEFAlYK
+	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
+	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
+	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
+	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
+	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
+	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrs7ATQRWCsRYAQgAwK3FuHCE+HW3YWdH
+	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
+	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
+	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
+	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
+	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABwsBfBBgBCAAJBQJWCsRYAhsMAAoJ
+	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
+	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
+	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
+	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
+	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
+Organization: Wind River Systems
+Message-ID: <13c4de38-d986-db19-8cd5-39f903afb8a3@windriver.com>
+Date: Thu, 15 Nov 2018 08:47:20 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:52.0)
+	Gecko/20100101 Thunderbird/52.9.1
+MIME-Version: 1.0
+In-Reply-To: <CAMKF1sqvJpYzPRHJv3qQfWCkzA0pc5X5GAkOrcBJ=53-Y6kFVA@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: meta-mingw: unable to run executables on Windows
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -73,80 +73,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Nov 2018 14:41:19 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 15 Nov 2018 14:48:13 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Didn't see it arrive, maybe it's lost in moderation?  What list did
-you post it to?
+On 11/14/18 11:01 PM, Khem Raj wrote:
+> On Wed, Nov 14, 2018 at 8:08 PM Joshua Watt <jpewhacker@gmail.com> wrote:
+>>
+>> On Wed, Nov 14, 2018 at 8:41 PM Mark Hatle <mark.hatle@windriver.com> wrote:
+>>>
+>>> On 11/14/18 9:54 AM, Mark Hatle wrote:
+>>>> On 11/13/18 3:56 AM, Samuli Piippo wrote:
+>>>>> Hi,
+>>>>>
+>>>>> I've just upgraded poky and meta-mingw layers from sumo to thud and as a result
+>>>>> a lot of the executables in the toolchain no longer run correctly on Windows.
+>>>>
+>>>> Which version of windows?
+>>>>
+>>>>> I've built meta-toolchain for SDKMACHINE=x86_64-mingw32. From that, gcc/g++ work
+>>>>> fine on Windows 10, but ar, as, objdumb, and others hang for ~30 seconds and
+>>>>> exit without any output.
+>>>>>
+>>>>> Has anyone else seen this?
+>>>>
+>>>> I've run a toolchain made on mingw after sumo, but before thud's release.  I'll
+>>>> see if I can find a VM and give it a try later today.
+>>>
+>>> I'm running on Windows 7 for my testing (ya, I know old.. but it's what I got.)
+>>>
+>>> Can you try adding the following to your conf/local.conf: GCCPIE_mingw32 = ""
+> 
+> this will be effective just for SDK and native versions I hope, but in
+> cases if we
+> have this override also applicable for target then this fix is not
+> correct. We have
+> to keep using it for target builds.
 
-Ross
-On Thu, 15 Nov 2018 at 09:28, Samuli Piippo <samuli.piippo@gmail.com> wrote:
->
-> patch sent.
-> On Thu, 15 Nov 2018 at 11:17, Burton, Ross <ross.burton@intel.com> wrote:
-> >
-> > Good work!
-> >
-> > Can we have a patch from someone please?
-> >
-> > Ross
-> >
-> > On Thu, 15 Nov 2018 at 08:35, Samuli Piippo <samuli.piippo@gmail.com> wrote:
-> >>
-> >> On Thu, 15 Nov 2018 at 07:01, Khem Raj <raj.khem@gmail.com> wrote:
-> >> >
-> >> > On Wed, Nov 14, 2018 at 8:08 PM Joshua Watt <jpewhacker@gmail.com> wrote:
-> >> > >
-> >> > > On Wed, Nov 14, 2018 at 8:41 PM Mark Hatle <mark.hatle@windriver.com> wrote:
-> >> > > >
-> >> > > > On 11/14/18 9:54 AM, Mark Hatle wrote:
-> >> > > > > On 11/13/18 3:56 AM, Samuli Piippo wrote:
-> >> > > > >> Hi,
-> >> > > > >>
-> >> > > > >> I've just upgraded poky and meta-mingw layers from sumo to thud and as a result
-> >> > > > >> a lot of the executables in the toolchain no longer run correctly on Windows.
-> >> > > > >
-> >> > > > > Which version of windows?
-> >> > > > >
-> >> > > > >> I've built meta-toolchain for SDKMACHINE=x86_64-mingw32. From that, gcc/g++ work
-> >> > > > >> fine on Windows 10, but ar, as, objdumb, and others hang for ~30 seconds and
-> >> > > > >> exit without any output.
-> >> > > > >>
-> >> > > > >> Has anyone else seen this?
-> >> > > > >
-> >> > > > > I've run a toolchain made on mingw after sumo, but before thud's release.  I'll
-> >> > > > > see if I can find a VM and give it a try later today.
-> >> > > >
-> >> > > > I'm running on Windows 7 for my testing (ya, I know old.. but it's what I got.)
-> >> > > >
-> >> > > > Can you try adding the following to your conf/local.conf: GCCPIE_mingw32 = ""
-> >> >
-> >> > this will be effective just for SDK and native versions I hope, but in
-> >> > cases if we
-> >> > have this override also applicable for target then this fix is not
-> >> > correct. We have
-> >> > to keep using it for target builds.
-> >> >
-> >> > > >
-> >> > > > I found that the SDK was not working properly here as well, but only binutils.
-> >> > > > The above seems to fix the issue.  (You do have to rebuild your SDK.)
-> >> > >
-> >> > > I also saw this issue on Windows 7, and your described fix corrected
-> >> > > it (Thanks!). On the plus side, the automated SDK testing that I'm
-> >> > > working on discovered it as well (e.g. the tests failed because of
-> >> > > it), which means that the tests are working and should help prevent
-> >> > > issues like this in the future once I get it merged.
-> >> > >
-> >>
-> >> bisect finished last night and the winner was: commit
-> >> 491082c56ce34f3fd644f8d4457ccd52af951087
-> >> poky.conf: Enable security flags+pie by defaultEnable security
-> >> flags+pie by default
-> >>
-> >> Adding GCCPIE_mingw32 = "" fixes this also for Windows 10
-> >> --
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
+The mingw32 override is only present when building -nativesdk- mingw32 software.
+ -Not- cross candian and similar.
+
+--Mark
+
+>>>
+>>> I found that the SDK was not working properly here as well, but only binutils.
+>>> The above seems to fix the issue.  (You do have to rebuild your SDK.)
+>>
+>> I also saw this issue on Windows 7, and your described fix corrected
+>> it (Thanks!). On the plus side, the automated SDK testing that I'm
+>> working on discovered it as well (e.g. the tests failed because of
+>> it), which means that the tests are working and should help prevent
+>> issues like this in the future once I get it merged.
+>>
+>>>
+>>>> --Mark
+>>>>
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+
 
