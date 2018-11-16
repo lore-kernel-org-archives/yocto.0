@@ -1,34 +1,70 @@
-Return-Path: <fabien.lahoudere@collabora.com>
+Return-Path: <jpewhacker@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 14881E00C5B; Fri, 16 Nov 2018 07:23:31 -0800 (PST)
+	id 1464DE00C4D; Fri, 16 Nov 2018 07:36:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jpewhacker[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-X-Greylist: delayed 316 seconds by postgrey-1.32 at yocto-www;
-	Fri, 16 Nov 2018 07:23:29 PST
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09C37E00901
-	for <yocto@yoctoproject.org>; Fri, 16 Nov 2018 07:23:29 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: aragua) with ESMTPSA id 7C00326056D
-From: Fabien Lahoudere <fabien.lahoudere@collabora.com>
+	*      [209.85.166.196 listed in list.dnswl.org]
+Received: from mail-it1-f196.google.com (mail-it1-f196.google.com
+	[209.85.166.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96B2BE00C18
+	for <yocto@yoctoproject.org>; Fri, 16 Nov 2018 07:36:28 -0800 (PST)
+Received: by mail-it1-f196.google.com with SMTP id k141-v6so34852032itk.3
+	for <yocto@yoctoproject.org>; Fri, 16 Nov 2018 07:36:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=Z/1y68m4X/g0quoOvftyHWSmoiHSPl7EsZK+bkoAyk0=;
+	b=OQ0ErXEt3aQf/sAjyXBVOwx+I8Oe38xPSjkkj5jIbiejWckYkM1MLn6zf+nWuiSOT4
+	3dfVKCG/NkJmniCf/3LR3xXp4vaL75qb3NHj7QOY1YzlmhTm/Zac2wJUiS0OsAOfE1HJ
+	CEWtS4+MutovQavMZzLkEO8rzJoPmvPTXLq/X3/jbcxuVm1KzjVpbJxgFuDXoQF5etTj
+	8MZpDrr3BIgA9bF7JUuoBpKagINn5bAjdLI9m9NgaAh7a4MVPd6F4dWA4lSf9KnyHtCF
+	pUDFczwvX0t3GyU2RdD+bDilcm+sxvoeIsFSqtL5tJG6vFkV5oWJI4Y7310dAfF1YDgR
+	H8FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=Z/1y68m4X/g0quoOvftyHWSmoiHSPl7EsZK+bkoAyk0=;
+	b=XHHGE4xi25v9EpokcBphTOc9LnL3GJjxt4XgUY0HPy786b8Y8h6FdSJ+rD9Ai5IiUb
+	/94O4f+WtF85Z2pxf92SvIxPw7mcjMEGK+ThzgAJCef85RPFYpZlK8S4IBOGz1p9SN0x
+	IL0ExkXjKGX5bFw8yyYOJwyGvBBmVSLQJo9u2CmC1hj4fujsSQ6w8tDgdoO74rRncT0C
+	K0nH5WULEVXmsnOKt+7HU0y5PkskjoxuLg7pXnw4G9O4sQE+JGpD/6VVf0knvgOJrCWg
+	XKYx0lOTTSrMXjlBcTHcAmSILJ4SRpFd+bexTtbg0B8UQPB/c9EGNtzjEbPSXClp0rMm
+	jG6w==
+X-Gm-Message-State: AGRZ1gIoSyt1unucdTWwM9MgLVwV0BXIsXRaKc6R8CcS5B3Hbxxb9yKk
+	b2R4hokMyb5xxFJJRMqcyGsmD9P9xtQ=
+X-Google-Smtp-Source: AJdET5dM7pRVdzdjGWV98KWnGgrnetsYf0f+E5cWx1SGe+hbeab/eURT+vViJEShBNAFUgl+BaFc5A==
+X-Received: by 2002:a24:ce45:: with SMTP id
+	v66-v6mr9728740itg.26.1542382587764; 
+	Fri, 16 Nov 2018 07:36:27 -0800 (PST)
+Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
+	by smtp.gmail.com with ESMTPSA id
+	r65-v6sm8051819ita.8.2018.11.16.07.36.26
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Fri, 16 Nov 2018 07:36:26 -0800 (PST)
+From: Joshua Watt <jpewhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
 To: yocto@yoctoproject.org
-Date: Fri, 16 Nov 2018 16:18:05 +0100
-Message-Id: <1542381485-27805-1-git-send-email-fabien.lahoudere@collabora.com>
-X-Mailer: git-send-email 1.8.3.1
-X-Mailman-Approved-At: Fri, 16 Nov 2018 07:28:16 -0800
-Cc: Fabien Lahoudere <fabien.lahoudere@collabora.com>
-Subject: [meta-raspberrypi][PATCH] CAN: Add Pican2 support
+Date: Fri, 16 Nov 2018 09:36:08 -0600
+Message-Id: <20181116153608.24733-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.19.1
+MIME-Version: 1.0
+Subject: [meta-mingw][PATCH] README: Add myself as a maintainer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,91 +76,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Nov 2018 15:23:31 -0000
+X-List-Received-Date: Fri, 16 Nov 2018 15:36:29 -0000
+Content-Transfer-Encoding: 8bit
 
-In order to make Pican 2 work, we :
-- add mcp2515.dto to the overlay list
-- add a variable to enable it in local.conf
-- create a udev rule to mount interface
-
-http://skpang.co.uk/catalog/pican2-canbus-board-for-raspberry-pi-23-p-1475.html
-
-Signed-off-by: Fabien Lahoudere <fabien.lahoudere@collabora.com>
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
 ---
- docs/extra-build-config.md                 | 9 +++++++++
- recipes-bsp/bootfiles/rpi-config_git.bb    | 6 ++++++
- recipes-core/udev/udev-rules-rpi.bb        | 6 +++++-
- recipes-core/udev/udev-rules-rpi/can.rules | 1 +
- 4 files changed, 21 insertions(+), 1 deletion(-)
- create mode 100644 recipes-core/udev/udev-rules-rpi/can.rules
+ README | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/docs/extra-build-config.md b/docs/extra-build-config.md
-index 732c102..4376462 100644
---- a/docs/extra-build-config.md
-+++ b/docs/extra-build-config.md
-@@ -246,6 +246,15 @@ When using device tree kernels, set this variable to enable the 802.15.4 hat:
+diff --git a/README b/README
+index 2ed1395..e866213 100644
+--- a/README
++++ b/README
+@@ -11,7 +11,9 @@ This layer depends on:
+  layers: meta
+  branch: master
  
- See: <https://openlabs.co/OSHW/Raspberry-Pi-802.15.4-radio>
+-Layer Maintainer: Juro Bystricky <juro.bystricky@intel.com>
++Layer Maintainers:
++    Juro Bystricky <juro.bystricky@intel.com>
++    Joshua Watt <jpewhacker@gmail.com>
  
-+## Enable CAN with Pican2
-+
-+In order to use Pican2 CAN module, set the following variables:
-+
-+	ENABLE_SPI_BUS = "1"
-+	ENABLE_CAN = "1"
-+
-+See: <http://skpang.co.uk/catalog/pican2-canbus-board-for-raspberry-pi-23-p-1475.html>
-+
- ## Manual additions to config.txt
- 
- The `RPI_EXTRA_CONFIG` variable can be used to manually add additional lines to
-diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
-index d92b8e4..d0d1fba 100644
---- a/recipes-bsp/bootfiles/rpi-config_git.bb
-+++ b/recipes-bsp/bootfiles/rpi-config_git.bb
-@@ -183,6 +183,12 @@ do_deploy() {
-         echo "dtoverlay=at86rf233,speed=3000000" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-     fi
- 
-+    # ENABLE CAN
-+    if [ "${ENABLE_CAN}" = "1" ]; then
-+        echo "# Enable CAN" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+        echo "dtoverlay=mcp2515-can0,oscillator=16000000,interrupt=25" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+    fi
-+
-     # Append extra config if the user has provided any
-     echo "${RPI_EXTRA_CONFIG}" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
- }
-diff --git a/recipes-core/udev/udev-rules-rpi.bb b/recipes-core/udev/udev-rules-rpi.bb
-index edef0db..42cfcdd 100644
---- a/recipes-core/udev/udev-rules-rpi.bb
-+++ b/recipes-core/udev/udev-rules-rpi.bb
-@@ -2,7 +2,10 @@ DESCRIPTION = "udev rules for Raspberry Pi Boards"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
- 
--SRC_URI = " file://99-com.rules"
-+SRC_URI = " \
-+	file://99-com.rules \
-+	file://can.rules \
-+	"
- 
- S = "${WORKDIR}"
- 
-@@ -11,4 +14,5 @@ INHIBIT_DEFAULT_DEPS = "1"
- do_install () {
-     install -d ${D}${sysconfdir}/udev/rules.d
-     install -m 0644 ${WORKDIR}/99-com.rules ${D}${sysconfdir}/udev/rules.d/
-+    install -m 0644 ${WORKDIR}/can.rules ${D}${sysconfdir}/udev/rules.d/
- }
-diff --git a/recipes-core/udev/udev-rules-rpi/can.rules b/recipes-core/udev/udev-rules-rpi/can.rules
-new file mode 100644
-index 0000000..a47d57d
---- /dev/null
-+++ b/recipes-core/udev/udev-rules-rpi/can.rules
-@@ -0,0 +1 @@
-+SUBSYSTEM=="net", DEVPATH=="/devices/platform/soc/3f204000.spi/spi_master/spi0/spi0.0/net/can0", RUN+="/sbin/ip link set can0 up type can bitrate 500000"
+ Please send changes to the yocto mailing list with [meta-mingw] in the subject line,
+-cc'ing the maintainer.
++cc'ing the maintainers.
 -- 
-1.8.3.1
+2.19.1
 
 
