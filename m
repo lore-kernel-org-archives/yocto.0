@@ -1,98 +1,66 @@
-Return-Path: <samuli.piippo@qt.io>
+Return-Path: <jpewhacker@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3F1BEE00ABE; Thu, 15 Nov 2018 18:18:34 -0800 (PST)
+	id 5B010E00A4F; Thu, 15 Nov 2018 19:36:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jpewhacker[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [40.107.14.107 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.128.67 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 6956 seconds by postgrey-1.32 at yocto-www;
-	Thu, 15 Nov 2018 18:18:31 PST
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com
-	(mail-eopbgr140107.outbound.protection.outlook.com [40.107.14.107])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 402C7E0095C
-	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 18:18:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=qtcompany.onmicrosoft.com; s=selector1-qt-io;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=xZiMX8g7WpEAlssNBiHbEDEBo5evZwUzY6cIWNkzJiY=;
-	b=gxw0QCbVuyhZHQSGhkcSFjTM1fj1k7A3IF8LltWhecX1Fo7EhSOcI323Xdh89KSfTJs+iXlYpBPuphKZ61f757KDUWvLaILlG6UbLsGhhV5dzBYDNIi1DWn5R9R+fcvpKb7Nc5c6HTE/Zh4d/icrafYQCRGI1Wm7Q6Zof6ASFh0=
-Received: from HE1PR0201MB2265.eurprd02.prod.outlook.com (10.168.145.136) by
-	HE1PR0201MB2300.eurprd02.prod.outlook.com (10.168.145.147) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1294.26; Thu, 15 Nov 2018 17:45:29 +0000
-Received: from HE1PR0201MB2265.eurprd02.prod.outlook.com
-	([fe80::e588:a17c:cfbc:83f9]) by
-	HE1PR0201MB2265.eurprd02.prod.outlook.com
-	([fe80::e588:a17c:cfbc:83f9%6]) with mapi id 15.20.1294.045;
-	Thu, 15 Nov 2018 17:45:29 +0000
-From: Samuli Piippo <samuli.piippo@qt.io>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] [meta-mingw][PATCH 1/2] winpthreads: use posix threads
-	library from mingw64
-Thread-Index: AQHUfMWfo4EEInMzi0ud1wCRvP7GTqVRFa8AgAAC9AmAAABXgIAAA3nd
-Date: Thu, 15 Nov 2018 17:45:29 +0000
-Message-ID: <3B171D8E-F6CA-4A23-A4B6-9232541E58B9@qt.io>
-References: <20181115092658.29152-1-samuli.piippo@qt.io>
-	<CAJTo0LY9YSb_cJPyoxz6cFpZfPovi5c5e0wz54c_5ndki3jxxw@mail.gmail.com>
-	<5F6B28BC-D434-4D91-97FF-A972C004FF6F@qt.io>,
-	<CAJTo0LZ_Ekm1zRpKuJt5SFknqBAmtLcGma8nHiKvGd4wVjCM4Q@mail.gmail.com>
-In-Reply-To: <CAJTo0LZ_Ekm1zRpKuJt5SFknqBAmtLcGma8nHiKvGd4wVjCM4Q@mail.gmail.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=samuli.piippo@qt.io; 
-x-originating-ip: [2001:999:41:7dbc:9997:4f4c:84c:723b]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; HE1PR0201MB2300;
-	6:g91G7aJyBd8LXDaPlXGHoi6tL+sSNaA5RyUdIrSJHHT2yoYL1rnYjG+ZehR9AUMT4r6Nmkr7ZDUZjjwRjHR55rW5dvcWNecfappxgxivbKOOPgs+0gnkNm8dxk05+M+Rp82sKCE9JUWLBt2Ae6WK2M8ydXYKIvLJWyugNMgXxHNiIEggmhVmioM7oCTaKp1hFDsztAGUWGI/UIefTxvkJgx9KllX4754soQUU/wzCy6thqqQEGYj2RDh+HLXs516DWueNMnzMCB8MAnZY09DDj+QNfnGq6qxZ73CBYaZGXSYiGJzQhr3sz7gYol+u8Pmp2I0DaCXtmj/tGx5Vu5xLes/m16ok3AV0NARm4T2jfjbZI8KWc0fnRaWCVlgKuDLMiWcmBtQkKIA0lSSAb9B/g+H+L8nJ/ZrMG8NZ6obL9VqEDO9IKpKHvWEAD9F/s7PZ2PzsfUum9Nu1z9sS8lS2A==;
-	5:C2qooZMMG3H9jr0HxKTdqcvsYnTzflE9DAGRg0e+uzWAXdnpd0sloCJ9pzmCkzU0EosQ7n5WYd9oOuP06G4AWhnyoID5qKYqdNvlLRHpHruYme0cTWcuOzmE1NzcdV3SIPhs7eytcXUdmK6rht5KT0hQImqRzP0xCSKkhvL/C7o=;
-	7:suwlRoxDSRr2CzWmpu5dcEEsv4zdoB1H19K9lTwIZ2RpH7dHaTfuIdA1gYgZH1tJEhmDFK4+k4U6yBAGEyEusrszlLJmbjddpxR0E0mhrPLpB4a9KKHEurLEjd0SQkbzGpCwEAFOiJQ9IPH0Bb1sGQ==
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: 3fe8af4c-5f0c-40c6-37f6-08d64b222222
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390098)(7020095)(4652040)(8989299)(5600074)(711020)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7153060)(7193020);
-	SRVR:HE1PR0201MB2300; 
-x-ms-traffictypediagnostic: HE1PR0201MB2300:
-x-microsoft-antispam-prvs: <HE1PR0201MB2300F90A2EF03CCAFC81E014E9DC0@HE1PR0201MB2300.eurprd02.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(788757137089)(228905959029699);
-x-ms-exchange-senderadcheck: 1
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(5005006)(8121501046)(3231415)(944501410)(4982022)(52105112)(10201501046)(93006095)(93001095)(3002001)(148016)(149066)(150057)(6041310)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123558120)(20161123560045)(20161123562045)(20161123564045)(201708071742011)(7699051)(76991095);
-	SRVR:HE1PR0201MB2300; BCL:0; PCL:0; RULEID:;
-	SRVR:HE1PR0201MB2300; 
-x-forefront-prvs: 08572BD77F
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39850400004)(346002)(396003)(366004)(376002)(136003)(199004)(189003)(14444005)(256004)(93886005)(11346002)(44832011)(186003)(6506007)(83716004)(6306002)(4326008)(6512007)(76176011)(476003)(316002)(46003)(25786009)(36756003)(6916009)(305945005)(5660300001)(7736002)(486006)(2906002)(74482002)(446003)(2616005)(2900100001)(229853002)(6486002)(99286004)(33656002)(68736007)(102836004)(6116002)(86362001)(82746002)(478600001)(105586002)(14454004)(8936002)(575784001)(81156014)(53936002)(6246003)(53376002)(106356001)(81166006)(966005)(8676002)(33896004)(97736004)(6436002)(71190400001)(71200400001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1PR0201MB2300;
-	H:HE1PR0201MB2265.eurprd02.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: qt.io does not designate permitted
-	sender hosts)
-x-microsoft-antispam-message-info: 9MS+uc2ytw2BdG+WRCnirm7cwPPQBdnBDEF856IdHX4LHCff9wAh/59GCAugc93j2CwW8TD7rLCJDrdPzwvXyHjDi+ZMmuQdxm0gBe+qRtyZ+eBHPnMg0MYZVxG87qd7JCG+0GhTSIdF76btT30cwD9SAcsngwZdflka54lHHuD4GblOdTL1GMEkJkZ8rxfRPSeziTlK12afVNeuoPCUY6mKKw1ncIyIoWd7NNWnCgSSj3eKQQkau9fD3Csza86LIgFaPuKCdHeyE8kYBfEXcodiIN6+ZoJ5gi0OZBrRrE8xL9JdgmOdq73K7jFcDIRkWGt/T5PmB4chw2Nb6uYIvdpIomKEXbhnFbTpfr5C350=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com
+	[209.85.128.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CD24E0095C
+	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 19:36:03 -0800 (PST)
+Received: by mail-wm1-f67.google.com with SMTP id y139so3340703wmc.5
+	for <yocto@yoctoproject.org>; Thu, 15 Nov 2018 19:36:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=Ond9s4QQnl4WRghuPUayMaJpmC99HrLPs/VeIvFHaWE=;
+	b=Fjt/zu3C2gmLUqgprb6KrVLi2wB3nMwPh70KlNDyAWT2tdsSa6XcSyKc3/JJwlCp+M
+	zOYqz0E5ioCJWuPhQ8gVqK9YhxBZnKnT3EsYrIpFUjLO5RgMDj/0Afrx4mqGcBHGrwWQ
+	ACFbeQ133odX/MRgmqtBWGq2asj2HXDcJGcliKNjbZ1xwETMlYp8/gQzRsvOtxE+f3NQ
+	QDDOUINFs6+ibyFrLoUKtm666gG9l+d3jkJ2yNAlAvzNxkMVcsHl0OrCUNTRaWENXwzc
+	uis/11aK3TVP+iHwhQN0ovE2hX6WinHMT9T2rz70KPlWzbywccowwfuL/LsLPh/QAnWi
+	YWiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=Ond9s4QQnl4WRghuPUayMaJpmC99HrLPs/VeIvFHaWE=;
+	b=rfU+L/u9eLyVQDy4BUyc7lAoZbWeVOqQj/4zQ9m71zR/YgXdl7StopwgagFCFkvaYY
+	9FCohwpAFtUW3ffd49iX1UMmfVJ6E9ymvSoY5JwfMf/AlET4scb0eGALTkmBYPTNRhqP
+	IGBzEESbqOaNC6RHfHfei1+jkUUVDZVUa2x2g//W/PeS3DCeW97RYKz2T1rlj0bmQyrn
+	cGBMKg1h9FVUsHAz5oOJEqy27aD6MqCaqoSvg5rc22JFQMHd1lRu5qsZAfSbcmF1keXx
+	FzW2eaMiRbc4KQSoInd8YSgpzVfV2xiAyec4NZQ3mMmaaQVVo+tdv59zTte9sgMIxOGl
+	KjEQ==
+X-Gm-Message-State: AGRZ1gKMuJ/KGFRb2jnAe93nikdZUv1emDROcexx8qdWIpe+/3N1o61X
+	A4eKU2D/ANbImbOAwlR7ptFbdwYiricshhJw95CT5CA3fWc=
+X-Google-Smtp-Source: AJdET5ewCag1jYWtBEZ4RGJWMEhPftFLE+Jzzt2QvrVdGTJfLHfR8A3hrYqEnK/ARVfpCUg8OBTLACs5rZ4FRPrP7wM=
+X-Received: by 2002:a1c:b513:: with SMTP id
+	e19-v6mr6946816wmf.114.1542339362318; 
+	Thu, 15 Nov 2018 19:36:02 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: qt.io
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3fe8af4c-5f0c-40c6-37f6-08d64b222222
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2018 17:45:29.1580 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 20d0b167-794d-448a-9d01-aaeccc1124ac
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0201MB2300
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: [meta-mingw][PATCH 1/2] winpthreads: use posix threads library from mingw64
+References: <20181115092658.29152-1-samuli.piippo@qt.io>
+	<20181115092658.29152-2-samuli.piippo@qt.io>
+In-Reply-To: <20181115092658.29152-2-samuli.piippo@qt.io>
+From: Joshua Watt <jpewhacker@gmail.com>
+Date: Thu, 15 Nov 2018 21:35:50 -0600
+Message-ID: <CAJdd5GawDQsC9nfKxqEUWEMWoDw8ZbrMy-3xdF17=C_Z=Hk5Sw@mail.gmail.com>
+To: samuli.piippo@qt.io
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: [meta-mingw][PATCH 2/2] cmake: add support for building nativesdk-cmake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -104,161 +72,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Nov 2018 02:18:34 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 16 Nov 2018 03:36:04 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-U3VyZSwgaXTigJlsbCB0YWtlIG1lIGNvdXBsZSBvZiBob3VycyB0aG91Z2guDQpMZXTigJlzIHNl
-ZSBpZiB0aGUgbWlzc2luZyBlbWFpbHMgYXBwZWFyIG1lYW53aGlsZS4NCg0KPiBPbiAxNSBOb3Yg
-MjAxOCwgYXQgMTkuMzMsIEJ1cnRvbiwgUm9zcyA8cm9zcy5idXJ0b25AaW50ZWwuY29tPiB3cm90
-ZToNCj4gDQo+IFdlaXJkLg0KPiANCj4gQ2FuIHlvdSBwdXNoIHRoZW0gdG8gYSBnaXQgcmVwbz8N
-Cj4gDQo+IFJvc3MNCj4+IE9uIFRodSwgMTUgTm92IDIwMTggYXQgMTc6MzIsIFNhbXVsaSBQaWlw
-cG8gPHNhbXVsaS5waWlwcG9AcXQuaW8+IHdyb3RlOg0KPj4gDQo+PiANCj4+IDIvMiBpcyBhbHNv
-IHVucmVsYXRlZCwgdGhlcmUgc2hvdWxkIDMgcGF0Y2hlcyBmcm9tIG1lLCBzZW50IGF0IHRoZSBz
-YW1lIHRpbWUuIERvbuKAmXQga25vdyB3aGVyZSB0aGV5IGdvdCBzdHVjay4NCj4+IA0KPj4+IE9u
-IDE1IE5vdiAyMDE4LCBhdCAxOS4yMSwgQnVydG9uLCBSb3NzIDxyb3NzLmJ1cnRvbkBpbnRlbC5j
-b20+IHdyb3RlOg0KPj4+IA0KPj4+IEkgc2VlIDEvMiBidXQgbm8gMi8yLCBwcmVzdW1hYmx5IHRo
-aXMgbWlzc2luZyBwYXRjaCBpcyB0aGUgUElFIG9uZT8NCj4+PiANCj4+PiBSb3NzDQo+Pj4+IE9u
-IFRodSwgMTUgTm92IDIwMTggYXQgMTY6MDQsIFNhbXVsaSBQaWlwcG8gPHNhbXVsaS5waWlwcG9A
-cXQuaW8+IHdyb3RlOg0KPj4+PiANCj4+Pj4gVXNlIHRoZSB3aW5wdGhyZWFkcyBsaWJyYXJ5IGF2
-YWlsYWJsZSBpbiB0aGUgbWluZ3c2NCBhbmQNCj4+Pj4gY2hhbmdlIHRoZSB0aHJlYWQgbW9kZWwg
-ZnJvbSB3aW4zMiB0byBwb3NpeCB0byBnZXQgYWNjZXNzDQo+Pj4+IHRvIGMrKzExIGZlYXR1cmVz
-Lg0KPj4+PiANCj4+Pj4gU2lnbmVkLW9mZi1ieTogU2FtdWxpIFBpaXBwbyA8c2FtdWxpLnBpaXBw
-b0BxdC5pbz4NCj4+Pj4gLS0tDQo+Pj4+IGNvbmYvbWFjaGluZS1zZGsvaW5jbHVkZS9taW5ndzMy
-LWNvbW1vbi5pbmMgICB8ICAyIC0NCj4+Pj4gcmVjaXBlcy1jb3JlL2dldHRleHQvZ2V0dGV4dF8w
-LjE5LiUuYmJhcHBlbmQgIHwgIDUgKy0NCj4+Pj4gcmVjaXBlcy1kZXZ0b29scy9nY2MvZ2NjLXJ1
-bnRpbWVfJS5iYmFwcGVuZCAgIHwgIDIgKy0NCj4+Pj4gcmVjaXBlcy1kZXZ0b29scy9nY2MvbGli
-Z2NjXyUuYmJhcHBlbmQgICAgICAgIHwgIDIgKw0KPj4+PiAuLi4vbmF0aXZlc2RrLW1pbmd3LXc2
-NC1oZWFkZXJzXzUuMC4zLmJiICAgICAgfCAgNSArKw0KPj4+PiAuLi4vbmF0aXZlc2RrLW1pbmd3
-LXc2NC13aW5wdGhyZWFkc181LjAuMy5iYiAgfCAzMSArKysrKysrKysrKysNCj4+Pj4gLi4uL3B0
-aHJlYWRzLXdpbjMyL3B0aHJlYWRzLXdpbjMyXzIuOS4xLmJiICAgIHwgNDcgLS0tLS0tLS0tLS0t
-LS0tLS0tLQ0KPj4+PiA3IGZpbGVzIGNoYW5nZWQsIDQwIGluc2VydGlvbnMoKyksIDU0IGRlbGV0
-aW9ucygtKQ0KPj4+PiBjcmVhdGUgbW9kZSAxMDA2NDQgcmVjaXBlcy1kZXZ0b29scy9taW5ndy13
-NjQvbmF0aXZlc2RrLW1pbmd3LXc2NC13aW5wdGhyZWFkc181LjAuMy5iYg0KPj4+PiBkZWxldGUg
-bW9kZSAxMDA2NDQgcmVjaXBlcy1kZXZ0b29scy9wdGhyZWFkcy13aW4zMi9wdGhyZWFkcy13aW4z
-Ml8yLjkuMS5iYg0KPj4+PiANCj4+Pj4gZGlmZiAtLWdpdCBhL2NvbmYvbWFjaGluZS1zZGsvaW5j
-bHVkZS9taW5ndzMyLWNvbW1vbi5pbmMgYi9jb25mL21hY2hpbmUtc2RrL2luY2x1ZGUvbWluZ3cz
-Mi1jb21tb24uaW5jDQo+Pj4+IGluZGV4IGNkNTYzODAuLjczM2QwOTIgMTAwNjQ0DQo+Pj4+IC0t
-LSBhL2NvbmYvbWFjaGluZS1zZGsvaW5jbHVkZS9taW5ndzMyLWNvbW1vbi5pbmMNCj4+Pj4gKysr
-IGIvY29uZi9tYWNoaW5lLXNkay9pbmNsdWRlL21pbmd3MzItY29tbW9uLmluYw0KPj4+PiBAQCAt
-MSw4ICsxLDYgQEANCj4+Pj4gU0RLX09TID0gIm1pbmd3MzIiDQo+Pj4+IE5BVElWRVNES0xJQkMg
-PSAibGliYy1taW5ndyINCj4+Pj4gDQo+Pj4+IC1HQ0NUSFJFQURTX21pbmd3MzIgPSAid2luMzIi
-DQo+Pj4+IC0NCj4+Pj4gUFJFRkVSUkVEX1BST1ZJREVSX3ZpcnR1YWwvbmF0aXZlc2RrLSR7U0RL
-X1BSRUZJWH1saWJjLWZvci1nY2NfbWluZ3czMiA9ICJuYXRpdmVzZGstbWluZ3ctdzY0LXJ1bnRp
-bWUiDQo+Pj4+IFBSRUZFUlJFRF9QUk9WSURFUl92aXJ0dWFsL25hdGl2ZXNkay0ke1NES19QUkVG
-SVh9bGliYy1pbml0aWFsX21pbmd3MzIgPSAibmF0aXZlc2RrLW1pbmd3LXc2NC1ydW50aW1lIg0K
-Pj4+PiBQUkVGRVJSRURfUFJPVklERVJfdmlydHVhbC9uYXRpdmVzZGstbGliYyA9ICJuYXRpdmVz
-ZGstbWluZ3ctdzY0LXJ1bnRpbWUiDQo+Pj4+IGRpZmYgLS1naXQgYS9yZWNpcGVzLWNvcmUvZ2V0
-dGV4dC9nZXR0ZXh0XzAuMTkuJS5iYmFwcGVuZCBiL3JlY2lwZXMtY29yZS9nZXR0ZXh0L2dldHRl
-eHRfMC4xOS4lLmJiYXBwZW5kDQo+Pj4+IGluZGV4IGIyNmI3MzQuLjIxNzQ5ZjMgMTAwNjQ0DQo+
-Pj4+IC0tLSBhL3JlY2lwZXMtY29yZS9nZXR0ZXh0L2dldHRleHRfMC4xOS4lLmJiYXBwZW5kDQo+
-Pj4+ICsrKyBiL3JlY2lwZXMtY29yZS9nZXR0ZXh0L2dldHRleHRfMC4xOS4lLmJiYXBwZW5kDQo+
-Pj4+IEBAIC0xLDcgKzEsNCBAQA0KPj4+PiAtREVQRU5EU19hcHBlbmRfbWluZ3czMiA9ICIgcHRo
-cmVhZHMtd2luMzIiDQo+Pj4+IC1MREZMQUdTX3ByZXBlbmRfbWluZ3czMiA9ICIgLWxwdGhyZWFk
-ICINCj4+Pj4gLQ0KPj4+PiAtRVhUUkFfT0VDT05GX2FwcGVuZF9taW5ndzMyID0gIiAtLWVuYWJs
-ZS10aHJlYWRzPXdpbmRvd3MgLS1lbmFibGUtc3RhdGljIg0KPj4+PiArRVhUUkFfT0VDT05GX2Fw
-cGVuZF9taW5ndzMyID0gIiAtLWVuYWJsZS1zdGF0aWMiDQo+Pj4+IA0KPj4+PiBGSUxFU0VYVFJB
-UEFUSFNfcHJlcGVuZF9taW5ndzMyIDo9ICIke1RISVNESVJ9LyR7QlBOfToiDQo+Pj4+IFNSQ19V
-UklfYXBwZW5kX21pbmd3MzIgPSAiIFwNCj4+Pj4gZGlmZiAtLWdpdCBhL3JlY2lwZXMtZGV2dG9v
-bHMvZ2NjL2djYy1ydW50aW1lXyUuYmJhcHBlbmQgYi9yZWNpcGVzLWRldnRvb2xzL2djYy9nY2Mt
-cnVudGltZV8lLmJiYXBwZW5kDQo+Pj4+IGluZGV4IDE2NDFjYjkuLmYxNGVkZjEgMTAwNjQ0DQo+
-Pj4+IC0tLSBhL3JlY2lwZXMtZGV2dG9vbHMvZ2NjL2djYy1ydW50aW1lXyUuYmJhcHBlbmQNCj4+
-Pj4gKysrIGIvcmVjaXBlcy1kZXZ0b29scy9nY2MvZ2NjLXJ1bnRpbWVfJS5iYmFwcGVuZA0KPj4+
-PiBAQCAtMTEsNCArMTEsNCBAQCBSVU5USU1FVEFSR0VUX3JlbW92ZV9taW5ndzMyID0gImxpYml0
-bSINCj4+Pj4gIyBtaW5ndyBidWlsZHMNCj4+Pj4gUlVOVElNRVRBUkdFVF9yZW1vdmVfbWluZ3cz
-MiA9ICJsaWJtcHgiDQo+Pj4+IA0KPj4+PiAtREVQRU5EU19hcHBlbmRfbWluZ3czMiA9ICIgcHRo
-cmVhZHMtd2luMzIiDQo+Pj4+ICtERVBFTkRTX2FwcGVuZF9taW5ndzMyID0gIiBuYXRpdmVzZGst
-bWluZ3ctdzY0LXdpbnB0aHJlYWRzIg0KPj4+PiBkaWZmIC0tZ2l0IGEvcmVjaXBlcy1kZXZ0b29s
-cy9nY2MvbGliZ2NjXyUuYmJhcHBlbmQgYi9yZWNpcGVzLWRldnRvb2xzL2djYy9saWJnY2NfJS5i
-YmFwcGVuZA0KPj4+PiBpbmRleCAyYTk1ZDAyLi5mNTQyY2ZjIDEwMDY0NA0KPj4+PiAtLS0gYS9y
-ZWNpcGVzLWRldnRvb2xzL2djYy9saWJnY2NfJS5iYmFwcGVuZA0KPj4+PiArKysgYi9yZWNpcGVz
-LWRldnRvb2xzL2djYy9saWJnY2NfJS5iYmFwcGVuZA0KPj4+PiBAQCAtMSwzICsxLDUgQEANCj4+
-Pj4gK0RFUEVORFNfYXBwZW5kX21pbmd3MzIgPSAiIG5hdGl2ZXNkay1taW5ndy13NjQtd2lucHRo
-cmVhZHMiDQo+Pj4+ICsNCj4+Pj4gRklMRVNfJHtQTn1fYXBwZW5kX21pbmd3MzIgPSAiICR7Ymlu
-ZGlyfS9saWJnY2MqLmRsbCINCj4+Pj4gRklMRVNfJHtQTn0tZGV2X2FwcGVuZF9taW5ndzMyID0g
-IiAke2Jhc2VfbGliZGlyfS9saWJnY2MqLmEiDQo+Pj4+IA0KPj4+PiBkaWZmIC0tZ2l0IGEvcmVj
-aXBlcy1kZXZ0b29scy9taW5ndy13NjQvbmF0aXZlc2RrLW1pbmd3LXc2NC1oZWFkZXJzXzUuMC4z
-LmJiIGIvcmVjaXBlcy1kZXZ0b29scy9taW5ndy13NjQvbmF0aXZlc2RrLW1pbmd3LXc2NC1oZWFk
-ZXJzXzUuMC4zLmJiDQo+Pj4+IGluZGV4IGUxMjljMzIuLjAwOWU1YWYgMTAwNjQ0DQo+Pj4+IC0t
-LSBhL3JlY2lwZXMtZGV2dG9vbHMvbWluZ3ctdzY0L25hdGl2ZXNkay1taW5ndy13NjQtaGVhZGVy
-c181LjAuMy5iYg0KPj4+PiArKysgYi9yZWNpcGVzLWRldnRvb2xzL21pbmd3LXc2NC9uYXRpdmVz
-ZGstbWluZ3ctdzY0LWhlYWRlcnNfNS4wLjMuYmINCj4+Pj4gQEAgLTMxLDQgKzMxLDkgQEAgZG9f
-Y29tcGlsZSgpIHsNCj4+Pj4gICAgICAgOg0KPj4+PiB9DQo+Pj4+IA0KPj4+PiArZG9faW5zdGFs
-bF9hcHBlbmQoKSB7DQo+Pj4+ICsgICAgIyBpbnN0YWxsIGNvcnJlY3QgcHRocmVhZCBoZWFkZXJz
-DQo+Pj4+ICsgICAgaW5zdGFsbCAtbSAwNjQ0IC10ICR7RH0ke2luY2x1ZGVkaXJ9ICR7U30vLi4v
-bWluZ3ctdzY0LWxpYnJhcmllcy93aW5wdGhyZWFkcy9pbmNsdWRlLyouaA0KPj4+PiArfQ0KPj4+
-PiArDQo+Pj4+IEZJTEVTXyR7UE59ICs9ICIke2V4ZWNfcHJlZml4fS8ke1RBUkdFVF9TWVN9Ig0K
-Pj4+PiBkaWZmIC0tZ2l0IGEvcmVjaXBlcy1kZXZ0b29scy9taW5ndy13NjQvbmF0aXZlc2RrLW1p
-bmd3LXc2NC13aW5wdGhyZWFkc181LjAuMy5iYiBiL3JlY2lwZXMtZGV2dG9vbHMvbWluZ3ctdzY0
-L25hdGl2ZXNkay1taW5ndy13NjQtd2lucHRocmVhZHNfNS4wLjMuYmINCj4+Pj4gbmV3IGZpbGUg
-bW9kZSAxMDA2NDQNCj4+Pj4gaW5kZXggMDAwMDAwMC4uMTMwODc2MA0KPj4+PiAtLS0gL2Rldi9u
-dWxsDQo+Pj4+ICsrKyBiL3JlY2lwZXMtZGV2dG9vbHMvbWluZ3ctdzY0L25hdGl2ZXNkay1taW5n
-dy13NjQtd2lucHRocmVhZHNfNS4wLjMuYmINCj4+Pj4gQEAgLTAsMCArMSwzMSBAQA0KPj4+PiAr
-REVTQ1JJUFRJT04gPSAiV2lucHRocmVhZHMgcnVudGltZSBsaWJyYXJpZXMgZnJvbSBNaW5HVy13
-NjQgcHJvamVjdCINCj4+Pj4gK0xJQ0VOU0UgPSAiWlBMLTIuMSINCj4+Pj4gK0xJQ19GSUxFU19D
-SEtTVU0gPSAiZmlsZTovLy4uLy4uL0NPUFlJTkc7bWQ1PWJiOTM2ZjBlMDRkOGYxZTE5YWQ1NDUx
-MDBjZWU5NjU0Ig0KPj4+PiArDQo+Pj4+ICtDT01QQVRJQkxFX0hPU1QgPSAiLiotbWluZ3cuKiIN
-Cj4+Pj4gKw0KPj4+PiArU1JDX1VSSSA9ICIke1NPVVJDRUZPUkdFX01JUlJPUn0vcHJvamVjdC9t
-aW5ndy13NjQvbWluZ3ctdzY0L21pbmd3LXc2NC1yZWxlYXNlL21pbmd3LXc2NC12JHtQVn0udGFy
-LmJ6MiINCj4+Pj4gK1NSQ19VUklbbWQ1c3VtXSA9ICI1NTI0YzIwMzEyNTYwY2M4NjgzYjdkOGVl
-MjkyY2I4YyINCj4+Pj4gK1NSQ19VUklbc2hhMjU2c3VtXSA9ICIyYTYwMWRiOTllZjU3OWI5YmU2
-OWM3NzUyMThhZDk1NmEyNGEwOWQ3ZGFiYzlmZjZjNWJkNjBkYTljY2M5Y2I0Ig0KPj4+PiArDQo+
-Pj4+ICtTID0gIiR7V09SS0RJUn0vbWluZ3ctdzY0LXYke1BWfS9taW5ndy13NjQtbGlicmFyaWVz
-L3dpbnB0aHJlYWRzIg0KPj4+PiArQiA9ICIke1dPUktESVJ9L2J1aWxkLSR7VEFSR0VUX1NZU30i
-DQo+Pj4+ICsNCj4+Pj4gK2luaGVyaXQgYXV0b3Rvb2xzIG5hdGl2ZXNkaw0KPj4+PiArDQo+Pj4+
-ICtJTkhJQklUX0RFRkFVTFRfREVQUyA9ICIxIg0KPj4+PiArREVQRU5EUyA9ICJuYXRpdmVzZGst
-bWluZ3ctdzY0LXJ1bnRpbWUgdmlydHVhbC8ke1RBUkdFVF9QUkVGSVh9Z2NjLWluaXRpYWwiDQo+
-Pj4+ICsNCj4+Pj4gK2RvX2NvbmZpZ3VyZSgpIHsNCj4+Pj4gKyAgICBvZV9ydW5jb25mDQo+Pj4+
-ICt9DQo+Pj4+ICsNCj4+Pj4gK1NUQUdJTkdDQyA9ICJnY2MtY3Jvc3MtaW5pdGlhbC0ke1RBUkdF
-VF9BUkNIfSINCj4+Pj4gK1NUQUdJTkdDQ19jbGFzcy1uYXRpdmVzZGsgPSAiZ2NjLWNyb3Nzc2Rr
-LWluaXRpYWwtJHtTREtfU1lTfSINCj4+Pj4gK1RPT0xDSEFJTl9PUFRJT05TID0gIiAtLXN5c3Jv
-b3Q9JHtTVEFHSU5HX0RJUl9UQVJHRVR9Ig0KPj4+PiArUEFUSF9wcmVwZW5kID0gIiR7U1RBR0lO
-R19CSU5ESVJfVE9PTENIQUlOfS4ke1NUQUdJTkdDQ306Ig0KPj4+PiArDQo+Pj4+ICtkb19pbnN0
-YWxsX2FwcGVuZCgpIHsNCj4+Pj4gKyAgICAjIGhlYWRlcnMgYXJlIGFscmVhZHkgaW5zdGFsbGVk
-IGJ5IG1pbmd3LXc2NC1oZWFkZXJzDQo+Pj4+ICsgICAgcm0gLXJmICR7RH0ke2luY2x1ZGVkaXJ9
-DQo+Pj4+ICt9DQo+Pj4+IGRpZmYgLS1naXQgYS9yZWNpcGVzLWRldnRvb2xzL3B0aHJlYWRzLXdp
-bjMyL3B0aHJlYWRzLXdpbjMyXzIuOS4xLmJiIGIvcmVjaXBlcy1kZXZ0b29scy9wdGhyZWFkcy13
-aW4zMi9wdGhyZWFkcy13aW4zMl8yLjkuMS5iYg0KPj4+PiBkZWxldGVkIGZpbGUgbW9kZSAxMDA2
-NDQNCj4+Pj4gaW5kZXggZTRhMGY4MC4uMDAwMDAwMA0KPj4+PiAtLS0gYS9yZWNpcGVzLWRldnRv
-b2xzL3B0aHJlYWRzLXdpbjMyL3B0aHJlYWRzLXdpbjMyXzIuOS4xLmJiDQo+Pj4+ICsrKyAvZGV2
-L251bGwNCj4+Pj4gQEAgLTEsNDcgKzAsMCBAQA0KPj4+PiAtREVTQ1JJUFRJT04gPSAiQSBXaW4z
-MiBpbXBsZW1lbnRhdGlvbiBvZiB0aGUgUE9TSVggc3RhbmRhcmQgdGhyZWFkcyBBUEkiDQo+Pj4+
-IC1IT01FUEFHRSA9ICJodHRwOi8vd3d3LnNvdXJjZXdhcmUub3JnL3B0aHJlYWRzLXdpbjMyIg0K
-Pj4+PiAtTElDRU5TRSA9ICJMR1BMdjIuMSINCj4+Pj4gLUxJQ19GSUxFU19DSEtTVU0gPSAiZmls
-ZTovL0NPUFlJTkcuTElCO21kNT03ZmJjMzM4MzA5YWMzOGZlZmNkNjRiMDRiYjkwM2UzNCINCj4+
-Pj4gLQ0KPj4+PiAtQkJDTEFTU0VYVEVORCA9ICJuYXRpdmVzZGsiDQo+Pj4+IC0NCj4+Pj4gLUNP
-TVBBVElCTEVfSE9TVCA9ICIuKi1taW5ndy4qIg0KPj4+PiAtDQo+Pj4+IC0jIyBSZXBsYWNlIGRv
-dHMgd2l0aCBkYXNoZXMNCj4+Pj4gLVBWZGFzaCA9ICIyLTktMSINCj4+Pj4gLQ0KPj4+PiAtIyMg
-Y3ZzIC1kIDpwc2VydmVyOmFub255bW91c0Bzb3VyY2V3YXJlLm9yZzovY3ZzL3B0aHJlYWRzLXdp
-bjMyIGNoZWNrb3V0IHB0aHJlYWRzDQo+Pj4+IC1TUkNfVVJJID0gImZ0cDovL3NvdXJjZXdhcmUu
-b3JnL3B1Yi9wdGhyZWFkcy13aW4zMi9wdGhyZWFkcy13MzItJHtQVmRhc2h9LXJlbGVhc2UudGFy
-Lmd6Ig0KPj4+PiAtU1JDX1VSSVttZDVzdW1dID0gIjM2YmE4MjdkNmFhMGZhOWY5YWU3NDBhMzU2
-MjZlMmUzIg0KPj4+PiAtU1JDX1VSSVtzaGEyNTZzdW1dID0gImU2YWNhN2FlYThkZTMzZDljODU4
-MGJjYjNhMGVhM2VjMGE3YWNlNGJhM2Y0ZTI2M2FjN2M3YjY2YmM5NWZiNGQiDQo+Pj4+IC0NCj4+
-Pj4gLSMjIFJlZmVyZW5jZTogaHR0cDovL3NvdXJjZXdhcmUub3JnL21sL3B0aHJlYWRzLXdpbjMy
-LzIwMDkvbXNnMDAwMzAvdzY0c3VwLnBhdGNoDQo+Pj4+IC0jU1JDX1VSSSArPSAiZmlsZTovL3c2
-NHN1cC5wYXRjaCINCj4+Pj4gLQ0KPj4+PiAtUyA9ICIke1dPUktESVJ9L3B0aHJlYWRzLXczMi0k
-e1BWZGFzaH0tcmVsZWFzZSINCj4+Pj4gLQ0KPj4+PiAtSU5ISUJJVF9ERUZBVUxUX0RFUFMgPSAi
-MSINCj4+Pj4gLURFUEVORFMgPSAidmlydHVhbC8ke1NES19QUkVGSVh9Z2NjIGxpYmdjYyB2aXJ0
-dWFsL2xpYmMiDQo+Pj4+IC0NCj4+Pj4gLWRvX2NvbmZpZ3VyZV9wcmVwZW5kKCkgew0KPj4+PiAt
-ICAgICMjIEZpcnN0IHJlc2V0IGFsbCBwZXJtaXNzaW9ucyBiZWNhdXNlIGFsbCBhcmUgZXhlY3V0
-YWJsZQ0KPj4+PiAtICAgIGZpbmQgLiAtdHlwZSBmIC1leGVjIGNobW9kIDY0NCB7fSBcOw0KPj4+
-PiAtICAgICMjIE1ha2UgYSBjb3B5IG9mIGNvbmZpZy5oDQo+Pj4+IC0gICAgY3AgY29uZmlnLmgg
-cHRocmVhZHNfd2luMzJfY29uZmlnLmgNCj4+Pj4gLX0NCj4+Pj4gLQ0KPj4+PiAtZG9fY29tcGls
-ZSgpIHsNCj4+Pj4gLSAgICBtYWtlIC1mIEdOVW1ha2VmaWxlIENST1NTPSR7U0RLX1BSRUZJWH0g
-Q0M9IiR7Q0N9IiBSQz0iJHtXSU5EUkVTfSIgY2xlYW4gR0MNCj4+Pj4gLX0NCj4+Pj4gLQ0KPj4+
-PiAtZG9faW5zdGFsbCgpIHsNCj4+Pj4gLSAgICBpbnN0YWxsIC1kIC1tIDA3NTUgJHtEfSR7Ymlu
-ZGlyfQ0KPj4+PiAtICAgIGluc3RhbGwgLWQgLW0gMDc1NSAke0R9JHtpbmNsdWRlZGlyfQ0KPj4+
-PiAtICAgIGluc3RhbGwgLWQgLW0gMDc1NSAke0R9JHtsaWJkaXJ9DQo+Pj4+IC0NCj4+Pj4gLSAg
-ICBpbnN0YWxsIC1tIDA2NDQgJHtTfS9wdGhyZWFkLmggJHtTfS9zY2hlZC5oICR7U30vc2VtYXBo
-b3JlLmggJHtEfSR7aW5jbHVkZWRpcn0vDQo+Pj4+IC0NCj4+Pj4gLSAgICBpbnN0YWxsIC1tIDA2
-NDQgJHtTfS9saWJwdGhyZWFkR0MyLmEgJHtEfSR7bGliZGlyfS9saWJwdGhyZWFkLmRsbC5hDQo+
-Pj4+IC0gICAgaW5zdGFsbCAtbSAwNjQ0ICR7U30vcHRocmVhZEdDMi5kbGwgJHtEfSR7YmluZGly
-fS9saWJwdGhyZWFkLTIuZGxsDQo+Pj4+IC0gICAgaW5zdGFsbCAtbSAwNjQ0ICR7U30vcHRocmVh
-ZEdDMi5kbGwgJHtEfSR7YmluZGlyfS9wdGhyZWFkR0MyLmRsbA0KPj4+PiAtfQ0KPj4+PiAtLQ0K
-Pj4+PiAyLjE3LjENCj4+Pj4gDQo+Pj4+IC0tDQo+Pj4+IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fDQo+Pj4+IHlvY3RvIG1haWxpbmcgbGlzdA0KPj4+PiB5
-b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+Pj4+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9y
-Zy9saXN0aW5mby95b2N0bw0K
+On Thu, Nov 15, 2018 at 7:22 PM Samuli Piippo <samuli.piippo@qt.io> wrote:
+>
+> Build nativesdk-cmake and dependency libs without without openssl.
+>
+> Signed-off-by: Samuli Piippo <samuli.piippo@qt.io>
+> ---
+>  .../nativesdk-packagegroup-sdk-host.bbappend              | 1 +
+>  recipes-devtools/cmake/cmake_%.bbappend                   | 8 ++++++++
+>  recipes-extended/libarchive/libarchive_%.bbappend         | 1 +
+>  recipes-support/curl/curl_%.bbappend                      | 2 ++
+>  4 files changed, 12 insertions(+)
+>  create mode 100644 recipes-devtools/cmake/cmake_%.bbappend
+>  create mode 100644 recipes-extended/libarchive/libarchive_%.bbappend
+>  create mode 100644 recipes-support/curl/curl_%.bbappend
+>
+> diff --git a/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend b/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend
+> index ad69b13..9544ffb 100644
+> --- a/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend
+> +++ b/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend
+> @@ -2,4 +2,5 @@ RDEPENDS_${PN}_mingw32 = "\
+>      nativesdk-pkgconfig \
+>      nativesdk-libtool \
+>      nativesdk-qemu \
+> +    nativesdk-cmake \
+
+Have you been successful at getting cmake to work properly in MinGW?
+I've been working on automated tests for the SDK, and for kicks I
+pulled in your changes and tried to write a test for cmake (heavily
+borrowed from the cmake/assimp test in oe-core). When I ran the test,
+I got the following:
+
+--- snip ---
+
+-- Building for: NMake Makefiles
+-- The C compiler identification is GNU 8.2.0
+CMake Error at Z:/projects/poky/build/tmp/work/qemux86-poky-linux/core-image-minimal/1.0-r0/testimage-sdk/CMakeTest-zljaq7x7/build/CMakeFiles/3.12.2/CMakeCCompiler.cmake:2
+(set):
+  Syntax error in cmake code at
+
+    Z:/projects/poky/build/tmp/work/qemux86-poky-linux/core-image-minimal/1.0-r0/testimage-sdk/CMakeTest-zljaq7x7/build/CMakeFiles/3.12.2/CMakeCCompiler.cmake:2
+
+  when parsing string
+
+      -m32 -march=i586
+--sysroot=Z:\projects\poky\build\tmp\work\QEMU~ELC\CORE~B5D\1~~~~N25.0-R\TEST~Y0Z\\sysroots\i586-poky-linux
+
+  Invalid escape sequence \p
+Call Stack (most recent call first):
+  CMakeLists.txt:38 (PROJECT)
+
+--- snip ---
+
+It looks like cmake doesn't like the Windows style slashes in CFLAGS.
+
+You can see my test branch at jpew/oeqa in meta-mingw-contrib... it's
+still in progress so it might be a bit of work if you want to try it
+yourself.
+
+>      "
+> diff --git a/recipes-devtools/cmake/cmake_%.bbappend b/recipes-devtools/cmake/cmake_%.bbappend
+> new file mode 100644
+> index 0000000..f76cd82
+> --- /dev/null
+> +++ b/recipes-devtools/cmake/cmake_%.bbappend
+> @@ -0,0 +1,8 @@
+> +DEPENDS_remove_mingw32 = "ncurses"
+> +
+> +cmake_do_generate_toolchain_file_append_mingw32() {
+> +    cat >> ${WORKDIR}/toolchain.cmake <<EOF
+> +set( CMAKE_SYSTEM_NAME Windows )
+> +EOF
+> +}
+> +
+> diff --git a/recipes-extended/libarchive/libarchive_%.bbappend b/recipes-extended/libarchive/libarchive_%.bbappend
+> new file mode 100644
+> index 0000000..a411b40
+> --- /dev/null
+> +++ b/recipes-extended/libarchive/libarchive_%.bbappend
+> @@ -0,0 +1 @@
+> +EXTRA_OECONF_append_mingw32 = " --without-cng"
+> diff --git a/recipes-support/curl/curl_%.bbappend b/recipes-support/curl/curl_%.bbappend
+> new file mode 100644
+> index 0000000..7865b46
+> --- /dev/null
+> +++ b/recipes-support/curl/curl_%.bbappend
+> @@ -0,0 +1,2 @@
+> +PACKAGECONFIG_remove_class-nativesdk_mingw32 = "ssl"
+> +RRECOMMENDS_lib${BPN}_remove_mingw32 = "ca-certificates"
+> --
+> 2.17.1
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
