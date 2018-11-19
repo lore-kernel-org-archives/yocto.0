@@ -1,56 +1,65 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <srifenbark@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2514CE00C3C; Mon, 19 Nov 2018 08:43:09 -0800 (PST)
+	id 4C570E00C3C; Mon, 19 Nov 2018 10:16:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [192.55.52.151 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (srifenbark[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.68 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A20F1E00C09
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 08:43:06 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	19 Nov 2018 08:43:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.56,253,1539673200"; 
-	d="scan'208,217";a="101488729"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
-	by orsmga003.jf.intel.com with ESMTP; 19 Nov 2018 08:43:05 -0800
-Received: from fmsmsx112.amr.corp.intel.com (10.18.116.6) by
-	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
-	(TLS) id 14.3.408.0; Mon, 19 Nov 2018 08:43:05 -0800
-Received: from fmsmsx124.amr.corp.intel.com ([169.254.8.91]) by
-	FMSMSX112.amr.corp.intel.com ([169.254.5.114]) with mapi id
-	14.03.0415.000; Mon, 19 Nov 2018 08:43:04 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Unassigned Bugs - Help Needed
-Thread-Index: AdRUG3den5c8kH6JR5OKxqhg9AfC3w==
-Date: Mon, 19 Nov 2018 16:43:04 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECFD44AA6@fmsmsx124.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNmNlNDYxYTEtMTdmZC00OGVhLTk3MDgtNTk1OTY4OGJkM2M0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTDVVbFNtUVFKNGJheHBqZGk0T0ViMUpRdm5wSkxGRmNZXC9GYWtSc1FcL1dKUlM4QkM4WGlyZWk0ZlJINmhcL1RRWCJ9
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com
+	[209.85.208.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB950E00C09
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 10:16:17 -0800 (PST)
+Received: by mail-ed1-f68.google.com with SMTP id o10so3584123edt.13
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 10:16:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=4dKAmeiHyufIFZ2oGGAEjvvNnf4tH8/U0ZjspqbjjvQ=;
+	b=TD/YLmYpP7AEq4fzsqTLfqtF27cIcRriJp0U9IUFNfTVm5Lu2ACXbGQNZOk/GZz3qZ
+	Nrte+8ZFWimVCOzn+5SwaEsEmeNblidlrqvwjQ6jenPnA1LyQu6AYSymsNhbbGWkzWMq
+	lgczY59WHL4QJvgwZFSWDxh5pizbRRt5+Fl775r6AaOaaGT4+qYJ2InFIR1jcD2sTMJU
+	vUxhpYjQstFSfHl/g0Xi43HSHAABxGF0qHjsXXvoHU9IdW67u2hOm4AGYO4VezLA329q
+	dpw//TENJPc/K+NTyJVrZf43qhrv65wzbD+Gc+fidPfC1iJFu6NOFgJUMDveCNMhmjP+
+	Z6NA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=4dKAmeiHyufIFZ2oGGAEjvvNnf4tH8/U0ZjspqbjjvQ=;
+	b=RIBH3s5C956UKX2CLAf1QFwTNj0SKGCnQi20lA4nGLaMR9VMsNS62OKKxpbrpNxIHR
+	A1NdbwuDBsgJcKFxZ4Qlo8LwwnNLAbXKiKHhFSZAsgL460KcvfjC9ipe+hXPMmoSsiJE
+	GnzmitUAHJzUWaJXEDXajsGGSrfJ7Mw2MIVhBajaOEDBdAae7bXkKA3/l46DhnbHVunS
+	iNuRzvwwNcccfSiLucE5vfJE4pg0kPEsUy7dcbLoX75tAsND+tVjVncOx5pMZ6DM2SYQ
+	2FM62ST1lzDEzoFHE9rMPbBOvf1ZGxf2HfbPFAZ5K/xYeVOQ3kULTCJtC4Y0kNiPiNVE
+	5+6g==
+X-Gm-Message-State: AGRZ1gLEepZqv8rBgfGF6H8ie+2zxyKMM75Tuhp9WGx/H0b82uvY16F5
+	qpjROip0bhU3BCQhi+wAFvalxnx1qOyDuR8bKOY=
+X-Google-Smtp-Source: AJdET5ct10f2SC+qpLjTT64kAHDG9Xkhv84eSQaaNB7gvUKpaxVZfsp3LIg3Bw77aD+kL446ADi/6hQvUc2C5hdfBE4=
+X-Received: by 2002:a50:a3d1:: with SMTP id t17mr21558347edb.238.1542651376962;
+	Mon, 19 Nov 2018 10:16:16 -0800 (PST)
 MIME-Version: 1.0
-Subject: Yocto Project Unassigned Bugs - Help Needed
+References: <1542593711-13820-1-git-send-email-akuster808@gmail.com>
+In-Reply-To: <1542593711-13820-1-git-send-email-akuster808@gmail.com>
+From: Scott Rifenbark <srifenbark@gmail.com>
+Date: Mon, 19 Nov 2018 10:16:04 -0800
+Message-ID: <CAFNP8OuRthep-BdMDtNeed1a9XoCuEM6CM0n_ea6cb8pVXwECg@mail.gmail.com>
+To: akuster808 <akuster808@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [[yocto-docs][thud][PATCH] ref-system-requirements: sync with thud poky.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,217 +71,241 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2018 16:43:09 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD44AA6fmsmsx124amrcor_"
+X-List-Received-Date: Mon, 19 Nov 2018 18:16:19 -0000
+Content-Type: multipart/alternative; boundary="00000000000056106e057b088364"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD44AA6fmsmsx124amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--00000000000056106e057b088364
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-All,
+Armin,
 
-
-
-The triage team meets weekly and does its best to handle the bugs reported =
-into the bugzilla. The number of people attending that meeting has fallen, =
-as have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage team) a=
-re therefore going to start reporting out the currently 297 unassigned bugs=
-.
-
-
-
-We're hoping people may be able to spare some time now and again to help ou=
-t with these.
-
-
-
-Bugs are split into two types, "true bugs" where things don't work as they =
-should and "enhancements" which are features we'd want to add to the system=
-.
-
-
-
-There are also roughly four different "priority" classes right now, "2.7", =
-"2.8", "2.99" and "Future", the more pressing/urgent issues being in "2.7" =
-and then "2.8".
-
-
-
-Please review this link and if a bug is something you would be able to help=
- with either take ownership of the bug, or send me (Stephen.k.jolley@intel.=
-com<mailto:Stephen.k.jolley@intel.com>) an e-mail with the bug number you w=
-ould like and I will assign it to you (please make sure you have a bugzilla=
- account).
-
-
-
-The list is at: https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bu=
-gs
-
+See
+https://yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#detailed-suppo=
+rted-distros
+and let me know if the patch is good.
 
 Thanks,
+Scott
 
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*    Cell:                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
+On Sun, Nov 18, 2018 at 6:15 PM Armin Kuster <akuster808@gmail.com> wrote:
 
+> poky.conf
+>     ubuntu-16.04
+>     ubuntu-16.10
+>     ubuntu-17.04
+>     fedora-26
+>     centos-7
+>     debian-8
+>     debian-9
+>     opensuse-42.1
+>     opensuse-42.2
+>
+> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> ---
+>  documentation/ref-manual/ref-system-requirements.xml | 20
+> ++++++++++++--------
+>  1 file changed, 12 insertions(+), 8 deletions(-)
+>
+> diff --git a/documentation/ref-manual/ref-system-requirements.xml
+> b/documentation/ref-manual/ref-system-requirements.xml
+> index 9298e84..0abc47e 100644
+> --- a/documentation/ref-manual/ref-system-requirements.xml
+> +++ b/documentation/ref-manual/ref-system-requirements.xml
+> @@ -93,19 +93,22 @@
+>                  <listitem><para>Ubuntu 11.10</para></listitem>
+>                  <listitem><para>Ubuntu 12.04 (LTS)</para></listitem>
+>                  <listitem><para>Ubuntu 13.10</para></listitem>
+> -                <listitem><para>Ubuntu 14.04 (LTS)</para></listitem> -->
+> +                <listitem><para>Ubuntu 14.04 (LTS)</para></listitem>
+>                  <listitem><para>Ubuntu 14.10</para></listitem>
+>                  <listitem><para>Ubuntu 15.04</para></listitem>
+> -                <listitem><para>Ubuntu 15.10</para></listitem>
+> +                <listitem><para>Ubuntu 15.10</para></listitem> -->
+>                  <listitem><para>Ubuntu 16.04 (LTS)</para></listitem>
+> +                <listitem><para>Ubuntu 16.10 (LTS)</para></listitem>
+> +                <listitem><para>Ubuntu 17.04 </para></listitem>
+>  <!--                <listitem><para>Fedora 16 (Verne)</para></listitem>
+>                  <listitem><para>Fedora 17 (Spherical)</para></listitem>
+>                  <listitem><para>Fedora release 19 (Schr=C3=B6dinger's
+> Cat)</para></listitem>
+> -                <listitem><para>Fedora release 20
+> (Heisenbug)</para></listitem> -->
+> +                <listitem><para>Fedora release 20
+> (Heisenbug)</para></listitem>
+>                  <listitem><para>Fedora release 22</para></listitem>
+>                  <listitem><para>Fedora release 23</para></listitem>
+> -<!--                <listitem><para>Fedora release 24</para></listitem>
+> -                <listitem><para>CentOS release 5.6
+> (Final)</para></listitem>
+> +                <listitem><para>Fedora release 24</para></listitem> -->
+> +                <listitem><para>Fedora release 26</para></listitem>
+> +<!--                <listitem><para>CentOS release 5.6
+> (Final)</para></listitem>
+>                  <listitem><para>CentOS release 5.7
+> (Final)</para></listitem>
+>                  <listitem><para>CentOS release 5.8
+> (Final)</para></listitem>
+>                  <listitem><para>CentOS release 6.3
+> (Final)</para></listitem>
+> @@ -121,13 +124,14 @@
+>                  <listitem><para>Debian GNU/Linux 7.4
+> (Wheezy)</para></listitem>
+>                  <listitem><para>Debian GNU/Linux 7.5
+> (Wheezy)</para></listitem>
+>                  <listitem><para>Debian GNU/Linux 7.6
+> (Wheezy)</para></listitem> -->
+> -<!--                <listitem><para>openSUSE 11.4</para></listitem>
+> +<!--                <listitem><para>openSUSE 11.4</para></listitem>
+>                  <listitem><para>openSUSE 12.1</para></listitem>
+>                  <listitem><para>openSUSE 12.2</para></listitem>
+>                  <listitem><para>openSUSE 12.3</para></listitem>
+> -                <listitem><para>openSUSE 13.1</para></listitem> -->
+> -                <listitem><para>openSUSE 13.2</para></listitem>
+> +                <listitem><para>openSUSE 13.1</para></listitem>
+> +                <listitem><para>openSUSE 13.2</para></listitem> -->
+>                  <listitem><para>openSUSE 42.1</para></listitem>
+> +                <listitem><para>openSUSE 42.2</para></listitem>
+>              </itemizedlist>
+>          </para>
+>
+> --
+> 2.7.4
+>
+>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD44AA6fmsmsx124amrcor_
-Content-Type: text/html; charset="us-ascii"
+--00000000000056106e057b088364
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:2 11 5 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle19
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText">All,<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">The triage team meets weekly and does its best to=
- handle the bugs reported into the bugzilla. The number of people attending=
- that meeting has fallen, as have the number of people available to help fi=
-x bugs. One of the things we hear
- users report is they don't know how to help. We (the triage team) are ther=
-efore going to start reporting out the currently 297 unassigned bugs.<o:p><=
-/o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">We're hoping people may be able to spare some tim=
-e now and again to help out with these.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Bugs are split into two types, &quot;true bugs&qu=
-ot; where things don't work as they should and &quot;enhancements&quot; whi=
-ch are features we'd want to add to the system.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">There are also roughly four different &quot;prior=
-ity&quot; classes right now, &#8220;2.7&#8221;, &#8220;2.8&#8221;, &quot;2.=
-99&quot; and &quot;Future&quot;, the more pressing/urgent issues being in &=
-quot;2.7&quot; and then &#8220;2.8&#8221;.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Please review this link and if a bug is something=
- you would be able to help with either take ownership of the bug, or send m=
-e (<a href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com=
-</a>) an e-mail with the bug number
- you would like and I will assign it to you (please make sure you have a bu=
-gzilla account).<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">The list is at: <a href=3D"https://wiki.yoctoproj=
-ect.org/wiki/Bug_Triage#Unassigned_Bugs">
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
-></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Armin, <br></div><div><br></div><div=
+>See <a href=3D"https://yoctoproject.org/docs/2.6/ref-manual/ref-manual.htm=
+l#detailed-supported-distros">https://yoctoproject.org/docs/2.6/ref-manual/=
+ref-manual.html#detailed-supported-distros</a> and let me know if the patch=
+ is good.</div><div><br></div><div>Thanks, <br></div><div>Scott<br></div></=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Sun, Nov 18, 2=
+018 at 6:15 PM Armin Kuster &lt;<a href=3D"mailto:akuster808@gmail.com">aku=
+ster808@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">po=
+ky.conf<br>
+=C2=A0 =C2=A0 ubuntu-16.04<br>
+=C2=A0 =C2=A0 ubuntu-16.10<br>
+=C2=A0 =C2=A0 ubuntu-17.04<br>
+=C2=A0 =C2=A0 fedora-26<br>
+=C2=A0 =C2=A0 centos-7<br>
+=C2=A0 =C2=A0 debian-8<br>
+=C2=A0 =C2=A0 debian-9<br>
+=C2=A0 =C2=A0 opensuse-42.1<br>
+=C2=A0 =C2=A0 opensuse-42.2<br>
+<br>
+Signed-off-by: Armin Kuster &lt;<a href=3D"mailto:akuster808@gmail.com" tar=
+get=3D"_blank">akuster808@gmail.com</a>&gt;<br>
+---<br>
+=C2=A0documentation/ref-manual/ref-system-requirements.xml | 20 +++++++++++=
++--------<br>
+=C2=A01 file changed, 12 insertions(+), 8 deletions(-)<br>
+<br>
+diff --git a/documentation/ref-manual/ref-system-requirements.xml b/documen=
+tation/ref-manual/ref-system-requirements.xml<br>
+index 9298e84..0abc47e 100644<br>
+--- a/documentation/ref-manual/ref-system-requirements.xml<br>
++++ b/documentation/ref-manual/ref-system-requirements.xml<br>
+@@ -93,19 +93,22 @@<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Ubuntu 11.10&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Ubuntu 12.04 (LTS)&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Ubuntu 13.10&lt;/para&gt;&lt;/listitem&gt;<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;Ubuntu 14.04 (LTS)&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;Ubuntu 14.04 (LTS)&lt;/para&gt;&lt;/listitem&gt; <br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Ubuntu 14.10&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Ubuntu 15.04&lt;/para&gt;&lt;/listitem&gt;<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;Ubuntu 15.10&lt;/para&gt;&lt;/listitem&gt;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;Ubuntu 15.10&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Ubuntu 16.04 (LTS)&lt;/para&gt;&lt;/listitem&gt;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;Ubuntu 16.10 (LTS)&lt;/para&gt;&lt;/listitem&gt;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;Ubuntu 17.04 &lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;li=
+stitem&gt;&lt;para&gt;Fedora 16 (Verne)&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Fedora 17 (Spherical)&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Fedora release 19 (Schr=C3=B6dinger&#39;s Cat)&lt;/para&gt;&=
+lt;/listitem&gt;<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;Fedora release 20 (Heisenbug)&lt;/para&gt;&lt;/listitem&gt; --&gt=
+;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;Fedora release 20 (Heisenbug)&lt;/para&gt;&lt;/listitem&gt; <br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Fedora release 22&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Fedora release 23&lt;/para&gt;&lt;/listitem&gt;<br>
+-&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listite=
+m&gt;&lt;para&gt;Fedora release 24&lt;/para&gt;&lt;/listitem&gt;<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;CentOS release 5.6 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;Fedora release 24&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;Fedora release 26&lt;/para&gt;&lt;/listitem&gt;<br>
++&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listite=
+m&gt;&lt;para&gt;CentOS release 5.6 (Final)&lt;/para&gt;&lt;/listitem&gt;<b=
+r>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;CentOS release 5.7 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;CentOS release 5.8 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;CentOS release 6.3 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
+@@ -121,13 +124,14 @@<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Debian GNU/Linux 7.4 (Wheezy)&lt;/para&gt;&lt;/listitem&gt;<=
+br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Debian GNU/Linux 7.5 (Wheezy)&lt;/para&gt;&lt;/listitem&gt;<=
+br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;Debian GNU/Linux 7.6 (Wheezy)&lt;/para&gt;&lt;/listitem&gt; =
+--&gt;<br>
+-&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listite=
+m&gt;&lt;para&gt;openSUSE 11.4&lt;/para&gt;&lt;/listitem&gt;<br>
++&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listite=
+m&gt;&lt;para&gt;openSUSE 11.4&lt;/para&gt;&lt;/listitem&gt; <br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;openSUSE 12.1&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;openSUSE 12.2&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;openSUSE 12.3&lt;/para&gt;&lt;/listitem&gt;<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;openSUSE 13.1&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;openSUSE 13.2&lt;/para&gt;&lt;/listitem&gt;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;openSUSE 13.1&lt;/para&gt;&lt;/listitem&gt; <br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;openSUSE 13.2&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
+gt;&lt;para&gt;openSUSE 42.1&lt;/para&gt;&lt;/listitem&gt;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
+t;para&gt;openSUSE 42.2&lt;/para&gt;&lt;/listitem&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/itemizedlist&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;<br>
+<br>
+-- <br>
+2.7.4<br>
+<br>
+</blockquote></div>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD44AA6fmsmsx124amrcor_--
+--00000000000056106e057b088364--
