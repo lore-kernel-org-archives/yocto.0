@@ -1,73 +1,72 @@
 Return-Path: <jpewhacker@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E86DEE00C90; Mon, 19 Nov 2018 13:19:09 -0800 (PST)
+	id 0D4D4E00C93; Mon, 19 Nov 2018 13:19:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.166.196 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (jpewhacker[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.194 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f194.google.com (mail-it1-f194.google.com
-	[209.85.166.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70AD6E00C80
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 13:19:09 -0800 (PST)
-Received: by mail-it1-f194.google.com with SMTP id m15so264615itl.4
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 13:19:09 -0800 (PST)
+Received: from mail-it1-f196.google.com (mail-it1-f196.google.com
+	[209.85.166.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07651E00C82
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 13:19:12 -0800 (PST)
+Received: by mail-it1-f196.google.com with SMTP id h193so258908ita.5
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 13:19:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references
 	:mime-version:content-transfer-encoding;
-	bh=77AW4MQRwRwbOiDGaXDzI588xh3fHDxcdtz2UarShrA=;
-	b=HcsoAqc2tcTivNUVo/DaVKkibOHmNnccBDV12TwqBjogJjy7sXdnrYSz9/hh1nF3qg
-	fOE7z1fBCCbMxdGHRDtd4p4E544PKoEj29K6SzUAtBt53rhIGCC4Pw/CtNSPw+UuM78m
-	Wi3dfLIQoiOLCR6kdwLQhpiQtKSJI5hXDYkEYIyMLOSmlv1vDAfBVPMWB8k8G+CgBVVs
-	OruzH4MovfFCi9Pjgl5KmbxcgD1Z3vbWBuTa5OI2FuixBn+6TXcK65H112J/h+vsnALn
-	Q0+qMM36TnNWQt1GnUqo1oDEKZvk7QODLqCw3BzEJjp5XyrhJ3grvGkvYBF59SG4OEnI
-	wiCg==
+	bh=1sLzR16uZLJczJ9lOJzGt4domUlXIrWyvJeC4ziZhgM=;
+	b=MqHweHcQZezCysNq21fTsUg6uStSd4Tr/u+Lj2wYhUbCNmlXuPo4mMHXZHC75rJxr3
+	43Mp/WdR2TBQ8NUTRrarfL0ZgJQG9fIu254/7RqDteFaqIvO9kdPRo6ej27g/CHpoXUI
+	jarEsp2w6XddBN/c/ZnS9dBZ7oXsuVK5/gD1vkx8PERdn8mSwsuMn927ruDQWij/YKma
+	JHjC03GM9tMigS+hemd07gcymfZMRh6JrPNd4DrPgQ3Dl72fYf0r082N3cI7tRfW1j0V
+	upYnToXy95EoJVYHydtSvc8gkCiER7wFvE4UjHjRoyZYjNhKMHGwQbM8Ie2wQJhx0Jo+
+	+aLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references:mime-version:content-transfer-encoding;
-	bh=77AW4MQRwRwbOiDGaXDzI588xh3fHDxcdtz2UarShrA=;
-	b=HCOzxlHxnIWNEJNVQbgScXV0R3mDcioecoKqfgA/vbwe/93Tj/W6l/x6KQ1dyg1mvQ
-	zGP+U1y2wPwK46LlCI45XUtN1exVUaBv56ERd/bywxk0Xc5/mpWqUmefj/YQO4xXT35U
-	y1X1cNz4KM+rbRWQbV2EjVZroBiJYczbr52WlWW5OC+k0FPXgHO7u44kaWBiQZB7Y4Xu
-	zP4XzJEGsbZ+DmZSgcip0RoGzncKddMS8YZDil4uearxOXk4d65T0Ayhv0nK7PIEdfyu
-	3wsHb2DHOqBfEtlsHgZrodep0DKaC/pPOHDEVguSV+JQxtXIxoWBio2+jMdioUOKiB2S
-	Nkfw==
-X-Gm-Message-State: AGRZ1gIfj7IQff+pqXIYtcqsuc3kUCcs09H2T0Qk1dWYkOksZ89H/nCV
-	AB5ch/wdK6ncTFt/1yKh+4tLxx+3tHs=
-X-Google-Smtp-Source: AJdET5eDxKhps0k/eptxPHDBNwwSkFy8aIEauMWOxctMoh9WM24MD4FCpGaxC9ABflA8Txlk4jaa9w==
-X-Received: by 2002:a02:23c5:: with SMTP id
-	u188-v6mr21847469jau.90.1542662348523; 
-	Mon, 19 Nov 2018 13:19:08 -0800 (PST)
+	bh=1sLzR16uZLJczJ9lOJzGt4domUlXIrWyvJeC4ziZhgM=;
+	b=HG2nkioCV6jwZhcnR+1ruFJYJ4zRCuDvTCMfZ0VcSazuB6YazcrnBUBNJ/vbwV7x0d
+	CV5pK03wP6tcqEQpSolffuTdyuLNSlnlbj2WzKvK0cCqhij7R/b+PwuB/6gUKvAtPrFv
+	1Z6HmOxiJx/empipL69hlw1TtvX9JgPAEThapXz6XHa0fecXvEzVd1EJqpbDcgNHh7dF
+	iPuFBPTh6A44LF30SZocAg3++cZzwz7a0C0Nv/IQ1+abGp0mKr0Lfg9KD6UxebCdzXND
+	Izzk4FTqJzYnsMK4u1A87lsHZYo2gAn+fBKARm1gabrJU7rIUekg1rbdNQk1yF1BFyso
+	07UA==
+X-Gm-Message-State: AGRZ1gIc2+ZytPkrCQqu4+jyA4V5UmmOKGH9SgN7RCrHnZethGpelE3V
+	QthotBYqPVQVnXv3gonpfS5FYP7+Tt8=
+X-Google-Smtp-Source: AJdET5fGkL4YG8xiATblBHyYi7RqGrWq9YkUbZVfnV7k/mVeCFcMMsWvZR6WlDZjSVfoMx6Ci+BJRg==
+X-Received: by 2002:a02:9b26:: with SMTP id o35mr21765262jak.23.1542662351288; 
+	Mon, 19 Nov 2018 13:19:11 -0800 (PST)
 Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
 	by smtp.gmail.com with ESMTPSA id
-	d199sm1195542itd.31.2018.11.19.13.19.02
+	d199sm1195542itd.31.2018.11.19.13.19.08
 	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Mon, 19 Nov 2018 13:19:05 -0800 (PST)
+	Mon, 19 Nov 2018 13:19:09 -0800 (PST)
 From: Joshua Watt <jpewhacker@gmail.com>
 X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 19 Nov 2018 15:17:51 -0600
-Message-Id: <20181119211752.18963-5-JPEWhacker@gmail.com>
+Date: Mon, 19 Nov 2018 15:17:52 -0600
+Message-Id: <20181119211752.18963-6-JPEWhacker@gmail.com>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20181119211752.18963-1-JPEWhacker@gmail.com>
 References: <20181115192353.24791-1-JPEWhacker@gmail.com>
 	<20181119211752.18963-1-JPEWhacker@gmail.com>
 MIME-Version: 1.0
-Subject: [meta-mingw][PATCH v2 4/5] classes/toolchain-scripts-mingw32: Ensure exit code is success
+Subject: [meta-mingw][PATCH v2 5/5] oeqa/sdkmingw: Add test cases
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,43 +78,202 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2018 21:19:10 -0000
+X-List-Received-Date: Mon, 19 Nov 2018 21:19:13 -0000
 Content-Transfer-Encoding: 8bit
 
-The "set" command in Windows has some unfortunate behaviors that can
-frequently make it look like the toolchain script had an error. This
-makes automated testing of the SDK more difficult, so add a line to the
-environment setup script that ensures the script exits with success.
+Adds test cases to verify that gcc, binutils, gdb, and pkg-config are
+functioning in the MinGW SDK
 
 [YOCTO #13020]
 
 Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
 ---
- classes/toolchain-scripts-mingw32.bbclass | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ lib/oeqa/sdkmingw/cases/binutils.py     | 55 +++++++++++++++++++++++++
+ lib/oeqa/sdkmingw/cases/gcc.py          | 47 +++++++++++++++++++++
+ lib/oeqa/sdkmingw/cases/gdb.py          | 20 +++++++++
+ lib/oeqa/sdkmingw/cases/pkgconfig.py    | 18 ++++++++
+ lib/oeqa/sdkmingw/files/testsdkmakefile |  4 ++
+ 5 files changed, 144 insertions(+)
+ create mode 100644 lib/oeqa/sdkmingw/cases/binutils.py
+ create mode 100644 lib/oeqa/sdkmingw/cases/gcc.py
+ create mode 100644 lib/oeqa/sdkmingw/cases/gdb.py
+ create mode 100644 lib/oeqa/sdkmingw/cases/pkgconfig.py
+ create mode 100644 lib/oeqa/sdkmingw/files/testsdkmakefile
 
-diff --git a/classes/toolchain-scripts-mingw32.bbclass b/classes/toolchain-scripts-mingw32.bbclass
-index a64f5f5..32493d7 100644
---- a/classes/toolchain-scripts-mingw32.bbclass
-+++ b/classes/toolchain-scripts-mingw32.bbclass
-@@ -81,6 +81,17 @@ toolchain_shared_env_script_sdkmingw32 () {
-    FOR %%x IN (%OECORE_NATIVE_SYSROOT%\\environment-setup.d\\*.bat) DO call "%%x"
- )
- EOF
+diff --git a/lib/oeqa/sdkmingw/cases/binutils.py b/lib/oeqa/sdkmingw/cases/binutils.py
+new file mode 100644
+index 0000000..fdd5a47
+--- /dev/null
++++ b/lib/oeqa/sdkmingw/cases/binutils.py
+@@ -0,0 +1,55 @@
++# Copyright 2018 by Garmin Ltd. or its subsidiaries
++# Released under the MIT license (see COPYING.MIT)
 +
-+	# set has some annoying properties:
-+	# 1) If it is successful %ERRORLEVEL% is unchanged (as opposed to being set
-+	#	 to 0 to indicate success)
-+	# 2) Making an assignment like "set A=" is considered an error and sets
-+	#	 %ERRORLEVEL% to 1.
-+	#
-+	# Practically, this means that if any of the set calls make an empty
-+	# assignment that error will be propagated. To prevent this, a command is
-+	# run to ensure that the "exit code" of this script is 0
-+	echo "@%COMSPEC% /C exit 0 > NUL" >> $script
- }
- 
- toolchain_create_sdk_siteconfig_append_sdkmingw32 () {
++import os
++import unittest
++
++from oeqa.sdkmingw.case import OESDKMinGWTestCase
++
++class BinutilsTest(OESDKMinGWTestCase):
++    td_vars = ['MACHINE']
++
++    def setUp(self):
++        super().setUp()
++
++        self.copyTestFile(os.path.join(self.tc.files_dir, 'test.c'))
++
++        machine = self.td.get("MACHINE")
++        if not (self.tc.hasHostPackage("packagegroup-cross-canadian-%s" % machine) or
++                self.tc.hasHostPackage("^gcc-", regex=True)):
++            raise unittest.SkipTest(self.__class__.__name__ + " class: SDK doesn't contain a cross-canadian toolchain")
++        if not (self.tc.hasHostPackage("packagegroup-cross-canadian-%s" % machine) or
++                self.tc.hasHostPackage('binutils-cross-canadian-%s' % machine)):
++            raise unittest.SkipTest(self.__class__.__name__ + " class: SDK doesn't contain a binutils")
++
++        self._run('%CC% -c -g test.c -o test.o')
++        self._run('%CC% -o test test.o -lm')
++
++    def test_strip(self):
++        self._run('%STRIP% -s test')
++        self.assertIsTargetElf(os.path.join(self.test_dir, 'test'))
++
++    def test_ar(self):
++        self._run('%AR% -rcs lib.a test.o')
++        self._run('%CC% -o test lib.a -lm')
++        self.assertIsTargetElf(os.path.join(self.test_dir, 'test'))
++
++    def test_ranlib(self):
++        self._run('%AR% -rc lib.a test.o')
++        self._run('%RANLIB% lib.a')
++        self._run('%CC% -o test lib.a -lm')
++        self.assertIsTargetElf(os.path.join(self.test_dir, 'test'))
++
++    def test_objcopy(self):
++        self._run('%OBJCOPY% -g test.o test_no_debug.o')
++        self.assertIsTargetElf(os.path.join(self.test_dir, 'test_no_debug.o'))
++        self._run('%CC% -o test test_no_debug.o -lm')
++        self.assertIsTargetElf(os.path.join(self.test_dir, 'test'))
++
++    def test_objdump(self):
++        self._run('%OBJDUMP% -S test.o')
++
++    def test_nm(self):
++        self._run('%NM% test.o')
++
++
+diff --git a/lib/oeqa/sdkmingw/cases/gcc.py b/lib/oeqa/sdkmingw/cases/gcc.py
+new file mode 100644
+index 0000000..7294bf5
+--- /dev/null
++++ b/lib/oeqa/sdkmingw/cases/gcc.py
+@@ -0,0 +1,47 @@
++# Copyright 2018 by Garmin Ltd. or its subsidiaries
++# Released under the MIT license (see COPYING.MIT)
++
++import os
++import unittest
++
++from oeqa.sdkmingw.case import OESDKMinGWTestCase
++
++class GccCompileTest(OESDKMinGWTestCase):
++    td_vars = ['MACHINE']
++
++    def setUp(self):
++        super().setUp()
++
++        self.copyTestFile(os.path.join(self.tc.files_dir, 'test.c'))
++        self.copyTestFile(os.path.join(self.tc.files_dir, 'test.cpp'))
++        self.copyTestFile(os.path.join(self.tc.sdk_files_dir, 'testsdkmakefile'))
++
++        machine = self.td.get("MACHINE")
++        if not (self.tc.hasHostPackage("packagegroup-cross-canadian-%s" % machine) or
++                self.tc.hasHostPackage("^gcc-", regex=True)):
++            raise unittest.SkipTest(self.__class__.__name__ + " class: SDK doesn't contain a cross-canadian toolchain")
++
++    def test_gcc_compile(self):
++        self._run('%CC% %CFLAGS% %LDFLAGS% test.c -o test -lm')
++        self.assertIsTargetElf(os.path.join(self.test_dir, 'test'))
++
++    def test_gcc_compile_and_link(self):
++        self._run('%CC% %CFLAGS% -c test.c -o test.o')
++        self._run('%CC% %LDFLAGS% -o test test.o -lm')
++        self.assertIsTargetElf(os.path.join(self.test_dir, 'test.o'))
++        self.assertIsTargetElf(os.path.join(self.test_dir, 'test'))
++
++    def test_gpp_compile(self):
++        self._run('%CXX% %CXXFLAGS% %LDFLAGS% test.c -o test -lm')
++        self.assertIsTargetElf(os.path.join(self.test_dir, 'test'))
++
++    def test_gpp2_compile(self):
++        self._run('%CXX% %CXXFLAGS% %LDFLAGS% test.cpp -o test -lm')
++        self.assertIsTargetElf(os.path.join(self.test_dir, 'test'))
++
++    def test_make(self):
++        if not self.tc.hasHostPackage('nativesdk-make'):
++            raise unittest.SkipTest(self.__class__.__name__ + " class: SDK doesn't contain make")
++        self._run('make -f testsdkmakefile')
++        self.assertIsTargetElf(os.path.join(self.test_dir, 'test'))
++
+diff --git a/lib/oeqa/sdkmingw/cases/gdb.py b/lib/oeqa/sdkmingw/cases/gdb.py
+new file mode 100644
+index 0000000..f1bde7a
+--- /dev/null
++++ b/lib/oeqa/sdkmingw/cases/gdb.py
+@@ -0,0 +1,20 @@
++# Copyright 2018 by Garmin Ltd. or its subsidiaries
++# Released under the MIT license (see COPYING.MIT)
++
++import unittest
++
++from oeqa.sdkmingw.case import OESDKMinGWTestCase
++
++class GdbTest(OESDKMinGWTestCase):
++    td_vars = ['MACHINE']
++
++    def setUp(self):
++        super().setUp()
++
++        machine = self.td.get("MACHINE")
++        if not (self.tc.hasHostPackage("packagegroup-cross-canadian-%s" % machine) or
++                self.tc.hasHostPackage("^gdb-", regex=True)):
++            raise unittest.SkipTest(self.__class__.__name__ + " class: SDK doesn't contain a cross-canadian toolchain")
++
++    def test_gdb(self):
++        self._run('%GDB% -ex quit')
+diff --git a/lib/oeqa/sdkmingw/cases/pkgconfig.py b/lib/oeqa/sdkmingw/cases/pkgconfig.py
+new file mode 100644
+index 0000000..24185a0
+--- /dev/null
++++ b/lib/oeqa/sdkmingw/cases/pkgconfig.py
+@@ -0,0 +1,18 @@
++# Copyright 2018 by Garmin Ltd. or its subsidiaries
++# Released under the MIT license (see COPYING.MIT)
++
++import os
++import unittest
++
++from oeqa.sdkmingw.case import OESDKMinGWTestCase
++
++class PkgConfigTest(OESDKMinGWTestCase):
++    def setUp(self):
++        super().setUp()
++
++        if not self.tc.hasHostPackage("nativesdk-pkgconfig"):
++            raise unittest.SkipTest(self.__class__.__name__ + " class: SDK doesn't contain nativesdk-pkgconfig")
++
++    def test_pkg_config(self):
++        self._run('pkg-config --list-all')
++
+diff --git a/lib/oeqa/sdkmingw/files/testsdkmakefile b/lib/oeqa/sdkmingw/files/testsdkmakefile
+new file mode 100644
+index 0000000..b5cac86
+--- /dev/null
++++ b/lib/oeqa/sdkmingw/files/testsdkmakefile
+@@ -0,0 +1,4 @@
++test: test.o
++	$(CC) -o test test.o -lm
++test.o: test.c
++	$(CC) -c test.c
 -- 
 2.19.1
 
