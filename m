@@ -1,65 +1,43 @@
-Return-Path: <srifenbark@gmail.com>
+Return-Path: <ssajal@blackberry.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4C570E00C3C; Mon, 19 Nov 2018 10:16:19 -0800 (PST)
+	id CE465E00C3C; Mon, 19 Nov 2018 11:18:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (srifenbark[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.68 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [208.65.78.89 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com
-	[209.85.208.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB950E00C09
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 10:16:17 -0800 (PST)
-Received: by mail-ed1-f68.google.com with SMTP id o10so3584123edt.13
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 10:16:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=4dKAmeiHyufIFZ2oGGAEjvvNnf4tH8/U0ZjspqbjjvQ=;
-	b=TD/YLmYpP7AEq4fzsqTLfqtF27cIcRriJp0U9IUFNfTVm5Lu2ACXbGQNZOk/GZz3qZ
-	Nrte+8ZFWimVCOzn+5SwaEsEmeNblidlrqvwjQ6jenPnA1LyQu6AYSymsNhbbGWkzWMq
-	lgczY59WHL4QJvgwZFSWDxh5pizbRRt5+Fl775r6AaOaaGT4+qYJ2InFIR1jcD2sTMJU
-	vUxhpYjQstFSfHl/g0Xi43HSHAABxGF0qHjsXXvoHU9IdW67u2hOm4AGYO4VezLA329q
-	dpw//TENJPc/K+NTyJVrZf43qhrv65wzbD+Gc+fidPfC1iJFu6NOFgJUMDveCNMhmjP+
-	Z6NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=4dKAmeiHyufIFZ2oGGAEjvvNnf4tH8/U0ZjspqbjjvQ=;
-	b=RIBH3s5C956UKX2CLAf1QFwTNj0SKGCnQi20lA4nGLaMR9VMsNS62OKKxpbrpNxIHR
-	A1NdbwuDBsgJcKFxZ4Qlo8LwwnNLAbXKiKHhFSZAsgL460KcvfjC9ipe+hXPMmoSsiJE
-	GnzmitUAHJzUWaJXEDXajsGGSrfJ7Mw2MIVhBajaOEDBdAae7bXkKA3/l46DhnbHVunS
-	iNuRzvwwNcccfSiLucE5vfJE4pg0kPEsUy7dcbLoX75tAsND+tVjVncOx5pMZ6DM2SYQ
-	2FM62ST1lzDEzoFHE9rMPbBOvf1ZGxf2HfbPFAZ5K/xYeVOQ3kULTCJtC4Y0kNiPiNVE
-	5+6g==
-X-Gm-Message-State: AGRZ1gLEepZqv8rBgfGF6H8ie+2zxyKMM75Tuhp9WGx/H0b82uvY16F5
-	qpjROip0bhU3BCQhi+wAFvalxnx1qOyDuR8bKOY=
-X-Google-Smtp-Source: AJdET5ct10f2SC+qpLjTT64kAHDG9Xkhv84eSQaaNB7gvUKpaxVZfsp3LIg3Bw77aD+kL446ADi/6hQvUc2C5hdfBE4=
-X-Received: by 2002:a50:a3d1:: with SMTP id t17mr21558347edb.238.1542651376962;
-	Mon, 19 Nov 2018 10:16:16 -0800 (PST)
+X-Greylist: delayed 302 seconds by postgrey-1.32 at yocto-www;
+	Mon, 19 Nov 2018 11:18:53 PST
+Received: from smtp-p02.blackberry.com (smtp-p02.blackberry.com [208.65.78.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83AF3E00C09
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 11:18:53 -0800 (PST)
+Received: from smtp-pop.rim.net (HELO XCT104CNC.rim.net) ([10.65.161.204])
+	by mhs214cnc.rim.net with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	19 Nov 2018 14:13:50 -0500
+Received: from XCT197YKF.rim.net (10.2.25.5) by XCT104CNC.rim.net
+	(10.65.161.204) with Microsoft SMTP Server (TLS) id 14.3.408.0;
+	Mon, 19 Nov 2018 14:13:50 -0500
+Received: from XMB117CNC.rim.net ([fe80::24f3:cc30:b596:7ca0]) by
+	XCT197YKF.rim.net ([fe80::d451:a94b:26c6:5632%13]) with mapi id
+	14.03.0415.000; Mon, 19 Nov 2018 14:13:49 -0500
+From: Sakib Sajal <ssajal@blackberry.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: kconfig variables not being included in yocto build.
+Thread-Index: AdSAPAAysZRwI1beQH6v7tb8fnNDNw==
+Date: Mon, 19 Nov 2018 19:13:49 +0000
+Message-ID: <999B71279F0CB24F8E7673582CE50F6ED38B8C@XMB117CNC.rim.net>
+Accept-Language: en-US, en-CA
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.65.160.249]
 MIME-Version: 1.0
-References: <1542593711-13820-1-git-send-email-akuster808@gmail.com>
-In-Reply-To: <1542593711-13820-1-git-send-email-akuster808@gmail.com>
-From: Scott Rifenbark <srifenbark@gmail.com>
-Date: Mon, 19 Nov 2018 10:16:04 -0800
-Message-ID: <CAFNP8OuRthep-BdMDtNeed1a9XoCuEM6CM0n_ea6cb8pVXwECg@mail.gmail.com>
-To: akuster808 <akuster808@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [[yocto-docs][thud][PATCH] ref-system-requirements: sync with thud poky.conf
+Subject: kconfig variables not being included in yocto build.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,241 +49,249 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2018 18:16:19 -0000
-Content-Type: multipart/alternative; boundary="00000000000056106e057b088364"
+X-List-Received-Date: Mon, 19 Nov 2018 19:18:54 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_999B71279F0CB24F8E7673582CE50F6ED38B8CXMB117CNCrimnet_"
 
---00000000000056106e057b088364
-Content-Type: text/plain; charset="UTF-8"
+--_000_999B71279F0CB24F8E7673582CE50F6ED38B8CXMB117CNCrimnet_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Armin,
+Hello,
 
-See
-https://yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#detailed-suppo=
-rted-distros
-and let me know if the patch is good.
+I have been trying to patch the linux kernel and add some kernel configurat=
+ion but I am failing to add kconfig fragments to be included in the final b=
+uild.
 
-Thanks,
-Scott
+Initially I tried patching the kernel with hardcoded values in the patch.
 
-On Sun, Nov 18, 2018 at 6:15 PM Armin Kuster <akuster808@gmail.com> wrote:
+I am building for qemu to minimize the variables I have to worry about.
 
-> poky.conf
->     ubuntu-16.04
->     ubuntu-16.10
->     ubuntu-17.04
->     fedora-26
->     centos-7
->     debian-8
->     debian-9
->     opensuse-42.1
->     opensuse-42.2
->
-> Signed-off-by: Armin Kuster <akuster808@gmail.com>
-> ---
->  documentation/ref-manual/ref-system-requirements.xml | 20
-> ++++++++++++--------
->  1 file changed, 12 insertions(+), 8 deletions(-)
->
-> diff --git a/documentation/ref-manual/ref-system-requirements.xml
-> b/documentation/ref-manual/ref-system-requirements.xml
-> index 9298e84..0abc47e 100644
-> --- a/documentation/ref-manual/ref-system-requirements.xml
-> +++ b/documentation/ref-manual/ref-system-requirements.xml
-> @@ -93,19 +93,22 @@
->                  <listitem><para>Ubuntu 11.10</para></listitem>
->                  <listitem><para>Ubuntu 12.04 (LTS)</para></listitem>
->                  <listitem><para>Ubuntu 13.10</para></listitem>
-> -                <listitem><para>Ubuntu 14.04 (LTS)</para></listitem> -->
-> +                <listitem><para>Ubuntu 14.04 (LTS)</para></listitem>
->                  <listitem><para>Ubuntu 14.10</para></listitem>
->                  <listitem><para>Ubuntu 15.04</para></listitem>
-> -                <listitem><para>Ubuntu 15.10</para></listitem>
-> +                <listitem><para>Ubuntu 15.10</para></listitem> -->
->                  <listitem><para>Ubuntu 16.04 (LTS)</para></listitem>
-> +                <listitem><para>Ubuntu 16.10 (LTS)</para></listitem>
-> +                <listitem><para>Ubuntu 17.04 </para></listitem>
->  <!--                <listitem><para>Fedora 16 (Verne)</para></listitem>
->                  <listitem><para>Fedora 17 (Spherical)</para></listitem>
->                  <listitem><para>Fedora release 19 (Schr=C3=B6dinger's
-> Cat)</para></listitem>
-> -                <listitem><para>Fedora release 20
-> (Heisenbug)</para></listitem> -->
-> +                <listitem><para>Fedora release 20
-> (Heisenbug)</para></listitem>
->                  <listitem><para>Fedora release 22</para></listitem>
->                  <listitem><para>Fedora release 23</para></listitem>
-> -<!--                <listitem><para>Fedora release 24</para></listitem>
-> -                <listitem><para>CentOS release 5.6
-> (Final)</para></listitem>
-> +                <listitem><para>Fedora release 24</para></listitem> -->
-> +                <listitem><para>Fedora release 26</para></listitem>
-> +<!--                <listitem><para>CentOS release 5.6
-> (Final)</para></listitem>
->                  <listitem><para>CentOS release 5.7
-> (Final)</para></listitem>
->                  <listitem><para>CentOS release 5.8
-> (Final)</para></listitem>
->                  <listitem><para>CentOS release 6.3
-> (Final)</para></listitem>
-> @@ -121,13 +124,14 @@
->                  <listitem><para>Debian GNU/Linux 7.4
-> (Wheezy)</para></listitem>
->                  <listitem><para>Debian GNU/Linux 7.5
-> (Wheezy)</para></listitem>
->                  <listitem><para>Debian GNU/Linux 7.6
-> (Wheezy)</para></listitem> -->
-> -<!--                <listitem><para>openSUSE 11.4</para></listitem>
-> +<!--                <listitem><para>openSUSE 11.4</para></listitem>
->                  <listitem><para>openSUSE 12.1</para></listitem>
->                  <listitem><para>openSUSE 12.2</para></listitem>
->                  <listitem><para>openSUSE 12.3</para></listitem>
-> -                <listitem><para>openSUSE 13.1</para></listitem> -->
-> -                <listitem><para>openSUSE 13.2</para></listitem>
-> +                <listitem><para>openSUSE 13.1</para></listitem>
-> +                <listitem><para>openSUSE 13.2</para></listitem> -->
->                  <listitem><para>openSUSE 42.1</para></listitem>
-> +                <listitem><para>openSUSE 42.2</para></listitem>
->              </itemizedlist>
->          </para>
->
-> --
-> 2.7.4
->
->
+Build Configuration:
+BB_VERSION           =3D "1.38.0"
+BUILD_SYS            =3D "x86_64-linux"
+NATIVELSBSTRING      =3D "ubuntu-16.04"
+TARGET_SYS           =3D "i586-poky-linux"
+MACHINE              =3D "qemux86"
+DISTRO               =3D "poky"
+DISTRO_VERSION       =3D "2.5.1"         // branch "sumo"
+TUNE_FEATURES        =3D "m32 i586"
+TARGET_FPU           =3D ""
 
---00000000000056106e057b088364
-Content-Type: text/html; charset="UTF-8"
+
+My initial project structure:
+
+-poky
+--meta
+--meta-poky
+--meta-yocto-bsp
+--meta-my-layer
+---recipes-kernel
+----linux
+-----linux-yocto
+------my-patch.patch
+-----linux-yocto_4%.bbappend
+---conf
+----layer.conf
+
+Content of the bbappend file:
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+
+SRC_URI +=3D "file://my-patch.patch"
+
+I enabled my-layer by adding the layer in the build/conf/bblayers.conf file=
+. I was able to build an image and test my changes with the hardcoded value=
+d in my patch.
+
+However I want the values to be configurable through kernel configuration. =
+Since I knew what variables I have introduced, I put them in a .cfg file wi=
+th their desired values in the linux-yocto folder.
+
+New project structure:
+
+-poky
+--meta-my-layer
+---recipes-kernel
+----linux
+-----linux-yocto
+------my-conf-frag.cfg
+
+(other files and directories are same as before)
+
+Added the following line to the .bbappend file:
+SRC_URI +=3D "file://my-conf-frag.cfg"
+
+Content of my-conf-frag.cfg:
+CONFIG_MY_FIRST_VAR=3D"MY-NAME"
+CONFIG_MY_SECOND_VAR=3Dy
+
+Then I run:
+bitbake core-image-base
+
+and get the following error:
+
+ERROR: Task (<work_dir>/poky/meta/recipes-kernel/linux/linux-yocto_4.14.bb:=
+do_compile) failed with exit code '1'
+
+The kernel isn't being compiled since it does not know what "CONFIG_MY_FIRS=
+T_VAR" is.
+
+I checked for .config files in the build directory and found one in "poky/b=
+uild/tmp/work-shared/qemux86/kernel-source/.kernel-meta/cfg/.config" which =
+contained the two variables I defined in my cfg file. But that file is a ke=
+rnel configuration fragment file itself. The final config file which is use=
+d to build the image is located, I believe, in "poky/build/tmp/work/qemux86=
+-poky-linux/linux-yocto/4.14.67+gitAUTOINC+c43c9e19a2_084af9624d-r0/linux-q=
+emux86-standard-build/.config" but i do not see the variables there in the =
+final .config file. I was also able to locate the cfg and the patch file in=
+ "/poky/build/tmp/work/qemux86-poky-linux/linux-yocto/4.14.67+gitAUTOINC+c4=
+3c9e19a2_084af9624d-r0/"directory. Therefore the files are being picked up =
+by the build system but the fragments are not being applied to make the fin=
+al .config file used to build the kernel.
+
+I went through yocto mailing list for similar problems and followed the ste=
+ps provided with no success. I also went through yocto's mega-manual and ke=
+rnel development manual as well as the yocto-lab pdfs and followed all the =
+different steps but i always get the compilation error.
+
+Can someone please help me. Thanks in advance!
+
+Sakib Sajal
+
+
+--_000_999B71279F0CB24F8E7673582CE50F6ED38B8CXMB117CNCrimnet_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Armin, <br></div><div><br></div><div=
->See <a href=3D"https://yoctoproject.org/docs/2.6/ref-manual/ref-manual.htm=
-l#detailed-supported-distros">https://yoctoproject.org/docs/2.6/ref-manual/=
-ref-manual.html#detailed-supported-distros</a> and let me know if the patch=
- is good.</div><div><br></div><div>Thanks, <br></div><div>Scott<br></div></=
-div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Sun, Nov 18, 2=
-018 at 6:15 PM Armin Kuster &lt;<a href=3D"mailto:akuster808@gmail.com">aku=
-ster808@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">po=
-ky.conf<br>
-=C2=A0 =C2=A0 ubuntu-16.04<br>
-=C2=A0 =C2=A0 ubuntu-16.10<br>
-=C2=A0 =C2=A0 ubuntu-17.04<br>
-=C2=A0 =C2=A0 fedora-26<br>
-=C2=A0 =C2=A0 centos-7<br>
-=C2=A0 =C2=A0 debian-8<br>
-=C2=A0 =C2=A0 debian-9<br>
-=C2=A0 =C2=A0 opensuse-42.1<br>
-=C2=A0 =C2=A0 opensuse-42.2<br>
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" id=3D"owaParaStyle">P {margin-top:0;margin-bottom:=
+0;}</style>
+</head>
+<body fpstyle=3D"1" ocsi=3D"0">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Hello,<br>
 <br>
-Signed-off-by: Armin Kuster &lt;<a href=3D"mailto:akuster808@gmail.com" tar=
-get=3D"_blank">akuster808@gmail.com</a>&gt;<br>
----<br>
-=C2=A0documentation/ref-manual/ref-system-requirements.xml | 20 +++++++++++=
-+--------<br>
-=C2=A01 file changed, 12 insertions(+), 8 deletions(-)<br>
+I have been trying to patch the linux kernel and add some kernel configurat=
+ion but I am failing to add kconfig fragments to be included in the final b=
+uild.<br>
 <br>
-diff --git a/documentation/ref-manual/ref-system-requirements.xml b/documen=
-tation/ref-manual/ref-system-requirements.xml<br>
-index 9298e84..0abc47e 100644<br>
---- a/documentation/ref-manual/ref-system-requirements.xml<br>
-+++ b/documentation/ref-manual/ref-system-requirements.xml<br>
-@@ -93,19 +93,22 @@<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Ubuntu 11.10&lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Ubuntu 12.04 (LTS)&lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Ubuntu 13.10&lt;/para&gt;&lt;/listitem&gt;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;Ubuntu 14.04 (LTS)&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;Ubuntu 14.04 (LTS)&lt;/para&gt;&lt;/listitem&gt; <br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Ubuntu 14.10&lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Ubuntu 15.04&lt;/para&gt;&lt;/listitem&gt;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;Ubuntu 15.10&lt;/para&gt;&lt;/listitem&gt;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;Ubuntu 15.10&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Ubuntu 16.04 (LTS)&lt;/para&gt;&lt;/listitem&gt;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;Ubuntu 16.10 (LTS)&lt;/para&gt;&lt;/listitem&gt;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;Ubuntu 17.04 &lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;li=
-stitem&gt;&lt;para&gt;Fedora 16 (Verne)&lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Fedora 17 (Spherical)&lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Fedora release 19 (Schr=C3=B6dinger&#39;s Cat)&lt;/para&gt;&=
-lt;/listitem&gt;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;Fedora release 20 (Heisenbug)&lt;/para&gt;&lt;/listitem&gt; --&gt=
-;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;Fedora release 20 (Heisenbug)&lt;/para&gt;&lt;/listitem&gt; <br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Fedora release 22&lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Fedora release 23&lt;/para&gt;&lt;/listitem&gt;<br>
--&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listite=
-m&gt;&lt;para&gt;Fedora release 24&lt;/para&gt;&lt;/listitem&gt;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;CentOS release 5.6 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;Fedora release 24&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;Fedora release 26&lt;/para&gt;&lt;/listitem&gt;<br>
-+&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listite=
-m&gt;&lt;para&gt;CentOS release 5.6 (Final)&lt;/para&gt;&lt;/listitem&gt;<b=
+Initially I tried patching the kernel with hardcoded values in the patch.<b=
 r>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;CentOS release 5.7 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;CentOS release 5.8 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;CentOS release 6.3 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
-@@ -121,13 +124,14 @@<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Debian GNU/Linux 7.4 (Wheezy)&lt;/para&gt;&lt;/listitem&gt;<=
-br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Debian GNU/Linux 7.5 (Wheezy)&lt;/para&gt;&lt;/listitem&gt;<=
-br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;Debian GNU/Linux 7.6 (Wheezy)&lt;/para&gt;&lt;/listitem&gt; =
---&gt;<br>
--&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listite=
-m&gt;&lt;para&gt;openSUSE 11.4&lt;/para&gt;&lt;/listitem&gt;<br>
-+&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listite=
-m&gt;&lt;para&gt;openSUSE 11.4&lt;/para&gt;&lt;/listitem&gt; <br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;openSUSE 12.1&lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;openSUSE 12.2&lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;openSUSE 12.3&lt;/para&gt;&lt;/listitem&gt;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;openSUSE 13.1&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;openSUSE 13.2&lt;/para&gt;&lt;/listitem&gt;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;openSUSE 13.1&lt;/para&gt;&lt;/listitem&gt; <br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;openSUSE 13.2&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;listitem&=
-gt;&lt;para&gt;openSUSE 42.1&lt;/para&gt;&lt;/listitem&gt;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;listitem&gt;&l=
-t;para&gt;openSUSE 42.2&lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/itemizedlist&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;<br>
 <br>
--- <br>
-2.7.4<br>
+I am building for qemu to minimize the variables I have to worry about.<br>
 <br>
-</blockquote></div>
+Build Configuration:<br>
+BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
+&quot;1.38.0&quot;<br>
+BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ =3D &quot;x86_64-linux&quot;<br>
+NATIVELSBSTRING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;ubuntu-16.04&quot;<=
+br>
+TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
+&quot;i586-poky-linux&quot;<br>
+MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; =3D &quot;qemux86&quot;<br>
+DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; =3D &quot;poky&quot;<br>
+DISTRO_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;2.5.1&quot; &n=
+bsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // branch &quot;sumo&quot;<br>
+TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;m32 i586&=
+quot;<br>
+TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
+&quot;&quot;<br>
+<br>
+<br>
+My initial project structure:<br>
+<br>
+-poky<br>
+--meta<br>
+--meta-poky<br>
+--meta-yocto-bsp<br>
+--meta-my-layer<br>
+---recipes-kernel<br>
+----linux<br>
+-----linux-yocto<br>
+------my-patch.patch<br>
+-----linux-yocto_4%.bbappend<br>
+---conf<br>
+----layer.conf<br>
+<br>
+Content of the bbappend file:<br>
+FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
+<br>
+SRC_URI &#43;=3D &quot;file://my-patch.patch&quot;<br>
+<br>
+I enabled my-layer by adding the layer in the build/conf/bblayers.conf file=
+. I was able to build an image and test my changes with the hardcoded value=
+d in my patch.<br>
+<br>
+However I want the values to be configurable through kernel configuration. =
+Since I knew what variables I have introduced, I put them in a .cfg file wi=
+th their desired values in the linux-yocto folder.
+<br>
+<br>
+New project structure:<br>
+<br>
+-poky<br>
+--meta-my-layer<br>
+---recipes-kernel<br>
+----linux<br>
+-----linux-yocto<br>
+------my-conf-frag.cfg<br>
+<br>
+(other files and directories are same as before)<br>
+<br>
+Added the following line to the .bbappend file:<br>
+SRC_URI &#43;=3D &quot;file://my-conf-frag.cfg&quot;<br>
+<br>
+Content of my-conf-frag.cfg:<br>
+CONFIG_MY_FIRST_VAR=3D&quot;MY-NAME&quot;<br>
+CONFIG_MY_SECOND_VAR=3Dy<br>
+<br>
+Then I run:<br>
+bitbake core-image-base<br>
+<br>
+and get the following error:<br>
+<br>
+ERROR: Task (&lt;work_dir&gt;/poky/meta/recipes-kernel/linux/linux-yocto_4.=
+14.bb:do_compile) failed with exit code '1'<br>
+<br>
+The kernel isn't being compiled since it does not know what &quot;CONFIG_MY=
+_FIRST_VAR&quot; is.<br>
+<br>
+I checked for .config files in the build directory and found one in &quot;p=
+oky/build/tmp/work-shared/qemux86/kernel-source/.kernel-meta/cfg/.config&qu=
+ot; which contained the two variables I defined in my cfg file. But that fi=
+le is a kernel configuration fragment file
+ itself. The final config file which is used to build the image is located,=
+ I believe, in &quot;poky/build/tmp/work/qemux86-poky-linux/linux-yocto/4.1=
+4.67&#43;gitAUTOINC&#43;c43c9e19a2_084af9624d-r0/linux-qemux86-standard-bui=
+ld/.config&quot; but i do not see the variables there
+ in the final .config file. I was also able to locate the cfg and the patch=
+ file in &quot;/poky/build/tmp/work/qemux86-poky-linux/linux-yocto/4.14.67&=
+#43;gitAUTOINC&#43;c43c9e19a2_084af9624d-r0/&quot;directory. Therefore the =
+files are being picked up by the build system but
+ the fragments are not being applied to make the final .config file used to=
+ build the kernel.<br>
+<br>
+I went through yocto mailing list for similar problems and followed the ste=
+ps provided with no success. I also went through yocto's mega-manual and ke=
+rnel development manual as well as the yocto-lab pdfs and followed all the =
+different steps but i always get
+ the compilation error.<br>
+<br>
+<div>Can someone please help me. Thanks in advance!</div>
+<div><br>
+</div>
+<div>Sakib Sajal</div>
+<div><br>
+</div>
+</div>
+</body>
+</html>
 
---00000000000056106e057b088364--
+--_000_999B71279F0CB24F8E7673582CE50F6ED38B8CXMB117CNCrimnet_--
