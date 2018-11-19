@@ -1,68 +1,37 @@
-Return-Path: <srifenbark@gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36C77E00CCA; Mon, 19 Nov 2018 11:30:19 -0800 (PST)
+	id 0C951E00C41; Mon, 19 Nov 2018 12:19:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (srifenbark[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.65 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com
-	[209.85.208.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E983E009B2
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 11:30:01 -0800 (PST)
-Received: by mail-ed1-f65.google.com with SMTP id b14so23853356edt.6
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 11:30:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=mkLTGY60Yd/w/pimBFTw3opYoJR8XMSdgjL6rBk91KU=;
-	b=eD7xbSNxUmqWTnOt96aud7lVnJKl0fbOtljcAtNDOb3j62HcmSIXiqwoPHz/x9azm6
-	dfC52x5TvyDlXYzK6h/CiSkzW56IiCW2yJFi+nywm/n0nuXFfRgd0ApkX/SrgP9H7gzF
-	hchluH7LmuTdKiw7I6lQ4mRpzB3MM9Gy84JMkF7XlRGWeVznU/x9T0K/29aVnlMPKV22
-	4NebVFFKYa0ldaYXLjhL/+9FmcMm8fC+jsqsQeg+1cFOPnMSkVVXR/dzgbX1LOj0vbRx
-	6ZCjdBgEDz8eRWKa9QUCH3/uG29y0NrVv8Wyv75WHrsWBSYz+bHDznh0Z4trj5qKYxGh
-	SqQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=mkLTGY60Yd/w/pimBFTw3opYoJR8XMSdgjL6rBk91KU=;
-	b=RWRezGCNbjipy4+SmiT/u5OR3u+AC9rGN1vF7nw77y0h2qPMaKqYggJnUk0KHkpuAA
-	ggGJ0GOHssqY/ZnllRJHDaFqZbxavriChflmi6/e8Vkm7n3hnbHdcBi9JLpD2tYOurUc
-	EDB7r/Mkm/N+j7jxmec/FjuZ0Xgsrn7TTniqEqslcjN/iMQ5X6w2jlKLGl8b4n+VokiM
-	oC0zcdmL3PinEpakCycK0GcOPN8WFj4dwjKPpjZmK/twVL8SmAJs85KCceN0TRPBWTMY
-	RlgkJpC9tEHteb41NI33zz6TGteoobyR+IH0f0EamaJfJXjXUWUjjUxTzfvbYEdE1W2k
-	Ljrg==
-X-Gm-Message-State: AGRZ1gJHwILc+uhqK+xSBGjrHmSpIiEPej6nufRWplYqRkHz+bmEFQKC
-	msnu80mzgsKU94enP9SyhKDHtdTrXYA/kVzUH0o=
-X-Google-Smtp-Source: AJdET5fKUeZqOCitk3QHviJH3dhJKs92SCg8ggDWZTBM8koThRAWUa6AH4rGd2/tfW1F8pEoic+GtYy5ZK8AgL16lyA=
-X-Received: by 2002:a17:906:1a49:: with SMTP id
-	j9-v6mr18064660ejf.45.1542655801111; 
-	Mon, 19 Nov 2018 11:30:01 -0800 (PST)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92BF2E00C09
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 12:19:57 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id wAJKJtYO005585
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 19 Nov 2018 12:19:55 -0800 (PST)
+Received: from server.local (128.224.23.51) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.408.0;
+	Mon, 19 Nov 2018 12:19:54 -0800
+To: Sakib Sajal <ssajal@blackberry.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <999B71279F0CB24F8E7673582CE50F6ED38B8C@XMB117CNC.rim.net>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <346f0f44-98a5-2abc-9430-2ea7b901dd65@windriver.com>
+Date: Mon, 19 Nov 2018 15:19:53 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+	Gecko/20100101 Thunderbird/60.3.0
 MIME-Version: 1.0
-References: <1542593711-13820-1-git-send-email-akuster808@gmail.com>
-	<CAFNP8OuRthep-BdMDtNeed1a9XoCuEM6CM0n_ea6cb8pVXwECg@mail.gmail.com>
-	<ca26364b-07e1-b83e-3948-402fd01f95f5@gmail.com>
-In-Reply-To: <ca26364b-07e1-b83e-3948-402fd01f95f5@gmail.com>
-From: Scott Rifenbark <srifenbark@gmail.com>
-Date: Mon, 19 Nov 2018 11:29:49 -0800
-Message-ID: <CAFNP8OuiDo6NctqFoNTFz1xt46dCObmS75bW26RKUtz=Rt2C6Q@mail.gmail.com>
-To: akuster808 <akuster808@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [[yocto-docs][thud][PATCH] ref-system-requirements: sync with thud poky.conf
+In-Reply-To: <999B71279F0CB24F8E7673582CE50F6ED38B8C@XMB117CNC.rim.net>
+Subject: Re: kconfig variables not being included in yocto build.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,346 +43,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2018 19:30:19 -0000
-Content-Type: multipart/alternative; boundary="000000000000093b3e057b098b59"
+X-List-Received-Date: Mon, 19 Nov 2018 20:19:58 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
---000000000000093b3e057b098b59
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 2018-11-19 2:13 p.m., Sakib Sajal wrote:
+> Hello,
+> 
+> I have been trying to patch the linux kernel and add some kernel 
+> configuration but I am failing to add kconfig fragments to be included 
+> in the final build.
+> 
+> Initially I tried patching the kernel with hardcoded values in the patch.
+> 
+> I am building for qemu to minimize the variables I have to worry about.
+> 
+> Build Configuration:
+> BB_VERSION           = "1.38.0"
+> BUILD_SYS            = "x86_64-linux"
+> NATIVELSBSTRING      = "ubuntu-16.04"
+> TARGET_SYS           = "i586-poky-linux"
+> MACHINE              = "qemux86"
+> DISTRO               = "poky"
+> DISTRO_VERSION       = "2.5.1"         // branch "sumo"
+> TUNE_FEATURES        = "m32 i586"
+> TARGET_FPU           = ""
+> 
+> 
+> My initial project structure:
+> 
+> -poky
+> --meta
+> --meta-poky
+> --meta-yocto-bsp
+> --meta-my-layer
+> ---recipes-kernel
+> ----linux
+> -----linux-yocto
+> ------my-patch.patch
+> -----linux-yocto_4%.bbappend
+> ---conf
+> ----layer.conf
+> 
+> Content of the bbappend file:
+> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> 
+> SRC_URI += "file://my-patch.patch"
+> 
+> I enabled my-layer by adding the layer in the build/conf/bblayers.conf 
+> file. I was able to build an image and test my changes with the 
+> hardcoded valued in my patch.
+> 
+> However I want the values to be configurable through kernel 
+> configuration. Since I knew what variables I have introduced, I put them 
+> in a .cfg file with their desired values in the linux-yocto folder.
+> 
+> New project structure:
+> 
+> -poky
+> --meta-my-layer
+> ---recipes-kernel
+> ----linux
+> -----linux-yocto
+> ------my-conf-frag.cfg
+> 
+> (other files and directories are same as before)
+> 
+> Added the following line to the .bbappend file:
+> SRC_URI += "file://my-conf-frag.cfg"
+> 
+> Content of my-conf-frag.cfg:
+> CONFIG_MY_FIRST_VAR="MY-NAME"
+> CONFIG_MY_SECOND_VAR=y
+> 
+> Then I run:
+> bitbake core-image-base
+> 
+> and get the following error:
+> 
+> ERROR: Task 
+> (<work_dir>/poky/meta/recipes-kernel/linux/linux-yocto_4.14.bb:do_compile) 
+> failed with exit code '1'
+> 
+> The kernel isn't being compiled since it does not know what 
+> "CONFIG_MY_FIRST_VAR" is.
+> 
+> I checked for .config files in the build directory and found one in 
+> "poky/build/tmp/work-shared/qemux86/kernel-source/.kernel-meta/cfg/.config" 
+> which contained the two variables I defined in my cfg file. But that 
+> file is a kernel configuration fragment file itself. The final config 
+> file which is used to build the image is located, I believe, in 
+> "poky/build/tmp/work/qemux86-poky-linux/linux-yocto/4.14.67+gitAUTOINC+c43c9e19a2_084af9624d-r0/linux-qemux86-standard-build/.config" 
+> but i do not see the variables there in the final .config file. I was 
+> also able to locate the cfg and the patch file in 
+> "/poky/build/tmp/work/qemux86-poky-linux/linux-yocto/4.14.67+gitAUTOINC+c43c9e19a2_084af9624d-r0/"directory. 
+> Therefore the files are being picked up by the build system but the 
+> fragments are not being applied to make the final .config file used to 
+> build the kernel.
 
-Thanks Armin!  You too!
+Without being able to see the code that defines those CONFIG_
+symbols, I can't say for sure. But if the fragment was located
+and added to the config queue, then the only real way that they
+wouldn't be in the final .config is a missing dependency for the
+option.
 
-On Mon, Nov 19, 2018 at 11:28 AM akuster808 <akuster808@gmail.com> wrote:
+If there's any way that you could make the specific layers available
+to me for a test build, I could offer more specific suggestions.
 
->
->
-> On 11/19/18 10:16 AM, Scott Rifenbark wrote:
->
-> Armin,
->
-> See
-> https://yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#detailed-sup=
-ported-distros
-> and let me know if the patch is good.
->
-> Looks good.
-> Thanks,
-> Have a good Thanksgiving.
-> Armin
->
->
-> Thanks,
-> Scott
->
-> On Sun, Nov 18, 2018 at 6:15 PM Armin Kuster <akuster808@gmail.com> wrote=
-:
->
->> poky.conf
->>     ubuntu-16.04
->>     ubuntu-16.10
->>     ubuntu-17.04
->>     fedora-26
->>     centos-7
->>     debian-8
->>     debian-9
->>     opensuse-42.1
->>     opensuse-42.2
->>
->> Signed-off-by: Armin Kuster <akuster808@gmail.com>
->> ---
->>  documentation/ref-manual/ref-system-requirements.xml | 20
->> ++++++++++++--------
->>  1 file changed, 12 insertions(+), 8 deletions(-)
->>
->> diff --git a/documentation/ref-manual/ref-system-requirements.xml
->> b/documentation/ref-manual/ref-system-requirements.xml
->> index 9298e84..0abc47e 100644
->> --- a/documentation/ref-manual/ref-system-requirements.xml
->> +++ b/documentation/ref-manual/ref-system-requirements.xml
->> @@ -93,19 +93,22 @@
->>                  <listitem><para>Ubuntu 11.10</para></listitem>
->>                  <listitem><para>Ubuntu 12.04 (LTS)</para></listitem>
->>                  <listitem><para>Ubuntu 13.10</para></listitem>
->> -                <listitem><para>Ubuntu 14.04 (LTS)</para></listitem> --=
->
->> +                <listitem><para>Ubuntu 14.04 (LTS)</para></listitem>
->>                  <listitem><para>Ubuntu 14.10</para></listitem>
->>                  <listitem><para>Ubuntu 15.04</para></listitem>
->> -                <listitem><para>Ubuntu 15.10</para></listitem>
->> +                <listitem><para>Ubuntu 15.10</para></listitem> -->
->>                  <listitem><para>Ubuntu 16.04 (LTS)</para></listitem>
->> +                <listitem><para>Ubuntu 16.10 (LTS)</para></listitem>
->> +                <listitem><para>Ubuntu 17.04 </para></listitem>
->>  <!--                <listitem><para>Fedora 16 (Verne)</para></listitem>
->>                  <listitem><para>Fedora 17 (Spherical)</para></listitem>
->>                  <listitem><para>Fedora release 19 (Schr=C3=B6dinger's
->> Cat)</para></listitem>
->> -                <listitem><para>Fedora release 20
->> (Heisenbug)</para></listitem> -->
->> +                <listitem><para>Fedora release 20
->> (Heisenbug)</para></listitem>
->>                  <listitem><para>Fedora release 22</para></listitem>
->>                  <listitem><para>Fedora release 23</para></listitem>
->> -<!--                <listitem><para>Fedora release 24</para></listitem>
->> -                <listitem><para>CentOS release 5.6
->> (Final)</para></listitem>
->> +                <listitem><para>Fedora release 24</para></listitem> -->
->> +                <listitem><para>Fedora release 26</para></listitem>
->> +<!--                <listitem><para>CentOS release 5.6
->> (Final)</para></listitem>
->>                  <listitem><para>CentOS release 5.7
->> (Final)</para></listitem>
->>                  <listitem><para>CentOS release 5.8
->> (Final)</para></listitem>
->>                  <listitem><para>CentOS release 6.3
->> (Final)</para></listitem>
->> @@ -121,13 +124,14 @@
->>                  <listitem><para>Debian GNU/Linux 7.4
->> (Wheezy)</para></listitem>
->>                  <listitem><para>Debian GNU/Linux 7.5
->> (Wheezy)</para></listitem>
->>                  <listitem><para>Debian GNU/Linux 7.6
->> (Wheezy)</para></listitem> -->
->> -<!--                <listitem><para>openSUSE 11.4</para></listitem>
->> +<!--                <listitem><para>openSUSE 11.4</para></listitem>
->>                  <listitem><para>openSUSE 12.1</para></listitem>
->>                  <listitem><para>openSUSE 12.2</para></listitem>
->>                  <listitem><para>openSUSE 12.3</para></listitem>
->> -                <listitem><para>openSUSE 13.1</para></listitem> -->
->> -                <listitem><para>openSUSE 13.2</para></listitem>
->> +                <listitem><para>openSUSE 13.1</para></listitem>
->> +                <listitem><para>openSUSE 13.2</para></listitem> -->
->>                  <listitem><para>openSUSE 42.1</para></listitem>
->> +                <listitem><para>openSUSE 42.2</para></listitem>
->>              </itemizedlist>
->>          </para>
->>
->> --
->> 2.7.4
->>
->>
->
+Bruce
 
---000000000000093b3e057b098b59
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> 
+> I went through yocto mailing list for similar problems and followed the 
+> steps provided with no success. I also went through yocto's mega-manual 
+> and kernel development manual as well as the yocto-lab pdfs and followed 
+> all the different steps but i always get the compilation error.
+> 
+> Can someone please help me. Thanks in advance!
+> 
+> Sakib Sajal
+> 
+> 
 
-<div dir=3D"ltr">Thanks Armin!=C2=A0 You too!<br></div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr">On Mon, Nov 19, 2018 at 11:28 AM akuster808 &lt=
-;<a href=3D"mailto:akuster808@gmail.com">akuster808@gmail.com</a>&gt; wrote=
-:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bor=
-der-left:1px #ccc solid;padding-left:1ex">
- =20
-   =20
- =20
-  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <br>
-    <br>
-    <div class=3D"m_7947345415988122091moz-cite-prefix">On 11/19/18 10:16 A=
-M, Scott Rifenbark
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">
-          <div>Armin, <br>
-          </div>
-          <div><br>
-          </div>
-          <div>See <a href=3D"https://yoctoproject.org/docs/2.6/ref-manual/=
-ref-manual.html#detailed-supported-distros" target=3D"_blank">https://yocto=
-project.org/docs/2.6/ref-manual/ref-manual.html#detailed-supported-distros<=
-/a>
-            and let me know if the patch is good.</div>
-        </div>
-      </div>
-    </blockquote>
-    Looks good.<br>
-    Thanks, <br>
-    Have a good Thanksgiving.<br>
-    Armin<br>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">
-          <div><br>
-          </div>
-          <div>Thanks, <br>
-          </div>
-          <div>Scott<br>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr">On Sun, Nov 18, 2018 at 6:15 PM Armin Kuster &lt;<=
-a href=3D"mailto:akuster808@gmail.com" target=3D"_blank">akuster808@gmail.c=
-om</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
--left:1px #ccc solid;padding-left:1ex">poky.conf<br>
-          =C2=A0 =C2=A0 ubuntu-16.04<br>
-          =C2=A0 =C2=A0 ubuntu-16.10<br>
-          =C2=A0 =C2=A0 ubuntu-17.04<br>
-          =C2=A0 =C2=A0 fedora-26<br>
-          =C2=A0 =C2=A0 centos-7<br>
-          =C2=A0 =C2=A0 debian-8<br>
-          =C2=A0 =C2=A0 debian-9<br>
-          =C2=A0 =C2=A0 opensuse-42.1<br>
-          =C2=A0 =C2=A0 opensuse-42.2<br>
-          <br>
-          Signed-off-by: Armin Kuster &lt;<a href=3D"mailto:akuster808@gmai=
-l.com" target=3D"_blank">akuster808@gmail.com</a>&gt;<br>
-          ---<br>
-          =C2=A0documentation/ref-manual/ref-system-requirements.xml | 20
-          ++++++++++++--------<br>
-          =C2=A01 file changed, 12 insertions(+), 8 deletions(-)<br>
-          <br>
-          diff --git
-          a/documentation/ref-manual/ref-system-requirements.xml
-          b/documentation/ref-manual/ref-system-requirements.xml<br>
-          index 9298e84..0abc47e 100644<br>
-          --- a/documentation/ref-manual/ref-system-requirements.xml<br>
-          +++ b/documentation/ref-manual/ref-system-requirements.xml<br>
-          @@ -93,19 +93,22 @@<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Ubuntu
-          11.10&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Ubuntu 12.04
-          (LTS)&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Ubuntu
-          13.10&lt;/para&gt;&lt;/listitem&gt;<br>
-          -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;Ubuntu 14.04
-          (LTS)&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
-          +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;Ubuntu 14.04
-          (LTS)&lt;/para&gt;&lt;/listitem&gt; <br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Ubuntu
-          14.10&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Ubuntu
-          15.04&lt;/para&gt;&lt;/listitem&gt;<br>
-          -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;Ubuntu
-          15.10&lt;/para&gt;&lt;/listitem&gt;<br>
-          +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;Ubuntu
-          15.10&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Ubuntu 16.04
-          (LTS)&lt;/para&gt;&lt;/listitem&gt;<br>
-          +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;Ubuntu 16.10
-          (LTS)&lt;/para&gt;&lt;/listitem&gt;<br>
-          +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;Ubuntu 17.04
-          &lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 &lt;listitem&gt;&lt;para&gt;Fedora 16
-          (Verne)&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Fedora 17
-          (Spherical)&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Fedora release 19
-          (Schr=C3=B6dinger&#39;s Cat)&lt;/para&gt;&lt;/listitem&gt;<br>
-          -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;Fedora release 20
-          (Heisenbug)&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
-          +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;Fedora release 20
-          (Heisenbug)&lt;/para&gt;&lt;/listitem&gt; <br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Fedora release
-          22&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Fedora release
-          23&lt;/para&gt;&lt;/listitem&gt;<br>
-          -&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &=
-lt;listitem&gt;&lt;para&gt;Fedora
-          release 24&lt;/para&gt;&lt;/listitem&gt;<br>
-          -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;CentOS release
-          5.6 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
-          +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;Fedora release
-          24&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
-          +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;Fedora release
-          26&lt;/para&gt;&lt;/listitem&gt;<br>
-          +&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &=
-lt;listitem&gt;&lt;para&gt;CentOS
-          release 5.6 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;CentOS release
-          5.7 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;CentOS release
-          5.8 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;CentOS release
-          6.3 (Final)&lt;/para&gt;&lt;/listitem&gt;<br>
-          @@ -121,13 +124,14 @@<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Debian GNU/Linux
-          7.4 (Wheezy)&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Debian GNU/Linux
-          7.5 (Wheezy)&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;Debian GNU/Linux
-          7.6 (Wheezy)&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
-          -&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &=
-lt;listitem&gt;&lt;para&gt;openSUSE
-          11.4&lt;/para&gt;&lt;/listitem&gt;<br>
-          +&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &=
-lt;listitem&gt;&lt;para&gt;openSUSE
-          11.4&lt;/para&gt;&lt;/listitem&gt; <br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;openSUSE
-          12.1&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;openSUSE
-          12.2&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;openSUSE
-          12.3&lt;/para&gt;&lt;/listitem&gt;<br>
-          -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;openSUSE
-          13.1&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
-          -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;openSUSE
-          13.2&lt;/para&gt;&lt;/listitem&gt;<br>
-          +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;openSUSE
-          13.1&lt;/para&gt;&lt;/listitem&gt; <br>
-          +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;openSUSE
-          13.2&lt;/para&gt;&lt;/listitem&gt; --&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt=
-;listitem&gt;&lt;para&gt;openSUSE
-          42.1&lt;/para&gt;&lt;/listitem&gt;<br>
-          +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;list=
-item&gt;&lt;para&gt;openSUSE
-          42.2&lt;/para&gt;&lt;/listitem&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/itemizedlist=
-&gt;<br>
-          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;<br>
-          <br>
-          -- <br>
-          2.7.4<br>
-          <br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </div>
 
-</blockquote></div>
-
---000000000000093b3e057b098b59--
