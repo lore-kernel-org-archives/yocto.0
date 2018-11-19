@@ -1,61 +1,56 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56350E00C1C; Mon, 19 Nov 2018 08:29:14 -0800 (PST)
+	id 2514CE00C3C; Mon, 19 Nov 2018 08:43:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.46 listed in list.dnswl.org]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.55.52.151 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com
-	[209.85.222.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC861E00BBD
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 08:29:12 -0800 (PST)
-Received: by mail-ua1-f46.google.com with SMTP id z23so10682237uam.1
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 08:29:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=I2bg5R1uDYtP0Zb/uzD62zTaDj53/sblRHUCK3t/BD0=;
-	b=XxRSc0idRcvOg48Dl7rdkxc0cufojBTaOeKhVgZxbpSDQqDK+t/CXjf9R1x6Je6rqJ
-	OomM/j5hDR59BpgN/6XN4CilDZCBlPsdMGtnuokja6QunwYP9y9cEZDe8DAH7w9pEUfx
-	j0fkO7Lko23kZ7fczoqokwwTxtegZnrsQJEWdF1iFPz6+1ws3HuEeHK7PWV3yafnhCtK
-	5mQmr79veiUR1GXLF7cviJhx5x3PJIUvULCkv2CyOaJ8ssmHREMVEaAhqfb2JvdcilnF
-	6dp9/Ke1M51tDgO3VSfwNafRnJLutgpCzfgrxp5fzTUYjNhIoRNWB4t9JSScMlKOS3gB
-	cHDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=I2bg5R1uDYtP0Zb/uzD62zTaDj53/sblRHUCK3t/BD0=;
-	b=HP2z7NbpwdGPsuIizVZmUlcOWew8l+kr/mOZvufM3qJn6VvUMx8b408jnVXR9oV4Fh
-	Xx1+i7T2ikNbBCSc9HRANPwEDTyCoNvyExenW9arNyhIjywN3xv2Ra3QgVGXUk2VMJQc
-	t6+utTtmeAIg5PHL63WawHdJz0PEZRwe2gHk5PusyvK7SXaRJu3HmnP5xUMf6OjR5VyU
-	s3flK0pNHpWHn/ige0Z7co6olN6AB6rjQbar/ensDRjo8E7xJMibsd/IWQFLV409Ff98
-	EfxQXSR3MCLpT6+g9nRz7lWjcmLSEIw0Dy3CJ9yigW8zkvu6WKJXLN2dIxbMt1Ov6NKC
-	F5NQ==
-X-Gm-Message-State: AGRZ1gJZjD58ItVO1mI9+KhI+B2LTJfXYrRxjP28yYjl2ylcv1kAj6am
-	QBOosOPS3a0i81yuR85NFzwvZ+RIihbFkYs6B0gxIg==
-X-Google-Smtp-Source: AJdET5cPPE1mPar1qrcZq5I9VmPV8kHjzgkRI8nmXxGttxdzumOuMOxxGZsqnZA7LbZiM0DHOUZJlDgrQZbzskCxRa4=
-X-Received: by 2002:ab0:1058:: with SMTP id g24mr9746408uab.58.1542644951705; 
-	Mon, 19 Nov 2018 08:29:11 -0800 (PST)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A20F1E00C09
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 08:43:06 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	19 Nov 2018 08:43:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.56,253,1539673200"; 
+	d="scan'208,217";a="101488729"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by orsmga003.jf.intel.com with ESMTP; 19 Nov 2018 08:43:05 -0800
+Received: from fmsmsx112.amr.corp.intel.com (10.18.116.6) by
+	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
+	(TLS) id 14.3.408.0; Mon, 19 Nov 2018 08:43:05 -0800
+Received: from fmsmsx124.amr.corp.intel.com ([169.254.8.91]) by
+	FMSMSX112.amr.corp.intel.com ([169.254.5.114]) with mapi id
+	14.03.0415.000; Mon, 19 Nov 2018 08:43:04 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: Yocto Project Unassigned Bugs - Help Needed
+Thread-Index: AdRUG3den5c8kH6JR5OKxqhg9AfC3w==
+Date: Mon, 19 Nov 2018 16:43:04 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECFD44AA6@fmsmsx124.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.106]
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNmNlNDYxYTEtMTdmZC00OGVhLTk3MDgtNTk1OTY4OGJkM2M0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTDVVbFNtUVFKNGJheHBqZGk0T0ViMUpRdm5wSkxGRmNZXC9GYWtSc1FcL1dKUlM4QkM4WGlyZWk0ZlJINmhcL1RRWCJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
 MIME-Version: 1.0
-References: <1542381485-27805-1-git-send-email-fabien.lahoudere@collabora.com>
-In-Reply-To: <1542381485-27805-1-git-send-email-fabien.lahoudere@collabora.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Mon, 19 Nov 2018 18:27:41 +0200
-Message-ID: <CAK18fxH=1gBvoTD3fA6B3Z0=cX_43ycMZNUHzQomoN8Z8VYFbg@mail.gmail.com>
-To: fabien.lahoudere@collabora.com
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] CAN: Add Pican2 support
+Subject: Yocto Project Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,58 +62,217 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2018 16:29:14 -0000
-Content-Type: multipart/alternative; boundary="0000000000005c81e8057b070439"
+X-List-Received-Date: Mon, 19 Nov 2018 16:43:09 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD44AA6fmsmsx124amrcor_"
 
---0000000000005c81e8057b070439
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Fabien,
-
-On Fri, Nov 16, 2018 at 5:29 PM Fabien Lahoudere <
-fabien.lahoudere@collabora.com> wrote:
-
-> In order to make Pican 2 work, we :
-> - add mcp2515.dto to the overlay list
-> - add a variable to enable it in local.conf
-> - create a udev rule to mount interface
->
-
->
-> http://skpang.co.uk/catalog/pican2-canbus-board-for-raspberry-pi-23-p-1475.html
->
-> Signed-off-by: Fabien Lahoudere <fabien.lahoudere@collabora.com>
->
-
-Could you please submit this PR in github? Check the readme for more
-information.
---
-Andrei Gherzan
-
---0000000000005c81e8057b070439
-Content-Type: text/html; charset="UTF-8"
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD44AA6fmsmsx124amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Fabien,<br><div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr">On Fri, Nov 16, 2018 at 5:29 PM Fabien Lahoudere &lt;<a href=3D"ma=
-ilto:fabien.lahoudere@collabora.com">fabien.lahoudere@collabora.com</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
-ex;border-left:1px #ccc solid;padding-left:1ex">In order to make Pican 2 wo=
-rk, we :<br>
-- add mcp2515.dto to the overlay list<br>
-- add a variable to enable it in local.conf<br>
-- create a udev rule to mount interface <br></blockquote><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex">
-<br>
-<a href=3D"http://skpang.co.uk/catalog/pican2-canbus-board-for-raspberry-pi=
--23-p-1475.html" rel=3D"noreferrer" target=3D"_blank">http://skpang.co.uk/c=
-atalog/pican2-canbus-board-for-raspberry-pi-23-p-1475.html</a><br>
-<br>
-Signed-off-by: Fabien Lahoudere &lt;<a href=3D"mailto:fabien.lahoudere@coll=
-abora.com" target=3D"_blank">fabien.lahoudere@collabora.com</a>&gt;<br></bl=
-ockquote><div><div><br></div><div>Could you please submit this PR in github=
-? Check the readme for more information.<br></div><div><div>--</div>Andrei =
-Gherzan</div></div><br></div></div></div>
+All,
 
---0000000000005c81e8057b070439--
+
+
+The triage team meets weekly and does its best to handle the bugs reported =
+into the bugzilla. The number of people attending that meeting has fallen, =
+as have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage team) a=
+re therefore going to start reporting out the currently 297 unassigned bugs=
+.
+
+
+
+We're hoping people may be able to spare some time now and again to help ou=
+t with these.
+
+
+
+Bugs are split into two types, "true bugs" where things don't work as they =
+should and "enhancements" which are features we'd want to add to the system=
+.
+
+
+
+There are also roughly four different "priority" classes right now, "2.7", =
+"2.8", "2.99" and "Future", the more pressing/urgent issues being in "2.7" =
+and then "2.8".
+
+
+
+Please review this link and if a bug is something you would be able to help=
+ with either take ownership of the bug, or send me (Stephen.k.jolley@intel.=
+com<mailto:Stephen.k.jolley@intel.com>) an e-mail with the bug number you w=
+ould like and I will assign it to you (please make sure you have a bugzilla=
+ account).
+
+
+
+The list is at: https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bu=
+gs
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*    Cell:                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD44AA6fmsmsx124amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:2 11 5 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle19
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoPlainText">All,<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The triage team meets weekly and does its best to=
+ handle the bugs reported into the bugzilla. The number of people attending=
+ that meeting has fallen, as have the number of people available to help fi=
+x bugs. One of the things we hear
+ users report is they don't know how to help. We (the triage team) are ther=
+efore going to start reporting out the currently 297 unassigned bugs.<o:p><=
+/o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">We're hoping people may be able to spare some tim=
+e now and again to help out with these.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Bugs are split into two types, &quot;true bugs&qu=
+ot; where things don't work as they should and &quot;enhancements&quot; whi=
+ch are features we'd want to add to the system.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">There are also roughly four different &quot;prior=
+ity&quot; classes right now, &#8220;2.7&#8221;, &#8220;2.8&#8221;, &quot;2.=
+99&quot; and &quot;Future&quot;, the more pressing/urgent issues being in &=
+quot;2.7&quot; and then &#8220;2.8&#8221;.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Please review this link and if a bug is something=
+ you would be able to help with either take ownership of the bug, or send m=
+e (<a href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com=
+</a>) an e-mail with the bug number
+ you would like and I will assign it to you (please make sure you have a bu=
+gzilla account).<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The list is at: <a href=3D"https://wiki.yoctoproj=
+ect.org/wiki/Bug_Triage#Unassigned_Bugs">
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
+></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD44AA6fmsmsx124amrcor_--
