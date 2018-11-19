@@ -1,61 +1,40 @@
-Return-Path: <bhuvaneswarik1991@gmail.com>
+Return-Path: <bas@basmevissen.nl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 896E1E00C1C; Mon, 19 Nov 2018 04:20:54 -0800 (PST)
+	id 6A1A1E00C3B; Mon, 19 Nov 2018 02:50:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (bhuvaneswarik1991[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.49 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com
-	[209.85.166.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27B0EE0050E
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 04:20:54 -0800 (PST)
-Received: by mail-io1-f49.google.com with SMTP id f12-v6so22085323iog.0
-	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 04:20:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=wo2wCePGExDkjt9MYxDyAIXTbqNiw/n0zpQ3dTY1Xt4=;
-	b=L/Z/ZiLXT+IppXcNATRJHLZqZKqT87hLcPY9EHvoyPblUEcjOVw+7z19MYDiQMXgMF
-	7l2ZcyQ0RowOVBtzv5mYkrzT0P8bF1sp/8fCeC+u1dZB9d6dSGk5iiYiRgDrqC9gmf9e
-	65FOjYcRopDbTIn2BeyI+01ZLbk62ENYWZDy50VHFEVvtO8CheiuTWnzIuWUWeJIA10K
-	0TqHpjlYFT1QCrcVZCUueX3Lvu2KUyobeMed+kddMJN58HpxDyU7mVFbeY7vjW+JVWZn
-	C96nybsp5JJiLf51b87PVld3oznkl1JWvpmXnf8FEHjGymBj+G647Kz8b0X/b/yKiYR0
-	xbpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=wo2wCePGExDkjt9MYxDyAIXTbqNiw/n0zpQ3dTY1Xt4=;
-	b=DdhmcbL1mz0NbsA8uYYTmMRH8FNlT6nwChgjjk4UVqiHYL9RnA2iMf3b2CcBcwN1LS
-	QxSncKSmVkPgJYPU6WgIkUXM10KEgvOVaLlILV/Pu+nw2gAQ2w7b2fOeVAqPigZI6Ppz
-	xw1kSwKb2V/nvzczhL/2lPDXdhzdUJQ9OJmDqgvqXkQ+SvWIEtfr8b2kgjiAAQcIfPy0
-	fo2V7s+kJXolOZ1MsU+TQrnMpPbxQHII6bdzmTcB5SM6GnbBXQm+NeUS2sDuxVqZpEcD
-	8GAltRPhhoECOqZi//WT1MjlVq6vAISSU9nGQssW4SzUmdm1Y4x5R+romjc80p0w13zA
-	LR8A==
-X-Gm-Message-State: AA+aEWYzhFvviZlQzvzbIJBL9lW5Lf5tI9c0MPG2AySmEA4hl2J1kzUd
-	WQzd8aSl5WCi1uJiZR6C535lD5ecLA0UPTUhroRS6w==
-X-Google-Smtp-Source: AFSGD/WJC3FpgXgTrBgy61l/h9kdYhEwEHM/1pHyZB0Evpscer3Lda1WgVNTz3S7qFFP4Ljqv/H6hAw/K/rp8NLrE3k=
-X-Received: by 2002:a5e:c24a:: with SMTP id w10mr601859iop.178.1542630053214; 
-	Mon, 19 Nov 2018 04:20:53 -0800 (PST)
+X-Greylist: delayed 353 seconds by postgrey-1.32 at yocto-www;
+	Mon, 19 Nov 2018 02:50:18 PST
+Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFCFCE00872
+	for <yocto@yoctoproject.org>; Mon, 19 Nov 2018 02:50:18 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by hosting.emcodev.net (Postfix) with ESMTP id 861AE12AE02;
+	Mon, 19 Nov 2018 11:44:24 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at hosting.emcodev.net
+Received: from hosting.emcodev.net ([127.0.0.1])
+	by localhost (hosting.emcodev.net [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id nGgcXAWjgsV1; Mon, 19 Nov 2018 11:44:23 +0100 (CET)
+Received: from emcodev.nl (localhost [127.0.0.1])
+	by hosting.emcodev.net (Postfix) with ESMTP id B01F712B9BF;
+	Mon, 19 Nov 2018 11:44:23 +0100 (CET)
 MIME-Version: 1.0
-From: bhuvana easwari <bhuvaneswarik1991@gmail.com>
-Date: Mon, 19 Nov 2018 17:50:42 +0530
-Message-ID: <CAKYRCLS7ty16S1V2=TxnB-zsRMpxmXKMmf4iZJc-p2oWbDm6mA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Need Support- Variable exporting
+Date: Mon, 19 Nov 2018 11:44:23 +0100
+From: Bas Mevissen <bas@basmevissen.nl>
+To: Armin Kuster <akuster808@gmail.com>
+In-Reply-To: <1542596900-12856-1-git-send-email-akuster808@gmail.com>
+References: <1542596900-12856-1-git-send-email-akuster808@gmail.com>
+Message-ID: <713febab94e0f1a734160f063c840826@basmevissen.nl>
+X-Sender: bas@basmevissen.nl
+User-Agent: Roundcube Webmail/1.3.7
+X-Mailman-Approved-At: Mon, 19 Nov 2018 05:39:16 -0800
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto-docs][thud][v2][PATCH] ref-system-requirements: sync with thud poky.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,46 +46,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2018 12:20:54 -0000
-Content-Type: multipart/alternative; boundary="000000000000577e0c057b038c84"
-
---000000000000577e0c057b038c84
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-
-I need support on the below issue.
-
-1) Actually we are trying to build two machine from one meta-layer based on
-some choice.
-2) Both devices having different configuration files.
-3) Now we have to export a variable from machine configuration conf file to
-layer.conf
-4) Based on the exported variable value,we are choosing device specific
-conf file.
-
-Can you please give some input on this
-
-Regards,
-Bhuvaneswari K
-
---000000000000577e0c057b038c84
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Mon, 19 Nov 2018 10:50:20 -0000
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto"><span style=3D"font-family:sans-serif;font-size:12.8px">H=
-i,</span><div dir=3D"auto" style=3D"font-family:sans-serif;font-size:12.8px=
-"><br></div><div dir=3D"auto" style=3D"font-family:sans-serif;font-size:12.=
-8px">I need support on the below issue.</div><div dir=3D"auto" style=3D"fon=
-t-family:sans-serif;font-size:12.8px"><br></div><div dir=3D"auto" style=3D"=
-font-family:sans-serif;font-size:12.8px"><div dir=3D"auto">1) Actually we a=
-re trying to build two machine from one meta-layer based on some choice.</d=
-iv><div dir=3D"auto">2) Both devices having different configuration files.<=
-/div><div dir=3D"auto">3) Now we have to export a variable from machine con=
-figuration conf file to layer.conf</div><div dir=3D"auto">4) Based on the e=
-xported variable value,we are choosing device specific conf file.</div><div=
- dir=3D"auto"><br></div><div dir=3D"auto">Can you please give some input on=
- this</div><div dir=3D"auto"><br></div><div dir=3D"auto">Regards,</div><div=
- dir=3D"auto">Bhuvaneswari K</div></div></div>
+On 2018-11-19 04:08, Armin Kuster wrote:
+> poky.conf
+>     ubuntu-16.04
+>     ubuntu-16.10
+>     ubuntu-17.04
+>     fedora-26
 
---000000000000577e0c057b038c84--
+Support for Fedora 26 has ended. I've been using Fedora 27 and 28 for=20
+Sumo and they are fine for me. I can do some tests on Thud. However, I=20
+cannot do the full 2TB tests that are suggested at=20
+https://wiki.yoctoproject.org/wiki/Distribution_Support and=20
+https://wiki.yoctoproject.org/wiki/Distro_Testing_Plan
+
+-- Bas.
+
+>     centos-7
+>     debian-8
+>     debian-9
+>     opensuse-42.1
+>     opensuse-42.2
+>=20
+> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+>=20
+> --
+> [v2]
+> Drop LTS for ubuntu-16.10
+> ---
+>  documentation/ref-manual/ref-system-requirements.xml | 20=20
+> ++++++++++++--------
+>  1 file changed, 12 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/documentation/ref-manual/ref-system-requirements.xml
+> b/documentation/ref-manual/ref-system-requirements.xml
+> index 9298e84..6795a69 100644
+> --- a/documentation/ref-manual/ref-system-requirements.xml
+> +++ b/documentation/ref-manual/ref-system-requirements.xml
+> @@ -93,19 +93,22 @@
+>                  <listitem><para>Ubuntu 11.10</para></listitem>
+>                  <listitem><para>Ubuntu 12.04 (LTS)</para></listitem>
+>                  <listitem><para>Ubuntu 13.10</para></listitem>
+> -                <listitem><para>Ubuntu 14.04 (LTS)</para></listitem>=20
+> -->
+> +                <listitem><para>Ubuntu 14.04 (LTS)</para></listitem>
+>                  <listitem><para>Ubuntu 14.10</para></listitem>
+>                  <listitem><para>Ubuntu 15.04</para></listitem>
+> -                <listitem><para>Ubuntu 15.10</para></listitem>
+> +                <listitem><para>Ubuntu 15.10</para></listitem> -->
+>                  <listitem><para>Ubuntu 16.04 (LTS)</para></listitem>
+> +                <listitem><para>Ubuntu 16.10 </para></listitem>
+> +                <listitem><para>Ubuntu 17.04 </para></listitem>
+>  <!--                <listitem><para>Fedora 16=20
+> (Verne)</para></listitem>
+>                  <listitem><para>Fedora 17=20
+> (Spherical)</para></listitem>
+>                  <listitem><para>Fedora release 19 (Schr=C3=B6dinger's
+> Cat)</para></listitem>
+> -                <listitem><para>Fedora release 20
+> (Heisenbug)</para></listitem> -->
+> +                <listitem><para>Fedora release 20
+> (Heisenbug)</para></listitem>
+>                  <listitem><para>Fedora release 22</para></listitem>
+>                  <listitem><para>Fedora release 23</para></listitem>
+> -<!--                <listitem><para>Fedora release=20
+> 24</para></listitem>
+> -                <listitem><para>CentOS release 5.6=20
+> (Final)</para></listitem>
+> +                <listitem><para>Fedora release 24</para></listitem>=20
+> -->
+> +                <listitem><para>Fedora release 26</para></listitem>
+> +<!--                <listitem><para>CentOS release 5.6
+> (Final)</para></listitem>
+>                  <listitem><para>CentOS release 5.7=20
+> (Final)</para></listitem>
+>                  <listitem><para>CentOS release 5.8=20
+> (Final)</para></listitem>
+>                  <listitem><para>CentOS release 6.3=20
+> (Final)</para></listitem>
+> @@ -121,13 +124,14 @@
+>                  <listitem><para>Debian GNU/Linux 7.4=20
+> (Wheezy)</para></listitem>
+>                  <listitem><para>Debian GNU/Linux 7.5=20
+> (Wheezy)</para></listitem>
+>                  <listitem><para>Debian GNU/Linux 7.6
+> (Wheezy)</para></listitem> -->
+> -<!--                <listitem><para>openSUSE 11.4</para></listitem>
+> +<!--                <listitem><para>openSUSE 11.4</para></listitem>
+>                  <listitem><para>openSUSE 12.1</para></listitem>
+>                  <listitem><para>openSUSE 12.2</para></listitem>
+>                  <listitem><para>openSUSE 12.3</para></listitem>
+> -                <listitem><para>openSUSE 13.1</para></listitem> -->
+> -                <listitem><para>openSUSE 13.2</para></listitem>
+> +                <listitem><para>openSUSE 13.1</para></listitem>
+> +                <listitem><para>openSUSE 13.2</para></listitem> -->
+>                  <listitem><para>openSUSE 42.1</para></listitem>
+> +                <listitem><para>openSUSE 42.2</para></listitem>
+>              </itemizedlist>
+>          </para>
+>=20
+> --
+> 2.7.4
+
+--=20
+Bas.
+
