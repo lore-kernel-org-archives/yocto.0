@@ -1,65 +1,63 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <dhkoshtidheeraj@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E497E00AD8; Mon, 26 Nov 2018 03:59:12 -0800 (PST)
+	id 16908E00C87; Wed, 21 Nov 2018 04:11:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marek.belisko[at]gmail.com)
+	provider *      (dhkoshtidheeraj[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.45 listed in list.dnswl.org]
+	*      [209.85.166.176 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
-	[209.85.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53F1FE009AA
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 03:59:11 -0800 (PST)
-Received: by mail-wm1-f45.google.com with SMTP id z18so3247692wmc.4
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 03:59:11 -0800 (PST)
+Received: from mail-it1-f176.google.com (mail-it1-f176.google.com
+	[209.85.166.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A18B5E00C71
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 04:11:13 -0800 (PST)
+Received: by mail-it1-f176.google.com with SMTP id m15so8474833itl.4
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 04:11:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=kFnGF6pcgu1FbggDJ7L8+uTftFBF6o6iM+H2zeCx57M=;
-	b=l4LfIbjHH5A3mGuL31TlXpQlgCsnNgRiSzLs590/UeSS5C2JZzRZEcyA/ctVqI6KYO
-	3K9D3Q10fx1542HjYW3z7ZTnuXsBfsDg0MYmCf2Rh5knVlCmD8Q1t9lR51VD6UkwUtzI
-	axkq0UwE4x/ZRWyqa2fz+iSnC4cefS6scIrWPpOX8Aru3gE0qd9G2o/Z82T/VC5C0tDc
-	HNPN2xrBaMqAueVWiAjhRw+JdaiXgC+DcpGw8iW2BHdO/6Mss67KGnA6CRscB6tQc2mK
-	IVcfebKnyorU2rxyvwbWaig98XIiBPZ2Ekh3PSbimiHAjZcu7SVnY1IJH2RiwvxFFpC5
-	KYJA==
+	h=mime-version:from:date:message-id:subject:to:cc;
+	bh=WxHjiorLpkfup8DtCZhTTKs+BM6yVofZZfMHH01Z/wQ=;
+	b=u0iFNqTYoloXppOrLhDqKlN93yTmn1o5ThqLsjaiJMalgL1fg3J2myRtBXzE9NI5ad
+	IYV0QCuoblj62tYsLr1LDfCv6/xyso9rOiM67wOdAuT1MRyxwyBZLb0oXwtTJLn3IIZ/
+	EeGxxTraVzK6xK5T0FU99l8en3aBUxy3VCxCghRKCJchhpJT/NXkoe5J3Q8eGMk0iOrU
+	ai0Vm2rYx76I0DiFwo/FceVcpUcg0kIMZKmEuRZreqiYmib5E2a1u+zdr+loV4FYUQvc
+	c1jqsn3TYwwKWUPLr2PBWGivbQWxODGctBAw2b4Rb4cgtGuE/jDPk76T1JPbLtJs81zo
+	u/QA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=kFnGF6pcgu1FbggDJ7L8+uTftFBF6o6iM+H2zeCx57M=;
-	b=PD6ddk/xbOFqEDlUcsyAPYfxf6nknej9vxXrzWIZgVti/lnTcAe9MngBuFK6OzN1AO
-	qJLjUduRjY36qsg6hNrcvK5Kb7/q2bRfJONvAAhDYxPwKCpPL+lxuDTxONFALFVc8NIQ
-	nfdMQ8XKQcWYdZAELtotBkGWSvwHOKV86a29i62YblrvukxW9k1rrANmkZTV7ml3TZk/
-	pkTpCQlTXwvG5vFova4qQnMO78/ASfa9bDOUD6hXREKOtIXKDRfNTP/1rZofG1mXiMO/
-	7naFjKf/M8rMiViagDqUM5MUdXzf9LeWV+vNXlGRb+ZTr+JpJbeIHhGjkeXpjvN0onHX
-	sjVg==
-X-Gm-Message-State: AA+aEWY4mg/RXkACuyacUl8NhAuh2oJxNERrjQwocIDUjyxguCjco5p6
-	OcADQ+g4syqx9kwCltAgRt1hifRzUufN26Ylnco=
-X-Google-Smtp-Source: AFSGD/VqB/CK2ppv3NRC6RsdsUWfq5/2aRw3NT9LJ5q8XWZMVi4TvC8rViz043q0qLiDlzyeePYviBFT9Y7XHNDJ4ow=
-X-Received: by 2002:a1c:95c9:: with SMTP id x192mr8167218wmd.45.1543233550460; 
-	Mon, 26 Nov 2018 03:59:10 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+	bh=WxHjiorLpkfup8DtCZhTTKs+BM6yVofZZfMHH01Z/wQ=;
+	b=c0r0LgbEO9txft3MEdyhqAIj2Mn6mp3JXppXG+4VKje1Frdn7XJdX2HvEhi7KJSx8b
+	50FtxKSzwHsxcUEBfaV9QW+aFUMtJZjs6fSscZlmoM3kE3nisbVnfyotz3CYaS9oxRPl
+	63apwRM8FA0E+RZHHJ7meKhYRWC5pocW+n4cxI/6cMp2P37wDCAw8LzRQx7O3P5vLuF9
+	t1Qz7yIPiyMI47BwWJYx+Zx4PfM4fHOjlhmmKyA2c42X/Dr13z7rFabSu1apMyccEG1r
+	W6c5zsAfuOU3dXyIfBvgqF76PVg2aRzVFXzhHJ+ys08XCN73ZJ2glcyCLa0qVLvraFvv
+	griw==
+X-Gm-Message-State: AA+aEWZfyCnYUcmVzFi+xVY/6TUaPQOPL2YrVTaefNXyVamxLWKvdTTx
+	jPQCY7TvQ9tuSCaaBZFIfrwWh9h9bdCe0YFkp8muAL80
+X-Google-Smtp-Source: AFSGD/WI8NcB50nj+0u6e1+WCQwo3Q5wz2VsBek570tTbvVG6J+SQNZFsyfVPYT6ZiplCll6S7Ov7iCFOyCTPZEMQ2c=
+X-Received: by 2002:a24:eb0b:: with SMTP id h11mr5530697itj.138.1542802272805; 
+	Wed, 21 Nov 2018 04:11:12 -0800 (PST)
 MIME-Version: 1.0
-References: <CABj1EzHdrsR71h4UGCg2P0EutEhw8TkZL=oZjEUzZazsj51qCg@mail.gmail.com>
-In-Reply-To: <CABj1EzHdrsR71h4UGCg2P0EutEhw8TkZL=oZjEUzZazsj51qCg@mail.gmail.com>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Mon, 26 Nov 2018 12:58:58 +0100
-Message-ID: <CAAfyv37y3WQ7Seqorho7a8r6vxS5f2MNMD+=dF62TwEHMKOAeA@mail.gmail.com>
-To: donal.morrissey@gmail.com
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: Date/Time Update Without NTP
+From: Dheeraj koshti <dhkoshtidheeraj@gmail.com>
+Date: Wed, 21 Nov 2018 17:41:01 +0530
+Message-ID: <CAH9kmbeOS7eDDJAA631FiR-7h-cdOB0nu2iFpDy=smmq-Wdy5w@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Mon, 26 Nov 2018 08:06:43 -0800
+Cc: dh ko <dhkoshtidheeraj@gmail.com>
+Subject: Not able to access static port.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,37 +69,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Nov 2018 11:59:12 -0000
+X-List-Received-Date: Wed, 21 Nov 2018 12:11:14 -0000
+Content-Type: multipart/alternative; boundary="0000000000006dedd4057b2ba50a"
+
+--0000000000006dedd4057b2ba50a
 Content-Type: text/plain; charset="UTF-8"
+
+Hi All,
+
+I have one firmware [Reliagate 10-11] which has 'Yocto' running inside it.
+
+It's 'eth0' port was having static IP 172.16.0.1 which was used to open
+it's admin portal.
+
+By mistake I made 'eth0' port DHCP and I am not able to open admin portal
+since then.
+
+I modified '/etc/network/interfaces' file for 'eth0' a below.
+auto eth0
+iface eth0 inet static
+address 172.16.0.1
+netmask 255.255.255.0
+
+Still I am not able to ping the 172.16.0.1 IP.
+Please advise me how should I proceed.
+
+Thank you,
+Dheeraj Koshti
+
+--0000000000006dedd4057b2ba50a
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 26, 2018 at 12:57 PM Donal Morrissey
-<donal.morrissey@gmail.com> wrote:
->
-> Hi There,
->
-> I'm using yocto sumo with systemd, and have an issue where I can't identi=
-fy which service is grabbing time from the ethernet based network.
->
-> If I start the unit without a network connection, the time is reported as=
- EPOC. As soon as I connect the network, the date/time is updated. However,=
- there isn't anything in the logs that I can see which tells details of the=
- service which has updated time. Also, the ntpd binary is not installed.
->
-> Is there a time service, other than NTP, which would typically be enabled=
- on Yocto builds?
-it should be probably systemd-timesyncd service (check if it's running)
->
-> Cheers,
-> Donal
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+<div dir=3D"ltr"><div dir=3D"ltr"><font face=3D"verdana, sans-serif">Hi All=
+,</font><div><font face=3D"verdana, sans-serif"><br></font></div><div><font=
+ face=3D"verdana, sans-serif">I have one firmware [Reliagate 10-11] which h=
+as &#39;Yocto&#39; running inside it.</font></div><div><font face=3D"verdan=
+a, sans-serif"><br></font></div><div><font face=3D"verdana, sans-serif">It&=
+#39;s &#39;eth0&#39; port was having static IP 172.16.0.1 which was used to=
+ open it&#39;s admin portal.</font></div><div><font face=3D"verdana, sans-s=
+erif"><br></font></div><div><font face=3D"verdana, sans-serif">By mistake I=
+ made &#39;eth0&#39; port DHCP and I am not able to open admin portal since=
+ then.</font></div><div><font face=3D"verdana, sans-serif"><br></font></div=
+><div><font face=3D"verdana, sans-serif">I modified &#39;/etc/network/inter=
+faces&#39; file for &#39;eth0&#39; a below.</font></div><div><div><font siz=
+e=3D"1" color=3D"#ff0000" face=3D"verdana, sans-serif">auto eth0</font></di=
+v><div><font size=3D"1" color=3D"#ff0000" face=3D"verdana, sans-serif">ifac=
+e eth0 inet static</font></div><div><font size=3D"1" color=3D"#ff0000" face=
+=3D"verdana, sans-serif">address 172.16.0.1</font></div><div><font size=3D"=
+1" color=3D"#ff0000" face=3D"verdana, sans-serif">netmask 255.255.255.0</fo=
+nt></div></div><div><font size=3D"1" color=3D"#ff0000" face=3D"verdana, san=
+s-serif"><br></font></div><div><font face=3D"verdana, sans-serif" color=3D"=
+#000000">Still I am not able to ping the=C2=A0172.16.0.1 IP.</font></div><d=
+iv><span style=3D"font-family:verdana,sans-serif">Please=C2=A0advise me how=
+ should I proceed.</span><br></div><div><span style=3D"font-family:verdana,=
+sans-serif"><br></span></div><div><span style=3D"font-family:verdana,sans-s=
+erif">Thank you,</span></div><div><span style=3D"font-family:verdana,sans-s=
+erif">Dheeraj Koshti</span></div></div></div>
 
-BR,
-
-marek
-
+--0000000000006dedd4057b2ba50a--
