@@ -1,6 +1,6 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mauro@faresoftware.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C123DE00C10; Wed, 21 Nov 2018 10:04:34 -0800 (PST)
+	id 9A626E00C7C; Wed, 21 Nov 2018 10:12:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,52 +10,33 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.68 listed in list.dnswl.org]
+	*      [62.149.156.161 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com
-	[209.85.128.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 442CAE00566
-	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 10:04:34 -0800 (PST)
-Received: by mail-wm1-f68.google.com with SMTP id 125so6486563wmh.0
-	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 10:04:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=JExLLUACtqdgzYzJp1sZ7cOpSdcExft4DIr59coaCQc=;
-	b=bWibjcGBYew53rr5Mw0MCFk68VZXumOpQ2Eu3DJesw/a87WVNbaX0wlFmK3eVFgu21
-	akM5ySs7UrxXyFtliyLIyajtYKPvD175VpUABl36NxrACkuElD2cCyvpmH+a1lwpI2c+
-	AQXvdiyDv9jsUzZiBWHMe8RzkbYnQidIVaEwv8LCRxk0pP1GrSBLv8/vaeXAvHm18sQS
-	roeBvynGnhxIc4kLPsd9hs8mTiHnKQuWl+Z9M/DzXWRfAB38FfbDJ485ZE3g1WgR8BWO
-	Hl/XB8w7sV7a28HpAlaDg9rPR4Cgp/G6Slirc4JNqQruX6KzwNpM0ncjl6gLi0gS9kt1
-	qxCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=JExLLUACtqdgzYzJp1sZ7cOpSdcExft4DIr59coaCQc=;
-	b=kVq3AQ68NQ0tFKJ5e0He3L5rLa5rQheEezPKMsOKyBsrio6w/t1vr0KNqIbax53ffa
-	E0G5pKrcFKZ7syhJ9lhnWHUZRuyoR8l5WArbUVAnyJ2Xcc2vejkHwePBT6tv3sUwSZzl
-	EWmy01GaONEYaeE5/UIa6uAXvYYJl29lTwPoyEoeN5V78rns0P142CwsoVfai9qXpwqV
-	3dP9sHyWvrUismHEZvFPaGvj7A9gRCWGS5hSaXyUjmtZba03TGjAfbBiivtx3p6lvN9e
-	EpXT0Mfo4WZvkPfC/+QkmsWHo/koujC9106qlBmy4eZoOZv99/fKrUxy9C1P0EhsczQs
-	sXeQ==
-X-Gm-Message-State: AGRZ1gL+tVBHHb/G1lYNOBGvsJNxuSNebXqx1VDPJbQihnVXZKRIeZ5j
-	hpaCzVdWvFQJ83e29Z+MumgHpCcn5HE=
-X-Google-Smtp-Source: AFSGD/VRquy10zVGK5X9S7VatRkXS6F7jtRohsvqnm6EmOce4hZIWAPcKwiEDbrHemcYQv2hlQ+qOg==
-X-Received: by 2002:a1c:c64e:: with SMTP id w75mr7212236wmf.46.1542823472983; 
-	Wed, 21 Nov 2018 10:04:32 -0800 (PST)
-Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa.
-	[81.2.106.35]) by smtp.gmail.com with ESMTPSA id
-	e190sm2726564wmf.0.2018.11.21.10.04.31
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 21 Nov 2018 10:04:32 -0800 (PST)
-From: Ross Burton <ross.burton@intel.com>
+Received: from smtpcmd14161.aruba.it (smtpcmd14161.aruba.it [62.149.156.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F59BE00C10
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 10:12:08 -0800 (PST)
+Received: from [10.0.3.112] ([78.6.3.122])
+	by smtpcmd14.ad.aruba.it with bizsmtp
+	id 2iC71z00H2dwwGE01iC7AA; Wed, 21 Nov 2018 19:12:07 +0100
 To: yocto@yoctoproject.org
-Date: Wed, 21 Nov 2018 18:04:27 +0000
-Message-Id: <20181121180427.19306-1-ross.burton@intel.com>
-X-Mailer: git-send-email 2.11.0
-Subject: [PATCH meta-mingw] packagegroup-sdk-host: add Make
+From: Mauro Ziliani <mauro@faresoftware.it>
+Message-ID: <eefa2d0b-7e2f-eb1c-1375-ce151583e545@faresoftware.it>
+Date: Wed, 21 Nov 2018 19:12:07 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.3.1
+MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1542823927; bh=E1xWgW1OaqszBwwqDH2LP82yY9MRA/7mlOz7FFHEwsY=;
+	h=To:From:Subject:Date:MIME-Version:Content-Type;
+	b=jM4fsFCE5H7TrAxZ48yGHdi/LXt7hyN+2Ii0HmZko5z/FeeSNx5PVJ0ebigz06OpL
+	Acw0tWSy6FUnkY2drGj/gg8onq8J2tEohbAt30Tz4aXrcIbOs3GUadR1jZOBHgcQsi
+	o1QgI64fQGMWooVUVBwAyADXMduLcLL9ceL2sYGxfHqM2X4MZgPd8+WDVPp+Iriynd
+	vcxf56WHpVH4nUq7xh0J8FSwoK+DgbczwLnQ/f/sX3J5KbaH0gYkF4BsWjwAdyfXDf
+	71bWqAdlntvKcpXMTb/gz3nrRIdontWpFF8kN8Dg4xPb5cj+k4lhcx9Mq/Y7lrUE7Y
+	HSaFYSXCN2VoQ==
+Subject: Copy tar file without expand it
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,26 +48,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Nov 2018 18:04:34 -0000
+X-List-Received-Date: Wed, 21 Nov 2018 18:12:10 -0000
+Content-Type: text/plain; charset=iso-8859-15
+Content-Transfer-Encoding: 8bit
+Content-Language: it
 
-Make is useful, so add it to the SDK.
+Hi all.
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend | 1 +
- 1 file changed, 1 insertion(+)
+I need to copy a tar file from 'files' subdir of my recipe into
+/upgrade_file in the file image.
 
-diff --git a/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend b/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend
-index ad69b13..a9a51a6 100644
---- a/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend
-+++ b/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bbappend
-@@ -2,4 +2,5 @@ RDEPENDS_${PN}_mingw32 = "\
-     nativesdk-pkgconfig \
-     nativesdk-libtool \
-     nativesdk-qemu \
-+    nativesdk-make \
-     "
--- 
-2.11.0
+I don't need to expand it, only copy.
+
+
+How can I do that?
+
+
+in my recipe I put but myfile.tar will be exploded.
+
+
+SRC_URI += " \
+
+    file://myfile.tar \
+
+"
+
+do_install_append() {
+
+    install -m 0644 ${WORKDIR}/myfile.tar ${D}/upgrade_file
+
+}
+
+
+There some options to pass in SRC_URI to avoid tar expansion?
+
+
+MZ
 
 
