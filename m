@@ -1,65 +1,90 @@
-Return-Path: <maillinglists18@gmail.com>
+Return-Path: <stephen.lawrence@renesas.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56197E00C72; Thu, 22 Nov 2018 23:50:00 -0800 (PST)
+	id E257DE00C31; Fri, 23 Nov 2018 00:15:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (maillinglists18[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.41 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [40.107.141.91 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
-	[209.85.167.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4333E00C28
-	for <yocto@yoctoproject.org>; Thu, 22 Nov 2018 23:49:58 -0800 (PST)
-Received: by mail-lf1-f41.google.com with SMTP id p17so8067489lfh.4
-	for <yocto@yoctoproject.org>; Thu, 22 Nov 2018 23:49:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=SIHT5QbNS1ZjhnpcUtXTFE62Pj/UMa1XLVS+A+vPShs=;
-	b=fqKBz3dig7Zgz795tHVu62MWygEsx3F/3SMGnYfS4P+sDd+r3qNaF6j48ldRJCoSGY
-	z4n1qEsYbNQkOyd2Y0Ce7cBmLHuXsoq/ly7k/+fKjawHijMj7n1r6CzsiZvfLzYTwyHU
-	6mZMtoPchcN6pOny6VEKohDJHKx1zBEu5Qvxlm8+MwMFhjXOS7L0iIRVCGZBMqRMYZgx
-	PILb++2iv7e0ffW9DqTZT/UPcO4SBRuRw619PDVrlqYvnkDG6xPIVg52J8Do1ZfkznXG
-	1Bqfc2SSF/l8Y8HAn+gG/u+NxM+jf9ikH7hPMZICyjClmfKZ/Z1hisDA4z44atxoJ2wU
-	IHrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=SIHT5QbNS1ZjhnpcUtXTFE62Pj/UMa1XLVS+A+vPShs=;
-	b=VkMbxWjEb4uIgIX7/vPUPnxOD6ug7rkgUCX6Un4JPhTOe6hK19WYsEZ65KlYh4IVji
-	9P+BpzrG3OQt362m4496YsDgAptDuXK/LWjPU6kP4PgA2tA7oxOTnsZQA1NuYKgMAAlp
-	sta9wSQ6aRoiXJSyAZXp6EKXx5z7z0EED1UD/PhwzfJyRRAGpv/bl/bVXAyZBs8qYTD1
-	soepo7aYagdTfj9X4iPbrQdZBFCZI90LehxE7VB9FQOk0aaoVaXPKR/vTiQMsGN7/sBL
-	aXtmpvwv8BigdJ+qn4dI3Iep/DzRYWmjPvpfH/MasCjCExjxRDGM8e3cUbftyIa9FESL
-	KQOw==
-X-Gm-Message-State: AGRZ1gJKncWuPCPC3W9repC416L439aELa8Ph5AEJK7mtNJkmHAkv7A0
-	MZzN13UlYqQbrQVnOoBZCSK0gcKJTXRSRUnOz3U=
-X-Google-Smtp-Source: AJdET5e6mWYXaOt0a3LcdcVLYMwjxEB4SVDisZL0O0DdfXiqAT6PD0ylj+wFcceGa/yjC6VDyymyO0Nqoy6YoRcQmkg=
-X-Received: by 2002:a19:6806:: with SMTP id d6mr8181449lfc.48.1542959397357;
-	Thu, 22 Nov 2018 23:49:57 -0800 (PST)
+X-Greylist: delayed 10780 seconds by postgrey-1.32 at yocto-www;
+	Fri, 23 Nov 2018 00:15:36 PST
+Received: from JPN01-OS2-obe.outbound.protection.outlook.com
+	(mail-eopbgr1410091.outbound.protection.outlook.com [40.107.141.91])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96E2BE00566
+	for <yocto@yoctoproject.org>; Fri, 23 Nov 2018 00:15:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=ZZ4v0euJ5aDatSIRSWV24cRiuZuJXa5AKu6s1A3qeqM=;
+	b=EqH9SW9Xdmo9CPSNbLCCR9fkRnAw0i79kl0WC1sGsStr3jd406qvuNhwOPoE/UWwNQ6hX7P6y8BdV0Xtz/bBzXHdsrHSk78PCJ9lDUI5aObTTTSu8pGdROjcMtUhgOJmCzoPblyaH3FxuCJiUTYre3DQGeATlPQH2wtx1Xe5r/0=
+Received: from TYAPR01MB2031.jpnprd01.prod.outlook.com (52.133.179.12) by
+	TYAPR01MB1917.jpnprd01.prod.outlook.com (52.133.176.142) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1339.21; Thu, 22 Nov 2018 16:42:07 +0000
+Received: from TYAPR01MB2031.jpnprd01.prod.outlook.com
+	([fe80::e0e3:d0dd:e5fc:5260]) by
+	TYAPR01MB2031.jpnprd01.prod.outlook.com
+	([fe80::e0e3:d0dd:e5fc:5260%2]) with mapi id 15.20.1361.016;
+	Thu, 22 Nov 2018 16:42:07 +0000
+From: Stephen Lawrence <stephen.lawrence@renesas.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Yocto layers missing thud branches
+Thread-Index: AQHUftBlO5g4maX9YU20EnLPtKTV5aVcBeUQ
+Date: Thu, 22 Nov 2018 16:42:07 +0000
+Message-ID: <TYAPR01MB2031734C4638E9CC702BA98192DB0@TYAPR01MB2031.jpnprd01.prod.outlook.com>
+References: <545a7e8a-5ccd-c8b8-6b88-0b6f1723f794@gmail.com>
+In-Reply-To: <545a7e8a-5ccd-c8b8-6b88-0b6f1723f794@gmail.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=stephen.lawrence@renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; TYAPR01MB1917;
+	20:TmziDMTHWOgv/RuZEnWzcctsle5QrwZ2Lb1VIXu7IynbDT2kiQTtSEyzV9JnrDIXZ2LrErpnoqZyZJ3aw0elaNhrIjrf6jssrU2wF/CJ9Uxzg8SRUagChze0A00QgMyNsoho72XryVlSDJAfHZHq2U7O7iYpSu9LId5wUh0LCSQ=
+x-ms-exchange-antispam-srfa-diagnostics: SOS;
+x-ms-office365-filtering-correlation-id: 668507cd-bc80-4916-f2f3-08d650997101
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390098)(7020095)(4652040)(8989299)(5600074)(711020)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7153060)(7193020);
+	SRVR:TYAPR01MB1917; 
+x-ms-traffictypediagnostic: TYAPR01MB1917:
+x-microsoft-antispam-prvs: <TYAPR01MB1917BCD7CAC1DAD0FD027C4492DB0@TYAPR01MB1917.jpnprd01.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(8211001083)(6040522)(2401047)(5005006)(8121501046)(3231442)(944501410)(52105112)(93006095)(93001095)(3002001)(10201501046)(6055026)(148016)(149066)(150057)(6041310)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123560045)(20161123562045)(20161123558120)(20161123564045)(201708071742011)(7699051)(76991095);
+	SRVR:TYAPR01MB1917; BCL:0; PCL:0; RULEID:; SRVR:TYAPR01MB1917; 
+x-forefront-prvs: 0864A36BBF
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(136003)(366004)(396003)(346002)(39840400004)(376002)(13464003)(189003)(199004)(486006)(25786009)(99286004)(5660300001)(8936002)(86362001)(2906002)(476003)(2900100001)(44832011)(7696005)(71190400001)(71200400001)(97736004)(106356001)(478600001)(66066001)(76176011)(2351001)(105586002)(33656002)(26005)(6916009)(74316002)(14454004)(6506007)(6306002)(81166006)(1730700003)(81156014)(53936002)(186003)(2501003)(6116002)(316002)(55016002)(9686003)(6246003)(8676002)(68736007)(6436002)(3846002)(53546011)(11346002)(7736002)(446003)(5640700003)(229853002)(102836004)(256004)(305945005)(966005);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:TYAPR01MB1917;
+	H:TYAPR01MB2031.jpnprd01.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: renesas.com does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: ZPfdkuC2mwwIw5nf9+J+7teOGGPe1LSVt6UJAFzDhjrIUyXTn811OzpUaeUbjtUmYP1f8tGpQubuG6gPE9LN25j23mRIZJDhszn51UtR9tET8cpg1i83GPteBynilv+obBP8cJUI/kaKdyJATlX5ELUnBH/rfdOjwyiK7slYjcnCMWlhVhqcQ01Aw8sTf/NeNpTUBzbsR8xLiCqjmNS/bDNnP/K9b8wdjfOR0lDFWjRd5rMRF7cETgGupfy/Y3a/6jixBSg+O5xQ2KbsVPpVXa3Du2fW1iCzIyoxK32wEv5LCIcM2iISZ+OU+2yOP241rBVYgTVxfwBKUguunaOrwf9L9sfXyWLoEDNkzX3c5Fk=
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-References: <CAAmVmrpp8-JULPYsGhz6xVpm7SQ2sUWXDxo5+oLjjvrhSMpQJQ@mail.gmail.com>
-	<CAJTo0LYL8sypWbxXnoQCnmM7UvEsSnr09nh1GHjQpez09fNf_g@mail.gmail.com>
-In-Reply-To: <CAJTo0LYL8sypWbxXnoQCnmM7UvEsSnr09nh1GHjQpez09fNf_g@mail.gmail.com>
-From: Teemu K <maillinglists18@gmail.com>
-Date: Fri, 23 Nov 2018 09:49:42 +0200
-Message-ID: <CAAmVmrpRc+3v3hQqyQ3rcCd0hLuOEDvJS3FKw-R+b25CfNSuqQ@mail.gmail.com>
-To: ross.burton@intel.com
-Cc: yocto@yoctoproject.org
-Subject: Re: Forcing GCC version for native compilation
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 668507cd-bc80-4916-f2f3-08d650997101
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Nov 2018 16:42:07.1612 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB1917
+Subject: Re: Yocto layers missing thud branches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,62 +96,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Nov 2018 07:50:00 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 23 Nov 2018 08:15:38 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 22, 2018 at 12:32 PM Burton, Ross <ross.burton@intel.com> wrote:
->
-> On Thu, 22 Nov 2018 at 07:33, Teemu K <maillinglists18@gmail.com> wrote:
-> > I have project made for Yocto 1.7, but I'd like to compile it on newer
-> > Linux distribution that default GCC version is 5.x. GCC version itself
-> > causes some problems, because some things have changed.
-> >
-> > There is also GCC 4.8 available, but it's not called 'gcc', but 'gcc-4.8'.
-> >
-> > The question is that is there way to force yocto use 'gcc-4.8' instead
-> > of 'gcc'? I did some searching and couldn't find any options how to do
-> > it. I tried to making link to ~/bin/gcc pointing gcc-4.8 and having
-> > that first in PATH, but that didn't quite work. I'm guessing path got
-> > re-set at some point.
-> >
-> > And before someone says. Updating Yocto to solve problem is not
-> > solution. System is being updated, but current system still needs to
-> > be able to compile.
->
-> The modern solution is to set BUILD_CC and so on, see bitbake.conf.
->
-> Note that in such an old release this might not work as well as you'd
-> hope because I don't think it was fully tested.  In which case your
-> options in preferred order:
-> 1) Some distributions let you change what the default compiler, for
-> example /usr/bin/gcc might be a symbolic link you can just change.
-> 2) PATH fiddling as you did.  You'll most likely need to replace more
-> than just gcc, for example cpp.
-> 3) Just mv /usr/bin/gcc to /usr/bin/gcc-5 (and cpp, and anything
-> else), and symlink gcc -> gcc-4.8
->
-> Ross
-1) There is BUILD_CC also in this version of Yocto. Doesn't seem to do
-anything. I modified poky/meta/conf/bitbake.conf for testing purposes
-to have BUILD_CC pointing those 4.8 versions yet the sources are
-compiled with 'gcc' not 'gcc-4.8' so either something else overrides
-those settings and/or source packages ignore that setting.
 
-2) I also tried making links go gcc/g++/cpp and adding them to PATH
-first. This seemed to work, bit better, but now compilation failed to
-this:
- /usr/bin/ld: skipping incompatible
-/usr/lib/gcc/x86_64-linux-gnu/4.8/libgcc.a when searching for -lgcc
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> On =
+Behalf
+> Of akuster808
+> Sent: 17 November 2018 23:50
+> To: yocto@yoctoproject.org
+> Subject: [yocto] Yocto layers missing thud branches
+>=20
+> Can the maintainers of meta-qt3, meta-qt4, meta-selinux, and meta-cgl
+> please add a "Thud" branch
+>=20
+> kind regards,
+> Armin
 
-Which is interesting since I can use the gcc-4.8 just fine manually
-and it creates working binary.
+Anyone looking for Thud support for the automotive IVI layer meta-ivi [1]
+can find it on the master branch. That is the working branch ahead of the n=
+ext
+major meta-ivi release early next year, which will be based on Thud.
 
-3) /usr/bin/gcc is actually link to gcc-5, but I don't want to change
-that because then it would be system wide change and I want to avoid
-that.
+[1] https://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/
 
-I'll dig bit deeper why the second option didn't work. Any other
-suggestions are welcome as well.
+Regards
 
--Teemu
+Steve
 
