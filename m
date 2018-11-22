@@ -1,60 +1,61 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <rzcharger@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3BB15E00C7C; Wed, 21 Nov 2018 10:16:59 -0800 (PST)
+	id A71F1E00C95; Wed, 21 Nov 2018 20:29:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (rzcharger[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.172 listed in list.dnswl.org]
+	*      [209.85.222.180 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f172.google.com (mail-it1-f172.google.com
-	[209.85.166.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9418E009AA
-	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 10:16:58 -0800 (PST)
-Received: by mail-it1-f172.google.com with SMTP id v11so10278981itj.0
-	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 10:16:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=iUEcFQomxusa/KmDtF5KAq0UCHWv8DVDOUm6Hktd+40=;
-	b=uc9Ba4qeqg2KPRPamMTbSjFPdVHp5PVfnU9t5svaMqgif/XjKSqAsYKbxJ/06PCZt6
-	TdcP2TrvuF4ICklOp2mJN3N1qDmnWkt0ifc50zWlF90zWeNt4UgPucWQAbEO/cAioWFn
-	UstMwtDnaQCL8QHWqRhc5pmvY0R72xUR/rpleBnLpzVrYAoXtCkFovRSbY46HoCHlHxQ
-	4hWMoclG9asiF1GIr+3foF7T4I7YkCWuLNtAcEZlhapw//5QCjzJeJ1awjmOiQYfMYH3
-	Sc+jxzbbJGP5KdlzXFXrpAVuouCrf3uUWFL2gXaZ3OoJpkrN8g+Bbn92A9lr18msZl6D
-	jW1w==
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
+	[209.85.222.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EC0DE00C7C
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 20:29:41 -0800 (PST)
+Received: by mail-qk1-f180.google.com with SMTP id o125so6216688qkf.3
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 20:29:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=S1P/PoxbqMTrfZk35fgGqCJIF+tzbwTL3EC+hSs65wA=;
+	b=mTVgE4g92hJCCTy35M6CZBOoc+TU74C3F53jBg2mivKmH3a7DeQGE6i6j0++0Nv3Dv
+	Y144AsuOHQgBQXZdfDVg7tQWJVqKvEivPA0gnTsVvHdDRZ7+q97hufwewpTvm8gY7xyl
+	uBLl4hfuJUMnZIH4XrlzryEWJIkvkVjkPDzovgQcXlrz5hOyHJEsdlqTJowuac0uVG6T
+	y1ISRP1MynsG9B2x1mMAN0Zb0LN9cKIcy/UnlFl+s/NvE82B9BhG3IRTjO0wqS/D/vGP
+	H+GpB2MwB2GO32OqpTxQRNNTR2DI240Yu0aWwox3pk3wiqwJhU7GlMbP45ejkvv9ke+U
+	8SfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=iUEcFQomxusa/KmDtF5KAq0UCHWv8DVDOUm6Hktd+40=;
-	b=Pz04h6wpHep4/OzGX1gBeCbc0f3ZsWuzxSbN9h2mrS/1E4bZspAAJfOOCCeFuBTRLy
-	B4OzWPEJYAXRtltLVnv3qptgtbW0hhbMModN33d8DDAWpcAMuj4ihO6KHlpN9hIXu7KB
-	zut9dqvIxzZpqCZqcPCizlNTHql53QnKuddXisLWgRWe77v/BCOSZF7zCVPx+gmSLdX+
-	J7NrszGo1IfD8ffeJFm6NDZsTCiJU6B4M+5kv1I1AINmpJRYjEkveZDpMf7xcILUXKcH
-	PPKyyvgJFDKnculW5mxGRCmnrAuHWyoDOdwy5JUtFOgxN5IDwXU0FcUCL1JZ5KkhdtEi
-	c08g==
-X-Gm-Message-State: AA+aEWalWYV+T8UhfPfP2qFRz92Ff3aGLNXK7SD16D047BoSv6G8FrC6
-	wsGEh1Rtn4JHcCjZ1d1Tu8h547BHcq5oo8Z7qHwEoSRj7Ig=
-X-Google-Smtp-Source: AFSGD/VaDhCspMv1wiUapJ7OyZrkes2qp9Rc0BWVP4PLM14KNXG2Ufqj4u4NcfL06rpwr7Uz8wl73PHevrY4Nb50Dws=
-X-Received: by 2002:a02:1bc5:: with SMTP id 66mr6852811jas.105.1542824218019; 
-	Wed, 21 Nov 2018 10:16:58 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=S1P/PoxbqMTrfZk35fgGqCJIF+tzbwTL3EC+hSs65wA=;
+	b=dmpVH6pp59lq4htheor+6NpZAR4o3sulNjFHMCVhUgbw+VChXz0tL9ZJf2YOAxc44x
+	z787paV7u3DtaEP2oQP5J5alt7Ny+RYxL1vGgARjVRE6LH8HYS2plRe79PDvPhk6/FaD
+	9nYUq8eZ0AVVBVJOwwU+wz91jLq5sI2Ouqyh9xSLWGRV6xBRKMLAhzfsdH2R5Ohg8ulu
+	9B4gdK+P+aXnbTx9DMHfHwo/0iaF43QnTzdWBobtaN+/vw66w+K7Qx+mDs6O7CukK6d+
+	WUK0xJYgOh/03e4LzdqUjH2NABo508yCg8nqxv8GimtxR9SzFZlREG3xrJq7kxhlqpzm
+	8VcA==
+X-Gm-Message-State: AA+aEWaDvtPlUMKh3G9+P5C7jgzYhGdbaonPY9K2W+89r+HThZZF88l8
+	1FDDnqk+Vi8GXeAdJjWLWYJRII/AyiwpwDMd76Va5Dk1
+X-Google-Smtp-Source: AFSGD/WoIDzWyQ/WrvxQit2ey5BB9Kq9GKLcgy81jXUaDbK/MZpsUUzX6WGgRoJxb+dS2f5UsQQaBcMKY1+loZYJ400=
+X-Received: by 2002:a37:e84:: with SMTP id 126mr7951901qko.177.1542860980424; 
+	Wed, 21 Nov 2018 20:29:40 -0800 (PST)
 MIME-Version: 1.0
-References: <eefa2d0b-7e2f-eb1c-1375-ce151583e545@faresoftware.it>
-In-Reply-To: <eefa2d0b-7e2f-eb1c-1375-ce151583e545@faresoftware.it>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 21 Nov 2018 18:16:43 +0000
-Message-ID: <CAJTo0LZna7GaNOr-40iM_2gLJABXNpyrxx-GnZFom=4QEM8teg@mail.gmail.com>
-To: Mauro Ziliani <mauro@faresoftware.it>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Copy tar file without expand it
+From: rz charger <rzcharger@gmail.com>
+Date: Thu, 22 Nov 2018 12:29:30 +0800
+Message-ID: <CAKfv=rdAwxX3JSBkf_Q78h_+Wt5qgW=c01AwFNdHHX7DcJAwyg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto on Atmel SAME70?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,53 +67,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Nov 2018 18:16:59 -0000
+X-List-Received-Date: Thu, 22 Nov 2018 04:29:41 -0000
+Content-Type: multipart/alternative; boundary="000000000000ad1389057b395034"
+
+--000000000000ad1389057b395034
 Content-Type: text/plain; charset="UTF-8"
 
-As per the documentation:
+Hi everyone,
 
-https://www.yoctoproject.org/docs/latest/bitbake-user-manual/bitbake-user-manual.html#bb-the-unpack
+Good day.
 
-Add unpack=0.
+Currently our team is using Yocto on CM3 Raspberry Pi. We are planning to
+port our current Yocto project into Atmel SAME70. However we are not sure
+whether it is possible or not. We have few questions hopefully someone has
+some experience with this can enlighten us.
 
-Ross
-On Wed, 21 Nov 2018 at 18:12, Mauro Ziliani <mauro@faresoftware.it> wrote:
->
-> Hi all.
->
-> I need to copy a tar file from 'files' subdir of my recipe into
-> /upgrade_file in the file image.
->
-> I don't need to expand it, only copy.
->
->
-> How can I do that?
->
->
-> in my recipe I put but myfile.tar will be exploded.
->
->
-> SRC_URI += " \
->
->     file://myfile.tar \
->
-> "
->
-> do_install_append() {
->
->     install -m 0644 ${WORKDIR}/myfile.tar ${D}/upgrade_file
->
-> }
->
->
-> There some options to pass in SRC_URI to avoid tar expansion?
->
->
-> MZ
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+1. Is it possible and recommended to implement Yocto into Atmel SAME70 for
+IoT application? (Single core CPU:300MHz, RAM: 384KB, Program Memory Size:
+2048 KB)
+2. Any example/past project of Yocto running on Atmel SAME70?
 
+ Appreciate your time.Thank you
+
+Regards,
+Rz Charger
+Malaysia
+
+--000000000000ad1389057b395034
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hi everyone,<div><br></div><div>Good day.=
+</div><div><br></div><div>Currently our team is using Yocto on CM3 Raspberr=
+y Pi. We are planning to port our current Yocto project into Atmel SAME70. =
+However we are not sure whether it is possible or not. We have few question=
+s hopefully someone has some experience with this can enlighten us.</div><d=
+iv><br></div><div>1. Is it possible and recommended to implement Yocto into=
+ Atmel SAME70 for IoT application? (Single core CPU:300MHz, RAM: 384KB, Pro=
+gram Memory Size: 2048 KB)</div><div>2. Any example/past project of Yocto r=
+unning on Atmel SAME70?</div><div><br></div><div>=C2=A0Appreciate your time=
+.Thank you</div><div><br></div><div>Regards,</div><div>Rz Charger</div><div=
+>Malaysia</div></div></div>
+
+--000000000000ad1389057b395034--
