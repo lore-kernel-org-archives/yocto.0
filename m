@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <maillinglists18@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5EF4E00C95; Wed, 21 Nov 2018 22:45:26 -0800 (PST)
+	id 17E91E00C95; Wed, 21 Nov 2018 23:33:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,56 +10,51 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.182 listed in list.dnswl.org]
+	provider *      (maillinglists18[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
-	[209.85.160.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 284DCE009AA
-	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 22:45:26 -0800 (PST)
-Received: by mail-qt1-f182.google.com with SMTP id v11so6451346qtc.2
-	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 22:45:25 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.53 listed in list.dnswl.org]
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
+	[209.85.167.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF5D0E00901
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 23:33:04 -0800 (PST)
+Received: by mail-lf1-f53.google.com with SMTP id e26so5820444lfc.2
+	for <yocto@yoctoproject.org>; Wed, 21 Nov 2018 23:33:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=YMT+qXF04lCR8OFgGcWCpzeOfEe3Jfe5V5vl2qXxPBM=;
-	b=sPFoTgzwh7sIlQsDa7nXa2tnd727FV1wx2keCmeaB0lDGuMHzZDsenPSswffqUG7hK
-	ESob+blF709KdD02EJFTmg7H02RdlrhXbUOzluCXXHk2U7tO11m+bX+o5yCCRm604IOa
-	L23qXFF722lD0WomZec6QeAaM6dokWPlgPBr5Y3ixe33It5xt73IEhRCKdSZklFIEte8
-	82aAJqTALFq7A8ZVnkOBP9MwywvU8CJyoObRJpi6APr7NW6kG+gc6glzketA/6YUrlsj
-	C0M5tJ4CKuYz725F/jgA+Cl77Q1AMdV9vZXAalYKIJg/S4nVuWY/wJrOgoH/w3KejMIj
-	+UxA==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=IYuGkrH9sbGAso9tgi1O75KsNVWf50v9KKvoG0HiJcg=;
+	b=UFLIGEPobGjpeNu7q+c52D7sQJTRET7jUv2Rx7dreE5wIFO9joCWu9cXBz0z1lnjEH
+	ns3vDOUKNGvrbm4b0g62TZSTV3XxtUUsIEtOCyHvgKOIFxJrswO0Glt4Q0hm3ywDhqYq
+	gOvyARER+dE14Q3UE9ZNGGcJabCtLTxE2U202LHNnPZVcyi84beWgX1qOoM7rDOA6qu5
+	4QZRiq67k+/u0PRfXNRJXhnD+sTJrXDKdVnJXdyFLqf9qkJ+fy8KOruYvkm1wHts7Uu1
+	Go0FJmuviGWhLvQmvV3uZNfm8U6Odc2OJsFQv26SQKuKN4KsSRgE5LgTVHQIQhnMjZJG
+	b4tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=YMT+qXF04lCR8OFgGcWCpzeOfEe3Jfe5V5vl2qXxPBM=;
-	b=mowRCdSloIHJyJE53AMvaDqbKGjVxhnnZUEVpur248NHiOvUSjxzxoE83CFcuQSyVn
-	R88LyNCzNFF5MTZzTU3Zn8c+b8MdBbAjJ3rOQ2yyQ7Y+8KeXrQ0lp+P0t7iXHs621G7c
-	GRfHbgA1d5+/MlFCSE9mtsePbtZ/lxk2O8zYH9BzdXMSoVluECpfsfc2QHB8cB9V3xfG
-	Aiq/cCXZ3Wid8YV6O0Qri1hwvrui0Sw6JcOQIifp2m1igJuU4OskMBp6m1VEF+/51CMH
-	2xEV9X8RjwWMLUYW+6Uu5hClKoGLn6TSWAb4pOQ8WkHIz5EtAhZc3Dmcu49h2kSXIhLW
-	e2SQ==
-X-Gm-Message-State: AA+aEWZGfJ4pRVYxJQ8dT6163iAsxGZgGX2mk+GWVJuJ0IErRdLVWxRq
-	c7rLS/Vr2CJNMtY63E2Jd2q9OvMo5ikWg6NknoqOMJQhK2I=
-X-Google-Smtp-Source: AFSGD/WqstNAoh5wszIYk8GWMDQeHPS+qIi76OA3NTwoGmD5hgzTmWaccKnsSzGk+QIqFgXm0gRgbL9fGotVaWyjqmU=
-X-Received: by 2002:a0c:93e2:: with SMTP id g31mr9045853qvg.194.1542869125272; 
-	Wed, 21 Nov 2018 22:45:25 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=IYuGkrH9sbGAso9tgi1O75KsNVWf50v9KKvoG0HiJcg=;
+	b=ooGFpu2ls+mLirjdGn6xz+lMzc5sFZ9GkwI9UYbvL0q1sTNQqXp3R9IJdPPCPmtROT
+	t5B18bLW42GI+KslsViLYctWotATMevFZFnYscosFNQX9hBfUTaKBZGLQ6oVXctH0QHh
+	ZyTP9VwoDi8ArOQW2MnQvEyywh7ImhHJ8wLTcHgzR5Z2Z9q89TUh/QbRJIXEK9Pnue0J
+	42Mr9GsTp5E59sdjxaS6r0lFxdjJGpesOuEZnZl3NWhm/8tAEOInafT4kVADD/PN12bA
+	bAYvOg0/hQTHPwta1J5NapRzFo3A+DtQk/9AZL+JmpDDk6KpbqHF2f2UBawELQnHtTQa
+	AO+Q==
+X-Gm-Message-State: AGRZ1gILGhLSRzD/1AHQSBraigLj1DdGzr5J13gBVgJBLvKcEGRViDOQ
+	ByNm2rGmIKDI9vpyA8bGKKhQaU0sfDbtlIy++WlWNg==
+X-Google-Smtp-Source: AJdET5e6zr3c0RHUabJs2hIicEf7SRMDL/br5CAcZNKbAe4HWc09wr3lR8bgqJBTkD73DxQmwyudfibbB83xUjkA0/s=
+X-Received: by 2002:a19:4ace:: with SMTP id x197mr5529030lfa.39.1542871983364; 
+	Wed, 21 Nov 2018 23:33:03 -0800 (PST)
 MIME-Version: 1.0
-References: <CAKfv=rdAwxX3JSBkf_Q78h_+Wt5qgW=c01AwFNdHHX7DcJAwyg@mail.gmail.com>
-In-Reply-To: <CAKfv=rdAwxX3JSBkf_Q78h_+Wt5qgW=c01AwFNdHHX7DcJAwyg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 21 Nov 2018 22:44:58 -0800
-Message-ID: <CAMKF1spFPyfuyVjCKUTf-88Gyqymiqjm1FnjthyN6akxd0j3oQ@mail.gmail.com>
-To: rzcharger@gmail.com
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Yocto on Atmel SAME70?
+From: Teemu K <maillinglists18@gmail.com>
+Date: Thu, 22 Nov 2018 09:32:49 +0200
+Message-ID: <CAAmVmrpp8-JULPYsGhz6xVpm7SQ2sUWXDxo5+oLjjvrhSMpQJQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Forcing GCC version for native compilation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,42 +66,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Nov 2018 06:45:26 -0000
+X-List-Received-Date: Thu, 22 Nov 2018 07:33:06 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-atmel boards are supported through meta-atmel BSP layer
+Hi,
 
-see
+I have project made for Yocto 1.7, but I'd like to compile it on newer
+Linux distribution that default GCC version is 5.x. GCC version itself
+causes some problems, because some things have changed.
 
-https://github.com/linux4sam/meta-atmel
+There is also GCC 4.8 available, but it's not called 'gcc', but 'gcc-4.8'.
 
-sample images
-https://github.com/linux4sam/meta-atmel/tree/sumo/recipes-atmel/images
-On Wed, Nov 21, 2018 at 8:30 PM rz charger <rzcharger@gmail.com> wrote:
->
-> Hi everyone,
->
-> Good day.
->
-> Currently our team is using Yocto on CM3 Raspberry Pi. We are planning to=
- port our current Yocto project into Atmel SAME70. However we are not sure =
-whether it is possible or not. We have few questions hopefully someone has =
-some experience with this can enlighten us.
->
-> 1. Is it possible and recommended to implement Yocto into Atmel SAME70 fo=
-r IoT application? (Single core CPU:300MHz, RAM: 384KB, Program Memory Size=
-: 2048 KB)
-> 2. Any example/past project of Yocto running on Atmel SAME70?
->
->  Appreciate your time.Thank you
->
-> Regards,
-> Rz Charger
-> Malaysia
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+The question is that is there way to force yocto use 'gcc-4.8' instead
+of 'gcc'? I did some searching and couldn't find any options how to do
+it. I tried to making link to ~/bin/gcc pointing gcc-4.8 and having
+that first in PATH, but that didn't quite work. I'm guessing path got
+re-set at some point.
+
+And before someone says. Updating Yocto to solve problem is not
+solution. System is being updated, but current system still needs to
+be able to compile.
+
+-TeemuK
 
