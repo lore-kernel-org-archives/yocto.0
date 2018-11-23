@@ -1,55 +1,65 @@
-Return-Path: <sangeeta.jain@intel.com>
+Return-Path: <maillinglists18@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 94C0DE00C1F; Thu, 22 Nov 2018 19:23:05 -0800 (PST)
+	id 56197E00C72; Thu, 22 Nov 2018 23:50:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73298E00A85
-	for <yocto@yoctoproject.org>; Thu, 22 Nov 2018 19:23:04 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	22 Nov 2018 19:23:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.56,268,1539673200"; 
-	d="scan'208,217";a="251927916"
-Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
-	by orsmga004.jf.intel.com with ESMTP; 22 Nov 2018 19:23:02 -0800
-Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.219]) by
-	PGSMSX101.gar.corp.intel.com ([169.254.1.244]) with mapi id
-	14.03.0415.000; Fri, 23 Nov 2018 11:23:01 +0800
-From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
-To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>, "Eggleton, Paul"
-	<paul.eggleton@intel.com>, "richard.purdie@linuxfoundation.org"
-	<richard.purdie@linuxfoundation.org>, "Graydon, Tracy"
-	<tracy.graydon@intel.com>, "Erway, Tracey M" <tracey.m.erway@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: QA cycle report for 2.4.4 RC1
-Thread-Index: AdSC29L4uuuUDBxeT+i5N9NtPzn21A==
-Date: Fri, 23 Nov 2018 03:23:00 +0000
-Message-ID: <015AB11D45F2C442929CB2765DAE738634CEF595@PGSMSX110.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMTk0YjQxZGYtYWRiNC00OTM5LWI5MWItNzEzYmY2YTMxMGVhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiVG5HYm9JaFlWcGowWlUzZjVPdE95b1dWaitlNEJXeWZUZDYwclwvYURUQXFrbU1MbHpyeDdjWFlmbGsxajNWTVYifQ==
-x-originating-ip: [172.30.20.206]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (maillinglists18[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.41 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
+	[209.85.167.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4333E00C28
+	for <yocto@yoctoproject.org>; Thu, 22 Nov 2018 23:49:58 -0800 (PST)
+Received: by mail-lf1-f41.google.com with SMTP id p17so8067489lfh.4
+	for <yocto@yoctoproject.org>; Thu, 22 Nov 2018 23:49:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=SIHT5QbNS1ZjhnpcUtXTFE62Pj/UMa1XLVS+A+vPShs=;
+	b=fqKBz3dig7Zgz795tHVu62MWygEsx3F/3SMGnYfS4P+sDd+r3qNaF6j48ldRJCoSGY
+	z4n1qEsYbNQkOyd2Y0Ce7cBmLHuXsoq/ly7k/+fKjawHijMj7n1r6CzsiZvfLzYTwyHU
+	6mZMtoPchcN6pOny6VEKohDJHKx1zBEu5Qvxlm8+MwMFhjXOS7L0iIRVCGZBMqRMYZgx
+	PILb++2iv7e0ffW9DqTZT/UPcO4SBRuRw619PDVrlqYvnkDG6xPIVg52J8Do1ZfkznXG
+	1Bqfc2SSF/l8Y8HAn+gG/u+NxM+jf9ikH7hPMZICyjClmfKZ/Z1hisDA4z44atxoJ2wU
+	IHrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=SIHT5QbNS1ZjhnpcUtXTFE62Pj/UMa1XLVS+A+vPShs=;
+	b=VkMbxWjEb4uIgIX7/vPUPnxOD6ug7rkgUCX6Un4JPhTOe6hK19WYsEZ65KlYh4IVji
+	9P+BpzrG3OQt362m4496YsDgAptDuXK/LWjPU6kP4PgA2tA7oxOTnsZQA1NuYKgMAAlp
+	sta9wSQ6aRoiXJSyAZXp6EKXx5z7z0EED1UD/PhwzfJyRRAGpv/bl/bVXAyZBs8qYTD1
+	soepo7aYagdTfj9X4iPbrQdZBFCZI90LehxE7VB9FQOk0aaoVaXPKR/vTiQMsGN7/sBL
+	aXtmpvwv8BigdJ+qn4dI3Iep/DzRYWmjPvpfH/MasCjCExjxRDGM8e3cUbftyIa9FESL
+	KQOw==
+X-Gm-Message-State: AGRZ1gJKncWuPCPC3W9repC416L439aELa8Ph5AEJK7mtNJkmHAkv7A0
+	MZzN13UlYqQbrQVnOoBZCSK0gcKJTXRSRUnOz3U=
+X-Google-Smtp-Source: AJdET5e6mWYXaOt0a3LcdcVLYMwjxEB4SVDisZL0O0DdfXiqAT6PD0ylj+wFcceGa/yjC6VDyymyO0Nqoy6YoRcQmkg=
+X-Received: by 2002:a19:6806:: with SMTP id d6mr8181449lfc.48.1542959397357;
+	Thu, 22 Nov 2018 23:49:57 -0800 (PST)
 MIME-Version: 1.0
-Cc: "Kirkiris, Nectar" <nectar.kirkiris@intel.com>
-Subject: QA cycle report for 2.4.4 RC1
+References: <CAAmVmrpp8-JULPYsGhz6xVpm7SQ2sUWXDxo5+oLjjvrhSMpQJQ@mail.gmail.com>
+	<CAJTo0LYL8sypWbxXnoQCnmM7UvEsSnr09nh1GHjQpez09fNf_g@mail.gmail.com>
+In-Reply-To: <CAJTo0LYL8sypWbxXnoQCnmM7UvEsSnr09nh1GHjQpez09fNf_g@mail.gmail.com>
+From: Teemu K <maillinglists18@gmail.com>
+Date: Fri, 23 Nov 2018 09:49:42 +0200
+Message-ID: <CAAmVmrpRc+3v3hQqyQ3rcCd0hLuOEDvJS3FKw-R+b25CfNSuqQ@mail.gmail.com>
+To: ross.burton@intel.com
+Cc: yocto@yoctoproject.org
+Subject: Re: Forcing GCC version for native compilation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,277 +71,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Nov 2018 03:23:05 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_015AB11D45F2C442929CB2765DAE738634CEF595PGSMSX110garcor_"
+X-List-Received-Date: Fri, 23 Nov 2018 07:50:00 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---_000_015AB11D45F2C442929CB2765DAE738634CEF595PGSMSX110garcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-
-
-Hello All,
-
-
-
-This is the full report for 2.4.4 RC1:
-
-https://wiki.yoctoproject.org/wiki/WW46_-_2018-11-14_-_Full_Test_Cycle_2.4.=
-4_RC1
-
-
-
-
-
-Summary
-
-
-
-All planned tests were executed.
-
-
-
-Total Test Executed - 3330
-
-Passed Test - 3318
-
-Failed Test - 8
-
-Blocked Test - 4
-
-
-
-There were zero high priority defect.  Team had found 2 new defects.
-
-
-
-New Bugs
-
-
-
-[1] Bug 13033 -  [2.4.4RC1] [Bitbake] [Case 142] PR number is not getting i=
-ncreased with remote server/local client mode
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13033
-
-
-
- [2]Bug 13038 - [2.4.4RC1][Package Management][Getting Error Message "Faile=
-d to synchronize cache for repo 'repository'"]
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13038
-
-
-
-Thanks & Regards,
-Sangeeta Jain
-
-
---_000_015AB11D45F2C442929CB2765DAE738634CEF595PGSMSX110garcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Thu, Nov 22, 2018 at 12:32 PM Burton, Ross <ross.burton@intel.com> wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:"Courier New";
-	mso-fareast-language:EN-MY;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle21
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle22
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle23
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle24
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle25
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle26
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle27
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle28
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle30
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-MY" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Hello All,<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">This is the full report for 2.</span><span lang=3D"EN-US">4.4=
- R<span style=3D"color:black">C1:&nbsp;
-<o:p></o:p></span></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/WW46_-_2018-11-14_-_Full_Test_Cycle_2.4.4_RC1">https://wik=
-i.yoctoproject.org/wiki/WW46_-_2018-11-14_-_Full_Test_Cycle_2.4.4_RC1</a><o=
-:p></o:p></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
-sp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black">Summary<o:p></o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">All planned tests were executed.<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Total Test Executed &#8211; 333</span><span lang=3D"EN-US">0<=
-span style=3D"color:black"><o:p></o:p></span></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Passed Test &#8211; 33</span><span lang=3D"EN-US">18<span sty=
-le=3D"color:black"><o:p></o:p></span></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Failed Test &#8211;
-</span><span lang=3D"EN-US">8<span style=3D"color:black"><o:p></o:p></span>=
-</span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Blocked Test - 4<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
-0pt;font-family:&quot;Times New Roman&quot;,serif;color:black">There were z=
-ero high priority defect.&nbsp; Team had found </span><span lang=3D"EN-US" =
-style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif">2<=
-span style=3D"color:black"> new defects. <o:p></o:p></span></span></pre>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
-sp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black">New Bugs<o:p></o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black"><o:p>&nbsp;</o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">[1]
-</span>Bug&nbsp;13033 - <span style=3D"color:black">&nbsp;</span>[<span lan=
-g=3D"EN-US" style=3D"color:black">2.4.4RC1] [Bitbake] [Case 142] PR number =
-is not getting increased with remote server/local client mode</span><span l=
-ang=3D"EN-US">
-</span><o:p></o:p></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><a href=
-=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13033">https://bugz=
-illa.yoctoproject.org/show_bug.cgi?id=3D13033</a><o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;[2]</span>Bug 13038<span lang=3D"EN-US" style=3D"color:=
-black">&nbsp;</span><span lang=3D"EN-US">- [2.4.4RC1][Package Management][G=
-etting Error Message &quot;Failed to synchronize cache for
- repo 'repository'&quot;]<span style=3D"color:black"><o:p></o:p></span></sp=
-an></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><a href=
-=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13038">https://bugz=
-illa.yoctoproject.org/show_bug.cgi?id=3D13038</a><o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"font-family:&quot;Verdana&quot;,sans-serif;color:black"><o:p>&nbsp;</o:=
-p></span></b></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards,<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Sangeeta Jain<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> On Thu, 22 Nov 2018 at 07:33, Teemu K <maillinglists18@gmail.com> wrote:
+> > I have project made for Yocto 1.7, but I'd like to compile it on newer
+> > Linux distribution that default GCC version is 5.x. GCC version itself
+> > causes some problems, because some things have changed.
+> >
+> > There is also GCC 4.8 available, but it's not called 'gcc', but 'gcc-4.8'.
+> >
+> > The question is that is there way to force yocto use 'gcc-4.8' instead
+> > of 'gcc'? I did some searching and couldn't find any options how to do
+> > it. I tried to making link to ~/bin/gcc pointing gcc-4.8 and having
+> > that first in PATH, but that didn't quite work. I'm guessing path got
+> > re-set at some point.
+> >
+> > And before someone says. Updating Yocto to solve problem is not
+> > solution. System is being updated, but current system still needs to
+> > be able to compile.
+>
+> The modern solution is to set BUILD_CC and so on, see bitbake.conf.
+>
+> Note that in such an old release this might not work as well as you'd
+> hope because I don't think it was fully tested.  In which case your
+> options in preferred order:
+> 1) Some distributions let you change what the default compiler, for
+> example /usr/bin/gcc might be a symbolic link you can just change.
+> 2) PATH fiddling as you did.  You'll most likely need to replace more
+> than just gcc, for example cpp.
+> 3) Just mv /usr/bin/gcc to /usr/bin/gcc-5 (and cpp, and anything
+> else), and symlink gcc -> gcc-4.8
+>
+> Ross
+1) There is BUILD_CC also in this version of Yocto. Doesn't seem to do
+anything. I modified poky/meta/conf/bitbake.conf for testing purposes
+to have BUILD_CC pointing those 4.8 versions yet the sources are
+compiled with 'gcc' not 'gcc-4.8' so either something else overrides
+those settings and/or source packages ignore that setting.
 
---_000_015AB11D45F2C442929CB2765DAE738634CEF595PGSMSX110garcor_--
+2) I also tried making links go gcc/g++/cpp and adding them to PATH
+first. This seemed to work, bit better, but now compilation failed to
+this:
+ /usr/bin/ld: skipping incompatible
+/usr/lib/gcc/x86_64-linux-gnu/4.8/libgcc.a when searching for -lgcc
+
+Which is interesting since I can use the gcc-4.8 just fine manually
+and it creates working binary.
+
+3) /usr/bin/gcc is actually link to gcc-5, but I don't want to change
+that because then it would be system wide change and I want to avoid
+that.
+
+I'll dig bit deeper why the second option didn't work. Any other
+suggestions are welcome as well.
+
+-Teemu
+
