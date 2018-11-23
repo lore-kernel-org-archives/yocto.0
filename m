@@ -1,72 +1,67 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 244F4E00C1E; Fri, 23 Nov 2018 08:07:34 -0800 (PST)
+	id BC9AEE00C1E; Fri, 23 Nov 2018 08:30:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.53 listed in list.dnswl.org]
+	*      [209.85.160.170 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
-	[209.85.221.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E06BFE00A6B
-	for <yocto@yoctoproject.org>; Fri, 23 Nov 2018 08:07:32 -0800 (PST)
-Received: by mail-wr1-f53.google.com with SMTP id 96so12854504wrb.2
-	for <yocto@yoctoproject.org>; Fri, 23 Nov 2018 08:07:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:mime-version:content-transfer-encoding;
-	bh=VB7/OhaatYTcIblO/dReQt8pJKXxmI0pcAYUzpYU6z0=;
-	b=O0UXBPSyQBm+dojmtTZqgKOnn6zFCiuWITKZMGvGv/9juSfsu2LUXPa8lUn97LjxtX
-	+1qHR+ojdtvknlGmZGCJinA+FsQs5ZZ2/xPb0x7yrKK8B+4OWBeHVG58yYf+2xEh64ET
-	lIz4E5IXvpAPWCAtmQJccZGeKlPYQee/oV4iI=
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com
+	[209.85.160.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D79EE00A6B
+	for <yocto@yoctoproject.org>; Fri, 23 Nov 2018 08:30:13 -0800 (PST)
+Received: by mail-qt1-f170.google.com with SMTP id n32so11013121qte.11
+	for <yocto@yoctoproject.org>; Fri, 23 Nov 2018 08:30:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=GoIETsunnVARPxheN1rxNr7DTOBZLCTAU7CDFsj74+8=;
+	b=FlVp7zhdMhq6pxDZAjRIhcMjiKe4R2cIeAils+TabyKRx12GBaeEXRkuyYhKIKbadE
+	YAPynmFA98C+yVkuBZYYu2SCWKPPCPHb4Cx6NYQ8eSBQrSzuK8e6L0AMX8O0exXy5mk4
+	07FfGCqOqWP0pwysLjpMuGR3ivrJbD1xOEccOJEWbFY8Okyf9TJmGv8SPVmQnKe8pZjx
+	VTf0ac2WSkoO2T//W6phs3GC6CjaPXACctcRmCz+7o4XQZiMyop8+50UwYRvaAyrmUec
+	LaauFQXuUv6BePFg3b6JTxZEYbtulIDZ1xjgJfeczlY2yxixmN+GJLRC81quANMRpWVE
+	E4gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=VB7/OhaatYTcIblO/dReQt8pJKXxmI0pcAYUzpYU6z0=;
-	b=uP6Xv0ZTiJDLGph4XKtxT1jEucKCdQm/u4O2JS65JDzA7en3dM/N3QHwGWHG0nNt9y
-	Ssa+7IbhhJbhzkkIb5IFk3ZusrSfoxTErp+o37NGMt+O752kcHyOT8RtbTPhAqb7bG6o
-	uRFJvwTVf5SH73TgTezjFBtoBXs9dfn1uC9bhj3IG6Q1jIX1TFp149TMBDQyZSwEyO6p
-	OT6rV+sV2kARzeqeY+6RGkcxeIL3HkpBSJ1iCR+XySvL5Xmiq4XFzLBgGS7nkhvECpRT
-	eyXke+VwtyHqQ/z3yxvJ4rsy/IYJ1uqpQTfAK12L3CJ6GmKxsWxF7fYAThfgVCap/AVd
-	+qBQ==
-X-Gm-Message-State: AA+aEWaiCCPqORQ/LBtzDE+PsYpuB++OuIavaNSUEbhdXNBkhtLAV1zo
-	VjRpVzxukdyExUh+zWvVwN28Ow==
-X-Google-Smtp-Source: AFSGD/VJ0WgQoUcPrjJhoDQy9XEgctAL/gaXTct0EnBdLCxW488xvfvWKb0ZMLoFD3DhrvB0L0VptA==
-X-Received: by 2002:a05:6000:100f:: with SMTP id
-	a15mr9289200wrx.298.1542989251686; 
-	Fri, 23 Nov 2018 08:07:31 -0800 (PST)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	x81sm5517229wmg.17.2018.11.23.08.07.30
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Fri, 23 Nov 2018 08:07:30 -0800 (PST)
-Message-ID: <5a3e9c82256c75c451d6a406fe5b16db394ff9d7.camel@linuxfoundation.org>
-From: richard.purdie@linuxfoundation.org
-To: "Jain, Sangeeta" <sangeeta.jain@intel.com>, "Jolley, Stephen K"
-	<stephen.k.jolley@intel.com>, "Eggleton, Paul" <paul.eggleton@intel.com>,
-	"Graydon, Tracy" <tracy.graydon@intel.com>, "Erway, Tracey M"
-	<tracey.m.erway@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Fri, 23 Nov 2018 16:07:29 +0000
-In-Reply-To: <015AB11D45F2C442929CB2765DAE738634CEF595@PGSMSX110.gar.corp.intel.com>
-References: <015AB11D45F2C442929CB2765DAE738634CEF595@PGSMSX110.gar.corp.intel.com>
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Mime-Version: 1.0
-Cc: "Kirkiris, Nectar" <nectar.kirkiris@intel.com>
-Subject: Re: QA cycle report for 2.4.4 RC1
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=GoIETsunnVARPxheN1rxNr7DTOBZLCTAU7CDFsj74+8=;
+	b=OHFqzp4Y9n6bIX39I9WCbUwn5zvo1WUKJkyEc2ydkOy8PXy944APDG+JVWuHolnADU
+	15m3cE7UOEC/eMY26uk3mPMEzbhvmcZpwzvZ9sitlW1SOW3Lyj59wyMfvwPIXPhmF6X4
+	c4u6r4O9EtFkxZtTTNEe2aPR7E3b5JccMuNSaDI5Yzc/+s/mVaL+feCTLHLbh9YC1/Oi
+	X7C59ujlcefx6vhKBTYIdHe49v3FSM0KJTJRnphhDx3uX9f2b9o/arrO5bvhgydIPKC+
+	Kq2S/yQC4j9SIN+GaNWBOA2kWZMe82tLyiiDN9DxF/5yDpIBD0IpKQM1xhZq0BrwJiQ6
+	P1ng==
+X-Gm-Message-State: AA+aEWZx1q106hzcAeom3pc35bqLofPBIpqq2hSu9qpnwnCicgIVkObS
+	FRY0TUGX+M2J8Y8fFPbfC7W0NyAR8cZ6SyQ5EuM=
+X-Google-Smtp-Source: AJdET5fEQ6W+lY9A1ixCC0HZPsBaEgoNXBYAWjsmgG5ifFwkoQ4wTzvtTYRQTOmEEkduS1cl3P7U79vXCmnT6G/0EU0=
+X-Received: by 2002:ac8:36ba:: with SMTP id a55mr14929363qtc.236.1542990612701;
+	Fri, 23 Nov 2018 08:30:12 -0800 (PST)
+MIME-Version: 1.0
+References: <CAKfv=rdAwxX3JSBkf_Q78h_+Wt5qgW=c01AwFNdHHX7DcJAwyg@mail.gmail.com>
+	<CAMKF1spFPyfuyVjCKUTf-88Gyqymiqjm1FnjthyN6akxd0j3oQ@mail.gmail.com>
+	<CABOv41O-cGgR-imq8+rH3XQu1RtD+nK3BWrOq24cQB6mJbYTVg@mail.gmail.com>
+In-Reply-To: <CABOv41O-cGgR-imq8+rH3XQu1RtD+nK3BWrOq24cQB6mJbYTVg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 23 Nov 2018 08:30:01 -0800
+Message-ID: <CAMKF1srhWMgAb78RDOw4_6HBfsZL-Vd50vBskrPFLtnNFxB+rg@mail.gmail.com>
+To: Gerson Fernando Budke <nandojve@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Yocto on Atmel SAME70?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,85 +73,143 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Nov 2018 16:07:34 -0000
+X-List-Received-Date: Fri, 23 Nov 2018 16:30:14 -0000
+Content-Type: multipart/alternative; boundary="0000000000005ca560057b577f69"
+
+--0000000000005ca560057b577f69
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2018-11-23 at 03:23 +0000, Jain, Sangeeta wrote:
->  
-> Hello All,
->  
-> This is the full report for 2.4.4 RC1: 
-> 
-https://wiki.yoctoproject.org/wiki/WW46_-_2018-11-14_-_Full_Test_Cycle_2.4.4_RC1
->  
->  
-> Summary
->  
-> All planned tests were executed.
->  
-> Total Test Executed – 3330
-> Passed Test – 3318
-> Failed Test – 8
-> Blocked Test - 4
->  
-> There were zero high priority defect.  Team had found 2 new defects. 
->  
-> New Bugs
->  
-> [1] Bug 13033 -  [2.4.4RC1] [Bitbake] [Case 142] PR number is not
-> getting increased with remote server/local client mode
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13033
->  
->  [2]Bug 13038 - [2.4.4RC1][Package Management][Getting Error Message
-> "Failed to synchronize cache for repo 'repository'"]
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13038
+On Thu, Nov 22, 2018 at 2:26 PM Gerson Fernando Budke <nandojve@gmail.com>
+wrote:
 
-Thanks for running the QA for this. I do have some
-questions/observations.
+> I believe YOCTO currently don't support MMU less like SAME70 MCU.
+> If someone have YOCTO with MMU less I'm very interested :D
+>
 
-Firstly, this report is a little misleading as there are only two bugs
-mentioned but 8 failures. The full report shows other bugs which were
-for example reopened or already open.
+That=E2=80=99s right although OE at one point did support nommu and that ha=
+s not
+been deleted but is not maintained either
 
-Taking the above bugs first, I believe they're both manual versions of
-tests which are already automated. I believe the automated tests have
-passed and there appears to be some kind of problem with the manual
-execution such as the wrong process being documented. I'm not quite
-sure why these are being run manually? Was the list of manual tests we
-received from Intel incorrect?
+>
+> GFB
+>
+> Em qui, 22 de nov de 2018 =C3=A0s 04:46, Khem Raj <raj.khem@gmail.com>
+> escreveu:
+>
+>> atmel boards are supported through meta-atmel BSP layer
+>>
+>> see
+>>
+>> https://github.com/linux4sam/meta-atmel
+>>
+>> sample images
+>> https://github.com/linux4sam/meta-atmel/tree/sumo/recipes-atmel/images
+>> On Wed, Nov 21, 2018 at 8:30 PM rz charger <rzcharger@gmail.com> wrote:
+>> >
+>> > Hi everyone,
+>> >
+>> > Good day.
+>> >
+>> > Currently our team is using Yocto on CM3 Raspberry Pi. We are planning
+>> to port our current Yocto project into Atmel SAME70. However we are not
+>> sure whether it is possible or not. We have few questions hopefully some=
+one
+>> has some experience with this can enlighten us.
+>> >
+>> > 1. Is it possible and recommended to implement Yocto into Atmel SAME70
+>> for IoT application? (Single core CPU:300MHz, RAM: 384KB, Program Memory
+>> Size: 2048 KB)
+>> > 2. Any example/past project of Yocto running on Atmel SAME70?
+>> >
+>> >  Appreciate your time.Thank you
+>> >
+>> > Regards,
+>> > Rz Charger
+>> > Malaysia
+>> > --
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
 
-Looking at other bugs in the QA report:
+--0000000000005ca560057b577f69
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=12670
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Thu,=
+ Nov 22, 2018 at 2:26 PM Gerson Fernando Budke &lt;<a href=3D"mailto:nandoj=
+ve@gmail.com">nandojve@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div>I believe YOCTO curren=
+tly don&#39;t support MMU less like SAME70 MCU.</div><div>If someone have Y=
+OCTO with MMU less I&#39;m very interested :D</div></div></div><div dir=3D"=
+ltr"><div dir=3D"ltr"><div></div></div></div></blockquote><div dir=3D"auto"=
+><br></div><div dir=3D"auto">That=E2=80=99s right although OE at one point =
+did support nommu and that has not been deleted but is not maintained eithe=
+r=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
+order-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div><br></div><div>GFB</div></div></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr">Em qui, 22 de nov de 2018 =C3=A0s 04:46, Khem Raj &lt;<a h=
+ref=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&=
+gt; escreveu:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 =
+0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">atmel boards are supp=
+orted through meta-atmel BSP layer<br>
+<br>
+see<br>
+<br>
+<a href=3D"https://github.com/linux4sam/meta-atmel" rel=3D"noreferrer" targ=
+et=3D"_blank">https://github.com/linux4sam/meta-atmel</a><br>
+<br>
+sample images<br>
+<a href=3D"https://github.com/linux4sam/meta-atmel/tree/sumo/recipes-atmel/=
+images" rel=3D"noreferrer" target=3D"_blank">https://github.com/linux4sam/m=
+eta-atmel/tree/sumo/recipes-atmel/images</a><br>
+On Wed, Nov 21, 2018 at 8:30 PM rz charger &lt;<a href=3D"mailto:rzcharger@=
+gmail.com" target=3D"_blank">rzcharger@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hi everyone,<br>
+&gt;<br>
+&gt; Good day.<br>
+&gt;<br>
+&gt; Currently our team is using Yocto on CM3 Raspberry Pi. We are planning=
+ to port our current Yocto project into Atmel SAME70. However we are not su=
+re whether it is possible or not. We have few questions hopefully someone h=
+as some experience with this can enlighten us.<br>
+&gt;<br>
+&gt; 1. Is it possible and recommended to implement Yocto into Atmel SAME70=
+ for IoT application? (Single core CPU:300MHz, RAM: 384KB, Program Memory S=
+ize: 2048 KB)<br>
+&gt; 2. Any example/past project of Yocto running on Atmel SAME70?<br>
+&gt;<br>
+&gt;=C2=A0 Appreciate your time.Thank you<br>
+&gt;<br>
+&gt; Regards,<br>
+&gt; Rz Charger<br>
+&gt; Malaysia<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
+oproject.org</a><br>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
+br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
+</blockquote></div></div>
 
-It was reopened as it had been fixed in sumo onwards but not rocko.
-I've backported the fix to the rocko branch. I don't believe its a
-release blocker.
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=12991
-
-This is webkitgtk failing to build in the build-appliance and looks
-entirely related to resources in the VM. How this could have worked in
-the past yet fail now makes me wonder about whether it was in fact
-tested previously, whether the VM configuration changed or quite what
-happened. I don't believe its a blocking bug as it does seem to be a VM
-resource problem, not a real failure or problem with build-appliance.
-Its hard to tell for sure with the limited data we have though.
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=12240
-
-A reopened lsb testing bug but its not really showing problems with the
-actual image, just testing difficulties.
-
-
-Based on this, I think 2.4.4 is good to be released, I don't see any
-blocking issues. I would like to understand what tests are actually
-being run and why though.
-
-Cheers,
-
-Richard
-
-
-
+--0000000000005ca560057b577f69--
