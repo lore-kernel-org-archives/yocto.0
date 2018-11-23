@@ -1,66 +1,55 @@
-Return-Path: <nandojve@gmail.com>
+Return-Path: <sangeeta.jain@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD59FE00C31; Thu, 22 Nov 2018 14:26:27 -0800 (PST)
+	id 94C0DE00C1F; Thu, 22 Nov 2018 19:23:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (nandojve[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.50 listed in list.dnswl.org]
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com
-	[209.85.166.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B76EDE00C1E
-	for <yocto@yoctoproject.org>; Thu, 22 Nov 2018 14:26:26 -0800 (PST)
-Received: by mail-io1-f50.google.com with SMTP id a3so7521455ioc.4
-	for <yocto@yoctoproject.org>; Thu, 22 Nov 2018 14:26:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=51rAyy3CpdCV3fMbQyomYQMKHNBzLAdC0rikyHm3Ux0=;
-	b=pzzEd4lUw0xJtllGoaSoQm8exasC3RnbP6PZZPP7EftaM1uzggMAvST42vFnQxs7uN
-	0BCVuHpFAuo/nIvkKXYas09nHMDE46il1qqO2t+FzgTQHeLrKdo301u9v1cnr9P45Rt5
-	Mm+TqHBkWPe/B4yQ10hqALZgPozUcQ+zzoT261m5UUTDUaucYF3pqu6MYkGvV+T44VD/
-	OwEybtUSwo12GbGRAmiBJYSwemcEdWDB9qCEWCOUTXweHNE6N4f/AD8NPwKXodsN61wJ
-	pOO3R+QZegAFjUHwfaj9oytyDgU87kVIRdZtSU85o28IUWss0iAFARwNtghbrCYFEK9X
-	B+ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=51rAyy3CpdCV3fMbQyomYQMKHNBzLAdC0rikyHm3Ux0=;
-	b=GFYAdsFbYYht4p2YH+rjGo8J/lTXY94I25EWCYwlLODawkXk7tNi4VTkMXMJ1vCB75
-	k9yd/y8yPqRkCo3xJi6fezyGf1rmZLvMV1py9OF6rY2K0UeCzwQLzysBoNzoq67J9+ko
-	GMbmCs8DMdj7vgs4EPw694/rfQjUe0lktg/k6Ul/wiRlbbINbXYjkS12iW9Dc1g1IBfs
-	9EIDoKroi0SrP7pfwrDqDbjzRE6pPpMKR1HSEyd+/1FUGqwnCteTAFQx/vpkCPcyDErl
-	dNdnjnagCtTV2SbFOkfHSlqn6Ak9ds3xLr4UC1Av2KrNmFE8qXd1BgU4Tcp+/h4LZ1VV
-	HN3A==
-X-Gm-Message-State: AA+aEWZ0V60Wf0FmXsVqrP+y3sW9vtpM4B7VZr5J+A3t+mmhe45w0u4O
-	6alD4UcKxAjFtKJjuuWJrg1X+uK19wjq/w1FI5Q=
-X-Google-Smtp-Source: AFSGD/WRjHsRrEC8nczRLWLvpDnBhE/HBMcTF2tJkyZl/ZlQ6hrj0hHUnJgyN9URYjW5yUbjU/O9ZosoSVNrYCW+Qbk=
-X-Received: by 2002:a6b:b717:: with SMTP id h23mr9014977iof.14.1542925586021; 
-	Thu, 22 Nov 2018 14:26:26 -0800 (PST)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73298E00A85
+	for <yocto@yoctoproject.org>; Thu, 22 Nov 2018 19:23:04 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	22 Nov 2018 19:23:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.56,268,1539673200"; 
+	d="scan'208,217";a="251927916"
+Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
+	by orsmga004.jf.intel.com with ESMTP; 22 Nov 2018 19:23:02 -0800
+Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.219]) by
+	PGSMSX101.gar.corp.intel.com ([169.254.1.244]) with mapi id
+	14.03.0415.000; Fri, 23 Nov 2018 11:23:01 +0800
+From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
+To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>, "Eggleton, Paul"
+	<paul.eggleton@intel.com>, "richard.purdie@linuxfoundation.org"
+	<richard.purdie@linuxfoundation.org>, "Graydon, Tracy"
+	<tracy.graydon@intel.com>, "Erway, Tracey M" <tracey.m.erway@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: QA cycle report for 2.4.4 RC1
+Thread-Index: AdSC29L4uuuUDBxeT+i5N9NtPzn21A==
+Date: Fri, 23 Nov 2018 03:23:00 +0000
+Message-ID: <015AB11D45F2C442929CB2765DAE738634CEF595@PGSMSX110.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMTk0YjQxZGYtYWRiNC00OTM5LWI5MWItNzEzYmY2YTMxMGVhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiVG5HYm9JaFlWcGowWlUzZjVPdE95b1dWaitlNEJXeWZUZDYwclwvYURUQXFrbU1MbHpyeDdjWFlmbGsxajNWTVYifQ==
+x-originating-ip: [172.30.20.206]
 MIME-Version: 1.0
-References: <CAKfv=rdAwxX3JSBkf_Q78h_+Wt5qgW=c01AwFNdHHX7DcJAwyg@mail.gmail.com>
-	<CAMKF1spFPyfuyVjCKUTf-88Gyqymiqjm1FnjthyN6akxd0j3oQ@mail.gmail.com>
-In-Reply-To: <CAMKF1spFPyfuyVjCKUTf-88Gyqymiqjm1FnjthyN6akxd0j3oQ@mail.gmail.com>
-From: Gerson Fernando Budke <nandojve@gmail.com>
-Date: Thu, 22 Nov 2018 20:26:14 -0200
-Message-ID: <CABOv41O-cGgR-imq8+rH3XQu1RtD+nK3BWrOq24cQB6mJbYTVg@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto on Atmel SAME70?
+Cc: "Kirkiris, Nectar" <nectar.kirkiris@intel.com>
+Subject: QA cycle report for 2.4.4 RC1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,122 +61,277 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Nov 2018 22:26:27 -0000
-Content-Type: multipart/alternative; boundary="0000000000007845e5057b485b7e"
+X-List-Received-Date: Fri, 23 Nov 2018 03:23:05 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_015AB11D45F2C442929CB2765DAE738634CEF595PGSMSX110garcor_"
 
---0000000000007845e5057b485b7e
-Content-Type: text/plain; charset="UTF-8"
+--_000_015AB11D45F2C442929CB2765DAE738634CEF595PGSMSX110garcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I believe YOCTO currently don't support MMU less like SAME70 MCU.
-If someone have YOCTO with MMU less I'm very interested :D
 
-GFB
 
-Em qui, 22 de nov de 2018 =C3=A0s 04:46, Khem Raj <raj.khem@gmail.com> escr=
-eveu:
+Hello All,
 
-> atmel boards are supported through meta-atmel BSP layer
->
-> see
->
-> https://github.com/linux4sam/meta-atmel
->
-> sample images
-> https://github.com/linux4sam/meta-atmel/tree/sumo/recipes-atmel/images
-> On Wed, Nov 21, 2018 at 8:30 PM rz charger <rzcharger@gmail.com> wrote:
-> >
-> > Hi everyone,
-> >
-> > Good day.
-> >
-> > Currently our team is using Yocto on CM3 Raspberry Pi. We are planning
-> to port our current Yocto project into Atmel SAME70. However we are not
-> sure whether it is possible or not. We have few questions hopefully someo=
-ne
-> has some experience with this can enlighten us.
-> >
-> > 1. Is it possible and recommended to implement Yocto into Atmel SAME70
-> for IoT application? (Single core CPU:300MHz, RAM: 384KB, Program Memory
-> Size: 2048 KB)
-> > 2. Any example/past project of Yocto running on Atmel SAME70?
-> >
-> >  Appreciate your time.Thank you
-> >
-> > Regards,
-> > Rz Charger
-> > Malaysia
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
---0000000000007845e5057b485b7e
-Content-Type: text/html; charset="UTF-8"
+
+This is the full report for 2.4.4 RC1:
+
+https://wiki.yoctoproject.org/wiki/WW46_-_2018-11-14_-_Full_Test_Cycle_2.4.=
+4_RC1
+
+
+
+
+
+Summary
+
+
+
+All planned tests were executed.
+
+
+
+Total Test Executed - 3330
+
+Passed Test - 3318
+
+Failed Test - 8
+
+Blocked Test - 4
+
+
+
+There were zero high priority defect.  Team had found 2 new defects.
+
+
+
+New Bugs
+
+
+
+[1] Bug 13033 -  [2.4.4RC1] [Bitbake] [Case 142] PR number is not getting i=
+ncreased with remote server/local client mode
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13033
+
+
+
+ [2]Bug 13038 - [2.4.4RC1][Package Management][Getting Error Message "Faile=
+d to synchronize cache for repo 'repository'"]
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13038
+
+
+
+Thanks & Regards,
+Sangeeta Jain
+
+
+--_000_015AB11D45F2C442929CB2765DAE738634CEF595PGSMSX110garcor_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div>I believe YOCTO currently don&#39;t =
-support MMU less like SAME70 MCU.</div><div>If someone have YOCTO with MMU =
-less I&#39;m very interested :D</div><div><br></div><div>GFB</div></div></d=
-iv><br><div class=3D"gmail_quote"><div dir=3D"ltr">Em qui, 22 de nov de 201=
-8 =C3=A0s 04:46, Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khe=
-m@gmail.com</a>&gt; escreveu:<br></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">atmel=
- boards are supported through meta-atmel BSP layer<br>
-<br>
-see<br>
-<br>
-<a href=3D"https://github.com/linux4sam/meta-atmel" rel=3D"noreferrer" targ=
-et=3D"_blank">https://github.com/linux4sam/meta-atmel</a><br>
-<br>
-sample images<br>
-<a href=3D"https://github.com/linux4sam/meta-atmel/tree/sumo/recipes-atmel/=
-images" rel=3D"noreferrer" target=3D"_blank">https://github.com/linux4sam/m=
-eta-atmel/tree/sumo/recipes-atmel/images</a><br>
-On Wed, Nov 21, 2018 at 8:30 PM rz charger &lt;<a href=3D"mailto:rzcharger@=
-gmail.com" target=3D"_blank">rzcharger@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hi everyone,<br>
-&gt;<br>
-&gt; Good day.<br>
-&gt;<br>
-&gt; Currently our team is using Yocto on CM3 Raspberry Pi. We are planning=
- to port our current Yocto project into Atmel SAME70. However we are not su=
-re whether it is possible or not. We have few questions hopefully someone h=
-as some experience with this can enlighten us.<br>
-&gt;<br>
-&gt; 1. Is it possible and recommended to implement Yocto into Atmel SAME70=
- for IoT application? (Single core CPU:300MHz, RAM: 384KB, Program Memory S=
-ize: 2048 KB)<br>
-&gt; 2. Any example/past project of Yocto running on Atmel SAME70?<br>
-&gt;<br>
-&gt;=C2=A0 Appreciate your time.Thank you<br>
-&gt;<br>
-&gt; Regards,<br>
-&gt; Rz Charger<br>
-&gt; Malaysia<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";
+	mso-fareast-language:EN-MY;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle22
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle23
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle24
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle25
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle26
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle27
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle28
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle30
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-MY" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">Hello All,<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">This is the full report for 2.</span><span lang=3D"EN-US">4.4=
+ R<span style=3D"color:black">C1:&nbsp;
+<o:p></o:p></span></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/WW46_-_2018-11-14_-_Full_Test_Cycle_2.4.4_RC1">https://wik=
+i.yoctoproject.org/wiki/WW46_-_2018-11-14_-_Full_Test_Cycle_2.4.4_RC1</a><o=
+:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
+=3D"color:black">Summary<o:p></o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">All planned tests were executed.<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">Total Test Executed &#8211; 333</span><span lang=3D"EN-US">0<=
+span style=3D"color:black"><o:p></o:p></span></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">Passed Test &#8211; 33</span><span lang=3D"EN-US">18<span sty=
+le=3D"color:black"><o:p></o:p></span></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">Failed Test &#8211;
+</span><span lang=3D"EN-US">8<span style=3D"color:black"><o:p></o:p></span>=
+</span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">Blocked Test - 4<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
+0pt;font-family:&quot;Times New Roman&quot;,serif;color:black">There were z=
+ero high priority defect.&nbsp; Team had found </span><span lang=3D"EN-US" =
+style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif">2<=
+span style=3D"color:black"> new defects. <o:p></o:p></span></span></pre>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
+=3D"color:black">New Bugs<o:p></o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
+=3D"color:black"><o:p>&nbsp;</o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">[1]
+</span>Bug&nbsp;13033 - <span style=3D"color:black">&nbsp;</span>[<span lan=
+g=3D"EN-US" style=3D"color:black">2.4.4RC1] [Bitbake] [Case 142] PR number =
+is not getting increased with remote server/local client mode</span><span l=
+ang=3D"EN-US">
+</span><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><a href=
+=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13033">https://bugz=
+illa.yoctoproject.org/show_bug.cgi?id=3D13033</a><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;[2]</span>Bug 13038<span lang=3D"EN-US" style=3D"color:=
+black">&nbsp;</span><span lang=3D"EN-US">- [2.4.4RC1][Package Management][G=
+etting Error Message &quot;Failed to synchronize cache for
+ repo 'repository'&quot;]<span style=3D"color:black"><o:p></o:p></span></sp=
+an></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><a href=
+=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13038">https://bugz=
+illa.yoctoproject.org/show_bug.cgi?id=3D13038</a><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
+=3D"font-family:&quot;Verdana&quot;,sans-serif;color:black"><o:p>&nbsp;</o:=
+p></span></b></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards,<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Sangeeta Jain<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
---0000000000007845e5057b485b7e--
+--_000_015AB11D45F2C442929CB2765DAE738634CEF595PGSMSX110garcor_--
