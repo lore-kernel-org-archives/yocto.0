@@ -1,70 +1,61 @@
-Return-Path: <enrico.scholz@sigma-chemnitz.de>
+Return-Path: <donal.morrissey@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5D8DBE00C99; Mon, 26 Nov 2018 03:27:01 -0800 (PST)
+	id AE862E00AD8; Mon, 26 Nov 2018 03:57:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_MED,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [193.158.56.148 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (donal.morrissey[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.54 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 1095 seconds by postgrey-1.32 at yocto-www;
-	Mon, 26 Nov 2018 03:26:50 PST
-Received: from mail.cvg.de (mail.cvg.de [193.158.56.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BB2BE00950
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 03:26:50 -0800 (PST)
-Received: from mail-mta-0.intern.sigma-chemnitz.de
-	(mail-mta-0.intern.sigma-chemnitz.de [192.168.12.76])
-	by mailout-1.intern.sigma-chemnitz.de (8.14.7/8.14.7) with ESMTP id
-	wAQB8Xlb021429
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=OK)
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 12:08:34 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sigma-chemnitz.de;
-	s=v2012061000; t=1543230514;
-	bh=Vox/x2Ohf/Jc4ptr2KVHwhFL2wqjjidlBr48k4acNFQ=;
-	h=From:To:Subject:Date;
-	b=RBCanpXE8S9/WpFaCABm5aypfoSPtsc/3GqB+4bSh3+qwNS478LvmOO1eAvrE5hwR
-	bDlRc84EZ5XJXrnjuISESBp6+ceoipDVUto2SvuPtJfSLUVS1tVds03KGUXUCrgWJy
-	zbCeoYAV1HPCUML44MjKyrh/vv+q1Jz3no5y6l+Q=
-Received: from reddoxx.intern.sigma-chemnitz.de
-	(reddoxx.intern.sigma-chemnitz.de [192.168.0.193])
-	by mail-mta-0.intern.sigma-chemnitz.de (8.14.7/8.14.7) with ESMTP id
-	wAQB8PSN019865
-	for <yocto@yoctoproject.org> from enrico.scholz@sigma-chemnitz.de;
-	Mon, 26 Nov 2018 12:08:26 +0100
-Received: from mail-msa-0.intern.sigma-chemnitz.de ( [192.168.12.77]) by
-	reddoxx.intern.sigma-chemnitz.de
-	(Reddoxx engine) with SMTP id 632B8713222;
-	Mon, 26 Nov 2018 12:08:53 +0100
-Received: from ensc-virt.intern.sigma-chemnitz.de
-	(ensc-virt.intern.sigma-chemnitz.de [192.168.3.24])
-	by mail-msa-0.intern.sigma-chemnitz.de (8.14.7/8.14.7) with ESMTP id
-	wAQB8NYh019862
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NO) for <yocto@yoctoproject.org> from ensc@sigma-chemnitz.de;
-	Mon, 26 Nov 2018 12:08:23 +0100
-Received: from ensc by ensc-virt.intern.sigma-chemnitz.de with local (Exim
-	4.91) (envelope-from <ensc@sigma-chemnitz.de>) id 1gREkZ-00F7dp-Ln
-	for yocto@yoctoproject.org; Mon, 26 Nov 2018 12:08:23 +0100
-From: Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
-To: yocto@yoctoproject.org
-Date: Mon, 26 Nov 2018 12:08:23 +0100
-Message-ID: <ly1s78gkpk.fsf@ensc-virt.intern.sigma-chemnitz.de>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com
+	[209.85.167.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 169D1E0097C
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 03:57:37 -0800 (PST)
+Received: by mail-lf1-f54.google.com with SMTP id p17so13318268lfh.4
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 03:57:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=5XKxAqajtnkSovG+1hd3NTBtd0llT+ZY/pyNwKXCtvA=;
+	b=Omu+yYFm92K2uNYYGhJdQTDtsGXZ6XCOBnTyquOPTzU7xoddZSm6jEl+cgiXkiFs4l
+	FHT3IDZe6AbeOr6vtN3llBXLia0pJsQMXcw/7zhJVqr656l3xjefo9ucyI3Dn3t6jc2O
+	htpyLhvIgZKSmVbszOWO2/0Q9HCkmJIhGCw5QY85AJ4RzL+nVmgX6neW/jtuJn6VoMFW
+	1oCsyOHx+hNuqrxTG9R70sbVYimARSGkpoj+7ofWVUu4HUmiBhei6fAs4Eykcbw5bSAc
+	mdKR+0+F9w4Rmdecm2RSJ5UNaYVU4yGX9gPR9epMXbxI0vS7Qf0uGng/PIIcOS7WpXDF
+	MaZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=5XKxAqajtnkSovG+1hd3NTBtd0llT+ZY/pyNwKXCtvA=;
+	b=TAO+/gG+MkI1yNN+hP2N5LABtOu9Svm4J8+e/IZfZypdglkHiDwdW15lAWQjwF/nfU
+	h6g0TOiUAP/91hlmCYy040Sa687+rTqNSOTTu+VBx6ek94Us56WfcmTF99L8JFmdsKzS
+	e5hM7OTa2zbQS0eTGe3JK6zN13wp9BtlzYoYhaqeg3H0sxL2Hnr0zlSmv/Sx4Zu9UJ+l
+	uLH4+EK6LVZSKzo5iYr3KnF8hkh5hb6fsl5Tv+RjoEGRSVqLV/ZbGR5kuxsTPmm/Pi8O
+	Fx1eEioT6x0+YXvzOwSr/h5bqR9dcBLYzolPN+DsX/D8+fSXuWofjYgYllWDqvRN8Hl6
+	1NTw==
+X-Gm-Message-State: AGRZ1gJIddDYC9RXNCf6+aVkcC7d63iohughe/XNWewonCllF61jpfK5
+	lYlGsQqvLy9h3cnZ/4KgUW/PTezMUc6+Nnsa0GSF/A==
+X-Google-Smtp-Source: AJdET5dEJQ9EE60C9PQFo99bTT9D0PaHW2ropO9XcqY0DFLXgv2kdXztI+hSP/o6ZVlbTgC2S6XAOxXZ1wJaTHVqc20=
+X-Received: by 2002:a19:945b:: with SMTP id w88mr14859027lfd.15.1543233456494; 
+	Mon, 26 Nov 2018 03:57:36 -0800 (PST)
 MIME-Version: 1.0
-Sender: Enrico Scholz <enrico.scholz@sigma-chemnitz.de>
-Subject: [meta-selinux] Request for 'thud' branch
+From: Donal Morrissey <donal.morrissey@gmail.com>
+Date: Mon, 26 Nov 2018 11:57:23 +0000
+Message-ID: <CABj1EzHdrsR71h4UGCg2P0EutEhw8TkZL=oZjEUzZazsj51qCg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Date/Time Update Without NTP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,23 +67,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Nov 2018 11:27:01 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 26 Nov 2018 11:57:38 -0000
+Content-Type: multipart/alternative; boundary="000000000000fae580057b9009bd"
 
-Hello,
+--000000000000fae580057b9009bd
+Content-Type: text/plain; charset="UTF-8"
 
-I would like to provide some content[1] for meta-selinux[2], but all
-this is based/tested on 'thud' only.  Would it be possible to create a
-'thud' branch and update the corresponding LAYERSERIES_COMPAT_selinux?
+Hi There,
 
+I'm using yocto sumo with systemd, and have an issue where I can't identify
+which service is grabbing time from the ethernet based network.
 
+If I start the unit without a network connection, the time is reported as
+EPOC. As soon as I connect the network, the date/time is updated. However,
+there isn't anything in the logs that I can see which tells details of the
+service which has updated time. Also, the ntpd binary is not installed.
 
-Thanks
-Enrico
+Is there a time service, other than NTP, which would typically be enabled
+on Yocto builds?
 
-Footnotes: 
-[1]  https://gitlab.com/ensc-groups/bpi-router/de.ensc.bpi-router/blob/master/meta-core/classes/selinux-policy.bbclass
-     https://gitlab.com/ensc-groups/bpi-router/de.ensc.bpi-router/tree/master/meta-core/recipes-selinux
+Cheers,
+Donal
 
-[2]  https://git.yoctoproject.org/cgit/cgit.cgi/meta-selinux/
+--000000000000fae580057b9009bd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi There,<div><br><div>I&#39;m using yocto sumo with syste=
+md, and have an issue where I can&#39;t identify which service is grabbing =
+time from the ethernet based network.</div><div><br></div><div>If I start t=
+he unit without a network connection, the time is reported as EPOC. As soon=
+ as I connect the network, the date/time is updated. However, there isn&#39=
+;t anything in the logs that I can see which tells details of the service w=
+hich has updated time. Also, the ntpd binary is not installed.</div><div><b=
+r></div><div>Is there a time service, other than NTP, which would typically=
+ be enabled on Yocto builds?</div><div><br></div><div>Cheers,</div><div>Don=
+al</div><div><br></div></div></div>
+
+--000000000000fae580057b9009bd--
