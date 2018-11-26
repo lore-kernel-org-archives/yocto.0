@@ -1,56 +1,58 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <aaron@assonance.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 925A6E009AA; Mon, 26 Nov 2018 12:23:02 -0800 (PST)
+	id 24F19E009AA; Mon, 26 Nov 2018 12:34:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.170 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 365B2E00950
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 12:23:00 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	26 Nov 2018 12:23:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.56,283,1539673200"; 
-	d="scan'208,217";a="103485048"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
-	by orsmga003.jf.intel.com with ESMTP; 26 Nov 2018 12:23:00 -0800
-Received: from fmsmsx117.amr.corp.intel.com (10.18.116.17) by
-	FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server
-	(TLS) id 14.3.408.0; Mon, 26 Nov 2018 12:22:59 -0800
-Received: from fmsmsx124.amr.corp.intel.com ([169.254.8.91]) by
-	fmsmsx117.amr.corp.intel.com ([169.254.3.100]) with mapi id
-	14.03.0415.000; Mon, 26 Nov 2018 12:22:59 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Unassigned Bugs - Help Needed
-Thread-Index: AdRUG3den5c8kH6JR5OKxqhg9AfC3w==
-Date: Mon, 26 Nov 2018 20:22:59 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECFD46303@fmsmsx124.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.108]
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNmNlNDYxYTEtMTdmZC00OGVhLTk3MDgtNTk1OTY4OGJkM2M0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTDVVbFNtUVFKNGJheHBqZGk0T0ViMUpRdm5wSkxGRmNZXC9GYWtSc1FcL1dKUlM4QkM4WGlyZWk0ZlJINmhcL1RRWCJ9
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-it1-f170.google.com (mail-it1-f170.google.com
+	[209.85.166.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 312BEE00950
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 12:34:50 -0800 (PST)
+Received: by mail-it1-f170.google.com with SMTP id o19so30494687itg.5
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 12:34:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=assonance-org.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=5ZNFEfVx6QOT7ERhqIz9VU6dRD3LoP8+ubNpdqKoQ5A=;
+	b=nBqLgqL4BR4PIUeMXdDzJmVYxh2uecqIh2+8idEaCOxw0LGjvqsLdhdsyRXKiCE7hT
+	3rNx3okXU6mVba97p3x1gqg24RqdU7p/PzKdavQTpmOjCZtGeLkX/i5tRocH4D3I/LpY
+	uDLvg6avVFXJ1vZnLLGaA4d3RZZ9mDYQvL7KjdMAuCHJYqVllYZ6WIWsaXW/ZRA4HHMG
+	djMYyVDfBGKC6atjZE+Tt8yvIqKQssh4G550RBXrCo6vKXpezAsegbAt8PELoR7sqF83
+	0aRN06Co8AmpoCmppbpOrW55W7DXEFQxREjAZQFvFaiBywDKLk9m3oqUcUxHYl2fMFYq
+	IKZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=5ZNFEfVx6QOT7ERhqIz9VU6dRD3LoP8+ubNpdqKoQ5A=;
+	b=Jr1qrcuJySdQdq0bLQXZZZYtVlDI4pE5t+9eEmSnLAPH1g9gSl4ZsRTi2KEGK/rcI4
+	K3x7oJ3fPiLH3TdeIz2EGxmoSuKMokJVhNUDf5BC+u9C3bNw5NxV6PHrsvykkJoJpaU5
+	JnU+HFogHw74kiHf1Wt3edIZ95xaTtVxnbpTzg+jT8JR3yqV+yYHbPWtwwyOJZtwGCP1
+	Oxf5Vn5+ULCyZNTKydRbUgZaWS9mgcPJM9u0O+wYwPOj1zFoFV/r6YDNRInBdkRn5KBW
+	dcDOPMbfZJeW7vxpK4mCRl9vwmZ/KVw8dfEqXvPhoVRShoCvZCwiB55UOgbM/3LTpRou
+	7WDQ==
+X-Gm-Message-State: AGRZ1gITQKQRrdWv8NfQqIHMSOKdHREz99WMHMfLbWCKGyYKT4hutL9J
+	rH+C/sTGlesccYIIT/AON5t6o7zNZTIytmlB/2BGgyBRJwg=
+X-Google-Smtp-Source: AFSGD/X3OGh4NsESp+vcKmXlIU7Y5VSa+luiv7IQQev4oZ2++zvh6wef+9oBYZeBpIB4Oe623O8iBztLhFdN4Q/4sO0=
+X-Received: by 2002:a24:4483:: with SMTP id
+	o125mr24393957ita.106.1543264489251; 
+	Mon, 26 Nov 2018 12:34:49 -0800 (PST)
 MIME-Version: 1.0
-Subject: Yocto Project Unassigned Bugs - Help Needed
+From: Aaron Cohen <aaron@assonance.org>
+Date: Mon, 26 Nov 2018 15:34:27 -0500
+Message-ID: <CAFSZm+ioLuVFJi-+zF9Rx4Nk7q1+i6Ehw6puQX0Vd+f_Xkc5Ww@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Mercurial fetcher doesn't work for me (patch included)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,217 +64,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Nov 2018 20:23:02 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD46303fmsmsx124amrcor_"
+X-List-Received-Date: Mon, 26 Nov 2018 20:34:52 -0000
+X-Groupsio-MsgNum: 43362
+Content-Type: multipart/mixed; boundary="000000000000ad93f0057b9743ed"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD46303fmsmsx124amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--000000000000ad93f0057b9743ed
+Content-Type: multipart/alternative; boundary="000000000000ad93ed057b9743eb"
 
-All,
+--000000000000ad93ed057b9743eb
+Content-Type: text/plain; charset="UTF-8"
 
-
-
-The triage team meets weekly and does its best to handle the bugs reported =
-into the bugzilla. The number of people attending that meeting has fallen, =
-as have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage team) a=
-re therefore going to start reporting out the currently 297 unassigned bugs=
-.
+I'm trying to write a recipe for a local repo that is kept in mercurial,
+and encountering the following problem:
 
 
-
-We're hoping people may be able to spare some time now and again to help ou=
-t with these.
-
-
-
-Bugs are split into two types, "true bugs" where things don't work as they =
-should and "enhancements" which are features we'd want to add to the system=
-.
-
-
-
-There are also roughly four different "priority" classes right now, "2.7", =
-"2.8", "2.99" and "Future", the more pressing/urgent issues being in "2.7" =
-and then "2.8".
-
-
-
-Please review this link and if a bug is something you would be able to help=
- with either take ownership of the bug, or send me (Stephen.k.jolley@intel.=
-com<mailto:Stephen.k.jolley@intel.com>) an e-mail with the bug number you w=
-ould like and I will assign it to you (please make sure you have a bugzilla=
- account).
-
-
-
-The list is at: https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bu=
-gs
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*    Cell:                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD46303fmsmsx124amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Traceback (most recent call last):
+>   File "/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_smart.py",
+> line 808, in DataSmart.getVarFlag(var='PV', flag='_content', expand=True,
+> noweakdefault=False, parsing=False, retparser=False):
+>              if expand or retparser:
+>     >            parser = self.expandWithRefs(value, cachename)
+>              if expand:
+>   File "/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_smart.py",
+> line 416, in DataSmart.expandWithRefs(s='0.0.4+git${SRCPV}', varname='PV'):
+>                  try:
+>     >                s = __expand_var_regexp__.sub(varparse.var_sub, s)
+>                      try:
+>   File "/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_smart.py",
+> line 108, in VariableParse.var_sub(match=<_sre.SRE_Match object; span=(9,
+> 17), match='${SRCPV}'>):
+>                          raise Exception("variable %s references itself!"
+> % self.varname)
+>     >            var = self.d.getVarFlag(key, "_content")
+>                  self.references.add(key)
+>   File "/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_smart.py",
+> line 808, in DataSmart.getVarFlag(var='SRCPV', flag='_content',
+> expand=True, noweakdefault=False, parsing=False, retparser=False):
+>              if expand or retparser:
+>     >            parser = self.expandWithRefs(value, cachename)
+>              if expand:
+>   File "/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_smart.py",
+> line 430, in DataSmart.expandWithRefs(s='${@bb.fetch2.get_srcrev(d)}',
+> varname='SRCPV'):
+>                  except Exception as exc:
+>     >                raise ExpansionError(varname, s, exc) from exc
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:2 11 5 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle19
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText">All,<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">The triage team meets weekly and does its best to=
- handle the bugs reported into the bugzilla. The number of people attending=
- that meeting has fallen, as have the number of people available to help fi=
-x bugs. One of the things we hear
- users report is they don't know how to help. We (the triage team) are ther=
-efore going to start reporting out the currently 297 unassigned bugs.<o:p><=
-/o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">We're hoping people may be able to spare some tim=
-e now and again to help out with these.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Bugs are split into two types, &quot;true bugs&qu=
-ot; where things don't work as they should and &quot;enhancements&quot; whi=
-ch are features we'd want to add to the system.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">There are also roughly four different &quot;prior=
-ity&quot; classes right now, &#8220;2.7&#8221;, &#8220;2.8&#8221;, &quot;2.=
-99&quot; and &quot;Future&quot;, the more pressing/urgent issues being in &=
-quot;2.7&quot; and then &#8220;2.8&#8221;.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Please review this link and if a bug is something=
- you would be able to help with either take ownership of the bug, or send m=
-e (<a href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com=
-</a>) an e-mail with the bug number
- you would like and I will assign it to you (please make sure you have a bu=
-gzilla account).<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">The list is at: <a href=3D"https://wiki.yoctoproj=
-ect.org/wiki/Bug_Triage#Unassigned_Bugs">
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
-></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> bb.data_smart.ExpansionError: Failure expanding variable SRCPV, expression
+> was ${@bb.fetch2.get_srcrev(d)} which triggered exception AttributeError:
+> 'FetchData' object has no attribute 'moddir'
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD46303fmsmsx124amrcor_--
+
+I've fixed this with the following patch, which moves some code in the Hg
+fetcher to later in the urldata_init method, after some necessary variables
+have been initialized. I'm not sure if I'm alone in seeing this problem or
+not?
+
+Thanks for any help,
+Aaron
+
+--000000000000ad93ed057b9743eb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div>I&#39;m trying to write a recipe for=
+ a local repo that is kept in mercurial, and encountering the following pro=
+blem:</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x">Traceback (most recent call last):<br>=C2=A0 File &quot;/home/joel-cohen=
+/code/waveos2/poky/bitbake/lib/bb/data_smart.py&quot;, line 808, in DataSma=
+rt.getVarFlag(var=3D&#39;PV&#39;, flag=3D&#39;_content&#39;, expand=3DTrue,=
+ noweakdefault=3DFalse, parsing=3DFalse, retparser=3DFalse):<br>=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if expand or retparser:<br>=C2=A0 =C2=
+=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 parser =3D self.expandWit=
+hRefs(value, cachename)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+if expand:<br>=C2=A0 File &quot;/home/joel-cohen/code/waveos2/poky/bitbake/=
+lib/bb/data_smart.py&quot;, line 416, in DataSmart.expandWithRefs(s=3D&#39;=
+0.0.4+git${SRCPV}&#39;, varname=3D&#39;PV&#39;):<br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0try:<br>=C2=A0 =C2=A0 &gt;=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 s =3D __expand_var_regexp_=
+_.sub(varparse.var_sub, s)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0try:<br>=C2=A0 File &quot;/home/joel-cohen/c=
+ode/waveos2/poky/bitbake/lib/bb/data_smart.py&quot;, line 108, in VariableP=
+arse.var_sub(match=3D&lt;_sre.SRE_Match object; span=3D(9, 17), match=3D&#3=
+9;${SRCPV}&#39;&gt;):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0raise Exception(&quot;variable %s =
+references itself!&quot; % self.varname)<br>=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 var =3D self.d.getVarFlag(key, &quot;_content&=
+quot;)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sel=
+f.references.add(key)<br>=C2=A0 File &quot;/home/joel-cohen/code/waveos2/po=
+ky/bitbake/lib/bb/data_smart.py&quot;, line 808, in DataSmart.getVarFlag(va=
+r=3D&#39;SRCPV&#39;, flag=3D&#39;_content&#39;, expand=3DTrue, noweakdefaul=
+t=3DFalse, parsing=3DFalse, retparser=3DFalse):<br>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0if expand or retparser:<br>=C2=A0 =C2=A0 &gt;=C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 parser =3D self.expandWithRefs(value, c=
+achename)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if expand:<br>=
+=C2=A0 File &quot;/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_sm=
+art.py&quot;, line 430, in DataSmart.expandWithRefs(s=3D&#39;${@bb.fetch2.g=
+et_srcrev(d)}&#39;, varname=3D&#39;SRCPV&#39;):<br>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0except Exception as exc:<br>=C2=A0 =
+=C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 raise Ex=
+pansionError(varname, s, exc) from exc<br>=C2=A0 =C2=A0 =C2=A0<br>bb.data_s=
+mart.ExpansionError: Failure expanding variable SRCPV, expression was ${@bb=
+.fetch2.get_srcrev(d)} which triggered exception AttributeError: &#39;Fetch=
+Data&#39; object has no attribute &#39;moddir&#39;</blockquote><div><br></d=
+iv><div>I&#39;ve fixed this with the following patch, which moves some code=
+ in the Hg fetcher to later in the urldata_init method, after some necessar=
+y variables have been initialized. I&#39;m not sure if I&#39;m alone in see=
+ing this problem or not?</div><div><br></div><div>Thanks for any help,</div=
+><div>Aaron</div><div><br></div><div><br></div></div></div>
+
+--000000000000ad93ed057b9743eb--
+
+--000000000000ad93f0057b9743ed
+Content-Type: text/x-patch; charset="US-ASCII"; name="poky.patch"
+Content-Disposition: attachment; filename="poky.patch"
+Content-Transfer-Encoding: base64
+Content-ID: <f_joyrrek90>
+X-Attachment-Id: f_joyrrek90
+
+ZGlmZiAtLWdpdCBhL2JpdGJha2UvbGliL2JiL2ZldGNoMi9oZy5weSBiL2JpdGJha2UvbGliL2Ji
+L2ZldGNoMi9oZy5weQppbmRleCA5MzZkMDQzLi45NzkwZTFiIDEwMDY0NAotLS0gYS9iaXRiYWtl
+L2xpYi9iYi9mZXRjaDIvaGcucHkKKysrIGIvYml0YmFrZS9saWIvYmIvZmV0Y2gyL2hnLnB5CkBA
+IC02NiwxMyArNjYsNiBAQCBjbGFzcyBIZyhGZXRjaE1ldGhvZCk6CiAgICAgICAgIGVsc2U6CiAg
+ICAgICAgICAgICB1ZC5wcm90byA9ICJoZyIKIAotICAgICAgICB1ZC5zZXR1cF9yZXZpc2lvbnMo
+ZCkKLQotICAgICAgICBpZiAncmV2JyBpbiB1ZC5wYXJtOgotICAgICAgICAgICAgdWQucmV2aXNp
+b24gPSB1ZC5wYXJtWydyZXYnXQotICAgICAgICBlbGlmIG5vdCB1ZC5yZXZpc2lvbjoKLSAgICAg
+ICAgICAgIHVkLnJldmlzaW9uID0gc2VsZi5sYXRlc3RfcmV2aXNpb24odWQsIGQpCi0KICAgICAg
+ICAgIyBDcmVhdGUgcGF0aHMgdG8gbWVyY3VyaWFsIGNoZWNrb3V0cwogICAgICAgICBoZ3NyY25h
+bWUgPSAnJXNfJXNfJXMnICUgKHVkLm1vZHVsZS5yZXBsYWNlKCcvJywgJy4nKSwgXAogICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIHVkLmhvc3QsIHVkLnBhdGgucmVwbGFjZSgnLycsICcuJykp
+CkBAIC04Niw2ICs3OSwxNCBAQCBjbGFzcyBIZyhGZXRjaE1ldGhvZCk6CiAgICAgICAgIHVkLmxv
+Y2FsZmlsZSA9IHVkLm1vZGRpcgogICAgICAgICB1ZC5iYXNlY21kID0gZC5nZXRWYXIoIkZFVENI
+Q01EX2hnIikgb3IgIi91c3IvYmluL2VudiBoZyIKIAorICAgICAgICB1ZC5zZXR1cF9yZXZpc2lv
+bnMoZCkKKworICAgICAgICBpZiAncmV2JyBpbiB1ZC5wYXJtOgorICAgICAgICAgICAgdWQucmV2
+aXNpb24gPSB1ZC5wYXJtWydyZXYnXQorICAgICAgICBlbGlmIG5vdCB1ZC5yZXZpc2lvbjoKKyAg
+ICAgICAgICAgIHVkLnJldmlzaW9uID0gc2VsZi5sYXRlc3RfcmV2aXNpb24odWQsIGQpCisKKwog
+ICAgICAgICB1ZC53cml0ZV90YXJiYWxscyA9IGQuZ2V0VmFyKCJCQl9HRU5FUkFURV9NSVJST1Jf
+VEFSQkFMTFMiKQogCiAgICAgZGVmIG5lZWRfdXBkYXRlKHNlbGYsIHVkLCBkKToK
+
+--000000000000ad93f0057b9743ed--
