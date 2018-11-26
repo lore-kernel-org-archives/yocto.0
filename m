@@ -1,61 +1,56 @@
-Return-Path: <slaterc@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2A725E009B2; Mon, 26 Nov 2018 11:55:50 -0800 (PST)
+	id 925A6E009AA; Mon, 26 Nov 2018 12:23:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (slaterc[at]gmail.com)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.51 listed in list.dnswl.org]
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com
-	[209.85.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C114E0097C
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 11:55:49 -0800 (PST)
-Received: by mail-ot1-f51.google.com with SMTP id v23so12415927otk.9
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 11:55:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=Ejka7oveKLnQ3Os3etXzlbkF+4bQLZcjCF2kI45OO5o=;
-	b=jqvybVngdlkvlvBc2/R+kslTRpnHWNoZ+Y5R56Qv5jYhUexs2R7EGH7I3eD5sq1IOY
-	qYW1DR4wtHVGzfcwUmUeqOWqykAopWwJOheiY8O/bQITnXyJfM+DSjQKeINZruL19R22
-	qVgZnbfKeUDTkLcQ1MvdNNvi4zU200EsuusWX+drcPSkaIjJO0ML5MN+VnVed0JzbJ7Y
-	NcMe8X6BdGbdy3BnGp9ssRe2e180y95Rj2w7NKiEdOJAzAIOWI7wgZQ8Y8f+AI0JMork
-	DQ89P8t6WYWFhmLn/LLr0fjFUbMYpGImjF1M+5WOwSa6u2kcXGFCOqmPb75nsxxuL7ex
-	nXtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=Ejka7oveKLnQ3Os3etXzlbkF+4bQLZcjCF2kI45OO5o=;
-	b=sKvohVOqS3LhWnmiZYiOUzCk/tqEtfojO/cSEQ4LaXRq6L1yyB8pNBIcSGh6TbQkpU
-	QTMpQYbwEFNuLWjFtO+COIHvEsyGjBWXVdZSDQNQElOaSY55HprF+ewAFzTkaSRdpVyQ
-	++vtpLTkjG3e+VZFQuwdbOiSSabzHCf2TfIL8vhfnlQmKIRfK5oXLEr4wSwsV9fvJlDI
-	tky8FCKNdHFD58NsPrgqZ4RgOgJBN/jaPDuV9KcgqHDhzfCctQx4MHJtE+2oii4wnjzp
-	0jwhElZPX0a3ML6CbMqJwOu9EIkX6NO4iNlfyDO04cPLqfb+/pvpXcCED5dnyTTRHDE3
-	xhtA==
-X-Gm-Message-State: AA+aEWYq70CXtqg2OJ4F6jPV3yoMKGIPLEaJgmsSgBwbGXihyf2tyJz7
-	eSH8wlR2UHJByKXCvGxMxvHtL8cZddlzSlbcJm9ZBbSU
-X-Google-Smtp-Source: AFSGD/ULitqUqAjDHvzcah3tUOipOA0CUci2MfUq9QoWhNeOyODjQMAgcCM2wDXdXdbFIBMmlOHUnnAiQLKdyGko3nw=
-X-Received: by 2002:a9d:7201:: with SMTP id u1mr16986260otj.365.1543262148581; 
-	Mon, 26 Nov 2018 11:55:48 -0800 (PST)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 365B2E00950
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 12:23:00 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	26 Nov 2018 12:23:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.56,283,1539673200"; 
+	d="scan'208,217";a="103485048"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+	by orsmga003.jf.intel.com with ESMTP; 26 Nov 2018 12:23:00 -0800
+Received: from fmsmsx117.amr.corp.intel.com (10.18.116.17) by
+	FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server
+	(TLS) id 14.3.408.0; Mon, 26 Nov 2018 12:22:59 -0800
+Received: from fmsmsx124.amr.corp.intel.com ([169.254.8.91]) by
+	fmsmsx117.amr.corp.intel.com ([169.254.3.100]) with mapi id
+	14.03.0415.000; Mon, 26 Nov 2018 12:22:59 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: Yocto Project Unassigned Bugs - Help Needed
+Thread-Index: AdRUG3den5c8kH6JR5OKxqhg9AfC3w==
+Date: Mon, 26 Nov 2018 20:22:59 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155ECFD46303@fmsmsx124.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.108]
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNmNlNDYxYTEtMTdmZC00OGVhLTk3MDgtNTk1OTY4OGJkM2M0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTDVVbFNtUVFKNGJheHBqZGk0T0ViMUpRdm5wSkxGRmNZXC9GYWtSc1FcL1dKUlM4QkM4WGlyZWk0ZlJINmhcL1RRWCJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
 MIME-Version: 1.0
-From: Conor Slater <slaterc@gmail.com>
-Date: Mon, 26 Nov 2018 20:55:36 +0100
-Message-ID: <CAH+z4xQBO6WjqopVDYd7ix-eDk8hjwHe4cuWVeWLVd-zY8-RvA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: GLIBC_GENERATE_LOCALES setting not generating locales
+Subject: Yocto Project Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,101 +62,217 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Nov 2018 19:55:50 -0000
-Content-Type: multipart/alternative; boundary="000000000000295cf2057b96b843"
+X-List-Received-Date: Mon, 26 Nov 2018 20:23:02 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD46303fmsmsx124amrcor_"
 
---000000000000295cf2057b96b843
-Content-Type: text/plain; charset="UTF-8"
-
-Dear All,
-
-I'm having trouble adding locales to my image.
-
-If I make changes to GLIBC_GENERATE_LOCALES in my local.conf glibc-locales
-will rebuild but only the default locales are present:
-$ locale -a
-C
-POSIX
-en_US
-
-The locales are listed when I run this before building the image:
-$ bitbake -e gmpanel-image | grep -e "^GLIBC_GENERATE_LOCALES="
-GLIBC_GENERATE_LOCALES="fr_CH.UTF8 en_GB.UTF-8 en_US.UTF-8"
-
-Are there other settings I have to change or any packages I have to add to
-the image for this to work?
-
-You can find information on my configuration below:
-
-Best Regards,
-
-Conor.
-
-Build Configuration:
-BB_VERSION           = "1.38.0"
-BUILD_SYS            = "x86_64-linux"
-NATIVELSBSTRING      = "universal"
-TARGET_SYS           = "arm-poky-linux-gnueabi"
-MACHINE              = "raspberrypi3"
-DISTRO               = "gmpanel"
-DISTRO_VERSION       = "1.0"
-TUNE_FEATURES        = "arm armv7ve vfp thumb neon vfpv4
-callconvention-hard cortexa7"
-TARGET_FPU           = "hard"
-meta
-meta-poky            = "sumo:d240b885f26e9b05c8db0364ab2ace9796709aad"
-meta-oe
-meta-networking
-meta-python
-meta-perl
-meta-webserver       = "sumo:2bb21ef27c4b0c9d52d30b3b2c5a0160fd02b966"
-meta-rust            = "sumo:3efa0f069ffe4dfcb3531ea89834e69cd2257157"
-meta-browser         = "master:b5fa3f598236a58da6217852340f5f8dd01c9a71"
-meta-security        = "sumo:1e4b45ca888188b4eb838cb29b501ee004237552"
-meta-raspberrypi     = "sumo:2d40b000021bc8a9ef7f329ed0ad410f8d227b97"
-meta-gmpanel         = "sumo-dev:2350072a65ce361548be7a23c78358191b9da555"
-
---000000000000295cf2057b96b843
-Content-Type: text/html; charset="UTF-8"
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD46303fmsmsx124amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>De=
-ar All,</div><div><br></div><div>I&#39;m having trouble adding locales to m=
-y image.</div><div><br></div><div>If I make changes to GLIBC_GENERATE_LOCAL=
-ES in my local.conf glibc-locales will rebuild but only the default locales=
- are present:</div><div>$ locale -a</div><div>C</div><div>POSIX</div><div>e=
-n_US</div><div><br></div><div>The locales are listed when I run this before=
- building the image:=C2=A0</div><div>$=C2=A0bitbake -e gmpanel-image | grep=
- -e &quot;^GLIBC_GENERATE_LOCALES=3D&quot;</div><div>GLIBC_GENERATE_LOCALES=
-=3D&quot;fr_CH.UTF8 en_GB.UTF-8 en_US.UTF-8&quot;<br></div><div><br></div><=
-div>Are there other settings I have to change or any packages I have to add=
- to the image for this to work?</div><div dir=3D"ltr"><br></div><div>You ca=
-n find information on my configuration below:</div><div><br></div><div>Best=
- Regards,</div><div><br></div><div>Conor.</div><div dir=3D"ltr"><br><div><d=
-iv>Build Configuration:</div><div>BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0=3D &quot;1.38.0&quot;</div><div>BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =3D &quot;x86_64-linux&quot;</div><div>NATIVELSBSTRING=
-=C2=A0 =C2=A0 =C2=A0 =3D &quot;universal&quot;</div><div>TARGET_SYS=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;arm-poky-linux-gnueabi&quot;</d=
-iv><div>MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;r=
-aspberrypi3&quot;</div><div>DISTRO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0=3D &quot;gmpanel&quot;</div><div>DISTRO_VERSION=C2=A0 =C2=A0=
- =C2=A0 =C2=A0=3D &quot;1.0&quot;</div><div>TUNE_FEATURES=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =3D &quot;arm armv7ve vfp thumb neon vfpv4 callconvention-hard c=
-ortexa7&quot;</div><div>TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-=3D &quot;hard&quot;</div><div>meta</div><div>meta-poky=C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =3D &quot;sumo:d240b885f26e9b05c8db0364ab2ace9796709a=
-ad&quot;</div><div>meta-oe</div><div>meta-networking</div><div>meta-python<=
-/div><div>meta-perl</div><div>meta-webserver=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D =
-&quot;sumo:2bb21ef27c4b0c9d52d30b3b2c5a0160fd02b966&quot;</div><div>meta-ru=
-st=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;sumo:3efa0f069ffe4dfc=
-b3531ea89834e69cd2257157&quot;</div><div>meta-browser=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0=3D &quot;master:b5fa3f598236a58da6217852340f5f8dd01c9a71&quot=
-;</div><div>meta-security=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;sumo:1e4b45c=
-a888188b4eb838cb29b501ee004237552&quot;</div><div>meta-raspberrypi=C2=A0 =
-=C2=A0 =C2=A0=3D &quot;sumo:2d40b000021bc8a9ef7f329ed0ad410f8d227b97&quot;<=
-/div><div>meta-gmpanel=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;sumo-dev:=
-2350072a65ce361548be7a23c78358191b9da555&quot;</div></div></div></div></div=
-></div></div>
+All,
 
---000000000000295cf2057b96b843--
+
+
+The triage team meets weekly and does its best to handle the bugs reported =
+into the bugzilla. The number of people attending that meeting has fallen, =
+as have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage team) a=
+re therefore going to start reporting out the currently 297 unassigned bugs=
+.
+
+
+
+We're hoping people may be able to spare some time now and again to help ou=
+t with these.
+
+
+
+Bugs are split into two types, "true bugs" where things don't work as they =
+should and "enhancements" which are features we'd want to add to the system=
+.
+
+
+
+There are also roughly four different "priority" classes right now, "2.7", =
+"2.8", "2.99" and "Future", the more pressing/urgent issues being in "2.7" =
+and then "2.8".
+
+
+
+Please review this link and if a bug is something you would be able to help=
+ with either take ownership of the bug, or send me (Stephen.k.jolley@intel.=
+com<mailto:Stephen.k.jolley@intel.com>) an e-mail with the bug number you w=
+ould like and I will assign it to you (please make sure you have a bugzilla=
+ account).
+
+
+
+The list is at: https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bu=
+gs
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*    Cell:                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD46303fmsmsx124amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:2 11 5 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle19
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoPlainText">All,<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The triage team meets weekly and does its best to=
+ handle the bugs reported into the bugzilla. The number of people attending=
+ that meeting has fallen, as have the number of people available to help fi=
+x bugs. One of the things we hear
+ users report is they don't know how to help. We (the triage team) are ther=
+efore going to start reporting out the currently 297 unassigned bugs.<o:p><=
+/o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">We're hoping people may be able to spare some tim=
+e now and again to help out with these.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Bugs are split into two types, &quot;true bugs&qu=
+ot; where things don't work as they should and &quot;enhancements&quot; whi=
+ch are features we'd want to add to the system.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">There are also roughly four different &quot;prior=
+ity&quot; classes right now, &#8220;2.7&#8221;, &#8220;2.8&#8221;, &quot;2.=
+99&quot; and &quot;Future&quot;, the more pressing/urgent issues being in &=
+quot;2.7&quot; and then &#8220;2.8&#8221;.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Please review this link and if a bug is something=
+ you would be able to help with either take ownership of the bug, or send m=
+e (<a href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com=
+</a>) an e-mail with the bug number
+ you would like and I will assign it to you (please make sure you have a bu=
+gzilla account).<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The list is at: <a href=3D"https://wiki.yoctoproj=
+ect.org/wiki/Bug_Triage#Unassigned_Bugs">
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
+></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155ECFD46303fmsmsx124amrcor_--
