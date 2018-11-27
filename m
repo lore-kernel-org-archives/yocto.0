@@ -1,60 +1,69 @@
-Return-Path: <aaron@assonance.org>
+Return-Path: <xerofoify@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3EAB6E00A1A; Mon, 26 Nov 2018 12:42:44 -0800 (PST)
+	id 57C5EE009B2; Mon, 26 Nov 2018 22:39:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (xerofoify[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.181 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.166.180 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f181.google.com (mail-it1-f181.google.com
-	[209.85.166.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F408E009AA
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 12:42:42 -0800 (PST)
-Received: by mail-it1-f181.google.com with SMTP id o19so30531651itg.5
-	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 12:42:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=assonance-org.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=TttxafgW+KPApPjBhe+zcIf3Gw3hrsTf+6LizR8upsQ=;
-	b=h1NMllL+p55/dkr7n61gkJjrsteeD+XoTwP9gs9+lI8nPIazc2P7T3GvzKy9Ezzia4
-	OFRQQfz+BmwJuJoUImwkxgNlcKu2Brw84cxioYhcTuWQH8UtFHU7G/XE8lTP7tDJdUfC
-	uX9WOtwAd/5EjPGItufSe0Iowhmxkt29+M1tFnRz2Izkc2btmBbA59f1/6tz5/zQQeMd
-	hwoa0oW9aQEe7F7tDAH+ce+QpKgQQptjWB6spz+/2d2P8McElpbbC5NMD3t8I0tTg8QG
-	kfFEyo4azTtNCFMDwe0zVTtxQm13FPPVE3lqamox/1FbXashUxAwIQMPEQz5zy4Q0tow
-	p5bQ==
+Received: from mail-it1-f180.google.com (mail-it1-f180.google.com
+	[209.85.166.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37088E008C6
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 22:39:27 -0800 (PST)
+Received: by mail-it1-f180.google.com with SMTP id h65so32101942ith.3
+	for <yocto@yoctoproject.org>; Mon, 26 Nov 2018 22:39:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-language:content-transfer-encoding;
+	bh=9WijC83j3Gmbjta+WtdvrLBt4e82bsvffxS2/oXF0Mc=;
+	b=hdxw9+9tE5g5z+5u20qFSslSmxB2BVjXLfTQEOWeke0rL+UbooNZMrOxMHq3R+RhVC
+	EwrKGJmTs1cJEsxo+KTITxjl6zaEb7xy8lG4cGL3LdULSSOE2/gMx2WUWVGZiQMmWsbg
+	SihUze6TPdNojUaDwlijo/xyE4WpSMh83rVdNE8PYgBo6DQGZRx8gj3Qredf7YiFWtrs
+	6QSt6F20E2a3DO1kAoaFwV6Dn5FecEq+7PwQVgBNYsA34+r9luG1/FIuxlwzR+7vDQOu
+	lw3R7JwBliqJZUuCjedTILx3gHrCegvDFj3J4h4fjSxK6E4q07DJ0dEJHfeVS/jGnH3I
+	jaJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=TttxafgW+KPApPjBhe+zcIf3Gw3hrsTf+6LizR8upsQ=;
-	b=XEk4qx//GaNueOgEO345AwSEEVciG2X9RAP/0clfOPfy/ZTyBAIBThCy38Unkpv2uc
-	uHaJL31qDNcQiNQ0Q2/jajk3rAoPuK/TkVxDSFHyv4uTAg21JPlArtiqmvcMl2234kZI
-	WfW7xm9hdFGruXv08IfkJvmiTTkv68Tq6Juk3e9uFMEY7JauZ83X3hQghD3+aoQIu1iS
-	YBQwYtWES5WxSZ6kdALgrTbju85ffXKDRVPRqfTUci3bJHZjoJrDMk8RBFVbvBtyBpMo
-	dibAGUuV6C0Wr2wNBva1L9TlObeUGMjlSpU6gvMLd7RMlyhJ4iVxrPxloWO7v/MK0sC3
-	E/LA==
-X-Gm-Message-State: AA+aEWY1rkUtR/iP6Kixs/5/sZUmmuQzv3wuTNVCQrU81ZcBdRGD+HuP
-	MdO8IhY1GqXJjhjNRx3FWm/YWYA3EONojtkUqL8Lq8/b
-X-Google-Smtp-Source: AFSGD/WWv2/J+AccHI5gE5FiQFeDRhTgITyiB5wEsdfZ9Hk+F50Ei80izltef5KcNeoFPr9dgtIp7jCqZ0JlzQ9PvoE=
-X-Received: by 2002:a24:7d93:: with SMTP id b141mr23452569itc.91.1543264962095;
-	Mon, 26 Nov 2018 12:42:42 -0800 (PST)
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-language:content-transfer-encoding;
+	bh=9WijC83j3Gmbjta+WtdvrLBt4e82bsvffxS2/oXF0Mc=;
+	b=oOMYmyO6cg8hw4BCpNmvibUs5l0Vq5MOMDLPcWdD1PUeJjN+i8S5jcNnmarSao3NF+
+	GGLmyCd9qWM6ZWwjipCpw35kzI/FciXL7VUSZE5n+z/eA4PAWpuTYw3j1FSRFzJcO4Oe
+	CtTICy+prFHyc48zrkcln0GBxbWc1zvyU/UwORSlvarjl2e4cip1+3SxusQ8PHL32xLs
+	qr19Al+1YEzZPUgfyuBkhCEhxyELUnDVwz6kbEowPhMUzO2V93WYqye3MeMyZQ+e4QMv
+	GjYMn3Ue+T+eh7e9uqwLeJG6A0+aiKpLwKV+bqnI4Pu381OgmdumuaMh7ysGikhn4o0D
+	yn4A==
+X-Gm-Message-State: AA+aEWZtBaEgtnupohPKqDz7NtbvBjMgQlLTsNp/1Y7HpRKSt658tThZ
+	gXu5qFsxn2wY2T5slUDTEE6X4sz4
+X-Google-Smtp-Source: AFSGD/VQo2PS/lcQ6wmfii1UZsV/wGH/tg4b9Qr63zDUziQyiJS4cPSWamzEqyS/EzYktI47Kl+WoA==
+X-Received: by 2002:a02:8c4a:: with SMTP id j10mr19119164jal.129.1543300766299;
+	Mon, 26 Nov 2018 22:39:26 -0800 (PST)
+Received: from [192.168.1.101] (173-230-163-230.cable.teksavvy.com.
+	[173.230.163.230]) by smtp.googlemail.com with ESMTPSA id
+	n26sm848261iob.73.2018.11.26.22.39.24 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 26 Nov 2018 22:39:25 -0800 (PST)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: nick <xerofoify@gmail.com>
+Message-ID: <53059dca-e9e9-e827-3ea3-a0d159825652@gmail.com>
+Date: Tue, 27 Nov 2018 01:39:23 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
 MIME-Version: 1.0
-References: <CAFSZm+ioLuVFJi-+zF9Rx4Nk7q1+i6Ehw6puQX0Vd+f_Xkc5Ww@mail.gmail.com>
-In-Reply-To: <CAFSZm+ioLuVFJi-+zF9Rx4Nk7q1+i6Ehw6puQX0Vd+f_Xkc5Ww@mail.gmail.com>
-From: Aaron Cohen <aaron@assonance.org>
-Date: Mon, 26 Nov 2018 15:42:21 -0500
-Message-ID: <CAFSZm+gFHhY7me4vawo948GUgix4m15_jfamjxZ-Ng_VEvqUHw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: Mercurial fetcher doesn't work for me (patch included)
+Subject: Bitbake Recipe Failing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,132 +75,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Nov 2018 20:42:44 -0000
-Content-Type: multipart/alternative; boundary="000000000000dc439f057b975fe5"
+X-List-Received-Date: Tue, 27 Nov 2018 06:39:28 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---000000000000dc439f057b975fe5
-Content-Type: text/plain; charset="UTF-8"
+Greetings All,
 
-Also, what is it that is supposed to create the
-$(BUILDDIR)/tmp/hosttools/hg symlink?
+I am wondering how to forget about package QA in the best way possible just to get this basic hello world test package to build in a
+new layer I created:
+SUMMARY = "Simple Hello World Application"
+DESCRIPTION = "A test application to demonstrate how to create a recipe \
+               by directly compiling C files with BitBake."
 
-For some reason, this link is not created for me automatically. It works
-fine if I create it manually.
+SECTION = "examples"
+PRIORITY = "optional"
 
---Aaron
+LICENSE = "MIT"
+LIC_FILES_CHKSUM = "\
+   file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+
+SRC_URI = "file://hello-1.0.tgz"
+
+S = "${WORKDIR}"
+
+do_compile() {
+    ${CC} -c helloprint.c
+    ${CC} -c hello.c
+    ${CC} -o hello hello.o helloprint.o
+}
+
+do_install() {
+    install -d ${D}${bindir}
+    install -m 0755 hello ${D}${bindir}
+}
+
+This the errors when I run it with bitbake -b recipe name in the layer's folder:
+
+ERROR: hello-1.0-r0 do_package_qa: QA Issue: No GNU_HASH in the elf binary: '/home/nick/poky/build/tmp/work/i586-poky-linux/hello/1.0-r0/packages-split/hello/usr/bin/hello' [ldflags]
+WARNING: hello-1.0-r0 do_package_qa: QA Issue: hello rdepends on glibc, but it isn't a build dependency, missing glibc in DEPENDS or PACKAGECONFIG? [build-deps]
+ERROR: hello-1.0-r0 do_package_qa: QA run found fatal errors. Please consider fixing them.
+ERROR: hello-1.0-r0 do_package_qa: Function failed: do_package_qa
+ERROR: Logfile of failure stored in: /home/nick/poky/build/tmp/work/i586-poky-linux/hello/1.0-r0/temp/log.do_package_qa.29042
+ERROR: Task (/home/nick/poky/build/layer/hello_1.0.bb:do_package_qa) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 13 tasks of which 7 didn't need to be rerun and 1 failed.
 
 
-On Mon, Nov 26, 2018 at 3:34 PM Aaron Cohen <aaron@assonance.org> wrote:
+Huge Thanks,
 
-> I'm trying to write a recipe for a local repo that is kept in mercurial,
-> and encountering the following problem:
->
->
->> Traceback (most recent call last):
->>   File "/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_smart.py",
->> line 808, in DataSmart.getVarFlag(var='PV', flag='_content', expand=True,
->> noweakdefault=False, parsing=False, retparser=False):
->>              if expand or retparser:
->>     >            parser = self.expandWithRefs(value, cachename)
->>              if expand:
->>   File "/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_smart.py",
->> line 416, in DataSmart.expandWithRefs(s='0.0.4+git${SRCPV}', varname='PV'):
->>                  try:
->>     >                s = __expand_var_regexp__.sub(varparse.var_sub, s)
->>                      try:
->>   File "/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_smart.py",
->> line 108, in VariableParse.var_sub(match=<_sre.SRE_Match object; span=(9,
->> 17), match='${SRCPV}'>):
->>                          raise Exception("variable %s references itself!"
->> % self.varname)
->>     >            var = self.d.getVarFlag(key, "_content")
->>                  self.references.add(key)
->>   File "/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_smart.py",
->> line 808, in DataSmart.getVarFlag(var='SRCPV', flag='_content',
->> expand=True, noweakdefault=False, parsing=False, retparser=False):
->>              if expand or retparser:
->>     >            parser = self.expandWithRefs(value, cachename)
->>              if expand:
->>   File "/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_smart.py",
->> line 430, in DataSmart.expandWithRefs(s='${@bb.fetch2.get_srcrev(d)}',
->> varname='SRCPV'):
->>                  except Exception as exc:
->>     >                raise ExpansionError(varname, s, exc) from exc
->>
->> bb.data_smart.ExpansionError: Failure expanding variable SRCPV,
->> expression was ${@bb.fetch2.get_srcrev(d)} which triggered exception
->> AttributeError: 'FetchData' object has no attribute 'moddir'
->
->
-> I've fixed this with the following patch, which moves some code in the Hg
-> fetcher to later in the urldata_init method, after some necessary variables
-> have been initialized. I'm not sure if I'm alone in seeing this problem or
-> not?
->
-> Thanks for any help,
-> Aaron
->
->
->
+Nick
 
---000000000000dc439f057b975fe5
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Also, what is it that is supposed to create the $(BUILDDIR=
-)/tmp/hosttools/hg symlink?<div><br></div><div>For some reason, this link i=
-s not created for me automatically. It works fine if I create it manually.<=
-/div><div><br></div><div>--Aaron</div><div><br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr">On Mon, Nov 26, 2018 at 3:34 PM Aaron Coh=
-en &lt;<a href=3D"mailto:aaron@assonance.org">aaron@assonance.org</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
-;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div dir=3D"=
-ltr"><div>I&#39;m trying to write a recipe for a local repo that is kept in=
- mercurial, and encountering the following problem:</div><div>=C2=A0</div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex">Traceback (most recent cal=
-l last):<br>=C2=A0 File &quot;/home/joel-cohen/code/waveos2/poky/bitbake/li=
-b/bb/data_smart.py&quot;, line 808, in DataSmart.getVarFlag(var=3D&#39;PV&#=
-39;, flag=3D&#39;_content&#39;, expand=3DTrue, noweakdefault=3DFalse, parsi=
-ng=3DFalse, retparser=3DFalse):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0if expand or retparser:<br>=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 parser =3D self.expandWithRefs(value, cachename)<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if expand:<br>=C2=A0 File &=
-quot;/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_smart.py&quot;,=
- line 416, in DataSmart.expandWithRefs(s=3D&#39;0.0.4+git${SRCPV}&#39;, var=
-name=3D&#39;PV&#39;):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0try:<br>=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 s =3D __expand_var_regexp__.sub(varparse.var_sub, s)<b=
-r>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0try:<br>=C2=A0 File &quot;/home/joel-cohen/code/waveos2/poky/bitbake/lib=
-/bb/data_smart.py&quot;, line 108, in VariableParse.var_sub(match=3D&lt;_sr=
-e.SRE_Match object; span=3D(9, 17), match=3D&#39;${SRCPV}&#39;&gt;):<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0raise Exception(&quot;variable %s references itself!&quot; % s=
-elf.varname)<br>=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- var =3D self.d.getVarFlag(key, &quot;_content&quot;)<br>=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0self.references.add(key)<br>=
-=C2=A0 File &quot;/home/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_sm=
-art.py&quot;, line 808, in DataSmart.getVarFlag(var=3D&#39;SRCPV&#39;, flag=
-=3D&#39;_content&#39;, expand=3DTrue, noweakdefault=3DFalse, parsing=3DFals=
-e, retparser=3DFalse):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0i=
-f expand or retparser:<br>=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 parser =3D self.expandWithRefs(value, cachename)<br>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if expand:<br>=C2=A0 File &quot;/home=
-/joel-cohen/code/waveos2/poky/bitbake/lib/bb/data_smart.py&quot;, line 430,=
- in DataSmart.expandWithRefs(s=3D&#39;${@bb.fetch2.get_srcrev(d)}&#39;, var=
-name=3D&#39;SRCPV&#39;):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0except Exception as exc:<br>=C2=A0 =C2=A0 &gt;=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 raise ExpansionError(varname,=
- s, exc) from exc<br>=C2=A0 =C2=A0 =C2=A0<br>bb.data_smart.ExpansionError: =
-Failure expanding variable SRCPV, expression was ${@bb.fetch2.get_srcrev(d)=
-} which triggered exception AttributeError: &#39;FetchData&#39; object has =
-no attribute &#39;moddir&#39;</blockquote><div><br></div><div>I&#39;ve fixe=
-d this with the following patch, which moves some code in the Hg fetcher to=
- later in the urldata_init method, after some necessary variables have been=
- initialized. I&#39;m not sure if I&#39;m alone in seeing this problem or n=
-ot?</div><div><br></div><div>Thanks for any help,</div><div>Aaron</div><div=
-><br></div><div><br></div></div></div>
-</blockquote></div>
-
---000000000000dc439f057b975fe5--
