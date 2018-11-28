@@ -1,67 +1,59 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <pidge@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C46BEE00C59; Wed, 28 Nov 2018 10:21:46 -0800 (PST)
+	id E5645E00C5B; Wed, 28 Nov 2018 10:37:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.222.170 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.51 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
-	[209.85.167.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 349E2E00901
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 10:21:44 -0800 (PST)
-Received: by mail-lf1-f51.google.com with SMTP id p6so20125850lfc.1
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 10:21:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com
+	[209.85.222.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC161E00C58
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 10:37:08 -0800 (PST)
+Received: by mail-qk1-f170.google.com with SMTP id a132so17467642qkg.1
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 10:37:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=qiqf0JtXPAx0noKn8ToI+Iyg9Q29w8JgaUEum82+uXE=;
-	b=inivGSEhQO/C+1S1rqf4rG9TLlzVLgTtNMphNi1dvgcc3SurMhAkvKC5txYaR2SWQt
-	AZCw0UnKhqLAxqFdHeZU58k1hUU4tUFG7+dryeXgD1iU1L989kAPJXIKMZfc4fd9oUsc
-	uI+yBypDzZl779Rw0U0XqMRaWTVe+tbGHRa+s=
+	:cc; bh=SNdHEc7uqo8w9CIPXwGz4TiwhArFBpsiBEFYDo9a5L4=;
+	b=WQxOn9PFRs46ob0a1eIwBiOZf6i4sV1jwn2BQk8T5jBJvtg6PELLuPu8jRElszdJze
+	tc/Xvy8pD4U6L6NjGuO9hD9xNJdvQBUA7FKZ6swMlDIOyrGFd+xB4I45Xfi6isRdRv4b
+	WGGB8xYc0G0aaXBbOMYGmCuPq3IgUclXIiEXmYCyb+5nzjqpr2zEYixfUI7y182D9d2S
+	nX9ih8kI6wy96SpL+6eLaXyHL70VAwCExqJsHwkauxDm/dRi9NcU0sX+QBlv9O646+aY
+	eHFOXykE/xsOn6c0c7dnx1ucMS0b3OtmQ0wlOB46ZY6G/fPNj5j6Lx3z2i9hew0djMKl
+	4JAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=qiqf0JtXPAx0noKn8ToI+Iyg9Q29w8JgaUEum82+uXE=;
-	b=l64Kin26LS55UajDHXeXCHKJZB6qsNFNwNOCpaRzCY9gfCa/uvMo42x4vXQTEAL/xn
-	duBSJTZU8nXWpNMQLJMX0Br8SJFouQV5K/L+AqUFGlbSdXgLeEjj6Q6VhzlVahPUW36u
-	XZhQ6oYsGan3hKzGa4Y5YTn93SnFj+ACxYWn790on08GK+rraXDl8xhLzBkERq6uIGMc
-	HjsBlxkIZNrHcvk+BqM9QZtARfpsUElEPXQKFLm/5f499Y60xvD3DayPXKQ1PeuBRj3f
-	5+FPb9LMk5/W8EQFPgZ3e0uGwAW3b1IiesaaonmdhZmRIxsIZKLrebc6PqcmXWdbhuvt
-	E3WQ==
-X-Gm-Message-State: AGRZ1gJ+cQk8PVmXqrc6tl7A6y2sbsxQK2ImvBt+Popr8t3YcfcgJFpa
-	39DyIaRGgImsVYSL5mCbfSNNz9ZuoKskOBc5QVRNtg==
-X-Google-Smtp-Source: AJdET5fyb3VuNHuj9Tuqb33u15tHN1U9dzL6TLYMNq0fy55Ux0NIKOPkQIYslCJrUAR2D3ceaSL99ZIzFoqO3yPmkL8=
-X-Received: by 2002:a19:9dd1:: with SMTP id
-	g200mr21323647lfe.127.1543429303944; 
-	Wed, 28 Nov 2018 10:21:43 -0800 (PST)
+	:message-id:subject:to:cc;
+	bh=SNdHEc7uqo8w9CIPXwGz4TiwhArFBpsiBEFYDo9a5L4=;
+	b=ogylpoICb+W+/hUM3cbxpsx4VLj2w+IoeB/WReWqihiQ2darsGemq2G9yY//dYyx0e
+	NBn69hPBHIhnpXVuBKn75fqOEp8Xv4StkjsbqVdK/i9sG06sGOIk2sr+gTzuoNzx54tW
+	aAmTaJjeuMyppYJ7GhNdSrcDEOk2ygPgpSiiGSMBFJAn7kir21DplVvQz5jUBz3nxLge
+	XILrZp9FgSGZeC/HbOWGBabzC1OO/sGhrMEfd/bvpbr4shR8ZNkzai9kqXQoIwaiOryh
+	779Rixg8x0WVU0W7S3GRXdqMy9JfAnG/CObdqnImC7+BpMeQqaDjLoxu1weK+H3ih7F2
+	HiQQ==
+X-Gm-Message-State: AA+aEWai6CNsQQVr02gc1ixcood5nuZTvYPV+25Wo8QNaZVBRT34HDaP
+	Z4UP2QjwqKWC3GI6AQwt930mnQThsJ8ulxwNIsIDIw==
+X-Google-Smtp-Source: AFSGD/VGPqNgBscbwI+7dxXca+a29n3qxl6SMAbsCgYgnCxPWzH7/Xr2rb0yDtyIr9uBQqomwqlslOgj0VFLDi1BdAE=
+X-Received: by 2002:ae9:eb4c:: with SMTP id b73mr33805269qkg.88.1543430228094; 
+	Wed, 28 Nov 2018 10:37:08 -0800 (PST)
 MIME-Version: 1.0
 References: <CAGAf8LzfRHc6m-ixKdU8s0icQ-XFiGvfgr-+Kw9UAEqrsdCK3A@mail.gmail.com>
-	<86583590-a56f-5fa7-18d3-86f0555cdadb@denx.de>
-	<CAGAf8LyBmxi4fGQer_80GH2EfcvG_zmsztpWKgP8Dxf+1wKLPw@mail.gmail.com>
-	<20181128112500.emfrdulwvzowkfyu@jholzmayr.localdomain>
-	<CAGAf8LwjJ3UpQnq6ii_s5Xd9d0qT=ECQwtordxzTZXgUnxv8bQ@mail.gmail.com>
-	<CAP71WjzP+QUKOZfJ3wreKQ80ni6rPT2et5FWe=dazZ-RkSqoGg@mail.gmail.com>
-	<CAGAf8LwhSmUH7PFpa1FEzAsP4rr7GbpqvqCmguE7U53mdB43vA@mail.gmail.com>
-In-Reply-To: <CAGAf8LwhSmUH7PFpa1FEzAsP4rr7GbpqvqCmguE7U53mdB43vA@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Wed, 28 Nov 2018 19:21:31 +0100
-Message-ID: <CAP71WjwUDs2POgic8Pm3jAPxnz8tLH8YAu0sSs5=CjtS6qDi5A@mail.gmail.com>
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Cc: "J. Kiszka" <jan.kiszka@siemens.com>,
-	Yocto list discussion <yocto@yoctoproject.org>
+In-Reply-To: <CAGAf8LzfRHc6m-ixKdU8s0icQ-XFiGvfgr-+Kw9UAEqrsdCK3A@mail.gmail.com>
+From: Beth Flanagan <pidge@toganlabs.com>
+Date: Wed, 28 Nov 2018 18:36:56 +0000
+Message-ID: <CANik3vH9-EP_JYQ5oapNgfC2F_HN0XErOkqs=LnDc9eA_Uinfg@mail.gmail.com>
+To: zoran.stojsavljevic@gmail.com
+Cc: Yocto <yocto@yoctoproject.org>
 Subject: Re: Git tool/command problems with YOCTO Open Source repos
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -74,320 +66,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Nov 2018 18:21:46 -0000
+X-List-Received-Date: Wed, 28 Nov 2018 18:37:10 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-hey Zoran!
-
-On Wed, Nov 28, 2018 at 7:01 PM Zoran Stojsavljevic
+On Wed, Nov 28, 2018 at 9:18 AM Zoran Stojsavljevic
 <zoran.stojsavljevic@gmail.com> wrote:
 >
-> > But again this is very different from the initial problem you are
-> > reporting, which is just a misunderstanding of git tags and commits.
+> Hello YOCTO people,
 >
-> Nicolas,
+> I would like to use standard git tool while using all the Yocto
+> layers. NOT only Poky repository (which, I believe, works all the way
+> with git tools), but as much as possible with other github proprietary
+> repos and layers. Since I am not able to execute git commands using
+> some number of proprietary repos over github.
 >
-> Your problem is that you are too emotional. Period. I clearly
-
-First, I don't think I have a problem on this specific topic. And then
-I am pretty sure I am not emotional. I have only raised technical
-details/answers in my message. There was no emotion, it was just
-facts.
-
-> explained what my problem is. For some YOCTO github repos, certain git
-> commands DO NOT work. Nothing I did misunderstand, you just do not
-> read my emails enough carefully. If you go back on on my initial
-> email, and try it yourself, you'll see that there are commands which
-> are not working. Such as git describe, or git tag.
-
-Myself and a few others have tried to explain that these commands work
-perfectly well actually, unlike what you think. When running "git tag"
-on a repo that does not have any tag, it just doesn't return anything,
-so what you are seeing is the proper behavior. Same thing with "git
-describe". So the problem with the repo you have mentioned is that
-there is no tag published. That's it. Nothing wrong with git, or
-github, or Yocto.
-
+> As example, I'll use meta-bbb repository.
+> https://github.com/jumpnow/meta-bbb.git, after cloning the following
+> happens (chosen, since it has at least dozen of branches):
 >
-> Here is the description of git tag commands. For you to learn (please,
-> read it carefully and exercise on the given example):
-> https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-tag
+> After cloning, I did not get anything from the following commands,
+> being in the root of the meta-bbb repo, namely:
 >
-> Before writing nonconclusive accusations, please, check what I am
-
-I am sorry if you thought it was accusation. It was , for me, a
-technical discussion. And I was trying to bring a few clarifications.
-
-> writing above, on my initial email. Maybe I am doing something wrong,
-> but I do not think so. For me, kernel.org tree perfectly works, and it
-> is perfectly aligned with git commands and .git directory.
-
-No, you are not doing anything wrong.
-
+> [user@fedora28-ssd meta-bbb]$ pwd
+> /home/user/projects2/beaglebone-black/yocto-master/meta-bbb
+> [user@fedora28-ssd meta-bbb]$ git describe
+> fatal: No names found, cannot describe anything.
+> [user@fedora28-ssd meta-bbb]$ git tag
+> [user@fedora28-ssd meta-bbb]$ git checkout thud
+> Branch 'thud' set up to track remote branch 'thud' from 'origin'.
+> Switched to a new branch 'thud'
+> [user@fedora28-ssd meta-bbb]$ git checkout sumo
+> Switched to branch 'sumo'
+> Your branch is up to date with 'origin/sumo'.
+> [user@fedora28-ssd meta-bbb]$ git describe
+> fatal: No names found, cannot describe anything.
+> [user@fedora28-ssd meta-bbb]$
 >
-> With ALL git commands I am using.
+> The rationale behind this request: git is the powerful tool which
+> should work and be solely used for YOCTO layers' synchronization. In
+> other words, YOCTO should give some tools' (namely git) unification
+> guidelines in some way. :-)
 >
-> Thank you,
-> Zoran Stojsavljevic
-> _______
-> On Wed, Nov 28, 2018 at 2:11 PM Nicolas Dechesne
-> <nicolas.dechesne@linaro.org> wrote:
-> >
-> > On Wed, Nov 28, 2018 at 1:53 PM Zoran Stojsavljevic
-> > <zoran.stojsavljevic@gmail.com> wrote:
-> > >
-> > > > This is what your opinion is. Which seems to be vastly overestimati=
-ng its own importance.
-> > >
-> > > I do not think you understood what I am trying to advertise. The
-> > > unification. In other words:
-> > > If I use kernel.org, I use git tool.
-> > > If I use YOCTO Poky, I would like to use git tool.
-> > > For all YOCTO repos, I would like to use git tool.
-> >
-> > You mean OpenEmbedded Layers, not Yocto repo here. I think 99.9%
-> > (maybe 100%) of the public OE layers are available as git repo. So you
-> > can (in fact you have to) use git for any OE layer.
-> >
-> > >
-> > > Not repo, kas, or other tools. Not particular tools, assigned to
-> > > particular tasks, for particular build systems.
-> >
-> > I think you are confused. There are hundreds of OE layers out there,
-> > maintained by developers, companies, communities, ... Poky is a
-> > reference implementation maintained by the Yocto Project. Building a
-> > custom Linux distro using Yocto Project means that you need to pull a
-> > certain amount of layers based on what you are doing. Most of the time
-> > each of these layers are hosted in their own *git* tree. For Poky we
-> > create a *new* git tree that results of the "merge" of all the
-> > dependent layers. However the OE core is maintained in their own tree
-> > and  bitbake as well.
-> >
-> > the tools you mentioned here, like repo, kas, .. are not equivalent to
-> > git. they are helpers, wrappers, tools that can be use to combine many
-> > individual git repo to form a single workspace, so that you have all
-> > the layers you need in a single workspace to build your own custom
-> > distro.
-> >
-> > The Yocto Project does not recommend any specific tool to create such
-> > workspace, and people are using various solutions. There are on-going
-> > discussions in YP/OE to pick one tool and promote it, but no
-> > conclusion so far.
-> >
-> > But again this is very different from the initial problem you are
-> > reporting, which is just a misunderstanding of git tags and commits.
-> >
-> > >
-> > > Since I would like to invest time and effort in ONLY one,
-> > > comprehensive tool, and discard all other tools which are not up to
-> > > the complex challenges I have. So this is why I sent initial email, i=
-n
-> > > first place,
-> > >
-> > > Thank you,
-> > > Zoran
-> > > _______
-> > > On Wed, Nov 28, 2018 at 12:25 PM Josef Holzmayr
-> > > <holzmayr@rsi-elektrotechnik.de> wrote:
-> > > >
-> > > > Hello Zoran,
-> > > >
-> > > > On Wed, Nov 28, 2018 at 12:00:22PM +0100, Zoran Stojsavljevic wrote=
-:
-> > > > > I am (almost) perfectly aligned with kernel.org, and I (personall=
-y)
-> > > > > decided to use git. Since I start understanding importance of Lin=
-us.
-> > > > > Linux officers and their Linux philosophy.
-> > > >
-> > > > You are free to choose your workflow as you please.
-> > > >
-> > > > > Now... Answers to your email. KAS (Siemens developed tool by Jan
-> > > > > Kiszka and his crew) is the supplement for the fast/quick buildin=
-g the
-> > > > > YOCTO, to use ONLY rootfs. NOT kernel. NOT aligned with the git t=
-ool.
-> > > > > Not applicable for purposes as git.
-> > > >
-> > > > It is a tool that serves one purpose. It does that job well.
-> > > >
-> > > > > On the other note, repo is GOOGLE tool. Promoted by them. Most of=
- the
-> > > > > ARM followers (such as Toradex) use repo tool.
-> > > >
-> > > > Thats what they choose.
-> > > >
-> > > > > You say: I talk to the wrong crew. I think opposite. I am giving =
-the
-> > > > > generic message via YOCTO email list, to avoid hundreds of partic=
-ular
-> > > > > emails, so we can unify the effort. Which is not minor. Rather
-> > > > > opposite: major.
-> > > > >
-> > > > > Since, I guess, this is of the major importance. For YOCTO surviv=
-al.
-> > > > > The direction is one: git tool. For all YOCTO developers. IMHO.
-> > > >
-> > > > This is what your opinion is. Which seems to be vastly overestimati=
-ng
-> > > > its own importance.
-> > > >
-> > > > > Stefano,
-> > > > >
-> > > > > You, as major official representative of U-Boot philosophy (and
-> > > > > Wolfgang's Denk right hand), do not take sides, rather ad-hoc
-> > > > > approach. For you, this topic is not important. Appreciated your =
-help.
-> > > >
-> > > > By now, you are telling other people who have been doing thwir work
-> > > > successfully for decades how to do their jobs.
-> > > > Actually, telling off one of the core contributors and community me=
-mbers
-> > > > with "This is not for you" is plain rude.
-> > > >
-> > > > > I am asking here for much higher awareness. YOCTO better survival=
- in The Future.
-> > > >
-> > > > We are doing quite well at the moment, thank you.
-> > > >
-> > > > So if you have a proposal on how to improve things, feel free to sh=
-are
-> > > > it. Go ahead and lead on how to use that proposal by doing your own
-> > > > upstream work, showing how emplying your proposal makes it better a=
-nd
-> > > > more usable.
-> > > >
-> > > > Just getting onto a mailing list and saying "You're doing it wrong
-> > > > because it doesn't suit my workflow", again, is quite rude.
-> > > >
-> > > > Greetz.
-> > > >
-> > > > PS: yes, this mail is explicitly meant to support Stefano.
-> > > >
-> > > > >
-> > > > > Thank you,
-> > > > > Zoran
-> > > > > _______
-> > > > > On Wed, Nov 28, 2018 at 10:52 AM Stefano Babic <sbabic@denx.de> w=
-rote:
-> > > > > >
-> > > > > > Hi Zoran,
-> > > > > >
-> > > > > > On 28/11/18 10:17, Zoran Stojsavljevic wrote:
-> > > > > > > Hello YOCTO people,
-> > > > > > >
-> > > > > > > I would like to use standard git tool while using all the Yoc=
-to
-> > > > > > > layers. NOT only Poky repository (which, I believe, works all=
- the way
-> > > > > > > with git tools), but as much as possible with other github pr=
-oprietary
-> > > > > > > repos and layers. Since I am not able to execute git commands=
- using
-> > > > > > > some number of proprietary repos over github.
-> > > > > > >
-> > > > > > > As example, I'll use meta-bbb repository.
-> > > > > > > https://github.com/jumpnow/meta-bbb.git, after cloning the fo=
-llowing
-> > > > > > > happens (chosen, since it has at least dozen of branches):
-> > > > > > >
-> > > > > > > After cloning, I did not get anything from the following comm=
-ands,
-> > > > > > > being in the root of the meta-bbb repo, namely:
-> > > > > > >
-> > > > > > > [user@fedora28-ssd meta-bbb]$ pwd
-> > > > > > > /home/user/projects2/beaglebone-black/yocto-master/meta-bbb
-> > > > > > > [user@fedora28-ssd meta-bbb]$ git describe
-> > > > > > > fatal: No names found, cannot describe anything.
-> > > > > >
-> > > > > > I understand, but why is this an issue in Yocto project ? The m=
-aintainer
-> > > > > > does not use tags and git describe is fast useless.
-> > > > > >
-> > > > > > You should contact layer's maintainer and ask for that. Anyway,=
- outside
-> > > > > > poky, tags are quite unused in layers.
-> > > > > >
-> > > > > > > [user@fedora28-ssd meta-bbb]$ git tag
-> > > > > > > [user@fedora28-ssd meta-bbb]$ git checkout thud
-> > > > > > > Branch 'thud' set up to track remote branch 'thud' from 'orig=
-in'.
-> > > > > > > Switched to a new branch 'thud'
-> > > > > > > [user@fedora28-ssd meta-bbb]$ git checkout sumo
-> > > > > > > Switched to branch 'sumo'
-> > > > > > > Your branch is up to date with 'origin/sumo'.
-> > > > > > > [user@fedora28-ssd meta-bbb]$ git describe
-> > > > > > > fatal: No names found, cannot describe anything.
-> > > > > > > [user@fedora28-ssd meta-bbb]$
-> > > > > > >
-> > > > > > > The rationale behind this request: git is the powerful tool w=
-hich
-> > > > > > > should work and be solely used for YOCTO layers' synchronizat=
-ion. In
-> > > > > > > other words, YOCTO should give some tools' (namely git) unifi=
-cation
-> > > > > > > guidelines in some way. :-)
-> > > > > >
-> > > > > > It is clear that a tool to maintain the layers in sync is requi=
-red, but
-> > > > > > it is quite independent how the layers (and many are proprietar=
-y layers)
-> > > > > > are built. So you can use "repo" or "kas" (my preferred one) fo=
-r that.
-> > > > > >
-> > > > > > Best regards,
-> > > > > > Stefano Babic
-> > > > > >
-> > > > > > --
-> > > > > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > > > > > DENX Software Engineering GmbH,      Managing Director: Wolfgan=
-g Denk
-> > > > > > HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, G=
-ermany
-> > > > > > Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@d=
-enx.de
-> > > > > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > > > > --
-> > > > > _______________________________________________
-> > > > > yocto mailing list
-> > > > > yocto@yoctoproject.org
-> > > > > https://lists.yoctoproject.org/listinfo/yocto
-> > > >
-> > > > --
-> > > > =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
-=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-> > > > Josef Holzmayr
-> > > > Software Developer Embedded Systems
-> > > >
-> > > > Tel: +49 8444 9204-48
-> > > > Fax: +49 8444 9204-50
-> > > >
-> > > > R-S-I Elektrotechnik GmbH & Co. KG
-> > > > Woelkestrasse 11
-> > > > D-85301 Schweitenkirchen
-> > > > www.rsi-elektrotechnik.de
-> > > > =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
-=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-> > > > Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA=
- 170393
-> > > > Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz =
-Sorg
-> > > > Ust-IdNr: DE 128592548
-> > > >
-> > > > _____________________________________________________________
-> > > > Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-> > > > Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz =
-Sorg
-> > > > USt-IdNr.: DE 128592548
-> > > >
-> > > --
-> > > _______________________________________________
-> > > yocto mailing list
-> > > yocto@yoctoproject.org
-> > > https://lists.yoctoproject.org/listinfo/yocto
+
+Zoran,
+
+This is normal behaviour for git repositories with no tags. Git
+describe just describes the latest annotated tag and if there is none,
+then it of course, can't describe anything. Generally, this is up to
+the repo maintainer to define tagging policy (I think all we do in
+OE/YP is ask for named release branches).  So this isn't something
+that is "broken" it's just not asked of layer maintainers. I'm not
+sure why you need git describe in your workflow, but you could easily
+write something that reverts to something like `git shortlog -1` or
+something on repos that return fatal on a git describe.
+
+I'm not sure what the request is here. To ask all the repository
+maintainers to add tags so you don't return a fatal on git describe?
+
+-b
 
