@@ -1,122 +1,69 @@
-Return-Path: <MohammadJamal.Mohiuddin@ncr.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7733BE00C46; Wed, 28 Nov 2018 04:53:58 -0800 (PST)
+	id 68471E00C75; Wed, 28 Nov 2018 04:57:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.179 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [148.163.152.55 listed in list.dnswl.org]
-Received: from mx0b-00209e01.pphosted.com (mx0b-00209e01.pphosted.com
-	[148.163.152.55])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 200FFE00CF3
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 04:53:46 -0800 (PST)
-Received: from pps.filterd (m0094031.ppops.net [127.0.0.1])
-	by mx0b-00209e01.pphosted.com (8.16.0.22/8.16.0.22) with SMTP id
-	wASCnUli022453
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 07:53:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ncr.com;
-	h=from : to : subject :
-	date : message-id : references : in-reply-to : content-type :
-	mime-version; s=mail; bh=nnQIAiuX4HY0jp6Q79IAFW97KhgUY/MyMearG9dM5V4=; 
-	b=Hp3YYYgJBj8CR5end1chkvrax1akaijDXkOTmFw28zgk2rhq94QgAz2mXkhyF+z6Idhz
-	a4QT8YnyDrM3ZA1K7DWZYjTUo/bx2mEgxUrvDaoipd0Zh+vc3Fjx/SXZNDEAnwnFzn0W
-	t0kUG4On6BhJ+ZlmGgcz7hSSWVbBR4xvxLRAAf6j1/54tBeG+VQx4Q+wp2cUa1Y5P7Uu
-	maumHgbpWhvIt1aZ1TRIlbxAchy+cLGCXuL+JhykA4v00MUAyU41K54+gclUckMS2Nxq
-	bPuauLblmwktmEm2aJ8BX61Lmj6pIHWaWaVmCy07+A1rsz3Y0XE/Yi4CvFesaoXOCO/3
-	QQ== 
-Received: from nam04-sn1-obe.outbound.protection.outlook.com
-	(mail-sn1nam04lp0088.outbound.protection.outlook.com [216.32.180.88])
-	by mx0b-00209e01.pphosted.com with ESMTP id 2p1sy30h81-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 07:53:46 -0500
-Received: from DM5PR15MB1913.namprd15.prod.outlook.com (10.174.247.141) by
-	DM5PR15MB1882.namprd15.prod.outlook.com (10.174.247.23) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1361.19; Wed, 28 Nov 2018 12:53:44 +0000
-Received: from DM5PR15MB1913.namprd15.prod.outlook.com
-	([fe80::7d7c:1475:ba88:aa93]) by
-	DM5PR15MB1913.namprd15.prod.outlook.com
-	([fe80::7d7c:1475:ba88:aa93%5]) with mapi id 15.20.1361.019;
-	Wed, 28 Nov 2018 12:53:44 +0000
-From: "Mohammad, Jamal M" <MohammadJamal.Mohiuddin@ncr.com>
-To: Yocto-mailing-list <yocto@yoctoproject.org>
-Thread-Topic: Flashing Yocto Images using Clonezilla
-Thread-Index: AdSHGNj20B047RtnQx6aIRwkIFsucAAAH4oQ
-Date: Wed, 28 Nov 2018 12:53:44 +0000
-Message-ID: <DM5PR15MB19138E7516E9D62F7A9B0DDCF0D10@DM5PR15MB1913.namprd15.prod.outlook.com>
-References: <DM5PR15MB191367BA40C2CC899F5A8810F0D10@DM5PR15MB1913.namprd15.prod.outlook.com>
-In-Reply-To: <DM5PR15MB191367BA40C2CC899F5A8810F0D10@DM5PR15MB1913.namprd15.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Enabled=True;
-	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_SiteId=ae4df1f7-611e-444f-897e-f964e1205171;
-	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Owner=mm185399@ncr.com; 
-	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_SetDate=2018-11-28T12:51:42.6947223Z;
-	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Name=Confidential;
-	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Application=Microsoft
-	Azure Information Protection;
-	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Extended_MSFT_Method=Manual;
-	Sensitivity=Confidential
-x-originating-ip: [32.66.192.217]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; DM5PR15MB1882;
-	6:o3ulr+xHfMByQ8cc0BsmiDgVpeK0a1Y2UrYg5dkDX+wyTqTeva2rrKmpztoFHOKV6432Hn3m6XBiXfSDL7JUiWnpLxPd2IeWcc++BMhpsNaq8ni1qVXoDZP+PFZTDi2DeZkAjfc5SBdjXLhjDXtTrPveAgpCG46FUykfrhVMT6UAWSYldRxnD2RSTP7LgJVrDJGrCgABj1per78Gr89aFWzXsxKLRSo9isW/9Va1QmTzw2FOJ3OaOC+q3L5C0BLxDTHR5wMzwVW3HTmOGEPYUxLq1fawqN17b/dou75alUh11kuIz6HbPw2iGpQ5Lq3GUIwC81bQom8r+GkLj2XR4yNXCBjO/UMj77+oKCTDePYOoKIljeC0u6hxG1Y05kp9USOhcvN2skT9HuNQs4j/LMK07EKgwsAqWiB58ee8HEODygr5dCVUePg3vHmk4hxzzp8TlKiTkEeNbrf8l5+aEw==;
-	5:Uqt8U8UwKAwfQFbAtkAAigoINs6v94oBFQ6T4aQSuRIKCgEGfKC4oPJTevJa6e8y+K1fJPK52HCoFw6NqJiULt1Yx5asz5BACLvNuN6lh0zRk7UjUjNJrRPH3xjO2fAcxpECnCz3Hab/gBjtqNE9PsOyt7LaZsC5t24IUFRNTPo=;
-	7:0x+IwRcb2yckWDnMpmx3i7GOhTrDh7ONsdJdVUb6sRWPoBt6Ro5bQ4F3j/nzjI45p/cJGchadNFBHYOxg2GNaOl8ncoEjRFHCfJYcjz41iXzLAlMklwI8atcZ16V6xzQMQen51pxIgZ3+B6AxjMbrA==
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: 557d9dc5-e2ea-4140-a53e-08d6553087da
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390098)(7020095)(4652040)(8989299)(5600074)(711020)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7153060)(7193020);
-	SRVR:DM5PR15MB1882; 
-x-ms-traffictypediagnostic: DM5PR15MB1882:
-x-from-ncr-tenant: Processed
-x-microsoft-antispam-prvs: <DM5PR15MB1882B23848AE9852C6390421F0D10@DM5PR15MB1882.namprd15.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(8211001083)(6040522)(2401047)(5005006)(8121501046)(10201501046)(93006095)(93001095)(3002001)(3231443)(999002)(944501410)(52105112)(6055026)(148016)(149066)(150057)(6041310)(20161123560045)(20161123558120)(20161123564045)(20161123562045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(201708071742011)(7699051)(76991095);
-	SRVR:DM5PR15MB1882; BCL:0; PCL:0; RULEID:; SRVR:DM5PR15MB1882; 
-x-forefront-prvs: 0870212862
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(136003)(39860400002)(396003)(376002)(346002)(366004)(189003)(199004)(6306002)(33656002)(53936002)(316002)(5660300001)(81156014)(186003)(8676002)(8936002)(9686003)(71200400001)(86362001)(72206003)(446003)(11346002)(55016002)(54896002)(478600001)(256004)(486006)(99286004)(9326002)(71190400001)(476003)(81166006)(76176011)(7696005)(14454004)(97736004)(25786009)(93156006)(66066001)(106356001)(105586002)(6436002)(7736002)(68736007)(2906002)(6506007)(6916009)(26005)(790700001)(3846002)(6116002)(102836004)(74316002)(2940100002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR15MB1882;
-	H:DM5PR15MB1913.namprd15.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: ncr.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: hg2Ad4G/571U12ngAzXmop8b6hSuRcF+CgZ+OFYTIUT5P8tIi4XgFmRldq5QInJVQgWUGIaATT8ohSNb5FKxBOSVlUC2qMUAZ2lKZUnaNyl3VTlkbX1Dd2+cg15NWzJepzswqHZKUX9E6+1hNAl7GJAQmcyuD3gKf5oHpQKxWKrrH32nIqMHpJ/c18LvVN5hf5DcBG+1apFUIei5Mi4OAjjyiPCTaUDQuqiT8435YcMs9OxykB35g2AcQmiH4B474GMTWZlgCYuZZphAN+pCrSCxWBnPGqL/228rVJh0+i/HDJPur++Pr1qFLUMnAgaGboV7QwRzNRHhbNjAkE6t0UduL6J47kk3M8E1PUye2Rk=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com
+	[209.85.222.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D2E5E00C58
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 04:57:00 -0800 (PST)
+Received: by mail-qk1-f179.google.com with SMTP id y78so5918454qka.12
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 04:57:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=92w9uaz5gGfcBBBOm+bMeqmd0QB6HB9w/JF7EjqzK/M=;
+	b=ST7hyTnIvvqzR/4bgirl0DSVk9Vy/wi4D5Q56YlznJbSm48q1u2S5KrmDP/rYsUjAm
+	6ZFRtfupdtx9wTRMs5Kp9ITEPszznL+yYpb6/k5hPn0dNXhMHv3FFG2rjBBNMHnrzr54
+	ahZc7zOTrwcIs5S5uwIrYtbc4dyLr1aoYVGGXlZM8L5PYdRZhUHfDNQa9rCzQ2qivXWH
+	hsjopaYI20Vpog0tbenjKfVscgEktSJ+heykBzaxLKqrxq1SSFgaEm3KkIb/qiVWApwS
+	PwPICSQIDYR26utb77ddR2hk8JncxyZI/B8vHi+X4t/WQBJXIvnHYe3XMkVNhM4G/1Zo
+	qxsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=92w9uaz5gGfcBBBOm+bMeqmd0QB6HB9w/JF7EjqzK/M=;
+	b=B30s0F0K/ecEr3MkabzC3XpXUh7efZw2RlhOphoZXwqMch46ksT0v+zJnVLj7Qp776
+	QeJBqKDWhrWVwNnKeUC1J7qvbFvzfJsd4Cnq0Z1VWVD4VwjGr2D9ySu/uJD9y16xArgO
+	lFGug/3+/hCpqcJm3DoOhAO4iIr9bCptXP120xdh2++r1Irf255FnlBJlcjXZrBO8CSH
+	vpK2nlKn1xnyAy6zYExbDHtyPWOBDX3PH407uTW/pG1Sedh9T/eBlWISb1M5fbSHuylJ
+	9hrWxiLsPpI2b9RIfn+QSnQwZw+YqeaAuaYQiktX56yniObg9AEkDh1zibbD40MQAeHO
+	gEeg==
+X-Gm-Message-State: AA+aEWYJsreoLPUUnbDLLZ/K9v/fbDg18AVmVfipU0yHGEGvfz6s8xg+
+	UDs6GK4bFjxtefSQEPHnUPPaxRNnOb2vfr3n460=
+X-Google-Smtp-Source: AFSGD/UBV1kUqQrroz9IJ5bERI7tAGAVknKeOjJnWE9mZHVIXzgRSdJ9k3qivTfH57ku4npGAd22ANuq0yUKNZa69wk=
+X-Received: by 2002:a37:11dd:: with SMTP id 90mr33676588qkr.212.1543409819483; 
+	Wed, 28 Nov 2018 04:56:59 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: ncr.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 557d9dc5-e2ea-4140-a53e-08d6553087da
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Nov 2018 12:53:44.4447 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: ae4df1f7-611e-444f-897e-f964e1205171
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR15MB1882
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
-	definitions=2018-11-28_07:, , signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
-	priorityscore=1501
-	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
-	clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=310 adultscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1 engine=8.0.1-1810050000 definitions=main-1811280114
-Subject: Flashing Yocto Images using Clonezilla
+References: <CAGAf8LzfRHc6m-ixKdU8s0icQ-XFiGvfgr-+Kw9UAEqrsdCK3A@mail.gmail.com>
+	<86583590-a56f-5fa7-18d3-86f0555cdadb@denx.de>
+	<CAGAf8LyBmxi4fGQer_80GH2EfcvG_zmsztpWKgP8Dxf+1wKLPw@mail.gmail.com>
+	<20181128112500.emfrdulwvzowkfyu@jholzmayr.localdomain>
+	<CAGAf8LwjJ3UpQnq6ii_s5Xd9d0qT=ECQwtordxzTZXgUnxv8bQ@mail.gmail.com>
+In-Reply-To: <CAGAf8LwjJ3UpQnq6ii_s5Xd9d0qT=ECQwtordxzTZXgUnxv8bQ@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Wed, 28 Nov 2018 13:56:48 +0100
+Message-ID: <CAGAf8LyVFp1VDsSNBjEyDs1bCvTkwuA2QgPc-7U6usG1Z4N8Pw@mail.gmail.com>
+To: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+Cc: Jan Kiszka <jan.kiszka@siemens.com>, Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Git tool/command problems with YOCTO Open Source repos
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -128,128 +75,220 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Nov 2018 12:53:58 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM5PR15MB19138E7516E9D62F7A9B0DDCF0D10DM5PR15MB1913namp_"
-
---_000_DM5PR15MB19138E7516E9D62F7A9B0DDCF0D10DM5PR15MB1913namp_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 28 Nov 2018 12:57:01 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Guys,
+OK, I rest my case. Seems, that I am the only one here using git
+describe, and git log using tags.
 
+Could be. ;-)
 
-We are using meta-intel layer to generate .hddimg.
-
-We can flash the generated .hddimg using Bootable Thumb Drive, but using th=
-is mechanism in manufacturing is not a good solution.
-
-We need some way to flash the Yocto Image using clonezilla, as hddimg is no=
-t recognized by clonezilla.
-
-Do we need to add any IMAGE_FSTYPES to make it work. Or is there any other =
-solutions to flash Yocto Images over PXE Boot
-
-Thanks for your time and patience
-Regards,
-Jamal,
-Software Specialist
-NCR Corporation
-
---_000_DM5PR15MB19138E7516E9D62F7A9B0DDCF0D10DM5PR15MB1913namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+Thank you all,
+Zoran
+_______
+On Wed, Nov 28, 2018 at 1:53 PM Zoran Stojsavljevic
+<zoran.stojsavljevic@gmail.com> wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi Guys,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:12.0pt;ma=
-rgin-left:0in;background:white;vertical-align:baseline">
-We are using meta-intel layer to generate .hddimg.<o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:12.0pt;ma=
-rgin-left:0in;background:white;vertical-align:baseline">
-We can flash the generated .hddimg using Bootable Thumb Drive, but using th=
-is mechanism in manufacturing is not a good solution.<o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:12.0pt;ma=
-rgin-left:0in;background:white;vertical-align:baseline">
-We need some way to flash the Yocto Image using clonezilla, as hddimg is no=
-t recognized by clonezilla.<o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:12.0pt;ma=
-rgin-left:0in;background:white;vertical-align:baseline">
-Do we need to add any IMAGE_FSTYPES to make it work. Or is there any other =
-solutions to flash Yocto Images over PXE Boot<o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:12.0pt;ma=
-rgin-left:0in;background:white;vertical-align:baseline">
-Thanks for your time and patience<o:p></o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Jamal,<o:p></o:p></p>
-<p class=3D"MsoNormal">Software Specialist<o:p></o:p></p>
-<p class=3D"MsoNormal">NCR Corporation<o:p></o:p></p>
-</div>
-</body>
-</html>
+> > This is what your opinion is. Which seems to be vastly overestimating i=
+ts own importance.
+>
+> I do not think you understood what I am trying to advertise. The
+> unification. In other words:
+> If I use kernel.org, I use git tool.
+> If I use YOCTO Poky, I would like to use git tool.
+> For all YOCTO repos, I would like to use git tool.
+>
+> Not repo, kas, or other tools. Not particular tools, assigned to
+> particular tasks, for particular build systems.
+>
+> Since I would like to invest time and effort in ONLY one,
+> comprehensive tool, and discard all other tools which are not up to
+> the complex challenges I have. So this is why I sent initial email, in
+> first place,
+>
+> Thank you,
+> Zoran
+> _______
+> On Wed, Nov 28, 2018 at 12:25 PM Josef Holzmayr
+> <holzmayr@rsi-elektrotechnik.de> wrote:
+> >
+> > Hello Zoran,
+> >
+> > On Wed, Nov 28, 2018 at 12:00:22PM +0100, Zoran Stojsavljevic wrote:
+> > > I am (almost) perfectly aligned with kernel.org, and I (personally)
+> > > decided to use git. Since I start understanding importance of Linus.
+> > > Linux officers and their Linux philosophy.
+> >
+> > You are free to choose your workflow as you please.
+> >
+> > > Now... Answers to your email. KAS (Siemens developed tool by Jan
+> > > Kiszka and his crew) is the supplement for the fast/quick building th=
+e
+> > > YOCTO, to use ONLY rootfs. NOT kernel. NOT aligned with the git tool.
+> > > Not applicable for purposes as git.
+> >
+> > It is a tool that serves one purpose. It does that job well.
+> >
+> > > On the other note, repo is GOOGLE tool. Promoted by them. Most of the
+> > > ARM followers (such as Toradex) use repo tool.
+> >
+> > Thats what they choose.
+> >
+> > > You say: I talk to the wrong crew. I think opposite. I am giving the
+> > > generic message via YOCTO email list, to avoid hundreds of particular
+> > > emails, so we can unify the effort. Which is not minor. Rather
+> > > opposite: major.
+> > >
+> > > Since, I guess, this is of the major importance. For YOCTO survival.
+> > > The direction is one: git tool. For all YOCTO developers. IMHO.
+> >
+> > This is what your opinion is. Which seems to be vastly overestimating
+> > its own importance.
+> >
+> > > Stefano,
+> > >
+> > > You, as major official representative of U-Boot philosophy (and
+> > > Wolfgang's Denk right hand), do not take sides, rather ad-hoc
+> > > approach. For you, this topic is not important. Appreciated your help=
+.
+> >
+> > By now, you are telling other people who have been doing thwir work
+> > successfully for decades how to do their jobs.
+> > Actually, telling off one of the core contributors and community member=
+s
+> > with "This is not for you" is plain rude.
+> >
+> > > I am asking here for much higher awareness. YOCTO better survival in =
+The Future.
+> >
+> > We are doing quite well at the moment, thank you.
+> >
+> > So if you have a proposal on how to improve things, feel free to share
+> > it. Go ahead and lead on how to use that proposal by doing your own
+> > upstream work, showing how emplying your proposal makes it better and
+> > more usable.
+> >
+> > Just getting onto a mailing list and saying "You're doing it wrong
+> > because it doesn't suit my workflow", again, is quite rude.
+> >
+> > Greetz.
+> >
+> > PS: yes, this mail is explicitly meant to support Stefano.
+> >
+> > >
+> > > Thank you,
+> > > Zoran
+> > > _______
+> > > On Wed, Nov 28, 2018 at 10:52 AM Stefano Babic <sbabic@denx.de> wrote=
+:
+> > > >
+> > > > Hi Zoran,
+> > > >
+> > > > On 28/11/18 10:17, Zoran Stojsavljevic wrote:
+> > > > > Hello YOCTO people,
+> > > > >
+> > > > > I would like to use standard git tool while using all the Yocto
+> > > > > layers. NOT only Poky repository (which, I believe, works all the=
+ way
+> > > > > with git tools), but as much as possible with other github propri=
+etary
+> > > > > repos and layers. Since I am not able to execute git commands usi=
+ng
+> > > > > some number of proprietary repos over github.
+> > > > >
+> > > > > As example, I'll use meta-bbb repository.
+> > > > > https://github.com/jumpnow/meta-bbb.git, after cloning the follow=
+ing
+> > > > > happens (chosen, since it has at least dozen of branches):
+> > > > >
+> > > > > After cloning, I did not get anything from the following commands=
+,
+> > > > > being in the root of the meta-bbb repo, namely:
+> > > > >
+> > > > > [user@fedora28-ssd meta-bbb]$ pwd
+> > > > > /home/user/projects2/beaglebone-black/yocto-master/meta-bbb
+> > > > > [user@fedora28-ssd meta-bbb]$ git describe
+> > > > > fatal: No names found, cannot describe anything.
+> > > >
+> > > > I understand, but why is this an issue in Yocto project ? The maint=
+ainer
+> > > > does not use tags and git describe is fast useless.
+> > > >
+> > > > You should contact layer's maintainer and ask for that. Anyway, out=
+side
+> > > > poky, tags are quite unused in layers.
+> > > >
+> > > > > [user@fedora28-ssd meta-bbb]$ git tag
+> > > > > [user@fedora28-ssd meta-bbb]$ git checkout thud
+> > > > > Branch 'thud' set up to track remote branch 'thud' from 'origin'.
+> > > > > Switched to a new branch 'thud'
+> > > > > [user@fedora28-ssd meta-bbb]$ git checkout sumo
+> > > > > Switched to branch 'sumo'
+> > > > > Your branch is up to date with 'origin/sumo'.
+> > > > > [user@fedora28-ssd meta-bbb]$ git describe
+> > > > > fatal: No names found, cannot describe anything.
+> > > > > [user@fedora28-ssd meta-bbb]$
+> > > > >
+> > > > > The rationale behind this request: git is the powerful tool which
+> > > > > should work and be solely used for YOCTO layers' synchronization.=
+ In
+> > > > > other words, YOCTO should give some tools' (namely git) unificati=
+on
+> > > > > guidelines in some way. :-)
+> > > >
+> > > > It is clear that a tool to maintain the layers in sync is required,=
+ but
+> > > > it is quite independent how the layers (and many are proprietary la=
+yers)
+> > > > are built. So you can use "repo" or "kas" (my preferred one) for th=
+at.
+> > > >
+> > > > Best regards,
+> > > > Stefano Babic
+> > > >
+> > > > --
+> > > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > > > DENX Software Engineering GmbH,      Managing Director: Wolfgang De=
+nk
+> > > > HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germa=
+ny
+> > > > Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.=
+de
+> > > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > > --
+> > > _______________________________________________
+> > > yocto mailing list
+> > > yocto@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/yocto
+> >
+> > --
+> > =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+> > Josef Holzmayr
+> > Software Developer Embedded Systems
+> >
+> > Tel: +49 8444 9204-48
+> > Fax: +49 8444 9204-50
+> >
+> > R-S-I Elektrotechnik GmbH & Co. KG
+> > Woelkestrasse 11
+> > D-85301 Schweitenkirchen
+> > www.rsi-elektrotechnik.de
+> > =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+> > Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA 170=
+393
+> > Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+> > Ust-IdNr: DE 128592548
+> >
+> > _____________________________________________________________
+> > Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+> > Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+> > USt-IdNr.: DE 128592548
+> >
 
---_000_DM5PR15MB19138E7516E9D62F7A9B0DDCF0D10DM5PR15MB1913namp_--
