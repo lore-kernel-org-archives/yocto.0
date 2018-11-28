@@ -1,66 +1,76 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <prvs=187035f2dc=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AFEC7E00C58; Wed, 28 Nov 2018 11:45:15 -0800 (PST)
+	id 75CD5E00C87; Wed, 28 Nov 2018 11:55:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.196 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [81.169.146.161 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f196.google.com (mail-qt1-f196.google.com
-	[209.85.160.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2CA1E008C6
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 11:45:14 -0800 (PST)
-Received: by mail-qt1-f196.google.com with SMTP id t13so27269365qtn.3
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 11:45:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=16Ae5x6WNRtNWr2G8cmCi10KOzNzYIgKbgWF5tWnhPQ=;
-	b=sFek+mJrigD4MooQkn40ztDEsO9Tp4dq7cIKo9T5tMAI+nYj/8O5tI9Nz0T1+dABYS
-	X6g2L7qQQrwsoKcXB5890V6UiHiK0ki05pbIJt0WkvnuxDQXjvP3jnsUDeXWqz6bfL5z
-	TQYZ5uXazgy3+MQI6N1HlQpa9mL5oJlqgZb72SFsDMtbXQhCL8zjhX4KZkCPHdMecohF
-	V4xGIPvomxSABnumAEVY8LJncuPv0X7lIyCyPl4KWQa2H4q7fofTATYFWwXZCVFZCu9Y
-	1kRDriLOhUPaY4sFpsWce7R00MrcK/ruaycVVGVpCaEAhlBS1x0Nf9Ra/zjZks4f8/0M
-	txxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=16Ae5x6WNRtNWr2G8cmCi10KOzNzYIgKbgWF5tWnhPQ=;
-	b=qmgQE70aiKYltDZwERkua5zRcORUBO4aXPYliMMOGNe2vKKyysP8tgErea81a7p3p+
-	svTnIPeSFdPILpAkdwseRx7QApnEbf5JfiRnUUronVgJcc7sSQgdv3KrVg4x+IKVmy1C
-	xNWU59YO/CKP0jvTpmdcPLrUrb5JPcWAQg1skjpg4wbXZ7DHDks4MMbYehtrXnAg9n5U
-	EcWzOZ5rvZHYq+pbgGcq1N2ciObR8wh0TfV/Vzg+qnNQOoEM7rrqjS9qdDPAZCOWxU4n
-	aShKyMX63O5iAwACI1jP2Wz78cWz9KbeeSMUTeZy2v1jGev2BLM/qwXiAdrgfVsdG2bn
-	vazw==
-X-Gm-Message-State: AGRZ1gIJaSzCuqoQy9sVsGK6nFOTDe6HneMM4RsdfG6zbBMhvwX9nKk8
-	cm2/bL30O4+E3VDHihq3MxQzYPHYca2aC1rftoA=
-X-Google-Smtp-Source: AJdET5crh6wcMKTQxcDj9eAEbWmyL1QTfd7WwRocH6VCCAwovUAzmjXQhKBMf9p1anyi5LFnmvmMdpa7W8nOaRMOxZs=
-X-Received: by 2002:ac8:748:: with SMTP id k8mr36184770qth.235.1543434313854; 
-	Wed, 28 Nov 2018 11:45:13 -0800 (PST)
+X-Greylist: delayed 30450 seconds by postgrey-1.32 at yocto-www;
+	Wed, 28 Nov 2018 11:55:43 PST
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
+	[81.169.146.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A8D8E00BFD
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 11:55:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1543434942;
+	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
+	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+	bh=F4xfbYMRBA26xdRQ+g0nMLCr7rHcZU4C0iaNMLqO9mM=;
+	b=K9uJLSehd7to5I4CLGuWRflqSlKUBvKBys3F+3iiJjmuSjviS4H0TLgFX/L1Y8iJ3W
+	iLOElbbJhVrBC6w2TZJgpCpMm07AJztYxuBCb4VSG0zMsY3RuAw5m9hhwW06pvGV5ooU
+	tnR0do5qw0VJimY7oi7ZahGjVHfEKwaTfDfTUoKyXkcrGGs00awT5qXDM9pOAvRa9GVf
+	nsBIwnJprAYUzAg5Nv+1CIH03h5mmEPQ0BKWo6F3zakXz6AEVhEZubxmwqJvA8L11qmZ
+	3XxWXa0XFwaFDwCEKV79BSoMougR0fBoxEmfQhrw1nPkDK4xsfDnKmzfVNEvv4YlBAHP
+	RAcA==
+X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/Kpz6b/avroGOv0c9sak1tqOWjLU3UFhR6"
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de by smtp.strato.de (RZmta 44.6 AUTH)
+	with ESMTPSA id x019b7uASJtg5li
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
+	with 384 ECDH bits, eq. 7680 bits RSA))
+	(Client did not present a certificate);
+	Wed, 28 Nov 2018 20:55:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
+	d=rsi-elektrotechnik.de; s=MDaemon; t=1543434945; x=1544039745;
+	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
+	Subject:Message-ID:References:MIME-Version:Content-Type:
+	Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
+	User-Agent; bh=F4xfbYMRBA26xdRQ+g0nMLCr7rHcZU4C0iaNMLqO9mM=; b=Z
+	h6izGi2RoAS9MSVtN7oIlrlnOTC8icK/9HHrBKDlZJTk7MhRQuZMAbNrU3G8ri2Z
+	7wUX5LL/sVGZwZiW5Fn28zGLwc1uRSbGJ/3u7O/C33EcHuLEbpfFxlhMGCcfBwea
+	8UtyUcnMjBlUbv3zwxhRiHeLIgRvqmnS1xiEmXvyCA=
+Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v18.5.1) with ESMTPSA id
+	md50000121571.msg; Wed, 28 Nov 2018 20:55:44 +0100
+X-MDRemoteIP: 178.27.67.144
+X-MDHelo: jholzmayr.localdomain
+X-MDArrival-Date: Wed, 28 Nov 2018 20:55:44 +0100
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=187035f2dc=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
+Date: Wed, 28 Nov 2018 20:55:30 +0100
+From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+To: n.stanisavljevic@polycaptil.fr
+Message-ID: <20181128195530.pih7j3s3dinrhhrx@jholzmayr.localdomain>
+References: <9305893f0b3f68a768e8532054b54438@webmail2.sdv.fr>
 MIME-Version: 1.0
-References: <CAGAf8LzfRHc6m-ixKdU8s0icQ-XFiGvfgr-+Kw9UAEqrsdCK3A@mail.gmail.com>
-	<CANik3vH9-EP_JYQ5oapNgfC2F_HN0XErOkqs=LnDc9eA_Uinfg@mail.gmail.com>
-In-Reply-To: <CANik3vH9-EP_JYQ5oapNgfC2F_HN0XErOkqs=LnDc9eA_Uinfg@mail.gmail.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 28 Nov 2018 20:45:02 +0100
-Message-ID: <CAGAf8LyFHr1TmAxwfyBPX2x6jjtwSRUjbQt3XH_HuWwZd7YUUA@mail.gmail.com>
-To: pidge@toganlabs.com
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Git tool/command problems with YOCTO Open Source repos
+In-Reply-To: <9305893f0b3f68a768e8532054b54438@webmail2.sdv.fr>
+User-Agent: NeoMutt/20180716
+Cc: yocto@yoctoproject.org
+Subject: Re: am335x evmsk screen init:id"00" respawning too fast disabled for 5 minutes yocto sumo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,164 +82,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Nov 2018 19:45:15 -0000
-Content-Type: multipart/alternative; boundary="00000000000002ff11057bbece50"
+X-List-Received-Date: Wed, 28 Nov 2018 19:55:46 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
---00000000000002ff11057bbece50
-Content-Type: text/plain; charset="UTF-8"
+Howdy!
 
-> I'm not sure what the request is here. To ask all the repository
-> maintainers *to add tags* so you don't return a fatal on git describe?
+On Wed, Nov 28, 2018 at 03:50:02PM +0000, n.stanisavljevic@polycaptil.fr wrote:
+> Hello everybody
+> 
+> here is an introduction of my situation :
+> 
+> I build a custom board from schematic of sitara AM335x-evmsk starter kit.
+> I succeed to make a custom OS with yocto (krogoth version) and to boot this OS (embedded Linux) on my custom board.
+> 
+> This custom board contain a touchscreen (same touchscreen like in the AM335x-evmsk starter kit).
+> 
+> All worked fine on this board while I used krogoth version on yocto.
+> 
+> my problem :
+> 
+> Few time ago, I decided to migrate to sumo version of yocto.
+> I build with success the OS (embedded Linux) with yocto sumo version for my custom board, but when I try to boot this OS, it's stop/lock and print the following message :
+> 
+> "INIT:Id'00' respawning too fast : disabled for 5 minutes" (I put a screenshot of this message ridden on putty).
+> Every 5 minutes I got this message and I can't acces to the user session on putty and on the touchscreen, all board is locked.
 
-Not quite. To add tags, yes, NOT for git describe (it is just a test).
-Rather for git log (using tags).
+This is probably because you are basing off something that sets
+SERIAL_CONSOLES for the yocto-kernel, like
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-yocto/tree/meta-yocto-bsp/conf/machine/beaglebone-yocto.conf?h=master#n23
 
-Thank you,
-Zoran
-_______
+If you are using a custom tree which does not use the special driver for
+the uart, then you should be fine by setting
+SERIAL_CONSOLES ?= "115200;ttyS0"
+in your MACHINE config
+
+> 
+> I don't understand why this problem appear when I build a OS with the sumo version on Yocto.
+> I have not this problem when I build a OS with the krogoth version on yocto.
+> 
+> Somebody can help me to solve this problem ?
+> what can I do ?
+> 
+
+Greetz
+
+-- 
+———————————————
+Josef Holzmayr
+Software Developer Embedded Systems
+
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
+
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+———————————————
+Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548 
+
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
 
 
-On Wed, Nov 28, 2018 at 7:37 PM Beth Flanagan <pidge@toganlabs.com> wrote:
-
-> On Wed, Nov 28, 2018 at 9:18 AM Zoran Stojsavljevic
-> <zoran.stojsavljevic@gmail.com> wrote:
-> >
-> > Hello YOCTO people,
-> >
-> > I would like to use standard git tool while using all the Yocto
-> > layers. NOT only Poky repository (which, I believe, works all the way
-> > with git tools), but as much as possible with other github proprietary
-> > repos and layers. Since I am not able to execute git commands using
-> > some number of proprietary repos over github.
-> >
-> > As example, I'll use meta-bbb repository.
-> > https://github.com/jumpnow/meta-bbb.git, after cloning the following
-> > happens (chosen, since it has at least dozen of branches):
-> >
-> > After cloning, I did not get anything from the following commands,
-> > being in the root of the meta-bbb repo, namely:
-> >
-> > [user@fedora28-ssd meta-bbb]$ pwd
-> > /home/user/projects2/beaglebone-black/yocto-master/meta-bbb
-> > [user@fedora28-ssd meta-bbb]$ git describe
-> > fatal: No names found, cannot describe anything.
-> > [user@fedora28-ssd meta-bbb]$ git tag
-> > [user@fedora28-ssd meta-bbb]$ git checkout thud
-> > Branch 'thud' set up to track remote branch 'thud' from 'origin'.
-> > Switched to a new branch 'thud'
-> > [user@fedora28-ssd meta-bbb]$ git checkout sumo
-> > Switched to branch 'sumo'
-> > Your branch is up to date with 'origin/sumo'.
-> > [user@fedora28-ssd meta-bbb]$ git describe
-> > fatal: No names found, cannot describe anything.
-> > [user@fedora28-ssd meta-bbb]$
-> >
-> > The rationale behind this request: git is the powerful tool which
-> > should work and be solely used for YOCTO layers' synchronization. In
-> > other words, YOCTO should give some tools' (namely git) unification
-> > guidelines in some way. :-)
-> >
->
-> Zoran,
->
-> This is normal behaviour for git repositories with no tags. Git
-> describe just describes the latest annotated tag and if there is none,
-> then it of course, can't describe anything. Generally, this is up to
-> the repo maintainer to define tagging policy (I think all we do in
-> OE/YP is ask for named release branches).  So this isn't something
-> that is "broken" it's just not asked of layer maintainers. I'm not
-> sure why you need git describe in your workflow, but you could easily
-> write something that reverts to something like `git shortlog -1` or
-> something on repos that return fatal on a git describe.
->
-> I'm not sure what the request is here. To ask all the repository
-> maintainers to add tags so you don't return a fatal on git describe?
->
-> -b
->
-
---00000000000002ff11057bbece50
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">&gt; I&#39;m not sure what the request is here. To ask all=
- the repository<br>&gt; maintainers <b><i><font color=3D"#ff0000">to add ta=
-gs</font></i></b> so you don&#39;t return a fatal on git describe?<div><br>=
-</div><div>Not quite. To add tags, yes, NOT for git describe (it is just a =
-test). Rather for git log (using tags).</div><div><br></div><div>Thank you,=
-</div><div>Zoran</div><div>_______</div></div><br><br><div class=3D"gmail_q=
-uote"><div dir=3D"ltr">On Wed, Nov 28, 2018 at 7:37 PM Beth Flanagan &lt;<a=
- href=3D"mailto:pidge@toganlabs.com">pidge@toganlabs.com</a>&gt; wrote:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
-eft:1px #ccc solid;padding-left:1ex">On Wed, Nov 28, 2018 at 9:18 AM Zoran =
-Stojsavljevic<br>
-&lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zora=
-n.stojsavljevic@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hello YOCTO people,<br>
-&gt;<br>
-&gt; I would like to use standard git tool while using all the Yocto<br>
-&gt; layers. NOT only Poky repository (which, I believe, works all the way<=
-br>
-&gt; with git tools), but as much as possible with other github proprietary=
-<br>
-&gt; repos and layers. Since I am not able to execute git commands using<br=
->
-&gt; some number of proprietary repos over github.<br>
-&gt;<br>
-&gt; As example, I&#39;ll use meta-bbb repository.<br>
-&gt; <a href=3D"https://github.com/jumpnow/meta-bbb.git" rel=3D"noreferrer"=
- target=3D"_blank">https://github.com/jumpnow/meta-bbb.git</a>, after cloni=
-ng the following<br>
-&gt; happens (chosen, since it has at least dozen of branches):<br>
-&gt;<br>
-&gt; After cloning, I did not get anything from the following commands,<br>
-&gt; being in the root of the meta-bbb repo, namely:<br>
-&gt;<br>
-&gt; [user@fedora28-ssd meta-bbb]$ pwd<br>
-&gt; /home/user/projects2/beaglebone-black/yocto-master/meta-bbb<br>
-&gt; [user@fedora28-ssd meta-bbb]$ git describe<br>
-&gt; fatal: No names found, cannot describe anything.<br>
-&gt; [user@fedora28-ssd meta-bbb]$ git tag<br>
-&gt; [user@fedora28-ssd meta-bbb]$ git checkout thud<br>
-&gt; Branch &#39;thud&#39; set up to track remote branch &#39;thud&#39; fro=
-m &#39;origin&#39;.<br>
-&gt; Switched to a new branch &#39;thud&#39;<br>
-&gt; [user@fedora28-ssd meta-bbb]$ git checkout sumo<br>
-&gt; Switched to branch &#39;sumo&#39;<br>
-&gt; Your branch is up to date with &#39;origin/sumo&#39;.<br>
-&gt; [user@fedora28-ssd meta-bbb]$ git describe<br>
-&gt; fatal: No names found, cannot describe anything.<br>
-&gt; [user@fedora28-ssd meta-bbb]$<br>
-&gt;<br>
-&gt; The rationale behind this request: git is the powerful tool which<br>
-&gt; should work and be solely used for YOCTO layers&#39; synchronization. =
-In<br>
-&gt; other words, YOCTO should give some tools&#39; (namely git) unificatio=
-n<br>
-&gt; guidelines in some way. :-)<br>
-&gt;<br>
-<br>
-Zoran,<br>
-<br>
-This is normal behaviour for git repositories with no tags. Git<br>
-describe just describes the latest annotated tag and if there is none,<br>
-then it of course, can&#39;t describe anything. Generally, this is up to<br=
->
-the repo maintainer to define tagging policy (I think all we do in<br>
-OE/YP is ask for named release branches).=C2=A0 So this isn&#39;t something=
-<br>
-that is &quot;broken&quot; it&#39;s just not asked of layer maintainers. I&=
-#39;m not<br>
-sure why you need git describe in your workflow, but you could easily<br>
-write something that reverts to something like `git shortlog -1` or<br>
-something on repos that return fatal on a git describe.<br>
-<br>
-I&#39;m not sure what the request is here. To ask all the repository<br>
-maintainers to add tags so you don&#39;t return a fatal on git describe?<br=
->
-<br>
--b<br>
-</blockquote></div>
-
---00000000000002ff11057bbece50--
