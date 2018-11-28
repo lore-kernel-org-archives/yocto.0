@@ -1,56 +1,51 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 68471E00C75; Wed, 28 Nov 2018 04:57:01 -0800 (PST)
+	id 21764E00C7D; Wed, 28 Nov 2018 05:11:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.179 listed in list.dnswl.org]
+	*      [209.85.167.48 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com
-	[209.85.222.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D2E5E00C58
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 04:57:00 -0800 (PST)
-Received: by mail-qk1-f179.google.com with SMTP id y78so5918454qka.12
-	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 04:57:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
+	[209.85.167.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5E25E00C74
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 05:11:41 -0800 (PST)
+Received: by mail-lf1-f48.google.com with SMTP id a16so19288090lfg.3
+	for <yocto@yoctoproject.org>; Wed, 28 Nov 2018 05:11:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
 	:cc:content-transfer-encoding;
-	bh=92w9uaz5gGfcBBBOm+bMeqmd0QB6HB9w/JF7EjqzK/M=;
-	b=ST7hyTnIvvqzR/4bgirl0DSVk9Vy/wi4D5Q56YlznJbSm48q1u2S5KrmDP/rYsUjAm
-	6ZFRtfupdtx9wTRMs5Kp9ITEPszznL+yYpb6/k5hPn0dNXhMHv3FFG2rjBBNMHnrzr54
-	ahZc7zOTrwcIs5S5uwIrYtbc4dyLr1aoYVGGXlZM8L5PYdRZhUHfDNQa9rCzQ2qivXWH
-	hsjopaYI20Vpog0tbenjKfVscgEktSJ+heykBzaxLKqrxq1SSFgaEm3KkIb/qiVWApwS
-	PwPICSQIDYR26utb77ddR2hk8JncxyZI/B8vHi+X4t/WQBJXIvnHYe3XMkVNhM4G/1Zo
-	qxsQ==
+	bh=0s5YN5GbWW/vhrTnqZlsE6dP25c+gg8TMhg8cV1a+9M=;
+	b=EFPPwW4trikPtVVQve+gdm3DVhknZS+2vK/i+8lZYS/OY4Lk2MEx0hG1HWiWepjU8Y
+	k2tVL4FCpSU8vydANgsm7e3skHLQE271y1Wdb0yiW/dVU9QyO5exSAWJ9hUy4Go4NC2c
+	Mn8fjti4goYDVo+I+8irLn4NkkIMxBWzZ+kFk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=92w9uaz5gGfcBBBOm+bMeqmd0QB6HB9w/JF7EjqzK/M=;
-	b=B30s0F0K/ecEr3MkabzC3XpXUh7efZw2RlhOphoZXwqMch46ksT0v+zJnVLj7Qp776
-	QeJBqKDWhrWVwNnKeUC1J7qvbFvzfJsd4Cnq0Z1VWVD4VwjGr2D9ySu/uJD9y16xArgO
-	lFGug/3+/hCpqcJm3DoOhAO4iIr9bCptXP120xdh2++r1Irf255FnlBJlcjXZrBO8CSH
-	vpK2nlKn1xnyAy6zYExbDHtyPWOBDX3PH407uTW/pG1Sedh9T/eBlWISb1M5fbSHuylJ
-	9hrWxiLsPpI2b9RIfn+QSnQwZw+YqeaAuaYQiktX56yniObg9AEkDh1zibbD40MQAeHO
-	gEeg==
-X-Gm-Message-State: AA+aEWYJsreoLPUUnbDLLZ/K9v/fbDg18AVmVfipU0yHGEGvfz6s8xg+
-	UDs6GK4bFjxtefSQEPHnUPPaxRNnOb2vfr3n460=
-X-Google-Smtp-Source: AFSGD/UBV1kUqQrroz9IJ5bERI7tAGAVknKeOjJnWE9mZHVIXzgRSdJ9k3qivTfH57ku4npGAd22ANuq0yUKNZa69wk=
-X-Received: by 2002:a37:11dd:: with SMTP id 90mr33676588qkr.212.1543409819483; 
-	Wed, 28 Nov 2018 04:56:59 -0800 (PST)
+	bh=0s5YN5GbWW/vhrTnqZlsE6dP25c+gg8TMhg8cV1a+9M=;
+	b=GAw69G8T0cQeolXiaaHe+5Ub6naiD55ssdj84p3uhbZdzi0/8k1BKWHX2bfaE3Z34a
+	WIqp+tZuKgcf8v8ZqWU90dHhCkIiucX76Pmj1y61PQwavOTFj+0ts/Kds/PMlCLwlbQH
+	1jegUZ1xhHEy1L0GWD4tuQRF6qbnl0lLYHJQxQtnUHmJsyETj7ZYzygu4Sf+CCn1c9+v
+	iom+vt4byPXe56hW1IkKy+y7+pb6SS2ST+FOQCF8UsxcUKW368QkVV+xlRS7lNhMuh7s
+	Ehqx4Yva1BvaWHfsQ6gntUweXTjA0OgmFRpM9du0Zbqo+oBhZuZrdZaoPhrnKWGzj9in
+	fkmg==
+X-Gm-Message-State: AGRZ1gJWUMKxb7AnJbuj//I/pNRkZgi51MTmb8VC/7bioPR3bmSjyYDe
+	Ogq8OChI4rilUCtTfuk5z/ZFIrQf5tC6qaKFzhL1og==
+X-Google-Smtp-Source: AJdET5di7jlGUfE9rGBAjDaiwN/7OorYuC+Cw4kAXmflLBAwSTkE2PCnvDbNvwo+bErh0B/Pud5pWx4UHqtn3PlFvH4=
+X-Received: by 2002:a19:54d7:: with SMTP id b84mr20558445lfl.131.1543410700356;
+	Wed, 28 Nov 2018 05:11:40 -0800 (PST)
 MIME-Version: 1.0
 References: <CAGAf8LzfRHc6m-ixKdU8s0icQ-XFiGvfgr-+Kw9UAEqrsdCK3A@mail.gmail.com>
 	<86583590-a56f-5fa7-18d3-86f0555cdadb@denx.de>
@@ -58,11 +53,11 @@ References: <CAGAf8LzfRHc6m-ixKdU8s0icQ-XFiGvfgr-+Kw9UAEqrsdCK3A@mail.gmail.com>
 	<20181128112500.emfrdulwvzowkfyu@jholzmayr.localdomain>
 	<CAGAf8LwjJ3UpQnq6ii_s5Xd9d0qT=ECQwtordxzTZXgUnxv8bQ@mail.gmail.com>
 In-Reply-To: <CAGAf8LwjJ3UpQnq6ii_s5Xd9d0qT=ECQwtordxzTZXgUnxv8bQ@mail.gmail.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 28 Nov 2018 13:56:48 +0100
-Message-ID: <CAGAf8LyVFp1VDsSNBjEyDs1bCvTkwuA2QgPc-7U6usG1Z4N8Pw@mail.gmail.com>
-To: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Cc: Jan Kiszka <jan.kiszka@siemens.com>, Yocto Project <yocto@yoctoproject.org>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Wed, 28 Nov 2018 14:11:28 +0100
+Message-ID: <CAP71WjzP+QUKOZfJ3wreKQ80ni6rPT2et5FWe=dazZ-RkSqoGg@mail.gmail.com>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Cc: jan.kiszka@siemens.com, Yocto list discussion <yocto@yoctoproject.org>
 Subject: Re: Git tool/command problems with YOCTO Open Source repos
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -75,18 +70,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Nov 2018 12:57:01 -0000
+X-List-Received-Date: Wed, 28 Nov 2018 13:11:43 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-OK, I rest my case. Seems, that I am the only one here using git
-describe, and git log using tags.
-
-Could be. ;-)
-
-Thank you all,
-Zoran
-_______
 On Wed, Nov 28, 2018 at 1:53 PM Zoran Stojsavljevic
 <zoran.stojsavljevic@gmail.com> wrote:
 >
@@ -98,9 +85,39 @@ ts own importance.
 > If I use kernel.org, I use git tool.
 > If I use YOCTO Poky, I would like to use git tool.
 > For all YOCTO repos, I would like to use git tool.
+
+You mean OpenEmbedded Layers, not Yocto repo here. I think 99.9%
+(maybe 100%) of the public OE layers are available as git repo. So you
+can (in fact you have to) use git for any OE layer.
+
 >
 > Not repo, kas, or other tools. Not particular tools, assigned to
 > particular tasks, for particular build systems.
+
+I think you are confused. There are hundreds of OE layers out there,
+maintained by developers, companies, communities, ... Poky is a
+reference implementation maintained by the Yocto Project. Building a
+custom Linux distro using Yocto Project means that you need to pull a
+certain amount of layers based on what you are doing. Most of the time
+each of these layers are hosted in their own *git* tree. For Poky we
+create a *new* git tree that results of the "merge" of all the
+dependent layers. However the OE core is maintained in their own tree
+and  bitbake as well.
+
+the tools you mentioned here, like repo, kas, .. are not equivalent to
+git. they are helpers, wrappers, tools that can be use to combine many
+individual git repo to form a single workspace, so that you have all
+the layers you need in a single workspace to build your own custom
+distro.
+
+The Yocto Project does not recommend any specific tool to create such
+workspace, and people are using various solutions. There are on-going
+discussions in YP/OE to pick one tool and promote it, but no
+conclusion so far.
+
+But again this is very different from the initial problem you are
+reporting, which is just a misunderstanding of git tags and commits.
+
 >
 > Since I would like to invest time and effort in ONLY one,
 > comprehensive tool, and discard all other tools which are not up to
@@ -291,4 +308,9 @@ de
 > > Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
 > > USt-IdNr.: DE 128592548
 > >
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
