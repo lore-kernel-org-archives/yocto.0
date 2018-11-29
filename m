@@ -1,31 +1,40 @@
-Return-Path: <Klaus.Noeske@indu-sol.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CC9C2E00C94; Thu, 29 Nov 2018 00:34:09 -0800 (PST)
+	id ACCA2E00CA3; Thu, 29 Nov 2018 01:06:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 300 seconds by postgrey-1.32 at yocto-www;
-	Thu, 29 Nov 2018 00:34:08 PST
-Received: from mail.indu-sol.com (mail.indu-sol.com [92.79.72.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43EF5E00BFD
-	for <yocto@yoctoproject.org>; Thu, 29 Nov 2018 00:34:07 -0800 (PST)
-From: =?iso-8859-1?Q?Indu-Sol_GmbH=2C_Klaus_N=F6ske?=
-	<Klaus.Noeske@indu-sol.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto version thud busybox build failed: rpc/rpc.h - No such file
-Thread-Index: AdSHvJYVICes6ng4ShmFpGEJ03xbpw==
-Date: Thu, 29 Nov 2018 08:29:05 +0000
-Message-ID: <A2C130CD097EC048BAC89FFB315E00FC939C61EE@INDU-EXC.indu-sol.intra>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95ECFE00971
+	for <yocto@yoctoproject.org>; Thu, 29 Nov 2018 01:06:23 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id wAT95CAm004393
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 29 Nov 2018 01:05:53 -0800
+Received: from [128.224.163.141] (128.224.163.141) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
+	Thu, 29 Nov 2018 01:05:26 -0800
+To: =?UTF-8?Q?Indu-Sol_GmbH=2c_Klaus_N=c3=b6ske?= <Klaus.Noeske@indu-sol.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <A2C130CD097EC048BAC89FFB315E00FC939C61EE@INDU-EXC.indu-sol.intra>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <29fc7613-b483-50cc-5d02-e28b527f0204@windriver.com>
+Date: Thu, 29 Nov 2018 17:12:33 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Subject: Yocto version thud busybox build failed: rpc/rpc.h - No such file
+In-Reply-To: <A2C130CD097EC048BAC89FFB315E00FC939C61EE@INDU-EXC.indu-sol.intra>
+X-Originating-IP: [128.224.163.141]
+Subject: Re: Yocto version thud busybox build failed: rpc/rpc.h - No such file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,45 +46,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Nov 2018 08:34:09 -0000
-Content-Language: de-DE
+X-List-Received-Date: Thu, 29 Nov 2018 09:06:24 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_A2C130CD097EC048BAC89FFB315E00FC939C61EEINDUEXCindusoli_"
+	boundary="------------66FAB7EA7A2BEB335619880E"
 
---_000_A2C130CD097EC048BAC89FFB315E00FC939C61EEINDUEXCindusoli_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--------------66FAB7EA7A2BEB335619880E
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hello,
+How about adding in your busybox bbappend file the following line.
+DEPENDS += "libtirpc"
 
-I try to migrate my project from fido to thud. Currently I have problems to=
- build busybox. It fails with error: rpc/rpc.h - No such file. This was alr=
-eady mentioned here: https://lists.yoctoproject.org/pipermail/yocto/2018-Ma=
-y/041163.html. But I was not able to find the solution there.
-My build host is Ubuntu 16.04 (x86_64) and my target is an ARM board/device=
-.
-The "thud" commit I use is: 94b13882510561b4ab7c08fd0343038c154680a4 (sanit=
-y: Add check for WSL)
+Best Regards,
+Chen Qi
 
-What can I do to solve this problem?
-Thanks
+On 11/29/2018 04:29 PM, Indu-Sol GmbH, Klaus Nöske wrote:
+>
+> Hello,
+>
+> I try to migrate my project from fido to thud. Currently I have 
+> problems to build busybox. It fails with error: rpc/rpc.h - No such 
+> file. This was already mentioned here: 
+> https://lists.yoctoproject.org/pipermail/yocto/2018-May/041163.html. 
+> But I was not able to find the solution there.
+>
+> My build host is Ubuntu 16.04 (x86_64) and my target is an ARM 
+> board/device.
+>
+> The “thud” commit I use is: 94b13882510561b4ab7c08fd0343038c154680a4 
+> (sanity: Add check for WSL)
+>
+> What can I do to solve this problem?
+>
+> Thanks
+>
+> BR
+>
+> Klaus
+>
+>
+>
 
-BR
-Klaus
 
---_000_A2C130CD097EC048BAC89FFB315E00FC939C61EEINDUEXCindusoli_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--------------66FAB7EA7A2BEB335619880E
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 8bit
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">How about adding in your busybox
+      bbappend file the following line.<br>
+      DEPENDS += "libtirpc"<br>
+      <br>
+      Best Regards,<br>
+      Chen Qi<br>
+      <br>
+      On 11/29/2018 04:29 PM, Indu-Sol GmbH, Klaus Nöske wrote:<br>
+    </div>
+    <blockquote
+cite="mid:A2C130CD097EC048BAC89FFB315E00FC939C61EE@INDU-EXC.indu-sol.intra"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 14 (filtered
+        medium)">
+      <style><!--
 /* Font Definitions */
 @font-face
 	{font-family:Calibri;
@@ -108,38 +147,43 @@ span.E-MailFormatvorlage17
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+<o:shapedefaults v:ext="edit" spidmax="1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Hello,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">I try to migrate my project fro=
-m fido to thud. Currently I have problems to build busybox. It fails with e=
-rror: rpc/rpc.h - No such file. This was already mentioned here:
-<a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2018-May/041163.h=
-tml">https://lists.yoctoproject.org/pipermail/yocto/2018-May/041163.html</a=
->. But I was not able to find the solution there.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">My build host is Ubuntu 16.04 (=
-x86_64) and my target is an ARM board/device.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">The &#8220;thud&#8221; commit I=
- use is: 94b13882510561b4ab7c08fd0343038c154680a4 (sanity: Add check for WS=
-L)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">What can I do to solve this pro=
-blem?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Thanks<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">BR<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Klaus<o:p></o:p></span></p>
-</div>
-</body>
+      <div class="WordSection1">
+        <p class="MsoNormal"><span lang="EN-GB">Hello,<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-GB"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-GB">I try to migrate my
+            project from fido to thud. Currently I have problems to
+            build busybox. It fails with error: rpc/rpc.h - No such
+            file. This was already mentioned here:
+            <a moz-do-not-send="true"
+href="https://lists.yoctoproject.org/pipermail/yocto/2018-May/041163.html">https://lists.yoctoproject.org/pipermail/yocto/2018-May/041163.html</a>.
+            But I was not able to find the solution there.
+            <o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-GB">My build host is Ubuntu
+            16.04 (x86_64) and my target is an ARM board/device.
+            <o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-GB">The “thud” commit I use
+            is: 94b13882510561b4ab7c08fd0343038c154680a4 (sanity: Add
+            check for WSL)<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-GB"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-GB">What can I do to solve
+            this problem?<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-GB">Thanks<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-GB"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-GB">BR<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-GB">Klaus<o:p></o:p></span></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
 </html>
 
---_000_A2C130CD097EC048BAC89FFB315E00FC939C61EEINDUEXCindusoli_--
+--------------66FAB7EA7A2BEB335619880E--
