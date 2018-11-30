@@ -1,34 +1,66 @@
-Return-Path: <Klaus.Noeske@indu-sol.com>
+Return-Path: <chuckwolber@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5076CE00CA9; Thu, 29 Nov 2018 02:51:09 -0800 (PST)
+	id AEDD4E00C8A; Thu, 29 Nov 2018 18:24:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (chuckwolber[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.52 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.indu-sol.com (mail.indu-sol.com [92.79.72.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 636D6E00901
-	for <yocto@yoctoproject.org>; Thu, 29 Nov 2018 02:51:06 -0800 (PST)
-From: =?iso-8859-1?Q?Indu-Sol_GmbH=2C_Klaus_N=F6ske?=
-	<Klaus.Noeske@indu-sol.com>
-To: ChenQi <Qi.Chen@windriver.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Yocto version thud busybox build failed: rpc/rpc.h -
-	No such file
-Thread-Index: AdSHvJYVICes6ng4ShmFpGEJ03xbp////WKA///WQ0A=
-Date: Thu, 29 Nov 2018 10:51:03 +0000
-Message-ID: <A2C130CD097EC048BAC89FFB315E00FC939C6243@INDU-EXC.indu-sol.intra>
-References: <A2C130CD097EC048BAC89FFB315E00FC939C61EE@INDU-EXC.indu-sol.intra>
-	<29fc7613-b483-50cc-5d02-e28b527f0204@windriver.com>
-In-Reply-To: <29fc7613-b483-50cc-5d02-e28b527f0204@windriver.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
+	[209.85.221.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84C8CE00C72
+	for <yocto@yoctoproject.org>; Thu, 29 Nov 2018 18:24:09 -0800 (PST)
+Received: by mail-wr1-f52.google.com with SMTP id v6so3781231wrr.12
+	for <yocto@yoctoproject.org>; Thu, 29 Nov 2018 18:24:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=HiCk7b9SjCBcXVhahx+CsajCpYcgl0Zyn8hJgUAH2Ro=;
+	b=HfzKOIinldqfyj9Iw6rRUzNHZvTnrbOmHz3GWkRuvD+rTdO2N/Ag0eyNNtTihTi941
+	kjSHnoDqjrqqbEqjM1ilFzVgoqjC/xsOUP4c31jvrlNE6QUACDJSAySeR0yWhDPKPYM9
+	mMVPkhZehI1N7AVS32b/O23+/Wzp0Em5qP4fUBpXyl2fzlUFzNtBuZJ4mBE3LOQ1yEfq
+	mDKak8sL3RHfbSRD5uaIE4XXhH2qWrKCtLG4Lk/E2mM1tdlMZ9nrdKOOPBvu+9+LD6c4
+	XneTPNpenSBRjiH0WjCwHZV+PV6+be8A8PX3RaqkP93CaBLmXsokFb/aBCjhheS0FxgQ
+	QJQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=HiCk7b9SjCBcXVhahx+CsajCpYcgl0Zyn8hJgUAH2Ro=;
+	b=Ksr8LIb7GVlW/qPE2SHLfM+C4tpwaXuRfQ0N+Y6eKSHngi0cwAhvG3jGduzM16e5Hi
+	at+c+vnIH4h44HzNzGWUTpXFQjgyn3waycu1DTd7qnH3MXjI0kH+nQGL+D4F8VnXnc4O
+	UwYl8rfHD50WOd2qUXL7ArMU9wn/v0JciAslAzdLUfQ9E4xrvdP7O8DswstLmPrN7p6i
+	kuYVsAE7c8HLKbFTFgvkE7PT6JIFw0sDvT+DPZ/tJXEbSaAQ9cPCIrynPXX4jSpBD4ZQ
+	B19+eZaC+OYcdfsl8GHLgbCZ7ChKzYihjdU/1JFB2OlBwE24Cno9ygggdPg3GcyXsNZa
+	ar/w==
+X-Gm-Message-State: AA+aEWYDGo5Wz0u2MeQj0bHUSAE4d/Xn/JHqXxMyWMvHpexO40WYQwkW
+	v2Z7av0RpT/Y6jg6RH0GI+072LCFV/M66MrFUec4RQ==
+X-Google-Smtp-Source: AFSGD/WORs5/K4KeM42aTQoXzHP4uXK+HNoOZjb9Du+5xXCn4JcWsh66J8YtzmbayINVWRLGRbPXHx+pIRb4CfCODbs=
+X-Received: by 2002:a5d:4903:: with SMTP id x3mr3280242wrq.11.1543544648282;
+	Thu, 29 Nov 2018 18:24:08 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: Yocto version thud busybox build failed: rpc/rpc.h - No such file
+References: <CAB=6tBRrH+BUNcQ4Hs_hyoNO8rP0VVbJkd5-tuE_yh6KYVn7HA@mail.gmail.com>
+	<98a055a0-3e77-168a-338d-a6988a144cc0@windriver.com>
+In-Reply-To: <98a055a0-3e77-168a-338d-a6988a144cc0@windriver.com>
+From: Chuck Wolber <chuckwolber@gmail.com>
+Date: Thu, 29 Nov 2018 18:23:56 -0800
+Message-ID: <CAB=6tBQQBj+hoVWX41kArg9aCxYOpXwjcu1LR-1YJo-t7nQ=TQ@mail.gmail.com>
+To: Qi.Chen@windriver.com
+Cc: yocto@yoctoproject.org
+Subject: Re: Yocto Thud - /lib64 link - Build Failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,331 +72,231 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Nov 2018 10:51:09 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_A2C130CD097EC048BAC89FFB315E00FC939C6243INDUEXCindusoli_"
+X-List-Received-Date: Fri, 30 Nov 2018 02:24:10 -0000
+Content-Type: multipart/alternative; boundary="00000000000074b887057bd87e0e"
 
---_000_A2C130CD097EC048BAC89FFB315E00FC939C6243INDUEXCindusoli_
-Content-Type: text/plain; charset="iso-8859-1"
+--00000000000074b887057bd87e0e
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Thank you, switching to IMAGE_PREPROCESS_COMMAND_append seems to have
+solved the problem.
 
-I figured it out why rpc is needed. Rpc is needed for the nfs mount feature=
- and was enabled by my old distro configuration for busybox. But don't need=
- this feature.
-I just changed/comment out:
+..Ch:W..
 
--          from CONFIG_FEATURE_HAVE_RPC=3Dy to # CONFIG_FEATURE_HAVE_RPC is=
- not set
+On Wed, Nov 28, 2018 at 7:14 PM ChenQi <Qi.Chen@windriver.com> wrote:
 
--          from CONFIG_FEATURE_MOUNT_NFS=3Dy to # CONFIG_FEATURE_MOUNT_NFS =
-is not set
-And now this works and compiles.
+> This is because prelink_image is also in IMAGE_PREPROCESS_COMMAND.
+>
+> meta/classes/image-prelink.bbclass:IMAGE_PREPROCESS_COMMAND_append_libc-g=
+libc
+> =3D " prelink_setup; prelink_image; "
+>
+> And as it's using _append, it will be after your 'symlink_lib64'.
+> Maybe using IMAGE_PREPROCESS_COMMAND_append =3D " symlink_lib64; " would
+> work for you?
+>
+> Best Regards,
+> Chen Qi
+>
+> On 11/29/2018 08:09 AM, Chuck Wolber wrote:
+>
+> Background: I have an image that works in pyro. I am migrating the image
+> to thud.
+>
+> Some of the add-on code to our image requires the /lib64 directory (in
+> particular the VirtualBox Additions). I have proven that a simple symlink
+> (/lib -> /lib64) fixes the problem. This symlink was being applied with t=
+he
+> following code at the very bottom of the image:
+>
+> IMAGE_PREPROCESS_COMMAND +=3D "symlink_lib64; "
+>
+> symlink_lib64() {
+>
+>     ln -s /lib ${IMAGE_ROOTFS}/lib64
+>
+> }
+>
+>
+> When I use that same code with Yocto thud, I get the following build erro=
+r:
+>
+> DEBUG: Executing shell function prelink_image
+>
+> Size before prelinking 818112.
+>
+> /build/poky/tmp/work/qemux86_64-linux/common-os-image/1.0-r0/recipe-sysro=
+ot-native/usr/sbin/prelink:
+> Could not record directory /lib/modules-load.d: No such file or directory
+>
+> WARNING: exit code 1 from a shell command.
+>
+>
+> Looking at the image generation diagram here (
+> https://www.yoctoproject.org/docs/2.6/overview-manual/overview-manual.htm=
+l#image-generation-dev-environment),
+> it would seem to indicate that IMAGE_PREPROCESS_COMMAND runs after the
+> linker steps in do_rootfs. So it is unclear why prelink is failing during
+> the do_image phase.
+>
+> Where is the correct place to create a /lib -> /lib64 symlink in our imag=
+e
+> recipe?
+>
+> Thank you,
+>
+> ..Ch:W..
+>
+>
+>
+>
 
-Thanks for you quick response. Your hint with "your busybox bbappend" helpe=
-d me a lot =3D)
+--=20
+=E2=80=9CI would challenge anyone here to think of a question upon which we=
+ once
+had a scientific answer, however inadequate, but for which now the best
+answer is a religious one."  -Sam Harris
 
-BR
-Klaus
-
-
-Von: ChenQi [mailto:Qi.Chen@windriver.com]
-Gesendet: Donnerstag, 29. November 2018 10:06
-An: Indu-Sol GmbH, Klaus N=F6ske; yocto@yoctoproject.org
-Betreff: Re: [yocto] Yocto version thud busybox build failed: rpc/rpc.h - N=
-o such file
-
-How about adding in your busybox bbappend file the following line.
-DEPENDS +=3D "libtirpc"
-
-Best Regards,
-Chen Qi
-
-On 11/29/2018 04:29 PM, Indu-Sol GmbH, Klaus N=F6ske wrote:
-Hello,
-
-I try to migrate my project from fido to thud. Currently I have problems to=
- build busybox. It fails with error: rpc/rpc.h - No such file. This was alr=
-eady mentioned here: https://lists.yoctoproject.org/pipermail/yocto/2018-Ma=
-y/041163.html. But I was not able to find the solution there.
-My build host is Ubuntu 16.04 (x86_64) and my target is an ARM board/device=
-.
-The "thud" commit I use is: 94b13882510561b4ab7c08fd0343038c154680a4 (sanit=
-y: Add check for WSL)
-
-What can I do to solve this problem?
-Thanks
-
-BR
-Klaus
-
-
-
-
-
---_000_A2C130CD097EC048BAC89FFB315E00FC939C6243INDUEXCindusoli_
-Content-Type: text/html; charset="iso-8859-1"
+--00000000000074b887057bd87e0e
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:black;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	color:black;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:black;
-	mso-fareast-language:EN-US;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.E-MailFormatvorlage19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1072387411;
-	mso-list-type:hybrid;
-	mso-list-template-ids:636529144 -877081938 67567619 67567621 67567617 6756=
-7619 67567621 67567617 67567619 67567621;}
-@list l0:level1
-	{mso-level-start-at:8;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body bgcolor=3D"white" lang=3D"DE" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:#1F497D">Hi,<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:#1F497D"><o:p>&n=
-bsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:#1F497D">I figur=
-ed it out why rpc is needed. Rpc is needed for the nfs mount feature and wa=
-s enabled by my old distro configuration for busybox. But don&#8217;t need =
-this feature.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:#1F497D">I just =
-changed/comment out:<o:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
-l1 lfo1"><![if !supportLists]><span lang=3D"EN-GB" style=3D"color:#1F497D">=
-<span style=3D"mso-list:Ignore">-<span style=3D"font:7.0pt &quot;Times New =
-Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span lang=3D"EN-GB" style=3D"color:#1F497D"=
->from CONFIG_FEATURE_HAVE_RPC=3Dy to # CONFIG_FEATURE_HAVE_RPC is not set<o=
-:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
-l1 lfo1"><![if !supportLists]><span lang=3D"EN-GB" style=3D"color:#1F497D">=
-<span style=3D"mso-list:Ignore">-<span style=3D"font:7.0pt &quot;Times New =
-Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span lang=3D"EN-GB" style=3D"color:#1F497D"=
->from CONFIG_FEATURE_MOUNT_NFS=3Dy to # CONFIG_FEATURE_MOUNT_NFS is not set=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:#1F497D">And now=
- this works and compiles.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:#1F497D"><o:p>&n=
-bsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:#1F497D">Thanks =
-for you quick response. Your hint with &#8220;your busybox bbappend&#8221; =
-helped me a lot =3D)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:#1F497D"><o:p>&n=
-bsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:#1F497D">BR<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:#1F497D">Klaus<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:#1F497D"><o:p>&n=
-bsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"color:#1F497D"><o:p>&n=
-bsp;</o:p></span></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;;color:windowtext;mso-fareast-language:=
-DE">Von:</span></b><span style=3D"font-size:10.0pt;font-family:&quot;Tahoma=
-&quot;,&quot;sans-serif&quot;;color:windowtext;mso-fareast-language:DE"> Ch=
-enQi
- [mailto:Qi.Chen@windriver.com] <br>
-<b>Gesendet:</b> Donnerstag, 29. November 2018 10:06<br>
-<b>An:</b> Indu-Sol GmbH, Klaus N=F6ske; yocto@yoctoproject.org<br>
-<b>Betreff:</b> Re: [yocto] Yocto version thud busybox build failed: rpc/rp=
-c.h - No such file<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">How about adding in your busybox bbappend file the f=
-ollowing line.<br>
-DEPENDS &#43;=3D &quot;libtirpc&quot;<br>
-<br>
-Best Regards,<br>
-Chen Qi<br>
-<br>
-On 11/29/2018 04:29 PM, Indu-Sol GmbH, Klaus N=F6ske wrote:<o:p></o:p></p>
-</div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Hello,</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">I try to migrate my project fro=
-m fido to thud. Currently I have problems to build busybox. It fails with e=
-rror: rpc/rpc.h - No such file. This was already mentioned here:
-<a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2018-May/041163.h=
-tml">https://lists.yoctoproject.org/pipermail/yocto/2018-May/041163.html</a=
->. But I was not able to find the solution there.
-</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">My build host is Ubuntu 16.04 (=
-x86_64) and my target is an ARM board/device.
-</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">The &#8220;thud&#8221; commit I=
- use is: 94b13882510561b4ab7c08fd0343038c154680a4 (sanity: Add check for WS=
-L)</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">What can I do to solve this pro=
-blem?</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Thanks</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">BR</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Klaus</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;;mso-fareast-language:DE"><br>
-<br>
-<o:p></o:p></span></p>
-</blockquote>
-<p><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+<div dir=3D"ltr">Thank you, switching to IMAGE_PREPROCESS_COMMAND_append se=
+ems to have solved=C2=A0the problem.<div><br></div><div>..Ch:W..</div></div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Wed, Nov 28, 2018 at 7:=
+14 PM ChenQi &lt;<a href=3D"mailto:Qi.Chen@windriver.com">Qi.Chen@windriver=
+.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div class=3D"m_3769798956601763086moz-cite-prefix">This is because pre=
+link_image is also
+      in IMAGE_PREPROCESS_COMMAND.<br>
+      <br>
+meta/classes/image-prelink.bbclass:IMAGE_PREPROCESS_COMMAND_append_libc-gli=
+bc
+      =3D &quot; prelink_setup; prelink_image; &quot;<br>
+      <br>
+      And as it&#39;s using _append, it will be after your &#39;symlink_lib=
+64&#39;.<br>
+      Maybe using IMAGE_PREPROCESS_COMMAND_append =3D &quot; symlink_lib64;=
+ &quot;
+      would work for you?<br>
+      <br>
+      Best Regards,<br>
+      Chen Qi<br>
+      <br>
+      On 11/29/2018 08:09 AM, Chuck Wolber wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">
+        <div dir=3D"ltr">
+          <div>Background: I have an image that works in pyro. I am
+            migrating the image to thud.=C2=A0=C2=A0</div>
+          <div><br>
+          </div>
+          Some of the add-on code to our image requires the /lib64
+          directory (in particular the VirtualBox Additions). I have
+          proven that a simple symlink (/lib -&gt; /lib64) fixes the
+          problem. This symlink was being applied with the following
+          code at the very bottom of the image:
+          <div><br>
+          </div>
+          <div>
+            <blockquote style=3D"margin:0px 0px 0px 40px;border:none;paddin=
+g:0px">
+              <div>
+                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
+_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
+atures">IMAGE_PREPROCESS_COMMAND
+                    +=3D &quot;symlink_lib64; &quot;</span></p>
+                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
+_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
+atures">symlink_lib64()
+                    {</span></p>
+                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
+_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
+atures"><span class=3D"m_3769798956601763086gmail-Apple-converted-space">=
+=C2=A0 =C2=A0 </span>ln
+                    -s /lib ${IMAGE_ROOTFS}/lib64</span></p>
+                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
+_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
+atures">}</span></p>
+              </div>
+            </blockquote>
+            <div><br>
+            </div>
+            <div>When I use that same code with Yocto thud, I get the
+              following build error:</div>
+            <div><br>
+            </div>
+          </div>
+          <blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding:=
+0px">
+            <div>
+              <div>
+                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
+_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
+atures">DEBUG:
+                    Executing shell function prelink_image</span></p>
+                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
+_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
+atures">Size
+                    before prelinking 818112.</span></p>
+                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
+_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
+atures">/build/poky/tmp/work/qemux86_64-linux/common-os-image/1.0-r0/recipe=
+-sysroot-native/usr/sbin/prelink:
+                    Could not record directory /lib/modules-load.d: No
+                    such file or directory</span></p>
+                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
+_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
+atures">WARNING:
+                    exit code 1 from a shell command.</span></p>
+              </div>
+            </div>
+          </blockquote>
+          <div>
+            <div><br>
+            </div>
+            <div>Looking at the image generation diagram here (<a href=3D"h=
+ttps://www.yoctoproject.org/docs/2.6/overview-manual/overview-manual.html#i=
+mage-generation-dev-environment" target=3D"_blank">https://www.yoctoproject=
+.org/docs/2.6/overview-manual/overview-manual.html#image-generation-dev-env=
+ironment</a>),
+              it would seem to indicate that IMAGE_PREPROCESS_COMMAND
+              runs after the linker steps in do_rootfs. So it is unclear
+              why prelink is failing during the do_image phase.=C2=A0</div>
+            <div><br>
+            </div>
+            <div>Where is the correct place to create a /lib -&gt;
+              /lib64 symlink in our image recipe?</div>
+            <div><br>
+            </div>
+            <div>Thank you,</div>
+            <div><br>
+            </div>
+            <div>..Ch:W..</div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <fieldset class=3D"m_3769798956601763086mimeAttachmentHeader"></field=
+set>
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+  </div>
 
---_000_A2C130CD097EC048BAC89FFB315E00FC939C6243INDUEXCindusoli_--
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"l=
+tr">=E2=80=9CI would challenge anyone here to think of a question upon whic=
+h we once had a scientific=C2=A0answer, however inadequate, but for which n=
+ow the best answer is a religious one.&quot;=C2=A0 -Sam Harris</div></div>
+
+--00000000000074b887057bd87e0e--
