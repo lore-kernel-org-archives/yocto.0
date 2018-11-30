@@ -1,66 +1,68 @@
-Return-Path: <chuckwolber@gmail.com>
+Return-Path: <schnitzeltony@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AEDD4E00C8A; Thu, 29 Nov 2018 18:24:10 -0800 (PST)
+	id 80C2CE00C71; Fri, 30 Nov 2018 07:35:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (chuckwolber[at]gmail.com)
+	provider *      (schnitzeltony[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.52 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.128.50 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
-	[209.85.221.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84C8CE00C72
-	for <yocto@yoctoproject.org>; Thu, 29 Nov 2018 18:24:09 -0800 (PST)
-Received: by mail-wr1-f52.google.com with SMTP id v6so3781231wrr.12
-	for <yocto@yoctoproject.org>; Thu, 29 Nov 2018 18:24:09 -0800 (PST)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+	[209.85.128.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FD0AE00C3D
+	for <yocto@yoctoproject.org>; Fri, 30 Nov 2018 07:35:09 -0800 (PST)
+Received: by mail-wm1-f50.google.com with SMTP id y1so6207156wmi.3
+	for <yocto@yoctoproject.org>; Fri, 30 Nov 2018 07:35:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=HiCk7b9SjCBcXVhahx+CsajCpYcgl0Zyn8hJgUAH2Ro=;
-	b=HfzKOIinldqfyj9Iw6rRUzNHZvTnrbOmHz3GWkRuvD+rTdO2N/Ag0eyNNtTihTi941
-	kjSHnoDqjrqqbEqjM1ilFzVgoqjC/xsOUP4c31jvrlNE6QUACDJSAySeR0yWhDPKPYM9
-	mMVPkhZehI1N7AVS32b/O23+/Wzp0Em5qP4fUBpXyl2fzlUFzNtBuZJ4mBE3LOQ1yEfq
-	mDKak8sL3RHfbSRD5uaIE4XXhH2qWrKCtLG4Lk/E2mM1tdlMZ9nrdKOOPBvu+9+LD6c4
-	XneTPNpenSBRjiH0WjCwHZV+PV6+be8A8PX3RaqkP93CaBLmXsokFb/aBCjhheS0FxgQ
-	QJQg==
+	h=from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=pMgCR4t/yalzmxgGHbsJpnn/yxrcEkkx4hggFHyWTho=;
+	b=dbhXODsDNYQd0EL02/lZy2yRcjqMH5z0iReB4qF4rPAI/fZxAoWCRvd8GoELldtmy5
+	Xey31+QSuCSVXnMUNnXzmU3eXlEKIlqI20FE5tgNnSmxEaK7OXPh8XMnCvr4kSE2Isay
+	Jsp6Bn9abBl+AVtZ9uArk2levrRWmKx5F979x2MxXio/9pk7btAMZmGZ0qolDcKtut0J
+	T+NPIsuo7LoEPTIGzmO4FmB3wAl6vZM0pm3f96QVnAC5zo7kkM1y6A0djI7T+Uq7OdD/
+	5nJBTp7D1M6oXKxFEK6A18ukWoM8EA8V5I6NiZot13EYMaGOA2/jYEYnyoG0069JjG9b
+	sgeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=HiCk7b9SjCBcXVhahx+CsajCpYcgl0Zyn8hJgUAH2Ro=;
-	b=Ksr8LIb7GVlW/qPE2SHLfM+C4tpwaXuRfQ0N+Y6eKSHngi0cwAhvG3jGduzM16e5Hi
-	at+c+vnIH4h44HzNzGWUTpXFQjgyn3waycu1DTd7qnH3MXjI0kH+nQGL+D4F8VnXnc4O
-	UwYl8rfHD50WOd2qUXL7ArMU9wn/v0JciAslAzdLUfQ9E4xrvdP7O8DswstLmPrN7p6i
-	kuYVsAE7c8HLKbFTFgvkE7PT6JIFw0sDvT+DPZ/tJXEbSaAQ9cPCIrynPXX4jSpBD4ZQ
-	B19+eZaC+OYcdfsl8GHLgbCZ7ChKzYihjdU/1JFB2OlBwE24Cno9ygggdPg3GcyXsNZa
-	ar/w==
-X-Gm-Message-State: AA+aEWYDGo5Wz0u2MeQj0bHUSAE4d/Xn/JHqXxMyWMvHpexO40WYQwkW
-	v2Z7av0RpT/Y6jg6RH0GI+072LCFV/M66MrFUec4RQ==
-X-Google-Smtp-Source: AFSGD/WORs5/K4KeM42aTQoXzHP4uXK+HNoOZjb9Du+5xXCn4JcWsh66J8YtzmbayINVWRLGRbPXHx+pIRb4CfCODbs=
-X-Received: by 2002:a5d:4903:: with SMTP id x3mr3280242wrq.11.1543544648282;
-	Thu, 29 Nov 2018 18:24:08 -0800 (PST)
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=pMgCR4t/yalzmxgGHbsJpnn/yxrcEkkx4hggFHyWTho=;
+	b=ULXrAXpIC4QmrLrez9twUc6My1u+uLg20CAU88FLFYsYT9SPF19jus4VSmHGZxqtSF
+	C7NOLGnuH9ngdABiOOlv8VmfaM2oU1GU6069UGozWH0kt32eXebhBtPGetaqIQW92v6i
+	VXKW269VUEh5qMMRtMZ/D1aMwamyrOGvcIe5GTSu1EH81hdm5LqWWG7PfhUV6HPe+M9S
+	sLWyMYCZiR9O83y+or/L/eM3lVbqNjfd87SajkG1T1KY1cEbtuNuVUJ4lTxKZcKeOVOG
+	Sl1e9fvy/hC6BkiKjHhL2ZQS0bL3mgbJmx8p6hKAeqdnPzH9iUFISDq5J2WT8ydqteLd
+	vqhA==
+X-Gm-Message-State: AA+aEWa8/u0CXsrAqKJ4pQn3VdcdxXoiLGGYsv9tK/o4ZfCuEkAipnCR
+	3Hh0O1qzVhaU5HZx8qJYdLOgM0RfJP4=
+X-Google-Smtp-Source: AFSGD/Wi0gBwovLbAb8GosDV4HdNaTAAilQ/+73ioiOFD1IDcY/AJI3+Hr3NiS73aq0PAC1lV/8h8g==
+X-Received: by 2002:a1c:9e90:: with SMTP id h138mr5589461wme.17.1543592107832; 
+	Fri, 30 Nov 2018 07:35:07 -0800 (PST)
+Received: from mueller-a-nb-linux.zera.local (p509737a3.dip0.t-ipconnect.de.
+	[80.151.55.163]) by smtp.gmail.com with ESMTPSA id
+	f15sm3854014wrt.10.2018.11.30.07.35.06 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Fri, 30 Nov 2018 07:35:07 -0800 (PST)
+From: =?UTF-8?q?Andreas=20M=C3=BCller?= <schnitzeltony@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri, 30 Nov 2018 16:34:59 +0100
+Message-Id: <20181130153459.28202-1-schnitzeltony@gmail.com>
+X-Mailer: git-send-email 2.14.5
 MIME-Version: 1.0
-References: <CAB=6tBRrH+BUNcQ4Hs_hyoNO8rP0VVbJkd5-tuE_yh6KYVn7HA@mail.gmail.com>
-	<98a055a0-3e77-168a-338d-a6988a144cc0@windriver.com>
-In-Reply-To: <98a055a0-3e77-168a-338d-a6988a144cc0@windriver.com>
-From: Chuck Wolber <chuckwolber@gmail.com>
-Date: Thu, 29 Nov 2018 18:23:56 -0800
-Message-ID: <CAB=6tBQQBj+hoVWX41kArg9aCxYOpXwjcu1LR-1YJo-t7nQ=TQ@mail.gmail.com>
-To: Qi.Chen@windriver.com
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto Thud - /lib64 link - Build Failure
+Subject: [PATCH][meta-qt4] sip: re-add 4.19
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,231 +74,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Nov 2018 02:24:10 -0000
-Content-Type: multipart/alternative; boundary="00000000000074b887057bd87e0e"
+X-List-Received-Date: Fri, 30 Nov 2018 15:35:10 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---00000000000074b887057bd87e0e
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+* Haven't tested this but it seems unlikely that python-pyqt builds properly
+  with '--sip-module PyQt5.sip' in meta-oe's sip
+* I plan to move reworked sip to meta-qt5 and remove meta-oe's version
+* remove FILES_${PN} - not necessary
+* add "STRIP="" for native configure to avoid 'already stripped' warning
+* tested build of python-pyqt
 
-Thank you, switching to IMAGE_PREPROCESS_COMMAND_append seems to have
-solved the problem.
+Signed-off-by: Andreas Müller <schnitzeltony@gmail.com>
+---
+ recipes-qt4/recipes-python/sip_4.19.bb | 41 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+ create mode 100644 recipes-qt4/recipes-python/sip_4.19.bb
 
-..Ch:W..
+diff --git a/recipes-qt4/recipes-python/sip_4.19.bb b/recipes-qt4/recipes-python/sip_4.19.bb
+new file mode 100644
+index 0000000..b43c2d2
+--- /dev/null
++++ b/recipes-qt4/recipes-python/sip_4.19.bb
+@@ -0,0 +1,41 @@
++SUMMARY = "SIP is a C++/Python Wrapper Generator"
++HOMEPAGE = "http://www.riverbankcomputing.co.uk/sip"
++SECTION = "devel"
++LICENSE = "GPLv2+"
++LIC_FILES_CHKSUM = "file://LICENSE-GPL2;md5=e91355d8a6f8bd8f7c699d62863c7303"
++
++inherit python-dir
++
++DEPENDS = "python"
++
++SRC_URI = "${SOURCEFORGE_MIRROR}/project/pyqt/sip/sip-${PV}/sip-${PV}.tar.gz"
++SRC_URI[md5sum] = "be51a05065c9323b98a2ec2966c64e6a"
++SRC_URI[sha256sum] = "014bf55f653e0d8bcc582705ef4fbd61e0859a36e959ab46d8fa060cdf0b5e27"
++
++BBCLASSEXTEND = "native"
++
++PACKAGES += "python-sip"
++
++do_configure_prepend_class-target() {
++    echo "py_platform = linux" > sip.cfg
++    echo "py_inc_dir = %(sysroot)/${includedir}/python%(py_major).%(py_minor)" >> sip.cfg
++    echo "sip_bin_dir = ${D}/${bindir}" >> sip.cfg
++    echo "sip_inc_dir = ${D}/${includedir}" >> sip.cfg
++    echo "sip_module_dir = ${D}/${libdir}/python%(py_major).%(py_minor)/site-packages" >> sip.cfg
++    echo "sip_sip_dir = ${D}/${datadir}/sip" >> sip.cfg
++    python configure.py --configuration sip.cfg --sysroot ${STAGING_DIR_HOST} CC="${CC}" CXX="${CXX}" LINK="${CXX}" STRIP="" LINK_SHLIB="${CXX}" CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LFLAGS="${LDFLAGS}"
++}
++do_configure_prepend_class-native() {
++    echo "py_platform = linux" > sip.cfg
++    echo "py_inc_dir = ${includedir}/python%(py_major).%(py_minor)" >> sip.cfg
++    echo "sip_bin_dir = ${D}/${bindir}" >> sip.cfg
++    echo "sip_inc_dir = ${D}/${includedir}" >> sip.cfg
++    echo "sip_module_dir = ${D}/${libdir}/python%(py_major).%(py_minor)/site-packages" >> sip.cfg
++    echo "sip_sip_dir = ${D}/${datadir}/sip" >> sip.cfg
++    python configure.py --configuration sip.cfg --sysroot ${STAGING_DIR_NATIVE} STRIP=""
++}
++do_install() {
++    oe_runmake install
++}
++
++FILES_python-sip = "${libdir}/${PYTHON_DIR}/site-packages/"
+-- 
+2.14.5
 
-On Wed, Nov 28, 2018 at 7:14 PM ChenQi <Qi.Chen@windriver.com> wrote:
 
-> This is because prelink_image is also in IMAGE_PREPROCESS_COMMAND.
->
-> meta/classes/image-prelink.bbclass:IMAGE_PREPROCESS_COMMAND_append_libc-g=
-libc
-> =3D " prelink_setup; prelink_image; "
->
-> And as it's using _append, it will be after your 'symlink_lib64'.
-> Maybe using IMAGE_PREPROCESS_COMMAND_append =3D " symlink_lib64; " would
-> work for you?
->
-> Best Regards,
-> Chen Qi
->
-> On 11/29/2018 08:09 AM, Chuck Wolber wrote:
->
-> Background: I have an image that works in pyro. I am migrating the image
-> to thud.
->
-> Some of the add-on code to our image requires the /lib64 directory (in
-> particular the VirtualBox Additions). I have proven that a simple symlink
-> (/lib -> /lib64) fixes the problem. This symlink was being applied with t=
-he
-> following code at the very bottom of the image:
->
-> IMAGE_PREPROCESS_COMMAND +=3D "symlink_lib64; "
->
-> symlink_lib64() {
->
->     ln -s /lib ${IMAGE_ROOTFS}/lib64
->
-> }
->
->
-> When I use that same code with Yocto thud, I get the following build erro=
-r:
->
-> DEBUG: Executing shell function prelink_image
->
-> Size before prelinking 818112.
->
-> /build/poky/tmp/work/qemux86_64-linux/common-os-image/1.0-r0/recipe-sysro=
-ot-native/usr/sbin/prelink:
-> Could not record directory /lib/modules-load.d: No such file or directory
->
-> WARNING: exit code 1 from a shell command.
->
->
-> Looking at the image generation diagram here (
-> https://www.yoctoproject.org/docs/2.6/overview-manual/overview-manual.htm=
-l#image-generation-dev-environment),
-> it would seem to indicate that IMAGE_PREPROCESS_COMMAND runs after the
-> linker steps in do_rootfs. So it is unclear why prelink is failing during
-> the do_image phase.
->
-> Where is the correct place to create a /lib -> /lib64 symlink in our imag=
-e
-> recipe?
->
-> Thank you,
->
-> ..Ch:W..
->
->
->
->
-
---=20
-=E2=80=9CI would challenge anyone here to think of a question upon which we=
- once
-had a scientific answer, however inadequate, but for which now the best
-answer is a religious one."  -Sam Harris
-
---00000000000074b887057bd87e0e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Thank you, switching to IMAGE_PREPROCESS_COMMAND_append se=
-ems to have solved=C2=A0the problem.<div><br></div><div>..Ch:W..</div></div=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Wed, Nov 28, 2018 at 7:=
-14 PM ChenQi &lt;<a href=3D"mailto:Qi.Chen@windriver.com">Qi.Chen@windriver=
-.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
-    <div class=3D"m_3769798956601763086moz-cite-prefix">This is because pre=
-link_image is also
-      in IMAGE_PREPROCESS_COMMAND.<br>
-      <br>
-meta/classes/image-prelink.bbclass:IMAGE_PREPROCESS_COMMAND_append_libc-gli=
-bc
-      =3D &quot; prelink_setup; prelink_image; &quot;<br>
-      <br>
-      And as it&#39;s using _append, it will be after your &#39;symlink_lib=
-64&#39;.<br>
-      Maybe using IMAGE_PREPROCESS_COMMAND_append =3D &quot; symlink_lib64;=
- &quot;
-      would work for you?<br>
-      <br>
-      Best Regards,<br>
-      Chen Qi<br>
-      <br>
-      On 11/29/2018 08:09 AM, Chuck Wolber wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">
-          <div>Background: I have an image that works in pyro. I am
-            migrating the image to thud.=C2=A0=C2=A0</div>
-          <div><br>
-          </div>
-          Some of the add-on code to our image requires the /lib64
-          directory (in particular the VirtualBox Additions). I have
-          proven that a simple symlink (/lib -&gt; /lib64) fixes the
-          problem. This symlink was being applied with the following
-          code at the very bottom of the image:
-          <div><br>
-          </div>
-          <div>
-            <blockquote style=3D"margin:0px 0px 0px 40px;border:none;paddin=
-g:0px">
-              <div>
-                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
-_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
-atures">IMAGE_PREPROCESS_COMMAND
-                    +=3D &quot;symlink_lib64; &quot;</span></p>
-                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
-_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
-atures">symlink_lib64()
-                    {</span></p>
-                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
-_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
-atures"><span class=3D"m_3769798956601763086gmail-Apple-converted-space">=
-=C2=A0 =C2=A0 </span>ln
-                    -s /lib ${IMAGE_ROOTFS}/lib64</span></p>
-                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
-_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
-atures">}</span></p>
-              </div>
-            </blockquote>
-            <div><br>
-            </div>
-            <div>When I use that same code with Yocto thud, I get the
-              following build error:</div>
-            <div><br>
-            </div>
-          </div>
-          <blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding:=
-0px">
-            <div>
-              <div>
-                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
-_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
-atures">DEBUG:
-                    Executing shell function prelink_image</span></p>
-                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
-_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
-atures">Size
-                    before prelinking 818112.</span></p>
-                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
-_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
-atures">/build/poky/tmp/work/qemux86_64-linux/common-os-image/1.0-r0/recipe=
--sysroot-native/usr/sbin/prelink:
-                    Could not record directory /lib/modules-load.d: No
-                    such file or directory</span></p>
-                <p class=3D"m_3769798956601763086gmail-p1"><span class=3D"m=
-_3769798956601763086gmail-s1" style=3D"font-variant-ligatures:no-common-lig=
-atures">WARNING:
-                    exit code 1 from a shell command.</span></p>
-              </div>
-            </div>
-          </blockquote>
-          <div>
-            <div><br>
-            </div>
-            <div>Looking at the image generation diagram here (<a href=3D"h=
-ttps://www.yoctoproject.org/docs/2.6/overview-manual/overview-manual.html#i=
-mage-generation-dev-environment" target=3D"_blank">https://www.yoctoproject=
-.org/docs/2.6/overview-manual/overview-manual.html#image-generation-dev-env=
-ironment</a>),
-              it would seem to indicate that IMAGE_PREPROCESS_COMMAND
-              runs after the linker steps in do_rootfs. So it is unclear
-              why prelink is failing during the do_image phase.=C2=A0</div>
-            <div><br>
-            </div>
-            <div>Where is the correct place to create a /lib -&gt;
-              /lib64 symlink in our image recipe?</div>
-            <div><br>
-            </div>
-            <div>Thank you,</div>
-            <div><br>
-            </div>
-            <div>..Ch:W..</div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"m_3769798956601763086mimeAttachmentHeader"></field=
-set>
-      <br>
-    </blockquote>
-    <p><br>
-    </p>
-  </div>
-
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"l=
-tr">=E2=80=9CI would challenge anyone here to think of a question upon whic=
-h we once had a scientific=C2=A0answer, however inadequate, but for which n=
-ow the best answer is a religious one.&quot;=C2=A0 -Sam Harris</div></div>
-
---00000000000074b887057bd87e0e--
