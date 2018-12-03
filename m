@@ -1,52 +1,49 @@
 Return-Path: <alankar.dhobale@renuelectronics.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C9929E00C45; Sun,  2 Dec 2018 20:54:05 -0800 (PST)
+	id C0882E00CB4; Sun,  2 Dec 2018 20:56:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.208.4.194 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.208.4.194 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 301 seconds by postgrey-1.32 at yocto-www;
-	Sun, 02 Dec 2018 20:54:03 PST
 Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68E30E00B81
-	for <yocto@yoctoproject.org>; Sun,  2 Dec 2018 20:54:03 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D45B9E0095C
+	for <yocto@yoctoproject.org>; Sun,  2 Dec 2018 20:55:55 -0800 (PST)
 Received: from Alankard ([123.252.137.110]) by mrelay.perfora.net (mreueus001
-	[74.208.5.2]) with ESMTPA (Nemesis) id 0LeKz5-1hHGRl0I61-00qDUY for
-	<yocto@yoctoproject.org>; Mon, 03 Dec 2018 05:49:01 +0100
+	[74.208.5.2]) with ESMTPA (Nemesis) id 0M6UVZ-1hRp5y3jkR-00yMM2 for
+	<yocto@yoctoproject.org>; Mon, 03 Dec 2018 05:50:55 +0100
 From: "Alankar Dhobale" <alankar.dhobale@renuelectronics.com>
 To: <yocto@yoctoproject.org>
-Date: Mon, 3 Dec 2018 10:19:26 +0530
-Message-ID: <005201d48ac3$933b7470$b9b25d50$@renuelectronics.com>
+Date: Mon, 3 Dec 2018 10:21:20 +0530
+Message-ID: <005701d48ac3$d6fe68c0$84fb3a40$@renuelectronics.com>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AdSKw5DujWid1/EDQ3+qmeIGn5YEuA==
-X-Provags-ID: V03:K1:3yIcBTbjBmgXS07/BX9OlaAa9XbO1XymjDRKIZvKjT55Pugu1Pu
-	S3DCg/rFtL2SnFSlxsN/VaFVjhbIbumzgCywlcebJNek9zHWvvBWzMDqmSfmb1+Vu+07fUL
-	oBoSNVqAbfXVbTfwpww3sOtPkZY+j2Tha6V/Bqqe1Wx2DGAavHdSk0sCaq4PKam9ta4b42/
-	uCZkf7a/3AcIDNQdTAkqg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:nawz5AjkUWY=:Jj0O3ZRURXCuSpcXhEIqbC
-	K9t2PFbymLHVb8ihH5b5dlIquAEOgVQmersPSuPAgsSNx+7I2QuPxEWLFiQjQohYtbsqVX8iP
-	j07qkVD5NWYEtPkiY9KuJWhzA8d5J+dMdcV6W1jP656ntCaPehsSG2FhK12t1LWkb9qT3yR8F
-	PXJg26l0+wczUl+BDDujW0q4mciqYfLQEOh9aBZlHaR19HscPPe8bGCjbJ1fqVEncSGo2Rs/S
-	gUtlBBboBYiD7Kw9sZB5K4b46crRg4155eX1F+AZnxLwmSmClobt5wzabPyXXzzi/LKROGE2l
-	NpiC5SXUMTlxA/KCAFwWsnnNbUqsNdtu+bxQ2gsIWV6IWX3m+wd7H0Ul/hdTMy8uu18eyXtiu
-	Clbe1pCaaPIPtQ/TksUsfHOfKgQ8l+kRQ/aTO7J+SjtbCy9395dEcpXIU8MY3YxZx/tmku0hb
-	VA9Sw6DGIWb5PL2Y49y1Qx0d1r4M+nwaPbewiSmdYEJiThI+Knk7xdLznjk0MxeNTZm7ep1vw
-	kCXpG3EDbz5VEEKtTaZGxIj699PfeVBlWCSKWkvFIg9DeUi/iD84mXqxD95p1nuwrnfcss7YY
-	gbd+JoAMD4KLe5t6GckOvhNxKkNPiJdNZI4/d8WWnDDfwt3pnxqVLft8eJJqlk9+1+co+8x7U
-	HzzKV4CSccjifg/Zc3nUQ6+bQnGx+OQ5r/LStuzHasrgMKnBXLSjhFDhtw2WsaRR2GJT05AXd
-	q/xX0hMefWqmPVvR+0cC1ZMOg/JW5gHsSBy/5q9GtxY7hWQB5Ci8nGGBpTd0/5fsoE400Gk7H
-	UDhmaxGX6T5fLidIZcQDMafWFWfE/5WciLqHa8oxxz0CuTqYH7TRx9pPc28Xxwpog85J2y3Cc
-	QBqAHCk2C6mgfDXOj6pw==
-Subject: [yocto-rocko] : fsl-community-bsp X11 build touch screen calibration issue on iMX6UL
+Thread-Index: AdSKw9TjDmHaxRj3QzmC1KiLS76+tQ==
+X-Provags-ID: V03:K1:VbHQ8WygmvVksCUD5mY+WFCwp7Kg87a0NrVHBvSQvJ33/J1H13d
+	ehRsmskCLiyTTQvxpdlj41FaPsFIh3kTDUr58CmLfAC8cZA3ceUDFwyIDZCxm9ioqRczycB
+	HD6JzMrKOBPSHBbrTUSB/f/Ss+1Ub0Xnx7Sr9TZDAz8lRPFLawRqSEkfK/LOWa5pps3U3bL
+	IbgwRXTE7BxHoOR3oW4Jg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:sC6KDuPeYwI=:44fxNGtK/hI0O5s66STQDV
+	2uSl8ABXxsBswEbnIpgzzxa/uuIesKZunZC8uX3hpaSH0NXjS6VahZQ7vxNM0abjqME2Ic4Rv
+	1o+FOqIk9r9e8+LZ9kKUAnFYudtYBEW6Wn6HYfHj4b/GZ5I2fIXSFCc/NbaOVPTEmu2UFu/63
+	tPioJMSNhoUG8TS0PIrh4o3gwo+wXGtb5vae3+Je8Ag6KatS1Y35P2y2i0iIb5x7B/pzPKEJF
+	EpLEFRaReaUA/vKf4MTFn3Twl4hzu3GVwuTh6RAW/4ZdIgl6ychlXPePaxCK63ybu2fVWc9rL
+	iR1ur8d0i1mRL3RKkHDapERhhCfsH6mOvHa1xn6+u5wo6P+yDsCimsNzeX9zaaPHgvFc3F6gA
+	nNmVxZ7sKzYySx8h2a+zVRhxQOFXHDdsSKkwaa22iqbHs3K0PGB6GCjzGtBxDWZEsPwlz0XMJ
+	WSMrLwWUZfnOiEu3xji6NuNweMFOgUW31PuNuOUWSBsCb2Ftf05EF67LcqP3ySUoro2UKvxFQ
+	JQXz4d0A05CaZ+N+zBrtF5p8GLEwBZBEkaiLae2qGlbSDG8O55hYkv2NhNpDXmDyAS1OjaM7c
+	JGDKaI3fAFDSoT0MQqOy+mF2xjmZWnxdOa4EBZn6nOJ1L+vIZM2/bidO2ORAntGRiTLgI6ozr
+	3PQ2IsYvGAyWFMwCWdpa6hDqmsj33LqmIh4G0r2nTvWcZ7EeL0m/byNshUt+Jb29KPJafPRz5
+	mDKuPcWnfqFgABRLUN8SeVOisZVtDh9+Rqh5DEYlDTeTnX7tLIlD7qbJNgSBtAO8/mtKaqQL7
+	yFn3/RI
+Subject: [rocko] : fsl-community-bsp X11 build touch screen calibration issue on iMX6UL
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,12 +55,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Dec 2018 04:54:05 -0000
+X-List-Received-Date: Mon, 03 Dec 2018 04:56:24 -0000
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0053_01D48AF1.ACF4E8F0"
+	boundary="----=_NextPart_000_0058_01D48AF1.F0B7B630"
 Content-Language: en-us
 
-------=_NextPart_000_0053_01D48AF1.ACF4E8F0
+------=_NextPart_000_0058_01D48AF1.F0B7B630
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -191,15 +188,8 @@ Alankar Dhobale
 
  
 
-Renu Electronics Private Limited /   <http://www.renuelectronics.com/>
-www.renuelectronics.com /
 
-Offering Quality Products and Services
-
- 
-
-
-------=_NextPart_000_0053_01D48AF1.ACF4E8F0
+------=_NextPart_000_0058_01D48AF1.F0B7B630
 Content-Type: text/html;
 	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
@@ -231,12 +221,16 @@ a:visited, span.MsoHyperlinkFollowed
 	color:purple;
 	text-decoration:underline;}
 span.EmailStyle17
-	{mso-style-type:personal-compose;
+	{mso-style-type:personal;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -342,17 +336,6 @@ style=3D'font-size:10.0pt;color:black'>Kind =
 Regards,<o:p></o:p></span></p><p class=3DMsoNormal><b><span =
 style=3D'color:black'>Alankar Dhobale</span></b><span =
 style=3D'font-family:"Times New Roman","serif"'><o:p></o:p></span></p><p =
-class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Times New =
-Roman","serif";color:black'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'font-size:10.0pt;color:black'>Renu =
-Electronics Private Limited /&nbsp; </span><span =
-style=3D'font-size:10.0pt;color:blue'><a =
-href=3D"http://www.renuelectronics.com/"><span =
-style=3D'color:blue'>www.renuelectronics.com</span></a> </span><span =
-style=3D'font-size:10.0pt;color:black'>/<o:p></o:p></span></p><p =
-class=3DMsoNormal><b><span =
-style=3D'font-size:10.0pt;color:#4900B4'>Offering Quality Products and =
-Services<o:p></o:p></span></b></p><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-------=_NextPart_000_0053_01D48AF1.ACF4E8F0--
+------=_NextPart_000_0058_01D48AF1.F0B7B630--
