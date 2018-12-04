@@ -1,60 +1,52 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Georgi.Georgiev@woodward.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4C76E00BB7; Tue,  4 Dec 2018 06:13:07 -0800 (PST)
+	id C6631E00C62; Tue,  4 Dec 2018 07:19:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.44 listed in list.dnswl.org]
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com
-	[209.85.166.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF8F1E0097C
-	for <yocto@yoctoproject.org>; Tue,  4 Dec 2018 06:13:05 -0800 (PST)
-Received: by mail-io1-f44.google.com with SMTP id n9so13694408ioh.7
-	for <yocto@yoctoproject.org>; Tue, 04 Dec 2018 06:13:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=QrIixI3RiWvEUt2YOdmS5wJ307b7/3KMbYk095NHkp4=;
-	b=I02UyUi85FehuqNxIgIB+z+lM1zvhdAbtB2vCqORZ/JJua3Xrj940lpL0wCtn1DYGK
-	9dhodR+0UBS8O/wLdFYH8+HOhLZ2hodJxnbJ+DKD/RPfyoUihP90pt6elyQDNXZDZkni
-	20mkPlR6Ni455Zd4hIy2oHNZIo0SJwa2vp0XqNEv6xc+pztYByj/YRrz1ZtTmtXIS/fK
-	Fr4W+qui5/w3WHIKI7M2tD3XAo18ZpVyd1bBDeUhiR8RQAX2ugbm5L7J6lMVEK5RjGI9
-	nbmVWNTrVSibEf+HBb6VmC/TOVhy061/iMLnIBX+g39WxJ83RiyjawAD7x7F9//TFmBw
-	Da0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=QrIixI3RiWvEUt2YOdmS5wJ307b7/3KMbYk095NHkp4=;
-	b=RP0GCqsPhKkDbFrrDq6oAR4wazukWCSrGBPLSRCcalKXttrQWzvcl3TkBfIta2lBOb
-	+eQE8YcNcmW8V5w8BM05yb/pXuUt/7qIFwrzgjNG6StnLG4OFZc24qPpAaX5/Cn9ceNf
-	vWUi1zx2xQbaBQdajv7dnljnCnA/2kSSK0r0uDOYVL6WB3Da+2/W8HJy6hmhwbninZN2
-	3kD0D/l5Y7O2aMHL88+erjVJrfVCcY0enbX77tOt8+JQtq1MYS2PBEDgsikhblLa1Pza
-	qdumxftVAcsyd413Wby/DgL73Q2nO3qn/8Ux8WOtiqfJvBK/QNjnJu0OQLrE7qQEfqF0
-	Lamw==
-X-Gm-Message-State: AA+aEWab9WhQgWQ+pqQSPRwMfddnfXnazCVLjz9mQSclDDW9kQcpzzqn
-	YU6158Q/sE89nE8p8SjnjgkKPVhFMcYQT0fRG2ppWw==
-X-Google-Smtp-Source: AFSGD/WDNybg8tzYfXEzTX+MTdz74vuZcGezfQ7faUz8toM0dQRsec9zvNuQdTuTjapriVtVh4FdoMdkoYkx8fDrX8E=
-X-Received: by 2002:a5d:9697:: with SMTP id m23mr7708169ion.201.1543932785388; 
-	Tue, 04 Dec 2018 06:13:05 -0800 (PST)
-MIME-Version: 1.0
+X-Greylist: delayed 313 seconds by postgrey-1.32 at yocto-www;
+	Tue, 04 Dec 2018 07:19:23 PST
+Received: from Mail4.woodward.com (mail4.woodward.com [204.27.169.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7533E003E1
+	for <yocto@yoctoproject.org>; Tue,  4 Dec 2018 07:19:23 -0800 (PST)
+Received: from pps.filterd (COIL-PMSGA1.woodward.com [127.0.0.1])
+	by COIL-PMSGA1.woodward.com (8.16.0.22/8.16.0.22) with SMTP id
+	wB4F6xBL013435; Tue, 4 Dec 2018 09:14:04 -0600
+Received: from coil-exmb2.woodward.com ([10.51.100.65])
+	by COIL-PMSGA1.woodward.com with ESMTP id 2p5b9whuy4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Tue, 04 Dec 2018 09:14:03 -0600
+Received: from KempHC1.woodward.com (10.25.100.51) by COIL-ExMb2.woodward.com
+	(10.51.100.65) with Microsoft SMTP Server (TLS) id 15.0.1263.5;
+	Tue, 4 Dec 2018 09:14:03 -0600
+Received: from KempMail2.woodward.com ([169.254.2.232]) by
+	KempHC1.woodward.com ([172.20.1.103]) with mapi;
+	Tue, 4 Dec 2018 16:14:02 +0100
+From: Georgi Georgiev <Georgi.Georgiev@woodward.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 4 Dec 2018 16:13:59 +0100
+Thread-Topic: [EXTERNAL] Re: [yocto] Missing dependencies in recipe-sysroot
+Thread-Index: AdSL240wzIpOb32DQD+rphxEwANu/gAAZ4gw
+Message-ID: <B4ED84A4DCF0D84FB25CE972E5CF346A5D185E2557@KEMPMAIL2.woodward.com>
 References: <B4ED84A4DCF0D84FB25CE972E5CF346A5D1831B68E@KEMPMAIL2.woodward.com>
 	<CAJTo0LagP7=zjiXYSU=eXpm6dfH049HDhpF2N8frrB1oha3PZw@mail.gmail.com>
 	<B4ED84A4DCF0D84FB25CE972E5CF346A5D185E24E6@KEMPMAIL2.woodward.com>
-In-Reply-To: <B4ED84A4DCF0D84FB25CE972E5CF346A5D185E24E6@KEMPMAIL2.woodward.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 4 Dec 2018 14:12:54 +0000
-Message-ID: <CAJTo0LbYmsR-khDHYfkG=D3nng7n4eLtPk+W1_hhoTPgCyOWTg@mail.gmail.com>
-To: Georgi.Georgiev@woodward.com
+	<CAJTo0LbYmsR-khDHYfkG=D3nng7n4eLtPk+W1_hhoTPgCyOWTg@mail.gmail.com>
+In-Reply-To: <CAJTo0LbYmsR-khDHYfkG=D3nng7n4eLtPk+W1_hhoTPgCyOWTg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	suspectscore=0 malwarescore=0
+	phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+	adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+	engine=8.0.1-1810050000 definitions=main-1812040129
 Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: [EXTERNAL] Re: Missing dependencies in recipe-sysroot
 X-BeenThere: yocto@yoctoproject.org
@@ -68,14 +60,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Dec 2018 14:13:08 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 04 Dec 2018 15:19:24 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Tue, 4 Dec 2018 at 14:02, Georgi Georgiev
-<Georgi.Georgiev@woodward.com> wrote:
-> LIB := -L/usr/lib
-
-^ don't do that.  That's not where the libraries are.
-
-Ross
+T0sgYnV0LiBJIGNhbiB1c2UgU0RLVEFSR0VUU1lTUk9PVCBpbiBteSBtYWtlZmlsZSBidXQgdGhl
+biBpdCB3aWxsIGZhaWwgaW4geW9jdG8uLi5TbyBJIGNhbid0IGhhdmUgb25lIG1ha2VmaWxlIGZv
+ciB5b2N0byBhbmQgY29tbWFuZCBsaW5lIGJ1aWxkLi4uSSBmb3VuZCBvbmUgdHJlYWQgZm9yIHNp
+bWlsYXIgaXNzdWUgYW5kIEkgd2lsbCB0YWtlIGEgbG9vayBpbiBwb2t5L21ldGEvY29uZi9iaXRi
+YWtlLmNvbmYgdG9tb3Jyb3cuIA0KDQpHZW9yZ2kNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
+LS0NCkZyb206IEJ1cnRvbiwgUm9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0gDQpT
+ZW50OiBUdWVzZGF5LCBEZWNlbWJlciAwNCwgMjAxOCA0OjEzIFBNDQpUbzogR2VvcmdpIEdlb3Jn
+aWV2IDxHZW9yZ2kuR2VvcmdpZXZAd29vZHdhcmQuY29tPg0KQ2M6IFlvY3RvLW1haWxpbmctbGlz
+dCA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IFJlOiBbRVhURVJOQUxdIFJlOiBb
+eW9jdG9dIE1pc3NpbmcgZGVwZW5kZW5jaWVzIGluIHJlY2lwZS1zeXNyb290DQoNCk9uIFR1ZSwg
+NCBEZWMgMjAxOCBhdCAxNDowMiwgR2VvcmdpIEdlb3JnaWV2IDxHZW9yZ2kuR2VvcmdpZXZAd29v
+ZHdhcmQuY29tPiB3cm90ZToNCj4gTElCIDo9IC1ML3Vzci9saWINCg0KXiBkb24ndCBkbyB0aGF0
+LiAgVGhhdCdzIG5vdCB3aGVyZSB0aGUgbGlicmFyaWVzIGFyZS4NCg0KUm9zcw0K
 
