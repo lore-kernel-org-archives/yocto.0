@@ -1,35 +1,53 @@
-Return-Path: <n.stanisavljevic@polycaptil.fr>
+Return-Path: <alankar.dhobale@renuelectronics.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78397E00C1E; Tue,  4 Dec 2018 02:31:48 -0800 (PST)
+	id 3DFCBE00BB5; Tue,  4 Dec 2018 05:24:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [212.95.66.15 listed in list.dnswl.org]
-Received: from itinerix.sdv.fr (itinerix.sdv.fr [212.95.66.15])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 277EBE00B81
-	for <yocto@yoctoproject.org>; Tue,  4 Dec 2018 02:31:46 -0800 (PST)
-Received: from FIXNIKOLA (unknown [65.39.68.243])
-	by itinerix.sdv.fr (Postfix) with ESMTPSA id A74B4DBA0;
-	Tue,  4 Dec 2018 11:31:41 +0100 (CET)
-From: "Stanisavljevic" <n.stanisavljevic@polycaptil.fr>
-To: <hs@denx.de>
-References: <9305893f0b3f68a768e8532054b54438@webmail2.sdv.fr>
-	<20181128195530.pih7j3s3dinrhhrx@jholzmayr.localdomain>
-	<fe8ddf08-8ae1-4a40-bc35-fd83aad09b77@denx.de>
-In-Reply-To: <fe8ddf08-8ae1-4a40-bc35-fd83aad09b77@denx.de>
-Date: Tue, 4 Dec 2018 11:31:41 +0100
-Message-ID: <000201d48bbc$8e464770$aad2d650$@polycaptil.fr>
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.208.4.197 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B111E00B77
+	for <yocto@yoctoproject.org>; Tue,  4 Dec 2018 05:24:15 -0800 (PST)
+Received: from Alankard ([123.252.137.110]) by mrelay.perfora.net (mreueus003
+	[74.208.5.2]) with ESMTPA (Nemesis) id 0MezRn-1gsY5M1myP-00OVRw;
+	Tue, 04 Dec 2018 14:24:14 +0100
+From: "Alankar Dhobale" <alankar.dhobale@renuelectronics.com>
+To: "'Max Krummenacher'" <max.oss.09@gmail.com>,
+	<yocto@yoctoproject.org>
+References: <005201d48ac3$933b7470$b9b25d50$@renuelectronics.com>
+	<1543865886.3634.8.camel@gmail.com>
+In-Reply-To: <1543865886.3634.8.camel@gmail.com>
+Date: Tue, 4 Dec 2018 18:54:18 +0530
+Message-ID: <025901d48bd4$aabe8fd0$003baf70$@renuelectronics.com>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQLDIGK77zWGGa5b6tn4HL4BTxFT5wFyzQSCAbO3InqjeAJs0A==
-Cc: yocto@yoctoproject.org
-Subject: Re: am335x evmsk screen init:id"00" respawning too fast disabled for 5 minutes yocto sumo
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQIEVbEFbyhrG9kTvyGbjyxcPN3eeQHNWNospQCQppA=
+X-Provags-ID: V03:K1:xbQo94441dB5bPj7F8rzcPA/0HFspX/PvB1RhOPHuAGn6gqgX8m
+	bg4KKEbZKuVwSaalLqzrjJQXiRdtVb4jRL6+GtrI3byQ50EOXD7t5xIVzNxfwYxFuBk2Zk2
+	A7Tu6osEhlom+whBMZLykroNFXr54oxEQWx5RHCunPa+69zlnG1zcojRxMDHSb4jL4oInq3
+	VY2S5mkbLV4DAiIwJ/XxA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ZGC9JddjdGQ=:lE7ub3+pKYhCcADi+VNiwN
+	+NaOwtadmKbrFleaRKejnWmjiiIiBvceynmnoQIoAtpj108C5h6wTi/5XbttaAYt/892Git4x
+	XoD0oVU118ul8EiqfQEn0LlO9q10HOffsK/xAAvJQA+0B3ErZprB5kxrrmEv42HxumxVJbF26
+	/F4Nj2JUG49Ys7XYRSibC5LrC7llPHMF7JbTwJpBFO0w6PSYadcvpLh/catJVVzqhkQvpZUvU
+	vdxJk8wSdjJahs3pFHY7H2DM8fW0Fpvw5TYyQ9vBJXJKhHFabz2pwsuDE/OWU+MwY8CpxEpHO
+	0NALczejysOw1QhFr4rDlnvrTxCEcHSYaKRYUasfNa55VeGwaL43bGmADE6FU7t1jYfAnjPgP
+	u70Qh/XqaTVS9MUhqDeznu3yM6BkTTjAf/2tiybfHOxgLuKTy2mmb6E0ocINOg0YCuDfuw2cg
+	UjWkX4jcMu6QpIkgtxU5K0SKsuM6Z7kLvhdmZpU+yU83Mef5h2CgD0v55NNzvUix2fxRQe4ql
+	+97XK4D9YEmOxeSlekV69ZX1XIC2ThkVZf/376RqjipYcF6pNdqsUynnjFdMfjC76P/l7+S9q
+	YKyudt2ZSyI3jEr74pjwTM00iVTxWkR6nQbxXXgb27KUchdTSa65sn0WL4Ta9roknXk69ADmm
+	fODyYSqEcbZ3hTpWXhVlpgFzUM4a5pptYwXryaUnfzVYo0fv6F3X9XMyVD6oN6ovUwk0YQU9u
+	GFqmeS0IQyFk6y16iHuH9OASiafzId7uwiQ1hDWSWb17guJy4nnDx/3yxfWhFCFBj07zkxshL
+	9P8XJ9i
+Subject: Re: [yocto-rocko] : fsl-community-bsp X11 build touch screen calibration issue on iMX6UL
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,100 +59,239 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Dec 2018 10:31:48 -0000
+X-List-Received-Date: Tue, 04 Dec 2018 13:24:18 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_025A_01D48C02.C477DD40"
+Content-Language: en-us
+
+------=_NextPart_000_025A_01D48C02.C477DD40
 Content-Type: text/plain;
-	charset="utf-8"
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Language: fr
 
-Hi Holzmayr and Heiko,
+Hi Max,
 
-My problem was solved with your advices.
-I edited the serial console variable on the machine conf file of my =
-custom machine.
-It's work fine.
-Thank's
+=20
 
-n.stanisavljevic
+Yes you are right, I used the same bbappend and this resolved the issue, =
+perfect solution=E2=80=A6
 
------Message d'origine-----
-De : Heiko Schocher <hs@denx.de>=20
-Envoy=C3=A9 : lundi 3 d=C3=A9cembre 2018 05:42
-=C3=80 : n.stanisavljevic@polycaptil.fr
-Cc : Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>; =
-yocto@yoctoproject.org
-Objet : Re: [yocto] am335x evmsk screen init:id"00" respawning too fast =
-disabled for 5 minutes yocto sumo
+=20
 
-Hi n.stanisavljevic,
+I have been struggling with this since couple of days!=20
 
-Am 28.11.2018 um 20:55 schrieb Josef Holzmayr:
-> Howdy!
->=20
-> On Wed, Nov 28, 2018 at 03:50:02PM +0000, =
-n.stanisavljevic@polycaptil.fr wrote:
->> Hello everybody
->>
->> here is an introduction of my situation :
->>
->> I build a custom board from schematic of sitara AM335x-evmsk starter =
-kit.
->> I succeed to make a custom OS with yocto (krogoth version) and to =
-boot this OS (embedded Linux) on my custom board.
->>
->> This custom board contain a touchscreen (same touchscreen like in the =
-AM335x-evmsk starter kit).
->>
->> All worked fine on this board while I used krogoth version on yocto.
->>
->> my problem :
->>
->> Few time ago, I decided to migrate to sumo version of yocto.
->> I build with success the OS (embedded Linux) with yocto sumo version =
-for my custom board, but when I try to boot this OS, it's stop/lock and =
-print the following message :
->>
->> "INIT:Id'00' respawning too fast : disabled for 5 minutes" (I put a =
-screenshot of this message ridden on putty).
->> Every 5 minutes I got this message and I can't acces to the user =
-session on putty and on the touchscreen, all board is locked.
->=20
-> This is probably because you are basing off something that sets=20
-> SERIAL_CONSOLES for the yocto-kernel, like
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-yocto/tree/meta-yocto-b
-> sp/conf/machine/beaglebone-yocto.conf?h=3Dmaster#n23
->=20
-> If you are using a custom tree which does not use the special driver=20
-> for the uart, then you should be fine by setting SERIAL_CONSOLES ?=3D=20
-> "115200;ttyS0"
-> in your MACHINE config
+=20
 
-Yep, see also my patch:
+Many thanks for your inputs and resolution.
 
-https://www.mail-archive.com/yocto@yoctoproject.org/msg42383.html
+=20
 
-may it help you ...
+I have tested the build for imx6ulevk as well as to our own machine, =
+both worked well. Calibration passes correctly and also writes it to =
+/etc/pointercal.xinput file and works perfect
 
-bye,
-Heiko
+=20
+
+Thanks once again=E2=80=A6
+
+=20
+
+Regards
+
+Alankar
+
+=20
+
+=20
+
+-----Original Message-----
+From: Max Krummenacher [mailto:max.oss.09@gmail.com]=20
+Sent: 04/12/2018 1:08 AM
+To: Alankar Dhobale; yocto@yoctoproject.org
+Subject: Re: [yocto] [yocto-rocko] : fsl-community-bsp X11 build touch =
+screen calibration issue on iMX6UL
+
+=20
+
+Hi
+
+=20
+
+> Machine: imx6ulevek
 
 >=20
->>
->> I don't understand why this problem appear when I build a OS with the =
-sumo version on Yocto.
->> I have not this problem when I build a OS with the krogoth version on =
-yocto.
->>
->> Somebody can help me to solve this problem ?
->> what can I do ?
->>
->=20
-> Greetz
+
+> Image: core-image-x11
+
 >=20
 
---=20
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
+> The issue I have observed on the device is, Xorg is unable to=20
+
+> calibrate the touchscreen, I don't know what has changed but it is=20
+
+> unable to calibrate, below is the log I get on prompt
+
+>=20
+
+...
+
+> ERROR: XorgPrint Calibrator does not support the supplied=20
+
+> --output-type
+
+>=20
+
+> Error: unable to apply or save configuration valuesUsing calibration=20
+
+> data stored in /etc/pointercal.xinput
+
+>=20
+
+=20
+
+Does not installing xf86-input-libinput help? xinput-calibrator cannot =
+cope with that input backend.
+
+=20
+
+I used the following bbappend to achieve this:
+
+=20
+
+ =
+<http://git.toradex.com/cgit/meta-toradex-demos.git/commit/?h=3Drocko-nex=
+t&id=3D664a1926af81e49396bfe2681> =
+http://git.toradex.com/cgit/meta-toradex-demos.git/commit/?h=3Drocko-next=
+&id=3D664a1926af81e49396bfe2681
+
+18969ec2b8718cb
+
+=20
+
+Regards
+
+Max
 
 
+------=_NextPart_000_025A_01D48C02.C477DD40
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 14 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri","sans-serif";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoPlainText>Hi =
+Max,<o:p></o:p></p><p class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoPlainText>Yes you are right, I used the same bbappend and =
+this resolved the issue, perfect solution=E2=80=A6<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>I have =
+been struggling with this since couple of days! <o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Many =
+thanks for your inputs and resolution.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>I have =
+tested the build for imx6ulevk as well as to our own machine, both =
+worked well. Calibration passes correctly and also writes it to =
+/etc/pointercal.xinput file and works perfect<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Thanks =
+once again=E2=80=A6<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoPlainText>Regards<o:p></o:p></p><p =
+class=3DMsoPlainText>Alankar<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoPlainText>-----Original Message-----<br>From: Max =
+Krummenacher [mailto:max.oss.09@gmail.com] <br>Sent: 04/12/2018 1:08 =
+AM<br>To: Alankar Dhobale; yocto@yoctoproject.org<br>Subject: Re: =
+[yocto] [yocto-rocko] : fsl-community-bsp X11 build touch screen =
+calibration issue on iMX6UL</p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoPlainText>Hi<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>&gt; =
+Machine: imx6ulevek<o:p></o:p></p><p class=3DMsoPlainText>&gt; =
+<o:p></o:p></p><p class=3DMsoPlainText>&gt; Image: =
+core-image-x11<o:p></o:p></p><p class=3DMsoPlainText>&gt; =
+<o:p></o:p></p><p class=3DMsoPlainText>&gt; The issue I have observed on =
+the device is, Xorg is unable to <o:p></o:p></p><p =
+class=3DMsoPlainText>&gt; calibrate the touchscreen, I don't know what =
+has changed but it is <o:p></o:p></p><p class=3DMsoPlainText>&gt; unable =
+to calibrate, below is the log I get on prompt<o:p></o:p></p><p =
+class=3DMsoPlainText>&gt; <o:p></o:p></p><p =
+class=3DMsoPlainText>...<o:p></o:p></p><p class=3DMsoPlainText>&gt; =
+ERROR: XorgPrint Calibrator does not support the supplied =
+<o:p></o:p></p><p class=3DMsoPlainText>&gt; =
+--output-type<o:p></o:p></p><p class=3DMsoPlainText>&gt; =
+<o:p></o:p></p><p class=3DMsoPlainText>&gt; Error: unable to apply or =
+save configuration valuesUsing calibration <o:p></o:p></p><p =
+class=3DMsoPlainText>&gt; data stored in =
+/etc/pointercal.xinput<o:p></o:p></p><p class=3DMsoPlainText>&gt; =
+<o:p></o:p></p><p class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoPlainText>Does not installing xf86-input-libinput help? =
+xinput-calibrator cannot cope with that input backend.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>I used =
+the following bbappend to achieve this:<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText><a =
+href=3D"http://git.toradex.com/cgit/meta-toradex-demos.git/commit/?h=3Dro=
+cko-next&amp;id=3D664a1926af81e49396bfe2681"><span =
+style=3D'color:windowtext;text-decoration:none'>http://git.toradex.com/cg=
+it/meta-toradex-demos.git/commit/?h=3Drocko-next&amp;id=3D664a1926af81e49=
+396bfe2681</span></a><o:p></o:p></p><p =
+class=3DMsoPlainText>18969ec2b8718cb<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoPlainText>Regards<o:p></o:p></p><p =
+class=3DMsoPlainText>Max<o:p></o:p></p></div></body></html>
+
+------=_NextPart_000_025A_01D48C02.C477DD40--
