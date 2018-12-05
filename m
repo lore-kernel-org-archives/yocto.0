@@ -1,47 +1,61 @@
-Return-Path: <Georgi.Georgiev@woodward.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE535E00C91; Wed,  5 Dec 2018 02:36:30 -0800 (PST)
+	id 14683E00C91; Wed,  5 Dec 2018 02:48:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from Mail1.woodward.com (mail1.woodward.com [216.17.208.201])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65BFAE00C75
-	for <yocto@yoctoproject.org>; Wed,  5 Dec 2018 02:36:29 -0800 (PST)
-Received: from pps.filterd (CoCo-PMSGA1.woodward.com [127.0.0.1])
-	by CoCo-PMSGA1.woodward.com (8.16.0.22/8.16.0.22) with SMTP id
-	wB5AVuwS024306; Wed, 5 Dec 2018 04:36:22 -0600
-Received: from coil-exmb1.woodward.com ([10.51.100.64])
-	by CoCo-PMSGA1.woodward.com with ESMTP id 2p5y3g9cuj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-	Wed, 05 Dec 2018 04:36:22 -0600
-Received: from KempHC1.woodward.com (10.25.100.51) by COIL-ExMb1.woodward.com
-	(10.51.100.64) with Microsoft SMTP Server (TLS) id 15.0.1263.5;
-	Wed, 5 Dec 2018 04:36:21 -0600
-Received: from KempMail2.woodward.com ([169.254.2.232]) by
-	KempHC1.woodward.com ([172.20.1.103]) with mapi;
-	Wed, 5 Dec 2018 11:36:20 +0100
-From: Georgi Georgiev <Georgi.Georgiev@woodward.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 5 Dec 2018 11:36:18 +0100
-Thread-Topic: Missing headers in /usr/inlcude for software developers
-Thread-Index: AdSMhfNmMKSX3QNkTGCD7BNWaU+F3A==
-Message-ID: <B4ED84A4DCF0D84FB25CE972E5CF346A5D185E27AC@KEMPMAIL2.woodward.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.54 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com
+	[209.85.166.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A3F0E00C75
+	for <yocto@yoctoproject.org>; Wed,  5 Dec 2018 02:48:12 -0800 (PST)
+Received: by mail-io1-f54.google.com with SMTP id m19so16292652ioh.3
+	for <yocto@yoctoproject.org>; Wed, 05 Dec 2018 02:48:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=5mbXcW317pHVFCIzqUWevYzXiRS/Ve2IK1yZef7lKXI=;
+	b=VB7k2fPWsHTVbG3JawXFCbpyTtA59hU8EredhonYun59E+4GEBHyMowHMXYuFCd9Wq
+	aaK1+ns00sMso/h8ueeuHLQVVZypW4M0n2zSnKPkf23/VQrVN1R3Xxjx4Y0b/t1VjViA
+	qwRedVOuu/XHNyEz13BjCyyPXsByHK2g70wvKwejAu8+LLA+poJDDA/WUHrLaCyeL2Jr
+	X5yTvhy9GTF0rvm92i00SOWtWH0ZGpl4eqKbosclQz2RgrXOk7tx8pwnpuQVqxhQuqRs
+	8sK2X+LyAJkD1NeYnqw0sczd9lcI9LNDLPY1kXIvwuTyl6+q1fFei2LWc7c/BkBtpqd6
+	snGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=5mbXcW317pHVFCIzqUWevYzXiRS/Ve2IK1yZef7lKXI=;
+	b=XxtVnf2s9sKtutmmiTlILjZFH4nxTL4pvtSPS9HrDEzHiz5EOdnWOFdQafvU3qus5C
+	MlW2aXN41hbX5u6z6G/UvuH5FspTDaLpHsteddlgfaO5tkcuP0Lw8MRy34JAnFNrgo4U
+	6Cz7iLb8G0UkZWBJFNjHPZOIToPPWJUiKx4sq9f/7BIppDWxjUpm9aGi9EwurLc1EaM5
+	y3Ls3XpTZgC5Q++8JSS1j28Q6pIGTl0cngcawGNFba+hHEdOWkxdM7hT9187eGj9Iqn2
+	9oAM0GBQV9Qg+B1xKaB502fiZb6gX4CgihRHshXGDoHT0tDNFNbS/4942YjdWeavyQNi
+	Se2A==
+X-Gm-Message-State: AA+aEWZfoMgfIEXRbLXCqyADg5sL6PjHIgzUzhCnEQWwQNCMKCJ9q+SD
+	O7NujkClz1vSduKoGGNVWW16h4KW3yvP+5/szcwGWQ==
+X-Google-Smtp-Source: AFSGD/XsDPpPKIRBevLfg7Qh2jhhhgSlc3ycclsjvq1SHcXne9w9aznKr1sSAi7XN/B3lK+hXzn4Ol8ZRj/Q7IcEAyE=
+X-Received: by 2002:a6b:f70a:: with SMTP id k10mr18286689iog.270.1544006891863;
+	Wed, 05 Dec 2018 02:48:11 -0800 (PST)
 MIME-Version: 1.0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
-	suspectscore=0 malwarescore=0
-	phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
-	adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
-	engine=8.0.1-1810050000 definitions=main-1812050097
+References: <B4ED84A4DCF0D84FB25CE972E5CF346A5D185E27AC@KEMPMAIL2.woodward.com>
+In-Reply-To: <B4ED84A4DCF0D84FB25CE972E5CF346A5D185E27AC@KEMPMAIL2.woodward.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 5 Dec 2018 10:48:00 +0000
+Message-ID: <CAJTo0LZVZmHgDcszKaatkziQMsY3cWGTHD5MaoddLJSZ0E4y0w@mail.gmail.com>
+To: Georgi.Georgiev@woodward.com
 Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Missing headers in /usr/inlcude for software developers
+Subject: Re: Missing headers in /usr/inlcude for software developers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,52 +67,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Dec 2018 10:36:30 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 05 Dec 2018 10:48:13 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-VGhhbmsgeW91IFJvc3MuIA0KRXZlcnl0aGluZyB3ZW50IGZpbmUgd2l0aCBtYWtlZmlsZS4gSXQg
-d29ya3MgaW4geW9jdG8gYW5kIGZyb20gY2wNCk5vdyBhbm90aGVyIGlzc3VlIGFyaXNlLiBUaGUg
-c29mdHdhcmUgZ3V5cyB3aWxsIG5lZWQgdGhlIGhlYWRlcnMgYW5kIHdoZW4gSSAicG9wdWxhdGVk
-IiBzZGsgdGhleSB3ZXJlIG5vdCBpbiB0aGUgcm9vdGZzLiBUaGUgc3ltYm9saWMgbGlua3MgYWxz
-byB3ZXJlIG5vdCB0aGVyZS4gVGhlIHN5bWxpbmsgKHNvLjApIGFuZCB0aGUgbGlicmFyeSBpcyBw
-cmVzZW50IGluIHRoZSBpbWFnZSByb290ZnMuIEhlcmUgaXMgbXkgcmVjaXBlIGxpYmFueWJ1cy1t
-NDAuc29fMC4wLjEuYmI6DQpERVNDUklQVElPTiA9ICJBbnlidXMgTTQwIExpYnJhcnkiDQpMSUNF
-TlNFID0gIkdQTHYyIg0KTElDX0ZJTEVTX0NIS1NVTSA9ICAiZmlsZTovLyR7VEhJU0RJUn0vZmls
-ZXMvTElDRU5TRTttZDU9NTk1OWU1MDJjYjQ0YmFmYzUzYjJjYzk0MDBlM2Q0Y2QiDQpQUiA9ICJy
-MCINClNSQ19VUkkgPSAiZ2l0Oi8vL2hvbWUvdzIzNjk4L3Byb2plY3RzL2FueWJ1cy9HZW5lcmlj
-O2JyYW5jaD1hbnlidXMtbGliLTAuMC4xIg0KU1JDUkVWID0gIjg1OTRiODEyNDFlOTUzOGQyYWQ0
-ZDAxMDQxZTMwZDk3YTIwYjVhNDMiDQpTID0gIiR7V09SS0RJUn0vZ2l0Ig0KUEFDS0FHRVMgPSAi
-JHtQTn0gJHtQTn0tZGV2ICR7UE59LWRiZyINCkRFUEVORFMgPSAibGliZ3Bpb2QiDQoNCiMgVGhp
-cyBpcyB0byBzYXRpc2Z5IHlvY3RvIFFBIA0KVEFSR0VUX0NDX0FSQ0ggKz0gIiR7TERGTEFHU30i
-DQoNCmRvX2NvbXBpbGUoKSB7DQogICAgb2VfcnVubWFrZQ0KfQ0KDQpkb19pbnN0YWxsKCkgew0K
-ICAgIGluc3RhbGwgLWQgJHtEfSR7bGliZGlyfQ0KICAgIGluc3RhbGwgLW0gMDY0NCAke1BOfS4k
-e1BWfSAke0R9JHtsaWJkaXJ9DQp9DQpPYnZvdXNseSBJIGFtIG1pc3Npbmcgc29tZXRoaW5nIGVs
-c2UuLi4uDQpDb3JkaWFsbHkNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBCdXJ0
-b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dIA0KU2VudDogVHVlc2RheSwg
-RGVjZW1iZXIgMDQsIDIwMTggNTo0NCBQTQ0KVG86IEdlb3JnaSBHZW9yZ2lldiA8R2VvcmdpLkdl
-b3JnaWV2QHdvb2R3YXJkLmNvbT4NCkNjOiBZb2N0by1tYWlsaW5nLWxpc3QgPHlvY3RvQHlvY3Rv
-cHJvamVjdC5vcmc+DQpTdWJqZWN0OiBSZTogW0VYVEVSTkFMXSBSZTogW3lvY3RvXSBNaXNzaW5n
-IGRlcGVuZGVuY2llcyBpbiByZWNpcGUtc3lzcm9vdA0KDQpObywgeW91IGp1c3QgbmVlZCB0byB3
-cml0ZSB5b3VyIG1ha2VmaWxlIGNvcnJlY3RseS4gIGxpYmdwaW9kIGhhcyBhIHBrZy1jb25maWcg
-ZmlsZSwgc28gaW5zdGVhZCBvZiBoYXJkLWNvZGluZyBwYXRocyBsaWtlIC91c3IvbGliIChiZWNh
-dXNlIHlvdSBkb24ndCBrbm93IHRoYXQncyB3aGVyZSBpdCBpcyBpbnN0YWxsZWQpIGp1c3QgdXNl
-IHBrZy1jb25maWcgdG8gZ2V0IHRoZSBmbGFnOg0KDQpnY2MgJChwa2ctY29uZmlnIC0tY2ZsYWdz
-IC0tbGlicyBsaWJncGlvZCkgLi4uDQoNClJvc3MNCk9uIFR1ZSwgNCBEZWMgMjAxOCBhdCAxNTox
-NCwgR2VvcmdpIEdlb3JnaWV2IDxHZW9yZ2kuR2VvcmdpZXZAd29vZHdhcmQuY29tPiB3cm90ZToN
-Cj4NCj4gT0sgYnV0LiBJIGNhbiB1c2UgU0RLVEFSR0VUU1lTUk9PVCBpbiBteSBtYWtlZmlsZSBi
-dXQgdGhlbiBpdCB3aWxsIGZhaWwgaW4geW9jdG8uLi5TbyBJIGNhbid0IGhhdmUgb25lIG1ha2Vm
-aWxlIGZvciB5b2N0byBhbmQgY29tbWFuZCBsaW5lIGJ1aWxkLi4uSSBmb3VuZCBvbmUgdHJlYWQg
-Zm9yIHNpbWlsYXIgaXNzdWUgYW5kIEkgd2lsbCB0YWtlIGEgbG9vayBpbiBwb2t5L21ldGEvY29u
-Zi9iaXRiYWtlLmNvbmYgdG9tb3Jyb3cuDQo+DQo+IEdlb3JnaQ0KPg0KPiAtLS0tLU9yaWdpbmFs
-IE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBp
-bnRlbC5jb21dDQo+IFNlbnQ6IFR1ZXNkYXksIERlY2VtYmVyIDA0LCAyMDE4IDQ6MTMgUE0NCj4g
-VG86IEdlb3JnaSBHZW9yZ2lldiA8R2VvcmdpLkdlb3JnaWV2QHdvb2R3YXJkLmNvbT4NCj4gQ2M6
-IFlvY3RvLW1haWxpbmctbGlzdCA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NCj4gU3ViamVjdDog
-UmU6IFtFWFRFUk5BTF0gUmU6IFt5b2N0b10gTWlzc2luZyBkZXBlbmRlbmNpZXMgaW4gDQo+IHJl
-Y2lwZS1zeXNyb290DQo+DQo+IE9uIFR1ZSwgNCBEZWMgMjAxOCBhdCAxNDowMiwgR2VvcmdpIEdl
-b3JnaWV2IDxHZW9yZ2kuR2VvcmdpZXZAd29vZHdhcmQuY29tPiB3cm90ZToNCj4gPiBMSUIgOj0g
-LUwvdXNyL2xpYg0KPg0KPiBeIGRvbid0IGRvIHRoYXQuICBUaGF0J3Mgbm90IHdoZXJlIHRoZSBs
-aWJyYXJpZXMgYXJlLg0KPg0KPiBSb3NzDQo=
+On Wed, 5 Dec 2018 at 10:37, Georgi Georgiev
+<Georgi.Georgiev@woodward.com> wrote:
+> Thank you Ross.
+> Everything went fine with makefile. It works in yocto and from cl
+> Now another issue arise. The software guys will need the headers and when=
+ I "populated" sdk they were not in the rootfs. The symbolic links also wer=
+e not there. The symlink (so.0) and the library is present in the image roo=
+tfs. Here is my recipe libanybus-m40.so_0.0.1.bb:
+
+Headers and symlinks for what recipe?  This one?
+
+> DESCRIPTION =3D "Anybus M40 Library"
+> LICENSE =3D "GPLv2"
+> LIC_FILES_CHKSUM =3D  "file://${THISDIR}/files/LICENSE;md5=3D5959e502cb44=
+bafc53b2cc9400e3d4cd"
+
+Checksum a file in the source tree.
+
+> PR =3D "r0"
+
+Redundant, you can remove.
+
+> PACKAGES =3D "${PN} ${PN}-dev ${PN}-dbg"
+
+Redundant, remove.
+
+> # This is to satisfy yocto QA
+> TARGET_CC_ARCH +=3D "${LDFLAGS}"
+
+Better to fix your makefile so it doesn't override LDFLAGS
+assignments: your makefile is what is broken here.
+
+> do_compile() {
+>     oe_runmake
+> }
+
+That's the default, you can remove this.
+
+> do_install() {
+>     install -d ${D}${libdir}
+>     install -m 0644 ${PN}.${PV} ${D}${libdir}
+> }
+> Obvously I am missing something else....
+
+You're not installing the headers or library symlinks, which is why
+they're not in the SDK.
+
+I suggest you move from raw makefiles to a build utility such as
+autotools, cmake, or meson.
+
+Ross
 
