@@ -1,47 +1,52 @@
-Return-Path: <prvs=870725b86=Michael.Dick@hella-gutmann.com>
+Return-Path: <madoga@protonmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5CD0E00C12; Wed,  5 Dec 2018 07:03:11 -0800 (PST)
+	id 651B6E00C1B; Wed,  5 Dec 2018 09:18:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	MIME_BASE64_BLANKS, 
+	RCVD_IN_DNSWL_LOW,SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [82.210.249.14 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (madoga[at]protonmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [185.70.40.135 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 72 seconds by postgrey-1.32 at yocto-www;
-	Wed, 05 Dec 2018 07:03:07 PST
-Received: from mail1.hella.com (mail1.hella.com [82.210.249.14])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01829E008C6
-	for <yocto@yoctoproject.org>; Wed,  5 Dec 2018 07:03:07 -0800 (PST)
-Received: from unknown (HELO descolfrsmtp2v.dc.hella.com) ([10.13.0.189])
-	by dc1mail1.hella.com with ESMTP; 05 Dec 2018 16:01:53 +0100
-Received: from HGMAIL01.GMMDB.local ([192.168.110.29]) by
-	descolfrsmtp2v.dc.hella.com over TLS secured channel with
-	Microsoft SMTPSVC(8.5.9600.16384); Wed, 5 Dec 2018 16:01:53 +0100
-Received: from HGMAIL02.GMMDB.local ([192.168.222.88]) by HGMAIL01.GMMDB.local
-	([192.168.222.87]) with mapi id 14.03.0361.001;
-	Wed, 5 Dec 2018 16:01:50 +0100
-From: Michael Dick <Michael.Dick@hella-gutmann.com>
+	*  0.0 MIME_BASE64_BLANKS RAW: Extra blank lines in base64 encoding
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 369 seconds by postgrey-1.32 at yocto-www;
+	Wed, 05 Dec 2018 09:18:45 PST
+Received: from mail-40135.protonmail.ch (mail-40135.protonmail.ch
+	[185.70.40.135])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7A8BE00C09
+	for <yocto@yoctoproject.org>; Wed,  5 Dec 2018 09:18:45 -0800 (PST)
+Date: Wed, 05 Dec 2018 17:12:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=default; t=1544029954;
+	bh=gmGDQNMT9qIxPh8Hq/gOHJxyz/3y1LaMwcUUpMEEqWg=;
+	h=Date:To:From:Reply-To:Subject:Feedback-ID:From;
+	b=PNfxbRPwIyBOayh4wBfstmxAgTyUePKLAeLpoDr6p8Z/cncxJf6nRL67KPYTPS38+
+	PH8NkJ61FN9byUlk5GgaF2NM/bgjEc2qDhR9MwTVlOZXWgzMKExIOkPUB3rHUYjpBP
+	rKnt6HyJNcUYKJlk0MrIdRoWg0x2LzxhpabjJh8A=
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Trying to use an external toolchain
-Thread-Index: AdSMqAJ54JCGBOsKSr+zdtxYNuJiYA==
-Date: Wed, 5 Dec 2018 15:01:49 +0000
-Message-ID: <4386E0AED875AA4A8BA0B78A917B1C34E101642E@HGMAIL02.GMMDB.local>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.110.149]
+From: madoga <madoga@protonmail.com>
+Message-ID: <T9S3hRvMw_5pENs_xGzABmQbU_6FXXTtPnPwIWfY9FWVlsXo7SN3XOQ58JyP9AVLVdsnZjYe_jRhCOSjR1NNXy4Q86fFWF-DM0c_oCCSvtk=@protonmail.com>
+Feedback-ID: 0hd8diSz-ERuYTTSeMaMs35R2I6XUlWHNfgIdkRMsU8awNem8isLl5bIfhU0ez-0XmRosu-bJlGUk1AAdiucNQ==:Ext:ProtonMail
 MIME-Version: 1.0
-X-OriginalArrivalTime: 05 Dec 2018 15:01:53.0165 (UTC)
-	FILETIME=[750CB3D0:01D48CAB]
-Subject: Trying to use an external toolchain
+Subject: [OE-core] FILESYSTEM_PERMS_TABLE / fs-perms.txt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: madoga <madoga@protonmail.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -50,253 +55,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Dec 2018 15:03:12 -0000
-Content-Language: de-DE
+X-List-Received-Date: Wed, 05 Dec 2018 17:18:48 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_4386E0AED875AA4A8BA0B78A917B1C34E101642EHGMAIL02GMMDBlo_"
+	boundary="b1_c5198b7e18fe84699b3d7c33a4df7d04"
 
---_000_4386E0AED875AA4A8BA0B78A917B1C34E101642EHGMAIL02GMMDBlo_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--b1_c5198b7e18fe84699b3d7c33a4df7d04
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-Hello,
+SGVsbG8gTGlzdCwKCkkgYW0gdHJ5aW5nIHRvIGNvbmZpZ3VyZSBteSBlbnRpcmUgZmlsZXN5c3Rl
+bSBieSB1c2luZyBGSUxFU1lTVEVNX1BFUk1TX1RBQkxFUyB2YXJpYWJsZSBwb2ludGluZyB0byBt
+eSBjdXN0b20gZnMtcGVybXMudHh0LCBidXQgaXQgZG9lcyBub3Qgd29yay4gV2hpbGUgSSBkZWJ1
+Z2dlZCBwYWNrYWdlLmJiY2xhc3MgbG9va2luZyBmb3IgYW55IGVycm9yIG9yIGZhaWx1cmUsIEkg
+Zm91bmQgc29tZXRoaW5nIHN0cmFuZ2Ugd2l0aCBvcy5jaG1vZCAmIG9zLmxjaG93biBtZXRob2Rz
+IChhdCBmdW5jdGlvbiBmaXhfcGVybXMpOgoKICMgRml4IHRoZSBwZXJtaXNzaW9uLCBvd25lciBh
+bmQgZ3JvdXAgb2YgcGF0aAoKZGVmIGZpeF9wZXJtcyhwYXRoLCBtb2RlLCB1aWQsIGdpZCwgZGly
+KToKCiAgICBpZiBtb2RlIGFuZCBub3Qgb3MucGF0aC5pc2xpbmsocGF0aCk6CgogICAgICAgICNi
+Yi5ub3RlKCJGaXh1cCBQZXJtczogY2htb2QgMCVvICVzIiAlIChtb2RlLCBkaXIpKQoKICAgICAg
+ICBvcy5jaG1vZChwYXRoLCBtb2RlKQoKICAgICMgLTEgaXMgYSBzcGVjaWFsIHZhbHVlIHRoYXQg
+bWVhbnMgZG9uJ3QgY2hhbmdlIHRoZSB1aWQvZ2lkCgogICAgIyBpZiB0aGV5IGFyZSBCT1RIIC0x
+LCBkb24ndCBib3RoZXIgdG8gbGNob3duCgogICAgaWYgbm90ICh1aWQgPT0gLTEgYW5kIGdpZCA9
+PSAtMSk6CgogICAgICAgICNiYi5ub3RlKCJGaXh1cCBQZXJtczogbGNob3duICVkOiVkICVzIiAl
+ICh1aWQsIGdpZCwgZGlyKSkKCiAgICAgICAgb3MubGNob3duKHBhdGgsIHVpZCwgZ2lkKQoKSSBo
+YXZlIGhhcmRjb2RlZCBtb2RlIHZhcmlhYmxlIHRvIOKAnDAzMzPigJ0sIGp1c3QgZm9yIHRlc3Rp
+bmc6IG9zLmNobW9kKHBhdGgsIDBvMzMzKWFuZCBJIGhhdmUgc2VlbiB0aGF0IHBlcm1pc3Npb25z
+IHdlcmUgYmVlbiBjb25maWd1cmVkIGludG8gYSDigJwwNzEx4oCdLiBBbHNvIEkgYW0gZ29pbmcg
+dG8gYXNrIGFib3V0IG9zLmxjaG93biwgZHVlIHRvIG15IGZpbGVzeXN0ZW0gaXMgc3RpbGwgYmVl
+biBvd25lZCBieSBteSB1c2VyIGFuZCBteSBncm91cC4KCiBEb2VzIGFueW9uZSBoYXZlIGFuIGlk
+ZWEgYWJvdXQgd2hhdCBpcyBnb2luZyBvbj8gSGFzIHNvbWVib2R5IGhhdmUgdGhlIHNhbWUgcHJv
+YmxlbT8KClRoYW5rIHlvdQoKQmVzdCBSZWdhcmRzLAoKTWFyaW8=
 
-I am trying to use an external toolchain with yocto. I do not get it workin=
-g. Did anyone ever get that running?
 
-My configuration and problems:
+--b1_c5198b7e18fe84699b3d7c33a4df7d04
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-Is use the following settings in my local.conf
+PHA+SGVsbG8gTGlzdCw8YnI+PC9wPjxwPjxzcGFuIGxhbmc9IkVOLUdCIiBzdHlsZT0ibXNvLWFu
+c2ktbGFuZ3VhZ2U6RU4tR0IiPkkgYW0gdHJ5aW5nDQp0byBjb25maWd1cmUgbXkgZW50aXJlIGZp
+bGVzeXN0ZW0gYnkgdXNpbmcgRklMRVNZU1RFTV9QRVJNU19UQUJMRVMgdmFyaWFibGUNCnBvaW50
+aW5nIHRvIG15IGN1c3RvbSBmcy1wZXJtcy50eHQsIGJ1dCBpdCBkb2VzIG5vdCB3b3JrLiBXaGls
+ZSBJIGRlYnVnZ2VkIHBhY2thZ2UuYmJjbGFzcw0KbG9va2luZyBmb3IgYW55IGVycm9yIG9yIGZh
+aWx1cmUsIEkgZm91bmQgc29tZXRoaW5nIHN0cmFuZ2Ugd2l0aCBvcy5jaG1vZCAmYW1wOw0Kb3Mu
+bGNob3duIG1ldGhvZHMgKGF0IGZ1bmN0aW9uIGZpeF9wZXJtcyk6PC9zcGFuPjxicj48L3A+PHAg
+c3R5bGU9ImJhY2tncm91bmQtaW1hZ2U6IGluaXRpYWw7IGJhY2tncm91bmQtcG9zaXRpb246IGlu
+aXRpYWw7IGJhY2tncm91bmQtc2l6ZTogaW5pdGlhbDsgYmFja2dyb3VuZC1yZXBlYXQ6IGluaXRp
+YWw7IGJhY2tncm91bmQtYXR0YWNobWVudDogaW5pdGlhbDsgYmFja2dyb3VuZC1vcmlnaW46IGlu
+aXRpYWw7IGJhY2tncm91bmQtY2xpcDogaW5pdGlhbDsiPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5k
+LWNvbG9yOndoaXRlIj48c3BhbiBsYW5nPSJFTi1HQiIgc3R5bGU9Im1zby1hbnNpLWxhbmd1YWdl
+OkVOLUdCIj4mbmJzcDs8L3NwYW4+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj48c3BhbiBzdHls
+ZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTBwdCI+IyBGaXggdGhlIHBlcm1pc3Npb24sIG93bmVyIGFuZCBncm91cCBvZiBwYXRo
+PC9zcGFuPjwvc3Bhbj48L3NwYW4+PC9zcGFuPjxicj48L3A+PHAgc3R5bGU9ImJhY2tncm91bmQt
+aW1hZ2U6IGluaXRpYWw7IGJhY2tncm91bmQtcG9zaXRpb246IGluaXRpYWw7IGJhY2tncm91bmQt
+c2l6ZTogaW5pdGlhbDsgYmFja2dyb3VuZC1yZXBlYXQ6IGluaXRpYWw7IGJhY2tncm91bmQtYXR0
+YWNobWVudDogaW5pdGlhbDsgYmFja2dyb3VuZC1vcmlnaW46IGluaXRpYWw7IGJhY2tncm91bmQt
+Y2xpcDogaW5pdGlhbDsiPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOndoaXRlIj48c3Bh
+biBzdHlsZT0iY29sb3I6YmxhY2siPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb3Vy
+aWVyIE5ldyZxdW90OyI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0Ij5kZWYgZml4X3Blcm1z
+KHBhdGgsIG1vZGUsIHVpZCwgZ2lkLCBkaXIpOjwvc3Bhbj48L3NwYW4+PC9zcGFuPjwvc3Bhbj48
+YnI+PC9wPjxwIHN0eWxlPSJiYWNrZ3JvdW5kLWltYWdlOiBpbml0aWFsOyBiYWNrZ3JvdW5kLXBv
+c2l0aW9uOiBpbml0aWFsOyBiYWNrZ3JvdW5kLXNpemU6IGluaXRpYWw7IGJhY2tncm91bmQtcmVw
+ZWF0OiBpbml0aWFsOyBiYWNrZ3JvdW5kLWF0dGFjaG1lbnQ6IGluaXRpYWw7IGJhY2tncm91bmQt
+b3JpZ2luOiBpbml0aWFsOyBiYWNrZ3JvdW5kLWNsaXA6IGluaXRpYWw7Ij48c3BhbiBzdHlsZT0i
+YmFja2dyb3VuZC1jb2xvcjp3aGl0ZSI+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj48c3BhbiBz
+dHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTBwdCI+PHNwYW4gc3R5bGU9Im1zby1zcGFjZXJ1bjp5ZXMiPiZuYnNwOyZuYnNw
+OyZuYnNwOyA8L3NwYW4+aWYgbW9kZSBhbmQNCm5vdCBvcy5wYXRoLmlzbGluayhwYXRoKTo8L3Nw
+YW4+PC9zcGFuPjwvc3Bhbj48L3NwYW4+PGJyPjwvcD48cCBzdHlsZT0iYmFja2dyb3VuZC1pbWFn
+ZTogaW5pdGlhbDsgYmFja2dyb3VuZC1wb3NpdGlvbjogaW5pdGlhbDsgYmFja2dyb3VuZC1zaXpl
+OiBpbml0aWFsOyBiYWNrZ3JvdW5kLXJlcGVhdDogaW5pdGlhbDsgYmFja2dyb3VuZC1hdHRhY2ht
+ZW50OiBpbml0aWFsOyBiYWNrZ3JvdW5kLW9yaWdpbjogaW5pdGlhbDsgYmFja2dyb3VuZC1jbGlw
+OiBpbml0aWFsOyI+PHNwYW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6d2hpdGUiPjxzcGFuIHN0
+eWxlPSJjb2xvcjpibGFjayI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIg
+TmV3JnF1b3Q7Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQiPjxzcGFuIHN0eWxlPSJtc28t
+c3BhY2VydW46eWVzIj4mbmJzcDsmbmJzcDsmbmJzcDsgPC9zcGFuPjxzcGFuIHN0eWxlPSJtc28t
+c3BhY2VydW46eWVzIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDs8L3NwYW4+I2JiLm5vdGUoIkZp
+eHVwIFBlcm1zOiBjaG1vZCAwJW8NCiVzIiAlIChtb2RlLCBkaXIpKTwvc3Bhbj48L3NwYW4+PC9z
+cGFuPjwvc3Bhbj48YnI+PC9wPjxwIHN0eWxlPSJiYWNrZ3JvdW5kLWltYWdlOiBpbml0aWFsOyBi
+YWNrZ3JvdW5kLXBvc2l0aW9uOiBpbml0aWFsOyBiYWNrZ3JvdW5kLXNpemU6IGluaXRpYWw7IGJh
+Y2tncm91bmQtcmVwZWF0OiBpbml0aWFsOyBiYWNrZ3JvdW5kLWF0dGFjaG1lbnQ6IGluaXRpYWw7
+IGJhY2tncm91bmQtb3JpZ2luOiBpbml0aWFsOyBiYWNrZ3JvdW5kLWNsaXA6IGluaXRpYWw7Ij48
+c3BhbiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjp3aGl0ZSI+PHNwYW4gc3R5bGU9ImNvbG9yOmJs
+YWNrIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTBwdCI+PHNwYW4gc3R5bGU9Im1zby1zcGFjZXJ1bjp5ZXMi
+PiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA8L3NwYW4+b3MuY2ht
+b2QocGF0aCwNCm1vZGUpPC9zcGFuPjwvc3Bhbj48L3NwYW4+PC9zcGFuPjxicj48L3A+PHAgc3R5
+bGU9ImJhY2tncm91bmQtaW1hZ2U6IGluaXRpYWw7IGJhY2tncm91bmQtcG9zaXRpb246IGluaXRp
+YWw7IGJhY2tncm91bmQtc2l6ZTogaW5pdGlhbDsgYmFja2dyb3VuZC1yZXBlYXQ6IGluaXRpYWw7
+IGJhY2tncm91bmQtYXR0YWNobWVudDogaW5pdGlhbDsgYmFja2dyb3VuZC1vcmlnaW46IGluaXRp
+YWw7IGJhY2tncm91bmQtY2xpcDogaW5pdGlhbDsiPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNv
+bG9yOndoaXRlIj48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPjxzcGFuIHN0eWxlPSJmb250LWZh
+bWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90OyI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0
+Ij48c3BhbiBzdHlsZT0ibXNvLXNwYWNlcnVuOnllcyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IDwvc3Bh
+bj4jIC0xIGlzIGENCnNwZWNpYWwgdmFsdWUgdGhhdCBtZWFucyBkb24ndCBjaGFuZ2UgdGhlIHVp
+ZC9naWQ8L3NwYW4+PC9zcGFuPjwvc3Bhbj48L3NwYW4+PGJyPjwvcD48cCBzdHlsZT0iYmFja2dy
+b3VuZC1pbWFnZTogaW5pdGlhbDsgYmFja2dyb3VuZC1wb3NpdGlvbjogaW5pdGlhbDsgYmFja2dy
+b3VuZC1zaXplOiBpbml0aWFsOyBiYWNrZ3JvdW5kLXJlcGVhdDogaW5pdGlhbDsgYmFja2dyb3Vu
+ZC1hdHRhY2htZW50OiBpbml0aWFsOyBiYWNrZ3JvdW5kLW9yaWdpbjogaW5pdGlhbDsgYmFja2dy
+b3VuZC1jbGlwOiBpbml0aWFsOyI+PHNwYW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6d2hpdGUi
+PjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjayI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90
+O0NvdXJpZXIgTmV3JnF1b3Q7Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQiPjxzcGFuIHN0
+eWxlPSJtc28tc3BhY2VydW46eWVzIj4mbmJzcDsmbmJzcDsmbmJzcDsgPC9zcGFuPiMgaWYgdGhl
+eQ0KYXJlIEJPVEggLTEsIGRvbid0IGJvdGhlciB0byBsY2hvd248L3NwYW4+PC9zcGFuPjwvc3Bh
+bj48L3NwYW4+PGJyPjwvcD48cCBzdHlsZT0iYmFja2dyb3VuZC1pbWFnZTogaW5pdGlhbDsgYmFj
+a2dyb3VuZC1wb3NpdGlvbjogaW5pdGlhbDsgYmFja2dyb3VuZC1zaXplOiBpbml0aWFsOyBiYWNr
+Z3JvdW5kLXJlcGVhdDogaW5pdGlhbDsgYmFja2dyb3VuZC1hdHRhY2htZW50OiBpbml0aWFsOyBi
+YWNrZ3JvdW5kLW9yaWdpbjogaW5pdGlhbDsgYmFja2dyb3VuZC1jbGlwOiBpbml0aWFsOyI+PHNw
+YW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6d2hpdGUiPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFj
+ayI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7Ij48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjEwcHQiPjxzcGFuIHN0eWxlPSJtc28tc3BhY2VydW46eWVzIj4m
+bmJzcDsmbmJzcDsmbmJzcDsgPC9zcGFuPmlmIG5vdCAodWlkDQo9PSAtMSBhbmQgZ2lkID09IC0x
+KTo8L3NwYW4+PC9zcGFuPjwvc3Bhbj48L3NwYW4+PGJyPjwvcD48cCBzdHlsZT0iYmFja2dyb3Vu
+ZC1pbWFnZTogaW5pdGlhbDsgYmFja2dyb3VuZC1wb3NpdGlvbjogaW5pdGlhbDsgYmFja2dyb3Vu
+ZC1zaXplOiBpbml0aWFsOyBiYWNrZ3JvdW5kLXJlcGVhdDogaW5pdGlhbDsgYmFja2dyb3VuZC1h
+dHRhY2htZW50OiBpbml0aWFsOyBiYWNrZ3JvdW5kLW9yaWdpbjogaW5pdGlhbDsgYmFja2dyb3Vu
+ZC1jbGlwOiBpbml0aWFsOyI+PHNwYW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6d2hpdGUiPjxz
+cGFuIHN0eWxlPSJjb2xvcjpibGFjayI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0Nv
+dXJpZXIgTmV3JnF1b3Q7Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQiPjxzcGFuIHN0eWxl
+PSJtc28tc3BhY2VydW46eWVzIj4mbmJzcDsmbmJzcDsmbmJzcDsgPC9zcGFuPjxzcGFuIHN0eWxl
+PSJtc28tc3BhY2VydW46eWVzIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDs8L3NwYW4+I2JiLm5v
+dGUoIkZpeHVwIFBlcm1zOiBsY2hvd24gJWQ6JWQNCiVzIiAlICh1aWQsIGdpZCwgZGlyKSk8L3Nw
+YW4+PC9zcGFuPjwvc3Bhbj48L3NwYW4+PGJyPjwvcD48cCBzdHlsZT0iYmFja2dyb3VuZC1pbWFn
+ZTogaW5pdGlhbDsgYmFja2dyb3VuZC1wb3NpdGlvbjogaW5pdGlhbDsgYmFja2dyb3VuZC1zaXpl
+OiBpbml0aWFsOyBiYWNrZ3JvdW5kLXJlcGVhdDogaW5pdGlhbDsgYmFja2dyb3VuZC1hdHRhY2ht
+ZW50OiBpbml0aWFsOyBiYWNrZ3JvdW5kLW9yaWdpbjogaW5pdGlhbDsgYmFja2dyb3VuZC1jbGlw
+OiBpbml0aWFsOyI+PHNwYW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6d2hpdGUiPjxzcGFuIHN0
+eWxlPSJjb2xvcjpibGFjayI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIg
+TmV3JnF1b3Q7Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwcHQiPjxzcGFuIHN0eWxlPSJtc28t
+c3BhY2VydW46eWVzIj4mbmJzcDsmbmJzcDsmbmJzcDsgJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+PC9zcGFuPm9zLmxjaG93bihwYXRoLCB1aWQsIGdpZCk8L3NwYW4+PC9zcGFuPjwvc3Bhbj48L3Nw
+YW4+PGJyPjwvcD48ZGl2PjxzcGFuIGxhbmc9IkVOLUdCIiBzdHlsZT0ibXNvLWFuc2ktbGFuZ3Vh
+Z2U6RU4tR0IiPkkgaGF2ZQ0KaGFyZGNvZGVkIG1vZGUgdmFyaWFibGUgdG8g4oCcMDMzM+KAnSwg
+anVzdCBmb3IgdGVzdGluZzogPC9zcGFuPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjayI+PHNwYW4g
+c3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7Ij48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjEwcHQiPm9zLmNobW9kKHBhdGgsIDBvMzMzKTwvc3Bhbj48L3NwYW4+PC9zcGFu
+PjxzcGFuIGxhbmc9IkVOLUdCIiBzdHlsZT0ibXNvLWFuc2ktbGFuZ3VhZ2U6RU4tR0IiPmFuZCBJ
+IGhhdmUgc2VlbiB0aGF0IHBlcm1pc3Npb25zIHdlcmUNCmJlZW4gY29uZmlndXJlZCBpbnRvIGEg
+4oCcMDcxMeKAnS4gQWxzbyBJIGFtIGdvaW5nIHRvIGFzayBhYm91dCBvcy5sY2hvd24sIGR1ZSB0
+byBteQ0KZmlsZXN5c3RlbSBpcyBzdGlsbCBiZWVuIG93bmVkIGJ5IG15IHVzZXIgYW5kIG15IGdy
+b3VwLjwvc3Bhbj48YnI+PC9kaXY+PHA+PHNwYW4gbGFuZz0iRU4tR0IiIHN0eWxlPSJtc28tYW5z
+aS1sYW5ndWFnZTpFTi1HQiI+Jm5ic3A7RG9lcyBhbnlvbmUNCmhhdmUgYW4gaWRlYSBhYm91dCB3
+aGF0IGlzIGdvaW5nIG9uPyBIYXMgc29tZWJvZHkgaGF2ZSB0aGUgc2FtZSBwcm9ibGVtPzwvc3Bh
+bj48YnI+PC9wPjxwPjxzcGFuIGxhbmc9IkVOLUdCIiBzdHlsZT0ibXNvLWFuc2ktbGFuZ3VhZ2U6
+RU4tR0IiPiZuYnNwOzwvc3Bhbj48YnI+PC9wPjxkaXY+PHNwYW4gbGFuZz0iRU4tR0IiIHN0eWxl
+PSJtc28tYW5zaS1sYW5ndWFnZTpFTi1HQiI+VGhhbmsgeW91PC9zcGFuPjxicj48L2Rpdj48cD48
+c3BhbiBsYW5nPSJFTi1HQiIgc3R5bGU9Im1zby1hbnNpLWxhbmd1YWdlOkVOLUdCIj5CZXN0IFJl
+Z2FyZHMsPC9zcGFuPjxicj48L3A+PHA+PHNwYW4gbGFuZz0iRU4tR0IiIHN0eWxlPSJtc28tYW5z
+aS1sYW5ndWFnZTpFTi1HQiI+TWFyaW88L3NwYW4+PGJyPjwvcD48ZGl2Pjxicj48L2Rpdj48ZGl2
+IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jayI+PGRpdiBjbGFzcz0icHJvdG9ubWFp
+bF9zaWduYXR1cmVfYmxvY2stdXNlciBwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay1lbXB0eSI+
+PGJyPjwvZGl2PjxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2NrLXByb3RvbiI+
+PGJyPjwvZGl2PjwvZGl2PjxkaXY+PGJyPjwvZGl2Pg==
 
-TCMODE =3D "external-linaro"
-EXTERNAL_TOOLCHAIN =3D "/home/XXX/7.2.1-gcc-linaro/gcc-linaro-7.2.1-2017.11=
--x86_64_arm-linux-gnueabihf/ "
-ELT_TARGET_SYS ?=3D "arm-linux-gnueabihf"
 
-Add added in bblayyers.conf the layer "meta-linaro-toolchain "
 
-These are my layers
-
-meta                  /home/XXX/development/yocto-test/poky/meta  5
-meta-poky             /home/XX/development/yocto-test/poky/meta-poky  5
-meta-oe               /home/XXX/development/yocto-test/meta-openembedded/me=
-ta-oe  6
-meta                  /home/XXX/development/yocto-test/poky/meta  5
-meta-python           /home/XXX/development/yocto-test/meta-openembedded/me=
-ta-python  7
-meta-networking       /home/XXX/development/yocto-test/meta-openembedded/me=
-ta-networking  5
-meta-multimedia       /home/XXX/development/yocto-test/meta-openembedded/me=
-ta-multimedia  6
-meta-webserver        /home/XXX/development/yocto-test/meta-openembedded/me=
-ta-webserver  6
-meta-linaro-toolchain  /home/XXX/development/yocto-test/meta-linaro/meta-li=
-naro-toolchain  30
-meta-raspberrypi      /home/XXX/development/yocto-test/meta-raspberrypi  9
-
-On master of these repos I get:
-oe_multilib_header: Unable to find header bits/pthread types-arch.h
-
-In Branch sumo I get the following:
-
-ERROR: Nothing PROVIDES 'virtual/crypt' (but /home/mdick/development/yocto-=
-test/openembedded-core/meta/recipes-devtools/perl/perl_5.24.1.bb, /home/mdi=
-ck/development/yocto-test/openembedded-core/meta/recipes-extended/shadow/sh=
-adow_4.2.1.bb, /home/mdick/development/yocto-test/openembedded-core/meta/re=
-cipes-core/util-linux/util-linux_2.32.1.bb DEPENDS on or otherwise requires=
- it)
-glibc PROVIDES virtual/crypt but was skipped: Recipe is blacklisted: Using =
-external toolchain
-musl PROVIDES virtual/crypt but was skipped: PREFERRED_PROVIDER_virtual/lib=
-c set to external-linaro-toolchain, not musl
-libxcrypt PROVIDES virtual/crypt but was skipped: Recipe only applies in na=
-tivesdk case for now
-glibc PROVIDES virtual/crypt but was skipped: Recipe is blacklisted: Using =
-external toolchain
-musl PROVIDES virtual/crypt but was skipped: PREFERRED_PROVIDER_virtual/lib=
-c set to external-linaro-toolchain, not musl
-libxcrypt PROVIDES virtual/crypt but was skipped: Recipe only applies in na=
-tivesdk case for now
-glibc PROVIDES virtual/crypt but was skipped: Recipe is blacklisted: Using =
-external toolchain
-
-Best regards
-Michael
-
-________________________________
-
---
-Hella Gutmann Solutions GmbH * Unternehmensform: Gesellschaft mit beschraen=
-kter Haftung *
-Firmensitz: 79241 Ihringen * Eingetragen im Handelsregister: AG Freiburg i.=
-Br., HRB 290194 * Geschaeftsfuehrer: Rolf Kunold * USt-IdNr.: DE142208666
-
---_000_4386E0AED875AA4A8BA0B78A917B1C34E101642EHGMAIL02GMMDBlo_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I am trying to use an external =
-toolchain with yocto. I do not get it working. Did anyone ever get that run=
-ning?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">My configuration and problems:<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Is use the following settings i=
-n my local.conf<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">TCMODE =3D &quot;external-linar=
-o&quot; <o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">EXTERNAL_TOOLCHAIN =3D &#8220;/=
-home/XXX/7.2.1-gcc-linaro/gcc-linaro-7.2.1-2017.11-x86_64_arm-linux-gnueabi=
-hf/ &quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">ELT_TARGET_SYS ?=3D &quot;arm-l=
-inux-gnueabihf&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Add added in bblayyers.conf the=
- layer &#8220;meta-linaro-toolchain &#8220;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">These are my layers<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">meta&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- /home/XXX/development/yocto-test/poky/meta&nbsp; 5<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">meta-poky&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /home/XX/development/yoc=
-to-test/poky/meta-poky&nbsp; 5<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">meta-oe&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /home/XXX/deve=
-lopment/yocto-test/meta-openembedded/meta-oe&nbsp; 6<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">meta&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- /home/XXX/development/yocto-test/poky/meta&nbsp; 5<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">meta-python&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /home/XXX/development/yocto-test/m=
-eta-openembedded/meta-python&nbsp; 7<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">meta-networking&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; /home/XXX/development/yocto-test/meta-openembedded/met=
-a-networking&nbsp; 5<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">meta-multimedia&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; /home/XXX/development/yocto-test/meta-openembedded/met=
-a-multimedia&nbsp; 6<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">meta-webserver&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; /home/XXX/development/yocto-test/meta-openembedde=
-d/meta-webserver&nbsp; 6<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US">meta-linaro-toolchain&nbsp; =
-/home/XXX/development/yocto-test/meta-linaro/meta-linaro-toolchain&nbsp; 30=
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">meta-raspberrypi&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; /home/XXX/development/yocto-test/meta-raspberrypi&nbsp; 9<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">On <b>master</b> of these repos=
- I get:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">oe_multilib_header: Unable to f=
-ind header bits/pthread types-arch.h<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">In Branch <b>sumo</b> I get the=
- following:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">ERROR: Nothing PROVIDES 'virtua=
-l/crypt' (but /home/mdick/development/yocto-test/openembedded-core/meta/rec=
-ipes-devtools/perl/perl_5.24.1.bb, /home/mdick/development/yocto-test/opene=
-mbedded-core/meta/recipes-extended/shadow/shadow_4.2.1.bb,
- /home/mdick/development/yocto-test/openembedded-core/meta/recipes-core/uti=
-l-linux/util-linux_2.32.1.bb DEPENDS on or otherwise requires it)<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">glibc PROVIDES virtual/crypt bu=
-t was skipped: Recipe is blacklisted: Using external toolchain<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">musl PROVIDES virtual/crypt but=
- was skipped: PREFERRED_PROVIDER_virtual/libc set to external-linaro-toolch=
-ain, not musl<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">libxcrypt PROVIDES virtual/cryp=
-t but was skipped: Recipe only applies in nativesdk case for now<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">glibc PROVIDES virtual/crypt bu=
-t was skipped: Recipe is blacklisted: Using external toolchain<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">musl PROVIDES virtual/crypt but=
- was skipped: PREFERRED_PROVIDER_virtual/libc set to external-linaro-toolch=
-ain, not musl<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">libxcrypt PROVIDES virtual/cryp=
-t but was skipped: Recipe only applies in nativesdk case for now<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">glibc PROVIDES virtual/crypt bu=
-t was skipped: Recipe is blacklisted: Using external toolchain<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Michael<o:p></o:p></span></p>
-</div>
-<br>
-<hr>
-<font face=3D"Arial" color=3D"Black" size=3D"1"><br>
---<br>
-Hella Gutmann Solutions GmbH * Unternehmensform: Gesellschaft mit beschraen=
-kter Haftung *<br>
-Firmensitz: 79241 Ihringen * Eingetragen im Handelsregister: AG Freiburg i.=
-Br., HRB 290194 * Geschaeftsfuehrer: Rolf Kunold * USt-IdNr.: DE142208666<b=
-r>
-</font>
-</body>
-</html>
-
---_000_4386E0AED875AA4A8BA0B78A917B1C34E101642EHGMAIL02GMMDBlo_--
+--b1_c5198b7e18fe84699b3d7c33a4df7d04--
