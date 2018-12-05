@@ -1,72 +1,66 @@
-Return-Path: <paul@betafive.co.uk>
+Return-Path: <vincent.prince.fr@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B338CE00C62; Tue,  4 Dec 2018 09:27:04 -0800 (PST)
+	id 9E74DE00C75; Wed,  5 Dec 2018 00:09:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [66.111.4.28 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (vincent.prince.fr[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.48 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 439 seconds by postgrey-1.32 at yocto-www;
-	Tue, 04 Dec 2018 09:27:02 PST
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
-	[66.111.4.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73154E003E1
-	for <yocto@yoctoproject.org>; Tue,  4 Dec 2018 09:27:02 -0800 (PST)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailout.nyi.internal (Postfix) with ESMTP id 437CF21957;
-	Tue,  4 Dec 2018 12:19:42 -0500 (EST)
-Received: from web5 ([10.202.2.215])
-	by compute1.internal (MEProxy); Tue, 04 Dec 2018 12:19:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
-	h=message-id:from:to:mime-version:content-transfer-encoding
-	:content-type:subject:date; s=fm3; bh=QNlwAi8ZXA0mEIMLJGgGryB/TB
-	btiI/+RuvoF1K4bkM=; b=KjnyK7Vc0AXytl5WX7p5e45Rfe8NDcm8wUNaEX00a5
-	R6WdIz0kEKDTTJgRh7U3c/2hHjR8gHqjyxMoY5wuLTPb9oJ4zaQlMiFcH8PHJaCG
-	/xVHHwlbkNTg1JvnZfDSRui4fi33P8eVKeQrV/Xqx+n1NPMW1oEnpH99kuxbTzVs
-	D6pUvinRFFUKjKywOcBGZJRg3Ir7bGhYX4nridRXaXDXsF4aKOFEfeO8wFuGJFK0
-	9W8qu/XbC7bOnbLch9NsJvwPdfw3OusR/e/Cq4ijP6Gvoi9li/LzMPlcqmFHyIHB
-	+5ewMsbmq1faLuqWgsTA7QAqAH65Xj2TQO6E2BukmOgg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-transfer-encoding:content-type
-	:date:from:message-id:mime-version:subject:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=QNlwAi
-	8ZXA0mEIMLJGgGryB/TBbtiI/+RuvoF1K4bkM=; b=KQUWNXlz8m/5QaIOjCppfJ
-	AsU81Sg2Lr4B8hIkHy6oBDXyLuJ3qPSzKPUP9AdPZi1Yi1gaJNdbLPdv2feg3vem
-	T33tyqUvcBmdjTB37lxPbZYzrBom73GpGakyTkYDK2S7vg2xil/oCkJBs4Tr9yxh
-	dih5PkKCCVYuTe3pYIbYfioiF3vWXV39OpOoNnQAOGbk4Lh3vBb3Bwob4IuWK+CA
-	qvaVoYO7ZFe49efwcQuvDNO7opZcrGhHalJ7+wQPt57BQMq/LMHxgIH6KT/d7tPC
-	+Vzd6KEFuP3FdzBlnjTijJmM4v6J4sN0mF0TzMHPfXZrYqvyQMK4hCg9iLCH4Ffg
-	==
-X-ME-Sender: <xms:LbcGXN7j66wLGKkZZkLHrzJ4pIRuBrUP62RBK1wEtfeq8sqEXNpIvQ>
-X-ME-Proxy: <xmx:LbcGXEbl1USeEdX2VZPEv9IHYvty8dqUbaAyjZIMklHFu0gDsOSv4w>
-	<xmx:LbcGXHwCxos4UuwBH3rzivi4lmnH1p_eknYzvsRvMITmKtTjQ6kIAQ>
-	<xmx:LbcGXLCsaDh8xu_7YQoQ19b_ZidpaWuFTETMTR3Qemko6oH6BxaVBw>
-	<xmx:LbcGXEF4ZYGQ5bXgy42pZCpNC3Xkmd8_HTgHt8RLarO1GUmcLTzdSQ>
-	<xmx:LbcGXHiYEGw62Ncqfk77ASvdhUosLHXTyTYSGMkStOxt3pnAbpCdJg>
-	<xmx:LrcGXPSsCwes0GWLOh5O4l8wb_FYj8SHo33jZnMea7UaZdDyBs4QzQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 99)
-	id A022D9E22A; Tue,  4 Dec 2018 12:19:41 -0500 (EST)
-Message-Id: <1543943981.3647901.1598659240.48255280@webmail.messagingengine.com>
-From: Paul Barker <paul@betafive.co.uk>
-To: OE Core <openembedded-core@lists.openembedded.org>,
-	Yocto discussion list <yocto@yoctoproject.org>,
-	openembedded-members@lists.openembedded.org
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com
+	[209.85.166.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F77FE0053F
+	for <yocto@yoctoproject.org>; Wed,  5 Dec 2018 00:09:15 -0800 (PST)
+Received: by mail-io1-f48.google.com with SMTP id f14so10477272iol.4
+	for <yocto@yoctoproject.org>; Wed, 05 Dec 2018 00:09:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=oNiXgAWwBFCNRy4kL+DDgcTGClp4hKnEyJVA9ZucUKc=;
+	b=DCVwq4/doJkgv7369uidpaZ0NdU8NTAhfC0hDYfgZgSg4fx+oZrn8mE5qmCrUNht5T
+	FF5RR6NMxtPjJoMU1BRyR6CHrasSVPAXe7VKLFDOGB7E52xUSj9zGjitbx1dBH2OVep8
+	4CcRkdgtLMrcp7lunApHS/BayMr7IkSlRmOjTqwLXkAgK4tKohMZwCkHsO6YmSa7M23J
+	dzBbOHpDHT1ygyJ1EAyL8cqD16nHyindQGQGnshqaTxP9yO3wUnnGk9HheydtTgjhpcQ
+	oCR7bkAXD1EEiv0F1M8r98UqmhgpW57R48CuF30UhPq1XCEbQOULsZJuNMCbNnFWfcYT
+	D2Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=oNiXgAWwBFCNRy4kL+DDgcTGClp4hKnEyJVA9ZucUKc=;
+	b=iVVaORLdPBN/urZ1IzbQWznbqi95DDr9936zerO7T8CCWf96KY+OIovL514J8sv2hm
+	Xiqz4EPPnQNQWAHYvecBASJ/fVeZqYiPMK0UUTamMrUhIhPA403lHUgdeDWIKSk2bEAI
+	CicqRiIOpsK/S9BnWPuIqUzej26wCefZRoKGY9DEm06kbW86R9MgPmgpOVJMxajpxSLf
+	3XlEE/LyWMCsn3yQi/c9aQDr9MacbwqrsKhohPYu53Bg9COwDlIAyTfNIzooX8rs1wrT
+	K/1dFZxdqDKAt0pD5QQvlBdNOogIjI5Mp903Y1n0LbwRNB33gdJPQKPOUFrdRsZzrauj
+	yvdg==
+X-Gm-Message-State: AA+aEWZKpuQE0+T0F+YY8fp88ef6PtLTpvYLrIGk9nOpRHfU15SfL/WI
+	SRwgFaKP65D6KKticrhxK/DlZtu7Gtxe7QgY1QyfKXy4
+X-Google-Smtp-Source: AFSGD/XNVtR8j+vJDLLqJp4WIyBDFVRDj/NEE1qkT3FnLyQkdyhMEmG+zHuSdzJVbkkc5W/mhJF1IKsWg/Njn+lxE7g=
+X-Received: by 2002:a5d:954c:: with SMTP id a12mr11163577ios.176.1543997354776;
+	Wed, 05 Dec 2018 00:09:14 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: MessagingEngine.com Webmail Interface - ajax-3449945b
-Date: Tue, 04 Dec 2018 17:19:41 +0000
-Subject: Wanted: Volunteers and demos for OpenEmbedded FOSDEM stand
+References: <18DB423D160957498153A71956CACF8222223254@EXCHSVR3.protedyne.protedyne.com>
+In-Reply-To: <18DB423D160957498153A71956CACF8222223254@EXCHSVR3.protedyne.protedyne.com>
+From: Vincent Prince <vincent.prince.fr@gmail.com>
+Date: Wed, 5 Dec 2018 09:09:02 +0100
+Message-ID: <CAB2nKc80sfF40PBS3vegh5_o0E7Gac0Z6z9=0bT_v_c27M-2OQ@mail.gmail.com>
+To: dbuchwald@protedyne.com
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
+	openembedded-devel@lists.openembedded.org
+Subject: Re: [oe] Yocto and OpenJDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,22 +72,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Dec 2018 17:27:04 -0000
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Wed, 05 Dec 2018 08:09:16 -0000
+Content-Type: multipart/alternative; boundary="000000000000dd9fcf057c41e5a8"
 
-Hi all,
+--000000000000dd9fcf057c41e5a8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-We've got an OpenEmbedded stand again at FOSDEM this year! The event will be held on 2nd & 3rd Feb 2019 at the usual location of ULB Campus du Solbosch in Brussels.
+Hi Dave,
 
-I'll be present most of each day to run the stand but we need some additional volunteers to help out. Ideally we need 3-4 volunteers for each day so that we can load balance a bit and have chance for breaks and coffee runs. If you're interested in volunteering could you reply to this email for now, we'll probably get a list up on the OE wiki nearer the event.
+I think this question belong to yocto ML as stated here:
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-oracle-java/about/
 
-We also need some demos to show off. I don't really have much myself this year sadly. Demos should show off the benefits of OpenEmbedded (such as building the same image for multiple machines). Ideally we would have a couple of hardware devices to show off along with a demo of Toaster, the layer index and other visual parts of the tooling on a laptop. Demos may include commercial hardware but please remember that we have limited stand space and want to show off the OpenEmbedded project and related open source technologies - a sales demo of a proprietary product isn't appropriate. If you've got some form of demo to bring along then please let me know by email reply.
+Best regards,
+Vincent
 
-Cheers,
+Le lun. 3 d=C3=A9c. 2018 =C3=A0 22:38, Dave Buchwald <dbuchwald@protedyne.c=
+om> a
+=C3=A9crit :
 
--- 
-Paul Barker
-Managing Director & Principal Engineer
-Beta Five Ltd
+> I have a question about Java versions for Yocto. As we know, starting in
+> January 2019, Oracle will
+> basically start crapping on the open source licensing availability for th=
+e
+> JDK and will start charging for
+> updates starting with JDK11.  I build software and hardware using
+> Yocto-built images for the imx7 using
+> Java and various Java-based technologies.
+>
+>
+> -        Will the Yocto project go to newer versions of OpenJDK? 9, 10, 1=
+1?
+>
+> -        How will the Yocto project and meta-java go forward due to
+> Oracle's actions?
+>
+> -        Will newer versions be tied to newer BSP's?
+>
+>
+>
+>
+> thanks,
+> Dave Buchwald
+> Protedyne Corp.
+> Windsor, CT
+> --
+> _______________________________________________
+> Openembedded-devel mailing list
+> Openembedded-devel@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
+>
 
+--000000000000dd9fcf057c41e5a8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Dave, <br></div><div><br></div><d=
+iv>I think this question belong to yocto ML as stated here:</div><div> <a h=
+ref=3D"http://git.yoctoproject.org/cgit/cgit.cgi/meta-oracle-java/about/">h=
+ttp://git.yoctoproject.org/cgit/cgit.cgi/meta-oracle-java/about/</a></div><=
+div><br></div><div>Best regards,</div><div>Vincent<br></div></div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr">Le=C2=A0lun. 3 d=C3=A9c. 2018 =
+=C3=A0=C2=A022:38, Dave Buchwald &lt;<a href=3D"mailto:dbuchwald@protedyne.=
+com">dbuchwald@protedyne.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc so=
+lid;padding-left:1ex">I have a question about Java versions for Yocto. As w=
+e know, starting in January 2019, Oracle will<br>
+basically start crapping on the open source licensing availability for the =
+JDK and will start charging for<br>
+updates starting with JDK11.=C2=A0 I build software and hardware using Yoct=
+o-built images for the imx7 using<br>
+Java and various Java-based technologies.<br>
+<br>
+<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 Will the Yocto project go to newer versions of=
+ OpenJDK? 9, 10, 11?<br>
+<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 How will the Yocto project and meta-java go fo=
+rward due to Oracle&#39;s actions?<br>
+<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 Will newer versions be tied to newer BSP&#39;s=
+?<br>
+<br>
+<br>
+<br>
+<br>
+thanks,<br>
+Dave Buchwald<br>
+Protedyne Corp.<br>
+Windsor, CT<br>
+-- <br>
+_______________________________________________<br>
+Openembedded-devel mailing list<br>
+<a href=3D"mailto:Openembedded-devel@lists.openembedded.org" target=3D"_bla=
+nk">Openembedded-devel@lists.openembedded.org</a><br>
+<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-deve=
+l" rel=3D"noreferrer" target=3D"_blank">http://lists.openembedded.org/mailm=
+an/listinfo/openembedded-devel</a><br>
+</blockquote></div>
+
+--000000000000dd9fcf057c41e5a8--
