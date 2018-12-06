@@ -1,27 +1,66 @@
-Return-Path: <pokybuild@ubuntu1604-ty-1.yocto.io>
+Return-Path: <ticotimo@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7864DE00C96; Wed,  5 Dec 2018 20:25:18 -0800 (PST)
+	id BDA02E00C92; Wed,  5 Dec 2018 21:54:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from ubuntu1604-ty-1.yocto.io (unknown [198.145.29.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F652E00C7E;
-	Wed,  5 Dec 2018 20:25:12 -0800 (PST)
-Received: by ubuntu1604-ty-1.yocto.io (Postfix, from userid 6000)
-	id 899E91C01D3; Thu,  6 Dec 2018 04:25:11 +0000 (UTC)
-To: yocto@yoctoproject.org
-Message-Id: <20181206042511.899E91C01D3@ubuntu1604-ty-1.yocto.io>
-Date: Thu,  6 Dec 2018 04:25:11 +0000 (UTC)
-From: pokybuild@ubuntu1604-ty-1.yocto.io (Poky Build User)
-Cc: otavio@ossystems.com.br, joshua.g.lock@intel.com,
-	rebecca.swee.fun.chang@intel.com, akuster808@gmail.com,
-	aaron.chun.yew.chan@intel.com
-Subject: QA notification for completed autobuilder build (yocto-2.5.2.rc1)
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ticotimo[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.181 listed in list.dnswl.org]
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com
+	[209.85.221.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7300EE003E1;
+	Wed,  5 Dec 2018 21:54:27 -0800 (PST)
+Received: by mail-vk1-f181.google.com with SMTP id y14so5236627vky.9;
+	Wed, 05 Dec 2018 21:54:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=2bBrCY/xOs9ajgdIc/Nf7y0SHvdP5qxm1R6Fg3+ONlo=;
+	b=hf4edZifKVMB9HtsHI00uGFSbSHOiYz9YPv1cQGKnq060kwWPf3zzVDl1Cf71eEfpQ
+	HjGqayaSlmwacN11VpVAHSVGgagWSRSOHp++vOJDy00aYf1cxMNil4HsmyvZI4dDOm8c
+	W8myoie/P/Q0ccr+w/h3ClP4Mwg0g5+O01UnFMm4Clq61dZCLm8i4TZ3Ab0NFWs0rqly
+	aeqWuCWe0ujZgah8rghptijIWX8o/tx23OytdxtOM+IoRWo3M6p3yeBuSLs5F0BScgQn
+	pmjqWnuCXPU/AwAGw1FvujNp9hSAFjrG0PpoLegHCec03cE4bzvU0XbbMDrYYLTzs3P+
+	JkDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=2bBrCY/xOs9ajgdIc/Nf7y0SHvdP5qxm1R6Fg3+ONlo=;
+	b=eGFNky15bKxZ88p5JkJq6tySA+m6WywmboIkJnNxvrohBPkOrqYrwRrOF1FxrkDdp5
+	10t1rSqcML3DvtSEuzS2Xh9tgd9A97c5c0odEaImWizDu1HpB2skcWhbSvGpHzJik2Oq
+	KqQtqbx4BV2lPovzdTdr1De0ArNEcObVyWGLhqxasxBqQicV26lbxqN081CMdyT3oGjF
+	pwLdP9jvNK1Ld1Y4xh/xm/bE9xNoIG30ob5EUfL2fivIPV9ElA7xojtZS2hDodijHEnf
+	fQWAX8KNsudPYX3a5UZdgmuf1+A+oR1h3vTFZEG9QGPEMovHgRXmH143KUDS42OQaOe9
+	x4NA==
+X-Gm-Message-State: AA+aEWZ3UJtvFTnaKDc2339HIIA0SJL8hiNOM8e2kqYqCUPYzZDoyLSc
+	Zu55r7DUZW5UuO9RkLkjYnsOWuXOmPrp15cNH3c=
+X-Google-Smtp-Source: AFSGD/VRJx2pRSFiRd6SgRVGHRDzIvqSkLjh3pZl1xZ5dybvYZQbEY7bk+n/xNhdYvbsorAaesBvLD30BoThpfo/9s8=
+X-Received: by 2002:a1f:c111:: with SMTP id r17mr11518218vkf.35.1544075666660; 
+	Wed, 05 Dec 2018 21:54:26 -0800 (PST)
+MIME-Version: 1.0
+References: <CAFq4t4iqk7hNd8FVDZdiN7LRynCWDtmpP=BaJ4mM8RARX+StaQ@mail.gmail.com>
+In-Reply-To: <CAFq4t4iqk7hNd8FVDZdiN7LRynCWDtmpP=BaJ4mM8RARX+StaQ@mail.gmail.com>
+From: Tim Orling <ticotimo@gmail.com>
+Date: Wed, 5 Dec 2018 21:54:16 -0800
+Message-ID: <CANx9H-BKpUeo=PVq+EkeaqDhCiidy6Lekn62X=sFuVO_h+fGPg@mail.gmail.com>
+To: Peter Balazovic <balazovic.peter@gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>,
+	"eclipse-yocto@yoctoproject.org" <eclipse-yocto@yoctoproject.org>
+Subject: Re: Yocto Cmake Build (Toolchain)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,34 +72,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Dec 2018 04:25:18 -0000
+X-List-Received-Date: Thu, 06 Dec 2018 05:54:30 -0000
+Content-Type: multipart/alternative; boundary="0000000000009e21b8057c542141"
 
+--0000000000009e21b8057c542141
+Content-Type: text/plain; charset="UTF-8"
 
-A build flagged for QA (yocto-2.5.2.rc1) was completed on the autobuilder and is available at:
+Also including eclipse-yocto mailing list.
 
+BTW, ADT is not a thing anymore.
 
-    https://autobuilder.yocto.io/pub/releases/yocto-2.5.2.rc1
+On Wed, Dec 5, 2018 at 3:11 PM Peter Balazovic <balazovic.peter@gmail.com>
+wrote:
 
+> I am starting to use Eclipse ADT for app development using Yocto Cmake
+> Build (Toolchain). I am trying to create simple "hello-world" example out
+> of "Yocto Project SDK Cmake Project" but by building the project I am
+> getting this
+>
+> Buildfile generation error occurred..
+> Build of project failed with the following error:
+> CMake Error: Could not find CMAKE_ROOT !!!
+> CMake has most likely not been installed correctly.
+> Modules directory not found in
+>
+> /opt/fsl-imx-xwayland/4.9.51-mx8-beta/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.5
+> CMake Error: Error executing cmake::LoadCache(). Aborting.
+> Build stopped..
+>
+> Do you encounter such a problem? I have a camke part of the Yocto SDK.
+>
+> BTW I am able to build, debug "hello-world" out of "Yocto Project SDK
+> Autotools Project".
+>
+> Thank you for your advice.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Build hash information: 
+--0000000000009e21b8057c542141
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-bitbake: 79d01b9fec99cec19156e0ebe05b4f2040bcef05
-eclipse-poky-neon: 303e46a6848f1937d12541a7fd58e61aa1361225
-eclipse-poky-oxygen: f1a20dc6a5a252a4ed4484b618d579cbbc7d146e
-meta-gplv2: d7687d404bbc9ba3f44ec43ea8828d9071033513
-meta-intel: 90af97d23fb2a56187c2fe2a3f4f4190d7cc2605
-meta-mingw: 628dcfed62ce8dcc408e5b4a5e5c0aaa921b20ad
-meta-qt3: 02f273cba6c25f5cf20cb66d8a417a83772c3179
-meta-qt4: 8e791c40140460825956430ba86b6266fdec0a93
-oecore: 6637f400fb01501353f376d73658b359cedfa3c2
-poky: 95ebfb33e4c0aa9669f318e061a4d7540b84f4ac
+<div><div dir=3D"auto">Also including eclipse-yocto mailing list.</div></di=
+v><div dir=3D"auto"><br></div><div dir=3D"auto">BTW, ADT is not a thing any=
+more.</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Wed, Dec=
+ 5, 2018 at 3:11 PM Peter Balazovic &lt;<a href=3D"mailto:balazovic.peter@g=
+mail.com">balazovic.peter@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">I am sta=
+rting to use Eclipse ADT for app development using=C2=A0Yocto Cmake Build (=
+Toolchain). I am trying to create simple &quot;hello-world&quot; example ou=
+t of &quot;Yocto Project SDK Cmake Project&quot; but by building the projec=
+t I am getting this</div><div dir=3D"ltr"><div dir=3D"ltr"><br></div><div d=
+ir=3D"ltr">Buildfile generation error occurred..</div><div dir=3D"ltr">Buil=
+d of project failed with the following error:</div><div dir=3D"ltr">CMake E=
+rror: Could not find CMAKE_ROOT !!!</div><div dir=3D"ltr">CMake has most li=
+kely not been installed correctly.</div><div dir=3D"ltr">Modules directory =
+not found in</div><div dir=3D"ltr">/opt/fsl-imx-xwayland/4.9.51-mx8-beta/sy=
+sroots/x86_64-pokysdk-linux/usr/share/cmake-3.5</div><div dir=3D"ltr">CMake=
+ Error: Error executing cmake::LoadCache(). Aborting.</div><div dir=3D"ltr"=
+>Build stopped..</div><div dir=3D"ltr"><br></div><div>Do you encounter such=
+ a problem? I have a camke part of the Yocto SDK.</div><div><br></div><div>=
+BTW I am able to build, debug &quot;hello-world&quot; out of &quot;Yocto Pr=
+oject SDK Autotools Project&quot;.</div><div><br></div><div>Thank you for y=
+our advice.=C2=A0</div></div></div></div>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div></div>
 
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
- 
-
+--0000000000009e21b8057c542141--
