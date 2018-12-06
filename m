@@ -1,6 +1,6 @@
 Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 61DB1E00C91; Wed,  5 Dec 2018 18:13:58 -0800 (PST)
+	id D39C1E00C4E; Wed,  5 Dec 2018 18:20:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,25 +10,26 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
 	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B242E00C77
-	for <yocto@yoctoproject.org>; Wed,  5 Dec 2018 18:13:55 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id wB62Dnia001277
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABB70E007B3
+	for <yocto@yoctoproject.org>; Wed,  5 Dec 2018 18:20:17 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id wB62JeLJ025410
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 5 Dec 2018 18:13:49 -0800 (PST)
+	Wed, 5 Dec 2018 18:19:50 -0800
 Received: from ala-blade47.wrs.com (147.11.105.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
-	Wed, 5 Dec 2018 18:13:48 -0800
+	Wed, 5 Dec 2018 18:19:30 -0800
 From: Robert Yang <liezhi.yang@windriver.com>
-To: <ross.burton@intel.com>
-Date: Wed, 5 Dec 2018 18:13:48 -0800
-Message-ID: <20181206021348.16182-1-liezhi.yang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 5 Dec 2018 18:19:29 -0800
+Message-ID: <20181206021929.16524-1-liezhi.yang@windriver.com>
 X-Mailer: git-send-email 2.10.2
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: [meta-gplv2][PATCH] coreutils: Remove tab indentations in python code
+Cc: akuster808@gmail.com
+Subject: [meta-security][PATCH] apparmor: Remove tab indentations in python code
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,37 +41,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Dec 2018 02:13:58 -0000
+X-List-Received-Date: Thu, 06 Dec 2018 02:20:20 -0000
 Content-Type: text/plain
 
 Use 4 spaces to replace a tab.
 
 Fixed:
-python should use 4 spaces indentation, but found tabs in coreutils_6.9.bb, line 95
+apparmor_2.12.bb: python should use 4 spaces indentation, but found tabs in apparmor_2.12.bb, line 49
 
 Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
 ---
- recipes-core/coreutils/coreutils_6.9.bb | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ recipes-security/AppArmor/apparmor_2.12.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-core/coreutils/coreutils_6.9.bb b/recipes-core/coreutils/coreutils_6.9.bb
-index 906bc4a..080100d 100644
---- a/recipes-core/coreutils/coreutils_6.9.bb
-+++ b/recipes-core/coreutils/coreutils_6.9.bb
-@@ -92,9 +92,9 @@ ALTERNATIVE_LINK_NAME[lbracket] = "${bindir}/["
- ALTERNATIVE_TARGET[lbracket] = "${bindir}/lbracket.${BPN}"
+diff --git a/recipes-security/AppArmor/apparmor_2.12.bb b/recipes-security/AppArmor/apparmor_2.12.bb
+index de7f4ef..e3f8dc9 100644
+--- a/recipes-security/AppArmor/apparmor_2.12.bb
++++ b/recipes-security/AppArmor/apparmor_2.12.bb
+@@ -21,7 +21,7 @@ SRC_URI = " \
+ 	file://functions \
+ 	file://apparmor \
+ 	file://apparmor.service \
+-        file://run-ptest \
++	file://run-ptest \
+ 	"
  
- python __anonymous() {
--	for prog in d.getVar('base_bindir_progs').split():
--		d.setVarFlag('ALTERNATIVE_LINK_NAME', prog, '%s/%s' % (d.getVar('base_bindir'), prog))
-+    for prog in d.getVar('base_bindir_progs').split():
-+        d.setVarFlag('ALTERNATIVE_LINK_NAME', prog, '%s/%s' % (d.getVar('base_bindir'), prog))
+ SRC_URI[md5sum] = "49054f58042f8e51ea92cc866575a833"
+@@ -46,7 +46,7 @@ HTTPD="${@bb.utils.contains('PACKAGECONFIG', 'apache2', '1', '0', d)}"
  
--	for prog in d.getVar('sbindir_progs').split():
--		d.setVarFlag('ALTERNATIVE_LINK_NAME', prog, '%s/%s' % (d.getVar('sbindir'), prog))
-+    for prog in d.getVar('sbindir_progs').split():
-+        d.setVarFlag('ALTERNATIVE_LINK_NAME', prog, '%s/%s' % (d.getVar('sbindir'), prog))
+ python() {
+     if 'apache2' in d.getVar('PACKAGECONFIG').split() and \
+-	'webserver' not in d.getVar('BBFILE_COLLECTIONS').split():
++            'webserver' not in d.getVar('BBFILE_COLLECTIONS').split():
+         raise bb.parse.SkipRecipe('Requires meta-webserver to be present.')
  }
+ 
 -- 
 2.10.2
 
