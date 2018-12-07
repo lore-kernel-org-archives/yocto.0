@@ -1,60 +1,41 @@
-Return-Path: <edwingate8@gmail.com>
+Return-Path: <craig.mcqueen@innerrange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 588EEE00C12; Thu,  6 Dec 2018 16:23:51 -0800 (PST)
+	id 30476E00C58; Thu,  6 Dec 2018 19:30:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (edwingate8[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.180 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-it1-f180.google.com (mail-it1-f180.google.com
-	[209.85.166.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5E0BE00BB5
-	for <yocto@yoctoproject.org>; Thu,  6 Dec 2018 16:23:50 -0800 (PST)
-Received: by mail-it1-f180.google.com with SMTP id c9so4565158itj.1
-	for <yocto@yoctoproject.org>; Thu, 06 Dec 2018 16:23:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=dCsXF4Q3r5iD3ciIoQn9E4TKwQyaEA1Az8bFH1vNfM4=;
-	b=qQxTzm5nQKvOI0Aa2ykCTgIwJBeIsqBrKOpp11JLp7Es1NhCVZrSomMJdQ0lz8VdOi
-	NJuwAkwlut6ukQPOv+Cwu8iUEriDZnXqz+1lLtM5SO51AZfsSCKth7Nz4qaL1o03Yqfc
-	HZijjhWEE0puCGTp3hqbpTN+grqo0N/CSGgZQpXzLIWEFnW3ddS4ZkNXwGayG4yMKokl
-	HkpR8oNy1PlyEwyfrPS+OWbVpcw5KeJlimeEKPmkjR5d52AnD7KDX6boBvUE3c7Bggdc
-	GIBGMOTPACZ7kqgnIId2bUAqQEiRH8ojuqLj+FFyeBSY4snC/osgRflBLZzBOFlYeju/
-	CnJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=dCsXF4Q3r5iD3ciIoQn9E4TKwQyaEA1Az8bFH1vNfM4=;
-	b=isJR4dRSlxieD68wRqlLALXWaqbG7AGdnZ3hMYlptxLTDNvIqj2yhC32fVaA7Q5bTL
-	Gr/3i5HawXkKISFoIbg2ZWknkBnzHMPsx+lRE9XXIZoahilYTBhFUpkoiXFS0OoWFYDp
-	f/yjXch42qcftAKIO2EOzHC0i9HUz05FWSNxRTQbLOkwderEcF8nah4fKYexsoQWSUqE
-	0PYY2oTLAiMT/Sp2mLR0oRznfNcun4BJayqOIwVYKtGnF3EWO7PDzApniIZlRkliSRve
-	t0LpnWZJRhKPbz907+RY1YSybpqu+3YsKBvty25tziQJOzq/HQzP/K/xxMMoHdvnniCV
-	W4Kw==
-X-Gm-Message-State: AA+aEWY/+kD89ktHPQhYJzOIumpKotbjc+JQVjbUc86VlLrz41hiNHhb
-	t4tnfONpaCJG7+gRWlV14/JK3Rz3OZtcTocZJnmvgUOH
-X-Google-Smtp-Source: AFSGD/VUF9QpmOd+RICVzfYRjjWO6pJw9Hr5r12t3q8fD5UQeHrPFeoI4f8izyfGBBRYDZCcYS8lKP/907CEDNEXaGA=
-X-Received: by 2002:a02:f95:: with SMTP id 21mr84318jao.66.1544142230131; Thu,
-	06 Dec 2018 16:23:50 -0800 (PST)
+	*      [203.222.77.226 listed in list.dnswl.org]
+X-Greylist: delayed 902 seconds by postgrey-1.32 at yocto-www;
+	Thu, 06 Dec 2018 19:30:19 PST
+Received: from mail.innerrange.com.au (mail.innerrange.com.au [203.222.77.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80E7CE00C31
+	for <yocto@yoctoproject.org>; Thu,  6 Dec 2018 19:30:19 -0800 (PST)
+Received: from ir-mail.corp.innerrange.com.au (192.168.4.15) by
+	ir-mail.corp.innerrange.com.au (192.168.4.15) with Microsoft SMTP
+	Server
+	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+	15.1.1531.3; Fri, 7 Dec 2018 14:15:14 +1100
+Received: from ir-mail.corp.innerrange.com.au ([fe80::b00d:e485:459b:788f]) by
+	ir-mail.corp.innerrange.com.au ([fe80::b00d:e485:459b:788f%2]) with
+	mapi id 15.01.1531.007; Fri, 7 Dec 2018 14:15:14 +1100
+From: Craig McQueen <craig.mcqueen@innerrange.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Missing RDEPENDS on libldb, libtevent
+Thread-Index: AdSN2xGUgDAA8/KTTSyEIHNDlPdLnA==
+Date: Fri, 7 Dec 2018 03:15:14 +0000
+Message-ID: <c4f487118ad847bda609a64302287ee4@innerrange.com>
+Accept-Language: en-AU, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.105.91]
 MIME-Version: 1.0
-From: Edward Wingate <edwingate8@gmail.com>
-Date: Thu, 6 Dec 2018 16:23:41 -0800
-Message-ID: <CAGMdoFmDg1ia5K06BUqK-yYZJW7wqMNyo66hK_SkBm5PWDZWWw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Duplicating a build configuration
+Subject: Missing RDEPENDS on libldb, libtevent
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,23 +47,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Dec 2018 00:23:51 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 07 Dec 2018 03:30:21 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I have configured Yocto to build a jethro distribution that I've been
-using for the past 3 years.  I want to duplicate this configuration on
-another computer as a backup build machine.  I could just copy over
-the poky directory and all my layers, but I think this would copy over
-unnecessary files (build/tmp, old build artifacts?).
+I am doing Yocto builds with Yocto sumo, and using the meta-oe layer.
 
-What would be the best way to make this backup computer be capable of
-generating the same distribution?  Some of my layers are on the jethro
-branch, and others on the master branch. Should I just configure from
-scratch (git clone all the layers, set all the right branches)?  Or is
-there a better way?  Could/should I reuse the download mirror or the
-sstate cache on the original machine?
+I recently updated Yocto poky from eebbc00b to 64a257fa, and updated meta-o=
+e from 2bb21ef2 to 8760facb. After that, I found I got build errors:
 
-Thanks for your help/suggestions.
+ERROR: libldb-1.3.1-r0 do_package_qa: QA Issue: /usr/lib/python2.7/site-pac=
+kages/ldb.so contained in package pyldb requires libldb.so.1(LDB_0.9.10), b=
+ut no providers found in RDEPENDS_pyldb? [file-rdeps]
+ERROR: libldb-1.3.1-r0 do_package_qa: QA Issue: /usr/lib/python2.7/site-pac=
+kages/ldb.so contained in package pyldb requires libldb.so.1, but no provid=
+ers found in RDEPENDS_pyldb? [file-rdeps]
+...
+ERROR: libldb-1.3.1-r0 do_package_qa: QA Issue: /usr/lib/libldb.so.1.3.1 co=
+ntained in package libldb requires libtevent.so.0(TEVENT_0.9.9), but no pro=
+viders found in RDEPENDS_libldb? [file-rdeps]
+ERROR: libldb-1.3.1-r0 do_package_qa: QA Issue: /usr/lib/libldb.so.1.3.1 co=
+ntained in package libldb requires libtevent.so.0, but no providers found i=
+n RDEPENDS_libldb? [file-rdeps]
+...
 
-Ed
+ERROR: libtevent-0.9.36-r0 do_package_qa: QA Issue: /usr/lib/python2.7/site=
+-packages/_tevent.so contained in package python-tevent requires libtevent.=
+so.0(TEVENT_0.9.9), but no providers found in RDEPENDS_python-tevent? [file=
+-rdeps]
+ERROR: libtevent-0.9.36-r0 do_package_qa: QA Issue: /usr/lib/python2.7/site=
+-packages/_tevent.so contained in package python-tevent requires libtevent.=
+so.0, but no providers found in RDEPENDS_python-tevent? [file-rdeps]
+
+I'm not sure what changed to make these errors appear, but I have added RDE=
+PENDS lines in bbappend as a work-around for now.
+
+--=20
+Craig McQueen
+
 
