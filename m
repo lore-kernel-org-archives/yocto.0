@@ -1,67 +1,53 @@
-Return-Path: <ticotimo@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BE08FE00C1E; Mon, 10 Dec 2018 08:34:19 -0800 (PST)
+	id 2D75CE00C4D; Mon, 10 Dec 2018 11:01:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	HTML_OBFUSCATE_05_10, 
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (ticotimo[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.45 listed in list.dnswl.org]
-	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com
-	[209.85.217.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C69EE00B92
-	for <yocto@yoctoproject.org>; Mon, 10 Dec 2018 08:34:17 -0800 (PST)
-Received: by mail-vs1-f45.google.com with SMTP id n10so6999058vso.13
-	for <yocto@yoctoproject.org>; Mon, 10 Dec 2018 08:34:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=DDBfK8319FS/F0fbDq44wxqJlWqRnCNskUL5r1EZIVE=;
-	b=H84EKnrU0uLXPV59ysycLWAdwpFdi2MFP+NiXe6zMGaLWXbgjWY9nzElXwQhtfhvUp
-	DTwn6oT/vAzvbd9OznU5tNVOam6HDG5jw9lKcdQ909/fetYID/5pe8eJhtPsYmAO5/pH
-	J4peDXtp2sv+OaFFGS1IatQtLbvT9i1l1DdSe6k8xVGI7bwUgA2F12EKpeGcAOapTXZ3
-	aTJE9pnmZX2RCzV1m5pC7uodiX9YeGTanhxZZmPYOMTuF9MTlsxrQMY3iZsyij7DUogF
-	/EJe7ccBX2qOqf4DgY1Ie/Os/a5CtOq/v3wsyji/NMYy/nakHo55goXY6EdT3AE+KVZS
-	4nMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=DDBfK8319FS/F0fbDq44wxqJlWqRnCNskUL5r1EZIVE=;
-	b=IQCM5aO/Yy7R0JUegCLYtOSqUoz7e0SZavu7MrSWkRuk4pw2CSvOl35SS2zwoc5j83
-	G0zEpRg/xl2qPyi004qf+BLPb3WYxzC1kZt0rETIcAxjSCVQ77C93KQitQjoaJeo2HHI
-	jrvlM0zCPpOWWu0NFJQhqmQvCK/g/zYA3xyTred0cHzqTUMgd2vW7R08XSHZ7NRQZDlz
-	24/alCRY1N1nw79DZeZ4E0Ea2tBATENge0cpc3v81j8C5tW7yC1+5S4yNja9r4B4KNmu
-	O5AIHFZI8SHTL1R8MI33DqRgJwoJzVi/PLzpB7/eLint7qZ65tuvCS2BZjA5I5bbyr3l
-	zjcw==
-X-Gm-Message-State: AA+aEWYSIXsE28kBenHPsbkU47g67E6zBXVYGeALY3BnDLuJ/1QikNTb
-	KGK149zmIHZZq/kZdqOlmhBZQYQbLGbq9hzTR3c=
-X-Google-Smtp-Source: AFSGD/XcuL22lugvI6HzB57ElMDA1BPVCsQxe6M+XnRNyMqH3yZODzsOSQU7dYuK2aHwRIGpqi9LgA4urpqOSkxfzoQ=
-X-Received: by 2002:a67:c795:: with SMTP id t21mr4909096vsk.94.1544459656715; 
-	Mon, 10 Dec 2018 08:34:16 -0800 (PST)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3876E00C10
+	for <yocto@yoctoproject.org>; Mon, 10 Dec 2018 11:01:29 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	10 Dec 2018 11:01:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.56,339,1539673200"; 
+	d="scan'208,217";a="117627740"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+	by orsmga001.jf.intel.com with ESMTP; 10 Dec 2018 11:01:28 -0800
+Received: from fmsmsx124.amr.corp.intel.com ([169.254.8.162]) by
+	FMSMSX108.amr.corp.intel.com ([169.254.9.143]) with mapi id
+	14.03.0415.000; Mon, 10 Dec 2018 11:01:28 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: Yocto Project Unassigned Bugs - Help Needed
+Thread-Index: AdRUG3den5c8kH6JR5OKxqhg9AfC3w==
+Date: Mon, 10 Dec 2018 19:01:27 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EEA66246B@fmsmsx124.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.108]
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNmNlNDYxYTEtMTdmZC00OGVhLTk3MDgtNTk1OTY4OGJkM2M0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTDVVbFNtUVFKNGJheHBqZGk0T0ViMUpRdm5wSkxGRmNZXC9GYWtSc1FcL1dKUlM4QkM4WGlyZWk0ZlJINmhcL1RRWCJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
 MIME-Version: 1.0
-References: <a14a8e30-2417-c600-5efc-56fc168560f4@cisco.com>
-In-Reply-To: <a14a8e30-2417-c600-5efc-56fc168560f4@cisco.com>
-From: Tim Orling <ticotimo@gmail.com>
-Date: Mon, 10 Dec 2018 08:34:05 -0800
-Message-ID: <CANx9H-B3gW0WoWjCqFW6EPH66kM0qMq+PJgkW2OcWa9a+Z=chw@mail.gmail.com>
-To: Oleksii Konoplitskyi <okonopli@cisco.com>
-Cc: yocto@yoctoproject.org, aborduno@cisco.com, xe-linux-external@cisco.com
-Subject: Re: [PATCH] ref-manual: add EXCLUDE_PACKAGES_FROM_SHLIBS description
+Subject: Yocto Project Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,453 +59,218 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Dec 2018 16:34:19 -0000
-Content-Type: multipart/alternative; boundary="000000000000356389057cad89a1"
+X-List-Received-Date: Mon, 10 Dec 2018 19:01:31 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA66246Bfmsmsx124amrcor_"
 
---000000000000356389057cad89a1
-Content-Type: text/plain; charset="UTF-8"
-
-Variable documentation is pulled in from:
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/conf/documentation.conf
-
-Notably, EXCLUDE_PACKAGES_FROM_SHLIBS is not defined there, which is why it
-is not in the generated docs.
-On Mon, Dec 10, 2018 at 4:53 AM Oleksii Konoplitskyi <okonopli@cisco.com>
-wrote:
-
-> Some packages containing shared libraries might be registered as shlib
-> providers when they shouldn't (for example, the lib is for their private
-> use
-> and must not generate any dependency).
->
-> EXCLUDE_FROM_SHLIBS is targeted at that, but it could be set for entire
-> recipe
-> only.
->
-> Variable EXCLUDE_PACKAGES_FROM_SHLIBS allows to set list of packages
-> that are
-> not candidates for shlib providers.
->
-> Signed-off-by: Oleksii Konoplitskyi <okonopli@cisco.com>
-> <okonopli@cisco.com>
-> ---
->   documentation/ref-manual/ref-variables.xml | 28
-> ++++++++++++++++++++++++++++
->   1 file changed, 28 insertions(+)
->
-> diff --git a/documentation/ref-manual/ref-variables.xml
-> b/documentation/ref-manual/ref-variables.xml
-> index 595f2db..98d3f86 100644
-> --- a/documentation/ref-manual/ref-variables.xml
-> +++ b/documentation/ref-manual/ref-variables.xml
-> @@ -4289,6 +4289,34 @@
->               </glossdef>
->           </glossentry>
->
-> +        <glossentry
->
-> id='var-EXCLUDE_PACKAGES_FROM_SHLIBS'><glossterm>EXCLUDE_PACKAGES_FROM_SHLIBS</glossterm>
-> +            <info>
-> +                EXCLUDE_PACKAGES_FROM_SHLIBS[doc] = "Causes the
-> OpenEmbedded build system's shared libraries resolver to exclude
-> packages when scanning for shared libraries."
-> +            </info>
-> +            <glossdef>
-> +                <para role="glossdeffirst">
-> +<!--                <para role="glossdeffirst"><imagedata
-> fileref="figures/define-generic.png" /> -->
-> +                    Triggers the OpenEmbedded build system's shared
-> libraries
-> +                    resolver to exclude packages when scanning for
-> +                    shared libraries.
-> +                    The
-> <filename>EXCLUDE_PACKAGES_FROM_SHLIBS</filename> variable is
-> +                    similar to the
-> +                    <link
->
-> linkend='var-EXCLUDE_FROM_SHLIBS'><filename>EXCLUDE_FROM_SHLIBS</filename></link>
-> +                    variable, which excludes all the packages provided
-> by recipe
-> +                    and not excludes particular package.
-> +                </para>
-> +
-> +                <para>
-> +                    Use the
-> + <filename>EXCLUDE_PACKAGES_FROM_SHLIBS</filename> variable as a list
-> of packages that
-> +                    are not candidates for shared libraries providers:
-> +                    <literallayout class='monospaced'>
-> +     EXCLUDE_PACKAGES_FROM_SHLIBS += "glibc-ptest glibc-dev"
-> +                    </literallayout>
-> +                </para>
-> +            </glossdef>
-> +        </glossentry>
-> +
->           <glossentry
-> id='var-EXCLUDE_FROM_WORLD'><glossterm>EXCLUDE_FROM_WORLD</glossterm>
->               <info>
->                   EXCLUDE_FROM_WORLD[doc] = "Directs BitBake to exclude
-> a recipe from world builds (i.e. bitbake world)."
->
->
-> --
-> 2.7.4
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---000000000000356389057cad89a1
-Content-Type: text/html; charset="UTF-8"
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA66246Bfmsmsx124amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Variable documentation is pulled in from:<br><a href=3D"http://git.yoctopro=
-ject.org/cgit/cgit.cgi/poky/tree/meta/conf/documentation.conf">http://git.y=
-octoproject.org/cgit/cgit.cgi/poky/tree/meta/conf/documentation.conf</a><br=
-><br>Notably, EXCLUDE_PACKAGES_FROM_SHLIBS is not defined there, which is w=
-hy it is not in the generated docs.<br><div class=3D"gmail_quote"><div dir=
-=3D"ltr">On Mon, Dec 10, 2018 at 4:53 AM Oleksii Konoplitskyi &lt;<a href=
-=3D"mailto:okonopli@cisco.com">okonopli@cisco.com</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
- #ccc solid;padding-left:1ex">
- =20
+All,
 
-   =20
- =20
-  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <p><span>Some packages
-        containing shared libraries might be registered as shlib</span><br>
-      <span>providers
-        when they shouldn&#39;t (for example, the lib is for their private
-        use</span><br>
-      <span>and must not
-        generate any dependency).</span><br style=3D"color:rgb(33,33,33);fo=
-nt-family:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot=
-;,Tahoma,Arial,sans-serif;font-size:13.3333px;font-style:normal;font-varian=
-t-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:=
-normal;text-align:start;text-indent:0px;text-transform:none;white-space:nor=
-mal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-styl=
-e:initial;text-decoration-color:initial">
-      <br>
-      <span>EXCLUDE_FROM_SHLIBS
-        is targeted at that, but it could be set for entire<span>=C2=A0</sp=
-an></span><br>
-      <span>recipe</span><br>
-      <span>only.</span><br>
-      <br>
-      <span>Variable
-        EXCLUDE_PACKAGES_FROM_SHLIBS allows to set list of packages<span>=
-=C2=A0</span></span><br>
-      <span>that are</span><br>
-      <span>not
-        candidates for shlib providers.</span><br>
-      <br>
-      <span>Signed-off-by:<span>=C2=A0</span></span><span class=3D"m_175361=
-7417299558869highlight" id=3D"m_17536174172995588690.35499705656760927" nam=
-e=3D"searchHitInReadingPane">Oleksii</span><span><span>=C2=A0</span></span>=
-<span class=3D"m_1753617417299558869highlight" id=3D"m_17536174172995588690=
-.38659650562062264" name=3D"searchHitInReadingPane">Konoplitskyi</span><spa=
-n><span>=C2=A0</span><a class=3D"m_1753617417299558869moz-txt-link-rfc2396E=
-" href=3D"mailto:okonopli@cisco.com" target=3D"_blank">&lt;okonopli@cisco.c=
-om&gt;</a></span><br>
-      <span>---</span><br>
-      <span>=C2=A0=C2=A0documentation/ref-manual/ref-variables.xml
-        | 28<span>=C2=A0</span></span><br style=3D"color:rgb(33,33,33);font=
--family:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,=
-Tahoma,Arial,sans-serif;font-size:13.3333px;font-style:normal;font-variant-=
-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:no=
-rmal;text-align:start;text-indent:0px;text-transform:none;white-space:norma=
-l;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:=
-initial;text-decoration-color:initial">
-      <span>++++++++++++++++++++++++++++</span><br>
-      <span>=C2=A0=C2=A01 file
-        changed, 28 insertions(+)</span><br style=3D"color:rgb(33,33,33);fo=
-nt-family:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot=
-;,Tahoma,Arial,sans-serif;font-size:13.3333px;font-style:normal;font-varian=
-t-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:=
-normal;text-align:start;text-indent:0px;text-transform:none;white-space:nor=
-mal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-styl=
-e:initial;text-decoration-color:initial">
-      <br>
-      <span>diff --git
-        a/documentation/ref-manual/ref-variables.xml<span>=C2=A0</span></sp=
-an><br>
-      <span>b/documentation/ref-manual/ref-variables.xml</span><br>
-      <span>index
-        595f2db..98d3f86 100644</span><br style=3D"color:rgb(33,33,33);font=
--family:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,=
-Tahoma,Arial,sans-serif;font-size:13.3333px;font-style:normal;font-variant-=
-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:no=
-rmal;text-align:start;text-indent:0px;text-transform:none;white-space:norma=
-l;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:=
-initial;text-decoration-color:initial">
-      <span>---
-        a/documentation/ref-manual/ref-variables.xml</span><br>
-      <span>+++
-        b/documentation/ref-manual/ref-variables.xml</span><br>
-      <span>@@ -4289,6
-        +4289,34 @@</span><br style=3D"color:rgb(33,33,33);font-family:&quo=
-t;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma,Arial=
-,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatures:no=
-rmal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-al=
-ign:start;text-indent:0px;text-transform:none;white-space:normal;word-spaci=
-ng:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text=
--decoration-color:initial">
-      <span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0
-        &lt;/glossdef&gt;</span><br style=3D"color:rgb(33,33,33);font-famil=
-y:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma=
-,Arial,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatu=
-res:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;t=
-ext-align:start;text-indent:0px;text-transform:none;white-space:normal;word=
--spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initia=
-l;text-decoration-color:initial">
-      <span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        &lt;/glossentry&gt;</span><br style=3D"color:rgb(33,33,33);font-fam=
-ily:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Taho=
-ma,Arial,sans-serif;font-size:13.3333px;font-style:normal;font-variant-liga=
-tures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal=
-;text-align:start;text-indent:0px;text-transform:none;white-space:normal;wo=
-rd-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:init=
-ial;text-decoration-color:initial">
-      <br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        &lt;glossentry<span>=C2=A0</span></span><br style=3D"color:rgb(33,3=
-3,33);font-family:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI =
-WPC&quot;,Tahoma,Arial,sans-serif;font-size:13.3333px;font-style:normal;fon=
-t-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-=
-spacing:normal;text-align:start;text-indent:0px;text-transform:none;white-s=
-pace:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decorat=
-ion-style:initial;text-decoration-color:initial">
-      <span>id=3D&#39;var-EXCLUDE_PACKAGES_FROM_SHLIBS&#39;&gt;&lt;glosster=
-m&gt;EXCLUDE_PACKAGES_FROM_SHLIBS&lt;/glossterm&gt;</span><br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0
-        &lt;info&gt;</span><br style=3D"color:rgb(33,33,33);font-family:&qu=
-ot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma,Aria=
-l,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:start;text-indent:0px;text-transform:none;white-space:normal;word-spac=
-ing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;tex=
-t-decoration-color:initial">
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        EXCLUDE_PACKAGES_FROM_SHLIBS[doc] =3D &quot;Causes the<span>=C2=A0<=
-/span></span><br>
-      <span>OpenEmbedded
-        build system&#39;s shared libraries resolver to exclude<span>=C2=A0=
-</span></span><br>
-      <span>packages when
-        scanning for shared libraries.&quot;</span><br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0
-        &lt;/info&gt;</span><br style=3D"color:rgb(33,33,33);font-family:&q=
-uot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma,Ari=
-al,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatures:=
-normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-=
-align:start;text-indent:0px;text-transform:none;white-space:normal;word-spa=
-cing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;te=
-xt-decoration-color:initial">
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0
-        &lt;glossdef&gt;</span><br style=3D"color:rgb(33,33,33);font-family=
-:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma,=
-Arial,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatur=
-es:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;te=
-xt-align:start;text-indent:0px;text-transform:none;white-space:normal;word-=
-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initial=
-;text-decoration-color:initial">
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        &lt;para role=3D&quot;glossdeffirst&quot;&gt;</span><br>
-      <span>+&lt;!--=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        &lt;para role=3D&quot;glossdeffirst&quot;&gt;&lt;imagedata<span>=C2=
-=A0</span></span><br>
-      <span>fileref=3D&quot;figures/define-generic.png&quot;
-        /&gt; --&gt;</span><br style=3D"color:rgb(33,33,33);font-family:&qu=
-ot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma,Aria=
-l,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:start;text-indent:0px;text-transform:none;white-space:normal;word-spac=
-ing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;tex=
-t-decoration-color:initial">
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        Triggers the OpenEmbedded build system&#39;s shared<span>=C2=A0</sp=
-an></span><br>
-      <span>libraries</span><br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        resolver to exclude packages when scanning for</span><br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        shared libraries.</span><br style=3D"color:rgb(33,33,33);font-famil=
-y:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma=
-,Arial,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatu=
-res:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;t=
-ext-align:start;text-indent:0px;text-transform:none;white-space:normal;word=
--spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initia=
-l;text-decoration-color:initial">
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        The<span>=C2=A0</span></span><br style=3D"color:rgb(33,33,33);font-=
-family:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,T=
-ahoma,Arial,sans-serif;font-size:13.3333px;font-style:normal;font-variant-l=
-igatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:nor=
-mal;text-align:start;text-indent:0px;text-transform:none;white-space:normal=
-;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:i=
-nitial;text-decoration-color:initial">
-      <span>&lt;filename&gt;EXCLUDE_PACKAGES_FROM_SHLIBS&lt;/filename&gt;
-        variable is</span><br style=3D"color:rgb(33,33,33);font-family:&quo=
-t;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma,Arial=
-,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatures:no=
-rmal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-al=
-ign:start;text-indent:0px;text-transform:none;white-space:normal;word-spaci=
-ng:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text=
--decoration-color:initial">
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        similar to the</span><br style=3D"color:rgb(33,33,33);font-family:&=
-quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma,Ar=
-ial,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatures=
-:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text=
--align:start;text-indent:0px;text-transform:none;white-space:normal;word-sp=
-acing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;t=
-ext-decoration-color:initial">
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        &lt;link<span>=C2=A0</span></span><br style=3D"color:rgb(33,33,33);=
-font-family:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&qu=
-ot;,Tahoma,Arial,sans-serif;font-size:13.3333px;font-style:normal;font-vari=
-ant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacin=
-g:normal;text-align:start;text-indent:0px;text-transform:none;white-space:n=
-ormal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-st=
-yle:initial;text-decoration-color:initial">
-      <span>linkend=3D&#39;var-EXCLUDE_FROM_SHLIBS&#39;&gt;&lt;filename&gt;=
-EXCLUDE_FROM_SHLIBS&lt;/filename&gt;&lt;/link&gt;</span><br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        variable, which excludes all the packages provided<span>=C2=A0</spa=
-n></span><br>
-      <span>by recipe</span><br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        and not excludes particular package.</span><br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        &lt;/para&gt;</span><br style=3D"color:rgb(33,33,33);font-family:&q=
-uot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma,Ari=
-al,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatures:=
-normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-=
-align:start;text-indent:0px;text-transform:none;white-space:normal;word-spa=
-cing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;te=
-xt-decoration-color:initial">
-      <span>+</span><br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        &lt;para&gt;</span><br style=3D"color:rgb(33,33,33);font-family:&qu=
-ot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma,Aria=
-l,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:start;text-indent:0px;text-transform:none;white-space:normal;word-spac=
-ing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;tex=
-t-decoration-color:initial">
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        Use the</span><br>
-      <span>+
-        &lt;filename&gt;EXCLUDE_PACKAGES_FROM_SHLIBS&lt;/filename&gt;
-        variable as a list<span>=C2=A0</span></span><br>
-      <span>of packages
-        that</span><br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        are not candidates for shared libraries providers:</span><br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        &lt;literallayout class=3D&#39;monospaced&#39;&gt;</span><br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0
-        EXCLUDE_PACKAGES_FROM_SHLIBS +=3D &quot;glibc-ptest glibc-dev&quot;=
-</span><br>
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        &lt;/literallayout&gt;</span><br style=3D"color:rgb(33,33,33);font-=
-family:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,T=
-ahoma,Arial,sans-serif;font-size:13.3333px;font-style:normal;font-variant-l=
-igatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:nor=
-mal;text-align:start;text-indent:0px;text-transform:none;white-space:normal=
-;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:i=
-nitial;text-decoration-color:initial">
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        &lt;/para&gt;</span><br style=3D"color:rgb(33,33,33);font-family:&q=
-uot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma,Ari=
-al,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatures:=
-normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-=
-align:start;text-indent:0px;text-transform:none;white-space:normal;word-spa=
-cing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;te=
-xt-decoration-color:initial">
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0
-        &lt;/glossdef&gt;</span><br style=3D"color:rgb(33,33,33);font-famil=
-y:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma=
-,Arial,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatu=
-res:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;t=
-ext-align:start;text-indent:0px;text-transform:none;white-space:normal;word=
--spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initia=
-l;text-decoration-color:initial">
-      <span>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        &lt;/glossentry&gt;</span><br style=3D"color:rgb(33,33,33);font-fam=
-ily:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Taho=
-ma,Arial,sans-serif;font-size:13.3333px;font-style:normal;font-variant-liga=
-tures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal=
-;text-align:start;text-indent:0px;text-transform:none;white-space:normal;wo=
-rd-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:init=
-ial;text-decoration-color:initial">
-      <span>+</span><br>
-      <span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        &lt;glossentry<span>=C2=A0</span></span><br style=3D"color:rgb(33,3=
-3,33);font-family:&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI =
-WPC&quot;,Tahoma,Arial,sans-serif;font-size:13.3333px;font-style:normal;fon=
-t-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-=
-spacing:normal;text-align:start;text-indent:0px;text-transform:none;white-s=
-pace:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decorat=
-ion-style:initial;text-decoration-color:initial">
-      <span>id=3D&#39;var-EXCLUDE_FROM_WORLD&#39;&gt;&lt;glossterm&gt;EXCLU=
-DE_FROM_WORLD&lt;/glossterm&gt;</span><br>
-      <span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0
-        &lt;info&gt;</span><br style=3D"color:rgb(33,33,33);font-family:&qu=
-ot;Segoe UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma,Aria=
-l,sans-serif;font-size:13.3333px;font-style:normal;font-variant-ligatures:n=
-ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
-lign:start;text-indent:0px;text-transform:none;white-space:normal;word-spac=
-ing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;tex=
-t-decoration-color:initial">
-      <span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-        EXCLUDE_FROM_WORLD[doc] =3D &quot;Directs BitBake to exclude<span>=
-=C2=A0</span></span><br>
-      <span>a recipe from
-        world builds (i.e. bitbake world).&quot;</span></p></div><div text=
-=3D"#000000" bgcolor=3D"#FFFFFF"><p><br>
-      <span>--<span>=C2=A0</span></span><br>
-      <span>2.7.4</span><br>
-      <span><span><br>
-        </span></span></p>
-  </div>
 
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
 
---000000000000356389057cad89a1--
+The triage team meets weekly and does its best to handle the bugs reported =
+into the Bugzilla. The number of people attending that meeting has fallen, =
+as have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage team) a=
+re therefore going to start reporting out the currently 296 unassigned bugs=
+.
+
+
+
+We're hoping people may be able to spare some time now and again to help ou=
+t with these.
+
+
+
+Bugs are split into two types, "true bugs" where things don't work as they =
+should and "enhancements" which are features we'd want to add to the system=
+.
+
+
+
+There are also roughly four different "priority" classes right now, "2.7", =
+"2.8", "2.99" and "Future", the more pressing/urgent issues being in "2.7" =
+and then "2.8".
+
+
+
+Please review this link and if a bug is something you would be able to help=
+ with either take ownership of the bug, or send me (Stephen.k.jolley@intel.=
+com<mailto:Stephen.k.jolley@intel.com>) an e-mail with the bug number you w=
+ould like and I will assign it to you (please make sure you have a bugzilla=
+ account).
+
+
+
+The list is at: https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bu=
+gs
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*    Cell:                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA66246Bfmsmsx124amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:2 11 5 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle19
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoPlainText">All,<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The triage team meets weekly and does its best to=
+ handle the bugs reported into the Bugzilla. The number of people attending=
+ that meeting has fallen, as have the number of people available to help fi=
+x bugs. One of the things we hear
+ users report is they don't know how to help. We (the triage team) are ther=
+efore going to start reporting out the currently 296 unassigned bugs.<o:p><=
+/o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">We're hoping people may be able to spare some tim=
+e now and again to help out with these.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Bugs are split into two types, &quot;true bugs&qu=
+ot; where things don't work as they should and &quot;enhancements&quot; whi=
+ch are features we'd want to add to the system.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">There are also roughly four different &quot;prior=
+ity&quot; classes right now, &#8220;2.7&#8221;, &#8220;2.8&#8221;, &quot;2.=
+99&quot; and &quot;Future&quot;, the more pressing/urgent issues being in &=
+quot;2.7&quot; and then &#8220;2.8&#8221;.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Please review this link and if a bug is something=
+ you would be able to help with either take ownership of the bug, or send m=
+e (<a href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com=
+</a>) an e-mail with the bug number
+ you would like and I will assign it to you (please make sure you have a bu=
+gzilla account).<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The list is at: <a href=3D"https://wiki.yoctoproj=
+ect.org/wiki/Bug_Triage#Unassigned_Bugs">
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
+></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;,serif;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;,serif;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+,serif">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;,serif;color:teal">:</span><span =
+lang=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;,=
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA66246Bfmsmsx124amrcor_--
