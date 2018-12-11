@@ -1,6 +1,6 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <alan.martinovic@senic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5B7C2E00C90; Tue, 11 Dec 2018 02:55:05 -0800 (PST)
+	id 1B18AE00C4D; Tue, 11 Dec 2018 03:55:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,48 +13,44 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.170 listed in list.dnswl.org]
-Received: from mail-it1-f170.google.com (mail-it1-f170.google.com
-	[209.85.166.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4070EE00C1E
-	for <yocto@yoctoproject.org>; Tue, 11 Dec 2018 02:55:03 -0800 (PST)
-Received: by mail-it1-f170.google.com with SMTP id g76so2886293itg.2
-	for <yocto@yoctoproject.org>; Tue, 11 Dec 2018 02:55:03 -0800 (PST)
+	*      [209.85.210.51 listed in list.dnswl.org]
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com
+	[209.85.210.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7C89E00C10
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2018 03:55:17 -0800 (PST)
+Received: by mail-ot1-f51.google.com with SMTP id w25so13678606otm.13
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2018 03:55:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=tktyaeoQjD8c0x4o2XAHzSfilaDIiCQ7H5kNorjQO18=;
-	b=RRbuwaPEXXZRDdcTRyP4SHOnAvzgl4xwbNxcDe9y+5StRFmT19andSB1ixF3DIAv1L
-	/wQ4sq4jcIPC98iByqctVnvrFM3CyQHLP0hOkDutjKDjCFu7nx+GJvvx+qIypt4PFLHt
-	sfuRbiAjxJKb2nU0MP3aCsZ3ovDNX4kPwh+86ivt7UNmKR+o4hpZ1CjO0QYxcbUv37c0
-	WHg9eqOk4XJG+U0xlp1A7PviGhGjBdxHBYkC4LENCILOxf7xuAQoshgAlFlWbEvGJAZO
-	Z1Ycrir2QbzzlWHGZIQ+3XIu7cPargmpjd6cuoaGvsZywdU1cDDVp5afzfcPYvmOyhT0
-	OBWw==
+	d=senic-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Bl+tCncg6+kRUq5SKza+KkiusRps5T35dvRr3a0AnRE=;
+	b=KDZ41Vh02gd2eotz/Bj7nSBrSb4pakhSsTjzquO6euiZ9CHW9KVsXcVaCsxswvm2/B
+	EkYqatOF+vqlIT3Qn2jA+iVTny2B4G7yE2gNTxY9y68kXS/DiYXb45dCklHtIcjrY/H0
+	54gG45Q7VsE/eETWVUHCOvTUpRzTQwtxCLK32TQdddwQXtmi8Y+5b+BRtSsRZ3iy1B9z
+	vEVIXGPKeKasZho25LeLoSq/2ckJAw/3tBpVQrBvUVEbfIHc6kFWRq+6hMEl64F5Qfq/
+	Rma/L12xRWKGgjqNFQZws+kZIzeCE49UytJhd2kQ4yrw8SkqZjmvoTZQqITD/UGzNF5X
+	PZUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=tktyaeoQjD8c0x4o2XAHzSfilaDIiCQ7H5kNorjQO18=;
-	b=GT+bJCAAQkAdpQgUz8UvhjbGuytxOKFFq+PhXC8bSNyvCZcm90TE0eY3T3VeyPyOsv
-	hFA+fHqQIKe9WSXF5JC1I2BjN6C4sdtbVJYCqZ2b3gVoF72++lI2+F45wJK9H2MWez6u
-	2ocF7+yABcT25lWzfJIgNTsn+970YjCCoBekvOEvsAzl2sVV65sKkZAAs3tjxReJKRzG
-	Un+krR/HUCksYEbntsfq/OLoYnSND/QosaCv7YaaAVMTXT7h1TkjDAvJPXaXJK3jNyik
-	RacW2y9BQ8b9wU9cmWvcBWS/LsN9wXu+ACDsP1+Ezv7JoxRffgzBZvXsLDRA80ZR7MJP
-	iyXg==
-X-Gm-Message-State: AA+aEWYf7X25dmw+GS3yuJqr+pfJewlgbQPsFqj1LiWnKzLBO13LWRWX
-	hHieU8TI8Cj+Fy+eBzw0wRqk/vLV1l71yyJAH8ibfQ==
-X-Google-Smtp-Source: AFSGD/XLh7w0pIZcpZI/V77fW0wvywgsBvKb7mlblp+F4W4VsnLUkaNqtuBsd2wzEryDA1n3YdWesZjxwWG56MmyP1I=
-X-Received: by 2002:a02:57c4:: with SMTP id b65mr15149543jad.79.1544525702872; 
-	Tue, 11 Dec 2018 02:55:02 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Bl+tCncg6+kRUq5SKza+KkiusRps5T35dvRr3a0AnRE=;
+	b=HfTRbCKHVyN7y9Qpv18dkikVcZg4dIB4UCSCLzWH0bosIudF8iPOPsh35ARSQ4Pq9V
+	6qXGxTtpiVZPWXbPbkVpYjCzrlO+POF9WHfonM3apnln5hpMCwwN7wvnj5o3qXTc2E0i
+	2EiFOGZPb8XbmhNWoWCg5w9m6RW+c8TbQCLr3fsMzSWyWFL5rgA/GWvPmOI77ReixOti
+	rHv+uvI+hyXtJv2KO+gTJ/wqAsubcOf2EPpPDQGd+opTkbgA0mVBcQBhznPODw5SgRQP
+	XxuqVkvqIPSIhVZafHVBph7LJlyFhyNpEmEq1Tz1SbsXPhdm5jULzND6+I+GLSsBNg9X
+	vnSw==
+X-Gm-Message-State: AA+aEWbaZlAwmezgT7twAWZD5feLghlw9Wa+RfitOxpdFwY3lingzpbq
+	x3d5FDKZZwqDekuIZ+WAHTx4ty182deoUEfi/sknj7Hy
+X-Google-Smtp-Source: AFSGD/VgeDPXjWuwxAIVUnImkbhql3bVPHPHD3JGhxP87LSCwDm2XrOpZU7Ogf6U8DzesxPTV9/LEaJirf5UhPIo9/0=
+X-Received: by 2002:a9d:5549:: with SMTP id h9mr10390574oti.83.1544529316797; 
+	Tue, 11 Dec 2018 03:55:16 -0800 (PST)
 MIME-Version: 1.0
-References: <CAKpuFdeEtgn9SFt6OsTca7zHFKDc32ORmbn69EO01P+YdybVDw@mail.gmail.com>
-In-Reply-To: <CAKpuFdeEtgn9SFt6OsTca7zHFKDc32ORmbn69EO01P+YdybVDw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 11 Dec 2018 10:54:51 +0000
-Message-ID: <CAJTo0LZTGKxuQRQretND8S9NFHnqgX1vBkVbNMNaPgfH9K75sQ@mail.gmail.com>
-To: jonaskgandersson@gmail.com
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Do rootfs fail when switch from rpm to deb
+From: Alan Martinovic <alan.martinovic@senic.com>
+Date: Tue, 11 Dec 2018 12:55:05 +0100
+Message-ID: <CAOT_U5YDEXHTHtbeb1Hhxvk5=7AufdpyT2u7L1TEpjYL8D0BAw@mail.gmail.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Best practices for tokens/passwords that can't be versioned
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,20 +62,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Dec 2018 10:55:05 -0000
+X-List-Received-Date: Tue, 11 Dec 2018 11:55:19 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 11 Dec 2018 at 09:11, Jonas Andersson
-<jonaskgandersson@gmail.com> wrote:
-> The following packages have unmet dependencies:
->  microservicebus-node : Depends: microservicebus-node-npm but it is not going to be installed
->                         Depends: microservicebus-node-npm-JSONStream but it is not installable
->                         Depends: microservicebus-node-npm-JSONStream-jsonparse but it is not installable
->                         Depends: microservicebus-node-npm-JSONStream-through but it is not installable
-> E: Unable to correct problems, you have held broken packages.
+Hi,
+am looking for opinions on how to deal with recipes that depend on file content
+that can't be versioned.
 
-I seem to recall that deb doesn't support packages with uppercase
-names.  This should have caused a warning somewhere else though.
+i.e.
+The logging service on the embedded device needs to have a certain
+private key or
+token to work correctly.
+But due to security reasons that file can't be versioned with the layer.
 
-Ross
+
+The best I came up with so far is to tie the recipe with an existence of an
+env variable. If the variable isn't present the recipe fails if it is,
+it's content
+gets redirected to the correct file.
+
+Seems like conf/local.conf could also offer a solution given that it's
+a temporary
+thing (per build setup), but didn't yet figure out a good mechanism.
+
+Be Well,
+Alan
 
