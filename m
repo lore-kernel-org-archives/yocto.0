@@ -1,56 +1,94 @@
-Return-Path: <madoga@protonmail.com>
+Return-Path: <MohamedYouseif@outlook.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53EE6E00C94; Tue, 11 Dec 2018 10:21:59 -0800 (PST)
+	id 32375E00C9F; Tue, 11 Dec 2018 17:40:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (madoga[at]protonmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [185.70.40.133 listed in list.dnswl.org]
+	provider *      (mohamedyouseif[at]outlook.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [40.92.70.30 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 1187 seconds by postgrey-1.32 at yocto-www;
-	Tue, 11 Dec 2018 10:21:57 PST
-Received: from mail-40133.protonmail.ch (mail-40133.protonmail.ch
-	[185.70.40.133])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFFCAE00BB7
-	for <yocto@yoctoproject.org>; Tue, 11 Dec 2018 10:21:57 -0800 (PST)
-Date: Tue, 11 Dec 2018 16:21:42 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=default; t=1544551329;
-	bh=Oo9o5XRqrA74oMD6dx7xfRjH/4cQBU18qLl5jbjIZJo=;
-	h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:
-	Feedback-ID:From;
-	b=WudzPpY/K+rGdGqWITtRLfYzfYMtHSC/pi4yJetopZtxK7mgk2GFJWKvpibYzHfsv
-	/gNOcoGyk7lcQEws4Ru7Xvsc0q7DvHdizz6qqd+FD89nGFRfc52U30IJHgQS159iRu
-	Q6fQvdj80qUDUyhs8Fzg3Qpf+j393tUGcofwdFLw=
-To: Mark Hatle <mark.hatle@windriver.com>
-From: madoga <madoga@protonmail.com>
-Message-ID: <irVSgqSP9OMlHzsyuT1Qc3PpAXc0tNR2Hk3h2KsBqymJ_YwbpYcN5vMAmVtVzjnIS6Tj9IknIbyLjoHZHPT5Hc-VS1pcj9jSqnaUFwjfvHY=@protonmail.com>
-In-Reply-To: <d3949cbc-5155-202d-8591-23319220b21e@windriver.com>
-References: <T9S3hRvMw_5pENs_xGzABmQbU_6FXXTtPnPwIWfY9FWVlsXo7SN3XOQ58JyP9AVLVdsnZjYe_jRhCOSjR1NNXy4Q86fFWF-DM0c_oCCSvtk=@protonmail.com>
-	<bb0bcf7f-7250-9f74-b191-d057496942e9@windriver.com>
-	<gYPGW9AlaXI8UYYprw9Q8lCvlQx05jxnlgKFgK2gkrD07YPNUn4grABgAhEF98IhdVUjWq72DRZez0lSyNWiBRIL19NHEo57JUWSlhfKPS0=@protonmail.com>
-	<d3949cbc-5155-202d-8591-23319220b21e@windriver.com>
-Feedback-ID: 0hd8diSz-ERuYTTSeMaMs35R2I6XUlWHNfgIdkRMsU8awNem8isLl5bIfhU0ez-0XmRosu-bJlGUk1AAdiucNQ==:Ext:ProtonMail
+X-Greylist: delayed 7173 seconds by postgrey-1.32 at yocto-www;
+	Tue, 11 Dec 2018 17:40:15 PST
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com
+	(mail-oln040092070030.outbound.protection.outlook.com [40.92.70.30])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5316FE00C5B
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2018 17:40:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+	s=selector1;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=I2iEUR3FkIcHUMEhg0teCybOYx1I8hYVmAJPWBEy3K8=;
+	b=i+yYFW65eonw+xcAgNzsGt3Sg/9i/Jrf4FuHYnLT370XNdnbfwDhNww8TyCCKr5oK0/hRNFPhh667QCCw4+vcbystaiZOriJOUbWYt9Kitwy0V860VWJY46YCB5bYp3ccPRRHSv4L7Ef5LHOyhptm61RPzwJAf0HThGbqknsLLSBVXvwcIFrEr9jDXAMjROZoHf+qcJ4BiBAT1r8e1Z2xGcEeHoSk6+5lvSN4IOgemhs3TAS3ZOEN0GpgGgmCGvc7roraB+48PJaDNQGnUmJslSq9sc17Qgq0Qm/lSI1s6t3BEV9fQPA7NuAKuN+oaHstMexpbpAUfUN+qIfp0tlew==
+Received: from AM5EUR03FT009.eop-EUR03.prod.protection.outlook.com
+	(10.152.16.59) by AM5EUR03HT092.eop-EUR03.prod.protection.outlook.com
+	(10.152.17.65) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1382.18;
+	Tue, 11 Dec 2018 12:07:26 +0000
+Received: from HE1P195MB0362.EURP195.PROD.OUTLOOK.COM (10.152.16.52) by
+	AM5EUR03FT009.mail.protection.outlook.com (10.152.16.110) with
+	Microsoft SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1382.18 via Frontend Transport; Tue, 11 Dec 2018 12:07:26 +0000
+Received: from HE1P195MB0362.EURP195.PROD.OUTLOOK.COM
+	([fe80::e4b0:7f83:9a64:5144]) by HE1P195MB0362.EURP195.PROD.OUTLOOK.COM
+	([fe80::e4b0:7f83:9a64:5144%5]) with mapi id 15.20.1404.026;
+	Tue, 11 Dec 2018 12:07:26 +0000
+From: Mohamed Youseif <MohamedYouseif@outlook.com>
+To: "yocto-request@yoctoproject.org" <yocto-request@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: yocto Digest, Vol 99, Issue 26
+Thread-Index: AQHUkTgGRGJO657aBEmqrn/NaFiCUqV5cFFM
+Date: Tue, 11 Dec 2018 12:07:26 +0000
+Message-ID: <HE1P195MB03627B98CB86695F56960DE7C1A60@HE1P195MB0362.EURP195.PROD.OUTLOOK.COM>
+References: <mailman.6424.1544522247.2881.yocto@yoctoproject.org>
+In-Reply-To: <mailman.6424.1544522247.2881.yocto@yoctoproject.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:E59954A2895E9309A68B39FADE14AAD98980C2DA2EC9F780263CD924D5818A55;
+	UpperCasedChecksum:CC0BBE3A5BCED672563D9CF6219990602B07BCA149A175C99B51EF2A04C20E03;
+	SizeAsReceived:7037; Count:45
+x-tmn: [y2UaUeUrSc9yHZ+EOKZTOZaDNPuPjgHz]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; AM5EUR03HT092;
+	6:sQIsdLiz33Bf2OcevVgImFARda5ImdwLKCB0Itm3sxko6Tol1k3TA8hlAPbIMT1L3V31aiQYy+mWvY5AHttkf4cRH6+/sJvV2hJrMcZUP1yJNDNqAjoH58OdswUzkrFoTb0FtApTyZGCDtlOqkE7kFB/xHjAFnR4iyytTvYJ4Y1o9etwyoGWabY5BsXMqzDOx8+YeWOysVCm95deLXH0iPkaiW7kXOLCDzjbbBnyyj0RiqO77tvXaAUt69K12enC5jvHZO2rKtUOjlBm+RkKxTtnsPA/LkEE4O9SINhd2vId225viJr14+dC3b51loUuWaOmWhLDm4ev5wzLbxXIo03azK2e3Q163TGDqEfdkEFpthEdHXOVq44US2UFcDQsXbAfaauvGU8cUOsPqfWfKCjmbIB+vMvwEM9o9s6C3ZyjptAnr/O7yi6BW2IMMCZUyMpt0l039kZ7vs1yCFUMig==;
+	5:g6SE6areEalTxJeYjUHiQNcrc/z4w4NrSShmpNjp8cvJm6UvS2uBN1xvPkiMl5Sgeb7adAwqJe19CSeZ1FH7qXzDms3h/rOwobg03gxOhVO1KvLYx/eGeS6exY+0Hs9PwF06lm9AM8ICQx2UVzpb4RnoHCGDNTfvjPNTXh5J31Y=;
+	7:cP14pZM2f9zRF5bGDPz14CRPGVPCbL93aiHy1uqWisF0qYC4JQBGADe/H5MbjFANPKBYObZG6ApRLENtJDtAg+RBUPmWwo5TToLhqaXQETatZZOXxCFeRtbYHIroTRMDpHrsUoN73vP2p5BFurnykQ==
+x-incomingheadercount: 45
+x-eopattributedmessage: 0
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390098)(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101475)(1601125500)(1701031045);
+	SRVR:AM5EUR03HT092; 
+x-ms-traffictypediagnostic: AM5EUR03HT092:
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(4566010)(82015058);
+	SRVR:AM5EUR03HT092; BCL:0; PCL:0; RULEID:; SRVR:AM5EUR03HT092; 
+x-microsoft-antispam-message-info: 3MHHxhSkAVgaufc0v8xIkLRaTo1U+1XWWvRi2Jaf17Ul18xikllehf4OlS59QtZv
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [OE-core] FILESYSTEM_PERMS_TABLE / fs-perms.txt
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: d4d70346-2c10-4f39-8c00-e767963926d9
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65bb4fa3-7aba-48a5-3d8f-08d65f613733
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: d4d70346-2c10-4f39-8c00-e767963926d9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Dec 2018 12:07:26.0734 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR03HT092
+Subject: Re: yocto Digest, Vol 99, Issue 26
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: madoga <madoga@protonmail.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -59,126 +97,748 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Dec 2018 18:21:59 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 12 Dec 2018 01:40:18 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_HE1P195MB03627B98CB86695F56960DE7C1A60HE1P195MB0362EURP_"
+
+--_000_HE1P195MB03627B98CB86695F56960DE7C1A60HE1P195MB0362EURP_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
+I'm asking about how to enable PACKAGECONFIG feature from local.conf file, =
+let's say that i have the following pacakgeconfig in a recipe
+PACKAGECONFIG =3D " f1 f2  "
+PACKAGECONFIG[f1] =3D "-DENABLE_f1=3DON,-DENABLE_f1=3DOFF,f1,"
 
-On Monday, 10 de December de 2018 17:12, Mark Hatle <mark.hatle@windriver.c=
-om> wrote:
+so i need to add line in local.conf file to enable this feature for my imag=
+e?
+I tried to use the following line to loca.conf but it does not help:
 
-> On 12/10/18 4:14 AM, madoga wrote:
+PACKAGECONFIG_pn-<my-recipe-name>_append =3D "-DENABLE_f1=3DON"
+
+________________________________
+From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
+half of yocto-request@yoctoproject.org <yocto-request@yoctoproject.org>
+Sent: Tuesday, December 11, 2018 11:57 AM
+To: yocto@yoctoproject.org
+Subject: yocto Digest, Vol 99, Issue 26
+
+Send yocto mailing list submissions to
+        yocto@yoctoproject.org
+
+To subscribe or unsubscribe via the World Wide Web, visit
+        https://lists.yoctoproject.org/listinfo/yocto
+or, via email, send a message with subject or body 'help' to
+        yocto-request@yoctoproject.org
+
+You can reach the person managing the list at
+        yocto-owner@yoctoproject.org
+
+When replying, please edit your Subject line so it is more specific
+than "Re: Contents of yocto digest..."
+
+
+Today's Topics:
+
+   1. Using multilib to build 32-bit glibc on 64-bit target
+      platform (Nicholas Tsirakis)
+   2. Raspberry pi with Yocto os sd card is not working with
+      Raspbian os sd card (AKASH BHARDWAJ)
+   3.  Do rootfs fail when switch from rpm to deb (Jonas Andersson)
+   4. Lib update (Peter Balazovic)
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Mon, 10 Dec 2018 15:37:19 -0500
+From: Nicholas Tsirakis <niko.tsirakis@gmail.com>
+To: yocto@yoctoproject.org
+Subject: [yocto] Using multilib to build 32-bit glibc on 64-bit target
+        platform
+Message-ID:
+        <CAFqpmVLj_54Ou1N=3D+YdjAqtcGGDLsWoH-85+89nQ=3DNJLUhPDpA@mail.gmail=
+.com>
+Content-Type: text/plain; charset=3D"utf-8"
+
+Hello,
+
+I'm having trouble understanding the proper usage of multilib within the
+Yocto project. I've read through Yocto's documentation, but I think I am
+missing something crucial. Here are the steps I've taken:
+
+1. Added the following to my local.conf:
+require conf/multilib.conf
+MULTILIBS =3D "multilib:lib32"
+DEFAULTTUNE_virtclass-multilib-lib32 =3D "x86"
+
+2. Attempted to build lib32-glibc with bitbake. Received the following
+errors for lib32-glib-initial (shortened for brevity):
+
+| <stdin>:10:36: error: 'REG_RBP' undeclared (first use in this function)
+| <stdin>:9:26: note: in expansion of macro 'ucontext'
+| <stdin>:10:20: note: in expansion of macro 'mcontext'
+| <stdin>:11:61: note: in expansion of macro 'mreg'
+| <stdin>:10:36: note: each undeclared identifier is reported only once for
+each function it appears in
+| <stdin>:9:26: note: in expansion of macro 'ucontext'
+| <stdin>:10:20: note: in expansion of macro 'mcontext'
+| <stdin>:11:61: note: in expansion of macro 'mreg'
+| <stdin>:10:36: error: 'REG_RSP' undeclared (first use in this function)
+| <stdin>:9:26: note: in expansion of macro 'ucontext'
+| <stdin>:10:20: note: in expansion of macro 'mcontext'
+| <stdin>:12:61: note: in expansion of macro 'mreg'
+...
+| <stdin>:5:73: error: 'La_x86_64_xmm' undeclared (first use in this
+function)
+...
+| <stdin>:10:87: error: invalid use of undefined type 'struct
+La_x86_64_regs'
+...
+
+3. At this point it appeared to me like it was attempting to build a 64-bit
+version of glibc in a 32-bit environment, so I tried building the
+lib32-linux-libc-headers by adding the following to its recipe:
+
+do_install_prepend() {
+    if [ "${MLPREFIX}" =3D=3D "lib32-" ]; then
+        ARCH=3D"x86"
+    fi
+}
+
+This was more a shot in the dark than anything else and still yielded the
+same result. Can someone clear up the proper usage of multilib and tell me
+if I'm doing something wrong? Please note that my project currently uses
+OE's pyro branches.
+
+Thank you for your time.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <http://lists.yoctoproject.org/pipermail/yocto/attachments/20181210/be=
+f1ca7f/attachment-0001.html>
+
+------------------------------
+
+Message: 2
+Date: Tue, 11 Dec 2018 07:57:35 +0530
+From: AKASH BHARDWAJ <akash12bhardwaj@gmail.com>
+To: yocto@yoctoproject.org
+Subject: [yocto] Raspberry pi with Yocto os sd card is not working
+        with    Raspbian os sd card
+Message-ID:
+        <CALYZMn=3D_AhWPbX1Hx=3D7o=3DmhoGEU=3D=3DjnCBJhiQ0v5Y6gL4f0H9A@mail=
+.gmail.com>
+Content-Type: text/plain; charset=3D"utf-8"
+
+Few months ago,I built an custom image for Raspberrypi using Yocto
+Project,flashed it in a sd card and was able to boot
+raspberrypi.Presently,I am trying to use  a different sd card with raspbian
+os in same Raspberrypi.But it is not able to boot Raspberrypi.How can I
+rectify this problem?This is my code which I used few years back to
+generate yocto image.
+
+
+
+
+
+
+
+
+
+
+PACKAGE_CLASSES ?=3D "package_rpm package_deb"
 >
-> > > On 12/5/18 11:12 AM, madoga wrote:
-> > >
-> > > > Hello List,
-> > > > I am trying to configure my entire filesystem by using FILESYSTEM_P=
-ERMS_TABLES
-> > > > variable pointing to my custom fs-perms.txt, but it does not work. =
-While I
-> > > > debugged package.bbclass looking for any error or failure, I found =
-something
-> > > > strange with os.chmod & os.lchown methods (at function fix_perms):
-> > > >
-> > > > Fix the permission, owner and group of path
-> > > >
-> > > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > > >
-> > > > def fix_perms(path, mode, uid, gid, dir):
-> > > > if mode and not os.path.islink(path):
-> > > > #bb.note("Fixup Perms: chmod 0%o %s" % (mode, dir))
-> > > > os.chmod(path, mode)
-> > > >
-> > > > -1 is a special value that means don't change the uid/gid
-> > > >
-> > > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > > >
-> > > > if they are BOTH -1, don't bother to lchown
-> > > >
-> > > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > > >
-> > > > if not (uid =3D=3D -1 and gid =3D=3D -1):
-> > > > #bb.note("Fixup Perms: lchown %d:%d %s" % (uid, gid, dir))
-> > > > os.lchown(path, uid, gid)
-> > > > I have hardcoded mode variable to =E2=80=9C0333=E2=80=9D, just for =
-testing: os.chmod(path,
-> > > > 0o333)and I have seen that permissions were been configured into a =
-=E2=80=9C0711=E2=80=9D. Also
-> > > > I am going to ask about os.lchown, due to my filesystem is still be=
-en owned by
-> > > > my user and my group.
-> > > > Does anyone have an idea about what is going on? Has somebody have =
-the same
-> > > > problem?
-> > >
-> > > The commands run under the pseudo environment. Pseudo captures these =
-commands
-> > > and stores them in a database it can 'replay' at any time.
-> > > It only make them in the actual filesystem if permitted by the host.
-> > > You must look at the filesystem results in the live system (running p=
-seudo) or
-> > > in the results of the build -- otherwise what you are looking at is n=
-ot valid.
-> > > (BTW this is the reason that the commended code was left in that func=
-tion. In
-> > > case something is wrong, just remove the comments and you'll get note=
-s on what
-> > > it is doing to help debug. This shouldn't be necessary unless you are
-> > > developing the function itself.. but that is why they are there.)
-> >
-> > Thank you for your reply Mark!
 >
-> pseudo replaces fakeroot. Fakeroot can't capture some of the items that a=
-re
-> needed [and a few other reasons).
+> EXTRA_IMAGE_FEATURES ?=3D "debug-tweaks dbg-pkgs dev-pkgs tools-sdk
+> tools-debug eclipse-debug "
 >
-> > Does the pseudo environment allow to set the entire rootfs by using fak=
-eroot? Perhaps this is not the right way to make it, I am not pretty sure a=
-bout that. I would like to obtain my rfs with a concrete permissions when b=
-itbake finishes, folders, executables... Is there another/better way to acc=
-omplish?
 >
-> psuedo is just a LD_PRELOAD library that is connected to a database that
-> captures permissions changes to files..
+> USER_CLASSES ?=3D "buildstats image-mklibs image-prelink"
 >
-
-What do I need to use Yocto under a pseudo environment?
-The problem I was describing before was without using LD_PRELOAD and LD_PRE=
-FIX. Now, I have added both into my local.conf:
-
-LD_PRELOAD =3D "/usr/lib/x86_64-linux-gnu/pseudo/libpseudo.so"
-LD_PREFIX =3D "/usr/"
-
-But BitBake doesn't like it and I cannot find to much information about thi=
-s issue...
-
-Thank you!
-Mario
-
-
-> > About debbuging bb.notes, I have already removed the comments and every=
-thing seems working OK.
 >
-> This tells me that it's likely working properly and you are not in the ps=
-eudo
-> environment. You need to be in that loaded environment with the correct
-> database attached to look at the set permissions. Any task in the system
-> prefixed by 'fakeroot' will do this for you.
 >
-> --Mark
 >
-> > Best Regards,
-> > Mario
-> >
-> > > --Mark
-> > >
-> > > > Thank you
-> > > > Best Regards,
-> > > > Mario
+> BB_DISKMON_DIRS ??=3D "\
+>     STOPTASKS,${TMPDIR},1G,100K \
+>     STOPTASKS,${DL_DIR},1G,100K \
+>     STOPTASKS,${SSTATE_DIR},1G,100K \
+>     STOPTASKS,/tmp,100M,100K \
+>     ABORT,${TMPDIR},100M,1K \
+>     ABORT,${DL_DIR},100M,1K \
+>     ABORT,${SSTATE_DIR},100M,1K \
+>     ABORT,/tmp,10M,1K"
+>
+>
+>
+>
+>
+> CONF_VERSION =3D "1"
+> MACHINE =3D "raspberrypi3"
+> PREFERRED_VERSION_linux-raspberrypi =3D "4.%"
+> DISTRO_FEATURES_remove =3D "x11 wayland"
+> DISTRO_FEATURES_append =3D " systemd"
+> VIRTUAL-RUNTIME_init_manager =3D "systemd"
+> IMAGE_INSTALL_append =3D " git apt dpkg opkg rpm sudo wiringpi wiringpi-d=
+ev
+> connman connman-client tzdata i2c-tools i2c-tools-dev glibc-utils rpm
+> dhcp-server bluez5 python-smbus bridge-utils hostapd apache2 openvpn
+> iptables nano"
+> IMAGE_INSTALL +=3D "wiringpi"
+> ENABLE_UART=3D"1"
+> ENABLE_SPI_BUS=3D "1"
+> ENABLE_I2C =3D "1"
+>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <http://lists.yoctoproject.org/pipermail/yocto/attachments/20181211/d8=
+9aff52/attachment-0001.html>
+
+------------------------------
+
+Message: 3
+Date: Tue, 11 Dec 2018 10:10:29 +0100
+From: Jonas Andersson <jonaskgandersson@gmail.com>
+To: yocto@yoctoproject.org
+Subject: [yocto]  Do rootfs fail when switch from rpm to deb
+Message-ID:
+        <CAKpuFdeEtgn9SFt6OsTca7zHFKDc32ORmbn69EO01P+YdybVDw@mail.gmail.com=
+>
+Content-Type: text/plain; charset=3D"utf-8"
+
+Hi
+
+We have an recipe based on microservicebus-node npm package created with
+devtool.
+
+When we build with PACKAGE_CLASSES =3D "package_rpm" it builds but  when
+switching to package_deb do_rootfs fails.
+What can I do to get more information about the packages that is reported
+as broken, are there any known issues with npm and deb?
+
+Here is my build output
+___________________________________________________________________________=
+____________________________
+Build Configuration:
+BB_VERSION           =3D "1.38.0"
+BUILD_SYS            =3D "x86_64-linux"
+NATIVELSBSTRING      =3D "universal"
+TARGET_SYS           =3D "arm-poky-linux-gnueabi"
+MACHINE              =3D "raspberrypi3"
+DISTRO               =3D "poky"
+DISTRO_VERSION       =3D "2.5.1"
+TUNE_FEATURES        =3D "arm armv7ve vfp thumb neon vfpv4
+callconvention-hard cortexa7"
+TARGET_FPU           =3D "hard"
+meta
+meta-poky
+meta-yocto-bsp       =3D "sumo:36d5cee56bd389ecbe66dbfad9e5d57c13b56b95"
+meta-oe              =3D "sumo:2bb21ef27c4b0c9d52d30b3b2c5a0160fd02b966"
+meta-microservicebus
+meta-example-msb-rpi =3D "dev:be586f405a92a563ff49b8adf9ef7a9da5cc7192"
+meta-raspberrypi     =3D "sumo:2d40b000021bc8a9ef7f329ed0ad410f8d227b97"
+meta-rauc            =3D "sumo:40a5890478a50ad80e404be5d9de197dd9a79d44"
+
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+NOTE: Running task 2864 of 3398
+(/home/jonas/git/devtool/meta-microservicebus-node/meta-example-msb-rpi/rec=
+ipes-core/images/msb-image-rauc.bb:
+do_rootfs)
+NOTE: recipe msb-image-rauc-1.0-r0: task do_rootfs: Started
+ERROR: msb-image-rauc-1.0-r0 do_rootfs: Unable to install packages. Command
+'/home/jonas/git/devtool/build-deb/tmp/work/raspberrypi3-poky-linux-gnueabi=
+/msb-image-rauc/1.0-r0/recipe-sysroot-native/usr/bin/apt-get
+install --force-yes --allow-unauthenticated microservicebus-node
+packagegroup-core-boot psplash-raspberrypi packagegroup-base-extended
+packagegroup-core-ssh-openssh run-postinsts' returned 100:
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+
+The following packages have unmet dependencies:
+ microservicebus-node : Depends: microservicebus-node-npm but it is not
+going to be installed
+                        Depends: microservicebus-node-npm-JSONStream but it
+is not installable
+                        Depends:
+microservicebus-node-npm-JSONStream-jsonparse but it is not installable
+                        Depends:
+microservicebus-node-npm-JSONStream-through but it is not installable
+E: Unable to correct problems, you have held broken packages.
+
+ERROR: msb-image-rauc-1.0-r0 do_rootfs: Function failed: do_rootfs
+ERROR: Logfile of failure stored in:
+/home/jonas/git/devtool/build-deb/tmp/work/raspberrypi3-poky-linux-gnueabi/=
+msb-image-rauc/1.0-r0/temp/log.do_rootfs.7424
+NOTE: recipe msb-image-rauc-1.0-r0: task do_rootfs: Failed
+ERROR: Task
+(/home/jonas/git/devtool/meta-microservicebus-node/meta-example-msb-rpi/rec=
+ipes-core/images/msb-image-rauc.bb:do_rootfs)
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 3391 tasks of which 3390 didn't need to be
+rerun and 1 failed.
+___________________________________________________________________________=
+____________________________
+
+/Jonas
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <http://lists.yoctoproject.org/pipermail/yocto/attachments/20181211/ab=
+6fe374/attachment-0001.html>
+
+------------------------------
+
+Message: 4
+Date: Tue, 11 Dec 2018 10:57:14 +0100
+From: Peter Balazovic <balazovic.peter@gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>,
+        eclipse-yocto@yoctoproject.org
+Subject: [yocto] Lib update
+Message-ID:
+        <CAFq4t4jdGXQnytzXjW-Op=3DNVdy1s1yAO=3DU6v9G8NXGd-OX4F0w@mail.gmail=
+.com>
+Content-Type: text/plain; charset=3D"utf-8"
+
+I am developing library (set of libraries) which at first are built and
+part of build image & my SDK.
+Now I would need to update the libs so SDK and as well target remote image
+are updated. I want to avoid rebuild whole image and flash SD-Card again
+and generated SDK over again. I use SDK cross-compiler, Eclipse, ADT plugin
+to develop cmake-based application.
+What is the correct procedure?
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: <http://lists.yoctoproject.org/pipermail/yocto/attachments/20181211/84=
+c549da/attachment.html>
+
+------------------------------
+
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
 
+End of yocto Digest, Vol 99, Issue 26
+*************************************
 
+--_000_HE1P195MB03627B98CB86695F56960DE7C1A60HE1P195MB0362EURP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+I'm asking about how to enable PACKAGECONFIG feature from local.conf file, =
+let's say that i have the following pacakgeconfig in a recipe<br>
+PACKAGECONFIG =3D &quot; f1 f2&nbsp; &quot;<br>
+PACKAGECONFIG[f1] =3D &quot;-DENABLE_f1=3DON,-DENABLE_f1=3DOFF,f1,&quot;<br=
+>
+<br>
+so i need to add line in local.conf file to enable this feature for my imag=
+e? <br>
+I tried to use the following line to loca.conf but it does not help:<br>
+<br>
+PACKAGECONFIG_pn-&lt;my-recipe-name&gt;_append =3D &quot;-DENABLE_f1=3DON&q=
+uot;<br>
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
+or:rgb(0,0,0)">
+</div>
+<div></div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
+=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> yocto-bounces@yocto=
+project.org &lt;yocto-bounces@yoctoproject.org&gt; on behalf of yocto-reque=
+st@yoctoproject.org &lt;yocto-request@yoctoproject.org&gt;<br>
+<b>Sent:</b> Tuesday, December 11, 2018 11:57 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> yocto Digest, Vol 99, Issue 26</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
+>
+<div class=3D"PlainText">Send yocto mailing list submissions to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yocto@yoctoproject.org<br>
+<br>
+To subscribe or unsubscribe via the World Wide Web, visit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=3D"https://lists.yoctopr=
+oject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>=
+<br>
+or, via email, send a message with subject or body 'help' to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yocto-request@yoctoproject.org<b=
+r>
+<br>
+You can reach the person managing the list at<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yocto-owner@yoctoproject.org<br>
+<br>
+When replying, please edit your Subject line so it is more specific<br>
+than &quot;Re: Contents of yocto digest...&quot;<br>
+<br>
+<br>
+Today's Topics:<br>
+<br>
+&nbsp;&nbsp; 1. Using multilib to build 32-bit glibc on 64-bit target<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; platform (Nicholas Tsirakis)<br>
+&nbsp;&nbsp; 2. Raspberry pi with Yocto os sd card is not working with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Raspbian os sd card (AKASH BHARDWAJ)<br>
+&nbsp;&nbsp; 3.&nbsp; Do rootfs fail when switch from rpm to deb (Jonas And=
+ersson)<br>
+&nbsp;&nbsp; 4. Lib update (Peter Balazovic)<br>
+<br>
+<br>
+----------------------------------------------------------------------<br>
+<br>
+Message: 1<br>
+Date: Mon, 10 Dec 2018 15:37:19 -0500<br>
+From: Nicholas Tsirakis &lt;niko.tsirakis@gmail.com&gt;<br>
+To: yocto@yoctoproject.org<br>
+Subject: [yocto] Using multilib to build 32-bit glibc on 64-bit target<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; platform<br>
+Message-ID:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;CAFqpmVLj_54Ou1N=3D&#43;YdjA=
+qtcGGDLsWoH-85&#43;89nQ=3DNJLUhPDpA@mail.gmail.com&gt;<br>
+Content-Type: text/plain; charset=3D&quot;utf-8&quot;<br>
+<br>
+Hello,<br>
+<br>
+I'm having trouble understanding the proper usage of multilib within the<br=
+>
+Yocto project. I've read through Yocto's documentation, but I think I am<br=
+>
+missing something crucial. Here are the steps I've taken:<br>
+<br>
+1. Added the following to my local.conf:<br>
+require conf/multilib.conf<br>
+MULTILIBS =3D &quot;multilib:lib32&quot;<br>
+DEFAULTTUNE_virtclass-multilib-lib32 =3D &quot;x86&quot;<br>
+<br>
+2. Attempted to build lib32-glibc with bitbake. Received the following<br>
+errors for lib32-glib-initial (shortened for brevity):<br>
+<br>
+| &lt;stdin&gt;:10:36: error: 'REG_RBP' undeclared (first use in this funct=
+ion)<br>
+| &lt;stdin&gt;:9:26: note: in expansion of macro 'ucontext'<br>
+| &lt;stdin&gt;:10:20: note: in expansion of macro 'mcontext'<br>
+| &lt;stdin&gt;:11:61: note: in expansion of macro 'mreg'<br>
+| &lt;stdin&gt;:10:36: note: each undeclared identifier is reported only on=
+ce for<br>
+each function it appears in<br>
+| &lt;stdin&gt;:9:26: note: in expansion of macro 'ucontext'<br>
+| &lt;stdin&gt;:10:20: note: in expansion of macro 'mcontext'<br>
+| &lt;stdin&gt;:11:61: note: in expansion of macro 'mreg'<br>
+| &lt;stdin&gt;:10:36: error: 'REG_RSP' undeclared (first use in this funct=
+ion)<br>
+| &lt;stdin&gt;:9:26: note: in expansion of macro 'ucontext'<br>
+| &lt;stdin&gt;:10:20: note: in expansion of macro 'mcontext'<br>
+| &lt;stdin&gt;:12:61: note: in expansion of macro 'mreg'<br>
+...<br>
+| &lt;stdin&gt;:5:73: error: 'La_x86_64_xmm' undeclared (first use in this<=
+br>
+function)<br>
+...<br>
+| &lt;stdin&gt;:10:87: error: invalid use of undefined type 'struct<br>
+La_x86_64_regs'<br>
+...<br>
+<br>
+3. At this point it appeared to me like it was attempting to build a 64-bit=
+<br>
+version of glibc in a 32-bit environment, so I tried building the<br>
+lib32-linux-libc-headers by adding the following to its recipe:<br>
+<br>
+do_install_prepend() {<br>
+&nbsp;&nbsp;&nbsp; if [ &quot;${MLPREFIX}&quot; =3D=3D &quot;lib32-&quot; ]=
+; then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ARCH=3D&quot;x86&quot;<br>
+&nbsp;&nbsp;&nbsp; fi<br>
+}<br>
+<br>
+This was more a shot in the dark than anything else and still yielded the<b=
+r>
+same result. Can someone clear up the proper usage of multilib and tell me<=
+br>
+if I'm doing something wrong? Please note that my project currently uses<br=
+>
+OE's pyro branches.<br>
+<br>
+Thank you for your time.<br>
+-------------- next part --------------<br>
+An HTML attachment was scrubbed...<br>
+URL: &lt;<a href=3D"http://lists.yoctoproject.org/pipermail/yocto/attachmen=
+ts/20181210/bef1ca7f/attachment-0001.html">http://lists.yoctoproject.org/pi=
+permail/yocto/attachments/20181210/bef1ca7f/attachment-0001.html</a>&gt;<br=
+>
+<br>
+------------------------------<br>
+<br>
+Message: 2<br>
+Date: Tue, 11 Dec 2018 07:57:35 &#43;0530<br>
+From: AKASH BHARDWAJ &lt;akash12bhardwaj@gmail.com&gt;<br>
+To: yocto@yoctoproject.org<br>
+Subject: [yocto] Raspberry pi with Yocto os sd card is not working<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with&nbsp;&nbsp;&nbsp; Raspbian =
+os sd card<br>
+Message-ID:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;CALYZMn=3D_AhWPbX1Hx=3D7o=3D=
+mhoGEU=3D=3DjnCBJhiQ0v5Y6gL4f0H9A@mail.gmail.com&gt;<br>
+Content-Type: text/plain; charset=3D&quot;utf-8&quot;<br>
+<br>
+Few months ago,I built an custom image for Raspberrypi using Yocto<br>
+Project,flashed it in a sd card and was able to boot<br>
+raspberrypi.Presently,I am trying to use&nbsp; a different sd card with ras=
+pbian<br>
+os in same Raspberrypi.But it is not able to boot Raspberrypi.How can I<br>
+rectify this problem?This is my code which I used few years back to<br>
+generate yocto image.<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+PACKAGE_CLASSES ?=3D &quot;package_rpm package_deb&quot;<br>
+&gt;<br>
+&gt;<br>
+&gt; EXTRA_IMAGE_FEATURES ?=3D &quot;debug-tweaks dbg-pkgs dev-pkgs tools-s=
+dk<br>
+&gt; tools-debug eclipse-debug &quot;<br>
+&gt;<br>
+&gt;<br>
+&gt; USER_CLASSES ?=3D &quot;buildstats image-mklibs image-prelink&quot;<br=
+>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; BB_DISKMON_DIRS ??=3D &quot;\<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; STOPTASKS,${TMPDIR},1G,100K \<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; STOPTASKS,${DL_DIR},1G,100K \<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; STOPTASKS,${SSTATE_DIR},1G,100K \<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; STOPTASKS,/tmp,100M,100K \<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; ABORT,${TMPDIR},100M,1K \<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; ABORT,${DL_DIR},100M,1K \<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; ABORT,${SSTATE_DIR},100M,1K \<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; ABORT,/tmp,10M,1K&quot;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; CONF_VERSION =3D &quot;1&quot;<br>
+&gt; MACHINE =3D &quot;raspberrypi3&quot;<br>
+&gt; PREFERRED_VERSION_linux-raspberrypi =3D &quot;4.%&quot;<br>
+&gt; DISTRO_FEATURES_remove =3D &quot;x11 wayland&quot;<br>
+&gt; DISTRO_FEATURES_append =3D &quot; systemd&quot;<br>
+&gt; VIRTUAL-RUNTIME_init_manager =3D &quot;systemd&quot;<br>
+&gt; IMAGE_INSTALL_append =3D &quot; git apt dpkg opkg rpm sudo wiringpi wi=
+ringpi-dev<br>
+&gt; connman connman-client tzdata i2c-tools i2c-tools-dev glibc-utils rpm<=
+br>
+&gt; dhcp-server bluez5 python-smbus bridge-utils hostapd apache2 openvpn<b=
+r>
+&gt; iptables nano&quot;<br>
+&gt; IMAGE_INSTALL &#43;=3D &quot;wiringpi&quot;<br>
+&gt; ENABLE_UART=3D&quot;1&quot;<br>
+&gt; ENABLE_SPI_BUS=3D &quot;1&quot;<br>
+&gt; ENABLE_I2C =3D &quot;1&quot;<br>
+&gt;<br>
+-------------- next part --------------<br>
+An HTML attachment was scrubbed...<br>
+URL: &lt;<a href=3D"http://lists.yoctoproject.org/pipermail/yocto/attachmen=
+ts/20181211/d89aff52/attachment-0001.html">http://lists.yoctoproject.org/pi=
+permail/yocto/attachments/20181211/d89aff52/attachment-0001.html</a>&gt;<br=
+>
+<br>
+------------------------------<br>
+<br>
+Message: 3<br>
+Date: Tue, 11 Dec 2018 10:10:29 &#43;0100<br>
+From: Jonas Andersson &lt;jonaskgandersson@gmail.com&gt;<br>
+To: yocto@yoctoproject.org<br>
+Subject: [yocto]&nbsp; Do rootfs fail when switch from rpm to deb<br>
+Message-ID:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;CAKpuFdeEtgn9SFt6OsTca7zHFKD=
+c32ORmbn69EO01P&#43;YdybVDw@mail.gmail.com&gt;<br>
+Content-Type: text/plain; charset=3D&quot;utf-8&quot;<br>
+<br>
+Hi<br>
+<br>
+We have an recipe based on microservicebus-node npm package created with<br=
+>
+devtool.<br>
+<br>
+When we build with PACKAGE_CLASSES =3D &quot;package_rpm&quot; it builds bu=
+t&nbsp; when<br>
+switching to package_deb do_rootfs fails.<br>
+What can I do to get more information about the packages that is reported<b=
+r>
+as broken, are there any known issues with npm and deb?<br>
+<br>
+Here is my build output<br>
+___________________________________________________________________________=
+____________________________<br>
+Build Configuration:<br>
+BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
+&quot;1.38.0&quot;<br>
+BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ =3D &quot;x86_64-linux&quot;<br>
+NATIVELSBSTRING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;universal&quot;<br>
+TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
+&quot;arm-poky-linux-gnueabi&quot;<br>
+MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; =3D &quot;raspberrypi3&quot;<br>
+DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; =3D &quot;poky&quot;<br>
+DISTRO_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;2.5.1&quot;<br=
+>
+TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;arm armv7=
+ve vfp thumb neon vfpv4<br>
+callconvention-hard cortexa7&quot;<br>
+TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
+&quot;hard&quot;<br>
+meta<br>
+meta-poky<br>
+meta-yocto-bsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;sumo:36d5cee56=
+bd389ecbe66dbfad9e5d57c13b56b95&quot;<br>
+meta-oe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; =3D &quot;sumo:2bb21ef27c4b0c9d52d30b3b2c5a0160fd02b966&quot;<br=
+>
+meta-microservicebus<br>
+meta-example-msb-rpi =3D &quot;dev:be586f405a92a563ff49b8adf9ef7a9da5cc7192=
+&quot;<br>
+meta-raspberrypi&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;sumo:2d40b000021bc8a9ef7=
+f329ed0ad410f8d227b97&quot;<br>
+meta-rauc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ =3D &quot;sumo:40a5890478a50ad80e404be5d9de197dd9a79d44&quot;<br>
+<br>
+NOTE: Executing SetScene Tasks<br>
+NOTE: Executing RunQueue Tasks<br>
+NOTE: Running task 2864 of 3398<br>
+(/home/jonas/git/devtool/meta-microservicebus-node/meta-example-msb-rpi/rec=
+ipes-core/images/msb-image-rauc.bb:<br>
+do_rootfs)<br>
+NOTE: recipe msb-image-rauc-1.0-r0: task do_rootfs: Started<br>
+ERROR: msb-image-rauc-1.0-r0 do_rootfs: Unable to install packages. Command=
+<br>
+'/home/jonas/git/devtool/build-deb/tmp/work/raspberrypi3-poky-linux-gnueabi=
+/msb-image-rauc/1.0-r0/recipe-sysroot-native/usr/bin/apt-get<br>
+install --force-yes --allow-unauthenticated microservicebus-node<br>
+packagegroup-core-boot psplash-raspberrypi packagegroup-base-extended<br>
+packagegroup-core-ssh-openssh run-postinsts' returned 100:<br>
+Reading package lists...<br>
+Building dependency tree...<br>
+Reading state information...<br>
+Some packages could not be installed. This may mean that you have<br>
+requested an impossible situation or if you are using the unstable<br>
+distribution that some required packages have not yet been created<br>
+or been moved out of Incoming.<br>
+The following information may help to resolve the situation:<br>
+<br>
+The following packages have unmet dependencies:<br>
+&nbsp;microservicebus-node : Depends: microservicebus-node-npm but it is no=
+t<br>
+going to be installed<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Depends: mi=
+croservicebus-node-npm-JSONStream but it<br>
+is not installable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Depends:<br=
+>
+microservicebus-node-npm-JSONStream-jsonparse but it is not installable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Depends:<br=
+>
+microservicebus-node-npm-JSONStream-through but it is not installable<br>
+E: Unable to correct problems, you have held broken packages.<br>
+<br>
+ERROR: msb-image-rauc-1.0-r0 do_rootfs: Function failed: do_rootfs<br>
+ERROR: Logfile of failure stored in:<br>
+/home/jonas/git/devtool/build-deb/tmp/work/raspberrypi3-poky-linux-gnueabi/=
+msb-image-rauc/1.0-r0/temp/log.do_rootfs.7424<br>
+NOTE: recipe msb-image-rauc-1.0-r0: task do_rootfs: Failed<br>
+ERROR: Task<br>
+(/home/jonas/git/devtool/meta-microservicebus-node/meta-example-msb-rpi/rec=
+ipes-core/images/msb-image-rauc.bb:do_rootfs)<br>
+failed with exit code '1'<br>
+NOTE: Tasks Summary: Attempted 3391 tasks of which 3390 didn't need to be<b=
+r>
+rerun and 1 failed.<br>
+___________________________________________________________________________=
+____________________________<br>
+<br>
+/Jonas<br>
+-------------- next part --------------<br>
+An HTML attachment was scrubbed...<br>
+URL: &lt;<a href=3D"http://lists.yoctoproject.org/pipermail/yocto/attachmen=
+ts/20181211/ab6fe374/attachment-0001.html">http://lists.yoctoproject.org/pi=
+permail/yocto/attachments/20181211/ab6fe374/attachment-0001.html</a>&gt;<br=
+>
+<br>
+------------------------------<br>
+<br>
+Message: 4<br>
+Date: Tue, 11 Dec 2018 10:57:14 &#43;0100<br>
+From: Peter Balazovic &lt;balazovic.peter@gmail.com&gt;<br>
+To: Yocto list discussion &lt;yocto@yoctoproject.org&gt;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eclipse-yocto@yoctoproject.org<b=
+r>
+Subject: [yocto] Lib update<br>
+Message-ID:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;CAFq4t4jdGXQnytzXjW-Op=3DNVd=
+y1s1yAO=3DU6v9G8NXGd-OX4F0w@mail.gmail.com&gt;<br>
+Content-Type: text/plain; charset=3D&quot;utf-8&quot;<br>
+<br>
+I am developing library (set of libraries) which at first are built and<br>
+part of build image &amp; my SDK.<br>
+Now I would need to update the libs so SDK and as well target remote image<=
+br>
+are updated. I want to avoid rebuild whole image and flash SD-Card again<br=
+>
+and generated SDK over again. I use SDK cross-compiler, Eclipse, ADT plugin=
+<br>
+to develop cmake-based application.<br>
+What is the correct procedure?<br>
+-------------- next part --------------<br>
+An HTML attachment was scrubbed...<br>
+URL: &lt;<a href=3D"http://lists.yoctoproject.org/pipermail/yocto/attachmen=
+ts/20181211/84c549da/attachment.html">http://lists.yoctoproject.org/piperma=
+il/yocto/attachments/20181211/84c549da/attachment.html</a>&gt;<br>
+<br>
+------------------------------<br>
+<br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+yocto@yoctoproject.org<br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoc=
+toproject.org/listinfo/yocto</a><br>
+<br>
+<br>
+End of yocto Digest, Vol 99, Issue 26<br>
+*************************************<br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_HE1P195MB03627B98CB86695F56960DE7C1A60HE1P195MB0362EURP_--
