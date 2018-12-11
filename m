@@ -1,6 +1,6 @@
 Return-Path: <MohamedYouseif@outlook.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32375E00C9F; Tue, 11 Dec 2018 17:40:18 -0800 (PST)
+	id 58A63E00CA3; Tue, 11 Dec 2018 19:41:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,11 +9,11 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE, SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (mohamedyouseif[at]outlook.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [40.92.70.30 listed in list.dnswl.org]
+	*      [40.92.71.87 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (mohamedyouseif[at]outlook.com)
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,71 +21,70 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 7173 seconds by postgrey-1.32 at yocto-www;
-	Tue, 11 Dec 2018 17:40:15 PST
-Received: from EUR03-AM5-obe.outbound.protection.outlook.com
-	(mail-oln040092070030.outbound.protection.outlook.com [40.92.70.30])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5316FE00C5B
-	for <yocto@yoctoproject.org>; Tue, 11 Dec 2018 17:40:15 -0800 (PST)
+X-Greylist: delayed 39690 seconds by postgrey-1.32 at yocto-www;
+	Tue, 11 Dec 2018 19:41:31 PST
+Received: from EUR03-DB5-obe.outbound.protection.outlook.com
+	(mail-oln040092071087.outbound.protection.outlook.com [40.92.71.87])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F09BE00C9F
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2018 19:41:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
 	s=selector1;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=I2iEUR3FkIcHUMEhg0teCybOYx1I8hYVmAJPWBEy3K8=;
-	b=i+yYFW65eonw+xcAgNzsGt3Sg/9i/Jrf4FuHYnLT370XNdnbfwDhNww8TyCCKr5oK0/hRNFPhh667QCCw4+vcbystaiZOriJOUbWYt9Kitwy0V860VWJY46YCB5bYp3ccPRRHSv4L7Ef5LHOyhptm61RPzwJAf0HThGbqknsLLSBVXvwcIFrEr9jDXAMjROZoHf+qcJ4BiBAT1r8e1Z2xGcEeHoSk6+5lvSN4IOgemhs3TAS3ZOEN0GpgGgmCGvc7roraB+48PJaDNQGnUmJslSq9sc17Qgq0Qm/lSI1s6t3BEV9fQPA7NuAKuN+oaHstMexpbpAUfUN+qIfp0tlew==
+	bh=r+5Gcg1Sy4afwVpOeJCa5T2egtpT+vwzvy4DLnkzATg=;
+	b=HlXdaG1qcRyikiwekH24w1o62WFplchp8unelOsDiyyv4UGLYOM45zARpqcUHF63GdOANtQA+aow5ko4roZrm/czzt7+cmLH/tW/hVkvZ7ooyXKVi4Lht4yNrQSlW1yH5G1uSgpLI2LZi85rzbGn6s9FUV8DTNHmxn4px4Ycs9BDcvCzq1im/Ikrdnb4IZo8dVNwnZsq/kT//w4BhMjm24BVAAFVPR1C+bX9di+8OqGc4SXZhPEWZZIgtmLUX1NQwMXcx+1s2UexfR3ffRryYE+Ngm+s7nu8ejwPNqx8hoOWP5ahZFxroTzDsvVaHn8CZlqAQwdo9RIh6eE/H3UxgA==
 Received: from AM5EUR03FT009.eop-EUR03.prod.protection.outlook.com
-	(10.152.16.59) by AM5EUR03HT092.eop-EUR03.prod.protection.outlook.com
-	(10.152.17.65) with Microsoft SMTP Server (version=TLS1_2,
+	(10.152.16.59) by AM5EUR03HT173.eop-EUR03.prod.protection.outlook.com
+	(10.152.16.189) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1382.18;
-	Tue, 11 Dec 2018 12:07:26 +0000
+	Tue, 11 Dec 2018 12:08:26 +0000
 Received: from HE1P195MB0362.EURP195.PROD.OUTLOOK.COM (10.152.16.52) by
 	AM5EUR03FT009.mail.protection.outlook.com (10.152.16.110) with
 	Microsoft SMTP
 	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1382.18 via Frontend Transport; Tue, 11 Dec 2018 12:07:26 +0000
+	15.20.1382.18 via Frontend Transport; Tue, 11 Dec 2018 12:08:26 +0000
 Received: from HE1P195MB0362.EURP195.PROD.OUTLOOK.COM
 	([fe80::e4b0:7f83:9a64:5144]) by HE1P195MB0362.EURP195.PROD.OUTLOOK.COM
 	([fe80::e4b0:7f83:9a64:5144%5]) with mapi id 15.20.1404.026;
-	Tue, 11 Dec 2018 12:07:26 +0000
+	Tue, 11 Dec 2018 12:08:26 +0000
 From: Mohamed Youseif <MohamedYouseif@outlook.com>
-To: "yocto-request@yoctoproject.org" <yocto-request@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: yocto Digest, Vol 99, Issue 26
-Thread-Index: AQHUkTgGRGJO657aBEmqrn/NaFiCUqV5cFFM
-Date: Tue, 11 Dec 2018 12:07:26 +0000
-Message-ID: <HE1P195MB03627B98CB86695F56960DE7C1A60@HE1P195MB0362.EURP195.PROD.OUTLOOK.COM>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Enable PACKAGECONFIG Feature
+Thread-Index: AQHUkUo4E4nM28RvfE6KPpv+/UE0+Q==
+Date: Tue, 11 Dec 2018 12:08:26 +0000
+Message-ID: <HE1P195MB036292F42DABDA874AFBFB73C1A60@HE1P195MB0362.EURP195.PROD.OUTLOOK.COM>
 References: <mailman.6424.1544522247.2881.yocto@yoctoproject.org>
 In-Reply-To: <mailman.6424.1544522247.2881.yocto@yoctoproject.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:E59954A2895E9309A68B39FADE14AAD98980C2DA2EC9F780263CD924D5818A55;
-	UpperCasedChecksum:CC0BBE3A5BCED672563D9CF6219990602B07BCA149A175C99B51EF2A04C20E03;
-	SizeAsReceived:7037; Count:45
-x-tmn: [y2UaUeUrSc9yHZ+EOKZTOZaDNPuPjgHz]
+x-incomingtopheadermarker: OriginalChecksum:095C9D029126EA19A22EC09404CDFC43B348A810C33F371236A6C71184A38CE9;
+	UpperCasedChecksum:B8206FBFD7F26AC954D437C31253863A89E72E2606ABF54465FE9DA401392E4C;
+	SizeAsReceived:6940; Count:45
+x-tmn: [ynVNwqPxIQEkqbCg+gNOfKNFkoHz/tl7]
 x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; AM5EUR03HT092;
-	6:sQIsdLiz33Bf2OcevVgImFARda5ImdwLKCB0Itm3sxko6Tol1k3TA8hlAPbIMT1L3V31aiQYy+mWvY5AHttkf4cRH6+/sJvV2hJrMcZUP1yJNDNqAjoH58OdswUzkrFoTb0FtApTyZGCDtlOqkE7kFB/xHjAFnR4iyytTvYJ4Y1o9etwyoGWabY5BsXMqzDOx8+YeWOysVCm95deLXH0iPkaiW7kXOLCDzjbbBnyyj0RiqO77tvXaAUt69K12enC5jvHZO2rKtUOjlBm+RkKxTtnsPA/LkEE4O9SINhd2vId225viJr14+dC3b51loUuWaOmWhLDm4ev5wzLbxXIo03azK2e3Q163TGDqEfdkEFpthEdHXOVq44US2UFcDQsXbAfaauvGU8cUOsPqfWfKCjmbIB+vMvwEM9o9s6C3ZyjptAnr/O7yi6BW2IMMCZUyMpt0l039kZ7vs1yCFUMig==;
-	5:g6SE6areEalTxJeYjUHiQNcrc/z4w4NrSShmpNjp8cvJm6UvS2uBN1xvPkiMl5Sgeb7adAwqJe19CSeZ1FH7qXzDms3h/rOwobg03gxOhVO1KvLYx/eGeS6exY+0Hs9PwF06lm9AM8ICQx2UVzpb4RnoHCGDNTfvjPNTXh5J31Y=;
-	7:cP14pZM2f9zRF5bGDPz14CRPGVPCbL93aiHy1uqWisF0qYC4JQBGADe/H5MbjFANPKBYObZG6ApRLENtJDtAg+RBUPmWwo5TToLhqaXQETatZZOXxCFeRtbYHIroTRMDpHrsUoN73vP2p5BFurnykQ==
+x-microsoft-exchange-diagnostics: 1; AM5EUR03HT173;
+	6:IZDgnCVTESC70lANU4qQw5Vg8/vPEnLkVmSmAYuoVjNqit9sthQaMIcaoeH1pQXbeNnXuLPI/J2L/58BoRHsRuZ0aLBQd1yg1emftDje9y/Vgg5ittGkg9JYej5I78s7M6Y3gRFrK+34BMQ7AGK6QjGzn3CoC8KFMgfbb/gTTPnrfA6OQ/Tyy97My4hfRblTpf9bFr2f63dVEQMGl2udvuA0nr+Sq0qNgT9t7Rk1NuxgiGc89bJLHxhCzRSkyNSd+e7VzMnSvtGyGeJIdRDeW4PYIyNZjoEUaVklPWi+tkFGUidTKVUfKdcgNpQI/pWhet1jMQ1GIgDFC+U1n0W/1sROUk9Y3sBQtRarkbIcwju1bWIT1yIPhkMETcE738zTMOIF5wJzGxtODoBgBa9+QpTLvuaUHofuzfR2GbHIlsuZ0qmUjZoYaLlzL6YrICRYKgpfI2p+acAKF4TnpooiqQ==;
+	5:pYDMr9fqkOcSCRpb/xBftY6hozQxZ6c3Y/x9x26nn5BhvPZm+ndTcv6E/1WGHPaVnzzcSXcM1xxg0OaNhhoX6bH6W8DjBIeMO0AU/L5s1eJo/Vz6uvQFr/MMzKXVI6Bh7nwsfhjbBSh/nQ/CI2DsgC8l7J0Ugde8Yase1Jl74Mo=;
+	7:Rq1JZieGsNaBM2R/1PglcQHl+HWJ4HEDlraDGRRI0XrFZ+9nYsPW+aatCXoUlbVxaoQLo4b545BQ7Pf/Afk5OG0JosXYrVEDMJ8mB3q1az1vLnz0df5qDVqd0fNxOtIWDwH8v3mWjwTbuLj0IayP5Q==
 x-incomingheadercount: 45
 x-eopattributedmessage: 0
 x-microsoft-antispam: BCL:0; PCL:0;
 	RULEID:(2390098)(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101475)(1601125500)(1701031045);
-	SRVR:AM5EUR03HT092; 
-x-ms-traffictypediagnostic: AM5EUR03HT092:
+	SRVR:AM5EUR03HT173; 
+x-ms-traffictypediagnostic: AM5EUR03HT173:
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(4566010)(82015058);
-	SRVR:AM5EUR03HT092; BCL:0; PCL:0; RULEID:; SRVR:AM5EUR03HT092; 
-x-microsoft-antispam-message-info: 3MHHxhSkAVgaufc0v8xIkLRaTo1U+1XWWvRi2Jaf17Ul18xikllehf4OlS59QtZv
+	SRVR:AM5EUR03HT173; BCL:0; PCL:0; RULEID:; SRVR:AM5EUR03HT173; 
+x-microsoft-antispam-message-info: rkcSlECnnqKYnzoSGmyJtEpqvqxBSCkRtqcUcRrTJZbpBDs1JR2IZiXEOztCq13y
 MIME-Version: 1.0
 X-OriginatorOrg: outlook.com
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: d4d70346-2c10-4f39-8c00-e767963926d9
-X-MS-Exchange-CrossTenant-Network-Message-Id: 65bb4fa3-7aba-48a5-3d8f-08d65f613733
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41537e98-cf38-4b71-2d2d-08d65f615b54
 X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: d4d70346-2c10-4f39-8c00-e767963926d9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Dec 2018 12:07:26.0734 (UTC)
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Dec 2018 12:08:26.7362 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Internet
 X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR03HT092
-Subject: Re: yocto Digest, Vol 99, Issue 26
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR03HT173
+Subject: Enable PACKAGECONFIG Feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -97,12 +96,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Dec 2018 01:40:18 -0000
+X-List-Received-Date: Wed, 12 Dec 2018 03:41:34 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_HE1P195MB03627B98CB86695F56960DE7C1A60HE1P195MB0362EURP_"
+	boundary="_000_HE1P195MB036292F42DABDA874AFBFB73C1A60HE1P195MB0362EURP_"
 
---_000_HE1P195MB03627B98CB86695F56960DE7C1A60HE1P195MB0362EURP_
+--_000_HE1P195MB036292F42DABDA874AFBFB73C1A60HE1P195MB0362EURP_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -116,7 +115,6 @@ e?
 I tried to use the following line to loca.conf but it does not help:
 
 PACKAGECONFIG_pn-<my-recipe-name>_append =3D "-DENABLE_f1=3DON"
-
 ________________________________
 From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
 half of yocto-request@yoctoproject.org <yocto-request@yoctoproject.org>
@@ -429,7 +427,7 @@ https://lists.yoctoproject.org/listinfo/yocto
 End of yocto Digest, Vol 99, Issue 26
 *************************************
 
---_000_HE1P195MB03627B98CB86695F56960DE7C1A60HE1P195MB0362EURP_
+--_000_HE1P195MB036292F42DABDA874AFBFB73C1A60HE1P195MB0362EURP_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -455,12 +453,10 @@ I tried to use the following line to loca.conf but it does not help:<br>
 <br>
 PACKAGECONFIG_pn-&lt;my-recipe-name&gt;_append =3D &quot;-DENABLE_f1=3DON&q=
 uot;<br>
-<br>
 </div>
 <div style=3D"font-family:Calibri,Helvetica,sans-serif; font-size:12pt; col=
 or:rgb(0,0,0)">
 </div>
-<div></div>
 <hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
 =3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> yocto-bounces@yocto=
@@ -841,4 +837,4 @@ End of yocto Digest, Vol 99, Issue 26<br>
 </body>
 </html>
 
---_000_HE1P195MB03627B98CB86695F56960DE7C1A60HE1P195MB0362EURP_--
+--_000_HE1P195MB036292F42DABDA874AFBFB73C1A60HE1P195MB0362EURP_--
