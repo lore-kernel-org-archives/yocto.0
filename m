@@ -1,62 +1,33 @@
-Return-Path: <balazovic.peter@gmail.com>
+Return-Path: <Hongzhi.Song@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4ED6EE00C4D; Tue, 11 Dec 2018 01:57:27 -0800 (PST)
+	id 105F4E00C92; Tue, 11 Dec 2018 02:12:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (balazovic.peter[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.53 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
-	[209.85.166.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32B2DE00B92;
-	Tue, 11 Dec 2018 01:57:26 -0800 (PST)
-Received: by mail-io1-f53.google.com with SMTP id l14so11289077ioj.5;
-	Tue, 11 Dec 2018 01:57:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=keRDb9ZXayAUnlDGraau1vpldaogikk1XoR2IsuHnEI=;
-	b=tO+VVryMC/jt141o/L59Og6wMAcq0ZzkSKwmYdP6pJ7Kv+6A5DdGXOstW90t2ooORK
-	LVkZ2rTqXB2c3iN7Isq1V/B8//DJwjWiY+lwG1raVPLPO9sKcnnNDvQMcenIwhp3voN0
-	C2FEnh/vbB+gv5nuHJY1fKpPtGZJruuf1sIDKj+HciOmEQgOJnoPbfaLAhEcoPYk22C9
-	YC3VInF4aK4Xh5SiBIMdUXAFYFGOUuPkla5ghI91eIEQNzVeudRNSG0pXAR68jejobls
-	fwyHiqdQmUXBYBwkUqsVOZM5sXt0CjZtLXkiRwkG58mcVpzmVQrM5hmKPkTUaJupGTA3
-	bvsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=keRDb9ZXayAUnlDGraau1vpldaogikk1XoR2IsuHnEI=;
-	b=d5Yarf6DqzgZv6SanE9/B5W9266S5OXqvmKuDLjdaeG2iWczx4LA4aCCDaZQLv9h4B
-	H16byrTy5TwyAFPTS3L8GqcUumjpWhTyMQef1QwcXNb3Luy/GWHlG0+5RZp3sedQqLhZ
-	Ug5JY5bHcmVHyS2XBrQs9EziorVfYrKbTgTXrGVvz3yDqjCL2Ya200Q2i3G/Z/uySa1p
-	lQoWz1wKjn1qGPtlhyUNKivz56OHTYQFYwoS6w6FiXEg415yKT32rjgMjTfUPjXd5b+K
-	ChfW3fq0CeIMMt3fxyGznw7iSCh9wMtiIyIqOzZV+IjCFWu1aIW1pfHq46lTZQTfzBb6
-	OSWg==
-X-Gm-Message-State: AA+aEWZjjCdPKLZxLhWaaYejT/YGfpmBvGal6k6H3ssSM/hlA5E45H9Z
-	uYV8cyYLadLOnE1yJRZU+0+KNAupOUFIkaOpihxREKFj
-X-Google-Smtp-Source: AFSGD/UL+BjLMswjQnQLFc513rnTNYzEtzpELPwZHR4hETsB1eRtHHTIFFgC+Q9dsFD0Ay1Qn/Utye2CqagZfGKAav4=
-X-Received: by 2002:a5d:87cd:: with SMTP id q13mr12074005ios.92.1544522245346; 
-	Tue, 11 Dec 2018 01:57:25 -0800 (PST)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD1FFE00C4D
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2018 02:12:41 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id wBBACfkd006378
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 11 Dec 2018 02:12:41 -0800 (PST)
+Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.408.0;
+	Tue, 11 Dec 2018 02:12:40 -0800
+From: "Hongzhi.Song" <hongzhi.song@windriver.com>
+To: <bruce.ashfield@windriver.com>, <yocto@yoctoproject.org>
+Date: Tue, 11 Dec 2018 05:12:50 -0500
+Message-ID: <1544523170-221209-1-git-send-email-hongzhi.song@windriver.com>
+X-Mailer: git-send-email 2.8.1
 MIME-Version: 1.0
-From: Peter Balazovic <balazovic.peter@gmail.com>
-Date: Tue, 11 Dec 2018 10:57:14 +0100
-Message-ID: <CAFq4t4jdGXQnytzXjW-Op=NVdy1s1yAO=U6v9G8NXGd-OX4F0w@mail.gmail.com>
-To: Yocto list discussion <yocto@yoctoproject.org>,
-	eclipse-yocto@yoctoproject.org
-Subject: Lib update
+Subject: [yocto-kernel-tools][PATCH] tools/kconf_check: modify grep pattern
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,29 +39,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Dec 2018 09:57:27 -0000
-Content-Type: multipart/alternative; boundary="000000000000c81d28057cbc1b19"
+X-List-Received-Date: Tue, 11 Dec 2018 10:12:45 -0000
+Content-Type: text/plain
 
---000000000000c81d28057cbc1b19
-Content-Type: text/plain; charset="UTF-8"
+The cmd line, <grep '^[  ]*\(menu\)*config '>, can't
+match all expect config options.
 
-I am developing library (set of libraries) which at first are built and
-part of build image & my SDK.
-Now I would need to update the libs so SDK and as well target remote image
-are updated. I want to avoid rebuild whole image and flash SD-Card again
-and generated SDK over again. I use SDK cross-compiler, Eclipse, ADT plugin
-to develop cmake-based application.
-What is the correct procedure?
+This is because that it is not always space after 'config'
+in kernel-source/*/.../Kconfig.
+e.g. "config  IP_VS_IPV6" in net/netfilter/ipvs/Kconfig
 
---000000000000c81d28057cbc1b19
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+So we should change the cmd to grep '^[  ]*\(menu\)*config\s'.
 
-<div dir=3D"ltr">I am developing library (set of libraries) which at first =
-are built and part of build image &amp; my SDK.=C2=A0<div>Now I would need =
-to update the libs so SDK and as well target remote image are updated. I wa=
-nt to avoid rebuild whole image and flash SD-Card again and generated SDK o=
-ver again. I use SDK cross-compiler, Eclipse, ADT plugin to develop cmake-b=
-ased application.</div><div>What is the correct procedure?</div></div>
+Signed-off-by: Hongzhi.Song <hongzhi.song@windriver.com>
+---
+ tools/kconf_check | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---000000000000c81d28057cbc1b19--
+diff --git a/tools/kconf_check b/tools/kconf_check
+index aa86180..20b49cd 100755
+--- a/tools/kconf_check
++++ b/tools/kconf_check
+@@ -241,7 +241,7 @@ find ${kernel_source} \
+ # known list of all Kconfig* files.  Again, must filter dups.
+ rm -f ${LOGDIR}/all.cfg
+ for i in `cat ${LOGDIR}/all.kcf` ; do
+-    cat ${kernel_source}/$i | grep '^[ 	]*\(menu\)*config ' | \
++    cat ${kernel_source}/$i | grep '^[ 	]*\(menu\)*config\s' | \
+ 	awk '{print "CONFIG_"$2}' >> ${LOGDIR}/all.cfg
+ done
+ mv -f ${LOGDIR}/all.cfg ${LOGDIR}/all.cfg~
+-- 
+2.8.1
+
+
