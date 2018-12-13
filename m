@@ -1,38 +1,42 @@
-Return-Path: <Hongzhi.Song@windriver.com>
+Return-Path: <mauro@faresoftware.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 62CD4E00C9F; Wed, 12 Dec 2018 17:36:39 -0800 (PST)
+	id 17C0DE00C91; Thu, 13 Dec 2018 00:15:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48599E00C8F
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2018 17:36:38 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id wBD1abCe005016
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 12 Dec 2018 17:36:37 -0800 (PST)
-Received: from [128.224.163.204] (128.224.163.204) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
-	Wed, 12 Dec 2018 17:36:37 -0800
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, <yocto@yoctoproject.org>
-References: <1544523170-221209-1-git-send-email-hongzhi.song@windriver.com>
-	<d23a0b81-b245-6bfc-f5ae-2a341785f06a@windriver.com>
-From: "Hongzhi, Song" <hongzhi.song@windriver.com>
-Message-ID: <2946a217-a449-91d6-595e-275338a98cc0@windriver.com>
-Date: Thu, 13 Dec 2018 09:36:34 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.8.0
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [62.149.156.86 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from smtpcmd0986.aruba.it (smtpcmd0986.aruba.it [62.149.156.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70F68E0090E
+	for <yocto@yoctoproject.org>; Thu, 13 Dec 2018 00:15:35 -0800 (PST)
+Received: from [192.168.24.108] ([87.26.78.158])
+	by smtpcmd09.ad.aruba.it with bizsmtp
+	id BLFZ1z00V3QvvBK01LFZHB; Thu, 13 Dec 2018 09:15:33 +0100
+From: Mauro Ziliani <mauro@faresoftware.it>
+To: Yocto Project <yocto@yoctoproject.org>
+Message-ID: <d855ef65-2a33-7361-b7b7-61ab42a40559@faresoftware.it>
+Date: Thu, 13 Dec 2018 09:15:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.3.3
 MIME-Version: 1.0
-In-Reply-To: <d23a0b81-b245-6bfc-f5ae-2a341785f06a@windriver.com>
-X-Originating-IP: [128.224.163.204]
-Subject: Re: [yocto-kernel-tools][PATCH] tools/kconf_check: modify grep pattern
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1544688933; bh=zepSc7qMnO6MrrxCigoLpOnxogXgSShcKOKUCoYsb24=;
+	h=From:Subject:To:Date:MIME-Version:Content-Type;
+	b=PolM2mrZ4IXdSKlnVn40h8GlZ15DX+W+UrkaqZA9VcB0NVOwOZ52n0pJloOrGt/OA
+	WBy8oav+bKk2F9EHZIWdGxKcTlZJ0H/6VBAd5O90s4f4N10o2vDc8zl1e5lppgEBkd
+	1BNiDNd35Gw2TfXG0Fp4KduERxJlKDxy1t4N77KTu9lPSYwcF3e4mbiya4Wtanjxja
+	IG7+fHR/ElzCRvvzLJaBNEBpqtrIqIrOydQLWj6OY5yz8Yon+C7PTQfl3auiWEBF0x
+	D0JSrQhbyavpsvMfZ8BRx8e5rMXz0/UCa6+Y88QNF1bGrI9Jx8xIiklXYFAHB3Y4Bz
+	HzJWo4GpjRXwQ==
+Subject: Relase or debug by PACKAGECONFIG or MY_APP_VAR?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,57 +48,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Dec 2018 01:36:39 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Thu, 13 Dec 2018 08:15:37 -0000
+Content-Type: text/plain; charset=iso-8859-15
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Language: it
 
-Thanks.
+Hi all.
 
-So would you help to remedy the commit log while merging the patch?
-
-
---Hongzhi
+I have an application made with cmake and qt5 by the recipe my-app.bb
 
 
-On 12/13/2018 02:45 AM, Bruce Ashfield wrote:
-> On 12/11/18 5:12 AM, Hongzhi.Song wrote:
->> The cmd line, <grep '^[ ]*\(menu\)*config '>, can't
->> match all expect config options.
->>
->> This is because that it is not always space after 'config'
->
-> This should say "not always one space". There really should
-> always just be a single space, but typos do sneak in. I'll
-> queue the patch shortly.
->
-> Bruce
->
->> in kernel-source/*/.../Kconfig.
->> e.g. "config  IP_VS_IPV6" in net/netfilter/ipvs/Kconfig
->>
->> So we should change the cmd to grep '^[  ]*\(menu\)*config\s'.
->>
->> Signed-off-by: Hongzhi.Song <hongzhi.song@windriver.com>
->> ---
->>   tools/kconf_check | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/tools/kconf_check b/tools/kconf_check
->> index aa86180..20b49cd 100755
->> --- a/tools/kconf_check
->> +++ b/tools/kconf_check
->> @@ -241,7 +241,7 @@ find ${kernel_source} \
->>   # known list of all Kconfig* files.  Again, must filter dups.
->>   rm -f ${LOGDIR}/all.cfg
->>   for i in `cat ${LOGDIR}/all.kcf` ; do
->> -    cat ${kernel_source}/$i | grep '^[     ]*\(menu\)*config ' | \
->> +    cat ${kernel_source}/$i | grep '^[     ]*\(menu\)*config\s' | \
->>       awk '{print "CONFIG_"$2}' >> ${LOGDIR}/all.cfg
->>   done
->>   mv -f ${LOGDIR}/all.cfg ${LOGDIR}/all.cfg~
->>
->
->
+To compile the app in release mode I need set
+
+EXTRA_OECMAKE + = " -DCMAKE_BUILD_TYPE=Release "
+
+
+while in debug mode I need to set
+
+EXTRA_OECMAKE + = " -DCMAKE_BUILD_TYPE=Debug "
+
+
+I defined 2 image recipes: one for production (Release) and one for
+testing (Debug)
+
+my-system.bb
+
+my-system-debug.bb
+
+
+Both my-system.bb and my-system-debug.bb have
+
+IMAGE_INSTALL_append = " my-app "
+
+
+But for my-system-debug.bb I'd like to set CMAKE_BUILD_TYPE=Debug for
+my-app.bb
+
+
+How can I do that?
+
+
+Now I try to define my-app.bb the variable
+
+...
+
+MY_APP_BUILD_TYPE ?= "Release"
+
+EXTRA_OECMAKE + = " -DCMAKE_BUILD_TYPE=${MY_APP_BUILD_TYPE} "
+
+...
+
+
+And in my-system-debug.bb I set
+
+MY_APP_BUILD_TYPE = "Debug"
+
+
+Or I need to use PACKAGECONFIG?
+
+
+Best regards,
+
+� Mauro
+
+
+
 
 
