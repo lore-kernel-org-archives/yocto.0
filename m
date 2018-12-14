@@ -1,63 +1,47 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <winfried.dobbe@xmsnet.nl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49F9CE00BB5; Fri, 14 Dec 2018 08:32:27 -0800 (PST)
+	id 60AEDE00B45; Fri, 14 Dec 2018 08:49:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.182 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-it1-f182.google.com (mail-it1-f182.google.com
-	[209.85.166.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F17DE00AD8
-	for <yocto@yoctoproject.org>; Fri, 14 Dec 2018 08:32:26 -0800 (PST)
-Received: by mail-it1-f182.google.com with SMTP id m8so19357932itk.0
-	for <yocto@yoctoproject.org>; Fri, 14 Dec 2018 08:32:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=xqQdWzbwqmAvDzYROyTvvhMlhVOn/GD2z1wYrrCSlYE=;
-	b=E3YuP4Kgn+hr9vYJ0Uba+CpL7aKt9lAC6B8qWL2lHsjxxUHrZsuJcjE5jeZnEnKMbA
-	gVsm/Zy5M7yGUeM4JTB9ARrvl944Cd2XrCOu1eD9nf2LpCFHrTK0x+a4udKBV5qZ90QY
-	vA28x2N11ycWhoQvEDAC82sEgJzYPGa9rfst/ozE4NP0SXi1YeVu6bipgCiHlUWs7WoX
-	iNPpnD7lXqNGsyEl89mQ2reDjUP+sZLC/gIe8jeyhkkseq4j3RnR0BaPogMioQAMB44z
-	TUar94W4uviMK1T2NJe2qQQuOyQc+xdVLoLiu1gvVjVKe33UGUja47M7nYLFoge5WGUn
-	gRyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=xqQdWzbwqmAvDzYROyTvvhMlhVOn/GD2z1wYrrCSlYE=;
-	b=OSpkLfONKF40rJO00yy5G5IB9p/gCD3sfUlllffHtS28A/NckZf58YzNKGq7tj1K7m
-	J488ZpuZTICckKYAN1DC2SfEBL7YAaDELdEOSZHl8wmmVCtTKB8T2fksQesnoZAt5cNy
-	Ak1s+iCUUjFOcaLUSjjkW6GtUadmFg9fMXPV3koCxQlhOn2XJsvU65HAHTxJnju0uf6Z
-	cFdtM1shS8Edg1hoKnSfmfSwt5O4/M2dZj7FJ+hBldDs5nNNVc91YamQgKfQEjcyGhkB
-	EvnNX+kIx6ZGVppkGeoTBdF54jnzN4mzch7nghmfVyNZzj2NdKBvWY4hoSJ2/GyvU1Wz
-	OKgA==
-X-Gm-Message-State: AA+aEWbpawhgxY3NlZB49yaWvX491VIeAdAUO/TGHUwoWzMP/nphRKoc
-	laPpk1Na2b198vOen0NoLgkCyBI1KBdS9wNO5Lcfzw==
-X-Google-Smtp-Source: AFSGD/W/IchNzq3EXHpmrsYpvBWs8+ALO+2uspGn+40GljA7x6Yo2KeROWr2mrgRyCeg+n65fXRcZKMQSgCo4a4Mc/I=
-X-Received: by 2002:a24:c601:: with SMTP id j1mr4050305itg.130.1544805145865; 
-	Fri, 14 Dec 2018 08:32:25 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [213.197.30.124 listed in list.dnswl.org]
+Received: from smtp-1.concepts.nl (smtp-1.concepts.nl [213.197.30.124])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6726FE009B2
+	for <yocto@yoctoproject.org>; Fri, 14 Dec 2018 08:49:17 -0800 (PST)
+Received: from [213.197.30.241] (helo=webmail.xmsnet.nl)
+	by smtp-1.concepts.nl with esmtpsa
+	(TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.89)
+	(envelope-from <winfried.dobbe@xmsnet.nl>) id 1gXqeJ-0002ta-CO
+	for yocto@yoctoproject.org; Fri, 14 Dec 2018 17:49:15 +0100
 MIME-Version: 1.0
-References: <CAFq4t4injAXT0+YgeXAYmfU50=_LL9BaVBm9e5-E1qyouAMENA@mail.gmail.com>
-In-Reply-To: <CAFq4t4injAXT0+YgeXAYmfU50=_LL9BaVBm9e5-E1qyouAMENA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 14 Dec 2018 16:32:14 +0000
-Message-ID: <CAJTo0LZ6wXV+B7N54aSSE1mSey6yMZEKUJEjyAvqpKUhRWr=0g@mail.gmail.com>
-To: Peter Balazovic <balazovic.peter@gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: core-image-* (minimal) networking
+Date: Fri, 14 Dec 2018 17:49:15 +0100
+From: winfried.dobbe@xmsnet.nl
+To: yocto@yoctoproject.org
+Mail-Reply-To: winfried.dobbe@xmsnet.nl
+In-Reply-To: <864ba99d44122d48993d44bbe62e28c6@xmsnet.nl>
+References: <CAE5v_rLRcNZAGHA29xrcf_BYf7Y_4ihHJseXACEr8nMDQcfqRw@mail.gmail.com>
+	<CAE5v_rJrokB6N24Y0TrA4+8=-C3Uta8Ky4-9b5J7sTZGvj=gqQ@mail.gmail.com>
+	<864ba99d44122d48993d44bbe62e28c6@xmsnet.nl>
+Message-ID: <8de1a730b787f77721cd1fe15a194073@xmsnet.nl>
+X-Sender: winfried.dobbe@xmsnet.nl
+User-Agent: Roundcube Webmail/1.3.6
+X-Concepts-MailScanner-Information: Please contact abuse@concepts.nl for more
+	information
+X-Concepts-MailScanner-ID: 1gXqeJ-0002ta-CO
+X-Concepts-MailScanner: Found to be clean
+X-Concepts-MailScanner-SpamCheck: 
+X-Concepts-MailScanner-From: winfried.dobbe@xmsnet.nl
+Subject: Re: THISDIR variable in another meta-layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: winfried.dobbe@xmsnet.nl
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -66,32 +50,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Dec 2018 16:32:27 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 14 Dec 2018 16:49:18 -0000
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-Install something to do networking. Minimal means minimal.  I tend to
-prefer connman as that means you get ethernet hotplug working without
-any further work, and you can easily setup wifi too.
+>> 
+>> In componentB.bb I have function do_install:
+>> 
+>> do_install () {
+>> install -m 0755 -d ${D}/usr/share
+>> cmake_do_install
+>> install -m 0755 ${THISDIR}/default/script.sh  ${D}/usr/share
+>> }
+>> 
+>> In componentB.bbapend I overwrite function in order to install other
+>> script instead:
+>> 
+>> do_install () {
+>> install -m 0755 -d ${D}/usr/share
+>> cmake_do_install
+>> install -m 0755 ${THISDIR}/files/script.sh  ${D}/usr/share
+>> }
+>> 
+>> The problem is that ${THISDIR} indicates IN BOTH CASES to path
+>> meta-layer-A/recipes-X/componentB.
+>> So how to tell bitbake in componentB.bbappend to install my script
+>> from path meta-layer-B/recipes-X/componentB/files? It is really
+>> frustrating that variable THISDIR doesn't indicates to path
+>> meta-layer-B/recipes-X/componentB when I used it in
+>> componentB.bbapend.
 
-Ross
-On Fri, 14 Dec 2018 at 16:22, Peter Balazovic <balazovic.peter@gmail.com> wrote:
->
-> I've built bitbake core-image-minimal and it runs but unfortunately I have no connectivity (networking) available.
->
-> > ifconfig
-> lo        Link encap:Local Loopback
->           inet addr:127.0.0.1  Mask:255.0.0.0
->           inet6 addr: ::1/128 Scope:Host
->           UP LOOPBACK RUNNING  MTU:65536  Metric:1
->           RX packets:2720 errors:0 dropped:0 overruns:0 frame:0
->           TX packets:2720 errors:0 dropped:0 overruns:0 carrier:0
->           collisions:0 txqueuelen:1
->           RX bytes:206720 (201.8 KiB)  TX bytes:206720 (201.8 KiB)
->
-> What's need to be included within local.conf to enable networking?
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+If script.sh is included in SRC_URI, bitbake will copy it to ${WORKDIR}. 
+The one in meta-layer-B will overwrite the one from meta-layer-A.
+Then install from ${WORKDIR} i.s.o. ${THISDIR}:
+install -m 0755 ${WORKDIR}/script.sh  ${D}/usr/share
+
+regards, Winfried
 
