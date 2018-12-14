@@ -1,55 +1,66 @@
-Return-Path: <sangeeta.jain@intel.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 908AFE00CEA; Fri, 14 Dec 2018 00:20:58 -0800 (PST)
+	id 752D8E00CB7; Fri, 14 Dec 2018 08:07:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1C13E003E1
-	for <yocto@yoctoproject.org>; Fri, 14 Dec 2018 00:20:56 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	14 Dec 2018 00:20:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.56,352,1539673200"; 
-	d="scan'208,217";a="283522059"
-Received: from pgsmsx107.gar.corp.intel.com ([10.221.44.105])
-	by orsmga005.jf.intel.com with ESMTP; 14 Dec 2018 00:20:54 -0800
-Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.185]) by
-	PGSMSX107.gar.corp.intel.com ([169.254.7.139]) with mapi id
-	14.03.0415.000; Fri, 14 Dec 2018 16:20:53 +0800
-From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
-To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>, "Eggleton, Paul"
-	<paul.eggleton@intel.com>, "richard.purdie@linuxfoundation.org"
-	<richard.purdie@linuxfoundation.org>, "Graydon, Tracy"
-	<tracy.graydon@intel.com>, "Erway, Tracey M" <tracey.m.erway@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: QA cycle report for 2.5.2  RC1
-Thread-Index: AdSTheYCVqta2Pt/TmKcuVhClheHGQ==
-Date: Fri, 14 Dec 2018 08:20:52 +0000
-Message-ID: <015AB11D45F2C442929CB2765DAE738634D13281@PGSMSX110.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMTk0YjQxZGYtYWRiNC00OTM5LWI5MWItNzEzYmY2YTMxMGVhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiVG5HYm9JaFlWcGowWlUzZjVPdE95b1dWaitlNEJXeWZUZDYwclwvYURUQXFrbU1MbHpyeDdjWFlmbGsxajNWTVYifQ==
-x-originating-ip: [172.30.20.206]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.41 listed in list.dnswl.org]
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+	[209.85.128.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DF9CE00C4E
+	for <yocto@lists.yoctoproject.org>;
+	Fri, 14 Dec 2018 08:07:50 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id m1so6190894wml.2
+	for <yocto@lists.yoctoproject.org>;
+	Fri, 14 Dec 2018 08:07:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=5rqB+Dbno8FOvaCti34YNfapKWKRmxicD3/wuTaawYk=;
+	b=PdBOSgcpzAf8JTOuFUFF4TpJhvpRJQdzGxMZY6DbaXrC4B7Th3Eo98wkvgXOCkiTdT
+	yXAQVMydP2oBbrYwa0xsa7QH6pxyfiUuuz/0+JUNp07LJ093ZEVvo2mjemxDRY+acgLB
+	upOSpmRppzVy1KG4w9rgX531C2kEw5ZymPRws=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=5rqB+Dbno8FOvaCti34YNfapKWKRmxicD3/wuTaawYk=;
+	b=XisWt0t0FE33ox4jLi4qlcrg8Ctdbh9EP81yFZ9NkNT/xJAWisOHlwcU5DcBYLLhOA
+	Rs441104t193jAT0Fm49NL4CHGn6VBk+mRsXKU38sTlnoC5ZkEvl4+VEQiYG8cwtx/2w
+	9sRIoEykbdAWqkUQC+pwmwhp+FEw+zSD0cRGdJ2M4OdyVYU/6yYEXQJhEkn2/18m076w
+	kP0XsnLTzySI1eti19F4pePEtjFfgc0dmVABzsJq+xRrL4utmigkJdzmxQFJgbHsuq2o
+	SDydYOPzlrG2seX6c7D7G+2WA6o7L6IwrvHXXoYfydHcVItdd2nrAaG8xy8ZuQtUQub3
+	pBfg==
+X-Gm-Message-State: AA+aEWauvKi0KMJOaduL+Iym9lZL1Z/chaVL8TDljeLw4BknRRG/m2jM
+	64PFHEXdhijfLTlDEnjpxO72GCFASZv0TQ==
+X-Google-Smtp-Source: AFSGD/XO6sVJEskMqrLmr7bTHsKXd3WIlbSc1dzQq0C1nN4W71jtBaLR13K2JmP78EvC6vs0x5CU3w==
+X-Received: by 2002:a1c:83c8:: with SMTP id f191mr3745134wmd.134.1544803669709;
+	Fri, 14 Dec 2018 08:07:49 -0800 (PST)
+Received: from hex.int.rpsys.net (5751f4a1.skybroadband.com. [87.81.244.161])
+	by smtp.gmail.com with ESMTPSA id
+	y185sm3939576wmg.34.2018.12.14.08.07.47
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 14 Dec 2018 08:07:48 -0800 (PST)
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: yocto@lists.yoctoproject.org
+Date: Fri, 14 Dec 2018 16:07:47 +0000
+Message-Id: <20181214160747.4732-1-richard.purdie@linuxfoundation.org>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-Cc: "Kirkiris, Nectar" <nectar.kirkiris@intel.com>
-Subject: QA cycle report for 2.5.2 RC1
+Subject: [PATCH][auh] upgradehelper: Replace do_checkpkg usage with direct tinfoil calls
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,442 +72,211 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Dec 2018 08:20:58 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_015AB11D45F2C442929CB2765DAE738634D13281PGSMSX110garcor_"
+X-List-Received-Date: Fri, 14 Dec 2018 16:07:52 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+The code in distrodata.bbclass related to the do_checkpkg task is rather
+dated, has holes in it (ignoring some recipes) and has horrible locking
+and csv related issues.
+
+We should use modern APIs such as tinfoil to make the calls we need directly
+against bitbake, cutting out the middleman and clarifing the code.
+
+This change imports the bits of distrodata.bbclass this code needs in their
+current form. Its likely it can be further improved from here but this is a
+good start and appears to function as before, with slightly wider recipe
+coverage as some things skipped by distrodata are not skipped here (images,
+pieces of gcc, nativesdk only recipes).
+
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ upgradehelper.py | 148 ++++++++++++++++++++++++++---------------------
+ 1 file changed, 82 insertions(+), 66 deletions(-)
+
+diff --git a/upgradehelper.py b/upgradehelper.py
+index 8fb27d3..7ad4917 100755
+--- a/upgradehelper.py
++++ b/upgradehelper.py
+@@ -59,6 +59,25 @@ from statistics import Statistics
+ from steps import upgrade_steps
+ from testimage import TestImage
+ 
++if not os.getenv('BUILDDIR', False):
++    E(" You must source oe-init-build-env before running this script!\n")
++    E(" It is recommended to create a fresh build directory with it:\n")
++    E(" $ . oe-init-build-env build-auh\n")
++    exit(1)
++
++import shutil
++# Use the location of devtool to find scriptpath and hence bb/oe libs
++scripts_path = os.path.abspath(os.path.dirname(shutil.which("devtool")))
++sys.path = sys.path + [scripts_path + '/lib']
++import scriptpath
++scriptpath.add_bitbake_lib_path()
++scriptpath.add_oe_lib_path()
++
++import bb.tinfoil
++import oe.recipeutils
++from bb.utils import vercmp_string
++
++
+ help_text = """Usage examples:
+ * To upgrade xmodmap recipe to the latest available version:
+     $ upgrade-helper.py xmodmap
+@@ -599,59 +618,6 @@ class UniverseUpdater(Updater):
+             I(" Removing tmp directory ...")
+             shutil.rmtree(self.base_env['TMPDIR'])
+ 
+-    def _check_upstream_versions(self):
+-        I(" Fetching upstream version(s) ...")
+-
+-        if self.recipes:
+-            recipe = " ".join(self.recipes)
+-        else:
+-            recipe = 'universe'
+-
+-        try:
+-            self.bb.checkpkg(recipe)
+-        except Error as e:
+-            for line in e.stdout.split('\n'):
+-                if line.find("ERROR: Task do_checkpkg does not exist") != -1:
+-                    C(" \"distrodata.bbclass\" not inherited. Consider adding "
+-                      "the following to your local.conf:\n\n"
+-                      "INHERIT =+ \"distrodata\"\n")
+-                    exit(1)
+-
+-    def _parse_checkpkg_file(self, file_path):
+-        import csv
+-
+-        pkgs_list = []
+-
+-        with open(file_path, "r") as f:
+-            reader = csv.reader(f, delimiter='\t')
+-            for row in reader:
+-                if reader.line_num == 1: # skip header line
+-                    continue
+-
+-                pn = row[0]
+-                cur_ver = row[1]
+-                if self.args.to_version:
+-                    next_ver = self.args.to_version
+-                else:
+-                    next_ver = row[2]
+-                status = row[11]
+-                revision = row[12]
+-                maintainer = row[14]
+-                no_upgrade_reason = row[15]
+-
+-                if status == 'UPDATE' and not no_upgrade_reason:
+-                    pkgs_list.append((pn, cur_ver, next_ver, maintainer, revision))
+-                else:
+-                    if no_upgrade_reason:
+-                        I(" Skip package %s (status = %s, current version = %s," \
+-                            " next version = %s, no upgrade reason = %s)" %
+-                            (pn, status, cur_ver, next_ver, no_upgrade_reason))
+-                    else:
+-                        I(" Skip package %s (status = %s, current version = %s," \
+-                            " next version = %s)" %
+-                            (pn, status, cur_ver, next_ver))
+-        return pkgs_list
+-
+     # checks if maintainer is in whitelist and that the recipe itself is not
+     # blacklisted: python, gcc, etc. Also, check the history if the recipe
+     # hasn't already been tried
+@@ -688,16 +654,71 @@ class UniverseUpdater(Updater):
+         return True
+ 
+     def _get_packages_to_upgrade(self, packages=None):
+-        self._check_upstream_versions()
+-        last_checkpkg_file = os.path.realpath(self.base_env['TMPDIR'] + "/log/checkpkg.csv")
+ 
+         pkgs_list = []
+-        for pkg in self._parse_checkpkg_file(last_checkpkg_file):
+-            # Always do the upgrade if recipes are specified
+-            if self.recipes and pkg[0] in self.recipes:
+-                pkgs_list.append(pkg)
+-            elif self._pkg_upgradable(pkg[0], pkg[2], pkg[3]):
+-                pkgs_list.append(pkg)
++        with bb.tinfoil.Tinfoil() as tinfoil:
++            tinfoil.prepare(config_only=False)
++            recipes = self.recipes
++            if not recipes:
++                recipes = tinfoil.all_recipe_files(variants=False)
++
++            for fn in recipes:
++                try:
++                    if fn.startswith("/"):
++                        data = tinfoil.parse_recipe_file(fn)
++                    else:
++                        data = tinfoil.parse_recipe(fn)
++                except bb.providers.NoProvider:
++                    I(" No provider for %s" % fn)
++                    continue
++
++                unreliable = data.getVar('UPSTREAM_CHECK_UNRELIABLE')
++                if unreliable == "1":
++                    I(" Skip package %s as upstream check unreliable" % pn)
++                    continue
++
++                uv = oe.recipeutils.get_recipe_upstream_version(data)
++
++                pn = data.getVar('PN')
++                cur_ver = uv['current_version']
++
++
++                upstream_version_unknown = data.getVar('UPSTREAM_VERSION_UNKNOWN')
++                if not uv['version']:
++                    status = "UNKNOWN" if upstream_version_unknown else "UNKNOWN_BROKEN"
++                else:
++                    cmp = vercmp_string(uv['current_version'], uv['version'])
++                    if cmp == -1:
++                        status = "UPDATE" if not upstream_version_unknown else "KNOWN_BROKEN"
++                    elif cmp == 0:
++                        status = "MATCH" if not upstream_version_unknown else "KNOWN_BROKEN"
++                    else:
++                        status = "UNKNOWN" if upstream_version_unknown else "UNKNOWN_BROKEN"
++
++                if self.args.to_version:
++                    next_ver = self.args.to_version
++                else:
++                    next_ver = uv['version'] if uv['version'] else "N/A"
++                revision = uv['revision'] if uv['revision'] else "N/A"
++                maintainer = data.getVar('RECIPE_MAINTAINER')
++                no_upgrade_reason = data.getVar('RECIPE_NO_UPDATE_REASON')
++
++                if status == 'UPDATE' and not no_upgrade_reason:
++                    # Always do the upgrade if recipes are specified
++                    if self.recipes and pn in self.recipes:
++                        pkgs_list.append((pn, cur_ver, next_ver, maintainer, revision))
++
++                    elif self._pkg_upgradable(pn, next_ver, maintainer):
++                        pkgs_list.append((pn, cur_ver, next_ver, maintainer, revision))
++                else:
++                    if no_upgrade_reason:
++                        I(" Skip package %s (status = %s, current version = %s," \
++                            " next version = %s, no upgrade reason = %s)" %
++                            (pn, status, cur_ver, next_ver, no_upgrade_reason))
++                    else:
++                        I(" Skip package %s (status = %s, current version = %s," \
++                            " next version = %s)" %
++                            (pn, status, cur_ver, next_ver))
+ 
+         return pkgs_list
+ 
+@@ -716,11 +737,6 @@ if __name__ == "__main__":
+     global settings
+     global maintainer_override
+ 
+-    if not os.getenv('BUILDDIR', False):
+-        E(" You must source oe-init-build-env before running this script!\n")
+-        E(" It is recommended to create a fresh build directory with it:\n")
+-        E(" $ . oe-init-build-env build-auh\n")
+-        exit(1)
+ 
+     devnull = open(os.devnull, 'wb')
+     if subprocess.call(["git", "config", "user.name"], stdout=devnull,stderr=devnull) or \
+-- 
+2.17.1
 
---_000_015AB11D45F2C442929CB2765DAE738634D13281PGSMSX110garcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-
-
-Hello All,
-
-
-
-This is the full report for 2.5.2 RC1:
-
-https://wiki.yoctoproject.org/wiki/WW49_-_2018-12-06-_Full_Test_Cycle_-_2.5=
-.2_rc1
-
-
-
-
-
-Summary
-
-
-
-All planned tests were executed.
-
-
-
-Total Test Executed - 3389
-
-Passed Test - 3374
-
-Failed Test - 10
-
-Blocked Test - 5
-
-
-
-Team had found no new defects.
-
-Test cases failing because of bugs which are not new.
-
-
-
-ptest
-
-
-
-ptest for 3 module failed in current release but passed in previous 2.5.1 r=
-c1.  Present status of bugs for respective modules is as follows:
-
-
-
-ModuleName  -  BugId  -  Present Status
-
-
-
-perl        - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13075    =
-  - New
-
-python - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13076 - Resolv=
-ed
-
-tcl - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13077 - New
-
-
-
-
-
-Performance test
-
-
-
- rootfs performance on ubuntu1604 upgraded by 11.65% in 2.5.2 RC1 w.r.t. 2.=
-5.1RC1.
-
-
-
-
-
-QA-Hints
-
-
-
-For Bug id 12914, https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12914
-
-Regression on previous release and further investigation is in progress to =
-confirm the issue
-
-
-
-
-
-Bugs (Not New)
-
-
-
-[1] Bug 12991 -  [2.6 M4 RC1][Build-Appliance] Bitbake build-appliance-imag=
-e getting failed during building image due to webkitgtk package
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991
-
-
-
- [2] Bug 12<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12952>499 -=
- [2.5 M1 RC3] qemuarm: failed to shutdown
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12499
-
-
-[3] Bug 12<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12946>666 - =
-[2.5 M3 RC1] BSP-QEMU:core-image-sato-sdk-genericx86-64.hddimg unable to co=
-nnect to console  with serial on Minnowboard Turbot
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12666
-
-[4] Bug 129<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12954>14 - =
-[2.6 M2 RC1][Meta-Intel 10.0][NUC7 & Mturbot][Test case 197] reboot command=
- missing while installing image
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12914
-
-Thanks & Regards,
-Sangeeta Jain
-
-
---_000_015AB11D45F2C442929CB2765DAE738634D13281PGSMSX110garcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:"Courier New";
-	mso-fareast-language:EN-MY;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle21
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle22
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle23
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle24
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle25
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle26
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle27
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle28
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle30
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-MY" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Hello All,<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">This is the full report for 2.</span><span lang=3D"EN-US">5.2=
- R<span style=3D"color:black">C1:&nbsp;
-<o:p></o:p></span></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><a href=
-=3D"https://wiki.yoctoproject.org/wiki/WW49_-_2018-12-06-_Full_Test_Cycle_-=
-_2.5.2_rc1">https://wiki.yoctoproject.org/wiki/WW49_-_2018-12-06-_Full_Test=
-_Cycle_-_2.5.2_rc1</a><o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
-sp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black">Summary<o:p></o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">All planned tests were executed.<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Total Test Executed &#8211; 33</span><span lang=3D"EN-US">89<=
-span style=3D"color:black"><o:p></o:p></span></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Passed Test &#8211; 33</span><span lang=3D"EN-US">74<span sty=
-le=3D"color:black"><o:p></o:p></span></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Failed Test &#8211;
-</span><span lang=3D"EN-US">10<span style=3D"color:black"><o:p></o:p></span=
-></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">Blocked Test -
-</span><span lang=3D"EN-US">5<span style=3D"color:black"><o:p></o:p></span>=
-</span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;<o:p></o:p></span></p>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
-0pt;font-family:&quot;Times New Roman&quot;,serif;color:black">Team had fou=
-nd </span><span lang=3D"EN-US" style=3D"font-size:12.0pt;font-family:&quot;=
-Times New Roman&quot;,serif">no<span style=3D"color:black"> new defects. <o=
-:p></o:p></span></span></pre>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:11.=
-0pt;font-family:&quot;Calibri&quot;,sans-serif">Test cases failing because =
-of bugs which are not new.<o:p></o:p></span></pre>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:11.=
-0pt;font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p=
-re>
-<pre style=3D"background:white"><b><span lang=3D"EN-US" style=3D"font-size:=
-11.0pt;font-family:&quot;Calibri&quot;,sans-serif">ptest<o:p></o:p></span><=
-/b></pre>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:11.=
-0pt;font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p=
-re>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
-0pt;font-family:&quot;Times New Roman&quot;,serif;color:black">ptest for </=
-span><span lang=3D"EN-US" style=3D"font-size:12.0pt;font-family:&quot;Times=
- New Roman&quot;,serif">3</span><span style=3D"font-size:12.0pt;font-family=
-:&quot;Times New Roman&quot;,serif"> module</span><span lang=3D"EN-US" styl=
-e=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;color:b=
-lack"> failed in current release but passed in previous 2.</span><span lang=
-=3D"EN-US" style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot=
-;,serif">5.1<span style=3D"color:black"> rc1.&nbsp;&nbsp;</span>Present sta=
-tus of bugs for respective modules is as follows:<o:p></o:p></span></pre>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
-0pt;font-family:&quot;Times New Roman&quot;,serif"><o:p>&nbsp;</o:p></span>=
-</pre>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
-0pt;font-family:&quot;Times New Roman&quot;,serif">ModuleName &nbsp;&#8211;=
- &nbsp;BugId &nbsp;&#8211; &nbsp;Present Status<o:p></o:p></span></pre>
-<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
-0pt;font-family:&quot;Times New Roman&quot;,serif"><o:p>&nbsp;</o:p></span>=
-</pre>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"font-size:12.0=
-pt;font-family:&quot;Times New Roman&quot;,serif">perl<span style=3D"color:=
-black"> &nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span style=3D"color:black">&nbsp;&nbsp;&#8211; </span></span><span style=
-=3D"font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;position:rela=
-tive;top:-1.5pt;mso-text-raise:1.5pt"><a href=3D"https://bugzilla.yoctoproj=
-ect.org/show_bug.cgi?id=3D13075">https://bugzilla.yoctoproject.org/show_bug=
-.cgi?id=3D13075</a>
-</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:black">&nbsp;&nbsp;&nbsp; &nbsp;- New</span><span style=3D"=
-font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif"><o:p></o:p>=
-</span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">python -=
- </span><span style=3D"font-size:10.5pt;font-family:&quot;Arial&quot;,sans-=
-serif;position:relative;top:-1.5pt;mso-text-raise:1.5pt"><a href=3D"https:/=
-/bugzilla.yoctoproject.org/show_bug.cgi?id=3D13076">https://bugzilla.yoctop=
-roject.org/show_bug.cgi?id=3D13076</a>
- &#8211; Resolved<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"font-size:10.5=
-pt;font-family:&quot;Arial&quot;,sans-serif;position:relative;top:-1.5pt;ms=
-o-text-raise:1.5pt">tcl -
-<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13077">https=
-://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13077</a> - New<o:p></o:p></=
-span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"font-size:10.5=
-pt;font-family:&quot;Arial&quot;,sans-serif;position:relative;top:-1.5pt;ms=
-o-text-raise:1.5pt"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
-sp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US">Perfo=
-rmance test</span></b><span lang=3D"EN-US">
-<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
-sp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">&nbsp;ro=
-otfs performance on ubuntu1604 upgraded by 11.65% in 2.5.2 RC1 w.r.t. 2.5.1=
-RC1.
-<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
-sp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
-sp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black">QA-Hints&nbsp;<o:p></o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US"><o:p>=
-&nbsp;</o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">For Bug =
-id 12914, <a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12=
-914">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12914</a><o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">Regressi=
-on on previous release and further investigation is in progress to confirm =
-the issue<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US"><o:p>=
-&nbsp;</o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black"><o:p>&nbsp;</o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black">Bugs</span></b><b><span lang=3D"EN-US"> (Not New)<span sty=
-le=3D"color:black"><o:p></o:p></span></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
-=3D"color:black"><o:p>&nbsp;</o:p></span></b></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">[1]
-</span>Bug&nbsp;12991 - <span style=3D"color:black">&nbsp;</span>[2.6 M4 RC=
-1][Build-Appliance] Bitbake build-appliance-image getting failed during bui=
-lding image due to webkitgtk package<span lang=3D"EN-US" style=3D"color:bla=
-ck"><o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><a href=
-=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991">https://bugz=
-illa.yoctoproject.org/show_bug.cgi?id=3D12991</a><o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
-"color:black">&nbsp;[2]
-</span><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12952=
-"><span lang=3D"EN-US" style=3D"color:black;text-decoration:none">Bug&nbsp;=
-12</span></a>499<span lang=3D"EN-US" style=3D"color:black">&nbsp;</span><sp=
-an lang=3D"EN-US">&#8211;<span style=3D"color:black">&nbsp;</span>[2.5
- M1 RC3] qemuarm: failed to shutdown<o:p></o:p></span></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
-octoproject.org/show_bug.cgi?id=3D12499">https://bugzilla.yoctoproject.org/=
-show_bug.cgi?id=3D12499</a><o:p></o:p></p>
-<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US"><o:p>=
-&nbsp;</o:p></span></b></p>
-<p class=3D"MsoNormal">[3<span lang=3D"EN-US" style=3D"color:black">] </spa=
-n><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12946"><sp=
-an lang=3D"EN-US" style=3D"color:black;text-decoration:none">Bug&nbsp;12</s=
-pan></a>666 - [2.5 M3 RC1] BSP-QEMU:core-image-sato-sdk-genericx86-64.hddim=
-g
- unable to connect to console&nbsp; with serial on Minnowboard Turbot<span =
-lang=3D"EN-US" style=3D"color:black"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><a href=3D"https://bugzilla.yoctoproject.org/show_bu=
-g.cgi?id=3D12666">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12666=
-</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">[4] <a href=3D"https://bugzilla.yoctoproject.org/sho=
-w_bug.cgi?id=3D12954">
-<span style=3D"color:windowtext;text-decoration:none">Bug&nbsp;129</span></=
-a>14 - [2.6 M2 RC1][Meta-Intel 10.0][NUC7 &amp; Mturbot][Test case 197] reb=
-oot command missing while installing image<o:p></o:p></p>
-<p class=3D"MsoNormal"><a href=3D"https://bugzilla.yoctoproject.org/show_bu=
-g.cgi?id=3D12914">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12914=
-</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards,<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Sangeeta Jain<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_015AB11D45F2C442929CB2765DAE738634D13281PGSMSX110garcor_--
