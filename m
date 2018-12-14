@@ -1,66 +1,55 @@
-Return-Path: <srifenbark@gmail.com>
+Return-Path: <sangeeta.jain@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AEA49E00D0B; Thu, 13 Dec 2018 16:19:43 -0800 (PST)
+	id 908AFE00CEA; Fri, 14 Dec 2018 00:20:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.43 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (srifenbark[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.67 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com
-	[209.85.208.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADCA0E00CEA
-	for <yocto@yoctoproject.org>; Thu, 13 Dec 2018 16:19:42 -0800 (PST)
-Received: by mail-ed1-f67.google.com with SMTP id x30so3582081edx.2
-	for <yocto@yoctoproject.org>; Thu, 13 Dec 2018 16:19:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=GWbPYKs3PMEtXPoOkv9ma1e2NcklMQMfxn/EeceuFiU=;
-	b=De/wZTTdIniEMFByH7E5I2wCI0GAneQolbojoINLAZlRGbkdx1hfxIrodrUXZ2TyA0
-	M4sY+PcCFRSdw5a7gr9tQ/ZwMwQmDKP1B5YJmS+HmJzZrR8z4wW7WZ3r5I8h41mJtNv3
-	lOzjEKdaP4lVh80mNlFitI9jypWTsbx+lR9MNlWmjvn/FDmYjg1Ya8qzSIiSfkAhj559
-	w9r6NhmrEJSqpSIMT+haTQHJhCuiyLkMovtm6z/oVIj8HyuB6amXGsimJ11jDXl5O9H3
-	t7vmBpKPF4C1uk8p/ZgX85HRWeKa7hMFiB6+aH4dMciDHX/p54iqsx00vcmFhfe6N0jK
-	+7IQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=GWbPYKs3PMEtXPoOkv9ma1e2NcklMQMfxn/EeceuFiU=;
-	b=rHSEsQxW0n2XAbVtNW5V0bCh3rQh7uuCScADmyJrLB0oZwmyR9BXDygF/gz+e+0Soa
-	HseKeqOlt4YJZ1ZeTQm1t7qIxYJGizdI8W2QgB05KY8M1Bg/wolBUesvZ6evSqbTU0K8
-	8jRYCrm0uyvwcJ6wAMEwFzCe8nYCD61EzHcI2PzmxghgZbyx9GAWeznFk1I7c0JqsRwv
-	tdQ9OoKD86ThM1iXbSuaH0xVSRfdAOOSkpkP/QhTxT/ZE41a/JGutqNlvIj9UJf4suZP
-	xNTPH6Wsf+qun3jGHUHhH1wBXXqM0QGONr7nari/PUbsDLeg/gKSzCr2kCoLZxPfRhYr
-	aRAw==
-X-Gm-Message-State: AA+aEWatcp6HBC46GojZH25lLIoerH+EHrdzMSrOvEfa4EuTRnhm9Ggq
-	sgTmCNWA+JgslFzgUCa2FluOE8TohYC2sXS9bOoobPob
-X-Google-Smtp-Source: AFSGD/W/RTz2EzPHfTImKROB2a7NfAMf5m95L6SsGY6wbpiEgKttIZRHL26h0vLyTvePdBrm/qRlB3PtR6H0s2O5cHM=
-X-Received: by 2002:a17:906:4a4b:: with SMTP id
-	a11-v6mr872388ejv.68.1544746781576; 
-	Thu, 13 Dec 2018 16:19:41 -0800 (PST)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1C13E003E1
+	for <yocto@yoctoproject.org>; Fri, 14 Dec 2018 00:20:56 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	14 Dec 2018 00:20:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.56,352,1539673200"; 
+	d="scan'208,217";a="283522059"
+Received: from pgsmsx107.gar.corp.intel.com ([10.221.44.105])
+	by orsmga005.jf.intel.com with ESMTP; 14 Dec 2018 00:20:54 -0800
+Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.185]) by
+	PGSMSX107.gar.corp.intel.com ([169.254.7.139]) with mapi id
+	14.03.0415.000; Fri, 14 Dec 2018 16:20:53 +0800
+From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
+To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>, "Eggleton, Paul"
+	<paul.eggleton@intel.com>, "richard.purdie@linuxfoundation.org"
+	<richard.purdie@linuxfoundation.org>, "Graydon, Tracy"
+	<tracy.graydon@intel.com>, "Erway, Tracey M" <tracey.m.erway@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: QA cycle report for 2.5.2  RC1
+Thread-Index: AdSTheYCVqta2Pt/TmKcuVhClheHGQ==
+Date: Fri, 14 Dec 2018 08:20:52 +0000
+Message-ID: <015AB11D45F2C442929CB2765DAE738634D13281@PGSMSX110.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMTk0YjQxZGYtYWRiNC00OTM5LWI5MWItNzEzYmY2YTMxMGVhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiVG5HYm9JaFlWcGowWlUzZjVPdE95b1dWaitlNEJXeWZUZDYwclwvYURUQXFrbU1MbHpyeDdjWFlmbGsxajNWTVYifQ==
+x-originating-ip: [172.30.20.206]
 MIME-Version: 1.0
-References: <20181213112305.29609-1-pkj@axis.com>
-In-Reply-To: <20181213112305.29609-1-pkj@axis.com>
-From: Scott Rifenbark <srifenbark@gmail.com>
-Date: Thu, 13 Dec 2018 16:19:30 -0800
-Message-ID: <CAFNP8OtfK9GZ4E_o1NLAhsz4KDogpfBaACheOQsj+Amq7h4v2Q@mail.gmail.com>
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/2] ref-manual: Document the fifth argument to PACKAGECONFIG
+Cc: "Kirkiris, Nectar" <nectar.kirkiris@intel.com>
+Subject: QA cycle report for 2.5.2 RC1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,191 +61,442 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Dec 2018 00:19:43 -0000
-Content-Type: multipart/alternative; boundary="0000000000002f1240057cf0630c"
+X-List-Received-Date: Fri, 14 Dec 2018 08:20:58 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_015AB11D45F2C442929CB2765DAE738634D13281PGSMSX110garcor_"
 
---0000000000002f1240057cf0630c
-Content-Type: text/plain; charset="UTF-8"
-
-Peter,
-
-Thanks for the patch.  See
-https://yoctoproject.org/docs/2.7/ref-manual/ref-manual.html#var-PACKAGECONFIG
-for the changes.
-
-Commit:
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-docs/commit/?id=adb17e3172c829de77d2664c91f7cf4b22c9e5f0
-
-Scott
-
-On Thu, Dec 13, 2018 at 3:24 AM Peter Kjellerstedt <
-peter.kjellerstedt@axis.com> wrote:
-
-> Support for adding runtime recommendations (RRECOMMENDS) using
-> PACKAGECONFIG was introduced in Rocko.
->
-> Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-> ---
->  documentation/ref-manual/ref-variables.xml | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
->
-> diff --git a/documentation/ref-manual/ref-variables.xml
-> b/documentation/ref-manual/ref-variables.xml
-> index 58c5418d16..7dc3a3f79a 100644
-> --- a/documentation/ref-manual/ref-variables.xml
-> +++ b/documentation/ref-manual/ref-variables.xml
-> @@ -10333,9 +10333,9 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR
-> = "${INC_PR}.3"
->                      Here is the basic block structure:
->                      <literallayout class='monospaced'>
->       PACKAGECONFIG ??= "f1 f2 f3 ..."
-> -     PACKAGECONFIG[f1] = "--with-f1,--without-f1,build-deps-f1,rt-deps-f1"
-> -     PACKAGECONFIG[f2] = "--with-f2,--without-f2,build-deps-f2,rt-deps-f2"
-> -     PACKAGECONFIG[f3] = "--with-f3,--without-f3,build-deps-f3,rt-deps-f3"
-> +     PACKAGECONFIG[f1] =
-> "--with-f1,--without-f1,build-deps-f1,rt-deps-f1,rt-recs-f1"
-> +     PACKAGECONFIG[f2] =
-> "--with-f2,--without-f2,build-deps-f2,rt-deps-f2,rt-recs-f2"
-> +     PACKAGECONFIG[f3] =
-> "--with-f3,--without-f3,build-deps-f3,rt-deps-f3,rt-recs-f3"
->                      </literallayout>
->                  </para>
->
-> @@ -10344,7 +10344,7 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR
-> = "${INC_PR}.3"
->                      variable itself specifies a space-separated list of
-> the
->                      features to enable.
->                      Following the features, you can determine the
-> behavior of
-> -                    each feature by providing up to four order-dependent
-> +                    each feature by providing up to five order-dependent
->                      arguments, which are separated by commas.
->                      You can omit any argument you like but must retain the
->                      separating commas.
-> @@ -10370,6 +10370,10 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR
-> = "${INC_PR}.3"
->                              (<link
-> linkend='var-RDEPENDS'><filename>RDEPENDS</filename></link>)
->                              that should be added if the feature is
-> enabled.
->                              </para></listitem>
-> +                        <listitem><para>Additional runtime recommendations
-> +                            (<link
-> linkend='var-RRECOMMENDS'><filename>RRECOMMENDS</filename></link>)
-> +                            that should be added if the feature is
-> enabled.
-> +                            </para></listitem>
->                      </orderedlist>
->                  </para>
->
-> --
-> 2.12.0
->
->
-
---0000000000002f1240057cf0630c
-Content-Type: text/html; charset="UTF-8"
+--_000_015AB11D45F2C442929CB2765DAE738634D13281PGSMSX110garcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Peter, <br></div><d=
-iv><br></div><div>Thanks for the patch.=C2=A0 See <a href=3D"https://yoctop=
-roject.org/docs/2.7/ref-manual/ref-manual.html#var-PACKAGECONFIG">https://y=
-octoproject.org/docs/2.7/ref-manual/ref-manual.html#var-PACKAGECONFIG</a> f=
-or the changes.=C2=A0 <br></div><div><br></div><div>Commit: <a href=3D"http=
-s://git.yoctoproject.org/cgit/cgit.cgi/yocto-docs/commit/?id=3Dadb17e3172c8=
-29de77d2664c91f7cf4b22c9e5f0">https://git.yoctoproject.org/cgit/cgit.cgi/yo=
-cto-docs/commit/?id=3Dadb17e3172c829de77d2664c91f7cf4b22c9e5f0</a></div><di=
-v><br></div><div>Scott<br></div></div></div></div><br><div class=3D"gmail_q=
-uote"><div dir=3D"ltr">On Thu, Dec 13, 2018 at 3:24 AM Peter Kjellerstedt &=
-lt;<a href=3D"mailto:peter.kjellerstedt@axis.com">peter.kjellerstedt@axis.c=
-om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-">Support for adding runtime recommendations (RRECOMMENDS) using<br>
-PACKAGECONFIG was introduced in Rocko.<br>
-<br>
-Signed-off-by: Peter Kjellerstedt &lt;<a href=3D"mailto:peter.kjellerstedt@=
-axis.com" target=3D"_blank">peter.kjellerstedt@axis.com</a>&gt;<br>
----<br>
-=C2=A0documentation/ref-manual/ref-variables.xml | 12 ++++++++----<br>
-=C2=A01 file changed, 8 insertions(+), 4 deletions(-)<br>
-<br>
-diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref=
--manual/ref-variables.xml<br>
-index 58c5418d16..7dc3a3f79a 100644<br>
---- a/documentation/ref-manual/ref-variables.xml<br>
-+++ b/documentation/ref-manual/ref-variables.xml<br>
-@@ -10333,9 +10333,9 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR =
-=3D &quot;${INC_PR}.3&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0Here is the basic block structure:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0&lt;literallayout class=3D&#39;monospaced&#39;&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 PACKAGECONFIG ??=3D &quot;f1 f2 f3 ...&quot;<br>
--=C2=A0 =C2=A0 =C2=A0PACKAGECONFIG[f1] =3D &quot;--with-f1,--without-f1,bui=
-ld-deps-f1,rt-deps-f1&quot;<br>
--=C2=A0 =C2=A0 =C2=A0PACKAGECONFIG[f2] =3D &quot;--with-f2,--without-f2,bui=
-ld-deps-f2,rt-deps-f2&quot;<br>
--=C2=A0 =C2=A0 =C2=A0PACKAGECONFIG[f3] =3D &quot;--with-f3,--without-f3,bui=
-ld-deps-f3,rt-deps-f3&quot;<br>
-+=C2=A0 =C2=A0 =C2=A0PACKAGECONFIG[f1] =3D &quot;--with-f1,--without-f1,bui=
-ld-deps-f1,rt-deps-f1,rt-recs-f1&quot;<br>
-+=C2=A0 =C2=A0 =C2=A0PACKAGECONFIG[f2] =3D &quot;--with-f2,--without-f2,bui=
-ld-deps-f2,rt-deps-f2,rt-recs-f2&quot;<br>
-+=C2=A0 =C2=A0 =C2=A0PACKAGECONFIG[f3] =3D &quot;--with-f3,--without-f3,bui=
-ld-deps-f3,rt-deps-f3,rt-recs-f3&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0&lt;/literallayout&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;=
-<br>
-<br>
-@@ -10344,7 +10344,7 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR =
-=3D &quot;${INC_PR}.3&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0variable itself specifies a space-separated list of the<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0features to enable.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0Following the features, you can determine the behavior of<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 each=
- feature by providing up to four order-dependent<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 each=
- feature by providing up to five order-dependent<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0arguments, which are separated by commas.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0You can omit any argument you like but must retain the<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0separating commas.<br>
-@@ -10370,6 +10370,10 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR =
-=3D &quot;${INC_PR}.3&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(&lt;link linkend=3D&#39;var-RDEPENDS&#39;&g=
-t;&lt;filename&gt;RDEPENDS&lt;/filename&gt;&lt;/link&gt;)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0that should be added if the feature is enabl=
-ed.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;&lt;/listitem&gt;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 &lt;listitem&gt;&lt;para&gt;Additional runtime recommendations<b=
-r>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 (&lt;link linkend=3D&#39;var-RRECOMMENDS&#39;&gt;&=
-lt;filename&gt;RRECOMMENDS&lt;/filename&gt;&lt;/link&gt;)<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 that should be added if the feature is enabled.<br=
->
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 &lt;/para&gt;&lt;/listitem&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0&lt;/orderedlist&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;=
-<br>
-<br>
--- <br>
-2.12.0<br>
-<br>
-</blockquote></div>
 
---0000000000002f1240057cf0630c--
+
+Hello All,
+
+
+
+This is the full report for 2.5.2 RC1:
+
+https://wiki.yoctoproject.org/wiki/WW49_-_2018-12-06-_Full_Test_Cycle_-_2.5=
+.2_rc1
+
+
+
+
+
+Summary
+
+
+
+All planned tests were executed.
+
+
+
+Total Test Executed - 3389
+
+Passed Test - 3374
+
+Failed Test - 10
+
+Blocked Test - 5
+
+
+
+Team had found no new defects.
+
+Test cases failing because of bugs which are not new.
+
+
+
+ptest
+
+
+
+ptest for 3 module failed in current release but passed in previous 2.5.1 r=
+c1.  Present status of bugs for respective modules is as follows:
+
+
+
+ModuleName  -  BugId  -  Present Status
+
+
+
+perl        - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13075    =
+  - New
+
+python - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13076 - Resolv=
+ed
+
+tcl - https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13077 - New
+
+
+
+
+
+Performance test
+
+
+
+ rootfs performance on ubuntu1604 upgraded by 11.65% in 2.5.2 RC1 w.r.t. 2.=
+5.1RC1.
+
+
+
+
+
+QA-Hints
+
+
+
+For Bug id 12914, https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12914
+
+Regression on previous release and further investigation is in progress to =
+confirm the issue
+
+
+
+
+
+Bugs (Not New)
+
+
+
+[1] Bug 12991 -  [2.6 M4 RC1][Build-Appliance] Bitbake build-appliance-imag=
+e getting failed during building image due to webkitgtk package
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991
+
+
+
+ [2] Bug 12<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12952>499 -=
+ [2.5 M1 RC3] qemuarm: failed to shutdown
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12499
+
+
+[3] Bug 12<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12946>666 - =
+[2.5 M3 RC1] BSP-QEMU:core-image-sato-sdk-genericx86-64.hddimg unable to co=
+nnect to console  with serial on Minnowboard Turbot
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12666
+
+[4] Bug 129<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12954>14 - =
+[2.6 M2 RC1][Meta-Intel 10.0][NUC7 & Mturbot][Test case 197] reboot command=
+ missing while installing image
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12914
+
+Thanks & Regards,
+Sangeeta Jain
+
+
+--_000_015AB11D45F2C442929CB2765DAE738634D13281PGSMSX110garcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";
+	mso-fareast-language:EN-MY;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle22
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle23
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle24
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle25
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle26
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle27
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle28
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle30
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-MY" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">Hello All,<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">This is the full report for 2.</span><span lang=3D"EN-US">5.2=
+ R<span style=3D"color:black">C1:&nbsp;
+<o:p></o:p></span></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><a href=
+=3D"https://wiki.yoctoproject.org/wiki/WW49_-_2018-12-06-_Full_Test_Cycle_-=
+_2.5.2_rc1">https://wiki.yoctoproject.org/wiki/WW49_-_2018-12-06-_Full_Test=
+_Cycle_-_2.5.2_rc1</a><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
+=3D"color:black">Summary<o:p></o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">All planned tests were executed.<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">Total Test Executed &#8211; 33</span><span lang=3D"EN-US">89<=
+span style=3D"color:black"><o:p></o:p></span></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">Passed Test &#8211; 33</span><span lang=3D"EN-US">74<span sty=
+le=3D"color:black"><o:p></o:p></span></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">Failed Test &#8211;
+</span><span lang=3D"EN-US">10<span style=3D"color:black"><o:p></o:p></span=
+></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">Blocked Test -
+</span><span lang=3D"EN-US">5<span style=3D"color:black"><o:p></o:p></span>=
+</span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
+0pt;font-family:&quot;Times New Roman&quot;,serif;color:black">Team had fou=
+nd </span><span lang=3D"EN-US" style=3D"font-size:12.0pt;font-family:&quot;=
+Times New Roman&quot;,serif">no<span style=3D"color:black"> new defects. <o=
+:p></o:p></span></span></pre>
+<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:11.=
+0pt;font-family:&quot;Calibri&quot;,sans-serif">Test cases failing because =
+of bugs which are not new.<o:p></o:p></span></pre>
+<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:11.=
+0pt;font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p=
+re>
+<pre style=3D"background:white"><b><span lang=3D"EN-US" style=3D"font-size:=
+11.0pt;font-family:&quot;Calibri&quot;,sans-serif">ptest<o:p></o:p></span><=
+/b></pre>
+<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:11.=
+0pt;font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p=
+re>
+<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
+0pt;font-family:&quot;Times New Roman&quot;,serif;color:black">ptest for </=
+span><span lang=3D"EN-US" style=3D"font-size:12.0pt;font-family:&quot;Times=
+ New Roman&quot;,serif">3</span><span style=3D"font-size:12.0pt;font-family=
+:&quot;Times New Roman&quot;,serif"> module</span><span lang=3D"EN-US" styl=
+e=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;color:b=
+lack"> failed in current release but passed in previous 2.</span><span lang=
+=3D"EN-US" style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot=
+;,serif">5.1<span style=3D"color:black"> rc1.&nbsp;&nbsp;</span>Present sta=
+tus of bugs for respective modules is as follows:<o:p></o:p></span></pre>
+<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
+0pt;font-family:&quot;Times New Roman&quot;,serif"><o:p>&nbsp;</o:p></span>=
+</pre>
+<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
+0pt;font-family:&quot;Times New Roman&quot;,serif">ModuleName &nbsp;&#8211;=
+ &nbsp;BugId &nbsp;&#8211; &nbsp;Present Status<o:p></o:p></span></pre>
+<pre style=3D"background:white"><span lang=3D"EN-US" style=3D"font-size:12.=
+0pt;font-family:&quot;Times New Roman&quot;,serif"><o:p>&nbsp;</o:p></span>=
+</pre>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"font-size:12.0=
+pt;font-family:&quot;Times New Roman&quot;,serif">perl<span style=3D"color:=
+black"> &nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span style=3D"color:black">&nbsp;&nbsp;&#8211; </span></span><span style=
+=3D"font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;position:rela=
+tive;top:-1.5pt;mso-text-raise:1.5pt"><a href=3D"https://bugzilla.yoctoproj=
+ect.org/show_bug.cgi?id=3D13075">https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D13075</a>
+</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:black">&nbsp;&nbsp;&nbsp; &nbsp;- New</span><span style=3D"=
+font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif"><o:p></o:p>=
+</span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">python -=
+ </span><span style=3D"font-size:10.5pt;font-family:&quot;Arial&quot;,sans-=
+serif;position:relative;top:-1.5pt;mso-text-raise:1.5pt"><a href=3D"https:/=
+/bugzilla.yoctoproject.org/show_bug.cgi?id=3D13076">https://bugzilla.yoctop=
+roject.org/show_bug.cgi?id=3D13076</a>
+ &#8211; Resolved<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"font-size:10.5=
+pt;font-family:&quot;Arial&quot;,sans-serif;position:relative;top:-1.5pt;ms=
+o-text-raise:1.5pt">tcl -
+<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13077">https=
+://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13077</a> - New<o:p></o:p></=
+span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"font-size:10.5=
+pt;font-family:&quot;Arial&quot;,sans-serif;position:relative;top:-1.5pt;ms=
+o-text-raise:1.5pt"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US">Perfo=
+rmance test</span></b><span lang=3D"EN-US">
+<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">&nbsp;ro=
+otfs performance on ubuntu1604 upgraded by 11.65% in 2.5.2 RC1 w.r.t. 2.5.1=
+RC1.
+<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
+=3D"color:black">QA-Hints&nbsp;<o:p></o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US"><o:p>=
+&nbsp;</o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">For Bug =
+id 12914, <a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12=
+914">
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12914</a><o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">Regressi=
+on on previous release and further investigation is in progress to confirm =
+the issue<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US"><o:p>=
+&nbsp;</o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
+=3D"color:black"><o:p>&nbsp;</o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
+=3D"color:black">Bugs</span></b><b><span lang=3D"EN-US"> (Not New)<span sty=
+le=3D"color:black"><o:p></o:p></span></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US" style=
+=3D"color:black"><o:p>&nbsp;</o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">[1]
+</span>Bug&nbsp;12991 - <span style=3D"color:black">&nbsp;</span>[2.6 M4 RC=
+1][Build-Appliance] Bitbake build-appliance-image getting failed during bui=
+lding image due to webkitgtk package<span lang=3D"EN-US" style=3D"color:bla=
+ck"><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><a href=
+=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991">https://bugz=
+illa.yoctoproject.org/show_bug.cgi?id=3D12991</a><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;[2]
+</span><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12952=
+"><span lang=3D"EN-US" style=3D"color:black;text-decoration:none">Bug&nbsp;=
+12</span></a>499<span lang=3D"EN-US" style=3D"color:black">&nbsp;</span><sp=
+an lang=3D"EN-US">&#8211;<span style=3D"color:black">&nbsp;</span>[2.5
+ M1 RC3] qemuarm: failed to shutdown<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D12499">https://bugzilla.yoctoproject.org/=
+show_bug.cgi?id=3D12499</a><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US"><o:p>=
+&nbsp;</o:p></span></b></p>
+<p class=3D"MsoNormal">[3<span lang=3D"EN-US" style=3D"color:black">] </spa=
+n><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12946"><sp=
+an lang=3D"EN-US" style=3D"color:black;text-decoration:none">Bug&nbsp;12</s=
+pan></a>666 - [2.5 M3 RC1] BSP-QEMU:core-image-sato-sdk-genericx86-64.hddim=
+g
+ unable to connect to console&nbsp; with serial on Minnowboard Turbot<span =
+lang=3D"EN-US" style=3D"color:black"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><a href=3D"https://bugzilla.yoctoproject.org/show_bu=
+g.cgi?id=3D12666">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12666=
+</a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">[4] <a href=3D"https://bugzilla.yoctoproject.org/sho=
+w_bug.cgi?id=3D12954">
+<span style=3D"color:windowtext;text-decoration:none">Bug&nbsp;129</span></=
+a>14 - [2.6 M2 RC1][Meta-Intel 10.0][NUC7 &amp; Mturbot][Test case 197] reb=
+oot command missing while installing image<o:p></o:p></p>
+<p class=3D"MsoNormal"><a href=3D"https://bugzilla.yoctoproject.org/show_bu=
+g.cgi?id=3D12914">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12914=
+</a><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards,<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Sangeeta Jain<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_015AB11D45F2C442929CB2765DAE738634D13281PGSMSX110garcor_--
