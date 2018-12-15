@@ -1,6 +1,6 @@
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A38D0E00BB5; Fri, 14 Dec 2018 10:19:00 -0800 (PST)
+	id 1C390E00C58; Sat, 15 Dec 2018 03:30:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,56 +11,56 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.48 listed in list.dnswl.org]
+	*      [209.85.221.44 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
-	[209.85.128.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83B51E00B45
-	for <yocto@lists.yoctoproject.org>;
-	Fri, 14 Dec 2018 10:18:59 -0800 (PST)
-Received: by mail-wm1-f48.google.com with SMTP id g67so6702114wmd.2
-	for <yocto@lists.yoctoproject.org>;
-	Fri, 14 Dec 2018 10:18:59 -0800 (PST)
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+	[209.85.221.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD944E00C45
+	for <yocto@yoctoproject.org>; Sat, 15 Dec 2018 03:30:03 -0800 (PST)
+Received: by mail-wr1-f44.google.com with SMTP id z5so7785425wrt.11
+	for <yocto@yoctoproject.org>; Sat, 15 Dec 2018 03:30:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=linuxfoundation.org; s=google;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=aytxhcSyFk4SyvYDHyr4EEw1jYBakaKqE4C+bi7qUxc=;
-	b=d9nDeIrGMaqPxM74t38N1ZDdXCPXNYVkFvcJR6JZWcLZ/PZxFj/tN+rE8p1q3zOYt1
-	nvdRFpBTSQRIWBblACsdS3tNcj5VzkLUpZiei4rXK2SqnbU+o7m1eVKOzbe9UbFu4GOE
-	DkkkN3bGITaBQMu7cnlO1I9bx++EKwEqkCDRA=
+	h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=7l8hhzruwJZBbIeCQVgXtJnxkWOXU1pvoGKgMII3IHU=;
+	b=LFSSqQb7q96+zEn0Ws0/HUcRXm8CZ/wteax54T9OIW8QqeFEsgC/EGnbBivPz/8vdz
+	2ig3AvYtvdWHwM/xS6fh4Jd9a9AeGhUvhnxjbPLIgMoL5CcGDn3Nlnc33O4IxzVqdc1H
+	x1uttHiBdJjsfu0qwKIqlR1LLGlqNpvX7P7c4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=aytxhcSyFk4SyvYDHyr4EEw1jYBakaKqE4C+bi7qUxc=;
-	b=kNREtS4jNnrtL2KyTwrLfeP/Y4DvMCyC5f+Hfikg2Xf/G5U0srLpMFA2zsq912jl7S
-	3jkFWHeuqiuI8VRUEuPhqZNmUYDFNDzMrmVrIo0MTDvM0nbLJEqUYr+1BslBodr5AGty
-	91rAyE3ByS01wBIie3iOwgSQ1AOMcE6y/j3PWogsy/0FtEaODUVdudkXWhUFUBCr39cp
-	/2WDBFMW4Xa82wUh+cWAsK+8tZF81Hu8udw/PNevfvWcbXaYBxY1zkGNWrecm+HEkTx7
-	vHQRHHOmEuXz2SdV/2S4R2NqGiTievTsJ24o7504neeI8U2zdncA+K1mNtesQ6uXJY7o
-	dUdw==
-X-Gm-Message-State: AA+aEWbaDGHOmrAeII7mkNK/pJQ5GOFR/7ptFe3V7P8p9Mq1e7U3sACB
-	5tQkDiEpvUncRLEywuie3GXyv+ZiYyRieg==
-X-Google-Smtp-Source: AFSGD/WkTN5zimzmTXa/CNSTuVb06Oujaw5FNMBOeQdFW2bQSR3eLu898NfUO2NykU4LA7XBl4kvRg==
-X-Received: by 2002:a1c:cec1:: with SMTP id e184mr4232649wmg.75.1544811538179; 
-	Fri, 14 Dec 2018 10:18:58 -0800 (PST)
-Received: from hex.int.rpsys.net (5751f4a1.skybroadband.com. [87.81.244.161])
+	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+	:references:user-agent:mime-version:content-transfer-encoding;
+	bh=7l8hhzruwJZBbIeCQVgXtJnxkWOXU1pvoGKgMII3IHU=;
+	b=K6XB3J0UoE58jpiJmSBX8/oGAivYEAgbWxrDHu7zO96blkeeUk6vQlSNzovQBnXby5
+	I1HkX5tZK48feDh7vJzz4FEZv+7/Fzy1y7+b/jbFJl7j0/JzKOTjeP7zZ/H+msAQhTez
+	THFb01gcvNruTlZI5h1TvkYd2d3fXSIVfCTnPYpoXIiwuFeZ1wUURjMJYODR5Bd00bD2
+	5lL07FskN9P1qh20WQxuHpMDSCzkqnjjdtmL4BWMi1n3AoNZt8PSsk79g3PRkipqif8a
+	yarTM7OQ8ZZjvrPbwpWx/Dqyb0UfbqTutELqMV/K1h8MnI5cqesxkw0Ja24rWZc9GOLr
+	sY3g==
+X-Gm-Message-State: AA+aEWa+kW628LtgADNnQQIJmPhpoiIannYZQ9DJW2Ljl43ns5Jqf376
+	GAqKvZkf80GcCH3yV4z1pUhLmA==
+X-Google-Smtp-Source: AFSGD/XNVI7/BCV5aCIKUhSqWHhLCYkb21vqpFuhr2EUpB/TmTmdV/YBL0CBcxoBm+Y1DsKyiX7xFA==
+X-Received: by 2002:adf:bb8d:: with SMTP id q13mr5267947wrg.183.1544873402662; 
+	Sat, 15 Dec 2018 03:30:02 -0800 (PST)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
 	by smtp.gmail.com with ESMTPSA id
-	p14sm4622310wrt.37.2018.12.14.10.18.57
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 14 Dec 2018 10:18:57 -0800 (PST)
+	j24sm5446887wrd.86.2018.12.15.03.30.01
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Sat, 15 Dec 2018 03:30:02 -0800 (PST)
+Message-ID: <a50b269c2523b4c98865f408dabface496f0cf1f.camel@linuxfoundation.org>
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org
-Date: Fri, 14 Dec 2018 18:18:56 +0000
-Message-Id: <20181214181856.9412-1-richard.purdie@linuxfoundation.org>
-X-Mailer: git-send-email 2.19.1
-MIME-Version: 1.0
-Subject: [PATCH][auh] upgradehelper: Replace do_checkpkg usage with oe.recipeutils function call
+To: Tomasz Michalski <tmichalski23@gmail.com>, yocto@yoctoproject.org
+Date: Sat, 15 Dec 2018 11:30:01 +0000
+In-Reply-To: <CAE5v_rLRcNZAGHA29xrcf_BYf7Y_4ihHJseXACEr8nMDQcfqRw@mail.gmail.com>
+References: <CAE5v_rLRcNZAGHA29xrcf_BYf7Y_4ihHJseXACEr8nMDQcfqRw@mail.gmail.com>
+User-Agent: Evolution 3.30.2-1 
+Mime-Version: 1.0
+Subject: Re: THISDIR variable in another meta-layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,165 +72,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Dec 2018 18:19:00 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 15 Dec 2018 11:30:05 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-The code in distrodata.bbclass related to the do_checkpkg task is rather
-dated, has holes in it (ignoring some recipes) and has horrible locking
-and csv related issues.
+On Fri, 2018-12-14 at 10:26 +0100, Tomasz Michalski wrote:
+> Hi
+> I have structure of files:
+> 
+> meta-layer-A
+>     recipes-X
+>         componentB
+>              default
+>                  script.sh
+>              componentB.bb
+> meta-layer-B
+>     recipes-X
+>         componentB
+>              files
+>                  script.sh
+>              componentB.bbappend
+> 
+> In componentB.bb I have function do_install:
+> do_install () {
+>     install -m 0755 -d ${D}/usr/share
+>     cmake_do_install
+>     install -m 0755 ${THISDIR}/default/script.sh  ${D}/usr/share
+> }
+> 
+> In componentB.bbapend I overwrite function in order to install other
+> script instead:
+> do_install () {
+>     install -m 0755 -d ${D}/usr/share
+>     cmake_do_install
+>     install -m 0755 ${THISDIR}/files/script.sh  ${D}/usr/share
+> }
+> 
+> 
+> The problem is that ${THISDIR} indicates IN BOTH CASES to path meta-
+> layer-A/recipes-X/componentB.
+> So how to tell bitbake in componentB.bbappend to install my script
+> from path meta-layer-B/recipes-X/componentB/files? It is really
+> frustrating that variable THISDIR doesn't indicates to path meta-
+> layer-B/recipes-X/componentB when I used it in componentB.bbapend.
 
-We should use modern APIs such as tinfoil to make the calls we need directly
-against bitbake, cutting out the middleman and clarifing the code.
+THISDIR isn't meant to be used from do_install, its something which
+works at parsing time using immediate expansion.
 
-This change uses a lib/oe/recipeutils function call to remove the need
-to use checkpkg at all.
+You need to reference the file you're using from SRC_URI and use the
+functionality in SRC_URI to override files from other layers. It should
+copy the right thing to WORKDIR which you can then install in
+do_install.
 
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
----
- upgradehelper.py | 105 ++++++++++++++++++-----------------------------
- 1 file changed, 39 insertions(+), 66 deletions(-)
+To make it see the files in the extra layer, this is why you see
+recipes which do things like:
 
-diff --git a/upgradehelper.py b/upgradehelper.py
-index 8fb27d3..bdd6d4e 100755
---- a/upgradehelper.py
-+++ b/upgradehelper.py
-@@ -59,6 +59,22 @@ from statistics import Statistics
- from steps import upgrade_steps
- from testimage import TestImage
- 
-+if not os.getenv('BUILDDIR', False):
-+    E(" You must source oe-init-build-env before running this script!\n")
-+    E(" It is recommended to create a fresh build directory with it:\n")
-+    E(" $ . oe-init-build-env build-auh\n")
-+    exit(1)
-+
-+import shutil
-+# Use the location of devtool to find scriptpath and hence bb/oe libs
-+scripts_path = os.path.abspath(os.path.dirname(shutil.which("devtool")))
-+sys.path = sys.path + [scripts_path + '/lib']
-+import scriptpath
-+scriptpath.add_bitbake_lib_path()
-+scriptpath.add_oe_lib_path()
-+
-+import oe.recipeutils
-+
- help_text = """Usage examples:
- * To upgrade xmodmap recipe to the latest available version:
-     $ upgrade-helper.py xmodmap
-@@ -599,59 +615,6 @@ class UniverseUpdater(Updater):
-             I(" Removing tmp directory ...")
-             shutil.rmtree(self.base_env['TMPDIR'])
- 
--    def _check_upstream_versions(self):
--        I(" Fetching upstream version(s) ...")
--
--        if self.recipes:
--            recipe = " ".join(self.recipes)
--        else:
--            recipe = 'universe'
--
--        try:
--            self.bb.checkpkg(recipe)
--        except Error as e:
--            for line in e.stdout.split('\n'):
--                if line.find("ERROR: Task do_checkpkg does not exist") != -1:
--                    C(" \"distrodata.bbclass\" not inherited. Consider adding "
--                      "the following to your local.conf:\n\n"
--                      "INHERIT =+ \"distrodata\"\n")
--                    exit(1)
--
--    def _parse_checkpkg_file(self, file_path):
--        import csv
--
--        pkgs_list = []
--
--        with open(file_path, "r") as f:
--            reader = csv.reader(f, delimiter='\t')
--            for row in reader:
--                if reader.line_num == 1: # skip header line
--                    continue
--
--                pn = row[0]
--                cur_ver = row[1]
--                if self.args.to_version:
--                    next_ver = self.args.to_version
--                else:
--                    next_ver = row[2]
--                status = row[11]
--                revision = row[12]
--                maintainer = row[14]
--                no_upgrade_reason = row[15]
--
--                if status == 'UPDATE' and not no_upgrade_reason:
--                    pkgs_list.append((pn, cur_ver, next_ver, maintainer, revision))
--                else:
--                    if no_upgrade_reason:
--                        I(" Skip package %s (status = %s, current version = %s," \
--                            " next version = %s, no upgrade reason = %s)" %
--                            (pn, status, cur_ver, next_ver, no_upgrade_reason))
--                    else:
--                        I(" Skip package %s (status = %s, current version = %s," \
--                            " next version = %s)" %
--                            (pn, status, cur_ver, next_ver))
--        return pkgs_list
--
-     # checks if maintainer is in whitelist and that the recipe itself is not
-     # blacklisted: python, gcc, etc. Also, check the history if the recipe
-     # hasn't already been tried
-@@ -688,16 +651,31 @@ class UniverseUpdater(Updater):
-         return True
- 
-     def _get_packages_to_upgrade(self, packages=None):
--        self._check_upstream_versions()
--        last_checkpkg_file = os.path.realpath(self.base_env['TMPDIR'] + "/log/checkpkg.csv")
-+
-+        pkgs = oe.recipeutils.get_recipe_upgrade_status(self.recipes)
- 
-         pkgs_list = []
--        for pkg in self._parse_checkpkg_file(last_checkpkg_file):
--            # Always do the upgrade if recipes are specified
--            if self.recipes and pkg[0] in self.recipes:
--                pkgs_list.append(pkg)
--            elif self._pkg_upgradable(pkg[0], pkg[2], pkg[3]):
--                pkgs_list.append(pkg)
-+        for pkg in pkgs:
-+            pn, status, cur_ver, next_ver, maintainer, revision, no_upgrade_reason = pkg
-+
-+            if self.args.to_version:
-+                 next_ver = self.args.to_version
-+
-+            if status == 'UPDATE' and not no_upgrade_reason:
-+                # Always do the upgrade if recipes are specified
-+                if self.recipes and pn in self.recipes:
-+                    pkgs_list.append((pn, cur_ver, next_ver, maintainer, revision))
-+                elif self._pkg_upgradable(pn, next_ver, maintainer):
-+                    pkgs_list.append((pn, cur_ver, next_ver, maintainer, revision))
-+            else:
-+                if no_upgrade_reason:
-+                    I(" Skip package %s (status = %s, current version = %s," \
-+                        " next version = %s, no upgrade reason = %s)" %
-+                         (pn, status, cur_ver, next_ver, no_upgrade_reason))
-+                else:
-+                    I(" Skip package %s (status = %s, current version = %s," \
-+                        " next version = %s)" %
-+                        (pn, status, cur_ver, next_ver))
- 
-         return pkgs_list
- 
-@@ -716,11 +694,6 @@ if __name__ == "__main__":
-     global settings
-     global maintainer_override
- 
--    if not os.getenv('BUILDDIR', False):
--        E(" You must source oe-init-build-env before running this script!\n")
--        E(" It is recommended to create a fresh build directory with it:\n")
--        E(" $ . oe-init-build-env build-auh\n")
--        exit(1)
- 
-     devnull = open(os.devnull, 'wb')
-     if subprocess.call(["git", "config", "user.name"], stdout=devnull,stderr=devnull) or \
--- 
-2.17.1
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+
+so your bbappend might have:
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+
+for your case above.
+
+
+Cheers,
+
+Richard
+
+
 
 
