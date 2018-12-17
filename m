@@ -1,26 +1,65 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <richard.weinberger@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7D626E00C9D; Sun, 16 Dec 2018 21:36:17 -0800 (PST)
+	id 8BE32E0053F; Mon, 17 Dec 2018 02:26:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D0ADE00C7D
-	for <yocto@yoctoproject.org>; Sun, 16 Dec 2018 21:36:16 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 5FB9E84C403C
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2018 00:36:14 -0500 (EST)
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (richard.weinberger[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.42 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+	[209.85.128.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 355EEE0053F
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2018 02:26:45 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id n190so11801841wmd.0
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2018 02:26:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=vA6GkgfyaG/H8T2RKETPGE+qsTjR7W7vNTTn5YHEG0Y=;
+	b=KKiImn0Z4uwOSlCsaI+X5/PnE3cSyng0CmUJ23VwJHA5sjzJtP5pyXJTR3BfrYqcSw
+	d13MaQfrypFhoZdGi0jf8X1khC8L/FbafZ4NDHl5Zzqwt+LmF4lmStxvAMaEsfNqLVHE
+	h0iywGg4/ro/exGD7x5OREHkLoAkXWSZHoLp9znPPxURTFh+iX0v33MCd5KXpMvPWgA7
+	+ZG8uaTQh2Xz1q0REGpxmn+ZqvM1qaav56oZou1ANmDyDDHLHkOQ8tEZuKq0rnZdNukT
+	HaZrd0PaxtuPf2b3/75GQrItpzB6T6iRP3EIKcUOyqKNziHFFKCk3/TNH87NkfYDWRPa
+	Bl5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=vA6GkgfyaG/H8T2RKETPGE+qsTjR7W7vNTTn5YHEG0Y=;
+	b=VcQH3/kVk6RNW4ZuVzg9GxO1oTWBadIoZjKYUrwOkgkRvewfrLDXcYnQiln7+wX/Ak
+	GTxHhU3FAVwoXUEM8BL33XQALveNyfsqhGyrckylj5S/M924mGg4k5fKgqV3pGuXTSW7
+	L1Fbgh3XAShMURXIn7XdSLOxIE3cRchRjwoZaESaDa18h3gwBwoO5wnWzrBXV+UfgMhi
+	7wbB1xJ2QykS7VcN1z0dPwOaKgE1a7It/v3kufJIhbb2uD+e4gZ3E2VnTOA4siFoKE09
+	G5Z9BCOcTl+H8noDpZ8HTOW09e8UErqDR7hf8f8betKGBMuEu0x9tDuwxZqQXdl0NyRE
+	LSxA==
+X-Gm-Message-State: AA+aEWahWvu/JIHPms86N0et73FPxm6uTJohQ3jO7CqghElAnbNaj6XZ
+	hcKFyRkPxwX0DZ0UF+5IblPKEyBRL/BQI5nPdso=
+X-Google-Smtp-Source: AFSGD/Wfh67ZLhZGpwayywR4ieYMTGoiNSnkNuYkzL9otB/Ln9+Nx/1UGz2yn354KJJdMSdBv5XH2KN2YIMFRq8rcyg=
+X-Received: by 2002:a1c:b14:: with SMTP id 20mr11394804wml.103.1545042404315; 
+	Mon, 17 Dec 2018 02:26:44 -0800 (PST)
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 17 Dec 2018 05:36:14 -0000
-Message-ID: <20181217053614.24800.21758@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+References: <CAFLxGvzvQyM+V1=PVHKMWEa3T6MDEC-7Sxd5D_8vG1PvWNX5Ag@mail.gmail.com>
+	<9505876392c2d718fbe113e56a541de7bcc2dd41.camel@linuxfoundation.org>
+In-Reply-To: <9505876392c2d718fbe113e56a541de7bcc2dd41.camel@linuxfoundation.org>
+From: Richard Weinberger <richard.weinberger@gmail.com>
+Date: Mon, 17 Dec 2018 11:26:32 +0100
+Message-ID: <CAFLxGvwJg5nvc7cL12fN_R0CJcvLmy3eW5k29zERWCW4WqMi_Q@mail.gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: yocto@yoctoproject.org
+Subject: Re: x86_64 kernel with i586 userland plus SDK?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,190 +71,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Dec 2018 05:36:17 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 17 Dec 2018 10:26:46 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-This mail was sent out by Recipe reporting system.
+On Wed, Nov 28, 2018 at 9:42 AM Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> The system can definitely do it, its just not something we tend to do
+> very often so its not entirely clear the best way to do it.
+>
+> What may work is selecting the i586 tune from an x64-64 target machine?
+>
+> Copying qemux86-64.conf to qemux86-64-2.conf and changing it to have
+> DEFAULTTUNE ?= "i586" did appear to start to build at least in a quick
+> test here...
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+I went this approach for now.
+That way I get i586 userland and an SDK with both 32bit and 64bit toolchains.
+The SDK offers me multiple environment files to include.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+What I don't understand right now is, how can i tell the kernel recipe
+that it has
+to use the 64bit toolchain to build the kernel?
 
-You can check the detail information at:
+Any hints?
 
-http://recipes.yoctoproject.org/
-
-Package               Version          Upstream version      Maintainer           NoUpgradeReason
---------------------  ---------------  --------------------  -------------------  ------------------------------
-libgloss              3.0.0            3.0.0.20180831        Alejandro Hernandez
-newlib                3.0.0            3.0.0.20180831        Alejandro Hernandez
-webkitgtk             2.22.4           2.22.5                Alexander Kanavin
-libmodulemd           1.7.0            2.0.0                 Alexander Kanavin
-boost                 1.68.0           1.69.0                Alexander Kanavin
-createrepo-c          0.11.1+gitX      0.12.0                Alexander Kanavin
-dnf                   4.0.9            4.0.10                Alexander Kanavin
-ffmpeg                4.0.2            4.1                   Alexander Kanavin
-libcomps              0.1.8+gitX       0.1.9                 Alexander Kanavin
-librepo               1.9.2            1.9.3                 Alexander Kanavin
-meson                 0.47.2           0.49.0                Alexander Kanavin
-nativesdk-meson       0.47.2           0.49.0                Alexander Kanavin
-libdnf                0.22.3           0.24.1                Alexander Kanavin
-lighttpd              1.4.51           1.4.52                Alexander Kanavin
-gobject-introspec...  1.58.1           1.58.2                Alexander Kanavin
-btrfs-tools           4.19             4.19.1                Alexander Kanavin
-bjam-native           1.68.0           1.69.0                Alexander Kanavin
-busybox               1.29.2           1.29.3                Andrej Valek
-apt                   1.2.24           1.4.8                 Aníbal Limón
-apt-native            1.2.24           1.4.8                 Aníbal Limón
-dpkg                  1.18.24          1.19.2                Aníbal Limón
-puzzles               0.0+gitX         0.0-new-commits-a...  Anuj Mittal
-libpcap               1.8.1            1.9.0                 Anuj Mittal
-base-passwd           3.5.29           3.5.45                Anuj Mittal          Version 3.5.38 requires cde...
-ifupdown              0.8.16           0.8.33                Anuj Mittal
-glib-2.0              2.58.0           2.58.1                Anuj Mittal
-glib-networking       2.54.1           2.58.0                Anuj Mittal
-pixman                0.34.0           0.36.0                Anuj Mittal
-harfbuzz              2.1.3            2.2.0                 Anuj Mittal
-gst-examples          0.0.1+gitX       0.0.1-new-commits...  Anuj Mittal
-sqlite3               3.25.3           3.26.0                Anuj Mittal
-vte                   0.52.2           0.54.3                Anuj Mittal
-gsettings-desktop...  3.28.0           3.28.1                Anuj Mittal
-libsolv               0.7.1            0.7.2                 Anuj Mittal
-eudev                 3.2.5            3.2.7                 Anuj Mittal
-atk                   2.28.1           2.30.0                Anuj Mittal
-librsvg               2.40.20          2.44.10               Anuj Mittal          Versions from 2.41.0 requir...
-cairo                 1.14.12          1.16.2                Anuj Mittal
-i2c-tools             4.0              4.1                   Anuj Mittal
-libatomic-ops         7.6.6+gitX       7.6.8                 Anuj Mittal
-libpng                1.6.35           1.6.36                Anuj Mittal
-at-spi2-atk           2.26.2           2.30.0                Anuj Mittal
-mmc-utils             0.1              0.1-new-commits-a...  Anuj Mittal
-libjpeg-turbo         2.0.0            2.0.1                 Anuj Mittal
-mtools                4.0.19           4.0.23                Anuj Mittal
-libassuan             2.5.1            2.5.2                 Armin Kuster
-netbase               5.4              5.5                   Armin Kuster
-openssh               7.9p1+git        7.9.                  Armin Kuster
-curl                  7.62.0           7.63.0                Armin Kuster
-gnutls                3.6.4            3.6.5                 Armin Kuster
-nss                   3.40             3.41                  Armin Kuster
-bind                  9.11.5           9.13.5                Armin Kuster         9.11 is LTS 2021
-nettle                3.4              3.4.1                 Armin Kuster
-linux-libc-headers    4.18             4.19.9                Bruce Ashfield
-kern-tools-native     0.2+gitX         0.2-new-commits-a...  Bruce Ashfield
-linux-yocto           4.18.14+gitX     4.19.8                Bruce Ashfield
-linux-yocto-rt        4.18.14+gitX     4.19.8                Bruce Ashfield
-linux-yocto-tiny      4.18.14+gitX     4.19.8                Bruce Ashfield
-kmscube               git              git-new-commits-a...  Carlos Rafael Giani
-wpa-supplicant        2.6              2.7                   Changhyeok Bae
-iptables              1.6.2            1.8.2                 Changhyeok Bae
-dbus-test             1.12.10          1.12.12               Chen Qi
-sysstat               12.1.1           12.1.2                Chen Qi
-acl                   2.2.52           2.2.53                Chen Qi
-attr                  2.4.47           2.4.48                Chen Qi
-systemd-conf          1.0              239                   Chen Qi
-dbus                  1.12.10          1.12.12               Chen Qi
-cups                  2.2.9            2.2.10                Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-util-linux            2.32.1           2.33                  Chen Qi
-bison                 3.0.4            3.2.2                 Chen Qi
-sed                   4.2.2            4.5                   Chen Qi
-lzop                  1.03             1.04                  Denys Dmytriyenko
-lz4                   1.8.2            1.8.3                 Denys Dmytriyenko
-hdparm                9.56             9.58                  Denys Dmytriyenko
-wayland-protocols     1.16             1.17                  Denys Dmytriyenko
-python-numpy          1.14.5           1.15.4                Derek Straka
-python3-pygobject     3.28.3           3.30.4                Derek Straka
-python3               3.5.6            3.7.1                 Derek Straka
-python3-pbr           4.2.0            5.1.1                 Derek Straka
-python3-setuptools    40.0.0           40.6.3                Derek Straka
-python3-pip           18.0             18.1                  Derek Straka
-python3-numpy         1.14.5           1.15.4                Derek Straka
-python-setuptools     40.0.0           40.6.3                Derek Straka
-python3-six           1.11.0           1.12.0                Derek Straka
-python3-gitdb         2.0.4            2.0.5                 Derek Straka
-python3-pycairo       1.15.6           1.18.0                Derek Straka
-python3-native        3.5.6            3.7.1                 Derek Straka
-acpica                20180508         20181213              Fathi Boudra
-libgpg-error          1.32             1.33                  Hongxu Jia
-gnupg                 2.2.11           2.2.12                Hongxu Jia
-help2man-native       1.47.6           1.47.8                Hongxu Jia
-libxcrypt             4.1.1            4.4.1                 Khem Raj
-go-runtime            1.11.1           1.11.4                Khem Raj
-go                    1.11.1           1.11.4                Khem Raj
-binutils              2.31             2.31.1                Khem Raj
-go-native             1.11.1           1.11.4                Khem Raj
-prelink               1.0+gitX         1.0-new-commits-a...  Mark Hatle
-db                    5.3.28           5.3.28+dfsg1          Mark Hatle
-binutils-cross-ca...  2.31             2.31.1                No maintainer
-binutils-cross-i586   2.31             2.31.1                No maintainer
-go-crosssdk-x86_6...  1.11.1           1.11.4                No maintainer
-binutils-crosssdk...  2.31             2.31.1                No maintainer
-go-cross-canadian...  1.11.1           1.11.4                No maintainer
-go-cross-i586         1.11.1           1.11.4                No maintainer
-mesa                  18.1.9           18.3.1                Otavio Salvador
-linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
-mesa-gl               18.1.9           18.3.1                Otavio Salvador
-cmake                 3.12.2           3.13.2                Pascal Bach
-cmake-native          3.12.2           3.13.2                Pascal Bach
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Paul Eggleton
-build-appliance-i...  15.0.0           20.0.0                Richard Purdie
-gnu-config            20180713+gitX    20180713-new-comm...  Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-e2fsprogs             1.44.3           1.44.5                Robert Yang
-ccache                3.4.2            3.5                   Robert Yang
-git                   2.18.1           2.20.1                Robert Yang
-mklibs-native         0.1.43           0.1.44                Robert Yang
-piglit                1.0+gitrX        1.0-new-commits-a...  Ross Burton
-acpid                 2.0.30           2.0.31                Ross Burton
-vulkan-demos          git              git-new-commits-a...  Ross Burton
-perl                  5.24.4           5.28.1                Ross Burton
-gtk-icon-utils-na...  3.22.30          3.24.2                Ross Burton
-ofono                 1.25             1.26                  Ross Burton
-libical               2.0.0            3.0.4                 Ross Burton
-vulkan                1.1.73.0         1.1.92.1              Ross Burton
-lsbinitscripts        9.79             10.01                 Ross Burton
-sysvinit              2.88dsf          2.93                  Ross Burton
-fontconfig            2.12.6           2.13.1                Ross Burton
-gdk-pixbuf            2.36.11          2.38.0                Ross Burton
-adwaita-icon-theme    3.28.0           3.30.1                Ross Burton
-gtk+3                 3.24.1           3.24.2                Ross Burton
-pkgconf               1.5.3            1.5.4                 Ross Burton
-perl-native           5.24.4           5.28.1                Ross Burton
-alsa-tools            1.1.6            1.1.7                 Tanu Kaskinen
-alsa-plugins          1.1.6            1.1.7                 Tanu Kaskinen
-alsa-utils-scripts    1.1.6            1.1.7                 Tanu Kaskinen
-alsa-lib              1.1.6            1.1.7                 Tanu Kaskinen
-alsa-utils            1.1.6            1.1.7                 Tanu Kaskinen
-sbc                   1.3              1.4                   Tanu Kaskinen
-gnu-efi               3.0.8            3.0.9                 Yi Zhao
-libcap                2.25             2.26                  Yi Zhao
-chkconfig             1.3.58           1.8                   Yi Zhao              Version 1.5 requires selinux
-logrotate             3.14.0           3.15.0                Yi Zhao
-file                  5.34             5.35                  Yi Zhao
-wget                  1.19.5           1.20                  Yi Zhao
-json-glib             1.4.2            1.4.4                 Yi Zhao
-libsdl2               2.0.8            2.0.9                 Yi Zhao
-
-Upgradable count: 144
-Upgradable total count: 148
-
-The based commit is:
-
-commit 20aea61385e1a53ac245353899277ba20104ed2f
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Sat Dec 15 12:17:53 2018 +0000
-
-    gcc: Drop 7.3 since 8.2 is working fine for us
-    
-    We've had gcc 8.2 around for long enough that 7.3 can be removed now.
-    
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
-
+-- 
+Thanks,
+//richard
 
