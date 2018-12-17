@@ -1,6 +1,6 @@
-Return-Path: <kman.devnull@gmail.com>
+Return-Path: <sanjuchopracool@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 24082E00C10; Mon, 17 Dec 2018 10:40:34 -0800 (PST)
+	id 8EFC6E00C5F; Mon, 17 Dec 2018 12:08:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,55 +10,53 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (kman.devnull[at]gmail.com)
+	provider *      (sanjuchopracool[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.176 listed in list.dnswl.org]
+	*      [209.85.208.182 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f176.google.com (mail-it1-f176.google.com
-	[209.85.166.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9EA5E00B58
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2018 10:40:33 -0800 (PST)
-Received: by mail-it1-f176.google.com with SMTP id w18so75392ite.1
-	for <yocto@yoctoproject.org>; Mon, 17 Dec 2018 10:40:33 -0800 (PST)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com
+	[209.85.208.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39AAAE00C10
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2018 12:08:28 -0800 (PST)
+Received: by mail-lj1-f182.google.com with SMTP id n18-v6so12138697lji.7
+	for <yocto@yoctoproject.org>; Mon, 17 Dec 2018 12:08:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=ZNrls+IcTqOsP+gHoJYT3fXEwDCqCLSPa/XtfB/fjTw=;
-	b=vEnIdR3lL4c9rmwKg0i5r/oJZkRP42uuL+xzdKRz7dFVn+A/mtvk3HhQCSqI7YlUcD
-	Z/MnhR1XcBMa8Ift20ShkjHpkC8CsvwRHShTQpxR8+c2w/tOS1+zUHMsoHUGxa2JHdet
-	YKi89peMuG/fu2QBmUvbkghpNZSsgWfrdI10DOBSzyhp/3k3q7Zw4DxRwo5WSpx48Ekd
-	qEXed8p2b25bqeFQ5yMVJkUulBQMvMScYe9b52EOOLQwK9Y6I+PNA0qHsJF0ZIe4RI6i
-	V5qzzR7rgyV2WU9MpfK8rjhvOe/Sv+2mldRIrXA+gTiBZ2+OdyaeGC5VFL0YWIxKKDqD
-	Pihg==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=dsBC3seNqbUjr5xNwvN0Q+9SrMW40Jt2UuhMxNkHF1Y=;
+	b=t2FGmwn1DK5S39DWRJfn0IQCEryiR8hhrofVZ56vt5EOfvpgqvScVbam3yAG4eYWnZ
+	QJ0jgvNyLytNXXAmsdLlASInvKtBURIJE35R1PS20q10bYOYOZipxIairuuLbGbWeutl
+	oeWA2ar2xcIHBqpyFFqjMssLX1rGTlneO/F3lgpUFf7sDnjUePkcV3NbT9y8KfaMbqYI
+	TOaqm4ALiYQ+NSx0MDmSdgU4RjJ1+AstdO2KhLKyVaGir1S+yblGAuz12yO9Ur3J3bzb
+	ewCkvMZwKnwNZBwJt8OASf/ooXpdxLG0DHUUl8zcGAb6yXLhpxo0c/b/0r/r2O4l3Vyw
+	5sKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=ZNrls+IcTqOsP+gHoJYT3fXEwDCqCLSPa/XtfB/fjTw=;
-	b=WCG63KXRCZu+W76DTtdcwg6/OA/pVoKkItUFEc8Keo7Dp0zXDrTEG4KLnOK8YEaHRa
-	mKqPydt70Bg7hftRAjoyZ5kXtTuamljFq4bdsmLdoHd1y0q0Nqv5r/aBxOptLwbV7jbg
-	QC7FDSWt0bGUd1HRlIDPxk9SEB+4GsCfdP4/72eQZSaCvhjyJZq4zJVf8y17QDxee5Kd
-	rxOiJn5ZiVC95dHcd16VIMrKB5SFjawQ8zW7MZb/pW0Bnp59tRtEZwD8ji0BnvQI3try
-	wAYh8LpSst8FROUornMzKBeycssLk5yojf4uok5i1w3DEgrtmEUYzIbUh/Ma6vM866vS
-	aepg==
-X-Gm-Message-State: AA+aEWblDd2+KNED4aqem1s/71ky5KhTihccz0Q3GL0U2CLYWlce05rO
-	R3NDYKS9EreeZJ8Pt8zwTuk5GavPgnfC+4RltVd8LQ==
-X-Google-Smtp-Source: AFSGD/VCxnk2dwv9gp5FrCTFX6Jn0A9i8fv+qjZ4rIDL+tZD/wY63p6hjlsZ899Qgsse1B5n6IG1/7BLJEZHjEGiYuc=
-X-Received: by 2002:a24:ba0b:: with SMTP id p11mr224228itf.113.1545072033036; 
-	Mon, 17 Dec 2018 10:40:33 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=dsBC3seNqbUjr5xNwvN0Q+9SrMW40Jt2UuhMxNkHF1Y=;
+	b=a3JyBwvmnS7brAc4UAda4aeKRY/pF2P730Zy0b+xOqOPPd19MfrTPzBHaQgfqHfsVh
+	E43RzCp07qSETGdK0hutXyAPGQG+dNxieq6Xfh0Ppbrc/kUbxNqHYkijLNzXEAkiVL17
+	s7jSx3ej01Q9rQwY9lv+Mz1nIccgMj2Q6nY+IHw31D+vyY6VG4CF2XvOQrRfMFJlPJrx
+	/jw3iHs1tK5uOxZXaa8o9/Wv6JkRVljI+NfnwCTzYVVygDvs+zQqGwStRgk09OIuvX27
+	sNteOm33LQ4QfFLCSgRhAUjhpJgdANGjYHwcYTtzWQMtElTCNFVlFaoaBC03zXnjs0F9
+	LbvA==
+X-Gm-Message-State: AA+aEWYw6qvjZQZeEj3pJama/uN8pbeAQBsakCtKhjVo1tRn5aTF6+W+
+	OIjXjEUzBm1smIWaeiWnQSTbgZV3y7jmJXsBLD+xVAeo
+X-Google-Smtp-Source: AFSGD/WIqMU+StEfFSxpWJQXvRqHbb34bKO0JoOdHFfh7g43+c3BxeXq0gDBQd7trqwJraI9pK/pUOmusu0hJxB5MFU=
+X-Received: by 2002:a2e:98c9:: with SMTP id
+	s9-v6mr7051589ljj.166.1545077306961; 
+	Mon, 17 Dec 2018 12:08:26 -0800 (PST)
 MIME-Version: 1.0
-References: <CAAgpgm5i8HiLi_mT2aOXUk=1KtscFrHxkYeyaB-4=Hwseaewtg@mail.gmail.com>
-In-Reply-To: <CAAgpgm5i8HiLi_mT2aOXUk=1KtscFrHxkYeyaB-4=Hwseaewtg@mail.gmail.com>
-From: Kman Devnull <kman.devnull@gmail.com>
-Date: Mon, 17 Dec 2018 18:40:00 +0000
-Message-ID: <CAAgpgm5XqosXGQ_r1x6cr-_SU7jFDRgTuQeMoE19grfrxMjvqQ@mail.gmail.com>
+From: sanjay chopra <sanjuchopracool@gmail.com>
+Date: Tue, 18 Dec 2018 01:38:16 +0530
+Message-ID: <CAC0z2vGV8rTV2-jGXrVcrmuLNrbN_x0_Rv5gZ2NjUTfrrt-kjA@mail.gmail.com>
 To: yocto@yoctoproject.org
-Subject: RaspberryPi 3: u-boot --- hangs on boot?
+Subject: build fails for qemux86
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,47 +68,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Dec 2018 18:40:34 -0000
-Content-Type: multipart/alternative; boundary="000000000000ae81e8057d3c1db5"
+X-List-Received-Date: Mon, 17 Dec 2018 20:08:29 -0000
+Content-Type: multipart/alternative; boundary="00000000000008375d057d3d5800"
 
---000000000000ae81e8057d3c1db5
+--00000000000008375d057d3d5800
 Content-Type: text/plain; charset="UTF-8"
 
-> Hi,
-> How do you get the u-boot built with yocto for Raspberry Pi 3?
->
-> - I used this link
-> <https://jumpnowtek.com/rpi/Raspberry-Pi-Systems-with-Yocto.html> to get
-> the base build working for q5-image on Raspberry Pi 3.
-> - I have used the yocto 'thud' release.
-> - Now in order to get u-boot build I added the below line for local.conf
-> file.
->   RPI_USE_U_BOOT = "1"
-> - When I boot it just hangs on a rainbow colour screen.
->
-> Please find bblayers.conf and local.conf attached.
->
-> Kindly advice.
->
->
+Hi,
 
---000000000000ae81e8057d3c1db5
+Whenever I try to build core-image-minimal , it fails in rootfs step.But I
+am able to build core-image-sato.
+
+With thud and master branch I am getting this issue. Sumo branch was
+working fine.Please help me to figure this out.
+
+
+
+bitbake core-image-minimal
+Loading cache: 100%
+|###############################################################################################################################################################################|
+Time: 0:00:00
+Loaded 1263 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "1.40.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "i586-poky-linux"
+MACHINE              = "qemux86"
+DISTRO               = "poky"
+DISTRO_VERSION       = "2.6"
+TUNE_FEATURES        = "m32 i586"
+TARGET_FPU           = ""
+meta
+meta-poky
+meta-yocto-bsp       = "thud:d0e0a3d7a8218fbbf057a922c86bcdd2cf469ce9"
+
+Initialising tasks: 100%
+|##########################################################################################################################################################################|
+Time: 0:00:01
+Sstate summary: Wanted 2 Found 0 Missed 2 Current 736 (0% match, 99%
+complete)
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: core-image-minimal-1.0-r0 do_rootfs: The postinstall intercept hook
+'update_font_cache' failed, details in
+/home/sanju/qemu_check/tmp/work/qemux86-poky-linux/core-image-minimal/1.0-r0/temp/log.do_rootfs
+ERROR: core-image-minimal-1.0-r0 do_rootfs: Function failed: do_rootfs
+ERROR: Logfile of failure stored in:
+/home/sanju/qemu_check/tmp/work/qemux86-poky-linux/core-image-minimal/1.0-r0/temp/log.do_rootfs.18035
+ERROR: Task
+(/mnt/DATA_PARTITION/poky/meta/recipes-core/images/core-image-minimal.bb:do_rootfs)
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 2420 tasks of which 2419 didn't need to be
+rerun and 1 failed.
+
+Summary: 1 task failed:
+  /mnt/DATA_PARTITION/poky/meta/recipes-core/images/core-image-minimal.bb:
+do_rootfs
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+-- 
+
+*RegardsSanjay*
+
+--00000000000008375d057d3d5800
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><div class=3D"gmail_quote"><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"=
-ltr">Hi,<div>How do you get the u-boot built with yocto for Raspberry Pi 3?=
-</div><div><br></div><div>- I used this <a href=3D"https://jumpnowtek.com/r=
-pi/Raspberry-Pi-Systems-with-Yocto.html" target=3D"_blank">link</a>=C2=A0to=
- get the base build working for q5-image on Raspberry Pi 3.</div><div>- I h=
-ave used the yocto &#39;thud&#39; release.</div><div>- Now in order to get =
-u-boot build I added the below line for local.conf file.</div><div>=C2=A0=
-=C2=A0RPI_USE_U_BOOT =3D &quot;1&quot;</div><div>- When I boot it just hang=
-s on a rainbow colour screen.</div><div><br><div>Please find bblayers.conf =
-and local.conf attached.</div></div><div><br></div><div>Kindly advice.</div=
-><div><br></div></div></div>
-</blockquote></div></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_defa=
+ult" style=3D"font-size:small;color:rgb(0,0,0)">Hi,</div><div class=3D"gmai=
+l_default" style=3D"font-size:small;color:rgb(0,0,0)"><br></div><div class=
+=3D"gmail_default" style=3D"font-size:small;color:rgb(0,0,0)">Whenever I tr=
+y to build core-image-minimal , it fails in rootfs step.But I am able to bu=
+ild core-image-sato.</div><div class=3D"gmail_default" style=3D"font-size:s=
+mall;color:rgb(0,0,0)"><br></div><div class=3D"gmail_default" style=3D"font=
+-size:small;color:rgb(0,0,0)">With thud and master branch I am getting this=
+ issue. Sumo branch was working fine.Please help me to figure this out. <br=
+></div><div class=3D"gmail_default" style=3D"font-size:small;color:rgb(0,0,=
+0)"><br></div><div class=3D"gmail_default" style=3D"font-size:small;color:r=
+gb(0,0,0)"><br></div><div class=3D"gmail_default" style=3D"font-size:small;=
+color:rgb(0,0,0)"><br></div></div><div dir=3D"ltr"><div style=3D"font-size:=
+small;color:rgb(0,0,0)" class=3D"gmail_default">bitbake core-image-minimal<=
+br>Loading cache: 100% |###################################################=
+###########################################################################=
+#################################################| Time: 0:00:00<br>Loaded =
+1263 entries from dependency cache.<br>NOTE: Resolving any missing task que=
+ue dependencies<br><br>Build Configuration:<br>BB_VERSION=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;1.40.0&quot;<br>BUILD_=
+SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &=
+quot;x86_64-linux&quot;<br>NATIVELSBSTRING=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+=3D &quot;universal&quot;<br>TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;i586-poky-linux&quot;<br>MACHINE=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+=3D &quot;qemux86&quot;<br>DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;poky&quot;<br>DISTRO_V=
+ERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;2.6&quot;<br>TUNE_FEAT=
+URES=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;m32 i586&quot;<br>=
+TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D =
+&quot;&quot;<br>meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-poky=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-yocto-bsp=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;thud:d0e0a3d7a8218fbbf057a922c86bc=
+dd2cf469ce9&quot;<br><br>Initialising tasks: 100% |########################=
+###########################################################################=
+#######################################################################| Ti=
+me: 0:00:01<br>Sstate summary: Wanted 2 Found 0 Missed 2 Current 736 (0% ma=
+tch, 99% complete)<br>NOTE: Executing SetScene Tasks<br>NOTE: Executing Run=
+Queue Tasks<br>ERROR: core-image-minimal-1.0-r0 do_rootfs: The postinstall =
+intercept hook &#39;update_font_cache&#39; failed, details in /home/sanju/q=
+emu_check/tmp/work/qemux86-poky-linux/core-image-minimal/1.0-r0/temp/log.do=
+_rootfs<br>ERROR: core-image-minimal-1.0-r0 do_rootfs: Function failed: do_=
+rootfs<br>ERROR: Logfile of failure stored in: /home/sanju/qemu_check/tmp/w=
+ork/qemux86-poky-linux/core-image-minimal/1.0-r0/temp/log.do_rootfs.18035<b=
+r>ERROR: Task (/mnt/DATA_PARTITION/poky/meta/recipes-core/images/core-image=
+-minimal.bb:do_rootfs) failed with exit code &#39;1&#39;<br>NOTE: Tasks Sum=
+mary: Attempted 2420 tasks of which 2419 didn&#39;t need to be rerun and 1 =
+failed.<br><br>Summary: 1 task failed:<br>=C2=A0 /mnt/DATA_PARTITION/poky/m=
+eta/recipes-core/images/core-image-minimal.bb:do_rootfs<br>Summary: There w=
+ere 2 ERROR messages shown, returning a non-zero exit code.<br></div><div s=
+tyle=3D"font-size:small;color:rgb(0,0,0)" class=3D"gmail_default"></div><br=
+>-- <br><div dir=3D"ltr" class=3D"gmail-m_5123466811654956225gmail_signatur=
+e"><div dir=3D"ltr"><div><span style=3D"background-color:rgb(0,0,0)"><i sty=
+le=3D"color:rgb(51,204,255)"><span style=3D"background-color:rgb(255,255,25=
+5)"><span style=3D"color:rgb(0,0,0)">Regards<br>Sanjay</span><span></span><=
+/span></i></span><br></div></div></div></div></div></div>
 
---000000000000ae81e8057d3c1db5--
+--00000000000008375d057d3d5800--
