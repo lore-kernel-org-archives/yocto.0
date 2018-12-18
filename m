@@ -1,62 +1,61 @@
-Return-Path: <aaron.biver@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7DC27E00AC5; Tue, 18 Dec 2018 10:28:03 -0800 (PST)
+	id 1C782E00B92; Tue, 18 Dec 2018 12:48:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (aaron.biver[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.173 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.166.53 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com
-	[209.85.208.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6D30E00950
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2018 10:28:02 -0800 (PST)
-Received: by mail-lj1-f173.google.com with SMTP id k19-v6so15055445lji.11
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2018 10:28:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=+R1hfqxqhyRyPn6yvNi6BoVsJWAPA7J700q83xjJF/s=;
-	b=mBJ5tsUuUc4fd1grC56d9IymiX+Y5XAlOCG2xvTGd+dVNbqopD5dg0G8wT/OZ+fTqb
-	H2In3ioQmA5lnsG2U2bj13PPxKHbOFcIbiFrUajC7R8LUoG9vOBSgLn08ykIod19TVMv
-	25vsTlIlpoJo9fYRwXDUwVs9eka330RDmrXDy0L47+ctlyh0Uf4b+Qu7Lh/ZcDbay6d3
-	3n1mhJYlSHoJsT1HU+CUWlJuMiXFBJR+Bg3Dq6WYY/L+LBppgx6NZnE2k6prANDU1qlq
-	Vu5vCS2z/B74DARFW6XMZm5Rkh0oQtltj9AKAAkCTDqRXiXsWghrukOLTTF2iEVKs2HO
-	i4Mw==
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
+	[209.85.166.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBEF8E00A1A
+	for <yocto@yoctoproject.org>; Tue, 18 Dec 2018 12:48:20 -0800 (PST)
+Received: by mail-io1-f53.google.com with SMTP id l14so13866666ioj.5
+	for <yocto@yoctoproject.org>; Tue, 18 Dec 2018 12:48:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=x8PYLj9LD+R4KeHMCPSa85ecWzZAA/rbGUNOQura9to=;
+	b=i8DmKaPs5fgQuPbIK4iktTjtJPTehG6b/j+ORbotakCGOtHp5wy0s9f2etc9c1Zmrg
+	bdj8e+Bw0Vm5nfYV0aScUH6kqEcZ+hbv/dJn05m0PMZ0GbcC5x3JXN93itjN5Rb7X28s
+	Zg+6xSqIfGCvrn7Lc81aXG5v7wFF0RArmX+OJQgSlAfrWzpuUmi5AzcT06Dn08lafdvP
+	L+rirxDfeQ3yAUt66vK25vtw4nfyKydZEZEmz2vBc8XjWILxBjoNIsvgqSenEfUc7Ckq
+	U3r3NZmezJlefMCAWdl43dqxOuKmCMnDviWaijJlTRFswMZVLAi3z6LX9z+apNGmSCQ1
+	rlXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=+R1hfqxqhyRyPn6yvNi6BoVsJWAPA7J700q83xjJF/s=;
-	b=TrNTCtcY8cXUe+2OyDSw7l76RjUB4+RT21CTZaR2z7OGL/VeT/UQ+UUkJftRBpf1PS
-	BbIEzvQZSESkVnKqBnC3iMvBwGyjmwHjNUuN3n+nbkqZHGIOM0TNGlTgfudcTKQy61Kv
-	a6rzK7XIYNEhV4AU2Bzh0S5vu7VwR1xD/7kWEVpzy+Aax+iH1b8ciz7sB4T6eAW7tUfs
-	x0llImQT+GnFvTF5n8LZMCxET6Th9AlNWYIwzXCB6UUvzI3n//9xDwnaGqBprz/jCH1R
-	YOsVOI9+xWG8hslLrobsNHS5K5RxQjUpgfkh9NJYLUPnt+R2z7nWjQlfbSZOrQs3upuw
-	fLzg==
-X-Gm-Message-State: AA+aEWaCnhJh5O4+6fcrlg+SUWmI9Uo51tRjobS1AShQ/QR7fYUajJ3N
-	FGUHhH9rWQhmiP8IZni4GgZeTFDp0984cMx8Mnp8NbKF
-X-Google-Smtp-Source: AFSGD/WOjWpOe0+RWsTfCbBXr1IlQP4tsUWtMNxNwqqt4RTY7dnGR7fAGxEMBVkyAkKOfRDWFth4gOSBq8DvKJ/SedY=
-X-Received: by 2002:a2e:4784:: with SMTP id
-	u126-v6mr3516596lja.124.1545157681293; 
-	Tue, 18 Dec 2018 10:28:01 -0800 (PST)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=x8PYLj9LD+R4KeHMCPSa85ecWzZAA/rbGUNOQura9to=;
+	b=k4UijRKISLEyM+1fUrWg2s9UO6c3dT6A1nBvrg5gdAZSgBRSmnBPHWFDV2i32JnRM0
+	G8BOJLrNxJQmJCUwUgrSBxKWhMcc+UkWGyTEc+qD7kDxi9hqbANfaPh41OnHIMFUr5Nm
+	ZE1Bb6b5i6CxnYeREROlT9iBx3bWG7kaRmk4omZqdEUYss1XOUw2zlz1e5sbsM78ZHAh
+	HeWBUd3DdrMsspJzwE4G23BhpT/r6VfGzu+c/vk54rZ8/KBxIQjryhlSK9PNM7zQnc0n
+	DnWKMA9b8LN9KcfiMgLNhCpp/zseIOJ69tNvHgoAZJFlW4J6MhR118rWi7G7cXhivsf5
+	V3hg==
+X-Gm-Message-State: AA+aEWZoOh6rDQ5AwM5SwaFwyn3a9hFtjVqWDDTJfIqcCFYzDyVt0ny6
+	6DggjuE2EfG/gLDbC4pfbuQygaFZD5zoyKLRN7sznw==
+X-Google-Smtp-Source: AFSGD/X/L4+Y2lm+yrp3dJYcnPeD9BD/V5z2iH8KrY+0zIOtdG4/x3vjxuc5so7exGATK96Ur/Nyb4ho1u+gsD7Pttk=
+X-Received: by 2002:a5d:968b:: with SMTP id m11mr7765675ion.201.1545166100319; 
+	Tue, 18 Dec 2018 12:48:20 -0800 (PST)
 MIME-Version: 1.0
-From: A <aaron.biver@gmail.com>
-Date: Tue, 18 Dec 2018 13:27:50 -0500
-Message-ID: <CAMd7AX8y4PXgn-1eajtG8CxB7+SjyzdYCokEvwg3PAE+5HzyiA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Question about temporary directories
+References: <MWHPR21MB086165B1FB4C98FC687D8924E5A00@MWHPR21MB0861.namprd21.prod.outlook.com>
+In-Reply-To: <MWHPR21MB086165B1FB4C98FC687D8924E5A00@MWHPR21MB0861.namprd21.prod.outlook.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 18 Dec 2018 20:48:07 +0000
+Message-ID: <CAJTo0LaEmMpeuMJ14ZB72LBzGO9yOjtQ6HpZ2ocfTbLDEmtYhA@mail.gmail.com>
+To: Edmund.Nadolski@microsoft.com
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Yocto staged builds?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,42 +67,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Dec 2018 18:28:03 -0000
-Content-Type: multipart/alternative; boundary="000000000000b72efe057d500e06"
-
---000000000000b72efe057d500e06
+X-List-Received-Date: Tue, 18 Dec 2018 20:48:22 -0000
 Content-Type: text/plain; charset="UTF-8"
-
-I'd like multiple "helper" recipes to contribute files to a temporary
-directory on my build host, and then a final recipe to combine them into a
-compressed file.
-
-But I DON'T want the helper recipe's files to get installed on the target
-system.  My goal is to have them put into a jffs2 image, which will
-eventually get flashed onto a target partition using JTAG.
-
-So, I suspect I would have to fly under the radar in yocto, having the
-helper recipes install something into the host filesystem, then have the
-final recipe know about that location.
-
-Any advice how I can do this as "properly" as possible in yocto?
-
-Aaron
-
---000000000000b72efe057d500e06
-Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I&#39;d like multiple &quot;helper&quot; recipes to contri=
-bute files to a temporary directory on my build host, and then a final reci=
-pe to combine them into a compressed file.<div><br></div><div>But I DON&#39=
-;T want the helper recipe&#39;s files to get installed on the target system=
-.=C2=A0 My goal is to have them put into a jffs2 image, which will eventual=
-ly get flashed onto a target partition using JTAG.</div><div><br></div><div=
->So, I suspect I would have to fly under the radar in yocto, having the hel=
-per recipes install something into the host filesystem, then have the final=
- recipe know about that location.</div><div><br></div><div>Any advice how I=
- can do this as &quot;properly&quot; as possible in yocto?</div><div><br></=
-div><div>Aaron</div><div><br></div></div>
+On Tue, 18 Dec 2018 at 16:07, Edmund Nadolski
+<Edmund.Nadolski@microsoft.com> wrote:
+> Create and sign binary files (ie kernel, modules, dtb, =E2=80=A6).
 
---000000000000b72efe057d500e06--
+Kernel modules can be signed.  No idea about DTB.  Also packages can be sig=
+ned.
+
+> Create fs images from above and sign those.
+
+Depends how you want to sign the image, most likely not hard to implement.
+
+> Create FIT images and sign.
+
+Pass.
+
+Yocto is generally flexible enough that any signing that isn't
+currently doesn't wouldn't be too difficult to add.
+
+Ross
+
