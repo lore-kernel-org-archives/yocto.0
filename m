@@ -1,6 +1,6 @@
 Return-Path: <balazovic.peter@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D027E00C1E; Tue, 18 Dec 2018 22:59:03 -0800 (PST)
+	id 5EEEBE00C4D; Wed, 19 Dec 2018 09:17:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,51 +11,52 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (balazovic.peter[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.52 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com
-	[209.85.166.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA31DE00AC5
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2018 22:59:02 -0800 (PST)
-Received: by mail-io1-f52.google.com with SMTP id a11so159288ioq.7
-	for <yocto@yoctoproject.org>; Tue, 18 Dec 2018 22:59:02 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.171 listed in list.dnswl.org]
+Received: from mail-it1-f171.google.com (mail-it1-f171.google.com
+	[209.85.166.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1791E00C10
+	for <yocto@yoctoproject.org>; Wed, 19 Dec 2018 09:17:43 -0800 (PST)
+Received: by mail-it1-f171.google.com with SMTP id z7so10813834iti.0
+	for <yocto@yoctoproject.org>; Wed, 19 Dec 2018 09:17:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=A409o6Us50pC/syE7jKU0ZJV/d0f9dqLjXKOPBasNss=;
-	b=FTxFSpSd0Vj+4Y3ItzyQF8b1Q9u6NDTtWaOynccLPWxMvU57iXHLpApX2CELcd99Y7
-	iZkxNEryRNLKM8kwjBrgny+BEF7BVHEMCaXIib6N/61cVwXvhmcRgT6RHkyS85hxRaq1
-	lTotQ+27iUxJ/KMGMrBtnhhYRNJ9xOhwErn+oHkhWEOom/FAdSbuB3+N06gjnsNXx7y9
-	pZARwCKUWrQKdlh3vyQKYcLtd3S1MyFJz1VZLIMXVsvbRRXihjDNJLTj+8okSrn8u2a3
-	VRhp59GXXrx7JiEZtMr0SeRVX5ipaAAQOHr6cbiXtRw/QDCGpThZtDKqqxKEvu7szRl8
-	2BSg==
+	bh=2sHiTIC4v15+pcGUISdnVwSsG9C7YpdA0DyxhSUIxqQ=;
+	b=aEf1uzzh1BKjatgrK0gjTB9LvvIvk15HFwsvKGL++7Vy0uL2/JpTnyl/qFe0Q9vH5k
+	SXKNn2bYZmEvXSNFaQAZ6oZoVCfB339HOxrsd7jfabmyYSO4mbIWZXC2520dw0zZTXhj
+	WKJGx7GtQd3rqBEo6aa4SYI7r9FSMb8KsIjCBPeof2AiR9euFpvU/ruO5wFGcYtduxhd
+	UeDLu69a23MOGScEeQbocS8xkTm8F7/armYHM0CSo1iBagEq4WCZH6N0j2QV7q1UywUy
+	p1r5qcVC0nUV/hN3TFKZJdUCtbr4bIBKM5zHdoC0+x0C8hPb+6psynN0TIT0d2nShZHK
+	6aGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=A409o6Us50pC/syE7jKU0ZJV/d0f9dqLjXKOPBasNss=;
-	b=muyj41b/0vPUhnl+Fs3JQL6VuczpTJaO0aEvSGs8WMJyNErA5+rhbOwrRBiCpK432F
-	2e2jj54s0N9xp7ZfAiT0hYDmheASnbN/btjm4iHJUxeGRVfWg4Z8QFeI6JB/CAn9vN+i
-	+hlyXzhw2C1MN76myg4ulCHoX0skJpQtMEF7cibyy4lXMp4M38ZZsIpA/u+nS1m3YYX6
-	S8cS7n9lSyUbRZwlgKxPSJzGcd4DO9Bcrl7G5Bz2Lbp52ruIi//RoG2UFGa84nauUYfl
-	IuscDgtuwbJke21vOiKPLsDZzpoV/aSP7tmmea2w5lh2CG0TdoKf2RMG6l4FplOLlxHz
-	un2w==
-X-Gm-Message-State: AA+aEWbxl2TALOwKTQPE+wFCz+WWmPgvi1fCQUvGGsCpSV9q3jDAjqo6
-	RDuOp6Cs8wJUXcBHQrdD6nA5bhrSOGx5vti/oM/H/qeB
-X-Google-Smtp-Source: AFSGD/WPTv2fN5Wkyzeb17EI3UdxzmEuiDraDMp+DEBOPoesEKphVyY7hM35JjEk2/lzIPkE0A2aWi7RptRGsY8ch/8=
-X-Received: by 2002:a5d:8415:: with SMTP id i21mr17061442ion.173.1545202741680;
-	Tue, 18 Dec 2018 22:59:01 -0800 (PST)
+	bh=2sHiTIC4v15+pcGUISdnVwSsG9C7YpdA0DyxhSUIxqQ=;
+	b=WAqqeaNVLhfFalVAxHcuE2DGujib2XRHbb19ta+HmmH5ZmYcfZ+M6l/gRRz4bXp9nq
+	S1uU8HC92z68wFLsj013cf79c4xjdAqxjQy2tGzxtXYMjEH7U/7koiZ+peobzj1m/UsQ
+	6LtYrPZBMmzQRebzPfKq5eO/+pY50IDbzC8KUCEnZyomxNfyy/K4+IrlwNveuqavgvH7
+	unnCj4xNDFe6+bLP4p8zN4B+K2lY/Dye5SKI/syW0f81lS2ncK0SKbtXxlNq13MjGywQ
+	sXCUKwRF1tTcT0asa4EFXTWBBv3J0XgX17L0zNAZSn6MFmg2B2g013cqmNzlBJMuh0FW
+	M9zA==
+X-Gm-Message-State: AA+aEWZVcuOOyUOsmHE2zHtQWDOruD5V1fL49FyK+HHu2GOQ57RUABfo
+	f9ml9X9aSyNbyrPYehusxBf1SS6uWlcY9t66voatiOg7OqM=
+X-Google-Smtp-Source: AFSGD/VA7lY5Y42xZciXUprZ06zpOqZX9YJiIWLxwYDUtrurxjeCKdRC6VcoCBck0N5w/Ds2i1uaLvSVwk+feO4rXyU=
+X-Received: by 2002:a24:6890:: with SMTP id v138mr7616071itb.53.1545239863012; 
+	Wed, 19 Dec 2018 09:17:43 -0800 (PST)
 MIME-Version: 1.0
 From: Peter Balazovic <balazovic.peter@gmail.com>
-Message-ID: <CAFq4t4gO3zuLwCedh6bRWkH2PLOqi=jg__vsZTZ=fNB40P8Zew@mail.gmail.com>
+Date: Wed, 19 Dec 2018 18:17:32 +0100
+Message-ID: <CAFq4t4iVtG=LneBXbDrpwAQOD78sFX=S82pd12kZrTwS+UhgXQ@mail.gmail.com>
 To: Yocto list discussion <yocto@yoctoproject.org>
 X-Mailman-Approved-At: Thu, 03 Jan 2019 01:08:45 -0800
-Subject: NXP Yocto imx-linux-sumo can't boot
+Subject: devtool to built for update repo revision
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,107 +68,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-Date: Wed, 19 Dec 2018 06:59:03 -0000
-X-Original-Date: Wed, 19 Dec 2018 07:58:50 +0100
-X-List-Received-Date: Wed, 19 Dec 2018 06:59:03 -0000
-Content-Type: multipart/alternative; boundary="000000000000861e83057d5a8c7b"
+X-List-Received-Date: Wed, 19 Dec 2018 17:17:44 -0000
+Content-Type: multipart/alternative; boundary="00000000000020b237057d63317b"
 
---000000000000861e83057d5a8c7b
+--00000000000020b237057d63317b
 Content-Type: text/plain; charset="UTF-8"
 
-After building an image out of
+Hello,
 
-repo init -u https://source.codeaurora.org/external/imx/imx-manifest
-<https://community.nxp.com/external-link.jspa?url=https%3A%2F%2Fsource.codeaurora.org%2Fexternal%2Fimx%2Fimx-manifest>
--b
-imx-linux-sumo -m imx-4.14.78-1.0.0_ga.xml
+I am trying to use "devtool" from eSDK to create own recipe. At first it
+works with repo and can generate recipe and binaries and deploy to target
+machine.
 
+Now I'd like to update it with a new revision of source code.
+So I updated SRCREV per released commit and as well add *PV =
+"0.1+git${SRCPV}". *
 
+I am not editing source code locally at workspace of eSDK.
 
-build on 8qm machine
+I rebuilt it but it seems still the same revision is built. What else needs
+to update to correctly rebuild from new revision of repo?
 
+Thanks for help.
 
-
-MACHINE=imx8qmmek DISTRO=fsl-imx-xwayland source ./fsl-setup-release.sh -b
-bld-xwayland
-
-the image can't boot ...
-
-
-
-sudo dd if=core-image-minimal-imx8qmmek.sdcard of=/dev/mmcblk0 bs=1M
-conv=fsync
-
-
-image artefacts are generated so how to correctly create SDCard with image
-manually?
-
---000000000000861e83057d5a8c7b
+--00000000000020b237057d63317b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><p style=3D"margin:0px;padding:0px;border=
-:0px;font-size:15px;font-family:arial,helvetica,&quot;helvetica neue&quot;,=
-verdana,sans-serif;vertical-align:baseline;color:rgb(81,98,111)">After buil=
-ding an image out of=C2=A0</p><blockquote class=3D"gmail-jive_macro_quote g=
-mail-jive-quote gmail-jive_text_macro" style=3D"margin:10px 0px;padding:10p=
-x 20px;border-width:0px 0px 0px 2px;border-top-style:initial;border-right-s=
-tyle:initial;border-bottom-style:initial;border-left-style:solid;border-top=
--color:initial;border-right-color:initial;border-bottom-color:initial;borde=
-r-left-color:rgb(204,204,204);font-size:15px;font-family:arial,helvetica,&q=
-uot;helvetica neue&quot;,verdana,sans-serif;vertical-align:baseline;quotes:=
-&quot;&quot; &quot;&quot;;background:rgb(246,246,246);overflow-x:auto;color=
-:rgb(81,98,111)"><p style=3D"margin:0px;padding:0px;border:0px;font-weight:=
-inherit;font-style:inherit;font-family:inherit;vertical-align:baseline"><sp=
-an style=3D"margin:0px;padding:0px;border:0px;font-weight:inherit;font-styl=
-e:inherit;font-family:inherit;vertical-align:baseline">repo init -u=C2=A0</=
-span><a class=3D"gmail-jive-link-external-small" href=3D"https://community.=
-nxp.com/external-link.jspa?url=3Dhttps%3A%2F%2Fsource.codeaurora.org%2Fexte=
-rnal%2Fimx%2Fimx-manifest" rel=3D"nofollow" target=3D"_blank" style=3D"marg=
-in:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;border:0px;font-=
-weight:inherit;font-style:inherit;font-family:inherit;vertical-align:baseli=
-ne;color:rgb(61,156,231);text-decoration-line:none">https://source.codeauro=
-ra.org/external/imx/imx-manifest</a><span style=3D"margin:0px;padding:0px;b=
-order:0px;font-weight:inherit;font-style:inherit;font-family:inherit;vertic=
-al-align:baseline">=C2=A0-b imx-linux-sumo -m imx-4.14.78-1.0.0_ga.xml</spa=
-n></p></blockquote><p style=3D"margin:0px;padding:0px;border:0px;font-size:=
-15px;font-family:arial,helvetica,&quot;helvetica neue&quot;,verdana,sans-se=
-rif;vertical-align:baseline;color:rgb(81,98,111);min-height:8pt">=C2=A0</p>=
-<p style=3D"margin:0px;padding:0px;border:0px;font-size:15px;font-family:ar=
-ial,helvetica,&quot;helvetica neue&quot;,verdana,sans-serif;vertical-align:=
-baseline;color:rgb(81,98,111)">build on 8qm machine</p><p style=3D"margin:0=
-px;padding:0px;border:0px;font-size:15px;font-family:arial,helvetica,&quot;=
-helvetica neue&quot;,verdana,sans-serif;vertical-align:baseline;color:rgb(8=
-1,98,111);min-height:8pt">=C2=A0</p><blockquote class=3D"gmail-jive_macro_q=
-uote gmail-jive-quote gmail-jive_text_macro" style=3D"margin:10px 0px;paddi=
-ng:10px 20px;border-width:0px 0px 0px 2px;border-top-style:initial;border-r=
-ight-style:initial;border-bottom-style:initial;border-left-style:solid;bord=
-er-top-color:initial;border-right-color:initial;border-bottom-color:initial=
-;border-left-color:rgb(204,204,204);font-size:15px;font-family:arial,helvet=
-ica,&quot;helvetica neue&quot;,verdana,sans-serif;vertical-align:baseline;q=
-uotes:&quot;&quot; &quot;&quot;;background:rgb(246,246,246);overflow-x:auto=
-;color:rgb(81,98,111)"><p style=3D"margin:0px;padding:0px;border:0px;font-w=
-eight:inherit;font-style:inherit;font-family:inherit;vertical-align:baselin=
-e">MACHINE=3Dimx8qmmek DISTRO=3Dfsl-imx-xwayland source ./fsl-setup-release=
-.sh -b bld-xwayland</p></blockquote><p style=3D"margin:0px;padding:0px;bord=
-er:0px;font-size:15px;font-family:arial,helvetica,&quot;helvetica neue&quot=
-;,verdana,sans-serif;vertical-align:baseline;color:rgb(81,98,111)">the imag=
-e can&#39;t boot ...</p><p style=3D"margin:0px;padding:0px;border:0px;font-=
-size:15px;font-family:arial,helvetica,&quot;helvetica neue&quot;,verdana,sa=
-ns-serif;vertical-align:baseline;color:rgb(81,98,111);min-height:8pt">=C2=
-=A0</p><blockquote class=3D"gmail-jive_macro_quote gmail-jive-quote gmail-j=
-ive_text_macro" style=3D"margin:10px 0px;padding:10px 20px;border-width:0px=
- 0px 0px 2px;border-top-style:initial;border-right-style:initial;border-bot=
-tom-style:initial;border-left-style:solid;border-top-color:initial;border-r=
-ight-color:initial;border-bottom-color:initial;border-left-color:rgb(204,20=
-4,204);vertical-align:baseline;quotes:&quot;&quot; &quot;&quot;;background-=
-image:initial;background-position:initial;background-size:initial;backgroun=
-d-repeat:initial;background-origin:initial;background-clip:initial;overflow=
--x:auto"><p style=3D"color:rgb(81,98,111);font-family:inherit;font-size:15p=
-x;background-color:rgb(246,246,246);margin:0px;padding:0px;border:0px;font-=
-weight:inherit;font-style:inherit;vertical-align:baseline">sudo dd if=3Dcor=
-e-image-minimal-imx8qmmek.sdcard of=3D/dev/mmcblk0 bs=3D1M conv=3Dfsync</p>=
-<br><br>image artefacts are generated so how to correctly create SDCard wit=
-h image manually?=C2=A0<br><br></blockquote></div></div>
+<div dir=3D"ltr">Hello,<div><br></div><div>I am trying to use &quot;devtool=
+&quot; from eSDK to create own recipe. At first it works with repo and can =
+generate recipe and binaries and deploy to target machine.</div><div><br></=
+div><div>Now I&#39;d like to update it with a new revision of source code.<=
+/div><div>So I updated SRCREV per released commit and as well=C2=A0<span st=
+yle=3D"font-size:13px;color:rgb(36,39,41);font-family:Arial,&quot;Helvetica=
+ Neue&quot;,Helvetica,sans-serif">add=C2=A0</span><i style=3D"font-size:13p=
+x;margin:0px;padding:0px;border:0px;font-variant-numeric:inherit;font-varia=
+nt-east-asian:inherit;font-stretch:inherit;line-height:inherit;font-family:=
+Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;vertical-align:baseli=
+ne;box-sizing:inherit;color:rgb(36,39,41)">PV =3D &quot;0.1+git${SRCPV}&quo=
+t;.=C2=A0</i></div><div><span style=3D"font-size:13px;margin:0px;padding:0p=
+x;border:0px;font-variant-numeric:inherit;font-variant-east-asian:inherit;f=
+ont-stretch:inherit;line-height:inherit;font-family:Arial,&quot;Helvetica N=
+eue&quot;,Helvetica,sans-serif;vertical-align:baseline;box-sizing:inherit;c=
+olor:rgb(36,39,41)"><br></span></div><div><span style=3D"font-size:13px;mar=
+gin:0px;padding:0px;border:0px;font-variant-numeric:inherit;font-variant-ea=
+st-asian:inherit;font-stretch:inherit;line-height:inherit;font-family:Arial=
+,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;vertical-align:baseline;bo=
+x-sizing:inherit;color:rgb(36,39,41)"><span style=3D"font-family:Arial,Helv=
+etica,sans-serif;font-size:small;color:rgb(34,34,34)">I am not editing sour=
+ce code locally at workspace of eSDK.</span></span></div><div><span style=
+=3D"font-size:13px;margin:0px;padding:0px;border:0px;font-variant-numeric:i=
+nherit;font-variant-east-asian:inherit;font-stretch:inherit;line-height:inh=
+erit;font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;vert=
+ical-align:baseline;box-sizing:inherit;color:rgb(36,39,41)"><br></span></di=
+v><div><span style=3D"font-size:13px;margin:0px;padding:0px;border:0px;font=
+-variant-numeric:inherit;font-variant-east-asian:inherit;font-stretch:inher=
+it;line-height:inherit;font-family:Arial,&quot;Helvetica Neue&quot;,Helveti=
+ca,sans-serif;vertical-align:baseline;box-sizing:inherit;color:rgb(36,39,41=
+)">I rebuilt it but it seems still the same revision is built. What else ne=
+eds to update to correctly rebuild from new revision of repo?=C2=A0</span>=
+=C2=A0</div><div><br></div><div>Thanks for help.</div></div>
 
---000000000000861e83057d5a8c7b--
+--00000000000020b237057d63317b--
