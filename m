@@ -1,26 +1,40 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <Kai.Kang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2B1D6E00BE8; Sun, 23 Dec 2018 21:02:16 -0800 (PST)
+	id D7A91E00CDF; Wed, 26 Dec 2018 01:44:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0907EE00B9D
-	for <yocto@yoctoproject.org>; Sun, 23 Dec 2018 21:02:15 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 1F8E684A4522
-	for <yocto@yoctoproject.org>; Mon, 24 Dec 2018 00:02:13 -0500 (EST)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67CF2E00CDD
+	for <yocto@yoctoproject.org>; Wed, 26 Dec 2018 01:44:01 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id wBQ9hxTd013747
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 26 Dec 2018 01:43:59 -0800 (PST)
+Received: from [128.224.163.218] (128.224.163.218) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
+	Wed, 26 Dec 2018 01:43:58 -0800
+To: Nicholas Tsirakis <niko.tsirakis@gmail.com>, <ross.burton@intel.com>
+References: <CAFqpmVKxkvP5_UVrmyjowCpCYf12ymoLD1ii3uYZ0q8GsJnYzA@mail.gmail.com>
+	<CAJTo0LZt+h7cwzZTO9+gqtFhCnfXPKvRZQJF+i8HU=+pbdwtdQ@mail.gmail.com>
+	<CAFqpmVKKGb1J63Cm_e4Ozhicx21Hn9Gy8WPD8WkN7G-dxkDuVg@mail.gmail.com>
+From: Kang Kai <Kai.Kang@windriver.com>
+Message-ID: <ab6b35cb-fdc3-badd-a9ce-01010d96a96d@windriver.com>
+Date: Wed, 26 Dec 2018 17:41:24 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 24 Dec 2018 05:02:13 -0000
-Message-ID: <20181224050213.26483.11211@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+In-Reply-To: <CAFqpmVKKGb1J63Cm_e4Ozhicx21Hn9Gy8WPD8WkN7G-dxkDuVg@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Quick confirmation about multilib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,196 +46,194 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Dec 2018 05:02:16 -0000
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Wed, 26 Dec 2018 09:44:02 -0000
+Content-Type: multipart/alternative;
+	boundary="------------66F55A213E339362CC4340AD"
+Content-Language: en-US
+
+--------------66F55A213E339362CC4340AD
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 
-This mail was sent out by Recipe reporting system.
+On 2018/12/13 上午1:16, Nicholas Tsirakis wrote:
+> Sure, thanks for the reply. The image itself should is 64 bit and I 
+> want to add an additional toolchain to my image that can run 32-bit 
+> binaries. I am trying to build a 32-bit glibc that will be part of 
+> this toolchain.
+>
+> Now, when I go to build, there is a new folder that got created in 
+> tmp-glibc for the lib32-* files:
+>
+> tmp-glibc/work/x86-oemllib32-linux/lib32-*
+>
+> and upon entering the lib32-glibc folder, I'm seeing this:
+>
+> tmp-glibc/work/x86-oemllib32-linux/lib32-glibc/2.25-r0/build-x86_64-oemllib32-linux/
+>
+> I'm just not sure if that "x86_64" in the build folder name is correct.
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hi Nicholas,
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+It seems not right that it should be "build-i686-pokymllib32-linux". Do 
+you have any other config? And do you use Yocto
+that your TARGET_VENDOR is 'oe' but the default value is 'poky'. And 
+please check var TARGET_SYS from output of 'bitbake -e',
+you may find where "x86_64" is from.
 
-You can check the detail information at:
-
-http://recipes.yoctoproject.org/
-
-Package               Version          Upstream version      Maintainer           NoUpgradeReason
---------------------  ---------------  --------------------  -------------------  ------------------------------
-libgloss              3.0.0            3.0.0.20180831        Alejandro Hernandez
-newlib                3.0.0            3.0.0.20180831        Alejandro Hernandez
-libmodulemd           1.7.0            2.0.0                 Alexander Kanavin
-pcmanfm               1.3.0            1.3.1                 Alexander Kanavin
-webkitgtk             2.22.4           2.22.5                Alexander Kanavin
-boost                 1.68.0           1.69.0                Alexander Kanavin
-libfm-extra           1.3.0.2          1.3.1                 Alexander Kanavin
-libfm                 1.3.0.2          1.3.1                 Alexander Kanavin
-nativesdk-meson       0.47.2           0.49.0                Alexander Kanavin
-ffmpeg                4.0.2            4.1                   Alexander Kanavin
-libcomps              0.1.8+gitX       0.1.9                 Alexander Kanavin
-librepo               1.9.2            1.9.3                 Alexander Kanavin
-meson                 0.47.2           0.49.0                Alexander Kanavin
-dnf                   4.0.9            4.0.10                Alexander Kanavin
-libdnf                0.22.3           0.24.1                Alexander Kanavin
-lighttpd              1.4.51           1.4.52                Alexander Kanavin
-gobject-introspec...  1.58.1           1.58.2                Alexander Kanavin
-btrfs-tools           4.19             4.19.1                Alexander Kanavin
-bjam-native           1.68.0           1.69.0                Alexander Kanavin
-createrepo-c          0.11.1+gitX      0.12.0                Alexander Kanavin
-busybox               1.29.2           1.29.3                Andrej Valek
-apt                   1.2.24           1.4.8                 Aníbal Limón
-apt-native            1.2.24           1.4.8                 Aníbal Limón
-dpkg                  1.18.24          1.19.2                Aníbal Limón
-puzzles               0.0+gitX         0.0-new-commits-a...  Anuj Mittal
-libpcap               1.8.1            1.9.0                 Anuj Mittal
-base-passwd           3.5.29           3.5.45                Anuj Mittal          Version 3.5.38 requires cde...
-ifupdown              0.8.16           0.8.33                Anuj Mittal
-glib-2.0              2.58.0           2.58.1                Anuj Mittal
-glib-networking       2.54.1           2.58.0                Anuj Mittal
-pixman                0.34.0           0.36.0                Anuj Mittal
-harfbuzz              2.1.3            2.2.0                 Anuj Mittal
-gst-examples          0.0.1+gitX       0.0.1-new-commits...  Anuj Mittal
-sqlite3               3.25.3           3.26.0                Anuj Mittal
-vte                   0.52.2           0.54.3                Anuj Mittal
-gsettings-desktop...  3.28.0           3.28.1                Anuj Mittal
-libsolv               0.7.1            0.7.2                 Anuj Mittal
-eudev                 3.2.5            3.2.7                 Anuj Mittal
-atk                   2.28.1           2.30.0                Anuj Mittal
-librsvg               2.40.20          2.44.10               Anuj Mittal          Versions from 2.41.0 requir...
-cairo                 1.14.12          1.16.2                Anuj Mittal
-i2c-tools             4.0              4.1                   Anuj Mittal
-libatomic-ops         7.6.6+gitX       7.6.8                 Anuj Mittal
-libpng                1.6.35           1.6.36                Anuj Mittal
-at-spi2-atk           2.26.2           2.30.0                Anuj Mittal
-mmc-utils             0.1              0.1-new-commits-a...  Anuj Mittal
-libjpeg-turbo         2.0.0            2.0.1                 Anuj Mittal
-mtools                4.0.19           4.0.23                Anuj Mittal
-libassuan             2.5.1            2.5.2                 Armin Kuster
-netbase               5.4              5.5                   Armin Kuster
-openssh               7.9p1+git        7.9.                  Armin Kuster
-curl                  7.62.0           7.63.0                Armin Kuster
-gnutls                3.6.4            3.6.5                 Armin Kuster
-nss                   3.40             3.41                  Armin Kuster
-bind                  9.11.5           9.13.5                Armin Kuster         9.11 is LTS 2021
-nettle                3.4              3.4.1                 Armin Kuster
-linux-libc-headers    4.18             4.19.10               Bruce Ashfield
-kern-tools-native     0.2+gitX         0.2-new-commits-a...  Bruce Ashfield
-linux-yocto           4.18.14+gitX     4.19.8                Bruce Ashfield
-linux-yocto-rt        4.18.14+gitX     4.19.8                Bruce Ashfield
-linux-yocto-tiny      4.18.14+gitX     4.19.8                Bruce Ashfield
-kmscube               git              git-new-commits-a...  Carlos Rafael Giani
-wpa-supplicant        2.6              2.7                   Changhyeok Bae
-iptables              1.6.2            1.8.2                 Changhyeok Bae
-dbus-test             1.12.10          1.12.12               Chen Qi
-acl                   2.2.52           2.2.53                Chen Qi
-attr                  2.4.47           2.4.48                Chen Qi
-systemd-conf          1.0              239                   Chen Qi
-dbus                  1.12.10          1.12.12               Chen Qi
-cups                  2.2.9            2.2.10                Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-util-linux            2.32.1           2.33                  Chen Qi
-bison                 3.0.4            3.2.2                 Chen Qi
-sed                   4.2.2            4.5                   Chen Qi
-sysstat               12.1.1           12.1.2                Chen Qi
-lzop                  1.03             1.04                  Denys Dmytriyenko
-lz4                   1.8.2            1.8.3                 Denys Dmytriyenko
-hdparm                9.56             9.58                  Denys Dmytriyenko
-wayland-protocols     1.16             1.17                  Denys Dmytriyenko
-python3-pygobject     3.28.3           3.30.4                Derek Straka
-python3               3.5.6            3.7.1                 Derek Straka
-python3-pbr           4.2.0            5.1.1                 Derek Straka
-python3-setuptools    40.0.0           40.6.3                Derek Straka
-python3-pip           18.0             18.1                  Derek Straka
-python-numpy          1.14.5           1.15.4                Derek Straka
-python3-numpy         1.14.5           1.15.4                Derek Straka
-python-setuptools     40.0.0           40.6.3                Derek Straka
-python3-six           1.11.0           1.12.0                Derek Straka
-python3-gitdb         2.0.4            2.0.5                 Derek Straka
-python3-pycairo       1.15.6           1.18.0                Derek Straka
-python3-native        3.5.6            3.7.1                 Derek Straka
-acpica                20180508         20181213              Fathi Boudra
-libgpg-error          1.32             1.33                  Hongxu Jia
-gnupg                 2.2.11           2.2.12                Hongxu Jia
-help2man-native       1.47.6           1.47.8                Hongxu Jia
-libxcrypt             4.1.1            4.4.1                 Khem Raj
-go-runtime            1.11.1           1.11.4                Khem Raj
-go                    1.11.1           1.11.4                Khem Raj
-binutils              2.31             2.31.1                Khem Raj
-go-native             1.11.1           1.11.4                Khem Raj
-prelink               1.0+gitX         1.0-new-commits-a...  Mark Hatle
-db                    5.3.28           5.3.28+dfsg1          Mark Hatle
-binutils-cross-ca...  2.31             2.31.1                No maintainer
-binutils-cross-i586   2.31             2.31.1                No maintainer
-go-cross-canadian...  1.11.1           1.11.4                No maintainer
-go-crosssdk-x86_6...  1.11.1           1.11.4                No maintainer
-binutils-crosssdk...  2.31             2.31.1                No maintainer
-go-cross-i586         1.11.1           1.11.4                No maintainer
-mesa                  18.1.9           18.3.1                Otavio Salvador
-linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
-mesa-gl               18.1.9           18.3.1                Otavio Salvador
-cmake                 3.12.2           3.13.2                Pascal Bach
-cmake-native          3.12.2           3.13.2                Pascal Bach
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Paul Eggleton
-build-appliance-i...  15.0.0           20.0.0                Richard Purdie
-gnu-config            20180713+gitX    20180713-new-comm...  Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-e2fsprogs             1.44.3           1.44.5                Robert Yang
-ccache                3.4.2            3.5                   Robert Yang
-git                   2.18.1           2.20.1                Robert Yang
-mklibs-native         0.1.43           0.1.44                Robert Yang
-piglit                1.0+gitrX        1.0-new-commits-a...  Ross Burton
-acpid                 2.0.30           2.0.31                Ross Burton
-libinput              1.12.3           1.12.4                Ross Burton
-vulkan-demos          git              git-new-commits-a...  Ross Burton
-perl                  5.24.4           5.28.1                Ross Burton
-gtk-icon-utils-na...  3.22.30          3.24.2                Ross Burton
-ofono                 1.25             1.26                  Ross Burton
-libical               2.0.0            3.0.4                 Ross Burton
-vulkan                1.1.73.0         1.1.92.1              Ross Burton
-lsbinitscripts        9.79             10.01                 Ross Burton
-sysvinit              2.88dsf          2.93                  Ross Burton
-adwaita-icon-theme    3.28.0           3.30.1                Ross Burton
-fontconfig            2.12.6           2.13.1                Ross Burton
-gdk-pixbuf            2.36.11          2.38.0                Ross Burton
-gtk+3                 3.24.1           3.24.2                Ross Burton
-pkgconf               1.5.3            1.5.4                 Ross Burton
-perl-native           5.24.4           5.28.1                Ross Burton
-alsa-tools            1.1.6            1.1.7                 Tanu Kaskinen
-alsa-plugins          1.1.6            1.1.7                 Tanu Kaskinen
-alsa-utils-scripts    1.1.6            1.1.7                 Tanu Kaskinen
-alsa-lib              1.1.6            1.1.7                 Tanu Kaskinen
-alsa-utils            1.1.6            1.1.7                 Tanu Kaskinen
-gnu-efi               3.0.8            3.0.9                 Yi Zhao
-libcap                2.25             2.26                  Yi Zhao
-chkconfig             1.3.58           1.8                   Yi Zhao              Version 1.5 requires selinux
-logrotate             3.14.0           3.15.0                Yi Zhao
-file                  5.34             5.35                  Yi Zhao
-wget                  1.19.5           1.20                  Yi Zhao
-json-glib             1.4.2            1.4.4                 Yi Zhao
-libsdl2               2.0.8            2.0.9                 Yi Zhao
-
-Upgradable count: 147
-Upgradable total count: 151
-
-The based commit is:
-
-commit 95659bed3f6f3216b346f70cfc9ffae9788c0fc1
-Author: Khem Raj <raj.khem@gmail.com>
-Date:   Wed Dec 19 23:35:02 2018 -0800
-
-    populate_sdk_ext.bbclass: Include site.conf in parsing for contents for local.conf
-    
-    Some distros use site.conf to emit certain variables which are important
-    for eSDK e.g. DISTRO with out which eSDK will not be able to ger right
-    metadata when it tries to build
-    
-    Signed-off-by: Khem Raj <raj.khem@gmail.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
+Regards,
+Kai
 
 
+
+
+> I may be doing something entirely wrong as well; this is my first time 
+> using multilib. As an FYI, I have the following to my local.conf:
+> require conf/multilib.conf
+> MULTILIBS = "multilib:lib32"
+> DEFAULTTUNE_virtclass-multilib-lib32 = "x86"
+>
+> Any clarification is appreciated.
+>
+> On Wed, Dec 12, 2018 at 12:04 PM Burton, Ross <ross.burton@intel.com 
+> <mailto:ross.burton@intel.com>> wrote:
+>
+>     On Wed, 12 Dec 2018 at 16:59, Nicholas Tsirakis
+>     <niko.tsirakis@gmail.com <mailto:niko.tsirakis@gmail.com>> wrote:
+>     > I'm trying to build a 32-bit toolchain for my 64-bit image using
+>     multilib and was hoping someone could confirm something for me. I
+>     am seeing issues when building lib32-glibc, and I can't tell if
+>     it's attempting to build properly. The resulting build files are
+>     created in a folder called "x86_64-oemllib32-..." - is this
+>     correct? Or should it be "x86-oemllib32" being that it's a 32-bit
+>     library?
+>
+>     Can you clarify here was should be 32-bit and what should be 64-bit?
+>
+>     Ross
+>
+>
+
+-- 
+Kai Kang
+
+
+--------------66F55A213E339362CC4340AD
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 2018/12/13 上午1:16, Nicholas Tsirakis
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAFqpmVKKGb1J63Cm_e4Ozhicx21Hn9Gy8WPD8WkN7G-dxkDuVg@mail.gmail.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <div dir="ltr">
+        <div dir="ltr">
+          <div dir="ltr">
+            <div dir="ltr">
+              <div>Sure, thanks for the reply. The image itself should
+                is 64 bit and I want to add an additional toolchain to
+                my image that can run 32-bit binaries. I am trying to
+                build a 32-bit glibc that will be part of this
+                toolchain.</div>
+              <div><br>
+                Now, when I go to build, there is a new folder that got
+                created in tmp-glibc for the lib32-* files:</div>
+              <div><br>
+              </div>
+              <div>tmp-glibc/work/x86-oemllib32-linux/lib32-*<br>
+                <br>
+              </div>
+              <div>and upon entering the lib32-glibc folder, I'm seeing
+                this:</div>
+              <div><br>
+              </div>
+              <div>tmp-glibc/work/x86-oemllib32-linux/lib32-glibc/2.25-r0/build-x86_64-oemllib32-linux/<br>
+                <br>
+              </div>
+              <div>I'm just not sure if that "x86_64" in the build
+                folder name is correct.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <p>Hi Nicholas,</p>
+    <p>It seems not right that it should be
+      "build-i686-pokymllib32-linux". Do you have any other config? And
+      do you use Yocto<br>
+      that your TARGET_VENDOR is 'oe' but the default value is 'poky'.
+      And please check var TARGET_SYS from output of 'bitbake -e', <br>
+      you may find where "x86_64" is from.</p>
+    <p>Regards,<br>
+      Kai<br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <blockquote type="cite"
+cite="mid:CAFqpmVKKGb1J63Cm_e4Ozhicx21Hn9Gy8WPD8WkN7G-dxkDuVg@mail.gmail.com">
+      <div dir="ltr">
+        <div dir="ltr">
+          <div dir="ltr">
+            <div dir="ltr">
+              <div> I may be doing something entirely wrong as well;
+                this is my first time using multilib. As an FYI, I have
+                the following to my local.conf:
+                <div>require conf/multilib.conf<br>
+                  MULTILIBS = "multilib:lib32"<br>
+                  DEFAULTTUNE_virtclass-multilib-lib32 = "x86"<br>
+                  <br>
+                </div>
+                <div>Any clarification is appreciated.<br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="gmail_quote">
+        <div dir="ltr">On Wed, Dec 12, 2018 at 12:04 PM Burton, Ross
+          &lt;<a href="mailto:ross.burton@intel.com"
+            moz-do-not-send="true">ross.burton@intel.com</a>&gt; wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On
+          Wed, 12 Dec 2018 at 16:59, Nicholas Tsirakis &lt;<a
+            href="mailto:niko.tsirakis@gmail.com" target="_blank"
+            moz-do-not-send="true">niko.tsirakis@gmail.com</a>&gt;
+          wrote:<br>
+          &gt; I'm trying to build a 32-bit toolchain for my 64-bit
+          image using multilib and was hoping someone could confirm
+          something for me. I am seeing issues when building
+          lib32-glibc, and I can't tell if it's attempting to build
+          properly. The resulting build files are created in a folder
+          called "x86_64-oemllib32-..." - is this correct? Or should it
+          be "x86-oemllib32" being that it's a 32-bit library?<br>
+          <br>
+          Can you clarify here was should be 32-bit and what should be
+          64-bit?<br>
+          <br>
+          Ross<br>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+    </blockquote>
+    <p><br>
+    </p>
+    <pre class="moz-signature" cols="72">-- 
+Kai Kang</pre>
+  </body>
+</html>
+
+--------------66F55A213E339362CC4340AD--
