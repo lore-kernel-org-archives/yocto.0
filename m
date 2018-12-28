@@ -1,6 +1,6 @@
 Return-Path: <scottellis.developer@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A9D7E00CE7; Fri, 28 Dec 2018 11:19:29 -0800 (PST)
+	id F3BF2E00CE4; Fri, 28 Dec 2018 13:35:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,59 +9,59 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.194 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (scottellis.developer[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.193 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f194.google.com (mail-qt1-f194.google.com
-	[209.85.160.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD106E00CD6
-	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 11:19:24 -0800 (PST)
-Received: by mail-qt1-f194.google.com with SMTP id d19so24238988qtq.9
-	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 11:19:24 -0800 (PST)
+Received: from mail-qk1-f193.google.com (mail-qk1-f193.google.com
+	[209.85.222.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5338E00CCC
+	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 13:35:39 -0800 (PST)
+Received: by mail-qk1-f193.google.com with SMTP id g125so13192331qke.4
+	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 13:35:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:cc:subject:date:message-id;
-	bh=6TcmHcCbBVg9Wll2S+hK05iQrFAubI9RyJC7lSnD7fI=;
-	b=jKvuiL43QTbxK+0SvgTKPyZ9cGVwzkyRJ9cKm0i0Kvbi1II7yBRL/a5GLktamggtEL
-	8qPGYxsW3PuNqpKSQkUEJ3CkWUjlcxNXTeC37zKY+KtPdomm+pndIxYYxMLtr8jFjv7A
-	Usls/vfQIz9U889BxpdH4gtVL64XItR06iB5rpate1xHoC2aC3f0l8pmHByivgr7AX/y
-	8SehCp+4Iwwr4W96+/H3u4C2sCbnZ8Zmii0nKNZTk8A3BfvhlQcwBvfmh2BHPcb2MowX
-	ehHeUI+Kwoe6RaUEMQLcCHqoWWMw4hTJYmQWli+DEHH9LTEGEyBYnqYbqcxl4bjIoFtG
-	GfXg==
+	bh=BF4scoX/ZVt/lHH1dYzpwSRihlkSLYPVFx5Abhb8zhI=;
+	b=Q6blkM9OiN7JeRIgfRVnew5RkgaRzYzr2GeixMLRk/uaRqw21A7Ak0AA5hRugdcy3R
+	+tRpl25UtJV8Mnc8Uyxqd3LvhSOmg47agjnCYg2BnmdO8saysrcrvuYkvQTwkz/0zIBF
+	7DFwrvdIHYm/zBB0kWh2CuR9EpGWn4OnZiDeZJi7Ef1nJqXZL4L/7xh75pZOZgb/MInz
+	YkAOl181fcLFf/UY03OLz92Q08ZNzhIhbmvCy3nKwybKKtqPwKMkGVE5V/2tzk9rF2pj
+	SAoyUGzA5xJLQIGLnTC9DbQ4zeBLfjIcd/JKCMp/fdzYzz1QVZggan2S1rnXW31Jh+/y
+	uf7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=6TcmHcCbBVg9Wll2S+hK05iQrFAubI9RyJC7lSnD7fI=;
-	b=FLaFtvrM+Z3sgoK29a5vJBGCUy4vlw9IL5tc9x6jm9nAnq7EbQf/DHDS2RQoJValNZ
-	vZR55XYX7P5elJcpywZheNQ6gppnP8U9LdSJm8whpHtjDCNITt0Wie2Pul8tFd5fTHIl
-	T0If36nO7XrwFv5sI1lOw6GiQp54UZFITmNwcjAltAj/ythtwVVnZ8/T0dnNm8bB0Mij
-	q4ZmxiG5FGZIht7nzkaSEOS1HkPLqo66qb/uymMWpCoz0Px98cfcrGRWvRtu0WCZOPT3
-	un3EMGFt3PIh6hnDGfR2IKdPNFLB8MpLrM23cL6SjzY5pvRHVjI4GuCRreLpzYI/Oipv
-	K0FA==
-X-Gm-Message-State: AJcUukdDLNeCpqz0as+4154tU/phV9FWpyY/3YgdMVuXi133TyOVAZOo
-	sstF8hETV0ufRucFbRsdpxcYyIIQ
-X-Google-Smtp-Source: ALg8bN7FKb6MlEFBccu437w6UaJLYy7j5C6Yw8aqXuyKm9IXnzTn5I5EGAZ4cKjS6BUrhIGdXTPrRw==
-X-Received: by 2002:a0c:b746:: with SMTP id q6mr26850058qve.235.1546024763575; 
-	Fri, 28 Dec 2018 11:19:23 -0800 (PST)
+	bh=BF4scoX/ZVt/lHH1dYzpwSRihlkSLYPVFx5Abhb8zhI=;
+	b=GOa68sEIzsAK8uYG7RknbdWSOmnSy7vHNSv0EfJlL1UHB/Ce14HohMbD4iVqrSlCOK
+	Kmi8jN85wexhuBhALt57vn7M3bdM5xo7oL4usUi9OLdPCd3S5dwhpZFk/MDlgzkTqtwm
+	FH44G8fuMvT/8WUkyzIMETSpYAiirnSpteF6rOy+oPI7newJjRHuvrZM1cpRfzIBDn+4
+	jRAWKmo7L9PF7hOq0a3LJAJ5+m6Lx1WfbQF6CWO3SVmBjDnlrRy25ywPhIj4zljMtEkF
+	Gfg6WasOdrt4kN+B1D68f23vepiUkEsP2+LzKWNOOWevcKYeOnrMXSz2bEAnW+SvgDJj
+	hiGA==
+X-Gm-Message-State: AJcUukesmCNeH2CpBMOk2XKv06+DVK/dq6p6LKl2zm73ovmUxwgz6JZk
+	uRbl7fhR+4WK+A8ydqOPsUkYMP+I
+X-Google-Smtp-Source: ALg8bN69K10D8B/7Qfn+G+dmHXcR4XlAaeqg76IjgaawXowj5PWVV8CMj2MoFNnakMosKpnEYH6SPg==
+X-Received: by 2002:a37:9e0d:: with SMTP id h13mr26441125qke.260.1546032938331;
+	Fri, 28 Dec 2018 13:35:38 -0800 (PST)
 Received: from fractal.jumpnow (c-73-234-253-132.hsd1.me.comcast.net.
 	[73.234.253.132]) by smtp.gmail.com with ESMTPSA id
-	m10sm16588686qtg.39.2018.12.28.11.19.22
+	b75sm28239070qkh.4.2018.12.28.13.35.37
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 28 Dec 2018 11:19:22 -0800 (PST)
+	Fri, 28 Dec 2018 13:35:37 -0800 (PST)
 From: Scott Ellis <scottellis.developer@gmail.com>
 X-Google-Original-From: Scott Ellis <scott@jumpnowtek.com>
 To: yocto@yoctoproject.org
-Date: Fri, 28 Dec 2018 14:19:12 -0500
-Message-Id: <1546024752-12007-1-git-send-email-scott@jumpnowtek.com>
+Date: Fri, 28 Dec 2018 16:35:35 -0500
+Message-Id: <1546032935-10644-1-git-send-email-scott@jumpnowtek.com>
 X-Mailer: git-send-email 2.7.4
 Cc: Scott Ellis <scott@jumpnowtek.com>
-Subject: [meta-security][PATCH] nikto: upgrade to 2.1.6
+Subject: [PATCH] nikto: upgrade to 2.1.6 (v2)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,7 +73,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Dec 2018 19:19:29 -0000
+X-List-Received-Date: Fri, 28 Dec 2018 21:35:51 -0000
 
 Source now on github.
 
@@ -373,7 +373,7 @@ index 19eb14f..0000000
 -                nikto-doc"
 diff --git a/recipes-security/nikto/nikto_2.1.6.bb b/recipes-security/nikto/nikto_2.1.6.bb
 new file mode 100644
-index 0000000..6b6d8e5
+index 0000000..2d2c46c
 --- /dev/null
 +++ b/recipes-security/nikto/nikto_2.1.6.bb
 @@ -0,0 +1,118 @@
@@ -387,7 +387,7 @@ index 0000000..6b6d8e5
 +
 +SRCREV = "f1bbd1a8756c076c8fd4f4dd0bc34a8ef215ae79"
 +SRC_URI = "git://github.com/sullo/nikto.git \
-+           file://0001-Set-custom-paths.patch"
++           file://location.patch"
 +
 +S = "${WORKDIR}/git/program"
 +
