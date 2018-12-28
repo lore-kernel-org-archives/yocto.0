@@ -1,40 +1,67 @@
-Return-Path: <Changqing.Li@windriver.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2B515E00CC4; Wed, 26 Dec 2018 19:02:07 -0800 (PST)
+	id E9EF8E00CEA; Fri, 28 Dec 2018 03:40:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2766E00C90
-	for <yocto@yoctoproject.org>; Wed, 26 Dec 2018 19:02:03 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id wBR31hM1029653
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 26 Dec 2018 19:01:53 -0800
-Received: from [128.224.162.228] (128.224.162.228) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
-	Wed, 26 Dec 2018 19:01:32 -0800
-To: <yocto@yoctoproject.org>
-References: <1541756697-370127-1-git-send-email-changqing.li@windriver.com>
-	<08fb32b8-b9bd-7c85-4b72-b799ac88f538@windriver.com>
-	<df4fecad-141a-3433-75fe-ce0e45bbc886@windriver.com>
-From: Changqing Li <changqing.li@windriver.com>
-Message-ID: <f38d0581-ac86-ef6d-b3f3-8c1735fbcb4d@windriver.com>
-Date: Thu, 27 Dec 2018 11:01:29 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.2.1
-MIME-Version: 1.0
-In-Reply-To: <df4fecad-141a-3433-75fe-ce0e45bbc886@windriver.com>
-X-Originating-IP: [128.224.162.228]
-Subject: Re: [PATCH] update-rc.d: support enable/disable function
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.67 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
+	[209.85.221.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48988E00CA9
+	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 03:40:05 -0800 (PST)
+Received: by mail-wr1-f67.google.com with SMTP id j2so20762299wrw.1
+	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 03:40:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=E19pJp7cKJOpDMXKeNzJRYRIwhGvhLtUw5zSyikX5XA=;
+	b=biGMpvWP1yPJXNlY9S1Sn4DdHTebDQglfMR/T9AIxcAJG8g4/IH6o+7Z2WAGfzrUnu
+	CAwjn44CXjrcIx8+T1H1b2tjGS9X/RhZ+/zsmKCzfrNgSAu4fkDZD/WQ6sUPGXWO2OL8
+	w6P+sNZ1pfWRqu8Pg4JYOp3AN4Wwkqhr+Vu+k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+	:references:user-agent:mime-version:content-transfer-encoding;
+	bh=E19pJp7cKJOpDMXKeNzJRYRIwhGvhLtUw5zSyikX5XA=;
+	b=m/mqBMJKLeiqCo7ei76i9mCtyGO3bU7PF2vlQNvxMu49ID9C3C5h4AS8NTqodR486n
+	Sx5zTCpn+9jBj/d2WF9aZWXMeRsRaTDY+6Sjs19a366UCj54R56lx7dbmVf8QP1EommB
+	r15ExYi377FUEHX+IP4YmLY5V2E/dxSqJfzigryMv6Vaq97rYLFs9sgLXBpmeFTi7FtH
+	oAvr1pTxRTyKYB0b+FVKHDTy3gh9GuCM/0AZ2zQXh4XAoB1vqfUZAaC6zAd6WscDKwZk
+	amzZwJRz9CG0+yTptEMxbgOX15UDTBiJRQr1HEED9JZoKY3r6AVUNjsgk/3A7dEN9gQ0
+	3q8Q==
+X-Gm-Message-State: AJcUukcXUnzUQGRf61GY8KdnUOVF+C7eiR8IWyqsPrAZrcLa8tMt1RHe
+	x3RAt9R6oi1pMmlYUWKvP+7FEQ==
+X-Google-Smtp-Source: ALg8bN5i0/Hjh3IRxJmKsU4J6iPvl32RFcbK8wOyTBirN8tCMKK5b0Aj/v+1TxBMqelv+ZYFMMgoJQ==
+X-Received: by 2002:a5d:4b8b:: with SMTP id b11mr25043005wrt.180.1545997204373;
+	Fri, 28 Dec 2018 03:40:04 -0800 (PST)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+	by smtp.gmail.com with ESMTPSA id
+	w80sm32970573wme.38.2018.12.28.03.40.03
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Fri, 28 Dec 2018 03:40:03 -0800 (PST)
+Message-ID: <b21e8888f599e9340e91b6a22e0e0c554748ef44.camel@linuxfoundation.org>
+From: richard.purdie@linuxfoundation.org
+To: Zhaolong Zhang <zhangzl2013@126.com>, bruce.ashfield@windriver.com, 
+	yocto@yoctoproject.org
+Date: Fri, 28 Dec 2018 11:40:02 +0000
+In-Reply-To: <f7a564.7f88.167f453d16d.Coremail.zhangzl2013@126.com>
+References: <f7a564.7f88.167f453d16d.Coremail.zhangzl2013@126.com>
+User-Agent: Evolution 3.30.2-1 
+Mime-Version: 1.0
+Subject: Re: Accelerate kernel module built in eSDK?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,142 +73,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Dec 2018 03:02:07 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-List-Received-Date: Fri, 28 Dec 2018 11:40:06 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Ping
+On Fri, 2018-12-28 at 18:19 +0800, Zhaolong Zhang wrote:
+> Hi Experts,
+> 
+> Building out-of-tree kernel modules in eSDK will trigger a new
+> rebuilding of kernel, which consumes lots of time.
+> Is it possible to cache the do_shared_workdir() task in sstate-cache
+> and ship it within eSDK? And how?
+> 
+> Or is there other method to accelerate?
+> 
+> Thanks in advance.
 
-On 12/5/18 4:13 PM, Changqing Li wrote:
-> ping
->
-> On 11/26/18 11:35 AM, Changqing Li wrote:
->> Ping
->>
->> On 11/9/18 5:44 PM, changqing.li@windriver.com wrote:
->>> From: Changqing Li <changqing.li@windriver.com>
->>>
->>> Add support of enable/disable function, so that user can keep
->>> previous config after upgrade package
->>>
->>> Signed-off-by: Changqing Li <changqing.li@windriver.com>
->>> ---
->>>   update-rc.d | 70 
->>> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
->>>   1 file changed, 70 insertions(+)
->>>
->>> diff --git a/update-rc.d b/update-rc.d
->>> index e07cf85..1ba97d3 100644
->>> --- a/update-rc.d
->>> +++ b/update-rc.d
->>> @@ -27,6 +27,7 @@ usage()
->>>   usage: update-rc.d [-n] [-f] [-r <root>] <basename> remove
->>>          update-rc.d [-n] [-r <root>] [-s] <basename> defaults [NN | 
->>> sNN kNN]
->>>          update-rc.d [-n] [-r <root>] [-s] <basename> start|stop NN 
->>> runlvl [runlvl] [...] .
->>> +       update-rc.d [-n] [-r <root>] [-s] <basename> enable|disable 
->>> [S|2|3|4|5]
->>>           -n: not really
->>>           -f: force
->>>           -v: verbose
->>> @@ -101,6 +102,43 @@ makelinks()
->>>       done
->>>   }
->>>   +renamelink()
->>> +{
->>> +    local oldstartstop newstartstop lev oldnn newnn
->>> +    if [ "x$1" = "xS" ]; then
->>> +        oldstartstop="K"
->>> +        newstartstop="S"
->>> +    else
->>> +        oldstartstop="S"
->>> +        newstartstop="K"
->>> +    fi
->>> +
->>> +    lev=$2
->>> +    if ls ${etcd}${lev}.d/${oldstartstop}*${bn} >/dev/null 2>&1; then
->>> +        oldnn=`basename ${etcd}${lev}.d/${oldstartstop}*${bn}|cut 
->>> -c2-3`
->>> +        newnn=$[100-$oldnn]
->>> +        [ $verbose -eq 1 ] && echo "rename 
->>> ${etcd}${lev}.d/${oldstartstop}${oldnn}${bn} -> 
->>> ${etcd}${lev}.d/${newstartstop}${newnn}${bn}"
->>> +        if [ $notreally -eq 0 ];then
->>> +            mv ${etcd}${lev}.d/${oldstartstop}${oldnn}${bn} 
->>> ${etcd}${lev}.d/${newstartstop}${newnn}${bn}
->>> +        fi
->>> +        if [ $dostart -eq 1 ] && [ $newstartstop = "S" ] && [ $lev 
->>> = $RUNLEVEL ]; then
->>> +            $fn start || true
->>> +        fi
->>> +    fi
->>> +
->>> +}
->>> +
->>> +renamelinks()
->>> +{
->>> +    if [ $# -eq 2 ]; then
->>> +        renamelink $1 $2
->>> +    else
->>> +        for i in 2 3 4 5 S; do
->>> +            renamelink $1 $i
->>> +        done
->>> +    fi
->>> +}
->>> +
->>>   while [ $# -gt 0 ]; do
->>>       case $1 in
->>>           -n)    notreally=1
->>> @@ -221,6 +259,13 @@ case $1 in
->>>           ;;
->>>         start | stop)
->>> +        if [ $# -lt 4 ]
->>> +        then
->>> +            echo "Not enough arguments"
->>> +            usage
->>> +            exit 1
->>> +        fi
->>> +
->>>           while [ $# -gt 0 ]; do
->>>               if [ $1 = "start" ]; then
->>>                   letter=S
->>> @@ -251,6 +296,31 @@ case $1 in
->>>           makelinks
->>>           ;;
->>>   +    enable | disable)
->>> +        if [ $1 = "enable" ]; then
->>> +            letter=S
->>> +        elif [ $1 = "disable" ]; then
->>> +            letter=K
->>> +        else
->>> +            usage
->>> +            exit 1
->>> +        fi
->>> +        shift
->>> +        if [ $# -gt 0 ]
->>> +        then
->>> +            case $1 in
->>> +                S|2|3|4|5)
->>> +                    renamelinks $letter $1
->>> +                    ;;
->>> +                *)
->>> +                    usage
->>> +                    exit 1
->>> +                    ;;
->>> +            esac
->>> +        else
->>> +            renamelinks $letter
->>> +        fi
->>> +        ;;
->>>       *)
->>>           usage
->>>           exit 1
->>
--- 
-BRs
+It is possible but it means creating a tarball of all the kernel source
+and build artefacts. Usually its just as quick to extract new kernel
+source and build it than it is to store this and extract it. The sstate
+object would be huge.
 
-Sandy(Li Changqing)
+Cheers,
+
+Richard
 
 
