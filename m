@@ -1,67 +1,50 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <john-s-84@gmx.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E9EF8E00CEA; Fri, 28 Dec 2018 03:40:05 -0800 (PST)
+	id 93422E00CEA; Fri, 28 Dec 2018 03:46:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.67 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
-	[209.85.221.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48988E00CA9
-	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 03:40:05 -0800 (PST)
-Received: by mail-wr1-f67.google.com with SMTP id j2so20762299wrw.1
-	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 03:40:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=E19pJp7cKJOpDMXKeNzJRYRIwhGvhLtUw5zSyikX5XA=;
-	b=biGMpvWP1yPJXNlY9S1Sn4DdHTebDQglfMR/T9AIxcAJG8g4/IH6o+7Z2WAGfzrUnu
-	CAwjn44CXjrcIx8+T1H1b2tjGS9X/RhZ+/zsmKCzfrNgSAu4fkDZD/WQ6sUPGXWO2OL8
-	w6P+sNZ1pfWRqu8Pg4JYOp3AN4Wwkqhr+Vu+k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=E19pJp7cKJOpDMXKeNzJRYRIwhGvhLtUw5zSyikX5XA=;
-	b=m/mqBMJKLeiqCo7ei76i9mCtyGO3bU7PF2vlQNvxMu49ID9C3C5h4AS8NTqodR486n
-	Sx5zTCpn+9jBj/d2WF9aZWXMeRsRaTDY+6Sjs19a366UCj54R56lx7dbmVf8QP1EommB
-	r15ExYi377FUEHX+IP4YmLY5V2E/dxSqJfzigryMv6Vaq97rYLFs9sgLXBpmeFTi7FtH
-	oAvr1pTxRTyKYB0b+FVKHDTy3gh9GuCM/0AZ2zQXh4XAoB1vqfUZAaC6zAd6WscDKwZk
-	amzZwJRz9CG0+yTptEMxbgOX15UDTBiJRQr1HEED9JZoKY3r6AVUNjsgk/3A7dEN9gQ0
-	3q8Q==
-X-Gm-Message-State: AJcUukcXUnzUQGRf61GY8KdnUOVF+C7eiR8IWyqsPrAZrcLa8tMt1RHe
-	x3RAt9R6oi1pMmlYUWKvP+7FEQ==
-X-Google-Smtp-Source: ALg8bN5i0/Hjh3IRxJmKsU4J6iPvl32RFcbK8wOyTBirN8tCMKK5b0Aj/v+1TxBMqelv+ZYFMMgoJQ==
-X-Received: by 2002:a5d:4b8b:: with SMTP id b11mr25043005wrt.180.1545997204373;
-	Fri, 28 Dec 2018 03:40:04 -0800 (PST)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	w80sm32970573wme.38.2018.12.28.03.40.03
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Fri, 28 Dec 2018 03:40:03 -0800 (PST)
-Message-ID: <b21e8888f599e9340e91b6a22e0e0c554748ef44.camel@linuxfoundation.org>
-From: richard.purdie@linuxfoundation.org
-To: Zhaolong Zhang <zhangzl2013@126.com>, bruce.ashfield@windriver.com, 
-	yocto@yoctoproject.org
-Date: Fri, 28 Dec 2018 11:40:02 +0000
-In-Reply-To: <f7a564.7f88.167f453d16d.Coremail.zhangzl2013@126.com>
-References: <f7a564.7f88.167f453d16d.Coremail.zhangzl2013@126.com>
-User-Agent: Evolution 3.30.2-1 
-Mime-Version: 1.0
-Subject: Re: Accelerate kernel module built in eSDK?
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (john-s-84[at]gmx.net)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.227.15.18 listed in list.dnswl.org]
+X-Greylist: delayed 302 seconds by postgrey-1.32 at yocto-www;
+	Fri, 28 Dec 2018 03:46:40 PST
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE75FE00CE4
+	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 03:46:40 -0800 (PST)
+Received: from [31.18.253.56] ([31.18.253.56]) by web-mail.gmx.net
+	(3c-app-gmx-bs66.server.lan [172.19.170.210]) (via HTTP);
+	Fri, 28 Dec 2018 12:41:37 +0100
+MIME-Version: 1.0
+Message-ID: <trinity-74e80e4f-6b96-4543-b5c9-1d573d70d34b-1545997297433@3c-app-gmx-bs66>
+From: "John Smith" <john-s-84@gmx.net>
+To: yocto@yoctoproject.org
+Date: Fri, 28 Dec 2018 12:41:37 +0100
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:DnZycBiS7vuOEudyi0U0WAu4VTJ3kKFfPR5zEGIfuP9SxzyFhb3lPSvkHunLceufUNb5q
+	kmeWCh9ppN5Qs8bccpadAZW1/RE/3AiA85DYDOJJVKoqwcfKQkI9T5x163XywUA/O5CUPWy/kVsE
+	3FhaOzoTGUw+dIWsQhMJyOveresRbj9jMTiTijLKcLaxTvoAyl7XmRQ3P7l65QPU+hKraeqT56LM
+	/JKqS5xEGgzbRIvNodkTaSB57H2+1gszw9NuTfQnOJf1/ueVrNICKrGCruDLAwH6I5oDRb07FBv3
+	Co=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:p8LzTX9f6Ws=:fXnuf+WRtu2+qiGPWehJd8
+	MNvmmQCLh8J4k44F6iSczfiNpkdCIgNj7J3+wI7JFZfD+EWJb/0euP2bAjVvjCxSAPO4BizQe
+	YlK3mJEtnKMKBS7bJEahEF80qpOWo8yPiGHqdlWmuTiwPTj2XDhQdP/C7D+HoRCMqSeWHCzoB
+	Vmgv5EuNDBzAyHOwkGfd8JvHFJ5zCzM+K+j9w8e9ZnDJv3/GEmmtf+R5ZvqhQFcXUl1xJz8xZ
+	vRC+cziOL8Eph0ZGPtEM3qRcGUeVo57sH/heiTsVcflfsw3JR2EXh7IikPOSlZoiZsakdbLE7
+	YYQPysSXXXwPSCyM/93bWxpQUpdNFWJk5m2H0XAhfm33KIAM3GX2PEeF8dNTQrPKrKm7TDTZZ
+	PD8brlDCDaGvppLIvoSD5FqRRysIpaw+xi0MHBqtaOleC1zayjB0dIFP9Fvts9Q9nhXiPxThv
+	uz6frTf0/0x35yreChi79DbIc+8CUqbXz2KX4ny9XN8gk3VqITeKeSuOiyAdlqjXYfKgf3/FY
+	NBdFGq13U9JCLO+1zWbI6VaYPApzO2HvGA39i7L1D3tm3NWRtpTklTVEmsb9vDVcGHDdnW/wO
+	k0QNozM/COvIY=
+Subject: Switching from udev to busybox-mdev causes errors mount: mounting proc on /proc failed: Device or resource busy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,29 +56,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Dec 2018 11:40:06 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 28 Dec 2018 11:46:41 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Fri, 2018-12-28 at 18:19 +0800, Zhaolong Zhang wrote:
-> Hi Experts,
-> 
-> Building out-of-tree kernel modules in eSDK will trigger a new
-> rebuilding of kernel, which consumes lots of time.
-> Is it possible to cache the do_shared_workdir() task in sstate-cache
-> and ship it within eSDK? And how?
-> 
-> Or is there other method to accelerate?
-> 
-> Thanks in advance.
+Dear list,
 
-It is possible but it means creating a tarball of all the kernel source
-and build artefacts. Usually its just as quick to extract new kernel
-source and build it than it is to store this and extract it. The sstate
-object would be huge.
+when using busybox mdev instead of udev, I get the following erros on startup.
 
-Cheers,
+[..]
+INIT: version 2.88 booting
+mount: mounting proc on /proc failed: Device or resource busy
+mount: mounting sysfs on /sys failed: Device or resource busy
 
-Richard
 
+What further steps do I need to edit for a clean boot? I only set VIRTUAL-RUNTIME_dev_manager = "busybox-mdev" in local.conf
+
+Best,
+John
 
