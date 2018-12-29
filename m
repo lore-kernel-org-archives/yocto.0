@@ -1,67 +1,34 @@
-Return-Path: <scottellis.developer@gmail.com>
+Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F3BF2E00CE4; Fri, 28 Dec 2018 13:35:50 -0800 (PST)
+	id F3BF6E00CE7; Fri, 28 Dec 2018 21:45:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (scottellis.developer[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.193 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qk1-f193.google.com (mail-qk1-f193.google.com
-	[209.85.222.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5338E00CCC
-	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 13:35:39 -0800 (PST)
-Received: by mail-qk1-f193.google.com with SMTP id g125so13192331qke.4
-	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 13:35:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=BF4scoX/ZVt/lHH1dYzpwSRihlkSLYPVFx5Abhb8zhI=;
-	b=Q6blkM9OiN7JeRIgfRVnew5RkgaRzYzr2GeixMLRk/uaRqw21A7Ak0AA5hRugdcy3R
-	+tRpl25UtJV8Mnc8Uyxqd3LvhSOmg47agjnCYg2BnmdO8saysrcrvuYkvQTwkz/0zIBF
-	7DFwrvdIHYm/zBB0kWh2CuR9EpGWn4OnZiDeZJi7Ef1nJqXZL4L/7xh75pZOZgb/MInz
-	YkAOl181fcLFf/UY03OLz92Q08ZNzhIhbmvCy3nKwybKKtqPwKMkGVE5V/2tzk9rF2pj
-	SAoyUGzA5xJLQIGLnTC9DbQ4zeBLfjIcd/JKCMp/fdzYzz1QVZggan2S1rnXW31Jh+/y
-	uf7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=BF4scoX/ZVt/lHH1dYzpwSRihlkSLYPVFx5Abhb8zhI=;
-	b=GOa68sEIzsAK8uYG7RknbdWSOmnSy7vHNSv0EfJlL1UHB/Ce14HohMbD4iVqrSlCOK
-	Kmi8jN85wexhuBhALt57vn7M3bdM5xo7oL4usUi9OLdPCd3S5dwhpZFk/MDlgzkTqtwm
-	FH44G8fuMvT/8WUkyzIMETSpYAiirnSpteF6rOy+oPI7newJjRHuvrZM1cpRfzIBDn+4
-	jRAWKmo7L9PF7hOq0a3LJAJ5+m6Lx1WfbQF6CWO3SVmBjDnlrRy25ywPhIj4zljMtEkF
-	Gfg6WasOdrt4kN+B1D68f23vepiUkEsP2+LzKWNOOWevcKYeOnrMXSz2bEAnW+SvgDJj
-	hiGA==
-X-Gm-Message-State: AJcUukesmCNeH2CpBMOk2XKv06+DVK/dq6p6LKl2zm73ovmUxwgz6JZk
-	uRbl7fhR+4WK+A8ydqOPsUkYMP+I
-X-Google-Smtp-Source: ALg8bN69K10D8B/7Qfn+G+dmHXcR4XlAaeqg76IjgaawXowj5PWVV8CMj2MoFNnakMosKpnEYH6SPg==
-X-Received: by 2002:a37:9e0d:: with SMTP id h13mr26441125qke.260.1546032938331;
-	Fri, 28 Dec 2018 13:35:38 -0800 (PST)
-Received: from fractal.jumpnow (c-73-234-253-132.hsd1.me.comcast.net.
-	[73.234.253.132]) by smtp.gmail.com with ESMTPSA id
-	b75sm28239070qkh.4.2018.12.28.13.35.37
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 28 Dec 2018 13:35:37 -0800 (PST)
-From: Scott Ellis <scottellis.developer@gmail.com>
-X-Google-Original-From: Scott Ellis <scott@jumpnowtek.com>
-To: yocto@yoctoproject.org
-Date: Fri, 28 Dec 2018 16:35:35 -0500
-Message-Id: <1546032935-10644-1-git-send-email-scott@jumpnowtek.com>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 805EFE0097C
+	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 21:45:10 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id wBT5in0j008705
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 28 Dec 2018 21:44:59 -0800
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.408.0; Fri, 28 Dec 2018 21:44:26 -0800
+From: <changqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Sat, 29 Dec 2018 13:44:25 +0800
+Message-ID: <1546062265-388514-1-git-send-email-changqing.li@windriver.com>
 X-Mailer: git-send-email 2.7.4
-Cc: Scott Ellis <scott@jumpnowtek.com>
-Subject: [PATCH] nikto: upgrade to 2.1.6 (v2)
+MIME-Version: 1.0
+Subject: [pathchwork][PATCH] patchwork: Add a dockerfile for deploy patchwork and patchtest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,428 +40,200 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Dec 2018 21:35:51 -0000
+X-List-Received-Date: Sat, 29 Dec 2018 05:45:12 -0000
+Content-Type: text/plain
 
-Source now on github.
+From: Changqing Li <changqing.li@windriver.com>
 
-Signed-off-by: Scott Ellis <scott@jumpnowtek.com>
+Add a dockerfile for easy deploy patchwork and patchtest in
+docker
+
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
 ---
- recipes-security/nikto/files/CVE-2018-11652.patch | 106 -------------------
- recipes-security/nikto/files/location.patch       |  32 +++---
- recipes-security/nikto/nikto_2.1.5.bb             | 108 --------------------
- recipes-security/nikto/nikto_2.1.6.bb             | 118 ++++++++++++++++++++++
- 4 files changed, 134 insertions(+), 230 deletions(-)
- delete mode 100644 recipes-security/nikto/files/CVE-2018-11652.patch
- delete mode 100644 recipes-security/nikto/nikto_2.1.5.bb
- create mode 100644 recipes-security/nikto/nikto_2.1.6.bb
+ Dockerfile.pw                 | 52 +++++++++++++++++++++++++++++++++++++++++++
+ README.pw                     | 32 ++++++++++++++++++++++++++
+ requirements.txt              | 12 ++++++++++
+ scripts/pw_createsuperuser.sh |  5 +++++
+ scripts/pw_getmail.sh         |  8 +++++++
+ scripts/pw_migrate.sh         |  5 +++++
+ scripts/pw_runwebserver.sh    | 12 ++++++++++
+ 7 files changed, 126 insertions(+)
+ create mode 100644 Dockerfile.pw
+ create mode 100644 README.pw
+ create mode 100644 requirements.txt
+ create mode 100755 scripts/pw_createsuperuser.sh
+ create mode 100755 scripts/pw_getmail.sh
+ create mode 100755 scripts/pw_migrate.sh
+ create mode 100755 scripts/pw_runwebserver.sh
 
-diff --git a/recipes-security/nikto/files/CVE-2018-11652.patch b/recipes-security/nikto/files/CVE-2018-11652.patch
-deleted file mode 100644
-index 5ddb169..0000000
---- a/recipes-security/nikto/files/CVE-2018-11652.patch
-+++ /dev/null
-@@ -1,106 +0,0 @@
--From e759b3300aace5314fe3d30800c8bd83c81c29f7 Mon Sep 17 00:00:00 2001
--From: sullo <sullo@cirt.net>
--Date: Thu, 31 May 2018 23:30:03 -0400
--Subject: [PATCH] Fix CSV injection issue if server responds with a malicious
-- Server string & CSV output is opened in Excel or other spreadsheet app.
-- Potentially malicious cell start characters are now prefaced with a ' mark.
-- Thanks to Adam (@bytesoverbombs) for letting me know!
--
--Also fixed a crash in the outdated plugin if the $sepr field ends up being something that triggers a panic in split().
--
--CVE: CVE-2018-11652
--Upstream-Status: Backport
--Signed-off-by: Nagalakshmi Veeramallu <nveeramallu@mvista.com>
-----
-- plugins/nikto_outdated.plugin   |  2 +-
-- plugins/nikto_report_csv.plugin | 42 +++++++++++++++++++++++++++++------------
-- 2 files changed, 31 insertions(+), 13 deletions(-)
--
--diff --git a/plugins/nikto_outdated.plugin b/plugins/nikto_outdated.plugin
--index 72379cc..eb1d889 100644
----- a/plugins/nikto_outdated.plugin
--+++ b/plugins/nikto_outdated.plugin
--@@ -83,7 +83,7 @@ sub nikto_outdated {
--             $sepr = substr($sepr, (length($sepr) - 1), 1);
-- 
--             # break up ID string on $sepr
---            my @T = split(/$sepr/, $mark->{'banner'});
--+            my @T = split(/\\$sepr/, $mark->{'banner'});
-- 
--             # assume last is version...
--             for ($i = 0 ; $i < $#T ; $i++) { $MATCHSTRING .= "$T[$i] "; }
--diff --git a/plugins/nikto_report_csv.plugin b/plugins/nikto_report_csv.plugin
--index d13acab..b942e78 100644
----- a/plugins/nikto_report_csv.plugin
--+++ b/plugins/nikto_report_csv.plugin
--@@ -52,10 +52,12 @@ sub csv_open {
-- sub csv_host_start {
--     my ($handle, $mark) = @_;
--     $mark->{'banner'} =~ s/"/\\"/g;
---    print OUT "\"$mark->{'hostname'}\","
---      . "\"$mark->{'ip'}\","
---      . "\"$mark->{'port'}\"," . "\"\"," . "\"\"," . "\"\","
---      . "\"$mark->{'banner'}\"\n";
--+    print $handle "\"" . csv_safecell($hostname) . "\","
--+      . "\"" . csv_safecell($mark->{'ip'}) . "\","
--+      . "\"" . csv_safecell($mark->{'port'}) . "\"," . "\"\"," . "\"\"," . "\"\","
--+      #. "\"" . $mark->{'banner'} . "\"\n";
--+      . "\"" . csv_safecell($mark->{'banner'}) . "\"\n";
--+
--     return;
-- }
-- 
--@@ -65,26 +67,42 @@ sub csv_item {
--     my ($handle, $mark, $item) = @_;
--     foreach my $uri (split(' ', $item->{'uri'})) {
--         my $line = '';
---        $line .= "\"$item->{'mark'}->{'hostname'}\",";
---        $line .= "\"$item->{'mark'}->{'ip'}\",";
---        $line .= "\"$item->{'mark'}->{'port'}\",";
--+        $line .= "\"" . csv_safecell($hostname) . "\",";
--+        $line .= "\"" . csv_safecell($item->{'mark'}->{'ip'}) . \",";
--+        $line .= "\"" . csv_safecell($item->{'mark'}->{'port'}) . "\",";
-- 
--         $line .= "\"";
--         if ($item->{'osvdb'} ne '') { $line .= "OSVDB-" . $item->{'osvdb'}; }
--         $line .= "\",";
-- 
--         $line .= "\"";
---        if ($item->{'method'} ne '') { $line .= $item->{'method'}; }
--+        if ($item->{'method'} ne '') { $line .= csv_safecell($item->{'method'}); }
--         $line .= "\",";
-- 
--         $line .= "\"";
---        if ($uri ne '') { $line .= $mark->{'root'} . $uri; }
--+                       { $line .= csv_safecell($mark->{'root'}) . $uri; }
--+               else { $line .= csv_safecell($ur
--         $line .= "\",";
-- 
---        $item->{'message'} =~ s/"/\\"/g;
---        $line .= "\"$item->{'message'}\"";
---        print $handle "$line\n";
--+       my $msg = $item->{'message'};
--+       $uri=quotemeta($uri);
--+       my $root = quotemeta($mark->{'root'});
--+       $msg =~ s/^$uri:\s//;
--+       $msg =~ s/^$root$uri:\s//;
--+         $msg =~ s/"/\\"/g;
--+        $line .= "\"" . csv_safecell($msg) ."\"";
--+         print $handle "$line\n";
--+
--     }
-- }
-- 
--+###############################################################################
--+# prevent CSV injection attacks
--+sub csv_safecell {
--+    my $celldata = $_[0] || return;
--+    if ($celldata =~ /^[=+@-]/) { $celldata = "'" . $celldata; }
--+    return $celldata;
--+}
--+
--+
-- 1;
---- 
--2.6.4
--
-diff --git a/recipes-security/nikto/files/location.patch b/recipes-security/nikto/files/location.patch
-index a95b062..edaa204 100644
---- a/recipes-security/nikto/files/location.patch
-+++ b/recipes-security/nikto/files/location.patch
-@@ -1,36 +1,36 @@
--From e10b9b1f6704057ace39956ae1dc5c7caca07ff1 Mon Sep 17 00:00:00 2001
--From: Andrei Dinu <andrei.adrianx.dinu@intel.com>
--Date: Mon, 8 Jul 2013 11:53:54 +0300
--Subject: [PATCH] Setting the location of nikto on the image
-+From d1cb702d5147abea0d3208a4d554c61a6f2decd6 Mon Sep 17 00:00:00 2001
-+From: Scott Ellis <scott@jumpnowtek.com>
-+Date: Fri, 28 Dec 2018 11:08:25 -0500
-+Subject: [PATCH] Set custom paths
- 
--Upstream Status: Inapropriate
-+Upstream Status: Inappropriate
- 
--Signed-off-by: Andrei Dinu <andrei.adrianx.dinu@intel.com>
-+Signed-off-by: Scott Ellis <scott@jumpnowtek.com>
- ---
-- nikto.conf |   10 +++++-----
-+ nikto.conf | 10 +++++-----
-  1 file changed, 5 insertions(+), 5 deletions(-)
- 
--diff --git a/nikto.conf b/nikto.conf
--index 25b784d..9577033 100644
-+diff --git a/program/nikto.conf b/program/nikto.conf
-+index bf36c58..8c55415 100644
- --- a/nikto.conf
- +++ b/nikto.conf
--@@ -61,11 +61,11 @@ CIRT=174.142.17.165
-+@@ -61,11 +61,11 @@ CIRT=107.170.99.251
-  CHECKMETHODS=HEAD GET
-  
-  # If you want to specify the location of any of the files, specify them here
- -# EXECDIR=/opt/nikto				# Location of Nikto
- -# PLUGINDIR=/opt/nikto/plugins			# Location of plugin dir
---# DBDIR=/opt/nikto/databases			# Location of plugin dir
---# TEMPLATEDIR=/opt/nikto/templates		# Location of tempmlate dir
-+-# DBDIR=/opt/nikto/databases			# Location of database dir
-+-# TEMPLATEDIR=/opt/nikto/templates		# Location of template dir
- -# DOCDIR=/opt/nikto/docs			# Location of docs dir
- +EXECDIR=/usr/bin/nikto				# Location of Nikto
- +PLUGINDIR=/etc/nikto/plugins			# Location of plugin dir
--+DBDIR=/etc/nikto/databases			# Location of plugin dir
--+TEMPLATEDIR=/etc/nikto/templates		# Location of tempmlate dir
-++DBDIR=/etc/nikto/databases			# Location of database dir
-++TEMPLATEDIR=/etc/nikto/templates		# Location of template dir
- +DOCDIR=/usr/share/doc/nikto			# Location of docs dir
-  
-  # Default plugin macros
-- @@MUTATE=dictionary;subdomain
-+ # Remove plugins designed to be run standalone
- -- 
--1.7.9.5
-+2.7.4
- 
-diff --git a/recipes-security/nikto/nikto_2.1.5.bb b/recipes-security/nikto/nikto_2.1.5.bb
-deleted file mode 100644
-index 19eb14f..0000000
---- a/recipes-security/nikto/nikto_2.1.5.bb
-+++ /dev/null
-@@ -1,108 +0,0 @@
--SUMMARY = "web server scanner"
--DESCRIPTION = "Nikto is an Open Source (GPL) web server scanner which performs comprehensive tests against web servers for multiple items, including over 6500 potentially dangerous \
--               files/CGIs, checks for outdated versions of over 1250 servers, and version specific problems on over 270 servers."
--SECTION = "security"
--LICENSE = "GPLv2"
--
--LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
--
--SRC_URI = "http://cirt.net/nikto/${BP}.tar.gz \
--           file://location.patch \
--           file://CVE-2018-11652.patch"
--
--SRC_URI[md5sum] = "efcc98a918becb77471ee9a5df0a7b1e"
--SRC_URI[sha256sum] = "0e672a6a46bf2abde419a0e8ea846696d7f32e99ad18a6b405736ee6af07509f"
--
--do_install() {
--	install -d ${D}${bindir}
--	install -d ${D}${datadir}
--	install -d ${D}${datadir}/man/man1
--	install -d ${D}${datadir}/doc/nikto
--	install -d ${D}${sysconfdir}/nikto
--	install -d ${D}${sysconfdir}/nikto/databases
--	install -d ${D}${sysconfdir}/nikto/plugins
--	install -d ${D}${sysconfdir}/nikto/templates
--
--	install -m 0644 databases/db_404_strings    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_content_search    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_dictionary    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_embedded    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_favicon    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_headers    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_httpoptions    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_multiple_index    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_outdated    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_parked_strings    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_realms    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_server_msgs    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_subdomains    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_tests    ${D}${sysconfdir}/nikto/databases
--	install -m 0644 databases/db_variables    ${D}${sysconfdir}/nikto/databases
--
--	install -m 0644 plugins/JSON-PP.pm    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/LW2.pm    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_apache_expect_xss.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_apacheusers.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_auth.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_cgi.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_clientaccesspolicy.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_content_search.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_cookies.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_core.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_dictionary_attack.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_embedded.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_favicon.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_fileops.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_headers.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_httpoptions.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_msgs.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_multiple_index.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_outdated.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_parked.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_paths.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_put_del_test.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_report_csv.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_report_html.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_report_msf.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_report_nbe.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_report_text.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_report_xml.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_robots.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_siebel.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_ssl.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_subdomain.plugin    ${D}${sysconfdir}/nikto/plugins
--	install -m 0644 plugins/nikto_tests.plugin    ${D}${sysconfdir}/nikto/plugins
--
--	install -m 0644 templates/htm_close.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/htm_end.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/htm_host_head.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/htm_host_im.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/htm_host_item.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/htm_start.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/htm_stop.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/htm_start.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/htm_summary.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/xml_end.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/xml_host_head.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/xml_host_im.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/xml_host_item.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/xml_start.tmpl    ${D}${sysconfdir}/nikto/templates
--	install -m 0644 templates/xml_summary.tmpl    ${D}${sysconfdir}/nikto/templates
--
--	install -m 0644 nikto.conf    ${D}${sysconfdir}
--
--	install -m 0755 nikto.pl    ${D}${bindir}/nikto
--	install -m 0644 replay.pl    ${D}${bindir}
--	install -m 0644 docs/nikto.1    ${D}${datadir}/man/man1
--
--	install -m 0644 docs/CHANGES.txt    ${D}${datadir}/doc/nikto
--	install -m 0644 docs/LICENSE.txt    ${D}${datadir}/doc/nikto
--	install -m 0644 docs/nikto.dtd    ${D}${datadir}/doc/nikto
--	install -m 0644 docs/nikto_manual.html    ${D}${datadir}/doc/nikto
--}
--
--RDEPENDS_${PN} = "perl libnet-ssleay-perl libwhisker2-perl \
--                perl-module-getopt-long perl-module-time-local \
--                perl-module-io-socket perl-module-overloading \
--                perl-module-base perl-module-b perl-module-bytes \
--                nikto-doc"
-diff --git a/recipes-security/nikto/nikto_2.1.6.bb b/recipes-security/nikto/nikto_2.1.6.bb
+diff --git a/Dockerfile.pw b/Dockerfile.pw
 new file mode 100644
-index 0000000..2d2c46c
+index 0000000..ae3c1ee
 --- /dev/null
-+++ b/recipes-security/nikto/nikto_2.1.6.bb
-@@ -0,0 +1,118 @@
-+SUMMARY = "web server scanner"
-+DESCRIPTION = "Nikto is an Open Source web server scanner which performs comprehensive tests against web servers"
-+SECTION = "security"
-+HOMEPAGE = "https://cirt.net/Nikto2"
++++ b/Dockerfile.pw
+@@ -0,0 +1,52 @@
++FROM ubuntu:latest
++MAINTAINER owner <own@mail.com>
 +
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
++EXPOSE 8080
 +
-+SRCREV = "f1bbd1a8756c076c8fd4f4dd0bc34a8ef215ae79"
-+SRC_URI = "git://github.com/sullo/nikto.git \
-+           file://location.patch"
++ENV PYTHONUNBUFFERED=1 \
++    LANG=en_US.UTF-8 \
++    LC_ALL=en_US.UTF-8 \
++    LC_CTYPE=en_US.UTF-8 \
++    PATH="$PATH:/opt/patchwork/git-pw:/opt/patchtest:/opt/patchtest/scripts"
 +
-+S = "${WORKDIR}/git/program"
++RUN  apt-get update \
++        && apt-get dist-upgrade -y \
++        && apt-get install -y --no-install-recommends \
++        autoconf \
++        gcc \
++        g++ \
++        make \
++        locales \
++        wget \
++        curl \
++        cron \
++        python-pip \
++        python-dev \
++        python-setuptools \
++        python3-pip \
++        python3-dev \
++        libmysqlclient-dev \
++        git-core \
++        getmail4 \
++        && sh -c "echo \"en_US.UTF-8 UTF-8\" >> /etc/locale.gen" \
++        && locale-gen en_US.UTF-8 \
++        && update-locale \
++        && pip2 install wheel \
++        && pip3 install wheel \
++        && pip3 install setuptools \
++        && apt-get autoremove --purge -y \
++        && rm -rf /var/lib/apt/lists/* \
++        && apt-get clean
++ADD ./patchwork /opt/patchwork
++ADD ./patchtest /opt/patchtest
++ADD ./patchtest-oe /opt/patchtest-oe
++ADD ./getmailrc /opt/getmail/getmailrc
++RUN  pip2 install -r /opt/patchwork/requirements.txt \ 
++    && pip3 install -r /opt/patchtest/requirements.txt \
++    && pip3 install  -r /opt/patchtest-oe/requirements.txt \
++    && mkdir -p /opt/getmail \
++    && mkdir -p /opt/pw-logs \
++    && git config --global user.email "patchtest@patchtest.com" \
++    && git config --global user.name "patchtest" \
++    && /opt/patchtest/scripts/create-host-test-folder -t /opt/pw-test \
++    && /opt/patchtest/scripts/create-host-crontab -c /opt/pw-test-cron 
+diff --git a/README.pw b/README.pw
+new file mode 100644
+index 0000000..ffa7af1
+--- /dev/null
++++ b/README.pw
+@@ -0,0 +1,32 @@
++* Dockerfile.pw deploy patchwork, patchtest, patchtest-oe in docker
 +
-+do_install() {
-+    install -d ${D}${bindir}
-+    install -d ${D}${datadir}
-+    install -d ${D}${datadir}/man/man1
-+    install -d ${D}${datadir}/doc/nikto
-+    install -d ${D}${sysconfdir}/nikto
-+    install -d ${D}${sysconfdir}/nikto/databases
-+    install -d ${D}${sysconfdir}/nikto/plugins
-+    install -d ${D}${sysconfdir}/nikto/templates
++* Dockerfile.pw is just an example, you can adjust according to your
++  deploy condition, like not use getmail, but use postfix.
 +
-+    install -m 0644 databases/db_404_strings    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_content_search    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_dictionary    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_dir_traversal    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_domino    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_drupal    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_embedded    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_favicon    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_headers    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_httpoptions    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_multiple_index    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_outdated    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_parked_strings    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_realms    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_server_msgs    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_tests    ${D}${sysconfdir}/nikto/databases
-+    install -m 0644 databases/db_variables    ${D}${sysconfdir}/nikto/databases
++* requirements.txt,  just for refer, you can also rewrite this 
++  according to patchwork'doc and accoridng to your deploy condition.
 +
-+    install -m 0644 plugins/LW2.pm    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_apache_expect_xss.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_apacheusers.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_auth.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_cgi.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_clientaccesspolicy.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_content_search.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_cookies.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_core.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_dictionary_attack.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_dir_traversal.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_dishwasher.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_docker_registry.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_domino.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_drupal.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_embedded.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_favicon.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_fileops.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_headers.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_httpoptions.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_ms10_070.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_msgs.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_multiple_index.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_negotiate.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_origin_reflection.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_outdated.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_parked.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_paths.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_put_del_test.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_report_csv.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_report_html.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_report_json.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_report_nbe.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_report_sqlg.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_report_text.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_report_xml.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_robots.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_siebel.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_sitefiles.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_ssl.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_strutshock.plugin    ${D}${sysconfdir}/nikto/plugins
-+    install -m 0644 plugins/nikto_tests.plugin    ${D}${sysconfdir}/nikto/plugins
++* scripts folder hold the files will be used during deploy with docker.
 +
-+    install -m 0644 templates/htm_close.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/htm_end.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/htm_host_head.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/htm_host_im.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/htm_host_item.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/htm_start.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/htm_stop.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/htm_start.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/htm_summary.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/xml_end.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/xml_host_head.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/xml_host_im.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/xml_host_item.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/xml_start.tmpl    ${D}${sysconfdir}/nikto/templates
-+    install -m 0644 templates/xml_summary.tmpl    ${D}${sysconfdir}/nikto/templates
++* Deploy steps:
 +
-+    install -m 0644 nikto.conf    ${D}${sysconfdir}
++1. Clone patchwork, patchtest, patchtest-oe first, also put getmailrc used by
++   Dockerfile.pw under the same folder.
 +
-+    install -m 0755 nikto.pl    ${D}${bindir}/nikto
-+    install -m 0644 replay.pl    ${D}${bindir}
-+    install -m 0644 docs/nikto.1    ${D}${datadir}/man/man1
++2. Build docker image with Dockerfile.pw
++$docker build -t pw -f ./patchwork/Dockerfile.pw .
 +
-+    install -m 0644 docs/CHANGES.txt    ${D}${datadir}/doc/nikto
-+    install -m 0644 docs/LICENSE.txt    ${D}${datadir}/doc/nikto
-+    install -m 0644 docs/nikto.dtd    ${D}${datadir}/doc/nikto
-+    install -m 0644 docs/nikto_manual.html    ${D}${datadir}/doc/nikto
-+}
++3. use mariadb as dataserver:
++$ docker pull mariadb
++$ docker run -d --name pw-db -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=pwdb -v /pw/pwdb:/var/lib/mysql mariadb
 +
-+RDEPENDS_${PN} = "perl libnet-ssleay-perl libwhisker2-perl \
-+    perl-module-getopt-long perl-module-time-local \
-+    perl-module-io-socket perl-module-overloading \
-+    perl-module-base perl-module-b perl-module-bytes"
++5. run web server
++docker run -d --name pw-web --link pw-db:pw-db -p 8080:8080 pw "/opt/patchwork/scripts/pw_runwebserver.sh"
 +
++6. config pw
++docker exec -it pw-web /opt/patchwork/scripts/pw_migrate.sh
++docker exec -it pw-web /opt/patchwork/scripts/pw_createsuperuser.sh
++
++7. run patchwork
++docker run -d --name pw-mail --link pw-db:pw-db pw "/opt/patchwork/scripts/pw_getmail.sh"
++
+diff --git a/requirements.txt b/requirements.txt
+new file mode 100644
+index 0000000..b8f68f2
+--- /dev/null
++++ b/requirements.txt
+@@ -0,0 +1,12 @@
++django==1.8.0
++sqlparse==0.2.4
++celery==3.1.20
++django_filter==0.11.0
++djangorestframework==2.4.8
++drf-nested-routers==0.11.1
++psycopg2>=2.7,<2.8
++mysqlclient
++jsonfield
++enum34
++GitPython
++requests
+diff --git a/scripts/pw_createsuperuser.sh b/scripts/pw_createsuperuser.sh
+new file mode 100755
+index 0000000..324ce72
+--- /dev/null
++++ b/scripts/pw_createsuperuser.sh
+@@ -0,0 +1,5 @@
++#!/bin/bash
++
++pw_dir='/opt/patchwork'
++
++(cd $pw_dir; ./manage.py createsuperuser)
+diff --git a/scripts/pw_getmail.sh b/scripts/pw_getmail.sh
+new file mode 100755
+index 0000000..eff5c0e
+--- /dev/null
++++ b/scripts/pw_getmail.sh
+@@ -0,0 +1,8 @@
++#!/bin/bash
++
++while true
++do
++	getmail --getmaildir=/opt/getmail/ --idle INBOX
++        sleep 1
++done
++
+diff --git a/scripts/pw_migrate.sh b/scripts/pw_migrate.sh
+new file mode 100755
+index 0000000..e54b2f4
+--- /dev/null
++++ b/scripts/pw_migrate.sh
+@@ -0,0 +1,5 @@
++#!/bin/bash
++
++pw_dir="/opt/patchwork"
++
++(cd $pw_dir; ./manage.py migrate; ./manage.py collectstatic; ./manage.py loaddata default_tags default_states default_events)
+diff --git a/scripts/pw_runwebserver.sh b/scripts/pw_runwebserver.sh
+new file mode 100755
+index 0000000..4233b1a
+--- /dev/null
++++ b/scripts/pw_runwebserver.sh
+@@ -0,0 +1,12 @@
++#!/bin/bash
++
++export LANG="en_US.UTF-8"
++export LC_ALL="en_US.UTF-8"
++
++#open crontab to do test
++/etc/init.d/cron start
++crontab -u pwtest /opt/pw-test-cron/crontab
++
++pw_dir="/opt/patchwork"
++
++(cd $pw_dir; ./manage.py runserver 0.0.0.0:8080)
 -- 
 2.7.4
 
