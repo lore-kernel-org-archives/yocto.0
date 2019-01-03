@@ -1,62 +1,65 @@
-Return-Path: <haiqing.bai@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E8F3E00C5F; Tue,  1 Jan 2019 23:05:04 -0800 (PST)
+	id C60EEE0091D; Thu,  3 Jan 2019 02:27:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (haiqing.bai[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.169 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.44 listed in list.dnswl.org]
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
-	[209.85.167.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35645E00B9D
-	for <yocto@yoctoproject.org>; Tue,  1 Jan 2019 23:05:02 -0800 (PST)
-Received: by mail-lf1-f44.google.com with SMTP id a16so20389707lfg.3
-	for <yocto@yoctoproject.org>; Tue, 01 Jan 2019 23:05:02 -0800 (PST)
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com
+	[209.85.167.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7B76E00872
+	for <yocto@yoctoproject.org>; Thu,  3 Jan 2019 02:27:29 -0800 (PST)
+Received: by mail-oi1-f169.google.com with SMTP id c206so27364760oib.0
+	for <yocto@yoctoproject.org>; Thu, 03 Jan 2019 02:27:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=h2zEBSvnZ0BXjUjP44BNDe7PHHrXg9ltEd8Q85F6fF4=;
-	b=FpKhFCR0I3rKfipPOTw6RxygWED0wf1Kmd6bDZS/7lrMjVIqvcO0QIVNVh2bQYw285
-	Bv8rBJ6Fpt8alXXfzuDYXt5kkHlxwQFtVhZ0LF94sS9q3vERSq8tv4x+v1lWbM7tBiw9
-	HRMgjcW6Z4KEdgy2LtMf4mCU43AxzjJ9Eod1HDXZPlUcUuSGJst1OSQCQAIwXxzmUkID
-	u5+sEolJI47yi7bBPrd4q2HeGQoNfaq0909vEH/cm0vB6LK+nKb0Tu+TK/ZW0oxzhanz
-	OOyp4BBT9bm+Qx0tClPNV7fPwPXuFRtNrBZu29EfWC73x7/eUPQ9sTY+9zb3otypvt3b
-	NxSQ==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=OL9QPmeX1PUuVJIW6n6TiAWbV+3y0xqQukJb9HJ/SCg=;
+	b=bQ60kBsPXPlyofFkcOTEDSUPnsDp5mzutVAK9rIR0XuxEMbxEVO+U6CMrm5krTq6SJ
+	043c9aQSpz2Ga91JNV1AdcHBxV/VEMSEa0XI2/4622M6k8ZJaF/b+r+H8svSUr9mjJf3
+	HkCi1FRXfgrTzOh48HM4S3XlNvjA2tay9cH9ip6gAur7PJjjmDFfsPV0yBn3rgv46Rwh
+	lNktteypzWVjv1+BTS/vwGKfBOtUBX7G4ycNwsXIbhRRI+43+ySBcqiIDQKsUT4H/m1M
+	7uCRQhXiXfKhfW2jqkyjdejFbHL49JJ4oFLr5bI1O30FjvMDpLus1IPFz1qFyyOYW/Sg
+	wctQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=h2zEBSvnZ0BXjUjP44BNDe7PHHrXg9ltEd8Q85F6fF4=;
-	b=PrY5N/10EwgOCKUbJLbIp+acsV4RceXtcrtt4jpsJoKQVoBkZHaD9VWFaCc/SKkrXR
-	XoGir3fleJ/UI9mtwH22N7qTxvwhM+XCdnf7xHq6GpgynjEBWpxLUwQn4OVj1yn5GyM3
-	1F1kOK9DPgbyU6udlDirQ9Cbs+e8HXLkfCFGHhTsv3aUWwoBMV1CKvZGycbUhV23DQWo
-	l5kCEZw5yQBF3yrKfziazKQpUizYUqhQD7Xh91T8pcKrDU6CSDl8n+xwXEDsNJJmvUMa
-	GGUZB8Wy6+8lCiahlC4ObKK6/mkUEdB282edSE4LPbIoOG7lQfPrfeDuRkjOYEuNCDxv
-	y5dg==
-X-Gm-Message-State: AA+aEWY5KbCH9uLNJLmMGggAkYPxFIgqE1L6IStNXQwwys20uVWq7C8c
-	eHwmQHccY5ihranhgbjgC06/R65o9Vt8KxkigEExvg==
-X-Google-Smtp-Source: AFSGD/Uww1zOVKgUfNw5DSXr2fUzjH2EspTKj6Y5BeO2JxIthMYzS1Vv3s8J3XMoXCZUiJFnpuqmvP2P5432qHdhOYI=
-X-Received: by 2002:a19:690d:: with SMTP id e13mr20956523lfc.84.1546412701619; 
-	Tue, 01 Jan 2019 23:05:01 -0800 (PST)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=OL9QPmeX1PUuVJIW6n6TiAWbV+3y0xqQukJb9HJ/SCg=;
+	b=nrKQ9pf+wa0WkVadIUlQSFv3EehR7wCjqGXXUi05IFSn8ODyqbFD1AANYDGShriZ/S
+	W1tfw/NNQTqMik7cMsYmUx9gW6ejrzo+7u0+EjJop6M0HjH2DBOsyS2ZZFazRDZVO66S
+	NEJA1Dc615EdEnsjNCRm/PWHOGSWFCfE0uhczlEBfxdEgWk5fPrxjIZucY6SbUSLbK/D
+	bOZ4vwVfJcW494Cz61my4zIxlqfT439DbX/HM/huioJmQzlyRPd2Cdp1eZl9S4jVcEdt
+	XtKmngawXNeL+5AULXq/3c9jxBj1G0Q2LxIWzni2j3sKHKREGDKcEbGEJxZdRfMeGFNC
+	1ywQ==
+X-Gm-Message-State: AA+aEWaEW/+U85atYkT2oDjuBybGmyUw5hRuckceW59S5KsP5Ofhc7XC
+	cQcL5o1Qa22m6SRkyfRI/ZLBOR5ofi2m3l3NSN4=
+X-Google-Smtp-Source: AFSGD/X1ZCf8zNgO4eHw+vz07X+/u9WYkggNFV87sR+c2ESyOvj3f0G0S8MGh+7AwC0CfxZpmdxczPBWN0TUNGhzZNA=
+X-Received: by 2002:aca:2dc9:: with SMTP id
+	t192mr32579310oit.325.1546511249215; 
+	Thu, 03 Jan 2019 02:27:29 -0800 (PST)
 MIME-Version: 1.0
-From: bai xiao <haiqing.bai@gmail.com>
-Date: Wed, 2 Jan 2019 15:04:47 +0800
-Message-ID: <CALf4YCxyTRp5M=4DjeOGtQpjNWdnHy+MgyjVYeaSpM2mAfcNMQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Thu, 03 Jan 2019 01:08:45 -0800
-Subject: The Yocto compatible of 'meta' layer with script/yocto-check-layer
+References: <CAFq4t4iVtG=LneBXbDrpwAQOD78sFX=S82pd12kZrTwS+UhgXQ@mail.gmail.com>
+In-Reply-To: <CAFq4t4iVtG=LneBXbDrpwAQOD78sFX=S82pd12kZrTwS+UhgXQ@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 3 Jan 2019 11:27:15 +0100
+Message-ID: <CANNYZj-43eSDE7w87Bykfns6T2eHPEpAyp9G9USZ+=noHUX12A@mail.gmail.com>
+To: Peter Balazovic <balazovic.peter@gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: devtool to built for update repo revision
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,51 +71,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jan 2019 07:05:04 -0000
-Content-Type: multipart/alternative; boundary="000000000000c19ada057e74437e"
-
---000000000000c19ada057e74437e
+X-List-Received-Date: Thu, 03 Jan 2019 10:27:30 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-hello,
+On Thu, 3 Jan 2019 at 10:09, Peter Balazovic <balazovic.peter@gmail.com> wrote:
+> I am trying to use "devtool" from eSDK to create own recipe. At first it works with repo and can generate recipe and binaries and deploy to target machine.
+>
+> Now I'd like to update it with a new revision of source code.
+> So I updated SRCREV per released commit and as well add PV = "0.1+git${SRCPV}".
+>
+> I am not editing source code locally at workspace of eSDK.
+>
+> I rebuilt it but it seems still the same revision is built. What else needs to update to correctly rebuild from new revision of repo?
 
-     I am not sure whether this email list is right list to discuss the
-question about the Yocto
-compatible of 'meta' layer when checking with 'script/yocto-check-layer',
-the error message like below:
-ERROR: meta: Can't be DISTRO and BSP type at the same time. The conf/distro
-and conf/machine folders was found.
+When you have a recipe source code in the workspace, that source code
+takes priority over what the recipe is saying. You need to first issue
+'devtool finish' (puts the changes back into the recipe) or 'devtool
+reset' (does not do that).
 
-     My questions are:
-      a. Is this mean that 'meta' layer is not Yocto project compatible
-even though it is the base layer in Yocto poky, thud project?
+Alex
 
-      b.  Is there any plan for 'meta' layer to pass this script checking
-to get the Yocto project compatible logo?
-
-      c.  Or any modifications should be done on script
-'yocto-check-layer'?
-
-thanks
-
---000000000000c19ada057e74437e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>hello,</div><div><br></div><div>=C2=A0=C2=A0=C2=A0=C2=
-=A0 I am not sure whether this email list is right list to discuss the ques=
-tion about the Yocto</div><div>compatible of &#39;meta&#39; layer when chec=
-king with &#39;script/yocto-check-layer&#39;, the error message like below:=
-</div><div>ERROR: meta: Can&#39;t be DISTRO and BSP type at the same time. =
-The conf/distro and conf/machine folders was found.</div><div><br></div><di=
-v>=C2=A0=C2=A0=C2=A0=C2=A0 My questions are:</div><div>=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 a. Is this mean that &#39;meta&#39; layer is not Yocto project=
- compatible even though it is the base layer in Yocto poky, thud project?</=
-div><div><br></div><div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 b.=C2=A0 Is there an=
-y plan for &#39;meta&#39; layer to pass this script checking to get the Yoc=
-to project compatible logo?</div><div><br></div><div>=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 c.=C2=A0 Or any modifications should be done on script &#39;yocto=
--check-layer&#39;? <br></div><div><br></div><div>thanks<br></div><div><br><=
-/div></div>
-
---000000000000c19ada057e74437e--
