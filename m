@@ -1,67 +1,50 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <dresser.net@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E7D8E00D05; Tue, 15 Jan 2019 05:38:59 -0800 (PST)
+	id A81E7E00BC8; Thu,  3 Jan 2019 06:51:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.46 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
-	[209.85.221.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3494E0048C
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2019 05:38:58 -0800 (PST)
-Received: by mail-wr1-f46.google.com with SMTP id x10so2969873wrs.8
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2019 05:38:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=r82B4dYx2efwKp3TXatfzQfONLoODc5v1nvv4SFjN10=;
-	b=W6mKM0m8F0IS4su6SFZG2kgBgyf03uLs5FvRzRzc1cGCkpD6qxv7MfoKrI32EVnZyr
-	7UwzgNm+0qBUTa6wfn1Lm0yewOfhB99Z6Twaoe97qDoODmiBpKfm7Xu2XKf0Avro7T2B
-	tAu4Mb8ndpXIVCC03tThrftLN1hi3MqR5F56w=
+	*      [209.85.221.45 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
+	[209.85.221.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 966AAE0053F
+	for <yocto@yoctoproject.org>; Thu,  3 Jan 2019 06:50:59 -0800 (PST)
+Received: by mail-wr1-f45.google.com with SMTP id u4so33785132wrp.3
+	for <yocto@yoctoproject.org>; Thu, 03 Jan 2019 06:50:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=r82B4dYx2efwKp3TXatfzQfONLoODc5v1nvv4SFjN10=;
-	b=IlzqkGaMU9yTu9AVpt8JyYV2KKNn6QcZUogivEFiS878RyqeAM2NY8iSajmQF4l4LN
-	Zt7232cd9U6D3EGosuaNnc3LPANDPDcbUG3TWLbT9tyVrWdZKc1Da08HWV214TTwjV3j
-	/Vxqg7iJVsJVgOhs8qxvacUYqjPIz+E0OUGXBAvpSdMbUlWwcBPcUCG/e4dQT6ZzP1qt
-	UUvNx4EJw/tfauzuSpasjXSGEYPDXJqlg5RBiA2L2n3OCvCfqZUV4mLXZbUjmYcZw8IQ
-	7W5s+HLWTxmFcOXgiQSTa+FXW8V+qhzKEaRNGsldOcpkvolS0Ht9BxWS1zItfraB41yy
-	KUrw==
-X-Gm-Message-State: AJcUukciIaLnGUzA83LTurPxx8QuLH8FLe+y94xGWhqb3fEOlzkYOkaP
-	gXrH2cSn2HHRFCPnQ989jSabYe81i5Q=
-X-Google-Smtp-Source: ALg8bN7oIm7tLztLGbDxYjSCp0AU1+D1cWR7ed4V4lCm9+typRlG0bribFMvAbD+Mj0PnOTJJnzTmA==
-X-Received: by 2002:adf:ce86:: with SMTP id r6mr3337210wrn.257.1547559537780; 
-	Tue, 15 Jan 2019 05:38:57 -0800 (PST)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	v133sm27250016wmf.19.2019.01.15.05.38.55
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Tue, 15 Jan 2019 05:38:56 -0800 (PST)
-Message-ID: <c7769c36a9575fbdcd2c312430eacb3266fd60de.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Ulf Samuelsson <yocto@emagii.com>, Yocto list discussion
-	<yocto@yoctoproject.org>
-Date: Tue, 15 Jan 2019 13:38:54 +0000
-In-Reply-To: <09d6ac15-7dbe-3ffa-3f9c-381746ec7433@emagii.com>
-References: <09d6ac15-7dbe-3ffa-3f9c-381746ec7433@emagii.com>
-User-Agent: Evolution 3.30.4-1 
-Mime-Version: 1.0
-Subject: Re: bitbake: DataSmart.expandWithRefs causing exception when handed "${@...}"
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=T1g6kot98YWyDQOuZ8YH3cEgm+Ccf/2SJ5kZ5zcFrX4=;
+	b=QA/kdr2PGt1G9MGjVmP9SyDsN6oH5XPhHJXAngRYouTMImtxIcG+ZKCTwj7KBTqoIy
+	xFMYAnkTO1ahCJ/5a3iI1ebYguXqXJjWRv9vdgZsk8bFH6B6ob6o3cyEwIURiNy1T/Tc
+	Dfgg8Leyy7FzMCIViDMWN/cWWAIJhloSOUzxx/8mD6iMo1zOKTsjLRNBYxx+URgRZNQs
+	wyx3UTUklE5tPHDh7izJRIf/GM7Z9GBLkFpCJS280Q4nWLfeuvYSeLzBz6wKt/XZxVs1
+	0QiiWRDebEFT6z0k0M68cgj6fXTUQ9ho9QnXT20NlI6XHKnsqcUd0AsmwY3xnBqWZ4TT
+	uODQ==
+X-Gm-Message-State: AJcUukdk8999ded9cmE2sodxGitKcwjtHjzk1lfnRL2H6m5G15PszCbz
+	4TZHrpJTmsHyd8lWvsfhULSqi9p1GYu0MUMriTE=
+X-Google-Smtp-Source: ALg8bN6O1HSfbiHsUrBcJD2DB5RbCp1SGHzKoyRe4fFtm0bS8Xu4dO22ktWWoRlvCBIAbXh8+hAG7HvlTFicGTY4Rlo=
+X-Received: by 2002:adf:8506:: with SMTP id 6mr32804265wrh.128.1546527058470; 
+	Thu, 03 Jan 2019 06:50:58 -0800 (PST)
+MIME-Version: 1.0
+References: <CADmsHKdd=SePN5Gd5Sb0zRc-dA62RO4tOp4A9E5uvYvDVDN-Xg@mail.gmail.com>
+	<CANNYZj9Lk=nGg+xprdGcAJ+Q7jsSbt=ZjSeBNT0a62DFZYRH_w@mail.gmail.com>
+In-Reply-To: <CANNYZj9Lk=nGg+xprdGcAJ+Q7jsSbt=ZjSeBNT0a62DFZYRH_w@mail.gmail.com>
+From: Derek Dresser <dresserd@alum.mit.edu>
+Date: Thu, 3 Jan 2019 09:50:46 -0500
+Message-ID: <CADmsHKcfz5Hgh-imV-kr4MYHUHkM4PR6-zL5hNhFe-EJeTTU8w@mail.gmail.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+X-Mailman-Approved-At: Tue, 15 Jan 2019 05:41:00 -0800
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Python upgrade path?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,64 +56,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jan 2019 13:38:59 -0000
+X-List-Received-Date: Thu, 03 Jan 2019 14:51:00 -0000
+Content-Type: multipart/alternative; boundary="000000000000f4ade2057e8ee309"
+
+--000000000000f4ade2057e8ee309
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
-On Sun, 2019-01-13 at 22:53 +0100, Ulf Samuelsson wrote:
-> I am trying to add a new image class "SWU" in "sumo" for a "software
-> update image".
-> As a result:
-> do_sdk_depends[depends] = '${@get_ext_sdk_depends(d)} meta-extsdk-
-> toolchain:do_populate_sysroot'
-> 
-> When data_smart.py works on this, it will call 
-> 
-> DataSmart.expandWithRefs(self, s, varname)
-> s        = '${@get_ext_sdk_depends(d)} meta-extsdk-
-> toolchain:do_populate_sysroot'
-> varname  = 'do_sdk_depends[depends]'
-> 
-> I will get an exception in this statement:
-> 
->         while s.find('${') != -1:
->             olds = s
->             try:
->                 s = __expand_var_regexp__.sub(varparse.var_sub, s)
-> 
-> The definition of __expand_var_regexp__ is:
->   __expand_var_regexp__ = re.compile(r"\${[^{}@\n\t :]+}")
-> 
-> That is, it is looking for the string "${<X>}"
-> but <X> may not contains anything in [{}@\n\t :]
-> 
-> since the "variable" in "s" is actually a call to
-> get_ext_sdk_depends,
-> and thus contains a '@' character it is not matched.
-> 
-> The build aborts with an exception.
-> 
-> I am not sure, if '${@get_ext_sdk_depends(d)}' should be expanded
-> before
-> DataSmart,expandWithRefs, or if expandWithRefs needs to be extended
-> to handle the case where the variable is a "call".
-> 
-> This is blocking us from upgrading from pyro to sumo.
-> 
-> Any ideas on a solution?
+On Thu, Jan 3, 2019 at 5:36 AM Alexander Kanavin <alex.kanavin@gmail.com>
+wrote:
 
-Can you firstly say what the error is you're seeing. Your attempt to
-understand it is good but I'm not sure which error you see?
+> On Thu, 3 Jan 2019 at 10:11, Derek Dresser <dresserd@alum.mit.edu> wrote:
+> > I have an application that uses features introduced in Python 3.6, so I
+> am trying to add a new version of Python to my Yocto build.  I know that
+> 3.5.6 is the latest version of Python that has been included in a Yocto
+> release.  I found the patches here
+> > https://patchwork.openembedded.org/series/14778/
+> > and was able to build Python3.7.1 for the commit specified in the
+> patch.  I looked briefly at rebasing the patches on the Thud branch, but I
+> think that is beyond my current Python and Yocto capabilities.
+> >
+> > Are there any paths forward for me to get a newer version of Python
+> using Yocto?  Would it be possible for me to use a package created from
+> that patched build and integrate it with my current thud build?  Are there
+> any other workarounds I could use until a newer version of Python is
+> supported?
+> >
+> > I'd be happy to spend some time on this if I could help move this
+> forward, but I don't think this is something I can do by myself at this
+> point.  I'm quite new to Yocto.
+>
+> Sadly there is no good answer. There are patches, but they need
+> further work (see oe-core list for details). Worse yet, thud is likely
+> to stay with 3.5, as such drastic version upgrades are usually not
+> done in stable branches (you are still free to do it via a custom
+> layer with backported recipes though).
+>
+> If you can take solving the issues and getting py 3.7 merged into
+> master as an exercise, this would be greatly appreciated by everyone,
+> and would take you out of 'new to yocto' :)
+>
+>
+> Alex
+>
 
-Secondly, is there a way someone else could reproduce this bug?
+Thanks for the response.  I will take a look at getting 3.7 to build, but
+I'd benefit from some guidance on the process to do so.  I was able to get
+the patches to build on the specified commit that they target (although I
+just tried again and ran into some issues.  I'll have to figure out what I
+did the first time.)  This is what I did.
 
-The fragment you quote looks correct. If you have variable and function
-names conflicting that would be a problem though as they're all in the
-same namespace. I'm unclear whether that is a problem here or not
-though based on the available information.
+1. download patches from https://patchwork.openembedded.org/series/14778/
+2. checkout poky at specified commit
+"e349b239c8833bcdad9b1ff1a0702ace2db71959"
+3. apply patch
+4. bitbake python3
 
-Cheers,
+I then tried to rebase the patches on the master branch and ran into many
+merge conflicts that I didn't really have the context to resolve.  I
+believe that is where I'll have to dig in to get things working.
 
-Richard
+My questions are, is that a reasonable process?  Is there a better process
+using devtool or something?  Any guidance is appreciated.
 
+Thanks,
+Derek
 
+--000000000000f4ade2057e8ee309
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr">On Thu, Jan 3,=
+ 2019 at 5:36 AM Alexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail=
+.com">alex.kanavin@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex">On Thu, 3 Jan 2019 at 10:11, Derek Dresser &lt;<a href=3D"mailto:d=
+resserd@alum.mit.edu" target=3D"_blank">dresserd@alum.mit.edu</a>&gt; wrote=
+:<br>
+&gt; I have an application that uses features introduced in Python 3.6, so =
+I am trying to add a new version of Python to my Yocto build.=C2=A0 I know =
+that 3.5.6 is the latest version of Python that has been included in a Yoct=
+o release.=C2=A0 I found the patches here<br>
+&gt; <a href=3D"https://patchwork.openembedded.org/series/14778/" rel=3D"no=
+referrer" target=3D"_blank">https://patchwork.openembedded.org/series/14778=
+/</a><br>
+&gt; and was able to build Python3.7.1 for the commit specified in the patc=
+h.=C2=A0 I looked briefly at rebasing the patches on the Thud branch, but I=
+ think that is beyond my current Python and Yocto capabilities.<br>
+&gt;<br>
+&gt; Are there any paths forward for me to get a newer version of Python us=
+ing Yocto?=C2=A0 Would it be possible for me to use a package created from =
+that patched build and integrate it with my current thud build?=C2=A0 Are t=
+here any other workarounds I could use until a newer version of Python is s=
+upported?<br>
+&gt;<br>
+&gt; I&#39;d be happy to spend some time on this if I could help move this =
+forward, but I don&#39;t think this is something I can do by myself at this=
+ point.=C2=A0 I&#39;m quite new to Yocto.<br>
+<br>
+Sadly there is no good answer. There are patches, but they need<br>
+further work (see oe-core list for details). Worse yet, thud is likely<br>
+to stay with 3.5, as such drastic version upgrades are usually not<br>
+done in stable branches (you are still free to do it via a custom<br>
+layer with backported recipes though).<br>
+<br>
+If you can take solving the issues and getting py 3.7 merged into<br>
+master as an exercise, this would be greatly appreciated by everyone,<br>
+and would take you out of &#39;new to yocto&#39; :)<br>
+<br>
+<br>
+Alex<br></blockquote><div><br></div><div>Thanks for the response.=C2=A0 I w=
+ill take a look at getting 3.7 to build, but I&#39;d benefit from some guid=
+ance on the process to do so.=C2=A0 I was able to get the patches to build =
+on the specified commit that they target (although I just tried again and r=
+an into some issues.=C2=A0 I&#39;ll have to figure out what I did the first=
+ time.)=C2=A0 This is what I did.</div><div><br></div><div>1. download patc=
+hes from <a href=3D"https://patchwork.openembedded.org/series/14778/">https=
+://patchwork.openembedded.org/series/14778/</a></div><div>2. checkout poky =
+at specified commit &quot;e349b239c8833bcdad9b1ff1a0702ace2db71959&quot;</d=
+iv><div>3. apply patch</div><div>4. bitbake python3</div><div><br></div><di=
+v>I then tried to rebase the patches on the master branch and ran into many=
+ merge conflicts that I didn&#39;t really have the context to resolve.=C2=
+=A0 I believe that is where I&#39;ll have to dig in to get things working.<=
+/div><div><br></div><div>My questions are, is that a reasonable process?=C2=
+=A0 Is there a better process using devtool or something?=C2=A0 Any guidanc=
+e is appreciated.</div><div><br></div><div>Thanks,</div><div>Derek<br></div=
+><div><br></div></div></div>
+
+--000000000000f4ade2057e8ee309--
