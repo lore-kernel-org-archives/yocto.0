@@ -1,63 +1,77 @@
-Return-Path: <anibal.limon@linaro.org>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB887E00C1E; Thu,  3 Jan 2019 10:02:23 -0800 (PST)
+	id B609BE00C1E; Thu,  3 Jan 2019 10:42:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	MIME_QP_LONG_LINE, 
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.65 listed in list.dnswl.org]
+	*      [209.85.208.48 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ot1-f65.google.com (mail-ot1-f65.google.com
-	[209.85.210.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AFD0E00BE8
-	for <yocto@yoctoproject.org>; Thu,  3 Jan 2019 10:02:23 -0800 (PST)
-Received: by mail-ot1-f65.google.com with SMTP id u16so30061108otk.8
-	for <yocto@yoctoproject.org>; Thu, 03 Jan 2019 10:02:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=V1GUlkYJENVQ0VyozbDyAuVS4Yc6o1ni9OmGovRnFss=;
-	b=NA8vHN6TFLbKulug6Od5ESJG7JM4m6W0Sq+eXgyrHg0bYsFwMnxklIsjioieSeBdYL
-	GE6L1JK55xuS4lKGGY+oZM4SJW6JqWhpMzf+Gsy88w1gXb+NeMAFxPh7MR84/Tw78Z4t
-	/7AKgQxU0K1mYwbTK6vv9n8vT3su1kpfZSU/w=
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com
+	[209.85.208.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83E95E00C10
+	for <yocto@yoctoproject.org>; Thu,  3 Jan 2019 10:42:23 -0800 (PST)
+Received: by mail-ed1-f48.google.com with SMTP id o10so29785302edt.13
+	for <yocto@yoctoproject.org>; Thu, 03 Jan 2019 10:42:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=8HyH+Yn3KTKEPnxtbp90QMtivRTZCz50baAI8JkwyUg=;
+	b=fblsnE+AIDzo0lbeHLZxp5MyYbwiXoeLCQJH+bo4nDFdDMZD3QiQ8HBKkvtuPaH8q8
+	7ZAJ6QwucQL4Hm09nCQRlWEqAxVM29Kt0KvK3VaNWl+vX54yeO5bZkuOQi/1YOpccGT1
+	sI71IRwx3Rr0IxAh9CxNhbRc8zZbmAConDxzseeY8ZkBjiUlzoVssxy1JRzTUW9t335F
+	h/vlHpAxbt5bjnEYVsb26i1zYZHEsK9vWf99ZNhu9WwJq82rdxS3GCE8zHi8/D+8i0R5
+	Rj1gXq90QgqHt+TUjulFVrgjxTkq1pbdnnaUfp4U7zAyAOhzMrUhfOLG1A64AZrt2Q54
+	wZCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=V1GUlkYJENVQ0VyozbDyAuVS4Yc6o1ni9OmGovRnFss=;
-	b=PdgZ0fK6hFS9HRdqV4e7y6dqz3MqNP89/VG0sk5Z7OLMugahR0JYbX8KHmOMatOXeF
-	Y6wTEO/b5dcLsiAlh7l8wpWZ6q88JAEVekXdBeQrFfgL13ediXbIANq+tQDN/d92QvUu
-	M6skOp0WgYl1cPmJErG5GSaKINNlGS2sELuRKPm6NPTOg/LWZH/9LATfRVb7sTRFFHW0
-	qRfx2mKh8aote9paaSn5hSlxG+GqceazsZGzrZSBqpMbYZrHwuwM1tY9lgqlL1EN7Hr0
-	nOelvIXw/h9/xheOXtGLZN4XpXYas2favNmk60Qw06E23+ZOXDw5iKNsoyJECU2CCe5a
-	byFA==
-X-Gm-Message-State: AJcUukdXfGwD+5ba8qcks60noVfHkApEswBaLjkAJvQvDgwIEaTonlEy
-	XRUyOl1Mmy6uITIfOyPvWRcB/n4HU4Y=
-X-Google-Smtp-Source: ALg8bN6FZMDayOzKp5A1PTkhgWmBlz1HTsL1F992AYwUs0npwMLbq0xFrhWwU76+VEkwl6wCdVLRTg==
-X-Received: by 2002:a9d:67cf:: with SMTP id c15mr31575248otn.38.1546538542631; 
-	Thu, 03 Jan 2019 10:02:22 -0800 (PST)
-Received: from blackbox.Home ([200.68.140.47])
+	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=8HyH+Yn3KTKEPnxtbp90QMtivRTZCz50baAI8JkwyUg=;
+	b=E5d5NxDCjxCYDdbH8mgGvww2P+l9NkSad4gs6wSMTZGHyTJKkd3DXoiEW0D+bI7hot
+	inuxucuCO4MjS/PQjFYciG07vgNBCfn/02fKxIGG6uzUJEs3dHOYGcmPZGLOHGGdBfSr
+	W8HgzD7op/HMOSzM1UskPqyXqH/d/QpQ5MDCvpH9cti9+juWpRNr9K9oqcKXNFqorX+l
+	VM2m8o8pDR3R6KvYuD7fLHKSAPNIxj5Q7ciF0Ta/R27RltMYK01Wg6zDKKoxW3tHumvy
+	MaDymBdYqyr+OevoF5j1UBXemGnGzLaKyeAbML0nM4QoKJzk/uAfbSluSq9C20jMG4jr
+	lKig==
+X-Gm-Message-State: AA+aEWZk3EzdnPCZ0txKKXHWoFiMXCVUg+jsl2atNQBlAOwXUMXVswvr
+	ZCvSk96NtMhtbkLf6qUs9yc=
+X-Google-Smtp-Source: AFSGD/WoKvWST4opc1DKjmvDQtUTamBBZmANyPAC5a6ufCWJRS6/WJrpObdNytJeu3LqynPRJTpdsw==
+X-Received: by 2002:aa7:d394:: with SMTP id x20mr43154126edq.193.1546540942721;
+	Thu, 03 Jan 2019 10:42:22 -0800 (PST)
+Received: from ?IPv6:2a02:8109:b5c0:1a5d:80fb:5332:ad66:d0e9?
+	([2a02:8109:b5c0:1a5d:80fb:5332:ad66:d0e9])
 	by smtp.gmail.com with ESMTPSA id
-	v3sm50734701oib.57.2019.01.03.10.02.21
+	m14sm27043790edc.27.2019.01.03.10.42.21
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 03 Jan 2019 10:02:22 -0800 (PST)
-From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linaro.org>
-To: yocto@yoctoproject.org
-Date: Thu,  3 Jan 2019 12:02:18 -0600
-Message-Id: <20190103180218.6968-1-anibal.limon@linaro.org>
-X-Mailer: git-send-email 2.19.2
-MIME-Version: 1.0
-Subject: [PATCH][ptest-runner] ptest-runner: Add support timeout failure type to XML result file
+	Thu, 03 Jan 2019 10:42:21 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+X-Mailer: iPhone Mail (16C101)
+In-Reply-To: <CADmsHKcfz5Hgh-imV-kr4MYHUHkM4PR6-zL5hNhFe-EJeTTU8w@mail.gmail.com>
+Date: Thu, 3 Jan 2019 19:42:21 +0100
+Message-Id: <D2F2B4A7-B573-4C1C-A90D-14913CD45572@gmail.com>
+References: <CADmsHKdd=SePN5Gd5Sb0zRc-dA62RO4tOp4A9E5uvYvDVDN-Xg@mail.gmail.com>
+	<CANNYZj9Lk=nGg+xprdGcAJ+Q7jsSbt=ZjSeBNT0a62DFZYRH_w@mail.gmail.com>
+	<CADmsHKcfz5Hgh-imV-kr4MYHUHkM4PR6-zL5hNhFe-EJeTTU8w@mail.gmail.com>
+To: Derek Dresser <dresserd@alum.mit.edu>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Python upgrade path?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,174 +83,153 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jan 2019 18:02:24 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 03 Jan 2019 18:42:25 -0000
+Content-Type: multipart/alternative;
+	boundary=Apple-Mail-3746A3C8-8F56-4F8B-8415-19E3CB07A02D
+Content-Transfer-Encoding: 7bit
 
-The ptest-runner support logging results to stdout and to a XML file
-in stdout the ptest is mark as:
+--Apple-Mail-3746A3C8-8F56-4F8B-8415-19E3CB07A02D
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-...
-ERROR: Exit status is 1
-TIMEOUT: ptest-directory
-...
+Yep, that=E2=80=99s all reasonable. Devtool won=E2=80=99t help you with reba=
+sing patches to poky tree. It has a facility for upgrading recipes, but it=E2=
+=80=99s likely to fail in non trivial ways for something as complex as pytho=
+n. You=E2=80=99re better off taking existing patches and getting them to wor=
+k I=E2=80=99d say.
 
-Add the same support in XML file for example,
-
-...
-<testcase classname='ptest-directory' name='run-ptest'>
-  <failure type='exit_code' message='run-ptest exited with code: 1'></failure>
-  <failure type='timeout'/>
-</testcase>
-...
-
-[YOCTO #13088]
-
-Signed-off-by: Aníbal Limón <anibal.limon@linaro.org>
----
- tests/data/reference.xml |  1 +
- tests/utils.c            |  4 ++--
- utils.c                  | 28 ++++++++++++++++------------
- utils.h                  |  2 +-
- 4 files changed, 20 insertions(+), 15 deletions(-)
-
-diff --git a/tests/data/reference.xml b/tests/data/reference.xml
-index 91522c7..17f91c2 100644
---- a/tests/data/reference.xml
-+++ b/tests/data/reference.xml
-@@ -4,5 +4,6 @@
- 	</testcase>
- 	<testcase classname='test2' name='run-ptest'>
- 		<failure type='exit_code' message='run-ptest exited with code: 1'></failure>
-+		<failure type='timeout'/>
- 	</testcase>
- </testsuite>
-diff --git a/tests/utils.c b/tests/utils.c
-index cf09379..662abe8 100644
---- a/tests/utils.c
-+++ b/tests/utils.c
-@@ -257,8 +257,8 @@ START_TEST(test_xml_pass)
- 	FILE *xp;
- 	xp = xml_create(2, "./test.xml");
- 	ck_assert(xp != NULL);
--	xml_add_case(xp, 0,"test1");
--	xml_add_case(xp, 1,"test2");
-+	xml_add_case(xp, 0,"test1", 0);
-+	xml_add_case(xp, 1,"test2", 1);
- 	xml_finish(xp);
- 
- 	FILE *fp, *fr;
-diff --git a/utils.c b/utils.c
-index ed2eff7..4a38ea1 100644
---- a/utils.c
-+++ b/utils.c
-@@ -260,14 +260,13 @@ run_child(char *run_ptest, int fd_stdout, int fd_stderr)
- 
- static inline int
- wait_child(const char *ptest_dir, const char *run_ptest, pid_t pid,
--		int timeout, int *fds, FILE **fps)
-+		int timeout, int *fds, FILE **fps, int *timeouted)
- {
- 	struct pollfd pfds[2];
- 	struct timespec sentinel;
- 	clockid_t clock = CLOCK_MONOTONIC;
- 	int r;
- 
--	int timeouted = 0;
- 	int status;
- 	int waitflags;
- 
-@@ -281,6 +280,8 @@ wait_child(const char *ptest_dir, const char *run_ptest, pid_t pid,
- 		clock_gettime(clock, &sentinel);
- 	}
- 
-+	*timeouted = 0;
-+
- 	while (1) {
- 		waitflags = WNOHANG;
- 
-@@ -305,7 +306,7 @@ wait_child(const char *ptest_dir, const char *run_ptest, pid_t pid,
- 
- 			clock_gettime(clock, &time);
- 			if ((time.tv_sec - sentinel.tv_sec) > timeout) {
--				timeouted = 1;
-+				*timeouted = 1;
- 				kill(pid, SIGKILL);
- 				waitflags = 0;
- 			}
-@@ -315,11 +316,6 @@ wait_child(const char *ptest_dir, const char *run_ptest, pid_t pid,
- 			break;
- 	}
- 
--	if (status) {
--		fprintf(fps[0], "\nERROR: Exit status is %d\n", status);
--		if (timeouted)
--			fprintf(fps[0], "TIMEOUT: %s\n", ptest_dir);
--	}
- 
- 	return status;
- }
-@@ -337,6 +333,7 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
- 	pid_t child;
- 	int pipefd_stdout[2];
- 	int pipefd_stderr[2];
-+	int timeouted;
- 
- 	if (opts.xml_filename) {
- 		xh = xml_create(ptest_list_length(head), opts.xml_filename);
-@@ -380,12 +377,17 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
- 				fprintf(fp, "BEGIN: %s\n", ptest_dir);
- 
- 				status = wait_child(ptest_dir, p->run_ptest, child,
--						opts.timeout, fds, fps);
--				if (status)
-+						opts.timeout, fds, fps, &timeouted);
-+
-+				if (status) {
-+					fprintf(fps[0], "\nERROR: Exit status is %d\n", status);
- 					rc += 1;
-+				}
-+				if (timeouted)
-+					fprintf(fps[0], "TIMEOUT: %s\n", ptest_dir);
- 
- 				if (opts.xml_filename)
--					xml_add_case(xh, status, ptest_dir);
-+					xml_add_case(xh, status, ptest_dir, timeouted);
- 
- 				fprintf(fp, "END: %s\n", ptest_dir);
- 				fprintf(fp, "%s\n", get_stime(stime, GET_STIME_BUF_SIZE));
-@@ -424,7 +426,7 @@ xml_create(int test_count, char *xml_filename)
- }
- 
- void
--xml_add_case(FILE *xh, int status, const char *ptest_dir)
-+xml_add_case(FILE *xh, int status, const char *ptest_dir, int timeouted)
- {
- 	fprintf(xh, "\t<testcase classname='%s' name='run-ptest'>\n", ptest_dir);
- 
-@@ -433,6 +435,8 @@ xml_add_case(FILE *xh, int status, const char *ptest_dir)
- 		fprintf(xh, " message='run-ptest exited with code: %d'>", status);
- 		fprintf(xh, "</failure>\n");
- 	}
-+	if (timeouted)
-+		fprintf(xh, "\t\t<failure type='timeout'/>\n");
- 
- 	fprintf(xh, "\t</testcase>\n");
- }
-diff --git a/utils.h b/utils.h
-index ee85163..880105f 100644
---- a/utils.h
-+++ b/utils.h
-@@ -48,7 +48,7 @@ extern int run_ptests(struct ptest_list *, const struct ptest_options,
- 		const char *, FILE *, FILE *);
- 
- extern FILE *xml_create(int, char *);
--extern void xml_add_case(FILE *, int, const char *);
-+extern void xml_add_case(FILE *, int, const char *, int);
- extern void xml_finish(FILE *);
- 
- #endif
--- 
-2.19.2
+Alex
 
 
+> On 3 Jan 2019, at 15.50, Derek Dresser <dresserd@alum.mit.edu> wrote:
+>=20
+>> On Thu, Jan 3, 2019 at 5:36 AM Alexander Kanavin <alex.kanavin@gmail.com>=
+ wrote:
+>> On Thu, 3 Jan 2019 at 10:11, Derek Dresser <dresserd@alum.mit.edu> wrote:=
+
+>> > I have an application that uses features introduced in Python 3.6, so I=
+ am trying to add a new version of Python to my Yocto build.  I know that 3.=
+5.6 is the latest version of Python that has been included in a Yocto releas=
+e.  I found the patches here
+>> > https://patchwork.openembedded.org/series/14778/
+>> > and was able to build Python3.7.1 for the commit specified in the patch=
+.  I looked briefly at rebasing the patches on the Thud branch, but I think t=
+hat is beyond my current Python and Yocto capabilities.
+>> >
+>> > Are there any paths forward for me to get a newer version of Python usi=
+ng Yocto?  Would it be possible for me to use a package created from that pa=
+tched build and integrate it with my current thud build?  Are there any othe=
+r workarounds I could use until a newer version of Python is supported?
+>> >
+>> > I'd be happy to spend some time on this if I could help move this forwa=
+rd, but I don't think this is something I can do by myself at this point.  I=
+'m quite new to Yocto.
+>>=20
+>> Sadly there is no good answer. There are patches, but they need
+>> further work (see oe-core list for details). Worse yet, thud is likely
+>> to stay with 3.5, as such drastic version upgrades are usually not
+>> done in stable branches (you are still free to do it via a custom
+>> layer with backported recipes though).
+>>=20
+>> If you can take solving the issues and getting py 3.7 merged into
+>> master as an exercise, this would be greatly appreciated by everyone,
+>> and would take you out of 'new to yocto' :)
+>>=20
+>>=20
+>> Alex
+>=20
+> Thanks for the response.  I will take a look at getting 3.7 to build, but I=
+'d benefit from some guidance on the process to do so.  I was able to get th=
+e patches to build on the specified commit that they target (although I just=
+ tried again and ran into some issues.  I'll have to figure out what I did t=
+he first time.)  This is what I did.
+>=20
+> 1. download patches from https://patchwork.openembedded.org/series/14778/
+> 2. checkout poky at specified commit "e349b239c8833bcdad9b1ff1a0702ace2db7=
+1959"
+> 3. apply patch
+> 4. bitbake python3
+>=20
+> I then tried to rebase the patches on the master branch and ran into many m=
+erge conflicts that I didn't really have the context to resolve.  I believe t=
+hat is where I'll have to dig in to get things working.
+>=20
+> My questions are, is that a reasonable process?  Is there a better process=
+ using devtool or something?  Any guidance is appreciated.
+>=20
+> Thanks,
+> Derek
+>=20
+
+--Apple-Mail-3746A3C8-8F56-4F8B-8415-19E3CB07A02D
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Yep, that=E2=80=99s all reasonable. Devtool=
+ won=E2=80=99t help you with rebasing patches to poky tree. It has a facilit=
+y for upgrading recipes, but it=E2=80=99s likely to fail in non trivial ways=
+ for something as complex as python. You=E2=80=99re better off taking existi=
+ng patches and getting them to work I=E2=80=99d say.<br><br>Alex<br><div dir=
+=3D"ltr"><br></div><div dir=3D"ltr"><br>On 3 Jan 2019, at 15.50, Derek Dress=
+er &lt;<a href=3D"mailto:dresserd@alum.mit.edu">dresserd@alum.mit.edu</a>&gt=
+; wrote:<br><br></div><blockquote type=3D"cite"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr">On Thu, Jan 3, 2019 at 5:3=
+6 AM Alexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.ka=
+navin@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On Thu=
+, 3 Jan 2019 at 10:11, Derek Dresser &lt;<a href=3D"mailto:dresserd@alum.mit=
+.edu" target=3D"_blank">dresserd@alum.mit.edu</a>&gt; wrote:<br>
+&gt; I have an application that uses features introduced in Python 3.6, so I=
+ am trying to add a new version of Python to my Yocto build.&nbsp; I know th=
+at 3.5.6 is the latest version of Python that has been included in a Yocto r=
+elease.&nbsp; I found the patches here<br>
+&gt; <a href=3D"https://patchwork.openembedded.org/series/14778/" rel=3D"nor=
+eferrer" target=3D"_blank">https://patchwork.openembedded.org/series/14778/<=
+/a><br>
+&gt; and was able to build Python3.7.1 for the commit specified in the patch=
+.&nbsp; I looked briefly at rebasing the patches on the Thud branch, but I t=
+hink that is beyond my current Python and Yocto capabilities.<br>
+&gt;<br>
+&gt; Are there any paths forward for me to get a newer version of Python usi=
+ng Yocto?&nbsp; Would it be possible for me to use a package created from th=
+at patched build and integrate it with my current thud build?&nbsp; Are ther=
+e any other workarounds I could use until a newer version of Python is suppo=
+rted?<br>
+&gt;<br>
+&gt; I'd be happy to spend some time on this if I could help move this forwa=
+rd, but I don't think this is something I can do by myself at this point.&nb=
+sp; I'm quite new to Yocto.<br>
+<br>
+Sadly there is no good answer. There are patches, but they need<br>
+further work (see oe-core list for details). Worse yet, thud is likely<br>
+to stay with 3.5, as such drastic version upgrades are usually not<br>
+done in stable branches (you are still free to do it via a custom<br>
+layer with backported recipes though).<br>
+<br>
+If you can take solving the issues and getting py 3.7 merged into<br>
+master as an exercise, this would be greatly appreciated by everyone,<br>
+and would take you out of 'new to yocto' :)<br>
+<br>
+<br>
+Alex<br></blockquote><div><br></div><div>Thanks for the response.&nbsp; I wi=
+ll take a look at getting 3.7 to build, but I'd benefit from some guidance o=
+n the process to do so.&nbsp; I was able to get the patches to build on the s=
+pecified commit that they target (although I just tried again and ran into s=
+ome issues.&nbsp; I'll have to figure out what I did the first time.)&nbsp; T=
+his is what I did.</div><div><br></div><div>1. download patches from <a href=
+=3D"https://patchwork.openembedded.org/series/14778/">https://patchwork.open=
+embedded.org/series/14778/</a></div><div>2. checkout poky at specified commi=
+t "e349b239c8833bcdad9b1ff1a0702ace2db71959"</div><div>3. apply patch</div><=
+div>4. bitbake python3</div><div><br></div><div>I then tried to rebase the p=
+atches on the master branch and ran into many merge conflicts that I didn't r=
+eally have the context to resolve.&nbsp; I believe that is where I'll have t=
+o dig in to get things working.</div><div><br></div><div>My questions are, i=
+s that a reasonable process?&nbsp; Is there a better process using devtool o=
+r something?&nbsp; Any guidance is appreciated.</div><div><br></div><div>Tha=
+nks,</div><div>Derek<br></div><div><br></div></div></div>
+</div></blockquote></body></html>=
+
+--Apple-Mail-3746A3C8-8F56-4F8B-8415-19E3CB07A02D--
