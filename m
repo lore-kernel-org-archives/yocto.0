@@ -1,62 +1,62 @@
 Return-Path: <matt.hoosier@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D011DE00C71; Fri,  4 Jan 2019 07:21:45 -0800 (PST)
+	id BD0CEE00C77; Fri,  4 Jan 2019 07:50:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (matt.hoosier[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.193 listed in list.dnswl.org]
+	*      [209.85.161.45 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f193.google.com (mail-it1-f193.google.com
-	[209.85.166.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA488E00B43
-	for <yocto@yoctoproject.org>; Fri,  4 Jan 2019 07:21:44 -0800 (PST)
-Received: by mail-it1-f193.google.com with SMTP id g85so1957667ita.3
-	for <yocto@yoctoproject.org>; Fri, 04 Jan 2019 07:21:44 -0800 (PST)
+Received: from mail-yw1-f45.google.com (mail-yw1-f45.google.com
+	[209.85.161.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A9E4E00C71
+	for <yocto@yoctoproject.org>; Fri,  4 Jan 2019 07:50:09 -0800 (PST)
+Received: by mail-yw1-f45.google.com with SMTP id d190so13508252ywb.5
+	for <yocto@yoctoproject.org>; Fri, 04 Jan 2019 07:50:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=sender:from:to:cc:subject:date:message-id;
-	bh=sA5FrTY8Q4MjkSL9iQ2MJrudnYdh6ZVqSRihe9Y+MrQ=;
-	b=aDchPneJw/naNRNTTEAXNNY0kIwZjLi0uxfF/YUPXkTnyTqbdU6RIeGEewJbB1jAcG
-	/L9zdb/U5veTWY5ZN1kGR5miytamfXZa+5M2eJZsosfzvIBS5E4QzqVc2ebm3LVh5Ek+
-	pC7rAuAi6KYT7QtHvVt/uUdhftn1e0fKQgz2wVF6TdjiaqJh3GGYK6N/pQccAUZTWOTC
-	+WVBgCPWcoA6wBgnBL3/EIxfOptWOx5pPo1YBWYmiy4HvECIBg8Szh8HAt98ZtSLaTWJ
-	1snuJlwAQxIet44QfPsH1jZAO6/eLqRoxLvMGkMz/r3HdyFbKugQxN+FkjrSTw/v2SGn
-	7Nng==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=owq93N1d11dTKVtxrPyZJqmKlYTQf2vIkoVfKjn1E14=;
+	b=gWnbRQMNkhVcYeTK4iFArd5Xb2GE5KkosIVDDEq65E3akMBy7YbVXZutjpQKR40WLQ
+	urVL6BTQx7o+VLwv2ouRIDKPG3c+d83LbYp48Slv4XuQHBdIKozwIFgQQ88uDT47XILY
+	Uvd7sO79rTKKAp7gzFYe9h3GzD52ICScAGex+fm8xMtFJEtq/ZHYvKjJB49hQtMVEU8c
+	gZE0SmW283QR0WjG2ekm+1spM3uEmg7ajAHjOAuVQwpqILfNzJvOuk8+KjAfVWsLw9xa
+	F6aZrIYjzwy+Zoi5VVi04kBbQGsPuteEtAhsErWysbvgLqsaKowaqv4vZ+E9pFz4DI1P
+	Y7TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
-	bh=sA5FrTY8Q4MjkSL9iQ2MJrudnYdh6ZVqSRihe9Y+MrQ=;
-	b=Sxsbbb3KgbM0yWCnbWsbdnY6yw0zVBKu7qdY2iBbA9rIHEcUASAljClEw1gdFJMaaz
-	IlVsXqSSIw4zKCu0elf2DwP7HZ7oMAs0IVbdCpoiysW7v/0LFIvcGdgHNOR5jYy6uOnO
-	ZU1QNXNqgwkVCSxuT+68Maq6K+F/FPBg6wAjoRU89OWCFSlGzfCdaeB5KXazu9DD1aBK
-	EPfbCcsZt7LkG+n9Ne3XyZcLuK15s/FC2F2MhRF4TzeEEnm+VnMleLrn4cvATUmAOlaM
-	nxHFaxT1FJ48eoQs1g6jNz6x88fSoXLIc2GEE4Ilj00AU1q/kYst4n3ljZxJT1NA+d3j
-	1nGg==
-X-Gm-Message-State: AJcUukdsT0sLKk5Cw+orvLljKjNF+k8888r/1kghpF4TBm473JPEzRi2
-	f2Eu7bWFfMzRtg97ylQx5Fg=
-X-Google-Smtp-Source: ALg8bN7AgRiiRUOjPzqVjW90C7/NiuqbZBSZ+MyHg6A4y2rrb+3pCFaLYeyzufqHs8mh3bAcpvSksw==
-X-Received: by 2002:a24:1d1:: with SMTP id 200mr1201530itk.146.1546615304070; 
-	Fri, 04 Jan 2019 07:21:44 -0800 (PST)
-Received: from localhost.localdomain ([204.77.163.42])
-	by smtp.gmail.com with ESMTPSA id
-	h13sm7139676ioq.72.2019.01.04.07.21.43
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Fri, 04 Jan 2019 07:21:43 -0800 (PST)
-Sender: Matt Hoosier <matt.hoosier@gmail.com>
-From: Matt Hoosier <matt.hoosier@garmin.com>
-To: mark.hatle@windriver.com
-Date: Fri,  4 Jan 2019 09:21:30 -0600
-Message-Id: <20190104152130.3834-1-matt.hoosier@garmin.com>
-X-Mailer: git-send-email 2.17.2
-Cc: yocto@yoctoproject.org, Matt Hoosier <matt.hoosier@garmin.com>
-Subject: [prelink-cross][PATCH] Support config dropfiles
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=owq93N1d11dTKVtxrPyZJqmKlYTQf2vIkoVfKjn1E14=;
+	b=Fy0FGG29cRkzCyzZOtZdo+bK/tG5mSxtmwkIV1ubJ9pRgvQ2xT0j8DSmqctJEcvHwb
+	wRU+QWREF9V7PDsd3dMFGK23KsrR4VQrbRI895kwCVjv3qXM28MRL985Njdz4oLIwsN4
+	mVTZA4ou7eZY3DdioTdcDQO6YnlDOQXVS38Tr6B1saXIAuDu0Ea813TmbFoJg4wZGy0o
+	lnvxZ3BkFpJV/PxE20hutyWQdk5lgiG2jLw9t+Gixuz1/0H19yYVMbfOP8E5C5Y86X2k
+	0QbSlXBpTrNRiqAovVl6Xe2d4nW4b4StWWlW8n5Gj3ft2VzPEjhvX3H3yJvdtMSDGtdq
+	Fq/Q==
+X-Gm-Message-State: AA+aEWak9qkxysRHErkbUPQDFo6qbwDB+2F9ea241d3/E5Tqx8uaoV2t
+	WEeSa0AzkRUgSEyqPpElZPJ/KPPc+svMSW2+5dUvnKJV
+X-Google-Smtp-Source: AFSGD/VV+/LE+EVXsi1zfB9iI9n5N/XpcvjjrJ5N2EJm0sBCxsMKoOkTAaGhCApkinysE2OwOUNqC4oXksWXgx3Wu9E=
+X-Received: by 2002:a0d:f2c5:: with SMTP id
+	b188mr52436644ywf.341.1546617009019; 
+	Fri, 04 Jan 2019 07:50:09 -0800 (PST)
+MIME-Version: 1.0
+From: Matt Hoosier <matt.hoosier@gmail.com>
+Date: Fri, 4 Jan 2019 09:49:33 -0600
+Message-ID: <CAJgxT38ryEhJKQ1_CN79nKPBLUiOca-xHVVKUnGrOQoUq027hA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Using prelink in Thud and subsequent
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,137 +68,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Jan 2019 15:21:45 -0000
+X-List-Received-Date: Fri, 04 Jan 2019 15:50:10 -0000
+Content-Type: multipart/alternative; boundary="0000000000006d2db3057ea3d50d"
 
-When packages provide executables or libraries in nonstandard
-locations, these have to be declared in prelink.conf in order for
-the tool to find them during its crawl through the filesystem.
+--0000000000006d2db3057ea3d50d
+Content-Type: text/plain; charset="UTF-8"
 
-But arranging for each package to individually edit the centralized
-prelink.conf file is error-prone. Dropfiles are a good solution to
-this sort of problem (e.g., systemd's unit files and central
-configuration each use this mechanism).
+Hi all,
 
-Add support in prelink for a similar paradigm. Whatever the config
-file is, search also for *.conf in <configfile>.d. In practice, this
-works out to <sysrootdir>/etc/prelink.conf.d/*.conf.
+With the following change, position-independent executables became the
+default in Poky:
 
-Signed-off-by: Matt Hoosier <matt.hoosier@garmin.com>
----
- doc/prelink.8   | 18 +++++++++++++-----
- doc/prelink.tex |  2 +-
- src/gather.c    | 26 ++++++++++++++++++++++++++
- 3 files changed, 40 insertions(+), 6 deletions(-)
+commit 491082c56ce34f3fd644f8d4457ccd52af951087
+Author: Khem Raj <raj.khem@gmail.com>
+Date:   Fri Jul 27 19:46:14 2018 -0700
 
-diff --git a/doc/prelink.8 b/doc/prelink.8
-index 215445e..9bdd247 100644
---- a/doc/prelink.8
-+++ b/doc/prelink.8
-@@ -58,7 +58,9 @@ print what would be prelinked.
- .B \-a \-\-all
- Prelink all binaries and dependent libraries found in directory hierarchies
- specified in
--.IR /etc/prelink.conf .
-+.IR /etc/prelink.conf
-+and
-+.IR /etc/prelink.conf.d/*.conf .
- Normally, only binaries specified on the command line and their dependent
- libraries are prelinked.
- .TP
-@@ -101,7 +103,9 @@ option).
- .TP
- .B \-c \-\-config\-file=CONFIG
- Specify an alternate config file instead of default
--.IR /etc/prelink.conf .
-+.IR /etc/prelink.conf
-+and
-+.IR /etc/prelink.conf.d/*.conf .
- .TP
- .B \-C \-\-cache\-file=CACHE
- Specify an alternate cache file instead of default
-@@ -257,6 +261,8 @@ the libraries they depend on are prelinked with them.
- .RE
- prelinks all binaries found in directories specified in
- .I /etc/prelink.conf
-+and
-+.I /etc/prelink.conf.d/*.conf
- and all their dependent libraries, assigning libraries unique virtual
- address space slots only if they ever appear together, and starts
- assigning libraries at a random address.
-@@ -284,10 +290,10 @@ You can run
- .I /usr/sbin/prelink -p
- to see what is stored in there.
- .TP 20
--.B /etc/prelink.conf
--Configuration file containing a list of directory hierarchies that
-+.B /etc/prelink.conf /etc/prelink.conf.d/*.conf
-+Configuration files containing a list of directory hierarchies that
- contain ELF shared libraries or binaries which should be prelinked.
--This configuration file is used in
-+These configuration files are used in
- .B \-a
- mode to find binaries which should be prelinked and also, no matter whether
- .B \-a
-@@ -297,6 +303,8 @@ prelinked. If
- finds a dependent library of some binary or other library which is not
- present in any of the directories specified either in
- .B /etc/prelink.conf
-+and
-+.B /etc/prelink.conf.d/*.conf
- or on the command line, then it cannot be prelinked.
- Each line of the config file should be either a comment starting with
- .BR # ,
-diff --git a/doc/prelink.tex b/doc/prelink.tex
-index 5075030..a931166 100644
---- a/doc/prelink.tex
-+++ b/doc/prelink.tex
-@@ -625,7 +625,7 @@ The second mode is {\sl full prelinking}, where the \tts{-a} option is
- given on the command line.  This in addition to incremental prelinking
- queues all executables found in directory trees specified in \tts{prelink.conf}
- (which typically includes all or most directories where system executables
--are found).  For each directory subtree in the config file the user
-+are found) or \tts{prelink.conf.d/*.conf}.  For each directory subtree in the config file the user
- can specify whether symbolic links to places outside of the tree are to be followed
- or not and whether searching should continue even across filesystem
- boundaries.
-diff --git a/src/gather.c b/src/gather.c
-index 751822c..130ecd5 100644
---- a/src/gather.c
-+++ b/src/gather.c
-@@ -1190,6 +1190,32 @@ read_config (const char *config)
- 
-   free (line);
-   fclose (file);
-+
-+  /* read all dropfiles recursively */
-+  if (!ret)
-+    {
-+      char *p;
-+      glob_t g;
-+
-+      asprintf (&p, "%s.d/*.conf", config);
-+
-+      if (!wrap_glob(p, 0, NULL, &g))
-+	{
-+	  size_t n;
-+
-+	  for (n = 0; n < g.gl_pathc; ++n)
-+	    if (read_config (g.gl_pathv[n]))
-+	      {
-+		ret = 1;
-+		break;
-+	      }
-+
-+	  globfree(&g);
-+	}
-+
-+	free (p);
-+    }
-+
-   return ret;
- }
- 
--- 
-2.17.2
+    poky.conf: Enable security flags+pie by defaultEnable security
+flags+pie by
 
+    This has been an opt-in for so long, some distributions e.g.
+    poky-lsb uses it by default however, since most of linux
+    distros have started to default to these settings for security
+    enhancements, time has come for OE to make it default too
 
+This carries the consequence that prelinking no longer really works. What's
+the recommendation for users that want to keep applying whole-system
+prelink optimizations (that is, image-prelink.bbclass)? Manually resetting
+SECURITY_CFLAGS to the empty string after including poky.conf will come
+close to undoing the effect of security_flags.inc, but there are a few
+places its effects will still leak out.
+
+-Matt
+
+--0000000000006d2db3057ea3d50d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hi all,<div><br></div><div>With the follo=
+wing change, position-independent executables became the default in Poky:</=
+div><div><br></div><div><div>commit 491082c56ce34f3fd644f8d4457ccd52af95108=
+7</div><div>Author: Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.=
+khem@gmail.com</a>&gt;</div><div>Date:=C2=A0 =C2=A0Fri Jul 27 19:46:14 2018=
+ -0700</div><div><br></div><div>=C2=A0 =C2=A0 poky.conf: Enable security fl=
+ags+pie by defaultEnable security flags+pie by=C2=A0</div><div>=C2=A0 =C2=
+=A0=C2=A0</div><div>=C2=A0 =C2=A0 This has been an opt-in for so long, some=
+ distributions e.g.</div><div>=C2=A0 =C2=A0 poky-lsb uses it by default how=
+ever, since most of linux</div><div>=C2=A0 =C2=A0 distros have started to d=
+efault to these settings for security</div><div>=C2=A0 =C2=A0 enhancements,=
+ time has come for OE to make it default too</div></div><div><br></div><div=
+>This carries the consequence that prelinking no longer really works. What&=
+#39;s the recommendation for users that want to keep applying whole-system =
+prelink optimizations (that is, image-prelink.bbclass)? Manually resetting =
+SECURITY_CFLAGS to the empty string after including poky.conf will come clo=
+se to undoing the effect of security_flags.inc, but there are a few places =
+its effects will still leak out.</div><div><br></div><div>-Matt</div></div>=
+</div>
+
+--0000000000006d2db3057ea3d50d--
