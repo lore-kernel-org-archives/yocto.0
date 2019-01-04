@@ -1,62 +1,55 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <desai@uni-bremen.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49877E00C75; Fri,  4 Jan 2019 07:58:14 -0800 (PST)
+	id 32CB9E00C8F; Fri,  4 Jan 2019 12:32:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.102.50.17 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.53 listed in list.dnswl.org]
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
-	[209.85.166.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5F5AE00BB7
-	for <yocto@yoctoproject.org>; Fri,  4 Jan 2019 07:58:13 -0800 (PST)
-Received: by mail-io1-f53.google.com with SMTP id s22so29865436ioc.8
-	for <yocto@yoctoproject.org>; Fri, 04 Jan 2019 07:58:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=KeNpS7q/AMMk6UnKg6g0JcrppSWTgBqvV9J16vLh8CY=;
-	b=shSZ77yF9xr7Od8HR52RJ0Hdi5JQBCRssiYixeCnnCzaNFOP2afrQjfVGByJmfrScM
-	EsbBsHdFKF2+o+PdNqFl0OpOSLZqpocPwI9EV9SkPRZYzPGx6shM+zh5vc9ICDcpElMv
-	TEnsjuInEt+O2wzwoyJwYiQX/v5D/ySnWwegCnNzkZWndSoiaGEozYhPfDyQvteP6nC7
-	rZOkPiNAaCEV+VvCDPcor4EgBILfXRLhI4qCiJgvtzZGpgcEPSqhrH1IZ1jj0Q7RVK48
-	Q/Z6KPx2zlT0wV8BnV7epUwt+vfG1tp4deROny6jKQEWVNzpe/KV/4o3W7EvdBofvVge
-	AWHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=KeNpS7q/AMMk6UnKg6g0JcrppSWTgBqvV9J16vLh8CY=;
-	b=gRlGH7I6cru/Yx/9/NS6X/Hrrum9RWVd/vruiNda6fwMHyHNxEKajc6rKDAuZQlTYi
-	l3pSTvRXNe2CN9WsEFJjwccgYHOTXpZlMKYN32YatOc50GDZmQb6UjcFO3GXglyMGL6Y
-	Ugv/KoG84d/gZJ7xb5XVoIKNu+ACqldQNtN1qWuIiO9TmMBwwynniVG0KRuoGJ5g06Ah
-	U6L9jQWxrD8CgYE6ECWX4tYCWeoyuXvuoW8lwz6m1KOP3a1tjhalsqNd8bWxdmJKtSj1
-	FKcmXhUhdGGGDHcTrXHFQSysYPqJhnY7bQ4kMZ9PXmsWtVAqBAW5n7tLWE76sqPrwO0U
-	9mmQ==
-X-Gm-Message-State: AJcUukeurOYBDm33cC7W7kf7NGGg7CCBQCv7mFd7T3T+CSPbf52LyktY
-	Gj8dmxR3oOpeUpk3DtkpcemmxZAPDY9Q3AY9ALDO/VTe
-X-Google-Smtp-Source: ALg8bN4rVSO1PhawGHafYvWfj1vA//2eFAY2lLiOHQ0hVKmuUueBVp4PDKHTQ66tsL6ToU9EMBVhN5+oJ/BxzJ2LOVk=
-X-Received: by 2002:a6b:f70a:: with SMTP id k10mr32379504iog.270.1546617493307;
-	Fri, 04 Jan 2019 07:58:13 -0800 (PST)
+Received: from smtp.uni-bremen.de (gabriel-vm-2.zfn.uni-bremen.de
+	[134.102.50.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5E25E00C81
+	for <yocto@yoctoproject.org>; Fri,  4 Jan 2019 12:32:35 -0800 (PST)
+Received: from webmail.uni-bremen.de (webmail-1.zfn.uni-bremen.de
+	[134.102.50.65])
+	(using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.uni-bremen.de (Postfix) with ESMTPS id 6B53D205B4
+	for <yocto@yoctoproject.org>; Fri,  4 Jan 2019 21:32:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=uni-bremen.de; s=dkim;
+	t=1546633954; bh=03ejUQSVzBUYeEJ0F9LcLnMF/gHWpCRFAT2GP1B4758=;
+	h=Date:From:To;
+	b=ybZBVEFldDwv70xP2ckLRWirLRyksgOcIez1hNwOc7ofQeDnmZ7JO+bu2jTO9z9CM
+	azp2sruEqh9xfTgTUoz0dT7hPyyue5IaV9/nio1Rf67H7chhduxUW3r7CgXqQ6kiq3
+	lY98/mk1eCb41kvFYdc2bUdGJFQEMYBpQ3GSxJGY=
+Received: from uni-bremen.de (webmail-1.zfn.uni-bremen.de [134.102.50.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by webmail.uni-bremen.de (Postfix) with ESMTPSA id 434CA5F8B6
+	for <yocto@yoctoproject.org>; Fri,  4 Jan 2019 21:32:34 +0100 (CET)
+Received: from galileo-313.wohnheim.uni-bremen.de
+	(galileo-313.wohnheim.uni-bremen.de [134.102.106.57]) by
+	webmail.uni-bremen.de (Horde Framework) with HTTPS; Fri, 04 Jan 2019
+	21:32:34 +0100
+Date: Fri, 04 Jan 2019 21:32:34 +0100
+Message-ID: <20190104213234.Horde.fsWzjSbd2N9UoHJN1Xwu10c@webmail.uni-bremen.de>
+From: Shantanoo Desai <desai@uni-bremen.de>
+To: yocto@yoctoproject.org
+User-Agent: Horde Application Framework 5
 MIME-Version: 1.0
-References: <CAJgxT38ryEhJKQ1_CN79nKPBLUiOca-xHVVKUnGrOQoUq027hA@mail.gmail.com>
-	<CAJTo0LZK0Z_HA4aXecD4NEkmHaFY1S8yVh+zKg2WGa54iCKAOQ@mail.gmail.com>
-	<CAJgxT38FfDiYCYrMGqsY3gmVSMGm2=QxYP_YppGjYiar6piP0A@mail.gmail.com>
-In-Reply-To: <CAJgxT38FfDiYCYrMGqsY3gmVSMGm2=QxYP_YppGjYiar6piP0A@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 4 Jan 2019 15:58:02 +0000
-Message-ID: <CAJTo0Lb2NXfnP8yS02Mp12SBEJM7NkdTtDTnZ8=Tpw9EXXaoRw@mail.gmail.com>
-To: Matt Hoosier <matt.hoosier@gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Using prelink in Thud and subsequent
+Subject: Some Guide for CI/CD with Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,15 +61,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Jan 2019 15:58:14 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 04 Jan 2019 20:32:37 -0000
+Content-Type: multipart/alternative; boundary="=_7qAZ22dqG3KJOgzhraszAkF"
+Content-Transfer-Encoding: 8bit
 
-On Fri, 4 Jan 2019 at 15:56, Matt Hoosier <matt.hoosier@gmail.com> wrote:
-> Okay, fair enough. There's a lot of mechanical configuration in poky,conf that would be nice to not to maintain a copy of, but that's fine.
+--=_7qAZ22dqG3KJOgzhraszAkF
+Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
+Content-Description: Plaintext Message
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-If there's anything in there that should just be shunted into the
-default configuration, then please do send a patch (there most likely
-is plenty).
+Hi all,
 
-Ross
+I just have become more comfortable with Yocto for e.g. using  
+/devtool  /and basic /bitbake /commands.
 
+I am was successfully able to create some python applications for my  
+target board via a layer. I would like to use CI / CD eventually for  
+Yocto.
+I have seen videos from Linux Foundation but I could not find any  
+guide to create some basic CI stuff for Yocto.
+
+Any help or suggestions in this direction would be appreciated.
+
+Regards
+  Grüße,
+
+M.Sc. Shantanoo Desai
+Wissenschaftlicher Mitarbetier
+Informations- und kommunikationstechnische Anwendungen in der Produktion
+BIBA- Bremer Institut für Produktion und Logistik GmbH
+
+Raum 1390
+Tel: +49 (0)421 218-50138
+
+email: desai@uni-bremen.de
+
+--=_7qAZ22dqG3KJOgzhraszAkF
+Content-Type: text/html; charset=utf-8
+Content-Description: HTML Message
+Content-Disposition: inline
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title></title>
+</head>
+<body style="font-family:Arial;font-size:14px">
+<p>Hi all,<br>
+<br>
+I just have become more comfortable with Yocto for e.g. using <em>devtool&nbsp;</em> and basic <em>bitbake</em> commands.<br>
+<br>
+I am was successfully able to create some python applications for my target board via a layer. I would like to use CI / CD eventually for Yocto.<br>
+I have seen videos from Linux Foundation but I could not find any guide to create some basic CI stuff for Yocto.<br>
+<br>
+<br>
+Any help or suggestions in this direction would be appreciated.<br>
+<br>
+<br>
+Regards</p>
+<div>Gr&uuml;&szlig;e,<br>
+<br>
+M.Sc. Shantanoo Desai<br>
+Wissenschaftlicher Mitarbetier<br>
+Informations- und kommunikationstechnische Anwendungen in der Produktion<br>
+BIBA- Bremer Institut f&uuml;r Produktion und Logistik GmbH<br>
+<br>
+Raum 1390<br>
+Tel: +49 (0)421 218-50138<br>
+<br>
+email: <a href="mailto:desai@uni-bremen.de">desai@uni-bremen.de</a></div>
+</body>
+</html>
+
+--=_7qAZ22dqG3KJOgzhraszAkF--
