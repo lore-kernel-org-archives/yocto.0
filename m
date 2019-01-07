@@ -1,55 +1,40 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78A31E00CD5; Mon,  7 Jan 2019 09:49:40 -0800 (PST)
+	id 522E5E00CCC; Mon,  7 Jan 2019 11:32:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41B6FE00C93
-	for <yocto@yoctoproject.org>; Mon,  7 Jan 2019 09:49:38 -0800 (PST)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBEA0E009B1;
+	Mon,  7 Jan 2019 11:32:47 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	07 Jan 2019 09:49:38 -0800
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	07 Jan 2019 11:32:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.56,451,1539673200"; 
-	d="scan'208,217";a="124070723"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
-	by orsmga002.jf.intel.com with ESMTP; 07 Jan 2019 09:49:38 -0800
-Received: from fmsmsx152.amr.corp.intel.com (10.18.125.5) by
-	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
-	(TLS) id 14.3.408.0; Mon, 7 Jan 2019 09:49:32 -0800
-Received: from fmsmsx123.amr.corp.intel.com ([169.254.7.98]) by
-	FMSMSX152.amr.corp.intel.com ([169.254.6.109]) with mapi id
-	14.03.0415.000; Mon, 7 Jan 2019 09:49:31 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Reminder: Yocto Project Technical Team Meeting @ Monthly from
-	8am to 8:30am on the first Tuesday (PDT) 
-Thread-Index: AdRDwt7sFZP+MREwTy2sfh2AAG3lOg==
-Date: Mon, 7 Jan 2019 17:49:30 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EEA6CDC75@fmsmsx123.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMmQ2MTYzYzItOTFkNi00MzNmLWI3YTItYjM0MTc1ZjlhYWE0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiV3RSZmc5NnFxNzJCbUsyYmVJMkdTVEJwV1ZXXC9DbHlKNWYzaU5EdXFkK2FZb3V3NTZGUThiTHZHNFFoOUNucTcifQ==
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
+X-IronPort-AV: E=Sophos;i="5.56,451,1539673200"; d="scan'208";a="124023686"
+Received: from paolienk-mobl1.gar.corp.intel.com (HELO localhost.localdomain)
+	([10.255.167.72])
+	by FMSMGA003.fm.intel.com with ESMTP; 07 Jan 2019 11:32:43 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 08 Jan 2019 08:32:39 +1300
+Message-ID: <3847059.mRjBMpplpY@localhost.localdomain>
+Organization: Intel Corporation
+In-Reply-To: <CAJTo0Lau=yftGi8+3KktfUoaVH8ZuFrg+8nYVY5uH5z-PE-t9g@mail.gmail.com>
+References: <20190107050058.27491.16171@packages.yoctoproject.org>
+	<CANNYZj_VuJT4Z04eVc22yGHrAaPx+iaBJHXDN9QN938zahDJxg@mail.gmail.com>
+	<CAJTo0Lau=yftGi8+3KktfUoaVH8ZuFrg+8nYVY5uH5z-PE-t9g@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Reminder: Yocto Project Technical Team Meeting @ Monthly from 8am to 8:30am on the first Tuesday (PDT)
+Subject: Re: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,121 +46,369 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jan 2019 17:49:40 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6CDC75fmsmsx123amrcor_"
+X-List-Received-Date: Mon, 07 Jan 2019 19:32:49 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6CDC75fmsmsx123amrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+I think the RRS still serves a purpose, if it's putting out correct informa=
+tion of course.=20
+I have spent quite a bit of time reworking it, but Michael hasn't had the t=
+ime to do
+the upgrade yet. I will ping him again.
 
-QWxsLA0KDQpKdXN0IGEgcmVtaW5kZXIgd2Ugd2lsbCBob2xkIHRoZSBtb250aGx5IFlvY3RvIFBy
-b2plY3QgVGVjaG5pY2FsIE1lZXRpbmcgYXQgOGFtIFBEVCB0b21vcnJvdy4gIFdlIG1vdmVkIGl0
-IGZyb20gMS8xIHRvIDEvOCBkdWUgdG8gdGhlIEhvbGlkYXkuIEkgd2lsbCBzdGFydCB0cmFja2lu
-ZyB0aGUgbWludXRlcyBhdDogaHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZG9jdW1lbnQvZC8xWTVJ
-SXVFLXowWWtkbC1Ed3V6VUpoNTJmbE9adWhOX1RTQWZ3MnRkVTlwZy9lZGl0P3RzPTVjMDZiMjJk
-ICBQbGVhc2UgcmVxdWVzdCBhY2Nlc3MgaWYgeW91IHdhbnQgdG8gYXNzaXN0IGluIGVkaXRpbmcg
-dGhlbS4gIFRoZSB3b3JsZCBzaG91bGQgaGF2ZSB2aWV3IGFjY2Vzcy4NCg0KWW9jdG8gUHJvamVj
-dCBUZWNobmljYWwgVGVhbSBNZWV0aW5nOiBXZSBlbmNvdXJhZ2UgcGVvcGxlIGF0dGVuZGluZyB0
-aGUgbWVldGluZyB0byBsb2dvbiBhbmQgYW5ub3VuY2UgdGhlbXNlbHZlcyBvbiB0aGUgWW9jdG8g
-UHJvamVjdCBJUkMgY2hhbmNlbCBkdXJpbmcgdGhlIG1lZXRpbmcgKG9wdGlvbmFsKToNCllvY3Rv
-IElSQzogaHR0cDovL3dlYmNoYXQuZnJlZW5vZGUubmV0Lz9jaGFubmVscz0jeW9jdG8NCg0KV2lr
-aTogaHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9wdWJsaWMtdmlydHVhbC1tZWV0aW5ncy8N
-Cg0KV2hlbiAgICAgICAgICAgIE1vbnRobHkgZnJvbSA4YW0gdG8gODozMGFtIG9uIHRoZSBmaXJz
-dCBUdWVzZGF5IFBhY2lmaWMgVGltZQ0KV2hlcmUgICAgICAgICAgIFpvb20gTWVldGluZzogaHR0
-cHM6Ly96b29tLnVzL2ovOTkwODkyNzEyDQoNClRoYW5rcywNCg0KU3RlcGhlbiBLLiBKb2xsZXkN
-CllvY3RvIFByb2plY3QgUHJvZ3JhbSBNYW5hZ2VyDQpJTlRFTCwgTVMgSkYxLTI1NSwgMjExMSBO
-LkUuIDI1dGggQXZlbnVlLCBIaWxsc2Jvcm8sIE9SIDk3MTI0DQrigKIgICAgQ2VsbDogICAgICAg
-ICAgICAgICgyMDgpIDI0NC00NDYwDQrigKIgRW1haWw6ICAgICAgICAgICAgICAgIHN0ZXBoZW4u
-ay5qb2xsZXlAaW50ZWwuY29tDQoNCg==
+Cheers,
+Paul
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6CDC75fmsmsx123amrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Monday, 7 January 2019 11:35:01 PM NZDT Burton, Ross wrote:
+> Yes, AUH pretty much replaces this I'd say.
+>=20
+> Ross
+>=20
+> On Mon, 7 Jan 2019 at 10:26, Alexander Kanavin <alex.kanavin@gmail.com> w=
+rote:
+> >
+> > Looks like this has regressed and is sending out outdated, misleading
+> > information (probably related to recent distrodata-releated changes).
+> >
+> > Shall we switch it off for now?
+> >
+> > AUH has largely superseded this report anyway, and I have a feeling
+> > most people tune it out already.
+> >
+> > Alex
+> >
+> > On Mon, 7 Jan 2019 at 06:01, <recipe-report@yoctoproject.org> wrote:
+> > >
+> > > This mail was sent out by Recipe reporting system.
+> > >
+> > > This message list those recipes which need to be upgraded. If maintai=
+ners
+> > > believe some of them needn't to upgrade at this time, they can fill
+> > > RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this rema=
+inder
+> > > until newer upstream version was detected.
+> > >
+> > > Example:
+> > > RECIPE_NO_UPDATE_REASON =3D "Version 2.0 is unstable"
+> > >
+> > > You can check the detail information at:
+> > >
+> > > http://recipes.yoctoproject.org/
+> > >
+> > > Package               Version          Upstream version      Maintain=
+er           NoUpgradeReason
+> > > --------------------  ---------------  --------------------  --------=
+=2D----------  ------------------------------
+> > > libgloss              3.0.0            3.0.0.20180831        Alejandr=
+o Hernandez
+> > > newlib                3.0.0            3.0.0.20180831        Alejandr=
+o Hernandez
+> > > libmodulemd           1.7.0            2.0.0                 Alexande=
+r Kanavin
+> > > pcmanfm               1.3.0            1.3.1                 Alexande=
+r Kanavin
+> > > webkitgtk             2.22.4           2.22.5                Alexande=
+r Kanavin
+> > > boost                 1.68.0           1.69.0                Alexande=
+r Kanavin
+> > > libfm-extra           1.3.0.2          1.3.1                 Alexande=
+r Kanavin
+> > > libfm                 1.3.0.2          1.3.1                 Alexande=
+r Kanavin
+> > > nativesdk-meson       0.47.2           0.49.0                Alexande=
+r Kanavin
+> > > ffmpeg                4.0.2            4.1                   Alexande=
+r Kanavin
+> > > libcomps              0.1.8+gitX       0.1.9                 Alexande=
+r Kanavin
+> > > librepo               1.9.2            1.9.3                 Alexande=
+r Kanavin
+> > > meson                 0.47.2           0.49.0                Alexande=
+r Kanavin
+> > > dnf                   4.0.9            4.0.10                Alexande=
+r Kanavin
+> > > libdnf                0.22.3           0.24.1                Alexande=
+r Kanavin
+> > > lighttpd              1.4.51           1.4.52                Alexande=
+r Kanavin
+> > > gobject-introspec...  1.58.1           1.58.2                Alexande=
+r Kanavin
+> > > btrfs-tools           4.19             4.19.1                Alexande=
+r Kanavin
+> > > bjam-native           1.68.0           1.69.0                Alexande=
+r Kanavin
+> > > createrepo-c          0.11.1+gitX      0.12.0                Alexande=
+r Kanavin
+> > > busybox               1.29.2           1.29.3                Andrej V=
+alek
+> > > apt                   1.2.24           1.4.8                 An=EDbal=
+ Lim=F3n
+> > > apt-native            1.2.24           1.4.8                 An=EDbal=
+ Lim=F3n
+> > > dpkg                  1.18.24          1.19.2                An=EDbal=
+ Lim=F3n
+> > > puzzles               0.0+gitX         0.0-new-commits-a...  Anuj Mit=
+tal
+> > > libpcap               1.8.1            1.9.0                 Anuj Mit=
+tal
+> > > base-passwd           3.5.29           3.5.45                Anuj Mit=
+tal          Version 3.5.38 requires cde...
+> > > ifupdown              0.8.16           0.8.33                Anuj Mit=
+tal
+> > > glib-2.0              2.58.0           2.58.1                Anuj Mit=
+tal
+> > > glib-networking       2.54.1           2.58.0                Anuj Mit=
+tal
+> > > pixman                0.34.0           0.36.0                Anuj Mit=
+tal
+> > > harfbuzz              2.1.3            2.2.0                 Anuj Mit=
+tal
+> > > gst-examples          0.0.1+gitX       0.0.1-new-commits...  Anuj Mit=
+tal
+> > > sqlite3               3.25.3           3.26.0                Anuj Mit=
+tal
+> > > vte                   0.52.2           0.54.3                Anuj Mit=
+tal
+> > > gsettings-desktop...  3.28.0           3.28.1                Anuj Mit=
+tal
+> > > libsolv               0.7.1            0.7.2                 Anuj Mit=
+tal
+> > > eudev                 3.2.5            3.2.7                 Anuj Mit=
+tal
+> > > atk                   2.28.1           2.30.0                Anuj Mit=
+tal
+> > > librsvg               2.40.20          2.44.10               Anuj Mit=
+tal          Versions from 2.41.0 requir...
+> > > cairo                 1.14.12          1.16.2                Anuj Mit=
+tal
+> > > i2c-tools             4.0              4.1                   Anuj Mit=
+tal
+> > > libatomic-ops         7.6.6+gitX       7.6.8                 Anuj Mit=
+tal
+> > > libpng                1.6.35           1.6.36                Anuj Mit=
+tal
+> > > at-spi2-atk           2.26.2           2.30.0                Anuj Mit=
+tal
+> > > mmc-utils             0.1              0.1-new-commits-a...  Anuj Mit=
+tal
+> > > libjpeg-turbo         2.0.0            2.0.1                 Anuj Mit=
+tal
+> > > mtools                4.0.19           4.0.23                Anuj Mit=
+tal
+> > > libassuan             2.5.1            2.5.2                 Armin Ku=
+ster
+> > > netbase               5.4              5.5                   Armin Ku=
+ster
+> > > openssh               7.9p1+git        7.9.                  Armin Ku=
+ster
+> > > curl                  7.62.0           7.63.0                Armin Ku=
+ster
+> > > gnutls                3.6.4            3.6.5                 Armin Ku=
+ster
+> > > nss                   3.40             3.41                  Armin Ku=
+ster
+> > > bind                  9.11.5           9.13.5                Armin Ku=
+ster         9.11 is LTS 2021
+> > > nettle                3.4              3.4.1                 Armin Ku=
+ster
+> > > linux-libc-headers    4.18             4.19.10               Bruce As=
+hfield
+> > > kern-tools-native     0.2+gitX         0.2-new-commits-a...  Bruce As=
+hfield
+> > > linux-yocto           4.18.14+gitX     4.19.8                Bruce As=
+hfield
+> > > linux-yocto-rt        4.18.14+gitX     4.19.8                Bruce As=
+hfield
+> > > linux-yocto-tiny      4.18.14+gitX     4.19.8                Bruce As=
+hfield
+> > > kmscube               git              git-new-commits-a...  Carlos R=
+afael Giani
+> > > wpa-supplicant        2.6              2.7                   Changhye=
+ok Bae
+> > > iptables              1.6.2            1.8.2                 Changhye=
+ok Bae
+> > > dbus-test             1.12.10          1.12.12               Chen Qi
+> > > acl                   2.2.52           2.2.53                Chen Qi
+> > > attr                  2.4.47           2.4.48                Chen Qi
+> > > systemd-conf          1.0              239                   Chen Qi
+> > > dbus                  1.12.10          1.12.12               Chen Qi
+> > > cups                  2.2.9            2.2.10                Chen Qi
+> > > flex                  2.6.0            2.6.4                 Chen Qi
+> > > util-linux            2.32.1           2.33                  Chen Qi
+> > > bison                 3.0.4            3.2.2                 Chen Qi
+> > > sed                   4.2.2            4.5                   Chen Qi
+> > > sysstat               12.1.1           12.1.2                Chen Qi
+> > > lzop                  1.03             1.04                  Denys Dm=
+ytriyenko
+> > > lz4                   1.8.2            1.8.3                 Denys Dm=
+ytriyenko
+> > > hdparm                9.56             9.58                  Denys Dm=
+ytriyenko
+> > > wayland-protocols     1.16             1.17                  Denys Dm=
+ytriyenko
+> > > python3-pygobject     3.28.3           3.30.4                Derek St=
+raka
+> > > python3               3.5.6            3.7.1                 Derek St=
+raka
+> > > python3-pbr           4.2.0            5.1.1                 Derek St=
+raka
+> > > python3-setuptools    40.0.0           40.6.3                Derek St=
+raka
+> > > python3-pip           18.0             18.1                  Derek St=
+raka
+> > > python-numpy          1.14.5           1.15.4                Derek St=
+raka
+> > > python3-numpy         1.14.5           1.15.4                Derek St=
+raka
+> > > python-setuptools     40.0.0           40.6.3                Derek St=
+raka
+> > > python3-six           1.11.0           1.12.0                Derek St=
+raka
+> > > python3-gitdb         2.0.4            2.0.5                 Derek St=
+raka
+> > > python3-pycairo       1.15.6           1.18.0                Derek St=
+raka
+> > > python3-native        3.5.6            3.7.1                 Derek St=
+raka
+> > > acpica                20180508         20181213              Fathi Bo=
+udra
+> > > libgpg-error          1.32             1.33                  Hongxu J=
+ia
+> > > gnupg                 2.2.11           2.2.12                Hongxu J=
+ia
+> > > help2man-native       1.47.6           1.47.8                Hongxu J=
+ia
+> > > libxcrypt             4.1.1            4.4.1                 Khem Raj
+> > > go-runtime            1.11.1           1.11.4                Khem Raj
+> > > go                    1.11.1           1.11.4                Khem Raj
+> > > binutils              2.31             2.31.1                Khem Raj
+> > > go-native             1.11.1           1.11.4                Khem Raj
+> > > prelink               1.0+gitX         1.0-new-commits-a...  Mark Hat=
+le
+> > > db                    5.3.28           5.3.28+dfsg1          Mark Hat=
+le
+> > > binutils-cross-ca...  2.31             2.31.1                No maint=
+ainer
+> > > binutils-cross-i586   2.31             2.31.1                No maint=
+ainer
+> > > go-cross-canadian...  1.11.1           1.11.4                No maint=
+ainer
+> > > go-crosssdk-x86_6...  1.11.1           1.11.4                No maint=
+ainer
+> > > binutils-crosssdk...  2.31             2.31.1                No maint=
+ainer
+> > > go-cross-i586         1.11.1           1.11.4                No maint=
+ainer
+> > > mesa                  18.1.9           18.3.1                Otavio S=
+alvador
+> > > linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio S=
+alvador
+> > > mesa-gl               18.1.9           18.3.1                Otavio S=
+alvador
+> > > cmake                 3.12.2           3.13.2                Pascal B=
+ach
+> > > cmake-native          3.12.2           3.13.2                Pascal B=
+ach
+> > > build-compare         2015.02.10+gitX  2015.02.10-new-co...  Paul Egg=
+leton
+> > > build-appliance-i...  15.0.0           20.0.0                Richard =
+Purdie
+> > > gnu-config            20180713+gitX    20180713-new-comm...  Robert Y=
+ang
+> > > squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Y=
+ang
+> > > e2fsprogs             1.44.3           1.44.5                Robert Y=
+ang
+> > > ccache                3.4.2            3.5                   Robert Y=
+ang
+> > > git                   2.18.1           2.20.1                Robert Y=
+ang
+> > > mklibs-native         0.1.43           0.1.44                Robert Y=
+ang
+> > > piglit                1.0+gitrX        1.0-new-commits-a...  Ross Bur=
+ton
+> > > acpid                 2.0.30           2.0.31                Ross Bur=
+ton
+> > > libinput              1.12.3           1.12.4                Ross Bur=
+ton
+> > > vulkan-demos          git              git-new-commits-a...  Ross Bur=
+ton
+> > > perl                  5.24.4           5.28.1                Ross Bur=
+ton
+> > > gtk-icon-utils-na...  3.22.30          3.24.2                Ross Bur=
+ton
+> > > ofono                 1.25             1.26                  Ross Bur=
+ton
+> > > libical               2.0.0            3.0.4                 Ross Bur=
+ton
+> > > vulkan                1.1.73.0         1.1.92.1              Ross Bur=
+ton
+> > > lsbinitscripts        9.79             10.01                 Ross Bur=
+ton
+> > > sysvinit              2.88dsf          2.93                  Ross Bur=
+ton
+> > > adwaita-icon-theme    3.28.0           3.30.1                Ross Bur=
+ton
+> > > fontconfig            2.12.6           2.13.1                Ross Bur=
+ton
+> > > gdk-pixbuf            2.36.11          2.38.0                Ross Bur=
+ton
+> > > gtk+3                 3.24.1           3.24.2                Ross Bur=
+ton
+> > > pkgconf               1.5.3            1.5.4                 Ross Bur=
+ton
+> > > perl-native           5.24.4           5.28.1                Ross Bur=
+ton
+> > > alsa-tools            1.1.6            1.1.7                 Tanu Kas=
+kinen
+> > > alsa-plugins          1.1.6            1.1.7                 Tanu Kas=
+kinen
+> > > alsa-utils-scripts    1.1.6            1.1.7                 Tanu Kas=
+kinen
+> > > alsa-lib              1.1.6            1.1.7                 Tanu Kas=
+kinen
+> > > alsa-utils            1.1.6            1.1.7                 Tanu Kas=
+kinen
+> > > gnu-efi               3.0.8            3.0.9                 Yi Zhao
+> > > libcap                2.25             2.26                  Yi Zhao
+> > > chkconfig             1.3.58           1.8                   Yi Zhao =
+             Version 1.5 requires selinux
+> > > logrotate             3.14.0           3.15.0                Yi Zhao
+> > > file                  5.34             5.35                  Yi Zhao
+> > > wget                  1.19.5           1.20                  Yi Zhao
+> > > json-glib             1.4.2            1.4.4                 Yi Zhao
+> > > libsdl2               2.0.8            2.0.9                 Yi Zhao
+> > >
+> > > Upgradable count: 147
+> > > Upgradable total count: 151
+> > >
+> > > The based commit is:
+> > >
+> > > commit c22b0bf66a28324da66caf0660f171cc279a1f2b
+> > > Author: Robert Yang <liezhi.yang@windriver.com>
+> > > Date:   Tue Dec 18 17:48:22 2018 +0800
+> > >
+> > >     cmake-native: Set --parallel for configure
+> > >
+> > >     This can save do_configure's time from 330s to 60s on my host.
+> > >
+> > >     Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+> > >     Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+> > >
+> > > Any problem, please contact Jose Lamego <jose.a.lamego@intel.com>
+> > >
+> > > --
+> > > _______________________________________________
+> > > yocto mailing list
+> > > yocto@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/yocto
+>=20
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
-dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
-LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
-ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
-PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
-Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+QWxsLDwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2
-Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9u
-dCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMXB0OyI+SnVzdCBhIHJlbWluZGVyIHdlIHdpbGwgaG9sZCB0aGUgbW9udGhseSBZ
-b2N0byBQcm9qZWN0IFRlY2huaWNhbCBNZWV0aW5nIGF0IDhhbSBQRFQgdG9tb3Jyb3cuJm5ic3A7
-IFdlIG1vdmVkIGl0IGZyb20gMS8xIHRvIDEvOCBkdWUgdG8gdGhlIEhvbGlkYXkuIEkgd2lsbCBz
-dGFydCB0cmFja2luZyB0aGUgbWludXRlcw0KYXQ6IDxhIGhyZWY9Imh0dHBzOi8vZG9jcy5nb29n
-bGUuY29tL2RvY3VtZW50L2QvMVk1SUl1RS16MFlrZGwtRHd1elVKaDUyZmxPWnVoTl9UU0FmdzJ0
-ZFU5cGcvZWRpdD90cz01YzA2YjIyZCI+PGZvbnQgY29sb3I9IiMwNTYzQzEiPjx1Pmh0dHBzOi8v
-ZG9jcy5nb29nbGUuY29tL2RvY3VtZW50L2QvMVk1SUl1RS16MFlrZGwtRHd1elVKaDUyZmxPWnVo
-Tl9UU0FmdzJ0ZFU5cGcvZWRpdD90cz01YzA2YjIyZDwvdT48L2ZvbnQ+PC9hPiZuYnNwOyBQbGVh
-c2UgcmVxdWVzdA0KYWNjZXNzIGlmIHlvdSB3YW50IHRvIGFzc2lzdCBpbiBlZGl0aW5nIHRoZW0u
-Jm5ic3A7IFRoZSB3b3JsZCBzaG91bGQgaGF2ZSB2aWV3IGFjY2Vzcy4gPC9zcGFuPjwvZm9udD48
-L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0Qi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+
-DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5Zb2N0byBQcm9qZWN0IFRlY2huaWNhbCBUZWFtIE1l
-ZXRpbmc6IFdlIGVuY291cmFnZSBwZW9wbGUgYXR0ZW5kaW5nIHRoZSBtZWV0aW5nIHRvIGxvZ29u
-IGFuZCBhbm5vdW5jZSB0aGVtc2VsdmVzIG9uIHRoZSBZb2N0byBQcm9qZWN0IElSQyBjaGFuY2Vs
-IGR1cmluZyB0aGUgbWVldGluZyAob3B0aW9uYWwpOjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2
-Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExcHQ7Ij5Zb2N0byBJUkM6IDxhIGhyZWY9Imh0dHA6Ly93ZWJjaGF0LmZy
-ZWVub2RlLm5ldC8/Y2hhbm5lbHM9I3lvY3RvIj48Zm9udCBjb2xvcj0iIzA1NjNDMSI+PHU+aHR0
-cDovL3dlYmNoYXQuZnJlZW5vZGUubmV0Lz9jaGFubmVscz0jeW9jdG88L3U+PC9mb250PjwvYT48
-L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBj
-b2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFu
-PjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9
-IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPldpa2k6IDxhIGhyZWY9Imh0
-dHBzOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvcHVibGljLXZpcnR1YWwtbWVldGluZ3MvIj48Zm9u
-dCBjb2xvcj0iIzA1NjNDMSI+PHU+aHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9wdWJsaWMt
-dmlydHVhbC1tZWV0aW5ncy88L3U+PC9mb250PjwvYT48L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRp
-dj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZv
-bnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTFwdDsiPldoZW4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgTW9udGhseSBmcm9tIDhhbSB0byA4OjMwYW0g
-b24gdGhlIGZpcnN0IFR1ZXNkYXkgUGFjaWZpYyBUaW1lPC9zcGFuPjwvZm9udD48L2Rpdj4NCjxk
-aXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTFwdDsiPldoZXJlJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFpvb20gTWVldGluZzogPGEgaHJlZj0iaHR0
-cHM6Ly96b29tLnVzL2ovOTkwODkyNzEyIj48Zm9udCBjb2xvcj0iIzA1NjNDMSI+PHU+aHR0cHM6
-Ly96b29tLnVzL2ovOTkwODkyNzEyPC91PjwvZm9udD48L2E+IDwvc3Bhbj48L2ZvbnQ+PC9kaXY+
-DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRp
-dj48Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMXB0OyI+VGhhbmtzLDwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxm
-b250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBz
-aXplPSI0IiBjb2xvcj0icHVycGxlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE2cHQ7Ij48Yj48
-aT5TdGVwaGVuIEsuIEpvbGxleTwvaT48L2I+PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZv
-bnQgZmFjZT0iQ291cmllciBOZXciIHNpemU9IjEiIGNvbG9yPSJibHVlIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjhwdDsiPjxiPllvY3RvIFByb2plY3QgUHJvZ3JhbSBNYW5hZ2VyPC9iPjwvc3Bh
-bj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNvdXJpZXIgTmV3IiBzaXplPSIyIiBj
-b2xvcj0iZnVjaHNpYSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyI+PGI+SU5URUwsIE1T
-IEpGMS0yNTUsIDIxMTEgTi5FLiAyNXRoIEF2ZW51ZSwgSGlsbHNib3JvLCBPUiA5NzEyNCA8L2I+
-PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZTo5cHQ7Ij48Zm9udCBmYWNlPSJXaW5nZGluZ3MiPig8L2ZvbnQ+PGZvbnQgZmFjZT0i
-TVMgU2FucyBTZXJpZiIgY29sb3I9InRlYWwiPiZuYnNwOyZuYnNwOyZuYnNwOyA8L2ZvbnQ+PGZv
-bnQgZmFjZT0iQ29taWMgU2FucyBNUyIgc2l6ZT0iMSIgY29sb3I9InRlYWwiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6OHB0OyI+PGI+Q2VsbDwvYj48L3NwYW4+PC9mb250Pjxmb250IGZhY2U9Ik1T
-IFNhbnMgU2VyaWYiIGNvbG9yPSJ0ZWFsIj46Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8L2ZvbnQ+
-PGZvbnQgZmFjZT0iTVMgU2FucyBTZXJpZiIgY29sb3I9IiMxRjQ5N0QiPigyMDgpIDI0NC00NDYw
-PC9mb250Pjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IHNpemU9IjIiIGNvbG9yPSIj
-MUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjlwdDsiPjxmb250IGZhY2U9IldpbmdkaW5n
-cyI+KiA8L2ZvbnQ+PGZvbnQgZmFjZT0iQ29taWMgU2FucyBNUyIgc2l6ZT0iMSIgY29sb3I9InRl
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OHB0OyI+PGI+RW1haWw8L2I+PC9zcGFuPjwvZm9u
-dD48Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0idGVhbCI+OiZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOw0KPC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNv
-bG9yPSJibHVlIj48dT5zdGVwaGVuLmsuam9sbGV5QGludGVsLmNvbTwvdT48L2ZvbnQ+PC9zcGFu
-PjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjwvc3Bh
-bj48L2ZvbnQ+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6CDC75fmsmsx123amrcor_--
+=2D-=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
+
+
