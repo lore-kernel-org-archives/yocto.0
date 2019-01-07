@@ -1,67 +1,50 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <einar@vading.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 385B0E00C49; Mon,  7 Jan 2019 03:53:53 -0800 (PST)
+	id 713CAE00B58; Mon,  7 Jan 2019 03:58:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.53 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
-	[209.85.128.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 896E5E00B58
-	for <yocto@yoctoproject.org>; Mon,  7 Jan 2019 03:53:52 -0800 (PST)
-Received: by mail-wm1-f53.google.com with SMTP id y139so600745wmc.5
-	for <yocto@yoctoproject.org>; Mon, 07 Jan 2019 03:53:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:user-agent:mime-version:content-transfer-encoding;
-	bh=3Tx818yK3XYpu9T87D/Sl8vevMCnCnPtIhWM0It1KgY=;
-	b=fJpbMvsL0TsSZHF/IlxH3tRpBKHyUoQHzlhFR6kzmn+Rfn1rPazN0n7v8H5ReIYhYi
-	5/lPGzOuBoyejV2HwZwSCgGfDTZx9GonVkd6D3gzN41Lsner3JvzPpudc+61psJ93wOa
-	hHqdBIC8UsMDOjjUdfrv774UgAgEiRArGHFSk=
+	*      [209.85.161.53 listed in list.dnswl.org]
+Received: from mail-yw1-f53.google.com (mail-yw1-f53.google.com
+	[209.85.161.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ACA6E009B1
+	for <yocto@yoctoproject.org>; Mon,  7 Jan 2019 03:58:46 -0800 (PST)
+Received: by mail-yw1-f53.google.com with SMTP id k188so33842ywa.6
+	for <yocto@yoctoproject.org>; Mon, 07 Jan 2019 03:58:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=3Tx818yK3XYpu9T87D/Sl8vevMCnCnPtIhWM0It1KgY=;
-	b=rOCzGSVmvfSVJKzXCTVONOxbvOz/K0Zx6MIBMR3wYcxsPrStoHUuwVQ1DdwO4iF72w
-	ShaOXl0ddovMhd/RSW0+lrJ9B4uJO7XHWhhU2osvTbxyfTA4o2HtnYdUIVBEk+xKLUoM
-	zzfDDO4oDVczV33LQSYZn8dELxjAHAIvPuxHou0yCpnqEu5OE3bD/p7HdDHDXFZVjjie
-	viLU83JWx40xNYsnIHTE05cySPpnWklS3JC6jYPpZPb2SlA0hctk1jepVuOxypxLtcna
-	j9Z7Zwn7C2XL3pO6geYZoodUTBHKX2pXat5YPldHSWwKgqV+jmHG4HlExVIUfYSrdvCx
-	eLWg==
-X-Gm-Message-State: AJcUukcN1tT9S+TQWypcQHTYWZkBuxs1RohGryVnXLJBe3eDDfw98JRo
-	/Am7XIgb9fUHzjT9Fs6qw+BOsA==
-X-Google-Smtp-Source: ALg8bN7RMyWetun9UgNVzVKNYsU9P5VIi8F4acp9b5QZMWd2rxn0O7RpJjdx64HaiUDECiGawg98Vw==
-X-Received: by 2002:a7b:c315:: with SMTP id k21mr8153802wmj.145.1546862031447; 
-	Mon, 07 Jan 2019 03:53:51 -0800 (PST)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	a187sm7971909wmf.33.2019.01.07.03.53.49
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Mon, 07 Jan 2019 03:53:50 -0800 (PST)
-Message-ID: <b31c7613c6c65d745ea808bd16a97e8d79d03843.camel@linuxfoundation.org>
-From: richard.purdie@linuxfoundation.org
-To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linaro.org>, 
-	yocto@yoctoproject.org
-Date: Mon, 07 Jan 2019 11:53:48 +0000
-In-Reply-To: <20190106174328.20978-1-anibal.limon@linaro.org>
-References: <20190106174328.20978-1-anibal.limon@linaro.org>
-User-Agent: Evolution 3.30.2-1 
-Mime-Version: 1.0
-Subject: Re: [PATCH][ptest-runner] ptest-runner: Add support to report duration of each ptest
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=4hMUBfmMR6zuR6ZJB6oJRhfBe3NeG4fXsyEYt3gzvQ8=;
+	b=TF/1p/g4tn+1w4+Xs+gucDwQ5/DlPRVqalTkKl9Hy4K2mmrE4bhubVbk3hTJawjxZG
+	G46pxWpwy+MbzM+mFf9jUJ2qWMV4iDBy3fmaUa92xtQDdpdvFhIzD7Od5uURJcWrDtj8
+	ST1JWegTTh8zRU6yoaCdH6SJZ9C9SF7r/LPYpFxw83UdOmf4Rjn7qzSBIdFhRzOnuPJg
+	0gN8Zfkw+LKWV2ZVdC/K9ubOX+Yudsga4uBQGQLxEN/TbswpYRdt/TzIcLmwE/X2buWw
+	5w4XKTwzi09qC+R+QPotBNiDgz7tDn1ebDJ84Je13KQkdlzFcSOYNP5k1tN+TDDfuQLd
+	/6LQ==
+X-Gm-Message-State: AA+aEWatlrjeTomqodUqw/BWs7dnuOJnaXmX2GzJU0x5wLxUZ/a2UZVP
+	eZapyfgjCMk1vveRjYC1a7d0ffIIQkGmt47XykTDaPFaieg=
+X-Google-Smtp-Source: AFSGD/XDRJKcVesZbXYbMvxEHe7A1vtn9P+aYCLbbYu4n33GwsqILBuPBU1hqD6tD8BjS5DmgpcpTqGeVWT7Zf9iSDk=
+X-Received: by 2002:a81:63d4:: with SMTP id x203mr58519347ywb.82.1546862325764;
+	Mon, 07 Jan 2019 03:58:45 -0800 (PST)
+MIME-Version: 1.0
+References: <CAB6-Vt+dvn1VwmvX7Q854rDvZ2qPqkRhm=uX3sgS0nfBkokLXg@mail.gmail.com>
+	<CAJTo0Lau_jdwPCxHZtd+MN7a-fVscq-w4fkPvPAzr3tBpibsqQ@mail.gmail.com>
+	<CAB6-VtLLHe+8Doe1jqbi0SKQkvBcq7u=u+89rWhT7HSofv5BFA@mail.gmail.com>
+	<CAB6-VtLP18=1zjKUdL0ewjMW9tOMSx+1i6ar6NBQQ-eMJqjuiQ@mail.gmail.com>
+In-Reply-To: <CAB6-VtLP18=1zjKUdL0ewjMW9tOMSx+1i6ar6NBQQ-eMJqjuiQ@mail.gmail.com>
+From: Einar Vading <yocto-ml@vading.se>
+Date: Mon, 7 Jan 2019 12:58:34 +0100
+Message-ID: <CAB6-VtJ9OE+Z0DVNLGSsZcm6kuYOar9iPkX=SNaEqW77K5MMuw@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Python3 and pathlib/ntpath
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,42 +56,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jan 2019 11:53:53 -0000
+X-List-Received-Date: Mon, 07 Jan 2019 11:58:47 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
 
-On Sun, 2019-01-06 at 11:43 -0600, Aníbal Limón wrote:
-> In stdout reported as,
-> 
-> ...
-> BEGIN: ptest-dir
-> ...
-> DURATION: Ns
-> END: ptest-dir
-> ...
-> 
-> In XML reported as,
-> 
-> ...
-> <testcase classname='test1' name='run-ptest'>
-> 	<duration>Ns</duration>
-> </testcase>
-> ...
+Hello again,
 
-Looks good, thanks!
+I can't get this to work. If I add pathlib and ntpath like in my
+initial email I have pathlib on target. If however I
+'IMAGE_INSTALL_append = " python3-misc"' or add python3-misc as
+RDEPENDS in meson recipe I don't have pathlib on target.
 
-One minor detail - should this be:
+There is no mention of ntpath or pathlib in the python3-manifest file
+but I'm not sure how that thing is supposed to work.
 
-<duration>N</duration>
+// Einar
 
-?
-
-I'm wondering if we should just mandate duration is in seconds and not
-put units into the field as it would complicate parsing?
-
-Cheers,
-
-Richard
-
-
+On Fri, Dec 21, 2018 at 5:48 PM Einar Vading <yocto-ml@vading.se> wrote:
+>
+> Adding python3-misc did not seem to make a difference.
+>
+> // Einar
+>
+> Den fre 21 dec. 2018 15:16 skrev Einar Vading <yocto-ml@vading.se>:
+>>
+>> I'm installing using the recipe.
+>>
+>> Running Sumo and the meson recipe has:
+>> RDEPENDS_${PN} = "ninja python3-core python3-modules"
+>>
+>> I'll try to add python3-misc to RDEPENDS.
+>>
+>> // Einar
+>>
+>> On Fri, Dec 21, 2018 at 2:58 PM Burton, Ross <ross.burton@intel.com> wrote:
+>> >
+>> > pathlib is in python3-misc:
+>> >
+>> > $ oe-pkgdata-util find-path */pathlib.py
+>> > python3-misc: /usr/lib/python3.5/pathlib.py
+>> >
+>> > And Meson in Thud at least has a dependency on python3-misc, so you
+>> > shoudn't need to do anything.
+>> >
+>> > What release are you using?
+>> >
+>> > Or, are you trying to install Meson from source inside the image,
+>> > instead of using the recipe?  In that case ensure that you have all of
+>> > Python installed, easiest way is to add python3 to IMAGE_INSTALL.
+>> >
+>> > Ross
+>> >
+>> > On Fri, 21 Dec 2018 at 13:17, Einar Vading <yocto-ml@vading.se> wrote:
+>> > >
+>> > > Hi,
+>> > >
+>> > > I was trying to install meson on target for a machine that creates a
+>> > > docker image for us. When I try to start meson however I get an error
+>> > > message that pathlib can't be found. With the patch below I got it to
+>> > > work but my question is if there is another way? Or if the patch would
+>> > > be acceptable upstream?
+>> > >
+>> > > Best regards,
+>> > > Einar
+>> > >
+>> > > diff --git a/meta/recipes-devtools/python/python3/python3-manifest.json
+>> > > b/meta/recipes-devtools/python/python3/python3-manifest.json
+>> > > index 2491f36db2..42a5680c65 100644
+>> > > --- a/meta/recipes-devtools/python/python3/python3-manifest.json
+>> > > +++ b/meta/recipes-devtools/python/python3/python3-manifest.json
+>> > > @@ -154,10 +154,12 @@
+>> > >              "${libdir}/python3.5/__pycache__/keyword.*.pyc",
+>> > >              "${libdir}/python3.5/__pycache__/linecache.*.pyc",
+>> > >              "${libdir}/python3.5/__pycache__/locale.*.pyc",
+>> > > +            "${libdir}/python3.5/__pycache__/ntpath.*.pyc",
+>> > >              "${libdir}/python3.5/__pycache__/opcode.*.pyc",
+>> > >              "${libdir}/python3.5/__pycache__/operator.*.pyc",
+>> > >              "${libdir}/python3.5/__pycache__/optparse.*.pyc",
+>> > >              "${libdir}/python3.5/__pycache__/os.*.pyc",
+>> > > +            "${libdir}/python3.5/__pycache__/pathlib.*.pyc",
+>> > >              "${libdir}/python3.5/__pycache__/platform.*.pyc",
+>> > >              "${libdir}/python3.5/__pycache__/posixpath.*.pyc",
+>> > >              "${libdir}/python3.5/__pycache__/re.*.pyc",
+>> > > @@ -269,10 +271,12 @@
+>> > >              "${libdir}/python3.5/linecache.py",
+>> > >              "${libdir}/python3.5/locale.py",
+>> > >              "${libdir}/python3.5/new.py",
+>> > > +            "${libdir}/python3.5/ntpath.py",
+>> > >              "${libdir}/python3.5/opcode.py",
+>> > >              "${libdir}/python3.5/operator.py",
+>> > >              "${libdir}/python3.5/optparse.py",
+>> > >              "${libdir}/python3.5/os.py",
+>> > > +            "${libdir}/python3.5/pathlib.py",
+>> > >              "${libdir}/python3.5/platform.py",
+>> > >              "${libdir}/python3.5/posixpath.py",
+>> > >              "${libdir}/python3.5/re.py",
+>> > > @@ -1146,4 +1150,4 @@
+>> > >          ],
+>> > >          "summary": "Python XML-RPC support"
+>> > >      }
+>> > > -}
+>> > > \ No newline at end of file
+>> > > +}
+>> > > --
+>> > > _______________________________________________
+>> > > yocto mailing list
+>> > > yocto@yoctoproject.org
+>> > > https://lists.yoctoproject.org/listinfo/yocto
 
