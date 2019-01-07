@@ -1,6 +1,6 @@
-Return-Path: <einar@vading.se>
+Return-Path: <kristupas.savickas@teltonika.lt>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 713CAE00B58; Mon,  7 Jan 2019 03:58:47 -0800 (PST)
+	id AEE1CE00C49; Mon,  7 Jan 2019 06:07:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,41 +10,23 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.161.53 listed in list.dnswl.org]
-Received: from mail-yw1-f53.google.com (mail-yw1-f53.google.com
-	[209.85.161.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ACA6E009B1
-	for <yocto@yoctoproject.org>; Mon,  7 Jan 2019 03:58:46 -0800 (PST)
-Received: by mail-yw1-f53.google.com with SMTP id k188so33842ywa.6
-	for <yocto@yoctoproject.org>; Mon, 07 Jan 2019 03:58:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=4hMUBfmMR6zuR6ZJB6oJRhfBe3NeG4fXsyEYt3gzvQ8=;
-	b=TF/1p/g4tn+1w4+Xs+gucDwQ5/DlPRVqalTkKl9Hy4K2mmrE4bhubVbk3hTJawjxZG
-	G46pxWpwy+MbzM+mFf9jUJ2qWMV4iDBy3fmaUa92xtQDdpdvFhIzD7Od5uURJcWrDtj8
-	ST1JWegTTh8zRU6yoaCdH6SJZ9C9SF7r/LPYpFxw83UdOmf4Rjn7qzSBIdFhRzOnuPJg
-	0gN8Zfkw+LKWV2ZVdC/K9ubOX+Yudsga4uBQGQLxEN/TbswpYRdt/TzIcLmwE/X2buWw
-	5w4XKTwzi09qC+R+QPotBNiDgz7tDn1ebDJ84Je13KQkdlzFcSOYNP5k1tN+TDDfuQLd
-	/6LQ==
-X-Gm-Message-State: AA+aEWatlrjeTomqodUqw/BWs7dnuOJnaXmX2GzJU0x5wLxUZ/a2UZVP
-	eZapyfgjCMk1vveRjYC1a7d0ffIIQkGmt47XykTDaPFaieg=
-X-Google-Smtp-Source: AFSGD/XDRJKcVesZbXYbMvxEHe7A1vtn9P+aYCLbbYu4n33GwsqILBuPBU1hqD6tD8BjS5DmgpcpTqGeVWT7Zf9iSDk=
-X-Received: by 2002:a81:63d4:: with SMTP id x203mr58519347ywb.82.1546862325764;
-	Mon, 07 Jan 2019 03:58:45 -0800 (PST)
+	*      [92.61.46.25 listed in list.dnswl.org]
+X-Greylist: delayed 395 seconds by postgrey-1.32 at yocto-www;
+	Mon, 07 Jan 2019 06:07:16 PST
+Received: from mail.teltonika.lt (mail.teltonika.lt [92.61.46.25])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1AC9E00B58
+	for <yocto@yoctoproject.org>; Mon,  7 Jan 2019 06:07:16 -0800 (PST)
+Received: from [192.168.90.159] (88-119-152-93.static.zebra.lt [88.119.152.93])
+	by mail.teltonika.lt (Postfix) with ESMTPSA id 9FB292461DE3
+	for <yocto@yoctoproject.org>; Mon,  7 Jan 2019 16:00:39 +0200 (EET)
+From: Kristupas Savickas <kristupas.savickas@teltonika.lt>
+To: yocto@yoctoproject.org
+Message-ID: <30fd8545-ec8a-2229-28e4-8bea6048d66a@teltonika.lt>
+Date: Mon, 7 Jan 2019 16:00:39 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.3.3
 MIME-Version: 1.0
-References: <CAB6-Vt+dvn1VwmvX7Q854rDvZ2qPqkRhm=uX3sgS0nfBkokLXg@mail.gmail.com>
-	<CAJTo0Lau_jdwPCxHZtd+MN7a-fVscq-w4fkPvPAzr3tBpibsqQ@mail.gmail.com>
-	<CAB6-VtLLHe+8Doe1jqbi0SKQkvBcq7u=u+89rWhT7HSofv5BFA@mail.gmail.com>
-	<CAB6-VtLP18=1zjKUdL0ewjMW9tOMSx+1i6ar6NBQQ-eMJqjuiQ@mail.gmail.com>
-In-Reply-To: <CAB6-VtLP18=1zjKUdL0ewjMW9tOMSx+1i6ar6NBQQ-eMJqjuiQ@mail.gmail.com>
-From: Einar Vading <yocto-ml@vading.se>
-Date: Mon, 7 Jan 2019 12:58:34 +0100
-Message-ID: <CAB6-VtJ9OE+Z0DVNLGSsZcm6kuYOar9iPkX=SNaEqW77K5MMuw@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Python3 and pathlib/ntpath
+Subject: Incorrect config generated for yocto-style kernel (sumo)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,110 +38,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jan 2019 11:58:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 07 Jan 2019 14:07:17 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-Hello again,
+Hello,
 
-I can't get this to work. If I add pathlib and ntpath like in my
-initial email I have pathlib on target. If however I
-'IMAGE_INSTALL_append = " python3-misc"' or add python3-misc as
-RDEPENDS in meson recipe I don't have pathlib on target.
+I'm porting a kernel to use yocto-style build process. The kernel 
+fetches fine, but there's a problem with '.config' file generation. I'd 
+like to supply a 'defconfig' and a configuration fragment file 
+'test.cfg' (which should be overlayed on top of 'defconfig') from the 
+bitbake recipe. What I end up getting is a '.config' file that looks 
+like it used the default values - neither 'defconfig' nor 'test.cfg' was 
+used. Here's what I have going in my recipe:
 
-There is no mention of ntpath or pathlib in the python3-manifest file
-but I'm not sure how that thing is supposed to work.
 
-// Einar
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-On Fri, Dec 21, 2018 at 5:48 PM Einar Vading <yocto-ml@vading.se> wrote:
->
-> Adding python3-misc did not seem to make a difference.
->
-> // Einar
->
-> Den fre 21 dec. 2018 15:16 skrev Einar Vading <yocto-ml@vading.se>:
->>
->> I'm installing using the recipe.
->>
->> Running Sumo and the meson recipe has:
->> RDEPENDS_${PN} = "ninja python3-core python3-modules"
->>
->> I'll try to add python3-misc to RDEPENDS.
->>
->> // Einar
->>
->> On Fri, Dec 21, 2018 at 2:58 PM Burton, Ross <ross.burton@intel.com> wrote:
->> >
->> > pathlib is in python3-misc:
->> >
->> > $ oe-pkgdata-util find-path */pathlib.py
->> > python3-misc: /usr/lib/python3.5/pathlib.py
->> >
->> > And Meson in Thud at least has a dependency on python3-misc, so you
->> > shoudn't need to do anything.
->> >
->> > What release are you using?
->> >
->> > Or, are you trying to install Meson from source inside the image,
->> > instead of using the recipe?  In that case ensure that you have all of
->> > Python installed, easiest way is to add python3 to IMAGE_INSTALL.
->> >
->> > Ross
->> >
->> > On Fri, 21 Dec 2018 at 13:17, Einar Vading <yocto-ml@vading.se> wrote:
->> > >
->> > > Hi,
->> > >
->> > > I was trying to install meson on target for a machine that creates a
->> > > docker image for us. When I try to start meson however I get an error
->> > > message that pathlib can't be found. With the patch below I got it to
->> > > work but my question is if there is another way? Or if the patch would
->> > > be acceptable upstream?
->> > >
->> > > Best regards,
->> > > Einar
->> > >
->> > > diff --git a/meta/recipes-devtools/python/python3/python3-manifest.json
->> > > b/meta/recipes-devtools/python/python3/python3-manifest.json
->> > > index 2491f36db2..42a5680c65 100644
->> > > --- a/meta/recipes-devtools/python/python3/python3-manifest.json
->> > > +++ b/meta/recipes-devtools/python/python3/python3-manifest.json
->> > > @@ -154,10 +154,12 @@
->> > >              "${libdir}/python3.5/__pycache__/keyword.*.pyc",
->> > >              "${libdir}/python3.5/__pycache__/linecache.*.pyc",
->> > >              "${libdir}/python3.5/__pycache__/locale.*.pyc",
->> > > +            "${libdir}/python3.5/__pycache__/ntpath.*.pyc",
->> > >              "${libdir}/python3.5/__pycache__/opcode.*.pyc",
->> > >              "${libdir}/python3.5/__pycache__/operator.*.pyc",
->> > >              "${libdir}/python3.5/__pycache__/optparse.*.pyc",
->> > >              "${libdir}/python3.5/__pycache__/os.*.pyc",
->> > > +            "${libdir}/python3.5/__pycache__/pathlib.*.pyc",
->> > >              "${libdir}/python3.5/__pycache__/platform.*.pyc",
->> > >              "${libdir}/python3.5/__pycache__/posixpath.*.pyc",
->> > >              "${libdir}/python3.5/__pycache__/re.*.pyc",
->> > > @@ -269,10 +271,12 @@
->> > >              "${libdir}/python3.5/linecache.py",
->> > >              "${libdir}/python3.5/locale.py",
->> > >              "${libdir}/python3.5/new.py",
->> > > +            "${libdir}/python3.5/ntpath.py",
->> > >              "${libdir}/python3.5/opcode.py",
->> > >              "${libdir}/python3.5/operator.py",
->> > >              "${libdir}/python3.5/optparse.py",
->> > >              "${libdir}/python3.5/os.py",
->> > > +            "${libdir}/python3.5/pathlib.py",
->> > >              "${libdir}/python3.5/platform.py",
->> > >              "${libdir}/python3.5/posixpath.py",
->> > >              "${libdir}/python3.5/re.py",
->> > > @@ -1146,4 +1150,4 @@
->> > >          ],
->> > >          "summary": "Python XML-RPC support"
->> > >      }
->> > > -}
->> > > \ No newline at end of file
->> > > +}
->> > > --
->> > > _______________________________________________
->> > > yocto mailing list
->> > > yocto@yoctoproject.org
->> > > https://lists.yoctoproject.org/listinfo/yocto
+inherit tlt-image kernel
+require recipes-kernel/linux/linux-yocto.inc
+
+SRCREV    = "8f450c58d196723a78527b643910b90d7cd6549f"
+
+SRC_URI = " \
+         git://git@REDACTED.git;protocol=ssh \
+         file://defconfig \
+"
+
+SRC_URI_append_test = "file://test.cfg"
+
+PV = "3.18.20"
+KBRANCH = "master"
+
+KMACHINE = "test"
+KARCH = "arm"
+
+And here's what the directory structure looks like:
+
+meta-test/recipes-kernel/linux-test
+├── meta-test/recipes-kernel/linux-test/files
+│   ├── meta-test/recipes-kernel/linux-test/files/defconfig
+│   └── meta-test/recipes-kernel/linux-test/files/test.cfg
+└── meta-test/recipes-kernel/linux-test/linux-test_git.bb
+
+Configuration files are fetched as intended:
+
+$ ls build/tmp-glibc/work/test-oe-linux-gnueabi/linux-test/3.18.20-r0/
+defconfig        linux-test-standard-build  recipe-sysroot-native test.cfg
+license-destdir  recipe-sysroot               temp
+
+
+I've followed instructions from 
+https://www.yoctoproject.org/docs/2.5/kernel-dev/kernel-dev.html#creating-a-defconfig-file 
+and 
+https://www.yoctoproject.org/docs/2.5/kernel-dev/kernel-dev.html#creating-config-fragments.
+
+Am I doing something wrong here?
+
+-- 
+Pagarbiai,
+Linux programuotojas
+Kristupas Savickas
++370 633 36795
+
 
