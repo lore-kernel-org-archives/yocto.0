@@ -1,81 +1,66 @@
-Return-Path: <Kamal.Pandey@ifm.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C3C67E00C59; Sun,  6 Jan 2019 23:45:53 -0800 (PST)
+	id 1FE78E00C59; Mon,  7 Jan 2019 02:26:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [91.90.150.23 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.42 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 1875 seconds by postgrey-1.32 at yocto-www;
-	Sun, 06 Jan 2019 23:45:51 PST
-Received: from s2023.ppsmtp.net (s2023.ppsmtp.net [91.90.150.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A341E009B1
-	for <yocto@yoctoproject.org>; Sun,  6 Jan 2019 23:45:51 -0800 (PST)
-Received: from pps.filterd (s2023.ppsmtp.net [127.0.0.1])
-	by s2023.ppsmtp.net (8.16.0.22/8.16.0.22) with SMTP id x077AdR9005562
-	for <yocto@yoctoproject.org>; Mon, 7 Jan 2019 08:14:35 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ifm.com;
-	h=from : to : subject :
-	date : message-id : mime-version : content-type; s=pps;
-	bh=B0MMdQ9MwaYJnbfiCyC4uA9JEGKUHPj4L/JLbQ3Sv40=;
-	b=j4z4D3Qpb5ur53/RlHhnP/dLrUZ+jSNaM1ayj2nEuUYcThLWO8dL0ScPxXoW+/bXsyE7
-	bEQwG7n/+jZhHLNfUJP5Q4beKCU2GqoFKJXz8D5mx1pcwCGXKCQOMo1AYTK/N+PtiVsl
-	Lh7h/DuBZo07waHMoTrPiE382pS6RibCbrcphwYawV+RbwiL5PquuEvEFGjqZbcRsQ3L
-	LbsQVZyasjOz6cGZKLUpglAfe0IBDQve1DltCh/MtXMv7WlVe22MmSHsKVNYMnlg6ghu
-	PvzAlFgXdVvaafQC3jGYoMLTKGea4YGW/x/hU49loNW2tGC79k/7Up/Wp34A0IGXNCdB
-	Mg== 
-Received: from deesdmz227.dmz.es.de.ifm (mail27.ifm.com [194.156.152.227])
-	by s2023.ppsmtp.net with ESMTP id 2ptkhcf2nk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
-	for <yocto@yoctoproject.org>; Mon, 07 Jan 2019 08:14:35 +0100
-Received: from deesdmz227.dmz.es.de.ifm (localhost [127.0.0.1])
-	by deesdmz227.dmz.es.de.ifm (Postfix) with ESMTP id BE4AE884444
-	for <yocto@yoctoproject.org>; Mon,  7 Jan 2019 08:14:34 +0100 (CET)
-From: "Pandey, Kamal" <Kamal.Pandey@ifm.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: bitbake openamp-image-minimal fails to create image
-Thread-Index: AdSmWDG603OeUfxeQYusuc4ZfFevdg==
-Date: Mon, 7 Jan 2019 07:14:25 +0000
-Message-ID: <4d5f7a22db584df89e7e9f5404f845d2@ifm.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.29.169.147]
-X-TM-AS-Product-Ver: SMEX-12.5.0.1300-8.2.1013-24342.005
-X-TM-AS-Result: No-15.694100-5.000000-10
-X-TMASE-MatchedRID: vZ9r3/RMU4eC0t/yRXOlURuZoNKc6pl+GSqdEmeD/nXY5zxTXVb0k6KN
-	FrmtYfF2/SdWF/vCfEK09x2i4DcBnishtg6Wuu/avnSVh24OCE7xAJQLHjrob9W0pkpPR1DaPlA
-	WwfVA2w4NOOjMPLXuA7CT6qsrvsnfc+UlxCAw/mtQiFNNqFvt1UyQ5fRSh265r6AbVPPkpSnvi+
-	zrzomcGTQp8c7xFMPyf/k9PC1yrAhEXwnTCGfm3f0peXGEEBlvmHAp2UJ8+TxK0WT/zXAgkos6x
-	aVh0wb3BHVm0xh58VY8LuP+bOkMWt3jF2fVcPdzDB+ErBr0bANar2Wff4KSIaUXswX/xrIS1BoO
-	0FXL0sjuDNx+Tk7mC2JdCNPFSfXrp3Cwl7p83Yu4jAucHcCqnfi4nVERfgwdxQetL66Hi22FAf5
-	iylR8Wnb4Bm7FqQnLXHn0K2CbIexZxuGjBHE90w6w00GeWBFafS0Ip2eEHnym8jxRk5/juMPmhi
-	kd4RP1A9vnXq1h8XXDN3mmGreofxnodSkl97lZ8jHh2NtZUp66lSRUz9NeNf25/6UN+cuu
-X-TM-AS-User-Approved-Sender: Yes
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--15.694100-5.000000
-X-TMASE-Version: SMEX-12.5.0.1300-8.2.1013-24342.005
-X-TM-SNTS-SMTP: 3B8505FFDE04B58D51CA7A88EB5F6B0B33359B7EA59A3F383ECAFC6CF7E309DA2002:9
-x-c2processedorg: 02c94ccb-b9eb-40fe-af38-4bcaa8aaafa4
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com
+	[209.85.210.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28DD9E006F1
+	for <yocto@yoctoproject.org>; Mon,  7 Jan 2019 02:26:53 -0800 (PST)
+Received: by mail-ot1-f42.google.com with SMTP id a11so37321813otr.10
+	for <yocto@yoctoproject.org>; Mon, 07 Jan 2019 02:26:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=qGP9OV2iBTP3wncAtdBdxa2S3Hc61oiUh5tH/iUQbiE=;
+	b=Tjpo0eVuKP+IaJ6Nf4JazsKU82CqPp3HZZrB5BwcsKSnAy2zqGPVlrPQyVElOyD85S
+	wYelRBouey+8JZIgt2nEhJa0xSFD0G0KHkgqxY8Edz/QTelz0vOjzZb2sVjK5VXQAq/M
+	Bbn8weL0VPl+MdyDoU/AneMr4JrMLOqnMsel4pAWi2AhiazLfxcclEon0ibD2k/9U4PA
+	WmbtyFX96AzWCSKQFFZooPFgQR790DWMRrKAZTre8u3tf/cC9VW1/9+LOF/zdkdlQ+KR
+	N6t3Lb+oRB9x15PF2Hr1DhTLdSXZVa1GiwB343z1borBgGL6likd5VbSFkYYrtGfIS8L
+	gi1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=qGP9OV2iBTP3wncAtdBdxa2S3Hc61oiUh5tH/iUQbiE=;
+	b=ccXIWOwW60buQPpgkgygWybjlQuwDS6JPMatkPg+KI54CnmzdTru1gufsMPDONUGGp
+	UMgmBVLbKqlPYaBMDGu2uBoc4pFcAQflAT+fBuWGUFvtrpyvy1hlkmYz9HFAsfT6ArTT
+	gZzHnadj9ny3iJxeFB2Fx6+EiTCgQe4ZJeWOTgnwJ9hzL48S5ons3kXs1EvRP9ahl51r
+	sGtnNP5Ebnx3MqC+O57t6glzZ4B4laocUsyvJvzJPKjwCb1vwMqLcfdMS9h8VZfZwfsy
+	+z7x91pUapFoR9gGZQL7B9JgFVcHiy6JBm7QTvCZI7PK74TVVndx5cMG2y9vuoeoBWsi
+	UnmQ==
+X-Gm-Message-State: AJcUukeUpt2zCy4L9guqvJszW3uKMHVb0BpquQYnYYTVeYZxajlheNFV
+	YvS70IRHhS2VVQqoULR2qKtD+v2Tg2Om8zZd4TI=
+X-Google-Smtp-Source: ALg8bN6es94Xb3BnqEe5W7M+2j/BBaAwi6kNcb5TWn4ML0cqgCp8PBaAo7PJMMni5WcbwItpVjeeeMLIm+oacb79gws=
+X-Received: by 2002:a9d:c06:: with SMTP id 6mr43889512otr.326.1546856813271;
+	Mon, 07 Jan 2019 02:26:53 -0800 (PST)
 MIME-Version: 1.0
-X-CompuMailGateway: Version: 7.00.0.19367.x86_64 COMPUMAIL Date:
-	20190107071434Z
-X-Proofpoint-ID: SID=2ptkhcf2nk QID=2ptkhcf2nk-1
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
-	definitions=2019-01-07_03:, , signatures=0
-Subject: bitbake openamp-image-minimal fails to create image
+References: <20190107050058.27491.16171@packages.yoctoproject.org>
+In-Reply-To: <20190107050058.27491.16171@packages.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 7 Jan 2019 11:26:41 +0100
+Message-ID: <CANNYZj_VuJT4Z04eVc22yGHrAaPx+iaBJHXDN9QN938zahDJxg@mail.gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, 
+	"Burton, Ross" <ross.burton@intel.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,227 +72,269 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jan 2019 07:45:53 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_4d5f7a22db584df89e7e9f5404f845d2ifmcom_"
-
---_000_4d5f7a22db584df89e7e9f5404f845d2ifmcom_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 07 Jan 2019 10:26:55 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
-I used the meta-openamp layer for r5-a53 communication.
-but when I simply ran $bitbake openamp-image-minimal, it gave me the follow=
-ing error:
+Looks like this has regressed and is sending out outdated, misleading
+information (probably related to recent distrodata-releated changes).
 
-ERROR: openamp-image-minimal-1.0-r0 do_rootfs: Could not invoke dnf. Comman=
-d '/media/iepl/iepl1/work/yocto_build/build-open-amp/tmp/work/pdm3_rev_b_zy=
-nqmp-pdm3-linux/openamp-image-minimal/1.0-r0/recipe-sysroot-native/usr/bin/=
-dnf -y -c /media/iepl/iepl1/work/yocto_build/build-open-amp/tmp/work/pdm3_r=
-ev_b_zynqmp-pdm3-linux/openamp-image-minimal/1.0-r0/rootfs/etc/dnf/dnf.conf=
- --setopt=3Dreposdir=3D/media/iepl/iepl1/work/yocto_build/build-open-amp/tm=
-p/work/pdm3_rev_b_zynqmp-pdm3-linux/openamp-image-minimal/1.0-r0/rootfs/etc=
-/yum.repos.d --repofrompath=3Doe-repo,/media/iepl/iepl1/work/yocto_build/bu=
-ild-open-amp/tmp/work/pdm3_rev_b_zynqmp-pdm3-linux/openamp-image-minimal/1.=
-0-r0/oe-rootfs-repo --installroot=3D/media/iepl/iepl1/work/yocto_build/buil=
-d-open-amp/tmp/work/pdm3_rev_b_zynqmp-pdm3-linux/openamp-image-minimal/1.0-=
-r0/rootfs --setopt=3Dlogdir=3D/media/iepl/iepl1/work/yocto_build/build-open=
--amp/tmp/work/pdm3_rev_b_zynqmp-pdm3-linux/openamp-image-minimal/1.0-r0/tem=
-p --nogpgcheck install kernel-module-virtio-ring kernel-module-virtio-rpmsg=
--bus kernel-module-uio-pdrv-genirq kernel-module-virtio libopen-amp0 packag=
-egroup-base-extended kernel-image-fitimage-4.14.79-yocto-standard run-posti=
-nsts libmetal packagegroup-core-boot kernel-module-remoteproc' returned 1:
-Added oe-repo repo from /media/iepl/iepl1/work/yocto_build/build-open-amp/t=
-mp/work/pdm3_rev_b_zynqmp-pdm3-linux/openamp-image-minimal/1.0-r0/oe-rootfs=
--repo
-Last metadata expiration check: 0:00:00 ago on Fri 04 Jan 2019 01:58:31 PM =
-UTC.
-No package kernel-module-virtio-ring available.
-No package kernel-module-virtio-rpmsg-bus available.
-No package kernel-module-virtio available.
-No package kernel-module-remoteproc available.
-Error: Unable to find a match
+Shall we switch it off for now?
 
-ERROR: openamp-image-minimal-1.0-r0 do_rootfs: Function failed: do_rootfs
-ERROR: Logfile of failure stored in: /media/iepl/iepl1/work/yocto_build/bui=
-ld-open-amp/tmp/work/pdm3_rev_b_zynqmp-pdm3-linux/openamp-image-minimal/1.0=
--r0/temp/log.do_rootfs.7153
-ERROR: Task (/home/iepl/work/yocto_build/poky/../meta-openamp/recipes-opena=
-mp/images/openamp-image-minimal.bb:do_rootfs) failed with exit code '1'
+AUH has largely superseded this report anyway, and I have a feeling
+most people tune it out already.
 
+Alex
 
-Can someone provide me a solution to this problem.
-Thanks
-
---_000_4d5f7a22db584df89e7e9f5404f845d2ifmcom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Mon, 7 Jan 2019 at 06:01, <recipe-report@yoctoproject.org> wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Segoe UI";
-	panose-1:2 11 5 2 4 2 4 2 2 3;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-code
-	{mso-style-priority:99;
-	font-family:"Courier New";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-IN" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Se=
-goe UI&quot;,sans-serif;color:#24292E;background:white">I used the&nbsp;<st=
-rong><span style=3D"font-family:&quot;Segoe UI&quot;,sans-serif">meta-opena=
-mp</span></strong>&nbsp;layer for&nbsp;<strong><span style=3D"font-family:&=
-quot;Segoe UI&quot;,sans-serif">r5-a53
- communication</span></strong>.</span><span style=3D"font-size:10.5pt;font-=
-family:&quot;Segoe UI&quot;,sans-serif;color:#24292E"><br>
-<span style=3D"background:white">but when I simply ran</span></span><code><=
-span style=3D"font-size:9.0pt;font-family:Consolas;color:#24292E">&nbsp;$bi=
-tbake openamp-image-minimal</span></code><span style=3D"font-size:10.5pt;fo=
-nt-family:&quot;Segoe UI&quot;,sans-serif;color:#24292E;background:white">,
- it gave me the following error:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Se=
-goe UI&quot;,sans-serif;color:#24292E;background:white"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal" style=3D"background:#F6F8FA"><span style=3D"font-siz=
-e:9.0pt;font-family:Consolas;color:#24292E;border:none windowtext 1.0pt;pad=
-ding:0cm;mso-fareast-language:EN-IN">ERROR: openamp-image-minimal-1.0-r0 do=
-_rootfs: Could not invoke dnf. Command
- '/media/iepl/iepl1/work/yocto_build/build-open-amp/tmp/work/pdm3_rev_b_zyn=
-qmp-pdm3-linux/openamp-image-minimal/1.0-r0/recipe-sysroot-native/usr/bin/d=
-nf -y -c /media/iepl/iepl1/work/yocto_build/build-open-amp/tmp/work/pdm3_re=
-v_b_zynqmp-pdm3-linux/openamp-image-minimal/1.0-r0/rootfs/etc/dnf/dnf.conf
- --setopt=3Dreposdir=3D/media/iepl/iepl1/work/yocto_build/build-open-amp/tm=
-p/work/pdm3_rev_b_zynqmp-pdm3-linux/openamp-image-minimal/1.0-r0/rootfs/etc=
-/yum.repos.d --repofrompath=3Doe-repo,/media/iepl/iepl1/work/yocto_build/bu=
-ild-open-amp/tmp/work/pdm3_rev_b_zynqmp-pdm3-linux/openamp-image-minimal/1.=
-0-r0/oe-rootfs-repo
- --installroot=3D/media/iepl/iepl1/work/yocto_build/build-open-amp/tmp/work=
-/pdm3_rev_b_zynqmp-pdm3-linux/openamp-image-minimal/1.0-r0/rootfs --setopt=
-=3Dlogdir=3D/media/iepl/iepl1/work/yocto_build/build-open-amp/tmp/work/pdm3=
-_rev_b_zynqmp-pdm3-linux/openamp-image-minimal/1.0-r0/temp
- --nogpgcheck install kernel-module-virtio-ring kernel-module-virtio-rpmsg-=
-bus kernel-module-uio-pdrv-genirq kernel-module-virtio libopen-amp0 package=
-group-base-extended kernel-image-fitimage-4.14.79-yocto-standard run-postin=
-sts libmetal packagegroup-core-boot
- kernel-module-remoteproc' returned 1:<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:#F6F8FA"><span style=3D"font-siz=
-e:9.0pt;font-family:Consolas;color:#24292E;border:none windowtext 1.0pt;pad=
-ding:0cm;mso-fareast-language:EN-IN">Added oe-repo repo from /media/iepl/ie=
-pl1/work/yocto_build/build-open-amp/tmp/work/pdm3_rev_b_zynqmp-pdm3-linux/o=
-penamp-image-minimal/1.0-r0/oe-rootfs-repo<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:#F6F8FA"><span style=3D"font-siz=
-e:9.0pt;font-family:Consolas;color:#24292E;border:none windowtext 1.0pt;pad=
-ding:0cm;mso-fareast-language:EN-IN">Last metadata expiration check: 0:00:0=
-0 ago on Fri 04 Jan 2019 01:58:31 PM UTC.<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:#F6F8FA"><span style=3D"font-siz=
-e:9.0pt;font-family:Consolas;color:#24292E;border:none windowtext 1.0pt;pad=
-ding:0cm;mso-fareast-language:EN-IN">No package kernel-module-virtio-ring a=
-vailable.<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:#F6F8FA"><span style=3D"font-siz=
-e:9.0pt;font-family:Consolas;color:#24292E;border:none windowtext 1.0pt;pad=
-ding:0cm;mso-fareast-language:EN-IN">No package kernel-module-virtio-rpmsg-=
-bus available.<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:#F6F8FA"><span style=3D"font-siz=
-e:9.0pt;font-family:Consolas;color:#24292E;border:none windowtext 1.0pt;pad=
-ding:0cm;mso-fareast-language:EN-IN">No package kernel-module-virtio availa=
-ble.<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:#F6F8FA"><span style=3D"font-siz=
-e:9.0pt;font-family:Consolas;color:#24292E;border:none windowtext 1.0pt;pad=
-ding:0cm;mso-fareast-language:EN-IN">No package kernel-module-remoteproc av=
-ailable.<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:#F6F8FA"><span style=3D"font-siz=
-e:9.0pt;font-family:Consolas;color:#24292E;border:none windowtext 1.0pt;pad=
-ding:0cm;mso-fareast-language:EN-IN">Error: Unable to find a match<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal" style=3D"background:#F6F8FA"><span style=3D"font-siz=
-e:9.0pt;font-family:Consolas;color:#24292E;border:none windowtext 1.0pt;pad=
-ding:0cm;mso-fareast-language:EN-IN"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:#F6F8FA"><span style=3D"font-siz=
-e:9.0pt;font-family:Consolas;color:#24292E;border:none windowtext 1.0pt;pad=
-ding:0cm;mso-fareast-language:EN-IN">ERROR: openamp-image-minimal-1.0-r0 do=
-_rootfs: Function failed: do_rootfs<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"background:#F6F8FA"><span style=3D"font-siz=
-e:9.0pt;font-family:Consolas;color:#24292E;border:none windowtext 1.0pt;pad=
-ding:0cm;mso-fareast-language:EN-IN">ERROR: Logfile of failure stored in: /=
-media/iepl/iepl1/work/yocto_build/build-open-amp/tmp/work/pdm3_rev_b_zynqmp=
--pdm3-linux/openamp-image-minimal/1.0-r0/temp/log.do_rootfs.7153<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal" style=3D"background:#F6F8FA"><span style=3D"font-siz=
-e:9.0pt;font-family:Consolas;color:#24292E;border:none windowtext 1.0pt;pad=
-ding:0cm;mso-fareast-language:EN-IN">ERROR: Task (/home/iepl/work/yocto_bui=
-ld/poky/../meta-openamp/recipes-openamp/images/openamp-image-minimal.bb:do_=
-rootfs)
- failed with exit code '1'</span><span style=3D"font-size:9.0pt;font-family=
-:Consolas;color:#24292E;mso-fareast-language:EN-IN"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin-top:0cm"><span style=3D"font-size:10.5pt;font-family:&qu=
-ot;Segoe UI&quot;,sans-serif;color:#24292E">Can someone provide me a soluti=
-on to this problem.<br>
-Thanks<o:p></o:p></span></p>
-</div>
-</body>
-</html>
+> This mail was sent out by Recipe reporting system.
+>
+> This message list those recipes which need to be upgraded. If maintainers
+> believe some of them needn't to upgrade at this time, they can fill
+> RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainde=
+r
+> until newer upstream version was detected.
+>
+> Example:
+> RECIPE_NO_UPDATE_REASON =3D "Version 2.0 is unstable"
+>
+> You can check the detail information at:
+>
+> http://recipes.yoctoproject.org/
+>
+> Package               Version          Upstream version      Maintainer  =
+         NoUpgradeReason
+> --------------------  ---------------  --------------------  ------------=
+-------  ------------------------------
+> libgloss              3.0.0            3.0.0.20180831        Alejandro He=
+rnandez
+> newlib                3.0.0            3.0.0.20180831        Alejandro He=
+rnandez
+> libmodulemd           1.7.0            2.0.0                 Alexander Ka=
+navin
+> pcmanfm               1.3.0            1.3.1                 Alexander Ka=
+navin
+> webkitgtk             2.22.4           2.22.5                Alexander Ka=
+navin
+> boost                 1.68.0           1.69.0                Alexander Ka=
+navin
+> libfm-extra           1.3.0.2          1.3.1                 Alexander Ka=
+navin
+> libfm                 1.3.0.2          1.3.1                 Alexander Ka=
+navin
+> nativesdk-meson       0.47.2           0.49.0                Alexander Ka=
+navin
+> ffmpeg                4.0.2            4.1                   Alexander Ka=
+navin
+> libcomps              0.1.8+gitX       0.1.9                 Alexander Ka=
+navin
+> librepo               1.9.2            1.9.3                 Alexander Ka=
+navin
+> meson                 0.47.2           0.49.0                Alexander Ka=
+navin
+> dnf                   4.0.9            4.0.10                Alexander Ka=
+navin
+> libdnf                0.22.3           0.24.1                Alexander Ka=
+navin
+> lighttpd              1.4.51           1.4.52                Alexander Ka=
+navin
+> gobject-introspec...  1.58.1           1.58.2                Alexander Ka=
+navin
+> btrfs-tools           4.19             4.19.1                Alexander Ka=
+navin
+> bjam-native           1.68.0           1.69.0                Alexander Ka=
+navin
+> createrepo-c          0.11.1+gitX      0.12.0                Alexander Ka=
+navin
+> busybox               1.29.2           1.29.3                Andrej Valek
+> apt                   1.2.24           1.4.8                 An=C3=ADbal =
+Lim=C3=B3n
+> apt-native            1.2.24           1.4.8                 An=C3=ADbal =
+Lim=C3=B3n
+> dpkg                  1.18.24          1.19.2                An=C3=ADbal =
+Lim=C3=B3n
+> puzzles               0.0+gitX         0.0-new-commits-a...  Anuj Mittal
+> libpcap               1.8.1            1.9.0                 Anuj Mittal
+> base-passwd           3.5.29           3.5.45                Anuj Mittal =
+         Version 3.5.38 requires cde...
+> ifupdown              0.8.16           0.8.33                Anuj Mittal
+> glib-2.0              2.58.0           2.58.1                Anuj Mittal
+> glib-networking       2.54.1           2.58.0                Anuj Mittal
+> pixman                0.34.0           0.36.0                Anuj Mittal
+> harfbuzz              2.1.3            2.2.0                 Anuj Mittal
+> gst-examples          0.0.1+gitX       0.0.1-new-commits...  Anuj Mittal
+> sqlite3               3.25.3           3.26.0                Anuj Mittal
+> vte                   0.52.2           0.54.3                Anuj Mittal
+> gsettings-desktop...  3.28.0           3.28.1                Anuj Mittal
+> libsolv               0.7.1            0.7.2                 Anuj Mittal
+> eudev                 3.2.5            3.2.7                 Anuj Mittal
+> atk                   2.28.1           2.30.0                Anuj Mittal
+> librsvg               2.40.20          2.44.10               Anuj Mittal =
+         Versions from 2.41.0 requir...
+> cairo                 1.14.12          1.16.2                Anuj Mittal
+> i2c-tools             4.0              4.1                   Anuj Mittal
+> libatomic-ops         7.6.6+gitX       7.6.8                 Anuj Mittal
+> libpng                1.6.35           1.6.36                Anuj Mittal
+> at-spi2-atk           2.26.2           2.30.0                Anuj Mittal
+> mmc-utils             0.1              0.1-new-commits-a...  Anuj Mittal
+> libjpeg-turbo         2.0.0            2.0.1                 Anuj Mittal
+> mtools                4.0.19           4.0.23                Anuj Mittal
+> libassuan             2.5.1            2.5.2                 Armin Kuster
+> netbase               5.4              5.5                   Armin Kuster
+> openssh               7.9p1+git        7.9.                  Armin Kuster
+> curl                  7.62.0           7.63.0                Armin Kuster
+> gnutls                3.6.4            3.6.5                 Armin Kuster
+> nss                   3.40             3.41                  Armin Kuster
+> bind                  9.11.5           9.13.5                Armin Kuster=
+         9.11 is LTS 2021
+> nettle                3.4              3.4.1                 Armin Kuster
+> linux-libc-headers    4.18             4.19.10               Bruce Ashfie=
+ld
+> kern-tools-native     0.2+gitX         0.2-new-commits-a...  Bruce Ashfie=
+ld
+> linux-yocto           4.18.14+gitX     4.19.8                Bruce Ashfie=
+ld
+> linux-yocto-rt        4.18.14+gitX     4.19.8                Bruce Ashfie=
+ld
+> linux-yocto-tiny      4.18.14+gitX     4.19.8                Bruce Ashfie=
+ld
+> kmscube               git              git-new-commits-a...  Carlos Rafae=
+l Giani
+> wpa-supplicant        2.6              2.7                   Changhyeok B=
+ae
+> iptables              1.6.2            1.8.2                 Changhyeok B=
+ae
+> dbus-test             1.12.10          1.12.12               Chen Qi
+> acl                   2.2.52           2.2.53                Chen Qi
+> attr                  2.4.47           2.4.48                Chen Qi
+> systemd-conf          1.0              239                   Chen Qi
+> dbus                  1.12.10          1.12.12               Chen Qi
+> cups                  2.2.9            2.2.10                Chen Qi
+> flex                  2.6.0            2.6.4                 Chen Qi
+> util-linux            2.32.1           2.33                  Chen Qi
+> bison                 3.0.4            3.2.2                 Chen Qi
+> sed                   4.2.2            4.5                   Chen Qi
+> sysstat               12.1.1           12.1.2                Chen Qi
+> lzop                  1.03             1.04                  Denys Dmytri=
+yenko
+> lz4                   1.8.2            1.8.3                 Denys Dmytri=
+yenko
+> hdparm                9.56             9.58                  Denys Dmytri=
+yenko
+> wayland-protocols     1.16             1.17                  Denys Dmytri=
+yenko
+> python3-pygobject     3.28.3           3.30.4                Derek Straka
+> python3               3.5.6            3.7.1                 Derek Straka
+> python3-pbr           4.2.0            5.1.1                 Derek Straka
+> python3-setuptools    40.0.0           40.6.3                Derek Straka
+> python3-pip           18.0             18.1                  Derek Straka
+> python-numpy          1.14.5           1.15.4                Derek Straka
+> python3-numpy         1.14.5           1.15.4                Derek Straka
+> python-setuptools     40.0.0           40.6.3                Derek Straka
+> python3-six           1.11.0           1.12.0                Derek Straka
+> python3-gitdb         2.0.4            2.0.5                 Derek Straka
+> python3-pycairo       1.15.6           1.18.0                Derek Straka
+> python3-native        3.5.6            3.7.1                 Derek Straka
+> acpica                20180508         20181213              Fathi Boudra
+> libgpg-error          1.32             1.33                  Hongxu Jia
+> gnupg                 2.2.11           2.2.12                Hongxu Jia
+> help2man-native       1.47.6           1.47.8                Hongxu Jia
+> libxcrypt             4.1.1            4.4.1                 Khem Raj
+> go-runtime            1.11.1           1.11.4                Khem Raj
+> go                    1.11.1           1.11.4                Khem Raj
+> binutils              2.31             2.31.1                Khem Raj
+> go-native             1.11.1           1.11.4                Khem Raj
+> prelink               1.0+gitX         1.0-new-commits-a...  Mark Hatle
+> db                    5.3.28           5.3.28+dfsg1          Mark Hatle
+> binutils-cross-ca...  2.31             2.31.1                No maintaine=
+r
+> binutils-cross-i586   2.31             2.31.1                No maintaine=
+r
+> go-cross-canadian...  1.11.1           1.11.4                No maintaine=
+r
+> go-crosssdk-x86_6...  1.11.1           1.11.4                No maintaine=
+r
+> binutils-crosssdk...  2.31             2.31.1                No maintaine=
+r
+> go-cross-i586         1.11.1           1.11.4                No maintaine=
+r
+> mesa                  18.1.9           18.3.1                Otavio Salva=
+dor
+> linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salva=
+dor
+> mesa-gl               18.1.9           18.3.1                Otavio Salva=
+dor
+> cmake                 3.12.2           3.13.2                Pascal Bach
+> cmake-native          3.12.2           3.13.2                Pascal Bach
+> build-compare         2015.02.10+gitX  2015.02.10-new-co...  Paul Eggleto=
+n
+> build-appliance-i...  15.0.0           20.0.0                Richard Purd=
+ie
+> gnu-config            20180713+gitX    20180713-new-comm...  Robert Yang
+> squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
+> e2fsprogs             1.44.3           1.44.5                Robert Yang
+> ccache                3.4.2            3.5                   Robert Yang
+> git                   2.18.1           2.20.1                Robert Yang
+> mklibs-native         0.1.43           0.1.44                Robert Yang
+> piglit                1.0+gitrX        1.0-new-commits-a...  Ross Burton
+> acpid                 2.0.30           2.0.31                Ross Burton
+> libinput              1.12.3           1.12.4                Ross Burton
+> vulkan-demos          git              git-new-commits-a...  Ross Burton
+> perl                  5.24.4           5.28.1                Ross Burton
+> gtk-icon-utils-na...  3.22.30          3.24.2                Ross Burton
+> ofono                 1.25             1.26                  Ross Burton
+> libical               2.0.0            3.0.4                 Ross Burton
+> vulkan                1.1.73.0         1.1.92.1              Ross Burton
+> lsbinitscripts        9.79             10.01                 Ross Burton
+> sysvinit              2.88dsf          2.93                  Ross Burton
+> adwaita-icon-theme    3.28.0           3.30.1                Ross Burton
+> fontconfig            2.12.6           2.13.1                Ross Burton
+> gdk-pixbuf            2.36.11          2.38.0                Ross Burton
+> gtk+3                 3.24.1           3.24.2                Ross Burton
+> pkgconf               1.5.3            1.5.4                 Ross Burton
+> perl-native           5.24.4           5.28.1                Ross Burton
+> alsa-tools            1.1.6            1.1.7                 Tanu Kaskine=
+n
+> alsa-plugins          1.1.6            1.1.7                 Tanu Kaskine=
+n
+> alsa-utils-scripts    1.1.6            1.1.7                 Tanu Kaskine=
+n
+> alsa-lib              1.1.6            1.1.7                 Tanu Kaskine=
+n
+> alsa-utils            1.1.6            1.1.7                 Tanu Kaskine=
+n
+> gnu-efi               3.0.8            3.0.9                 Yi Zhao
+> libcap                2.25             2.26                  Yi Zhao
+> chkconfig             1.3.58           1.8                   Yi Zhao     =
+         Version 1.5 requires selinux
+> logrotate             3.14.0           3.15.0                Yi Zhao
+> file                  5.34             5.35                  Yi Zhao
+> wget                  1.19.5           1.20                  Yi Zhao
+> json-glib             1.4.2            1.4.4                 Yi Zhao
+> libsdl2               2.0.8            2.0.9                 Yi Zhao
+>
+> Upgradable count: 147
+> Upgradable total count: 151
+>
+> The based commit is:
+>
+> commit c22b0bf66a28324da66caf0660f171cc279a1f2b
+> Author: Robert Yang <liezhi.yang@windriver.com>
+> Date:   Tue Dec 18 17:48:22 2018 +0800
+>
+>     cmake-native: Set --parallel for configure
+>
+>     This can save do_configure's time from 330s to 60s on my host.
+>
+>     Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+>     Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+>
+> Any problem, please contact Jose Lamego <jose.a.lamego@intel.com>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
---_000_4d5f7a22db584df89e7e9f5404f845d2ifmcom_--
