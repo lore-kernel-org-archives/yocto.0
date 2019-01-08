@@ -1,54 +1,66 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <nishantpoorswani@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BE1F1E00CAD; Tue,  8 Jan 2019 08:29:15 -0800 (PST)
+	id B10DAE00D16; Tue,  8 Jan 2019 08:29:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (nishantpoorswani[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.176 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05633E00C5F
-	for <yocto@yoctoproject.org>; Tue,  8 Jan 2019 08:29:14 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	08 Jan 2019 08:29:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.56,454,1539673200"; 
-	d="scan'208,217";a="289884621"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
-	by orsmga005.jf.intel.com with ESMTP; 08 Jan 2019 08:29:14 -0800
-Received: from FMSMSX110.amr.corp.intel.com (10.18.116.10) by
-	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
-	(TLS) id 14.3.408.0; Tue, 8 Jan 2019 08:29:13 -0800
-Received: from fmsmsx123.amr.corp.intel.com ([169.254.7.98]) by
-	FMSMSX110.amr.corp.intel.com ([169.254.14.203]) with mapi id
-	14.03.0415.000; Tue, 8 Jan 2019 08:29:12 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Notes: Yocto Project Technical Team Meeting @ Tue Jan 8, 2019
-	8am - 8:30am (PST) 
-Thread-Index: AdSnbuRPXrWuBB6JS4WWpovaQNFvQw==
-Date: Tue, 8 Jan 2019 16:29:13 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EEA6CE2BC@fmsmsx123.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZmYwZDkwYzYtZjY3ZS00MTE3LTllNGYtZGY3ZjJhYzg1NGJkIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiQ1J5aHVKaHlKSnRiNUtobURKSGRmbzROVWZwREU2ZTRHWnF5aXJNM1pSSWR6Q21DZDdsdFwvUzhwdXZXKzNkYlUifQ==
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.106]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com
+	[209.85.167.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9402E00CAD
+	for <yocto@yoctoproject.org>; Tue,  8 Jan 2019 08:29:49 -0800 (PST)
+Received: by mail-oi1-f176.google.com with SMTP id r62so3819666oie.1
+	for <yocto@yoctoproject.org>; Tue, 08 Jan 2019 08:29:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=gIUl5ljYI5sHmt/mDV7tdqB9/KcynP0O7uwNPbWtVIM=;
+	b=JgtoBg1szIQNeBed4yRlpNH8tNn5AXMiUAPsps5/p2tCazAAens51+8wQUcr4Z8CBl
+	XJKWKlogjJwLwxrI2vF6VSUN78rFT8DTH4wgJ7EXoGwz3UpCPoNvOsCCuzKEEd9MecMs
+	YqVXY/65SZZgkrpcNoShrlZGA6vQGdueNYO9uquv5d0jT2pWPoqCPFOSmaGx5aX+/ezx
+	9hthuYHOBhDcw4GBtpJqGuBk9ZEjCAFBy7qMknGgtWuAD/+Xf+B9qqXuMo12eTvQNEp7
+	YMktlWm74Lh1OGVkz2234IsysT1V2puv7ReAhLzFZG16auB24H3chZpi9NRYg+uszZFT
+	QyqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=gIUl5ljYI5sHmt/mDV7tdqB9/KcynP0O7uwNPbWtVIM=;
+	b=t/akjI4TKvm8Sh+i++xsBEua3rWNgiGxnEP9vYMqCSP17JwV7qk5kIwM1EowxhO27l
+	lAwkniomhsksrFfKnkpenQIycynpzg29QtV7FuKYfhxMbDtXjpenI4jX5kdoSOe1/x1+
+	GEp03QVkDMi6iszxFE0PoBLgI/Bpog+c/HbLsv73Cwx7CGaUkYIwklj6D1bSI/l4Bvei
+	uY1fOpivc4j4X8iOyPrS4OhY4g4XQ1qydpTudk1xVPLGeDNRb/s+Uq1sOvhl/1qA6Yql
+	rzxXc+nV2ux7KnqKdN7foH4Nq0UM+x+vwsZuCCsaeWHfXVpqII9ULXG4C/k6zJnIkAs7
+	IwYQ==
+X-Gm-Message-State: AJcUukdtit4eHp0cziL4zY0h6TWJg4j5zbo9oR+Ble3g7XrzgzbGPPxl
+	g1V6jJIb640Jg4PXl0hMeePSJ3NV/i3IvkULyaI=
+X-Google-Smtp-Source: ALg8bN6JIfjqn4BxzcXdY/wZsxo2ul824n5eN4bKF+Ti+Q3TdNCKmgJ4cFJU82z1UfcJp9WYUA1PzEG0xTF9w/DCFQE=
+X-Received: by 2002:aca:52d4:: with SMTP id g203mr1604457oib.14.1546964989153; 
+	Tue, 08 Jan 2019 08:29:49 -0800 (PST)
 MIME-Version: 1.0
-Subject: Notes: Yocto Project Technical Team Meeting @ Tue Jan 8, 2019 8am - 8:30am (PST)
+References: <CAN70yQXGX5kvedi=MqfbRmPBHk5zR+ZrsaaT31NXq1wYc0Z06Q@mail.gmail.com>
+	<CAPxrFVmJ4KheAw=nKGfZri1ovU02ycpBFbNux_XCGipyje+bOA@mail.gmail.com>
+In-Reply-To: <CAPxrFVmJ4KheAw=nKGfZri1ovU02ycpBFbNux_XCGipyje+bOA@mail.gmail.com>
+From: nishant poorswani <nishantpoorswani@gmail.com>
+Date: Tue, 8 Jan 2019 21:59:36 +0530
+Message-ID: <CAN70yQWKMmBTR=j=swDbrAcgpnrX9dJdb+HwVPQSY60s-ENS6w@mail.gmail.com>
+To: Jon Szymaniak <jon.szymaniak.foss@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Making a script into an executable binary in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,137 +72,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Jan 2019 16:29:15 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6CE2BCfmsmsx123amrcor_"
+X-List-Received-Date: Tue, 08 Jan 2019 16:29:52 -0000
+Content-Type: multipart/alternative; boundary="000000000000a8950d057ef4da05"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6CE2BCfmsmsx123amrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000a8950d057ef4da05
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-QXR0ZW5kZWVzOiBTdGVwaGVuLCBBcm1pbiwgQWxleCwgUmljaGFyZCBHLiwgSm9zaHVhIFcuLCBS
-aWNoYXJkLiBQLiwgUmFuZHksIFJvc3MsIFRyZXZvciwgSm9uLCBMZXdpcywgSmVzc2UsIFRpbSwg
-TWF0dCwgVHJhY2V5LA0KDQpZUCBTdGF0dXM6ICBTZWUgLSBodHRwczovL3dpa2kueW9jdG9wcm9q
-ZWN0Lm9yZy93aWtpL1dlZWtseV9TdGF0dXMNCuKAoiAgICAgICBZUCAyLjcgTTEgaXMgb3V0IG9m
-IFFBIGFuZCBiZWluZyBwcmVwYXJlZCBmb3IgcmVsZWFzZS4NCuKAoiAgICAgICBZUCAyLjUuMiB3
-YXMgcmVsZWFzZWQgb24gSmFuLiA0LCAyMDE5Lg0K4oCiICAgICAgIFlQIDIuNi4xIHNob3VsZCBi
-dWlsZCBzb29uLg0K4oCiICAgICAgIFlQIDIuNyBNMiBpcyB0YXJnZXRlZCBmb3IgYnVpbGQgSmFu
-LiAyMSwgMjAxOS4NCg0KUmljaGFyZCBhbmQgU3RlcGhlbiBkaXNjdXNzZWQgUUEgc3RhdHVzIGFu
-ZCBwbGFucyBmb3IgWVAgMi42LjEuICBXZSB3aWxsIHN0aWxsIGRvIHNvbWUgbWFudWFsIFFBIHdv
-cmsgaW4gUTHigJkxOSBidXQgcGxhbiB0byBhdXRvbWF0ZSBRQSBiZWZvcmUgdGhlIGVuZCBvZiBR
-MeKAmTE5Lg0KDQpKb3NodWEgZGlzY3Vzc2VkIHRoZSBoYXNoIHdvcmsgb24gc3N0YXRlLiAgSXQg
-aGFzIG1lcmdlZCBmb3IgTTIuIERpc2N1c3NlZCBob3cgYnVpbGQgaGlzdG9yeSB1c2Ugb2YgaGFz
-aGVzIG5lZWRzIHNvbWUgdXBkYXRlcyB0byBpbXByb3ZlIHJlcHJvZHVjaWJpbGl0eS4NCg0KVHJl
-dm9yIGFza2VkIGFib3V0IHRoZSBXZWVrbHkgc3RhdHVzIHJlcG9ydCBtZWV0aW5ncy4gVGhlc2Ug
-YXJlIHdoZXJlIHRoZSB3ZWVrbHkgc3RhdHVzIHJlcG9ydCBpcyB3cml0dGVuIGFuZCB3aGlsZSBh
-bGwgYXJlIHdlbGNvbWUgdG8gYXR0ZW5kLCBubyBvbmUgYnV0IFN0ZXBoZW4gYW5kIFJpY2hhcmQg
-YXJlIHJlcXVpcmVkLg0KDQpUcmV2b3IgZGlzY3Vzc2VkIHRoYXQgWVAgaXMgZHJvcHBpbmcgc3Vw
-cG9ydCBmb3Igc29tZSBvbGQgIEFSTSB0YXJnZXRzLCBzaW5jZSB0aGV5IGFyZSBiZWluZyBkcm9w
-cGVkIGZyb20gZ2NjLg0KDQpSaWNoYXJkIGFza2VkIGFib3V0IGluY3JlbWVudGFsIGltYWdlIHBh
-Y2thZ2luZy4gIFJhbmR5IGNvbW1lbnRlZCB0aGF0IFdSUyBpcyB1c2luZyB0aGlzIGZlYXR1cmUg
-Zm9yIFJQTS4NCg0KU2VlIHRoZSBtaW51dGVzIGZpbGUgYXQ6IGh0dHBzOi8vZG9jcy5nb29nbGUu
-Y29tL2RvY3VtZW50L2QvMVk1SUl1RS16MFlrZGwtRHd1elVKaDUyZmxPWnVoTl9UU0FmdzJ0ZFU5
-cGcvZWRpdD90cz01YzA2YjIyZA0KDQpUaGFua3MsDQoNClN0ZXBoZW4gSy4gSm9sbGV5DQpZb2N0
-byBQcm9qZWN0IFByb2dyYW0gTWFuYWdlci9PVEMgU1cgUFJUIFByb2dyYW0gTWFuYWdlcg0KSU5U
-RUwsIE1TIEpGMS0yNTUsIDIxMTEgTi5FLiAyNXRoIEF2ZW51ZSwgSGlsbHNib3JvLCBPUiA5NzEy
-NA0K4oCiICAgIENlbGw6ICAgICAgICAgICAgICAoMjA4KSAyNDQtNDQ2MA0K4oCiIEVtYWlsOiAg
-ICAgICAgICAgICAgICBzdGVwaGVuLmsuam9sbGV5QGludGVsLmNvbQ0KDQoNCg==
+My end customer wants the script to be converted into a command(single
+executable binary) which can be executed directly from any location and his
+end user cannot see the exact code behind it.
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6CE2BCfmsmsx123amrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Mon, 7 Jan 2019, 03:56 Jon Szymaniak <jon.szymaniak.foss@gmail.com wrote=
+:
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
-dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
-LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
-ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
-PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PC9h
-Pg0KPGRpdj48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMXB0OyI+QXR0ZW5kZWVzOiBTdGVwaGVuLCBBcm1pbiwgQWxleCwgUmljaGFyZCBHLiwgSm9z
-aHVhIFcuLCBSaWNoYXJkLiBQLiwgUmFuZHksIFJvc3MsIFRyZXZvciwgSm9uLCBMZXdpcywgSmVz
-c2UsIFRpbSwgTWF0dCwgVHJhY2V5LCA8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBm
-YWNlPSJDYWxpYnJpIiBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJz
-cDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMiI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+WVAgU3RhdHVzOiAmbmJzcDtTZWUgLSA8YSBo
-cmVmPSJodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1dlZWtseV9TdGF0dXMiPjxm
-b250IGNvbG9yPSIjMTE1NUNDIj48dT5odHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtp
-L1dlZWtseV9TdGF0dTwvdT48L2ZvbnQ+PGZvbnQgY29sb3I9IiMxMTU1Q0MiPjx1PnM8L3U+PC9m
-b250PjwvYT48L3NwYW4+PC9mb250PjwvZGl2Pg0KPHVsIHN0eWxlPSJtYXJnaW46MDtwYWRkaW5n
-LWxlZnQ6MzZwdDsiPg0KPGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTFwdDsiPg0KPGxpPllQIDIuNyBNMSBpcyBvdXQgb2YgUUEgYW5kIGJlaW5nIHBy
-ZXBhcmVkIGZvciByZWxlYXNlLjwvbGk+PGxpPllQIDIuNS4yIHdhcyByZWxlYXNlZCBvbiBKYW4u
-IDQsIDIwMTkuPC9saT48bGk+WVAgMi42LjEgc2hvdWxkIGJ1aWxkIHNvb24uPC9saT48bGk+WVAg
-Mi43IE0yIGlzIHRhcmdldGVkIGZvciBidWlsZCBKYW4uIDIxLCAyMDE5LjwvbGk+PC9zcGFuPjwv
-Zm9udD4NCjwvdWw+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxm
-b250IGZhY2U9IkFyaWFsIiBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5S
-aWNoYXJkIGFuZCBTdGVwaGVuIGRpc2N1c3NlZCBRQSBzdGF0dXMgYW5kIHBsYW5zIGZvciBZUCAy
-LjYuMS4gJm5ic3A7V2Ugd2lsbCBzdGlsbCBkbyBzb21lIG1hbnVhbCBRQSB3b3JrIGluIFEx4oCZ
-MTkgYnV0IHBsYW4gdG8gYXV0b21hdGUgUUEgYmVmb3JlIHRoZSBlbmQgb2YgUTHigJkxOS4gPC9z
-cGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxk
-aXY+PGZvbnQgZmFjZT0iQXJpYWwiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFw
-dDsiPkpvc2h1YSBkaXNjdXNzZWQgdGhlIGhhc2ggd29yayBvbiBzc3RhdGUuICZuYnNwO0l0IGhh
-cyBtZXJnZWQgZm9yIE0yLiBEaXNjdXNzZWQgaG93IGJ1aWxkIGhpc3RvcnkgdXNlIG9mIGhhc2hl
-cyBuZWVkcyBzb21lIHVwZGF0ZXMgdG8gaW1wcm92ZSByZXByb2R1Y2liaWxpdHkuIDwvc3Bhbj48
-L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxm
-b250IGZhY2U9IkFyaWFsIiBzaXplPSIyIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5U
-cmV2b3IgYXNrZWQgYWJvdXQgdGhlIFdlZWtseSBzdGF0dXMgcmVwb3J0IG1lZXRpbmdzLiBUaGVz
-ZSBhcmUgd2hlcmUgdGhlIHdlZWtseSBzdGF0dXMgcmVwb3J0IGlzIHdyaXR0ZW4gYW5kIHdoaWxl
-IGFsbCBhcmUgd2VsY29tZSB0byBhdHRlbmQsIG5vIG9uZSBidXQgU3RlcGhlbiBhbmQgUmljaGFy
-ZCBhcmUgcmVxdWlyZWQuIDwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNh
-bGlicmkiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bh
-bj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkFyaWFsIiBzaXplPSIyIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjExcHQ7Ij5UcmV2b3IgZGlzY3Vzc2VkIHRoYXQgWVAgaXMgZHJvcHBp
-bmcgc3VwcG9ydCBmb3Igc29tZSBvbGQgJm5ic3A7QVJNIHRhcmdldHMsIHNpbmNlIHRoZXkgYXJl
-IGJlaW5nIGRyb3BwZWQgZnJvbSBnY2MuIDwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250
-IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZu
-YnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkFyaWFsIiBzaXplPSIy
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij5SaWNoYXJkIGFza2VkIGFib3V0IGluY3Jl
-bWVudGFsIGltYWdlIHBhY2thZ2luZy4gJm5ic3A7UmFuZHkgY29tbWVudGVkIHRoYXQgV1JTIGlz
-IHVzaW5nIHRoaXMgZmVhdHVyZSBmb3IgUlBNLjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2PiZu
-YnNwOzwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJBcmlhbCIgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMXB0OyI+U2VlIHRoZSBtaW51dGVzIGZpbGUgYXQ6IDxhIGhyZWY9Imh0dHBz
-Oi8vZG9jcy5nb29nbGUuY29tL2RvY3VtZW50L2QvMVk1SUl1RS16MFlrZGwtRHd1elVKaDUyZmxP
-WnVoTl9UU0FmdzJ0ZFU5cGcvZWRpdD90cz01YzA2YjIyZCI+PGZvbnQgY29sb3I9IiMwNTYzQzEi
-Pjx1Pmh0dHBzOi8vZG9jcy5nb29nbGUuY29tL2RvY3VtZW50L2QvMVk1SUl1RS16MFlrZGwtRHd1
-elVKaDUyZmxPWnVoTl9UU0FmdzJ0ZFU5cGcvZWRpdD90cz01YzA2YjIyZDwvdT48L2ZvbnQ+PC9h
-Pjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPGRpdj48Zm9udCBmYWNl
-PSJBcmlhbCIgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0OyI+VGhhbmtzLDwv
-c3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiIGNv
-bG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExcHQ7Ij4mbmJzcDs8L3NwYW4+
-PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBzaXplPSI0IiBjb2xvcj0icHVycGxlIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjE2cHQ7Ij48Yj48aT5TdGVwaGVuIEsuIEpvbGxleTwvaT48L2I+PC9z
-cGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ291cmllciBOZXciIHNpemU9IjEi
-IGNvbG9yPSJibHVlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjhwdDsiPjxiPllvY3RvIFByb2pl
-Y3QgUHJvZ3JhbSBNYW5hZ2VyL09UQyBTVyBQUlQgUHJvZ3JhbSBNYW5hZ2VyPC9iPjwvc3Bhbj48
-L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNvdXJpZXIgTmV3IiBzaXplPSIyIiBjb2xv
-cj0iZnVjaHNpYSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyI+PGI+SU5URUwsIE1TIEpG
-MS0yNTUsIDIxMTEgTi5FLiAyNXRoIEF2ZW51ZSwgSGlsbHNib3JvLCBPUiA5NzEyNCA8L2I+PC9z
-cGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgc2l6ZT0iMiI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZTo5cHQ7Ij48Zm9udCBmYWNlPSJXaW5nZGluZ3MiPig8L2ZvbnQ+PGZvbnQgZmFjZT0iTVMg
-U2FucyBTZXJpZiIgY29sb3I9InRlYWwiPiZuYnNwOyZuYnNwOyZuYnNwOyA8L2ZvbnQ+PGZvbnQg
-ZmFjZT0iQ29taWMgU2FucyBNUyIgc2l6ZT0iMSIgY29sb3I9InRlYWwiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6OHB0OyI+PGI+Q2VsbDwvYj48L3NwYW4+PC9mb250Pjxmb250IGZhY2U9Ik1TIFNh
-bnMgU2VyaWYiIGNvbG9yPSJ0ZWFsIj46Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8L2ZvbnQ+PGZv
-bnQgZmFjZT0iTVMgU2FucyBTZXJpZiIgY29sb3I9IiMxRjQ5N0QiPigyMDgpIDI0NC00NDYwPC9m
-b250Pjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IHNpemU9IjIiIGNvbG9yPSIjMUY0
-OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjlwdDsiPjxmb250IGZhY2U9IldpbmdkaW5ncyI+
-KiA8L2ZvbnQ+PGZvbnQgZmFjZT0iQ29taWMgU2FucyBNUyIgc2l6ZT0iMSIgY29sb3I9InRlYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6OHB0OyI+PGI+RW1haWw8L2I+PC9zcGFuPjwvZm9udD48
-Zm9udCBmYWNlPSJNUyBTYW5zIFNlcmlmIiBjb2xvcj0idGVhbCI+OiZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOw0KPC9mb250Pjxmb250IGZhY2U9Ik1TIFNhbnMgU2VyaWYiIGNvbG9y
-PSJibHVlIj48dT5zdGVwaGVuLmsuam9sbGV5QGludGVsLmNvbTwvdT48L2ZvbnQ+PC9zcGFuPjwv
-Zm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iQ2FsaWJyaSIgc2l6ZT0iMiIgY29sb3I9IiMx
-RjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+
-PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IkNhbGlicmkiIHNpemU9IjIiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTFwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8L3NwYW4+PC9mb250
-Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+> Could you provide a bit more context about your particular use-case and
+> need to do this?
+>
+> i.e. Why is deployment of the existing script insufficient?
+>
+> I know this isn=E2=80=99t addressing your underlying question, but just w=
+ant to
+> see if perhaps an alternative solution may be a better one for you.
+>
+> On Sun, Jan 6, 2019 at 13:12 nishant poorswani <nishantpoorswani@gmail.co=
+m>
+> wrote:
+>
+>> Hi, I wanted to know which is the best way of converting a bash script
+>> into an executable binary in yocto. One way to do this is to add a recip=
+e
+>> for shc( script compiler) in yocto and then use the shc for compiling it=
+ in
+>> another recipe. Is there any other way to achieve this ? Any suggestions
+>> would be deeply appreciated.
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6CE2BCfmsmsx123amrcor_--
+--000000000000a8950d057ef4da05
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">My end customer wants the script to be converted into a c=
+ommand(single executable binary) which can be executed directly from any lo=
+cation and his end user cannot see the exact code behind it.=C2=A0</div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr">On Mon, 7 Jan 2019, 03:56 Jon =
+Szymaniak &lt;<a href=3D"mailto:jon.szymaniak.foss@gmail.com">jon.szymaniak=
+.foss@gmail.com</a> wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div><di=
+v><div dir=3D"auto">Could you provide a bit more context about your particu=
+lar use-case and need to do this?</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">i.e. Why is deployment of the existing script insufficient?</div>=
+</div><div dir=3D"auto"><br></div><div dir=3D"auto">I know this isn=E2=80=
+=99t addressing your underlying question, but just want to see if perhaps a=
+n alternative solution may be a better one for you.</div><div dir=3D"auto">=
+<br></div><div><div class=3D"gmail_quote"><div dir=3D"ltr">On Sun, Jan 6, 2=
+019 at 13:12 nishant poorswani &lt;<a href=3D"mailto:nishantpoorswani@gmail=
+.com" target=3D"_blank" rel=3D"noreferrer">nishantpoorswani@gmail.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
+.8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto">Hi, I w=
+anted to know which is the best way of converting a bash script into an exe=
+cutable binary in yocto. One way to do this is to add a recipe for shc( scr=
+ipt compiler) in yocto and then use the shc for compiling it in another rec=
+ipe. Is there any other way to achieve this ? Any suggestions would be deep=
+ly appreciated.=C2=A0</div>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank" rel=3D"noreferr=
+er">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+ noreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yoct=
+o</a><br>
+</blockquote></div></div></div>
+</blockquote></div>
+
+--000000000000a8950d057ef4da05--
