@@ -1,69 +1,76 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <stefano.cappa.ks89@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 631B6E00C5F; Wed,  9 Jan 2019 10:33:01 -0800 (PST)
+	id 15448E00C6D; Wed,  9 Jan 2019 12:55:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.217.46 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.42 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (stefano.cappa.ks89[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
-	[209.85.221.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF412E008C6
-	for <yocto@yoctoproject.org>; Wed,  9 Jan 2019 10:33:00 -0800 (PST)
-Received: by mail-wr1-f42.google.com with SMTP id s12so8727386wrt.4
-	for <yocto@yoctoproject.org>; Wed, 09 Jan 2019 10:33:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:user-agent:mime-version:content-transfer-encoding;
-	bh=I/Rb5wWDcJ4N2xeCDYh1vlQFqN+g/V4h97t/3LzO/t4=;
-	b=YBX33oYa/+gNuD2520Wpwcq6mhtmx6cmXFii2yNmkIRdeDYPlWoa9NU2Mx1zE4SfCp
-	5UZ1BhBauCZtCjyLjDy0qK8MFrNoTDU4F4WVaotfdIx59A+kGA1DmVVijQ4O81s3FPqC
-	uDoik6VHp7KCC7mJJREgvLXMnhAZSR5kQvN+s=
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com
+	[209.85.217.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9DF9E006F1
+	for <yocto@yoctoproject.org>; Wed,  9 Jan 2019 12:55:23 -0800 (PST)
+Received: by mail-vs1-f46.google.com with SMTP id z23so5630258vsj.11
+	for <yocto@yoctoproject.org>; Wed, 09 Jan 2019 12:55:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=2roSPDyWlmHTDE6yDGYCw2bfdHCceNQ2mW+DfnfV1LM=;
+	b=Z8L1rWNrMZbchdpS+R3QG504oU5otcJoE0feYDKJSgOqlSR9cbCEjMPXKMu+A1vQyY
+	SCctlJPd/gYgksdtSXXV7uLcBMq+CFg6o4FZACIgHjDLn+U8rsv9EwmqeilOEGQFtXxp
+	WStoYJSFaFkn/ifvX/BcIbUxnxq1KHXvgY6ppsbxDd8qj8b0GDKR60c0EhTmw9nQOYWr
+	9jGU8JDkQxObR2j4xx4X5dBQV5wl7kNFJgJMa0v4W0fM6EkSJx54f//96SZ0CmtsRu9+
+	1KjNCuTtg1rKsathlZznmKypTTOFc9+s/LeKFm6g2BPvgxe1EZ/JgxnB68EZHTB5jMMr
+	+rzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=I/Rb5wWDcJ4N2xeCDYh1vlQFqN+g/V4h97t/3LzO/t4=;
-	b=f1sv34/iLHzHAs7Ee7AXcCTPGaxzRqgJs+caxnLbnTzY2C8lP1PpE0fTCc//CICxrV
-	hZ4GeKO8yCHxrJsWnLAcMYKLKDbFfdrlvZA7M2/zejFxkBzTWblXg/T1rrVgCsv1N2cz
-	6Dtd+HYkz9X7S4PoonolG6gnlBMGSaPi2fpueOpcFDPw9TluCDKHQOLWgO6+ORW5X9Fs
-	ftTg5CR7ghB1LlLy5Ms8mPbCX0598awL8rJPzHubPncsQm97qQx4cLtjcTPzzVGrnTNF
-	4wUrfYqILyuFvDHXzWYJLw0YhRVhmtYr11vOa1ZbFWxsVfRb93glacJNFxrdl2wk52Um
-	eBMQ==
-X-Gm-Message-State: AJcUukf6X4CBAlY+L9kznpQzxTG9M08bvDm1d+rnGARABnz8lm8X2BUY
-	RTHXoR4SgNcZuZCEWQmH8oa02Q==
-X-Google-Smtp-Source: ALg8bN7OOtkORO31NizFYH/amGgzlBt3emRdPoNExLu1WZk8QjnZZuqegAN/BxzWQ1f4EqiNATYJGg==
-X-Received: by 2002:adf:e08c:: with SMTP id c12mr5779883wri.199.1547058779819; 
-	Wed, 09 Jan 2019 10:32:59 -0800 (PST)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	m193sm14986348wmb.26.2019.01.09.10.32.58
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Wed, 09 Jan 2019 10:32:58 -0800 (PST)
-Message-ID: <6e9238953be46e0f510646c05fb350638d088b35.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Anibal Limon <anibal.limon@linaro.org>
-Date: Wed, 09 Jan 2019 18:32:57 +0000
-In-Reply-To: <CA+_AqiuJ7XenDosBWi_xZ=UMiBf8f8A50zUbvfUjxLiZgaC7GQ@mail.gmail.com>
-References: <20190107211837.25225-1-anibal.limon@linaro.org>
-	<2807dd3a7edf71f4b1d14e385d54184cd07cbc0d.camel@linuxfoundation.org>
-	<CA+_AqiuJ7XenDosBWi_xZ=UMiBf8f8A50zUbvfUjxLiZgaC7GQ@mail.gmail.com>
-User-Agent: Evolution 3.30.3-1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCHv2][ptest-runner] ptest-runner: Add support to report duration of each ptest
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=2roSPDyWlmHTDE6yDGYCw2bfdHCceNQ2mW+DfnfV1LM=;
+	b=RMJWNNSeCvJ2KkDFOI8/FWFXIBKK/09ne31/jScUjHIjMmIP/dEKfrVR/W9pgZnAzO
+	/glE+P+aYomql3EkQ8y+V6QKwMrZpbkxPrG4lfaKxrzmbpg6lmsLNT7rbxfEXklSd+TN
+	eIR2oTBORoJ2krbqk/rMc21yu1QqCDTZcMKPhVhoSu77V+rK1jNkf5PN5ZxbjlNnQTMb
+	3rP/8aiVdTHJ/Du4RU6nHl9H3olcMhuxJ+tYsQLGa9B8ZWtCquJDpKuXQeAlcAtUTvB/
+	rg99LSV4vshnVuLPtML0Aajuq3Zs6pZzEQ6ChvvhMdgbFOXt16TKU1zT4EVz1DTkTrr/
+	jeXQ==
+X-Gm-Message-State: AJcUukfJ3GsBx22zi0QGCbz3Hnzv+QxVLwfHWjtaSXmpVuirVFBdT49h
+	TPg5tocyA0zGsjrJye9VPYQ0+1DoKa9zSz5gcSY=
+X-Google-Smtp-Source: ALg8bN4VQxHSWz1jYFE73SN5qONG4X2f4KgUxU+xY7ac2gHo9M18+Ru0i18Wv5iwVdCIEx402C88uwaZv5m0hITrcog=
+X-Received: by 2002:a67:c202:: with SMTP id i2mr2930374vsj.11.1547067322957;
+	Wed, 09 Jan 2019 12:55:22 -0800 (PST)
+MIME-Version: 1.0
+References: <20181017232705.HQN68.75473.root@cdptpa-web09>
+	<CAKRytNw_TCeqAfN9TG2y6L6WAO+FNZkzE2S7DWyBM9OzWZQ18Q@mail.gmail.com>
+	<004d01d466e9$3c7daf70$b5790e50$@san.rr.com>
+	<0cba098f-4179-ec8a-73a5-bb2815806e59@kernel.org>
+	<9dd76a25-1560-5bca-64d3-e6dd57a44ccc@windriver.com>
+	<20181018190803.GB25172@mentor.com>
+	<20181024234913.GA11980@deserted.net>
+	<8a5b43c6-85eb-dd7a-ceee-d10f6977cca3@kernel.org>
+	<CAKRytNw3Ct9mc1SVCRKDg8cK+KUvuQLhVoSD-7vJPu93eSk9Aw@mail.gmail.com>
+	<a075bc8f-aae5-443c-ba5d-a75eb6b05e58@email.android.com>
+	<20181231024607.GA14710@mentor.com>
+	<1546224721158.55264@mentor.com>
+In-Reply-To: <1546224721158.55264@mentor.com>
+From: Stefano Cappa <stefano.cappa.ks89@gmail.com>
+Date: Wed, 9 Jan 2019 21:55:11 +0100
+Message-ID: <CAKRytNxpn9ffa-KjQ4kGXZuPg7DiA3YXMkEx-=aqoLA-qpZCag@mail.gmail.com>
+To: "MacDonald, Joe" <Joe_MacDonald@mentor.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [selinux] sumo compilation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,61 +82,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Jan 2019 18:33:01 -0000
+X-List-Received-Date: Wed, 09 Jan 2019 20:55:26 -0000
+Content-Type: multipart/alternative; boundary="0000000000003a8538057f0caeee"
+
+--0000000000003a8538057f0caeee
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
 
-On Wed, 2019-01-09 at 12:00 -0600, Anibal Limon wrote:
-> 
-> 
-> On Tue, 8 Jan 2019 at 14:00, <richard.purdie@linuxfoundation.org>
+Ok thank you, I'll try it.
+
+Il giorno lun 31 dic 2018 alle ore 03:52 MacDonald, Joe <
+Joe_MacDonald@mentor.com> ha scritto:
+
+> One additional quick note, in hope of avoiding any further confusion, I'm
+> working on the refpolicy version from July not January 2018.  Sorry about
+> that.
+>
+> -J.
+>
+> ________________________________________
+> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on
+> behalf of MacDonald, Joe
+> Sent: Sunday, December 30, 2018 9:46 PM
+> To: Stefano Cappa
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] [selinux] sumo compilation
+>
+> [Re: [yocto] [selinux] sumo compilation] On 18.12.30 (Sun 14:31)
+> MacDonald, Joe wrote:
+>
+> > I have both ready to go, there's been a few hiccups with my access to
+> the git
+> > server. I'll push my queued changes somewhere public when I get to a
+> keyboard
+> > later today so at least everyone can see what's coming.
+>
+> Update on this.  While we're sorting out the access issue, the current
+> master, sumo and thud branches on my personal mirror
+> (https://github.com/joeythesaint/meta-selinux) are mostly up-to-date
+> (the only thing I haven't included in there yet is the refpolicy update
+> for the 20180114 release, little overdue, that) and build for the
+> respective Yocto releases.  If that's not your experience, please let me
+> know and we'll get that sorted out right away.
+>
+> Thanks.
+>
+> -Joe.
+>
+> >
+> > -J.
+> >
+> > On Dec 30, 2018 6:29 AM, Stefano Cappa <stefano.cappa.ks89@gmail.com>
 > wrote:
-> > On Mon, 2019-01-07 at 15:18 -0600, Aníbal Limón wrote:
-> > > In stdout reported as,
-> > > 
-> > > ...
-> > > BEGIN: ptest-dir
-> > > ...
-> > > DURATION: N
-> > > END: ptest-dir
-> > > ...
-> > > 
-> > > In XML reported as,
-> > > 
-> > > ...
-> > > <testcase classname='test1' name='run-ptest'>
-> > >       <duration>N</duration>
-> > > </testcase>
-> > > ...
-> > > 
-> > > Signed-off-by: Aníbal Limón <anibal.limon@linaro.org>
-> > > ---
-> > >  tests/data/reference.xml |  2 ++
-> > >  tests/utils.c            | 20 ++++++++++++--------
-> > >  utils.c                  | 19 ++++++++++++-------
-> > >  utils.h                  |  2 +-
-> > >  4 files changed, 27 insertions(+), 16 deletions(-)
-> > 
-> > I've not looked at the code detail but the above looks good to me
-> > and
-> > will significantly help ptest usage! :)
-> > 
-> > Once this is in are you able to help update the recipe and pass
-> > this
-> > data through to the the oe-selftest json report?
-> 
-> I will send the recipe upgrade, What is the selftest json report?,
-> I'm not aware.
+> > Are there any news about this? Also for thud branch.
+> >
+> > Il mar 30 ott 2018, 14:46 Sinan Kaya <okaya@kernel.org> ha scritto:
+> >
+> >     On 10/24/2018 7:49 PM, Joe MacDonald wrote:
+> >     > Hey all,
+> >     >
+> >     > I just thought I should quickly follow up on this.  I have a
+> change set
+> >     > ready that includes tagging and a minor tweak for sumo,
+> integration of
+> >     > the current outstanding patch list and a tag for thud and a couple
+> of
+> >     > additional things (possibly) for post-thud.  I'll send out a set
+> for
+> >     > sumo and maybe an additional one for thud/post- possibly tomorrow
+> or
+> >     > after I get home on Friday.
+> >
+> >     Thanks, we are looking forward to see it on yocto.
+> >
+> >     >
+> >     > -J.
+> >
+> >     --
+> >     _______________________________________________
+> >     yocto mailing list
+> >     yocto@yoctoproject.org
+> >     https://lists.yoctoproject.org/listinfo/yocto
+> >
+>
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-Sorry, its not from selftest, its from testimage running against an
-image where ptests are present. It generates something like:
+--0000000000003a8538057f0caeee
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://autobuilder.yocto.io/pub/releases/yocto-2.7_M1.rc1/testresults/qemux86-64-ptest/testresults.json
+<div dir=3D"ltr">Ok thank you, I&#39;ll try it.</div><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr">Il giorno lun 31 dic 2018 alle ore 03:52 MacDonal=
+d, Joe &lt;<a href=3D"mailto:Joe_MacDonald@mentor.com">Joe_MacDonald@mentor=
+.com</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">One addi=
+tional quick note, in hope of avoiding any further confusion, I&#39;m worki=
+ng on the refpolicy version from July not January 2018.=C2=A0 Sorry about t=
+hat.<br>
+<br>
+-J.<br>
+<br>
+________________________________________<br>
+From: <a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">y=
+octo-bounces@yoctoproject.org</a> &lt;<a href=3D"mailto:yocto-bounces@yocto=
+project.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a>&gt; on be=
+half of MacDonald, Joe<br>
+Sent: Sunday, December 30, 2018 9:46 PM<br>
+To: Stefano Cappa<br>
+Cc: <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yocto=
+project.org</a><br>
+Subject: Re: [yocto] [selinux] sumo compilation<br>
+<br>
+[Re: [yocto] [selinux] sumo compilation] On 18.12.30 (Sun 14:31) MacDonald,=
+ Joe wrote:<br>
+<br>
+&gt; I have both ready to go, there&#39;s been a few hiccups with my access=
+ to the git<br>
+&gt; server. I&#39;ll push my queued changes somewhere public when I get to=
+ a keyboard<br>
+&gt; later today so at least everyone can see what&#39;s coming.<br>
+<br>
+Update on this.=C2=A0 While we&#39;re sorting out the access issue, the cur=
+rent<br>
+master, sumo and thud branches on my personal mirror<br>
+(<a href=3D"https://github.com/joeythesaint/meta-selinux" rel=3D"noreferrer=
+" target=3D"_blank">https://github.com/joeythesaint/meta-selinux</a>) are m=
+ostly up-to-date<br>
+(the only thing I haven&#39;t included in there yet is the refpolicy update=
+<br>
+for the 20180114 release, little overdue, that) and build for the<br>
+respective Yocto releases.=C2=A0 If that&#39;s not your experience, please =
+let me<br>
+know and we&#39;ll get that sorted out right away.<br>
+<br>
+Thanks.<br>
+<br>
+-Joe.<br>
+<br>
+&gt;<br>
+&gt; -J.<br>
+&gt;<br>
+&gt; On Dec 30, 2018 6:29 AM, Stefano Cappa &lt;<a href=3D"mailto:stefano.c=
+appa.ks89@gmail.com" target=3D"_blank">stefano.cappa.ks89@gmail.com</a>&gt;=
+ wrote:<br>
+&gt; Are there any news about this? Also for thud branch.<br>
+&gt;<br>
+&gt; Il mar 30 ott 2018, 14:46 Sinan Kaya &lt;<a href=3D"mailto:okaya@kerne=
+l.org" target=3D"_blank">okaya@kernel.org</a>&gt; ha scritto:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0On 10/24/2018 7:49 PM, Joe MacDonald wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; Hey all,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; I just thought I should quickly follow up on t=
+his.=C2=A0 I have a change set<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; ready that includes tagging and a minor tweak =
+for sumo, integration of<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; the current outstanding patch list and a tag f=
+or thud and a couple of<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; additional things (possibly) for post-thud.=C2=
+=A0 I&#39;ll send out a set for<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; sumo and maybe an additional one for thud/post=
+- possibly tomorrow or<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; after I get home on Friday.<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Thanks, we are looking forward to see it on yocto.<=
+br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; -J.<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0--<br>
+&gt;=C2=A0 =C2=A0 =C2=A0_______________________________________________<br>
+&gt;=C2=A0 =C2=A0 =C2=A0yocto mailing list<br>
+&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:yocto@yoctoproject.org" target=3D=
+"_blank">yocto@yoctoproject.org</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"https://lists.yoctoproject.org/listinfo/=
+yocto" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/=
+listinfo/yocto</a><br>
+&gt;<br>
+<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
+oproject.org</a><br>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
+br>
+<br>
+</blockquote></div>
 
-Cheers,
-
-Richard
-
-
-
-
+--0000000000003a8538057f0caeee--
