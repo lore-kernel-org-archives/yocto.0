@@ -1,38 +1,61 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <anibal.limon@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E5EBAE00BC8; Wed,  9 Jan 2019 08:56:26 -0800 (PST)
+	id 84C09E00C71; Wed,  9 Jan 2019 10:01:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D11EE009B1
-	for <yocto@yoctoproject.org>; Wed,  9 Jan 2019 08:56:26 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x09Gt8Lg013179
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 9 Jan 2019 08:55:55 -0800
-Received: from server.local (128.224.20.43) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.408.0;
-	Wed, 9 Jan 2019 08:55:34 -0800
-To: Kristupas Savickas <kristupas.savickas@teltonika.lt>,
-	<yocto@yoctoproject.org>
-References: <30fd8545-ec8a-2229-28e4-8bea6048d66a@teltonika.lt>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <8db93c07-fd90-86d8-ba47-6c78b7a98ded@windriver.com>
-Date: Wed, 9 Jan 2019 11:55:32 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.4.0
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.46 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com
+	[209.85.217.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 723CEE00C5F
+	for <yocto@yoctoproject.org>; Wed,  9 Jan 2019 10:01:01 -0800 (PST)
+Received: by mail-vs1-f46.google.com with SMTP id z3so5309465vsf.7
+	for <yocto@yoctoproject.org>; Wed, 09 Jan 2019 10:01:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=WRp6kbZoY6eCMqPDSJPwkk4iaOkrUTu+/GKg0mMiLJ0=;
+	b=cuSNZpMHNsDc11RMzGYSM6GZ0MHvLHKTLQEApnkXVTeL+0G8WSFsydYQW+ZrEx7KRs
+	GJDrVOT0KkKGgq5LuQXpXHy5LQ3Xr9c/xllQbV6Lc0ISU52405voVuk8RicrnQ2cgnCb
+	y/vHgwChbXTqaGK00aT2HomjPCH7TrPcZgZQo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=WRp6kbZoY6eCMqPDSJPwkk4iaOkrUTu+/GKg0mMiLJ0=;
+	b=oenDz9SP66hV/Qzmq0YDCewubuyS0wkmL5Q/OHKw4ifYcA58Vp3KoB8SMrzHiax2jW
+	QeIBdU2F9MtXdnNzt2aWq/RivzkG9WxM4TBjnGS1rdARbMX7RwVz8hUx+bajwczMW/I4
+	WEHTJBhWX9QxJaml7xvLCd6yNDZtbPANhj3MxqCcY6aXoWLqQrqfxr8L8QrKNzAVMpit
+	jKN7oK57ms/XLAdpUQA24Pc161xO01piCb+KtWhvMKSHKIUvCdY57MmI0mUOepevmr+f
+	VkQFpzWXei4Odv9bgJYAmxKbOeb4TXIhFSzFvAgHampOHLDpmU6G9L+BzDnGD846ihYk
+	Anig==
+X-Gm-Message-State: AJcUukdvxFJqyASnh348UWk54d6epMNQOrM+zX27i5zMywwQ9P+GYxdH
+	3oHrzjMzFHeHPjafCIIWG4LaokwCVR/wZWDuIymTGA==
+X-Google-Smtp-Source: ALg8bN5yA2F8nR0LDTH4k/5nKXDtjcn0vyHoAnsMdMIhj6oQif120KLf7Sm7g7AtRYJR9x+41xY6LamjHQa9uCkINvc=
+X-Received: by 2002:a67:1d03:: with SMTP id d3mr2890822vsd.154.1547056860486; 
+	Wed, 09 Jan 2019 10:01:00 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <30fd8545-ec8a-2229-28e4-8bea6048d66a@teltonika.lt>
-Subject: Re: Incorrect config generated for yocto-style kernel (sumo)
+References: <20190107211837.25225-1-anibal.limon@linaro.org>
+	<2807dd3a7edf71f4b1d14e385d54184cd07cbc0d.camel@linuxfoundation.org>
+In-Reply-To: <2807dd3a7edf71f4b1d14e385d54184cd07cbc0d.camel@linuxfoundation.org>
+From: Anibal Limon <anibal.limon@linaro.org>
+Date: Wed, 9 Jan 2019 12:00:49 -0600
+Message-ID: <CA+_AqiuJ7XenDosBWi_xZ=UMiBf8f8A50zUbvfUjxLiZgaC7GQ@mail.gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCHv2][ptest-runner] ptest-runner: Add support to report duration of each ptest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,80 +67,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Jan 2019 16:56:27 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 09 Jan 2019 18:01:02 -0000
+Content-Type: multipart/alternative; boundary="0000000000009e1694057f0a3eae"
 
-On 2019-01-07 9:00 a.m., Kristupas Savickas wrote:
-> Hello,
-> 
-> I'm porting a kernel to use yocto-style build process. The kernel 
-> fetches fine, but there's a problem with '.config' file generation. I'd 
-> like to supply a 'defconfig' and a configuration fragment file 
-> 'test.cfg' (which should be overlayed on top of 'defconfig') from the 
-> bitbake recipe. What I end up getting is a '.config' file that looks 
-> like it used the default values - neither 'defconfig' nor 'test.cfg' was 
-> used. Here's what I have going in my recipe:
+--0000000000009e1694057f0a3eae
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The defconfig + fragment wouldn't have been ignored, but it is
-also possible that other settings / fragments were applied that
-are making it look like they were not applied.
+On Tue, 8 Jan 2019 at 14:00, <richard.purdie@linuxfoundation.org> wrote:
 
-Can you look at your kernel-source/.kernel-meta/bsp_definition
-file, and see what was used as the entry point to the configuration ?
-If something was generated by the system, it would be pulling in
-the standard definitions/fragments.
+> On Mon, 2019-01-07 at 15:18 -0600, An=C3=ADbal Lim=C3=B3n wrote:
+> > In stdout reported as,
+> >
+> > ...
+> > BEGIN: ptest-dir
+> > ...
+> > DURATION: N
+> > END: ptest-dir
+> > ...
+> >
+> > In XML reported as,
+> >
+> > ...
+> > <testcase classname=3D'test1' name=3D'run-ptest'>
+> >       <duration>N</duration>
+> > </testcase>
+> > ...
+> >
+> > Signed-off-by: An=C3=ADbal Lim=C3=B3n <anibal.limon@linaro.org>
+> > ---
+> >  tests/data/reference.xml |  2 ++
+> >  tests/utils.c            | 20 ++++++++++++--------
+> >  utils.c                  | 19 ++++++++++++-------
+> >  utils.h                  |  2 +-
+> >  4 files changed, 27 insertions(+), 16 deletions(-)
+>
+> I've not looked at the code detail but the above looks good to me and
+> will significantly help ptest usage! :)
+>
+> Once this is in are you able to help update the recipe and pass this
+> data through to the the oe-selftest json report?
+>
 
-Cheers,
+I will send the recipe upgrade, What is the selftest json report?, I'm not
+aware.
 
-Bruce
-
-> 
-> 
-> LICENSE = "GPLv2"
-> LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
-> 
-> inherit tlt-image kernel
-> require recipes-kernel/linux/linux-yocto.inc
-> 
-> SRCREV    = "8f450c58d196723a78527b643910b90d7cd6549f"
-> 
-> SRC_URI = " \
->          git://git@REDACTED.git;protocol=ssh \
->          file://defconfig \
-> "
-> 
-> SRC_URI_append_test = "file://test.cfg"
-> 
-> PV = "3.18.20"
-> KBRANCH = "master"
-> 
-> KMACHINE = "test"
-> KARCH = "arm"
-> 
-> And here's what the directory structure looks like:
-> 
-> meta-test/recipes-kernel/linux-test
-> ├── meta-test/recipes-kernel/linux-test/files
-> │   ├── meta-test/recipes-kernel/linux-test/files/defconfig
-> │   └── meta-test/recipes-kernel/linux-test/files/test.cfg
-> └── meta-test/recipes-kernel/linux-test/linux-test_git.bb
-> 
-> Configuration files are fetched as intended:
-> 
-> $ ls build/tmp-glibc/work/test-oe-linux-gnueabi/linux-test/3.18.20-r0/
-> defconfig        linux-test-standard-build  recipe-sysroot-native test.cfg
-> license-destdir  recipe-sysroot               temp
-> 
-> 
-> I've followed instructions from 
-> https://www.yoctoproject.org/docs/2.5/kernel-dev/kernel-dev.html#creating-a-defconfig-file 
-> and 
-> https://www.yoctoproject.org/docs/2.5/kernel-dev/kernel-dev.html#creating-config-fragments. 
-> 
-> 
-> Am I doing something wrong here?
-> 
+Regards,
+Anibal
 
 
+>
+> Cheers,
+>
+> Richard
+>
+>
+
+--0000000000009e1694057f0a3eae
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr">On Tue, 8 Jan 2019 at 14:00, &lt;<a href=3D"mailto:richard=
+.purdie@linuxfoundation.org">richard.purdie@linuxfoundation.org</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Mon, 2019=
+-01-07 at 15:18 -0600, An=C3=ADbal Lim=C3=B3n wrote:<br>
+&gt; In stdout reported as,<br>
+&gt; <br>
+&gt; ...<br>
+&gt; BEGIN: ptest-dir<br>
+&gt; ...<br>
+&gt; DURATION: N<br>
+&gt; END: ptest-dir<br>
+&gt; ...<br>
+&gt; <br>
+&gt; In XML reported as,<br>
+&gt; <br>
+&gt; ...<br>
+&gt; &lt;testcase classname=3D&#39;test1&#39; name=3D&#39;run-ptest&#39;&gt=
+;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;duration&gt;N&lt;/duration&gt;<br>
+&gt; &lt;/testcase&gt;<br>
+&gt; ...<br>
+&gt; <br>
+&gt; Signed-off-by: An=C3=ADbal Lim=C3=B3n &lt;<a href=3D"mailto:anibal.lim=
+on@linaro.org" target=3D"_blank">anibal.limon@linaro.org</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 tests/data/reference.xml |=C2=A0 2 ++<br>
+&gt;=C2=A0 tests/utils.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 20 ++++=
+++++++++--------<br>
+&gt;=C2=A0 utils.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 | 19 ++++++++++++-------<br>
+&gt;=C2=A0 utils.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 |=C2=A0 2 +-<br>
+&gt;=C2=A0 4 files changed, 27 insertions(+), 16 deletions(-)<br>
+<br>
+I&#39;ve not looked at the code detail but the above looks good to me and<b=
+r>
+will significantly help ptest usage! :)<br>
+<br>
+Once this is in are you able to help update the recipe and pass this<br>
+data through to the the oe-selftest json report?<br></blockquote><div><br><=
+/div><div>I will send the recipe upgrade, What is the selftest json report?=
+, I&#39;m not aware.</div><div><br></div><div>Regards,</div><div>Anibal</di=
+v><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+Cheers,<br>
+<br>
+Richard<br>
+<br>
+</blockquote></div></div>
+
+--0000000000009e1694057f0a3eae--
