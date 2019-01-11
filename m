@@ -1,6 +1,6 @@
 Return-Path: <srifenbark@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 44713E00CC4; Fri, 11 Jan 2019 09:41:15 -0800 (PST)
+	id 70272E00CD8; Fri, 11 Jan 2019 10:24:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,51 +13,50 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (srifenbark[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.44 listed in list.dnswl.org]
+	*      [209.85.208.54 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
-	[209.85.208.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAB2CE00B77
-	for <yocto@yoctoproject.org>; Fri, 11 Jan 2019 09:41:11 -0800 (PST)
-Received: by mail-ed1-f44.google.com with SMTP id o10so13693864edt.13
-	for <yocto@yoctoproject.org>; Fri, 11 Jan 2019 09:41:11 -0800 (PST)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com
+	[209.85.208.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAEE8E00BE8
+	for <yocto@yoctoproject.org>; Fri, 11 Jan 2019 10:24:20 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id b14so13831066edt.6
+	for <yocto@yoctoproject.org>; Fri, 11 Jan 2019 10:24:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=fDJ36dQhEIl6N1nrbSI8RjrJ3QqVAFJGl+NrXevDdug=;
-	b=gCkbW6tiBPGXFuWX1Pplg324t2ExRKOyxaazU9Zj7dPaDBMs/rXbeH+TUBZR9r/G+9
-	xm9fXhu3figSnELuBoGYb8i52uhXjJ0Wf7o2YWfcYiAdTLE7dFUzmsNEKRe4Mpua4Q1V
-	ozjWAS4mWt4mFdd02jw+DEBHIlWfNhXb6YXR6tYPdDe8J1pmewcLHFTvUzdgc+93wFpr
-	oULOkEVfR7EfTS9O9d9eFEGNQfbmtq68L/0oRH72tfACOaGQYAJT2SzB3+e4HUVE5Z9B
-	kG1/RDHCo9UifZgz1SpO/BTlyRyjjkoRhlmQwdmFf5udrgKk4DVfRdaiDhOzE/qRnVRc
-	F23Q==
+	:cc; bh=nePTstjdOuJ2XFT27m9oeWJVwQ1mhIkzDlJlmM5jUas=;
+	b=O5FJe3t+L7yEgjbPJVbn4L4W1MUCw0sDhgXEf7FkP0tnwuwJcECVaR8+Ucd2y6uYes
+	NIVb792548r9yD/v0plKYGhalUZS/G4jZKJOjbKQFqaerqGmeesrjGta1O8BxI0Nsb2T
+	a4PuNss/cC24iNBUHXtB/iTgyHFuqKYJynbzJ1DNBkBZh3YYuI6vwJiW+GFBt3jE3g2O
+	2VD410BCOQdOscIP1tOSJOk0+DjQbMdvpMZ116deNxsnVXmKf/AhWjsvczeKKxdMWIum
+	gA039Oy+wTxs5Hk5FyJ2EhW8Y3ewWNqb7ARrj/twgIM+1IOkKg9AajEQ/VAodpAJlwgC
+	LEQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=fDJ36dQhEIl6N1nrbSI8RjrJ3QqVAFJGl+NrXevDdug=;
-	b=KRkueLrUzAVXxZL4kk96WNh4jnRtxVfrZi9OSWtTBqY2+SJj6WqvOCBxmVHUwK0sbp
-	Zk3Rs5P/mdDz5SEAGuQ6l//qgYTX1VZw9FLF5S1/wh2Rv2jiP558BcHqDuuI0Yblxonk
-	c6zM+g8NXUJrMBHPOLCAEsD23F88M954Pii400s88NrTqjdbzmJI2JiBIuuZpFMymMRM
-	6wUu440PFFb55vUgFMZkfGm8DghVIMYx02uGxTyxN1kjmYOfdWjwq67AFe7O/cjrclaJ
-	Ul4O0Gg74NOi7CLqdJs27ZDhjRaIzIfQDv4huxKWLtcItvb9mR3lS5zuwRSGCtTmEy8W
-	Y0qA==
-X-Gm-Message-State: AJcUuke0IW/lnIgjokXfuD4nQV4bZqQ9vRK/rCEabrErNs59mP4D21Mf
-	cw/HkFiIS/YIY/DD+VhBCTrkVGI1aFedKYkubso=
-X-Google-Smtp-Source: ALg8bN5OUxur6tExyOf66qpxeersZrL107Q+/NfOOYS2LrXirT3sZfH610h4lgdG87Nv9/tAhN06Ck0vcGSwHrIwprQ=
-X-Received: by 2002:a17:906:2989:: with SMTP id
-	x9-v6mr12274368eje.156.1547228470787; 
-	Fri, 11 Jan 2019 09:41:10 -0800 (PST)
+	bh=nePTstjdOuJ2XFT27m9oeWJVwQ1mhIkzDlJlmM5jUas=;
+	b=jejtS6wLfPVe18mYwPvTxofbDh6MaorEx21AwMcgyrZP51JlYTFSyGU9Cyl100OZ1N
+	Wpr1/pHvWy4KWZJGrZNwYKV/UByyrm3FWh3WpshQW3OX63BKkSxnUD7uM1qhU6QE80i5
+	E9barz8djScLvuBV+04cLwP9BCQMgls1HoZp0mkT9l5204sA0iqDirk9j3MKSr9mS8Np
+	UYDmWtEfy53AQUxnfGOFrc0uMGdD/CKD2j3nrubKRZKwRLP4/ItyIaW7b/ffr0INg43M
+	kS4Sg4JthuJYMlctUSebIyhSKx0rpysR2U7dHjvxQe6nNxaxIFnhonHuDRKkUWROHF34
+	BnCA==
+X-Gm-Message-State: AJcUukfCnwu1dfH13QvoYqPmwTXUf7JfmGUKfyn02ViG/0KOvoe4YKKW
+	6ddlwf0DELwr+5ZYO3/VA7jW8su/JeiJo4RRMMo=
+X-Google-Smtp-Source: ALg8bN7dxaq4nW2zyGAlGElFGva6/wYJ8JJyl8RklnToOo8CmvzQAru+rXhuePWGTbRENTVlpriudOcAVDve0ML0yk4=
+X-Received: by 2002:a50:b36f:: with SMTP id r44mr14048643edd.284.1547231059922;
+	Fri, 11 Jan 2019 10:24:19 -0800 (PST)
 MIME-Version: 1.0
 References: <20190111173252.GA6455@grante>
 In-Reply-To: <20190111173252.GA6455@grante>
 From: Scott Rifenbark <srifenbark@gmail.com>
-Date: Fri, 11 Jan 2019 09:40:58 -0800
-Message-ID: <CAFNP8OsugLp2Jo4RhuwZkOESmOe0gezYo=4JpJaNkJvLPFsVoA@mail.gmail.com>
+Date: Fri, 11 Jan 2019 10:24:06 -0800
+Message-ID: <CAFNP8Ov8LDVV7TsvG41eNVo5=QNxmykJT07z+b8Nz7wahYc6_w@mail.gmail.com>
 To: Grant Edwards <grant.b.edwards@gmail.com>
 Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: Is there a good "getting started" tutorial?
@@ -72,18 +71,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Jan 2019 17:41:15 -0000
-Content-Type: multipart/alternative; boundary="000000000000634908057f32336f"
+X-List-Received-Date: Fri, 11 Jan 2019 18:24:23 -0000
+Content-Type: multipart/alternative; boundary="000000000000b659bd057f32cd31"
 
---000000000000634908057f32336f
+--000000000000b659bd057f32cd31
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Grant - I will check this out.  I am going to use this manual -
-https://www.yoctoproject.org/docs/2.6.1/brief-yoctoprojectqs/brief-yoctopro=
-jectqs.html
-.
+Hi Grant,
 
+There are indeed some errors in that tutorial.  Thanks for finding them and
+sending notification.  Try the instructions in the latest quick start for
+the 2.6 "thud" release.
+
+https://yoctoproject.org/docs/2.6/brief-yoctoprojectqs/brief-yoctoprojectqs=
+.html
+
+I have run through them and made some adjustments to the manual to clear
+things up.  It is working for me.
+
+Thanks,
 Scott
 
 On Fri, Jan 11, 2019 at 9:33 AM Grant Edwards <grant.b.edwards@gmail.com>
@@ -163,19 +170,24 @@ e.
 > https://lists.yoctoproject.org/listinfo/yocto
 >
 
---000000000000634908057f32336f
+--000000000000b659bd057f32cd31
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Grant - I will check this out.=C2=A0 I am=
- going to use this manual - <a href=3D"https://www.yoctoproject.org/docs/2.=
-6.1/brief-yoctoprojectqs/brief-yoctoprojectqs.html">https://www.yoctoprojec=
-t.org/docs/2.6.1/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>.</div><=
-div dir=3D"ltr"><br></div><div>Scott<br></div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr">On Fri, Jan 11, 2019 at 9:33 AM Grant Edwards &lt;=
-<a href=3D"mailto:grant.b.edwards@gmail.com">grant.b.edwards@gmail.com</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Grant, <br></div><div><br></div><=
+div>There are indeed some errors in that tutorial.=C2=A0 Thanks for finding=
+ them and sending notification.=C2=A0 Try the instructions in the latest qu=
+ick start for the 2.6 &quot;thud&quot; release.=C2=A0 <br></div><div><br></=
+div><div><a href=3D"https://yoctoproject.org/docs/2.6/brief-yoctoprojectqs/=
+brief-yoctoprojectqs.html">https://yoctoproject.org/docs/2.6/brief-yoctopro=
+jectqs/brief-yoctoprojectqs.html</a></div><div><br></div><div>I have run th=
+rough them and made some adjustments to the manual to clear things up.=C2=
+=A0 It is working for me.</div><div><br></div><div>Thanks, <br></div><div>S=
+cott<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Fri, Jan 1=
+1, 2019 at 9:33 AM Grant Edwards &lt;<a href=3D"mailto:grant.b.edwards@gmai=
+l.com" target=3D"_blank">grant.b.edwards@gmail.com</a>&gt; wrote:<br></div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><br>
 I&#39;m new to Yocto and looking for a good &quot;getting started&quot;<br>
 tutorial. I&#39;ve tried<br>
 <br>
@@ -261,6 +273,6 @@ yocto mailing list<br>
 ect.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
 " target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
+</blockquote></div></div></div>
 
---000000000000634908057f32336f--
+--000000000000b659bd057f32cd31--
