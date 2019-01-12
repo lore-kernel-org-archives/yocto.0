@@ -1,92 +1,96 @@
-Return-Path: <a.spin@datawatt.nl>
+Return-Path: <rudolf.streif@ibeeto.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 44104E00CE4; Fri, 11 Jan 2019 17:57:27 -0800 (PST)
+	id EF46BE00CFB; Fri, 11 Jan 2019 19:37:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [40.107.8.54 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.214.171 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 2017 seconds by postgrey-1.32 at yocto-www;
-	Fri, 11 Jan 2019 17:57:24 PST
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com
-	(mail-eopbgr80054.outbound.protection.outlook.com [40.107.8.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6464CE009EB
-	for <yocto@yoctoproject.org>; Fri, 11 Jan 2019 17:57:24 -0800 (PST)
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+	[209.85.214.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55B86E00CE4
+	for <yocto@yoctoproject.org>; Fri, 11 Jan 2019 19:37:13 -0800 (PST)
+Received: by mail-pl1-f171.google.com with SMTP id w4so7623642plz.1
+	for <yocto@yoctoproject.org>; Fri, 11 Jan 2019 19:37:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=datawatt.onmicrosoft.com; s=selector1-datawatt-nl;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=+KWEgEO02tmxibiaQXtfvlMfOYtWBYTMZdBRmIuxbNc=;
-	b=h7TJ0zlAi4Rqn/Bl0ZaNh1G2i1AKBxtj1QkiOARxPGDQGigyH4xkedbNXyL7iG1KiiqYmFm3FxKVkxgHH6rp3MU7dE0ff9PwLLlzCoyrXy913YbZ+Qbp28ksl+ebGIz4TYcip5PLRaBW1YoIJtrYvQDPxWAi2ZIT00QPjDSBv5Q=
-Received: from DB5PR01MB0952.eurprd01.prod.exchangelabs.com
-	(2a01:111:e400:5107::22) by
-	DB5PR01MB0952.eurprd01.prod.exchangelabs.com
-	(2a01:111:e400:5107::22) with TransportReplication id Version 15.20
-	(Build 1516.18); Sat, 12 Jan 2019 01:23:45 +0000
-Received: from VI1PR01MB5133.eurprd01.prod.exchangelabs.com (20.178.120.142)
-	by VI1PR01MB0958.eurprd01.prod.exchangelabs.com (10.161.107.16) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1495.11;
-	Fri, 11 Jan 2019 15:41:13 +0000
-Received: from VI1PR01MB5133.eurprd01.prod.exchangelabs.com
-	([fe80::15cc:ebd8:d8c0:1372]) by
-	VI1PR01MB5133.eurprd01.prod.exchangelabs.com
-	([fe80::15cc:ebd8:d8c0:1372%5]) with mapi id 15.20.1516.016;
-	Fri, 11 Jan 2019 15:41:13 +0000
-From: Alberto Spin <a.spin@datawatt.nl>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Setting up a password for the root user
-Thread-Index: AdSpwx8JZbKMykHPQsa7r8rc3b5oiA==
-Date: Fri, 11 Jan 2019 15:41:12 +0000
-Message-ID: <VI1PR01MB5133B1FE6447743EDF5EADF49B850@VI1PR01MB5133.eurprd01.prod.exchangelabs.com>
-Accept-Language: en-US, nl-NL
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=a.spin@datawatt.nl; 
-x-originating-ip: [213.126.127.90]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; DB5PR01MB0952;
-	6:qgIMpzgdOAsgUiOHJKBrNTuioBcId9eP90Hj74z5JuiEEhlxdbBA4EhnI7XuVLJmQI/lttm5FWLUFJ2hE+RL8vkwsqBv17iG6nw/X5snpED12/qdIdoHuFgLYHl0AsKcGl657DWnoxwfZ2oMsGXeI2hmQt2VIRacTbLYuXLydmey1HvgcB1tVWUnILPfroT7qS/7JamV/ZBAiAN/iMuN61eFyjeKUzcnq7408cTqW0YmYIIBk4IdWJj/gKiqG97c+TRFcuJFXJl/AiHHdHbhKBaQhbOynfdq6GyVbkUzdCb+b5eb6t4ZUbQIpTIo+0P5ICCUrrZEh+w3k2EqB3w/88rsWhPHvBzzdDSQ2PaydPX5JNQI5QK3S96otzzvtE7OIf/OThRa/9fl9UbWTZB3y7k26PzUXFDIdzEGNrSjer3+SipqavZEw1eG/Ny8dmdG8WhEUKv4rAy+EKJAUfHylg==;
-	5:ywc4BYEFIpobhQ7pS5kupXxLad7M+xAvOStjn2/FgB4MEJ6eN0WJdLDXN0Jkm8GRaLZ3M0lXaDRNPw+yuWQBtvyS1CjHe4tgjF1QD4SHxoxIbI4NFpfbu1qljyfIwbcnhAp8oaFZ/NItMm7hZ+13n6dj1IMd/8+JXWsfy5BS4vmP8eKMD7Xxg6+6w3dFu6XDMr88W7gzzPiR21DF5pjk1g==;
-	7:5KkdXNmGYzKDH30hcIrD79P0hsLkMV3DAx5HkpB3mZD483zjeR7yzFAiIwOU3lBHulySI7/lmPIv5luNC+v0s+R/ddlx0ZeZTA9IPM6qx4mxn/XeZCKzO3SQZHqqtToEfwKD835mgKX50vkLx4y9Cg==
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: 03257d32-0f75-46ad-bc53-08d677db3771
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600109)(711020)(2017052603328)(7153060)(7193020);
-	SRVR:VI1PR01MB0958; 
-x-ms-traffictypediagnostic: DB5PR01MB0952:
-x-microsoft-antispam-prvs: <DB5PR01MB09529DA172B2DA854AD5B93E9B860@DB5PR01MB0952.eurprd01.prod.exchangelabs.com>
-x-forefront-prvs: 0915875B28
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(39830400003)(396003)(136003)(376002)(366004)(346002)(189003)(199004)(486006)(2501003)(53936002)(3846002)(6306002)(66066001)(551544002)(8676002)(2906002)(4744005)(7736002)(256004)(81166006)(81156014)(1730700003)(316002)(86362001)(6916009)(508600001)(790700001)(68736007)(55016002)(6116002)(26005)(5640700003)(14444005)(6436002)(6506007)(9686003)(54896002)(99286004)(102836004)(25786009)(186003)(14454004)(8936002)(105586002)(97736004)(106356001)(2351001)(74316002)(476003)(5660300001)(7696005)(71200400001)(33656002)(74482002)(71190400001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DB5PR01MB0952;
-	H:VI1PR01MB5133.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: datawatt.nl does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: Vv1mynETjbBOSVqrH3wf9hXdDECeuwMLHhOsZ7y1cYOK1/4KOfe52uJr69D9En/GpRcbz4V/R1e3YCtWibEoUjEschG20CbxNu5ZR9iLzxgI40rEiCY1JHKvFWKfZoA3pcBUC4jVnDSIx1lzZik+MjrxjntjpsptmWgdDRLqdBvrkjlTqJFHlesX5/IrL3C2x5k8fe/Z1ex/rawtN3iv/wdFZTAdv6MTnw0CnPDUDzwmor/D6YE6CYHOQ9yNTfAxTAQqNjgPeHaunTc82QP2Tuj69bC2wIlX3k31PMldqbo6YnFj+h7nxU2NHQ0qiwKoBvasvZFG2gUmKeOoYlBb62LM69opR+I/rsoeczJt23Z6Ff+mpMP4qVFpLbU1xr+DHNVCwceTkSfrMbQ0Lv8dYjY493B1+4ebLVsQvMKQvJQ=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:openpgp:autocrypt:organization
+	:message-id:date:user-agent:mime-version:in-reply-to;
+	bh=+yDkUW8tzVtSHWBJvSWzgBYfuAQ8+bzkM77ekGNBrjE=;
+	b=ZEgcsbi2xOJ5uS4Me8TMuhhPcCa63Max8RuaaC/dxUkRk+DzgVfm/wdm/NpX6VO0rz
+	1UeRLvKszNvCkqhD+Yh8miDt8RQkP9xr7SDgnw1StIwkAR7ZO2go/hhns6atQ6jQMBUI
+	bM2dafCGH3mqPybqY695QgH0KaVI8v9ZX6FGnpaM26yI88D5Tvku9dafN9iBQ2m6O/aB
+	tDB5HuUmU7OoNQSXJ4yD2fpfUzda/BDswkFZKlNszQr9NQFp9ipBwLHyBdIdTGpNVCdm
+	pFPmgn6PiXMzprecLGO+uVYCGdavobPDfiogtQm1PD0jcl5vji6L+e57w43mNKGbtNWM
+	dgIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	:organization:message-id:date:user-agent:mime-version:in-reply-to;
+	bh=+yDkUW8tzVtSHWBJvSWzgBYfuAQ8+bzkM77ekGNBrjE=;
+	b=Wz3RVsyHPDF2aOpoPpMAvi2AKRlKI/XL7LvSvJF02BzSHOTle1EaDAwJApPBv8zevU
+	iC8gMiRpACVm7kIBUUcvJtmjHub9kwkwPyH6M3sZ6xzF0oFbvYSs61AypBjZqs8yxhjE
+	sya4evQ/48PahU5APM/JqWRZoyG61nSCp7ie/TGygPD88wEO+NLPvrFhSNTMAroUCCGU
+	SGtCQn3ICTOrSTIzPg5gTJPxn8Gl2W+C/YQCk19KeiOXN4Lpn5pkH0U/5kufPVYXpr8M
+	YNsXgiJhE5BVZSzykJLdjAqTz6EVQy2NWzaWKa7LUN2gLqqu5WPOwe+R61KsCCP1E6aE
+	qTqw==
+X-Gm-Message-State: AJcUukcw0ycgqOhOlBBPVGyHg7IawwMUD3Thv8z4hMNFeXNd/8t4jgq/
+	YIeusKu9Yf3pAWrvM1k+JFRlNQw1s7I=
+X-Google-Smtp-Source: ALg8bN5Pn7Jq1tND7lPKkYdErTJFwv8pgKdlzXEWaxpRcOJXE7Tqo6R3Smu+HuI3JzTyO7NtXwDbdw==
+X-Received: by 2002:a17:902:f01:: with SMTP id
+	1mr16681819ply.143.1547264232265; 
+	Fri, 11 Jan 2019 19:37:12 -0800 (PST)
+Received: from [192.168.4.19] (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
+	by smtp.gmail.com with ESMTPSA id
+	c72sm136669816pfb.107.2019.01.11.19.37.10
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 11 Jan 2019 19:37:11 -0800 (PST)
+To: Alberto Spin <a.spin@datawatt.nl>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <VI1PR01MB5133B1FE6447743EDF5EADF49B850@VI1PR01MB5133.eurprd01.prod.exchangelabs.com>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=rudolf.streif@ibeeto.com; prefer-encrypt=mutual; keydata=
+	xsBNBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
+	Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
+	/Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
+	cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
+	3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
+	AAHNKlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPsLAdwQTAQgA
+	IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
+	3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
+	txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
+	lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
+	Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
+	zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvzsBNBFhQFAQBCADXoLKCuF48
+	5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
+	RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
+	w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
+	svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
+	tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAHCwF8EGAEIAAkFAlhQFAQC
+	GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
+	s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
+	fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
+	Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
+	P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
+	ROZj4g==
+Organization: ibeeto
+Message-ID: <3c5876e9-16f4-13ca-90fb-3452b257e249@ibeeto.com>
+Date: Fri, 11 Jan 2019 19:37:09 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
 MIME-Version: 1.0
-X-OriginatorOrg: datawatt.nl
-X-MS-Exchange-CrossTenant-Network-Message-Id: 03257d32-0f75-46ad-bc53-08d677db3771
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jan 2019 15:41:13.0153 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5afcf6a4-fc33-42be-9014-b6cf5e6ea885
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5PR01MB0952
-Subject: Setting up a password for the root user
+In-Reply-To: <VI1PR01MB5133B1FE6447743EDF5EADF49B850@VI1PR01MB5133.eurprd01.prod.exchangelabs.com>
+Subject: Re: Setting up a password for the root user
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -98,61 +102,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 12 Jan 2019 01:57:27 -0000
-Content-Language: en-US
+X-List-Received-Date: Sat, 12 Jan 2019 03:37:15 -0000
+X-Groupsio-MsgNum: 43722
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="G3ZeAl9q79MhnJzk2MYvvgXgAOjtsBGjC"
+
+--G3ZeAl9q79MhnJzk2MYvvgXgAOjtsBGjC
+Content-Type: multipart/mixed; boundary="GXnTS221brRkFyEH7iPK9jazBLK14Azeq";
+ protected-headers="v1"
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+To: Alberto Spin <a.spin@datawatt.nl>,
+ "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <3c5876e9-16f4-13ca-90fb-3452b257e249@ibeeto.com>
+Subject: Re: [yocto] Setting up a password for the root user
+References: <VI1PR01MB5133B1FE6447743EDF5EADF49B850@VI1PR01MB5133.eurprd01.prod.exchangelabs.com>
+In-Reply-To: <VI1PR01MB5133B1FE6447743EDF5EADF49B850@VI1PR01MB5133.eurprd01.prod.exchangelabs.com>
+
+--GXnTS221brRkFyEH7iPK9jazBLK14Azeq
 Content-Type: multipart/alternative;
-	boundary="_000_VI1PR01MB5133B1FE6447743EDF5EADF49B850VI1PR01MB5133eurp_"
+ boundary="------------7D497C7CCAD375BC7A3C1E12"
+Content-Language: en-US
 
---_000_VI1PR01MB5133B1FE6447743EDF5EADF49B850VI1PR01MB5133eurp_
-Content-Type: text/plain; charset="us-ascii"
+--------------7D497C7CCAD375BC7A3C1E12
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-Hello There,
+Alberto,
 
-I'm trying to set a password for the root user of my distribution (based ro=
-cko branch)
+The quotes around
 
-I've added the following to my image recipe:
+`openssl passwd ${ROOT_PASSWORD}`
 
-inherit extrausers
+have to be backticks (`) not single quotes (').
 
-# set image root password
-ROOT_PASSWORD =3D "secret"
-
-EXTRA_USERS_PARAMS =3D "\
-    usermod -p 'openssl passwd ${ROOT_PASSWORD}' root; \
-    "
-
-Everything builds fine, but in my image I end up with a password in my /etc=
-/shadow file like this:
-
-openssl passwd secret
-
-so it seems like the openssl command has not been executed during the build=
-, but instead the literal command is now part of my password.
-
-Can anybody please explain what's going on here, and how to fix this?
-
-Kind Regards,
-
-Alberto
+:rjs
 
 
-
-
---_000_VI1PR01MB5133B1FE6447743EDF5EADF49B850VI1PR01MB5133eurp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 01/11/2019 07:41 AM, Alberto Spin wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
+> Hello There,
+>
+> =A0
+>
+> I=92m trying to set a password for the root user of my distribution
+> (based rocko branch)
+>
+> =A0
+>
+> I=92ve added the following to my image recipe:
+>
+> =A0
+>
+> inherit extrausers
+>
+> =A0
+>
+> # set image root password
+>
+> ROOT_PASSWORD =3D "secret"
+>
+> =A0
+>
+> EXTRA_USERS_PARAMS =3D "\
+>
+> =A0=A0=A0 usermod -p 'openssl passwd ${ROOT_PASSWORD}' root; \
+>
+> =A0=A0=A0 "
+>
+> =A0
+>
+> Everything builds fine, but in my image I end up with a password in my
+> /etc/shadow file like this:
+>
+> =A0
+>
+> openssl passwd secret
+>
+> =A0
+>
+> so it seems like the openssl command has not been executed during the
+> build, but instead the literal command is now part of my password.
+>
+> =A0
+>
+> Can anybody please explain what=92s going on here, and how to fix this?=
+
+>
+> =A0
+>
+> Kind Regards,
+>
+> =A0
+>
+> Alberto
+>
+> =A0
+>
+> =A0
+>
+> =A0
+>
+>
+>
+
+
+--------------7D497C7CCAD375BC7A3C1E12
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html;
+      charset=3Dwindows-1252">
+  </head>
+  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <p>Alberto,</p>
+    <p>The quotes around</p>
+    <p>`openssl passwd ${ROOT_PASSWORD}`</p>
+    <p>have to be backticks (`) not single quotes (').</p>
+    <p>:rjs<br>
+    </p>
+    <br>
+    <div class=3D"moz-cite-prefix">On 01/11/2019 07:41 AM, Alberto Spin
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:VI1PR01MB5133B1FE6447743EDF5EADF49B850@VI1PR01MB5133.eurprd01=
+=2Eprod.exchangelabs.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html;
+        charset=3Dwindows-1252">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
 /* Font Definitions */
 @font-face
 	{font-family:"Cambria Math";
@@ -181,7 +263,7 @@ a:visited, span.MsoHyperlinkFollowed
 span.EmailStyle17
 	{mso-style-type:personal-compose;
 	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
+=2EMsoChpDefault
 	{mso-style-type:export-only;
 	font-family:"Calibri",sans-serif;
 	mso-fareast-language:EN-US;}
@@ -196,68 +278,121 @@ div.WordSection1
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"NL" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hello There,<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I&#8217;m trying to set a passw=
-ord for the root user of my distribution (based rocko branch)<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I&#8217;ve added the following =
-to my image recipe:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:8.0pt;font-family:Consolas">inherit extrausers<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:8.0pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:8.0pt;font-family:Consolas"># set image root password<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:8.0pt;font-family:Consolas">ROOT_PASSWORD =3D &quot;secre=
-t&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:8.0pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:8.0pt;font-family:Consolas">EXTRA_USERS_PARAMS =3D &quot;=
-\<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:8.0pt;font-family:Consolas">&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:8.0pt;font-family:Consolas">usermod -p 'ope=
-nssl passwd ${ROOT_PASSWORD}' root; \<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:8.0pt;font-family:Consolas">&nbsp;&nbsp;&nbsp;
-</span><span lang=3D"EN-US" style=3D"font-size:8.0pt;font-family:Consolas">=
-&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:8.0pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Everything builds fine, but in =
-my image I end up with a password in my /etc/shadow file like this:<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:8.0pt;font-family:Consolas"=
->openssl passwd secret<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">so it seems like the openssl co=
-mmand has not been executed during the build, but instead the literal comma=
-nd is now part of my password.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Can anybody please explain what=
-&#8217;s going on here, and how to fix this?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Kind Regards,<o:p></o:p></span>=
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">Hello There,<o:p></o:=
+p></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
 </p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Alberto<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-</div>
-</body>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">I=92m trying to set a=
+
+            password for the root user of my distribution (based rocko
+            branch)<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
+</p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">I=92ve added the foll=
+owing
+            to my image recipe:<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
+</p>
+        <p class=3D"MsoNormal" style=3D"text-autospace:none"><span
+            style=3D"font-size:8.0pt;font-family:Consolas" lang=3D"EN-US"=
+>inherit
+            extrausers<o:p></o:p></span></p>
+        <p class=3D"MsoNormal" style=3D"text-autospace:none"><span
+            style=3D"font-size:8.0pt;font-family:Consolas" lang=3D"EN-US"=
+><o:p>=A0</o:p></span></p>
+        <p class=3D"MsoNormal" style=3D"text-autospace:none"><span
+            style=3D"font-size:8.0pt;font-family:Consolas" lang=3D"EN-US"=
+>#
+            set image root password<o:p></o:p></span></p>
+        <p class=3D"MsoNormal" style=3D"text-autospace:none"><span
+            style=3D"font-size:8.0pt;font-family:Consolas" lang=3D"EN-US"=
+>ROOT_PASSWORD
+            =3D "secret"<o:p></o:p></span></p>
+        <p class=3D"MsoNormal" style=3D"text-autospace:none"><span
+            style=3D"font-size:8.0pt;font-family:Consolas" lang=3D"EN-US"=
+><o:p>=A0</o:p></span></p>
+        <p class=3D"MsoNormal" style=3D"text-autospace:none"><span
+            style=3D"font-size:8.0pt;font-family:Consolas" lang=3D"EN-US"=
+>EXTRA_USERS_PARAMS
+            =3D "\<o:p></o:p></span></p>
+        <p class=3D"MsoNormal" style=3D"text-autospace:none"><span
+            style=3D"font-size:8.0pt;font-family:Consolas" lang=3D"EN-US"=
+>=A0=A0=A0
+          </span><span style=3D"font-size:8.0pt;font-family:Consolas">use=
+rmod
+            -p 'openssl passwd ${ROOT_PASSWORD}' root; \<o:p></o:p></span=
+></p>
+        <p class=3D"MsoNormal" style=3D"text-autospace:none"><span
+            style=3D"font-size:8.0pt;font-family:Consolas">=A0=A0=A0
+          </span><span style=3D"font-size:8.0pt;font-family:Consolas"
+            lang=3D"EN-US">"<o:p></o:p></span></p>
+        <p class=3D"MsoNormal" style=3D"text-autospace:none"><span
+            style=3D"font-size:8.0pt;font-family:Consolas" lang=3D"EN-US"=
+><o:p>=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">Everything builds fin=
+e,
+            but in my image I end up with a password in my /etc/shadow
+            file like this:<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
+</p>
+        <p class=3D"MsoNormal"><span
+            style=3D"font-size:8.0pt;font-family:Consolas">openssl passwd=
+
+            secret<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
+</p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">so it seems like the
+            openssl command has not been executed during the build, but
+            instead the literal command is now part of my password.<o:p><=
+/o:p></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
+</p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">Can anybody please
+            explain what=92s going on here, and how to fix this?<o:p></o:=
+p></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
+</p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">Kind Regards,<o:p></o=
+:p></span></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
+</p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US">Alberto<o:p></o:p></s=
+pan></p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
+</p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
+</p>
+        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=A0</o:p></span>=
+</p>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </body>
 </html>
 
---_000_VI1PR01MB5133B1FE6447743EDF5EADF49B850VI1PR01MB5133eurp_--
+--------------7D497C7CCAD375BC7A3C1E12--
+
+--GXnTS221brRkFyEH7iPK9jazBLK14Azeq--
+
+--G3ZeAl9q79MhnJzk2MYvvgXgAOjtsBGjC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAlw5YOYACgkQjYyoKScz
+m3X4Xwf+OUqwvRgfvIhwCdqn0QK2AIJ+X744bLFjKOKjDSIbvurHCseaRTz1dYb/
+VLWsdgAveNMxXpj9ZqxDQvn+RXl2pkmdgizuqVCkr0xNgHESDBM+wojsefDV8vpc
+li//+x4rF5dYhBChtbs7pE1wP6mGK7oz72oSGq2ayKZmRPZdT0QkTU72/O6tF43u
+U7Aj5k2A39sB9kh6dkAPddkibxiC7H/G6ItiJx/VHAic552bWWo4T3jhGTFA81Vs
+cFORUYUmhL9wXDI7mtndgsGim6ymTuJ5jE0AqtKBazAvwgQO6UG8Mtd3hHOXp0UD
+ZvmvFC39MekkXITGdfMnGMRNKP8Uaw==
+=4KhS
+-----END PGP SIGNATURE-----
+
+--G3ZeAl9q79MhnJzk2MYvvgXgAOjtsBGjC--
