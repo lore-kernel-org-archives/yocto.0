@@ -1,55 +1,44 @@
-Return-Path: <Okaya@kernel.org>
+Return-Path: <yocto@emagii.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47058E00BFB; Sun, 13 Jan 2019 09:19:02 -0800 (PST)
+	id 48AD1E00C38; Sun, 13 Jan 2019 13:58:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW,TEQF_USR_MSGID_HEX autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [198.145.29.99 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0A83E00B92
-	for <yocto@yoctoproject.org>; Sun, 13 Jan 2019 09:19:01 -0800 (PST)
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com
-	[209.85.167.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id 6DA4E205C9
-	for <yocto@yoctoproject.org>; Sun, 13 Jan 2019 17:19:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=default; t=1547399941;
-	bh=nURtXqK7v53b3BLzD+pMBLPsR23a6/PcKTFOyGySjAw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=kcbLi5RXKGyA5GANQjyXzCPkIiyTgspzHSSrHIZOqfuqRXCFjOZxRhc4mkz00zfeX
-	bfoRCtPDDv0OE/4jlBs6nplaQyPQNMlvqwOx+2w4S0+7UhVG15rE2aRHt5ui9zeWOQ
-	wSYAt0e4gxbIw/vZFSwlt1gsoRpB/cKT+vGvXCTg=
-Received: by mail-oi1-f175.google.com with SMTP id j21so16074149oii.8
-	for <yocto@yoctoproject.org>; Sun, 13 Jan 2019 09:19:01 -0800 (PST)
-X-Gm-Message-State: AJcUukfXeF1ceBdNZHA4SKSiGbokEVa1fJDqEsHvRETkxYpk7NQnJCYS
-	TUlzVFZ5CAgRcSmd9G2KnsIXzFxd1dEKZvr+7nM=
-X-Google-Smtp-Source: ALg8bN7Z+GzVjAVTNg9orq5OdaDhQQ97iDAPUYPi6C5XRQr+7eNiqM/uQqPb/suObs1KeqpoSCZOdLrvNQZB9mYVUE4=
-X-Received: by 2002:aca:5e09:: with SMTP id s9mr13129723oib.153.1547399940754; 
-	Sun, 13 Jan 2019 09:19:00 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [79.136.2.40 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 1.0 TEQF_USR_MSGID_HEX To and from user nearly same + unusual message
+	ID
+X-Greylist: delayed 326 seconds by postgrey-1.32 at yocto-www;
+	Sun, 13 Jan 2019 13:58:38 PST
+Received: from pio-pvt-msa1.bahnhof.se (pio-pvt-msa1.bahnhof.se [79.136.2.40])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97794E008CE
+	for <yocto@yoctoproject.org>; Sun, 13 Jan 2019 13:58:38 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTP id B33653F6B7;
+	Sun, 13 Jan 2019 22:53:11 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+Received: from pio-pvt-msa1.bahnhof.se ([127.0.0.1])
+	by localhost (pio-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id TOp1thu8alS6; Sun, 13 Jan 2019 22:53:10 +0100 (CET)
+Received: from [10.175.196.210] (h-169-62.A454.priv.bahnhof.se [37.123.169.62])
+	(Authenticated sender: mb782575)
+	by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id 956533F5D7;
+	Sun, 13 Jan 2019 22:53:10 +0100 (CET)
+To: Yocto list discussion <yocto@yoctoproject.org>
+From: Ulf Samuelsson <yocto@emagii.com>
+Message-ID: <09d6ac15-7dbe-3ffa-3f9c-381746ec7433@emagii.com>
+Date: Sun, 13 Jan 2019 22:53:09 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.4.0
 MIME-Version: 1.0
-References: <CAK9iUCPKMYD-qCwmycGi8swuy_xLyGdL7eiHTbKBT0DSfRaRTQ@mail.gmail.com>
-	<CAJdd5GY+CS5vF0_i_Q62TQTFXd_qixsKVq1W4FTMgLEUfDGq1Q@mail.gmail.com>
-In-Reply-To: <CAJdd5GY+CS5vF0_i_Q62TQTFXd_qixsKVq1W4FTMgLEUfDGq1Q@mail.gmail.com>
-From: Sinan Kaya <Okaya@kernel.org>
-Date: Sun, 13 Jan 2019 12:17:59 -0500
-X-Gmail-Original-Message-ID: <CAK9iUCOF38pzTAd8+vGXmnVkQaQud0+Hspy+84X+L-fDUaW5Yg@mail.gmail.com>
-Message-ID: <CAK9iUCOF38pzTAd8+vGXmnVkQaQud0+Hspy+84X+L-fDUaW5Yg@mail.gmail.com>
-To: Joshua Watt <jpewhacker@gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: meta-mingw and cmake
+Subject: bitbake: DataSmart.expandWithRefs causing exception when handed "${@...}"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,42 +50,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 13 Jan 2019 17:19:02 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Sun, 13 Jan 2019 21:58:40 -0000
+Content-Type: multipart/alternative;
+	boundary="------------20DD0F57204C90100556FD27"
+Content-Language: sv
 
-On Sat, Jan 12, 2019 at 2:41 PM Joshua Watt <jpewhacker@gmail.com> wrote:
->
-> CC'ing yocto@yoctoproject.org
->
-> On Sat, Jan 12, 2019 at 1:02 PM Sinan Kaya <Okaya@kernel.org> wrote:
-> >
-> > Hi Joshua,
-> >
-> > I have this instruction to build cmake as part of the SDK.
-> >
-> > +# Add the CMake binary to the SDK
-> > +TOOLCHAIN_HOST_TASK += "nativesdk-cmake"
-> > +
-> >
-> >  When I add this, windows SDK build is failing to compile.
-> >
-> > I'm using the sumo branch. Do you have any ideas?
->
-> I believe that compiling cmake for mingw works on master, can you give
-> that a try?
+--------------20DD0F57204C90100556FD27
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I'll test.
+I am trying to add a new image class "SWU" in "sumo" for a "software 
+update image".
 
-> Also, be aware that while it compiles, it may not actually
-> work in the SDK depending on your use case. See
-> https://lists.yoctoproject.org/pipermail/yocto/2018-November/043344.html
-> for more details.
->
+As a result:
 
-I tried this patch already. The compilation succeeds but the SDK
-installation script
-gets broken (it complains about missing environment script).
+do_sdk_depends[depends] = '${@get_ext_sdk_depends(d)} meta-extsdk-toolchain:do_populate_sysroot'
 
-> >
-> > Sinan
+When data_smart.py works on this, it will call
 
+DataSmart.expandWithRefs(self, s, varname)
+
+s        = '${@get_ext_sdk_depends(d)} meta-extsdk-toolchain:do_populate_sysroot'
+varname  = 'do_sdk_depends[depends]'
+
+I will get an exception in this statement:
+
+         while s.find('${') != -1:
+             olds = s
+             try:
+                s = __expand_var_regexp__.sub(varparse.var_sub, s)
+
+The definition of __expand_var_regexp__ is:
+   __expand_var_regexp__ = re.compile(r"\${[^{}@\n\t :]+}")
+
+That is, it is looking for the string "${<X>}"
+but <X> may not contains anything in [{}@\n\t :]
+
+since the "variable" in "s" is actually a call to get_ext_sdk_depends,
+and thus contains a '@' character it is not matched.
+
+The build aborts with an exception.
+
+I am not sure, if '${@get_ext_sdk_depends(d)}' should be expanded before
+DataSmart,expandWithRefs, or if expandWithRefs needs to be extended
+to handle the case where the variable is a "call".
+
+This is blocking us from upgrading from pyro to sumo.
+
+Any ideas on a solution?
+
+BR
+Ulf Samuelsson
+
+
+--------------20DD0F57204C90100556FD27
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>I am trying to add a new image class "SWU" in "sumo" for a
+      "software update image".</p>
+    <p>As a result:</p>
+    <pre class="moz-quote-pre" wrap="">do_sdk_depends[depends] = '${@get_ext_sdk_depends(d)} meta-extsdk-toolchain:do_populate_sysroot'
+
+When data_smart.py works on this, it will call 
+
+DataSmart.expandWithRefs(self, s, varname)</pre>
+    <pre class="moz-quote-pre" wrap="">s        = '${@get_ext_sdk_depends(d)} meta-extsdk-toolchain:do_populate_sysroot'
+varname  = 'do_sdk_depends[depends]'
+
+I will get an exception in this statement:
+
+        while s.find('${') != -1:
+            olds = s
+            try:
+               <font color="#ff0000"> s = __expand_var_regexp__.sub(varparse.var_sub, s)</font>
+
+The definition of __expand_var_regexp__ is:
+  __expand_var_regexp__ = re.compile(r"\${[^{}@\n\t :]+}")
+
+That is, it is looking for the string "${&lt;X&gt;}"
+but &lt;X&gt; may not contains anything in [{}@\n\t :]
+
+since the "variable" in "s" is actually a call to get_ext_sdk_depends,
+and thus contains a '@' character it is not matched.
+
+The build aborts with an exception.
+
+I am not sure, if '${@get_ext_sdk_depends(d)}' should be expanded before
+DataSmart,expandWithRefs, or if expandWithRefs needs to be extended
+to handle the case where the variable is a "call".
+
+This is blocking us from upgrading from pyro to sumo.
+
+Any ideas on a solution?
+
+BR
+Ulf Samuelsson
+
+</pre>
+  </body>
+</html>
+
+--------------20DD0F57204C90100556FD27--
