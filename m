@@ -1,68 +1,52 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <andre.draszik@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73265E00C5B; Sat, 12 Jan 2019 18:33:20 -0800 (PST)
+	id 335B8E00C82; Sun, 13 Jan 2019 03:11:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.178 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com
-	[209.85.160.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9E20E009B1
-	for <yocto@yoctoproject.org>; Sat, 12 Jan 2019 18:33:18 -0800 (PST)
-Received: by mail-qt1-f178.google.com with SMTP id d19so23084596qtq.9
-	for <yocto@yoctoproject.org>; Sat, 12 Jan 2019 18:33:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=nV4EUwVP9lBc52K2DOeLKlEoIOznYCSl8Gbq8o1TA1Y=;
-	b=qgv/xy4angJ0DyTVJ4S3aUWUqXXxsyLtm15KhR98IdAwYxuxD+v4qXJMjYaK9fkGtw
-	rdsxNs1uNeWMLCk8YF9NiHX2sVz1hT2OtZHZV8x5fvllMsHSzv7cdlrEIYNzDVJkpg43
-	zXasH7+s3jAs3bskgkJs9rGVswtMxRhCApqzvqZBXoE0S04BZkGyswT4eRlpgnJKpMI0
-	9sHhRCaoBOZ4dC34Wl4RBuM4HHefilyClqZLTP6jeN1hH3jwbTDL+i8Iko5kbJthtA99
-	toN7/z5IvSl3Qz+KeQKI4BZnCUbKGpzpoltZrmKEaw1izjdFkn/blIH+nTZXJz1Cwdry
-	bI2g==
+	*      [209.85.208.43 listed in list.dnswl.org]
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
+	[209.85.208.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13B2DE00BE8
+	for <yocto@yoctoproject.org>; Sun, 13 Jan 2019 03:11:17 -0800 (PST)
+Received: by mail-ed1-f43.google.com with SMTP id f9so16431428eds.10
+	for <yocto@yoctoproject.org>; Sun, 13 Jan 2019 03:11:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=nV4EUwVP9lBc52K2DOeLKlEoIOznYCSl8Gbq8o1TA1Y=;
-	b=T9OrXjkRtigmXWzMP75Rzwqe+5KcXOG/0u8l6t2BWWrFf4cjBRybe22olc606etgfo
-	adnEdI7j86zy5C83cdEbbJQliAZ8AOcEUysU67D+Kojy0izJuXXsyCqyDlPD1hoSXCvY
-	4fWBG11nMHLjqHZXwikp2I7GQ6jsIE+i/S6172tOnFk4JCg69s3SE4G9Tz82B2083/Yo
-	k67iu0xDyaGU12k9oQXZhPoTqTQ0ZrEzHvm6UVZmrVDejOQRvvPBhbcd4kpB+w6EVt9o
-	fup6fdW2cc4gpVa+DL23/rH7iqv9Cqp5jA6CBhtfesgIokcLrECBJd5h0yvFwaA0wO76
-	jnzg==
-X-Gm-Message-State: AJcUukdJ+WR9KGGE0W4Xri+YVzqjoFHBESgMjTy2d57UGJTxpqbf/L0k
-	P8bu9hY4+vYW3zkv+2qIehxXBE/sFqVp3qeNnD8=
-X-Google-Smtp-Source: ALg8bN7rT5e4+Xftejb/sUj/wZBYoMC53nVo4TaBX6NFXEnR6eHUXO2sbquMNXTyOWC1SUR5iNGCNxMaUnWoehCuEpk=
-X-Received: by 2002:ac8:16d8:: with SMTP id y24mr19463928qtk.253.1547346798011;
-	Sat, 12 Jan 2019 18:33:18 -0800 (PST)
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=4GmrL+n/tb6pZuAajAjtwpcAVRsiUwoGjF9jDzPP2Ak=;
+	b=cpPcRxzsfIK9qhJxeLDxbBeWrdTTxjb5AozrZhhHm3I/tE5yPxrCXQ8A9vgieY1m/D
+	uTIZMPljhrl8BSA4nTwBecqkMN1qK10Z6fTQu8TR5FtymLwPZaDTedBEh90yIZqDsKgK
+	3ivfBIyIPb1JbzKwpP1AQUDODDJBWg0eYbs6MwkXE0EAhI5+WwEYwUuRHQ9UBvHkVD9w
+	dOYfMR09pgnFXAph0ZE4Ko7DBS1Rjwkq2Ls93OThElhNjorT6yWEGA7AefkdoQNahPC2
+	mLgLRfGQ2rHjOtkv90dLmzAgKROARHtgxOVC471N+TX753ncmb0KY0G8j8n/juqVYBd/
+	G/Lg==
+X-Gm-Message-State: AJcUukeDTlUt8NjUtyQboHSh+z9KFjBDjOab0qPn1eYCQi9a9JqynWyn
+	Did7NnA+jrpG4cdYclrQSAXSWg13
+X-Google-Smtp-Source: ALg8bN7PjYhZ7p4DI+nUq2u5vEVYhPKI0A4RF+yhVt7IyKeWSK2C7JnZhGQEknHLvyYMewYo/MxMaw==
+X-Received: by 2002:a17:906:cb2:: with SMTP id
+	k18-v6mr17406931ejh.129.1547377875887; 
+	Sun, 13 Jan 2019 03:11:15 -0800 (PST)
+Received: from tfsielt31850.fritz.box (188-141-55-36.dynamic.upc.ie.
+	[188.141.55.36])
+	by smtp.gmail.com with ESMTPSA id z9sm3340679edr.61.2019.01.13.03.11.14
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 13 Jan 2019 03:11:15 -0800 (PST)
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
+To: yocto@yoctoproject.org
+Date: Sun, 13 Jan 2019 11:11:14 +0000
+Message-Id: <20190113111114.18412-1-git@andred.net>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <CAKRytNzADpC_185uPi3W+7-fUkKPtOXNp0DLH3_oOf76rPT8fQ@mail.gmail.com>
-	<CAMKF1spLith1NqWCBg4eJKRZFUv9-CZo79NpY7NpCGBP9HpABw@mail.gmail.com>
-	<CAKRytNzUnf=HJOsCpVNWnBzyqQOU3V-ke=by4WmYzAjA-3z1jQ@mail.gmail.com>
-	<CAKRytNxxpQMJaDEKK_5nZYDpO44_vVpR3LSGooDC6BJc0bvwUw@mail.gmail.com>
-In-Reply-To: <CAKRytNxxpQMJaDEKK_5nZYDpO44_vVpR3LSGooDC6BJc0bvwUw@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 12 Jan 2019 18:33:06 -0800
-Message-ID: <CAMKF1spbHMauDni+pLkjRwYu+v=aXhhsScPV_KXou0v+KkoHLg@mail.gmail.com>
-To: Stefano Cappa <stefano.cappa.ks89@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Cannot update dhcpcd receipe from v6.11.5 to v7.x.x
+Subject: [meta-java][PATCH] remove True option to getVar calls
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,278 +58,148 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 13 Jan 2019 02:33:20 -0000
-Content-Type: multipart/alternative; boundary="0000000000003d6bea057f4dc0d6"
+X-List-Received-Date: Sun, 13 Jan 2019 11:11:18 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---0000000000003d6bea057f4dc0d6
-Content-Type: text/plain; charset="UTF-8"
+From: André Draszik <andre.draszik@jci.com>
 
-Awesome
+getVar() has been defaulting to expanding by default for
+a long time (2016), thus remove the True option from
+getVar() calls with a regex search and replace.
 
-On Sat, Jan 12, 2019 at 6:00 PM Stefano Cappa <stefano.cappa.ks89@gmail.com>
-wrote:
+Search & replace made using the following command:
+    sed -e 's|\(d\.getVar \?\)( \?\([^,()]*\), \?True)|\1(\2)|g' \
+        -i $(git grep -E 'getVar ?\( ?([^,()]*), ?True\)' \
+             | cut -d':' -f1 \
+             | sort -u)
 
-> Fixed. After some tests I'll send the new recipe with a patch to update
-> dhcpcd.
->
-> Il gio 10 gen 2019, 00:12 Stefano Cappa <stefano.cappa.ks89@gmail.com> ha
-> scritto:
->
->> Which should be the right path instead of the hardcoded /usr/include?
->> Is there a recommended way to fix it in a yocto recipe?
->>
->>
->> Il giorno mer 9 gen 2019 alle ore 03:41 Khem Raj <raj.khem@gmail.com> ha
->> scritto:
->>
->>> On Tue, Jan 8, 2019 at 3:48 PM Stefano Cappa
->>> <stefano.cappa.ks89@gmail.com> wrote:
->>> >
->>> > Hi!
->>> > I'm using Yocto THUD and I'm trying to update dhcpcd
->>> (meta-openembedded/meta-networking) from 6.11.5 to 7.0.8 (
->>> https://roy.marples.name/downloads/dhcpcd/dhcpcd-7.0.8.tar.xz) only to
->>> do some experiments, however I think that it's correct to migrate to the
->>> new version.
->>> >
->>> > I modified the recipe to download version 7.0.8, but when it's
->>> building it throws this error:
->>> >
->>> > ERROR: dhcpcd-7.0.8-r0 do_configure: configure failed
->>> > ERROR: dhcpcd-7.0.8-r0 do_configure: Function failed: do_configure
->>> (log file is located at
->>> /home/ks89/git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7.0.8-r0/temp/log.do_configure.90966)
->>> > ERROR: Logfile of failure stored in:
->>> /home/ks89/git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7.0.8-r0/temp/log.do_configure.90966
->>> > Log data follows:
->>> > | DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
->>> 'arm-32', 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi',
->>> 'common']
->>> > | DEBUG: Executing shell function autotools_preconfigure
->>> > | DEBUG: Shell function autotools_preconfigure finished
->>> > | DEBUG: Executing python function autotools_aclocals
->>> > | DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
->>> 'arm-32', 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi',
->>> 'common']
->>> > | DEBUG: Python function autotools_aclocals finished
->>> > | DEBUG: Executing shell function do_configure
->>> > | NOTE: Running ./configure  --build=x86_64-linux
->>> --host=arm-poky-linux-gnueabi    --target=arm-poky-linux-gnueabi
->>> --prefix=/usr    --exec_prefix=/usr    --bindir=/usr/bin
->>> --sbindir=/usr/sbin    --libexecdir=/usr/libexec    --datadir=/usr/share
->>> --sysconfdir=/etc    --sharedstatedir=/com    --localstatedir=/var
->>> --libdir=/usr/lib    --includedir=/usr/include
->>> --oldincludedir=/usr/include    --infodir=/usr/share/info
->>> --mandir=/usr/share/man    --disable-silent-rules
->>> --disable-dependency-tracking
->>> --with-libtool-sysroot=/home/ks89/git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7.0.8-r0/recipe-sysroot
->>> --enable-ipv4 --disable-static  --enable-ipv6 --with-udev
->>> > | configure args: --build=x86_64-linux --host=arm-poky-linux-gnueabi
->>> --target=arm-poky-linux-gnueabi --prefix=/usr --exec_prefix=/usr
->>> --bindir=/usr/bin --sbindir=/usr/sbin --libexecdir=/usr/libexec
->>> --datadir=/usr/share --sysconfdir=/etc --sharedstatedir=/com
->>> --localstatedir=/var --libdir=/usr/lib --includedir=/usr/include
->>> --oldincludedir=/usr/include --infodir=/usr/share/info
->>> --mandir=/usr/share/man --disable-silent-rules
->>> --disable-dependency-tracking
->>> --with-libtool-sysroot=/home/ks89/git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7.0.8-r0/recipe-sysroot
->>> --enable-ipv4 --disable-static --enable-ipv6 --with-udev
->>> > | ./configure: WARNING: unknown option --exec_prefix
->>> > | ./configure: WARNING: unknown option --sharedstatedir
->>> > | ./configure: WARNING: unknown option --oldincludedir
->>> > | ./configure: WARNING: unknown option --with-libtool-sysroot
->>> > | ./configure: WARNING: unknown option --with-udev
->>> > | Deriving operating system from ... arm-poky-linux-gnueabi
->>> > | Configuring dhcpcd for ... linux
->>> > | Enabling INET support
->>> > | Enabling ARP support
->>> > | Enabling ARPing support
->>> > | Enabling IPv4LL support
->>> > | Enabling INET6 support
->>> > | Enabling DHCPv6 support
->>> > | Enabling Authentication
->>> > | Using compiler .. arm-poky-linux-gnueabi-gcc  -march=armv7ve -mthumb
->>> -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a7
->>>  --sysroot=/home/ks89/git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7.0.8-r0/recipe-sysroot
->>> > | arm-poky-linux-gnueabi-gcc  -march=armv7ve -mthumb -mfpu=neon
->>> -mfloat-abi=hard -mcpu=cortex-a7
->>>  --sysroot=/home/ks89/git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7.0.8-r0/recipe-sysroot
->>> does not create executables
->>> > | NOTE: The following config.log files may provide further information.
->>> > | NOTE:
->>> /home/ks89/git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7.0.8-r0/dhcpcd-7.0.8/config.log
->>> > | ERROR: configure failed
->>> > | WARNING: exit code 1 from a shell command.
->>> > | ERROR: Function failed: do_configure (log file is located at
->>> /home/ks89/git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7.0.8-r0/temp/log.do_configure.90966)
->>> >
->>> > Also, the content of "config.log" is :
->>> >        cc1: error: include location "/usr/include" is unsafe for
->>> cross-compilation [-Werror=poison-system-directories]
->>> >        cc1: all warnings being treated as errors
->>> >
->>> > I compared configure files of versions 6.11.5 and 7.0.8 and they are
->>> quite similar with some additions, in particular "-I|--includedir)
->>> INCLUDEDIR="$INCLUDEDIR${INCLUDEDIR:+ }-I$var";;".
->>> >
->>> > In not an expert of autotools and so on, so I don't know how to fix
->>> this.
->>> > Do you have suggestions?
->>>
->>> The error suggests that its poking into build host for headers, so you
->>> need
->>> to look into that usually this means it has hardcoded paths for
->>> headers pointing to /usr/include, or it does not respect sysroot
->>> option that compiler is passing.
->>>
->>> >
->>> > I added also Khem Raj, but I'm not sure if it's the maintainer of
->>> dhcpcd recipe.
->>> >
->>> > Thank u.
->>>
->>
+Signed-off-by: André Draszik <andre.draszik@jci.com>
+---
+ classes/java-library.bbclass              |  4 ++--
+ classes/openjdk-build-helper.bbclass      | 10 +++++-----
+ recipes-core/openjdk/openjdk-7-common.inc |  2 +-
+ recipes-core/openjdk/openjdk-8-common.inc |  4 ++--
+ recipes-core/openjdk/openjdk-8-cross.inc  | 10 +++++-----
+ 5 files changed, 15 insertions(+), 15 deletions(-)
 
---0000000000003d6bea057f4dc0d6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+diff --git a/classes/java-library.bbclass b/classes/java-library.bbclass
+index e0159ba..d801930 100644
+--- a/classes/java-library.bbclass
++++ b/classes/java-library.bbclass
+@@ -27,8 +27,8 @@ def java_package_name(d):
+   pre=""
+   post=""
+ 
+-  bpn = d.getVar('BPN', True)
+-  ml = d.getVar('MLPREFIX', True)
++  bpn = d.getVar('BPN')
++  ml = d.getVar('MLPREFIX')
+   if not bpn.startswith("lib"):
+     pre='lib'
+ 
+diff --git a/classes/openjdk-build-helper.bbclass b/classes/openjdk-build-helper.bbclass
+index 01ed591..8d83e02 100644
+--- a/classes/openjdk-build-helper.bbclass
++++ b/classes/openjdk-build-helper.bbclass
+@@ -9,7 +9,7 @@ EXTRA_OEMAKE_remove_task-install = "${PARALLEL_MAKEINST}"
+ # In OE we have PARALLEL_MAKE which is the actual option passed to make,
+ # e.g. "-j 4".
+ def openjdk_build_helper_get_parallel_make(d):
+-    pm = d.getVar('PARALLEL_MAKE', True);
++    pm = d.getVar('PARALLEL_MAKE');
+     if not pm or '-j' not in pm:
+         return 1
+ 
+@@ -55,7 +55,7 @@ def openjdk_build_helper_get_target_cflags(d):
+ def openjdk_build_helper_get_jdk_arch(d):
+     import bb
+ 
+-    jdk_arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
++    jdk_arch = d.getVar('TRANSLATED_TARGET_ARCH')
+     if jdk_arch == "x86-64":
+         jdk_arch = "amd64"
+     elif jdk_arch == "powerpc":
+@@ -73,7 +73,7 @@ def openjdk_build_helper_get_jdk_arch(d):
+ def openjdk_build_helper_get_llvm_configure_arch(d):
+     import bb;
+ 
+-    arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
++    arch = d.getVar('TRANSLATED_TARGET_ARCH')
+     if arch in ['i386', 'i486', 'i586', 'i686', 'x86-64']:
+         arch = "x86"
+     elif arch in ['mipsel', 'mips']:
+@@ -84,7 +84,7 @@ def openjdk_build_helper_get_llvm_configure_arch(d):
+         arch = "arm"
+     else:
+         if 'shark' in d.getVar('PACKAGECONFIG').split():
+-            bb.warn("%s does not support %s in Shark builds yet" % (d.getVar('PN', True), arch) );
++            bb.warn("%s does not support %s in Shark builds yet" % (d.getVar('PN'), arch) );
+ 
+     return arch
+ 
+@@ -93,7 +93,7 @@ def openjdk_build_helper_get_llvm_configure_arch(d):
+ def openjdk_build_helper_get_icedtea_arch(d):
+     import bb;
+ 
+-    arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
++    arch = d.getVar('TRANSLATED_TARGET_ARCH')
+     if arch == "x86-64":
+         arch = "amd64"
+     elif arch in ['i386', 'i486', 'i586', 'i686']:
+diff --git a/recipes-core/openjdk/openjdk-7-common.inc b/recipes-core/openjdk/openjdk-7-common.inc
+index 794bf58..d59a57a 100644
+--- a/recipes-core/openjdk/openjdk-7-common.inc
++++ b/recipes-core/openjdk/openjdk-7-common.inc
+@@ -93,7 +93,7 @@ export ALT_CUPS_HEADERS_PATH = "${STAGING_INCDIR}"
+ export ALT_FREETYPE_HEADERS_PATH = "${STAGING_INCDIR}/freetype2"
+ export ALT_FREETYPE_LIB_PATH = "${STAGING_LIBDIR}"
+ export CACAO_CONFIGURE_ARGS = " \
+-    ${@['','--enable-softfloat'][d.getVar('TARGET_FPU', True) == 'soft']}"
++    ${@['','--enable-softfloat'][d.getVar('TARGET_FPU') == 'soft']}"
+ 
+ JAVA_HOME[unexport] = "1"
+ 
+diff --git a/recipes-core/openjdk/openjdk-8-common.inc b/recipes-core/openjdk/openjdk-8-common.inc
+index 4d8f935..1fbe7fe 100644
+--- a/recipes-core/openjdk/openjdk-8-common.inc
++++ b/recipes-core/openjdk/openjdk-8-common.inc
+@@ -163,8 +163,8 @@ export DEBUG_BINARIES = "true"
+ 
+ ALTERNATIVE_PRIORITY = "50"
+ 
+-OPENJDK_UPDATE_VERSION = "${@d.getVar('PV', True).split('b')[0]}"
+-OPENJDK_BUILD_NUMBER = "b${@d.getVar('PV', True).split('b')[1]}"
++OPENJDK_UPDATE_VERSION = "${@d.getVar('PV').split('b')[0]}"
++OPENJDK_BUILD_NUMBER = "b${@d.getVar('PV').split('b')[1]}"
+ EXTRA_OECONF_append = "\
+         --with-build-number=${OPENJDK_BUILD_NUMBER} \
+         --with-update-version=${OPENJDK_UPDATE_VERSION} \
+diff --git a/recipes-core/openjdk/openjdk-8-cross.inc b/recipes-core/openjdk/openjdk-8-cross.inc
+index d04b0d3..7d6c1a5 100644
+--- a/recipes-core/openjdk/openjdk-8-cross.inc
++++ b/recipes-core/openjdk/openjdk-8-cross.inc
+@@ -108,14 +108,14 @@ EXTRA_OEMAKE_append = '\
+ '
+ 
+ python remove_debuglink() {
+-    dvar = d.getVar('PKGD', True)
+-    objcopy = d.getVar("OBJCOPY", True)
++    dvar = d.getVar('PKGD')
++    objcopy = d.getVar("OBJCOPY")
+ 
+     # Remove the previous debuglink if it has existed, because it has a different file name with that we will add.
+-    if d.getVar('PN', True).find("jre") != -1:
+-        file = dvar + d.getVar("JRE_HOME", True) + "/lib/" + d.getVar("JDK_ARCH", True) + "/server/libjvm.so"
++    if d.getVar('PN').find("jre") != -1:
++        file = dvar + d.getVar("JRE_HOME") + "/lib/" + d.getVar("JDK_ARCH") + "/server/libjvm.so"
+     else:
+-        file = dvar + d.getVar("JDK_HOME", True) + "/jre/lib/" + d.getVar("JDK_ARCH", True) + "/server/libjvm.so"
++        file = dvar + d.getVar("JDK_HOME") + "/jre/lib/" + d.getVar("JDK_ARCH") + "/server/libjvm.so"
+ 
+     cmd = "'%s' --remove-section .gnu_debuglink '%s'" % (objcopy, file)
+     oe.utils.getstatusoutput(cmd)
+-- 
+2.20.1
 
-<div><div dir=3D"auto">Awesome=C2=A0</div></div><div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr">On Sat, Jan 12, 2019 at 6:00 PM Stefano Cappa &lt=
-;<a href=3D"mailto:stefano.cappa.ks89@gmail.com">stefano.cappa.ks89@gmail.c=
-om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Fixed. After some=
- tests I&#39;ll send the new recipe with a patch to update dhcpcd.=C2=A0<br=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr">Il gio 10 gen 2019, 00:12 =
-Stefano Cappa &lt;<a href=3D"mailto:stefano.cappa.ks89@gmail.com" target=3D=
-"_blank">stefano.cappa.ks89@gmail.com</a>&gt; ha scritto:<br></div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc s=
-olid;padding-left:1ex"><div dir=3D"ltr">Which should be the right path inst=
-ead of the hardcoded /usr/include?<div>Is there a recommended way to fix it=
- in a yocto recipe?</div></div><div dir=3D"ltr"><div><br><div><br></div><di=
-v><div class=3D"gmail_quote"><div dir=3D"ltr">Il giorno mer 9 gen 2019 alle=
- ore 03:41 Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_bl=
-ank">raj.khem@gmail.com</a>&gt; ha scritto:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
-eft:1ex">On Tue, Jan 8, 2019 at 3:48 PM Stefano Cappa<br>
-&lt;<a href=3D"mailto:stefano.cappa.ks89@gmail.com" target=3D"_blank">stefa=
-no.cappa.ks89@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hi!<br>
-&gt; I&#39;m using Yocto THUD and I&#39;m trying to update dhcpcd (meta-ope=
-nembedded/meta-networking) from 6.11.5 to 7.0.8 (<a href=3D"https://roy.mar=
-ples.name/downloads/dhcpcd/dhcpcd-7.0.8.tar.xz" rel=3D"noreferrer" target=
-=3D"_blank">https://roy.marples.name/downloads/dhcpcd/dhcpcd-7.0.8.tar.xz</=
-a>) only to do some experiments, however I think that it&#39;s correct to m=
-igrate to the new version.<br>
-&gt;<br>
-&gt; I modified the recipe to download version 7.0.8, but when it&#39;s bui=
-lding it throws this error:<br>
-&gt;<br>
-&gt; ERROR: dhcpcd-7.0.8-r0 do_configure: configure failed<br>
-&gt; ERROR: dhcpcd-7.0.8-r0 do_configure: Function failed: do_configure (lo=
-g file is located at /home/ks89/git/poky/build/tmp/work/cortexa7t2hf-neon-p=
-oky-linux-gnueabi/dhcpcd/7.0.8-r0/temp/log.do_configure.90966)<br>
-&gt; ERROR: Logfile of failure stored in: /home/ks89/git/poky/build/tmp/wor=
-k/cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7.0.8-r0/temp/log.do_configur=
-e.90966<br>
-&gt; Log data follows:<br>
-&gt; | DEBUG: SITE files [&#39;endian-little&#39;, &#39;bit-32&#39;, &#39;a=
-rm-common&#39;, &#39;arm-32&#39;, &#39;common-linux&#39;, &#39;common-glibc=
-&#39;, &#39;arm-linux&#39;, &#39;arm-linux-gnueabi&#39;, &#39;common&#39;]<=
-br>
-&gt; | DEBUG: Executing shell function autotools_preconfigure<br>
-&gt; | DEBUG: Shell function autotools_preconfigure finished<br>
-&gt; | DEBUG: Executing python function autotools_aclocals<br>
-&gt; | DEBUG: SITE files [&#39;endian-little&#39;, &#39;bit-32&#39;, &#39;a=
-rm-common&#39;, &#39;arm-32&#39;, &#39;common-linux&#39;, &#39;common-glibc=
-&#39;, &#39;arm-linux&#39;, &#39;arm-linux-gnueabi&#39;, &#39;common&#39;]<=
-br>
-&gt; | DEBUG: Python function autotools_aclocals finished<br>
-&gt; | DEBUG: Executing shell function do_configure<br>
-&gt; | NOTE: Running ./configure=C2=A0 --build=3Dx86_64-linux=C2=A0 =C2=A0 =
---host=3Darm-poky-linux-gnueabi=C2=A0 =C2=A0 --target=3Darm-poky-linux-gnue=
-abi=C2=A0 =C2=A0 --prefix=3D/usr=C2=A0 =C2=A0 --exec_prefix=3D/usr=C2=A0 =
-=C2=A0 --bindir=3D/usr/bin=C2=A0 =C2=A0 --sbindir=3D/usr/sbin=C2=A0 =C2=A0 =
---libexecdir=3D/usr/libexec=C2=A0 =C2=A0 --datadir=3D/usr/share=C2=A0 =C2=
-=A0 --sysconfdir=3D/etc=C2=A0 =C2=A0 --sharedstatedir=3D/com=C2=A0 =C2=A0 -=
--localstatedir=3D/var=C2=A0 =C2=A0 --libdir=3D/usr/lib=C2=A0 =C2=A0 --inclu=
-dedir=3D/usr/include=C2=A0 =C2=A0 --oldincludedir=3D/usr/include=C2=A0 =C2=
-=A0 --infodir=3D/usr/share/info=C2=A0 =C2=A0 --mandir=3D/usr/share/man=C2=
-=A0 =C2=A0 --disable-silent-rules=C2=A0 =C2=A0 --disable-dependency-trackin=
-g=C2=A0 =C2=A0 --with-libtool-sysroot=3D/home/ks89/git/poky/build/tmp/work/=
-cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7.0.8-r0/recipe-sysroot --enabl=
-e-ipv4 --disable-static=C2=A0 --enable-ipv6 --with-udev<br>
-&gt; | configure args: --build=3Dx86_64-linux --host=3Darm-poky-linux-gnuea=
-bi --target=3Darm-poky-linux-gnueabi --prefix=3D/usr --exec_prefix=3D/usr -=
--bindir=3D/usr/bin --sbindir=3D/usr/sbin --libexecdir=3D/usr/libexec --data=
-dir=3D/usr/share --sysconfdir=3D/etc --sharedstatedir=3D/com --localstatedi=
-r=3D/var --libdir=3D/usr/lib --includedir=3D/usr/include --oldincludedir=3D=
-/usr/include --infodir=3D/usr/share/info --mandir=3D/usr/share/man --disabl=
-e-silent-rules --disable-dependency-tracking --with-libtool-sysroot=3D/home=
-/ks89/git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7=
-.0.8-r0/recipe-sysroot --enable-ipv4 --disable-static --enable-ipv6 --with-=
-udev<br>
-&gt; | ./configure: WARNING: unknown option --exec_prefix<br>
-&gt; | ./configure: WARNING: unknown option --sharedstatedir<br>
-&gt; | ./configure: WARNING: unknown option --oldincludedir<br>
-&gt; | ./configure: WARNING: unknown option --with-libtool-sysroot<br>
-&gt; | ./configure: WARNING: unknown option --with-udev<br>
-&gt; | Deriving operating system from ... arm-poky-linux-gnueabi<br>
-&gt; | Configuring dhcpcd for ... linux<br>
-&gt; | Enabling INET support<br>
-&gt; | Enabling ARP support<br>
-&gt; | Enabling ARPing support<br>
-&gt; | Enabling IPv4LL support<br>
-&gt; | Enabling INET6 support<br>
-&gt; | Enabling DHCPv6 support<br>
-&gt; | Enabling Authentication<br>
-&gt; | Using compiler .. arm-poky-linux-gnueabi-gcc=C2=A0 -march=3Darmv7ve =
--mthumb -mfpu=3Dneon -mfloat-abi=3Dhard -mcpu=3Dcortex-a7=C2=A0 =C2=A0--sys=
-root=3D/home/ks89/git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnue=
-abi/dhcpcd/7.0.8-r0/recipe-sysroot<br>
-&gt; | arm-poky-linux-gnueabi-gcc=C2=A0 -march=3Darmv7ve -mthumb -mfpu=3Dne=
-on -mfloat-abi=3Dhard -mcpu=3Dcortex-a7=C2=A0 =C2=A0--sysroot=3D/home/ks89/=
-git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7.0.8-r=
-0/recipe-sysroot does not create executables<br>
-&gt; | NOTE: The following config.log files may provide further information=
-.<br>
-&gt; | NOTE: /home/ks89/git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linu=
-x-gnueabi/dhcpcd/7.0.8-r0/dhcpcd-7.0.8/config.log<br>
-&gt; | ERROR: configure failed<br>
-&gt; | WARNING: exit code 1 from a shell command.<br>
-&gt; | ERROR: Function failed: do_configure (log file is located at /home/k=
-s89/git/poky/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/dhcpcd/7.0=
-.8-r0/temp/log.do_configure.90966)<br>
-&gt;<br>
-&gt; Also, the content of &quot;config.log&quot; is :<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 cc1: error: include location &quot;/usr/inc=
-lude&quot; is unsafe for cross-compilation [-Werror=3Dpoison-system-directo=
-ries]<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 cc1: all warnings being treated as errors<b=
-r>
-&gt;<br>
-&gt; I compared configure files of versions 6.11.5 and 7.0.8 and they are q=
-uite similar with some additions, in particular &quot;-I|--includedir) INCL=
-UDEDIR=3D&quot;$INCLUDEDIR${INCLUDEDIR:+ }-I$var&quot;;;&quot;.<br>
-&gt;<br>
-&gt; In not an expert of autotools and so on, so I don&#39;t know how to fi=
-x this.<br>
-&gt; Do you have suggestions?<br>
-<br>
-The error suggests that its poking into build host for headers, so you need=
-<br>
-to look into that usually this means it has hardcoded paths for<br>
-headers pointing to /usr/include, or it does not respect sysroot<br>
-option that compiler is passing.<br>
-<br>
-&gt;<br>
-&gt; I added also Khem Raj, but I&#39;m not sure if it&#39;s the maintainer=
- of dhcpcd recipe.<br>
-&gt;<br>
-&gt; Thank u.<br>
-</blockquote></div></div></div></div>
-</blockquote></div>
-</blockquote></div></div>
 
---0000000000003d6bea057f4dc0d6--
