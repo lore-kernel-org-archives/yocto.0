@@ -1,42 +1,55 @@
-Return-Path: <scott@jumpnowtek.com>
+Return-Path: <Okaya@kernel.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23505E00BFB; Sun, 13 Jan 2019 08:06:48 -0800 (PST)
+	id 47058E00BFB; Sun, 13 Jan 2019 09:19:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [146.20.161.110 listed in list.dnswl.org]
-X-Greylist: delayed 543 seconds by postgrey-1.32 at yocto-www;
-	Sun, 13 Jan 2019 08:06:47 PST
-Received: from smtp110.iad3b.emailsrvr.com (smtp110.iad3b.emailsrvr.com
-	[146.20.161.110])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70E84E00B92
-	for <yocto@yoctoproject.org>; Sun, 13 Jan 2019 08:06:47 -0800 (PST)
-Received: from smtp14.relay.iad3b.emailsrvr.com (localhost [127.0.0.1])
-	by smtp14.relay.iad3b.emailsrvr.com (SMTP Server) with ESMTP id
-	5520EE01DB
-	for <yocto@yoctoproject.org>; Sun, 13 Jan 2019 10:57:44 -0500 (EST)
-X-Auth-ID: scott@jumpnowtek.com
-Received: by smtp14.relay.iad3b.emailsrvr.com (Authenticated sender:
-	scott-AT-jumpnowtek.com) with ESMTPSA id 329B0E01C1
-	for <yocto@yoctoproject.org>; Sun, 13 Jan 2019 10:57:44 -0500 (EST)
-X-Sender-Id: scott@jumpnowtek.com
-Received: from [192.168.10.4] (c-73-234-253-132.hsd1.me.comcast.net
-	[73.234.253.132]) (using TLSv1.2 with cipher AES128-SHA)
-	by 0.0.0.0:465 (trex/5.7.12); Sun, 13 Jan 2019 10:57:44 -0500
-To: yocto@yoctoproject.org
-From: Scott Ellis <scott@jumpnowtek.com>
-Message-ID: <734bb578-a1f7-c6bf-445b-56313ac4292a@jumpnowtek.com>
-Date: Sun, 13 Jan 2019 10:57:45 -0500
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
-	Thunderbird/60.4.0
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [198.145.29.99 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0A83E00B92
+	for <yocto@yoctoproject.org>; Sun, 13 Jan 2019 09:19:01 -0800 (PST)
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com
+	[209.85.167.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mail.kernel.org (Postfix) with ESMTPSA id 6DA4E205C9
+	for <yocto@yoctoproject.org>; Sun, 13 Jan 2019 17:19:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=default; t=1547399941;
+	bh=nURtXqK7v53b3BLzD+pMBLPsR23a6/PcKTFOyGySjAw=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=kcbLi5RXKGyA5GANQjyXzCPkIiyTgspzHSSrHIZOqfuqRXCFjOZxRhc4mkz00zfeX
+	bfoRCtPDDv0OE/4jlBs6nplaQyPQNMlvqwOx+2w4S0+7UhVG15rE2aRHt5ui9zeWOQ
+	wSYAt0e4gxbIw/vZFSwlt1gsoRpB/cKT+vGvXCTg=
+Received: by mail-oi1-f175.google.com with SMTP id j21so16074149oii.8
+	for <yocto@yoctoproject.org>; Sun, 13 Jan 2019 09:19:01 -0800 (PST)
+X-Gm-Message-State: AJcUukfXeF1ceBdNZHA4SKSiGbokEVa1fJDqEsHvRETkxYpk7NQnJCYS
+	TUlzVFZ5CAgRcSmd9G2KnsIXzFxd1dEKZvr+7nM=
+X-Google-Smtp-Source: ALg8bN7Z+GzVjAVTNg9orq5OdaDhQQ97iDAPUYPi6C5XRQr+7eNiqM/uQqPb/suObs1KeqpoSCZOdLrvNQZB9mYVUE4=
+X-Received: by 2002:aca:5e09:: with SMTP id s9mr13129723oib.153.1547399940754; 
+	Sun, 13 Jan 2019 09:19:00 -0800 (PST)
 MIME-Version: 1.0
-Subject: [meta-security][python3-scapy] scapy script is broken
+References: <CAK9iUCPKMYD-qCwmycGi8swuy_xLyGdL7eiHTbKBT0DSfRaRTQ@mail.gmail.com>
+	<CAJdd5GY+CS5vF0_i_Q62TQTFXd_qixsKVq1W4FTMgLEUfDGq1Q@mail.gmail.com>
+In-Reply-To: <CAJdd5GY+CS5vF0_i_Q62TQTFXd_qixsKVq1W4FTMgLEUfDGq1Q@mail.gmail.com>
+From: Sinan Kaya <Okaya@kernel.org>
+Date: Sun, 13 Jan 2019 12:17:59 -0500
+X-Gmail-Original-Message-ID: <CAK9iUCOF38pzTAd8+vGXmnVkQaQud0+Hspy+84X+L-fDUaW5Yg@mail.gmail.com>
+Message-ID: <CAK9iUCOF38pzTAd8+vGXmnVkQaQud0+Hspy+84X+L-fDUaW5Yg@mail.gmail.com>
+To: Joshua Watt <jpewhacker@gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: meta-mingw and cmake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,54 +61,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 13 Jan 2019 16:06:48 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 13 Jan 2019 17:19:02 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-The shebang line in /usr/bin/scapy and /usr/bin/UTscapy is always set
-for python not python3 and so doesn't work with the python3 scapy install.
+On Sat, Jan 12, 2019 at 2:41 PM Joshua Watt <jpewhacker@gmail.com> wrote:
+>
+> CC'ing yocto@yoctoproject.org
+>
+> On Sat, Jan 12, 2019 at 1:02 PM Sinan Kaya <Okaya@kernel.org> wrote:
+> >
+> > Hi Joshua,
+> >
+> > I have this instruction to build cmake as part of the SDK.
+> >
+> > +# Add the CMake binary to the SDK
+> > +TOOLCHAIN_HOST_TASK += "nativesdk-cmake"
+> > +
+> >
+> >  When I add this, windows SDK build is failing to compile.
+> >
+> > I'm using the sumo branch. Do you have any ideas?
+>
+> I believe that compiling cmake for mingw works on master, can you give
+> that a try?
 
-This problem existed in the 2.4.0 version as well.
+I'll test.
 
-I am currently using this patch in my local repo to fix python3-scapy
-builds.
+> Also, be aware that while it compiles, it may not actually
+> work in the SDK depending on your use case. See
+> https://lists.yoctoproject.org/pipermail/yocto/2018-November/043344.html
+> for more details.
+>
 
-diff --git a/recipes-security/scapy/python-scapy.inc
-b/recipes-security/scapy/python-scapy.inc
-index d5a70fe..97036e0 100644
---- a/recipes-security/scapy/python-scapy.inc
-+++ b/recipes-security/scapy/python-scapy.inc
-@@ -15,6 +15,20 @@ do_install_ptest() {
-     sed -i 's,@PTEST_PATH@,${PTEST_PATH},' ${D}${PTEST_PATH}/run-ptest
- }
+I tried this patch already. The compilation succeeds but the SDK
+installation script
+gets broken (it complains about missing environment script).
 
-+do_install_append() {
-+    if [ "${PYTHON_BASEVERSION}" != "2.7" ]; then
-+        bbwarn "Fixing shebang line for scapy and UTscapy"
-+
-+        if [ -e ${D}${bindir}/scapy ]; then
-+           sed -i -e 's/python/python3/' ${D}${bindir}/scapy
-+        fi
-+
-+        if [ -e ${D}${bindir}/UTscapy ]; then
-+           sed -i -e 's/python/python3/' ${D}${bindir}/UTscapy
-+        fi
-+    fi
-+}
-+
-...
-
-scapy is just a small wrapper script to launch an interactive scrapy
-session.
-
-Adding the do_install_append() to the python3-scapy.bb doesn't work
-(never gets called) so I had to add the PYTHON_BASEVERSION check and put
-it in the *.inc
-
-Open to suggestions on a better fix.
-
-
-
-
+> >
+> > Sinan
 
