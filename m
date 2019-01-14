@@ -1,38 +1,63 @@
-Return-Path: <Randy.MacLeod@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA26EE00CFB; Mon, 14 Jan 2019 14:31:08 -0800 (PST)
+	id A4B91E00CFD; Mon, 14 Jan 2019 14:44:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3793FE00CE0
-	for <yocto@yoctoproject.org>; Mon, 14 Jan 2019 14:31:08 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x0EMUlFo002995
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 14 Jan 2019 14:30:57 -0800
-Received: from [172.25.44.4] (172.25.44.4) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
-	Mon, 14 Jan 2019 14:30:36 -0800
-To: <yocto@yoctoproject.org>
-References: <CAGMdoFn0jYK+nvkN34eePa2XAeRDRS8gUJCZUepeLm-+DK5d9A@mail.gmail.com>
-	<CAJTo0LaWHfab=ED99tAOeKaZkZEji1nt6Wm4MBshNwTp1sJiZg@mail.gmail.com>
-From: Randy MacLeod <randy.macleod@windriver.com>
-Message-ID: <8ea483bf-23d1-e3b6-a0c4-99fc795511a1@windriver.com>
-Date: Mon, 14 Jan 2019 17:30:35 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.2.1
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.181 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com
+	[209.85.160.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FBE6E00CF4
+	for <yocto@yoctoproject.org>; Mon, 14 Jan 2019 14:44:34 -0800 (PST)
+Received: by mail-qt1-f181.google.com with SMTP id y20so885596qtm.13
+	for <yocto@yoctoproject.org>; Mon, 14 Jan 2019 14:44:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=FpWNtx7UJ8f47irPQ9H4W1zy45TSVgh1rcKasTOa6Bk=;
+	b=bufINOco3QmC61Kwd7JOsrL8WcLU2Z6jdIXOcjetpG5YETxjs8sOEndqZRAdxd/rzQ
+	hK2lbGTZ8+TvoQY0i/xqKalLAwry6jJ/ww1YOFtzgSMKjpXF5njgmGYK5ZziE8mncSHc
+	zlgyO8+/Pd4UE8iCbz6j5ee6W0JEJFYkntblliidqPMyQt6XAchoBWGGB7RZl5xAxkmI
+	3ieb29Mj2ke7uuz3D40AcMNTJKU9Brzf6UKjRZcR1XenpKHjwBzvOfxuwediDSduTbUq
+	mudLXkBvf/mTEVUn4rr9qJxr7oqyim8aKD877V5rBvwZcsybME8zjdArdq+QwLOve/oI
+	BaWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=FpWNtx7UJ8f47irPQ9H4W1zy45TSVgh1rcKasTOa6Bk=;
+	b=PuTPUhxJj1WiT7kkHJ0kI+Gw1sB906HsbW2so8CQmj2J86lTjAH4EJPvsPO+X+jjFL
+	lPEhuA0/SmNRelIbRVUlYB5kkrDCI2Z6nGlJQ5H2+5oMcEpEdVfKYSD/wvikTzgxmwdS
+	6jWJs5CxQGr4n+eH36grcEciw76fQjj9CCxJyvsWe0eqbC5b2N05KvSBogu8nIBfMlFv
+	dYAMurT2SSxYS8F4Q3LcaGCk/Gm4/02A4wYj5u6Mh9gnGrmH5XDa0hu7CyBv6RAP9C6h
+	e5vc0WGGCq0L28Oub7w3ksqeQeQzLXsQQWKeeiNo4euFbNWQOrUE7AgvdvnWPiywGwuU
+	yFhg==
+X-Gm-Message-State: AJcUukfQK/YaHK5IySfjHg1PmDdGCIAIUsKvHvy+VAS/CSTeUQjHTSw8
+	NaD6T4BjPdCsD1GKG6+kZuMyuNmedAmoXlwbHc4=
+X-Google-Smtp-Source: ALg8bN5JgiYNwrvAknQ5GxGOHArhdjW/OydVuESeB0h8yGxFr2Tc8L43bw6s5wZaVhHK1DFJFmi6yNh5/6eRAMlU66U=
+X-Received: by 2002:ac8:16d8:: with SMTP id y24mr609946qtk.253.1547505874133; 
+	Mon, 14 Jan 2019 14:44:34 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LaWHfab=ED99tAOeKaZkZEji1nt6Wm4MBshNwTp1sJiZg@mail.gmail.com>
-X-Originating-IP: [172.25.44.4]
+References: <CAGMdoFn0jYK+nvkN34eePa2XAeRDRS8gUJCZUepeLm-+DK5d9A@mail.gmail.com>
+In-Reply-To: <CAGMdoFn0jYK+nvkN34eePa2XAeRDRS8gUJCZUepeLm-+DK5d9A@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 14 Jan 2019 14:44:08 -0800
+Message-ID: <CAMKF1sqLRfiEubd+V5dpXDCbi4BVTdv7aWaE81QV4-KK1Jff9Q@mail.gmail.com>
+To: Edward Wingate <edwingate8@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Yocto distribution license
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -45,47 +70,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Jan 2019 22:31:08 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 14 Jan 2019 22:44:35 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On 1/14/19 5:42 AM, Burton, Ross wrote:
-> The license is the sum of the parts.
-> 
-> Ross
+On Sun, Jan 13, 2019 at 10:35 PM Edward Wingate <edwingate8@gmail.com> wrote:
+>
+> I understand that a Linux distribution created with Yocto is composed
+> of various packages, each with their own license, and the obligations
+> of the licenses must be met.  But are there any
+> restrictions/obligations on the distribution itself when created with
+> Yocto? Or is the license of a Linux distribution created by Yocto
+> determined by whoever created it?
 
-+1
+metadata files does have licenses, unless and until explicitly called
+out in metadata files they are under MIT license.
 
-It would be possible that the build system would
-attempt to restrict usage but bitbake is GPLv2 licensed
-and oe-core classes and recipes are mostly under MIT as
-explained here:
-    http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/LICENSE
-
-../Randy
-
-
-> 
-> On Mon, 14 Jan 2019 at 06:35, Edward Wingate <edwingate8@gmail.com 
-> <mailto:edwingate8@gmail.com>> wrote:
-> 
->     I understand that a Linux distribution created with Yocto is composed
->     of various packages, each with their own license, and the obligations
->     of the licenses must be met.  But are there any
->     restrictions/obligations on the distribution itself when created with
->     Yocto? Or is the license of a Linux distribution created by Yocto
->     determined by whoever created it?
->     -- 
->     _______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
-> 
-> 
-
-
--- 
-# Randy MacLeod
-# Wind River Linux
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
