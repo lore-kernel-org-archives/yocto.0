@@ -1,66 +1,67 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A0A51E00D24; Tue, 15 Jan 2019 02:34:39 -0800 (PST)
+	id 7E7D8E00D05; Tue, 15 Jan 2019 05:38:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.171 listed in list.dnswl.org]
+	*      [209.85.221.46 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f171.google.com (mail-it1-f171.google.com
-	[209.85.166.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 488DDE00CF4
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2019 02:34:37 -0800 (PST)
-Received: by mail-it1-f171.google.com with SMTP id h193so3683694ita.5
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2019 02:34:37 -0800 (PST)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
+	[209.85.221.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3494E0048C
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2019 05:38:58 -0800 (PST)
+Received: by mail-wr1-f46.google.com with SMTP id x10so2969873wrs.8
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2019 05:38:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=4qDuNXuLV7yMZOri9ZAsOIzrFxP2H7RZunmRdHRZioY=;
-	b=hEs60z08qrFjMFDfXq93NJTS4Bft/pBdC/+85PHbMUkJ26owNDeKLY9Drywd07pGgB
-	QyMsvEAK/dnsUXVZxZ+buVxDEFy54H2dB9m7ORmaxDQSXt3YMoI/trvkHDf2/qwxeeNu
-	sBi1sk7rPA7jrEBmFB6qhvNNkzvixGEiPeZa7/iLNmq+uu3MGAUGPkOHD35wOUfyOc78
-	+U+U6iT1dSJkotGPxecJ/u7zaPS4KBZ0iiKnFMVb6gbT3C/Gt8EFrJbnUPr+CIIJZgOa
-	1JWVs3XtSOe3WrBc7/uhmq+ySJGToqCS3HSx7FJYtq5eA9amcOYcvjEif48AbTS08NQu
-	sbqA==
+	d=linuxfoundation.org; s=google;
+	h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=r82B4dYx2efwKp3TXatfzQfONLoODc5v1nvv4SFjN10=;
+	b=W6mKM0m8F0IS4su6SFZG2kgBgyf03uLs5FvRzRzc1cGCkpD6qxv7MfoKrI32EVnZyr
+	7UwzgNm+0qBUTa6wfn1Lm0yewOfhB99Z6Twaoe97qDoODmiBpKfm7Xu2XKf0Avro7T2B
+	tAu4Mb8ndpXIVCC03tThrftLN1hi3MqR5F56w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=4qDuNXuLV7yMZOri9ZAsOIzrFxP2H7RZunmRdHRZioY=;
-	b=CUrfqJSNlDNBi6zQpW4y4EF/qKrgC4E4iMKphPScblYtDmsyDb1wMPPjUf4ScA9syk
-	R0PKBHm2hzJMC9XlC1UN6bcx7imJRK8kuuLl1bIkpPJ8kV+6HVDZrmIzIYEraH1CeQcS
-	NfWl6e2jkoYTf+VY4xoNRwQQgiNowoNKYZbEP5/sceiwm5/TsifuHIlVItoNeAx+eH60
-	239MyPdbXuLY01VXPsD11QedxticFdCaV5kmBBMwrXaA1ScLOCDrH1VUVRjITRi1Imww
-	u3rEs60EG7cMIuMAa/bSkAdvKoIgPWqyfvL8XykysLdzO93zIPffsGakeALPynUsA57G
-	77Mw==
-X-Gm-Message-State: AJcUuke0JA5wpk7ao+lRUYzImtQq/nm7wKv2XqGDYNfHdE6he87ZV9uf
-	57wPvr4/WIChe+1QeYbC68XOLFPbBh8yoZ/pSY6A3w==
-X-Google-Smtp-Source: ALg8bN5jjb4iLyGa7qvFzLbwZkVAXJzoWID3BPVOeq+qlzTgJN/xZyeuhBC6Ulx2002WdfvBclFED+17tMWTr32gyso=
-X-Received: by 2002:a24:c601:: with SMTP id j1mr2282008itg.130.1547548477041; 
-	Tue, 15 Jan 2019 02:34:37 -0800 (PST)
-MIME-Version: 1.0
-References: <CAFsTbWeONMCr4grfkWvG5A2EqP11ZMOwvnwOTmWF-fXCsc4r4w@mail.gmail.com>
-In-Reply-To: <CAFsTbWeONMCr4grfkWvG5A2EqP11ZMOwvnwOTmWF-fXCsc4r4w@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 15 Jan 2019 10:34:26 +0000
-Message-ID: <CAJTo0LYW=Sj_2H+R9hUHrq3q1qaAj5FRAKAKsCAV+h-k0Hj95A@mail.gmail.com>
-To: srinivasan <srinivasan.rns@gmail.com>
-Cc: yocto-bsp@yoctoproject.org,
-	"Development list for the linux-yocto*.git Linux kernel repositories"
-	<linux-yocto@yoctoproject.org>, yocto-infrastructure@yoctoproject.org,
-	yocto-builds@yoctoproject.org, Yocto-mailing-list <yocto@yoctoproject.org>,
-	meta-freescale-request@yoctoproject.org, meta-intel@yoctoproject.org,
-	meta-freescale Mailing List <meta-freescale@yoctoproject.org>,
-	Poky Project <poky@yoctoproject.org>
-Subject: Re: [meta-intel] ERROR: - package networkmanager-1.10.6-r0.aarch64 conflicts with connman provided by connman-1.35-r0.aarch64
+	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+	:references:user-agent:mime-version:content-transfer-encoding;
+	bh=r82B4dYx2efwKp3TXatfzQfONLoODc5v1nvv4SFjN10=;
+	b=IlzqkGaMU9yTu9AVpt8JyYV2KKNn6QcZUogivEFiS878RyqeAM2NY8iSajmQF4l4LN
+	Zt7232cd9U6D3EGosuaNnc3LPANDPDcbUG3TWLbT9tyVrWdZKc1Da08HWV214TTwjV3j
+	/Vxqg7iJVsJVgOhs8qxvacUYqjPIz+E0OUGXBAvpSdMbUlWwcBPcUCG/e4dQT6ZzP1qt
+	UUvNx4EJw/tfauzuSpasjXSGEYPDXJqlg5RBiA2L2n3OCvCfqZUV4mLXZbUjmYcZw8IQ
+	7W5s+HLWTxmFcOXgiQSTa+FXW8V+qhzKEaRNGsldOcpkvolS0Ht9BxWS1zItfraB41yy
+	KUrw==
+X-Gm-Message-State: AJcUukciIaLnGUzA83LTurPxx8QuLH8FLe+y94xGWhqb3fEOlzkYOkaP
+	gXrH2cSn2HHRFCPnQ989jSabYe81i5Q=
+X-Google-Smtp-Source: ALg8bN7oIm7tLztLGbDxYjSCp0AU1+D1cWR7ed4V4lCm9+typRlG0bribFMvAbD+Mj0PnOTJJnzTmA==
+X-Received: by 2002:adf:ce86:: with SMTP id r6mr3337210wrn.257.1547559537780; 
+	Tue, 15 Jan 2019 05:38:57 -0800 (PST)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+	by smtp.gmail.com with ESMTPSA id
+	v133sm27250016wmf.19.2019.01.15.05.38.55
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Tue, 15 Jan 2019 05:38:56 -0800 (PST)
+Message-ID: <c7769c36a9575fbdcd2c312430eacb3266fd60de.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Ulf Samuelsson <yocto@emagii.com>, Yocto list discussion
+	<yocto@yoctoproject.org>
+Date: Tue, 15 Jan 2019 13:38:54 +0000
+In-Reply-To: <09d6ac15-7dbe-3ffa-3f9c-381746ec7433@emagii.com>
+References: <09d6ac15-7dbe-3ffa-3f9c-381746ec7433@emagii.com>
+User-Agent: Evolution 3.30.4-1 
+Mime-Version: 1.0
+Subject: Re: bitbake: DataSmart.expandWithRefs causing exception when handed "${@...}"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,90 +73,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jan 2019 10:34:39 -0000
+X-List-Received-Date: Tue, 15 Jan 2019 13:38:59 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-You'll have to not install either connman or network manager.
+On Sun, 2019-01-13 at 22:53 +0100, Ulf Samuelsson wrote:
+> I am trying to add a new image class "SWU" in "sumo" for a "software
+> update image".
+> As a result:
+> do_sdk_depends[depends] = '${@get_ext_sdk_depends(d)} meta-extsdk-
+> toolchain:do_populate_sysroot'
+> 
+> When data_smart.py works on this, it will call 
+> 
+> DataSmart.expandWithRefs(self, s, varname)
+> s        = '${@get_ext_sdk_depends(d)} meta-extsdk-
+> toolchain:do_populate_sysroot'
+> varname  = 'do_sdk_depends[depends]'
+> 
+> I will get an exception in this statement:
+> 
+>         while s.find('${') != -1:
+>             olds = s
+>             try:
+>                 s = __expand_var_regexp__.sub(varparse.var_sub, s)
+> 
+> The definition of __expand_var_regexp__ is:
+>   __expand_var_regexp__ = re.compile(r"\${[^{}@\n\t :]+}")
+> 
+> That is, it is looking for the string "${<X>}"
+> but <X> may not contains anything in [{}@\n\t :]
+> 
+> since the "variable" in "s" is actually a call to
+> get_ext_sdk_depends,
+> and thus contains a '@' character it is not matched.
+> 
+> The build aborts with an exception.
+> 
+> I am not sure, if '${@get_ext_sdk_depends(d)}' should be expanded
+> before
+> DataSmart,expandWithRefs, or if expandWithRefs needs to be extended
+> to handle the case where the variable is a "call".
+> 
+> This is blocking us from upgrading from pyro to sumo.
+> 
+> Any ideas on a solution?
 
-Ross
+Can you firstly say what the error is you're seeing. Your attempt to
+understand it is good but I'm not sure which error you see?
 
-On Tue, 15 Jan 2019 at 05:18, srinivasan <srinivasan.rns@gmail.com> wrote:
->
-> Dear Yocto experts,
->
-> I am seeing the below error when I am trying to integrate the
-> "fsl-image-validation-imx.bb" into my custom yocto build and trigger
-> the build using "bitbake custom-image-debug-imx8.bb", I somewhat feel
-> networkmanager is conflicting with conman, could you please let me
-> know how this issue can be resolved?
->
-> I have attached the recipe files for your information
->
-> Error:
->
-> ERROR: custom-image-debug-imx8-1.0-r0 do_rootfs: Could not invoke dnf.
-> Command '/home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/recipe-sysroot-native/usr/bin/dnf
-> -y -c /home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/rootfs/etc/dnf/dnf.conf
-> --setopt=reposdir=/home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/rootfs/etc/yum.repos.d
-> --repofrompath=oe-repo,/home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/oe-rootfs-repo
-> --installroot=/home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/rootfs
-> --setopt=logdir=/home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/temp
-> --nogpgcheck install alsa-server alsa-tools alsa-utils apt apt-repo
-> bash basicquick bc binutils binutils-symlinks bmap-tools-git
-> build-config bzip2 cmake coreutils crashme crda dfu-util diffutils dnf
-> dnsmasq ethtool file libfreetype6 gdb gdbserver gettext git
-> glibc-gconv-utf-32 gnupg libharfbuzz0 hidapi hostapd htop iperf3 iw
-> kernel-dev kernel-devsrc kernel-modules ldd libasound liberation-fonts
-> libfftw libfftwf libjack libjpeg62 libpng16-16 libtool libxerces-c
-> libsensors4 lmsensors-sensors lsof lttng-modules make memtester
-> merge-files nano networkmanager ni-isolcpus ninja openssl
-> packagegroup-base-extended packagegroup-core-boot
-> packagegroup-core-full-cmdline packagegroup-core-sdk
-> packagegroup-core-ssh-dropbear packagegroup-core-standalone-sdk-target
-> packagegroup-core-tools-debug packagegroup-core-tools-profile
-> packagegroup-core-tools-testapps packagegroup-fsl-optee-imx
-> packagegroup-fsl-tools-audio packagegroup-fsl-tools-gpu-external
-> packagegroup-tools-bluetooth pbzip2 pciutils perf pkgconfig procps
-> psplash python python-dbus python-modules python-pandas python-pip
-> python3 python3-dbus python3-misc python3-modules python3-pip
-> python3-psutil python3-robotframework python3-six qt3d qt3d-dev
-> qt3d-mkspecs qtbase qtbase-dev qtbase-mkspecs qtbase-plugins
-> qtbase-tools libqt5charts5 libqt5charts-dev libqt5charts-mkspecs
-> qtconnectivity-dev qtconnectivity-mkspecs qtdeclarative
-> qtdeclarative-dev qtdeclarative-mkspecs qtgraphicaleffects
-> qtgraphicaleffects-dev qtquickcontrols qtquickcontrols-dev
-> qtquickcontrols-qmlplugins qtquickcontrols2 qtquickcontrols2-dev
-> qtquickcontrols2-mkspecs libqt5svg5 libqt5svg-dev libqt5svg-mkspecs
-> rpm rt-tests rtirq run-postinsts screen ssh-keys-server strace stress
-> sysstat tar tmux trace-cmd ttf-bitstream-vera udev udev-automount
-> unzip usbreset usbutils util-linux valgrind wget wireless-tools
-> wpa-supplicant zip libz1 locale-base-en-us' returned 1:
-> Added oe-repo repo from
-> /home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/oe-rootfs-repo
-> Last metadata expiration check: 0:00:00 ago on Mon 14 Jan 2019 04:06:18 PM UTC.
-> Error:
->  Problem: package connman-tools-1.35-r0.aarch64 requires connman, but
-> none of the providers can be installed
->   - package packagegroup-core-tools-testapps-1.0-r2.imx8mmevk requires
-> connman-tools, but none of the providers can be installed
->   - package networkmanager-1.10.6-r0.aarch64 conflicts with connman
-> provided by connman-1.35-r0.aarch64
->   - conflicting requests
-> (try to add '--allowerasing' to command line to replace conflicting
-> packages or '--skip-broken' to skip uninstallable packages)
->
-> ERROR: custom-image-debug-imx8-1.0-r0 do_rootfs: Function failed: do_rootfs
-> ERROR: Logfile of failure stored in:
-> /home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/temp/log.do_rootfs.56617
-> ERROR: Task (/home/user/test/os/sources/meta-custom-imx8/recipes-core/images/custom-image-debug-imx8.bb:do_rootfs)
-> failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 8016 tasks of which 7974 didn't need to
-> be rerun and 1 failed.
->
-> Many Thanks in advance,
-> --
-> _______________________________________________
-> meta-intel mailing list
-> meta-intel@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/meta-intel
+Secondly, is there a way someone else could reproduce this bug?
+
+The fragment you quote looks correct. If you have variable and function
+names conflicting that would be a problem though as they're all in the
+same namespace. I'm unclear whether that is a problem here or not
+though based on the available information.
+
+Cheers,
+
+Richard
+
 
