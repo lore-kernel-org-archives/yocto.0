@@ -1,62 +1,50 @@
-Return-Path: <pkr6797@gmail.com>
+Return-Path: <andre.draszik@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56FB4E00D05; Tue, 15 Jan 2019 02:55:13 -0800 (PST)
+	id 63DEFE00BED; Tue, 15 Jan 2019 07:02:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (pkr6797[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.45 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
-	[209.85.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B79A5E00CFB;
-	Tue, 15 Jan 2019 02:55:12 -0800 (PST)
-Received: by mail-wm1-f45.google.com with SMTP id r24so737196wmh.0;
-	Tue, 15 Jan 2019 02:55:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=fg5p33oUVVEt9PCbQvxCYwF1tLD43H0XDqo4aBcdPzQ=;
-	b=ugkMjBxrr+UCOyz1iuCiMrFdwP+EUswk9io7SIYWQvUrUI2eHHbdky7kQVm0iSDhb7
-	QT6aAFpMiKVOBAzUDjd2KlHhYoK5P56w/zAC93EWDoF818CXInhmPtJwB/UfqT3zYTNy
-	rykvZ8o6Mb8++K0E6bVhuEfl/EzM+yw32qFWosz71kG2b+RjQXguVeYkIv3pkvk/ZTcE
-	+MpRwPx+3cfEH+Cg4fAJpKcCTOp3YTpcqrwZn/IKpa0zqM+EyJTveYfIX5ttFLNw6aGn
-	pUxdQQTVAHJwurOn0PK7EUc6nmuCWPYds77gDJthqBzuFTDwo4XMzAWZzHS31pYStnvd
-	k6NQ==
+	*      [209.85.161.68 listed in list.dnswl.org]
+Received: from mail-yw1-f68.google.com (mail-yw1-f68.google.com
+	[209.85.161.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7086FE006F1
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2019 07:02:46 -0800 (PST)
+Received: by mail-yw1-f68.google.com with SMTP id g194so1133959ywe.7
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2019 07:02:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=fg5p33oUVVEt9PCbQvxCYwF1tLD43H0XDqo4aBcdPzQ=;
-	b=XLE1xsgP7lV6cclbntu5cRK7MBuYbhz6x+AbxC6tudY3ba0jU2zlrn1CiLBRuyR+Qc
-	F3qQIa3VdpxI2enq0AhNHVtMEUfIDbKVlkEFYq+VhYa3PRP+1cqIcVPqHOa2Xic/9e4j
-	I7u4Hh1xH3wOeCqTIlkwylsZckWwyJ3tl0iS8ZmfPbIWNTFyi2ne8JlxTdTfHo+TkZPQ
-	utCVh3u+vC0kP5OdLFhZcM1TUd7eL2i5sAC1rm6nUr7eY6GDCQgAI/piKjuQz+ssnuNy
-	gNfGsNLoRC5pI6p1onm9d6QTeyR30c8wA12CaeMskU5zUc0LiuvLtejbsqmMel5+mYMD
-	nS2A==
-X-Gm-Message-State: AJcUukfxQlK+h0Bw4d6M1FVknfYEGzgaWoNhBUHtmUsgAeWIdIXb5kCy
-	6oG9sri8/wssIcjZ7EDO2o2Yj+EvYCFTN+KBvIE0sQ==
-X-Google-Smtp-Source: ALg8bN7hsG21ZGsHfuZ2PBpthQTCABeJ0DHOrOlJg+pdevqfCINUwedxpJZGkYkJVP9lj7jAoFprZn6zNs6tfm8W9Oc=
-X-Received: by 2002:a1c:af08:: with SMTP id y8mr2689994wme.94.1547549711392;
-	Tue, 15 Jan 2019 02:55:11 -0800 (PST)
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=EPYYCrAq6ROp5mn/FVjiDgd9Pf4DaBEsEPeAu9kH/Mw=;
+	b=MuvlwWYi2DCiF9Cb9mafDp9eaynhVSetSUAebgyn/UPTM6gt+h003xKxZ8Dr0ozDy6
+	NZlQgKx1I3WMQ78F22obP1mEvKuG+t6uF8yQSuuStqcz26PRyylyTKP4U0I4HFL2XnVJ
+	ZbqrJsv2PTjY4ybHZTXBOzlCU6ElLD7otln6R0riio1Hx7VtFJg4Gd5Mwp1kqfNkuwjv
+	YP1me376DQgKCvhM4CBtugN86093xzIGP+MaX4TEweQ32S5O0Zb+dxD6WanJBKGY5A1/
+	bg8jtYccvbzkqoMRirKXvcq+2Ipf1qMqL9bVY10uI8cmU35oPIYi+QYl//ilE6eHVM3Z
+	PUUQ==
+X-Gm-Message-State: AJcUukd+nQFcLzC46qO/FbGs5F2mDNNq/dHQg8sgZal338Xd+f3GgzDT
+	yJaFWZg4ZO86Y/bjVY+q9QXLpoMa
+X-Google-Smtp-Source: ALg8bN5nHCSq6M/2/B+RUQyFLNj5wSpGWW8HNtjxD/2bFwLxidRDhLVIbWyHZrQEzKoEJHilAxcsgw==
+X-Received: by 2002:a81:7d0b:: with SMTP id y11mr3206748ywc.442.1547564565670; 
+	Tue, 15 Jan 2019 07:02:45 -0800 (PST)
+Received: from tfsielt31850.garage.tyco.com ([77.107.218.170])
+	by smtp.gmail.com with ESMTPSA id
+	a72sm1675484ywh.42.2019.01.15.07.02.44 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 15 Jan 2019 07:02:45 -0800 (PST)
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
+To: yocto@yoctoproject.org
+Date: Tue, 15 Jan 2019 15:02:42 +0000
+Message-Id: <20190115150242.632-1-git@andred.net>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: sadu A <pkr6797@gmail.com>
-Date: Tue, 15 Jan 2019 18:54:59 +0800
-Message-ID: <CALdre-xUUX38urFXonqepnhfXVduQFF3rGJAfpZ3SHxphe=p0w@mail.gmail.com>
-To: yocto@yoctoproject.org, poky@yoctoproject.org
-X-Mailman-Approved-At: Tue, 15 Jan 2019 05:41:00 -0800
-Subject: Qemu Launch Issue:
+Subject: [documentation][PATCH] documentation: remove True option to getVar calls
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,35 +56,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jan 2019 10:55:13 -0000
-Content-Type: multipart/alternative; boundary="000000000000d1e2b6057f7cfe80"
+X-List-Received-Date: Tue, 15 Jan 2019 15:02:48 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---000000000000d1e2b6057f7cfe80
-Content-Type: text/plain; charset="UTF-8"
+From: André Draszik <andre.draszik@jci.com>
 
-Hi Team,
+getVar() has been defaulting to expanding by default for
+a long time (2016), thus remove the True option from
+getVar() examples with a regex search and replace.
 
-I'm new to yocto environment, I need clarification on this:
+Search & replace made using the following command:
+    sed -e 's|\(d\.getVar \?\)( \?\([^,()]*\), \?True)|\1(\2)|g' \
+        -i $(git grep -E 'getVar ?\( ?([^,()]*), ?True\)' \
+             | cut -d':' -f1 \
+             | sort -u)
 
-Launching Qemu default and launching by using "-nographic" option makes any
-difference.
+Note that there are are several other examples of getVar()
+usage which already don't explicitly add the True option,
+this patch just align some stray remainders.
 
-Please clarify this.
+Signed-off-by: André Draszik <andre.draszik@jci.com>
+---
+ documentation/dev-manual/dev-manual-common-tasks.xml | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
+index c75e718d67..af0e4d53bf 100644
+--- a/documentation/dev-manual/dev-manual-common-tasks.xml
++++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+@@ -5116,15 +5116,15 @@
+             So, commands such as the following are useful when exploring the data
+             store and running functions:
+             <literallayout class='monospaced'>
+-     pydevshell> d.getVar("STAGING_DIR", True)
++     pydevshell> d.getVar("STAGING_DIR")
+      '/media/build1/poky/build/tmp/sysroots'
+-     pydevshell> d.getVar("STAGING_DIR", False)
++     pydevshell> d.getVar("STAGING_DIR")
+      '${TMPDIR}/sysroots'
+      pydevshell> d.setVar("FOO", "bar")
+-     pydevshell> d.getVar("FOO", True)
++     pydevshell> d.getVar("FOO")
+      'bar'
+      pydevshell> d.delVar("FOO")
+-     pydevshell> d.getVar("FOO", True)
++     pydevshell> d.getVar("FOO")
+      pydevshell> bb.build.exec_func("do_unpack", d)
+      pydevshell>
+             </literallayout>
+@@ -6892,8 +6892,8 @@
+             <literallayout class='monospaced'>
+      MACHINE = "qemux86-64"
+      DEFAULTTUNE = "x86-64-x32"
+-     baselib = "${@d.getVar('BASE_LIB_tune-' + (d.getVar('DEFAULTTUNE', True) \
+-        or 'INVALID'), True) or 'lib'}"
++     baselib = "${@d.getVar('BASE_LIB_tune-' + (d.getVar('DEFAULTTUNE') \
++        or 'INVALID')) or 'lib'}"
+             </literallayout>
+             Once you have set up your configuration file, use BitBake to
+             build an image that supports the x32 psABI.
+-- 
+2.20.1
 
 
-Regards,
-Kumar
-
---000000000000d1e2b6057f7cfe80
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">Hi Team,<div dir=3D"auto"><br></div><div dir=3D"auto">I&#=
-39;m new to yocto environment, I need clarification on this:</div><div dir=
-=3D"auto"><br><div dir=3D"auto">Launching Qemu default and launching by usi=
-ng &quot;-nographic&quot; option makes any difference.</div><div dir=3D"aut=
-o"><br></div><div dir=3D"auto">Please clarify this.</div><div dir=3D"auto">=
-<br></div><div dir=3D"auto"><br></div><div dir=3D"auto">Regards,</div><div =
-dir=3D"auto">Kumar</div></div></div>
-
---000000000000d1e2b6057f7cfe80--
