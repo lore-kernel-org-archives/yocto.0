@@ -1,61 +1,66 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36EDBE00C29; Wed, 16 Jan 2019 05:17:47 -0800 (PST)
+	id 6F400E00C59; Wed, 16 Jan 2019 06:12:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.195 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-it1-f195.google.com (mail-it1-f195.google.com
-	[209.85.166.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D2B0E00BF9
-	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 05:17:46 -0800 (PST)
-Received: by mail-it1-f195.google.com with SMTP id w18so2872540ite.1
-	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 05:17:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=XvYv7Owo5Lv8ABfk80R1+AJGCpuCHyxN8hCUlBItpcg=;
-	b=1YLUyew4OdhgxClZmC5sIzOa/OUJHxav+evK6HQPOrVy8JaWj9y01pQtZX8OyAKIfe
-	Gd8LBWcajWx7bPA5VWzAP0NcAR2Dj2ztoz8krSFYAuMtrRLYRJgNxokGQXhpxy29xA+7
-	H3KnYODyusQ3WZ00vwywEhLkkiVK32r1w8wARNndNlLAdA6bcITyYkDrd5WedNX6GUT8
-	RNYsQj2AdCgSvt/z9ONjfAw+GV5v0AevOHy9u4mfyWD5v57w3kIBfcULwUTfyXD5voDt
-	ax/t78fyMQ+mHwecc/klMKJqR1cqbJRiG6vIOfl/q9k3lmAOC6PNg6WG3XwNHNzC4VMu
-	BwLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=XvYv7Owo5Lv8ABfk80R1+AJGCpuCHyxN8hCUlBItpcg=;
-	b=nwnte4Let2mFc6i5TbIpXFBBXHM+qBSqeU2ybaAAIYd+oxTGhIITKp7dZ4yGAYPXZ/
-	58aFekEvBj9N0QEgF8x0GujzN/dJVL3LDbfybmTfRW3Pd+MRJ/BADgB+Vu1iZ5Dar3bK
-	TKw5vrcxRV5A1kPAJfY+yVGB/Up72UVlp6GCwWZpj1gJuIqOAIxBJTCmgKm1DJaDIsJi
-	7t666m1v2MycGaSWRLJSRK/lVEoTGBmjb3obq0LssWgLmHHcYwUCXNZwkob43FGeixlt
-	DdIZL4vTT3g2lWxU8BYMSEj1F0xluYBnmhi7AxPrWpMVKkpiwzDFXLt60vtgTXvpeCV3
-	uzHQ==
-X-Gm-Message-State: AJcUukdMaAtBeChog38cCK9S/nj+jp3GbXtwqjFIaqTScPI0Bdw3ceEN
-	gNPQBk5McL38yJYNoYNg1HMy9dpkLtHUqZ3c7UVAzQ==
-X-Google-Smtp-Source: ALg8bN72mo/RLUQAWeT+W+VevwydMMUGB0M/BI4dOJUZiq7gbriyhDRQX3EDiWT0KP32EYk33QXE9Xmr74k8hiZQiMI=
-X-Received: by 2002:a24:8e43:: with SMTP id h64mr5102388ite.26.1547644665811; 
-	Wed, 16 Jan 2019 05:17:45 -0800 (PST)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4DDFE00C29
+	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 06:12:09 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x0GEC5F2008053
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 16 Jan 2019 06:12:05 -0800 (PST)
+Received: from soho-mhatle-m.local (172.25.36.231) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
+	Wed, 16 Jan 2019 06:12:05 -0800
+To: Gaurang Shastri <gmshastri@gmail.com>, Nicolas Dechesne
+	<nicolas.dechesne@linaro.org>
+References: <CAE_REAuoUGr7L-Cc5_f38wy-Myq1g69D_97wA_cfEu=ULUyAQA@mail.gmail.com>
+	<CAE_REAt2p+C+CRSCj=yfRBw4TEkswUP7uTpue8NLu3Gqzgn5xg@mail.gmail.com>
+	<CAP71WjykQrPZpBDEpnhD6c_nEYRD5XweSN5dbU4Bb+q7WO3kmw@mail.gmail.com>
+	<CAE_REAve_AHUs3V77y=J0CGyum3dTgngxTJgAvw5uX=o_C0FSQ@mail.gmail.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
+	mQENBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
+	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
+	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
+	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
+	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
+	AAG0JU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT6JATcEEwEIACEFAlYK
+	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
+	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
+	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
+	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
+	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
+	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrrkBDQRWCsRYAQgAwK3FuHCE+HW3YWdH
+	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
+	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
+	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
+	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
+	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABiQEfBBgBCAAJBQJWCsRYAhsMAAoJ
+	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
+	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
+	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
+	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
+	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
+Organization: Wind River Systems
+Message-ID: <52a5eba5-b0da-77cb-4c8f-9e6ddf56b438@windriver.com>
+Date: Wed, 16 Jan 2019 08:12:04 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+	Gecko/20100101 Thunderbird/60.4.0
 MIME-Version: 1.0
-References: <1547631395-435805-1-git-send-email-changqing.li@windriver.com>
-	<CAJdd5GbEiSAaRw0Fonftxf465-QigYF-p7SpG0y3dWbfe1Jkrw@mail.gmail.com>
-In-Reply-To: <CAJdd5GbEiSAaRw0Fonftxf465-QigYF-p7SpG0y3dWbfe1Jkrw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 16 Jan 2019 13:17:34 +0000
-Message-ID: <CAJTo0LYJUjRiOV7hLTicNhwYqnqzHHAF52nXvAWj0x1hHSPdGg@mail.gmail.com>
-To: Joshua Watt <jpewhacker@gmail.com>
+In-Reply-To: <CAE_REAve_AHUs3V77y=J0CGyum3dTgngxTJgAvw5uX=o_C0FSQ@mail.gmail.com>
 Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: [meta-mingw][PATCH] mingw32-common: change mingw sdk to .zip type
+Subject: Re: Community support for any Yocto release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,69 +72,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jan 2019 13:17:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 16 Jan 2019 14:12:10 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-Just in case you hadn't noticed, that this depends on a corresponding
-patch to oe-core, which I've comments on.
+On 1/16/19 2:58 AM, Gaurang Shastri wrote:
+> Thanks Nicolas for the prompt answer and wiki page information.
+> 
+> So as you said, "Typically, alongside the latest release the previous two
+> releases are also maintained.", do you mean any release will be maintained for 1
+> year by community?
 
-Ross
+Generally it takes 6 months development between releases.  So the rough estimate
+1 year of general updates from the community as a whole.  Sometimes it takes
+slightly longer (or slightly less) then 6 months for the next release, and that
+will then adjust the time scales for the prior version slightly as well.
 
-On Wed, 16 Jan 2019 at 13:14, Joshua Watt <jpewhacker@gmail.com> wrote:
->
->
->
-> On Wed, Jan 16, 2019, 3:37 AM <changqing.li@windriver.com wrote:
->>
->> From: Changqing Li <changqing.li@windriver.com>
->>
->> Current sdk type is tar.xz, but for mingw sdk, since we
->> have symlink under the sdk folder, 7zip which used to
->> extract tar.xz cannot handle it, refer 7zip upstream bug:
->> https://sourceforge.net/p/sevenzip/discussion/45797/thread/c71d6b96/
->> so change to .zip type
->>
->> Also tried to use option --dereference of tar which use means:
->> "follow symlinks; archive and dump the files they point to"
->> with this option, when archive it will deal with symlink to hard link,
->> but windows not support hard link, so drop this solution,
->> and use .zip for windows.
->>
->> Signed-off-by: Changqing Li <changqing.li@windriver.com>
->> ---
->>  conf/machine-sdk/include/mingw32-common.inc | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/conf/machine-sdk/include/mingw32-common.inc b/conf/machine-sdk/include/mingw32-common.inc
->> index 9011ded..dbad50a 100644
->> --- a/conf/machine-sdk/include/mingw32-common.inc
->> +++ b/conf/machine-sdk/include/mingw32-common.inc
->> @@ -46,3 +46,8 @@ GCCPIE_mingw32 = ""
->>  # wine and wineserver are required to test MinGW SDKs
->>  HOSTTOOLS += "${@'wine wineserver' if (bb.utils.contains_any('IMAGE_CLASSES', 'testsdk', True, False, d) or any(x in (d.getVar("BBINCLUDED") or "") for x in ["testsdk.bbclass"])) else ''}"
->>
->> +# mingw sdk use .zip type
->> +SDK_TAR_TYPE = "zip"
->> +SDK_TAR_DEPENDS = "zip-native"
->> +SDK_TAR_CMD ?= "zip -r  ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.${SDK_TAR_TYPE} ."
->> +
->
->
-> You will also need to update the QA tests, since right now they expecting a tar file (lib/oeqa/sdkmingw/testsdk.py)
->
->> --
->>
->> 2.7.4
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+One thing to keeo in mind for 'community support'.  "Support" is not intended to
+be in the commercial sense, where there are specific fix time frames, etc.  It
+just means there is an assigned maintainer and QA resources for that version
+during that time.  It's still up to developers to send fixes for issues
+encountered to the maintainers to get the issues fixed.
+
+If you need a level of more dedicated support (time frame, resources, etc), you
+should look for a commercial Yocto Project member.
+
+--Mark
+
+> Regards,
+> Gaurang
+> 
+> On Wed, Jan 16, 2019 at 9:50 AM Nicolas Dechesne <nicolas.dechesne@linaro.org
+> <mailto:nicolas.dechesne@linaro.org>> wrote:
+> 
+>     Hello,
+> 
+>     On Wed, Jan 16, 2019 at 9:47 AM Gaurang Shastri <gmshastri@gmail.com
+>     <mailto:gmshastri@gmail.com>> wrote:
+> 
+> 
+>         Hi All,
+> 
+>         For how many years yocto community officially support any Yocto release?
+>         (This includes like bug fixes, CVE fixes, enhancements, etc etc)
+> 
+>         For example, the latest release happened on 11/15/2018 (Yocto 2.6), so
+>         how long this will be supported by community?
+> 
+>         Sorry, if this information is already present on some wiki page, but I
+>         am not able to find it. So pointer to that wiki page will really help.
+> 
+> 
+>     This information is indeed available her:
+>     https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance
+> 
+>     "Typically, alongside the latest release the previous two releases are also
+>     maintained."
+>      
+> 
+> 
+>         Regards,
+>         Gaurang Shastri
+>         -- 
+>         _______________________________________________
+>         yocto mailing list
+>         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>         https://lists.yoctoproject.org/listinfo/yocto
+> 
+> 
+
 
