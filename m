@@ -1,36 +1,61 @@
-Return-Path: <Changqing.Li@windriver.com>
+Return-Path: <samuelzeter@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B7CA5E00C1E; Tue, 15 Jan 2019 21:37:32 -0800 (PST)
+	id 14BE0E00C1E; Tue, 15 Jan 2019 21:47:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2F9EE00C1E
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2019 21:37:31 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x0G5bVFe000489
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 15 Jan 2019 21:37:31 -0800 (PST)
-Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.408.0; Tue, 15 Jan 2019 21:37:30 -0800
-From: <changqing.li@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 16 Jan 2019 13:37:16 +0800
-Message-ID: <1547617036-442612-2-git-send-email-changqing.li@windriver.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1547617036-442612-1-git-send-email-changqing.li@windriver.com>
-References: <1546062265-388514-1-git-send-email-changqing.li@windriver.com>
-	<1547617036-442612-1-git-send-email-changqing.li@windriver.com>
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (samuelzeter[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.44 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+	[209.85.221.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5738DE00BF9
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2019 21:47:38 -0800 (PST)
+Received: by mail-wr1-f44.google.com with SMTP id v13so5472016wrw.5
+	for <yocto@yoctoproject.org>; Tue, 15 Jan 2019 21:47:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=NqAg9Wiz3VVTh4VmJVfEYw++UzinD00l1e9m6g5fJNw=;
+	b=tY7VQPeK6zEdZU5QMuocsnVhHpljvauTdbi3yMQDc6U4tz5I8+FQIzZPfnhNSXaXxG
+	UKJdO6opelDyRJZ8W1OSsBytNJ5/rxXsWxeY0I1igjbjb1qFQgCS7LZPaCKGgEFRQE78
+	jBFQgyRNpsbTBCmu5gIvmgx0tKiISNi5MmgO/dGaRErO7NLm5Abi88K1+LfrxOJ4U9S5
+	Q8fb7teyqItbDKRkwg3hlyXTG9opMSy3paXRyDcsM4dTJL8Cr68kOyI+5fIflEYvd38M
+	46u0FDRq620iC8jFJwFyPEGtjY/B0Mea6cdRf4fXi5OxAZYoG+74NT4UYH1d7Im+w+q0
+	lylw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=NqAg9Wiz3VVTh4VmJVfEYw++UzinD00l1e9m6g5fJNw=;
+	b=XPiZ77046ymAKqd2VO5RFRM5syAen0qZzISY4QQLIZW/gHg5ibdNyZrJ+T+zP8/jku
+	Xw2rdrr70S2kpgFAAKbp+1RAKolmra+u/6gPeIEwq3kSvdrD+VIAi1B22LLCVpz95NY2
+	9G+fqG5BkPj5/sxYIUgNAr/NGxyN2FO3GyxsqcntXW9yzEHuyawnJyd0zevg0QHpEp5f
+	lG3mFOPSif33wUDVdQFVscsqEmB51Bo2ao3uhw0AeApDtfI3u/JFyX0fuLWhncmbt+mo
+	oc67Hc/NM/qJcpDNjp9mTB938bY3BVcbc8YbJI81FoyLdUmyNPYTZhBrwLvUDH60NxBE
+	ju6A==
+X-Gm-Message-State: AJcUukfam3behNVFBclu40fQZzKa9fB4taHNVL7S5lSbwY4Lipez7Wrp
+	hPO1hyqdc6kUBqr9dqQRhRvRTCoj2BQAHgFGPTSrfo85
+X-Google-Smtp-Source: ALg8bN44lR3WWbVU5TTUi1NtUWp6RL/pYDtkVtHEmklxvTGz/xEZPNsRWxHqnpetV/2EIJm6gqHswz8aVmAU0cCE59U=
+X-Received: by 2002:adf:8c09:: with SMTP id z9mr5846634wra.301.1547617657115; 
+	Tue, 15 Jan 2019 21:47:37 -0800 (PST)
 MIME-Version: 1.0
-Subject: [PATCH V2] patchwork: Add a dockerfile for deploy patchwork and patchtest
+From: Sam Zeter <samuelzeter@gmail.com>
+Date: Wed, 16 Jan 2019 15:47:26 +1000
+Message-ID: <CAAShK94whbMmErVf6j7xjbjfzW7tRD4QP=tanf2c7U7Sh++Ytg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Firewalld failing to build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,204 +67,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jan 2019 05:37:32 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 16 Jan 2019 05:47:39 -0000
+Content-Type: multipart/alternative; boundary="000000000000b35a5e057f8cd08a"
 
-From: Changqing Li <changqing.li@windriver.com>
+--000000000000b35a5e057f8cd08a
+Content-Type: text/plain; charset="UTF-8"
 
-Add a dockerfile for easy deploy patchwork and patchtest in
-docker
+Hello all,
 
-Signed-off-by: Changqing Li <changqing.li@windriver.com>
----
- Dockerfile.pw                 | 52 +++++++++++++++++++++++++++++++++++++++++++
- README.pw                     | 32 ++++++++++++++++++++++++++
- requirements.txt              | 12 ++++++++++
- scripts/pw_createsuperuser.sh |  5 +++++
- scripts/pw_getmail.sh         | 11 +++++++++
- scripts/pw_migrate.sh         |  5 +++++
- scripts/pw_runwebserver.sh    | 12 ++++++++++
- 7 files changed, 129 insertions(+)
- create mode 100644 Dockerfile.pw
- create mode 100644 README.pw
- create mode 100644 requirements.txt
- create mode 100755 scripts/pw_createsuperuser.sh
- create mode 100755 scripts/pw_getmail.sh
- create mode 100755 scripts/pw_migrate.sh
- create mode 100755 scripts/pw_runwebserver.sh
+I've been attempting to build firewalld by adding it through 'devtool add '
+and then 'devtool build firewalld'. However, I am stuck with the following
+errors. I have no idea what could be causing this. Could someone please
+help?
 
-diff --git a/Dockerfile.pw b/Dockerfile.pw
-new file mode 100644
-index 0000000..ae3c1ee
---- /dev/null
-+++ b/Dockerfile.pw
-@@ -0,0 +1,52 @@
-+FROM ubuntu:latest
-+MAINTAINER owner <own@mail.com>
-+
-+EXPOSE 8080
-+
-+ENV PYTHONUNBUFFERED=1 \
-+    LANG=en_US.UTF-8 \
-+    LC_ALL=en_US.UTF-8 \
-+    LC_CTYPE=en_US.UTF-8 \
-+    PATH="$PATH:/opt/patchwork/git-pw:/opt/patchtest:/opt/patchtest/scripts"
-+
-+RUN  apt-get update \
-+        && apt-get dist-upgrade -y \
-+        && apt-get install -y --no-install-recommends \
-+        autoconf \
-+        gcc \
-+        g++ \
-+        make \
-+        locales \
-+        wget \
-+        curl \
-+        cron \
-+        python-pip \
-+        python-dev \
-+        python-setuptools \
-+        python3-pip \
-+        python3-dev \
-+        libmysqlclient-dev \
-+        git-core \
-+        getmail4 \
-+        && sh -c "echo \"en_US.UTF-8 UTF-8\" >> /etc/locale.gen" \
-+        && locale-gen en_US.UTF-8 \
-+        && update-locale \
-+        && pip2 install wheel \
-+        && pip3 install wheel \
-+        && pip3 install setuptools \
-+        && apt-get autoremove --purge -y \
-+        && rm -rf /var/lib/apt/lists/* \
-+        && apt-get clean
-+ADD ./patchwork /opt/patchwork
-+ADD ./patchtest /opt/patchtest
-+ADD ./patchtest-oe /opt/patchtest-oe
-+ADD ./getmailrc /opt/getmail/getmailrc
-+RUN  pip2 install -r /opt/patchwork/requirements.txt \ 
-+    && pip3 install -r /opt/patchtest/requirements.txt \
-+    && pip3 install  -r /opt/patchtest-oe/requirements.txt \
-+    && mkdir -p /opt/getmail \
-+    && mkdir -p /opt/pw-logs \
-+    && git config --global user.email "patchtest@patchtest.com" \
-+    && git config --global user.name "patchtest" \
-+    && /opt/patchtest/scripts/create-host-test-folder -t /opt/pw-test \
-+    && /opt/patchtest/scripts/create-host-crontab -c /opt/pw-test-cron 
-diff --git a/README.pw b/README.pw
-new file mode 100644
-index 0000000..ffa7af1
---- /dev/null
-+++ b/README.pw
-@@ -0,0 +1,32 @@
-+* Dockerfile.pw deploy patchwork, patchtest, patchtest-oe in docker
-+
-+* Dockerfile.pw is just an example, you can adjust according to your
-+  deploy condition, like not use getmail, but use postfix.
-+
-+* requirements.txt,  just for refer, you can also rewrite this 
-+  according to patchwork'doc and accoridng to your deploy condition.
-+
-+* scripts folder hold the files will be used during deploy with docker.
-+
-+* Deploy steps:
-+
-+1. Clone patchwork, patchtest, patchtest-oe first, also put getmailrc used by
-+   Dockerfile.pw under the same folder.
-+
-+2. Build docker image with Dockerfile.pw
-+$docker build -t pw -f ./patchwork/Dockerfile.pw .
-+
-+3. use mariadb as dataserver:
-+$ docker pull mariadb
-+$ docker run -d --name pw-db -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=pwdb -v /pw/pwdb:/var/lib/mysql mariadb
-+
-+5. run web server
-+docker run -d --name pw-web --link pw-db:pw-db -p 8080:8080 pw "/opt/patchwork/scripts/pw_runwebserver.sh"
-+
-+6. config pw
-+docker exec -it pw-web /opt/patchwork/scripts/pw_migrate.sh
-+docker exec -it pw-web /opt/patchwork/scripts/pw_createsuperuser.sh
-+
-+7. run patchwork
-+docker run -d --name pw-mail --link pw-db:pw-db pw "/opt/patchwork/scripts/pw_getmail.sh"
-+
-diff --git a/requirements.txt b/requirements.txt
-new file mode 100644
-index 0000000..b8f68f2
---- /dev/null
-+++ b/requirements.txt
-@@ -0,0 +1,12 @@
-+django==1.8.0
-+sqlparse==0.2.4
-+celery==3.1.20
-+django_filter==0.11.0
-+djangorestframework==2.4.8
-+drf-nested-routers==0.11.1
-+psycopg2>=2.7,<2.8
-+mysqlclient
-+jsonfield
-+enum34
-+GitPython
-+requests
-diff --git a/scripts/pw_createsuperuser.sh b/scripts/pw_createsuperuser.sh
-new file mode 100755
-index 0000000..324ce72
---- /dev/null
-+++ b/scripts/pw_createsuperuser.sh
-@@ -0,0 +1,5 @@
-+#!/bin/bash
-+
-+pw_dir='/opt/patchwork'
-+
-+(cd $pw_dir; ./manage.py createsuperuser)
-diff --git a/scripts/pw_getmail.sh b/scripts/pw_getmail.sh
-new file mode 100755
-index 0000000..fadf7c9
---- /dev/null
-+++ b/scripts/pw_getmail.sh
-@@ -0,0 +1,11 @@
-+#!/bin/bash
-+
-+sudo /etc/init.d/cron start
-+echo "*/5 * * * * sudo getmail --getmaildir=/opt/getmail/ --idle INBOX >> /opt/pw-test-cron/getmail.log 2>&1" > /opt/pw-test-cron/cron-getmail
-+sudo crontab -u wrlbuild  /opt/pw-test-cron/cron-getmail
-+
-+while true
-+do
-+   : 
-+done
-+
-diff --git a/scripts/pw_migrate.sh b/scripts/pw_migrate.sh
-new file mode 100755
-index 0000000..e54b2f4
---- /dev/null
-+++ b/scripts/pw_migrate.sh
-@@ -0,0 +1,5 @@
-+#!/bin/bash
-+
-+pw_dir="/opt/patchwork"
-+
-+(cd $pw_dir; ./manage.py migrate; ./manage.py collectstatic; ./manage.py loaddata default_tags default_states default_events)
-diff --git a/scripts/pw_runwebserver.sh b/scripts/pw_runwebserver.sh
-new file mode 100755
-index 0000000..4233b1a
---- /dev/null
-+++ b/scripts/pw_runwebserver.sh
-@@ -0,0 +1,12 @@
-+#!/bin/bash
-+
-+export LANG="en_US.UTF-8"
-+export LC_ALL="en_US.UTF-8"
-+
-+#open crontab to do test
-+/etc/init.d/cron start
-+crontab -u pwtest /opt/pw-test-cron/crontab
-+
-+pw_dir="/opt/patchwork"
-+
-+(cd $pw_dir; ./manage.py runserver 0.0.0.0:8080)
--- 
-2.7.4
+xsltproc -o ../html/firewall-cmd.html --nonet --xinclude
+transform-html.xsl firewall-cmd.xml
+| xsltproc -o ../html/firewalld.dbus.html --nonet --xinclude
+transform-html.xsl
+../../../../../../../../workspace/sources/firewalld/doc/xml/firewalld.dbus.xml
+| xsltproc -o ../html/firewalld.conf.html --nonet --xinclude
+transform-html.xsl
+../../../../../../../../workspace/sources/firewalld/doc/xml/firewalld.conf.xml
+| xsltproc -o ../html/firewalld.html --nonet --xinclude  transform-html.xsl
+firewalld.xml
+| 134 translated messages, 281 untranslated messages.
+| bn_IN: 293 translated messages, 122 untranslated messages.
+| ca: 415 translated messages.
+| cs: 415 translated messages.
+| da: warning: failed to load external entity "authors.xml"
+| firewall-cmd.xml:36: parser error : Failure to process entity authors
+|     &authors;
+|              ^
+| firewall-cmd.xml:36: parser error : Entity 'authors' not defined
+|     &authors;
+|              ^
+| warning: failed to load external entity "seealso.xml"
+| firewall-cmd.xml:2297: parser error : Failure to process entity seealso
+|   &seealso;
+|            ^
+| firewall-cmd.xml:2297: parser error : Entity 'seealso' not defined
+|   &seealso;
 
+Thanks
+Sam.
 
+--000000000000b35a5e057f8cd08a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hello all,<div><br></div><div>I&#39;ve be=
+en attempting to build firewalld by adding it through &#39;devtool add &#39=
+; and then &#39;devtool build firewalld&#39;. However, I am stuck with the =
+following errors. I have no idea what could be causing this. Could someone =
+please help?</div><div><br></div><div><div>xsltproc -o ../html/firewall-cmd=
+.html --nonet --xinclude=C2=A0 transform-html.xsl firewall-cmd.xml</div><di=
+v>| xsltproc -o ../html/firewalld.dbus.html --nonet --xinclude=C2=A0 transf=
+orm-html.xsl ../../../../../../../../workspace/sources/firewalld/doc/xml/fi=
+rewalld.dbus.xml</div><div>| xsltproc -o ../html/firewalld.conf.html --none=
+t --xinclude=C2=A0 transform-html.xsl ../../../../../../../../workspace/sou=
+rces/firewalld/doc/xml/firewalld.conf.xml</div><div>| xsltproc -o ../html/f=
+irewalld.html --nonet --xinclude=C2=A0 transform-html.xsl firewalld.xml</di=
+v><div>| 134 translated messages, 281 untranslated messages.</div><div>| bn=
+_IN: 293 translated messages, 122 untranslated messages.</div><div>| ca: 41=
+5 translated messages.</div><div>| cs: 415 translated messages.</div><div>|=
+ da: warning: failed to load external entity &quot;authors.xml&quot;</div><=
+div>| firewall-cmd.xml:36: parser error : Failure to process entity authors=
+</div><div>|=C2=A0 =C2=A0 =C2=A0&amp;authors;</div><div>|=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^</div><div>| firewall-cmd.xml:36: parser e=
+rror : Entity &#39;authors&#39; not defined</div><div>|=C2=A0 =C2=A0 =C2=A0=
+&amp;authors;</div><div>|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^=
+</div><div>| warning: failed to load external entity &quot;seealso.xml&quot=
+;</div><div>| firewall-cmd.xml:2297: parser error : Failure to process enti=
+ty seealso</div><div>|=C2=A0 =C2=A0&amp;seealso;</div><div>|=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ^</div><div>| firewall-cmd.xml:2297: parser err=
+or : Entity &#39;seealso&#39; not defined</div><div>|=C2=A0 =C2=A0&amp;seea=
+lso;</div></div><div><br></div><div>Thanks</div><div>Sam.</div></div></div>
+
+--000000000000b35a5e057f8cd08a--
