@@ -1,73 +1,62 @@
-Return-Path: <jpewhacker@gmail.com>
+Return-Path: <gmshastri@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7DE40E00B43; Mon, 21 Jan 2019 06:47:28 -0800 (PST)
+	id 0EB47E00C29; Wed, 16 Jan 2019 00:38:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jpewhacker[at]gmail.com)
+	provider *      (gmshastri[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.194 listed in list.dnswl.org]
+	*      [209.85.217.51 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-oi1-f194.google.com (mail-oi1-f194.google.com
-	[209.85.167.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7D85E00A1A
-	for <yocto@yoctoproject.org>; Mon, 21 Jan 2019 06:47:26 -0800 (PST)
-Received: by mail-oi1-f194.google.com with SMTP id r62so14752252oie.1
-	for <yocto@yoctoproject.org>; Mon, 21 Jan 2019 06:47:26 -0800 (PST)
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com
+	[209.85.217.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB6F2E007B3
+	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 00:38:51 -0800 (PST)
+Received: by mail-vs1-f51.google.com with SMTP id x64so3403570vsa.5
+	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 00:38:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:message-id:subject:to:date:in-reply-to:references:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=/DYqaoZ7q39gWIFq2Q+Aq2wQgQ+tFinCNELFKZve0Ug=;
-	b=LbY+jFpke+uNlGUgYkLa3jNVQvU+kzsgQIAhzPVz53C/OmPd6tes7FkMgMIlxQfxDF
-	X+10+oYR6VfJG2ZFYnIWzzcsX9WxTOw5oHAKBkt39kUYQBrwxnDHvltXILPoozCOP6si
-	jtZJmKNr7qvNLARt5pg6M0pvbV9uokNv6FY2yqsKPtBPi4R48IUKD1IlHfvJPecdyI93
-	h+5ts/MSoMVEG5BFjO1TGTU34l3L0Ij1ROs4x2E05++rcgDm7sQpbVTDXpUnadYT2Af8
-	SnSSwr47VwzH2EIgaQGZ4wO30v8GZXNkXSiyp1Fz1TfiFJB/HmTuJ8HKqD5nD7o0LHqd
-	aqZw==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=I11QnwA05TJH5qXRFRX4t9owZ7XW0c4+JQsXUP1SpIY=;
+	b=VTpOTyp8QIfVUsWxuVEfpiYW1kZHV4RrSMqa7s1uiG9C0u3gxi/Ab+USHHbkb7rUmP
+	9Co33GnsYdL6jetEC82Td9HZjUG7lDA5QbpblPfGxdLEhi5L/78sAXyiN7Qwe5eydUFl
+	Hr8iy6AQvn1LWZpbNIZQ/lGeZpGE+k8wyN4H8siRv3Pvf8gIQ0Axyv6aSPlg2vYcDKZk
+	P6LJK+lTwY558MrNxts5I4slTkHniUWsvs3b9TVmC4CFvr2Snpc4ijqmmB1csjzKHewq
+	fYBuDB+b9e/+UCAbkSBxlsBj2KYuwdP0O5qW8xL8Hy7tO6hLPdnXHSLqDX4K7Y58AygL
+	ld5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:message-id:subject:to:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=/DYqaoZ7q39gWIFq2Q+Aq2wQgQ+tFinCNELFKZve0Ug=;
-	b=soOEU5I4wJA670Li2C0iTifwnjedM8pBrlEsnmwBLwq+NY6AGkFUpYhIf1VjnNeeRU
-	Xgm072NqOVl5m/GP8+tpsVXot/1VHD1PdvK9kKvqBLLk9HR1KIG23GLiw94iQviK33QQ
-	ZcEU34XFEaU1lWbgc8ydZh4wVgAfBDI7iMgQvF6A9eAIVJj4Z7qgTNoq/yoDsQZc3bNd
-	rpmguDwa+0vaK0+U8BGbPWp/r2NQfvsLtFzoGfmYqDyO2XGVrIvragCJvieES8vUkGi8
-	hw48kKLcITFMmZnjQOA0AeSdGZA/2IdmatWnD2dVJDK+mZwwqj9DiECQfUxInBsNLiUz
-	gl/Q==
-X-Gm-Message-State: AJcUukeJBRIJvhZlCYBriv7CO7UZCKeYu7vpLeTsQOLmT4xF/9ZB1FET
-	V9PRbH2f/xWWiHj9B98EVik=
-X-Google-Smtp-Source: ALg8bN7xR3dxssByPNPrKg0KaDz4AxoAkRrHEIJZVdED13QlaXat+EGoBc1fLNyoUD/oEn2i95GqcA==
-X-Received: by 2002:aca:1a0b:: with SMTP id a11mr6053103oia.154.1548082046048; 
-	Mon, 21 Jan 2019 06:47:26 -0800 (PST)
-Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
-	by smtp.googlemail.com with ESMTPSA id
-	n3sm7104712oia.3.2019.01.21.06.47.25
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Mon, 21 Jan 2019 06:47:25 -0800 (PST)
-From: Joshua Watt <jpewhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-Message-ID: <3f77d5c6f2d3be211c92b9fdfa3fa36ecf490aa1.camel@gmail.com>
-To: changqing.li@windriver.com, yocto@yoctoproject.org
-Date: Mon, 21 Jan 2019 08:47:24 -0600
-In-Reply-To: <1547718545-238633-2-git-send-email-changqing.li@windriver.com>
-References: <CAJTo0LYJUjRiOV7hLTicNhwYqnqzHHAF52nXvAWj0x1hHSPdGg@mail.gmail.com>
-	<1547718545-238633-1-git-send-email-changqing.li@windriver.com>
-	<1547718545-238633-2-git-send-email-changqing.li@windriver.com>
-User-Agent: Evolution 3.30.3 (3.30.3-1.fc29) 
-Mime-Version: 1.0
-Subject: Re: [meta-mingw][PATCH V2] testsdk: enhance extract sdk part
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=I11QnwA05TJH5qXRFRX4t9owZ7XW0c4+JQsXUP1SpIY=;
+	b=GZdnPnMxNO5bsCjXkxN/4sA1MEuu0DnU2z9d6G3NB1StdxFFQzzFPAqCjqyfKo7mt6
+	eqOhz3m6Hp0ZUmNGDMoEbteTmN8O9ydmLAhN0uTSInCCt1Ox0KMIIXWzUGQuIKXkmZDY
+	Z127ZUxpHIeKTZTyxK+jZmBg2FEVnctUmRydbkKtHdL5cmjSGoSjpfR9Hie8l6By569/
+	A+RjNHJwdlvajw+VHuNqPmyfyYaWBMnW1iPOBqQ7UaakWRQYPkdhEpWKyX9OsQdpRWbO
+	N91SlqtS3hlQW/rr7+YOcFOzdK8viebttQEKikO/+N4o8ENOq3YxPtPnP7AfdlMVJL8G
+	iRuQ==
+X-Gm-Message-State: AJcUukfY/fHTds5qtMAV5FcrCvm/Kh7AH6FCiqeT3DGKEEvNGgnLdu+J
+	jlCV/Li83Z/sIHlvjnC9r+BkbFzzC3rgDIi8h2pzMUA9
+X-Google-Smtp-Source: ALg8bN7/ZOKAF8OCulPwLxgOxs/XVW+p1lPsq3MpTMvBlpq/0nNypfYTw6EvNdp0ARDds179Hl1LWecctXC7hhqqUlM=
+X-Received: by 2002:a67:4441:: with SMTP id r62mr3402010vsa.38.1547627930368; 
+	Wed, 16 Jan 2019 00:38:50 -0800 (PST)
+MIME-Version: 1.0
+From: Gaurang Shastri <gmshastri@gmail.com>
+Date: Wed, 16 Jan 2019 09:38:39 +0100
+Message-ID: <CAE_REAuoUGr7L-Cc5_f38wy-Myq1g69D_97wA_cfEu=ULUyAQA@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Mon, 21 Jan 2019 08:09:28 -0800
+Subject: Community support for any Yocto release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,75 +68,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Jan 2019 14:47:28 -0000
+X-List-Received-Date: Wed, 16 Jan 2019 08:38:53 -0000
+Content-Type: multipart/alternative; boundary="00000000000008c578057f8f35df"
+
+--00000000000008c578057f8f35df
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
-Just FYI, I haven't forgot about this patch. I want to wait until the
-dependent OE-core patch is at least in the master-next branch before I
-apply this to the MinGW master-next branch. If you want to give me a
-ping when the OE-core patch shows up in master-next, it would be very
-helpful.
+Hi All,
 
-Thanks
+For how many years yocto community officially support any Yocto release?
+(This includes like bug fixes, CVE fixes, enhancements, etc etc)
 
-On Thu, 2019-01-17 at 17:49 +0800, changqing.li@windriver.com wrote:
-> From: Changqing Li <changqing.li@windriver.com>
-> 
-> Current sdk type is tar.xz, but for mingw sdk, since we
-> have symlink under the sdk folder, 7zip which used to
-> extract tar.xz cannot handle it, refer 7zip upstream bug:
-> https://sourceforge.net/p/sevenzip/discussion/45797/thread/c71d6b96/
-> so oe-core have add support of change SDK type to .zip, so correct
-> the extract function.
-> 
-> Signed-off-by: Changqing Li <changqing.li@windriver.com>
-> ---
->  lib/oeqa/sdkmingw/testsdk.py | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
-> 
-> diff --git a/lib/oeqa/sdkmingw/testsdk.py
-> b/lib/oeqa/sdkmingw/testsdk.py
-> index 85fe3c6..173cfd9 100644
-> --- a/lib/oeqa/sdkmingw/testsdk.py
-> +++ b/lib/oeqa/sdkmingw/testsdk.py
-> @@ -12,7 +12,7 @@ class TestSDKMinGW(TestSDK):
->          """
->          Get the name of the SDK file
->          """
-> -        return
-> d.expand("${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.xz")
-> +        return
-> d.expand("${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.${SDK_ARCHIVE_TYPE}")
->  
->      def extract_sdk(self, tcname, sdk_dir, d):
->          """
-> @@ -23,7 +23,14 @@ class TestSDKMinGW(TestSDK):
->          try:
->              # TODO: It would be nice to try and extract the SDK in
-> Wine to make
->              # sure it is well formed
-> -            subprocess.check_output(['tar', '-xf', tcname, '-C',
-> sdk_dir])
-> +            
-> +            # TODO: Extract SDK according to SDK_ARCHIVE_TYPE, need
-> to change if
-> +            # oe-core support other types.
-> +            if d.getVar("SDK_ARCHIVE_TYPE") == "zip":
-> +                subprocess.check_output(['unzip', '-d', sdk_dir,
-> tcname])
-> +            else:
-> +                subprocess.check_output(['tar', '-xf', tcname, '-C', 
-> sdk_dir])
-> +
->          except subprocess.CalledProcessError as e:
->              bb.fatal("Couldn't install the SDK:\n%s" %
-> e.output.decode("utf-8"))
->  
-> -- 
-> 2.7.4
-> 
--- 
-Joshua Watt <JPEWhacker@gmail.com>
+For example, the latest release happened on 11/15/2018 (Yocto 2.6), so how
+long this will be supported by community?
 
+Sorry, if this information is already present on some wiki page, but I am
+not able to find it. So pointer to that wiki page will really help.
 
+Regards,
+Gaurang Shastri
+
+--00000000000008c578057f8f35df
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div>Hi All,<br><br></div>For how many=
+ years yocto community officially support any Yocto release? (This includes=
+ like bug fixes, CVE fixes, enhancements, etc etc)<br><br></div>For example=
+, the latest release happened on 11/15/2018 (Yocto 2.6), so how long this w=
+ill be supported by community?<br><br></div>Sorry, if this information is a=
+lready present on some wiki page, but I am not able to find it. So pointer =
+to that wiki page will really help.<br><br></div>Regards,<br></div>Gaurang =
+Shastri<br></div>
+
+--00000000000008c578057f8f35df--
