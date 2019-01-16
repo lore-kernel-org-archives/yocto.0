@@ -1,66 +1,61 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <peterson.russell@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F400E00C59; Wed, 16 Jan 2019 06:12:10 -0800 (PST)
+	id 937C4E00C6D; Wed, 16 Jan 2019 07:01:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4DDFE00C29
-	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 06:12:09 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x0GEC5F2008053
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 16 Jan 2019 06:12:05 -0800 (PST)
-Received: from soho-mhatle-m.local (172.25.36.231) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
-	Wed, 16 Jan 2019 06:12:05 -0800
-To: Gaurang Shastri <gmshastri@gmail.com>, Nicolas Dechesne
-	<nicolas.dechesne@linaro.org>
-References: <CAE_REAuoUGr7L-Cc5_f38wy-Myq1g69D_97wA_cfEu=ULUyAQA@mail.gmail.com>
-	<CAE_REAt2p+C+CRSCj=yfRBw4TEkswUP7uTpue8NLu3Gqzgn5xg@mail.gmail.com>
-	<CAP71WjykQrPZpBDEpnhD6c_nEYRD5XweSN5dbU4Bb+q7WO3kmw@mail.gmail.com>
-	<CAE_REAve_AHUs3V77y=J0CGyum3dTgngxTJgAvw5uX=o_C0FSQ@mail.gmail.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
-	mQENBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
-	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
-	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
-	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
-	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
-	AAG0JU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT6JATcEEwEIACEFAlYK
-	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
-	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
-	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
-	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
-	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
-	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrrkBDQRWCsRYAQgAwK3FuHCE+HW3YWdH
-	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
-	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
-	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
-	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
-	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABiQEfBBgBCAAJBQJWCsRYAhsMAAoJ
-	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
-	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
-	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
-	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
-	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
-Organization: Wind River Systems
-Message-ID: <52a5eba5-b0da-77cb-4c8f-9e6ddf56b438@windriver.com>
-Date: Wed, 16 Jan 2019 08:12:04 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.4.0
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (peterson.russell[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.180 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com
+	[209.85.160.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8ADF9E00C29
+	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 07:01:07 -0800 (PST)
+Received: by mail-qt1-f180.google.com with SMTP id p17so7443601qtl.5
+	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 07:01:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=v+l2rqXv4vwzbVnxwodHt3PCHUdkZ+pGwBEsexB6+Bo=;
+	b=nvsWWcEBX7gwi7633gx+SbiMxFfMkFXeKIMnZoGtjq2Jl4FwunLVxI4SWj1AyLZB1F
+	h9EKSHYnA1XZnWPtxlXTvoVJIjibCv+o6JvBxeE4mRdsLXMQ0px2A1CIQA8AA31nkdcg
+	QBHvLOdTKNMc1JtBEkFyemMZo697FIxm+7rI8Yn4ZW8ywjFMBvfPFPZpNJIgtLLihNqB
+	z9Sv3SyZFuKi8YLnpTrHwZcxamV9bA3m9C1J1TjObMBycvOpcgFgPZRJTnmEQKEkrCD0
+	w5s6CkeBoSNopyEM6TuNWe98nwcl9xu1AP77VSyXRv8x6S1fXr1HxyCQjbct0pT8Y1lY
+	8xpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=v+l2rqXv4vwzbVnxwodHt3PCHUdkZ+pGwBEsexB6+Bo=;
+	b=FSkBWxa/7hQD0b8M2aYwHyILEepeHgvl9/ROqnWnjIYy9XAGcDTHvzw7Mbilf2MH9S
+	BP1BQNis3Y7iJOVrqNiqT6ilKPFFXeoPpAEo0x4JAcYkXsH/pRmQ5BqRsd6sfOr3EdQr
+	BxWkNLRBJH3RvfNHWo7F+I6eInKYQXqkQm+g27z/wzIrHhtkRKifhuWtgHTPKRAgUtO2
+	wipijrqlo8UDF3emwCPz+YXUj57c5MTWBAftVcvWSo15oKxozUDzRorlcuNYDUdLzrLE
+	kQxGSIuTExVMvrM77Cj2a/geiwvGVxd52aSGUYjvcQ5L0efDsvEHaj35EEZqR6lUpzRx
+	aIpA==
+X-Gm-Message-State: AJcUukfigP+c0eR0QKGk4DDu+a5r4W1L3ytP0df+ZpJOV0E/IYFcpVnf
+	vMSVjpla0POSxrgPRwYFNrovwaMpCKwaJqXUq3QROg==
+X-Google-Smtp-Source: ALg8bN7iuw+cy6FPHU3v4jR/vzkLFJlOqSWVPBd/uwMql2qxfkYxI6hwUE8w5scDdx3N3Fub0noJJB2P1e6Qdr1QYT4=
+X-Received: by 2002:a0c:d29b:: with SMTP id q27mr7293541qvh.62.1547650866644; 
+	Wed, 16 Jan 2019 07:01:06 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAE_REAve_AHUs3V77y=J0CGyum3dTgngxTJgAvw5uX=o_C0FSQ@mail.gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Community support for any Yocto release
+From: Russell Peterson <peterson.russell@gmail.com>
+Date: Wed, 16 Jan 2019 10:00:55 -0500
+Message-ID: <CAJxG=fmJXKB6xBgCFe_yY3VtDGFN31km1cur=YMYdSSkn=Hqxg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: make-mod-scripts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,74 +67,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jan 2019 14:12:10 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 16 Jan 2019 15:01:08 -0000
+Content-Type: multipart/alternative; boundary="000000000000248d97057f948ccf"
 
-On 1/16/19 2:58 AM, Gaurang Shastri wrote:
-> Thanks Nicolas for the prompt answer and wiki page information.
-> 
-> So as you said, "Typically, alongside the latest release the previous two
-> releases are also maintained.", do you mean any release will be maintained for 1
-> year by community?
+--000000000000248d97057f948ccf
+Content-Type: text/plain; charset="UTF-8"
 
-Generally it takes 6 months development between releases.  So the rough estimate
-1 year of general updates from the community as a whole.  Sometimes it takes
-slightly longer (or slightly less) then 6 months for the next release, and that
-will then adjust the time scales for the prior version slightly as well.
+Hello,
 
-One thing to keeo in mind for 'community support'.  "Support" is not intended to
-be in the commercial sense, where there are specific fix time frames, etc.  It
-just means there is an assigned maintainer and QA resources for that version
-during that time.  It's still up to developers to send fixes for issues
-encountered to the maintainers to get the issues fixed.
+We are seeing build failures every now and then regarding our out of tree
+modules.
 
-If you need a level of more dedicated support (time frame, resources, etc), you
-should look for a commercial Yocto Project member.
+I have tracked the issue down to make-mod-scripts performing the make
+oldconfig and prepare operations.  Normally this works, however, if for
+some reason a clean is done on the linux kernel, the build artifacts
+directory gets wiped out.  While the build artifacts directory does get
+rebuilt, make-mod-scripts:do_configure is never triggered because it
+doesn't think anything changed.  This breaks the module build because it
+can't find auto.conf.
 
---Mark
+I think I can nostamp make-mod-scripts for now but is there a more elegant,
+efficient solution here?  Seems like make-mod-scripts is designed to only
+build once.
 
-> Regards,
-> Gaurang
-> 
-> On Wed, Jan 16, 2019 at 9:50 AM Nicolas Dechesne <nicolas.dechesne@linaro.org
-> <mailto:nicolas.dechesne@linaro.org>> wrote:
-> 
->     Hello,
-> 
->     On Wed, Jan 16, 2019 at 9:47 AM Gaurang Shastri <gmshastri@gmail.com
->     <mailto:gmshastri@gmail.com>> wrote:
-> 
-> 
->         Hi All,
-> 
->         For how many years yocto community officially support any Yocto release?
->         (This includes like bug fixes, CVE fixes, enhancements, etc etc)
-> 
->         For example, the latest release happened on 11/15/2018 (Yocto 2.6), so
->         how long this will be supported by community?
-> 
->         Sorry, if this information is already present on some wiki page, but I
->         am not able to find it. So pointer to that wiki page will really help.
-> 
-> 
->     This information is indeed available her:
->     https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance
-> 
->     "Typically, alongside the latest release the previous two releases are also
->     maintained."
->      
-> 
-> 
->         Regards,
->         Gaurang Shastri
->         -- 
->         _______________________________________________
->         yocto mailing list
->         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->         https://lists.yoctoproject.org/listinfo/yocto
-> 
-> 
+Regards,
 
+Russell
 
+--000000000000248d97057f948ccf
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<div><br></div><div>We are seeing build failures eve=
+ry now and then regarding our out of tree modules.</div><div><br></div><div=
+>I have tracked the issue down to make-mod-scripts performing the make oldc=
+onfig and prepare operations.=C2=A0 Normally this works, however, if for so=
+me reason a clean is done on the linux kernel, the build artifacts director=
+y gets wiped out.=C2=A0 While the build artifacts directory does get rebuil=
+t, make-mod-scripts:do_configure is never triggered because it doesn&#39;t =
+think anything changed.=C2=A0 This breaks the module build because it can&#=
+39;t find auto.conf.</div><div><br></div><div>I think I can nostamp make-mo=
+d-scripts for now but is there a more elegant, efficient solution here?=C2=
+=A0 Seems like make-mod-scripts is designed to only build once.</div><div><=
+br></div><div>Regards,</div><div><br></div><div>Russell</div><div><br></div=
+></div>
+
+--000000000000248d97057f948ccf--
