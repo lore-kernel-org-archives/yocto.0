@@ -1,88 +1,62 @@
-Return-Path: <stephen.lawrence@renesas.com>
+Return-Path: <geonho@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED28AE00C5F; Wed, 16 Jan 2019 12:07:30 -0800 (PST)
+	id 311E2E00C5F; Wed, 16 Jan 2019 16:38:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (geonho[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [40.107.130.125 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.210.44 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 16315 seconds by postgrey-1.32 at yocto-www;
-	Wed, 16 Jan 2019 12:07:28 PST
-Received: from APC01-HK2-obe.outbound.protection.outlook.com
-	(mail-eopbgr1300125.outbound.protection.outlook.com [40.107.130.125])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A594E00BF9
-	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 12:07:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=TzMOiW09l+XapwKOEG+JDLAKBbEk8+hDsWq0SjWpwKI=;
-	b=arvMNmNkFfKnog9w00xOITl7cGPoxPMODIRggKPb30Ah2c//4E0+G9fAbkDtJgiLOJLdCBoOtFZRAWQ9bt/oM6taRLcNekabqS1zpLQPrWdAX2pRRKvavyFR7ppQ/oY/ZY9WzGgaTV+Gajmk6lHZZ761I8LYhgm+KkXzosDbX3I=
-Received: from TY2PR01MB2025.jpnprd01.prod.outlook.com (52.133.182.143) by
-	TY2PR01MB3723.jpnprd01.prod.outlook.com (20.178.132.204) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1516.18; Wed, 16 Jan 2019 15:35:29 +0000
-Received: from TY2PR01MB2025.jpnprd01.prod.outlook.com
-	([fe80::94a3:4e44:302b:8ade]) by
-	TY2PR01MB2025.jpnprd01.prod.outlook.com
-	([fe80::94a3:4e44:302b:8ade%3]) with mapi id 15.20.1516.019;
-	Wed, 16 Jan 2019 15:35:29 +0000
-From: Stephen Lawrence <stephen.lawrence@renesas.com>
-To: Mauro Ziliani <mauro@faresoftware.it>
-Thread-Topic: [yocto] How to share buildhistory?
-Thread-Index: AQHUrbB7hGzPZ2HGx06fJjGUmVpI0KWyBVFg
-Date: Wed, 16 Jan 2019 15:35:29 +0000
-Message-ID: <TY2PR01MB20257B8B6D324D3C9A1DF5D992820@TY2PR01MB2025.jpnprd01.prod.outlook.com>
-References: <1977383e-cd49-c7a4-0c4f-4a73cb2f701e@faresoftware.it>
-In-Reply-To: <1977383e-cd49-c7a4-0c4f-4a73cb2f701e@faresoftware.it>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=stephen.lawrence@renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; TY2PR01MB3723;
-	20:h8VecoMqg4Hk0ahl8ocg/vk2FK3Da+3p5PswQUYKnjbz9MEIeBVvV9CJ7UXHpTXJ0pHdYbtHlOrxtzRk6OStsbmvBjNI9L1TZbqNu32p0VfSnJoM5oKTz/b2nfARJ9zdE/jgHwFQkXornpBkwuovJroL5Ntv6BvmwjbZI1Q+pTE=
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: 06255432-b975-4565-16be-08d67bc83e8c
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600109)(711020)(4618075)(2017052603328)(7153060)(7193020);
-	SRVR:TY2PR01MB3723; 
-x-ms-traffictypediagnostic: TY2PR01MB3723:
-x-microsoft-antispam-prvs: <TY2PR01MB372312B6969615A05772AD0892820@TY2PR01MB3723.jpnprd01.prod.outlook.com>
-x-forefront-prvs: 091949432C
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(396003)(39860400002)(346002)(136003)(366004)(376002)(13464003)(199004)(189003)(33656002)(486006)(74316002)(6436002)(476003)(102836004)(11346002)(6506007)(66066001)(81166006)(81156014)(7736002)(305945005)(25786009)(966005)(8676002)(6246003)(446003)(26005)(53546011)(5660300001)(6916009)(4326008)(14454004)(478600001)(7696005)(53936002)(186003)(8936002)(9686003)(6306002)(76176011)(229853002)(99286004)(86362001)(68736007)(105586002)(256004)(2906002)(71190400001)(316002)(97736004)(71200400001)(3846002)(6116002)(106356001)(44832011)(55016002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:TY2PR01MB3723;
-	H:TY2PR01MB2025.jpnprd01.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: renesas.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: eknLp41KPx8L19ARdeWFo4fa9WxlNmqR2DZllyDzlL4ZJ9EushzfajZopi29Rn3b3v/oulPggHYZ6kuOsd691DDFnAigFBmzn/QV28bJmiJKi2t0WB/gXlszfKueveiD9impdJcinHlGzCMr0WlEo2caP1wpxL6Xy6q4+4OaeziKGyACTaqJX0NUh6wv+FeaLd3RqNFX8ORtXr8+mjcN2xlWJo51Y1rcQPPt+mgI5pOKBDynVSD4GoQwKPBBVYM2hba8DVej5ZUvmLmn6uEijjV1wvsxAzdgNfhuROAVPg3y+vSrbV5CRHmCRof7wrlgilR9bRTpmnEtb0umuMmXIeiXk3rrY6Xby2icy4SoGqLqupDmjMDEIEA7wLtDtyENSNYUqfQmOQfjcRp81MbLTJlobk70FAqWxaAQI3TIoKs=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
+	[209.85.210.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA1DAE00BF9
+	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 16:38:05 -0800 (PST)
+Received: by mail-ot1-f44.google.com with SMTP id i20so9619877otl.0
+	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 16:38:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=aq17ybu+HXn4PdKM2Eki1B6Gf2TcuA1GD8km64IC8fo=;
+	b=b4xi4JfJVWQER41BYcl83P5j6c0HatblmnH8ODJ0+OQY/x6nHJQyHQojM3Wvlr1G0P
+	UEbE9CG79Hl8Z6lStVO5bHF9/xYn5T2VpEN6aa4s0C8yZmR9F4rvwPxtL3h1YfftUA2m
+	SH8p8Z8sQ1Qw0Ty3r+ouTimltzvMWY1GeJkRyYBqwj0i6LMmjiuTubY0dCqEzahGlRcQ
+	ljSNGp28VEwQO9ELWZ9a099b1e1UQitmrOJgvdKEC9kQ7ZPkPhnssIIkNWwKGMr0bBIs
+	Lf74ruatf59mOpBs9vyIpsf4W+YFTDrOipvh6bvaRoKySYJt27Qq7TS+83PQz2tIxCWP
+	mfWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=aq17ybu+HXn4PdKM2Eki1B6Gf2TcuA1GD8km64IC8fo=;
+	b=llytgj1ULUWGst+59eCSYGx4Pmq/glub8VawX8hQHNsvQAp08GKQvwZVvHsSCtJyKD
+	JRyMWDXxgYRTf8GhNFv6jXo54IucAY2CSrSOOilmNXmUqBeuTJdUmaq0rZtqGEH2hypL
+	jTDSM7G7OHwKzotFIKfkgKbGBqsx38GMuZx/re+Oj8y+ATOOuk7fAAneJNMPwJ5TMvs5
+	H8q9zURHbt5DPY/KxJo4N0q0M9X5Tij95EGuyOKeFLW5tZ7YJYQU84E1jV0CNve+7fqw
+	T6fEDd0KWxh+ifUb5mjqhHDLZcq8K325/JTFm7/tv8wbycICKAc5uNwFWt3bcY4eg9oB
+	iFHw==
+X-Gm-Message-State: AJcUukcimKC1BohR81mwlFWF7zRpvoe+XB+/FkMTRQoB6LFjWl4mTzdX
+	pg8l7I9asWgs9MZe8+AzKPzkpkSQeZzW9pX9htfa1g==
+X-Google-Smtp-Source: ALg8bN7V1JBXA25/NQ85vRug9K5QipKKIlefuv3HDF1T7Rq89hnATmwwBNTYnDwvFzi+6XlydC3MBfUd9ozDf0+HmRA=
+X-Received: by 2002:a05:6830:1584:: with SMTP id
+	i4mr6924507otr.116.1547685484659; 
+	Wed, 16 Jan 2019 16:38:04 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06255432-b975-4565-16be-08d67bc83e8c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jan 2019 15:35:29.0956 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB3723
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to share buildhistory?
+From: Geonho Kim <geonho@gmail.com>
+Date: Thu, 17 Jan 2019 09:37:53 +0900
+Message-ID: <CAHXu0M42HiLoEkmAV0bV66fRYHf28s++rqhnagZtZWYpF7SfNQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: [rocko] python3-pycario : Waf cannot unpacked
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -94,41 +68,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jan 2019 20:07:31 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 17 Jan 2019 00:38:06 -0000
+Content-Type: multipart/alternative; boundary="000000000000898880057f9c9bbe"
+
+--000000000000898880057f9c9bbe
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+I have some build error.
+Now, I have working on rocko release.
+When I have built python3-pycairo, I met this error message
+
+build_src/tmp/work/aarch64-poky-linux/python3-pycairo/1.10.0-r2/temp/log.do_configure.81617
+Log data follows:
+| DEBUG:Executing shell function do_configure
+| sh :1: bunzip2: not found
+| Error: Waf cannot be unpacked, check that bzip2 support is preset.
+......
+
+It seems that uninstalled bzip2 to host and sysroot-native area, but bzip2
+was installed to
+host pc and sysroot-native location.
+
+Do you know how to fix this?
+
+--000000000000898880057f9c9bbe
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> On =
-Behalf
-> Of Mauro Ziliani
-> Sent: 16 January 2019 15:31
-> To: yocto@yoctoproject.org
-> Subject: [yocto] How to share buildhistory?
+<div dir=3D"auto"><div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr">=
+Hi,=C2=A0<br></div><div dir=3D"ltr"><div><br></div><div>I have some build e=
+rror.</div><div>Now, I have working on rocko release.=C2=A0</div><div>When =
+I have built python3-pycairo, I met this error message</div><div><br></div>=
+<div>build_src/tmp/work/aarch64-poky-linux/python3-pycairo/1.10.0-r2/temp/l=
+og.do_configure.81617</div><div>Log data follows:</div><div>| DEBUG:Executi=
+ng shell function do_configure</div><div>| sh :1: bunzip2: not found</div><=
+div>| Error: Waf cannot be unpacked, check that bzip2 support is preset.</d=
+iv><div>......</div><div><br></div><div>It seems that uninstalled bzip2 to =
+host and sysroot-native area, but bzip2 was installed to</div><div>host pc =
+and sysroot-native location.=C2=A0</div><div><br></div><div>Do you know how=
+ to fix this?<br></div></div>
+</div></div>
 
-[snip]
-
->=20
-> Is it possible to do that?
->=20
->=20
-> Often I work with PC1 placed in my office, sometimes I need to keep on
-> the development with PC2, placed in my customer's office.
->=20
-> But I need to continue on PC2 where I stopped with PC1
->=20
-
-It is not quite what you describe but you can use SSTATE_MIRRORS [1] to use=
- cached data
-objects on the other PC. So if you pointed the mirror on PC2 at PC1, PC2 wo=
-uld check
-the cache on PC1 before building it locally.
-
-[1] https://www.yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#var-SS=
-TATE_MIRRORS
-
-Regards
-
-Steve
-
+--000000000000898880057f9c9bbe--
