@@ -1,36 +1,61 @@
-Return-Path: <yocto@emagii.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A3EEE00CE5; Thu, 17 Jan 2019 14:50:09 -0800 (PST)
+	id 03F99E00CE5; Thu, 17 Jan 2019 15:18:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,MIME_QP_LONG_LINE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [81.236.60.156 listed in list.dnswl.org]
-	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
-Received: from v-smtpout3.han.skanova.net (v-smtpout3.han.skanova.net
-	[81.236.60.156])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7B52E00CAD
-	for <yocto@yoctoproject.org>; Thu, 17 Jan 2019 14:50:06 -0800 (PST)
-Received: from [10.175.196.109] ([37.123.169.62]) by cmsmtp with ESMTPA
-	id kGU8gVy9FHNTSkGU8gVpCw; Thu, 17 Jan 2019 23:50:05 +0100
-Mime-Version: 1.0 (1.0)
-From: Ulf Samuelsson <yocto@emagii.com>
-X-Mailer: iPad Mail (15F79)
-In-Reply-To: <a778dc9409e589ee19f122db4069857513e3fe52.camel@linuxfoundation.org>
-Date: Thu, 17 Jan 2019 23:50:04 +0100
-Message-Id: <1DB4D7BE-E62D-4F13-8F8A-A5103ED5F767@emagii.com>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.195 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-it1-f195.google.com (mail-it1-f195.google.com
+	[209.85.166.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B450EE00C91
+	for <yocto@yoctoproject.org>; Thu, 17 Jan 2019 15:18:04 -0800 (PST)
+Received: by mail-it1-f195.google.com with SMTP id c9so3521090itj.1
+	for <yocto@yoctoproject.org>; Thu, 17 Jan 2019 15:18:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=LkBFQLL8DYDv3jkM8uch+MT8/tP+IMM1kpyz+LhpHEI=;
+	b=LZ3r7a3mcYSzSRp0toDQdy8hKdZMaJ8HNGMxHl+VDA4OuBDmP0AsgCxecAGdQc12Qe
+	C8xVFxdLcis6s9LFZEwpfZp7Xfs6YJww+1vSwCuqcN7WDOWg+tHPAKfW9XVmUz9jSVdp
+	4a5DhaPMEDTM9oF3tQ6zhP/Di6YK/yDJy7P3yf0BmA1Qe+VT+G7VQ9g6ejZzFh7jYUt1
+	vXb/hF1LC7om41p4meR/2+aMS7axVKt6pP8jx0FvvePn9V454SNqQvTGVT6pG4kCWYnx
+	fnPS0Whsy6B7G5YMOy45rgwImlKzG9jp7NX9Uv1D1c85HgSZeb50DQoIlkxps0pycH6t
+	ycvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=LkBFQLL8DYDv3jkM8uch+MT8/tP+IMM1kpyz+LhpHEI=;
+	b=eZWeqwYRGvYWj3oXn8RifMWWAolo80unxJ+WROTRmENu4UW52aUpN3hxhSDtyYuRaz
+	Qb1hTJpsU+LDfnGkuwjgKPsDsngVjUsoU6pRbdz9JxQX8VjqpY8IoTJNXmnL64rJbXH4
+	6sTJJ8GHr1RdY4lzmgYqtDUzAY3wHlkleGWclYDrD93027DodXC/6AZZFhRE5u2eLyJo
+	sZSq0Q/JYvFdzpJVGOmSuDF2Yp3xjJGlpkwLQ7DDbXdJZNAvOwwN8SQ9MxiEfxxlEUhP
+	+O7hvZlFowtuDMWQ0MxpIghucCm5l5UD18Bg3DGFJGQdyBnbxSCVuFSUlfRpdTqTr6+R
+	DduA==
+X-Gm-Message-State: AJcUukc2NejzvrUU9mwyIm4yOC0MX3wLvx5E1YE/SqRzK9VO4XgQYOmJ
+	phYznu7nTCkSogDvAAwWB4iHN3/+O0NeiL6c2A4KgbDf
+X-Google-Smtp-Source: ALg8bN4zeByfQE90EGkhBb1M1U3boLKGknWtv0vmwArz0mWIb1tJZi0l0Ie6K5F1nSNAJglZik7XcHS4v8vbfuWrFZA=
+X-Received: by 2002:a24:c601:: with SMTP id j1mr5796103itg.130.1547767084263; 
+	Thu, 17 Jan 2019 15:18:04 -0800 (PST)
+MIME-Version: 1.0
 References: <d278856c-cba2-e63f-d50a-8f4b40365c88@emagii.com>
 	<a778dc9409e589ee19f122db4069857513e3fe52.camel@linuxfoundation.org>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-X-CMAE-Envelope: MS4wfC7NrR1KW0mz+F/d6OIhLWWezg8ugL7DfnDgpsvXgJMFRuTjMiPRSPeFOGaDqZzV5BlfM+EUN+umK+VfsE2Klc/zzQTNNu16jLCYsrJeqbxIGBpDK/bR
-	I5HyXLhnigo0zrGzE9Y06h8zzQtEQLYaTEwZd+WZNzypxQDofxNscr4QbqXieyhRfl2keu/7MV3nSlEhBtSgKS9eYv11v2qzY6oN5V9HyZVKy1tZG+GDcGBZ
-	w6PFxuD4YCT01vOaLzyNvihNXI2zLnY+CT9ZLRw55zs=
-Cc: yocto@yoctoproject.org
+	<1DB4D7BE-E62D-4F13-8F8A-A5103ED5F767@emagii.com>
+In-Reply-To: <1DB4D7BE-E62D-4F13-8F8A-A5103ED5F767@emagii.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 17 Jan 2019 23:17:53 +0000
+Message-ID: <CAJTo0LZ6waQMNE_et9gJk+KOnHeriTw6u0xxFR8LROjMxjhUBQ@mail.gmail.com>
+To: Ulf Samuelsson <yocto@emagii.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: [PATCH] bb.build.addtask: add simple check for circular dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -43,131 +68,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jan 2019 22:50:09 -0000
-Content-Type: text/plain;
-	charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 17 Jan 2019 23:18:06 -0000
+Content-Type: text/plain; charset="UTF-8"
 
+On Thu, 17 Jan 2019 at 22:50, Ulf Samuelsson <yocto@emagii.com> wrote:
+> > We really can't hardcode a list of tasks like this in bitbake :(
+> >
+> > The list is also incorrect (at a quick look its packagedata and
+> > populate_sysroot is missing).
+>
+> I would say it may be incomplete, but it is only wrong, if they are in the wrong order.
 
+Richard's point was that those task names are oe-core specific.
+Bitbake doesn't know or care about the specific names.
 
-> 17 jan. 2019 kl. 22:05 skrev Richard Purdie <richard.purdie@linuxfoundatio=
-n.org>:
->=20
->> On Thu, 2019-01-17 at 19:15 +0100, Ulf Samuelsson wrote:
->> =46rom 864e49bedbdab480c5ada9588ce8f980f23919dd Mon Sep 17 00:00:00
->> 2001
->> From: Ulf Samuelsson <ulf@emagii.com>
->> Date: Thu, 17 Jan 2019 19:07:17 +0100
->> Subject: [PATCH] bb.build.addtask: add simple check for circular
->> dependency
->=20
-> We really can't hardcode a list of tasks like this in bitbake :(
->=20
-> The list is also incorrect (at a quick look its packagedata and
-> populate_sysroot is missing).
-
-I would say it may be incomplete, but it is only wrong, if they are in the w=
-rong order.
-
->=20
-> We'll need to come up with a better algorithm than this. From
-> experience with circular task dependencies within bitbake's runqueue,
-> this is a hard problem though.
-
-It is an attempt to do a reasonable effort.
-It will not handle a lot of user tasks which depends on each other for sure.=
-..
-Is it better to have no detection, than a detection which works on the most c=
-ommon cases?
-I will not have the time to look into a clean cover all cases algorithm, unf=
-ortunately.
-
-Best Regards,
-Ulf Samuelsson
->=20
-> Cheers,
->=20
-> Richard
->=20
->> Signed-off-by: Ulf Samuelsson <ulf@emagii.com>
->> ---
->>  bitbake/lib/bb/build.py | 48=20
->> ++++++++++++++++++++++++++++++++++++++++++++++++
->>  1 file changed, 48 insertions(+)
->>=20
->> diff --git a/bitbake/lib/bb/build.py b/bitbake/lib/bb/build.py
->> index 3e2a94e..887ced1 100644
->> --- a/bitbake/lib/bb/build.py
->> +++ b/bitbake/lib/bb/build.py
->> @@ -43,6 +43,25 @@ logger =3D logging.getLogger('BitBake.Build')
->>=20
->>  __mtime_cache =3D {}
->>=20
->> +KNOWN_TASKS =3D {
->> +    'do_fetch' :           1 ,
->> +    'do_unpack' :          2 ,
->> +    'do_patch' :           3 ,
->> +    'do_configure' :       4 ,
->> +    'do_compile' :         5 ,
->> +    'do_install' :         6 ,
->> +    'do_package' :         7 ,
->> +    'do_package_data' :    8 ,
->> +    'do_rootfs' :          9 ,
->> +    'do_image_qa' :       10 ,
->> +    'do_image' :          11 ,
->> +    'do_image_tar' :      12 ,
->> +    'do_image_ubifs' :    12 ,
->> +    'do_image_jffs2' :    12 ,
->> +    'do_image_complete' : 13 ,
->> +    'do_build' :          14
->> +}
->> +
->>  def cached_mtime_noerror(f):
->>      if f not in __mtime_cache:
->>          try:
->> @@ -820,7 +839,34 @@ def add_tasks(tasklist, d):
->>      # don't assume holding a reference
->>      d.setVar('_task_deps', task_deps)
->>=20
->> +def circular(after, before):
->> +    if after =3D=3D None:
->> +        return False
->> +    if before =3D=3D None:
->> +        return False
->> +    for a in after.split():
->> +        if a in KNOWN_TASKS:
->> +            for b in before.split():
->> +                if a =3D=3D b:
->> +                    return True
->> +                if b in KNOWN_TASKS:
->> +                    if KNOWN_TASKS[b] < KNOWN_TASKS[a]:
->> +                        return True
->> +                    else:
->> +                        # tasks OK
->> +                        pass
->> +                else:
->> +                    # b is unknown
->> +                    pass
->> +        else:
->> +            # a is unknown
->> +            pass
->> +
->>  def addtask(task, before, after, d):
->> +    if circular(after, before):
->> +        logger.error("addtask: %s cannot be after %s and before %s"
->> %=20
->> (task, after, before))
->> +        raise
->> +
->>      if task[:3] !=3D "do_":
->>          task =3D "do_" + task
->>=20
->> @@ -909,3 +955,5 @@ def tasksbetween(task_start, task_end, d):
->>          chain.pop()
->>      follow_chain(task_start, task_end)
->>      return outtasks
->> +
->> +
->=20
-
+Ross
 
