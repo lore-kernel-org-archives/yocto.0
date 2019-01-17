@@ -1,6 +1,6 @@
 Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 026ECE00CDF; Thu, 17 Jan 2019 15:47:52 -0800 (PST)
+	id 57CBFE00CDF; Thu, 17 Jan 2019 15:57:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,53 +10,54 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.179 listed in list.dnswl.org]
+	*      [209.85.210.193 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
-	[209.85.215.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57F4FE00C91
-	for <yocto@yoctoproject.org>; Thu, 17 Jan 2019 15:47:46 -0800 (PST)
-Received: by mail-pg1-f179.google.com with SMTP id y4so5132816pgc.12
-	for <yocto@yoctoproject.org>; Thu, 17 Jan 2019 15:47:46 -0800 (PST)
+Received: from mail-pf1-f193.google.com (mail-pf1-f193.google.com
+	[209.85.210.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1A3EE008CE
+	for <yocto@yoctoproject.org>; Thu, 17 Jan 2019 15:56:59 -0800 (PST)
+Received: by mail-pf1-f193.google.com with SMTP id r136so5613712pfc.6
+	for <yocto@yoctoproject.org>; Thu, 17 Jan 2019 15:56:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=mvista-com.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=QvEKJ51zWz51EPkBQ3XwPxrgHGiOTd3s17rXV7AUtvA=;
-	b=cWtW/ngmQRZgA0mSaBjiC9Ey+N64k1W0C7tkp7EM2v3Xp8kHFazb3rHC4qpSVf0MXl
-	107uTvsaP8IkatAdzKzITQIuGMZZLtkxAz2CGTNrOllliWUUlmOi7sFrnjuFbFU89i5j
-	TDHEiRNfP5eB9XXZhU2LdDTtHH5bgFf/PHMIl3XbTH6V6uwg5NbLmasL+KZII5rzLvMc
-	49OitQBbMVVwm9vAN9U7kWzcuw9qDlZJ0qumSfvswwA/Em911Ypma3qna3zelUPijK0r
-	G4y+4oZHjbTZTGj8POP8kDkAJMvw9X0KRYyJFhV+cGrVrbxxPMexhnsxA1rHaBhqPSHd
-	l4Qw==
+	bh=gRFEjwwjPZyWLjNCZaVvNdcv5BptlTfx+1g4omNeJLA=;
+	b=zj0TIemk960cRUDQvWSvT67nUkUQXeKGQ25xYxrncY+Wn2zaf19b1xInfWhGP6VFv6
+	R5ZqJgy64CzqmQTR7a9Wr0qSW7ua/ebaot+ggVzwMoimhDriGr+JKE3l1/4P4XA00vQS
+	Zil9/YqDJpBWgQSyj/so3eqArWsqMhwuMUg2KCcTlcxg4KDoNjv6wF03SMbtFaLnbYUJ
+	A2t9TMUcw6EZt44wwbvfXuFgs6lWz7MsYjl8xas8bK5+Fh6LBSQqpD/Jtg24+m43lfJH
+	Wz6vDzXQ1Y7KssWf9BV71Y/+8GcNdoN++ZG+oYYfzb4SK4tGdnngF7ZLLTr0tUDlOnk4
+	Fg6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=QvEKJ51zWz51EPkBQ3XwPxrgHGiOTd3s17rXV7AUtvA=;
-	b=m6irmlFRCn/F8CXeTGfru84qyi3JfVrGIc/SOCHHo257y+jqecWm0ET2woccZr7rYK
-	NmrZnZreMxpfmxzQspan3QVVN5Ynj6P1KtTN5euGHEon1v8ZhEmw7gA+AJlWeKfjjDE+
-	wwI7TzDRWn9G2syCWVT42kIi369yxO+T9hhMQrHmejFH5s7qGKRAMgCrJhmBmN8csd1k
-	xaxk1ksqs3PRCqtkMiHNMjPrV7FBkI55E0NY5NHdPm3tcLwWOe37zngQgZkqmqA2Fv2E
-	QerwfStXX/zaTfbmApiiTLpuEK9IMyyrHFPKDSrEDem4uIgTbQ3fpWaJmxT35YIeSfeT
-	fpMQ==
-X-Gm-Message-State: AJcUukcgLaKeAAIqnk9JELpVzZElObjYTm+wl4ws0ku5y60JwojHRjxd
-	UddyuUf21Yq+AXfoUQpU6YgBFQ==
-X-Google-Smtp-Source: ALg8bN54GNtf9SRN64qSjFYH58ODVykbP4QbCbG+j1k6Pb2weMUcR38VQKZ2stwtfozajyfYOyd0VA==
-X-Received: by 2002:a63:990a:: with SMTP id d10mr15431763pge.279.1547768865709;
-	Thu, 17 Jan 2019 15:47:45 -0800 (PST)
+	bh=gRFEjwwjPZyWLjNCZaVvNdcv5BptlTfx+1g4omNeJLA=;
+	b=n1tITGOAJ8NhjjwzRVh3pGolJrrJqnwIk39psAOHvTW2l77lTgEHZB0JanfsZ06vfo
+	tbpgrVZ5By8FhX2pdCMqSUU64eHL8POGg6765a1gep7wNannGzfOkubAntk/NggL+9LL
+	EDQmMJzEe+77X5GteqLJglocy7dLq9rPz79p9dlO26R31Li4s2q0IQoZQ3j0KZIbAZyu
+	YPJZMo+b8Ngj4Lcu6XcHf/dLtYryMWqNj8wmDVnn0odT99gwNueRRYk7kLYUwn4ImBYp
+	5MEHEf6KRJUG6wPUd1Yl9j04cM2ZPmMhW6Lk8VuXUNhw+M2SvhLcAL//DnDJSvwiwvUl
+	U/Xg==
+X-Gm-Message-State: AJcUukfyBtEaSX7q7Gu51k0Ext8ui54uJRJPqwwvRIrbB0Ms711QfFdE
+	PmP+nCPH2i1vtE0ju5JVpiJLtWTDEko=
+X-Google-Smtp-Source: ALg8bN4w2eekkYVg10ToH8HCsIgNd0DH1JdYyujWQUJnFCBxJL3txDi/NNoOMXYIv9gqdsoRT9Utyw==
+X-Received: by 2002:a62:2781:: with SMTP id
+	n123mr17217811pfn.138.1547769418830; 
+	Thu, 17 Jan 2019 15:56:58 -0800 (PST)
 Received: from ?IPv6:2601:202:4180:c33:2453:9f59:d993:51d9?
 	([2601:202:4180:c33:2453:9f59:d993:51d9])
 	by smtp.gmail.com with ESMTPSA id
-	h15sm4025428pgl.43.2019.01.17.15.47.44
+	f32sm3367472pgf.80.2019.01.17.15.56.57
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 17 Jan 2019 15:47:44 -0800 (PST)
-To: Scott Ellis <scottellis.developer@gmail.com>, yocto@yoctoproject.org
-References: <20190112214518.29181-1-scott@jumpnowtek.com>
+	Thu, 17 Jan 2019 15:56:57 -0800 (PST)
+To: Ross Burton <ross.burton@intel.com>, yocto@yoctoproject.org
+References: <20190114144208.14353-1-ross.burton@intel.com>
 From: akuster <akuster@mvista.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
@@ -102,14 +103,13 @@ Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <cbc6c05a-e182-8635-589c-a4985144f352@mvista.com>
-Date: Thu, 17 Jan 2019 15:47:43 -0800
+Message-ID: <b200e3b1-c5c7-c86d-17a3-ee43c3a2e5ff@mvista.com>
+Date: Thu, 17 Jan 2019 15:56:56 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <20190112214518.29181-1-scott@jumpnowtek.com>
-Cc: Scott Ellis <scott@jumpnowtek.com>
-Subject: Re: [meta-security][PATCH] Upgrade scapy to 2.4.2
+In-Reply-To: <20190114144208.14353-1-ross.burton@intel.com>
+Subject: Re: [meta-security][PATCH 01/11] README: add git-config tips
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -121,56 +121,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jan 2019 23:47:52 -0000
+X-List-Received-Date: Thu, 17 Jan 2019 23:57:02 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
 
-On 1/12/19 1:45 PM, Scott Ellis wrote:
-> Signed-off-by: Scott Ellis <scott@jumpnowtek.com>
+On 1/14/19 6:41 AM, Ross Burton wrote:
+> Signed-off-by: Ross Burton <ross.burton@intel.com>
 > ---
->  recipes-security/scapy/python-scapy.inc                       | 4 ++--
->  .../scapy/{python-scapy_2.4.0.bb => python-scapy_2.4.2.bb}    | 0
->  .../scapy/{python3-scapy_2.4.0.bb => python3-scapy_2.4.2.bb}  | 0
->  3 files changed, 2 insertions(+), 2 deletions(-)
->  rename recipes-security/scapy/{python-scapy_2.4.0.bb => python-scapy_2.4.2.bb} (100%)
->  rename recipes-security/scapy/{python3-scapy_2.4.0.bb => python3-scapy_2.4.2.bb} (100%)
+>  README | 7 +++++++
+>  1 file changed, 7 insertions(+)
+
+series merged.
+
+thanks
 >
-> diff --git a/recipes-security/scapy/python-scapy.inc b/recipes-security/scapy/python-scapy.inc
-> index 5abe7db..d5a70fe 100644
-> --- a/recipes-security/scapy/python-scapy.inc
-> +++ b/recipes-security/scapy/python-scapy.inc
-> @@ -5,8 +5,8 @@ LICENSE = "GPLv2"
+> diff --git a/README b/README
+> index e238271..c15fea9 100644
+> --- a/README
+> +++ b/README
+> @@ -57,6 +57,13 @@ Send pull requests, patches, comments or questions to yocto@yoctoproject.org
+>  When sending single patches, please using something like:
+>  'git send-email -1 --to yocto@yoctoproject.org --subject-prefix=meta-security][PATCH'
 >  
->  LIC_FILES_CHKSUM = "file://bin/scapy;beginline=9;endline=13;md5=1d5249872cc54cd4ca3d3879262d0c69"
+> +These values can be set as defaults for this repository:
+> +
+> +$ git config sendemail.to yocto@yoctoproject.org
+> +$ git config format.subjectPrefix meta-security][PATCH
+> +
+> +Now you can just do 'git send-email origin/master' to send all local patches.
+> +
+>  Maintainers:    Armin Kuster <akuster808@gmail.com>
+>                  Saul Wold <sgw@linux.intel.com>
 >  
-> -SRC_URI[md5sum] = "d7d3c4294f5a718e234775d38dbeb7ec"
-> -SRC_URI[sha256sum] = "452f714f5c2eac6fd0a6146b1dbddfc24dd5f4103f3ed76227995a488cfb2b73"
-> +SRC_URI[md5sum] = "e6a03d8c924a6bbde1e86fc58bd2b9d6"
-> +SRC_URI[sha256sum] = "1baa048936207ceb1a4281a0e1e3b4317667c754872a0bb4734c5213c468e86a"
-
-When i build this with "ptest" enabled I get this failure.
-| grep: Makefile: No such file or directory
-| install: cannot stat
-'/home/akuster/oss/maint/openembedded-core/build/tmp-glibc/work/aarch64-oe-linux/python3-scapy/2.4.2-r0/scapy-2.4.2/test/regression.uts':
-No such file or directory
-
-regression.uts no longer exists.
-
-- armin
-
->  
->  inherit pypi ptest
->  
-> diff --git a/recipes-security/scapy/python-scapy_2.4.0.bb b/recipes-security/scapy/python-scapy_2.4.2.bb
-> similarity index 100%
-> rename from recipes-security/scapy/python-scapy_2.4.0.bb
-> rename to recipes-security/scapy/python-scapy_2.4.2.bb
-> diff --git a/recipes-security/scapy/python3-scapy_2.4.0.bb b/recipes-security/scapy/python3-scapy_2.4.2.bb
-> similarity index 100%
-> rename from recipes-security/scapy/python3-scapy_2.4.0.bb
-> rename to recipes-security/scapy/python3-scapy_2.4.2.bb
 
 
