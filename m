@@ -1,62 +1,41 @@
-Return-Path: <geonho@gmail.com>
+Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 311E2E00C5F; Wed, 16 Jan 2019 16:38:06 -0800 (PST)
+	id E68E2E00C71; Wed, 16 Jan 2019 23:50:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (geonho[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.44 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
-	[209.85.210.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA1DAE00BF9
-	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 16:38:05 -0800 (PST)
-Received: by mail-ot1-f44.google.com with SMTP id i20so9619877otl.0
-	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 16:38:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=aq17ybu+HXn4PdKM2Eki1B6Gf2TcuA1GD8km64IC8fo=;
-	b=b4xi4JfJVWQER41BYcl83P5j6c0HatblmnH8ODJ0+OQY/x6nHJQyHQojM3Wvlr1G0P
-	UEbE9CG79Hl8Z6lStVO5bHF9/xYn5T2VpEN6aa4s0C8yZmR9F4rvwPxtL3h1YfftUA2m
-	SH8p8Z8sQ1Qw0Ty3r+ouTimltzvMWY1GeJkRyYBqwj0i6LMmjiuTubY0dCqEzahGlRcQ
-	ljSNGp28VEwQO9ELWZ9a099b1e1UQitmrOJgvdKEC9kQ7ZPkPhnssIIkNWwKGMr0bBIs
-	Lf74ruatf59mOpBs9vyIpsf4W+YFTDrOipvh6bvaRoKySYJt27Qq7TS+83PQz2tIxCWP
-	mfWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=aq17ybu+HXn4PdKM2Eki1B6Gf2TcuA1GD8km64IC8fo=;
-	b=llytgj1ULUWGst+59eCSYGx4Pmq/glub8VawX8hQHNsvQAp08GKQvwZVvHsSCtJyKD
-	JRyMWDXxgYRTf8GhNFv6jXo54IucAY2CSrSOOilmNXmUqBeuTJdUmaq0rZtqGEH2hypL
-	jTDSM7G7OHwKzotFIKfkgKbGBqsx38GMuZx/re+Oj8y+ATOOuk7fAAneJNMPwJ5TMvs5
-	H8q9zURHbt5DPY/KxJo4N0q0M9X5Tij95EGuyOKeFLW5tZ7YJYQU84E1jV0CNve+7fqw
-	T6fEDd0KWxh+ifUb5mjqhHDLZcq8K325/JTFm7/tv8wbycICKAc5uNwFWt3bcY4eg9oB
-	iFHw==
-X-Gm-Message-State: AJcUukcimKC1BohR81mwlFWF7zRpvoe+XB+/FkMTRQoB6LFjWl4mTzdX
-	pg8l7I9asWgs9MZe8+AzKPzkpkSQeZzW9pX9htfa1g==
-X-Google-Smtp-Source: ALg8bN7V1JBXA25/NQ85vRug9K5QipKKIlefuv3HDF1T7Rq89hnATmwwBNTYnDwvFzi+6XlydC3MBfUd9ozDf0+HmRA=
-X-Received: by 2002:a05:6830:1584:: with SMTP id
-	i4mr6924507otr.116.1547685484659; 
-	Wed, 16 Jan 2019 16:38:04 -0800 (PST)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8097E00C46
+	for <yocto@yoctoproject.org>; Wed, 16 Jan 2019 23:50:36 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x0H7nhP9002923
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 16 Jan 2019 23:49:53 -0800
+Received: from [128.224.162.228] (128.224.162.228) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
+	Wed, 16 Jan 2019 23:49:32 -0800
+To: "Burton, Ross" <ross.burton@intel.com>, Joshua Watt <jpewhacker@gmail.com>
+References: <1547631395-435805-1-git-send-email-changqing.li@windriver.com>
+	<CAJdd5GbEiSAaRw0Fonftxf465-QigYF-p7SpG0y3dWbfe1Jkrw@mail.gmail.com>
+	<CAJTo0LYJUjRiOV7hLTicNhwYqnqzHHAF52nXvAWj0x1hHSPdGg@mail.gmail.com>
+From: Changqing Li <changqing.li@windriver.com>
+Message-ID: <d7c19b0c-f858-c301-7276-d1f3e3e69101@windriver.com>
+Date: Thu, 17 Jan 2019 15:49:28 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
 MIME-Version: 1.0
-From: Geonho Kim <geonho@gmail.com>
-Date: Thu, 17 Jan 2019 09:37:53 +0900
-Message-ID: <CAHXu0M42HiLoEkmAV0bV66fRYHf28s++rqhnagZtZWYpF7SfNQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: [rocko] python3-pycario : Waf cannot unpacked
+In-Reply-To: <CAJTo0LYJUjRiOV7hLTicNhwYqnqzHHAF52nXvAWj0x1hHSPdGg@mail.gmail.com>
+X-Originating-IP: [128.224.162.228]
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: [meta-mingw][PATCH] mingw32-common: change mingw sdk to .zip type
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,47 +47,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jan 2019 00:38:06 -0000
-Content-Type: multipart/alternative; boundary="000000000000898880057f9c9bbe"
+X-List-Received-Date: Thu, 17 Jan 2019 07:50:38 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
---000000000000898880057f9c9bbe
-Content-Type: text/plain; charset="UTF-8"
+Ross and Joshua,  thanks for your comments,  I will send a v2 later.
 
-Hi,
+On 1/16/19 9:17 PM, Burton, Ross wrote:
+> Just in case you hadn't noticed, that this depends on a corresponding
+> patch to oe-core, which I've comments on.
+>
+> Ross
+>
+> On Wed, 16 Jan 2019 at 13:14, Joshua Watt <jpewhacker@gmail.com> wrote:
+>>
+>>
+>> On Wed, Jan 16, 2019, 3:37 AM <changqing.li@windriver.com wrote:
+>>> From: Changqing Li <changqing.li@windriver.com>
+>>>
+>>> Current sdk type is tar.xz, but for mingw sdk, since we
+>>> have symlink under the sdk folder, 7zip which used to
+>>> extract tar.xz cannot handle it, refer 7zip upstream bug:
+>>> https://sourceforge.net/p/sevenzip/discussion/45797/thread/c71d6b96/
+>>> so change to .zip type
+>>>
+>>> Also tried to use option --dereference of tar which use means:
+>>> "follow symlinks; archive and dump the files they point to"
+>>> with this option, when archive it will deal with symlink to hard link,
+>>> but windows not support hard link, so drop this solution,
+>>> and use .zip for windows.
+>>>
+>>> Signed-off-by: Changqing Li <changqing.li@windriver.com>
+>>> ---
+>>>   conf/machine-sdk/include/mingw32-common.inc | 5 +++++
+>>>   1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/conf/machine-sdk/include/mingw32-common.inc b/conf/machine-sdk/include/mingw32-common.inc
+>>> index 9011ded..dbad50a 100644
+>>> --- a/conf/machine-sdk/include/mingw32-common.inc
+>>> +++ b/conf/machine-sdk/include/mingw32-common.inc
+>>> @@ -46,3 +46,8 @@ GCCPIE_mingw32 = ""
+>>>   # wine and wineserver are required to test MinGW SDKs
+>>>   HOSTTOOLS += "${@'wine wineserver' if (bb.utils.contains_any('IMAGE_CLASSES', 'testsdk', True, False, d) or any(x in (d.getVar("BBINCLUDED") or "") for x in ["testsdk.bbclass"])) else ''}"
+>>>
+>>> +# mingw sdk use .zip type
+>>> +SDK_TAR_TYPE = "zip"
+>>> +SDK_TAR_DEPENDS = "zip-native"
+>>> +SDK_TAR_CMD ?= "zip -r  ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.${SDK_TAR_TYPE} ."
+>>> +
+>>
+>> You will also need to update the QA tests, since right now they expecting a tar file (lib/oeqa/sdkmingw/testsdk.py)
+>>
+>>> --
+>>>
+>>> 2.7.4
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
-I have some build error.
-Now, I have working on rocko release.
-When I have built python3-pycairo, I met this error message
+-- 
+BRs
 
-build_src/tmp/work/aarch64-poky-linux/python3-pycairo/1.10.0-r2/temp/log.do_configure.81617
-Log data follows:
-| DEBUG:Executing shell function do_configure
-| sh :1: bunzip2: not found
-| Error: Waf cannot be unpacked, check that bzip2 support is preset.
-......
+Sandy(Li Changqing)
 
-It seems that uninstalled bzip2 to host and sysroot-native area, but bzip2
-was installed to
-host pc and sysroot-native location.
 
-Do you know how to fix this?
-
---000000000000898880057f9c9bbe
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto"><div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr">=
-Hi,=C2=A0<br></div><div dir=3D"ltr"><div><br></div><div>I have some build e=
-rror.</div><div>Now, I have working on rocko release.=C2=A0</div><div>When =
-I have built python3-pycairo, I met this error message</div><div><br></div>=
-<div>build_src/tmp/work/aarch64-poky-linux/python3-pycairo/1.10.0-r2/temp/l=
-og.do_configure.81617</div><div>Log data follows:</div><div>| DEBUG:Executi=
-ng shell function do_configure</div><div>| sh :1: bunzip2: not found</div><=
-div>| Error: Waf cannot be unpacked, check that bzip2 support is preset.</d=
-iv><div>......</div><div><br></div><div>It seems that uninstalled bzip2 to =
-host and sysroot-native area, but bzip2 was installed to</div><div>host pc =
-and sysroot-native location.=C2=A0</div><div><br></div><div>Do you know how=
- to fix this?<br></div></div>
-</div></div>
-
---000000000000898880057f9c9bbe--
