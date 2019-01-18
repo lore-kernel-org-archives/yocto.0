@@ -1,6 +1,6 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52FCAE00D0E; Fri, 18 Jan 2019 05:12:46 -0800 (PST)
+	id 3B507E00D15; Fri, 18 Jan 2019 05:14:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,52 +10,52 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.66 listed in list.dnswl.org]
+	*      [209.85.221.52 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
-	[209.85.221.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88746E00CF1
-	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 05:12:45 -0800 (PST)
-Received: by mail-wr1-f66.google.com with SMTP id j2so15079249wrw.1
-	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 05:12:45 -0800 (PST)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
+	[209.85.221.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8601E006F1
+	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 05:14:05 -0800 (PST)
+Received: by mail-wr1-f52.google.com with SMTP id r10so14969079wrs.10
+	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 05:14:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=from:to:subject:date:message-id;
-	bh=UxGTjt7eCEbfJS+hbvYrgvweekjqcNxJt/wzZISJ054=;
-	b=tE5hzBiQuI9k+4XOKEyMXS2iNqHlpmTaN44ZjbwaCGwAcgPgXQpRiguwnV2GBXKviQ
-	S4kcWn3yjm2EGEh4YpMQ5pAW8Wz7GrH1htqvpioZQ+JjcDzUNPxasb04OAA2LxJNCM+e
-	mq6FiV0WITswX4dFaA6FT3lrIjd4RqHk1aDiJWU8dRFn9V7O0T6ik2KsYfwiV2Qkxl7j
-	HJQpslKIHERCZsuPNGPd10ilvZRj07pI7uodSdaIniPsYuBnrIsMlPTOey+BzP3AtHqE
-	XlUufmKR0QBwbSkA44o2JhDz1wbBRZ4Sra7N4Xr6/FtFxcYxg+bqRaqRwsnSi9W0HX7m
-	sXuw==
+	bh=9CAcyyUx6oDfgc/Dk0oJZPdTXWiZ/5pqEWw5NlmSjAc=;
+	b=xDcIOZLcGZRKc+I2yCrWGHGWbabqoZzrnpMDQR2pUfscHY+0UKy+iPXehE85ONwLry
+	gxI8uuCJAFElpPtumLaiR6ntSe3mHH8Q+7iHFoVxAPWzR6BEOz4ug2XX5MQ0ysKPyMw9
+	MkSbeKR4D2TVfOuv3pQzFK051rwXzN0q8vWx/3ZbLPRph1PrPMILiFTlKBX+vfflbr26
+	zSjo/Z8aPXtYvU1fvRDwBMP9elYx6+JA9drj+Qy77O7aOKXWO5zwH4Bi5k6eCq47g0xi
+	lQIRo4gy0AkYRsqCdLcScjaw/tylycVPX6Rl5J/K3rDpQNvlRWc7xsrCsDM3X+WfKjAj
+	VisA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=UxGTjt7eCEbfJS+hbvYrgvweekjqcNxJt/wzZISJ054=;
-	b=Yjt+Jk4pO/U9L6/o3Meg4RLlhFQNA264p+0ahiFEa0cWfHIJezv8js/vGs3aCAWXJ0
-	zaJCJ5woRY6sq10R+D2ORNwij9dg1H3mF0cmCQT/kvwUbNyfzszr/rMFEz/ZPDsweqM/
-	UAxmnF/gl6Tdg85kGtyqAOO1MM1S/H7yYfmrXNRAwM5ShR8eLA/pM2CMLqyIl4magQEd
-	UdlHxEkT5CVZ4NZ8h4LRh1gvgQdNO2A8i1IIiyacwfbjJy8PRL+AB2EUjipDUxsWAptw
-	5PMIpV5MVr6vAgNkyvxxBSTubzr1zc7NTCQOr00ur4chMdLSYPqfXrFun1ZgctEJNNEj
-	aSHQ==
-X-Gm-Message-State: AJcUukffNCGWCORnqyrYsawhTHMTQ1dEicS292YVclxoHZiVp1b1XQpi
-	Jqmd/EAwb2yCHHPIm3cJcqk6V7UzmfM=
-X-Google-Smtp-Source: ALg8bN7+w5L6236MF50NvqjzMPubTHoiA2bsJMVoHeWimiAiTRsrSMuYlnJn0aSby1tJ48m3FzImkQ==
-X-Received: by 2002:adf:f401:: with SMTP id g1mr16966234wro.103.1547817164369; 
-	Fri, 18 Jan 2019 05:12:44 -0800 (PST)
+	bh=9CAcyyUx6oDfgc/Dk0oJZPdTXWiZ/5pqEWw5NlmSjAc=;
+	b=aYQ3Qk0zNPnqFBXLusovp5TiWb2nqjDIiCA+3sbN0ZngV1SFknEEfJz04ak08BDyCB
+	pYFXizz/LhH7eWGw206axvghL7/0Lh7A1GyVwhMZaWPes15cj99yv4u4rvbyOkF7AkwS
+	NgWEaGx00fTWbU6uKLPDAgtV9dj/1xK9V1Hsme74uEW5TCjekog1QPVdlESTR2Z90DrM
+	kssRIZxNpOw19iDlGgQDvMoAt2CnszlImgv+p3r7XxBDdr4G0cmzm99cEAObaPOqnwxK
+	B9CFXsuaFTmx/0cYx/XzkaadIo2ToKUUdjAA5ZRqjPBoD6sZmDBipi5AElm1OR8lwMmS
+	sqQA==
+X-Gm-Message-State: AJcUukdZfC2smjBX06z7IWHNc+a5Bertn3VENtedtkL9l7N45jVwsF7G
+	1OPZi8/9JD8nEfR6S2cHVAk9IFq2tlE=
+X-Google-Smtp-Source: ALg8bN7XIgy4vid+G+C/xT2MKkXZ5XPeA8ZtSnf1abH9jBwdq54Qi+1/1vcH7Hf1h5P3x5LXaBSDNQ==
+X-Received: by 2002:adf:91a3:: with SMTP id 32mr14974389wri.99.1547817244098; 
+	Fri, 18 Jan 2019 05:14:04 -0800 (PST)
 Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa.
 	[81.2.106.35]) by smtp.gmail.com with ESMTPSA id
-	p139sm81320004wmd.31.2019.01.18.05.12.42 for <yocto@yoctoproject.org>
+	c1sm34743487wmb.14.2019.01.18.05.14.03 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 18 Jan 2019 05:12:43 -0800 (PST)
+	Fri, 18 Jan 2019 05:14:03 -0800 (PST)
 From: Ross Burton <ross.burton@intel.com>
 To: yocto@yoctoproject.org
-Date: Fri, 18 Jan 2019 13:12:39 +0000
-Message-Id: <20190118131239.10567-1-ross.burton@intel.com>
+Date: Fri, 18 Jan 2019 13:14:00 +0000
+Message-Id: <20190118131400.23302-1-ross.burton@intel.com>
 X-Mailer: git-send-email 2.11.0
-Subject: [meta-security][PATCH] apparmor: fix Python install paths when target libdir != native libdir
+Subject: [meta-security][PATCH v2] apparmor: fix Python install paths when target libdir != native libdir
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,38 +67,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jan 2019 13:12:46 -0000
+X-List-Received-Date: Fri, 18 Jan 2019 13:14:07 -0000
+
+setuptools will install into what python3-native thinks $libdir is, which may
+not match the target $libdir.  Pass in libdir as appropriate to force the
+correct paths.
 
 Signed-off-by: Ross Burton <ross.burton@intel.com>
 ---
- recipes-security/AppArmor/apparmor_2.12.bb      |  4 ++--
- recipes-security/AppArmor/files/py-libdir.patch | 13 +++++++++++++
- 2 files changed, 15 insertions(+), 2 deletions(-)
+ recipes-security/AppArmor/apparmor_2.12.bb      |  5 ++--
+ recipes-security/AppArmor/files/py-libdir.patch | 40 +++++++++++++++++++++++++
+ 2 files changed, 43 insertions(+), 2 deletions(-)
+ create mode 100644 recipes-security/AppArmor/files/py-libdir.patch
 
 diff --git a/recipes-security/AppArmor/apparmor_2.12.bb b/recipes-security/AppArmor/apparmor_2.12.bb
-index 1e3a223..073b62d 100644
+index efa93e6..073b62d 100644
 --- a/recipes-security/AppArmor/apparmor_2.12.bb
 +++ b/recipes-security/AppArmor/apparmor_2.12.bb
-@@ -80,9 +80,9 @@ do_install () {
+@@ -18,6 +18,7 @@ SRC_URI = " \
+ 	file://disable_perl_h_check.patch \
+ 	file://crosscompile_perl_bindings.patch \
+ 	file://tool-paths.patch \
++	file://py-libdir.patch \
+ 	file://apparmor.rc \
+ 	file://functions \
+ 	file://apparmor \
+@@ -79,9 +80,9 @@ do_install () {
  	install -d ${D}/${INIT_D_DIR}
  	install -d ${D}/lib/apparmor
  		
 -	oe_runmake -C ${B}/libraries/libapparmor DESTDIR="${D}" install
 +	oe_runmake -C ${B}/libraries/libapparmor DESTDIR="${D}" PYLIBDIR=${PYTHON_SITEPACKAGES_DIR} install
  	oe_runmake -C ${B}/binutils DESTDIR="${D}" install
--	oe_runmake -C ${B}/utils DESTDIR="${D}" PYLIBDIR=${libdir} install
+-	oe_runmake -C ${B}/utils DESTDIR="${D}" install
 +	oe_runmake -C ${B}/utils DESTDIR="${D}" PYLIBDIR=${PYTHON_SITEPACKAGES_DIR} install
  	oe_runmake -C ${B}/parser DESTDIR="${D}" install
  	oe_runmake -C ${B}/profiles DESTDIR="${D}" install
  
 diff --git a/recipes-security/AppArmor/files/py-libdir.patch b/recipes-security/AppArmor/files/py-libdir.patch
-index fc617fb..2b88e54 100644
---- a/recipes-security/AppArmor/files/py-libdir.patch
+new file mode 100644
+index 0000000..2b88e54
+--- /dev/null
 +++ b/recipes-security/AppArmor/files/py-libdir.patch
-@@ -4,6 +4,19 @@ python3-native's idea of $libdir may not match the target's $libdir.
- Upstream-Status: Pending
- Signed-off-by: Ross Burton <ross.burton@intel.com>
- 
+@@ -0,0 +1,40 @@
++Let the user override the Python libdir so it goes to the right place, as
++python3-native's idea of $libdir may not match the target's $libdir.
++
++Upstream-Status: Pending
++Signed-off-by: Ross Burton <ross.burton@intel.com>
++
 +diff --git a/libraries/libapparmor/swig/python/Makefile.am b/libraries/libapparmor/swig/python/Makefile.am
 +index 421acba9..d2b842a6 100644
 +--- a/libraries/libapparmor/swig/python/Makefile.am
@@ -112,9 +129,27 @@ index fc617fb..2b88e54 100644
 + 
 + clean-local:
 + 	if test -x "$(PYTHON)"; then $(PYTHON) setup.py clean; fi
- diff --git a/utils/Makefile b/utils/Makefile
- index 68f8c376..025f9da5 100644
- --- a/utils/Makefile
++diff --git a/utils/Makefile b/utils/Makefile
++index 68f8c376..025f9da5 100644
++--- a/utils/Makefile
+++++ b/utils/Makefile
++@@ -42,6 +42,7 @@ DESTDIR=/
++ BINDIR=${DESTDIR}/usr/sbin
++ CONFDIR=${DESTDIR}/etc/apparmor
++ PYPREFIX=/usr
+++PYLIBDIR=$PYPREFIX/lib
++ 
++ PYFLAKES=pyflakes
++ 
++@@ -60,7 +61,7 @@ install: ${MANPAGES} ${HTMLMANPAGES}
++ 	$(MAKE) install_manpages DESTDIR=${DESTDIR}
++ 	$(MAKE) -C vim install DESTDIR=${DESTDIR}
++ 	ln -sf aa-status.8 ${DESTDIR}/${MANDIR}/man8/apparmor_status.8
++-	${PYTHON} ${PYSETUP} install --prefix=${PYPREFIX} --root=${DESTDIR} --version=${VERSION}
+++	${PYTHON} ${PYSETUP} install --prefix=${PYPREFIX} --install-lib=${PYLIBDIR} --root=${DESTDIR} --version=${VERSION}
++ 
++ .PHONY: clean
++ ifndef VERBOSE
 -- 
 2.11.0
 
