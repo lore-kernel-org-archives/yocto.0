@@ -1,64 +1,46 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <mauro@faresoftware.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 058A3E00CDF; Fri, 18 Jan 2019 08:53:39 -0800 (PST)
+	id EC414E00CED; Fri, 18 Jan 2019 09:20:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kanavin[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.46 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com
-	[209.85.210.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDF40E00C91
-	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 08:53:37 -0800 (PST)
-Received: by mail-ot1-f46.google.com with SMTP id i20so15000113otl.0
-	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 08:53:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=5XXRR8xZJDj3Z2C/uTk3KtovJ3fIu2aP5kKXTkKKuQY=;
-	b=tSdDJwkphf3AVpvp2mSG/589zhHBI/SIPnnwF+H09N5aspZOAny3SHuyw6aBOsR8Jv
-	R5DZM4A1pdT9NDH48+a7PTHQ/TTdQoWzCbKOJIWEVhyfeWzm5bCtrWyuAvzb5a6LpCS7
-	pvGAcLvHx3Gzom9N8ftPuPgWaHl409fiLmlW8itQn2hKjLGfOPFXlcD1p7/4V1ahERyg
-	KGZThgWzNGHUi69rSh5atw8kPOScNkH73zJ3x/F2JUooPnNZh/E0sXOxX10BUlVFcIiF
-	EXeG1A0rx52GZ6KP0nYwCqtaoZSMcwNk4DxEPjDIyrY7Zfw9iL4zZ6bIVm2/uoc4pMxU
-	QFhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=5XXRR8xZJDj3Z2C/uTk3KtovJ3fIu2aP5kKXTkKKuQY=;
-	b=MM9rp0skptbw1IJJ6fwdnmvprO6eOORna9wH8mZQpvsX7XuxcnGF5tWe1oHr3u4Utt
-	mDUc6lKGgCz1VGLSMY/jBB/zvQEID5TPJGI68VX7GOUbx09o6q5gkAunP3vsfgtqZV3e
-	XZhg5kDi3GIbEUVTqekuC8JqNlG0tmrVAZu5oNZFy11IvTD8d5Fm3HcIXwbFAfqhv8wI
-	cCE7TP1soGdZar82Q1O8ISU5oer0jL3z7icT/vDVqE3TO7SPtJcQAgB1OwQv7A8Xp7Qi
-	+uocRYoGUAQh+QWA2RfVFfcQak1dYG+uI5VFJYKudTyjg/YS6p4mkh282vDyjLp+zB3X
-	Qpdg==
-X-Gm-Message-State: AJcUukcHPX494YE87ld/EaNflqlDu/FYSjz6thjSY/TseJDU2jFr6Rto
-	L8fGFyv4rb9Hcf5Ceci+XhYwDat/172OuHjgydc=
-X-Google-Smtp-Source: ALg8bN68u+cDphDoIp+JVf9ylfsyDEk2iwM5vWWjKZ2eXE7Y/GyPxPCN0VxWlvGzB1RBzKNsbKkzT0OZnXiSXb7d8jU=
-X-Received: by 2002:a9d:66f:: with SMTP id 102mr12749103otn.293.1547830417178; 
-	Fri, 18 Jan 2019 08:53:37 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [62.149.156.86 listed in list.dnswl.org]
+Received: from smtpcmd0986.aruba.it (smtpcmd0986.aruba.it [62.149.156.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 415F5E00C94
+	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 09:19:59 -0800 (PST)
+Received: from [10.0.3.114] ([78.6.3.122])
+	by smtpcmd09.ad.aruba.it with bizsmtp
+	id RtKy1z00L2dwwGE01tKyV6; Fri, 18 Jan 2019 18:19:59 +0100
+To: yocto@yoctoproject.org
+References: <0dd6be51-9a1c-c514-6cfb-2f8bc3464b2a@faresoftware.it>
+	<CAJTo0LZKCdj6SSQ3iu9CCQjtSC6WakQmfxhwiKNk0occ7k6Ofg@mail.gmail.com>
+	<e42136b2-26e6-3e19-e139-7da98c4f1856@faresoftware.it>
+From: Mauro Ziliani <mauro@faresoftware.it>
+Message-ID: <bd22d12c-c0d0-f58d-6658-9997e7059d10@faresoftware.it>
+Date: Fri, 18 Jan 2019 18:19:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.4.0
 MIME-Version: 1.0
-References: <CAJWg_GmVLZURNCSscw7CQDRbJTqmZmt=QJJKgMTfUSbW7xM8Kw@mail.gmail.com>
-In-Reply-To: <CAJWg_GmVLZURNCSscw7CQDRbJTqmZmt=QJJKgMTfUSbW7xM8Kw@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 18 Jan 2019 17:53:25 +0100
-Message-ID: <CANNYZj-oBVCQMoVyck6mT+x-jm5cRBH=dSAt1ff_-E3V377oDQ@mail.gmail.com>
-To: Seth McLean <sethamclean@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Rebased Python 3.7.1 patch
+In-Reply-To: <e42136b2-26e6-3e19-e139-7da98c4f1856@faresoftware.it>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1547831999; bh=IOsJzHxakATi5FUMVa9SKiKzpFm5cws75BeIAVRkvzQ=;
+	h=Subject:To:From:Date:MIME-Version:Content-Type;
+	b=G+vLrBvX94ldmtJ93XJtIKvu+V9ZGIRgq4GcD74uFwrMK+5k3XXhcMPeR+LqVcjnE
+	b2wP/ROVAfaKiy0Ae/ctjgTelqrJI1Th4uBE8V1V0myEtVZsE0Op225f7X2O8p3hSi
+	p0If6fPOPBMfmhmo2vSHxg/eRUagW0YIXknDfOmWNIMEtJ+Tja1U8Vx05DVUSUtVTP
+	M6gWdrMoFyYZHB5O+nwQzeucUBOzyNK58FoD21HMXFHNsIxqEeZ1nQARmhWqWKmt1i
+	HvMG7JGN9Iu1PqFJivZYIG1HoHQ9THtgN6hRppUGZIxPJtG73jDn8p2d0OwNf8+mfU
+	tTNYjX7lgcIXg==
+Subject: Re: Fetch from git every bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,28 +52,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jan 2019 16:53:39 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 18 Jan 2019 17:20:03 -0000
+Content-Type: text/plain; charset=iso-8859-15
+Content-Transfer-Encoding: 8bit
+Content-Language: it
 
-You can start by reading the following:
+I try BB_SRCREV_POLICY in conf/local.conf
 
-https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
-https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
+First I try
 
-Alex
+BB_SRCREV_POLICY := "clear"
 
-On Fri, 18 Jan 2019 at 16:24, Seth McLean <sethamclean@gmail.com> wrote:
+
+Then I try
+
+BB_SCREV_POLICY_pn-app := "clear"
+
+
+app_1.0.bb is the recipe with
+
+
+SRCREV="${AUTOREV}"
+
+SRC_URI += " \
+
+    file://git@sourcer/app.git \
+
+"
+
+
+I'm working with a mixed version of Krogoth/Jethro.
+
+
+Any Idea?
+
+
+
+Il 18/01/19 15:00, Mauro Ziliani ha scritto:
+> I try AUTOREV in the recipe app_1.0.bb
 >
-> I've rebased and made some minor changes to a Python 3.7.1 patch from patchworks. I'd be interested in seeing this patch make it into master if possible.
 >
-> Could anyone provide any guidance on the process of submitting a patch?
+> SRCREV := "${AUTOREV}"
 >
-> Thanks,
+> But it doesn't work.
 >
-> Seth
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Which other variables could inhibit AUTOREV?
+>
+>
+> MZ
+>
+> Il 17/01/19 15:09, Burton, Ross ha scritto:
+>> Look up AUTOREV in the manual, that does exactly what you want.
+>>
+>> Ross
+>>
+>> On Thu, 17 Jan 2019 at 14:08, Mauro Ziliani <mauro@faresoftware.it> wrote:
+>>> Hi all.
+>>>
+>>> How can I force the pull from git repository of my app every time I do
+>>>
+>>> bitbake app
+>>>
+>>>
+>>> Best regards,
+>>>
+>>>    MZ
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
 
