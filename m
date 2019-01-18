@@ -1,46 +1,41 @@
-Return-Path: <mauro@faresoftware.it>
+Return-Path: <yocto@emagii.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 566FEE00D0E; Fri, 18 Jan 2019 06:00:37 -0800 (PST)
+	id 6C65CE00CF1; Fri, 18 Jan 2019 06:16:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,MIME_QP_LONG_LINE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [62.149.156.86 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from smtpcmd0986.aruba.it (smtpcmd0986.aruba.it [62.149.156.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A767E00CF1
-	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 06:00:35 -0800 (PST)
-Received: from [10.0.3.114] ([78.6.3.122])
-	by smtpcmd09.ad.aruba.it with bizsmtp
-	id Rq0Y1z00n2dwwGE01q0ZB6; Fri, 18 Jan 2019 15:00:34 +0100
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <0dd6be51-9a1c-c514-6cfb-2f8bc3464b2a@faresoftware.it>
-	<CAJTo0LZKCdj6SSQ3iu9CCQjtSC6WakQmfxhwiKNk0occ7k6Ofg@mail.gmail.com>
-From: Mauro Ziliani <mauro@faresoftware.it>
-Message-ID: <e42136b2-26e6-3e19-e139-7da98c4f1856@faresoftware.it>
-Date: Fri, 18 Jan 2019 15:00:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.4.0
-MIME-Version: 1.0
-In-Reply-To: <CAJTo0LZKCdj6SSQ3iu9CCQjtSC6WakQmfxhwiKNk0occ7k6Ofg@mail.gmail.com>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
-	t=1547820034; bh=79szs2X4yIFkXbOg5dOtBw+G66iWgHQ1df4UXIeDfMI=;
-	h=Subject:To:From:Date:MIME-Version:Content-Type;
-	b=iYRXIiy0Lv4zuEnv8XR445ncKpssfoAfMKMEj3bTbAtYKTnqojsLGFClgn7nuqMgm
-	TSyoqvM8+onBrr6NFK6I8K8EZEVSHUe3rO5xjaxyR1dlE/fa/ejO7rtC21+ZZsZIrd
-	kr9F722NUuYBPQNEb7DHxzRTI+r6IRM+5d8yQJ9NKiUXfLNg9NTZjsEkbejVX47dcw
-	wVpv2WBRE76T6UJF4IRC4XxDCv1UvR7VBoodzzJ1eG1/Ra9wuIl+wzX+LnV5nZsNLC
-	FygOcUX5Z7bdAJ7xWch/cw1lXnoGYfCiWmpWCY3rj4QViKr5Cz6C6CoWWf3JfWRuhM
-	mjKpdualgKwjg==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [81.236.60.154 listed in list.dnswl.org]
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+Received: from v-smtpout1.han.skanova.net (v-smtpout1.han.skanova.net
+	[81.236.60.154])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D95C1E00C91
+	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 06:16:47 -0800 (PST)
+Received: from [95.197.4.133] ([95.197.4.133]) by cmsmtp with ESMTPA
+	id kUwvgJXRkcCEokUwvgnh05; Fri, 18 Jan 2019 15:16:46 +0100
+Mime-Version: 1.0 (1.0)
+From: Ulf Samuelsson <yocto@emagii.com>
+X-Mailer: iPad Mail (15F79)
+In-Reply-To: <7851f1d740f3a130e4ae5a1e9eb7f9e0273ee1f4.camel@linuxfoundation.org>
+Date: Fri, 18 Jan 2019 15:16:45 +0100
+Message-Id: <A6212BF5-A78A-4659-B876-BDC464B41B38@emagii.com>
+References: <d278856c-cba2-e63f-d50a-8f4b40365c88@emagii.com>
+	<a778dc9409e589ee19f122db4069857513e3fe52.camel@linuxfoundation.org>
+	<1DB4D7BE-E62D-4F13-8F8A-A5103ED5F767@emagii.com>
+	<CAJTo0LZ6waQMNE_et9gJk+KOnHeriTw6u0xxFR8LROjMxjhUBQ@mail.gmail.com>
+	<C23DECFB-A3E9-404F-BF7D-EEAD4BA23CE3@emagii.com>
+	<7851f1d740f3a130e4ae5a1e9eb7f9e0273ee1f4.camel@linuxfoundation.org>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-CMAE-Envelope: MS4wfHduN0Lg7w+qamFUhwfmkzl5onFv5tZJAcR+HB2cwsI5KaU1rE3hu08mS6yYUSb+aLv80Q4A1BPHB48i1jJwOwaAQ0xu+yUyCnxZiPjip/oVdjHZcVRO
+	/7X4kWd6pR98inxfhdLZjL1FeuywU5UGAK/MG8jzdS6MXpkRyUjo7Gb3/RrEGMMXOnaQrocU19YFMH7NaigKSMamK5slIPPl99+uV2vHcxHCnvaPHV7eQsJc
+	mprW9whn+TXGC22jwOZJWA==
 Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Fetch from git every bitbake
+Subject: Re: [PATCH] bb.build.addtask: add simple check for circular dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,43 +47,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jan 2019 14:00:37 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: it
-
-I try AUTOREV in the recipe app_1.0.bb
+X-List-Received-Date: Fri, 18 Jan 2019 14:16:50 -0000
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
-SRCREV := "${AUTOREV}"
 
-But it doesn't work.
+> 18 jan. 2019 kl. 12:29 skrev Richard Purdie <richard.purdie@linuxfoundatio=
+n.org>:
+>=20
+>> On Fri, 2019-01-18 at 05:30 +0100, Ulf Samuelsson wrote:
+>> So if KNOWN_TASKS is defined in a configuration file in oe-core, it
+>> would be OK?
+>> It needs to be extended to check for KNOWN_TASKS =3D=3D None of course.
+>=20
+> No, this is too fragile. We then have to maintain two different lists
+> of tasks. If we did that we may as well just remove the generic tasks
+> mechanism and hardcode the tasks list in the metadata.
+>=20
+Why do we need two lists?
 
-Which other variables could inhibit AUTOREV?
+We need to know in what order the generic tasks are executed, that is all.
+
+Then we need to see if an addtask is violating that order.
+If the =E2=80=9Dafter=E2=80=9D or =E2=80=9Dbefore=E2=80=9D is not a generic t=
+ask, the check cannot catch that.
+
+If the user decides to not use the generic tasks, and create new ones
+with the same name, as the generic tasks, but rearranges the order, there wi=
+ll be a problem, but I do not see any other problems.
+
+Please enlighten me!
 
 
-MZ
+> As I mentioned, we need to come up with something which detects the
+> task loops generically.
+>=20
+> Cheers,
+>=20
+> Richard
+>=20
+>=20
+>=20
 
-Il 17/01/19 15:09, Burton, Ross ha scritto:
-> Look up AUTOREV in the manual, that does exactly what you want.
->
-> Ross
->
-> On Thu, 17 Jan 2019 at 14:08, Mauro Ziliani <mauro@faresoftware.it> wrote:
->> Hi all.
->>
->> How can I force the pull from git repository of my app every time I do
->>
->> bitbake app
->>
->>
->> Best regards,
->>
->>    MZ
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
 
