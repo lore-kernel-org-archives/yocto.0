@@ -1,6 +1,6 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mauro@faresoftware.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B507E00D15; Fri, 18 Jan 2019 05:14:07 -0800 (PST)
+	id 566FEE00D0E; Fri, 18 Jan 2019 06:00:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,52 +10,37 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.52 listed in list.dnswl.org]
+	*      [62.149.156.86 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
-	[209.85.221.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8601E006F1
-	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 05:14:05 -0800 (PST)
-Received: by mail-wr1-f52.google.com with SMTP id r10so14969079wrs.10
-	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 05:14:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:subject:date:message-id;
-	bh=9CAcyyUx6oDfgc/Dk0oJZPdTXWiZ/5pqEWw5NlmSjAc=;
-	b=xDcIOZLcGZRKc+I2yCrWGHGWbabqoZzrnpMDQR2pUfscHY+0UKy+iPXehE85ONwLry
-	gxI8uuCJAFElpPtumLaiR6ntSe3mHH8Q+7iHFoVxAPWzR6BEOz4ug2XX5MQ0ysKPyMw9
-	MkSbeKR4D2TVfOuv3pQzFK051rwXzN0q8vWx/3ZbLPRph1PrPMILiFTlKBX+vfflbr26
-	zSjo/Z8aPXtYvU1fvRDwBMP9elYx6+JA9drj+Qy77O7aOKXWO5zwH4Bi5k6eCq47g0xi
-	lQIRo4gy0AkYRsqCdLcScjaw/tylycVPX6Rl5J/K3rDpQNvlRWc7xsrCsDM3X+WfKjAj
-	VisA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=9CAcyyUx6oDfgc/Dk0oJZPdTXWiZ/5pqEWw5NlmSjAc=;
-	b=aYQ3Qk0zNPnqFBXLusovp5TiWb2nqjDIiCA+3sbN0ZngV1SFknEEfJz04ak08BDyCB
-	pYFXizz/LhH7eWGw206axvghL7/0Lh7A1GyVwhMZaWPes15cj99yv4u4rvbyOkF7AkwS
-	NgWEaGx00fTWbU6uKLPDAgtV9dj/1xK9V1Hsme74uEW5TCjekog1QPVdlESTR2Z90DrM
-	kssRIZxNpOw19iDlGgQDvMoAt2CnszlImgv+p3r7XxBDdr4G0cmzm99cEAObaPOqnwxK
-	B9CFXsuaFTmx/0cYx/XzkaadIo2ToKUUdjAA5ZRqjPBoD6sZmDBipi5AElm1OR8lwMmS
-	sqQA==
-X-Gm-Message-State: AJcUukdZfC2smjBX06z7IWHNc+a5Bertn3VENtedtkL9l7N45jVwsF7G
-	1OPZi8/9JD8nEfR6S2cHVAk9IFq2tlE=
-X-Google-Smtp-Source: ALg8bN7XIgy4vid+G+C/xT2MKkXZ5XPeA8ZtSnf1abH9jBwdq54Qi+1/1vcH7Hf1h5P3x5LXaBSDNQ==
-X-Received: by 2002:adf:91a3:: with SMTP id 32mr14974389wri.99.1547817244098; 
-	Fri, 18 Jan 2019 05:14:04 -0800 (PST)
-Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa.
-	[81.2.106.35]) by smtp.gmail.com with ESMTPSA id
-	c1sm34743487wmb.14.2019.01.18.05.14.03 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 18 Jan 2019 05:14:03 -0800 (PST)
-From: Ross Burton <ross.burton@intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 18 Jan 2019 13:14:00 +0000
-Message-Id: <20190118131400.23302-1-ross.burton@intel.com>
-X-Mailer: git-send-email 2.11.0
-Subject: [meta-security][PATCH v2] apparmor: fix Python install paths when target libdir != native libdir
+Received: from smtpcmd0986.aruba.it (smtpcmd0986.aruba.it [62.149.156.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A767E00CF1
+	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 06:00:35 -0800 (PST)
+Received: from [10.0.3.114] ([78.6.3.122])
+	by smtpcmd09.ad.aruba.it with bizsmtp
+	id Rq0Y1z00n2dwwGE01q0ZB6; Fri, 18 Jan 2019 15:00:34 +0100
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <0dd6be51-9a1c-c514-6cfb-2f8bc3464b2a@faresoftware.it>
+	<CAJTo0LZKCdj6SSQ3iu9CCQjtSC6WakQmfxhwiKNk0occ7k6Ofg@mail.gmail.com>
+From: Mauro Ziliani <mauro@faresoftware.it>
+Message-ID: <e42136b2-26e6-3e19-e139-7da98c4f1856@faresoftware.it>
+Date: Fri, 18 Jan 2019 15:00:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.4.0
+MIME-Version: 1.0
+In-Reply-To: <CAJTo0LZKCdj6SSQ3iu9CCQjtSC6WakQmfxhwiKNk0occ7k6Ofg@mail.gmail.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1547820034; bh=79szs2X4yIFkXbOg5dOtBw+G66iWgHQ1df4UXIeDfMI=;
+	h=Subject:To:From:Date:MIME-Version:Content-Type;
+	b=iYRXIiy0Lv4zuEnv8XR445ncKpssfoAfMKMEj3bTbAtYKTnqojsLGFClgn7nuqMgm
+	TSyoqvM8+onBrr6NFK6I8K8EZEVSHUe3rO5xjaxyR1dlE/fa/ejO7rtC21+ZZsZIrd
+	kr9F722NUuYBPQNEb7DHxzRTI+r6IRM+5d8yQJ9NKiUXfLNg9NTZjsEkbejVX47dcw
+	wVpv2WBRE76T6UJF4IRC4XxDCv1UvR7VBoodzzJ1eG1/Ra9wuIl+wzX+LnV5nZsNLC
+	FygOcUX5Z7bdAJ7xWch/cw1lXnoGYfCiWmpWCY3rj4QViKr5Cz6C6CoWWf3JfWRuhM
+	mjKpdualgKwjg==
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Fetch from git every bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,90 +52,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jan 2019 13:14:07 -0000
+X-List-Received-Date: Fri, 18 Jan 2019 14:00:37 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: it
 
-setuptools will install into what python3-native thinks $libdir is, which may
-not match the target $libdir.  Pass in libdir as appropriate to force the
-correct paths.
+I try AUTOREV in the recipe app_1.0.bb
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- recipes-security/AppArmor/apparmor_2.12.bb      |  5 ++--
- recipes-security/AppArmor/files/py-libdir.patch | 40 +++++++++++++++++++++++++
- 2 files changed, 43 insertions(+), 2 deletions(-)
- create mode 100644 recipes-security/AppArmor/files/py-libdir.patch
 
-diff --git a/recipes-security/AppArmor/apparmor_2.12.bb b/recipes-security/AppArmor/apparmor_2.12.bb
-index efa93e6..073b62d 100644
---- a/recipes-security/AppArmor/apparmor_2.12.bb
-+++ b/recipes-security/AppArmor/apparmor_2.12.bb
-@@ -18,6 +18,7 @@ SRC_URI = " \
- 	file://disable_perl_h_check.patch \
- 	file://crosscompile_perl_bindings.patch \
- 	file://tool-paths.patch \
-+	file://py-libdir.patch \
- 	file://apparmor.rc \
- 	file://functions \
- 	file://apparmor \
-@@ -79,9 +80,9 @@ do_install () {
- 	install -d ${D}/${INIT_D_DIR}
- 	install -d ${D}/lib/apparmor
- 		
--	oe_runmake -C ${B}/libraries/libapparmor DESTDIR="${D}" install
-+	oe_runmake -C ${B}/libraries/libapparmor DESTDIR="${D}" PYLIBDIR=${PYTHON_SITEPACKAGES_DIR} install
- 	oe_runmake -C ${B}/binutils DESTDIR="${D}" install
--	oe_runmake -C ${B}/utils DESTDIR="${D}" install
-+	oe_runmake -C ${B}/utils DESTDIR="${D}" PYLIBDIR=${PYTHON_SITEPACKAGES_DIR} install
- 	oe_runmake -C ${B}/parser DESTDIR="${D}" install
- 	oe_runmake -C ${B}/profiles DESTDIR="${D}" install
- 
-diff --git a/recipes-security/AppArmor/files/py-libdir.patch b/recipes-security/AppArmor/files/py-libdir.patch
-new file mode 100644
-index 0000000..2b88e54
---- /dev/null
-+++ b/recipes-security/AppArmor/files/py-libdir.patch
-@@ -0,0 +1,40 @@
-+Let the user override the Python libdir so it goes to the right place, as
-+python3-native's idea of $libdir may not match the target's $libdir.
-+
-+Upstream-Status: Pending
-+Signed-off-by: Ross Burton <ross.burton@intel.com>
-+
-+diff --git a/libraries/libapparmor/swig/python/Makefile.am b/libraries/libapparmor/swig/python/Makefile.am
-+index 421acba9..d2b842a6 100644
-+--- a/libraries/libapparmor/swig/python/Makefile.am
-++++ b/libraries/libapparmor/swig/python/Makefile.am
-+@@ -14,7 +14,7 @@ all-local: libapparmor_wrap.c setup.py
-+ 	$(PYTHON) setup.py build
-+ 
-+ install-exec-local:
-+-	$(PYTHON) setup.py install --root="/$(DESTDIR)" --prefix="$(prefix)"
-++	$(PYTHON) setup.py install --root="/$(DESTDIR)" --prefix="$(prefix)" --install-lib="$(PYLIBDIR)"
-+ 
-+ clean-local:
-+ 	if test -x "$(PYTHON)"; then $(PYTHON) setup.py clean; fi
-+diff --git a/utils/Makefile b/utils/Makefile
-+index 68f8c376..025f9da5 100644
-+--- a/utils/Makefile
-++++ b/utils/Makefile
-+@@ -42,6 +42,7 @@ DESTDIR=/
-+ BINDIR=${DESTDIR}/usr/sbin
-+ CONFDIR=${DESTDIR}/etc/apparmor
-+ PYPREFIX=/usr
-++PYLIBDIR=$PYPREFIX/lib
-+ 
-+ PYFLAKES=pyflakes
-+ 
-+@@ -60,7 +61,7 @@ install: ${MANPAGES} ${HTMLMANPAGES}
-+ 	$(MAKE) install_manpages DESTDIR=${DESTDIR}
-+ 	$(MAKE) -C vim install DESTDIR=${DESTDIR}
-+ 	ln -sf aa-status.8 ${DESTDIR}/${MANDIR}/man8/apparmor_status.8
-+-	${PYTHON} ${PYSETUP} install --prefix=${PYPREFIX} --root=${DESTDIR} --version=${VERSION}
-++	${PYTHON} ${PYSETUP} install --prefix=${PYPREFIX} --install-lib=${PYLIBDIR} --root=${DESTDIR} --version=${VERSION}
-+ 
-+ .PHONY: clean
-+ ifndef VERBOSE
--- 
-2.11.0
+SRCREV := "${AUTOREV}"
 
+But it doesn't work.
+
+Which other variables could inhibit AUTOREV?
+
+
+MZ
+
+Il 17/01/19 15:09, Burton, Ross ha scritto:
+> Look up AUTOREV in the manual, that does exactly what you want.
+>
+> Ross
+>
+> On Thu, 17 Jan 2019 at 14:08, Mauro Ziliani <mauro@faresoftware.it> wrote:
+>> Hi all.
+>>
+>> How can I force the pull from git repository of my app every time I do
+>>
+>> bitbake app
+>>
+>>
+>> Best regards,
+>>
+>>    MZ
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
