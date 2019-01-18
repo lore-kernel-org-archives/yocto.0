@@ -1,6 +1,6 @@
 Return-Path: <srinivasan.rns@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1A5E8E00C6D; Wed, 16 Jan 2019 21:19:51 -0800 (PST)
+	id 449C0E00CEA; Fri, 18 Jan 2019 00:45:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,60 +13,56 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (srinivasan.rns[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.181 listed in list.dnswl.org]
+	*      [209.85.167.194 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com
-	[209.85.167.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFDE1E00C46;
-	Wed, 16 Jan 2019 21:19:49 -0800 (PST)
-Received: by mail-oi1-f181.google.com with SMTP id w13so5187865oiw.9;
-	Wed, 16 Jan 2019 21:19:49 -0800 (PST)
+Received: from mail-oi1-f194.google.com (mail-oi1-f194.google.com
+	[209.85.167.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63CF8E00C4E;
+	Fri, 18 Jan 2019 00:45:48 -0800 (PST)
+Received: by mail-oi1-f194.google.com with SMTP id x23so8416371oix.3;
+	Fri, 18 Jan 2019 00:45:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=qDM9Xal/lVg5S6EnP8CVCBG5l/x6dm8tujFCLcWYCcM=;
-	b=TwYh8akSsB3CGbQBsSq+XY4XSJN8ntyiqjwKlJtO0Xcd2pAUip8wgFnx5PTU98gFyJ
-	7f19ATvoLK9GD5wwxNG/se5Sj323vbAPgYDrDAlrok6yVlLBFC7OY44xjchdhBAt9Ptv
-	R1ciY066gHLy8P1OwqLeaZ7aYAajE+GEdUcDNir6qrzOsf1uRsnZyCqBEjkngjfNHFkM
-	Vca6GqcwOlUJYBi59o7jhjPPIoWHaZ39m4z62RXKxtaq664gKmSf5sEmKgZFxhe6Lznw
-	q4ly6TwRz8EXNLzp/bnehV8xJyq0A7FQKFpl2dCrpCfpS9IvTRLVvelV1jh/fPRjnOFw
-	PQew==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=mBhvkOydqgyF101A1MUYWIPEihrh5wCM5VF/HIIrbGQ=;
+	b=gdNlMZr509fMqJkn+OgNp/qw+QDZrUGAzTb1JvnKmtWZZoQ1a9CIf2P1g+o7l+2RgE
+	+i1lB2pu6xCof+xqvem3pWETBW+6PGEuzjqWxt36+weZiyGdQJNkuhe3NeuycQVhIt+c
+	awrubRfS0nCdxkrqbKhMaMQoy30SryaeIdJ6zJSQuypuy5ipSyDy0AlIeGtU2vTBt5nu
+	LddLeSat6xG8pQcYHXSUU1BnPVQ7NzTQ6nI60hjdXjOb2gbu6n1mGXeNNylR1qtzHMWz
+	7VoJekBwH00r1K7ZLqMVoOJyCpJ4v5ILOfH/i9l1Ysb9UzNolU8/85SV4Z3Ia70o0HzQ
+	VZ9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=qDM9Xal/lVg5S6EnP8CVCBG5l/x6dm8tujFCLcWYCcM=;
-	b=B2NdQCVNg1dwYnsy4HDa5SYr0Eib8ccsnjzIDwiVonw3vns0JTIGGADLAPOQuIwNpT
-	HYBfrbs+f//8RXbNoVgeL7LooJFP4EpvGpNPVewUE8CQPhTIc8LyBBwbgC2HgnrwXsfG
-	Yb/ZzY3vPTszEB+BuAv0B+FogwTv28NGdrkwKcA0/+NU/sNNQKGyWTiIigSK6hVcf+gH
-	YQDMDysVAb8oHesCyrUa9oKKLEdEgQxGWLxsZ6hifQhSzNNZCzlv2sgjAfGxTubtdzU4
-	BCrzV3XeWepZlW/PGY0xl9ufHluqy+PRW3d5OfS4rpU84eKhbSri04lk52y2TZL5UzE2
-	Oghw==
-X-Gm-Message-State: AJcUukfI4oWZWJjNQYSGmlQZRu3+fHQAxDOHbVBIGT0Ba5rMKEVPVOcm
-	oS1X6MR1zqoqqSdNrvRALY5EM1qlG+H3Y2jedFs=
-X-Google-Smtp-Source: ALg8bN4zmtVoUyuZpxFYHwC9KNhYaulKss03NHfBiQRg49+QbNw/1/hYpUTZPWTtMa4MuyUP0IOsk1fBFfE9kP1I9RE=
-X-Received: by 2002:aca:a11:: with SMTP id 17mr4288188oik.15.1547702388786;
-	Wed, 16 Jan 2019 21:19:48 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=mBhvkOydqgyF101A1MUYWIPEihrh5wCM5VF/HIIrbGQ=;
+	b=JpubGD3jha9tfedB2Pbf3L7rg0UDVb2eCRt2KZYy1cEgvoovD823nedNBmowUexwxT
+	i8h1UO60YMp2+vLe2CeruFQdyd0B5Lfao2Hoo2I3lsi2oV4rGed6eCVysMvndUKueK3p
+	72t8wnP2SoFhgAulZjGf5aRuTetMD5GVbPekN44WeWb7vpGuQHuPfEB5P+bwRsSUai2U
+	WvIEjmQzaNibHhL9jgyZr4bJx9RwFwS+tabyteObeTxjFSqhD1JuqQoT9WbqJ2z4cfzT
+	uFgN3u/kfka7NuPI6i9qm+2zKHojzDj395Ar29IX3X/4KB8fsTABdMfX4Bvn6yUJBrhB
+	yzlQ==
+X-Gm-Message-State: AJcUukfH1UonB9roh3BrBXCasdk8IxIp5Ki7s0Cni66Z6SKQYdEmfY/8
+	lOAOki78rn5jR12r86e4LMyMqW9CTydu0mp4PcEwketex8o=
+X-Google-Smtp-Source: ALg8bN6r86z4+voiv1iDfA/KNW7gC4zIRnqG1nodeHxTOB/vXm3fSg7Fz8r1y0tAhtWkcks1yAivUx6mysVHxtf6IA4=
+X-Received: by 2002:aca:b2c4:: with SMTP id b187mr140223oif.245.1547801147127; 
+	Fri, 18 Jan 2019 00:45:47 -0800 (PST)
 MIME-Version: 1.0
-References: <CAFsTbWeONMCr4grfkWvG5A2EqP11ZMOwvnwOTmWF-fXCsc4r4w@mail.gmail.com>
-	<CAJTo0LYW=Sj_2H+R9hUHrq3q1qaAj5FRAKAKsCAV+h-k0Hj95A@mail.gmail.com>
-In-Reply-To: <CAJTo0LYW=Sj_2H+R9hUHrq3q1qaAj5FRAKAKsCAV+h-k0Hj95A@mail.gmail.com>
 From: srinivasan <srinivasan.rns@gmail.com>
-Date: Thu, 17 Jan 2019 06:19:36 +0100
-Message-ID: <CAFsTbWfBRCZFP+pDsoB=jNPaFTDoQRLjGJc2gSEeh982G1rGZw@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Mailman-Approved-At: Mon, 21 Jan 2019 08:09:28 -0800
-Cc: yocto-bsp@yoctoproject.org,
+Date: Fri, 18 Jan 2019 09:45:35 +0100
+Message-ID: <CAFsTbWf2+Kxt79GM0SUGaiyn6kpV4-bg9AqwiHMQ-DqnqRWcEQ@mail.gmail.com>
+To: yocto-bsp@yoctoproject.org, yocto-builds@yoctoproject.org, 
+	meta-intel@yoctoproject.org, 
 	"Development list for the linux-yocto*.git Linux kernel repositories"
-	<linux-yocto@yoctoproject.org>, yocto-infrastructure@yoctoproject.org,
-	yocto-builds@yoctoproject.org, Yocto-mailing-list <yocto@yoctoproject.org>,
-	meta-freescale-request@yoctoproject.org, meta-intel@yoctoproject.org,
+	<linux-yocto@yoctoproject.org>, Poky Project <poky@yoctoproject.org>, 
+	yocto-infrastructure@yoctoproject.org, 
+	Yocto-mailing-list <yocto@yoctoproject.org>, 
 	meta-freescale Mailing List <meta-freescale@yoctoproject.org>,
-	Poky Project <poky@yoctoproject.org>
-Subject: Re: [meta-intel] ERROR: - package networkmanager-1.10.6-r0.aarch64 conflicts with connman provided by connman-1.35-r0.aarch64
+	meta-freescale-request@yoctoproject.org
+X-Mailman-Approved-At: Mon, 21 Jan 2019 08:09:28 -0800
+Subject: ERROR: Nothing PROVIDES 'virtual/libgles2'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,94 +74,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jan 2019 05:19:51 -0000
+X-List-Received-Date: Fri, 18 Jan 2019 08:45:49 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Thanks a ton Ross, your inputs really worked :)
+Dear Yocto Experts,
 
-On Tue, Jan 15, 2019 at 11:34 AM Burton, Ross <ross.burton@intel.com> wrote:
->
-> You'll have to not install either connman or network manager.
->
-> Ross
->
-> On Tue, 15 Jan 2019 at 05:18, srinivasan <srinivasan.rns@gmail.com> wrote:
-> >
-> > Dear Yocto experts,
-> >
-> > I am seeing the below error when I am trying to integrate the
-> > "fsl-image-validation-imx.bb" into my custom yocto build and trigger
-> > the build using "bitbake custom-image-debug-imx8.bb", I somewhat feel
-> > networkmanager is conflicting with conman, could you please let me
-> > know how this issue can be resolved?
-> >
-> > I have attached the recipe files for your information
-> >
-> > Error:
-> >
-> > ERROR: custom-image-debug-imx8-1.0-r0 do_rootfs: Could not invoke dnf.
-> > Command '/home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/recipe-sysroot-native/usr/bin/dnf
-> > -y -c /home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/rootfs/etc/dnf/dnf.conf
-> > --setopt=reposdir=/home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/rootfs/etc/yum.repos.d
-> > --repofrompath=oe-repo,/home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/oe-rootfs-repo
-> > --installroot=/home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/rootfs
-> > --setopt=logdir=/home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/temp
-> > --nogpgcheck install alsa-server alsa-tools alsa-utils apt apt-repo
-> > bash basicquick bc binutils binutils-symlinks bmap-tools-git
-> > build-config bzip2 cmake coreutils crashme crda dfu-util diffutils dnf
-> > dnsmasq ethtool file libfreetype6 gdb gdbserver gettext git
-> > glibc-gconv-utf-32 gnupg libharfbuzz0 hidapi hostapd htop iperf3 iw
-> > kernel-dev kernel-devsrc kernel-modules ldd libasound liberation-fonts
-> > libfftw libfftwf libjack libjpeg62 libpng16-16 libtool libxerces-c
-> > libsensors4 lmsensors-sensors lsof lttng-modules make memtester
-> > merge-files nano networkmanager ni-isolcpus ninja openssl
-> > packagegroup-base-extended packagegroup-core-boot
-> > packagegroup-core-full-cmdline packagegroup-core-sdk
-> > packagegroup-core-ssh-dropbear packagegroup-core-standalone-sdk-target
-> > packagegroup-core-tools-debug packagegroup-core-tools-profile
-> > packagegroup-core-tools-testapps packagegroup-fsl-optee-imx
-> > packagegroup-fsl-tools-audio packagegroup-fsl-tools-gpu-external
-> > packagegroup-tools-bluetooth pbzip2 pciutils perf pkgconfig procps
-> > psplash python python-dbus python-modules python-pandas python-pip
-> > python3 python3-dbus python3-misc python3-modules python3-pip
-> > python3-psutil python3-robotframework python3-six qt3d qt3d-dev
-> > qt3d-mkspecs qtbase qtbase-dev qtbase-mkspecs qtbase-plugins
-> > qtbase-tools libqt5charts5 libqt5charts-dev libqt5charts-mkspecs
-> > qtconnectivity-dev qtconnectivity-mkspecs qtdeclarative
-> > qtdeclarative-dev qtdeclarative-mkspecs qtgraphicaleffects
-> > qtgraphicaleffects-dev qtquickcontrols qtquickcontrols-dev
-> > qtquickcontrols-qmlplugins qtquickcontrols2 qtquickcontrols2-dev
-> > qtquickcontrols2-mkspecs libqt5svg5 libqt5svg-dev libqt5svg-mkspecs
-> > rpm rt-tests rtirq run-postinsts screen ssh-keys-server strace stress
-> > sysstat tar tmux trace-cmd ttf-bitstream-vera udev udev-automount
-> > unzip usbreset usbutils util-linux valgrind wget wireless-tools
-> > wpa-supplicant zip libz1 locale-base-en-us' returned 1:
-> > Added oe-repo repo from
-> > /home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/oe-rootfs-repo
-> > Last metadata expiration check: 0:00:00 ago on Mon 14 Jan 2019 04:06:18 PM UTC.
-> > Error:
-> >  Problem: package connman-tools-1.35-r0.aarch64 requires connman, but
-> > none of the providers can be installed
-> >   - package packagegroup-core-tools-testapps-1.0-r2.imx8mmevk requires
-> > connman-tools, but none of the providers can be installed
-> >   - package networkmanager-1.10.6-r0.aarch64 conflicts with connman
-> > provided by connman-1.35-r0.aarch64
-> >   - conflicting requests
-> > (try to add '--allowerasing' to command line to replace conflicting
-> > packages or '--skip-broken' to skip uninstallable packages)
-> >
-> > ERROR: custom-image-debug-imx8-1.0-r0 do_rootfs: Function failed: do_rootfs
-> > ERROR: Logfile of failure stored in:
-> > /home/user/test/os/build_fsl-image-validation-imx/tmp/work/imx8mmevk-poky-linux/custom-image-debug-imx8/1.0-r0/temp/log.do_rootfs.56617
-> > ERROR: Task (/home/user/test/os/sources/meta-custom-imx8/recipes-core/images/custom-image-debug-imx8.bb:do_rootfs)
-> > failed with exit code '1'
-> > NOTE: Tasks Summary: Attempted 8016 tasks of which 7974 didn't need to
-> > be rerun and 1 failed.
-> >
-> > Many Thanks in advance,
-> > --
-> > _______________________________________________
-> > meta-intel mailing list
-> > meta-intel@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/meta-intel
+I am seeing the below error when i am trying to integrate freescale
+layers into my custom os?
+
+srinishanmugam@ni-bln-07594:~/customBuild_test_rpi/customos/build_customosdistro_imx8$
+bitbake -f -c clean custom-image-debug-imx8
+WARNING: Host distribution "ubuntu-18.04" has not been validated with
+this version of the build system; you may possibly experience
+unexpected failures. It is recommended that you use a tested
+distribution.
+WARNING: /home/srinishanmugam/customBuild_test_rpi/customos/sources/poky/meta/recipes-graphics/drm/libdrm_2.4.91.bb:
+Unable to get checksum for libdrm SRC_URI entry drm-update-arm.patch:
+file could not be found
+      | ETA:  0:00:05
+Parsing recipes: 100%
+|#############################################################################################################################################################################################################################################|
+Time: 0:00:09
+Parsing of 2275 .bb files complete (0 cached, 2275 parsed). 3177
+targets, 382 skipped, 1 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing PROVIDES 'virtual/libgles2' (but
+/home/srinishanmugam/customBuild_test_rpi/customos/sources/meta-qt5/recipes-qt/qt5/qtbase_git.bb,
+/home/srinishanmugam/customBuild_test_rpi/customos/sources/poky/meta/recipes-graphics/cairo/cairo_1.14.12.bb
+DEPENDS on or otherwise requires it)
+imx-gpu-viv PROVIDES virtual/libgles2 but was skipped: incompatible
+with machine imx8mmevk (not in COMPATIBLE_MACHINE)
+NOTE: Runtime target 'qtbase' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['qtbase', 'virtual/libgles2']
+ERROR: Required build target 'custom-image-debug-imx8' has no
+buildable providers.
+Missing or unbuildable dependency chain was:
+['custom-image-debug-imx8', 'qtbase', 'virtual/libgles2']
+
+Summary: There were 2 WARNING messages shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+
+Could you anyone please provide me some inputs for resolving the above issue?
+
+Many Thanks in advance
 
