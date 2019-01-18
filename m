@@ -1,52 +1,69 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D51E4E00CDF; Fri, 18 Jan 2019 07:35:01 -0800 (PST)
+	id C8E1CE00CDF; Fri, 18 Jan 2019 07:56:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, MIME_QP_LONG_LINE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.169 listed in list.dnswl.org]
+	*      [209.85.221.68 listed in list.dnswl.org]
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f169.google.com (mail-it1-f169.google.com
-	[209.85.166.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C661AE00C8B
-	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 07:35:00 -0800 (PST)
-Received: by mail-it1-f169.google.com with SMTP id c9so6310341itj.1
-	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 07:35:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=aKwgetmLZlMIpu4+Hr6pRGdHJnuOlUM+cCYN2Mygi9w=;
-	b=Cnx2kdiLOlJwjYZRp9DbDVgn6ywcvZgr5zzo+S+aaxW2YnTSy7tly6V9jJCZnMDMg2
-	o0LCtis3uRX2rwi4DXJoiu1Tt/BXiPZMD6k8jl8A29dbk+87JUprtWjil79UbS1ntZfQ
-	0dd06qt/PnQgR4KtvmszOF3qH+JA7JePCKRdouER+EKucwy8n5S+Cc/XyUtAen/0VPJX
-	VrAU00eO77Br5+RtR9z84V5CSziBJt49yu7IR36g8TPe6Zwvj/3nqR4EfGR+qgD+zSQQ
-	SiYluGMSfY7ImFYBoT/dVH3hX2sZd75arYmlgG9J7A15cqp1eLigtjwdGOqOXvNNob1/
-	Zq+g==
+Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com
+	[209.85.221.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65F60E008CE
+	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 07:56:44 -0800 (PST)
+Received: by mail-wr1-f68.google.com with SMTP id s12so15666304wrt.4
+	for <yocto@yoctoproject.org>; Fri, 18 Jan 2019 07:56:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=zDOlxbCMR7T9F6OQx7ooPsLhvZ3x/KSQsNsrz8AlDf0=;
+	b=pcBmX4AMpfcTHgooIev4qsipu9iYcqdrZHBLFozASAnSAqPPg++EvWEGcUYhHSl2Q7
+	pkkeG2LczIaGWI5vCk3MGLFDlmtu64yJR/0InpRxDllU+6toKhCq+vwrsHlNxobfJi8p
+	WHiVDHPazh2iDEgw6hSJwnASJ1ThxkfqDNMQIKi8TouVQato2h4aI/P/xBp8m92jvTD1
+	Hk/V4rQUHjf8F5N2RmYqhtZWSvoE/inZwa6dYi+5C5BI1TbRul4nGUw8SA4Kp3hH+ToL
+	Vo3mMvyqxU+M2MjPsyRPta3o0jtsGeMoxcuzckBNgas0sSKMRL/KjjFGZG4CrDTOOor4
+	t2HA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=aKwgetmLZlMIpu4+Hr6pRGdHJnuOlUM+cCYN2Mygi9w=;
-	b=brV//nd0vQYwzwCcm2j1M27fRIM7DRZS+SRR5gsmEozn5xJJ7AbjxY7vMlM9wkhXRh
-	6/kju+pVoZtr85RHZo9aOaXiMRp7JLKLmpEL6LU+wYhp0gtULRNZJfOfKjdybhHWP8il
-	lKZkTHEl6GLudHxfeFZZFo+EwO878GiUOPsX+E7q+1MTdxOOIApIlf78Q66WpLAo57qa
-	lR4F17S+SEj8qEwyZ3U1B3mmX8f9/fK/G3PpoL3OTGbEZraV7sm4wWw7/C6qq15y0Wc3
-	m0chq/uZhm9lIBIZau6nbF5y/wGmoSbeI674Sof89Mh9D00TxD6wtABtEI8cySxERf2k
-	AFDw==
-X-Gm-Message-State: AJcUukeK7Og8mNKqbnZseJ5GhCpXtn1+/fbF8Otr3vDSUC6tJxvenN8P
-	yRiVYnNRQDbH5gFPeWc7eEmcEF5F8dzRlN6cVB+WeawE
-X-Google-Smtp-Source: ALg8bN5Bu3Pgt4OU2x5VEYVRV/6Cj/wK1QJA/rxmhqwRfqqS68GPD6y4E3ROqHWvFtdOiq/ONlHv+cSlCb1Wp4TUquI=
-X-Received: by 2002:a02:9c53:: with SMTP id h19mr11265501jal.31.1547825700272; 
-	Fri, 18 Jan 2019 07:35:00 -0800 (PST)
-MIME-Version: 1.0
+	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=zDOlxbCMR7T9F6OQx7ooPsLhvZ3x/KSQsNsrz8AlDf0=;
+	b=Bk+Ii+aGzfTXjiZDcyU//s8MfN76HeQjkbNPV2N8HARNxm+6zgqC76brZ23Uz6XuDS
+	AzL3lWNrfktWe3kZYHa6JbH9T6CnhFTnXdLaHHvfKC/eV01m/X5wBKCXl7/rfQZPnXsE
+	nno+KvwKz/RDULUebrzijkKWQMHgZlckE7gc06dZIPqP779r5u4I3MICBxg+PBJ4BgNn
+	6p63e0Xq6JCojxWCDuYhHLzkXteo5DCdYDrhfJoUj2viwtVVcZakSDJIC1h/DJX3mXFR
+	NUOclLjlgqykx2ZnGIgAA7aeFvYiJ+URumvpBa+2PqqTaYrG63dZs5v8prE09yjATG6n
+	W86Q==
+X-Gm-Message-State: AJcUukdLAH2yA9TGga/UfvHov9bL6/1VhOaV7C+E6lEnBefMRFdJc9z5
+	cSCJCAaey9Hlo6bcmXIkNWU=
+X-Google-Smtp-Source: ALg8bN68xpDkXjFUCwrQen7IQsf2R2FKirLi0gArCye1A9FNbWJIzgcreS7DxPqpsxajzPEKh39Zow==
+X-Received: by 2002:a05:6000:1251:: with SMTP id
+	j17mr16687345wrx.315.1547827003397; 
+	Fri, 18 Jan 2019 07:56:43 -0800 (PST)
+Received: from ?IPv6:2a01:598:b105:1454:f95d:25bb:85b0:5959?
+	([2a01:598:b105:1454:f95d:25bb:85b0:5959])
+	by smtp.gmail.com with ESMTPSA id 3sm53242702wmw.46.2019.01.18.07.56.41
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 18 Jan 2019 07:56:42 -0800 (PST)
+Mime-Version: 1.0 (1.0)
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+X-Mailer: iPhone Mail (16C101)
+In-Reply-To: <CAJTo0LYQg9BOTEMyE-PyUQrayoZLcDgbijiFZpY5_h6jRnAbHQ@mail.gmail.com>
+Date: Fri, 18 Jan 2019 16:56:41 +0100
+Message-Id: <0295F92F-54D9-411E-A0C6-3DD0176C6041@gmail.com>
 References: <d278856c-cba2-e63f-d50a-8f4b40365c88@emagii.com>
 	<a778dc9409e589ee19f122db4069857513e3fe52.camel@linuxfoundation.org>
 	<1DB4D7BE-E62D-4F13-8F8A-A5103ED5F767@emagii.com>
@@ -56,11 +73,8 @@ References: <d278856c-cba2-e63f-d50a-8f4b40365c88@emagii.com>
 	<A6212BF5-A78A-4659-B876-BDC464B41B38@emagii.com>
 	<6a6bfb8cc510a344b4ef40389ba33fbfe525afbd.camel@linuxfoundation.org>
 	<54452C1F-B1CB-4916-9CFA-C8FB2191C583@emagii.com>
-In-Reply-To: <54452C1F-B1CB-4916-9CFA-C8FB2191C583@emagii.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 18 Jan 2019 15:34:49 +0000
-Message-ID: <CAJTo0LYQg9BOTEMyE-PyUQrayoZLcDgbijiFZpY5_h6jRnAbHQ@mail.gmail.com>
-To: Ulf Samuelsson <yocto@emagii.com>
+	<CAJTo0LYQg9BOTEMyE-PyUQrayoZLcDgbijiFZpY5_h6jRnAbHQ@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: [PATCH] bb.build.addtask: add simple check for circular dependency
 X-BeenThere: yocto@yoctoproject.org
@@ -74,14 +88,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jan 2019 15:35:01 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 18 Jan 2019 15:56:45 -0000
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 18 Jan 2019 at 15:08, Ulf Samuelsson <yocto@emagii.com> wrote:
-> We could insert a check if the KNOWN_TASKS is valid in a verification test.
-> When building core-image-minimal, the task order within core-image-minimal is analyzed, (dependencies on all other recipes is filtered away).
-> Then you find out if there are tasks added, missing, and/or in the wrong order.
 
-What about people who add new tasks?  Do they now need to go and
-extend KNOWN_TASKS correctly too?
+
+> On 18 Jan 2019, at 16.34, Burton, Ross <ross.burton@intel.com> wrote:
+>=20
+>> On Fri, 18 Jan 2019 at 15:08, Ulf Samuelsson <yocto@emagii.com> wrote:
+>> We could insert a check if the KNOWN_TASKS is valid in a verification tes=
+t.
+>> When building core-image-minimal, the task order within core-image-minima=
+l is analyzed, (dependencies on all other recipes is filtered away).
+>> Then you find out if there are tasks added, missing, and/or in the wrong o=
+rder.
+>=20
+> What about people who add new tasks?  Do they now need to go and
+> extend KNOWN_TASKS correctly too?
+
+I might be missing something, but isn=E2=80=99t the right moment to detect l=
+oops when the task graph is fully formed? Then just run generic DFS on it, n=
+ot a difficult or heavy algorithm.
+
+Alex=
 
