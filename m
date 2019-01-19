@@ -1,6 +1,6 @@
 Return-Path: <scottellis.developer@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AD11DE00CE8; Sat, 19 Jan 2019 09:30:11 -0800 (PST)
+	id 3C376E00CCC; Sat, 19 Jan 2019 11:58:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,54 +13,54 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (scottellis.developer[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.175 listed in list.dnswl.org]
+	*      [209.85.160.194 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com
-	[209.85.160.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98D9DE00C91
-	for <yocto@yoctoproject.org>; Sat, 19 Jan 2019 09:30:10 -0800 (PST)
-Received: by mail-qt1-f175.google.com with SMTP id t13so18765729qtn.3
-	for <yocto@yoctoproject.org>; Sat, 19 Jan 2019 09:30:10 -0800 (PST)
+Received: from mail-qt1-f194.google.com (mail-qt1-f194.google.com
+	[209.85.160.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86325E00C5F
+	for <yocto@yoctoproject.org>; Sat, 19 Jan 2019 11:58:56 -0800 (PST)
+Received: by mail-qt1-f194.google.com with SMTP id n32so18941508qte.11
+	for <yocto@yoctoproject.org>; Sat, 19 Jan 2019 11:58:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:cc:subject:date:message-id;
-	bh=/mOcOT1pAIffBHyzof3CLvD/KlOrMDHG1FiAVpv+QAY=;
-	b=vQnfqxmEIQLq+fina/oryjyQ2xe3jR1J4f/Kl0icgdwVxl5d5Dg4DeIofpz4SUUl69
-	QiFSb5jeWWupbrSnEqSvauUZZgnlIk9g5owGCrpruuWOIQ7KsE/qIX+tiByroLgHgBVZ
-	05SpQz6NPTyG0H+i8thHPPtwSk4jx0QL1ETZnTZIbQW4h04HRgLd3fAF1yvQm2pyVdQN
-	0P6x9ZCKWWFJswTz3psmUSuOgDA2pftc0TmEneiasZQnjjtVOAd93+Gnxy6CVRutL9Po
-	Ux7/KhZmmlrVzPJpWieOfz1AbBZYr/EJpz/JSkdnzN/IBIWXzeIni4H7FoaGvGR3tL5u
-	J6zQ==
+	bh=CrXHk4BrsefJe36qwRGjcrnWI68r3AAiMRa6hIkda5o=;
+	b=QjFRm1ZaLK0gSsRk/nhgH6D0wWgvEZHaHdrJO6KoXibnTdi/9hp7SyUEGfFGdXzB9L
+	oR3b1CQxueGMzj750EZ9Y/5Mj0L9dzTAqyczojvumLL09qXnYZYohgl42CbjpwtxOUi4
+	Hd2v96Mz/M/q6mJwdi82Jq6rQpeumXlwxcTOsVAwERSOH3PBqineKkzUTCGU60wIzwPY
+	rb+dOYFHURrckOZtnFGrbDsfY4H0NwGNKV36iBaVyZUhLmJAcLUfmdeZg79Y0PVndS6K
+	goYVWgsH8A4iWd79ElrJgI9PVstSQUqsiC/30Q0gCrZs1xmMY/KXfgceGU3js65vMDSJ
+	YfIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=/mOcOT1pAIffBHyzof3CLvD/KlOrMDHG1FiAVpv+QAY=;
-	b=or0r8x6V1+ndQt1AZl7XRFu4ZIj+WYJdO1/tN0HZPK12Qs6pQVDl66zdnKKRFMuhDf
-	ltoG9VcMGkvlYwgKHiNGm2vfEe4uE33V798QMyVXjVFaHZtJZWnbprcIc7YlWnyW6ceU
-	Wk/KnnaRn4XDDL5xxPz9kn0aABojFKUi4GaCJvPmaMyfr8AMjjkjeE7rd76SYRz9pBu6
-	aBOk/JNDPGiDjo7um996iI8+1YmVyESRNFiexMrE3IZEU1NGhUtjWScBTcDNaYGN39D/
-	H3eY18IA2nhaFqa1oIcNPjpfU3qYMJ+QYk58sp/dTsqHMuUtejFup1fPed7Zbu8x2SBy
-	dbfw==
-X-Gm-Message-State: AJcUukfa4FycMvefAbpYZmK2Hg3WoibsUugdmXETIk3/hlp3moOyJuWt
-	x4hgU505hJ7ty8fVgetzLdEKGo+E
-X-Google-Smtp-Source: ALg8bN4/Wg1cjh0P/iHSR0LF37HTmTQACrs+RBasNwAHqMaLy4v1T1/01JLjH2eM/QHdnplopp6Hxw==
-X-Received: by 2002:a0c:a326:: with SMTP id u35mr20232694qvu.190.1547919009868;
-	Sat, 19 Jan 2019 09:30:09 -0800 (PST)
+	bh=CrXHk4BrsefJe36qwRGjcrnWI68r3AAiMRa6hIkda5o=;
+	b=HslO3YhAca5kMnBcQlUdrfY7ytX2bSVBOotVwcbhusv7RXtKM0nSkFX95GYAjXTwA5
+	XL/1mF38Uv4n2LFi8Jb+7XBNkqW2YHxLfz7KGDP/jtaX8fybY0g0d73DqlM4EXaGJbJ6
+	xeWVSZmWCcWRY3VuZIFnVFAEZXOOJp53sr1Ryceh6ffLB+Kt7cIxcp0Tq0UYeb40kNpD
+	pTBG2y6UX0HXZgNQhjNyUdqVyh8swfA3q4uNZKUHDfAV+tqwPg80qRN6hHhN2ddt1l1h
+	ZL7zLUqxriY2sKv8wkoF7812YbsLjHvBawpZLSnR8g8eqJ+aHN5YieWdA6fcSPVLmsXn
+	MfiQ==
+X-Gm-Message-State: AJcUukdQKK4+QWIo5449cN7VX0iC+n34vCPpsIM0K5HQ6Sk9HEJchvHr
+	7cT03GqlRI5SCXPslXooIXdXvrNZ
+X-Google-Smtp-Source: ALg8bN5WHLuY/PQBAUVi3JYqoBXmIdXyEmIIIud63xGX6ZtEUQceS6BHiINMm1omuZGutFM6iWjncA==
+X-Received: by 2002:ac8:231a:: with SMTP id a26mr21546909qta.40.1547927935709; 
+	Sat, 19 Jan 2019 11:58:55 -0800 (PST)
 Received: from fractal.jumpnow (c-73-234-253-132.hsd1.me.comcast.net.
 	[73.234.253.132]) by smtp.gmail.com with ESMTPSA id
-	v32sm77783705qta.37.2019.01.19.09.30.08
+	n68sm52042711qte.66.2019.01.19.11.58.54
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 19 Jan 2019 09:30:09 -0800 (PST)
+	Sat, 19 Jan 2019 11:58:55 -0800 (PST)
 From: Scott Ellis <scottellis.developer@gmail.com>
 X-Google-Original-From: Scott Ellis <scott@jumpnowtek.com>
 To: yocto@yoctoproject.org
-Date: Sat, 19 Jan 2019 12:29:05 -0500
-Message-Id: <1547918945-28424-1-git-send-email-scott@jumpnowtek.com>
+Date: Sat, 19 Jan 2019 14:58:52 -0500
+Message-Id: <1547927932-4718-1-git-send-email-scott@jumpnowtek.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [meta-security][PATCH] scapy: Add python-cryptography to RDEPENDS
+Subject: [meta-security][PATCH] scapy: Fix shebang for python3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,23 +72,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 19 Jan 2019 17:30:11 -0000
+X-List-Received-Date: Sat, 19 Jan 2019 19:58:57 -0000
+
+Both scapy and UTscapy have python in the shebang line
+regardless of whether python3-scapy or python-scapy
+was built.
 
 Signed-off-by: Scott Ellis <scott@jumpnowtek.com>
 ---
- recipes-security/scapy/python-scapy.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-security/scapy/python-scapy.inc | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/recipes-security/scapy/python-scapy.inc b/recipes-security/scapy/python-scapy.inc
-index 95e5312..f90b93d 100644
+index f90b93d..43ef959 100644
 --- a/recipes-security/scapy/python-scapy.inc
 +++ b/recipes-security/scapy/python-scapy.inc
-@@ -10,6 +10,6 @@ SRC_URI[sha256sum] = "1baa048936207ceb1a4281a0e1e3b4317667c754872a0bb4734c5213c4
+@@ -10,6 +10,13 @@ SRC_URI[sha256sum] = "1baa048936207ceb1a4281a0e1e3b4317667c754872a0bb4734c5213c4
  
  inherit pypi
  
--RDEPENDS_${PN} = "tcpdump ${PYTHON_PN}-compression ${PYTHON_PN}-netclient  \
-+RDEPENDS_${PN} = "tcpdump ${PYTHON_PN}-compression ${PYTHON_PN}-cryptography ${PYTHON_PN}-netclient  \
++do_install_append() {
++    if [ "${PYTHON_PN}" = "python3" ]; then
++        sed -i -e 's/python/python3/' ${D}${bindir}/scapy
++        sed -i -e 's/python/python3/' ${D}${bindir}/UTscapy
++    fi
++}
++
+ RDEPENDS_${PN} = "tcpdump ${PYTHON_PN}-compression ${PYTHON_PN}-cryptography ${PYTHON_PN}-netclient  \
                    ${PYTHON_PN}-netserver ${PYTHON_PN}-pydoc ${PYTHON_PN}-pkgutil ${PYTHON_PN}-shell \
                    ${PYTHON_PN}-threading ${PYTHON_PN}-numbers ${PYTHON_PN}-pycrypto"
 -- 
