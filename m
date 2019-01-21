@@ -1,56 +1,60 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <anibal.limon@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1133BE009A0; Mon, 21 Jan 2019 12:10:13 -0800 (PST)
+	id 1907DE00CE4; Mon, 21 Jan 2019 12:10:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.49 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADA31E00870
-	for <yocto@yoctoproject.org>; Mon, 21 Jan 2019 12:10:10 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-	by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	21 Jan 2019 12:10:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.56,504,1539673200"; 
-	d="scan'208,217";a="118337465"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
-	by fmsmga008.fm.intel.com with ESMTP; 21 Jan 2019 12:10:10 -0800
-Received: from fmsmsx114.amr.corp.intel.com (10.18.116.8) by
-	fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server
-	(TLS) id 14.3.408.0; Mon, 21 Jan 2019 12:10:10 -0800
-Received: from fmsmsx123.amr.corp.intel.com ([169.254.7.98]) by
-	FMSMSX114.amr.corp.intel.com ([169.254.6.247]) with mapi id
-	14.03.0415.000; Mon, 21 Jan 2019 12:10:08 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Unassigned Bugs - Help Needed
-Thread-Index: AdRUG3den5c8kH6JR5OKxqhg9AfC3w==
-Date: Mon, 21 Jan 2019 20:10:07 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EEA6DCD74@fmsmsx123.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNmNlNDYxYTEtMTdmZC00OGVhLTk3MDgtNTk1OTY4OGJkM2M0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTDVVbFNtUVFKNGJheHBqZGk0T0ViMUpRdm5wSkxGRmNZXC9GYWtSc1FcL1dKUlM4QkM4WGlyZWk0ZlJINmhcL1RRWCJ9
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com
+	[209.85.222.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 427FFE0090E
+	for <yocto@yoctoproject.org>; Mon, 21 Jan 2019 12:10:19 -0800 (PST)
+Received: by mail-ua1-f49.google.com with SMTP id d2so7332558ual.2
+	for <yocto@yoctoproject.org>; Mon, 21 Jan 2019 12:10:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=AqYj6lDWGSNFwfXTB+8fX64alvsHHHjmb22fN7QBUU4=;
+	b=PNJ8OJI+ksHa0IUnW2dCrHdXNWu5Vz8Rkss3bqDFI85IQShy/Dg3RgKrANfw0vc9yi
+	xb5e16IYXx2XZqJSfm3yYWpbFWruxC7U4vUojoa93cjQ0CnxuK1qJ7ykjXjOXS6keewO
+	7KUAUglYH39pO7WbNVMF8viTH6L4aT3cZLXSg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=AqYj6lDWGSNFwfXTB+8fX64alvsHHHjmb22fN7QBUU4=;
+	b=pFd44G2cEd4Q74MyH95hjsrgOyge3PWNTopZJbJfuiDFnD8jY9i19GDrB2H2xKTo0p
+	6cTFKY6Q4Ep50oJuyFHLykcvu6iCP2awrdndgeigG/pGtzifLqtfZqWwMd6k18K6NuGZ
+	iAmm5xW8EGC0PAhoA4YOsohyvQfx+x+1E4qBX9IMplhD8st5q/gC0nKF28SnKn+0Zp6E
+	0jbHCL7ShEGgXaT1j9GFFbMx9gxfwcMHvi7MpW35m9OzrujCO59l2scG2fsQpTIpXUPF
+	MpJkyoBXneXy4jUAY/lJtelagKRlnonqZBilm44VRxcJ61Vkv1fMbh4MpO+Fy/JsgAJX
+	bXuQ==
+X-Gm-Message-State: AJcUukdNQxxW5FMMjXhvZ7pFjPJzshKqIL57GnDPCEEw2N/wTwKY7Fc9
+	FhmavvO9Wgye+GY3YTyWvW9DwgCWJzTBzlI1r8TfE+v8BmA=
+X-Google-Smtp-Source: ALg8bN4Pf8TCrs4fMcD8a5s7vM3lxQvtGb8shUodgcNdkiAUJq6lg8kb/pe1cQpbhPz0OCBrVLyEd2VPSW+5ivYlNTw=
+X-Received: by 2002:ab0:3259:: with SMTP id r25mr11815308uan.108.1548101418607;
+	Mon, 21 Jan 2019 12:10:18 -0800 (PST)
 MIME-Version: 1.0
-Subject: Yocto Project Unassigned Bugs - Help Needed
+References: <1548036696-53945-1-git-send-email-li.zhou@windriver.com>
+In-Reply-To: <1548036696-53945-1-git-send-email-li.zhou@windriver.com>
+From: Anibal Limon <anibal.limon@linaro.org>
+Date: Mon, 21 Jan 2019 14:10:07 -0600
+Message-ID: <CA+_Aqit2yfuJBewfQzUHA43Ma9dRG8Aw_jNq47zNL+U-iS2oZQ@mail.gmail.com>
+To: Li Zhou <li.zhou@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [ptest-runner] ptest-runner: make DEFAULT_DIRECTORY be able to be defined when compiling
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,218 +66,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Jan 2019 20:10:13 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6DCD74fmsmsx123amrcor_"
+X-List-Received-Date: Mon, 21 Jan 2019 20:10:29 -0000
+Content-Type: multipart/alternative; boundary="00000000000021ff23057ffd73a2"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6DCD74fmsmsx123amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--00000000000021ff23057ffd73a2
+Content-Type: text/plain; charset="UTF-8"
 
-All,
+Pushed, thx!,
 
+http://git.yoctoproject.org/cgit/cgit.cgi/ptest-runner2/commit/?id=e1062f776eea60c50435c6b8ddf9714a31141aee
 
+Feel free to update the recipe.
 
-The triage team meets weekly and does its best to handle the bugs reported =
-into the Bugzilla. The number of people attending that meeting has fallen, =
-as have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage team) a=
-re therefore going to start reporting out the currently 295 unassigned bugs=
-.
+Cheers,
+Anibal
 
+On Sun, 20 Jan 2019 at 20:29, Li Zhou <li.zhou@windriver.com> wrote:
 
-
-We're hoping people may be able to spare some time now and again to help ou=
-t with these.
-
-
-
-Bugs are split into two types, "true bugs" where things don't work as they =
-should and "enhancements" which are features we'd want to add to the system=
-.
-
-
-
-There are also roughly four different "priority" classes right now, "2.7", =
-"2.8", "2.99" and "Future", the more pressing/urgent issues being in "2.7" =
-and then "2.8".
-
-
-
-Please review this link and if a bug is something you would be able to help=
- with either take ownership of the bug, or send me (Stephen.k.jolley@intel.=
-com<mailto:Stephen.k.jolley@intel.com>) an e-mail with the bug number you w=
-ould like and I will assign it to you (please make sure you have a Bugzilla=
- account).
-
-
-
-The list is at: https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bu=
-gs
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*    Cell:                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6DCD74fmsmsx123amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> In yocto project ptest data are installed to
+> PTEST_PATH ?= "${libdir}/${BPN}/ptest". Here make DEFAULT_DIRECTORY
+> be able to be defined outside of c code (e.g. passed in by CFLAGS),
+> in case libdir isn't "/usr/lib", which will cause "No ptests found"
+> error when running "ptest-runner" command. We will pass libdir to
+> DEFAULT_DIRECTORY when compiling to avoid that error.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:2 11 5 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle19
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText">All,<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">The triage team meets weekly and does its best to=
- handle the bugs reported into the Bugzilla. The number of people attending=
- that meeting has fallen, as have the number of people available to help fi=
-x bugs. One of the things we hear
- users report is they don't know how to help. We (the triage team) are ther=
-efore going to start reporting out the currently 295 unassigned bugs.<o:p><=
-/o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">We're hoping people may be able to spare some tim=
-e now and again to help out with these.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Bugs are split into two types, &quot;true bugs&qu=
-ot; where things don't work as they should and &quot;enhancements&quot; whi=
-ch are features we'd want to add to the system.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">There are also roughly four different &quot;prior=
-ity&quot; classes right now, &#8220;2.7&#8221;, &#8220;2.8&#8221;, &quot;2.=
-99&quot; and &quot;Future&quot;, the more pressing/urgent issues being in &=
-quot;2.7&quot; and then &#8220;2.8&#8221;.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Please review this link and if a bug is something=
- you would be able to help with either take ownership of the bug, or send m=
-e (<a href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com=
-</a>) an e-mail with the bug number
- you would like and I will assign it to you (please make sure you have a Bu=
-gzilla account).<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">The list is at: <a href=3D"https://wiki.yoctoproj=
-ect.org/wiki/Bug_Triage#Unassigned_Bugs">
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
-></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;,serif;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;,serif;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-,serif">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;,serif;color:teal">:</span><span =
-lang=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;,=
-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> Signed-off-by: Li Zhou <li.zhou@windriver.com>
+> ---
+>  main.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/main.c b/main.c
+> index 83600b7..e963efe 100644
+> --- a/main.c
+> +++ b/main.c
+> @@ -37,7 +37,9 @@
+>
+>  #include "utils.h"
+>
+> +#ifndef DEFAULT_DIRECTORY
+>  #define DEFAULT_DIRECTORY "/usr/lib"
+> +#endif
+>  #define DEFAULT_TIMEOUT 300
+>
+>  static inline void
+> --
+> 1.9.1
+>
+>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6DCD74fmsmsx123amrcor_--
+--00000000000021ff23057ffd73a2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Pushed, thx!,</div><div><br></div><d=
+iv><a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/ptest-runner2/commi=
+t/?id=3De1062f776eea60c50435c6b8ddf9714a31141aee">http://git.yoctoproject.o=
+rg/cgit/cgit.cgi/ptest-runner2/commit/?id=3De1062f776eea60c50435c6b8ddf9714=
+a31141aee</a><br></div><div><br></div><div>Feel free to update the recipe.<=
+/div><div><br></div>Cheers,</div><div dir=3D"ltr">Anibal</div><div dir=3D"l=
+tr"><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Sun, 20 Jan 2019 at 20:29, Li Zhou &lt;<a href=3D"mailto:li.zhou@windriver=
+.com">li.zhou@windriver.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex">In yocto project ptest data are installed to<br>
+PTEST_PATH ?=3D &quot;${libdir}/${BPN}/ptest&quot;. Here make DEFAULT_DIREC=
+TORY<br>
+be able to be defined outside of c code (e.g. passed in by CFLAGS),<br>
+in case libdir isn&#39;t &quot;/usr/lib&quot;, which will cause &quot;No pt=
+ests found&quot;<br>
+error when running &quot;ptest-runner&quot; command. We will pass libdir to=
+<br>
+DEFAULT_DIRECTORY when compiling to avoid that error.<br>
+<br>
+Signed-off-by: Li Zhou &lt;<a href=3D"mailto:li.zhou@windriver.com" target=
+=3D"_blank">li.zhou@windriver.com</a>&gt;<br>
+---<br>
+=C2=A0main.c | 2 ++<br>
+=C2=A01 file changed, 2 insertions(+)<br>
+<br>
+diff --git a/main.c b/main.c<br>
+index 83600b7..e963efe 100644<br>
+--- a/main.c<br>
++++ b/main.c<br>
+@@ -37,7 +37,9 @@<br>
+<br>
+=C2=A0#include &quot;utils.h&quot;<br>
+<br>
++#ifndef DEFAULT_DIRECTORY<br>
+=C2=A0#define DEFAULT_DIRECTORY &quot;/usr/lib&quot;<br>
++#endif<br>
+=C2=A0#define DEFAULT_TIMEOUT 300<br>
+<br>
+=C2=A0static inline void<br>
+-- <br>
+1.9.1<br>
+<br>
+</blockquote></div></div></div>
+
+--00000000000021ff23057ffd73a2--
