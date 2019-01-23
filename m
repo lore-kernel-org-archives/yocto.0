@@ -1,44 +1,40 @@
-Return-Path: <Virgil.Smith@flir.com>
+Return-Path: <Randy.MacLeod@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E1D3E00CEE; Wed, 23 Jan 2019 11:55:08 -0800 (PST)
+	id 458FAE00CE4; Wed, 23 Jan 2019 13:29:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [208.11.40.244 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Wed, 23 Jan 2019 11:55:07 PST
-Received: from west-edge.flir.com (west-edge.flir.com [208.11.40.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A149E00CDF
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 11:55:07 -0800 (PST)
-Received: from us-pdx-mail3.flir.net (10.192.150.251) by pdx-e1.zone1.flir.net
-	(10.192.210.11) with Microsoft SMTP Server (TLS) id 14.3.382.0;
-	Wed, 23 Jan 2019 12:00:02 -0800
-Received: from us-pdx-mail4.flir.net (10.192.150.252) by us-pdx-mail3.flir.net
-	(10.192.150.251) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Wed, 23 Jan 2019 11:54:04 -0800
-Received: from us-pdx-mail4.flir.net ([fe80::497e:6a6d:a0de:5631]) by
-	us-pdx-mail4.flir.net ([fe80::497e:6a6d:a0de:5631%22]) with mapi id
-	15.01.1591.008; Wed, 23 Jan 2019 11:54:03 -0800
-From: "Smith, Virgil (US)" <Virgil.Smith@flir.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project support for Numeric/Scientific Python
-Thread-Index: AdSzMX9ge/HkOh4/SfWWtJJKUP2YTg==
-Date: Wed, 23 Jan 2019 19:54:03 +0000
-Message-ID: <b4bcd0b5992346bd8512a00ff6caf425@flir.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.128.150.201]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC8C9E00C29
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 13:29:48 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x0NLSo2V019544
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 23 Jan 2019 13:29:06 -0800
+Received: from [172.25.44.4] (172.25.44.4) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.408.0;
+	Wed, 23 Jan 2019 13:28:47 -0800
+To: "Smith, Virgil (US)" <Virgil.Smith@flir.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <b4bcd0b5992346bd8512a00ff6caf425@flir.com>
+From: Randy MacLeod <randy.macleod@windriver.com>
+Message-ID: <f1a31b6f-4a7f-7a8b-d7dc-0c79c6e98529@windriver.com>
+Date: Wed, 23 Jan 2019 16:28:45 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
 MIME-Version: 1.0
-Subject: Yocto Project support for Numeric/Scientific Python
+In-Reply-To: <b4bcd0b5992346bd8512a00ff6caf425@flir.com>
+X-Originating-IP: [172.25.44.4]
+Cc: Peter Balazovic <balazovic.peter@gmail.com>
+Subject: Re: Yocto Project support for Numeric/Scientific Python
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,149 +46,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jan 2019 19:55:08 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_b4bcd0b5992346bd8512a00ff6caf425flircom_"
+X-List-Received-Date: Wed, 23 Jan 2019 21:29:49 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
---_000_b4bcd0b5992346bd8512a00ff6caf425flircom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On 1/23/19 2:54 PM, Smith, Virgil (US) wrote:
+> Is there a current or relatively recent recipe for SciPy and related 
+> libraries?
 
-Is there a current or relatively recent recipe for SciPy and related librar=
-ies?
+People have worked on it at least once before but found some problems
+with blas and atlas:
+ 
+https://lists.yoctoproject.org/pipermail/yocto/2018-March/thread.html#40348
 
-Further and more importantly, is having a maintainer for (recipes for) thos=
-e libraries a priority for the active members of the Project?
-(i.e. does interest rise above the general welcoming of participants to per=
-iodically asking "Hey has anyone put out a call to fill this slot?" if/when=
- the slot is vacant).
-
-BTW: If this is the wrong list for this query, please let me know.
-
-
-Why?  We are trying to gauge community interest before making long term pla=
-ns.
-We would like to know if this horse is at all likely to have healthcare bef=
-ore betting on it (without sacrificing other patients to obtain the proper =
-veterinary degree and keep up practice to treat it ourselves).
+I'd say that there is interest.
+I CCed Peter who started one of the threads
+and BCCed 5 other people who seemed to be interested
+since I didn't want to drag them all into the thread.
 
 
-NOTE:  I see from the RRS emails that Derek Straka is currently maintaining=
- the python-numpy recipe.  THANK YOU!
+> 
+> Further and more importantly, is having a maintainer for (recipes for) 
+> those libraries a priority for the active members of the Project?
+> (i.e. does interest rise above the general welcoming of participants to 
+> periodically asking “Hey has anyone put out a call to fill this slot?” 
+> if/when the slot is vacant).
+
+It's always nice to have a maintainer but community members sometimes
+keep recipes up to date even if they aren't direct users.
+
+> 
+> BTW: If this is the wrong list for this query, please let me know.
+
+It a reasonable list for general discussion.
+If you get to a point where patches are being submitted,
+it should probably go to another list such as:
+
+> 
+> Why?  We are trying to gauge community interest before making long term 
+> plans.
+> 
+> We would like to know if this horse is at all likely to have healthcare 
+> before betting on it (without sacrificing other patients to obtain the 
+> proper veterinary degree and keep up practice to treat it ourselves).
+heh.
+
+Thanks!
+../Randy
+
+> 
+> NOTE:  I see from the RRS emails that Derek Straka is currently 
+> maintaining the python-numpy recipe.  THANK YOU!
+> 
+> 
+> ------------------------------------------------------------------------
+> 
+> Notice to recipient: This email is meant for only the intended recipient 
+> of the transmission, and may be a communication privileged by law, 
+> subject to export control restrictions or that otherwise contains 
+> proprietary information. If you receive this email by mistake, please 
+> notify us immediately by replying to this message and then destroy it 
+> and do not review, disclose, copy or distribute it. Thank you in advance 
+> for your cooperation.
+> 
 
 
-________________________________
+-- 
+# Randy MacLeod
+# Wind River Linux
 
-Notice to recipient: This email is meant for only the intended recipient of=
- the transmission, and may be a communication privileged by law, subject to=
- export control restrictions or that otherwise contains proprietary informa=
-tion. If you receive this email by mistake, please notify us immediately by=
- replying to this message and then destroy it and do not review, disclose, =
-copy or distribute it. Thank you in advance for your cooperation.
-
---_000_b4bcd0b5992346bd8512a00ff6caf425flircom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Is there a current or relatively recent recipe for S=
-ciPy and related libraries?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Further and more importantly, is having a maintainer=
- for (recipes for) those libraries a priority for the active members of the=
- Project?<br>
-(i.e. does interest rise above the general welcoming of participants to per=
-iodically asking &#8220;Hey has anyone put out a call to fill this slot?&#8=
-221; if/when the slot is vacant).<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">BTW: If this is the wrong list for this query, pleas=
-e let me know.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Why?&nbsp; We are trying to gauge community interest=
- before making long term plans.<o:p></o:p></p>
-<p class=3D"MsoNormal">We would like to know if this horse is at all likely=
- to have healthcare before betting on it (without sacrificing other patient=
-s to obtain the proper veterinary degree and keep up practice to treat it o=
-urselves).<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">NOTE:&nbsp; I see from the RRS emails that Derek Str=
-aka is currently maintaining the python-numpy recipe.&nbsp; THANK YOU!<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<br>
-<hr>
-<font face=3D"Verdana" color=3D"Gray" size=3D"1"><br>
-Notice to recipient: This email is meant for only the intended recipient of=
- the transmission, and may be a communication privileged by law, subject to=
- export control restrictions or that otherwise contains proprietary informa=
-tion. If you receive this email
- by mistake, please notify us immediately by replying to this message and t=
-hen destroy it and do not review, disclose, copy or distribute it. Thank yo=
-u in advance for your cooperation.<br>
-</font>
-</body>
-</html>
-
---_000_b4bcd0b5992346bd8512a00ff6caf425flircom_--
