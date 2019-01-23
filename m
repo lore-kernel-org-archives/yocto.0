@@ -1,6 +1,6 @@
-Return-Path: <prvs=19196a2f2c=John.Klug@multitech.com>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3F577E00C29; Wed, 23 Jan 2019 10:35:23 -0800 (PST)
+	id 25D49E00C29; Wed, 23 Jan 2019 11:05:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,52 +11,49 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [65.126.90.11 listed in list.dnswl.org]
+	*      [209.85.208.170 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 316 seconds by postgrey-1.32 at yocto-www;
-	Wed, 23 Jan 2019 10:35:22 PST
-Received: from mail2.multitech.com (mail2.multitech.com [65.126.90.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32E48E00B9D
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 10:35:21 -0800 (PST)
-Received: from mail2.multitech.com (localhost.localdomain [127.0.0.1])
-	by localhost (Email Security Appliance) with SMTP id
-	8BD5958C7AE_C48B2ADB
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 18:30:05 +0000 (GMT)
-Received: from EXCHDBPM1.dc.multitech.prv (smtp01.multitech.prv [192.168.11.6])
-	(using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
-	(Client CN "",
-	Issuer "MultiTech Systems Intermediate CA 01" (verified OK))
-	by mail2.multitech.com (Sophos Email Appliance) with ESMTPS id
-	53A3958C780_C48B2ADF
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 18:30:05 +0000 (GMT)
-Received: from EXCHDBPM1.dc.multitech.prv (192.168.11.6) by
-	EXCHDBPM1.dc.multitech.prv (192.168.11.6) with Microsoft SMTP Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
-	15.1.1034.26; Wed, 23 Jan 2019 12:30:05 -0600
-Received: from EXCHDBPM1.dc.multitech.prv ([192.168.11.6]) by
-	EXCHDBPM1.dc.multitech.prv ([192.168.11.6]) with mapi id 15.01.1034.033;
-	Wed, 23 Jan 2019 12:30:05 -0600
-From: John Klug <John.Klug@multitech.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Exclude kernel module from image
-Thread-Index: AQHUs0h9bYmGRuIO8UiYS1DchBmobQ==
-Date: Wed, 23 Jan 2019 18:30:05 +0000
-Message-ID: <a4a6a347805343858a90a67242762ab5@multitech.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.52.122]
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
+	[209.85.208.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA2D3E00B92
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 11:05:00 -0800 (PST)
+Received: by mail-lj1-f170.google.com with SMTP id q2-v6so2929456lji.10
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 11:05:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=Nu4kPuKEN/3+SmCGaOPRreSXYup21ffEnxyVdzGtpb8=;
+	b=UzqVtoE8mX6IgIVpx0WUsvMDEpN0hjX0KU2KwS4LougZCOMu1SYeZ3qz0+shcfo64X
+	/xnAVIv4Z/8Y57oTIHKW9qvDsRoSTc7Q0CkJACy24Uyv2FOpz7pk6WRQroA747A/VgKb
+	BV9ZGN20xd/pFyqg2vWMBqAHkxPZsHmP9MOY4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=Nu4kPuKEN/3+SmCGaOPRreSXYup21ffEnxyVdzGtpb8=;
+	b=qmb0cTb3AeW7kYGPzWYDGq7g2gexmlVZ5swYzXVUfZ7a7tAZTVGlukd1EU856St8LK
+	Aj/UAlZDxC93FrKpQ9LAsO2YsrHZ9aUBgiCa0huDl/EFdNCpQuAlHByX+hsnhuHiC1Bu
+	i/La8dPzY40wnTVF1oeuSIrny44kJOOiXPVvWwPdD6lMSWvcehAQNzrrklVUmeKbmXXu
+	p8QusXICV7zju5VymUM4c3fx6oLouoqNA/qs3wUtS/N7K1jywiql9HdgwVr7sBDjNIqW
+	1Ob8kxvk4ICABzHAhoj0n9sR6/sPu05c4xF26IsuIkvAtOmF3zkYyrnUxk+Iz91uvr4d
+	hqzQ==
+X-Gm-Message-State: AJcUukciwu5NyibFwV498YjEGfPQIMobm+W8wfLKeELddm+b4C2Gl95j
+	tuVbYnhTGAIFZybDqUHRZd6bkNuFIyRjPT78YkgM6g==
+X-Google-Smtp-Source: ALg8bN7J/+Nx+hsm3FoNNcb5VSgH5lGuNm6gMFKj/TR1CY1lXiGLj6d3JgE2cEdv+Q2x0QI+kWEmnGs85ADh0FE/Aew=
+X-Received: by 2002:a2e:89d7:: with SMTP id c23-v6mr3037509ljk.0.1548270299842;
+	Wed, 23 Jan 2019 11:04:59 -0800 (PST)
 MIME-Version: 1.0
-X-SASI-RCODE: 200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=multitech.com;
-	h=from:to:subject:date:message-id:content-type:content-transfer-encoding:mime-version;
-	s=key2; bh=C/S1wvD/q4ng2qGp+zc47HoZsJhv2vwMeV9oCNs2qT8=;
-	b=DrD86MKWwzXEypso0NFZjKoGm3GZFWvp+FJ9nj3p5rpAMGq/Q8+AJ0PAWfvtbajZi7/8E1zEheYnCZpwMFGEFgG9ogvxJa5s0JYRuZa/WEAJD/h2WD+23zs3DBMAVtWpu4syUuGdnISqjy2QMBXwEWfr7GyASzwdYNo2evKSA5Q=
-Subject: Exclude kernel module from image
+References: <a4a6a347805343858a90a67242762ab5@multitech.com>
+In-Reply-To: <a4a6a347805343858a90a67242762ab5@multitech.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Wed, 23 Jan 2019 20:04:48 +0100
+Message-ID: <CAP71WjwmGLKryxCY-ySH4=sWDuqaXqQsX8SFBRo7iSRfSTO37g@mail.gmail.com>
+To: John Klug <John.Klug@multitech.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Exclude kernel module from image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,29 +65,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jan 2019 18:35:23 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 23 Jan 2019 19:05:02 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-I am looking for a way to create an image with an exclusion list of kernel =
-modules packages.
+On Wed, Jan 23, 2019 at 7:35 PM John Klug <John.Klug@multitech.com> wrote:
+>
+> I am looking for a way to create an image with an exclusion list of kernel modules packages.
+>
+> If I use PACKAGE_EXCLUDE, I see the following:
+>
+>     Collected errors:
+>      * calculate_dependencies_for: Cannot satisfy the following dependencies for kernel-modules:
+>
+> The list of modules that follows are the very kernel module packages I am trying to exclude.
 
-If I use PACKAGE_EXCLUDE, I see the following:
+if you want to exclude *all* kernel modules it's simple, you can
+achieve that with the following in your image recipe.
 
-    Collected errors:
-     * calculate_dependencies_for: Cannot satisfy the following dependencie=
-s for kernel-modules:
+BAD_RECOMMENDATIONS = "kernel-modules"
 
-The list of modules that follows are the very kernel module packages I am t=
-rying to exclude.
+This is easy because kernel-modules comes as RRECOMMENDS from
+packagegroup-core-boot.. but if you exclude just some modules, then
+you are breaking an RDEPENDS relationship which is a fatal error..
 
-I would prefer not to create a list of every kernel module I wish to includ=
-e.
+>
+> I would prefer not to create a list of every kernel module I wish to include.
 
- =20
-=20
-=20
-=20
-=20
+right.. can't you disable these modules in the kernel recipe instead
+using some config fragment?
+
+>
+>
+>
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
