@@ -1,19 +1,19 @@
 Return-Path: <mans.zigher@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4EC2E00CE5; Wed, 23 Jan 2019 04:00:21 -0800 (PST)
+	id 34C0DE00CE5; Wed, 23 Jan 2019 04:02:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
 	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.210.66 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (mans.zigher[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.43 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
@@ -21,46 +21,46 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com
-	[209.85.210.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC00AE00C1E
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 04:00:20 -0800 (PST)
-Received: by mail-ot1-f43.google.com with SMTP id 32so1625057ota.12
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 04:00:20 -0800 (PST)
+Received: from mail-ot1-f66.google.com (mail-ot1-f66.google.com
+	[209.85.210.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21D57E00546
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 04:02:00 -0800 (PST)
+Received: by mail-ot1-f66.google.com with SMTP id s5so1659822oth.7
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 04:02:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=40faOgG6mqeRMpZeRoMUDB9hyS8Svnaeok4jfSnb4as=;
-	b=Gwgi05mjKSZ3PtjknGpkXzG/ufDClxXvJG2iHFSiS8H5VehMYF50YSrwtNny7F0dHK
-	sco7H2Janl3/GqUrsXvGrV8o6Uol+eaeXbNNIbdbOEzUV3eBmDE5ZTNGLN8aQQDcbg9z
-	D4hekW+wUYfcsoE0hOGF4Vlvd6DABMyqgh3UQ/B6G9/IAtKPpQzaRdngDyZhLcx/XRvT
-	kTJLCi0UNYfMnMG/xeh+Or0QWlpM66HMZ0LtyszzA12qBy3kU2sPXraVduyo9FP+fwe/
-	1yFBsTpwzSUrij/xfnuhDUdjF1jstDyZRdIBXLtO5CWfRAmAxzJGTojtEtEfZrPdavnZ
-	TB8w==
+	:cc; bh=jiX0Rta9lcWXsbtGhLyUwXL2ysj1KuZwb2xt6nneWpo=;
+	b=abJ8G+EOkI60dkxi9Ng0UvJ2mFB0NSNig4SVzWPNXP1fXzL6XHLsFLQCJYQhrwf9in
+	Z5K4LA8kpzcpm2z+iI3bHdF7Yp0LLHF1OtQGVax6X9WK+PH4+HZWiVOaoK9cmIHXjrgi
+	hSUvvbY+8LY09taIUSSvGIew8NmmCdznyvdmT7z5wGTyyg+JflhXr5Zhyxq3fXLnuLMX
+	8lnCKMIrhYKK4LdWQ8X3VBjp56mxI/i+keRMAVeq9at6z43d7P5w7jtBWgQAVXOIdDF2
+	wMUN0PgbgR59XACLbpLWHhyNsrrWJ1VAjkxHfRlbvr2gQZAdF8EYtx4Bfp8+AEgAt0t8
+	Be0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=40faOgG6mqeRMpZeRoMUDB9hyS8Svnaeok4jfSnb4as=;
-	b=FIec7cQ321VYzBppl55zSZ2G+LadtUNvtihU1wml07F9DBij2dIY2XtG4d15FBOump
-	Leqfgde9POXz7deH4u8+CldJlPQ4ZH0Br2uKEdNXkwTulSdY0QjCDxTYtEtN3Qgm2Sb3
-	k/snAnVXqx8eiasZBQmHBSvLOZ9j++VhMjKe08wVxmelDiyFSmoTR38/nHN1WyMoMOpR
-	wVcUi/Bk7D9KdC5jDOoNP4y0kwtDr6SsoJaJEihmWuUBfjGNohLC88vgRvQh9b+M0u0g
-	rRHsIJ9LX5ruCXlbZ+baoA8stSTWF680RFn704T4Rg0mElJTPyiGJTVvQAJP80piIoLc
-	mFdg==
-X-Gm-Message-State: AJcUukdOfMpvN0qlLOS4eyf94+jyn38m7Mn+TNGqmFp1GwdWLPSbcdgW
-	VDe3/SkOl6TBNPXaIDqi/cDOR2eSc7NfJ6LuiDY=
-X-Google-Smtp-Source: ALg8bN5cqDZrYlUPTPn1VduCxI2+yzOpPIFkC2Zq2/c2PsLnYNzK9hbg3VAhTkAtVJO5HlytiKEvKcjBJygYdI1sdlk=
-X-Received: by 2002:a9d:a2e:: with SMTP id 43mr1160529otg.8.1548244820121;
-	Wed, 23 Jan 2019 04:00:20 -0800 (PST)
+	bh=jiX0Rta9lcWXsbtGhLyUwXL2ysj1KuZwb2xt6nneWpo=;
+	b=mh2kTWDUuEuwSPAiOUiFHIwjsZPESxmSwwP+/DvvvO5sCyWWnoiLGllzFiM8Fnaxuj
+	DnqMD7sWL5YVN14cCMtfg+Yby3lahcRf37nsWRg74lczsRF1gLSHddgwh+lVz4mSM9x9
+	aE03KTp1Vy+LSQ2p6/HThZ+qfy3Zo2Jc308JExW34Halfq5uUwFwVWUySZBtBNZENB4y
+	DGehsqzXTjTvpAb3/CqxZ4w3lKlp9uPiGrVdcbXNDPXDg0u1cHXH/2bdtBxxe1flothP
+	zlO03+5kCvD/v224DuX6hxkKq9X9sX+3jOfKVufmJkmR/rh90FmlDlzqc7eFkGY2g7Dq
+	ypxQ==
+X-Gm-Message-State: AJcUukcPUWVXHaaEzZkslc21P5b6+fo0/S7/dYwTBs1pOC6yLuoUZJEW
+	2njOMuUrcWXQPfXBmtF1DYm6ALwQEKejyxrc9W+hoJvm8Rk=
+X-Google-Smtp-Source: ALg8bN57DHGhgXmH4nJ8Pl34SdjgE/Bv4oFWeXetaSrqCjS+Vy/SQd5dTuQKs+FvMCHrEHbvCPmQeAub3B/aGeVtiSY=
+X-Received: by 2002:a9d:3a5:: with SMTP id f34mr1293249otf.208.1548244920533; 
+	Wed, 23 Jan 2019 04:02:00 -0800 (PST)
 MIME-Version: 1.0
 References: <CAEhQi8mWzaLii_WpEwE+spDaKjeaXxY9f76htNkPbZJKZkNTxg@mail.gmail.com>
 	<CAEhQi8=-KpHdq3kh+gWYYkQOQ347X25vYqFB7H3a4KKQweV0Sg@mail.gmail.com>
-	<CANNYZj-JTWMkew=EJbPf6H8edeLBG9AFt4HXLqAtaWLDmtEQhw@mail.gmail.com>
-In-Reply-To: <CANNYZj-JTWMkew=EJbPf6H8edeLBG9AFt4HXLqAtaWLDmtEQhw@mail.gmail.com>
+	<CAB6-VtLn85HFNZxY7jqbpJGJcLg4h1bCwKGFTxrcCzx5vJrDPw@mail.gmail.com>
+In-Reply-To: <CAB6-VtLn85HFNZxY7jqbpJGJcLg4h1bCwKGFTxrcCzx5vJrDPw@mail.gmail.com>
 From: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
-Date: Wed, 23 Jan 2019 13:00:09 +0100
-Message-ID: <CAEhQi8=VbU6_20Ai10vNFFNxNEXNW7Om1MjZ+NAGG9U7WvDajg@mail.gmail.com>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 23 Jan 2019 13:01:49 +0100
+Message-ID: <CAEhQi8ma4YNf-JzoQPRc6xBYPdtaXnjN1SbJhfq9oeZhF2YZEA@mail.gmail.com>
+To: Einar Vading <yocto-ml@vading.se>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: dnf fail in do_rootfs cannot find shared library
 X-BeenThere: yocto@yoctoproject.org
@@ -74,35 +74,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jan 2019 12:00:22 -0000
-Content-Type: multipart/alternative; boundary="000000000000875c5705801ed66f"
+X-List-Received-Date: Wed, 23 Jan 2019 12:02:02 -0000
+Content-Type: multipart/alternative; boundary="0000000000008389c305801edc28"
 
---000000000000875c5705801ed66f
+--0000000000008389c305801edc28
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-I am sorry but I cannot locate the .spec file. I tried searching for .spec
-in the tmp/work but I could not find any .spec file. Do I have to build
-with a flag to get this .spec file?
+Yes I noticed it so I tried that out but without any success but I will
+investigate that also to see if change it can in another result.
 
 BR
 M=C3=A5ns Zigher
 
-Den ons 23 jan. 2019 kl 12:07 skrev Alexander Kanavin <
-alex.kanavin@gmail.com>:
+Den ons 23 jan. 2019 kl 12:33 skrev Einar Vading <yocto-ml@vading.se>:
 
-> One more thing: can you provide the .spec file that is generated
-> during build and used to create .rpm packages? You will find it under
-> tmp/work/<target_arch>/x_media/
+> This is a longshot but I am currently investigating an issue we have
+> with a packagegroup.
 >
-> Please try not to edit anything out of it.
+> I get a similar error but I can fix it by moving the package in my
+> RDEPENDS in the packagegroup.
 >
-> Alex
+> If you move your libx_media up or down in the packagegroup, does it help?
 >
-> On Wed, 23 Jan 2019 at 12:02, M=C3=A5ns Zigher <mans.zigher@gmail.com> wr=
-ote:
+> For me i got:
+>     Error:
+>       Problem: conflicting requests
+>       - nothing provides libserved-utilsoversion needed by
+> packagegroup-base-1.0-r0.0.noarch
+>
+> When I had:
+>     RDEPENDS_${PN} =3D "\
+>         libdomain-somelib \
+>         libsomeotherlib \
+>         served-util \
+>     "
+>
+> But changing to:
+>     RDEPENDS_${PN} =3D "\
+>         libdomain-somelib \
+>         served-util \
+>         libsomeotherlib \
+>     "
+> Made it work.
+>
+> If you're down to trying anything you might as well try this =3D)
+>
+> // Einar
+>
+> On Wed, Jan 23, 2019 at 12:03 PM M=C3=A5ns Zigher <mans.zigher@gmail.com>
+> wrote:
 > >
 > > I have toke the rpm file that was produced. I found the file under the
 > build directory under
@@ -180,29 +203,56 @@ I
 > > https://lists.yoctoproject.org/listinfo/yocto
 >
 
---000000000000875c5705801ed66f
+--0000000000008389c305801edc28
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I am sorry but I cannot locate the =
-.spec file. I tried searching for .spec in the tmp/work but I could not fin=
-d any .spec file. Do I have to build with a flag to get this .spec file?</d=
-iv><div><br></div><div>BR</div><div>M=C3=A5ns Zigher</div></div><br><div cl=
-ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Den ons 23 jan. 2=
-019 kl 12:07 skrev Alexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gma=
-il.com">alex.kanavin@gmail.com</a>&gt;:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex">One more thing: can you provide the .spec file that=
- is generated<br>
-during build and used to create .rpm packages? You will find it under<br>
-tmp/work/&lt;target_arch&gt;/x_media/<br>
+<div dir=3D"ltr">Hi,<div><br></div><div>Yes I noticed it so I tried that ou=
+t but without any success but I will investigate that also to see if change=
+ it can in another result.</div><div><br></div><div>BR</div><div>M=C3=A5ns =
+Zigher</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">Den ons 23 jan. 2019 kl 12:33 skrev Einar Vading &lt;<a href=3D=
+"mailto:yocto-ml@vading.se">yocto-ml@vading.se</a>&gt;:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex">This is a longshot but I am current=
+ly investigating an issue we have<br>
+with a packagegroup.<br>
 <br>
-Please try not to edit anything out of it.<br>
+I get a similar error but I can fix it by moving the package in my<br>
+RDEPENDS in the packagegroup.<br>
 <br>
-Alex<br>
+If you move your libx_media up or down in the packagegroup, does it help?<b=
+r>
 <br>
-On Wed, 23 Jan 2019 at 12:02, M=C3=A5ns Zigher &lt;<a href=3D"mailto:mans.z=
-igher@gmail.com" target=3D"_blank">mans.zigher@gmail.com</a>&gt; wrote:<br>
+For me i got:<br>
+=C2=A0 =C2=A0 Error:<br>
+=C2=A0 =C2=A0 =C2=A0 Problem: conflicting requests<br>
+=C2=A0 =C2=A0 =C2=A0 - nothing provides libserved-utilsoversion needed by<b=
+r>
+packagegroup-base-1.0-r0.0.noarch<br>
+<br>
+When I had:<br>
+=C2=A0 =C2=A0 RDEPENDS_${PN} =3D &quot;\<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 libdomain-somelib \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 libsomeotherlib \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 served-util \<br>
+=C2=A0 =C2=A0 &quot;<br>
+<br>
+But changing to:<br>
+=C2=A0 =C2=A0 RDEPENDS_${PN} =3D &quot;\<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 libdomain-somelib \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 served-util \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 libsomeotherlib \<br>
+=C2=A0 =C2=A0 &quot;<br>
+Made it work.<br>
+<br>
+If you&#39;re down to trying anything you might as well try this =3D)<br>
+<br>
+// Einar<br>
+<br>
+On Wed, Jan 23, 2019 at 12:03 PM M=C3=A5ns Zigher &lt;<a href=3D"mailto:man=
+s.zigher@gmail.com" target=3D"_blank">mans.zigher@gmail.com</a>&gt; wrote:<=
+br>
 &gt;<br>
 &gt; I have toke the rpm file that was produced. I found the file under the=
  build directory under tmp/work/imx8mq-strix-linux/x_media/1.0-r44/deploy-r=
@@ -284,4 +334,4 @@ errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
 br>
 </blockquote></div>
 
---000000000000875c5705801ed66f--
+--0000000000008389c305801edc28--
