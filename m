@@ -1,63 +1,45 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <einar@vading.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 120A9E00CED; Wed, 23 Jan 2019 03:07:25 -0800 (PST)
+	id 89EBEE00CE5; Wed, 23 Jan 2019 03:33:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kanavin[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.65 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ot1-f65.google.com (mail-ot1-f65.google.com
-	[209.85.210.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E114CE00872
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 03:07:23 -0800 (PST)
-Received: by mail-ot1-f65.google.com with SMTP id j10so1511426otn.11
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 03:07:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=ZcP8kOpgMphLz338QBMw26n3MZyKv77D7LLfyss841Y=;
-	b=g5otZEA2DY9kzLL2f2TbzJWyImul1WEX/9YEfR0bqRhRGBpNoueZsvi0iBo/Ge+cSo
-	KHhFud3sqI6d6m7SFj2g8AUZ39uUmpi/0YXHIcwIuuEImG+WWWNQ/PsHB72Pe+Ok2A6C
-	P91X/GZAQyrmnbe3bXPgZa8763/w8amQ6Dh6ZkcNv4MgSDQYlZ7pQMfBbUy9u574DCWK
-	ALscKXWmO91cvFAF6qnugB0ucLizvNlVdcjvxtcMKS5aAHhL20jnPRQlSpYBqui6kqs8
-	o1wWOxiXEVxrhveYUJBRqdod/KabQc+JAyvleVzFsCMjgNXU4ZLcpvszA6jAxnUvCItR
-	Da6g==
+	*      [209.85.161.67 listed in list.dnswl.org]
+Received: from mail-yw1-f67.google.com (mail-yw1-f67.google.com
+	[209.85.161.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5903BE00872
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 03:33:34 -0800 (PST)
+Received: by mail-yw1-f67.google.com with SMTP id x2so732019ywc.9
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 03:33:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=ZcP8kOpgMphLz338QBMw26n3MZyKv77D7LLfyss841Y=;
-	b=qqY7K7jEdkB6qz9T3+k7QczjxffvVwYgpk6iVwzYn4N/V7bThqWvn5Rjs8qxxK/T6g
-	+E3Ir9tpTn2rbCRRB2q7kBFmMz8QLGZAAvReyQXcULAQyfEjGqQpiKTMxXI8n38G18wY
-	oDTz3I0/mvVcp9BqFU4UL7nseH3LltR1uegg8h6RQy95Qw1EVS4h1oCTWV1tkc3ICMOY
-	zRVrm8wPs/FBAvlztgxdQp5UO4ENJ3GUrongoM96FYxF5Vv2Hyg2X8mim9579Y3Eq9bR
-	bQbEEQh/igfu4NzbKk5nJofRvnbHCZjGtUnVAjKdZFwwFRiAPDJmxruAu7y1L7kPuSAq
-	/dAw==
-X-Gm-Message-State: AJcUukc72i/a52jdDN4RVw4ScVhTBo4OVTNAiL6OioXmAkvsbxl5ST23
-	O5/rMqsJj8qGi+KFgf6RebLCVDj/KmDNNKeV5hg=
-X-Google-Smtp-Source: ALg8bN4pdIDCh3z+oKuYmktaDm39i/s1jcNZEZvEnVMw1XzyWk37eqcMdnY5gNohCczo+y+PEG351pv8JGOj2OZjvT0=
-X-Received: by 2002:a9d:640d:: with SMTP id h13mr1170028otl.153.1548241643367; 
-	Wed, 23 Jan 2019 03:07:23 -0800 (PST)
+	bh=HTUjO1JkED7Vbod9Qq5HxT5T3BYZsV6LFbMico337sc=;
+	b=rWB6qQ8CekNluV8WWwm2VnFLHxPin6aaEq/xNfKyt2GokggVJxwdv62eiCqt//nKV+
+	Av8wALUDjs4QWHx8etjC0G68Kj5wOVgtPognV2Nt9+2Vk+RKX1Kz1NWzLHIaOsUVZBcl
+	qtcaM0q2+cpk/2znPCB4HMxOYVwd8isyxx2DLs4CWV/Z+9/3UrwMzRcIH9r8Y8dCBwhz
+	B0zDw1RAoOW/2bn3tsbehhMj7HwuM7nEIsYvBFc2/BSEIrOpRX2+8EOcykRN5yqCpHNW
+	loBkfSraMDLqSeB9hSOKCVLUMcFS+2vVTwvMJCwnoIUppYLgIGDKpjzjnH8we1wJCT+l
+	Yrxw==
+X-Gm-Message-State: AJcUukcQvgP61eroA6TczwZXYfdbAx2wrr7Lruk3jFMELF3Fv4FSasDT
+	mBnK3tEbYl91oIY+wJspU25eRlQ3rMycv/NKslJiag==
+X-Google-Smtp-Source: ALg8bN5GIwsEyldkA+46FribJBn3AczHFxVg6TkclTlDn/jPFO8V+9xhKhqmCmIBgroGbQ/Ds3ISCh1rA1Ytcq4jBPA=
+X-Received: by 2002:a0d:c4c2:: with SMTP id g185mr1549580ywd.31.1548243213345; 
+	Wed, 23 Jan 2019 03:33:33 -0800 (PST)
 MIME-Version: 1.0
 References: <CAEhQi8mWzaLii_WpEwE+spDaKjeaXxY9f76htNkPbZJKZkNTxg@mail.gmail.com>
 	<CAEhQi8=-KpHdq3kh+gWYYkQOQ347X25vYqFB7H3a4KKQweV0Sg@mail.gmail.com>
 In-Reply-To: <CAEhQi8=-KpHdq3kh+gWYYkQOQ347X25vYqFB7H3a4KKQweV0Sg@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 23 Jan 2019 12:07:12 +0100
-Message-ID: <CANNYZj-JTWMkew=EJbPf6H8edeLBG9AFt4HXLqAtaWLDmtEQhw@mail.gmail.com>
+From: Einar Vading <yocto-ml@vading.se>
+Date: Wed, 23 Jan 2019 12:33:22 +0100
+Message-ID: <CAB6-VtLn85HFNZxY7jqbpJGJcLg4h1bCwKGFTxrcCzx5vJrDPw@mail.gmail.com>
 To: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: dnf fail in do_rootfs cannot find shared library
@@ -72,20 +54,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jan 2019 11:07:25 -0000
+X-List-Received-Date: Wed, 23 Jan 2019 11:33:35 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-One more thing: can you provide the .spec file that is generated
-during build and used to create .rpm packages? You will find it under
-tmp/work/<target_arch>/x_media/
+This is a longshot but I am currently investigating an issue we have
+with a packagegroup.
 
-Please try not to edit anything out of it.
+I get a similar error but I can fix it by moving the package in my
+RDEPENDS in the packagegroup.
 
-Alex
+If you move your libx_media up or down in the packagegroup, does it help?
 
-On Wed, 23 Jan 2019 at 12:02, M=C3=A5ns Zigher <mans.zigher@gmail.com> wrot=
-e:
+For me i got:
+    Error:
+      Problem: conflicting requests
+      - nothing provides libserved-utilsoversion needed by
+packagegroup-base-1.0-r0.0.noarch
+
+When I had:
+    RDEPENDS_${PN} =3D "\
+        libdomain-somelib \
+        libsomeotherlib \
+        served-util \
+    "
+
+But changing to:
+    RDEPENDS_${PN} =3D "\
+        libdomain-somelib \
+        served-util \
+        libsomeotherlib \
+    "
+Made it work.
+
+If you're down to trying anything you might as well try this =3D)
+
+// Einar
+
+On Wed, Jan 23, 2019 at 12:03 PM M=C3=A5ns Zigher <mans.zigher@gmail.com> w=
+rote:
 >
 > I have toke the rpm file that was produced. I found the file under the bu=
 ild directory under tmp/work/imx8mq-strix-linux/x_media/1.0-r44/deploy-rpms=
