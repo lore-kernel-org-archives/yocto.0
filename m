@@ -1,47 +1,62 @@
-Return-Path: <rsrinivasan@abiomed.com>
+Return-Path: <prvs=19196a2f2c=John.Klug@multitech.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A799BE00C29; Wed, 23 Jan 2019 08:40:15 -0800 (PST)
+	id 3F577E00C29; Wed, 23 Jan 2019 10:35:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [216.205.24.188 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
-	Wed, 23 Jan 2019 08:40:14 PST
-Received: from us-smtp-delivery-188.mimecast.com
-	(us-smtp-delivery-188.mimecast.com [216.205.24.188])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BC07E00B92
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 08:40:13 -0800 (PST)
-Received: from mail.abiomed.com (legacy.abiomed.com [4.53.60.36]) (Using
-	TLS) by relay.mimecast.com with ESMTP id
-	us-mta-291-HQ0daJlQNuecD_dJSnIVEg-1; Wed, 23 Jan 2019 11:39:08 -0500
-Received: from USDVREX02.abiomed.com (172.16.1.94) by USDVREX01.abiomed.com
-	(172.16.1.91) with Microsoft SMTP Server (TLS) id 15.0.1395.4;
-	Wed, 23 Jan 2019 11:39:08 -0500
-Received: from USDVREX02.abiomed.com ([fe80::ac78:3bbf:d1d5:252c]) by
-	USDVREX02.abiomed.com ([fe80::ac78:3bbf:d1d5:252c%12]) with mapi id
-	15.00.1395.000; Wed, 23 Jan 2019 11:39:07 -0500
-From: "Srinivasan, Raja" <rsrinivasan@abiomed.com>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [65.126.90.11 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 316 seconds by postgrey-1.32 at yocto-www;
+	Wed, 23 Jan 2019 10:35:22 PST
+Received: from mail2.multitech.com (mail2.multitech.com [65.126.90.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32E48E00B9D
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 10:35:21 -0800 (PST)
+Received: from mail2.multitech.com (localhost.localdomain [127.0.0.1])
+	by localhost (Email Security Appliance) with SMTP id
+	8BD5958C7AE_C48B2ADB
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 18:30:05 +0000 (GMT)
+Received: from EXCHDBPM1.dc.multitech.prv (smtp01.multitech.prv [192.168.11.6])
+	(using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
+	(Client CN "",
+	Issuer "MultiTech Systems Intermediate CA 01" (verified OK))
+	by mail2.multitech.com (Sophos Email Appliance) with ESMTPS id
+	53A3958C780_C48B2ADF
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 18:30:05 +0000 (GMT)
+Received: from EXCHDBPM1.dc.multitech.prv (192.168.11.6) by
+	EXCHDBPM1.dc.multitech.prv (192.168.11.6) with Microsoft SMTP Server
+	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+	15.1.1034.26; Wed, 23 Jan 2019 12:30:05 -0600
+Received: from EXCHDBPM1.dc.multitech.prv ([192.168.11.6]) by
+	EXCHDBPM1.dc.multitech.prv ([192.168.11.6]) with mapi id 15.01.1034.033;
+	Wed, 23 Jan 2019 12:30:05 -0600
+From: John Klug <John.Klug@multitech.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: wic utility
-Thread-Index: AdSzOeZf75RQXwYoRbKNBWkqU3gNpA==
-Date: Wed, 23 Jan 2019 16:39:07 +0000
-Message-ID: <fc7d34e702ed47bfa017034365edbec7@USDVREX02.abiomed.com>
+Thread-Topic: Exclude kernel module from image
+Thread-Index: AQHUs0h9bYmGRuIO8UiYS1DchBmobQ==
+Date: Wed, 23 Jan 2019 18:30:05 +0000
+Message-ID: <a4a6a347805343858a90a67242762ab5@multitech.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.10.96.27]
+x-originating-ip: [192.168.52.122]
 MIME-Version: 1.0
-X-MC-Unique: HQ0daJlQNuecD_dJSnIVEg-1
-X-Mimecast-Spam-Score: 0
-Subject: wic utility
+X-SASI-RCODE: 200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=multitech.com;
+	h=from:to:subject:date:message-id:content-type:content-transfer-encoding:mime-version;
+	s=key2; bh=C/S1wvD/q4ng2qGp+zc47HoZsJhv2vwMeV9oCNs2qT8=;
+	b=DrD86MKWwzXEypso0NFZjKoGm3GZFWvp+FJ9nj3p5rpAMGq/Q8+AJ0PAWfvtbajZi7/8E1zEheYnCZpwMFGEFgG9ogvxJa5s0JYRuZa/WEAJD/h2WD+23zs3DBMAVtWpu4syUuGdnISqjy2QMBXwEWfr7GyASzwdYNo2evKSA5Q=
+Subject: Exclude kernel module from image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,121 +68,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jan 2019 16:40:15 -0000
+X-List-Received-Date: Wed, 23 Jan 2019 18:35:23 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_fc7d34e702ed47bfa017034365edbec7USDVREX02abiomedcom_"
-
---_000_fc7d34e702ed47bfa017034365edbec7USDVREX02abiomedcom_
-Content-Type: text/plain; charset=WINDOWS-1252
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-I am using wic 0.2.0 from the rocko build.
+I am looking for a way to create an image with an exclusion list of kernel =
+modules packages.
 
-wic cp file wifile:part/path
+If I use PACKAGE_EXCLUDE, I see the following:
 
-appears to succeed (no errors reported).
+    Collected errors:
+     * calculate_dependencies_for: Cannot satisfy the following dependencie=
+s for kernel-modules:
 
-But when I perform wic ls I don't find the file in the target.
+The list of modules that follows are the very kernel module packages I am t=
+rying to exclude.
 
-Are there any switches the I should be using?
+I would prefer not to create a list of every kernel module I wish to includ=
+e.
 
-Thanks for any pointers, srini
+ =20
+=20
+=20
+=20
+=20
 
-________________________________
-
-CONFIDENTIALITY NOTICE: This email message and any attachments are confiden=
-tial and may be privileged and are meant to be read by the intended recipie=
-nt only. If you are not the intended recipient, please notify sender immedi=
-ately and destroy all copies of this message and any attachments without re=
-ading or disclosing their contents. Thank you
-
---_000_fc7d34e702ed47bfa017034365edbec7USDVREX02abiomedcom_
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-=09{font-family:"MS Mincho";
-=09panose-1:2 2 6 9 4 2 5 8 3 4;}
-@font-face
-=09{font-family:"Cambria Math";
-=09panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-=09{font-family:Calibri;
-=09panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-=09{font-family:"\@MS Mincho";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-=09{margin:0in;
-=09margin-bottom:.0001pt;
-=09font-size:11.0pt;
-=09font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-=09{mso-style-priority:99;
-=09color:#0563C1;
-=09text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-=09{mso-style-priority:99;
-=09color:#954F72;
-=09text-decoration:underline;}
-span.EmailStyle17
-=09{mso-style-type:personal-compose;
-=09font-family:"Calibri",sans-serif;
-=09color:windowtext;}
-.MsoChpDefault
-=09{mso-style-type:export-only;
-=09font-family:"Calibri",sans-serif;}
-@page WordSection1
-=09{size:8.5in 11.0in;
-=09margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-=09{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-<style type=3D"text/css">.style1 {font-family: "Times New Roman";}</style><=
-/head><body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">I am using wic 0.2.0 from the rocko build.<o:p></o:p=
-></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">wic cp file wifile:part/path<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">appears to succeed (no errors reported).<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">But when I perform wic ls I don&#8217;t find the fil=
-e in the target.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Are there any switches the I should be using?<o:p></=
-o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks for any pointers, srini<o:p></o:p></p>
-</div>
-<br>
-<hr>
-<font face=3D"Arial" color=3D"Gray" size=3D"1"><br>
-CONFIDENTIALITY NOTICE: This email message and any attachments are confiden=
-tial and may be privileged and are meant to be read by the intended recipie=
-nt only. If you are not the intended recipient, please notify sender immedi=
-ately and destroy all copies of
- this message and any attachments without reading or disclosing their conte=
-nts. Thank you<br>
-</font>
-
-
-<br /><br /><p style=3D"font-family: Verdana; font-size:10pt; color:#666666=
-;"></p><p style=3D"font-family: Verdana; font-size:8pt; color:#666666;"></p=
-></body></html>
-
---_000_fc7d34e702ed47bfa017034365edbec7USDVREX02abiomedcom_--
