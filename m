@@ -1,6 +1,6 @@
-Return-Path: <philip@balister.org>
+Return-Path: <Virgil.Smith@flir.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A23BAE00CEE; Wed, 23 Jan 2019 15:17:09 -0800 (PST)
+	id 22540E00CDF; Wed, 23 Jan 2019 16:34:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,54 +10,32 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [216.168.135.167 listed in list.dnswl.org]
-X-Greylist: delayed 401 seconds by postgrey-1.32 at yocto-www;
-	Wed, 23 Jan 2019 15:17:08 PST
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFDFAE00C29
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 15:17:08 -0800 (PST)
-Received: (qmail 497 invoked by uid 1003); 23 Jan 2019 23:10:31 -0000
-Received: from unknown (HELO ?192.168.11.100?)
-	(philip@opensdr.com@73.152.143.112)
-	by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
-	23 Jan 2019 23:10:31 -0000
-To: "Srinivasan, Raja" <rsrinivasan@abiomed.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <59b6048f218149819a8c44d9872b51bc@USDVREX02.abiomed.com>
-From: Philip Balister <philip@balister.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
-	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
-	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
-	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
-	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
-	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
-	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
-	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
-	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
-	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
-	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
-	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
-	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
-	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
-	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
-	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
-	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
-	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
-	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
-	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
-	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
-	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
-	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
-	6eUfr0u7CwnEyqiQ
-Message-ID: <fa0026de-7f46-19dc-b165-dbbd1bfc663f@balister.org>
-Date: Wed, 23 Jan 2019 18:10:25 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
+	*      [208.11.40.244 listed in list.dnswl.org]
+Received: from west-edge.flir.com (west-edge.flir.com [208.11.40.244])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CFC2E00B43
+	for <yocto@yoctoproject.org>; Wed, 23 Jan 2019 16:34:10 -0800 (PST)
+Received: from US-PDX-MAIL2.flir.net (10.192.150.175) by pdx-e1.zone1.flir.net
+	(10.192.210.11) with Microsoft SMTP Server (TLS) id 14.3.382.0;
+	Wed, 23 Jan 2019 16:40:07 -0800
+Received: from us-pdx-mail4.flir.net (10.192.150.252) by US-PDX-MAIL2.flir.net
+	(10.192.150.175) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
+	Wed, 23 Jan 2019 16:34:09 -0800
+Received: from us-pdx-mail4.flir.net ([fe80::497e:6a6d:a0de:5631]) by
+	us-pdx-mail4.flir.net ([fe80::497e:6a6d:a0de:5631%22]) with mapi id
+	15.01.1591.008; Wed, 23 Jan 2019 16:34:09 -0800
+From: "Smith, Virgil (US)" <Virgil.Smith@flir.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Yocto Project support for Numeric/Scientific Python
+Thread-Index: AdSzZgK8hbw89tkNRySGJcjzIVTeAQ==
+Date: Thu, 24 Jan 2019 00:34:09 +0000
+Message-ID: <93e656a164b94846a56a9c43b354b4da@flir.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.128.150.201]
 MIME-Version: 1.0
-In-Reply-To: <59b6048f218149819a8c44d9872b51bc@USDVREX02.abiomed.com>
-Subject: Re: ipv6
+Subject: Re: Yocto Project support for Numeric/Scientific Python
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,38 +47,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jan 2019 23:17:09 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 24 Jan 2019 00:34:11 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Turn off ipv6 in the kernel config?
+Discussing only the question of making a SciPy recipe today:
 
-Also see:
+> > Is there a current or relatively recent recipe for SciPy and related li=
+braries?
+>
+> People have worked on it at least once before but found some problems wit=
+h blas and atlas:
+> https://lists.yoctoproject.org/pipermail/yocto/2018-March/thread.html#403=
+48
+> # Randy MacLeod
+> Wind River Linux
 
-https://www.internetsociety.org/blog/2013/07/the-legacy-ip-only-ipv6-horse-and-buggy-stickers-how-to-get-copies-2/
+Thanks Randy, my own brief foray landed on the following thread as the most=
+ promising lead:
+https://lists.yoctoproject.org/pipermail/yocto/2018-March/040450.html
 
-I can mail you some stickers :)
+I didn't have any success with those pieces, but the telling point in that =
+discussion are the patches to numpy (numpy.distutils).  When you dig into S=
+ciPy's installation instructions and therefore its setup.py file, you find =
+that it is using code packaged into the numpy library as effectively its ow=
+n configure/build toolchain.  It is full of Linux vs Windows vs MacOS disti=
+nctions and path probing for recognized compilers/tools.  Patching that int=
+o something that can be tuned for cross compiling was beyond my allowances =
+for an "investigative effort".
 
-Philip
+I did manage to *compile* OpenBlas just by blending its standard build inst=
+ructions (pure make based) with oe_runmake, a libgfortran DEPENDS/RDEPENDS,=
+ (FORTRAN_forcevariable =3D ",fortran" in local.conf), and some regex mappi=
+ng from TUNE_FEATURES to the defines used by OpenBlas.
+
+If I ever find out it actually worked (once), I'll post it in case someone =
+has bandwidth to add
+checks for mapping other MACHINE/TUNE... values to OpenBlas "TargetList.txt=
+" entries, testing that it works in newer Yocto releases (I'm using Sumo), =
+and add update-alternatives integration.
 
 
-On 01/18/2019 04:28 PM, Srinivasan, Raja wrote:
-> All
-> 
-> I am using "rocko"
-> 
-> How can we turn off ipv6 altogether? We are not doing anything to startup ipv6. Still I see several lines in the logs which look like:
-> 
-> kernel: IPv6: wlan0: IPv6 duplicate address ..... detected
-> kernel[288]: IPv6: wlan0: IPv6 duplicate address ... detected
-> 
-> thanks, srini
-> 
-> ________________________________
-> 
-> CONFIDENTIALITY NOTICE: This email message and any attachments are confidential and may be privileged and are meant to be read by the intended recipient only. If you are not the intended recipient, please notify sender immediately and destroy all copies of this message and any attachments without reading or disclosing their contents. Thank you
-> 
-> 
-> 
+
+________________________________
+
+Notice to recipient: This email is meant for only the intended recipient of=
+ the transmission, and may be a communication privileged by law, subject to=
+ export control restrictions or that otherwise contains proprietary informa=
+tion. If you receive this email by mistake, please notify us immediately by=
+ replying to this message and then destroy it and do not review, disclose, =
+copy or distribute it. Thank you in advance for your cooperation.
 
