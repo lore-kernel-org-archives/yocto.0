@@ -1,62 +1,67 @@
-Return-Path: <joao.jfgoncalves@gmail.com>
+Return-Path: <prvs=920c2a8ca=Mikko.Rapeli@bmw.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C5BDE00D01; Thu, 24 Jan 2019 07:24:13 -0800 (PST)
+	id 4924DE00D01; Thu, 24 Jan 2019 07:36:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (joao.jfgoncalves[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.172 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [68.232.133.150 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-Received: from mail-it1-f172.google.com (mail-it1-f172.google.com
-	[209.85.166.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8900AE00CEE
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2019 07:24:12 -0800 (PST)
-Received: by mail-it1-f172.google.com with SMTP id i145so5495657ita.4
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2019 07:24:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=hHN8vPcgmrvH2c8tyllKmKS+DEVGYr7hld8ifYglb9g=;
-	b=hmR4/ds9yhFHrgfZa9w1giTZQSb+RvsvX4S+KttJyGMvM2rFKckG7OstAtQYUxoCwE
-	SdiR2AMptCYKtw5BNZuUcwFM/5CtAaYgFiWhiM1WkpNOLYiACG1u78BILaZQed2fWyNE
-	UE4Xl1JgkV0OT11EhqjqOykJVJXakTgLDjdSbHplDxicqRKBruBY1lJss488wlrp783A
-	E9MwR2dAVeW8vW2bBDGlWENYHMGCvXXx7SUf77TZ8cS2tvHyleYhLQSTPKTds3CSCI2g
-	Q+rfGf95KjPyu4aH1TIyepA8S0SrEgK2mApDcUtCzF88d4EXYaPdMQfbI9d/Q2d7T7ai
-	I/kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=hHN8vPcgmrvH2c8tyllKmKS+DEVGYr7hld8ifYglb9g=;
-	b=OFET5rJJa/HYiq3NOaeRgbSDHwA+3XlPj1V5oYA21NM26VmCIsdZUgCUyrwXshP6v7
-	HV+3Vc6o+rIXAsmsEiyJAjyfDky0tsCqJ+jcmRmIEFSK60VNtvHellVfuThd2+Gs2f9s
-	lkJIz6pPaNFzkCaa7sahoF+Mzg+Ewr0j36do3ZZgBpgFoDywTaocjlRp6yXe6FxSpvUQ
-	QGsnSvRLhVphQGF4mMh4M5TAbkQ+rgYBXCSUp9FdzE+ys+3+vhU7Hkm1MV17ViGYZb6Q
-	18KyZX2aHZ1j9T10oyozhP6f1qj+nzrXStuMrt7phdOVXv5ivi98zgv+c50gT9OzU42R
-	VRCA==
-X-Gm-Message-State: AJcUuke5xQ0PQlFOQ5Mn677PBvYlWyXmOHsmDI2BxRDrnAB4I6it93Y2
-	IcTSINAk6BFKhMd0kKaycoZKZHhl1ILt0jtwKbVRVs8xQRw=
-X-Google-Smtp-Source: ALg8bN5mzQbiO0nCDUNpyPz/KagwWer509z7brgcBTiWLveWhOvEOcAo40mktpQGRY6H25tZqiSkLhleKT+VBCTizVY=
-X-Received: by 2002:a24:874a:: with SMTP id f71mr1595320ite.120.1548343451504; 
-	Thu, 24 Jan 2019 07:24:11 -0800 (PST)
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Thu, 24 Jan 2019 07:36:28 PST
+Received: from esa3.bmw.c3s2.iphmx.com (esa3.bmw.c3s2.iphmx.com
+	[68.232.133.150])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72072E0053F
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2019 07:36:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+	t=1548344189; x=1579880189;
+	h=from:to:cc:subject:date:message-id:references:
+	in-reply-to:content-id:content-transfer-encoding: mime-version;
+	bh=CIUgcmKM8Cc0fOrZlvb24bgpfDkTgFvBgJPuVZdxhSg=;
+	b=rNgtcxOmJuI88BUHqN2qk/UWQ6+TZmkkhN2pgIW9EKl5vqeZ3EFgHRXu
+	8dxECOM0+chi96o0v1DLjB3ieugyk2nISQV4XA5F8OgnFLnNY/F/fq2UT
+	XHaHgXvI3E84Ks0jndr5AvW5BaQisV9nQ5lC++MSnMpY63V7F/zcdF2h0 U=;
+Received: from esagw3.bmwgroup.com (HELO esagw3.muc) ([160.46.252.35]) by
+	esa3.bmw.c3s2.iphmx.com with ESMTP/TLS; 24 Jan 2019 16:35:14 +0100
+Received: from esabb2.muc ([160.50.100.34])  by esagw3.muc with ESMTP/TLS;
+	24 Jan 2019 16:35:14 +0100
+Received: from smucm10m.bmwgroup.net (HELO smucm10m.europe.bmw.corp)
+	([160.48.96.49])
+	by esabb2.muc with ESMTP/TLS; 24 Jan 2019 16:35:14 +0100
+Received: from smucm10k.europe.bmw.corp (160.48.96.47) by
+	smucm10m.europe.bmw.corp
+	(160.48.96.49) with Microsoft SMTP Server (TLS;
+	Thu, 24 Jan 2019 16:35:13 +0100
+Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
+	smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1395.000;
+	Thu, 24 Jan 2019 16:35:13 +0100
+From: <Mikko.Rapeli@bmw.de>
+To: <joao.jfgoncalves@gmail.com>
+Thread-Topic: [yocto] libstdc++fs on toolchain
+Thread-Index: AQHUs/kWI3MDkh+OYUOYWnzw1LryJaW+fBWA
+Date: Thu, 24 Jan 2019 15:35:13 +0000
+Message-ID: <20190124153513.GY7474@hiutale>
+References: <CAHXEV+n8iBw3ymYCm38CSKXS=ySgarQmrwf=XCT6yYp94FiOKg@mail.gmail.com>
+In-Reply-To: <CAHXEV+n8iBw3ymYCm38CSKXS=ySgarQmrwf=XCT6yYp94FiOKg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [192.168.221.34]
 MIME-Version: 1.0
-From: =?UTF-8?B?Sm/Do28gR29uw6dhbHZlcw==?= <joao.jfgoncalves@gmail.com>
-Date: Thu, 24 Jan 2019 15:24:00 +0000
-Message-ID: <CAHXEV+n8iBw3ymYCm38CSKXS=ySgarQmrwf=XCT6yYp94FiOKg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: libstdc++fs on toolchain
+Cc: yocto@yoctoproject.org
+Subject: Re: libstdc++fs on toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,39 +73,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2019 15:24:13 -0000
-Content-Type: multipart/alternative; boundary="0000000000006ad648058035cd28"
-
---0000000000006ad648058035cd28
-Content-Type: text/plain; charset="UTF-8"
-
-Hello,
-I'm trying to build a c++ cross toolchain to compile to imx6 (armv7). But I
-need libstdc++fs library, which does not come with it. Until gcc 8.0 this
-is an experimental library.
-
-I've tested with gcc 7.3 and with gcc 8.2 and and none have the libstdc++fs
-library.
-On my host machine the library is at
-/usr/lib/gcc/x86_64-linux-gnu/7/libstdc++fs.a
-
-Does anyone know how to include this library on a yocto generated toolchain?
-
-Thank you,
-Joao Goncalves
-
---0000000000006ad648058035cd28
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Thu, 24 Jan 2019 15:36:29 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <9244F8F994837742955310E9BA26F0BC@bmwmail.corp>
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hello,=C2=A0<div>I&#39;m trying to build =
-a c++ cross toolchain to compile to imx6 (armv7). But I need libstdc++fs li=
-brary, which does not come with it. Until=C2=A0gcc=C2=A08.0 this is an expe=
-rimental library.</div><div><br></div><div>I&#39;ve tested with gcc=C2=A07.=
-3 and with gcc=C2=A08.2 and and none have the libstdc++fs library.</div><di=
-v>On my host machine the library is at /usr/lib/gcc/x86_64-linux-gnu/7/libs=
-tdc++fs.a</div><div><br></div><div>Does anyone=C2=A0know how to include thi=
-s library on a yocto generated toolchain?</div><div><br></div><div>Thank yo=
-u,</div><div>Joao Goncalves</div><div><br></div></div></div>
+On Thu, Jan 24, 2019 at 03:24:00PM +0000, Jo=E3o Gon=E7alves wrote:
+> Hello,
+> I'm trying to build a c++ cross toolchain to compile to imx6 (armv7). But=
+ I
+> need libstdc++fs library, which does not come with it. Until gcc 8.0 this
+> is an experimental library.
+>=20
+> I've tested with gcc 7.3 and with gcc 8.2 and and none have the libstdc++=
+fs
+> library.
+> On my host machine the library is at
+> /usr/lib/gcc/x86_64-linux-gnu/7/libstdc++fs.a
+>=20
+> Does anyone know how to include this library on a yocto generated toolcha=
+in?
 
---0000000000006ad648058035cd28--
+At least on x86 targets, it's available from gcc-runtime recipe and
+libstdc++-staticdev binary package on sumo/yocto 2.5 and later.
+
+-Mikko=
+
