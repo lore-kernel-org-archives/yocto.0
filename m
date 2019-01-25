@@ -1,37 +1,66 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <scottellis.developer@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 84223E00D25; Thu, 24 Jan 2019 23:44:15 -0800 (PST)
+	id E114FE00D01; Thu, 24 Jan 2019 23:59:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 178D2E00CE2
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2019 23:41:08 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x0P7dth0006569
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 24 Jan 2019 23:40:36 -0800
-Received: from localhost (128.224.162.137) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.408.0;
-	Thu, 24 Jan 2019 23:40:19 -0800
-From: Yi Zhao <yi.zhao@windriver.com>
-To: <joe_macdonald@mentor.com>, <flihp@twobit.us>, <yocto@yoctoproject.org>
-Date: Fri, 25 Jan 2019 15:39:41 +0800
-Message-ID: <1548401981-18083-2-git-send-email-yi.zhao@windriver.com>
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (scottellis.developer[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.193 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f193.google.com (mail-qt1-f193.google.com
+	[209.85.160.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C4BCE0053F
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2019 23:56:52 -0800 (PST)
+Received: by mail-qt1-f193.google.com with SMTP id e5so9695184qtr.12
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2019 23:56:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=ZUI6mHdQo/V8KYvU3wL1xTI4S1agFa5BUZzFlS04h6w=;
+	b=fqX6RFxpfDFDv4d0PXYEEwYHOKZOWj5gGz8ZEX2HLVllWZVRKJiMpsYUt1siVbS3nM
+	gIvdAufUQS2VuaHnKylMfsEVOXthZLZmXeC0da6fSf/yQtes/YVMS8XnC/kzwTFuDYxk
+	UnEl9bHTtn0/WLKWleu6Qu7i/XS5bLhAAJmo2T/FbWQehfAKlR7uBfLt7oHwJZX6YnGP
+	7oPWM7RsM/Juyfc2uPQdqv+JFkFuUOnjYd7aBebU5L+wrVoyIjuoM8UcpCXE+2uBt7gI
+	P6acS/L9ht5+9Ok9ybNMeOWZ50zZYpWOHNQx8maIzbu+vPsqGXokslUzBB/bvD7kLcC7
+	gikQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=ZUI6mHdQo/V8KYvU3wL1xTI4S1agFa5BUZzFlS04h6w=;
+	b=iOrTYxClOBZtokHzD7bT11I7uwCanJ9MtCyEtBsssfs7LNCQUH6rTcDgjscCdny3TN
+	m3z8IFLXhuoHjbwdYpn4O1WCmtFUOwuOTsGqTlnv0mKT8kK08qfG0QOhLo/S5+DsJhfZ
+	m7THnvknpk+vBSout0/nVPFQeQ9o+twj8Q1f9wSK9LiM5ckd5L776Cqz0QiVfoQg1SSz
+	7+FMyf2A0Taz+E12wvAWWjievRmnH/AeZMDOI+v3XUHon379FMpGlK6hg0dzTTh/Ct67
+	94Fo5Twm9Qmwm4aDPw8//Xl10y0CsID5mGNxF/2tovxN3EKUYDeczEy4VPENb2mbLtlj
+	9Yvw==
+X-Gm-Message-State: AJcUukdAm/0HimdDekv3Qp1BJExmWKleCAzydfsR6ENztvabW6ym7o8C
+	PvvyaNv58/h4vXLimuGJ+TcfYJaD
+X-Google-Smtp-Source: ALg8bN6f/0yoLOu5HzcnyCDYbEbcYsNRI8T5m0EEtRpOXLBonAuXUZIV5nM0k7/F0rHwY7qL/etgvA==
+X-Received: by 2002:ac8:593:: with SMTP id a19mr9759235qth.111.1548403011284; 
+	Thu, 24 Jan 2019 23:56:51 -0800 (PST)
+Received: from fractal.jumpnow (c-73-234-253-132.hsd1.me.comcast.net.
+	[73.234.253.132]) by smtp.gmail.com with ESMTPSA id
+	g5sm55943806qkd.55.2019.01.24.23.56.40
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 24 Jan 2019 23:56:50 -0800 (PST)
+From: Scott Ellis <scottellis.developer@gmail.com>
+X-Google-Original-From: Scott Ellis <scott@jumpnowtek.com>
+To: yocto@yoctoproject.org
+Date: Fri, 25 Jan 2019 02:56:37 -0500
+Message-Id: <1548402997-10044-1-git-send-email-scott@jumpnowtek.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1548401981-18083-1-git-send-email-yi.zhao@windriver.com>
-References: <1548401981-18083-1-git-send-email-yi.zhao@windriver.com>
-MIME-Version: 1.0
-X-Originating-IP: [128.224.162.137]
-Subject: [meta-selinux][PATCH 2/2] selinux-image.bbclass: using append instead of += for IMAGE_PREPROCESS_COMMAND
+Subject: [meta-security][PATCH] checksec: Remove old script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,44 +72,904 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2019 07:44:15 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 25 Jan 2019 07:59:48 -0000
 
-Fix AVC denied error when booting:
+Should have been removed in previous patch.
 
-type=AVC msg=audit(1548055920.478:86): avc:  denied  { execute } for
-pid=366 comm="audispd" path="/lib/ld-2.28.so" dev="vda" ino=7545
-scontext=system_u:system_r:audisp_t:s15:c0.c1023
-tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
-
-type=AVC msg=audit(1548055920.478:87): avc:  denied  { open } for
-pid=366 comm="audispd" path="/lib/libc-2.28.so" dev="vda" ino=7558
-scontext=system_u:system_r:audisp_t:s15:c0.c1023
-tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
-
-When using "+=" for IMAGE_PREPROCESS_COMMAND, the selinux_set_labels
-process would run before prelink process to set the security labels for
-the files. But the label for /lib/libc-2.28.so and /lib/ld-2.28.so would
-be changed after run prelink process. Use "_append" to make sure the
-selinux_set_labels process run after prelink process.
-
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+Signed-off-by: Scott Ellis <scott@jumpnowtek.com>
 ---
- classes/selinux-image.bbclass | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-security/checksec/files/checksec.sh | 882 ----------------------------
+ 1 file changed, 882 deletions(-)
+ delete mode 100644 recipes-security/checksec/files/checksec.sh
 
-diff --git a/classes/selinux-image.bbclass b/classes/selinux-image.bbclass
-index 5174dc5..7f157d3 100644
---- a/classes/selinux-image.bbclass
-+++ b/classes/selinux-image.bbclass
-@@ -10,6 +10,6 @@ selinux_set_labels () {
- 
- DEPENDS += "policycoreutils-native"
- 
--IMAGE_PREPROCESS_COMMAND += "selinux_set_labels ;"
-+IMAGE_PREPROCESS_COMMAND_append = " selinux_set_labels ;"
- 
- inherit core-image
+diff --git a/recipes-security/checksec/files/checksec.sh b/recipes-security/checksec/files/checksec.sh
+deleted file mode 100644
+index dd1f72e..0000000
+--- a/recipes-security/checksec/files/checksec.sh
++++ /dev/null
+@@ -1,882 +0,0 @@
+-#!/bin/bash
+-#
+-# The BSD License (http://www.opensource.org/licenses/bsd-license.php) 
+-# specifies the terms and conditions of use for checksec.sh:
+-#
+-# Copyright (c) 2009-2011, Tobias Klein.
+-# All rights reserved.
+-#
+-# Redistribution and use in source and binary forms, with or without 
+-# modification, are permitted provided that the following conditions 
+-# are met:
+-# 
+-# * Redistributions of source code must retain the above copyright 
+-#   notice, this list of conditions and the following disclaimer.
+-# * Redistributions in binary form must reproduce the above copyright 
+-#   notice, this list of conditions and the following disclaimer in 
+-#   the documentation and/or other materials provided with the 
+-#   distribution.
+-# * Neither the name of Tobias Klein nor the name of trapkit.de may be 
+-#   used to endorse or promote products derived from this software 
+-#   without specific prior written permission.
+-#
+-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+-# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+-# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+-# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+-# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+-# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+-# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS 
+-# OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
+-# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
+-# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
+-# THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH 
+-# DAMAGE.
+-#
+-# Name    : checksec.sh
+-# Version : 1.5
+-# Author  : Tobias Klein
+-# Date    : November 2011
+-# Download: http://www.trapkit.de/tools/checksec.html
+-# Changes : http://www.trapkit.de/tools/checksec_changes.txt
+-#
+-# Description:
+-#
+-# Modern Linux distributions offer some mitigation techniques to make it 
+-# harder to exploit software vulnerabilities reliably. Mitigations such 
+-# as RELRO, NoExecute (NX), Stack Canaries, Address Space Layout 
+-# Randomization (ASLR) and Position Independent Executables (PIE) have 
+-# made reliably exploiting any vulnerabilities that do exist far more 
+-# challenging. The checksec.sh script is designed to test what *standard* 
+-# Linux OS and PaX (http://pax.grsecurity.net/) security features are being 
+-# used.
+-#
+-# As of version 1.3 the script also lists the status of various Linux kernel 
+-# protection mechanisms.
+-#
+-# Credits:
+-#
+-# Thanks to Brad Spengler (grsecurity.net) for the PaX support.
+-# Thanks to Jon Oberheide (jon.oberheide.org) for the kernel support.
+-# Thanks to Ollie Whitehouse (Research In Motion) for rpath/runpath support.
+-# 
+-# Others that contributed to checksec.sh (in no particular order):
+-#
+-# Simon Ruderich, Denis Scherbakov, Stefan Kuttler, Radoslaw Madej,
+-# Anthony G. Basile, Martin Vaeth and Brian Davis. 
+-#
+-
+-# global vars
+-have_readelf=1
+-verbose=false
+-
+-# FORTIFY_SOURCE vars
+-FS_end=_chk
+-FS_cnt_total=0
+-FS_cnt_checked=0
+-FS_cnt_unchecked=0
+-FS_chk_func_libc=0
+-FS_functions=0
+-FS_libc=0
+- 
+-# version information
+-version() {
+-  echo "checksec v1.5, Tobias Klein, www.trapkit.de, November 2011"
+-  echo 
+-}
+-
+-# help
+-help() {
+-  echo "Usage: checksec [OPTION]"
+-  echo
+-  echo "Options:"
+-  echo
+-  echo "  --file <executable-file>"
+-  echo "  --dir <directory> [-v]"
+-  echo "  --proc <process name>"
+-  echo "  --proc-all"
+-  echo "  --proc-libs <process ID>"
+-  echo "  --kernel"
+-  echo "  --fortify-file <executable-file>"
+-  echo "  --fortify-proc <process ID>"
+-  echo "  --version"
+-  echo "  --help"
+-  echo
+-  echo "For more information, see:"
+-  echo "  http://www.trapkit.de/tools/checksec.html"
+-  echo
+-}
+-
+-# check if command exists
+-command_exists () {
+-  type $1  > /dev/null 2>&1;
+-}
+-
+-# check if directory exists
+-dir_exists () {
+-  if [ -d $1 ] ; then
+-    return 0
+-  else
+-    return 1
+-  fi
+-}
+-
+-# check user privileges
+-root_privs () {
+-  if [ $(/usr/bin/id -u) -eq 0 ] ; then
+-    return 0
+-  else
+-    return 1
+-  fi
+-}
+-
+-# check if input is numeric
+-isNumeric () {
+-  echo "$@" | grep -q -v "[^0-9]"
+-}
+-
+-# check if input is a string
+-isString () {
+-  echo "$@" | grep -q -v "[^A-Za-z]"
+-}
+-
+-# check file(s)
+-filecheck() {
+-  # check for RELRO support
+-  if readelf -l $1 2>/dev/null | grep -q 'GNU_RELRO'; then
+-    if readelf -d $1 2>/dev/null | grep -q 'BIND_NOW'; then
+-      echo -n -e '\033[32mFull RELRO   \033[m   '
+-    else
+-      echo -n -e '\033[33mPartial RELRO\033[m   '
+-    fi
+-  else
+-    echo -n -e '\033[31mNo RELRO     \033[m   '
+-  fi
+-
+-  # check for stack canary support
+-  if readelf -s $1 2>/dev/null | grep -q '__stack_chk_fail'; then
+-    echo -n -e '\033[32mCanary found   \033[m   '
+-  else
+-    echo -n -e '\033[31mNo canary found\033[m   '
+-  fi
+-
+-  # check for NX support
+-  if readelf -W -l $1 2>/dev/null | grep 'GNU_STACK' | grep -q 'RWE'; then
+-    echo -n -e '\033[31mNX disabled\033[m   '
+-  else
+-    echo -n -e '\033[32mNX enabled \033[m   '
+-  fi 
+-
+-  # check for PIE support
+-  if readelf -h $1 2>/dev/null | grep -q 'Type:[[:space:]]*EXEC'; then
+-    echo -n -e '\033[31mNo PIE       \033[m   '
+-  elif readelf -h $1 2>/dev/null | grep -q 'Type:[[:space:]]*DYN'; then
+-    if readelf -d $1 2>/dev/null | grep -q '(DEBUG)'; then
+-      echo -n -e '\033[32mPIE enabled  \033[m   '
+-    else   
+-      echo -n -e '\033[33mDSO          \033[m   '
+-    fi
+-  else
+-    echo -n -e '\033[33mNot an ELF file\033[m   '
+-  fi 
+-
+-  # check for rpath / run path
+-  if readelf -d $1 2>/dev/null | grep -q 'rpath'; then
+-   echo -n -e '\033[31mRPATH    \033[m  '
+-  else
+-   echo -n -e '\033[32mNo RPATH \033[m  '
+-  fi
+-
+-  if readelf -d $1 2>/dev/null | grep -q 'runpath'; then
+-   echo -n -e '\033[31mRUNPATH    \033[m  '
+-  else
+-   echo -n -e '\033[32mNo RUNPATH \033[m  '
+-  fi
+-}
+-
+-# check process(es)
+-proccheck() {
+-  # check for RELRO support
+-  if readelf -l $1/exe 2>/dev/null | grep -q 'Program Headers'; then
+-    if readelf -l $1/exe 2>/dev/null | grep -q 'GNU_RELRO'; then
+-      if readelf -d $1/exe 2>/dev/null | grep -q 'BIND_NOW'; then
+-        echo -n -e '\033[32mFull RELRO       \033[m '
+-      else
+-        echo -n -e '\033[33mPartial RELRO    \033[m '
+-      fi
+-    else
+-      echo -n -e '\033[31mNo RELRO         \033[m '
+-    fi
+-  else
+-    echo -n -e '\033[31mPermission denied (please run as root)\033[m\n'
+-    exit 1
+-  fi
+-
+-  # check for stack canary support
+-  if readelf -s $1/exe 2>/dev/null | grep -q 'Symbol table'; then
+-    if readelf -s $1/exe 2>/dev/null | grep -q '__stack_chk_fail'; then
+-      echo -n -e '\033[32mCanary found         \033[m  '
+-    else
+-      echo -n -e '\033[31mNo canary found      \033[m  '
+-    fi
+-  else
+-    if [ "$1" != "1" ] ; then
+-      echo -n -e '\033[33mPermission denied    \033[m  '
+-    else
+-      echo -n -e '\033[33mNo symbol table found\033[m  '
+-    fi
+-  fi
+-
+-  # first check for PaX support
+-  if cat $1/status 2> /dev/null | grep -q 'PaX:'; then
+-    pageexec=( $(cat $1/status 2> /dev/null | grep 'PaX:' | cut -b6) )
+-    segmexec=( $(cat $1/status 2> /dev/null | grep 'PaX:' | cut -b10) )
+-    mprotect=( $(cat $1/status 2> /dev/null | grep 'PaX:' | cut -b8) )
+-    randmmap=( $(cat $1/status 2> /dev/null | grep 'PaX:' | cut -b9) )
+-    if [[ "$pageexec" = "P" || "$segmexec" = "S" ]] && [[ "$mprotect" = "M" && "$randmmap" = "R" ]] ; then
+-      echo -n -e '\033[32mPaX enabled\033[m   '
+-    elif [[ "$pageexec" = "p" && "$segmexec" = "s" && "$randmmap" = "R" ]] ; then
+-      echo -n -e '\033[33mPaX ASLR only\033[m '
+-    elif [[ "$pageexec" = "P" || "$segmexec" = "S" ]] && [[ "$mprotect" = "m" && "$randmmap" = "R" ]] ; then
+-      echo -n -e '\033[33mPaX mprot off \033[m'
+-    elif [[ "$pageexec" = "P" || "$segmexec" = "S" ]] && [[ "$mprotect" = "M" && "$randmmap" = "r" ]] ; then
+-      echo -n -e '\033[33mPaX ASLR off\033[m  '
+-    elif [[ "$pageexec" = "P" || "$segmexec" = "S" ]] && [[ "$mprotect" = "m" && "$randmmap" = "r" ]] ; then
+-      echo -n -e '\033[33mPaX NX only\033[m   '
+-    else
+-      echo -n -e '\033[31mPaX disabled\033[m  '
+-    fi
+-  # fallback check for NX support
+-  elif readelf -W -l $1/exe 2>/dev/null | grep 'GNU_STACK' | grep -q 'RWE'; then
+-    echo -n -e '\033[31mNX disabled\033[m   '
+-  else
+-    echo -n -e '\033[32mNX enabled \033[m   '
+-  fi 
+-
+-  # check for PIE support
+-  if readelf -h $1/exe 2>/dev/null | grep -q 'Type:[[:space:]]*EXEC'; then
+-    echo -n -e '\033[31mNo PIE               \033[m   '
+-  elif readelf -h $1/exe 2>/dev/null | grep -q 'Type:[[:space:]]*DYN'; then
+-    if readelf -d $1/exe 2>/dev/null | grep -q '(DEBUG)'; then
+-      echo -n -e '\033[32mPIE enabled          \033[m   '
+-    else   
+-      echo -n -e '\033[33mDynamic Shared Object\033[m   '
+-    fi
+-  else
+-    echo -n -e '\033[33mNot an ELF file      \033[m   '
+-  fi
+-}
+-
+-# check mapped libraries
+-libcheck() {
+-  libs=( $(awk '{ print $6 }' /proc/$1/maps | grep '/' | sort -u | xargs file | grep ELF | awk '{ print $1 }' | sed 's/:/ /') )
+- 
+-  printf "\n* Loaded libraries (file information, # of mapped files: ${#libs[@]}):\n\n"
+-  
+-  for element in $(seq 0 $((${#libs[@]} - 1)))
+-  do
+-    echo "  ${libs[$element]}:"
+-    echo -n "    "
+-    filecheck ${libs[$element]}
+-    printf "\n\n"
+-  done
+-}
+-
+-# check for system-wide ASLR support
+-aslrcheck() {
+-  # PaX ASLR support
+-  if !(cat /proc/1/status 2> /dev/null | grep -q 'Name:') ; then
+-    echo -n -e ':\033[33m insufficient privileges for PaX ASLR checks\033[m\n'
+-    echo -n -e '  Fallback to standard Linux ASLR check'
+-  fi
+-  
+-  if cat /proc/1/status 2> /dev/null | grep -q 'PaX:'; then
+-    printf ": "
+-    if cat /proc/1/status 2> /dev/null | grep 'PaX:' | grep -q 'R'; then
+-      echo -n -e '\033[32mPaX ASLR enabled\033[m\n\n'
+-    else
+-      echo -n -e '\033[31mPaX ASLR disabled\033[m\n\n'
+-    fi
+-  else
+-    # standard Linux 'kernel.randomize_va_space' ASLR support
+-    # (see the kernel file 'Documentation/sysctl/kernel.txt' for a detailed description)
+-    printf " (kernel.randomize_va_space): "
+-    if /sbin/sysctl -a 2>/dev/null | grep -q 'kernel.randomize_va_space = 1'; then
+-      echo -n -e '\033[33mOn (Setting: 1)\033[m\n\n'
+-      printf "  Description - Make the addresses of mmap base, stack and VDSO page randomized.\n"
+-      printf "  This, among other things, implies that shared libraries will be loaded to \n"
+-      printf "  random addresses. Also for PIE-linked binaries, the location of code start\n"
+-      printf "  is randomized. Heap addresses are *not* randomized.\n\n"
+-    elif /sbin/sysctl -a 2>/dev/null | grep -q 'kernel.randomize_va_space = 2'; then
+-      echo -n -e '\033[32mOn (Setting: 2)\033[m\n\n'
+-      printf "  Description - Make the addresses of mmap base, heap, stack and VDSO page randomized.\n"
+-      printf "  This, among other things, implies that shared libraries will be loaded to random \n"
+-      printf "  addresses. Also for PIE-linked binaries, the location of code start is randomized.\n\n"
+-    elif /sbin/sysctl -a 2>/dev/null | grep -q 'kernel.randomize_va_space = 0'; then
+-      echo -n -e '\033[31mOff (Setting: 0)\033[m\n'
+-    else
+-      echo -n -e '\033[31mNot supported\033[m\n'
+-    fi
+-    printf "  See the kernel file 'Documentation/sysctl/kernel.txt' for more details.\n\n"
+-  fi 
+-}
+-
+-# check cpu nx flag
+-nxcheck() {
+-  if grep -q nx /proc/cpuinfo; then
+-    echo -n -e '\033[32mYes\033[m\n\n'
+-  else
+-    echo -n -e '\033[31mNo\033[m\n\n'
+-  fi
+-}
+-
+-# check for kernel protection mechanisms
+-kernelcheck() {
+-  printf "  Description - List the status of kernel protection mechanisms. Rather than\n"
+-  printf "  inspect kernel mechanisms that may aid in the prevention of exploitation of\n"
+-  printf "  userspace processes, this option lists the status of kernel configuration\n"
+-  printf "  options that harden the kernel itself against attack.\n\n"
+-  printf "  Kernel config: "
+- 
+-  if [ -f /proc/config.gz ] ; then
+-    kconfig="zcat /proc/config.gz"
+-    printf "\033[32m/proc/config.gz\033[m\n\n"
+-  elif [ -f /boot/config-`uname -r` ] ; then
+-    kconfig="cat /boot/config-`uname -r`"
+-    printf "\033[33m/boot/config-`uname -r`\033[m\n\n"
+-    printf "  Warning: The config on disk may not represent running kernel config!\n\n";
+-  elif [ -f "${KBUILD_OUTPUT:-/usr/src/linux}"/.config ] ; then
+-    kconfig="cat ${KBUILD_OUTPUT:-/usr/src/linux}/.config"
+-    printf "\033[33m%s\033[m\n\n" "${KBUILD_OUTPUT:-/usr/src/linux}/.config"
+-    printf "  Warning: The config on disk may not represent running kernel config!\n\n";
+-  else
+-    printf "\033[31mNOT FOUND\033[m\n\n"
+-    exit 0
+-  fi
+-
+-  printf "  GCC stack protector support:            "
+-  if $kconfig | grep -qi 'CONFIG_CC_STACKPROTECTOR=y'; then
+-    printf "\033[32mEnabled\033[m\n"
+-  else
+-    printf "\033[31mDisabled\033[m\n"
+-  fi
+-
+-  printf "  Strict user copy checks:                "
+-  if $kconfig | grep -qi 'CONFIG_DEBUG_STRICT_USER_COPY_CHECKS=y'; then
+-    printf "\033[32mEnabled\033[m\n"
+-  else
+-    printf "\033[31mDisabled\033[m\n"
+-  fi
+-
+-  printf "  Enforce read-only kernel data:          "
+-  if $kconfig | grep -qi 'CONFIG_DEBUG_RODATA=y'; then
+-    printf "\033[32mEnabled\033[m\n"
+-  else
+-    printf "\033[31mDisabled\033[m\n"
+-  fi
+-  printf "  Restrict /dev/mem access:               "
+-  if $kconfig | grep -qi 'CONFIG_STRICT_DEVMEM=y'; then
+-    printf "\033[32mEnabled\033[m\n"
+-  else
+-    printf "\033[31mDisabled\033[m\n"
+-  fi
+-
+-  printf "  Restrict /dev/kmem access:              "
+-  if $kconfig | grep -qi 'CONFIG_DEVKMEM=y'; then
+-    printf "\033[31mDisabled\033[m\n"
+-  else
+-    printf "\033[32mEnabled\033[m\n"
+-  fi
+-
+-  printf "\n"
+-  printf "* grsecurity / PaX: "
+-
+-  if $kconfig | grep -qi 'CONFIG_GRKERNSEC=y'; then
+-    if $kconfig | grep -qi 'CONFIG_GRKERNSEC_HIGH=y'; then
+-      printf "\033[32mHigh GRKERNSEC\033[m\n\n"
+-    elif $kconfig | grep -qi 'CONFIG_GRKERNSEC_MEDIUM=y'; then
+-      printf "\033[33mMedium GRKERNSEC\033[m\n\n"
+-    elif $kconfig | grep -qi 'CONFIG_GRKERNSEC_LOW=y'; then
+-      printf "\033[31mLow GRKERNSEC\033[m\n\n"
+-    else
+-      printf "\033[33mCustom GRKERNSEC\033[m\n\n"
+-    fi
+-
+-    printf "  Non-executable kernel pages:            "
+-    if $kconfig | grep -qi 'CONFIG_PAX_KERNEXEC=y'; then
+-      printf "\033[32mEnabled\033[m\n"
+-    else
+-      printf "\033[31mDisabled\033[m\n"
+-    fi
+-
+-    printf "  Prevent userspace pointer deref:        "
+-    if $kconfig | grep -qi 'CONFIG_PAX_MEMORY_UDEREF=y'; then
+-      printf "\033[32mEnabled\033[m\n"
+-    else
+-      printf "\033[31mDisabled\033[m\n"
+-    fi
+-
+-    printf "  Prevent kobject refcount overflow:      "
+-    if $kconfig | grep -qi 'CONFIG_PAX_REFCOUNT=y'; then
+-      printf "\033[32mEnabled\033[m\n"
+-    else
+-      printf "\033[31mDisabled\033[m\n"
+-    fi
+-
+-    printf "  Bounds check heap object copies:        "
+-    if $kconfig | grep -qi 'CONFIG_PAX_USERCOPY=y'; then
+-      printf "\033[32mEnabled\033[m\n"
+-    else
+-      printf "\033[31mDisabled\033[m\n"
+-    fi
+-
+-    printf "  Disable writing to kmem/mem/port:       "
+-    if $kconfig | grep -qi 'CONFIG_GRKERNSEC_KMEM=y'; then
+-      printf "\033[32mEnabled\033[m\n"
+-    else
+-      printf "\033[31mDisabled\033[m\n"
+-    fi
+-
+-    printf "  Disable privileged I/O:                 "
+-    if $kconfig | grep -qi 'CONFIG_GRKERNSEC_IO=y'; then
+-      printf "\033[32mEnabled\033[m\n"
+-    else
+-      printf "\033[31mDisabled\033[m\n"
+-    fi
+-
+-    printf "  Harden module auto-loading:             "
+-    if $kconfig | grep -qi 'CONFIG_GRKERNSEC_MODHARDEN=y'; then
+-      printf "\033[32mEnabled\033[m\n"
+-    else
+-      printf "\033[31mDisabled\033[m\n"
+-    fi
+-
+-    printf "  Hide kernel symbols:                    "
+-    if $kconfig | grep -qi 'CONFIG_GRKERNSEC_HIDESYM=y'; then
+-      printf "\033[32mEnabled\033[m\n"
+-    else
+-      printf "\033[31mDisabled\033[m\n"
+-    fi
+-  else
+-    printf "\033[31mNo GRKERNSEC\033[m\n\n"
+-    printf "  The grsecurity / PaX patchset is available here:\n"
+-    printf "    http://grsecurity.net/\n"
+-  fi
+-
+-  printf "\n"
+-  printf "* Kernel Heap Hardening: "
+-
+-  if $kconfig | grep -qi 'CONFIG_KERNHEAP=y'; then
+-    if $kconfig | grep -qi 'CONFIG_KERNHEAP_FULLPOISON=y'; then
+-      printf "\033[32mFull KERNHEAP\033[m\n\n"
+-    else
+-      printf "\033[33mPartial KERNHEAP\033[m\n\n"
+-    fi
+-  else
+-    printf "\033[31mNo KERNHEAP\033[m\n\n"
+-    printf "  The KERNHEAP hardening patchset is available here:\n"
+-    printf "    https://www.subreption.com/kernheap/\n\n"
+-  fi
+-}
+-
+-# --- FORTIFY_SOURCE subfunctions (start) ---
+-
+-# is FORTIFY_SOURCE supported by libc?
+-FS_libc_check() {
+-  printf "* FORTIFY_SOURCE support available (libc)    : "
+-
+-  if [ "${#FS_chk_func_libc[@]}" != "0" ] ; then
+-    printf "\033[32mYes\033[m\n"
+-  else
+-    printf "\033[31mNo\033[m\n"
+-    exit 1
+-  fi
+-}
+-
+-# was the binary compiled with FORTIFY_SOURCE?
+-FS_binary_check() {
+-  printf "* Binary compiled with FORTIFY_SOURCE support: "
+-
+-  for FS_elem_functions in $(seq 0 $((${#FS_functions[@]} - 1)))
+-  do
+-    if [[ ${FS_functions[$FS_elem_functions]} =~ _chk ]] ; then
+-      printf "\033[32mYes\033[m\n"
+-      return
+-    fi
+-  done
+-  printf "\033[31mNo\033[m\n"
+-  exit 1
+-}
+-
+-FS_comparison() {
+-  echo
+-  printf " ------ EXECUTABLE-FILE ------- . -------- LIBC --------\n"
+-  printf " FORTIFY-able library functions | Checked function names\n"
+-  printf " -------------------------------------------------------\n"
+-
+-  for FS_elem_libc in $(seq 0 $((${#FS_chk_func_libc[@]} - 1)))
+-  do
+-    for FS_elem_functions in $(seq 0 $((${#FS_functions[@]} - 1)))
+-    do
+-      FS_tmp_func=${FS_functions[$FS_elem_functions]}
+-      FS_tmp_libc=${FS_chk_func_libc[$FS_elem_libc]}
+-
+-      if [[ $FS_tmp_func =~ ^$FS_tmp_libc$ ]] ; then
+-        printf " \033[31m%-30s\033[m | __%s%s\n" $FS_tmp_func $FS_tmp_libc $FS_end
+-        let FS_cnt_total++
+-        let FS_cnt_unchecked++
+-      elif [[ $FS_tmp_func =~ ^$FS_tmp_libc(_chk) ]] ; then
+-        printf " \033[32m%-30s\033[m | __%s%s\n" $FS_tmp_func $FS_tmp_libc $FS_end
+-        let FS_cnt_total++
+-        let FS_cnt_checked++
+-      fi
+-
+-    done
+-  done
+-}
+-
+-FS_summary() {
+-  echo
+-  printf "SUMMARY:\n\n"
+-  printf "* Number of checked functions in libc                : ${#FS_chk_func_libc[@]}\n"
+-  printf "* Total number of library functions in the executable: ${#FS_functions[@]}\n"
+-  printf "* Number of FORTIFY-able functions in the executable : %s\n" $FS_cnt_total
+-  printf "* Number of checked functions in the executable      : \033[32m%s\033[m\n" $FS_cnt_checked
+-  printf "* Number of unchecked functions in the executable    : \033[31m%s\033[m\n" $FS_cnt_unchecked
+-  echo
+-}
+-
+-# --- FORTIFY_SOURCE subfunctions (end) ---
+-
+-if !(command_exists readelf) ; then
+-  printf "\033[31mWarning: 'readelf' not found! It's required for most checks.\033[m\n\n"
+-  have_readelf=0
+-fi
+-
+-# parse command-line arguments
+-case "$1" in
+-
+- --version)
+-  version
+-  exit 0
+-  ;;
+-
+- --help)
+-  help
+-  exit 0
+-  ;;
+-
+- --dir)
+-  if [ "$3" = "-v" ] ; then
+-    verbose=true
+-  fi
+-  if [ $have_readelf -eq 0 ] ; then
+-    exit 1
+-  fi
+-  if [ -z "$2" ] ; then
+-    printf "\033[31mError: Please provide a valid directory.\033[m\n\n"
+-    exit 1
+-  fi
+-  # remove trailing slashes
+-  tempdir=`echo $2 | sed -e "s/\/*$//"`
+-  if [ ! -d $tempdir ] ; then
+-    printf "\033[31mError: The directory '$tempdir' does not exist.\033[m\n\n"
+-    exit 1
+-  fi
+-  cd $tempdir
+-  printf "RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      FILE\n"
+-  for N in [A-Za-z]*; do
+-    if [ "$N" != "[A-Za-z]*" ]; then
+-      # read permissions?
+-      if [ ! -r $N ]; then
+-        printf "\033[31mError: No read permissions for '$tempdir/$N' (run as root).\033[m\n"
+-      else
+-        # ELF executable?
+-        out=`file $N`
+-        if [[ ! $out =~ ELF ]] ; then
+-           if [ "$verbose" = "true" ] ; then
+-             printf "\033[34m*** Not an ELF file: $tempdir/"
+-             file $N
+-             printf "\033[m"
+-           fi
+-        else 
+-          filecheck $N
+-          if [ `find $tempdir/$N \( -perm -004000 -o -perm -002000 \) -type f -print` ]; then
+-            printf "\033[37;41m%s%s\033[m" $2 $N
+-          else
+-            printf "%s%s" $tempdir/ $N
+-          fi
+-          echo
+-        fi
+-      fi
+-    fi
+-  done
+-  exit 0
+-  ;;
+- 
+- --file)
+-  if [ $have_readelf -eq 0 ] ; then
+-    exit 1
+-  fi
+-  if [ -z "$2" ] ; then
+-    printf "\033[31mError: Please provide a valid file.\033[m\n\n"
+-   exit 1
+-  fi
+-  # does the file exist?
+-  if [ ! -e $2 ] ; then
+-    printf "\033[31mError: The file '$2' does not exist.\033[m\n\n"
+-    exit 1
+-  fi
+-  # read permissions?
+-  if [ ! -r $2 ] ; then
+-    printf "\033[31mError: No read permissions for '$2' (run as root).\033[m\n\n"
+-    exit 1
+-  fi
+-  # ELF executable?
+-  out=`file $2`
+-  if [[ ! $out =~ ELF ]] ; then
+-    printf "\033[31mError: Not an ELF file: "
+-    file $2
+-    printf "\033[m\n"
+-    exit 1
+-  fi
+-  printf "RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      FILE\n"
+-  filecheck $2
+-  if [ `find $2 \( -perm -004000 -o -perm -002000 \) -type f -print` ] ; then
+-    printf "\033[37;41m%s%s\033[m" $2 $N
+-  else
+-    printf "%s" $2
+-  fi
+-  echo
+-  exit 0
+-  ;;
+-
+- --proc-all)
+-  if [ $have_readelf -eq 0 ] ; then
+-    exit 1
+-  fi
+-  cd /proc
+-  printf "* System-wide ASLR"
+-  aslrcheck
+-  printf "* Does the CPU support NX: "
+-  nxcheck 
+-  printf "         COMMAND    PID RELRO             STACK CANARY           NX/PaX        PIE\n"
+-  for N in [1-9]*; do
+-    if [ $N != $$ ] && readlink -q $N/exe > /dev/null; then
+-      printf "%16s" `head -1 $N/status | cut -b 7-`
+-      printf "%7d " $N
+-      proccheck $N
+-      echo
+-    fi
+-  done
+-  if [ ! -e /usr/bin/id ] ; then
+-    printf "\n\033[33mNote: If you are running 'checksec.sh' as an unprivileged user, you\n"
+-    printf "      will not see all processes. Please run the script as root.\033[m\n\n"
+-  else 
+-    if !(root_privs) ; then
+-      printf "\n\033[33mNote: You are running 'checksec.sh' as an unprivileged user.\n" 
+-      printf "      Too see all processes, please run the script as root.\033[m\n\n"
+-    fi
+-  fi
+-  exit 0
+-  ;;
+-
+- --proc)
+-  if [ $have_readelf -eq 0 ] ; then
+-    exit 1
+-  fi
+-  if [ -z "$2" ] ; then
+-    printf "\033[31mError: Please provide a valid process name.\033[m\n\n"
+-    exit 1
+-  fi
+-  if !(isString "$2") ; then
+-     printf "\033[31mError: Please provide a valid process name.\033[m\n\n"
+-     exit 1
+-  fi
+-  cd /proc
+-  printf "* System-wide ASLR"
+-  aslrcheck
+-  printf "* Does the CPU support NX: "
+-  nxcheck
+-  printf "         COMMAND    PID RELRO             STACK CANARY           NX/PaX        PIE\n"
+-  for N in `ps -Ao pid,comm | grep $2 | cut -b1-6`; do
+-    if [ -d $N ] ; then
+-      printf "%16s" `head -1 $N/status | cut -b 7-`
+-      printf "%7d " $N
+-      # read permissions?
+-      if [ ! -r $N/exe ] ; then
+-        if !(root_privs) ; then
+-          printf "\033[31mNo read permissions for '/proc/$N/exe' (run as root).\033[m\n\n"
+-          exit 1
+-        fi
+-        if [ ! `readlink $N/exe` ] ; then
+-          printf "\033[31mPermission denied. Requested process ID belongs to a kernel thread.\033[m\n\n"
+-          exit 1
+-        fi
+-        exit 1
+-      fi
+-      proccheck $N
+-      echo
+-    fi
+-  done
+-  exit 0
+-  ;;
+-
+- --proc-libs)
+-  if [ $have_readelf -eq 0 ] ; then
+-    exit 1
+-  fi
+-  if [ -z "$2" ] ; then
+-    printf "\033[31mError: Please provide a valid process ID.\033[m\n\n"
+-    exit 1
+-  fi
+-  if !(isNumeric "$2") ; then
+-     printf "\033[31mError: Please provide a valid process ID.\033[m\n\n"
+-     exit 1
+-  fi
+-  cd /proc
+-  printf "* System-wide ASLR"
+-  aslrcheck
+-  printf "* Does the CPU support NX: "
+-  nxcheck
+-  printf "* Process information:\n\n"
+-  printf "         COMMAND    PID RELRO             STACK CANARY           NX/PaX        PIE\n"
+-  N=$2
+-  if [ -d $N ] ; then
+-    printf "%16s" `head -1 $N/status | cut -b 7-`
+-    printf "%7d " $N
+-    # read permissions?
+-    if [ ! -r $N/exe ] ; then
+-      if !(root_privs) ; then
+-        printf "\033[31mNo read permissions for '/proc/$N/exe' (run as root).\033[m\n\n"
+-        exit 1
+-      fi
+-      if [ ! `readlink $N/exe` ] ; then
+-        printf "\033[31mPermission denied. Requested process ID belongs to a kernel thread.\033[m\n\n"
+-        exit 1
+-      fi
+-      exit 1
+-    fi
+-    proccheck $N
+-    echo
+-    libcheck $N
+-  fi
+-  exit 0
+-  ;;
+-
+- --kernel)
+-  cd /proc
+-  printf "* Kernel protection information:\n\n"
+-  kernelcheck
+-  exit 0
+-  ;;
+-
+- --fortify-file)
+-  if [ $have_readelf -eq 0 ] ; then
+-    exit 1
+-  fi
+-  if [ -z "$2" ] ; then
+-    printf "\033[31mError: Please provide a valid file.\033[m\n\n"
+-   exit 1
+-  fi
+-  # does the file exist?
+-  if [ ! -e $2 ] ; then
+-    printf "\033[31mError: The file '$2' does not exist.\033[m\n\n"
+-    exit 1
+-  fi
+-  # read permissions?
+-  if [ ! -r $2 ] ; then
+-    printf "\033[31mError: No read permissions for '$2' (run as root).\033[m\n\n"
+-    exit 1
+-  fi
+-  # ELF executable?
+-  out=`file $2`
+-  if [[ ! $out =~ ELF ]] ; then
+-    printf "\033[31mError: Not an ELF file: "
+-    file $2
+-    printf "\033[m\n"
+-    exit 1
+-  fi
+-  if [ -e /lib/libc.so.6 ] ; then
+-    FS_libc=/lib/libc.so.6
+-  elif [ -e /lib64/libc.so.6 ] ; then
+-    FS_libc=/lib64/libc.so.6
+-  elif [ -e /lib/i386-linux-gnu/libc.so.6 ] ; then
+-    FS_libc=/lib/i386-linux-gnu/libc.so.6
+-  elif [ -e /lib/x86_64-linux-gnu/libc.so.6 ] ; then
+-    FS_libc=/lib/x86_64-linux-gnu/libc.so.6
+-  else
+-    printf "\033[31mError: libc not found.\033[m\n\n"
+-    exit 1
+-  fi
+-
+-  FS_chk_func_libc=( $(readelf -s $FS_libc | grep _chk@@ | awk '{ print $8 }' | cut -c 3- | sed -e 's/_chk@.*//') )
+-  FS_functions=( $(readelf -s $2 | awk '{ print $8 }' | sed 's/_*//' | sed -e 's/@.*//') )
+-
+-  FS_libc_check
+-  FS_binary_check
+-  FS_comparison
+-  FS_summary
+-
+-  exit 0
+-  ;;
+-
+- --fortify-proc)
+-  if [ $have_readelf -eq 0 ] ; then
+-    exit 1
+-  fi
+-  if [ -z "$2" ] ; then
+-    printf "\033[31mError: Please provide a valid process ID.\033[m\n\n"
+-    exit 1
+-  fi
+-  if !(isNumeric "$2") ; then
+-     printf "\033[31mError: Please provide a valid process ID.\033[m\n\n"
+-     exit 1
+-  fi
+-  cd /proc
+-  N=$2
+-  if [ -d $N ] ; then
+-    # read permissions?
+-    if [ ! -r $N/exe ] ; then
+-      if !(root_privs) ; then
+-        printf "\033[31mNo read permissions for '/proc/$N/exe' (run as root).\033[m\n\n"
+-        exit 1
+-      fi
+-      if [ ! `readlink $N/exe` ] ; then
+-        printf "\033[31mPermission denied. Requested process ID belongs to a kernel thread.\033[m\n\n"
+-        exit 1
+-      fi
+-      exit 1
+-    fi
+-    if [ -e /lib/libc.so.6 ] ; then
+-      FS_libc=/lib/libc.so.6
+-    elif [ -e /lib64/libc.so.6 ] ; then
+-      FS_libc=/lib64/libc.so.6
+-    elif [ -e /lib/i386-linux-gnu/libc.so.6 ] ; then
+-      FS_libc=/lib/i386-linux-gnu/libc.so.6
+-    elif [ -e /lib/x86_64-linux-gnu/libc.so.6 ] ; then
+-      FS_libc=/lib/x86_64-linux-gnu/libc.so.6
+-    else
+-      printf "\033[31mError: libc not found.\033[m\n\n"
+-      exit 1
+-    fi
+-    printf "* Process name (PID)                         : %s (%d)\n" `head -1 $N/status | cut -b 7-` $N
+-    FS_chk_func_libc=( $(readelf -s $FS_libc | grep _chk@@ | awk '{ print $8 }' | cut -c 3- | sed -e 's/_chk@.*//') )
+-    FS_functions=( $(readelf -s $2/exe | awk '{ print $8 }' | sed 's/_*//' | sed -e 's/@.*//') )
+-
+-    FS_libc_check
+-    FS_binary_check
+-    FS_comparison
+-    FS_summary
+-  fi
+-  exit 0
+-  ;;
+-
+- *)
+-  if [ "$#" != "0" ] ; then
+-    printf "\033[31mError: Unknown option '$1'.\033[m\n\n"
+-  fi
+-  help
+-  exit 1
+-  ;;
+-esac
 -- 
 2.7.4
 
