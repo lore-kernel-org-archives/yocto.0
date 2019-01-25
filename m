@@ -1,92 +1,68 @@
-Return-Path: <dburke@mountainss.com>
+Return-Path: <rajashekhar.sanda@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7CD37E00C58; Thu, 24 Jan 2019 22:37:22 -0800 (PST)
+	id 457CFE00C58; Thu, 24 Jan 2019 23:12:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLYTO,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (rajashekhar.sanda[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [40.107.72.79 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.210.44 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 48237 seconds by postgrey-1.32 at yocto-www;
-	Thu, 24 Jan 2019 22:37:21 PST
-Received: from NAM05-CO1-obe.outbound.protection.outlook.com
-	(mail-eopbgr720079.outbound.protection.outlook.com [40.107.72.79])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60975E006B3
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2019 22:37:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mountainsecuresystems.onmicrosoft.com; s=selector1-mountainss-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=GOEKUSkkKiSXI2oTdhuzHol+QEigf1UKrZTFmYaq2eU=;
-	b=PVfXhp24ggKkwU8qjnsr3ojEc5rgyAPFpzcs3jYN4nlMqDYzfxEBwOBWvr2WMSQ52O6lzo1iROH9LDss8ohGZv2AcUiJWDUWVJw6ceZEJ9QDd385iBJjq/XCrCWG8WdVROMaBLutW9C8+oMezqj2rfbW/ZXcWMFF06uGr39sXLc=
-Received: from DM3PR17MB0762.namprd17.prod.outlook.com (10.166.162.10) by
-	DM3PR17MB0857.namprd17.prod.outlook.com (10.166.162.139) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1558.18; Thu, 24 Jan 2019 17:29:51 +0000
-Received: from DM3PR17MB0762.namprd17.prod.outlook.com
-	([fe80::3557:845a:6fcd:9a15]) by
-	DM3PR17MB0762.namprd17.prod.outlook.com
-	([fe80::3557:845a:6fcd:9a15%4]) with mapi id 15.20.1537.032;
-	Thu, 24 Jan 2019 17:29:51 +0000
-From: "Burke, David" <dburke@mountainss.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: wic command, partitioned image, multiple boot loader entries
-Thread-Index: AdSz+hZteoniOxGiRDa9e2hDMpgN5AADwHvg
-Date: Thu, 24 Jan 2019 17:29:51 +0000
-Message-ID: <DM3PR17MB07626CD97E8924F2551DEB5FB19A0@DM3PR17MB0762.namprd17.prod.outlook.com>
-References: <DM3PR17MB076287213B898AE5AE480175B19A0@DM3PR17MB0762.namprd17.prod.outlook.com>
-In-Reply-To: <DM3PR17MB076287213B898AE5AE480175B19A0@DM3PR17MB0762.namprd17.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=dburke@mountainss.com; 
-x-originating-ip: [184.88.71.104]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; DM3PR17MB0857;
-	6:mh3aqrlhMq6YsE1cyHWpo93Aw/ikMToXz3+Gr2ww31JuoO28LO3sZgPRr10DPKvMYSAum8t/05AhJGFM7yLnD0ERO8ML+tqQTgu6vYrp4p0x6GfYhI9+xeBiwZ7hAltaszNk1+D9E9bMOiO/MEtv3wKJHXuStpIBlO+hikuLnL4Q8gJ7ha8ByreorqogLB8vOWzVg6M9ZiUZyQrhjfQU/FgLzT2yXdGKOzjdneWe7phJgiHpohE88oWskc+8exIICkVsqlPhLrpU8CGNqQRwSorff1mHDfJJdXMeZ98xRwGvO7uHG+CDDnx21C/fEzDgAr6kibx8kS8n9DlrsHHw9vu4ue1lz32+IxUrTG/7QH7unPVuYTzIHuT9DoSGr99Gpk4ATER4xCizm+GunN9INyi44rUcjRcEO3KspFtkqPuZ4eAs96dnK5SwX/JIpejzJ0wxhqHt1qkRo7vjgRVRCQ==;
-	5:dYx2L/tByrY9qKMP7JGuxy3sYirgm9rdsyGejy5yh82ljwvgl5PQWqsurKDjP8pG6Ljoigd03yPT/1dL6QpRfDSMP5jrcYhxL/J6mx5jvYT9c52yna373c9zZ0jiQ4vZguXLpamLPvRQ4+/9JZt1uw00g8R+7MSXyZUhxchtvJaVu4I7lhht1ObcNbINtYGxQYwVUECI9OnWarGBDq9pPg==;
-	7:clejduBkqajzkwGxtU+LH0m4LJu4CqQsj8iTI6EoTpaRr5g1n4U669NvgDoQdpoMD0eFqpO+Cf0A1frKijwq/DR3PWsQnCxY89g9jEzJSxQQ8/kI0FDJ8QfLonzq0olXhV1HkK1+CPnnomUHOojGqw==
-x-ms-office365-filtering-correlation-id: f363b054-e446-414e-09df-08d682218c0e
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600110)(711020)(4605077)(2017052603328)(7153060)(7193020);
-	SRVR:DM3PR17MB0857; 
-X-MS-TrafficTypeDiagnostic: DM3PR17MB0857:|DM3PR17MB0857:
-x-microsoft-antispam-prvs: <DM3PR17MB08572D400DEFD80C5C369639B19A0@DM3PR17MB0857.namprd17.prod.outlook.com>
-x-forefront-prvs: 0927AA37C7
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(346002)(396003)(366004)(39830400003)(376002)(136003)(199004)(189003)(2940100002)(2501003)(53936002)(68736007)(25786009)(55016002)(6246003)(9686003)(86362001)(6436002)(97736004)(33656002)(76176011)(5640700003)(7696005)(74316002)(2351001)(106356001)(105586002)(8936002)(1730700003)(81156014)(81166006)(8676002)(316002)(6916009)(7736002)(305945005)(99286004)(486006)(256004)(53546011)(6116002)(3846002)(102836004)(6506007)(93156006)(71200400001)(476003)(11346002)(446003)(186003)(71190400001)(26005)(2906002)(508600001)(229853002)(14454004)(66066001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DM3PR17MB0857;
-	H:DM3PR17MB0762.namprd17.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: mountainss.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 5+Gsm3JfBXwgC65UtWZYXQXgBlQlO2Cs1eE1Ga0WrOp+8ZeLmhiAdjgwTjTmTcteSXzfW5a6aqK248DpFUfBgnAinyTIR7/YBM/hwEGh2SWjE6D9je4WBXVY1fONiaNx6YVrwPPqI7LGVcBsU38EqJ4cygx5BZrbchqA5GHpKiAo5F6A0sqJYjTiZX4ipaOR1VKCVK0/HrOY2fzyTCczZAlUZUUQ03ZliVJgU3b5/wkMqbRgl9vtZwe/pNwZbVOHOn8EilwTxXPEgEqAtuwW095PK5XP7n5MxYHnsU7zAy/qYUdDoOhRgq2zxC+ANaiUNWH8c2QVdqADRsw4adlkosI7/rR6mt8qSGBTizX2tAapM3NHpmWTBsWpLhl5fFkZoY8E0i07cc6ZJmPbBBc/y7RifXAbQWIjgfMGnbzbbjA=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	* 1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain different
+	*      freemails
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
+	[209.85.210.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52C7BE0053F
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2019 23:12:26 -0800 (PST)
+Received: by mail-ot1-f44.google.com with SMTP id n8so7659794otl.6
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2019 23:12:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:reply-to:from:date:message-id:subject:to;
+	bh=rGLx1GdtxEyIDQK0Cfm80zgmu5//i//3VmDKdbljkPQ=;
+	b=AMkLga21DsNmfOM7rj45PqcV64VIrS3p7QZszJCZc4uSLUe7tanvV77eGopow4KdPf
+	5CG+PvNT6jQCPgr5zrNeUZe9wnkNNzQ1t5jozqHb6wGyXUCb7DKKqYJeh+wNDFz3EUyb
+	JeqMec2XluquQgw0ZBzThgnx2Yup/MAobPR7WalXNtChkzFtkD3kZOPrvc8X24Z0cKLC
+	lpKUgG9tydGSOiB90J3z1ZPHYONi7EcvqSmvbu0Bm+9gk0EdVXJxtxyktJYyynoAdbL7
+	IRiJ+Pd/uOkMuGuLesQk+HC4EQgcCiT/vXFL3JyXl1Ynv2q96iVjWvM+pY3yPpI9bLHP
+	9BpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+	:subject:to;
+	bh=rGLx1GdtxEyIDQK0Cfm80zgmu5//i//3VmDKdbljkPQ=;
+	b=Gnodtgkk5opUA2y1c6KDQDt2ELm1IhgMmaRC+wjHzECAe2vDEOa5YPvr8rUezY5TKm
+	IxTDG52vJMVsjWztaiYbaaP4RkFDWzgwNLBSko4xKrvY2vxU1bLudCI2J4UqBGVj0oQN
+	92BaE0XzLIe9ObrDYn+bdIsZgH7LvKjzAWF7sPDbeUAfZllSCAe7yZC3Do331alw4PVl
+	36YZs9v32OP4JhUyfzTj3bC8i2wpBE4N4DfGKKirdUtAbqj14MX26bPxA/9YOApdPryp
+	Sw4EO3ceQZyIzRZIdEr9bwGDGQToTYJAcUEGk9IwII6gj7pIAtGN14zUHh6TZkO4a7Ei
+	erTw==
+X-Gm-Message-State: AJcUukenNZDZasdRDFpNZxlgF4Zj5eSGO0Eet4sWd1YC0xwGzlnE94T8
+	0fnd6q/5w7cy/t4Ew5wxYmtZf3IQVT/fB8FGbLVBqyA+
+X-Google-Smtp-Source: ALg8bN4L32HgFt+YyLJw3T8yKN3wp4mk+4ZhJiNzNINz+yl5kqOQkPjYAPi9jDfHKz2rpnjNnza8FPPPYijgkj3iIJ8=
+X-Received: by 2002:a9d:6419:: with SMTP id h25mr7226433otl.34.1548400345425; 
+	Thu, 24 Jan 2019 23:12:25 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: f363b054-e446-414e-09df-08d682218c0e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jan 2019 17:29:51.3828 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: daa06c07-9a83-4d89-8cdb-7aff15c73b31
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR17MB0857
-X-Microsoft-Exchange-Diagnostics: 1; DM3PR17MB0857;
-	23:S1hiedFh+J7LMc0//GxBBDdp5K8aDKPhgzL0ia9Bmi4mlwGcSP73ieO/ZzSmDsayLQCM64UDUSGuYGrJ06Ku35R7J0GwQr0atAumq/ixFuNyC24xAAtmCr8tsXPPcC2vEO1/BXlFY4fYvp3/ztrtDw==
-X-OriginatorOrg: mountainss.com
-Subject: Re: wic command, partitioned image, multiple boot loader entries
+From: rajshekharsanda <rajashekhar.sanda@gmail.com>
+Date: Fri, 25 Jan 2019 12:42:11 +0530
+Message-ID: <CADxnEStpXAgZHGVG884VMXa_HWV44yoMdZ+drUMthZJcbO+68w@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: do_rootfs fails during bitbake pulsar-image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: rajashekharsanda@gmail.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -95,39 +71,178 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2019 06:37:22 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 25 Jan 2019 07:12:27 -0000
+Content-Type: multipart/alternative; boundary="0000000000008f2aac0580430cd0"
+
+--0000000000008f2aac0580430cd0
+Content-Type: text/plain; charset="UTF-8"
+
+Iam trying build an image for R-CAR H3 using GENIVI 14 (ROCKO).
+
+*My Native System:*
+OS: Ubuntu 16.04
+RAM: 64 GB
+
+
+
+*The build configuration is:*
+
+BB_VERSION           = "1.36.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "aarch64-poky-linux"
+MACHINE              = "h3ulcb"
+DISTRO               = "poky-ivi-systemd"
+DISTRO_VERSION       = "14.0.0"
+TUNE_FEATURES        = "aarch64 cortexa57-cortexa53"
+TARGET_FPU           = ""
+SOC_FAMILY           = "rcar-gen3:r8a7795"
+meta
+meta-poky
+meta-yocto-bsp
+meta-ivi
+meta-ivi-bsp
+meta-optee
+meta-oe
+meta-rcar-gen3
+meta-filesystems
+meta-multimedia
+meta-python
+meta-rtlwifi-master  = "<unknown>:<unknown>"
+
+*NOTE*: All the above packages are available locally in my native System.
+
+
+*The error details are as follows:*
+
+when doing bitbake pulsar-image. iam getting the following errors.
+
+ERROR: pulsar-image-14.0.0-r0 do_rootfs: Could not invoke dnf. Command
+'/home/buildpc/Genivi14/poky/build/tmp/work/h3ulcb-poky-linux/pulsar-image/14.0.0-r0/recipe-sysroot-native/usr/bin/dnf
+-y -c
+/home/buildpc/Genivi14/poky/build/tmp/work/h3ulcb-poky-linux/pulsar-image/14.0.0-r0/rootfs/etc/dnf/dnf.conf
+--setopt=reposdir=/home/buildpc/Genivi14/poky/build/tmp/work/h3ulcb-poky-linux/pulsar-image/14.0.0-r0/rootfs/etc/yum.repos.d
+--repofrompath=oe-repo,/home/buildpc/Genivi14/poky/build/tmp/work/h3ulcb-poky-linux/pulsar-image/14.0.0-r0/oe-rootfs-repo
+--installroot=/home/buildpc/Genivi14/poky/build/tmp/work/h3ulcb-poky-linux/pulsar-image/14.0.0-r0/rootfs
+--setopt=logdir=/home/buildpc/Genivi14/poky/build/tmp/work/h3ulcb-poky-linux/pulsar-image/14.0.0-r0/temp
+--nogpgcheck install util-linux libopus0 screen alsa-utils libx264-148
+bluez5 dnf node-startup-controller libsdl-1.2-0 connman-client
+libgnome-keyring0 libsdl2-2.0-0 rpcbind libc6 perf libdrm2 alsa-lib
+libc6-staticdev curl libjansson4 packagegroup-placeholder-component-p1
+node-state-manager gstreamer1.0-libav usbutils gstreamer1.0-plugins-ugly
+libinput10 wayland-ivi-extension make lame mesa strace libusbg
+libgupnp-1.0-4 cmake initscripts rtl8812au libusb-0.1-4 udev alsa-tools
+audiomanager node-health-monitor update-rc.d libmediaart-2.0-0
+gstreamer1.0-plugins-base weston liba52-0 libfontconfig1 mpeg2dec vala
+pkgconfig glibmm libfreeimage3 gstreamer1.0 libcommonapi-dbus3.1.12
+packagegroup-abstract-component-p2 libgif7 autoconf wayland dbus-1
+gstreamer1.0-omx gstreamer1.0-plugins-good shadow sed
+gstreamer1.0-plugins-bad rpm run-postinsts base-passwd gcc libts-1.0-0
+dlt-daemon openssh libflacdla-l2 flex wpa-supplicant
+packagegroup-specific-component-p2 libfreetype6 libgcc1 connman libsolv0
+packagegroup-core-boot-genivi pulseaudio alsa-plugins openssl tzdata
+omx-user-module packagegroup-specific-component-p1 binutils libgee-0.8-2
+packagegroup-abstract-component-p1 g++ libsdl-ttf-2.0-0 gdb libalacdla-l2
+perl systemtap' returned 1:
+Added oe-repo repo from
+/home/buildpc/Genivi14/poky/build/tmp/work/h3ulcb-poky-linux/pulsar-image/14.0.0-r0/oe-rootfs-repo
+Last metadata expiration check: 0:00:00 ago on Wed 23 Jan 2019 04:32:09 AM
+UTC.
+No package alsa-lib available.
+Error: Unable to find a match
+
+ERROR: pulsar-image-14.0.0-r0 do_rootfs: Function failed: do_rootfs
+ERROR: Logfile of failure stored in:
+/home/buildpc/Genivi14/poky/build/tmp/work/h3ulcb-poky-linux/pulsar-image/14.0.0-r0/temp/log.do_rootfs.10547
+ERROR: Task
+(/home/buildpc/Genivi14/meta-ivi-14/meta-ivi/recipes-yocto-ivi/images/pulsar-image.bb:do_rootfs)
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 5089 tasks of which 5088 didn't need to be
+rerun and 1 failed.
+
+Summary: 1 task failed:
+
+/home/buildpc/Genivi14/meta-ivi-14/meta-ivi/recipes-yocto-ivi/images/pulsar-image.bb:
+do_rootfs
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+--0000000000008f2aac0580430cd0
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I should add the following information:
+<div dir=3D"auto"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><br><div>Iam trying build an image for R-CAR H3 using GENIVI 14 =
+(ROCKO).</div><div><br></div><div><b>My Native System:</b></div><div>OS: Ub=
+untu 16.04</div><div>RAM: 64 GB</div><div><br></div><div><br></div><div><b>=
+<br></b></div><div><b>The build configuration is:</b></div><div><br></div><=
+div><div>BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;1.36.=
+0&quot;</div><div>BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &q=
+uot;x86_64-linux&quot;</div><div>NATIVELSBSTRING=C2=A0 =C2=A0 =C2=A0 =3D &q=
+uot;universal&quot;</div><div>TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0=3D &quot;aarch64-poky-linux&quot;</div><div>MACHINE=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;h3ulcb&quot;</div><div>DISTRO=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;poky-ivi-syst=
+emd&quot;</div><div>DISTRO_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;14.0=
+.0&quot;</div><div>TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;aarch=
+64 cortexa57-cortexa53&quot;</div><div>TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0=3D &quot;&quot;</div><div>SOC_FAMILY=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0=3D &quot;rcar-gen3:r8a7795&quot;</div><div>meta=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</div><div>meta-poky=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div><div>meta-yocto-bsp=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0</div><div>meta-ivi=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0</div><div>meta-ivi-bsp=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<=
+/div><div>meta-optee=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</div><div>met=
+a-oe=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div><div>meta-r=
+car-gen3=C2=A0 =C2=A0 =C2=A0 =C2=A0</div><div>meta-filesystems=C2=A0 =C2=A0=
+ =C2=A0</div><div>meta-multimedia=C2=A0 =C2=A0 =C2=A0=C2=A0</div><div>meta-=
+python=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div><div>meta-rtlwifi-maste=
+r=C2=A0 =3D &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot;</div></div><div><br=
+></div><div><b>NOTE</b>: All the above packages are available locally in my=
+ native System.</div><div><br></div><div><b><br></b></div><div><b>The error=
+ details are as follows:</b></div><div><b><br></b></div><div>when doing bit=
+bake pulsar-image. iam getting the following errors.</div><div><br></div><d=
+iv><div>ERROR: pulsar-image-14.0.0-r0 do_rootfs: Could not invoke dnf. Comm=
+and &#39;/home/buildpc/Genivi14/poky/build/tmp/work/h3ulcb-poky-linux/pulsa=
+r-image/14.0.0-r0/recipe-sysroot-native/usr/bin/dnf -y -c /home/buildpc/Gen=
+ivi14/poky/build/tmp/work/h3ulcb-poky-linux/pulsar-image/14.0.0-r0/rootfs/e=
+tc/dnf/dnf.conf --setopt=3Dreposdir=3D/home/buildpc/Genivi14/poky/build/tmp=
+/work/h3ulcb-poky-linux/pulsar-image/14.0.0-r0/rootfs/etc/yum.repos.d --rep=
+ofrompath=3Doe-repo,/home/buildpc/Genivi14/poky/build/tmp/work/h3ulcb-poky-=
+linux/pulsar-image/14.0.0-r0/oe-rootfs-repo --installroot=3D/home/buildpc/G=
+enivi14/poky/build/tmp/work/h3ulcb-poky-linux/pulsar-image/14.0.0-r0/rootfs=
+ --setopt=3Dlogdir=3D/home/buildpc/Genivi14/poky/build/tmp/work/h3ulcb-poky=
+-linux/pulsar-image/14.0.0-r0/temp --nogpgcheck install util-linux libopus0=
+ screen alsa-utils libx264-148 bluez5 dnf node-startup-controller libsdl-1.=
+2-0 connman-client libgnome-keyring0 libsdl2-2.0-0 rpcbind libc6 perf libdr=
+m2 alsa-lib libc6-staticdev curl libjansson4 packagegroup-placeholder-compo=
+nent-p1 node-state-manager gstreamer1.0-libav usbutils gstreamer1.0-plugins=
+-ugly libinput10 wayland-ivi-extension make lame mesa strace libusbg libgup=
+np-1.0-4 cmake initscripts rtl8812au libusb-0.1-4 udev alsa-tools audiomana=
+ger node-health-monitor update-rc.d libmediaart-2.0-0 gstreamer1.0-plugins-=
+base weston liba52-0 libfontconfig1 mpeg2dec vala pkgconfig glibmm libfreei=
+mage3 gstreamer1.0 libcommonapi-dbus3.1.12 packagegroup-abstract-component-=
+p2 libgif7 autoconf wayland dbus-1 gstreamer1.0-omx gstreamer1.0-plugins-go=
+od shadow sed gstreamer1.0-plugins-bad rpm run-postinsts base-passwd gcc li=
+bts-1.0-0 dlt-daemon openssh libflacdla-l2 flex wpa-supplicant packagegroup=
+-specific-component-p2 libfreetype6 libgcc1 connman libsolv0 packagegroup-c=
+ore-boot-genivi pulseaudio alsa-plugins openssl tzdata omx-user-module pack=
+agegroup-specific-component-p1 binutils libgee-0.8-2 packagegroup-abstract-=
+component-p1 g++ libsdl-ttf-2.0-0 gdb libalacdla-l2 perl systemtap&#39; ret=
+urned 1:</div><div>Added oe-repo repo from /home/buildpc/Genivi14/poky/buil=
+d/tmp/work/h3ulcb-poky-linux/pulsar-image/14.0.0-r0/oe-rootfs-repo</div><di=
+v>Last metadata expiration check: 0:00:00 ago on Wed 23 Jan 2019 04:32:09 A=
+M UTC.</div><div>No package alsa-lib available.</div><div>Error: Unable to =
+find a match</div><div><br></div><div>ERROR: pulsar-image-14.0.0-r0 do_root=
+fs: Function failed: do_rootfs</div><div>ERROR: Logfile of failure stored i=
+n: /home/buildpc/Genivi14/poky/build/tmp/work/h3ulcb-poky-linux/pulsar-imag=
+e/14.0.0-r0/temp/log.do_rootfs.10547</div><div>ERROR: Task (/home/buildpc/G=
+enivi14/meta-ivi-14/meta-ivi/recipes-yocto-ivi/images/pulsar-image.bb:do_ro=
+otfs) failed with exit code &#39;1&#39;</div><div>NOTE: Tasks Summary: Atte=
+mpted 5089 tasks of which 5088 didn&#39;t need to be rerun and 1 failed.</d=
+iv><div><br></div><div>Summary: 1 task failed:</div><div>=C2=A0 /home/build=
+pc/Genivi14/meta-ivi-14/meta-ivi/recipes-yocto-ivi/images/pulsar-image.bb:d=
+o_rootfs</div><div>Summary: There were 2 ERROR messages shown, returning a =
+non-zero exit code.</div></div><div><br></div><div><br></div><div><br></div=
+><div><br></div><div><br></div></div></div></div></div></div>
 
-- The UEFI boot manager used by my image is systemd-boot
-- The version of wic being used is 0.2.0
-- The version of Yocto Project is 2.2 (Morty)
-- My hardware architecture is x86
-
-According to the documentation on " systemd-boot" boot manager, each .conf =
-entry in the /loader/entries directory represents one boot option / configu=
-ration.  So I am wanting to know, how do I setup my kickstart file or the c=
-onfiguration file specified after parameter "--configfile" in the kickstart=
- file, to create more than one .conf file in the /loader/entries directory.
-
-From: Burke, David=20
-Sent: Thursday, January 24, 2019 10:40 AM
-To: 'yocto@yoctoproject.org' <yocto@yoctoproject.org>
-Subject: wic command, partitioned image, multiple boot loader entries
-
-I'm using wic to create an EFI bootable "multi rootfs" image.=A0 This image=
- has two different Linux OS configurations, each in their own partition of =
-course.=A0 I have been able to successfully create and boot the final wic i=
-mage.=A0 The question I have is how to I create more than one .conf file in=
- the /loader/entries folder of the boot partition.=A0 By default wic is onl=
-y =A0creating only one entry (boot.conf) but I need to have two unique .con=
-f files, one for each Linux OS partition that I want to boot from.=A0 Unles=
-s someone knows another way.
-
-
-
-
-
+--0000000000008f2aac0580430cd0--
