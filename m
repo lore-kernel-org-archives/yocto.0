@@ -1,53 +1,34 @@
-Return-Path: <sangeeta.jain@intel.com>
+Return-Path: <Meng.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 499A9E00C8A; Sun, 27 Jan 2019 23:19:13 -0800 (PST)
+	id 567C1E00CD6; Mon, 28 Jan 2019 02:18:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91546E00C75;
-	Sun, 27 Jan 2019 23:19:12 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	27 Jan 2019 23:19:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.56,533,1539673200"; 
-	d="scan'208,217";a="315397352"
-Received: from pgsmsx111.gar.corp.intel.com ([10.108.55.200])
-	by fmsmga005.fm.intel.com with ESMTP; 27 Jan 2019 23:19:10 -0800
-Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.7]) by
-	PGSMSX111.gar.corp.intel.com ([169.254.2.23]) with mapi id
-	14.03.0415.000; Mon, 28 Jan 2019 15:19:09 +0800
-From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
-To: pawanKumar <pawan4749@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "poky@yoctoproject.org" <poky@yoctoproject.org>
-Thread-Topic: [yocto] Bitbake Issue in Yocto 2.7 M2 rc1:
-Thread-Index: AQHUttfbmRg7j8nc/E2tgtSVx+6BJKXERNYA
-Date: Mon, 28 Jan 2019 07:19:09 +0000
-Message-ID: <015AB11D45F2C442929CB2765DAE738634D4E94C@PGSMSX110.gar.corp.intel.com>
-References: <CALd6x_uvR57xrXKkxZi+Y_fLZXLcziEMsS_nyguJrnNymHeA-w@mail.gmail.com>
-In-Reply-To: <CALd6x_uvR57xrXKkxZi+Y_fLZXLcziEMsS_nyguJrnNymHeA-w@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjhlZWJmMTMtNTBiMC00Njk5LThlNzAtNTBhMjQ1NjViZmE2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiSkIrVVNoOE9LUjRySFE5R2FPeWQ3dk1tZUdlWG1zVlwveDBcL1hHRmVJeG41RUlNT1wvZ2RPR01cL1NvRUJZMm16NTkifQ==
-x-originating-ip: [172.30.20.205]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7B95E00CB9;
+	Mon, 28 Jan 2019 02:18:56 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x0SAIts7025863
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 28 Jan 2019 02:18:55 -0800 (PST)
+Received: from pek-mli1-d1.wrs.com (128.224.162.136) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.435.0; Mon, 28 Jan 2019 02:18:54 -0800
+From: <Meng.Li@windriver.com>
+To: <richard.purdie@linuxfoundation.org>
+Date: Mon, 28 Jan 2019 18:20:02 +0800
+Message-ID: <1548670803-27762-1-git-send-email-Meng.Li@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Subject: Re: Bitbake Issue in Yocto 2.7 M2 rc1:
+Cc: yocto@yoctoproject.org, poky@yoctoproject.org
+Subject: : [meta]: [recipes-bsp]: u-boot: update commit id to the latest one of u-boot upstream
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,153 +40,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Jan 2019 07:19:13 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_015AB11D45F2C442929CB2765DAE738634D4E94CPGSMSX110garcor_"
+X-List-Received-Date: Mon, 28 Jan 2019 10:18:57 -0000
+Content-Type: text/plain
 
---_000_015AB11D45F2C442929CB2765DAE738634D4E94CPGSMSX110garcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Limeng <Meng.Li@windriver.com>
 
-SSBhbHNvIGZhY2VkIHRoaXMgaXNzdWUgaW4gY3VycmVudCByZWxlYXNlLiBGb3IgbWUgY29tcGxl
-dGUgZXJyb3IgbWVzc2FnZSBpczoNCg0KDQpFUlJPUjogIE9FLWNvcmUncyBjb25maWcgc2FuaXR5
-IGNoZWNrZXIgZGV0ZWN0ZWQgYSBwb3RlbnRpYWwgbWlzY29uZmlndXJhdGlvbi4NCg0KICAgIEVp
-dGhlciBmaXggdGhlIGNhdXNlIG9mIHRoaXMgZXJyb3Igb3IgYXQgeW91ciBvd24gcmlzayBkaXNh
-YmxlIHRoZSBjaGVja2VyIChzZWUgc2FuaXR5LmNvbmYpLg0KDQogICAgRm9sbG93aW5nIGlzIHRo
-ZSBsaXN0IG9mIHBvdGVudGlhbCBwcm9ibGVtcyAvIGFkdmlzb3JpZXM6DQoNCg0KDQogICAgbWF4
-aW11bSByZWN1cnNpb24gZGVwdGggZXhjZWVkZWQgd2hpbGUgY2FsbGluZyBhIFB5dGhvbiBvYmpl
-Y3QuDQoNCiAgICBQbGVhc2UgZW5zdXJlIHlvdXIgaG9zdCdzIG5ldHdvcmsgaXMgY29uZmlndXJl
-ZCBjb3JyZWN0bHksDQoNCiAgICBvciBzZXQgQkJfTk9fTkVUV09SSyA9ICIxIiB0byBkaXNhYmxl
-IG5ldHdvcmsgYWNjZXNzIGlmDQoNCiAgICBhbGwgcmVxdWlyZWQgc291cmNlcyBhcmUgb24gbG9j
-YWwgZGlzay4NCg0KDQpXaGF0IHdvcmtlZCBmb3IgbWUgaXMgdG8gZGlzYWJsZSB0aGUgbmV0d29y
-ayBieToNCkV4cG9ydCBCQl9OT19ORVRXT1JLID0gIjEiDQoNCkFuZCB0aGVuIHJlLWVuYWJsZSBp
-dCBieQ0KDQpFeHBvcnQgQkJfTk9fTkVUV09SSyA9ICIwIg0KDQpUaG91Z2ggbm90IHN1cmUgb2Yg
-c291cmNlIG9mIHRoaXMgZXJyb3IuDQoNCg0KVGhhbmtzICYgUmVnYXJkcywNClNhbmdlZXRhIEph
-aW4NCg0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIDx5b2N0by1ib3VuY2Vz
-QHlvY3RvcHJvamVjdC5vcmc+IE9uIEJlaGFsZiBPZiBwYXdhbkt1bWFyDQpTZW50OiBNb25kYXks
-IDI4IEphbnVhcnksIDIwMTkgMzowNCBQTQ0KVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IHBv
-a3lAeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogW3lvY3RvXSBCaXRiYWtlIElzc3VlIGluIFlv
-Y3RvIDIuNyBNMiByYzE6DQoNCkhpIFRlYW0sDQoNCldoaWxlIHJ1bm5pbmcgYml0YmFrZSBjb21t
-YW5kLCBJJ20gZmFjaW5nIGlzc3VlIGFzOg0KRXJyb3I6IE9FLWNvcmVzIGNvbmZpZyBzYW5pdHkg
-Y2hlY2tlciBkZXRlY3RlZCBhIHBvdGVudGlhbCBtaXNjb25maWd1YXJhdGlvbi4NCkVpdGhlciBm
-aXggdGhlIGNhdXNlIG9mIHRoaXMgZXJyb3Igb3IgYXQgeW91ciBvd24gcmlzayBkaXNhYmxlIHRo
-ZSBjaGVja2VyIChzZWUgc2FuaXR5LmNvbmYpDQoNCkRvZXMgdGhlIGlzc3VlIGlzIGluIHRoZSBi
-dWlsZCBvciBpbiBteSBzeXN0ZW0uKEkgaGF2ZSBydW4gaW4gbXVsdGlwbGUgc3lzdGVtcykNCg0K
-DQo=
+Hi Richard,
 
---_000_015AB11D45F2C442929CB2765DAE738634D4E94CPGSMSX110garcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Could you please help to merge this patch into meta/recipes-bsp/u-boot, branch is master?
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6eD0idXJuOnNjaGVtYXMtbWljcm9z
-b2Z0LWNvbTpvZmZpY2U6ZXhjZWwiIHhtbG5zOm09Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5j
-b20vb2ZmaWNlLzIwMDQvMTIvb21tbCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnL1RSL1JFQy1o
-dG1sNDAiPg0KPGhlYWQ+DQo8bWV0YSBodHRwLWVxdWl2PSJDb250ZW50LVR5cGUiIGNvbnRlbnQ9
-InRleHQvaHRtbDsgY2hhcnNldD11dGYtOCI+DQo8bWV0YSBuYW1lPSJHZW5lcmF0b3IiIGNvbnRl
-bnQ9Ik1pY3Jvc29mdCBXb3JkIDE1IChmaWx0ZXJlZCBtZWRpdW0pIj4NCjxzdHlsZT48IS0tDQov
-KiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlh
-IE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtm
-b250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30NCi8q
-IFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNv
-Tm9ybWFsDQoJe21hcmdpbjowY207DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6
-ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBz
-cGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6IzA1NjND
-MTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBl
-cmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Izk1NEY3MjsN
-Cgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnAuTXNvUGxhaW5UZXh0LCBsaS5Nc29QbGFp
-blRleHQsIGRpdi5Nc29QbGFpblRleHQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1z
-dHlsZS1saW5rOiJQbGFpbiBUZXh0IENoYXIiOw0KCW1hcmdpbjowY207DQoJbWFyZ2luLWJvdHRv
-bTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNh
-bnMtc2VyaWY7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KcC5tc29ub3JtYWwwLCBs
-aS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXttc28tc3R5bGUtbmFtZTptc29ub3JtYWw7
-DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBjbTsNCgltc28tbWFy
-Z2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowY207DQoJZm9udC1zaXplOjExLjBw
-dDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUx
-OA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJy
-aSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4uUGxhaW5UZXh0Q2hhcg0K
-CXttc28tc3R5bGUtbmFtZToiUGxhaW4gVGV4dCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6
-OTk7DQoJbXNvLXN0eWxlLWxpbms6IlBsYWluIFRleHQiOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
-IixzYW5zLXNlcmlmO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1v
-bmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWxh
-bmd1YWdlOkVOLVVTO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBw
-dDsNCgltYXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5Xb3JkU2VjdGlv
-bjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+
-PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8
-L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0
-IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNo
-YXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tTVki
-IGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9u
-MSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3Vh
-Z2U6RU4tVVMiPkkgYWxzbyBmYWNlZCB0aGlzIGlzc3VlIGluIGN1cnJlbnQgcmVsZWFzZS4gRm9y
-IG1lIGNvbXBsZXRlIGVycm9yIG1lc3NhZ2UgaXM6PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVT
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij5F
-UlJPUjombmJzcDsgT0UtY29yZSdzIGNvbmZpZyBzYW5pdHkgY2hlY2tlciBkZXRlY3RlZCBhIHBv
-dGVudGlhbCBtaXNjb25maWd1cmF0aW9uLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1Bs
-YWluVGV4dCI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IEVpdGhlciBmaXggdGhlIGNhdXNlIG9mIHRoaXMg
-ZXJyb3Igb3IgYXQgeW91ciBvd24gcmlzayBkaXNhYmxlIHRoZSBjaGVja2VyIChzZWUgc2FuaXR5
-LmNvbmYpLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jm5ic3A7Jm5i
-c3A7Jm5ic3A7IEZvbGxvd2luZyBpcyB0aGUgbGlzdCBvZiBwb3RlbnRpYWwgcHJvYmxlbXMgLyBh
-ZHZpc29yaWVzOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PG86cD4m
-bmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mbmJzcDsmbmJzcDsmbmJz
-cDsgbWF4aW11bSByZWN1cnNpb24gZGVwdGggZXhjZWVkZWQgd2hpbGUgY2FsbGluZyBhIFB5dGhv
-biBvYmplY3QuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mbmJzcDsm
-bmJzcDsmbmJzcDsgUGxlYXNlIGVuc3VyZSB5b3VyIGhvc3QncyBuZXR3b3JrIGlzIGNvbmZpZ3Vy
-ZWQgY29ycmVjdGx5LDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jm5i
-c3A7Jm5ic3A7Jm5ic3A7IG9yIHNldCBCQl9OT19ORVRXT1JLID0gJnF1b3Q7MSZxdW90OyB0byBk
-aXNhYmxlIG5ldHdvcmsgYWNjZXNzIGlmPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxh
-aW5UZXh0Ij4mbmJzcDsmbmJzcDsmbmJzcDsgYWxsIHJlcXVpcmVkIHNvdXJjZXMgYXJlIG9uIGxv
-Y2FsIGRpc2suPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFn
-ZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5XaGF0IHdvcmtlZCBm
-b3IgbWUgaXMgdG8gZGlzYWJsZSB0aGUgbmV0d29yayBieTo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5FeHBvcnQgQkJfTk9fTkVUV09SSyA9ICZxdW90OzEmcXVv
-dDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QW5kIHRoZW4gcmUtZW5hYmxlIGl0IGJ5PG86cD48
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPkV4cG9ydCBCQl9OT19ORVRXT1JLID0gJnF1b3Q7MCZxdW90Ozxv
-OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaG91Z2ggbm90IHN1cmUgb2Ygc291cmNlIG9mIHRoaXMg
-ZXJyb3IuPHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVh
-c3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86
-cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
-Zz0iRU4tVVMiPlRoYW5rcyAmYW1wOyBSZWdhcmRzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5TYW5nZWV0YSBKYWluPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1m
-YXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2
-IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6
-MGNtIDBjbSAwY20gNC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRl
-ci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxhIG5hbWU9Il9fX19fcmVwbHlzZXBhcmF0b3IiPjwvYT48Yj48
-c3BhbiBsYW5nPSJFTi1VUyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIj4geW9j
-dG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnICZsdDt5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVj
-dC5vcmcmZ3Q7DQo8Yj5PbiBCZWhhbGYgT2YgPC9iPnBhd2FuS3VtYXI8YnI+DQo8Yj5TZW50Ojwv
-Yj4gTW9uZGF5LCAyOCBKYW51YXJ5LCAyMDE5IDM6MDQgUE08YnI+DQo8Yj5Ubzo8L2I+IHlvY3Rv
-QHlvY3RvcHJvamVjdC5vcmc7IHBva3lAeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6
-PC9iPiBbeW9jdG9dIEJpdGJha2UgSXNzdWUgaW4gWW9jdG8gMi43IE0yIHJjMTo8bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
-bmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGkgVGVhbSw8bzpw
-PjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPldoaWxlIHJ1bm5pbmcg
-Yml0YmFrZSBjb21tYW5kLCBJJ20gZmFjaW5nIGlzc3VlIGFzOjxvOnA+PC9vOnA+PC9wPg0KPC9k
-aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+RXJyb3I6IE9FLWNvcmVzIGNvbmZpZyBz
-YW5pdHkgY2hlY2tlciBkZXRlY3RlZCBhIHBvdGVudGlhbCBtaXNjb25maWd1YXJhdGlvbi48bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkVpdGhlciBm
-aXggdGhlIGNhdXNlIG9mIHRoaXMgZXJyb3Igb3IgYXQgeW91ciBvd24gcmlzayBkaXNhYmxlIHRo
-ZSBjaGVja2VyIChzZWUgc2FuaXR5LmNvbmYpPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkRvZXMgdGhlIGlzc3VlIGlzIGluIHRoZSBidWlsZCBv
-ciBpbiBteSBzeXN0ZW0uKEkgaGF2ZSBydW4gaW4gbXVsdGlwbGUgc3lzdGVtcyk8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
-L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRt
-bD4NCg==
+There are 2 CVE issues fixing in latest u-boot upstream, so
+update commit id to involve these fixing patches.
 
---_000_015AB11D45F2C442929CB2765DAE738634D4E94CPGSMSX110garcor_--
+
+thanks,
+Limeng
+
+
+
