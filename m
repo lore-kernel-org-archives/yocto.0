@@ -1,60 +1,56 @@
-Return-Path: <edwingate8@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C8FBE00C4E; Mon, 28 Jan 2019 09:18:27 -0800 (PST)
+	id B33E2E00C4E; Mon, 28 Jan 2019 09:23:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (edwingate8[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.196 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-it1-f196.google.com (mail-it1-f196.google.com
-	[209.85.166.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F02DBE00BD5
-	for <yocto@yoctoproject.org>; Mon, 28 Jan 2019 09:18:25 -0800 (PST)
-Received: by mail-it1-f196.google.com with SMTP id w18so21751083ite.1
-	for <yocto@yoctoproject.org>; Mon, 28 Jan 2019 09:18:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=XIuILYYJ7whrDTaRt/TKn2Qoo2wGFdExWKAWHEHUx6Y=;
-	b=VEZ4QyJ8R7aS2rHXCOdO99YVhcaMO0uKKUZbPA3ffrBU/yPbXol75dgIUcxmfl1pIh
-	MW4/k9dmdKj/RloGOE80lSqmKoM34tjtxzRpUoA71QlxtqGpfmEjkVGdxFEZBq4eP8Er
-	no/HmjcgW9VLmgxD8OJihkYJsm3tiPSQbyAGX1aunV4VMOE94BRty1u6dn9TGEA+GVOK
-	BwbNoB9zkLPUfS+a4cBr6vjWeIR4A3qOjwJUD6SwDsjS8SXM1SsOJHU+v9sniSxTESqk
-	Dj0+Q5myZf3uA1IiLjPxKwTL68FQ+DGgtpcGCYf+9ujccjqFhJUDKidDMWB6HCm4vCHs
-	96uA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=XIuILYYJ7whrDTaRt/TKn2Qoo2wGFdExWKAWHEHUx6Y=;
-	b=T/Qiry2C2gf5CnhAVZxiCy0qRZdNSeFNx3665juWnwKTt2+7iNr6wPTMiUgB8X+ozk
-	OTgmKhU7Q+Dg8KEVyylhvyWVZis6rZrZc2P3Ui5IiLZH0qMBbFb0jecZkp+krsRcW2v/
-	nnpxBMsyk+S80D5q0Fwu3gmBpCmyJZbXkyjgJl430NzxY6D8AWR2l/hefcIDPFW/eSWL
-	E65yW8wlQIGb7D8Un75yMxygfs9K0oWdzVgrtMZDcPHRwlWtqGpuci9l5dGeC2t7ZZxF
-	lZaLSkhVKXvnOHeS9hWRSKUYD9YKZNGdq4PL5a2jzkMfDGWH46rcH1JBzswVBK8VhUaL
-	YR1w==
-X-Gm-Message-State: AJcUukf4lVPEje2B4lJK5YTmtg6tG21MEHI1ml6GNCJ6zMCFLm4x6+ke
-	eDl7NuLmCWwIGp6Hi4HZJl7Q5ktNwwcxZVT9XDGFMdln
-X-Google-Smtp-Source: ALg8bN5X6RIP0ymGN8j8suq43jS0hvQYvLWOnQz5CVTyQhE+Cy3jj+mpNb6IrFnKk9iOvaDNCAtP8a96Un2lPS+UI3k=
-X-Received: by 2002:a24:7349:: with SMTP id y70mr6299812itb.48.1548695905090; 
-	Mon, 28 Jan 2019 09:18:25 -0800 (PST)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21D03E00BC6
+	for <yocto@yoctoproject.org>; Mon, 28 Jan 2019 09:23:35 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	28 Jan 2019 09:23:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.56,534,1539673200"; 
+	d="scan'208,217";a="315546701"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+	by fmsmga005.fm.intel.com with ESMTP; 28 Jan 2019 09:23:35 -0800
+Received: from fmsmsx120.amr.corp.intel.com (10.18.124.208) by
+	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
+	(TLS) id 14.3.408.0; Mon, 28 Jan 2019 09:23:35 -0800
+Received: from fmsmsx123.amr.corp.intel.com ([169.254.7.98]) by
+	fmsmsx120.amr.corp.intel.com ([169.254.15.173]) with mapi id
+	14.03.0415.000; Mon, 28 Jan 2019 09:23:34 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: Yocto Project Unassigned Bugs - Help Needed
+Thread-Index: AdRUG3den5c8kH6JR5OKxqhg9AfC3w==
+Date: Mon, 28 Jan 2019 17:23:34 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EEA6E7D14@fmsmsx123.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNmNlNDYxYTEtMTdmZC00OGVhLTk3MDgtNTk1OTY4OGJkM2M0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTDVVbFNtUVFKNGJheHBqZGk0T0ViMUpRdm5wSkxGRmNZXC9GYWtSc1FcL1dKUlM4QkM4WGlyZWk0ZlJINmhcL1RRWCJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
 MIME-Version: 1.0
-From: Edward Wingate <edwingate8@gmail.com>
-Date: Mon, 28 Jan 2019 09:18:13 -0800
-Message-ID: <CAGMdoF=M6dQkoveH9=P7gXSWJDWDqaO97DBDGi-Ru5tg9OZ1TA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Help with cleaning/rebuidling
+Subject: Yocto Project Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,65 +62,217 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Jan 2019 17:18:27 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 28 Jan 2019 17:23:37 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6E7D14fmsmsx123amrcor_"
 
-The first time I did a build, my mosquitto recipe worked.  Then I did
-a 'bitbake -ccleanall mosquitto', and now when I do 'bitbake
-mosquitto', I get this error:
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6E7D14fmsmsx123amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-DEBUG: Executing python function sysroot_cleansstate
-DEBUG: Python function sysroot_cleansstate finished
-DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common', 'arm-32',
-'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi',
-'common']
-DEBUG: Executing shell function autotools_preconfigure
-DEBUG: Shell function autotools_preconfigure finished
-DEBUG: Executing python function autotools_copy_aclocals
-DEBUG: Python function autotools_copy_aclocals finished
-DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common', 'arm-32',
-'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi',
-'common']
-DEBUG: Executing shell function do_configure
-CMake Error: The source directory
-"/mnt/drive/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/mosquitto/1.5.5-r0/mosquitto-1.5.5"
-does not exist.
-Specify --help for usage, or press the help button on the CMake GUI.
-WARNING: exit code 1 from a shell command.
-ERROR: Function failed: do_configure (log file is located at
-/mnt/drive/yocto/poky/build/tmp/work/cortexa9-vfp-neon-poky-linux-gnueabi/mosquitto/1.5.5-r0/temp/log.do_configure.37839)
+All,
 
-It seems like it doesn't fetch/unpack the source before do_configure.
-I tried to do 'bitbake -c fetch mosquitto' and 'bitbake -c unpack
-mosquitto', and they both say all tasks didn't need to be rerun. I
-forced it by adding '-f', but that didn't help either.
 
-I'm still using jethro and my mosquitto_1.5.5.bb recipe is this:
 
-=== BEGIN RECIPE ===
-SUMMARY = "MQTT 3.1 compliant library"
-HOMEPAGE = "https://mosquitto.org"
-MAINTAINER = "Robert Lehmann <robert.lehmann@sitec-systems.de>"
+The triage team meets weekly and does its best to handle the bugs reported =
+into the Bugzilla. The number of people attending that meeting has fallen, =
+as have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage team) a=
+re therefore going to start reporting out the currently 294 unassigned bugs=
+.
 
-LICENSE = "EPL-1.0"
-LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=62ddc846179e908dc0c8efec4a42ef20"
 
-SRC_URI = "https://mosquitto.org/files/source/mosquitto-${PV}.tar.gz"
-SRC_URI[md5sum] = "a17dffc6f63b2a4ab2eb5c51139e60e9"
-SRC_URI[sha256sum] =
-"fcdb47e340864c545146681af7253399cc292e41775afd76400fda5b0d23d668"
 
-DEPENDS = "openssl"
-RDEPENDS_${PN} = "util-linux"
+We're hoping people may be able to spare some time now and again to help ou=
+t with these.
 
-inherit cmake
 
-# Specify any options you want to pass to cmake using EXTRA_OECMAKE:
-EXTRA_OECMAKE = " -DCMAKE_SKIP_RPATH=ON "
-=== END RECIPE ===
 
-Can anyone help with this?
+Bugs are split into two types, "true bugs" where things don't work as they =
+should and "enhancements" which are features we'd want to add to the system=
+.
+
+
+
+There are also roughly four different "priority" classes right now, "2.7", =
+"2.8", "2.99" and "Future", the more pressing/urgent issues being in "2.7" =
+and then "2.8".
+
+
+
+Please review this link and if a bug is something you would be able to help=
+ with either take ownership of the bug, or send me (Stephen.k.jolley@intel.=
+com<mailto:Stephen.k.jolley@intel.com>) an e-mail with the bug number you w=
+ould like and I will assign it to you (please make sure you have a Bugzilla=
+ account).
+
+
+
+The list is at: https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bu=
+gs
+
 
 Thanks,
-Ed
 
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*    Cell:                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6E7D14fmsmsx123amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:2 11 5 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle19
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoPlainText">All,<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The triage team meets weekly and does its best to=
+ handle the bugs reported into the Bugzilla. The number of people attending=
+ that meeting has fallen, as have the number of people available to help fi=
+x bugs. One of the things we hear
+ users report is they don't know how to help. We (the triage team) are ther=
+efore going to start reporting out the currently 294 unassigned bugs.<o:p><=
+/o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">We're hoping people may be able to spare some tim=
+e now and again to help out with these.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Bugs are split into two types, &quot;true bugs&qu=
+ot; where things don't work as they should and &quot;enhancements&quot; whi=
+ch are features we'd want to add to the system.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">There are also roughly four different &quot;prior=
+ity&quot; classes right now, &#8220;2.7&#8221;, &#8220;2.8&#8221;, &quot;2.=
+99&quot; and &quot;Future&quot;, the more pressing/urgent issues being in &=
+quot;2.7&quot; and then &#8220;2.8&#8221;.<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Please review this link and if a bug is something=
+ you would be able to help with either take ownership of the bug, or send m=
+e (<a href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com=
+</a>) an e-mail with the bug number
+ you would like and I will assign it to you (please make sure you have a Bu=
+gzilla account).<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">The list is at: <a href=3D"https://wiki.yoctoproj=
+ect.org/wiki/Bug_Triage#Unassigned_Bugs">
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
+></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EEA6E7D14fmsmsx123amrcor_--
