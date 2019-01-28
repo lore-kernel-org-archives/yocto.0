@@ -1,36 +1,61 @@
-Return-Path: <Meng.Li@windriver.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1386E00CDF; Mon, 28 Jan 2019 02:19:00 -0800 (PST)
+	id DE877E00CD8; Mon, 28 Jan 2019 03:01:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C72BBE00CDC;
-	Mon, 28 Jan 2019 02:18:58 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x0SAIvhY023687
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 28 Jan 2019 02:18:57 -0800 (PST)
-Received: from pek-mli1-d1.wrs.com (128.224.162.136) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.435.0; Mon, 28 Jan 2019 02:18:56 -0800
-From: <Meng.Li@windriver.com>
-To: <richard.purdie@linuxfoundation.org>
-Date: Mon, 28 Jan 2019 18:20:03 +0800
-Message-ID: <1548670803-27762-2-git-send-email-Meng.Li@windriver.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1548670803-27762-1-git-send-email-Meng.Li@windriver.com>
-References: <1548670803-27762-1-git-send-email-Meng.Li@windriver.com>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.178 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-it1-f178.google.com (mail-it1-f178.google.com
+	[209.85.166.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AE59E00CD6
+	for <yocto@yoctoproject.org>; Mon, 28 Jan 2019 03:01:08 -0800 (PST)
+Received: by mail-it1-f178.google.com with SMTP id c9so18734119itj.1
+	for <yocto@yoctoproject.org>; Mon, 28 Jan 2019 03:01:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=QJ2bAUB9szAGgRB+bjeOe4PLWx1BDkc11YDFeIDOTg4=;
+	b=T8hvP1rNPUIz2aoOm/t8v+kK4JYjey9kMlefMXiJ4pAf2lQivLgdNSOqIq1/km4wnd
+	poM8tCCo3EzeOeT2YGiDCbIRt207Y5cjBatyYk0bf48sQS3QwYhlzU5ToeqUDJZpUbvc
+	uWb9BVWsZTfPXw3nGnt3s3GU5umoUa+Bl/bvdnmCWrz/yALnpVnIOH4XVVdBMwC8kPeJ
+	9MVqzqzr6KtzNAJy9tBb386Zn6z7xeXTz9iri7wk4NLE1ToL5ZT1DrbkFryaLANDoiNI
+	yilZ/DCWpZN6zNSHJuUTXtPUxtRluliVLiKIbrJA9fuZtVXLqBCjRVAK4nXhteYU/vA7
+	PyUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=QJ2bAUB9szAGgRB+bjeOe4PLWx1BDkc11YDFeIDOTg4=;
+	b=DoIqVpRJZVmGd1IAzsW4GKE7Q+JZBDHfC7pEF4YuXNDvE8rFHu3ShQUacNbJNiyLvc
+	CM9mvkpbt4P3H+fjwniu6uLT8VsbC8q3XG5Wh0dBK9afA5szuKyENwX/orwyVJyWTXTq
+	vE1RCCEuzIX0/SSPZpuAZGoh7uzmMkLbToyMKENz8Mlms2svVSKJXeyiE9IZ8mj1vH+U
+	o5T0IjcRUVkM576WOcGTqpSFWH4XZoEqfKtOd5hn34y2Y/4SZZaHDbpE7EeDEfFltD1r
+	VFvSoO8xySN9/VNEtY3XaACmohPN86mzNycDJ2Nn0tfcw2RsmeKxDw/8ijPVQfrrKRj8
+	xlSg==
+X-Gm-Message-State: AJcUuke0dopTBzfahoRJvG3bOkK+6UhtmQPqIfq2kremCu9+11JsshlC
+	kPX20WKiBoB5e62RUzeJKbYV+UehjyXdBxhKjTmNdg==
+X-Google-Smtp-Source: ALg8bN5xK/CZQlopkFosNF5jnhGQskWiSk/5/p75CEScEhmK2lvvdpcnA+0Hr83/y7p7LlRSq7p6Y7wXmVnnCZ4eH/w=
+X-Received: by 2002:a02:1bc5:: with SMTP id 66mr13706181jas.105.1548673267916; 
+	Mon, 28 Jan 2019 03:01:07 -0800 (PST)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org
-Subject: [PATCH] u-boot: update commit id to the latest one of u-boot upstream
+References: <CALd6x_uvR57xrXKkxZi+Y_fLZXLcziEMsS_nyguJrnNymHeA-w@mail.gmail.com>
+In-Reply-To: <CALd6x_uvR57xrXKkxZi+Y_fLZXLcziEMsS_nyguJrnNymHeA-w@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 28 Jan 2019 11:00:57 +0000
+Message-ID: <CAJTo0LYMH99W7sh10LEWs9v5bx96pbkAL3R-pe4J523SgL9aOQ@mail.gmail.com>
+To: pawanKumar <pawan4749@gmail.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
+	Poky Project <poky@yoctoproject.org>
+Subject: Re: [poky] Bitbake Issue in Yocto 2.7 M2 rc1:
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,33 +67,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Jan 2019 10:19:00 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 28 Jan 2019 11:01:08 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-From: MengLi <meng.li@windriver.com>
+On Mon, 28 Jan 2019 at 07:04, pawanKumar <pawan4749@gmail.com> wrote:
+> While running bitbake command, I'm facing issue as:
+> Error: OE-cores config sanity checker detected a potential misconfiguaration.
+> Either fix the cause of this error or at your own risk disable the checker (see sanity.conf)
 
-There are 2 CVE issues fixing in latest u-boot upstream, so
-update commit id to involve these fixing patches.
+Above that it would have said what the problem is, can you paste the
+entire output?
 
-Signed-off-by: Meng Li <Meng.Li@windriver.com>
----
- meta/recipes-bsp/u-boot/u-boot-common.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta/recipes-bsp/u-boot/u-boot-common.inc b/meta/recipes-bsp/u-boot/u-boot-common.inc
-index 6f4a10b..3648d47 100644
---- a/meta/recipes-bsp/u-boot/u-boot-common.inc
-+++ b/meta/recipes-bsp/u-boot/u-boot-common.inc
-@@ -8,7 +8,7 @@ PE = "1"
- 
- # We use the revision in order to avoid having to fetch it from the
- # repo during parse
--SRCREV = "0157013f4a4945bbdb70bb4d98d680e0845fd784"
-+SRCREV = "d01806a8fcbdaedcc67cead56ece572021d97ab7"
- 
- SRC_URI = "git://git.denx.de/u-boot.git"
- 
--- 
-2.7.4
-
+Ross
 
