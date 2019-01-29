@@ -1,49 +1,44 @@
-Return-Path: <richard.a.griffiths@linux.intel.com>
+Return-Path: <Randy.MacLeod@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3CCCDE00CE2; Mon, 28 Jan 2019 14:07:05 -0800 (PST)
+	id 2DAF8E00CE2; Mon, 28 Jan 2019 17:31:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	NUMERIC_HTTP_ADDR, RCVD_IN_DNSWL_MED,
-	URI_HEX autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
 	*      medium trust
-	*      [134.134.136.126 listed in list.dnswl.org]
-	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
-	*  1.2 NUMERIC_HTTP_ADDR URI: Uses a numeric IP address in URL
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E126FE00CDF
-	for <yocto@yoctoproject.org>; Mon, 28 Jan 2019 14:07:03 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	28 Jan 2019 14:07:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.56,534,1539673200"; 
-	d="scan'208,217";a="314315774"
-Received: from ragriffi-mobl.jf.intel.com ([10.54.74.73])
-	by fmsmga006.fm.intel.com with ESMTP; 28 Jan 2019 14:07:02 -0800
-Message-ID: <1548713220.31553.31.camel@linux.intel.com>
-From: Richard A Griffiths <richard.a.griffiths@linux.intel.com>
-To: Scott Rifenbark <srifenbark@gmail.com>, Don Osmond <dosmond@comporium.net>
-Date: Mon, 28 Jan 2019 14:07:00 -0800
-In-Reply-To: <CAFNP8Os5TsSy27zXXtN+MZHpJN+=O5XDgY3pw2yH-0EnknoM+g@mail.gmail.com>
-References: <000901d4b679$962481e0$c26d85a0$@comporium.net>
-	<CAFNP8Os5TsSy27zXXtN+MZHpJN+=O5XDgY3pw2yH-0EnknoM+g@mail.gmail.com>
-Organization: Yocto Project
-X-Mailer: Evolution 3.18.5.2-0ubuntu3.2 
-Mime-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Yocto Porject
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3644CE0048C
+	for <yocto@yoctoproject.org>; Mon, 28 Jan 2019 17:31:26 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x0T1UDwf006066
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 28 Jan 2019 17:30:54 -0800
+Received: from [172.25.44.4] (172.25.44.4) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.435.0;
+	Mon, 28 Jan 2019 17:30:32 -0800
+To: <changqing.li@windriver.com>, <yocto@yoctoproject.org>, Jose Lamego
+	<jose.a.lamego@linux.intel.com>
+References: <1546062265-388514-1-git-send-email-changqing.li@windriver.com>
+	<1547617036-442612-1-git-send-email-changqing.li@windriver.com>
+	<1547617036-442612-2-git-send-email-changqing.li@windriver.com>
+From: Randy MacLeod <randy.macleod@windriver.com>
+Message-ID: <bdac8902-ca45-e119-6003-738adef6d583@windriver.com>
+Date: Mon, 28 Jan 2019 20:30:30 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.4.0
+MIME-Version: 1.0
+In-Reply-To: <1547617036-442612-2-git-send-email-changqing.li@windriver.com>
+X-Originating-IP: [172.25.44.4]
+Subject: Re: [PATCH V2] patchwork: Add a dockerfile for deploy patchwork and patchtest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Richard.A.Griffiths@linux.intel.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -52,204 +47,218 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Jan 2019 22:07:05 -0000
-Content-Type: multipart/alternative; boundary="=-LysvL2Vyu/KwdCKbJNSS"
+X-List-Received-Date: Tue, 29 Jan 2019 01:31:28 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
---=-LysvL2Vyu/KwdCKbJNSS
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+On 1/16/19 12:37 AM, changqing.li@windriver.com wrote:
+> From: Changqing Li <changqing.li@windriver.com>
 
-On Mon, 2019-01-28 at 10:33 -0800, Scott Rifenbark wrote:
-> Hi Don, 
+Ping?
+
+Jose, are you maintaining this repo?
+   http://git.yoctoproject.org/cgit/cgit.cgi/patchwork/about/
+You were the committer for most of the recent work.
+
+../Randy
 > 
-> I can't really advise you on this as I am not a Yocto developer. 
-> However, I can forward this question to the yocto@yoctoproject.org
-> mail group and, in particular, to a resource that is looking closely
-> at kernel stuff to help improve that manual and get it more up-to-
-> date.  That guy is named Richard Griffiths of Intel.  You should be
-> able to get some help with this.  Sorry... I wish I was a crack YP
-> developer :)
+> Add a dockerfile for easy deploy patchwork and patchtest in
+> docker
 > 
-> Thanks, 
-> Scott
+> Signed-off-by: Changqing Li <changqing.li@windriver.com>
+> ---
+>   Dockerfile.pw                 | 52 +++++++++++++++++++++++++++++++++++++++++++
+>   README.pw                     | 32 ++++++++++++++++++++++++++
+>   requirements.txt              | 12 ++++++++++
+>   scripts/pw_createsuperuser.sh |  5 +++++
+>   scripts/pw_getmail.sh         | 11 +++++++++
+>   scripts/pw_migrate.sh         |  5 +++++
+>   scripts/pw_runwebserver.sh    | 12 ++++++++++
+>   7 files changed, 129 insertions(+)
+>   create mode 100644 Dockerfile.pw
+>   create mode 100644 README.pw
+>   create mode 100644 requirements.txt
+>   create mode 100755 scripts/pw_createsuperuser.sh
+>   create mode 100755 scripts/pw_getmail.sh
+>   create mode 100755 scripts/pw_migrate.sh
+>   create mode 100755 scripts/pw_runwebserver.sh
 > 
-> On Sun, Jan 27, 2019 at 11:50 AM Don Osmond <dosmond@comporium.net>
-> wrote:
-> > Scott
-> > I have been reading your https://www.yoctoproject.org/docs/2.4/kern
-> > el-dev/kernel-dev.html and it has been very helpful.  I have a
-> > project where I am needing to get the ability to use iptables NAT
-> > which does not come in the core image from Digi which also uses
-> > Yocto.  In my Ubuntu 16.04 LTS development VM, I am able to build
-> > the base image (bitbake dey-image-qt), menuconfig the kernel config
-> > (bitbake -c devshell virtual/kernel), compile the kernel (bitbake
-> > -C compile virtual/kernel).  The results are in the
-> > /workspace/ccimx6ulsbc/tmp/deploy/images/ccimx6ulsbc as see in list
-> > below:
-> >  
-> > dosmond@ubuntu:/workspace/ccimx6ulsbc/tmp/deploy/images/ccimx6ulsbc
-> > $ ls
-> > boot.scr
-> > dey-image-qt-x11-ccimx6ulsbc-20190127164412.boot.ubifs
-> > dey-image-qt-x11-ccimx6ulsbc-20190127164412.recovery.ubifs
-> > dey-image-qt-x11-ccimx6ulsbc-20190127164412.rootfs.manifest
-> > dey-image-qt-x11-ccimx6ulsbc-20190127164412.rootfs.tar.bz2
-> > dey-image-qt-x11-ccimx6ulsbc-20190127164412.rootfs.ubifs
-> > dey-image-qt-x11-ccimx6ulsbc-20190127164412.testdata.json
-> > dey-image-qt-x11-ccimx6ulsbc.boot.ubifs
-> > dey-image-qt-x11-ccimx6ulsbc.manifest
-> > dey-image-qt-x11-ccimx6ulsbc.recovery.ubifs
-> > dey-image-qt-x11-ccimx6ulsbc.tar.bz2
-> > dey-image-qt-x11-ccimx6ulsbc.testdata.json
-> > dey-image-qt-x11-ccimx6ulsbc.ubifs
-> > dey-image-recovery-initramfs-ccimx6ulsbc-
-> > 20190127161551.rootfs.cpio.gz.u-boot.tf
-> > dey-image-recovery-initramfs-ccimx6ulsbc-
-> > 20190127161551.rootfs.manifest
-> > dey-image-recovery-initramfs-ccimx6ulsbc-
-> > 20190127161551.testdata.json
-> > dey-image-recovery-initramfs-ccimx6ulsbc.cpio.gz.u-boot.tf
-> > dey-image-recovery-initramfs-ccimx6ulsbc.manifest
-> > dey-image-recovery-initramfs-ccimx6ulsbc.testdata.json
-> > imx6ul-ccimx6ulsbc.dtb
-> > imx6ul-ccimx6ulsbc-id135.dtb
-> > imx6ul-ccimx6ulsbc-id136.dtb
-> > imx6ul-ccimx6ulsbc-wb.dtb
-> > install_linux_fw_sd.scr
-> > modules--4.9-r0.5-ccimx6ulsbc-20190127182701.tgz
-> > modules-ccimx6ulsbc.tgz
-> > u-boot-ccimx6ulsbc1GB-2017.03-r0.imx
-> > u-boot-ccimx6ulsbc1GB.imx
-> > u-boot-ccimx6ulsbc-2017.03-r0.imx
-> > u-boot-ccimx6ulsbc.imx
-> > u-boot-ccimx6ulsbc.imx-ccimx6ulsbc
-> > u-boot-ccimx6ulsbc.imx-ccimx6ulsbc1GB
-> > u-boot.imx
-> > zImage
-> > zImage--4.9-r0.5-ccimx6ulsbc-20190127182701.bin
-> > zImage--4.9-r0.5-imx6ul-ccimx6ulsbc-20190127182701.dtb
-> > zImage--4.9-r0.5-imx6ul-ccimx6ulsbc-id135-20190127182701.dtb
-> > zImage--4.9-r0.5-imx6ul-ccimx6ulsbc-id136-20190127182701.dtb
-> > zImage--4.9-r0.5-imx6ul-ccimx6ulsbc-wb-20190127182701.dtb
-> > zImage-ccimx6ulsbc.bin
-> > zImage-imx6ul-ccimx6ulsbc.dtb
-> > zImage-imx6ul-ccimx6ulsbc-id135.dtb
-> > zImage-imx6ul-ccimx6ulsbc-id136.dtb
-> > zImage-imx6ul-ccimx6ulsbc-wb.dtb
-> >  
-> > So, what I am having an issue with are the steps to get the latest
-> > kernel changes a part of the image?  I thought if I ran “bitbake
-> > dey-image-qt” again that it would.  I think I am missing
-> > something.  Anything you can share would be greatly appreciated.
-> > Thanks
-> > Don
-> > 
-Hi Don,
-Are you asking how do you save changes to your kernel configuration so
-they become part of the kernel recipe? If so, the 
-2.2.3 Changing The Configuration section of the Kernel Dev manual gives
-an example.
-If that is not what you're asking, please clarify and I will do my best
-to help.
-Regards,
-Richard
+> diff --git a/Dockerfile.pw b/Dockerfile.pw
+> new file mode 100644
+> index 0000000..ae3c1ee
+> --- /dev/null
+> +++ b/Dockerfile.pw
+> @@ -0,0 +1,52 @@
+> +FROM ubuntu:latest
+> +MAINTAINER owner <own@mail.com>
+> +
+> +EXPOSE 8080
+> +
+> +ENV PYTHONUNBUFFERED=1 \
+> +    LANG=en_US.UTF-8 \
+> +    LC_ALL=en_US.UTF-8 \
+> +    LC_CTYPE=en_US.UTF-8 \
+> +    PATH="$PATH:/opt/patchwork/git-pw:/opt/patchtest:/opt/patchtest/scripts"
+> +
+> +RUN  apt-get update \
+> +        && apt-get dist-upgrade -y \
+> +        && apt-get install -y --no-install-recommends \
+> +        autoconf \
+> +        gcc \
+> +        g++ \
+> +        make \
+> +        locales \
+> +        wget \
+> +        curl \
+> +        cron \
+> +        python-pip \
+> +        python-dev \
+> +        python-setuptools \
+> +        python3-pip \
+> +        python3-dev \
+> +        libmysqlclient-dev \
+> +        git-core \
+> +        getmail4 \
+> +        && sh -c "echo \"en_US.UTF-8 UTF-8\" >> /etc/locale.gen" \
+> +        && locale-gen en_US.UTF-8 \
+> +        && update-locale \
+> +        && pip2 install wheel \
+> +        && pip3 install wheel \
+> +        && pip3 install setuptools \
+> +        && apt-get autoremove --purge -y \
+> +        && rm -rf /var/lib/apt/lists/* \
+> +        && apt-get clean
+> +ADD ./patchwork /opt/patchwork
+> +ADD ./patchtest /opt/patchtest
+> +ADD ./patchtest-oe /opt/patchtest-oe
+> +ADD ./getmailrc /opt/getmail/getmailrc
+> +RUN  pip2 install -r /opt/patchwork/requirements.txt \
+> +    && pip3 install -r /opt/patchtest/requirements.txt \
+> +    && pip3 install  -r /opt/patchtest-oe/requirements.txt \
+> +    && mkdir -p /opt/getmail \
+> +    && mkdir -p /opt/pw-logs \
+> +    && git config --global user.email "patchtest@patchtest.com" \
+> +    && git config --global user.name "patchtest" \
+> +    && /opt/patchtest/scripts/create-host-test-folder -t /opt/pw-test \
+> +    && /opt/patchtest/scripts/create-host-crontab -c /opt/pw-test-cron
+> diff --git a/README.pw b/README.pw
+> new file mode 100644
+> index 0000000..ffa7af1
+> --- /dev/null
+> +++ b/README.pw
+> @@ -0,0 +1,32 @@
+> +* Dockerfile.pw deploy patchwork, patchtest, patchtest-oe in docker
+> +
+> +* Dockerfile.pw is just an example, you can adjust according to your
+> +  deploy condition, like not use getmail, but use postfix.
+> +
+> +* requirements.txt,  just for refer, you can also rewrite this
+> +  according to patchwork'doc and accoridng to your deploy condition.
+> +
+> +* scripts folder hold the files will be used during deploy with docker.
+> +
+> +* Deploy steps:
+> +
+> +1. Clone patchwork, patchtest, patchtest-oe first, also put getmailrc used by
+> +   Dockerfile.pw under the same folder.
+> +
+> +2. Build docker image with Dockerfile.pw
+> +$docker build -t pw -f ./patchwork/Dockerfile.pw .
+> +
+> +3. use mariadb as dataserver:
+> +$ docker pull mariadb
+> +$ docker run -d --name pw-db -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=pwdb -v /pw/pwdb:/var/lib/mysql mariadb
+> +
+> +5. run web server
+> +docker run -d --name pw-web --link pw-db:pw-db -p 8080:8080 pw "/opt/patchwork/scripts/pw_runwebserver.sh"
+> +
+> +6. config pw
+> +docker exec -it pw-web /opt/patchwork/scripts/pw_migrate.sh
+> +docker exec -it pw-web /opt/patchwork/scripts/pw_createsuperuser.sh
+> +
+> +7. run patchwork
+> +docker run -d --name pw-mail --link pw-db:pw-db pw "/opt/patchwork/scripts/pw_getmail.sh"
+> +
+> diff --git a/requirements.txt b/requirements.txt
+> new file mode 100644
+> index 0000000..b8f68f2
+> --- /dev/null
+> +++ b/requirements.txt
+> @@ -0,0 +1,12 @@
+> +django==1.8.0
+> +sqlparse==0.2.4
+> +celery==3.1.20
+> +django_filter==0.11.0
+> +djangorestframework==2.4.8
+> +drf-nested-routers==0.11.1
+> +psycopg2>=2.7,<2.8
+> +mysqlclient
+> +jsonfield
+> +enum34
+> +GitPython
+> +requests
+> diff --git a/scripts/pw_createsuperuser.sh b/scripts/pw_createsuperuser.sh
+> new file mode 100755
+> index 0000000..324ce72
+> --- /dev/null
+> +++ b/scripts/pw_createsuperuser.sh
+> @@ -0,0 +1,5 @@
+> +#!/bin/bash
+> +
+> +pw_dir='/opt/patchwork'
+> +
+> +(cd $pw_dir; ./manage.py createsuperuser)
+> diff --git a/scripts/pw_getmail.sh b/scripts/pw_getmail.sh
+> new file mode 100755
+> index 0000000..fadf7c9
+> --- /dev/null
+> +++ b/scripts/pw_getmail.sh
+> @@ -0,0 +1,11 @@
+> +#!/bin/bash
+> +
+> +sudo /etc/init.d/cron start
+> +echo "*/5 * * * * sudo getmail --getmaildir=/opt/getmail/ --idle INBOX >> /opt/pw-test-cron/getmail.log 2>&1" > /opt/pw-test-cron/cron-getmail
+> +sudo crontab -u wrlbuild  /opt/pw-test-cron/cron-getmail
+> +
+> +while true
+> +do
+> +   :
+> +done
+> +
+> diff --git a/scripts/pw_migrate.sh b/scripts/pw_migrate.sh
+> new file mode 100755
+> index 0000000..e54b2f4
+> --- /dev/null
+> +++ b/scripts/pw_migrate.sh
+> @@ -0,0 +1,5 @@
+> +#!/bin/bash
+> +
+> +pw_dir="/opt/patchwork"
+> +
+> +(cd $pw_dir; ./manage.py migrate; ./manage.py collectstatic; ./manage.py loaddata default_tags default_states default_events)
+> diff --git a/scripts/pw_runwebserver.sh b/scripts/pw_runwebserver.sh
+> new file mode 100755
+> index 0000000..4233b1a
+> --- /dev/null
+> +++ b/scripts/pw_runwebserver.sh
+> @@ -0,0 +1,12 @@
+> +#!/bin/bash
+> +
+> +export LANG="en_US.UTF-8"
+> +export LC_ALL="en_US.UTF-8"
+> +
+> +#open crontab to do test
+> +/etc/init.d/cron start
+> +crontab -u pwtest /opt/pw-test-cron/crontab
+> +
+> +pw_dir="/opt/patchwork"
+> +
+> +(cd $pw_dir; ./manage.py runserver 0.0.0.0:8080)
+> 
 
---=-LysvL2Vyu/KwdCKbJNSS
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
-=3Dutf-8"></head><body><div>On Mon, 2019-01-28 at 10:33 -0800, Scott Rifenb=
-ark wrote:</div><blockquote type=3D"cite"><div dir=3D"ltr"><div>Hi Don, <br=
-></div><div><br></div><div>I can't really advise you on this as I am not a =
-Yocto developer.&nbsp; However, I can forward this question to the <a href=
-=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproject.org=
-</a> mail group and, in particular, to a resource that is looking closely a=
-t kernel stuff to help improve that manual and get it more up-to-date.&nbsp=
-; That guy is named Richard Griffiths of Intel.&nbsp; You should be able to=
- get some help with this.&nbsp; Sorry... I wish I was a crack YP developer =
-:)</div><div><br></div><div>Thanks, <br></div><div>Scott<br></div></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail-m_9093549047279=
-111731gmail_attr">On Sun, Jan 27, 2019 at 11:50 AM Don Osmond &lt;<a href=
-=3D"mailto:dosmond@comporium.net" target=3D"_blank">dosmond@comporium.net</=
-a>&gt; wrote:<br></div><blockquote type=3D"cite"><div lang=3D"EN-US"><div c=
-lass=3D"gmail-m_9093549047279111731gmail-m_-1483096401079258470WordSection1=
-"><p class=3D"MsoNormal">Scott<u></u><u></u></p><p class=3D"MsoNormal">I ha=
-ve been reading your <a href=3D"https://www.yoctoproject.org/docs/2.4/kerne=
-l-dev/kernel-dev.html" target=3D"_blank">https://www.yoctoproject.org/docs/=
-2.4/kernel-dev/kernel-dev.html</a> and it has been very helpful.&nbsp; I ha=
-ve a project where I am needing to get the ability to use iptables NAT whic=
-h does not come in the core image from Digi which also uses Yocto.&nbsp; In=
- my Ubuntu 16.04 LTS development VM, I am able to build the base image (bit=
-bake dey-image-qt), menuconfig the kernel config (bitbake -c devshell virtu=
-al/kernel), compile the kernel (bitbake -C compile virtual/kernel).&nbsp; T=
-he results are in the /workspace/ccimx6ulsbc/tmp/deploy/images/ccimx6ulsbc =
-as see in list below:<u></u><u></u></p><p class=3D"MsoNormal"><u></u>&nbsp;=
-<u></u></p><p class=3D"MsoNormal">dosmond@ubuntu:/workspace/ccimx6ulsbc/tmp=
-/deploy/images/ccimx6ulsbc$ ls<u></u><u></u></p><p class=3D"MsoNormal">boot=
-.scr<u></u><u></u></p><p class=3D"MsoNormal">dey-image-qt-x11-ccimx6ulsbc-2=
-0190127164412.boot.ubifs<u></u><u></u></p><p class=3D"MsoNormal">dey-image-=
-qt-x11-ccimx6ulsbc-20190127164412.recovery.ubifs<u></u><u></u></p><p class=
-=3D"MsoNormal">dey-image-qt-x11-ccimx6ulsbc-20190127164412.rootfs.manifest<=
-u></u><u></u></p><p class=3D"MsoNormal">dey-image-qt-x11-ccimx6ulsbc-201901=
-27164412.rootfs.tar.bz2<u></u><u></u></p><p class=3D"MsoNormal">dey-image-q=
-t-x11-ccimx6ulsbc-20190127164412.rootfs.ubifs<u></u><u></u></p><p class=3D"=
-MsoNormal">dey-image-qt-x11-ccimx6ulsbc-20190127164412.testdata.json<u></u>=
-<u></u></p><p class=3D"MsoNormal">dey-image-qt-x11-ccimx6ulsbc.boot.ubifs<u=
-></u><u></u></p><p class=3D"MsoNormal">dey-image-qt-x11-ccimx6ulsbc.manifes=
-t<u></u><u></u></p><p class=3D"MsoNormal">dey-image-qt-x11-ccimx6ulsbc.reco=
-very.ubifs<u></u><u></u></p><p class=3D"MsoNormal">dey-image-qt-x11-ccimx6u=
-lsbc.tar.bz2<u></u><u></u></p><p class=3D"MsoNormal">dey-image-qt-x11-ccimx=
-6ulsbc.testdata.json<u></u><u></u></p><p class=3D"MsoNormal">dey-image-qt-x=
-11-ccimx6ulsbc.ubifs<u></u><u></u></p><p class=3D"MsoNormal"><a href=3D"htt=
-p://dey-image-recovery-initramfs-ccimx6ulsbc-20190127161551.rootfs.cpio.gz.=
-u-boot.tf" target=3D"_blank">dey-image-recovery-initramfs-ccimx6ulsbc-20190=
-127161551.rootfs.cpio.gz.u-boot.tf</a><u></u><u></u></p><p class=3D"MsoNorm=
-al">dey-image-recovery-initramfs-ccimx6ulsbc-20190127161551.rootfs.manifest=
-<u></u><u></u></p><p class=3D"MsoNormal">dey-image-recovery-initramfs-ccimx=
-6ulsbc-20190127161551.testdata.json<u></u><u></u></p><p class=3D"MsoNormal"=
-><a href=3D"http://dey-image-recovery-initramfs-ccimx6ulsbc.cpio.gz.u-boot.=
-tf" target=3D"_blank">dey-image-recovery-initramfs-ccimx6ulsbc.cpio.gz.u-bo=
-ot.tf</a><u></u><u></u></p><p class=3D"MsoNormal">dey-image-recovery-initra=
-mfs-ccimx6ulsbc.manifest<u></u><u></u></p><p class=3D"MsoNormal">dey-image-=
-recovery-initramfs-ccimx6ulsbc.testdata.json<u></u><u></u></p><p class=3D"M=
-soNormal">imx6ul-ccimx6ulsbc.dtb<u></u><u></u></p><p class=3D"MsoNormal">im=
-x6ul-ccimx6ulsbc-id135.dtb<u></u><u></u></p><p class=3D"MsoNormal">imx6ul-c=
-cimx6ulsbc-id136.dtb<u></u><u></u></p><p class=3D"MsoNormal">imx6ul-ccimx6u=
-lsbc-wb.dtb<u></u><u></u></p><p class=3D"MsoNormal">install_linux_fw_sd.scr=
-<u></u><u></u></p><p class=3D"MsoNormal">modules--4.9-r0.5-ccimx6ulsbc-2019=
-0127182701.tgz<u></u><u></u></p><p class=3D"MsoNormal">modules-ccimx6ulsbc.=
-tgz<u></u><u></u></p><p class=3D"MsoNormal">u-boot-ccimx6ulsbc1GB-2017.03-r=
-0.imx<u></u><u></u></p><p class=3D"MsoNormal">u-boot-ccimx6ulsbc1GB.imx<u><=
-/u><u></u></p><p class=3D"MsoNormal">u-boot-ccimx6ulsbc-2017.03-r0.imx<u></=
-u><u></u></p><p class=3D"MsoNormal">u-boot-ccimx6ulsbc.imx<u></u><u></u></p=
-><p class=3D"MsoNormal">u-boot-ccimx6ulsbc.imx-ccimx6ulsbc<u></u><u></u></p=
-><p class=3D"MsoNormal">u-boot-ccimx6ulsbc.imx-ccimx6ulsbc1GB<u></u><u></u>=
-</p><p class=3D"MsoNormal">u-boot.imx<u></u><u></u></p><p class=3D"MsoNorma=
-l">zImage<u></u><u></u></p><p class=3D"MsoNormal">zImage--4.9-r0.5-ccimx6ul=
-sbc-20190127182701.bin<u></u><u></u></p><p class=3D"MsoNormal">zImage--4.9-=
-r0.5-imx6ul-ccimx6ulsbc-20190127182701.dtb<u></u><u></u></p><p class=3D"Mso=
-Normal">zImage--4.9-r0.5-imx6ul-ccimx6ulsbc-id135-20190127182701.dtb<u></u>=
-<u></u></p><p class=3D"MsoNormal">zImage--4.9-r0.5-imx6ul-ccimx6ulsbc-id136=
--20190127182701.dtb<u></u><u></u></p><p class=3D"MsoNormal">zImage--4.9-r0.=
-5-imx6ul-ccimx6ulsbc-wb-20190127182701.dtb<u></u><u></u></p><p class=3D"Mso=
-Normal">zImage-ccimx6ulsbc.bin<u></u><u></u></p><p class=3D"MsoNormal">zIma=
-ge-imx6ul-ccimx6ulsbc.dtb<u></u><u></u></p><p class=3D"MsoNormal">zImage-im=
-x6ul-ccimx6ulsbc-id135.dtb<u></u><u></u></p><p class=3D"MsoNormal">zImage-i=
-mx6ul-ccimx6ulsbc-id136.dtb<u></u><u></u></p><p class=3D"MsoNormal">zImage-=
-imx6ul-ccimx6ulsbc-wb.dtb<u></u><u></u></p><p class=3D"MsoNormal"><u></u>&n=
-bsp;<u></u></p><p class=3D"MsoNormal">So, what I am having an issue with ar=
-e the steps to get the latest kernel changes a part of the image?&nbsp; I t=
-hought if I ran =E2=80=9Cbitbake dey-image-qt=E2=80=9D again that it would.=
-&nbsp; I think I am missing something.&nbsp; Anything you can share would b=
-e greatly appreciated.<u></u><u></u></p><p class=3D"MsoNormal">Thanks<u></u=
-><u></u></p><p class=3D"MsoNormal">Don<u></u><u></u></p></div></div><br></b=
-lockquote></div>
-</blockquote><div>Hi Don,</div><div>Are you asking how do you save changes =
-to your kernel configuration so they become part of the kernel recipe? If s=
-o, the&nbsp;</div><div>2.2.3 Changing The Configuration section of the Kern=
-el Dev manual gives an example.</div><div>If that is not what you're asking=
-, please clarify and I will do my best to help.</div><div><br></div><div>Re=
-gards,</div><div>Richard</div><div><br></div></body></html>
+-- 
+# Randy MacLeod
+# Wind River Linux
 
---=-LysvL2Vyu/KwdCKbJNSS--
