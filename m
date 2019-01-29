@@ -1,6 +1,6 @@
 Return-Path: <srifenbark@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 837F3E00CE5; Tue, 29 Jan 2019 09:41:49 -0800 (PST)
+	id 2DEDCE00CE5; Tue, 29 Jan 2019 09:52:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,54 +13,53 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (srifenbark[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.53 listed in list.dnswl.org]
+	*      [209.85.208.46 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
-	[209.85.208.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DA3EE00CDF
-	for <yocto@yoctoproject.org>; Tue, 29 Jan 2019 09:41:48 -0800 (PST)
-Received: by mail-ed1-f53.google.com with SMTP id g22so16660716edr.7
-	for <yocto@yoctoproject.org>; Tue, 29 Jan 2019 09:41:48 -0800 (PST)
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com
+	[209.85.208.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55D38E00C91
+	for <yocto@yoctoproject.org>; Tue, 29 Jan 2019 09:52:53 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id d39so16668072edb.12
+	for <yocto@yoctoproject.org>; Tue, 29 Jan 2019 09:52:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=JNoeB7WM+Ne1ZaPas9Y4oNaZo3VWE6akfx4+eXGcNF8=;
-	b=l0bm4UC83by5sJLqk44DB6KBQO8H4QGyETh3PAtDphWnOvBALzJiab6P2gWeVMvZKr
-	LbS59xJH2qL8vbjeAIPXc3uX9xtgq54tRkpmtXp5ONpbQCsxdkCxTyeBI6+KD8brmUhC
-	F+9pLgpIf0Mk/RKwdktN1PGsVtS7rrdqixIGW3ACqUri0tzdFxpxv4zQENx8gv17VvC7
-	l3acMZVBQVw/l6uzEYiInwrzNzsvKMeoMIAtRaSgToyRS6mKyjIGFdeNpDTG8iKN5lOE
-	LoYOIBfJnpYWvXSiG6EPLEyPISpaJJu1BINuaXRrteIaLr9/+S7eGFMuNx8Rif4WdY9z
-	5ihg==
+	:cc; bh=X0qzBGW6ztnogKR0P/OtoGR7190yad/lasszuhd8iek=;
+	b=Ib+DVuICJbXmWyJyrkbThegWlU1ZjajbE9Tp2XApPEDA3zonvZlkuqIhEvdD3AlXYh
+	JGWmwCW9CxaPr6HCexnBFiHvUVCNlIqairfGbWeRRK4ga7MYv9WfjFicfcgCcwISWdxr
+	j6JbEjs7slvrh2cSAfff7tNR4dEZMemRzJlXOaYUUVMo+rVCJV3YZtMpmWasmLtvBh6Y
+	SkjRONASUW42K34asoCx6AlH+Y3EsA56eUvweXO2/IIfdSl4/IhCQJ2atXS7qfx0QlOf
+	jUfLjBynl/6zNvBro5naROeke2DE7M9o5PvlZGmRDHoEe53Jk231NiunYtbcz7pe4WM2
+	G7xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=JNoeB7WM+Ne1ZaPas9Y4oNaZo3VWE6akfx4+eXGcNF8=;
-	b=NxZuA3tU9oh40nEcLFDLd3PAg+lUs8n/KlAXp/apWLDh11YP9tYHmhHSie2s/siZKi
-	NjGHTQhoVWdIuiSCLZSlP9/LZhynIenUIId8/OEFC7wV6LwkDjgOSWscA9kqXiYYz+YR
-	J2hQ+AXz/LYo7YArHEr6yBoy2Ms9vP4cRVlated3POhCynUah/sXAbo/wB1HbeFcygl7
-	PIyJROYpCuWSJhOU+DufrUKX1oyC/BsDmLYi5URfj/E8A7YXktV9bOJEDleEGKCLvqSp
-	+suV5QAVESdNxOgMwU+1mh3b5BUuhVed3T3vIwMZASlEYlTf+gXVd5VxK1/hRj7t9kjn
-	qVIw==
-X-Gm-Message-State: AJcUukeklKp70P1km4ZPYy8uXv5bfF18XhnmtlFZSs4PzMfLOP24+ZxL
-	J5DIixOnxypvB73iERlJVmwb4/rkzMxf0QcFr3XgyH7X
-X-Google-Smtp-Source: ALg8bN4ucNxhCDBUB3VKv83wjajkAu8xcvsVNv/tU7CdNEVdYSgb4fHTkJIiI2wGfA9sHA+HnIiMJeMO155k8vy/UN4=
-X-Received: by 2002:a17:906:45c1:: with SMTP id
-	z1mr10842099ejq.79.1548783707342; 
-	Tue, 29 Jan 2019 09:41:47 -0800 (PST)
+	bh=X0qzBGW6ztnogKR0P/OtoGR7190yad/lasszuhd8iek=;
+	b=JWnW3tt8i6YcGF/Tok6iaIX77RR3VFihchqmU4L/wwpHS59VWoLbVxJYiFl5T1YM43
+	3Xu6vEU9FQZZ7LhYUMawfk3y6ucMEQ+OGGcR+izXjF7nEWh1boDkYhd9sYT2q1LJikkz
+	EoOeFJvYKPbVWXDhBJm6wja38QjKlFiIxO9PNNDzOQwVhIwOzYa2Xau1fhlmis+MoA1O
+	J7tkfcIh9cyPmHbMt01e+rsgCTC4yg3jWm8bP9IrJzFinvyzDuwsICedNmnJg3dJ4oJY
+	zhbYxbVOq+mC68jToYmwj723Dr9cQmAxYeJuzEeihURfb62pqld3Rsh0ipMEpq/OMWY3
+	iqmg==
+X-Gm-Message-State: AJcUukcJpyJvpuH8RlAIRJ4xLb4gJhhyrDEPGTmeY+yWzCXhtDsK7suD
+	MOnzlI7FptQrqY7uHzfQ5t4yAYPuV6uDaOIFufk=
+X-Google-Smtp-Source: ALg8bN6dsGf7FpaTd8mweEvb4/k6+nHg8EH+Xewy39LEH1kXYinZmMqoPUNZdNCXnXR7a6jSGKHLFd9CWXYq987UDw0=
+X-Received: by 2002:a50:9849:: with SMTP id h9mr25285527edb.36.1548784372394; 
+	Tue, 29 Jan 2019 09:52:52 -0800 (PST)
 MIME-Version: 1.0
-References: <CACsVzKgafiE9ioPpiLMHLu-1WDEx=AtP7wZAUBNJENinJCnmKA@mail.gmail.com>
-In-Reply-To: <CACsVzKgafiE9ioPpiLMHLu-1WDEx=AtP7wZAUBNJENinJCnmKA@mail.gmail.com>
+References: <0EACE12BE5CA844DB512EF10CAC5B840448B06B4@DEFRVAI0013.vaillant.vhgroup.lan>
+In-Reply-To: <0EACE12BE5CA844DB512EF10CAC5B840448B06B4@DEFRVAI0013.vaillant.vhgroup.lan>
 From: Scott Rifenbark <srifenbark@gmail.com>
-Date: Tue, 29 Jan 2019 09:41:35 -0800
-Message-ID: <CAFNP8Ovq63gjWpTi0N-2RbtwHcsL+CjSWqtYH+zOg-WCimR_Lw@mail.gmail.com>
-To: Antonio Santagiuliana <santantonioswap@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: (No subject)
+Date: Tue, 29 Jan 2019 09:52:41 -0800
+Message-ID: <CAFNP8Ov9acRVmiRe+E+8guTmGTuR23JaKn=32AZNs4J2m7eu2Q@mail.gmail.com>
+To: "Hopp, Denis" <Denis.Hopp@vaillant-group.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [YP Core] Thud moved out of active releases
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,33 +71,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Jan 2019 17:41:49 -0000
-Content-Type: multipart/alternative; boundary="000000000000b5d01405809c4e9a"
+X-List-Received-Date: Tue, 29 Jan 2019 17:52:54 -0000
+Content-Type: multipart/alternative; boundary="00000000000059b05305809c7604"
 
---000000000000b5d01405809c4e9a
+--00000000000059b05305809c7604
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Denis,
 
-Have you tried adding the feature through MACHINE_FEATURES variable? (
-https://yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#ref-features-machine
-and
-https://yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#var-MACHINE_FEATURES
-).
+I don't understand this myself.  I don't believe 2.6.1 has released just
+yet.  I have symlinks set such that the "current" documentation points to
+"2.6" so any URL for a manual such as
+https://yoctoproject.org/docs/current/ref-manual/ref-manual.html resolves
+to the "2.6" manual.
 
-A developer can probably provide more detailed information Antonio.
-
-Thanks,
 Scott
 
-On Tue, Jan 29, 2019 at 8:12 AM Antonio Santagiuliana <
-santantonioswap@gmail.com> wrote:
+On Mon, Jan 28, 2019 at 10:33 PM Hopp, Denis <Denis.Hopp@vaillant-group.com>
+wrote:
 
-> Hi,
-> I am missing the steps required to add to an image the support for an RTC
-> plugged in to I2C1 interface, with autostart.
-> is there a page with instructions ?
-> thank you
+> Hello all,
+>
+> is it intended that the thud release 2.6 documents overview went
+> into archived documents? I can't find any news about it and thud is
+> still promoted as latest release on the frontpage.
+> (https://www.yoctoproject.org/)
+> Or is this standard procedure and 2.6.1 will follow shortly?
+>
+> Greetings
 > --
 > _______________________________________________
 > yocto mailing list
@@ -106,28 +106,32 @@ santantonioswap@gmail.com> wrote:
 > https://lists.yoctoproject.org/listinfo/yocto
 >
 
---000000000000b5d01405809c4e9a
+--00000000000059b05305809c7604
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi, <br></div><div>=
-<br></div><div>Have you tried adding the feature through MACHINE_FEATURES v=
-ariable? (<a href=3D"https://yoctoproject.org/docs/2.6/ref-manual/ref-manua=
-l.html#ref-features-machine">https://yoctoproject.org/docs/2.6/ref-manual/r=
-ef-manual.html#ref-features-machine</a> and <a href=3D"https://yoctoproject=
-.org/docs/2.6/ref-manual/ref-manual.html#var-MACHINE_FEATURES">https://yoct=
-oproject.org/docs/2.6/ref-manual/ref-manual.html#var-MACHINE_FEATURES</a>).=
-</div><div><br></div><div>A developer can probably provide more detailed in=
-formation Antonio.</div><div><br></div><div>Thanks, <br></div><div>Scott<br=
-></div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
-ass=3D"gmail_attr">On Tue, Jan 29, 2019 at 8:12 AM Antonio Santagiuliana &l=
-t;<a href=3D"mailto:santantonioswap@gmail.com">santantonioswap@gmail.com</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
-v dir=3D"ltr">Hi,=C2=A0<br><div>I am missing the steps required to add to a=
-n image the support for an RTC plugged in to I2C1 interface, with autostart=
-.</div><div>is there a page with instructions ?=C2=A0</div><div>thank you</=
-div></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Denis, <br></div><div><br></div><div=
+>I don&#39;t understand this myself.=C2=A0 I don&#39;t believe 2.6.1 has re=
+leased just yet.=C2=A0 I have symlinks set such that the &quot;current&quot=
+; documentation points to &quot;2.6&quot; so any URL for a manual such as <=
+a href=3D"https://yoctoproject.org/docs/current/ref-manual/ref-manual.html"=
+>https://yoctoproject.org/docs/current/ref-manual/ref-manual.html</a> resol=
+ves to the &quot;2.6&quot; manual.=C2=A0 <br></div><div><br></div><div>Scot=
+t<br></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Mon, Jan 28, 2019 at 10:33 PM Hopp, Denis &lt;<a href=
+=3D"mailto:Denis.Hopp@vaillant-group.com">Denis.Hopp@vaillant-group.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hell=
+o all,<br>
+<br>
+is it intended that the thud release 2.6 documents overview went <br>
+into archived documents? I can&#39;t find any news about it and thud is<br>
+still promoted as latest release on the frontpage.<br>
+(<a href=3D"https://www.yoctoproject.org/" rel=3D"noreferrer" target=3D"_bl=
+ank">https://www.yoctoproject.org/</a>)<br>
+Or is this standard procedure and 2.6.1 will follow shortly?<br>
+<br>
+Greetings<br>
 -- <br>
 _______________________________________________<br>
 yocto mailing list<br>
@@ -137,4 +141,4 @@ ect.org</a><br>
 " target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
 </blockquote></div>
 
---000000000000b5d01405809c4e9a--
+--00000000000059b05305809c7604--
