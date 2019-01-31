@@ -1,68 +1,64 @@
-Return-Path: <trini@konsulko.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 77A49E00D2F; Thu, 31 Jan 2019 07:36:35 -0800 (PST)
+	id CB591E00D16; Thu, 31 Jan 2019 07:52:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.176 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.166.169 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D85B4E00D0F
-	for <yocto@yoctoproject.org>; Thu, 31 Jan 2019 07:36:34 -0800 (PST)
-Received: by mail-qt1-f176.google.com with SMTP id i7so3844904qtj.10
-	for <yocto@yoctoproject.org>; Thu, 31 Jan 2019 07:36:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=3og/ZGTOQlx+0sJ/zj9jXxIA2x+OXjHQp0s6X/mZ1QA=;
-	b=CgES59iEdstbyWEBoA1wABem8lcFPPHO6RAof0LR0YcASvADjd5RoP8RqE/3ekB9IG
-	Syaarpk49r2Djt4aD/6DIMu6FpgytxVHzTrAqsnd7eATpKFD+yPDswCu1GwhIyvv4uQT
-	ncx76OCaRBKo1HhlVWH9Vl4KfDKbo3VqtKmwE=
+Received: from mail-it1-f169.google.com (mail-it1-f169.google.com
+	[209.85.166.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2157E00BED
+	for <yocto@yoctoproject.org>; Thu, 31 Jan 2019 07:52:55 -0800 (PST)
+Received: by mail-it1-f169.google.com with SMTP id h193so4834540ita.5
+	for <yocto@yoctoproject.org>; Thu, 31 Jan 2019 07:52:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=TmKt0Gl7ZGL7iVMYJBj3WbTKVgQg6kHaav9nXvc2fVw=;
+	b=FO8NSFFN9SCpB8ys5RiLYcu6J4gBskOt9SzWOUdnDnt5mXTFvhNmBHYPh5ksTMW8Qg
+	kEuMmragu7F/6prvlhN33P/Fmj25K6LnrJfd4YpzINshlJ+fJewDG6japLUoiJMzqa4t
+	TggMBI9CVakRsR8TYyj/FR7VNddjopmuhCWAa4OkcEU0d4LHCavuabxAuC726BUrLAXT
+	rnE5H2x1y7buDM06HgisGL8wrHIOBFVP64GKnTez28+Z9RpQrbwS+Ax48XX+n0Yjqtu7
+	ssva/eGcht3Xek98EAFuaX/bZ1YJH+RmlOnXdwf+hA6E3sDMZ1fcVFhvZR7g6l82+xAm
+	BjdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=3og/ZGTOQlx+0sJ/zj9jXxIA2x+OXjHQp0s6X/mZ1QA=;
-	b=GzvAprBkArfNYl417juKwO+/wJ0Ytg+DHW389YtzGANYvuSRPjn6jinAucfzg4rzfl
-	lQ+eUCYXXvfss6mbBN+tkdMtsaIFbXRbijOVPlzWc5k09/FNzwphcftcE3NW1OwamrRR
-	ZvKQi0mgjXforYrbcKlvlrcdNmvVkFiFHMX0HmXOt7KiPY8IJnZ32ZSl3Oly9WL4HMc3
-	DbfqUgqlIJ9YLcw2Blfdh+ZhWCVbM+cvu+0YweAo5mFR5aRBj46kn5WOcCqaeHvQhN/a
-	FJDjw+uOh6rcVJi/C871StAd2nJVGKIV8hGdB8RIK6SxHkMStd6Kae6UrAnZRIo2L/eV
-	78sQ==
-X-Gm-Message-State: AJcUukeDL/1qwLHaSK00o1D0WiySpHhIK9elgijcjvuCKipgLL58dR/6
-	wZOi8x8M5zXbep8K8MUg9KKSD+h3skw=
-X-Google-Smtp-Source: ALg8bN63A8hAxT2h2JMGLL92tAEtm2EcMPEPaoCFOQwhvg0FCR7QYOlIVrnE3DNHWAHAMipUeFe8gQ==
-X-Received: by 2002:a0c:fc09:: with SMTP id z9mr33606273qvo.157.1548948993854; 
-	Thu, 31 Jan 2019 07:36:33 -0800 (PST)
-Received: from bill-the-cat
-	(cpe-2606-A000-1401-82A1-BACA-3AFF-FE98-1ABB.dyn6.twc.com.
-	[2606:a000:1401:82a1:baca:3aff:fe98:1abb])
-	by smtp.gmail.com with ESMTPSA id
-	a192sm4643484qkg.63.2019.01.31.07.36.32
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 31 Jan 2019 07:36:32 -0800 (PST)
-Date: Thu, 31 Jan 2019 10:36:30 -0500
-From: Tom Rini <trini@konsulko.com>
-To: "Dominig ar Foll (Intel Open Source)" <dominig.arfoll@fridu.net>
-Message-ID: <20190131153630.GB30838@bill-the-cat>
-References: <a3bf6461-6024-b418-5c2b-101a3d964eec@fridu.net>
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=TmKt0Gl7ZGL7iVMYJBj3WbTKVgQg6kHaav9nXvc2fVw=;
+	b=mXj+oBWBFZ4VdOivMJoIQ6L6dC9H0TVOOqawtsRNwnqkhT6dvtF6xpRoMEUT5mL4Ns
+	2td5/6HyliozhAWub7ypRdd8fjLW8Kgx+TjcOhdRfA+4VnyNIypU1HFeH689dcqaSfdj
+	WbXA7XGFkZPFaLODS+qHnQM+rqtbus1vwSu7RHdyTLvy6kmDjBS2oFAeSLSNicXO7n8Q
+	rbT0VZ+eJQ53uvlBRqWiFMD213C8SJhxnoKU7NHs0GHVH0OOjG4gOy06Y54kB0qiaxrK
+	mLvB1CRL2M7Ue8xotRs8gbeHssfyJaRDEiOcVNBjH7vxe+jR30abTn17KJ7KafjvTF4D
+	lwKQ==
+X-Gm-Message-State: AJcUukdJEr3T44hHURIxLlb/VCqOXgtPYoHrjIalvJ0cPVS0AOcIYRll
+	N2Eo204hw/Tfu2XVaZkExnzS9CuxSYsKQKbowBHDoN7Y
+X-Google-Smtp-Source: ALg8bN5F5LjOp05/dRUiD6Qr0eBOIW7t5UW/H2EffNOSqVoRVXdiRBCYUJnZszsbfCgocyPjS+fkWgsh69e46Y2Wc10=
+X-Received: by 2002:a02:57c4:: with SMTP id b65mr22472973jad.79.1548949975024; 
+	Thu, 31 Jan 2019 07:52:55 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <a3bf6461-6024-b418-5c2b-101a3d964eec@fridu.net>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to create a signed bootloader and Linux kernel on a UEFI BIOS
+References: <3a07697c3d1d45100ad973bace76455a1988fef4.camel@sierrawireless.com>
+	<CAJTo0LYxrsLQJsj3T60VzmKt9MUziEkN5mA0aD6vqd+LEJynbA@mail.gmail.com>
+	<CAJTo0LYaVUuMNkxP9CyNHqWAv7RQ9xtjmAgMw_7q64BJNR3LWQ@mail.gmail.com>
+	<55afbacdfc53eadf173cc922acf68013e97e31d6.camel@sierrawireless.com>
+In-Reply-To: <55afbacdfc53eadf173cc922acf68013e97e31d6.camel@sierrawireless.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 31 Jan 2019 15:52:43 +0000
+Message-ID: <CAJTo0Lb3x-2iQ1W6=At84pkSpn0UJ4sowy5W2dudupoN1_PC2w@mail.gmail.com>
+To: Darcy Watkins <dwatkins@sierrawireless.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: RDEPENDS and do_rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,70 +70,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Jan 2019 15:36:35 -0000
-X-Groupsio-MsgNum: 43968
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="F25dJIO4n7LGqrNz"
-Content-Disposition: inline
-
---F25dJIO4n7LGqrNz
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+X-List-Received-Date: Thu, 31 Jan 2019 15:52:56 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 31, 2019 at 12:53:36PM +0100, Dominig ar Foll (Intel Open Sourc=
-e) wrote:
+Ah in that case there's been a lot of work since daisy to useradd etc.
 
-> Hello,
->=20
-> Securing the full boot chain on a UEFI BIOS such as those provided on
-> Intel platforms is possible but not that simple.
-> Working, detailed documentation is not easy to find anywhere.
->=20
-> Some of my students from Lorient (University of South Brittany) have
-> done a good documentation job on
-> a HowTo create and boot a signed kernel and Grub2 on a UEFI BIOS.
->=20
-> As it could be useful to some of you, I share the link.
-> =A0=A0 https://ubs_csse.gitlab.io/secu_os/tutorials/linux_secure_boot.html
->=20
-> Thanks to Romain Brenaget, Jer=F4me Blanchard and Pierre Fontaine from the
-> Master1 in Embedded Cyber Security.
->=20
-> fontaine.e1800982@etud.univ-ubs.fr
-> brenaget.e1803332@etud.univ-ubs.fr
-> blanchard.e1804130@etud.univ-ubs.fr
+Ross
 
-I did pick up something new reading through those docs, so thanks for
-the link.  Please note that in the context of OpenEmbedded
-https://github.com/jiazhang0/meta-secure-core/tree/master/meta-efi-secure-b=
-oot
-provides all of this and is fairly well documented.  There may be some
-interesting parts in there for you and your team as it does handle the
-kernel/initramfs question differently.
+On Thu, 31 Jan 2019 at 15:51, Darcy Watkins <dwatkins@sierrawireless.com> w=
+rote:
+>
+> Hi,
+>
+> In my case, package A creates groups a1, a2 and a3.
+>
+> B is actually a family of packages B1, B2 and B3 that each create user
+> b1, b2, or b3 respectively, but also adds the new user to groups a1, a2
+> and/or a3.
+>
+> So in this case, it is necessary that package A first be installed AND
+> that its post-inst scripts have run to generate groups a1, a2 and a3.
+>
+> If, as you suggest, RDEPENDS will NOT guarantee this, then I will need
+> to solve this another way, perhaps by...
+>
+> agroups.bbclass - creates groups a1, a2 and a3 for any package recipe
+> that inherits it.
+>
+> Package recipes, A, B1, B2 and B3 would thus all have to inherit from
+> agroups.bbclass.
+>
+> The first package installed creates the groups in rootfs. The remaining
+> packages just find the groups already present.
+>
+> So I think that there may be a solution for my case.
+>
+> -----
+>
+> I think that this limitation possibly may be related to some useradd
+> failures reported a few years back such as "ERROR: Tried running
+> useradd command 10 times without scucess, giving up". There had been
+> changes made by patching the shadow package and by refining the bbclass
+> to use file locks. I went for about three years with just the luck of
+> the draw that packages were installed in a good order until this showed
+> up. I had backported some of these changes to 'daisy' before realizing
+> that the groups simply hadn't been created yet.
+>
+>
+>
+> On Thu, 2019-01-31 at 10:52 +0000, Burton, Ross wrote:
+> > Forgot to say, Bitbake's dependency model is loosely based on
+> > Debian's
+> > so the Debian Policy is a good read for semantics:
+> >
+> >
+> https://na01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fwww.de=
+bian.org%2Fdoc%2Fdebian-policy%2Fch-relationships.html%23binary-dependencie=
+s-depends-recommends-suggests-enhances-pre-depends&amp;data=3D02%7C01%7Cdwa=
+tkins%40sierrawireless.com%7Ccb4829af452948bfa95208d6876a34ed%7C08059a4c248=
+643dd89e33a747e0dcbe8%7C1%7C0%7C636845287569900461&amp;sdata=3DWsJ0EjOAI7C%=
+2BurDmAfVMCGb9SEaAWMxy%2F8Xpfks%2FjPA%3D&amp;reserved=3D0
+> >
+> > Debian's "Depends" is our "RDEPENDS", what you want is "Pre-Depends"
+> > that we don't (yet) support.  As I said, this is just a matter of
+> > picking a name and then mapping it into the control file.
+> >
+> > Ross
+> >
+> > On Thu, 31 Jan 2019 at 10:49, Burton, Ross <ross.burton@intel.com>
+> > wrote:
+> >
+> > Presumably the problem here is that you've a maintainer script
+> > (preinst or postinst) in B that needs a binary/library from A, and is
+> > failing because B's postinst is running before A is unpacked?  If
+> > not,
+> > please clarify, otherwise the problem is that DEPENDS just talks
+> > about
+> > the final solution.  If you want to express that A needs to be
+> > installed and configured before B is configured then you'll need to
+> > use Pre-Depends, which I don't believe are actually supported in the
+> > packaging classes yet.  I know that dpkg and opkg support this, and
+> > presumably rpm too, so extending the packaging classes is a few
+> > minutes work.
+> >
+> > Ross
+> >
+> > On Thu, 31 Jan 2019 at 06:51, Darcy Watkins <
+> > dwatkins@sierrawireless.com> wrote:
+> >
+> > Hi,
+> >
+> > Can someone knowledgeable with the inner workings of the build system
+> > please confirm...
+> >
+> > IF package B has RDEPENDS on package A
+> >
+> > THEN during do_rootfs task, package A will always be installed into
+> > rootfs first AND the post-inst scripts of package A will always be
+> > run
+> > prior to those for package B.
+> >
+> > Also, if that can be confirmed for 'daisy' branch, that would really
+> > be
+> > helpful.  If not, then please mention as far back the branch that you
+> > know for sure.  Thanks!
+> >
+> >
+> >
+> > --
+> >
+> >
+> > Regards,
+> >
+> > Darcy
+> >
+> > Darcy Watkins ::  Senior Staff Engineer, Firmware
+> >
+> > SIERRA
+> > WIRELESS
+> > Direct  +1 604 233 7989   ::  Fax  +1 604 231 1109  ::  Main  +
+> > 1 604 231 1100
+> > 13811 Wireless Way  :: Richmond, BC Canada V6V 3A4
+> > [P1]
+> >
+> > dwatkins@sierrawireless.com ::
+> > https://na01.safelinks.protection.outlook.com/?url=3Dwww.sierrawireless=
+.com&amp;data=3D02%7C01%7Cdwatkins%40sierrawireless.com%7Ccb4829af452948bfa=
+95208d6876a34ed%7C08059a4c248643dd89e33a747e0dcbe8%7C1%7C0%7C63684528756990=
+0461&amp;sdata=3Dd946J0HFRXZgDiC1QjtumL%2BX4mzpHkhlvuC1J1xEbeE%3D&amp;reser=
+ved=3D0
+> >
+> >
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> >
+> https://na01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.=
+yoctoproject.org%2Flistinfo%2Fyocto&amp;data=3D02%7C01%7Cdwatkins%40sierraw=
+ireless.com%7Ccb4829af452948bfa95208d6876a34ed%7C08059a4c248643dd89e33a747e=
+0dcbe8%7C1%7C0%7C636845287569900461&amp;sdata=3DDiZmJr86q5r0i1iVk4Yraj0CB6f=
+XY0Eczkh8HpigJlA%3D&amp;reserved=3D0
+> --
+>
+>
+> Regards,
+>
+> Darcy
+>
+> Darcy Watkins ::  Senior Staff Engineer, Firmware
+>
+> SIERRA
+> WIRELESS
+> Direct  +1 604 233 7989   ::  Fax  +1 604 231 1109  ::  Main  +
+> 1 604 231 1100
+> 13811 Wireless Way  :: Richmond, BC Canada V6V 3A4
+> [P1]
+>
+> dwatkins@sierrawireless.com :: www.sierrawireless.com
+>
+>
+>
 
---=20
-Tom
-
---F25dJIO4n7LGqrNz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iQIcBAEBAgAGBQJcUxX+AAoJEIf59jXTHXZSoPIQAMOkSv8L+rKPzO8fH37n4mF/
-vrtdRiF19FA8/YKDkO12rfOywTE5Xa+3FbfWVSYn1v5wkA6UhynZiAKGzYZzsPQB
-n8JPvLO+HoRg0mJrr6f/RKbjalf+Zxr6Lk7O/q8sTfAT+g5c+Hj5IffTxyQoBlfC
-AbLjlvKyWluqJ2HSLZKosRLZZs65qLpqyuVrrnSpLXwZvTHjHqiJMT74Y2QmX3px
-XEIsbIYJ5Q7rW4w41g2emMFdFSNQkFFcLTcPlNplpnmAB3PE/OqEcJoro+EUJT1R
-8gQJv3Y11iazEjsqy+t3HEEdBARLWlwXwI51bgMQr17x4mGBJO6HDmlhvR/65Owk
-fSdh5L153LUMoL+cgJmvj0CSagACMPZl1AtNnnIVsoV4h/TVMY4d3Hy3xDDeXlVE
-dXR6FI/E4YRiaerxnJdF2pXCHqyPtPiDD2A8cX8qYvRZS2yQUKZZTsRKJLrekxvm
-6jU+Q8gCsIwuPPE9hcsqK+Q9GZO2dkSXyi5H5wr6YFkE94vrbXNXlolBUDxVFXNh
-IBPlRL6RdMW5Il0OfcWk96B2N/RCsvlbD46VTG/OkyHhJIYSqPl1MeKrez1CVQqE
-LQNdVWx+FCXQDCEeh39p9yyv1JML0aq2sBoHj39KK5Jp2AEuOirrP1aj3wZfEZq/
-f7cH7NB6e18TU9rSLj1Y
-=c2uj
------END PGP SIGNATURE-----
-
---F25dJIO4n7LGqrNz--
