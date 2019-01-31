@@ -1,65 +1,43 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <dzimmermann@yellowtec.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AB6A4E00D1B; Wed, 30 Jan 2019 23:26:18 -0800 (PST)
+	id 02570E00D1B; Thu, 31 Jan 2019 00:45:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.50 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
-	[209.85.167.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75F6FE00BED
-	for <yocto@yoctoproject.org>; Wed, 30 Jan 2019 23:26:17 -0800 (PST)
-Received: by mail-lf1-f50.google.com with SMTP id i26so1565117lfc.0
-	for <yocto@yoctoproject.org>; Wed, 30 Jan 2019 23:26:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=jJdIzAK0xRlmPbsM+2f0JTkyevzALH20AG2uP+tf+ig=;
-	b=ueS5maEIE/kHwNKHUFL0iRQKVf+jNjSSHX+brbzbq6/P7OOrJftawQ/4Ap+2titp3K
-	SbsVM5/lH9mx3p2HLZd/KTmJP9FozSNVnnajPFpKti0QMs+5jaAH0gzA0PXitL32HW+u
-	ncD6JdAJyHU1TkbE7vKT97ZErydgektEp5LgQunlGUxvOgBRnugMUheJkOUzsjFNOkRF
-	V43DD6P1lfvx9vB9OTWszGgAHXphHfYKrVNuzb7KbBnutY0g8mkrUKz9ZnqKexHqwaT2
-	tKEZMXzwsXdqxug+HhVPFQtwBuUMbCe4uOhkaUI5WUT7Lje2ydT0EhEv1O1pXrqVpSgP
-	x6Bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=jJdIzAK0xRlmPbsM+2f0JTkyevzALH20AG2uP+tf+ig=;
-	b=GuQ26MqzTB74HLu20ujMF+1xNC5mURqAPTuxDopJDaiKF5cRjJWwPVu/UJwzT7mGT0
-	FYiOeHh5/VgZliaBa9yPEyus7QEf+iwb6IzjI5Kbop4NUCASL1d+fGszN118KbidS9xm
-	YcI3PD4+m+Co2efYiOt6qpgvGbIEJyzCNJp4OXUMGePPMUOw9TlBXqCLEzU1jT/UB/An
-	CtaE+B79tKJJ9slBaezGUTZOLOCP3u2EuZ1qI17qT53sETAxUhjS01ClG+m2Tb96aL+Z
-	W9P6L90s4BH5iSaBEIhL4n8LYfuvwsfRx9O9JxeaRiTs/3/k8kFCyGmh1VGHTfZYYJTr
-	cjSw==
-X-Gm-Message-State: AJcUukfXokPxMBFF8DZqBlZ1s3hYy30Z16aoBsWFRPuUOAGxzPqHjKTe
-	LVnPFnxwTy84orOOEQSyRGfC+mY23mA0nJGePnZBsQt5
-X-Google-Smtp-Source: ALg8bN4df1O8FqsZ6G6KGDKkD+1yNFMIsZYn/+v1U3IEv2rGWSM7kKwmMckD7yiKtietQTuygiHSoI5k92XG2OnUfNA=
-X-Received: by 2002:a19:c995:: with SMTP id z143mr25731433lff.79.1548919575961;
-	Wed, 30 Jan 2019 23:26:15 -0800 (PST)
+X-Greylist: delayed 338 seconds by postgrey-1.32 at yocto-www;
+	Thu, 31 Jan 2019 00:45:34 PST
+Received: from bilbo.thummahr.de (bilbo.thummahr.de [130.180.88.210])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A939AE00CB0
+	for <yocto@yoctoproject.org>; Thu, 31 Jan 2019 00:45:34 -0800 (PST)
+X-Virus-Scanned: by amavisd-new at 
+Received: from 2008-email-vm.tmintra.thummahr.de ([172.16.16.77])
+	by bilbo.thummahr.de with ESMTP id x0V8ds4m002876
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 31 Jan 2019 09:39:54 +0100
+Received: from 2008-EMAIL-VM.tmintra.thummahr.de ([fe80::94b0:6cac:381:3a1e])
+	by 2008-email-vm.tmintra.thummahr.de ([fe80::94b0:6cac:381:3a1e%11])
+	with mapi id 14.03.0361.001; Thu, 31 Jan 2019 09:39:54 +0100
+From: David Zimmermann <dzimmermann@yellowtec.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: How to archive only packages contained in a certain image
+Thread-Index: AQHUuUCJ//kJ5B03X0SgX+BTXwL/QQ==
+Date: Thu, 31 Jan 2019 08:39:53 +0000
+Message-ID: <7289CA52-0B42-4481-93B7-350AE353DC1C@yellowtec.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.16.5]
+x-tm-as-product-ver: SMEX-11.7.0.1024-8.200.1013-24400.004
+x-tm-as-result: No-3.895500-5.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Thu, 31 Jan 2019 02:26:04 -0500
-Message-ID: <CAHUNapTBZZRA4+RiFLVHYX6CAkAC8_s9jA0KrFc8Rvs0ksLG-Q@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>, 
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>, 
-	openembedded-members@lists.openembedded.org, 
-	openembedded-devel <openembedded-devel@lists.openembedded.org>
-Subject: OE Summit @ SCaLE 17x - Sunday March 10th 2019 - Pasadena CA
+X-Scanned-By: MIMEDefang 2.78 on 172.16.16.1
+Subject: How to archive only packages contained in a certain image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,69 +49,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Jan 2019 07:26:18 -0000
-Content-Type: multipart/alternative; boundary="0000000000001c67090580bbf15b"
+X-List-Received-Date: Thu, 31 Jan 2019 08:45:37 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <E8F027EA1B8C4B4984D6DBF3CA388E24@thummahr.de>
+Content-Transfer-Encoding: base64
 
---0000000000001c67090580bbf15b
-Content-Type: text/plain; charset="UTF-8"
+SGkgTGlzdCwNCg0KSSB1c2UgWW9jdG8gS3JvZ290aCBhbmQgdGhlIGZvbGxvd2luZyBjb25maWd1
+cmF0aW9uIGZvciB0aGUgYXJjaGl2ZXI6DQoNCklOSEVSSVQgKz0g4oCeYXJjaGl2ZXLigJwNCkNP
+UFlMRUZUX1JFQ0lQRV9UWVBFUyA9IOKAmXRhcmdldOKAmQ0KDQpCdXQgdGhlIOKAmnRtcC9kZXBs
+b3kvc291cmNlcy/igKYv4oCaIGZvbGRlciBmb3IgbXkgdGFyZ2V0IGFyY2hpdGVjdHVyZSBjb250
+YWlucyBtdWNoIG1vcmUgcGFja2FnZXMgdGhlbiB0aG9zZSDigJp1c2Vk4oCYIHRvIGJ1aWxkIG15
+IGltYWdlLg0KSXMgdGhlcmUgYSB3YXkgdG8gZXh0cmFjdCAvIGFyY2hpdmUgLyBpc29sYXRlIG9u
+bHkgdGhvc2UgcGFja2FnZSBzb3VyY2VzIHVzZWQgZm9yIGEgY2VydGFpbiBpbWFnZSAoa2VybmVs
+ICsgcm9vdGZzKSA/DQoNClRoYW5rcyBmb3IgeW91ciBoZWxwLA0KRGF2aWQgIA==
 
-We're excited to announce the inaugural "OpenEmbedded Summit" taking place
-Sunday March 10th 2019 as part of the Southern California Linux Expo
-(SCaLE) 17x at the Pasadena Convention Center.
-
-For the past few years there's been an ever-growing OpenEmbedded event as
-part of SCaLE. This year, with the missing Spring ELC, we felt it was time
-to do something more "formally" so OE enthusiasts could get together
-without having to wait until August.
-
-The initial suggestion for this summit came at last year's OEDEM in
-Edinburgh. At that time an idea was also floated to hold this year's OEDAM
-at the same time. Just to be absolutely clear: this suggestion was
-rejected; there will be no OEDAM at the OE Summit at SCaLE 17x. However,
-this summit is taking place with the full approval of the OpenEmbedded
-Board of Directors, many of whom have also been helping out with its
-organization.
-
-The schedule for the OE Summit has been posted:
-https://www.socallinuxexpo.org/scale/17x/schedule/sunday
-https://www.socallinuxexpo.org/scale/17x/open-embedded-summit-0
-
-So if you're in the Southern California area, or are generally interested
-in hanging out with some OpenEmbedded people, please join us in Pasadena on
-March 10th!
-
-Your OE Summit organizing committee:
-  Tom King
-  Behan Webster
-  Trevor Woerner
-
---0000000000001c67090580bbf15b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>We&#39;re excited to announce the inaugural &quot;Ope=
-nEmbedded Summit&quot; taking place Sunday March 10th 2019 as part of the S=
-outhern California Linux Expo (SCaLE) 17x at the Pasadena Convention Center=
-.</div><div><br></div><div>For the past few years there&#39;s been an ever-=
-growing OpenEmbedded event as part of SCaLE. This year, with the missing Sp=
-ring ELC, we felt it was time to do something more &quot;formally&quot; so =
-OE enthusiasts could get together without having to wait until August.</div=
-><div><br></div><div>The initial suggestion for this summit came at last ye=
-ar&#39;s OEDEM in Edinburgh. At that time an idea was also floated to hold =
-this year&#39;s OEDAM at the same time. Just to be absolutely clear: this s=
-uggestion was rejected; there will be no OEDAM at the OE Summit at SCaLE 17=
-x. However, this summit is taking place with the full approval of the OpenE=
-mbedded Board of Directors, many of whom have also been helping out with it=
-s organization.</div><div><br></div><div>The schedule for the OE Summit has=
- been posted:</div><div><a href=3D"https://www.socallinuxexpo.org/scale/17x=
-/schedule/sunday" target=3D"_blank">https://www.socallinuxexpo.org/scale/17=
-x/schedule/sunday</a></div><div><a href=3D"https://www.socallinuxexpo.org/s=
-cale/17x/open-embedded-summit-0" target=3D"_blank">https://www.socallinuxex=
-po.org/scale/17x/open-embedded-summit-0</a></div><div><br></div><div>So if =
-you&#39;re in the Southern California area, or are generally interested in =
-hanging out with some OpenEmbedded people, please join us in Pasadena on Ma=
-rch 10th!</div><div><br></div><div>Your OE Summit organizing committee:<br>=
-</div><div>=C2=A0 Tom King</div><div>=C2=A0 Behan Webster</div><div>=C2=A0 =
-Trevor Woerner<br></div></div>
-
---0000000000001c67090580bbf15b--
