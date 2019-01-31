@@ -1,56 +1,65 @@
-Return-Path: <denis.hopp@vaillant-group.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5ECF3E00D20; Wed, 30 Jan 2019 23:00:39 -0800 (PST)
+	id AB6A4E00D1B; Wed, 30 Jan 2019 23:26:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (twoerner[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [213.15.0.25 listed in list.dnswl.org]
+	*      [209.85.167.50 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mailgw01.vaillant-group.net (mailgw01.vaillant-group.net
-	[213.15.0.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC62CE00D17
-	for <yocto@yoctoproject.org>; Wed, 30 Jan 2019 23:00:37 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mailgw01.vaillant-group.net (Postfix) with ESMTP id DB8199C581;
-	Thu, 31 Jan 2019 08:00:36 +0100 (CET)
-X-Virus-Scanned: Virusscanner at mailgw01
-Received: from mailgw01.vaillant-group.net ([127.0.0.1])
-	by localhost (mailgw01.hp-net.de [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 2ja_fMbFmxBR; Thu, 31 Jan 2019 08:00:36 +0100 (CET)
-Received: from jv-de-dc-fideas01.vaillant.vhgroup.lan
-	(jv-de-dc-fideas01.vaillant.vhgroup.lan [10.107.7.215])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mailgw01.vaillant-group.net (Postfix) with ESMTPS id 9E4E99C54B;
-	Thu, 31 Jan 2019 08:00:36 +0100 (CET)
-Received: from DEFRVAI0005.vaillant.vhgroup.lan
-	(defrvai0005.vaillant.vhgroup.lan [10.108.7.16])
-	by jv-de-dc-fideas01.vaillant.vhgroup.lan (Postfix) with ESMTPS;
-	Thu, 31 Jan 2019 08:00:36 +0100 (CET)
-Received: from DEFRVAI0013.vaillant.vhgroup.lan ([169.254.1.178]) by
-	DEFRVAI0005.vaillant.vhgroup.lan ([10.108.7.16]) with mapi id
-	14.03.0435.000; Thu, 31 Jan 2019 08:00:23 +0100
-From: "Hopp, Denis" <Denis.Hopp@vaillant-group.com>
-To: Darcy Watkins <dwatkins@sierrawireless.com>
-Thread-Topic: [yocto] RDEPENDS and do_rootfs
-Thread-Index: AQHUuTFQJxuxsB0SuE6ZOvnztd+AXqXI8Viw
-Date: Thu, 31 Jan 2019 07:00:23 +0000
-Message-ID: <0EACE12BE5CA844DB512EF10CAC5B840448B4FD5@DEFRVAI0013.vaillant.vhgroup.lan>
-References: <3a07697c3d1d45100ad973bace76455a1988fef4.camel@sierrawireless.com>
-In-Reply-To: <3a07697c3d1d45100ad973bace76455a1988fef4.camel@sierrawireless.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.107.185.224]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
+	[209.85.167.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75F6FE00BED
+	for <yocto@yoctoproject.org>; Wed, 30 Jan 2019 23:26:17 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id i26so1565117lfc.0
+	for <yocto@yoctoproject.org>; Wed, 30 Jan 2019 23:26:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=jJdIzAK0xRlmPbsM+2f0JTkyevzALH20AG2uP+tf+ig=;
+	b=ueS5maEIE/kHwNKHUFL0iRQKVf+jNjSSHX+brbzbq6/P7OOrJftawQ/4Ap+2titp3K
+	SbsVM5/lH9mx3p2HLZd/KTmJP9FozSNVnnajPFpKti0QMs+5jaAH0gzA0PXitL32HW+u
+	ncD6JdAJyHU1TkbE7vKT97ZErydgektEp5LgQunlGUxvOgBRnugMUheJkOUzsjFNOkRF
+	V43DD6P1lfvx9vB9OTWszGgAHXphHfYKrVNuzb7KbBnutY0g8mkrUKz9ZnqKexHqwaT2
+	tKEZMXzwsXdqxug+HhVPFQtwBuUMbCe4uOhkaUI5WUT7Lje2ydT0EhEv1O1pXrqVpSgP
+	x6Bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=jJdIzAK0xRlmPbsM+2f0JTkyevzALH20AG2uP+tf+ig=;
+	b=GuQ26MqzTB74HLu20ujMF+1xNC5mURqAPTuxDopJDaiKF5cRjJWwPVu/UJwzT7mGT0
+	FYiOeHh5/VgZliaBa9yPEyus7QEf+iwb6IzjI5Kbop4NUCASL1d+fGszN118KbidS9xm
+	YcI3PD4+m+Co2efYiOt6qpgvGbIEJyzCNJp4OXUMGePPMUOw9TlBXqCLEzU1jT/UB/An
+	CtaE+B79tKJJ9slBaezGUTZOLOCP3u2EuZ1qI17qT53sETAxUhjS01ClG+m2Tb96aL+Z
+	W9P6L90s4BH5iSaBEIhL4n8LYfuvwsfRx9O9JxeaRiTs/3/k8kFCyGmh1VGHTfZYYJTr
+	cjSw==
+X-Gm-Message-State: AJcUukfXokPxMBFF8DZqBlZ1s3hYy30Z16aoBsWFRPuUOAGxzPqHjKTe
+	LVnPFnxwTy84orOOEQSyRGfC+mY23mA0nJGePnZBsQt5
+X-Google-Smtp-Source: ALg8bN4df1O8FqsZ6G6KGDKkD+1yNFMIsZYn/+v1U3IEv2rGWSM7kKwmMckD7yiKtietQTuygiHSoI5k92XG2OnUfNA=
+X-Received: by 2002:a19:c995:: with SMTP id z143mr25731433lff.79.1548919575961;
+	Wed, 30 Jan 2019 23:26:15 -0800 (PST)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RDEPENDS and do_rootfs
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Thu, 31 Jan 2019 02:26:04 -0500
+Message-ID: <CAHUNapTBZZRA4+RiFLVHYX6CAkAC8_s9jA0KrFc8Rvs0ksLG-Q@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>, 
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>, 
+	openembedded-members@lists.openembedded.org, 
+	openembedded-devel <openembedded-devel@lists.openembedded.org>
+Subject: OE Summit @ SCaLE 17x - Sunday March 10th 2019 - Pasadena CA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,343 +71,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Jan 2019 07:00:39 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_0EACE12BE5CA844DB512EF10CAC5B840448B4FD5DEFRVAI0013vail_"
+X-List-Received-Date: Thu, 31 Jan 2019 07:26:18 -0000
+Content-Type: multipart/alternative; boundary="0000000000001c67090580bbf15b"
 
---_000_0EACE12BE5CA844DB512EF10CAC5B840448B4FD5DEFRVAI0013vail_
-Content-Type: text/plain; charset="us-ascii"
+--0000000000001c67090580bbf15b
+Content-Type: text/plain; charset="UTF-8"
+
+We're excited to announce the inaugural "OpenEmbedded Summit" taking place
+Sunday March 10th 2019 as part of the Southern California Linux Expo
+(SCaLE) 17x at the Pasadena Convention Center.
+
+For the past few years there's been an ever-growing OpenEmbedded event as
+part of SCaLE. This year, with the missing Spring ELC, we felt it was time
+to do something more "formally" so OE enthusiasts could get together
+without having to wait until August.
+
+The initial suggestion for this summit came at last year's OEDEM in
+Edinburgh. At that time an idea was also floated to hold this year's OEDAM
+at the same time. Just to be absolutely clear: this suggestion was
+rejected; there will be no OEDAM at the OE Summit at SCaLE 17x. However,
+this summit is taking place with the full approval of the OpenEmbedded
+Board of Directors, many of whom have also been helping out with its
+organization.
+
+The schedule for the OE Summit has been posted:
+https://www.socallinuxexpo.org/scale/17x/schedule/sunday
+https://www.socallinuxexpo.org/scale/17x/open-embedded-summit-0
+
+So if you're in the Southern California area, or are generally interested
+in hanging out with some OpenEmbedded people, please join us in Pasadena on
+March 10th!
+
+Your OE Summit organizing committee:
+  Tom King
+  Behan Webster
+  Trevor Woerner
+
+--0000000000001c67090580bbf15b
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Darcy,
+<div dir=3D"ltr"><div>We&#39;re excited to announce the inaugural &quot;Ope=
+nEmbedded Summit&quot; taking place Sunday March 10th 2019 as part of the S=
+outhern California Linux Expo (SCaLE) 17x at the Pasadena Convention Center=
+.</div><div><br></div><div>For the past few years there&#39;s been an ever-=
+growing OpenEmbedded event as part of SCaLE. This year, with the missing Sp=
+ring ELC, we felt it was time to do something more &quot;formally&quot; so =
+OE enthusiasts could get together without having to wait until August.</div=
+><div><br></div><div>The initial suggestion for this summit came at last ye=
+ar&#39;s OEDEM in Edinburgh. At that time an idea was also floated to hold =
+this year&#39;s OEDAM at the same time. Just to be absolutely clear: this s=
+uggestion was rejected; there will be no OEDAM at the OE Summit at SCaLE 17=
+x. However, this summit is taking place with the full approval of the OpenE=
+mbedded Board of Directors, many of whom have also been helping out with it=
+s organization.</div><div><br></div><div>The schedule for the OE Summit has=
+ been posted:</div><div><a href=3D"https://www.socallinuxexpo.org/scale/17x=
+/schedule/sunday" target=3D"_blank">https://www.socallinuxexpo.org/scale/17=
+x/schedule/sunday</a></div><div><a href=3D"https://www.socallinuxexpo.org/s=
+cale/17x/open-embedded-summit-0" target=3D"_blank">https://www.socallinuxex=
+po.org/scale/17x/open-embedded-summit-0</a></div><div><br></div><div>So if =
+you&#39;re in the Southern California area, or are generally interested in =
+hanging out with some OpenEmbedded people, please join us in Pasadena on Ma=
+rch 10th!</div><div><br></div><div>Your OE Summit organizing committee:<br>=
+</div><div>=C2=A0 Tom King</div><div>=C2=A0 Behan Webster</div><div>=C2=A0 =
+Trevor Woerner<br></div></div>
 
-I cannot assure you of that specific case but to my understanding you could=
- find out with the taskexp:
-
-bitbake -g -u taskexp <your_package_B>
-There you will have a graphical interface to explore your package dependenc=
-ies and which task will be executed before another. Hope that helps.
-
-
-
-Greetings, Denis
-
-
-
-******** Hi,
-
-
-
-******** Can someone knowledgeable with the inner workings of the build sys=
-tem please confirm...
-
-
-
-******** IF package B has RDEPENDS on package A
-
-
-
-******** THEN during do_rootfs task, package A will always be installed int=
-o rootfs first AND the post-inst scripts of package A will always be run pr=
-ior to those for package B.
-
-
-
-******** Also, if that can be confirmed for 'daisy' branch, that would real=
-ly be helpful.  If not, then please mention as far back the branch that you=
- know for sure.  Thanks!
-
-
-
-
-
-
-
-******** --
-
-
-
-
-
-******** Regards,
-
-
-
-******** Darcy
-
-
-
-******** --
-
-******** _______________________________________________
-
-******** yocto mailing list
-
-******** yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-
-******** https://lists.yoctoproject.org/listinfo/yocto
-
-
---_000_0EACE12BE5CA844DB512EF10CAC5B840448B4FD5DEFRVAI0013vail_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Nur Text Zchn";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-span.NurTextZchn
-	{mso-style-name:"Nur Text Zchn";
-	mso-style-priority:99;
-	mso-style-link:"Nur Text";
-	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:225339551;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-291968138 -1614794464 67567619 67567621 67567617 67=
-567619 67567621 67567617 67567619 67567621;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F03E;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText">Hi Darcy,<o:p></o:p></p>
-<p class=3D"MsoPlainText"><span lang=3D"EN-GB">I cannot assure you of that =
-specific case but to my understanding you could find out with the taskexp:<=
-o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span lang=3D"EN-GB">bitbake -g -u taskexp &lt;yo=
-ur_package_B&gt;<br>
-There you will have a graphical interface to explore your package dependenc=
-ies and which task will be executed before another. Hope that helps.<br>
-<br>
-<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span lang=3D"EN-GB">Greetings, Denis<o:p></o:p><=
-/span></p>
-<p class=3D"MsoPlainText"><span lang=3D"EN-GB"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>Hi,<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>Can someone knowledgeable with the inner wor=
-kings of the build system please confirm...<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>IF package B has RDEPENDS on package A<o:p><=
-/o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>THEN during do_rootfs task, package A will a=
-lways be installed into rootfs first AND the post-inst scripts of package A=
- will always be run prior to those for package B.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>Also, if that can be confirmed for 'daisy' b=
-ranch, that would really be helpful.&nbsp; If not, then please mention as f=
-ar back the branch that you know for sure.&nbsp; Thanks!<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>-- <o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>Regards,<o:p></o:p></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:2.25pt"><o:p>&nbsp;</o:p></p=
->
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>Darcy<o:p></o:p></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:2.25pt"><o:p>&nbsp;</o:p></p=
->
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>--<o:p></o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>____________________________________________=
-___<o:p></o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>yocto mailing list<o:p></o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><a href=3D"mailto:yocto@yoctoproject.org"><s=
-pan style=3D"color:windowtext;text-decoration:none">yocto@yoctoproject.org<=
-/span></a><o:p></o:p></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:18.0pt;text-indent:-18.0pt;m=
-so-list:l0 level1 lfo1">
-<![if !supportLists]><span style=3D"font-family:Symbol"><span style=3D"mso-=
-list:Ignore">&gt;<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><a href=3D"https://lists.yoctoproject.org/li=
-stinfo/yocto"><span style=3D"color:windowtext;text-decoration:none">https:/=
-/lists.yoctoproject.org/listinfo/yocto</span></a><o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_0EACE12BE5CA844DB512EF10CAC5B840448B4FD5DEFRVAI0013vail_--
+--0000000000001c67090580bbf15b--
