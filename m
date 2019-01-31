@@ -1,40 +1,62 @@
-Return-Path: <Randy.MacLeod@windriver.com>
+Return-Path: <chuckwolber@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D60B6E00D17; Wed, 30 Jan 2019 12:10:59 -0800 (PST)
+	id 06C61E00D1B; Wed, 30 Jan 2019 16:13:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F07EBE00CB0
-	for <yocto@yoctoproject.org>; Wed, 30 Jan 2019 12:10:57 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x0UKAtID005937
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 30 Jan 2019 12:10:55 -0800 (PST)
-Received: from [172.25.44.4] (172.25.44.4) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.435.0;
-	Wed, 30 Jan 2019 12:10:55 -0800
-To: "Burton, Ross" <ross.burton@intel.com>,
-	"Dhanush K.S" <dhanush.ks@gmail.com>
-References: <CAKPYHZ7vQ1a=+YiiacvrkoBoVSKs4FYoFtQ8WYnXcz72DFmv1w@mail.gmail.com>
-	<CAJTo0LYrt_KsnF0yp+bW_NGfyJ4mZTki2nrKthi-bqxYb2nHNA@mail.gmail.com>
-From: Randy MacLeod <randy.macleod@windriver.com>
-Message-ID: <b15b311e-6110-a87b-e084-541f096f31f8@windriver.com>
-Date: Wed, 30 Jan 2019 15:10:52 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.4.0
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (chuckwolber[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.178 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
+	[209.85.222.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB9CFE00D15
+	for <yocto@yoctoproject.org>; Wed, 30 Jan 2019 16:13:41 -0800 (PST)
+Received: by mail-qk1-f178.google.com with SMTP id q1so870132qkf.13
+	for <yocto@yoctoproject.org>; Wed, 30 Jan 2019 16:13:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=WqZ45gT8h4Wwvqj06xbWfqz8I+/r/VYj9OYtOLfUs3g=;
+	b=ZDWUbm8b1pCIZq7KL66WeN2ejGlt/g22VnM4uzl2q2Wv6WA1sAjOYnScEnN1CM+bEE
+	IADxBgmkFRL3vW1tIzjnRmYBIcklhv9kXg/jXZtl3JSasQjH1l0JG0oxQVk4w9M6Rv+v
+	kraqAPEPfpcrP6qVgy/jzgZGtfDV6vfeA877LIn7ePM2gNTPgK7gr4CdNQFS6adaVfuV
+	KFO1IXaHRN5Npl1Dp+5ydCZlKZr6GeKONxtJmPJrO/FzQcuGI5D3O7rwEtpzbeUZnfRD
+	SUXskRJ3s2BRGX9KP/vREGfvTGm4aXGVevFMAyrcIyxGwanY/1URoI9rQ8P01L5P1IjM
+	Joow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=WqZ45gT8h4Wwvqj06xbWfqz8I+/r/VYj9OYtOLfUs3g=;
+	b=pjMWGigg0ERnxrN85IFj1Vqt1jRxYdCtd3QjMlDrEHOZ69hi5mctabdaH0QpW4HwgY
+	KLhHHLFPBekOzukk75ycM+6mRstap0xaA3IjB5W84GsdAUvsAmTEl5/WsIvqmkaVmyXH
+	IqxjqdQpzEO8YhEQiOhgtcb4I6YS2woyH2S5ta5D4Nj4xjyE+UKc5+VQZesSRmUljF9w
+	hVPW8ndjoT1+/SK2UUHofZ87iiOkKfQeVrTSG2WH/kszqFySTos8u7zfg5Ee1jXjvx0W
+	JbzAizFbtkssr6t97Cowdta6pjPktNhuif77XN/Ozfnuj8mTATyxZCP/mfqADh0EDxsi
+	ph1A==
+X-Gm-Message-State: AJcUukc8H5vAJp7u8W/llMirK8WolGl4d6SG61C5PtYsXBIcQoMXNrCG
+	mIPEVuvNLeuitNRB+ZNe36uFxs3wuEOW/yLm9hN+1Q==
+X-Google-Smtp-Source: ALg8bN4rR/X1gqf85YuLTTvlWOWNSxE8VqWN7FNV2Gz2vl9M1TCZhDDNAsP70svB/KhBNrgXHfm7HmbKrdzv2t7dC0g=
+X-Received: by 2002:a37:5cc6:: with SMTP id
+	q189mr29989132qkb.235.1548893620653; 
+	Wed, 30 Jan 2019 16:13:40 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LYrt_KsnF0yp+bW_NGfyJ4mZTki2nrKthi-bqxYb2nHNA@mail.gmail.com>
-X-Originating-IP: [172.25.44.4]
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: DEVTOOL doesn't upgrade glibc as expected
+From: Chuck Wolber <chuckwolber@gmail.com>
+Date: Wed, 30 Jan 2019 16:13:29 -0800
+Message-ID: <CAB=6tBS=QgbPQqOJOJ7u4U-a77J7ukpm6vvHFQMXqsrdF80Wuw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: pcre-config replacement
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,115 +68,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jan 2019 20:10:59 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 31 Jan 2019 00:13:43 -0000
+Content-Type: multipart/alternative; boundary="0000000000000dd1ff0580b5e64d"
 
-On 1/30/19 8:42 AM, Burton, Ross wrote:
-> No doubt devtool should handle this better, but upgrading glibc is
-> *not easy*.  If you can't do it manually then I wouldn't recommend
-> doing it at all.
-> 
-> A better start would be to copy the recipes from git for the version
-> you want, and then you'll be able to pick up all of the patches to
-> other recipes that you'll also need.
+--0000000000000dd1ff0580b5e64d
+Content-Type: text/plain; charset="UTF-8"
 
-Have you seriously considered upgrading to Thud/2.6.x?
+What is the recommended packaging approach for an upstream configure script
+that seems to think that it must have pcre-config (which is disabled by the
+binconfig-disabled class)?
 
-What feature(s) do you want that makes you feel that an
-upgrade it to v2.28 is worth the effort? If you put the
-work in to do the update, you'll have a YP-based combo that
-no one else is using. While that may get you exactly what you want,
-there will be costs involved in maintaining it so I'm curious
-about your motivation and thoughts about maintenance.
+Looking at the source of the upstream package seems to indicate that they
+actually do need pcre, so this is not as simple as patching the configure
+script.
 
-../Randy
+..Ch:W..
 
-> 
-> Ross
-> 
-> On Wed, 30 Jan 2019 at 13:35, Dhanush K.S <dhanush.ks@gmail.com> wrote:
->>
->> Hi,
->>
->> I'm currently using Yocto Sumo 2.5 release with the glibc version 2.27 and would like to upgrade it to v2.28.
->> Using the devtool upgrade glibc -V 2.28 -S 044c96f0d5595aeb0bb4e79355081c5a7f4faca5 doesn't work as expected.
->> In turn it creates the workspace/recipes/glibc_2.28.bb recipe with the contents and SRC_URI of v2.27.
->>
->> devtool upgrade glibc -S 044c96f0d5595aeb0bb4e79355081c5a7f4faca5
->> NOTE: Starting bitbake server...
->> NOTE: Creating workspace layer in /source/yocto/build_arm-cortex-a8/workspace
->>
->> NOTE: Extracting current version source...
->> NOTE: Resolving any missing task queue dependencies
->>
->> Build Configuration:
->> BB_VERSION           = "1.37.0"
->> BUILD_SYS            = "x86_64-linux"
->> NATIVELSBSTRING      = "universal-4.8"
->> TARGET_SYS           = "arm-poky-linux-gnueabi"
->> MACHINE              = "arm-cortex-a8"
->> DISTRO               = "poky"
->> DISTRO_VERSION       = "2.5"
->> TUNE_FEATURES        = "arm armv7a vfp neon callconvention-hard cortexa8"
->> TARGET_FPU           = "hard"
->> meta
->> meta-poky
->> meta-yocto-bsp
->> meta-oe              = "master:45ee3c0e98bd3ed81419aaeae1e7324e486161a2"
->> workspace            = "<unknown>:<unknown>"
->>
->> NOTE: Executing RunQueue Tasks
->> NOTE: Tasks Summary: Attempted 3 tasks of which 0 didn't need to be rerun and all succeeded.
->> NOTE: Writing buildhistory
->> NOTE: Adding local source files to srctree...
->> NOTE: Extracting upgraded version source...
->> WARNING: Command 'git rebase 044c96f0d5595aeb0bb4e79355081c5a7f4faca5' failed:
->> First, rewinding head to replay your work on top of it...
->> Applying: sparc: Check PIC instead of SHARED in start.S [BZ #22638]
->> error: Failed to merge in the changes.
->> Using index info to reconstruct a base tree...
->> M ChangeLog
->> M sysdeps/sparc/sparc32/start.S
->> M sysdeps/sparc/sparc64/start.S
->> Falling back to patching base and 3-way merge...
->> Auto-merging ChangeLog
->> CONFLICT (content): Merge conflict in ChangeLog
->> Patch failed at 0001 sparc: Check PIC instead of SHARED in start.S [BZ #22638]
->> The copy of the patch that failed is found in: .git/rebase-apply/patch
->>
->> Resolve all conflicts manually, mark them as resolved with
->> "git add/rm <conflicted_files>", then run "git rebase --continue".
->> You can instead skip this commit: run "git rebase --skip".
->> To abort and get back to the state before "git rebase", run "git rebase --abort".
->>
->> You will need to resolve conflicts in order to complete the upgrade.
->> Traceback (most recent call last):
->>    File "/source/yocto/poky-sumo-19.0.0/scripts/devtool", line 344, in <module>
->>      ret = main()
->>    File "/source/yocto/poky-sumo-19.0.0/scripts/devtool", line 331, in main
->>      ret = args.func(args, config, basepath, workspace)
->>    File "/source/yocto/poky-sumo-19.0.0/scripts/lib/devtool/upgrade.py", line 559, in upgrade
->>      rf, copied = _create_new_recipe(args.version, md5, sha256, args.srcrev, srcbranch, srcsubdir1, srcsubdir2, config.workspace_path, tinfoil, rd, license_diff, new_licenses)
->>    File "/source/yocto/poky-sumo-19.0.0/scripts/lib/devtool/upgrade.py", line 344, in _create_new_recipe
->>      scheme, network, path, user, passwd, params = bb.fetch2.decodeurl(entry)
->>    File "/source/yocto/poky-sumo-19.0.0/bitbake/lib/bb/fetch2/__init__.py", line 368, in decodeurl
->>      raise MalformedUrl(url)
->> bb.fetch2.MalformedUrl: The URL: '${GLIBC_GIT_URI};branch=${SRCBRANCH};name=glibc' is invalid and cannot be interpreted.
->>
->> Need help with this one.
->>
->> Thanks,
->> Dhanush
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+--0000000000000dd1ff0580b5e64d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><br></div>What is the recommended packaging approach =
+for an upstream configure script that seems to think that it must have pcre=
+-config (which is disabled by the binconfig-disabled class)?<div><br></div>=
+<div>Looking at the source of the upstream package seems to indicate that t=
+hey actually do need pcre, so this is not as simple as patching the configu=
+re script.<br><div><br></div><div>..Ch:W..</div></div></div>
 
--- 
-# Randy MacLeod
-# Wind River Linux
-
+--0000000000000dd1ff0580b5e64d--
