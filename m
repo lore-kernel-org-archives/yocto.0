@@ -1,68 +1,62 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <01010168a8350429-3f90d65b-6d4c-46c9-8fa5-bf1918995914-000000@us-west-2.amazonses.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57116E00D30; Fri,  1 Feb 2019 00:32:16 -0800 (PST)
+	id 2CEE6E00D2F; Fri,  1 Feb 2019 00:41:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.174 listed in list.dnswl.org]
+	*      [54.240.27.213 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com
-	[209.85.160.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09EA7E00D16
-	for <yocto@yoctoproject.org>; Fri,  1 Feb 2019 00:32:14 -0800 (PST)
-Received: by mail-qt1-f174.google.com with SMTP id k12so6526312qtf.7
-	for <yocto@yoctoproject.org>; Fri, 01 Feb 2019 00:32:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=FS4RYllqrSj8t/g7DiMa8fz56MfkpQVs9C3gDcCacKU=;
-	b=vA9b5S9iLJTAfTJDaKpPceyHmuRBgxUJ1/zQojyl+q4NoZ+UkkxWSQdFWJGX2MGuDj
-	Wexi8WR+FkwvWErpsnDXK9HXx2BtVryWgsSGgTh9bNxELNlUpn7UmOX4CQa56VoTBylL
-	ANDBeBddHJ879tKRJ+NT+EW9JlRAfnk4HAafwdJUlgK362lIFoEjcJ96l9QA+xCptKJd
-	PGzcjwc6bbf2iwrZP0uOrYiuVw3uH+VsvlgSAhg6YGA47C7eHZ0YQDPCzfakOHdALTUo
-	gxeBg4kUe0bETr6pFm+EokKZKvlSDEXu9JTImYcFLU3ot3IJhY7dAmiUt2uL5EeQQTZ7
-	XkSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=FS4RYllqrSj8t/g7DiMa8fz56MfkpQVs9C3gDcCacKU=;
-	b=bhPIXBDh1/mCSAXLDPdzaw6vUblv3E3MBD5qRBrZ2RksJKTURyZK1iiTAkq19j+oC5
-	zNQ9pZahrOK5AB1iXz51xre7ZN987F5qApfB92f7PPBbiXpWKeAFXle0W5C4qnmnzla1
-	1oCBh3lgMzGLYsOcVxcBThVlxDrWRRqtSsiOoirshl89oiXWPASFsrfYsRpRM0cZSi4m
-	dy6crBS0SYeLQ4Igct+ndsAzVlDhCstcLW+UNcos19oLM6zrP///rYu8LLgsoCTEioR8
-	ZEMAEAh8cxOPRzlkR9oSRH3uSwHWpZ6vAodiUo4L9R+IJO++jifjYlRrGmg4UFK18QQL
-	WtNw==
-X-Gm-Message-State: AJcUukcxQIegGFSQaRobSPSSnQ2YFrLWp79A9qJ+/CbXeNd7XjMBjmej
-	WMqsfP+kH8fsAiwY7UD7Yl4Ltkylsj4pAyHLkeo=
-X-Google-Smtp-Source: ALg8bN4U4gQiiouNoefieb2thd3phaFBvIiyEF6GuOW3GJkwjKBbKHXQq0w5oBuuSqq70xB3VzkHCDjyUvXhcDgSN9U=
-X-Received: by 2002:ac8:543:: with SMTP id c3mr38001433qth.34.1549009934368;
-	Fri, 01 Feb 2019 00:32:14 -0800 (PST)
-MIME-Version: 1.0
+X-Greylist: delayed 220 seconds by postgrey-1.32 at yocto-www;
+	Fri, 01 Feb 2019 00:41:33 PST
+Received: from a27-213.smtp-out.us-west-2.amazonses.com
+	(a27-213.smtp-out.us-west-2.amazonses.com [54.240.27.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8376E009AA
+	for <yocto@yoctoproject.org>; Fri,  1 Feb 2019 00:41:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=l46dkz3upq4btqvp2aj32u5teztxuzm6; d=genivi.org; t=1549010273;
+	h=Subject:From:To:Cc:Date:Mime-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:References:Message-Id;
+	bh=hBIFEDE76T+Hgt1GYFSOHGPhZ6MBe/hA2hSLud4z8f4=;
+	b=AsbywZGJZxfGZH9SK5yobc4P6Xk5uOp5ghOyB8HN0KBhAfmxkKDX+Cn7WBIxFeFO
+	/4EnPTtBnMaegI0QJ7gogysQ2J3cD3pBCfGaLvrpvFCFrVX+Wcde/0jm8AWAYXobFqO
+	em/7KJrSCkS7bE7zVEg91I1EPi87zZmpOGurPgTw=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=7v7vs6w47njt4pimodk5mmttbegzsi6n; d=amazonses.com; t=1549010273;
+	h=Subject:From:To:Cc:Date:Mime-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:References:Message-Id:Feedback-ID;
+	bh=hBIFEDE76T+Hgt1GYFSOHGPhZ6MBe/hA2hSLud4z8f4=;
+	b=EMQpSvZygAYojKKbI5w6xpy9MwbYadkFgxeI0Vu/3gnU5bIHvBF3gtFAqep6SBGc
+	TJR0NwQoJRMxDqw1Oo5wh4ZO1dIMftcthnsakqXKoHHOoOCYhHy+x3eZ+qGlB9BceFE
+	vgxuVkQosswZPaj/ha+It2Tu5fegPDJfAKixZcEc=
+From: =?UTF-8?Q?gandersson?= <gandersson@genivi.org>
+To: =?UTF-8?Q?Zoran_Stojsavljevic?= <zoran.stojsavljevic@gmail.com>
+Date: Fri, 1 Feb 2019 08:37:53 +0000
+Mime-Version: 1.0
+In-Reply-To: <CAGAf8LypQqAL=uRDOGEcno+wFgG1zdsK+71dX_5C+HZC49AJVQ@mail.gmail.com>
 References: <CAGAf8Lxousw4NEGP_aHGzHiqvzkJNERFgGHMM1hxNyj6Km72aQ@mail.gmail.com>
-	<CALw8SCUPA9Ud9e2JxzexLr2GrZsvPX_6eiTKvhjWz--rkz8OUw@mail.gmail.com>
-	<1531996869.3103.16.camel@genivi.org>
-	<CAGAf8LxRFrB+LboH7_odfmYQZBdAOM3c+4diJ6XW4rTgoQoEiA@mail.gmail.com>
-	<CAGAf8Lw0sQ10zoGLLW=o7ziYOaARKix=++=Tt_wnB4cYmHXHfw@mail.gmail.com>
-	<1532004653.3103.60.camel@genivi.org>
-In-Reply-To: <1532004653.3103.60.camel@genivi.org>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Fri, 1 Feb 2019 09:32:02 +0100
-Message-ID: <CAGAf8LypQqAL=uRDOGEcno+wFgG1zdsK+71dX_5C+HZC49AJVQ@mail.gmail.com>
-To: Gunnar Andersson <gandersson@genivi.org>
-Cc: Yocto Project <yocto@yoctoproject.org>, Mirza Krak <mirza.krak@gmail.com>
+	<CALw8SCUPA9Ud9e2JxzexLr2GrZsvPX_6eiTKvhjWz--rkz8OUw@mail.gmail.com> 
+	<1531996869.3103.16.camel@genivi.org> 
+	<CAGAf8LxRFrB+LboH7_odfmYQZBdAOM3c+4diJ6XW4rTgoQoEiA@mail.gmail.com> 
+	<CAGAf8Lw0sQ10zoGLLW=o7ziYOaARKix=++=Tt_wnB4cYmHXHfw@mail.gmail.com> 
+	<1532004653.3103.60.camel@genivi.org> 
+	<CAGAf8LypQqAL=uRDOGEcno+wFgG1zdsK+71dX_5C+HZC49AJVQ@mail.gmail.com> 
+	<41858286-414F-4224-9F40-E356163C347D@genivi.org>
+X-Mailer: Amazon WorkMail
+Thread-Index: AQHUugijxAzVn88zQx+d5AEqHoInDgAAMhBJ
+Message-ID: <01010168a8350429-3f90d65b-6d4c-46c9-8fa5-bf1918995914-000000@us-west-2.amazonses.com>
+X-SES-Outgoing: 2019.02.01-54.240.27.213
+Feedback-ID: 1.us-west-2.An468LAV0jCjQDrDLvlZjeAthld7qrhZr+vow8irkvU=:AmazonSES
+Cc: =?UTF-8?Q?Yocto_Project?= <yocto@yoctoproject.org>,
+	=?UTF-8?Q?Mirza_Krak?= <mirza.krak@gmail.com>
 Subject: Re: cannelloni.bb (Was: [Chicken and Egg problem] Defining RDEPENDS of the package itself)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -75,45 +69,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Feb 2019 08:32:16 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 01 Feb 2019 08:41:34 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Since no reply for socket-can strategy... I long time ago created one
-for by me and my needs.
-
-But still... Here is something worth nothing, if anybody considers
-socket-can domain!
-
-https://github.com/ZoranStojsavljevic/meta-socketcan
-
-Best Regards,
-Zoran Stojsavljevic
-_______
-
-
-On Thu, Jul 19, 2018 at 2:51 PM Gunnar Andersson <gandersson@genivi.org> wrote:
->
-> On Thu, 2018-07-19 at 14:44 +0200, Zoran Stojsavljevic wrote:
-> > Actually, I ran into this:
-> > http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-
-> > extended/socketcan
->
-> :-)  I mentioned that in my original response.
->
-> >
-> > So here, I think, can-utils recipes should be revisited, cannelloni
-> > recipe added, and also another application recipe added as well:
-> > https://github.com/dschanoeh/socketcand/
->
-> Great, you're answering some of the follow-up questions I had.  I need to
-> task switch now, but I will finish up that response later anyway so we can
-> figure out a good strategy together.
->
-> - Gunnar
->
-> --
-> Gunnar Andersson <gandersson@genivi.org>
-> Development Lead
-> GENIVI Alliance
->
+=0D=0A=0D=0AThanks very much for the information, Zoran!=0D=0AAnd sorry I=
+ forgot to return to this issue before.=0D=0A=0D=0ABest Regards,=0D=0AGun=
+nar=0D=0A=0D=0AOn February 1, 2019 9:32:02 AM GMT+01:00, Zoran Stojsavlje=
+vic <zoran.stojsavljevic@gmail.com> wrote:=0D=0A>Since no reply for socke=
+t-can strategy... I long time ago created one=0D=0A>for by me and my need=
+s.=0D=0A>=0D=0A>But still... Here is something worth nothing, if anybody =
+considers=0D=0A>socket-can domain!=0D=0A>=0D=0A>https://github.com/ZoranS=
+tojsavljevic/meta-socketcan=0D=0A>=0D=0A>Best Regards,=0D=0A>Zoran Stojsa=
+vljevic=0D=0A>_______=0D=0A>=0D=0A>=0D=0A>On Thu, Jul 19, 2018 at 2:51 PM=
+ Gunnar Andersson=0D=0A><gandersson@genivi.org> wrote:=0D=0A>>=0D=0A>> On=
+ Thu, 2018-07-19 at 14:44 +0200, Zoran Stojsavljevic wrote:=0D=0A>> > Act=
+ually, I ran into this:=0D=0A>> >=0D=0A>http://cgit.openembedded.org/meta=
+-openembedded/tree/meta-oe/recipes-=0D=0A>> > extended/socketcan=0D=0A>>=0D=
+=0A>> :-)  I mentioned that in my original response.=0D=0A>>=0D=0A>> >=0D=
+=0A>> > So here, I think, can-utils recipes should be revisited, cannello=
+ni=0D=0A>> > recipe added, and also another application recipe added as w=
+ell:=0D=0A>> > https://github.com/dschanoeh/socketcand/=0D=0A>>=0D=0A>> G=
+reat, you're answering some of the follow-up questions I had.  I=0D=0A>ne=
+ed to=0D=0A>> task switch now, but I will finish up that response later a=
+nyway so=0D=0A>we can=0D=0A>> figure out a good strategy together.=0D=0A>=
+>=0D=0A>> - Gunnar=0D=0A>>=0D=0A>> --=0D=0A>> Gunnar Andersson <gandersso=
+n@genivi.org>=0D=0A>> Development Lead=0D=0A>> GENIVI Alliance=0D=0A>>=0D=
+=0A
 
