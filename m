@@ -1,6 +1,6 @@
-Return-Path: <ken.sloat@ohmlinxelectronics.com>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 22B83E00C59; Sun,  3 Feb 2019 11:09:58 -0800 (PST)
+	id 5EBB3E00C59; Sun,  3 Feb 2019 14:41:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,54 +10,105 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.66 listed in list.dnswl.org]
+	*      [209.85.210.170 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
-	[209.85.167.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0F02E00B58
-	for <yocto@yoctoproject.org>; Sun,  3 Feb 2019 11:09:56 -0800 (PST)
-Received: by mail-lf1-f66.google.com with SMTP id x201so7416299lff.10
-	for <yocto@yoctoproject.org>; Sun, 03 Feb 2019 11:09:56 -0800 (PST)
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
+	[209.85.210.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C205EE00BAB
+	for <yocto@yoctoproject.org>; Sun,  3 Feb 2019 14:41:42 -0800 (PST)
+Received: by mail-pf1-f170.google.com with SMTP id c123so5896665pfb.0
+	for <yocto@yoctoproject.org>; Sun, 03 Feb 2019 14:41:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ohmlinx-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=sixjNpOCfqrW0X15tZgMLcwfH9cfXELiAv3E0N1SHag=;
-	b=bh8HPUM1cXS34IcRc7pP0sPU05IfbPo+92NGcPZqBx1mXaWAL0lKRZI2Vj1U1Bz7kT
-	dRWXGI1amlJWTkK8YSaujfzFiQBe3UdAOfgi3HIc1yQUQxf5iQ61pkMyxelRXyp4B8DU
-	0oQfs3bR9e3DPTmQERmUx+MvYRsN37lK2uNskKanBmBg6ihUrg1ZhnzqQX8WCpWmy/qt
-	TfBbt1a4lsT0fTh7Oz/mLlBZoVmnu6O+VLxkDRSIZR9e8KwMPhmfkV/jr672UOQh3mc2
-	kFdzS+jdPMX/xKR6BhYH0vJ6eJ5cSxCzNVczteGq8SA/p+CkmS8wm9PI8Lxtg9bcwR+v
-	7haA==
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=DaDNqNF3j2yTB7yrsXLVSPY/BjyMh4nOKvegcZDOVdg=;
+	b=HmcNm8c9zdIltpJW0nC9QLIkBfCqgGx+IwDunhPXl7ismi6egN86Q0tNY0HQHKes3V
+	/d7t0cVCtY3kjFpCEFsksDi5VgoxgGwF+o//WkawDj1UsZpzs7BnruZ1Zae6UB21TVb7
+	UctsF+OQqSAk+08jloKlDnF/Uc2I3nnJxdmLU4T+VXxsI+0Nl7ZUmMeAfzjVQiZThqDw
+	xSOMR8vCTJMLquTCU7MXrrWDtJAsd57RfCeuCZFVREcoWFNfkIKaSh9r46quJr0fxaTu
+	ehXhNhZY4gzEVe4mtX9CXjouXrQgdnlxHKWybPT+ZDli1FXeFkGXr1riL4FO9ZGrxRl0
+	xQ8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=sixjNpOCfqrW0X15tZgMLcwfH9cfXELiAv3E0N1SHag=;
-	b=EEOJWZmM0Ywk7QerXLpMeaUaBOpT0AcnPtdEOGVkF4uImJXXVx9XLk+tbs+/vbK/ye
-	3gjPMdeZ/ndM5kzDB2YmAiYhq/Pndr2k8tB81nDtPYmCMOnHw67mC8F0mQY6V7PUZi0d
-	3L0haIr+EGIc9dJYOw8FCz3X7dOtpUvf9vg3DuVr82ZexiyM9kQarkuDF8tQBtbF64j8
-	Evfk1jmfkP+s/SkC2uzJMYaTRABBBv7VT+/mV+cQNdfmzbl0DUBKHIxEMpkXfZ6hjh4y
-	n/CF4gE2fT8oU9UlUz1/hWc0Y7zvGaF+VWMRu21xxSSvJx+aqgQQT6IvfafOVEBozFB1
-	J5PA==
-X-Gm-Message-State: AJcUukdoHcWNyXPNPHLn0ScgVpZH7v05HCgh2Ek8Ezcqn4JWCg2hGtjY
-	mrXNEKrLF7KiRmhXxaXLJg7H32pSGQ6GNdhan2u5Ocv1C6w=
-X-Google-Smtp-Source: ALg8bN7I7Bwzqyhh1An3EyofzHVzVE5+YpjmjqZOm/stZVtetwfsBktlCct1A0ohex06sVrNn9xtTgU4FdymqWxcVUc=
-X-Received: by 2002:a19:9b50:: with SMTP id d77mr36296221lfe.137.1549220995471;
-	Sun, 03 Feb 2019 11:09:55 -0800 (PST)
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-transfer-encoding:content-language;
+	bh=DaDNqNF3j2yTB7yrsXLVSPY/BjyMh4nOKvegcZDOVdg=;
+	b=HRe5wH8/x6XRV1bILYK/Vw2hiNr1UIV63LwDN4kT5rCHGULbIzjEDe1Lhk2w6e9KGS
+	0wjguAxpPay5Vvs8+Y4GV5KyE0LfISIyI/wm3fw2qQJ21/DLhkPgSZ4atrqSVMy6YBx0
+	RFvT7cf66czkt5hLJn4LBS85GCMgcjkE0iy97DPFy5ZvpMBRkVhq/LDKH/1mjKXdj66Z
+	XiI4r85nfGa+eb8nBIeo3WhWFosCLDZSHtBQfTTzxzn7sjOfh9KGWcJH9W1IWwBbp4Ik
+	HpNV3cy+MQ2XvD+M2mXdTqpc7fkpm6fZlQk2Rov/JlGPRSgFgoGbwZ4EhExk5+uyM0Je
+	HWaQ==
+X-Gm-Message-State: AJcUukeZfjoMlGJHzgzaO0iedI819Zn7BZJZaYJdPzkSvrkNx/4Zajl5
+	c3V4zpi+/Jd3NeJsXL8RUkK4XePLpb0=
+X-Google-Smtp-Source: ALg8bN4ZxR34Sgrc+JE1NciU4hjblF9X9qRhPJ+fMqQXkN79KZBV4mv8sZYpnrzfJYUmGfBWqSVQog==
+X-Received: by 2002:a63:d450:: with SMTP id i16mr43447667pgj.246.1549233700012;
+	Sun, 03 Feb 2019 14:41:40 -0800 (PST)
+Received: from ?IPv6:2601:202:4180:c33:40c2:82ac:4641:f878?
+	([2601:202:4180:c33:40c2:82ac:4641:f878])
+	by smtp.gmail.com with ESMTPSA id
+	c23sm16844684pfi.83.2019.02.03.14.41.37
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 03 Feb 2019 14:41:38 -0800 (PST)
+To: Scott Ellis <scottellis.developer@gmail.com>, yocto@yoctoproject.org
+References: <1547896560-947-1-git-send-email-scott@jumpnowtek.com>
+From: akuster <akuster@mvista.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
+	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
+	8CS2NxU=
+Message-ID: <b4135ff1-695e-b23c-5c84-42bbf4035a18@mvista.com>
+Date: Sun, 3 Feb 2019 14:41:37 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.4.0
 MIME-Version: 1.0
-References: <CAPo_4QCE-N-tVUQhOF_Q3f18306TqXSrT+QOSO_Yg2C3Uo5ghw@mail.gmail.com>
-	<4cbbfed2-f3cb-c2f2-10de-586c27b63b2c@windriver.com>
-	<CAPo_4QDzJCtRvytauoWhixKSV7EfL4h2LKrZGQuKRF3pZF_Now@mail.gmail.com>
-	<c0bd97f9-1aed-7c9d-17c5-dc9059f1a11c@emagii.com>
-In-Reply-To: <c0bd97f9-1aed-7c9d-17c5-dc9059f1a11c@emagii.com>
-From: Ken Sloat <ken.sloat@ohmlinx.com>
-Date: Sun, 3 Feb 2019 14:09:44 -0500
-Message-ID: <CAPo_4QA-6rT0SuarWwF_dZ4b2m+Hvv7RdAQfoqD6qkQdEd40Uw@mail.gmail.com>
-To: Ulf Samuelsson <yocto@emagii.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Proper Use of KERNEL_MODULE_AUTOLOAD variable
+In-Reply-To: <1547896560-947-1-git-send-email-scott@jumpnowtek.com>
+Subject: Re: [meta-security][PATCHv2] Upgrade scapy to 2.4.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,113 +120,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 03 Feb 2019 19:09:58 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Sun, 03 Feb 2019 22:41:46 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
 
-On Sun, Feb 3, 2019 at 12:51 AM Ulf Samuelsson <yocto@emagii.com> wrote:
+Scott,
+
+
+On 1/19/19 3:16 AM, Scott Ellis wrote:
+> Upstream MANIFEST.in removed doc and test directories
+> so remove ptest.
 >
-> Den 2019-02-03 kl. 04:16, skrev Ken Sloat:
-> > On Sat, Feb 2, 2019 at 10:03 PM Bruce Ashfield
-> > <bruce.ashfield@windriver.com> wrote:
-> >>
-> >> On 2019-02-02 9:59 p.m., Ken Sloat wrote:
-> >>> Hello,
-> >>>
-> >>> I have an out of tree kernel module which I want autoloaded at startup
-> >>> on my system. Looking at the Yocto project manual, I see that one way
-> >>> I can do this is to add the module name to the KERNEL_MODULE_AUTOLOAD
-> >>> variable within my custom module recipe.
-> >>>
-> >>> What I have found is that the module-split class is indeed generating
-> >>> the "/etc/modules-load.d/mymodule.conf" file, however this file is not
-> >>> actually being installed. To be more precise it is appearing in the
-> >>> "package" directory (i.e.
-> >>> tmp/work/**/mymodule/package/etc/modules-load.d/mymodule.conf) but not
-> >>> within the "image" directory (nor in my final rootfs).
-> >>>
-> >>> Is there something I'm missing in the usage of KERNEL_MODULE_AUTOLOAD?
-> >>> Is the intention for this variable I add extra steps to manually
-> >>> install this file in my recipe? FYI I'm using Morty.
-> >>
-> >> Can you provide your recipe ? It would make suggestions easier. For
-> >> example, my first question is: Is the module being installed to your
-> >> image via IMAGE_INSTALL, or some other similar variable ?
-> >>
-> >> Bruce
-> >>
-> >>>
-> >>> Thanks,
-> >>> Ken Sloat
-> >>>
-> >>
-> >
-> > Hi Bruce,
-> >
-> > Thanks for your quick reply. Yes the module is being installed via
-> > image_install. Module is installed but generated conf file is not. See
-> > recipe below:
-> >
-> > require mymodule.inc
-> >
-> > inherit module kernel-module-split
-> >
-> > DEPENDS = "virtual/kernel"
-> >
-> > EXTRA_OEMAKE_append = " \
-> >      KERNELDIR=${STAGING_KERNEL_DIR} \
-> >      "
-> >
-> > MAKE_TARGETS = "module"
-> >
-> > MODULE_NAME = "mymodule"
-> >
-> > PKG_${PN} = "kernel-module-${MODULE_NAME}"
-> >
-> > module_do_install() {
-> >      install -d ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}
-> >      install -m 0644 ${MODULE_NAME}.ko \
-> >      ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}/${MODULE_NAME}.ko
-> > }
-> >
-> > FILES_${PN} = " \
-> >      /lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME} \
-> > "
-> >
-> > KERNEL_MODULE_AUTOLOAD += "${MODULE_NAME}"
-> >
+> Signed-off-by: Scott Ellis <scott@jumpnowtek.com>
+> ---
+>  recipes-security/scapy/files/run-ptest        |  4 ----
+>  recipes-security/scapy/python-scapy.inc       | 11 +++--------
+>  recipes-security/scapy/python-scapy_2.4.0.bb  |  6 ------
+>  recipes-security/scapy/python-scapy_2.4.2.bb  |  4 ++++
+>  recipes-security/scapy/python3-scapy_2.4.0.bb |  4 ----
+>  recipes-security/scapy/python3-scapy_2.4.2.bb |  2 ++
+>  6 files changed, 9 insertions(+), 22 deletions(-)
+>  delete mode 100755 recipes-security/scapy/files/run-ptest
+>  delete mode 100644 recipes-security/scapy/python-scapy_2.4.0.bb
+>  create mode 100644 recipes-security/scapy/python-scapy_2.4.2.bb
+>  delete mode 100644 recipes-security/scapy/python3-scapy_2.4.0.bb
+>  create mode 100644 recipes-security/scapy/python3-scapy_2.4.2.bb
+
+Thank you for the update. The issue I have is the doc's and test got
+removed from the pypi package via commit:
+https://github.com/secdev/scapy/commit/8857c03bad798ba902b34c64282ef72483=
+569c77
+when they went to 2.4.2.
+
+
+Any ideas on how to restore the ptests?=C2=A0 I know 2.4.1 still has the
+tests. I wonder how may folks run this ptest?
+
+I am holding this update for now.
+
+- armin
+
 >
-> One would think that the file should be added automatically,
-> but this might be required, - or a workaround...
->
-> FILES_${PN} = " \
->        /lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME} \
->        ${sysconfdir}/modules-load.d/${MODULE_NAME}.conf \
-> "
->
->
-> --
-> Best Regards
-> Ulf Samuelsson
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> diff --git a/recipes-security/scapy/files/run-ptest b/recipes-security/=
+scapy/files/run-ptest
+> deleted file mode 100755
+> index 91b29f9..0000000
+> --- a/recipes-security/scapy/files/run-ptest
+> +++ /dev/null
+> @@ -1,4 +0,0 @@
+> -#!/bin/sh
+> -UTscapy -t regression.uts -f text -l -C \
+> -    -o @PTEST_PATH@/scapy_ptest_$(date +%Y%m%d-%H%M%S).log \
+> -    2>&1 | sed -e 's/^passed None/PASS:/' -e 's/^failed None/FAIL:/'
+> diff --git a/recipes-security/scapy/python-scapy.inc b/recipes-security=
+/scapy/python-scapy.inc
+> index 5abe7db..95e5312 100644
+> --- a/recipes-security/scapy/python-scapy.inc
+> +++ b/recipes-security/scapy/python-scapy.inc
+> @@ -5,15 +5,10 @@ LICENSE =3D "GPLv2"
+> =20
+>  LIC_FILES_CHKSUM =3D "file://bin/scapy;beginline=3D9;endline=3D13;md5=3D=
+1d5249872cc54cd4ca3d3879262d0c69"
+> =20
+> -SRC_URI[md5sum] =3D "d7d3c4294f5a718e234775d38dbeb7ec"
+> -SRC_URI[sha256sum] =3D "452f714f5c2eac6fd0a6146b1dbddfc24dd5f4103f3ed7=
+6227995a488cfb2b73"
+> +SRC_URI[md5sum] =3D "e6a03d8c924a6bbde1e86fc58bd2b9d6"
+> +SRC_URI[sha256sum] =3D "1baa048936207ceb1a4281a0e1e3b4317667c754872a0b=
+b4734c5213c468e86a"
+> =20
+> -inherit pypi ptest
+> -
+> -do_install_ptest() {
+> -    install -m 0644 ${S}/test/regression.uts ${D}${PTEST_PATH}
+> -    sed -i 's,@PTEST_PATH@,${PTEST_PATH},' ${D}${PTEST_PATH}/run-ptest=
 
-Hi Ulf,
+> -}
+> +inherit pypi
+> =20
+>  RDEPENDS_${PN} =3D "tcpdump ${PYTHON_PN}-compression ${PYTHON_PN}-netc=
+lient  \
+>                    ${PYTHON_PN}-netserver ${PYTHON_PN}-pydoc ${PYTHON_P=
+N}-pkgutil ${PYTHON_PN}-shell \
+> diff --git a/recipes-security/scapy/python-scapy_2.4.0.bb b/recipes-sec=
+urity/scapy/python-scapy_2.4.0.bb
+> deleted file mode 100644
+> index 98db1fd..0000000
+> --- a/recipes-security/scapy/python-scapy_2.4.0.bb
+> +++ /dev/null
+> @@ -1,6 +0,0 @@
+> -inherit setuptools
+> -require python-scapy.inc
+> -
+> -SRC_URI +=3D "file://run-ptest"
+> -
+> -RDEPENDS_${PN} +=3D "${PYTHON_PN}-subprocess"
+> diff --git a/recipes-security/scapy/python-scapy_2.4.2.bb b/recipes-sec=
+urity/scapy/python-scapy_2.4.2.bb
+> new file mode 100644
+> index 0000000..ea8764a
+> --- /dev/null
+> +++ b/recipes-security/scapy/python-scapy_2.4.2.bb
+> @@ -0,0 +1,4 @@
+> +inherit setuptools
+> +require python-scapy.inc
+> +
+> +RDEPENDS_${PN} +=3D "${PYTHON_PN}-subprocess"
+> diff --git a/recipes-security/scapy/python3-scapy_2.4.0.bb b/recipes-se=
+curity/scapy/python3-scapy_2.4.0.bb
+> deleted file mode 100644
+> index 93ca7be..0000000
+> --- a/recipes-security/scapy/python3-scapy_2.4.0.bb
+> +++ /dev/null
+> @@ -1,4 +0,0 @@
+> -inherit setuptools3
+> -require python-scapy.inc
+> -
+> -SRC_URI +=3D "file://run-ptest"
+> diff --git a/recipes-security/scapy/python3-scapy_2.4.2.bb b/recipes-se=
+curity/scapy/python3-scapy_2.4.2.bb
+> new file mode 100644
+> index 0000000..34eb2a3
+> --- /dev/null
+> +++ b/recipes-security/scapy/python3-scapy_2.4.2.bb
+> @@ -0,0 +1,2 @@
+> +inherit setuptools3
+> +require python-scapy.inc
 
-Yes it seems that this indeed allows it to end up in the final image.
 
-Not sure why it doesn't work without as I see the kernel-module-split
-class seems to have statements to do this automatically:
-
-        files = d.getVar('FILES_%s' % pkg, True)
-        files = "%s /etc/modules-load.d/%s.conf
-/etc/modprobe.d/%s.conf" % (files, basename, basename)
-        d.setVar('FILES_%s' % pkg, files)
-
-Maybe there's some type of name mismatch or something in my case?
-
-Thanks,
-Ken Sloat
 
