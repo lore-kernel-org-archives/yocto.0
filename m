@@ -1,45 +1,63 @@
-Return-Path: <dzimmermann@yellowtec.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9618E009EB; Mon,  4 Feb 2019 08:23:21 -0800 (PST)
+	id C8FB4E009EB; Mon,  4 Feb 2019 08:27:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from bilbo.thummahr.de (bilbo.thummahr.de [130.180.88.210])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8ADF9E00994
-	for <yocto@yoctoproject.org>; Mon,  4 Feb 2019 08:23:20 -0800 (PST)
-X-Virus-Scanned: by amavisd-new at 
-Received: from 2008-email-vm.tmintra.thummahr.de ([172.16.16.77])
-	by bilbo.thummahr.de with ESMTP id x14GN7Jh005647
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=FAIL); 
-	Mon, 4 Feb 2019 17:23:07 +0100
-Received: from 2008-EMAIL-VM.tmintra.thummahr.de ([fe80::94b0:6cac:381:3a1e])
-	by 2008-email-vm.tmintra.thummahr.de ([fe80::94b0:6cac:381:3a1e%11])
-	with mapi id 14.03.0361.001; Mon, 4 Feb 2019 17:22:48 +0100
-From: David Zimmermann <dzimmermann@yellowtec.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] How to archive only packages contained in a certain image
-Thread-Index: AQHUuUCJiNPPm6SckUuTaph6QMGCaaXJF20AgABACYCAAAypAIAGZFgA
-Date: Mon, 4 Feb 2019 16:22:48 +0000
-Message-ID: <F89498CF-842A-41E5-B569-DD2179BED03B@yellowtec.com>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.196 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-it1-f196.google.com (mail-it1-f196.google.com
+	[209.85.166.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00B1AE00754
+	for <yocto@yoctoproject.org>; Mon,  4 Feb 2019 08:27:28 -0800 (PST)
+Received: by mail-it1-f196.google.com with SMTP id i145so1112694ita.4
+	for <yocto@yoctoproject.org>; Mon, 04 Feb 2019 08:27:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=4T0ym/PidX6ftmWoWkytqIEm4JGL+Y2flvTkGyFVJNE=;
+	b=XXQKmDFwF9iOvmssaZVH/l2Cic1HU/0CXglRzJyMX8Q5cSqwZIhyMp24hRiNIiejLK
+	+fIkw2d/gMI1vNeDz9J/QS+OkZR5tvpfg3lkhiciOIsz1om+Lq+hlPlC2gGN45RninYT
+	3j2r3Nx8SZBatNESGPBAp8DAw2DAq5OAcUJfWGcbIzxXP6YhL866y5VHV/5lh7FCcaYe
+	3w890bCxMoRZF2mL7QnvPxs+Hwb8jv+gfgdUwg8fqI2ZwIkGe7L1pIKSYR2mq5s14U8m
+	GKh9wE19XrZZt8il0NNs3+dlnZ62axMtAnTcJ2v/XlV0GB8CHizAb+R/K1OLuXRe8rjr
+	s1Hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=4T0ym/PidX6ftmWoWkytqIEm4JGL+Y2flvTkGyFVJNE=;
+	b=bkllrKJKVZthHjrdD7hgEgaebVVWmWxa97hQCjmCkceEf9R21kYf/jGIIkVRug3b2W
+	4BKRjChdsQKoeWEED+QXr2eQt4xCKwfUpIA4oKTQCksH1UEOfn0ajPntQjL3BscGxxh8
+	OsCIKXeDrkKUBQ4/UKG/ZlPG4BK6WRtKjJgnD0bwCIkwlVfTUw2FhLKA0G3WMMyCh6TX
+	sUb+oaDmxZNLUlM7HeoaEwpgllR70I7V1DCrk4eCBielzT+Is/P8kSFPDYXM0omvQWO/
+	9ygivFa2OVxXpwmG5hgdMYCrf3XcSZ0BJU9RILteM8SawQgFvw2XE97x8AmVaCeoug/s
+	nCQg==
+X-Gm-Message-State: AHQUAubnd9VJEk+inNMK+Ot3idnZucs1bzOfQGVCXve9pm4WHL/irp75
+	Lj6Bn/fpG34eh24sDWitDXg8277TpIW2du4Qhh0kjakf
+X-Google-Smtp-Source: AHgI3IZGVfIAiNaYtB9jqYNQiedPAky8m+XNWkRuTUoQ1B3otwx3vcvxhB2nyoK1egwUo6T241PBQTlaypUks1zlRvA=
+X-Received: by 2002:a6b:f70a:: with SMTP id k10mr125572iog.270.1549297648447; 
+	Mon, 04 Feb 2019 08:27:28 -0800 (PST)
+MIME-Version: 1.0
 References: <7289CA52-0B42-4481-93B7-350AE353DC1C@yellowtec.com>
 	<CAJTo0LY=A+4CRLoQnxyOYz-=UkbUOxd=ax7FRRDSM1vXXcDX0w@mail.gmail.com>
 	<A829632F-9B64-4A3C-B259-C33CC5F8950C@yellowtec.com>
 	<CAJTo0La9Fu3xjykguaNQxwCtzcOBazBLzxPW=85x8qJOqCAGoA@mail.gmail.com>
-In-Reply-To: <CAJTo0La9Fu3xjykguaNQxwCtzcOBazBLzxPW=85x8qJOqCAGoA@mail.gmail.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.16.5]
-x-tm-as-product-ver: SMEX-11.7.0.1024-8.200.1013-24408.004
-x-tm-as-result: No--12.271300-5.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
-MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.78 on 172.16.16.1
+	<F89498CF-842A-41E5-B569-DD2179BED03B@yellowtec.com>
+In-Reply-To: <F89498CF-842A-41E5-B569-DD2179BED03B@yellowtec.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 4 Feb 2019 16:27:17 +0000
+Message-ID: <CAJTo0LaYWuvr2PYa=7tT9SQUuBZ6d79MtZ1cP+PB5gGXJsoqEw@mail.gmail.com>
+To: David Zimmermann <dzimmermann@yellowtec.com>
 Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: How to archive only packages contained in a certain image
 X-BeenThere: yocto@yoctoproject.org
@@ -53,59 +71,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Feb 2019 16:23:21 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <508948673105EE499984789826CAAB69@thummahr.de>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 04 Feb 2019 16:27:29 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-VGhhbmtzIGZvciB5b3VyIGhlbHBmdWwgaGludHMgUm9zcyAhDQoNCkkgbm93IGhhdmUgYSBzY3Jp
-cHQgaW4gcGxhY2Ugd2hpY2g6DQotIGV4dHJhY3RzIHBhY2thZ2UgbmFtZXMgZnJvbSBpbWFnZSBt
-YW5pZmVzdA0KLSB0cmFuc2xhdGVzIHBhY2thZ2UgbmFtZXMgdG8gcmVjaXBlIG5hbWVzDQotIGdy
-YWJzIHRoZSBzb3VyY2UgcGFja2FnZXMgZm9yIHRob3NlIHJlY2lwZXMgKGZyb20gd2hhdCB0aGUg
-YXJjaGl2ZXIgZXh0cmFjdGVkIGFjY29yZGluZyB0byBpdOKAmXMgY29uZmlnKQ0KDQpGb3IgdHdv
-IHJlY2lwZXMsIHJlZmVyZW5jZWQgYnkgdGhlIG1hbmlmZXN0IGZpbGUsIHRoZSBhcmNoaXZlciBk
-b2VzIGV4dHJhY3Qgbm8gc291cmNlIHBhY2thZ2VzOg0KLSBsaWJnY2MNCi0gZ2NjLXJ1bnRpbWUN
-CldoeSBpcyB0aGF0ID8NCg0KUmVnYXJkcywNCkRhdmlkDQogDQo+IEFtIDMxLjAxLjIwMTkgdW0g
-MTU6NDYgc2NocmllYiBCdXJ0b24sIFJvc3MgPHJvc3MuYnVydG9uQGludGVsLmNvbT46DQo+IA0K
-PiBQbGVhc2UgcmVtZW1iZXIgdG8ga2VlcCB0aGUgbGlzdCBvbiBDQy4NCj4gDQo+IFRoZSByZWFz
-b24gaXMgdGhhdCB0aG9zZSByZWNpcGVzIGFyZSBidWlsdCBmb3IgdGhlIHRhcmdldCBzbyB0aGV5
-J2xsDQo+IGJlIGFyY2hpdmVkLCB0aGUgYXJjaGl2ZXIgZG9lc24ndCBkaXN0aW5ndWlzaCB3aGF0
-IHJlY2lwZXMgZ28gaW50bw0KPiB3aGF0IGltYWdlLg0KPiANCj4gSXQncyByZWxhdGl2ZWx5IHNp
-bXBsZSB0byBmaWx0ZXIgdGhlIGxpc3QgYWZ0ZXIgdGhlIGJ1aWxkIGlmIHlvdSB3YW50DQo+IHRv
-IHByb2R1Y2UganVzdCB3aGF0IGlzIGluIGEgc3BlY2lmaWMgaW1hZ2UsIHRha2UgdGhlIGltYWdl
-IG1hbmlmZXN0DQo+IGFuZCB1c2Ugb2UtcGtnZGF0YS11dGlsIHRvIHR1cm4gdGhlIHBhY2thZ2Ug
-bmFtZXMgaW50byByZWNpcGVzLg0KPiANCj4gUm9zcw0KPiANCj4gT24gVGh1LCAzMSBKYW4gMjAx
-OSBhdCAxNDowMSwgRGF2aWQgWmltbWVybWFubg0KPiA8ZHppbW1lcm1hbm5AeWVsbG93dGVjLmNv
-bT4gd3JvdGU6DQo+PiANCj4+IEhpIFJvc3MsDQo+PiANCj4+IGFuZCB0aGFua3MgZm9yIHlvdXIg
-cmVwbHkuDQo+PiBJIGRvIGJha2UgYW4gaW1hZ2UgYmFzZWQgb24gY29yZS1pbWFnZS1taW5pbWFs
-IHdpdGggYWRkaXRpb25hbCBwYWNrYWdlcyBsaWtlIG9wZW5zc2ggYW5kIHF0ICgtYmFzZSwgLWRl
-Y2xhcmF0aXZlLCAtcXVpY2tjb250cm9scykuDQo+PiBNeSBmb2xkZXIg4oCZdG1wL2RlcGxveS9z
-b3VyY2VzL2FybS1wb2t5LWxpbnV4LWdudWVhYmnigJkgZS5nLiBjb250YWluczoNCj4+IHBlcmws
-IHB1bHNlYXVkaW8gYW5kIHB5dGhvbg0KPj4gDQo+PiBFdmVuIHRob3VnaCB0aG9zZSBtaWdodCBi
-ZSBkZXBlbmRlbmNpZXMgSSBpbmhlcml0ZWQgYnkgb3RoZXIgcmVjaXBlcyAtIHB5dGhvbiBlLmcu
-IGlzIG5vdCBjb250YWluZWQgLyB3aWxsIGJlIGluc3RhbGxlZCB0byBteSBpbWFnZS4NCj4+IEFz
-IGEgY291bnRlcmNoZWNrIEkgc2VlIHdoYXQgbGljZW5zZXMgd2lsbCBiZSBwbGFjZWQgaW4gdGhl
-IGltYWdlIChDT1BZX0xJQ19ESVJTID0gMSAmJiBDT1BZX0xJQ19NQU5JRkVTVCA9IDEpIHdoaWNo
-IHJlZmxlY3RzIHRoZSBsaW1pdGVkIG51bWJlciBvZiBwYWNrYWdlcyBJIGRvIGV4cGVjdC4NCj4+
-IA0KPj4gUmVnYXJkcywNCj4+IERhdmlkDQo+PiANCj4+PiBBbSAzMS4wMS4yMDE5IHVtIDExOjEx
-IHNjaHJpZWIgQnVydG9uLCBSb3NzIDxyb3NzLmJ1cnRvbkBpbnRlbC5jb20+Og0KPj4+IA0KPj4+
-IERvZXMgaXQgbm90IGp1c3QgY29udGFpbiB0aGUgcGFja2FnZXMgdXNlZCB0byBidWlsZCB0aGUg
-ZW50aXJlIGltYWdlLA0KPj4+IHNvIGJ1aWxkLXRpbWUgZGVwZW5kZW50cy4gIENhbiB5b3UgZ2l2
-ZSBhbiBleGFtcGxlIG9mIGEgcmVjaXBlIHRoYXQgaXMNCj4+PiBhcmNoaXZlZCBidXQgc2hvdWxk
-bid0IGJlPw0KPj4+IA0KPj4+IFJvc3MNCj4+PiANCj4+PiBPbiBUaHUsIDMxIEphbiAyMDE5IGF0
-IDA4OjQ2LCBEYXZpZCBaaW1tZXJtYW5uDQo+Pj4gPGR6aW1tZXJtYW5uQHllbGxvd3RlYy5jb20+
-IHdyb3RlOg0KPj4+PiANCj4+Pj4gSGkgTGlzdCwNCj4+Pj4gDQo+Pj4+IEkgdXNlIFlvY3RvIEty
-b2dvdGggYW5kIHRoZSBmb2xsb3dpbmcgY29uZmlndXJhdGlvbiBmb3IgdGhlIGFyY2hpdmVyOg0K
-Pj4+PiANCj4+Pj4gSU5IRVJJVCArPSDigJ5hcmNoaXZlcuKAnA0KPj4+PiBDT1BZTEVGVF9SRUNJ
-UEVfVFlQRVMgPSDigJl0YXJnZXTigJkNCj4+Pj4gDQo+Pj4+IEJ1dCB0aGUg4oCadG1wL2RlcGxv
-eS9zb3VyY2VzL+KApi/igJogZm9sZGVyIGZvciBteSB0YXJnZXQgYXJjaGl0ZWN0dXJlIGNvbnRh
-aW5zIG11Y2ggbW9yZSBwYWNrYWdlcyB0aGVuIHRob3NlIOKAmnVzZWTigJggdG8gYnVpbGQgbXkg
-aW1hZ2UuDQo+Pj4+IElzIHRoZXJlIGEgd2F5IHRvIGV4dHJhY3QgLyBhcmNoaXZlIC8gaXNvbGF0
-ZSBvbmx5IHRob3NlIHBhY2thZ2Ugc291cmNlcyB1c2VkIGZvciBhIGNlcnRhaW4gaW1hZ2UgKGtl
-cm5lbCArIHJvb3RmcykgPw0KPj4+PiANCj4+Pj4gVGhhbmtzIGZvciB5b3VyIGhlbHAsDQo+Pj4+
-IERhdmlkDQo+Pj4+IC0tDQo+Pj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fDQo+Pj4+IHlvY3RvIG1haWxpbmcgbGlzdA0KPj4+PiB5b2N0b0B5b2N0b3By
-b2plY3Qub3JnDQo+Pj4+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95
-b2N0bw0KPj4gDQoNCg==
+Those recipes are special: the gcc-source recipe fetches and and
+unpacks the GCC source tree, and gcc builds it.  So gcc has no
+source...  Add gcc-source explicitly to your list and you'll be
+sorted.
+
+Ross
+
+On Mon, 4 Feb 2019 at 16:23, David Zimmermann <dzimmermann@yellowtec.com> w=
+rote:
+>
+> Thanks for your helpful hints Ross !
+>
+> I now have a script in place which:
+> - extracts package names from image manifest
+> - translates package names to recipe names
+> - grabs the source packages for those recipes (from what the archiver ext=
+racted according to it=E2=80=99s config)
+>
+> For two recipes, referenced by the manifest file, the archiver does extra=
+ct no source packages:
+> - libgcc
+> - gcc-runtime
+> Why is that ?
+>
+> Regards,
+> David
+>
+> > Am 31.01.2019 um 15:46 schrieb Burton, Ross <ross.burton@intel.com>:
+> >
+> > Please remember to keep the list on CC.
+> >
+> > The reason is that those recipes are built for the target so they'll
+> > be archived, the archiver doesn't distinguish what recipes go into
+> > what image.
+> >
+> > It's relatively simple to filter the list after the build if you want
+> > to produce just what is in a specific image, take the image manifest
+> > and use oe-pkgdata-util to turn the package names into recipes.
+> >
+> > Ross
+> >
+> > On Thu, 31 Jan 2019 at 14:01, David Zimmermann
+> > <dzimmermann@yellowtec.com> wrote:
+> >>
+> >> Hi Ross,
+> >>
+> >> and thanks for your reply.
+> >> I do bake an image based on core-image-minimal with additional package=
+s like openssh and qt (-base, -declarative, -quickcontrols).
+> >> My folder =E2=80=99tmp/deploy/sources/arm-poky-linux-gnueabi=E2=80=99 =
+e.g. contains:
+> >> perl, pulseaudio and python
+> >>
+> >> Even though those might be dependencies I inherited by other recipes -=
+ python e.g. is not contained / will be installed to my image.
+> >> As a countercheck I see what licenses will be placed in the image (COP=
+Y_LIC_DIRS =3D 1 && COPY_LIC_MANIFEST =3D 1) which reflects the limited num=
+ber of packages I do expect.
+> >>
+> >> Regards,
+> >> David
+> >>
+> >>> Am 31.01.2019 um 11:11 schrieb Burton, Ross <ross.burton@intel.com>:
+> >>>
+> >>> Does it not just contain the packages used to build the entire image,
+> >>> so build-time dependents.  Can you give an example of a recipe that i=
+s
+> >>> archived but shouldn't be?
+> >>>
+> >>> Ross
+> >>>
+> >>> On Thu, 31 Jan 2019 at 08:46, David Zimmermann
+> >>> <dzimmermann@yellowtec.com> wrote:
+> >>>>
+> >>>> Hi List,
+> >>>>
+> >>>> I use Yocto Krogoth and the following configuration for the archiver=
+:
+> >>>>
+> >>>> INHERIT +=3D =E2=80=9Earchiver=E2=80=9C
+> >>>> COPYLEFT_RECIPE_TYPES =3D =E2=80=99target=E2=80=99
+> >>>>
+> >>>> But the =E2=80=9Atmp/deploy/sources/=E2=80=A6/=E2=80=9A folder for m=
+y target architecture contains much more packages then those =E2=80=9Aused=
+=E2=80=98 to build my image.
+> >>>> Is there a way to extract / archive / isolate only those package sou=
+rces used for a certain image (kernel + rootfs) ?
+> >>>>
+> >>>> Thanks for your help,
+> >>>> David
+> >>>> --
+> >>>> _______________________________________________
+> >>>> yocto mailing list
+> >>>> yocto@yoctoproject.org
+> >>>> https://lists.yoctoproject.org/listinfo/yocto
+> >>
+>
 
