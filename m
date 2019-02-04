@@ -1,77 +1,65 @@
-Return-Path: <Thomas.Beaman@xerox.com>
+Return-Path: <chuckwolber@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 065A3E00A1A; Mon,  4 Feb 2019 10:43:58 -0800 (PST)
+	id B8D37E00A0C; Mon,  4 Feb 2019 11:20:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [68.232.129.32 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (chuckwolber[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.171 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Mon, 04 Feb 2019 10:43:56 PST
-Received: from esa10.xerox.iphmx.com (esa10.xerox.iphmx.com [68.232.129.32])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFECBE009EB
-	for <yocto@yoctoproject.org>; Mon,  4 Feb 2019 10:43:56 -0800 (PST)
-Received: from mail-bn3nam01lp2053.outbound.protection.outlook.com (HELO
-	NAM01-BN3-obe.outbound.protection.outlook.com) ([104.47.33.53])
-	by ob1.xerox.iphmx.com with ESMTP/TLS/AES256-SHA256;
-	04 Feb 2019 12:42:53 -0600
-Received: from BL0PR11MB3524.namprd11.prod.outlook.com (20.177.206.225) by
-	BL0PR11MB3220.namprd11.prod.outlook.com (10.167.233.156) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1580.16; Mon, 4 Feb 2019 18:42:52 +0000
-Received: from BL0PR11MB3524.namprd11.prod.outlook.com
-	([fe80::2cc5:58c9:9fcd:1703]) by
-	BL0PR11MB3524.namprd11.prod.outlook.com
-	([fe80::2cc5:58c9:9fcd:1703%2]) with mapi id 15.20.1580.019;
-	Mon, 4 Feb 2019 18:42:52 +0000
-From: "Beaman, Thomas" <Thomas.Beaman@xerox.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: sun rpc missing in thud
-Thread-Index: AdS8tQy5bTm+xm/2RJCbKNG0dbQKow==
-Date: Mon, 4 Feb 2019 18:42:52 +0000
-Message-ID: <BL0PR11MB352483DCBFDE53F27A888120EB6D0@BL0PR11MB3524.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=Thomas.Beaman@xerox.com; 
-x-originating-ip: [65.207.111.225]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; BL0PR11MB3220;
-	6:JVUx2INSg2fGUh9rheI2N3z0W/SuVbuY/kSjqpfj2HvnTBZLp03ax4QejFrtA2MCocaKXCe/G2U/J8E2COe+EpaMcuCfaIr9EJBLH7JuCDHeSmtKhDVK1e+GCtiVsWYV43RbHoU1cU031/9z8eMerjCxAHBJOhHXYuJ6eO14+F14TI+hZ/tEiVvf40a2pmBOSRa1ePLUNweUbC6HaBz568xbIzIp/UDiHK17NcjURbcomSaWgI+NJ9gWKjmVnkR7ptWEhb6ksw+ggx0PyIc+O1q6f5bYCi7YXRBKWHKsc2B14TCZzDNhyCqATz1z1UB62ihX6Jizz50Xxzg3ReI/XJJvi/2kmyM/h7Zbk3/94xWYq6EzCUlTA+20sC44C80GQIY1PJMBxfdn6bUQhpEv5HjOaI4yLhnaOJCKYj4+fqOMl4vZw3lm2T0keT+XocqoBe5klBiZdwpp/MIdicYzcg==;
-	5:JJf9zt3Og0MvMxBNvZn9xQn0htLh3ghbfM/dagygSR0rcEOeN3ZHmp6WxLqXXKkFNYsBrFF1IePBO6Etbi/WDJFJNcmUr16KRTbaPqUCgaKbSaAL6zE0bmCWewfGuo3wTerzv/mH1nzaL4AiSo4flOEkmOLPTYyBLj//pfmYJuyULwpnWKClSq4peU5uIkc0w79hl5Nbg6+FUo0rpO+bXg==;
-	7:5eRZN0D7XI1EnEzyeZ4RMxMZVcd5XoPpXJ0aVp9X48sHBnbrUbYAYr9rZVe+KC0IAZmesVY/p5IWKgJWw8a26Ndqv/jJGg20Pdxj52XAdTX4XqfFc0/3uXCBQ/uN1YUPiz4JY+w6epPboljO08YDVg==
-x-ms-office365-filtering-correlation-id: ba1151ff-f220-4dc7-b0db-08d68ad09205
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600110)(711020)(4605077)(2017052603328)(7153060)(7193020);
-	SRVR:BL0PR11MB3220; 
-x-ms-traffictypediagnostic: BL0PR11MB3220:
-x-microsoft-antispam-prvs: <BL0PR11MB3220ADD60050B9F367246922EB6D0@BL0PR11MB3220.namprd11.prod.outlook.com>
-x-forefront-prvs: 0938781D02
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(366004)(39860400002)(376002)(346002)(396003)(136003)(199004)(189003)(486006)(6916009)(54896002)(9686003)(55016002)(6306002)(25786009)(2906002)(74316002)(476003)(316002)(2501003)(478600001)(6506007)(102836004)(99286004)(7696005)(68736007)(5640700003)(33656002)(6436002)(9326002)(256004)(66066001)(8936002)(86362001)(4744005)(2351001)(71190400001)(71200400001)(81156014)(1730700003)(81166006)(105586002)(8676002)(97736004)(186003)(14454004)(26005)(72206003)(107886003)(6116002)(3846002)(53936002)(790700001)(4326008)(106356001)(7736002)(554374003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR11MB3220;
-	H:BL0PR11MB3524.namprd11.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: bG7qDORHE8sf8GWr4KvEI3LNno2BeRqNqMQuH4rNq660CDC9oqbbZfMThoaZHphOz+GVCoq94aSByv6ENzPKi2nIJNysL3MGw6dEpIxkmGesmlOcooczTsCFH5j428x1fay3bXpvu+eyLar52f8vL43h1jwiQDqe34K91jFjepQH9kOUo/aEYxBUG4YfrK+r+naNWaE7nRfmmk0NA4M0JRxGXAk8x013CGUg1DrT75VW2B9sjEhkmjllPLTVoIr4sVjrDUbKk0H82B+cySqg9MW9KR29zcS58ZzepRirKFGwK0whmauhzfGcJ8mikfi+G9WvcfZUYKEoyf4teOPU0Lmh7ynL8bB4ISazPuRDCbZmaTGNEEkj6co1dhDd1wivZsQJ2SdppdBs+a3MW83YYTDjTbZZzUqOamo93g/8hu4=
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com
+	[209.85.221.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E8B4E006B3
+	for <yocto@yoctoproject.org>; Mon,  4 Feb 2019 11:20:40 -0800 (PST)
+Received: by mail-vk1-f171.google.com with SMTP id v70so240417vkv.7
+	for <yocto@yoctoproject.org>; Mon, 04 Feb 2019 11:20:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=8OyXk5MAhsmpZWwSTwJ57mCQkuD6TJToai8ECTrUaJs=;
+	b=RxnI6R3u8sRYuT8zqR94AvNfnIujNZ2Kayi0hH7prQL9EPLhmF2X5N47bVE0cGK8iX
+	ZloMMmyEtmwC2gEApBMBCFPM/VyjHOlBgj2MiIZWLi3lpfS2zKefW2QCwbR3RxXSNnYt
+	xMCyjqeOjzmHuUsN3QKB0xR4ZqCh2kCzfR6Jijtx7t39Xm/eIqJIsm1D2Cf8zPyJwpBG
+	DrLnxxcixyBp9H54MAWbsA8Xyjmji3EywOEy7xSmQFMMCZmI2FoDExbXACU07dA8xXTX
+	orco27aqgGU5TvUbSSDN+avUMJT5hN6dhgSFbv0/ZTCX05Gab+HxEqikPyFIc9IfUa/a
+	qH2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=8OyXk5MAhsmpZWwSTwJ57mCQkuD6TJToai8ECTrUaJs=;
+	b=QD7ttLMTiTXZVekK0n/XfK76/UbOXTSFKBdlcfAB92GzFEnSGGtXPHIVULK1ufZuOn
+	ZbZj5cYaNzr8BVaAxfWMmsONwReQWIxNaeqBUT1yiNmvYTmgyo645RtDoE/zbVB2GNdZ
+	LmpZoXGT/sZgNFS7RdPq43DC52PpSyqmL8E04OklZvtIWRK3fRZFaiJvg4E4cPz7lJGW
+	2bQVlrwoozjIcaA3SqiBCGcPmR+ood/x94HrFLo2/QmK9mqDldTpq1LNdU5B+/xA0xe+
+	ITNiWfZNEIlBTuMy6m45w3YWtfhbsG8VvtFbUIxPG5DK7GD2CfhV7tkkBZXJ17BZFyMn
+	LOEw==
+X-Gm-Message-State: AHQUAubdQCHoBJpeOKQlBZwsqVzEBE1f9TYI/GCIKrZYhWhCxk8MHiHe
+	5jaJWBRktRIrAKHqqd/CVHjdy2dKACj1fBCQ7I4=
+X-Google-Smtp-Source: AHgI3IbT0DXTLNgVN2MoEqyAiJ6xesnsZ00pZt4TOF2D6wsHLO0t1kFMJhBGwdNft7EfwbJGOJBGABzkTEXCDGC6370=
+X-Received: by 2002:a1f:5cc7:: with SMTP id q190mr377400vkb.91.1549308039421; 
+	Mon, 04 Feb 2019 11:20:39 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: xerox.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba1151ff-f220-4dc7-b0db-08d68ad09205
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Feb 2019 18:42:52.5910 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9c2a31bd-e798-488d-986b-90156ac8f29b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR11MB3220
-Cc: "Beaman, Thomas" <Thomas.Beaman@xerox.com>
-Subject: sun rpc missing in thud
+References: <CAAOxJQRzZqYhV6m9Oj6WYTCGexfTKxD3k76XFF3=Lk-JeYrtEg@mail.gmail.com>
+In-Reply-To: <CAAOxJQRzZqYhV6m9Oj6WYTCGexfTKxD3k76XFF3=Lk-JeYrtEg@mail.gmail.com>
+From: Chuck Wolber <chuckwolber@gmail.com>
+Date: Mon, 4 Feb 2019 11:20:28 -0800
+Message-ID: <CAB=6tBTXw_962pZohvoQyAibU7mb8jR+UBUHejYkMvQJ86ZwUA@mail.gmail.com>
+To: Igor Miranda <igorcmiranda3110@gmail.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: XSLT-CONFIG ERROR
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,128 +71,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Feb 2019 18:43:58 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BL0PR11MB352483DCBFDE53F27A888120EB6D0BL0PR11MB3524namp_"
+X-List-Received-Date: Mon, 04 Feb 2019 19:20:40 -0000
+Content-Type: multipart/alternative; boundary="00000000000056630f058116638d"
 
---_000_BL0PR11MB352483DCBFDE53F27A888120EB6D0BL0PR11MB3524namp_
-Content-Type: text/plain; charset="us-ascii"
+--00000000000056630f058116638d
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+You have to refactor the Icecast bitbake recipe to use pkg-config instead
+of xslt-config.
 
-I am converting to thud and having trouble figuring out how to get sun rpc =
-to install in my sysroot.
+This patch might give you some ideas:
+meta/recipes-devtools/swig/swig/0001-configure-use-pkg
+-config-for-pcre-detection.patch
 
-I can see that the sun rpc files are still in the glibc git  but I cannot f=
-igure what recipe or options I need to get them included in my distro. (I s=
-till have some old legacy code that needs them)
+I patched modsecurity to fix the same issue. It mostly works, but their
+build fails in certain configurations. Feel free to check my patch if you
+dare, but I am not an autotools expert, and probably did something wrong.
 
+https://github.com/SpiderLabs/ModSecurity/pull/2014/files
 
-I have tried adding the following but they do not bring in the   usr/includ=
-e/rpc/rpc.h files like previous releases did.
+..Ch:W..
 
+On Mon, Feb 4, 2019 at 10:35 AM Igor Miranda <igorcmiranda3110@gmail.com>
+wrote:
 
-IMAGE_INSTALL_append =3D " lib32-glibc-dbg"
-
-IMAGE_INSTALL_append =3D " rpcsvc-proto"
-
-
-Any help or suggestions of what to add or modify to get these files back in
-
-Regards,
-Tom Beaman
-
-
---_000_BL0PR11MB352483DCBFDE53F27A888120EB6D0BL0PR11MB3524namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Hey guys, I'm trying to compile the Icecast, but I'm getting the
+> xslt-config error, which says that I need to change to pkg-config, but I
+> dont know how to do this. Should I do a patch? Or its more easy to change
+> something in the Yocto to enable the use of the xslt-config? If I need to
+> use a patch, can someone explain to me how do I do something or can someo=
+ne
+> send me a patch that works. Please!!!! I dont have more time, I need to
+> give this project, working, as soon as possible. HELP ME!
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am converting to thud and having trouble figuring =
-out how to get sun rpc to install in my sysroot.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I can see that the sun rpc files are still in the gl=
-ibc git&nbsp; but I cannot figure what recipe or options I need to get them=
- included in my distro. (I still have some old legacy code that needs them)=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have tried adding the following but they do not br=
-ing in the&nbsp;&nbsp; usr/include/rpc/rpc.h files like previous releases d=
-id.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">IMAGE_INSTALL_append =3D &quot; lib32-glibc-dbg&quot=
-;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">IMAGE_INSTALL_append =3D &quot; rpcsvc-proto&quot;<o=
-:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Any help or suggestions of what to add or modify to =
-get these files back in<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Tom Beaman<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
 
---_000_BL0PR11MB352483DCBFDE53F27A888120EB6D0BL0PR11MB3524namp_--
+
+--=20
+=E2=80=9CI would challenge anyone here to think of a question upon which we=
+ once
+had a scientific answer, however inadequate, but for which now the best
+answer is a religious one."  -Sam Harris
+
+--00000000000056630f058116638d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">You have to refactor the Icecast bitbake =
+recipe to use pkg-config instead of xslt-config.=C2=A0<div><br></div><div>T=
+his patch might give you some ideas: meta/recipes-devtools/swig/swig/0001-c=
+onfigure-use-<span class=3D"gmail-m_5372398913267843520gmail-il">pkg</span>=
+-config-for-pcre-detection.patch</div><div><br></div><div>I patched modsecu=
+rity to fix the same issue. It mostly works, but their build fails in certa=
+in configurations. Feel free to check my patch if you dare, but I am not an=
+ autotools expert, and probably did something wrong.</div><div><br></div><d=
+iv><a href=3D"https://github.com/SpiderLabs/ModSecurity/pull/2014/files">ht=
+tps://github.com/SpiderLabs/ModSecurity/pull/2014/files</a><br></div><div><=
+br></div><div>..Ch:W..</div></div></div><br><div class=3D"gmail_quote"><div=
+ dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 4, 2019 at 10:35 AM Igor Mira=
+nda &lt;<a href=3D"mailto:igorcmiranda3110@gmail.com" target=3D"_blank">igo=
+rcmiranda3110@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><div dir=3D"ltr">Hey guys, I&#39;m trying to compile=
+ the Icecast, but I&#39;m getting the xslt-config error, which says that I =
+need to change to pkg-config, but I dont know how to do this. Should I do a=
+ patch? Or its more easy to change something in the Yocto to enable the use=
+ of the xslt-config? If I need to use a patch, can someone explain to me ho=
+w do I do something or can someone send me a patch that works. Please!!!! I=
+ dont have more time, I need to give this project, working, as soon as poss=
+ible. HELP ME!</div>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail-m_5372398913267843520gmail-m_3089941411936680404gmail_signa=
+ture"><div dir=3D"ltr">=E2=80=9CI would challenge anyone here to think of a=
+ question upon which we once had a scientific=C2=A0answer, however inadequa=
+te, but for which now the best answer is a religious one.&quot;=C2=A0 -Sam =
+Harris</div></div>
+
+--00000000000056630f058116638d--
