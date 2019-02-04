@@ -1,65 +1,70 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8FB4E009EB; Mon,  4 Feb 2019 08:27:29 -0800 (PST)
+	id 875BCE009EB; Mon,  4 Feb 2019 08:30:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.196 listed in list.dnswl.org]
+	*      [209.85.215.182 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f196.google.com (mail-it1-f196.google.com
-	[209.85.166.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00B1AE00754
-	for <yocto@yoctoproject.org>; Mon,  4 Feb 2019 08:27:28 -0800 (PST)
-Received: by mail-it1-f196.google.com with SMTP id i145so1112694ita.4
-	for <yocto@yoctoproject.org>; Mon, 04 Feb 2019 08:27:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=4T0ym/PidX6ftmWoWkytqIEm4JGL+Y2flvTkGyFVJNE=;
-	b=XXQKmDFwF9iOvmssaZVH/l2Cic1HU/0CXglRzJyMX8Q5cSqwZIhyMp24hRiNIiejLK
-	+fIkw2d/gMI1vNeDz9J/QS+OkZR5tvpfg3lkhiciOIsz1om+Lq+hlPlC2gGN45RninYT
-	3j2r3Nx8SZBatNESGPBAp8DAw2DAq5OAcUJfWGcbIzxXP6YhL866y5VHV/5lh7FCcaYe
-	3w890bCxMoRZF2mL7QnvPxs+Hwb8jv+gfgdUwg8fqI2ZwIkGe7L1pIKSYR2mq5s14U8m
-	GKh9wE19XrZZt8il0NNs3+dlnZ62axMtAnTcJ2v/XlV0GB8CHizAb+R/K1OLuXRe8rjr
-	s1Hw==
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
+	[209.85.215.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2794EE00994
+	for <yocto@yoctoproject.org>; Mon,  4 Feb 2019 08:30:55 -0800 (PST)
+Received: by mail-pg1-f182.google.com with SMTP id y1so133871pgk.11
+	for <yocto@yoctoproject.org>; Mon, 04 Feb 2019 08:30:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id:mime-version:thread-index
+	:content-language;
+	bh=y203WKABMzFLr5lM8/GOvc+tJhRYgaVRGxmeRspGXMU=;
+	b=fmojuBgRyXWwXLOhl43RVeUxHSDtq3Uq3OeoZHwEVBNsNp/yDmdNndvmKCF8xi352B
+	HbHTJVJEYjPeDEcCxM7gTJnR4DqQDEXG47RZD/C3jvsu0zrMht/D13SmlIn+xlNbsscE
+	ipPKqKw/k7q6IdzQBSavzq+feIO3l7+RoCoOggngQdAHtGZ6gJ9Jw+bdi/5io915wy6J
+	HN72hVG91DwTxeQOb+j8mF2Nu+RFWSs/OaxDz1gBZOI4pQxRA8l17/zZGvai8YZT7eLb
+	GL9bR4GQ39d3vPwn4HEetpC5WmisBp1Q9xiwn88Rkx6JwaM1hGdf/gJx383oGoCzjf5b
+	6pXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=4T0ym/PidX6ftmWoWkytqIEm4JGL+Y2flvTkGyFVJNE=;
-	b=bkllrKJKVZthHjrdD7hgEgaebVVWmWxa97hQCjmCkceEf9R21kYf/jGIIkVRug3b2W
-	4BKRjChdsQKoeWEED+QXr2eQt4xCKwfUpIA4oKTQCksH1UEOfn0ajPntQjL3BscGxxh8
-	OsCIKXeDrkKUBQ4/UKG/ZlPG4BK6WRtKjJgnD0bwCIkwlVfTUw2FhLKA0G3WMMyCh6TX
-	sUb+oaDmxZNLUlM7HeoaEwpgllR70I7V1DCrk4eCBielzT+Is/P8kSFPDYXM0omvQWO/
-	9ygivFa2OVxXpwmG5hgdMYCrf3XcSZ0BJU9RILteM8SawQgFvw2XE97x8AmVaCeoug/s
-	nCQg==
-X-Gm-Message-State: AHQUAubnd9VJEk+inNMK+Ot3idnZucs1bzOfQGVCXve9pm4WHL/irp75
-	Lj6Bn/fpG34eh24sDWitDXg8277TpIW2du4Qhh0kjakf
-X-Google-Smtp-Source: AHgI3IZGVfIAiNaYtB9jqYNQiedPAky8m+XNWkRuTUoQ1B3otwx3vcvxhB2nyoK1egwUo6T241PBQTlaypUks1zlRvA=
-X-Received: by 2002:a6b:f70a:: with SMTP id k10mr125572iog.270.1549297648447; 
-	Mon, 04 Feb 2019 08:27:28 -0800 (PST)
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:thread-index:content-language;
+	bh=y203WKABMzFLr5lM8/GOvc+tJhRYgaVRGxmeRspGXMU=;
+	b=fAUJFsZBms29pWaAeaYiG62YFfulJnCxeIl+pSQM4AOm+VhKlcXuMcq3fXGNpC2Clw
+	THRzdmw/KWFGzsBzjgXSXlZedlIScAakGxHAKZoSWWx+mfvpExKvNedfSmnMpN6H+5Y1
+	3XLA5MHESr3Fkss74eiS4zOBEH1hR2y+RCwEM+/lphz7vD1ZtbriSICzoas7ihoJIS51
+	kxJvFBPQW5DIw0Rk0n+Y6mD6Pm+PrwbAAhNY4S8fAlwNcX6PcSam5Yy9mGS8t1Ly3S1P
+	sM12gapRTIy/duaLDf9rCgjmPADYhFerNQn1vqJ6Y+7gRIKLkal7SeqDhJrGuDwAsUlq
+	YduA==
+X-Gm-Message-State: AHQUAuZPlS6eA3NkKm184GUYZZwDSL+YyNr8wJD9kxDAf1AN7gGpFZgZ
+	1f8D8TxqN2lFFPxpaiVEawo=
+X-Google-Smtp-Source: AHgI3IYJJr5Uwi0GTJ8inyWF0md3fL/vtOzbDsjwWWtnzwbV6CBhoV8qJEjkT/yhsNBpi6Bg36K53A==
+X-Received: by 2002:a62:5003:: with SMTP id e3mr216866pfb.23.1549297855234;
+	Mon, 04 Feb 2019 08:30:55 -0800 (PST)
+Received: from sjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+	by smtp.gmail.com with ESMTPSA id
+	m20sm617833pgb.56.2019.02.04.08.30.54
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 04 Feb 2019 08:30:54 -0800 (PST)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 4 Feb 2019 08:30:53 -0800
+Message-ID: <009001d4bca7$00d69450$0283bcf0$@gmail.com>
 MIME-Version: 1.0
-References: <7289CA52-0B42-4481-93B7-350AE353DC1C@yellowtec.com>
-	<CAJTo0LY=A+4CRLoQnxyOYz-=UkbUOxd=ax7FRRDSM1vXXcDX0w@mail.gmail.com>
-	<A829632F-9B64-4A3C-B259-C33CC5F8950C@yellowtec.com>
-	<CAJTo0La9Fu3xjykguaNQxwCtzcOBazBLzxPW=85x8qJOqCAGoA@mail.gmail.com>
-	<F89498CF-842A-41E5-B569-DD2179BED03B@yellowtec.com>
-In-Reply-To: <F89498CF-842A-41E5-B569-DD2179BED03B@yellowtec.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 4 Feb 2019 16:27:17 +0000
-Message-ID: <CAJTo0LaYWuvr2PYa=7tT9SQUuBZ6d79MtZ1cP+PB5gGXJsoqEw@mail.gmail.com>
-To: David Zimmermann <dzimmermann@yellowtec.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: How to archive only packages contained in a certain image
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdS8pkJSXJ/3y3hfTq+DNvBC2jt6Xw==
+Subject: Reminder: Yocto Project Technical Team Meeting @ Monthly from 8am to 8:30am on the first Tuesday (PDT)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,105 +76,228 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Feb 2019 16:27:29 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 04 Feb 2019 16:30:56 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0091_01D4BC63.F2B3F090"
+Content-Language: en-us
+
+------=_NextPart_000_0091_01D4BC63.F2B3F090
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+Just a reminder we will hold the monthly Yocto Project Technical Meeting at
+8am PDT tomorrow. (2/5)  
+
+ 
+
+I will start tracking the minutes at:
+<https://docs.google.com/document/d/1Y5IIuE-z0Ykdl-DwuzUJh52flOZuhN_TSAfw2td
+U9pg/edit?ts=5c06b22d>
+https://docs.google.com/document/d/1Y5IIuE-z0Ykdl-DwuzUJh52flOZuhN_TSAfw2tdU
+9pg/edit?ts=5c06b22d  Please request access if you want to assist in editing
+them.  The world should have view access. 
+
+ 
+
+Yocto Project Technical Team Meeting: We encourage people attending the
+meeting to logon and announce themselves on the Yocto Project IRC chancel
+during the meeting (optional):
+
+Yocto IRC:  <http://webchat.freenode.net/?channels=#yocto>
+http://webchat.freenode.net/?channels=#yocto
+
+ 
+
+Wiki:  <https://www.yoctoproject.org/public-virtual-meetings/>
+https://www.yoctoproject.org/public-virtual-meetings/
+
+ 
+
+When            Monthly from 8am to 8:30am on the first Tuesday Pacific Time
+
+Where           Zoom Meeting:  <https://zoom.us/j/990892712>
+https://zoom.us/j/990892712 
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Project Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:               <mailto:sjolley.yp.pm@gmail.com>
+sjolley.yp.pm@gmail.com
+
+ 
+
+
+------=_NextPart_000_0091_01D4BC63.F2B3F090
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Those recipes are special: the gcc-source recipe fetches and and
-unpacks the GCC source tree, and gcc builds it.  So gcc has no
-source...  Add gcc-source explicitly to your list and you'll be
-sorted.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>All,</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Just a reminder we will hold the monthly Yocto =
+Project Technical Meeting at 8am PDT tomorrow. (2/5)&nbsp; =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>I will start tracking =
+the minutes at: <a =
+href=3D"https://docs.google.com/document/d/1Y5IIuE-z0Ykdl-DwuzUJh52flOZuh=
+N_TSAfw2tdU9pg/edit?ts=3D5c06b22d"><span =
+style=3D'color:#0563C1'>https://docs.google.com/document/d/1Y5IIuE-z0Ykdl=
+-DwuzUJh52flOZuhN_TSAfw2tdU9pg/edit?ts=3D5c06b22d</span></a>&nbsp; =
+Please request access if you want to assist in editing them.&nbsp; The =
+world should have view access. </span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Yocto Project Technical Team Meeting: We =
+encourage people attending the meeting to logon and announce themselves =
+on the Yocto Project IRC chancel during the meeting =
+(optional):</span><span style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Yocto IRC: <a =
+href=3D"http://webchat.freenode.net/?channels=3D#yocto"><span =
+style=3D'color:#0563C1'>http://webchat.freenode.net/?channels=3D#yocto</s=
+pan></a></span><span style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Wiki: <a =
+href=3D"https://www.yoctoproject.org/public-virtual-meetings/"><span =
+style=3D'color:#0563C1'>https://www.yoctoproject.org/public-virtual-meeti=
+ngs/</span></a></span><span style=3D'font-size:12.0pt;font-family:"Times =
+New Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>When&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; Monthly from 8am to 8:30am on the first Tuesday =
+Pacific Time</span><span style=3D'font-size:12.0pt;font-family:"Times =
+New Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Where&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; Zoom Meeting: <a =
+href=3D"https://zoom.us/j/990892712"><span =
+style=3D'color:#0563C1'>https://zoom.us/j/990892712</span></a> =
+</span><span style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Thanks,</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman",serif'><o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Project Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif",serif'>(208) =
+244-4460</span><span style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:black'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com"><span =
+style=3D'color:#0563C1'>sjolley.yp.pm@gmail.com</span></a></span></u></sp=
+an><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-Ross
-
-On Mon, 4 Feb 2019 at 16:23, David Zimmermann <dzimmermann@yellowtec.com> w=
-rote:
->
-> Thanks for your helpful hints Ross !
->
-> I now have a script in place which:
-> - extracts package names from image manifest
-> - translates package names to recipe names
-> - grabs the source packages for those recipes (from what the archiver ext=
-racted according to it=E2=80=99s config)
->
-> For two recipes, referenced by the manifest file, the archiver does extra=
-ct no source packages:
-> - libgcc
-> - gcc-runtime
-> Why is that ?
->
-> Regards,
-> David
->
-> > Am 31.01.2019 um 15:46 schrieb Burton, Ross <ross.burton@intel.com>:
-> >
-> > Please remember to keep the list on CC.
-> >
-> > The reason is that those recipes are built for the target so they'll
-> > be archived, the archiver doesn't distinguish what recipes go into
-> > what image.
-> >
-> > It's relatively simple to filter the list after the build if you want
-> > to produce just what is in a specific image, take the image manifest
-> > and use oe-pkgdata-util to turn the package names into recipes.
-> >
-> > Ross
-> >
-> > On Thu, 31 Jan 2019 at 14:01, David Zimmermann
-> > <dzimmermann@yellowtec.com> wrote:
-> >>
-> >> Hi Ross,
-> >>
-> >> and thanks for your reply.
-> >> I do bake an image based on core-image-minimal with additional package=
-s like openssh and qt (-base, -declarative, -quickcontrols).
-> >> My folder =E2=80=99tmp/deploy/sources/arm-poky-linux-gnueabi=E2=80=99 =
-e.g. contains:
-> >> perl, pulseaudio and python
-> >>
-> >> Even though those might be dependencies I inherited by other recipes -=
- python e.g. is not contained / will be installed to my image.
-> >> As a countercheck I see what licenses will be placed in the image (COP=
-Y_LIC_DIRS =3D 1 && COPY_LIC_MANIFEST =3D 1) which reflects the limited num=
-ber of packages I do expect.
-> >>
-> >> Regards,
-> >> David
-> >>
-> >>> Am 31.01.2019 um 11:11 schrieb Burton, Ross <ross.burton@intel.com>:
-> >>>
-> >>> Does it not just contain the packages used to build the entire image,
-> >>> so build-time dependents.  Can you give an example of a recipe that i=
-s
-> >>> archived but shouldn't be?
-> >>>
-> >>> Ross
-> >>>
-> >>> On Thu, 31 Jan 2019 at 08:46, David Zimmermann
-> >>> <dzimmermann@yellowtec.com> wrote:
-> >>>>
-> >>>> Hi List,
-> >>>>
-> >>>> I use Yocto Krogoth and the following configuration for the archiver=
-:
-> >>>>
-> >>>> INHERIT +=3D =E2=80=9Earchiver=E2=80=9C
-> >>>> COPYLEFT_RECIPE_TYPES =3D =E2=80=99target=E2=80=99
-> >>>>
-> >>>> But the =E2=80=9Atmp/deploy/sources/=E2=80=A6/=E2=80=9A folder for m=
-y target architecture contains much more packages then those =E2=80=9Aused=
-=E2=80=98 to build my image.
-> >>>> Is there a way to extract / archive / isolate only those package sou=
-rces used for a certain image (kernel + rootfs) ?
-> >>>>
-> >>>> Thanks for your help,
-> >>>> David
-> >>>> --
-> >>>> _______________________________________________
-> >>>> yocto mailing list
-> >>>> yocto@yoctoproject.org
-> >>>> https://lists.yoctoproject.org/listinfo/yocto
-> >>
->
-
+------=_NextPart_000_0091_01D4BC63.F2B3F090--
