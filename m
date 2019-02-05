@@ -1,84 +1,65 @@
-Return-Path: <bhupendra.singh@ppsinternational.in>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E0E0E00AD5; Tue,  5 Feb 2019 04:30:32 -0800 (PST)
+	id 94F7BE00AB0; Tue,  5 Feb 2019 04:49:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: **
-X-Spam-Status: No, score=2.9 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-	DEAR_SOMETHING, DKIM_INVALID, DKIM_SIGNED, HTML_MESSAGE,
-	MSGID_MULTIPLE_AT, 
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_00,DEAR_SOMETHING,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.0 MSGID_MULTIPLE_AT Message-ID contains multiple '@' characters
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [182.50.132.193 listed in list.dnswl.org]
-	*  1.6 DATE_IN_PAST_03_06 Date: is 3 to 6 hours before Received: date
+	*      [209.85.208.173 listed in list.dnswl.org]
 	*  2.0 DEAR_SOMETHING BODY: Contains 'Dear (something)'
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
-X-Greylist: delayed 450 seconds by postgrey-1.32 at yocto-www;
-	Tue, 05 Feb 2019 04:30:29 PST
-Received: from sg2nlshrout01.shr.prod.sin2.secureserver.net
-	(sg2nlshrout01.shr.prod.sin2.secureserver.net [182.50.132.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06FC5E00546
-	for <yocto@yoctoproject.org>; Tue,  5 Feb 2019 04:30:29 -0800 (PST)
-Received: from sg2plcpnl0208.prod.sin2.secureserver.net ([148.72.232.109])
-	by : HOSTING RELAY : with ESMTP
-	id qzkPgo5Zi3Yo6qzkPg1Gtk; Tue, 05 Feb 2019 05:22:41 -0700
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ppsinternational.in; s=default;
-	h=Content-Type:MIME-Version:Message-ID:Date
-	:Subject:To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=X4HOGfFFJWyXzZx+Sp7KZCpI+ihhpZD6OR26EKyXLMA=;
-	b=biLvnbLp9+1Uk5rilVcEB6RtPA
-	n59Ddf8xXpohM3jrqFn+RAck1rixFhCUJKuLUI8wv9FO2tylIvLFQ48kmKCiSumtdo2vDIrDKjBvU
-	izuRQMJTrMRQOKbPq/bPmhuebSmiK0RKI0otXDPUnKR+8gKtbZSyww1twPykonm5cEF8trxHmIKKN
-	mjB5WTOnA1BPtlUjCRUG4kqLCkB0hQ85Da34/e5STKKMlcvBImSPjJR547xr9C7wY0L0hKRUpP36r
-	VGzOuprboQZf3SM7ByT7tKcUi7bM0ZAZhHd98+c/L9VcGCEDkHtp9Bc5k65AZUbRXnoM2z/K+7MJ3
-	tDXI1abA==;
-Received: from [103.76.136.42] (port=4016 helo=Bhupendra)
-	by sg2plcpnl0208.prod.sin2.secureserver.net with esmtpsa
-	(TLSv1:ECDHE-RSA-AES256-SHA:256) (Exim 4.91)
-	(envelope-from <bhupendra.singh@ppsinternational.in>)
-	id 1gqzjh-0073Q3-3B
-	for yocto@yoctoproject.org; Tue, 05 Feb 2019 05:21:57 -0700
-From: "Bhupendra Singh" <bhupendra.singh@ppsinternational.in>
-To: <yocto@yoctoproject.org>
-Date: Tue, 5 Feb 2019 12:21:50 +0530
-Message-ID: <000001d4bd1f$49158550$db408ff0$@singh@ppsinternational.in>
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com
+	[209.85.208.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBA59E00A0C
+	for <yocto@yoctoproject.org>; Tue,  5 Feb 2019 04:49:15 -0800 (PST)
+Received: by mail-lj1-f173.google.com with SMTP id q2-v6so2736154lji.10
+	for <yocto@yoctoproject.org>; Tue, 05 Feb 2019 04:49:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=/9BLdZJegzaDLhs3XDERrvy9eOrKCgnrT5Ax/Hwpy2A=;
+	b=NdnmwSVwqu/hgMTEHzE7z6M3IVnziYFlUcMbzgUj7tGwH+GT5mHO0r0l2wvj0NQRqR
+	DFMA8Y1d2wC+D5NrwfSBa3ZfPppsksGWakjZcXOeto6Gisg9QRJf+rCLOtnFuFvaHXq1
+	PvUMQYjixgcSj8kSCCagFerArJFREYSy4AWTHZ2V1ST6ImL9gFFpN7udz0fy5TYZTVWx
+	zVh1nzZO4n4yxncETeQz1qjyf6aJzyy8a+HP5hzeuqMT1v+rWdYNAtf7cW0De2yXHPd8
+	vkrJkXQqN7tdm1FYe5PG6f3pevvhI8MxpXidV/0N0duE1oRAwZSH649ENWj//UANzdEU
+	psCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=/9BLdZJegzaDLhs3XDERrvy9eOrKCgnrT5Ax/Hwpy2A=;
+	b=krbsTnaQadXxgEu+Yj+ERvQbEQpcvI211gC5up1yuPVd3SXNW4whMr4ttp+I/3Iypi
+	9tW1ohpz7HlTUYFwlJnG3iUVqfpPvcE+K9sxiNpSTfv9Ff99hSqaj5MPHjBDqnAsnb2X
+	p2sheHqUftS+yY/oC99MpD9AS7W1j/eMZWK8lUv5mQsANk1m3yqr/J9brYc6jOY0w2PJ
+	6ulKwJJr0/6T1nnSR6PbU2QV8B+cSzMjaEdu8aGUqWmumnGBclhf4TZLpV59dKGvyHjm
+	QuUONNLiNnhk2sYM9CFPjB8BgXnqmL5tX9CNbOzmFEFRUzxCLMmU34es4H6cpHdQqUJl
+	TKqg==
+X-Gm-Message-State: AHQUAuZjL5Ekupf9E5GBDP5LzV2dFrLgtGoa+0rb5RBQ1XtNIlrch7ot
+	teOxNYe/OsXuRUCkfoZTBSr86/WxhFCo6P712YghPT6ACtU=
+X-Google-Smtp-Source: AHgI3IYNO+66qWY0jiHsef3lzC0SqFj46jsQjw7Xltxh+mzqUgnoywZHzemXyJDsi3fcdtWbhqRhDTTtV6kfzurLFms=
+X-Received: by 2002:a2e:8087:: with SMTP id
+	i7-v6mr2810114ljg.179.1549370954262; 
+	Tue, 05 Feb 2019 04:49:14 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 12.0
-Thread-Index: AdS9H0JNpiETfmUwRnuJk7wIIms86w==
-x-cr-hashedpuzzle: AQe0 AUN+ BvxK ByEK B80K CYnz C+aZ DVQx EWz+ E2pX E6/q F761
-	GG0y HdZt ILwZ IhIN; 1;
-	eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
-	Sosha1_v1; 7; {364F894B-7105-42C9-B53A-ECDA18A2BE05};
-	YgBoAHUAcABlAG4AZAByAGEALgBzAGkAbgBnAGgAQABwAHAAcwBpAG4AdABlAHIAbgBhAHQAaQBvAG4AYQBsAC4AaQBuAA==;
-	Tue, 05 Feb 2019 06:51:45 GMT;
-	SABvAHcAIAB0AG8AIABhAGQAZAAvAG0AbwBkAGkAZgB5ACAAZgBpAGwAZQBzACAAaQBuACAAdABoAGUAIAByAG8AbwB0ACAAZgBpAGwAZQAgAHMAeQBzAHQAZQBtAHMAIABpAG4AIABZAG8AYwB0AG8A
-x-cr-puzzleid: {364F894B-7105-42C9-B53A-ECDA18A2BE05}
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - sg2plcpnl0208.prod.sin2.secureserver.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - ppsinternational.in
-X-Get-Message-Sender-Via: sg2plcpnl0208.prod.sin2.secureserver.net: authenticated_id:
-	bhupendra.singh@ppsinternational.in
-X-Authenticated-Sender: sg2plcpnl0208.prod.sin2.secureserver.net: bhupendra.singh@ppsinternational.in
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-CMAE-Envelope: MS4wfHLi28XF/W0vSzquQlGiEYWx93pCITJ1C/d+LN775ExGY/y1oeI+QbeEMtdYg1kOejjda6m8Qzgu/WW0x899mcMZR+aEyZfKu6XKK36B8WhSMGAZeswM
-	lgK90m/uIJjHcmuMScEKGu23mPvQl+jKwD3Jk0H6JKxTFyfgZJros4ioykWndrIapQ8sPRT6HwbnDauTy1epccN7ucnvwDQXGuQXkfOczQn6JxcUJ+1023Lq
-Subject: How to add/modify files in the root file systems in Yocto
+References: <5c5981f5.1c69fb81.5465f.054cSMTPIN_ADDED_BROKEN@mx.google.com>
+In-Reply-To: <5c5981f5.1c69fb81.5465f.054cSMTPIN_ADDED_BROKEN@mx.google.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Tue, 5 Feb 2019 13:49:02 +0100
+Message-ID: <CAP71WjzCKTU4F1hydgWjDXOm1VxUQRet60OEgGjNUKqUwE5ipQ@mail.gmail.com>
+To: Bhupendra Singh <bhupendra.singh@ppsinternational.in>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: How to add/modify files in the root file systems in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -90,216 +71,172 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Feb 2019 12:30:32 -0000
-X-Groupsio-MsgNum: 44012
-Content-Type: multipart/related;
-	boundary="----=_NextPart_000_0001_01D4BD4D.62CDC150"
-Content-Language: en-us
+X-List-Received-Date: Tue, 05 Feb 2019 12:49:16 -0000
+X-Groupsio-MsgNum: 44013
+Content-Type: multipart/related; boundary="0000000000005b132b05812509e1"
 
-------=_NextPart_000_0001_01D4BD4D.62CDC150
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_0002_01D4BD4D.62CDC150"
+--0000000000005b132b05812509e1
+Content-Type: multipart/alternative; boundary="0000000000005b132905812509e0"
 
-------=_NextPart_001_0002_01D4BD4D.62CDC150
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+--0000000000005b132905812509e0
+Content-Type: text/plain; charset="UTF-8"
 
- 
+hi,
 
-Dear sir,
+On Tue, Feb 5, 2019 at 1:30 PM Bhupendra Singh <
+bhupendra.singh@ppsinternational.in> wrote:
 
-Are there any examples on how to add startup scripts and other files to the
-target root file system using yocto? ie placing shell scripts into the
-etc/init.d directory.
+>
+>
+> Dear sir,
+>
+> Are there any examples on how to add startup scripts and other files to
+> the target root file system using yocto? ie placing shell scripts into the
+> etc/init.d directory.
+>
 
- 
+Please have a first look at the documentation on this topic:
+https://www.yoctoproject.org/docs/2.6/mega-manual/mega-manual.html#new-recipe-enabling-system-services
 
- 
-
-Thanks & Regards
-
-Bhupendra Singh
-
-Mob.+919599502188
-
- cid:image001.png@01CC0B4C.B6F26260
-
- PT Communication Systems Pvt. Ltd.
-
- 32,Udyog Kendra, Echotech III,Greater Noida (U.P.) 201308  India
-
- 
+and let us know if you have any more questions.
 
 
-------=_NextPart_001_0002_01D4BD4D.62CDC150
-Content-Type: text/html;
-	charset="us-ascii"
+>
+>
+>
+>
+> Thanks & Regards
+>
+> Bhupendra Singh
+>
+> Mob.+919599502188
+>
+>  [image: cid:image001.png@01CC0B4C.B6F26260]
+>
+>  PT Communication Systems Pvt. Ltd.
+>
+>  32,Udyog Kendra, Echotech III,Greater Noida (U.P.) 201308  India
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--0000000000005b132905812509e0
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40">
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">hi,<div><br></div></div>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Fe=
+b 5, 2019 at 1:30 PM Bhupendra Singh &lt;<a href=3D"mailto:bhupendra.singh@=
+ppsinternational.in">bhupendra.singh@ppsinternational.in</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex">
 
-<head>
-<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii">
-<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
-<!--[if !mso]>
-<style>
-v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style>
-<![endif]-->
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page Section1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.Section1
-	{page:Section1;}
--->
-</style>
-<!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"2050" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
 
-<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
 
-<div class=3DSection1>
 
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
 
-<p class=3DMsoNormal><span style=3D'font-family:"Times New =
-Roman","serif";
-color:#548DD4'>Dear sir,<o:p></o:p></span></p>
 
-<p class=3DMsoNormal><span style=3D'font-family:"Times New =
-Roman","serif";
-color:#548DD4;background:white'>Are there any examples on how to add =
-startup
-scripts and other files to the target root file system using yocto? ie =
-placing
-shell scripts into the etc/init.d directory.<o:p></o:p></span></p>
 
-<p class=3DMsoNormal><span style=3D'font-family:"Times New =
-Roman","serif";
-color:#548DD4;background:white'><o:p>&nbsp;</o:p></span></p>
 
-<p class=3DMsoNormal><span style=3D'font-family:"Times New =
-Roman","serif";
-color:#548DD4'><o:p>&nbsp;</o:p></span></p>
 
-<p class=3DMsoNormal style=3D'background:white'><span =
-style=3D'font-size:12.0pt;
-font-family:"Times New Roman","serif";color:#4F81BD'>Thanks &amp; =
-Regards</span><span
-style=3D'font-size:9.5pt;font-family:"Arial","sans-serif";color:#4F81BD'>=
-<o:p></o:p></span></p>
+<div lang=3D"EN-US">
 
-<p class=3DMsoNormal style=3D'background:white'><span =
-style=3D'font-size:12.0pt;
-font-family:"Times New Roman","serif";color:#4F81BD'>Bhupendra =
-Singh</span><span
-style=3D'font-size:9.5pt;font-family:"Arial","sans-serif";color:#4F81BD'>=
-<o:p></o:p></span></p>
+<div class=3D"gmail-m_-1410662260583724426Section1">
 
-<p class=3DMsoNormal style=3D'background:white'><span =
-style=3D'font-size:12.0pt;
-font-family:"Times New =
-Roman","serif";color:#4F81BD'>Mob.+919599502188</span><span
-style=3D'font-size:9.5pt;font-family:"Arial","sans-serif";color:#4F81BD'>=
-<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 
-<p class=3DMsoNormal style=3D'background:white'><span =
-style=3D'font-size:12.0pt;
-font-family:"Times New Roman","serif";color:#1F497D'>&nbsp;</span><span
-style=3D'color:#1F497D'><img width=3D75 height=3D56 =
-id=3D"Picture_x0020_1"
-src=3D"cid:image001.png@01D4BD4D.5BFAC6C0"
-alt=3D"cid:image001.png@01CC0B4C.B6F26260"></span><span =
-style=3D'font-size:9.5pt;
-font-family:"Arial","sans-serif";color:#222222'><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,serif;color:rgb(84,141,212)">Dear sir,<u></u><u></u></span></p>
 
-<p class=3DMsoNormal style=3D'background:white'><span =
-style=3D'font-size:12.0pt;
-font-family:"Times New Roman","serif";color:#4F81BD'>&nbsp;PT =
-Communication
-Systems Pvt. Ltd.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,serif;color:rgb(84,141,212);background:white">Are there any examples on =
+how to add startup
+scripts and other files to the target root file system using yocto? ie plac=
+ing
+shell scripts into the etc/init.d directory.</span></p></div></div></blockq=
+uote><div><br></div><div>Please have a first look at the documentation on t=
+his topic:</div><div><a href=3D"https://www.yoctoproject.org/docs/2.6/mega-=
+manual/mega-manual.html#new-recipe-enabling-system-services">https://www.yo=
+ctoproject.org/docs/2.6/mega-manual/mega-manual.html#new-recipe-enabling-sy=
+stem-services</a><br></div><div><br></div><div>and let us know if you have=
+=C2=A0any more questions.</div><div>=C2=A0<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex"><div lang=3D"EN-US"><div class=3D"gmail-m_-14106=
+62260583724426Section1"><p class=3D"MsoNormal"><span style=3D"font-family:&=
+quot;Times New Roman&quot;,serif;color:rgb(84,141,212);background:white"><u=
+></u><u></u></span></p>
 
-<p class=3DMsoNormal style=3D'background:white'><span =
-style=3D'color:#4F81BD'>&nbsp;</span><span
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman","serif";color:#4F81BD'>32,Udyog
-Kendra, Echotech III,Greater Noida (U.P.) 201308&nbsp; India</span><span
-style=3D'font-size:12.0pt;font-family:"Times New =
-Roman","serif";color:#4F81BD'><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,serif;color:rgb(84,141,212);background:white"><u></u>=C2=A0<u></u></span=
+></p>
 
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,serif;color:rgb(84,141,212)"><u></u>=C2=A0<u></u></span></p>
+
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12pt;font-family:&quot;Times New Roman&quot;,serif;color:rgb(79,129,189)">T=
+hanks &amp; Regards</span><span style=3D"font-size:9.5pt;font-family:Arial,=
+sans-serif;color:rgb(79,129,189)"><u></u><u></u></span></p>
+
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12pt;font-family:&quot;Times New Roman&quot;,serif;color:rgb(79,129,189)">B=
+hupendra Singh</span><span style=3D"font-size:9.5pt;font-family:Arial,sans-=
+serif;color:rgb(79,129,189)"><u></u><u></u></span></p>
+
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12pt;font-family:&quot;Times New Roman&quot;,serif;color:rgb(79,129,189)">M=
+ob.+919599502188</span><span style=3D"font-size:9.5pt;font-family:Arial,san=
+s-serif;color:rgb(79,129,189)"><u></u><u></u></span></p>
+
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12pt;font-family:&quot;Times New Roman&quot;,serif;color:rgb(31,73,125)">=
+=C2=A0</span><span style=3D"color:rgb(31,73,125)"><img width=3D"75" height=
+=3D"56" id=3D"gmail-m_-1410662260583724426Picture_x0020_1" src=3D"cid:168bd=
+b3ce5a4cff311" alt=3D"cid:image001.png@01CC0B4C.B6F26260"></span><span styl=
+e=3D"font-size:9.5pt;font-family:Arial,sans-serif;color:rgb(34,34,34)"><u><=
+/u><u></u></span></p>
+
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+12pt;font-family:&quot;Times New Roman&quot;,serif;color:rgb(79,129,189)">=
+=C2=A0PT Communication
+Systems Pvt. Ltd.<u></u><u></u></span></p>
+
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"color:rgb(=
+79,129,189)">=C2=A0</span><span style=3D"font-size:12pt;font-family:&quot;T=
+imes New Roman&quot;,serif;color:rgb(79,129,189)">32,Udyog
+Kendra, Echotech III,Greater Noida (U.P.) 201308=C2=A0 India</span><span st=
+yle=3D"font-size:12pt;font-family:&quot;Times New Roman&quot;,serif;color:r=
+gb(79,129,189)"><u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
 
 </div>
 
-</body>
+</div>
 
-</html>
 
-------=_NextPart_001_0002_01D4BD4D.62CDC150--
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div></div></div>
 
-------=_NextPart_000_0001_01D4BD4D.62CDC150
-Content-Type: image/png;
-	name="image001.png"
+--0000000000005b132905812509e0--
+
+--0000000000005b132b05812509e1
+Content-Type: image/png; name="image001.png"
+Content-Disposition: inline; filename="image001.png"
 Content-Transfer-Encoding: base64
-Content-ID: <image001.png@01D4BD4D.5BFAC6C0>
+Content-ID: <168bdb3ce5a4cff311>
+X-Attachment-Id: 168bdb3ce5a4cff311
 
 iVBORw0KGgoAAAANSUhEUgAAAEsAAAA4CAIAAAA6mpLSAAAAAXNSR0IArs4c6QAACqFJREFUaEPt
 WglUVNcZfm/2QWBgANmEQQFRBI1LcAu41SIaiVZj1RpNY1Or1iNqlqo1wWgTl5jGxhpp1ETRGmsg
@@ -351,4 +288,4 @@ Ej8Dtv45bu7apLAdqOPyYn7ERmQ/LkGT+B81Cjo8HoCgYMaWq6u3Zx494/HaROM47NbpSU/pUG3V
 PSnjThWwK7aOTc9tOgFUVKGve3bOQATCYpo7f9TUKh9mN5RXcRupugZuC8pRODYHCjpnp+obUBj/
 8vTQfIww2OkWh22goxBnq+RGontPM2XGR4lMU3ouJfae9j+sAbD7+mTr9AAAAABJRU5ErkJggg==
 
-------=_NextPart_000_0001_01D4BD4D.62CDC150--
+--0000000000005b132b05812509e1--
