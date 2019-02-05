@@ -1,6 +1,6 @@
 Return-Path: <sjolley.yp.pm@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 792BCE00BAF; Tue,  5 Feb 2019 08:36:24 -0800 (PST)
+	id BA1FAE00BAF; Tue,  5 Feb 2019 08:40:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,58 +13,59 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.169 listed in list.dnswl.org]
+	*      [209.85.214.180 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
-	[209.85.214.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F370E00BAB
-	for <yocto@yoctoproject.org>; Tue,  5 Feb 2019 08:36:23 -0800 (PST)
-Received: by mail-pl1-f169.google.com with SMTP id z23so1731625plo.0
-	for <yocto@yoctoproject.org>; Tue, 05 Feb 2019 08:36:23 -0800 (PST)
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
+	[209.85.214.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6708DE009AA
+	for <yocto@yoctoproject.org>; Tue,  5 Feb 2019 08:40:58 -0800 (PST)
+Received: by mail-pl1-f180.google.com with SMTP id e5so1723345plb.5
+	for <yocto@yoctoproject.org>; Tue, 05 Feb 2019 08:40:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:mime-version:thread-index
 	:content-language;
-	bh=sPwBp9tI7mKaaeuJe3NN1l8uFAyPJZAEXswkzg43sWU=;
-	b=aEEImXwf+lec3Q2AfM2RBK/p3XTUkjkm8fe+0nXeroAHtQc+qp3jwgfHbPMYg6/jOt
-	ctgF40iLeHQdjReOxabkyJ6g69BaoE+6XF4yv/S7tiewBxL3iF7ov8cFAtEpixlodgeL
-	YE61c9fX1NveIKbwvmtAxd8rJ88QBXJQWpB4cHUm6vqMQ+h5OKqrxMZv0rXRgB02tDMg
-	qU7RRrj21N78JWV6X2VxLlIDnzvSI6v+ZMENORfIvm7bPUyAoKDMLp0JbVCJT9nSJ/5O
-	ULsrdCAC7sWcV2krLPEUC4elb1do/w3EAsN46M9pS0TxraMBZYlVE8bCK8a52olm62a8
-	J5nQ==
+	bh=LhpjHoP91RjIlsF6a+XYxwno05pzbsGWpVVCwLes+98=;
+	b=BByiqd7FF+QhjNRBhpV9cBISnchWcdU/m7p63nEWic1SlvXOQXr0/HxYRkSXAUHgjY
+	JuBYjOeT0/1T4jK//kTjCzwWKHlIL8Au7jdCvER/5OJVXNnZSbGXk6VDIXls9u+HEGHE
+	7HqRhXyi8ovPlbVlQE/IYTDkLu+sBw7FCjDW8pePsFWgYX9yfRn+5ETb2YTeZAMnj7P7
+	bg3CJ2KFNYnroCbFgHELyD+zK3N0zwNvipPKrBWeziS8h3vhum6DxATPFwe8/BKqND1J
+	4sCPMZ4fwPreTQ1uIkJ9DEW4uWcFjyOSECccMh31J5NxHRsUnLiJOdP8hqgUV/RXXWGa
+	gsgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
 	:thread-index:content-language;
-	bh=sPwBp9tI7mKaaeuJe3NN1l8uFAyPJZAEXswkzg43sWU=;
-	b=STVdA/lMxaqU1zj2mDc755ZpgdpvBam0xxrYbfDcSdvu4RjvhXzH/uNSJKseKI9eRP
-	vPIguGOSx93PLQz6X+rmELkLjGP2VwCRDMGK46INa7onWJhfiOjvKxss9b6GOvahuQJc
-	LahtpfInhx9fHqS3mror0wgfGA7b8T6IeBI9xIcJG3FYy7AFCg+52go9FVjoZF+0qmX6
-	2D9yT4q7NyFXa07OLFKapQZwfQ9LYg+92ThHmNyLvP/IxX97tSUkexRwMTyGi5LtFXbt
-	FecamEKV0DlntXrYF/tlOCDa1byKOpxqGKP4lwZ6V8CdT/acqkCQw1/f7kkEq7i5Qq0E
-	Pprw==
-X-Gm-Message-State: AHQUAubK9DYZIgIMUMl53faNhMroYrAbCIe7BJmfFKF/5qNbkpsOtaW3
-	jKx18o2/NlcHw63fco7cbQc=
-X-Google-Smtp-Source: AHgI3Ias/nJ8c9AuSaVd0HOEv4dqDh9JyWZphHHl6lsEhnE1/EGRW7kZxMPCKNFB7P8sXmuPT/fhsQ==
-X-Received: by 2002:a17:902:6a4:: with SMTP id 33mr5859128plh.99.1549384582799;
-	Tue, 05 Feb 2019 08:36:22 -0800 (PST)
+	bh=LhpjHoP91RjIlsF6a+XYxwno05pzbsGWpVVCwLes+98=;
+	b=URdn0VEy6iB+Vui2IqUkh9oF2L4hCkExS7eYAOv86MxZdPO44xk3zyU7iXSwIyG1hx
+	v1y0S980JQ8BnmKLfykHX8N8/mDGXmdig7awkICaXkK2dk8oVa5allWgyzNseCMGTx/R
+	0yFTMBlvS9DnmZA2NPT9RqZB10Z09FECo5VisMHPVPO8ZXblBPBmCEsuLRF0F9Td37cT
+	useDMnW5xjqHMBCgx5NvgVvYrmMxAZNA9lAdWMgUvXnjKaJd6sDibWlt9d1pjoD8Nakx
+	aLJFHp5Zu0pfU6grBiT/pog2nKCVQU2z6vh8vA2QswHVRR03db3IIUHRYu/ZwcgsfJIc
+	FckA==
+X-Gm-Message-State: AHQUAuZh2VIS1O1zirjfuAsOcF1oSR7H8sfGP3YpzSCAaHna8zP+dF/5
+	T6x62sjbtu5EpdoG9RmoSNiy1m5H
+X-Google-Smtp-Source: AHgI3IaS/GidCMuoHc0OblEaN0eQ47QuOy/9Rq1k48PYmVYzMLo5endlhBPuzceClMvvgcOElN18qg==
+X-Received: by 2002:a17:902:8a91:: with SMTP id
+	p17mr6021087plo.316.1549384857848; 
+	Tue, 05 Feb 2019 08:40:57 -0800 (PST)
 Received: from sjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
 	by smtp.gmail.com with ESMTPSA id
-	q199sm7358642pfc.97.2019.02.05.08.36.22
+	v9sm5595304pfg.144.2019.02.05.08.40.57 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 05 Feb 2019 08:36:22 -0800 (PST)
+	Tue, 05 Feb 2019 08:40:57 -0800 (PST)
 From: <sjolley.yp.pm@gmail.com>
 To: <yocto@yoctoproject.org>
-Date: Tue, 5 Feb 2019 08:36:23 -0800
-Message-ID: <052201d4bd70$eea45180$cbecf480$@gmail.com>
+Date: Tue, 5 Feb 2019 08:40:58 -0800
+Message-ID: <056601d4bd71$92957710$b7c06530$@gmail.com>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdS9cNy0cPMGHjIGQ/iiC1CWsnmsew==
-Subject: YPTM minutes
+Thread-Index: AdS9cWPYn4nr9mWCRVCa0CcvAgyEpA==
+Subject: New e-mail address
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,64 +77,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Feb 2019 16:36:24 -0000
+X-List-Received-Date: Tue, 05 Feb 2019 16:40:58 -0000
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0523_01D4BD2D.E082BF30"
+	boundary="----=_NextPart_000_0567_01D4BD2E.84732170"
 Content-Language: en-us
 
-------=_NextPart_000_0523_01D4BD2D.E082BF30
+------=_NextPart_000_0567_01D4BD2E.84732170
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-Yocto Technical Team Minutes for Feb. 5, 2019.
+All,
 
  
 
-Attendees: Armin, David, Joshua, Randy, Tim, Richard G., Stephen, Jan-Simon,
-Manjukum, Tracey, Trevor, Nick, Richard P, Mark, Kate, Michael, 
-
- 
-
-YP 2.6.1 was released on Feb. 4, 2019.
-
-YP 2.7 M2 was built and is in QA and is 79% done.  See:
-<https://wiki.yoctoproject.org/wiki/2.7_QA_Status>
-https://wiki.yoctoproject.org/wiki/2.7_QA_Status
-
- 
-
-Armin agreed to add Ubuntu 18.4 to YP 2.6 series and we will use in for YP
-2.7 
-
-We discussed that the YP 2.6 manual doesn't have an upgrading to YP 2.6.
-Tracey will look into this.
-
- 
-
-We discussed the status of YP 2.7 upgrades and we are doing OK there.  We
-are struggling on new features YP 2.7.  Richard is primarily working to
-stabilize the autobuilder to produce an automated QA report to allow QA to
-transition from Intel. 
-
- 
-
-Richard discussed maintainers of OE-Core.  AUH is sending requests but not
-getting feedback. 
-
- 
-
-Richard discussed that we have issues with some products and need support
-from the community to fix.
-
- 
-
-Tim discussed ptest issues Richard has identified.
-
- 
-
-Richard asked if there were ideas about how to better communicate with the
-community. No specific suggestions.
+I have moved from stephen.k.jolley@intel.com
+<mailto:stephen.k.jolley@intel.com>  to sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com>  for my e-mail address I am using for the
+Yocto Project PM work.   Please use the new e-mail address if you wish to
+communicate with me going forward.
 
  
 
@@ -153,7 +115,7 @@ sjolley.yp.pm@gmail.com
  
 
 
-------=_NextPart_000_0523_01D4BD2D.E082BF30
+------=_NextPart_000_0567_01D4BD2E.84732170
 Content-Type: text/html;
 	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
@@ -218,59 +180,15 @@ div.WordSection1
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
 link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><b><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Yocto Technical =
-Team Minutes for Feb. 5, 2019.</span></b><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Attendees: Armin, =
-David, Joshua, Randy, Tim, Richard G., Stephen, Jan-Simon, Manjukum, =
-Tracey, Trevor, Nick, Richard P, Mark, Kate, Michael, =
-</span><o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>YP 2.6.1 was =
-released on Feb. 4, 2019.</span><o:p></o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>YP 2.7 M2 was built =
-and is in QA and is 79% done. &nbsp;See: </span><a =
-href=3D"https://wiki.yoctoproject.org/wiki/2.7_QA_Status"><span =
-style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
-project.org/wiki/2.7_QA_Status</span></a><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Armin agreed to add =
-Ubuntu 18.4 to YP 2.6 series and we will use in for YP 2.7 =
-</span><o:p></o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>We discussed that =
-the YP 2.6 manual doesn&#8217;t have an upgrading to YP 2.6. =
-&nbsp;Tracey will look into this.</span><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>We discussed the =
-status of YP 2.7 upgrades and we are doing OK there. &nbsp;We are =
-struggling on new features YP 2.7.&nbsp; Richard is primarily working to =
-stabilize the autobuilder to produce an automated QA report to allow QA =
-to transition from Intel. </span><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Richard discussed =
-maintainers of OE-Core. &nbsp;AUH is sending requests but not getting =
-feedback. </span><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Richard discussed =
-that we have issues with some products and need support from the =
-community to fix.</span><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Tim discussed ptest =
-issues Richard has identified.</span><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Richard asked if =
-there were ideas about how to better communicate with the community. No =
-specific suggestions.</span><o:p></o:p></p><p =
+class=3DMsoNormal>All,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I have moved =
+from <a =
+href=3D"mailto:stephen.k.jolley@intel.com">stephen.k.jolley@intel.com</a>=
+ to <a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a> for =
+my e-mail address I am using for the Yocto Project PM work. =
+&nbsp;&nbsp;Please use the new e-mail address if you wish to communicate =
+with me going forward.<o:p></o:p></p><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
 class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
@@ -308,4 +226,4 @@ an><span lang=3DFR =
 style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
 an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-------=_NextPart_000_0523_01D4BD2D.E082BF30--
+------=_NextPart_000_0567_01D4BD2E.84732170--
