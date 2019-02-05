@@ -1,6 +1,6 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <marc.ferland@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA1FAE00BAF; Tue,  5 Feb 2019 08:40:58 -0800 (PST)
+	id E00E1E00BAB; Tue,  5 Feb 2019 09:06:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,62 +10,58 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (sjolley.yp.pm[at]gmail.com)
+	provider *      (marc.ferland[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.180 listed in list.dnswl.org]
+	*      [209.85.210.41 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
-	[209.85.214.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6708DE009AA
-	for <yocto@yoctoproject.org>; Tue,  5 Feb 2019 08:40:58 -0800 (PST)
-Received: by mail-pl1-f180.google.com with SMTP id e5so1723345plb.5
-	for <yocto@yoctoproject.org>; Tue, 05 Feb 2019 08:40:58 -0800 (PST)
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com
+	[209.85.210.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADE3FE00BAB
+	for <yocto@yoctoproject.org>; Tue,  5 Feb 2019 09:06:20 -0800 (PST)
+Received: by mail-ot1-f41.google.com with SMTP id u16so6887177otk.8
+	for <yocto@yoctoproject.org>; Tue, 05 Feb 2019 09:06:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:mime-version:thread-index
-	:content-language;
-	bh=LhpjHoP91RjIlsF6a+XYxwno05pzbsGWpVVCwLes+98=;
-	b=BByiqd7FF+QhjNRBhpV9cBISnchWcdU/m7p63nEWic1SlvXOQXr0/HxYRkSXAUHgjY
-	JuBYjOeT0/1T4jK//kTjCzwWKHlIL8Au7jdCvER/5OJVXNnZSbGXk6VDIXls9u+HEGHE
-	7HqRhXyi8ovPlbVlQE/IYTDkLu+sBw7FCjDW8pePsFWgYX9yfRn+5ETb2YTeZAMnj7P7
-	bg3CJ2KFNYnroCbFgHELyD+zK3N0zwNvipPKrBWeziS8h3vhum6DxATPFwe8/BKqND1J
-	4sCPMZ4fwPreTQ1uIkJ9DEW4uWcFjyOSECccMh31J5NxHRsUnLiJOdP8hqgUV/RXXWGa
-	gsgw==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=kqUW/z/KMYqNsGRF6jqfv6gyYCpttMehvAtpHnCMLS8=;
+	b=Xg4NhYjSSIJhgqyPyDZDuge8WBQpE6DsQ8LOX1o9wTDhB+STFXwi9ig/k+K9EIiAV9
+	u8lZMrkB/J40Zl/SgywmbPeJrEEDMtv7cjTm3vdleTsVGCYIVOzTzD08zLRZmikh/myQ
+	zMXUua60oBkQfMOYhpKdgBkLgqdosLK1XIBCYrpgDUQf5J7sawaXRF0K+j1hQ3n565md
+	tzSN2OpivJCJmrxHnX7rYIzx+OPle7lPqP+OQuwUtX+EkQ6htfXCerKd3gAfs9a2SQUf
+	5XUZ5+HdUtcEGjW2MAFWdG6yqdAkvOwRCqK8fBhYZ0ZQMdGnSV5Oul0fGguVhHcsfV56
+	3Sfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-	:thread-index:content-language;
-	bh=LhpjHoP91RjIlsF6a+XYxwno05pzbsGWpVVCwLes+98=;
-	b=URdn0VEy6iB+Vui2IqUkh9oF2L4hCkExS7eYAOv86MxZdPO44xk3zyU7iXSwIyG1hx
-	v1y0S980JQ8BnmKLfykHX8N8/mDGXmdig7awkICaXkK2dk8oVa5allWgyzNseCMGTx/R
-	0yFTMBlvS9DnmZA2NPT9RqZB10Z09FECo5VisMHPVPO8ZXblBPBmCEsuLRF0F9Td37cT
-	useDMnW5xjqHMBCgx5NvgVvYrmMxAZNA9lAdWMgUvXnjKaJd6sDibWlt9d1pjoD8Nakx
-	aLJFHp5Zu0pfU6grBiT/pog2nKCVQU2z6vh8vA2QswHVRR03db3IIUHRYu/ZwcgsfJIc
-	FckA==
-X-Gm-Message-State: AHQUAuZh2VIS1O1zirjfuAsOcF1oSR7H8sfGP3YpzSCAaHna8zP+dF/5
-	T6x62sjbtu5EpdoG9RmoSNiy1m5H
-X-Google-Smtp-Source: AHgI3IaS/GidCMuoHc0OblEaN0eQ47QuOy/9Rq1k48PYmVYzMLo5endlhBPuzceClMvvgcOElN18qg==
-X-Received: by 2002:a17:902:8a91:: with SMTP id
-	p17mr6021087plo.316.1549384857848; 
-	Tue, 05 Feb 2019 08:40:57 -0800 (PST)
-Received: from sjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-	by smtp.gmail.com with ESMTPSA id
-	v9sm5595304pfg.144.2019.02.05.08.40.57 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 05 Feb 2019 08:40:57 -0800 (PST)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 5 Feb 2019 08:40:58 -0800
-Message-ID: <056601d4bd71$92957710$b7c06530$@gmail.com>
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=kqUW/z/KMYqNsGRF6jqfv6gyYCpttMehvAtpHnCMLS8=;
+	b=EaTEFgbpq6Mz9+rjLPWkPHjIrBqnjb4k1QB8B4uJOYpUA/QGoOK0QuOeQpVf+onijQ
+	BlnIuYagFhRaNKBVknKKmLLqCvqry3HmlK2pfU9TyiaEntEC3cS/KNxN8Xn+TLUfCwQl
+	j2a24+ogb98djGmTmWOzdBebnoG1s6bD0aVvdDUKWhA2DWzfuBIc5sCvM9AuVFVDsjVX
+	txcaw8NVLWhdMm89y5VxcOj60y+LBcEfySMc5SrQXSI/SHKPkj4lHaOJ/WT9eVD/xVYN
+	6XLBSK6w6BsZlZgM0bZUmYURzed4ZpmRvtGlg/5if0rVKLYYKsdOZ1A2hkm3NsEVqbAX
+	9W9g==
+X-Gm-Message-State: AHQUAuazqY4HkNKJPW8h4xyUaNewtFGiu8e4RUp1aObX/UhMi4vis/iv
+	lWopgX1KAza58R6K8SO5M/Mr04l234KiVxVYqFNXjJ/r
+X-Google-Smtp-Source: AHgI3IYgMTxQ5/rP0xXw97cCI+6qQ1JqewRLdHyxFEgAr9q/7rnybaHjRslU0t39qtyTVZKHBCMgx5aB8PSN6nmlUQ8=
+X-Received: by 2002:aca:5053:: with SMTP id e80mr234575oib.334.1549386379942; 
+	Tue, 05 Feb 2019 09:06:19 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdS9cWPYn4nr9mWCRVCa0CcvAgyEpA==
-Subject: New e-mail address
+References: <001101d4bc79$b2739150$175ab3f0$@polycaptil.fr>
+	<CAMRMzCBh-Of2MVnycxMvY3=L+g8vf_mw+CTdsh4DbneQz5GAng@mail.gmail.com>
+	<005901d4bd67$bc29e390$347daab0$@polycaptil.fr>
+In-Reply-To: <005901d4bd67$bc29e390$347daab0$@polycaptil.fr>
+From: Marc Ferland <marc.ferland@gmail.com>
+Date: Tue, 5 Feb 2019 12:06:08 -0500
+Message-ID: <CAMRMzCBn5G36NjBr+e+sYKcUDMRes1cqda9wwW2o=XVGMeWtVg@mail.gmail.com>
+To: Stanisavljevic <n.stanisavljevic@polycaptil.fr>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: yocto touchscreen
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,153 +73,210 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Feb 2019 16:40:58 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0567_01D4BD2E.84732170"
-Content-Language: en-us
+X-List-Received-Date: Tue, 05 Feb 2019 17:06:21 -0000
+Content-Type: multipart/alternative; boundary="000000000000cbe138058128a01e"
 
-------=_NextPart_000_0567_01D4BD2E.84732170
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-All,
-
- 
-
-I have moved from stephen.k.jolley@intel.com
-<mailto:stephen.k.jolley@intel.com>  to sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com>  for my e-mail address I am using for the
-Yocto Project PM work.   Please use the new e-mail address if you wish to
-communicate with me going forward.
-
- 
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Project Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:               <mailto:sjolley.yp.pm@gmail.com>
-sjolley.yp.pm@gmail.com
-
- 
-
-
-------=_NextPart_000_0567_01D4BD2E.84732170
-Content-Type: text/html;
-	charset="us-ascii"
+--000000000000cbe138058128a01e
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
-HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal>All,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I have moved =
-from <a =
-href=3D"mailto:stephen.k.jolley@intel.com">stephen.k.jolley@intel.com</a>=
- to <a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a> for =
-my e-mail address I am using for the Yocto Project PM work. =
-&nbsp;&nbsp;Please use the new e-mail address if you wish to communicate =
-with me going forward.<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Project Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif;color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif;color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif",serif'>(208) =
-244-4460</span><span style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif;color:black'><o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif;color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com"><span =
-style=3D'color:#0563C1'>sjolley.yp.pm@gmail.com</span></a></span></u></sp=
-an><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+Looks like: https://bugzilla.redhat.com/show_bug.cgi?id=3D1650634
 
-------=_NextPart_000_0567_01D4BD2E.84732170--
+Good luck!
+
+On Tue, Feb 5, 2019 at 10:30 AM Stanisavljevic <
+n.stanisavljevic@polycaptil.fr> wrote:
+
+> Hy Marc,
+>
+>
+>
+> Here is the log file attached in this mail.
+>
+>
+>
+> Nikola
+>
+> *De :* Marc Ferland <marc.ferland@gmail.com>
+> *Envoy=C3=A9 :* mardi 5 f=C3=A9vrier 2019 16:10
+> *=C3=80 :* Stanisavljevic <n.stanisavljevic@polycaptil.fr>
+> *Cc :* Yocto discussion list <yocto@yoctoproject.org>
+> *Objet :* Re: [yocto] yocto touchscreen
+>
+>
+>
+> On Mon, Feb 4, 2019 at 6:17 AM Stanisavljevic <
+> n.stanisavljevic@polycaptil.fr> wrote:
+>
+> Hy Team,
+>
+>
+>
+> I have a problem
+>
+>
+>
+> I buid a custom os for AM335x processor and I used yocto to do it.
+>
+>
+>
+> I build a first version of this os with version krogoth and it work fine.
+>
+>
+>
+> Now I build a second version of this os with version sumo and the
+> touchscreen work fine during boot process but when kernel is loaded,
+> touchscreen freeze / lock and impossible to use it.
+>
+> The terminal is printed on the touchscreen but the screen is locked,
+> impossible to write a command or to move the mouse to select, =E2=80=A6.
+>
+>
+>
+> Here is the log of boot to the user session (log got with serial
+> communication between PC and board) :
+>
+>
+>
+> ...
+>
+> X.Org X Server 1.19.6
+>
+> Release Date: 2017-12-20
+>
+> X Protocol Version 11, Revision 0
+>
+> Build Operating System: Linux 4.15.0-38-generic x86_64
+>
+> Current Operating System: Linux polycaptil-machine-am335x-evmsk
+> 4.4.19-ge581bb1cac #1 PREEMPT Thu May 24 11:42:17 CEST 2018 armv7l
+>
+> Kernel command line: console=3DttyO0,115200 root=3D/dev/mmcblk0p3 rw
+>
+> Build Date: 05 November 2018  09:33:21PM
+>
+>
+>
+> Current version of pixman: 0.34.0
+>
+>         Before reporting problems, check http://wiki.x.org
+>
+>         to make sure that you have the latest version.
+>
+> Markers: (--) probed, (**) from config file, (=3D=3D) default setting,
+>
+>         (++) from command line, (!!) notice, (II) informational,
+>
+>         (WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+>
+> (=3D=3D) Log file: "/var/log/Xorg.0.log", Time: Fri Feb  1 20:08:02 2019
+>
+> (=3D=3D) Using config file: "/etc/X11/xorg.conf"
+>
+> (=3D=3D) Using system config directory "/usr/share/X11/xorg.conf.d"
+>
+> done.
+>
+>
+>
+> Please post the full /var/log/Xorg.log.
+>
+>
+>
+> Marc
+>
+
+--000000000000cbe138058128a01e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Looks like: <a href=3D"https://bugzilla.r=
+edhat.com/show_bug.cgi?id=3D1650634">https://bugzilla.redhat.com/show_bug.c=
+gi?id=3D1650634</a></div><div dir=3D"ltr"><br></div><div>Good luck!<br></di=
+v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
+">On Tue, Feb 5, 2019 at 10:30 AM Stanisavljevic &lt;<a href=3D"mailto:n.st=
+anisavljevic@polycaptil.fr">n.stanisavljevic@polycaptil.fr</a>&gt; wrote:<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div lang=3D"FR">=
+<div class=3D"gmail-m_5333815775862062060WordSection1"><p class=3D"MsoNorma=
+l"><span lang=3D"EN-US">Hy Marc,<u></u><u></u></span></p><p class=3D"MsoNor=
+mal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNor=
+mal"><span lang=3D"EN-US">Here is the log file attached in this mail.<u></u=
+><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=
+=A0<u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">Nikola<u><=
+/u><u></u></span></p><p class=3D"MsoNormal"><b>De=C2=A0:</b> Marc Ferland &=
+lt;<a href=3D"mailto:marc.ferland@gmail.com" target=3D"_blank">marc.ferland=
+@gmail.com</a>&gt; <br><b>Envoy=C3=A9=C2=A0:</b> mardi 5 f=C3=A9vrier 2019 =
+16:10<br><b>=C3=80=C2=A0:</b> Stanisavljevic &lt;<a href=3D"mailto:n.stanis=
+avljevic@polycaptil.fr" target=3D"_blank">n.stanisavljevic@polycaptil.fr</a=
+>&gt;<br><b>Cc=C2=A0:</b> Yocto discussion list &lt;<a href=3D"mailto:yocto=
+@yoctoproject.org" target=3D"_blank">yocto@yoctoproject.org</a>&gt;<br><b>O=
+bjet=C2=A0:</b> Re: [yocto] yocto touchscreen<u></u><u></u></p><p class=3D"=
+MsoNormal"><u></u>=C2=A0<u></u></p><div><div><div><p class=3D"MsoNormal">On=
+ Mon, Feb 4, 2019 at 6:17 AM Stanisavljevic &lt;<a href=3D"mailto:n.stanisa=
+vljevic@polycaptil.fr" target=3D"_blank">n.stanisavljevic@polycaptil.fr</a>=
+&gt; wrote:<u></u><u></u></p></div><blockquote style=3D"border-color:curren=
+tcolor currentcolor currentcolor rgb(204,204,204);border-style:none none no=
+ne solid;border-width:medium medium medium 1pt;padding:0cm 0cm 0cm 6pt;marg=
+in-left:4.8pt;margin-right:0cm"><div><div><p class=3D"MsoNormal">Hy Team,<u=
+></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"=
+MsoNormal">I have a problem<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<=
+u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">I buid a custo=
+m os for AM335x processor and I used yocto to do it.</span><u></u><u></u></=
+p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></u></=
+p><p class=3D"MsoNormal"><span lang=3D"EN-US">I build a first version of th=
+is os with version krogoth and it work fine.</span><u></u><u></u></p><p cla=
+ss=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></u></p><p cla=
+ss=3D"MsoNormal"><span lang=3D"EN-US">Now I build a second version of this =
+os with version sumo and the touchscreen work fine during boot process but =
+when kernel is loaded, touchscreen freeze / lock and impossible to use it.<=
+/span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">The ter=
+minal is printed on the touchscreen but the screen is locked, impossible to=
+ write a command or to move the mouse to select, =E2=80=A6.</span><u></u><u=
+></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u=
+></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">Here is the log of boo=
+t to the user session (log got with serial communication between PC and boa=
+rd) :</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=
+=C2=A0</span><u></u><u></u></p></div></div></blockquote><div><p class=3D"Ms=
+oNormal">... <u></u><u></u></p></div><blockquote style=3D"border-color:curr=
+entcolor currentcolor currentcolor rgb(204,204,204);border-style:none none =
+none solid;border-width:medium medium medium 1pt;padding:0cm 0cm 0cm 6pt;ma=
+rgin-left:4.8pt;margin-right:0cm"><div><div><p class=3D"MsoNormal"><span la=
+ng=3D"EN-US">X.Org X Server 1.19.6</span><u></u><u></u></p><p class=3D"MsoN=
+ormal"><span lang=3D"EN-US">Release Date: 2017-12-20</span><u></u><u></u></=
+p><p class=3D"MsoNormal"><span lang=3D"EN-US">X Protocol Version 11, Revisi=
+on 0</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">Bu=
+ild Operating System: Linux 4.15.0-38-generic x86_64</span><u></u><u></u></=
+p><p class=3D"MsoNormal"><span lang=3D"EN-US">Current Operating System: Lin=
+ux polycaptil-machine-am335x-evmsk 4.4.19-ge581bb1cac #1 PREEMPT Thu May 24=
+ 11:42:17 CEST 2018 armv7l</span><u></u><u></u></p><p class=3D"MsoNormal"><=
+span lang=3D"EN-US">Kernel command line: console=3DttyO0,115200 root=3D/dev=
+/mmcblk0p3 rw</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"=
+EN-US">Build Date: 05 November 2018=C2=A0 09:33:21PM</span><u></u><u></u></=
+p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></u></=
+p><p class=3D"MsoNormal"><span lang=3D"EN-US">Current version of pixman: 0.=
+34.0</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Before reporting problems, check=
+ <a href=3D"http://wiki.x.org" target=3D"_blank">http://wiki.x.org</a></spa=
+n><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 to make sure that you have the latest ver=
+sion.</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">M=
+arkers: (--) probed, (**) from config file, (=3D=3D) default setting,</span=
+><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (++) from command line, (!!) notice, (II) in=
+formational,</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"E=
+N-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (WW) warning, (EE) error, =
+(NI) not implemented, (??) unknown.</span><u></u><u></u></p><p class=3D"Mso=
+Normal"><span lang=3D"EN-US">(=3D=3D) Log file: &quot;/var/log/Xorg.0.log&q=
+uot;, Time: Fri Feb=C2=A0 1 20:08:02 2019</span><u></u><u></u></p><p class=
+=3D"MsoNormal"><span lang=3D"EN-US">(=3D=3D) Using config file: &quot;/etc/=
+X11/xorg.conf&quot;</span><u></u><u></u></p><p class=3D"MsoNormal"><span la=
+ng=3D"EN-US">(=3D=3D) Using system config directory &quot;/usr/share/X11/xo=
+rg.conf.d&quot;</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=
+=3D"EN-US">done.</span><u></u><u></u></p></div></div></blockquote><div><p c=
+lass=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal=
+">Please post the full /var/log/Xorg.log.<u></u><u></u></p></div><div><p cl=
+ass=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal"=
+>Marc<u></u><u></u></p></div></div></div></div></div></blockquote></div>
+
+--000000000000cbe138058128a01e--
