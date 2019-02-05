@@ -1,67 +1,67 @@
-Return-Path: <marc.ferland@gmail.com>
+Return-Path: <srifenbark@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E00E1E00BAB; Tue,  5 Feb 2019 09:06:21 -0800 (PST)
+	id B0BBFE00BAF; Tue,  5 Feb 2019 10:12:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marc.ferland[at]gmail.com)
+	provider *      (srifenbark[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.41 listed in list.dnswl.org]
+	*      [209.85.208.49 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com
-	[209.85.210.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADE3FE00BAB
-	for <yocto@yoctoproject.org>; Tue,  5 Feb 2019 09:06:20 -0800 (PST)
-Received: by mail-ot1-f41.google.com with SMTP id u16so6887177otk.8
-	for <yocto@yoctoproject.org>; Tue, 05 Feb 2019 09:06:20 -0800 (PST)
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com
+	[209.85.208.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F1B8E00B81
+	for <yocto@yoctoproject.org>; Tue,  5 Feb 2019 10:12:02 -0800 (PST)
+Received: by mail-ed1-f49.google.com with SMTP id x30so3714321edx.2
+	for <yocto@yoctoproject.org>; Tue, 05 Feb 2019 10:12:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=kqUW/z/KMYqNsGRF6jqfv6gyYCpttMehvAtpHnCMLS8=;
-	b=Xg4NhYjSSIJhgqyPyDZDuge8WBQpE6DsQ8LOX1o9wTDhB+STFXwi9ig/k+K9EIiAV9
-	u8lZMrkB/J40Zl/SgywmbPeJrEEDMtv7cjTm3vdleTsVGCYIVOzTzD08zLRZmikh/myQ
-	zMXUua60oBkQfMOYhpKdgBkLgqdosLK1XIBCYrpgDUQf5J7sawaXRF0K+j1hQ3n565md
-	tzSN2OpivJCJmrxHnX7rYIzx+OPle7lPqP+OQuwUtX+EkQ6htfXCerKd3gAfs9a2SQUf
-	5XUZ5+HdUtcEGjW2MAFWdG6yqdAkvOwRCqK8fBhYZ0ZQMdGnSV5Oul0fGguVhHcsfV56
-	3Sfw==
+	:cc; bh=OKJ2GLD0rPaVSj8c/hsZZTwWya0lrWj12cNe32NnOZI=;
+	b=LXjHz28DptQLF43x+tHQVva6lH2UYo0qbVESRqRlycy3VhOhyQDY/EgqOwR3an3s8E
+	asIFLdXoxyQC9tFDXD+krKVhqOP2AIzbUhOfXRg4vmO4EvvuIzFtzJKH/3m7/SXi/Xzq
+	u+VUn8+hnwkfuT75hCXI3j/ifYeMlPucz7KWdWBVro98XMmAm4k8JRRzG89jBJHHJMUX
+	MkvbnvlRN8vzFuUxF+wDqkf5JDHw1bYAE8RJAABFr8XapMEA6Rbj/RvMyjsZB/6NJwlw
+	aDhxYTheQj4zMtb+sY/zpQKDKdPKQdtqq/pzYm1QZTbFdvvVvv5eSMOFwbPV+vx7EFn8
+	XABw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=kqUW/z/KMYqNsGRF6jqfv6gyYCpttMehvAtpHnCMLS8=;
-	b=EaTEFgbpq6Mz9+rjLPWkPHjIrBqnjb4k1QB8B4uJOYpUA/QGoOK0QuOeQpVf+onijQ
-	BlnIuYagFhRaNKBVknKKmLLqCvqry3HmlK2pfU9TyiaEntEC3cS/KNxN8Xn+TLUfCwQl
-	j2a24+ogb98djGmTmWOzdBebnoG1s6bD0aVvdDUKWhA2DWzfuBIc5sCvM9AuVFVDsjVX
-	txcaw8NVLWhdMm89y5VxcOj60y+LBcEfySMc5SrQXSI/SHKPkj4lHaOJ/WT9eVD/xVYN
-	6XLBSK6w6BsZlZgM0bZUmYURzed4ZpmRvtGlg/5if0rVKLYYKsdOZ1A2hkm3NsEVqbAX
-	9W9g==
-X-Gm-Message-State: AHQUAuazqY4HkNKJPW8h4xyUaNewtFGiu8e4RUp1aObX/UhMi4vis/iv
-	lWopgX1KAza58R6K8SO5M/Mr04l234KiVxVYqFNXjJ/r
-X-Google-Smtp-Source: AHgI3IYgMTxQ5/rP0xXw97cCI+6qQ1JqewRLdHyxFEgAr9q/7rnybaHjRslU0t39qtyTVZKHBCMgx5aB8PSN6nmlUQ8=
-X-Received: by 2002:aca:5053:: with SMTP id e80mr234575oib.334.1549386379942; 
-	Tue, 05 Feb 2019 09:06:19 -0800 (PST)
+	bh=OKJ2GLD0rPaVSj8c/hsZZTwWya0lrWj12cNe32NnOZI=;
+	b=pExuzHDQ4J3qkdWLs969ZQvL6d4JOM5oxZeSd4LzR1g6QMoqr8XOmgRjhNQ1ZxN4XJ
+	zeMleMAVLK8hY+8KD2e2BohGLjIVMH3VSt4PRrTQCJOTXEbEXcOZiAbmgKoDVI5/MUAc
+	DERCUZsngWXXm68ZX8ZsxiImRvI8g2QvTivyaJBDZ3f4lDUTUStLCeN2Jj3mecrmIikX
+	cBnU7oguVYwd2+s2cqBz2ug/rYKW8Q9MvARHHfQ3+rRDJYvJqUiPmDp+MdttbHYpsq8C
+	gBguyY1cWQWlD3dupCVZstimyPiCdYbvnav7XKzEfK4GBPqU5nufuyqdA5p132dz3a/C
+	HXbw==
+X-Gm-Message-State: AHQUAubaxnriXRzEiKaDd0PPz8oKrgEQaT+Vc3VFt1Ke+cdB43dzTFgj
+	6Y6kd+ESiXkRqe8qrR4Wx2M37HEXHIfDq8HQNbQ=
+X-Google-Smtp-Source: AHgI3Iasq0CZ6ZIAlf8aytCOaadVmn/CkrXvctqsSJznAbCn1R5WhGOkdGqPQPcsKAObfxrqIIulXdPY67Nx7xtD8e8=
+X-Received: by 2002:a17:906:452:: with SMTP id
+	e18mr4434754eja.142.1549390321222; 
+	Tue, 05 Feb 2019 10:12:01 -0800 (PST)
 MIME-Version: 1.0
-References: <001101d4bc79$b2739150$175ab3f0$@polycaptil.fr>
-	<CAMRMzCBh-Of2MVnycxMvY3=L+g8vf_mw+CTdsh4DbneQz5GAng@mail.gmail.com>
-	<005901d4bd67$bc29e390$347daab0$@polycaptil.fr>
-In-Reply-To: <005901d4bd67$bc29e390$347daab0$@polycaptil.fr>
-From: Marc Ferland <marc.ferland@gmail.com>
-Date: Tue, 5 Feb 2019 12:06:08 -0500
-Message-ID: <CAMRMzCBn5G36NjBr+e+sYKcUDMRes1cqda9wwW2o=XVGMeWtVg@mail.gmail.com>
-To: Stanisavljevic <n.stanisavljevic@polycaptil.fr>
+References: <052201d4bd70$eea45180$cbecf480$@gmail.com>
+In-Reply-To: <052201d4bd70$eea45180$cbecf480$@gmail.com>
+From: Scott Rifenbark <srifenbark@gmail.com>
+Date: Tue, 5 Feb 2019 10:11:50 -0800
+Message-ID: <CAFNP8Otu3jLLi9OKhZbhf+hDcuvwYW-9SUtYgSNiAQwRZMyLSA@mail.gmail.com>
+To: sjolley.yp.pm@gmail.com
 Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: yocto touchscreen
+Subject: Re: YPTM minutes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,210 +73,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Feb 2019 17:06:21 -0000
-Content-Type: multipart/alternative; boundary="000000000000cbe138058128a01e"
+X-List-Received-Date: Tue, 05 Feb 2019 18:12:03 -0000
+Content-Type: multipart/alternative; boundary="000000000000b7079d0581298b6f"
 
---000000000000cbe138058128a01e
+--000000000000b7079d0581298b6f
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Looks like: https://bugzilla.redhat.com/show_bug.cgi?id=3D1650634
+On Tue, Feb 5, 2019 at 8:37 AM <sjolley.yp.pm@gmail.com> wrote:
 
-Good luck!
-
-On Tue, Feb 5, 2019 at 10:30 AM Stanisavljevic <
-n.stanisavljevic@polycaptil.fr> wrote:
-
-> Hy Marc,
+> *Yocto Technical Team Minutes for Feb. 5, 2019.*
 >
 >
 >
-> Here is the log file attached in this mail.
+> Attendees: Armin, David, Joshua, Randy, Tim, Richard G., Stephen,
+> Jan-Simon, Manjukum, Tracey, Trevor, Nick, Richard P, Mark, Kate, Michael=
+,
 >
 >
 >
-> Nikola
+> YP 2.6.1 was released on Feb. 4, 2019.
 >
-> *De :* Marc Ferland <marc.ferland@gmail.com>
-> *Envoy=C3=A9 :* mardi 5 f=C3=A9vrier 2019 16:10
-> *=C3=80 :* Stanisavljevic <n.stanisavljevic@polycaptil.fr>
-> *Cc :* Yocto discussion list <yocto@yoctoproject.org>
-> *Objet :* Re: [yocto] yocto touchscreen
+> YP 2.7 M2 was built and is in QA and is 79% done.  See:
+> https://wiki.yoctoproject.org/wiki/2.7_QA_Status
 >
 >
 >
-> On Mon, Feb 4, 2019 at 6:17 AM Stanisavljevic <
-> n.stanisavljevic@polycaptil.fr> wrote:
+> Armin agreed to add Ubuntu 18.4 to YP 2.6 series and we will use in for Y=
+P
+> 2.7
 >
-> Hy Team,
->
->
->
-> I have a problem
->
->
->
-> I buid a custom os for AM335x processor and I used yocto to do it.
->
->
->
-> I build a first version of this os with version krogoth and it work fine.
->
->
->
-> Now I build a second version of this os with version sumo and the
-> touchscreen work fine during boot process but when kernel is loaded,
-> touchscreen freeze / lock and impossible to use it.
->
-> The terminal is printed on the touchscreen but the screen is locked,
-> impossible to write a command or to move the mouse to select, =E2=80=A6.
->
->
->
-> Here is the log of boot to the user session (log got with serial
-> communication between PC and board) :
->
->
->
-> ...
->
-> X.Org X Server 1.19.6
->
-> Release Date: 2017-12-20
->
-> X Protocol Version 11, Revision 0
->
-> Build Operating System: Linux 4.15.0-38-generic x86_64
->
-> Current Operating System: Linux polycaptil-machine-am335x-evmsk
-> 4.4.19-ge581bb1cac #1 PREEMPT Thu May 24 11:42:17 CEST 2018 armv7l
->
-> Kernel command line: console=3DttyO0,115200 root=3D/dev/mmcblk0p3 rw
->
-> Build Date: 05 November 2018  09:33:21PM
->
->
->
-> Current version of pixman: 0.34.0
->
->         Before reporting problems, check http://wiki.x.org
->
->         to make sure that you have the latest version.
->
-> Markers: (--) probed, (**) from config file, (=3D=3D) default setting,
->
->         (++) from command line, (!!) notice, (II) informational,
->
->         (WW) warning, (EE) error, (NI) not implemented, (??) unknown.
->
-> (=3D=3D) Log file: "/var/log/Xorg.0.log", Time: Fri Feb  1 20:08:02 2019
->
-> (=3D=3D) Using config file: "/etc/X11/xorg.conf"
->
-> (=3D=3D) Using system config directory "/usr/share/X11/xorg.conf.d"
->
-> done.
->
->
->
-> Please post the full /var/log/Xorg.log.
->
->
->
-> Marc
+> We discussed that the YP 2.6 manual doesn=E2=80=99t have an upgrading to =
+YP 2.6.
+> Tracey will look into this.
 >
 
---000000000000cbe138058128a01e
+Can I get some clarification on this.  Ubuntu 18.04 seems to be an LTS.  I
+don't have "LTS" listed in the 2.6 ref-manual (
+https://yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#detailed-suppo=
+rted-distros)
+but do have Ubuntu 18.04 listed as a supported distro.  What is meant by
+"... the YP 2.6 manual doesn't have an upgrading to YP 2.6."?  - Thanks
+Scott
+
+
+>
+> We discussed the status of YP 2.7 upgrades and we are doing OK there.  We
+> are struggling on new features YP 2.7.  Richard is primarily working to
+> stabilize the autobuilder to produce an automated QA report to allow QA t=
+o
+> transition from Intel.
+>
+>
+>
+> Richard discussed maintainers of OE-Core.  AUH is sending requests but no=
+t
+> getting feedback.
+>
+>
+>
+> Richard discussed that we have issues with some products and need support
+> from the community to fix.
+>
+>
+>
+> Tim discussed ptest issues Richard has identified.
+>
+>
+>
+> Richard asked if there were ideas about how to better communicate with th=
+e
+> community. No specific suggestions.
+>
+>
+>
+> Thanks,
+>
+>
+>
+> *Stephen K. Jolley*
+>
+> *Yocto Project Project Manager*
+>
+> (    *Cell*:                (208) 244-4460
+>
+> * *Email*:              *sjolley.yp.pm@gmail.com
+> <sjolley.yp.pm@gmail.com>*
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--000000000000b7079d0581298b6f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Looks like: <a href=3D"https://bugzilla.r=
-edhat.com/show_bug.cgi?id=3D1650634">https://bugzilla.redhat.com/show_bug.c=
-gi?id=3D1650634</a></div><div dir=3D"ltr"><br></div><div>Good luck!<br></di=
-v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
-">On Tue, Feb 5, 2019 at 10:30 AM Stanisavljevic &lt;<a href=3D"mailto:n.st=
-anisavljevic@polycaptil.fr">n.stanisavljevic@polycaptil.fr</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div lang=3D"FR">=
-<div class=3D"gmail-m_5333815775862062060WordSection1"><p class=3D"MsoNorma=
-l"><span lang=3D"EN-US">Hy Marc,<u></u><u></u></span></p><p class=3D"MsoNor=
-mal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNor=
-mal"><span lang=3D"EN-US">Here is the log file attached in this mail.<u></u=
-><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=
-=A0<u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">Nikola<u><=
-/u><u></u></span></p><p class=3D"MsoNormal"><b>De=C2=A0:</b> Marc Ferland &=
-lt;<a href=3D"mailto:marc.ferland@gmail.com" target=3D"_blank">marc.ferland=
-@gmail.com</a>&gt; <br><b>Envoy=C3=A9=C2=A0:</b> mardi 5 f=C3=A9vrier 2019 =
-16:10<br><b>=C3=80=C2=A0:</b> Stanisavljevic &lt;<a href=3D"mailto:n.stanis=
-avljevic@polycaptil.fr" target=3D"_blank">n.stanisavljevic@polycaptil.fr</a=
->&gt;<br><b>Cc=C2=A0:</b> Yocto discussion list &lt;<a href=3D"mailto:yocto=
-@yoctoproject.org" target=3D"_blank">yocto@yoctoproject.org</a>&gt;<br><b>O=
-bjet=C2=A0:</b> Re: [yocto] yocto touchscreen<u></u><u></u></p><p class=3D"=
-MsoNormal"><u></u>=C2=A0<u></u></p><div><div><div><p class=3D"MsoNormal">On=
- Mon, Feb 4, 2019 at 6:17 AM Stanisavljevic &lt;<a href=3D"mailto:n.stanisa=
-vljevic@polycaptil.fr" target=3D"_blank">n.stanisavljevic@polycaptil.fr</a>=
-&gt; wrote:<u></u><u></u></p></div><blockquote style=3D"border-color:curren=
-tcolor currentcolor currentcolor rgb(204,204,204);border-style:none none no=
-ne solid;border-width:medium medium medium 1pt;padding:0cm 0cm 0cm 6pt;marg=
-in-left:4.8pt;margin-right:0cm"><div><div><p class=3D"MsoNormal">Hy Team,<u=
-></u><u></u></p><p class=3D"MsoNormal">=C2=A0<u></u><u></u></p><p class=3D"=
-MsoNormal">I have a problem<u></u><u></u></p><p class=3D"MsoNormal">=C2=A0<=
-u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">I buid a custo=
-m os for AM335x processor and I used yocto to do it.</span><u></u><u></u></=
-p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></u></=
-p><p class=3D"MsoNormal"><span lang=3D"EN-US">I build a first version of th=
-is os with version krogoth and it work fine.</span><u></u><u></u></p><p cla=
-ss=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></u></p><p cla=
-ss=3D"MsoNormal"><span lang=3D"EN-US">Now I build a second version of this =
-os with version sumo and the touchscreen work fine during boot process but =
-when kernel is loaded, touchscreen freeze / lock and impossible to use it.<=
-/span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">The ter=
-minal is printed on the touchscreen but the screen is locked, impossible to=
- write a command or to move the mouse to select, =E2=80=A6.</span><u></u><u=
-></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u=
-></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">Here is the log of boo=
-t to the user session (log got with serial communication between PC and boa=
-rd) :</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=
-=C2=A0</span><u></u><u></u></p></div></div></blockquote><div><p class=3D"Ms=
-oNormal">... <u></u><u></u></p></div><blockquote style=3D"border-color:curr=
-entcolor currentcolor currentcolor rgb(204,204,204);border-style:none none =
-none solid;border-width:medium medium medium 1pt;padding:0cm 0cm 0cm 6pt;ma=
-rgin-left:4.8pt;margin-right:0cm"><div><div><p class=3D"MsoNormal"><span la=
-ng=3D"EN-US">X.Org X Server 1.19.6</span><u></u><u></u></p><p class=3D"MsoN=
-ormal"><span lang=3D"EN-US">Release Date: 2017-12-20</span><u></u><u></u></=
-p><p class=3D"MsoNormal"><span lang=3D"EN-US">X Protocol Version 11, Revisi=
-on 0</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">Bu=
-ild Operating System: Linux 4.15.0-38-generic x86_64</span><u></u><u></u></=
-p><p class=3D"MsoNormal"><span lang=3D"EN-US">Current Operating System: Lin=
-ux polycaptil-machine-am335x-evmsk 4.4.19-ge581bb1cac #1 PREEMPT Thu May 24=
- 11:42:17 CEST 2018 armv7l</span><u></u><u></u></p><p class=3D"MsoNormal"><=
-span lang=3D"EN-US">Kernel command line: console=3DttyO0,115200 root=3D/dev=
-/mmcblk0p3 rw</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"=
-EN-US">Build Date: 05 November 2018=C2=A0 09:33:21PM</span><u></u><u></u></=
-p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0</span><u></u><u></u></=
-p><p class=3D"MsoNormal"><span lang=3D"EN-US">Current version of pixman: 0.=
-34.0</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Before reporting problems, check=
- <a href=3D"http://wiki.x.org" target=3D"_blank">http://wiki.x.org</a></spa=
-n><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 to make sure that you have the latest ver=
-sion.</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">M=
-arkers: (--) probed, (**) from config file, (=3D=3D) default setting,</span=
-><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (++) from command line, (!!) notice, (II) in=
-formational,</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=3D"E=
-N-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (WW) warning, (EE) error, =
-(NI) not implemented, (??) unknown.</span><u></u><u></u></p><p class=3D"Mso=
-Normal"><span lang=3D"EN-US">(=3D=3D) Log file: &quot;/var/log/Xorg.0.log&q=
-uot;, Time: Fri Feb=C2=A0 1 20:08:02 2019</span><u></u><u></u></p><p class=
-=3D"MsoNormal"><span lang=3D"EN-US">(=3D=3D) Using config file: &quot;/etc/=
-X11/xorg.conf&quot;</span><u></u><u></u></p><p class=3D"MsoNormal"><span la=
-ng=3D"EN-US">(=3D=3D) Using system config directory &quot;/usr/share/X11/xo=
-rg.conf.d&quot;</span><u></u><u></u></p><p class=3D"MsoNormal"><span lang=
-=3D"EN-US">done.</span><u></u><u></u></p></div></div></blockquote><div><p c=
-lass=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal=
-">Please post the full /var/log/Xorg.log.<u></u><u></u></p></div><div><p cl=
-ass=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal"=
->Marc<u></u><u></u></p></div></div></div></div></div></blockquote></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Feb 5, 2019 =
+at 8:37 AM &lt;<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gma=
+il.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
+:1ex"><div lang=3D"EN-US"><div class=3D"gmail-m_-1839387213219743606WordSec=
+tion1"><p style=3D"margin:0in 0in 0.0001pt"><b><span style=3D"font-family:&=
+quot;Arial&quot;,sans-serif;color:black">Yocto Technical Team Minutes for F=
+eb. 5, 2019.</span></b><u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=
+=A0<u></u></p><p style=3D"margin:0in 0in 0.0001pt"><span style=3D"font-fami=
+ly:&quot;Arial&quot;,sans-serif;color:black">Attendees: Armin, David, Joshu=
+a, Randy, Tim, Richard G., Stephen, Jan-Simon, Manjukum, Tracey, Trevor, Ni=
+ck, Richard P, Mark, Kate, Michael, </span><u></u><u></u></p><p class=3D"Ms=
+oNormal"><u></u>=C2=A0<u></u></p><p style=3D"margin:0in 0in 0.0001pt"><span=
+ style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.6.1 wa=
+s released on Feb. 4, 2019.</span><u></u><u></u></p><p style=3D"margin:0in =
+0in 0.0001pt"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color=
+:black">YP 2.7 M2 was built and is in QA and is 79% done.=C2=A0 See: </span=
+><a href=3D"https://wiki.yoctoproject.org/wiki/2.7_QA_Status" target=3D"_bl=
+ank"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:rgb(17,8=
+5,204)">https://wiki.yoctoproject.org/wiki/2.7_QA_Status</span></a><u></u><=
+u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p style=3D"margin=
+:0in 0in 0.0001pt"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;=
+color:black">Armin agreed to add Ubuntu 18.4 to YP 2.6 series and we will u=
+se in for YP 2.7 </span><u></u><u></u></p><p style=3D"margin:0in 0in 0.0001=
+pt"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">We=
+ discussed that the YP 2.6 manual doesn=E2=80=99t have an upgrading to YP 2=
+.6.=C2=A0 Tracey will look into this.</span></p></div></div></blockquote><d=
+iv><br></div><div>Can I get some clarification on this.=C2=A0 Ubuntu 18.04 =
+seems to be an LTS.=C2=A0 I don&#39;t have &quot;LTS&quot; listed in the 2.=
+6 ref-manual (<a href=3D"https://yoctoproject.org/docs/2.6/ref-manual/ref-m=
+anual.html#detailed-supported-distros">https://yoctoproject.org/docs/2.6/re=
+f-manual/ref-manual.html#detailed-supported-distros</a>) but do have Ubuntu=
+ 18.04 listed as a supported distro.=C2=A0 What is meant by &quot;... the Y=
+P 2.6 manual doesn&#39;t have an upgrading to YP 2.6.&quot;?=C2=A0 - Thanks=
+ Scott</div><div> <br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div lang=3D"EN-US"><div class=3D"gmail-m_-1839387213219743606WordSectio=
+n1"><p style=3D"margin:0in 0in 0.0001pt"><u></u><u></u></p><p class=3D"MsoN=
+ormal"><u></u>=C2=A0<u></u></p><p style=3D"margin:0in 0in 0.0001pt"><span s=
+tyle=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">We discussed =
+the status of YP 2.7 upgrades and we are doing OK there.=C2=A0 We are strug=
+gling on new features YP 2.7.=C2=A0 Richard is primarily working to stabili=
+ze the autobuilder to produce an automated QA report to allow QA to transit=
+ion from Intel. </span><u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=
+=A0<u></u></p><p style=3D"margin:0in 0in 0.0001pt"><span style=3D"font-fami=
+ly:&quot;Arial&quot;,sans-serif;color:black">Richard discussed maintainers =
+of OE-Core.=C2=A0 AUH is sending requests but not getting feedback. </span>=
+<u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p style=
+=3D"margin:0in 0in 0.0001pt"><span style=3D"font-family:&quot;Arial&quot;,s=
+ans-serif;color:black">Richard discussed that we have issues with some prod=
+ucts and need support from the community to fix.</span><u></u><u></u></p><p=
+ class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p style=3D"margin:0in 0in 0.0=
+001pt"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black"=
+>Tim discussed ptest issues Richard has identified.</span><u></u><u></u></p=
+><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p style=3D"margin:0in 0in =
+0.0001pt"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:bla=
+ck">Richard asked if there were ideas about how to better communicate with =
+the community. No specific suggestions.</span><u></u><u></u></p><p class=3D=
+"MsoNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal">Thanks,<u></u><u=
+></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNorm=
+al" style=3D"break-after:avoid"><b><i><span style=3D"font-size:16pt;font-fa=
+mily:&quot;Times New Roman&quot;,serif;color:purple">Stephen K. Jolley</spa=
+n></i></b><b><i><span style=3D"font-size:16pt;font-family:&quot;Tahoma&quot=
+;,sans-serif;color:purple"><u></u><u></u></span></i></b></p><p class=3D"Mso=
+Normal"><b><span style=3D"font-size:8pt;font-family:&quot;Courier New&quot;=
+;color:blue">Yocto Project Project Manager<u></u><u></u></span></b></p><p c=
+lass=3D"MsoNormal"><span style=3D"font-size:9pt;font-family:Wingdings;color=
+:black">(</span><span style=3D"font-size:9pt;font-family:&quot;MS Sans Seri=
+f&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0 </span><b><span style=3D"font-=
+size:8pt;font-family:&quot;Comic Sans MS&quot;;color:teal">Cell</span></b><=
+span style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;col=
+or:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font-size:9pt;font-family=
+:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span><span style=3D"font-=
+size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;color:black"><u></u><u=
+></u></span></p><p class=3D"MsoNormal"><span style=3D"font-size:9pt;font-fa=
+mily:Wingdings">* </span><b><span style=3D"font-size:8pt;font-family:&quot;=
+Comic Sans MS&quot;;color:teal" lang=3D"FR">Email</span></b><span style=3D"=
+font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;color:teal" lang=
+=3D"FR">:</span><span style=3D"font-size:9pt;font-family:&quot;MS Sans Seri=
+f&quot;,serif" lang=3D"FR">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<u><span style=3D"color:blue"><a href=
+=3D"mailto:sjolley.yp.pm@gmail.com" target=3D"_blank"><span style=3D"color:=
+rgb(5,99,193)">sjolley.yp.pm@gmail.com</span></a></span></u></span><span st=
+yle=3D"font-size:12pt;font-family:&quot;Arial&quot;,sans-serif" lang=3D"FR"=
+><u></u><u></u></span></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p></=
+div></div>-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div></div></div>
 
---000000000000cbe138058128a01e--
+--000000000000b7079d0581298b6f--
