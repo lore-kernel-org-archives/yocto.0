@@ -1,61 +1,65 @@
-Return-Path: <ken.sloat@ohmlinxelectronics.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9A1CE00BAF; Tue,  5 Feb 2019 16:09:35 -0800 (PST)
+	id 8EC8EE00BAF; Tue,  5 Feb 2019 17:22:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.54 listed in list.dnswl.org]
+	*      [209.85.160.181 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com
-	[209.85.167.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E129E00994
-	for <yocto@yoctoproject.org>; Tue,  5 Feb 2019 16:09:34 -0800 (PST)
-Received: by mail-lf1-f54.google.com with SMTP id j1so4039259lfb.10
-	for <yocto@yoctoproject.org>; Tue, 05 Feb 2019 16:09:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ohmlinx-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com
+	[209.85.160.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94C28E009AA
+	for <yocto@yoctoproject.org>; Tue,  5 Feb 2019 17:22:48 -0800 (PST)
+Received: by mail-qt1-f181.google.com with SMTP id t33so6237542qtt.4
+	for <yocto@yoctoproject.org>; Tue, 05 Feb 2019 17:22:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=yFvy5CM4wKe+LgkNGVfZPzNL74hRYCxd484s9maCp5w=;
-	b=MCEtKZwXKhozGnEvFvQ5H0a62/mCoxOkBbk7XHgdLI0ifbszUJIX6lmvIojmYuHi0o
-	qe5cg6NBC/249xTVDF3Lxri1Cfz3d0wCvncY/UuSJ6eV/AKxM7uQHSw58sJqHWlf1JhF
-	P6oS0RZDV84WveHVbVbKMPuvwci6utcuqVkhT//Od6w8NgyDxjTUJYkpz92UdksRjaqy
-	X4k9Cp0126f7tcxm0HJhPRFmkBgsLuX/sqXa7wIRE4ctxXoQg0tCS1hbirdBZW8Zz7jA
-	yR/aq09qxP8u/wotBeyv7HOrKFoxz2IRXY8N05WUvoThm4uRq8ppYd+9/E5FO11rA8nI
-	DqFg==
+	:cc; bh=Kdm/KNC7KjYZ1tpip/5VOjuouSgRCwP9NMNOeyR0EWI=;
+	b=uBpUpHgrldcUYemFUZB8hp2lt+Ewlh8UFb5pFlBK/9sajpQLV+qTqvxgBZlcVqD8Zk
+	HXCv3j9fqAjGxtszNGq7oEDpJWKauGeiM3I1a3poQgOexbOKRtw/ZBM+aIvmLAcRo4zQ
+	MMC7azMBKa0e2jZlR45tQZqV3LFilk45mDW/ND+S5md7+/oi1h3RUb3Y9Bz/WsT5fO78
+	xwDdSmJ6KSqgQgvjv/QZ48Ma9X+3LZphR3Z5zSW2+xbYxf2tSDDIG1CrT0hqANt9PLZ0
+	smdsKW9WGFlmWqnZPEqvUIcVHdDO8PNdJ6jH8TMFw18v0sUtHGQgeD9vy+5dlUeWAZCs
+	HjCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=yFvy5CM4wKe+LgkNGVfZPzNL74hRYCxd484s9maCp5w=;
-	b=TD7oKObZlVcpVHdmTYRk/UNg6380YnZvPJ4F3fZDs7uAV3mmS6Sdo99fSESbVXz9du
-	xTv8pEQD9kHBOkEqtje//n5yXiOmXHrtfkW6zcqvjk5PHuZreQ1ul4o4j7ZDjOqzlMEz
-	56y1HwY4h/g4JUsHSPMig7Mk+1hO12Uv17GYA0kSl5B8fiZW/SHSK9z+zPe1VibSwTHo
-	UYAgLngzAMdAEpadwxS89qofo1HyTblZzlLv3ynI8I2DDQ80hqwcB3VGGTj934NmIbvc
-	nicxpEKwu9S7/BBhGgMvJQW9VMoCteSngxW69umXGlCBPVN2nd4ZJi/EcbBw5Pc79mKh
-	mznQ==
-X-Gm-Message-State: AHQUAuY+mRNbLKMlA/8VDuMT1eRGB/w6G5eYLTwzjkFUX71MMoc26x7j
-	MqaPW5L7IHiAqr0i0hP/UyhVdApAMr8pzffLf0HglQ==
-X-Google-Smtp-Source: AHgI3IaGF+WFZtFjMzZRX6bChhHDwCdjVfQN5bVdQZEi/cnWRr201l8Hw+muiZ+1HECqMo4898mkfoVCyRqjBjcwfpU=
-X-Received: by 2002:ac2:538a:: with SMTP id g10mr4922557lfh.70.1549411773143; 
-	Tue, 05 Feb 2019 16:09:33 -0800 (PST)
+	bh=Kdm/KNC7KjYZ1tpip/5VOjuouSgRCwP9NMNOeyR0EWI=;
+	b=HF5NHsq6nFTIZRXIXhYwQLSxTSypFdfvL06O4+ufnSeZnOTDqN3jgs7gpAoIbIsCgU
+	G4F35BvNKwEdEDQM4KsZinkZulTOjMBQOupz068SDLfKf6SnvRRvOu1qdUwKThxkVAfw
+	NW722TSoZ18seS4W3Hwvknpd1su0FcFCO2zhkeT2RV8JxWMfBJLws5sJDpD8DZnYvsoO
+	GKH80oGdYiEsMAW3j9WLkVb0Zq2U/yajHGwfD+6R8iwwfhy+MkU53CH0vkjW43HtWRma
+	x4N+YJehigQjQAesiCEZ5xHfCfpOQM+ujWjQxooBI+zPEBhE0dF3v+4vkxWvZ09MFIxA
+	oqqQ==
+X-Gm-Message-State: AHQUAuaKbKVPAGM3KiHt1tL+7rJrre8SPwkVx1HwjhkF0Maq1Qhn+RFX
+	6EsFfWCa2ObEet9Ma5/nMYmgy96TOAp1o7GW5rc=
+X-Google-Smtp-Source: AHgI3IZ8oG4MGZpb9FqHzOAx5WTu846MFAwpUz7kRRlmlIFsJnMj/KSBvoe1P5nc44qEZgbWkJ9sLBV1Q7GHySrOjjc=
+X-Received: by 2002:aed:3a22:: with SMTP id n31mr5937518qte.29.1549416167777; 
+	Tue, 05 Feb 2019 17:22:47 -0800 (PST)
 MIME-Version: 1.0
 References: <CAPo_4QCE-N-tVUQhOF_Q3f18306TqXSrT+QOSO_Yg2C3Uo5ghw@mail.gmail.com>
 	<4cbbfed2-f3cb-c2f2-10de-586c27b63b2c@windriver.com>
 	<CAPo_4QDzJCtRvytauoWhixKSV7EfL4h2LKrZGQuKRF3pZF_Now@mail.gmail.com>
-	<4a1f4eae-e7cc-ccb3-40ec-1ad700243455@gmail.com>
-In-Reply-To: <4a1f4eae-e7cc-ccb3-40ec-1ad700243455@gmail.com>
-From: Ken Sloat <ken.sloat@ohmlinx.com>
-Date: Tue, 5 Feb 2019 19:09:22 -0500
-Message-ID: <CAPo_4QDWFPqZowhk+TGdOZRf_rNrhSvGZG3N+bPk-4PML1db4A@mail.gmail.com>
-To: Robert Berger <yocto.user.mailinglist@gmail.com>
+In-Reply-To: <CAPo_4QDzJCtRvytauoWhixKSV7EfL4h2LKrZGQuKRF3pZF_Now@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 5 Feb 2019 17:22:36 -0800
+Message-ID: <CAMKF1sq0y_uP6pvoK4fbPG-ty9=z1xiLnaRFO8_Ba=e-WBEwTw@mail.gmail.com>
+To: Ken Sloat <ken.sloat@ohmlinxelectronics.com>
 Cc: yocto@yoctoproject.org, Nate Drude <nate.drude@ohmlinxelectronics.com>
 Subject: Re: Proper Use of KERNEL_MODULE_AUTOLOAD variable
 X-BeenThere: yocto@yoctoproject.org
@@ -69,32 +73,203 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2019 00:09:35 -0000
+X-List-Received-Date: Wed, 06 Feb 2019 01:22:49 -0000
+Content-Type: multipart/alternative; boundary="0000000000004a2b1205812f9084"
+
+--0000000000004a2b1205812f9084
 Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Feb 4, 2019 at 10:50 AM Robert Berger
-<yocto.user.mailinglist@gmail.com> wrote:
->
-> Hi Ken,
->
-> Is there any particular reason you don't use the sample[1] for an out of
-> tree kernel module?
->
-> [1]
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-skeleton/recipes-kernel/hello-mod
->
-> Regards,
->
-> Robert
+On Sat, Feb 2, 2019 at 7:17 PM Ken Sloat <ken.sloat@ohmlinxelectronics.com>
+wrote:
 
-Hi Robert,
+> On Sat, Feb 2, 2019 at 10:03 PM Bruce Ashfield
+> <bruce.ashfield@windriver.com> wrote:
+> >
+> > On 2019-02-02 9:59 p.m., Ken Sloat wrote:
+> > > Hello,
+> > >
+> > > I have an out of tree kernel module which I want autoloaded at startup
+> > > on my system. Looking at the Yocto project manual, I see that one way
+> > > I can do this is to add the module name to the KERNEL_MODULE_AUTOLOAD
+> > > variable within my custom module recipe.
+> > >
+> > > What I have found is that the module-split class is indeed generating
+> > > the "/etc/modules-load.d/mymodule.conf" file, however this file is not
+> > > actually being installed. To be more precise it is appearing in the
+> > > "package" directory (i.e.
+> > > tmp/work/**/mymodule/package/etc/modules-load.d/mymodule.conf) but not
+> > > within the "image" directory (nor in my final rootfs).
+> > >
+> > > Is there something I'm missing in the usage of KERNEL_MODULE_AUTOLOAD?
+> > > Is the intention for this variable I add extra steps to manually
+> > > install this file in my recipe? FYI I'm using Morty.
+> >
+> > Can you provide your recipe ? It would make suggestions easier. For
+> > example, my first question is: Is the module being installed to your
+> > image via IMAGE_INSTALL, or some other similar variable ?
+> >
+> > Bruce
+> >
+> > >
+> > > Thanks,
+> > > Ken Sloat
+> > >
+> >
+>
+> Hi Bruce,
+>
+> Thanks for your quick reply. Yes the module is being installed via
+> image_install. Module is installed but generated conf file is not. See
+> recipe below:
+>
+> require mymodule.inc
+>
+> inherit module kernel-module-split
+>
+> DEPENDS = "virtual/kernel"
+>
+> EXTRA_OEMAKE_append = " \
+>     KERNELDIR=${STAGING_KERNEL_DIR} \
+>     "
+>
+> MAKE_TARGETS = "module"
+>
+> MODULE_NAME = "mymodule"
+>
+> PKG_${PN} = "kernel-module-${MODULE_NAME}"
+>
+> module_do_install() {
+>     install -d ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}
+>     install -m 0644 ${MODULE_NAME}.ko \
+>
+> ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}/${MODULE_NAME}.ko
+> }
+>
+> FILES_${PN} = " \
+>     /lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME} \
+> "
 
-We are running an older version of Yocto (Morty) for a customer. I
-redacted the recipe name for the example I posted, but the recipe is
-basically an identical copy of another recipe from newer versions of
-Poky not present in Morty.
 
-I might try to debug this more at some point, but the FILES statement
-seems to make it work. Thanks for all the help everyone, I really
-appreciate it.
+Your recipe is overwriting common stuff which otherwise should be provided
+by module bbclass
+I would suggest that you append to the variables instead of over writing
+them above and try to reuse
+The primitives from bbclass as much as you can for best results
 
+>
+>
+> KERNEL_MODULE_AUTOLOAD += "${MODULE_NAME}"
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--0000000000004a2b1205812f9084
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Sat,=
+ Feb 2, 2019 at 7:17 PM Ken Sloat &lt;<a href=3D"mailto:ken.sloat@ohmlinxel=
+ectronics.com">ken.sloat@ohmlinxelectronics.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
+ccc solid;padding-left:1ex">On Sat, Feb 2, 2019 at 10:03 PM Bruce Ashfield<=
+br>
+&lt;<a href=3D"mailto:bruce.ashfield@windriver.com" target=3D"_blank">bruce=
+.ashfield@windriver.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; On 2019-02-02 9:59 p.m., Ken Sloat wrote:<br>
+&gt; &gt; Hello,<br>
+&gt; &gt;<br>
+&gt; &gt; I have an out of tree kernel module which I want autoloaded at st=
+artup<br>
+&gt; &gt; on my system. Looking at the Yocto project manual, I see that one=
+ way<br>
+&gt; &gt; I can do this is to add the module name to the KERNEL_MODULE_AUTO=
+LOAD<br>
+&gt; &gt; variable within my custom module recipe.<br>
+&gt; &gt;<br>
+&gt; &gt; What I have found is that the module-split class is indeed genera=
+ting<br>
+&gt; &gt; the &quot;/etc/modules-load.d/mymodule.conf&quot; file, however t=
+his file is not<br>
+&gt; &gt; actually being installed. To be more precise it is appearing in t=
+he<br>
+&gt; &gt; &quot;package&quot; directory (i.e.<br>
+&gt; &gt; tmp/work/**/mymodule/package/etc/modules-load.d/mymodule.conf) bu=
+t not<br>
+&gt; &gt; within the &quot;image&quot; directory (nor in my final rootfs).<=
+br>
+&gt; &gt;<br>
+&gt; &gt; Is there something I&#39;m missing in the usage of KERNEL_MODULE_=
+AUTOLOAD?<br>
+&gt; &gt; Is the intention for this variable I add extra steps to manually<=
+br>
+&gt; &gt; install this file in my recipe? FYI I&#39;m using Morty.<br>
+&gt;<br>
+&gt; Can you provide your recipe ? It would make suggestions easier. For<br=
+>
+&gt; example, my first question is: Is the module being installed to your<b=
+r>
+&gt; image via IMAGE_INSTALL, or some other similar variable ?<br>
+&gt;<br>
+&gt; Bruce<br>
+&gt;<br>
+&gt; &gt;<br>
+&gt; &gt; Thanks,<br>
+&gt; &gt; Ken Sloat<br>
+&gt; &gt;<br>
+&gt;<br>
+<br>
+Hi Bruce,<br>
+<br>
+Thanks for your quick reply. Yes the module is being installed via<br>
+image_install. Module is installed but generated conf file is not. See<br>
+recipe below:<br>
+<br>
+require mymodule.inc<br>
+<br>
+inherit module kernel-module-split<br>
+<br>
+DEPENDS =3D &quot;virtual/kernel&quot;<br>
+<br>
+EXTRA_OEMAKE_append =3D &quot; \<br>
+=C2=A0 =C2=A0 KERNELDIR=3D${STAGING_KERNEL_DIR} \<br>
+=C2=A0 =C2=A0 &quot;<br>
+<br>
+MAKE_TARGETS =3D &quot;module&quot;<br>
+<br>
+MODULE_NAME =3D &quot;mymodule&quot;<br>
+<br>
+PKG_${PN} =3D &quot;kernel-module-${MODULE_NAME}&quot;<br>
+<br>
+module_do_install() {<br>
+=C2=A0 =C2=A0 install -d ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE=
+_NAME}<br>
+=C2=A0 =C2=A0 install -m 0644 ${MODULE_NAME}.ko \<br>
+=C2=A0 =C2=A0 ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}/${MO=
+DULE_NAME}.ko<br>
+}<br>
+<br>
+FILES_${PN} =3D &quot; \<br>
+=C2=A0 =C2=A0 /lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME} \<br>
+&quot;</blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">Your recip=
+e is overwriting common stuff which otherwise should be provided by module =
+bbclass=C2=A0</div><div dir=3D"auto">I would suggest that you append to the=
+ variables instead of over writing them above and try to reuse</div><div di=
+r=3D"auto">The primitives from bbclass as much as you can for best results=
+=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex"><br>
+<br>
+KERNEL_MODULE_AUTOLOAD +=3D &quot;${MODULE_NAME}&quot;<br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div></div>
+
+--0000000000004a2b1205812f9084--
