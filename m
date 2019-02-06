@@ -1,65 +1,38 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <yocto@emagii.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8EC8EE00BAF; Tue,  5 Feb 2019 17:22:49 -0800 (PST)
+	id 53B96E00BFB; Wed,  6 Feb 2019 06:40:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	MIME_QP_LONG_LINE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.181 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [81.236.60.156 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com
-	[209.85.160.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94C28E009AA
-	for <yocto@yoctoproject.org>; Tue,  5 Feb 2019 17:22:48 -0800 (PST)
-Received: by mail-qt1-f181.google.com with SMTP id t33so6237542qtt.4
-	for <yocto@yoctoproject.org>; Tue, 05 Feb 2019 17:22:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=Kdm/KNC7KjYZ1tpip/5VOjuouSgRCwP9NMNOeyR0EWI=;
-	b=uBpUpHgrldcUYemFUZB8hp2lt+Ewlh8UFb5pFlBK/9sajpQLV+qTqvxgBZlcVqD8Zk
-	HXCv3j9fqAjGxtszNGq7oEDpJWKauGeiM3I1a3poQgOexbOKRtw/ZBM+aIvmLAcRo4zQ
-	MMC7azMBKa0e2jZlR45tQZqV3LFilk45mDW/ND+S5md7+/oi1h3RUb3Y9Bz/WsT5fO78
-	xwDdSmJ6KSqgQgvjv/QZ48Ma9X+3LZphR3Z5zSW2+xbYxf2tSDDIG1CrT0hqANt9PLZ0
-	smdsKW9WGFlmWqnZPEqvUIcVHdDO8PNdJ6jH8TMFw18v0sUtHGQgeD9vy+5dlUeWAZCs
-	HjCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=Kdm/KNC7KjYZ1tpip/5VOjuouSgRCwP9NMNOeyR0EWI=;
-	b=HF5NHsq6nFTIZRXIXhYwQLSxTSypFdfvL06O4+ufnSeZnOTDqN3jgs7gpAoIbIsCgU
-	G4F35BvNKwEdEDQM4KsZinkZulTOjMBQOupz068SDLfKf6SnvRRvOu1qdUwKThxkVAfw
-	NW722TSoZ18seS4W3Hwvknpd1su0FcFCO2zhkeT2RV8JxWMfBJLws5sJDpD8DZnYvsoO
-	GKH80oGdYiEsMAW3j9WLkVb0Zq2U/yajHGwfD+6R8iwwfhy+MkU53CH0vkjW43HtWRma
-	x4N+YJehigQjQAesiCEZ5xHfCfpOQM+ujWjQxooBI+zPEBhE0dF3v+4vkxWvZ09MFIxA
-	oqqQ==
-X-Gm-Message-State: AHQUAuaKbKVPAGM3KiHt1tL+7rJrre8SPwkVx1HwjhkF0Maq1Qhn+RFX
-	6EsFfWCa2ObEet9Ma5/nMYmgy96TOAp1o7GW5rc=
-X-Google-Smtp-Source: AHgI3IZ8oG4MGZpb9FqHzOAx5WTu846MFAwpUz7kRRlmlIFsJnMj/KSBvoe1P5nc44qEZgbWkJ9sLBV1Q7GHySrOjjc=
-X-Received: by 2002:aed:3a22:: with SMTP id n31mr5937518qte.29.1549416167777; 
-	Tue, 05 Feb 2019 17:22:47 -0800 (PST)
-MIME-Version: 1.0
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+Received: from v-smtpout3.han.skanova.net (v-smtpout3.han.skanova.net
+	[81.236.60.156])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70456E00B81
+	for <yocto@yoctoproject.org>; Wed,  6 Feb 2019 06:40:24 -0800 (PST)
+Received: from [90.236.121.192] ([90.236.121.192]) by cmsmtp with ESMTPA
+	id rONBgmWIxHNTSrONBg6orb; Wed, 06 Feb 2019 15:40:22 +0100
+Mime-Version: 1.0 (1.0)
+From: Ulf Samuelsson <yocto@emagii.com>
+X-Mailer: iPad Mail (15F79)
+In-Reply-To: <CAMKF1sq0y_uP6pvoK4fbPG-ty9=z1xiLnaRFO8_Ba=e-WBEwTw@mail.gmail.com>
+Date: Wed, 6 Feb 2019 15:40:20 +0100
+Message-Id: <8B114A44-9A3D-4189-83A6-D590E6E275BD@emagii.com>
 References: <CAPo_4QCE-N-tVUQhOF_Q3f18306TqXSrT+QOSO_Yg2C3Uo5ghw@mail.gmail.com>
 	<4cbbfed2-f3cb-c2f2-10de-586c27b63b2c@windriver.com>
 	<CAPo_4QDzJCtRvytauoWhixKSV7EfL4h2LKrZGQuKRF3pZF_Now@mail.gmail.com>
-In-Reply-To: <CAPo_4QDzJCtRvytauoWhixKSV7EfL4h2LKrZGQuKRF3pZF_Now@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 5 Feb 2019 17:22:36 -0800
-Message-ID: <CAMKF1sq0y_uP6pvoK4fbPG-ty9=z1xiLnaRFO8_Ba=e-WBEwTw@mail.gmail.com>
-To: Ken Sloat <ken.sloat@ohmlinxelectronics.com>
+	<CAMKF1sq0y_uP6pvoK4fbPG-ty9=z1xiLnaRFO8_Ba=e-WBEwTw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-CMAE-Envelope: MS4wfIPGvXol7rPwnsESiUb+VEqic8frUVGt2Eu2RfhWKdx8O4KkoEg+Duy+Res+NTIhwU8O+5Ftbc7zmoYSwYJ2wqhQeIj2hGwtFdPUcWvE1RjXZZCcsTMj
+	wUUmZteJ0kDtMB+97vUNdZ6Y+UggAWRq0dwhf0MvIfJoWygO+vlyXh1DO7ao6DGa3NxB2i/QuyzI+kGLasyIt3jzn6Uh61ab3zhMyWBaoxxbS3ipGXN6QzEp
+	T+ky7G4Ifw4apWVe9eUvyDMDiN30GSSYhzBQMme9E36SP0cE1hdeGQkZAT4JP189Kj5vMQUNgfPLOhRBql/+mg==
 Cc: yocto@yoctoproject.org, Nate Drude <nate.drude@ohmlinxelectronics.com>
 Subject: Re: Proper Use of KERNEL_MODULE_AUTOLOAD variable
 X-BeenThere: yocto@yoctoproject.org
@@ -73,145 +46,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2019 01:22:49 -0000
-Content-Type: multipart/alternative; boundary="0000000000004a2b1205812f9084"
+X-List-Received-Date: Wed, 06 Feb 2019 14:40:27 -0000
+Content-Type: multipart/alternative;
+	boundary=Apple-Mail-62F3E4C9-1461-4DCD-813C-C040A599A164
+Content-Transfer-Encoding: 7bit
 
---0000000000004a2b1205812f9084
-Content-Type: text/plain; charset="UTF-8"
+--Apple-Mail-62F3E4C9-1461-4DCD-813C-C040A599A164
+Content-Type: text/plain;
+	charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Feb 2, 2019 at 7:17 PM Ken Sloat <ken.sloat@ohmlinxelectronics.com>
-wrote:
+Maybe it would be good to have a working example in the tree.
 
-> On Sat, Feb 2, 2019 at 10:03 PM Bruce Ashfield
-> <bruce.ashfield@windriver.com> wrote:
-> >
-> > On 2019-02-02 9:59 p.m., Ken Sloat wrote:
-> > > Hello,
-> > >
-> > > I have an out of tree kernel module which I want autoloaded at startup
-> > > on my system. Looking at the Yocto project manual, I see that one way
-> > > I can do this is to add the module name to the KERNEL_MODULE_AUTOLOAD
-> > > variable within my custom module recipe.
-> > >
-> > > What I have found is that the module-split class is indeed generating
-> > > the "/etc/modules-load.d/mymodule.conf" file, however this file is not
-> > > actually being installed. To be more precise it is appearing in the
-> > > "package" directory (i.e.
-> > > tmp/work/**/mymodule/package/etc/modules-load.d/mymodule.conf) but not
-> > > within the "image" directory (nor in my final rootfs).
-> > >
-> > > Is there something I'm missing in the usage of KERNEL_MODULE_AUTOLOAD?
-> > > Is the intention for this variable I add extra steps to manually
-> > > install this file in my recipe? FYI I'm using Morty.
-> >
-> > Can you provide your recipe ? It would make suggestions easier. For
-> > example, my first question is: Is the module being installed to your
-> > image via IMAGE_INSTALL, or some other similar variable ?
-> >
-> > Bruce
-> >
-> > >
-> > > Thanks,
-> > > Ken Sloat
-> > >
-> >
->
-> Hi Bruce,
->
-> Thanks for your quick reply. Yes the module is being installed via
-> image_install. Module is installed but generated conf file is not. See
-> recipe below:
->
-> require mymodule.inc
->
-> inherit module kernel-module-split
->
-> DEPENDS = "virtual/kernel"
->
-> EXTRA_OEMAKE_append = " \
->     KERNELDIR=${STAGING_KERNEL_DIR} \
->     "
->
-> MAKE_TARGETS = "module"
->
-> MODULE_NAME = "mymodule"
->
-> PKG_${PN} = "kernel-module-${MODULE_NAME}"
->
-> module_do_install() {
->     install -d ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}
->     install -m 0644 ${MODULE_NAME}.ko \
->
-> ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}/${MODULE_NAME}.ko
-> }
->
-> FILES_${PN} = " \
->     /lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME} \
-> "
+Best Regards,
+Ulf Samuelsson
 
+> 6 feb. 2019 kl. 02:22 skrev Khem Raj <raj.khem@gmail.com>:
+>=20
+>=20
+>=20
+>> On Sat, Feb 2, 2019 at 7:17 PM Ken Sloat <ken.sloat@ohmlinxelectronics.co=
+m> wrote:
+>> On Sat, Feb 2, 2019 at 10:03 PM Bruce Ashfield
+>> <bruce.ashfield@windriver.com> wrote:
+>> >
+>> > On 2019-02-02 9:59 p.m., Ken Sloat wrote:
+>> > > Hello,
+>> > >
+>> > > I have an out of tree kernel module which I want autoloaded at startu=
+p
+>> > > on my system. Looking at the Yocto project manual, I see that one way=
 
-Your recipe is overwriting common stuff which otherwise should be provided
-by module bbclass
-I would suggest that you append to the variables instead of over writing
-them above and try to reuse
-The primitives from bbclass as much as you can for best results
+>> > > I can do this is to add the module name to the KERNEL_MODULE_AUTOLOAD=
 
->
->
-> KERNEL_MODULE_AUTOLOAD += "${MODULE_NAME}"
-> --
+>> > > variable within my custom module recipe.
+>> > >
+>> > > What I have found is that the module-split class is indeed generating=
+
+>> > > the "/etc/modules-load.d/mymodule.conf" file, however this file is no=
+t
+>> > > actually being installed. To be more precise it is appearing in the
+>> > > "package" directory (i.e.
+>> > > tmp/work/**/mymodule/package/etc/modules-load.d/mymodule.conf) but no=
+t
+>> > > within the "image" directory (nor in my final rootfs).
+>> > >
+>> > > Is there something I'm missing in the usage of KERNEL_MODULE_AUTOLOAD=
+?
+>> > > Is the intention for this variable I add extra steps to manually
+>> > > install this file in my recipe? FYI I'm using Morty.
+>> >
+>> > Can you provide your recipe ? It would make suggestions easier. For
+>> > example, my first question is: Is the module being installed to your
+>> > image via IMAGE_INSTALL, or some other similar variable ?
+>> >
+>> > Bruce
+>> >
+>> > >
+>> > > Thanks,
+>> > > Ken Sloat
+>> > >
+>> >
+>>=20
+>> Hi Bruce,
+>>=20
+>> Thanks for your quick reply. Yes the module is being installed via
+>> image_install. Module is installed but generated conf file is not. See
+>> recipe below:
+>>=20
+>> require mymodule.inc
+>>=20
+>> inherit module kernel-module-split
+>>=20
+>> DEPENDS =3D "virtual/kernel"
+>>=20
+>> EXTRA_OEMAKE_append =3D " \
+>>     KERNELDIR=3D${STAGING_KERNEL_DIR} \
+>>     "
+>>=20
+>> MAKE_TARGETS =3D "module"
+>>=20
+>> MODULE_NAME =3D "mymodule"
+>>=20
+>> PKG_${PN} =3D "kernel-module-${MODULE_NAME}"
+>>=20
+>> module_do_install() {
+>>     install -d ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}
+>>     install -m 0644 ${MODULE_NAME}.ko \
+>>     ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}/${MODULE_NAM=
+E}.ko
+>> }
+>>=20
+>> FILES_${PN} =3D " \
+>>     /lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME} \
+>> "
+>=20
+> Your recipe is overwriting common stuff which otherwise should be provided=
+ by module bbclass=20
+> I would suggest that you append to the variables instead of over writing t=
+hem above and try to reuse
+> The primitives from bbclass as much as you can for best results=20
+>>=20
+>>=20
+>> KERNEL_MODULE_AUTOLOAD +=3D "${MODULE_NAME}"
+>> --=20
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> --=20
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
 
---0000000000004a2b1205812f9084
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--Apple-Mail-62F3E4C9-1461-4DCD-813C-C040A599A164
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Sat,=
- Feb 2, 2019 at 7:17 PM Ken Sloat &lt;<a href=3D"mailto:ken.sloat@ohmlinxel=
-ectronics.com">ken.sloat@ohmlinxelectronics.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
-ccc solid;padding-left:1ex">On Sat, Feb 2, 2019 at 10:03 PM Bruce Ashfield<=
-br>
-&lt;<a href=3D"mailto:bruce.ashfield@windriver.com" target=3D"_blank">bruce=
-.ashfield@windriver.com</a>&gt; wrote:<br>
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto">Maybe it would be good to have a working example in the tree.<br><br><div>Best Regards,<div>Ulf Samuelsson</div></div><div><br>6 feb. 2019 kl. 02:22 skrev Khem Raj &lt;<a href="mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt;:<br><br></div><blockquote type="cite"><div><div><br></div><div><br><div class="gmail_quote"><div dir="ltr">On Sat, Feb 2, 2019 at 7:17 PM Ken Sloat &lt;<a href="mailto:ken.sloat@ohmlinxelectronics.com">ken.sloat@ohmlinxelectronics.com</a>&gt; wrote:<br></div><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On Sat, Feb 2, 2019 at 10:03 PM Bruce Ashfield<br>
+&lt;<a href="mailto:bruce.ashfield@windriver.com" target="_blank">bruce.ashfield@windriver.com</a>&gt; wrote:<br>
 &gt;<br>
 &gt; On 2019-02-02 9:59 p.m., Ken Sloat wrote:<br>
 &gt; &gt; Hello,<br>
 &gt; &gt;<br>
-&gt; &gt; I have an out of tree kernel module which I want autoloaded at st=
-artup<br>
-&gt; &gt; on my system. Looking at the Yocto project manual, I see that one=
- way<br>
-&gt; &gt; I can do this is to add the module name to the KERNEL_MODULE_AUTO=
-LOAD<br>
+&gt; &gt; I have an out of tree kernel module which I want autoloaded at startup<br>
+&gt; &gt; on my system. Looking at the Yocto project manual, I see that one way<br>
+&gt; &gt; I can do this is to add the module name to the KERNEL_MODULE_AUTOLOAD<br>
 &gt; &gt; variable within my custom module recipe.<br>
 &gt; &gt;<br>
-&gt; &gt; What I have found is that the module-split class is indeed genera=
-ting<br>
-&gt; &gt; the &quot;/etc/modules-load.d/mymodule.conf&quot; file, however t=
-his file is not<br>
-&gt; &gt; actually being installed. To be more precise it is appearing in t=
-he<br>
-&gt; &gt; &quot;package&quot; directory (i.e.<br>
-&gt; &gt; tmp/work/**/mymodule/package/etc/modules-load.d/mymodule.conf) bu=
-t not<br>
-&gt; &gt; within the &quot;image&quot; directory (nor in my final rootfs).<=
-br>
+&gt; &gt; What I have found is that the module-split class is indeed generating<br>
+&gt; &gt; the "/etc/modules-load.d/mymodule.conf" file, however this file is not<br>
+&gt; &gt; actually being installed. To be more precise it is appearing in the<br>
+&gt; &gt; "package" directory (i.e.<br>
+&gt; &gt; tmp/work/**/mymodule/package/etc/modules-load.d/mymodule.conf) but not<br>
+&gt; &gt; within the "image" directory (nor in my final rootfs).<br>
 &gt; &gt;<br>
-&gt; &gt; Is there something I&#39;m missing in the usage of KERNEL_MODULE_=
-AUTOLOAD?<br>
-&gt; &gt; Is the intention for this variable I add extra steps to manually<=
-br>
-&gt; &gt; install this file in my recipe? FYI I&#39;m using Morty.<br>
+&gt; &gt; Is there something I'm missing in the usage of KERNEL_MODULE_AUTOLOAD?<br>
+&gt; &gt; Is the intention for this variable I add extra steps to manually<br>
+&gt; &gt; install this file in my recipe? FYI I'm using Morty.<br>
 &gt;<br>
-&gt; Can you provide your recipe ? It would make suggestions easier. For<br=
->
-&gt; example, my first question is: Is the module being installed to your<b=
-r>
+&gt; Can you provide your recipe ? It would make suggestions easier. For<br>
+&gt; example, my first question is: Is the module being installed to your<br>
 &gt; image via IMAGE_INSTALL, or some other similar variable ?<br>
 &gt;<br>
 &gt; Bruce<br>
@@ -232,44 +209,35 @@ require mymodule.inc<br>
 <br>
 inherit module kernel-module-split<br>
 <br>
-DEPENDS =3D &quot;virtual/kernel&quot;<br>
+DEPENDS = "virtual/kernel"<br>
 <br>
-EXTRA_OEMAKE_append =3D &quot; \<br>
-=C2=A0 =C2=A0 KERNELDIR=3D${STAGING_KERNEL_DIR} \<br>
-=C2=A0 =C2=A0 &quot;<br>
+EXTRA_OEMAKE_append = " \<br>
+&nbsp; &nbsp; KERNELDIR=${STAGING_KERNEL_DIR} \<br>
+&nbsp; &nbsp; "<br>
 <br>
-MAKE_TARGETS =3D &quot;module&quot;<br>
+MAKE_TARGETS = "module"<br>
 <br>
-MODULE_NAME =3D &quot;mymodule&quot;<br>
+MODULE_NAME = "mymodule"<br>
 <br>
-PKG_${PN} =3D &quot;kernel-module-${MODULE_NAME}&quot;<br>
+PKG_${PN} = "kernel-module-${MODULE_NAME}"<br>
 <br>
 module_do_install() {<br>
-=C2=A0 =C2=A0 install -d ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE=
-_NAME}<br>
-=C2=A0 =C2=A0 install -m 0644 ${MODULE_NAME}.ko \<br>
-=C2=A0 =C2=A0 ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}/${MO=
-DULE_NAME}.ko<br>
+&nbsp; &nbsp; install -d ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}<br>
+&nbsp; &nbsp; install -m 0644 ${MODULE_NAME}.ko \<br>
+&nbsp; &nbsp; ${D}/lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME}/${MODULE_NAME}.ko<br>
 }<br>
 <br>
-FILES_${PN} =3D &quot; \<br>
-=C2=A0 =C2=A0 /lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME} \<br>
-&quot;</blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">Your recip=
-e is overwriting common stuff which otherwise should be provided by module =
-bbclass=C2=A0</div><div dir=3D"auto">I would suggest that you append to the=
- variables instead of over writing them above and try to reuse</div><div di=
-r=3D"auto">The primitives from bbclass as much as you can for best results=
-=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
-rder-left:1px #ccc solid;padding-left:1ex"><br>
+FILES_${PN} = " \<br>
+&nbsp; &nbsp; /lib/modules/${KERNEL_VERSION}/kernel/${MODULE_NAME} \<br>
+"</blockquote><div dir="auto"><br></div><div dir="auto">Your recipe is overwriting common stuff which otherwise should be provided by module bbclass&nbsp;</div><div dir="auto">I would suggest that you append to the variables instead of over writing them above and try to reuse</div><div dir="auto">The primitives from bbclass as much as you can for best results&nbsp;</div><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
 <br>
-KERNEL_MODULE_AUTOLOAD +=3D &quot;${MODULE_NAME}&quot;<br>
+KERNEL_MODULE_AUTOLOAD += "${MODULE_NAME}"<br>
 -- <br>
 _______________________________________________<br>
 yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<a href="mailto:yocto@yoctoproject.org" target="_blank">yocto@yoctoproject.org</a><br>
+<a href="https://lists.yoctoproject.org/listinfo/yocto" rel="noreferrer" target="_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
 </blockquote></div></div>
+</div></blockquote><blockquote type="cite"><div><span>-- </span><br><span>_______________________________________________</span><br><span>yocto mailing list</span><br><span><a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a></span><br><span><a href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a></span><br></div></blockquote></body></html>
 
---0000000000004a2b1205812f9084--
+--Apple-Mail-62F3E4C9-1461-4DCD-813C-C040A599A164--
