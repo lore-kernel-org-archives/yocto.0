@@ -1,51 +1,73 @@
-Return-Path: <pascal.bach@siemens.com>
+Return-Path: <prvs=93465f2b0=Mikko.Rapeli@bmw.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53337E00C45; Wed,  6 Feb 2019 23:58:55 -0800 (PST)
+	id AC382E00C46; Thu,  7 Feb 2019 00:04:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.35.17.28 listed in list.dnswl.org]
-X-Greylist: delayed 337 seconds by postgrey-1.32 at yocto-www;
-	Wed, 06 Feb 2019 23:58:53 PST
-Received: from goliath.siemens.de (goliath.siemens.de [192.35.17.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCB5AE00BAB
-	for <yocto@yoctoproject.org>; Wed,  6 Feb 2019 23:58:53 -0800 (PST)
-Received: from mail1.sbs.de (mail1.sbs.de [192.129.41.35])
-	by goliath.siemens.de (8.15.2/8.15.2) with ESMTPS id x177rDci012926
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK); 
-	Thu, 7 Feb 2019 08:53:13 +0100
-Received: from DEFTHW99ERLMSX.ww902.siemens.net
-	(defthw99erlmsx.ww902.siemens.net [139.22.70.136])
-	by mail1.sbs.de (8.15.2/8.15.2) with ESMTPS id x177rCNE015756
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK); 
-	Thu, 7 Feb 2019 08:53:12 +0100
-Received: from DENBGAT9ERPMSX.ww902.siemens.net (139.22.70.194) by
-	DEFTHW99ERLMSX.ww902.siemens.net (139.22.70.136) with Microsoft SMTP
-	Server (TLS) id 14.3.408.0; Thu, 7 Feb 2019 08:53:13 +0100
-Received: from DENBGAT9EL2MSX.ww902.siemens.net ([169.254.9.6]) by
-	DENBGAT9ERPMSX.ww902.siemens.net ([139.22.70.194]) with mapi id
-	14.03.0415.000; Thu, 7 Feb 2019 08:53:12 +0100
-From: "Bach, Pascal" <pascal.bach@siemens.com>
-To: Eric Schwarz <eas@sw-optimization.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] SDK install w/ CMake
-Thread-Index: AQHUuhLzDbqXvQRawkiO7SaTqBeCt6XT/t7Q
-Date: Thu, 7 Feb 2019 07:53:11 +0000
-Message-ID: <355BE46A91031048906B695426A8D8E61C3DF156@DENBGAT9EL2MSX.ww902.siemens.net>
-References: <40b1945719475701252bad02ee39be4d@sw-optimization.com>
-In-Reply-To: <40b1945719475701252bad02ee39be4d@sw-optimization.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [68.232.139.67 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Thu, 07 Feb 2019 00:04:39 PST
+Received: from esa5.bmw.c3s2.iphmx.com (esa5.bmw.c3s2.iphmx.com
+	[68.232.139.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E588AE00C1E
+	for <yocto@yoctoproject.org>; Thu,  7 Feb 2019 00:04:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+	t=1549526680; x=1581062680;
+	h=from:to:cc:subject:date:message-id:references:
+	in-reply-to:content-id:content-transfer-encoding: mime-version;
+	bh=u8nccqm7ZVhxizJyE6646EeaDvGDM+KygMQA6TJHbws=;
+	b=Zw05kt2PyZTjg7l8WTvGsJmAuWmy3augDIgtDilk/vVRd+alPsaejUrJ
+	rPfFTrWAKHSXKKL6u0t802iawDeHXn7afeDg4TIshzZF6JWliqogl3wIc
+	0+4FMfP80iE5WFVWq3MqDbh7TL6QvLcWDfx8z4d0U3eaS+RGCMF04qmAv s=;
+Received: from esagw2.bmwgroup.com (HELO esagw2.muc) ([160.46.252.38]) by
+	esa5.bmw.c3s2.iphmx.com with ESMTP/TLS; 07 Feb 2019 09:03:14 +0100
+Received: from esabb1.muc ([160.50.100.31])  by esagw2.muc with ESMTP/TLS;
+	07 Feb 2019 09:03:09 +0100
+Received: from smucm10m.bmwgroup.net (HELO smucm10m.europe.bmw.corp)
+	([160.48.96.49])
+	by esabb1.muc with ESMTP/TLS; 07 Feb 2019 09:03:09 +0100
+Received: from smucm10k.europe.bmw.corp (160.48.96.47) by
+	smucm10m.europe.bmw.corp
+	(160.48.96.49) with Microsoft SMTP Server (TLS;
+	Thu, 7 Feb 2019 09:03:09 +0100
+Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
+	smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1395.000;
+	Thu, 7 Feb 2019 09:03:09 +0100
+From: <Mikko.Rapeli@bmw.de>
+To: <Matt.Schuckmann@planar.com>
+Thread-Topic: [yocto] CMake based recipes and defining CMAKE_BUILD_TYPE
+Thread-Index: AQHUvkgDVc0bTtt08kO3Rpe7lTSuEKXTOU0AgAAJXgCAAAVWAIAACDcAgAAE9QCAABAfAIAAhIGA
+Date: Thu, 7 Feb 2019 08:03:09 +0000
+Message-ID: <20190207080308.GH7474@hiutale>
+References: <1549477388545.2721@planar.com>
+	<CALbNGRQrxMp2MuLPy1newCaHRLf2BAL9uohqc_A8bPoSodtMHA@mail.gmail.com>
+	<1549490698733.2960@planar.com>
+	<CALbNGRQFycyLQALGNqRc43evigPgH8m6KatgbHSfmbfpHmfUcA@mail.gmail.com>
+	<CALbNGRSf+rO6jCgZMWA5DPb6ZOdz4Xw=U+7jesYn24vN6afFOw@mail.gmail.com>
+	<CALbNGRSFTLXtRa4Q7nAsA3dctrj3axXkbD=N3KAh71iMiMHryQ@mail.gmail.com>
+	<1549498134289.97332@planar.com>
+In-Reply-To: <1549498134289.97332@planar.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [139.22.70.48]
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [192.168.221.36]
 MIME-Version: 1.0
-Subject: Re: SDK install w/ CMake
+Cc: yocto@yoctoproject.org
+Subject: Re: CMake based recipes and defining CMAKE_BUILD_TYPE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,123 +79,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Feb 2019 07:58:55 -0000
+X-List-Received-Date: Thu, 07 Feb 2019 08:04:40 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <15C44EA1F7CA8946B7AF4448C508A760@bmwmail.corp>
 Content-Transfer-Encoding: quoted-printable
 
-Hi Eric
+Hi,
 
-I don't think your issue has something do to with CMake.
+From my experience, what CMAKE_BUILD_TYPE means varies between SW component=
+s.
+Thus I think the current approach of not setting it is correct. SW componen=
+ts
+must set their own defaults in either CMakeLists.txt or in the bitbake reci=
+pe.
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org>
-> On Behalf Of Eric Schwarz
-> Sent: Freitag, 1. Februar 2019 09:51
-> To: yocto@yoctoproject.org
-> Subject: [yocto] SDK install w/ CMake
->=20
-> Hello,
->=20
-> we have got the problem that w/ the Yocto recipe and CMake install target=
-s
-> as below always everything (headers and library or binary
-> respectively) is installed in the SDK.
-> The binary also goes into the SDK even though we just add it to
-> IMAGE_INSTALL based on a XILINX yocto build (rel-v2018.3).
+Also, building with debug info is separate from CMAKE_BUILD_TYPE. The defau=
+lt
+compile flags from yocto will include -g for debug symbols and this is prov=
+ided
+to CMake compile flags too.
 
-I'm not sure I understand what you are trying to do. If you add something t=
-o IMAGE_INSTALL it gets installed to the target.
-That usually includes binaries and libraries.
+Cheers,
 
-If you only want libraries but not binaries it's probably best to split the=
-m into multiple packages as described in https://www.yoctoproject.org/docs/=
-latest/mega-manual/mega-manual.html#package-splitting-dev-environment
-
-This way you can have the binaries in a different package like ${PN}-tools.
-
-Pascal
-
-> For sure we only want headers to be installed when "<library_name>-dev"
-> is added to TOOLCHAIN_TARGET_TASK_append and the binary should not
-> be installed at all when it is just added to IMAGE_INSTALL.
->=20
-> For sure we studied Yocto and CMake recipes from other libraries where it
-> works like pugixml but weren't able to figure out what's going wrong.
->=20
->=20
-> Yocto recipe
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=20
-> DESCRIPTION =3D "C++ reflection library"
-> SECTION =3D "libs"
-> LICENSE =3D "CLOSED"
->=20
-> SRCREV =3D "${AUTOREV}"
-> SRCBRANCH =3D "next"
-> SRC_URI =3D
-> "git://gitlab.company.de/psg/${PN}.git;branch=3D${SRCBRANCH};protocol=3Ds=
-sh
-> "
->=20
-> DEPENDS =3D "catch2"
->=20
-> inherit cmake
-> S =3D "${WORKDIR}/git"
-> FILES_${PN}-dev +=3D "${libdir}/cmake"
->=20
-> # The following are needed because the library is unversioned.
-> # See
-> https://wiki.yoctoproject.org/wiki/TipsAndTricks/Packaging_Prebuilt_Libra=
-ri
-> es#Non-versioned_Libraries
-> SOLIBS =3D ".so"
-> FILES_SOLIBSDEV =3D ""
->=20
->=20
-> CMake library install part
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
->=20
-> # Shared client library target.
-> add_library(shared SHARED $<TARGET_OBJECTS:objects>)
-> target_include_directories(shared PUBLIC
->                  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
->                  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-> )
->=20
-> set_target_properties(shared
->                  PROPERTIES
->                  ARCHIVE_OUTPUT_DIRECTORY lib/shared
->                  LIBRARY_OUTPUT_DIRECTORY lib/shared
->                  RUNTIME_OUTPUT_DIRECTORY lib/shared
->                  OUTPUT_NAME ${LIBRARY_NAME}
-> )
->=20
-> # Install target.
-> install(TARGETS shared static
->          EXPORT ${LIBRARY_NAME}-config
->          DESTINATION ${CMAKE_INSTALL_LIBDIR})
-> install(DIRECTORY include/reflect DESTINATION
-> ${CMAKE_INSTALL_INCLUDEDIR})
-> install(EXPORT ${LIBRARY_NAME}-config
->          NAMESPACE ${LIBRARY_NAME}-
->          DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${LIBRARY_NAME})
->=20
->=20
-> CMake binary install part
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D
->=20
-> install(TARGETS ${EXECUTABLE_NAME} DESTINATION
-> ${CMAKE_INSTALL_BINDIR})
->=20
->=20
-> Many thanks for any hints
-> Eric
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-Mikko=
 
