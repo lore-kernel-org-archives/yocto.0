@@ -1,54 +1,62 @@
-Return-Path: <matt.schuckmann@planar.com>
+Return-Path: <jonaskgandersson@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 059CBE00C1E; Wed,  6 Feb 2019 16:09:14 -0800 (PST)
+	id 1B79DE00C46; Wed,  6 Feb 2019 23:37:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [216.205.24.105 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from us-smtp-delivery-105.mimecast.com
-	(us-smtp-delivery-105.mimecast.com [216.205.24.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60288E0048C
-	for <yocto@yoctoproject.org>; Wed,  6 Feb 2019 16:09:13 -0800 (PST)
-X-CrossPremisesHeadersFilteredBySendConnector: MSXBEBVT32.planar.net
-Received: from webmail.planar.com (mail.planar.com [199.244.172.52]) (Using
-	TLS) by relay.mimecast.com with ESMTP id
-	us-mta-9-cARJHn1UP2-Csjffd0LwQA-1; Wed, 06 Feb 2019 19:08:56 -0500
-Received: from MSXBEBVT28.planar.net (172.16.10.28) by MSXBEBVT32.planar.net
-	(172.16.10.32) with Microsoft SMTP Server (TLS) id 15.0.1365.1;
-	Wed, 6 Feb 2019 16:08:55 -0800
-Received: from MSXBEBVT28.planar.net ([fe80::6ceb:1c1f:9e0a:3af0]) by
-	MSXBEBVT28.planar.net ([fe80::6ceb:1c1f:9e0a:3af0%12]) with mapi id
-	15.00.1365.000; Wed, 6 Feb 2019 16:08:55 -0800
-From: Matt Schuckmann <Matt.Schuckmann@planar.com>
-To: =?iso-8859-1?Q?Andreas_M=FCller?= <schnitzeltony@gmail.com>
-Thread-Topic: [yocto] CMake based recipes and defining CMAKE_BUILD_TYPE
-Thread-Index: AQHUvkgDVc0bTtt08kO3Rpe7lTSuEKXT0CwA//+Cu82AAIv6AIAACDcAgAAE9AD//4mvSQ==
-Date: Thu, 7 Feb 2019 00:08:54 +0000
-Message-ID: <1549498134289.97332@planar.com>
-References: <1549477388545.2721@planar.com>
-	<CALbNGRQrxMp2MuLPy1newCaHRLf2BAL9uohqc_A8bPoSodtMHA@mail.gmail.com>
-	<1549490698733.2960@planar.com>
-	<CALbNGRQFycyLQALGNqRc43evigPgH8m6KatgbHSfmbfpHmfUcA@mail.gmail.com>
-	<CALbNGRSf+rO6jCgZMWA5DPb6ZOdz4Xw=U+7jesYn24vN6afFOw@mail.gmail.com>,
-	<CALbNGRSFTLXtRa4Q7nAsA3dctrj3axXkbD=N3KAh71iMiMHryQ@mail.gmail.com>
-In-Reply-To: <CALbNGRSFTLXtRa4Q7nAsA3dctrj3axXkbD=N3KAh71iMiMHryQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.15.0.62]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jonaskgandersson[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.51 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
+	[209.85.208.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDBB9E00C43
+	for <yocto@yoctoproject.org>; Wed,  6 Feb 2019 23:37:01 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id a2so379247edi.0
+	for <yocto@yoctoproject.org>; Wed, 06 Feb 2019 23:37:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=NygP9qYNNy+k3Se6MrTpLRGG+79zX83G8YU9w+xGO4Y=;
+	b=dLD6w+Is2NDxUPZBWBJkDy65yuPewv0rD5ROK/R+AjCUCzchuNWIJvm2ofgtuESCV8
+	PfBRwZLjvhaC2QQWr1s3suEXvkYqjictp2oNzvZZqftdrR+pbmr9OQ55wS0vgWCMQFRs
+	PhN91bRUdNUyGFQUK7iVJVNaIzIBlesxwS4Hv9l7C1fIlm7pLZ/olnTsylY4m8hGLtc+
+	clF2TFJCa7m6R8o0QWepQqGIwgGgyo0xNHcPM5zidCbkiPLqyXfVjxecVke+Q/QF33Gt
+	u5EL9/W7ROOVVBR2U2L2PSMmIlVng7aI6Jttn3qVU85UOuWeGD2jMheocdwise6FuLyq
+	7Ezg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=NygP9qYNNy+k3Se6MrTpLRGG+79zX83G8YU9w+xGO4Y=;
+	b=RT4TqIWsmMZuw5auZ1ly95bjkYVc5L+z4vas81inD9LQTIunc7WQeGNLTwgoAhnibp
+	XDX2UfkQtayfpTvBcMssoGFEoafLjtkaFIU7Wm2kKI+FwhrFgs/eCMMoMsCXMF/T+CTr
+	t1coJdHTvNUsJFHJylmcRI3wqEYgcixDMXMuKnuYwj6k0y9RFrPmWOqRgYD/xT9cbKEm
+	Qj8Z+PzRxGPPDQfGw1CwFPCaqBcQ1lxRwdOw6EJqgVyr0RwDZU2O7SvIrIP1qvmVkic7
+	6+ryACBac6UjlRXI/SydnC+eyvi0tP0g90Mfe16jH3IO/R/tYxYIA48URMB0/O9vt420
+	l+0g==
+X-Gm-Message-State: AHQUAuabCadiNYetxEQWf/ntUHBfI3nzqh6bj+RxT6N8LFRhelInmV5w
+	ZmBJcQJb8A/kByXWMRrjc2nzvNQmIXQdGd2iFbFIJqx4
+X-Google-Smtp-Source: AHgI3Ibds58o7RunCaPf1NBXbd7dlW7kEXYxmMoJ0nk4WzLVBmfiqCgmR+1PmbseVwho5TYM1DgWq/eoO5jv8y6elhU=
+X-Received: by 2002:a17:906:8596:: with SMTP id
+	v22mr10579968ejx.41.1549525020821; 
+	Wed, 06 Feb 2019 23:37:00 -0800 (PST)
 MIME-Version: 1.0
-X-OrganizationHeadersPreserved: MSXBEBVT32.planar.net
-X-MC-Unique: cARJHn1UP2-Csjffd0LwQA-1
-X-Mimecast-Spam-Score: 0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: CMake based recipes and defining CMAKE_BUILD_TYPE
+From: Jonas Andersson <jonaskgandersson@gmail.com>
+Date: Thu, 7 Feb 2019 08:36:49 +0100
+Message-ID: <CAKpuFdet7xgEYA4GZi-F7UQ7HfMXjyKFdibGK2ggd-FdGmi-5g@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: do_populate_lic fail from scratch build but succed after clean
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,39 +68,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Feb 2019 00:09:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset=WINDOWS-1252
+X-List-Received-Date: Thu, 07 Feb 2019 07:37:03 -0000
+Content-Type: multipart/alternative; boundary="0000000000006fcecf058148e808"
+
+--0000000000006fcecf058148e808
+Content-Type: text/plain; charset="UTF-8"
+
+Hi
+
+I have an recipe based on serialport npm package created with devtool.
+
+I added some custom licenses in my layer with LICENSE_PATH:
+
+# Additional license directories.
+LICENSE_PATH += "${LAYERDIR}/files/common-licenses"
+
+After this I get some inconsistent build result (or i dont understand ).
+
+Te steps I make is the following, build from scratch then bitbake fails,
+clean recipe and build recipe and it succed:
+
+1. bitbake myLayer ->
+
+WARNING: serialport-6.2.2-r0 do_populate_lic: Could not copy license file
+/home/jonas/yocto/build/tmp/work/cortexa9hf-neon-goerlix-linux-gnueabi/serialport/6.2.2-r0/npmpkg/node_modules/prompt-list/node_modules/prompt-radio/node_modules/prompt-checkbox/node_modules/prompt-base/node_modules/readline-ui/node_modules/debug/LICENSE
+to
+/home/jonas/yocto/build/tmp/work/cortexa9hf-neon-goerlix-linux-gnueabi/serialport/6.2.2-r0/license-destdir/serialport/LICENSE.3:
+[Errno 2] No such file or directory:
+'/home/jonas/yocto/build/tmp/work/cortexa9hf-neon-goerlix-linux-gnueabi/serialport/6.2.2-r0/npmpkg/node_modules/prompt-list/node_modules/prompt-radio/node_modules/prompt-checkbox/node_modules/prompt-base/node_modules/readline-ui/node_modules/debug/LICENSE'
+.
+//
+.
+ERROR: serialport-6.2.2-r0 do_populate_lic: QA Issue: serialport:
+LIC_FILES_CHKSUM points to an invalid file:
+/home/jonas/yocto/build/tmp/work/cortexa9hf-neon-goerlix-linux-gnueabi/serialport/6.2.2-r0/npmpkg/node_modules/prompt-list/node_modules/prompt-radio/node_modules/prompt-checkbox/node_modules/prompt-base/node_modules/readline-ui/node_modules/debug/LICENSE
+[license-checksum]
+.
+//
+.
+ERROR: serialport-6.2.2-r0 do_populate_lic: Fatal QA errors found, failing
+task.
+ERROR: serialport-6.2.2-r0 do_populate_lic: Function failed:
+populate_lic_qa_checksum
+
+2. bitbake serialport -c clean
+3. bitbake serialport -> success
+
+In my view it feels like different tasks is executed in different order,
+like the npm recipe is missing some dependency but before I adden
+LICENSE_PATH to the layer config I had no problem..
+______________________________________________________________________________________________
+Build Configuration:
+BB_VERSION           = "1.40.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+
+TUNE_FEATURES        = "arm armv7a vfp neon callconvention-hard cortexa9"
+TARGET_FPU           = "hard"
+meta                 = "thud:3541f019a505d18263fad0b46b88d470e3fd9d62"
+meta-oe
+meta-python
+meta-networking
+meta-filesystems     = "thud:6094ae18c8a35e5cc9998ac39869390d7f3bb1e2"
+meta-yocto-bsp       = "thud:3541f019a505d18263fad0b46b88d470e3fd9d62"
+meta-microservicebus-node = "thud:cab931199236b5bdeeb660f64aea55c2e0c09c2b"
+
+Best regards
+Jonas
+
+--0000000000006fcecf058148e808
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Aright thank you for checking into this, you went farther then I expected.=
-=20=0AI will take the approach of setting it for the recipes I really care =
-about and leave the rest alone.=20=0A=0AMatt S.=20=0A______________________=
-__________________=0AFrom: Andreas M=FCller <schnitzeltony@gmail.com>=0ASen=
-t: Wednesday, February 6, 2019 3:11 PM=0ATo: Matt Schuckmann=0ACc: yocto@yo=
-ctoproject.org=0ASubject: Re: [yocto] CMake based recipes and defining CMAK=
-E_BUILD_TYPE=0A=0AOn Wed, Feb 6, 2019 at 11:53 PM Andreas M=FCller <schnitz=
-eltony@gmail.com> wrote:=0A>=0A> On Wed, Feb 6, 2019 at 11:24 PM Andreas M=
-=FCller <schnitzeltony@gmail.com> wrote:=0A> >=0A> > On Wed, Feb 6, 2019 at=
- 11:05 PM Matt Schuckmann=0A> > <Matt.Schuckmann@planar.com> wrote:=0A> > >=
-=0A> > > Hi Andreas,=0A> > >=0A> > > Thanks for the response, do you set bu=
-ild type in each recipe individually or is there some central .conf file or=
- other other location that you set it?=0A> > >=0A> > > Matt S.=0A> > Honest=
-ly: I do not set them yet because I thought RelWithDebInfo is=0A> > default=
-. That assumption was based on some projects but I checked now:=0A> > it do=
-es not seem to be something to rely on...=0A> >=0A> Will build-/run-test th=
-is with my 'world':=0A>=0A> diff --git a/meta/classes/cmake.bbclass b/meta/=
-classes/cmake.bbclass=0A> index fd40a9863e..a8e08e6d6f 100644=0A> --- a/met=
-a/classes/cmake.bbclass=0A> +++ b/meta/classes/cmake.bbclass=0A> @@ -153,6 =
-+153,7 @@ cmake_do_configure() {=0A>           -DCMAKE_TOOLCHAIN_FILE=3D${W=
-ORKDIR}/toolchain.cmake \=0A>           -DCMAKE_VERBOSE_MAKEFILE=3D1 \=0A> =
-          -DCMAKE_NO_SYSTEM_FROM_IMPORTED=3D1 \=0A> +         -DCMAKE_BUILD=
-_TYPE=3D${@d.getVar(oe.utils.vartrue('DEBUG_BUILD',=0A> 'Debug', 'RelWithDe=
-bInfo', d))} \=0A>           ${EXTRA_OECMAKE} \=0A>           -Wno-dev=0A> =
- }=0A>=0A> Takes a while...=0A>=0ANot exactly: After short build I saw:=0A=
-=0A* There are some sed on '*-noconfig.cmake' they are going to break=0A* l=
-ibeigen fails because it supports 'Debug' and 'Release' only (and I=0Abet t=
-here are more)=0A=0AWill skip further tests and get the feeling that a comm=
-on solution won't do...=0A=0AAndreas=0A=0A
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Hi<div><br></div><div>I have an=
+ recipe based on serialport npm package created with devtool.</div><div><br=
+></div><div>I added some custom licenses in my layer with LICENSE_PATH:</di=
+v><div><br></div><div><div># Additional license directories.</div><div>LICE=
+NSE_PATH +=3D &quot;${LAYERDIR}/files/common-licenses&quot;</div></div><div=
+><br></div><div>After this I get some inconsistent build result (or i dont =
+understand ).</div><div><br></div><div>Te steps I make is the following, bu=
+ild from scratch then bitbake fails, clean recipe and build recipe and it s=
+ucced:</div><div><br></div><div>1. bitbake myLayer -&gt;=C2=A0</div><div><b=
+r></div><div>WARNING: serialport-6.2.2-r0 do_populate_lic: Could not copy l=
+icense file /home/jonas/yocto/build/tmp/work/cortexa9hf-neon-goerlix-linux-=
+gnueabi/serialport/6.2.2-r0/npmpkg/node_modules/prompt-list/node_modules/pr=
+ompt-radio/node_modules/prompt-checkbox/node_modules/prompt-base/node_modul=
+es/readline-ui/node_modules/debug/LICENSE to /home/jonas/yocto/build/tmp/wo=
+rk/cortexa9hf-neon-goerlix-linux-gnueabi/serialport/6.2.2-r0/license-destdi=
+r/serialport/LICENSE.3: [Errno 2] No such file or directory: &#39;/home/jon=
+as/yocto/build/tmp/work/cortexa9hf-neon-goerlix-linux-gnueabi/serialport/6.=
+2.2-r0/npmpkg/node_modules/prompt-list/node_modules/prompt-radio/node_modul=
+es/prompt-checkbox/node_modules/prompt-base/node_modules/readline-ui/node_m=
+odules/debug/LICENSE&#39;</div><div>.</div><div>//</div><div>.</div><div>ER=
+ROR: serialport-6.2.2-r0 do_populate_lic: QA Issue: serialport: LIC_FILES_C=
+HKSUM points to an invalid file: /home/jonas/yocto/build/tmp/work/cortexa9h=
+f-neon-goerlix-linux-gnueabi/serialport/6.2.2-r0/npmpkg/node_modules/prompt=
+-list/node_modules/prompt-radio/node_modules/prompt-checkbox/node_modules/p=
+rompt-base/node_modules/readline-ui/node_modules/debug/LICENSE [license-che=
+cksum]</div><div>.</div><div>//</div><div>.</div><div>ERROR: serialport-6.2=
+.2-r0 do_populate_lic: Fatal QA errors found, failing task.</div><div>ERROR=
+: serialport-6.2.2-r0 do_populate_lic: Function failed: populate_lic_qa_che=
+cksum</div><div><br></div><div>2. bitbake serialport -c clean</div><div>3. =
+bitbake serialport -&gt; success</div><div><br></div><div>In my view it fee=
+ls like different tasks is executed in different order, like the npm recipe=
+ is missing some dependency but before I adden LICENSE_PATH to the layer co=
+nfig I had no problem..</div><div>_________________________________________=
+_____________________________________________________</div><div><div>Build =
+Configuration:</div><div>BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0=3D &quot;1.40.0&quot;</div><div>BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =3D &quot;x86_64-linux&quot;</div><div>NATIVELSBSTRING=C2=A0 =
+=C2=A0 =C2=A0 =3D &quot;universal&quot;</div><div><br></div><div>TUNE_FEATU=
+RES=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;arm armv7a vfp neon callconvention=
+-hard cortexa9&quot;</div><div>TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0=3D &quot;hard&quot;</div><div>meta=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;thud:3541f019a505d18263fad0b46b88d=
+470e3fd9d62&quot;</div><div>meta-oe=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0=C2=A0</div><div>meta-python=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=
+=A0</div><div>meta-networking=C2=A0 =C2=A0 =C2=A0=C2=A0</div><div>meta-file=
+systems=C2=A0 =C2=A0 =C2=A0=3D &quot;thud:6094ae18c8a35e5cc9998ac39869390d7=
+f3bb1e2&quot;</div><div>meta-yocto-bsp=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;=
+thud:3541f019a505d18263fad0b46b88d470e3fd9d62&quot;</div><div>meta-microser=
+vicebus-node =3D &quot;thud:cab931199236b5bdeeb660f64aea55c2e0c09c2b&quot;<=
+/div></div><div><br></div><div>Best regards</div><div>Jonas</div><div><br><=
+/div><div><br></div></div></div></div></div></div></div></div>
 
-
+--0000000000006fcecf058148e808--
