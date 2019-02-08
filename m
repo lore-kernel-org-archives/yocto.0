@@ -1,68 +1,73 @@
-Return-Path: <fernando.ae2017@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4F70EE00C9F; Fri,  8 Feb 2019 00:41:23 -0800 (PST)
+	id BBA81E00C9F; Fri,  8 Feb 2019 01:33:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,PLING_QUERY,RCVD_IN_DNSWL_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (fernando.ae2017[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.47 listed in list.dnswl.org]
+	*      [209.85.128.47 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  1.0 PLING_QUERY Subject has exclamation mark and question mark
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com
-	[209.85.210.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 564A9E00C8A
-	for <yocto@lists.yoctoproject.org>;
-	Fri,  8 Feb 2019 00:41:22 -0800 (PST)
-Received: by mail-ot1-f47.google.com with SMTP id a11so4559865otr.10
-	for <yocto@lists.yoctoproject.org>;
-	Fri, 08 Feb 2019 00:41:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=ni+KCOi7JCww234pWXJPeejNsVyjKvwR4A6BpeFxQb4=;
-	b=UYuZeGkeo2F95898Xoz/zw/rpVBlJMN4ispks0v3muw0o7q6btr3rBbXAWge9gapOw
-	NDy8tDmvGCKoSDarDQttRjm/P2JfN/DyJCafSC9wP95h190pyiKHz7R178BnwVxoGC4t
-	VRgkp9Q6AB+fg2C6cKE3bWUosytFJAAUS66Zs9DuFjaxUcb6KraL8NEAsStswGSxKRF3
-	Tftt2FBHk4RYrxc+nPdYbOPmZEXlsKATo/YXfxJ913do7o1uGOEOs6OAT0+8WfLkA/M3
-	/csrM7Safl9RLo0CccFQqKQlGfmNEPzVHgB4WE3zH71VgaHC+lPO1EENU5yPlN7Nj4ib
-	OBKQ==
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+	[209.85.128.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22F93E00C58
+	for <yocto@yoctoproject.org>; Fri,  8 Feb 2019 01:33:28 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id m1so2685688wml.2
+	for <yocto@yoctoproject.org>; Fri, 08 Feb 2019 01:33:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:user-agent:mime-version:content-transfer-encoding;
+	bh=1z+p9ISj/kBMqkaP9GF0BRfSAcLI6tHFLvO9a6UGM+A=;
+	b=KCfw5FJiZ9CCEOcuCm7hvHOu3VFsxwSdUxOZaQGVpNhN000AQzoteIqd4qBLVEVADY
+	qLUMQQAey0DvdXUav/od58RBetxgLY0KLMZC9k2WIdTU8l58JbCkDNJRfTOuEi/CQicw
+	mpGPaNn1rnF0P2udp1VLdYR0bBkFPkxQ/S6mA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=ni+KCOi7JCww234pWXJPeejNsVyjKvwR4A6BpeFxQb4=;
-	b=JyH05J3nyuxfVml2NfCe11HeaVxy6aXQceS3fkVXVkrHy6rtZf+aOr6H5kJbh4cisX
-	yuFkGurC9pJcAAvKhAC0mxIw+O2Bn+J/+MYXB/ogkFYk5BRPvXavBl4vjQE2HJPweMYh
-	yBXG1j/MrLY1rSBMg4CAgl2d8vI/8/sCPQO+cMX82ObbRlGgMnwn+Bq0ZRwSUIX0eIIG
-	kKQWWdlJY/eGri81MXTUhv0qzwMoLrsm9QBx86bpVOdaaNMIiHleUhPIj3RyWbSDFTKg
-	JW/nYLzlkOmWXqS2+q6xpf/x1fDNC8OJh/nSrvDBbs23O5IWIFWnfQ7jZzUQtPJgAubm
-	zsfw==
-X-Gm-Message-State: AHQUAuaotG03X2j0AVBehzN0VB008Ol7Agd1vQuJkUrE3xc7AO5gef82
-	Ho2+beJ0sa6X+rQ/7R01+4Pb3rthHJUMSnvG2Hi0jfsS
-X-Google-Smtp-Source: AHgI3IYNvhK2XTRSutXO2PXldsb9hB1SXXy//vOCT2y+7LlZj/xGXEntitI9cIdfcFFR7I7q/RMm6YAoimGR4I257l8=
-X-Received: by 2002:a9d:3db4:: with SMTP id l49mr12325777otc.358.1549615281714;
-	Fri, 08 Feb 2019 00:41:21 -0800 (PST)
-MIME-Version: 1.0
-References: <a9f7b0c1-97c9-7aea-1172-6de6cd673b46@guy-morand.ch>
-	<3718150e-2dbf-dfaa-5b2e-3d5d0e97b8e6@guy-morand.ch>
-In-Reply-To: <3718150e-2dbf-dfaa-5b2e-3d5d0e97b8e6@guy-morand.ch>
-From: Fernando AE <fernando.ae2017@gmail.com>
-Date: Fri, 8 Feb 2019 09:41:10 +0100
-Message-ID: <CAK3Qp=WZ0vZhX5CiybMyPaVmfunwtmckS6sW6gLb4Qe-0JidpQ@mail.gmail.com>
-To: Guy Morand <guy@guy-morand.ch>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: cmake / <string> no such file or directory ??!
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:user-agent:mime-version:content-transfer-encoding;
+	bh=1z+p9ISj/kBMqkaP9GF0BRfSAcLI6tHFLvO9a6UGM+A=;
+	b=pzpdu4rSW8SSnF98lw1ISF5MMc5xWlybnGS9iWc6x66TvRa7b0rd/01SlOf+r82uGp
+	xwg0Z6cbGdJ5eNhgN2d0EGgrkBjkFbIx0/IE1p7BCPr+4Rhqmezi1yfw3vornPnkNYKc
+	6laxkl1VJVZ2YBKKyCToGTbhKrWlckHZoa5fwcqWV3572HyfCx3+F5/Bsrs81y5M4j8u
+	4CjQkubM+Mm5hqtESSxOSdrmKpmMlEUWtSBhS0I7rDxT61iyTG5+kZSdaQxB8z3QzvxL
+	2CLvRPod/W8/gBkwB0qkIfrfEP3J55VXBJKtHzPDdBXJc3hhht7EJ7+48fL2E9LO3Q1Z
+	iZTQ==
+X-Gm-Message-State: AHQUAubPQcSbpgkiQ9Xee/RcF5ufapPQ4xfSY+sEaFskUWCANAS7EkkP
+	ROqSmj5mF5+O3jWuZZiigHjibw==
+X-Google-Smtp-Source: AHgI3IaqqtrRxJgOLjpXKMh/tQ6cl9jMUW1fZPUiRiKRozlk5Z33VI1GhaNyhjmZWL71SgL9HuYvIQ==
+X-Received: by 2002:a1c:a9d4:: with SMTP id
+	s203mr10525903wme.132.1549618407885; 
+	Fri, 08 Feb 2019 01:33:27 -0800 (PST)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+	by smtp.gmail.com with ESMTPSA id
+	g14sm1145140wrw.78.2019.02.08.01.33.26
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Fri, 08 Feb 2019 01:33:27 -0800 (PST)
+Message-ID: <c2385521ea1a50caee0c8a696103a66e4fc1d5f5.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Jain, Sangeeta" <sangeeta.jain@intel.com>, "'yocto@yoctoproject.org'"
+	<yocto@yoctoproject.org>, "Eggleton, Paul" <paul.eggleton@intel.com>, 
+	'Michael Halstead' <mhalstead@linuxfoundation.org>, "Erway, Tracey M"
+	<tracey.m.erway@intel.com>,  "sjolley.yp.pm@gmail.com"
+	<sjolley.yp.pm@gmail.com>
+Date: Fri, 08 Feb 2019 09:33:25 +0000
+In-Reply-To: <015AB11D45F2C442929CB2765DAE738634D5748A@PGSMSX110.gar.corp.intel.com>
+References: <015AB11D45F2C442929CB2765DAE738634D5748A@PGSMSX110.gar.corp.intel.com>
+User-Agent: Evolution 3.30.4-1 
+Mime-Version: 1.0
+Cc: OTC Embedded Malaysia <otc.embedded.malaysia@intel.com>, "Kirkiris,
+	Nectar" <nectar.kirkiris@intel.com>
+Subject: Re: QA cycle report for 2.7 M2 RC1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,74 +79,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Feb 2019 08:41:23 -0000
+X-List-Received-Date: Fri, 08 Feb 2019 09:33:29 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hello Guy,I would also say that something is strange with the
-"AUTOINC" in your file paths, unless you set a variable like that on
-purpose.
+On Fri, 2019-02-08 at 04:38 +0000, Jain, Sangeeta wrote:
+> This is the full report for 2.7 M2 RC1:
+>  
+> https://wiki.yoctoproject.org/wiki/WW01_-_2019-01-28_-_Full_Test_Cycle_2.7_M2_RC1
+>  
+> ======= Summary ========
+>  
+> All planned tests were executed.
+> Total Test Executed - 3629
+> Passed Test - 3613
+> Failed Test - 16
+>  
+>  
+> There were zero high milestone defect.  Team had found 3 new defects
+> in BSP[1], Compliance [2] and  OE-Core[3].
+> 5 existing issues were observed in this release.
+>  
+> For ptest, there is a drop in percentage of pass rate for 3 modules:
+> nettle, perl and valgrind. Bugs are reported for Nettle [4] and Perl
+> [5]. For Valgrind, no bug is filed, since there is a decrease in
+> percentage but no failures as compared to previous results.
 
-Regards,
-Fernando
+Thanks!
 
-On Tue, Feb 5, 2019 at 10:23 AM Guy Morand <guy@guy-morand.ch> wrote:
->
-> Sorry Yocto developers!
->
-> I have found the issue, in my CMakeLists.txt, I changed this:
-> set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror")
->
-> to this:
-> set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
->
-> Now it works like a charm, stupid me :D! Sorry for all the noise!
->
-> Best regards,
->
-> Guy Morand
->
-> On 2/5/19 8:21 AM, Guy Morand wrote:
->
-> > Hello Yocto developpers!
-> >
-> > I'm facing a weird problem that seems very strange. I can
-> > cross-compile a project based on cmake with the generated Yocto SDK.
-> >
-> > However, after adding a recipe, the compilation fails:
-> > /mnt/ssd/yocto-build-script/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/communication-library/git-AUTOINC+f5cd493ce5-r0/recipe-sysroot-native/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++
-> > -Dcommunication_interface_EXPORTS
-> > -I/mnt/ssd/yocto-build-script/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/communication-library/git-AUTOINC+f5cd493ce5-r0/git/library
-> > -Wall -Wextra -Werror -fPIC   -std=gnu++11 -MD -MT
-> > CMakeFiles/communication-interface.dir/communication_interface.cpp.o
-> > -MF
-> > CMakeFiles/communication-interface.dir/communication_interface.cpp.o.d
-> > -o
-> > CMakeFiles/communication-interface.dir/communication_interface.cpp.o
-> > -c
-> > /mnt/ssd/yocto-build-script/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/communication-library/git-AUTOINC+f5cd493ce5-r0/git/communication_interface.cpp
-> > | In file included from
-> > /mnt/ssd/yocto-build-script/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/communication-library/git-AUTOINC+f5cd493ce5-r0/git/communication_interface.cpp:1:
-> > |
-> > /mnt/ssd/yocto-build-script/build/tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/communication-library/git-AUTOINC+f5cd493ce5-r0/git/library/communication_interface.h:4:10:
-> > fatal error: string: No such file or directory
-> > |  #include <string>
-> > |           ^~~~~~~~
-> > | compilation terminated.
-> >
-> > I also tried to change the cmake generator to unix makefile (who knows
-> > ...):
-> > OECMAKE_GENERATOR = "Unix Makefiles"
-> >
-> > But I have the same issue. I am working on the thud branch. Anyone had
-> > the same problem? What am I doing wrong?
-> >
-> > Best regards,
-> >
-> > Guy Morand
-> >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+The perl regressions are fairly serious, but understandable given the
+large changes we made to perl in M2. I'm therefore torn on whether we
+let rc1 release, or we respin an rc2 based on current master. Any
+opinions?
+
+Current master does fix perl (bugs 13160, 13161, 13154), it also has a
+key toaster fix for thud.
+
+Cheers,
+
+Richard
+
 
