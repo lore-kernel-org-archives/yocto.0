@@ -1,94 +1,57 @@
-Return-Path: <brett.grandbois@opengear.com>
+Return-Path: <sangeeta.jain@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 03156E00C8F; Thu,  7 Feb 2019 19:59:29 -0800 (PST)
+	id 8A7ABE00C9F; Thu,  7 Feb 2019 20:38:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [40.107.68.77 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-X-Greylist: delayed 19740 seconds by postgrey-1.32 at yocto-www;
-	Thu, 07 Feb 2019 19:59:27 PST
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
-	(mail-eopbgr680077.outbound.protection.outlook.com [40.107.68.77])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD62CE00C8A
-	for <yocto@yoctoproject.org>; Thu,  7 Feb 2019 19:59:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=opengear.com;
-	s=selector1;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=acnKRLjKtRyojha1MsRS62TGKdPUjKSbwL0P9lLy2bA=;
-	b=XR1XyYyWPmlJcafsTtqZnEAumgqwmmifDQPquJiMalSG1KcowpGFs2XfR1Wwd1kL0RTd1qkSvB8NIjvB9+30nVlJwEc7gMQilR1h9OXTppEVuTCj93pbPxLrDPElXSQK+ztQ7uxqyMY4N39ViD+lIMWccT0ThAsgoMzZOckKzX0=
-Received: from DM5PR1501MB2056.namprd15.prod.outlook.com (52.132.130.30) by
-	DM5PR1501MB2165.namprd15.prod.outlook.com (52.132.131.27) with
-	Microsoft SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1580.22; Thu, 7 Feb 2019 00:17:14 +0000
-Received: from DM5PR1501MB2056.namprd15.prod.outlook.com
-	([fe80::f0e9:8134:895f:9135]) by
-	DM5PR1501MB2056.namprd15.prod.outlook.com
-	([fe80::f0e9:8134:895f:9135%7]) with mapi id 15.20.1580.019;
-	Thu, 7 Feb 2019 00:17:14 +0000
-From: "Grandbois, Brett" <brett.grandbois@opengear.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [PATCH] ruby: remove CVE-2018-1000073.patch as already fixed
-Thread-Index: AQHUvnp6d5a8ScUTaUWua/fjqKGCGQ==
-Date: Thu, 7 Feb 2019 00:17:14 +0000
-Message-ID: <20190207001640.24978-1-brett.grandbois@opengear.com>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.55.52.151 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FAEEE00C8F
+	for <yocto@yoctoproject.org>; Thu,  7 Feb 2019 20:38:35 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	07 Feb 2019 20:38:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.58,346,1544515200"; 
+	d="scan'208,217";a="131963596"
+Received: from pgsmsx114.gar.corp.intel.com ([10.108.55.203])
+	by FMSMGA003.fm.intel.com with ESMTP; 07 Feb 2019 20:38:33 -0800
+Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.7]) by
+	pgsmsx114.gar.corp.intel.com ([169.254.4.96]) with mapi id
+	14.03.0415.000; Fri, 8 Feb 2019 12:38:32 +0800
+From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
+To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>, "Eggleton, Paul"
+	<paul.eggleton@intel.com>, "'richard.purdie@linuxfoundation.org'"
+	<richard.purdie@linuxfoundation.org>, 'Michael Halstead'
+	<mhalstead@linuxfoundation.org>, "Erway, Tracey M"
+	<tracey.m.erway@intel.com>, "sjolley.yp.pm@gmail.com"
+	<sjolley.yp.pm@gmail.com>
+Thread-Topic: QA cycle report for 2.7 M2 RC1
+Thread-Index: AdS+qa/k+XQuUulPR0uSr5SbFs9HMA==
+Date: Fri, 8 Feb 2019 04:38:31 +0000
+Message-ID: <015AB11D45F2C442929CB2765DAE738634D5748A@PGSMSX110.gar.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-clientproxiedby: SYCPR01CA0023.ausprd01.prod.outlook.com
-	(2603:10c6:10:31::35) To DM5PR1501MB2056.namprd15.prod.outlook.com
-	(2603:10b6:4:a2::30)
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=brett.grandbois@opengear.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.17.1
-x-originating-ip: [60.241.24.90]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; DM5PR1501MB2165;
-	6:8e4c35z22DBIA9SYBWx29NIP6i+GDHlm0aQjsyB/jq9oWF6TVIfNeR7z+9JsCUTmpsbFKZQ2c2GhiPU1J/7hlGsp9434k1v0g/Me1L6ToznqskZ2MzXBLg+b8KARygKFcdAVhhMJZ8dl0vJV1eQLLlz4suEcF4ml11d43NCIDr70SlgymqWVktnY9g8eh9JkZWmchh1sOKFNQtx1KL/sSCiygPW5X//43OmLFlUHFcwDIBrXsB9haDz29+Y9bU5IgBTL+MN/z9Q2EYNZGSZlwYCP8hjWm0t/gkRJ0yUjsVOb6K4eGGU2uBoP25/SIzrcIsmav1GZWe8/f1WN4XMMpruM/CxqHkCp8mDiVzkOWOlrmuIMbAP9Vd3c5uQoZoIjWrT4vkSGRau1OH9FcTD24LYsqOTc1n77KjXeAoTGRtAnGWZruYkRDFZbEQG4go1AOKfMRIL6Tne1KRaxweKiHg==;
-	5:1hua70v0edxL6L3EjTdtFfyzIl7KwRnaviq7Lp30A5h0CPAT7B3tdxpnxxFqYK92BajnvOW3okGDSrWoM9q28+aeKZ4crtkbkYiWT1uZZN+CkuDeLJtPHTUDNXplzFEUJP0BFOJfVtRoVsDRI1b5jM7eJDcaw4OLgfROzoab1UIRTMRygecm0kkkiSDoOqG0AR9rdtn8Q3tr1jHmEP3Gxw==;
-	7:hVy55ilITv3ZHcItmcs6kV5bIFASN8Xc7iCQeNTJIPfe538Bz7p5K/6zJf+oWmb3my4jGC7Wp+snjpNafnuVKWCSDM7vXDP3Eof3BHfwzSRZlov6iuxq3QXR6Wk2vWqvcx2Xbov/m39AZgskDjCLLg==
-x-ms-office365-filtering-correlation-id: b8de34f8-5fb8-4068-7767-08d68c919ca4
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600110)(711020)(4605077)(2017052603328)(7153060)(7193020);
-	SRVR:DM5PR1501MB2165; 
-X-MS-TrafficTypeDiagnostic: DM5PR1501MB2165:|DM5PR1501MB2165:|DM5PR1501MB2165:
-x-microsoft-antispam-prvs: <DM5PR1501MB21652D86C59EB34FC8AE7B1A82680@DM5PR1501MB2165.namprd15.prod.outlook.com>
-x-forefront-prvs: 0941B96580
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(396003)(366004)(136003)(346002)(376002)(39840400004)(199004)(189003)(52116002)(106356001)(3846002)(2501003)(316002)(478600001)(2351001)(81156014)(105586002)(7736002)(6916009)(6436002)(14444005)(1730700003)(8676002)(81166006)(256004)(14454004)(5640700003)(6486002)(97736004)(25786009)(2906002)(6512007)(68736007)(6116002)(53936002)(99286004)(36756003)(66066001)(305945005)(86362001)(26005)(2616005)(186003)(486006)(50226002)(386003)(6506007)(71190400001)(8936002)(71200400001)(476003)(102836004)(1076003);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR1501MB2165;
-	H:DM5PR1501MB2056.namprd15.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: opengear.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: l7JEVR0JQvyLcX1vd4xQmlGMSHou0OjIZ4puR7TbdqEDY72xLhT/ZuSUA6Nidmdxf0Coeg2YdZuPJf/AP/EJoBnXZkXsqh4pja/aNtgemIdRczjJRPd3b972ra1yTeYkDna9d7wVfn47kwOl5IrbvX23OJEtg/shxZH3qRcRD8mddd84kB+Gn0q7n/rEYQlkH8QGns5bDiD3iqjSiNw4SHyQ36oodUzENtTUOZwgYHUbuMD9uPhR4fgwQCytRI2RMGoV273M2Z6eo6MneyEqxr0Ieh6BSk3gRnrHKNiOidy0M8jOxEemYaSxeZP37oSrf7+6A2DE2Y4HAfc5YGur3e3UNzpHI0sth4SdwJwCAwmB+cgeeHngCb3if3vXmLXtQsl2/wSmnFXW0LFYpQwBMwknGEjBf9oqb5tGYbDoWAA=
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMmY5OGJhODctNTc3MC00ZGM1LThiN2EtZjhmM2QzNWZhMWM1IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiNmdOWXNYRlRCdjV0XC9hZWlTYlc0RE0rWm05UGNYaVlIbGhrNUY3ZnhmWWNGRU1vOVVvZjRSZkRCMDVJUHNjNHEifQ==
+x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: b8de34f8-5fb8-4068-7767-08d68c919ca4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Feb 2019 00:17:13.9540 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-id: a6251c26-d21f-4164-a225-1f4eaebf5f9a
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1501MB2165
-X-Microsoft-Exchange-Diagnostics: 1; DM5PR1501MB2165;
-	23:EXfEl5LYqTIggYAnVdf+ymVU/cGaaKa5uyZexepO+vQSk2C8uCTtOJoZHwJcm6kqIUq67uNGTqLMhIyK5Q51s4V+OAsAjOAhPmte9UdC8Ym3LAL+sD75flwQu3DymB7QR1B6hTqlu0ci/ZQV74ZSIQ==;
-	23:Kxq26U+ubH87DY5A/CgUYql4dpRn6HPw9Pe3Q6nGiNSH6eZw6gcIiCcJe4g7UiWq+eXvykNYExMSlBGhG5ODBxuc2SvkG88jUISTnSvFpp/TKz6WA/vW+7nZnlogNkeEqDNMFnLqyi9MGpZ9hZ3kxQ==
-X-OriginatorOrg: opengear.com
-Subject: [PATCH] ruby: remove CVE-2018-1000073.patch as already fixed
+Cc: OTC Embedded Malaysia <otc.embedded.malaysia@intel.com>, "Kirkiris,
+	Nectar" <nectar.kirkiris@intel.com>
+Subject: QA cycle report for 2.7 M2 RC1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -100,79 +63,477 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Feb 2019 03:59:29 -0000
+X-List-Received-Date: Fri, 08 Feb 2019 04:38:37 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/alternative;
+	boundary="_000_015AB11D45F2C442929CB2765DAE738634D5748APGSMSX110garcor_"
+
+--_000_015AB11D45F2C442929CB2765DAE738634D5748APGSMSX110garcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-rubygems 2.7.6 which is in ruby 2.5.3 has this fix and as currently
-applied all gem extraction fails as the realpath check is done against
-the full path including the file to be extracted which will always fail
-as the file hasnt been extracted yet
-
-Signed-off-by: Brett Grandbois <brett.grandbois@opengear.com>
----
- .../ruby/ruby/CVE-2018-1000073.patch          | 34 -------------------
- meta/recipes-devtools/ruby/ruby_2.5.3.bb      |  1 -
- 2 files changed, 35 deletions(-)
- delete mode 100644 meta/recipes-devtools/ruby/ruby/CVE-2018-1000073.patch
-
-diff --git a/meta/recipes-devtools/ruby/ruby/CVE-2018-1000073.patch b/meta/=
-recipes-devtools/ruby/ruby/CVE-2018-1000073.patch
-deleted file mode 100644
-index 22fa1b5f4d..0000000000
---- a/meta/recipes-devtools/ruby/ruby/CVE-2018-1000073.patch
-+++ /dev/null
-@@ -1,34 +0,0 @@
--From 1b931fc03b819b9a0214be3eaca844ef534175e2 Mon Sep 17 00:00:00 2001
--From: Jonathan Claudius <jclaudius@mozilla.com>
--Date: Wed, 7 Feb 2018 23:54:52 -0500
--Subject: [PATCH] Non-working patch for deducing symlinked base-dirs
--
-----
--CVE: CVE-2018-1000073
--
--Fixed in ruby 2.7.6.
--
--Upstream-Status: Backport [github.com/rubygems/rubygems/commit/1b931fc...]
--
--Signed-off-by: Joe Slater <joe.slater@windriver.com>
--
-----
-- lib/rubygems/package.rb |    2 ++
-- 1 file changed, 2 insertions(+)
--
--diff --git a/lib/rubygems/package.rb b/lib/rubygems/package.rb
--index dede959..cb9c74a 100644
----- a/lib/rubygems/package.rb
--+++ b/lib/rubygems/package.rb
--@@ -421,6 +421,8 @@ EOM
--     destination_dir =3D File.expand_path destination_dir
--=20
--     destination =3D File.join destination_dir, filename
--+    destination =3D File.realpath destination if
--+      File.respond_to? :realpath
--     destination =3D File.expand_path destination
--=20
--     raise Gem::Package::PathError.new(destination, destination_dir) unles=
-s
----=20
--1.7.9.5
--
-diff --git a/meta/recipes-devtools/ruby/ruby_2.5.3.bb b/meta/recipes-devtoo=
-ls/ruby/ruby_2.5.3.bb
-index e9f0453788..3fb427e90e 100644
---- a/meta/recipes-devtools/ruby/ruby_2.5.3.bb
-+++ b/meta/recipes-devtools/ruby/ruby_2.5.3.bb
-@@ -3,7 +3,6 @@ require ruby.inc
- SRC_URI +=3D " \
-            file://ruby-CVE-2017-9226.patch \
-            file://ruby-CVE-2017-9228.patch \
--           file://CVE-2018-1000073.patch \
-            "
-=20
- SRC_URI[md5sum] =3D "20c85b67846d49622ef3b24230803fef"
---=20
-2.17.1
+Hello All,
 
 
+
+This is the full report for 2.7 M2 RC1:
+
+
+
+https://wiki.yoctoproject.org/wiki/WW01_-_2019-01-28_-_Full_Test_Cycle_2.7_=
+M2_RC1
+
+
+
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+All planned tests were executed.
+
+Total Test Executed - 3629
+
+Passed Test - 3613
+
+Failed Test - 16
+
+
+
+
+
+There were zero high milestone defect.  Team had found 3 new defects in BSP=
+[1], Compliance [2] and  OE-Core[3].
+
+5 existing issues were observed in this release.
+
+
+
+For ptest, there is a drop in percentage of pass rate for 3 modules: nettle=
+, perl and valgrind. Bugs are reported for Nettle [4] and Perl [5]. For Val=
+grind, no bug is filed, since there is a decrease in percentage but no fail=
+ures as compared to previous results.
+
+
+
+=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+  1.  No high milestone defect.
+  2.  For performance test results, this time there is a new machine "pokyb=
+uild at perf-centos7.yoctoproject.org" introduced in performance test resul=
+ts from Yocto-perf mailing list. And results from "Yocto CentOS 7 Build Per=
+f Tester" is missing for this release. Hence, the comparison between result=
+s from two "centos7" machines shows huge differences.
+
+
+
+=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+New Bugs
+
+[1] Bug 13153 - [2.7 M2 RC1] Systemtap doesn't work on beaglebone
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13153
+
+
+
+[2] Bug 13160 - [2.7_m2_rc1][compliance test][LSB Test] "Failed to load mod=
+ule Core_test.pm, samba_test.pm", LSB Test has failed"
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13160
+
+
+
+[3] Bug 13161 - [2.7 M2 RC1] Perl can not handle signals
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13161
+
+
+
+ptest Bugs:
+
+
+
+[4] Bug 13155 - [2.7 M2 RC1] nettle ptest failure
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13155
+
+
+
+
+
+[5] Bug 13154<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991> - =
+[2.7 M2 RC1] perl ptest failure
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13154
+
+
+
+
+
+Previous Bugs observed in this release:
+
+
+
+[6] Bug 13102 - [Bug][QA 2.7 M1 rc1][Toaster] All layers are not getting po=
+pulated after clicking "View compatible layers" on project page
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13102
+
+
+
+[7] Bug 13103 - [Bug][QA 2.7 M1 rc1][Toaster] "Recipes" table  and  "machin=
+es" table are not getting populated after clicking on imported layer as wel=
+l as after clicking Machines Tab on project page
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13103
+
+
+
+[8] Bug 13104 - [Bug][QA 2.7 M1 rc1][Toaster] All "Image Recipes" are not g=
+etting populated after clicking  "Image Recipes"  on project page
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13104
+
+
+
+[9] Bug 12991<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991> - =
+[Bug] [2.6 M4 RC1][Build-Appliance] Bitbake build-appliance-image getting f=
+ailed during building image due to webkitgtk package.
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991
+
+
+
+[10] Bug 12499<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991> -=
+ [Bug] [2.5 M1 RC3] qemuarm: failed to shutdown.
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12499
+
+
+
+
+
+
+Thanks & Regards,
+Sangeeta Jain
+
+--_000_015AB11D45F2C442929CB2765DAE738634D5748APGSMSX110garcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:246311664;
+	mso-list-template-ids:2004641406;}
+@list l1
+	{mso-list-id:366490912;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1418230706 1141440527 1141440537 1141440539 11414405=
+27 1141440537 1141440539 1141440527 1141440537 1141440539;}
+@list l1:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l1:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l1:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l1:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-MY" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">Hello All,<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">This is the full report for 2.</span><span lang=3D"EN-US">7 M=
+2 RC1:<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">https://=
+wiki.yoctoproject.org/wiki/WW01_-_2019-01-28_-_Full_Test_Cycle_2.7_M2_RC1<o=
+:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D<o:p></=
+o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">All planned tests were executed.<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"color:black">T=
+otal Test Executed - 3</span>629<span style=3D"color:black"><o:p></o:p></sp=
+an></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"color:black">P=
+assed Test - 3613<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"color:black">F=
+ailed Test -
+</span>16<span style=3D"color:black"><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">There were zero high milestone defect.&nbsp; Team had found
+</span><span lang=3D"EN-US">3<span style=3D"color:black"> new defects in BS=
+P[1], Compliance [2] and&nbsp; OE-Core[3].<o:p></o:p></span></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">5 existing issues were observed in this release.<o:p></o:p></=
+span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">For ptest, there is a drop in percentage of pass rate for 3 m=
+odules: nettle, perl and valgrind.&nbsp;Bugs are reported for Nettle [4] an=
+d Perl [5]. For Valgrind, no bug is filed,
+ since there is a decrease in percentage but no failures as compared to pre=
+vious results.<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D<o:p></=
+o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<ol style=3D"margin-top:0cm" start=3D"1" type=3D"1">
+<li class=3D"MsoNormal" style=3D"color:black;mso-list:l1 level1 lfo3"><span=
+ lang=3D"EN-US" style=3D"mso-fareast-language:EN-MY">No high milestone defe=
+ct.&nbsp;
+<o:p></o:p></span></li><li class=3D"MsoNormal" style=3D"color:black;mso-lis=
+t:l1 level1 lfo3"><span lang=3D"EN-US" style=3D"mso-fareast-language:EN-MY"=
+>For performance test results, this time there is a new machine &#8220;<i><=
+span style=3D"background:white">pokybuild at perf-centos7.yoctoproject.org&=
+#8221;
+</span></i><span style=3D"background:white">introduced in performance test =
+results from Yocto-perf mailing list. And results from &#8220;<i>Yocto Cent=
+OS 7 Build Perf Tester&#8221;
+</i>is missing for this release. Hence, the comparison between results from=
+ two &#8220;centos7&#8221; machines shows huge differences.</span><o:p></o:=
+p></span></li></ol>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D<o:p></o:p=
+></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">New Bugs<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">[1] Bug =
+13153 &#8211; [2.7 M2 RC1] Systemtap doesn't work on beaglebone<o:p></o:p><=
+/span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><a href=
+=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13153">https://bugz=
+illa.yoctoproject.org/show_bug.cgi?id=3D13153</a><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">[2] Bug =
+13160 &#8211; [2.7_m2_rc1][compliance test][LSB Test] &quot;Failed to load =
+module Core_test.pm, samba_test.pm&quot;, LSB Test has failed&quot;<o:p></o=
+:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><a href=
+=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13160">https://bugz=
+illa.yoctoproject.org/show_bug.cgi?id=3D13160</a><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">[3] Bug =
+13161 &#8211; [2.7 M2 RC1] Perl can not handle signals<o:p></o:p></span></p=
+>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><a href=
+=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13161">https://bugz=
+illa.yoctoproject.org/show_bug.cgi?id=3D13161</a><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b>ptest Bugs:<o:p></o:p></b>=
+</p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt">[4] Bug 13155<span style=3D"c=
+olor:black">&nbsp;-&nbsp;[2.7 M2 RC1] nettle ptest failure<o:p></o:p></span=
+></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D13155">https://bugzilla.yoctoproject.org/=
+show_bug.cgi?id=3D13155</a><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt">[5] <span style=3D"color:blac=
+k"><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991"><s=
+pan style=3D"color:black;text-decoration:none">Bug&nbsp;13154</span></a>&nb=
+sp;-&nbsp;[2.7 M2 RC1] perl ptest failure<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D13154">https://bugzilla.yoctoproject.org/=
+show_bug.cgi?id=3D13154</a><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US"><o:p>=
+&nbsp;</o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US">Previ=
+ous Bugs observed in this release:<o:p></o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">[</span><span lang=3D"EN-US">6<span style=3D"color:black">]
+</span></span><span style=3D"color:black">Bug 13102 - [Bug][QA 2.7 M1 rc1][=
+Toaster] All layers are not getting populated after clicking &quot;View com=
+patible layers&quot; on project page
+</span><span lang=3D"EN-US" style=3D"color:black"><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"color:black"><=
+a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13102">https:=
+//bugzilla.yoctoproject.org/show_bug.cgi?id=3D13102</a><o:p></o:p></span></=
+p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">[</span><span lang=3D"EN-US">7<span style=3D"color:black">]
+</span></span><span style=3D"color:black">Bug 13103 - [Bug][QA 2.7 M1 rc1][=
+Toaster] &quot;Recipes&quot; table&nbsp; and&nbsp; &quot;machines&quot; tab=
+le are not getting populated after clicking on imported layer as well as af=
+ter clicking Machines Tab on project page</span><span lang=3D"EN-US" style=
+=3D"color:black"><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"color:black"><=
+a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13103">https:=
+//bugzilla.yoctoproject.org/show_bug.cgi?id=3D13103</a><o:p></o:p></span></=
+p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"color:black">&=
+nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">[</span><span lang=3D"EN-US">8<span style=3D"color:black">]
+</span></span><span style=3D"color:black">Bug 13104 - [Bug][QA 2.7 M1 rc1][=
+Toaster] All &quot;Image Recipes&quot; are not getting populated after clic=
+king&nbsp; &quot;Image Recipes&quot;&nbsp; on project page
+</span><span lang=3D"EN-US" style=3D"color:black"><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"color:black"><=
+a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13104">https:=
+//bugzilla.yoctoproject.org/show_bug.cgi?id=3D13104</a><o:p></o:p></span></=
+p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt">[9] <span style=3D"color:blac=
+k"><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991"><s=
+pan style=3D"color:black;text-decoration:none">Bug&nbsp;12991</span></a>&nb=
+sp;-&nbsp;[Bug] [2.6 M4 RC1][Build-Appliance] Bitbake build-appliance-image
+ getting failed during building image due to webkitgtk package.<o:p></o:p><=
+/span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D12991">https://bugzilla.yoctoproject.org/=
+show_bug.cgi?id=3D12991</a><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt">[10] <span style=3D"color:bla=
+ck"><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991"><=
+span style=3D"color:black;text-decoration:none">Bug&nbsp;12499</span></a>&n=
+bsp;-&nbsp;[Bug] [2.5 M1 RC3] qemuarm: failed to shutdown.<o:p></o:p></span=
+></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D12499">https://bugzilla.yoctoproject.org/=
+show_bug.cgi?id=3D12499</a><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards,<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Sangeeta Jain<o:p></o:p></span>=
+</p>
+</div>
+</body>
+</html>
+
+--_000_015AB11D45F2C442929CB2765DAE738634D5748APGSMSX110garcor_--
