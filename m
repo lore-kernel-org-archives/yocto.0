@@ -1,84 +1,42 @@
-Return-Path: <easmith5@uchicago.edu>
+Return-Path: <jose.a.lamego@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 66EE8E00C9F; Fri,  8 Feb 2019 14:47:14 -0800 (PST)
+	id 58DD4E00CBC; Sat,  9 Feb 2019 10:43:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [40.107.81.119 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-X-Greylist: delayed 46003 seconds by postgrey-1.32 at yocto-www;
-	Fri, 08 Feb 2019 14:47:13 PST
-Received: from NAM01-BY2-obe.outbound.protection.outlook.com
-	(mail-eopbgr810119.outbound.protection.outlook.com [40.107.81.119])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B265E00C75
-	for <yocto@yoctoproject.org>; Fri,  8 Feb 2019 14:47:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uchicagoedu.onmicrosoft.com; s=selector1-uchicago-edu;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=KjJEsbPN/LDl0QkY/hvJAdXocD7lHHvKj0QJEmc7Kmo=;
-	b=AouTWdkKJQqChvJOuJZ/QNnl+ViAR+zM8L5GKyXQsi3lgFuCsMfITxxRAJs/ltj75+2jYqclqzIIrxHcID5tUbvbGu3Ocsbc8K2wAtqjvoRAj1vr44ayOnzZF4rePO5Xx74BWYUVG2Qj/3H6tUfmEW4Y36mJN18pPsZoM/8tWDM=
-Received: from DM6PR11MB3193.namprd11.prod.outlook.com (20.176.119.213) by
-	DM6PR11MB2652.namprd11.prod.outlook.com (20.176.99.138) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1601.19; Thu, 7 Feb 2019 00:27:54 +0000
-Received: from DM6PR11MB3193.namprd11.prod.outlook.com
-	([fe80::953a:7c1a:7fd3:7940]) by
-	DM6PR11MB3193.namprd11.prod.outlook.com
-	([fe80::953a:7c1a:7fd3:7940%4]) with mapi id 15.20.1580.019;
-	Thu, 7 Feb 2019 00:27:54 +0000
-From: Emily Smith <easmith5@uchicago.edu>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Python default libraries 
-Thread-Index: AQHUvnv32ScF801v5kqKI+UOjBwE5g==
-Date: Thu, 7 Feb 2019 00:27:54 +0000
-Message-ID: <ABF34097-42F0-4504-90FD-F2214ECC210D@uchicago.edu>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=easmith5@uchicago.edu; 
-x-originating-ip: [2601:240:c400:5a90:ecfe:a48c:5434:8fe]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; DM6PR11MB2652;
-	20:MIhYBoPM1amjgY1xkBef+z06iehUImgIiQtiXzB/AePVtyhdWwWOqfwmYLz4zm1BnwibvpZvN78he81G2SqVsFEmt/9A2j2ak6Nssq0ozKNmMdlc5aRpqZSV7LbvLobw8+GPu72Q5iukOk96yRdOwducGW49UYciP1rRyP4VMW4=;
-	23:z2I6jZ90HGDXE2kTgBo94ktNjnx4RTeEO6Yw3QQEMtnKJpNb4KClSkk+G88WQ0GlQ5141HRxU/ynHkeenAIjHQd9jhJoS1KI8czXzMSviNjTg4036+TjT19IjgEu7Rui0M8+LPfIkI+RFTRsnkUX8w==
-x-ms-office365-filtering-correlation-id: 391f5500-ee4f-42bf-757d-08d68c9319f4
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600110)(711020)(4605077)(2017052603328)(7153060)(7193020);
-	SRVR:DM6PR11MB2652; 
-X-MS-TrafficTypeDiagnostic: DM6PR11MB2652:|DM6PR11MB2652:
-x-microsoft-antispam-prvs: <DM6PR11MB2652C55C55C219A0F4F05A3BE7680@DM6PR11MB2652.namprd11.prod.outlook.com>
-x-forefront-prvs: 0941B96580
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39860400002)(346002)(366004)(376002)(136003)(396003)(199004)(189003)(99286004)(97736004)(53936002)(14454004)(478600001)(88552002)(316002)(86362001)(786003)(2351001)(2906002)(6116002)(68736007)(8936002)(558084003)(106356001)(2501003)(36756003)(81166006)(82746002)(25786009)(6916009)(1730700003)(3480700005)(81156014)(83716004)(8676002)(33656002)(7736002)(71190400001)(71200400001)(4743002)(305945005)(105586002)(6486002)(5640700003)(6436002)(6506007)(186003)(46003)(102836004)(256004)(486006)(6512007)(7116003)(75432002)(476003)(2616005);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DM6PR11MB2652;
-	H:DM6PR11MB3193.namprd11.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: uchicago.edu does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: Lr7Ae7ru8WBL15nY6qvlHDctexNVOzcV/LPVTCUrxX2XITTQiDnjCQVfqAL6i9Psej8ObjYVMkgoueo4EPr5PVZmZmP5jgbQYzd8Gjbua0Y8xBJCmLQ3PqYJPGfzwoKd5dSnQ9LGuSSplu+vErR8lAT4olChR93iMKVocyg2ABC7T902H7z8fCj6AhYD8tlQlqSt15g6sUmEnugL6B3OxkwA5JADJfUwJsKJuP7XC7O1JIfVXQetWYwBex0U/V76SmlIV5y1ARkA1VHQ8wC6z/fxn6RmcPu0NeFisED6j/l5Z/HMDTGfk4ML8UAdFJI5RKfylt5r7iy9/d39TWcTsomQPbyYKXtKxcHKy1UsWvgSeuKBGTIwDpB5SMscpK6NPjpwTIiv2RDXW2qLqD+jcwiXI52U1UiRpPN9A+hCJbE=
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DCAEE00C8F
+	for <yocto@yoctoproject.org>; Sat,  9 Feb 2019 10:43:49 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	09 Feb 2019 10:43:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.58,352,1544515200"; d="scan'208";a="142082325"
+Received: from jalamego-mobl3.zpn.intel.com ([10.218.170.143])
+	by fmsmga002.fm.intel.com with ESMTP; 09 Feb 2019 10:43:48 -0800
+Message-ID: <862ac49a0d926ceebe5860a8c0204eec4288dc79.camel@linux.intel.com>
+From: Jose Lamego <jose.a.lamego@linux.intel.com>
+To: Randy MacLeod <randy.macleod@windriver.com>, changqing.li@windriver.com,
+	yocto@yoctoproject.org
+Date: Sat, 09 Feb 2019 12:43:48 -0600
+In-Reply-To: <bdac8902-ca45-e119-6003-738adef6d583@windriver.com>
+References: <1546062265-388514-1-git-send-email-changqing.li@windriver.com>
+	<1547617036-442612-1-git-send-email-changqing.li@windriver.com>
+	<1547617036-442612-2-git-send-email-changqing.li@windriver.com>
+	<bdac8902-ca45-e119-6003-738adef6d583@windriver.com>
+User-Agent: Evolution 3.30.5 
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 391f5500-ee4f-42bf-757d-08d68c9319f4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Feb 2019 00:27:54.2125 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 83b02c92-5f26-48ed-9e5b-6c2fca46a8e6
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2652
-X-OriginatorOrg: uchicago.edu
 X-Mailman-Approved-At: Tue, 12 Feb 2019 08:13:01 -0800
-Subject: Python default libraries
+Subject: Re: [PATCH V2] patchwork: Add a dockerfile for deploy patchwork and patchtest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -90,16 +48,243 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Feb 2019 22:47:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <77EF4FB87F65E34BA240718A38FCADEC@uchicagoedu.onmicrosoft.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Sat, 09 Feb 2019 18:43:51 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-SGkgLQ0KDQpJ4oCZdmUgYmVlbiB3b3JraW5nIHdpdGggeW9jdG8gYW5kIHdpdGggc29tZSBjb2Rl
-IHJ1bm5pbmcgb24gbXkgT1MsIGhvd2V2ZXIgSeKAmW0gc2VlaW5nIGVycm9ycyB0aGF0IHNlZW0g
-dG8gaW5kaWNhdGUgdGhhdCBkZWZhdWx0IHB5dGhvbiBsaWJyYXJpZXMgYXJlIG5vIGxvbmdlciBp
-bmNsdWRlZCAoc3BlY2lmaWNhbGx5IGxvZ2dpbmcgYW5kIGltcG9ydGxpYikuIEhhcyBzb21ldGhp
-bmcgYWJvdXQgdGhlIGRlZmF1bHQgcHl0aG9uIGxpYnJhcmllcyBjaGFuZ2VkPyANCg0KVGhhbmtz
-IQ0KRW1pbHkgU21pdGg=
+Hi Randy,
+
+Sorry for the late response. I'm no longer involved with the Yocto
+Project. Last word I heard was that point of contact for Patchwork-
+related work was Paul Eggleton.
+
+Hope this helps.
+
+Jose
+
+On Mon, 2019-01-28 at 20:30 -0500, Randy MacLeod wrote:
+> On 1/16/19 12:37 AM, changqing.li@windriver.com wrote:
+> > From: Changqing Li <changqing.li@windriver.com>
+> 
+> Ping?
+> 
+> Jose, are you maintaining this repo?
+>    http://git.yoctoproject.org/cgit/cgit.cgi/patchwork/about/
+> You were the committer for most of the recent work.
+> 
+> ../Randy
+> > Add a dockerfile for easy deploy patchwork and patchtest in
+> > docker
+> > 
+> > Signed-off-by: Changqing Li <changqing.li@windriver.com>
+> > ---
+> >   Dockerfile.pw                 | 52
+> > +++++++++++++++++++++++++++++++++++++++++++
+> >   README.pw                     | 32 ++++++++++++++++++++++++++
+> >   requirements.txt              | 12 ++++++++++
+> >   scripts/pw_createsuperuser.sh |  5 +++++
+> >   scripts/pw_getmail.sh         | 11 +++++++++
+> >   scripts/pw_migrate.sh         |  5 +++++
+> >   scripts/pw_runwebserver.sh    | 12 ++++++++++
+> >   7 files changed, 129 insertions(+)
+> >   create mode 100644 Dockerfile.pw
+> >   create mode 100644 README.pw
+> >   create mode 100644 requirements.txt
+> >   create mode 100755 scripts/pw_createsuperuser.sh
+> >   create mode 100755 scripts/pw_getmail.sh
+> >   create mode 100755 scripts/pw_migrate.sh
+> >   create mode 100755 scripts/pw_runwebserver.sh
+> > 
+> > diff --git a/Dockerfile.pw b/Dockerfile.pw
+> > new file mode 100644
+> > index 0000000..ae3c1ee
+> > --- /dev/null
+> > +++ b/Dockerfile.pw
+> > @@ -0,0 +1,52 @@
+> > +FROM ubuntu:latest
+> > +MAINTAINER owner <own@mail.com>
+> > +
+> > +EXPOSE 8080
+> > +
+> > +ENV PYTHONUNBUFFERED=1 \
+> > +    LANG=en_US.UTF-8 \
+> > +    LC_ALL=en_US.UTF-8 \
+> > +    LC_CTYPE=en_US.UTF-8 \
+> > +    PATH="$PATH:/opt/patchwork/git-
+> > pw:/opt/patchtest:/opt/patchtest/scripts"
+> > +
+> > +RUN  apt-get update \
+> > +        && apt-get dist-upgrade -y \
+> > +        && apt-get install -y --no-install-recommends \
+> > +        autoconf \
+> > +        gcc \
+> > +        g++ \
+> > +        make \
+> > +        locales \
+> > +        wget \
+> > +        curl \
+> > +        cron \
+> > +        python-pip \
+> > +        python-dev \
+> > +        python-setuptools \
+> > +        python3-pip \
+> > +        python3-dev \
+> > +        libmysqlclient-dev \
+> > +        git-core \
+> > +        getmail4 \
+> > +        && sh -c "echo \"en_US.UTF-8 UTF-8\" >> /etc/locale.gen" \
+> > +        && locale-gen en_US.UTF-8 \
+> > +        && update-locale \
+> > +        && pip2 install wheel \
+> > +        && pip3 install wheel \
+> > +        && pip3 install setuptools \
+> > +        && apt-get autoremove --purge -y \
+> > +        && rm -rf /var/lib/apt/lists/* \
+> > +        && apt-get clean
+> > +ADD ./patchwork /opt/patchwork
+> > +ADD ./patchtest /opt/patchtest
+> > +ADD ./patchtest-oe /opt/patchtest-oe
+> > +ADD ./getmailrc /opt/getmail/getmailrc
+> > +RUN  pip2 install -r /opt/patchwork/requirements.txt \
+> > +    && pip3 install -r /opt/patchtest/requirements.txt \
+> > +    && pip3 install  -r /opt/patchtest-oe/requirements.txt \
+> > +    && mkdir -p /opt/getmail \
+> > +    && mkdir -p /opt/pw-logs \
+> > +    && git config --global user.email "patchtest@patchtest.com" \
+> > +    && git config --global user.name "patchtest" \
+> > +    && /opt/patchtest/scripts/create-host-test-folder -t /opt/pw-
+> > test \
+> > +    && /opt/patchtest/scripts/create-host-crontab -c /opt/pw-test-
+> > cron
+> > diff --git a/README.pw b/README.pw
+> > new file mode 100644
+> > index 0000000..ffa7af1
+> > --- /dev/null
+> > +++ b/README.pw
+> > @@ -0,0 +1,32 @@
+> > +* Dockerfile.pw deploy patchwork, patchtest, patchtest-oe in
+> > docker
+> > +
+> > +* Dockerfile.pw is just an example, you can adjust according to
+> > your
+> > +  deploy condition, like not use getmail, but use postfix.
+> > +
+> > +* requirements.txt,  just for refer, you can also rewrite this
+> > +  according to patchwork'doc and accoridng to your deploy
+> > condition.
+> > +
+> > +* scripts folder hold the files will be used during deploy with
+> > docker.
+> > +
+> > +* Deploy steps:
+> > +
+> > +1. Clone patchwork, patchtest, patchtest-oe first, also put
+> > getmailrc used by
+> > +   Dockerfile.pw under the same folder.
+> > +
+> > +2. Build docker image with Dockerfile.pw
+> > +$docker build -t pw -f ./patchwork/Dockerfile.pw .
+> > +
+> > +3. use mariadb as dataserver:
+> > +$ docker pull mariadb
+> > +$ docker run -d --name pw-db -e MYSQL_ROOT_PASSWORD=123456 -e
+> > MYSQL_DATABASE=pwdb -v /pw/pwdb:/var/lib/mysql mariadb
+> > +
+> > +5. run web server
+> > +docker run -d --name pw-web --link pw-db:pw-db -p 8080:8080 pw
+> > "/opt/patchwork/scripts/pw_runwebserver.sh"
+> > +
+> > +6. config pw
+> > +docker exec -it pw-web /opt/patchwork/scripts/pw_migrate.sh
+> > +docker exec -it pw-web
+> > /opt/patchwork/scripts/pw_createsuperuser.sh
+> > +
+> > +7. run patchwork
+> > +docker run -d --name pw-mail --link pw-db:pw-db pw
+> > "/opt/patchwork/scripts/pw_getmail.sh"
+> > +
+> > diff --git a/requirements.txt b/requirements.txt
+> > new file mode 100644
+> > index 0000000..b8f68f2
+> > --- /dev/null
+> > +++ b/requirements.txt
+> > @@ -0,0 +1,12 @@
+> > +django==1.8.0
+> > +sqlparse==0.2.4
+> > +celery==3.1.20
+> > +django_filter==0.11.0
+> > +djangorestframework==2.4.8
+> > +drf-nested-routers==0.11.1
+> > +psycopg2>=2.7,<2.8
+> > +mysqlclient
+> > +jsonfield
+> > +enum34
+> > +GitPython
+> > +requests
+> > diff --git a/scripts/pw_createsuperuser.sh
+> > b/scripts/pw_createsuperuser.sh
+> > new file mode 100755
+> > index 0000000..324ce72
+> > --- /dev/null
+> > +++ b/scripts/pw_createsuperuser.sh
+> > @@ -0,0 +1,5 @@
+> > +#!/bin/bash
+> > +
+> > +pw_dir='/opt/patchwork'
+> > +
+> > +(cd $pw_dir; ./manage.py createsuperuser)
+> > diff --git a/scripts/pw_getmail.sh b/scripts/pw_getmail.sh
+> > new file mode 100755
+> > index 0000000..fadf7c9
+> > --- /dev/null
+> > +++ b/scripts/pw_getmail.sh
+> > @@ -0,0 +1,11 @@
+> > +#!/bin/bash
+> > +
+> > +sudo /etc/init.d/cron start
+> > +echo "*/5 * * * * sudo getmail --getmaildir=/opt/getmail/ --idle
+> > INBOX >> /opt/pw-test-cron/getmail.log 2>&1" > /opt/pw-test-
+> > cron/cron-getmail
+> > +sudo crontab -u wrlbuild  /opt/pw-test-cron/cron-getmail
+> > +
+> > +while true
+> > +do
+> > +   :
+> > +done
+> > +
+> > diff --git a/scripts/pw_migrate.sh b/scripts/pw_migrate.sh
+> > new file mode 100755
+> > index 0000000..e54b2f4
+> > --- /dev/null
+> > +++ b/scripts/pw_migrate.sh
+> > @@ -0,0 +1,5 @@
+> > +#!/bin/bash
+> > +
+> > +pw_dir="/opt/patchwork"
+> > +
+> > +(cd $pw_dir; ./manage.py migrate; ./manage.py collectstatic;
+> > ./manage.py loaddata default_tags default_states default_events)
+> > diff --git a/scripts/pw_runwebserver.sh
+> > b/scripts/pw_runwebserver.sh
+> > new file mode 100755
+> > index 0000000..4233b1a
+> > --- /dev/null
+> > +++ b/scripts/pw_runwebserver.sh
+> > @@ -0,0 +1,12 @@
+> > +#!/bin/bash
+> > +
+> > +export LANG="en_US.UTF-8"
+> > +export LC_ALL="en_US.UTF-8"
+> > +
+> > +#open crontab to do test
+> > +/etc/init.d/cron start
+> > +crontab -u pwtest /opt/pw-test-cron/crontab
+> > +
+> > +pw_dir="/opt/patchwork"
+> > +
+> > +(cd $pw_dir; ./manage.py runserver 0.0.0.0:8080)
+> > 
+> 
+> 
+
 
