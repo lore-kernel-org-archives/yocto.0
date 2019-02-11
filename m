@@ -1,65 +1,43 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7CAC8E00BD5; Sun, 10 Feb 2019 09:07:06 -0800 (PST)
+	id 4F412E00B92; Sun, 10 Feb 2019 17:17:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.175 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
-	[209.85.215.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A04A7E00B92
-	for <yocto@yoctoproject.org>; Sun, 10 Feb 2019 09:07:04 -0800 (PST)
-Received: by mail-pg1-f175.google.com with SMTP id v28so3857258pgk.10
-	for <yocto@yoctoproject.org>; Sun, 10 Feb 2019 09:07:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=mNkpKawBwdoc8lLuz8tMzU7069eoTZnjjmhrZ8ihChs=;
-	b=JCu2E9WTHkMLRfjWojQ0DHa57ZVvCrqCRzmWx2eOUIlRywyXqjWywD0wC1xKn3iuMP
-	hjIqQt7ueauZRBOw8/RP1muiZ78JjwcCvyl4AtKMskM/9LM9GaJWkc/ENbrLqfm4A3zg
-	wNUd6m+82JAEpHDq94GSQ7xMAPJF2BfhOgPfnolGrJnnWItO6+x5aligb9RghvBoAEn4
-	Lks6uWByq6Vuezg/rqQRNHpAuoDeAqamgw5TSi1W+4egHw1lfrOfCTkDZYfYZzl3EIuf
-	IF4NNrh5yt13N6gsGWZqp8CpbvJDv7iEDrEcey5IGmWOyIX8BLY69OuLA2bA//gD7s/n
-	zo+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=mNkpKawBwdoc8lLuz8tMzU7069eoTZnjjmhrZ8ihChs=;
-	b=PANodRpZ0D6a3f8UNsnxM06xMCHZgUd3oXKvAivpcMy51W0xQEOpblZ3/UBQppeFmy
-	0jPSb+e89Q/wjiyc3Bw3if871qk7FoBMMMvo1vy2jmO0g9U0EvxffGawCDpcjakbbMTo
-	DQ8ia1cmyZJ4F23303waU2sauJbiYKz5BAuHujSbRPWycrLOTVUmlEwZW3+BiSidZ5NX
-	6jSrxJeZb7DyyF/LaRAp/j47mff8LSLuIPTMCIycgUwmsV0PIkuURXT9V6pcLSZCIOeY
-	VeVsARv4Gjqvm31l/GI2OmtodDypdeON1ydc/7JWL+2hUsXCHZ1jXb7iqzaYjkP/teKz
-	ddyg==
-X-Gm-Message-State: AHQUAuZuKia11g6VMf2kfdF/CKKoWonDlVzuWLJwueI4q9XCKZ2Ofs22
-	hDz9vQa3d7Li2ItPhSaCMNLHCtoqn68=
-X-Google-Smtp-Source: AHgI3Ia7HXqhPWMU8B6b0LrFE2DM7NVRlDEgay2/yU2lRzh4AQz/a3TmuR4ZiI+OMu6GEnuGtJOqOQ==
-X-Received: by 2002:a62:9fd9:: with SMTP id v86mr32652015pfk.191.1549818423824;
-	Sun, 10 Feb 2019 09:07:03 -0800 (PST)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	z15sm10144091pgc.77.2019.02.10.09.07.02 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 10 Feb 2019 09:07:03 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sun, 10 Feb 2019 09:07:01 -0800
-Message-Id: <20190210170702.24929-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [meta-security][PATCH 1/2] scapy: restore ptest by going to github directly
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F95AE007B3
+	for <yocto@yoctoproject.org>; Sun, 10 Feb 2019 17:17:32 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x1B1HKCr010278
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 10 Feb 2019 17:17:20 -0800 (PST)
+Received: from [128.224.162.228] (128.224.162.228) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.435.0;
+	Sun, 10 Feb 2019 17:17:19 -0800
+To: Jose Lamego <jose.a.lamego@linux.intel.com>, Randy MacLeod
+	<randy.macleod@windriver.com>, <yocto@yoctoproject.org>,
+	<paul.eggleton@linux.intel.com>
+References: <1546062265-388514-1-git-send-email-changqing.li@windriver.com>
+	<1547617036-442612-1-git-send-email-changqing.li@windriver.com>
+	<1547617036-442612-2-git-send-email-changqing.li@windriver.com>
+	<bdac8902-ca45-e119-6003-738adef6d583@windriver.com>
+	<862ac49a0d926ceebe5860a8c0204eec4288dc79.camel@linux.intel.com>
+From: Changqing Li <changqing.li@windriver.com>
+Message-ID: <f4dfe26a-9c7e-b2eb-bb78-1541f99534fd@windriver.com>
+Date: Mon, 11 Feb 2019 09:17:16 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
+MIME-Version: 1.0
+In-Reply-To: <862ac49a0d926ceebe5860a8c0204eec4288dc79.camel@linux.intel.com>
+X-Originating-IP: [128.224.162.228]
+Subject: Re: [PATCH V2] patchwork: Add a dockerfile for deploy patchwork and patchtest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,84 +49,253 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Feb 2019 17:07:06 -0000
+X-List-Received-Date: Mon, 11 Feb 2019 01:17:34 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-The pypi package removed the tests so
-go to the git repo directly.
+Hi, Paul
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/scapy/files/run-ptest        |  4 ++++
- recipes-security/scapy/python-scapy.inc       | 13 ++++++++++---
- recipes-security/scapy/python-scapy_2.4.2.bb  |  2 ++
- recipes-security/scapy/python3-scapy_2.4.2.bb |  3 +++
- 4 files changed, 19 insertions(+), 3 deletions(-)
- create mode 100644 recipes-security/scapy/files/run-ptest
+Are you maintaining this repo?
 
-diff --git a/recipes-security/scapy/files/run-ptest b/recipes-security/scapy/files/run-ptest
-new file mode 100644
-index 0000000..91b29f9
---- /dev/null
-+++ b/recipes-security/scapy/files/run-ptest
-@@ -0,0 +1,4 @@
-+#!/bin/sh
-+UTscapy -t regression.uts -f text -l -C \
-+    -o @PTEST_PATH@/scapy_ptest_$(date +%Y%m%d-%H%M%S).log \
-+    2>&1 | sed -e 's/^passed None/PASS:/' -e 's/^failed None/FAIL:/'
-diff --git a/recipes-security/scapy/python-scapy.inc b/recipes-security/scapy/python-scapy.inc
-index 43ef959..99f30a7 100644
---- a/recipes-security/scapy/python-scapy.inc
-+++ b/recipes-security/scapy/python-scapy.inc
-@@ -5,10 +5,12 @@ LICENSE = "GPLv2"
- 
- LIC_FILES_CHKSUM = "file://bin/scapy;beginline=9;endline=13;md5=1d5249872cc54cd4ca3d3879262d0c69"
- 
--SRC_URI[md5sum] = "e6a03d8c924a6bbde1e86fc58bd2b9d6"
--SRC_URI[sha256sum] = "1baa048936207ceb1a4281a0e1e3b4317667c754872a0bb4734c5213c468e86a"
-+S = "${WORKDIR}/git"
- 
--inherit pypi
-+SRCREV = "bad14cb1a5aee29f8107fbe8ad008d4645f14da7"
-+SRC_URI = "git://github.com/secdev/scapy.git"
-+
-+inherit ptest
- 
- do_install_append() {
-     if [ "${PYTHON_PN}" = "python3" ]; then
-@@ -17,6 +19,11 @@ do_install_append() {
-     fi
- }
- 
-+do_install_ptest() {
-+    install -m 0644 ${S}/test/regression.uts ${D}${PTEST_PATH}
-+    sed -i 's,@PTEST_PATH@,${PTEST_PATH},' ${D}${PTEST_PATH}/run-ptest
-+}
-+
- RDEPENDS_${PN} = "tcpdump ${PYTHON_PN}-compression ${PYTHON_PN}-cryptography ${PYTHON_PN}-netclient  \
-                   ${PYTHON_PN}-netserver ${PYTHON_PN}-pydoc ${PYTHON_PN}-pkgutil ${PYTHON_PN}-shell \
-                   ${PYTHON_PN}-threading ${PYTHON_PN}-numbers ${PYTHON_PN}-pycrypto"
-diff --git a/recipes-security/scapy/python-scapy_2.4.2.bb b/recipes-security/scapy/python-scapy_2.4.2.bb
-index ea8764a..98db1fd 100644
---- a/recipes-security/scapy/python-scapy_2.4.2.bb
-+++ b/recipes-security/scapy/python-scapy_2.4.2.bb
-@@ -1,4 +1,6 @@
- inherit setuptools
- require python-scapy.inc
- 
-+SRC_URI += "file://run-ptest"
-+
- RDEPENDS_${PN} += "${PYTHON_PN}-subprocess"
-diff --git a/recipes-security/scapy/python3-scapy_2.4.2.bb b/recipes-security/scapy/python3-scapy_2.4.2.bb
-index 34eb2a3..83c79f4 100644
---- a/recipes-security/scapy/python3-scapy_2.4.2.bb
-+++ b/recipes-security/scapy/python3-scapy_2.4.2.bb
-@@ -1,2 +1,5 @@
- inherit setuptools3
- require python-scapy.inc
-+
-+SRC_URI += "file://run-ptest"
-+
+On 2/10/19 2:43 AM, Jose Lamego wrote:
+> Hi Randy,
+>
+> Sorry for the late response. I'm no longer involved with the Yocto
+> Project. Last word I heard was that point of contact for Patchwork-
+> related work was Paul Eggleton.
+>
+> Hope this helps.
+>
+> Jose
+Thanks.
+>
+> On Mon, 2019-01-28 at 20:30 -0500, Randy MacLeod wrote:
+>> On 1/16/19 12:37 AM, changqing.li@windriver.com wrote:
+>>> From: Changqing Li <changqing.li@windriver.com>
+>> Ping?
+>>
+>> Jose, are you maintaining this repo?
+>>     http://git.yoctoproject.org/cgit/cgit.cgi/patchwork/about/
+>> You were the committer for most of the recent work.
+>>
+>> ../Randy
+>>> Add a dockerfile for easy deploy patchwork and patchtest in
+>>> docker
+>>>
+>>> Signed-off-by: Changqing Li <changqing.li@windriver.com>
+>>> ---
+>>>    Dockerfile.pw                 | 52
+>>> +++++++++++++++++++++++++++++++++++++++++++
+>>>    README.pw                     | 32 ++++++++++++++++++++++++++
+>>>    requirements.txt              | 12 ++++++++++
+>>>    scripts/pw_createsuperuser.sh |  5 +++++
+>>>    scripts/pw_getmail.sh         | 11 +++++++++
+>>>    scripts/pw_migrate.sh         |  5 +++++
+>>>    scripts/pw_runwebserver.sh    | 12 ++++++++++
+>>>    7 files changed, 129 insertions(+)
+>>>    create mode 100644 Dockerfile.pw
+>>>    create mode 100644 README.pw
+>>>    create mode 100644 requirements.txt
+>>>    create mode 100755 scripts/pw_createsuperuser.sh
+>>>    create mode 100755 scripts/pw_getmail.sh
+>>>    create mode 100755 scripts/pw_migrate.sh
+>>>    create mode 100755 scripts/pw_runwebserver.sh
+>>>
+>>> diff --git a/Dockerfile.pw b/Dockerfile.pw
+>>> new file mode 100644
+>>> index 0000000..ae3c1ee
+>>> --- /dev/null
+>>> +++ b/Dockerfile.pw
+>>> @@ -0,0 +1,52 @@
+>>> +FROM ubuntu:latest
+>>> +MAINTAINER owner <own@mail.com>
+>>> +
+>>> +EXPOSE 8080
+>>> +
+>>> +ENV PYTHONUNBUFFERED=1 \
+>>> +    LANG=en_US.UTF-8 \
+>>> +    LC_ALL=en_US.UTF-8 \
+>>> +    LC_CTYPE=en_US.UTF-8 \
+>>> +    PATH="$PATH:/opt/patchwork/git-
+>>> pw:/opt/patchtest:/opt/patchtest/scripts"
+>>> +
+>>> +RUN  apt-get update \
+>>> +        && apt-get dist-upgrade -y \
+>>> +        && apt-get install -y --no-install-recommends \
+>>> +        autoconf \
+>>> +        gcc \
+>>> +        g++ \
+>>> +        make \
+>>> +        locales \
+>>> +        wget \
+>>> +        curl \
+>>> +        cron \
+>>> +        python-pip \
+>>> +        python-dev \
+>>> +        python-setuptools \
+>>> +        python3-pip \
+>>> +        python3-dev \
+>>> +        libmysqlclient-dev \
+>>> +        git-core \
+>>> +        getmail4 \
+>>> +        && sh -c "echo \"en_US.UTF-8 UTF-8\" >> /etc/locale.gen" \
+>>> +        && locale-gen en_US.UTF-8 \
+>>> +        && update-locale \
+>>> +        && pip2 install wheel \
+>>> +        && pip3 install wheel \
+>>> +        && pip3 install setuptools \
+>>> +        && apt-get autoremove --purge -y \
+>>> +        && rm -rf /var/lib/apt/lists/* \
+>>> +        && apt-get clean
+>>> +ADD ./patchwork /opt/patchwork
+>>> +ADD ./patchtest /opt/patchtest
+>>> +ADD ./patchtest-oe /opt/patchtest-oe
+>>> +ADD ./getmailrc /opt/getmail/getmailrc
+>>> +RUN  pip2 install -r /opt/patchwork/requirements.txt \
+>>> +    && pip3 install -r /opt/patchtest/requirements.txt \
+>>> +    && pip3 install  -r /opt/patchtest-oe/requirements.txt \
+>>> +    && mkdir -p /opt/getmail \
+>>> +    && mkdir -p /opt/pw-logs \
+>>> +    && git config --global user.email "patchtest@patchtest.com" \
+>>> +    && git config --global user.name "patchtest" \
+>>> +    && /opt/patchtest/scripts/create-host-test-folder -t /opt/pw-
+>>> test \
+>>> +    && /opt/patchtest/scripts/create-host-crontab -c /opt/pw-test-
+>>> cron
+>>> diff --git a/README.pw b/README.pw
+>>> new file mode 100644
+>>> index 0000000..ffa7af1
+>>> --- /dev/null
+>>> +++ b/README.pw
+>>> @@ -0,0 +1,32 @@
+>>> +* Dockerfile.pw deploy patchwork, patchtest, patchtest-oe in
+>>> docker
+>>> +
+>>> +* Dockerfile.pw is just an example, you can adjust according to
+>>> your
+>>> +  deploy condition, like not use getmail, but use postfix.
+>>> +
+>>> +* requirements.txt,  just for refer, you can also rewrite this
+>>> +  according to patchwork'doc and accoridng to your deploy
+>>> condition.
+>>> +
+>>> +* scripts folder hold the files will be used during deploy with
+>>> docker.
+>>> +
+>>> +* Deploy steps:
+>>> +
+>>> +1. Clone patchwork, patchtest, patchtest-oe first, also put
+>>> getmailrc used by
+>>> +   Dockerfile.pw under the same folder.
+>>> +
+>>> +2. Build docker image with Dockerfile.pw
+>>> +$docker build -t pw -f ./patchwork/Dockerfile.pw .
+>>> +
+>>> +3. use mariadb as dataserver:
+>>> +$ docker pull mariadb
+>>> +$ docker run -d --name pw-db -e MYSQL_ROOT_PASSWORD=123456 -e
+>>> MYSQL_DATABASE=pwdb -v /pw/pwdb:/var/lib/mysql mariadb
+>>> +
+>>> +5. run web server
+>>> +docker run -d --name pw-web --link pw-db:pw-db -p 8080:8080 pw
+>>> "/opt/patchwork/scripts/pw_runwebserver.sh"
+>>> +
+>>> +6. config pw
+>>> +docker exec -it pw-web /opt/patchwork/scripts/pw_migrate.sh
+>>> +docker exec -it pw-web
+>>> /opt/patchwork/scripts/pw_createsuperuser.sh
+>>> +
+>>> +7. run patchwork
+>>> +docker run -d --name pw-mail --link pw-db:pw-db pw
+>>> "/opt/patchwork/scripts/pw_getmail.sh"
+>>> +
+>>> diff --git a/requirements.txt b/requirements.txt
+>>> new file mode 100644
+>>> index 0000000..b8f68f2
+>>> --- /dev/null
+>>> +++ b/requirements.txt
+>>> @@ -0,0 +1,12 @@
+>>> +django==1.8.0
+>>> +sqlparse==0.2.4
+>>> +celery==3.1.20
+>>> +django_filter==0.11.0
+>>> +djangorestframework==2.4.8
+>>> +drf-nested-routers==0.11.1
+>>> +psycopg2>=2.7,<2.8
+>>> +mysqlclient
+>>> +jsonfield
+>>> +enum34
+>>> +GitPython
+>>> +requests
+>>> diff --git a/scripts/pw_createsuperuser.sh
+>>> b/scripts/pw_createsuperuser.sh
+>>> new file mode 100755
+>>> index 0000000..324ce72
+>>> --- /dev/null
+>>> +++ b/scripts/pw_createsuperuser.sh
+>>> @@ -0,0 +1,5 @@
+>>> +#!/bin/bash
+>>> +
+>>> +pw_dir='/opt/patchwork'
+>>> +
+>>> +(cd $pw_dir; ./manage.py createsuperuser)
+>>> diff --git a/scripts/pw_getmail.sh b/scripts/pw_getmail.sh
+>>> new file mode 100755
+>>> index 0000000..fadf7c9
+>>> --- /dev/null
+>>> +++ b/scripts/pw_getmail.sh
+>>> @@ -0,0 +1,11 @@
+>>> +#!/bin/bash
+>>> +
+>>> +sudo /etc/init.d/cron start
+>>> +echo "*/5 * * * * sudo getmail --getmaildir=/opt/getmail/ --idle
+>>> INBOX >> /opt/pw-test-cron/getmail.log 2>&1" > /opt/pw-test-
+>>> cron/cron-getmail
+>>> +sudo crontab -u wrlbuild  /opt/pw-test-cron/cron-getmail
+>>> +
+>>> +while true
+>>> +do
+>>> +   :
+>>> +done
+>>> +
+>>> diff --git a/scripts/pw_migrate.sh b/scripts/pw_migrate.sh
+>>> new file mode 100755
+>>> index 0000000..e54b2f4
+>>> --- /dev/null
+>>> +++ b/scripts/pw_migrate.sh
+>>> @@ -0,0 +1,5 @@
+>>> +#!/bin/bash
+>>> +
+>>> +pw_dir="/opt/patchwork"
+>>> +
+>>> +(cd $pw_dir; ./manage.py migrate; ./manage.py collectstatic;
+>>> ./manage.py loaddata default_tags default_states default_events)
+>>> diff --git a/scripts/pw_runwebserver.sh
+>>> b/scripts/pw_runwebserver.sh
+>>> new file mode 100755
+>>> index 0000000..4233b1a
+>>> --- /dev/null
+>>> +++ b/scripts/pw_runwebserver.sh
+>>> @@ -0,0 +1,12 @@
+>>> +#!/bin/bash
+>>> +
+>>> +export LANG="en_US.UTF-8"
+>>> +export LC_ALL="en_US.UTF-8"
+>>> +
+>>> +#open crontab to do test
+>>> +/etc/init.d/cron start
+>>> +crontab -u pwtest /opt/pw-test-cron/crontab
+>>> +
+>>> +pw_dir="/opt/patchwork"
+>>> +
+>>> +(cd $pw_dir; ./manage.py runserver 0.0.0.0:8080)
+>>>
+>>
+>
 -- 
-2.17.1
+BRs
+
+Sandy(Li Changqing)
 
 
