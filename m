@@ -1,6 +1,6 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5B25BE006D8; Tue, 12 Feb 2019 08:15:55 -0800 (PST)
+	id 48527E00754; Tue, 12 Feb 2019 08:17:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,52 +10,51 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.177 listed in list.dnswl.org]
+	*      [209.85.166.180 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f177.google.com (mail-it1-f177.google.com
-	[209.85.166.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C2D6E0053F
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 08:15:54 -0800 (PST)
-Received: by mail-it1-f177.google.com with SMTP id y184so8546250itc.1
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 08:15:54 -0800 (PST)
+Received: from mail-it1-f180.google.com (mail-it1-f180.google.com
+	[209.85.166.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7B02E006D8
+	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 08:17:09 -0800 (PST)
+Received: by mail-it1-f180.google.com with SMTP id v72so8938113itc.0
+	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 08:17:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=qBMxuN6IPDPLOx6xK3pb2+saqvRR1+03jqyYdSl7CRs=;
-	b=TxbXSfJM4qjjdLrwDYuqgMZA1hVQVjuWoIymQfjLQVjCbfHqINEe/F66J1Wz5Uxpne
-	a9Y6k05TRYOXI68t5Tzi5XxRSmgLGc0+2+Daw4u5c86J9wqomc4kYKWOUVCCOp9XMSnR
-	GSUIf55VHDPoEfgLNPS8YbbXNlC6ktD0r4/ezE7rNEV1t/ofPdlO910AKmciAAJgMT2r
-	IwD+ZRAhNJmrH2v37q7mfvqX1EP+t+TmdvhTLQONEeclmmo9rqPfxBQpmAz6gTxBMq6Q
-	hUjgMvG3QwqXR8YDWzinNOY8AKnu2ot2PGxF1Q4YEm/w9llU6GZN2aIdKe0enCKvxYtO
-	DPEg==
+	:cc; bh=1okeeLPy+dwA6XlXkwTlr6s2QZblEOH+i/DnjZssmnU=;
+	b=iEgzPctl2n5fgVmw7QJQREOT1JMBMoyPJFPRwytZdjw4c6IY7NE+mxjaduBPmsU7II
+	qKBw7lzZ5qY2EjQjRNpzV19MVDzrbYTEC9kOseYkpqfBcEAcWinR4/MXiSuLClRTdvs+
+	18aPt1DCPEPPKOXY4PqxLn2UrZu2jfkAFpj5Btet3l+HcstCYBvGORVEc8SoAUaSUJjB
+	oiv6gwUnVFLLe/yqBjOg2y2FK/J5luixcERUoygguMxKiA2BaK7jGqor8WBdJMrCgff3
+	iOezkQv7LSoPLpXuo+fhQ7TbOpa4qRjJOe9GSjYcJAZ23vWlbs2vC/bj/NcTxLdI+u3y
+	wkzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=qBMxuN6IPDPLOx6xK3pb2+saqvRR1+03jqyYdSl7CRs=;
-	b=haqxePGbKxqm2iUw/dIHxxrc6W0+LLIm/D+Km3djeH5eZz+I9HEaxZ48xqWiLzK5B0
-	MU9VZyQW4ts/0/RFmGMU92F95x74sXVhpBUpnR5X6W+lbySrnAy2DPIw/eIG3ZZaxMiu
-	B3fCgtsl336hv4sV0bx2Z2RJKzzrN8XTy4deU5L5gzsSNt8iB5zbv9LD6SLGA0Atc7js
-	dn8PBMbDYkvg454FMjoiLGUwm4j3McBDSDRk+QAZvO1G3MQ0A0/yyRSUOqlMUuIqqJ6T
-	QPzhqQym6Q/oY6tYR+iINjh/R1m9gwFs5T6qQd8dz9+tAVYUDb6gj9Zp4Z9ec758U7iV
-	rNZA==
-X-Gm-Message-State: AHQUAubfpy3Wg0Cb6xYzbJAKmxgZj6KW9jj2M56pFWlj/Gfh8u5GkX2k
-	sbsFO5arePpSp5VpkGyCJ92cQLsQaiZxF1HZ6j9HGQ==
-X-Google-Smtp-Source: AHgI3IYLVd4lqt/E2dx5aPS2FN629GaNrHb3W9PdUkrL+heJtEf5ykcYexUJncCQVEpTN9asHlUrdh3SszaSXdmHqg8=
-X-Received: by 2002:a24:c601:: with SMTP id j1mr2648349itg.130.1549988153533; 
-	Tue, 12 Feb 2019 08:15:53 -0800 (PST)
+	:message-id:subject:to:cc;
+	bh=1okeeLPy+dwA6XlXkwTlr6s2QZblEOH+i/DnjZssmnU=;
+	b=UpasFd4bFsPl5xZ+eHv7AdSkV8t1Q/HvdbTg/twNnVaV34oTwhC0RQ8lOJ8HBPH8lQ
+	XP3flg6QSKpLgZVFpAvvxoBEYlLcKR+8+3+niP1srUa9M+JRxzPbx/aJzgciKT1JOJBJ
+	Z7kcGmlW0rrXJ+HkFN33lqRmo/0S9A4nVZ0yCa/VgRQlfRbYOjFV7KlIJsxU1gHL0hKO
+	La9y2semagYoisIk8YoqQ76LBlGbrUYYm6x3L/XyzCFiUgGUs/W/SZg1ClZBL6rG4hLU
+	zPaT1QSxBgc3SlZOcw9unW/eHVq2hCKzwH8zwi5GnHoAwwzU3Vi5kdmcDi50WHv/trjK
+	6W5A==
+X-Gm-Message-State: AHQUAuZhSoFR3EZsyN7oHsWiHRgBl8LjpWgeALDdcgpv5OzMZk5OTjVM
+	kFV+bHiEWKAuxZBIyG2Ip7S/47codp/B9l40SmGmnw==
+X-Google-Smtp-Source: AHgI3IbCFVCxU3V2xGeBM+cbtosqLjEof1ICBhZPpmeaBO4lqIhdG/qUqJcBojU7SSN2tlrOgBHZPppz1jjr8Al/LdU=
+X-Received: by 2002:a24:1d4a:: with SMTP id 71mr2028794itj.62.1549988229481;
+	Tue, 12 Feb 2019 08:17:09 -0800 (PST)
 MIME-Version: 1.0
-References: <ABF34097-42F0-4504-90FD-F2214ECC210D@uchicago.edu>
-In-Reply-To: <ABF34097-42F0-4504-90FD-F2214ECC210D@uchicago.edu>
+References: <CAFq4t4jZZi_BCYJGCq6oJJbHTwL4p3PN626n4KF0mHQxybjrPQ@mail.gmail.com>
+In-Reply-To: <CAFq4t4jZZi_BCYJGCq6oJJbHTwL4p3PN626n4KF0mHQxybjrPQ@mail.gmail.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 12 Feb 2019 16:15:37 +0000
-Message-ID: <CAJTo0LYM1wZ2QCS+jwLR8bWotmfV-s4WwEOaiMosNLucNvsioQ@mail.gmail.com>
-To: Emily Smith <easmith5@uchicago.edu>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Python default libraries
+Date: Tue, 12 Feb 2019 16:16:53 +0000
+Message-ID: <CAJTo0LYTo-y=abJ9GAYdUkuePXQGT7HTvnHraNQqTdtWLo6cOw@mail.gmail.com>
+To: Peter Balazovic <balazovic.peter@gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: glxinfo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,25 +66,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2019 16:15:55 -0000
+X-List-Received-Date: Tue, 12 Feb 2019 16:17:10 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-You're probably not depending on the entire library so you only get
-what you ask for.  Instal python3-modules and you'll get all of the
-standard library.
+It's part of mesa-demos.
 
-On Tue, 12 Feb 2019 at 16:14, Emily Smith <easmith5@uchicago.edu> wrote:
+Ross
+
+On Tue, 12 Feb 2019 at 16:14, Peter Balazovic <balazovic.peter@gmail.com> wrote:
 >
-> Hi -
+> I'd like to ask which yocto recipe has "glxinfo" available? I will make available that package within local.conf...
 >
-> I=E2=80=99ve been working with yocto and with some code running on my OS,=
- however I=E2=80=99m seeing errors that seem to indicate that default pytho=
-n libraries are no longer included (specifically logging and importlib). Ha=
-s something about the default python libraries changed?
->
-> Thanks!
-> Emily Smith
+> Thanks.
+> Peter
 > --
 > _______________________________________________
 > yocto mailing list
