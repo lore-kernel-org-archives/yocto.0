@@ -1,6 +1,6 @@
 Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A06FE00CB9; Mon, 11 Feb 2019 18:04:27 -0800 (PST)
+	id C2367E00CCE; Mon, 11 Feb 2019 18:05:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,54 +10,54 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.179 listed in list.dnswl.org]
+	*      [209.85.214.196 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
-	[209.85.214.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1544EE00CD6
-	for <yocto@yoctoproject.org>; Mon, 11 Feb 2019 18:01:48 -0800 (PST)
-Received: by mail-pl1-f179.google.com with SMTP id 101so480846pld.6
-	for <yocto@yoctoproject.org>; Mon, 11 Feb 2019 18:01:48 -0800 (PST)
+Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com
+	[209.85.214.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EEB1E00872
+	for <yocto@yoctoproject.org>; Mon, 11 Feb 2019 18:03:06 -0800 (PST)
+Received: by mail-pl1-f196.google.com with SMTP id s1so474451plp.9
+	for <yocto@yoctoproject.org>; Mon, 11 Feb 2019 18:03:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=mvista-com.20150623.gappssmtp.com; s=20150623;
 	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=cFOGIaNBZu8jIkuztCVs+ypje+NyBS33pMZCX5LylBc=;
-	b=TtlZfaJkhZ0h6G0mA8FdRYwMjsUPOa7dr8oivhbdIGnPfLw8u3onDIawARcIwKGNdF
-	EPdjJ/aFYdVBITdfw8xGLW5EvtYsPXDdK60wCQ6goANbKTm9hBb0kRunuI9J5druR3JO
-	Nlza07SzpFG79SOnxSslhqlb6UDe/qMJwyae6m3sqFwVQNr4EOpsTNeT8CrZx1oqUpP2
-	YCkE/tMiwfWZmhjcY5UxkHSgpM+ihs+Gcc8mcRbfNz2lAjWIo3UraApouVpmAASq9XoB
-	LKc3ByTM6jslVc4cU9Ryc2D084kWJHCTTAd3AbUhp5Cw8aNL0RiIxbmeKgTCygMXzrY7
-	IOwg==
+	bh=A9ufpQ96/XLOGkodmg98iujDHTX53p0TgMNYk4lCIgY=;
+	b=yaT3NfP5s2aD/QAXAGybV/gIhjI02aIeDALaT2mqIWR6tKyXf4eMdy7mT253CREq8y
+	6yQCI+uOp0Yr5MhYUfoB1q5ktF2Fxlb8inlpbcBdn0uUBli1xfv3eKMzVGXws+npaIDr
+	cxKSkumUrBtnDGSpQEJLxfWsOAy0x9QxGR4xfX3SNL7I6kxylg/eJ8TVyQmzKxoHuXHk
+	lo4PhsXG6zBy/DIpHBpYbMn7It3lZCbQinO1nyqqMv0KHmkoeMo5Llopu540m8mlpier
+	g9Gn2Ojf41gAxLs44UgXyRmaeZe5s8yCpITRyewa00lUKaZ5mDIB6CBemyydzjKg0Ipj
+	3xOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=cFOGIaNBZu8jIkuztCVs+ypje+NyBS33pMZCX5LylBc=;
-	b=mp+PIzqlfynQ4L+F5TfVkBngdg8T53RMy8q3m1u0NLepeoA6GQGmY2TSNpyzAz1gkN
-	XYIpbcC89IvqcThzliq/SyLGXKum6+QJ0AvZE4zlIH8lVishhsCDCb//fCj7pe0rrpHx
-	FoLVWeRiyNawU5fOBc66hYg6CHTQMxLlyd7kwaGJwucscqPQAEsuP6nCACx5DPWcgw9y
-	hmOoAEMotSJCPbL5hgDIAxCxvCdMSwPOP+uQbrPZ2h60x6caYlHPubFPOelEISl+NtUt
-	sfjkJk9ZYYg1itEBkAKGUPT2jSJuLFwmxdtM1gKqhmnTJrZE/rJKSctbNdVmC2Fx/hC/
-	qstg==
-X-Gm-Message-State: AHQUAuZMhR94j6P7OrekuLLUUCvczmceB0dXou2Fo1YJsG5DtEYbxmM1
-	v+omjOvy1AAxz7UlBQcA19FuoyJc2Vo=
-X-Google-Smtp-Source: AHgI3IaUKb9BIpxr5bHSHJG/6A8wePAPoKm+KXWt4hAxBzeLO5/yqt5tKXxJUYj6zaRCLiDZZbr3Wg==
-X-Received: by 2002:a17:902:aa8d:: with SMTP id
-	d13mr1419118plr.293.1549936908035; 
-	Mon, 11 Feb 2019 18:01:48 -0800 (PST)
+	bh=A9ufpQ96/XLOGkodmg98iujDHTX53p0TgMNYk4lCIgY=;
+	b=oEkixqXnMIFAzPtRe1qyq35k2NSBSKC7doEBx6N1535fKRPMVPIGUQAqo0BzNjoJ3o
+	7ef2qmZ6p4BRXbukWCvcGeCdg/cOF/lVVz7hmgGh4p2YG3GyhoL3jlRndq6WFsDW77hp
+	oltquEjYfu2GUwQL03Fc3Sq5ymeZYYxSaxoZfWB7gwRuqDGx6twnicO58JXEaSMhKbJn
+	zt1nbgqRiJA9EniDbfB6jNV2L0mZEYIivVH6SqU5Xv7z/V8ZXJWypKOIvyoNkPA9YkCl
+	uDn65gm5Iis0gGBGxqEAHuyWMCBG1tWLwBfTCb3rit+eZVTYVkfvZaxmIyjO9L4HOCAk
+	WRXw==
+X-Gm-Message-State: AHQUAuZNlBzl3licO4Is+Za6qaimy8U4S4rj4O+9jYbRBdeSmvu9snDs
+	AgA+d7Mx43HbvlhuuoPVX1xrAaKRCKE=
+X-Google-Smtp-Source: AHgI3IbJy1tbaKnLaOsgupPiKLsWIcPcS25XB38rPAVGQAaNNh1PnduEY8d8wSeLSrriPCfEEFr8Uw==
+X-Received: by 2002:a17:902:a70b:: with SMTP id
+	w11mr1493659plq.84.1549936986179; 
+	Mon, 11 Feb 2019 18:03:06 -0800 (PST)
 Received: from ?IPv6:2601:202:4180:c33:de5:9efe:99a0:e6a7?
 	([2601:202:4180:c33:de5:9efe:99a0:e6a7])
 	by smtp.gmail.com with ESMTPSA id
-	k71sm23343023pga.44.2019.02.11.18.01.46 for <yocto@yoctoproject.org>
+	m68sm6479226pfj.89.2019.02.11.18.03.04
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 11 Feb 2019 18:01:47 -0800 (PST)
-To: yocto@yoctoproject.org
-References: <1547896560-947-1-git-send-email-scott@jumpnowtek.com>
+	Mon, 11 Feb 2019 18:03:05 -0800 (PST)
+To: Adrian Bunk <bunk@stusta.de>, yocto@yoctoproject.org
+References: <20190130095743.12467-1-bunk@stusta.de>
 From: akuster <akuster@mvista.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
@@ -103,13 +103,13 @@ Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <203d53d8-3a11-9919-1b4a-125b6b775df1@mvista.com>
-Date: Mon, 11 Feb 2019 18:01:45 -0800
+Message-ID: <2db5446d-5408-aaac-66ff-4ce07167caf0@mvista.com>
+Date: Mon, 11 Feb 2019 18:03:04 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.4.0
 MIME-Version: 1.0
-In-Reply-To: <1547896560-947-1-git-send-email-scott@jumpnowtek.com>
-Subject: Re: [meta-security][PATCHv2] Upgrade scapy to 2.4.2
+In-Reply-To: <20190130095743.12467-1-bunk@stusta.de>
+Subject: Re: [meta-security][PATCH] xmlsec1: Include libxmlsec1-*.so in the main package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -121,104 +121,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2019 02:04:27 -0000
+X-List-Received-Date: Tue, 12 Feb 2019 02:05:49 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-series merged
+series merged.
 
-On 1/19/19 3:16 AM, Scott Ellis wrote:
-> Upstream MANIFEST.in removed doc and test directories
-> so remove ptest.
+On 1/30/19 1:57 AM, Adrian Bunk wrote:
+> They can be dynamically loaded with xmlSecCryptoDLLoadLibrary().
 >
-> Signed-off-by: Scott Ellis <scott@jumpnowtek.com>
+> Signed-off-by: Adrian Bunk <bunk@stusta.de>
 > ---
->  recipes-security/scapy/files/run-ptest        |  4 ----
->  recipes-security/scapy/python-scapy.inc       | 11 +++--------
->  recipes-security/scapy/python-scapy_2.4.0.bb  |  6 ------
->  recipes-security/scapy/python-scapy_2.4.2.bb  |  4 ++++
->  recipes-security/scapy/python3-scapy_2.4.0.bb |  4 ----
->  recipes-security/scapy/python3-scapy_2.4.2.bb |  2 ++
->  6 files changed, 9 insertions(+), 22 deletions(-)
->  delete mode 100755 recipes-security/scapy/files/run-ptest
->  delete mode 100644 recipes-security/scapy/python-scapy_2.4.0.bb
->  create mode 100644 recipes-security/scapy/python-scapy_2.4.2.bb
->  delete mode 100644 recipes-security/scapy/python3-scapy_2.4.0.bb
->  create mode 100644 recipes-security/scapy/python3-scapy_2.4.2.bb
+>  recipes-security/xmlsec1/xmlsec1_1.2.26.bb | 5 +++++
+>  1 file changed, 5 insertions(+)
 >
-> diff --git a/recipes-security/scapy/files/run-ptest b/recipes-security/scapy/files/run-ptest
-> deleted file mode 100755
-> index 91b29f9..0000000
-> --- a/recipes-security/scapy/files/run-ptest
-> +++ /dev/null
-> @@ -1,4 +0,0 @@
-> -#!/bin/sh
-> -UTscapy -t regression.uts -f text -l -C \
-> -    -o @PTEST_PATH@/scapy_ptest_$(date +%Y%m%d-%H%M%S).log \
-> -    2>&1 | sed -e 's/^passed None/PASS:/' -e 's/^failed None/FAIL:/'
-> diff --git a/recipes-security/scapy/python-scapy.inc b/recipes-security/scapy/python-scapy.inc
-> index 5abe7db..95e5312 100644
-> --- a/recipes-security/scapy/python-scapy.inc
-> +++ b/recipes-security/scapy/python-scapy.inc
-> @@ -5,15 +5,10 @@ LICENSE = "GPLv2"
+> diff --git a/recipes-security/xmlsec1/xmlsec1_1.2.26.bb b/recipes-security/xmlsec1/xmlsec1_1.2.26.bb
+> index 2dbbf33..aca9634 100644
+> --- a/recipes-security/xmlsec1/xmlsec1_1.2.26.bb
+> +++ b/recipes-security/xmlsec1/xmlsec1_1.2.26.bb
+> @@ -32,6 +32,11 @@ EXTRA_OECONF = "\
+>      --with-nss=${STAGING_LIBDIR}/../.. --with-nspr=${STAGING_LIBDIR}/../.. \
+>      "
 >  
->  LIC_FILES_CHKSUM = "file://bin/scapy;beginline=9;endline=13;md5=1d5249872cc54cd4ca3d3879262d0c69"
->  
-> -SRC_URI[md5sum] = "d7d3c4294f5a718e234775d38dbeb7ec"
-> -SRC_URI[sha256sum] = "452f714f5c2eac6fd0a6146b1dbddfc24dd5f4103f3ed76227995a488cfb2b73"
-> +SRC_URI[md5sum] = "e6a03d8c924a6bbde1e86fc58bd2b9d6"
-> +SRC_URI[sha256sum] = "1baa048936207ceb1a4281a0e1e3b4317667c754872a0bb4734c5213c468e86a"
->  
-> -inherit pypi ptest
-> -
-> -do_install_ptest() {
-> -    install -m 0644 ${S}/test/regression.uts ${D}${PTEST_PATH}
-> -    sed -i 's,@PTEST_PATH@,${PTEST_PATH},' ${D}${PTEST_PATH}/run-ptest
-> -}
-> +inherit pypi
->  
->  RDEPENDS_${PN} = "tcpdump ${PYTHON_PN}-compression ${PYTHON_PN}-netclient  \
->                    ${PYTHON_PN}-netserver ${PYTHON_PN}-pydoc ${PYTHON_PN}-pkgutil ${PYTHON_PN}-shell \
-> diff --git a/recipes-security/scapy/python-scapy_2.4.0.bb b/recipes-security/scapy/python-scapy_2.4.0.bb
-> deleted file mode 100644
-> index 98db1fd..0000000
-> --- a/recipes-security/scapy/python-scapy_2.4.0.bb
-> +++ /dev/null
-> @@ -1,6 +0,0 @@
-> -inherit setuptools
-> -require python-scapy.inc
-> -
-> -SRC_URI += "file://run-ptest"
-> -
-> -RDEPENDS_${PN} += "${PYTHON_PN}-subprocess"
-> diff --git a/recipes-security/scapy/python-scapy_2.4.2.bb b/recipes-security/scapy/python-scapy_2.4.2.bb
-> new file mode 100644
-> index 0000000..ea8764a
-> --- /dev/null
-> +++ b/recipes-security/scapy/python-scapy_2.4.2.bb
-> @@ -0,0 +1,4 @@
-> +inherit setuptools
-> +require python-scapy.inc
+> +# these can be dynamically loaded with xmlSecCryptoDLLoadLibrary()
+> +FILES_SOLIBSDEV = "${libdir}/libxmlsec1.so"
+> +FILES_${PN} += "${libdir}/libxmlsec1-*.so"
+> +INSANE_SKIP_${PN} = "dev-so"
 > +
-> +RDEPENDS_${PN} += "${PYTHON_PN}-subprocess"
-> diff --git a/recipes-security/scapy/python3-scapy_2.4.0.bb b/recipes-security/scapy/python3-scapy_2.4.0.bb
-> deleted file mode 100644
-> index 93ca7be..0000000
-> --- a/recipes-security/scapy/python3-scapy_2.4.0.bb
-> +++ /dev/null
-> @@ -1,4 +0,0 @@
-> -inherit setuptools3
-> -require python-scapy.inc
-> -
-> -SRC_URI += "file://run-ptest"
-> diff --git a/recipes-security/scapy/python3-scapy_2.4.2.bb b/recipes-security/scapy/python3-scapy_2.4.2.bb
-> new file mode 100644
-> index 0000000..34eb2a3
-> --- /dev/null
-> +++ b/recipes-security/scapy/python3-scapy_2.4.2.bb
-> @@ -0,0 +1,2 @@
-> +inherit setuptools3
-> +require python-scapy.inc
+>  FILES_${PN}-dev += "${libdir}/xmlsec1Conf.sh"
+>  FILES_${PN}-dbg += "${PTEST_PATH}/.debug/*"
+>  
 
 
