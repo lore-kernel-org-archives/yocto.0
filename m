@@ -1,62 +1,65 @@
-Return-Path: <scott.murray@konsulko.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A129BE00CCE; Mon, 11 Feb 2019 20:10:43 -0800 (PST)
+	id 03361E00CCE; Mon, 11 Feb 2019 21:10:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.170 listed in list.dnswl.org]
+	*      [209.85.160.170 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f170.google.com (mail-it1-f170.google.com
-	[209.85.166.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3600FE00AB0
-	for <yocto@yoctoproject.org>; Mon, 11 Feb 2019 20:10:42 -0800 (PST)
-Received: by mail-it1-f170.google.com with SMTP id r11so3989990itc.2
-	for <yocto@yoctoproject.org>; Mon, 11 Feb 2019 20:10:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
-	h=date:from:to:cc:subject:message-id:user-agent:mime-version;
-	bh=paZC1Z2E7i+AZ1cV7jeyNaPbs08SsPuX6J6sRenlz94=;
-	b=ND8o2Go1PFUNITnbVQlC1GDYgYW7EBV40NgL26ogNuOervannHrLgNmvg6eo3hjAJ0
-	pA9aCu4oBAAAiStMvjhkeyWDNxShpBWsrrfXUOnJc5A2zAO8cjo1WKrrzvIdxD7EzJXK
-	93jN3F8ku0h0fvP+K0ZjDsc1iVb238iXO7B6Y=
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com
+	[209.85.160.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F27AE00A1A
+	for <yocto@yoctoproject.org>; Mon, 11 Feb 2019 21:10:06 -0800 (PST)
+Received: by mail-qt1-f170.google.com with SMTP id a48so1596380qtb.4
+	for <yocto@yoctoproject.org>; Mon, 11 Feb 2019 21:10:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=xrQnz/USjUnUuWc6gGThBhP/8hITvDElFY2CEkmGRUE=;
+	b=JNAuC+IqtH43Sa1bd2D+ZnxIdBvktkQIKjnNJNr1O4gY7Mr6GcTRF7YkwG8BhVCDPn
+	oEZf03mCIF5c6CTp4cZK1ejKYQFp0mkgleDg5XdA6T1ZOux9IUN+Vs/WtHpjmpFAu1ab
+	uegQJIDU95ACXfCTJzmCse2lE3M5bG+UQTkX6ItkTfNbVFP/MtPNC/1COAkqgGRgdH/n
+	du1lPF1RTnnY21hz+bpAdC5v6NFerOt6gu1Kf9chF40fcbzzOPiwMBbxqbAefdp/Wbdk
+	L+wP4HUbhBcH28KxjJcUsg5oG35xFpKwb5caKR3LW0bQuAUtoukQyqFaajzXDDQaqr0A
+	vIbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:user-agent
-	:mime-version;
-	bh=paZC1Z2E7i+AZ1cV7jeyNaPbs08SsPuX6J6sRenlz94=;
-	b=X2/egCXFRautIZMIXpZoKZ79jGhGTxPL2ga23ilLmBqOP/5lwJFQ3nMnAiAcDd/IU8
-	AFpDLHW8/CCKa3+rzT6ZZz2ND2jTkJ0julLvBrBMWVN2UDPJLFa949TviWGaHcafk1Dy
-	bVnsicYNRn3hqMm4cMYTBvVNAOpF2GrlermZicwDlL04Got3xYc8TgpZ5zyAn/TZH91u
-	hdMcacDXvp3uCXuJKqkkfTsDdtw7WGGj38mHjo0KTdLiIkpArWFQEjGu3aILxCjPBQAG
-	EFIg3DqkLjx83FCqjKTPkdj/hqSu+o2h+qEBtNfm+19t6Ffb49Rm4tWh56aNINPjzFie
-	zEjg==
-X-Gm-Message-State: AHQUAuYXNqXHjuuk9UnKuxLh9luhzMafz7oiWg1T59PDOA3QJSJSdgUQ
-	Ua6ntU0YiNBNFhwNsKqSa7GallBBQ4I=
-X-Google-Smtp-Source: AHgI3IZ1GrbRMHD7vjTXQtsft7bavmD6AjVz2LNjzrgPGdcpbV1OIiHbhGYXFHsHiY9hvHGNf11dZQ==
-X-Received: by 2002:a02:8244:: with SMTP id q4mr873137jag.43.1549944642230;
-	Mon, 11 Feb 2019 20:10:42 -0800 (PST)
-Received: from godzilla (69-165-244-87.cable.teksavvy.com. [69.165.244.87])
-	by smtp.gmail.com with ESMTPSA id 134sm710469itl.25.2019.02.11.20.10.41
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Mon, 11 Feb 2019 20:10:41 -0800 (PST)
-Date: Mon, 11 Feb 2019 23:10:04 -0500 (EST)
-From: Scott Murray <scott.murray@konsulko.com>
-X-X-Sender: scottm@godzilla.spiteful.org
-To: yocto@yoctoproject.org
-Message-ID: <alpine.LFD.2.21.1902112301020.22458@godzilla.spiteful.org>
-User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=xrQnz/USjUnUuWc6gGThBhP/8hITvDElFY2CEkmGRUE=;
+	b=QHw7XNcBEz7L8ILuPB3EUPaber/p3eUx+xWwgLZu/O8tJI/2i6wLkD5N1lu3JdHhev
+	e88NSWtLWQTocX03qQDc49/lLqnX0oiPqFK00bxqT+xjSIanQBG2XPSxnDZplIAzh9ZZ
+	vKY+SpnJShCOtXf8tiM+Oot1qANGLmPzyg1aRtPTX2N/KZYGucUgJty+Qumu65/nFzRp
+	0ugtLROFLK/S3+gv6BjbFBHFrRB2BONu8o3pW9WPIfHJbxExr3Jh5H7I3pU+A0lvIxyF
+	RI7FWFFyv+xqLx5FtByEuYZJqa9gakBR04I87VA3LVYNYo9JLS8Z/Ew3/9wu8Q8XU3YO
+	fDjg==
+X-Gm-Message-State: AHQUAubMkY0hXXuqCXFPXVHnNC9ZF7P8QVcXzAthg+0KJZunmY3VaT3y
+	VszZ/4EOoPc/YcWetxIykWzWad6BAiBgpuhfhfNY6g==
+X-Google-Smtp-Source: AHgI3IZt5Mxx6PKkLbmPt9tohEmbVTStAmxYszWDUrgfl9KLGtdpPJJdajq5k+cBLwp2+f2zuBFSvt3c3LIOpq1brTA=
+X-Received: by 2002:ac8:300a:: with SMTP id f10mr1383844qte.236.1549948205366; 
+	Mon, 11 Feb 2019 21:10:05 -0800 (PST)
 MIME-Version: 1.0
-Subject: gitsm fetcher fixes in thud?
+References: <alpine.LFD.2.21.1902112301020.22458@godzilla.spiteful.org>
+In-Reply-To: <alpine.LFD.2.21.1902112301020.22458@godzilla.spiteful.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 11 Feb 2019 21:09:53 -0800
+Message-ID: <CAMKF1spgSu-uENzE0OnS9U=qHCP0bsKpBk_NxETuJJNtUjWOhA@mail.gmail.com>
+To: Scott Murray <scott.murray@konsulko.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: gitsm fetcher fixes in thud?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,22 +71,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2019 04:10:43 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Tue, 12 Feb 2019 05:10:07 -0000
+Content-Type: multipart/alternative; boundary="0000000000003383df0581ab70f2"
 
-Hi,
+--0000000000003383df0581ab70f2
+Content-Type: text/plain; charset="UTF-8"
 
-I'm working on upgrading Automotive Grade Linux (AGL) from rocko to thud,
-and there's substantial git submodule breakage with the fetcher as it
-stands in thud ATM.  I've been doing tests with the current gitsm.py from
-master with Mark's recent fixes, and it works fine.  I'm wondering what
-the feasibility of getting those fixes into thud is?  I am willing to do
-the cherry-picking and testing if someone can point me at the mechanism
-for it (poky-contrib?).
+On Mon, Feb 11, 2019 at 8:11 PM Scott Murray <scott.murray@konsulko.com>
+wrote:
 
-Thanks,
+> Hi,
+>
+> I'm working on upgrading Automotive Grade Linux (AGL) from rocko to thud,
+> and there's substantial git submodule breakage with the fetcher as it
+> stands in thud ATM.  I've been doing tests with the current gitsm.py from
+> master with Mark's recent fixes, and it works fine.  I'm wondering what
+> the feasibility of getting those fixes into thud is?  I am willing to do
+> the cherry-picking and testing if someone can point me at the mechanism
+> for it (poky-contrib?).
+>
+> Thanks,
 
-Scott
 
+I think it should be backported to thud as well but
+Given we did get some regressions and subsequently fixes for them I am not
+sure if there will be similar issued in thud elsewhere but eventually a
+maintainers call
 
+>
+>
+> Scott
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
+--0000000000003383df0581ab70f2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Mon, Feb 11, 2019 at 8:11 PM Scott Murray &lt;<a href=3D=
+"mailto:scott.murray@konsulko.com">scott.murray@konsulko.com</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex">Hi,<br>
+<br>
+I&#39;m working on upgrading Automotive Grade Linux (AGL) from rocko to thu=
+d,<br>
+and there&#39;s substantial git submodule breakage with the fetcher as it<b=
+r>
+stands in thud ATM.=C2=A0 I&#39;ve been doing tests with the current gitsm.=
+py from<br>
+master with Mark&#39;s recent fixes, and it works fine.=C2=A0 I&#39;m wonde=
+ring what<br>
+the feasibility of getting those fixes into thud is?=C2=A0 I am willing to =
+do<br>
+the cherry-picking and testing if someone can point me at the mechanism<br>
+for it (poky-contrib?).<br>
+<br>
+Thanks,</blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">I think i=
+t should be backported to thud as well but</div><div dir=3D"auto">Given we =
+did get some regressions and subsequently fixes for them I am not sure if t=
+here will be similar issued in thud elsewhere but eventually a maintainers =
+call=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
+x;border-left:1px #ccc solid;padding-left:1ex"><br>
+<br>
+Scott<br>
+<br>
+<br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div></div>
+
+--0000000000003383df0581ab70f2--
