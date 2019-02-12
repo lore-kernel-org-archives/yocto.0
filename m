@@ -1,61 +1,61 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <dhanush.ks@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C40FE00CCA; Tue, 12 Feb 2019 01:24:25 -0800 (PST)
+	id D6902E00CCA; Tue, 12 Feb 2019 02:11:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D3F7E00708
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 01:24:24 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x1C9OML9007758
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 12 Feb 2019 01:24:22 -0800 (PST)
-Received: from soho-mhatle-m.local (128.224.5.138) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.435.0;
-	Tue, 12 Feb 2019 01:24:21 -0800
-To: Scott Murray <scott.murray@konsulko.com>, <yocto@yoctoproject.org>
-References: <alpine.LFD.2.21.1902112301020.22458@godzilla.spiteful.org>
-From: Mark Hatle <mark.hatle@windriver.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
-	mQENBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
-	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
-	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
-	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
-	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
-	AAG0JU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT6JATcEEwEIACEFAlYK
-	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
-	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
-	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
-	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
-	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
-	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrrkBDQRWCsRYAQgAwK3FuHCE+HW3YWdH
-	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
-	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
-	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
-	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
-	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABiQEfBBgBCAAJBQJWCsRYAhsMAAoJ
-	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
-	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
-	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
-	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
-	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
-Organization: Wind River Systems
-Message-ID: <0a1e6f39-02d9-9b3f-a521-ce12d5c7086a@windriver.com>
-Date: Tue, 12 Feb 2019 10:24:20 +0100
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.5.0
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (dhanush.ks[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.181 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com
+	[209.85.160.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01348E00CB9
+	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 02:11:31 -0800 (PST)
+Received: by mail-qt1-f181.google.com with SMTP id w4so2275281qtc.1
+	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 02:11:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=IefvFHfHmW8Z+ze8SbyInKcT98NSD/YbgZFqrQZNidU=;
+	b=HOtFdFvvg5B3/QTzTcYvUcCqZjr7tJSFD+hnf3CTErU5AWO8FVJq86zYsmKi6pPDwZ
+	GY95y3Z0fp8B1yzDYDfH6rK8copEH5ELlGAko53SV0VEBJrFrFMpOLXa9B+IQ2k2cSfI
+	+QNxU0RKCjYATLWCiNLGvGQ6avVhtC14cBGNGacm01jdZ5/vDOA0i034v3KbZdzz+8Di
+	jnitogArglMW69M0NtVPMvAyr4li9IW7/l6iULVinbZ1dUl7OrHzbZIvPIm/42x9FZiU
+	9zS3daHtr6F5vTQWB/Brbf6GBxKClRnp2OGrNMUdYWRj91Dk+uikjwhQfMLOXj9J19xS
+	7JyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=IefvFHfHmW8Z+ze8SbyInKcT98NSD/YbgZFqrQZNidU=;
+	b=j52HxNE2mEijF2/Nbty62rftNNrBBPDCB6mfb1HYqhFE5XF9thFnuMmjx7M50j9id7
+	AbiyDyk4yp0m1K6tOXuRRTW1+6hL5QgaAn6YT5CNutPN0hRYjelGdWTc1vz1VbeKPWnu
+	xEnPMEYnypxR7DU8DUU4GfVD3zC/s7LwFApM8/0EgjD/+KV9SOe9MHm+Szo3/SCrmyvL
+	cAgI51rKqeVKVdncFEos7bMdRKd8JcXfmvo05GeHrJaVwZbz/tQbFiVKPDiOh73me/00
+	BYhYYFYcGw5Sx9XQ7rghUeObyMIF+tKAG1Sr0CDO6dMRWgOT2Vq9RYUellRw7/dL6FlF
+	46iA==
+X-Gm-Message-State: AHQUAuZAjOQ+snU08ygahlHmpqhiOlF5PmSTZdReUV6L8AnEBphesCG1
+	u/XZLwcbsNwHAJDxWbpPqv3lZIYMObjHYSQC0/OtV871UaU=
+X-Google-Smtp-Source: AHgI3IZtMozwDIu2l0GYPx02iQ0Ilyv6WFA2c3aGz9DsaRos4rn0QWfy6Tsb+5eSgVMWwwI7O8Nw3drvg5nZi4Jywss=
+X-Received: by 2002:ac8:29b7:: with SMTP id 52mr2118151qts.266.1549966290866; 
+	Tue, 12 Feb 2019 02:11:30 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <alpine.LFD.2.21.1902112301020.22458@godzilla.spiteful.org>
-Subject: Re: gitsm fetcher fixes in thud?
+From: "Dhanush K.S" <dhanush.ks@gmail.com>
+Date: Tue, 12 Feb 2019 11:11:24 +0100
+Message-ID: <CAKPYHZ7bUH=bbdUEhWXsGK9UrTAg9zwGusU0ZwCxjxpCfLOykA@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Intentionally failing postinstall scriplets - Yocto Sumo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,38 +67,212 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2019 09:24:25 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 12 Feb 2019 10:11:32 -0000
+Content-Type: multipart/alternative; boundary="0000000000002e57150581afa66a"
 
-On 2/11/19 10:10 PM, Scott Murray wrote:
-> Hi,
-> 
-> I'm working on upgrading Automotive Grade Linux (AGL) from rocko to thud,
-> and there's substantial git submodule breakage with the fetcher as it
-> stands in thud ATM.  I've been doing tests with the current gitsm.py from
-> master with Mark's recent fixes, and it works fine.  I'm wondering what
-> the feasibility of getting those fixes into thud is?  I am willing to do
-> the cherry-picking and testing if someone can point me at the mechanism
-> for it (poky-contrib?).
+--0000000000002e57150581afa66a
+Content-Type: text/plain; charset="UTF-8"
 
-The work was being held off from backporting due to concerns about instability
-being introduced by the patches.
+Hello,
 
-If you feel that things are improved with the master code, please do a backport.
- There are a small number of patches needed, and I tried to design them in a way
-that they would just apply to thud without any additional work [barring defuzzing].
+Building an image with Yocto Sumo throws out some warning messages during
+do.rootfs. Although I'm partially clear that update-alternatives has
+something to do with these warnings, but following the instructions in the
+warning and placing the packages in pkg_postinst_ontarget_${PN} () does not
+resolve the issue.
 
-(I'm traveling for work current, and won't be back to my normal schedule until
-Monday.  But I will be reading email and will attempt to help anyway I can.)
+What am I missing here and what is the ideal solution to avoid these
+warnings?
 
---Mark
+Here is my *BUILD INFORMATION*
 
-> Thanks,
-> 
-> Scott
-> 
-> 
+Build Configuration:
+BB_VERSION           = "1.37.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal-4.8"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "arm-cortex-a8"
+DISTRO               = "poky"
+DISTRO_VERSION       = "2.5"
+TUNE_FEATURES        = "arm armv7a vfp neon callconvention-hard cortexa8"
+TARGET_FPU           = "hard"
+meta-custombsp-ti
+meta
+meta-poky
+meta-yocto-bsp
+meta-custom-common      = "<unknown>:<unknown>"
+meta-oe              = "master:45ee3c0e98bd3ed81419aaeae1e7324e486161a2"
 
 
+WARNING: custom-image-1.0-r0 do_rootfs: Intentionally failing
+postinstall scriptlets of ['vsftpd', 'dropbear', 'chrony'] to defer
+them to first boot is deprecated. Please place them into
+pkg_postinst_ontarget_${PN} ().
+
+If deferring to first boot wasn't the intent, then scriptlet failure
+may mean an issue in the recipe, or a regression elsewhere.
+
+Details of the failure are in
+/home/build_arm-cortex-a8/tmp/work/arm_cortex_a8-poky-linux-gnueabi/custom-image/1.0-r0/temp/log.do_rootfs.
+
+WARNING: custom-image-1.0-r0 do_rootfs: [log_check] abkdkj-image:
+found 4 warning messages in the logfile:
+
+[log_check] warning: %post(vsftpd-3.0.3-r0.cortexa8hf_neon) scriptlet
+failed, exit status 1
+
+[log_check] warning: %post(dropbear-2017.75-r0.cortexa8hf_neon)
+scriptlet failed, exit status 1
+
+[log_check] warning: %post(chrony-3.1-r0.cortexa8hf_neon) scriptlet
+failed, exit status 1
+
+[log_check] WARNING: Intentionally failing postinstall scriptlets of
+['vsftpd', 'dropbear', 'chrony'] to defer them to first boot is
+deprecated. Please place them into pkg_postinst_ontarget_${PN} ().
+
+
+
+Thanks,
+
+Dhanush
+
+--0000000000002e57150581afa66a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
+t-family:georgia,serif">Hello,</div><div class=3D"gmail_default" style=3D"f=
+ont-family:georgia,serif"><br></div><div class=3D"gmail_default" style=3D"f=
+ont-family:georgia,serif">Building an image with Yocto Sumo throws out some=
+ warning messages during do.rootfs. Although I&#39;m partially clear that u=
+pdate-alternatives has something to do with these warnings, but following t=
+he instructions in the warning and placing the packages in=C2=A0<span style=
+=3D"font-family:Consolas,&quot;Bitstream Vera Sans Mono&quot;,&quot;Courier=
+ New&quot;,Courier,monospace;color:rgb(0,0,0);font-size:1em">pkg_postinst_o=
+ntarget_${PN} ()=C2=A0</span>does not resolve the=C2=A0issue.</div><div cla=
+ss=3D"gmail_default" style=3D"font-family:georgia,serif"><br></div><div cla=
+ss=3D"gmail_default" style=3D"font-family:georgia,serif">What am I missing =
+here and what is the ideal solution to avoid these warnings?</div><div clas=
+s=3D"gmail_default" style=3D"font-family:georgia,serif"><br></div><div clas=
+s=3D"gmail_default" style=3D"font-family:georgia,serif">Here is my <b><u>BU=
+ILD INFORMATION</u></b></div><div class=3D"gmail_default" style=3D"font-fam=
+ily:georgia,serif"><b><u><br></u></b></div><div class=3D"gmail_default" sty=
+le=3D"font-family:georgia,serif"><div class=3D"gmail_default" style=3D"">Bu=
+ild Configuration:</div><div class=3D"gmail_default" style=3D"">BB_VERSION=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;1.37.0&quot;</div><div c=
+lass=3D"gmail_default" style=3D"">BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =3D &quot;x86_64-linux&quot;</div><div class=3D"gmail_default" s=
+tyle=3D"">NATIVELSBSTRING=C2=A0 =C2=A0 =C2=A0 =3D &quot;universal-4.8&quot;=
+</div><div class=3D"gmail_default" style=3D"">TARGET_SYS=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;arm-poky-linux-gnueabi&quot;</div><div cl=
+ass=3D"gmail_default" style=3D"">MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =3D &quot;arm-cortex-a8&quot;</div><div class=3D"gmail_defaul=
+t" style=3D"">DISTRO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+=3D &quot;poky&quot;</div><div class=3D"gmail_default" style=3D"">DISTRO_VE=
+RSION=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;2.5&quot;</div><div class=3D"gmai=
+l_default" style=3D"">TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;ar=
+m armv7a vfp neon callconvention-hard cortexa8&quot;</div><div class=3D"gma=
+il_default" style=3D"">TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+=3D &quot;hard&quot;</div><div class=3D"gmail_default" style=3D"">meta-cust=
+ombsp-ti=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div><div class=3D"gmail_default"=
+ style=3D"">meta=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0</div><div class=3D"gmail_default" style=3D"">meta-poky=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div><div class=3D"gmail_default" style=3D""=
+>meta-yocto-bsp=C2=A0 =C2=A0 =C2=A0 =C2=A0</div><div class=3D"gmail_default=
+" style=3D"">meta-custom-common=C2=A0 =C2=A0 =C2=A0 =3D &quot;&lt;unknown&g=
+t;:&lt;unknown&gt;&quot;</div><div class=3D"gmail_default" style=3D"">meta-=
+oe=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;master:45ee3c0=
+e98bd3ed81419aaeae1e7324e486161a2&quot;</div></div><div class=3D"gmail_defa=
+ult" style=3D""><table style=3D"font-family:georgia,serif;font-size:1em;col=
+or:black;line-height:1.4em" width=3D"100%" cellspacing=3D"0" cellpadding=3D=
+"0" border=3D"0"><tbody><tr id=3D"gmail-m_4860206560686575695gmail-syntaxpl=
+ugin_code_and_gutter"><td style=3D"padding:0em;vertical-align:top;line-heig=
+ht:1.4em"><pre style=3D"font-size:1em;margin:10px 10px 0px;width:auto;paddi=
+ng:0px"><br></pre><pre style=3D"font-size:1em;margin:10px 10px 0px;width:au=
+to;padding:0px"><span style=3D"font-family:Consolas,&quot;Bitstream Vera Sa=
+ns Mono&quot;,&quot;Courier New&quot;,Courier,monospace">WARNING: custom-im=
+age-1.0-r0 do_rootfs: Intentionally failing postinstall scriptlets of [&#39=
+;vsftpd&#39;, &#39;dropbear&#39;, &#39;chrony&#39;] to defer them to first =
+boot is deprecated. Please place them into pkg_postinst_ontarget_${PN} ().<=
+/span></pre>
+			</td>
+		</tr>
+				<tr id=3D"gmail-m_4860206560686575695gmail-syntaxplugin_code_and_gutter=
+">
+						<td style=3D"padding:0em;vertical-align:top;line-height:1.4em">
+					<pre style=3D"font-size:1em;margin:0px 10px;width:auto;padding:0px"><s=
+pan style=3D"font-family:Consolas,&quot;Bitstream Vera Sans Mono&quot;,&quo=
+t;Courier New&quot;,Courier,monospace">If deferring to first boot wasn&#39;=
+t the intent, then scriptlet failure may mean an issue in the recipe, or a =
+regression elsewhere.</span></pre>
+			</td>
+		</tr>
+				<tr id=3D"gmail-m_4860206560686575695gmail-syntaxplugin_code_and_gutter=
+">
+						<td style=3D"padding:0em;vertical-align:top;line-height:1.4em">
+					<pre style=3D"font-size:1em;margin:0px 10px;width:auto;padding:0px"><s=
+pan style=3D"font-family:Consolas,&quot;Bitstream Vera Sans Mono&quot;,&quo=
+t;Courier New&quot;,Courier,monospace">Details of the failure are in /home/=
+build_arm-cortex-a8/tmp/work/arm_cortex_a8-poky-linux-gnueabi/custom-image/=
+1.0-r0/temp/log.do_rootfs.</span></pre>
+			</td>
+		</tr>
+				<tr id=3D"gmail-m_4860206560686575695gmail-syntaxplugin_code_and_gutter=
+">
+						<td style=3D"padding:0em;vertical-align:top;line-height:1.4em">
+					<pre style=3D"font-size:1em;margin:0px 10px;width:auto;padding:0px"><s=
+pan style=3D"font-family:Consolas,&quot;Bitstream Vera Sans Mono&quot;,&quo=
+t;Courier New&quot;,Courier,monospace">WARNING: custom-image-1.0-r0 do_root=
+fs: [log_check] abkdkj-image: found 4 warning messages in the logfile:</spa=
+n></pre>
+			</td>
+		</tr>
+				<tr id=3D"gmail-m_4860206560686575695gmail-syntaxplugin_code_and_gutter=
+">
+						<td style=3D"padding:0em;vertical-align:top;line-height:1.4em">
+					<pre style=3D"font-size:1em;margin:0px 10px;width:auto;padding:0px"><s=
+pan style=3D"font-family:Consolas,&quot;Bitstream Vera Sans Mono&quot;,&quo=
+t;Courier New&quot;,Courier,monospace">[log_check] warning: %post(vsftpd-3.=
+0.3-r0.cortexa8hf_neon) scriptlet failed, exit status 1</span></pre>
+			</td>
+		</tr>
+				<tr id=3D"gmail-m_4860206560686575695gmail-syntaxplugin_code_and_gutter=
+">
+						<td style=3D"padding:0em;vertical-align:top;line-height:1.4em">
+					<pre style=3D"font-size:1em;margin:0px 10px;width:auto;padding:0px"><s=
+pan style=3D"font-family:Consolas,&quot;Bitstream Vera Sans Mono&quot;,&quo=
+t;Courier New&quot;,Courier,monospace">[log_check] warning: %post(dropbear-=
+2017.75-r0.cortexa8hf_neon) scriptlet failed, exit status 1</span></pre>
+			</td>
+		</tr>
+				<tr id=3D"gmail-m_4860206560686575695gmail-syntaxplugin_code_and_gutter=
+">
+						<td style=3D"padding:0em;vertical-align:top;line-height:1.4em">
+					<pre style=3D"font-size:1em;margin:0px 10px;width:auto;padding:0px"><s=
+pan style=3D"font-family:Consolas,&quot;Bitstream Vera Sans Mono&quot;,&quo=
+t;Courier New&quot;,Courier,monospace">[log_check] warning: %post(chrony-3.=
+1-r0.cortexa8hf_neon) scriptlet failed, exit status 1</span></pre>
+			</td>
+		</tr>
+				<tr id=3D"gmail-m_4860206560686575695gmail-syntaxplugin_code_and_gutter=
+">
+						<td style=3D"padding:0em;vertical-align:top;line-height:1.4em">
+					<pre style=3D"font-size:1em;margin:0px 10px 10px;width:auto;padding:0p=
+x"><span style=3D"font-family:Consolas,&quot;Bitstream Vera Sans Mono&quot;=
+,&quot;Courier New&quot;,Courier,monospace">[log_check] WARNING: Intentiona=
+lly failing postinstall scriptlets of [&#39;vsftpd&#39;, &#39;dropbear&#39;=
+, &#39;chrony&#39;] to defer them to first boot is deprecated. Please place=
+ them into pkg_postinst_ontarget_${PN} ().
+</span></pre><pre style=3D"font-size:1em;margin:0px 10px 10px;width:auto;pa=
+dding:0px"><span style=3D"font-family:Consolas,&quot;Bitstream Vera Sans Mo=
+no&quot;,&quot;Courier New&quot;,Courier,monospace"><br></span></pre><pre s=
+tyle=3D"font-size:1em;margin:0px 10px 10px;width:auto;padding:0px"><br></pr=
+e></td></tr></tbody></table><pre style=3D"color:rgb(0,0,0);font-size:1em;ma=
+rgin:0px 10px 10px;width:auto;padding:0px"><font face=3D"georgia, serif">Th=
+anks,</font></pre><pre style=3D"color:rgb(0,0,0);font-size:1em;margin:0px 1=
+0px 10px;width:auto;padding:0px"><font face=3D"georgia, serif">Dhanush</fon=
+t></pre></div><div><div dir=3D"ltr" class=3D"gmail-m_4860206560686575695gma=
+il_signature"><div dir=3D"ltr"></div></div></div></div></div>
+
+--0000000000002e57150581afa66a--
