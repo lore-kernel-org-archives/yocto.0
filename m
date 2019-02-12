@@ -1,60 +1,67 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 48527E00754; Tue, 12 Feb 2019 08:17:10 -0800 (PST)
+	id 5FC79E0090C; Tue, 12 Feb 2019 09:22:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE
+	autolearn=unavailable version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.180 listed in list.dnswl.org]
+	*      [209.85.210.51 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f180.google.com (mail-it1-f180.google.com
-	[209.85.166.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7B02E006D8
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 08:17:09 -0800 (PST)
-Received: by mail-it1-f180.google.com with SMTP id v72so8938113itc.0
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 08:17:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com
+	[209.85.210.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54A34E0048C;
+	Tue, 12 Feb 2019 09:22:36 -0800 (PST)
+Received: by mail-ot1-f51.google.com with SMTP id m1so5758072otf.5;
+	Tue, 12 Feb 2019 09:22:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=1okeeLPy+dwA6XlXkwTlr6s2QZblEOH+i/DnjZssmnU=;
-	b=iEgzPctl2n5fgVmw7QJQREOT1JMBMoyPJFPRwytZdjw4c6IY7NE+mxjaduBPmsU7II
-	qKBw7lzZ5qY2EjQjRNpzV19MVDzrbYTEC9kOseYkpqfBcEAcWinR4/MXiSuLClRTdvs+
-	18aPt1DCPEPPKOXY4PqxLn2UrZu2jfkAFpj5Btet3l+HcstCYBvGORVEc8SoAUaSUJjB
-	oiv6gwUnVFLLe/yqBjOg2y2FK/J5luixcERUoygguMxKiA2BaK7jGqor8WBdJMrCgff3
-	iOezkQv7LSoPLpXuo+fhQ7TbOpa4qRjJOe9GSjYcJAZ23vWlbs2vC/bj/NcTxLdI+u3y
-	wkzw==
+	:cc; bh=f19dRTFQfERrUlfDW6Zd1WtlgZvDNJ7t3ZEqdCn3Q10=;
+	b=OGzlYJulE2B2Pon/EReZAEBw7YTpze6pT5gcIXEDSQe/cksXyYkYH6alnouxMD+74h
+	k0VGiwNcCezoUHkkfPr6vEvaJaSm4VphOBzemM4Y9vgz3sk/4rTiu8YjevnsHqu0js+c
+	s5H6OSHWovLTs7C1wIaKGUtcqwsS9gPHKAaMzCMmC1Co8iwvhx5KcaMZE2MhJ6INB+n7
+	XeG+o5tlqiao+ZEEG5lzTbX/lWPhJaGG/sqTYHxAIf6Q41S5gwUCJ4RtJ0jc/gKhVmmT
+	jK2fTf0csZW10RXPwNWqh2d8gPoVW5JI14dZnILhB2JvnqyKVwHDGuNseanGlqqFYIC4
+	kqQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=1okeeLPy+dwA6XlXkwTlr6s2QZblEOH+i/DnjZssmnU=;
-	b=UpasFd4bFsPl5xZ+eHv7AdSkV8t1Q/HvdbTg/twNnVaV34oTwhC0RQ8lOJ8HBPH8lQ
-	XP3flg6QSKpLgZVFpAvvxoBEYlLcKR+8+3+niP1srUa9M+JRxzPbx/aJzgciKT1JOJBJ
-	Z7kcGmlW0rrXJ+HkFN33lqRmo/0S9A4nVZ0yCa/VgRQlfRbYOjFV7KlIJsxU1gHL0hKO
-	La9y2semagYoisIk8YoqQ76LBlGbrUYYm6x3L/XyzCFiUgGUs/W/SZg1ClZBL6rG4hLU
-	zPaT1QSxBgc3SlZOcw9unW/eHVq2hCKzwH8zwi5GnHoAwwzU3Vi5kdmcDi50WHv/trjK
-	6W5A==
-X-Gm-Message-State: AHQUAuZhSoFR3EZsyN7oHsWiHRgBl8LjpWgeALDdcgpv5OzMZk5OTjVM
-	kFV+bHiEWKAuxZBIyG2Ip7S/47codp/B9l40SmGmnw==
-X-Google-Smtp-Source: AHgI3IbCFVCxU3V2xGeBM+cbtosqLjEof1ICBhZPpmeaBO4lqIhdG/qUqJcBojU7SSN2tlrOgBHZPppz1jjr8Al/LdU=
-X-Received: by 2002:a24:1d4a:: with SMTP id 71mr2028794itj.62.1549988229481;
-	Tue, 12 Feb 2019 08:17:09 -0800 (PST)
+	bh=f19dRTFQfERrUlfDW6Zd1WtlgZvDNJ7t3ZEqdCn3Q10=;
+	b=NX2bgex2jfLY0NvN36zao5JmHq9LHQwlV4wZz6xlEP8VQOiVCg4t43Ue/WONl5HyOX
+	AgLFFJhYJbgBdosa1Q3wMEKJBP64bR8lZEMNxE19IqBes/gFPaAkBagLRM++zuXphDNa
+	PW78hpfvPGcK66KVdj/NxnrVuTG6Yczm2JKDcEX9II3EUJ0BZkwR6ugE/oXaAsiw3Su8
+	HRThrMWp4E1+q07hiYXy+hoWIwT67ZBcDZwhiINJDGFvHtwHAiNXB/wA5iz5n/h6pKRG
+	8yEakvl8KuSmeXeypb8aMghhIjkgRDSHOb4kcOuyy+W7BL/QmuiD9CLkIBQG2WeJLQPF
+	iygA==
+X-Gm-Message-State: AHQUAuYy7cKhrWkc10RVwjiaGxp330wUGp00/+dRbj5m4T2crFJLomgG
+	6szklpqNEmD5Omfa9V0RWnrSsADf9KUBtaglvb0=
+X-Google-Smtp-Source: AHgI3Ibn94nWu40P/D6d8oZzY9OPNEvgsBbNlvcE69FS0QskdUvwcDoBroSBUu7a95b0m2XQneYsNlZzzXe1l8ZL9+U=
+X-Received: by 2002:a9d:640d:: with SMTP id h13mr4922219otl.153.1549992155679; 
+	Tue, 12 Feb 2019 09:22:35 -0800 (PST)
 MIME-Version: 1.0
-References: <CAFq4t4jZZi_BCYJGCq6oJJbHTwL4p3PN626n4KF0mHQxybjrPQ@mail.gmail.com>
-In-Reply-To: <CAFq4t4jZZi_BCYJGCq6oJJbHTwL4p3PN626n4KF0mHQxybjrPQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 12 Feb 2019 16:16:53 +0000
-Message-ID: <CAJTo0LYTo-y=abJ9GAYdUkuePXQGT7HTvnHraNQqTdtWLo6cOw@mail.gmail.com>
-To: Peter Balazovic <balazovic.peter@gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: glxinfo
+References: <03b301d4c2ed$7497f360$5dc7da20$@gmail.com>
+In-Reply-To: <03b301d4c2ed$7497f360$5dc7da20$@gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 12 Feb 2019 18:22:23 +0100
+Message-ID: <CANNYZj_PY61tmw=JjP7PPqqSVJff6kd=rsv=daNscx9eSkNWSA@mail.gmail.com>
+To: sjolley.yp.pm@gmail.com, Michael Halstead <michael@yoctoproject.org>, 
+	"Paul Eggleton (paul.eggleton@linux.intel.com)"
+	<paul.eggleton@linux.intel.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	OE-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] Yocto Project Status WW07'19
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,22 +73,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2019 16:17:10 -0000
+X-List-Received-Date: Tue, 12 Feb 2019 17:22:37 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-It's part of mesa-demos.
+On Tue, 12 Feb 2019 at 17:10, <sjolley.yp.pm@gmail.com> wrote:
+> The recipe reporting system integration with the layer index is available at: https://layers.openembedded.org/rrs/recipes/OE-Core/2.7/M3/ and the historical data has now been imported.
 
-Ross
+Sadly the new RRS still seems to be suffering from the 'outdated info'
+problem. For example glibc, or python3 recipes have been updated to
+latest versions, yet RRS still shows that they haven't been.
 
-On Tue, 12 Feb 2019 at 16:14, Peter Balazovic <balazovic.peter@gmail.com> wrote:
->
-> I'd like to ask which yocto recipe has "glxinfo" available? I will make available that package within local.conf...
->
-> Thanks.
-> Peter
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Alex
 
