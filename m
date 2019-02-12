@@ -1,181 +1,116 @@
-Return-Path: <mike.looijmans@topicproducts.com>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34DC6E00CB9; Mon, 11 Feb 2019 15:09:02 -0800 (PST)
+	id E2D11E00CBA; Mon, 11 Feb 2019 18:01:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [40.107.0.47 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.214.195 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com
-	(mail-eopbgr00047.outbound.protection.outlook.com [40.107.0.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D162E006B3
-	for <yocto@yoctoproject.org>; Mon, 11 Feb 2019 15:08:59 -0800 (PST)
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com
+	[209.85.214.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76F2BE00872
+	for <yocto@yoctoproject.org>; Mon, 11 Feb 2019 18:01:18 -0800 (PST)
+Received: by mail-pl1-f195.google.com with SMTP id o6so463995pls.13
+	for <yocto@yoctoproject.org>; Mon, 11 Feb 2019 18:01:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=topicbv.onmicrosoft.com; s=selector1-TopicProducts-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=Kc3GDMk1TVuv52/LF47zSZxmQCxShvhnsK1jWsvaRA0=;
-	b=fI/4f/vJRXDuQxZaF3QICBtTac5NmwnwjWj7ffNiWKPl6y1FCMsbGMmvXhtUhI0lLdYySLHz467wstLKNmD502QHiBjCL2o8PvCoXui+R1NuUQ94FZEPu2p3TtXfu+lBNkrsxuD9QXUDNGcRs7HuXW0MaBTAvbwrkcbHLLec4CM=
-Received: from DB6PR0402CA0013.eurprd04.prod.outlook.com (2603:10a6:4:91::23)
-	by AM5PR04MB3235.eurprd04.prod.outlook.com (2603:10a6:206:8::28) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1601.22;
-	Mon, 11 Feb 2019 10:33:21 +0000
-Received: from DB5EUR01FT060.eop-EUR01.prod.protection.outlook.com
-	(2a01:111:f400:7e02::207) by DB6PR0402CA0013.outlook.office365.com
-	(2603:10a6:4:91::23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1601.17 via
-	Frontend Transport; Mon, 11 Feb 2019 10:33:21 +0000
-Authentication-Results: spf=pass (sender IP is 52.236.92.113)
-	smtp.mailfrom=topicproducts.com; yoctoproject.org;
-	dkim=pass (signature was
-	verified) header.d=topicbv.onmicrosoft.com; yoctoproject.org; dmarc=none
-	action=none header.from=topic.nl;
-Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
-	designates 52.236.92.113 as permitted sender)
-	receiver=protection.outlook.com; client-ip=52.236.92.113;
-	helo=eu2-emailsignatures-cloud.codetwo.com;
-Received: from eu2-emailsignatures-cloud.codetwo.com (52.236.92.113) by
-	DB5EUR01FT060.mail.protection.outlook.com (10.152.5.232) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1580.10 via Frontend Transport; Mon, 11 Feb 2019 10:33:21 +0000
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (104.47.13.53) by
-	eu2-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server
-	(TLS12) via SMTP; Mon, 11 Feb 2019 10:33:18 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=topicbv.onmicrosoft.com; s=selector1-TopicProducts-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=Kc3GDMk1TVuv52/LF47zSZxmQCxShvhnsK1jWsvaRA0=;
-	b=fI/4f/vJRXDuQxZaF3QICBtTac5NmwnwjWj7ffNiWKPl6y1FCMsbGMmvXhtUhI0lLdYySLHz467wstLKNmD502QHiBjCL2o8PvCoXui+R1NuUQ94FZEPu2p3TtXfu+lBNkrsxuD9QXUDNGcRs7HuXW0MaBTAvbwrkcbHLLec4CM=
-Received: from AM6PR0402MB3863.eurprd04.prod.outlook.com (52.133.29.150) by
-	AM6PR0402MB3320.eurprd04.prod.outlook.com (52.133.18.149) with
-	Microsoft SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1601.21; Mon, 11 Feb 2019 10:32:58 +0000
-Received: from AM6PR0402MB3863.eurprd04.prod.outlook.com
-	([fe80::8177:6505:b6c:e430]) by
-	AM6PR0402MB3863.eurprd04.prod.outlook.com
-	([fe80::8177:6505:b6c:e430%5]) with mapi id 15.20.1601.023;
-	Mon, 11 Feb 2019 10:32:58 +0000
-From: Mike Looijmans <mike.looijmans@topic.nl>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Update kernel by package-management
-Thread-Index: AQHUv8fEiqXGlJpQgU+FKyLlk7DB1KXaar0A
-Date: Mon, 11 Feb 2019 10:32:57 +0000
-Message-ID: <b24beb7f-6e71-be6b-4288-1fc0be782d61@topic.nl>
-References: <da4152cf-2935-6862-55a3-9b4e37546c6b@faresoftware.it>
-In-Reply-To: <da4152cf-2935-6862-55a3-9b4e37546c6b@faresoftware.it>
-Accept-Language: nl-NL, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=GjkqWjxAO4fcUDxFai0jNNuh333RuM+79c9kNQ7eOHw=;
+	b=KUd+H+BjQBmvdQhOsvKeU2pNJR22PmcppINjFRt6/y1+ZJqG43ULtqpudaCrxnqf4m
+	jB6/R5hg0N8ONrif/tb6XRYae1I2CBB1jQrUBFU8k87u1Qg+bXjLJlgdgsCn+rP88Hgy
+	om6G0Ash+iS7R6yEl1oAwGNJBkHytTWfvzoLihHxU8f16tq9t+9gZ6TbBz5zfEcAYKMO
+	7NA9BKSCCva3vv1jmFA6NIZRlBiUXl5BnIf3cqM/MxSgQb0ffjv72qOwAdaWRcfE9Qqy
+	zqETJgxGskXgx9UB+xsPGWtdIMco3cofb70VJAeUwxg+HGBSvIzTK3ENiTNrSqSpxdPQ
+	SxBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-transfer-encoding:content-language;
+	bh=GjkqWjxAO4fcUDxFai0jNNuh333RuM+79c9kNQ7eOHw=;
+	b=FWOx5XY2gxGOSyXLOb98vVDPfPtdF71qfTBL5hSip9fVeCymuF+5lmKxrQSa5dEUR4
+	WqPGUbloWaPq67Yf0k0UZfLrHLZdToHcyRwdTTMO1/bgix9W7iIF9dsP43h+GR41lJvL
+	ZSjGCawd8odsBbpybxaCtwBfpnZTBqB62lr9MC9R52lUwWNAHck3NguzkG6x8G2gy8e7
+	t0u0pnU3XrOdv82VfVwuaxiV/o14Ty7wizs0xvfuEp+691Gq9R51uqgiGOsxniGBrBh/
+	lOLJRsavig/wNT8leLRAUIyJKzfo+ttQWGoghPxELhVfBnAcQRzYOR5aJ6X+OeWNzGQ6
+	o5zQ==
+X-Gm-Message-State: AHQUAub+4Bz/RINQn2J1PdNN6kOIwiyA6lukYQnjBBfwh0syY+zsPb7w
+	rfI9hPh3jAwFA8OmBallYr/yTC/YukY=
+X-Google-Smtp-Source: AHgI3Ibq3w6E2UzX52IXY2u4KAIskmDwCzU1II2ZoLpN3GYmh8oZLFi8rd9GJX6l1D2kLNDEF+Yyiw==
+X-Received: by 2002:a17:902:e990:: with SMTP id
+	ct16mr1446390plb.201.1549936876708; 
+	Mon, 11 Feb 2019 18:01:16 -0800 (PST)
+Received: from ?IPv6:2601:202:4180:c33:de5:9efe:99a0:e6a7?
+	([2601:202:4180:c33:de5:9efe:99a0:e6a7])
+	by smtp.gmail.com with ESMTPSA id
+	n186sm17026825pfn.137.2019.02.11.18.01.15
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 11 Feb 2019 18:01:15 -0800 (PST)
+To: yocto@yoctoproject.org
+References: <1548402997-10044-1-git-send-email-scott@jumpnowtek.com>
+From: akuster <akuster@mvista.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
+	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
+	8CS2NxU=
+Message-ID: <48a2a70d-57b0-6c9f-78c8-eeed63cfde09@mvista.com>
+Date: Mon, 11 Feb 2019 18:01:14 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.4.0
-x-clientproxiedby: AM5PR06CA0026.eurprd06.prod.outlook.com
-	(2603:10a6:206:2::39) To AM6PR0402MB3863.eurprd04.prod.outlook.com
-	(2603:10a6:209:1b::22)
-Authentication-Results-Original: spf=none (sender IP is )
-	smtp.mailfrom=mike.looijmans@topicproducts.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [81.173.50.109]
-x-ms-publictraffictype: Email
-X-Microsoft-Exchange-Diagnostics-untrusted: 1; AM6PR0402MB3320;
-	6:cyW6Dq0lGxG5H4wgrOS8ZXpI6RJZKlR+8rKWqNfjo6x23sziY66I29bq6XrfZR+mt/HFntTbVlNmb09vjZThVe9nwN34MozKwTZzd4F3H7GYqqMjb+zfL7YYWZpO3vo0ren20Qz3RlCmY6KuAN6OHSWQK/AIV2u4BoJcHgCQkOenpkE3dvmXpR74xIfokh9iY0OIilWKn2hkED2LQ8FGmeysqZHtQAuHmTOgvW9N7Wv0nBFg2ONZ8hxm4Onq1/v+CE2FuaoVRxWOpmMMcrAk7qfeC1/v3wgx6wn5D39BpW/X/dFS2DSDGR/Ug04kR4JgZppcl4/5irWPwVBpvnEx2gxTiTy1opITBFMzki4u51yO7UY//AOHzccGQA1qR3+M1U8X1jgbzwYDh9n3jAEHX9BkZqx46fsOpamH81kwd+6rGQP/eRP488YSwU8QFjYUPRCzKiILg98bwa5gM2hsIA==;
-	5:uVdPsZ2hjJ5z7kcaNa/aELKnmHMg5d8s02aqq7L+69qLWnZRpX4VAIxeQQLf9qbUg7MAXlk3EZCFJ2vmhjJkS4DMUeCuorF7iWTvb209qbTEC5Tm4s0gjrjX+y9xXiTGaSC5VH4C+nbfUZa2/g2ebygTDu8QcIaIQCmc3SKBmAgctbApYI9+oCRZ4dnqnevWDx89W1INsvIbQcw7yakQXQ==;
-	7:gqafjnHXPasfS1wtaN9/301evMW+mXSt3YesdyL3uINsXIRtTx4/wSQkFAHYxd3gxM+/ZNCL8Zx9chJaW8qkQpSjLPtDvvzCojtDz/pM9dFhZpLBR/Y90PaxhrSeFnrtqkf6+WVi+Brye/XHTbSJ+w==
-X-MS-Office365-Filtering-Correlation-Id: 8b2f4f2c-a2d1-48e6-9933-08d6900c5834
-X-Microsoft-Antispam-Untrusted: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600110)(711020)(4605077)(2017052603328)(7153060)(7193020);
-	SRVR:AM6PR0402MB3320; 
-X-MS-TrafficTypeDiagnostic: AM6PR0402MB3320:|AM5PR04MB3235:
-X-Microsoft-Antispam-PRVS: <AM5PR04MB3235C50E105B34080806D6EE96640@AM5PR04MB3235.eurprd04.prod.outlook.com>
-x-forefront-prvs: 0945B0CC72
-X-Forefront-Antispam-Report-Untrusted: SFV:NSPM;
-	SFS:(10009020)(136003)(346002)(366004)(396003)(376002)(39840400004)(189003)(53754006)(199004)(81166006)(65826007)(65956001)(26005)(186003)(305945005)(2906002)(58126008)(229853002)(97736004)(25786009)(65806001)(4744005)(66066001)(6916009)(2351001)(486006)(8936002)(31686004)(6486002)(76176011)(64126003)(316002)(71190400001)(71200400001)(81156014)(31696002)(7736002)(2501003)(2616005)(6246003)(68736007)(256004)(1730700003)(36756003)(6512007)(476003)(74482002)(99286004)(446003)(14444005)(11346002)(3846002)(14454004)(6116002)(102836004)(53546011)(6506007)(508600001)(105586002)(386003)(106356001)(52116002)(5640700003)(44832011)(42882007)(8676002)(53936002)(6436002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:AM6PR0402MB3320;
-	H:AM6PR0402MB3863.eurprd04.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: topicproducts.com does not
-	designate permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info-Original: fA2GBEI8IKaDPn+k+BxNC4IlKm6OzASmynaiKyXtpdM5+zMG2iHZ8FMPsEM4cLO4rJH5Gy80mvRQa8STDToOJfoPYtTUltbrJ47qglCwiKt+haqZsRuRS6rTRioN+ba/TkMLnUI+InVSKoEbPBIn2qg5w2W7yZimHFaSeekP5yyt87shNTSUxtX4+gaaAEMvokP60qndc1YnCbEZpjl6wKfO0A+kfFzLQfM+GxRp3zyRv02hSBq0zQ52E8FcXZxYs5TB6rA2E6gozFBhoaXgs84RsqENLErfbtq37DfDs16UIBZ4YPFhjx2i79xEH6c1RVcYb7ovTW78NviENqFzzdKlyWTOKdBvHb9r1ySPUALJceSLc+bAx5SFdbrB45IHwvk4boIpo7PGt4YZNwKZZ5BLTjk9XjnXWTWpu4D37n4=
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR0402MB3320
-X-CodeTwo-MessageID: 20190211103318.fce3a4fe-d75d-4819-bd3e-81c2cd7bfb65@eu2-emailsignatures-cloud.codetwo.com
-X-CodeTwoProcessed: true
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB5EUR01FT060.eop-EUR01.prod.protection.outlook.com
-X-Forefront-Antispam-Report: CIP:52.236.92.113; IPV:NLI; CTRY:US; EFV:NLI;
-	SFV:NSPM;
-	SFS:(10009020)(376002)(346002)(39840400004)(136003)(396003)(2980300002)(189003)(199004)(53754006)(336012)(36756003)(446003)(11346002)(2616005)(102836004)(186003)(508600001)(386003)(6506007)(53546011)(4744005)(26005)(65956001)(47776003)(66066001)(14454004)(476003)(42882007)(6486002)(229853002)(126002)(76176011)(44832011)(486006)(5640700003)(74482002)(65806001)(356004)(6512007)(31696002)(8676002)(1730700003)(6916009)(7636002)(7736002)(7596002)(246002)(305945005)(8936002)(8746002)(64126003)(23756003)(31686004)(65826007)(14444005)(2351001)(3846002)(6116002)(106466001)(25786009)(2501003)(6246003)(2906002)(106002)(50466002)(99286004)(58126008)(316002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:AM5PR04MB3235;
-	H:eu2-emailsignatures-cloud.codetwo.com; FPR:; SPF:Pass; LANG:en;
-	PTR:eu2-emailsignatures-cloud.codetwo.com; MX:1; A:1; 
-X-Microsoft-Exchange-Diagnostics: 1; DB5EUR01FT060;
-	1:2y2tUtfuz9RR8r71g4l3ZIKxWQY3Tra+ietTGSYP3VTrjI/haHLAUlrNfKWvDDwZJfd/LmxLa00RUsiQ+EacskrGQeTB1qNRCuunOERW6lDyVVr0xkyInq4/+0lX77qfsvpyBKdSl6Om2rVsHl8OfZMRkn7vSrtbiTDlqSYk0uE=
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 7ef3d3fa-d598-4a32-128d-08d6900c4a17
-X-Microsoft-Antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600110)(710020)(711020)(4605077)(2017052603328)(7153060)(7193020);
-	SRVR:AM5PR04MB3235; 
-X-Microsoft-Exchange-Diagnostics: 1; AM5PR04MB3235;
-	3:PHDYDXidSokoIy8oMWvNKz5WeP/90ofm29S/2B+Ba1b8wQiaS4CLS1J11W7VAeWOGtQJ/iruZTgp/QKI9GcZV4NGWMA6qdfdcxOj9SQK5e1xpaCw+RqaXQo3iMk7Buis1mKmn0zvCgJOHf1JWx06OGoEAA//EpzM9cv+3AS3/qODtH5R3ZZ3E9p/coQlokFwRilSOuWdKPzxYvazwXtvrVeP0ehqp1cZ0E9kaKvTpY6bbniIfq2c7hxRKltdCHjd3O0azEMYn3xoStir+0nUZZmXi4nt8+kxJZ3u9leZGEwCjQyLnntbZgxfJ8t+/HlpmMhgupWbusvPR0RvYZeqGMDMX6lgtYhYs+p9PelWLeh3PRBaK0AFvZyQ5rVIlMMI;
-	25:5JaRdp9N6r6uHfLUMZpfOnwXRx4WMDJKvcvnUQXFphTtbTsBNVAQUBwllaH9f1NOwufjI5r7JiZHv06ZXPan55zNaXtRHOPFyJrxvA34wmZbbRkG9x5tlMXuXRF0qYbrJN8xiWlmnZjYvMESUCLWfbdkUIsroWDnY8Rierwjvhm4Q0n2hGet1ESs2rovEgx772ImgFyS4q+6Xa3sJl8PhW7hDdU5N9VqSJhb4LgKgzyb1HY0vuTbp4aCIrAuEvB+TzSeZ6LJ/qA8KkAlR6/YaaM25oQP4WZLQvUzuq27leMtpXuZEySLg+qjvZRvPatylBA+xiYqtKjoOwBEf55xZQ==
-X-Microsoft-Exchange-Diagnostics: 1; AM5PR04MB3235;
-	31:gPLWSOdqjmtrd+s4qpNEMykPcvkx3xWaHGi3LLlCBl93EwW0AQV5DoMR+SiC66PmXjH9GIf9d4vYupZaFmD6oXYMchRMjOc1xHS5PvVyf5eWjGbLJF+RBeHvzhYgRsNbdhTEK+Dt0K8YLs93KORkaupPCXnRs8QpnWBQSfbdp63UTaA+HhSaIW54UDkDY/KuBPqf7riPijD3egQ/eQxxTkoECK9ymuX152PW0tsSaYU=;
-	20:/agas6oWeN714Y0yD8RXacAdfcp/gPT05etGgqYG86dx1rnJKVJMn3d356fj5G7b1Bhs5P0vxiWx0SEtb08HVjPPcBgNWbhcREqAZcWh6NgxnUI+Dh/i7yjB01LEZcGP5DkaTAIQztSwvqXPOe1w1sTjFKZSS88SdFbyx+W/ujU=;
-	4:MJVmGf+ttDmxhz60MXgsyNDrVf4/jsX48c3ZJCzfsTZnbh7+zPYb0LUn9Wl4P0jhImJlz4AgL/gmZBxKKRnV0oXocikk5+3SZd9hQ6mZ/VTK6Lb1sX1XGkxTeWgpQOw7tbmk8XR4PPG/CNzCNLlwX1ufBRuDmrYv4Rwn2Rac5fXxeMOwg796mzl43P7z1KUE8kzHE0MsxD2B6mIOcZwRXdLF2psxUlZeoTIvDTiTgFPEILP9mopqjq1PCk+553gbdFPxnp5Kh3K5eIRjgItRmJpLaDGO5fiAV8wGUjd1+hBOyySoRTuvunvGpA0JRcpT
-X-Forefront-PRVS: 0945B0CC72
-X-Microsoft-Exchange-Diagnostics: =?iso-8859-15?Q?1; AM5PR04MB3235;
-	23:l8IwVPeHiFmhlLAWNMgVEiE61NnPsQVSpkqSXo?=
-	=?iso-8859-15?Q?nvA5tsUC9jSN4k3wPgjJ37FavciL1iHrqIk/BUigwjk1pI5F3lx1K6duA?=
-	=?iso-8859-15?Q?2SV2Vnnjrzpa1lJgvV/1W1icudsc4fMkXS3YFkrOSVXi6ThxMpw907JYI?=
-	=?iso-8859-15?Q?4sZqDwYw0zyoALEG/Zt0si/TulgPKnouXlCkiSxUFbgXA48Dp2b16WDLT?=
-	=?iso-8859-15?Q?MpTlbLrZqmLnYQ9rQlJusSr1HcBmLau+Hsw5mg/dsaq527prxSK8dm1th?=
-	=?iso-8859-15?Q?/UTp8R+m4A1ey0EzGkKpoEoEAjsMJvIA+hWr++L13KfF4HM0gAyAfFFr7?=
-	=?iso-8859-15?Q?W+TQ2wcIQorvDjIpPzKE2NaSdPpK6Px0zBtJohy6eRokK4D1Qf9ARSv8V?=
-	=?iso-8859-15?Q?iVkdtubpd/91rZUfJ1kdPeDIc3yAA2MPFjmrgQpFCEEfJkFneBljm89xg?=
-	=?iso-8859-15?Q?jHcygtoxMy43GrXzkeIZXH0eM0kyl4lVjBZHlM0TIhj4c1pNe1pyqhwb4?=
-	=?iso-8859-15?Q?W5eQHbEmPot5KUgUhnaw/AwKr67WMLWkdxQMs86yvPJ9KXspKd0BQL4B9?=
-	=?iso-8859-15?Q?QcLFG54AB7tnUQKtxlwpjR+XENpZzvvGlnleZZaZjvUtgWZ41aq11Ugud?=
-	=?iso-8859-15?Q?VtOWwmTu65xsBizyVZ9pch+18kqAfFbfrU0fyoU1imVkZYLV8LUPgbsvs?=
-	=?iso-8859-15?Q?51duuz5gMW+PcjQtON+wEX9CeZ/g7qjcKddSk/DfgkGjX9jKPe5hufxCC?=
-	=?iso-8859-15?Q?Z5itjOsDqh1eioMjIHTSJugEUXwlLBLq3Sw8MlRqrlI5L20Nh4iU02hg+?=
-	=?iso-8859-15?Q?q9R15CpcKeycE+CKLgOwkralkOTj5ubjZqUctHboF8uA7L34lvNzuTnGu?=
-	=?iso-8859-15?Q?XnQpJhSZrHHRovDrrtKDw02g97XjLXftn2FROJJZ2h9052eH2VA76ICrO?=
-	=?iso-8859-15?Q?mIDYWaR8Q5uluJ5AU5kvrJulX01m5PZwxgLkCC3d3pa11tZT+kNwCtlOv?=
-	=?iso-8859-15?Q?wDsMFUk/9wMR4KlJv0jC7BBucICK4PcaWjpHHU66W0SRqWG8plIkxqyHf?=
-	=?iso-8859-15?Q?/NAlifw8ODuzfxeTnwb0s19ixAQO+QYGrNwyBHKE77WOpbMr80WoflTGP?=
-	=?iso-8859-15?Q?DMzwktxfYimeFihHzi5cjznJEaHC8Kbf/ABMXAY86j1DqIpfURlqCveX+?=
-	=?iso-8859-15?Q?oB8Lbh0e0FoC3BiBJssteaReN96+BBL4YBZ4pWgO7vvDj2+NUEkf+FP0o?=
-	=?iso-8859-15?Q?0pKZVODrjNK+nr1ywesMjQ5HiROpqLXp+13GCfUc+QdsL1rkvgCNRQ354?=
-	=?iso-8859-15?Q?mi9MX4FpA9ZoOyoP8GhViHTcHYNe6mWOBfek3Z9cEJtsyaKDJhc9qxYIW?=
-	=?iso-8859-15?Q?Dy+78BOaokeUJZmn8Pn9NGVgut8BXVaNWEVAtbBFbPz4LG6ROTeTIhyy0?=
-	=?iso-8859-15?Q?434FKHqKoLEJzakAbjwbxuwLDjEm/IoJqAt+5uKc05QU5qsa9Ymf7c7Yd?=
-	=?iso-8859-15?Q?IqecglnUqQLUynJFmrRvPbrIYLpY9ZaaaIvXnBkobeaRiucjdrOrWIZ+q?=
-	=?iso-8859-15?Q?TmLY5VbUI?=
-X-Microsoft-Antispam-Message-Info: yix2xTWs1s3GU/FztPJruJXDKCI6bsjnNmiZZL1bc4csy0B15Dz2NKsHLEJ3Q+Z7GHns5x5vB95c5YwcSVOFhiErUJI/qbwn5kj5UuOFD8Bpf53lx7Wd5gt9U8KP3rdhsPMpbCX3rGpaLk7QPN29hva6cUwrihLDafJ+PwglBvjvZr1u3lY7kEejbMRfBtRUyJ3S7oC4ZbUydaJGevNYYBrX4Whe+ajmRkQJ1I5AI85AydfgaENcGR3wOHmzdUI7KPFxEvbz1HDn8Dd6r3HZKpq/ynwNvEUk5qHSLRdXDTGG1H4vsdQ91LYsSqgxodYtWhgozahcbIBXglv1zZ7JpbrvqDGbhWUWo+uhA/v20GRGqIiww5efqpVxcdixrsxRSBSLdDZbtw0cWG667ZWZcInIM8nCh+WC1mEWg3F5IiQ=
-X-Microsoft-Exchange-Diagnostics: 1; AM5PR04MB3235;
-	6:70D4lYiJtKaJ1t9YNL2vvVmO6nZ84dXcyPvhcun7hqPxdlUl8Zwge36OJB3il68NnQxfHmVmoxKwh1j8zFQg7uCb7AmVh7EoGtmIYSyzoTBF6MA9ilXlU4RpnyyW7djLvxYDmxctDGFeOqOSro3G3FJe9u0Beb1g7cXsYbOAERruOvktVaiNta1144+cBF5O1Mr4soa2/DyaC4lGB2s8V3B5XUpCkRgaoPzKmiaf9usnOHpv29pw+6b3Kdftjf030zB4QMXAZAVXdMElZCfmANLP9Z7eUEFMqVXlPsEPGm7/xuBpiu/WP/lTaNr/jRpY0XzzT6xZ43UdZm7KCt0asUdVCwNGpRlE5KPArZCyFJzdlrUPZEf3ypIhtnTFzpzbQG5HtrXv7IrFdN+InMIhgi0fhi0lFZuQUStlvvuGjeWXe5oWKwUqKySazUIEhB+VHQPJoi7jdGPzjwPc/dhm6g==;
-	5:YAxRQStSAwv6vR/HnjzJ82GeyEtp9qBJP1+ya+CIQDz/r0Wqd6Zcr4ByNc6I7mdSClscrwmDM8Ua6u1d6qMThNn/caI2dVTF18NWxk29uH9SiZn6e2chSrK3G5S9syET3y0lxHRuycqlJY9p5jKiPyJzH/Q+r1ML50bU4IBwKf4S3v92WCIUZvpLQn4s8bYh4M47jmTi1LTlS7yDzicKpg==;
-	7:At23lvhzikqcmjMsip5OzUZaAQz/+rEmZ1AYP6ebMyB8qXxEW4T/qq8nbU+GeB4q8jGUBTrQh0NoKatg3nsKt/5+cN0NxO1PALA16I1S2K0nhUC1U628lN07ghqihB1N9GqVxEgfY6I2jvTzw96DRQ==
-X-OriginatorOrg: topic.nl
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2019 10:33:21.3173 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b2f4f2c-a2d1-48e6-9933-08d6900c5834
-X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;
-	Ip=[52.236.92.113]; Helo=[eu2-emailsignatures-cloud.codetwo.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR04MB3235
-Subject: Re: Update kernel by package-management
+In-Reply-To: <1548402997-10044-1-git-send-email-scott@jumpnowtek.com>
+Subject: Re: [meta-security][PATCH] checksec: Remove old script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -187,48 +122,909 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Feb 2019 23:09:02 -0000
+X-List-Received-Date: Tue, 12 Feb 2019 02:01:29 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-15"
-Content-ID: <92D7AB4ED1E42F4BADF5395CCF8699C4@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
 
-On 08-02-19 17:02, Mauro Ziliani wrote:
-> Hi all.
->=20
-> I know this is a VERY dangerous operation, but I'm curious.
+merged
 
-Depends on your definition of "dangerous".
+On 1/24/19 11:56 PM, Scott Ellis wrote:
+> Should have been removed in previous patch.
+>
+> Signed-off-by: Scott Ellis <scott@jumpnowtek.com>
+> ---
+>  recipes-security/checksec/files/checksec.sh | 882 ----------------------------
+>  1 file changed, 882 deletions(-)
+>  delete mode 100644 recipes-security/checksec/files/checksec.sh
+>
+> diff --git a/recipes-security/checksec/files/checksec.sh b/recipes-security/checksec/files/checksec.sh
+> deleted file mode 100644
+> index dd1f72e..0000000
+> --- a/recipes-security/checksec/files/checksec.sh
+> +++ /dev/null
+> @@ -1,882 +0,0 @@
+> -#!/bin/bash
+> -#
+> -# The BSD License (http://www.opensource.org/licenses/bsd-license.php) 
+> -# specifies the terms and conditions of use for checksec.sh:
+> -#
+> -# Copyright (c) 2009-2011, Tobias Klein.
+> -# All rights reserved.
+> -#
+> -# Redistribution and use in source and binary forms, with or without 
+> -# modification, are permitted provided that the following conditions 
+> -# are met:
+> -# 
+> -# * Redistributions of source code must retain the above copyright 
+> -#   notice, this list of conditions and the following disclaimer.
+> -# * Redistributions in binary form must reproduce the above copyright 
+> -#   notice, this list of conditions and the following disclaimer in 
+> -#   the documentation and/or other materials provided with the 
+> -#   distribution.
+> -# * Neither the name of Tobias Klein nor the name of trapkit.de may be 
+> -#   used to endorse or promote products derived from this software 
+> -#   without specific prior written permission.
+> -#
+> -# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+> -# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+> -# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+> -# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+> -# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+> -# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+> -# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS 
+> -# OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
+> -# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
+> -# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
+> -# THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH 
+> -# DAMAGE.
+> -#
+> -# Name    : checksec.sh
+> -# Version : 1.5
+> -# Author  : Tobias Klein
+> -# Date    : November 2011
+> -# Download: http://www.trapkit.de/tools/checksec.html
+> -# Changes : http://www.trapkit.de/tools/checksec_changes.txt
+> -#
+> -# Description:
+> -#
+> -# Modern Linux distributions offer some mitigation techniques to make it 
+> -# harder to exploit software vulnerabilities reliably. Mitigations such 
+> -# as RELRO, NoExecute (NX), Stack Canaries, Address Space Layout 
+> -# Randomization (ASLR) and Position Independent Executables (PIE) have 
+> -# made reliably exploiting any vulnerabilities that do exist far more 
+> -# challenging. The checksec.sh script is designed to test what *standard* 
+> -# Linux OS and PaX (http://pax.grsecurity.net/) security features are being 
+> -# used.
+> -#
+> -# As of version 1.3 the script also lists the status of various Linux kernel 
+> -# protection mechanisms.
+> -#
+> -# Credits:
+> -#
+> -# Thanks to Brad Spengler (grsecurity.net) for the PaX support.
+> -# Thanks to Jon Oberheide (jon.oberheide.org) for the kernel support.
+> -# Thanks to Ollie Whitehouse (Research In Motion) for rpath/runpath support.
+> -# 
+> -# Others that contributed to checksec.sh (in no particular order):
+> -#
+> -# Simon Ruderich, Denis Scherbakov, Stefan Kuttler, Radoslaw Madej,
+> -# Anthony G. Basile, Martin Vaeth and Brian Davis. 
+> -#
+> -
+> -# global vars
+> -have_readelf=1
+> -verbose=false
+> -
+> -# FORTIFY_SOURCE vars
+> -FS_end=_chk
+> -FS_cnt_total=0
+> -FS_cnt_checked=0
+> -FS_cnt_unchecked=0
+> -FS_chk_func_libc=0
+> -FS_functions=0
+> -FS_libc=0
+> - 
+> -# version information
+> -version() {
+> -  echo "checksec v1.5, Tobias Klein, www.trapkit.de, November 2011"
+> -  echo 
+> -}
+> -
+> -# help
+> -help() {
+> -  echo "Usage: checksec [OPTION]"
+> -  echo
+> -  echo "Options:"
+> -  echo
+> -  echo "  --file <executable-file>"
+> -  echo "  --dir <directory> [-v]"
+> -  echo "  --proc <process name>"
+> -  echo "  --proc-all"
+> -  echo "  --proc-libs <process ID>"
+> -  echo "  --kernel"
+> -  echo "  --fortify-file <executable-file>"
+> -  echo "  --fortify-proc <process ID>"
+> -  echo "  --version"
+> -  echo "  --help"
+> -  echo
+> -  echo "For more information, see:"
+> -  echo "  http://www.trapkit.de/tools/checksec.html"
+> -  echo
+> -}
+> -
+> -# check if command exists
+> -command_exists () {
+> -  type $1  > /dev/null 2>&1;
+> -}
+> -
+> -# check if directory exists
+> -dir_exists () {
+> -  if [ -d $1 ] ; then
+> -    return 0
+> -  else
+> -    return 1
+> -  fi
+> -}
+> -
+> -# check user privileges
+> -root_privs () {
+> -  if [ $(/usr/bin/id -u) -eq 0 ] ; then
+> -    return 0
+> -  else
+> -    return 1
+> -  fi
+> -}
+> -
+> -# check if input is numeric
+> -isNumeric () {
+> -  echo "$@" | grep -q -v "[^0-9]"
+> -}
+> -
+> -# check if input is a string
+> -isString () {
+> -  echo "$@" | grep -q -v "[^A-Za-z]"
+> -}
+> -
+> -# check file(s)
+> -filecheck() {
+> -  # check for RELRO support
+> -  if readelf -l $1 2>/dev/null | grep -q 'GNU_RELRO'; then
+> -    if readelf -d $1 2>/dev/null | grep -q 'BIND_NOW'; then
+> -      echo -n -e '\033[32mFull RELRO   \033[m   '
+> -    else
+> -      echo -n -e '\033[33mPartial RELRO\033[m   '
+> -    fi
+> -  else
+> -    echo -n -e '\033[31mNo RELRO     \033[m   '
+> -  fi
+> -
+> -  # check for stack canary support
+> -  if readelf -s $1 2>/dev/null | grep -q '__stack_chk_fail'; then
+> -    echo -n -e '\033[32mCanary found   \033[m   '
+> -  else
+> -    echo -n -e '\033[31mNo canary found\033[m   '
+> -  fi
+> -
+> -  # check for NX support
+> -  if readelf -W -l $1 2>/dev/null | grep 'GNU_STACK' | grep -q 'RWE'; then
+> -    echo -n -e '\033[31mNX disabled\033[m   '
+> -  else
+> -    echo -n -e '\033[32mNX enabled \033[m   '
+> -  fi 
+> -
+> -  # check for PIE support
+> -  if readelf -h $1 2>/dev/null | grep -q 'Type:[[:space:]]*EXEC'; then
+> -    echo -n -e '\033[31mNo PIE       \033[m   '
+> -  elif readelf -h $1 2>/dev/null | grep -q 'Type:[[:space:]]*DYN'; then
+> -    if readelf -d $1 2>/dev/null | grep -q '(DEBUG)'; then
+> -      echo -n -e '\033[32mPIE enabled  \033[m   '
+> -    else   
+> -      echo -n -e '\033[33mDSO          \033[m   '
+> -    fi
+> -  else
+> -    echo -n -e '\033[33mNot an ELF file\033[m   '
+> -  fi 
+> -
+> -  # check for rpath / run path
+> -  if readelf -d $1 2>/dev/null | grep -q 'rpath'; then
+> -   echo -n -e '\033[31mRPATH    \033[m  '
+> -  else
+> -   echo -n -e '\033[32mNo RPATH \033[m  '
+> -  fi
+> -
+> -  if readelf -d $1 2>/dev/null | grep -q 'runpath'; then
+> -   echo -n -e '\033[31mRUNPATH    \033[m  '
+> -  else
+> -   echo -n -e '\033[32mNo RUNPATH \033[m  '
+> -  fi
+> -}
+> -
+> -# check process(es)
+> -proccheck() {
+> -  # check for RELRO support
+> -  if readelf -l $1/exe 2>/dev/null | grep -q 'Program Headers'; then
+> -    if readelf -l $1/exe 2>/dev/null | grep -q 'GNU_RELRO'; then
+> -      if readelf -d $1/exe 2>/dev/null | grep -q 'BIND_NOW'; then
+> -        echo -n -e '\033[32mFull RELRO       \033[m '
+> -      else
+> -        echo -n -e '\033[33mPartial RELRO    \033[m '
+> -      fi
+> -    else
+> -      echo -n -e '\033[31mNo RELRO         \033[m '
+> -    fi
+> -  else
+> -    echo -n -e '\033[31mPermission denied (please run as root)\033[m\n'
+> -    exit 1
+> -  fi
+> -
+> -  # check for stack canary support
+> -  if readelf -s $1/exe 2>/dev/null | grep -q 'Symbol table'; then
+> -    if readelf -s $1/exe 2>/dev/null | grep -q '__stack_chk_fail'; then
+> -      echo -n -e '\033[32mCanary found         \033[m  '
+> -    else
+> -      echo -n -e '\033[31mNo canary found      \033[m  '
+> -    fi
+> -  else
+> -    if [ "$1" != "1" ] ; then
+> -      echo -n -e '\033[33mPermission denied    \033[m  '
+> -    else
+> -      echo -n -e '\033[33mNo symbol table found\033[m  '
+> -    fi
+> -  fi
+> -
+> -  # first check for PaX support
+> -  if cat $1/status 2> /dev/null | grep -q 'PaX:'; then
+> -    pageexec=( $(cat $1/status 2> /dev/null | grep 'PaX:' | cut -b6) )
+> -    segmexec=( $(cat $1/status 2> /dev/null | grep 'PaX:' | cut -b10) )
+> -    mprotect=( $(cat $1/status 2> /dev/null | grep 'PaX:' | cut -b8) )
+> -    randmmap=( $(cat $1/status 2> /dev/null | grep 'PaX:' | cut -b9) )
+> -    if [[ "$pageexec" = "P" || "$segmexec" = "S" ]] && [[ "$mprotect" = "M" && "$randmmap" = "R" ]] ; then
+> -      echo -n -e '\033[32mPaX enabled\033[m   '
+> -    elif [[ "$pageexec" = "p" && "$segmexec" = "s" && "$randmmap" = "R" ]] ; then
+> -      echo -n -e '\033[33mPaX ASLR only\033[m '
+> -    elif [[ "$pageexec" = "P" || "$segmexec" = "S" ]] && [[ "$mprotect" = "m" && "$randmmap" = "R" ]] ; then
+> -      echo -n -e '\033[33mPaX mprot off \033[m'
+> -    elif [[ "$pageexec" = "P" || "$segmexec" = "S" ]] && [[ "$mprotect" = "M" && "$randmmap" = "r" ]] ; then
+> -      echo -n -e '\033[33mPaX ASLR off\033[m  '
+> -    elif [[ "$pageexec" = "P" || "$segmexec" = "S" ]] && [[ "$mprotect" = "m" && "$randmmap" = "r" ]] ; then
+> -      echo -n -e '\033[33mPaX NX only\033[m   '
+> -    else
+> -      echo -n -e '\033[31mPaX disabled\033[m  '
+> -    fi
+> -  # fallback check for NX support
+> -  elif readelf -W -l $1/exe 2>/dev/null | grep 'GNU_STACK' | grep -q 'RWE'; then
+> -    echo -n -e '\033[31mNX disabled\033[m   '
+> -  else
+> -    echo -n -e '\033[32mNX enabled \033[m   '
+> -  fi 
+> -
+> -  # check for PIE support
+> -  if readelf -h $1/exe 2>/dev/null | grep -q 'Type:[[:space:]]*EXEC'; then
+> -    echo -n -e '\033[31mNo PIE               \033[m   '
+> -  elif readelf -h $1/exe 2>/dev/null | grep -q 'Type:[[:space:]]*DYN'; then
+> -    if readelf -d $1/exe 2>/dev/null | grep -q '(DEBUG)'; then
+> -      echo -n -e '\033[32mPIE enabled          \033[m   '
+> -    else   
+> -      echo -n -e '\033[33mDynamic Shared Object\033[m   '
+> -    fi
+> -  else
+> -    echo -n -e '\033[33mNot an ELF file      \033[m   '
+> -  fi
+> -}
+> -
+> -# check mapped libraries
+> -libcheck() {
+> -  libs=( $(awk '{ print $6 }' /proc/$1/maps | grep '/' | sort -u | xargs file | grep ELF | awk '{ print $1 }' | sed 's/:/ /') )
+> - 
+> -  printf "\n* Loaded libraries (file information, # of mapped files: ${#libs[@]}):\n\n"
+> -  
+> -  for element in $(seq 0 $((${#libs[@]} - 1)))
+> -  do
+> -    echo "  ${libs[$element]}:"
+> -    echo -n "    "
+> -    filecheck ${libs[$element]}
+> -    printf "\n\n"
+> -  done
+> -}
+> -
+> -# check for system-wide ASLR support
+> -aslrcheck() {
+> -  # PaX ASLR support
+> -  if !(cat /proc/1/status 2> /dev/null | grep -q 'Name:') ; then
+> -    echo -n -e ':\033[33m insufficient privileges for PaX ASLR checks\033[m\n'
+> -    echo -n -e '  Fallback to standard Linux ASLR check'
+> -  fi
+> -  
+> -  if cat /proc/1/status 2> /dev/null | grep -q 'PaX:'; then
+> -    printf ": "
+> -    if cat /proc/1/status 2> /dev/null | grep 'PaX:' | grep -q 'R'; then
+> -      echo -n -e '\033[32mPaX ASLR enabled\033[m\n\n'
+> -    else
+> -      echo -n -e '\033[31mPaX ASLR disabled\033[m\n\n'
+> -    fi
+> -  else
+> -    # standard Linux 'kernel.randomize_va_space' ASLR support
+> -    # (see the kernel file 'Documentation/sysctl/kernel.txt' for a detailed description)
+> -    printf " (kernel.randomize_va_space): "
+> -    if /sbin/sysctl -a 2>/dev/null | grep -q 'kernel.randomize_va_space = 1'; then
+> -      echo -n -e '\033[33mOn (Setting: 1)\033[m\n\n'
+> -      printf "  Description - Make the addresses of mmap base, stack and VDSO page randomized.\n"
+> -      printf "  This, among other things, implies that shared libraries will be loaded to \n"
+> -      printf "  random addresses. Also for PIE-linked binaries, the location of code start\n"
+> -      printf "  is randomized. Heap addresses are *not* randomized.\n\n"
+> -    elif /sbin/sysctl -a 2>/dev/null | grep -q 'kernel.randomize_va_space = 2'; then
+> -      echo -n -e '\033[32mOn (Setting: 2)\033[m\n\n'
+> -      printf "  Description - Make the addresses of mmap base, heap, stack and VDSO page randomized.\n"
+> -      printf "  This, among other things, implies that shared libraries will be loaded to random \n"
+> -      printf "  addresses. Also for PIE-linked binaries, the location of code start is randomized.\n\n"
+> -    elif /sbin/sysctl -a 2>/dev/null | grep -q 'kernel.randomize_va_space = 0'; then
+> -      echo -n -e '\033[31mOff (Setting: 0)\033[m\n'
+> -    else
+> -      echo -n -e '\033[31mNot supported\033[m\n'
+> -    fi
+> -    printf "  See the kernel file 'Documentation/sysctl/kernel.txt' for more details.\n\n"
+> -  fi 
+> -}
+> -
+> -# check cpu nx flag
+> -nxcheck() {
+> -  if grep -q nx /proc/cpuinfo; then
+> -    echo -n -e '\033[32mYes\033[m\n\n'
+> -  else
+> -    echo -n -e '\033[31mNo\033[m\n\n'
+> -  fi
+> -}
+> -
+> -# check for kernel protection mechanisms
+> -kernelcheck() {
+> -  printf "  Description - List the status of kernel protection mechanisms. Rather than\n"
+> -  printf "  inspect kernel mechanisms that may aid in the prevention of exploitation of\n"
+> -  printf "  userspace processes, this option lists the status of kernel configuration\n"
+> -  printf "  options that harden the kernel itself against attack.\n\n"
+> -  printf "  Kernel config: "
+> - 
+> -  if [ -f /proc/config.gz ] ; then
+> -    kconfig="zcat /proc/config.gz"
+> -    printf "\033[32m/proc/config.gz\033[m\n\n"
+> -  elif [ -f /boot/config-`uname -r` ] ; then
+> -    kconfig="cat /boot/config-`uname -r`"
+> -    printf "\033[33m/boot/config-`uname -r`\033[m\n\n"
+> -    printf "  Warning: The config on disk may not represent running kernel config!\n\n";
+> -  elif [ -f "${KBUILD_OUTPUT:-/usr/src/linux}"/.config ] ; then
+> -    kconfig="cat ${KBUILD_OUTPUT:-/usr/src/linux}/.config"
+> -    printf "\033[33m%s\033[m\n\n" "${KBUILD_OUTPUT:-/usr/src/linux}/.config"
+> -    printf "  Warning: The config on disk may not represent running kernel config!\n\n";
+> -  else
+> -    printf "\033[31mNOT FOUND\033[m\n\n"
+> -    exit 0
+> -  fi
+> -
+> -  printf "  GCC stack protector support:            "
+> -  if $kconfig | grep -qi 'CONFIG_CC_STACKPROTECTOR=y'; then
+> -    printf "\033[32mEnabled\033[m\n"
+> -  else
+> -    printf "\033[31mDisabled\033[m\n"
+> -  fi
+> -
+> -  printf "  Strict user copy checks:                "
+> -  if $kconfig | grep -qi 'CONFIG_DEBUG_STRICT_USER_COPY_CHECKS=y'; then
+> -    printf "\033[32mEnabled\033[m\n"
+> -  else
+> -    printf "\033[31mDisabled\033[m\n"
+> -  fi
+> -
+> -  printf "  Enforce read-only kernel data:          "
+> -  if $kconfig | grep -qi 'CONFIG_DEBUG_RODATA=y'; then
+> -    printf "\033[32mEnabled\033[m\n"
+> -  else
+> -    printf "\033[31mDisabled\033[m\n"
+> -  fi
+> -  printf "  Restrict /dev/mem access:               "
+> -  if $kconfig | grep -qi 'CONFIG_STRICT_DEVMEM=y'; then
+> -    printf "\033[32mEnabled\033[m\n"
+> -  else
+> -    printf "\033[31mDisabled\033[m\n"
+> -  fi
+> -
+> -  printf "  Restrict /dev/kmem access:              "
+> -  if $kconfig | grep -qi 'CONFIG_DEVKMEM=y'; then
+> -    printf "\033[31mDisabled\033[m\n"
+> -  else
+> -    printf "\033[32mEnabled\033[m\n"
+> -  fi
+> -
+> -  printf "\n"
+> -  printf "* grsecurity / PaX: "
+> -
+> -  if $kconfig | grep -qi 'CONFIG_GRKERNSEC=y'; then
+> -    if $kconfig | grep -qi 'CONFIG_GRKERNSEC_HIGH=y'; then
+> -      printf "\033[32mHigh GRKERNSEC\033[m\n\n"
+> -    elif $kconfig | grep -qi 'CONFIG_GRKERNSEC_MEDIUM=y'; then
+> -      printf "\033[33mMedium GRKERNSEC\033[m\n\n"
+> -    elif $kconfig | grep -qi 'CONFIG_GRKERNSEC_LOW=y'; then
+> -      printf "\033[31mLow GRKERNSEC\033[m\n\n"
+> -    else
+> -      printf "\033[33mCustom GRKERNSEC\033[m\n\n"
+> -    fi
+> -
+> -    printf "  Non-executable kernel pages:            "
+> -    if $kconfig | grep -qi 'CONFIG_PAX_KERNEXEC=y'; then
+> -      printf "\033[32mEnabled\033[m\n"
+> -    else
+> -      printf "\033[31mDisabled\033[m\n"
+> -    fi
+> -
+> -    printf "  Prevent userspace pointer deref:        "
+> -    if $kconfig | grep -qi 'CONFIG_PAX_MEMORY_UDEREF=y'; then
+> -      printf "\033[32mEnabled\033[m\n"
+> -    else
+> -      printf "\033[31mDisabled\033[m\n"
+> -    fi
+> -
+> -    printf "  Prevent kobject refcount overflow:      "
+> -    if $kconfig | grep -qi 'CONFIG_PAX_REFCOUNT=y'; then
+> -      printf "\033[32mEnabled\033[m\n"
+> -    else
+> -      printf "\033[31mDisabled\033[m\n"
+> -    fi
+> -
+> -    printf "  Bounds check heap object copies:        "
+> -    if $kconfig | grep -qi 'CONFIG_PAX_USERCOPY=y'; then
+> -      printf "\033[32mEnabled\033[m\n"
+> -    else
+> -      printf "\033[31mDisabled\033[m\n"
+> -    fi
+> -
+> -    printf "  Disable writing to kmem/mem/port:       "
+> -    if $kconfig | grep -qi 'CONFIG_GRKERNSEC_KMEM=y'; then
+> -      printf "\033[32mEnabled\033[m\n"
+> -    else
+> -      printf "\033[31mDisabled\033[m\n"
+> -    fi
+> -
+> -    printf "  Disable privileged I/O:                 "
+> -    if $kconfig | grep -qi 'CONFIG_GRKERNSEC_IO=y'; then
+> -      printf "\033[32mEnabled\033[m\n"
+> -    else
+> -      printf "\033[31mDisabled\033[m\n"
+> -    fi
+> -
+> -    printf "  Harden module auto-loading:             "
+> -    if $kconfig | grep -qi 'CONFIG_GRKERNSEC_MODHARDEN=y'; then
+> -      printf "\033[32mEnabled\033[m\n"
+> -    else
+> -      printf "\033[31mDisabled\033[m\n"
+> -    fi
+> -
+> -    printf "  Hide kernel symbols:                    "
+> -    if $kconfig | grep -qi 'CONFIG_GRKERNSEC_HIDESYM=y'; then
+> -      printf "\033[32mEnabled\033[m\n"
+> -    else
+> -      printf "\033[31mDisabled\033[m\n"
+> -    fi
+> -  else
+> -    printf "\033[31mNo GRKERNSEC\033[m\n\n"
+> -    printf "  The grsecurity / PaX patchset is available here:\n"
+> -    printf "    http://grsecurity.net/\n"
+> -  fi
+> -
+> -  printf "\n"
+> -  printf "* Kernel Heap Hardening: "
+> -
+> -  if $kconfig | grep -qi 'CONFIG_KERNHEAP=y'; then
+> -    if $kconfig | grep -qi 'CONFIG_KERNHEAP_FULLPOISON=y'; then
+> -      printf "\033[32mFull KERNHEAP\033[m\n\n"
+> -    else
+> -      printf "\033[33mPartial KERNHEAP\033[m\n\n"
+> -    fi
+> -  else
+> -    printf "\033[31mNo KERNHEAP\033[m\n\n"
+> -    printf "  The KERNHEAP hardening patchset is available here:\n"
+> -    printf "    https://www.subreption.com/kernheap/\n\n"
+> -  fi
+> -}
+> -
+> -# --- FORTIFY_SOURCE subfunctions (start) ---
+> -
+> -# is FORTIFY_SOURCE supported by libc?
+> -FS_libc_check() {
+> -  printf "* FORTIFY_SOURCE support available (libc)    : "
+> -
+> -  if [ "${#FS_chk_func_libc[@]}" != "0" ] ; then
+> -    printf "\033[32mYes\033[m\n"
+> -  else
+> -    printf "\033[31mNo\033[m\n"
+> -    exit 1
+> -  fi
+> -}
+> -
+> -# was the binary compiled with FORTIFY_SOURCE?
+> -FS_binary_check() {
+> -  printf "* Binary compiled with FORTIFY_SOURCE support: "
+> -
+> -  for FS_elem_functions in $(seq 0 $((${#FS_functions[@]} - 1)))
+> -  do
+> -    if [[ ${FS_functions[$FS_elem_functions]} =~ _chk ]] ; then
+> -      printf "\033[32mYes\033[m\n"
+> -      return
+> -    fi
+> -  done
+> -  printf "\033[31mNo\033[m\n"
+> -  exit 1
+> -}
+> -
+> -FS_comparison() {
+> -  echo
+> -  printf " ------ EXECUTABLE-FILE ------- . -------- LIBC --------\n"
+> -  printf " FORTIFY-able library functions | Checked function names\n"
+> -  printf " -------------------------------------------------------\n"
+> -
+> -  for FS_elem_libc in $(seq 0 $((${#FS_chk_func_libc[@]} - 1)))
+> -  do
+> -    for FS_elem_functions in $(seq 0 $((${#FS_functions[@]} - 1)))
+> -    do
+> -      FS_tmp_func=${FS_functions[$FS_elem_functions]}
+> -      FS_tmp_libc=${FS_chk_func_libc[$FS_elem_libc]}
+> -
+> -      if [[ $FS_tmp_func =~ ^$FS_tmp_libc$ ]] ; then
+> -        printf " \033[31m%-30s\033[m | __%s%s\n" $FS_tmp_func $FS_tmp_libc $FS_end
+> -        let FS_cnt_total++
+> -        let FS_cnt_unchecked++
+> -      elif [[ $FS_tmp_func =~ ^$FS_tmp_libc(_chk) ]] ; then
+> -        printf " \033[32m%-30s\033[m | __%s%s\n" $FS_tmp_func $FS_tmp_libc $FS_end
+> -        let FS_cnt_total++
+> -        let FS_cnt_checked++
+> -      fi
+> -
+> -    done
+> -  done
+> -}
+> -
+> -FS_summary() {
+> -  echo
+> -  printf "SUMMARY:\n\n"
+> -  printf "* Number of checked functions in libc                : ${#FS_chk_func_libc[@]}\n"
+> -  printf "* Total number of library functions in the executable: ${#FS_functions[@]}\n"
+> -  printf "* Number of FORTIFY-able functions in the executable : %s\n" $FS_cnt_total
+> -  printf "* Number of checked functions in the executable      : \033[32m%s\033[m\n" $FS_cnt_checked
+> -  printf "* Number of unchecked functions in the executable    : \033[31m%s\033[m\n" $FS_cnt_unchecked
+> -  echo
+> -}
+> -
+> -# --- FORTIFY_SOURCE subfunctions (end) ---
+> -
+> -if !(command_exists readelf) ; then
+> -  printf "\033[31mWarning: 'readelf' not found! It's required for most checks.\033[m\n\n"
+> -  have_readelf=0
+> -fi
+> -
+> -# parse command-line arguments
+> -case "$1" in
+> -
+> - --version)
+> -  version
+> -  exit 0
+> -  ;;
+> -
+> - --help)
+> -  help
+> -  exit 0
+> -  ;;
+> -
+> - --dir)
+> -  if [ "$3" = "-v" ] ; then
+> -    verbose=true
+> -  fi
+> -  if [ $have_readelf -eq 0 ] ; then
+> -    exit 1
+> -  fi
+> -  if [ -z "$2" ] ; then
+> -    printf "\033[31mError: Please provide a valid directory.\033[m\n\n"
+> -    exit 1
+> -  fi
+> -  # remove trailing slashes
+> -  tempdir=`echo $2 | sed -e "s/\/*$//"`
+> -  if [ ! -d $tempdir ] ; then
+> -    printf "\033[31mError: The directory '$tempdir' does not exist.\033[m\n\n"
+> -    exit 1
+> -  fi
+> -  cd $tempdir
+> -  printf "RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      FILE\n"
+> -  for N in [A-Za-z]*; do
+> -    if [ "$N" != "[A-Za-z]*" ]; then
+> -      # read permissions?
+> -      if [ ! -r $N ]; then
+> -        printf "\033[31mError: No read permissions for '$tempdir/$N' (run as root).\033[m\n"
+> -      else
+> -        # ELF executable?
+> -        out=`file $N`
+> -        if [[ ! $out =~ ELF ]] ; then
+> -           if [ "$verbose" = "true" ] ; then
+> -             printf "\033[34m*** Not an ELF file: $tempdir/"
+> -             file $N
+> -             printf "\033[m"
+> -           fi
+> -        else 
+> -          filecheck $N
+> -          if [ `find $tempdir/$N \( -perm -004000 -o -perm -002000 \) -type f -print` ]; then
+> -            printf "\033[37;41m%s%s\033[m" $2 $N
+> -          else
+> -            printf "%s%s" $tempdir/ $N
+> -          fi
+> -          echo
+> -        fi
+> -      fi
+> -    fi
+> -  done
+> -  exit 0
+> -  ;;
+> - 
+> - --file)
+> -  if [ $have_readelf -eq 0 ] ; then
+> -    exit 1
+> -  fi
+> -  if [ -z "$2" ] ; then
+> -    printf "\033[31mError: Please provide a valid file.\033[m\n\n"
+> -   exit 1
+> -  fi
+> -  # does the file exist?
+> -  if [ ! -e $2 ] ; then
+> -    printf "\033[31mError: The file '$2' does not exist.\033[m\n\n"
+> -    exit 1
+> -  fi
+> -  # read permissions?
+> -  if [ ! -r $2 ] ; then
+> -    printf "\033[31mError: No read permissions for '$2' (run as root).\033[m\n\n"
+> -    exit 1
+> -  fi
+> -  # ELF executable?
+> -  out=`file $2`
+> -  if [[ ! $out =~ ELF ]] ; then
+> -    printf "\033[31mError: Not an ELF file: "
+> -    file $2
+> -    printf "\033[m\n"
+> -    exit 1
+> -  fi
+> -  printf "RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      FILE\n"
+> -  filecheck $2
+> -  if [ `find $2 \( -perm -004000 -o -perm -002000 \) -type f -print` ] ; then
+> -    printf "\033[37;41m%s%s\033[m" $2 $N
+> -  else
+> -    printf "%s" $2
+> -  fi
+> -  echo
+> -  exit 0
+> -  ;;
+> -
+> - --proc-all)
+> -  if [ $have_readelf -eq 0 ] ; then
+> -    exit 1
+> -  fi
+> -  cd /proc
+> -  printf "* System-wide ASLR"
+> -  aslrcheck
+> -  printf "* Does the CPU support NX: "
+> -  nxcheck 
+> -  printf "         COMMAND    PID RELRO             STACK CANARY           NX/PaX        PIE\n"
+> -  for N in [1-9]*; do
+> -    if [ $N != $$ ] && readlink -q $N/exe > /dev/null; then
+> -      printf "%16s" `head -1 $N/status | cut -b 7-`
+> -      printf "%7d " $N
+> -      proccheck $N
+> -      echo
+> -    fi
+> -  done
+> -  if [ ! -e /usr/bin/id ] ; then
+> -    printf "\n\033[33mNote: If you are running 'checksec.sh' as an unprivileged user, you\n"
+> -    printf "      will not see all processes. Please run the script as root.\033[m\n\n"
+> -  else 
+> -    if !(root_privs) ; then
+> -      printf "\n\033[33mNote: You are running 'checksec.sh' as an unprivileged user.\n" 
+> -      printf "      Too see all processes, please run the script as root.\033[m\n\n"
+> -    fi
+> -  fi
+> -  exit 0
+> -  ;;
+> -
+> - --proc)
+> -  if [ $have_readelf -eq 0 ] ; then
+> -    exit 1
+> -  fi
+> -  if [ -z "$2" ] ; then
+> -    printf "\033[31mError: Please provide a valid process name.\033[m\n\n"
+> -    exit 1
+> -  fi
+> -  if !(isString "$2") ; then
+> -     printf "\033[31mError: Please provide a valid process name.\033[m\n\n"
+> -     exit 1
+> -  fi
+> -  cd /proc
+> -  printf "* System-wide ASLR"
+> -  aslrcheck
+> -  printf "* Does the CPU support NX: "
+> -  nxcheck
+> -  printf "         COMMAND    PID RELRO             STACK CANARY           NX/PaX        PIE\n"
+> -  for N in `ps -Ao pid,comm | grep $2 | cut -b1-6`; do
+> -    if [ -d $N ] ; then
+> -      printf "%16s" `head -1 $N/status | cut -b 7-`
+> -      printf "%7d " $N
+> -      # read permissions?
+> -      if [ ! -r $N/exe ] ; then
+> -        if !(root_privs) ; then
+> -          printf "\033[31mNo read permissions for '/proc/$N/exe' (run as root).\033[m\n\n"
+> -          exit 1
+> -        fi
+> -        if [ ! `readlink $N/exe` ] ; then
+> -          printf "\033[31mPermission denied. Requested process ID belongs to a kernel thread.\033[m\n\n"
+> -          exit 1
+> -        fi
+> -        exit 1
+> -      fi
+> -      proccheck $N
+> -      echo
+> -    fi
+> -  done
+> -  exit 0
+> -  ;;
+> -
+> - --proc-libs)
+> -  if [ $have_readelf -eq 0 ] ; then
+> -    exit 1
+> -  fi
+> -  if [ -z "$2" ] ; then
+> -    printf "\033[31mError: Please provide a valid process ID.\033[m\n\n"
+> -    exit 1
+> -  fi
+> -  if !(isNumeric "$2") ; then
+> -     printf "\033[31mError: Please provide a valid process ID.\033[m\n\n"
+> -     exit 1
+> -  fi
+> -  cd /proc
+> -  printf "* System-wide ASLR"
+> -  aslrcheck
+> -  printf "* Does the CPU support NX: "
+> -  nxcheck
+> -  printf "* Process information:\n\n"
+> -  printf "         COMMAND    PID RELRO             STACK CANARY           NX/PaX        PIE\n"
+> -  N=$2
+> -  if [ -d $N ] ; then
+> -    printf "%16s" `head -1 $N/status | cut -b 7-`
+> -    printf "%7d " $N
+> -    # read permissions?
+> -    if [ ! -r $N/exe ] ; then
+> -      if !(root_privs) ; then
+> -        printf "\033[31mNo read permissions for '/proc/$N/exe' (run as root).\033[m\n\n"
+> -        exit 1
+> -      fi
+> -      if [ ! `readlink $N/exe` ] ; then
+> -        printf "\033[31mPermission denied. Requested process ID belongs to a kernel thread.\033[m\n\n"
+> -        exit 1
+> -      fi
+> -      exit 1
+> -    fi
+> -    proccheck $N
+> -    echo
+> -    libcheck $N
+> -  fi
+> -  exit 0
+> -  ;;
+> -
+> - --kernel)
+> -  cd /proc
+> -  printf "* Kernel protection information:\n\n"
+> -  kernelcheck
+> -  exit 0
+> -  ;;
+> -
+> - --fortify-file)
+> -  if [ $have_readelf -eq 0 ] ; then
+> -    exit 1
+> -  fi
+> -  if [ -z "$2" ] ; then
+> -    printf "\033[31mError: Please provide a valid file.\033[m\n\n"
+> -   exit 1
+> -  fi
+> -  # does the file exist?
+> -  if [ ! -e $2 ] ; then
+> -    printf "\033[31mError: The file '$2' does not exist.\033[m\n\n"
+> -    exit 1
+> -  fi
+> -  # read permissions?
+> -  if [ ! -r $2 ] ; then
+> -    printf "\033[31mError: No read permissions for '$2' (run as root).\033[m\n\n"
+> -    exit 1
+> -  fi
+> -  # ELF executable?
+> -  out=`file $2`
+> -  if [[ ! $out =~ ELF ]] ; then
+> -    printf "\033[31mError: Not an ELF file: "
+> -    file $2
+> -    printf "\033[m\n"
+> -    exit 1
+> -  fi
+> -  if [ -e /lib/libc.so.6 ] ; then
+> -    FS_libc=/lib/libc.so.6
+> -  elif [ -e /lib64/libc.so.6 ] ; then
+> -    FS_libc=/lib64/libc.so.6
+> -  elif [ -e /lib/i386-linux-gnu/libc.so.6 ] ; then
+> -    FS_libc=/lib/i386-linux-gnu/libc.so.6
+> -  elif [ -e /lib/x86_64-linux-gnu/libc.so.6 ] ; then
+> -    FS_libc=/lib/x86_64-linux-gnu/libc.so.6
+> -  else
+> -    printf "\033[31mError: libc not found.\033[m\n\n"
+> -    exit 1
+> -  fi
+> -
+> -  FS_chk_func_libc=( $(readelf -s $FS_libc | grep _chk@@ | awk '{ print $8 }' | cut -c 3- | sed -e 's/_chk@.*//') )
+> -  FS_functions=( $(readelf -s $2 | awk '{ print $8 }' | sed 's/_*//' | sed -e 's/@.*//') )
+> -
+> -  FS_libc_check
+> -  FS_binary_check
+> -  FS_comparison
+> -  FS_summary
+> -
+> -  exit 0
+> -  ;;
+> -
+> - --fortify-proc)
+> -  if [ $have_readelf -eq 0 ] ; then
+> -    exit 1
+> -  fi
+> -  if [ -z "$2" ] ; then
+> -    printf "\033[31mError: Please provide a valid process ID.\033[m\n\n"
+> -    exit 1
+> -  fi
+> -  if !(isNumeric "$2") ; then
+> -     printf "\033[31mError: Please provide a valid process ID.\033[m\n\n"
+> -     exit 1
+> -  fi
+> -  cd /proc
+> -  N=$2
+> -  if [ -d $N ] ; then
+> -    # read permissions?
+> -    if [ ! -r $N/exe ] ; then
+> -      if !(root_privs) ; then
+> -        printf "\033[31mNo read permissions for '/proc/$N/exe' (run as root).\033[m\n\n"
+> -        exit 1
+> -      fi
+> -      if [ ! `readlink $N/exe` ] ; then
+> -        printf "\033[31mPermission denied. Requested process ID belongs to a kernel thread.\033[m\n\n"
+> -        exit 1
+> -      fi
+> -      exit 1
+> -    fi
+> -    if [ -e /lib/libc.so.6 ] ; then
+> -      FS_libc=/lib/libc.so.6
+> -    elif [ -e /lib64/libc.so.6 ] ; then
+> -      FS_libc=/lib64/libc.so.6
+> -    elif [ -e /lib/i386-linux-gnu/libc.so.6 ] ; then
+> -      FS_libc=/lib/i386-linux-gnu/libc.so.6
+> -    elif [ -e /lib/x86_64-linux-gnu/libc.so.6 ] ; then
+> -      FS_libc=/lib/x86_64-linux-gnu/libc.so.6
+> -    else
+> -      printf "\033[31mError: libc not found.\033[m\n\n"
+> -      exit 1
+> -    fi
+> -    printf "* Process name (PID)                         : %s (%d)\n" `head -1 $N/status | cut -b 7-` $N
+> -    FS_chk_func_libc=( $(readelf -s $FS_libc | grep _chk@@ | awk '{ print $8 }' | cut -c 3- | sed -e 's/_chk@.*//') )
+> -    FS_functions=( $(readelf -s $2/exe | awk '{ print $8 }' | sed 's/_*//' | sed -e 's/@.*//') )
+> -
+> -    FS_libc_check
+> -    FS_binary_check
+> -    FS_comparison
+> -    FS_summary
+> -  fi
+> -  exit 0
+> -  ;;
+> -
+> - *)
+> -  if [ "$#" != "0" ] ; then
+> -    printf "\033[31mError: Unknown option '$1'.\033[m\n\n"
+> -  fi
+> -  help
+> -  exit 1
+> -  ;;
+> -esac
 
-> Is it possible to upgrade the kernel & dtb from debian package in Yocto?
-
-Sure, doing it all the time (from ipk, but that shouldn't matter much).
-
-If the kernel/dts is just a file on the system, there's just a package that=
-=20
-installs /boot/uImage or whatever.
-
-If the kernel is in some special location in flash or so, I usually set up =
-the=20
-kernel image to install into /tmp/ and then let a post-install script write=
- it=20
-from /tmp/ into the flash location (e.g. using "flashcp").
-
-Same for the devicetree.
-
-As for dangerous, worst thing that could happen is that you'd have to use t=
-he=20
-bootloader to revive the system.
-
-> That is: there is a recipe=A0 (which produce a deb package) to copy zImag=
-e
-> and imx6dl-sabresd.dtb directly in the boot partition?
->=20
->=20
-> I working on a imx6sabresd board.
->=20
-> The root partition is /dev/mmcblk2p1
-
---
-ML
 
