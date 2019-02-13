@@ -1,79 +1,36 @@
-Return-Path: <bhupendra.singh@ppsinternational.in>
+Return-Path: <yocto@emagii.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D0EAE00950; Tue, 12 Feb 2019 23:22:48 -0800 (PST)
+	id 657C3E00950; Wed, 13 Feb 2019 00:22:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED, HTML_MESSAGE, MSGID_MULTIPLE_AT,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	MIME_QP_LONG_LINE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.0 MSGID_MULTIPLE_AT Message-ID contains multiple '@' characters
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [182.50.132.193 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [81.236.60.156 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
-Received: from sg2nlshrout01.shr.prod.sin2.secureserver.net
-	(sg2nlshrout01.shr.prod.sin2.secureserver.net [182.50.132.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32BAEE007B3
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 23:22:46 -0800 (PST)
-Received: from sg2plcpnl0208.prod.sin2.secureserver.net ([148.72.232.109])
-	by : HOSTING RELAY : with ESMTP
-	id tosHgDH8R3Yo6tosHgBYuH; Wed, 13 Feb 2019 00:22:29 -0700
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ppsinternational.in; s=default;
-	h=Content-Type:MIME-Version:Message-ID:Date
-	:Subject:To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=M3o7xtu6/r/tMYsW48GadgHU+c7xHpoStIf6xkO38jk=;
-	b=pO0XNeqsz3OUvK2cJkXRTSXC1h
-	Zldvt9MIzbWXbaslyGm4thvhCmgpp6b7w/Bx4QLYC/SdV5dPLauPExrqOW/RNn3UF80t6QfQM1vBL
-	bxxPSnZsN0lqdfUUCoXR+NVFiSXAiH3FBKB0IEllDdZo07tC4b1kL+TJ/Plwu2Bv4JdPDq1DY7TQc
-	LRjzg9C3uEznI3f/d7CEcOP1WBPo7H9SG1KV3KjlVRKJNj6s0JijxZgbiq1QKc1AS8/XSbb8S8QFm
-	aq/T/EIJLINTKuDNWAfP3M2ZUNGdLeC22qPr6WwHrizpYQHChVCrmCFW95/5QoGTazmcMlVO4BcWS
-	kTc6z40g==;
-Received: from [103.76.136.42] (port=2605 helo=Bhupendra)
-	by sg2plcpnl0208.prod.sin2.secureserver.net with esmtpsa
-	(TLSv1:ECDHE-RSA-AES256-SHA:256) (Exim 4.91)
-	(envelope-from <bhupendra.singh@ppsinternational.in>)
-	id 1gtorY-00F1bm-0l
-	for yocto@yoctoproject.org; Wed, 13 Feb 2019 00:21:44 -0700
-From: "Bhupendra Singh" <bhupendra.singh@ppsinternational.in>
-To: <yocto@yoctoproject.org>
-Date: Wed, 13 Feb 2019 12:51:17 +0530
-Message-ID: <000001d4c36c$b99aef10$2cd0cd30$@singh@ppsinternational.in>
-MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 12.0
-Thread-Index: AdTDbLFz1UyFRsbYQYiFl3cMVxuMaQ==
-x-cr-hashedpuzzle: A64= iLE= Bnmv CILM Cbkf Czw8 Du1A D4uD ETyS FiJF GGRy GcnJ
-	G9xW HPO9 H0Tw I7Io; 1;
-	eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
-	Sosha1_v1; 7; {33C1FF8A-33BD-419E-9558-D9C2F649921B};
-	YgBoAHUAcABlAG4AZAByAGEALgBzAGkAbgBnAGgAQABwAHAAcwBpAG4AdABlAHIAbgBhAHQAaQBvAG4AYQBsAC4AaQBuAA==;
-	Wed, 13 Feb 2019 07:21:10 GMT;
-	TQBhAGsAZQAgAG8AbgBlACAAZABpAHIAZQBjAHQAbwByAHkAIAB3AHIAaQB0AGUAYQBiAGwAZQA=
-x-cr-puzzleid: {33C1FF8A-33BD-419E-9558-D9C2F649921B}
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - sg2plcpnl0208.prod.sin2.secureserver.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - ppsinternational.in
-X-Get-Message-Sender-Via: sg2plcpnl0208.prod.sin2.secureserver.net: authenticated_id:
-	bhupendra.singh@ppsinternational.in
-X-Authenticated-Sender: sg2plcpnl0208.prod.sin2.secureserver.net: bhupendra.singh@ppsinternational.in
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-CMAE-Envelope: MS4wfJHEO0t+OCUHVhZ7TuZ5Z6mxRzfjMgYXBbDldsisAvOUXeHkijldyakFLljWIPNH7gihWKXLH0W3R27q5XzEkpg/Im5xZySJdVmupzKaRD29onjKz7hl
-	ldJK044SzM3/lOW8EOuhLMLZu7Poh4qmJnG3l7kJg7FLqGeA8nS7h5pWU+4GJUYeLRWNIjHNAvqMU7ISJxU9s0vsw7kX9L+B9rVg7XeumDH1ak/wP2odJHKF
-Subject: Make one directory writeable
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+Received: from v-smtpout3.han.skanova.net (v-smtpout3.han.skanova.net
+	[81.236.60.156])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7634E007B3
+	for <yocto@yoctoproject.org>; Wed, 13 Feb 2019 00:22:21 -0800 (PST)
+Received: from [90.236.121.192] ([90.236.121.192]) by cmsmtp with ESMTPA
+	id tpoBgJXuUHNTStpoBgIwMr; Wed, 13 Feb 2019 09:22:20 +0100
+Mime-Version: 1.0 (1.0)
+From: Ulf Samuelsson <yocto@emagii.com>
+X-Mailer: iPad Mail (15F79)
+In-Reply-To: <000001d4c36c$b99aef10$2cd0cd30$@singh@ppsinternational.in>
+Date: Wed, 13 Feb 2019 09:22:19 +0100
+Message-Id: <27D16836-A33F-4570-AF62-3D031E6E9134@emagii.com>
+References: <000001d4c36c$b99aef10$2cd0cd30$@singh@ppsinternational.in>
+To: Bhupendra Singh <bhupendra.singh@ppsinternational.in>
+X-CMAE-Envelope: MS4wfJhTH4eLkSJarXgePFS1zTutbb/4wBM+XkRXshN/Z2Ai31V6HAB/Fvn3apf22b/V+SqggTmwhoVrGTxfif0Aj2mmi2trReNlvADB6cmXQLhP4FdUlrNG
+	ls4PmyWuhH63VVnllHfB3uP02WZSDVHcmIWxM7NiBEI13M5zC82uiZm7B3qfEVSK1XSU3RqpDHbIs1bqXtGW2jCP3IFsWaNlk+DUr8wdA7zuknhWq4GiEo1x
+Cc: yocto@yoctoproject.org
+Subject: Re: Make one directory writeable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -85,46 +42,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Feb 2019 07:22:48 -0000
+X-List-Received-Date: Wed, 13 Feb 2019 08:22:24 -0000
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0001_01D4C39A.D3532B10"
-Content-Language: en-us
-
-------=_NextPart_000_0001_01D4C39A.D3532B10
-Content-Type: text/plain;
-	charset="us-ascii"
+	boundary=Apple-Mail-A57BABB0-F239-453C-AD2F-EA2DA8200FD6
 Content-Transfer-Encoding: 7bit
 
-Hello 
-
-I have built core-image-minimal  with read only rootfs  then now  I want to
-make one directory (like /mnt) writable. 
-
-Is it possible to make one directory writeable in read only rootfs if yes
-,please tell me how can I do same.   
-
- 
-
-Bhupendra Singh
-
- 
-
-
-------=_NextPart_000_0001_01D4C39A.D3532B10
-Content-Type: text/html;
-	charset="us-ascii"
+--Apple-Mail-A57BABB0-F239-453C-AD2F-EA2DA8200FD6
+Content-Type: text/plain;
+	charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40">
+You can use overlayfs for this. You mount the overlayfs on top of your rootf=
+s and then it appear like you have a writeable file system.
+In reality all the new  stuff is written to another (writeable) file system.=
 
-<head>
-<meta http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii">
-<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+If you dismount the overlayfs, the rootfs reverts back to its original state=
+.
+If you again  mount the overlayfs, you get your modifications back.
+
+Best Regards,
+Ulf Samuelsson
++46 722 427 437
+
+> 13 feb. 2019 kl. 08:21 skrev Bhupendra Singh <bhupendra.singh@ppsinternati=
+onal.in>:
+>=20
+> Hello
+> I have built core-image-minimal  with read only rootfs  then now  I want t=
+o make one directory (like /mnt) writable.
+> Is it possible to make one directory writeable in read only rootfs if yes ,=
+please tell me how can I do same.  =20
+> =20
+> Bhupendra Singh
+> =20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+--Apple-Mail-A57BABB0-F239-453C-AD2F-EA2DA8200FD6
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto">You can use overlayfs for this. You mount the overlayfs on top of your rootfs and then it appear like you have a writeable file system.<div>In reality all the new &nbsp;stuff is written to another (writeable) file system.</div><div>If you dismount the overlayfs, the rootfs reverts back to its original state.</div><div>If you again &nbsp;mount the overlayfs, you get your modifications back.</div><div><br><div id="AppleMailSignature">Best Regards,<div>Ulf Samuelsson</div><div>+46 722 427 437</div></div><div><br>13 feb. 2019 kl. 08:21 skrev Bhupendra Singh &lt;<a href="mailto:bhupendra.singh@ppsinternational.in">bhupendra.singh@ppsinternational.in</a>&gt;:<br><br></div><blockquote type="cite"><div>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<meta name="Generator" content="Microsoft Word 12 (filtered medium)">
 <style>
 <!--
  /* Font Definitions */
@@ -177,48 +143,39 @@ div.Section1
 -->
 </style>
 <!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+ <o:shapedefaults v:ext="edit" spidmax="1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1" />
  </o:shapelayout></xml><![endif]-->
-</head>
 
-<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
 
-<div class=3DSection1>
 
-<p class=3DMsoNormal><b><span =
-style=3D'font-size:12.0pt;color:#548DD4'>Hello =
-<o:p></o:p></span></b></p>
 
-<p class=3DMsoNormal><b><span style=3D'font-size:12.0pt;color:#548DD4'>I =
-have built
-core-image-minimal&nbsp; with read only rootfs&nbsp; then now &nbsp;I =
-want to
+<div class="Section1">
+
+<p class="MsoNormal"><b><span style="font-size:12.0pt;color:#548DD4">Hello <o:p></o:p></span></b></p>
+
+<p class="MsoNormal"><b><span style="font-size:12.0pt;color:#548DD4">I have built
+core-image-minimal&nbsp; with read only rootfs&nbsp; then now &nbsp;I want to
 make one directory (like /mnt) writable. <o:p></o:p></span></b></p>
 
-<p class=3DMsoNormal><b><span =
-style=3D'font-size:12.0pt;color:#548DD4'>Is it
-possible to make one directory writeable in read only rootfs if yes =
-,please
+<p class="MsoNormal"><b><span style="font-size:12.0pt;color:#548DD4">Is it
+possible to make one directory writeable in read only rootfs if yes ,please
 tell me how can I do same. &nbsp;&nbsp;<o:p></o:p></span></b></p>
 
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
 
-<p class=3DMsoNormal style=3D'background:white'><span =
-style=3D'font-size:12.0pt;
-font-family:"Times New Roman","serif";color:#4F81BD'>Bhupendra =
-Singh</span><span
-style=3D'font-size:9.5pt;font-family:"Arial","sans-serif";color:#4F81BD'>=
-<o:p></o:p></span></p>
+<p class="MsoNormal" style="background:white"><span style="font-size:12.0pt;
+font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;color:#4F81BD">Bhupendra Singh</span><span style="font-size:9.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#4F81BD"><o:p></o:p></span></p>
 
-<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
 
 </div>
 
-</body>
 
-</html>
 
-------=_NextPart_000_0001_01D4C39A.D3532B10--
+
+</div></blockquote><blockquote type="cite"><div><span>-- </span><br><span>_______________________________________________</span><br><span>yocto mailing list</span><br><span><a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a></span><br><span><a href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a></span><br></div></blockquote></div></body></html>
+
+--Apple-Mail-A57BABB0-F239-453C-AD2F-EA2DA8200FD6--
