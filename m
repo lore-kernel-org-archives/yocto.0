@@ -1,68 +1,73 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <xerofoify@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 28E8AE0090E; Tue, 12 Feb 2019 13:40:39 -0800 (PST)
+	id 11CE8E0091D; Tue, 12 Feb 2019 17:56:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (xerofoify[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.177 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.65 listed in list.dnswl.org]
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
-	[209.85.128.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88950E007B3
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 13:40:38 -0800 (PST)
-Received: by mail-wm1-f65.google.com with SMTP id b11so226059wmj.1
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 13:40:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:user-agent:mime-version:content-transfer-encoding;
-	bh=wMHQMw/j7Ok8K0QAgLaU11BqsZgXcUyE/VOWjv8L/Ro=;
-	b=JNlK96017LDH+RbXkm/TxguQK3WpGQoGQeGVkhbhpisTLApRy/QwzuXABLW8QzdHNA
-	l+WAf9UuPnkfoBcb+cZeiXzUdY3FhlmxOSgbu/C4PoN/S5j3iCN90Hspc22oGJZnDymE
-	pJPRlYhfL8MvYkfQzMfVcpxMQp81GGJ+m7crg=
+Received: from mail-it1-f177.google.com (mail-it1-f177.google.com
+	[209.85.166.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEA66E0049A
+	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 17:56:41 -0800 (PST)
+Received: by mail-it1-f177.google.com with SMTP id z7so1982436iti.0
+	for <yocto@yoctoproject.org>; Tue, 12 Feb 2019 17:56:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-language:content-transfer-encoding;
+	bh=kBIbuVf07JUG0UyQWLAYJ+4KTVAAdoZbvfRDk+dtm0Y=;
+	b=W1CdZ8W+TTSW9ReiyUsRtqPidx8QRcG3WvWuZP4CblEPGtEJ1ycEO97jOBrgWv3etj
+	z57WavNvGcr0oaUy57MVpzx41kYG4Cxd7qJe5VHENsByaarGP8AxcEz2iPmv3HjOtmPH
+	cCwpPJoNAaGGq1ehJfyfQWmRv+rLEtoqADJ9MLgXLGuPCB5j64/AQf5/Y7D4gdQnbjgy
+	eJAoTjZk2J+e0JmwfxV5gaT9ZWB+ZMCNQKtKpf4QbibJOY2qntFlDtOXKkrhv3th41hD
+	PlhCHXyRsmS+MgUXv+f0/ZVfkO1Gz0SfYu2/oXBnYSHLs9xfpjlv7+wjQIv75Na8mfUz
+	wOhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=wMHQMw/j7Ok8K0QAgLaU11BqsZgXcUyE/VOWjv8L/Ro=;
-	b=BTgz+76s6Q+Kq/YW1z7hKq2hKPSjTDUcMpe55bjdgIHfDSe1uwMfKs9dmaeEBJ1y5W
-	/k3o04m66+Hgg5eJhyRYpfuG5snAD9VQrIDzmEFg6J1hmmf2KGWTw1AF/INA/9KtjlGV
-	nXsR+jt2l1RZedMTG4dsO/gG5XQqqk7bf/eppY6gpSCjUNwG21c6UvaLV89E2kucpIea
-	ukmPI2EwZxtZZJYxbldyc9TeM4HRjqp0/7mm90NN7Lco+GD4azn8YlIIQew7SRio9z4x
-	sWtyT2XKYzGZ1DTMe83tvJJeK65wIqqpOUfQ1MBEdQn9fbV4MuGPsTXU8y2gtGPeSWoQ
-	YR3g==
-X-Gm-Message-State: AHQUAuYZsjfSdwWsF349ZaTSgGuO+oyG5uGCxHXksrz/lkWsrdvKSZsI
-	NVy698gJb7bEpng9d/Pi2Jij/w==
-X-Google-Smtp-Source: AHgI3Ib7t7XnW27KpSA3JOCcxO4fEL0vzb4pqj/I0p8oYopztF3WhbSgyPz2khbWeJIAQAUI91bpxA==
-X-Received: by 2002:a7b:c38d:: with SMTP id s13mr626722wmj.151.1550007637611; 
-	Tue, 12 Feb 2019 13:40:37 -0800 (PST)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	f17sm2217021wmh.40.2019.02.12.13.40.36
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Tue, 12 Feb 2019 13:40:36 -0800 (PST)
-Message-ID: <73be86731b3a882c979d26e12a3ee90495b8ae64.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: pokybuild@centos7-ty-1.localdomain, yocto@yoctoproject.org
-Date: Tue, 12 Feb 2019 21:40:34 +0000
-In-Reply-To: <20190212175729.6D3CD601A1BB@centos7-ty-1.localdomain>
-References: <20190212175729.6D3CD601A1BB@centos7-ty-1.localdomain>
-User-Agent: Evolution 3.30.4-1 
-Mime-Version: 1.0
-Cc: otavio@ossystems.com.br, aaron.chun.yew.chan@intel.com,
-	akuster808@gmail.com, stephen.k.jolley@intel.com
-Subject: Re: QA notification for completed autobuilder build (yocto-2.7_M2.rc2)
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=kBIbuVf07JUG0UyQWLAYJ+4KTVAAdoZbvfRDk+dtm0Y=;
+	b=HxkgqLcIRFis5VF9sa0j2H9+HSaJuH2LGNLYgYe4M+mqM6Umzq7Yo6OV79wzMVkzd0
+	jx9I0CF0hUTutbs0RIG/IPx6HtoD6+IPC0kVeWcS74D6BaWTRTDSgJB13/8jrvO5qXNN
+	A9xrA2UPSZAs7Ga504eA6nhl8tPqp/ECzli/ElunrO58cyItLtJAl8bpT+sUEFX7MZSM
+	v++WPiBQ0jSAHb8Hp3E6cjYRdKDl7qnUE6O1nJB5lKlHomr1WkOcTpS8q2VXA/WLNCJ0
+	xmgL7dmTT25rqTLJOHEdxtWVtePas/h1SSHjQ+6+F2GubT5B5TdvQZDTI3pz9Y/knL26
+	0wJw==
+X-Gm-Message-State: AHQUAuauqdLdCYBf9XHonvWTkm/gX/njrR6VSXB4gf8Jixlp5oOgk3TN
+	D5oz62gS1ryFebjjMcg7cuw=
+X-Google-Smtp-Source: AHgI3IYpXvg03wn/1Aeu8Y/lMbSSjpQ8zq0eRVkkzfgWtfWBA8gBZb5gWV43KhFnzoTMaq1kGoFRuw==
+X-Received: by 2002:a02:ac81:: with SMTP id x1mr3816548jan.31.1550023001256;
+	Tue, 12 Feb 2019 17:56:41 -0800 (PST)
+Received: from [192.168.1.101] (173-230-163-230.cable.teksavvy.com.
+	[173.230.163.230]) by smtp.googlemail.com with ESMTPSA id
+	13sm2775667itl.1.2019.02.12.17.56.39
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 12 Feb 2019 17:56:40 -0800 (PST)
+To: sjolley.yp.pm@gmail.com, yocto@yoctoproject.org,
+	openembedded-core@lists.openembedded.org
+References: <01d701d4c22d$f58d1dd0$e0a75970$@gmail.com>
+From: nick <xerofoify@gmail.com>
+Message-ID: <402129cf-9626-e658-12cb-cc6563fe00e0@gmail.com>
+Date: Tue, 12 Feb 2019 20:56:38 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.4.0
+MIME-Version: 1.0
+In-Reply-To: <01d701d4c22d$f58d1dd0$e0a75970$@gmail.com>
+Subject: Re: Yocto Project Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,46 +79,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2019 21:40:39 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 13 Feb 2019 01:56:43 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-On Tue, 2019-02-12 at 17:57 +0000, pokybuild@centos7-ty-1.localdomain
-wrote:
-> A build flagged for QA (yocto-2.7_M2.rc2) was completed on the
-> autobuilder and is available at:
-> 
-> 
->     https://autobuilder.yocto.io/pub/releases/yocto-2.7_M2.rc2
-> 
-> 
-> Build hash information: 
-> 
-> bitbake: d73dbc3580faa1225d95ae4cefac4879ca3c1b2f
-> eclipse-poky-neon: cd86f167be58a11b289af4ef236b4adec57ec316
-> eclipse-poky-oxygen: 210c58c5a7147127f9c840718c6cd2a56e871718
-> meta-gplv2: aabc30f3bd03f97326fb8596910b94639fea7575
-> meta-intel: 29e4db5bf484f18e41bc9123161b1c069e60a128
-> meta-mingw: 423433e3d31a32dbb80203c628e808442d440ad1
-> meta-qt3: 23d7543ebd7e82ba95cbe19043ae4229bdb3b6b1
-> meta-qt4: b37d8b93924b314df3591b4a61e194ff3feb5517
-> oecore: 2dbbf598192ae2b3aa488df042f56aa6c6634a00
-> poky: be52da152a4d9f9e798844f592ec9ae7e051c658
-> 
-> 
-> 
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
 
-Just to mention there was a failure in oecore-qemuarm but it was due to
-autobuilder configuration problems (now fixed[1]) so doesn't influence
-this QA run.
 
-[1] https://autobuilder.yoctoproject.org/typhoon/#/builders/47/builds/274
+On 2019-02-11 12:19 p.m., sjolley.yp.pm@gmail.com wrote:
+> All,
+> 
+>  
+> 
+> The triage team meets weekly and does its best to handle the bugs reported
+> into the Bugzilla. The number of people attending that meeting has fallen,
+> as have the number of people available to help fix bugs. One of the things
+> we hear users report is they don't know how to help. We (the triage team)
+> are therefore going to start reporting out the currently 294 unassigned
+> bugs.
+> 
+>  
+> 
+> We're hoping people may be able to spare some time now and again to help out
+> with these.
+> 
+>  
+> 
+> Bugs are split into two types, "true bugs" where things don't work as they
+> should and "enhancements" which are features we'd want to add to the system.
+> 
+>  
+> 
+> There are also roughly four different "priority" classes right now, "2.7",
+> "2.8", "2.99" and "Future", the more pressing/urgent issues being in "2.7"
+> and then "2.8".
+> 
+>  
+> 
+> Please review this link and if a bug is something you would be able to help
+> with either take ownership of the bug, or send me
+> (Stephen.k.jolley@intel.com <mailto:Stephen.k.jolley@intel.com> ) an e-mail
+> with the bug number you would like and I will assign it to you (please make
+> sure you have a Bugzilla account).
+> 
+>  
+> 
+> The list is at:
+> https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs
+> 
+>  
+> 
+> Thanks,
+> 
+>  
+> 
+> Stephen K. Jolley
+> 
+> Yocto Project Program Manager
+> 
+> INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124 
+> 
+> *    Cell:                (208) 244-4460
+> 
+> * Email:                             stephen.k.jolley@intel.com
+> 
+>  
+> 
+> 
+> 
 
-Cheers,
+Stephen,
 
-Richard
+I would be glad to help fix them. As I've newer to Yocto internals is there a 
+list of trivial bugs or not just to help me get my feet wet?
 
+Nick
 
