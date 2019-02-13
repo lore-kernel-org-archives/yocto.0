@@ -1,63 +1,106 @@
-Return-Path: <tfroehlich@archsys.io>
+Return-Path: <johann.obermayr@sigmatek.at>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2947EE00CD5; Thu, 14 Feb 2019 10:06:40 -0800 (PST)
+	id 6D322E00C46; Thu, 14 Feb 2019 10:46:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.222.170 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [40.107.1.98 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com
-	[209.85.222.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A625CE00CAF
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 10:06:36 -0800 (PST)
-Received: by mail-qk1-f170.google.com with SMTP id m9so4142913qkl.4
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 10:06:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=archsys-io.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=f/kqJEnPxgb4LlxBTQ0t0V3oLk+zFcOiPxwkHBMtVWM=;
-	b=D/JeCJ+ZiRXcH9MkvU2/srbf0qVViICZzH5ikwdJWwt8pc5Htv5ZWhaXtvGASIk1Yl
-	tPORYjrL1zMp+X3gBUnN+eQ7TClysVfiOu/3md+CuiU3wkRNtLrEG3VsBhm+CBDjkidC
-	sW4kPHUBDaBX/mLeDV2WO0KhBegySsASghYmVwjBD/mRco0q2MxzyIzIZhSg42Sy8mb7
-	KRd1GOBsy1cAsXrBp8f06Oug3igmuB/ndo+9fvZHN3b15v/7L/IuZmXYK2a51Fw82p8j
-	3UTgWpU7aofRVuK61ouyG7pBbVVDLu1rvmIZ4YPuxsdqViuVzwpZV/7pVHZzfK/LCmNj
-	fqBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=f/kqJEnPxgb4LlxBTQ0t0V3oLk+zFcOiPxwkHBMtVWM=;
-	b=G0echyaoPmjWuoBmq/x4z7pqXemFxAuguMG27gho55LwjK3lZ6XygL5EflOQtN8TMl
-	UiffhG2jzjfgGjJs0DaoQem+vhhPcSRNedSszq69kAV8HKrm2CkCKmFwV7GuJH5ohW7a
-	2WY6HrmXK3SVeRSybxiJlHEAe0wheSxG/DbnpjnmE33tUEH7NRahhAbW8DEMlo0DP8d6
-	hrLFFaHnfKMlP/ilILu45M44b2fwD34KSm2JGw/mtUJbfgMmcABHNUvwsSg5yxifHFyi
-	+zo6FY+c5QSdLNLPR5Zh/uoVLHUSKyOBK6CCn8s8zF+ZhQQwczvXp6v5PZiDMpBHT3B/
-	LbZQ==
-X-Gm-Message-State: AHQUAubevGyGciOndtkLt1Oop4X2KtAHwoK5M1ZWd7Jm3PfhTsIC9Wlr
-	sdwpIPezZcC2XnRReT0WMyaJuXZPd3dBKWvflJZY+hQi
-X-Google-Smtp-Source: AHgI3IZHlx2TX2tW+qkoMwXFcBHG/Zw8nvkMrtpM6mAl21eaL7VBhXJrfmqeQHnC3PeWhnSOBw/9I3jPxI2ZPL+sR/I=
-X-Received: by 2002:a37:a84:: with SMTP id 126mr3866720qkk.275.1550167596149; 
-	Thu, 14 Feb 2019 10:06:36 -0800 (PST)
+X-Greylist: delayed 57358 seconds by postgrey-1.32 at yocto-www;
+	Thu, 14 Feb 2019 10:46:03 PST
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com
+	(mail-eopbgr10098.outbound.protection.outlook.com [40.107.1.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BC18E00A1A
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 10:46:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sigmatek.at;
+	s=selector1;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=WO4BzMnGPZO6DAJ/UXztv881w6KreIKEr1k4qY1zW8k=;
+	b=DtvZN33BL47bjHkqJMOLjpHMHcptV4lenHFSLkUENKk2PKas3O2Iri/vwFixQTm0zeFSPDlBHInf24RrYT6IETtlzUZ4Melt+4PcopRjAb9sd/htPJhTI/UD5Rdbxj62CmF7wQXID4b0HjooZ58m22r5Qhb7LdEpxo8Y3EwWUAI=
+Received: from VI1PR08MB3375.eurprd08.prod.outlook.com (20.177.58.217) by
+	VI1PR08MB3694.eurprd08.prod.outlook.com (20.178.13.154) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1601.21; Wed, 13 Feb 2019 08:19:07 +0000
+Received: from VI1PR08MB3375.eurprd08.prod.outlook.com
+	([fe80::31e3:ff42:2886:d60c]) by
+	VI1PR08MB3375.eurprd08.prod.outlook.com
+	([fe80::31e3:ff42:2886:d60c%3]) with mapi id 15.20.1622.016;
+	Wed, 13 Feb 2019 08:19:07 +0000
+From: Johann Obermayr <johann.obermayr@sigmatek.at>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Toolchain , kernel-dev and xenomai
+Thread-Index: AdTDc5sn1PhihaUeSiW7O2vXjMzdyw==
+Date: Wed, 13 Feb 2019 08:19:07 +0000
+Message-ID: <VI1PR08MB33752A08CB67460ED379B2C4F5660@VI1PR08MB3375.eurprd08.prod.outlook.com>
+Accept-Language: de-AT, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=johann.obermayr@sigmatek.at; 
+x-originating-ip: [83.215.235.253]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e520967e-9081-4fe0-6764-08d6918bec74
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600110)(711020)(4605077)(2017052603328)(7153060)(7193020);
+	SRVR:VI1PR08MB3694; 
+x-ms-traffictypediagnostic: VI1PR08MB3694:
+x-microsoft-exchange-diagnostics: =?us-ascii?Q?1; VI1PR08MB3694;
+	23:LNgnjhSve26JStOBpmUulBNtkbkv9NjxDtq4o8wQS?=
+	=?us-ascii?Q?VeVjYT3Qxrn022Si2n+H+MmToS4JbPebUGLA3BzeTPwiVpRFBXglrCmGhX+6?=
+	=?us-ascii?Q?jnUE45dGpfGXqvBYB1XseSmEU17R5BOi0DE7lm/MynK0OKH+WYJjDZOIyXIF?=
+	=?us-ascii?Q?DU2+CZWeTBOXta9A3gEzfGnV48PGIWGndBEyXz7KvEhrgjjN2NSbSKDY05Yk?=
+	=?us-ascii?Q?vZyDu512EGK+ImvpzC2zuG5cfCAiCRmUGz2PHnK2QZjlio2sHxsqoDjmsjiV?=
+	=?us-ascii?Q?ePfqEOvVUPGb42OvLA+iJhlbBVqFqIhlK7MNufnQN0NY+GQ77N6GifVyviNR?=
+	=?us-ascii?Q?9+NeJj1kjSyFabuyaOn3/dFe0bvx0ghg9DhcBcV0CHZ4kKgWwdGMy9YMDOOw?=
+	=?us-ascii?Q?jg4Qz3OydWaKeInWnJe+C6JsbSvn1HBUwxmDlA/wFmX3uCZvKJ37voEvXyuA?=
+	=?us-ascii?Q?XD94/gj+jLgsTuFASJn174vQhprjyGUXQzf5j85r7krOEnSPPscaYoFb5bcM?=
+	=?us-ascii?Q?x7/xGY7Oybb1jEow+J64RWsZprsEm034plBifG7rNH22gEzzs8CBELVebMIl?=
+	=?us-ascii?Q?5yux1n81H8hT50bCY6U1vZQ0PvpBbgFvSKciWk3BVyPBEB31C1CGDo9NiEvP?=
+	=?us-ascii?Q?CeqEqzJN9SGiJAy4jTgfIuJp0mTfK6uP7ufTKCAr5RuyQrPGOVL63438sYxb?=
+	=?us-ascii?Q?S7bCIvmCrg45+3AZ1lCOnBDYE+t98dHvEQeNLuM9jFfioMlne6tQ440Zvyhp?=
+	=?us-ascii?Q?MXnNuLDmXDzZWHaRAH0a2gr8mXdDD8SaAt+dE/keX1uF9T++qFIe35xNv2Y7?=
+	=?us-ascii?Q?JdM0CjQ46sE2OiHDPOXrbr+WTaN+MmB9uPJLclLvC8prN6zChxl8iTPtJRWy?=
+	=?us-ascii?Q?pmwxzKYmuV2a4xAiHm/JfSq924TcG/3FwNT4MPuLqC/peTzDmoJLSLAXLM8m?=
+	=?us-ascii?Q?QzRsz66el0BJ5VWIqp0rMma3e1GdzOIQaAVfnabjuwEeS5SBM8kxMMNqKXzD?=
+	=?us-ascii?Q?JAONaFFvW8WZ6KidctML+RS1lHOeh7nC0wagApVgfl3n2JknYb9riMRqLjW1?=
+	=?us-ascii?Q?v5cqpdgDKzAJKr62W2SonOLBWgQEQqBuqyrbkVSEJtpio8sTa5apU/fRmZ4h?=
+	=?us-ascii?Q?DDliShpMu2bm6n+Ck1mZzQnE5RYAbwyQ2FGCg9UTNMsaF5ePJOxGPwn7QHz1?=
+	=?us-ascii?Q?EmnX65l4K1MKGENIjahE+B3jnDGSYnFW8tkvnaOtEt9Ooev3jIYKrbXLHUZm?=
+	=?us-ascii?Q?66kfbzGBhfz1WuD+xU=3D?=
+x-microsoft-antispam-prvs: <VI1PR08MB3694725AA4CE307917B1A4DCF5660@VI1PR08MB3694.eurprd08.prod.outlook.com>
+x-forefront-prvs: 094700CA91
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(366004)(39840400004)(346002)(376002)(136003)(396003)(199004)(189003)(71200400001)(66066001)(256004)(97736004)(71190400001)(19627235002)(7696005)(74316002)(25786009)(44832011)(486006)(68736007)(476003)(2906002)(33656002)(1730700003)(81156014)(81166006)(8676002)(8936002)(7736002)(3846002)(5640700003)(105586002)(6916009)(478600001)(316002)(2501003)(55016002)(790700001)(6116002)(6306002)(54896002)(6436002)(86362001)(106356001)(2351001)(74482002)(53936002)(9686003)(186003)(26005)(102836004)(14454004)(4744005)(6506007)(99286004);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:VI1PR08MB3694;
+	H:VI1PR08MB3375.eurprd08.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: sigmatek.at does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: I32k6UP9x3spgR2YCaLFYT6XjfsMptI1Z/buB95pp672hvnhEp8JuTMN5ZBCUYD+5+Dxp9sJ5gjZSB8kjmz9RfxYpydOZUswXBH3RYbflyifXtv8L8t/EgrCmetwL+7iMb7QD+xwohh9aIcbKFp3xTtZoHiheRfuVvlzFvTscfI5dQOrsQBFOnil7OH8JsAFm77E2Dg+leXEAQBeVSioGDdeoQ6I8xMQPHJyEMEqaTjKBwZOxCPb5DwpL9hpO6AuMq5LG9a15vPAF4hswag3jbTDFfHE925yozEbr/n9IMSxw3Brhd8/34fkLHyg2DlZ0yc48i0MNjcKWjid/lIu3eOs/c2xkY4I/lvJj3I46WRo0ojsD8mAo/rjNuGw/pYrxcWk/VpC1K9LQm9OzFJ5HCGw62/wgWzguOHdrEIgVmk=
 MIME-Version: 1.0
-References: <CAHSUxjS-CzSx+kTeV2=cFf35ACRhoU03GTMbv3ZcTGkEu38qZQ@mail.gmail.com>
-	<CANNYZj88JzTx_ShdnqKoPn2mPpLhqdkBOuDBoYF2MzS6ODt=KA@mail.gmail.com>
-	<bd0adb4e-89df-f6be-61b2-ef326df38cd5@emagii.com>
-In-Reply-To: <bd0adb4e-89df-f6be-61b2-ef326df38cd5@emagii.com>
-From: Timothy Froehlich <tfroehlich@archsys.io>
-Date: Thu, 14 Feb 2019 10:06:25 -0800
-Message-ID: <CAHSUxjS2Cq9M=LM7+-Px=d8qOo+xrKZQ3+AJQ5TwSyczJ=H4Hw@mail.gmail.com>
-To: Ulf Samuelsson <yocto@emagii.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Managing multiple builds
+X-OriginatorOrg: sigmatek.at
+X-MS-Exchange-CrossTenant-Network-Message-Id: e520967e-9081-4fe0-6764-08d6918bec74
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Feb 2019 08:19:07.1926 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: bcb1d87a-d2bc-486e-a62b-9ac9c746bc1b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR08MB3694
+Subject: Toolchain , kernel-dev and xenomai
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,288 +112,188 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2019 18:06:40 -0000
-Content-Type: multipart/alternative; boundary="000000000000e945ba0581de848a"
+X-List-Received-Date: Thu, 14 Feb 2019 18:46:05 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_VI1PR08MB33752A08CB67460ED379B2C4F5660VI1PR08MB3375eurp_"
 
---000000000000e945ba0581de848a
-Content-Type: text/plain; charset="UTF-8"
-
-Thank you, that looks like a very good idea.
-
-On Thu, Feb 14, 2019 at 8:28 AM Ulf Samuelsson <yocto@emagii.com> wrote:
-
-> Den 2019-02-14 kl. 10:00, skrev Alexander Kanavin:
-> > On Thu, 14 Feb 2019 at 01:35, Timothy Froehlich <tfroehlich@archsys.io>
-> wrote:
-> >> Hi, I've been struggling a bit with this question. I want to use Yocto
-> to build two+ products with separate dev/prod images for each (dev
-> including debug-tweaks, etc.). I've ruled out separate image recipes
-> because my dev builds need ENABLE_UART on my RaspberryPi and that needs to
-> be set at the conf level (I've got it set conditionally in my base dist
-> conf). Multiconfig looked promising, but I'm not happy about how long the
-> parsing takes to start a build. "--postread" looked nice, but I've barely
-> seen it mentioned so I'm worried that it's not well supported.
-> >>
-> >
-> > Which recipes use the ENABLE_UART setting? You might want to write two
-> > variants of those, and include them into images accordingly.
-> >
-> > Alex
-> >
->
-> Some guys I know solved the problem a little bit differently, and they
-> did not mind to share.
-> I created a meta-layer with that and some other ideas.
->
-> * https://github.com/emagii/meta-map-sheriffco
->
-> An example recipe is:
-> ==================================
-> SUMMARY = ""
-> DESCRIPTION = ""
->
-> inherit license-mit
->
-> SRC_URI = " \
->         file://class/class-recipe.c \
->         file://class/Makefile \
-> "
->
-> EXTRA_OEMAKE_class-development = 'CFLAGS="${CFLAGS} -DDEVELOPMENT"'
-> EXTRA_OEMAKE_class-production  = 'CFLAGS="${CFLAGS} -DPRODUCTION"'
-> EXTRA_OEMAKE_class-release     = 'CFLAGS="${CFLAGS} -DRELEASE"'
->
-> do_install-class-development () {
->         install -d      ${D}${bindir}
->         install -m 0755 class   ${D}${bindir}/development
-> }
->
-> do_install-class-production () {
->         install -d      ${D}${bindir}
->         install -m 0755 class   ${D}${bindir}/production
-> }
->
-> do_install-class-release () {
->         install -d      ${D}${bindir}
->         install -m 0755 class   ${D}${bindir}/release
-> }
->
-> BBCLASSEXTEND = "development production release"
-> ==================================
-> You now have the same recipe which builds four package variants.
->
-> <package>,
-> <package>-development,
-> <package>-production,
-> <package>-release,
->
-> The base package is not included in any image.
-> In the development image, you install the <package>-development and so on.
-> ==================================
-> Three bbclasses are used, one for each special package.
->
-> Here is the development.bbclass
-> ==================================
-> # Class for use in BBCLASSEXTEND to make it easier to have a single
-> recipe that
-> # build and generate packages separately for development and normal images.
-> #
-> # Usage:
-> # BBCLASSEXTEND = "development"
->
-> CLASSOVERRIDE .= ":class-development"
->
-> python development_virtclass_handler () {
->      # Do nothing if this is inherited, as it's for BBCLASSEXTEND
->      if "development" not in (d.getVar('BBCLASSEXTEND') or ""):
->          bb.error("Don't inherit development, use BBCLASSEXTEND")
->          return
->
->      # Restore BPN
->      bpn = d.getVar('BPN')
->      newbpn = bpn.replace('-development', '')
->      d.setVar('BPN', newbpn)
->
->      # Use default FILESPATH searching for patches and files
->      filespath = d.getVar('FILESPATH')
->      newfilespath = filespath.replace('-development', '')
->      d.setVar('FILESPATH', newfilespath)
-> }
->
-> addhandler development_virtclass_handler
-> development_virtclass_handler[eventmask] = "bb.event.RecipePreFinalise"
->
-> ==================================
->
-> --
-> Best Regards
-> Ulf Samuelsson
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-
--- 
-Tim Froehlich
-Embedded Linux Engineer
-tfroehlich@archsys.io
-215-218-8955
-
---000000000000e945ba0581de848a
-Content-Type: text/html; charset="UTF-8"
+--_000_VI1PR08MB33752A08CB67460ED379B2C4F5660VI1PR08MB3375eurp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thank you, that looks like a very good idea.</div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 14=
-, 2019 at 8:28 AM Ulf Samuelsson &lt;<a href=3D"mailto:yocto@emagii.com">yo=
-cto@emagii.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex">Den 2019-02-14 kl. 10:00, skrev Alexander Kanavin:<br>
-&gt; On Thu, 14 Feb 2019 at 01:35, Timothy Froehlich &lt;<a href=3D"mailto:=
-tfroehlich@archsys.io" target=3D"_blank">tfroehlich@archsys.io</a>&gt; wrot=
-e:<br>
-&gt;&gt; Hi, I&#39;ve been struggling a bit with this question. I want to u=
-se Yocto to build two+ products with separate dev/prod images for each (dev=
- including debug-tweaks, etc.). I&#39;ve ruled out separate image recipes b=
-ecause my dev builds need ENABLE_UART on my RaspberryPi and that needs to b=
-e set at the conf level (I&#39;ve got it set conditionally in my base dist =
-conf). Multiconfig looked promising, but I&#39;m not happy about how long t=
-he parsing takes to start a build. &quot;--postread&quot; looked nice, but =
-I&#39;ve barely seen it mentioned so I&#39;m worried that it&#39;s not well=
- supported.<br>
-&gt;&gt;<br>
-&gt; <br>
-&gt; Which recipes use the ENABLE_UART setting? You might want to write two=
-<br>
-&gt; variants of those, and include them into images accordingly.<br>
-&gt; <br>
-&gt; Alex<br>
-&gt; <br>
-<br>
-Some guys I know solved the problem a little bit differently, and they <br>
-did not mind to share.<br>
-I created a meta-layer with that and some other ideas.<br>
-<br>
-* <a href=3D"https://github.com/emagii/meta-map-sheriffco" rel=3D"noreferre=
-r" target=3D"_blank">https://github.com/emagii/meta-map-sheriffco</a><br>
-<br>
-An example recipe is:<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-SUMMARY =3D &quot;&quot;<br>
-DESCRIPTION =3D &quot;&quot;<br>
-<br>
-inherit license-mit<br>
-<br>
-SRC_URI =3D &quot; \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 file://class/class-recipe.c \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 file://class/Makefile \<br>
-&quot;<br>
-<br>
-EXTRA_OEMAKE_class-development =3D &#39;CFLAGS=3D&quot;${CFLAGS} -DDEVELOPM=
-ENT&quot;&#39;<br>
-EXTRA_OEMAKE_class-production=C2=A0 =3D &#39;CFLAGS=3D&quot;${CFLAGS} -DPRO=
-DUCTION&quot;&#39;<br>
-EXTRA_OEMAKE_class-release=C2=A0 =C2=A0 =C2=A0=3D &#39;CFLAGS=3D&quot;${CFL=
-AGS} -DRELEASE&quot;&#39;<br>
-<br>
-do_install-class-development () {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d=C2=A0 =C2=A0 =C2=A0 ${D}${bindir}<br=
->
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0755 class=C2=A0 =C2=A0${D}${bindir}=
-/development<br>
-}<br>
-<br>
-do_install-class-production () {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d=C2=A0 =C2=A0 =C2=A0 ${D}${bindir}<br=
->
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0755 class=C2=A0 =C2=A0${D}${bindir}=
-/production<br>
-}<br>
-<br>
-do_install-class-release () {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d=C2=A0 =C2=A0 =C2=A0 ${D}${bindir}<br=
->
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0755 class=C2=A0 =C2=A0${D}${bindir}=
-/release<br>
-}<br>
-<br>
-BBCLASSEXTEND =3D &quot;development production release&quot;<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-You now have the same recipe which builds four package variants.<br>
-<br>
-&lt;package&gt;,<br>
-&lt;package&gt;-development,<br>
-&lt;package&gt;-production,<br>
-&lt;package&gt;-release,<br>
-<br>
-The base package is not included in any image.<br>
-In the development image, you install the &lt;package&gt;-development and s=
-o on.<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-Three bbclasses are used, one for each special package.<br>
-<br>
-Here is the development.bbclass<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-# Class for use in BBCLASSEXTEND to make it easier to have a single <br>
-recipe that<br>
-# build and generate packages separately for development and normal images.=
-<br>
-#<br>
-# Usage:<br>
-# BBCLASSEXTEND =3D &quot;development&quot;<br>
-<br>
-CLASSOVERRIDE .=3D &quot;:class-development&quot;<br>
-<br>
-python development_virtclass_handler () {<br>
-=C2=A0 =C2=A0 =C2=A0# Do nothing if this is inherited, as it&#39;s for BBCL=
-ASSEXTEND<br>
-=C2=A0 =C2=A0 =C2=A0if &quot;development&quot; not in (d.getVar(&#39;BBCLAS=
-SEXTEND&#39;) or &quot;&quot;):<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bb.error(&quot;Don&#39;t inherit developm=
-ent, use BBCLASSEXTEND&quot;)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0# Restore BPN<br>
-=C2=A0 =C2=A0 =C2=A0bpn =3D d.getVar(&#39;BPN&#39;)<br>
-=C2=A0 =C2=A0 =C2=A0newbpn =3D bpn.replace(&#39;-development&#39;, &#39;&#3=
-9;)<br>
-=C2=A0 =C2=A0 =C2=A0d.setVar(&#39;BPN&#39;, newbpn)<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0# Use default FILESPATH searching for patches and files=
-<br>
-=C2=A0 =C2=A0 =C2=A0filespath =3D d.getVar(&#39;FILESPATH&#39;)<br>
-=C2=A0 =C2=A0 =C2=A0newfilespath =3D filespath.replace(&#39;-development&#3=
-9;, &#39;&#39;)<br>
-=C2=A0 =C2=A0 =C2=A0d.setVar(&#39;FILESPATH&#39;, newfilespath)<br>
-}<br>
-<br>
-addhandler development_virtclass_handler<br>
-development_virtclass_handler[eventmask] =3D &quot;bb.event.RecipePreFinali=
-se&quot;<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-<br>
--- <br>
-Best Regards<br>
-Ulf Samuelsson<br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr">Tim Froehlich<div>Embedded Linu=
-x Engineer</div><div><a href=3D"mailto:tfroehlich@archsys.io" target=3D"_bl=
-ank">tfroehlich@archsys.io</a></div><div>215-218-8955</div></div></div>
+Hello,
 
---000000000000e945ba0581de848a--
+At this time we work with 1.3.2 (yes, it's very old, but we are working to =
+change to v2.5.x)
+
+We have some trouble with your toolchain.
+
+  1.  Kernel/scripts/basic/fixdep   is missing.
+
+If I will compile in the toolchain kernel source directory "make scripts" I=
+ get some other errors (see b) )
+
+
+       b) Xenomai integrates its files as linked. And this links are instal=
+led with the toolchain. So the files are not really available.
+
+
+Thanks & Regards
+  Johann
+
+--_000_VI1PR08MB33752A08CB67460ED379B2C4F5660VI1PR08MB3375eurp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.tlid-translation
+	{mso-style-name:tlid-translation;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1278223723;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1142499924 67567639 67567641 67567643 67567631 6756=
+7641 67567643 67567631 67567641 67567643;}
+@list l0:level1
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%1\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">At this time we work with 1.3.2=
+ (yes, it&#8217;s very old, but we are working to change to v2.5.x)<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">We have some trouble with your =
+toolchain.<o:p></o:p></span></p>
+<ol style=3D"margin-top:0cm" start=3D"1" type=3D"a">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0cm;mso-list:l0 level1 =
+lfo1"><span lang=3D"EN-US">Kernel/scripts/basic/fixdep&nbsp;&nbsp; is missi=
+ng.<o:p></o:p></span></li></ol>
+<p class=3D"MsoListParagraph"><span lang=3D"EN-US">If I will compile in the=
+ toolchain kernel source directory &#8220;make scripts&#8221; I get some ot=
+her errors (see b) )<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span class=3D"tlid-translation"><span lang=3D"EN-US=
+">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b) Xenomai integrates its files as l=
+inked. And this links are installed with the toolchain. So the files are no=
+t really available.</span></span><span lang=3D"EN-US"><o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"mso-fareast-language:D=
+E"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:DE"><o:p>&nbsp;<=
+/o:p></span></p>
+<p class=3D"MsoNormal">Thanks &amp; Regards<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; Johann<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_VI1PR08MB33752A08CB67460ED379B2C4F5660VI1PR08MB3375eurp_--
