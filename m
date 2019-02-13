@@ -1,34 +1,72 @@
-Return-Path: <yocto@emagii.com>
+Return-Path: <prvs=194798e60c=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 657C3E00950; Wed, 13 Feb 2019 00:22:24 -0800 (PST)
+	id EB4DDE0097C; Wed, 13 Feb 2019 00:31:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	MIME_QP_LONG_LINE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [81.236.60.156 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
-Received: from v-smtpout3.han.skanova.net (v-smtpout3.han.skanova.net
-	[81.236.60.156])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7634E007B3
-	for <yocto@yoctoproject.org>; Wed, 13 Feb 2019 00:22:21 -0800 (PST)
-Received: from [90.236.121.192] ([90.236.121.192]) by cmsmtp with ESMTPA
-	id tpoBgJXuUHNTStpoBgIwMr; Wed, 13 Feb 2019 09:22:20 +0100
-Mime-Version: 1.0 (1.0)
-From: Ulf Samuelsson <yocto@emagii.com>
-X-Mailer: iPad Mail (15F79)
-In-Reply-To: <000001d4c36c$b99aef10$2cd0cd30$@singh@ppsinternational.in>
-Date: Wed, 13 Feb 2019 09:22:19 +0100
-Message-Id: <27D16836-A33F-4570-AF62-3D031E6E9134@emagii.com>
-References: <000001d4c36c$b99aef10$2cd0cd30$@singh@ppsinternational.in>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [85.215.255.54 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 203 seconds by postgrey-1.32 at yocto-www;
+	Wed, 13 Feb 2019 00:31:22 PST
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
+	[85.215.255.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCB6AE0053F
+	for <yocto@yoctoproject.org>; Wed, 13 Feb 2019 00:31:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1550046681;
+	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
+	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+	bh=O3tJK9dYX6xGiQLWDpOtf90aDCyduhY8PVTDSYmRs/U=;
+	b=ceAIrmVAoeGY1LHOoKarA/qZ7rHq6/3aFDcf1JhnKGXcCTo1aMicrK8KOxg7bymLtB
+	V2nIBLocSnv1KatzpYtc5J18+IJJ6QQxusAmCtqubm8qk3ccQe54T0FqDp4/9p9vP9oq
+	ZSKxhmlsWiO1kKaOTS45pCQItdCdipjqn0qT73zpS9YGzh1xB5eetDaRrixn55XGsMJ9
+	bxCwJDUwI9zZNNfEbjLipXLkkCptJsxibmmzFl6750HH20aPJAdzN4J+RWly3X/w5lUs
+	TWr966qfpjymE0qZH8+vMdRokqw0KcWcs+5O5Cknrg4CnzjLiUAwjOKenYMJFF9aWO41
+	/+Jw==
+X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/Kpz6b/avroGOv0c9sak1tqOWjLU3UFhR6"
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de by smtp.strato.de (RZmta 44.9 AUTH)
+	with ESMTPSA id w00aa1v1D8RvTVi
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
+	with 384 ECDH bits, eq. 7680 bits RSA))
+	(Client did not present a certificate);
+	Wed, 13 Feb 2019 09:27:57 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
+	d=rsi-elektrotechnik.de; s=MDaemon; t=1550046479; x=1550651279;
+	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
+	Subject:Message-ID:References:MIME-Version:Content-Type:
+	Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
+	User-Agent; bh=O3tJK9dYX6xGiQLWDpOtf90aDCyduhY8PVTDSYmRs/U=; b=u
+	5WsUdRzk2Abx5uy7WXks445FQYOUokAr+6/SjnZWQuCl5hS+lwPlFNiuhvdvv9Zs
+	e/G2zv4AG2qxYsCSZRBHfiAwT7Y/3+6mPwU4wk+bpwSSJW+OpootHqx2zrg3q9ux
+	iWsBDqtUOFIdZHMF98nedcXF4rZJZRptIYLrAHBCyI=
+Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v18.5.1) with ESMTPSA id
+	md50000140585.msg; Wed, 13 Feb 2019 09:27:58 +0100
+X-MDArrival-Date: Wed, 13 Feb 2019 09:27:58 +0100
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=194798e60c=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
+Date: Wed, 13 Feb 2019 09:27:54 +0100
+From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
 To: Bhupendra Singh <bhupendra.singh@ppsinternational.in>
-X-CMAE-Envelope: MS4wfJhTH4eLkSJarXgePFS1zTutbb/4wBM+XkRXshN/Z2Ai31V6HAB/Fvn3apf22b/V+SqggTmwhoVrGTxfif0Aj2mmi2trReNlvADB6cmXQLhP4FdUlrNG
-	ls4PmyWuhH63VVnllHfB3uP02WZSDVHcmIWxM7NiBEI13M5zC82uiZm7B3qfEVSK1XSU3RqpDHbIs1bqXtGW2jCP3IFsWaNlk+DUr8wdA7zuknhWq4GiEo1x
+Message-ID: <20190213082754.qag2l75enbisbc4e@jholzmayr.localdomain>
+References: <000001d4c36c$b99aef10$2cd0cd30$@singh@ppsinternational.in>
+MIME-Version: 1.0
+In-Reply-To: <000001d4c36c$b99aef10$2cd0cd30$@singh@ppsinternational.in>
+User-Agent: NeoMutt/20180716
 Cc: yocto@yoctoproject.org
 Subject: Re: Make one directory writeable
 X-BeenThere: yocto@yoctoproject.org
@@ -42,140 +80,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Feb 2019 08:22:24 -0000
-Content-Type: multipart/alternative;
-	boundary=Apple-Mail-A57BABB0-F239-453C-AD2F-EA2DA8200FD6
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 13 Feb 2019 08:31:25 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
---Apple-Mail-A57BABB0-F239-453C-AD2F-EA2DA8200FD6
-Content-Type: text/plain;
-	charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+Hi Bhupendra,
 
-You can use overlayfs for this. You mount the overlayfs on top of your rootf=
-s and then it appear like you have a writeable file system.
-In reality all the new  stuff is written to another (writeable) file system.=
+On Wed, Feb 13, 2019 at 12:51:17PM +0530, Bhupendra Singh wrote:
+> Hello 
+> 
+> I have built core-image-minimal  with read only rootfs  then now  I want to
+> make one directory (like /mnt) writable. 
+> 
+> Is it possible to make one directory writeable in read only rootfs if yes
+> ,please tell me how can I do same.   
 
-If you dismount the overlayfs, the rootfs reverts back to its original state=
-.
-If you again  mount the overlayfs, you get your modifications back.
+This is not exactly yocto specific, general linux concepts apply. You
+can use a secondary, tertiary, ... partition or starage device and then
+mount that as read-write. But it always has to be a seperate filesystem.
+There is no way to make only one path of a given filesystem RW, it
+always means that the whole filesystem is writeable.
 
-Best Regards,
-Ulf Samuelsson
-+46 722 427 437
+Greetz
+-- 
+———————————————
+Josef Holzmayr
+Software Developer Embedded Systems
 
-> 13 feb. 2019 kl. 08:21 skrev Bhupendra Singh <bhupendra.singh@ppsinternati=
-onal.in>:
->=20
-> Hello
-> I have built core-image-minimal  with read only rootfs  then now  I want t=
-o make one directory (like /mnt) writable.
-> Is it possible to make one directory writeable in read only rootfs if yes ,=
-please tell me how can I do same.  =20
-> =20
-> Bhupendra Singh
-> =20
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
 
---Apple-Mail-A57BABB0-F239-453C-AD2F-EA2DA8200FD6
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: 7bit
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+———————————————
+Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548 
 
-<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto">You can use overlayfs for this. You mount the overlayfs on top of your rootfs and then it appear like you have a writeable file system.<div>In reality all the new &nbsp;stuff is written to another (writeable) file system.</div><div>If you dismount the overlayfs, the rootfs reverts back to its original state.</div><div>If you again &nbsp;mount the overlayfs, you get your modifications back.</div><div><br><div id="AppleMailSignature">Best Regards,<div>Ulf Samuelsson</div><div>+46 722 427 437</div></div><div><br>13 feb. 2019 kl. 08:21 skrev Bhupendra Singh &lt;<a href="mailto:bhupendra.singh@ppsinternational.in">bhupendra.singh@ppsinternational.in</a>&gt;:<br><br></div><blockquote type="cite"><div>
-
-
-<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
-<meta name="Generator" content="Microsoft Word 12 (filtered medium)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page Section1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.Section1
-	{page:Section1;}
--->
-</style>
-<!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext="edit">
-  <o:idmap v:ext="edit" data="1" />
- </o:shapelayout></xml><![endif]-->
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
 
 
-
-
-<div class="Section1">
-
-<p class="MsoNormal"><b><span style="font-size:12.0pt;color:#548DD4">Hello <o:p></o:p></span></b></p>
-
-<p class="MsoNormal"><b><span style="font-size:12.0pt;color:#548DD4">I have built
-core-image-minimal&nbsp; with read only rootfs&nbsp; then now &nbsp;I want to
-make one directory (like /mnt) writable. <o:p></o:p></span></b></p>
-
-<p class="MsoNormal"><b><span style="font-size:12.0pt;color:#548DD4">Is it
-possible to make one directory writeable in read only rootfs if yes ,please
-tell me how can I do same. &nbsp;&nbsp;<o:p></o:p></span></b></p>
-
-<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-
-<p class="MsoNormal" style="background:white"><span style="font-size:12.0pt;
-font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;color:#4F81BD">Bhupendra Singh</span><span style="font-size:9.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#4F81BD"><o:p></o:p></span></p>
-
-<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-
-</div>
-
-
-
-
-</div></blockquote><blockquote type="cite"><div><span>-- </span><br><span>_______________________________________________</span><br><span>yocto mailing list</span><br><span><a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a></span><br><span><a href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a></span><br></div></blockquote></div></body></html>
-
---Apple-Mail-A57BABB0-F239-453C-AD2F-EA2DA8200FD6--
