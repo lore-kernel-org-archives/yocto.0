@@ -1,65 +1,75 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <mhalstead@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 553C1E00BE8; Thu, 14 Feb 2019 01:00:34 -0800 (PST)
+	id D8A72E00B92; Thu, 14 Feb 2019 01:13:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=unavailable
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kanavin[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.53 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com
-	[209.85.210.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 898E4E00B81
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 01:00:33 -0800 (PST)
-Received: by mail-ot1-f53.google.com with SMTP id b3so9279231otp.4
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 01:00:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=WJOW6jCT98WDvNqRFsOh5btRfQn/eOaaQhjl1XTUnFs=;
-	b=XMJCJrWXlL60pu/yU4jkDgbO4IMsXJ3CiK8Z35ENpgjq0VAi0aPw7ML2pkShg9NDV7
-	Z58IFrKTXfecNqvclwmUHTiwyAK75BN6W3dAfv7FBxofeXYdl/cniF6neVhGxSZRoG7A
-	193351Visw0WavjY5e4c2UI7gLz5rBXO9hJDpDyqOuJI0V1ZAZiuYVFxDE8KtKF9Vyld
-	9Z0QldeFik+CW29MZccROnGFMf0MXQZMgAlWe7iPgb4OBPfcz83WqPgDor8sJIm/iw/v
-	yjm5ebS9wbGVd8CmfddVHrjUTDCOqwNzJQpnsmp+RPoi5Ga+MIduyhhL9k5cGYbt/dCV
-	EAKA==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.169 listed in list.dnswl.org]
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
+	[209.85.210.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D80A9E00BAF
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 01:13:42 -0800 (PST)
+Received: by mail-pf1-f169.google.com with SMTP id n22so2794974pfa.3
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 01:13:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=subject:to:cc:references:from:organization:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=rQ/V+Z1YQZi9K+wCZb0l1ULffihAqm2DRy8b3lUdDyU=;
+	b=L1wslxy2IXG7FnaIxALNlTFZvn6rmV16AUIVBh/BUQQbs24bgC/e/+21YG550flBy3
+	gk95KN4g3YgffKJP9lHDcOrDeC8LABGEnBmRD+iPJkcbP23OYv6Am3w0RLJfQVELttDH
+	s7bPkAQReATKcDgeebBeQapCuBObd6IrlLw0Q=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=WJOW6jCT98WDvNqRFsOh5btRfQn/eOaaQhjl1XTUnFs=;
-	b=nsuREo19jAldMACIKVEH0hBNCFRr8ewTidFG32tjiAEjclCDsHt9JgCEQOnB86DEM7
-	D6UcLOzRpOaVft1uMgK495nvcDOtS0P9FYwROtbDNLi9EPPTfnf8q2Kp86ok+I2A6Yt3
-	sT/WtPds7sUXD3IGMUXW7d2fW/l2DTkySXaswNCZGrJM0D5rkE8oIM2WLHCzAym2juth
-	sMjYOJCLFGuzOb3Nwq28l3iso+WuUpz2oRXJ20iVQQ/BhMFQSXStv9TGrUdpSCswabaT
-	hKRL6ymYsYF6g8MZM5sQb6zeXLVr3U4ORuomcU/co/G2I1uktSwwqVA4F39/WB5YWtT0
-	WWTQ==
-X-Gm-Message-State: AHQUAuZCONHylA4loLrrjkMcvmv9ohRsyj89SQXbLn+ygZEBO6Z1ILxP
-	ovSMX5YN51hj87OQhUMYRX1sI0EbA0c/SxHUFw9ulA==
-X-Google-Smtp-Source: AHgI3IadFCVG8bjIHFgxCbwXDbHlQddLthd4p9m4ZiNKvr7SkS0E4UqE16YvExTRA94kLBDf7p27b7m4jBgSrdOxiw4=
-X-Received: by 2002:a9d:7653:: with SMTP id o19mr1627016otl.12.1550134832782; 
-	Thu, 14 Feb 2019 01:00:32 -0800 (PST)
+	h=x-gm-message-state:subject:to:cc:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-transfer-encoding:content-language;
+	bh=rQ/V+Z1YQZi9K+wCZb0l1ULffihAqm2DRy8b3lUdDyU=;
+	b=CLv3YVDelQzLfv3OlbMPVtOo0/prQW6Yq4p+9WGM9jEZ7RMIMpgn2cJ8D9LeCWoDGa
+	rCLZHVxbBOh3xLgjzdvfZmQu6r7ieXVURGki06eWmme5msI2mTMwP6WSzdkaoFD3oLDd
+	wTgz6Zd3T9Ea+ROH6AjlDFoM75oN+46NMwvAEzHlWq61aZfoHKd4q+558MqRlLF652NH
+	oy4YE3wbFzJXMh7aj9Vkj3059YyO9dsAVokw3mL9orEATNGaBkKC7EWCrNLysQ7b5MIY
+	zX54tb4jFs2jqVoi3SHdgrhIXFzeHn6DWfrJKUNYyXXrkglx5+GB19RpkhIU+iQYtGiR
+	2qZQ==
+X-Gm-Message-State: AHQUAuYRr8lS7OSCCs41X4mDsvQLj+tecfK4eV2KO+dzAADsAyWDzhHq
+	cdVFBHwVEOxayIuM5wc+NNk1hA==
+X-Google-Smtp-Source: AHgI3IY9IuSC8ETPGyDX/YiAGk6RZeF97rhTD5GzUEaW2nvv7CdF17H/qf58GBjT6EJNCSyw+asmjQ==
+X-Received: by 2002:a63:f40e:: with SMTP id g14mr2775506pgi.326.1550135621708; 
+	Thu, 14 Feb 2019 01:13:41 -0800 (PST)
+Received: from [10.0.0.243] (c-67-189-24-112.hsd1.or.comcast.net.
+	[67.189.24.112]) by smtp.gmail.com with ESMTPSA id
+	g14sm4397731pfg.27.2019.02.14.01.13.40
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 14 Feb 2019 01:13:40 -0800 (PST)
+To: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Alexander Kanavin <alex.kanavin@gmail.com>
+References: <03b301d4c2ed$7497f360$5dc7da20$@gmail.com>
+	<CANNYZj_PY61tmw=JjP7PPqqSVJff6kd=rsv=daNscx9eSkNWSA@mail.gmail.com>
+	<1634479.1jWiZZ8UfD@localhost.localdomain>
+From: Michael Halstead <mhalstead@linuxfoundation.org>
+Organization: Linux Foundation
+Message-ID: <6cc49be5-a9f3-bf38-2570-b12048dc4471@linuxfoundation.org>
+Date: Thu, 14 Feb 2019 01:13:39 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.4.0
 MIME-Version: 1.0
-References: <CAHSUxjS-CzSx+kTeV2=cFf35ACRhoU03GTMbv3ZcTGkEu38qZQ@mail.gmail.com>
-In-Reply-To: <CAHSUxjS-CzSx+kTeV2=cFf35ACRhoU03GTMbv3ZcTGkEu38qZQ@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 14 Feb 2019 10:00:21 +0100
-Message-ID: <CANNYZj88JzTx_ShdnqKoPn2mPpLhqdkBOuDBoYF2MzS6ODt=KA@mail.gmail.com>
-To: Timothy Froehlich <tfroehlich@archsys.io>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Managing multiple builds
+In-Reply-To: <1634479.1jWiZZ8UfD@localhost.localdomain>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	OE-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] Yocto Project Status WW07'19
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,24 +81,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2019 09:00:34 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 14 Feb 2019 09:13:43 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-On Thu, 14 Feb 2019 at 01:35, Timothy Froehlich <tfroehlich@archsys.io> wro=
-te:
-> Hi, I've been struggling a bit with this question. I want to use Yocto to=
- build two+ products with separate dev/prod images for each (dev including =
-debug-tweaks, etc.). I've ruled out separate image recipes because my dev b=
-uilds need ENABLE_UART on my RaspberryPi and that needs to be set at the co=
-nf level (I've got it set conditionally in my base dist conf). Multiconfig =
-looked promising, but I'm not happy about how long the parsing takes to sta=
-rt a build. "--postread" looked nice, but I've barely seen it mentioned so =
-I'm worried that it's not well supported.
+The regular 3 hour update wasn't installed on the new server. I have 
+repaired that and added the RRS updates as well..
+
+The update has been run several times in testing and I'm curious if RRS 
+has caught up as expected.
+
+On 2/12/19 5:57 PM, Paul Eggleton wrote:
+> Hi Alex
 >
+> On Wednesday, 13 February 2019 6:22:23 AM NZDT Alexander Kanavin wrote:
+>> On Tue, 12 Feb 2019 at 17:10, <sjolley.yp.pm@gmail.com> wrote:
+>>> The recipe reporting system integration with the layer index is available
+>>> at: https://layers.openembedded.org/rrs/recipes/OE-Core/2.7/M3/ and the
+>>> historical data has now been imported.
+>> Sadly the new RRS still seems to be suffering from the 'outdated info'
+>> problem. For example glibc, or python3 recipes have been updated to
+>> latest versions, yet RRS still shows that they haven't been.
+> We're reliant upon the layer index updating and it appears that's not working
+> at the moment. I have asked Michael to look into it. Thanks for the report,
+> I'll reply back here when things are sorted out.
+>
+> Cheers,
+> Paul
+>
+-- 
+Michael Halstead
+Linux Foundation / SysAdmin
 
-Which recipes use the ENABLE_UART setting? You might want to write two
-variants of those, and include them into images accordingly.
-
-Alex
 
