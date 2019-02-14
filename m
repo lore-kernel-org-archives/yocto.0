@@ -1,37 +1,65 @@
-Return-Path: <eas@sw-optimization.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 640A9E00BE8; Thu, 14 Feb 2019 00:30:50 -0800 (PST)
+	id 553C1E00BE8; Thu, 14 Feb 2019 01:00:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [81.19.149.136 listed in list.dnswl.org]
-Received: from mx26lb.world4you.com (mx26lb.world4you.com [81.19.149.136])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60F15E00B92
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 00:30:47 -0800 (PST)
-Received: from [81.19.149.44] (helo=webmail.world4you.com)
-	by mx26lb.world4you.com with esmtpa (Exim 4.91)
-	(envelope-from <eas@sw-optimization.com>)
-	id 1guCPu-0003XD-P6; Thu, 14 Feb 2019 09:30:46 +0100
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.53 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com
+	[209.85.210.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 898E4E00B81
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 01:00:33 -0800 (PST)
+Received: by mail-ot1-f53.google.com with SMTP id b3so9279231otp.4
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 01:00:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=WJOW6jCT98WDvNqRFsOh5btRfQn/eOaaQhjl1XTUnFs=;
+	b=XMJCJrWXlL60pu/yU4jkDgbO4IMsXJ3CiK8Z35ENpgjq0VAi0aPw7ML2pkShg9NDV7
+	Z58IFrKTXfecNqvclwmUHTiwyAK75BN6W3dAfv7FBxofeXYdl/cniF6neVhGxSZRoG7A
+	193351Visw0WavjY5e4c2UI7gLz5rBXO9hJDpDyqOuJI0V1ZAZiuYVFxDE8KtKF9Vyld
+	9Z0QldeFik+CW29MZccROnGFMf0MXQZMgAlWe7iPgb4OBPfcz83WqPgDor8sJIm/iw/v
+	yjm5ebS9wbGVd8CmfddVHrjUTDCOqwNzJQpnsmp+RPoi5Ga+MIduyhhL9k5cGYbt/dCV
+	EAKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=WJOW6jCT98WDvNqRFsOh5btRfQn/eOaaQhjl1XTUnFs=;
+	b=nsuREo19jAldMACIKVEH0hBNCFRr8ewTidFG32tjiAEjclCDsHt9JgCEQOnB86DEM7
+	D6UcLOzRpOaVft1uMgK495nvcDOtS0P9FYwROtbDNLi9EPPTfnf8q2Kp86ok+I2A6Yt3
+	sT/WtPds7sUXD3IGMUXW7d2fW/l2DTkySXaswNCZGrJM0D5rkE8oIM2WLHCzAym2juth
+	sMjYOJCLFGuzOb3Nwq28l3iso+WuUpz2oRXJ20iVQQ/BhMFQSXStv9TGrUdpSCswabaT
+	hKRL6ymYsYF6g8MZM5sQb6zeXLVr3U4ORuomcU/co/G2I1uktSwwqVA4F39/WB5YWtT0
+	WWTQ==
+X-Gm-Message-State: AHQUAuZCONHylA4loLrrjkMcvmv9ohRsyj89SQXbLn+ygZEBO6Z1ILxP
+	ovSMX5YN51hj87OQhUMYRX1sI0EbA0c/SxHUFw9ulA==
+X-Google-Smtp-Source: AHgI3IadFCVG8bjIHFgxCbwXDbHlQddLthd4p9m4ZiNKvr7SkS0E4UqE16YvExTRA94kLBDf7p27b7m4jBgSrdOxiw4=
+X-Received: by 2002:a9d:7653:: with SMTP id o19mr1627016otl.12.1550134832782; 
+	Thu, 14 Feb 2019 01:00:32 -0800 (PST)
 MIME-Version: 1.0
-Date: Thu, 14 Feb 2019 09:30:46 +0100
-From: Eric Schwarz <eas@sw-optimization.com>
-To: "Bach, Pascal" <pascal.bach@siemens.com>
-In-Reply-To: <355BE46A91031048906B695426A8D8E61C3DF156@DENBGAT9EL2MSX.ww902.siemens.net>
-References: <40b1945719475701252bad02ee39be4d@sw-optimization.com>
-	<355BE46A91031048906B695426A8D8E61C3DF156@DENBGAT9EL2MSX.ww902.siemens.net>
-Message-ID: <c2c993d1567abb8698ca6012fcb238e3@sw-optimization.com>
-X-Sender: eas@sw-optimization.com
-User-Agent: World4You Webmail
-X-SA-Do-Not-Run: Yes
-X-AV-Do-Run: Yes
-Cc: yocto@yoctoproject.org
-Subject: Re: SDK install w/ CMake
+References: <CAHSUxjS-CzSx+kTeV2=cFf35ACRhoU03GTMbv3ZcTGkEu38qZQ@mail.gmail.com>
+In-Reply-To: <CAHSUxjS-CzSx+kTeV2=cFf35ACRhoU03GTMbv3ZcTGkEu38qZQ@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 14 Feb 2019 10:00:21 +0100
+Message-ID: <CANNYZj88JzTx_ShdnqKoPn2mPpLhqdkBOuDBoYF2MzS6ODt=KA@mail.gmail.com>
+To: Timothy Froehlich <tfroehlich@archsys.io>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Managing multiple builds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,55 +71,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2019 08:30:50 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Feb 2019 09:00:34 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Pascal
+On Thu, 14 Feb 2019 at 01:35, Timothy Froehlich <tfroehlich@archsys.io> wro=
+te:
+> Hi, I've been struggling a bit with this question. I want to use Yocto to=
+ build two+ products with separate dev/prod images for each (dev including =
+debug-tweaks, etc.). I've ruled out separate image recipes because my dev b=
+uilds need ENABLE_UART on my RaspberryPi and that needs to be set at the co=
+nf level (I've got it set conditionally in my base dist conf). Multiconfig =
+looked promising, but I'm not happy about how long the parsing takes to sta=
+rt a build. "--postread" looked nice, but I've barely seen it mentioned so =
+I'm worried that it's not well supported.
+>
 
-> I don't think your issue has something do to with CMake.
+Which recipes use the ENABLE_UART setting? You might want to write two
+variants of those, and include them into images accordingly.
 
-You are right IMHO. We checked again the pugixml installation behaviour 
-and it turned out we are experiencing the same issue.
-
->> we have got the problem that w/ the Yocto recipe and CMake install 
->> targets
->> as below always everything (headers and library or binary
->> respectively) is installed in the SDK.
->> The binary also goes into the SDK even though we just add it to
->> IMAGE_INSTALL based on a XILINX yocto build (rel-v2018.3).
-> 
-> I'm not sure I understand what you are trying to do. If you add 
-> something to IMAGE_INSTALL it gets installed to the target.
-> That usually includes binaries and libraries.
-> 
-> If you only want libraries but not binaries it's probably best to split 
-> them into multiple packages as described in 
-> https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#package-splitting-dev-environment
-> 
-> This way you can have the binaries in a different package like 
-> ${PN}-tools.
-> 
-
-We have not figured out on how to add the build artifacts of the library 
-to the the correct FILES_${PN} variables. It seems that the FILES_${PN} 
-variables are also kind of overlayed [1].
-
-a) We would like to see the *.so of the library only on the RootFS but 
-the headers, the *.so and the *.a in the SDK.
-b) We are trying to install a binary via FILES_${PN} but it also ends up 
-in the SDK no matter what.
-
-A colleague also posted the question on stackoverflow [2] which 
-describes it more verbosely.
-
-The Yocto release is rocko based.
-
-Thanks
-Eric
-
-[1] 
-https://stackoverflow.com/questions/35090669/bitbake-packaging-strangeness
-[2] https://stackoverflow.com/q/54569314/10921299
+Alex
 
