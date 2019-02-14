@@ -1,38 +1,57 @@
-Return-Path: <Randy.MacLeod@windriver.com>
+Return-Path: <tfroehlich@archsys.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8A64DE00AD5; Wed, 13 Feb 2019 12:02:13 -0800 (PST)
+	id 233DFE00B7D; Wed, 13 Feb 2019 16:34:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17937E00708
-	for <yocto@yoctoproject.org>; Wed, 13 Feb 2019 12:02:12 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x1DK26Kx001600
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 13 Feb 2019 12:02:07 -0800 (PST)
-Received: from [172.25.44.4] (172.25.44.4) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.435.0;
-	Wed, 13 Feb 2019 12:02:06 -0800
-To: Kristupas Savickas <kristupas.savickas@teltonika.lt>,
-	<yocto@yoctoproject.org>
-References: <cc6d6bc3-da90-11b6-434c-df794597bc90@teltonika.lt>
-From: Randy MacLeod <randy.macleod@windriver.com>
-Message-ID: <36f062aa-a236-adb1-7316-599e66ac3096@windriver.com>
-Date: Wed, 13 Feb 2019 15:02:04 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.4.0
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.180 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com
+	[209.85.160.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 605E2E0053F
+	for <yocto@yoctoproject.org>; Wed, 13 Feb 2019 16:34:35 -0800 (PST)
+Received: by mail-qt1-f180.google.com with SMTP id 2so4971259qtb.5
+	for <yocto@yoctoproject.org>; Wed, 13 Feb 2019 16:34:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=archsys-io.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=oTdqwYOjLu1L9S4uWrmnA+mIQ7TKrr3GTcoTNAAJ1ms=;
+	b=lwtdQC0Zx3vw8oeFOIpCjVghJG3h+Jd57cQulB8DAQNOz3fpFP0ixoi+SNvnPetJHp
+	K8e8n2LJKxMayfwhxYpDOam1t+4P5noRoZdHomwrqZmFfQBuO7oyNGBgc9IrE+wy5/Y7
+	ZpGuXLSUKy8bw+zZ8k/TvQ5yw5WsfIzca0zDCguNtv3i72H0x3DGAGWhl+Dg8rs/29dt
+	44gEIDwbY6lpdmhaUJbggoZGjx4PTI1W8AdqFiUED5vfuWoB/hmfwOldsnpmvFFO6Sb4
+	uk+A198z0xGbp+AeTTIyMYpg3eDyh62y2SwZD9RovMaCwEpsX7UFf9BqZI6aGc6FmIiR
+	st6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=oTdqwYOjLu1L9S4uWrmnA+mIQ7TKrr3GTcoTNAAJ1ms=;
+	b=UYSFIeNDEs02xCaeC9Ia5vxkUFbEkaULkP8vmuT1Zoi72JRHpV9QrINwfovQP94bbJ
+	GDbRERbsS3K+5lUWlw+xoX8M8/AnBMDdbIB9uhFvR2BgSRgCdv+KAIpd/5H4hNNAEyy+
+	9StYdOnlbihOlwMLlvnrgBHmC29LFWwWWOCqbdJZ6cFGgSiXs0skcjxctyxqAQBWgfdH
+	z59DfvdGBCx7VFmbeo+qY6QiVJGXT8updI3LsrW5uKxXNriBFGbirmfVqgjvTT5mygyo
+	7SkdVzvSUuzu+kwxeVsgF8fLO/kZtO4k2zbs0fYc7vCLXobwugVd5S5M8RQJ9EaSM9Wm
+	FnMA==
+X-Gm-Message-State: AHQUAuZB1Fi6bz5X4jhAPRUrZ6BVd7hnnjFXV/N4+sYNOf5L+u4EJuBD
+	lTDBuFR/d4O0koQ7SWMVScqlkUf9Ixy64S0UA/vgM0XH00w=
+X-Google-Smtp-Source: AHgI3IatVcZ4kVW7dKxgVbN4b0UVrBueIUrD5XOaPOuWVYIv5bdkuBMqlt/7xMFScWaGYM2dCwNtB29Qpf71m8fhl8Y=
+X-Received: by 2002:a0c:b114:: with SMTP id q20mr760267qvc.185.1550104474627; 
+	Wed, 13 Feb 2019 16:34:34 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <cc6d6bc3-da90-11b6-434c-df794597bc90@teltonika.lt>
-X-Originating-IP: [172.25.44.4]
-Subject: Re: Using SDK/ESDK to build images
+From: Timothy Froehlich <tfroehlich@archsys.io>
+Date: Wed, 13 Feb 2019 16:34:24 -0800
+Message-ID: <CAHSUxjS-CzSx+kTeV2=cFf35ACRhoU03GTMbv3ZcTGkEu38qZQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Managing multiple builds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,45 +63,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Feb 2019 20:02:13 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Feb 2019 00:34:36 -0000
+Content-Type: multipart/alternative; boundary="0000000000009341b10581cfd2ee"
 
-On 2/12/19 6:55 AM, Kristupas Savickas wrote:
-> Hi,
-> 
-> we're looking into providing our customers with SDK/ESDK packages to 
-> develop custom solutions on our boards. We don't want to provide the 
-> whole project itself as it would leak our intellectual property, so 
-> precompiled packages are a must. Looking around, it seems like both SDK 
-> and ESDK are suited to build single packages, rather than complete 
-> images. Am I correct about this? 
-Yes.
-> Is there some kind of method to allow 
-> images be built using SDK packages?
+--0000000000009341b10581cfd2ee
+Content-Type: text/plain; charset="UTF-8"
 
-No, or none that I'm aware of at least.
+Hi, I've been struggling a bit with this question. I want to use Yocto to
+build two+ products with separate dev/prod images for each (dev including
+debug-tweaks, etc.). I've ruled out separate image recipes because my dev
+builds need ENABLE_UART on my RaspberryPi and that needs to be set at the
+conf level (I've got it set conditionally in my base dist conf).
+Multiconfig looked promising, but I'm not happy about how long the parsing
+takes to start a build. "--postread" looked nice, but I've barely seen it
+mentioned so I'm worried that it's not well supported.
 
-My assumption has been that you either:
-  1. enable package management in the image and
-     then add the app developed with the eSDK
-     using dnf/rpm or other pkgs mgmt tools or
-  2. you develop the app using the eSDK then bring
-     it into the build system as a released/tagged entity (tarball/git)
-     and build your image.
+Basically, what do most people do for controlling their builds?
+Tim Froehlich
+Embedded Linux Engineer
+tfroehlich@archsys.io
+215-218-8955
 
-I suppose you could create another mechanism where you apply
-the app on top of the image or in another partition.
-Maybe someone here has done that or has more experience with
-your situation.
+--0000000000009341b10581cfd2ee
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Oh, an obvious mechanism would be as an app container using for
-example OverC:
-    https://github.com/OverC/meta-overc
- 
-https://github.com/OverC/meta-overc/blob/master/docs/README.c3_app_container
--- 
-# Randy MacLeod
-# Wind River Linux
+<div dir=3D"ltr"><div dir=3D"ltr"><br clear=3D"all"><div>Hi, I&#39;ve been =
+struggling a bit with this question. I want to use Yocto to build two+ prod=
+ucts with separate dev/prod images for each (dev including debug-tweaks, et=
+c.). I&#39;ve ruled out separate image recipes because my dev builds need E=
+NABLE_UART on my RaspberryPi and that needs to be set at the conf level (I&=
+#39;ve got it set conditionally in my base dist conf). Multiconfig looked p=
+romising, but I&#39;m not happy about how long the parsing takes to start a=
+ build. &quot;--postread&quot; looked nice, but I&#39;ve barely seen it men=
+tioned so I&#39;m worried that it&#39;s not well supported.</div><div><br><=
+/div><div>Basically, what do most people do for controlling their builds?</=
+div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr">Tim Froehli=
+ch<div>Embedded Linux Engineer</div><div><a href=3D"mailto:tfroehlich@archs=
+ys.io" target=3D"_blank">tfroehlich@archsys.io</a></div><div>215-218-8955</=
+div></div></div></div></div>
 
+--0000000000009341b10581cfd2ee--
