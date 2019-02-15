@@ -1,79 +1,65 @@
-Return-Path: <dinhn@cisco.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD5B3E00C75; Thu, 14 Feb 2019 15:48:34 -0800 (PST)
+	id C4ED2E00C71; Thu, 14 Feb 2019 16:14:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI,SPF_HELO_PASS,
-	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [173.37.142.90 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
-	white-list
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.182 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Thu, 14 Feb 2019 15:48:34 PST
-Received: from alln-iport-3.cisco.com (alln-iport-3.cisco.com [173.37.142.90])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11698E00BB7
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 15:48:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=cisco.com; i=@cisco.com; l=19162; q=dns/txt;
-	s=iport; t=1550188114; x=1551397714;
-	h=from:to:cc:subject:date:message-id:mime-version;
-	bh=7zlV4Z/vdfjcNjCrJtyOnq7SWZPHrZxiL5pJsIhhl+g=;
-	b=RiqkEbcklErN4obvl8SRBeZ9G+8gF0naoL1xvCT5RafO/CIzFinypEEr
-	uoUbWXlvD6W9qkHUEroEWL15DPIfH1X2wM+JWRaX+lWfjmoXx2PE0CCMW
-	pRz3oFet7oA1DObE0dDhuuIX7p7JuJOklwdK4AivyUUjnleXdl3MkROXZ E=;
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0AEAABW/WVc/5FdJa1kGgEBAQEBAgE?=
-	=?us-ascii?q?BAQEHAgEBAQGBUQUBAQEBCwGBDXVngQMxg3yIGotwgWiSSYVvFIFnCwEBhGw?=
-	=?us-ascii?q?Zg0wiNAkNAQMBAQIBAQJtKIV0VhIBSgIEMCcEAQ2DJQGBDmSrLIEvijWMRBe?=
-	=?us-ascii?q?BQD+BOAwThzWDITGCJgKQI4cCjAkJApJSGYw+hjWHUoJokXECERSBJx84gVZ?=
-	=?us-ascii?q?wFWUBgkKQXEGPeIEfAQE?=
-X-IronPort-AV: E=Sophos;i="5.58,370,1544486400"; 
-	d="scan'208,217";a="238637129"
-Received: from rcdn-core-9.cisco.com ([173.37.93.145])
-	by alln-iport-3.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	14 Feb 2019 23:47:31 +0000
-Received: from XCH-RTP-005.cisco.com (xch-rtp-005.cisco.com [64.101.220.145])
-	by rcdn-core-9.cisco.com (8.15.2/8.15.2) with ESMTPS id
-	x1ENlUNZ031029
-	(version=TLSv1.2 cipher=AES256-SHA bits=256 verify=FAIL);
-	Thu, 14 Feb 2019 23:47:31 GMT
-Received: from xch-rtp-002.cisco.com (64.101.220.142) by XCH-RTP-005.cisco.com
-	(64.101.220.145) with Microsoft SMTP Server (TLS) id 15.0.1395.4;
-	Thu, 14 Feb 2019 18:47:29 -0500
-Received: from xch-rtp-002.cisco.com ([64.101.220.142]) by
-	XCH-RTP-002.cisco.com ([64.101.220.142]) with mapi id 15.00.1395.000;
-	Thu, 14 Feb 2019 18:47:29 -0500
-From: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
-To: "Burton, Ross" <ross.burton@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, Khem Raj <raj.khem@gmail.com>
-Thread-Topic: poky/meta/recipes-connectivity/bind
-Thread-Index: AQHUxL+lmIxe51JqZEa734rAuXdYpw==
-Date: Thu, 14 Feb 2019 23:47:29 +0000
-Message-ID: <5C4C5702-7F30-4817-90FE-CFAEDCB8E0D9@cisco.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/10.10.6.190114
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.172.217]
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
+	[209.85.222.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F995E009EB
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 16:14:19 -0800 (PST)
+Received: by mail-qk1-f182.google.com with SMTP id h28so916273qkk.7
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 16:14:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=7CCGLjePFxD6vXUNoH7XAnnMTUOdLZqLC430SnOxI1I=;
+	b=UL2SlrC2pRVnLw6Ee31b0QRfLlsi1QFWHnIA7YzRLlqL35O0vYc/jglPJBPxHiQZWb
+	tbSLLQq1hIOFaIlhtRju90KtkBGPPeq68OOzGyehe/967G+6bMiWtSGZziOyqaZlkKif
+	AvO/jzxxx7lQwhaGr16tJFcMklyR+2exZTnFKJPykV3WPwKp7cPRKlRdi3ICOWaR6dQt
+	0gNMScg9sOm9PLPgAr2vAGTiyZZr+vBeQe/UA9hhKLoTy70C8TQ3SlbnrGsq+d5EN/qI
+	Gu0Uq9yCbG52/NZdmaLgxwbNbvlyJocw1F+C3io/3XXQdPvRBYLCKAGHqD8/0LcvBXUE
+	V8RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=7CCGLjePFxD6vXUNoH7XAnnMTUOdLZqLC430SnOxI1I=;
+	b=PrnL0vgIj79ohwRiq/bbTwKcOihXmGy9qcm9fbNqCx5ZO4P3YDgFbvIUSzjwNwCxGO
+	7CZJ+yzMw6pq7/PuxOXRi9qrWxy9gjteBcMp+Xkmey1f0uIiRexgPW0aG49ULGxbP3nZ
+	t6+eZdhEbTZEcz/mRmowahEezYmlvJrF9RDgM76iGs/LkdrJooOVDPlL9Apsek6ZLXft
+	neJ2p2AqN6luNBLXhPDVo8GSklkGVmpT3EQUY6/dK5CX+zvXnLn7WjzyfQxz3uKDw/Lj
+	yg1bnQKj8eOJEg9q2DbUNajuK7uOUES2UJMq5mP57IA6E5fFLsJjffwde+ciAHwdiG+d
+	Ryog==
+X-Gm-Message-State: AHQUAuanIeiA3djx2e8ufN5Tt/IZ0HQRaPT9BBcnPPgSpP4LK4zGlR0/
+	Jg6EfO5+ipYOL4ioOK3+1qj3sUgzaeOY5XMf6jM=
+X-Google-Smtp-Source: AHgI3IYGx+4TKj7jL+8LdqGcvEoOLSrWixkn/XgF5j75nvosoas09JSDlLtKZjbRQ8eIP4d7VW/OjN4nRgqfio2le2g=
+X-Received: by 2002:a37:9585:: with SMTP id x127mr4997242qkd.315.1550189658426;
+	Thu, 14 Feb 2019 16:14:18 -0800 (PST)
 MIME-Version: 1.0
-X-Outbound-SMTP-Client: 64.101.220.145, xch-rtp-005.cisco.com
-X-Outbound-Node: rcdn-core-9.cisco.com
-Subject: poky/meta/recipes-connectivity/bind
+References: <5C4C5702-7F30-4817-90FE-CFAEDCB8E0D9@cisco.com>
+In-Reply-To: <5C4C5702-7F30-4817-90FE-CFAEDCB8E0D9@cisco.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 14 Feb 2019 16:13:51 -0800
+Message-ID: <CAMKF1sp19wQiKUpB6Sn0bHEWA9=y==7kt2uu_PLKpE_CqnDR6Q@mail.gmail.com>
+To: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: poky/meta/recipes-connectivity/bind
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -85,262 +71,357 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2019 23:48:34 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_5C4C57027F30481790FECFAEDCB8E0D9ciscocom_"
+X-List-Received-Date: Fri, 15 Feb 2019 00:14:20 -0000
+Content-Type: multipart/alternative; boundary="000000000000ecd6450581e3a71c"
 
---_000_5C4C57027F30481790FECFAEDCB8E0D9ciscocom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000ecd6450581e3a71c
+Content-Type: text/plain; charset="UTF-8"
 
-R3VydXMsDQoNCldoYXQgd2FzIHRoZSBtYWluIHJlYXNvbiB3aHkgbnNsb29rdXAgaGFzIGJlZW4g
-cmVtb3ZlZCBmcm9tIFBva3kvbWV0YS9yZWNpcGVzLWNvbm5lY3Rpdml0eS9iaW5kLzx4eHg+Pi5i
-Yj8NCg0KZG9faW5zdGFsbF9hcHBlbmQoKSB7DQoNCg0KDQoNCg0KICAgICAgIHJtICIke0R9JHti
-aW5kaXJ9L25zbG9va3VwIg0KDQoNCiAgICAgICBybSAiJHtEfSR7bWFuZGlyfS9tYW4xL25zbG9v
-a3VwLjEiDQoNCg0KICAgICAgIHJtZGlyICIke0R9JHtsb2NhbHN0YXRlZGlyfS9ydW4iDQoNCg0K
-ICAgICAgIHJtZGlyIC0taWdub3JlLWZhaWwtb24tbm9uLWVtcHR5ICIke0R9JHtsb2NhbHN0YXRl
-ZGlyfSINCg0KDQogICAgICAgaW5zdGFsbCAtZCAtbyBiaW5kICIke0R9JHtsb2NhbHN0YXRlZGly
-fS9jYWNoZS9iaW5kIg0KDQoNCiAgICAgICBpbnN0YWxsIC1kICIke0R9JHtzeXNjb25mZGlyfS9i
-aW5kIg0KDQoNCiAgICAgICBpbnN0YWxsIC1kICIke0R9JHtzeXNjb25mZGlyfS9pbml0LmQiDQoN
-Cg0KICAgICAgIGluc3RhbGwgLW0gNjQ0ICR7U30vY29uZi8qICIke0R9JHtzeXNjb25mZGlyfS9i
-aW5kLyINCg0KDQogICAgICAgaW5zdGFsbCAtbSA3NTUgIiR7U30vaW5pdC5kIiAiJHtEfSR7c3lz
-Y29uZmRpcn0vaW5pdC5kL2JpbmQiDQoNCg0KICAgICAgICBpZiAke0BiYi51dGlscy5jb250YWlu
-cygnUEFDS0FHRUNPTkZJRycsICdweXRob24zJywgJ3RydWUnLCAnZmFsc2UnLCBkKX07IHRoZW4N
-Cg0KDQogICAgICAgICAgICAgIHNlZCAtaSAtZSAnMXMsIyEuKnB5dGhvbjMsIyEgL3Vzci9iaW4v
-cHl0aG9uMywnIFwNCg0KDQogICAgICAgICAgICAgICR7RH0ke3NiaW5kaXJ9L2Ruc3NlYy1jb3Zl
-cmFnZSBcDQoNCg0KICAgICAgICAgICAgICAke0R9JHtzYmluZGlyfS9kbnNzZWMtY2hlY2tkcyBc
-DQoNCg0KICAgICAgICAgICAgICAke0R9JHtzYmluZGlyfS9kbnNzZWMta2V5bWdyDQoNCg0KICAg
-ICAgIGZpDQoNCg0KV2hpY2ggeW9jdG8gbm93IGhhcyBkaWcgb3IgaG9zdCBmb3IgRE5TIGxvb2t1
-cD8NCg0KVGhhbmtzLA0KICAtLURpbmgNCg==
+On Thu, Feb 14, 2019 at 3:47 PM Dinh Nguyen (dinhn) <dinhn@cisco.com> wrote:
 
---_000_5C4C57027F30481790FECFAEDCB8E0D9ciscocom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <C0342B4DF2F7864AB60A0EB7D4C27A32@emea.cisco.com>
-Content-Transfer-Encoding: base64
+> Gurus,
+>
+>
+>
+> What was the main reason why nslookup has been removed from
+> Poky/meta/recipes-connectivity/bind/<xxx>>.bb?
+>
+>
+>
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
-IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
-IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFz
-Ow0KCXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25z
-ICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjow
-aW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1m
-YW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0K
-CXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246
-dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28t
-c3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRl
-cmxpbmU7fQ0KcC5tc29ub3JtYWwwLCBsaS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXtt
-c28tc3R5bGUtbmFtZTptc29ub3JtYWw7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFy
-Z2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVm
-dDowaW47DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1z
-ZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBs
-eTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0
-O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQt
-c2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0K
-CW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3Bh
-Z2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1V
-UyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEi
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPkd1
-cnVzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTIuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdCI+V2hhdCB3YXMg
-dGhlIG1haW4gcmVhc29uIHdoeSBuc2xvb2t1cCBoYXMgYmVlbiByZW1vdmVkIGZyb20gUG9reS9t
-ZXRhL3JlY2lwZXMtY29ubmVjdGl2aXR5L2JpbmQvJmx0O3h4eCZndDsmZ3Q7LmJiPw0KPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMi4wcHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjx0YWJsZSBjbGFzcz0i
-TXNvTm9ybWFsVGFibGUiIGJvcmRlcj0iMCIgY2VsbHNwYWNpbmc9IjAiIGNlbGxwYWRkaW5nPSIw
-IiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZTtib3JkZXItY29sbGFwc2U6Y29sbGFwc2UiPg0KPHRi
-b2R5Pg0KPHRyPg0KPHRkIHZhbGlnbj0idG9wIiBzdHlsZT0icGFkZGluZzowaW4gNy41cHQgMGlu
-IDcuNXB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJsaW5lLWhlaWdodDoxNS4wcHQi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6
-IzI0MjkyRSI+ZG9faW5zdGFsbF9hcHBlbmQoKSB7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC90
-ZD4NCjwvdHI+DQo8dHIgc3R5bGU9ImJveC1zaXppbmc6IGJvcmRlci1ib3giPg0KPHRkIHdpZHRo
-PSI1MCIgbm93cmFwPSIiIHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6MzcuNXB0O3BhZGRpbmc6
-MGluIDcuNXB0IDBpbiA3LjVwdDtib3gtc2l6aW5nOiBib3JkZXItYm94O21pbi13aWR0aDogNTBw
-eDtjb2xvcjpyZ2JhKDI3LCAzMSwgMzUsIDAuMyk7Y3Vyc29yOnBvaW50ZXI7dXNlci1zZWxlY3Q6
-IG5vbmUiIGlkPSJMNzUiPg0KPC90ZD4NCjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9InBhZGRpbmc6
-MGluIDcuNXB0IDBpbiA3LjVwdDtib3gtc2l6aW5nOiBib3JkZXItYm94O292ZXJmbG93LXdyYXA6
-IG5vcm1hbDtvdmVyZmxvdzp2aXNpYmxlIiBpZD0iTEM3NSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibGluZS1oZWlnaHQ6MTUuMHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0
-O2ZvbnQtZmFtaWx5OkNvbnNvbGFzO2NvbG9yOiMyNDI5MkUiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
-cGFuPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRyIHN0eWxlPSJib3gtc2l6aW5nOiBib3JkZXItYm94
-Ij4NCjx0ZCB3aWR0aD0iNTAiIG5vd3JhcD0iIiB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjM3
-LjVwdDtwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzogYm9yZGVyLWJveDtt
-aW4td2lkdGg6IDUwcHg7Y29sb3I6cmdiYSgyNywgMzEsIDM1LCAwLjMpO2N1cnNvcjpwb2ludGVy
-O3VzZXItc2VsZWN0OiBub25lIiBpZD0iTDc2Ij4NCjwvdGQ+DQo8dGQgdmFsaWduPSJ0b3AiIHN0
-eWxlPSJwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzogYm9yZGVyLWJveDtv
-dmVyZmxvdy13cmFwOiBub3JtYWw7b3ZlcmZsb3c6dmlzaWJsZSIgaWQ9IkxDNzYiPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCIgc3R5bGU9ImxpbmUtaGVpZ2h0OjE1LjBwdCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTpDb25zb2xhcztjb2xvcjojMjQyOTJFIj4mbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgcm0gJnF1b3Q7JHtEfSR7YmluZGlyfS9uc2xv
-b2t1cCZxdW90OzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRyIHN0eWxl
-PSJib3gtc2l6aW5nOiBib3JkZXItYm94Ij4NCjx0ZCB3aWR0aD0iNTAiIG5vd3JhcD0iIiB2YWxp
-Z249InRvcCIgc3R5bGU9IndpZHRoOjM3LjVwdDtwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7
-Ym94LXNpemluZzogYm9yZGVyLWJveDttaW4td2lkdGg6IDUwcHg7Y29sb3I6cmdiYSgyNywgMzEs
-IDM1LCAwLjMpO2N1cnNvcjpwb2ludGVyO3VzZXItc2VsZWN0OiBub25lIiBpZD0iTDc3Ij4NCjwv
-dGQ+DQo8dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7
-Ym94LXNpemluZzogYm9yZGVyLWJveDtvdmVyZmxvdy13cmFwOiBub3JtYWw7b3ZlcmZsb3c6dmlz
-aWJsZSIgaWQ9IkxDNzciPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImxpbmUtaGVpZ2h0
-OjE1LjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTpDb25zb2xh
-cztjb2xvcjojMjQyOTJFIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgcm0g
-JnF1b3Q7JHtEfSR7bWFuZGlyfS9tYW4xL25zbG9va3VwLjEmcXVvdDs8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iYm94LXNpemluZzogYm9yZGVyLWJveCI+
-DQo8dGQgd2lkdGg9IjUwIiBub3dyYXA9IiIgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDozNy41
-cHQ7cGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6IGJvcmRlci1ib3g7bWlu
-LXdpZHRoOiA1MHB4O2NvbG9yOnJnYmEoMjcsIDMxLCAzNSwgMC4zKTtjdXJzb3I6cG9pbnRlcjt1
-c2VyLXNlbGVjdDogbm9uZSIgaWQ9Ikw3OCI+DQo8L3RkPg0KPHRkIHZhbGlnbj0idG9wIiBzdHls
-ZT0icGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6IGJvcmRlci1ib3g7b3Zl
-cmZsb3ctd3JhcDogbm9ybWFsO292ZXJmbG93OnZpc2libGUiIGlkPSJMQzc4Ij4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiIHN0eWxlPSJsaW5lLWhlaWdodDoxNS4wcHQiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0MjkyRSI+Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHJtZGlyICZxdW90OyR7RH0ke2xvY2Fsc3RhdGVk
-aXJ9L3J1biZxdW90OzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRyIHN0
-eWxlPSJib3gtc2l6aW5nOiBib3JkZXItYm94Ij4NCjx0ZCB3aWR0aD0iNTAiIG5vd3JhcD0iIiB2
-YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjM3LjVwdDtwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41
-cHQ7Ym94LXNpemluZzogYm9yZGVyLWJveDttaW4td2lkdGg6IDUwcHg7Y29sb3I6cmdiYSgyNywg
-MzEsIDM1LCAwLjMpO2N1cnNvcjpwb2ludGVyO3VzZXItc2VsZWN0OiBub25lIiBpZD0iTDc5Ij4N
-CjwvdGQ+DQo8dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41
-cHQ7Ym94LXNpemluZzogYm9yZGVyLWJveDtvdmVyZmxvdy13cmFwOiBub3JtYWw7b3ZlcmZsb3c6
-dmlzaWJsZSIgaWQ9IkxDNzkiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImxpbmUtaGVp
-Z2h0OjE1LjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTpDb25z
-b2xhcztjb2xvcjojMjQyOTJFIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsg
-cm1kaXIgLS1pZ25vcmUtZmFpbC1vbi1ub24tZW1wdHkgJnF1b3Q7JHtEfSR7bG9jYWxzdGF0ZWRp
-cn0mcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0i
-Ym94LXNpemluZzogYm9yZGVyLWJveCI+DQo8dGQgd2lkdGg9IjUwIiBub3dyYXA9IiIgdmFsaWdu
-PSJ0b3AiIHN0eWxlPSJ3aWR0aDozNy41cHQ7cGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2Jv
-eC1zaXppbmc6IGJvcmRlci1ib3g7bWluLXdpZHRoOiA1MHB4O2NvbG9yOnJnYmEoMjcsIDMxLCAz
-NSwgMC4zKTtjdXJzb3I6cG9pbnRlcjt1c2VyLXNlbGVjdDogbm9uZSIgaWQ9Ikw4MCI+DQo8L3Rk
-Pg0KPHRkIHZhbGlnbj0idG9wIiBzdHlsZT0icGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2Jv
-eC1zaXppbmc6IGJvcmRlci1ib3g7b3ZlcmZsb3ctd3JhcDogbm9ybWFsO292ZXJmbG93OnZpc2li
-bGUiIGlkPSJMQzgwIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJsaW5lLWhlaWdodDox
-NS4wcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7
-Y29sb3I6IzI0MjkyRSI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGluc3Rh
-bGwgLWQgLW8gYmluZCAmcXVvdDske0R9JHtsb2NhbHN0YXRlZGlyfS9jYWNoZS9iaW5kJnF1b3Q7
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPC90ZD4NCjwvdHI+DQo8dHIgc3R5bGU9ImJveC1zaXpp
-bmc6IGJvcmRlci1ib3giPg0KPHRkIHdpZHRoPSI1MCIgbm93cmFwPSIiIHZhbGlnbj0idG9wIiBz
-dHlsZT0id2lkdGg6MzcuNXB0O3BhZGRpbmc6MGluIDcuNXB0IDBpbiA3LjVwdDtib3gtc2l6aW5n
-OiBib3JkZXItYm94O21pbi13aWR0aDogNTBweDtjb2xvcjpyZ2JhKDI3LCAzMSwgMzUsIDAuMyk7
-Y3Vyc29yOnBvaW50ZXI7dXNlci1zZWxlY3Q6IG5vbmUiIGlkPSJMODEiPg0KPC90ZD4NCjx0ZCB2
-YWxpZ249InRvcCIgc3R5bGU9InBhZGRpbmc6MGluIDcuNXB0IDBpbiA3LjVwdDtib3gtc2l6aW5n
-OiBib3JkZXItYm94O292ZXJmbG93LXdyYXA6IG5vcm1hbDtvdmVyZmxvdzp2aXNpYmxlIiBpZD0i
-TEM4MSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibGluZS1oZWlnaHQ6MTUuMHB0Ij48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OkNvbnNvbGFzO2NvbG9yOiMy
-NDI5MkUiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBpbnN0YWxsIC1kICZx
-dW90OyR7RH0ke3N5c2NvbmZkaXJ9L2JpbmQmcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iYm94LXNpemluZzogYm9yZGVyLWJveCI+DQo8dGQgd2lk
-dGg9IjUwIiBub3dyYXA9IiIgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDozNy41cHQ7cGFkZGlu
-ZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6IGJvcmRlci1ib3g7bWluLXdpZHRoOiA1
-MHB4O2NvbG9yOnJnYmEoMjcsIDMxLCAzNSwgMC4zKTtjdXJzb3I6cG9pbnRlcjt1c2VyLXNlbGVj
-dDogbm9uZSIgaWQ9Ikw4MiI+DQo8L3RkPg0KPHRkIHZhbGlnbj0idG9wIiBzdHlsZT0icGFkZGlu
-ZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6IGJvcmRlci1ib3g7b3ZlcmZsb3ctd3Jh
-cDogbm9ybWFsO292ZXJmbG93OnZpc2libGUiIGlkPSJMQzgyIj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiIHN0eWxlPSJsaW5lLWhlaWdodDoxNS4wcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS4w
-cHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0MjkyRSI+Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7IGluc3RhbGwgLWQgJnF1b3Q7JHtEfSR7c3lzY29uZmRpcn0vaW5p
-dC5kJnF1b3Q7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC90ZD4NCjwvdHI+DQo8dHIgc3R5bGU9
-ImJveC1zaXppbmc6IGJvcmRlci1ib3giPg0KPHRkIHdpZHRoPSI1MCIgbm93cmFwPSIiIHZhbGln
-bj0idG9wIiBzdHlsZT0id2lkdGg6MzcuNXB0O3BhZGRpbmc6MGluIDcuNXB0IDBpbiA3LjVwdDti
-b3gtc2l6aW5nOiBib3JkZXItYm94O21pbi13aWR0aDogNTBweDtjb2xvcjpyZ2JhKDI3LCAzMSwg
-MzUsIDAuMyk7Y3Vyc29yOnBvaW50ZXI7dXNlci1zZWxlY3Q6IG5vbmUiIGlkPSJMODMiPg0KPC90
-ZD4NCjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9InBhZGRpbmc6MGluIDcuNXB0IDBpbiA3LjVwdDti
-b3gtc2l6aW5nOiBib3JkZXItYm94O292ZXJmbG93LXdyYXA6IG5vcm1hbDtvdmVyZmxvdzp2aXNp
-YmxlIiBpZD0iTEM4MyI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibGluZS1oZWlnaHQ6
-MTUuMHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OkNvbnNvbGFz
-O2NvbG9yOiMyNDI5MkUiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBpbnN0
-YWxsIC1tIDY0NCAke1N9L2NvbmYvKiAmcXVvdDske0R9JHtzeXNjb25mZGlyfS9iaW5kLyZxdW90
-OzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRyIHN0eWxlPSJib3gtc2l6
-aW5nOiBib3JkZXItYm94Ij4NCjx0ZCB3aWR0aD0iNTAiIG5vd3JhcD0iIiB2YWxpZ249InRvcCIg
-c3R5bGU9IndpZHRoOjM3LjVwdDtwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemlu
-ZzogYm9yZGVyLWJveDttaW4td2lkdGg6IDUwcHg7Y29sb3I6cmdiYSgyNywgMzEsIDM1LCAwLjMp
-O2N1cnNvcjpwb2ludGVyO3VzZXItc2VsZWN0OiBub25lIiBpZD0iTDg0Ij4NCjwvdGQ+DQo8dGQg
-dmFsaWduPSJ0b3AiIHN0eWxlPSJwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemlu
-ZzogYm9yZGVyLWJveDtvdmVyZmxvdy13cmFwOiBub3JtYWw7b3ZlcmZsb3c6dmlzaWJsZSIgaWQ9
-IkxDODQiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImxpbmUtaGVpZ2h0OjE1LjBwdCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTpDb25zb2xhcztjb2xvcjoj
-MjQyOTJFIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgaW5zdGFsbCAtbSA3
-NTUgJnF1b3Q7JHtTfS9pbml0LmQmcXVvdDsgJnF1b3Q7JHtEfSR7c3lzY29uZmRpcn0vaW5pdC5k
-L2JpbmQmcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHls
-ZT0iYm94LXNpemluZzogYm9yZGVyLWJveCI+DQo8dGQgd2lkdGg9IjUwIiBub3dyYXA9IiIgdmFs
-aWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDozNy41cHQ7cGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0
-O2JveC1zaXppbmc6IGJvcmRlci1ib3g7bWluLXdpZHRoOiA1MHB4O2NvbG9yOnJnYmEoMjcsIDMx
-LCAzNSwgMC4zKTtjdXJzb3I6cG9pbnRlcjt1c2VyLXNlbGVjdDogbm9uZSIgaWQ9Ikw4NSI+DQo8
-L3RkPg0KPHRkIHZhbGlnbj0idG9wIiBzdHlsZT0icGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0
-O2JveC1zaXppbmc6IGJvcmRlci1ib3g7b3ZlcmZsb3ctd3JhcDogbm9ybWFsO292ZXJmbG93OnZp
-c2libGUiIGlkPSJMQzg1Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJsaW5lLWhlaWdo
-dDoxNS4wcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29s
-YXM7Y29sb3I6IzI0MjkyRSI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7IGlmICR7QGJiLnV0aWxzLmNvbnRhaW5zKCdQQUNLQUdFQ09ORklHJywgJ3B5dGhvbjMnLCAn
-dHJ1ZScsICdmYWxzZScsIGQpfTsgdGhlbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvdGQ+DQo8
-L3RyPg0KPHRyIHN0eWxlPSJib3gtc2l6aW5nOiBib3JkZXItYm94Ij4NCjx0ZCB3aWR0aD0iNTAi
-IG5vd3JhcD0iIiB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjM3LjVwdDtwYWRkaW5nOjBpbiA3
-LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzogYm9yZGVyLWJveDttaW4td2lkdGg6IDUwcHg7Y29s
-b3I6cmdiYSgyNywgMzEsIDM1LCAwLjMpO2N1cnNvcjpwb2ludGVyO3VzZXItc2VsZWN0OiBub25l
-IiBpZD0iTDg2Ij4NCjwvdGQ+DQo8dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJwYWRkaW5nOjBpbiA3
-LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzogYm9yZGVyLWJveDtvdmVyZmxvdy13cmFwOiBub3Jt
-YWw7b3ZlcmZsb3c6dmlzaWJsZSIgaWQ9IkxDODYiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
-bGU9ImxpbmUtaGVpZ2h0OjE1LjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250
-LWZhbWlseTpDb25zb2xhcztjb2xvcjojMjQyOTJFIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgc2Vk
-IC1pIC1lICcxcywjIS4qcHl0aG9uMywjISAvdXNyL2Jpbi9weXRob24zLCcgXDxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRyIHN0eWxlPSJib3gtc2l6aW5nOiBib3JkZXIt
-Ym94Ij4NCjx0ZCB3aWR0aD0iNTAiIG5vd3JhcD0iIiB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRo
-OjM3LjVwdDtwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzogYm9yZGVyLWJv
-eDttaW4td2lkdGg6IDUwcHg7Y29sb3I6cmdiYSgyNywgMzEsIDM1LCAwLjMpO2N1cnNvcjpwb2lu
-dGVyO3VzZXItc2VsZWN0OiBub25lIiBpZD0iTDg3Ij4NCjwvdGQ+DQo8dGQgdmFsaWduPSJ0b3Ai
-IHN0eWxlPSJwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzogYm9yZGVyLWJv
-eDtvdmVyZmxvdy13cmFwOiBub3JtYWw7b3ZlcmZsb3c6dmlzaWJsZSIgaWQ9IkxDODciPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImxpbmUtaGVpZ2h0OjE1LjBwdCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTpDb25zb2xhcztjb2xvcjojMjQyOTJFIj4mbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsgJHtEfSR7c2JpbmRpcn0vZG5zc2VjLWNvdmVyYWdlIFw8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iYm94LXNpemluZzogYm9y
-ZGVyLWJveCI+DQo8dGQgd2lkdGg9IjUwIiBub3dyYXA9IiIgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3
-aWR0aDozNy41cHQ7cGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6IGJvcmRl
-ci1ib3g7bWluLXdpZHRoOiA1MHB4O2NvbG9yOnJnYmEoMjcsIDMxLCAzNSwgMC4zKTtjdXJzb3I6
-cG9pbnRlcjt1c2VyLXNlbGVjdDogbm9uZSIgaWQ9Ikw4OCI+DQo8L3RkPg0KPHRkIHZhbGlnbj0i
-dG9wIiBzdHlsZT0icGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6IGJvcmRl
-ci1ib3g7b3ZlcmZsb3ctd3JhcDogbm9ybWFsO292ZXJmbG93OnZpc2libGUiIGlkPSJMQzg4Ij4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJsaW5lLWhlaWdodDoxNS4wcHQiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0MjkyRSI+
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7RH0ke3NiaW5kaXJ9L2Ruc3NlYy1jaGVja2RzIFw8bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iYm94LXNpemluZzog
-Ym9yZGVyLWJveCI+DQo8dGQgd2lkdGg9IjUwIiBub3dyYXA9IiIgdmFsaWduPSJ0b3AiIHN0eWxl
-PSJ3aWR0aDozNy41cHQ7cGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6IGJv
-cmRlci1ib3g7bWluLXdpZHRoOiA1MHB4O2NvbG9yOnJnYmEoMjcsIDMxLCAzNSwgMC4zKTtjdXJz
-b3I6cG9pbnRlcjt1c2VyLXNlbGVjdDogbm9uZSIgaWQ9Ikw4OSI+DQo8L3RkPg0KPHRkIHZhbGln
-bj0idG9wIiBzdHlsZT0icGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6IGJv
-cmRlci1ib3g7b3ZlcmZsb3ctd3JhcDogbm9ybWFsO292ZXJmbG93OnZpc2libGUiIGlkPSJMQzg5
-Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJsaW5lLWhlaWdodDoxNS4wcHQiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0Mjky
-RSI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7RH0ke3NiaW5kaXJ9L2Ruc3NlYy1rZXltZ3I8bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iYm94LXNpemluZzog
-Ym9yZGVyLWJveCI+DQo8dGQgd2lkdGg9IjUwIiBub3dyYXA9IiIgdmFsaWduPSJ0b3AiIHN0eWxl
-PSJ3aWR0aDozNy41cHQ7cGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6IGJv
-cmRlci1ib3g7bWluLXdpZHRoOiA1MHB4O2NvbG9yOnJnYmEoMjcsIDMxLCAzNSwgMC4zKTtjdXJz
-b3I6cG9pbnRlcjt1c2VyLXNlbGVjdDogbm9uZSIgaWQ9Ikw5MCI+DQo8L3RkPg0KPHRkIHZhbGln
-bj0idG9wIiBzdHlsZT0icGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6IGJv
-cmRlci1ib3g7b3ZlcmZsb3ctd3JhcDogbm9ybWFsO292ZXJmbG93OnZpc2libGUiIGlkPSJMQzkw
-Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJsaW5lLWhlaWdodDoxNS4wcHQiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0Mjky
-RSI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGZpPG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPC90ZD4NCjwvdHI+DQo8L3Rib2R5Pg0KPC90YWJsZT4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEy
-LjBwdCI+V2hpY2ggeW9jdG8gbm93IGhhcyBkaWcgb3IgaG9zdCBmb3IgRE5TIGxvb2t1cD88bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjEyLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPlRoYW5rcyw8bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
-OjEyLjBwdCI+Jm5ic3A7IC0tRGluaCA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwv
-Ym9keT4NCjwvaHRtbD4NCg==
+nsloopup is supposed to go away as the upstream maintainers of this has
+stopped maintaining it. using dig or host
+utility is suggested.
 
---_000_5C4C57027F30481790FECFAEDCB8E0D9ciscocom_--
+
+
+> do_install_append() {
+>
+>
+>
+>        rm "${D}${bindir}/nslookup"
+>
+>        rm "${D}${mandir}/man1/nslookup.1"
+>
+>        rmdir "${D}${localstatedir}/run"
+>
+>        rmdir --ignore-fail-on-non-empty "${D}${localstatedir}"
+>
+>        install -d -o bind "${D}${localstatedir}/cache/bind"
+>
+>        install -d "${D}${sysconfdir}/bind"
+>
+>        install -d "${D}${sysconfdir}/init.d"
+>
+>        install -m 644 ${S}/conf/* "${D}${sysconfdir}/bind/"
+>
+>        install -m 755 "${S}/init.d" "${D}${sysconfdir}/init.d/bind"
+>
+>         if ${@bb.utils.contains('PACKAGECONFIG', 'python3', 'true',
+> 'false', d)}; then
+>
+>               sed -i -e '1s,#!.*python3,#! /usr/bin/python3,' \
+>
+>               ${D}${sbindir}/dnssec-coverage \
+>
+>               ${D}${sbindir}/dnssec-checkds \
+>
+>               ${D}${sbindir}/dnssec-keymgr
+>
+>        fi
+>
+>
+>
+> Which yocto now has dig or host for DNS lookup?
+>
+>
+>
+
+you can install bind-utils in image which should
+give you dig and host
+
+
+
+> Thanks,
+>
+>   --Dinh
+>
+
+--000000000000ecd6450581e3a71c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_defa=
+ult" style=3D"font-family:monospace,monospace"><br></div></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 14, 20=
+19 at 3:47 PM Dinh Nguyen (dinhn) &lt;<a href=3D"mailto:dinhn@cisco.com">di=
+nhn@cisco.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_8719919474931647220WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt">Gurus,<u></u><u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt">What was the main rea=
+son why nslookup has been removed from Poky/meta/recipes-connectivity/bind/=
+&lt;xxx&gt;&gt;.bb?
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt"><u></u>=C2=A0</span><=
+/p></div></div></blockquote><div><br></div><div><div class=3D"gmail_default=
+" style=3D"font-family:monospace,monospace">nsloopup is supposed to go away=
+ as the upstream maintainers of this has stopped maintaining it. using dig =
+or host</div><div class=3D"gmail_default" style=3D"font-family:monospace,mo=
+nospace">utility is suggested.</div><br></div><div>=C2=A0</div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div lang=3D"EN-US"><div class=3D"gma=
+il-m_8719919474931647220WordSection1"><p class=3D"MsoNormal"><span style=3D=
+"font-size:12pt"><u></u></span></p>
+<table class=3D"gmail-m_8719919474931647220MsoNormalTable" border=3D"0" cel=
+lspacing=3D"0" cellpadding=3D"0" style=3D"background:white;border-collapse:=
+collapse">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0in 7.5pt">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">do_install_append() {<u></u><=
+u></u></span></p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L75">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC75">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)"><u></u>=C2=A0<u></u></span></=
+p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L76">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC76">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 rm &quot;${D}${bindir}/nslookup&quot;<u></u><u></u></span></p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L77">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC77">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 rm &quot;${D}${mandir}/man1/nslookup.1&quot;<u></u><u></u></span>=
+</p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L78">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC78">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 rmdir &quot;${D}${localstatedir}/run&quot;<u></u><u></u></span></=
+p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L79">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC79">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 rmdir --ignore-fail-on-non-empty &quot;${D}${localstatedir}&quot;=
+<u></u><u></u></span></p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L80">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC80">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 install -d -o bind &quot;${D}${localstatedir}/cache/bind&quot;<u>=
+</u><u></u></span></p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L81">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC81">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 install -d &quot;${D}${sysconfdir}/bind&quot;<u></u><u></u></span=
+></p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L82">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC82">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 install -d &quot;${D}${sysconfdir}/init.d&quot;<u></u><u></u></sp=
+an></p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L83">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC83">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 install -m 644 ${S}/conf/* &quot;${D}${sysconfdir}/bind/&quot;<u>=
+</u><u></u></span></p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L84">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC84">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 install -m 755 &quot;${S}/init.d&quot; &quot;${D}${sysconfdir}/in=
+it.d/bind&quot;<u></u><u></u></span></p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L85">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC85">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 if ${@bb.utils.contains(&#39;PACKAGECONFIG&#39;, &#39;pytho=
+n3&#39;, &#39;true&#39;, &#39;false&#39;, d)}; then<u></u><u></u></span></p=
+>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L86">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC86">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sed -i -e &#39;1s,#!.*p=
+ython3,#! /usr/bin/python3,&#39; \<u></u><u></u></span></p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L87">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC87">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${D}${sbindir}/dnssec-c=
+overage \<u></u><u></u></span></p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L88">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC88">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${D}${sbindir}/dnssec-c=
+heckds \<u></u><u></u></span></p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L89">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC89">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${D}${sbindir}/dnssec-k=
+eymgr<u></u><u></u></span></p>
+</td>
+</tr>
+<tr style=3D"box-sizing:border-box">
+<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
+5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
+ail-m_8719919474931647220L90">
+</td>
+<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
+w:visible" id=3D"gmail-m_8719919474931647220LC90">
+<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
+9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 fi<u></u><u></u></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt">Which yocto now has d=
+ig or host for DNS lookup?<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt"><u></u>=C2=A0</span><=
+/p></div></div></blockquote><div><br></div><div><div class=3D"gmail_default=
+" style=3D"font-family:monospace,monospace">you can install bind-utils in i=
+mage which should</div><div class=3D"gmail_default" style=3D"font-family:mo=
+nospace,monospace">give you dig and host</div><br></div><div>=C2=A0</div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex"><div lang=3D"EN-US"><div cl=
+ass=3D"gmail-m_8719919474931647220WordSection1"><p class=3D"MsoNormal"><spa=
+n style=3D"font-size:12pt"><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt">Thanks,<u></u><u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt">=C2=A0 --Dinh <u></u>=
+<u></u></span></p>
+</div>
+</div>
+
+</blockquote></div></div></div>
+
+--000000000000ecd6450581e3a71c--
