@@ -1,63 +1,80 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <dinhn@cisco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4ED2E00C71; Thu, 14 Feb 2019 16:14:20 -0800 (PST)
+	id 7DD35E00C71; Thu, 14 Feb 2019 16:33:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI,SPF_HELO_PASS,
+	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.182 listed in list.dnswl.org]
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [173.37.142.92 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
+	white-list
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
-	[209.85.222.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F995E009EB
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 16:14:19 -0800 (PST)
-Received: by mail-qk1-f182.google.com with SMTP id h28so916273qkk.7
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 16:14:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=7CCGLjePFxD6vXUNoH7XAnnMTUOdLZqLC430SnOxI1I=;
-	b=UL2SlrC2pRVnLw6Ee31b0QRfLlsi1QFWHnIA7YzRLlqL35O0vYc/jglPJBPxHiQZWb
-	tbSLLQq1hIOFaIlhtRju90KtkBGPPeq68OOzGyehe/967G+6bMiWtSGZziOyqaZlkKif
-	AvO/jzxxx7lQwhaGr16tJFcMklyR+2exZTnFKJPykV3WPwKp7cPRKlRdi3ICOWaR6dQt
-	0gNMScg9sOm9PLPgAr2vAGTiyZZr+vBeQe/UA9hhKLoTy70C8TQ3SlbnrGsq+d5EN/qI
-	Gu0Uq9yCbG52/NZdmaLgxwbNbvlyJocw1F+C3io/3XXQdPvRBYLCKAGHqD8/0LcvBXUE
-	V8RA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=7CCGLjePFxD6vXUNoH7XAnnMTUOdLZqLC430SnOxI1I=;
-	b=PrnL0vgIj79ohwRiq/bbTwKcOihXmGy9qcm9fbNqCx5ZO4P3YDgFbvIUSzjwNwCxGO
-	7CZJ+yzMw6pq7/PuxOXRi9qrWxy9gjteBcMp+Xkmey1f0uIiRexgPW0aG49ULGxbP3nZ
-	t6+eZdhEbTZEcz/mRmowahEezYmlvJrF9RDgM76iGs/LkdrJooOVDPlL9Apsek6ZLXft
-	neJ2p2AqN6luNBLXhPDVo8GSklkGVmpT3EQUY6/dK5CX+zvXnLn7WjzyfQxz3uKDw/Lj
-	yg1bnQKj8eOJEg9q2DbUNajuK7uOUES2UJMq5mP57IA6E5fFLsJjffwde+ciAHwdiG+d
-	Ryog==
-X-Gm-Message-State: AHQUAuanIeiA3djx2e8ufN5Tt/IZ0HQRaPT9BBcnPPgSpP4LK4zGlR0/
-	Jg6EfO5+ipYOL4ioOK3+1qj3sUgzaeOY5XMf6jM=
-X-Google-Smtp-Source: AHgI3IYGx+4TKj7jL+8LdqGcvEoOLSrWixkn/XgF5j75nvosoas09JSDlLtKZjbRQ8eIP4d7VW/OjN4nRgqfio2le2g=
-X-Received: by 2002:a37:9585:: with SMTP id x127mr4997242qkd.315.1550189658426;
-	Thu, 14 Feb 2019 16:14:18 -0800 (PST)
-MIME-Version: 1.0
+Received: from alln-iport-5.cisco.com (alln-iport-5.cisco.com [173.37.142.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B49B1E006B3
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2019 16:33:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=cisco.com; i=@cisco.com; l=26634; q=dns/txt;
+	s=iport; t=1550190784; x=1551400384;
+	h=from:to:cc:subject:date:message-id:references:
+	in-reply-to:mime-version;
+	bh=28mCWIlvGb6S3hWezn1VRyN3/Us0zX079QoXJEfFOZE=;
+	b=bk8mLDTMtzVvRPx2VHu7r9AUJ1Ut0PCo14WzBMS4ZjHoO3ki01vwiHfz
+	/vn4O1+kh7cgfx8Ary1jFYC2T5vPkzBYxoAi76H0IvKgScrsamVCP1k2e
+	MLmoxtWoc2xn7GEXjyxYmHKDYQ4rebBL6Q7NB9T3+mqtSLkuA/t3U4oYu w=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0AEAAD8B2Zc/5RdJa1kGgEBAQEBAgE?=
+	=?us-ascii?q?BAQEHAgEBAQGBUQUBAQEBCwGBDXVngQMnCoN8iBqLcIFoJYkqjmkUgWcLAQG?=
+	=?us-ascii?q?EbAIXg0wiNAkNAQMBAQIBAQJtKIVKAQEBBCNWEAIBCBEDAQIhBwMCAgIfERQ?=
+	=?us-ascii?q?JCAIEDgWDIAGBDkwDFasxgS+ICQ2CHoxEF4FAP4E4DBOCTIJXghI4FoJTMYI?=
+	=?us-ascii?q?mApAjhwIUi0IzCQKPF4M7GYw+hjWHUolWiwMCERSBJx84gVZwFWUBgkGQXUE?=
+	=?us-ascii?q?xj0eBHwEB?=
+X-IronPort-AV: E=Sophos;i="5.58,370,1544486400"; 
+	d="scan'208,217";a="237517882"
+Received: from rcdn-core-12.cisco.com ([173.37.93.148])
+	by alln-iport-5.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	15 Feb 2019 00:33:03 +0000
+Received: from XCH-RTP-005.cisco.com (xch-rtp-005.cisco.com [64.101.220.145])
+	by rcdn-core-12.cisco.com (8.15.2/8.15.2) with ESMTPS id
+	x1F0X3vM005012
+	(version=TLSv1.2 cipher=AES256-SHA bits=256 verify=FAIL);
+	Fri, 15 Feb 2019 00:33:03 GMT
+Received: from xch-rtp-002.cisco.com (64.101.220.142) by XCH-RTP-005.cisco.com
+	(64.101.220.145) with Microsoft SMTP Server (TLS) id 15.0.1395.4;
+	Thu, 14 Feb 2019 19:33:02 -0500
+Received: from xch-rtp-002.cisco.com ([64.101.220.142]) by
+	XCH-RTP-002.cisco.com ([64.101.220.142]) with mapi id 15.00.1395.000;
+	Thu, 14 Feb 2019 19:33:02 -0500
+From: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: poky/meta/recipes-connectivity/bind
+Thread-Index: AQHUxL+lmIxe51JqZEa734rAuXdYp6XgUPqA//9/QAA=
+Date: Fri, 15 Feb 2019 00:33:02 +0000
+Message-ID: <92955BA3-4A91-4736-8258-EC8C845B0326@cisco.com>
 References: <5C4C5702-7F30-4817-90FE-CFAEDCB8E0D9@cisco.com>
-In-Reply-To: <5C4C5702-7F30-4817-90FE-CFAEDCB8E0D9@cisco.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 14 Feb 2019 16:13:51 -0800
-Message-ID: <CAMKF1sp19wQiKUpB6Sn0bHEWA9=y==7kt2uu_PLKpE_CqnDR6Q@mail.gmail.com>
-To: "Dinh Nguyen (dinhn)" <dinhn@cisco.com>
+	<CAMKF1sp19wQiKUpB6Sn0bHEWA9=y==7kt2uu_PLKpE_CqnDR6Q@mail.gmail.com>
+In-Reply-To: <CAMKF1sp19wQiKUpB6Sn0bHEWA9=y==7kt2uu_PLKpE_CqnDR6Q@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/10.10.6.190114
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.172.217]
+MIME-Version: 1.0
+X-Outbound-SMTP-Client: 64.101.220.145, xch-rtp-005.cisco.com
+X-Outbound-Node: rcdn-core-12.cisco.com
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: poky/meta/recipes-connectivity/bind
 X-BeenThere: yocto@yoctoproject.org
@@ -71,357 +88,358 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Feb 2019 00:14:20 -0000
-Content-Type: multipart/alternative; boundary="000000000000ecd6450581e3a71c"
+X-List-Received-Date: Fri, 15 Feb 2019 00:33:05 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_92955BA34A9147368258EC8C845B0326ciscocom_"
 
---000000000000ecd6450581e3a71c
-Content-Type: text/plain; charset="UTF-8"
+--_000_92955BA34A9147368258EC8C845B0326ciscocom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Thu, Feb 14, 2019 at 3:47 PM Dinh Nguyen (dinhn) <dinhn@cisco.com> wrote:
+TWFueSB0aGFua3MgZm9yIHlvdXIgcHJvbXB0ICByZXNwb25zZSBhcyBhbHdheXMgS2hlbS4NCkkg
+d2FzIHRyeWluZyB0byBidWlsZCB0aGUgYmluZCByZWNpcGUsIGJ1dCBzZWVpbmcgdGhlIG5zbG9v
+a3VwIGhhcyBiZWVuIHJlbW92ZWQuIEkgbGVmdCBteSB5b2N0byBwcm9qZWN0IHF1aXRlIGxvbmcg
+dGltZSBhZ28gc28gSSBhbSBraW5kIG9mIG91dCBvZiBkYXRlIDstKSkNCg0KQmVzdCAmIHRoYW5r
+cyBhZ2Fpbi4NCiAgLS1EaW5oDQoNCkZyb206IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+
+DQpEYXRlOiBUaHVyc2RheSwgRmVicnVhcnkgMTQsIDIwMTkgYXQgNDoxNCBQTQ0KVG86ICJEaW5o
+IE5ndXllbiAoZGluaG4pIiA8ZGluaG5AY2lzY28uY29tPg0KQ2M6ICJCdXJ0b24sIFJvc3MiIDxy
+b3NzLmJ1cnRvbkBpbnRlbC5jb20+LCAieW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyIgPHlvY3RvQHlv
+Y3RvcHJvamVjdC5vcmc+DQpTdWJqZWN0OiBSZTogcG9reS9tZXRhL3JlY2lwZXMtY29ubmVjdGl2
+aXR5L2JpbmQNCg0KDQoNCk9uIFRodSwgRmViIDE0LCAyMDE5IGF0IDM6NDcgUE0gRGluaCBOZ3V5
+ZW4gKGRpbmhuKSA8ZGluaG5AY2lzY28uY29tPG1haWx0bzpkaW5obkBjaXNjby5jb20+PiB3cm90
+ZToNCkd1cnVzLA0KDQpXaGF0IHdhcyB0aGUgbWFpbiByZWFzb24gd2h5IG5zbG9va3VwIGhhcyBi
+ZWVuIHJlbW92ZWQgZnJvbSBQb2t5L21ldGEvcmVjaXBlcy1jb25uZWN0aXZpdHkvYmluZC88eHh4
+Pj4uYmI/DQoNCg0KbnNsb29wdXAgaXMgc3VwcG9zZWQgdG8gZ28gYXdheSBhcyB0aGUgdXBzdHJl
+YW0gbWFpbnRhaW5lcnMgb2YgdGhpcyBoYXMgc3RvcHBlZCBtYWludGFpbmluZyBpdC4gdXNpbmcg
+ZGlnIG9yIGhvc3QNCnV0aWxpdHkgaXMgc3VnZ2VzdGVkLg0KDQoNCmRvX2luc3RhbGxfYXBwZW5k
+KCkgew0KDQoNCg0KDQoNCiAgICAgICBybSAiJHtEfSR7YmluZGlyfS9uc2xvb2t1cCINCg0KDQog
+ICAgICAgcm0gIiR7RH0ke21hbmRpcn0vbWFuMS9uc2xvb2t1cC4xIg0KDQoNCiAgICAgICBybWRp
+ciAiJHtEfSR7bG9jYWxzdGF0ZWRpcn0vcnVuIg0KDQoNCiAgICAgICBybWRpciAtLWlnbm9yZS1m
+YWlsLW9uLW5vbi1lbXB0eSAiJHtEfSR7bG9jYWxzdGF0ZWRpcn0iDQoNCg0KICAgICAgIGluc3Rh
+bGwgLWQgLW8gYmluZCAiJHtEfSR7bG9jYWxzdGF0ZWRpcn0vY2FjaGUvYmluZCINCg0KDQogICAg
+ICAgaW5zdGFsbCAtZCAiJHtEfSR7c3lzY29uZmRpcn0vYmluZCINCg0KDQogICAgICAgaW5zdGFs
+bCAtZCAiJHtEfSR7c3lzY29uZmRpcn0vaW5pdC5kIg0KDQoNCiAgICAgICBpbnN0YWxsIC1tIDY0
+NCAke1N9L2NvbmYvKiAiJHtEfSR7c3lzY29uZmRpcn0vYmluZC8iDQoNCg0KICAgICAgIGluc3Rh
+bGwgLW0gNzU1ICIke1N9L2luaXQuZCIgIiR7RH0ke3N5c2NvbmZkaXJ9L2luaXQuZC9iaW5kIg0K
+DQoNCiAgICAgICAgaWYgJHtAYmIudXRpbHMuY29udGFpbnMoJ1BBQ0tBR0VDT05GSUcnLCAncHl0
+aG9uMycsICd0cnVlJywgJ2ZhbHNlJywgZCl9OyB0aGVuDQoNCg0KICAgICAgICAgICAgICBzZWQg
+LWkgLWUgJzFzLCMhLipweXRob24zLCMhIC91c3IvYmluL3B5dGhvbjMsJyBcDQoNCg0KICAgICAg
+ICAgICAgICAke0R9JHtzYmluZGlyfS9kbnNzZWMtY292ZXJhZ2UgXA0KDQoNCiAgICAgICAgICAg
+ICAgJHtEfSR7c2JpbmRpcn0vZG5zc2VjLWNoZWNrZHMgXA0KDQoNCiAgICAgICAgICAgICAgJHtE
+fSR7c2JpbmRpcn0vZG5zc2VjLWtleW1ncg0KDQoNCiAgICAgICBmaQ0KDQoNCldoaWNoIHlvY3Rv
+IG5vdyBoYXMgZGlnIG9yIGhvc3QgZm9yIEROUyBsb29rdXA/DQoNCg0KeW91IGNhbiBpbnN0YWxs
+IGJpbmQtdXRpbHMgaW4gaW1hZ2Ugd2hpY2ggc2hvdWxkDQpnaXZlIHlvdSBkaWcgYW5kIGhvc3QN
+Cg0KDQpUaGFua3MsDQogIC0tRGluaA0K
 
-> Gurus,
->
->
->
-> What was the main reason why nslookup has been removed from
-> Poky/meta/recipes-connectivity/bind/<xxx>>.bb?
->
->
->
+--_000_92955BA34A9147368258EC8C845B0326ciscocom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <85391E15397A584680EE5673776ABC0E@emea.cisco.com>
+Content-Transfer-Encoding: base64
 
-nsloopup is supposed to go away as the upstream maintainers of this has
-stopped maintaining it. using dig or host
-utility is suggested.
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
+IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
+IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFz
+Ow0KCXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25z
+ICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjow
+aW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1m
+YW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0K
+CXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246
+dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28t
+c3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRl
+cmxpbmU7fQ0KcC5tc29ub3JtYWwwLCBsaS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXtt
+c28tc3R5bGUtbmFtZTptc29ub3JtYWw7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFy
+Z2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVm
+dDowaW47DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1z
+ZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBs
+eTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0
+O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQt
+c2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0K
+CW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3Bh
+Z2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1V
+UyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEi
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPk1h
+bnkgdGhhbmtzIGZvciB5b3VyIHByb21wdCAmbmJzcDtyZXNwb25zZSBhcyBhbHdheXMgS2hlbS4m
+bmJzcDsNCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTIuMHB0Ij5JIHdhcyB0cnlpbmcgdG8gYnVpbGQgdGhlIGJpbmQg
+cmVjaXBlLCBidXQgc2VlaW5nIHRoZSBuc2xvb2t1cCBoYXMgYmVlbiByZW1vdmVkLiBJIGxlZnQg
+bXkgeW9jdG8gcHJvamVjdCBxdWl0ZSBsb25nIHRpbWUgYWdvIHNvIEkgYW0ga2luZCBvZiBvdXQg
+b2YgZGF0ZSA7LSkpPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0Ij5C
+ZXN0ICZhbXA7IHRoYW5rcyBhZ2Fpbi4gPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPiZuYnNwOyZuYnNwOy0t
+RGluaCA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjEyLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRp
+diBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0O3BhZGRp
+bmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPkZyb206IDwvc3Bhbj48L2I+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPktoZW0gUmFqICZsdDtyYWoua2hl
+bUBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+RGF0ZTogPC9iPlRodXJzZGF5LCBGZWJydWFyeSAxNCwg
+MjAxOSBhdCA0OjE0IFBNPGJyPg0KPGI+VG86IDwvYj4mcXVvdDtEaW5oIE5ndXllbiAoZGluaG4p
+JnF1b3Q7ICZsdDtkaW5obkBjaXNjby5jb20mZ3Q7PGJyPg0KPGI+Q2M6IDwvYj4mcXVvdDtCdXJ0
+b24sIFJvc3MmcXVvdDsgJmx0O3Jvc3MuYnVydG9uQGludGVsLmNvbSZndDssICZxdW90O3lvY3Rv
+QHlvY3RvcHJvamVjdC5vcmcmcXVvdDsgJmx0O3lvY3RvQHlvY3RvcHJvamVjdC5vcmcmZ3Q7PGJy
+Pg0KPGI+U3ViamVjdDogPC9iPlJlOiBwb2t5L21ldGEvcmVjaXBlcy1jb25uZWN0aXZpdHkvYmlu
+ZDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90
+O0NvdXJpZXIgTmV3JnF1b3Q7Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
+CjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFRodSwgRmViIDE0LCAyMDE5IGF0IDM6
+NDcgUE0gRGluaCBOZ3V5ZW4gKGRpbmhuKSAmbHQ7PGEgaHJlZj0ibWFpbHRvOmRpbmhuQGNpc2Nv
+LmNvbSI+ZGluaG5AY2lzY28uY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8L2Rp
+dj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0ND
+Q0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFy
+Z2luLXJpZ2h0OjBpbiI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
+PSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPkd1cnVzLDwvc3Bhbj48bzpwPjwvbzpwPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28t
+bWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPiZu
+YnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJt
+c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPldoYXQgd2FzIHRoZSBtYWluIHJlYXNvbiB3aHkgbnNs
+b29rdXAgaGFzIGJlZW4gcmVtb3ZlZCBmcm9tIFBva3kvbWV0YS9yZWNpcGVzLWNvbm5lY3Rpdml0
+eS9iaW5kLyZsdDt4eHgmZ3Q7Jmd0Oy5iYj8NCjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
+LWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPiZuYnNwOzwv
+c3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxk
+aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
+OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7Ij5uc2xvb3B1cCBpcyBzdXBwb3NlZCB0byBnbyBhd2F5
+IGFzIHRoZSB1cHN0cmVhbSBtYWludGFpbmVycyBvZiB0aGlzIGhhcyBzdG9wcGVkIG1haW50YWlu
+aW5nIGl0LiB1c2luZyBkaWcgb3IgaG9zdDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVv
+dDtDb3VyaWVyIE5ldyZxdW90OyI+dXRpbGl0eSBpcyBzdWdnZXN0ZWQuPG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6
+c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0
+OjQuOHB0O21hcmdpbi1yaWdodDowaW4iPg0KPGRpdj4NCjxkaXY+DQo8dGFibGUgY2xhc3M9Ik1z
+b05vcm1hbFRhYmxlIiBib3JkZXI9IjAiIGNlbGxzcGFjaW5nPSIwIiBjZWxscGFkZGluZz0iMCIg
+c3R5bGU9ImJhY2tncm91bmQ6d2hpdGU7Ym9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlIj4NCjx0Ym9k
+eT4NCjx0cj4NCjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9InBhZGRpbmc6MGluIDcuNXB0IDBpbiA3
+LjVwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
+dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87bGluZS1oZWlnaHQ6MTUuMHB0Ij4NCjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0Mjky
+RSI+ZG9faW5zdGFsbF9hcHBlbmQoKSB7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC90ZD4NCjwv
+dHI+DQo8dHIgc3R5bGU9ImJveC1zaXppbmc6Ym9yZGVyLWJveCI+DQo8dGQgd2lkdGg9IjUwIiBu
+b3dyYXA9IiIgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDozNy41cHQ7cGFkZGluZzowaW4gNy41
+cHQgMGluIDcuNXB0O2JveC1zaXppbmc6Ym9yZGVyLWJveDttaW4td2lkdGg6NTBweDtjb2xvcjpy
+Z2JhKDI3LDMxLDM1LDAuMykiIGlkPSJnbWFpbC1tXzg3MTk5MTk0NzQ5MzE2NDcyMjBMNzUiPg0K
+PC90ZD4NCjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9InBhZGRpbmc6MGluIDcuNXB0IDBpbiA3LjVw
+dDtib3gtc2l6aW5nOmJvcmRlci1ib3g7b3ZlcmZsb3c6dmlzaWJsZSIgaWQ9ImdtYWlsLW1fODcx
+OTkxOTQ3NDkzMTY0NzIyMExDNzUiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
+YXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvO2xpbmUtaGVpZ2h0
+OjE1LjBwdCI+DQo8c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OkNvbnNv
+bGFzO2NvbG9yOiMyNDI5MkUiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvdGQ+DQo8
+L3RyPg0KPHRyIHN0eWxlPSJib3gtc2l6aW5nOmJvcmRlci1ib3giPg0KPHRkIHdpZHRoPSI1MCIg
+bm93cmFwPSIiIHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6MzcuNXB0O3BhZGRpbmc6MGluIDcu
+NXB0IDBpbiA3LjVwdDtib3gtc2l6aW5nOmJvcmRlci1ib3g7bWluLXdpZHRoOjUwcHg7Y29sb3I6
+cmdiYSgyNywzMSwzNSwwLjMpIiBpZD0iZ21haWwtbV84NzE5OTE5NDc0OTMxNjQ3MjIwTDc2Ij4N
+CjwvdGQ+DQo8dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41
+cHQ7Ym94LXNpemluZzpib3JkZXItYm94O292ZXJmbG93OnZpc2libGUiIGlkPSJnbWFpbC1tXzg3
+MTk5MTk0NzQ5MzE2NDcyMjBMQzc2Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bztsaW5lLWhlaWdo
+dDoxNS4wcHQiPg0KPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTpDb25z
+b2xhcztjb2xvcjojMjQyOTJFIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsg
+cm0gJnF1b3Q7JHtEfSR7YmluZGlyfS9uc2xvb2t1cCZxdW90Ozwvc3Bhbj48bzpwPjwvbzpwPjwv
+cD4NCjwvdGQ+DQo8L3RyPg0KPHRyIHN0eWxlPSJib3gtc2l6aW5nOmJvcmRlci1ib3giPg0KPHRk
+IHdpZHRoPSI1MCIgbm93cmFwPSIiIHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6MzcuNXB0O3Bh
+ZGRpbmc6MGluIDcuNXB0IDBpbiA3LjVwdDtib3gtc2l6aW5nOmJvcmRlci1ib3g7bWluLXdpZHRo
+OjUwcHg7Y29sb3I6cmdiYSgyNywzMSwzNSwwLjMpIiBpZD0iZ21haWwtbV84NzE5OTE5NDc0OTMx
+NjQ3MjIwTDc3Ij4NCjwvdGQ+DQo8dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJwYWRkaW5nOjBpbiA3
+LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzpib3JkZXItYm94O292ZXJmbG93OnZpc2libGUiIGlk
+PSJnbWFpbC1tXzg3MTk5MTk0NzQ5MzE2NDcyMjBMQzc3Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+IHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0
+bztsaW5lLWhlaWdodDoxNS4wcHQiPg0KPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250
+LWZhbWlseTpDb25zb2xhcztjb2xvcjojMjQyOTJFIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsgcm0gJnF1b3Q7JHtEfSR7bWFuZGlyfS9tYW4xL25zbG9va3VwLjEmcXVvdDs8
+L3NwYW4+PG86cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iYm94LXNpemlu
+Zzpib3JkZXItYm94Ij4NCjx0ZCB3aWR0aD0iNTAiIG5vd3JhcD0iIiB2YWxpZ249InRvcCIgc3R5
+bGU9IndpZHRoOjM3LjVwdDtwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzpi
+b3JkZXItYm94O21pbi13aWR0aDo1MHB4O2NvbG9yOnJnYmEoMjcsMzEsMzUsMC4zKSIgaWQ9Imdt
+YWlsLW1fODcxOTkxOTQ3NDkzMTY0NzIyMEw3OCI+DQo8L3RkPg0KPHRkIHZhbGlnbj0idG9wIiBz
+dHlsZT0icGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6Ym9yZGVyLWJveDtv
+dmVyZmxvdzp2aXNpYmxlIiBpZD0iZ21haWwtbV84NzE5OTE5NDc0OTMxNjQ3MjIwTEM3OCI+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
+cmdpbi1ib3R0b20tYWx0OmF1dG87bGluZS1oZWlnaHQ6MTUuMHB0Ij4NCjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0MjkyRSI+Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IHJtZGlyICZxdW90OyR7RH0ke2xvY2Fsc3Rh
+dGVkaXJ9L3J1biZxdW90Ozwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRy
+IHN0eWxlPSJib3gtc2l6aW5nOmJvcmRlci1ib3giPg0KPHRkIHdpZHRoPSI1MCIgbm93cmFwPSIi
+IHZhbGlnbj0idG9wIiBzdHlsZT0id2lkdGg6MzcuNXB0O3BhZGRpbmc6MGluIDcuNXB0IDBpbiA3
+LjVwdDtib3gtc2l6aW5nOmJvcmRlci1ib3g7bWluLXdpZHRoOjUwcHg7Y29sb3I6cmdiYSgyNywz
+MSwzNSwwLjMpIiBpZD0iZ21haWwtbV84NzE5OTE5NDc0OTMxNjQ3MjIwTDc5Ij4NCjwvdGQ+DQo8
+dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNp
+emluZzpib3JkZXItYm94O292ZXJmbG93OnZpc2libGUiIGlkPSJnbWFpbC1tXzg3MTk5MTk0NzQ5
+MzE2NDcyMjBMQzc5Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bztsaW5lLWhlaWdodDoxNS4wcHQi
+Pg0KPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTpDb25zb2xhcztjb2xv
+cjojMjQyOTJFIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgcm1kaXIgLS1p
+Z25vcmUtZmFpbC1vbi1ub24tZW1wdHkgJnF1b3Q7JHtEfSR7bG9jYWxzdGF0ZWRpcn0mcXVvdDs8
+L3NwYW4+PG86cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iYm94LXNpemlu
+Zzpib3JkZXItYm94Ij4NCjx0ZCB3aWR0aD0iNTAiIG5vd3JhcD0iIiB2YWxpZ249InRvcCIgc3R5
+bGU9IndpZHRoOjM3LjVwdDtwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzpi
+b3JkZXItYm94O21pbi13aWR0aDo1MHB4O2NvbG9yOnJnYmEoMjcsMzEsMzUsMC4zKSIgaWQ9Imdt
+YWlsLW1fODcxOTkxOTQ3NDkzMTY0NzIyMEw4MCI+DQo8L3RkPg0KPHRkIHZhbGlnbj0idG9wIiBz
+dHlsZT0icGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6Ym9yZGVyLWJveDtv
+dmVyZmxvdzp2aXNpYmxlIiBpZD0iZ21haWwtbV84NzE5OTE5NDc0OTMxNjQ3MjIwTEM4MCI+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
+cmdpbi1ib3R0b20tYWx0OmF1dG87bGluZS1oZWlnaHQ6MTUuMHB0Ij4NCjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0MjkyRSI+Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGluc3RhbGwgLWQgLW8gYmluZCAmcXVvdDsk
+e0R9JHtsb2NhbHN0YXRlZGlyfS9jYWNoZS9iaW5kJnF1b3Q7PC9zcGFuPjxvOnA+PC9vOnA+PC9w
+Pg0KPC90ZD4NCjwvdHI+DQo8dHIgc3R5bGU9ImJveC1zaXppbmc6Ym9yZGVyLWJveCI+DQo8dGQg
+d2lkdGg9IjUwIiBub3dyYXA9IiIgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDozNy41cHQ7cGFk
+ZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6Ym9yZGVyLWJveDttaW4td2lkdGg6
+NTBweDtjb2xvcjpyZ2JhKDI3LDMxLDM1LDAuMykiIGlkPSJnbWFpbC1tXzg3MTk5MTk0NzQ5MzE2
+NDcyMjBMODEiPg0KPC90ZD4NCjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9InBhZGRpbmc6MGluIDcu
+NXB0IDBpbiA3LjVwdDtib3gtc2l6aW5nOmJvcmRlci1ib3g7b3ZlcmZsb3c6dmlzaWJsZSIgaWQ9
+ImdtYWlsLW1fODcxOTkxOTQ3NDkzMTY0NzIyMExDODEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
+O2xpbmUtaGVpZ2h0OjE1LjBwdCI+DQo8c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQt
+ZmFtaWx5OkNvbnNvbGFzO2NvbG9yOiMyNDI5MkUiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyBpbnN0YWxsIC1kICZxdW90OyR7RH0ke3N5c2NvbmZkaXJ9L2JpbmQmcXVvdDs8
+L3NwYW4+PG86cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iYm94LXNpemlu
+Zzpib3JkZXItYm94Ij4NCjx0ZCB3aWR0aD0iNTAiIG5vd3JhcD0iIiB2YWxpZ249InRvcCIgc3R5
+bGU9IndpZHRoOjM3LjVwdDtwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzpi
+b3JkZXItYm94O21pbi13aWR0aDo1MHB4O2NvbG9yOnJnYmEoMjcsMzEsMzUsMC4zKSIgaWQ9Imdt
+YWlsLW1fODcxOTkxOTQ3NDkzMTY0NzIyMEw4MiI+DQo8L3RkPg0KPHRkIHZhbGlnbj0idG9wIiBz
+dHlsZT0icGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6Ym9yZGVyLWJveDtv
+dmVyZmxvdzp2aXNpYmxlIiBpZD0iZ21haWwtbV84NzE5OTE5NDc0OTMxNjQ3MjIwTEM4MiI+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
+cmdpbi1ib3R0b20tYWx0OmF1dG87bGluZS1oZWlnaHQ6MTUuMHB0Ij4NCjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0MjkyRSI+Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGluc3RhbGwgLWQgJnF1b3Q7JHtEfSR7c3lz
+Y29uZmRpcn0vaW5pdC5kJnF1b3Q7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC90ZD4NCjwvdHI+
+DQo8dHIgc3R5bGU9ImJveC1zaXppbmc6Ym9yZGVyLWJveCI+DQo8dGQgd2lkdGg9IjUwIiBub3dy
+YXA9IiIgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDozNy41cHQ7cGFkZGluZzowaW4gNy41cHQg
+MGluIDcuNXB0O2JveC1zaXppbmc6Ym9yZGVyLWJveDttaW4td2lkdGg6NTBweDtjb2xvcjpyZ2Jh
+KDI3LDMxLDM1LDAuMykiIGlkPSJnbWFpbC1tXzg3MTk5MTk0NzQ5MzE2NDcyMjBMODMiPg0KPC90
+ZD4NCjx0ZCB2YWxpZ249InRvcCIgc3R5bGU9InBhZGRpbmc6MGluIDcuNXB0IDBpbiA3LjVwdDti
+b3gtc2l6aW5nOmJvcmRlci1ib3g7b3ZlcmZsb3c6dmlzaWJsZSIgaWQ9ImdtYWlsLW1fODcxOTkx
+OTQ3NDkzMTY0NzIyMExDODMiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
+aW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvO2xpbmUtaGVpZ2h0OjE1
+LjBwdCI+DQo8c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OkNvbnNvbGFz
+O2NvbG9yOiMyNDI5MkUiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBpbnN0
+YWxsIC1tIDY0NCAke1N9L2NvbmYvKiAmcXVvdDske0R9JHtzeXNjb25mZGlyfS9iaW5kLyZxdW90
+Ozwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRyIHN0eWxlPSJib3gtc2l6
+aW5nOmJvcmRlci1ib3giPg0KPHRkIHdpZHRoPSI1MCIgbm93cmFwPSIiIHZhbGlnbj0idG9wIiBz
+dHlsZT0id2lkdGg6MzcuNXB0O3BhZGRpbmc6MGluIDcuNXB0IDBpbiA3LjVwdDtib3gtc2l6aW5n
+OmJvcmRlci1ib3g7bWluLXdpZHRoOjUwcHg7Y29sb3I6cmdiYSgyNywzMSwzNSwwLjMpIiBpZD0i
+Z21haWwtbV84NzE5OTE5NDc0OTMxNjQ3MjIwTDg0Ij4NCjwvdGQ+DQo8dGQgdmFsaWduPSJ0b3Ai
+IHN0eWxlPSJwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzpib3JkZXItYm94
+O292ZXJmbG93OnZpc2libGUiIGlkPSJnbWFpbC1tXzg3MTk5MTk0NzQ5MzE2NDcyMjBMQzg0Ij4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28t
+bWFyZ2luLWJvdHRvbS1hbHQ6YXV0bztsaW5lLWhlaWdodDoxNS4wcHQiPg0KPHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTpDb25zb2xhcztjb2xvcjojMjQyOTJFIj4mbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgaW5zdGFsbCAtbSA3NTUgJnF1b3Q7JHtT
+fS9pbml0LmQmcXVvdDsgJnF1b3Q7JHtEfSR7c3lzY29uZmRpcn0vaW5pdC5kL2JpbmQmcXVvdDs8
+L3NwYW4+PG86cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iYm94LXNpemlu
+Zzpib3JkZXItYm94Ij4NCjx0ZCB3aWR0aD0iNTAiIG5vd3JhcD0iIiB2YWxpZ249InRvcCIgc3R5
+bGU9IndpZHRoOjM3LjVwdDtwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzpi
+b3JkZXItYm94O21pbi13aWR0aDo1MHB4O2NvbG9yOnJnYmEoMjcsMzEsMzUsMC4zKSIgaWQ9Imdt
+YWlsLW1fODcxOTkxOTQ3NDkzMTY0NzIyMEw4NSI+DQo8L3RkPg0KPHRkIHZhbGlnbj0idG9wIiBz
+dHlsZT0icGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6Ym9yZGVyLWJveDtv
+dmVyZmxvdzp2aXNpYmxlIiBpZD0iZ21haWwtbV84NzE5OTE5NDc0OTMxNjQ3MjIwTEM4NSI+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
+cmdpbi1ib3R0b20tYWx0OmF1dG87bGluZS1oZWlnaHQ6MTUuMHB0Ij4NCjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0MjkyRSI+Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGlmICR7QGJiLnV0aWxzLmNvbnRh
+aW5zKCdQQUNLQUdFQ09ORklHJywgJ3B5dGhvbjMnLCAndHJ1ZScsICdmYWxzZScsIGQpfTsgdGhl
+bjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRyIHN0eWxlPSJib3gtc2l6
+aW5nOmJvcmRlci1ib3giPg0KPHRkIHdpZHRoPSI1MCIgbm93cmFwPSIiIHZhbGlnbj0idG9wIiBz
+dHlsZT0id2lkdGg6MzcuNXB0O3BhZGRpbmc6MGluIDcuNXB0IDBpbiA3LjVwdDtib3gtc2l6aW5n
+OmJvcmRlci1ib3g7bWluLXdpZHRoOjUwcHg7Y29sb3I6cmdiYSgyNywzMSwzNSwwLjMpIiBpZD0i
+Z21haWwtbV84NzE5OTE5NDc0OTMxNjQ3MjIwTDg2Ij4NCjwvdGQ+DQo8dGQgdmFsaWduPSJ0b3Ai
+IHN0eWxlPSJwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzpib3JkZXItYm94
+O292ZXJmbG93OnZpc2libGUiIGlkPSJnbWFpbC1tXzg3MTk5MTk0NzQ5MzE2NDcyMjBMQzg2Ij4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28t
+bWFyZ2luLWJvdHRvbS1hbHQ6YXV0bztsaW5lLWhlaWdodDoxNS4wcHQiPg0KPHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTpDb25zb2xhcztjb2xvcjojMjQyOTJFIj4mbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsgc2VkIC1pIC1lICcxcywjIS4qcHl0aG9uMywjISAvdXNyL2Jpbi9w
+eXRob24zLCcgXDwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRyIHN0eWxl
+PSJib3gtc2l6aW5nOmJvcmRlci1ib3giPg0KPHRkIHdpZHRoPSI1MCIgbm93cmFwPSIiIHZhbGln
+bj0idG9wIiBzdHlsZT0id2lkdGg6MzcuNXB0O3BhZGRpbmc6MGluIDcuNXB0IDBpbiA3LjVwdDti
+b3gtc2l6aW5nOmJvcmRlci1ib3g7bWluLXdpZHRoOjUwcHg7Y29sb3I6cmdiYSgyNywzMSwzNSww
+LjMpIiBpZD0iZ21haWwtbV84NzE5OTE5NDc0OTMxNjQ3MjIwTDg3Ij4NCjwvdGQ+DQo8dGQgdmFs
+aWduPSJ0b3AiIHN0eWxlPSJwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzpi
+b3JkZXItYm94O292ZXJmbG93OnZpc2libGUiIGlkPSJnbWFpbC1tXzg3MTk5MTk0NzQ5MzE2NDcy
+MjBMQzg3Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6
+YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bztsaW5lLWhlaWdodDoxNS4wcHQiPg0KPHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTpDb25zb2xhcztjb2xvcjojMjQy
+OTJFIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgJHtEfSR7c2JpbmRpcn0vZG5zc2VjLWNvdmVyYWdl
+IFw8L3NwYW4+PG86cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iYm94LXNp
+emluZzpib3JkZXItYm94Ij4NCjx0ZCB3aWR0aD0iNTAiIG5vd3JhcD0iIiB2YWxpZ249InRvcCIg
+c3R5bGU9IndpZHRoOjM3LjVwdDtwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemlu
+Zzpib3JkZXItYm94O21pbi13aWR0aDo1MHB4O2NvbG9yOnJnYmEoMjcsMzEsMzUsMC4zKSIgaWQ9
+ImdtYWlsLW1fODcxOTkxOTQ3NDkzMTY0NzIyMEw4OCI+DQo8L3RkPg0KPHRkIHZhbGlnbj0idG9w
+IiBzdHlsZT0icGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6Ym9yZGVyLWJv
+eDtvdmVyZmxvdzp2aXNpYmxlIiBpZD0iZ21haWwtbV84NzE5OTE5NDc0OTMxNjQ3MjIwTEM4OCI+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNv
+LW1hcmdpbi1ib3R0b20tYWx0OmF1dG87bGluZS1oZWlnaHQ6MTUuMHB0Ij4NCjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0MjkyRSI+Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7RH0ke3NiaW5kaXJ9L2Ruc3NlYy1jaGVja2RzIFw8L3NwYW4+
+PG86cD48L286cD48L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iYm94LXNpemluZzpib3Jk
+ZXItYm94Ij4NCjx0ZCB3aWR0aD0iNTAiIG5vd3JhcD0iIiB2YWxpZ249InRvcCIgc3R5bGU9Indp
+ZHRoOjM3LjVwdDtwYWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzpib3JkZXIt
+Ym94O21pbi13aWR0aDo1MHB4O2NvbG9yOnJnYmEoMjcsMzEsMzUsMC4zKSIgaWQ9ImdtYWlsLW1f
+ODcxOTkxOTQ3NDkzMTY0NzIyMEw4OSI+DQo8L3RkPg0KPHRkIHZhbGlnbj0idG9wIiBzdHlsZT0i
+cGFkZGluZzowaW4gNy41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6Ym9yZGVyLWJveDtvdmVyZmxv
+dzp2aXNpYmxlIiBpZD0iZ21haWwtbV84NzE5OTE5NDc0OTMxNjQ3MjIwTEM4OSI+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1i
+b3R0b20tYWx0OmF1dG87bGluZS1oZWlnaHQ6MTUuMHB0Ij4NCjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6OS4wcHQ7Zm9udC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0MjkyRSI+Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7ICR7RH0ke3NiaW5kaXJ9L2Ruc3NlYy1rZXltZ3I8L3NwYW4+PG86cD48L286cD48
+L3A+DQo8L3RkPg0KPC90cj4NCjx0ciBzdHlsZT0iYm94LXNpemluZzpib3JkZXItYm94Ij4NCjx0
+ZCB3aWR0aD0iNTAiIG5vd3JhcD0iIiB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjM3LjVwdDtw
+YWRkaW5nOjBpbiA3LjVwdCAwaW4gNy41cHQ7Ym94LXNpemluZzpib3JkZXItYm94O21pbi13aWR0
+aDo1MHB4O2NvbG9yOnJnYmEoMjcsMzEsMzUsMC4zKSIgaWQ9ImdtYWlsLW1fODcxOTkxOTQ3NDkz
+MTY0NzIyMEw5MCI+DQo8L3RkPg0KPHRkIHZhbGlnbj0idG9wIiBzdHlsZT0icGFkZGluZzowaW4g
+Ny41cHQgMGluIDcuNXB0O2JveC1zaXppbmc6Ym9yZGVyLWJveDtvdmVyZmxvdzp2aXNpYmxlIiBp
+ZD0iZ21haWwtbV84NzE5OTE5NDc0OTMxNjQ3MjIwTEM5MCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG87bGluZS1oZWlnaHQ6MTUuMHB0Ij4NCjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9u
+dC1mYW1pbHk6Q29uc29sYXM7Y29sb3I6IzI0MjkyRSI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7IGZpPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC90ZD4NCjwvdHI+DQo8L3Ri
+b2R5Pg0KPC90YWJsZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMi4wcHQiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1h
+bHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQiPldoaWNoIHlvY3RvIG5vdyBo
+YXMgZGlnIG9yIGhvc3QgZm9yIEROUyBsb29rdXA/PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJn
+aW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdCI+Jm5ic3A7
+PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1p
+bHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsiPnlvdSBjYW4gaW5zdGFsbCBiaW5kLXV0aWxzIGlu
+IGltYWdlIHdoaWNoIHNob3VsZDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb3Vy
+aWVyIE5ldyZxdW90OyI+Z2l2ZSB5b3UgZGlnIGFuZCBob3N0PG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0K
+PC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQg
+I0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0
+O21hcmdpbi1yaWdodDowaW4iPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0Ij5UaGFua3MsPC9zcGFuPjxvOnA+PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRv
+O21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBw
+dCI+Jm5ic3A7IC0tRGluaA0KPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4N
+CjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0K
+PC9odG1sPg0K
 
-
-
-> do_install_append() {
->
->
->
->        rm "${D}${bindir}/nslookup"
->
->        rm "${D}${mandir}/man1/nslookup.1"
->
->        rmdir "${D}${localstatedir}/run"
->
->        rmdir --ignore-fail-on-non-empty "${D}${localstatedir}"
->
->        install -d -o bind "${D}${localstatedir}/cache/bind"
->
->        install -d "${D}${sysconfdir}/bind"
->
->        install -d "${D}${sysconfdir}/init.d"
->
->        install -m 644 ${S}/conf/* "${D}${sysconfdir}/bind/"
->
->        install -m 755 "${S}/init.d" "${D}${sysconfdir}/init.d/bind"
->
->         if ${@bb.utils.contains('PACKAGECONFIG', 'python3', 'true',
-> 'false', d)}; then
->
->               sed -i -e '1s,#!.*python3,#! /usr/bin/python3,' \
->
->               ${D}${sbindir}/dnssec-coverage \
->
->               ${D}${sbindir}/dnssec-checkds \
->
->               ${D}${sbindir}/dnssec-keymgr
->
->        fi
->
->
->
-> Which yocto now has dig or host for DNS lookup?
->
->
->
-
-you can install bind-utils in image which should
-give you dig and host
-
-
-
-> Thanks,
->
->   --Dinh
->
-
---000000000000ecd6450581e3a71c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_defa=
-ult" style=3D"font-family:monospace,monospace"><br></div></div><br><div cla=
-ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 14, 20=
-19 at 3:47 PM Dinh Nguyen (dinhn) &lt;<a href=3D"mailto:dinhn@cisco.com">di=
-nhn@cisco.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_8719919474931647220WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt">Gurus,<u></u><u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt"><u></u>=C2=A0<u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt">What was the main rea=
-son why nslookup has been removed from Poky/meta/recipes-connectivity/bind/=
-&lt;xxx&gt;&gt;.bb?
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt"><u></u>=C2=A0</span><=
-/p></div></div></blockquote><div><br></div><div><div class=3D"gmail_default=
-" style=3D"font-family:monospace,monospace">nsloopup is supposed to go away=
- as the upstream maintainers of this has stopped maintaining it. using dig =
-or host</div><div class=3D"gmail_default" style=3D"font-family:monospace,mo=
-nospace">utility is suggested.</div><br></div><div>=C2=A0</div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex"><div lang=3D"EN-US"><div class=3D"gma=
-il-m_8719919474931647220WordSection1"><p class=3D"MsoNormal"><span style=3D=
-"font-size:12pt"><u></u></span></p>
-<table class=3D"gmail-m_8719919474931647220MsoNormalTable" border=3D"0" cel=
-lspacing=3D"0" cellpadding=3D"0" style=3D"background:white;border-collapse:=
-collapse">
-<tbody>
-<tr>
-<td valign=3D"top" style=3D"padding:0in 7.5pt">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">do_install_append() {<u></u><=
-u></u></span></p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L75">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC75">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)"><u></u>=C2=A0<u></u></span></=
-p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L76">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC76">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 rm &quot;${D}${bindir}/nslookup&quot;<u></u><u></u></span></p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L77">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC77">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 rm &quot;${D}${mandir}/man1/nslookup.1&quot;<u></u><u></u></span>=
-</p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L78">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC78">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 rmdir &quot;${D}${localstatedir}/run&quot;<u></u><u></u></span></=
-p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L79">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC79">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 rmdir --ignore-fail-on-non-empty &quot;${D}${localstatedir}&quot;=
-<u></u><u></u></span></p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L80">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC80">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 install -d -o bind &quot;${D}${localstatedir}/cache/bind&quot;<u>=
-</u><u></u></span></p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L81">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC81">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 install -d &quot;${D}${sysconfdir}/bind&quot;<u></u><u></u></span=
-></p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L82">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC82">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 install -d &quot;${D}${sysconfdir}/init.d&quot;<u></u><u></u></sp=
-an></p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L83">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC83">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 install -m 644 ${S}/conf/* &quot;${D}${sysconfdir}/bind/&quot;<u>=
-</u><u></u></span></p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L84">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC84">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 install -m 755 &quot;${S}/init.d&quot; &quot;${D}${sysconfdir}/in=
-it.d/bind&quot;<u></u><u></u></span></p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L85">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC85">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 if ${@bb.utils.contains(&#39;PACKAGECONFIG&#39;, &#39;pytho=
-n3&#39;, &#39;true&#39;, &#39;false&#39;, d)}; then<u></u><u></u></span></p=
->
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L86">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC86">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sed -i -e &#39;1s,#!.*p=
-ython3,#! /usr/bin/python3,&#39; \<u></u><u></u></span></p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L87">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC87">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${D}${sbindir}/dnssec-c=
-overage \<u></u><u></u></span></p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L88">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC88">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${D}${sbindir}/dnssec-c=
-heckds \<u></u><u></u></span></p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L89">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC89">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ${D}${sbindir}/dnssec-k=
-eymgr<u></u><u></u></span></p>
-</td>
-</tr>
-<tr style=3D"box-sizing:border-box">
-<td width=3D"50" nowrap valign=3D"top" style=3D"width:37.5pt;padding:0in 7.=
-5pt;box-sizing:border-box;min-width:50px;color:rgba(27,31,35,0.3)" id=3D"gm=
-ail-m_8719919474931647220L90">
-</td>
-<td valign=3D"top" style=3D"padding:0in 7.5pt;box-sizing:border-box;overflo=
-w:visible" id=3D"gmail-m_8719919474931647220LC90">
-<p class=3D"MsoNormal" style=3D"line-height:15pt"><span style=3D"font-size:=
-9pt;font-family:Consolas;color:rgb(36,41,46)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 fi<u></u><u></u></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt"><u></u>=C2=A0<u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt">Which yocto now has d=
-ig or host for DNS lookup?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt"><u></u>=C2=A0</span><=
-/p></div></div></blockquote><div><br></div><div><div class=3D"gmail_default=
-" style=3D"font-family:monospace,monospace">you can install bind-utils in i=
-mage which should</div><div class=3D"gmail_default" style=3D"font-family:mo=
-nospace,monospace">give you dig and host</div><br></div><div>=C2=A0</div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex"><div lang=3D"EN-US"><div cl=
-ass=3D"gmail-m_8719919474931647220WordSection1"><p class=3D"MsoNormal"><spa=
-n style=3D"font-size:12pt"><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt">Thanks,<u></u><u></u>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12pt">=C2=A0 --Dinh <u></u>=
-<u></u></span></p>
-</div>
-</div>
-
-</blockquote></div></div></div>
-
---000000000000ecd6450581e3a71c--
+--_000_92955BA34A9147368258EC8C845B0326ciscocom_--
