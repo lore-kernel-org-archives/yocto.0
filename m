@@ -1,63 +1,64 @@
-Return-Path: <luciosantinell@libero.it>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 07306E00CC8; Mon, 18 Feb 2019 07:43:10 -0800 (PST)
+	id 294BAE00CB6; Mon, 18 Feb 2019 07:46:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, SPF_HELO_PASS autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (luciosantinell[at]libero.it)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [213.209.12.32 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	provider *      (raj.khem[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 60 seconds by postgrey-1.32 at yocto-www;
-	Mon, 18 Feb 2019 07:43:09 PST
-Received: from libero.it (smtp-32-i2.italiaonline.it [213.209.12.32])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 411F6E00CB6
-	for <yocto@yoctoproject.org>; Mon, 18 Feb 2019 07:43:09 -0800 (PST)
-Received: from oxapps-10-060.iol.local ([10.101.8.70])
-	by smtp-32.iol.local with ESMTPA
-	id vl3XgRSvP6rc5vl3XgltW1; Mon, 18 Feb 2019 16:42:07 +0100
-x-libjamoibt: 1601
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2014;
-	t=1550504527; bh=clpfew8hQwF7G47S7RXqT+v8WB02+H/mSRVLQQHu6zc=;
-	h=Date:From:To:Subject;
-	b=ihCuVcLVJUNEwQzicdlXUi98/RrZiyiCuDwwkaHlWiqC6Elf/KM7YWgTbynZ2Yw59
-	oRefJWQYIfmNgmAaZTlG+XPcRKi5X1qpR7ZT0ANJ5JQpXFrosKRJoli45wkZBFFTD/
-	6gnjrI+7FqKtB/4+DPo09+0M65QK0ywTQk0ykqbc3eQ08byZK8pX2cYXMxnADtqviu
-	lYgXnB/gTy8PEWi0dJysPAL6qWynI93ZrY1/BC3ukXiWHPeHnORVz/02Wc0D3y1Wjl
-	+Ftqhvx1g23B2ohhBJRy1wJVi5QOnNRXq6s0tr3IbHkCOfw0QHZLCbLkeB3sNqv+CZ
-	8p/rzwSZUTxHw==
-X-CNFS-Analysis: v=2.3 cv=d7kkNirE c=1 sm=1 tr=0
-	a=N6tDZBjKOqonna1m1e4Nkw==:117 a=1VHoG3c1NY8A:10 a=1Y-2xJgGt1QA:10
-	a=aUS2PXKd9D41fZA20poA:9 a=QEXdDO2ut3YA:10 a=7SgrHd5idjNJQWP2:21
-	a=_W_S_7VecoQA:10
-Date: Mon, 18 Feb 2019 16:42:07 +0100 (CET)
-From: luciosantinell@libero.it
-To: yocto@yoctoproject.org
-Message-ID: <279332559.340239.1550504527934@mail.libero.it>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.171 listed in list.dnswl.org]
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com
+	[209.85.222.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A19E9E00BC8
+	for <yocto@yoctoproject.org>; Mon, 18 Feb 2019 07:46:09 -0800 (PST)
+Received: by mail-qk1-f171.google.com with SMTP id y195so10175639qka.12
+	for <yocto@yoctoproject.org>; Mon, 18 Feb 2019 07:46:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=ocW6E66NMIav3VFI1pQQYUWDbylPpwRWP6wgMvOYF14=;
+	b=o+Qo6I1mvb8F5YPv+OWq6DkrhWuQP11uG1pOcmWMufqgz1+bZh3lMOG4otidSc6cwT
+	9muLZVsMqFc6Ok2LaFOCqgc5ig+UpycpsZ5MM7BzKTXdOLtpo2i5HOZQtt+tVZVlRMfw
+	8W0I5h1DTINCrciSnMhzfWx6DQACo2/JK8ftnYT/oyXcygiAmGwgc0qa8iVQJ2l/QTwS
+	84E4QZXYvzo9yn2eOClYwUWKCFVy7X4euWnuLbvAbJlqwo/6C7Xb4HxhGnYvtDkesJ3S
+	hXz1B540gBYqQ935IYmX0kHCGD7oTVbXOdCxUs8kf6HPiOwD+pOvbrQBmp7OCOFxQ8Bw
+	hJjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=ocW6E66NMIav3VFI1pQQYUWDbylPpwRWP6wgMvOYF14=;
+	b=KC2eMz3T0eMtBDgySiw/DYzSRUW6KrkCGtd74sHTywT8WVOlXR8cpE5qPUnDjJ74Qy
+	VfFSTISaaEXuH64zk0cYKJs2Ci5TwZ8Lxsfo1SsofKSU9MYMJVaQaD8nilvHKkgaxmxB
+	nvtx5h/GJ/Hz37O9Bb9913S8thGSedwcBLi2w/gMaIVn0zmrwCsPvX54neex4OoFfGwU
+	ZJn090iNrQOmbHG0Nwuaj+x1Z/1y2D5wMljrXNn1mYtj1K0xnWtdmFeMDwHJanPbk4D9
+	djH85Hy6PR78pOyFvnQWGYCU9JzsQY14YgfW/vu4xjw0Wdh95Jw3aznMeJ5VFfO3mCHd
+	uUvA==
+X-Gm-Message-State: AHQUAuZ9oywSNJ2N+Ofvw5ow1DKguJV8dhr/yUSVLpDbuVcblWHAcm7e
+	a3ID6m9lu0CXbk7NA/q3k7BAJypSWaaOfpsXqJE=
+X-Google-Smtp-Source: AHgI3IZrNs9W8eYHR7xYx5gX4eFJznXo0//ab5IYtq92sr2ra842xTfKkTvACbdnrCS2DfkT2Mi+7JPNxtx9nyIR/Wo=
+X-Received: by 2002:a37:9e15:: with SMTP id h21mr17870020qke.2.1550504768661; 
+	Mon, 18 Feb 2019 07:46:08 -0800 (PST)
 MIME-Version: 1.0
-X-Priority: 3
-Importance: Medium
-X-Mailer: Open-Xchange Mailer v7.8.3-Rev52
-X-Originating-IP: 87.9.31.50
-X-Originating-Client: open-xchange-appsuite
-x-libjamsun: Pavv5qasNc+JVmK69Ilaubp3+wAM0Rxe9KcfXQlJ7Yg=
-x-libjamv: V7zdTxlcTvU=
-X-CMAE-Envelope: MS4wfBVlsfKwYtNyXflkzOUaalm/UqYz7Yyn2KI4qRKSk1x3kWKWdZJYasbXYSyrfrdBsachJRzYY4JD8qRPTgywoYCiwrXc3OCgnVel+TPzlRa1MKUOQ0Ba
-	QJvmI2083YKBG/TYSCHoVaV0prKlTBCzlfWvVby0tLnj5zMBvrTiEvYLubh9mRriMsqGD1TsIF8EGQ==
-Subject: Add new compiler macro
+References: <279332559.340239.1550504527934@mail.libero.it>
+In-Reply-To: <279332559.340239.1550504527934@mail.libero.it>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 18 Feb 2019 07:45:42 -0800
+Message-ID: <CAMKF1sqSdKEnWfar6npeHwqV84tbbdV+_afMA4jJSHTdbXTe+Q@mail.gmail.com>
+To: luciosantinell@libero.it
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Add new compiler macro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,40 +70,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Feb 2019 15:43:10 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_340238_499166145.1550504527931"
+X-List-Received-Date: Mon, 18 Feb 2019 15:46:10 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-------=_Part_340238_499166145.1550504527931
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+On Mon, Feb 18, 2019 at 7:43 AM <luciosantinell@libero.it> wrote:
+>
+> Hi, i wanted to add a compiler macro (NEW_MACRO) in order to compile all the code hidden beetween
+> #ifdef NEW_MACRO
+>
+> #endif
+> in all my recipes. I think that the right place to do that is in bitbake.conf file present under poky/meta/conf but when i try to do:
+>
+> TARGET_CPPFLAGS += "-MMC_WRITE"
 
-Hi, i wanted to add a compiler macro (NEW_MACRO) in order to compile all the code hidden beetween
-#ifdef NEW_MACRO
+it depends on recipes respecting compiler flags from environment but
+most of them do.
 
-#endif
-in all my recipes. I think that the right place to do that is in bitbake.conf file present under poky/meta/conf but when i try to do: 
+CFLAGS += "-DMMC_WRITE" could do it.
 
-TARGET_CPPFLAGS += "-MMC_WRITE"
+>
+> I get the error :
+> configure: error: cannot compute suffix of object files: cannot compile
+>
+> How can i send the macro to the compiler in the correct way?
+>
+> Thanks
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-I get the error :
-configure: error: cannot compute suffix of object files: cannot compile
-
-How can i send the macro to the compiler in the correct way?
-
-Thanks
-
-
-------=_Part_340238_499166145.1550504527931
-MIME-Version: 1.0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<!DOCTYPE html>
-<html><head>
-    <meta charset="UTF-8">
-</head><body><p>Hi, i wanted to add a compiler macro (NEW_MACRO) in order to compile all the code hidden beetween<br>#ifdef NEW_MACRO<br></p><p>#endif<br>in all my recipes. I think that the right place to do that is in bitbake.conf file present under poky/meta/conf but when i try to do:&#160;<br><br>TARGET_CPPFLAGS += &#34;-MMC_WRITE&#34;<br><br>I get the error : <br>configure: error: cannot compute suffix of object files: cannot compile<br><br>How can i send the macro to the compiler in the correct way?<br><br>Thanks<br><br></p></body></html>
- 
-
-------=_Part_340238_499166145.1550504527931--
