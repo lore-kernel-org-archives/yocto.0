@@ -1,39 +1,31 @@
-Return-Path: <Hongxu.Jia@windriver.com>
+Return-Path: <daniel.ammann@bytesatwork.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 59AEFE00D04; Thu, 21 Feb 2019 03:43:17 -0800 (PST)
+	id C2B57E00CCC; Thu, 21 Feb 2019 04:10:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0867E00BB7
-	for <yocto@yoctoproject.org>; Thu, 21 Feb 2019 03:42:56 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x1LBfBJk004099
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 21 Feb 2019 03:41:21 -0800
-Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.435.0;
-	Thu, 21 Feb 2019 03:41:01 -0800
-From: Hongxu Jia <hongxu.jia@windriver.com>
-To: <richard.purdie@linuxfoundation.org>, <mhalstead@linuxfoundation.org>,
-	<ross.burton@intel.com>, <raj.khem@gmail.com>,
-	<paul.eggleton@linux.intel.com>, <yocto@yoctoproject.org>
-Date: Thu, 21 Feb 2019 06:37:19 -0500
-Message-ID: <1550749039-67320-14-git-send-email-hongxu.jia@windriver.com>
-X-Mailer: git-send-email 2.8.1
-In-Reply-To: <1550749039-67320-1-git-send-email-hongxu.jia@windriver.com>
-References: <1550749039-67320-1-git-send-email-hongxu.jia@windriver.com>
-MIME-Version: 1.0
-Cc: lpd-cdc-core-dev@windriver.com, Zhangle.Yang@windriver.com
-Subject: [meta-tensorflow][PATCH 13/13] add README
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Greylist: delayed 423 seconds by postgrey-1.32 at yocto-www;
+	Thu, 21 Feb 2019 04:10:50 PST
+Received: from bytesatwork.ch (bytesatwork.ch [91.135.72.15])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4EE9E00BB7
+	for <yocto@yoctoproject.org>; Thu, 21 Feb 2019 04:10:50 -0800 (PST)
+Received: from mimas.bytesatwork.ch (162.40.150.83.ftth.as8758.net
+	[83.150.40.162])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested) (Authenticated sender: daniel)
+	by bytesatwork.ch (Postfix) with ESMTPSA id 0441A101C037A
+	for <yocto@yoctoproject.org>; Thu, 21 Feb 2019 13:03:43 +0100 (CET)
+From: Daniel Ammann <daniel.ammann@bytesatwork.ch>
+To: yocto@yoctoproject.org
+Date: Thu, 21 Feb 2019 13:03:42 +0100
+Message-Id: <20190221120342.23013-1-daniel.ammann@bytesatwork.ch>
+X-Mailer: git-send-email 2.11.0
+Subject: [yocto-docs][PATCH] ref-manual: Fix typo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,192 +37,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Feb 2019 11:43:17 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 21 Feb 2019 12:10:51 -0000
 
-Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+Signed-off-by: Daniel Ammann <daniel.ammann@bytesatwork.ch>
 ---
- README | 170 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 170 insertions(+)
- create mode 100644 README
+ documentation/ref-manual/ref-variables.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/README b/README
-new file mode 100644
-index 0000000..3da4e76
---- /dev/null
-+++ b/README
-@@ -0,0 +1,170 @@
-+Introduction
-+-----------
-+TensorFlow is an open source software library for high performance numerical
-+computation primarily used in machine learning. Its flexible architecture
-+allows easy deployment of computation across a variety of types of platforms
-+(CPUs, GPUs, TPUs), and a range of systems from single desktops to clusters
-+of servers to mobile and edge devices.
-+(https://www.tensorflow.org/)
-+
-+The build system of TensorFlow is Bazel (https://bazel.build/).
-+
-+This layer integrates TensorFlow to OE/Yocto platform
-+- Integrate Google's bazel to Yocto
-+- Add Yocto toolchain for bazel to support cross compiling.
-+- Replace python package system(pip/wheel) with Yocto package system(rpm/deb/ipk).
-+
-+Dependencies
-+------------
-+URI: git://github.com/openembedded/openembedded-core.git
-+branch: master
-+revision: HEAD
-+
-+URI: git://github.com/openembedded/bitbake.git
-+branch: master
-+revision: HEAD
-+
-+URI: git://github.com/openembedded/meta-openembedded.git
-+layers: meta-python, meta-oe
-+branch: master
-+revision: HEAD
-+
-+URI: git://git.yoctoproject.org/meta-java
-+branch: master
-+revision: HEAD
-+
-+Source code
-+-----------
-+git://git.yoctoproject.org/meta-tensorflow (TODO, github first?)
-+
-+Maintenance
-+-----------
-+Maintainers: Hongxu Jia <jiahongxujia@163.com> | <hongxu.jia@windriver.com>
-+
-+Contributing
-+-----------
-+Contributions and patches can be sent to the Yocto Project mailing
-+list: yocto@yoctoproject.org"
-+
-+When sending patches please take a look at the contribution guide available
-+here: https://wiki.yoctoproject.org/wiki/Contribution_Guidelines
-+
-+example:
-+git send-email -1 -M --to yocto@yoctoproject.org  --subject-prefix=meta-tensorflow][PATCH
-+
-+Limitation
-+-----------
-+- Bazel build takes lots of time, since it like bitbake which has own rules and builds
-+  everything from scratch. Currently bazel could not reuse Yocto DEPENDS/RDEPENDS.
-+
-+- Do not support offline build since bazel build system require fetches archive
-+  tarballs through network.
-+
-+- In order to run tensorflow cases in a reasonable time, although it builds
-+  successfully on qemuarm, qemuarm64, qemumips, qemumips64, qemux86 and qemux86-64,
-+  only qemux86-64 with kvm for runtime test.
-+
-+- Do not support 32-bit powerpc (qemuppc) since BoringSSL does not support it.
-+  (BoringSSL is a fork of OpenSSL used to implement cryptography and TLS across
-+  most of Google's products)
-+
-+Future plan
-+-----------
-+- Support offline build which bazel build system fetches archive tarballs
-+  from Yocto download mirror.
-+
-+- Support more BSP, such as atom, beagleboard, raspberrypi.
-+
-+- Introduce more machine learning cases to meta-tensorflow.
-+
-+- Recipe maintenance and upgrade
-+
-+Build and run
-+-----------
-+1. Clone away
-+$ mkdir <ts-project>
-+$ cd <ts-project>
-+$ git clone git://git.yoctoproject.org/meta-tensorflow
-+$ git clone git://git.yoctoproject.org/meta-java
-+$ git clone git://git.openembedded.org/meta-openembedded
-+$ git clone git://git.openembedded.org/openembedded-core oe-core
-+$ cd oe-core
-+$ git clone git://git.openembedded.org/bitbake
-+
-+2. Prepare build
-+$ . <ts-project>/oe-core/oe-init-build-env <build>
-+
-+# Build qemux86-64 which runqemu supports kvm.
-+$ echo 'MACHINE = "qemux86-64"' >> conf/local.conf
-+
-+$ echo 'IMAGE_INSTALL_append = " tensorflow"' >> conf/local.conf
-+
-+Edit conf/bblayers.conf to include other layers
-+BBLAYERS ?= " \
-+    <ts-project>/oe-core/meta \
-+    <ts-project>/meta-openembedded/meta-python \
-+    <ts-project>/meta-openembedded/meta-oe \
-+    <ts-project>/meta-java \
-+    <ts-project>/meta-tensorflow \
-+"
-+
-+
-+3. Build image in <build>.
-+$ bitbake core-image-minimal
-+
-+4. Start qemu with slrip + kvm + 5GB memory:
-+$ runqemu qemux86-64 core-image-minimal slirp kvm qemuparams="-m 5120"
-+
-+5. Verify the install
-+root@qemux86-64:~# python3 -c "import tensorflow as tf; tf.enable_eager_execution(); print(tf.reduce_sum(tf.random_normal([1000, 1000])))"
-+tf.Tensor(-604.65454, shape=(), dtype=float32)
-+
-+6. Run tutorial case
-+https://www.tensorflow.org/tutorials
-+
-+root@qemux86-64:~# cat >code.py <<ENDOF
-+import tensorflow as tf
-+mnist = tf.keras.datasets.mnist
-+
-+(x_train, y_train),(x_test, y_test) = mnist.load_data()
-+x_train, x_test = x_train / 255.0, x_test / 255.0
-+
-+model = tf.keras.models.Sequential([
-+  tf.keras.layers.Flatten(input_shape=(28, 28)),
-+  tf.keras.layers.Dense(512, activation=tf.nn.relu),
-+  tf.keras.layers.Dropout(0.2),
-+  tf.keras.layers.Dense(10, activation=tf.nn.softmax)
-+])
-+model.compile(optimizer='adam',
-+              loss='sparse_categorical_crossentropy',
-+              metrics=['accuracy'])
-+
-+model.fit(x_train, y_train, epochs=5)
-+model.evaluate(x_test, y_test)
-+ENDOF
-+
-+root@qemux86-64:~# python3 ./code.py
-+Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
-+11493376/11490434 [==============================] - 7s 1us/step
-+Instructions for updating:
-+Colocations handled automatically by placer.
-+Instructions for updating:
-+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
-+Epoch 1/5
-+60000/60000 [==============================] - 27s 449us/sample - loss: 0.2211 - acc: 0.9346
-+Epoch 2/5
-+60000/60000 [==============================] - 24s 408us/sample - loss: 0.0969 - acc: 0.9702
-+Epoch 3/5
-+60000/60000 [==============================] - 26s 439us/sample - loss: 0.0694 - acc: 0.9780
-+Epoch 4/5
-+60000/60000 [==============================] - 23s 390us/sample - loss: 0.0540 - acc: 0.9832
-+Epoch 5/5
-+60000/60000 [==============================] - 24s 399us/sample - loss: 0.0447 - acc: 0.9851
-+10000/10000 [==============================] - 1s 91us/sample - loss: 0.0700 - acc: 0.9782
-+
-+License
-+-------
-+
-+All metadata is MIT licensed unless otherwise stated. Source code included
-+in tree for individual recipes is under the LICENSE stated in each recipe
-+(.bb file) unless otherwise stated.
+diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
+index d9d0915a8..9a47bcd33 100644
+--- a/documentation/ref-manual/ref-variables.xml
++++ b/documentation/ref-manual/ref-variables.xml
+@@ -16884,7 +16884,7 @@
+      USERADD_PACKAGES = "${PN}"
+                     </literallayout>
+                     <note>
+-                        If follows that if you are going to use the
++                        It follows that if you are going to use the
+                         <filename>USERADD_PACKAGES</filename> variable,
+                         you need to set one or more of the
+                         <link linkend='var-USERADD_PARAM'><filename>USERADD_PARAM</filename></link>,
 -- 
-2.8.1
+2.11.0
 
 
