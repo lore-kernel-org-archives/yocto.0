@@ -1,6 +1,6 @@
 Return-Path: <Hongxu.Jia@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A8037E00D3F; Thu, 21 Feb 2019 03:42:13 -0800 (PST)
+	id 59AEFE00D04; Thu, 21 Feb 2019 03:43:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,28 +12,28 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4BD2E00CD5
-	for <yocto@yoctoproject.org>; Thu, 21 Feb 2019 03:42:06 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0867E00BB7
+	for <yocto@yoctoproject.org>; Thu, 21 Feb 2019 03:42:56 -0800 (PST)
 Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
 	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x1LBeB9b004086
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x1LBfBJk004099
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 21 Feb 2019 03:40:52 -0800
+	Thu, 21 Feb 2019 03:41:21 -0800
 Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCB.corp.ad.wrs.com
 	(147.11.189.41) with Microsoft SMTP Server id 14.3.435.0;
-	Thu, 21 Feb 2019 03:40:33 -0800
+	Thu, 21 Feb 2019 03:41:01 -0800
 From: Hongxu Jia <hongxu.jia@windriver.com>
 To: <richard.purdie@linuxfoundation.org>, <mhalstead@linuxfoundation.org>,
 	<ross.burton@intel.com>, <raj.khem@gmail.com>,
 	<paul.eggleton@linux.intel.com>, <yocto@yoctoproject.org>
-Date: Thu, 21 Feb 2019 06:37:16 -0500
-Message-ID: <1550749039-67320-11-git-send-email-hongxu.jia@windriver.com>
+Date: Thu, 21 Feb 2019 06:37:19 -0500
+Message-ID: <1550749039-67320-14-git-send-email-hongxu.jia@windriver.com>
 X-Mailer: git-send-email 2.8.1
 In-Reply-To: <1550749039-67320-1-git-send-email-hongxu.jia@windriver.com>
 References: <1550749039-67320-1-git-send-email-hongxu.jia@windriver.com>
 MIME-Version: 1.0
 Cc: lpd-cdc-core-dev@windriver.com, Zhangle.Yang@windriver.com
-Subject: [meta-tensorflow][PATCH 10/13] tensorflow: fix gcc internal compile error on qemuarm64
+Subject: [meta-tensorflow][PATCH 13/13] add README
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,98 +45,191 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Feb 2019 11:42:13 -0000
+X-List-Received-Date: Thu, 21 Feb 2019 11:43:17 -0000
 Content-Type: text/plain
 
 Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
 ---
- ...x-gcc-internal-compile-error-on-qemuarm64.patch | 64 ++++++++++++++++++++++
- recipes-framework/tensorflow/tensorflow_1.13.0.bb  |  1 +
- 2 files changed, 65 insertions(+)
- create mode 100644 recipes-framework/tensorflow/files/0001-fix-gcc-internal-compile-error-on-qemuarm64.patch
+ README | 170 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 170 insertions(+)
+ create mode 100644 README
 
-diff --git a/recipes-framework/tensorflow/files/0001-fix-gcc-internal-compile-error-on-qemuarm64.patch b/recipes-framework/tensorflow/files/0001-fix-gcc-internal-compile-error-on-qemuarm64.patch
+diff --git a/README b/README
 new file mode 100644
-index 0000000..aca3de4
+index 0000000..3da4e76
 --- /dev/null
-+++ b/recipes-framework/tensorflow/files/0001-fix-gcc-internal-compile-error-on-qemuarm64.patch
-@@ -0,0 +1,64 @@
-+From e9871369eee1d98652eaf1c7dcc6adaf72733f55 Mon Sep 17 00:00:00 2001
-+From: Hongxu Jia <hongxu.jia@windriver.com>
-+Date: Wed, 13 Feb 2019 20:58:17 -0500
-+Subject: [PATCH] fix gcc internal compile error on qemuarm64
++++ b/README
+@@ -0,0 +1,170 @@
++Introduction
++-----------
++TensorFlow is an open source software library for high performance numerical
++computation primarily used in machine learning. Its flexible architecture
++allows easy deployment of computation across a variety of types of platforms
++(CPUs, GPUs, TPUs), and a range of systems from single desktops to clusters
++of servers to mobile and edge devices.
++(https://www.tensorflow.org/)
 +
-+Backport a fix from eigen upstream to fix the error.
++The build system of TensorFlow is Bazel (https://bazel.build/).
 +
-+Upstream-Status: Inappropriate [oe specific]
-+Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
-+---
-+ tensorflow/workspace.bzl                           |  1 +
-+ ...ling-workaround-on-architectures-with-SSE.patch | 28 ++++++++++++++++++++++
-+ 2 files changed, 29 insertions(+)
-+ create mode 100644 third_party/0001-enable-spilling-workaround-on-architectures-with-SSE.patch
++This layer integrates TensorFlow to OE/Yocto platform
++- Integrate Google's bazel to Yocto
++- Add Yocto toolchain for bazel to support cross compiling.
++- Replace python package system(pip/wheel) with Yocto package system(rpm/deb/ipk).
 +
-+diff --git a/tensorflow/workspace.bzl b/tensorflow/workspace.bzl
-+index 12c6fab..aa49190 100755
-+--- a/tensorflow/workspace.bzl
-++++ b/tensorflow/workspace.bzl
-+@@ -144,6 +144,7 @@ def tf_workspace(path_prefix = "", tf_repo_name = ""):
-+     tf_http_archive(
-+         name = "eigen_archive",
-+         build_file = clean_dep("//third_party:eigen.BUILD"),
-++        patch_file = clean_dep("//third_party:0001-enable-spilling-workaround-on-architectures-with-SSE.patch"),
-+         sha256 = "753fbb58d0a49b6bcbcfb126ebfa2e21fc97f7471529ba835a096008ce588d8a",
-+         strip_prefix = "eigen-eigen-9f48e814419e",
-+         urls = [
-+diff --git a/third_party/0001-enable-spilling-workaround-on-architectures-with-SSE.patch b/third_party/0001-enable-spilling-workaround-on-architectures-with-SSE.patch
-+new file mode 100644
-+index 0000000..e3848bd
-+--- /dev/null
-++++ b/third_party/0001-enable-spilling-workaround-on-architectures-with-SSE.patch
-+@@ -0,0 +1,28 @@
-++From c1b4d0195674d4196683d4988d774e74e3cc291a Mon Sep 17 00:00:00 2001
-++From: Gael Guennebaud <g.gael@free.fr>
-++Date: Mon, 10 Dec 2018 23:22:44 +0100
-++Subject: [PATCH] enable spilling workaround on architectures with SSE/AVX
-++
-++Upstream-Status: Backport [https://github.com/eigenteam/eigen-git-mirror.git]
-++Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
-++
-++---
-++ Eigen/src/Core/products/GeneralBlockPanelKernel.h | 2 +-
-++ 1 file changed, 1 insertion(+), 1 deletion(-)
-++
-++diff --git a/Eigen/src/Core/products/GeneralBlockPanelKernel.h b/Eigen/src/Core/products/GeneralBlockPanelKernel.h
-++index 61521e2..b1e98b6 100644
-++--- a/Eigen/src/Core/products/GeneralBlockPanelKernel.h
-+++++ b/Eigen/src/Core/products/GeneralBlockPanelKernel.h
-++@@ -1391,7 +1391,7 @@ void gebp_kernel<LhsScalar,RhsScalar,Index,DataMapper,mr,nr,ConjugateLhs,Conjuga
-++ 
-++           // NOTE: the begin/end asm comments below work around bug 935!
-++           // but they are not enough for gcc>=6 without FMA (bug 1637)
-++-          #if EIGEN_GNUC_AT_LEAST(6,0)
-+++          #if EIGEN_GNUC_AT_LEAST(6,0) && defined(EIGEN_VECTORIZE_SSE)
-++             #define EIGEN_GEBP_2PX4_SPILLING_WORKAROUND __asm__  ("" : [a0] "+rm" (A0),[a1] "+rm" (A1));
-++           #else
-++             #define EIGEN_GEBP_2PX4_SPILLING_WORKAROUND
-++-- 
-++2.8.1
-++
-+-- 
-+2.8.1
++Dependencies
++------------
++URI: git://github.com/openembedded/openembedded-core.git
++branch: master
++revision: HEAD
 +
-diff --git a/recipes-framework/tensorflow/tensorflow_1.13.0.bb b/recipes-framework/tensorflow/tensorflow_1.13.0.bb
-index 33649ea..9e493dc 100644
---- a/recipes-framework/tensorflow/tensorflow_1.13.0.bb
-+++ b/recipes-framework/tensorflow/tensorflow_1.13.0.bb
-@@ -6,6 +6,7 @@ DEPENDS = "bazel-native protobuf-native util-linux-native protobuf"
- SRCREV = "c8875cbb1341f6ca14dd0ec908f1dde7d67f7808"
- SRC_URI = "git://github.com/tensorflow/tensorflow.git;branch=r1.13 \
-            file://0001-add-yocto-toolchain-to-support-cross-compiling.patch \
-+           file://0001-fix-gcc-internal-compile-error-on-qemuarm64.patch \
-            file://0001-SyntaxError-around-async-keyword-on-Python-3.7.patch \
-            file://BUILD \
-            file://BUILD.yocto_compiler \
++URI: git://github.com/openembedded/bitbake.git
++branch: master
++revision: HEAD
++
++URI: git://github.com/openembedded/meta-openembedded.git
++layers: meta-python, meta-oe
++branch: master
++revision: HEAD
++
++URI: git://git.yoctoproject.org/meta-java
++branch: master
++revision: HEAD
++
++Source code
++-----------
++git://git.yoctoproject.org/meta-tensorflow (TODO, github first?)
++
++Maintenance
++-----------
++Maintainers: Hongxu Jia <jiahongxujia@163.com> | <hongxu.jia@windriver.com>
++
++Contributing
++-----------
++Contributions and patches can be sent to the Yocto Project mailing
++list: yocto@yoctoproject.org"
++
++When sending patches please take a look at the contribution guide available
++here: https://wiki.yoctoproject.org/wiki/Contribution_Guidelines
++
++example:
++git send-email -1 -M --to yocto@yoctoproject.org  --subject-prefix=meta-tensorflow][PATCH
++
++Limitation
++-----------
++- Bazel build takes lots of time, since it like bitbake which has own rules and builds
++  everything from scratch. Currently bazel could not reuse Yocto DEPENDS/RDEPENDS.
++
++- Do not support offline build since bazel build system require fetches archive
++  tarballs through network.
++
++- In order to run tensorflow cases in a reasonable time, although it builds
++  successfully on qemuarm, qemuarm64, qemumips, qemumips64, qemux86 and qemux86-64,
++  only qemux86-64 with kvm for runtime test.
++
++- Do not support 32-bit powerpc (qemuppc) since BoringSSL does not support it.
++  (BoringSSL is a fork of OpenSSL used to implement cryptography and TLS across
++  most of Google's products)
++
++Future plan
++-----------
++- Support offline build which bazel build system fetches archive tarballs
++  from Yocto download mirror.
++
++- Support more BSP, such as atom, beagleboard, raspberrypi.
++
++- Introduce more machine learning cases to meta-tensorflow.
++
++- Recipe maintenance and upgrade
++
++Build and run
++-----------
++1. Clone away
++$ mkdir <ts-project>
++$ cd <ts-project>
++$ git clone git://git.yoctoproject.org/meta-tensorflow
++$ git clone git://git.yoctoproject.org/meta-java
++$ git clone git://git.openembedded.org/meta-openembedded
++$ git clone git://git.openembedded.org/openembedded-core oe-core
++$ cd oe-core
++$ git clone git://git.openembedded.org/bitbake
++
++2. Prepare build
++$ . <ts-project>/oe-core/oe-init-build-env <build>
++
++# Build qemux86-64 which runqemu supports kvm.
++$ echo 'MACHINE = "qemux86-64"' >> conf/local.conf
++
++$ echo 'IMAGE_INSTALL_append = " tensorflow"' >> conf/local.conf
++
++Edit conf/bblayers.conf to include other layers
++BBLAYERS ?= " \
++    <ts-project>/oe-core/meta \
++    <ts-project>/meta-openembedded/meta-python \
++    <ts-project>/meta-openembedded/meta-oe \
++    <ts-project>/meta-java \
++    <ts-project>/meta-tensorflow \
++"
++
++
++3. Build image in <build>.
++$ bitbake core-image-minimal
++
++4. Start qemu with slrip + kvm + 5GB memory:
++$ runqemu qemux86-64 core-image-minimal slirp kvm qemuparams="-m 5120"
++
++5. Verify the install
++root@qemux86-64:~# python3 -c "import tensorflow as tf; tf.enable_eager_execution(); print(tf.reduce_sum(tf.random_normal([1000, 1000])))"
++tf.Tensor(-604.65454, shape=(), dtype=float32)
++
++6. Run tutorial case
++https://www.tensorflow.org/tutorials
++
++root@qemux86-64:~# cat >code.py <<ENDOF
++import tensorflow as tf
++mnist = tf.keras.datasets.mnist
++
++(x_train, y_train),(x_test, y_test) = mnist.load_data()
++x_train, x_test = x_train / 255.0, x_test / 255.0
++
++model = tf.keras.models.Sequential([
++  tf.keras.layers.Flatten(input_shape=(28, 28)),
++  tf.keras.layers.Dense(512, activation=tf.nn.relu),
++  tf.keras.layers.Dropout(0.2),
++  tf.keras.layers.Dense(10, activation=tf.nn.softmax)
++])
++model.compile(optimizer='adam',
++              loss='sparse_categorical_crossentropy',
++              metrics=['accuracy'])
++
++model.fit(x_train, y_train, epochs=5)
++model.evaluate(x_test, y_test)
++ENDOF
++
++root@qemux86-64:~# python3 ./code.py
++Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
++11493376/11490434 [==============================] - 7s 1us/step
++Instructions for updating:
++Colocations handled automatically by placer.
++Instructions for updating:
++Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
++Epoch 1/5
++60000/60000 [==============================] - 27s 449us/sample - loss: 0.2211 - acc: 0.9346
++Epoch 2/5
++60000/60000 [==============================] - 24s 408us/sample - loss: 0.0969 - acc: 0.9702
++Epoch 3/5
++60000/60000 [==============================] - 26s 439us/sample - loss: 0.0694 - acc: 0.9780
++Epoch 4/5
++60000/60000 [==============================] - 23s 390us/sample - loss: 0.0540 - acc: 0.9832
++Epoch 5/5
++60000/60000 [==============================] - 24s 399us/sample - loss: 0.0447 - acc: 0.9851
++10000/10000 [==============================] - 1s 91us/sample - loss: 0.0700 - acc: 0.9782
++
++License
++-------
++
++All metadata is MIT licensed unless otherwise stated. Source code included
++in tree for individual recipes is under the LICENSE stated in each recipe
++(.bb file) unless otherwise stated.
 -- 
 2.8.1
 
