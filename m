@@ -1,56 +1,51 @@
 Return-Path: <stephen.lawrence@renesas.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9308AE00CED; Fri, 22 Feb 2019 12:26:53 -0800 (PST)
+	id 8C64CE00CE8; Fri, 22 Feb 2019 13:20:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [40.107.140.122 listed in list.dnswl.org]
+	*      [40.107.141.137 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 11127 seconds by postgrey-1.32 at yocto-www;
-	Fri, 22 Feb 2019 12:26:50 PST
-Received: from JPN01-TY1-obe.outbound.protection.outlook.com
-	(mail-eopbgr1400122.outbound.protection.outlook.com [40.107.140.122])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A7E1E00994
-	for <yocto@yoctoproject.org>; Fri, 22 Feb 2019 12:26:50 -0800 (PST)
+X-Greylist: delayed 6830 seconds by postgrey-1.32 at yocto-www;
+	Fri, 22 Feb 2019 13:20:21 PST
+Received: from JPN01-OS2-obe.outbound.protection.outlook.com
+	(mail-eopbgr1410137.outbound.protection.outlook.com [40.107.141.137])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29E37E00546
+	for <yocto@yoctoproject.org>; Fri, 22 Feb 2019 13:20:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=l981J8GtVNH5T8kP7m2z7GG6KUlCs0DJEoVrF5I6gBI=;
-	b=XF4+pQ+V+L3tZgWvYXIduUb9n6nJkDqOfCcAEbuRL+RIh/dQDib7ILgNujrAkURPikY2V7t2VBYfoKgd2pzQyyJkuDG9keUMurhknHb1HH2HfHUFOBKxvj9g1TQDYTfYaSze0rYv7Xp86LHLR5Vl5uoskgpqQwF7MHUdcVZgK1o=
+	bh=j+GY+6HlAqBEugxSgu9L7pDeUWRojxrfTdU7VDUDEv8=;
+	b=UJ7MUPRYOkjslpuSREbLFymo0diXiN6I6YGcUkTJ0Kw3+tcE+o7GrwmsSkm1NsdUX+CQnjX/xUs8ueb6enkSVqYOUcyXD/DVFDuJqLalrbx2lbrRHha+bGNZcreYJwJy5q9WwLySRfCtG8oyOM6ioXCQed3BOsKa5pXiwRRAZLA=
 Received: from TYAPR01MB2031.jpnprd01.prod.outlook.com (52.133.179.12) by
-	TYAPR01MB4767.jpnprd01.prod.outlook.com (20.179.175.85) with Microsoft
+	TYAPR01MB2672.jpnprd01.prod.outlook.com (20.177.105.85) with Microsoft
 	SMTP
 	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1643.14; Fri, 22 Feb 2019 16:51:39 +0000
+	15.20.1622.19; Fri, 22 Feb 2019 15:47:35 +0000
 Received: from TYAPR01MB2031.jpnprd01.prod.outlook.com
 	([fe80::59a6:f906:ad87:bcb7]) by
 	TYAPR01MB2031.jpnprd01.prod.outlook.com
-	([fe80::59a6:f906:ad87:bcb7%2]) with mapi id 15.20.1643.018;
-	Fri, 22 Feb 2019 16:51:38 +0000
+	([fe80::59a6:f906:ad87:bcb7%2]) with mapi id 15.20.1643.016;
+	Fri, 22 Feb 2019 15:47:35 +0000
 From: Stephen Lawrence <stephen.lawrence@renesas.com>
-To: Hongxu Jia <hongxu.jia@windriver.com>, "richard.purdie@linuxfoundation.org"
-	<richard.purdie@linuxfoundation.org>, 
-	"mhalstead@linuxfoundation.org" <mhalstead@linuxfoundation.org>,
-	"ross.burton@intel.com" <ross.burton@intel.com>, "raj.khem@gmail.com"
-	<raj.khem@gmail.com>, "paul.eggleton@linux.intel.com"
-	<paul.eggleton@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Review request 0/13: Contribute meta-tensorflow to Yocto
-Thread-Index: AQHUydnrZH1wnn+sQE6uSkgVFEw6h6XsBGAg
-Date: Fri, 22 Feb 2019 16:51:37 +0000
-Message-ID: <TYAPR01MB20314DDA5FAB24441BC69EAC927F0@TYAPR01MB2031.jpnprd01.prod.outlook.com>
-References: <1550749039-67320-1-git-send-email-hongxu.jia@windriver.com>
-In-Reply-To: <1550749039-67320-1-git-send-email-hongxu.jia@windriver.com>
+To: chaitanya cherukuri <ccvk.chaitanya@gmail.com>
+Thread-Topic: [yocto] How to Install Third party rpm packages
+Thread-Index: AQHUysHGoTg48kCK1kWVF7Ywuscp96Xr8Zug
+Date: Fri, 22 Feb 2019 15:47:35 +0000
+Message-ID: <TYAPR01MB2031B0D1EF1448ED96F21032927F0@TYAPR01MB2031.jpnprd01.prod.outlook.com>
+References: <CALVd-wOQCtsKK5jpMGc5R3-cCrYi-=-sQmGzvnLMCD=pdTk31g@mail.gmail.com>
+In-Reply-To: <CALVd-wOQCtsKK5jpMGc5R3-cCrYi-=-sQmGzvnLMCD=pdTk31g@mail.gmail.com>
 Accept-Language: en-GB, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -58,37 +53,36 @@ authentication-results: spf=none (sender IP is )
 	smtp.mailfrom=stephen.lawrence@renesas.com; 
 x-originating-ip: [193.141.220.21]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9bd3d851-228a-4ec0-2b67-08d698e6036c
+x-ms-office365-filtering-correlation-id: e1a3ae95-8dce-4eaf-f2ec-08d698dd10a0
 x-ms-office365-filtering-ht: Tenant
 x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(5600110)(711020)(4605104)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7153060)(7193020);
-	SRVR:TYAPR01MB4767; 
-x-ms-traffictypediagnostic: TYAPR01MB4767:
+	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600110)(711020)(4605104)(4618075)(2017052603328)(7153060)(7193020);
+	SRVR:TYAPR01MB2672; 
+x-ms-traffictypediagnostic: TYAPR01MB2672:
 x-ms-exchange-purlcount: 1
-x-microsoft-exchange-diagnostics: 1; TYAPR01MB4767;
-	20:ZOER3egNztLJZUpvHUKEcj4k4mESPKg1HvHsK63QqO5omyKF+H3DdJBbeH3h1BeKmLJyDS1QABqUjVUHrpyp/lZjb3wMmkaxM2z22YR+aosa1vE+uQfLavpeDV0vbZEjBcjl3y9f6mN7z/1MT2cPheo5aw80aVl2fp4rkhFybak=
-x-microsoft-antispam-prvs: <TYAPR01MB4767C802ADC536F69ADE101A927F0@TYAPR01MB4767.jpnprd01.prod.outlook.com>
+x-microsoft-exchange-diagnostics: 1; TYAPR01MB2672;
+	20:3nu3++OFNnoGY8VseDHwu9nfhJvcqHnVCl3XZxNTl9CNl+ILoZskHeeJ+Toq/QtYHcIWog5NqzJx/HJ66iFerLTzQ9Cqe31RP5B5MNYp0iuqpijVlTg3hecgAyYZDZdkLM7JHhn87FK3YMsImZcLjod9tgopJb8RKSrE52UfmHU=
+x-microsoft-antispam-prvs: <TYAPR01MB26720E6232CB2C33AE03EA12927F0@TYAPR01MB2672.jpnprd01.prod.outlook.com>
 x-forefront-prvs: 09565527D6
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(396003)(39840400004)(366004)(346002)(376002)(136003)(199004)(189003)(13464003)(486006)(66066001)(2906002)(476003)(33656002)(11346002)(446003)(105586002)(6436002)(229853002)(106356001)(9686003)(44832011)(6306002)(97736004)(102836004)(6506007)(53546011)(55016002)(478600001)(26005)(2501003)(68736007)(3846002)(14454004)(6116002)(4326008)(110136005)(7736002)(305945005)(8936002)(25786009)(86362001)(81166006)(74316002)(81156014)(8676002)(2201001)(316002)(53936002)(99286004)(5660300002)(76176011)(256004)(71200400001)(14444005)(71190400001)(107886003)(6246003)(54906003)(7696005)(186003)(966005);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:TYAPR01MB4767;
+	SFS:(10019020)(346002)(366004)(39830400003)(136003)(396003)(376002)(53754006)(199004)(189003)(53546011)(11346002)(486006)(476003)(105586002)(26005)(6506007)(102836004)(186003)(44832011)(316002)(86362001)(68736007)(4326008)(229853002)(446003)(606006)(106356001)(2906002)(6436002)(6246003)(53936002)(236005)(8936002)(97736004)(9686003)(25786009)(7736002)(55016002)(81156014)(6306002)(81166006)(256004)(54896002)(71190400001)(71200400001)(966005)(8676002)(74316002)(9326002)(66066001)(14454004)(3846002)(99286004)(478600001)(5660300002)(33656002)(790700001)(6116002)(76176011)(7696005)(6916009);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:TYAPR01MB2672;
 	H:TYAPR01MB2031.jpnprd01.prod.outlook.com; FPR:; SPF:None;
 	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
 received-spf: None (protection.outlook.com: renesas.com does not designate
 	permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: QfNkzb13gRFNLwbNtwLGCnjXuZ1euxsDTbmOaKEjGtAq7VMwjSK85rmW7pJtwYTxM+I25QshuzGgRTmUiCb52phF1BIKQpQktrFq5yjLGugBDeacTk12Z255QvFNjbifwePPJG1gNxghVfz9LGPJWnxZ6szbQxnaKmcKFOkdsAe8qIJXX8vA1MZ6pQU8tFl/OJjDOMfSd1Fmv5i6MSyS78J+cM/VbeX+nv1okhpOD2inaspc9k93ZRwMMOUvDnzGQ8YgDzfnL13C9KVrHwleCCB6K2s1X+0XuuqG7hBJyEiCl8/otsWFhPMbW3es6H9WwKefy+b0fW30Svfp+4Jh4esMvxXcZUldn2jqiLrqSA1P7wkpLXDdYmjog5lSt1xys7xPsB9yuTmx2c4ZLQy7hKdTNsaIBKajRN6JEhmnQRk=
+x-microsoft-antispam-message-info: GXYcrTwTz0ijY1J3Om0xGdAt3cuJiPycox8Ef71erQNwdmCPnGUIFKjHBLek2uxB99UYLjnj2OVzIGN1+ZZzpUVZWUuPBYBppV7Gt1M43Vdqyy0RY/VcgCibB45pEro6cHMrVR1RaeCbjJAkiSpfu9ORNxVYUb6IKvM3PtODxUY2bMZIQObZIsEa9NrqZ9vKp3F8MLONPGSYPksR3gQF+N5BC5wHslGbGUPAkc/2cozkJBEhBMZYs4RCwwFeb0dXXgcz8cGW7B6evfAPrR1XSx3pxt9VBHh2mgsNNhaarJXMINJnkR1gh/2Y0kEBsJZi/VzSvCfXLYCmbzfjYXgsvOEp0Qnj5AvqXiAN8MwAWccH85R0ftCPx/6B3bbnnWIwczdU6WANjWytuFh2uMAU7XvQ6cSitsRWZ5Noc5z0/N8=
 MIME-Version: 1.0
 X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9bd3d851-228a-4ec0-2b67-08d698e6036c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Feb 2019 16:51:37.9059 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1a3ae95-8dce-4eaf-f2ec-08d698dd10a0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Feb 2019 15:47:35.3191 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB4767
-Cc: "lpd-cdc-core-dev@windriver.com" <lpd-cdc-core-dev@windriver.com>,
-	"Zhangle.Yang@windriver.com" <Zhangle.Yang@windriver.com>
-Subject: Re: Review request 0/13: Contribute meta-tensorflow to Yocto
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB2672
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to Install Third party rpm packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -100,49 +94,157 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Feb 2019 20:26:53 -0000
+X-List-Received-Date: Fri, 22 Feb 2019 21:20:23 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/alternative;
+	boundary="_000_TYAPR01MB2031B0D1EF1448ED96F21032927F0TYAPR01MB2031jpnp_"
 
-Hi Hongxu,
+--_000_TYAPR01MB2031B0D1EF1448ED96F21032927F0TYAPR01MB2031jpnp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> On =
-Behalf
-> Of Hongxu Jia
-> Sent: 21 February 2019 11:37
-> To: richard.purdie@linuxfoundation.org; mhalstead@linuxfoundation.org;
-> ross.burton@intel.com; raj.khem@gmail.com; paul.eggleton@linux.intel.com;
-> yocto@yoctoproject.org
-> Cc: lpd-cdc-core-dev@windriver.com; Zhangle.Yang@windriver.com
-> Subject: [yocto] Review request 0/13: Contribute meta-tensorflow to Yocto
->=20
-> Hi RP and Yocto folks,
->=20
-> Currently AI on IoT edge becomes more and more popular, but there is no
-> machine learning framework in Yocto/OE. With the support of Eric
-> <Zhangle.Yang@windriver.com>, Robert <liezhi.yang@windriver.com>
-> and Randy <randy.macleod@windriver.com>, after two months effort, I've
-> integrated TensorFlow to Yocto.
+SGksDQoNClRha2UgYSBsb29rIGF0IHRoZSBzZWN0aW9uIDMuMiDigJxDdXN0b21pemluZyBJbWFn
+ZXPigJ0gaW4gdGhlIERldmVsb3BtZW50IFRhc2tzIE1hbnVhbC4gWW91IGNhbiBmaW5kIGl0IGFu
+ZCB0aGUgb3RoZXIgbWFudWFscyBoZXJlOg0KaHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9k
+b2NzLw0KDQpJZiB5b3UgYXJlIGJ1aWxkaW5nIHRoZSBwYWNrYWdlIGluIFlvY3RvIGFzIHdlbGwg
+dGhlIHNpbXBsZXN0IGlzIHRvIGFkZCBpdCB0byB0aGUgaW1hZ2Ugd2l0aCBJTUFHRV9JTlNUQUxM
+LCBidXQgdGhlIG1hbnVhbCBhbHNvIGRpc2N1c3NlcyBvdGhlciBtZXRob2RzIHN1Y2ggYXMgcnVu
+dGltZSBwYWNrYWdlIG1hbmFnZW1lbnQuDQoNClNlbGVjdCBZb2N0byBQcm9qZWN0IDIuNS54IGZy
+b20gdGhlIGRyb3AgZG93biBhdCB0aGUgdG9wIG9mIHRoZSBwYWdlIHRvIGdldCB0aGUgbWFudWFs
+cyBmb3IgdGhhdCB2ZXJzaW9uLg0KDQpSZWdhcmRzDQoNClN0ZXZlDQoNCkZyb206IHlvY3RvLWJv
+dW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnPiBP
+biBCZWhhbGYgT2YgY2hhaXRhbnlhIGNoZXJ1a3VyaQ0KU2VudDogMjIgRmVicnVhcnkgMjAxOSAx
+NToxNw0KVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFt5b2N0b10gSG93IHRv
+IEluc3RhbGwgVGhpcmQgcGFydHkgcnBtIHBhY2thZ2VzDQoNCkhlbGxvIEFsbCwNCg0KSSAnbSBu
+ZXcgdG8gWU9DVE8uIEkgYW0gdXNpbmcgWU9DVE8gdmVyc2lvbiAyLjUuDQpJIHdvdWxkIGxpa2Ug
+dG8gaW5zdGFsbCB0aGlyZCBwYXJ0eSBycG0gcGFja2FnZSB0byBteSBpbWFnZS4gQ3VycmVudGx5
+IEknbSBpbnN0YWxsaW5nIHJwbSBwYWNrYWdlIG9uIG15IHRhcmdldCBtYWNoaW5lIHVzaW5nIHJw
+bSBjb21tYW5kDQogIHJwbSAtaXZoIC0tcHJlZml4PS9vcHQvIGV4YW1wbGUucnBtDQoNCklzIHRo
+ZXJlIGFueSB3YXkgdGhhdCBJIGNhbiBkbyB0aGlzIGluIGEgcmVjaXBlLCBzbyB0aGF0IG15IGZp
+bmFsIGltYWdlIGhhcyB0aGUgcnBtIGluc3RhbGxlZC4NCg0KQW55IGhlbHAgd291bGQgYmUgYXBw
+cmVjaWF0ZWQuDQoNClRoYW5rIHlvdSwNCkNoYWl0aHUNCg0KDQo=
 
-Good work.
+--_000_TYAPR01MB2031B0D1EF1448ED96F21032927F0TYAPR01MB2031jpnp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-You might be interested in the yocto layers for tensorflow, tensorflow-lite=
- and caffe2=20
-on github here [1]. I'm not part of the team that developed that work but I=
- forwarded=20
-your announcement to them. Perhaps there is the opportunity for some collab=
-oration
-on the platform independent parts. The maintainer details are in the readme=
-.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiQ29taWMgU2FucyBNUyI7DQoJcGFub3Nl
+LTE6MyAxNSA3IDIgMyAzIDIgMiAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNv
+Tm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJn
+aW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2Fs
+aWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHls
+ZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxp
+bmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1w
+cmlvcml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7
+fQ0KY29kZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIg
+TmV3Ijt9DQpwcmUNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJI
+VE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAw
+MDFwdDsNCglmb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0K
+cC5tc29ub3JtYWwwLCBsaS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXttc28tc3R5bGUt
+bmFtZTptc29ub3JtYWw7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0
+OjBjbTsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowY207DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpz
+cGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250
+LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4u
+SFRNTFByZWZvcm1hdHRlZENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgUHJlZm9ybWF0dGVk
+IENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRNTCBQ
+cmVmb3JtYXR0ZWQiOw0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7DQoJbXNvLWZhcmVhc3Qt
+bGFuZ3VhZ2U6RU4tR0I7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0
+LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJbXNvLWZhcmVhc3Qt
+bGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIu
+MHB0Ow0KCW1hcmdpbjo3Mi4wcHQgNzIuMHB0IDcyLjBwdCA3Mi4wcHQ7fQ0KZGl2LldvcmRTZWN0
+aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5
+XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4N
+CjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlv
+dXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286
+c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1H
+QiIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rp
+b24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5n
+dWFnZTpFTi1VUyI+SGksPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZh
+cmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPlRha2UgYSBsb29rIGF0IHRoZSBzZWN0aW9uIDMuMiDigJxD
+dXN0b21pemluZyBJbWFnZXPigJ0gaW4gdGhlIERldmVsb3BtZW50IFRhc2tzIE1hbnVhbC4gWW91
+IGNhbiBmaW5kIGl0IGFuZCB0aGUgb3RoZXIgbWFudWFscyBoZXJlOjxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5n
+dWFnZTpFTi1VUyI+PGEgaHJlZj0iaHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLyI+
+aHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzwvYT48bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3Vh
+Z2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+SWYgeW91IGFyZSBi
+dWlsZGluZyB0aGUgcGFja2FnZSBpbiBZb2N0byBhcyB3ZWxsIHRoZSBzaW1wbGVzdCBpcyB0byBh
+ZGQgaXQgdG8gdGhlIGltYWdlIHdpdGggSU1BR0VfSU5TVEFMTCwgYnV0IHRoZSBtYW51YWwgYWxz
+byBkaXNjdXNzZXMgb3RoZXIgbWV0aG9kcyBzdWNoIGFzIHJ1bnRpbWUgcGFja2FnZSBtYW5hZ2Vt
+ZW50Lg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFu
+Z3VhZ2U6RU4tVVMiPlNlbGVjdCBZb2N0byBQcm9qZWN0IDIuNS54IGZyb20gdGhlIGRyb3AgZG93
+biBhdCB0aGUgdG9wIG9mIHRoZSBwYWdlIHRvIGdldCB0aGUgbWFudWFscyBmb3IgdGhhdCB2ZXJz
+aW9uLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1
+YWdlOkVOLVVTIj5SZWdhcmRzPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNw
+OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNv
+LWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPlN0ZXZlPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVT
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTti
+b3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNC4wcHQiPg0K
+PGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAx
+LjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxi
+PjxzcGFuIGxhbmc9IkVOLVVTIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiPiB5
+b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgJmx0O3lvY3RvLWJvdW5jZXNAeW9jdG9wcm9q
+ZWN0Lm9yZyZndDsNCjxiPk9uIEJlaGFsZiBPZiA8L2I+Y2hhaXRhbnlhIGNoZXJ1a3VyaTxicj4N
+CjxiPlNlbnQ6PC9iPiAyMiBGZWJydWFyeSAyMDE5IDE1OjE3PGJyPg0KPGI+VG86PC9iPiB5b2N0
+b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFt5b2N0b10gSG93IHRvIElu
+c3RhbGwgVGhpcmQgcGFydHkgcnBtIHBhY2thZ2VzPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9k
+aXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1p
+bHk6JnF1b3Q7Q29taWMgU2FucyBNUyZxdW90Oztjb2xvcjojM0Q4NUM2Ij5IZWxsbyBBbGwsPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvbWljIFNhbnMgTVMmcXVvdDs7Y29sb3I6
+IzNEODVDNiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvbWljIFNh
+bnMgTVMmcXVvdDs7Y29sb3I6IzNEODVDNiI+SSAnbSBuZXcgdG8gWU9DVE8uIEkgYW0gdXNpbmcg
+WU9DVE8gdmVyc2lvbiAyLjUuPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvbWlj
+IFNhbnMgTVMmcXVvdDs7Y29sb3I6IzNEODVDNiI+SSB3b3VsZCBsaWtlIHRvIGluc3RhbGwgdGhp
+cmQgcGFydHkgcnBtIHBhY2thZ2UgdG8gbXkgaW1hZ2UuIEN1cnJlbnRseSBJJ20gaW5zdGFsbGlu
+ZyBycG0gcGFja2FnZSBvbiBteSB0YXJnZXQgbWFjaGluZSB1c2luZyBycG0gY29tbWFuZDxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb21pYyBTYW5zIE1TJnF1b3Q7O2NvbG9yOiMz
+RDg1QzYiPiZuYnNwOyBycG0gLWl2aCAtLXByZWZpeD0vb3B0LyBleGFtcGxlLnJwbTxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb21pYyBTYW5zIE1TJnF1b3Q7O2NvbG9yOiMzRDg1
+QzYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb21pYyBTYW5zIE1T
+JnF1b3Q7O2NvbG9yOiMzRDg1QzYiPklzIHRoZXJlIGFueSB3YXkgdGhhdCBJIGNhbiBkbyB0aGlz
+IGluIGEgcmVjaXBlLCBzbyB0aGF0IG15IGZpbmFsIGltYWdlIGhhcyB0aGUgcnBtIGluc3RhbGxl
+ZC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q29taWMgU2FucyBNUyZxdW90Oztj
+b2xvcjojM0Q4NUM2Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q29t
+aWMgU2FucyBNUyZxdW90Oztjb2xvcjojM0Q4NUM2Ij5BbnkgaGVscCZuYnNwO3dvdWxkIGJlIGFw
+cHJlY2lhdGVkLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb21pYyBTYW5zIE1T
+JnF1b3Q7O2NvbG9yOiMzRDg1QzYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTom
+cXVvdDtDb21pYyBTYW5zIE1TJnF1b3Q7O2NvbG9yOiMzRDg1QzYiPlRoYW5rIHlvdSw8bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q29taWMgU2FucyBNUyZxdW90Oztjb2xvcjojM0Q4
+NUM2Ij5DaGFpdGh1PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwv
+ZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-[1] https://github.com/renesas-rz/meta-renesas-ai
-
-The layers were developed for the industrial focused Renesas RZ/G1 platform=
-s.
-
-Regards
-
-Steve
-
+--_000_TYAPR01MB2031B0D1EF1448ED96F21032927F0TYAPR01MB2031jpnp_--
