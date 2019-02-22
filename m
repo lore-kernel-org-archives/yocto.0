@@ -1,86 +1,65 @@
-Return-Path: <stephen.lawrence@renesas.com>
+Return-Path: <ccvk.chaitanya@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C64CE00CE8; Fri, 22 Feb 2019 13:20:23 -0800 (PST)
+	id C4954E00CE6; Fri, 22 Feb 2019 14:11:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [40.107.141.137 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ccvk.chaitanya[at]gmail.com)
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 6830 seconds by postgrey-1.32 at yocto-www;
-	Fri, 22 Feb 2019 13:20:21 PST
-Received: from JPN01-OS2-obe.outbound.protection.outlook.com
-	(mail-eopbgr1410137.outbound.protection.outlook.com [40.107.141.137])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29E37E00546
-	for <yocto@yoctoproject.org>; Fri, 22 Feb 2019 13:20:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=j+GY+6HlAqBEugxSgu9L7pDeUWRojxrfTdU7VDUDEv8=;
-	b=UJ7MUPRYOkjslpuSREbLFymo0diXiN6I6YGcUkTJ0Kw3+tcE+o7GrwmsSkm1NsdUX+CQnjX/xUs8ueb6enkSVqYOUcyXD/DVFDuJqLalrbx2lbrRHha+bGNZcreYJwJy5q9WwLySRfCtG8oyOM6ioXCQed3BOsKa5pXiwRRAZLA=
-Received: from TYAPR01MB2031.jpnprd01.prod.outlook.com (52.133.179.12) by
-	TYAPR01MB2672.jpnprd01.prod.outlook.com (20.177.105.85) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1622.19; Fri, 22 Feb 2019 15:47:35 +0000
-Received: from TYAPR01MB2031.jpnprd01.prod.outlook.com
-	([fe80::59a6:f906:ad87:bcb7]) by
-	TYAPR01MB2031.jpnprd01.prod.outlook.com
-	([fe80::59a6:f906:ad87:bcb7%2]) with mapi id 15.20.1643.016;
-	Fri, 22 Feb 2019 15:47:35 +0000
-From: Stephen Lawrence <stephen.lawrence@renesas.com>
-To: chaitanya cherukuri <ccvk.chaitanya@gmail.com>
-Thread-Topic: [yocto] How to Install Third party rpm packages
-Thread-Index: AQHUysHGoTg48kCK1kWVF7Ywuscp96Xr8Zug
-Date: Fri, 22 Feb 2019 15:47:35 +0000
-Message-ID: <TYAPR01MB2031B0D1EF1448ED96F21032927F0@TYAPR01MB2031.jpnprd01.prod.outlook.com>
-References: <CALVd-wOQCtsKK5jpMGc5R3-cCrYi-=-sQmGzvnLMCD=pdTk31g@mail.gmail.com>
-In-Reply-To: <CALVd-wOQCtsKK5jpMGc5R3-cCrYi-=-sQmGzvnLMCD=pdTk31g@mail.gmail.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=stephen.lawrence@renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e1a3ae95-8dce-4eaf-f2ec-08d698dd10a0
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600110)(711020)(4605104)(4618075)(2017052603328)(7153060)(7193020);
-	SRVR:TYAPR01MB2672; 
-x-ms-traffictypediagnostic: TYAPR01MB2672:
-x-ms-exchange-purlcount: 1
-x-microsoft-exchange-diagnostics: 1; TYAPR01MB2672;
-	20:3nu3++OFNnoGY8VseDHwu9nfhJvcqHnVCl3XZxNTl9CNl+ILoZskHeeJ+Toq/QtYHcIWog5NqzJx/HJ66iFerLTzQ9Cqe31RP5B5MNYp0iuqpijVlTg3hecgAyYZDZdkLM7JHhn87FK3YMsImZcLjod9tgopJb8RKSrE52UfmHU=
-x-microsoft-antispam-prvs: <TYAPR01MB26720E6232CB2C33AE03EA12927F0@TYAPR01MB2672.jpnprd01.prod.outlook.com>
-x-forefront-prvs: 09565527D6
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(346002)(366004)(39830400003)(136003)(396003)(376002)(53754006)(199004)(189003)(53546011)(11346002)(486006)(476003)(105586002)(26005)(6506007)(102836004)(186003)(44832011)(316002)(86362001)(68736007)(4326008)(229853002)(446003)(606006)(106356001)(2906002)(6436002)(6246003)(53936002)(236005)(8936002)(97736004)(9686003)(25786009)(7736002)(55016002)(81156014)(6306002)(81166006)(256004)(54896002)(71190400001)(71200400001)(966005)(8676002)(74316002)(9326002)(66066001)(14454004)(3846002)(99286004)(478600001)(5660300002)(33656002)(790700001)(6116002)(76176011)(7696005)(6916009);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:TYAPR01MB2672;
-	H:TYAPR01MB2031.jpnprd01.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: renesas.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: GXYcrTwTz0ijY1J3Om0xGdAt3cuJiPycox8Ef71erQNwdmCPnGUIFKjHBLek2uxB99UYLjnj2OVzIGN1+ZZzpUVZWUuPBYBppV7Gt1M43Vdqyy0RY/VcgCibB45pEro6cHMrVR1RaeCbjJAkiSpfu9ORNxVYUb6IKvM3PtODxUY2bMZIQObZIsEa9NrqZ9vKp3F8MLONPGSYPksR3gQF+N5BC5wHslGbGUPAkc/2cozkJBEhBMZYs4RCwwFeb0dXXgcz8cGW7B6evfAPrR1XSx3pxt9VBHh2mgsNNhaarJXMINJnkR1gh/2Y0kEBsJZi/VzSvCfXLYCmbzfjYXgsvOEp0Qnj5AvqXiAN8MwAWccH85R0ftCPx/6B3bbnnWIwczdU6WANjWytuFh2uMAU7XvQ6cSitsRWZ5Noc5z0/N8=
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.53 listed in list.dnswl.org]
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com
+	[209.85.210.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD51FE00BAB
+	for <yocto@yoctoproject.org>; Fri, 22 Feb 2019 14:11:07 -0800 (PST)
+Received: by mail-ot1-f53.google.com with SMTP id 98so3226685oty.1
+	for <yocto@yoctoproject.org>; Fri, 22 Feb 2019 14:11:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=F7EuZNxy2J19IFxFDbvuk/YsX2snXX4pmQ21oYlm9WQ=;
+	b=KJYHqEAfvuZ3GQPCXzN3qdFXI55TbB5TxNk5S8PvY913CU8vHXCLrj/zQ77td7qjwN
+	0HLqXL+3NUOX9GzC9jg1TRgaHJk4oBOww+mqTeSfjFATgbrA0CIeUxepM5I50jaN4Tkd
+	uGGbrS2pD24e5bPHbM3B7isxNo4XIJLJnX5sMnBL23vHpiD2wh0b7Xssg0dgsQApoQ0C
+	NFP+LO8F+ldgzKhd2LgabfL7AlZJKaVmpwYsoYcBMKtkn6C0FY+6WbPeJd+XU08ApTqB
+	eYJQtp9eCSBQzZI3bD2K2LVO3Yk1DkZB83gD+U6c80fss0eAuDxrlvb6d3RlQ2twoDjc
+	CWfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=F7EuZNxy2J19IFxFDbvuk/YsX2snXX4pmQ21oYlm9WQ=;
+	b=VxebfJxU9BDsqNRrYXgbQEX10SUuk5bKLEE649qpdT6OEiIkhQm9KcigCvD+y1bvoa
+	k/v3J6tQmtjHooPRomzxwdd/e6lazbqjKmgwlva0OGiZm4t1XbIvLXrWR2z9KudkTuhp
+	NHLbKh4MEgmlwU8qiIJJrz+4Y9RbHZIY1yEDAXD1XlqW33kRNpYUhJkXsH5SjnQqlvN/
+	BpSU5F93lutXGH3hwNvfTztV+FWZGmbAyryaszzy+A3Z4MxxSjXQNSDxJ4LouA+k3XuN
+	/8EL9TEBpSfmTxkO+6V5ufstvM59zpj1e08JNS8qXoeKa6koLEttVWbhn5sd/CaVl/WL
+	Lbww==
+X-Gm-Message-State: AHQUAuZUQjHhRbiVJUEj8gQTrDfEUEtFhXRcXzHtlY1URC4QfZr1znFn
+	3J2JCqpJ4TnHCcTxOGi/ByM1yYfcEfIRm+toEKUCXw3+
+X-Google-Smtp-Source: AHgI3IYCVdTGBuB3V+5eEp5We4YuQelZsDRQmKH1/zI9eTKI4NYgRgJGZPTMVmGXRTQpaRfL+JKwyy+XC+cfYwAWyjs=
+X-Received: by 2002:a05:6830:1317:: with SMTP id
+	p23mr4213318otq.55.1550873466873; 
+	Fri, 22 Feb 2019 14:11:06 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e1a3ae95-8dce-4eaf-f2ec-08d698dd10a0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Feb 2019 15:47:35.3191 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB2672
+References: <CALVd-wOQCtsKK5jpMGc5R3-cCrYi-=-sQmGzvnLMCD=pdTk31g@mail.gmail.com>
+	<TYAPR01MB2031B0D1EF1448ED96F21032927F0@TYAPR01MB2031.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYAPR01MB2031B0D1EF1448ED96F21032927F0@TYAPR01MB2031.jpnprd01.prod.outlook.com>
+From: chaitanya cherukuri <ccvk.chaitanya@gmail.com>
+Date: Fri, 22 Feb 2019 17:10:56 -0500
+Message-ID: <CALVd-wNod6oxi=t3KCiDg2HKO6nqBNWt+3avaBTTV=3x3yAT3w@mail.gmail.com>
+To: Stephen Lawrence <stephen.lawrence@renesas.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How to Install Third party rpm packages
 X-BeenThere: yocto@yoctoproject.org
@@ -94,157 +73,256 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Feb 2019 21:20:23 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_TYAPR01MB2031B0D1EF1448ED96F21032927F0TYAPR01MB2031jpnp_"
+X-List-Received-Date: Fri, 22 Feb 2019 22:11:09 -0000
+Content-Type: multipart/alternative; boundary="00000000000015adf3058282deb8"
 
---_000_TYAPR01MB2031B0D1EF1448ED96F21032927F0TYAPR01MB2031jpnp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--00000000000015adf3058282deb8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGksDQoNClRha2UgYSBsb29rIGF0IHRoZSBzZWN0aW9uIDMuMiDigJxDdXN0b21pemluZyBJbWFn
-ZXPigJ0gaW4gdGhlIERldmVsb3BtZW50IFRhc2tzIE1hbnVhbC4gWW91IGNhbiBmaW5kIGl0IGFu
-ZCB0aGUgb3RoZXIgbWFudWFscyBoZXJlOg0KaHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9k
-b2NzLw0KDQpJZiB5b3UgYXJlIGJ1aWxkaW5nIHRoZSBwYWNrYWdlIGluIFlvY3RvIGFzIHdlbGwg
-dGhlIHNpbXBsZXN0IGlzIHRvIGFkZCBpdCB0byB0aGUgaW1hZ2Ugd2l0aCBJTUFHRV9JTlNUQUxM
-LCBidXQgdGhlIG1hbnVhbCBhbHNvIGRpc2N1c3NlcyBvdGhlciBtZXRob2RzIHN1Y2ggYXMgcnVu
-dGltZSBwYWNrYWdlIG1hbmFnZW1lbnQuDQoNClNlbGVjdCBZb2N0byBQcm9qZWN0IDIuNS54IGZy
-b20gdGhlIGRyb3AgZG93biBhdCB0aGUgdG9wIG9mIHRoZSBwYWdlIHRvIGdldCB0aGUgbWFudWFs
-cyBmb3IgdGhhdCB2ZXJzaW9uLg0KDQpSZWdhcmRzDQoNClN0ZXZlDQoNCkZyb206IHlvY3RvLWJv
-dW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnPiBP
-biBCZWhhbGYgT2YgY2hhaXRhbnlhIGNoZXJ1a3VyaQ0KU2VudDogMjIgRmVicnVhcnkgMjAxOSAx
-NToxNw0KVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFt5b2N0b10gSG93IHRv
-IEluc3RhbGwgVGhpcmQgcGFydHkgcnBtIHBhY2thZ2VzDQoNCkhlbGxvIEFsbCwNCg0KSSAnbSBu
-ZXcgdG8gWU9DVE8uIEkgYW0gdXNpbmcgWU9DVE8gdmVyc2lvbiAyLjUuDQpJIHdvdWxkIGxpa2Ug
-dG8gaW5zdGFsbCB0aGlyZCBwYXJ0eSBycG0gcGFja2FnZSB0byBteSBpbWFnZS4gQ3VycmVudGx5
-IEknbSBpbnN0YWxsaW5nIHJwbSBwYWNrYWdlIG9uIG15IHRhcmdldCBtYWNoaW5lIHVzaW5nIHJw
-bSBjb21tYW5kDQogIHJwbSAtaXZoIC0tcHJlZml4PS9vcHQvIGV4YW1wbGUucnBtDQoNCklzIHRo
-ZXJlIGFueSB3YXkgdGhhdCBJIGNhbiBkbyB0aGlzIGluIGEgcmVjaXBlLCBzbyB0aGF0IG15IGZp
-bmFsIGltYWdlIGhhcyB0aGUgcnBtIGluc3RhbGxlZC4NCg0KQW55IGhlbHAgd291bGQgYmUgYXBw
-cmVjaWF0ZWQuDQoNClRoYW5rIHlvdSwNCkNoYWl0aHUNCg0KDQo=
+Hi Stephen,
 
---_000_TYAPR01MB2031B0D1EF1448ED96F21032927F0TYAPR01MB2031jpnp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Thank you for pointing the documentation.
+In custom image recipe I will add IMAGE_INSTALL +=3D "custom-package.rpm" b=
+ut
+how do I add this "custom-package.rpm" to my YOCTO build system.
+Do I need to write a recipe where I fetch this package?
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiQ29taWMgU2FucyBNUyI7DQoJcGFub3Nl
-LTE6MyAxNSA3IDIgMyAzIDIgMiAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNv
-Tm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJn
-aW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2Fs
-aWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHls
-ZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxp
-bmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1w
-cmlvcml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7
-fQ0KY29kZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIg
-TmV3Ijt9DQpwcmUNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJI
-VE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAw
-MDFwdDsNCglmb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0K
-cC5tc29ub3JtYWwwLCBsaS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXttc28tc3R5bGUt
-bmFtZTptc29ub3JtYWw7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0
-OjBjbTsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowY207DQoJ
-Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpz
-cGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250
-LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4u
-SFRNTFByZWZvcm1hdHRlZENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgUHJlZm9ybWF0dGVk
-IENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRNTCBQ
-cmVmb3JtYXR0ZWQiOw0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7DQoJbXNvLWZhcmVhc3Qt
-bGFuZ3VhZ2U6RU4tR0I7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0
-LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJbXNvLWZhcmVhc3Qt
-bGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIu
-MHB0Ow0KCW1hcmdpbjo3Mi4wcHQgNzIuMHB0IDcyLjBwdCA3Mi4wcHQ7fQ0KZGl2LldvcmRTZWN0
-aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5
-XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4N
-CjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlv
-dXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286
-c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1H
-QiIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rp
-b24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5n
-dWFnZTpFTi1VUyI+SGksPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZh
-cmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPlRha2UgYSBsb29rIGF0IHRoZSBzZWN0aW9uIDMuMiDigJxD
-dXN0b21pemluZyBJbWFnZXPigJ0gaW4gdGhlIERldmVsb3BtZW50IFRhc2tzIE1hbnVhbC4gWW91
-IGNhbiBmaW5kIGl0IGFuZCB0aGUgb3RoZXIgbWFudWFscyBoZXJlOjxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5n
-dWFnZTpFTi1VUyI+PGEgaHJlZj0iaHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLyI+
-aHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzwvYT48bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3Vh
-Z2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+SWYgeW91IGFyZSBi
-dWlsZGluZyB0aGUgcGFja2FnZSBpbiBZb2N0byBhcyB3ZWxsIHRoZSBzaW1wbGVzdCBpcyB0byBh
-ZGQgaXQgdG8gdGhlIGltYWdlIHdpdGggSU1BR0VfSU5TVEFMTCwgYnV0IHRoZSBtYW51YWwgYWxz
-byBkaXNjdXNzZXMgb3RoZXIgbWV0aG9kcyBzdWNoIGFzIHJ1bnRpbWUgcGFja2FnZSBtYW5hZ2Vt
-ZW50Lg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFu
-Z3VhZ2U6RU4tVVMiPlNlbGVjdCBZb2N0byBQcm9qZWN0IDIuNS54IGZyb20gdGhlIGRyb3AgZG93
-biBhdCB0aGUgdG9wIG9mIHRoZSBwYWdlIHRvIGdldCB0aGUgbWFudWFscyBmb3IgdGhhdCB2ZXJz
-aW9uLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1
-YWdlOkVOLVVTIj5SZWdhcmRzPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNv
-LWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPlN0ZXZlPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVT
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTti
-b3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNC4wcHQiPg0K
-PGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAx
-LjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxi
-PjxzcGFuIGxhbmc9IkVOLVVTIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiPiB5
-b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgJmx0O3lvY3RvLWJvdW5jZXNAeW9jdG9wcm9q
-ZWN0Lm9yZyZndDsNCjxiPk9uIEJlaGFsZiBPZiA8L2I+Y2hhaXRhbnlhIGNoZXJ1a3VyaTxicj4N
-CjxiPlNlbnQ6PC9iPiAyMiBGZWJydWFyeSAyMDE5IDE1OjE3PGJyPg0KPGI+VG86PC9iPiB5b2N0
-b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFt5b2N0b10gSG93IHRvIElu
-c3RhbGwgVGhpcmQgcGFydHkgcnBtIHBhY2thZ2VzPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9k
-aXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
-PGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1p
-bHk6JnF1b3Q7Q29taWMgU2FucyBNUyZxdW90Oztjb2xvcjojM0Q4NUM2Ij5IZWxsbyBBbGwsPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvbWljIFNhbnMgTVMmcXVvdDs7Y29sb3I6
-IzNEODVDNiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvbWljIFNh
-bnMgTVMmcXVvdDs7Y29sb3I6IzNEODVDNiI+SSAnbSBuZXcgdG8gWU9DVE8uIEkgYW0gdXNpbmcg
-WU9DVE8gdmVyc2lvbiAyLjUuPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvbWlj
-IFNhbnMgTVMmcXVvdDs7Y29sb3I6IzNEODVDNiI+SSB3b3VsZCBsaWtlIHRvIGluc3RhbGwgdGhp
-cmQgcGFydHkgcnBtIHBhY2thZ2UgdG8gbXkgaW1hZ2UuIEN1cnJlbnRseSBJJ20gaW5zdGFsbGlu
-ZyBycG0gcGFja2FnZSBvbiBteSB0YXJnZXQgbWFjaGluZSB1c2luZyBycG0gY29tbWFuZDxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb21pYyBTYW5zIE1TJnF1b3Q7O2NvbG9yOiMz
-RDg1QzYiPiZuYnNwOyBycG0gLWl2aCAtLXByZWZpeD0vb3B0LyBleGFtcGxlLnJwbTxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb21pYyBTYW5zIE1TJnF1b3Q7O2NvbG9yOiMzRDg1
-QzYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb21pYyBTYW5zIE1T
-JnF1b3Q7O2NvbG9yOiMzRDg1QzYiPklzIHRoZXJlIGFueSB3YXkgdGhhdCBJIGNhbiBkbyB0aGlz
-IGluIGEgcmVjaXBlLCBzbyB0aGF0IG15IGZpbmFsIGltYWdlIGhhcyB0aGUgcnBtIGluc3RhbGxl
-ZC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q29taWMgU2FucyBNUyZxdW90Oztj
-b2xvcjojM0Q4NUM2Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q29t
-aWMgU2FucyBNUyZxdW90Oztjb2xvcjojM0Q4NUM2Ij5BbnkgaGVscCZuYnNwO3dvdWxkIGJlIGFw
-cHJlY2lhdGVkLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb21pYyBTYW5zIE1T
-JnF1b3Q7O2NvbG9yOiMzRDg1QzYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2
-Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTom
-cXVvdDtDb21pYyBTYW5zIE1TJnF1b3Q7O2NvbG9yOiMzRDg1QzYiPlRoYW5rIHlvdSw8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q29taWMgU2FucyBNUyZxdW90Oztjb2xvcjojM0Q4
-NUM2Ij5DaGFpdGh1PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwv
-ZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+I apologize for the dumb questions.
 
---_000_TYAPR01MB2031B0D1EF1448ED96F21032927F0TYAPR01MB2031jpnp_--
+Thanks,
+Chaitanya
+
+
+On Fri, Feb 22, 2019 at 10:47 AM Stephen Lawrence <
+stephen.lawrence@renesas.com> wrote:
+
+> Hi,
+>
+>
+>
+> Take a look at the section 3.2 =E2=80=9CCustomizing Images=E2=80=9D in th=
+e Development
+> Tasks Manual. You can find it and the other manuals here:
+>
+> https://www.yoctoproject.org/docs/
+>
+>
+>
+> If you are building the package in Yocto as well the simplest is to add i=
+t
+> to the image with IMAGE_INSTALL, but the manual also discusses other
+> methods such as runtime package management.
+>
+>
+>
+> Select Yocto Project 2.5.x from the drop down at the top of the page to
+> get the manuals for that version.
+>
+>
+>
+> Regards
+>
+>
+>
+> Steve
+>
+>
+>
+> *From:* yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> *=
+On
+> Behalf Of *chaitanya cherukuri
+> *Sent:* 22 February 2019 15:17
+> *To:* yocto@yoctoproject.org
+> *Subject:* [yocto] How to Install Third party rpm packages
+>
+>
+>
+> Hello All,
+>
+>
+>
+> I 'm new to YOCTO. I am using YOCTO version 2.5.
+>
+> I would like to install third party rpm package to my image. Currently I'=
+m
+> installing rpm package on my target machine using rpm command
+>
+>   rpm -ivh --prefix=3D/opt/ example.rpm
+>
+>
+>
+> Is there any way that I can do this in a recipe, so that my final image
+> has the rpm installed.
+>
+>
+>
+> Any help would be appreciated.
+>
+>
+>
+> Thank you,
+>
+> Chaithu
+>
+>
+>
+>
+>
+
+
+--=20
+--
+Chaitanya
+
+--00000000000015adf3058282deb8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:comic sa=
+ns ms,sans-serif;color:#3d85c6">Hi Stephen,</div><div class=3D"gmail_defaul=
+t" style=3D"font-family:comic sans ms,sans-serif;color:#3d85c6"><br></div><=
+div class=3D"gmail_default" style=3D"font-family:comic sans ms,sans-serif;c=
+olor:#3d85c6">Thank you for pointing the documentation.</div><div class=3D"=
+gmail_default" style=3D"font-family:comic sans ms,sans-serif;color:#3d85c6"=
+>In custom=C2=A0image=C2=A0recipe I will add IMAGE_INSTALL=C2=A0+=3D &quot;=
+custom-package.rpm&quot; but how do I add this &quot;custom-package.rpm&quo=
+t; to my YOCTO build system.</div><div class=3D"gmail_default" style=3D"fon=
+t-family:comic sans ms,sans-serif;color:#3d85c6">Do I need to write a recip=
+e where I fetch this package?</div><div class=3D"gmail_default" style=3D"fo=
+nt-family:comic sans ms,sans-serif;color:#3d85c6"><br></div><div class=3D"g=
+mail_default" style=3D"font-family:comic sans ms,sans-serif;color:#3d85c6">=
+I apologize=C2=A0for the dumb questions.</div><div class=3D"gmail_default" =
+style=3D"font-family:comic sans ms,sans-serif;color:#3d85c6"><br></div><div=
+ class=3D"gmail_default" style=3D"font-family:comic sans ms,sans-serif;colo=
+r:#3d85c6">Thanks,</div><div class=3D"gmail_default" style=3D"font-family:c=
+omic sans ms,sans-serif;color:#3d85c6">Chaitanya</div><div class=3D"gmail_d=
+efault" style=3D"font-family:comic sans ms,sans-serif;color:#3d85c6"><br></=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Fri, Feb 22, 2019 at 10:47 AM Stephen Lawrence &lt;<a href=3D"mailto=
+:stephen.lawrence@renesas.com" target=3D"_blank">stephen.lawrence@renesas.c=
+om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+">
+
+
+
+
+
+<div lang=3D"EN-GB">
+<div class=3D"gmail-m_5734109972580351645gmail-m_8591016642994994278WordSec=
+tion1">
+<p class=3D"MsoNormal"><span>Hi,<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>Take a look at the section 3.2 =E2=80=9CCustom=
+izing Images=E2=80=9D in the Development Tasks Manual. You can find it and =
+the other manuals here:<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><a href=3D"https://www.yoctoproject.org/docs/"=
+ target=3D"_blank">https://www.yoctoproject.org/docs/</a><u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>If you are building the package in Yocto as we=
+ll the simplest is to add it to the image with IMAGE_INSTALL, but the manua=
+l also discusses other methods such as runtime package management.
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>Select Yocto Project 2.5.x from the drop down =
+at the top of the page to get the manuals for that version.<u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>Regards<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>Steve<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<div style=3D"border-top:none;border-right:none;border-bottom:none;border-l=
+eft:1.5pt solid blue;padding:0cm 0cm 0cm 4pt">
+<div>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
+top:1pt solid rgb(225,225,225);padding:3pt 0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> <a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_bl=
+ank">yocto-bounces@yoctoproject.org</a> &lt;<a href=3D"mailto:yocto-bounces=
+@yoctoproject.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a>&gt;
+<b>On Behalf Of </b>chaitanya cherukuri<br>
+<b>Sent:</b> 22 February 2019 15:17<br>
+<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> [yocto] How to Install Third party rpm packages<u></u><u></=
+u></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Comic Sans MS&quot;=
+;color:rgb(61,133,198)">Hello All,<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Comic Sans MS&quot;=
+;color:rgb(61,133,198)"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Comic Sans MS&quot;=
+;color:rgb(61,133,198)">I &#39;m new to YOCTO. I am using YOCTO version 2.5=
+.<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Comic Sans MS&quot;=
+;color:rgb(61,133,198)">I would like to install third party rpm package to =
+my image. Currently I&#39;m installing rpm package on my target machine usi=
+ng rpm command<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Comic Sans MS&quot;=
+;color:rgb(61,133,198)">=C2=A0 rpm -ivh --prefix=3D/opt/ example.rpm<u></u>=
+<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Comic Sans MS&quot;=
+;color:rgb(61,133,198)"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Comic Sans MS&quot;=
+;color:rgb(61,133,198)">Is there any way that I can do this in a recipe, so=
+ that my final image has the rpm installed.<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Comic Sans MS&quot;=
+;color:rgb(61,133,198)"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Comic Sans MS&quot;=
+;color:rgb(61,133,198)">Any help=C2=A0would be appreciated.<u></u><u></u></=
+span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Comic Sans MS&quot;=
+;color:rgb(61,133,198)"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Comic Sans MS&quot;=
+;color:rgb(61,133,198)">Thank you,<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Comic Sans MS&quot;=
+;color:rgb(61,133,198)">Chaithu<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail-m_5734109972580351645gmail_signature"><div dir=3D"ltr"><spa=
+n style=3D"color:rgb(61,133,198)"><span style=3D"font-family:&quot;comic sa=
+ns ms&quot;,sans-serif">--<br>Chaitanya</span></span><br></div></div>
+
+--00000000000015adf3058282deb8--
