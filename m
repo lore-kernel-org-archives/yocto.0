@@ -1,68 +1,57 @@
-Return-Path: <ccvk.chaitanya@gmail.com>
+Return-Path: <sangeeta.jain@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F2866E00BBC; Sun, 24 Feb 2019 16:45:33 -0800 (PST)
+	id 23CFBE00C45; Sun, 24 Feb 2019 17:48:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (ccvk.chaitanya[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.172 listed in list.dnswl.org]
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com
-	[209.85.167.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68B9DE009A5
-	for <yocto@yoctoproject.org>; Sun, 24 Feb 2019 16:45:33 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id e7so5936096oia.8
-	for <yocto@yoctoproject.org>; Sun, 24 Feb 2019 16:45:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=spWXvEcvAzE+FB4GIYt75g9Y5xDMgRpSxOO4Pt5E/lU=;
-	b=Q8jekgcmNYcmyZ/aFJkpH/VA2rNovnf3AVym90SkejW/E7qr/li33nG5Yzotte/hzq
-	500zzuBOayaUpoZTWztmDdTjofLbHxqIfFAT/zGW9brG60FrulXBO7yakADHP/wz+cvt
-	/SgiYBL7o45xAkTBMZmwQZLfCvfB54zYw2OMnRj+GurjqNWSttKDX/ZLS0JnfQZ3FAo6
-	ra7evnMEtYCB3VaJeatioopfB2TxfMwptXjQL28MjezgcvlpsUh73FRM9UznuuJa7fvp
-	Xvnvgfa242V0Coj7umsduUaxyjQonU6FiEq70JGSh0F3LG7aVfkOwVFjCkBBq4lNuQ2U
-	sKuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=spWXvEcvAzE+FB4GIYt75g9Y5xDMgRpSxOO4Pt5E/lU=;
-	b=rtfIXbl7wFJMLIO4X4SqfdKFFPllXV84wGdqohf9BkkxVCIoZHAaWL9uc+bhkCzjlR
-	WnMSeitHSbIKJy4sra155u46ZGSucdLuxXfptEZWVJjHN/m43xT0ZrPym1SCpKKt8q4R
-	9KUrlWDimJOwnhWhPme0ByRa3tZs9SNQXGkgnaBNDppUU5CmfHKitKy8q42X8l28uSE2
-	25FyYBtwetqVXmnMCXQGv7HMfrv4lkyOfUBROiPoRgzMMYKUzgpzEqtphhIN7Ci7HjAk
-	mkVY8IL0u5i3Wq3moGhWk0+nMt6JUWv7HMIVGyXT6QoE8zYRboKeEMi8lc/JrDSgnyz3
-	MNiw==
-X-Gm-Message-State: AHQUAuaMz77OujmMtivalopE397vWAeWpXQRZQBBZHJQQny7rhjNax62
-	GtTtUOh0WMEV/p+ih0uM9WXgO9H5DONrnNCQJAqnmSRfks0=
-X-Google-Smtp-Source: AHgI3IaPV/u6TUwN+/7LvjIE5udvpmQ2EWdQv55VTK8AvCIC5Uwe4IY23MZQ76nhKpKHF1EbqAH0pcgOyCHeT8zz0xo=
-X-Received: by 2002:aca:cf4e:: with SMTP id f75mr9836852oig.129.1551055532670; 
-	Sun, 24 Feb 2019 16:45:32 -0800 (PST)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08DA3E00B5C
+	for <yocto@yoctoproject.org>; Sun, 24 Feb 2019 17:48:43 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	24 Feb 2019 17:48:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.58,409,1544515200"; 
+	d="scan'208,217";a="124905058"
+Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
+	by fmsmga007.fm.intel.com with ESMTP; 24 Feb 2019 17:48:41 -0800
+Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.64]) by
+	PGSMSX101.gar.corp.intel.com ([169.254.1.233]) with mapi id
+	14.03.0415.000; Mon, 25 Feb 2019 09:48:40 +0800
+From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
+To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>, "Eggleton, Paul"
+	<paul.eggleton@intel.com>, "'richard.purdie@linuxfoundation.org'"
+	<richard.purdie@linuxfoundation.org>, 'Michael Halstead'
+	<mhalstead@linuxfoundation.org>, "Erway, Tracey M"
+	<tracey.m.erway@intel.com>, "sjolley.yp.pm@gmail.com"
+	<sjolley.yp.pm@gmail.com>
+Thread-Topic: QA cycle report for 2.7 M2 RC2
+Thread-Index: AdTMrDVl+8ZsXNpkSwOY5wunhK0g2Q==
+Date: Mon, 25 Feb 2019 01:48:39 +0000
+Message-ID: <015AB11D45F2C442929CB2765DAE738634D7C473@PGSMSX110.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMmY5OGJhODctNTc3MC00ZGM1LThiN2EtZjhmM2QzNWZhMWM1IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiNmdOWXNYRlRCdjV0XC9hZWlTYlc0RE0rWm05UGNYaVlIbGhrNUY3ZnhmWWNGRU1vOVVvZjRSZkRCMDVJUHNjNHEifQ==
+x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
-References: <CALVd-wOQCtsKK5jpMGc5R3-cCrYi-=-sQmGzvnLMCD=pdTk31g@mail.gmail.com>
-	<TYAPR01MB2031B0D1EF1448ED96F21032927F0@TYAPR01MB2031.jpnprd01.prod.outlook.com>
-	<CALVd-wNod6oxi=t3KCiDg2HKO6nqBNWt+3avaBTTV=3x3yAT3w@mail.gmail.com>
-	<CAJTo0LaB0Ca1n+nAe0bCiSDMnA+SkZEYPfydAZMd-s_gbhFf4Q@mail.gmail.com>
-In-Reply-To: <CAJTo0LaB0Ca1n+nAe0bCiSDMnA+SkZEYPfydAZMd-s_gbhFf4Q@mail.gmail.com>
-From: chaitanya cherukuri <ccvk.chaitanya@gmail.com>
-Date: Sun, 24 Feb 2019 19:45:21 -0500
-Message-ID: <CALVd-wOkq6wwojJ+U6o=X9aMa4MA8PfJfVFgvp3DrWiZTnfsGA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to Install Third party rpm packages
+Cc: OTC Embedded Malaysia <otc.embedded.malaysia@intel.com>, "Greenberg, Suzy
+	M" <suzy.m.greenberg@intel.com>
+Subject: QA cycle report for 2.7 M2 RC2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,109 +63,418 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Feb 2019 00:45:34 -0000
-Content-Type: multipart/alternative; boundary="0000000000000d42b10582ad42bc"
+X-List-Received-Date: Mon, 25 Feb 2019 01:48:46 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_015AB11D45F2C442929CB2765DAE738634D7C473PGSMSX110garcor_"
 
---0000000000000d42b10582ad42bc
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-
-Thank you for the clarification.
-In do_install(), I used rpm2cpio.sh to extract the rpm and then copied the
-rpm contents in the right place.
-        $rpm2cpio.sh *.rpm | cpio -idmv
-I hope this is the right way to handle RPM packages.
-
-RPM has a post-installation script that I need to handle. This script
-executes after the installation of RPM. Could I know what is the efficient
-way to run the script?
-
-Thank you,
-Chaitanya
-
-
-
-
-On Fri, Feb 22, 2019 at 5:57 PM Burton, Ross <ross.burton@intel.com> wrote:
-
-> On Fri, 22 Feb 2019 at 22:16, chaitanya cherukuri
-> <ccvk.chaitanya@gmail.com> wrote:
-> > Do I need to write a recipe where I fetch this package?
->
-> Yes, write a recipe that has SRC_URI as the original RPM, then you can
-> write a do_install() to put the files in the right place, package it
-> correctly, and so on.
->
-> Just using the RPM as-is most likely won't work because the chances
-> are your Yocto distribution isn't binary-compatible at the packaging
-> level with whatever distribution the RPM was built for.
->
-> Ross
->
-
-
--- 
---
-Chaitanya
-
---0000000000000d42b10582ad42bc
-Content-Type: text/html; charset="UTF-8"
+--_000_015AB11D45F2C442929CB2765DAE738634D7C473PGSMSX110garcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:&quot;co=
-mic sans ms&quot;,sans-serif;color:rgb(61,133,198)"></div><div dir=3D"ltr">=
-<div class=3D"gmail_default" style=3D"font-family:&quot;comic sans ms&quot;=
-,sans-serif;color:rgb(61,133,198)">Hi,</div><div class=3D"gmail_default" st=
-yle=3D"font-family:&quot;comic sans ms&quot;,sans-serif;color:rgb(61,133,19=
-8)"><br></div><div class=3D"gmail_default" style=3D"font-family:&quot;comic=
- sans ms&quot;,sans-serif;color:rgb(61,133,198)">Thank you for the clarific=
-ation.</div><div class=3D"gmail_default" style=3D"font-family:&quot;comic s=
-ans ms&quot;,sans-serif;color:rgb(61,133,198)">In do_install(), I used rpm2=
-cpio.sh to extract the rpm and then copied the rpm contents in the right pl=
-ace.</div><div class=3D"gmail_default" style=3D"font-family:&quot;comic san=
-s ms&quot;,sans-serif;color:rgb(61,133,198)">=C2=A0 =C2=A0 =C2=A0 =C2=A0 $r=
-pm2cpio.sh *.rpm | cpio -idmv</div><div class=3D"gmail_default" style=3D"fo=
-nt-family:&quot;comic sans ms&quot;,sans-serif;color:rgb(61,133,198)">I hop=
-e this is the right way to handle RPM packages.</div><div class=3D"gmail_de=
-fault" style=3D"font-family:&quot;comic sans ms&quot;,sans-serif;color:rgb(=
-61,133,198)"><br></div><div class=3D"gmail_default" style=3D"font-family:&q=
-uot;comic sans ms&quot;,sans-serif;color:rgb(61,133,198)">RPM has a post-in=
-stallation script that I need to handle. This script executes after the ins=
-tallation of RPM. Could I know what is the efficient way to run=C2=A0the sc=
-ript?</div><div class=3D"gmail_default" style=3D"font-family:&quot;comic sa=
-ns ms&quot;,sans-serif;color:rgb(61,133,198)"><br></div><div class=3D"gmail=
-_default" style=3D"font-family:&quot;comic sans ms&quot;,sans-serif;color:r=
-gb(61,133,198)">Thank you,</div><div class=3D"gmail_default" style=3D"font-=
-family:&quot;comic sans ms&quot;,sans-serif;color:rgb(61,133,198)">Chaitany=
-a</div><div class=3D"gmail_default" style=3D"font-family:&quot;comic sans m=
-s&quot;,sans-serif;color:rgb(61,133,198)"><br></div><div class=3D"gmail_def=
-ault" style=3D"font-family:&quot;comic sans ms&quot;,sans-serif;color:rgb(6=
-1,133,198)"><br></div><div class=3D"gmail_default" style=3D"font-family:&qu=
-ot;comic sans ms&quot;,sans-serif;color:rgb(61,133,198)"><br></div></div></=
-div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Fri, Feb 22, 2019 at 5:57 PM Burton, Ross &lt;<a href=3D"mailto:ross.burto=
-n@intel.com">ross.burton@intel.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">On Fri, 22 Feb 2019 at 22:16, chaitanya c=
-herukuri<br>
-&lt;<a href=3D"mailto:ccvk.chaitanya@gmail.com" target=3D"_blank">ccvk.chai=
-tanya@gmail.com</a>&gt; wrote:<br>
-&gt; Do I need to write a recipe where I fetch this package?<br>
-<br>
-Yes, write a recipe that has SRC_URI as the original RPM, then you can<br>
-write a do_install() to put the files in the right place, package it<br>
-correctly, and so on.<br>
-<br>
-Just using the RPM as-is most likely won&#39;t work because the chances<br>
-are your Yocto distribution isn&#39;t binary-compatible at the packaging<br=
->
-level with whatever distribution the RPM was built for.<br>
-<br>
-Ross<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><span style=3D"color:rgb(61,133=
-,198)"><span style=3D"font-family:&quot;comic sans ms&quot;,sans-serif">--<=
-br>Chaitanya</span></span><br></div></div>
+Hello All,
 
---0000000000000d42b10582ad42bc--
+
+
+This is the full report for 2.7 M2 RC2:
+
+
+
+
+
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+All planned tests were executed.
+
+Total Test Executed - 3624
+
+Passed Test - 3607
+
+Failed Test - 9
+
+
+
+
+
+There were zero high milestone defect.  Team had found 2 new defects in Toa=
+ster[1] and BSP[2].
+
+3 existing issues were observed in this release.
+
+
+
+For ptest, there is a drop in percentage of pass rate for 3 modules: nettle=
+, perl and python3. Bugs are reported for Nettle [3] and Perl [4]. For pyth=
+on3, no bug is filed, since there is a decrease in percentage but no failur=
+es as compared to previous results.
+
+
+
+=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+  1.  No high milestone defect.
+  2.  CROPS manual test cases (total no 6) is replaced by one consolidated =
+auto test case in this test cycle.
+
+=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+New Bugs
+
+[1] Bug 13191 - [2.7 M2 RC1] Systemtap doesn't work on beaglebone
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13191
+
+
+
+[2] Bug 13178 - [2.7_m2_rc1][compliance test][LSB Test] "Failed to load mod=
+ule Core_test.pm, samba_test.pm", LSB Test has failed"
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13178
+
+
+
+
+
+
+
+ptest Bugs:
+
+
+
+[3] Bug 13193 - [2.7 M2 RC2] nettle ptest failure
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13193
+
+
+
+[4] Bug 13194<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991> - =
+[2.7 M2 RC2] perl ptest failure
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13194
+
+
+
+
+
+Previous Bugs observed in this release:
+
+[5] Bug 13153 - [2.7 M2 RC1] Systemtap doesn't work on beaglebone
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13153
+
+
+
+
+
+[6] Bug 12991<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991> - =
+[Bug] [2.6 M4 RC1][Build-Appliance] Bitbake build-appliance-image getting f=
+ailed during building image due to webkitgtk package.
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991
+
+
+
+[7] Bug 12499<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12991> - =
+[Bug] [2.5 M1 RC3] qemuarm: failed to shutdown.
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12499
+
+
+
+
+
+
+Thanks & Regards,
+Sangeeta Jain
+
+--_000_015AB11D45F2C442929CB2765DAE738634D7C473PGSMSX110garcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:dt=3D"uuid:C2F4101=
+0-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://schemas.microsoft.com/offi=
+ce/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:366490912;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1418230706 1141440527 1141440537 1141440539 11414405=
+27 1141440537 1141440539 1141440527 1141440537 1141440539;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l1
+	{mso-list-id:1042241942;
+	mso-list-template-ids:732595918;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-MY" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">Hello All,<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">This is the full report for 2.</span><span lang=3D"EN-US">7 M=
+2 RC2:<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D<o:p></=
+o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">All planned tests were executed.<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"color:black">T=
+otal Test Executed - 3</span>624<span style=3D"color:black"><o:p></o:p></sp=
+an></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"color:black">P=
+assed Test - 36</span>07<span style=3D"color:black"><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"color:black">F=
+ailed Test -
+</span>9<span style=3D"color:black"><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">There were zero high milestone defect.&nbsp; Team had found
+</span><span lang=3D"EN-US">2<span style=3D"color:black"> new defects in </=
+span>Toaster<span style=3D"color:black">[1]</span> and BSP<span style=3D"co=
+lor:black">[2]</span>.<span style=3D"color:black"><o:p></o:p></span></span>=
+</p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">3<span s=
+tyle=3D"color:black"> existing issues were observed in this release.<o:p></=
+o:p></span></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">For ptest, there is a drop in percentage of pass rate for 3 m=
+odules: nettle, perl and
+</span><span lang=3D"EN-US">python3<span style=3D"color:black">.&nbsp;Bugs =
+are reported for Nettle [</span>3<span style=3D"color:black">] and Perl [</=
+span>4<span style=3D"color:black">]. For python3, no bug is filed, since th=
+ere is a decrease in percentage but no failures
+ as compared to previous results.<o:p></o:p></span></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D<o:p></=
+o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<ol style=3D"margin-top:0cm" start=3D"1" type=3D"1">
+<li class=3D"MsoNormal" style=3D"color:black;mso-list:l0 level1 lfo3"><span=
+ lang=3D"EN-US" style=3D"mso-fareast-language:EN-MY">No high milestone defe=
+ct.&nbsp;
+<o:p></o:p></span></li><li class=3D"MsoNormal" style=3D"color:black;mso-lis=
+t:l0 level1 lfo3"><span lang=3D"EN-US" style=3D"color:windowtext;mso-fareas=
+t-language:EN-MY">CROPS manual test cases (total no 6) is replaced by one c=
+onsolidated auto test case in this test cycle.</span><span lang=3D"EN-US">&=
+nbsp;</span><span lang=3D"EN-US" style=3D"mso-fareast-language:EN-MY"><o:p>=
+</o:p></span></li></ol>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D<o:p></o:p=
+></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">New Bugs<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">[1] Bug =
+13191 &#8211; [2.7 M2 RC1] Systemtap doesn't work on beaglebone<o:p></o:p><=
+/span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D13191"><span lang=3D"EN-US">https://bugzi=
+lla.yoctoproject.org/show_bug.cgi?id=3D13191</span></a><span lang=3D"EN-US"=
+><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">[2] Bug =
+13178 &#8211; [2.7_m2_rc1][compliance test][LSB Test] &quot;Failed to load =
+module Core_test.pm, samba_test.pm&quot;, LSB Test has failed&quot;<o:p></o=
+:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D13178"><span lang=3D"EN-US">https://bugzi=
+lla.yoctoproject.org/show_bug.cgi?id=3D13178</span></a><span lang=3D"EN-US"=
+><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b>ptest Bugs:<o:p></o:p></b>=
+</p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt">[3] Bug 13193<span style=3D"c=
+olor:black">&nbsp;-&nbsp;[2.7 M2 RC</span>2<span style=3D"color:black">] ne=
+ttle ptest failure<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D13193">https://bugzilla.yoctoproject.org/=
+show_bug.cgi?id=3D13193</a><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt">[4] <a href=3D"https://bugzil=
+la.yoctoproject.org/show_bug.cgi?id=3D12991">
+<span style=3D"color:black;text-decoration:none">Bug&nbsp;131</span><span s=
+tyle=3D"color:windowtext;text-decoration:none">9</span><span style=3D"color=
+:black;text-decoration:none">4</span></a><span style=3D"color:black">&nbsp;=
+-&nbsp;[2.7 M2 RC</span>2<span style=3D"color:black">] perl
+ ptest failure<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D13194">https://bugzilla.yoctoproject.org/=
+show_bug.cgi?id=3D13194</a><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US"><o:p>=
+&nbsp;</o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span lang=3D"EN-US">Previ=
+ous Bugs observed in this release:<o:p></o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">[5] Bug =
+13153 &#8211; [2.7 M2 RC1] Systemtap doesn't work on beaglebone<o:p></o:p><=
+/span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D13153"><span lang=3D"EN-US">https://bugzi=
+lla.yoctoproject.org/show_bug.cgi?id=3D13153</span></a><span lang=3D"EN-US"=
+><o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US"><o:p>&nb=
+sp;</o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt">[6] <a href=3D"https://bugzil=
+la.yoctoproject.org/show_bug.cgi?id=3D12991">
+<span style=3D"color:black;text-decoration:none">Bug&nbsp;12991</span></a><=
+span style=3D"color:black">&nbsp;-&nbsp;[Bug] [2.6 M4 RC1][Build-Appliance]=
+ Bitbake build-appliance-image getting failed during building image due to =
+webkitgtk package.<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D12991">https://bugzilla.yoctoproject.org/=
+show_bug.cgi?id=3D12991</a><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt">[7] <a href=3D"https://bugzil=
+la.yoctoproject.org/show_bug.cgi?id=3D12991">
+<span style=3D"color:black;text-decoration:none">Bug&nbsp;12499</span></a><=
+span style=3D"color:black">&nbsp;-&nbsp;[Bug] [2.5 M1 RC3] qemuarm: failed =
+to shutdown.<o:p></o:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D12499">https://bugzilla.yoctoproject.org/=
+show_bug.cgi?id=3D12499</a><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
+"color:black">&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards,<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Sangeeta Jain<o:p></o:p></span>=
+</p>
+</div>
+</body>
+</html>
+
+--_000_015AB11D45F2C442929CB2765DAE738634D7C473PGSMSX110garcor_--
