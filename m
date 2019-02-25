@@ -1,46 +1,71 @@
-Return-Path: <stefan@agner.ch>
+Return-Path: <sjolley.yp.pm@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA855E00D07; Mon, 25 Feb 2019 07:26:24 -0800 (PST)
+	id C61CAE00BAF; Mon, 25 Feb 2019 11:39:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [178.209.48.109 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.171 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail.kmu-office.ch (mail.kmu-office.ch [178.209.48.109])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56882E0095C
-	for <yocto@yoctoproject.org>; Mon, 25 Feb 2019 07:26:22 -0800 (PST)
-Received: from trochilidae.toradex.int (unknown [46.140.72.82])
-	by mail.kmu-office.ch (Postfix) with ESMTPSA id 85A215C1F0E;
-	Mon, 25 Feb 2019 16:16:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
-	t=1551107782;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	to:to:cc:cc:mime-version:mime-version:content-type:
-	content-transfer-encoding:content-transfer-encoding:in-reply-to:
-	references; bh=KECyGuokAzCNLnN3AW37kX9bCeSNDdTRIncLtAI0i78=;
-	b=qG4XrK1Qtf47tVTU18IKlaA+kiwLoLCkH7K7fea+b3Y3AELXRXfFJUXpoXEtLANTCMyVI9
-	WvO0xFuPRRF5+9sIFbEj94KKuPKcIYRbvZv9g5pIMOfiCKU4zx4XTp9FozOfPCnXoqzReo
-	T8fIQNykTnsZXXZ98XGWzo6VqyAnWwA=
-From: Stefan Agner <stefan@agner.ch>
-To: yocto@yoctoproject.org
-Date: Mon, 25 Feb 2019 16:16:17 +0100
-Message-Id: <20190225151619.2754-1-stefan@agner.ch>
-X-Mailer: git-send-email 2.20.1
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+	[209.85.214.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 471E8E0095C
+	for <yocto@yoctoproject.org>; Mon, 25 Feb 2019 11:39:42 -0800 (PST)
+Received: by mail-pl1-f171.google.com with SMTP id c4so4945181pls.11
+	for <yocto@yoctoproject.org>; Mon, 25 Feb 2019 11:39:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id:mime-version:content-language
+	:thread-index; bh=9Wzmat26S8m41eW4xqZ8HmG4AhN/0ljicCisxjtqHn8=;
+	b=tQ6LCsKtuGXcZGNcioa7Jd8Q2bJ0X2ltsBc9BHctIlC5bEQT0nZ7TcFZUOWi4rHMyB
+	8yl5VuaE9f5LZopXRZdK+5ywbTfVlCsaIHc5oAU9XKpH0FEPlcxjao4yHUoFBuKfKdXs
+	gX6Hs0ztz7hWsAXM2wZOkKTaBQ2iWd3DlUp5nVKMXDaMMQjPpnB7LDBNmClOIL3Yio/i
+	6aE8/NTtb7hGUX7szzmp5yb0H7bMf226NhgUyQ/lfy9CP2f79it1L+2+peA81Ix9exBW
+	wl+Vut9kLmrNk2sYBDYH8DJBQQCqxNMzVzzdYOLWTwPr1ScoQzbKvxoyb48LFU2kUKc5
+	aGOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-language:thread-index;
+	bh=9Wzmat26S8m41eW4xqZ8HmG4AhN/0ljicCisxjtqHn8=;
+	b=ZVsTbFWPLLvt0ttYtNgXNLl4tQnUPawv1QrPkHB9stw6IJkxzdkzHwi3Ac6oyY6Vpa
+	jSevlryhhIDArvK3X9RETci2jrAHUFqWltACB/4eDM16r17fzKqVluLCKLWt8tvGgo6A
+	nBjlz3JOJum2ASWg0vbH+lIfNgM4T7IVdM6bO66RNsHh8jbRWhLdB6hikrS/JKw5mhXG
+	Mlxq/cFkZsXz0HvUDUxCbMS7tQ31OcwvqEF343/zp3OtHeHZ/5fgN30lV9Cb2GGl6Y6q
+	k1KUSzJb57F9ErtQGG42tVNxEjvY+8Kzt+8huJZmgHDxAYb/tjbtSeM5ztMy5a1bnvpa
+	/n5w==
+X-Gm-Message-State: AHQUAubEhrry8tbFYDTPfPk5i+FiDI3EY9intY8+jsX8Kw1bquJ37Val
+	MdxOn/1IWtX0By8ax5/LhhQ=
+X-Google-Smtp-Source: AHgI3IYO4G9lwE5ncJGp1F4qmC0ggtg8Il578OLT5LNU8SuTee8Py3R5AyvsZ5JKsY5SKyx9wyOQBA==
+X-Received: by 2002:a17:902:e711:: with SMTP id
+	co17mr21694443plb.171.1551123581694; 
+	Mon, 25 Feb 2019 11:39:41 -0800 (PST)
+Received: from sjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+	by smtp.gmail.com with ESMTPSA id
+	j4sm13944180pfn.132.2019.02.25.11.39.40
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 25 Feb 2019 11:39:40 -0800 (PST)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Date: Mon, 25 Feb 2019 11:39:40 -0800
+Message-ID: <017301d4cd41$da081c80$8e185580$@gmail.com>
 MIME-Version: 1.0
-Cc: Stefan Agner <stefan.agner@toradex.com>, stefan@agner.ch
-Subject: [psplash][PATCH 1/3] add recovered bar.png
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIzYHlkwwUGiIlspGIPIMKTYck2OA==
+Subject: Yocto Project Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,69 +77,226 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Feb 2019 15:26:24 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 25 Feb 2019 19:39:43 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0174_01D4CCFE.CBE551B0"
+Content-Language: en-us
 
-From: Stefan Agner <stefan.agner@toradex.com>
+------=_NextPart_000_0174_01D4CCFE.CBE551B0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-While the source files for the main splash image is present in
-the source folder base-image, the progress bar isn't. This
-patch adds the bar.png recovered from the RLE data in the bar
-header file. The tool make-image-header.sh allows to translate
-this png back the the header exactly.
+All,
 
-Signed-off-by: Stefan Agner <stefan.agner@toradex.com>
----
- base-images/bar.png | Bin 0 -> 1849 bytes
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 base-images/bar.png
+ 
 
-diff --git a/base-images/bar.png b/base-images/bar.png
-new file mode 100644
-index 0000000000000000000000000000000000000000..e2c1f1781cdcfa68c8a664a8b3072344d3aeaf1b
-GIT binary patch
-literal 1849
-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
+The triage team meets weekly and does its best to handle the bugs reported
+into the Bugzilla. The number of people attending that meeting has fallen,
+as have the number of people available to help fix bugs. One of the things
+we hear users report is they don't know how to help. We (the triage team)
+are therefore going to start reporting out the currently 294 unassigned
+bugs.
 
-literal 0
-HcmV?d00001
+ 
 
--- 
-2.20.1
+We're hoping people may be able to spare some time now and again to help out
+with these.
+
+ 
+
+Bugs are split into two types, "true bugs" where things don't work as they
+should and "enhancements" which are features we'd want to add to the system.
+
+ 
+
+There are also roughly four different "priority" classes right now, "2.7",
+"2.8", "2.99" and "Future", the more pressing/urgent issues being in "2.7"
+and then "2.8".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me
+(Stephen.k.jolley@intel.com <mailto:Stephen.k.jolley@intel.com> ) an e-mail
+with the bug number you would like and I will assign it to you (please make
+sure you have a Bugzilla account).
+
+ 
+
+The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+ 
 
 
+------=_NextPart_000_0174_01D4CCFE.CBE551B0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0030_01D4C87D.1A826F50";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoPlainText>All,<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
+triage team meets weekly and does its best to handle the bugs reported =
+into the Bugzilla. The number of people attending that meeting has =
+fallen, as have the number of people available to help fix bugs. One of =
+the things we hear users report is they don't know how to help. We (the =
+triage team) are therefore going to start reporting out the currently =
+294 unassigned bugs.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>We're =
+hoping people may be able to spare some time now and again to help out =
+with these.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Bugs =
+are split into two types, &quot;true bugs&quot; where things don't work =
+as they should and &quot;enhancements&quot; which are features we'd want =
+to add to the system.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>There =
+are also roughly four different &quot;priority&quot; classes right now, =
+&#8220;2.7&#8221;, &#8220;2.8&#8221;, &quot;2.99&quot; and =
+&quot;Future&quot;, the more pressing/urgent issues being in =
+&quot;2.7&quot; and then &#8220;2.8&#8221;.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Please =
+review this link and if a bug is something you would be able to help =
+with either take ownership of the bug, or send me (<a =
+href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com</a>=
+) an e-mail with the bug number you would like and I will assign it to =
+you (please make sure you have a Bugzilla account).<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
+list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs">ht=
+tps://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
+></p><p class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a><o:p><=
+/o:p></span></p><p class=3DMsoNormal><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:=
+p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_0174_01D4CCFE.CBE551B0--
