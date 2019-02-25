@@ -1,44 +1,47 @@
 Return-Path: <sangeeta.jain@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23CFBE00C45; Sun, 24 Feb 2019 17:48:46 -0800 (PST)
+	id 7B86AE00BBC; Sun, 24 Feb 2019 17:59:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED,SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.55.52.136 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08DA3E00B5C
-	for <yocto@yoctoproject.org>; Sun, 24 Feb 2019 17:48:43 -0800 (PST)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A92BE009A5
+	for <yocto@yoctoproject.org>; Sun, 24 Feb 2019 17:59:21 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	24 Feb 2019 17:48:43 -0800
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	24 Feb 2019 17:59:20 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.58,409,1544515200"; 
-	d="scan'208,217";a="124905058"
-Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
-	by fmsmga007.fm.intel.com with ESMTP; 24 Feb 2019 17:48:41 -0800
+	d="scan'208,217";a="136880385"
+Received: from pgsmsx108.gar.corp.intel.com ([10.221.44.103])
+	by orsmga002.jf.intel.com with ESMTP; 24 Feb 2019 17:59:18 -0800
 Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.64]) by
-	PGSMSX101.gar.corp.intel.com ([169.254.1.233]) with mapi id
-	14.03.0415.000; Mon, 25 Feb 2019 09:48:40 +0800
+	PGSMSX108.gar.corp.intel.com ([169.254.8.83]) with mapi id
+	14.03.0415.000; Mon, 25 Feb 2019 09:59:17 +0800
 From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
 To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>, "Eggleton, Paul"
 	<paul.eggleton@intel.com>, "'richard.purdie@linuxfoundation.org'"
 	<richard.purdie@linuxfoundation.org>, 'Michael Halstead'
 	<mhalstead@linuxfoundation.org>, "Erway, Tracey M"
-	<tracey.m.erway@intel.com>, "sjolley.yp.pm@gmail.com"
+	<tracey.m.erway@intel.com>, "'sjolley.yp.pm@gmail.com'"
 	<sjolley.yp.pm@gmail.com>
 Thread-Topic: QA cycle report for 2.7 M2 RC2
-Thread-Index: AdTMrDVl+8ZsXNpkSwOY5wunhK0g2Q==
-Date: Mon, 25 Feb 2019 01:48:39 +0000
-Message-ID: <015AB11D45F2C442929CB2765DAE738634D7C473@PGSMSX110.gar.corp.intel.com>
+Thread-Index: AdTMrDVl+8ZsXNpkSwOY5wunhK0g2QAAU90Q
+Date: Mon, 25 Feb 2019 01:59:16 +0000
+Message-ID: <015AB11D45F2C442929CB2765DAE738634D7C4C3@PGSMSX110.gar.corp.intel.com>
+References: <015AB11D45F2C442929CB2765DAE738634D7C473@PGSMSX110.gar.corp.intel.com>
+In-Reply-To: <015AB11D45F2C442929CB2765DAE738634D7C473@PGSMSX110.gar.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -51,7 +54,7 @@ x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
 Cc: OTC Embedded Malaysia <otc.embedded.malaysia@intel.com>, "Greenberg, Suzy
 	M" <suzy.m.greenberg@intel.com>
-Subject: QA cycle report for 2.7 M2 RC2
+Subject: Re: QA cycle report for 2.7 M2 RC2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,14 +66,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Feb 2019 01:48:46 -0000
+X-List-Received-Date: Mon, 25 Feb 2019 01:59:23 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_015AB11D45F2C442929CB2765DAE738634D7C473PGSMSX110garcor_"
+	boundary="_000_015AB11D45F2C442929CB2765DAE738634D7C4C3PGSMSX110garcor_"
 
---_000_015AB11D45F2C442929CB2765DAE738634D7C473PGSMSX110garcor_
+--_000_015AB11D45F2C442929CB2765DAE738634D7C4C3PGSMSX110garcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+corrected bug summary:
+
+
+[2] Bug 13178 - [2.7_m2_rc2][compliance test][LSB Test] "Failed to load mod=
+ule Core_test.pm, samba_test.pm", LSB Test has failed"
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13178
+
+
+Thanks & Regards,
+Sangeeta Jain
+
+From: Jain, Sangeeta
+Sent: Monday, 25 February, 2019 9:49 AM
+To: 'yocto@yoctoproject.org' <yocto@yoctoproject.org>; Eggleton, Paul <paul=
+.eggleton@intel.com>; 'richard.purdie@linuxfoundation.org' <richard.purdie@=
+linuxfoundation.org>; 'Michael Halstead' <mhalstead@linuxfoundation.org>; E=
+rway, Tracey M <tracey.m.erway@intel.com>; sjolley.yp.pm@gmail.com
+Cc: OTC Embedded Malaysia <otc.embedded.malaysia@intel.com>; Greenberg, Suz=
+y M <suzy.m.greenberg@intel.com>
+Subject: QA cycle report for 2.7 M2 RC2
+
 
 Hello All,
 
@@ -193,7 +219,7 @@ https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12499
 Thanks & Regards,
 Sangeeta Jain
 
---_000_015AB11D45F2C442929CB2765DAE738634D7C473PGSMSX110garcor_
+--_000_015AB11D45F2C442929CB2765DAE738634D7C4C3PGSMSX110garcor_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -242,6 +268,10 @@ span.EmailStyle18
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle21
 	{mso-style-type:personal-reply;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
@@ -302,8 +332,8 @@ div.WordSection1
 	mso-level-number-position:right;
 	text-indent:-9.0pt;}
 @list l1
-	{mso-list-id:1042241942;
-	mso-list-template-ids:732595918;}
+	{mso-list-id:1518696264;
+	mso-list-template-ids:-1877826948;}
 ol
 	{margin-bottom:0cm;}
 ul
@@ -317,6 +347,47 @@ ul
 </head>
 <body lang=3D"EN-MY" link=3D"#0563C1" vlink=3D"#954F72">
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal">corrected bug summary:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US">[2] Bug =
+13178 &#8211; [2.7_m2_rc2][compliance test][LSB Test] &quot;Failed to load =
+module Core_test.pm, samba_test.pm&quot;, LSB Test has failed&quot;<o:p></o=
+:p></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><a href=3D"https://bugzilla.y=
+octoproject.org/show_bug.cgi?id=3D13178"><span lang=3D"EN-US">https://bugzi=
+lla.yoctoproject.org/show_bug.cgi?id=3D13178</span></a><span lang=3D"EN-US"=
+><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"mso-fareast-language:E=
+N-MY">Thanks &amp; Regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"mso-fareast-language:E=
+N-MY">Sangeeta Jain<o:p></o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><a name=3D"_____replyseparator"></a><b><span lang=3D=
+"EN-US" style=3D"mso-fareast-language:EN-MY">From:</span></b><span lang=3D"=
+EN-US" style=3D"mso-fareast-language:EN-MY"> Jain, Sangeeta
+<br>
+<b>Sent:</b> Monday, 25 February, 2019 9:49 AM<br>
+<b>To:</b> 'yocto@yoctoproject.org' &lt;yocto@yoctoproject.org&gt;; Eggleto=
+n, Paul &lt;paul.eggleton@intel.com&gt;; 'richard.purdie@linuxfoundation.or=
+g' &lt;richard.purdie@linuxfoundation.org&gt;; 'Michael Halstead' &lt;mhals=
+tead@linuxfoundation.org&gt;; Erway, Tracey M &lt;tracey.m.erway@intel.com&=
+gt;;
+ sjolley.yp.pm@gmail.com<br>
+<b>Cc:</b> OTC Embedded Malaysia &lt;otc.embedded.malaysia@intel.com&gt;; G=
+reenberg, Suzy M &lt;suzy.m.greenberg@intel.com&gt;<br>
+<b>Subject:</b> QA cycle report for 2.7 M2 RC2<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
 "color:black">Hello All,<o:p></o:p></span></p>
 <p style=3D"margin:0cm;margin-bottom:.0001pt"><span lang=3D"EN-US" style=3D=
@@ -474,7 +545,8 @@ show_bug.cgi?id=3D12499</a><o:p></o:p></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">Sangeeta Jain<o:p></o:p></span>=
 </p>
 </div>
+</div>
 </body>
 </html>
 
---_000_015AB11D45F2C442929CB2765DAE738634D7C473PGSMSX110garcor_--
+--_000_015AB11D45F2C442929CB2765DAE738634D7C4C3PGSMSX110garcor_--
