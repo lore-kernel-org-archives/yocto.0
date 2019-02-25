@@ -1,71 +1,95 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <stephen.lawrence@renesas.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C61CAE00BAF; Mon, 25 Feb 2019 11:39:43 -0800 (PST)
+	id 33156E00CED; Mon, 25 Feb 2019 12:43:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.171 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [40.107.141.130 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
-	[209.85.214.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 471E8E0095C
-	for <yocto@yoctoproject.org>; Mon, 25 Feb 2019 11:39:42 -0800 (PST)
-Received: by mail-pl1-f171.google.com with SMTP id c4so4945181pls.11
-	for <yocto@yoctoproject.org>; Mon, 25 Feb 2019 11:39:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:mime-version:content-language
-	:thread-index; bh=9Wzmat26S8m41eW4xqZ8HmG4AhN/0ljicCisxjtqHn8=;
-	b=tQ6LCsKtuGXcZGNcioa7Jd8Q2bJ0X2ltsBc9BHctIlC5bEQT0nZ7TcFZUOWi4rHMyB
-	8yl5VuaE9f5LZopXRZdK+5ywbTfVlCsaIHc5oAU9XKpH0FEPlcxjao4yHUoFBuKfKdXs
-	gX6Hs0ztz7hWsAXM2wZOkKTaBQ2iWd3DlUp5nVKMXDaMMQjPpnB7LDBNmClOIL3Yio/i
-	6aE8/NTtb7hGUX7szzmp5yb0H7bMf226NhgUyQ/lfy9CP2f79it1L+2+peA81Ix9exBW
-	wl+Vut9kLmrNk2sYBDYH8DJBQQCqxNMzVzzdYOLWTwPr1ScoQzbKvxoyb48LFU2kUKc5
-	aGOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-	:content-language:thread-index;
-	bh=9Wzmat26S8m41eW4xqZ8HmG4AhN/0ljicCisxjtqHn8=;
-	b=ZVsTbFWPLLvt0ttYtNgXNLl4tQnUPawv1QrPkHB9stw6IJkxzdkzHwi3Ac6oyY6Vpa
-	jSevlryhhIDArvK3X9RETci2jrAHUFqWltACB/4eDM16r17fzKqVluLCKLWt8tvGgo6A
-	nBjlz3JOJum2ASWg0vbH+lIfNgM4T7IVdM6bO66RNsHh8jbRWhLdB6hikrS/JKw5mhXG
-	Mlxq/cFkZsXz0HvUDUxCbMS7tQ31OcwvqEF343/zp3OtHeHZ/5fgN30lV9Cb2GGl6Y6q
-	k1KUSzJb57F9ErtQGG42tVNxEjvY+8Kzt+8huJZmgHDxAYb/tjbtSeM5ztMy5a1bnvpa
-	/n5w==
-X-Gm-Message-State: AHQUAubEhrry8tbFYDTPfPk5i+FiDI3EY9intY8+jsX8Kw1bquJ37Val
-	MdxOn/1IWtX0By8ax5/LhhQ=
-X-Google-Smtp-Source: AHgI3IYO4G9lwE5ncJGp1F4qmC0ggtg8Il578OLT5LNU8SuTee8Py3R5AyvsZ5JKsY5SKyx9wyOQBA==
-X-Received: by 2002:a17:902:e711:: with SMTP id
-	co17mr21694443plb.171.1551123581694; 
-	Mon, 25 Feb 2019 11:39:41 -0800 (PST)
-Received: from sjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-	by smtp.gmail.com with ESMTPSA id
-	j4sm13944180pfn.132.2019.02.25.11.39.40
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 25 Feb 2019 11:39:40 -0800 (PST)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Date: Mon, 25 Feb 2019 11:39:40 -0800
-Message-ID: <017301d4cd41$da081c80$8e185580$@gmail.com>
+X-Greylist: delayed 17970 seconds by postgrey-1.32 at yocto-www;
+	Mon, 25 Feb 2019 12:43:03 PST
+Received: from JPN01-OS2-obe.outbound.protection.outlook.com
+	(mail-eopbgr1410130.outbound.protection.outlook.com [40.107.141.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5BEDE00AA9
+	for <yocto@yoctoproject.org>; Mon, 25 Feb 2019 12:43:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=kKI5WeJQo5xARdSen8vjr2ic4KEzDRiiAd686bT/ovc=;
+	b=W6aebgEXsu9kL97jnGSr6quQizVDCKmUmo1j3SgR2lda94qpsGCR/oItpd8DZ2WaiiRZzy9iGeE8Sr8FH0lYy1AH5UK4UOjGIl7l3QenZqyzSaGvg+dR4xWX3JkDqiOPrK+hrabsaf/3hv/UvRwVaReAD7z6efvmG9CXvyMytMQ=
+Received: from TYAPR01MB2031.jpnprd01.prod.outlook.com (52.133.179.12) by
+	TYAPR01MB3375.jpnprd01.prod.outlook.com (20.178.136.142) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1643.18; Mon, 25 Feb 2019 15:10:09 +0000
+Received: from TYAPR01MB2031.jpnprd01.prod.outlook.com
+	([fe80::59a6:f906:ad87:bcb7]) by
+	TYAPR01MB2031.jpnprd01.prod.outlook.com
+	([fe80::59a6:f906:ad87:bcb7%2]) with mapi id 15.20.1643.019;
+	Mon, 25 Feb 2019 15:10:09 +0000
+From: Stephen Lawrence <stephen.lawrence@renesas.com>
+To: Khem Raj <raj.khem@gmail.com>, Richard Purdie
+	<richard.purdie@linuxfoundation.org>
+Thread-Topic: [yocto] Review request 0/13: Contribute meta-tensorflow to Yocto
+Thread-Index: AQHUydnrZH1wnn+sQE6uSkgVFEw6h6XsBGAggABIQ4CAATjCAIAAGqoAgAL/JUA=
+Date: Mon, 25 Feb 2019 15:10:08 +0000
+Message-ID: <TYAPR01MB20319F2626DFC71F082031E0927A0@TYAPR01MB2031.jpnprd01.prod.outlook.com>
+References: <1550749039-67320-1-git-send-email-hongxu.jia@windriver.com>
+	<TYAPR01MB20314DDA5FAB24441BC69EAC927F0@TYAPR01MB2031.jpnprd01.prod.outlook.com>
+	<BYAPR02MB600561B688584916C429A316B97F0@BYAPR02MB6005.namprd02.prod.outlook.com>
+	<2c3baa056663af88ed9e15b89128802cfc686b4e.camel@linuxfoundation.org>
+	<CAMKF1srCoMu28YEAN7kUNT0BBV33OxdguZ4LQ+Qvf_SMom5KOQ@mail.gmail.com>
+In-Reply-To: <CAMKF1srCoMu28YEAN7kUNT0BBV33OxdguZ4LQ+Qvf_SMom5KOQ@mail.gmail.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=stephen.lawrence@renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9f773ccc-b3a6-4079-b921-08d69b335502
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(7020095)(4652040)(8989299)(5600110)(711020)(4605104)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7153060)(7193020);
+	SRVR:TYAPR01MB3375; 
+x-ms-traffictypediagnostic: TYAPR01MB3375:
+x-microsoft-exchange-diagnostics: 1; TYAPR01MB3375;
+	20:98Xp0eVYl8mvx36jcVV0NE5Kh6F8lsbl8LLb+JAmpiptowu0Zm29aWx/Z9PK+fM2hM+i0pWMMT0R0gaGs/nJ48Z2fxZ3tNN8Dogx4hvh45z2K7AxpMZxEBaFQMHHmI7mgfY4HuOnpUEeItPgDw3QwlO78/aNnvO23cT1+iQSWOk=
+x-microsoft-antispam-prvs: <TYAPR01MB33753B57DEADA82EED3BB8F5927A0@TYAPR01MB3375.jpnprd01.prod.outlook.com>
+x-forefront-prvs: 095972DF2F
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(396003)(366004)(136003)(376002)(346002)(39860400002)(199004)(189003)(13464003)(71190400001)(110136005)(2906002)(6436002)(106356001)(71200400001)(26005)(7736002)(105586002)(102836004)(316002)(14444005)(74316002)(256004)(55016002)(53546011)(6506007)(33656002)(305945005)(9686003)(53936002)(446003)(44832011)(486006)(11346002)(7416002)(68736007)(476003)(97736004)(66066001)(8936002)(81156014)(52536013)(81166006)(5660300002)(8676002)(6246003)(25786009)(93886005)(54906003)(7696005)(229853002)(99286004)(478600001)(186003)(4326008)(86362001)(14454004)(3846002)(6116002)(76176011);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:TYAPR01MB3375;
+	H:TYAPR01MB2031.jpnprd01.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: renesas.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 24xWs55Li8xY0jJQ6e00H9e8I9DFFDnoEByhn0+sag11qssLEbQsRyEvWquEIrN6tdQN3w9Kl/ew62yHugWO68jZ4BiEZZg+t81EEXs7D74AbXB8dFzSOWcps2RRuuhhxAyAFWiCtaBvAVOfDAXXFGgrRCwGgU0gqaNkd2Jtl4GqfvmjQ+vpl+q5IEKeBBULW3Y1Eam3Pymr3BxUA+pEjCY7Qm2IgXGnybUJEe8LVKrH+RBCkvFBvK0b3ED36f6u/XCM2gjnYggzS708ufyMXIoiEKu0jtbH/V4HcguHOytzfTI/dtiWM8tnkGTehOM6qLl2xx5uOJ48w0GtEBQnxC/gSTNN1N6XwxZsC3xMWXR2inLgZqYqsQ8lM1BDLUBXVx2DFiQ4wX/QqQQP8nD+8nQ7w3I0Q1DAASuiZV+/yEk=
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQIzYHlkwwUGiIlspGIPIMKTYck2OA==
-Subject: Yocto Project Unassigned Bugs - Help Needed
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f773ccc-b3a6-4079-b921-08d69b335502
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Feb 2019 15:10:08.9631 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB3375
+Cc: Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>,
+	"lpd-cdc-core-dev@windriver.com" <lpd-cdc-core-dev@windriver.com>,
+	"Zhangle.Yang@windriver.com" <Zhangle.Yang@windriver.com>,
+	"paul.eggleton@linux.intel.com" <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Review request 0/13: Contribute meta-tensorflow to Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,226 +101,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Feb 2019 19:39:43 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0174_01D4CCFE.CBE551B0"
-Content-Language: en-us
+X-List-Received-Date: Mon, 25 Feb 2019 20:43:07 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-------=_NextPart_000_0174_01D4CCFE.CBE551B0
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEtoZW0gUmFqIDxyYWoua2hl
+bUBnbWFpbC5jb20+DQo+IFNlbnQ6IDIzIEZlYnJ1YXJ5IDIwMTkgMTc6MDUNCj4gVG86IFJpY2hh
+cmQgUHVyZGllIDxyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24ub3JnPg0KPiBDYzogTWFu
+anVrdW1hciBIYXJ0aGlrb3RlIE1hdGhhIDxNQU5KVUtVTUB4aWxpbnguY29tPjsgU3RlcGhlbiBM
+YXdyZW5jZQ0KPiA8c3RlcGhlbi5sYXdyZW5jZUByZW5lc2FzLmNvbT47IEhvbmd4dSBKaWEgPGhv
+bmd4dS5qaWFAd2luZHJpdmVyLmNvbT47DQo+IG1oYWxzdGVhZEBsaW51eGZvdW5kYXRpb24ub3Jn
+OyByb3NzLmJ1cnRvbkBpbnRlbC5jb207DQo+IHBhdWwuZWdnbGV0b25AbGludXguaW50ZWwuY29t
+OyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBscGQtY2RjLWNvcmUtDQo+IGRldkB3aW5kcml2ZXIu
+Y29tOyBaaGFuZ2xlLllhbmdAd2luZHJpdmVyLmNvbQ0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBS
+ZXZpZXcgcmVxdWVzdCAwLzEzOiBDb250cmlidXRlIG1ldGEtdGVuc29yZmxvdyB0byBZb2N0bw0K
+PiANCg0KW3NuaXBdDQoNCj4gPiBJIGJlbGlldmUgdGhhdCBtZXRhLW9lIGlzIHRvbyBsYXJnZSB0
+byBiZSBtYWludGFpbmFibGUgYW5kIHRoYXQgd2UgbmVlZA0KPiA+IGEgbGFyZ2VyIG51bWJlciBv
+ZiBzbWFsbGVyIGxheWVycy4NCj4gPg0KPiANCj4gVGhlcmUgaXMgYSBmaW5lIGJhbGFuY2UgdG8g
+YmUgaGFkLCB0aGF0IEkgaGF2ZSBjb21lIHRvIHJlYWxpemUgb3ZlciB5ZWFycyBub3cNCj4gYnV0
+IEFJIGlzIGxhcmdlIGVub3VnaCBhbmQgc2VnbWVudGVkIGVub3VnaCB0byBoYXZlIGEgbGF5ZXIg
+b2YgaXRzIG93bi4NCj4gDQo+ID4gSGF2aW5nIHRlbnNvcmZsb3cgaW4gaXRzIG93biBsYXllciB3
+aGljaCBhcyBhIHNwZWNpZmljIHB1cnBvc2UgYW5kIGl0cw0KPiA+IHNwZWNpZmljIG1haW50YWlu
+ZXJzIHdobyB1bmRlcnN0YW5kIGl0IGlzIGluIG15IHZpZXcgbXVjaCBtb3JlDQo+ID4gZGVzaXJh
+YmxlIGFuZCBzdXN0YWluYWJsZS4NCj4gDQo+IEkgdGhpbmsgaXRzIGEgZ29vZCBpZGVhIHRvIGhh
+dmUgdmFyaW91cyBBSSBpbmZyYXMgaW4gb25lIGxheWVyDQo+IGluY2x1ZGluZyB0ZW5zb3JmbG93
+DQo+IHVubGVzcyB3ZSBoYXZlIGxhcmdlIGVub3VnaCBkZXYgY29tbXVuaXR5IHRvIG1haW50YWlu
+IGVhY2ggb2YgdGhlbSBzbyBJIGxpa2UNCj4gbWV0YS1haSBjb25jZXB0dWFsbHkuDQoNCkZyb20g
+YSBicmllZiBkaXNjdXNzaW9uIHdpdGggdGhlIHRlYW0gaGVyZSBvbmUgaXNzdWUgaXMgdGhlIGxv
+dyBiYWNrd2FyZHMgY29tcGF0aWJpbGl0eSANCmJldHdlZW4gbW9kZWxzIGZyb20gZGlmZmVyZW50
+IFRlbnNvcmZsb3cgdmVyc2lvbnMuIEkgZG9uJ3Qga25vdyBob3cgZmFzdCB1cHN0cmVhbSBpcyBt
+b3ZpbmcsDQpidXQgdGhlcmUgbWF5IGJlIGRlbWFuZCB0byBzdXBwb3J0IG1vcmUgdGhhbiBvbmUg
+dmVyc2lvbiBwZXIgWVAgdmVyc2lvbi4gVGhhdCdzIG5vdCANCnVuc3VybW91bnRhYmxlIG9mIGNv
+dXJzZSwgYnV0IEkgdGhvdWdodCBJIHdvdWxkIG1lbnRpb24gaXQuDQoNCm1ldGEtcmVuZXNhcy1h
+aSBoYXMgYSBNSVQgbGljZW5zZSBidHcgaWYgaXTigJlzIGEgaGVscCBpbiBjcmVhdGluZyBzb21l
+dGhpbmcgbW9yZSBnZW5lcmljDQphbmQgc2hhcmVkLg0KDQpSZWdhcmRzDQoNClN0ZXZlDQo=
 
-All,
-
- 
-
-The triage team meets weekly and does its best to handle the bugs reported
-into the Bugzilla. The number of people attending that meeting has fallen,
-as have the number of people available to help fix bugs. One of the things
-we hear users report is they don't know how to help. We (the triage team)
-are therefore going to start reporting out the currently 294 unassigned
-bugs.
-
- 
-
-We're hoping people may be able to spare some time now and again to help out
-with these.
-
- 
-
-Bugs are split into two types, "true bugs" where things don't work as they
-should and "enhancements" which are features we'd want to add to the system.
-
- 
-
-There are also roughly four different "priority" classes right now, "2.7",
-"2.8", "2.99" and "Future", the more pressing/urgent issues being in "2.7"
-and then "2.8".
-
- 
-
-Please review this link and if a bug is something you would be able to help
-with either take ownership of the bug, or send me
-(Stephen.k.jolley@intel.com <mailto:Stephen.k.jolley@intel.com> ) an e-mail
-with the bug number you would like and I will assign it to you (please make
-sure you have a Bugzilla account).
-
- 
-
-The list is at:
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs
-
- 
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
-
- 
-
-
-------=_NextPart_000_0174_01D4CCFE.CBE551B0
-Content-Type: text/html;
-	boundary="----=_NextPart_000_0030_01D4C87D.1A826F50";
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoPlainText>All,<o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
-triage team meets weekly and does its best to handle the bugs reported =
-into the Bugzilla. The number of people attending that meeting has =
-fallen, as have the number of people available to help fix bugs. One of =
-the things we hear users report is they don't know how to help. We (the =
-triage team) are therefore going to start reporting out the currently =
-294 unassigned bugs.<o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>We're =
-hoping people may be able to spare some time now and again to help out =
-with these.<o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Bugs =
-are split into two types, &quot;true bugs&quot; where things don't work =
-as they should and &quot;enhancements&quot; which are features we'd want =
-to add to the system.<o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>There =
-are also roughly four different &quot;priority&quot; classes right now, =
-&#8220;2.7&#8221;, &#8220;2.8&#8221;, &quot;2.99&quot; and =
-&quot;Future&quot;, the more pressing/urgent issues being in =
-&quot;2.7&quot; and then &#8220;2.8&#8221;.<o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Please =
-review this link and if a bug is something you would be able to help =
-with either take ownership of the bug, or send me (<a =
-href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com</a>=
-) an e-mail with the bug number you would like and I will assign it to =
-you (please make sure you have a Bugzilla account).<o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
-list is at: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs">ht=
-tps://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
-></p><p class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a><o:p><=
-/o:p></span></p><p class=3DMsoNormal><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:=
-p></span></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-
-------=_NextPart_000_0174_01D4CCFE.CBE551B0--
