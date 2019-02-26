@@ -1,61 +1,57 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <tfroehlich@archsys.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 210DDE00BAF; Mon, 25 Feb 2019 12:53:51 -0800 (PST)
+	id D00A7E00CED; Mon, 25 Feb 2019 17:45:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marek.belisko[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.50 listed in list.dnswl.org]
+	*      [209.85.160.170 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
-	[209.85.221.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BB41E009EB
-	for <yocto@yoctoproject.org>; Mon, 25 Feb 2019 12:53:49 -0800 (PST)
-Received: by mail-wr1-f50.google.com with SMTP id q1so11503769wrp.7
-	for <yocto@yoctoproject.org>; Mon, 25 Feb 2019 12:53:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com
+	[209.85.160.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 224CBE00546
+	for <yocto@yoctoproject.org>; Mon, 25 Feb 2019 17:45:03 -0800 (PST)
+Received: by mail-qt1-f170.google.com with SMTP id z39so13141760qtz.0
+	for <yocto@yoctoproject.org>; Mon, 25 Feb 2019 17:45:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=archsys-io.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=X+cLiqHbz3REWMduxc69SGWmA/3gfeO3U2kdeRf9OcU=;
-	b=UbukE9EXKVqUGD6qDHKEc/+JzJ/DhOgRuVxI8k5M2X3gSH5kW7tlX+Kd87IwWCUF8P
-	EtiQC4ffR4mToDDYwYtLQdz2cmhJBaeKq5g7WHOVN7UYHFAmHI+BX1MXjcsG36WaQ3HN
-	oIkpr/PG2zcRArscL9PExcrTEr9MfqjDG3c67mv2GEv6J32lrRTHaN+rocHO10dlzChc
-	+XceqLBzEvdkKCYeXthz6b5neu5J0TYUqrKoe+KNppnZmGxPJRE71Z7SJnGDNxwntS2/
-	7cq04VvpOjOw+wsEyrzNsskzWZbzZCst2twpa4xzauvtF1hfkL4djE7XPyEjuyg3Zscl
-	HEnw==
+	bh=Pk0hEAYvIlub3xBhKTMIzSacdDBLSVLDnM+PzzvBc1M=;
+	b=vw2WMOtAg1fy7TWUdIZjLXtoUjPQ8vOCt2Vbhzr3GL6RtT3y9eOe7y8AH4qcSbH5Ja
+	96X05d1IA6Cl7hp+CIFIvml1WxkCrmlvWkv2A5vVLymiX6XiiEFtEMyUNraMLcgltc1C
+	q6/vty5MRA33I9vfxNgWFpmD1gLAsXx1PJEuZq+o6pFRy7AIorSns87LQZXJtKSy/UEY
+	u2ECB2o8RIAtLWPE3VB4ACzg/26PCrabCqDGBuxwtDXtQ0L71cDoQBzof1eMN1pXoUkz
+	6USB/7qsvlg4SvwiXCrSqkHPL5behVfaeCvhoxSjmrao3PpAFncK2YEepbMsHHPIsmcD
+	VPlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=X+cLiqHbz3REWMduxc69SGWmA/3gfeO3U2kdeRf9OcU=;
-	b=a7Mak5TCd80xiaEdQR3RKT89OvBvziDAzUOdOEeTKSpfqVDtw/qS1KGfs4zjDG+rxg
-	PhOg0+ToyMZpD5FadLklIfZCqYupnI6jdzeeL9bnZkJNAkw7zv+7682NZrezosBpAsqk
-	zpjtU8bBKwd7smpQReduhhLCl6oeWaHRDSE1FF0rE9avyURu+M7HqdqmNVUDgKp/QdCF
-	hV8gSzdB6em1bBmhTr09t4IBTuC5tzGueRQpg6ki3v08rLgGXGfyTXblsS0nu94+VIWj
-	WWVVC1X8ZpuRGQ55W8w5vaqRqn0orY+LFwUwnmeoaOVcF/tg7QV69Tlv8koMAKWgeuP0
-	loQw==
-X-Gm-Message-State: AHQUAuaiHYBBdbF2uhV1fc8zxUB0JSGMM8xtu7OKei/3yTD/xarRdlJx
-	xI3yNYgYpmkbn5GVhvXczhQ65936wo0RWN3rqpMgi8KiQuU=
-X-Google-Smtp-Source: AHgI3Ibr6Z7s2nqlMFacqjm/R0Et1ZT8hyydS54XRatG3/oX4/Cv6PRXo8+/oCH7C3i3Oxm+kwFLPFodkoqWb1psuj4=
-X-Received: by 2002:a5d:5111:: with SMTP id s17mr13669532wrt.183.1551128027764;
-	Mon, 25 Feb 2019 12:53:47 -0800 (PST)
+	bh=Pk0hEAYvIlub3xBhKTMIzSacdDBLSVLDnM+PzzvBc1M=;
+	b=nMJLSfdtzlKf3ps5dg8C2QxKAmNilkaEjdfkOMLgmaa/13aKDZt84dRIRrLub78lqr
+	DzuY9q0LFgZArEWyIMDPUNbDFbLYORH1oWVfagqlll1OG7MBWd5DrW17M53XIAXKpnMq
+	NjvEh9HvGdL36pc1fHJIpNz7XpUzcCU4XVlrsf6hAETRYyrNOLOL19/q8obqRgv3hm5G
+	itOEQgFeL4pSoRpIzSSmzkfdeH7F87zT1FfFQ1qPchHe+Ie5oKhQdV6oH4cxkc2Axtev
+	k2q5pisjnazdfGNEgmQWnsL3/e63PgwgmOvVdEgdjaLcl9x6JfWbtzFBtKdgodq+jLKn
+	TlEg==
+X-Gm-Message-State: AHQUAuZnFmyKefq3SqstJPE/PxoH4IbqDbQvzfzSIAui0ksE+sB3WSZS
+	E620ksN4FEKc6UhWMfK01LHLjA23b5tPaQ/tUwXuQAEn
+X-Google-Smtp-Source: AHgI3IaXFIGSCymVGlJKf6C9O76/3Yhq4Yj+a2gAPGKhlB+bD0I0NETGGJ+O+PlEkHrfrt4OWy+KkJ5DetWDJlQZQJU=
+X-Received: by 2002:ac8:30da:: with SMTP id w26mr16671422qta.386.1551145502377;
+	Mon, 25 Feb 2019 17:45:02 -0800 (PST)
 MIME-Version: 1.0
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Mon, 25 Feb 2019 21:53:36 +0100
-Message-ID: <CAAfyv373STP8CnezDswndFVRXZO3tQz5cz3wHcsSKqbSidCTwA@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: [meta-java] Illegal instruction (core dumped) when compiling jaxp1.3-native-1.4.01-r0
+From: Timothy Froehlich <tfroehlich@archsys.io>
+Date: Mon, 25 Feb 2019 17:44:51 -0800
+Message-ID: <CAHSUxjS=7_yLBOVMJLbzrtKNbGL_fKhTMh7fcOXc=wsqyZe+hQ@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Storing Sstate in S3 success stories?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,100 +63,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Feb 2019 20:53:51 -0000
-Content-Type: multipart/alternative; boundary="000000000000189dcd0582be23b6"
+X-List-Received-Date: Tue, 26 Feb 2019 01:45:03 -0000
+Content-Type: multipart/alternative; boundary="000000000000aa21270582c234b5"
 
---000000000000189dcd0582be23b6
+--000000000000aa21270582c234b5
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+I've been spending a bit too long this past week trying to build up a
+reproducable build infrastructure in AWS and I've got very little
+experience with cloud infrastucture and I'm wondering if I'm going in the
+wrong direction. I'm attempting to host my sstate_cache as a mirror in a
+private S3 bucket, and I believe I have everything configured properly,
+including exposing the bucket to http requests, since I can wget files that
+I've previously synced up to the bucket. However if I add in the
+SSTATE_MIRRORS to my build, bitbake slows to a crawl (it's a powerful VM)
+and barely seems to get anything. The EC2 instance is in the same region as
+the S3 bucket, roles have been configured properly to allow access, etc.
 
-I'm using meta-java sumo branch and on ubuntu 18.04 I have this issue
-(building for beaglebone-yocto machine):
-ERROR: jaxp1.3-native-1.4.01-r0 do_compile: Function failed: do_compile
-(log file is located at
-/home/jenkins/my_build/tmp/work/x86_64-linux/jaxp1.3-native/1.4.01-r0/temp/log.do_compile.15390)
-ERROR: Logfile of failure stored in:
-/home/jenkins/my_build/tmp/work/x86_64-linux/jaxp1.3-native/1.4.01-r0/temp/log.do_compile.15390
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| Illegal instruction (core dumped)
-| WARNING: exit code 132 from a shell command.
-| ERROR: Function failed: do_compile (log file is located at
-/home/jenkins/my_build/tmp/work/x86_64-linux/jaxp1.3-native/1.4.01-r0/temp/log.do_compile.15390)
-ERROR: Task
-(virtual:native:/home/jenkins/meta-java/recipes-core/xml-commons/jaxp1.3_1.4.01.bb:do_compile)
-failed with exit code '1'
-ERROR: gnujaf-native-1.1.1-r1 do_compile: Function failed: do_compile (log
-file is located at
-/home/jenkins/my_build/tmp/work/x86_64-linux/gnujaf-native/1.1.1-r1/temp/log.do_compile.15475)
-ERROR: Logfile of failure stored in:
-/home/jenkins/my_build/tmp/work/x86_64-linux/gnujaf-native/1.1.1-r1/temp/log.do_compile.15475
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| Illegal instruction (core dumped)
-| WARNING: exit code 132 from a shell command.
-| ERROR: Function failed: do_compile (log file is located at
-/home/jenkins/my_build/tmp/work/x86_64-linux/gnujaf-native/1.1.1-r1/temp/log.do_compile.15475)
+I'm not looking for help debugging this, I just want to know whether I'm
+right that hosting my sstate in an S3 bucket should work. I've only been
+able to find one mention of it being done with no reproduction hints.
 
-Looks like javac is failing (when run devshell and call java it will print
-help though). I tried same setup on ubuntu 16.04 and here it works
-perfectly fine. Any ides what can cause this - different toolchain or?
-Thanks.
-
-BR,
-
-marek
-
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
-
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
-
---000000000000189dcd0582be23b6
+--000000000000aa21270582c234b5
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m using meta=
--java sumo branch and on ubuntu 18.04 I have this issue (building for beagl=
-ebone-yocto machine):</div><div><div>ERROR: jaxp1.3-native-1.4.01-r0 do_com=
-pile: Function failed: do_compile (log file is located at /home/jenkins/my_=
-build/tmp/work/x86_64-linux/jaxp1.3-native/1.4.01-r0/temp/log.do_compile.15=
-390)</div><div>ERROR: Logfile of failure stored in: /home/jenkins/my_build/=
-tmp/work/x86_64-linux/jaxp1.3-native/1.4.01-r0/temp/log.do_compile.15390</d=
-iv><div>Log data follows:</div><div>| DEBUG: Executing shell function do_co=
-mpile</div><div>| Illegal instruction (core dumped)</div><div>| WARNING: ex=
-it code 132 from a shell command.</div><div>| ERROR: Function failed: do_co=
-mpile (log file is located at /home/jenkins/my_build/tmp/work/x86_64-linux/=
-jaxp1.3-native/1.4.01-r0/temp/log.do_compile.15390)</div><div>ERROR: Task (=
-virtual:native:/home/jenkins/meta-java/recipes-core/xml-commons/jaxp1.3_1.4=
-.01.bb:do_compile) failed with exit code &#39;1&#39;</div><div>ERROR: gnuja=
-f-native-1.1.1-r1 do_compile: Function failed: do_compile (log file is loca=
-ted at /home/jenkins/my_build/tmp/work/x86_64-linux/gnujaf-native/1.1.1-r1/=
-temp/log.do_compile.15475)</div><div>ERROR: Logfile of failure stored in: /=
-home/jenkins/my_build/tmp/work/x86_64-linux/gnujaf-native/1.1.1-r1/temp/log=
-.do_compile.15475</div><div>Log data follows:</div><div>| DEBUG: Executing =
-shell function do_compile</div><div>| Illegal instruction (core dumped)</di=
-v><div>| WARNING: exit code 132 from a shell command.</div><div>| ERROR: Fu=
-nction failed: do_compile (log file is located at /home/jenkins/my_build/tm=
-p/work/x86_64-linux/gnujaf-native/1.1.1-r1/temp/log.do_compile.15475)</div>=
-<div><br></div><div>Looks like javac is failing (when run devshell and call=
- java it will print help though). I tried same setup on ubuntu 16.04 and he=
-re it works perfectly fine. Any ides what can cause this - different toolch=
-ain or? Thanks.</div><div><br></div><div>BR,</div><div><br></div><div>marek=
-</div><div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature">as s=
-imple and primitive as possible<br>----------------------------------------=
----------<br>Marek Belisko - OPEN-NANDRA<br>Freelance Developer<br><br>Rusk=
-a Nova Ves 219 | Presov, 08005 Slovak Republic<br>Tel: +421 915 052 184<br>=
-skype: marekwhite<br>twitter: #opennandra<br>web: <a href=3D"http://open-na=
-ndra.com" target=3D"_blank">http://open-nandra.com</a></div></div></div></d=
-iv>
+<div dir=3D"ltr">I&#39;ve been spending a bit too long this past week tryin=
+g to build up a reproducable build infrastructure in AWS and I&#39;ve got v=
+ery little experience with cloud infrastucture and I&#39;m wondering if I&#=
+39;m going in the wrong direction. I&#39;m attempting to host my sstate_cac=
+he as a mirror in a private S3 bucket, and I believe I have everything conf=
+igured properly, including exposing the bucket to http requests, since I ca=
+n wget files that I&#39;ve previously synced up to the bucket. However if I=
+ add in the SSTATE_MIRRORS to my build, bitbake slows to a crawl (it&#39;s =
+a powerful VM) and barely seems to get anything. The EC2 instance is in the=
+ same region as the S3 bucket, roles have been configured properly to allow=
+ access, etc.<div><br></div><div>I&#39;m not looking for help debugging thi=
+s, I just want to know whether I&#39;m right that hosting my sstate in an S=
+3 bucket should work. I&#39;ve only been able to find one mention of it bei=
+ng done with no reproduction hints.<div dir=3D"ltr" class=3D"gmail_signatur=
+e" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><br></div></div=
+></div></div></div>
 
---000000000000189dcd0582be23b6--
+--000000000000aa21270582c234b5--
