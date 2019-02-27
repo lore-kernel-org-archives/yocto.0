@@ -1,61 +1,71 @@
-Return-Path: <jean-christian.derivaz@innodelec.ch>
+Return-Path: <bhupendra.singh@ppsinternational.in>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E186BE00D04; Wed, 27 Feb 2019 04:17:01 -0800 (PST)
+	id 1FADCE00D11; Wed, 27 Feb 2019 04:49:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED, HTML_MESSAGE, MSGID_MULTIPLE_AT,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [212.147.79.142 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  1.0 MSGID_MULTIPLE_AT Message-ID contains multiple '@' characters
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [182.50.132.200 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from europa.tizoo.com (europa.tizoo.com [212.147.79.142])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D45CE00CEA
-	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 04:16:59 -0800 (PST)
+	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
+Received: from sg2nlsmtp01.shr.prod.sin2.secureserver.net
+	(sg2nlsmtp01.shr.prod.sin2.secureserver.net [182.50.132.200])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0A81E00D01
+	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 04:49:26 -0800 (PST)
+Received: from sg2plcpnl0208.prod.sin2.secureserver.net ([148.72.232.109])
+	by : HOSTING RELAY : with ESMTP
+	id yyafgIdeCynSRyyafgNthv; Wed, 27 Feb 2019 05:45:37 -0700
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=innodelec.ch; s=default; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Date:Message-ID:To:Subject:From:Sender:Reply-To:Cc:Content-ID:
+	d=ppsinternational.in; s=default;
+	h=Content-Type:MIME-Version:Message-ID:Date
+	:Subject:To:From:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=hPm8q8NYxGUQx0Q3XeCxDgE0BEBv1TRCHftdIOFwfTk=;
-	b=Z3sXKwrK2i9zaueEo4tT4P76Z5
-	5MivUVJcfkfdLv2nqeTory5PkCYnjTMi9mj1sES81M6+1yb3lAFIIrx7LKGe90it6Vdv3K2mWvhTj
-	WxQe9GKsxePY0KLnzUHb4pu8SYBvg5Kx4i6Hh3ISnfZsGhEqfdYA8md5L9VMZd0LznayA2TultLMp
-	fJetVS9Q7nQZA+tTOoARn2HLg/uDqUnL2BcsJ1pYuleSBummqp88AsQMDW6WMbFeBHwGQ8BaOcLHX
-	wM/DkCOymBnc0O624SM6Nt7D21I39Jf3jD2MnKgkNV9LiNvxiODTj2v4AjscXqHoWU5qrY0AoadzU
-	K1RQ3rPA==;
-Received: from [213.221.150.139] (port=53266 helo=[10.0.33.10])
-	by europa.tizoo.com with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.91)
-	(envelope-from <jean-christian.derivaz@innodelec.ch>)
-	id 1gyy8u-002DFO-LT
-	for yocto@yoctoproject.org; Wed, 27 Feb 2019 13:16:57 +0100
-From: Jean-Christian de Rivaz <jean-christian.derivaz@innodelec.ch>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <63908e27-9243-16f9-aa65-e0c0d3e23af1@innodelec.ch>
-Date: Wed, 27 Feb 2019 13:16:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.4.0
+	bh=cWyQn/SgONKp8gnCnrccAuZQOWMuL1j7PP67jPADtik=;
+	b=p8CBpSRkcgWVX3iNTQw6gg+VBC
+	H1fljnvJGt+3dndCGxcU/tAdNtGsIuqX0cI1Xq2mkdgZj0y5OpSDjJG+V8EkS2ghTm2zogpG7fjj0
+	72S78LHvC32mv7kLdhe3WueVGu1mgwvzdyI8KcPYL2fwUdCCH/kDcSB8v9YEeKidX3t6e/d4gf4c3
+	0hO6am0viIafdhRAz6YbYhMei+SIK8ZAGEfrQjPda3vDlxbIddwUE68Utj+FXkAHpBBEKPecLc9WS
+	iQmaZh+tmsVj1YJtExCIA8UpvBALHh+8fOOmeLTP27HpcskoCmnCR6p39f7hd8kbRtyUGmUW9tiH5
+	Toc/50nw==;
+Received: from [103.76.136.42] (port=3853 helo=Bhupendra)
+	by sg2plcpnl0208.prod.sin2.secureserver.net with esmtpsa
+	(TLSv1:ECDHE-RSA-AES256-SHA:256) (Exim 4.91)
+	(envelope-from <bhupendra.singh@ppsinternational.in>)
+	id 1gyydM-00FHFO-En
+	for yocto@yoctoproject.org; Wed, 27 Feb 2019 05:48:24 -0700
+From: "Bhupendra Singh" <bhupendra.singh@ppsinternational.in>
+To: <yocto@yoctoproject.org>
+Date: Wed, 27 Feb 2019 18:18:03 +0530
+Message-ID: <000001d4ce9a$b1816640$148432c0$@singh@ppsinternational.in>
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.5
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: AdTOmquWN6CQ4FMCSQqVI5sZhZKR2A==
 X-AntiAbuse: This header was added to track abuse,
 	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - europa.tizoo.com
+X-AntiAbuse: Primary Hostname - sg2plcpnl0208.prod.sin2.secureserver.net
 X-AntiAbuse: Original Domain - yoctoproject.org
 X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - innodelec.ch
-X-Get-Message-Sender-Via: europa.tizoo.com: authenticated_id:
-	jean-christian.derivaz@innodelec.ch
-X-Authenticated-Sender: europa.tizoo.com: jean-christian.derivaz@innodelec.ch
-Subject: Removing busybox
+X-AntiAbuse: Sender Address Domain - ppsinternational.in
+X-Get-Message-Sender-Via: sg2plcpnl0208.prod.sin2.secureserver.net: authenticated_id:
+	bhupendra.singh@ppsinternational.in
+X-Authenticated-Sender: sg2plcpnl0208.prod.sin2.secureserver.net: bhupendra.singh@ppsinternational.in
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-CMAE-Envelope: MS4wfE0YHtXPdgw/0TXg2mwEQ0D0MU6iiklPDk7GGLwbm3KjATmkcrw1fR7g+q7Y/1XdrtglHP8gU8K3P++qmUCKMLQbI+jMptlP4ZtLk05OVpfy71dLtrKE
+	tqg0IYOJfXQUCw8RusfZw33UOzfqeEK3UuTgMk09TGZC/81dcsEqM36cJMg+j6b4L0UHMtUscWzUkskogJyVLMg3XRyAjtDd7Ptu2lo/VPMskfAZKfimXJ5J
+Subject: alsa utility
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,32 +77,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Feb 2019 12:17:02 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Wed, 27 Feb 2019 12:49:28 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0001_01D4CEC8.CB39A240"
+Content-Language: en-us
+
+------=_NextPart_000_0001_01D4CEC8.CB39A240
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Language: en-US
 
-Hi all,
+Hi all
 
-After reading the thread "Removing busybox completely from the generated
-image" I tested to reproduce the method but this doesn't work as expected.
+How can i add alsa utility in poky core-minimal-imege.
 
-git clone git://git.yoctoproject.org/poky -b thud
-cd poky
-echo 'require conf/distro/poky.conf' > meta-poky/conf/distro/poky-ng.conf
-echo 'DISTRO = "poky-ng"' >> meta-poky/conf/distro/poky-ng.conf
-echo 'VIRTUAL-RUNTIME_base-utils = ""' >> meta-poky/conf/distro/poky-ng.conf
-sed -i 's/^DISTRO.*/DISTRO = "poky-ng"/' conf/local.conf
-bitbake core-image-minimal
-runqemu core-image-minimal kvm
+ 
 
-After login as root there still a lot of links to busybox inside /sbin/
-/bin/ /usr/sbin/ and /usr/bin/ .
+Thanks & Regards
 
-Can someone provides a working method ?
+Bhupendra Singh
 
-Best Regards,
-
-Jean-Christian de Rivaz
+ 
 
 
+------=_NextPart_000_0001_01D4CEC8.CB39A240
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii">
+<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=3DEN-US link=3Dblue vlink=3Dpurple>
+
+<div class=3DSection1>
+
+<p class=3DMsoNormal>Hi all<o:p></o:p></p>
+
+<p class=3DMsoNormal>How can i add alsa utility in poky =
+core-minimal-imege.<o:p></o:p></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=3DMsoNormal style=3D'background:white'><span =
+style=3D'font-size:12.0pt;
+font-family:"Times New Roman","serif";color:#4F81BD'>Thanks &amp; =
+Regards</span><span
+style=3D'font-size:9.5pt;font-family:"Arial","sans-serif";color:#4F81BD'>=
+<o:p></o:p></span></p>
+
+<p class=3DMsoNormal style=3D'background:white'><span =
+style=3D'font-size:12.0pt;
+font-family:"Times New Roman","serif";color:#4F81BD'>Bhupendra =
+Singh</span><span
+style=3D'font-size:9.5pt;font-family:"Arial","sans-serif";color:#4F81BD'>=
+<o:p></o:p></span></p>
+
+<p class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body>
+
+</html>
+
+------=_NextPart_000_0001_01D4CEC8.CB39A240--
