@@ -1,60 +1,64 @@
-Return-Path: <philip@balister.org>
+Return-Path: <jean-christian.derivaz@innodelec.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4EFF6E00AB0; Wed, 27 Feb 2019 12:01:20 -0800 (PST)
+	id 90649E00CEE; Wed, 27 Feb 2019 12:06:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [216.168.135.166 listed in list.dnswl.org]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 848A8E00546
-	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 12:01:19 -0800 (PST)
-Received: (qmail 7158 invoked by uid 1003); 27 Feb 2019 20:01:18 -0000
-Received: from unknown (HELO ?192.168.11.100?)
-	(philip@opensdr.com@73.152.143.112)
-	by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
-	27 Feb 2019 20:01:18 -0000
-To: "openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	Yocto Project <yocto@yoctoproject.org>
-From: Philip Balister <philip@balister.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
-	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
-	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
-	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
-	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
-	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
-	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
-	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
-	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
-	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
-	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
-	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
-	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
-	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
-	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
-	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
-	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
-	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
-	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
-	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
-	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
-	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
-	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
-	6eUfr0u7CwnEyqiQ
-Message-ID: <accf0c0a-77f8-e86c-c0ed-3af8d5a48e3b@balister.org>
-Date: Wed, 27 Feb 2019 15:01:17 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.147.79.142 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from europa.tizoo.com (europa.tizoo.com [212.147.79.142])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E987E00AB0
+	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 12:06:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=innodelec.ch; s=default; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=cD5npn1re4JzDFbLePArYaKUlZmndDwYRGWku0qQnNw=;
+	b=hiJqCaoWx/TiMwHrWD4MjdmSbr
+	R/EZnFTfdcudXG+0oxOUPGaZ0LMyjSNEygaEZxDMEs6sdyfwLgvLzNcDw278QaZ/6Yae09wm9dSew
+	Hn6kXdJ7j2qG04BDWWFacVaaQpMHXCCVlWySzYzlTa759d+X81ENTkoJQQ+RARbHt0J6ifcPiq//o
+	kY5TUxHcE3GYpqEsuVdFu9i/KHQMkIewem+fcH+aX39gigq8uTXYmhdek59HtIhBu17ltw5nFiRqq
+	iRNN1XVsPu0flMStjlpZ6o84/Q/n891463PNbPOZZwodtZtJfKcwEob3Ylc8n7pN9ptdAs5zkChf3
+	FXScxI7w==;
+Received: from [213.221.150.139] (port=56584 helo=[10.0.33.10])
+	by europa.tizoo.com with esmtpsa
+	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.91)
+	(envelope-from <jean-christian.derivaz@innodelec.ch>)
+	id 1gz5TU-004O0E-62; Wed, 27 Feb 2019 21:06:42 +0100
+To: Tom Rini <trini@konsulko.com>
+References: <63908e27-9243-16f9-aa65-e0c0d3e23af1@innodelec.ch>
+	<20190227170614.GV12046@bill-the-cat>
+From: Jean-Christian de Rivaz <jean-christian.derivaz@innodelec.ch>
+Message-ID: <93dcfef4-e49f-a683-0f5b-3acdb9dbb663@innodelec.ch>
+Date: Wed, 27 Feb 2019 21:06:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.4.0
 MIME-Version: 1.0
-Subject: Information about non-traditional uses of the Yocto Project and OpenEmbedded
+In-Reply-To: <20190227170614.GV12046@bill-the-cat>
+X-OutGoing-Spam-Status: No, score=-2.9
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - europa.tizoo.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - innodelec.ch
+X-Get-Message-Sender-Via: europa.tizoo.com: authenticated_id:
+	jean-christian.derivaz@innodelec.ch
+X-Authenticated-Sender: europa.tizoo.com: jean-christian.derivaz@innodelec.ch
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Removing busybox
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,23 +70,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Feb 2019 20:01:20 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
+X-List-Received-Date: Wed, 27 Feb 2019 20:06:44 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-During the last OpenEmbedded developer meeting, it became clear that
-people are using the Yocto project/OpenEmbedded in spaces outside what
-we think of as traditional embedded. Lieu Ta is working on a
-presentation for the Linux Foundation Leadership Summit and we would
-like to collect as many "unusual" applications are possible from
-companies we can publicly acknowledge. Unusual is edge, containers,
-desktop, etc. Or even really interesting embedded applications :)
+Thank you very much Tom for help. Here is my complete method:
 
-Please drop me an email (off list is fine) with enough info for us to
-add you to a slide and acknowledge your work.
+git clone git://git.yoctoproject.org/poky -b thud
+cd poky
+cat << EOF > meta-poky/conf/distro/poky-ng.conf
+require conf/distro/poky.conf
+DISTRO = "poky-ng"
 
-Thanks,
+# Switch to systemd
+DISTRO_FEATURES += "systemd"
+VIRTUAL-RUNTIME_init_manager = "systemd"
+VIRTUAL-RUNTIME_initscripts = ""
+VIRTUAL-RUNTIME_syslog = ""
+VIRTUAL-RUNTIME_login_manager = "shadow-base"
+DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
 
-Philip
+# Replace busybox
+PREFERRED_PROVIDER_virtual/base-utils = "coreutils"
+VIRTUAL-RUNTIME_base-utils = "coreutils"
+VIRTUAL-RUNTIME_base-utils-hwclock = "util-linux-hwclock"
+VIRTUAL-RUNTIME_base-utils-syslog = ""
+EOF
+source oe-init-build-env
+sed -i 's/^DISTRO.*/DISTRO = "poky-ng"/' conf/local.conf
+bitbake core-image-minimal
+runqemu core-image-minimal kvm
+
+So as expected systemd is there and busybox is not. But there is a lot of
+useful commands missing on the resulting QEMU image:
+
+root@qemux86:~# ps
+~sh: ps: command not found
+root@qemux86:~# w
+~sh: w: command not found
+root@qemux86:~# find
+~sh: find: command not found
+root@qemux86:~# grep
+~sh: grep: command not found
+root@qemux86:~# ip addr
+~sh: ip: command not found
+
+I expected that all the limited busybox commands would be replaced by
+the full
+featured commands. How to fix that ?
+
+Best Regards.
+Jean-Christian de Rivaz
+
+Le 27.02.19 à 18:06, Tom Rini a écrit :
+> On Wed, Feb 27, 2019 at 01:16:56PM +0100, Jean-Christian de Rivaz wrote:
+>
+>> Hi all,
+>>
+>> After reading the thread "Removing busybox completely from the generated
+>> image" I tested to reproduce the method but this doesn't work as expected.
+>>
+>> git clone git://git.yoctoproject.org/poky -b thud
+>> cd poky
+>> echo 'require conf/distro/poky.conf' > meta-poky/conf/distro/poky-ng.conf
+>> echo 'DISTRO = "poky-ng"' >> meta-poky/conf/distro/poky-ng.conf
+>> echo 'VIRTUAL-RUNTIME_base-utils = ""' >> meta-poky/conf/distro/poky-ng.conf
+>> sed -i 's/^DISTRO.*/DISTRO = "poky-ng"/' conf/local.conf
+>> bitbake core-image-minimal
+>> runqemu core-image-minimal kvm
+>>
+>> After login as root there still a lot of links to busybox inside /sbin/
+>> /bin/ /usr/sbin/ and /usr/bin/ .
+>>
+>> Can someone provides a working method ?
+> You're missing a few more things, yes.  What I have is:
+> # Switch to systemd
+> DISTRO_FEATURES += "systemd"
+> VIRTUAL-RUNTIME_init_manager = "systemd"
+> VIRTUAL-RUNTIME_initscripts = ""
+> VIRTUAL-RUNTIME_syslog = ""
+> VIRTUAL-RUNTIME_login_manager = "shadow-base"
+> DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+>
+> # Replace busybox
+> PREFERRED_PROVIDER_virtual/base-utils = "coreutils"
+> VIRTUAL-RUNTIME_base-utils = "coreutils"
+> VIRTUAL-RUNTIME_base-utils-hwclock = "util-linux-hwclock"
+> VIRTUAL-RUNTIME_base-utils-syslog = ""
+>
+> If you aren't using systemd you'll need to move the login_manager
+> example over as well, otherwise busybox gets pulled for that.
+>
+> I'm using the above on thud, today.  And that's not a 1:1 replacement as
+> my image pulls in a number of other packages for various things I
+> want/need.
+>
 
