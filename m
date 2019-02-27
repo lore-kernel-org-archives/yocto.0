@@ -1,70 +1,54 @@
-Return-Path: <trini@konsulko.com>
+Return-Path: <bunk@stusta.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A839EE00AB0; Wed, 27 Feb 2019 13:35:36 -0800 (PST)
+	id 54A3AE00A54; Wed, 27 Feb 2019 13:40:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.49 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com
-	[209.85.208.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6711AE00A0C
-	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 13:35:35 -0800 (PST)
-Received: by mail-ed1-f49.google.com with SMTP id 10so15199611eds.7
-	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 13:35:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=pCkhkI5PUD130S0Z8A4YYVUg2t9WdlidNl55DaEnSnk=;
-	b=WrL4+niVdDHPH4ni3wxeTbvt1mPPdK/xplUAb7oHJ9FpQS4lnxQqq0qQpF4OzjQhuY
-	hdqrhoVi/X3hRlGjXV/cT7rqLQhuDAShFq+4CN2CCtzT4bIP/BlovRf9Mj2eGO1T7UXj
-	u5kL5SMj92NrJQYVOf8reIGuU3vPIt2qM2wl4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=pCkhkI5PUD130S0Z8A4YYVUg2t9WdlidNl55DaEnSnk=;
-	b=rymTwELmAF/KAtCgP89MBj1msjBYj9Hus3Nuu+XWzt/34mE2whRjvG9hqE0qUlrUn5
-	Z/DFMerf4MdIa46imTyQOit5UBZ1x20ItJUk3AgnJfa40ETagMpC9mek/kdfWebNp0Xj
-	cHK7YrH1rH+UwBNek58rTFF2UrMm+DU7uPDN4s3Psl8HJquGSomNon3y+JDh5amk/hAI
-	jx4OKBQwHa44TNentve27FaXVp6FO/Xrvzm5AORl2ik1z7zjXN8BsD8A8lASQWFYhcCw
-	KcTyJMPj07dEabLCPJT2ktGvzQJ7SRw8OMB0jQuU21Sv2uyd9E26iyORF5OeQbCpqzIc
-	eqAA==
-X-Gm-Message-State: AHQUAuZreAYpduuRSV+Fy97A1DyVOeHosV46qLGGrR4pVkV95bcfbHat
-	LuPA5dQreXlX8OI1G2ddD1KJPw==
-X-Google-Smtp-Source: AHgI3IbNvb9KjfP4iylV8c/QvaT7L4FkZ5xRrW9Tq4SEDxc7sknWUrRZuc2B/fHzPGjSGSPxTcBO9g==
-X-Received: by 2002:a50:ba8c:: with SMTP id x12mr4089881ede.230.1551303334336; 
-	Wed, 27 Feb 2019 13:35:34 -0800 (PST)
-Received: from bill-the-cat
-	(cpe-2606-A000-1401-880D-344A-8475-F632-B81B.dyn6.twc.com.
-	[2606:a000:1401:880d:344a:8475:f632:b81b])
-	by smtp.gmail.com with ESMTPSA id
-	h26sm2907750ejs.17.2019.02.27.13.35.31
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 27 Feb 2019 13:35:32 -0800 (PST)
-Date: Wed, 27 Feb 2019 16:35:28 -0500
-From: Tom Rini <trini@konsulko.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Message-ID: <20190227213528.GH12046@bill-the-cat>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [141.84.69.5 listed in list.dnswl.org]
+Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC1C8E009EB
+	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 13:40:41 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 448pyH69xBz4R;
+	Wed, 27 Feb 2019 22:40:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
+	s=default; t=1551303640;
+	bh=akMCNbaLspcPd0Hyhz3bUmt+zDcxzN0k9UONdIPBDdQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=racuO5mEKs7iVCf4eTUMAZ4GNyVG6T/32AFucLktp9wfl+FmJY+k4NUE4H4wURS+x
+	x7yI+KS+75tBV3dS1lNs2nE8lfVSFBFWTCfXDXK1F2zE9y43GEfrVyDDpmOHr8Z3Og
+	Rf5oD+9ob8bZx+bYdz3HXv71BoPz92/CALrn+roQhOGRuZ5b1RN3ACvJtHuUur3WTI
+	QMwKdxy8+b7HTZ9OoXR/Jdz6OTGlJXn540noLUMGINyDY46akNZmUNkLb0ajFehJqZ
+	mDvl2QRxMLx4AmoBYp7Ho5Dzkbg3YyGEJq5zibu+JwIxTKkdKj1irhHinsZvedM5cx
+	TaeUhqTk16dFfrg5udvG9FQ8wXzjRgJBUbtfrdHJ3CVkqsbxjJL0YYp4LCRuPGXG26
+	0B+cPsscjDMNPRfGhNKji7iS9Yevp7D2AldVz1PbWDeYEZl5Wcb65FaXAtBqAtaDz1
+	bnv14T8aO69/uKXuVTCRJ2YSw5MaevQfBwdzlcbu411ZdjpxsNmxZAFeY9R8HB+4hN
+	Mad3Arsx/3c6GUdsjTUPz2pP2UP8JSsSPsFk0FYgeFsgEm/kbDsi30CHfEyYzJKzM8
+	H+jbpBMw/A4LTrsFhzsCX+GrO7RzDHwxxAj0qrNU7tF9Vo1pP/pQJ1qf600yu1bJEg
+	qibJyddTshRYfqmWJBpJvRP8=
+Date: Wed, 27 Feb 2019 23:40:37 +0200
+From: Adrian Bunk <bunk@stusta.de>
+To: Tom Rini <trini@konsulko.com>
+Message-ID: <20190227214037.GA11051@localhost>
 References: <63908e27-9243-16f9-aa65-e0c0d3e23af1@innodelec.ch>
+	<20190227170614.GV12046@bill-the-cat>
 	<93dcfef4-e49f-a683-0f5b-3acdb9dbb663@innodelec.ch>
 	<20190227200902.GG12046@bill-the-cat>
-	<2093415.XmvlAEeYP8@localhost.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <2093415.XmvlAEeYP8@localhost.localdomain>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: yocto@yoctoproject.org
+In-Reply-To: <20190227200902.GG12046@bill-the-cat>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: Removing busybox
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -77,61 +61,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Feb 2019 21:35:36 -0000
-X-Groupsio-MsgNum: 44256
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="xShVoZav8KYWC5Dk"
+X-List-Received-Date: Wed, 27 Feb 2019 21:40:43 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 
---xShVoZav8KYWC5Dk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Feb 27, 2019 at 03:09:02PM -0500, Tom Rini wrote:
+> On Wed, Feb 27, 2019 at 09:06:38PM +0100, Jean-Christian de Rivaz wrote:
+>...
+> > So as expected systemd is there and busybox is not. But there is a lot of
+> > useful commands missing on the resulting QEMU image:
+> > 
+> > root@qemux86:~# ps
+> > ~sh: ps: command not found
+> > root@qemux86:~# w
+> > ~sh: w: command not found
+> > root@qemux86:~# find
+> > ~sh: find: command not found
+> > root@qemux86:~# grep
+> > ~sh: grep: command not found
+> > root@qemux86:~# ip addr
+> > ~sh: ip: command not found
+> > 
+> > I expected that all the limited busybox commands would be replaced by
+> > the full
+> > featured commands. How to fix that ?
+> 
+> Correct, you're missing a lot of stuff.  Somewhere on my (and other
+> folks too) TODO list is a packagegroup that includes procps and psmisc
+> and grep and tar and various network packages and less and more and...
 
-On Thu, Feb 28, 2019 at 10:31:15AM +1300, Paul Eggleton wrote:
-> On Thursday, 28 February 2019 9:09:02 AM NZDT Tom Rini wrote:
-> > Somewhere on my (and other
-> > folks too) TODO list is a packagegroup that includes procps and psmisc
-> > and grep and tar and various network packages and less and more and...
->=20
-> That is what packagegroup-core-full-cmdline (well, the packagegroup packa=
-ges=20
-> that it produces) was intended to be, although I guess there might be som=
-e=20
-> argument about what should and should not be in there.
+"all the limited busybox commands would be replaced" would be a huge 
+list from dc through gawk, minicom and wget to vim.
 
-I'll keep that in mind perhaps if/when I cycle over back over to this.
-A packagegroup that says to use busybox isn't what comes to mind when I
-want to not have busybox on my image, and so failed out in some of my
-earlier local iterations on this when I did a hard blacklist on busybox
-and then went off to fixup the fall-out.
+And would vim-tiny qualify as "the full featured command" of busybox vi,
+or should this include vim with full features?
 
-I'd also argue that packagegroup both includes "extra" stuff (mc) and
-misses other stuff (less).  And I know patches are welcome, so it's on
-my TODO list :)
+The nice thing about busybox is that it is so small,
+in many cases one full featured command alone
+is bigger than busybox.
 
---=20
-Tom
+It is not obvious to me what usecases people have in mind for
+getting rid of busybox, and whether everyone is aware that
+something like "all busybox commands replaced" is *very*
+expensive regarding filesystem size.
 
---xShVoZav8KYWC5Dk
-Content-Type: application/pgp-signature; name="signature.asc"
+> Tom
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
+cu
+Adrian
 
-iQIcBAEBAgAGBQJcdwKgAAoJEIf59jXTHXZS8BEP/RIHUCFh5MxNk3lYFy1ldv58
-D4RN04zfOfoy8fc5C2eaQHQaGbBv1qpKxjN2oyAmKBDjDRK8v/0zTaAsFmFPEK1y
-VCUtkXTyoUbq7lsqMZLpSgYWxJDC7OB8lajy6C7AtsVKzqq9KtO3KP+hW0X29EvF
-jCELRuqbJwrRKxa5gF5o7mLTSl9P+wVLvaV2K5sOwI8CvBllSRZAAkHpORK/jTtk
-Xo+7kwBjKTmFZkMDJvK/WGG5xoYZJ+GZDVqfBt5ZOac8aeHCjRaR1025rBhbb2vq
-PLlrJX5Y91s6MWq4goNvbVYZOFgCsGNGvBjefQOmPfWFJlFuTUxwXHs3a/Xo2ao8
-6S9dfUr6TWryWYbimeCyP1O0xAu47s81mL7P8/Ij/RvrYB4BhdBUABoOcqDHtJhC
-5uu/v9hPm3zopT5sc9YDZ8qI6yM3oa7Q1hdcByUKUGjQt4RNX9Q2xVsY76dc++77
-YrTUNqMjLrcC3qZ4ZhJ1zZxo8B3ri1rdWSejl6m/xULM51g2y0do7LAfVhW8ReBL
-x9ppyBOph+wcNEYD4YF7fY1FB189tMzX1gIxWyqDkMpwYfJ1mVuA+mkF3Lc4cgCX
-0FI7DEWX1clUcZoU07Sgw/Mrccb7xh1nBZXwmVwqHVdGYo+KvMQEmpFXAphbRDsm
-VbVisBERoGduGxpCYwYe
-=axDF
------END PGP SIGNATURE-----
+-- 
 
---xShVoZav8KYWC5Dk--
+       "Is there not promise of rain?" Ling Tan asked suddenly out
+        of the darkness. There had been need of rain for many days.
+       "Only a promise," Lao Er said.
+                                       Pearl S. Buck - Dragon Seed
+
+
