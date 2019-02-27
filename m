@@ -1,64 +1,66 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <jean-christian.derivaz@innodelec.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 358D1E00D00; Wed, 27 Feb 2019 13:49:14 -0800 (PST)
+	id DD7AAE00D00; Wed, 27 Feb 2019 14:24:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [212.147.79.142 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.172 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f172.google.com (mail-it1-f172.google.com
-	[209.85.166.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2046E00C1B
-	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 13:49:13 -0800 (PST)
-Received: by mail-it1-f172.google.com with SMTP id l139so10321746ita.5
-	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 13:49:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=+ZkpkBgNWMKUg5QathC2wlhNPW5SaQ14puRXhkiOcPU=;
-	b=kvhXmx5UYBuAAoTfsNRDz9cti1EqZ6UUNcngbAWJhc17yqybaZkulDyxjwwKslXD8G
-	74nKQ9zjlqySaaDfXbofKp+4NJD4nrsPjqimpeGbpu1Yg4gsZAqQeUHFMKPkVXpe4Mis
-	uzC3qouKv7Jl56Dw6rdJnwUvpoFdG3flvxUE6PjrolpEScapWGt5w2pCioSx1IdcE3nw
-	VE724ivRvpLTtuM2eCW9txEz3HIvikB2M7MczzbeakkF5eqCYnnwQxV6geFaSjRS+eYz
-	gQXDTkQ1aH8AmF614vZBaKozorQkQfrBEeJQjMQZjN+XcHILzstp71Er6P7hky9KFwJK
-	S4+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=+ZkpkBgNWMKUg5QathC2wlhNPW5SaQ14puRXhkiOcPU=;
-	b=D6vfw5aau7X9FzOmsCoofYlkT00e2y5r3cWrCbJoQkdzp+hO7Bjwc45qj5CsqSoehF
-	8G/zIgouLLxZMEe5FCqR7Lhg1pfqxtDL35+hl1l1XmF+JztwQdlSM7NPdGP3FV89TN+z
-	pBlIEPeXOE9sMQ6UrF4Q9dSPDZP449/kXYlqi+cU0iy/d7qix57kpScyFtW2odQ6BUGQ
-	IwuUUiFf30E4YK+Vuf01OYxmEA0uN72Dbu1G/BMr//Z/akB1j2s2roUi9QgpIUgNRvxC
-	Ng0CQT0CPwNTGtOurDN2zi8ncMsjyue4efBAw7yZBdODRS4iLefdLM/FoR0UTw9+KIYn
-	1MpQ==
-X-Gm-Message-State: AHQUAuaYExFx+pL9vY1Wv33CNexkXaQAKu8e/kT5rVUnTE+oD4LUhOKb
-	Grk+piUkSBVTrjfhnQMvPZlsxIUmUSav6rb8kD+3nDJz
-X-Google-Smtp-Source: AHgI3IafL8nQoOidclAE0NRDUcYyt9LCQmGgTBf06SgXb4H08pIldFBsKgIjRCu4i/LE1r9lOGCayfvi0Qh0rNagI9s=
-X-Received: by 2002:a02:240d:: with SMTP id f13mr2820519jaa.105.1551304153072; 
-	Wed, 27 Feb 2019 13:49:13 -0800 (PST)
-MIME-Version: 1.0
+Received: from europa.tizoo.com (europa.tizoo.com [212.147.79.142])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92E72E00C1B
+	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 14:24:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=innodelec.ch; s=default; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=gYzg2aniiVa+K/np22VFkYQ7DpOs4hfAlXvajp72/dU=;
+	b=VRwHqbj1RAjAURT7UfcdNMYrj4
+	ckOeJWGe3ypWGW7dEgqhs64zQxX/flzn2HFdUFkU73zBmluUkIwJJAVvENl3bAwyqvwvtuiaC9exR
+	adZPJpUPF/vsjH0/CGGL+EPvoRbwTJ7w9Y+MXSuIbanAcgcFFi4HYoQf0xml8Uvxc7rALGQlr9V+6
+	zgN9YD6rIYFxDYYwC+8/521FoH/ro/lY2aQX02q+pEZHhUbgVqAxpbqapVAz26dy7uOs5exXVff25
+	ULXjDmXXYFkGDxGrPl5dimsysbwmiEYDS11xTVXwMMO6kqEwPinH538Kt92ArhHb3eKh+vlJYQDxr
+	P0VcsQEA==;
+Received: from [213.221.150.139] (port=60572 helo=[10.0.33.10])
+	by europa.tizoo.com with esmtpsa
+	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.91)
+	(envelope-from <jean-christian.derivaz@innodelec.ch>)
+	id 1gz7dC-004zka-Sg; Wed, 27 Feb 2019 23:24:52 +0100
+To: Adrian Bunk <bunk@stusta.de>, Tom Rini <trini@konsulko.com>
 References: <63908e27-9243-16f9-aa65-e0c0d3e23af1@innodelec.ch>
 	<20190227170614.GV12046@bill-the-cat>
 	<93dcfef4-e49f-a683-0f5b-3acdb9dbb663@innodelec.ch>
 	<20190227200902.GG12046@bill-the-cat>
 	<20190227214037.GA11051@localhost>
+From: Jean-Christian de Rivaz <jean-christian.derivaz@innodelec.ch>
+Message-ID: <8a83e39d-9f90-19d3-f310-41c5cebe840a@innodelec.ch>
+Date: Wed, 27 Feb 2019 23:24:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.4.0
+MIME-Version: 1.0
 In-Reply-To: <20190227214037.GA11051@localhost>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 27 Feb 2019 21:49:02 +0000
-Message-ID: <CAJTo0LZLmbzj5b0gZ7ZfGTT1KisMekhv91KAwEDrQ9p5GN5_eA@mail.gmail.com>
-To: Adrian Bunk <bunk@stusta.de>
-Cc: Tom Rini <trini@konsulko.com>,
-	Yocto discussion list <yocto@yoctoproject.org>
+X-OutGoing-Spam-Status: No, score=-2.9
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - europa.tizoo.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - innodelec.ch
+X-Get-Message-Sender-Via: europa.tizoo.com: authenticated_id:
+	jean-christian.derivaz@innodelec.ch
+X-Authenticated-Sender: europa.tizoo.com: jean-christian.derivaz@innodelec.ch
+Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: Removing busybox
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -71,18 +73,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Feb 2019 21:49:14 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 27 Feb 2019 22:24:53 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-On Wed, 27 Feb 2019 at 21:41, Adrian Bunk <bunk@stusta.de> wrote:
+Le 27.02.19 à 22:40, Adrian Bunk a écrit :
+> On Wed, Feb 27, 2019 at 03:09:02PM -0500, Tom Rini wrote:
+>> On Wed, Feb 27, 2019 at 09:06:38PM +0100, Jean-Christian de Rivaz wrote:
+>> ...
+>>> So as expected systemd is there and busybox is not. But there is a lot of
+>>> useful commands missing on the resulting QEMU image:
+>>>
+>>> root@qemux86:~# ps
+>>> ~sh: ps: command not found
+>>> root@qemux86:~# w
+>>> ~sh: w: command not found
+>>> root@qemux86:~# find
+>>> ~sh: find: command not found
+>>> root@qemux86:~# grep
+>>> ~sh: grep: command not found
+>>> root@qemux86:~# ip addr
+>>> ~sh: ip: command not found
+>>>
+>>> I expected that all the limited busybox commands would be replaced by
+>>> the full
+>>> featured commands. How to fix that ?
+>> Correct, you're missing a lot of stuff.  Somewhere on my (and other
+>> folks too) TODO list is a packagegroup that includes procps and psmisc
+>> and grep and tar and various network packages and less and more and...
+> "all the limited busybox commands would be replaced" would be a huge 
+> list from dc through gawk, minicom and wget to vim.
+>
+> And would vim-tiny qualify as "the full featured command" of busybox vi,
+> or should this include vim with full features?
+>
+> The nice thing about busybox is that it is so small,
+> in many cases one full featured command alone
+> is bigger than busybox.
+>
 > It is not obvious to me what usecases people have in mind for
 > getting rid of busybox, and whether everyone is aware that
 > something like "all busybox commands replaced" is *very*
 > expensive regarding filesystem size.
 
-Considering many of the people who are trying to not install a single
-byte of busybox are also installing toybox, the GPL is often the
-reason.  Not sure how to square that with also using Linux though...
+The project I work for need nodejs and chromium (and a >100MB database
+on some nodes), so space is not an issue. I need to deliver an useful
+distribution with usual commands, tools and a working console + keyboard
+for my locale. If  Poky is only maintained to be tested with sysvinit +
+busybox and US locale, then I wonder if it's the appropriate choice for
+that project. There nothing wrong in providing a sysvinit + busybox
+based small distribution, this is simply not the best fit for that project.
 
-Ross
+Jean-Christian
+
+>
+>> Tom
+> cu
+> Adrian
+>
+
 
