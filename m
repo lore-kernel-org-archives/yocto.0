@@ -1,51 +1,56 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <srifenbark@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 59228E00D15; Wed, 27 Feb 2019 10:48:05 -0800 (PST)
+	id BB725E00D3F; Wed, 27 Feb 2019 10:48:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (srifenbark[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.45 listed in list.dnswl.org]
+	*      [209.85.208.41 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com
-	[209.85.166.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB196E00D01
-	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 10:48:04 -0800 (PST)
-Received: by mail-io1-f45.google.com with SMTP id k21so14397691ior.13
-	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 10:48:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
+	[209.85.208.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E16BE00D13
+	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 10:48:29 -0800 (PST)
+Received: by mail-ed1-f41.google.com with SMTP id p27so14808948edc.6
+	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 10:48:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=6yCSGxWbTT/0MnCFmDv3NZ6RXNRWnbw/V0CvQbuXjL0=;
-	b=VacmrHMZ0QUxsKcrRSCyongbDpjJz/00SUGSchDbap2vGTyevaBLiqGeGygDKlPeet
-	LtLmEK521o3si9OLcD+QcCaOAT3BbCu+VS4ysDP82Gz1UKcmOSiW22lU50CaAVmIelmk
-	4Udo5NqgqePH6Ewg1ITmzJ7O1prnDHkaQ6q81Ate9C3Cuh8InXB3RFkFiD8FIO/cqmG9
-	j9B5y/pjtRx5vB4Un5sQjqCOWu6lmY+yaeAefKSigiEzWP4Pe0M7OC9EIJNqE8+KD4MN
-	NyFM5fGGtVmk0MLu3BzzN+vuClnXUmK4RCtneDLwoGrRdZ8J8DG+lEBggUsv70vb1kpr
-	eUHg==
+	:cc; bh=j1ui36eCH5xZDnpsXDAP/i8kNtFFERPD1aIA9S4i7j4=;
+	b=XQfbS2Vadkz9EUFSihwfS6WXdmdKz/YnxeJNeCx0/D1MbWuXZR8/qAvxGQrZc3tpvE
+	CW5D9zO0/kIbb8jSIyJReb4Pf8AyenArC/nWq1m89wbuF7SJPzEmXYMhT0i2ZoI+2anQ
+	/5rWm34XtF79d6izd/aL7vOdmjO374SG5eJyErb42V44LWTkKARm+HqIG0jCfoHObLT9
+	vkjBT8r2lp5k9hCl9tYRQCUcT2JkY/i9c1UAE83oZnvuidbVymk9dlbMO+ukCkXwqcE5
+	oaP+Djb1U8TJgXu7dtJZWT+uyNKGPWzq6ExG6He691vUC0R0aONcG14TB4bFMo+dx/35
+	3HAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=6yCSGxWbTT/0MnCFmDv3NZ6RXNRWnbw/V0CvQbuXjL0=;
-	b=IzzNKadnwzAfcwA16QnFYI8sREiCrz+YxCesRGT/aVsHt3XqzwX3+p/tdktDT7//RR
-	3MzEfD/WQkq7q3/O5fkRMMOlmivz2IpIbTqO6e8q8Z4CRezmrlSmkrcNKJOv7+uE5ab9
-	xx9R9D+64auCIfGyIcYhBm+XZI2s1S9IA9rTuv34lVB5+14g2pHiggAxN9RdmFkBXy14
-	DHSid8Npi8ElSknDxGBH0MFANGyxkbMUTYnUnBaP950jMppj5O/m6i6WVqtowqiWyfEi
-	jauKPOvdWuJZJPQxpMcIGLwnJ469jIQ10irHYSv9Egm06tp1M+H7EkHTIYgaX+hNY4fP
-	4z5w==
-X-Gm-Message-State: APjAAAWMGx8G5tkwVmxd0LQJfZp39OacijJTYqVP5te1oaKRChlzQl2Z
-	BkxtTsVUwLvZmHhldNZJpk/bN3NDviyNZB1MDypITw==
-X-Google-Smtp-Source: APXvYqyWMux0tMjBpen2WPJHo+uZzktmkmHfG0ktREpUFuwz+uPcjBdm3EJn7iMXUuAgOhHfDj83OUrt8pPh5buTf6I=
-X-Received: by 2002:a6b:ee1a:: with SMTP id i26mr2759708ioh.201.1551293284367; 
-	Wed, 27 Feb 2019 10:48:04 -0800 (PST)
+	bh=j1ui36eCH5xZDnpsXDAP/i8kNtFFERPD1aIA9S4i7j4=;
+	b=aXNBpg+sARStUBl/Kuy5lbxuZGvzbwzqCoIBvia1envugRnoUPSLgOq2w3eairrzC4
+	zNrg3tNgnmoY7zd3kUN+G06DOKm1BAsxbbqRi78oAnLyOR2shkbOOt1Kk3BHs1qsIfR9
+	c7HgunDdGUHdm4ZCfv0/X1GCugJGE4Jj/cwl5zJYlda+fhyq93Xx4qbGXp5+bETJiVAb
+	x7LJvn7PKGfcrjAe40QKNjgqUtUpwAPdK7MOTZOgikdHnAvrRpUq5YZ9NzBSQqd1Lgqu
+	5VV81fpKH0p3IkXgZAl8RIg4ntgtEsSM0UoY4H9U9GRL6vI/OLdjFUfC9+8TDRLalSyN
+	ktzw==
+X-Gm-Message-State: AHQUAubf+xBrc1JD3xIchsExnxjyIuWOJeVSXi/YIhoC60zNE+/JKhCi
+	kcufqn+TX8D5GK5gp6VPT6EUmCSUSB0otIbZ/IRxvw==
+X-Google-Smtp-Source: AHgI3IYZxSnEYPVLOgpyeRRttBgyR3AghEstggvJl33vNPAy33UIK2yAGFutklKfoceMDauX3s3BhCdIMtUDmvNtA1w=
+X-Received: by 2002:a50:978e:: with SMTP id e14mr3346445edb.234.1551293308512; 
+	Wed, 27 Feb 2019 10:48:28 -0800 (PST)
 MIME-Version: 1.0
 References: <63908e27-9243-16f9-aa65-e0c0d3e23af1@innodelec.ch>
 	<20190227170614.GV12046@bill-the-cat>
@@ -55,9 +60,9 @@ References: <63908e27-9243-16f9-aa65-e0c0d3e23af1@innodelec.ch>
 	<CAJTo0Lboemkg2+rxxBqgj7K1LLQGEioDqsJUQx1AtCzMgrGHrg@mail.gmail.com>
 	<20190227184542.GB12046@bill-the-cat>
 In-Reply-To: <20190227184542.GB12046@bill-the-cat>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 27 Feb 2019 18:47:52 +0000
-Message-ID: <CAJTo0LbveDoW=oinew3FKZW80r1Xe0kuq5vJ6E1fb-EL0nyKfQ@mail.gmail.com>
+From: Scott Rifenbark <srifenbark@gmail.com>
+Date: Wed, 27 Feb 2019 10:48:16 -0800
+Message-ID: <CAFNP8Otj9xXkUw5yWa7voGhWe9WB1Wwayj71Ti=PSFH9bMPhTw@mail.gmail.com>
 To: Tom Rini <trini@konsulko.com>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: Removing busybox
@@ -72,10 +77,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Feb 2019 18:48:05 -0000
+X-List-Received-Date: Wed, 27 Feb 2019 18:48:34 -0000
+Content-Type: multipart/alternative; boundary="00000000000098aca60582e49e08"
+
+--00000000000098aca60582e49e08
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 27 Feb 2019 at 18:45, Tom Rini <trini@konsulko.com> wrote:
+Hi,
+
+Sounds like this issue might have some documentation ripples when it
+settles out.
+
+Scott
+
+On Wed, Feb 27, 2019 at 10:46 AM Tom Rini <trini@konsulko.com> wrote:
+
+> On Wed, Feb 27, 2019 at 06:35:10PM +0000, Burton, Ross wrote:
+> > On Wed, 27 Feb 2019 at 17:58, Tom Rini <trini@konsulko.com> wrote:
+> > > I'm not sure we can blacklist busybox from the build at this time
+> > > (hddimg requires initramfs that requires busybox) but instead only
+> force
+> > > remove it from the image and ensure it still builds.
+> >
+> > Don't build an image with a initramfs?
+>
 > OK, so I've kicked things a bit harder again, and here's what I see as
 > the (small) rub.
 > $ git grep hddimg meta/conf/
@@ -87,14 +112,78 @@ On Wed, 27 Feb 2019 at 18:45, Tom Rini <trini@konsulko.com> wrote:
 > we'll get people with "I can't remove busybox and I tried what it says"
 > posts since blindly pulling in hddimg gives at least:
 > ERROR: Nothing RPROVIDES 'busybox-mdev' (but
-> /home/trini/work/OE/oe-core/meta/recipes-core/initrdscripts/initramfs-framework_1.0.bb
+> /home/trini/work/OE/oe-core/meta/recipes-core/initrdscripts/
+> initramfs-framework_1.0.bb
 > RDEPENDS on or otherwise requires it)
 >
 > That's the point I want to make, after throwing out a quick test build
 > dir.
+>
+> --
+> Tom
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Sure, so the instructions include "don't use hddimg" until we've a way
-of not using busybox in the initramfs.
+--00000000000098aca60582e49e08
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Ross
+<div dir=3D"ltr"><div>Hi, <br></div><div><br></div><div>Sounds like this is=
+sue might have some documentation ripples when it settles out.=C2=A0 <br></=
+div><div><br></div><div>Scott<br></div></div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 27, 2019 at 10:46 AM Tom=
+ Rini &lt;<a href=3D"mailto:trini@konsulko.com">trini@konsulko.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Wed, F=
+eb 27, 2019 at 06:35:10PM +0000, Burton, Ross wrote:<br>
+&gt; On Wed, 27 Feb 2019 at 17:58, Tom Rini &lt;<a href=3D"mailto:trini@kon=
+sulko.com" target=3D"_blank">trini@konsulko.com</a>&gt; wrote:<br>
+&gt; &gt; I&#39;m not sure we can blacklist busybox from the build at this =
+time<br>
+&gt; &gt; (hddimg requires initramfs that requires busybox) but instead onl=
+y force<br>
+&gt; &gt; remove it from the image and ensure it still builds.<br>
+&gt; <br>
+&gt; Don&#39;t build an image with a initramfs?<br>
+<br>
+OK, so I&#39;ve kicked things a bit harder again, and here&#39;s what I see=
+ as<br>
+the (small) rub.<br>
+$ git grep hddimg meta/conf/<br>
+meta/conf/machine/include/x86-base.inc:IMAGE_FSTYPES ?=3D &quot;hddimg&quot=
+;<br>
+<br>
+So yes, we can do a test with qemux86/qemux86-64 and documenting this in<br=
+>
+local.conf.sample is good (and a packagegroup that gives more 1:1<br>
+functionality is on my TODO list somewhere).=C2=A0 But it&#39;s also true t=
+hat<br>
+we&#39;ll get people with &quot;I can&#39;t remove busybox and I tried what=
+ it says&quot;<br>
+posts since blindly pulling in hddimg gives at least:<br>
+ERROR: Nothing RPROVIDES &#39;busybox-mdev&#39; (but<br>
+/home/trini/work/OE/oe-core/meta/recipes-core/initrdscripts/<a href=3D"http=
+://initramfs-framework_1.0.bb" rel=3D"noreferrer" target=3D"_blank">initram=
+fs-framework_1.0.bb</a><br>
+RDEPENDS on or otherwise requires it)<br>
+<br>
+That&#39;s the point I want to make, after throwing out a quick test build<=
+br>
+dir.<br>
+<br>
+-- <br>
+Tom<br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
 
+--00000000000098aca60582e49e08--
