@@ -1,66 +1,61 @@
-Return-Path: <srifenbark@gmail.com>
+Return-Path: <stefano.cappa.ks89@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2196FE0091D; Thu, 28 Feb 2019 09:32:34 -0800 (PST)
+	id 40048E0091D; Thu, 28 Feb 2019 09:40:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.208.52 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (srifenbark[at]gmail.com)
+	provider *      (stefano.cappa.ks89[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.53 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
-	[209.85.208.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72342E00901
-	for <yocto@yoctoproject.org>; Thu, 28 Feb 2019 09:32:33 -0800 (PST)
-Received: by mail-ed1-f52.google.com with SMTP id f2so17655039edy.13
-	for <yocto@yoctoproject.org>; Thu, 28 Feb 2019 09:32:33 -0800 (PST)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com
+	[209.85.222.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DCDDE006D8
+	for <yocto@yoctoproject.org>; Thu, 28 Feb 2019 09:40:05 -0800 (PST)
+Received: by mail-ua1-f53.google.com with SMTP id d4so8596977uap.5
+	for <yocto@yoctoproject.org>; Thu, 28 Feb 2019 09:40:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=3nlI84kEdgExjgkfnU2tL92VTrMmamZjxCrDmb7UTfY=;
-	b=XCgnOlXjdQBw9krk/1zURZCir6VyfnpcTpisdJEvEWEGbi1+hdQdVOyPxsYrsOCj1k
-	tw7dUHJ1DG4rFkykj/FlKwlaDV/zkXKuyidl++MIdTvh5h3MPyy0huWK0fM3cCaLBUnP
-	f6UoVux5KB5eEZL91sw485V0zHm7Ywh/TLDwxrblpSciFsd7uwmI0nYAwz0t00rugTKe
-	ihkrg7iocNIo+bhrKsTH6DarjtkZsrs7K7GxmbThH8ZQ4PoleJHttycSsjqtaOJHZ22n
-	guK/lfSUevZNEfT7zrBmTWJdWpHrey51q1l42D+d7V5fIV5ysJcG2Yaf5xRT6uJP+GST
-	hY8w==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=XizczyQznFITv0rWnswtQyIZ57CGCoLEf+lHo5GIzd4=;
+	b=qfQWbli5aewE89QiunIpblMM0l9ATqO6uKwjGwTd9U2gXINI5Uu8wGnXBZncwMqbhX
+	+Xq7sfwBXQN4zURC9Amg9M2ewmzWfJ2ZF5CvWc2KbSK8OX5aTdjSVtjWMAq7J2HP7AC5
+	OmLx1WQHf0CxYycwJHrFDbKI+lvGsBpWHni5ArwNJwNU8QnQQ4h61Rf7TcRgJVmYFDl0
+	fRhZ5x9lPqjm1wdgW4fU3GhqANiqSCTBniy024A/hWOUYVLQEfFqJbVCXDFI/8KoRFmX
+	uSLnY38DDXyuOaWNWv2G4mTXf7qrXSfwK0jvF3lBsIZAMzFgQxx4hq1wZNrjB62GUNhT
+	x0Rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=3nlI84kEdgExjgkfnU2tL92VTrMmamZjxCrDmb7UTfY=;
-	b=Z7Dxi4vgkJidN+Dd3ySivNX5YuwnZX3IwxyuTBATMeoh5HfNE0bBheLWCib3VGbzJd
-	IJlV9djl5v72TuV8h2NS1NijXM7K4eQeZmkAm2j3GAbK1DwG9N11xutWYGOSbmSczj6u
-	WCXBKwIefqCVhn5h9XHGDGwQ1yQS8ubAZqD/uruH6mMbtQ+JKfMwyF8sWO7soRJB8Qjx
-	3qiXySYcnZbk/FF0tyo6L8Q2ersuDU30qpzQfhE2RLgqXCJqA8BChMRVNdS+YgtZ/+KX
-	fhRblEw1lMfwZbxjN9bbtjhUdHdkd4I9KlV4IELFyynaYB/YeYZKBY94VHevFPfF8ied
-	C1Ng==
-X-Gm-Message-State: APjAAAVOqFVsxI2kZIiBmDGTruaQoHvX2D+LO5P81sdfRtilrchdd/rc
-	vK61V7Q+OJTycPGC82vXsDlSjcvJLIM23yjasAU=
-X-Google-Smtp-Source: APXvYqzkNPz30Jt3ZWy0dW4Hzx+aSvqZXUM6KUosj/dNwPzn4IEJrkodvJtGtXIvtp4pCW4aqXBF1Y5BFUKpVPb9znY=
-X-Received: by 2002:a50:8916:: with SMTP id e22mr629741ede.242.1551375152542; 
-	Thu, 28 Feb 2019 09:32:32 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=XizczyQznFITv0rWnswtQyIZ57CGCoLEf+lHo5GIzd4=;
+	b=F7hsrlLxjINJZTttzzAAtTXcBak1z4YueWsQqOu9sL/C4NfR9vq1ecN25q3V1vGv7b
+	HyGmzKVjmCAhy4TOjAAmxf1T5AZ85+Z0cGrc6xv01493wWf9yA9JCM2dpfhXfMGw+EPC
+	YwN33hYWFJWMm3ZJg+4zB+bh6UyOZsJRXh6iaoZrlObsCAiWk16oYFymmlM3kXLIFdzK
+	063cvfSqWMg6TqkGQC/GOM6JWTZqsi8afXEzclg2ftPUyPmSvwiCrsh20ni7V7mu9Y7m
+	GB2tDQl1cDl2VkQwCvd3+ArTZv7bGVwEZ8J1zI4p0v9iQg6JbMxw6tCRTQd99LqHyxzC
+	zS1g==
+X-Gm-Message-State: APjAAAVV8avMA5zNWhUwAkhSkPmZ/DLQvt6ZTCpjmB7JiVKeeLYrFm1B
+	+AFfwAvQEQkYH6itqfe22VqouN5wNlA6N/6H4jVbnQ==
+X-Google-Smtp-Source: APXvYqzl8w1FKikbNV/kwVMac5aO/AZyiDq7BjoqxV92yvpTFE3/raYRSn3vgg0SBKFF6ldIWsL0RF837XxMIjYL/To=
+X-Received: by 2002:ab0:6916:: with SMTP id b22mr119469uas.67.1551375604484;
+	Thu, 28 Feb 2019 09:40:04 -0800 (PST)
 MIME-Version: 1.0
-References: <SN2PR05MB27829108D4A8ED36D600A930C17E0@SN2PR05MB2782.namprd05.prod.outlook.com>
-	<10f67545-7dac-9318-638f-78a164dcc5e5@googlemail.com>
-In-Reply-To: <10f67545-7dac-9318-638f-78a164dcc5e5@googlemail.com>
-From: Scott Rifenbark <srifenbark@gmail.com>
-Date: Thu, 28 Feb 2019 09:32:21 -0800
-Message-ID: <CAFNP8OsxiiWe+XijN60T9Pw09wDQZG2K46m_14oO1XyP6EuP8Q@mail.gmail.com>
-To: Matthias Schoepfer <matthias.schoepfer@googlemail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: ROS support on yocto project
+From: Stefano Cappa <stefano.cappa.ks89@gmail.com>
+Date: Thu, 28 Feb 2019 18:39:52 +0100
+Message-ID: <CAKRytNxUh1LXkWxofR3iayi3c7um_bqD_3RhbTLyxPYz6Sd+tw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Cannot use LICENSE_CREATE_PACKAGE = "1" with mDNS package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,149 +67,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Feb 2019 17:32:34 -0000
-Content-Type: multipart/alternative; boundary="000000000000e17c5f0582f7ac37"
+X-List-Received-Date: Thu, 28 Feb 2019 17:40:06 -0000
+Content-Type: multipart/alternative; boundary="000000000000d195670582f7c7ea"
 
---000000000000e17c5f0582f7ac37
+--000000000000d195670582f7c7ea
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Feb 28, 2019 at 9:26 AM Matthias Schoepfer <
-matthias.schoepfer@googlemail.com> wrote:
+I'm using the latest version from git branch of yocto thud.
 
-> Hi!
->
->
-> Yes, there is, there is a meta-ros.
->
->
-> For your convenience:
->
->
->
-> https://discourse.ros.org/t/new-version-of-meta-ros-for-kinetic-distribution/2833
->
-> https://github.com/bmwcarit/meta-ros
->
->
-> It does work. BTW, afaik there is no yocto 3.9.0, 2.6.1 is last stable if
-> I am not mistaken.
->
-yes - see https://wiki.yoctoproject.org/wiki/Releases
+If I add to INSTALL the package "mdns" and also I want to create all files
+for licenses adding LICENSE_CREATE_PACKAGE = "1" the build of the final
+image fails with this error:
 
+Error myimage-1.0-r0 do_rootfs: Postinstall scriptlets of ['mdns'] have
+failed. If the intention is to defer them to first boot,
+then please place them into pkg_postinst_ontarget_${PN} ().
+Deferring to first boot via 'exit 1' is no longer supported.
 
-> Regards,
->
->
->
->    Matthias
->
->
-> On 2/21/19 9:26 AM, Carlos Pozos Ochoa wrote:
->
-> I recently acquire a Renesas R Car M3 board which runs on an embedded
-> linux image build by means of the Yocto project. We are currently using
-> YOCTO 3.9.0. We are looking forward to implement ROS kinetic libraries on
-> this embedded linux. Does the yocto project supports this libraries? In the
-> case it does, is there any special process to install and run them? Or is
-> it work as a normal linux distribution?
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+Without LICENSE_CREATE_PACKAGE = "1" everything is ok because I can build
+both with and without licenses but not if LICENSE_CREATE_PACKAGE is
+enabled.
 
---000000000000e17c5f0582f7ac37
+Do you have any suggestions? Log doesn't say nothing really useful to me.
+It seems a generic error. Am I missing something?
+
+Thanks.
+
+--000000000000d195670582f7c7ea
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 28, 2019=
- at 9:26 AM Matthias Schoepfer &lt;<a href=3D"mailto:matthias.schoepfer@goo=
-glemail.com">matthias.schoepfer@googlemail.com</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <p>Hi!</p>
-    <p><br>
-    </p>
-    <p>Yes, there is, there is a meta-ros. <br>
-    </p>
-    <p><br>
-    </p>
-    <p>For your convenience:</p>
-    <p><br>
-    </p>
-    <p><a class=3D"gmail-m_3696721635774807690moz-txt-link-freetext" href=
-=3D"https://discourse.ros.org/t/new-version-of-meta-ros-for-kinetic-distrib=
-ution/2833" target=3D"_blank">https://discourse.ros.org/t/new-version-of-me=
-ta-ros-for-kinetic-distribution/2833</a></p>
-    <p><a class=3D"gmail-m_3696721635774807690moz-txt-link-freetext" href=
-=3D"https://github.com/bmwcarit/meta-ros" target=3D"_blank">https://github.=
-com/bmwcarit/meta-ros</a><br>
-    </p>
-    <p><br>
-    </p>
-    <p>It does work. BTW, afaik there is no yocto 3.9.0, 2.6.1 is last
-      stable if I am not mistaken.<br></p></div></blockquote><div>yes - see=
- <a href=3D"https://wiki.yoctoproject.org/wiki/Releases">https://wiki.yocto=
-project.org/wiki/Releases</a><br></div><div> <br></div><blockquote class=3D=
-"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
-04,204,204);padding-left:1ex"><div bgcolor=3D"#FFFFFF"><p>
-    </p>
-    <p><br>
-    </p>
-    <p>Regards,</p>
-    <p>=C2=A0 <br>
-    </p>
-    <p>=C2=A0=C2=A0 Matthias<br>
-    </p>
-    <p><br>
-    </p>
-    <div class=3D"gmail-m_3696721635774807690moz-cite-prefix">On 2/21/19 9:=
-26 AM, Carlos Pozos Ochoa
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-     =20
-      <div id=3D"gmail-m_3696721635774807690divtagdefaultwrapper" style=3D"=
-font-size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" d=
-ir=3D"ltr">
-        <div>
-          <p style=3D"margin:0px 0px 10.66px"><span style=3D"margin:0px;col=
-or:rgb(33,33,33);line-height:107%;font-family:&quot;Segoe UI&quot;,sans-ser=
-if;font-size:11.5pt" lang=3D"EN-US">I recently acquire a Renesas R Car M3 b=
-oard
-              which runs on an embedded linux image build by means of
-              the Yocto project. We are currently using YOCTO 3.9.0. We
-              are looking forward to implement ROS kinetic libraries on
-              this embedded linux. Does the yocto project supports this
-              libraries? In the case it does, is there any special
-              process to install and run them? Or is it work as a normal
-              linux distribution?</span><span style=3D"margin:0px" lang=3D"=
-EN-US"></span></p>
-        </div>
-        <br>
-      </div>
-      <br>
-      <fieldset class=3D"gmail-m_3696721635774807690mimeAttachmentHeader"><=
-/fieldset>
-    </blockquote>
-  </div>
+<div><span>I&#39;m using the latest version from git branch of yocto thud.=
+=C2=A0</span></div><span><div><span><br></span></div>If I add to INSTALL th=
+e package &quot;mdns&quot; and also I want to create all files for licenses=
+ adding=C2=A0LICENSE_CREATE_PACKAGE =3D &quot;1&quot; the build of the fina=
+l image fails with this error:</span><div><br></div><div>Error myimage-1.0-=
+r0 do_rootfs: Postinstall scriptlets of [&#39;mdns&#39;] have failed. If th=
+e intention is to defer them to first boot,<br>then please place them into =
+pkg_postinst_ontarget_${PN} ().<br>Deferring to first boot via &#39;exit 1&=
+#39; is no longer supported.<br></div><div><br></div><div>Without=C2=A0LICE=
+NSE_CREATE_PACKAGE =3D &quot;1&quot; everything is ok because I can build b=
+oth with and without licenses but not if=C2=A0LICENSE_CREATE_PACKAGE is ena=
+bled.=C2=A0</div><div><br></div><div>Do you have any suggestions? Log doesn=
+&#39;t say nothing really useful to me. It seems a generic error. Am I miss=
+ing something?=C2=A0</div><div><br></div><div>Thanks.=C2=A0</div>
 
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div></div></div>
-
---000000000000e17c5f0582f7ac37--
+--000000000000d195670582f7c7ea--
