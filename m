@@ -1,53 +1,71 @@
-Return-Path: <simone@witted.it>
+Return-Path: <jean-christian.derivaz@innodelec.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67DD5E00D00; Wed, 27 Feb 2019 16:04:01 -0800 (PST)
+	id 18DD3E00D00; Wed, 27 Feb 2019 16:10:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.54 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.147.79.142 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com
-	[209.85.167.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F07FE00A54
-	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 16:04:00 -0800 (PST)
-Received: by mail-lf1-f54.google.com with SMTP id a8so8044978lfi.7
-	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 16:04:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=witted.it; s=google;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=kkHbWBTolcrpPQaNzrrn66LTlBuZ1Z05pzTXoCv0lM4=;
-	b=ZfIZNYszN24zQ1zSWboRLxz25sYdgV3mx3sBB7qtkvrlWkFgYr68Xu4rQC0EQGX7FW
-	QDjQeEmV65H154z1LJIz4PlyevNSPVsbsPD9Lk658VIe6zHoNgeliH8LRca6a8vfFZvY
-	YtPMHTeR7hNnOR4rWxLX79gHs/ptjcWiKE7Sc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=kkHbWBTolcrpPQaNzrrn66LTlBuZ1Z05pzTXoCv0lM4=;
-	b=X8u5ASOiUI4uZCDbBR+fSqmpyJfcoU9yA36/c7TVsJOHJNZ5033q3NFszbI/W9Vvs4
-	cNZejSBMSZiXaG5y/8FG1e+ToQQyEMklieE5nqUU7A5fsxXPValnhUqERrn/bqoYrv3l
-	Gcdmsh7333jL5mupBejc8W72ybyW9KfsrBTkcYF/Ib+lkPsMaZin693j0lnPxz3ZdnaA
-	kLASHrDGdFOVYtzmfqxYWEc6emfuXrGLS5CNMUzd7Tic/IVUJHWfScPD9pVJL7dz/r7k
-	ctIy35th9qdjgBsXCXgsm7CfeZa8ELqpiA4i5Z6PcMnu8Xz+CvLDRlR0jALpBLC8280c
-	5A1Q==
-X-Gm-Message-State: AHQUAuYjKqhL5/znJHaOLI+fFye9MGIfB17ciSfIBc8IdSsUvOx1oMSe
-	zNCHoarkW630MegH1xaQKaa02bVas56gdJi/psbRZ2yPZmHBgg==
-X-Google-Smtp-Source: AHgI3IarW8bfxTUIKtDQwz+fCFsNESUrnOSgN6d739UH+aM/9AkyO0WSSm3Vk9BNxY21ktzmEjHnI/0NUPjx++ow4Qc=
-X-Received: by 2002:a19:f80b:: with SMTP id a11mr1736085lff.38.1551312238947; 
-	Wed, 27 Feb 2019 16:03:58 -0800 (PST)
+Received: from europa.tizoo.com (europa.tizoo.com [212.147.79.142])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1C79E00C1B
+	for <yocto@yoctoproject.org>; Wed, 27 Feb 2019 16:10:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=innodelec.ch; s=default; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=a+PGXf+LulwkKMlzmkoNt+X6Kl2Aay6IXoI5cq3kXkg=;
+	b=ZSJSLgn/MPeSDl4imwk7qbK0u+
+	IH34EvmUzTF98vCBIdl9UrrsRbxqeyfNjierv1dvPcXrGo5KlX7bd1B7dXk1LiTQ0mw5gmVzXHjuN
+	2AjixLCEUO+dUpftmAwdAzHIuGJS5hvuswcinS0VAU6ChGps2juTXDdqwfnJvg+h1FjePyvZMH2dW
+	5jYePyOjU8bNy16l5jQEvaAB3J6hMtY98qWReZhWrvP1Mzuc0mWm6kQCxAlMi7aHTY1ouvOjaNqaz
+	OLHCLv5ZuVqE8Fhfk8M6EQzC1bp12XN3uPbKBBBvInAh0/uEJuGFLjccsnsL2ORgcRdXmgVW8lZn5
+	96Uy1gzg==;
+Received: from [213.221.150.139] (port=32906 helo=[10.0.33.10])
+	by europa.tizoo.com with esmtpsa
+	(TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.91)
+	(envelope-from <jean-christian.derivaz@innodelec.ch>)
+	id 1gz9H1-005RkJ-1w; Thu, 28 Feb 2019 01:10:04 +0100
+To: "Burton, Ross" <ross.burton@intel.com>, Tom Rini <trini@konsulko.com>
+References: <63908e27-9243-16f9-aa65-e0c0d3e23af1@innodelec.ch>
+	<20190227170614.GV12046@bill-the-cat>
+	<93dcfef4-e49f-a683-0f5b-3acdb9dbb663@innodelec.ch>
+	<20190227200902.GG12046@bill-the-cat>
+	<20190227214037.GA11051@localhost>
+	<8a83e39d-9f90-19d3-f310-41c5cebe840a@innodelec.ch>
+	<CAJTo0LYbuovnV4YqVQ0vM4BTfdLTZVz4QiQvvNZxJBR7a2dvgg@mail.gmail.com>
+	<20190227235448.GJ12046@bill-the-cat>
+	<CAJTo0LbvYvSrcOegU+iCj6Q2yHwyNefm4gW8k8MzGQntJQGNqw@mail.gmail.com>
+From: Jean-Christian de Rivaz <jean-christian.derivaz@innodelec.ch>
+Message-ID: <9de08726-74a5-2b43-3941-15d22316068c@innodelec.ch>
+Date: Thu, 28 Feb 2019 01:10:01 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.4.0
 MIME-Version: 1.0
-From: Simone Nascivera <simone@witted.it>
-Date: Thu, 28 Feb 2019 01:03:47 +0100
-Message-ID: <CAKjYbB=pn1Gj3Skq7q-Agy-UcjFCGiG_NT_iRZpzy1t7e7ZowQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Quick start example error
+In-Reply-To: <CAJTo0LbvYvSrcOegU+iCj6Q2yHwyNefm4gW8k8MzGQntJQGNqw@mail.gmail.com>
+X-OutGoing-Spam-Status: No, score=-2.9
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - europa.tizoo.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - innodelec.ch
+X-Get-Message-Sender-Via: europa.tizoo.com: authenticated_id:
+	jean-christian.derivaz@innodelec.ch
+X-Authenticated-Sender: europa.tizoo.com: jean-christian.derivaz@innodelec.ch
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Removing busybox
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,103 +77,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Feb 2019 00:04:01 -0000
-Content-Type: multipart/alternative; boundary="000000000000f041b20582e90671"
+X-List-Received-Date: Thu, 28 Feb 2019 00:10:06 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
---000000000000f041b20582e90671
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Le 28.02.19 à 00:59, Burton, Ross a écrit :
+> On Wed, 27 Feb 2019 at 23:55, Tom Rini <trini@konsulko.com> wrote:
+>> My current incomplete list is:
+>>     bind-utils \
+>>     bridge-utils \
+>>     coreutils \
+>>     dnsmasq \
+>>     e2fsprogs \
+>>     e2fsprogs-resize2fs \
+>>     e2fsprogs-tune2fs \
+>>     findutils \
+>>     gawk \
+>>     grep \
+>>     inetutils-ping \
+>>     inetutils-ping6 \
+>>     inetutils-traceroute \
+>>     iproute2 \
+>>     less \
+>>     net-tools \
+>>     parted \
+>>     pciutils \
+>>     procps \
+>>     sed \
+>>     util-linux \
+>>     vim \
+>>     which \
+>>
+>> And it's also incomplete as there's more stuff under inetutils I don't
+>> need (but others may), and I set aside patch/diff/ed and some other
+>> stuff I don't need.  And since some of that stuff comes from
+>> meta-openembedded, it's indeed really not clear how/where a packagegroup
+>> would reside as we need things out of meta-networking.
+> That's a good start.  For a oe-core packagegroup I'd suggest dropping
+> dnsmasq bridgeutils bindutils to keep it lean. Does that remove
+> everything from meta-networking?  Also swap vim for something in core
+> obviously.
+>
+> Ross
+>
+> Ross
 
-Hi,
+My image recipe look actually like below and require several
+meta-openembedded/meta-*. This is not a clean example. The 
+packagegroup-core-full-cmdline already provides a chunk of commands but
+more are required to look like a modern distribution.
 
-I'm new to this mailing list and I have never used Yocto before.
+LICENSE = "MIT"
 
-I'm trying to build my first image by following the quick start guide
-<https://www.yoctoproject.org/docs/current/brief-yoctoprojectqs/brief-yocto=
-projectqs.html>
-but
-I keep getting this error while running "bitbake core-image-sato":
+inherit core-image distro_features_check
 
-ERROR: gcc-cross-initial-i586-8.2.0-r0 do_populate_sysroot: Fatal errors
-occurred in subprocesses:
-Command '['strip', '--remove-section=3D.comment', '--remove-section=3D.note=
-',
-'/media/simone/651173DD28B986DD/poky/build/tmp/work/x86_64-linux/gcc-cross-=
-initial-i586/8.2.0-r0/sysroot-destdir/media/simone/651173DD28B986DD/poky/bu=
-ild/tmp/work/x86_64-linux/gcc-cross-initial-i586/8.2.0-r0/recipe-sysroot-na=
-tive/usr/bin/i586-poky-linux.gcc-cross-initial-i586/i586-poky-linux-gcov-du=
-mp']'
-returned non-zero exit status 1: Traceback (most recent call last):
-  File "/media/simone/651173DD28B986DD/poky/meta/lib/oe/utils.py", line
-272, in run
-    ret =3D self._target(*self._args, **self._kwargs)
-  File "/media/simone/651173DD28B986DD/poky/meta/lib/oe/package.py", line
-44, in runstrip
-    output =3D subprocess.check_output(stripcmd, stderr=3Dsubprocess.STDOUT=
-)
-  File "/usr/lib/python3.5/subprocess.py", line 626, in check_output
-    **kwargs).stdout
-  File "/usr/lib/python3.5/subprocess.py", line 708, in run
-    output=3Dstdout, stderr=3Dstderr)
-subprocess.CalledProcessError: Command '['strip',
-'--remove-section=3D.comment', '--remove-section=3D.note',
-'/media/simone/651173DD28B986DD/poky/build/tmp/work/x86_64-linux/gcc-cross-=
-initial-i586/8.2.0-r0/sysroot-destdir/media/simone/651173DD28B986DD/poky/bu=
-ild/tmp/work/x86_64-linux/gcc-cross-initial-i586/8.2.0-r0/recipe-sysroot-na=
-tive/usr/bin/i586-poky-linux.gcc-cross-initial-i586/i586-poky-linux-gcov-du=
-mp']'
-returned non-zero exit status 1
+MACHINE_FEATURES += "acpi"
+MACHINE_FEATURES += "apm"
+MACHINE_FEATURES += "keyboard"
+MACHINE_FEATURES += "pcbios"
+MACHINE_FEATURES += "pci"
+MACHINE_FEATURES += "rtc"
+MACHINE_FEATURES += "screen"
+MACHINE_FEATURES += "serial"
+MACHINE_FEATURES += "wifi"
 
-From what I can understand the system cannot strip some executables but
-even if I add : "INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1" " at the end of the
-local.conf file nothing change.
+REQUIRED_DISTRO_FEATURES = "x11"
+DISTRO_FEATURES += "keyboard"
+DISTRO_FEATURES += "ldconfig"
 
-Could you please help me to find out how to solve this error?
+IMAGE_FEATURES += "splash"
+IMAGE_FEATURES += "x11-base"
+IMAGE_FEATURES += "package-management"
+IMAGE_FEATURES += "ssh-server-openssh"
+IMAGE_FEATURES += "tools-debug"
 
-Thank you,
+IMAGE_INSTALL += "python-modules python-misc"
+IMAGE_INSTALL += "packagegroup-core-full-cmdline"
+IMAGE_INSTALL += "e2fsprogs-mke2fs"
+IMAGE_INSTALL += "parted"
+IMAGE_INSTALL += "iproute2-ss"
+IMAGE_INSTALL += "iproute2-tc"
+IMAGE_INSTALL += "iproute2-lnstat"
+IMAGE_INSTALL += "iproute2-ifstat"
+IMAGE_INSTALL += "iproute2-genl"
+IMAGE_INSTALL += "iproute2-rtacct"
+IMAGE_INSTALL += "iproute2-nstat"
+IMAGE_INSTALL += "iproute2-ss"
+IMAGE_INSTALL += "iproute2-tipc"
+IMAGE_INSTALL += "kmod"
+IMAGE_INSTALL += "wget"
+IMAGE_INSTALL += "iputils-ping"
+IMAGE_INSTALL += "less"
+IMAGE_INSTALL += "vim"
+IMAGE_INSTALL += "nano"
 
-Simone
+IMAGE_INSTALL += "glibc-utils"
+IMAGE_INSTALL += "glibc-gconv-cp1252"
+IMAGE_INSTALL += "glibc-charmap-cp1252"
+IMAGE_INSTALL += "ldd"
+IMAGE_INSTALL += "sysstat"
+IMAGE_INSTALL += "gettext"
+IMAGE_INSTALL += "curl"
+IMAGE_INSTALL += "socat"
+IMAGE_INSTALL += "htop"
+IMAGE_INSTALL += "autossh"
 
---000000000000f041b20582e90671
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+IMAGE_INSTALL += "cronie"
+IMAGE_INSTALL += "networkmanager"
+IMAGE_INSTALL += "ethtool"
+IMAGE_INSTALL += "ntp"
+IMAGE_INSTALL += "openssh-sshd"
+IMAGE_INSTALL += "rsync"
+IMAGE_INSTALL += "git"
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
-r=3D"ltr"><div>Hi,</div><div><br></div><div>I&#39;m new to this mailing lis=
-t and I have never used Yocto before.=C2=A0</div><div><br></div><div>I&#39;=
-m trying to build my first image by following the <a href=3D"https://www.yo=
-ctoproject.org/docs/current/brief-yoctoprojectqs/brief-yoctoprojectqs.html"=
->quick start guide</a>=C2=A0but I keep getting this error while running &qu=
-ot;bitbake core-image-sato&quot;:</div><div><br></div><div>ERROR: gcc-cross=
--initial-i586-8.2.0-r0 do_populate_sysroot: Fatal errors occurred in subpro=
-cesses:</div><div>Command &#39;[&#39;strip&#39;, &#39;--remove-section=3D.c=
-omment&#39;, &#39;--remove-section=3D.note&#39;, &#39;/media/simone/651173D=
-D28B986DD/poky/build/tmp/work/x86_64-linux/gcc-cross-initial-i586/8.2.0-r0/=
-sysroot-destdir/media/simone/651173DD28B986DD/poky/build/tmp/work/x86_64-li=
-nux/gcc-cross-initial-i586/8.2.0-r0/recipe-sysroot-native/usr/bin/i586-poky=
--linux.gcc-cross-initial-i586/i586-poky-linux-gcov-dump&#39;]&#39; returned=
- non-zero exit status 1: Traceback (most recent call last):</div><div>=C2=
-=A0 File &quot;/media/simone/651173DD28B986DD/poky/meta/lib/oe/utils.py&quo=
-t;, line 272, in run</div><div>=C2=A0 =C2=A0 ret =3D self._target(*self._ar=
-gs, **self._kwargs)</div><div>=C2=A0 File &quot;/media/simone/651173DD28B98=
-6DD/poky/meta/lib/oe/package.py&quot;, line 44, in runstrip</div><div>=C2=
-=A0 =C2=A0 output =3D subprocess.check_output(stripcmd, stderr=3Dsubprocess=
-.STDOUT)</div><div>=C2=A0 File &quot;/usr/lib/python3.5/subprocess.py&quot;=
-, line 626, in check_output</div><div>=C2=A0 =C2=A0 **kwargs).stdout</div><=
-div>=C2=A0 File &quot;/usr/lib/python3.5/subprocess.py&quot;, line 708, in =
-run</div><div>=C2=A0 =C2=A0 output=3Dstdout, stderr=3Dstderr)</div><div>sub=
-process.CalledProcessError: Command &#39;[&#39;strip&#39;, &#39;--remove-se=
-ction=3D.comment&#39;, &#39;--remove-section=3D.note&#39;, &#39;/media/simo=
-ne/651173DD28B986DD/poky/build/tmp/work/x86_64-linux/gcc-cross-initial-i586=
-/8.2.0-r0/sysroot-destdir/media/simone/651173DD28B986DD/poky/build/tmp/work=
-/x86_64-linux/gcc-cross-initial-i586/8.2.0-r0/recipe-sysroot-native/usr/bin=
-/i586-poky-linux.gcc-cross-initial-i586/i586-poky-linux-gcov-dump&#39;]&#39=
-; returned non-zero exit status 1</div><div><br></div><div>From what I can =
-understand the system cannot strip some executables but even if I add : &qu=
-ot;INHIBIT_PACKAGE_DEBUG_SPLIT =3D &quot;1&quot; &quot; at the end of the l=
-ocal.conf file nothing change.</div><div><br></div><div>Could you please he=
-lp me to find out how to solve this error?</div><div><br></div><div>Thank y=
-ou,</div><div><br></div><div>Simone</div><div><br></div></div></div></div><=
-/div></div>
 
---000000000000f041b20582e90671--
