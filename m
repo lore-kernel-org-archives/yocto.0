@@ -1,43 +1,68 @@
-Return-Path: <mauro@faresoftware.it>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A124CE00CAB; Sun,  3 Mar 2019 07:53:43 -0800 (PST)
+	id 1319CE00CB9; Sun,  3 Mar 2019 21:34:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [62.149.156.131 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.215.179 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from smtpcmd12131.aruba.it (smtpcmd12131.aruba.it [62.149.156.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CE86E00B5C
-	for <yocto@yoctoproject.org>; Sun,  3 Mar 2019 07:53:40 -0800 (PST)
-Received: from [192.168.24.108] ([79.2.65.198])
-	by smtpcmd12.ad.aruba.it with bizsmtp
-	id jTtf1z00B4GeqKz01TtfS4; Sun, 03 Mar 2019 16:53:39 +0100
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com
+	[209.85.215.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 917DCE00CAB
+	for <yocto@yoctoproject.org>; Sun,  3 Mar 2019 21:34:29 -0800 (PST)
+Received: by mail-pg1-f179.google.com with SMTP id q206so2225286pgq.4
+	for <yocto@yoctoproject.org>; Sun, 03 Mar 2019 21:34:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id:in-reply-to:references;
+	bh=qfnEO6Uwc25bDiRFfEsusWw9LItWcvl2sYAn0jOKYZA=;
+	b=HbICQUANEC3C4mH+tgCG/z/GRmScGrGGZS7FK7PmuMQUJ4aLzj/DcchHi3zV8T5pCB
+	nbdFjhDUILx1Awujl21jqbPSNMKY/hGb+O6HQPRzzrm5fn265Up3qufFk7tXdEbPX7AW
+	zOqdE3iesWxZdLmLhA1Wkx4A0rjr12xJRLkms9cjkGbGCRL8+yLWzeaz5kU8qNe+Nbni
+	w1sJ9BGERcIV7GGjtSndKY/D127TE41d3ZBeSboVBhBJWpYjo9DBDtUIm16FDiS0mtCm
+	5XkRmQ/lzFxKUlZvBvaizKI7Aq8yht4Vp9khlNZWhfShv8iCCLj1LlovWUnEjjWJMzEV
+	RSCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+	:references;
+	bh=qfnEO6Uwc25bDiRFfEsusWw9LItWcvl2sYAn0jOKYZA=;
+	b=aRbAAqDxwq8KeiVu9KiHOE9ASVTbE+hPAFc94lj7IhMGmlOyy9Qj4RNSaGQxmV/GUm
+	XthHNn/EtNmm7RVhsMnuLFQRpjCbhv2mvIGgxVfviu7FzdRQW6oHAg7TBtegsZnBrzkZ
+	7Snz7Z7LmwxDBxw2jbhWxD7HdzNIGtZJ2SpSG0KSALvC+7+dC2A7WrAFE+9wRGOh5rEg
+	SRisZ/AD5LlOYUafGPZzvberXN5voX2djSQjMUckQ+xdhLosz8SvLYWmOdKRMLAX5Nk8
+	2iZiR5kEKVg3i60utBdf5G1gngjftY6pgKcGfSKIN4iI7dyMWkaoq4wRYhbwPiRdshJw
+	+a9g==
+X-Gm-Message-State: APjAAAXA4+JxJdHKVKFTxt2Y2y1np2fELYClv0f6MJWetr2c6MCxmRtH
+	NThc8Hr1JnUgmbnhFmRu17EW5rv6
+X-Google-Smtp-Source: AHgI3IZPOa+8ly8VlZnphRgJcJIT6Qsx7DG19Tn8jnmGU1vlAo9XrkQtWV/1xifvsU0c3GpGyTnqCQ==
+X-Received: by 2002:a62:e716:: with SMTP id s22mr18137087pfh.35.1551677669023; 
+	Sun, 03 Mar 2019 21:34:29 -0800 (PST)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	j14sm6780474pfn.77.2019.03.03.21.34.27 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 03 Mar 2019 21:34:28 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-From: Mauro Ziliani <mauro@faresoftware.it>
-Message-ID: <f6fbfd5d-a9cd-c93c-c0fb-e9ecb5fab698@faresoftware.it>
-Date: Sun, 3 Mar 2019 16:53:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.5.1
-MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
-	t=1551628419; bh=M3TEPpZTsx5pZsowQBpATxWNXk7Ss51F93ff1EBVxzU=;
-	h=To:From:Subject:Date:MIME-Version:Content-Type;
-	b=TMKk0jVQMd47kFEdDkUSLyfnEi63jYbrtu8qMUqjmIvOF6ik7BHEwOblYIleJjjOB
-	Qp8/EmQ8PPiN7bznAJ1nLboQ5tA4i5HB5BOXTdar7gYQUHV+K3vKfQ8ccNNIrsdOka
-	uEWtJeoMzRJ8AhhIisIB1aA2Erjkji8xTDYquUi+Sr7DBKli5qoJZ1Lr2adYWBT7si
-	H0gXgzeY3SYqXoy8eKMjRV/bgu92HUYo2w3Z6lq9tM3iPSc388H7L/UN7UOJfgSfnF
-	cLN43BpBttYea846SCB4Yfk0GnhyUGyoYLNZwj+Xpvdz/ZYfD+PuG4wMelbywDIL9E
-	V2zeAid2sLMcA==
-Subject: QtCreator +CMake + meta-toolchain-qt5
+Date: Sun,  3 Mar 2019 21:34:23 -0800
+Message-Id: <20190304053425.13810-2-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190304053425.13810-1-akuster808@gmail.com>
+References: <20190304053425.13810-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/4] tripwire: update to 2.4.3.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,173 +74,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 03 Mar 2019 15:53:43 -0000
-Content-Type: multipart/alternative;
-	boundary="------------CD429F4F44F669172A191F24"
-Content-Language: it
+X-List-Received-Date: Mon, 04 Mar 2019 05:34:30 -0000
 
---------------CD429F4F44F669172A191F24
-Content-Type: text/plain; charset=iso-8859-15
-Content-Transfer-Encoding: 8bit
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../tripwire/{tripwire_2.4.3.6.bb => tripwire_2.4.3.7.bb}       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename recipes-security/tripwire/{tripwire_2.4.3.6.bb => tripwire_2.4.3.7.bb} (98%)
 
-Hi all.
-
-I'd like to use QtCreator to debug the directly in final system.
-
-My project is generated with CMake, under Debian 9.7 amd64
-
-I try every tutorial I found by the behaviour is always the same.
-
-  /lib/ld-linux-armhf.so.3: No such file or directory
-
-The entire log is the following.
-
------ START LOG -----
-
-Running
-"/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/cmake
-/home/mauro/Sviluppo/myapp/src '-GCodeBlocks - Unix Makefiles'
--DCMAKE_BUILD_TYPE:STRING=Debug
--DCMAKE_CXX_COMPILER:STRING=/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++
--DCMAKE_C_COMPILER:STRING=/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
--DCMAKE_PREFIX_PATH:STRING=/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr
--DQT_QMAKE_EXECUTABLE:STRING=/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/qt5/qmake"
-in /home/mauro/Sviluppo/myapp/build-src-Qt5_IMX-Debug.
-
--- The C compiler identification is unknown
-
--- The CXX compiler identification is unknown
-
--- Check for working C compiler:
-/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
-
--- Check for working C compiler:
-/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
--- broken
-
-CMake Error at
-/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.4/Modules/CMakeTestCCompiler.cmake:61
-(message):
-
-The C compiler
-
-"/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc"
-
-is not able to compile a simple test program.
-
-It fails with the following output:
-
-Change Dir:
-/home/mauro/Sviluppo/myapp/build-src-Qt5_IMX-Debug/CMakeFiles/CMakeTmp
-
-Run Build
-
-Command:"/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/bin/make"
-
-"cmTC_97b71/fast"
-
-/lib/ld-linux-armhf.so.3: No such file or directory
-
-CMake will not be able to correctly generate this project.
-
-Call Stack (most recent call first):
-
-CMakeLists.txt:12 (project)
-
--- Configuring incomplete, errors occurred!
-
-See also
-"/home/mauro/Sviluppo/myapp/build-src-Qt5_IMX-Debug/CMakeFiles/CMakeOutput.log".
-
-See also
-"/home/mauro/Sviluppo/myapp/build-src-Qt5_IMX-Debug/CMakeFiles/CMakeError.log".
-
-*** cmake process exited with exit code 1.
-
------ END LOG -----
-
-Any idea?
+diff --git a/recipes-security/tripwire/tripwire_2.4.3.6.bb b/recipes-security/tripwire/tripwire_2.4.3.7.bb
+similarity index 98%
+rename from recipes-security/tripwire/tripwire_2.4.3.6.bb
+rename to recipes-security/tripwire/tripwire_2.4.3.7.bb
+index 59d1f35..ed0974c 100644
+--- a/recipes-security/tripwire/tripwire_2.4.3.6.bb
++++ b/recipes-security/tripwire/tripwire_2.4.3.7.bb
+@@ -6,7 +6,7 @@ SECTION = "security Monitor/Admin"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=1c069be8dbbe48e89b580ab4ed86c127"
+ 
+-SRCREV = "80db91b4c1ca4be9efafd2286e3b2ad32ba4c34c"
++SRCREV = "6e64a9e5b70a909ec439bc5a099e3fcf38c614b0"
+ 
+ SRC_URI = "\
+ 	git://github.com/Tripwire/tripwire-open-source.git \
+-- 
+2.17.1
 
 
---------------CD429F4F44F669172A191F24
-Content-Type: text/html; charset=iso-8859-15
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-15">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Hi all.</p>
-    <p>I'd like to use QtCreator to debug the directly in final system.</p>
-    <p>My project is generated with CMake, under Debian 9.7 amd64</p>
-    <p>
-</p>
-    <p>I try every tutorial I found by the behaviour is always the same.</p>
-    <p>
-</p>
-    <p>
-  /lib/ld-linux-armhf.so.3: No such file or directory</p>
-    <p>
-</p>
-    <p>
-</p>
-    <p>The entire log is the following.</p>
-    <p>----- START LOG -----
-</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Running "/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/cmake /home/mauro/Sviluppo/myapp/src '-GCodeBlocks - Unix Makefiles' -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_CXX_COMPILER:STRING=/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-g++ -DCMAKE_C_COMPILER:STRING=/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc -DCMAKE_PREFIX_PATH:STRING=/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr -DQT_QMAKE_EXECUTABLE:STRING=/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/qt5/qmake" in /home/mauro/Sviluppo/myapp/build-src-Qt5_IMX-Debug.</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">-- The C compiler identification is unknown</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">-- The CXX compiler identification is unknown</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">-- Check for working C compiler: /opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">-- Check for working C compiler: /opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc -- broken</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">CMake Error at /opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/share/cmake-3.4/Modules/CMakeTestCCompiler.cmake:61 (message):</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">  The C compiler</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">  "/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc"</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">  is not able to compile a simple test program.</p>
-    <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
-</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">  It fails with the following output:</p>
-    <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
-</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">   Change Dir: /home/mauro/Sviluppo/myapp/build-src-Qt5_IMX-Debug/CMakeFiles/CMakeTmp</p>
-    <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
-</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">  </p>
-    <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
-</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">  Run Build</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><font color="#ff0000">  Command:"/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/cortexa9hf-neon-poky-linux-gnueabi/usr/bin/make"</font></p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">  "cmTC_97b71/fast"</p>
-    <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
-</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">  /lib/ld-linux-armhf.so.3: No such file or directory</p>
-    <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
-</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">  </p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">  CMake will not be able to correctly generate this project.</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Call Stack (most recent call first):</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">  CMakeLists.txt:12 (project)</p>
-    <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
-</p>
-    <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
-</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">-- Configuring incomplete, errors occurred!</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">See also "/home/mauro/Sviluppo/myapp/build-src-Qt5_IMX-Debug/CMakeFiles/CMakeOutput.log".</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">See also "/home/mauro/Sviluppo/myapp/build-src-Qt5_IMX-Debug/CMakeFiles/CMakeError.log".</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">*** cmake process exited with exit code 1.</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
-</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">----- END LOG -----</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
-</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Any idea?</p>
-    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
-</p>
-    <p><style type="text/css">
-p, li { white-space: pre-wrap; }
-</style></p>
-  </body>
-</html>
-
---------------CD429F4F44F669172A191F24--
