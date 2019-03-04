@@ -1,69 +1,68 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9110AE00CE8; Sun,  3 Mar 2019 21:34:31 -0800 (PST)
+	id 42339E00D16; Sun,  3 Mar 2019 21:34:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	TVD_SPACE_RATIO autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.193 listed in list.dnswl.org]
+	*      [209.85.210.177 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
-	[209.85.215.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D16EE00994
-	for <yocto@yoctoproject.org>; Sun,  3 Mar 2019 21:34:30 -0800 (PST)
-Received: by mail-pg1-f193.google.com with SMTP id l11so2216789pgq.10
-	for <yocto@yoctoproject.org>; Sun, 03 Mar 2019 21:34:30 -0800 (PST)
+	*      valid *  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
+	[209.85.210.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4ADA4E00CB9
+	for <yocto@yoctoproject.org>; Sun,  3 Mar 2019 21:34:31 -0800 (PST)
+Received: by mail-pf1-f177.google.com with SMTP id g6so2135385pfh.13
+	for <yocto@yoctoproject.org>; Sun, 03 Mar 2019 21:34:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=t8j6DMdpttxTKN3GQOef25oy9HWrHyklLCEXPk+M1+I=;
-	b=CfO/uWmrur9UP+WcV5Zh03JqeWMbewIV2i4JaB4UELOI7ZN1b2YePn4X18C64aAG0s
-	5baKAMLOml8uIfGI1DPZx2MqWcCFKxKRFOyT45gXFVng8Smx5JMU1OndwAl9GWbkALDE
-	ALSpFPBiLXGAJQNi9rT07fktkA9Hb9iIRV3k1XkqQEiTexEYL6/suUOrKG0n5tGtkjLe
-	eK51n5zw8UU2I+9IIJY3puHRrf53hLJI4yJ/EE4D/WppojW/lOh7iRkbplUEDcii58mU
-	VhS/R8VP4gjnZcSJvwyqCNsvUxKO5A21Pthu5Yy5EJ+RVM+8Run8WiQ1pb66irmYtiBd
-	DOYg==
+	bh=JwYRN1HeldmnM4eis85hJADDHFeMTDx8IuOdkyHQvlQ=;
+	b=Pm6SHfRNWicuyOu8ZkypNNN7N3QYHvQ+nvmzI+ko4WD5+NRB9O1zi08D/TKa+fniw7
+	iLWKnkVf9VZbEFh1Q9E16fe/DKgP3hfMIxLUhX3CTMARb61MxKnYExFRzE0KX9+OM00d
+	21yci7nxEmCCE2iERgn3jtke3ahIZPTBI7eytdGz1jlpbEcrsOo8hLmCb+y9cKMYIqIO
+	ZWJWCgVK1Q8dERXxKhSuPzv1tNa/04ZuHarM8xAVLjWjki7z+Nov1fNcaHqx4aURiRRW
+	i7l4s2VhWad25OgMzQoER00cE7AdIsy5f/HlSvGFYEd0VI6qn9BaINB39lNu4wSsV//d
+	VlgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=t8j6DMdpttxTKN3GQOef25oy9HWrHyklLCEXPk+M1+I=;
-	b=M3b73I/Ozpu/MqT8akgIu//EdCousJLh9Hp31/16M5OWFC6/64YkraD0VeBE4UfyBX
-	rLNCk0ZDCcURkvt78exK464i7MVgmqdp3EIhkovcOk/CP0Jz88qhSWkFJt18nF8X5fpn
-	afAz1yCWszA1+kJKcAHC+u8GI6xHI0ha8Kn68YdJ/1MxfdfIafwdrM9pD/OFBUE2yOpS
-	e25s4j7wRf/H0DKiExd1LCZDYTDLE8GxLL3NyMcM08VmIUx/XrlWxCrNEDSq6N8a7/RN
-	FLffjRfsAVPuiNbTjdkuqjWEXJKn14YqYM1euw5SDtPliQ4uXJabiKBFvCMy10a5w8uA
-	MYcQ==
-X-Gm-Message-State: APjAAAWXYL7XRX9U9Qr5SwP3GtQdKVP/bvK+LqwMHNxmGFaO98BF6gyx
-	vNGX7HuMG38OjmXyiOtbFtIR9qzN
-X-Google-Smtp-Source: APXvYqwNYjH+nfv0jnlK+NC0eCQTZQ75p4HrQyMwQ6fpCdKSj3TieE4ewcPAiKuXozI66Qmu5qdtNA==
-X-Received: by 2002:a17:902:bf01:: with SMTP id
-	bi1mr888749plb.252.1551677669876; 
-	Sun, 03 Mar 2019 21:34:29 -0800 (PST)
+	bh=JwYRN1HeldmnM4eis85hJADDHFeMTDx8IuOdkyHQvlQ=;
+	b=BzWXDxsFVI04dRitEXwKQcoOl5hXVdvDp+RFXO8f8BY2ACI4yc2wB9LchXmsrPoyAK
+	PwO/uQGOmTn8nKUxWgyer7spXUsFvBAzXJpVKtxwnpFSLea074L+m6UcKqbEhSifSIUY
+	RFfUMKqGZEldcYnU6r9SFvSMh4sJ0UxjMCP5HsArPOHsZbpNpvrkiBklPXxxkajG6tZJ
+	AoygfKXxjW4hHa9f19ZYxPhsFv/rLMZX97xQHdXH/cLRBhPkzsATPfhsEgSykfX/q5JM
+	qThAi4VM+dFffRZ4IZOFGDx5yXe3bO1jPg7OJztsM0X72nX63QVnx+qxHKfbvEsz/MKg
+	LTQA==
+X-Gm-Message-State: APjAAAXChtLs+5T/O9fe6CWAZyfE9yq6PtXr3zHEuUVgPv+LC9F904Es
+	Jp2E2EaRgCFRNG78LTudRQie+S5i
+X-Google-Smtp-Source: APXvYqznVLa3v2kum7wGt+4IxYEHsZ6ppHIcol3pTGCZQmHb7p2RrqO52Ge93Si/W3QPcx4gIZ27sQ==
+X-Received: by 2002:a63:a510:: with SMTP id n16mr17203481pgf.443.1551677670866;
+	Sun, 03 Mar 2019 21:34:30 -0800 (PST)
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
 	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
 	j14sm6780474pfn.77.2019.03.03.21.34.29 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 03 Mar 2019 21:34:29 -0800 (PST)
+	Sun, 03 Mar 2019 21:34:30 -0800 (PST)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun,  3 Mar 2019 21:34:24 -0800
-Message-Id: <20190304053425.13810-3-akuster808@gmail.com>
+Date: Sun,  3 Mar 2019 21:34:25 -0800
+Message-Id: <20190304053425.13810-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190304053425.13810-1-akuster808@gmail.com>
 References: <20190304053425.13810-1-akuster808@gmail.com>
-Subject: [meta-security][PATCH 3/4] libmspack: update to 0.9.1
+Subject: [meta-security][PATCH 4/4] python-fail2ban: update 0.10.4.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,36 +74,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Mar 2019 05:34:31 -0000
+X-List-Received-Date: Mon, 04 Mar 2019 05:34:33 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../libmspack/{libmspack_0.5.bb => libmspack_0.9.1.bb}    | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
- rename recipes-security/libmspack/{libmspack_0.5.bb => libmspack_0.9.1.bb} (71%)
+ recipes-security/fail2ban/python-fail2ban.inc                   | 2 +-
+ ...{python-fail2ban_0.10.3.1.bb => python-fail2ban_0.10.4.0.bb} | 0
+ ...ython3-fail2ban_0.10.3.1.bb => python3-fail2ban_0.10.4.0.bb} | 0
+ 3 files changed, 1 insertion(+), 1 deletion(-)
+ rename recipes-security/fail2ban/{python-fail2ban_0.10.3.1.bb => python-fail2ban_0.10.4.0.bb} (100%)
+ rename recipes-security/fail2ban/{python3-fail2ban_0.10.3.1.bb => python3-fail2ban_0.10.4.0.bb} (100%)
 
-diff --git a/recipes-security/libmspack/libmspack_0.5.bb b/recipes-security/libmspack/libmspack_0.9.1.bb
-similarity index 71%
-rename from recipes-security/libmspack/libmspack_0.5.bb
-rename to recipes-security/libmspack/libmspack_0.9.1.bb
-index 80db23c..56a8a07 100644
---- a/recipes-security/libmspack/libmspack_0.5.bb
-+++ b/recipes-security/libmspack/libmspack_0.9.1.bb
-@@ -6,10 +6,10 @@ DEPENDS = ""
+diff --git a/recipes-security/fail2ban/python-fail2ban.inc b/recipes-security/fail2ban/python-fail2ban.inc
+index 9245f17..7270ed8 100644
+--- a/recipes-security/fail2ban/python-fail2ban.inc
++++ b/recipes-security/fail2ban/python-fail2ban.inc
+@@ -9,7 +9,7 @@ HOMEPAGE = "http://www.fail2ban.org"
+ LICENSE = "GPL-2.0"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=ecabc31e90311da843753ba772885d9f"
  
- LIC_FILES_CHKSUM = "file://COPYING.LIB;beginline=1;endline=2;md5=5b1fd1f66ef926b3c8a5bb00a72a28dd"
- 
--SRC_URI = "${DEBIAN_MIRROR}/main/libm/${BPN}/${BPN}_${PV}.orig.tar.gz\
--"
--SRC_URI[md5sum] = "3aa3f6b9ef101463270c085478fda1da"
--SRC_URI[sha256sum] = "8967f275525f5067b364cee43b73e44d0433668c39f9376dfff19f653d1c8110"
-+SRC_URI = "${DEBIAN_MIRROR}/main/libm/${BPN}/${BPN}_${PV}.orig.tar.gz"
-+
-+SRC_URI[md5sum] = "9602ae4a6b0468d9aaef6359c1e90657"
-+SRC_URI[sha256sum] = "62a336d9c798638aaf3dceb43843320061544bbf35547c316b075b99112f2e40"
- 
- inherit autotools
- 
+-SRCREV ="ac0d441fd68852ffda7b15c71f16b7f4fde1a7ee"
++SRCREV ="aa565eb80ec6043317e8430cabcaf9c3f4e61578"
+ SRC_URI = " \
+ 	git://github.com/fail2ban/fail2ban.git;branch=0.11 \
+ 	file://initd \
+diff --git a/recipes-security/fail2ban/python-fail2ban_0.10.3.1.bb b/recipes-security/fail2ban/python-fail2ban_0.10.4.0.bb
+similarity index 100%
+rename from recipes-security/fail2ban/python-fail2ban_0.10.3.1.bb
+rename to recipes-security/fail2ban/python-fail2ban_0.10.4.0.bb
+diff --git a/recipes-security/fail2ban/python3-fail2ban_0.10.3.1.bb b/recipes-security/fail2ban/python3-fail2ban_0.10.4.0.bb
+similarity index 100%
+rename from recipes-security/fail2ban/python3-fail2ban_0.10.3.1.bb
+rename to recipes-security/fail2ban/python3-fail2ban_0.10.4.0.bb
 -- 
 2.17.1
 
