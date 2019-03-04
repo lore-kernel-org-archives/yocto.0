@@ -1,68 +1,69 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <kondrashkin.ilya@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42339E00D16; Sun,  3 Mar 2019 21:34:33 -0800 (PST)
+	id AC80AE00CAB; Mon,  4 Mar 2019 02:54:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	TVD_SPACE_RATIO autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.177 listed in list.dnswl.org]
+	provider *      (kondrashkin.ilya[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid *  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
-	[209.85.210.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4ADA4E00CB9
-	for <yocto@yoctoproject.org>; Sun,  3 Mar 2019 21:34:31 -0800 (PST)
-Received: by mail-pf1-f177.google.com with SMTP id g6so2135385pfh.13
-	for <yocto@yoctoproject.org>; Sun, 03 Mar 2019 21:34:31 -0800 (PST)
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.52 listed in list.dnswl.org]
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
+	[209.85.167.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4020DE00994
+	for <yocto@yoctoproject.org>; Mon,  4 Mar 2019 02:54:04 -0800 (PST)
+Received: by mail-lf1-f52.google.com with SMTP id m73so3191720lfa.2
+	for <yocto@yoctoproject.org>; Mon, 04 Mar 2019 02:54:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=JwYRN1HeldmnM4eis85hJADDHFeMTDx8IuOdkyHQvlQ=;
-	b=Pm6SHfRNWicuyOu8ZkypNNN7N3QYHvQ+nvmzI+ko4WD5+NRB9O1zi08D/TKa+fniw7
-	iLWKnkVf9VZbEFh1Q9E16fe/DKgP3hfMIxLUhX3CTMARb61MxKnYExFRzE0KX9+OM00d
-	21yci7nxEmCCE2iERgn3jtke3ahIZPTBI7eytdGz1jlpbEcrsOo8hLmCb+y9cKMYIqIO
-	ZWJWCgVK1Q8dERXxKhSuPzv1tNa/04ZuHarM8xAVLjWjki7z+Nov1fNcaHqx4aURiRRW
-	i7l4s2VhWad25OgMzQoER00cE7AdIsy5f/HlSvGFYEd0VI6qn9BaINB39lNu4wSsV//d
-	VlgA==
+	h=message-id:mime-version:to:from:subject:date:importance;
+	bh=NAqmL0iPeTrbx9BacYQ8AvkUQin0lcB7uTiLMiC+eP4=;
+	b=H9/EB6Rsb97i1Wz66uffviXcxR6B/PXFZzQbl+hYqzP/ofrn14ea+nEvNyjSV8gVtT
+	zOl7gDqyYtoeVGdyTBumIG3QA1R+SKqA8OY5wFlJt8Ms2SUA/i56kQseldgtmQeyRfp9
+	tcoBmsdPVh98+tH/QTIyoCGT4a50FhqmINK9OFr7mh/gx/BJAsITxQAqe8+1alVMHOEs
+	qwkdU/+2M8TV7aoXMedbKQvvIe895IJjYVajHL5pBhYnbKUWyP06JTmXm16VQ8+X9YBO
+	3SLJP9zhQgHQUw2TJd6pIv+pZGC9BH37D6g5Oi36RYtAsUckC/klKz/OyMMj5Ile195j
+	apTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=JwYRN1HeldmnM4eis85hJADDHFeMTDx8IuOdkyHQvlQ=;
-	b=BzWXDxsFVI04dRitEXwKQcoOl5hXVdvDp+RFXO8f8BY2ACI4yc2wB9LchXmsrPoyAK
-	PwO/uQGOmTn8nKUxWgyer7spXUsFvBAzXJpVKtxwnpFSLea074L+m6UcKqbEhSifSIUY
-	RFfUMKqGZEldcYnU6r9SFvSMh4sJ0UxjMCP5HsArPOHsZbpNpvrkiBklPXxxkajG6tZJ
-	AoygfKXxjW4hHa9f19ZYxPhsFv/rLMZX97xQHdXH/cLRBhPkzsATPfhsEgSykfX/q5JM
-	qThAi4VM+dFffRZ4IZOFGDx5yXe3bO1jPg7OJztsM0X72nX63QVnx+qxHKfbvEsz/MKg
-	LTQA==
-X-Gm-Message-State: APjAAAXChtLs+5T/O9fe6CWAZyfE9yq6PtXr3zHEuUVgPv+LC9F904Es
-	Jp2E2EaRgCFRNG78LTudRQie+S5i
-X-Google-Smtp-Source: APXvYqznVLa3v2kum7wGt+4IxYEHsZ6ppHIcol3pTGCZQmHb7p2RrqO52Ge93Si/W3QPcx4gIZ27sQ==
-X-Received: by 2002:a63:a510:: with SMTP id n16mr17203481pgf.443.1551677670866;
-	Sun, 03 Mar 2019 21:34:30 -0800 (PST)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	j14sm6780474pfn.77.2019.03.03.21.34.29 for <yocto@yoctoproject.org>
+	h=x-gm-message-state:message-id:mime-version:to:from:subject:date
+	:importance;
+	bh=NAqmL0iPeTrbx9BacYQ8AvkUQin0lcB7uTiLMiC+eP4=;
+	b=IY/0avw18JGJpuCKCqJv2Xg6KCVxDvbyK9WBa308pzyW6fOL2gThKlshVtYVyTNo1v
+	4Zq050Y7tqVRkBU6s/BMJd3Xzuebqph8A/gEgH4rXgBWeicqkZBXvKplu6NV+md+9WdA
+	40uzYOL7GRWcjylKF9N+6N+FsrVL1ppmhy9NA6XNR1jY8HM0OUvYYXcAogNiI5pN4Hch
+	2hQ0XjZ9W3nBKvCavUMdXcN1Qr2OMoaGUKxXLsk9LZI4OpLpY5BAn6U/0E8hcK7TA3UQ
+	lqvw7+KrLX/WxaakefXwaeKs5h2Ns1Ze0zUpvE9gjWeiCixc5C/gJj2YQoFnY+bibgws
+	Yc9A==
+X-Gm-Message-State: APjAAAVvd0uRB+Vu93Amhkwlzlg2DLfP4uhwbtJLMe6YqTS//0H0f1Ie
+	ufRzPumQ4E8R6OJEDbmgfZRxLk+z
+X-Google-Smtp-Source: APXvYqy2JfanLF2oNtT90SRlV6PdxfwPLIz6ipMzINaMb7gMIzp71BPAb6V6R+omQvBEQzQidzp5wA==
+X-Received: by 2002:a19:5f58:: with SMTP id a24mr3021190lfj.57.1551696842905; 
+	Mon, 04 Mar 2019 02:54:02 -0800 (PST)
+Received: from ?IPv6:::ffff:192.168.10.224? (188-168-92-49.dyn.nn.ttknn.net.
+	[188.168.92.49]) by smtp.gmail.com with ESMTPSA id
+	u14sm1448340lfu.94.2019.03.04.02.54.02 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 03 Mar 2019 21:34:30 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sun,  3 Mar 2019 21:34:25 -0800
-Message-Id: <20190304053425.13810-4-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190304053425.13810-1-akuster808@gmail.com>
-References: <20190304053425.13810-1-akuster808@gmail.com>
-Subject: [meta-security][PATCH 4/4] python-fail2ban: update 0.10.4.0
+	Mon, 04 Mar 2019 02:54:02 -0800 (PST)
+Message-ID: <5c7d03ca.1c69fb81.52aa0.6910@mx.google.com>
+MIME-Version: 1.0
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Ilya Kondrashkin <kondrashkin.ilya@gmail.com>
+Date: Mon, 4 Mar 2019 13:54:00 +0300
+Importance: normal
+X-Priority: 3
+Subject: Re: QtCreator +CMake + meta-toolchain-qt5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,39 +75,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Mar 2019 05:34:33 -0000
+X-List-Received-Date: Mon, 04 Mar 2019 10:54:04 -0000
+Content-Type: multipart/alternative;
+	boundary="_45E054A4-823C-4796-8CE3-6738A1F60887_"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/fail2ban/python-fail2ban.inc                   | 2 +-
- ...{python-fail2ban_0.10.3.1.bb => python-fail2ban_0.10.4.0.bb} | 0
- ...ython3-fail2ban_0.10.3.1.bb => python3-fail2ban_0.10.4.0.bb} | 0
- 3 files changed, 1 insertion(+), 1 deletion(-)
- rename recipes-security/fail2ban/{python-fail2ban_0.10.3.1.bb => python-fail2ban_0.10.4.0.bb} (100%)
- rename recipes-security/fail2ban/{python3-fail2ban_0.10.3.1.bb => python3-fail2ban_0.10.4.0.bb} (100%)
+--_45E054A4-823C-4796-8CE3-6738A1F60887_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-diff --git a/recipes-security/fail2ban/python-fail2ban.inc b/recipes-security/fail2ban/python-fail2ban.inc
-index 9245f17..7270ed8 100644
---- a/recipes-security/fail2ban/python-fail2ban.inc
-+++ b/recipes-security/fail2ban/python-fail2ban.inc
-@@ -9,7 +9,7 @@ HOMEPAGE = "http://www.fail2ban.org"
- LICENSE = "GPL-2.0"
- LIC_FILES_CHKSUM = "file://COPYING;md5=ecabc31e90311da843753ba772885d9f"
- 
--SRCREV ="ac0d441fd68852ffda7b15c71f16b7f4fde1a7ee"
-+SRCREV ="aa565eb80ec6043317e8430cabcaf9c3f4e61578"
- SRC_URI = " \
- 	git://github.com/fail2ban/fail2ban.git;branch=0.11 \
- 	file://initd \
-diff --git a/recipes-security/fail2ban/python-fail2ban_0.10.3.1.bb b/recipes-security/fail2ban/python-fail2ban_0.10.4.0.bb
-similarity index 100%
-rename from recipes-security/fail2ban/python-fail2ban_0.10.3.1.bb
-rename to recipes-security/fail2ban/python-fail2ban_0.10.4.0.bb
-diff --git a/recipes-security/fail2ban/python3-fail2ban_0.10.3.1.bb b/recipes-security/fail2ban/python3-fail2ban_0.10.4.0.bb
-similarity index 100%
-rename from recipes-security/fail2ban/python3-fail2ban_0.10.3.1.bb
-rename to recipes-security/fail2ban/python3-fail2ban_0.10.4.0.bb
--- 
-2.17.1
+Hi,
+
+Check your /usr/lib/libc.so in SDK=E2=80=99s target rootfs.
+Last time I experienced this problem /usr/lib/libc.so script contained abso=
+lute paths to ld-linux-armhf.so and real libc.so.
+Changing these paths to relative fixes the problem. Unfortunately, I do not=
+ have the common fix for this.
+
+Regards,
+IK
 
 
+--_45E054A4-823C-4796-8CE3-6738A1F60887_
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta ht=
+tp-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta name=
+=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style></head><body lang=3DRU><div class=3DWordSection1><p class=3DMsoN=
+ormal><span lang=3DEN-US>Hi,<br><br>Check your /usr/lib/libc.so in SDK=E2=
+=80=99s target rootfs.<br>Last time I experienced this problem /usr/lib/lib=
+c.so script contained absolute paths to </span>ld-linux-armhf.so<span lang=
+=3DEN-US> and real libc.so.<o:p></o:p></span></p><p class=3DMsoNormal><span=
+ lang=3DEN-US>Changing these paths to relative fixes the problem. Unfortuna=
+tely, I do not have the common fix for this.<o:p></o:p></span></p><p class=
+=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Regards,</p><p class=
+=3DMsoNormal><span lang=3DEN-US>IK</span></p><p class=3DMsoNormal><o:p>&nbs=
+p;</o:p></p></div></body></html>=
+
+--_45E054A4-823C-4796-8CE3-6738A1F60887_--
