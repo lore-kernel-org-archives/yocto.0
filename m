@@ -1,6 +1,6 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E5812E00D17; Tue,  5 Mar 2019 00:35:04 -0800 (PST)
+	id 63C32E00D1B; Tue,  5 Mar 2019 01:59:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,26 +10,24 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
 	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0434E00BCC
-	for <yocto@yoctoproject.org>; Tue,  5 Mar 2019 00:35:03 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x258YAZe004388
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 5 Mar 2019 00:34:26 -0800
-Received: from pek-lpg-core1.wrs.com (128.224.156.132) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.439.0; Tue, 5 Mar 2019 00:34:11 -0800
-From: Robert Yang <liezhi.yang@windriver.com>
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2D24E00D11
+	for <yocto@yoctoproject.org>; Tue,  5 Mar 2019 01:59:48 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x259xmIq029813
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 5 Mar 2019 01:59:48 -0800 (PST)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.439.0; Tue, 5 Mar 2019 01:59:47 -0800
+From: <changqing.li@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Tue, 5 Mar 2019 16:53:22 +0800
-Message-ID: <1551776002-130748-1-git-send-email-liezhi.yang@windriver.com>
+Date: Tue, 5 Mar 2019 17:59:46 +0800
+Message-ID: <1551779986-178606-1-git-send-email-changqing.li@windriver.com>
 X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Cc: michael.g.wood@intel.com
-Subject: [error-report-web][PATCH] Post/views.py: Fix for python3
+Subject: [patchtest][PATCH] core-image-patchtest: avoid skip parse recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,85 +39,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Mar 2019 08:35:05 -0000
+X-List-Received-Date: Tue, 05 Mar 2019 09:59:49 -0000
 Content-Type: text/plain
 
-Now it works for python 2 and 3.
+From: Changqing Li <changqing.li@windriver.com>
 
-Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+patchtest [1] failed since the recipe is skipparsed since it defines
+REQUIRED_DISTRO_FEATURES.  patchtest don't really need
+DISTRO_FEATURES, so fix the problem by set REQUIRED_DISTRO_FEATURES/
+COMPATIBLE_MACHINE/COMPATIBLE_HOST to "" to avoid skip parse
+
+[Yocto #13005]
+
+[1] https://patchwork.openembedded.org/series/9949/
+
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
 ---
- Post/views.py | 19 +++++++++++--------
- 1 file changed, 11 insertions(+), 8 deletions(-)
+ meta-patchtest/recipes-core/images/core-image-patchtest.bb | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Post/views.py b/Post/views.py
-index 7f2cffb..2f8e4ae 100644
---- a/Post/views.py
-+++ b/Post/views.py
-@@ -13,9 +13,9 @@ from django.shortcuts import HttpResponse, render
- from django.views.decorators.csrf import csrf_exempt
- from django.shortcuts import redirect
- from Post.models import BuildFailure, Build, ErrorType
--from parser import Parser
-+from .parser import Parser
- from django.conf import settings
--from createStatistics import Statistics
-+from .createStatistics import Statistics
- from django.core.paginator import Paginator, EmptyPage
- from django.core.exceptions import FieldError, ObjectDoesNotExist
- from django.http import JsonResponse
-@@ -55,20 +55,23 @@ def addData(request, return_json=False):
-             # Backward compatibility with send-error-report < 0.3
-             # The json is url encoded so we need to undo this here.
-             data = request.body[len('data='):]
--            data = urllib.unquote_plus(data)
-+            data = urllib.parse.unquote_plus(data)
-+
-+        data = data.decode('utf-8')
- 
-         p = Parser(data)
-         result = p.parse(request)
-+        print(result)
- 
-         if return_json:
-             response = JsonResponse(result)
-         else:
--            if not result.has_key('error'):
-+            if 'error' not in result:
-               response = HttpResponse("Your entry can be found here: "+result['build_url'])
-             else:
-               response = HttpResponse(result['error'])
- 
--        if result.has_key('error'):
-+        if 'error' in result:
-             response.status_code=500
-     else:
-         if return_json:
-@@ -123,7 +126,7 @@ def search(request, mode=results_mode.LATEST, **kwargs):
- 
-     items = BuildFailure.objects.all()
- 
--    if request.GET.has_key("limit"):
-+    if "limit" in request.GET:
-         try:
-             n_limit = int(request.GET['limit'])
-             if n_limit > 0:
-@@ -200,14 +203,14 @@ def search(request, mode=results_mode.LATEST, **kwargs):
-       ],
-     }
- 
--    if request.GET.has_key("filter") and request.GET.has_key("type"):
-+    if "filter" in request.GET and "type" in request.GET:
-         items = apply_filter(context, items, request.GET['type'], request.GET['filter'])
-     if mode == results_mode.SPECIAL_SUBMITTER and hasattr(settings,"SPECIAL_SUBMITTER"):
-         #Special submitter mode see settings.py to enable
-         name = settings.SPECIAL_SUBMITTER['name']
-         items = items.filter(BUILD__NAME__istartswith=name)
- 
--    elif mode == results_mode.SEARCH and request.GET.has_key("query"):
-+    elif mode == results_mode.SEARCH and "query" in request.GET:
-         query = request.GET["query"]
- 
-         items = items.filter(
+diff --git a/meta-patchtest/recipes-core/images/core-image-patchtest.bb b/meta-patchtest/recipes-core/images/core-image-patchtest.bb
+index 47e4041..95279d2 100644
+--- a/meta-patchtest/recipes-core/images/core-image-patchtest.bb
++++ b/meta-patchtest/recipes-core/images/core-image-patchtest.bb
+@@ -30,6 +30,9 @@ TMPBUILD="\$(mktemp -d)"
+ BRANCH="\$(get-target-branch \$REPO \$MBOX | awk '{print \$NF}')"
+ cd \$REPO
+ source ./oe-init-build-env \$TMPBUILD
++echo "COMPATIBLE_MACHINE_qemuall = \\"\\"" >> \$TMPBUILD/conf/local.conf
++echo "COMPATIBLE_HOST_qemuall = \\"\\"" >> \$TMPBUILD/conf/local.conf
++echo "REQUIRED_DISTRO_FEATURES_qemuall = \\"\\"" >> \$TMPBUILD/conf/local.conf
+ test-mboxes -r \$REPO -s \$SUITESTART -m \$MBOX -o \$RESULTS -- --base-branch \$BRANCH
+ rm -rf \$TMPBUILD
+  }
 -- 
 2.7.4
 
