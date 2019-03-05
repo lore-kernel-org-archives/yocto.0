@@ -1,136 +1,70 @@
-Return-Path: <prvs=4967f48b94=alejandro.delcastillo@ni.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EDA37E00CE8; Tue,  5 Mar 2019 08:31:36 -0800 (PST)
+	id B7FABE00CCC; Tue,  5 Mar 2019 08:39:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,KHOP_DYNAMIC,RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [148.163.158.57 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.178 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  1.4 KHOP_DYNAMIC Relay looks like a dynamic address
-	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
-X-Greylist: delayed 1550 seconds by postgrey-1.32 at yocto-www;
-	Tue, 05 Mar 2019 08:31:35 PST
-Received: from mx0b-00010702.pphosted.com (mx0b-00010702.pphosted.com
-	[148.163.158.57])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1109E00CD5
-	for <yocto@yoctoproject.org>; Tue,  5 Mar 2019 08:31:35 -0800 (PST)
-Received: from pps.filterd (m0098778.ppops.net [127.0.0.1])
-	by mx0b-00010702.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
-	x25FprZg023366; Tue, 5 Mar 2019 10:05:43 -0600
-Received: from nam03-dm3-obe.outbound.protection.outlook.com
-	(mail-dm3nam03lp2058.outbound.protection.outlook.com [104.47.41.58])
-	by mx0b-00010702.pphosted.com with ESMTP id 2r1n29hd1c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-	Tue, 05 Mar 2019 10:05:42 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=nio365.onmicrosoft.com; s=selector1-ni-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=wFNbuRYHAZ9gNnlz6lJy0pE9gHFG0PWwkGNnZ9/2ppA=;
-	b=iO1k5Q7i0Uu3LkjrvUlt46ec6s82NQ8NzSmP7QZb9fIlo722go+r2j7gv0UloW3ciwDuNa09VY+d6j4gdYKtRop/pAe2mJRcog75SOWosjXPp8s3zcSONkaUrfU73CSk4x4PsODmqzCPtsZUWyELEahmh+ZOPYVlQSYwHHHzlqc=
-Received: from SN6PR04MB4221.namprd04.prod.outlook.com (52.135.71.147) by
-	SN6PR04MB4671.namprd04.prod.outlook.com (52.135.122.85) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1665.16; Tue, 5 Mar 2019 16:05:40 +0000
-Received: from SN6PR04MB4221.namprd04.prod.outlook.com
-	([fe80::9d2b:f027:875c:974]) by SN6PR04MB4221.namprd04.prod.outlook.com
-	([fe80::9d2b:f027:875c:974%2]) with mapi id 15.20.1665.019;
-	Tue, 5 Mar 2019 16:05:40 +0000
-From: Alejandro Del Castillo <alejandro.delcastillo@ni.com>
-To: "opkg-devel@googlegroups.com" <opkg-devel@googlegroups.com>, ChenQi
-	<Qi.Chen@windriver.com>, "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [EXTERNAL] [opkg-devel] [yocto][opkg-utils] Question: why
-	update-alternatives from opkg-utils chooses /usr/lib to hold database?
-Thread-Index: AQHU0xjl1eEiVp9Fk06yHzBXAoDBg6X9NFoA
-Date: Tue, 5 Mar 2019 16:05:40 +0000
-Message-ID: <90ababe5-0ec7-ccb6-9308-19660f573930@ni.com>
-References: <6323ed1d-0e39-4d07-e691-5e3e07f007f9@windriver.com>
-In-Reply-To: <6323ed1d-0e39-4d07-e691-5e3e07f007f9@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: SN4PR0501CA0102.namprd05.prod.outlook.com
-	(2603:10b6:803:42::19) To SN6PR04MB4221.namprd04.prod.outlook.com
-	(2603:10b6:805:30::19)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [130.164.62.198]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6dd30881-40ad-494b-1300-08d6a18469dd
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(5600127)(711020)(4605104)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7153060)(7193020);
-	SRVR:SN6PR04MB4671; 
-x-ms-traffictypediagnostic: SN6PR04MB4671:
-x-ms-exchange-purlcount: 1
-x-microsoft-exchange-diagnostics: =?utf-8?B?MTtTTjZQUjA0TUI0NjcxOzIzOmxPUXpUYW5mN1llek5ZSW9aZERDeTU5U0Vx?=
-	=?utf-8?B?SDhIZkR4WGJtMUE3aGlTbDV2Y29UOWpjMzV3Q0F0czdXdVk0dmZvZExQVDlF?=
-	=?utf-8?B?cmQwb2d4K0JibHhmdGxIKzdQeWpFOG5KNlpuclhEYWFjY3QxVEZseDJYVitk?=
-	=?utf-8?B?N1l3WCtVd3JSV0s2NUVFZ2VtWHc4N2hFeXFZQkZWZGYwZHh5TzhiYU05SzNE?=
-	=?utf-8?B?c2xZTWt4SXJSRmdXNnRWQ0JvN1ZPR0hvVlFOSnhPcnhDWFJRVk5pQUNTSUVY?=
-	=?utf-8?B?STZRMkx0Qi9XaEJJRGZtZ2M2dlpEaHRwZU9RVU95Q2JrQzV5ZFhlYm4xQXRh?=
-	=?utf-8?B?c1VBWDBwZHVMQUxKdGZjKzZLUSsrS2JVQmJGSXRLc3dWOFBjdy9IelU4VUlP?=
-	=?utf-8?B?MmZrVXBpKzN2eU1CdkFRYWZwQWcxeEZ0Z3p1dS91dXQ5UVVnL1UrZ240YnlZ?=
-	=?utf-8?B?N1lqOFA1RTZ2OFNtTVRxRWdCMThtV0x4Q0xBZEwxL3lyeG5KRDNZZ2RZY1k4?=
-	=?utf-8?B?TTJ4Z0M2bW9LendkM2RLY0pLWVNoZmRURjBZdzd0MzFubitWYjlNZnpiVG43?=
-	=?utf-8?B?WEFLZHlVYTJGRDl3Ym4rZFZpdHNhcFNVSzVhdTRrejRNWldRWlpiQ0k3bVVy?=
-	=?utf-8?B?L3E1RWk2d2xaNi91ZUFPMkJQcmRRSEU3aWQrZ3Yxa0xvbXZFSlE4WS9JWm1R?=
-	=?utf-8?B?Qmc1R0lueldHbWRVSDE0MWk5Rys1K2pNdU8vNytyZjZpb2VyS0VIbGcyT1JZ?=
-	=?utf-8?B?OWNwb21XVDhIUy9Fckx3aHlkOERIemwrSDUwQlA4NUZSbEhtbEhBWTdyTEd6?=
-	=?utf-8?B?dnMzOElJS0g1NFZKMzBMZjN2Z0xNbEFiZnBjOUp5VHBxTk13QUJyVFNscmsx?=
-	=?utf-8?B?dHNSdkdma0dSemN2a2pRb3E2OHBwVTJYOFg4cis4RlVBd2hCQTJPbzVIaHJa?=
-	=?utf-8?B?UERtWmNTYWxUbzd6S1YrSytlTHRoOGJvdkhGUEErWlpuQStvRWRENzVZQmY2?=
-	=?utf-8?B?bkNRaU5HNkNDV2VvTVlrOHhHaFRsYWY4N3B3dHJUNjR5WHdaU1ZRWUxKOFNj?=
-	=?utf-8?B?MWtqK21IelRFSUhSbUpENzRFWWJzMElmSFNwb3VDMm1KWEUvTUZ3VXNDUk1T?=
-	=?utf-8?B?R2RPMGJXWnJ0ZW1ZakMxNEpsR3lkTEdyQjE1dDd5MzdFSDBXaVZMSWxsRFc0?=
-	=?utf-8?B?ZTZCZTVmdGFmS3VuUklzTUtnRzIyTXI5Vkc1RGpDNFY0WEp2cTdZT04yd2k5?=
-	=?utf-8?B?MDJZYkRNK0hBY2xCVVJhL2RKTDk2ZzlYb3gxVnc2NHFBb2N4ZVBMMCs3VDEw?=
-	=?utf-8?B?NnVhOFc2Yno2TDFFcVZaMzc2NVhsa1cwNHo2R0Y2RTNBN0NyOFpxUjVwVWFr?=
-	=?utf-8?B?TUxabHZ0UkxibGp2bWhMYzlwS1VGYktpTE9rYnNaMjB1K3ZXU3pVT3FZN0pt?=
-	=?utf-8?B?RXI5VGNXK0Z3UVBmYW1BZzBtQjEzdVRYbEU0T3c0d2hjWHNxWnpNNG12ZkxY?=
-	=?utf-8?B?RXI5djIrRGk4QXB0VDRKMXJ4YnBDSUlhZjNIbjMxTmY0NkRXSGJkQlE5aFBo?=
-	=?utf-8?B?RWlzV3BjSk5FUlQwazhNVTNqOEw2UDBybEZFMkJ0d3FaMEVuN2tDZENiK3Fh?=
-	=?utf-8?B?eW16Skw1OTBzV2o2UXNTbUdrOW9vckUyd3phTDdTTVRacDV0eDlJMDVvbm5y?=
-	=?utf-8?B?TFdxd0N1cUUvTHdkcFJBZVN5Zi8wc3VlSXdKaGg5SGZuSEFIVDU2b09TcHRN?=
-	=?utf-8?B?WUNUNG90QVRzRjMzeG1NVEQySEgvNGtqME1nU0dBQWk0RElUdTJRaHA4ODNy?=
-	=?utf-8?B?UlQwK1h3UXp3NVdBN0pjeER2Sk9Gd0pudTkybmZwTjJBYkRIZFZrKzFoRU1x?=
-	=?utf-8?B?eUlUT0tOUytpb3R6aFBpWkdBSThvTG9icERNd2xWd3BaKzVMWHB2MnQxcWVp?=
-	=?utf-8?B?RXgvaEg1T3NXejludkVNeW9yc0QrVGN6WnJOaGJLZ241ZTNFUHYrNUZlTDIx?=
-	=?utf-8?B?bUFxbkltVnMzVDlHaDN4bU5uRkV6VDhIYzRVUT09?=
-x-microsoft-antispam-prvs: <SN6PR04MB46715828A7BCCF1BDC10C7F986720@SN6PR04MB4671.namprd04.prod.outlook.com>
-x-forefront-prvs: 0967749BC1
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39860400002)(376002)(366004)(396003)(136003)(346002)(189003)(199004)(53754006)(256004)(3846002)(6116002)(6512007)(14444005)(4326008)(6246003)(478600001)(2906002)(53936002)(25786009)(2616005)(106356001)(105586002)(476003)(10710500007)(486006)(966005)(446003)(7736002)(66066001)(14454004)(316002)(52116002)(15650500001)(99286004)(7110500001)(386003)(6506007)(76176011)(2420400007)(53546011)(31686004)(305945005)(110136005)(97736004)(36756003)(54906003)(186003)(6436002)(71190400001)(229853002)(71200400001)(11346002)(6306002)(2501003)(102836004)(6486002)(26005)(81156014)(81166006)(86362001)(31696002)(4744005)(8676002)(68736007)(8936002)(5660300002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:SN6PR04MB4671;
-	H:SN6PR04MB4221.namprd04.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: ni.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: x3zwimQm2Rm+Pe6J+Ypjek3RHEOf1N9h1XK6uOMZSWnKtoRRZApnzOGfKuwDBcHAXYTEuyxWu68OAqHZUHtWoamaO8pQYiyiVEIqqrIVCh58robiz/vZ4LkBSlkROFJd3MatT6suUBpoaAld5g8d7qRt/uErfm1BMBS135xAmpMZ8epnsh7AGqtfP4jEuD9ekv21yMVtClYBHNM7eoh5/C4qGvQIYtD82C+QzFZoiqg4wpN5vCRCkPMWvXll9apFfcFlG3E9HGJxp9C293Ge3DJKrnt/2IJ8m4cOz+n4ohkQMcrKPg5/qeEDJpi4/akdow6V06G5eYcP1sX9szwzJQFCYJerz79GRF0GgJnuvhsNze9d63WPwKNGXEe7rwuReoTad3m2KgWJJmLsDPaVaAY6E2vIVFprsWAdH20ltyI=
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com
+	[209.85.215.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E9ACE00CCC
+	for <yocto@yoctoproject.org>; Tue,  5 Mar 2019 08:39:43 -0800 (PST)
+Received: by mail-pg1-f178.google.com with SMTP id m2so5991642pgl.5
+	for <yocto@yoctoproject.org>; Tue, 05 Mar 2019 08:39:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id:mime-version:thread-index
+	:content-language;
+	bh=hP3ScI0d24ic1UvHZ3GRDX9tZ8+lEomhfeLnkjxbgQQ=;
+	b=P026f/FvnBjVI0i+7AzeNTYgxXOIlmi4BSTZSFfMyYGxfbeHVoQEF2NrOPGs+vi+6q
+	oPSyevY6D0zb+POTJ6j2Ck4iehey8gGglNw0+HkfBDgcBjT2KEEm1jl2YXKonmN6MAAo
+	dNZ7KKnpxSsK9GVo1dcrQEbpxlNvwQ6t9H0lGT9j4GAvNtVMdUMCuzaCSD5TVgcMmluc
+	e0Dzr1VMmb/UvSbHrL3C1874uVTti8SWFSPZooOZfI/nM6w7hQ82GaHTmrVRYl/cR0eP
+	W+g/+br/6APzlQTLhhsNM1l1ccddA+c4dJz/BCWS6TKqTL57LVEQSq8V9/PoDk2RTCa7
+	jsBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:thread-index:content-language;
+	bh=hP3ScI0d24ic1UvHZ3GRDX9tZ8+lEomhfeLnkjxbgQQ=;
+	b=Wy5hHM9mU9QE+tNxyZhKtN0bpc2bfUUlnNWvE8frH6hO5mjB+rGZjkZOxu5M6EKqQY
+	E6AcRCJmMeuAvkpZ4v/47h6EO28RddACumWEhxIxksJKRNVJ0umo0w2kPgnI0tv47r8s
+	sE6yzkkcUY8UK1pFoCFvWi0bD97K8H4yqj8LGtpZLIJDlPQEZYlM1CYTIaeFgkTWgAvu
+	jYv7UDRoWmNZKSNWIHg8Yaey1zFJcEqOLkvtnCaLezxl693KM80R/S6pSeKFSt0PKg8h
+	MGFhe0kI6Zqg5heblgkc3rkV5PHrlxk0omhLsIwu2CNmdQTAZniZ/mZk0LhH1IQ+LHi5
+	Qkhg==
+X-Gm-Message-State: APjAAAUCY7UL2ULPCeQDd36MIPr1zSJ3caF4G0kg6uKbbb1lyIdyu6Ks
+	C7Q3Nd0t0ygdzYhrUdisPe0=
+X-Google-Smtp-Source: APXvYqz6XiLveJV/bBvyQu1FYF39vtRlNo/8Zw5DT2nt11no6ChALiufakCFOM/+weUZFQ+TqhWL6A==
+X-Received: by 2002:a65:63c2:: with SMTP id n2mr2113897pgv.439.1551803982646; 
+	Tue, 05 Mar 2019 08:39:42 -0800 (PST)
+Received: from sjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+	by smtp.gmail.com with ESMTPSA id
+	y22sm12329943pfn.136.2019.03.05.08.39.41
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 05 Mar 2019 08:39:42 -0800 (PST)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 5 Mar 2019 08:39:41 -0800
+Message-ID: <024f01d4d372$084c0800$18e41800$@gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6dd30881-40ad-494b-1300-08d6a18469dd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Mar 2019 16:05:40.8228 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR04MB4671
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
-	definitions=2019-03-05_09:, , signatures=0
-X-Proofpoint-Spam-Details: rule=inbound_policy_notspam policy=inbound_policy
-	score=30
-	priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0
-	bulkscore=0
-	spamscore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=999 adultscore=0 classifier=spam adjust=30 reason=mlx
-	scancount=1 engine=8.0.1-1810050000 definitions=main-1903050104
-Subject: Re: [opkg-devel] [opkg-utils] Question: why update-alternatives from opkg-utils chooses /usr/lib to hold database?
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQNAozcD8Fqr9tLE6dGHKqPIwo3TnQ==
+Subject: YPTM minutes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -142,26 +76,285 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Mar 2019 16:31:37 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FEC3CC629E76BC44985ADA76027CEDBF@namprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 05 Mar 2019 16:39:44 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0250_01D4D32E.FA296440"
+Content-Language: en-us
 
-DQoNCk9uIDMvNS8xOSAxMjoxMSBBTSwgQ2hlblFpIHdyb3RlOg0KPiBIaSBBbGwsDQo+IA0KPiBS
-ZWNlbnRseSBJJ20gZGVhbGluZyB3aXRoIGlzc3VlIGZyb20gd2hpY2ggc29tZSBkaXNjdXNzaW9u
-IHJhaXNlcy4NCj4gSSdkIGxpa2UgdG8gYXNrIHdoeSB1cGRhdGUtYWx0ZXJuYXRpdmVzIGZyb20g
-b3BrZy11dGlscyBjaG9vc2VzIC91c3IvbGliIA0KPiB0byBob2xkIGl0cyBhbHRlcm5hdGl2ZXMg
-ZGF0YWJhc2U/DQo+IEkgbG9va2VkIGludG8gZGViaWFuLCBpdHMgdXBkYXRlLWFsdGVybmF0aXZl
-cyBjaG9vc2VzIC92YXIvbGliIGJ5IGRlZmF1bHQuDQo+IElzIHRoZXJlIHNvbWUgZGVzaWduIGNv
-bnNpZGVyYXRpb24/IE9yIHNvbWUgaGlzdG9yaWNhbCByZWFzb24/DQoNClVwZGF0ZS1hbHRlcm5h
-dGl2ZXMgdXNlZCB0byBiZSBvbiB0aGUgb3BrZyByZXBvLiBJIGRpZCBhIHNlYXJjaCB0aGVyZSAN
-CmFsbCB0aGUgd2F5IHRvIHRoZSBmaXJzdCBjb21taXQgb24gMjAwOC0xMi0xNSBbMV0sIGJ1dCBl
-dmVuIHRoZW4gDQovdXNyL2xpYiB3YXMgdXNlZC4gSSBjYW4ndCB0aGluayBvZiBhIGRlc2lnbiBj
-b25zaWRlcmF0aW9uIHRoYXQgd291bGQgDQptYWtlIC91c3IvbGliIG1vcmUgcGFsYXRhYmxlIHRo
-YW4gdGhlIERlYmlhbiBkZWZhdWx0Lg0KDQpNYXliZSBzb21lb25lIHdpdGggbW9yZSBrbm93bGVk
-Z2Ugb2YgdGhlIHByZXZpb3VzIGhpc3RvcnkgY2FuIGNoaW1lIGluPw0KDQpbMV0gDQpodHRwOi8v
-Z2l0LnlvY3RvcHJvamVjdC5vcmcvY2xlYW4vY2dpdC5jZ2kvb3BrZy9jb21taXQvP2lkPThiZjQ5
-ZDE2YTYzN2NjYTBjZDExNjQ1MGRmY2FiYzRjOTQxYmFmNmMNCg0KPiBCZXN0IFJlZ2FyZHMsDQo+
-IENoZW4gUWkNCj4gDQoNCi0tIA0KQ2hlZXJzLA0KDQpBbGVqYW5kcm8NCg==
+------=_NextPart_000_0250_01D4D32E.FA296440
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
+Yocto Technical Team Minutes for Mar. 5, 2019.
+
+ 
+
+Attendees: Armin, Joshua, Randy, Richard, Joshua, Tim, Stephen, Tracey,
+Michael, Alex,
+
+ 
+
+YP Status: YP 2.7 M2 rc2 is being released today Mar. 5, 2019.
+
+YP 2.7 M3 has a 4 items still to be resolved before the build.
+
+YP 2.5.3 needs one major item to be resolved before it is built.
+
+Richard discussed the status of M3 and the remaining work to be done, see
+the status report.
+
+Richard discussed the status of QA automation, need to backport the changes
+to 2.5 and 2.6
+
+Richard discussed the current SWAT status, need more attention and members.
+
+Stephen discussed that next month's Technical meeting we will begin the
+planning for YP 2.8.  The link for YP 2.7 Plan is at:
+<https://docs.google.com/document/d/15jB6nUJU2wrtnu6w07L9RZpNlj6AoxSTPEX5aEL
+ts1g/edit>
+https://docs.google.com/document/d/15jB6nUJU2wrtnu6w07L9RZpNlj6AoxSTPEX5aELt
+s1g/edit
+
+Richard discussed the updates from YP Advisory Board, both Comcast upgrading
+to Platinum and the new agreed to Governance plan for YP.  This allows the
+creation of the YP TSC. (Technical Steering Committee.)
+
+Richard discussed that we can't run vgl without GPU HW in the cluster. Need
+to decide if we need GPU cards in any/all servers.
+
+Richard discussed the status of bug 8729.
+
+Armin discussed the changes planned for QA transition.  Need to update
+documentation to reflect the changes. 
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Project Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0250_01D4D32E.FA296440
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0523_01D4BD2D.E082BF30";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:p=3D"urn:schemas-microsoft-com:office:powerpoint" =
+xmlns:a=3D"urn:schemas-microsoft-com:office:access" =
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" =
+xmlns:s=3D"uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" =
+xmlns:rs=3D"urn:schemas-microsoft-com:rowset" xmlns:z=3D"#RowsetSchema" =
+xmlns:b=3D"urn:schemas-microsoft-com:office:publisher" =
+xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadsheet" =
+xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" =
+xmlns:odc=3D"urn:schemas-microsoft-com:office:odc" =
+xmlns:oa=3D"urn:schemas-microsoft-com:office:activation" =
+xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" =
+xmlns:rtc=3D"http://microsoft.com/officenet/conferencing" =
+xmlns:D=3D"DAV:" xmlns:Repl=3D"http://schemas.microsoft.com/repl/" =
+xmlns:mt=3D"http://schemas.microsoft.com/sharepoint/soap/meetings/" =
+xmlns:x2=3D"http://schemas.microsoft.com/office/excel/2003/xml" =
+xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" =
+xmlns:ois=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" =
+xmlns:dir=3D"http://schemas.microsoft.com/sharepoint/soap/directory/" =
+xmlns:ds=3D"http://www.w3.org/2000/09/xmldsig#" =
+xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint/dsp" =
+xmlns:udc=3D"http://schemas.microsoft.com/data/udc" =
+xmlns:xsd=3D"http://www.w3.org/2001/XMLSchema" =
+xmlns:sub=3D"http://schemas.microsoft.com/sharepoint/soap/2002/1/alerts/"=
+ xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#" =
+xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" =
+xmlns:sps=3D"http://schemas.microsoft.com/sharepoint/soap/" =
+xmlns:xsi=3D"http://www.w3.org/2001/XMLSchema-instance" =
+xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/soap" =
+xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" =
+xmlns:udcp2p=3D"http://schemas.microsoft.com/data/udc/parttopart" =
+xmlns:wf=3D"http://schemas.microsoft.com/sharepoint/soap/workflow/" =
+xmlns:dsss=3D"http://schemas.microsoft.com/office/2006/digsig-setup" =
+xmlns:dssi=3D"http://schemas.microsoft.com/office/2006/digsig" =
+xmlns:mdssi=3D"http://schemas.openxmlformats.org/package/2006/digital-sig=
+nature" =
+xmlns:mver=3D"http://schemas.openxmlformats.org/markup-compatibility/2006=
+" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns:mrels=3D"http://schemas.openxmlformats.org/package/2006/relationshi=
+ps" xmlns:spwp=3D"http://microsoft.com/sharepoint/webpartpages" =
+xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/2006/types"=
+ =
+xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/2006/messag=
+es" =
+xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/=
+" =
+xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortalServer/Pub=
+lishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" =
+xmlns:st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><b><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Yocto Technical =
+Team Minutes for Mar. 5, 2019.</span></b><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Attendees: Armin, =
+Joshua, Randy, Richard, Joshua, Tim, Stephen, Tracey, Michael, =
+Alex,</span><o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>YP Status: YP 2.7 =
+M2 rc2 is being released today Mar. 5, 2019.</span><o:p></o:p></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>YP 2.7 M3 has a 4 =
+items still to be resolved before the build.</span><o:p></o:p></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>YP 2.5.3 needs one =
+major item to be resolved before it is built.</span><o:p></o:p></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Richard discussed =
+the status of M3 and the remaining work to be done, see the status =
+report.</span><o:p></o:p></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Richard discussed =
+the status of QA automation, need to backport the changes to 2.5 and =
+2.6</span><o:p></o:p></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Richard discussed =
+the current SWAT status, need more attention and =
+members.</span><o:p></o:p></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Stephen discussed =
+that next month&#8217;s Technical meeting we will begin the planning for =
+YP 2.8. &nbsp;The link for YP 2.7 Plan is at: </span><a =
+href=3D"https://docs.google.com/document/d/15jB6nUJU2wrtnu6w07L9RZpNlj6Ao=
+xSTPEX5aELts1g/edit"><span =
+style=3D'font-size:9.5pt;font-family:"Arial",sans-serif;color:#1155CC'>ht=
+tps://docs.google.com/document/d/15jB6nUJU2wrtnu6w07L9RZpNlj6AoxSTPEX5aEL=
+ts1g/edit</span></a><o:p></o:p></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Richard discussed =
+the updates from YP Advisory Board, both Comcast upgrading to Platinum =
+and the new agreed to Governance plan for YP. &nbsp;This allows the =
+creation of the YP TSC. (Technical Steering =
+Committee.)</span><o:p></o:p></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Richard discussed =
+that we can&#8217;t run vgl without GPU HW in the cluster. Need to =
+decide if we need GPU cards in any/all servers.</span><o:p></o:p></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Richard discussed =
+the status of bug 8729.</span><o:p></o:p></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Armin discussed the =
+changes planned for QA transition. &nbsp;Need to update documentation to =
+reflect the changes. </span><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Project Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_0250_01D4D32E.FA296440--
