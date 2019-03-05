@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8998BE00CE6; Tue,  5 Mar 2019 08:46:12 -0800 (PST)
+	id E18E6E00D46; Tue,  5 Mar 2019 08:46:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,56 +13,56 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.178 listed in list.dnswl.org]
+	*      [209.85.210.171 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
-	[209.85.210.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27324E007B3
-	for <yocto@yoctoproject.org>; Tue,  5 Mar 2019 08:46:12 -0800 (PST)
-Received: by mail-pf1-f178.google.com with SMTP id a3so6114120pff.11
-	for <yocto@yoctoproject.org>; Tue, 05 Mar 2019 08:46:12 -0800 (PST)
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
+	[209.85.210.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 675CEE00D26
+	for <yocto@yoctoproject.org>; Tue,  5 Mar 2019 08:46:13 -0800 (PST)
+Received: by mail-pf1-f171.google.com with SMTP id n74so6122326pfi.9
+	for <yocto@yoctoproject.org>; Tue, 05 Mar 2019 08:46:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=M6dAa72pyS8iCITzgnAXYGrGfvvC0KTCr9rBZRJM8FI=;
-	b=Lc+Tj3Xv3mxGB6xCP/wje3VHxbWxQ+W7dxE9S1e2OZToMjXClAU23r/4JZmLlvOQqT
-	M9IgM/X1vrHtOetywXE7PjqvuRyXF7pa8pJnzNDF1KT2kONdB1HZASAs86xpMwNicNAq
-	RXc62BpAUUoIGn/cszqxHazHSm8d3vtshJCZ+9/2piyPp6HgCoOCk5PxBYo69yrbq9Md
-	8bnkkaZAncV3C0d3v9j+Ef4IwzMrD48LDLP+U5VoC1NbswSFFm40G2yH8jw8Ptaik+pO
-	N/SuNB5iJNKGvkA2cRlyyY3mcPrFXNwvq39S8/TraWBiuh3dcKeDPWhMedfOS/8fWjdm
-	WgzQ==
+	bh=BHnvZ5ptdGtfYApcP+uIGyzP4j1bSH4O/ye6woiVoIk=;
+	b=GXDFDYx8pA1FxBHLgNIbGwiHh6IfPb2BwZoC5K1x97ffHzwkBLsPRVUZZconvlKPbo
+	wym8n6DLdBlrqZjN8owzI5g3iLvShYm20pA+Ddz5Ne3PhPnujIPmVhM0rvKl5085cdig
+	dL0jzsTgsDO6L7qVkoI064T+Y2sjuPgm8xac6GfdDZDd/WUyKt53DNYCZ5Pw9PV2uBVE
+	CfsrJeu5HH8FRT6qxG6bAKBJTom1wWZ5G5EhNWnVWw89LX12qYapWH0DXZML+ndekX5y
+	PDAYswr+/waSmgH+GKIzYY7+8vqeaMJdLn3pJQKsBy/uOMZaO8kGBYwkBJKXG/tEgnMD
+	ulwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=M6dAa72pyS8iCITzgnAXYGrGfvvC0KTCr9rBZRJM8FI=;
-	b=SkO/qI6k6smKrwpr4swaIKlig1/SHXc/S1vXP9b646LSjYOdWEQMDgr9+mLL2oHU8S
-	ckeCW/JhniwGybF9iCdpyvUsIwxFbWJfHpgdArBgMtM6qPMMsnOZBDBvPOB4SOYWRWf2
-	mOLz4HdwhNNIAl7J5FmnSVvtz1ctIg4ldx0LC2F0bk8OjPmbVTTogiYrXt57M82b/193
-	mJdwznQDWdHNCf6TK5I3S8n9vs7LPh/Lhcb/TFJZSgjyZtvGzrDZaFEz1RMaRUCfgEEV
-	shEOob66Q+pLFgYIaugofpB86DQK9cpUwlZDZqsHxSf6keLAlXsdL+F2zlHgiOqovn4Z
-	EtqQ==
-X-Gm-Message-State: APjAAAXGlrysdcP2LcffnLkVfiGVkCSJG4ve6yZcszTI8lI0kSYKBKTS
-	W3eKIRwcIViolV/7BpRDF/a7pgu6
-X-Google-Smtp-Source: APXvYqyAlpYKtUU3aaLBsXDkFpGhyeYvNRjU8BLLGzuFbSbVv5icdoYWOlPCxy/tTT6BIhvaOI6RUg==
-X-Received: by 2002:a62:4299:: with SMTP id h25mr2684015pfd.165.1551804371479; 
-	Tue, 05 Mar 2019 08:46:11 -0800 (PST)
+	bh=BHnvZ5ptdGtfYApcP+uIGyzP4j1bSH4O/ye6woiVoIk=;
+	b=pyQ7eBgcY43+3bf+f1a7DedEAm0eDhrC+W0lzBiJZgrj+3llrrMaF6mtGf/tHt8DUG
+	XEardRKRxRwiY4IzlTcP0Q2jKplWanKnJM4QnCnzQ5AqexTj2PcTBlwddW624X6aA3TN
+	ClB68N5WcG63kAX/zm17Lwhn2BJorC65E7S0avz+rIPdZ4NXrolEA8xWb4BCDeocAPiG
+	aHn4g4HtVSmINwEhmmxrJhXnKAUNrR8Skc9CeXJ0liZDsqB4tESTA8IENe9DM+CpkXco
+	WE3AlsN7xYAmNwyQC0fGlvspnwznIehrT0umf3r/HSJzC5nannFBTvO3VLjha1Hg1SLV
+	9OBQ==
+X-Gm-Message-State: APjAAAU6qyLz2z8IwjdGdzaMMXg9GH29YW3LO7LQyR9UKobjX28u0ryV
+	rMIbEakEU3LseLMYSnRvQNrmzfoK
+X-Google-Smtp-Source: APXvYqzRZ+CWqNql1eT9y5uQJ2rIlgaVsJGkgd6GggPzmUr68/hd36oT+rHSS5LCdjVeuWXzn6ci+g==
+X-Received: by 2002:a62:5543:: with SMTP id j64mr2708152pfb.105.1551804372445; 
+	Tue, 05 Mar 2019 08:46:12 -0800 (PST)
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
 	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	n6sm18769726pgh.79.2019.03.05.08.46.10 for <yocto@yoctoproject.org>
+	n6sm18769726pgh.79.2019.03.05.08.46.11 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 05 Mar 2019 08:46:10 -0800 (PST)
+	Tue, 05 Mar 2019 08:46:11 -0800 (PST)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Tue,  5 Mar 2019 08:46:04 -0800
-Message-Id: <20190305164608.12211-3-akuster808@gmail.com>
+Date: Tue,  5 Mar 2019 08:46:05 -0800
+Message-Id: <20190305164608.12211-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190305164608.12211-1-akuster808@gmail.com>
 References: <20190305164608.12211-1-akuster808@gmail.com>
-Subject: [meta-security][PATCH 3/7] tpm2.0-tools: update 3.1.3
+Subject: [meta-security][PATCH 4/7] tpm2.o-tss: update to 2.4.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,30 +74,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Mar 2019 16:46:12 -0000
+X-List-Received-Date: Tue, 05 Mar 2019 16:46:13 -0000
+
+LIC_FILES_CHKSUM changed to do SPDX ref being removed.
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../{tpm2.0-tools_3.1.2.bb => tpm2.0-tools_3.1.3.bb}            | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename meta-tpm/recipes-tpm/tpm2.0-tools/{tpm2.0-tools_3.1.2.bb => tpm2.0-tools_3.1.3.bb} (88%)
+ .../{tpm2.0-tss_2.0.1.bb => tpm2.0-tss_2.2.1.bb}    | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+ rename meta-tpm/recipes-tpm/tpm2.0-tss/{tpm2.0-tss_2.0.1.bb => tpm2.0-tss_2.2.1.bb} (86%)
 
-diff --git a/meta-tpm/recipes-tpm/tpm2.0-tools/tpm2.0-tools_3.1.2.bb b/meta-tpm/recipes-tpm/tpm2.0-tools/tpm2.0-tools_3.1.3.bb
-similarity index 88%
-rename from meta-tpm/recipes-tpm/tpm2.0-tools/tpm2.0-tools_3.1.2.bb
-rename to meta-tpm/recipes-tpm/tpm2.0-tools/tpm2.0-tools_3.1.3.bb
-index 3f40eb7..22fae0b 100644
---- a/meta-tpm/recipes-tpm/tpm2.0-tools/tpm2.0-tools_3.1.2.bb
-+++ b/meta-tpm/recipes-tpm/tpm2.0-tools/tpm2.0-tools_3.1.3.bb
-@@ -6,7 +6,7 @@ SECTION = "tpm"
+diff --git a/meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_2.0.1.bb b/meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_2.2.1.bb
+similarity index 86%
+rename from meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_2.0.1.bb
+rename to meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_2.2.1.bb
+index 9d1ff72..4f9db50 100644
+--- a/meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_2.0.1.bb
++++ b/meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_2.2.1.bb
+@@ -1,19 +1,22 @@
+ SUMMARY = "Software stack for TPM2."
+ DESCRIPTION = "tpm2.0-tss like woah."
+ LICENSE = "BSD-2-Clause"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=0b1d631c4218b72f6b05cb58613606f4"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=500b2e742befc3da00684d8a1d5fd9da"
+ SECTION = "tpm"
  
- DEPENDS = "pkgconfig tpm2.0-tss openssl curl autoconf-archive"
+-DEPENDS = "autoconf-archive-native libgcrypt"
++DEPENDS = "autoconf-archive-native libgcrypt openssl"
  
--SRCREV = "5e2f1aafc58e60c5050f85147a14914561f28ad9"
-+SRCREV = "74ba065e5914bc5d713ca3709d62a5751b097369"
+-SRCREV = "dc31e8dca9dbc77d16e419dc514ce8c526cd3351"
++SRCREV = "eb69e13559f20a0b49002a685c6f4a39be9503e2"
  
- SRC_URI = "git://github.com/01org/tpm2.0-tools.git;name=tpm2.0-tools;destsuffix=tpm2.0-tools;branch=3.X"
+-SRC_URI = "git://github.com/tpm2-software/tpm2-tss.git;branch=2.0.x"
++SRC_URI = "git://github.com/tpm2-software/tpm2-tss.git;branch=2.2.x"
  
+ inherit autotools-brokensep pkgconfig systemd
+ 
+ S = "${WORKDIR}/git"
+ 
++PACKAGECONFIG ??= ""
++PACKAGECONFIG[oxygen] = ",--disable-doxygen-doc, "
++
+ do_configure_prepend () {
+        ./bootstrap
+ }
+@@ -72,3 +75,5 @@ FILES_libtss2-dev = " \
+ FILES_libtss2-staticdev = "${libdir}/libtss*a"
+ 
+ FILES_${PN} = "${libdir}/udev"
++
++RDEPENDS_libtss2 = "libgcrypt"
 -- 
 2.17.1
 
