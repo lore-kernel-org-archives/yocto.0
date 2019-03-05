@@ -1,36 +1,35 @@
-Return-Path: <Qi.Chen@windriver.com>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3DF1FE00D2C; Mon,  4 Mar 2019 22:01:32 -0800 (PST)
+	id E5812E00D17; Tue,  5 Mar 2019 00:35:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2C34E00D28
-	for <yocto@yoctoproject.org>; Mon,  4 Mar 2019 22:01:31 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x2561Ttr021661
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0434E00BCC
+	for <yocto@yoctoproject.org>; Tue,  5 Mar 2019 00:35:03 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x258YAZe004388
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 4 Mar 2019 22:01:29 -0800 (PST)
-Received: from [128.224.163.141] (128.224.163.141) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
-	Mon, 4 Mar 2019 22:01:28 -0800
-To: <opkg-devel@googlegroups.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-From: ChenQi <Qi.Chen@windriver.com>
-Message-ID: <6323ed1d-0e39-4d07-e691-5e3e07f007f9@windriver.com>
-Date: Tue, 5 Mar 2019 14:11:13 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+	Tue, 5 Mar 2019 00:34:26 -0800
+Received: from pek-lpg-core1.wrs.com (128.224.156.132) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.439.0; Tue, 5 Mar 2019 00:34:11 -0800
+From: Robert Yang <liezhi.yang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 5 Mar 2019 16:53:22 +0800
+Message-ID: <1551776002-130748-1-git-send-email-liezhi.yang@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-X-Originating-IP: [128.224.163.141]
-Subject: [opkg-utils] Question: why update-alternatives from opkg-utils chooses /usr/lib to hold database?
+Cc: michael.g.wood@intel.com
+Subject: [error-report-web][PATCH] Post/views.py: Fix for python3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,18 +41,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Mar 2019 06:01:32 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 05 Mar 2019 08:35:05 -0000
+Content-Type: text/plain
 
-Hi All,
+Now it works for python 2 and 3.
 
-Recently I'm dealing with issue from which some discussion raises.
-I'd like to ask why update-alternatives from opkg-utils chooses /usr/lib 
-to hold its alternatives database?
-I looked into debian, its update-alternatives chooses /var/lib by default.
-Is there some design consideration? Or some historical reason?
+Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+---
+ Post/views.py | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
 
-Best Regards,
-Chen Qi
+diff --git a/Post/views.py b/Post/views.py
+index 7f2cffb..2f8e4ae 100644
+--- a/Post/views.py
++++ b/Post/views.py
+@@ -13,9 +13,9 @@ from django.shortcuts import HttpResponse, render
+ from django.views.decorators.csrf import csrf_exempt
+ from django.shortcuts import redirect
+ from Post.models import BuildFailure, Build, ErrorType
+-from parser import Parser
++from .parser import Parser
+ from django.conf import settings
+-from createStatistics import Statistics
++from .createStatistics import Statistics
+ from django.core.paginator import Paginator, EmptyPage
+ from django.core.exceptions import FieldError, ObjectDoesNotExist
+ from django.http import JsonResponse
+@@ -55,20 +55,23 @@ def addData(request, return_json=False):
+             # Backward compatibility with send-error-report < 0.3
+             # The json is url encoded so we need to undo this here.
+             data = request.body[len('data='):]
+-            data = urllib.unquote_plus(data)
++            data = urllib.parse.unquote_plus(data)
++
++        data = data.decode('utf-8')
+ 
+         p = Parser(data)
+         result = p.parse(request)
++        print(result)
+ 
+         if return_json:
+             response = JsonResponse(result)
+         else:
+-            if not result.has_key('error'):
++            if 'error' not in result:
+               response = HttpResponse("Your entry can be found here: "+result['build_url'])
+             else:
+               response = HttpResponse(result['error'])
+ 
+-        if result.has_key('error'):
++        if 'error' in result:
+             response.status_code=500
+     else:
+         if return_json:
+@@ -123,7 +126,7 @@ def search(request, mode=results_mode.LATEST, **kwargs):
+ 
+     items = BuildFailure.objects.all()
+ 
+-    if request.GET.has_key("limit"):
++    if "limit" in request.GET:
+         try:
+             n_limit = int(request.GET['limit'])
+             if n_limit > 0:
+@@ -200,14 +203,14 @@ def search(request, mode=results_mode.LATEST, **kwargs):
+       ],
+     }
+ 
+-    if request.GET.has_key("filter") and request.GET.has_key("type"):
++    if "filter" in request.GET and "type" in request.GET:
+         items = apply_filter(context, items, request.GET['type'], request.GET['filter'])
+     if mode == results_mode.SPECIAL_SUBMITTER and hasattr(settings,"SPECIAL_SUBMITTER"):
+         #Special submitter mode see settings.py to enable
+         name = settings.SPECIAL_SUBMITTER['name']
+         items = items.filter(BUILD__NAME__istartswith=name)
+ 
+-    elif mode == results_mode.SEARCH and request.GET.has_key("query"):
++    elif mode == results_mode.SEARCH and "query" in request.GET:
+         query = request.GET["query"]
+ 
+         items = items.filter(
+-- 
+2.7.4
+
 
