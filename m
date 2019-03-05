@@ -1,61 +1,39 @@
-Return-Path: <jonaskgandersson@gmail.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A45B7E00D12; Mon,  4 Mar 2019 13:46:24 -0800 (PST)
+	id B57CAE00D11; Mon,  4 Mar 2019 17:06:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jonaskgandersson[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.41 listed in list.dnswl.org]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com
-	[209.85.208.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 352E7E00BCC
-	for <yocto@yoctoproject.org>; Mon,  4 Mar 2019 13:46:23 -0800 (PST)
-Received: by mail-ed1-f41.google.com with SMTP id p27so5483990edc.6
-	for <yocto@yoctoproject.org>; Mon, 04 Mar 2019 13:46:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=B9H8YBcyIusekIEY7VMhpxOtLjwi8Ems4OF2iAxdqKA=;
-	b=rJaJNR261wi15/xR/BUbdCJRfVvJoXQvUFqVZHCObi0GDvfGQpnJJDld6iWaSpxarl
-	IW2/mmFlBwzSA1bVY7TW4uXeC3v95ZyNHGwPhv9HHc6mw3DMx9ZFVaQDfx5pYy/1ndf0
-	UZhb5jZgd42X6X8rfaVvw9lpX9DvqajI+XyIsc3KxksFbAQOJDFyzQQdkSSGX7PU7y06
-	m/fGuQ1ecwuLqETtxKC6TBNQjC4HJ8Zrq5Me51AtOq54tp01PDvRN4f+F9ZmQ9gcZQAC
-	kIwNNymiy8M9+poxJDgJ+pPC0SxZvC6LAeuvKzZ3RgQEdd5KGzgXz6YSu2I0DAKXfsPw
-	xHBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=B9H8YBcyIusekIEY7VMhpxOtLjwi8Ems4OF2iAxdqKA=;
-	b=smHMBIpskw574YQD4zXEEA1CO9c7ldw7TwbKETs/x7ri+nw1cG6Tnr9KanghkP/KWt
-	mCeHW7TBIOqL8ihMrEfVStaqAcAZPteWMJ9kVPBflWXL2bwqlQISV+AUTDAdOa3F5Sw8
-	fYcFw7Xb7q+mLyXfngW/SPLxiaGLmqPt3tvbfpxuVhwNXbSjCNJrnkb3hPEBcn2Q53AY
-	lHSCBGibsICcU2g6hPoWDVv2Z7ET4hvLUXRapPzvkgf/AERo4KDjmRaU1Fm9YFwe7c5z
-	MC9ZSmqWhLkz3o39z2qJMNMJDawOewsV7E2zOzOJVRExGVqGsYgryCmdzWYyjjgPqAHF
-	8hJg==
-X-Gm-Message-State: APjAAAVUP3UmMq6gV8J1ZkQ+scsUD8tVn0qnZjvF2DknJZJaxZkh16dA
-	RGkN6Wp+hHQ3S73TwpK8Er/t9xYTA4+PU6xFmWKniQ==
-X-Google-Smtp-Source: APXvYqz00dHJX5WvrPY7FynlxiapmzCJQCjmlniyGjKZQYzhnjl2P28Vr60zkZSd42PpwOW6HoaAwS867Z+pSBze6RM=
-X-Received: by 2002:a50:ac3d:: with SMTP id v58mr16699287edc.263.1551735982958;
-	Mon, 04 Mar 2019 13:46:22 -0800 (PST)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19445E00BCC
+	for <yocto@yoctoproject.org>; Mon,  4 Mar 2019 17:06:01 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x2514xST021745
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 4 Mar 2019 17:05:35 -0800
+Received: from [128.224.163.141] (128.224.163.141) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
+	Mon, 4 Mar 2019 17:05:29 -0800
+To: Jonas Andersson <jonaskgandersson@gmail.com>, <yocto@yoctoproject.org>
+References: <CAKpuFdcLgRthdgOVV+Pcue9tpB5LrSd8yCScV=BNm-MDZz7oNg@mail.gmail.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <0ded533a-0445-11ed-42c6-74656c2d2d2d@windriver.com>
+Date: Tue, 5 Mar 2019 09:15:14 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-From: Jonas Andersson <jonaskgandersson@gmail.com>
-Date: Mon, 4 Mar 2019 22:46:10 +0100
-Message-ID: <CAKpuFdcLgRthdgOVV+Pcue9tpB5LrSd8yCScV=BNm-MDZz7oNg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Best practice dynamic service file
+In-Reply-To: <CAKpuFdcLgRthdgOVV+Pcue9tpB5LrSd8yCScV=BNm-MDZz7oNg@mail.gmail.com>
+X-Originating-IP: [128.224.163.141]
+Subject: Re: Best practice dynamic service file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,33 +45,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Mar 2019 21:46:24 -0000
-Content-Type: multipart/alternative; boundary="0000000000000cac6605834bb019"
+X-List-Received-Date: Tue, 05 Mar 2019 01:06:02 -0000
+Content-Type: multipart/alternative;
+	boundary="------------8065882AAF85BC11687E8E96"
 
---0000000000000cac6605834bb019
-Content-Type: text/plain; charset="UTF-8"
+--------------8065882AAF85BC11687E8E96
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 03/05/2019 05:46 AM, Jonas Andersson wrote:
+> Hi,
+>
+> I have an systemd recipe to start an application as a service, i have 
+> included an service file.
+> Now I am looking for an solution to be able to set settings in the 
+> service file from Yocto variables, i have found recipes that use 
+> python to build files during build.
+>
+> What is best practice for this?
+>
+> /Jonas
+>
+>
 
-I have an systemd recipe to start an application as a service, i have
-included an service file.
-Now I am looking for an solution to be able to set settings in the service
-file from Yocto variables, i have found recipes that use python to build
-files during build.
+Use placeholders like VAR_TO_SUBSTITUDE, and then use 'sed' command to 
+replace it in do_install.
+e.g.
+sed -i -e 's/VAR_TO_SUBSTITUDE/${VAR_IN_RECIPE}/g' path/to/my.service
 
-What is best practice for this?
+Best Regards,
+Chen Qi
 
-/Jonas
+--------------8065882AAF85BC11687E8E96
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
 
---0000000000000cac6605834bb019
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 03/05/2019 05:46 AM, Jonas Andersson
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAKpuFdcLgRthdgOVV+Pcue9tpB5LrSd8yCScV=BNm-MDZz7oNg@mail.gmail.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <div dir="ltr">Hi,
+        <div><br>
+        </div>
+        <div>I have an systemd recipe to start an application as a
+          service, i have included an service file.</div>
+        <div>Now I am looking for an solution to be able to set settings
+          in the service file from Yocto variables, i have found recipes
+          that use python to build files during build.</div>
+        <div><br>
+        </div>
+        <div>What is best practice for this?</div>
+        <div><br>
+        </div>
+        <div>/Jonas</div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+    Use placeholders like VAR_TO_SUBSTITUDE, and then use 'sed' command
+    to replace it in do_install.<br>
+    e.g.<br>
+    sed -i -e 's/VAR_TO_SUBSTITUDE/${VAR_IN_RECIPE}/g'
+    path/to/my.service<br>
+    <br>
+    Best Regards,<br>
+    Chen Qi<br>
+  </body>
+</html>
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I have an systemd recipe to start a=
-n application as a service, i have included an service file.</div><div>Now =
-I am looking for an solution to be able to set settings in the service file=
- from Yocto variables, i have found recipes that use python to build files =
-during build.</div><div><br></div><div>What is best practice for this?</div=
-><div><br></div><div>/Jonas</div></div>
-
---0000000000000cac6605834bb019--
+--------------8065882AAF85BC11687E8E96--
