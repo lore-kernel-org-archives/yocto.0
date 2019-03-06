@@ -1,66 +1,96 @@
-Return-Path: <marc.ferland@gmail.com>
+Return-Path: <Edmund.Nadolski@microsoft.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 30CC0E00CED; Thu,  7 Mar 2019 06:55:47 -0800 (PST)
+	id 5F4CEE00C71; Thu,  7 Mar 2019 07:26:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marc.ferland[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.180 listed in list.dnswl.org]
+	*      [40.107.78.132 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com
-	[209.85.167.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7AEBE00C43
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2019 06:55:46 -0800 (PST)
-Received: by mail-oi1-f180.google.com with SMTP id i8so13110069oib.10
-	for <yocto@yoctoproject.org>; Thu, 07 Mar 2019 06:55:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=8uWCyAskIq8V2/CGwTdqvjzu+tg6jKaB+KAwz5Gtyec=;
-	b=hQgYug6e/J0BKDCrFo72Cl/RjsGaEh9s3QwlZ8LPvFtnu1N4ybDE8Imm85FrzpS68g
-	rWMZU3Jrd8nqNendoJChaVhwB2dg327WEEzfAD2HH01ZDyIrSsatDm8HcvQDdNVvaOid
-	PQ3GC5MSYMe/Jv7RQzOKbbqfrtKWj9QbwDJSzHFqcusbKY8ROGzWPJyxxjcCZ2vIECwa
-	QpfY1lws1OtbBAnCpvSY9HsQ98DCrPEDszcAo6m8q20+va8VgM67FXxm0IFOGQZchdd0
-	eG126WGOuNo1tchUQWPQpi80TF0wbOGhTYV5uBYM7zPZMKShnAmgWK2pH49bJijhmDZA
-	fr6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=8uWCyAskIq8V2/CGwTdqvjzu+tg6jKaB+KAwz5Gtyec=;
-	b=IpZdySNFjKW7x0HH0IlcaGcytWuDFA+cEDSKl3tepoy0Ef1pmldQLAvyj1xnF2LbK8
-	pfpWkA2ckVEl5DPbnWXradINcnesCiJapGUafl8jDSso/pB9EiHBq6eRfdu7Sa+O7DEQ
-	u2vQUi3K/NhHzvvUpDqz/Via4GdSPjy9sQqMxAAwtw9frQSqWnPufRzA0HvlbaBg9PSq
-	4yIuW6JL8Hxo8y8g1zpVXcwjSPGNOqsw/DRzIJMB8sLcfwmARlLZ9bjJD9aPSxm0x/EP
-	c6PD+F1aOdy8uCnLoCt1egbcKpoG5jLti8ye11GoDd3AbZpcge7J+XpBUriZTEe5Oo6k
-	F6BQ==
-X-Gm-Message-State: APjAAAUyal7E6ZL8wzQuJnhEoK0kWgsgBG+Z4RXMRgKRGeyOPyFcxA95
-	zDoHhFk0+iIFgSVcGHcMQcmUoX3e+PcfG+zQ234=
-X-Google-Smtp-Source: APXvYqynBGnFr7KtZkSdVCM9sO/ALPrGHx9V/AjzytQc9O/YDz9B7k7FOhz/qHvvl/uUPrTrNqTxuMDxoxXgGkNBl24=
-X-Received: by 2002:aca:38d5:: with SMTP id f204mr5390682oia.72.1551970546193; 
-	Thu, 07 Mar 2019 06:55:46 -0800 (PST)
+X-Greylist: delayed 46909 seconds by postgrey-1.32 at yocto-www;
+	Thu, 07 Mar 2019 07:26:47 PST
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com
+	(mail-eopbgr780132.outbound.protection.outlook.com [40.107.78.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B57DE00A0C
+	for <yocto@yoctoproject.org>; Thu,  7 Mar 2019 07:26:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+	s=selector1;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=bxw3H41fkzJzFlrldBg7jtNZFwSJ+/TViwbN9gcWbpE=;
+	b=B+LQFcX3Lf+X0Z+aqxSxZ+mWIUDCNEW9rcJRItbBrs8RY4AyQ7yqVuApA7rtIu+N0G4gvDNAVEL20dFCpdN7wk9k9EWIV1RtNyURvSOEtw6E2OrYWC0Zaxv9NGPmOmvUEHV2WPGxUer6WCFKiyF3Mr0q2+ztPoqzd6N433R4iEU=
+Received: from MWHPR21MB0766.namprd21.prod.outlook.com (10.173.51.20) by
+	MWHPR21MB0191.namprd21.prod.outlook.com (10.173.52.137) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+	15.20.1709.3; Wed, 6 Mar 2019 19:51:39 +0000
+Received: from MWHPR21MB0766.namprd21.prod.outlook.com
+	([fe80::8925:2cdb:9b72:cd95]) by
+	MWHPR21MB0766.namprd21.prod.outlook.com
+	([fe80::8925:2cdb:9b72:cd95%13]) with mapi id 15.20.1709.005;
+	Wed, 6 Mar 2019 19:51:39 +0000
+From: Edmund Nadolski <Edmund.Nadolski@microsoft.com>
+To: Edmund Nadolski <Edmund.Nadolski@microsoft.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: SRC_URI when there is a local mirror but no remote repo
+Thread-Index: AdTO77EJ7mvIhJVfQI6JwZhq3mbTHAFZeCkg
+Date: Wed, 6 Mar 2019 19:51:39 +0000
+Message-ID: <MWHPR21MB076694812B1F6F66A7805392E5730@MWHPR21MB0766.namprd21.prod.outlook.com>
+References: <MWHPR21MB07666F341A64E2B2553E5927E5740@MWHPR21MB0766.namprd21.prod.outlook.com>
+In-Reply-To: <MWHPR21MB07666F341A64E2B2553E5927E5740@MWHPR21MB0766.namprd21.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Enabled=True;
+	MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_SiteId=72f988bf-86f1-41af-91ab-2d7cd011db47;
+	MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Owner=ednadols@microsoft.com;
+	MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_SetDate=2019-02-27T22:59:56.8028965Z;
+	MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Name=General;
+	MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Application=Microsoft	Azure
+	Information Protection;
+	MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_ActionId=fc5bed99-6b9a-48d9-af85-188a98d90330;
+	MSIP_Label_f42aa342-8706-4288-bd11-ebb85995028c_Extended_MSFT_Method=Automatic
+x-originating-ip: [50.35.12.119]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a8136a1f-3164-45c2-5961-08d6a26d2643
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(7020095)(4652040)(8989299)(5600127)(711020)(4605104)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
+	SRVR:MWHPR21MB0191; 
+X-MS-TrafficTypeDiagnostic: MWHPR21MB0191:|MWHPR21MB0191:|MWHPR21MB0191:|MWHPR21MB0191:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <MWHPR21MB0191EE7F4CE53275446DCEFCE5730@MWHPR21MB0191.namprd21.prod.outlook.com>
+x-forefront-prvs: 0968D37274
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(396003)(376002)(136003)(366004)(346002)(39860400002)(478694002)(13464003)(189003)(199004)(22452003)(316002)(5660300002)(6116002)(3846002)(99286004)(81156014)(86362001)(66066001)(486006)(10290500003)(53546011)(476003)(81166006)(966005)(11346002)(446003)(186003)(8990500004)(110136005)(52536013)(256004)(26005)(76176011)(14454004)(6346003)(7736002)(71200400001)(71190400001)(1511001)(6506007)(305945005)(8676002)(72206003)(478600001)(102836004)(86612001)(8936002)(55016002)(105586002)(6436002)(106356001)(53936002)(7696005)(74316002)(10090500001)(229853002)(9686003)(68736007)(6306002)(6246003)(2501003)(2906002)(33656002)(25786009)(97736004);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:MWHPR21MB0191;
+	H:MWHPR21MB0766.namprd21.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: microsoft.com does not designate
+	permitted sender hosts)
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=Edmund.Nadolski@microsoft.com; 
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: BsKFE8cJqmFAhPtGo5hNBOnCKzre+az3bJfjXStkZA0XsnJoW1v0oNsmvn9L24ygiggb7f2gAL+6lQlzZ2jVF9A7me804DSSbM4o8Hln/DanDnJ25pHVwIdpyxBk7KZi04SwcYUrX1ukdu0KcocDwrsl+s/BytYze5G6FqNqicVPjTL6RWAwALafc70fWfFCQddjVC635xRrD1EvJ9j/lmq49h0qplinA7oqEtssGqIkwimy5dM9hYZRVztNI12hX3TTgLIT+cn16VSdhw5Yl+Vqomwik0JWFmZYnd3ihmM1r35A2N62HH+Zp6claKrinaFt0bQ0nZm4/7/RS4dLjwi58r+OwVqMGkw6JkQtX3YmlY7gitgPf65R06+94kDS6VWUK1GKM6zzOXlPHrc9uaF48CzpsJZuPHnepNHsrvA=
 MIME-Version: 1.0
-References: <CAAx3WaA0NR=cdGJdPHrkSuENKT7m60GW=pcjCjAHpgwEFPMHwg@mail.gmail.com>
-	<CAMRMzCAAVr8YPZaOz=Ob7E7YYfrq8H0YC8+KZ3XasEwUoe=Cdg@mail.gmail.com>
-In-Reply-To: <CAMRMzCAAVr8YPZaOz=Ob7E7YYfrq8H0YC8+KZ3XasEwUoe=Cdg@mail.gmail.com>
-From: Marc Ferland <marc.ferland@gmail.com>
-Date: Thu, 7 Mar 2019 09:55:34 -0500
-Message-ID: <CAMRMzCAZcp35epmgkDczaCztNav1KPWWjOaB906P-7oK=2F+Nw@mail.gmail.com>
-To: Gabriele Zampieri <gabbla.malist@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Multiple ubifs partition
+X-MS-Exchange-CrossTenant-Network-Message-Id: a8136a1f-3164-45c2-5961-08d6a26d2643
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2019 19:51:39.4711 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR21MB0191
+X-OriginatorOrg: microsoft.com
+Subject: Re: SRC_URI when there is a local mirror but no remote repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,32 +102,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Mar 2019 14:55:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 07 Mar 2019 15:26:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-> On Mon, Mar 4, 2019 at 6:17 AM Gabriele Zampieri
-> <gabbla.malist@gmail.com> wrote:
-> >
-> > Hi all,
-> >
-> > I'm trying to build a distribution that has multiple partitions. The de=
-siderata is something like:
-> >
-> > - rootfs.ubifs mounted on /
-> > - data.ubifs mounted on /data
-> > - opt.ubifs mounted on /opt
-> >
-> > I was wondering if there is a standard way to achieve the goal. I see t=
-hat there is a tool called wic, but it does not seems to support ubifs. I c=
-ould post process the tarball image and doing stuff with my scripts, but I'=
-d prefer doing this in a single bitbake run. Can you suggest something?
-> >
+Friendly ping, any thoughts on this?
 
-Hummm just reread your mail, and I think you will probably have to
-roll up your own image type. The meta-raspberrypi layer contains a
-custom image bbclass which you could use as an example.
+One thing I have noted - without the remote url, bitbake will not link the =
+file into DL_DIR or create a *.done file for it.
 
-Good luck!
-Marc
+TIA,
+Ed
+
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org>
+> On Behalf Of Edmund Nadolski
+> Sent: Wednesday, February 27, 2019 3:00 PM
+> To: yocto@yoctoproject.org
+> Subject: [yocto] SRC_URI when there is a local mirror but no remote repo
+>=20
+> Hi,
+>=20
+> Does Yocto/Bitbake support a way to set SRC_URI in a recipe when there is
+> no corresponding upstream remote (git://, https://, etc.) for a *.tar.gz =
+file?
+> IOW, I've configured for own_mirrors and set BB_NO_NETWORK=3D1, and my
+> *.tar.gz file only lives in the local_mirror directory.
+>=20
+> It looks to me like file:// thinks that the file always lives under ${S}.
+>=20
+> TIA,
+> Ed
+>=20
+> ...
+> # functional workaround
+> SRC_URI =3D " http://some.example.com/example-1.0.0.src.tar.gz"
+> ...
+>=20
+> do_unpack () {
+>         # Unpack straight from the local mirror since there is no remote
+>         tar xzf ${TOPDIR}/../local_mirror/example-1.0.0.src.tar.gz -C ${S=
+}
+>=20
+> do_install () {
+>         install -d ${D}/${MY_DIR}
+>         install -m 0744 ${S}/example/example.sh ${D}/${MY_DIR}
+>=20
+> --
 
