@@ -1,70 +1,46 @@
-Return-Path: <dimtass@gmail.com>
+Return-Path: <442-103-8455@kylheku.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 62EE8E00C71; Wed,  6 Mar 2019 11:27:25 -0800 (PST)
+	id 3E355E00C43; Wed,  6 Mar 2019 12:11:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	FROM_STARTS_WITH_NUMS,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (dimtass[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.181 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com
-	[209.85.167.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70AAFE0091D
-	for <yocto@yoctoproject.org>; Wed,  6 Mar 2019 11:27:24 -0800 (PST)
-Received: by mail-oi1-f181.google.com with SMTP id j10so10815859oij.13
-	for <yocto@yoctoproject.org>; Wed, 06 Mar 2019 11:27:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=Fk3AOaAf/bzP4jrenMRSYByyDwFwBFJRo8ectPjICPI=;
-	b=bCQ6xPLfxKW1Z/28hFkytDXzdUsYGSZguXaimODillfnXHE7SGKC9kOyBX0bw8wsRH
-	Ujj325DGyYmEQGRuOb8Epi0l0vrtRkeJaE+JC4UokmqgLBJ3VfAEEC2VbFR/um4i0xaB
-	WxdrqydKDhzAgAmHCu3QzXfkZ1iCXPrENKCVQDoON+hTsbyIzNtDQx3aoQMYSQXtxIVZ
-	v5MM70y/V8HZMo0P5PMQWGaq1XXgIRbDz9711pJmJraZFOh8L+bya9f5N1H6pcoo8wHe
-	qHiFVHUbJCfOxAV+8BNbYgW+oi+aW0OIvCN1myfABuv015HmNtUdYf95BP86IpnLdO8+
-	cVeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=Fk3AOaAf/bzP4jrenMRSYByyDwFwBFJRo8ectPjICPI=;
-	b=qyZDRbjpZtawv5+tsBETaeQbdZVHSSJ2hObULX0fEGcI8VLAVLDjpzAh/7VdrCg9ma
-	UeCHqoNba2LpZhc40VuvDQPZW9EhaRTN+k0JhJQjcoolyERqINPnkhWXJINiGv7RQoFz
-	/WAvitYraY869KW1TD+oCxF2QAt8AHXobx82Vz2akDrv1wFfb04RlLfT3HEph21Qn4U6
-	JmRPAE/pa2dzfLVkq9LIn3UWrS2cBCU7gxS6iVpmcvM6SOmrQtiM1QO/lhO5PqTI1TWF
-	yEttQ+XWUt5l2JYJBQgq8Vk9ZXWAHZDt/vcxCAfUTi0aizcR0gMlsd2dx33sKBma8arb
-	xzuw==
-X-Gm-Message-State: APjAAAWn/d9OjZRLauRV41BSU0ktH9BqgEoxZyh7s5+DN/RcOJ6bxcTP
-	3FdKCV6lNofF4E4uPHBjiET4GIJV7uF2sePHgRA=
-X-Google-Smtp-Source: APXvYqwMUwX4R7na1qAYZ9kisuR33DBSwuqwWp+wubBLBAHcnwzGGQcfzqVHZn/epuurm5aKH7IguSuimhsASjiQW2A=
-X-Received: by 2002:aca:d607:: with SMTP id n7mr2586784oig.3.1551900443614;
-	Wed, 06 Mar 2019 11:27:23 -0800 (PST)
+	*  0.7 FROM_STARTS_WITH_NUMS From: starts with several numbers
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [64.59.134.13 listed in list.dnswl.org]
+X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
+	Wed, 06 Mar 2019 12:11:45 PST
+Received: from smtp-out-no.shaw.ca (smtp-out-no.shaw.ca [64.59.134.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B3B2E0053F
+	for <yocto@yoctoproject.org>; Wed,  6 Mar 2019 12:11:45 -0800 (PST)
+Received: from kylheku.com ([70.79.163.252]) by shaw.ca with ESMTPA
+	id 1csEhvXsHALwT1csFhxgn9; Wed, 06 Mar 2019 13:10:44 -0700
+X-Authority-Analysis: v=2.3 cv=D/851cZj c=1 sm=1 tr=0
+	a=95A0EdhkF1LMGt25d7h1IQ==:117 a=95A0EdhkF1LMGt25d7h1IQ==:17
+	a=IkcTkHD0fZMA:10 a=SMorJkV_YP8A:10 a=NTGMnVQrEZIA:10 a=iGHA9ds3AAAA:8
+	a=gE5eR7hQJx6H3m5l2n4A:9 a=QEXdDO2ut3YA:10 a=nM-MV4yxpKKO9kiQg6Ot:22
+Received: from www-data by kylheku.com with local (Exim 4.72)
+	(envelope-from <442-103-8455@kylheku.com>)
+	id 1h1csE-0000Bj-CY; Wed, 06 Mar 2019 12:10:42 -0800
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-PHP-Originating-Script: 501:rcmail.php
 MIME-Version: 1.0
-References: <CACKFPN2EV_vT+U6h13jV4dv8UB2kYLjjzGnTze_qRjtLvXqs9A@mail.gmail.com>
-	<CAFNP8Ouk6e7xEjSLfBuCOsdQKVB=yDPhHwNG4nLUuNcLSPk=jQ@mail.gmail.com>
-	<CAMKF1sr3e1e725ZpSWBYw2awbF-6VuJ8wYd0YEBn24b4zMeSTw@mail.gmail.com>
-	<CAFNP8OsHvvVkiGGCUvtsVd6OAsAoT76BRGJ+WFY0aLRLdagk7w@mail.gmail.com>
-	<CAMKF1soGS34ey2eEHTHFDww97hcitGCp1Ndz49LMs2hQrCquZA@mail.gmail.com>
-	<CAFNP8OvguH1fvaMEmMhmCAmMZSY-jz=ZqUqGk7T68oyUHMG2gg@mail.gmail.com>
-In-Reply-To: <CAFNP8OvguH1fvaMEmMhmCAmMZSY-jz=ZqUqGk7T68oyUHMG2gg@mail.gmail.com>
-From: Dimitris Tassopoulos <dimtass@gmail.com>
-Date: Wed, 6 Mar 2019 20:27:13 +0100
-Message-ID: <CACKFPN3SjkYJjyeJhgvxzBoXRVGAFdLH6gJBiA=BEsTqvGqXDw@mail.gmail.com>
-To: Scott Rifenbark <srifenbark@gmail.com>
+Date: Wed, 06 Mar 2019 12:10:42 -0800
+From: "Kaz Kylheku (poky)" <442-103-8455@kylheku.com>
+In-Reply-To: <fd98415c1d3aebb569a588bfa0faf9f3d86ca9cd.camel@linuxfoundation.org>
+References: <4d30a0e379c74c9e673fd65721463b04@mail.kylheku.com>
+	<fd98415c1d3aebb569a588bfa0faf9f3d86ca9cd.camel@linuxfoundation.org>
+Message-ID: <e21f2565c099e27ab58c7c7feaafdb95@mail.kylheku.com>
+X-Sender: 442-103-8455@kylheku.com
+User-Agent: Roundcube Webmail/0.9.2
+X-CMAE-Envelope: MS4wfJzQd5RAly2IsUOsfe6vXM0tp9PblxEE/ofbI6xyKOL2spKnZSi3Olj9JLa/BQ86THKPPD54PzA6aKAmad70fj7ZVn0WJuh5ZY2JM6TuoVqKDDu/6/Oh
+	HO2WXkNJMfZec1ambsKPhkgQbRSwmtnYkzp5tsSerSu5K5ReozdatMzB2/LvwNg5q1I7hQJSjqs/4+LxsIV9Fe4fy3S+krQwAaIFtPZ762YgdikrUK+lQPnf
 Cc: yocto@yoctoproject.org
-Subject: Re: INHIBIT_SYSROOT_STRIP
+Subject: Re: Incremental rebuild doesn't pick up FILES changes.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,196 +52,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Mar 2019 19:27:25 -0000
-Content-Type: multipart/alternative; boundary="000000000000ab2397058371fa2a"
-
---000000000000ab2397058371fa2a
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 06 Mar 2019 20:11:48 -0000
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-My use case, as I've told to Scott, was building a bare metal firmware for
-a cortex m0 with an external GCC toolchain. Although, the toolchain's
-binaries are strippable, there are some other blob files that are needed
-for the build, which are not.
+On 2019-03-06 10:23, Richard Purdie wrote:
+> On Tue, 2019-03-05 at 18:28 -0800, Kaz Kylheku (poky) wrote:
+>> How do we get Yocto to react to FILES changes, short of blowing away
+>> the entire build tree?
+>=20
+> Maybe related to this change:
+>=20
+> http://git.yoctoproject.org/cgit.cgi/poky/commit/bitbake/lib/bb/data_smar=
+t.py?id=3Df7f5e30667e1ad8e1ca76ee331be2843f2976bfa
 
-Cheers,
-Dimitris
+Actually, the problem was that I had an accidental local change applied
+to the .json manifest file; that's where the=20
+"${libdir}/python2.7/encodings" was
+being deleted.
 
-Scott Rifenbark <srifenbark@gmail.com> schrieb am Mi., 6. M=C3=A4rz 2019, 1=
-9:55:
+So, the issues are now is that
 
-> Got it. Thanks Khem.
->
-> On Wed, Mar 6, 2019 at 10:22 AM Khem Raj <raj.khem@gmail.com> wrote:
->
->> On Wed, Mar 6, 2019 at 9:48 AM Scott Rifenbark <srifenbark@gmail.com>
->> wrote:
->> >
->> > I think we should probably at least document the variable in the YP
->> Reference Manual's glossary.  Correct?
->> >
->>
->> yes and also mention that we only expect it to be used in rare special
->> curcumstances, e,g, prebuilt binaries etc.
->>
->> > Scott
->> >
->> > On Wed, Mar 6, 2019 at 9:24 AM Khem Raj <raj.khem@gmail.com> wrote:
->> >>
->> >> On Wed, Mar 6, 2019 at 8:15 AM Scott Rifenbark <srifenbark@gmail.com>
->> wrote:
->> >> >
->> >> > Dimitris,
->> >> >
->> >> > Good find... I will see about documenting this.
->> >> >
->> >>
->> >> Although its not encouranged to use it, its to be used as a last reso=
-rt
->> >> we use it sparingly.
->> >>
->> >> > Scott
->> >> >
->> >> > On Wed, Mar 6, 2019 at 8:12 AM Dimitris Tassopoulos <
->> dimtass@gmail.com> wrote:
->> >> >>
->> >> >> Hi all,
->> >> >>
->> >> >> this is not a request for help.
->> >> >>
->> >> >> Today, I've found a very nice option which is not documented
->> >> >> which is the INHIBIT_SYSROOT_STRIP and is used in the
->> sysroot_strip()
->> >> >> inside the poky/meta/classes/staging.bbclass.
->> >> >>
->> >> >> I had an issue with a recipe that had a few binaries that I wanted
->> to add to the
->> >> >> recipe-sysroot-native in order to build another package and I was
->> getting errors
->> >> >> because the do_populate_sysroot couldn't strip those binaries. I'v=
-e
->> searched in
->> >> >> the source and found that the author of that code was handling thi=
-s
->> case, but it's
->> >> >> not documented (at least in the latest mega-manual).
->> >> >>
->> >> >> Therefore, I'm dropping this message as a reference to other that
->> might need it.
->> >> >>
->> >> >> Regards,
->> >> >> Dimitris
->> >> >> --
->> >> >> _______________________________________________
->> >> >> yocto mailing list
->> >> >> yocto@yoctoproject.org
->> >> >> https://lists.yoctoproject.org/listinfo/yocto
->> >> >
->> >> > --
->> >> > _______________________________________________
->> >> > yocto mailing list
->> >> > yocto@yoctoproject.org
->> >> > https://lists.yoctoproject.org/listinfo/yocto
->>
->
+FILES_${PN}_remove =3D "${libdir}/python2.7/encodings"
 
---000000000000ab2397058371fa2a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+in fact does not work, as I believed.  It doesn't register at all. If I=20
+run "bitbake -e", to find the places that influence the value of $FILES,=20
+this _remove assignment doesn't appear anywhere. In fact, the name of my=20
+=2Ebbpappend file doesn't even appear anywhere in that listing.
 
-<div dir=3D"auto">My use case, as I&#39;ve told to Scott, was building a ba=
-re metal firmware for a cortex m0 with an external GCC toolchain. Although,=
- the toolchain&#39;s binaries are strippable, there are some other blob fil=
-es that are needed for the build, which are not.<div dir=3D"auto"><br></div=
-><div dir=3D"auto">Cheers,</div><div dir=3D"auto">Dimitris</div></div><br><=
-div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Scott Rifen=
-bark &lt;<a href=3D"mailto:srifenbark@gmail.com">srifenbark@gmail.com</a>&g=
-t; schrieb am Mi., 6. M=C3=A4rz 2019, 19:55:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
-left:1ex"><div dir=3D"ltr">Got it. Thanks Khem.<br></div><br><div class=3D"=
-gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Mar 6, 2019 at 1=
-0:22 AM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank=
-" rel=3D"noreferrer">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex">On Wed, Mar 6, 2019 at 9:48 AM Scott=
- Rifenbark &lt;<a href=3D"mailto:srifenbark@gmail.com" target=3D"_blank" re=
-l=3D"noreferrer">srifenbark@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; I think we should probably at least document the variable in the YP Re=
-ference Manual&#39;s glossary.=C2=A0 Correct?<br>
-&gt;<br>
-<br>
-yes and also mention that we only expect it to be used in rare special<br>
-curcumstances, e,g, prebuilt binaries etc.<br>
-<br>
-&gt; Scott<br>
-&gt;<br>
-&gt; On Wed, Mar 6, 2019 at 9:24 AM Khem Raj &lt;<a href=3D"mailto:raj.khem=
-@gmail.com" target=3D"_blank" rel=3D"noreferrer">raj.khem@gmail.com</a>&gt;=
- wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; On Wed, Mar 6, 2019 at 8:15 AM Scott Rifenbark &lt;<a href=3D"mail=
-to:srifenbark@gmail.com" target=3D"_blank" rel=3D"noreferrer">srifenbark@gm=
-ail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Dimitris,<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Good find... I will see about documenting this.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt;<br>
-&gt;&gt; Although its not encouranged to use it, its to be used as a last r=
-esort<br>
-&gt;&gt; we use it sparingly.<br>
-&gt;&gt;<br>
-&gt;&gt; &gt; Scott<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; On Wed, Mar 6, 2019 at 8:12 AM Dimitris Tassopoulos &lt;<a hr=
-ef=3D"mailto:dimtass@gmail.com" target=3D"_blank" rel=3D"noreferrer">dimtas=
-s@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Hi all,<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; this is not a request for help.<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Today, I&#39;ve found a very nice option which is not doc=
-umented<br>
-&gt;&gt; &gt;&gt; which is the INHIBIT_SYSROOT_STRIP and is used in the sys=
-root_strip()<br>
-&gt;&gt; &gt;&gt; inside the poky/meta/classes/staging.bbclass.<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; I had an issue with a recipe that had a few binaries that=
- I wanted to add to the<br>
-&gt;&gt; &gt;&gt; recipe-sysroot-native in order to build another package a=
-nd I was getting errors<br>
-&gt;&gt; &gt;&gt; because the do_populate_sysroot couldn&#39;t strip those =
-binaries. I&#39;ve searched in<br>
-&gt;&gt; &gt;&gt; the source and found that the author of that code was han=
-dling this case, but it&#39;s<br>
-&gt;&gt; &gt;&gt; not documented (at least in the latest mega-manual).<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Therefore, I&#39;m dropping this message as a reference t=
-o other that might need it.<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Regards,<br>
-&gt;&gt; &gt;&gt; Dimitris<br>
-&gt;&gt; &gt;&gt; --<br>
-&gt;&gt; &gt;&gt; _______________________________________________<br>
-&gt;&gt; &gt;&gt; yocto mailing list<br>
-&gt;&gt; &gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blan=
-k" rel=3D"noreferrer">yocto@yoctoproject.org</a><br>
-&gt;&gt; &gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto"=
- rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject=
-.org/listinfo/yocto</a><br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; --<br>
-&gt;&gt; &gt; _______________________________________________<br>
-&gt;&gt; &gt; yocto mailing list<br>
-&gt;&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank" r=
-el=3D"noreferrer">yocto@yoctoproject.org</a><br>
-&gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=
-=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
-/listinfo/yocto</a><br>
-</blockquote></div>
-</blockquote></div>
+If I change it to just FILES_remove =3D ...  then it does show up in=20
+"bitbake -e" (early, before all the base recipe manipulations of=20
+$FILES). It doesn't work; the encodings do not disappear:
 
---000000000000ab2397058371fa2a--
+
+      $FILES [527 operations]
+     #   set /mnt/sdb4/kaz/proj/poky/meta/conf/bitbake.conf:288
+     #     ""
+     #   set /mnt/sdb4/kaz/proj/poky/meta/conf/documentation.conf:169
+     #     [doc] "The list of directories or files that are placed in=20
+packages."
+     #   _remove=20
+/mnt/sdb4/kaz/proj/meta-custom/common/recipes-devtools/python/python_%.bbap=
+pend:15
+     #     "${libdir}/python2.7/encodings"
+
+     [ big snip ]
+
+     #   override[python-core]:append python_2.7.15.bb:220=20
+[__anon_238__mnt_sdb4_kaz_y25_wp76_poky_meta_recipes_devtools_python_python=
+_2_7_15_bb]
+     #     " ${libdir}/python2.7/encodings"
+
+I think this override might be winning over the _remove or something.=20
+The output never shows the final, settled value of FILES. At the bottom=20
+of this section about the $FILES variable we just have:
+
+     # pre-expansion value:
+     #   ""
+     FILES=3D""
+
+which is uninformative; obviously there is a populated FILES because the=20
+package has files in it.
+
+Should I just add some install append steps to "rm -f" the unwanted=20
+material and be done with it?
+
+I feel there should be a sane way to customize the FILES variable (and=20
+any other) emanating from a base recipe, though.
+
+
+
+
