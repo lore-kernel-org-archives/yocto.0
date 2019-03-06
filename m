@@ -1,64 +1,61 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <dimtass@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F3DAFE00C43; Wed,  6 Mar 2019 07:39:43 -0800 (PST)
+	id E9F0EE00C43; Wed,  6 Mar 2019 08:11:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kanavin[at]gmail.com)
+	provider *      (dimtass[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.194 listed in list.dnswl.org]
+	*      [209.85.167.171 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-oi1-f194.google.com (mail-oi1-f194.google.com
-	[209.85.167.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84F43E0090C
-	for <yocto@yoctoproject.org>; Wed,  6 Mar 2019 07:39:43 -0800 (PST)
-Received: by mail-oi1-f194.google.com with SMTP id e7so10174688oia.8
-	for <yocto@yoctoproject.org>; Wed, 06 Mar 2019 07:39:43 -0800 (PST)
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com
+	[209.85.167.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEEA2E0096F
+	for <yocto@yoctoproject.org>; Wed,  6 Mar 2019 08:11:56 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id g16so10296083oib.1
+	for <yocto@yoctoproject.org>; Wed, 06 Mar 2019 08:11:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=hJoxcZ4+DDBKFHqRuAc34maBnUttNwjeS2mPDN8uu1s=;
-	b=IjtCR8DCto2oV+jTr3l8smG1430UDSFRSB68WswGak4WnXwAKbG1JDOd/BWQKo7dPv
-	JrxKv8Ch96GgyCpQ6+N8sOX9z44e8KdBsxaqSt2ojzIMCvAICvZdGloXAPgipSehOrWp
-	NggWk4j0ooICJn+2V5D5ITuPOtWhbkXRZZ8LYUTO3bcTjmND0Q6j4gwLj7yEUvor2P1a
-	Cmn0//NQANCgd3mPF7pWKNcoAjb7uT8Elq4F7lYlbgFp2F+myd038ISoDFOS4Hvl3VN9
-	sveEW08l1gTOkztBw6NN6ibHjvyO4M0sE+8oQtH3j6CuF2z0ItdvWyif3qV4IYu5JPEu
-	G/Cg==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=/7FZIhKq5tWE8+ab0Nhr1l/iqC+7esv4q1iNVuacGoQ=;
+	b=DUwin102499bRIoLU4oRWlk77snX6qODG0edQ84Fp019e0LTAJSWTvnVMSYvx/XH2i
+	W0Pr/QUlc1QGf87r7/C+dpXwHkbUwOq1qlAaYPXhYSGgP8RgRnPb+pdWqmN+Am8NbpoA
+	zyCbNSZR9t1T+9KaEU8W9fqdxOnCUCUNrRH7OIr3BFayhPVjukA7fQ6CLfJoo8zoJ3/V
+	Zd2l6FIaOLXjTuFiMgOV0193dtzStI2aIGs4CLh0K4O7jzCX6LmD3PuLz4LL8+g20UlB
+	42UuzlZCXBZ9cp9GfBgRvfjdXMdZw6VdEYphuENHSkrRFJ5G0NE5kQ3mwvyEXw/mU6Cx
+	iUsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=hJoxcZ4+DDBKFHqRuAc34maBnUttNwjeS2mPDN8uu1s=;
-	b=o1rAua7otE8p8ez6uhFLyUtqkGNu0pG9x7QPHI5njbE1AJZn0k5uNlz1dVMK63GK0N
-	fJjKH0bfBlBtPUHReL6ffUkYBPuvweWHaVTE3Yj7sVS0LO0/NoU+pXZB9tWuSZvlav3n
-	blNv795InlEhG35m/T79neqX2+wjqK3K8O1LqgF0j2s+r9lOLswZrV5twvWY7nZUnq+R
-	tnCwVYD7eLfZPBZGvs5d5ovG/Eqluy3EW2Js6hcYeriQkQNyJRGgwBxmVBX10MZVaune
-	nSmWt7n8c7Flpu/kO5xo1Yp1JW55ekHypx6Jdu57CI8iZSm7UD+TAZPgzRXoiKXmL1Yw
-	b3UA==
-X-Gm-Message-State: APjAAAVPPU6r5T+pJc2IEROj50/6YdKNXAixbZXxFtXLNX5UI63FEhh+
-	DRBiApzXCCyqK+y0tKFxF7QbBGAvvfpdiC2Xoxo=
-X-Google-Smtp-Source: APXvYqxNoo13BOtRG6QG7HeblyIY1BHxo2/gCe+DnR1LxD4gwLgt1pZNBAjEGzjAJOPOt31eq7Fc2W8iq1xzaSWXUL8=
-X-Received: by 2002:aca:da43:: with SMTP id r64mr1914066oig.119.1551886782933; 
-	Wed, 06 Mar 2019 07:39:42 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=/7FZIhKq5tWE8+ab0Nhr1l/iqC+7esv4q1iNVuacGoQ=;
+	b=nggKTaSnYipIudofa4A8hA6P2sidTQAltET/MAe8k7a80B/WG3CealULBRaURd4wJY
+	i2sMx6mWlvCRr9K0Oqq+IdTpcreN26HZUxs8zD6YYqEMsqf47hhdd9YGNcihMHaYduwW
+	7dJNPxSiSOsC3SLzj1gh/cS7p1B+WpyLG6BlbHfQOReW57WGbabQg9rMTCPu3cSdJ5Cq
+	E2BSY+OjgZ+3AlDdf/4zTISEV9ykiYAKyVGUxL/gOOuYWfwxx6FKhLnQk+Mr4Ca3a8rU
+	2+8PSfGOaFPiMSURe8/VYhdJb1ZAIxHR9n8zc/wyogNZm4ElJWygq+Mf6oBX7SVyxiTj
+	oGCA==
+X-Gm-Message-State: APjAAAVc7leeVgGqhOI2jAOmbXKN67m9tjgyzvfEmY9pR0LVBaRaH39N
+	clTy0Jko9+TI5mmCwcVrVHqo4M3oCTn3pstkrr/N+Tl6VMA=
+X-Google-Smtp-Source: APXvYqyFtnLNzrodZODHXto17202j0pQEmomkkcnthwYn9TXbh/Y/+HK2kALwR7AC6ClmPp9YuOQydgZq4Dl8zhUDrM=
+X-Received: by 2002:aca:3306:: with SMTP id z6mr2140695oiz.45.1551888715834;
+	Wed, 06 Mar 2019 08:11:55 -0800 (PST)
 MIME-Version: 1.0
-References: <CAM0bAiWaY8FA4h9Bognht9TwXqwNnjncyNHMz6hN4Vjp6_cXBA@mail.gmail.com>
-In-Reply-To: <CAM0bAiWaY8FA4h9Bognht9TwXqwNnjncyNHMz6hN4Vjp6_cXBA@mail.gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 6 Mar 2019 16:39:31 +0100
-Message-ID: <CANNYZj-v7_n4P=HaABtxVfjVngqPpM1N3jio8bUx4zE1ZHg6vA@mail.gmail.com>
-To: philippe gislard <philippe.gislard@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [thud]: Issues with git sub modules
+From: Dimitris Tassopoulos <dimtass@gmail.com>
+Date: Wed, 6 Mar 2019 17:11:45 +0100
+Message-ID: <CACKFPN2EV_vT+U6h13jV4dv8UB2kYLjjzGnTze_qRjtLvXqs9A@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: INHIBIT_SYSROOT_STRIP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,80 +67,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Mar 2019 15:39:44 -0000
+X-List-Received-Date: Wed, 06 Mar 2019 16:11:58 -0000
+Content-Type: multipart/alternative; boundary="000000000000a370e405836f3fb5"
+
+--000000000000a370e405836f3fb5
 Content-Type: text/plain; charset="UTF-8"
 
-Yocto master has got a lot of fixing around gitsm fetcher
-(particularly creation of symlinks seems to be gone), so if you could
-try that and report, that would be appreciated.
+Hi all,
 
-Alex
+this is not a request for help.
 
-On Wed, 6 Mar 2019 at 15:20, philippe gislard
-<philippe.gislard@gmail.com> wrote:
->
-> Hello everyone,
->
-> Our use case is the following:
-> - We are building firmwares using yocto on machines that have no internet access
-> - We have a mirror that we are feeding with tarballs generated by a
-> machine connected to internet
-> - We want to port our BSP to yocto thud
->
-> Until now (we used krogoth) our mirror was operating properly.
->
-> Since we switched to thud, the build systems is generating tarballs of
-> git repositories (i.e.: gstreamer1.0-plugins-good_1.14.imx.bb, from
-> freescale) containing symbolic links to git submodules (gstreamer
-> common).
-> The issue is that these symbolic links contain an absolute path which
-> is not portable on other machines.
->
-> We fixed it by patching the yocto framework so it generates a relative
-> symbolic link instead.
->
-> _We want to be sure is that is the proper way to fix the issue we are
-> facing for our use case_
->
-> You will find the patch we used at the end of this mail.
->
-> Thank you.
->
-> From 456bc347c38039006619c0e95831cb4faf4d8c49 Mon Sep 17 00:00:00 2001
-> From: Philippe GISLARD <philippe.gislard@morpho.com>
-> Date: Wed, 6 Mar 2019 10:03:43 +0100
-> Subject: [PATCH] Change the git submodule symbolic link from absolute to
->  relative in order to allow sharing the downloaded packages between different
->  build machines
->
-> Signed-off-by: Philippe GISLARD <philippe.gislard@morpho.com>
-> Signed-off-by: Fabien MICAELLI <fabien.micaelli.yocto@fabisoft.com>
-> ---
->  bitbake/lib/bb/fetch2/gitsm.py | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/bitbake/lib/bb/fetch2/gitsm.py b/bitbake/lib/bb/fetch2/gitsm.py
-> index 35729db..009b2af 100644
-> --- a/bitbake/lib/bb/fetch2/gitsm.py
-> +++ b/bitbake/lib/bb/fetch2/gitsm.py
-> @@ -119,7 +119,7 @@ class GitSM(Git):
->                      os.makedirs(os.path.dirname(symlink_path), exist_ok=True)
->                  except OSError:
->                      pass
-> -                os.symlink(local_paths[module], symlink_path)
-> +                os.symlink(os.path.relpath(local_paths[module],
-> os.path.dirname(symlink_path)), symlink_path)
->
->          return True
->
-> --
-> 2.7.4
->
-> --
-> Philippe GISLARD
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Today, I've found a very nice option which is not documented
+which is the INHIBIT_SYSROOT_STRIP and is used in the sysroot_strip()
+inside the poky/meta/classes/staging.bbclass.
 
+I had an issue with a recipe that had a few binaries that I wanted to add
+to the
+recipe-sysroot-native in order to build another package and I was getting
+errors
+because the do_populate_sysroot couldn't strip those binaries. I've
+searched in
+the source and found that the author of that code was handling this case,
+but it's
+not documented (at least in the latest mega-manual).
+
+Therefore, I'm dropping this message as a reference to other that might
+need it.
+
+Regards,
+Dimitris
+
+--000000000000a370e405836f3fb5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr">Hi all,<div><br></div><div>this is not a request for help.</div><=
+div><br></div><div>Today, I&#39;ve found a very nice option which is not do=
+cumented</div><div>which is the=C2=A0INHIBIT_SYSROOT_STRIP and is used in t=
+he sysroot_strip()</div><div>inside the=C2=A0poky/meta/classes/staging.bbcl=
+ass.</div><div><br></div><div>I had an issue with a recipe that had a few b=
+inaries that I wanted to add to the</div><div>recipe-sysroot-native in orde=
+r to build another package and I was getting errors<br></div><div>because t=
+he=C2=A0do_populate_sysroot couldn&#39;t strip those binaries. I&#39;ve sea=
+rched in</div><div>the source and found that the author of that code was ha=
+ndling this case, but it&#39;s</div><div>not documented (at least in the la=
+test mega-manual).</div><div><br></div><div>Therefore, I&#39;m dropping thi=
+s message as a reference to other that might need it.</div><div><br></div><=
+div>Regards,</div><div>Dimitris</div></div></div></div></div></div>
+
+--000000000000a370e405836f3fb5--
