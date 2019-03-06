@@ -1,67 +1,65 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3EC07E00C71; Wed,  6 Mar 2019 10:22:30 -0800 (PST)
+	id 17D27E00D9F; Wed,  6 Mar 2019 10:23:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.170 listed in list.dnswl.org]
+	*      [209.85.221.68 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com
-	[209.85.160.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A367E0096F
-	for <yocto@yoctoproject.org>; Wed,  6 Mar 2019 10:22:29 -0800 (PST)
-Received: by mail-qt1-f170.google.com with SMTP id p48so13961837qtk.2
-	for <yocto@yoctoproject.org>; Wed, 06 Mar 2019 10:22:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=ok+k3fer/VphsNesWl9gGaGhZDyxlW1UR0utnB/gDRY=;
-	b=jigqHuZdiqfqxbd8htxk0agTEsGsQWT3BPcRoyrHrFOqfCcuQUI0gCwWtgtSihWuUu
-	hBhKuPjHdX1GkR/dJ2DZL3TOScPoEF8iIQMFFjKtbxmLSUVFC1C8KAADNDRCvgnlYP9g
-	b0D0549LR0PnMfkQxLAkyKJFxNRibzs77RdPXHT8XIaaH8/XmC0yz9G8vyTWAdWLju7O
-	ZEs/VEVVoAr4/UDHLAXzoeCANAVjECjTd/TchR9ULDKjP12cxDQbV7gSJ+IE2+hDAqKC
-	ymJoSXpXdBzLqA6ZnN62wGCt3XYKAX2IRIkGBWCJI32XJmoJmlASKl4aSDEeUNylCc07
-	LamQ==
+Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com
+	[209.85.221.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F304E00D08
+	for <yocto@yoctoproject.org>; Wed,  6 Mar 2019 10:23:24 -0800 (PST)
+Received: by mail-wr1-f68.google.com with SMTP id r5so14526331wrg.9
+	for <yocto@yoctoproject.org>; Wed, 06 Mar 2019 10:23:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=wHfGr3VClEZBF7H4vKAqtUZbC+IywHlnCKfQr74PJYo=;
+	b=ErxD6tqWPm5KOmFEdJU7Fu3khbmMPa5PaPj7hiJq5SSppZm0qeg4jJ0ItVG1imWNP6
+	+DijakneXo8jtVR1UJVVKQ6+eklf4UFrBV+uXly2P7D6WA1pVG+9p8TgRpVFJykhgNwv
+	bOIsbU3fZEPiGNQtUH+A5mwKOpfei37I8hVgo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=ok+k3fer/VphsNesWl9gGaGhZDyxlW1UR0utnB/gDRY=;
-	b=UkJlJXS7BE0ygYCizsKNwKWyW2OnNCWj9nZfWnpPCiS5/MJPThc6qUOkiB37rRbkcK
-	OzdWnpc2W5XD9QPD6rlPCipzw+EGmf87P+AJnvTlkyjdWkvfN0cdqYaqCZ3XA2NheKf5
-	AO9piQHkHoLaoVRpmf8MZ/g2bq7VrWIKrdRTi7G9WdQxtx1RzSup8PoW2/ER4ySEb/sT
-	H083sZnhOoQsBgul9ezjyuqR1YlXo05gIp+4+hi7HwPShYnbVZqlIMWxFBbhcmX9iBTO
-	7HMIxxj0wi8l/zfQ41w+XthCnT9sJA9xuDY75keEd4vtmQ/gzAJ6wbtryVS/E4zpaTsx
-	Ky4Q==
-X-Gm-Message-State: APjAAAWxcLOOb0mKNzifqvg0SjsEhS7n8hAgmC38n/lTtDVObu6v4bmU
-	Wt3Zqoibh99UzrDGbNFSnwPnQ/iNA0loD4WUaJsArw==
-X-Google-Smtp-Source: APXvYqyZYqcVzkNdssXC9KrLRADItvKHOsKiJK0qkOYAk0clRaQCzwoxP2tI8dXEBFiYISefJfYTQ9ey2sdW3JFsHpI=
-X-Received: by 2002:aed:3a09:: with SMTP id n9mr6671234qte.196.1551896548436; 
-	Wed, 06 Mar 2019 10:22:28 -0800 (PST)
+	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+	:references:user-agent:mime-version:content-transfer-encoding;
+	bh=wHfGr3VClEZBF7H4vKAqtUZbC+IywHlnCKfQr74PJYo=;
+	b=gd+zXFd0E8OyqcSoxNIpyqSjGlPaRtAIICk+6WkUAHYuzB/6CyCOZgPrL0gjoDsrdf
+	s1TterhdWgQVa0x+jBdbgw812Kef7UJZWReSQms0gIKr8KdP/qAfvdkUUOQoEqYPQ0Bq
+	Ft2Kige+gAV6gg3n3o7VKk+aj7Kd5RQwxNMhwLCIZ6JnVr4XUgXFXhiULagg+lmS4DQf
+	KFsr5HU2M9140TTmh4mu+UI90BqKPj4a4WF3ljYQp1HsEblYcfZWRzgzRtpWZGcsf9gy
+	llZKyDUDWkK0rQytxu+9cwUDuO29JJWmUMSX5XQ1mvViHAj5NEnDlsyeTHYP1YISg53S
+	KSDg==
+X-Gm-Message-State: APjAAAUB2UYslyzRbP9CIRvO3u32LvaGJXxew9/MyouUY9JuLdko/4pS
+	P2/i8JaXjNXcustfEL3nUemuHqRQe2o=
+X-Google-Smtp-Source: APXvYqyGmrRvMWFzWugp8FOs2226FEwkTLCchtvWa8taER05HSswP7r1tlwcgOWgGWPA9BMerYagxg==
+X-Received: by 2002:adf:dd8a:: with SMTP id x10mr4140950wrl.117.1551896603781; 
+	Wed, 06 Mar 2019 10:23:23 -0800 (PST)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+	by smtp.gmail.com with ESMTPSA id f7sm2642082wru.3.2019.03.06.10.23.22
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Wed, 06 Mar 2019 10:23:23 -0800 (PST)
+Message-ID: <fd98415c1d3aebb569a588bfa0faf9f3d86ca9cd.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Kaz Kylheku (poky)" <442-103-8455@kylheku.com>, yocto@yoctoproject.org
+Date: Wed, 06 Mar 2019 18:23:21 +0000
+In-Reply-To: <4d30a0e379c74c9e673fd65721463b04@mail.kylheku.com>
+References: <4d30a0e379c74c9e673fd65721463b04@mail.kylheku.com>
+User-Agent: Evolution 3.31.90-1 
 MIME-Version: 1.0
-References: <CACKFPN2EV_vT+U6h13jV4dv8UB2kYLjjzGnTze_qRjtLvXqs9A@mail.gmail.com>
-	<CAFNP8Ouk6e7xEjSLfBuCOsdQKVB=yDPhHwNG4nLUuNcLSPk=jQ@mail.gmail.com>
-	<CAMKF1sr3e1e725ZpSWBYw2awbF-6VuJ8wYd0YEBn24b4zMeSTw@mail.gmail.com>
-	<CAFNP8OsHvvVkiGGCUvtsVd6OAsAoT76BRGJ+WFY0aLRLdagk7w@mail.gmail.com>
-In-Reply-To: <CAFNP8OsHvvVkiGGCUvtsVd6OAsAoT76BRGJ+WFY0aLRLdagk7w@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 6 Mar 2019 10:22:02 -0800
-Message-ID: <CAMKF1soGS34ey2eEHTHFDww97hcitGCp1Ndz49LMs2hQrCquZA@mail.gmail.com>
-To: Scott Rifenbark <srifenbark@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: INHIBIT_SYSROOT_STRIP
+Subject: Re: Incremental rebuild doesn't pick up FILES changes.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,62 +71,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Mar 2019 18:22:30 -0000
+X-List-Received-Date: Wed, 06 Mar 2019 18:23:32 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Wed, Mar 6, 2019 at 9:48 AM Scott Rifenbark <srifenbark@gmail.com> wrote:
->
-> I think we should probably at least document the variable in the YP Reference Manual's glossary.  Correct?
->
+On Tue, 2019-03-05 at 18:28 -0800, Kaz Kylheku (poky) wrote:
+> Hi,
+> 
+> I'm working in a Yocto 2.5 environment.
+> 
+> In my own layer, I added a bbappend targeting python which does this:
+> 
+>    FILES_${PN}_remove = "${libdir}/python2.7/encodings"
+> 
+> Now this didn't take effect as I expected. I had to do a "bitbake -c 
+> cleanall python" to rebuild the package.
+> 
+> In any case, all I have in the image now, as I expected, is these
+> four 
+> files, vastly reduced from dozens:
+> 
+>    /usr/lib/python2.7/encodings/{aliases,utf-8}.{py,pyc}
+> 
+> Now, if I comment out this FILES_${PN}_remove variable assignment, I 
+> cannot get the previously removed encoding modules to re-appear in
+> my 
+> image! I tried "bitbake -c cleanall" on python, and blowing away its 
+> build directory. It didn't work; still there are just those four
+> files.
+> 
+> How do we get Yocto to react to FILES changes, short of blowing away
+> the entire build tree?
 
-yes and also mention that we only expect it to be used in rare special
-curcumstances, e,g, prebuilt binaries etc.
+Maybe related to this change:
 
-> Scott
->
-> On Wed, Mar 6, 2019 at 9:24 AM Khem Raj <raj.khem@gmail.com> wrote:
->>
->> On Wed, Mar 6, 2019 at 8:15 AM Scott Rifenbark <srifenbark@gmail.com> wrote:
->> >
->> > Dimitris,
->> >
->> > Good find... I will see about documenting this.
->> >
->>
->> Although its not encouranged to use it, its to be used as a last resort
->> we use it sparingly.
->>
->> > Scott
->> >
->> > On Wed, Mar 6, 2019 at 8:12 AM Dimitris Tassopoulos <dimtass@gmail.com> wrote:
->> >>
->> >> Hi all,
->> >>
->> >> this is not a request for help.
->> >>
->> >> Today, I've found a very nice option which is not documented
->> >> which is the INHIBIT_SYSROOT_STRIP and is used in the sysroot_strip()
->> >> inside the poky/meta/classes/staging.bbclass.
->> >>
->> >> I had an issue with a recipe that had a few binaries that I wanted to add to the
->> >> recipe-sysroot-native in order to build another package and I was getting errors
->> >> because the do_populate_sysroot couldn't strip those binaries. I've searched in
->> >> the source and found that the author of that code was handling this case, but it's
->> >> not documented (at least in the latest mega-manual).
->> >>
->> >> Therefore, I'm dropping this message as a reference to other that might need it.
->> >>
->> >> Regards,
->> >> Dimitris
->> >> --
->> >> _______________________________________________
->> >> yocto mailing list
->> >> yocto@yoctoproject.org
->> >> https://lists.yoctoproject.org/listinfo/yocto
->> >
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
+http://git.yoctoproject.org/cgit.cgi/poky/commit/bitbake/lib/bb/data_smart.py?id=f7f5e30667e1ad8e1ca76ee331be2843f2976bfa
+
+?
+
+Cheers,
+
+Richard
+
+
 
