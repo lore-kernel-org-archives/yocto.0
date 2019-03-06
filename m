@@ -1,62 +1,46 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <442-103-8455@kylheku.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 27096E00C43; Wed,  6 Mar 2019 14:47:54 -0800 (PST)
+	id 6E0C7E00C93; Wed,  6 Mar 2019 14:55:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	FROM_STARTS_WITH_NUMS,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	https://www.dnswl.org/, low *      trust
+	*      [64.59.134.12 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.179 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-it1-f179.google.com (mail-it1-f179.google.com
-	[209.85.166.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C363CE0096F
-	for <yocto@yoctoproject.org>; Wed,  6 Mar 2019 14:47:52 -0800 (PST)
-Received: by mail-it1-f179.google.com with SMTP id l139so12766479ita.5
-	for <yocto@yoctoproject.org>; Wed, 06 Mar 2019 14:47:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=v57isP134/mQ9rcjF4gpfwooMdeDYQWCVIXltqgPT+8=;
-	b=0orfEPmINVQ7qwMAP61w7Q4qLNB31gFyOPiXsrTUUQb5GqEkk9VXgD5OsiMny0z1bc
-	H33l6FbmVr+QEl89ZPF/3oSDafyz9ejxeilIlBY3WiiZsRtPbOyI/E2jIvpTjkDXIDT8
-	pi9zHmMBmkUMjXaZKzBOxdhs9Es4R9G/I+g/N+8Rc9DCKOW4LyVyOIRALxMSe/LqaeMH
-	ziVbyAcRcsKPp3Wwxzea1De/+WX4/P+34Fdf6vS14qg6tcU/lgvZz7lmVWG86+yUcqMK
-	E2VVRrzQ3Oz8xg1PU+kcoXG1xwjgtSt3TB3Q2tdsK4rBdjCDUKTDYutZbTz2W2fHG1/O
-	Sr6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=v57isP134/mQ9rcjF4gpfwooMdeDYQWCVIXltqgPT+8=;
-	b=uQNtktune1yvkETDYg3CwjaokTjEjtpKJJx2FYyT0bqyPuSjXvd1TfytL4GCWYtaV7
-	YcO4pSPSUH8dNs595YzHrynd+/VKvCzJB2PZRpdB4bp+UmOZmftkituOez2N8krV1BiE
-	Db2zd4tRzTKiv2ihipajk/HJkepwwpmyL1LtDXFiYfdLCA+QYQLn3ldx2y/lOE+g3NGv
-	3AT6lmjBviDHAdGntIIbFB5iT/OeQStx9rGTeVyJvoVcSdmyPJ/EQScUxXGnmikhbnfo
-	2+3/R1Qgl3ojWYeXYL4qjQAnVdGb5XR5ZA+4ZnogDgAjuaC9MEWaUCGhzMGsyUXfTBum
-	zcLQ==
-X-Gm-Message-State: APjAAAUU44iE/StuIhzgKQ0dYE1fHR3cAp7SnEq6bVtTVWZaKIpPt26V
-	6taMmtbJkT1S4OgB2NIdZVbvzOZohhDZ3jRpXaZbcA==
-X-Google-Smtp-Source: APXvYqxMyBjuNmeAtK4zOUenrQ3UO0945hyjG5a8HPgt/Vw9HLvZOVNaLI/c7UglkfcmcaP0RJI914EESgChfGCKiZo=
-X-Received: by 2002:a24:2ec2:: with SMTP id i185mr3292890ita.62.1551912472162; 
-	Wed, 06 Mar 2019 14:47:52 -0800 (PST)
+	*  0.7 FROM_STARTS_WITH_NUMS From: starts with several numbers
+Received: from smtp-out-no.shaw.ca (smtp-out-no.shaw.ca [64.59.134.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14FC2E00BCC
+	for <yocto@yoctoproject.org>; Wed,  6 Mar 2019 14:55:46 -0800 (PST)
+Received: from kylheku.com ([70.79.163.252]) by shaw.ca with ESMTPA
+	id 1fRxhW1lHlvAB1fRyhcqo8; Wed, 06 Mar 2019 15:55:46 -0700
+X-Authority-Analysis: v=2.3 cv=AMNsc7SD c=1 sm=1 tr=0
+	a=95A0EdhkF1LMGt25d7h1IQ==:117 a=95A0EdhkF1LMGt25d7h1IQ==:17
+	a=IkcTkHD0fZMA:10 a=SMorJkV_YP8A:10 a=NTGMnVQrEZIA:10
+	a=3VpiRF7a-cWHpSRFbPQA:9 a=QEXdDO2ut3YA:10
+Received: from www-data by kylheku.com with local (Exim 4.72)
+	(envelope-from <442-103-8455@kylheku.com>)
+	id 1h1fRx-0004mj-7A; Wed, 06 Mar 2019 14:55:45 -0800
+To: "Burton, Ross" <ross.burton@intel.com>
+X-PHP-Originating-Script: 501:rcmail.php
 MIME-Version: 1.0
+Date: Wed, 06 Mar 2019 14:55:45 -0800
+From: "Kaz Kylheku (poky)" <442-103-8455@kylheku.com>
+In-Reply-To: <e382eb0d50ca12ccafe454636717459e@mail.kylheku.com>
 References: <4d30a0e379c74c9e673fd65721463b04@mail.kylheku.com>
 	<fd98415c1d3aebb569a588bfa0faf9f3d86ca9cd.camel@linuxfoundation.org>
 	<e21f2565c099e27ab58c7c7feaafdb95@mail.kylheku.com>
 	<CAJTo0LZ=ebR2Mao_-vyFN8YTg2pfse2Ls476pb5hHZaQGMBpkA@mail.gmail.com>
 	<e382eb0d50ca12ccafe454636717459e@mail.kylheku.com>
-In-Reply-To: <e382eb0d50ca12ccafe454636717459e@mail.kylheku.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 6 Mar 2019 22:47:40 +0000
-Message-ID: <CAJTo0LY76gZZDrpfcprMJUofhv04ZweojsPc=QgyGQehm47H4A@mail.gmail.com>
-To: "Kaz Kylheku (poky)" <442-103-8455@kylheku.com>
+Message-ID: <cede6693365e450c00ad97f194b281fd@mail.kylheku.com>
+X-Sender: 442-103-8455@kylheku.com
+User-Agent: Roundcube Webmail/0.9.2
+X-CMAE-Envelope: MS4wfC8Uy0P/mxLymO3g0WiRhtBa4hR/YRAji5QbfGgDf05Jti/yXkdvHQgzGz7XoNn8ExuRwAzxfrbsqxd3462ccSY2Nlrd6O+Q4r5GBG0mjbiQbW92s1t4
+	556jPYKl0ywqF+F02D3D+c1WfCQORWzfsgWibdNxQbCnKU1rZH/pW1KbjKOSzVbf/h5KpyoSa622Ci3jRjFtdRS2gZBhOvsNepjCqWDRUCwUX4jNfwB5nrk3
+	Fy0l2tNOUZOj2vBmKiRZH/Ptal22P3O+yCrYEnQ6wKA=
 Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: Incremental rebuild doesn't pick up FILES changes.
 X-BeenThere: yocto@yoctoproject.org
@@ -70,30 +54,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Mar 2019 22:47:54 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 06 Mar 2019 22:55:47 -0000
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 6 Mar 2019 at 22:27, Kaz Kylheku (poky)
-<442-103-8455@kylheku.com> wrote:
-> Ah, okay; this is because it's been split into various sub-packages. So
-> we have to operate on "-core".
-> The .json manifest brings these into the "core" package:
->
->              "${libdir}/python2.7/encodings",
->              "${libdir}/python2.7/encodings/aliases.py",
->              "${libdir}/python2.7/encodings/utf_8.py",
->
-> I don't want all of encoders, just the utf_8.py and the aliases
-> dictionary.
->
+On 2019-03-06 14:26, Kaz Kylheku (poky) wrote:
 > So I'm guessing this should be
->
->    FILES_${PN}-core_remove =
+>=20
+>   FILES_${PN}-core_remove =3D
 
-Yes.  It's too late to think about parse ordering because of the
-complexity of Python's packaging but that *should* work.
+No dice. FILES_${PN}-core_remove =3D "${libdir}/python-2.7/encodings" does=
+=20
+not register anywhere. In the "bitbake -e" output, no _remove event=20
+appears for FILES_python-core, and the image still contains that=20
+encodings directory.
 
-Worst case: provide your own manifest if the packaging isn't what you want.
+I'm afraid I'm outsmarted here by the Smart Dictionary.
 
-Ross
+This ugly fallback is doing what I want though:
+
+   do_install_append() {
+     encodings=3D${D}/usr/lib/python2.7/encodings
+
+     if [ -e "$encodings" ] ; then
+       find "$encodings" -type f | grep -v -E=20
+'/(utf_8|aliases)\.(py|pyc)$' | xargs rm -f
+     fi
+   }
+
+
 
