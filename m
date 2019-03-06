@@ -1,43 +1,67 @@
-Return-Path: <442-103-8455@kylheku.com>
+Return-Path: <alex.kiernan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 11711E00C43; Tue,  5 Mar 2019 18:29:48 -0800 (PST)
+	id 56D19E00C4D; Tue,  5 Mar 2019 20:44:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-	FROM_STARTS_WITH_NUMS,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.7 FROM_STARTS_WITH_NUMS From: starts with several numbers
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [64.59.136.137 listed in list.dnswl.org]
-X-Greylist: delayed 60 seconds by postgrey-1.32 at yocto-www;
-	Tue, 05 Mar 2019 18:29:47 PST
-Received: from smtp-out-so.shaw.ca (smtp-out-so.shaw.ca [64.59.136.137])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C045E00A54
-	for <yocto@yoctoproject.org>; Tue,  5 Mar 2019 18:29:47 -0800 (PST)
-Received: from kylheku.com ([70.79.163.252]) by shaw.ca with ESMTPA
-	id 1MIXhcDTb3Vk81MIYhKa9J; Tue, 05 Mar 2019 19:28:47 -0700
-X-Authority-Analysis: v=2.3 cv=RcXu9Glv c=1 sm=1 tr=0
-	a=95A0EdhkF1LMGt25d7h1IQ==:117 a=95A0EdhkF1LMGt25d7h1IQ==:17
-	a=IkcTkHD0fZMA:10 a=SMorJkV_YP8A:10 a=NTGMnVQrEZIA:10
-	a=pw3DvmYinDNfr2jCjW4A:9 a=QEXdDO2ut3YA:10 a=pHzHmUro8NiASowvMSCR:22
-	a=n87TN5wuljxrRezIQYnT:22
-Received: from www-data by kylheku.com with local (Exim 4.72)
-	(envelope-from <442-103-8455@kylheku.com>) id 1h1MIX-0005cH-6L
-	for yocto@yoctoproject.org; Tue, 05 Mar 2019 18:28:45 -0800
-To: yocto@yoctoproject.org
-X-PHP-Originating-Script: 501:rcmail.php
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kiernan[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.193 listed in list.dnswl.org]
+Received: from mail-vk1-f193.google.com (mail-vk1-f193.google.com
+	[209.85.221.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 381BFE0090C
+	for <yocto@yoctoproject.org>; Tue,  5 Mar 2019 20:44:58 -0800 (PST)
+Received: by mail-vk1-f193.google.com with SMTP id w85so2510294vkw.11
+	for <yocto@yoctoproject.org>; Tue, 05 Mar 2019 20:44:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=VTQHGzzbascs4vef5FqwkxwDKsbjto/2m/IGJ4Py2vA=;
+	b=og2aD2Ry3yk2CsJ64eotP5s8efrsmGKxFLiesyXfuLw9Ssj5a3Kq9p3BgHUgGOUVpK
+	2lH+QFFo1ReLxvj5YqEDUVYV2SszDZEeRO3d2fopk3hjvCEOhSy5Pu8alHaDq48R23qy
+	hJrCpMc6INg6YFzB0MOkpzeKNywoGflTgS3ziffajGLmcGG+RT8q5ig0jFzt+mY8vLQP
+	hExZ7Y/v2PMNVTxDxIKMlAuQo7UsfyndgBkfslHZDv0SAUWbK/Evkci7vWLvZmUKr4Mv
+	jBOH+x8bmYS3l3/q2BvXLcy9+omTsmlUWj8h3wly2NSsDVtMMuq5qkBVz109BWpzlL9R
+	KYgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=VTQHGzzbascs4vef5FqwkxwDKsbjto/2m/IGJ4Py2vA=;
+	b=hTF8FfRY1dVuPEuqIvHITtAGZkEOfI5DKMIx8pBFeY2jWlAL5YMHAcA9eVxDrO9M+h
+	lPcdhdlY7xUhbqYzlQM1ww+PuVtoZPqHLfvwkG+9ceLyNKpc3+ZtsB/XuqyQVirPNslC
+	khyhqsZDB6vW6087TM4gGPxQ6gWZmHiWHputF6ezu0dKJURMtTEZxsZYihkPSGZNzghg
+	/WfAFsof/DeL5ZeYtYkWb6mHkwsDCA7eM/l75NJg2lDuGEJ6Dwtyo2186YQXAr+G19bB
+	JkmMwZLu5+BF523a8flkHgJMelxtUhXkMsMecp3YGNo0/L2wD1dW+7CHZSIJkwT7n1Zi
+	vSwA==
+X-Gm-Message-State: APjAAAU/xKBaUYS2f4CLns0g35GRQm+YviwiSd2PFVBpNYIG3H1SVFR9
+	o6ruzsa7+AQ4M34AsA3wknJ0wWdJuqt2jscTI9c=
+X-Google-Smtp-Source: APXvYqySmc5eJq46YbxhrHMHQnVZttmYvGrh7ZtteLGS+ZksBC+qXBIVLd48t/2r/J852Pp0yvGc6gFuokIJ528yc5U=
+X-Received: by 2002:a1f:de82:: with SMTP id v124mr2252756vkg.26.1551847497348; 
+	Tue, 05 Mar 2019 20:44:57 -0800 (PST)
 MIME-Version: 1.0
-Date: Tue, 05 Mar 2019 18:28:45 -0800
-From: "Kaz Kylheku (poky)" <442-103-8455@kylheku.com>
-Message-ID: <4d30a0e379c74c9e673fd65721463b04@mail.kylheku.com>
-X-Sender: 442-103-8455@kylheku.com
-User-Agent: Roundcube Webmail/0.9.2
-X-CMAE-Envelope: MS4wfNQO08WFlyAcVFWPa9WjaOMEjeZkbhqr0GsN40sltl3+uMAg7PDzEQ/qm1/KLRrybM/5XVtIaQW+o9dxjJJS9qRh2cl+qQzWVr+SqYpL7B58E/S3bcER
-	GGtjNh3W/NK+h8siCfKbKtH9/V0MN9uPTBJNdfQl29UaFwzAeclFGxB4LchcB0v7D1VjmUJaCbGHAw==
-Subject: Incremental rebuild doesn't pick up FILES changes.
+References: <6323ed1d-0e39-4d07-e691-5e3e07f007f9@windriver.com>
+	<90ababe5-0ec7-ccb6-9308-19660f573930@ni.com>
+	<905307c29324d701044d2d1b2fd0952edd3fbc36.camel@linuxfoundation.org>
+In-Reply-To: <905307c29324d701044d2d1b2fd0952edd3fbc36.camel@linuxfoundation.org>
+From: Alex Kiernan <alex.kiernan@gmail.com>
+Date: Wed, 6 Mar 2019 04:44:46 +0000
+Message-ID: <CAO5Uq5T=uC7qQ3y0cYEG5iFyeA6hhvwz4bV9SOUyRnvtSEqAbQ@mail.gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"opkg-devel@googlegroups.com" <opkg-devel@googlegroups.com>
+Subject: Re: [opkg-devel] [opkg-utils] Question: why update-alternatives from opkg-utils chooses /usr/lib to hold database?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,33 +73,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Mar 2019 02:29:48 -0000
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 06 Mar 2019 04:44:59 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Tue, Mar 5, 2019 at 10:50 PM Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+>
+> On Tue, 2019-03-05 at 16:05 +0000, Alejandro Del Castillo wrote:
+> >
+> > On 3/5/19 12:11 AM, ChenQi wrote:
+> > > Hi All,
+> > >
+> > > Recently I'm dealing with issue from which some discussion raises.
+> > > I'd like to ask why update-alternatives from opkg-utils chooses
+> > > /usr/lib
+> > > to hold its alternatives database?
+> > > I looked into debian, its update-alternatives chooses /var/lib by
+> > > default.
+> > > Is there some design consideration? Or some historical reason?
+> >
+> > Update-alternatives used to be on the opkg repo. I did a search
+> > there
+> > all the way to the first commit on 2008-12-15 [1], but even then
+> > /usr/lib was used. I can't think of a design consideration that
+> > would
+> > make /usr/lib more palatable than the Debian default.
+> >
+> > Maybe someone with more knowledge of the previous history can chime
+> > in?
+> >
+> > [1]
+> > http://git.yoctoproject.org/clean/cgit.cgi/opkg/commit/?id=8bf49d16a637cca0cd116450dfcabc4c941baf6c
+>
+> I think the history is that the whole of /var was considered volatile
+> and we wanted the alternatives data to stick around so it was put under
+> /usr.
+>
+> That decision doesn't really make sense now since only parts of /var
+> are volatile..
+>
 
-I'm working in a Yocto 2.5 environment.
+I don't use opkg (or in fact any package manager on a target), but I
+do use OSTree, where my /var isn't part of what gets deployed to a
+device (https://ostree.readthedocs.io/en/latest/manual/adapting-existing/#adapting-existing-package-managers)
+so having the option to keep it in /usr would be important to anyone
+who has mechanisms like that.
 
-In my own layer, I added a bbappend targeting python which does this:
-
-   FILES_${PN}_remove =3D "${libdir}/python2.7/encodings"
-
-Now this didn't take effect as I expected. I had to do a "bitbake -c=20
-cleanall python" to rebuild the package.
-
-In any case, all I have in the image now, as I expected, is these four=20
-files, vastly reduced from dozens:
-
-   /usr/lib/python2.7/encodings/{aliases,utf-8}.{py,pyc}
-
-Now, if I comment out this FILES_${PN}_remove variable assignment, I=20
-cannot get the previously removed encoding modules to re-appear in my=20
-image! I tried "bitbake -c cleanall" on python, and blowing away its=20
-build directory. It didn't work; still there are just those four files.
-
-How do we get Yocto to react to FILES changes, short of blowing away the=20
-entire build tree?
-
+-- 
+Alex Kiernan
 
