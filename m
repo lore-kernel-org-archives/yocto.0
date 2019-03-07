@@ -1,6 +1,6 @@
-Return-Path: <uol@pengutronix.de>
+Return-Path: <sscott@san.rr.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7658CE00CED; Thu,  7 Mar 2019 07:42:04 -0800 (PST)
+	id EEC7CE00C43; Thu,  7 Mar 2019 08:04:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,39 +10,32 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [85.220.165.71 listed in list.dnswl.org]
-X-Greylist: delayed 1102 seconds by postgrey-1.32 at yocto-www;
-	Thu, 07 Mar 2019 07:42:03 PST
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
-	[85.220.165.71])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A257E00AD5
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2019 07:42:03 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-	by metis.ext.pengutronix.de with esmtps
-	(TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.89)
-	(envelope-from <uol@pengutronix.de>)
-	id 1h1us0-0004fq-Pc; Thu, 07 Mar 2019 16:23:40 +0100
-Received: from uol by dude.hi.pengutronix.de with local (Exim 4.92-RC6)
-	(envelope-from <uol@pengutronix.de>)
-	id 1h1us0-0000I1-F3; Thu, 07 Mar 2019 16:23:40 +0100
-References: <CAAx3WaA0NR=cdGJdPHrkSuENKT7m60GW=pcjCjAHpgwEFPMHwg@mail.gmail.com>
-	<A2A9E37E9C946847B2258F923F7CFE42047B38BE@GOEMAIL-Server2.goerlitz.int>
-User-agent: mu4e 1.1.0; emacs 26.1
-From: Ulrich =?utf-8?Q?=C3=96lmann?= <u.oelmann@pengutronix.de>
-To: yocto@yoctoproject.org
-In-reply-to: <A2A9E37E9C946847B2258F923F7CFE42047B38BE@GOEMAIL-Server2.goerlitz.int>
-Date: Thu, 07 Mar 2019 16:23:40 +0100
-Message-ID: <6rh8ceu2rn.fsf@pengutronix.de>
+	*      [107.14.166.226 listed in list.dnswl.org]
+X-Greylist: delayed 60 seconds by postgrey-1.32 at yocto-www;
+	Thu, 07 Mar 2019 08:04:15 PST
+Received: from cdptpa-cmomta03.email.rr.com (cdptpa-outbound-snat.email.rr.com
+	[107.14.166.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 269B3E00AD5
+	for <yocto@yoctoproject.org>; Thu,  7 Mar 2019 08:04:15 -0800 (PST)
+Received: from boobie ([75.80.138.87]) by cmsmtp with ESMTP
+	id 1vUFhiL2Xk8iv1vUIhyeDw; Thu, 07 Mar 2019 16:03:14 +0000
+From: "Steve Scott" <sscott@san.rr.com>
+To: <yocto@yoctoproject.org>
+References: <MWHPR21MB07666F341A64E2B2553E5927E5740@MWHPR21MB0766.namprd21.prod.outlook.com>
+	<MWHPR21MB076694812B1F6F66A7805392E5730@MWHPR21MB0766.namprd21.prod.outlook.com>
+In-Reply-To: <MWHPR21MB076694812B1F6F66A7805392E5730@MWHPR21MB0766.namprd21.prod.outlook.com>
+Date: Thu, 7 Mar 2019 08:03:17 -0800
+Message-ID: <007001d4d4ff$491a33f0$db4e9bd0$@san.rr.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: uol@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
-	SAEximRunCond expanded to false
-X-PTX-Original-Recipient: yocto@yoctoproject.org
-Subject: Re: Multiple ubifs partition
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQCKsK60U3lxeq44Ef5lYdEKnS1nGgJN1TECqIIstsA=
+X-CMAE-Envelope: MS4wfAKW8Oqj5XjExg1cvQLq0Qzug3C2olHjNM+eG1vX3uwmMVJlZXhOC+M1+8KoJlhWmTCN+/7fdOvEgq0LWKRvcFyYLh0NPumVKTvk5URpkX9OR3tSAATF
+	IN8ne5y3UjJEGTLN/+NeOLvKv5zK/1YnLAxEVF9ufWZsqf8V4suONCeO
+Subject: Re: SRC_URI when there is a local mirror but no remote repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: sscott@san.rr.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -51,54 +44,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Mar 2019 15:42:04 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 07 Mar 2019 16:04:16 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
-Hi there,
+SRC_URI = "file://${TOPDIR}/../local_mirror/example-1.0.0.src.tar.gz" should
+work, without need for do_unpack.
 
-On Thu, Mar 07 2019 at 15:11 +0100, Stelling2 Carsten <Carsten.Stelling2@go=
-erlitz.com> wrote:
-> Have you seen https://github.com/pengutronix/genimage?
+What error are you getting?
 
-you can find it included within https://github.com/pengutronix/meta-ptx
-with an accompanying genimage.bbclass.
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Edmund Nadolski
+> Sent: Wednesday, March 06, 2019 11:52 AM
+> To: Edmund Nadolski <Edmund.Nadolski@microsoft.com>;
+> yocto@yoctoproject.org
+> Subject: Re: [yocto] SRC_URI when there is a local mirror but no remote
+repo
+> 
+> Friendly ping, any thoughts on this?
+> 
+> One thing I have noted - without the remote url, bitbake will not link the
+file
+> into DL_DIR or create a *.done file for it.
+> 
+> TIA,
+> Ed
+> 
+> > -----Original Message-----
+> > From: yocto-bounces@yoctoproject.org <yocto-
+> bounces@yoctoproject.org>
+> > On Behalf Of Edmund Nadolski
+> > Sent: Wednesday, February 27, 2019 3:00 PM
+> > To: yocto@yoctoproject.org
+> > Subject: [yocto] SRC_URI when there is a local mirror but no remote
+> > repo
+> >
+> > Hi,
+> >
+> > Does Yocto/Bitbake support a way to set SRC_URI in a recipe when there
+> > is no corresponding upstream remote (git://, https://, etc.) for a
+*.tar.gz
+> file?
+> > IOW, I've configured for own_mirrors and set BB_NO_NETWORK=1, and
+> my
+> > *.tar.gz file only lives in the local_mirror directory.
+> >
+> > It looks to me like file:// thinks that the file always lives under
+${S}.
+> >
+> > TIA,
+> > Ed
+> >
+> > ...
+> > # functional workaround
+> > SRC_URI = " http://some.example.com/example-1.0.0.src.tar.gz"
+> > ...
+> >
+> > do_unpack () {
+> >         # Unpack straight from the local mirror since there is no remote
+> >         tar xzf ${TOPDIR}/../local_mirror/example-1.0.0.src.tar.gz -C
+> > ${S}
+> >
+> > do_install () {
+> >         install -d ${D}/${MY_DIR}
+> >         install -m 0744 ${S}/example/example.sh ${D}/${MY_DIR}
+> >
+> > --
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Best regards
-Ulrich
-
-> Regards,
->
-> Carsten
->
-> Von: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.or=
-g] Im Auftrag von Gabriele Zampieri
-> Gesendet: Montag, 4. M=C3=A4rz 2019 12:17
-> An: yocto@yoctoproject.org
-> Betreff: [yocto] Multiple ubifs partition
->
-> Hi all,
->
-> I'm trying to build a distribution that has multiple partitions. The desi=
-derata is something like:
->
-> - rootfs.ubifs mounted on /
-> - data.ubifs mounted on /data
-> - opt.ubifs mounted on /opt
->
-> I was wondering if there is a standard way to achieve the goal. I see tha=
-t there is a tool called wic, but it does not seems to support ubifs. I cou=
-ld post process the tarball image and doing stuff with my scripts, but I'd =
-prefer doing this in a single bitbake run. Can you suggest something?
->
-> Thanks,
-> Gabriele
-
-
---
-Pengutronix e.K.                           | Ulrich =C3=96lmann            =
-   |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
