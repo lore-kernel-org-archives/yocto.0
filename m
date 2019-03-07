@@ -1,35 +1,61 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <gabbla.malist@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8348DE00C71; Thu,  7 Mar 2019 00:33:42 -0800 (PST)
+	id 42CBFE00CAB; Thu,  7 Mar 2019 00:48:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8365E0048C
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2019 00:33:41 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x278X0Dm002502
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 7 Mar 2019 00:33:15 -0800
-Received: from localhost (128.224.163.192) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
-	Thu, 7 Mar 2019 00:33:01 -0800
-From: Yi Zhao <yi.zhao@windriver.com>
-To: <yocto@yoctoproject.org>, <akuster808@gmail.com>
-Date: Thu, 7 Mar 2019 16:32:59 +0800
-Message-ID: <1551947579-27420-1-git-send-email-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (gabbla.malist[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.50 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
+	[209.85.167.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78B77E00C71
+	for <yocto@yoctoproject.org>; Thu,  7 Mar 2019 00:48:09 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id u2so4091048lfd.4
+	for <yocto@yoctoproject.org>; Thu, 07 Mar 2019 00:48:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=O+aTRiR6bQqI/wUgW9NGxyyOOG08HR3J4upvh5mlIdM=;
+	b=PB4xsbjJfeoVMYbt9zeKUxdj2xVBKg9aa4EafyAt42NG/opq96TfRcwWv7L2OFMHmU
+	sO/RURrA00w+fIA1WOeRAH6pPpCjsxC1KrVbehfLGky0Dp0cdAVFmbNKkNs/K7lTncng
+	2NEooRkncna1SJmBGPvFZesjWFK89gyHFGSPBj6koNy1qYZF0LaPvm6Gw8Xj8/nPJOkt
+	MZ7yoWEOS/35Vma07U3l/+DmRSmSSLWw+6CCvb4jWApwGUqxDAvgJi0z7WM6SqAMWN6A
+	nYd1rq1oNr1GQgnrpboT8DQp60fXMUmOUHb8ydNWAfbDdgBtxvRSj9hfFHjOnSiw/RYe
+	j+vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=O+aTRiR6bQqI/wUgW9NGxyyOOG08HR3J4upvh5mlIdM=;
+	b=J1L77x6Q3nK253+oeph2Cu+Ik6RjIg3bzlG24KepJSsEJIp9sCRb+PvofIIkP7fAxR
+	ves50+B9/w2B4O20Klm2yimusBzqM0SDLtXP+MDJ+3QVCU0Je8H6j24qbVsXh25QxiQ9
+	ku2XBVIJzWcMojbloLtILC/TbxOLdyisFnCKl+7SCq9r4FcKB5x17DhElYlBqMVUC2gb
+	NSkj9DISNIKKnPYfvyNW1WeLWvUM/llM86olP+g0LUIq0TtYIfyWiM07ICRQbeN/dRjF
+	3/yMrE/ER9jIkMSPg7Lf3Suk1rBLLN2LKso40TGmtG+WPCKAduMNvSo8RCKQ2QY7SjnW
+	2pWg==
+X-Gm-Message-State: APjAAAWO4F8lLLaV2cBNS2fEBL7lKkQwcrW/g92qgp28CY5ueskP8Xiq
+	kEPlfz6hQ+fWIIGNaoaEwf7HiuQbKUz/j5aVhsYFxQa/
+X-Google-Smtp-Source: APXvYqwn+H1krhOvpkLDc/OwK9QzTXGlWT6qjayHyacNgjYLeFrdPK7EWTHBpJz5ud+xhEDEpxwOnL6J8em3lR+5GwI=
+X-Received: by 2002:a19:6609:: with SMTP id a9mr6419680lfc.47.1551948488006;
+	Thu, 07 Mar 2019 00:48:08 -0800 (PST)
 MIME-Version: 1.0
-X-Originating-IP: [128.224.163.192]
-Subject: [meta-security][PATCH] openscap-daemon: backport patch to fix build error with python 3.7
+From: Gabriele Zampieri <gabbla.malist@gmail.com>
+Date: Thu, 7 Mar 2019 09:47:57 +0100
+Message-ID: <CAAx3WaBXE9Mh_DoZ86v1rvsZzafhjwGtcxApFct0RwFZPcj=Hg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Recipe require kernel headers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,179 +67,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Mar 2019 08:33:42 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 07 Mar 2019 08:48:10 -0000
+Content-Type: multipart/alternative; boundary="0000000000005661eb05837d2af8"
 
-Fixes build error:
-  | Traceback (most recent call last):
-  |   File "setup.py", line 25, in <module>
-  |     from openscap_daemon import version
-  |   File "/buildarea/build/tmp/work/core2-64-poky-linux/openscap-daemon/0.1.10-r0/git/openscap_daemon/__init__.py", line 22, in <module>
-  |     from openscap_daemon.system import System
-  |   File "/buildarea/build/tmp/work/core2-64-poky-linux/openscap-daemon/0.1.10-r0/git/openscap_daemon/system.py", line 29
-  |     from openscap_daemon import async
-  |                                     ^
-  | SyntaxError: invalid syntax
+--0000000000005661eb05837d2af8
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- ...-module-and-variables-to-get-rid-of-async.patch | 130 +++++++++++++++++++++
- .../openscap-daemon/openscap-daemon_0.1.10.bb      |   4 +-
- 2 files changed, 133 insertions(+), 1 deletion(-)
- create mode 100644 meta-security-compliance/recipes-openscap/openscap-daemon/files/0001-Renamed-module-and-variables-to-get-rid-of-async.patch
+Hi all,
 
-diff --git a/meta-security-compliance/recipes-openscap/openscap-daemon/files/0001-Renamed-module-and-variables-to-get-rid-of-async.patch b/meta-security-compliance/recipes-openscap/openscap-daemon/files/0001-Renamed-module-and-variables-to-get-rid-of-async.patch
-new file mode 100644
-index 0000000..2a518bf
---- /dev/null
-+++ b/meta-security-compliance/recipes-openscap/openscap-daemon/files/0001-Renamed-module-and-variables-to-get-rid-of-async.patch
-@@ -0,0 +1,130 @@
-+From c34349720a57997d30946286756e2ba9dbab6ace Mon Sep 17 00:00:00 2001
-+From: =?UTF-8?q?Mat=C4=9Bj=20T=C3=BD=C4=8D?= <matyc@redhat.com>
-+Date: Mon, 2 Jul 2018 11:21:19 +0200
-+Subject: [PATCH] Renamed module and variables to get rid of async.
-+
-+async is a reserved word in Python 3.7.
-+
-+Upstream-Status: Backport
-+[https://github.com/OpenSCAP/openscap-daemon/commit/c34349720a57997d30946286756e2ba9dbab6ace]
-+
-+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-+---
-+ openscap_daemon/{async.py => async_tools.py} |  0
-+ openscap_daemon/dbus_daemon.py               |  2 +-
-+ openscap_daemon/system.py                    | 16 ++++++++--------
-+ tests/unit/test_basic_update.py              |  3 ++-
-+ 4 files changed, 11 insertions(+), 10 deletions(-)
-+ rename openscap_daemon/{async.py => async_tools.py} (100%)
-+
-+diff --git a/openscap_daemon/async.py b/openscap_daemon/async_tools.py
-+similarity index 100%
-+rename from openscap_daemon/async.py
-+rename to openscap_daemon/async_tools.py
-+diff --git a/openscap_daemon/dbus_daemon.py b/openscap_daemon/dbus_daemon.py
-+index e6eadf9..cb6a8b6 100644
-+--- a/openscap_daemon/dbus_daemon.py
-++++ b/openscap_daemon/dbus_daemon.py
-+@@ -81,7 +81,7 @@ class OpenSCAPDaemonDbus(dbus.service.Object):
-+     @dbus.service.method(dbus_interface=dbus_utils.DBUS_INTERFACE,
-+                          in_signature="", out_signature="a(xsi)")
-+     def GetAsyncActionsStatus(self):
-+-        return self.system.async.get_status()
-++        return self.system.async_manager.get_status()
-+ 
-+     @dbus.service.method(dbus_interface=dbus_utils.DBUS_INTERFACE,
-+                          in_signature="s", out_signature="(sssn)")
-+diff --git a/openscap_daemon/system.py b/openscap_daemon/system.py
-+index 2012f6e..85c2680 100644
-+--- a/openscap_daemon/system.py
-++++ b/openscap_daemon/system.py
-+@@ -26,7 +26,7 @@ import logging
-+ from openscap_daemon.task import Task
-+ from openscap_daemon.config import Configuration
-+ from openscap_daemon import oscap_helpers
-+-from openscap_daemon import async
-++from openscap_daemon import async_tools
-+ 
-+ 
-+ class ResultsNotAvailable(Exception):
-+@@ -40,7 +40,7 @@ TASK_ACTION_PRIORITY = 10
-+ 
-+ class System(object):
-+     def __init__(self, config_file):
-+-        self.async = async.AsyncManager()
-++        self.async_manager = async_tools.AsyncManager()
-+ 
-+         logging.info("Loading configuration from '%s'.", config_file)
-+         self.config = Configuration()
-+@@ -90,7 +90,7 @@ class System(object):
-+             input_file, tailoring_file, None
-+         )
-+ 
-+-    class AsyncEvaluateSpecAction(async.AsyncAction):
-++    class AsyncEvaluateSpecAction(async_tools.AsyncAction):
-+         def __init__(self, system, spec):
-+             super(System.AsyncEvaluateSpecAction, self).__init__()
-+ 
-+@@ -113,7 +113,7 @@ class System(object):
-+             return "Evaluate Spec '%s'" % (self.spec)
-+ 
-+     def evaluate_spec_async(self, spec):
-+-        return self.async.enqueue(
-++        return self.async_manager.enqueue(
-+             System.AsyncEvaluateSpecAction(
-+                 self,
-+                 spec
-+@@ -488,7 +488,7 @@ class System(object):
-+ 
-+         return ret
-+ 
-+-    class AsyncUpdateTaskAction(async.AsyncAction):
-++    class AsyncUpdateTaskAction(async_tools.AsyncAction):
-+         def __init__(self, system, task_id, reference_datetime):
-+             super(System.AsyncUpdateTaskAction, self).__init__()
-+ 
-+@@ -536,7 +536,7 @@ class System(object):
-+ 
-+                 if task.should_be_updated(reference_datetime):
-+                     self.tasks_scheduled.add(task.id_)
-+-                    self.async.enqueue(
-++                    self.async_manager.enqueue(
-+                         System.AsyncUpdateTaskAction(
-+                             self,
-+                             task.id_,
-+@@ -662,7 +662,7 @@ class System(object):
-+             fix_type
-+         )
-+ 
-+-    class AsyncEvaluateCVEScannerWorkerAction(async.AsyncAction):
-++    class AsyncEvaluateCVEScannerWorkerAction(async_tools.AsyncAction):
-+         def __init__(self, system, worker):
-+             super(System.AsyncEvaluateCVEScannerWorkerAction, self).__init__()
-+ 
-+@@ -680,7 +680,7 @@ class System(object):
-+             return "Evaluate CVE Scanner Worker '%s'" % (self.worker)
-+ 
-+     def evaluate_cve_scanner_worker_async(self, worker):
-+-        return self.async.enqueue(
-++        return self.async_manager.enqueue(
-+             System.AsyncEvaluateCVEScannerWorkerAction(
-+                 self,
-+                 worker
-+diff --git a/tests/unit/test_basic_update.py b/tests/unit/test_basic_update.py
-+index 6f683e6..7f953f7 100755
-+--- a/tests/unit/test_basic_update.py
-++++ b/tests/unit/test_basic_update.py
-+@@ -37,8 +37,9 @@ class BasicUpdateTest(unit_test_harness.APITest):
-+         print(self.system.tasks)
-+         self.system.schedule_tasks()
-+ 
-+-        while len(self.system.async.actions) > 0:
-++        while len(self.system.async_manager.actions) > 0:
-+             time.sleep(1)
-+ 
-++
-+ if __name__ == "__main__":
-+     BasicUpdateTest.run()
-+-- 
-+2.7.4
-+
-diff --git a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-index a6a9373..ca6e030 100644
---- a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-@@ -9,7 +9,9 @@ LICENSE = "LGPL-2.1"
- DEPENDS = "python3-dbus"
- 
- SRCREV = "f25b16afb6ac761fea13132ff406fba4cdfd2b76"
--SRC_URI = "git://github.com/OpenSCAP/openscap-daemon.git"
-+SRC_URI = "git://github.com/OpenSCAP/openscap-daemon.git \
-+           file://0001-Renamed-module-and-variables-to-get-rid-of-async.patch \
-+          "
- 
- inherit setuptools3
- 
--- 
-2.7.4
+I have a custom recipe that builds and installs a C program that include:
 
+#include <bluetooth/bluetooth.h>
+#include <bluetooth/hci.h>
+#include <bluetooth/hci_lib.h>
 
+I can compile it with TI prebuilt SDK, but when I try to build it with
+yocto the compiler is unable to find those headers.
+
+In the recipe do_compile I simply execute:
+${CC} ${CFLAGS} ${S}/program.c -o program
+(as I do with the prebuild SDK). But the compilation fails due to the
+missing headers. I could a list of include paths to ${CC}, pointing to the
+location in the kernel tree, but I don't really like it as solution. The
+prebuild SDK install those file in
+<SDK>/sysroots/<armv7ahf-neon-linux-gnueabi>/usr/include (and append that
+path to CFLAGS through the env setup script). Moreover, if I build the
+image without my recipe and I look for the headers I find them in rootfs,
+but not in recipe-sysroot. The Yocto system I'm using is based on TI arago
+customization.
+
+How can I add the sanitized kernel heders to the recipe-sysroot or use them
+to build my tool?
+
+Thanks in advance,
+Gabriele
+
+--0000000000005661eb05837d2af8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi=
+ all,</div><div><br></div><div>I have a custom recipe that builds and insta=
+lls a C program that include:</div><div><br></div><div style=3D"margin-left=
+:40px">#include &lt;bluetooth/bluetooth.h&gt;</div><div style=3D"margin-lef=
+t:40px">#include &lt;bluetooth/hci.h&gt;</div><div style=3D"margin-left:40p=
+x">#include &lt;bluetooth/hci_lib.h&gt;</div><br></div><div dir=3D"ltr">I c=
+an compile it with TI prebuilt SDK, but when I try to build it with yocto t=
+he compiler is unable to find those headers.</div><div dir=3D"ltr"><br></di=
+v><div>In the recipe do_compile I simply execute: <br></div><div style=3D"m=
+argin-left:40px">${CC} ${CFLAGS} ${S}/program.c -o program <br></div><div>(=
+as I do with the prebuild SDK). But the compilation fails due to the missin=
+g headers. I could a list of include paths to ${CC}, pointing to the locati=
+on in the kernel tree, but I don&#39;t really like it as solution. The preb=
+uild SDK install those file in &lt;SDK&gt;/sysroots/&lt;armv7ahf-neon-linux=
+-gnueabi&gt;/usr/include (and append that path to CFLAGS through the env se=
+tup script). Moreover, if I build the image without my recipe and I look fo=
+r the headers I find them in rootfs, but not in recipe-sysroot. The Yocto s=
+ystem I&#39;m using is based on TI arago customization.<br></div><div><br><=
+/div><div>How can I add the sanitized kernel heders to the recipe-sysroot o=
+r use them to build my tool?</div><div><br></div><div>Thanks in advance,<br=
+></div><div>Gabriele<br></div></div></div></div>
+
+--0000000000005661eb05837d2af8--
