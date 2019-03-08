@@ -1,16 +1,17 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <vishwavtu@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E8EA8E00D11; Fri,  8 Mar 2019 07:25:13 -0800 (PST)
+	id D39C1E00D15; Fri,  8 Mar 2019 07:25:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	provider *      (vishwavtu[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -18,51 +19,43 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.171 listed in list.dnswl.org]
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
-	[209.85.210.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66038E00BBC
-	for <yocto@yoctoproject.org>; Fri,  8 Mar 2019 07:25:13 -0800 (PST)
-Received: by mail-pf1-f171.google.com with SMTP id v21so14387910pfm.12
-	for <yocto@yoctoproject.org>; Fri, 08 Mar 2019 07:25:13 -0800 (PST)
+	*      [209.85.128.48 listed in list.dnswl.org]
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+	[209.85.128.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD867E006D8
+	for <yocto@yoctoproject.org>; Fri,  8 Mar 2019 07:25:26 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id a188so12654155wmf.3
+	for <yocto@yoctoproject.org>; Fri, 08 Mar 2019 07:25:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=BpnSYiwCmozM+fn7B1ujNXD6OEU5fYxZCmN4GQ3z0CI=;
-	b=X7OHooLnoPLTVq8CPPpPnBDSvsCFQnKYEO0sr8M/ay+rh10b5jwAWNMKQnTVW2rYZr
-	xDyfevmayjafx+LTiBQHvKmzwqEeXrfhqprfYWGrw2LpGCR8/dXMihNUPk+8CWqqaTPb
-	U7Jsla+zs9t7yiz48OCpj+ikF2gwSRsi1q4FwsQx/2/R/xSOwAEy5eWZLtn5gGaZjVWU
-	3jHcTdKnUyptpL/bk7JjJ/0Si/i5Ywuvj68h4mH5DGsm60lw4+kkrwf5ZVpW/QCQsQAG
-	eMEtraJv4l4AqT4eYBRAEam8Z253L8+X7RMzIkEHndi9OyXY3P25KgyhwJDtosKqE5qK
-	LeXQ==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=0VwA8s0SCby5lPyG6tbAPAD0ihtqVM81hOaJC2HaLjU=;
+	b=G/07LR+U1QAAyozbZMCiTsfM69wdTSPbUhwnAqFBJdHiZRK/PF5SFxOxrXuzGKO0rZ
+	QYNz/J1SHPAA+SeIKWqNdA3w8GPRXFg73Yrn8MxKcRn2tg/6nq5QJ4cW2WW7PZQVwXat
+	5h4wtmu/YxNmSNFAd0ILSp8HcW8VTGKbedl2O6HUOGCL/9fQrEg/Kt7uhsveFZuEmxkv
+	INRHVXcZ5Ylh4b0GyIsSOLd52reyWC0GVlJSUzukbBRvFTrankOFgQPEsh4H+lV4ma0I
+	BAG3iYo9o2Y7MNVbAfoLFiSC4ORlhKZIyBXUn1UvoE4lEMoP/HwF+IK/Kq/6hgDwZxlu
+	5CkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=BpnSYiwCmozM+fn7B1ujNXD6OEU5fYxZCmN4GQ3z0CI=;
-	b=tY04SyAg6Rs04VZiTa2qXhOjQTLn3qIHnbPArZ3JqaxvygMchn9FbU+4g9LVgNYNfk
-	7H6ywy899PGnovph3JT2ISyH6mhn+n+UcGn3V9HaRBeE0kAN7AfUKYjphHKyqOGuCQRc
-	aijVB7NggCE2y61aJGM1DhoVwyoTixtHJJlVT1O2Y/iJSFWu94T99tN96RonC12TDage
-	4bJaHROPnl08/NQCbraa+Zd0adjColGxoGAd1A1XtIBZcqS3mayFg6mo2GGTYWpaxu4L
-	qaQPoZ6QFvuVsQLD3cay4Jrzd0/2OddMTvGw1VgYC3zpgWQDrYUipxUe5q8KHnjh5dwX
-	uinA==
-X-Gm-Message-State: APjAAAUyATwwOuV7ReBA4TW2uVtIvLFkDxUHSOs64GetWXpTrBbDglba
-	Va3Q2NRmBNjzX89Iko6ioK801tt+
-X-Google-Smtp-Source: APXvYqzpCG82qo6AZyfzSmw3jBVAh9a5Eo0H4WC9EBQHlP1+3wH7bBGP+W+jlOOGN75iAPMsC4ZdJQ==
-X-Received: by 2002:aa7:8d53:: with SMTP id s19mr19485786pfe.16.1552058712819; 
-	Fri, 08 Mar 2019 07:25:12 -0800 (PST)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	u13sm21490467pfa.169.2019.03.08.07.25.12 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 08 Mar 2019 07:25:12 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri,  8 Mar 2019 07:25:10 -0800
-Message-Id: <20190308152510.13245-2-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190308152510.13245-1-akuster808@gmail.com>
-References: <20190308152510.13245-1-akuster808@gmail.com>
-Subject: [meta-security][PATCH 2/2] tripwire: fix ptest so more tests pass
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=0VwA8s0SCby5lPyG6tbAPAD0ihtqVM81hOaJC2HaLjU=;
+	b=hqh3dO4a9ZvlEhufDb6iOB/AsGgBvfE2fWYLgrgJhr+yXmbawBB37yJ3cMzLqXE9FK
+	4VSVxA/I5OYGAlJInbVUbZq73Pj631OpRBt837LB3n4P9mQpqW0ZGL0JLQK40b/zhqjC
+	NkBJHSFEwrw1FR2BYhtnc0MeeizxDq86gDmU3baV1DMYn7SHWsGYiee4xOqv8X2YP2fM
+	xgij+3tJV43OGz+cVQHCxLnYaYK6dlsGrWaUGZ77HNyKDIC01x8Z+gi/Mg4ivqiABxIu
+	5jJ5u0SyK3JSzKRV2JRdZcQ3vPGBR5tH7mJlTZHT3b/BH+vtYR7tkLpX/jmsCNLWUxng
+	g2Hg==
+X-Gm-Message-State: APjAAAU2iMJSlt8fw6j+jV8wNriqIsURkc5UMoNtbcHOnGsaWzCfb4fD
+	9RC9AQHf2Dn5HXUmdbzh0MCQsnXLmZGkgxhbKXPXSuOBzL4=
+X-Google-Smtp-Source: APXvYqynP2Pv55RNRzRPpjdSTvzAGDwBvNCukmlNlvkJNexxGDbDBbYtQ1902Wesd3sQRiPo1Cy4ZOPUe/Lz7IHz2KQ=
+X-Received: by 2002:a7b:c056:: with SMTP id u22mr9194531wmc.5.1552058725476;
+	Fri, 08 Mar 2019 07:25:25 -0800 (PST)
+MIME-Version: 1.0
+From: Vishwanath Chandapur <vishwavtu@gmail.com>
+Date: Fri, 8 Mar 2019 20:55:14 +0530
+Message-ID: <CALQBcOd6tYi8eD3CGHMRtHfKUNwYvONXEa-=pC9MUi_TVFEqqA@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Delete /run/nologin after boot up.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,34 +67,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2019 15:25:14 -0000
+X-List-Received-Date: Fri, 08 Mar 2019 15:25:28 -0000
+Content-Type: multipart/alternative; boundary="00000000000000ad5a058396d5bd"
 
-replace relative path with abs path for binaries.
+--00000000000000ad5a058396d5bd
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/tripwire/tripwire_2.4.3.7.bb | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Hi Team,
 
-diff --git a/recipes-security/tripwire/tripwire_2.4.3.7.bb b/recipes-security/tripwire/tripwire_2.4.3.7.bb
-index ed0974c..c26392a 100644
---- a/recipes-security/tripwire/tripwire_2.4.3.7.bb
-+++ b/recipes-security/tripwire/tripwire_2.4.3.7.bb
-@@ -62,6 +62,7 @@ do_install () {
- do_install_ptest_append () {
- 	install -d ${D}${PTEST_PATH}/tests
- 	cp -a ${S}/src/test-harness/* ${D}${PTEST_PATH}
-+	sed -i -e 's@../../../../bin@${sbindir}@'  ${D}${PTEST_PATH}/twtools.pm
- }
- 
- FILES_${PN} += "${libdir} ${docdir}/${PN}/*"
-@@ -70,4 +71,4 @@ FILES_${PN}-staticdev += "${localstatedir}/lib/${PN}/lib*.a"
- FILES_${PN}-ptest += "${PTEST_PATH}/tests "
- 
- RDEPENDS_${PN} += " perl nano msmtp cronie"
--RDEPENDS_${PN}-ptest = " perl lib-perl"
-+RDEPENDS_${PN}-ptest = " perl lib-perl perl-modules "
--- 
-2.17.1
+We are using poky thud version with systemd .we have enabled pam mdoule for
+authentication because of which  non-root users no longer able to login to
+terminal/ssh.
+I have gone through systemd documentation according that  "/run/nologin"
+should be deleted after boot up so that pam module cam allow to login.
 
+There is already init script is available but it deletes in /etc/login not
+/run/login.
 
+https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-core/initscripts/initscripts-1.0/rmnologin.sh
+
+With Regards
+Vishwa
+
+--00000000000000ad5a058396d5bd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi=
+ Team,</div><div><br></div><div>We are using poky thud version with systemd=
+ .we have enabled pam mdoule for <br></div><div>authentication because of w=
+hich=C2=A0 non-root users no longer able to login to terminal/ssh.</div><di=
+v>I have gone through systemd documentation according that=C2=A0 &quot;/run=
+/nologin&quot; should be deleted after boot up so that pam module cam allow=
+ to login.<br></div><div><br>There is already init script is available but =
+it deletes in /etc/login not /run/login.<br> <br><a href=3D"https://git.yoc=
+toproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-core/initscripts/initscr=
+ipts-1.0/rmnologin.sh">https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree=
+/meta/recipes-core/initscripts/initscripts-1.0/rmnologin.sh</a><br><br></di=
+v><div>With Regards</div><div>Vishwa<br></div></div></div></div></div>
+
+--00000000000000ad5a058396d5bd--
