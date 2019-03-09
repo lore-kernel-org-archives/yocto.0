@@ -1,65 +1,43 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <442-103-8455@kylheku.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2184E00D17; Sat,  9 Mar 2019 02:01:18 -0800 (PST)
+	id 44AB2E00D01; Sat,  9 Mar 2019 08:20:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+	FROM_STARTS_WITH_NUMS,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.68 listed in list.dnswl.org]
-Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com
-	[209.85.221.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16DD8E00D13
-	for <yocto@yoctoproject.org>; Sat,  9 Mar 2019 02:01:17 -0800 (PST)
-Received: by mail-wr1-f68.google.com with SMTP id w2so23859199wrt.11
-	for <yocto@yoctoproject.org>; Sat, 09 Mar 2019 02:01:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=A1gbmh4nOQDNeeUc/TAbXTmWEU70QYC2jo4igVSWW4g=;
-	b=Hu+GEuexJGHWdV5YaP0Et7s39h0iOi5Ggo/G46SS8Kdbc2yVVY6MAEEHqYowNkDcwk
-	uTLCybR0kqMFO4SFpD2x5pVqPeYTJKEpNsqOBaXKrJWtWdqPBF+YpLvelp0UFNdaGU4/
-	0nlqfX+BtOEEJ7DsaalQgtkmlsBqNwg7c/sPU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=A1gbmh4nOQDNeeUc/TAbXTmWEU70QYC2jo4igVSWW4g=;
-	b=FEweeeQog6j1V1bNNRomvNKqCclfFXT8AbCZ9Vr4qhdF3CiICBUKuSqT3aWbEaRZOK
-	te00gccVYaABpUe2TuPXYHdRRhY0H1JEbmGbqe4Mgr0dUep5L4Y8epzfKvgDZ4qBda6I
-	JORM1XtWYAmLAtBZ1jx7tAq2gc+pe+yQL2oys6LuO+hSwUeKuu2EsXRk67aKgyQq5pO8
-	Fr/3SzYUBZz1d5/xU1b9FHgPEbbAND95Nne4EiD3tTWb+rZesYll2S/68M7Q7i40ck2I
-	SPVTralSBxVhQzWZfJ2JHRj0V5l4IAFXxj/VO4yBcKyhE7IiSOlNF/dqHnWAPkEkWhFW
-	NuYQ==
-X-Gm-Message-State: APjAAAWpruz0/QEt2ntsFASXuiQsNuYUrUdad/oNKLY0z6DFYXLBp5+x
-	6VcltzEAYu891BzNsBegApYf1IN0LKGFhQ==
-X-Google-Smtp-Source: APXvYqxQPuQ6dRuTFMdg9rhxLVRBhOrUjGdiCWX/wo6NpLgrkvuusjS6l7nO/HMqyPzn4emHgXgnXw==
-X-Received: by 2002:a5d:4608:: with SMTP id t8mr14674518wrq.186.1552125677145; 
-	Sat, 09 Mar 2019 02:01:17 -0800 (PST)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	132sm27336423wmd.27.2019.03.09.02.01.15
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Sat, 09 Mar 2019 02:01:16 -0800 (PST)
-Message-ID: <555b1f4c55fdcf63946b2ebc14b73611ffb300d1.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Kaz Kylheku (poky)" <442-103-8455@kylheku.com>, yocto@yoctoproject.org
-Date: Sat, 09 Mar 2019 10:01:15 +0000
-In-Reply-To: <5be9f511c95ccc7037d99cf809c21894@mail.kylheku.com>
-References: <5be9f511c95ccc7037d99cf809c21894@mail.kylheku.com>
-User-Agent: Evolution 3.31.90-1 
+	*  0.7 FROM_STARTS_WITH_NUMS From: starts with several numbers
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [64.59.134.12 listed in list.dnswl.org]
+Received: from smtp-out-no.shaw.ca (smtp-out-no.shaw.ca [64.59.134.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC1A6E00BE8
+	for <yocto@yoctoproject.org>; Sat,  9 Mar 2019 08:20:08 -0800 (PST)
+Received: from kylheku.com ([70.79.163.252]) by shaw.ca with ESMTPA
+	id 2ehhhI936nP042ehjhDYac; Sat, 09 Mar 2019 09:20:07 -0700
+X-Authority-Analysis: v=2.3 cv=EK14LGRC c=1 sm=1 tr=0
+	a=95A0EdhkF1LMGt25d7h1IQ==:117 a=95A0EdhkF1LMGt25d7h1IQ==:17
+	a=IkcTkHD0fZMA:10 a=SMorJkV_YP8A:10 a=NTGMnVQrEZIA:10
+	a=ReDXNHCV1EYKDKgbbkgA:9 a=QEXdDO2ut3YA:10
+Received: from www-data by kylheku.com with local (Exim 4.72)
+	(envelope-from <442-103-8455@kylheku.com>)
+	id 1h2ehh-0001ry-Q9; Sat, 09 Mar 2019 08:20:05 -0800
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-PHP-Originating-Script: 501:rcmail.php
 MIME-Version: 1.0
+Date: Sat, 09 Mar 2019 08:20:05 -0800
+From: "Kaz Kylheku (poky)" <442-103-8455@kylheku.com>
+In-Reply-To: <555b1f4c55fdcf63946b2ebc14b73611ffb300d1.camel@linuxfoundation.org>
+References: <5be9f511c95ccc7037d99cf809c21894@mail.kylheku.com>
+	<555b1f4c55fdcf63946b2ebc14b73611ffb300d1.camel@linuxfoundation.org>
+Message-ID: <7c67a4d64ce5e6e036f9a31fc68f0fcb@mail.kylheku.com>
+X-Sender: 442-103-8455@kylheku.com
+User-Agent: Roundcube Webmail/0.9.2
+X-CMAE-Envelope: MS4wfC+vb3JAdgXvTCoTkPyJ8ZWRD/7GbXSAnVHMmU90a+bF8ffNSKA5bB4mcpZ2/1J0WyVq8/uZFxKNXqv0lkjzOp+PIQY01Qeje1ojwxsgZZia3P3MhzvC
+	S0BdV4iggSmpHKKZr2MszVHpj8kcz0q5I/H1VU9+p6xKmIWgRAvz+PTi4ogLJTuwodHgygptFbKlhXWDgKV+SpD8LQisS2XFdNl6ls4LTk9c+QiZ02+EUN4x
+Cc: yocto@yoctoproject.org
 Subject: Re: New: "extrapatches" bbclass.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -72,36 +50,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Mar 2019 10:01:18 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 09 Mar 2019 16:20:09 -0000
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2019-03-07 at 19:26 -0800, Kaz Kylheku (poky) wrote:
-> #
-> # extrapatches bbclass
-> #
-> # This bbclass allows for a recipe to apply additional patches.
-> #
-> # "Additional patches" refers to patches that are not individually
-> # fetched by the SRC_URI mechanism, but are already present
-> # inside the source trees that are fetched and unpacked.
-> # Referring directly to recipe-side patches
-> # without fetching them via SRC_URI is also possible.
-> #
-> # How to use this class:
-> #
-> #   1. Add   inherit extrapatches   to your recipe.
-> #   2. Optionally set the EXTRAPATCHES_WORKDIR,
-> #   3. List the patches in EXTRAPATCHES in order of application.
-> #      - Relative paths are interpreted relative to 
-> EXTRAPATCHES_WORKDIR.
-> #      - Absolute paths are allowed
+On 2019-03-09 02:01, Richard Purdie wrote:
+> On Thu, 2019-03-07 at 19:26 -0800, Kaz Kylheku (poky) wrote:
+>> #
+>> # extrapatches bbclass
+>> #
+>> # This bbclass allows for a recipe to apply additional patches.
+>> #
+>> # "Additional patches" refers to patches that are not individually
+>> # fetched by the SRC_URI mechanism, but are already present
+>> # inside the source trees that are fetched and unpacked.
+>> # Referring directly to recipe-side patches
+>> # without fetching them via SRC_URI is also possible.
+>> #
+>> # How to use this class:
+>> #
+>> #   1. Add   inherit extrapatches   to your recipe.
+>> #   2. Optionally set the EXTRAPATCHES_WORKDIR,
+>> #   3. List the patches in EXTRAPATCHES in order of application.
+>> #      - Relative paths are interpreted relative to
+>> EXTRAPATCHES_WORKDIR.
+>> #      - Absolute paths are allowed
+>=20
+> Can't you already do this if you put a file:// url in SRC_URI for the
+> patch as its unpacked in the workdir?
 
-Can't you already do this if you put a file:// url in SRC_URI for the
-patch as its unpacked in the workdir?
-
-Cheers,
-
-Richard
+That doesn't work due SRC_URI materials not being fetched and unpacked=20
+in left-to-right order, but in separate do_fetch and do_unpack phases.
 
 
