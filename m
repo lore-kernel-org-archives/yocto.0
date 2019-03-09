@@ -1,66 +1,66 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B73BAE00D12; Fri,  8 Mar 2019 14:49:32 -0800 (PST)
+	id D2184E00D17; Sat,  9 Mar 2019 02:01:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.196 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
-	[209.85.210.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52E3AE00D04
-	for <yocto@yoctoproject.org>; Fri,  8 Mar 2019 14:49:32 -0800 (PST)
-Received: by mail-pf1-f196.google.com with SMTP id g6so15155977pfh.13
-	for <yocto@yoctoproject.org>; Fri, 08 Mar 2019 14:49:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=Y11Hwng1QYPLQnhztX/n+DL5ZSGUiKbjMDbK1Qh2Qf0=;
-	b=AP/Vc2RXTMcKkTnfyaOI3JoUdmt49bpGwzOuJOKwT4wQcJFBJbBN1smM2VQnkJ4JeN
-	hjR+LX1uWj+hVuYsMGfMemwZm49vN4bMKsvTfaZXZjKjn6nBHBFEsn/ZUmyDes9efVZn
-	FyPw8xPnygSSe0WJgdwHwYpFGDv/mXsmZQeAmdgrHQFD3VW/M9M7QH+PHTxtIxlsWiUI
-	L2/7wRGq4pa8OGQAlNbW0Dk8XS7maqsfdaM9jpYEMpGZCouUdkVmgNVOIKC8l5aaLRrn
-	5S8/iW0GkUbmzCFKcP7TFwlKIj7ZWOBYxDcxOciUZx7t+701ngBvqger3UfrRfs2RaUL
-	aSdg==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.68 listed in list.dnswl.org]
+Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com
+	[209.85.221.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16DD8E00D13
+	for <yocto@yoctoproject.org>; Sat,  9 Mar 2019 02:01:17 -0800 (PST)
+Received: by mail-wr1-f68.google.com with SMTP id w2so23859199wrt.11
+	for <yocto@yoctoproject.org>; Sat, 09 Mar 2019 02:01:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=A1gbmh4nOQDNeeUc/TAbXTmWEU70QYC2jo4igVSWW4g=;
+	b=Hu+GEuexJGHWdV5YaP0Et7s39h0iOi5Ggo/G46SS8Kdbc2yVVY6MAEEHqYowNkDcwk
+	uTLCybR0kqMFO4SFpD2x5pVqPeYTJKEpNsqOBaXKrJWtWdqPBF+YpLvelp0UFNdaGU4/
+	0nlqfX+BtOEEJ7DsaalQgtkmlsBqNwg7c/sPU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=Y11Hwng1QYPLQnhztX/n+DL5ZSGUiKbjMDbK1Qh2Qf0=;
-	b=JkA9FhSac7Ub4j6yZVW8h7wjaqgoSSKv4zCYQdwooadFSIrgYEW8HkmrC+2pbhJMll
-	kraPmRALnCRl0jTSHnvLqoB90bZmTqvmjZBhCMn0r8yTvLpmz+drjsb0q/zRF2eSBlll
-	WXP0U/aGBHtasJjF4UVMSlED4mk861CUPfrKFpU5VlocnV4V47kQ+6pkSmO3Rjm3O/B+
-	4/RqZdaN7Z/QdBwh1n4fGtF6ucfyiTs2NKZ8ZcacZd/0Fobko0iCmYv+fP7eCXIv80ww
-	lMaeLTtbLdHrC+6pqKIuYOXQA3rNi8YipFZuW1Kk6qUewZTlsSd2dGe7kPGuaFoRHSG4
-	gFJA==
-X-Gm-Message-State: APjAAAVDTvLZ3aLMpLKU/PBNFP0aT9WT0VLVQWDRNMggKEAr5wDcQxyy
-	IlRiijmxRPCAbvjcaiVBAqEHJGGZ
-X-Google-Smtp-Source: APXvYqxWd0amkvrYcN7nbQvdcb5irc00T7T1s4vi7z5QLl9VxW/njS+fsxuZ6qsmfnXqzwt3Pxo99g==
-X-Received: by 2002:a62:5c87:: with SMTP id
-	q129mr20558100pfb.180.1552085371261; 
-	Fri, 08 Mar 2019 14:49:31 -0800 (PST)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	d188sm15017206pfg.98.2019.03.08.14.49.30 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 08 Mar 2019 14:49:30 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri,  8 Mar 2019 14:49:29 -0800
-Message-Id: <20190308224929.18076-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [meta-security][PATCH] packagegroup-core-security: change fail2ban ptest to reg python pkg
+	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+	:references:user-agent:mime-version:content-transfer-encoding;
+	bh=A1gbmh4nOQDNeeUc/TAbXTmWEU70QYC2jo4igVSWW4g=;
+	b=FEweeeQog6j1V1bNNRomvNKqCclfFXT8AbCZ9Vr4qhdF3CiICBUKuSqT3aWbEaRZOK
+	te00gccVYaABpUe2TuPXYHdRRhY0H1JEbmGbqe4Mgr0dUep5L4Y8epzfKvgDZ4qBda6I
+	JORM1XtWYAmLAtBZ1jx7tAq2gc+pe+yQL2oys6LuO+hSwUeKuu2EsXRk67aKgyQq5pO8
+	Fr/3SzYUBZz1d5/xU1b9FHgPEbbAND95Nne4EiD3tTWb+rZesYll2S/68M7Q7i40ck2I
+	SPVTralSBxVhQzWZfJ2JHRj0V5l4IAFXxj/VO4yBcKyhE7IiSOlNF/dqHnWAPkEkWhFW
+	NuYQ==
+X-Gm-Message-State: APjAAAWpruz0/QEt2ntsFASXuiQsNuYUrUdad/oNKLY0z6DFYXLBp5+x
+	6VcltzEAYu891BzNsBegApYf1IN0LKGFhQ==
+X-Google-Smtp-Source: APXvYqxQPuQ6dRuTFMdg9rhxLVRBhOrUjGdiCWX/wo6NpLgrkvuusjS6l7nO/HMqyPzn4emHgXgnXw==
+X-Received: by 2002:a5d:4608:: with SMTP id t8mr14674518wrq.186.1552125677145; 
+	Sat, 09 Mar 2019 02:01:17 -0800 (PST)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+	by smtp.gmail.com with ESMTPSA id
+	132sm27336423wmd.27.2019.03.09.02.01.15
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Sat, 09 Mar 2019 02:01:16 -0800 (PST)
+Message-ID: <555b1f4c55fdcf63946b2ebc14b73611ffb300d1.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Kaz Kylheku (poky)" <442-103-8455@kylheku.com>, yocto@yoctoproject.org
+Date: Sat, 09 Mar 2019 10:01:15 +0000
+In-Reply-To: <5be9f511c95ccc7037d99cf809c21894@mail.kylheku.com>
+References: <5be9f511c95ccc7037d99cf809c21894@mail.kylheku.com>
+User-Agent: Evolution 3.31.90-1 
+MIME-Version: 1.0
+Subject: Re: New: "extrapatches" bbclass.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,27 +72,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2019 22:49:32 -0000
+X-List-Received-Date: Sat, 09 Mar 2019 10:01:18 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/packagegroup/packagegroup-core-security.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Thu, 2019-03-07 at 19:26 -0800, Kaz Kylheku (poky) wrote:
+> #
+> # extrapatches bbclass
+> #
+> # This bbclass allows for a recipe to apply additional patches.
+> #
+> # "Additional patches" refers to patches that are not individually
+> # fetched by the SRC_URI mechanism, but are already present
+> # inside the source trees that are fetched and unpacked.
+> # Referring directly to recipe-side patches
+> # without fetching them via SRC_URI is also possible.
+> #
+> # How to use this class:
+> #
+> #   1. Add   inherit extrapatches   to your recipe.
+> #   2. Optionally set the EXTRAPATCHES_WORKDIR,
+> #   3. List the patches in EXTRAPATCHES in order of application.
+> #      - Relative paths are interpreted relative to 
+> EXTRAPATCHES_WORKDIR.
+> #      - Absolute paths are allowed
 
-diff --git a/recipes-security/packagegroup/packagegroup-core-security.bb b/recipes-security/packagegroup/packagegroup-core-security.bb
-index e847847..b8ab27d 100644
---- a/recipes-security/packagegroup/packagegroup-core-security.bb
-+++ b/recipes-security/packagegroup/packagegroup-core-security.bb
-@@ -78,7 +78,7 @@ RDEPENDS_packagegroup-security-ptest = " \
-     python-scapy-ptest \
-     suricata-ptest \
-     tripwire-ptest \
--    python3-fail2ban-ptest \
-+    python-fail2ban-ptest \
-     ${@bb.utils.contains("DISTRO_FEATURES", "apparmor", "apparmor-ptest", "",d)} \
-     ${@bb.utils.contains("DISTRO_FEATURES", "smack", "smack-ptest", "",d)} \
-     ptest-runner \
--- 
-2.17.1
+Can't you already do this if you put a file:// url in SRC_URI for the
+patch as its unpacked in the workdir?
+
+Cheers,
+
+Richard
 
 
