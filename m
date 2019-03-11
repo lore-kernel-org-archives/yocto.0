@@ -1,62 +1,70 @@
-Return-Path: <rahulchauhankitps@gmail.com>
+Return-Path: <filipjares@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3091BE00BE8; Fri,  8 Mar 2019 09:23:43 -0800 (PST)
+	id 3F106E00CCC; Mon, 11 Mar 2019 07:30:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (rahulchauhankitps[at]gmail.com)
+	provider *      (filipjares[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.175 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.128.67 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com
-	[209.85.208.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E228E00AD5
-	for <yocto@yoctoproject.org>; Fri,  8 Mar 2019 09:23:42 -0800 (PST)
-Received: by mail-lj1-f175.google.com with SMTP id q128so18022882ljb.11
-	for <yocto@yoctoproject.org>; Fri, 08 Mar 2019 09:23:42 -0800 (PST)
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com
+	[209.85.128.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7B0AE00754
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 07:30:29 -0700 (PDT)
+Received: by mail-wm1-f67.google.com with SMTP id t124so14861wma.4
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 07:30:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=w39E94JXGtk0l+aU9vNuMIlW3d3iNlayVH5SWuNTABQ=;
-	b=SwOrCgQGvpcZI/g6Lya5x3FTeukO+iXopvgz23E1Pzb6VTFMM17zS3E98pFdQbW/yu
-	IjMzXZn2PgsVW6L4eqv994JUC7Y1/tn+phOE4H3pdo43/VrjwARBVT7cXxTzLXCyUr4I
-	6ps78+wY9/P1h84M8j4EyetDBbHbGM+dUMKDTesTBnnDXPrpfjKmwJxmvYznRPVzHSqa
-	b2+7rPqypOmNx/F/5PoVAo+ifoUJIAfPS7yVD638rXK6ZbO3kOuqMpzvrKcveDeMnj2w
-	BZX0GyITBVdaLIaYF6mOBPPHa4ZiXw1Mx2Q8f9bMTsDAEubveJvVDTsgLfgQtF6j1VBh
-	8uVg==
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=4qe4qnhwpUC6GqmZyh+qjuxFsVX3AeF7ssExgpopSeI=;
+	b=LV0Y1m567Lc/3VJ6xUXSK9+CGJa7g3YfiNFwBfPFedvaLbmT5uZ4KvwwGBuTlimB4p
+	jsEuQsYjCmTJQZ4L25rIZQ1TAvh9103vcc40paoFVlJlkZTuc4/YMkxYuEyww7TLtOjv
+	S1j77xXYl/FJHltjT3ckC++gweO4Ehqz1z5M8H06B1+85wcfiYqvOEarj9Nh7MkUqSMo
+	8BXRij3R8ipxQyjE5XNOWkUzBynk07TUyybgN9VoYL8qiHYwIEXSqKpkdGEF4UF+txaO
+	2gTuvYbQNfbhMj/L6h/EKJHvTtB8kfAvEKN4ijCNkBczjtzg+LEOn7EZFoMjBF00rN/6
+	SREg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=w39E94JXGtk0l+aU9vNuMIlW3d3iNlayVH5SWuNTABQ=;
-	b=hg7LBWPpTbC+RuolIpkjHz0ce9oIkSPuh0j6R/61Q1OIlMSn+fHvBityhEgI5RhRwR
-	IupWFcCZYE9/A///Q6XJ7glVTuv//PnegAkDR9hzsiI+FT8DA6xY6QM/D4PWFP6QeF61
-	eLPI8oN1amnxClitIT55n2eDRkjZFmfP5rI0BDNdPPsn6ycjmuCDOQx/lguaHhGmD/fC
-	9lBZc4r1S2IY/mYgwxihg/JDyVxzBpKLpgvvdZoM34WUQkZo6BSWGT3ygGt1Px+6Yjx+
-	/S3dZN9IVMsdYhZPwXMY752nzeQ1tnvKUXjm9nwBKyhF6ubq3CJ5iqavBqirwC/sSKwh
-	jOzA==
-X-Gm-Message-State: APjAAAXVctKgGTlg5FrtqAGtU0n9Aa6IxTRD+Uzn5yEBZpDPeJI3/sjC
-	OKui9RaOIn94+oZBvJTo8tRPA19aYnvLbycx8LyMfdG/
-X-Google-Smtp-Source: APXvYqy+t7xvMfUfvB+KLy4oH25zNYxS+CfUFvg6GVXpeP0YDBBHWweCTwGvcNJTYke+1RGf6driU20dhXcfKCR7mD8=
-X-Received: by 2002:a2e:6f08:: with SMTP id k8mr9322966ljc.197.1552065820996; 
-	Fri, 08 Mar 2019 09:23:40 -0800 (PST)
-MIME-Version: 1.0
-From: rahul chauhan <rahulchauhankitps@gmail.com>
-Date: Fri, 8 Mar 2019 22:53:29 +0530
-Message-ID: <CAGk+JegHkafvb7NnPs8V5=fWMM_9GKj3Rk1NHSa3kNDpJi70sw@mail.gmail.com>
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=4qe4qnhwpUC6GqmZyh+qjuxFsVX3AeF7ssExgpopSeI=;
+	b=XTwCXreZxVifcm2C+nkh2V++jQ8s1xIapbO+wHQKEJK4No78FQdCimSSP7Tyn1ecY1
+	IsCIxgzZ6OU8pR/x0HyE845Y36iHIR052rlldjODWQ0wawNIQ3vvdVWGHnbk6fitZAiM
+	8bQ65xkzU8jTzQdas5hSfFOZR4bqjGMbwAYFT+suiLhsQObIWiW9gG54jiBxzpDsTuCV
+	Qgg3sDv0UPfCHg/FjQbYSJ4WK+NjuTx1nTpDbbCMz2NeAYi+GGAZyZo7WJc+v+SHDshq
+	nECZVD7dN8r8VSteOJ0FtVSpD3L9ppsD0B+TQirGg2GkrTBBk2Sd1KPIT5gr3WoTtXTY
+	fYVg==
+X-Gm-Message-State: APjAAAXuc8OyzlfOa/kH2NtwZn8VVcdkRgiNuhELjIhXQM1DbsU1GYIF
+	93NIPCinDpH4TvKvCUDCK+h7UReD
+X-Google-Smtp-Source: APXvYqwzcquUveqjoxo6TxqyBrjLnWvAaUZDglvCEEtkuTFXj0mS6kJLMlicXJzBUA3YM9CLezdtHQ==
+X-Received: by 2002:a1c:c019:: with SMTP id q25mr17014955wmf.113.1552314628265;
+	Mon, 11 Mar 2019 07:30:28 -0700 (PDT)
+Received: from PC1007453.cc.certicon.cz (c-006.certicon.cz. [90.183.112.6])
+	by smtp.gmail.com with ESMTPSA id
+	f1sm11921388wmh.44.2019.03.11.07.30.27
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 11 Mar 2019 07:30:27 -0700 (PDT)
+From: =?UTF-8?q?Filip=20Jare=C5=A1?= <filipjares@gmail.com>
 To: yocto@yoctoproject.org
+Date: Mon, 11 Mar 2019 15:30:23 +0100
+Message-Id: <1552314623-15702-1-git-send-email-filipjares@gmail.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 11 Mar 2019 08:28:17 -0700
-Subject: Guidance to start yocto project.
+Cc: =?UTF-8?q?Filip=20Jare=C5=A1?= <filipjares@gmail.com>
+Subject: [yocto-doc][PATCH] ref-manual: fix copy-paste style error (`SRC_URI`)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,30 +76,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2019 17:23:43 -0000
-Content-Type: multipart/alternative; boundary="000000000000edbcd80583987b98"
+X-List-Received-Date: Mon, 11 Mar 2019 14:30:30 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---000000000000edbcd80583987b98
-Content-Type: text/plain; charset="UTF-8"
+The update fixes a copy-paste-and-forget-to-update-everything error
+in the documentation of the `SRC_URI` entry in the Reference Manual.
+The `maxdate` paragraph just repeated what is there for the
+neighboring `mindate` paragraph which was incorrect.
 
-Hello,
+What is documented (and patched) here is implemented in the
+`should_apply` function in `meta/lib/oe/patch.py`.
 
-I am beginner with yocto project and i want to learn the yocto project and
-start working on it.
-can you please guide how can i proceed step by step and  what are the
-prerequisites?
+Signed-off-by: Filip Jareš <filipjares@gmail.com>
+---
+ documentation/ref-manual/ref-variables.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks and Regards
-Rahul Chauhan
+diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
+index 3ffa92c..b49fb25 100644
+--- a/documentation/ref-manual/ref-variables.xml
++++ b/documentation/ref-manual/ref-variables.xml
+@@ -13798,7 +13798,7 @@
+                             </para></listitem>
+                         <listitem><para><emphasis><filename>maxdate</filename> -</emphasis>
+                             Apply the patch only if <filename>SRCDATE</filename>
+-                            is not later than <filename>mindate</filename>.
++                            is not later than <filename>maxdate</filename>.
+                             </para></listitem>
+                         <listitem><para><emphasis><filename>minrev</filename> -</emphasis>
+                             Apply the patch only if <filename>SRCREV</filename>
+-- 
+2.7.4
 
---000000000000edbcd80583987b98
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,</div><div></div><div><br></div><div>I am begin=
-ner with yocto project and i want to learn the yocto project and start work=
-ing on it. <br></div><div> can you please guide how can i proceed step by s=
-tep and=C2=A0 what are the prerequisites? </div><div><br></div><div>Thanks =
-and Regards</div><div>Rahul Chauhan<br></div></div>
-
---000000000000edbcd80583987b98--
