@@ -1,61 +1,61 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <easmith5555@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7F200E00AC5; Mon, 11 Mar 2019 12:17:03 -0700 (PDT)
+	id 78E8AE00AD5; Mon, 11 Mar 2019 12:31:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 729EBE00872
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 12:17:02 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x2BJH1pb025835
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 12:17:01 -0700 (PDT)
-Received: from soho-mhatle-m.local (172.25.36.233) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.439.0;
-	Mon, 11 Mar 2019 12:17:01 -0700
-To: <yocto@yoctoproject.org>
-References: <CAFQ+Dii+ufAHPg7OLsbMDTCDBnpC1Q2dDKEDz0_6yWZjmSLbeg@mail.gmail.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
-	mQENBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
-	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
-	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
-	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
-	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
-	AAG0JU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT6JATcEEwEIACEFAlYK
-	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
-	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
-	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
-	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
-	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
-	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrrkBDQRWCsRYAQgAwK3FuHCE+HW3YWdH
-	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
-	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
-	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
-	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
-	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABiQEfBBgBCAAJBQJWCsRYAhsMAAoJ
-	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
-	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
-	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
-	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
-	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
-Organization: Wind River Systems
-Message-ID: <cf42d8d8-ba2f-bc4a-b730-b1078db03561@windriver.com>
-Date: Mon, 11 Mar 2019 14:17:00 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.5.3
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (easmith5555[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.177 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-it1-f177.google.com (mail-it1-f177.google.com
+	[209.85.166.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8538EE009A4
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 12:31:34 -0700 (PDT)
+Received: by mail-it1-f177.google.com with SMTP id k193so537246ita.3
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 12:31:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=j+rJ0K8RTti3WFtWKdt5ixEGEPmR+spG9JWFnhBxcUg=;
+	b=XAhX4/eKr7QfRraGUV/N5RxlGgNrc+4D2/4tIdKTz6WO9jsuYwzCEEQ+F1cGdwKPko
+	TPfm/GoTb5R5o6C8H8F0tpn1V4S1RiQslPRSH4l53bx+Cz0uxcV/JVEhN52MCRs+Ry+s
+	IpMq3ujJEq518p/1VSc1cmR5iWrRQv+rwe0Wq9naOczjMCgPtQSIZGJCRhnJ3mtk8KqE
+	R8IWw2bFgsZqkSL33EYLQWNo3l7mtYf21TxFS6SMl5AFSUwLkgbLV7atyh+xsjJJChcD
+	HtutiJ1BNNWTZhIN8ehr/cjEW/WXTUFE01ZbSAq3AKsugAWVbphgpnicWPr7fHnq+N0h
+	rxKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=j+rJ0K8RTti3WFtWKdt5ixEGEPmR+spG9JWFnhBxcUg=;
+	b=SgvDjMc17g/wtjRp/kjHn23J2b4kfoar//lf7YtjwK4UrUYjVcgpX3iMz2Ng7NOn+w
+	26hpe+UxIcn9+HEw6jD4V0W8zn4SGcA8PYhHtVkBJT3mKsT1YCypV2MI2XtWnIslx36R
+	l7V4/tdqFczUP+sm5f3D3MxdgsbxsdKcJFsq50INhKF1TTTCaJLhhXWorEB2nwFl3Gi/
+	T5KiNBIeyMhTCSF2ifumfOUkxIDfODgXvNR5O2XUwe32kT69CAV6++xpdWWdn9y1d40q
+	WOyqhpO04xYaVm/E/M2FlR67GZ+LoVyyopOsKJQNGHzkIMuQFxx7ZD7L0LQJua3v17VF
+	cmkw==
+X-Gm-Message-State: APjAAAXoTQ7tXAXZFYddrmFM8OcNnO14BrFKECiUyg6rS2UyciXswyZA
+	qIXZ1islETBZJdbU2OmX8uBVExG2Es8f/zF8WK8p3QqP
+X-Google-Smtp-Source: APXvYqyq4iRNbri00GEwat+DxY/sfarVVZd/kajzLyROd31iogeZJUgr6QTyofVnBZmOVjtLJho/BRyqtmAFkpwGVQ4=
+X-Received: by 2002:a24:70a:: with SMTP id f10mr275201itf.56.1552332693626;
+	Mon, 11 Mar 2019 12:31:33 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAFQ+Dii+ufAHPg7OLsbMDTCDBnpC1Q2dDKEDz0_6yWZjmSLbeg@mail.gmail.com>
-Subject: Re: PREFERRED_VERSION ignored
+From: Emily S <easmith5555@gmail.com>
+Date: Mon, 11 Mar 2019 14:31:24 -0500
+Message-ID: <CAAV2bM2jFrH426UPxyKTk6whFry_J0VD_E5C-Gsi-CwYDL=wHQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: devtmpfs failing to mount
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,42 +67,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2019 19:17:03 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 11 Mar 2019 19:31:36 -0000
+Content-Type: multipart/alternative; boundary="000000000000c6e5050583d69e9b"
 
-On 3/11/19 12:46 PM, Marco wrote:
-> Hello,
-> using Yocto version 'rocko' I have a custom layer defining a new
-> recipe and a distro.
-> I have a recipe openssl_1.0.1u.bb in my meta-custom layer.
-> My meta-custom layer.conf has BBFILE_PRIORITY_meta-custom = "9"
-> 
-> In my meta-custom layer I have a distro configuration saying
-> PREFERRED_VERSION_openssl = "1.0.2o" so I expected to build 1.0.2o but
-> when I build bitbake openssl is always selected the 1.0.1u
-> 
-> Same problem if I set PREFERRED_VERSION_openssl = "1.0.2o" in the local.conf
-> 
-> Is there an issue or am I doing something wrong?
+--000000000000c6e5050583d69e9b
+Content-Type: text/plain; charset="UTF-8"
 
-I've seen this issue before.  There are issues with layer priority as well as
-recipe priority.  The only way I've dealt with this is by blacklisting specific
-versions of recipes...
+Hi all -
 
-PNBLACKLIST[<recipe>] ?= "${@'Only version ' +
-d.getVar('PREFERRED_VERSION_${BPN}') + ' (not ${PV}) is supported in this
-configuration. ' if d.getVar('PREFERRED_VERSION_${BPN}') and not
-d.getVar('PV').startswith(d.getVar('PREFERRED_VERSION_${BPN}').replace('%', ''))
-else ''}"
+I'm using Yocto version rocko with a custom layer to run on the Zynq+ SoC
+on a custom board. When trying to boot I'm getting the following error in
+the boot output:
+[    4.205861] devtmpfs: error mounting -2
 
-(note the above is one single line)
+dmesg | tail shows a similar result:
 
---Mark
+[    4.127997] EXT4-fs (mmcblk0p2): couldn't mount as ext3 due to feature
+incompatibilities
+[    4.183737] EXT4-fs (mmcblk0p2): recovery complete
+[    4.190840] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data
+mode. Opts: (null)
+[    4.198870] VFS: Mounted root (ext4 filesystem) on device 179:2.
+[    4.205861] devtmpfs: error mounting -2
 
-> --
-> Marco
-> 
+Are there common reasons for this happening I should check? I'm having
+trouble isolating a cause. The only change I made was including an
+additional python library in one of my recipes, which I will try rolling
+back next.
+Any ideas are greatly appreciated!
 
+Thanks,
+Emily
 
+--000000000000c6e5050583d69e9b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div style=3D"margin:0px;padding:0px;border:0px;font-varia=
+nt-numeric:inherit;font-variant-east-asian:inherit;font-stretch:inherit;fon=
+t-size:12pt;line-height:inherit;font-family:Calibri,Arial,Helvetica,sans-se=
+rif,serif,EmojiFont;vertical-align:baseline;color:rgb(0,0,0)">Hi all -=C2=
+=A0</div><div style=3D"margin:0px;padding:0px;border:0px;font-variant-numer=
+ic:inherit;font-variant-east-asian:inherit;font-stretch:inherit;font-size:1=
+2pt;line-height:inherit;font-family:Calibri,Arial,Helvetica,sans-serif,seri=
+f,EmojiFont;vertical-align:baseline;color:rgb(0,0,0)"><br></div><div style=
+=3D"margin:0px;padding:0px;border:0px;font-variant-numeric:inherit;font-var=
+iant-east-asian:inherit;font-stretch:inherit;font-size:12pt;line-height:inh=
+erit;font-family:Calibri,Arial,Helvetica,sans-serif,serif,EmojiFont;vertica=
+l-align:baseline;color:rgb(0,0,0)">I&#39;m using Yocto version rocko with a=
+ custom layer to run on the Zynq+ SoC on a custom board. When trying to boo=
+t I&#39;m getting the following error in the boot output:=C2=A0</div><div s=
+tyle=3D"margin:0px;padding:0px;border:0px;font-variant-numeric:inherit;font=
+-variant-east-asian:inherit;font-stretch:inherit;font-size:12pt;line-height=
+:inherit;font-family:Calibri,Arial,Helvetica,sans-serif,serif,EmojiFont;ver=
+tical-align:baseline;color:rgb(0,0,0)"><span style=3D"margin:0px;padding:0p=
+x;border:0px;font-style:inherit;font-variant:inherit;font-weight:inherit;fo=
+nt-stretch:inherit;font-size:inherit;line-height:inherit;vertical-align:bas=
+eline;color:inherit">[ =C2=A0 =C2=A04.205861] devtmpfs: error mounting -2</=
+span><br></div><div style=3D"margin:0px;padding:0px;border:0px;font-variant=
+-numeric:inherit;font-variant-east-asian:inherit;font-stretch:inherit;font-=
+size:12pt;line-height:inherit;font-family:Calibri,Arial,Helvetica,sans-seri=
+f,serif,EmojiFont;vertical-align:baseline;color:rgb(0,0,0)"><span style=3D"=
+margin:0px;padding:0px;border:0px;font-style:inherit;font-variant:inherit;f=
+ont-weight:inherit;font-stretch:inherit;font-size:inherit;line-height:inher=
+it;vertical-align:baseline;color:inherit"><br></span></div><div style=3D"ma=
+rgin:0px;padding:0px;border:0px;font-variant-numeric:inherit;font-variant-e=
+ast-asian:inherit;font-stretch:inherit;font-size:12pt;line-height:inherit;f=
+ont-family:Calibri,Arial,Helvetica,sans-serif,serif,EmojiFont;vertical-alig=
+n:baseline;color:rgb(0,0,0)"><span style=3D"margin:0px;padding:0px;border:0=
+px;font-style:inherit;font-variant:inherit;font-weight:inherit;font-stretch=
+:inherit;font-size:inherit;line-height:inherit;vertical-align:baseline;colo=
+r:inherit">dmesg | tail shows a similar result:=C2=A0</span></div><div styl=
+e=3D"margin:0px;padding:0px;border:0px;font-variant-numeric:inherit;font-va=
+riant-east-asian:inherit;font-stretch:inherit;font-size:12pt;line-height:in=
+herit;font-family:Calibri,Arial,Helvetica,sans-serif,serif,EmojiFont;vertic=
+al-align:baseline;color:rgb(0,0,0)"><br></div><div style=3D"margin:0px;padd=
+ing:0px;border:0px;font-variant-numeric:inherit;font-variant-east-asian:inh=
+erit;font-stretch:inherit;font-size:12pt;line-height:inherit;font-family:Ca=
+libri,Arial,Helvetica,sans-serif,serif,EmojiFont;vertical-align:baseline;co=
+lor:rgb(0,0,0)">[ =C2=A0 =C2=A04.127997] EXT4-fs (mmcblk0p2): couldn&#39;t =
+mount as ext3 due to feature incompatibilities=C2=A0</div><div style=3D"mar=
+gin:0px;padding:0px;border:0px;font-variant-numeric:inherit;font-variant-ea=
+st-asian:inherit;font-stretch:inherit;font-size:12pt;line-height:inherit;fo=
+nt-family:Calibri,Arial,Helvetica,sans-serif,serif,EmojiFont;vertical-align=
+:baseline;color:rgb(0,0,0)">[ =C2=A0 =C2=A04.183737] EXT4-fs (mmcblk0p2): r=
+ecovery complete=C2=A0</div><div style=3D"margin:0px;padding:0px;border:0px=
+;font-variant-numeric:inherit;font-variant-east-asian:inherit;font-stretch:=
+inherit;font-size:12pt;line-height:inherit;font-family:Calibri,Arial,Helvet=
+ica,sans-serif,serif,EmojiFont;vertical-align:baseline;color:rgb(0,0,0)">[ =
+=C2=A0 =C2=A04.190840] EXT4-fs (mmcblk0p2): mounted filesystem with ordered=
+ data mode. Opts: (null)=C2=A0</div><div style=3D"margin:0px;padding:0px;bo=
+rder:0px;font-variant-numeric:inherit;font-variant-east-asian:inherit;font-=
+stretch:inherit;font-size:12pt;line-height:inherit;font-family:Calibri,Aria=
+l,Helvetica,sans-serif,serif,EmojiFont;vertical-align:baseline;color:rgb(0,=
+0,0)">[ =C2=A0 =C2=A04.198870] VFS: Mounted root (ext4 filesystem) on devic=
+e 179:2.=C2=A0</div><div style=3D"margin:0px;padding:0px;border:0px;font-va=
+riant-numeric:inherit;font-variant-east-asian:inherit;font-stretch:inherit;=
+font-size:12pt;line-height:inherit;font-family:Calibri,Arial,Helvetica,sans=
+-serif,serif,EmojiFont;vertical-align:baseline;color:rgb(0,0,0)">[ =C2=A0 =
+=C2=A04.205861] devtmpfs: error mounting -2<br><br></div><div style=3D"marg=
+in:0px;padding:0px;border:0px;font-variant-numeric:inherit;font-variant-eas=
+t-asian:inherit;font-stretch:inherit;font-size:12pt;line-height:inherit;fon=
+t-family:Calibri,Arial,Helvetica,sans-serif,serif,EmojiFont;vertical-align:=
+baseline;color:rgb(0,0,0)">Are there common reasons for this happening I sh=
+ould check? I&#39;m having trouble isolating a cause. The only change I mad=
+e was including an additional python library in one of my recipes, which I =
+will try rolling back next.=C2=A0</div><div style=3D"margin:0px;padding:0px=
+;border:0px;font-variant-numeric:inherit;font-variant-east-asian:inherit;fo=
+nt-stretch:inherit;font-size:12pt;line-height:inherit;font-family:Calibri,A=
+rial,Helvetica,sans-serif,serif,EmojiFont;vertical-align:baseline;color:rgb=
+(0,0,0)">Any ideas are greatly appreciated!=C2=A0</div><div style=3D"margin=
+:0px;padding:0px;border:0px;font-variant-numeric:inherit;font-variant-east-=
+asian:inherit;font-stretch:inherit;font-size:12pt;line-height:inherit;font-=
+family:Calibri,Arial,Helvetica,sans-serif,serif,EmojiFont;vertical-align:ba=
+seline;color:rgb(0,0,0)"><br></div><div style=3D"margin:0px;padding:0px;bor=
+der:0px;font-variant-numeric:inherit;font-variant-east-asian:inherit;font-s=
+tretch:inherit;font-size:12pt;line-height:inherit;font-family:Calibri,Arial=
+,Helvetica,sans-serif,serif,EmojiFont;vertical-align:baseline;color:rgb(0,0=
+,0)">Thanks,</div><div style=3D"margin:0px;padding:0px;border:0px;font-vari=
+ant-numeric:inherit;font-variant-east-asian:inherit;font-stretch:inherit;fo=
+nt-size:12pt;line-height:inherit;font-family:Calibri,Arial,Helvetica,sans-s=
+erif,serif,EmojiFont;vertical-align:baseline;color:rgb(0,0,0)">Emily</div><=
+/div>
+
+--000000000000c6e5050583d69e9b--
