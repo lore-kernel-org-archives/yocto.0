@@ -1,70 +1,78 @@
-Return-Path: <filipjares@gmail.com>
+Return-Path: <paul@betafive.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3F106E00CCC; Mon, 11 Mar 2019 07:30:30 -0700 (PDT)
+	id D5755E009A4; Mon, 11 Mar 2019 08:45:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (filipjares[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.67 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [66.111.4.26 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com
-	[209.85.128.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7B0AE00754
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 07:30:29 -0700 (PDT)
-Received: by mail-wm1-f67.google.com with SMTP id t124so14861wma.4
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 07:30:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=4qe4qnhwpUC6GqmZyh+qjuxFsVX3AeF7ssExgpopSeI=;
-	b=LV0Y1m567Lc/3VJ6xUXSK9+CGJa7g3YfiNFwBfPFedvaLbmT5uZ4KvwwGBuTlimB4p
-	jsEuQsYjCmTJQZ4L25rIZQ1TAvh9103vcc40paoFVlJlkZTuc4/YMkxYuEyww7TLtOjv
-	S1j77xXYl/FJHltjT3ckC++gweO4Ehqz1z5M8H06B1+85wcfiYqvOEarj9Nh7MkUqSMo
-	8BXRij3R8ipxQyjE5XNOWkUzBynk07TUyybgN9VoYL8qiHYwIEXSqKpkdGEF4UF+txaO
-	2gTuvYbQNfbhMj/L6h/EKJHvTtB8kfAvEKN4ijCNkBczjtzg+LEOn7EZFoMjBF00rN/6
-	SREg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=4qe4qnhwpUC6GqmZyh+qjuxFsVX3AeF7ssExgpopSeI=;
-	b=XTwCXreZxVifcm2C+nkh2V++jQ8s1xIapbO+wHQKEJK4No78FQdCimSSP7Tyn1ecY1
-	IsCIxgzZ6OU8pR/x0HyE845Y36iHIR052rlldjODWQ0wawNIQ3vvdVWGHnbk6fitZAiM
-	8bQ65xkzU8jTzQdas5hSfFOZR4bqjGMbwAYFT+suiLhsQObIWiW9gG54jiBxzpDsTuCV
-	Qgg3sDv0UPfCHg/FjQbYSJ4WK+NjuTx1nTpDbbCMz2NeAYi+GGAZyZo7WJc+v+SHDshq
-	nECZVD7dN8r8VSteOJ0FtVSpD3L9ppsD0B+TQirGg2GkrTBBk2Sd1KPIT5gr3WoTtXTY
-	fYVg==
-X-Gm-Message-State: APjAAAXuc8OyzlfOa/kH2NtwZn8VVcdkRgiNuhELjIhXQM1DbsU1GYIF
-	93NIPCinDpH4TvKvCUDCK+h7UReD
-X-Google-Smtp-Source: APXvYqwzcquUveqjoxo6TxqyBrjLnWvAaUZDglvCEEtkuTFXj0mS6kJLMlicXJzBUA3YM9CLezdtHQ==
-X-Received: by 2002:a1c:c019:: with SMTP id q25mr17014955wmf.113.1552314628265;
-	Mon, 11 Mar 2019 07:30:28 -0700 (PDT)
-Received: from PC1007453.cc.certicon.cz (c-006.certicon.cz. [90.183.112.6])
-	by smtp.gmail.com with ESMTPSA id
-	f1sm11921388wmh.44.2019.03.11.07.30.27
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 11 Mar 2019 07:30:27 -0700 (PDT)
-From: =?UTF-8?q?Filip=20Jare=C5=A1?= <filipjares@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon, 11 Mar 2019 15:30:23 +0100
-Message-Id: <1552314623-15702-1-git-send-email-filipjares@gmail.com>
-X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 11 Mar 2019 08:28:17 -0700
-Cc: =?UTF-8?q?Filip=20Jare=C5=A1?= <filipjares@gmail.com>
-Subject: [yocto-doc][PATCH] ref-manual: fix copy-paste style error (`SRC_URI`)
+X-Greylist: delayed 543 seconds by postgrey-1.32 at yocto-www;
+	Mon, 11 Mar 2019 08:45:28 PDT
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com
+	[66.111.4.26])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11F23E0091D
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 08:45:28 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.nyi.internal (Postfix) with ESMTP id 9AFBD2294D;
+	Mon, 11 Mar 2019 11:36:23 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+	by compute1.internal (MEProxy); Mon, 11 Mar 2019 11:36:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
+	h=message-id:in-reply-to:references:date:from:to:subject
+	:content-type; s=fm3; bh=i89uuAM+XJdtS8h0XC/yKnWDdYxNFpGLXxhEwy/
+	9TwA=; b=BKSTB8ty14dQrOAlbavz+2TcOhbn4hdr6EvUxIGN0J4vCr0RhAadQaK
+	63crJIYdIA3OpHpJQJNw4lx9XRuqXtxoukztfvR2PVxwBO5mKMsiYRj2UnUl9ByA
+	Up25axdhm0/KqJYq8p5B1K1zsO6pCA4w3cFaZNbnMKZbZYRrghO40+zGpR7TJR2O
+	JeM6gSCIn2pmca5Pash/e6cM+IHcvyvNNqtiqdxwRLDZSvuWtJyQkkARKJM8R/S2
+	/LGyRj7x7zKTnXRJdc77/nU0MFamu2s+qN64//zXBri5Yskk25/C76Xx+q4jwfDM
+	r8XoRYlpgdZs8EERIIKPSEEeU4/ZAjg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-type:date:from:in-reply-to
+	:message-id:references:subject:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=i89uuAM+XJdtS8h0X
+	C/yKnWDdYxNFpGLXxhEwy/9TwA=; b=Bu2dztZqPfMd5O/KQ2LZxV3wcKyVzKsl1
+	El9Dm7IJSB+dOaEMLHk6IbWk3H99m8DgcUoOLZLKHhkfawjzUcrstNfiK40jepqP
+	g5bXd8P4k+TKETtEHREE7EM8ZP47QPEjqHMjft7EoB6+OZ161BE8uEK3TTiamIXd
+	oSRLCsdIxxQeRFQKhX+39dXkA0Y/PL7WRVpiwmoECubpZUvi28Ok+Bn6FaR1+ZsT
+	WzeyZG/5BlE8hIsBxladfheZN5LefSJE+EvkKzDBHRQEW7F9bAic/BpraWl86Xeu
+	ttNXy4fbkbvn4jePbNgO339T3d/ByAGbebWAA0Pj2dXrKi2IiULmw==
+X-ME-Sender: <xms:d4CGXP40tJiddP_EYUzLMTNKuvWc4Kx6rDSFCoHt4yGwJCd3tcX1SA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedutddrgeeigdejlecutefuodetggdotefrodftvf
+	curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+	uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+	fjughrpefofgfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfrrghulhcu
+	uegrrhhkvghrfdcuoehprghulhessggvthgrfhhivhgvrdgtohdruhhkqeenucffohhmrg
+	hinhephihotghtohhprhhojhgvtghtrdhorhhgnecurfgrrhgrmhepmhgrihhlfhhrohhm
+	pehprghulhessggvthgrfhhivhgvrdgtohdruhhknecuvehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:d4CGXMnaH_3ojMbG6jdfgs4QSCGNWVYY474Rulej-V9VKkzoLuSbHg>
+	<xmx:d4CGXIrNGsd8PSoPkA95WGK8jxrlwPT3TWCdIqMcGw8A3hLZaX13rw>
+	<xmx:d4CGXO0E9cqzAaLP5TCFHKCB-Vtlx-IAtENT4rEFbKJ7tsb4yewKlw>
+	<xmx:d4CGXC0a5qCRPjY2Kbv6VqfC-hI1n-Y25l5UOoV_c8UqRAswxIp-Cg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id F0F607C1EB; Mon, 11 Mar 2019 11:36:22 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.5-925-g644bf8c-fmstable-20190228v5
+X-Me-Personality: 84186096
+Message-Id: <f19f5439-6098-4909-9cf5-31b8136f81ae@www.fastmail.com>
+In-Reply-To: <CAGk+JegHkafvb7NnPs8V5=fWMM_9GKj3Rk1NHSa3kNDpJi70sw@mail.gmail.com>
+References: <CAGk+JegHkafvb7NnPs8V5=fWMM_9GKj3Rk1NHSa3kNDpJi70sw@mail.gmail.com>
+Date: Mon, 11 Mar 2019 11:36:22 -0400
+From: "Paul Barker" <paul@betafive.co.uk>
+To: "rahul chauhan" <rahulchauhankitps@gmail.com>,
+	"Yocto discussion list" <yocto@yoctoproject.org>
+Subject: Re: Guidance to start yocto project.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,37 +84,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2019 14:30:30 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 11 Mar 2019 15:45:29 -0000
+Content-Type: text/plain
 
-The update fixes a copy-paste-and-forget-to-update-everything error
-in the documentation of the `SRC_URI` entry in the Reference Manual.
-The `maxdate` paragraph just repeated what is there for the
-neighboring `mindate` paragraph which was incorrect.
+On Mon, 11 Mar 2019, at 15:32, rahul chauhan wrote:
+> Hello,
+> 
+> I am beginner with yocto project and i want to learn the yocto project 
+> and start working on it. 
+>  can you please guide how can i proceed step by step and what are the 
+> prerequisites? 
 
-What is documented (and patched) here is implemented in the
-`should_apply` function in `meta/lib/oe/patch.py`.
+There's an excellent "Quick Build" guide in the documentation: https://www.yoctoproject.org/docs/
 
-Signed-off-by: Filip Jareš <filipjares@gmail.com>
----
- documentation/ref-manual/ref-variables.xml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Beyond that I can highly recommend reading "Embedded Linux Systems with the Yocto Project" by Rudolf Streif.
 
-diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
-index 3ffa92c..b49fb25 100644
---- a/documentation/ref-manual/ref-variables.xml
-+++ b/documentation/ref-manual/ref-variables.xml
-@@ -13798,7 +13798,7 @@
-                             </para></listitem>
-                         <listitem><para><emphasis><filename>maxdate</filename> -</emphasis>
-                             Apply the patch only if <filename>SRCDATE</filename>
--                            is not later than <filename>mindate</filename>.
-+                            is not later than <filename>maxdate</filename>.
-                             </para></listitem>
-                         <listitem><para><emphasis><filename>minrev</filename> -</emphasis>
-                             Apply the patch only if <filename>SRCREV</filename>
+> 
+> Thanks and Regards
+> Rahul Chauhan
+> -- 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
 -- 
-2.7.4
-
+Paul Barker
+Managing Director & Principal Engineer
+Beta Five Ltd
 
