@@ -1,49 +1,67 @@
-Return-Path: <desai@uni-bremen.de>
+Return-Path: <easmith5555@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2E800E00950; Mon, 11 Mar 2019 13:28:12 -0700 (PDT)
+	id 6CE9DE00AC5; Mon, 11 Mar 2019 13:28:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [134.102.50.17 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (easmith5555[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.169 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 664 seconds by postgrey-1.32 at yocto-www;
-	Mon, 11 Mar 2019 13:28:10 PDT
-Received: from smtp.uni-bremen.de (gabriel-vm-2.zfn.uni-bremen.de
-	[134.102.50.17])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 125BAE007B3
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 13:28:10 -0700 (PDT)
-Received: from uni-bremen.de (webmail-2.zfn.uni-bremen.de [134.102.50.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.uni-bremen.de (Postfix) with ESMTPSA id 44J8XK1xSsz1HJ6
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 21:17:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=uni-bremen.de; s=dkim;
-	t=1552335425; bh=Yx+80KmBtCqIT1e+Bfbky2Mu89aE/VHRxBE44dN2lp0=;
-	h=To:Date:From;
-	b=Qf0e8LuLYWi/MW9DX/ayLPhEwcva78nUezu6itJRcwuO5OHmOX7ISz3ygUHBMuWT7
-	6qYlcxvt8inCJR+eGM0u+xTFysQPwt36fdRrECnWpw2+BW3VMwPdLPh9lvP2+bKF7R
-	ijRjSdF1GdwWv6PT0khQikkg8wNNaFUx+6EFwLYQ=
-To: yocto@yoctoproject.org
-Date: Mon, 11 Mar 2019 21:17:04 +0100
-Message-ID: <000401d4d847$64e95d40$2ebc17c0$@uni-bremen.de>
+Received: from mail-it1-f169.google.com (mail-it1-f169.google.com
+	[209.85.166.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5484E00872
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 13:28:38 -0700 (PDT)
+Received: by mail-it1-f169.google.com with SMTP id l139so797403ita.5
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 13:28:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=udxWzx/V6vxtdkRwMo/YLBRVzHefYGJOTePaEZFd1Gg=;
+	b=eOi1fCvXgbvaBc5E3rZqa6ntU042jETIT6FCc8Wng+Us4TKxPSZwMSvDmoGmSwsy6H
+	Hun65vug5MOLMOItkhBXuvS9rgeyCjwm7MxhgQJrIi/ZvDjsjskD5BihFDH+Xz09pmMU
+	ckHfPbdXjaBbgi9gVQVGnTa5FK63meD7O1ogy3JbNTgdD+EVfvfaR5O89Utn+NS8E2sh
+	kw/3IZ/jyVKSZo2x0dmICd1SIZy2kcvsIruMG1LQPeNQs4UEZZXlH7KH5RnEZAdLyeX0
+	Vg2nNebUOunppPSYn6NjRVCE2q+IET+Kv5V52Ft5subB/IhRejJMDV4RA4p+5LiNGXUA
+	XobA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=udxWzx/V6vxtdkRwMo/YLBRVzHefYGJOTePaEZFd1Gg=;
+	b=bU9vdSEyK9dPLkys81hH6Q8m74fNkZu2FNeM88orxAMTXgg/xqNxgqdMF0dpGL4iRK
+	KjjbKITSB3hoipvkxkGBXYpPaRqA2yMZC5FPeKxr/y+evF1s4+q2LNW7iYRWmYfB5tHl
+	r91Q0ToKB8j4qNkOyu8Lgb5NCw42gW6D2vqfe/K6EYyQikoVUd0z/eyjZnKhfhMq66L1
+	03ZIzzKO0RRtGxzzOKqJzh3lo7F3A5pwpUBK7r5fgGSfa9vPNi7mDL+P1XCQa7j771hS
+	ntz8wwQHd+aa27MWNAmIaIo4ALZX/SQiUkgF3pHFcEIZtWqMuUVy+VVESvKn83g058qw
+	qqxQ==
+X-Gm-Message-State: APjAAAXpp8YipUFMAKSxN6yObd1X2idQLU/oNfWcWIKdTxwruwooTWsV
+	rOaMS/xEKNI0z6iuotBzADE16n9Dw8UL1gnAuVBWlA==
+X-Google-Smtp-Source: APXvYqzv5Is+tGZnuDV+Mwp0XkA4v/KkrTLL57x2PgsTnbUbN8fsJVPwkrePPkdORIErwpm5PTvk/jCi8MW8QyI1nAs=
+X-Received: by 2002:a05:6638:285:: with SMTP id
+	c5mr17986927jaq.36.1552336117952; 
+	Mon, 11 Mar 2019 13:28:37 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdTYRv/UmKGn8NoISvaeKF58evyQ2g==
-User-Agent: Horde Application Framework 5
-From: Shantanoo Desai <desai@uni-bremen.de>
-Subject: [go] Any meta layers for InfluxDB, Telegraf, Kapacitor
+References: <CAAV2bM2jFrH426UPxyKTk6whFry_J0VD_E5C-Gsi-CwYDL=wHQ@mail.gmail.com>
+	<1210025179.154688.1552335389580@ox.hosteurope.de>
+In-Reply-To: <1210025179.154688.1552335389580@ox.hosteurope.de>
+From: Emily S <easmith5555@gmail.com>
+Date: Mon, 11 Mar 2019 15:28:28 -0500
+Message-ID: <CAAV2bM2w5cxuZL-Be_E1SfPJNst_392sb1QNR2KBNpLsLHzbsA@mail.gmail.com>
+To: =?UTF-8?B?TG/Dr2MgRG9tYWlnbsOp?= <tech@domaigne.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: devtmpfs failing to mount
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,109 +73,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2019 20:28:12 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0005_01D4D84F.C6AF24D0"
-Content-Language: de
+X-List-Received-Date: Mon, 11 Mar 2019 20:28:39 -0000
+Content-Type: multipart/alternative; boundary="000000000000e1f4b40583d76aea"
 
-------=_NextPart_000_0005_01D4D84F.C6AF24D0
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-Hello,
-
- 
-
-I have been using InfluxDB older version on an Embedded Board through Yocto
-and was wondering if there is already someone on the list using the above
-mentioned Stacks:
-
-Telegraf, InfluxDB, Kapacitor
-
- 
-
-If not can someone guide me how to actually get them into recipes for them?
-Not sure how go works when using with devtool
-
- 
-
-Thanks.
-
- 
-
-Shan
-
-
-------=_NextPart_000_0005_01D4D84F.C6AF24D0
-Content-Type: text/html;
-	charset="us-ascii"
+--000000000000e1f4b40583d76aea
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
-HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal><span lang=3DEN-US>Hello,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>I have been using InfluxDB older =
-version on an Embedded Board through Yocto and was wondering if there is =
-already someone on the list using the above mentioned =
-Stacks:<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Telegraf, InfluxDB, Kapacitor<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>If not can someone guide me how to =
-actually get them into recipes for them? Not sure how go works when =
-using with devtool<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Thanks.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Shan<o:p></o:p></span></p></div></body></html>
+Hello!
 
-------=_NextPart_000_0005_01D4D84F.C6AF24D0--
+Yes those are both useful things to know. I am booting by flashing an SD
+card with a wic image (made using sdimage-bootpart.wks), so the flashing
+process takes care of creating the partitions. So the partition should be
+of type EXT4. The mounting process is actually what I'm a little fuzzy on
+in the first place. In October I had no issues with a mounting error for
+devtmpfs, and I've made few changes since, however I can't seem to shake
+this error, even when checking out older versions of the yocto
+repositories. The mounting process should be mostly taken from the
+meta-xilinx repository.
+
+Thanks,
+Emily
+
+On Mon, Mar 11, 2019 at 3:16 PM Lo=C3=AFc Domaign=C3=A9 <tech@domaigne.com>=
+ wrote:
+
+> Bonsoir Emily,
+>
+> > I'm using Yocto version rocko with a custom layer to run on the Zynq+ S=
+oC
+> > on a custom board. When trying to boot I'm getting the following error =
+in
+> > the boot output:
+> > ...
+> > [    4.127997] EXT4-fs (mmcblk0p2): couldn't mount as ext3 due to featu=
+re
+> > incompatibilities
+> > [    4.183737] EXT4-fs (mmcblk0p2): recovery complete
+> > [    4.190840] EXT4-fs (mmcblk0p2): mounted filesystem with ordered dat=
+a
+> > mode. Opts: (null)
+> > [    4.198870] VFS: Mounted root (ext4 filesystem) on device 179:2.
+> > [    4.205861] devtmpfs: error mounting -2
+> >
+> > Are there common reasons for this happening I should check?
+>
+> Not sure if that helps, but I'd check:
+> a) What's the type of the mmcblk0p2 (=3Drootfs?) partition?  and
+> b) How is this partition mounted?
+>
+> Cheers!
+> Lo=C3=AFc
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--000000000000e1f4b40583d76aea
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello!=C2=A0<div><br></div><div>Yes those are both useful =
+things to know. I am booting by flashing an SD card with a wic image (made =
+using sdimage-bootpart.wks), so the flashing process takes care of creating=
+ the partitions. So the partition should be of type EXT4. The mounting proc=
+ess is actually what I&#39;m a little fuzzy on in the first place. In Octob=
+er I had no issues with a mounting error for devtmpfs, and I&#39;ve made fe=
+w changes since, however I can&#39;t seem to shake this error, even when ch=
+ecking out older versions of the yocto repositories. The mounting process s=
+hould be mostly taken from the meta-xilinx repository.=C2=A0</div><div><br>=
+</div><div>Thanks,</div><div>Emily</div></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Mar 11, 2019 at 3:16 PM Lo=
+=C3=AFc Domaign=C3=A9 &lt;<a href=3D"mailto:tech@domaigne.com">tech@domaign=
+e.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex">Bonsoir Emily,<br>
+<br>
+&gt; I&#39;m using Yocto version rocko with a custom layer to run on the Zy=
+nq+ SoC<br>
+&gt; on a custom board. When trying to boot I&#39;m getting the following e=
+rror in<br>
+&gt; the boot output:<br>
+&gt; ... <br>
+&gt; [=C2=A0 =C2=A0 4.127997] EXT4-fs (mmcblk0p2): couldn&#39;t mount as ex=
+t3 due to feature<br>
+&gt; incompatibilities<br>
+&gt; [=C2=A0 =C2=A0 4.183737] EXT4-fs (mmcblk0p2): recovery complete<br>
+&gt; [=C2=A0 =C2=A0 4.190840] EXT4-fs (mmcblk0p2): mounted filesystem with =
+ordered data<br>
+&gt; mode. Opts: (null)<br>
+&gt; [=C2=A0 =C2=A0 4.198870] VFS: Mounted root (ext4 filesystem) on device=
+ 179:2.<br>
+&gt; [=C2=A0 =C2=A0 4.205861] devtmpfs: error mounting -2<br>
+&gt; <br>
+&gt; Are there common reasons for this happening I should check?<br>
+<br>
+Not sure if that helps, but I&#39;d check:<br>
+a) What&#39;s the type of the mmcblk0p2 (=3Drootfs?) partition?=C2=A0 and<b=
+r>
+b) How is this partition mounted?<br>
+<br>
+Cheers!<br>
+Lo=C3=AFc<br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
+
+--000000000000e1f4b40583d76aea--
