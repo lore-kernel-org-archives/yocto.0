@@ -1,65 +1,60 @@
-Return-Path: <srifenbark@gmail.com>
+Return-Path: <cavallini.koan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5F2B1E0090C; Mon, 11 Mar 2019 08:47:32 -0700 (PDT)
+	id 03030E008CA; Mon, 11 Mar 2019 10:46:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (srifenbark[at]gmail.com)
+	provider *      (cavallini.koan[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.49 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.166.170 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com
-	[209.85.208.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDE42E00872
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 08:47:31 -0700 (PDT)
-Received: by mail-ed1-f49.google.com with SMTP id p27so4441405edc.6
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 08:47:31 -0700 (PDT)
+Received: from mail-it1-f170.google.com (mail-it1-f170.google.com
+	[209.85.166.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93C83E0053F
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 10:46:12 -0700 (PDT)
+Received: by mail-it1-f170.google.com with SMTP id z124so14745itc.2
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 10:46:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=oDUqwZQ47myq7UnZfF1xyt5VrgHuOYam0BvdkVepJJo=;
-	b=iv5AiAJWwBp2S1Mtxg/bCn6NYYty6WCTnIhRD6fGSSv77pFyTIvfdmHecNYvJn2mWj
-	BYOsn65BUTgLQ6q6JdAZc69HZ1jLkK+TDo66sbda7CuhDMxq4Y7Dh6Pw03C6W8p3n+uP
-	rvqg7vMPHCTijlnZ2bdjZeu2RJlaugZRA1IMlG/3+XFjwfSYI58RTJAsRlmhsFRqx+vl
-	Yh8H5SLzbXzh8hTHC8w4DSWNm/eSjNDvPyBzaTjOIBgpm0/Blb/nXOtstCuDiUmKXorM
-	sDKVWtyFhLNX1qd9yjeuyJAZ1j71UTcn0vy7590CvIzcyVh33bEFnFOIibChVZa1tujk
-	mRzw==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=7ejxytxrsacGbAKXnNRJSvxDlkY46vB/bcSqkC3ZAqU=;
+	b=QmEnWs9Lhs+NimRhfpTIiZRs6qFjTLVm6MhQwaEJuBtUzlfPxs6WgE2vjZsdT774gW
+	a3fr0zNitxaJyjcC0z7C2Nlck8D+9Y+NmW/eNsTdYmQKmO+7QyDG5+j9hsbg4gg24QuW
+	FOsugt0a6juEpXJWy4Qj5gA5PakVDm4Sodk2sZYCJCnLYwkCxmgas7MkK3nz9BNblhx3
+	M8eGeBpOSBfUx3MLMCJ8DFcXHDEJ3P4/gYAJ0TKaB2NOmaiwmQdHOIjwDVqF0XJ4KIF2
+	NyGNZYs8qa2MXpqDb7VjQE9KI2WQoDImuJu249IQCxcWRF7WuOLGPXPsPNF5h7GeEFdN
+	Nkkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=oDUqwZQ47myq7UnZfF1xyt5VrgHuOYam0BvdkVepJJo=;
-	b=KOEIC8YCxxHUVW1NBMq16TrDX+Q0LlBvpJGwuF1ziSUCtHvLuJW8pfRtUYMOX8cu7w
-	lTT3SPqrLaUBK6dGgXeum55EMIbZfDNsmMUiVz8U8WZfsQv8UgaFlKr+IqAKT3kq0yAD
-	rkW+KxuVWQmYgEGhazwyEfsqeowl3Gmmzx7hHt15oqBV0uMj4jCjuEWC/TENd1XNKrYj
-	5csar9b2VyAhGqoy8T2WEElp68QeFpFcfwZptM1T7SJzBcfNlciOP8kXl9kqa8um2l7Y
-	0V0yZKs4qi8hibwxBtxknAi8POJtjplKCIJ9aKhQiXG7fjZhgCpjnq7uUGTC3ompdyc3
-	XrGw==
-X-Gm-Message-State: APjAAAXwLrSmd2Oei6SbGbgELp1wSzABa0DALcTKmXzBW6zGI/Fm6YSB
-	9vZaqXEIc/iUh2uauvWrQtx8l96E3UtymQVQwx4=
-X-Google-Smtp-Source: APXvYqy3ycT0205emu75zj1RQXx1extQAHPuKL10SyEXx6q+NEbGT8tXklzhCmOkyNkbxhbSlTIv4JR3ujZw/ylOVo0=
-X-Received: by 2002:a50:978e:: with SMTP id e14mr42749686edb.234.1552319250913;
-	Mon, 11 Mar 2019 08:47:30 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=7ejxytxrsacGbAKXnNRJSvxDlkY46vB/bcSqkC3ZAqU=;
+	b=K0YxtVQ4nrWXW3iSIu9t90J7owiwYNf2D1yd6Y+9DjLdWk63olxQVwNVwTKaUnGoFe
+	9GRR5rqwp+2zY55R+x32V5Zqfce4XS2RWX2zESUJXtUnsEZyxWq20mas70BduVULCjbO
+	/cmO6bz8RDcuapWoG8DsJtAtrCzmNl6WBiCG3Qpvw3++7cZsl6eXOwpSHOtyDuFsMZU3
+	gJpqHuizxTNPzj+uIcm1Ij8NVxSSB1FNDbbU716nSqFWQGxCschpq/Q1ibPtglc2xkjO
+	Y2snclKkhHMz9RUu6p318L/TmJWtRvYAXL2U20kJEV/PsaDzutaS7RrU2lIzqSqH5we0
+	Ki/g==
+X-Gm-Message-State: APjAAAUS/+m0xXKkXYgdDskT4kpPeh2d7FF+jywUjA1yOKCSbFYWtYiD
+	M3kP4+EMueJML92min37P94ApIB7qIbsXfK0OWdcLoKq
+X-Google-Smtp-Source: APXvYqwby4MPsnFe0iKDPZNuTfBArtlOa+yfE2zp6Z1eRawC8mWQm3sBGAhq5rXFAHXLR2SEMl9mCijFDA9M+uFDet4=
+X-Received: by 2002:a24:2fcb:: with SMTP id j194mr148394itj.125.1552326371680; 
+	Mon, 11 Mar 2019 10:46:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAGk+JegHkafvb7NnPs8V5=fWMM_9GKj3Rk1NHSa3kNDpJi70sw@mail.gmail.com>
-In-Reply-To: <CAGk+JegHkafvb7NnPs8V5=fWMM_9GKj3Rk1NHSa3kNDpJi70sw@mail.gmail.com>
-From: Scott Rifenbark <srifenbark@gmail.com>
-Date: Mon, 11 Mar 2019 09:47:18 -0600
-Message-ID: <CAFNP8OuuixdStE_LrRLhXbAtW-XuhE_2ehqzPucFL5iETvQCNA@mail.gmail.com>
-To: rahul chauhan <rahulchauhankitps@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Guidance to start yocto project.
+From: Marco <cavallini.koan@gmail.com>
+Date: Mon, 11 Mar 2019 18:46:00 +0100
+Message-ID: <CAFQ+Dii+ufAHPg7OLsbMDTCDBnpC1Q2dDKEDz0_6yWZjmSLbeg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: PREFERRED_VERSION ignored
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,65 +66,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2019 15:47:32 -0000
-Content-Type: multipart/alternative; boundary="000000000000875d940583d37d3e"
-
---000000000000875d940583d37d3e
+X-List-Received-Date: Mon, 11 Mar 2019 17:46:13 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-H Rahul,
+Hello,
+using Yocto version 'rocko' I have a custom layer defining a new
+recipe and a distro.
+I have a recipe openssl_1.0.1u.bb in my meta-custom layer.
+My meta-custom layer.conf has BBFILE_PRIORITY_meta-custom = "9"
 
-I would start with the
-https://www.yoctoproject.org/docs/2.6.1/brief-yoctoprojectqs/brief-yoctoprojectqs.html
-manual.  Gets you up and running.
+In my meta-custom layer I have a distro configuration saying
+PREFERRED_VERSION_openssl = "1.0.2o" so I expected to build 1.0.2o but
+when I build bitbake openssl is always selected the 1.0.1u
 
-Scott
+Same problem if I set PREFERRED_VERSION_openssl = "1.0.2o" in the local.conf
 
-On Mon, Mar 11, 2019 at 9:32 AM rahul chauhan <rahulchauhankitps@gmail.com>
-wrote:
+Is there an issue or am I doing something wrong?
 
-> Hello,
->
-> I am beginner with yocto project and i want to learn the yocto project and
-> start working on it.
-> can you please guide how can i proceed step by step and  what are the
-> prerequisites?
->
-> Thanks and Regards
-> Rahul Chauhan
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+--
+Marco
 
---000000000000875d940583d37d3e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div>H Rahul, <br></div><div><br></div><d=
-iv>I would start with the <a href=3D"https://www.yoctoproject.org/docs/2.6.=
-1/brief-yoctoprojectqs/brief-yoctoprojectqs.html">https://www.yoctoproject.=
-org/docs/2.6.1/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a> manual.=
-=C2=A0 Gets you up and running.</div><div><br></div><div>Scott<br></div></d=
-iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
-r">On Mon, Mar 11, 2019 at 9:32 AM rahul chauhan &lt;<a href=3D"mailto:rahu=
-lchauhankitps@gmail.com">rahulchauhankitps@gmail.com</a>&gt; wrote:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>H=
-ello,</div><div></div><div><br></div><div>I am beginner with yocto project =
-and i want to learn the yocto project and start working on it. <br></div><d=
-iv> can you please guide how can i proceed step by step and=C2=A0 what are =
-the prerequisites? </div><div><br></div><div>Thanks and Regards</div><div>R=
-ahul Chauhan<br></div></div>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
-
---000000000000875d940583d37d3e--
