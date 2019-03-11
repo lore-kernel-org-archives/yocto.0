@@ -1,60 +1,61 @@
-Return-Path: <cavallini.koan@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 03030E008CA; Mon, 11 Mar 2019 10:46:13 -0700 (PDT)
+	id 7F200E00AC5; Mon, 11 Mar 2019 12:17:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (cavallini.koan[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.170 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-it1-f170.google.com (mail-it1-f170.google.com
-	[209.85.166.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93C83E0053F
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 10:46:12 -0700 (PDT)
-Received: by mail-it1-f170.google.com with SMTP id z124so14745itc.2
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 10:46:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=7ejxytxrsacGbAKXnNRJSvxDlkY46vB/bcSqkC3ZAqU=;
-	b=QmEnWs9Lhs+NimRhfpTIiZRs6qFjTLVm6MhQwaEJuBtUzlfPxs6WgE2vjZsdT774gW
-	a3fr0zNitxaJyjcC0z7C2Nlck8D+9Y+NmW/eNsTdYmQKmO+7QyDG5+j9hsbg4gg24QuW
-	FOsugt0a6juEpXJWy4Qj5gA5PakVDm4Sodk2sZYCJCnLYwkCxmgas7MkK3nz9BNblhx3
-	M8eGeBpOSBfUx3MLMCJ8DFcXHDEJ3P4/gYAJ0TKaB2NOmaiwmQdHOIjwDVqF0XJ4KIF2
-	NyGNZYs8qa2MXpqDb7VjQE9KI2WQoDImuJu249IQCxcWRF7WuOLGPXPsPNF5h7GeEFdN
-	Nkkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=7ejxytxrsacGbAKXnNRJSvxDlkY46vB/bcSqkC3ZAqU=;
-	b=K0YxtVQ4nrWXW3iSIu9t90J7owiwYNf2D1yd6Y+9DjLdWk63olxQVwNVwTKaUnGoFe
-	9GRR5rqwp+2zY55R+x32V5Zqfce4XS2RWX2zESUJXtUnsEZyxWq20mas70BduVULCjbO
-	/cmO6bz8RDcuapWoG8DsJtAtrCzmNl6WBiCG3Qpvw3++7cZsl6eXOwpSHOtyDuFsMZU3
-	gJpqHuizxTNPzj+uIcm1Ij8NVxSSB1FNDbbU716nSqFWQGxCschpq/Q1ibPtglc2xkjO
-	Y2snclKkhHMz9RUu6p318L/TmJWtRvYAXL2U20kJEV/PsaDzutaS7RrU2lIzqSqH5we0
-	Ki/g==
-X-Gm-Message-State: APjAAAUS/+m0xXKkXYgdDskT4kpPeh2d7FF+jywUjA1yOKCSbFYWtYiD
-	M3kP4+EMueJML92min37P94ApIB7qIbsXfK0OWdcLoKq
-X-Google-Smtp-Source: APXvYqwby4MPsnFe0iKDPZNuTfBArtlOa+yfE2zp6Z1eRawC8mWQm3sBGAhq5rXFAHXLR2SEMl9mCijFDA9M+uFDet4=
-X-Received: by 2002:a24:2fcb:: with SMTP id j194mr148394itj.125.1552326371680; 
-	Mon, 11 Mar 2019 10:46:11 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 729EBE00872
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 12:17:02 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x2BJH1pb025835
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2019 12:17:01 -0700 (PDT)
+Received: from soho-mhatle-m.local (172.25.36.233) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.439.0;
+	Mon, 11 Mar 2019 12:17:01 -0700
+To: <yocto@yoctoproject.org>
+References: <CAFQ+Dii+ufAHPg7OLsbMDTCDBnpC1Q2dDKEDz0_6yWZjmSLbeg@mail.gmail.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
+	mQENBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
+	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
+	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
+	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
+	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
+	AAG0JU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT6JATcEEwEIACEFAlYK
+	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
+	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
+	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
+	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
+	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
+	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrrkBDQRWCsRYAQgAwK3FuHCE+HW3YWdH
+	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
+	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
+	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
+	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
+	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABiQEfBBgBCAAJBQJWCsRYAhsMAAoJ
+	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
+	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
+	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
+	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
+	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
+Organization: Wind River Systems
+Message-ID: <cf42d8d8-ba2f-bc4a-b730-b1078db03561@windriver.com>
+Date: Mon, 11 Mar 2019 14:17:00 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+	Gecko/20100101 Thunderbird/60.5.3
 MIME-Version: 1.0
-From: Marco <cavallini.koan@gmail.com>
-Date: Mon, 11 Mar 2019 18:46:00 +0100
-Message-ID: <CAFQ+Dii+ufAHPg7OLsbMDTCDBnpC1Q2dDKEDz0_6yWZjmSLbeg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: PREFERRED_VERSION ignored
+In-Reply-To: <CAFQ+Dii+ufAHPg7OLsbMDTCDBnpC1Q2dDKEDz0_6yWZjmSLbeg@mail.gmail.com>
+Subject: Re: PREFERRED_VERSION ignored
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,23 +67,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2019 17:46:13 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 11 Mar 2019 19:17:03 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Hello,
-using Yocto version 'rocko' I have a custom layer defining a new
-recipe and a distro.
-I have a recipe openssl_1.0.1u.bb in my meta-custom layer.
-My meta-custom layer.conf has BBFILE_PRIORITY_meta-custom = "9"
+On 3/11/19 12:46 PM, Marco wrote:
+> Hello,
+> using Yocto version 'rocko' I have a custom layer defining a new
+> recipe and a distro.
+> I have a recipe openssl_1.0.1u.bb in my meta-custom layer.
+> My meta-custom layer.conf has BBFILE_PRIORITY_meta-custom = "9"
+> 
+> In my meta-custom layer I have a distro configuration saying
+> PREFERRED_VERSION_openssl = "1.0.2o" so I expected to build 1.0.2o but
+> when I build bitbake openssl is always selected the 1.0.1u
+> 
+> Same problem if I set PREFERRED_VERSION_openssl = "1.0.2o" in the local.conf
+> 
+> Is there an issue or am I doing something wrong?
 
-In my meta-custom layer I have a distro configuration saying
-PREFERRED_VERSION_openssl = "1.0.2o" so I expected to build 1.0.2o but
-when I build bitbake openssl is always selected the 1.0.1u
+I've seen this issue before.  There are issues with layer priority as well as
+recipe priority.  The only way I've dealt with this is by blacklisting specific
+versions of recipes...
 
-Same problem if I set PREFERRED_VERSION_openssl = "1.0.2o" in the local.conf
+PNBLACKLIST[<recipe>] ?= "${@'Only version ' +
+d.getVar('PREFERRED_VERSION_${BPN}') + ' (not ${PV}) is supported in this
+configuration. ' if d.getVar('PREFERRED_VERSION_${BPN}') and not
+d.getVar('PV').startswith(d.getVar('PREFERRED_VERSION_${BPN}').replace('%', ''))
+else ''}"
 
-Is there an issue or am I doing something wrong?
+(note the above is one single line)
 
---
-Marco
+--Mark
+
+> --
+> Marco
+> 
+
 
