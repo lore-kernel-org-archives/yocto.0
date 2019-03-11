@@ -1,38 +1,34 @@
-Return-Path: <tech@domaigne.com>
+Return-Path: <Kai.Kang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36622E00D01; Sat,  9 Mar 2019 14:21:37 -0800 (PST)
+	id BEDF1E00C93; Sun, 10 Mar 2019 22:53:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [80.237.132.122 listed in list.dnswl.org]
-X-Greylist: delayed 1057 seconds by postgrey-1.32 at yocto-www;
-	Sat, 09 Mar 2019 14:21:35 PST
-Received: from wp115.webpack.hosteurope.de (wp115.webpack.hosteurope.de
-	[80.237.132.122])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F01ACE00BE8
-	for <yocto@yoctoproject.org>; Sat,  9 Mar 2019 14:21:35 -0800 (PST)
-Received: from app15-neu.ox.hosteurope.de ([92.51.170.149]); authenticated
-	by wp115.webpack.hosteurope.de running ExIM with esmtpsa
-	(TLS1.0:ECDHE_RSA_AES_256_CBC_SHA1:256)
-	id 1h2k4T-000115-Lp; Sat, 09 Mar 2019 23:03:57 +0100
-Date: Sat, 9 Mar 2019 23:03:57 +0100 (CET)
-From: =?UTF-8?Q?Lo=C3=AFc_Domaign=C3=A9?= <tech@domaigne.com>
-To: yocto@yoctoproject.org
-Message-ID: <1169673466.135386.1552169037609@ox.hosteurope.de>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6ABFCE006D8
+	for <yocto@yoctoproject.org>; Sun, 10 Mar 2019 22:53:32 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x2B5r5fj013183
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Sun, 10 Mar 2019 22:53:21 -0700
+Received: from msp-lpggp1.wrs.com (172.25.34.110) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.439.0;
+	Sun, 10 Mar 2019 22:53:08 -0700
+From: <kai.kang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 11 Mar 2019 01:52:00 -0400
+Message-ID: <20190311055200.12720-1-kai.kang@windriver.com>
+X-Mailer: git-send-email 2.20.0
 MIME-Version: 1.0
-X-Priority: 3
-Importance: Medium
-X-Mailer: Open-Xchange Mailer v7.8.4-Rev51
-X-Originating-Client: open-xchange-appsuite
-X-bounce-key: webpack.hosteurope.de;tech@domaigne.com;1552170096;91f12592;
-X-HE-SMSGID: 1h2k4T-000115-Lp
-Subject: What is the motivation behind the "??=" weak default value operator?
+Subject: [meta-selinux][PATCH] meson-selinux.bbclass: add for meson build system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,24 +40,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Mar 2019 22:21:37 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 11 Mar 2019 05:53:32 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Salut, 
+From: Kai Kang <kai.kang@windriver.com>
 
-I have a question regarding the usage of the weak default value operator ??= 
-I do understand the rules associated with this operator, in particular wrt. to the other assignment operators = and ?= 
+Add meson-selinux.bbclass for meson build system. It used
+'-Dselinux=true/false' to enable/disable 'selinux' rather than
+--enable-selinux or --with-selinux.
 
-Could someone shed some lights on why "??=" was introduced in the first place? I couldn't find the relevant thread on the yocto MLs :(
+Inherit meson-selinux for glib-2.0 to fix configure failure.
 
-Modulo my little understanding of Yocto, I have worked out a scenario where "??=" would make sense... But not sure if a) this understanding is correct, and b) if it was indeed (one of) the motivation for "??=". I prefer getting "first (developer) hand info" whenever possible :)
+Signed-off-by: Kai Kang <kai.kang@windriver.com>
+---
+ classes/meson-selinux.bbclass             | 4 ++++
+ recipes-core/glib-2.0/glib-2.0_%.bbappend | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+ create mode 100644 classes/meson-selinux.bbclass
 
-possible explanation for "??=":
-AFAIK, bitbake will parse configuration files in a certain order, starting from bblayers.conf, then going to the corresponding layer.conf, then bitbake.conf, then the conf/{site,auto,local}.conf etc. If a default value for -- say FOO -- is set using the ?= operator in one of the config file parsed before by bitbake, then there is no way to redefine/customize that default value later on (by the way ?= works). We could set it (using standard = operator), but that might be too strong (for the cases where we want to have another default value if not set). This is where the ??= operator could be very handy. 
+diff --git a/classes/meson-selinux.bbclass b/classes/meson-selinux.bbclass
+new file mode 100644
+index 0000000..77a763a
+--- /dev/null
++++ b/classes/meson-selinux.bbclass
+@@ -0,0 +1,4 @@
++inherit selinux
++
++PACKAGECONFIG_append = " ${@target_selinux(d)}"
++PACKAGECONFIG[selinux] = "-Dselinux=true,-Dselinux=false,libselinux,"
+diff --git a/recipes-core/glib-2.0/glib-2.0_%.bbappend b/recipes-core/glib-2.0/glib-2.0_%.bbappend
+index 74e22b3..e5d2f6f 100644
+--- a/recipes-core/glib-2.0/glib-2.0_%.bbappend
++++ b/recipes-core/glib-2.0/glib-2.0_%.bbappend
+@@ -1 +1 @@
+-inherit ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'enable-selinux', '', d)}
++inherit ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'meson-selinux', '', d)}
+-- 
+2.20.0
 
-Am I on the right track or is it just a nice story? Any pointers (ML thread, source code, explanation) about the motivation behind "??=" operator is greatly appreciated. TIA!
-
-Cheers!
-ljd, 0x5f375a86
 
