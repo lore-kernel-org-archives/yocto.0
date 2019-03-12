@@ -1,66 +1,62 @@
-Return-Path: <easmith5555@gmail.com>
+Return-Path: <leon@sidebranch.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0352FE009A0; Tue, 12 Mar 2019 15:53:40 -0700 (PDT)
+	id 67FE3E00C43; Tue, 12 Mar 2019 16:24:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (easmith5555[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.174 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.217.45 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f174.google.com (mail-it1-f174.google.com
-	[209.85.166.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81A74E009A0
-	for <yocto@yoctoproject.org>; Tue, 12 Mar 2019 15:53:39 -0700 (PDT)
-Received: by mail-it1-f174.google.com with SMTP id l139so7219480ita.5
-	for <yocto@yoctoproject.org>; Tue, 12 Mar 2019 15:53:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com
+	[209.85.217.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36A30E00C1E
+	for <yocto@yoctoproject.org>; Tue, 12 Mar 2019 16:24:53 -0700 (PDT)
+Received: by mail-vs1-f45.google.com with SMTP id z18so2689899vso.7
+	for <yocto@yoctoproject.org>; Tue, 12 Mar 2019 16:24:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=sidebranch-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=AEsxyEatVx9HoFdON4+sLQyqGzw0PQVWEtgO2t/E6SE=;
-	b=mGzRfBYUO5hs+g48DzyM4S0jvx6KVNQFXwYw/xC68dllagUInnoRJKTF+GkohBU2ol
-	RWj57828NnZvWMKfPOqH9XX64OdMktYAfWQ01V4dkIMqidWw3Pyu6eIQvG+SU+QRCRyz
-	JLghP+6j68eh566EB44EjvxBwCLPDjyGpXkPJyZ92m4lPtNtgmpyISG2Ad8j7/zso3ee
-	xNDem6fOteUvl/ol8oCrECpT44vLPxXZn2RfgbgJ++ct8cdh6eKuAz2JiIxKLLugdFEB
-	kUr1JJy7DKLR7BYB0a91gTUye3dY8bD+ee2+WMpaGPa2NNZwr/YvgnLY8iHwJOQLn/Ew
-	kpTw==
+	:cc; bh=XTAaIQjqahg4wGOhVxK0wvwugVysxMgogG4+QOVW25k=;
+	b=k+0cScG/UhcF4xGkSffM+IoDWY9NtpqjXiZxaIYK1hxSQz/aifn/VFRSA8M3WETtnM
+	jUztERK07BW0SqdSBR82BF1keN8QgpH+S5bzCnVrUrQWTX0mEjxeX/2b1U4PohcQoulG
+	lHtTLKVdPcXbBb/VhWGx61DYMuZRjsNfX0JsxJgIfEIxzwtLmuS0X7ONauWbyjNK8Yhx
+	+HjWHS0l1P8TF7lZyIUilZRAB8faxgSAz9pSU66yr56oJ0Sntuyh3UGFTv9nl7K17yp/
+	/LAyri5PHdFf3mfjSrkpKtQdTfaQkGBWKEAZ6S6jLnXsNDa9mvB+tL3WUZHmv1idB9Bn
+	zEwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=AEsxyEatVx9HoFdON4+sLQyqGzw0PQVWEtgO2t/E6SE=;
-	b=qUtyZBE3Tbd4HCMA90dO0MlFMLh5+f3T0Ol5nZqwOi285sUEtk/bkYaTS0fsx5WGg/
-	RJ3bBr5lttNmdMhmcB7iefkDxoxkeDJoDor/LQZrw1fytCGmmQc3yzeD6XVzdcJaPsg0
-	F4t5Wiok9/raqEJxYDQdpbAXPZZzzvFw3EcsOMIGmQBxLv9AxGZwp5Xb8nA7/NyT4x0I
-	zwxEM83PP2iPFf7fr84o0AxDh83Jtyl1p2CDFAZOw6sA8G53c9ADJ3zhR92XiGO1vkRj
-	/MqF25OZB5XfiRnY/5GBEvtzU8CZmUp0WXaH6j1WJS7h/boxgnyxdM0PeKuYoVvT3CDg
-	rZ8w==
-X-Gm-Message-State: APjAAAVnoBAHedjMevwynCQmBIrREx3mkL5VNAzJph14NUmZrqu+VJP/
-	+Td2oJE7tzmI/FJ+i/nruOBkSohQlRQ97leZgbE=
-X-Google-Smtp-Source: APXvYqx2PLLuj+WKDU9Yt75Uu6rl+ScnEsWwLHc6SQ1bAGmh5wyi3NqPgPt5H3/iVFQOSl7F2/fHOlNuVA7iVx+qDJ8=
-X-Received: by 2002:a24:e502:: with SMTP id g2mr124788iti.78.1552431218820;
-	Tue, 12 Mar 2019 15:53:38 -0700 (PDT)
+	bh=XTAaIQjqahg4wGOhVxK0wvwugVysxMgogG4+QOVW25k=;
+	b=FXtihnEktz0SbSRtxwh2O0zTMXQvAXmKIifEY9jy6MnHUEHg7oYWu8Hj7Yo3B32Wy7
+	twCdulvN67Endvb9+we7U8HLu+2BqfjcwtSrQOLS1e1Va2JU801tKGGRrrIrPtfLynmy
+	6ksW1YxdmfnZagFWFnal4NcnlXlGQhAAXJVZD2yC7QM04whamMha4g4HL0zhL2/j+SQ0
+	1YnDpn6aMU8CIOwYSKx3qVUJW+z2r4SbzQlitJ/Ua2ULs9685DisH5zSUutLzQVExn3T
+	ciFEjHWVLZjMQczGwHgo/PSZaAS+SYvNGCBt5vXlQs2jkx9CzFxd5qznrccZbNhch3lw
+	0QlQ==
+X-Gm-Message-State: APjAAAXEw9C49O9QU6tjdk+UHDxGtx0t2LyT8Ja5J8d+ErpbmW3RMnIz
+	2I4Qz5j72b7XN3J5RMHoJr66oNPeuIv8mFym0rV/Uw==
+X-Google-Smtp-Source: APXvYqyOJ+E9+FVRAbcjK6/Yxe66SO/fas0zrkmNC8X/n88zkpa9w1Dj3gotX8HBbxoALTb2+LaQqp6jk6qrUVSFbJ4=
+X-Received: by 2002:a67:f05a:: with SMTP id q26mr22232528vsm.174.1552433092392;
+	Tue, 12 Mar 2019 16:24:52 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAAV2bM3odyNWNPMdOyM3xiKpiDKgaTVCW4MA8ayOsen3RkTAVA@mail.gmail.com>
 	<CAMjhiJgiag68y4UmRGN16NnPoRZt9iC=L=-Q8kDHMQjzsjEVMg@mail.gmail.com>
 	<CAAV2bM2QGuTSc9F_DRfw1P_T0NYtb_1c2GyTKWgDB6KYM1OqaQ@mail.gmail.com>
 	<CAMjhiJgL4be=AvT03ecR62tRQpar8NJV4=yij-cg+-YoGDkY8w@mail.gmail.com>
-In-Reply-To: <CAMjhiJgL4be=AvT03ecR62tRQpar8NJV4=yij-cg+-YoGDkY8w@mail.gmail.com>
-From: Emily S <easmith5555@gmail.com>
-Date: Tue, 12 Mar 2019 17:53:29 -0500
-Message-ID: <CAAV2bM2Mdht08DxVZ5q-1QTaCZu7DNSNG9qegQ1kkM_zx2e68A@mail.gmail.com>
-To: Leon Woestenberg <leon@sidebranch.com>
+	<CAAV2bM2Mdht08DxVZ5q-1QTaCZu7DNSNG9qegQ1kkM_zx2e68A@mail.gmail.com>
+In-Reply-To: <CAAV2bM2Mdht08DxVZ5q-1QTaCZu7DNSNG9qegQ1kkM_zx2e68A@mail.gmail.com>
+From: Leon Woestenberg <leon@sidebranch.com>
+Date: Wed, 13 Mar 2019 00:24:41 +0100
+Message-ID: <CAMjhiJimZDYScR0oC5bisurq+38OL2wozV1qT+ZEMz3dzq2anQ@mail.gmail.com>
+To: Emily S <easmith5555@gmail.com>
 Cc: Yocto List <yocto@yoctoproject.org>
 Subject: Re: /usr/bin/env requires coreutils?
 X-BeenThere: yocto@yoctoproject.org
@@ -74,79 +70,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Mar 2019 22:53:40 -0000
-Content-Type: multipart/alternative; boundary="00000000000056306c0583ed8f96"
-
---00000000000056306c0583ed8f96
+X-List-Received-Date: Tue, 12 Mar 2019 23:24:54 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Leon -
+Hi Emily,
 
-When you ask if there is anything in /usr/bin at all I'm not sure what you
-mean, could you elaborate?
-
-Ahh so you're saying something in the init-clock recipe itself is incorrect
-in the way it uses ${bindir}? I did not actually write this recipe so I may
-be not understanding it fully, but I don't actually see ${bindir} in it
-anywhere.
-
-Yes that link is the correct recipe!
-
-Thanks!
-Emily
-
-
-On Tue, Mar 12, 2019 at 5:27 PM Leon Woestenberg <leon@sidebranch.com>
-wrote:
-
-> Hi Emily,
+On Tue, Mar 12, 2019 at 11:53 PM Emily S <easmith5555@gmail.com> wrote:
 >
-> I guess the problem is more in your init-clock recipe, and I am
-> assuming this one:
+> When you ask if there is anything in /usr/bin at all I'm not sure what you mean, could you elaborate?
 >
->
-> https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/init/init-clock_1.0.0.bb
->
-> This probably was always incorrect, but the problem now shows with
-> newer Yocto releases.
->
-> Regards,
->
-> Leon
->
+On the root filesystem, do you see other executables in the /usr/bin/ directory?
 
---00000000000056306c0583ed8f96
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> Ahh so you're saying something in the init-clock recipe itself is incorrect in the way it uses ${bindir}? I did not actually write this recipe so I may be not understanding it fully, but I don't actually see ${bindir} in it anywhere.
+>
+That last part of the sentence might be the actual problem, in case
+you do not have /usr/bin/env (but /bin/env for example).
 
-<div dir=3D"ltr">Hi Leon -<div><br></div><div>When you ask if there is anyt=
-hing in /usr/bin at all I&#39;m not sure what you mean, could you elaborate=
-?</div><div><br></div><div>Ahh so you&#39;re saying something in the init-c=
-lock recipe itself is incorrect in the way it uses ${bindir}? I did not act=
-ually write this recipe so I may be not understanding it fully, but I don&#=
-39;t actually see ${bindir} in it anywhere.=C2=A0=C2=A0</div><div><br></div=
-><div>Yes that link is the correct recipe!</div><div><br></div><div>Thanks!=
-</div><div>Emily</div><div><br></div></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 12, 2019 at 5:27 PM Leon W=
-oestenberg &lt;<a href=3D"mailto:leon@sidebranch.com">leon@sidebranch.com</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi=
- Emily,<br>
-<br>
-I guess the problem is more in your init-clock recipe, and I am<br>
-assuming this one:<br>
-<br>
-<a href=3D"https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/i=
-nit/init-clock_1.0.0.bb" rel=3D"noreferrer" target=3D"_blank">https://githu=
-b.com/kratsg/meta-l1calo/blob/master/recipes-core/init/init-clock_1.0.0.bb<=
-/a><br>
-<br>
-This probably was always incorrect, but the problem now shows with<br>
-newer Yocto releases.<br>
-<br>
-Regards,<br>
-<br>
-Leon<br>
-</blockquote></div>
+> Yes that link is the correct recipe!
+>
+Google power.
 
---00000000000056306c0583ed8f96--
+Regards,
+
+Leon.
+
