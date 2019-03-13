@@ -1,69 +1,41 @@
-Return-Path: <srifenbark@gmail.com>
+Return-Path: <sscott@san.rr.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 612FDE00D0F; Wed, 13 Mar 2019 08:42:41 -0700 (PDT)
+	id E4F30E00D08; Wed, 13 Mar 2019 08:47:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (srifenbark[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.53 listed in list.dnswl.org]
+	*      [107.14.166.225 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
-	[209.85.208.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 878A6E00CAB
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2019 08:42:40 -0700 (PDT)
-Received: by mail-ed1-f53.google.com with SMTP id n14so1931744edv.8
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2019 08:42:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=55exGfMjLi22w1TOm3BJVZTclXaPjsIRMw33gvxTDB0=;
-	b=u3Q/FCWMyfuZVsC5sHlgd9XlkNsEQIqF950wMhV9KvvFYQm0E2/KdpilJpbxzb9b9h
-	QAEfOazhG1XqHkV0uQEtgFMARPjTz2G3gW83/yRUFpc/fXryH48JRqBSSJnNmv6dOsLx
-	mUbAwXSdmtthDodd52XNVTZderABYrdrDzG6ZCvk9vLY3GBMq/P9oPVuPzYUWdeypF1l
-	5kaRF/TieuaeyjxVilmOXnP2vrCHordMvSpBDnuls6KUYa2vTS9+pUx49scDu/IsBkG6
-	bPw3+jgKicK7+uFTnk6PsHF5DAsrrs435wmri/xXR39wdvJ0523ICZFpcG8ukiDd3ffv
-	Zo4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=55exGfMjLi22w1TOm3BJVZTclXaPjsIRMw33gvxTDB0=;
-	b=HO3mPP3WVQwMEKIvhylNMRER3+hbqXc150QgO1rbFYjevmq93ZWJURNY20kO75qGFo
-	+PZd+8k8a42BXc9Oa4nZ1HxVwNN0M2cpDY48P5qQzsSSg3CSNRQAWvlaYD+q7WExo9QX
-	AkUD3mAb77jRm4pw99Qr4RtEm1wAcFW9G95DNptvVlR5WOsbO9VbsxvDUW/ysqi8XR4T
-	St4AnrOYJ0NEJzFzACiSLW7YCt9ybYoL3yixBjPYf3+5EssIcKDek2SRQerdhJXdKIqy
-	FzKTFerPLSja9cXyX8UG2ImCLhdSHdKfdLeEll2Djpty2aRwFD2rtYz51M4s3i5at7tF
-	/sxw==
-X-Gm-Message-State: APjAAAWOTrWLi2zOEuhPNTwPOewHMkmR+UdjvShlplSWsETejJZI67yY
-	c/FihNgaRgzgUc8MCHIWqY3rspF5vzJkpyIHbnhF61kP
-X-Google-Smtp-Source: APXvYqzEYIavxxF6zvs2OWcHNRlET6htkS1/aCA3lftk8L3cPazif63pxy9PtJNaLw/5v0IXPVexgXef7TJCsWhXfjI=
-X-Received: by 2002:a17:906:5f91:: with SMTP id
-	a17mr29984686eju.48.1552491759595; 
-	Wed, 13 Mar 2019 08:42:39 -0700 (PDT)
-MIME-Version: 1.0
+Received: from cdptpa-cmomta02.email.rr.com (cdptpa-outbound-snat.email.rr.com
+	[107.14.166.225])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FBB3E0096F
+	for <yocto@yoctoproject.org>; Wed, 13 Mar 2019 08:47:53 -0700 (PDT)
+Received: from boobie ([75.80.138.87]) by cmsmtp with ESMTP
+	id 466fhUZhP0QcV466ihh1P1; Wed, 13 Mar 2019 15:47:52 +0000
+From: "Steve Scott" <sscott@san.rr.com>
+To: "'Scott Rifenbark'" <srifenbark@gmail.com>
 References: <003d01d4d9b0$30bb26b0$92317410$@san.rr.com>
-In-Reply-To: <003d01d4d9b0$30bb26b0$92317410$@san.rr.com>
-From: Scott Rifenbark <srifenbark@gmail.com>
-Date: Wed, 13 Mar 2019 09:42:28 -0600
-Message-ID: <CAFNP8OsRB6Upapfkc_fPG5YKTG4Jozkn47QP-h4PM2dx-nbF9g@mail.gmail.com>
-To: sscott@san.rr.com
-Cc: Yocto discussion list <yocto@yoctoproject.org>
+	<CAFNP8OsRB6Upapfkc_fPG5YKTG4Jozkn47QP-h4PM2dx-nbF9g@mail.gmail.com>
+In-Reply-To: <CAFNP8OsRB6Upapfkc_fPG5YKTG4Jozkn47QP-h4PM2dx-nbF9g@mail.gmail.com>
+Date: Wed, 13 Mar 2019 08:47:54 -0700
+Message-ID: <004e01d4d9b4$21383760$63a8a620$@san.rr.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQFTNJFGAkgVnwYhPMNahRBOLPAYxgJsvsyRpvmYEHA=
+X-CMAE-Envelope: MS4wfNC6ekVx3aIoafl93i+r6Zekfh0IfJCvdbSylxDojuKO79dbHdDDclDczGWr4nECLU7zw+qclFxoOXnEsrKWx4m61DyJI0mA3okiPzjfs/0ij+4xuDSd
+	2THqjlHhkFWcUVMH/AqD2mHZPM689/YC0Bu4TvURxnBCvf/TNYiolbB3Cb2/7VvOCiny3hnd1iTBOg==
+Cc: 'Yocto discussion list' <yocto@yoctoproject.org>
 Subject: Re: packaging documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: sscott@san.rr.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -72,120 +44,266 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Mar 2019 15:42:41 -0000
-Content-Type: multipart/alternative; boundary="000000000000d8f7da0583fba7e7"
+X-List-Received-Date: Wed, 13 Mar 2019 15:47:54 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_004F_01D4D979.74D9FBA0"
+Content-Language: en-us
 
---000000000000d8f7da0583fba7e7
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_004F_01D4D979.74D9FBA0
+Content-Type: text/plain;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Steve,
+Hi Scott:
 
-Have you found the YP Overview and Concepts Manual?  There is a fairly
-large section here -
-https://yoctoproject.org/docs/2.6.1/overview-manual/overview-manual.html#op=
-enembedded-build-system-build-concepts
-that covers build concepts in some detail.  This might help you.
+=20
 
-Another idea for finding topics in the YP manual set is to use the YP
-Mega-Manual (
-https://yoctoproject.org/docs/current/mega-manual/mega-manual.html), which
-is a compilation of the set of YP manuals.  You can search the entire set
-for terms (e.g. "packag").  It occurs a lot in the set but it is a way to
-find all the occurrences.
+Yes, I=E2=80=99ve been searching in the mega manual, and I=E2=80=99ve =
+read the section in the overview manual. The old OE Manual explanation =
+was more what I was looking for. It seems that has been lost somewhere =
+along the way. Filing a bug against the docs sounds like a good idea =
+=E2=80=93 I=E2=80=99m not sure how to do that.
 
-If you still cannot find satisfactory explanation on how packages are
-generated, we can file a bug against the docs and get a good explanation in
-there.
+=20
 
-Hope this helps,
+Thanks.
+
+=20
+
+-steve
+
+=20
+
+From: Scott Rifenbark [mailto:srifenbark@gmail.com]=20
+Sent: Wednesday, March 13, 2019 8:42 AM
+To: sscott@san.rr.com
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [yocto] packaging documentation
+
+=20
+
+Hi Steve,=20
+
+=20
+
+Have you found the YP Overview and Concepts Manual?  There is a fairly =
+large section here - =
+https://yoctoproject.org/docs/2.6.1/overview-manual/overview-manual.html#=
+openembedded-build-system-build-concepts that covers build concepts in =
+some detail.  This might help you. =20
+
+=20
+
+Another idea for finding topics in the YP manual set is to use the YP =
+Mega-Manual =
+(https://yoctoproject.org/docs/current/mega-manual/mega-manual.html), =
+which is a compilation of the set of YP manuals.  You can search the =
+entire set for terms (e.g. "packag").  It occurs a lot in the set but it =
+is a way to find all the occurrences.=20
+
+=20
+
+If you still cannot find satisfactory explanation on how packages are =
+generated, we can file a bug against the docs and get a good explanation =
+in there.
+
+=20
+
+Hope this helps,=20
+
 Scott
 
-On Wed, Mar 13, 2019 at 9:21 AM Steve Scott <sscott@san.rr.com> wrote:
+=20
 
-> Hi:
->
->
->
-> I=E2=80=99ve been trying to get a better understanding of how packages ar=
-e
-> generated by recipes. I found a fairly good explanation in an old
-> OpenEmbedded User=E2=80=99s Manual (
-> https://dominion.thruhere.net/koen/OE/OE-usermanual.html#recipes_packages=
-).
-> The manual is hard to find, and doesn=E2=80=99t appear to be archive on t=
-he
-> openembedded site (https://www.openembedded.org/wiki/Documentation).
->
->
->
-> Can somebody point me to an equivalent discussion in the current Yocto
-> project documentation?
->
->
->
-> Thanks.
->
->
->
-> -steve
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+On Wed, Mar 13, 2019 at 9:21 AM Steve Scott <sscott@san.rr.com =
+<mailto:sscott@san.rr.com> > wrote:
 
---000000000000d8f7da0583fba7e7
-Content-Type: text/html; charset="UTF-8"
+Hi:
+
+=20
+
+I=E2=80=99ve been trying to get a better understanding of how packages =
+are generated by recipes. I found a fairly good explanation in an old =
+OpenEmbedded User=E2=80=99s Manual =
+(https://dominion.thruhere.net/koen/OE/OE-usermanual.html#recipes_package=
+s). The manual is hard to find, and doesn=E2=80=99t appear to be archive =
+on the openembedded site =
+(https://www.openembedded.org/wiki/Documentation).
+
+=20
+
+Can somebody point me to an equivalent discussion in the current Yocto =
+project documentation?
+
+=20
+
+Thanks.
+
+=20
+
+-steve
+
+=20
+
+--=20
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>=20
+https://lists.yoctoproject.org/listinfo/yocto
+
+
+------=_NextPart_000_004F_01D4D979.74D9FBA0
+Content-Type: text/html;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Steve, <br></div><div><br></div><=
-div>Have you found the YP Overview and Concepts Manual?=C2=A0 There is a fa=
-irly large section here - <a href=3D"https://yoctoproject.org/docs/2.6.1/ov=
-erview-manual/overview-manual.html#openembedded-build-system-build-concepts=
-">https://yoctoproject.org/docs/2.6.1/overview-manual/overview-manual.html#=
-openembedded-build-system-build-concepts</a> that covers build concepts in =
-some detail.=C2=A0 This might help you.=C2=A0 <br></div><div><br></div><div=
->Another idea for finding topics in the YP manual set is to use the YP Mega=
--Manual (<a href=3D"https://yoctoproject.org/docs/current/mega-manual/mega-=
-manual.html">https://yoctoproject.org/docs/current/mega-manual/mega-manual.=
-html</a>), which is a compilation of the set of YP manuals.=C2=A0 You can s=
-earch the entire set for terms (e.g. &quot;packag&quot;).=C2=A0 It occurs a=
- lot in the set but it is a way to find all the occurrences. <br></div><div=
-><br></div><div>If you still cannot find satisfactory explanation on how pa=
-ckages are generated, we can file a bug against the docs and get a good exp=
-lanation in there.</div><div><br></div><div>Hope this helps, <br></div><div=
->Scott<br></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
- class=3D"gmail_attr">On Wed, Mar 13, 2019 at 9:21 AM Steve Scott &lt;<a hr=
-ef=3D"mailto:sscott@san.rr.com">sscott@san.rr.com</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex"><div lang=3D"EN-US"><div c=
-lass=3D"gmail-m_-8481650631589886565WordSection1"><p class=3D"MsoNormal">Hi=
-:<u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=
-=3D"MsoNormal">I=E2=80=99ve been trying to get a better understanding of ho=
-w packages are generated by recipes. I found a fairly good explanation in a=
-n old OpenEmbedded User=E2=80=99s Manual (<a href=3D"https://dominion.thruh=
-ere.net/koen/OE/OE-usermanual.html#recipes_packages" target=3D"_blank">http=
-s://dominion.thruhere.net/koen/OE/OE-usermanual.html#recipes_packages</a>).=
- The manual is hard to find, and doesn=E2=80=99t appear to be archive on th=
-e openembedded site (<a href=3D"https://www.openembedded.org/wiki/Documenta=
-tion" target=3D"_blank">https://www.openembedded.org/wiki/Documentation</a>=
-).<u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=
-=3D"MsoNormal">Can somebody point me to an equivalent discussion in the cur=
-rent Yocto project documentation?<u></u><u></u></p><p class=3D"MsoNormal"><=
-u></u>=C2=A0<u></u></p><p class=3D"MsoNormal">Thanks.<u></u><u></u></p><p c=
-lass=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal">-steve<u>=
-</u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div></div>-=
-- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+>Hi Scott:<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+>Yes, I=E2=80=99ve been searching in the mega manual, and I=E2=80=99ve =
+read the section in the overview manual. The old OE Manual explanation =
+was more what I was looking for. It seems that has been lost somewhere =
+along the way. Filing a bug against the docs sounds like a good idea =
+=E2=80=93 I=E2=80=99m not sure how to do that.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+>Thanks.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+>-steve<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+><o:p>&nbsp;</o:p></span></p><div style=3D'border:none;border-left:solid =
+blue 1.5pt;padding:0in 0in 0in 4.0pt'><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in'><p class=3DMsoNormal><b><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>From:</span><=
+/b><span style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'> =
+Scott Rifenbark [mailto:srifenbark@gmail.com] <br><b>Sent:</b> =
+Wednesday, March 13, 2019 8:42 AM<br><b>To:</b> =
+sscott@san.rr.com<br><b>Cc:</b> Yocto discussion list =
+&lt;yocto@yoctoproject.org&gt;<br><b>Subject:</b> Re: [yocto] packaging =
+documentation<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><div><p =
+class=3DMsoNormal>Hi Steve, <o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Have you found the YP Overview and Concepts =
+Manual?&nbsp; There is a fairly large section here - <a =
+href=3D"https://yoctoproject.org/docs/2.6.1/overview-manual/overview-manu=
+al.html#openembedded-build-system-build-concepts">https://yoctoproject.or=
+g/docs/2.6.1/overview-manual/overview-manual.html#openembedded-build-syst=
+em-build-concepts</a> that covers build concepts in some detail.&nbsp; =
+This might help you.&nbsp; <o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Another idea for finding topics in the YP manual set =
+is to use the YP Mega-Manual (<a =
+href=3D"https://yoctoproject.org/docs/current/mega-manual/mega-manual.htm=
+l">https://yoctoproject.org/docs/current/mega-manual/mega-manual.html</a>=
+), which is a compilation of the set of YP manuals.&nbsp; You can search =
+the entire set for terms (e.g. &quot;packag&quot;).&nbsp; It occurs a =
+lot in the set but it is a way to find all the occurrences. =
+<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>If you still cannot find satisfactory explanation on =
+how packages are generated, we can file a bug against the docs and get a =
+good explanation in there.<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Hope this helps, <o:p></o:p></p></div><div><p =
+class=3DMsoNormal>Scott<o:p></o:p></p></div></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p class=3DMsoNormal>On =
+Wed, Mar 13, 2019 at 9:21 AM Steve Scott &lt;<a =
+href=3D"mailto:sscott@san.rr.com">sscott@san.rr.com</a>&gt; =
+wrote:<o:p></o:p></p></div><blockquote =
+style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0in 0in 0in =
+6.0pt;margin-left:4.8pt;margin-right:0in'><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Hi:<o:p></o:=
+p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I=E2=80=99ve=
+ been trying to get a better understanding of how packages are generated =
+by recipes. I found a fairly good explanation in an old OpenEmbedded =
+User=E2=80=99s Manual (<a =
+href=3D"https://dominion.thruhere.net/koen/OE/OE-usermanual.html#recipes_=
+packages" =
+target=3D"_blank">https://dominion.thruhere.net/koen/OE/OE-usermanual.htm=
+l#recipes_packages</a>). The manual is hard to find, and doesn=E2=80=99t =
+appear to be archive on the openembedded site (<a =
+href=3D"https://www.openembedded.org/wiki/Documentation" =
+target=3D"_blank">https://www.openembedded.org/wiki/Documentation</a>).<o=
+:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Can =
+somebody point me to an equivalent discussion in the current Yocto =
+project documentation?<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Thanks.<o:p>=
+</o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>-steve<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p></div></div><p class=3DMsoNormal>-- =
+<br>_______________________________________________<br>yocto mailing =
+list<br><a href=3D"mailto:yocto@yoctoproject.org" =
+target=3D"_blank">yocto@yoctoproject.org</a><br><a =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
+target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><o:p><=
+/o:p></p></blockquote></div></div></div></body></html>
 
---000000000000d8f7da0583fba7e7--
+------=_NextPart_000_004F_01D4D979.74D9FBA0--
