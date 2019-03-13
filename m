@@ -1,69 +1,37 @@
-Return-Path: <gabbla.malist@gmail.com>
+Return-Path: <sscott@san.rr.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8D795E00DAF; Wed, 13 Mar 2019 08:15:10 -0700 (PDT)
+	id 84A04E00D13; Wed, 13 Mar 2019 08:19:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (gabbla.malist[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.48 listed in list.dnswl.org]
+	*      [107.14.166.226 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
-	[209.85.167.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 854B7E0048C
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2019 08:15:09 -0700 (PDT)
-Received: by mail-lf1-f48.google.com with SMTP id p1so1746424lfk.9
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2019 08:15:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=4vd4g+V+ZqClfOyPzVMKH9EoIKLS66vxxrRu69FPwIs=;
-	b=js+d0eiKh04jZWQxOt2vuZpx7zdXtVJ3eGJqlokzroCDz/WuYeTGaedVYc5qRZWr/c
-	SfF0fD5VltX+Q6xXbybY4ZoE3ACuxpvVUttyxI/7dmw1PbqSwhIofW7Uy3PesLXu7ymH
-	mEwgeKuH/x5/jiBv02Y2GGE9yNnaNWylF3bHYB0monFOuk/OK9YROgP9cOVrdUnV10Sd
-	JT3226QXBeA+3wxSKrkqdzZeSHowkLzSTX3NnqmsrT/Myilo3yqAS9mlvD3nk9+oBLve
-	RBGuY6BksEVIkb1EJ9eYHbgFFX/rqQ0NThkenZPH548JicmQk4uO+TiqZTXbr5hcIThL
-	4ovw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=4vd4g+V+ZqClfOyPzVMKH9EoIKLS66vxxrRu69FPwIs=;
-	b=PYT3pwgx+aL6drqQ9Msuhs20nLMzk2DUdF1D9TpAZHyue4hZT/kTuBLf+pVQ2aC1Cd
-	r5cULo2fTYmf0A2pqj7rPTAmWermgviiVcGQdartkcrn542Ia8AAgUfS+6k2Huz4RPZL
-	NIE8HYfaFEoabgI5JPJZyWvTkrkuuIMDKngW65UjuKzCHuOxhEpnPeEYeMaxmygmJJvZ
-	44v2jgW2+v+c0ILuK/s70LpkEIkxz+pBxLexDOGGidmJHmjpV6JAaxoB0rXOrbRntByW
-	sw+7BSpNQHTDqkX9ggv6rI43SwBUHmQqHttz1fgQJphTTdTdk0/loT1xz5p0CvgN7RK9
-	1fmQ==
-X-Gm-Message-State: APjAAAWe2kJMoElEQMU5InahXiGfdcRyNBaDO+Hstbjla4R7q7ZT99oo
-	59gVTm+jSl+AuMd6y74FZk20XDuAy+kwk8/Eni8fvA==
-X-Google-Smtp-Source: APXvYqwqT0UjdtXFYI19mwyrSnRahFGMo+bg/U4sWMdDu+9T/Rhs8DSFZeMMvhHlDDIdsiKDun908Sx1HYV9PqCgL9s=
-X-Received: by 2002:a19:6609:: with SMTP id a9mr24454646lfc.47.1552490107745; 
-	Wed, 13 Mar 2019 08:15:07 -0700 (PDT)
+Received: from cdptpa-cmomta01.email.rr.com (cdptpa-outbound-snat.email.rr.com
+	[107.14.166.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76A68E00D0F
+	for <yocto@yoctoproject.org>; Wed, 13 Mar 2019 08:19:41 -0700 (PDT)
+Received: from boobie ([75.80.138.87]) by cmsmtp with ESMTP
+	id 45fNhCDqbNDrK45fQhHQ1v; Wed, 13 Mar 2019 15:19:40 +0000
+From: "Steve Scott" <sscott@san.rr.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 13 Mar 2019 08:19:42 -0700
+Message-ID: <003d01d4d9b0$30bb26b0$92317410$@san.rr.com>
 MIME-Version: 1.0
-References: <CAAx3WaA0NR=cdGJdPHrkSuENKT7m60GW=pcjCjAHpgwEFPMHwg@mail.gmail.com>
-	<A2A9E37E9C946847B2258F923F7CFE42047B38BE@GOEMAIL-Server2.goerlitz.int>
-	<6rh8ceu2rn.fsf@pengutronix.de>
-In-Reply-To: <6rh8ceu2rn.fsf@pengutronix.de>
-From: Gabriele Zampieri <gabbla.malist@gmail.com>
-Date: Wed, 13 Mar 2019 16:14:55 +0100
-Message-ID: <CAAx3WaDQKbNg0tXZd07s8i_5PTDVctuOcScDMDbXFMmotjoJpw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: Multiple ubifs partition
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdTZr01YhHnvqNEPQUuQrl1iM9SNkg==
+X-CMAE-Envelope: MS4wfJ6iE0rVQA/C9f6na3jfvzwd/Lj/r+/ELWEHTZUCFd714eHMMmpWS8kro2q/DuiytXbeT/HY+ZvxCUE8oViKhg4339TOA35dKs9XMHV7YuXdXLFWZWB3
+	xVwFcW5PvL9KHamIs9km6Tw0jzbQs5H6VZcUdQZ6cYtrtSkPvgefwvIL
+Subject: packaging documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: sscott@san.rr.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -72,145 +40,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Mar 2019 15:15:10 -0000
-Content-Type: multipart/alternative; boundary="00000000000063c2460583fb4560"
+X-List-Received-Date: Wed, 13 Mar 2019 15:19:42 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_003E_01D4D975.845C9CD0"
+Content-Language: en-us
 
---00000000000063c2460583fb4560
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_003E_01D4D975.845C9CD0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi:
+
+ 
+
+I've been trying to get a better understanding of how packages are generated
+by recipes. I found a fairly good explanation in an old OpenEmbedded User's
+Manual
+(https://dominion.thruhere.net/koen/OE/OE-usermanual.html#recipes_packages).
+The manual is hard to find, and doesn't appear to be archive on the
+openembedded site (https://www.openembedded.org/wiki/Documentation).
+
+ 
+
+Can somebody point me to an equivalent discussion in the current Yocto
+project documentation?
+
+ 
+
+Thanks.
+
+ 
+
+-steve
+
+ 
+
+
+------=_NextPart_000_003E_01D4D975.845C9CD0
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>Hi:<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I&#8217;ve =
+been trying to get a better understanding of how packages are generated =
+by recipes. I found a fairly good explanation in an old OpenEmbedded =
+User&#8217;s Manual =
+(https://dominion.thruhere.net/koen/OE/OE-usermanual.html#recipes_package=
+s). The manual is hard to find, and doesn&#8217;t appear to be archive =
+on the openembedded site (<a =
+href=3D"https://www.openembedded.org/wiki/Documentation">https://www.open=
+embedded.org/wiki/Documentation</a>).<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Can somebody =
+point me to an equivalent discussion in the current Yocto project =
+documentation?<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>-steve<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-thank you very much for the suggestion, I will check genimage and test it.
-
-Gabriele
-
-Il giorno gio 7 mar 2019 alle ore 16:23 Ulrich =C3=96lmann <
-u.oelmann@pengutronix.de> ha scritto:
-
-> Hi there,
->
-> On Thu, Mar 07 2019 at 15:11 +0100, Stelling2 Carsten <
-> Carsten.Stelling2@goerlitz.com> wrote:
-> > Have you seen https://github.com/pengutronix/genimage?
->
-> you can find it included within https://github.com/pengutronix/meta-ptx
-> with an accompanying genimage.bbclass.
->
-> Best regards
-> Ulrich
->
-> > Regards,
-> >
-> > Carsten
-> >
-> > Von: yocto-bounces@yoctoproject.org [mailto:
-> yocto-bounces@yoctoproject.org] Im Auftrag von Gabriele Zampieri
-> > Gesendet: Montag, 4. M=C3=A4rz 2019 12:17
-> > An: yocto@yoctoproject.org
-> > Betreff: [yocto] Multiple ubifs partition
-> >
-> > Hi all,
-> >
-> > I'm trying to build a distribution that has multiple partitions. The
-> desiderata is something like:
-> >
-> > - rootfs.ubifs mounted on /
-> > - data.ubifs mounted on /data
-> > - opt.ubifs mounted on /opt
-> >
-> > I was wondering if there is a standard way to achieve the goal. I see
-> that there is a tool called wic, but it does not seems to support ubifs. =
-I
-> could post process the tarball image and doing stuff with my scripts, but
-> I'd prefer doing this in a single bitbake run. Can you suggest something?
-> >
-> > Thanks,
-> > Gabriele
->
->
-> --
-> Pengutronix e.K.                           | Ulrich =C3=96lmann          =
-     |
-> Industrial Linux Solutions                 | http://www.pengutronix.de/  =
-|
-> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    =
-|
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 =
-|
->
-
---00000000000063c2460583fb4560
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi all, <br></div><div><br></div><div>thank you very =
-much for the suggestion, I will check genimage and test it.</div><div><br><=
-/div><div>Gabriele<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
- class=3D"gmail_attr">Il giorno gio 7 mar 2019 alle ore 16:23 Ulrich =C3=96=
-lmann &lt;<a href=3D"mailto:u.oelmann@pengutronix.de">u.oelmann@pengutronix=
-.de</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex">Hi there,<br>
-<br>
-On Thu, Mar 07 2019 at 15:11 +0100, Stelling2 Carsten &lt;<a href=3D"mailto=
-:Carsten.Stelling2@goerlitz.com" target=3D"_blank">Carsten.Stelling2@goerli=
-tz.com</a>&gt; wrote:<br>
-&gt; Have you seen <a href=3D"https://github.com/pengutronix/genimage" rel=
-=3D"noreferrer" target=3D"_blank">https://github.com/pengutronix/genimage</=
-a>?<br>
-<br>
-you can find it included within <a href=3D"https://github.com/pengutronix/m=
-eta-ptx" rel=3D"noreferrer" target=3D"_blank">https://github.com/pengutroni=
-x/meta-ptx</a><br>
-with an accompanying genimage.bbclass.<br>
-<br>
-Best regards<br>
-Ulrich<br>
-<br>
-&gt; Regards,<br>
-&gt;<br>
-&gt; Carsten<br>
-&gt;<br>
-&gt; Von: <a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blan=
-k">yocto-bounces@yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounc=
-es@yoctoproject.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a>] =
-Im Auftrag von Gabriele Zampieri<br>
-&gt; Gesendet: Montag, 4. M=C3=A4rz 2019 12:17<br>
-&gt; An: <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@=
-yoctoproject.org</a><br>
-&gt; Betreff: [yocto] Multiple ubifs partition<br>
-&gt;<br>
-&gt; Hi all,<br>
-&gt;<br>
-&gt; I&#39;m trying to build a distribution that has multiple partitions. T=
-he desiderata is something like:<br>
-&gt;<br>
-&gt; - rootfs.ubifs mounted on /<br>
-&gt; - data.ubifs mounted on /data<br>
-&gt; - opt.ubifs mounted on /opt<br>
-&gt;<br>
-&gt; I was wondering if there is a standard way to achieve the goal. I see =
-that there is a tool called wic, but it does not seems to support ubifs. I =
-could post process the tarball image and doing stuff with my scripts, but I=
-&#39;d prefer doing this in a single bitbake run. Can you suggest something=
-?<br>
-&gt;<br>
-&gt; Thanks,<br>
-&gt; Gabriele<br>
-<br>
-<br>
---<br>
-Pengutronix e.K.=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| Ulrich =C3=96lmann=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|<br>
-Industrial Linux Solutions=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0| <a href=3D"http://www.pengutronix.de/" rel=3D"noreferrer" ta=
-rget=3D"_blank">http://www.pengutronix.de/</a>=C2=A0 |<br>
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0=C2=A0=
- =C2=A0 |<br>
-Amtsgericht Hildesheim, HRA 2686=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| =
-Fax:=C2=A0 =C2=A0+49-5121-206917-5555 |<br>
-</blockquote></div></div>
-
---00000000000063c2460583fb4560--
+------=_NextPart_000_003E_01D4D975.845C9CD0--
