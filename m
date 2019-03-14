@@ -1,6 +1,6 @@
-Return-Path: <maillinglists18@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34566E0053F; Wed, 13 Mar 2019 21:51:08 -0700 (PDT)
+	id 1CB96E00D08; Thu, 14 Mar 2019 07:29:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,7 +10,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (maillinglists18[at]gmail.com)
+	provider *      (akuster808[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -18,43 +18,49 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.53 listed in list.dnswl.org]
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
-	[209.85.167.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95EFDE0053F
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2019 21:51:07 -0700 (PDT)
-Received: by mail-lf1-f53.google.com with SMTP id m13so3194017lfb.6
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2019 21:51:07 -0700 (PDT)
+	*      [209.85.215.177 listed in list.dnswl.org]
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
+	[209.85.215.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F284CE00B43
+	for <yocto@yoctoproject.org>; Thu, 14 Mar 2019 07:29:30 -0700 (PDT)
+Received: by mail-pg1-f177.google.com with SMTP id u9so4094910pgo.7
+	for <yocto@yoctoproject.org>; Thu, 14 Mar 2019 07:29:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=EijM8ZvdG6agDkGQsvduNzUZPYeBpdeJKFsfg75zTcU=;
-	b=Mpo3fN9ydrg5RPI099OcSaaIkF3RSk1HQzaa8HNdY+lpc01tH2FhwjF8D0NmLAUmCL
-	2zEK/ZpG66u5aZGPKPGeLXmjkXi/jyT9DwHups1VzRRdBhIeblpSbZ9ZxeLfH/6zC+RE
-	kg9Cj6ViRWuOZUFiyJNE0fvkQaxg5vWwaUfoUtI6Gyv4uqq63TrudqYRN4dkAHdL24bf
-	yP1DmcVOHoF4f42PXBtwTTa3LoGuyRUI9718s04XmIQ9Ej2X7KsY/2sBfpDDodogiZpl
-	lm93yJpVo0UT6nvRAiUOVILVfARsbXJbQjgmpasK8to7amsyo9s6txFRCpsQjfpsWlz7
-	dugg==
+	h=from:to:subject:date:message-id;
+	bh=l2z5rAjnV8xU+LJ7xAPFBAoS+KmSFR7qb0yeoISGCJE=;
+	b=sk1NLbe8BRHfm3zN/VkXDOCLjfAmpmrK3fvJpXY2CKgK+1ugC9FlSr//+kaJaVVVPB
+	Iu5prNfjsNoM54G+ciElDKL1sxxh/UMp+I0ffuiYjrHUMyACQVaDDElT9al8cwGgdln9
+	++cg5iR5s2SLuXhFELtav/runpdCZveyMY7MPN6PyNIP6fFfryQAdM5IdpN8uCrwotl2
+	QYRdbcs9QtZI8nshk1L43pvafehOeXxvhPs9oqBoMOXgA1Az6knH4vuju+jECHu+4XRa
+	EaQZ/gBA/tAPxBbhC7qWWC46ukf2GSilzA02kdxN70dJmrrAB7tD+QZRHXYoLbI9HOxc
+	jeAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=EijM8ZvdG6agDkGQsvduNzUZPYeBpdeJKFsfg75zTcU=;
-	b=GzVMjOzj0nIRyd3U3WCrsBH25TCIohfuR3setwDyYvRS7uNPUbhIhvFkmYgqjOW6D8
-	XL6eaFs9rs5nspBG6rce2Um/D7fjm5VLZ2JKPHLenlri28YeF2DHXHWAHZaGONVoh172
-	ra4+2mPJfobJeYlIqM78LIxZfOFeu46pRCTe5AvIPgL2OQ/yY1V/b6ftw2gSS8CQikx3
-	R5QjpiJUZ68G6usiu0lHvzBUH6gL0SIsqT1cHdL6y6rceK4kTc68CBTsyiz8f2uQDQeI
-	OKU/oQgTvkfKue0NGAQ4E3FUKhVaay/BTsZjNIijVoSF9Uvy0I5TW11Boy8z12C6A/Gm
-	6CWQ==
-X-Gm-Message-State: APjAAAU5fNi4Ln5TyMaWV5/omdiDtdhp47ePwaAiUD4uF6VgWmqpbS6o
-	3GxBchLukBve/f2CkFekywKSkAmUgjDYU1saxxYbkH8E
-X-Google-Smtp-Source: APXvYqwKoG4wKpH17Qsy9HftMJYN5vdaM3tv8A+BYRdF2l4iysnQpidjtZON9DtEI/H/dmKnbANLIed51ydboHoJoNo=
-X-Received: by 2002:a19:c209:: with SMTP id l9mr25007361lfc.68.1552539066193; 
-	Wed, 13 Mar 2019 21:51:06 -0700 (PDT)
-MIME-Version: 1.0
-From: Teemu K <maillinglists18@gmail.com>
-Date: Thu, 14 Mar 2019 06:50:52 +0200
-Message-ID: <CAAmVmrrHV-j3dHe8XAdPdKgOHqE28p4__B=U0k9NiTZ0Fz=dWA@mail.gmail.com>
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=l2z5rAjnV8xU+LJ7xAPFBAoS+KmSFR7qb0yeoISGCJE=;
+	b=X6gfHH2JNh2Pm9037ZLpWx6Eu90+KB8Seep4eTuvtAnp+3awPtgbC+xjb1pQ3sYD05
+	7KbmnU1whhfhW5hx5HoDfk22y4wf8GEvv//XXEi/3KQHG2UfY0ucbSDJFvseT3Fhkcj/
+	o+zawxHq9HxVEyWw/P8Jl8V9gNOVsHyBtnekjMItUr9uLk/NfCUIi8HDWg/npA97bwR1
+	xOkulVz3SPM3N9CdtIWyNK2Wps6jxcZ0WyvGSX1HbRw732ZQi8vs2EJGqp5CVwlYuDQ3
+	vPVmkg4BixW66qeIGxhFH/4CJ/hhmHrdTl3DGAzmiAaCjM5icQgZrRZjG+d6m5WCw3dI
+	mIaw==
+X-Gm-Message-State: APjAAAX+xQTTi6lAjUV9zc6cOW70N/Ek//oeVT1uHYKUBp5OJE0b15iN
+	fjVrJ4K4rvqMr7Pgv02zmCQI31RC
+X-Google-Smtp-Source: APXvYqxI19JkNvjZrfgevRKRdRgFN4DYElc0Hhj4/QFxH92vQ4kOMAFtKWw0VfYYRsciaX7wjslZpw==
+X-Received: by 2002:a17:902:d710:: with SMTP id
+	w16mr4430902ply.198.1552573770236; 
+	Thu, 14 Mar 2019 07:29:30 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	f125sm28148202pfc.91.2019.03.14.07.29.29 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 14 Mar 2019 07:29:29 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Subject: SDK build fails at latest thud
+Date: Thu, 14 Mar 2019 07:29:23 -0700
+Message-Id: <20190314142928.1458-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH 1/6] tpm2-abrmd: updatet to 2.1.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,30 +72,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Mar 2019 04:51:08 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 14 Mar 2019 14:29:32 -0000
 
-Hi,
+switch SRC_URI to upstream
 
-I noticed that when trying to build sdk on thud it fails on latest
-version. Actually it broke somewhere between commits:
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../tpm2-abrmd/{tpm2-abrmd_2.1.0.bb => tpm2-abrmd_2.1.1.bb}   | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename meta-tpm/recipes-tpm/tpm2-abrmd/{tpm2-abrmd_2.1.0.bb => tpm2-abrmd_2.1.1.bb} (94%)
 
-1cab405d88149fd63322a867c6adb4a80ba68db3 (old)
-7c76c5d78b850a9c1adccf8b11ed0164da608f1c (new)
+diff --git a/meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.1.0.bb b/meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.1.1.bb
+similarity index 94%
+rename from meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.1.0.bb
+rename to meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.1.1.bb
+index 0120360..13dbf5a 100644
+--- a/meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.1.0.bb
++++ b/meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.1.1.bb
+@@ -14,12 +14,12 @@ DEPENDS = "autoconf-archive dbus glib-2.0 tpm2.0-tss glib-2.0-native \
+ 
+ 
+ SRC_URI = "\
+-    git://github.com/01org/tpm2-abrmd.git \
++    git://github.com/tpm2-software/tpm2-abrmd.git \
+     file://tpm2-abrmd-init.sh \
+     file://tpm2-abrmd.default \
+ "
+ 
+-SRCREV = "e2f30eebd79079ed92952e78a6f8ab1c2c6194da"
++SRCREV = "06d9d433ba27159687255406baa37940db15465b"
+ 
+ S = "${WORKDIR}/git"
+ 
+-- 
+2.17.1
 
-I'm using it with meta-freescale - layer to build image to iMX8.
-
-I'm using command 'populate_sdk' and it works fine on older version,
-but newer version it fails with error:
-
-==
-The following packages have unmet dependencies:
- target-sdk-provides-dummy : Conflicts: coreutils
-E: Unable to correct problems, you have held broken packages.
-==
-
-I'm assuming this is problem in poky - layer and not meta-freescale
-since it can be 'fixed' by downgrading to older version of thud.
-
--Teemu
 
