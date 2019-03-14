@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1F154E00D2E; Thu, 14 Mar 2019 07:29:35 -0700 (PDT)
+	id 308D0E00D35; Thu, 14 Mar 2019 07:29:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,56 +13,56 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.176 listed in list.dnswl.org]
+	*      [209.85.215.176 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC35FE00D3F
-	for <yocto@yoctoproject.org>; Thu, 14 Mar 2019 07:29:34 -0700 (PDT)
-Received: by mail-pf1-f176.google.com with SMTP id v21so3938667pfm.12
-	for <yocto@yoctoproject.org>; Thu, 14 Mar 2019 07:29:34 -0700 (PDT)
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF3A1E00D24
+	for <yocto@yoctoproject.org>; Thu, 14 Mar 2019 07:29:33 -0700 (PDT)
+Received: by mail-pg1-f176.google.com with SMTP id v12so4123404pgq.1
+	for <yocto@yoctoproject.org>; Thu, 14 Mar 2019 07:29:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=Tn8qUbO9kzOTdAlALIkiflZd8iuf0o37XFdakCR0Gjw=;
-	b=LhEIQ7wQIo3RnqjteDSgg7+uLHmQ3lkN/7E+2gt9Izx8FNn6jHCK1hq/5WZqAEeHfv
-	HzU5A8e1zhHE/JV90SN5LrLI/NphjbKQ1fAg4/oqdgssCYxvwH7X7+iItGm5WzGFDyU0
-	ruxbKjUnQ960f2WA7w14kA+VpxtpvSwW0kcJ+nO2AlbGb7FpgYyoyfR+nSQii/Rx9wUF
-	UjfZzkVYY4bA7eZQ3tWXY5OnF9Io1rZP0gpMb8PfeFsiwAGC8FyhuwHAlJM8CpYTw9XN
-	RDwEb8VUkHQBe04oLabtz3pOIZx1dtlaza5SPAOwWDykQjJ0dLIplCX+F5lPa098iuQb
-	QhaA==
+	bh=s7d485W3h+5u0w2LpJ9JlNczYFcPy2QDunWPhGeC4ig=;
+	b=PDm2Ce278ums3b9sbHXGqLKuikZk+7tMsa7CeNT/qt5Zhr96VkYQXoLdvsNU/ccF+M
+	qtLsmMgAKo6xWT8XjDJX1DiDlWGFcwE5RPFwM88tuk0mgFuM/svPpFQ7s3wLsxM2hq7J
+	SKVFpIVTfllRZU65brHW7AnfOSDy8PigkE27dUJtQfXiJzrdey17dJ/MYJXe1NFZZ+44
+	mB2dNFPhUVY/k2F86AidD3rqlcOA13GNygpF1iyRk5OLNw64M2w1B7Xt2Lv4164lgI6t
+	JPtyOnEG9k9BsN+2xAuAeacpghZhbMTzIhj1B9f+axrI4Cz+Yo93G+22kPayfAZDbk/y
+	Uakg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=Tn8qUbO9kzOTdAlALIkiflZd8iuf0o37XFdakCR0Gjw=;
-	b=R3MCIWiRdK8ndLtLaeynWh3+3KIARhuxcCL+jKDmRy0EOMZ73eeySzf3vwN2lNmAvq
-	ucHoZegakvOw95Q/EepN5TkBDQF0uWDIP3yPdfhQjNhewAbpXf4eACn8ZT8lPpNwG3of
-	wPM4cLtRYY8hV1GzilcLSeBoIsHOqb8jEP7MbaVWvHib89cZ7m9bcczQS+fae9Hh8KcD
-	6dsQ2R6lRoWsabzJIpdvOzuulUUN0SCevELGTkSvAqlfLWulc5HkZ3EkD3B4CIkgxOGA
-	ZOuXLIlxt/Y1Hd+l2HdwyuSuv/be9JIfHdQ/RdDAfhg1exgzigfZoTGPpAUy2JlzPhpK
-	ecnA==
-X-Gm-Message-State: APjAAAXIJsZeJLlGu/zG0w+/KwwVpzbx5dpARDGBOe051E77Ki1SU2M8
-	Zfv4lbecvUpSH8gZebJHbneT2M92
-X-Google-Smtp-Source: APXvYqxdlPnny3L3QXplSUI7cP9IJ7DJTOK/hK6YecAEZK9L71JWz6KxQVXzlgY5YjMSsC0ja2zkag==
-X-Received: by 2002:a65:4549:: with SMTP id x9mr46163169pgr.3.1552573774039;
-	Thu, 14 Mar 2019 07:29:34 -0700 (PDT)
+	bh=s7d485W3h+5u0w2LpJ9JlNczYFcPy2QDunWPhGeC4ig=;
+	b=X20qmZ+Fg5Uo5Zs6E8a2J3XaMKT7pCIcUt29/fNqfJaTbia2pgas5R4hyNLUOBx+tx
+	bpkHSxxkcm514bgAkqfPa3Jgq2N3N1KW5gs2euIJ4aBCUo0uHF+pxLcMwQJn35hfNTBL
+	DSoHEzlzjsAxUKpNyFxQEK0OpMj5evCZmoAg9+SUVseWM5ajVZCxU+0uAin5BwO0j1n3
+	AhGlEidiHkKKxB3v5Kx5ZzvDVy6IgwmDj5mga4t1i0nQrdoWEkdqZkdleyV/PnZuFkOp
+	2xXGccCJs5tFc52U3YyIoBjv/g8buy+/AKEjLTmNCFkI32Lc+aNCSqZ5EH8sVLYTCIhd
+	5JAw==
+X-Gm-Message-State: APjAAAW7R8xEIT1TXHVWHMc34hMasBXOrT3vGANGu6rL9WEenx04LzXu
+	loeO+UcbzzUhiwGhXr53vfIxJEwt
+X-Google-Smtp-Source: APXvYqzWUiE/qJ+WpHW6NM5x7kRTuTUUAL4gzXVwwRH0tkBqv5Et7+wfoe0BohIO/ScRjex9PkIrew==
+X-Received: by 2002:a62:41cc:: with SMTP id g73mr48588718pfd.145.1552573773210;
+	Thu, 14 Mar 2019 07:29:33 -0700 (PDT)
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
 	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	f125sm28148202pfc.91.2019.03.14.07.29.33 for <yocto@yoctoproject.org>
+	f125sm28148202pfc.91.2019.03.14.07.29.32 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 14 Mar 2019 07:29:33 -0700 (PDT)
+	Thu, 14 Mar 2019 07:29:32 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 14 Mar 2019 07:29:27 -0700
-Message-Id: <20190314142928.1458-5-akuster808@gmail.com>
+Date: Thu, 14 Mar 2019 07:29:26 -0700
+Message-Id: <20190314142928.1458-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190314142928.1458-1-akuster808@gmail.com>
 References: <20190314142928.1458-1-akuster808@gmail.com>
-Subject: [meta-security][PATCH 5/6] tpm2-totp: add new package
+Subject: [meta-security][PATCH 4/6] tpm2: move tpm2 apps to recipes-tpm2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,77 +78,62 @@ X-List-Received-Date: Thu, 14 Mar 2019 14:29:35 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../files/litpm2_totp_build_fix.patch         | 36 +++++++++++++++++++
- .../recipes-tpm2/tpm2-totp/tpm2-totp_0.9.9.bb | 17 +++++++++
- 2 files changed, 53 insertions(+)
- create mode 100644 meta-tpm/recipes-tpm2/tpm2-totp/files/litpm2_totp_build_fix.patch
- create mode 100644 meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.9.9.bb
+ .../tpm2-abrmd/files/tpm2-abrmd-init.sh                           | 0
+ .../tpm2-abrmd/files/tpm2-abrmd.default                           | 0
+ .../{recipes-tpm => recipes-tpm2}/tpm2-abrmd/tpm2-abrmd_2.1.1.bb  | 0
+ .../tpm2-tss-engine/tpm2-tss-engine_0.9.9.bb                      | 0
+ .../tpm2.0-tools/tpm2.0-tools_3.1.3.bb                            | 0
+ .../tpm2.0-tss/tpm2.0-tss/ax_pthread.m4                           | 0
+ .../tpm2.0-tss/tpm2.0-tss/fix_musl_select_include.patch           | 0
+ .../{recipes-tpm => recipes-tpm2}/tpm2.0-tss/tpm2.0-tss_2.2.1.bb  | 0
+ .../tpm2simulator/tpm2simulator_138.bb                            | 0
+ 9 files changed, 0 insertions(+), 0 deletions(-)
+ rename meta-tpm/{recipes-tpm => recipes-tpm2}/tpm2-abrmd/files/tpm2-abrmd-init.sh (100%)
+ rename meta-tpm/{recipes-tpm => recipes-tpm2}/tpm2-abrmd/files/tpm2-abrmd.default (100%)
+ rename meta-tpm/{recipes-tpm => recipes-tpm2}/tpm2-abrmd/tpm2-abrmd_2.1.1.bb (100%)
+ rename meta-tpm/{recipes-tpm => recipes-tpm2}/tpm2-tss-engine/tpm2-tss-engine_0.9.9.bb (100%)
+ rename meta-tpm/{recipes-tpm => recipes-tpm2}/tpm2.0-tools/tpm2.0-tools_3.1.3.bb (100%)
+ rename meta-tpm/{recipes-tpm => recipes-tpm2}/tpm2.0-tss/tpm2.0-tss/ax_pthread.m4 (100%)
+ rename meta-tpm/{recipes-tpm => recipes-tpm2}/tpm2.0-tss/tpm2.0-tss/fix_musl_select_include.patch (100%)
+ rename meta-tpm/{recipes-tpm => recipes-tpm2}/tpm2.0-tss/tpm2.0-tss_2.2.1.bb (100%)
+ rename meta-tpm/{recipes-tpm => recipes-tpm2}/tpm2simulator/tpm2simulator_138.bb (100%)
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-totp/files/litpm2_totp_build_fix.patch b/meta-tpm/recipes-tpm2/tpm2-totp/files/litpm2_totp_build_fix.patch
-new file mode 100644
-index 0000000..c147054
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/tpm2-totp/files/litpm2_totp_build_fix.patch
-@@ -0,0 +1,36 @@
-+C99 fixes:
-+
-+ src/libtpm2-totp.c:172:13: error: format '%li' expects argument of type 'long int', but argument 3 has type 'size_t' {aka 'unsigned int'} [-Werror=format=]
-+|          dbg("Calling Esys_GetRandom for %li bytes", SECRETLEN - *secret_size);
-+
-+src/tpm2-totp.c:343:23: error: format '%ld' expects argument of type 'long int', but argument 3 has type 'uint64_t' {aka 'long long unsigned int'} [-Werror=format=]
-+
-+Upstream-Status: Pending
-+Signed-off-by: Armin Kuster <akuster808@gmail.com>
-+
-+Index: git/src/libtpm2-totp.c
-+===================================================================
-+--- git.orig/src/libtpm2-totp.c
-++++ git/src/libtpm2-totp.c
-+@@ -169,7 +169,7 @@ tpm2totp_generateKey(uint32_t pcrs, uint
-+     if (rc != TPM2_RC_INITIALIZE) chkrc(rc, goto error);
-+ 
-+     while (*secret_size < SECRETLEN) {
-+-        dbg("Calling Esys_GetRandom for %li bytes", SECRETLEN - *secret_size);
-++        dbg("Calling Esys_GetRandom for %li bytes", (long int) (SECRETLEN - *secret_size));
-+         rc = Esys_GetRandom(ctx,
-+                             ESYS_TR_NONE, ESYS_TR_NONE, ESYS_TR_NONE,
-+                             SECRETLEN - *secret_size, &t);
-+Index: git/src/tpm2-totp.c
-+===================================================================
-+--- git.orig/src/tpm2-totp.c
-++++ git/src/tpm2-totp.c
-+@@ -340,7 +340,7 @@ main(int argc, char **argv)
-+                             localtime (&now));
-+             chkrc(rc, exit(1));
-+         }
-+-        printf("%s%06ld", timestr, totp);
-++        printf("%s%06ld", timestr, (long int)totp);
-+         break;
-+     case CMD_RESEAL:
-+         rc = tpm2totp_loadKey_nv(opt.nvindex, &keyBlob, &keyBlob_size);
-diff --git a/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.9.9.bb
-new file mode 100644
-index 0000000..bc94ab7
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.9.9.bb
-@@ -0,0 +1,17 @@
-+SUMMARY = "The tpm2-tss-engine project implements a cryptographic engine for OpenSSL." 
-+DESCRIPTION = "The tpm2-tss-engine project implements a cryptographic engine for OpenSSL for Trusted Platform Module (TPM 2.0) using the tpm2-tss software stack that follows the Trusted Computing Groups (TCG) TPM Software Stack (TSS 2.0). It uses the Enhanced System API (ESAPI) interface of the TSS 2.0 for downwards communication. It supports RSA decryption and signatures as well as ECDSA signatures."
-+
-+LICENSE = "BSD-2-Clause"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=ed23833e93c95173c8d8913745e4b4e1"
-+
-+SECTION = "security/tpm"
-+
-+DEPENDS = "autoconf-archive libtss2-dev qrencode"
-+
-+SRCREV = "44fcb6819f79302d5a088b3def648616e3551d4a"
-+SRC_URI = "git://github.com/tpm2-software/tpm2-totp.git \
-+           file://litpm2_totp_build_fix.patch "
-+
-+inherit autotools-brokensep pkgconfig
-+
-+S = "${WORKDIR}/git"
+diff --git a/meta-tpm/recipes-tpm/tpm2-abrmd/files/tpm2-abrmd-init.sh b/meta-tpm/recipes-tpm2/tpm2-abrmd/files/tpm2-abrmd-init.sh
+similarity index 100%
+rename from meta-tpm/recipes-tpm/tpm2-abrmd/files/tpm2-abrmd-init.sh
+rename to meta-tpm/recipes-tpm2/tpm2-abrmd/files/tpm2-abrmd-init.sh
+diff --git a/meta-tpm/recipes-tpm/tpm2-abrmd/files/tpm2-abrmd.default b/meta-tpm/recipes-tpm2/tpm2-abrmd/files/tpm2-abrmd.default
+similarity index 100%
+rename from meta-tpm/recipes-tpm/tpm2-abrmd/files/tpm2-abrmd.default
+rename to meta-tpm/recipes-tpm2/tpm2-abrmd/files/tpm2-abrmd.default
+diff --git a/meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.1.1.bb b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.1.1.bb
+similarity index 100%
+rename from meta-tpm/recipes-tpm/tpm2-abrmd/tpm2-abrmd_2.1.1.bb
+rename to meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.1.1.bb
+diff --git a/meta-tpm/recipes-tpm/tpm2-tss-engine/tpm2-tss-engine_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_0.9.9.bb
+similarity index 100%
+rename from meta-tpm/recipes-tpm/tpm2-tss-engine/tpm2-tss-engine_0.9.9.bb
+rename to meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_0.9.9.bb
+diff --git a/meta-tpm/recipes-tpm/tpm2.0-tools/tpm2.0-tools_3.1.3.bb b/meta-tpm/recipes-tpm2/tpm2.0-tools/tpm2.0-tools_3.1.3.bb
+similarity index 100%
+rename from meta-tpm/recipes-tpm/tpm2.0-tools/tpm2.0-tools_3.1.3.bb
+rename to meta-tpm/recipes-tpm2/tpm2.0-tools/tpm2.0-tools_3.1.3.bb
+diff --git a/meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss/ax_pthread.m4 b/meta-tpm/recipes-tpm2/tpm2.0-tss/tpm2.0-tss/ax_pthread.m4
+similarity index 100%
+rename from meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss/ax_pthread.m4
+rename to meta-tpm/recipes-tpm2/tpm2.0-tss/tpm2.0-tss/ax_pthread.m4
+diff --git a/meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss/fix_musl_select_include.patch b/meta-tpm/recipes-tpm2/tpm2.0-tss/tpm2.0-tss/fix_musl_select_include.patch
+similarity index 100%
+rename from meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss/fix_musl_select_include.patch
+rename to meta-tpm/recipes-tpm2/tpm2.0-tss/tpm2.0-tss/fix_musl_select_include.patch
+diff --git a/meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_2.2.1.bb b/meta-tpm/recipes-tpm2/tpm2.0-tss/tpm2.0-tss_2.2.1.bb
+similarity index 100%
+rename from meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_2.2.1.bb
+rename to meta-tpm/recipes-tpm2/tpm2.0-tss/tpm2.0-tss_2.2.1.bb
+diff --git a/meta-tpm/recipes-tpm/tpm2simulator/tpm2simulator_138.bb b/meta-tpm/recipes-tpm2/tpm2simulator/tpm2simulator_138.bb
+similarity index 100%
+rename from meta-tpm/recipes-tpm/tpm2simulator/tpm2simulator_138.bb
+rename to meta-tpm/recipes-tpm2/tpm2simulator/tpm2simulator_138.bb
 -- 
 2.17.1
 
