@@ -1,67 +1,65 @@
-Return-Path: <ticotimo@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21230E00D2B; Fri, 15 Mar 2019 16:40:23 -0700 (PDT)
+	id 6AEDBE00D30; Sat, 16 Mar 2019 04:16:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (ticotimo[at]gmail.com)
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.174 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.210.194 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com
-	[209.85.221.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FE5EE00CD5
-	for <yocto@yoctoproject.org>; Fri, 15 Mar 2019 16:40:22 -0700 (PDT)
-Received: by mail-vk1-f174.google.com with SMTP id r189so2601630vkb.0
-	for <yocto@yoctoproject.org>; Fri, 15 Mar 2019 16:40:22 -0700 (PDT)
+Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
+	[209.85.210.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE9D3E00CD5
+	for <yocto@yoctoproject.org>; Sat, 16 Mar 2019 04:16:06 -0700 (PDT)
+Received: by mail-pf1-f194.google.com with SMTP id i20so8107513pfo.6
+	for <yocto@yoctoproject.org>; Sat, 16 Mar 2019 04:16:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=SyIP7cZw0EAYiw5Gr9qOjX1ucWtpuZ1EH/OP11SnI5w=;
-	b=eJUHgjDSeV2A8Zt1qyzzybpPoR6JUOORiNH/N9sbtuKatRlfp7dCLpbulgUNYq/7ZH
-	kweUvt3/+meuouPL0jNe4gZcOoGCs/s1MsbwpaUaZ+apfB7VXHN66+7oLhKExNkPpjm/
-	s+2XcyNFdSjl0DfSAeLMo4EkBSM7nFdBnrMxtDKDhxisvFI0J15Uk5tOuUnFnYLyp4nV
-	kKr4S4kXsYHNbdHOPRCfh7ggeuy9kxOCBZs5N4v2rCQ7MNCsSn+Y9M24A+oI5oaALLR7
-	HAORorYjs9UFg2A6I/CgNzEvZFm6PjQpvrQvSkiaxere9NpHBSdUJEn8ekBgCgHPKuB5
-	CFJw==
+	h=from:to:subject:date:message-id;
+	bh=X2C4CUslyoAd0HZjYUNMV+WhcRR/2m4cJwY8pd5R42A=;
+	b=EhOvkWlezCwPMg7WoQr6tqCuUhwga+D6XdyIzF0EHh5h5rySRgcGcVyQn5rDWAIL6H
+	PkOkQkUXM4YhISml6nxZ9ZVsJ3pMOQGy5/fs3wU/WRhmjIy+MME3MmzBMZqX3CPcKoJn
+	i1qWeUrw5fr9+1t86r3TV2o82pksCVrxffTz4VKJGgvyZS2nflVNoWJsRebb3oDHa+zt
+	e/gY0C0VIY2QtKlBXAm6CDzMbmmcTHgyREgv9g/x5zNDSYdivxbM1t2AbEOh2hmGDzQd
+	lDexwmoyP4k0fyYhocpsbTGirPkgcoBW9un4DgVJAShz3fMhi0xzh8jmYMk8IevexRd7
+	E5yA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=SyIP7cZw0EAYiw5Gr9qOjX1ucWtpuZ1EH/OP11SnI5w=;
-	b=DhzI+bttBpamCZtYBwYJhUww8Rn5vxzVSzNtCDRND3HkesAK8nqR1boIcoktNKPDHv
-	KzmspnwVbBtdH2wsIOSlCH/mTZeaNTlNxpI9na94rYyzftz0iWS0LqQpoVKMqTqBDEHz
-	t84REEElIWewo/IAUVwUbCKqcDNdoL1Eyk6kQFOVL5rfINvgE9JRv8aIuUQgHhFrKXfZ
-	3pL4QZPsElFmwgB/dGQsqdPoZw3Mb/XXRJxqQ92MdsSHvUR9JTU3dmZM0NLYnRgZ332s
-	4qNzxOivM9Uzp3FOI1r5X63i/HeNVVf+ZFxP2GRhmXuDvKLqKhNTnQZpQFm/WNpVdHlt
-	aIMQ==
-X-Gm-Message-State: APjAAAVdDmDVdDvXA9SqWXnIYraz4coIq5N++TcnL42zRb8d7ltBxn5S
-	XHzVRlMEvW2kp+6YduZbVYwhlN1BffsYzRPIx/0=
-X-Google-Smtp-Source: APXvYqyFyapKv+c9E+FM9v5NpbDjH9AOoJCgMtE37seV+ro714QBRTMBueKB/iDrSyg0yluTvhMEuRiSPIBtY/dWCQ0=
-X-Received: by 2002:a1f:5841:: with SMTP id m62mr1872634vkb.46.1552693221564; 
-	Fri, 15 Mar 2019 16:40:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <CADmsHKfN0X-HCCdd_4mi=xEvjybWUKC8YXcoq5c__EZDxRDkZw@mail.gmail.com>
-	<CAJTo0LZq9RxtqcBbXEOSXJHKPr63FFN6gPx3OY8dqwbVb7o+LQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LZq9RxtqcBbXEOSXJHKPr63FFN6gPx3OY8dqwbVb7o+LQ@mail.gmail.com>
-From: Tim Orling <ticotimo@gmail.com>
-Date: Fri, 15 Mar 2019 16:40:10 -0700
-Message-ID: <CANx9H-ATyFHvqo+QoGuRDCx+8B964n77neDqGyrU2GyiskQrzw@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	Derek Dresser <dresser.net@gmail.com>
-Subject: Re: can't find libudev.h
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=X2C4CUslyoAd0HZjYUNMV+WhcRR/2m4cJwY8pd5R42A=;
+	b=kQZ0Zj6b9pO6+sUxvBaY2gUECQl53NL7pxKeJoYKZsp1k7az/gAPi5q0kJU1ZuMx/0
+	lZ1+WbhonKkwH4lbcAff/6k25IMt79HH3+DkFh+NYtbVEhOoIoJF1QLS9bWNapvXtZA1
+	JLjYtUzlPuAMDTMJd6pkUrSYPgLTHxULk335PEoHb+1Rmj4Xm4ZjselWQFLNshxO+DOW
+	rKa8RvbsEjZKfsN4P5EiATDR/KST8Km2bmjASNTKSLMrVlTwy7QkOWlm9u7IPL0VHuhJ
+	qguO8UKnc4VjSI16nubJtMZlTzjLaPbU3gCznNgQOnAecdYFntKMSA2h8ffGevtunV7A
+	JJ5A==
+X-Gm-Message-State: APjAAAUokdQ2BPAeOBUNVqX3jlK53vr795piWh8NeUz3imNn0ST2RmEG
+	iNwFeM6XHw7/sOCwLzGN28c7nZ+W
+X-Google-Smtp-Source: APXvYqysMFdLq0e9FxZCIqwI57cOH/Z/q3YS54ZgdlROBVHfDzl50i+qIclr7CFEcZC2ntVPT0N9NQ==
+X-Received: by 2002:a63:af06:: with SMTP id w6mr45552pge.338.1552734966195;
+	Sat, 16 Mar 2019 04:16:06 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	u11sm5653639pfh.23.2019.03.16.04.16.05 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 16 Mar 2019 04:16:05 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sat, 16 Mar 2019 04:16:04 -0700
+Message-Id: <20190316111604.22951-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH] maintainers: add inc file to work with current schema
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,78 +71,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Mar 2019 23:40:23 -0000
-Content-Type: multipart/alternative; boundary="000000000000eaab6305842a8f00"
+X-List-Received-Date: Sat, 16 Mar 2019 11:16:07 -0000
 
---000000000000eaab6305842a8f00
-Content-Type: text/plain; charset="UTF-8"
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ conf/distro/include/maintainers.inc | 59 +++++++++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+ create mode 100644 conf/distro/include/maintainers.inc
 
-On Fri, Mar 15, 2019 at 10:23 AM Burton, Ross <ross.burton@intel.com> wrote:
+diff --git a/conf/distro/include/maintainers.inc b/conf/distro/include/maintainers.inc
+new file mode 100644
+index 0000000..94b45f2
+--- /dev/null
++++ b/conf/distro/include/maintainers.inc
+@@ -0,0 +1,59 @@
++# meta-securiyt Maintainers File
++#
++# This file contains a list of recipe maintainers.
++#
++# Please submit any patches against recipes in meta to the 
++# Yocto mail list (yocto@yoctoproject.org)
++#
++# If you have problems with or questions about a particular recipe, feel
++# free to contact the maintainer directly (cc:ing the appropriate mailing list
++# puts it in the archive and helps other people who might have the same
++# questions in the future), but please try to do the following first:
++#
++#  - look in the Yocto Project Bugzilla
++#    (http://bugzilla.yoctoproject.org/) to see if a problem has
++#    already been reported
++#
++# The format is as a bitbake variable override for each recipe
++#
++#	RECIPE_MAINTAINER_pn-<recipe name> = "Full Name <address@domain>"
++#
++# Please keep this list in alphabetical order.
++RECIPE_MAINTAINER_pn-aircrack-ng = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-apparmor = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-bastille = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-buck-security = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-ccs-tools = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-checksec = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-checksecurity = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-clamav = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-ding-libs = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-ecryptfs-utils = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-fscryptctl = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-google-authenticator-libpam = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-hash-perl = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-isic = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-keyutils = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-libaes-siv = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-libenv-perl = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-libgssglue = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-libhtp = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-libmhash = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-libmspack = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-lib-perl = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-libseccomp = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-libwhisker2-perl = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-ncrack = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-nikto = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-paxctl = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-python3-fail2ban = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-python3-scapy = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-python-fail2ban = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-python-scapy = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-redhat-security = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-samhain = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-smack = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-sssd = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-suricata = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-tripwire = "Armin Kuster <akuster808@gmail.com>"
++RECIPE_MAINTAINER_pn-xmlsec1 = "Armin Kuster <akuster808@gmail.com>"
+-- 
+2.17.1
 
-> On Fri, 15 Mar 2019 at 17:00, Derek Dresser <dresser.net@gmail.com> wrote:
-> > | gcc -fPIC   -c -g -MMD -MP -MF build/Debug/GNU-Linux-x86/hid.o.d -o
-> build/Debug/GNU-Linux-x86/hid.o hid.c
->
-> 'gcc' isn't a cross compiler, and it isn't using the sysroot flags.
->
-> The problem with people writing their own makefiles is that they think
-> it's easy, but it isn't.  You'll have to figure out why the maze of
-> Makefiles in that project don't respect CC/CPPFLAGS/CFLAGS/LDFLAGS
-> that are exported into the environment.
->
 
-You might want to consider a different driver:
-
-https://archive.fosdem.org/2018/schedule/event/rapid_spi_over_usb/attachments/audio/2461/export/events/attachments/rapid_spi_over_usb/audio/2461/USB_SPI_FOSDEM_2018.pdf
-
-
-> Ross
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---000000000000eaab6305842a8f00
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Fri, Mar 15, 2019 at 10:23 AM Burton, Ross &lt;<a href=
-=3D"mailto:ross.burton@intel.com">ross.burton@intel.com</a>&gt; wrote:<br><=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
-ft:1px #ccc solid;padding-left:1ex">On Fri, 15 Mar 2019 at 17:00, Derek Dre=
-sser &lt;<a href=3D"mailto:dresser.net@gmail.com" target=3D"_blank">dresser=
-.net@gmail.com</a>&gt; wrote:<br>
-&gt; | gcc -fPIC=C2=A0 =C2=A0-c -g -MMD -MP -MF build/Debug/GNU-Linux-x86/h=
-id.o.d -o build/Debug/GNU-Linux-x86/hid.o hid.c<br>
-<br>
-&#39;gcc&#39; isn&#39;t a cross compiler, and it isn&#39;t using the sysroo=
-t flags.<br>
-<br>
-The problem with people writing their own makefiles is that they think<br>
-it&#39;s easy, but it isn&#39;t.=C2=A0 You&#39;ll have to figure out why th=
-e maze of<br>
-Makefiles in that project don&#39;t respect CC/CPPFLAGS/CFLAGS/LDFLAGS<br>
-that are exported into the environment.<br>
-</blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">You might want t=
-o consider a different driver:</div><div dir=3D"auto"><br></div><div dir=3D=
-"auto"><div><a href=3D"https://archive.fosdem.org/2018/schedule/event/rapid=
-_spi_over_usb/attachments/audio/2461/export/events/attachments/rapid_spi_ov=
-er_usb/audio/2461/USB_SPI_FOSDEM_2018.pdf">https://archive.fosdem.org/2018/=
-schedule/event/rapid_spi_over_usb/attachments/audio/2461/export/events/atta=
-chments/rapid_spi_over_usb/audio/2461/USB_SPI_FOSDEM_2018.pdf</a></div><br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
-eft:1px #ccc solid;padding-left:1ex"><br>
-Ross<br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div></div>
-
---000000000000eaab6305842a8f00--
