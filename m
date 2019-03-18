@@ -1,60 +1,81 @@
-Return-Path: <tfroehlich@archsys.io>
+Return-Path: <m.porst@igi-systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD560E00CE5; Tue, 19 Mar 2019 13:16:10 -0700 (PDT)
+	id EB54AE00CE5; Tue, 19 Mar 2019 13:51:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.181 listed in list.dnswl.org]
+	*      [40.107.6.132 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com
-	[209.85.222.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B518E00A0C
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 13:16:10 -0700 (PDT)
-Received: by mail-qk1-f181.google.com with SMTP id o129so12711092qke.8
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 13:16:10 -0700 (PDT)
+X-Greylist: delayed 47949 seconds by postgrey-1.32 at yocto-www;
+	Tue, 19 Mar 2019 13:50:57 PDT
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com
+	(mail-eopbgr60132.outbound.protection.outlook.com [40.107.6.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4C43E0091D
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 13:50:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=archsys-io.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=76HuypAPR7hViOuz9lGgXoDnfRDcuDWwAiKXTXZ1SyI=;
-	b=UKDuB6ufGvN4+j8jBz3GFUnaNieMEf5kLu7xc2qpxAlpO+zb3P3Q+bz7J9uLZHc4Mg
-	rjw/exc6CyMlmhvbocgI5g5tFeHZ+f+7gRuKc6hGb0bfIdYSQaUGmo0okuXf7yEpBUCR
-	jgpiOnrTyCJzODd1WNK/FxnBuObaPbnPkf+2rvzCQeDxoynZhi0bbv2/VKMwANvn/1Ab
-	viG8ai/21R4xVuPTRRtmjtNe1fBokZk5p6PpvnDp+BGjjsBScC4dq6ikOpPP78alaQq8
-	grb8h3aXBTkGbs2DmhzsJFu4w5M1AXHJWxbEAGsWwcZAjE/YmmzLcKtMOuNyUclZJbp4
-	RxpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=76HuypAPR7hViOuz9lGgXoDnfRDcuDWwAiKXTXZ1SyI=;
-	b=bZfgb5IVhtDNb2bFwCbcboGllnpGNQgjRBTdzGovs5Hz69q3U12VnNCaMvT6OtTe8s
-	pwo3pJOVgL5wAJfyigEreMr32pexP3YWNI0DWLLRw+o0Eszl74/6TWGBLfzC3A8ILW1x
-	5DjU7wIwkmPubpB2vyIHPkBYjJ83z9BjRww0pnuch7tIZli+hUfU2QTUikT/8CdnZoUe
-	yMylcYDOOMYOKRY0a8F+tVc8U2lyr5K6IbqYMVowyXf9h+MPQQVsAdAKpYsVXITHqulT
-	fhP8reFnmDiQXVkifddD8GR6nefViqUZKL1LnVDiTcGvIO3aFH+MhGY/k2hF7sR4KRCi
-	UBxQ==
-X-Gm-Message-State: APjAAAVLlRz4PuGL0kvlNiW7KdSrCtr0jhlXVGofHhSbjUzumBBvNZ2M
-	rCdqWkz2TkdIZZ2KkOSme6sVOZyRMH9IXf0awHztd7hrXVs=
-X-Google-Smtp-Source: APXvYqzMR/QqTvWjVWLywtsTp07Qw9eIHpgl0srl80uj77dMChWBFJPXDOsioMyPwPTA/aGQ+1qulCwGWKXqiuWVoBA=
-X-Received: by 2002:a37:5c05:: with SMTP id q5mr17769605qkb.20.1553026569433; 
-	Tue, 19 Mar 2019 13:16:09 -0700 (PDT)
+	d=igi57223.onmicrosoft.com; s=selector1-igisystems-com0i;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=1ZODKThxtyO1bYbBfB5pmaKIH3OV82I1KF3ILpCLEz8=;
+	b=jajWWug5iu9PKUVxAAjnwK4bdfvtZFSINYQQKFmdPKdw13CT8FjyCshL5n/C3l4o/4zk8hNeC5pW6u4+dL1t5yjfA4af0zwE6ZVTkxlYzQcs9l7jldOBByqLvStkI8NGp6stDSG2dERVeVDiXI3F1084OhaEnePgETWRS7D+tFE=
+Received: from AM6PR04MB5703.eurprd04.prod.outlook.com (20.179.1.77) by
+	AM6PR04MB6149.eurprd04.prod.outlook.com (20.179.6.76) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1709.14; Mon, 18 Mar 2019 13:58:41 +0000
+Received: from AM6PR04MB5703.eurprd04.prod.outlook.com
+	([fe80::4879:3b73:d240:8920]) by
+	AM6PR04MB5703.eurprd04.prod.outlook.com
+	([fe80::4879:3b73:d240:8920%6]) with mapi id 15.20.1709.015;
+	Mon, 18 Mar 2019 13:58:41 +0000
+From: IGI - Moritz Porst <m.porst@igi-systems.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto][meta-mingw] Windows SDK build fails using meta-qt5
+Thread-Index: AQHU3ZKwImE0+t0x4UuOhHrljzHdpQ==
+Date: Mon, 18 Mar 2019 13:58:41 +0000
+Message-ID: <AM6PR04MB5703FAD886539800513EA6CFA0470@AM6PR04MB5703.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=m.porst@igi-systems.com; 
+x-originating-ip: [80.152.229.14]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1b736df0-6eb3-4ba6-5d5c-08d6aba9d3d9
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600127)(711020)(4605104)(2017052603328)(7153060)(7193020);
+	SRVR:AM6PR04MB6149; 
+X-MS-TrafficTypeDiagnostic: AM6PR04MB6149:|AM6PR04MB6149:|AM6PR04MB6149:|AM6PR04MB6149:|AM6PR04MB6149:
+x-microsoft-antispam-prvs: <AM6PR04MB614978C63C9A4BEA2FB3CF95A0470@AM6PR04MB6149.eurprd04.prod.outlook.com>
+x-forefront-prvs: 098076C36C
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(39830400003)(136003)(396003)(366004)(346002)(376002)(199004)(189003)(38564003)(53754006)(106356001)(54896002)(55016002)(6306002)(99286004)(9686003)(236005)(7696005)(5640700003)(6436002)(105586002)(2351001)(606006)(733005)(53936002)(86362001)(5660300002)(19627405001)(8936002)(97736004)(3846002)(476003)(6116002)(21615005)(2906002)(14454004)(7736002)(486006)(14444005)(52536014)(74316002)(256004)(25786009)(2501003)(6916009)(508600001)(66066001)(861006)(8676002)(1730700003)(81166006)(81156014)(6606003)(68736007)(102836004)(33656002)(4326008)(186003)(26005)(71200400001)(71190400001)(316002)(6506007);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:AM6PR04MB6149;
+	H:AM6PR04MB5703.eurprd04.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: igi-systems.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 7d7YmYBjSxUFo0/8y5261PxwGg1P4YXT1piWFu3gOlXvtO1n6PenNC81qnfyTHEM2i2HD4xb3u6YN7xrcwE2/m297hw9qbaHzEh6uJkdbYtLCGgE21cfuOxNSYeXQdBT5VrfyInd9i7XxUlKIsccRNm+ogi5w0LkQlOtfF9scnb/FFCRbI70wxWoIe5yWGpEcDc4z0rwN9QqBB4IfKxd4/boitxXLw2nFXh+eDNS7Wk4MLxwuDaxMEoxPr+3wYMtUJhhGmvaMNfWmK2pKL5KURgA8JSrnpOnzXwSAX4psZ2FmMGce6eJeGglDel07TorjdEYHqcICYKOqzXjH/gj9uxjRKU6YUSBhPP+c5cM8tIFBR9HVfjuCQaK3Ii2Qe8fDtyKJUA7HDyqEuYa1HvsReJYOpX1DhGoa4N1qRTH2eM=
 MIME-Version: 1.0
-References: <CAHSUxjTSKhW=ynBNJkBemn+-HDGUNKkcS_54ZoH+EWgdNXKO=g@mail.gmail.com>
-In-Reply-To: <CAHSUxjTSKhW=ynBNJkBemn+-HDGUNKkcS_54ZoH+EWgdNXKO=g@mail.gmail.com>
-From: Timothy Froehlich <tfroehlich@archsys.io>
-Date: Tue, 19 Mar 2019 13:15:58 -0700
-Message-ID: <CAHSUxjRe7CdXGdyfO39=wTf0saKfVRb0fT=m45bjgGD=CrdBUg@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Wic can't find mkfs.btrfs
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1b736df0-6eb3-4ba6-5d5c-08d6aba9d3d9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2019 13:58:41.0753 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 21fe3377-79f5-459b-b27a-ab88ac685790
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB6149
+X-OriginatorOrg: igi-systems.com
+Subject: [meta-mingw] Windows SDK build fails using meta-qt5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,78 +87,255 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2019 20:16:10 -0000
-Content-Type: multipart/alternative; boundary="000000000000ff881b0584782c18"
+X-List-Received-Date: Tue, 19 Mar 2019 20:51:01 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_AM6PR04MB5703FAD886539800513EA6CFA0470AM6PR04MB5703eurp_"
 
---000000000000ff881b0584782c18
-Content-Type: text/plain; charset="UTF-8"
-
-Ok, I think I'm along the path to figuring this out. Realized that
-btrfs-tools-native:do_populate_sysroot needed to be explicitly run by
-something.
-
-On Tue, Mar 19, 2019 at 12:40 PM Timothy Froehlich <tfroehlich@archsys.io>
-wrote:
-
-> Been slogging through this one for a bit, would appreciate any helpful
-> suggestions.
->
-> I'm using mender.io's layer which includes a class that builds a full SD
-> card image including multiple partitions. I'm trying to turn one of those
-> partitions into a btrfs partition and my current error is "A native program
-> mkfs.btrfs... was not found". Wic's source code comments suggest that it's
-> looking for native utils in STAGING_DIR_NATIVE, which bitbake -e says is in
-> work/<target>/<imgname>/<imgversion>/recipe-sysroot, and when I checked, it
-> does indeed include mkfs.ext4/vfat but not btrfs. I haven't yet found the
-> mechanism that copies these files into the location (thought occurs to me
-> to check the image's logs itself) so I don't know what mechanism is failing
-> to copy the mkfs.btrfs but is working for mkfs.ext*. Any pointers?
->
-> --
-> Tim Froehlich
-> Embedded Linux Engineer
-> tfroehlich@archsys.io
-> 215-218-8955
->
-
-
--- 
-Tim Froehlich
-Embedded Linux Engineer
-tfroehlich@archsys.io
-215-218-8955
-
---000000000000ff881b0584782c18
-Content-Type: text/html; charset="UTF-8"
+--_000_AM6PR04MB5703FAD886539800513EA6CFA0470AM6PR04MB5703eurp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Ok, I think I&#39;m along the path to figuring this out. R=
-ealized that btrfs-tools-native:do_populate_sysroot needed to be explicitly=
- run by something.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Tue, Mar 19, 2019 at 12:40 PM Timothy Froehlich &lt;<a=
- href=3D"mailto:tfroehlich@archsys.io">tfroehlich@archsys.io</a>&gt; wrote:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
-">Been slogging through this one for a bit, would appreciate any helpful su=
-ggestions.<div><br></div><div>I&#39;m using <a href=3D"http://mender.io" ta=
-rget=3D"_blank">mender.io</a>&#39;s layer which includes a class that build=
-s a full SD card image including multiple partitions. I&#39;m trying to tur=
-n one of those partitions into a btrfs partition and my current error is &q=
-uot;A native program mkfs.btrfs... was not found&quot;. Wic&#39;s source co=
-de comments suggest that it&#39;s looking for native utils in STAGING_DIR_N=
-ATIVE, which bitbake -e says is in work/&lt;target&gt;/&lt;imgname&gt;/&lt;=
-imgversion&gt;/recipe-sysroot, and when I checked, it does indeed include m=
-kfs.ext4/vfat but not btrfs. I haven&#39;t yet found the mechanism that cop=
-ies these files into the location (thought occurs to me to check the image&=
-#39;s logs itself) so I don&#39;t know what mechanism is failing to copy th=
-e mkfs.btrfs but is working for mkfs.ext*. Any pointers?=C2=A0</div><div><d=
-iv><br></div>-- <br><div dir=3D"ltr" class=3D"gmail-m_-6776167125153007843g=
-mail_signature"><div dir=3D"ltr">Tim Froehlich<div>Embedded Linux Engineer<=
-/div><div><a href=3D"mailto:tfroehlich@archsys.io" target=3D"_blank">tfroeh=
-lich@archsys.io</a></div><div>215-218-8955</div></div></div></div></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr">Tim Froehlich<div>Embedded Linu=
-x Engineer</div><div><a href=3D"mailto:tfroehlich@archsys.io" target=3D"_bl=
-ank">tfroehlich@archsys.io</a></div><div>215-218-8955</div></div></div>
+Hello everyone,
 
---000000000000ff881b0584782c18--
+I am trying to compile a windows sdk for my image. I use meta-mingw and met=
+a-qt, the target machine is based on meta-intel (corei7-64) and the distrib=
+ution based on poky. My build machine is an ubuntu 16.04. I have checked ou=
+t all layers on their thud branch, except for meta-qt (master). I set SDK_M=
+ACHINE in local.conf to "x86_64-mingw32" "bitbake core-image-minimal -c pop=
+ulate_sdk" results on a clean rebuild (deleted sstate-cache and tmp) in (2 =
+errors of this kind):
+
+""" [...] x86_64-nativesdk-mingw32-pokysdk-mingw32/nativesdk-qtbase/5.12.0+=
+gitAUTOINC+13ed06640c-r0/git/qmake/library/ioutils.cpp:249:31: error: canno=
+t convert 'wchar_t*' to 'LPCSTR' {aka 'const char*'}
+
+[...] | Makefile:213: recipe for target 'ioutils.o' failed [...]
+[...] ERROR: Task (/opt/thudPoky/meta-qt5/recipes-qt/qt5/nativesdk-qtbase_g=
+it.bb:do_configure) failed with exit code '1' [...] """
+
+So I decided to remove sdk tools, hoping to be able to cross compile them l=
+ater, by commenting out in my image:  #inherit populate_sdk_qt5
+
+This build also failed because the build system tried to invoke "cmake --in=
+stall" on a non-cmake directory. commenting out "inherit cmake" however sol=
+ved the problem and the sdk was created (1.1GB .tar.gz file BUT without met=
+a-qt sdk tools). I needed cmake only for a previous cross-compilation, thus=
+ commenting out was (at least now) no problem.
+Is meta-mingw capable of compiling an sdk with meta-qt ? Could this be a bu=
+g ? If yes, should I rather refer to the meta-mingw maintainers or the meta=
+-qt5 maintainers ?
+Best regards
+Moritz
+
+
+________________________________
+
+IGI mbH
+Moritz Porst,
+
+Langenauer Str. 46
+57223 Kreuztal, Germany
+
+        [IGI Logo] <http://www.igi.eu/news.html>
+
+Tel.:   +49 2732 5525 0
+Fax:    +49 2732 5525 25
+E-mail: m.porst@igi-systems.com<mailto:m.porst@igi-systems.com>
+Web:    www.igi-systems.com<http://www.igi-systems.com/>
+Follow us:      [IGI News Feed] <http://www.igi-systems.com/share/igi_news.=
+xml>  [IGI at YouTube] <http://www.youtube.com/IGISystems>   [LinkedIn] <ht=
+tps://www.linkedin.com/company/igi-systems>
+
+Upcoming Events:
+GeoBusiness 2019 London<https://www.igi-systems.com/events/articles/events.=
+html>
+
+
+________________________________
+
+Sitz der Gesellschaft / Company domiciled in: Kreuztal
+Handelsregister / Register: Siegen HRB 1975
+Ust ID Nr. / VAT Reg. No.: DE 126 580 027
+Steuer Nr. / Tax No.: 342 / 5873 / 3332
+Geschaeftsfuehrer / Managing Director: Christian GRIMM & Philipp GRIMM
+
+DISCLAIMER
+The information sent by means of this e-mail message is intended for the us=
+e of the addressee only! Publication, duplication, distribution and/or forw=
+arding to third parties of this message, as well as use of the information =
+by other persons than the intended recipient, is strictly prohibited. If yo=
+u have received this communication in error, please notify the sender immed=
+iately by returning it.
+
+--_000_AM6PR04MB5703FAD886539800513EA6CFA0470AM6PR04MB5703eurp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
+r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &quot;EmojiFo=
+nt&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoCo=
+lorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymb=
+ols;">
+<p style=3D"margin-top:0; margin-bottom:0">Hello everyone,</p>
+<p style=3D"margin-top:0; margin-bottom:0">I am trying to compile a windows=
+ sdk for my image. I use meta-mingw and meta-qt, the target machine is base=
+d on meta-intel (corei7-64) and the distribution based on poky. My build ma=
+chine is an ubuntu 16.04. I have checked
+ out all layers on their thud branch, except for meta-qt (master). I set SD=
+K_MACHINE in local.conf to &quot;x86_64-mingw32&quot; &quot;bitbake core-im=
+age-minimal -c populate_sdk&quot; results on a clean rebuild (deleted sstat=
+e-cache and tmp) in (2 errors of this kind):</p>
+<p style=3D"margin-top:0; margin-bottom:0"><span>&quot;&quot;&quot; [...] x=
+86_64-nativesdk-mingw32-pokysdk-mingw32/nativesdk-qtbase/5.12.0&#43;gitAUTO=
+INC&#43;13ed06640c-r0/git/qmake/library/ioutils.cpp:249:31: error: cannot c=
+onvert 'wchar_t*' to 'LPCSTR' {aka 'const char*'}
+<br>
+</span></p>
+<p style=3D"margin-top:0; margin-bottom:0"><span>[...] <span>| Makefile:213=
+: recipe for target 'ioutils.o' failed</span> [...]<br>
+<span>[...]</span> <span>ERROR: Task (/opt/thudPoky/meta-qt5/recipes-qt/qt5=
+/nativesdk-qtbase_git.bb:do_configure) failed with exit code '1'</span> [..=
+.] &quot;&quot;&quot;<br>
+</span></p>
+<p style=3D"margin-top:0; margin-bottom:0"><span>So I decided to remove sdk=
+ tools, hoping to be able to cross compile them later, by commenting out in=
+ my image:&nbsp;<span> #</span>inherit populate_sdk_qt5<br>
+</span></p>
+This build also failed because the build system tried to invoke &quot;cmake=
+ --install&quot; on a non-cmake directory. commenting out &quot;inherit cma=
+ke&quot; however solved the problem and the sdk was created (1.1GB .tar.gz =
+file BUT without meta-qt sdk tools). I needed cmake
+ only for a previous cross-compilation, thus commenting out was (at least n=
+ow) no problem.<br>
+<div>Is meta-mingw capable of compiling an sdk with meta-qt ? Could this be=
+ a bug ? If yes, should I rather refer to the meta-mingw maintainers or the=
+ meta-qt5 maintainers ?</div>
+<div>Best regards</div>
+<div>Moritz<br>
+</div>
+<p></p>
+<p style=3D"margin-top:0; margin-bottom:0"><span><br>
+</span></p>
+</div>
+<p></p>
+<hr>
+<p></p>
+<p></p>
+<table style=3D"WIDTH: 100%" cellspacing=3D"0" cellpadding=3D"0" width=3D"1=
+00%" background=3D"" border=3D"0">
+<tbody>
+<tr>
+<td valign=3D"top">
+<p><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #000000">IGI =
+mbH<br>
+Moritz Porst, <br>
+<br>
+Langenauer Str. 46<br>
+57223 Kreuztal, Germany</font><br>
+&nbsp;<br>
+</p>
+</td>
+<td valign=3D"top" align=3D"right"><font style=3D"FONT-SIZE: 10pt; FONT-FAM=
+ILY: Arial; COLOR: #000000"><a href=3D"http://www.igi.eu/news.html"><img st=
+yle=3D"HEIGHT: 52px; WIDTH: 128px" border=3D"0" hspace=3D"0" alt=3D"IGI Log=
+o" src=3D"http://www.igi.eu/tl_files/IGI/Logos/IGI-logo.jpg" width=3D"128" =
+height=3D"52"></a></font>
+</td>
+</tr>
+<tr>
+<td>
+<table style=3D"WIDTH: 400px" cellspacing=3D"1" cellpadding=3D"0" border=3D=
+"0">
+<tbody>
+<tr>
+<td width=3D"70"><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR:=
+ #000000">Tel.:</font></td>
+<td><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #000000">&#4=
+3;49 2732 5525 0</font></td>
+</tr>
+<tr>
+<td><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #000000">Fax=
+:</font></td>
+<td><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #000000">&#4=
+3;49 2732 5525 25</font></td>
+</tr>
+<tr>
+<td><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #000000">E-m=
+ail:</font></td>
+<td><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial"><a href=3D"mailto:m=
+.porst@igi-systems.com">m.porst@igi-systems.com</a></font></td>
+</tr>
+<tr>
+<td><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #000000">Web=
+:</font></td>
+<td><a href=3D"http://www.igi-systems.com/"><font style=3D"FONT-SIZE: 10pt;=
+ FONT-FAMILY: Arial ">www.igi-systems.com</font></a></td>
+</tr>
+<tr>
+<td valign=3D"middle"><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; C=
+OLOR: #000000">Follow us:</font></td>
+<td valign=3D"middle"><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; C=
+OLOR: #000000"><a title=3D"" href=3D"http://www.igi-systems.com/share/igi_n=
+ews.xml"><img style=3D"HEIGHT: 24px; WIDTH: 24px" border=3D"0" hspace=3D"1"=
+ alt=3D"IGI News Feed" vspace=3D"5" src=3D"http://www.igi-systems.com/files=
+/IGI/Logos/rss_logo.png" align=3D"middle"></a>&nbsp;<a title=3D"" href=3D"h=
+ttp://www.youtube.com/IGISystems"><img style=3D"HEIGHT: 24px; WIDTH: 24px" =
+border=3D"0" hspace=3D"1" alt=3D"IGI at YouTube" vspace=3D"5" src=3D"http:/=
+/www.igi-systems.com/files/IGI/Logos/youtube_logo.png" align=3D"middle"></a=
+>
+ &nbsp;<a title=3D"" href=3D"https://www.linkedin.com/company/igi-systems">=
+<img style=3D"HEIGHT: 24px; WIDTH: 24px" border=3D"0" hspace=3D"1" alt=3D"L=
+inkedIn" vspace=3D"5" src=3D"http://www.igi-systems.com/files/IGI/Logos/lin=
+kedin_logo.png" align=3D"middle"></a>
+</font></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign=3D"bottom" align=3D"right">
+<table border=3D"0">
+<tbody>
+<tr>
+<td valign=3D"top" align=3D"left"><font style=3D"FONT-SIZE: 10pt; FONT-FAMI=
+LY: Arial; COLOR: #000000">Upcoming Events:<br>
+<a href=3D"https://www.igi-systems.com/events/articles/events.html">GeoBusi=
+ness 2019 London</a><br>
+</font></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><font style=3D"FONT-SIZE: 7pt; FONT-FAMILY: Arial; COLOR: #a0a0a4">Sitz =
+der Gesellschaft / Company domiciled in: Kreuztal<br>
+Handelsregister / Register: Siegen HRB 1975<br>
+Ust ID Nr. / VAT Reg. No.: DE 126 580 027<br>
+Steuer Nr. / Tax No.: 342 / 5873 / 3332<br>
+Geschaeftsfuehrer / Managing Director: Christian&nbsp;GRIMM &amp; Philipp G=
+RIMM<br>
+<br>
+<span lang=3D"EN-GB">DISCLAIMER<br>
+The information sent by means of this e-mail message is intended for the us=
+e of the addressee only! Publication, duplication, distribution and/or forw=
+arding to third parties of this message, as well as use of the information =
+by other persons than the intended
+ recipient, is strictly prohibited. If you have received this communication=
+ in error, please notify the sender
+</span><span lang=3D"DE">immediately by returning it.</p>
+</span></font>
+</body>
+</html>
+
+--_000_AM6PR04MB5703FAD886539800513EA6CFA0470AM6PR04MB5703eurp_--
