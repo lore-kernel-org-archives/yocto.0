@@ -1,6 +1,6 @@
-Return-Path: <jpewhacker@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E59E4E00C4D; Mon, 18 Mar 2019 08:01:00 -0700 (PDT)
+	id AC01AE00B58; Mon, 18 Mar 2019 12:30:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,63 +10,62 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jpewhacker[at]gmail.com)
+	provider *      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.42 listed in list.dnswl.org]
+	*      [209.85.210.177 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com
-	[209.85.166.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4053E00B58
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2019 08:00:59 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id n11so14881243ioh.1
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2019 08:00:59 -0700 (PDT)
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
+	[209.85.210.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F028E00AC5
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2019 12:30:50 -0700 (PDT)
+Received: by mail-pf1-f177.google.com with SMTP id 8so8542368pfr.4
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2019 12:30:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:message-id:subject:to:date:in-reply-to:references:user-agent
-	:mime-version; bh=KKh1SMOAkcmcuMCJEARMcT7dG1+qUSexr/q7Mfj5ik0=;
-	b=duj7L3DLv5w3gX0BIzkcsL7BksaWE0WiZsK80h7TKBJMJU7Jy0tUgtxjotUNPgkKMy
-	TKFKmL4pDckgXyWG/tgM3S1gxlcp4lngpi4FGYXrIToVkKjMdO+UArNBTb1wXD2DODr4
-	bLtE/XtGyCJghOByorqO6QlZ0tbKcOfiKGvwuSNXWi5ogx8uTu7AdFU0Eb0OTJI854Vd
-	XfbHER7mmBn+UMppvr4t3nO5/20pYJEWDkkoZ8h3alQST44AO5gbQ719WcyeLa28mDCE
-	PC07Xem+R3AW915Q/DiKxHpkKCw8tqKiI1DcljJzsNDAL5pLmZ6W0PqLjoUKDxeHJgoa
-	22DQ==
+	h=from:to:subject:date:message-id:mime-version:thread-index
+	:content-language;
+	bh=9WXZO6+4WbKzCfFJXzu6KfT6kXvDRSXzUStYwDKFIDE=;
+	b=JEmWUIwo0F2LhOGAbMusRZl/+ILwI2trLfwIV7tzh19e6sgAtSZtBK1Lt/OLz3S3xT
+	37ydBVmCcKlgWzj72t4xbEu0vFa7Oah4nk1tEW+2rEXbCFlwx+qw75WVD+L6DbDfeA4k
+	S/+PtAQZ9tq29XqVM7SJTVJ0j4B5JX1ygUebNd8eBYimqhK0ml4ZTzIB6w9USbFrNIKX
+	Lza6CgqdMMlaAt5ECpyEH6keiAK7fOkNIGdYr3x2+4u34aP6hHnmUmeoSINVStsn6d0P
+	hKUTGLh2WCor6kpwVTSkY6tB5dgSYUc+OHkWG1toqNMSHFPwvHkGCuiHs8xh8FX6l2E6
+	9pEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:message-id:subject:to:date:in-reply-to
-	:references:user-agent:mime-version;
-	bh=KKh1SMOAkcmcuMCJEARMcT7dG1+qUSexr/q7Mfj5ik0=;
-	b=kAeracE/sceceMMREswsqeAMAdEczypSwnp1TpqmF27FkBszA+T3hojliEmakAthVI
-	MOMFI6nLciicLx9+3kzjF4zt/eeDhF90VcExrce5BJwDXF2gAhJnUxVbrexWwnF2bQAT
-	epqJivKkPfkGgRWnmG5iSZEKQHLKfJ1okSziY2QBRo+1wiqdjFek43vu2m8kEWLc+t3L
-	OU8N322x7TIZBNmh7GHjvYdqFE38k4Z61XU/qTWjUmsUrL9bLrApNEgqe0+iDDZ/YAfT
-	kQ4gzqP451snxPb8ilcUEA8f1kSjT6PklLkwSauoIZBENpila4XWj1xZ0n0NmYo8gv/M
-	vPsA==
-X-Gm-Message-State: APjAAAXH0KEq+atSWzXo/URhl3Y9HOMBffXal2y3Jkqq55ybwtGgfCA0
-	25LDMHhfrKDH+g/mygkkzyY/VgSI
-X-Google-Smtp-Source: APXvYqwkNv4EO7xiHxwrHB0dDqxO32uRRrQ8Wy7nNDUwPFHeqrp0NildrcYfn8o/ulkWor9V4DBoaA==
-X-Received: by 2002:a5e:a51a:: with SMTP id 26mr12398789iog.254.1552921258811; 
-	Mon, 18 Mar 2019 08:00:58 -0700 (PDT)
-Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
-	by smtp.googlemail.com with ESMTPSA id
-	b9sm238130itc.20.2019.03.18.08.00.57
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Mon, 18 Mar 2019 08:00:57 -0700 (PDT)
-From: Joshua Watt <jpewhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-Message-ID: <df52e1ae8078b311668f81cfee634606e5b5469d.camel@gmail.com>
-To: IGI - Moritz Porst <m.porst@igi-systems.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Mon, 18 Mar 2019 10:00:56 -0500
-In-Reply-To: <AM6PR04MB5703FAD886539800513EA6CFA0470@AM6PR04MB5703.eurprd04.prod.outlook.com>
-References: <AM6PR04MB5703FAD886539800513EA6CFA0470@AM6PR04MB5703.eurprd04.prod.outlook.com>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:thread-index:content-language;
+	bh=9WXZO6+4WbKzCfFJXzu6KfT6kXvDRSXzUStYwDKFIDE=;
+	b=avI78OciSGMoJv87D7qTFRnyoT1t+dkcEK7N2xHbVpKfScosQH0/VDdmcfw0LU9Z+M
+	+WoQoz5BILGaVNTxLtR09bdbKfi02BVHvFMM15DVhnFVUf/6vkG2zuOvUpuRQ7DmJDUc
+	m4Y6ZHjh0qP+Bn/g5l5VYjdUJ33a0ce0OqLDosQdKpiJ2JoiJ0hpn4fBYVRE+dBW03jt
+	LwA1v15d7TFogMGgCM8o/TlHSVdkRl20Ms8BsmMjTeycVp0MO5CMDkGoLF2BxDgP5lU/
+	cf4sZkrXivXtlMfOiv48Y8HZltzCfkDBowo6mmXja8/fgmh1Aal6yErZgsdHhZf1+LrR
+	evfg==
+X-Gm-Message-State: APjAAAXX3Jr5h41lJmnsJv4q439PFklk0O2yn8uWE5G30wM4ANmQ1VEA
+	l6p0B4Z1RjIqEp/IH8pgyUI=
+X-Google-Smtp-Source: APXvYqxMI8ga+Lex8fHXjJzTkJYarlRMNC83HuhRs9IGEqWNh5HNjjvqLzlUCPNCdDeQi5o9+8hScw==
+X-Received: by 2002:a63:3d0e:: with SMTP id k14mr19451473pga.302.1552937449848;
+	Mon, 18 Mar 2019 12:30:49 -0700 (PDT)
+Received: from sjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+	by smtp.gmail.com with ESMTPSA id
+	u62sm954053pfa.124.2019.03.18.12.30.48
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 18 Mar 2019 12:30:48 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Date: Mon, 18 Mar 2019 12:30:47 -0700
+Message-ID: <022001d4ddc1$1713fec0$453bfc40$@gmail.com>
 MIME-Version: 1.0
-Subject: Re: [meta-mingw] Windows SDK build fails using meta-qt5
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGepEPlH1LTz8RKNupi6wh2asBd0g==
+Subject: Yocto Project Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,394 +77,272 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2019 15:01:00 -0000
-Content-Type: multipart/alternative; boundary="=-67Pz4EYGPHGFYwagPHzZ"
+X-List-Received-Date: Mon, 18 Mar 2019 19:30:53 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0221_01D4DD86.6AB5EA10"
+Content-Language: en-us
 
---=-67Pz4EYGPHGFYwagPHzZ
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_0221_01D4DD86.6AB5EA10
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-On Mon, 2019-03-18 at 13:58 +0000, IGI - Moritz Porst wrote:
-> Hello everyone,
-> 
-> I am trying to compile a windows sdk for my image. I use meta-mingw
-> and meta-qt, the target machine is based on meta-intel (corei7-64)
-> and the distribution based on poky. My build machine is an ubuntu
-> 16.04. I have checked
->  out all layers on their thud branch, except for meta-qt (master). I
-> set SDK_MACHINE in local.conf to "x86_64-mingw32" "bitbake core-
-> image-minimal -c populate_sdk" results on a clean rebuild (deleted
-> sstate-cache and tmp) in (2 errors of this kind):
-> 
-> """ [...] x86_64-nativesdk-mingw32-pokysdk-mingw32/nativesdk-
-> qtbase/5.12.0+gitAUTOINC+13ed06640c-
-> r0/git/qmake/library/ioutils.cpp:249:31: error: cannot convert
-> 'wchar_t*' to 'LPCSTR' {aka 'const char*'}
-> 
-> 
-> 
-> 
-> [...] | Makefile:213: recipe for target 'ioutils.o' failed [...]
-> 
-> [...] ERROR: Task (/opt/thudPoky/meta-qt5/recipes-qt/qt5/nativesdk-
-> qtbase_git.bb:do_configure) failed with exit code '1' [...] """
+All,
 
-AFAIK, no one is building Qt host tools into the MinGW SDK. That's not
-to say it *can't* be done, just that it probably hasn't.
+ 
 
-> 
-> So I decided to remove sdk tools, hoping to be able to cross compile
-> them later, by commenting out in my image:  #inherit populate_sdk_qt5
-> 
-> 
-> 
-> This build also failed because the build system tried to invoke
-> "cmake --install" on a non-cmake directory. commenting out "inherit
-> cmake" however solved the problem and the sdk was created (1.1GB
-> .tar.gz file BUT without meta-qt sdk tools). I needed cmake
->  only for a previous cross-compilation, thus commenting out was (at
-> least now) no problem.
+The triage team meets weekly and does its best to handle the bugs reported
+into the Bugzilla. The number of people attending that meeting has fallen,
+as have the number of people available to help fix bugs. One of the things
+we hear users report is they don't know how to help. We (the triage team)
+are therefore going to start reporting out the currently 296 unassigned
+bugs.
 
-FYI: There is a known issue that nativesdk-cmake won't actually work on
-MinGW if included in the SDK. I don't think this affects you, just be
-aware of it. The problem AFAICT is that cmake only accepts unix style
-path separators ("/"), but our toolchain environment setup uses the
-windows style ("\"). I think it might be possible to switch our
-toolchain setup over to use the unix style because Windows is supposed
-to accept them as valid for everything but UNC paths, but I haven't
-done it because 1) It's a somewhat dangerous change 2) No one has yet
-asked to run cmake from the SDK.
-> Is meta-mingw capable of compiling an sdk with meta-qt ? Could this
-> be a bug ? If yes, should I rather refer to the meta-mingw
-> maintainers or the meta-qt5 maintainers ?
+ 
 
-It depends on what changes need to made to get it to work. Some changes
-might be appropriate for meta-mingw, while others might be more
-appropriate for meta-qt5. Getting the Qt maintainers involved to get
-their thoughts would be good either way; they might have some ideas on
-alternate ways to accomplish what you want.
+We're hoping people may be able to spare some time now and again to help out
+with these.
 
-> Best regards
-> 
-> Moritz
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> IGI mbH
-> 
-> Moritz Porst, 
-> 
-> 
-> 
-> Langenauer Str. 46
-> 
-> 57223 Kreuztal, Germany
-> 
->  
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> Tel.:
-> +49 2732 5525 0
-> 
-> 
-> Fax:
-> +49 2732 5525 25
-> 
-> 
-> E-mail:
-> m.porst@igi-systems.com
-> 
-> 
-> Web:
-> www.igi-systems.com
-> 
-> 
-> Follow us:
->  
->   
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> Upcoming Events:
-> 
-> GeoBusiness 2019 London
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> Sitz der Gesellschaft / Company domiciled in: Kreuztal
-> 
-> Handelsregister / Register: Siegen HRB 1975
-> 
-> Ust ID Nr. / VAT Reg. No.: DE 126 580 027
-> 
-> Steuer Nr. / Tax No.: 342 / 5873 / 3332
-> 
-> Geschaeftsfuehrer / Managing Director: Christian GRIMM & Philipp
-> GRIMM
-> 
-> 
-> 
-> DISCLAIMER
-> 
-> The information sent by means of this e-mail message is intended for
-> the use of the addressee only! Publication, duplication, distribution
-> and/or forwarding to third parties of this message, as well as use of
-> the information by other persons than the intended
->  recipient, is strictly prohibited. If you have received this
-> communication in error, please notify the sender
-> immediately by returning it.
-> 
-> 
-> 
--- 
-Joshua Watt <JPEWhacker@gmail.com>
+ 
 
---=-67Pz4EYGPHGFYwagPHzZ
-Content-Type: text/html; charset="utf-8"
+Bugs are split into two types, "true bugs" where things don't work as they
+should and "enhancements" which are features we'd want to add to the system.
+
+ 
+
+There are also roughly four different "priority" classes right now, "2.7",
+"2.8", "2.99" and "Future", the more pressing/urgent issues being in "2.7"
+and then "2.8".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me
+(Stephen.k.jolley@intel.com <mailto:Stephen.k.jolley@intel.com> ) an e-mail
+with the bug number you would like and I will assign it to you (please make
+sure you have a Bugzilla account).
+
+ 
+
+The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+ 
+
+
+------=_NextPart_000_0221_01D4DD86.6AB5EA10
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0005_01D4D80A.29D36760";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html dir=3D"ltr"><head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr" style=3D"text-align:left; direction:ltr;"><div>On Mon, 20=
-19-03-18 at 13:58 +0000, IGI - Moritz Porst wrote:</div><blockquote type=3D=
-"cite" style=3D"margin:0 0 0 .8ex; border-left:2px #729fcf solid;padding-le=
-ft:1ex">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
-r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &quot;EmojiFo=
-nt&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoCo=
-lorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymb=
-ols;">
-<p style=3D"margin-top:0; margin-bottom:0">Hello everyone,</p>
-<p style=3D"margin-top:0; margin-bottom:0">I am trying to compile a windows=
- sdk for my image. I use meta-mingw and meta-qt, the target machine is base=
-d on meta-intel (corei7-64) and the distribution based on poky. My build ma=
-chine is an ubuntu 16.04. I have checked
- out all layers on their thud branch, except for meta-qt (master). I set SD=
-K_MACHINE in local.conf to "x86_64-mingw32" "bitbake core-image-minimal -c =
-populate_sdk" results on a clean rebuild (deleted sstate-cache and tmp) in =
-(2 errors of this kind):</p>
-<p style=3D"margin-top:0; margin-bottom:0"><span>""" [...] x86_64-nativesdk=
--mingw32-pokysdk-mingw32/nativesdk-qtbase/5.12.0+gitAUTOINC+13ed06640c-r0/g=
-it/qmake/library/ioutils.cpp:249:31: error: cannot convert 'wchar_t*' to 'L=
-PCSTR' {aka 'const char*'}
-<br>
-</span></p>
-<p style=3D"margin-top:0; margin-bottom:0"><span>[...] <span>| Makefile:213=
-: recipe for target 'ioutils.o' failed</span> [...]<br>
-<span>[...]</span> <span>ERROR: Task (/opt/thudPoky/meta-qt5/recipes-qt/qt5=
-/nativesdk-qtbase_git.bb:do_configure) failed with exit code '1'</span> [..=
-.] """<br></span></p></div></blockquote><div><br></div><div><div>AFAIK, no =
-one is building Qt host tools into the MinGW SDK. That's not to say it *can=
-'t* be done, just that it probably hasn't.</div><div><br></div></div><block=
-quote type=3D"cite" style=3D"margin:0 0 0 .8ex; border-left:2px #729fcf sol=
-id;padding-left:1ex"><div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"=
-font-size: 12pt; color: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans=
--serif, &quot;EmojiFont&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe U=
-I Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android E=
-moji&quot;, EmojiSymbols;"><p style=3D"margin-top:0; margin-bottom:0"><span=
->
-</span></p>
-<p style=3D"margin-top:0; margin-bottom:0"><span>So I decided to remove sdk=
- tools, hoping to be able to cross compile them later, by commenting out in=
- my image:&nbsp;<span> #</span>inherit populate_sdk_qt5<br></span></p></div=
-><div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; col=
-or: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &quot;EmojiF=
-ont&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoC=
-olorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSym=
-bols;"><p style=3D"margin-top:0; margin-bottom:0"><span>
-</span></p>
-This build also failed because the build system tried to invoke "cmake --in=
-stall" on a non-cmake directory. commenting out "inherit cmake" however sol=
-ved the problem and the sdk was created (1.1GB .tar.gz file BUT without met=
-a-qt sdk tools). I needed cmake
- only for a previous cross-compilation, thus commenting out was (at least n=
-ow) no problem.</div></blockquote><div><br></div><div>FYI: There is a known=
- issue that nativesdk-cmake won't actually work on MinGW if included in the=
- SDK. I don't think this affects you, just be aware of it. The problem AFAI=
-CT is that cmake only accepts unix style path separators ("/"), but our too=
-lchain environment setup uses the windows style ("\"). I think it might be =
-possible to switch our toolchain setup over to use the unix style because W=
-indows is supposed to accept them as valid for everything but UNC paths, bu=
-t I haven't done it because 1) It's a somewhat dangerous change 2) No one h=
-as yet asked to run cmake from the SDK.</div><div><br></div><blockquote typ=
-e=3D"cite" style=3D"margin:0 0 0 .8ex; border-left:2px #729fcf solid;paddin=
-g-left:1ex"><div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size=
-: 12pt; color: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &=
-quot;EmojiFont&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&q=
-uot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot=
-;, EmojiSymbols;">
-<div>Is meta-mingw capable of compiling an sdk with meta-qt ? Could this be=
- a bug ? If yes, should I rather refer to the meta-mingw maintainers or the=
- meta-qt5 maintainers ?</div></div></blockquote><div><br></div><div><div>It=
- depends on what changes need to made to get it to work. Some changes might=
- be appropriate for meta-mingw, while others might be more appropriate for =
-meta-qt5. Getting the Qt maintainers involved to get their thoughts would b=
-e good either way; they might have some ideas on alternate ways to accompli=
-sh what you want.</div><div><br></div></div><blockquote type=3D"cite" style=
-=3D"margin:0 0 0 .8ex; border-left:2px #729fcf solid;padding-left:1ex"><div=
- id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; color: r=
-gb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, &quot;EmojiFont&q=
-uot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorE=
-moji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;=
-">
-<div>Best regards</div>
-<div>Moritz<br></div></div><div id=3D"divtagdefaultwrapper" dir=3D"ltr" sty=
-le=3D"font-size: 12pt; color: rgb(0, 0, 0); font-family: Calibri, Helvetica=
-, sans-serif, &quot;EmojiFont&quot;, &quot;Apple Color Emoji&quot;, &quot;S=
-egoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;And=
-roid Emoji&quot;, EmojiSymbols;"><p style=3D"margin-top:0; margin-bottom:0"=
-><span><br>
-</span></p>
-</div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:p=3D"urn:schemas-microsoft-com:office:powerpoint" =
+xmlns:a=3D"urn:schemas-microsoft-com:office:access" =
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" =
+xmlns:s=3D"uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" =
+xmlns:rs=3D"urn:schemas-microsoft-com:rowset" xmlns:z=3D"#RowsetSchema" =
+xmlns:b=3D"urn:schemas-microsoft-com:office:publisher" =
+xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadsheet" =
+xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" =
+xmlns:odc=3D"urn:schemas-microsoft-com:office:odc" =
+xmlns:oa=3D"urn:schemas-microsoft-com:office:activation" =
+xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" =
+xmlns:rtc=3D"http://microsoft.com/officenet/conferencing" =
+xmlns:D=3D"DAV:" xmlns:Repl=3D"http://schemas.microsoft.com/repl/" =
+xmlns:mt=3D"http://schemas.microsoft.com/sharepoint/soap/meetings/" =
+xmlns:x2=3D"http://schemas.microsoft.com/office/excel/2003/xml" =
+xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" =
+xmlns:ois=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" =
+xmlns:dir=3D"http://schemas.microsoft.com/sharepoint/soap/directory/" =
+xmlns:ds=3D"http://www.w3.org/2000/09/xmldsig#" =
+xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint/dsp" =
+xmlns:udc=3D"http://schemas.microsoft.com/data/udc" =
+xmlns:xsd=3D"http://www.w3.org/2001/XMLSchema" =
+xmlns:sub=3D"http://schemas.microsoft.com/sharepoint/soap/2002/1/alerts/"=
+ xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#" =
+xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" =
+xmlns:sps=3D"http://schemas.microsoft.com/sharepoint/soap/" =
+xmlns:xsi=3D"http://www.w3.org/2001/XMLSchema-instance" =
+xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/soap" =
+xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" =
+xmlns:udcp2p=3D"http://schemas.microsoft.com/data/udc/parttopart" =
+xmlns:wf=3D"http://schemas.microsoft.com/sharepoint/soap/workflow/" =
+xmlns:dsss=3D"http://schemas.microsoft.com/office/2006/digsig-setup" =
+xmlns:dssi=3D"http://schemas.microsoft.com/office/2006/digsig" =
+xmlns:mdssi=3D"http://schemas.openxmlformats.org/package/2006/digital-sig=
+nature" =
+xmlns:mver=3D"http://schemas.openxmlformats.org/markup-compatibility/2006=
+" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns:mrels=3D"http://schemas.openxmlformats.org/package/2006/relationshi=
+ps" xmlns:spwp=3D"http://microsoft.com/sharepoint/webpartpages" =
+xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/2006/types"=
+ =
+xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/2006/messag=
+es" =
+xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/=
+" =
+xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortalServer/Pub=
+lishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" =
+xmlns:st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoPlainText>All,<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
+triage team meets weekly and does its best to handle the bugs reported =
+into the Bugzilla. The number of people attending that meeting has =
+fallen, as have the number of people available to help fix bugs. One of =
+the things we hear users report is they don't know how to help. We (the =
+triage team) are therefore going to start reporting out the currently =
+296 unassigned bugs.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>We're =
+hoping people may be able to spare some time now and again to help out =
+with these.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Bugs =
+are split into two types, &quot;true bugs&quot; where things don't work =
+as they should and &quot;enhancements&quot; which are features we'd want =
+to add to the system.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>There =
+are also roughly four different &quot;priority&quot; classes right now, =
+&#8220;2.7&#8221;, &#8220;2.8&#8221;, &quot;2.99&quot; and =
+&quot;Future&quot;, the more pressing/urgent issues being in =
+&quot;2.7&quot; and then &#8220;2.8&#8221;.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Please =
+review this link and if a bug is something you would be able to help =
+with either take ownership of the bug, or send me (<a =
+href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com</a>=
+) an e-mail with the bug number you would like and I will assign it to =
+you (please make sure you have a Bugzilla account).<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
+list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs">ht=
+tps://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
+></p><p class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a><o:p><=
+/o:p></span></p><p class=3DMsoNormal><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:=
+p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-
-
-
-<table style=3D"WIDTH: 100%" cellspacing=3D"0" cellpadding=3D"0" width=3D"1=
-00%" background=3D"" border=3D"0">
-<tbody>
-<tr>
-<td valign=3D"top">
-<p><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #000000">IGI =
-mbH<br>
-Moritz Porst, <br>
-<br>
-Langenauer Str. 46<br>
-57223 Kreuztal, Germany</font><br>
-&nbsp;<br>
-</p>
-</td>
-<td valign=3D"top" align=3D"right"><font style=3D"FONT-SIZE: 10pt; FONT-FAM=
-ILY: Arial; COLOR: #000000"><a href=3D"http://www.igi.eu/news.html"><img st=
-yle=3D"HEIGHT: 52px; WIDTH: 128px" border=3D"0" hspace=3D"0" alt=3D"IGI Log=
-o" src=3D"http://www.igi.eu/tl_files/IGI/Logos/IGI-logo.jpg" width=3D"128" =
-height=3D"52"></a></font>
-</td>
-</tr>
-<tr>
-<td>
-<table style=3D"WIDTH: 400px" cellspacing=3D"1" cellpadding=3D"0" border=3D=
-"0">
-<tbody>
-<tr>
-<td width=3D"70"><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR:=
- #000000">Tel.:</font></td>
-<td><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #000000">+49=
- 2732 5525 0</font></td>
-</tr>
-<tr>
-<td><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #000000">Fax=
-:</font></td>
-<td><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #000000">+49=
- 2732 5525 25</font></td>
-</tr>
-<tr>
-<td><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #000000">E-m=
-ail:</font></td>
-<td><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial"><a href=3D"mailto:m=
-.porst@igi-systems.com">m.porst@igi-systems.com</a></font></td>
-</tr>
-<tr>
-<td><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #000000">Web=
-:</font></td>
-<td><a href=3D"http://www.igi-systems.com/"><font style=3D"FONT-SIZE: 10pt;=
- FONT-FAMILY: Arial ">www.igi-systems.com</font></a></td>
-</tr>
-<tr>
-<td valign=3D"middle"><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; C=
-OLOR: #000000">Follow us:</font></td>
-<td valign=3D"middle"><font style=3D"FONT-SIZE: 10pt; FONT-FAMILY: Arial; C=
-OLOR: #000000"><a title=3D"" href=3D"http://www.igi-systems.com/share/igi_n=
-ews.xml"><img style=3D"HEIGHT: 24px; WIDTH: 24px" border=3D"0" hspace=3D"1"=
- alt=3D"IGI News Feed" vspace=3D"5" src=3D"http://www.igi-systems.com/files=
-/IGI/Logos/rss_logo.png" align=3D"middle"></a>&nbsp;<a title=3D"" href=3D"h=
-ttp://www.youtube.com/IGISystems"><img style=3D"HEIGHT: 24px; WIDTH: 24px" =
-border=3D"0" hspace=3D"1" alt=3D"IGI at YouTube" vspace=3D"5" src=3D"http:/=
-/www.igi-systems.com/files/IGI/Logos/youtube_logo.png" align=3D"middle"></a=
->
- &nbsp;<a title=3D"" href=3D"https://www.linkedin.com/company/igi-systems">=
-<img style=3D"HEIGHT: 24px; WIDTH: 24px" border=3D"0" hspace=3D"1" alt=3D"L=
-inkedIn" vspace=3D"5" src=3D"http://www.igi-systems.com/files/IGI/Logos/lin=
-kedin_logo.png" align=3D"middle"></a>
-</font></td>
-</tr>
-</tbody>
-</table>
-</td>
-<td valign=3D"bottom" align=3D"right">
-<table border=3D"0">
-<tbody>
-<tr>
-<td valign=3D"top" align=3D"left"><font style=3D"FONT-SIZE: 10pt; FONT-FAMI=
-LY: Arial; COLOR: #000000">Upcoming Events:<br>
-<a href=3D"https://www.igi-systems.com/events/articles/events.html">GeoBusi=
-ness 2019 London</a><br>
-</font></td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
-
-<p><font style=3D"FONT-SIZE: 7pt; FONT-FAMILY: Arial; COLOR: #a0a0a4">Sitz =
-der Gesellschaft / Company domiciled in: Kreuztal<br>
-Handelsregister / Register: Siegen HRB 1975<br>
-Ust ID Nr. / VAT Reg. No.: DE 126 580 027<br>
-Steuer Nr. / Tax No.: 342 / 5873 / 3332<br>
-Geschaeftsfuehrer / Managing Director: Christian&nbsp;GRIMM &amp; Philipp G=
-RIMM<br>
-<br>
-<span lang=3D"EN-GB">DISCLAIMER<br>
-The information sent by means of this e-mail message is intended for the us=
-e of the addressee only! Publication, duplication, distribution and/or forw=
-arding to third parties of this message, as well as use of the information =
-by other persons than the intended
- recipient, is strictly prohibited. If you have received this communication=
- in error, please notify the sender
-</span><span lang=3D"DE">immediately by returning it.</span></font></p><fon=
-t style=3D"FONT-SIZE: 7pt; FONT-FAMILY: Arial; COLOR: #a0a0a4">
-</font>
-
-
-</blockquote><div><span><pre>-- <br></pre>Joshua Watt &lt;<a href=3D"mailto=
-:JPEWhacker@gmail.com">JPEWhacker@gmail.com</a>&gt;</span></div></body></ht=
-ml>
-
---=-67Pz4EYGPHGFYwagPHzZ--
+------=_NextPart_000_0221_01D4DD86.6AB5EA10--
