@@ -1,97 +1,68 @@
-Return-Path: <KSloat@aampglobal.com>
+Return-Path: <srifenbark@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45A2AE00CE5; Tue, 19 Mar 2019 08:24:25 -0700 (PDT)
+	id 03AD8E00D15; Tue, 19 Mar 2019 09:30:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (srifenbark[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [40.107.78.118 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.208.44 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 43133 seconds by postgrey-1.32 at yocto-www;
-	Tue, 19 Mar 2019 08:24:22 PDT
-Received: from NAM03-BY2-obe.outbound.protection.outlook.com
-	(mail-eopbgr780118.outbound.protection.outlook.com [40.107.78.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF7C1E00C1E
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 08:24:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=aampusa.onmicrosoft.com; s=selector1-aampglobal-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=iXbdr4/HoS96lYf9uTzeawAF1A81zHBhlM8lQa+5CDI=;
-	b=ARl+CKfiPemeLfWKlYSSxn1su4vjDe2Ea00zmyijXvzqfGpXrnDlPe42CAPBG4QcbryW5GPmBPcueFBS8v+Yq9cq9I/x3tN9VrEwiDO9FYiplADvKt8cUfyiQXec7ttznQZROax/9NMmPRi4pCtR9NlklyTo67wVUuQPVgxHfTQ=
-Received: from BL0PR07MB4115.namprd07.prod.outlook.com (52.132.10.149) by
-	BL0PR07MB5779.namprd07.prod.outlook.com (20.177.240.32) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1709.14; Mon, 18 Mar 2019 19:52:49 +0000
-Received: from BL0PR07MB4115.namprd07.prod.outlook.com
-	([fe80::e4fd:8f53:2484:46eb]) by
-	BL0PR07MB4115.namprd07.prod.outlook.com
-	([fe80::e4fd:8f53:2484:46eb%5]) with mapi id 15.20.1709.015;
-	Mon, 18 Mar 2019 19:52:49 +0000
-From: Ken Sloat <KSloat@aampglobal.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Auto-clean deployed images/output files generated in a class
-Thread-Index: AdTdw/ZtT4RQT51cTeu++YJwAdiJ2A==
-Date: Mon, 18 Mar 2019 19:52:49 +0000
-Message-ID: <BL0PR07MB4115240BF395276102164CCAAD470@BL0PR07MB4115.namprd07.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=KSloat@aampglobal.com; 
-x-originating-ip: [96.59.174.230]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2a819479-8f29-441b-7d2b-08d6abdb4cca
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600127)(711020)(4605104)(2017052603328)(7153060)(7193020);
-	SRVR:BL0PR07MB5779; 
-x-ms-traffictypediagnostic: BL0PR07MB5779:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BL0PR07MB5779E42D52A15F5549C092D3AD470@BL0PR07MB5779.namprd07.prod.outlook.com>
-x-forefront-prvs: 098076C36C
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(376002)(136003)(39850400004)(366004)(346002)(396003)(199004)(189003)(71190400001)(71200400001)(6506007)(81156014)(81166006)(99286004)(186003)(102836004)(316002)(1730700003)(8676002)(7696005)(7736002)(236005)(74316002)(2501003)(9326002)(26005)(5660300002)(52536014)(3846002)(790700001)(6116002)(6436002)(25786009)(14444005)(256004)(86362001)(966005)(606006)(66066001)(53936002)(68736007)(14454004)(6916009)(5640700003)(80792005)(105586002)(97736004)(8936002)(2906002)(476003)(486006)(106356001)(2351001)(55016002)(33656002)(72206003)(478600001)(9686003)(6306002)(54896002)(554374003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BL0PR07MB5779;
-	H:BL0PR07MB4115.namprd07.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: aampglobal.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 1Ni4W+aQIg2KMwmWPjP4tQWjJ7zA2wWZxskSOj85plCzqR5308p1Ld+4rNK8ueUN8w9EAw0seb7IgUNr2vinQWtcaQ9XFh6pm5HNz9qKfK6jyDYkYcp4CHziBB2qKTX4eZO/usqY9zJK3enVUembf/Q7IRO046Xm7HM96CJS17L9LP99x/3RsgXaU0Yky9UMNQQXR5buw0EyZ+PA0ZdgX+K4ue1MvY6GsISDMCPQORmyOwM8ElGWUTLZ5Ed2m6oB4HEVZxYbOZqu3UrRn1kq7quP8on+KqP56VbJD77HApY4LmPoJ+Ygl2PLNFR5I42ssdaLg4wL0SgEu1lNe0SRrRsLoyMdZHu0cGtQhZdOeu5bkO7w2Vx0PmYGFSl0TJyhFrCaqfkgfxJ1w8cgSQd5FzI5w8tcM85OJpmgcvg4KV4=
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
+	[209.85.208.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 930A6E00C1E
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 09:30:23 -0700 (PDT)
+Received: by mail-ed1-f44.google.com with SMTP id e4so17173454edi.3
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 09:30:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=JVjFHaXm8TTD3/F2wB2OmG2/81RmrQE/XAFLwS4Ao9o=;
+	b=pabKQtcjRF23xaq+wdAJ9BDczQLgxCEFCF3FF84ZQIeA+fhvzj+ShcecGpVKY+o/9b
+	IDbM0t6dNg+r8vas3EEke3gHsuUwW4+AYJI+dqPO9maePxPJ3GRBrCn1XTxV4oLkfDXz
+	aPlWjk4o6bcPLq2FDu0AuvYw8cfOsMvVqLaKGzd3d84vfwpEREVPztxGf3YgB2yQytXk
+	2RdzFtcVO58LbxkWdUSTIjypwwajbWcSQ5JADsvGkujL43hahlB74fFW8/Shk93enxI2
+	/HThN8NSBwgGQ6X63PKerA+rtpzPSqzEgErFGB+z84J+UnLaOJ05lqm3TMNxl60bMTec
+	HWeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=JVjFHaXm8TTD3/F2wB2OmG2/81RmrQE/XAFLwS4Ao9o=;
+	b=TDnkD3NSBmDq+lggu8eDW91XcoALbm/Cn3/hz1IofceAQts83big8yq17kudZtwpyW
+	H5FlsQrXDmcxCXvReERl3wilomjeL0WtLxjeEvFv02rJYzJL+AoakwBLRqk6jWH4jVL+
+	lf2ccidUz19oeFXb5GtYz/hn+eu+mI5VDFwoCoQTXQC3/aUQJk2T/9WrAC/EPvRqMioY
+	7OXgrMaDWy8v3ljyYCVWsoTIvOTs/8JoUP4B/IPy56wJoyeaCchdbdKmhxx12h4iSTjk
+	znkj4eCmzjPYILrbOJst8VbOrVnWDCOO0+5VVPXql5pD4F/RZ7OAyEYus3+knyactL2N
+	RpAA==
+X-Gm-Message-State: APjAAAVLmtm1u3RKR0TaugkTEDLq3snq3AOlc0oVKB71EwAt/uBT3Zzg
+	8ZsLcyX5/x/TMvAbVQgzJ0Q1EnR1CCKgu/vIVWk=
+X-Google-Smtp-Source: APXvYqwGshpOh6/O2pyK/XNJmnnKuBMuMWH65mUOOS+AOkqf8lQK8BD/2BpWmCv4FBbU1+tgN7nAffnkntI4AjlDgZ4=
+X-Received: by 2002:a17:906:f87:: with SMTP id
+	q7mr14611497ejj.237.1553013022637; 
+	Tue, 19 Mar 2019 09:30:22 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: aampglobal.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a819479-8f29-441b-7d2b-08d6abdb4cca
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2019 19:52:49.1738 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e20e3a66-8b9e-46e9-b859-cb654c1ec6ea
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR07MB5779
-X-MS-Exchange-CrossPremises-AuthAs: Internal
-X-MS-Exchange-CrossPremises-AuthMechanism: 04
-X-MS-Exchange-CrossPremises-AuthSource: BL0PR07MB4115.namprd07.prod.outlook.com
-X-MS-Exchange-CrossPremises-TransportTrafficType: Email
-X-MS-Exchange-CrossPremises-TransportTrafficSubType: 
-X-MS-Exchange-CrossPremises-SCL: 1
-X-MS-Exchange-CrossPremises-messagesource: StoreDriver
-X-MS-Exchange-CrossPremises-BCC: 
-X-MS-Exchange-CrossPremises-originalclientipaddress: 96.59.174.230
-X-MS-Exchange-CrossPremises-transporttraffictype: Email
-X-MS-Exchange-CrossPremises-transporttrafficsubtype: 
-X-MS-Exchange-CrossPremises-antispam-scancontext: DIR:Originating; SFV:NSPM;
-	SKIP:0; 
-X-MS-Exchange-CrossPremises-processed-by-journaling: Journal Agent
-X-OrganizationHeadersPreserved: BL0PR07MB5779.namprd07.prod.outlook.com
-Subject: Auto-clean deployed images/output files generated in a class
+References: <031101d4de63$7488adb0$5d9a0910$@gmail.com>
+In-Reply-To: <031101d4de63$7488adb0$5d9a0910$@gmail.com>
+From: Scott Rifenbark <srifenbark@gmail.com>
+Date: Tue, 19 Mar 2019 10:30:10 -0600
+Message-ID: <CAFNP8OuSti2RCJgdh8zWokhBGd3pmy-CQOiTVOxyjL_99geFcA@mail.gmail.com>
+To: sjolley.yp.pm@gmail.com
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] Yocto Project Status WW12'19
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -103,131 +74,328 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2019 15:24:25 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BL0PR07MB4115240BF395276102164CCAAD470BL0PR07MB4115namp_"
+X-List-Received-Date: Tue, 19 Mar 2019 16:30:25 -0000
+Content-Type: multipart/alternative; boundary="0000000000008bc588058475050a"
 
---_000_BL0PR07MB4115240BF395276102164CCAAD470BL0PR07MB4115namp_
-Content-Type: text/plain; charset="us-ascii"
+--0000000000008bc588058475050a
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi,
 
-I am writing a custom bitbake class in order to generate a custom compound =
-image for my project. This class gets inherited by my normal image recipe f=
-or my project. I am running Sumo. In my class, I simply write a task in pyt=
-hon and add the task via the normal "addtask" method.  My task runs ok, it =
-generates the image I need and puts it in the deploy directory .
+Here is a "start" at publicly documenting QA... I started on this a while
+back and got content from Richard only.  It would be good to have eyes on
+this so it could be completed.  There are holes and stuff may have
+changed.  If you want, please look it over and send me feedback.
 
-What I want to happen, is for the image (or any files I create in the deplo=
-y directory for that matter) to be deleted whenever I run the clean command=
- for the image that inherits this class. I know I could probably define a c=
-lean_append function or something, but it seems that there is some way to s=
-et this up to happen automatically.
-
-I am following this class as an example:
-https://github.com/sbabic/meta-swupdate/blob/sumo/classes/swupdate.bbclass
-
-and going through the code there, I don't really understand what statements=
- cause the generated image file to be deleted, however, if I inherit that c=
-lass, and build my image, it generates a custom image, and upon cleaning, i=
-t does indeed delete the generated image. If I could understand what makes =
-this happen, then I would be able to do this in my image as well.
+See https://yoctoproject.org/docs/scott_temp/test-manual/test-manual.html
 
 Thanks,
-Ken Sloat
+Scott
 
---_000_BL0PR07MB4115240BF395276102164CCAAD470BL0PR07MB4115namp_
-Content-Type: text/html; charset="us-ascii"
+On Tue, Mar 19, 2019 at 8:53 AM <sjolley.yp.pm@gmail.com> wrote:
+
+> Current Dev Position: YP 2.7 M3 (New feature Freeze has begun.)
+>
+> Next Deadline: YP 2.7 M3 Cutoff was Feb. 25, 2019
+>
+>
+>
+> SWAT Team Rotation:
+>
+>    - SWAT lead is currently: Armin
+>    - SWAT team rotation: Armin -> Paul on Mar. 23, 2019
+>    - SWAT team rotation: Paul -> Ross on Mar. 30, 2019
+>    - https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+>
+>
+>
+> Key Status/Updates:
+>
+>    - M3 has not built yet however most major pieces are in place,
+>    including now, agreement on the new QA process. The delay is partly du=
+e to
+>    RP travel with others able to cover being unavailable for other reason=
+s,
+>    combined with infrastructure issues.
+>    - The remaining questions for M3 are:
+>       - Public documentation of the new QA process
+>       - Upgrade for uninative for glibc 2.29
+>       - Mesa upgrade? (unlikely given failures in testing)
+>    - The Yocto Project has updated to its new governance model which
+>    includes establishing a Technical Steering Committee (TSC) for Yocto
+>    Project. This is designed to complement  and work alongside the
+>    OpenEmbedded TSC. Three members of the YP TSC are selected by the Yoct=
+o
+>    Project governing board and those people are Ross Burton, Khem Raj and
+>    Richard Purdie. The remaining two seats will be elected by OpenEmbedde=
+d. It
+>    is intended the TSC will take over the release process, SWAT team, bug
+>    triage and feature planning/development for 2.8.
+>    - YP 2.5.3 continues to be blocked on autobuilder-helper changes for
+>    the stable branches and the resulttool changes in master to move to th=
+e new
+>    QA process.
+>    - There is discussion on the openembedded-architecture list about
+>    changes to the stable branch patch criteria to bring us more into line=
+ with
+>    current industry best practices and thinking.
+>
+>
+>
+> Planned Releases for YP 2.7:
+>
+>    - YP 2.7 M3 Cutoff was Feb. 25, 2019
+>    - YP 2.7 M3 Release Target was Mar. 8, 2019
+>    - YP 2.7 M4 Cutoff is Apr. 1, 2019
+>    - YP 2.7 M4 Release Target is Apr. 26, 2019
+>
+>
+>
+> Planned upcoming dot releases:
+>
+>    - YP 2.5.3 (Sumo) will be targeted after YP 2.7 M2 is done.
+>    - YP 2.5.4 (Sumo) will be targeted after YP 2.7 M4 is done.
+>    - YP 2.6.2 (Thud) will be targeted after YP 2.5.4 is done.
+>
+>
+>
+> Tracking Metrics:
+>
+>    - WDD 2432 (last week 2439) (
+>    https://wiki.yoctoproject.org/charts/combo.html)
+>    - Poky Patch Metrics
+>       - Total patches found: 1526 (last week 1523)
+>       - Patches in the Pending State: 656 (43%) [last week 657 (43%)]
+>
+>
+>
+> Key Status Links for YP:
+>
+> https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.7_Status
+>
+> https://wiki.yoctoproject.org/wiki/Yocto_2.7_Schedule
+>
+> https://wiki.yoctoproject.org/wiki/Yocto_2.7_Features
+>
+>
+>
+> The Status reports are now stored on the wiki at:
+> https://wiki.yoctoproject.org/wiki/Weekly_Status
+>
+>
+>
+> [If anyone has suggestions for other information you=E2=80=99d like to se=
+e on this
+> weekly status update, let us know!]
+>
+>
+>
+> Thanks,
+>
+>
+>
+> *Stephen K. Jolley*
+>
+> *Yocto Project Project Manager*
+>
+> (    *Cell*:                (208) 244-4460
+>
+> * *Email*:              *sjolley.yp.pm@gmail.com
+> <sjolley.yp.pm@gmail.com>*
+>
+>
+> --
+> _______________________________________________
+> Openembedded-core mailing list
+> Openembedded-core@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+>
+
+--0000000000008bc588058475050a
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am writing a custom bitbake class in order to gene=
-rate a custom compound image for my project. This class gets inherited by m=
-y normal image recipe for my project. I am running Sumo. In my class, I sim=
-ply write a task in python and add
- the task via the normal &#8220;addtask&#8221; method. &nbsp;My task runs o=
-k, it generates the image I need and puts it in the deploy directory .<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">What I want to happen, is for the image (or any file=
-s I create in the deploy directory for that matter) to be deleted whenever =
-I run the clean command for the image that inherits this class. I know I co=
-uld probably define a clean_append
- function or something, but it seems that there is some way to set this up =
-to happen automatically.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am following this class as an example:<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal"><a href=3D"https://github.com/sbabic/meta-swupdate/b=
-lob/sumo/classes/swupdate.bbclass">https://github.com/sbabic/meta-swupdate/=
-blob/sumo/classes/swupdate.bbclass</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">and going through the code there, I don&#8217;t real=
-ly understand what statements cause the generated image file to be deleted,=
- however, if I inherit that class, and build my image, it generates a custo=
-m image, and upon cleaning, it does indeed
- delete the generated image. If I could understand what makes this happen, =
-then I would be able to do this in my image as well.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#212121">Ken Sloat<o:p></o:p></=
-span></p>
-</div>
-</body>
-</html>
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi, <br></div><div><br></div><div>He=
+re is a &quot;start&quot; at publicly documenting QA... I started on this a=
+ while back and got content from Richard only.=C2=A0 It would be good to ha=
+ve eyes on this so it could be completed.=C2=A0 There are holes and stuff m=
+ay have changed.=C2=A0 If you want, please look it over and send me feedbac=
+k.</div><div><br></div><div>See <a href=3D"https://yoctoproject.org/docs/sc=
+ott_temp/test-manual/test-manual.html">https://yoctoproject.org/docs/scott_=
+temp/test-manual/test-manual.html</a></div><div><br></div><div>Thanks,</div=
+><div>Scott<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Tue, Mar 19, 2019 at 8:53 AM &lt;<a href=3D"mailto:sjoll=
+ey.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex"><div lang=3D"EN-US"><div class=
+=3D"gmail-m_1454612999873202328WordSection1"><p style=3D"margin:0in 0in 0.0=
+001pt"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black"=
+>Current Dev Position: YP 2.7 M3 (New feature Freeze has begun.)</span><u><=
+/u><u></u></p><p style=3D"margin:0in 0in 0.0001pt"><span style=3D"font-fami=
+ly:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP 2.7 M3 Cutof=
+f was Feb. 25, 2019</span><u></u><u></u></p><p class=3D"MsoNormal"><u></u>=
+=C2=A0<u></u></p><p style=3D"margin:0in 0in 0.0001pt"><span style=3D"font-f=
+amily:&quot;Arial&quot;,sans-serif;color:black">SWAT Team Rotation:</span><=
+u></u><u></u></p><ul style=3D"margin-top:0in" type=3D"disc"><li style=3D"co=
+lor:black;margin-top:0in;margin-bottom:0.0001pt;vertical-align:baseline"><s=
+pan style=3D"font-family:&quot;Arial&quot;,sans-serif">SWAT lead is current=
+ly: Armin <u></u><u></u></span></li><li style=3D"color:black;margin-top:0in=
+;margin-bottom:0.0001pt;vertical-align:baseline"><span style=3D"font-family=
+:&quot;Arial&quot;,sans-serif">SWAT team rotation: Armin -&gt; Paul on Mar.=
+ 23, 2019<u></u><u></u></span></li><li style=3D"color:black;margin-top:0in;=
+margin-bottom:0.0001pt;vertical-align:baseline"><span style=3D"font-family:=
+&quot;Arial&quot;,sans-serif">SWAT team rotation: Paul -&gt; Ross on Mar. 3=
+0, 2019<u></u><u></u></span></li><li style=3D"color:black;margin-top:0in;ma=
+rgin-bottom:0.0001pt;vertical-align:baseline"><span style=3D"font-family:Co=
+nsolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_S=
+wat_Team" target=3D"_blank"><span style=3D"color:rgb(17,85,204)">https://wi=
+ki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</span></a><u></u><u>=
+</u></span></li></ul><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p styl=
+e=3D"margin:0in 0in 0.0001pt"><span style=3D"font-family:&quot;Arial&quot;,=
+sans-serif;color:black">Key Status/Updates:</span><u></u><u></u></p><ul sty=
+le=3D"margin-top:0in" type=3D"disc"><li style=3D"color:black;margin-top:0in=
+;margin-bottom:0.0001pt;vertical-align:baseline"><span style=3D"font-family=
+:&quot;Arial&quot;,sans-serif">M3 has not built yet however most major piec=
+es are in place, including now, agreement on the new QA process. The delay =
+is partly due to RP travel with others able to cover being unavailable for =
+other reasons, combined with infrastructure issues.<u></u><u></u></span></l=
+i><li style=3D"color:black;margin-top:0in;margin-bottom:0.0001pt;vertical-a=
+lign:baseline"><span style=3D"font-family:&quot;Arial&quot;,sans-serif">The=
+ remaining questions for M3 are:<u></u><u></u></span></li><ul style=3D"marg=
+in-top:0in" type=3D"circle"><li style=3D"color:black;margin-top:0in;margin-=
+bottom:0.0001pt;vertical-align:baseline"><span style=3D"font-family:&quot;A=
+rial&quot;,sans-serif">Public documentation of the new QA process<u></u><u>=
+</u></span></li><li style=3D"color:black;margin-top:0in;margin-bottom:0.000=
+1pt;vertical-align:baseline"><span style=3D"font-family:&quot;Arial&quot;,s=
+ans-serif">Upgrade for uninative for glibc 2.29<u></u><u></u></span></li><l=
+i style=3D"color:black;margin-top:0in;margin-bottom:0.0001pt;vertical-align=
+:baseline"><span style=3D"font-family:&quot;Arial&quot;,sans-serif">Mesa up=
+grade? (unlikely given failures in testing)<u></u><u></u></span></li></ul><=
+li style=3D"color:black;margin-top:0in;margin-bottom:0.0001pt;vertical-alig=
+n:baseline"><span style=3D"font-family:&quot;Arial&quot;,sans-serif">The Yo=
+cto Project has updated to its new governance model which includes establis=
+hing a Technical Steering Committee (TSC) for Yocto Project. This is design=
+ed to complement =C2=A0and work alongside the OpenEmbedded TSC. Three membe=
+rs of the YP TSC are selected by the Yocto Project governing board and thos=
+e people are Ross Burton, Khem Raj and Richard Purdie. The remaining two se=
+ats will be elected by OpenEmbedded. It is intended the TSC will take over =
+the release process, SWAT team, bug triage and feature planning/development=
+ for 2.8.<u></u><u></u></span></li><li style=3D"color:black;margin-top:0in;=
+margin-bottom:0.0001pt;vertical-align:baseline"><span style=3D"font-family:=
+&quot;Arial&quot;,sans-serif">YP 2.5.3 continues to be blocked on autobuild=
+er-helper changes for the stable branches and the resulttool changes in mas=
+ter to move to the new QA process.<u></u><u></u></span></li><li style=3D"co=
+lor:black;margin-top:0in;margin-bottom:0.0001pt;vertical-align:baseline"><s=
+pan style=3D"font-family:&quot;Arial&quot;,sans-serif">There is discussion =
+on the openembedded-architecture list about changes to the stable branch pa=
+tch criteria to bring us more into line with current industry best practice=
+s and thinking.<u></u><u></u></span></li></ul><p class=3D"MsoNormal"><u></u=
+>=C2=A0<u></u></p><p style=3D"margin:0in 0in 0.0001pt"><span style=3D"font-=
+family:&quot;Arial&quot;,sans-serif;color:black">Planned Releases for YP 2.=
+7:</span><u></u><u></u></p><ul style=3D"margin-top:0in" type=3D"disc"><li s=
+tyle=3D"color:black;margin-top:0in;margin-bottom:0.0001pt;vertical-align:ba=
+seline"><span style=3D"font-family:&quot;Arial&quot;,sans-serif">YP 2.7 M3 =
+Cutoff was Feb. 25, 2019<u></u><u></u></span></li><li style=3D"color:black;=
+margin-top:0in;margin-bottom:0.0001pt;vertical-align:baseline"><span style=
+=3D"font-family:&quot;Arial&quot;,sans-serif">YP 2.7 M3 Release Target was =
+Mar. 8, 2019<u></u><u></u></span></li><li style=3D"color:black;margin-top:0=
+in;margin-bottom:0.0001pt;vertical-align:baseline"><span style=3D"font-fami=
+ly:&quot;Arial&quot;,sans-serif">YP 2.7 M4 Cutoff is Apr. 1, 2019<u></u><u>=
+</u></span></li><li style=3D"color:black;margin-top:0in;margin-bottom:0.000=
+1pt;vertical-align:baseline"><span style=3D"font-family:&quot;Arial&quot;,s=
+ans-serif">YP 2.7 M4 Release Target is Apr. 26, 2019<u></u><u></u></span></=
+li></ul><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p style=3D"margin:0=
+in 0in 0.0001pt"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;co=
+lor:black">Planned upcoming dot releases:</span><u></u><u></u></p><ul style=
+=3D"margin-top:0in" type=3D"disc"><li style=3D"color:black;margin-top:0in;m=
+argin-bottom:0.0001pt;vertical-align:baseline"><span style=3D"font-family:&=
+quot;Arial&quot;,sans-serif">YP 2.5.3 (Sumo) will be targeted after YP 2.7 =
+M2 is done.<u></u><u></u></span></li><li style=3D"color:black;margin-top:0i=
+n;margin-bottom:0.0001pt;vertical-align:baseline"><span style=3D"font-famil=
+y:&quot;Arial&quot;,sans-serif">YP 2.5.4 (Sumo) will be targeted after YP 2=
+.7 M4 is done.<u></u><u></u></span></li><li style=3D"color:black;margin-top=
+:0in;margin-bottom:0.0001pt;vertical-align:baseline"><span style=3D"font-fa=
+mily:&quot;Arial&quot;,sans-serif">YP 2.6.2 (Thud) will be targeted after Y=
+P 2.5.4 is done.<u></u><u></u></span></li></ul><p class=3D"MsoNormal"><u></=
+u>=C2=A0<u></u></p><p style=3D"margin:0in 0in 0.0001pt"><span style=3D"font=
+-family:&quot;Arial&quot;,sans-serif;color:black">Tracking Metrics:</span><=
+u></u><u></u></p><ul style=3D"margin-top:0in" type=3D"disc"><li style=3D"co=
+lor:black;margin-top:0in;margin-bottom:0.0001pt;vertical-align:baseline"><s=
+pan style=3D"font-family:&quot;Arial&quot;,sans-serif">WDD 2432 (last week =
+2439)</span><span style=3D"font-family:Consolas"> (</span><span style=3D"fo=
+nt-family:&quot;Arial&quot;,sans-serif"><a href=3D"https://wiki.yoctoprojec=
+t.org/charts/combo.html" target=3D"_blank"><span style=3D"color:rgb(17,85,2=
+04)">https://wiki.yoctoproject.org/charts/combo.html</span></a></span><span=
+ style=3D"font-family:Consolas">)</span><span style=3D"font-family:&quot;Ar=
+ial&quot;,sans-serif"><u></u><u></u></span></li><li style=3D"color:black;ma=
+rgin-top:0in;margin-bottom:0.0001pt;vertical-align:baseline"><span style=3D=
+"font-family:&quot;Arial&quot;,sans-serif">Poky Patch Metrics =C2=A0</span>=
+<span style=3D"font-family:Consolas"><u></u><u></u></span></li><ul style=3D=
+"margin-top:0in" type=3D"circle"><li style=3D"color:black;margin-top:0in;ma=
+rgin-bottom:0.0001pt;vertical-align:baseline"><span style=3D"font-family:&q=
+uot;Arial&quot;,sans-serif">Total patches found: 1526 (last week 1523)<u></=
+u><u></u></span></li><li style=3D"color:black;margin-top:0in;margin-bottom:=
+0.0001pt;vertical-align:baseline"><span style=3D"font-family:&quot;Arial&qu=
+ot;,sans-serif">Patches in the Pending State: 656 (43%) [last week 657 (43%=
+)]</span><span style=3D"font-family:Consolas"><u></u><u></u></span></li></u=
+l></ul><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p style=3D"margin:0i=
+n 0in 0.0001pt"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;col=
+or:black">Key Status Links for YP:</span><u></u><u></u></p><p style=3D"marg=
+in:0in 0in 0.0001pt"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Pr=
+oject_v2.7_Status" target=3D"_blank"><span style=3D"font-family:Consolas;co=
+lor:rgb(17,85,204)">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.7_S=
+tatus</span></a><u></u><u></u></p><p style=3D"margin:0in 0in 0.0001pt"><a h=
+ref=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.7_Schedule" target=3D"_bl=
+ank"><span style=3D"font-family:Consolas;color:rgb(17,85,204)">https://wiki=
+.yoctoproject.org/wiki/Yocto_2.7_Schedule</span></a><u></u><u></u></p><p st=
+yle=3D"margin:0in 0in 0.0001pt"><a href=3D"https://wiki.yoctoproject.org/wi=
+ki/Yocto_2.7_Features" target=3D"_blank"><span style=3D"font-family:Consola=
+s;color:rgb(17,85,204)">https://wiki.yoctoproject.org/wiki/Yocto_2.7_Featur=
+es</span></a><u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u><=
+/p><p style=3D"margin:0in 0in 0.0001pt"><span style=3D"font-family:&quot;Ar=
+ial&quot;,sans-serif;color:black">The Status reports are now stored on the =
+wiki at: </span><a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status=
+" target=3D"_blank"><span style=3D"font-family:&quot;Arial&quot;,sans-serif=
+;color:rgb(17,85,204)">https://wiki.yoctoproject.org/wiki/Weekly_Status</sp=
+an></a><u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p =
+style=3D"margin:0in 0in 0.0001pt"><span style=3D"font-family:&quot;Arial&qu=
+ot;,sans-serif;color:black">[If anyone has suggestions for other informatio=
+n you=E2=80=99d like to see on this weekly status update, let us know!]</sp=
+an><u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p clas=
+s=3D"MsoNormal">Thanks,<u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=
+=A0<u></u></p><p class=3D"MsoNormal" style=3D"break-after:avoid"><b><i><spa=
+n style=3D"font-size:16pt;font-family:&quot;Times New Roman&quot;,serif;col=
+or:purple">Stephen K. Jolley</span></i></b><b><i><span style=3D"font-size:1=
+6pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple"><u></u><u></u><=
+/span></i></b></p><p class=3D"MsoNormal"><b><span style=3D"font-size:8pt;fo=
+nt-family:&quot;Courier New&quot;;color:blue">Yocto Project Project Manager=
+<u></u><u></u></span></b></p><p class=3D"MsoNormal"><span style=3D"font-siz=
+e:9pt;font-family:Wingdings;color:black">(</span><span style=3D"font-size:9=
+pt;font-family:&quot;MS Sans Serif&quot;;color:teal">=C2=A0=C2=A0=C2=A0 </s=
+pan><b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;c=
+olor:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS=
+ Sans Serif&quot;;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;">(208) 244-4460<span style=
+=3D"color:black"><u></u><u></u></span></span></p><p class=3D"MsoNormal"><sp=
+an style=3D"font-size:9pt;font-family:Wingdings">* </span><b><span style=3D=
+"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color:teal" lang=3D"FR=
+">Email</span></b><span style=3D"font-size:9pt;font-family:&quot;MS Sans Se=
+rif&quot;;color:teal" lang=3D"FR">:</span><span style=3D"font-size:9pt;font=
+-family:&quot;MS Sans Serif&quot;" lang=3D"FR">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<u><span style=3D"=
+color:blue"><a href=3D"mailto:sjolley.yp.pm@gmail.com" target=3D"_blank">sj=
+olley.yp.pm@gmail.com</a></span></u></span><span style=3D"font-size:12pt;fo=
+nt-family:&quot;Arial&quot;,sans-serif" lang=3D"FR"><u></u><u></u></span></=
+p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div></div>-- <br>
+_______________________________________________<br>
+Openembedded-core mailing list<br>
+<a href=3D"mailto:Openembedded-core@lists.openembedded.org" target=3D"_blan=
+k">Openembedded-core@lists.openembedded.org</a><br>
+<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core=
+" rel=3D"noreferrer" target=3D"_blank">http://lists.openembedded.org/mailma=
+n/listinfo/openembedded-core</a><br>
+</blockquote></div></div></div>
 
---_000_BL0PR07MB4115240BF395276102164CCAAD470BL0PR07MB4115namp_--
+--0000000000008bc588058475050a--
