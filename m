@@ -1,61 +1,50 @@
-Return-Path: <ms.priyanshu.sharma@gmail.com>
+Return-Path: <stefan@agner.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9F63FE00D07; Tue, 19 Mar 2019 00:53:27 -0700 (PDT)
+	id 3188EE00D07; Tue, 19 Mar 2019 00:57:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (ms.priyanshu.sharma[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.170 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [178.209.48.109 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com
-	[209.85.167.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B537E00C4D
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 00:53:26 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id t206so15236272oib.3
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 00:53:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=5g30ZMF+r4npuT5K/bSBwNkI2kiTSmdUCRySSMVWvS8=;
-	b=Asqzf0C1aj6Cp3vSFwFLNzzNou44Gxhti5o7cKo9gWBJzfc84XN5M2UvRClA5BFqzz
-	cjTH33rsksbbwRuPJGCDe6ZtTF313q2G5EuT5A5LoUpAWzaGAEwSkzInbLptgz1OWukV
-	lqIIPhDYfrYjYqyysipCf//vW2Vpyl3Qow1mtywN3tdeF1XkAR77hBy2t2gfXjaYHKM6
-	8rfqXiTOp+gDBH8Thys/xlfvK1BIQYwBANXt/DrNa0N6EccBwfx5PMgNFZIv+wiW5QP5
-	Rq/DjQf4UP2ajKgLIcgc/i5i4JMwA3Yb3k3aNN2+OYSYK+bdKLO2Oep7J9s2rctKbWbw
-	FpWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=5g30ZMF+r4npuT5K/bSBwNkI2kiTSmdUCRySSMVWvS8=;
-	b=BTVLnO7yipjJGTDK9M14wBslsBjRwCuDdqrx2YlpA4KtvWmlwPSEoSxPTmVl5qgSq1
-	5z++0T8uHuiiHQXYGgLSWhdlxu9bVJV05GMxPO8Q1VBQ98GkC56gYerSFZDOkdGtVX/E
-	DXOC4O4vmArN9zQxP7a+fD6jxy8N1zgPq4U9Z/lhDSyEYsk8AwogTKIhyTWePIAY4h4G
-	RoaPt/4KjdJuWKVWXqp3plQkMgks578v8YcM0yHVxIO65WhfM8Gk7G+ELPkzoUJq5D9B
-	edaqhMoAp37sLFIM+7N28+CR6kLn8/oPpNPIbXjXQkU2wqMmwZoJGCU/w5CvD7M9fTOi
-	sjMw==
-X-Gm-Message-State: APjAAAUT+A4iA2IEljf0r55QpiS0jjqyDeWvlhrlIdu/JW0giGeldUDg
-	D6sanCwQOrBTfp5BtnzHcteETP/bjJXUIaKL8VSAbNiR
-X-Google-Smtp-Source: APXvYqwi9W8nV1ZKyLdp0QyKZxi0HhlRVslpfr2tYdmyBZujSR/6j+8HtMEbc1FZ8NOnrqYf9KgC9OQtTDfAx981Lfg=
-X-Received: by 2002:aca:ad82:: with SMTP id w124mr609029oie.33.1552982006206; 
-	Tue, 19 Mar 2019 00:53:26 -0700 (PDT)
+Received: from mail.kmu-office.ch (mail.kmu-office.ch [178.209.48.109])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56E51E00AB0
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 00:57:35 -0700 (PDT)
+Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
+	by mail.kmu-office.ch (Postfix) with ESMTPSA id B6AC15C0F07;
+	Tue, 19 Mar 2019 08:57:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
+	t=1552982253;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	content-transfer-encoding:content-transfer-encoding:
+	in-reply-to:in-reply-to:references:references;
+	bh=sDKDuj0+P1vYn0jpPsJcu9unC7r696+YUO+CvCQreI0=;
+	b=kgJqgOIGaVZqsJltoFm/FZNhnjtjTGZmlgq0HmNpa9aXOteSRhsgLzMRVLBVMvGWpPmJgk
+	hgxdSVxfhUGkjcmu/dCuZoJm9il4poLIXzFbJ8uvwEb+WuTZAq9uMNv2qV6BUXiJX5th1X
+	Svv9O2pWetwrd0uhiooQGznZwfY6ocQ=
 MIME-Version: 1.0
-From: Priyanshu Sharma <ms.priyanshu.sharma@gmail.com>
-Date: Tue, 19 Mar 2019 13:23:15 +0530
-Message-ID: <CAA_f9ePWPaPacQkJYsne0F6T-nY5j5epbgjaz+iFrxCAV+476g@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: [meta-qt5][qtwayland]Qtwayland recipe fails with Yocto 2.5
+Date: Tue, 19 Mar 2019 08:57:33 +0100
+From: Stefan Agner <stefan@agner.ch>
+To: yocto@yoctoproject.org, Ross Burton <ross.burton@intel.com>
+In-Reply-To: <20190225151619.2754-1-stefan@agner.ch>
+References: <20190225151619.2754-1-stefan@agner.ch>
+Message-ID: <be387b9c7c2d69987cb85a3a4f8b5bd9@agner.ch>
+X-Sender: stefan@agner.ch
+User-Agent: Roundcube Webmail/1.3.7
+Cc: Stefan Agner <stefan.agner@toradex.com>
+Subject: Re: [psplash][PATCH 1/3] add recovered bar.png
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,138 +56,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2019 07:53:27 -0000
-Content-Type: multipart/alternative; boundary="000000000000d2977405846dcc90"
+X-List-Received-Date: Tue, 19 Mar 2019 07:57:37 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
---000000000000d2977405846dcc90
-Content-Type: text/plain; charset="UTF-8"
+Hi Ross,
 
-Hi All,
+On 25.02.2019 16:16, Stefan Agner wrote:
+> From: Stefan Agner <stefan.agner@toradex.com>
+> 
+> While the source files for the main splash image is present in
+> the source folder base-image, the progress bar isn't. This
+> patch adds the bar.png recovered from the RLE data in the bar
+> header file. The tool make-image-header.sh allows to translate
+> this png back the the header exactly.
 
-I'm consistently getting a build failure after upgrading Poky to 2.5 from
-2.2 on qtwayland
-Yocto recipe from meta-qt5.
+I think you made the last commits to psplash. Could you consider this
+patchset as well?
 
-The error looks like :
+--
+Stefan
 
-| Running configuration tests...
-| Checking for Wayland client library... yes
-| Checking for Wayland cursor library... yes
-| Checking for wayland-scanner... yes
-| Checking for Wayland EGL library... yes
-| Checking for wayland-server... yes
-| Done running configuration tests.
-|
-| Configure summary:
-|
-| Qt Wayland Drivers:
-|   EGL .................................... no
-|   Raspberry Pi ........................... no
-|   XComposite EGL ......................... no
-|   XComposite GLX ......................... no
-|   DRM EGL ................................ no
-|   libhybris EGL .......................... no
-| Qt Wayland Client ........................ yes
-| Qt Wayland Compositor .................... yes
-|
-| ERROR: Feature 'wayland-egl' was enabled, but the pre-condition
-'features.wayland-client && features.opengl && features.egl &&
-libs.wayland-egl' failed.
-|
-| ERROR: Feature 'wayland-egl' was enabled, but the pre-condition
-'features.wayland-server && features.opengl && features.egl &&
-libs.wayland-egl' failed.
-|
-| Check config.log for details.
-| WARNING: exit code 1 from a shell command.
-I've checked that only pre-condition "features.egl" is failing.
-I've my own custom recipe which is providing virtual/egl and is set as
-PREFERRED_PROVIDER also.
-What is the missing dependency here when virtual/egl is provided?
-What exactly is features.egl looking for? ( virtual/egl provides egl.pc )
-I've not changed anything in meta-qt5 layer. And the version is 5.9.2
-QT5. However, is fails with 5.12 also.
+> 
+> Signed-off-by: Stefan Agner <stefan.agner@toradex.com>
+> ---
+>  base-images/bar.png | Bin 0 -> 1849 bytes
+>  1 file changed, 0 insertions(+), 0 deletions(-)
+>  create mode 100644 base-images/bar.png
+> 
+> diff --git a/base-images/bar.png b/base-images/bar.png
+> new file mode 100644
+> index
+> 0000000000000000000000000000000000000000..e2c1f1781cdcfa68c8a664a8b3072344d3aeaf1b
+> GIT binary patch
+> literal 1849
+> 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
+> 
+> literal 0
+> HcmV?d00001
 
-
-Warm Regards,
-
-Priyanshu Sharma
-
---000000000000d2977405846dcc90
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail-gs" style=3D"margin:0px;padding:0px 0p=
-x 20px;width:1299.11px"><div class=3D"gmail-" style=3D""><div id=3D"gmail-:=
-mp" class=3D"gmail-ii gmail-gt" style=3D"direction:ltr;margin:8px 0px 0px;p=
-adding:0px"><div id=3D"gmail-:mq" class=3D"gmail-a3s gmail-aXjCH" style=3D"=
-overflow:hidden;font-variant-numeric:normal;font-variant-east-asian:normal;=
-font-stretch:normal;line-height:1.5"><div dir=3D"ltr" style=3D""><div style=
-=3D"font-family:Arial,Helvetica,sans-serif;font-size:small">Hi All,</div><d=
-iv style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small"><br cla=
-ss=3D"gmail-Apple-interchange-newline">I&#39;m consistently getting a build=
- failure after upgrading Poky to 2.5 from 2.2 on qtwayland=C2=A0</div><div =
-style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small">Yocto reci=
-pe from meta-qt5.</div><div style=3D"font-family:Arial,Helvetica,sans-serif=
-;font-size:small"><br></div><div style=3D"">The error looks like :<br><br><=
-pre style=3D""><font color=3D"#000000" style=3D""><font face=3D"garamond, s=
-erif" style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small;white=
--space:pre-wrap">| Running configuration tests...
-| Checking for Wayland client library... yes
-| Checking for Wayland cursor library... yes
-| Checking for wayland-scanner... yes
-| Checking for Wayland EGL library... yes
-| Checking for wayland-server... yes
-| Done running configuration tests.
-|=20
-| Configure summary:
-|=20
-| Qt Wayland Drivers:
-|   EGL .................................... no
-|   Raspberry Pi ........................... no
-|   XComposite EGL ......................... no
-|   XComposite GLX ......................... no
-|   DRM EGL ................................ no
-|   libhybris EGL .......................... no
-| Qt Wayland Client ........................ yes
-| Qt Wayland Compositor .................... yes
-|=20
-| ERROR: Feature &#39;wayland-egl&#39; was enabled, but the pre-condition &=
-#39;features.wayland-client &amp;&amp; features.opengl &amp;&amp; features.=
-egl &amp;&amp; libs.wayland-egl&#39; failed.
-|=20
-| ERROR: Feature &#39;wayland-egl&#39; was enabled, but the pre-condition &=
-#39;features.wayland-server &amp;&amp; features.opengl &amp;&amp; features.=
-egl &amp;&amp; libs.wayland-egl&#39; failed.
-|=20
-| Check config.log for details.
-| WARNING: exit code 1 from a shell command.
-
-</font><font face=3D"arial, helvetica, sans-serif" style=3D""><font face=3D=
-"Arial, Helvetica, sans-serif"><span style=3D"white-space:pre-wrap">I&#39;v=
-e checked that only pre-condition &quot;features.egl&quot; is failing.
-I&#39;ve my own custom recipe which is providing virtual/egl and is set as =
-PREFERRED_PROVIDER also.
-What is the missing </span></font><span style=3D"white-space:pre-wrap">depe=
-ndency</span><font face=3D"Arial, Helvetica, sans-serif"><span style=3D"whi=
-te-space:pre-wrap"> here when virtual/egl is provided?
-What exactly is features.egl looking for? ( virtual/egl provides egl.pc )
-I&#39;ve not changed anything in meta-qt5 layer. And the version is 5.9.2 Q=
-T5. However, is fails with </span></font></font></font>5.12 also.</pre><pre=
- style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small;white-spac=
-e:pre-wrap"><font color=3D"#000000"><font face=3D"arial, helvetica, sans-se=
-rif"><br></font></font></pre><pre style=3D"font-family:Arial,Helvetica,sans=
--serif;font-size:small;white-space:pre-wrap"><font color=3D"#000000"><font =
-face=3D"arial, helvetica, sans-serif">Warm Regards,</font></font></pre><pre=
- style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small;white-spac=
-e:pre-wrap"><font color=3D"#000000"><font face=3D"arial, helvetica, sans-se=
-rif">Priyanshu Sharma</font></font></pre></div></div><div class=3D"gmail-yj=
-6qo" style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small"></div=
-><div class=3D"gmail-adL" style=3D"font-family:Arial,Helvetica,sans-serif;f=
-ont-size:small"></div></div></div><div class=3D"gmail-hi" style=3D"font-fam=
-ily:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:medium;border-b=
-ottom-left-radius:1px;border-bottom-right-radius:1px;padding:0px;width:auto=
-;background:rgb(242,242,242);margin:0px"></div></div></div><br class=3D"gma=
-il-Apple-interchange-newline"></div>
-
---000000000000d2977405846dcc90--
