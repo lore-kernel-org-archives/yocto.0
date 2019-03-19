@@ -1,6 +1,6 @@
 Return-Path: <tfroehlich@archsys.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 996B1E00CE5; Tue, 19 Mar 2019 12:40:20 -0700 (PDT)
+	id DD560E00CE5; Tue, 19 Mar 2019 13:16:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,48 +10,51 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.180 listed in list.dnswl.org]
+	*      [209.85.222.181 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com
-	[209.85.160.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D116E00AB0
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 12:40:18 -0700 (PDT)
-Received: by mail-qt1-f180.google.com with SMTP id z17so23593073qtn.4
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 12:40:18 -0700 (PDT)
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com
+	[209.85.222.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B518E00A0C
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 13:16:10 -0700 (PDT)
+Received: by mail-qk1-f181.google.com with SMTP id o129so12711092qke.8
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 13:16:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=archsys-io.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=/X7yyj+1PUuVAjE+3te9rzckvIiutvD9vVP4dazGFdY=;
-	b=RmQfcgk0pe3Bftq+sVvWDXamEZzhOqWUT2CBSIPSMlbGWmGHTwjM7sulPd863qlKdq
-	DASYTZRFcEdg1QlRyyirnWRnjlq05dpkaRiNbMgPI44bv5MdAQ28WAaon8aj31cgVpv+
-	ukWnj3Ng5D0Nc+wr+Hx5MKKn2Rbcv+4CFdSpUO4jjvItgMG8GhaCyyAq8aLsQTGRL8QQ
-	JfFYjtOmpm6yt605Jp5hevtXebJw+p/MoMiOTHrw04b8jmbfpn8X6fqk6f+yX3iaMypA
-	1RKXtY26OU29B+66ekBmCiHBLPq4JHk8FThp0a3prsKJvVzUufkJ1P6gzUyXYvqovSnY
-	tmsg==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=76HuypAPR7hViOuz9lGgXoDnfRDcuDWwAiKXTXZ1SyI=;
+	b=UKDuB6ufGvN4+j8jBz3GFUnaNieMEf5kLu7xc2qpxAlpO+zb3P3Q+bz7J9uLZHc4Mg
+	rjw/exc6CyMlmhvbocgI5g5tFeHZ+f+7gRuKc6hGb0bfIdYSQaUGmo0okuXf7yEpBUCR
+	jgpiOnrTyCJzODd1WNK/FxnBuObaPbnPkf+2rvzCQeDxoynZhi0bbv2/VKMwANvn/1Ab
+	viG8ai/21R4xVuPTRRtmjtNe1fBokZk5p6PpvnDp+BGjjsBScC4dq6ikOpPP78alaQq8
+	grb8h3aXBTkGbs2DmhzsJFu4w5M1AXHJWxbEAGsWwcZAjE/YmmzLcKtMOuNyUclZJbp4
+	RxpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=/X7yyj+1PUuVAjE+3te9rzckvIiutvD9vVP4dazGFdY=;
-	b=PS/35vPpafWGQtB40BPTXMs1045Bd3FVDTBQMr1MTNMgcUYGT/NkevSRYothAxu0Cl
-	dEgCuVxXIaqQH5bFHFlo1LPPBGW8kEgjftPfgVmd+7OyG++t0vlE+1QPmzChinLXSEPH
-	MfK9Qvzdz9LTBjqYCcpFjXG3I41T5R4dZlJzHWk8rjvli5PAm9uAEGJAi9q3lsKF6RR+
-	MgJOU1/cMhi3MGHQZzyi6Z/aBSg0gdd1YqsFJ0St9u2xXAC6xonC5McJTlUq4TVWKZ/m
-	hzrDuMuqGrVVnZg5xSTVOVdTKm+9WKXbP4HsRfxvIIPxpF/iE+RDgx5V0M3/8UNoM3Sl
-	oO2Q==
-X-Gm-Message-State: APjAAAVa/AQ20dFcQQn5MEExlJe73XC6y6IacSq7Ay7vSU57dzhSXTsP
-	MF1MLLRZ3fNal2n8E6X/lSALh5RJTq0XReg92yGntDqhnHo=
-X-Google-Smtp-Source: APXvYqz6Mk6gNGEUQoiADqG4cGoa2OKHxlZpza/yBLcQTCSKJi6hjxq7dvMT1cuvZQtqL9sZbZqZyMeH1S39MR5zoWg=
-X-Received: by 2002:ac8:c89:: with SMTP id n9mr343120qti.386.1553024418326;
-	Tue, 19 Mar 2019 12:40:18 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to;
+	bh=76HuypAPR7hViOuz9lGgXoDnfRDcuDWwAiKXTXZ1SyI=;
+	b=bZfgb5IVhtDNb2bFwCbcboGllnpGNQgjRBTdzGovs5Hz69q3U12VnNCaMvT6OtTe8s
+	pwo3pJOVgL5wAJfyigEreMr32pexP3YWNI0DWLLRw+o0Eszl74/6TWGBLfzC3A8ILW1x
+	5DjU7wIwkmPubpB2vyIHPkBYjJ83z9BjRww0pnuch7tIZli+hUfU2QTUikT/8CdnZoUe
+	yMylcYDOOMYOKRY0a8F+tVc8U2lyr5K6IbqYMVowyXf9h+MPQQVsAdAKpYsVXITHqulT
+	fhP8reFnmDiQXVkifddD8GR6nefViqUZKL1LnVDiTcGvIO3aFH+MhGY/k2hF7sR4KRCi
+	UBxQ==
+X-Gm-Message-State: APjAAAVLlRz4PuGL0kvlNiW7KdSrCtr0jhlXVGofHhSbjUzumBBvNZ2M
+	rCdqWkz2TkdIZZ2KkOSme6sVOZyRMH9IXf0awHztd7hrXVs=
+X-Google-Smtp-Source: APXvYqzMR/QqTvWjVWLywtsTp07Qw9eIHpgl0srl80uj77dMChWBFJPXDOsioMyPwPTA/aGQ+1qulCwGWKXqiuWVoBA=
+X-Received: by 2002:a37:5c05:: with SMTP id q5mr17769605qkb.20.1553026569433; 
+	Tue, 19 Mar 2019 13:16:09 -0700 (PDT)
 MIME-Version: 1.0
+References: <CAHSUxjTSKhW=ynBNJkBemn+-HDGUNKkcS_54ZoH+EWgdNXKO=g@mail.gmail.com>
+In-Reply-To: <CAHSUxjTSKhW=ynBNJkBemn+-HDGUNKkcS_54ZoH+EWgdNXKO=g@mail.gmail.com>
 From: Timothy Froehlich <tfroehlich@archsys.io>
-Date: Tue, 19 Mar 2019 12:40:07 -0700
-Message-ID: <CAHSUxjTSKhW=ynBNJkBemn+-HDGUNKkcS_54ZoH+EWgdNXKO=g@mail.gmail.com>
+Date: Tue, 19 Mar 2019 13:15:58 -0700
+Message-ID: <CAHSUxjRe7CdXGdyfO39=wTf0saKfVRb0fT=m45bjgGD=CrdBUg@mail.gmail.com>
 To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Wic can't find mkfs.btrfs
+Subject: Re: Wic can't find mkfs.btrfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,25 +66,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2019 19:40:20 -0000
-Content-Type: multipart/alternative; boundary="000000000000c83d5c058477ac7d"
+X-List-Received-Date: Tue, 19 Mar 2019 20:16:10 -0000
+Content-Type: multipart/alternative; boundary="000000000000ff881b0584782c18"
 
---000000000000c83d5c058477ac7d
+--000000000000ff881b0584782c18
 Content-Type: text/plain; charset="UTF-8"
 
-Been slogging through this one for a bit, would appreciate any helpful
-suggestions.
+Ok, I think I'm along the path to figuring this out. Realized that
+btrfs-tools-native:do_populate_sysroot needed to be explicitly run by
+something.
 
-I'm using mender.io's layer which includes a class that builds a full SD
-card image including multiple partitions. I'm trying to turn one of those
-partitions into a btrfs partition and my current error is "A native program
-mkfs.btrfs... was not found". Wic's source code comments suggest that it's
-looking for native utils in STAGING_DIR_NATIVE, which bitbake -e says is in
-work/<target>/<imgname>/<imgversion>/recipe-sysroot, and when I checked, it
-does indeed include mkfs.ext4/vfat but not btrfs. I haven't yet found the
-mechanism that copies these files into the location (thought occurs to me
-to check the image's logs itself) so I don't know what mechanism is failing
-to copy the mkfs.btrfs but is working for mkfs.ext*. Any pointers?
+On Tue, Mar 19, 2019 at 12:40 PM Timothy Froehlich <tfroehlich@archsys.io>
+wrote:
+
+> Been slogging through this one for a bit, would appreciate any helpful
+> suggestions.
+>
+> I'm using mender.io's layer which includes a class that builds a full SD
+> card image including multiple partitions. I'm trying to turn one of those
+> partitions into a btrfs partition and my current error is "A native program
+> mkfs.btrfs... was not found". Wic's source code comments suggest that it's
+> looking for native utils in STAGING_DIR_NATIVE, which bitbake -e says is in
+> work/<target>/<imgname>/<imgversion>/recipe-sysroot, and when I checked, it
+> does indeed include mkfs.ext4/vfat but not btrfs. I haven't yet found the
+> mechanism that copies these files into the location (thought occurs to me
+> to check the image's logs itself) so I don't know what mechanism is failing
+> to copy the mkfs.btrfs but is working for mkfs.ext*. Any pointers?
+>
+> --
+> Tim Froehlich
+> Embedded Linux Engineer
+> tfroehlich@archsys.io
+> 215-218-8955
+>
+
 
 -- 
 Tim Froehlich
@@ -89,27 +107,37 @@ Embedded Linux Engineer
 tfroehlich@archsys.io
 215-218-8955
 
---000000000000c83d5c058477ac7d
+--000000000000ff881b0584782c18
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Been slogging through this one for a bit, would appreciate=
- any helpful suggestions.<div><br></div><div>I&#39;m using <a href=3D"http:=
-//mender.io">mender.io</a>&#39;s layer which includes a class that builds a=
- full SD card image including multiple partitions. I&#39;m trying to turn o=
-ne of those partitions into a btrfs partition and my current error is &quot=
-;A native program mkfs.btrfs... was not found&quot;. Wic&#39;s source code =
-comments suggest that it&#39;s looking for native utils in STAGING_DIR_NATI=
-VE, which bitbake -e says is in work/&lt;target&gt;/&lt;imgname&gt;/&lt;img=
-version&gt;/recipe-sysroot, and when I checked, it does indeed include mkfs=
-.ext4/vfat but not btrfs. I haven&#39;t yet found the mechanism that copies=
- these files into the location (thought occurs to me to check the image&#39=
-;s logs itself) so I don&#39;t know what mechanism is failing to copy the m=
-kfs.btrfs but is working for mkfs.ext*. Any pointers?=C2=A0</div><div><div>=
-<br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
-=3D"gmail_signature"><div dir=3D"ltr">Tim Froehlich<div>Embedded Linux Engi=
-neer</div><div><a href=3D"mailto:tfroehlich@archsys.io" target=3D"_blank">t=
-froehlich@archsys.io</a></div><div>215-218-8955</div></div></div></div></di=
-v>
+<div dir=3D"ltr">Ok, I think I&#39;m along the path to figuring this out. R=
+ealized that btrfs-tools-native:do_populate_sysroot needed to be explicitly=
+ run by something.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">On Tue, Mar 19, 2019 at 12:40 PM Timothy Froehlich &lt;<a=
+ href=3D"mailto:tfroehlich@archsys.io">tfroehlich@archsys.io</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
+">Been slogging through this one for a bit, would appreciate any helpful su=
+ggestions.<div><br></div><div>I&#39;m using <a href=3D"http://mender.io" ta=
+rget=3D"_blank">mender.io</a>&#39;s layer which includes a class that build=
+s a full SD card image including multiple partitions. I&#39;m trying to tur=
+n one of those partitions into a btrfs partition and my current error is &q=
+uot;A native program mkfs.btrfs... was not found&quot;. Wic&#39;s source co=
+de comments suggest that it&#39;s looking for native utils in STAGING_DIR_N=
+ATIVE, which bitbake -e says is in work/&lt;target&gt;/&lt;imgname&gt;/&lt;=
+imgversion&gt;/recipe-sysroot, and when I checked, it does indeed include m=
+kfs.ext4/vfat but not btrfs. I haven&#39;t yet found the mechanism that cop=
+ies these files into the location (thought occurs to me to check the image&=
+#39;s logs itself) so I don&#39;t know what mechanism is failing to copy th=
+e mkfs.btrfs but is working for mkfs.ext*. Any pointers?=C2=A0</div><div><d=
+iv><br></div>-- <br><div dir=3D"ltr" class=3D"gmail-m_-6776167125153007843g=
+mail_signature"><div dir=3D"ltr">Tim Froehlich<div>Embedded Linux Engineer<=
+/div><div><a href=3D"mailto:tfroehlich@archsys.io" target=3D"_blank">tfroeh=
+lich@archsys.io</a></div><div>215-218-8955</div></div></div></div></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr">Tim Froehlich<div>Embedded Linu=
+x Engineer</div><div><a href=3D"mailto:tfroehlich@archsys.io" target=3D"_bl=
+ank">tfroehlich@archsys.io</a></div><div>215-218-8955</div></div></div>
 
---000000000000c83d5c058477ac7d--
+--000000000000ff881b0584782c18--
