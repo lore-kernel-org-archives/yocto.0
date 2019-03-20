@@ -1,62 +1,72 @@
-Return-Path: <aruner92@gmail.com>
+Return-Path: <prvs=19821c3e36=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC9F3E00D24; Tue, 19 Mar 2019 03:26:17 -0700 (PDT)
+	id 20CBBE009A0; Wed, 20 Mar 2019 05:36:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (aruner92[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [85.215.255.22 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.43 listed in list.dnswl.org]
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com
-	[209.85.166.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92C07E00D15
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 03:26:17 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id e13so7074462ioq.6
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2019 03:26:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=Nm8YtF8cWihc8CC2tKw3ZrKj4spUJ600CGccevWnSJ4=;
-	b=uXJgfMlGwm4F9hXpHciwrkDx9c1iK5vqXl1zVirqAd9K14oca+vbXM0L/grDwDk3nu
-	wHtBv6Ff7LP7I+I1Zl2dGgLBJgpxJFB6y2cQobVlz/IQC5htZOEq2kUJZ4JaiUHHsF0Q
-	azlgjZzfUyhZ0vi4w5ZHwQd/nMb20F3uY/gKx8vB4zzpU2q13p/VQw0FZVNLinyAywY9
-	8awid/mVUBQRLtqJ70eqE8ARpOzEObhAgyAgoyXftlW0Un0DazoCRvw7R3Xd5D8lYQEK
-	7HEuui5tlIPevUFkEO41oHM2TpwrOD0WNQyEk7nZ8A8xNUMe9PSrTb/ZW/OLIiOQCPDt
-	febg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=Nm8YtF8cWihc8CC2tKw3ZrKj4spUJ600CGccevWnSJ4=;
-	b=SD2MY9Z4AjU26gBkColqeitz8WlJxFfCHAptjeWuhB2j6zgmYwuYIEPXyOZ1ZnluTQ
-	6te2ne5kRvbQ2RLFqPN4V8Wiq+4xBJ0wmtEEIKdysjDg/P+ne6tbSGsE1FcuokbjRrX+
-	929I8USvVYrUbGCHBcQYNzKRdvGVHRKrDgdUS32LVBWytUX67S2gk2bFeqpNvpn6oLN4
-	AEP+3AT2PEolzGupvmGeEGJHRjZ40D3b29I8jOoWYO8QlGjzFtJNMQYLacQcX7tTa4BW
-	rU07K2Wh8XPf8uwhrDAP/RRHBwByn6NO7guYn+fCb7yH1/UOMC0/5WmIbzZOJKAp6GAo
-	5w2g==
-X-Gm-Message-State: APjAAAXIkktDIEjxWoR3zxuyn5r5JlxMuUZrTrqH1UpCFJZ0SmFAwu6Y
-	GlzVC7arbX502gtDVM1fksb3bSHSMGZJDIZgRGIDQQ==
-X-Google-Smtp-Source: APXvYqy6YcaiPML45JFl63GaDUDc3UjKg02joIolxVCHJAhv2dDQVzHv79qavG5IZRGRwd0ri1H2aR9C6kQvMPqnTf4=
-X-Received: by 2002:a5d:9806:: with SMTP id a6mr853376iol.296.1552991176601;
-	Tue, 19 Mar 2019 03:26:16 -0700 (PDT)
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
+	[85.215.255.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D9F3E00950
+	for <yocto@yoctoproject.org>; Wed, 20 Mar 2019 05:36:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1553085361;
+	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
+	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+	bh=sOFR3grnsYSxFQv6WXkeA9Q8tZm5wRC3WlWfW5RHmrU=;
+	b=HXWeld9+vActsbgZXDrImX1h3a4V54KLIXP3eeQX5RrO8vNqNxhh4LKD6E2vVUphke
+	FHgTLSAyrQCn7ujNnRIOYhlAiQR2s+5Pjbq0eJJspohoqZ/GohzWGeckGeEIlNuW/+VM
+	4kVHkveyHrL+cxvW9R5lryiwx8csO/LPD0YvElMQQoD4x4EpDAIVuP5oCLSNBNClhVN5
+	FiV3U1yEgU/077GVAV9BTJibTCpdX6IgH/GKpt3W8Uz7jcVOmwMHzkIouDmd7Asq77Y4
+	HdMGMHNFBPJZfnjeE8N7b33IKGbjT1cKSTBoPXopmtctwmWObawD2QrT2Up+csYutCn5
+	+GNw==
+X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/Kpz6b/avroGOv0c9sak1tqOWjLU3UFhR6"
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de by smtp.strato.de (RZmta 44.16 AUTH)
+	with ESMTPSA id Y099ddv2KCa1Jf1
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
+	with 384 ECDH bits, eq. 7680 bits RSA))
+	(Client did not present a certificate);
+	Wed, 20 Mar 2019 13:36:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
+	d=rsi-elektrotechnik.de; s=MDaemon; t=1553085358; x=1553690158;
+	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
+	Subject:Message-ID:References:MIME-Version:Content-Type:
+	Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
+	User-Agent; bh=sOFR3grnsYSxFQv6WXkeA9Q8tZm5wRC3WlWfW5RHmrU=; b=M
+	kuGLci/SEVyHlln/Uefad8gL6qAhxjeT70xJUdyFdY3XWhcK/ONXCFCcQr3QWj/9
+	c8ol1VJYjpWX1GfpjzJKy2v4EQhgD9bY6D80nQEPLgvJDBMQ3gwgA85Xv7FR64YE
+	MmPNEhQnhpGECrRhlqH2KJDx3WBVhENTxB887Zk8xc=
+Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v18.5.2) with ESMTPSA id
+	md50000151255.msg; Wed, 20 Mar 2019 13:35:58 +0100
+X-MDArrival-Date: Wed, 20 Mar 2019 13:35:58 +0100
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=19821c3e36=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
+Date: Wed, 20 Mar 2019 13:35:58 +0100
+From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+To: Arunkumar V <aruner92@gmail.com>
+Message-ID: <20190320123558.w7ggptw4kpg53ybe@jholzmayr.localdomain>
+References: <CALCW+OmkL2NhhdTqJ5A-fAztRqWLJk4rztxYLvCZz=8P=dZ2qA@mail.gmail.com>
 MIME-Version: 1.0
-From: Arunkumar V <aruner92@gmail.com>
-Date: Tue, 19 Mar 2019 15:56:00 +0530
-Message-ID: <CALCW+OmkL2NhhdTqJ5A-fAztRqWLJk4rztxYLvCZz=8P=dZ2qA@mail.gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Wed, 20 Mar 2019 04:41:27 -0700
-Subject: how to make writable permission for home/root in read-only rootfs (yocto build)
+In-Reply-To: <CALCW+OmkL2NhhdTqJ5A-fAztRqWLJk4rztxYLvCZz=8P=dZ2qA@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+Cc: yocto@yoctoproject.org
+Subject: Re: how to make writable permission for home/root in read-only rootfs (yocto build)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,27 +78,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2019 10:26:17 -0000
-Content-Type: multipart/alternative; boundary="0000000000006bb4a605846fef4e"
+X-List-Received-Date: Wed, 20 Mar 2019 12:36:06 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
---0000000000006bb4a605846fef4e
-Content-Type: text/plain; charset="UTF-8"
+Hello,
 
-HI
+On Tue, Mar 19, 2019 at 03:56:00PM +0530, Arunkumar V wrote:
+> HI
+> 
+> can any one explain me how to config the /home/root as writable in
+> read-only rootfs?
+> 
+> is any setting to do with local file or .bbclass?
+> if any macros need to be enable, please
 
-can any one explain me how to config the /home/root as writable in
-read-only rootfs?
+No, it does not work like this on a directory based approach. General
+Linux concepts regarding filesystems permissions apply, so its basically
+an all-or-nothing thing.
 
-is any setting to do with local file or .bbclass?
-if any macros need to be enable, please
+Having said that, please find some inspiration in this thread:
+https://lists.yoctoproject.org/pipermail/yocto/2019-February/044166.html
 
---0000000000006bb4a605846fef4e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Greetz
+-- 
+———————————————
+Josef Holzmayr
+Software Developer Embedded Systems
 
-<div dir=3D"ltr">HI=C2=A0<div><br></div><div>can any one explain me how to =
-config the /home/root as writable in read-only rootfs?</div><div><br></div>=
-<div>is any setting to do with local file or .bbclass?</div><div>if any mac=
-ros need to be enable, please=C2=A0</div></div>
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
 
---0000000000006bb4a605846fef4e--
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+———————————————
+Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548 
+
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
+
+
