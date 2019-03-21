@@ -1,97 +1,68 @@
-Return-Path: <Karthik.B@irco.com>
+Return-Path: <guslees@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D8F17E00D1B; Mon, 25 Mar 2019 03:46:51 -0700 (PDT)
+	id C35ABE00C45; Wed, 20 Mar 2019 21:37:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,KHOP_DYNAMIC,RCVD_IN_DNSWL_NONE autolearn=no
-	version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (guslees[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [148.163.153.43 listed in list.dnswl.org]
+	*      [209.85.161.43 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  1.4 KHOP_DYNAMIC Relay looks like a dynamic address
-X-Greylist: delayed 2402 seconds by postgrey-1.32 at yocto-www;
-	Mon, 25 Mar 2019 03:46:49 PDT
-Received: from mx0b-00240e01.pphosted.com (mx0b-00240e01.pphosted.com
-	[148.163.153.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1734AE00A84
-	for <yocto@yoctoproject.org>; Mon, 25 Mar 2019 03:46:49 -0700 (PDT)
-Received: from pps.filterd (m0114531.ppops.net [127.0.0.1])
-	by mx0b-00240e01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
-	x2P9rkMt017123
-	for <yocto@yoctoproject.org>; Mon, 25 Mar 2019 06:06:47 -0400
-Received: from nam01-sn1-obe.outbound.protection.outlook.com
-	(mail-sn1nam01lp2054.outbound.protection.outlook.com [104.47.32.54])
-	by mx0b-00240e01.pphosted.com with ESMTP id 2refkjj7ny-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NOT)
-	for <yocto@yoctoproject.org>; Mon, 25 Mar 2019 06:06:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=irco.onmicrosoft.com; 
-	s=selector1-irco-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=yAKRgct3L4gyCUJOVKJj46FrEFPdD+6BaAhc18ejIqM=;
-	b=D3k1fl46+steMf/Kr8llqzYavwy+tPBInTHqv8n/hfkN6/d4gFRGeLji+1vWX+5NGT3N0a4V4pb9RRwkl7Kw+gFuyUjdE+4z3c1sI3IPlo0IWbRJej2EdmrjvaAR+AZy3jjxzS8jtEO2G+Znq01PFNnMWaYyd8QCZii/xtXi1Cg=
-Received: from BN6P154MB0035.NAMP154.PROD.OUTLOOK.COM (52.135.23.22) by
-	BN6P154MB0049.NAMP154.PROD.OUTLOOK.COM (52.135.23.24) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1730.18; Mon, 25 Mar 2019 10:06:44 +0000
-Received: from BN6P154MB0035.NAMP154.PROD.OUTLOOK.COM
-	([fe80::d6c:6d8c:ec12:c6bb]) by BN6P154MB0035.NAMP154.PROD.OUTLOOK.COM
-	([fe80::d6c:6d8c:ec12:c6bb%4]) with mapi id 15.20.1730.019;
-	Mon, 25 Mar 2019 10:06:44 +0000
-From: "B, Karthik" <Karthik.B@irco.com>
-To: "Yocto mailing list (yocto@yoctoproject.org)" <yocto@yoctoproject.org>
-Thread-Topic: How to avoid a including a package in the rootfs 
-Thread-Index: AdTi8nBpSKTinMenTvqxlpB/fqPmiw==
-Date: Mon, 25 Mar 2019 10:06:43 +0000
-Message-ID: <BN6P154MB0035D8E4A7C1BEEBDA846211885E0@BN6P154MB0035.NAMP154.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [185.221.70.36]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 95bc3d47-b4dc-439e-b4c2-08d6b109959b
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600127)(711020)(4605104)(4618075)(2017052603328)(7153060)(7193020);
-	SRVR:BN6P154MB0049; 
-x-ms-traffictypediagnostic: BN6P154MB0049:
-x-microsoft-antispam-prvs: <BN6P154MB0049DBA35E87BFD23F63C4DD885E0@BN6P154MB0049.NAMP154.PROD.OUTLOOK.COM>
-x-forefront-prvs: 0987ACA2E2
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39860400002)(366004)(346002)(376002)(136003)(396003)(189003)(199004)(6306002)(81166006)(54896002)(52536014)(14444005)(4743002)(256004)(68736007)(55016002)(5660300002)(476003)(8936002)(99286004)(9326002)(186003)(71190400001)(71200400001)(2906002)(53936002)(9686003)(486006)(26005)(33656002)(6916009)(6436002)(25786009)(72206003)(478600001)(106356001)(3846002)(66066001)(102836004)(7736002)(790700001)(6116002)(7696005)(316002)(6506007)(86362001)(8676002)(81156014)(74316002)(105586002)(97736004)(14454004);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6P154MB0049;
-	H:BN6P154MB0035.NAMP154.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: irco.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: rYKOdkkTDlZH9/eOgVjBukMOiexgbuIfc24+fggTTXO+/LaWfWBxmBejqfkf+r3m9zZ1nB13YQWWd/hS1o7sHd/DW6GgTnzqsHPHKBFqETJ06jIGol3JbkLdQPRDnaLBwrI8uuILdvR6J0mqoLYzKREso8t0WvOGfLHr5zSeZh/AKnUNgcTmnXRNI57EVkCngTvEjk8IOKTYEk4Xx+Xh5d8hzQdSuqxZej2Vj98z58WFkxjWPKZoP4nesGT7JuY4x/YhgG7nOfznZEQzhZUPEZJ6VrUubgP2WK+mDWqzSPQDODw+n93XEYP0vjnyU7QzdNnbNhHvp9V+ZEfVWM+uCRzyTosfRhV/pA6eiKCQf8jZEqZH6fvmOeV8q2SWd2QzTtbEVp9EyMep3JGanOrscD1kvY3+qdC9nYaI6w94hCA=
+Received: from mail-yw1-f43.google.com (mail-yw1-f43.google.com
+	[209.85.161.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5ED60E00C1E
+	for <yocto@yoctoproject.org>; Wed, 20 Mar 2019 21:37:06 -0700 (PDT)
+Received: by mail-yw1-f43.google.com with SMTP id q128so3855483ywg.8
+	for <yocto@yoctoproject.org>; Wed, 20 Mar 2019 21:37:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=IpkTgPaeW9LUgXqhF75icfwTARLvvkmaJjRZG3VnQ4o=;
+	b=As+ZNCZkJFTihyxbfuYWVejl5lSrq8ro5DMeGb0ukPTG6t5SEzl6n2b2nuabh6uUsl
+	oIMw48oWPMmJugffrfg2slYwkeQwvUXeLjAazB8HoZuP41ObNHyLKxEs8u+YsZ30IRjD
+	samNWoLlPDKXLX99cx+EtTFU39md0enk8ndKMQwElqVfDuITOD5sy6hzdU4TJIlI6+r5
+	YRdAm2EGQAk2jFZeZIueRoNIC0ePPhBCDIEu/MJiVHQ/SxEr+P0p4I0B52d8wykdkArM
+	70aAuDntDs+2dRuFzw85aXouchnnmCUNRIz21MNFiIRXmVylvd0MLh/XcJVGAyPpqhu7
+	vYeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=IpkTgPaeW9LUgXqhF75icfwTARLvvkmaJjRZG3VnQ4o=;
+	b=cbfP0WjAZSqvjDFIMVYAtaxGCluf1Yds9sunhLo/iYjFOqVNsKmAzee3rQm5Gn1aAF
+	ipbBOmjMS0atIFXc4bwWjF0/C/O3wVFaKq54UaCR0NRVdJovIyPP+61RLJdDF/x9tYDA
+	Zs9I+WJTEcT6YX4TZWMhhODYYrvAYjtN9HD/LqmAqIX8F56KVRk8RzDKqgv3K4EXc1ZU
+	d7UaqhgVVmQlMK8JZuvBOQptnPTkn+CRcJZa92OkatsjnmUuf8ieZUHYMGB/xwrg4BGe
+	yC5Qmnb08c43xMbsimESO8WSggN8enbYA2BJg9ij2LG9KG/0kSXyTeROjsGx3GeiY3YX
+	DK7w==
+X-Gm-Message-State: APjAAAVuHgPgS20yPX7UZ8gh7rCy8Gb8wRJOriDaPLnxpeet7JUuUACi
+	T6Us2IUt+1aamNzMockft4aMKfyHQfNAJhQ7AGL4pEtxsIs=
+X-Google-Smtp-Source: APXvYqziVHG5iCzmr2UIpUyVd3jaBRzuu5xuVIrbOu3VHdCkdrn2EOVJdzOlhBCIq70zcw5e12apPFGxpHhUn7l1DRw=
+X-Received: by 2002:a25:38d4:: with SMTP id f203mr1246194yba.448.1553143025383;
+	Wed, 20 Mar 2019 21:37:05 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: irco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95bc3d47-b4dc-439e-b4c2-08d6b109959b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Mar 2019 10:06:43.9693 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: abf9983b-ca77-4f20-9633-ca9c5a847041
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6P154MB0049
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
-	definitions=2019-03-25_07:, , signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
-	priorityscore=1501
-	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
-	clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1 engine=8.0.1-1810050000 definitions=main-1903250075
-Subject: How to avoid a including a package in the rootfs
+References: <accf0c0a-77f8-e86c-c0ed-3af8d5a48e3b@balister.org>
+In-Reply-To: <accf0c0a-77f8-e86c-c0ed-3af8d5a48e3b@balister.org>
+From: Angus Lees <guslees@gmail.com>
+Date: Thu, 21 Mar 2019 15:36:53 +1100
+Message-ID: <CAPA_H3c1cOG-2WVzjmRdOpwj_VfR6G4UM3uck4wckLVsqR8Yrw@mail.gmail.com>
+To: Philip Balister <philip@balister.org>
+X-Mailman-Approved-At: Mon, 25 Mar 2019 08:08:41 -0700
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>
+Subject: Re: [OE-core] Information about non-traditional uses of the Yocto Project and OpenEmbedded
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -103,284 +74,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Mar 2019 10:46:51 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6P154MB0035D8E4A7C1BEEBDA846211885E0BN6P154MB0035NAMP_"
+X-List-Received-Date: Thu, 21 Mar 2019 04:37:07 -0000
+Content-Type: multipart/alternative; boundary="000000000000503f420584934ada"
 
---_000_BN6P154MB0035D8E4A7C1BEEBDA846211885E0BN6P154MB0035NAMP_
-Content-Type: text/plain; charset="us-ascii"
+--000000000000503f420584934ada
+Content-Type: text/plain; charset="UTF-8"
+
+I use yocto to build an immutable disk image for several architectures of
+Kubernetes servers (currently armv7, aarch64, x86-64).  It's basically a
+CoreOS Container Linux clone, except smaller and more portable.  I like
+yocto/OE's powerful cross-compilation, minimalism, read-only rootfs, A/B
+image upgrades (I'm using rauc), etc.
+https://gitlab.com/containos/containos
+
+Previously I've used yocto/openembedded to build:
+- minimal x86-64 docker images, and pre-built package repository (
+https://github.com/anguslees/boxfactory - no longer maintained now that
+alpine is a thing).
+- an early Android C/C++ sdk development environment (ie: nativesdk) -
+before the official "Android NDK" became useful.  I added support for
+`repo` tool, bionic, etc - I was even doing canadian-cross to build the SDK
+on Linux/glibc, to run on win32/mingw, and compile for armv7/bionic :P
+Unfortunately this got killed by politics and never saw the light of day,
+but it was used to build the early releases of the "ScummVM" Android app
+(possibly the first native app on the Android marketplace).
+
+Indeed, I don't think I've ever used it for an actual embedded platform :P
+
+ - Gus
+
+On Thu, 28 Feb 2019 at 07:01, Philip Balister <philip@balister.org> wrote:
+
+> During the last OpenEmbedded developer meeting, it became clear that
+> people are using the Yocto project/OpenEmbedded in spaces outside what
+> we think of as traditional embedded. Lieu Ta is working on a
+> presentation for the Linux Foundation Leadership Summit and we would
+> like to collect as many "unusual" applications are possible from
+> companies we can publicly acknowledge. Unusual is edge, containers,
+> desktop, etc. Or even really interesting embedded applications :)
+>
+> Please drop me an email (off list is fine) with enough info for us to
+> add you to a slide and acknowledge your work.
+>
+> Thanks,
+>
+> Philip
+> --
+> _______________________________________________
+> Openembedded-core mailing list
+> Openembedded-core@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+>
+
+
+-- 
+ - Gus
+
+--000000000000503f420584934ada
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-I am trying to build an Upgrade package which basically has some shell scri=
-pts as executables. But I don't want them included in the rootfs, instead I=
- will place them over the air when a upgrade is required. Below is the .bb =
-file which I have written for achieving the same.
-
-SECTION =3D "MINE"
-LICENSE =3D "MINE"
-LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/MINE;md5=3D02598586d9274=
-e819091ab3ade64d910"
-UTILS_PATH=3D""
-
-SRC_URI +=3D "file://upgrade.sh \
-"
-
-do_fetch(){
-        #do nothing
-        echo "do_fetch"
-}
-
-do_configure(){
-        #do nothing
-        echo "do_configure"
-}
-
-do_compile(){
-        #do nothing
-        echo "do_compile"
-}
-
-do_install() {
-        install -d ${WORKDIR}/utils
-        install -m 0755 ${WORKDIR}/upgrade_verify_file.sh ${WORKDIR}/utils
-        tar -czf upgradeUtils.tgz -C ${WORKDIR} utils
-        cp ${WORKDIR}/upgradeutils-0.1/upgradeUtils.tgz ${TOPDIR}
-}
-
-FILES_${PN} +=3D "${WORKDIR}/utils \
-"
-
-But while executing  "bitbake core-image-base", I am getting the following =
-error.
-
-ERROR: core-image-base-1.0-r0 do_rootfs: Could not invoke dnf. Command '/ho=
-me/karthik/dev/dev_yocto_dev/tmp/work/arm-linux-gnueabi/core-image-base/1.0=
--r0/recipe-sysroot-native/usr/bin/dnf -y -c /home/karthik/dev/dev_yocto_dev=
-/tmp/work/arm-linux-gnueabi/core-image-base/1.0-r0/rootfs/etc/dnf/dnf.conf =
---setopt=3Dreposdir=3D/home/karthik/dev/dev_yocto_dev/tmp/work/arm-linux-gn=
-ueabi/core-image-base/1.0-r0/rootfs/etc/yum.repos.d --repofrompath=3Doe-rep=
-o,/home/karthik/dev/dev_yocto_dev/tmp/work/ccimx6ulsbc-dey-linux-gnueabi/co=
-re-image-base/1.0-r0/oe-rootfs-repo --installroot=3D/home/karthik/dev/dev_y=
-octo_dev/tmp/work/arm-linux-gnueabi/core-image-base/1.0-r0/rootfs --setopt=
-=3Dlogdir=3D/home/karthik/dev/dev_yocto_dev/tmp/work/arm-linux-gnueabi/core=
--image-base/1.0-r0/temp -x udev-cache --nogpgcheck install base-passwd dhcp=
--server dnf null-logger packagegroup-base-extended packagegroup-core-boot p=
-ackagegroup-core-eclipse-debug packagegroup-core-ssh-dropbear packagegroup-=
-bluetooth packagegroup-network packagegroup-wireless psplash python-dbus py=
-thon-pygobject rht rpm ruby run-postinsts shadow sqlite3 upgradeutils local=
-e-base-en-us locale-base-en-gb' returned 1:
-Added oe-repo repo from /home/karthik/dev/dev_yocto_dev/tmp/work/arm-linux-=
-gnueabi/core-image-base/1.0-r0/oe-rootfs-repo
-Last metadata expiration check: 0:00:00 ago on Mon 25 Mar 2019 09:07:49 AM =
-UTC.
-No package upgradeutils available.
-Error: Unable to find a match
-
-ERROR: core-image-base-1.0-r0 do_rootfs: Function failed: do_rootfs
-ERROR: Logfile of failure stored in: /home/karthik/dev/dev_yocto_dev/tmp/wo=
-rk/arm-linux-gnueabi/core-image-base/1.0-r0/temp/log.do_rootfs.21424
-ERROR: Task (/home/karthik/dev/dev_yocto_dev/sources/poky/meta/recipes-core=
-/images/core-image-base.bb:do_rootfs) failed with exit code '1'
-
-
-Is this error because the rootfs is searching for upgradeutils for includin=
-g it in the rootfs ? If so, how I can avoid that ?
-
-Thank you for your valuable time.
-
-Karthik B
-
---_000_BN6P154MB0035D8E4A7C1BEEBDA846211885E0BN6P154MB0035NAMP_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"Calibri Light";
-	panose-1:2 15 3 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal">I am trying to build an Upgrade package which basica=
-lly has some shell scripts as executables. But I don&#8217;t want them incl=
-uded in the rootfs, instead I will place them over the air when a upgrade i=
-s required. Below is the .bb file which
- I have written for achieving the same.<br>
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">I use yocto to build an =
+immutable disk image for several architectures of Kubernetes servers (curre=
+ntly armv7, aarch64, x86-64).=C2=A0 It&#39;s basically a CoreOS Container L=
+inux clone, except smaller and more portable.=C2=A0 I like yocto/OE&#39;s p=
+owerful cross-compilation, minimalism, read-only rootfs, A/B image upgrades=
+ (I&#39;m using rauc), etc.=C2=A0 =C2=A0<a href=3D"https://gitlab.com/conta=
+inos/containos">https://gitlab.com/containos/containos</a></div><div dir=3D=
+"ltr"><div><br></div><div>Previously I&#39;ve used yocto/openembedded to bu=
+ild:</div><div>- minimal x86-64 docker images, and pre-built package reposi=
+tory (<a href=3D"https://github.com/anguslees/boxfactory">https://github.co=
+m/anguslees/boxfactory</a> - no longer maintained now that alpine is a thin=
+g).</div><div>- an early Android C/C++ sdk development environment (ie: nat=
+ivesdk) - before the official &quot;Android NDK&quot; became useful.=C2=A0 =
+I added support for `repo` tool, bionic, etc - I was even doing canadian-cr=
+oss to build the SDK on Linux/glibc, to run on win32/mingw, and compile for=
+ armv7/bionic :P=C2=A0 Unfortunately this got killed by politics and never =
+saw the light of day, but it was used to build the early releases of the &q=
+uot;ScummVM&quot; Android app (possibly the first native app on the Android=
+ marketplace).</div><div><br></div><div>Indeed, I don&#39;t think I&#39;ve =
+ever used it for an actual embedded platform :P</div><div><br></div><div>=
+=C2=A0- Gus</div></div></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Thu, 28 Feb 2019 at 07:01, Philip Balister=
+ &lt;<a href=3D"mailto:philip@balister.org">philip@balister.org</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">During the l=
+ast OpenEmbedded developer meeting, it became clear that<br>
+people are using the Yocto project/OpenEmbedded in spaces outside what<br>
+we think of as traditional embedded. Lieu Ta is working on a<br>
+presentation for the Linux Foundation Leadership Summit and we would<br>
+like to collect as many &quot;unusual&quot; applications are possible from<=
+br>
+companies we can publicly acknowledge. Unusual is edge, containers,<br>
+desktop, etc. Or even really interesting embedded applications :)<br>
 <br>
-<span style=3D"color:#5B9BD5">SECTION =3D &quot;MINE&quot;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">LICENSE =3D &quot;MINE=
-&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">LIC_FILES_CHKSUM =3D &=
-quot;file://${COMMON_LICENSE_DIR}/MINE;md5=3D02598586d9274e819091ab3ade64d9=
-10&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">UTILS_PATH=3D&quot;&qu=
-ot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">SRC_URI &#43;=3D &quot=
-;file://upgrade.sh \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">&quot;<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">do_fetch(){<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; #do nothing<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; echo &quot;do_fetch&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">}<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">do_configure(){<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; #do nothing<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; echo &quot;do_configure&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">}<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">do_compile(){<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; #do nothing<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; echo &quot;do_compile&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">}<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">do_install() {<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; install -d ${WORKDIR}/utils<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; install -m 0755 ${WORKDIR}/upgrade_verify_file.sh ${WO=
-RKDIR}/utils<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; tar -czf upgradeUtils.tgz -C ${WORKDIR} utils<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; cp ${WORKDIR}/upgradeutils-0.1/upgradeUtils.tgz ${TOPD=
-IR}<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">}<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">FILES_${PN} &#43;=3D &=
-quot;${WORKDIR}/utils \<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5">&quot;<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#5B9BD5"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal">But while executing &nbsp;&#8220;bitbake core-image-=
-base&#8221;, I am getting the following error.
+Please drop me an email (off list is fine) with enough info for us to<br>
+add you to a slide and acknowledge your work.<br>
 <br>
+Thanks,<br>
 <br>
-<span style=3D"color:red">ERROR: core-image-base-1.0-r0 do_rootfs: Could no=
-t invoke dnf. Command '/home/karthik/dev/dev_yocto_dev/tmp/work/arm-linux-g=
-nueabi/core-image-base/1.0-r0/recipe-sysroot-native/usr/bin/dnf -y -c /home=
-/karthik/dev/dev_yocto_dev/tmp/work/arm-linux-gnueabi/core-image-base/1.0-r=
-0/rootfs/etc/dnf/dnf.conf
- --setopt=3Dreposdir=3D/home/karthik/dev/dev_yocto_dev/tmp/work/arm-linux-g=
-nueabi/core-image-base/1.0-r0/rootfs/etc/yum.repos.d --repofrompath=3Doe-re=
-po,/home/karthik/dev/dev_yocto_dev/tmp/work/ccimx6ulsbc-dey-linux-gnueabi/c=
-ore-image-base/1.0-r0/oe-rootfs-repo --installroot=3D/home/karthik/dev/dev_=
-yocto_dev/tmp/work/arm-linux-gnueabi/core-image-base/1.0-r0/rootfs
- --setopt=3Dlogdir=3D/home/karthik/dev/dev_yocto_dev/tmp/work/arm-linux-gnu=
-eabi/core-image-base/1.0-r0/temp -x udev-cache --nogpgcheck install base-pa=
-sswd dhcp-server dnf null-logger packagegroup-base-extended packagegroup-co=
-re-boot packagegroup-core-eclipse-debug
- packagegroup-core-ssh-dropbear packagegroup-bluetooth packagegroup-network=
- packagegroup-wireless psplash python-dbus python-pygobject rht rpm ruby ru=
-n-postinsts shadow sqlite3 upgradeutils locale-base-en-us locale-base-en-gb=
-' returned 1:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:red">Added oe-repo repo from /h=
-ome/karthik/dev/dev_yocto_dev/tmp/work/arm-linux-gnueabi/core-image-base/1.=
-0-r0/oe-rootfs-repo<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:red">Last metadata expiration c=
-heck: 0:00:00 ago on Mon 25 Mar 2019 09:07:49 AM UTC.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:red">No package upgradeutils av=
-ailable.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:red">Error: Unable to find a ma=
-tch<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:red"><o:p>&nbsp;</o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"color:red">ERROR: core-image-base-1.0=
--r0 do_rootfs: Function failed: do_rootfs<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:red">ERROR: Logfile of failure =
-stored in: /home/karthik/dev/dev_yocto_dev/tmp/work/arm-linux-gnueabi/core-=
-image-base/1.0-r0/temp/log.do_rootfs.21424<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:red">ERROR: Task (/home/karthik=
-/dev/dev_yocto_dev/sources/poky/meta/recipes-core/images/core-image-base.bb=
-:do_rootfs) failed with exit code '1'<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri Light&quot;=
-,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri Light&quot;=
-,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal">Is this error because the rootfs is searching for up=
-gradeutils for including it in the rootfs ? If so, how I can avoid that ?
-<br>
-<br>
-Thank you for your valuable time.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Karthik B<o:p></o:p></p>
-</div>
-</body>
-</html>
+Philip<br>
+-- <br>
+_______________________________________________<br>
+Openembedded-core mailing list<br>
+<a href=3D"mailto:Openembedded-core@lists.openembedded.org" target=3D"_blan=
+k">Openembedded-core@lists.openembedded.org</a><br>
+<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core=
+" rel=3D"noreferrer" target=3D"_blank">http://lists.openembedded.org/mailma=
+n/listinfo/openembedded-core</a><br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature">=C2=A0- Gus</div>
 
---_000_BN6P154MB0035D8E4A7C1BEEBDA846211885E0BN6P154MB0035NAMP_--
+--000000000000503f420584934ada--
