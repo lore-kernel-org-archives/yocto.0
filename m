@@ -1,63 +1,66 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 377F1E00CDD; Thu, 21 Mar 2019 05:41:14 -0700 (PDT)
+	id 481E4E00D2B; Thu, 21 Mar 2019 08:48:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,URI_NOVOWEL
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66A3CE00BC8
-	for <yocto@yoctoproject.org>; Thu, 21 Mar 2019 05:41:13 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x2LCeDtD027256
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 21 Mar 2019 05:40:43 -0700
-Received: from soho-mhatle-m.corp.ad.wrs.com (128.224.60.85) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.439.0; Thu, 21 Mar 2019 05:40:28 -0700
-To: Lukasz Zemla <Lukasz.Zemla@woodward.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <CE2E43470FE5444A811B580382FE5EDF55BAE8B824@KEMPMAIL2.woodward.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
-	mQENBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
-	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
-	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
-	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
-	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
-	AAG0JU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT6JATcEEwEIACEFAlYK
-	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
-	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
-	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
-	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
-	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
-	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrrkBDQRWCsRYAQgAwK3FuHCE+HW3YWdH
-	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
-	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
-	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
-	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
-	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABiQEfBBgBCAAJBQJWCsRYAhsMAAoJ
-	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
-	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
-	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
-	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
-	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
-Organization: Wind River Systems
-Message-ID: <d00867a1-0580-5d00-8d5e-add12c4e2968@windriver.com>
-Date: Thu, 21 Mar 2019 08:40:28 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.5.3
-MIME-Version: 1.0
-In-Reply-To: <CE2E43470FE5444A811B580382FE5EDF55BAE8B824@KEMPMAIL2.woodward.com>
-Subject: Re: Thud: building SDK fails: cannot find -lssp
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.180 listed in list.dnswl.org]
+	*  0.5 URI_NOVOWEL URI: URI hostname has long non-vowel sequence
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com
+	[209.85.210.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA805E00D21
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2019 08:48:10 -0700 (PDT)
+Received: by mail-pf1-f180.google.com with SMTP id 10so4564968pfo.5
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2019 08:48:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=xHbkJCBXTbYmqUcJZ3tkeKi4TvOVtSfHWreXR5u1siw=;
+	b=hPxO+Eol6zOSLgcpveWFdYzwMwIW+CwWadgBOSSMjOaurWKGME+L4UuJ9Oe8f4K1QR
+	J/QLi2jL0lfe8vNVQoXOL0aK3/Sz4OnIqMEW0+uN+TpgMBTnxaOWM3oN4WInT5475oQz
+	9WhTcLReSB1E0IOAg7M1LsqvOC8Zz2qPhPLWOSSeqYUh0v604JCQWyHUgLs0uf4obcvY
+	BqSe9bR++aTHzcN5ftjzBV1mGmMOtbFJpkeMVzdfyXOt3w6pMGgr4FhBpQaumcqRuWPG
+	VBJbxvVRSCDH0kjjgchDhq1u1clZEVMdJUWSVWH6W0y6v17NHEqHV/0QUg2lPpzpqGTq
+	cAyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=xHbkJCBXTbYmqUcJZ3tkeKi4TvOVtSfHWreXR5u1siw=;
+	b=Dq6GqaU7BnyUffrOSrLt5gIkTnk2yQSYTS9Jc5E8wlq+mGMZZGfIgyB9wnTskHWDcY
+	pZ5MoUthdBOcI+pYGIwEH7ewAKiQQrF/+DKruPVqvRfqVHJR7aeQl6Pfv42fMvBUDBtF
+	vHkbpKQc4LYw19QL3e/I47R61tlVWIfxucyzFalgylCLPnFw6UeYh70qVeffTfurEFAM
+	n0AMahuo/GaDP/BFcEKGaur9RYfJ7fTn2UEklW4SzNSH2OSU2D4S2pw6UwQXRpP7QJ8z
+	UDoZPsJ/C+bmNMpAsMBaIUcelLBakztBJ+09mkf+z9ImHIiMUA6OQ7Jf9vWLwoYafT6U
+	f+nA==
+X-Gm-Message-State: APjAAAWCxZMd+R5BJpXL6BF2CsktBdZ6j06vTThu88FL5dREC32UO/EJ
+	6rAThfKnLPy/oe/udFazgETeS4JV
+X-Google-Smtp-Source: APXvYqy7plD4HRD2xGf4T4+AI4Dl1QTRxKuT/JLuEv9PgzRo8B7sBzdaX5R4ZnxpLQlLc8nzRhCPgA==
+X-Received: by 2002:aa7:9090:: with SMTP id i16mr3870748pfa.85.1553183289849; 
+	Thu, 21 Mar 2019 08:48:09 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	i79sm11899316pfj.28.2019.03.21.08.48.08 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 21 Mar 2019 08:48:08 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 21 Mar 2019 08:48:07 -0700
+Message-Id: <20190321154807.12277-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH] ibmswtpm2: Add new recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,46 +72,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Mar 2019 12:41:14 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 21 Mar 2019 15:48:11 -0000
 
-On 3/20/19 5:30 PM, Lukasz Zemla wrote:
-> Hello All,
-> 
-> I am trying to build SDK using Yocto thud tagged 2.6.1. Toolchain from meta-linaro (edb7ffc2a121df7596385595abe75180296103e0). Unfortunately it fails during perl build, complaining about missing ssp_nonshared and ssp libraries. 
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../recipes-tpm2/ibmswtpm2/ibmswtpm2_1332.bb  | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+ create mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1332.bb
 
-The ssp component comes from the toolchain.  If you can reproduce this on the
-base system (not meta-linaro toolchain), then it may be a broader bug.
-Otherwise, it's likely related to either a bug or configuration decision in
-meta-linaro.
-
---Mark
-
-> Do you have any ideas how to fix it? 
-> I know it is about stack smash protector, but shouldn't it be automatically included and available for linker during a build?
-> 
-> 
-> | x86_64-pokysdk-linux-gcc  --sysroot=/data/home/user/00-projects/proj_myproj_system0/build_myproj_system0/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-perl/5.24.4-r0/recipe-sysroot -Wl,-O1 -fstack-protector -o miniperl \
-> |     opmini.o perlmini.o  gv.o toke.o perly.o pad.o regcomp.o dump.o util.o mg.o reentr.o mro_core.o keywords.o hv.o av.o run.o pp_hot.o sv.o pp.o scope.o pp_ctl.o pp_sys.o doop.o doio.o regexec.o utf8.o taint.o deb.o universal.o globals.o perlio.o perlapi.o numeric.o mathoms.o locale.o pp_pack.o pp_sort.o caretx.o dquote.o time64.o  miniperlmain.o  -lpthread  -ldl -lm -lcrypt -lutil -lc
-> | /data/home/user/00-projects/proj_myproj_system0/build_myproj_system0/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-perl/5.24.4-r0/recipe-sysroot-native/usr/bin/x86_64-pokysdk-linux/../../libexec/x86_64-pokysdk-linux/gcc/x86_64-pokysdk-linux/7.1.1/ld: cannot find -lssp_nonshared
-> | /data/home/user/00-projects/proj_myproj_system0/build_myproj_system0/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-perl/5.24.4-r0/recipe-sysroot-native/usr/bin/x86_64-pokysdk-linux/../../libexec/x86_64-pokysdk-linux/gcc/x86_64-pokysdk-linux/7.1.1/ld: cannot find -lssp
-> | collect2: error: ld returned 1 exit status
-> | makefile:391: recipe for target 'lib/buildcustomize.pl' failed
-> | make[1]: *** [lib/buildcustomize.pl] Error 1
-> | make[1]: Leaving directory '/data/home/user/00-projects/proj_myproj_system0/build_myproj_system0/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-perl/5.24.4-r0/perl-5.24.4'
-> | make[1]: Entering directory '/data/home/user/00-projects/proj_myproj_system0/build_myproj_system0/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-perl/5.24.4-r0/perl-5.24.4'
-> | ./miniperl -Ilib autodoc.pl
-> | make[1]: ./miniperl: Command not found
-> | makefile:441: recipe for target 'pod/perlintern.pod' failed
-> 
-> Thank you in advance,
-> Lukasz
-> 
-> ***
-> The information in this email is confidential and intended solely for the individual or entity to whom it is addressed.  If you have received this email in error please notify the sender by return e-mail, delete this email, and refrain from any disclosure or action based on the information.
-> ***
-> 
+diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1332.bb b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1332.bb
+new file mode 100644
+index 0000000..a6068e6
+--- /dev/null
++++ b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1332.bb
+@@ -0,0 +1,24 @@
++SUMMARY = "IBM's Software TPM 2.0"
++
++LICENSE = "BSD"
++SECTION = "securty/tpm"
++LIC_FILES_CHKSUM = "file://../LICENSE;md5=1e023f61454ac828b4aa1bc4293f7d5f"
++
++SRC_URI = "https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm1332.tar.gz"
++SRC_URI[md5sum] = "0ab34a655b4e09812d7ada19746af4f9"
++SRC_URI[sha256sum] = "8e8193af3d11d9ff6a951dda8cd1f4693cb01934a8ad7876b84e92c6148ab0fd"
++
++DEPENDS = "openssl"
++
++S = "${WORKDIR}/src"
++
++LDFLAGS = "${LDFALGS}"
++
++do_compile () {
++   make CC='${CC}'
++}
++
++do_install () {
++   install -d ${D}/${bindir}
++   install -m 0755 tpm_server  ${D}/${bindir}
++}
+-- 
+2.17.1
 
 
