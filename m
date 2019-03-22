@@ -1,66 +1,48 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <yocto@mindchasers.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 01F02E00D1E; Fri, 22 Mar 2019 07:12:44 -0700 (PDT)
+	id 4BF82E00D14; Fri, 22 Mar 2019 10:06:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS,TEQF_USR_MSGID_HEX autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.181 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com
-	[209.85.215.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 316A1E00CED
-	for <yocto@yoctoproject.org>; Fri, 22 Mar 2019 07:12:42 -0700 (PDT)
-Received: by mail-pg1-f181.google.com with SMTP id b12so1639518pgk.0
-	for <yocto@yoctoproject.org>; Fri, 22 Mar 2019 07:12:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=EUPfINkseA09TPXWVwZKZpbqsm5NAayCl++zHvFPtUA=;
-	b=culfWjAyJhEfKplVR5wyDUd2/onm0BEc2xApe6tZK1n1YxGluVQ8B0keLGMdKjJKh9
-	C/FXpMatMniV+6pcuRonWl+HFzpD4bkSF6i73qMJjcKFUGtp55LS5v3RwR30+/bxgt23
-	VHHOsTY3UMhQVjh5LLs0meli28S23wDL1f1QElnC2sG/byu/knLQ2686JUi6Du7u1bki
-	1Z5YHv0BipYfVmP/qd9q99O6L0835RoHOFAxcWFdD7Wt/BwrLDSCVUklA40M8yfPl1S+
-	4YK4ZcxpLJNR7J+d7Da8oRPiiapdB0VBNVW2Z5w3Dk+q7omqXBnsLP2r7IHlGZ8bupkj
-	36vA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=EUPfINkseA09TPXWVwZKZpbqsm5NAayCl++zHvFPtUA=;
-	b=BJR80rwhOnY9V8fQgL91jFxwAsWYEA1cygt0RhlHmV5x9G75PpkNA3+QbliiW/H8lz
-	ysYX/KchlVIX4jZG18vewCiEzTQxSoc8Sa4zivTTRfcvDSnn4lxupW9zABRsL0f2SNY1
-	TLEOszxmb96JufMcWOd+EJFbXSG24Ixzkqg1Rqq7EghhlCXgtt+ylrlwcCka7wHReyZT
-	bFZ7NHXomXAZWIIQHUBXiWCkXy5Fjmewrzf8CrIC27nhiCO6qvSkkAmCMyaEVlsaBYZk
-	4wFIAj1PwooaDYyZCPjf+ZbrJ+ukHzs+ZI6K2DzxFE4pcvXJ/yU4UrPaKLAQ5PsGEfA4
-	TScw==
-X-Gm-Message-State: APjAAAXPUkz0u4BuTwEW54yoKO8aed9AlxTUT+e7HSdnmPmZLGFt77+c
-	R+3pOsuiRa2bldVjJfuioKLQILa+
-X-Google-Smtp-Source: APXvYqxe2TIebYz92lxB6swUy8Lu9/HezmiBFpZyq4OrH7OGxHA09ZVqztmZoRK30hIjBQciZn12rQ==
-X-Received: by 2002:a63:234c:: with SMTP id u12mr9333541pgm.282.1553263961147; 
-	Fri, 22 Mar 2019 07:12:41 -0700 (PDT)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136])
-	by smtp.gmail.com with ESMTPSA id f14sm9965215pfn.3.2019.03.22.07.12.39
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 22 Mar 2019 07:12:40 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri, 22 Mar 2019 07:12:38 -0700
-Message-Id: <20190322141238.29336-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [meta-security][PATCH] tpm2simulator: replaced by ibmswtpm2
+	*      [185.20.51.6 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* 1.0 TEQF_USR_MSGID_HEX To and from user nearly same + unusual message
+	ID
+X-Greylist: delayed 523 seconds by postgrey-1.32 at yocto-www;
+	Fri, 22 Mar 2019 10:06:15 PDT
+Received: from mailrelay4.webfaction.com (mailrelay4.webfaction.com
+	[185.20.51.6])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24FBBE00CED
+	for <yocto@yoctoproject.org>; Fri, 22 Mar 2019 10:06:15 -0700 (PDT)
+Received: from mailrelay3.webfaction.com (mailrelay3.webfaction.com
+	[207.38.93.110])
+	by mailrelay4.webfaction.com (Postfix) with ESMTPS id 3CECFE78D8
+	for <yocto@yoctoproject.org>; Fri, 22 Mar 2019 16:56:17 +0000 (UTC)
+Received: from mailrelay1.webfaction.com (mailrelay1.webfaction.com
+	[207.38.86.46])
+	by mailrelay3.webfaction.com (Postfix) with ESMTPS id BB27828005A
+	for <yocto@yoctoproject.org>; Fri, 22 Mar 2019 16:56:14 +0000 (UTC)
+Received: from smtp.webfaction.com (mail6.webfaction.com [31.170.123.134])
+	by mailrelay1.webfaction.com (Postfix) with ESMTPS id A19BC1A043C
+	for <yocto@yoctoproject.org>; Fri, 22 Mar 2019 16:56:13 +0000 (UTC)
+Received: from [192.168.1.14] (c-73-196-216-147.hsd1.nj.comcast.net
+	[73.196.216.147])
+	by smtp.webfaction.com (Postfix) with ESMTPSA id 5AEDA6030F566
+	for <yocto@yoctoproject.org>; Fri, 22 Mar 2019 16:55:50 +0000 (UTC)
+To: Yocto discussion list <yocto@yoctoproject.org>
+From: Bob Cochran <yocto@mindchasers.com>
+Message-ID: <b6e5f140-38c9-07e1-a136-76b5f42f411c@mindchasers.com>
+Date: Fri, 22 Mar 2019 12:56:09 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.4.0
+MIME-Version: 1.0
+Subject: Seeking recommendation for low cost dev board with Gigabit Ethernet that as a Yocto BSP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,43 +54,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Mar 2019 14:12:44 -0000
+X-List-Received-Date: Fri, 22 Mar 2019 17:06:16 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../tpm2simulator/tpm2simulator_138.bb        | 22 -------------------
- 1 file changed, 22 deletions(-)
- delete mode 100644 meta-tpm/recipes-tpm2/tpm2simulator/tpm2simulator_138.bb
+Hello All,
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2simulator/tpm2simulator_138.bb b/meta-tpm/recipes-tpm2/tpm2simulator/tpm2simulator_138.bb
-deleted file mode 100644
-index 866791c..0000000
---- a/meta-tpm/recipes-tpm2/tpm2simulator/tpm2simulator_138.bb
-+++ /dev/null
-@@ -1,22 +0,0 @@
--SUMMARY = "TPM 2.0 Simulator Extraction Script"
--LICENSE = "BSD-2-Clause"
--LIC_FILES_CHKSUM = "file://LICENSE;md5=1415f7be284540b81d9d28c67c1a6b8b"
--
--DEPENDS = "python"
--
--SRCREV = "e45324eba268723d39856111e7933c5c76238481"
--SRC_URI = "git://github.com/stwagnr/tpm2simulator.git"
--
--S = "${WORKDIR}/git"
--OECMAKE_SOURCEPATH = "${S}/cmake"
--
--inherit native lib_package cmake
--
--EXTRA_OECMAKE = " \
--	-DCMAKE_BUILD_TYPE=Debug \
--	-DSPEC_VERSION=138 \
--"
--
--do_configure_prepend () {
--	sed -i 's/^SET = False/SET = True/' ${S}/scripts/settings.py 
--}
--- 
-2.17.1
+Can anyone recommend a ~$50 dev board that runs Yocto and has a single 
+Gigabit Ethernet port?
+
+The boards we are aware of either have 100Mbit Ethernet, don't meet the 
+price target, or has a Gigabit Ethernet port that has reduced 
+capabilities via firmware (Ethernet driver isn't open source).
+
+Thank you,
+
+Bob
+
 
 
