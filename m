@@ -1,57 +1,65 @@
-Return-Path: <tfroehlich@archsys.io>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC888E00D2C; Thu, 21 Mar 2019 17:22:01 -0700 (PDT)
+	id 2EEF2E00CED; Thu, 21 Mar 2019 17:27:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.176 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.215.175 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com
-	[209.85.222.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5920CE00994
-	for <yocto@yoctoproject.org>; Thu, 21 Mar 2019 17:22:01 -0700 (PDT)
-Received: by mail-qk1-f176.google.com with SMTP id g1so255094qki.5
-	for <yocto@yoctoproject.org>; Thu, 21 Mar 2019 17:22:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=archsys-io.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=yz9QJIfB0l7nhrwQeiKx2xyaq+8WnLcUotB74K8jW/E=;
-	b=IuOSH/NOJhkFmVHzAJvKFVBYKdIOQoIR4aI1lHM0Nn1ZtVuysKCqS/R59NYxD4ZYIC
-	T3Vs1zS3vZibltyj9xifQ3yqz6UDNTb2Y6xAMkDC3wR0Qspirvyu0i+e8WeYwhCeljUI
-	yPH9S9AMKEdzEpDZhRVFraypkVgvoNCaLnFH0ZQ8hm+K8fxFRAA00nGYLyZ3Kj1QfMrQ
-	lTD2dKTQLqOhXDywCLV15df0tAmoca1OGHlF8mwe3ULJv4hZXNE9oUu5GwkbauyGWA4Z
-	Z04UKz6V/4ocTdcvkNfWgiqt/OxiLWVFgjrvV5eW6ZrGhw7wTM5Un/Nj0aHu42HbzQZ4
-	VGIg==
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
+	[209.85.215.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23D63E006D8
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2019 17:27:00 -0700 (PDT)
+Received: by mail-pg1-f175.google.com with SMTP id b12so232068pgk.0
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2019 17:27:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=wTaGWC8mw4rq45zefJAZmBAmAvnIbL0ZzV38j50da50=;
+	b=PI/StN4tzC6Sq3R5mQtrtqdP06Rnsdx32M7fN0x+zZ1UR03kz8IBlsVgqqsoXedk7c
+	4EGsZ291kis8EeYI8SXcFygwn490YjZ6RBch44QPeZbaj5ki+1beQABrOlT+AyLCybp5
+	Pujzvsq+2NvA38PJW8/KFY13u27IGCd576eVdm0VmXD4M8TT+CactCBd+nJrcIVvorI3
+	j/Nxig1rK7gK/iYXzj8fQr/Dr1qfsn7P5rr0F/v9Ige67n41VA/jYRXceu5M+I4cEwKO
+	yEexJJH1vDAPRTgGZ0TEWsDplMzcbouvUeNZrxzi1NLMnh01DtJnDJSef+IFNY5KKEhc
+	Lh5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=yz9QJIfB0l7nhrwQeiKx2xyaq+8WnLcUotB74K8jW/E=;
-	b=j61Z3aRJl8MxY3DuQ7ffJSWPYRt1ZwN1tzGsIH226lmOJ0cnZdt+c8hNpaW8IBDmqt
-	gJim/U4ig01FjCH7u8fpTnhsLOWZlXke/DGz3w5a0bXf6PkjXagbdAblrMA4eXHN7quz
-	Pu9eDxOMveg7FX9tBSTqtefUftZbozK5EjcI+mQban6lRV2T8xiKeoT1OPZK8yMUdVQd
-	YFUrMbLqNq4breNi7vjEwrf2zAhjivq7QQDYYO6LHJjpD9GeLi4IOkQecSXs/dv9okb0
-	xGpCZYqDqr/94e3OshofahzoNILpmJrSjFa9+hxJi0BPcnH9fDrasX7RlHC22chpV3o0
-	sV8w==
-X-Gm-Message-State: APjAAAWp4y2GesKYsEDbK1eTAVCJhAxP6CJod2psAindT+GUV2A9o6Hc
-	WbWRlDXPQRCrDhGecIzORaWVTCvUzjp09p0+RFacpJ8/mwXZmg==
-X-Google-Smtp-Source: APXvYqzYVj1GDza4LqgEheLVrL7uX4MprwP6GYjWzakr/UJoqJnMl+glPO/xeBfxHrh3YLEaL2NRZYkIVYhZgId93PQ=
-X-Received: by 2002:a37:9fc6:: with SMTP id i189mr5390210qke.246.1553214120555;
-	Thu, 21 Mar 2019 17:22:00 -0700 (PDT)
-MIME-Version: 1.0
-From: Timothy Froehlich <tfroehlich@archsys.io>
-Date: Thu, 21 Mar 2019 17:21:50 -0700
-Message-ID: <CAHSUxjQ+UpLtd1AUdrOLXWZNBn9CsS4MWm9YPkfA6CvQPQHQRA@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: How to add task only if flag set
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=wTaGWC8mw4rq45zefJAZmBAmAvnIbL0ZzV38j50da50=;
+	b=TDxd9HKBek5BKwA6mSpFcSjwzYB7NABdNDbwFoRUTqQ7OogZ8WUOqFKbSkZnq99Jn1
+	4UBZoPcwlnvC/3DxgHV0nihO1OLO+ebxb1e1tMpIlxEZi+OgUGLm3+2oBw+A5ZGSQEh6
+	+YlCebm+DrMtzvKj0Gkw1nSIBoAiQx9cpNW9M7/kwQIyVIVO18ygcBd6paG4GiDyTtlS
+	t5A7UlZo5A9BVCglgHrC5aq9zYC4ve2uqfXyQ4GZRzwEtqbj6eHlwvVGhnKC5kaX8adr
+	jDNJ/3vKCKEmvqwnqP1HxcZ8Lfel157MeAjtSybrNfouH4KRGN0IQk95dvYs4+2XjcFz
+	d9fg==
+X-Gm-Message-State: APjAAAWf0nXWpOIgGEDbjoSXEFGZ+TevTHUGRtJxrclRkH39cRcNjB8r
+	K3fcRKCY+CKwdOhJGbJak4yYh803
+X-Google-Smtp-Source: APXvYqzyTA/rTEF4f7rRd7CZf5+J5DL/QrhQ7z4ICbv/Hr1bvzUxQgwBk/AKLF+gwo0WFjrXx8yWjQ==
+X-Received: by 2002:a65:6546:: with SMTP id a6mr6122226pgw.296.1553214419520; 
+	Thu, 21 Mar 2019 17:26:59 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	i126sm7574849pfb.15.2019.03.21.17.26.58 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 21 Mar 2019 17:26:58 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 21 Mar 2019 17:26:57 -0700
+Message-Id: <20190322002657.5503-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH] meta-tpm: add runtime test for tpm2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,90 +71,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Mar 2019 00:22:02 -0000
-Content-Type: multipart/alternative; boundary="000000000000ea89050584a3d750"
+X-List-Received-Date: Fri, 22 Mar 2019 00:27:01 -0000
 
---000000000000ea89050584a3d750
-Content-Type: text/plain; charset="UTF-8"
+This runs a basic tpm test using the simulator
 
-I'm working with a read only file system and I'm working on splitting
-packages so that their config dirs are symlinked in from the persistent
-data partition. But I'd like to be able to enable or disable this
-optionally, so that I can still build an image with a r/w file system and a
-single partition for easier development. I've got a class file with a new
-task that moves config files to /data and symlinks them back, but I can't
-figure out how to conditionally enable it. Ideally it'd be enabled only if
-read-only-rootfs is set in IMAGE_FEATURES.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ meta-tpm/lib/oeqa/runtime/cases/tpm2.py | 41 +++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+ create mode 100644 meta-tpm/lib/oeqa/runtime/cases/tpm2.py
 
-Here's the class if it helps:
-
-ORIGINAL_FILES ??= "file1 file2..."
-SYMLINK_NAMES ??= "sym1 sym2..."
-
-do_symlink_to_data () {
-    install -d ${D}/${PERSIST_DIR}
-
-    ORIG_ARR=(${ORIGINAL_FILES})
-    SYMLINK_ARR=(${SYMLINK_NAMES})
-
-    for i in ${!ORIG_ARR[*]}; do
-        ORIG=ORIG_ARR[i]
-        SYMLINK=SYMLINK_ARR[i]
-
-
-        mv ${D}/$ORIG ${D}/${PERSIST_DIR}/$SYMLINK
-        ln -sr ${D}/${PERSIST_DIR}/$SYMLINK ${D}/$ORIG
-    done
-}
-
-FILES_${PN}_append_mender-image += " ${SYMLINK_NAMES}"
-
-addtask symlink_to_data after do_install
-
-
-
-
+diff --git a/meta-tpm/lib/oeqa/runtime/cases/tpm2.py b/meta-tpm/lib/oeqa/runtime/cases/tpm2.py
+new file mode 100644
+index 0000000..d92b15c
+--- /dev/null
++++ b/meta-tpm/lib/oeqa/runtime/cases/tpm2.py
+@@ -0,0 +1,41 @@
++from oeqa.runtime.case import OERuntimeTestCase
++from oeqa.core.decorator.depends import OETestDepends
++from oeqa.runtime.decorator.package import OEHasPackage
++
++
++class Tpm2Test(OERuntimeTestCase):
++    def check_endlines(self, results,  expected_endlines): 
++        for line in results.splitlines():
++            for el in expected_endlines:
++                if line == el:
++                    expected_endlines.remove(el)
++                    break
++
++        if expected_endlines:
++            self.fail('Missing expected line endings:\n  %s' % '\n  '.join(expected_endlines))
++
++    @OEHasPackage(['tpm2.0-tss'])
++    @OEHasPackage(['tpm2-abrmd'])
++    @OEHasPackage(['tpm2.0-tools'])
++    @OEHasPackage(['ibmswtpm2'])
++    @OETestDepends(['ssh.SSHTest.test_ssh'])
++    def test_tpm2_sim(self):
++        cmds = [
++                'tpm_server &',
++                'tpm2-abrmd --allow-root --tcti=mssim &'
++               ]
++
++        for cmd in cmds:
++            status, output = self.target.run(cmd)
++            self.assertEqual(status, 0, msg='\n'.join([cmd, output]))
++
++    @OETestDepends(['tpm2.Tpm2Test.test_tpm2_sim'])
++    def test_tpm2(self):
++         (status, output) = self.target.run('tpm2_pcrlist')
++         expected_endlines = []
++         expected_endlines.append('sha1 :')
++         expected_endlines.append('  0  : 0000000000000000000000000000000000000003')
++         expected_endlines.append('  1  : 0000000000000000000000000000000000000000')
++
++         self.check_endlines(output, expected_endlines)
++
 -- 
-Tim Froehlich
-Embedded Linux Engineer
-tfroehlich@archsys.io
-215-218-8955
+2.17.1
 
---000000000000ea89050584a3d750
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
-r=3D"ltr">I&#39;m working with a read only file system and I&#39;m working =
-on splitting packages so that their config dirs are symlinked in from the p=
-ersistent data partition. But I&#39;d like to be able to enable or disable =
-this optionally, so that I can still build an image with a r/w file system =
-and a single partition for easier development. I&#39;ve got a class file wi=
-th a new task that moves config files to /data and symlinks them back, but =
-I can&#39;t figure out how to conditionally enable it. Ideally it&#39;d be =
-enabled only if read-only-rootfs is set in IMAGE_FEATURES.</div><div dir=3D=
-"ltr"><br></div><div>Here&#39;s the class if it helps:</div><div><br></div>=
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">ORIGINAL_FILES ??=3D &qu=
-ot;file1 file2...&quot;</div><div dir=3D"ltr">SYMLINK_NAMES ??=3D &quot;sym=
-1 sym2...&quot;</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">do_symlink=
-_to_data () {</div><div dir=3D"ltr">=C2=A0 =C2=A0 install -d ${D}/${PERSIST=
-_DIR}</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">=C2=A0 =C2=A0 ORIG_A=
-RR=3D(${ORIGINAL_FILES})</div><div dir=3D"ltr">=C2=A0 =C2=A0 SYMLINK_ARR=3D=
-(${SYMLINK_NAMES})</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">=C2=A0 =
-=C2=A0 for i in ${!ORIG_ARR[*]}; do=C2=A0</div><div dir=3D"ltr">=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 ORIG=3DORIG_ARR[i]</div><div dir=3D"ltr">=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 SYMLINK=3DSYMLINK_ARR[i]</div><div dir=3D"ltr"><br></div><div=
- dir=3D"ltr"><br></div><div dir=3D"ltr">=C2=A0 =C2=A0 =C2=A0 =C2=A0 mv ${D}=
-/$ORIG ${D}/${PERSIST_DIR}/$SYMLINK</div><div dir=3D"ltr">=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 ln -sr ${D}/${PERSIST_DIR}/$SYMLINK ${D}/$ORIG</div><div dir=3D"=
-ltr">=C2=A0 =C2=A0 done</div><div dir=3D"ltr">}</div><div dir=3D"ltr"><br><=
-/div><div dir=3D"ltr">FILES_${PN}_append_mender-image +=3D &quot; ${SYMLINK=
-_NAMES}&quot;</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">addtask syml=
-ink_to_data after do_install</div><div><br></div></div></div><div dir=3D"lt=
-r"><div><br></div><div><div><br></div><div><br></div>-- <br><div dir=3D"ltr=
-" class=3D"gmail_signature"><div dir=3D"ltr">Tim Froehlich<div>Embedded Lin=
-ux Engineer</div><div><a href=3D"mailto:tfroehlich@archsys.io" target=3D"_b=
-lank">tfroehlich@archsys.io</a></div><div>215-218-8955</div></div></div></d=
-iv></div></div></div></div></div>
-
---000000000000ea89050584a3d750--
