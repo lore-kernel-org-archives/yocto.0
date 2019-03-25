@@ -1,65 +1,64 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <bruce.ashfield@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 989EBE00C93; Sun, 24 Mar 2019 15:02:33 -0700 (PDT)
+	id 04D6FE008CA; Sun, 24 Mar 2019 20:15:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, LOTS_OF_MONEY,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	provider *      (bruce.ashfield[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.194 listed in list.dnswl.org]
+	*      [209.85.208.173 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
-	[209.85.210.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 508D8E00C38
-	for <yocto@yoctoproject.org>; Sun, 24 Mar 2019 15:02:32 -0700 (PDT)
-Received: by mail-pf1-f194.google.com with SMTP id r15so4943208pfn.9
-	for <yocto@yoctoproject.org>; Sun, 24 Mar 2019 15:02:32 -0700 (PDT)
+	*      valid *  0.0 LOTS_OF_MONEY Huge... sums of money
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com
+	[209.85.208.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8330EE008CA
+	for <yocto@yoctoproject.org>; Sun, 24 Mar 2019 20:15:13 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id z26so6385369lja.13
+	for <yocto@yoctoproject.org>; Sun, 24 Mar 2019 20:15:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=DB/atKuGVAsmZ9jZ5Hjz6tiGPIlR6JwdOrtCm6QhLNs=;
-	b=C6Je2TN/mymIUj/qH2aH6HtL3Ulo54bXcUyN4OJ4pJp4ip+zofSGKad4gCgM7i+5CL
-	/xwTtOeRNDIa1pnGHt6Uwk038iXY15TdNrydBEVT1EmG26zWZXsAnDYPEphvOmBAXWsP
-	fS0KqVh4nx5lEoE1BJk6f3Ks4f8MQBM0UeH+w0gErTuhdjUTtH3AdcYiBoADquZJxQdO
-	vCoVuXCNXVXi2Ieyqcy3lfBcomStboCtogALcebWdeo9OqqnyTCx3aPZXirPkphbnDJ0
-	JL73FbjDwKg6JaIf686HyE11Ad2l4tccWST1eesYMIkLfUWes9WWvC+28luFmoLt8M7a
-	89PA==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=VGZb/KxOYvec6wBDSFSmXUDc5+arT9nezIxC8MTzTgo=;
+	b=bdOiq8DmriEL159GRS3z4RhDUlVXJ1Y9LdMjcfVJtZyNYKRbjsABV97h/McXZE6W0j
+	G+UutpEY1j0D4uJaC2x7Yvi7izSDoFHt9wFPL77Jsz6JiXxoJW1L0UA7QMfwdYG8J5gR
+	wVID4gvHfap+ilvqk2sL5GYqkpN7qIt+J9zxf9fruVWpAuUFR1GVtHIDw+Oo5NMEsJ+P
+	c2i1N5XfOkUgN1c1Zv//bEb5sQMwMZvZSre4AayL/OiWYxzwW9uQvemnVmGt/PzTGpzV
+	tTwxCPz1X9BrNOPGJPDwWLrqutZyrJK+CP8c94fa2MMLaCVX7ciTfiIRpsSh/JqPMLkO
+	0juQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=DB/atKuGVAsmZ9jZ5Hjz6tiGPIlR6JwdOrtCm6QhLNs=;
-	b=A8kUT2B77lUUDlQNhyFSGV/9Bo1Co20DaMBXTRcXj67Bu0aki3+ErcD2dJ51YLWZR5
-	V7coTNqeJnZReJLjf5LPXb+6xDkRbmH4cLbYcyg2YnH/lWiemzWpGaleDkGPlF7OsJAz
-	9xHr5tXcCQ0wtRIJBXFo1vu9vm01D0v6hjoisUPG0Toc7jq0DNqZ33coREfC4cB8g1an
-	Kr0BHkk5sQY4W934ey+Lk2m7lnM0ZSAMzbdRb7ByzBdhZR9blz7vyp20j5qOs5dZ3c5r
-	wIHazfftPYU3zmszNEZBnuf2Std32z4zAYLeAQp00YswZWk3SacJkMEgRMEbukdS1fDM
-	Xp0Q==
-X-Gm-Message-State: APjAAAX5dx178AVlmkejHm7xt0OdqdN6pv+TjCaCqTaMyXIvifpxA/2A
-	nbGZnS/Rz2mtJbka966OK0faqRzs
-X-Google-Smtp-Source: APXvYqxiqK9qoNjuJ8alpWiUW92BhK7yhmM9D1xQVqZAby3JzHFz72gdKq74llt1D5tjszxv1AgsGg==
-X-Received: by 2002:aa7:8a92:: with SMTP id a18mr21005413pfc.218.1553464951440;
-	Sun, 24 Mar 2019 15:02:31 -0700 (PDT)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	s184sm21242757pfb.1.2019.03.24.15.02.30 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 24 Mar 2019 15:02:30 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sun, 24 Mar 2019 15:02:28 -0700
-Message-Id: <20190324220228.593-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [meta-security][PATCH] tpm2.0 prefix: rename to tpm2 take2
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=VGZb/KxOYvec6wBDSFSmXUDc5+arT9nezIxC8MTzTgo=;
+	b=nRxHk+Ln1b+cr1d2xEM/Y/MsQc4pmrP2TLUIRlErKgwXX10i8gyWQRETH2f5VgzH3D
+	anCEBfCh2DQIgW3JmDSr6yawSuOegALpqZyS4aXzgBKbXmndjCpOTbptBOgNWgWO4enM
+	Wa71LDGAXq1tqcNiy887Vx5QG3tUhntMbNXbJ9zLLq/W3pLUlb1RFQjpPXOBOOMqi0YI
+	mc4M7Ixedu3srntyBrDDmAo1G7gd0DfPLmEXutls5YX98fPdVhpMAYcVvPzTND195dFy
+	sMRBZxd0YyDOf4OOpf6kt4VSu0bPR5NKUfSKqPvvjLN0F25mQytW17HsXK4ZPAyKWxb4
+	ur7g==
+X-Gm-Message-State: APjAAAWqdF/OMnQHqCBK0s1nObb14QV6gV1O7ybG1imdsXWWE7A01alz
+	r2Ha7kZ5UweeFqk04ceDP+B3AqQNL0P8lSyaOpo=
+X-Google-Smtp-Source: APXvYqz6cgyJChCqVloE87Ik/ZJDNNnRPmkdUgRSMFn25BOqmSHXKexOkMRp/mIShLDX9bkxBlDwDG4dSZKuFnVazLI=
+X-Received: by 2002:a2e:9196:: with SMTP id f22mr11850774ljg.82.1553483712306; 
+	Sun, 24 Mar 2019 20:15:12 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190322024756.116486-1-zhixiong.chi@windriver.com>
+In-Reply-To: <20190322024756.116486-1-zhixiong.chi@windriver.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Sun, 24 Mar 2019 23:15:01 -0400
+Message-ID: <CADkTA4N+5QUoV4Pwu26f4BBRnAXg=ra4Ya2KY5jG3CPuysB5wA@mail.gmail.com>
+To: Zhixiong Chi <zhixiong.chi@windriver.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: [meta-cloud-services][PATCH] dhcp: Add the default route option
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,81 +70,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Mar 2019 22:02:33 -0000
+X-List-Received-Date: Mon, 25 Mar 2019 03:15:15 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-v1 was commited. This is the additional changes.
+merged
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.1.1.bb   | 4 ++--
- meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb | 2 +-
- meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_3.1.3.bb   | 4 ++--
- meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.2.1.bb       | 2 +-
- 4 files changed, 6 insertions(+), 6 deletions(-)
+Bruce
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.1.1.bb b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.1.1.bb
-index 13dbf5a..a4c6682 100644
---- a/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.1.1.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_2.1.1.bb
-@@ -9,7 +9,7 @@ SECTION = "security/tpm"
- LICENSE = "BSD-2-Clause"
- LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=500b2e742befc3da00684d8a1d5fd9da"
- 
--DEPENDS = "autoconf-archive dbus glib-2.0 tpm2.0-tss glib-2.0-native \
-+DEPENDS = "autoconf-archive dbus glib-2.0 tpm2-tss glib-2.0-native \
-             libtss2 libtss2-mu libtss2-tcti-device libtss2-tcti-mssim"
- 
- 
-@@ -50,6 +50,6 @@ do_install_append() {
- FILES_${PN} += "${libdir}/systemd/system-preset \
- 		${datadir}/dbus-1"
- 
--RDEPENDS_${PN} += "tpm2.0-tss"
-+RDEPENDS_${PN} += "tpm2-tss"
- 
- BBCLASSEXTEND = "native"
-diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb
-index c24fd8f..9031e63 100644
---- a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb
-@@ -4,7 +4,7 @@ SECTION = "security/tpm"
- LICENSE = "BSD-2-Clause"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=b748af41ef1300c98e105b3b7ec4ecc1"
- 
--DEPENDS = "autoconf-archive pkgconfig dstat sqlite3 openssl libtss2-dev tpm2.0-tools"
-+DEPENDS = "autoconf-archive pkgconfig dstat sqlite3 openssl libtss2-dev tpm2-tools"
- 
- SRC_URI = "git://github.com/tpm2-software/tpm2-pkcs11.git \
-            file://bootstrap_fixup.patch \
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_3.1.3.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_3.1.3.bb
-index 56c68db..1f1f5c6 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_3.1.3.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_3.1.3.bb
-@@ -1,10 +1,10 @@
- SUMMARY = "Tools for TPM2."
--DESCRIPTION = "tpm2.0-tools"
-+DESCRIPTION = "tpm2-tools"
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=91b7c548d73ea16537799e8060cea819"
- SECTION = "tpm"
- 
--DEPENDS = "pkgconfig tpm2.0-tss openssl curl autoconf-archive"
-+DEPENDS = "pkgconfig tpm2-tss openssl curl autoconf-archive"
- 
- SRCREV = "74ba065e5914bc5d713ca3709d62a5751b097369"
- 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.2.1.bb b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.2.1.bb
-index 4f9db50..78bdeeb 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.2.1.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.2.1.bb
-@@ -1,5 +1,5 @@
- SUMMARY = "Software stack for TPM2."
--DESCRIPTION = "tpm2.0-tss like woah."
-+DESCRIPTION = "OSS implementation of the TCG TPM2 Software Stack (TSS2) "
- LICENSE = "BSD-2-Clause"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=500b2e742befc3da00684d8a1d5fd9da"
- SECTION = "tpm"
+On Thu, Mar 21, 2019 at 10:52 PM Zhixiong Chi
+<zhixiong.chi@windriver.com> wrote:
+>
+> Add the default route option for the operation of adding route,
+> while we set the static route and the mask setting is 0.
+>
+> For example:
+> add_routes 32 169 254 169 254 10 209 67 4 0 10 209 67 1
+>
+> The first route (169.254.169.254/32 via 10.209.67.4) is added successfully,
+> but the second route (10.209.67.1, default) is not added at all.
+>
+> Signed-off-by: Zhixiong Chi <zhixiong.chi@windriver.com>
+> ---
+>  recipes-connectivity/dhcp/files/dhclient-exit-hooks | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/recipes-connectivity/dhcp/files/dhclient-exit-hooks b/recipes-connectivity/dhcp/files/dhclient-exit-hooks
+> index 3be5e02..41bcb08 100644
+> --- a/recipes-connectivity/dhcp/files/dhclient-exit-hooks
+> +++ b/recipes-connectivity/dhcp/files/dhclient-exit-hooks
+> @@ -66,6 +66,9 @@ while [ $# -ne 0 ]; do
+>    elif [ $mask -gt 8 ]; then
+>      destination="-net $1.$2.0.0/$mask"
+>      shift; shift
+> +  #Add the default route
+> +  elif [ $mask -eq 0 ]; then
+> +    destination="default"
+>    else
+>      destination="-net $1.0.0.0/$mask"
+>      shift
+> --
+> 2.17.1
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
 -- 
-2.17.1
-
+- Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end
+- "Use the force Harry" - Gandalf, Star Trek II
 
