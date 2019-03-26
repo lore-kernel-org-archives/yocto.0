@@ -1,64 +1,83 @@
-Return-Path: <ms.priyanshu.sharma@gmail.com>
+Return-Path: <johann.obermayr@sigmatek.at>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6AAEEE00B81; Wed, 27 Mar 2019 03:50:47 -0700 (PDT)
+	id D2E1AE00D11; Wed, 27 Mar 2019 11:44:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (ms.priyanshu.sharma[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.174 listed in list.dnswl.org]
+	*      [40.107.1.125 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com
-	[209.85.167.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 562DEE0053F
-	for <yocto@yoctoproject.org>; Wed, 27 Mar 2019 03:50:46 -0700 (PDT)
-Received: by mail-oi1-f174.google.com with SMTP id v10so8119858oib.1
-	for <yocto@yoctoproject.org>; Wed, 27 Mar 2019 03:50:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=CmUEfSOkc76dUW7yDFEo1BqWuNibeIYBt1ztKZuwJOg=;
-	b=JTrBWpBpsBnNW6cD14v6uzjyooVU/5kW0GHHP5JlDM7+2hWL04JiLh+2Y+NniQdbIW
-	pgxSh5jN0C58VTOQIn0+U8m5JJiz3p4pAhA5I1Zy7c+dgJ+P0KW+hPoDZYO9aWn0o9HY
-	LLL31UVbvDp2IH7+V45FXMzibItiRhT6OUXtPCnKYzfdsrex4z7duv/nD45qJMVaZFr8
-	tkVW+FlRljmNDlGkCU/+HsEFFWYi69GMwiV9bomJ66RvWBkjAc5YWlRSNOM/XLcMYsfT
-	PYPVFyI3ZhOK8PvycZFnblDAbfldCuNgchBOwNTAkU/ThsvD6fSSresA5suRqNU/gz4j
-	NmvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=CmUEfSOkc76dUW7yDFEo1BqWuNibeIYBt1ztKZuwJOg=;
-	b=BOqZDnfEv7bZe5duA+TEO0DJcyGisty6v1Lqle6EgaWeTO8UMGSeagPRBU36g3tCtj
-	gMik/nT23aBB4L7xTZksB0fMvo7JpsHrHQEApAEoNLG16aURvs+2A8d3dJeY/EfGkQ9k
-	Am483YC+c9YyVW/oBG06kN/+qd6JJ10l2lwcRs6C+Z/svZYc4TwQ++KFDaK3bl42pflt
-	OzONNzD+LkmcVae2+vbTIgINMQbPLO4gKvOT43P32EvbWplUMXpDT0i0i8gpm+EbKXpz
-	k2GZUj2dM0DqDjFewI3Cy/EeSCj05SNmCjgZb/y2U5uQ1nK2q/Rdt4SpuGuqxTcWv0SC
-	eDPg==
-X-Gm-Message-State: APjAAAWEfV6foTJDklZ7XFV8MZanFvozaEUFONtaTBmHUFBCo1OQwSQo
-	RrsiWNiyAcmREJfgY7f1NlJq65XqjaN5R4NmtcRk0g==
-X-Google-Smtp-Source: APXvYqyg5XORNCdo16LGzNQCxfr1CJaj8rOEZXczVAZUo7wISL9QCZiecJqaKI8w78Dd5AUsD5qKDy0Gh9JAQjJVMbk=
-X-Received: by 2002:aca:d513:: with SMTP id m19mr18123643oig.73.1553683845372; 
-	Wed, 27 Mar 2019 03:50:45 -0700 (PDT)
+X-Greylist: delayed 1957 seconds by postgrey-1.32 at yocto-www;
+	Wed, 27 Mar 2019 11:44:51 PDT
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com
+	(mail-eopbgr10125.outbound.protection.outlook.com [40.107.1.125])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79E7CE00872
+	for <yocto@yoctoproject.org>; Wed, 27 Mar 2019 11:44:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sigmatek.at;
+	s=selector1;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=RL6Nd+lMQryQ3NsciVm1/WTAbCVbv2hFZpO+RjnYU/Y=;
+	b=EZJemB9K+6+Tm8TDWYikL/WJLTQK/g1z3A+qXEx6/lI7QjPm6ixrSClRhYVxQDhEwhFDWiwvYmtkcPOFVNOmAn8R0oGKsyENfn41GeJKFLUpyCrnsFnmkuBdDE9Z5Jqopb6wkTbJpVPfOPfHFjH6F4wvqiyLBiVDT8w2PzAu1Cc=
+Received: from VI1PR08MB3375.eurprd08.prod.outlook.com (20.177.58.217) by
+	VI1PR08MB3232.eurprd08.prod.outlook.com (52.134.30.138) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1730.18; Tue, 26 Mar 2019 13:34:24 +0000
+Received: from VI1PR08MB3375.eurprd08.prod.outlook.com
+	([fe80::1daa:be95:adf8:e530]) by
+	VI1PR08MB3375.eurprd08.prod.outlook.com
+	([fe80::1daa:be95:adf8:e530%3]) with mapi id 15.20.1730.019;
+	Tue, 26 Mar 2019 13:34:24 +0000
+From: Johann Obermayr <johann.obermayr@sigmatek.at>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: build SYSLINUX module
+Thread-Index: AdTj2A7pEvtjEshGTXuK2ZzSucDp3w==
+Date: Tue, 26 Mar 2019 13:34:24 +0000
+Message-ID: <VI1PR08MB3375FA5161FAE7944EE689DAF55F0@VI1PR08MB3375.eurprd08.prod.outlook.com>
+Accept-Language: de-AT, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=johann.obermayr@sigmatek.at; 
+x-originating-ip: [83.215.235.253]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ff87a169-a7f2-4a87-1f4f-08d6b1efc331
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600127)(711020)(4605104)(2017052603328)(7153060)(7193020);
+	SRVR:VI1PR08MB3232; 
+X-MS-TrafficTypeDiagnostic: VI1PR08MB3232:|VI1PR08MB3232:|VI1PR08MB3232:|VI1PR08MB3232:
+x-microsoft-antispam-prvs: <VI1PR08MB323259747C3676943A121BC6F55F0@VI1PR08MB3232.eurprd08.prod.outlook.com>
+x-forefront-prvs: 09888BC01D
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(136003)(396003)(39840400004)(366004)(346002)(376002)(189003)(199004)(1730700003)(6916009)(14454004)(53936002)(55016002)(25786009)(7116003)(9686003)(97736004)(5640700003)(6306002)(54896002)(8676002)(19627235002)(486006)(3480700005)(5660300002)(476003)(99286004)(71200400001)(86362001)(71190400001)(4744005)(256004)(316002)(26005)(2351001)(102836004)(2906002)(44832011)(186003)(74482002)(6436002)(2501003)(8936002)(66066001)(52536014)(790700001)(7696005)(6116002)(3846002)(81156014)(33656002)(478600001)(81166006)(105586002)(74316002)(7736002)(106356001)(6506007)(68736007);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:VI1PR08MB3232;
+	H:VI1PR08MB3375.eurprd08.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: sigmatek.at does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: Js1xnKD4Iro4KMRhlHrnAB65JYpSawF7c+1s2bmQDhjnGU3QSkysX3GEy5j7aDqnYn5ktgXzpAM+UV3DrGXf4Q/b5zDYdxFN84qVbO+FqMA1/nlQvXd9C58n8pFEEfbVNCz8g0j0+9sc3J5Pyt7SMQppcbwoWQaUTzhtcdds0l/NRYUvkkMr9aA8YM/iRENI6+w8h0CmIxiSmlXcjcFriFKX+wv2CY9c8yKezZ1678mSGQBPWzRg6gxbZoSujmAcX19U2Ooy7thVVbKG6nifn2KHX96raE+J7hujWXA9muKfPkUesRkUb6zJJsiA+AL7CTtVZrb4cbArmyiUfWHZFxW6vdgPb23CpZ2+aUE0/R658gqfKqBLnfSl3ryOMw4fmICtyi8uK0P2aLTORSn7+7MEMYC/Tv8uVZCT3lBcUIg=
 MIME-Version: 1.0
-References: <CAA_f9ePWPaPacQkJYsne0F6T-nY5j5epbgjaz+iFrxCAV+476g@mail.gmail.com>
-In-Reply-To: <CAA_f9ePWPaPacQkJYsne0F6T-nY5j5epbgjaz+iFrxCAV+476g@mail.gmail.com>
-From: Priyanshu Sharma <ms.priyanshu.sharma@gmail.com>
-Date: Wed, 27 Mar 2019 16:20:34 +0530
-Message-ID: <CAA_f9ePLea9ewu=UBf5Gv299birMfZps_DK1jOWPd3ZFJu6u5w@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: [meta-qt5][qtwayland]Qtwayland recipe fails with Yocto 2.5
+X-MS-Exchange-CrossTenant-Network-Message-Id: ff87a169-a7f2-4a87-1f4f-08d6b1efc331
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Mar 2019 13:34:24.9260 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: bcb1d87a-d2bc-486e-a62b-9ac9c746bc1b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR08MB3232
+X-OriginatorOrg: sigmatek.at
+Subject: build SYSLINUX module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,166 +89,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Mar 2019 10:50:47 -0000
-Content-Type: multipart/alternative; boundary="000000000000b25e730585113592"
+X-List-Received-Date: Wed, 27 Mar 2019 18:44:53 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_VI1PR08MB3375FA5161FAE7944EE689DAF55F0VI1PR08MB3375eurp_"
 
---000000000000b25e730585113592
-Content-Type: text/plain; charset="UTF-8"
-
-Found that the missing features.egl is provided by QTBase recipe. And in my
-case, qtbase is not compiling the feature "EGL" and thats why qtwayland
-fails to find it.
-
-egl is not included in PACKAGECONFIG of qtbase recipe. However, it used to
-be enabled with Yocto 2.2.
-Adding it PACKAGECONFIG[eg] of qtbase is not enabling it. How can egl be
-enabled in qtbase?
-
-Warm regards,
-Priyanshu Sharma
-
-On Tue, Mar 19, 2019 at 1:23 PM Priyanshu Sharma <
-ms.priyanshu.sharma@gmail.com> wrote:
-
-> Hi All,
->
-> I'm consistently getting a build failure after upgrading Poky to 2.5 from
-> 2.2 on qtwayland
-> Yocto recipe from meta-qt5.
->
-> The error looks like :
->
-> | Running configuration tests...
-> | Checking for Wayland client library... yes
-> | Checking for Wayland cursor library... yes
-> | Checking for wayland-scanner... yes
-> | Checking for Wayland EGL library... yes
-> | Checking for wayland-server... yes
-> | Done running configuration tests.
-> |
-> | Configure summary:
-> |
-> | Qt Wayland Drivers:
-> |   EGL .................................... no
-> |   Raspberry Pi ........................... no
-> |   XComposite EGL ......................... no
-> |   XComposite GLX ......................... no
-> |   DRM EGL ................................ no
-> |   libhybris EGL .......................... no
-> | Qt Wayland Client ........................ yes
-> | Qt Wayland Compositor .................... yes
-> |
-> | ERROR: Feature 'wayland-egl' was enabled, but the pre-condition 'features.wayland-client && features.opengl && features.egl && libs.wayland-egl' failed.
-> |
-> | ERROR: Feature 'wayland-egl' was enabled, but the pre-condition 'features.wayland-server && features.opengl && features.egl && libs.wayland-egl' failed.
-> |
-> | Check config.log for details.
-> | WARNING: exit code 1 from a shell command.
-> I've checked that only pre-condition "features.egl" is failing.
-> I've my own custom recipe which is providing virtual/egl and is set as PREFERRED_PROVIDER also.
-> What is the missing dependency here when virtual/egl is provided?
-> What exactly is features.egl looking for? ( virtual/egl provides egl.pc )
-> I've not changed anything in meta-qt5 layer. And the version is 5.9.2 QT5. However, is fails with 5.12 also.
->
->
-> Warm Regards,
->
-> Priyanshu Sharma
->
->
->
-
---000000000000b25e730585113592
-Content-Type: text/html; charset="UTF-8"
+--_000_VI1PR08MB3375FA5161FAE7944EE689DAF55F0VI1PR08MB3375eurp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Found that the missing features.egl is provided by QTBase =
-recipe. And in my case, qtbase is not compiling the feature &quot;EGL&quot;=
- and thats why qtwayland fails to find it.<div><br></div><div>egl is not in=
-cluded in PACKAGECONFIG of qtbase recipe. However, it used to be enabled wi=
-th Yocto 2.2.=C2=A0</div><div>Adding it PACKAGECONFIG[eg] of qtbase is not =
-enabling it. How can egl be enabled in qtbase?</div><div><br></div><div>War=
-m regards,</div><div>Priyanshu Sharma</div></div><br><div class=3D"gmail_qu=
-ote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 19, 2019 at 1:23 PM =
-Priyanshu Sharma &lt;<a href=3D"mailto:ms.priyanshu.sharma@gmail.com">ms.pr=
-iyanshu.sharma@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail-m_-36340631916=
-43445799gmail-gs" style=3D"margin:0px;padding:0px 0px 20px;width:1299.11px"=
-><div class=3D"gmail-m_-3634063191643445799gmail-"><div id=3D"gmail-m_-3634=
-063191643445799gmail-:mp" class=3D"gmail-m_-3634063191643445799gmail-ii gma=
-il-m_-3634063191643445799gmail-gt" style=3D"direction:ltr;margin:8px 0px 0p=
-x;padding:0px"><div id=3D"gmail-m_-3634063191643445799gmail-:mq" class=3D"g=
-mail-m_-3634063191643445799gmail-a3s gmail-m_-3634063191643445799gmail-aXjC=
-H" style=3D"overflow:hidden;font-variant-numeric:normal;font-variant-east-a=
-sian:normal;font-stretch:normal;line-height:1.5"><div dir=3D"ltr"><div styl=
-e=3D"font-family:Arial,Helvetica,sans-serif;font-size:small">Hi All,</div><=
-div style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small"><br cl=
-ass=3D"gmail-m_-3634063191643445799gmail-Apple-interchange-newline">I&#39;m=
- consistently getting a build failure after upgrading Poky to 2.5 from 2.2 =
-on qtwayland=C2=A0</div><div style=3D"font-family:Arial,Helvetica,sans-seri=
-f;font-size:small">Yocto recipe from meta-qt5.</div><div style=3D"font-fami=
-ly:Arial,Helvetica,sans-serif;font-size:small"><br></div><div>The error loo=
-ks like :<br><br><pre><font color=3D"#000000"><font face=3D"garamond, serif=
-" style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small;white-spa=
-ce:pre-wrap">| Running configuration tests...
-| Checking for Wayland client library... yes
-| Checking for Wayland cursor library... yes
-| Checking for wayland-scanner... yes
-| Checking for Wayland EGL library... yes
-| Checking for wayland-server... yes
-| Done running configuration tests.
-|=20
-| Configure summary:
-|=20
-| Qt Wayland Drivers:
-|   EGL .................................... no
-|   Raspberry Pi ........................... no
-|   XComposite EGL ......................... no
-|   XComposite GLX ......................... no
-|   DRM EGL ................................ no
-|   libhybris EGL .......................... no
-| Qt Wayland Client ........................ yes
-| Qt Wayland Compositor .................... yes
-|=20
-| ERROR: Feature &#39;wayland-egl&#39; was enabled, but the pre-condition &=
-#39;features.wayland-client &amp;&amp; features.opengl &amp;&amp; features.=
-egl &amp;&amp; libs.wayland-egl&#39; failed.
-|=20
-| ERROR: Feature &#39;wayland-egl&#39; was enabled, but the pre-condition &=
-#39;features.wayland-server &amp;&amp; features.opengl &amp;&amp; features.=
-egl &amp;&amp; libs.wayland-egl&#39; failed.
-|=20
-| Check config.log for details.
-| WARNING: exit code 1 from a shell command.
+Hallo,
 
-</font><font face=3D"arial, helvetica, sans-serif"><font face=3D"Arial, Hel=
-vetica, sans-serif"><span style=3D"white-space:pre-wrap">I&#39;ve checked t=
-hat only pre-condition &quot;features.egl&quot; is failing.
-I&#39;ve my own custom recipe which is providing virtual/egl and is set as =
-PREFERRED_PROVIDER also.
-What is the missing </span></font><span style=3D"white-space:pre-wrap">depe=
-ndency</span><font face=3D"Arial, Helvetica, sans-serif"><span style=3D"whi=
-te-space:pre-wrap"> here when virtual/egl is provided?
-What exactly is features.egl looking for? ( virtual/egl provides egl.pc )
-I&#39;ve not changed anything in meta-qt5 layer. And the version is 5.9.2 Q=
-T5. However, is fails with </span></font></font></font>5.12 also.</pre><pre=
- style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small;white-spac=
-e:pre-wrap"><font color=3D"#000000"><font face=3D"arial, helvetica, sans-se=
-rif"><br></font></font></pre><pre style=3D"font-family:Arial,Helvetica,sans=
--serif;font-size:small;white-space:pre-wrap"><font color=3D"#000000"><font =
-face=3D"arial, helvetica, sans-serif">Warm Regards,</font></font></pre><pre=
- style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small;white-spac=
-e:pre-wrap"><font color=3D"#000000"><font face=3D"arial, helvetica, sans-se=
-rif">Priyanshu Sharma</font></font></pre></div></div><div class=3D"gmail-m_=
--3634063191643445799gmail-yj6qo" style=3D"font-family:Arial,Helvetica,sans-=
-serif;font-size:small"></div><div class=3D"gmail-m_-3634063191643445799gmai=
-l-adL" style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small"></d=
-iv></div></div><div class=3D"gmail-m_-3634063191643445799gmail-hi" style=3D=
-"font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:medium=
-;border-bottom-left-radius:1px;border-bottom-right-radius:1px;padding:0px;w=
-idth:auto;background:rgb(242,242,242);margin:0px"></div></div></div><br cla=
-ss=3D"gmail-m_-3634063191643445799gmail-Apple-interchange-newline"></div>
-</blockquote></div>
+We have changed your system from yocto 1.6.2 to V2.5.2.
+On old system we use syslinux 4.07 with a own module.
 
---000000000000b25e730585113592--
+Now I see, that all modules in syslinux are compile, and the syslinux.bb cr=
+eate only new installer files.
+
+But how can i compile our own module ?
+
+It's in a subfolder of com32/our_own/*.c + Makefile
+
+Thanks
+  Johann
+
+
+
+--_000_VI1PR08MB3375FA5161FAE7944EE689DAF55F0VI1PR08MB3375eurp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hallo,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">We have changed your system fro=
+m yocto 1.6.2 to V2.5.2.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">On old system we use syslinux 4=
+.07 with a own module.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Now I see, that all modules in =
+syslinux are compile, and the syslinux.bb create only new installer files.<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">But how can i compile our own m=
+odule ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">It&#8217;s in a subfolder of co=
+m32/our_own/*.c &#43; Makefile<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp; Johann<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"mso-fareast-language:D=
+E"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_VI1PR08MB3375FA5161FAE7944EE689DAF55F0VI1PR08MB3375eurp_--
