@@ -1,33 +1,38 @@
-Return-Path: <Ovidiu.Panait@windriver.com>
+Return-Path: <jairo@futurasmus-knxlab.es>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0FA67E00C1B; Tue, 26 Mar 2019 03:45:45 -0700 (PDT)
+	id 5A279E00C1B; Tue, 26 Mar 2019 04:31:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A337EE00942
-	for <yocto@yoctoproject.org>; Tue, 26 Mar 2019 03:45:44 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x2QAjhd3008769
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 26 Mar 2019 03:45:43 -0700 (PDT)
-Received: from otp-opanait-l1.corp.ad.wrs.com (128.224.124.169) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.439.0; Tue, 26 Mar 2019 03:45:43 -0700
-From: Ovidiu Panait <ovidiu.panait@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 26 Mar 2019 12:44:58 +0200
-Message-ID: <20190326104458.31257-1-ovidiu.panait@windriver.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-Subject: [meta-anaconda][PATCH 1/1] packagegroup-anaconda-support: Add lvm2-udevrules
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [37.187.160.104 listed in list.dnswl.org]
+Received: from mail.knx-group.net (www.futurasmus-knxgroup.org
+	[37.187.160.104])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id E37CBE00B81
+	for <yocto@yoctoproject.org>; Tue, 26 Mar 2019 04:31:03 -0700 (PDT)
+Received: from PC-008 (200.red-79-155-111.dynamicip.rima-tde.net
+	[79.155.111.200]) by mail.knx-group.net
+	; Tue, 26 Mar 2019 12:31:04 +0100
+Message-ID: <75a6f7dc0a1edd137109c5af869e713267cd2967.camel@futurasmus-knxlab.es>
+From: jairo <jairo@futurasmus-knxlab.es>
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Date: Tue, 26 Mar 2019 12:31:00 +0100
+In-Reply-To: <073118a1-ad14-5fbf-bf5e-9e4f5a80474c@topic.nl>
+References: <f89d2fda94e3d046211d39d4b3adee9345962aae.camel@futurasmus-knxlab.es>
+	<20190325172133.50597470@yaise-pc1>
+	<2899bdb1698988b9ba9a6b8cdb8ccd89aa3d6325.camel@futurasmus-knxlab.es>
+	<20190326091405.5017c931@posteo.de>
+	<69cf9c37c7dc4a5e3243f3013294a39adefad5c5.camel@futurasmus-knxlab.es>
+	<073118a1-ad14-5fbf-bf5e-9e4f5a80474c@topic.nl>
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [rauc] create a rescue image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,31 +44,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Mar 2019 10:45:45 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 26 Mar 2019 11:31:05 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Installing an image without lvm2-udevrules using Anaconda would
-produce an un-bootable system because "/dev/mapper/xxx" files are
-not created.
 
-Signed-off-by: Ovidiu Panait <ovidiu.panait@windriver.com>
----
- .../packagegroups/packagegroup-anaconda-support.bb               | 1 +
- 1 file changed, 1 insertion(+)
+Thank you very much Mike.
 
-diff --git a/recipes-installersupport/packagegroups/packagegroup-anaconda-support.bb b/recipes-installersupport/packagegroups/packagegroup-anaconda-support.bb
-index 3f3f41e..21d69b6 100644
---- a/recipes-installersupport/packagegroups/packagegroup-anaconda-support.bb
-+++ b/recipes-installersupport/packagegroups/packagegroup-anaconda-support.bb
-@@ -12,6 +12,7 @@ RDEPENDS_${PN} = " \
-     efibootmgr \
-     kmod \
-     lvm2 \
-+    lvm2-udevrules \
-     util-linux-mount \
-     util-linux-switch-root \
-     init-ifupdown \
--- 
-2.20.1
+
+
+> With NAND you'll probably have a filesystem (jffs2 or UBI) in place.
+> With that, you could just use a package manager like opkg to update
+> sofware. If the box has a network connection, just running "opkg
+> update && opkg upgrade" will install the current releases with the
+> minimum effort. We've been using this on a million boxes and it works
+> fine (until someone decides to patch libc and you get a 300+ package
+> upgrade).
+
+
+Is there a public repository with ipk packages, or do I have to create
+my own repository?
+Can opkg solve dependencies well? Can it create problems?
+
+
+> Linux is also capable of upgrading a running system. Basically, copy
+> some 
+> executables to a tmp filesystem, remount everything read-only, and
+> change root 
+> to the tmp part. Then you can rewrite partitions and reboot.
+> 
+> In any case, you should have a u-boot configuration that allows it to
+> be 
+> debricked. Typically a USB stick or DFU will do nicely if your board
+> has USB. 
+> Or even serial...
+
+I'm using Barebox, I think there would be no problems out there, the
+bad part of using opkg is that the product should be used by clients
+without much knowledge of linux. In that part I think it would be
+easier for customers to use a update system such as Rauc or any similar
+...
+
+A greeting!
+
 
 
