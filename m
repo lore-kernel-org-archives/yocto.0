@@ -1,120 +1,53 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <bunk@stusta.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 37253E00A54; Tue, 26 Mar 2019 15:52:43 -0700 (PDT)
+	id C2D3EE00B81; Wed, 27 Mar 2019 00:16:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.193 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [141.84.69.5 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com
-	[209.85.214.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2D69E0097C
-	for <yocto@yoctoproject.org>; Tue, 26 Mar 2019 15:52:42 -0700 (PDT)
-Received: by mail-pl1-f193.google.com with SMTP id bg8so2317064plb.0
-	for <yocto@yoctoproject.org>; Tue, 26 Mar 2019 15:52:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=zG61XcVy+rL2kBZB1vkpQem9YuczXlc+NJDS4n1jX6c=;
-	b=aCMj2zyBF3V9LrUctY+LRCSkQNVV35g1TTwXk88PigANR4UN45t7K0DUduKSAcB/8A
-	VDRKnQsdc/XAJ0gHhbYprriDeJnez54yWpiWA9ZCYyrVKSw/r3EmEYqy5AnUVgc9TmIM
-	fwMn+FXLYc+bkaZA6hdL+1qPkVFIsGqdLKzLOS9UBTYZNyNg+OJ6UMl9EbSKMVTsKV5E
-	Fe8s9DBCjxhFbLQtAQjhstCYWJFdu0fmJiUCmeuOriqxvaz59TkodazbtRlWNM9W6uO5
-	/phZ2bWqpTRxtmbn/fMsN7Ur/R4nwc4H15BHAcaqSqoq7S9TD8kARAxA9vk2pw0ywiwP
-	HuVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-transfer-encoding:content-language;
-	bh=zG61XcVy+rL2kBZB1vkpQem9YuczXlc+NJDS4n1jX6c=;
-	b=tFD135pYbf/nIQ14uyarDZPZrhv9MI8K4maYnwm0MG4cTaKBKumcH+4AAq5zkNgA24
-	xP+hV1ifbQjO5hTScojqi9b0EpvTw7BZ2xTbHOc0tU6XgW9I29RS9HzQtHb9IzQqDvuk
-	0PSxDv4pvZMYh1pTBvlEy+u0ZxNHXJJmEYr2HP9tPYi+z6s5ed9fzLK33T0w2s48/tO+
-	al2bqaJVvMnq1kwNOse1kYKX4sjlU7NBOc0ivdkOU9yBCV7n2G/NX7r6y+VSILcNnfhg
-	crk8pX0Aiapjqs/kklKSYFwEcBQRk73+v5LkVm0nndvzl5aEi7DtNb3p20cecA7VUR3h
-	CMBA==
-X-Gm-Message-State: APjAAAVoegCKvP+ReTSy6Pjd5sEJyijknAiyJpJkIDjcQ9nEqdAd5iQd
-	9XTFIwfOZYId75vWQ6VDSqyFyBX0
-X-Google-Smtp-Source: APXvYqzGRDoKZyk1hKro4r7eGHeJjYYr4t40BdN9Kzg7AcaIBqjd9gnmFuu49IXR8FgqdQ5HfqO4fQ==
-X-Received: by 2002:a17:902:203:: with SMTP id
-	3mr34135694plc.336.1553640761949; 
-	Tue, 26 Mar 2019 15:52:41 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:c33:acc8:b522:e35e:e13c?
-	([2601:202:4180:c33:acc8:b522:e35e:e13c])
-	by smtp.gmail.com with ESMTPSA id
-	14sm34232377pft.137.2019.03.26.15.52.40
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 26 Mar 2019 15:52:41 -0700 (PDT)
-To: Adrian Bunk <bunk@stusta.de>
+Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBDE9E006D8
+	for <yocto@yoctoproject.org>; Wed, 27 Mar 2019 00:16:37 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 44TfSL2cN9z3h;
+	Wed, 27 Mar 2019 08:16:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
+	s=default; t=1553670995;
+	bh=lQhQBwg+G8saRbBlLYJ21BW0tj1y/4ARhCnuhJZIQv8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=N9/68kFa3hu0iZbHnftBJTEEZ4EL353KYItT4Y0WzB5Hi7OhF3nTEjofNzQJN93Ou
+	V7MEHOQP3mHWq+5mjpC//5Nbb8wGbYMXQsMdoN+IxloaDPQ0zWwPgXbjrXlRQwDbhp
+	p9aio5LCSAY//voXaxqtt3w3RjUGywph839YQ5zOg0btpwjWdCedsdcPNJqZgsEqjp
+	3gut2u7HK2Onf3SHtkcooOePYExDJGL/dtsIUky6oMwX+Cf0ltWQFl1RUGoVWVyXTD
+	rHpps9cW98Wz1HX8rusDv1jJINCn3EOgL8SZ1/lZFJtYYxZ9I+Bt3vodEo4PUgsNC5
+	EEXUa/ua6EEsZU5LS+/H/hR7JbkbfSXu6w+fCD/c/BMq1o6xp2F6J8Kd0YSHv2jJjy
+	fQpPXznkk114hb1O9gkjVCRI+ASdChnVqh8rihu6NspAVmNoMzoLMgN1Kq2THbkuD2
+	LqUR91UL/3HGwFQLIL8eaJevMKV7mkCUVs+VVr0Ox9ueDk3EqE4VmBoQpryoVVjDcw
+	amqAIIkzASVfYpmvDNsnTgGhmTmuU1XfJz9Tyv2pt4+AW6bTV0GUqxuym6kdqML6Vf
+	bXTStjpjnOcW6xbzHZgHAEUnw77ws+UbLU/6vc8iYRnkNIfA4Va/rebrkKlzOtXbZG
+	ijPxAFTlrbmwStzoKpW89mVQ=
+Date: Wed, 27 Mar 2019 09:16:31 +0200
+From: Adrian Bunk <bunk@stusta.de>
+To: akuster808 <akuster808@gmail.com>
+Message-ID: <20190327071631.GA22331@localhost>
 References: <20190325165855.9222-1-akuster808@gmail.com>
 	<20190325165855.9222-2-akuster808@gmail.com>
 	<20190326102444.GA19885@localhost>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	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
-	8CS2NxU=
-Message-ID: <6dae574f-f641-94ff-4bf1-09eac31e6378@gmail.com>
-Date: Tue, 26 Mar 2019 15:52:39 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.5.1
+	<6dae574f-f641-94ff-4bf1-09eac31e6378@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20190326102444.GA19885@localhost>
+In-Reply-To: <6dae574f-f641-94ff-4bf1-09eac31e6378@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Cc: yocto@yoctoproject.org
 Subject: Re: [meta-security][PATCH 2/2] sssd: fix libcrypto version used
 X-BeenThere: yocto@yoctoproject.org
@@ -128,55 +61,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Mar 2019 22:52:43 -0000
+X-List-Received-Date: Wed, 27 Mar 2019 07:16:39 -0000
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
+Content-Disposition: inline
 
+On Tue, Mar 26, 2019 at 03:52:39PM -0700, akuster808 wrote:
+> 
+> 
+> On 3/26/19 3:24 AM, Adrian Bunk wrote:
+> > On Mon, Mar 25, 2019 at 09:58:55AM -0700, Armin Kuster wrote:
+> >> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> >> ---
+> >>  recipes-security/sssd/sssd_1.16.3.bb | 2 +-
+> >>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >>
+> >> diff --git a/recipes-security/sssd/sssd_1.16.3.bb b/recipes-security/sssd/sssd_1.16.3.bb
+> >> index 8f7f805..d39fa23 100644
+> >> --- a/recipes-security/sssd/sssd_1.16.3.bb
+> >> +++ b/recipes-security/sssd/sssd_1.16.3.bb
+> >> @@ -33,7 +33,7 @@ PACKAGECONFIG[manpages] = "--with-manpages, --with-manpages=no"
+> >>  PACKAGECONFIG[python2] = "--with-python2-bindings, --without-python2-bindings"
+> >>  PACKAGECONFIG[python3] = "--with-python3-bindings, --without-python3-bindings"
+> >>  PACKAGECONFIG[nss] = "--with-crypto=nss, ,nss,"
+> >> -PACKAGECONFIG[cyrpto] = "--with-crypto=libcrypto, , libcrypto"
+> >> +PACKAGECONFIG[cyrpto] = "--with-crypto=libcrypto, , libcrypto10"
+> >> ...
+> > This looks wrong for multiple reasons, and it still gave the same error 
+> > when I tried it.
+> That is troubling. I don't see any errors here. Thanks for the feed
+> back. I will have to dig at this a bit more.
+> 
+> Can you provide some build detail so that I can reproduce it?
 
+Try building the package without nss but with cyrpto (sic) in PACKAGECONFIG.
 
-On 3/26/19 3:24 AM, Adrian Bunk wrote:
-> On Mon, Mar 25, 2019 at 09:58:55AM -0700, Armin Kuster wrote:
->> Signed-off-by: Armin Kuster <akuster808@gmail.com>
->> ---
->>  recipes-security/sssd/sssd_1.16.3.bb | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/recipes-security/sssd/sssd_1.16.3.bb b/recipes-security/s=
-ssd/sssd_1.16.3.bb
->> index 8f7f805..d39fa23 100644
->> --- a/recipes-security/sssd/sssd_1.16.3.bb
->> +++ b/recipes-security/sssd/sssd_1.16.3.bb
->> @@ -33,7 +33,7 @@ PACKAGECONFIG[manpages] =3D "--with-manpages, --with=
--manpages=3Dno"
->>  PACKAGECONFIG[python2] =3D "--with-python2-bindings, --without-python=
-2-bindings"
->>  PACKAGECONFIG[python3] =3D "--with-python3-bindings, --without-python=
-3-bindings"
->>  PACKAGECONFIG[nss] =3D "--with-crypto=3Dnss, ,nss,"
->> -PACKAGECONFIG[cyrpto] =3D "--with-crypto=3Dlibcrypto, , libcrypto"
->> +PACKAGECONFIG[cyrpto] =3D "--with-crypto=3Dlibcrypto, , libcrypto10"
->> ...
-> This looks wrong for multiple reasons, and it still gave the same error=
-=20
-> when I tried it.
-That is troubling. I don't see any errors here. Thanks for the feed
-back. I will have to dig at this a bit more.
+> > How has this change been tested?
+> Not for this change.
+> 
+> Which reminds me I should automate some testing for this package.
 
-Can you provide some build detail so that I can reproduce it?
+This is not about automating testing.
 
->
-> How has this change been tested?
-Not for this change.
+This is about first reproducing the problem you are trying to fix,
+and then verifying that your fix actually fixes this problem.
 
-Which reminds me I should automate some testing for this package.
+Which is the fundamental way to do any kind of bugfixing.[1]
 
-regards,
-Armin
->
-> cu
-> Adrian
->
+This one line already contained two bugs,[2] and the commit added a 
+third problem (usage of OpenSSL 1.0) without fixing any of these bugs.
 
+The commit message not stating any reason why this change was done only 
+adds to the confusion.
+I thought originally this was a workaround for code not building with 
+OpenSSL 1.1, which would then also be required for thud.
+
+> regards,
+> Armin
+
+cu
+Adrian
+
+[1] this is not one of the harder cases where reproducing the problem
+    would be a problem
+[2] "cyrpto", and "libcrypto" instead of "openssl p11-kit"
+
+-- 
+
+       "Is there not promise of rain?" Ling Tan asked suddenly out
+        of the darkness. There had been need of rain for many days.
+       "Only a promise," Lao Er said.
+                                       Pearl S. Buck - Dragon Seed
 
 
