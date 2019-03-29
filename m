@@ -1,6 +1,6 @@
 Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1125E00D28; Fri, 29 Mar 2019 02:37:20 -0700 (PDT)
+	id B7F9DE00D20; Fri, 29 Mar 2019 02:38:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,44 +18,45 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.177 listed in list.dnswl.org]
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com
-	[209.85.167.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93106E00AB0
-	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 02:37:20 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id 3so1142310oir.7
-	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 02:37:20 -0700 (PDT)
+	*      [209.85.167.180 listed in list.dnswl.org]
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com
+	[209.85.167.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABC3FE00AB0
+	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 02:38:18 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id t81so1131495oig.10
+	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 02:38:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=fOxiPZThWwReMVNlBqbPL/8y8ED2KOFNrt3QYbxb7js=;
-	b=ss837DvLcFDkDdBnvKYDwLCp6GCtrSD53IvB1LAMHGGR8UvoiY8m9oHPrsMIUDVVur
-	ny3BgNzsmwEJSgMmdqyBiIZzwV3QhVzVZJHIhRnnVDlk6PKoxHav8CW78lFgaebek9qp
-	RUbY6/Xq8qwqIq0byYGlGOwOWBsyvoSBiPSaKm0d/O+RsvbIAELwJJvvJqGYICxkzBvM
-	XfBVMt+kZgscPxmtQ65sn+6kKGA6t1B5VslVRNNU9fuHWLD29Iw+GIh81249Fh5oqJde
-	ZGb2vLZdkcVsDI/YQ+gDBht6AGEIbT9onQPmDvdQ/4Kl42OKzuPslW/SPK3+g+xeOMtz
-	Gi+g==
+	:cc; bh=VlN0euqLGOIlRHySijEm73Ea60SVnTE7xp7WGvcwwpI=;
+	b=aPWL28u5pPrPOfy3u9NfWQmyeh6HkOcxir1SboBjth1qz40ZdWI6Tk2ZO3zgbKiT/g
+	09gcixMreUeWAwEZom6XyBMa7eBdtcxWx+FkvuItBVQGRu2m+JcBkIT9625J+HvQ2gzr
+	EVGNZpn+ewHSC8FYNjQ3anF+nZe77ydZmTkyYo2bcYwt4hdS2WOfgxW+RSnL2W2s22l+
+	ewYLl6jI7LzBJJ8W0Vd2dkLYguC5glOt1BNqf2MObRyFoX+vEMey09I27e1QdawzJLCK
+	h6hgFJdHBP7g9bQU71SCcgFsZRx9UCWPICM+V9HiHd4ckezRgQ5Df9diai3NjwXHLsIW
+	M0sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=fOxiPZThWwReMVNlBqbPL/8y8ED2KOFNrt3QYbxb7js=;
-	b=ZBqrUmV4067XHGOAFoearqsa/mLGbmw2z3HlBiP3FGPLP9pTLIktAcMQoSzp655n5e
-	grm27EFtDiShb8J83z3MFWjN9al3wIIkP91hxXytSouHx9rIt6Ubf/n4C0duYAUBZBz2
-	kO7lYIWE1EXUpO5G1+wpaihU4swkb8u7vBwNhfZP2ZEPgLU1XHE8EUjTAMsJrZIJI/UL
-	RgOtkSyy8tGx55MIA+80V0K5DgmHWdJ12Sdj94+K8jGxv0FC5wEwNXdCgj0Os8slIfs3
-	2XZp5BPhLg8TFeh6FX0QxR7aZH8IirzIWSdiw9sQ2GG4u7AMnacw1cDLh9kugEL46KFn
-	KcIA==
-X-Gm-Message-State: APjAAAU0Rxk8/mZsB/Yp9zUTSzcNy7tVjmn9M4XUgPlByPrQXQY+Lzfd
-	ZNycKdIZ66appExrDreyQX7PXFPMU+5iUZdTxoU=
-X-Google-Smtp-Source: APXvYqxaCtiSv9wpxlyn45QNXexRS9j4w8XqSRcMAXEfOxSnO3zZMcT1cvt99wIbpnUVHFV9Fg0TpbrwVlauVu47gAM=
-X-Received: by 2002:aca:5809:: with SMTP id m9mr3015642oib.88.1553852240087;
-	Fri, 29 Mar 2019 02:37:20 -0700 (PDT)
+	bh=VlN0euqLGOIlRHySijEm73Ea60SVnTE7xp7WGvcwwpI=;
+	b=gpXK2fdQt8vKE96DSeBbbd5nKtHDUaA5CVOlPRkN7LRsrXrRxnhHkxOlv5VAilACFE
+	Lrs/6F7IdjKEqO7gdv9ysHl6pdnuzIjz/PgcVSSnjHnVdG6/kz6r/VKBsad8ygENnG5x
+	gyLh3YxpLOF1eQ8zlg++iuH6fSkzP5LBqAc8bdvHxj4mEQH+ARkFJ/ucgCef/ytCKft8
+	9buzfee9Tbkqw2+6Q1Apiu/A12vFBiPlnbE1nw8XVke/NpGd2cUuVj+pS7bcjs7gdsNx
+	nvG5gQY4JCyZ5xKLvDU5M7xxXSy7f2vlNL/OFLCHBxRrUP19B2mne6PAnoQ5CwmlKkyZ
+	2i5g==
+X-Gm-Message-State: APjAAAW71XJZTJ1grRHFkP9U9sJ47DREbgvRzqj0ekTuRX4rwDjuA5Pd
+	wkF141IY916eYzIiZbs2NuFHnJC4ku/zcYodYbfXDg==
+X-Google-Smtp-Source: APXvYqy6W9Jt4be0RBGuF5NB7lhSpVmJx8I3BJ+fc6UTzuU76ZuuZOePTqYEEZjbXexBlUDDT/Vy/8QgBa+UwUfS2v4=
+X-Received: by 2002:aca:ed88:: with SMTP id l130mr2940010oih.70.1553852298011; 
+	Fri, 29 Mar 2019 02:38:18 -0700 (PDT)
 MIME-Version: 1.0
 References: <CACKFPN0H50ax69a33VOs6wymGz7SoFi1_atBM2WNh3f9MV6=kQ@mail.gmail.com>
-In-Reply-To: <CACKFPN0H50ax69a33VOs6wymGz7SoFi1_atBM2WNh3f9MV6=kQ@mail.gmail.com>
+	<CANNYZj_VMX8FdBhMCwvq_hMYNa3n_Ng-kMacAo4Eg1ug+VuPcQ@mail.gmail.com>
+In-Reply-To: <CANNYZj_VMX8FdBhMCwvq_hMYNa3n_Ng-kMacAo4Eg1ug+VuPcQ@mail.gmail.com>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 29 Mar 2019 10:37:09 +0100
-Message-ID: <CANNYZj_VMX8FdBhMCwvq_hMYNa3n_Ng-kMacAo4Eg1ug+VuPcQ@mail.gmail.com>
+Date: Fri, 29 Mar 2019 10:38:07 +0100
+Message-ID: <CANNYZj9vrTD_+ZAmpEU28TQ8-MwQ-aD6qAGpX_wSALpq6gpj+A@mail.gmail.com>
 To: Dimitris Tassopoulos <dimtass@gmail.com>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: Image introspection
@@ -70,17 +71,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Mar 2019 09:37:20 -0000
+X-List-Received-Date: Fri, 29 Mar 2019 09:38:19 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Fri, 29 Mar 2019 at 09:51, Dimitris Tassopoulos <dimtass@gmail.com> wrote:
+You can do that using
 
-> To do that, add this to your build/conf/local.conf file
->
->> DISTRO_FEATURES_remove = " 3g"
-
-This works around the issue after the fact. It's better to track down
-where 3g is added in the first place, and adjust that.
+bitbake -e <image> and looking for how DISTRO_FEATURES is formed in
+the output of the command.
 
 Alex
+
+On Fri, 29 Mar 2019 at 10:37, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
+>
+> On Fri, 29 Mar 2019 at 09:51, Dimitris Tassopoulos <dimtass@gmail.com> wrote:
+>
+> > To do that, add this to your build/conf/local.conf file
+> >
+> >> DISTRO_FEATURES_remove = " 3g"
+>
+> This works around the issue after the fact. It's better to track down
+> where 3g is added in the first place, and adjust that.
+>
+> Alex
 
