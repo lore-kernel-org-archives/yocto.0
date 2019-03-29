@@ -1,67 +1,65 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63FB4E00D24; Fri, 29 Mar 2019 06:03:10 -0700 (PDT)
+	id 7144FE00D24; Fri, 29 Mar 2019 06:47:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.179 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-it1-f179.google.com (mail-it1-f179.google.com
-	[209.85.166.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0DEBE00942
-	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 06:03:09 -0700 (PDT)
-Received: by mail-it1-f179.google.com with SMTP id y204so3572204itf.3
-	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 06:03:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=OVCTOlxWAXbTp7trKJ49DvXxPUCKphldLZP1nCr58Hk=;
-	b=kOuO/Zvy1d7D/VvxZbX0xJPSTtFkJRbpZHOYpq7ytwPIf0vpofvk0/kpe2oHkrsqts
-	lR+lehpZlh9y80fC2UMr0QIDfsSSHRmmfvWTAJ6cGtmGqVfHtE2V4/DAPp4r7kZwCVye
-	gmOlANZlhmp/lBRNKH60MYekotcwEQlo0jYUsa0wdZr+ovDKfq5v/bo5hdEWpKjZK7tF
-	paHPFYR6WuRBVwt0eOjmRnYfwAfhSKjEoCJmRpYIgPNPcxSv6zmE77Tnh9k+U8r6GkZI
-	hFJtq4iOn33H6QQ7x8lsLd73vaipNPnqAim76afBnnHhC4MjBRuU40lgEHR0P9PU3klL
-	DXGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=OVCTOlxWAXbTp7trKJ49DvXxPUCKphldLZP1nCr58Hk=;
-	b=g6rACbo5NnxVxHjiaH9YDP7UEvSu5r/aB0BnXIzBoaRdz47IE78GwX3ZWRHcMlZ2Q+
-	Lkjl8CpP+WrGKvsot9Tvp98yM6BQjqMzGBN59Da/TZy7vxDamvE1B597tKczNmPieCMv
-	AcQ0W/JWnZVUo3I+bgB5DxLFfDh2ojhxG5AlOloNtnwLIfEmNJPllwiUKJqcvpfc11U2
-	7J1LsJgQQGPDxbG6O+O2+0dC0cxJ5U4yDsaEOPzOpt+BNidB4Vabd4PrL8mC9J4WcHAG
-	DfRhmiv2lszYI6zrJzMq3EVlUhrdgpDaVTuqrxwYmhkdJcpEMeLYVgt3dWbRlhis9ilb
-	X9aQ==
-X-Gm-Message-State: APjAAAUfLBF+fascRyXYbR0c9qV3ED8g+sNkbsQRAgU7dl2UREiVgTMW
-	TgqMfrgRmkfOS1BZnDV8F2Jkb1z3MUPvE5fAdNExKEsK
-X-Google-Smtp-Source: APXvYqynY1E0BtVr6X/VXspNVkmEJs+1RwgcfJzcl0tlnceXtBN888BYKM9O0NQ+1OYM5W5j0Edfbryd4SYsyvLKb68=
-X-Received: by 2002:a05:660c:111:: with SMTP id
-	w17mr4066219itj.62.1553864589379; 
-	Fri, 29 Mar 2019 06:03:09 -0700 (PDT)
+	*      [216.168.135.167 listed in list.dnswl.org]
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87294E00BAF
+	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 06:47:02 -0700 (PDT)
+Received: (qmail 20291 invoked by uid 1003); 29 Mar 2019 13:47:06 -0000
+Received: from unknown (HELO ?192.168.11.100?)
+	(philip@opensdr.com@73.152.143.112)
+	by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
+	29 Mar 2019 13:47:06 -0000
+To: Dimitris Tassopoulos <dimtass@gmail.com>,
+	Alexander Kanavin <alex.kanavin@gmail.com>
+References: <CACKFPN0H50ax69a33VOs6wymGz7SoFi1_atBM2WNh3f9MV6=kQ@mail.gmail.com>
+	<CANNYZj_VMX8FdBhMCwvq_hMYNa3n_Ng-kMacAo4Eg1ug+VuPcQ@mail.gmail.com>
+	<CANNYZj9vrTD_+ZAmpEU28TQ8-MwQ-aD6qAGpX_wSALpq6gpj+A@mail.gmail.com>
+	<CACKFPN3_mGg4fgCkOn_KWA3trR66WKay9148F5grke5DC7sJtA@mail.gmail.com>
+From: Philip Balister <philip@balister.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
+	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
+	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
+	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+	6eUfr0u7CwnEyqiQ
+Message-ID: <81b39501-ee95-830d-a9ea-805d9a6e5e4b@balister.org>
+Date: Fri, 29 Mar 2019 09:46:59 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.2
 MIME-Version: 1.0
-References: <CAFvQSYSDbe5YEEvFG+sF8enGzG+AsGoms6TYe_DCv-snZiqRYw@mail.gmail.com>
-	<CAJTo0LaromaqsWigi1skaoD5gRQp6JdPXg1WUBV=i8LRq2PHRQ@mail.gmail.com>
-	<CAFvQSYTY4cFD9QbC6R3JHAqtc_7r9X_NAj8zb8mGA1iu_9A3EQ@mail.gmail.com>
-	<CAJTo0LYgeMSNG1R3qmNbccNH12ObATgJP-A-L-BzZ0E6Hw+mPA@mail.gmail.com>
-	<CAFvQSYRMG5VHoCbbZ6fHuRjT+Mae22XsERJCKgfNigX_eWu74w@mail.gmail.com>
-	<CAJTo0LZB0siaFty7_K1J3b1JS8uG5JOwow=12fzuL0qSovuwtw@mail.gmail.com>
-	<CAFvQSYRppKFuJTBJyediTxVmcoJAtwmT4ffj=RYuFErr6ohU9A@mail.gmail.com>
-In-Reply-To: <CAFvQSYRppKFuJTBJyediTxVmcoJAtwmT4ffj=RYuFErr6ohU9A@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 29 Mar 2019 13:02:53 +0000
-Message-ID: <CAJTo0La22deB4HJysOQKvLWYduq7j8UHP=Yao5_yuhGx+JEmPw@mail.gmail.com>
-To: Clemens Eisserer <linuxhippy@gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: pkg-config does not find "luajit" since upgrade to sumo
+In-Reply-To: <CACKFPN3_mGg4fgCkOn_KWA3trR66WKay9148F5grke5DC7sJtA@mail.gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Image introspection
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,22 +71,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Mar 2019 13:03:10 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 29 Mar 2019 13:47:03 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 
-On Fri, 29 Mar 2019 at 12:49, Clemens Eisserer <linuxhippy@gmail.com> wrote:
-> The issue was the _$PN appended to DEPENDS, when I removed it the build succeeded:
-> changing DEPENDS_${PN} = "luajit" to DEPENDS = "luajit" did the trick.
+On 03/29/2019 05:50 AM, Dimitris Tassopoulos wrote:
+> Hi Alexander,
+> 
+> in this case the 3g is added by default from the poky distro in
+> the DISTRO_FEATURES_DEFAULT var in:
+> *meta/conf/distro/include/default-distrovars.inc*
+> 
+> And because the poky distro is the base distro for the image
+> this is inherited. Therefore it needs to be removed with the
+> DISTRO_FEATURES_remove unless there is another way,
+> which I'm not aware to easily remove/adjust without having
+> to create a new distro.
 
-Right, DEPENDS_${PN} isn't a variable that is used.  You'll most
-likely have got a warning from bitbake about that.
+Tweaking poky distro features makes the end result not poky, so the best
+thing to do is create your own distro.
 
-> However, I am still puzzled what happens here and why it worked before.
+Philip
 
-Because in the old days, every recipe shared a global sysroot.  If
-luajit was built at some point, it was in the sysroot.  For the last
-few releases (almost two years now?) the sysroot is per-recipe, so if
-you don't have luajit in DEPENDS then it isn't in the sysroot.
-
-Ross
+> 
+> Regards,
+> Dimitris
+> 
+> On Fri, Mar 29, 2019 at 10:38 AM Alexander Kanavin <alex.kanavin@gmail.com>
+> wrote:
+> 
+>> You can do that using
+>>
+>> bitbake -e <image> and looking for how DISTRO_FEATURES is formed in
+>> the output of the command.
+>>
+>> Alex
+>>
+>> On Fri, 29 Mar 2019 at 10:37, Alexander Kanavin <alex.kanavin@gmail.com>
+>> wrote:
+>>>
+>>> On Fri, 29 Mar 2019 at 09:51, Dimitris Tassopoulos <dimtass@gmail.com>
+>> wrote:
+>>>
+>>>> To do that, add this to your build/conf/local.conf file
+>>>>
+>>>>> DISTRO_FEATURES_remove = " 3g"
+>>>
+>>> This works around the issue after the fact. It's better to track down
+>>> where 3g is added in the first place, and adjust that.
+>>>
+>>> Alex
+>>
+> 
+> 
+> 
 
