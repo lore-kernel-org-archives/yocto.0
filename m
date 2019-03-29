@@ -1,6 +1,6 @@
 Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 277C7E00CED; Fri, 29 Mar 2019 10:45:27 -0700 (PDT)
+	id 4FCEFE00D3F; Fri, 29 Mar 2019 10:46:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,57 +8,56 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.193 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.193 listed in list.dnswl.org]
-Received: from mail-pf1-f193.google.com (mail-pf1-f193.google.com
-	[209.85.210.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 021CAE00B43
-	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 10:45:24 -0700 (PDT)
-Received: by mail-pf1-f193.google.com with SMTP id 8so1395156pfr.4
-	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 10:45:24 -0700 (PDT)
+Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
+	[209.85.215.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56744E00CED
+	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 10:46:02 -0700 (PDT)
+Received: by mail-pg1-f193.google.com with SMTP id b12so1569876pgk.0
+	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 10:46:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=mvista-com.20150623.gappssmtp.com; s=20150623;
 	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=YQPzqZYRyrZwFNAmhw1rwcd5fGUZGsj8FAlvdfAC4ko=;
-	b=EoYwO3k0OPLYOZfZWoIdDduscuo1CPpHz8x2rdBveUqc5xp2KmKvq9763KWn/L298y
-	WchK+v/CQvsGg7oDiKnMiZ6pzH9KoR+GcoiuDCAhVPCd+ydXfYuUoI33pPaAc4j5AlYF
-	kf+SQhLQ0lkuumLDr8b6MnGBFC0CDMm5Ae9AZc3YU5y5LXyVGNTjZbPWEPFooFeG4+QT
-	89n8ZGJp2iEm7Z1mkUWMZ9PvXzEGlEOqJVtxCBqB7D63e1vKBc179EcYtn9MqwIzLSpb
-	glzxluQDTtXS0eTA9XAxuGXfaIjF0Qh45fZpoKx2Fi35GD5BISk9ALxYEhpe7sr0UZno
-	WZtg==
+	bh=V8klEAyPSYaKONZ9soUnd/UZSjjDIbimeNnDhbpm7WE=;
+	b=iFRni8FqlHH7G5B80P7HCBAqrvFjdMZfrs+v8KavAfjNZX+W7tmWWr/10iSqkTHLiu
+	Mg9i+b6onJvS9slHyTjzNj3nbCWRY1BVSy4cCiOTRReDp048Or+G/IygwOAB19l07A23
+	JMbBUMjZatTOpZmKWfubmxBtVkU2ix31mgiTLScnasvrMfgZKVeiU5bQOlzIPPYDt38+
+	1GXyaZsh+wkp6/Ec+t97G0Q+/1rUherD6TipFeSqZy9dS5JWHInk9h2/cVBtcywuB/c6
+	WW58mIKVG7Xjh0wQtVy8Oiuaz+srSdwMQ2McSro1EOItAGdTGBBv2MABYptE4395yu+R
+	36Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=YQPzqZYRyrZwFNAmhw1rwcd5fGUZGsj8FAlvdfAC4ko=;
-	b=fQ6wxzm/nbf9E59XsJvFQxFcUgcX0Ao1YN34RjPeaw6hRPUoirCVuQIFWQjWESkOCT
-	aLnBZVkGy3gdxu+EbiUgxB2CkfPpjVR83brufdwFxNctPPRQuo3xSmzA4ppkzZV2NqMv
-	gaX2UVeF/yV8dvoVdzUAbmBO6oTAXvfw8eUgCzElYZkfxiUGm7SEy5xQQTKdhKYQvVFD
-	VkghTWceaw6IHI4wTpWYyZ55henw6Pg5eEkCfFMKP9r5lk4Jqb5UxKnVJ9ergDBk6q1B
-	cVybpoHZixVH/vNE8/cMHCXy96yVgJkphDTT1vOyDYH9JLgK/C3Q4p3IFwFOXKPeaY7n
-	9nZA==
-X-Gm-Message-State: APjAAAXZD5aHrZg4blyq15h4ywod2IdfgYucmQ3kcB8RDzIB4eOF3VVS
-	d+nlqzMrL9uYuuoXMksAgXZuO39jjDI=
-X-Google-Smtp-Source: APXvYqxNiQIWUVZOmoBF00atsHqx9Rq7270eWjykMxrDzPPx+dow5baoWQzcV/hb7aOnfbBH98AaRA==
-X-Received: by 2002:a63:5913:: with SMTP id n19mr47548993pgb.422.1553881523946;
-	Fri, 29 Mar 2019 10:45:23 -0700 (PDT)
+	bh=V8klEAyPSYaKONZ9soUnd/UZSjjDIbimeNnDhbpm7WE=;
+	b=UMPS5PC6cg1Mj5fskNJ4JrUdxBz7UJumn04AzkinWqfyMUv2+ftYYSgJUkLOg96hbP
+	wr3HZkOCjSn4PnispfAqG1c+YtOP35p1mmm+HilMwXdqFTOyOVZV0dwVxowsd/noiMYf
+	xW6uTTwf7DwgP7uN6PgJcypFOk7OXutKDn964DLy865Xwytp1fP1SwVFHTiRbEk1oLJq
+	pS4VsawEyWW2qM2mQdq3g+5txBZQcMQMsekZzWAHktzjBYzzj4e3caUqRY0KCNC07VVG
+	Ged5ZXYadxVUExOaNjfnsyjsHhEqmz5OYGIgUNEmC4NNbbOnraR5PSw7DKQ31Ajwraey
+	aFlA==
+X-Gm-Message-State: APjAAAXyyAEhG+1DMxfVBytrRQ6N6nk4bVe/uLQS56PnxPlS57iTLhjg
+	ZNKqY0lSxKpC39ngb1OSs+rZ077CMdk=
+X-Google-Smtp-Source: APXvYqx9WRjIiyUtqorYbHwxmxYx7zdyD1jihboUPb5t2mOXQt5dgd217pqEal9D7rG+FQZ8q9J65g==
+X-Received: by 2002:a63:da4e:: with SMTP id l14mr6840588pgj.96.1553881560943; 
+	Fri, 29 Mar 2019 10:46:00 -0700 (PDT)
 Received: from ?IPv6:2601:202:4180:c33:e49f:a080:8dd:cb67?
 	([2601:202:4180:c33:e49f:a080:8dd:cb67])
-	by smtp.gmail.com with ESMTPSA id
-	a80sm8174106pfj.61.2019.03.29.10.45.22
+	by smtp.gmail.com with ESMTPSA id 6sm2482864pfj.95.2019.03.29.10.45.59
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 29 Mar 2019 10:45:23 -0700 (PDT)
+	Fri, 29 Mar 2019 10:46:00 -0700 (PDT)
 To: Adrian Bunk <bunk@stusta.de>, Armin Kuster <akuster808@gmail.com>
 References: <20190329052821.13718-1-akuster808@gmail.com>
-	<20190329052821.13718-3-akuster808@gmail.com>
-	<20190329065107.GB26574@localhost>
+	<20190329052821.13718-2-akuster808@gmail.com>
+	<20190329065014.GA26574@localhost>
 From: akuster <akuster@mvista.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
@@ -104,14 +103,14 @@ Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <b4464b36-497e-7c82-fe2c-98cdabc3729a@mvista.com>
-Date: Fri, 29 Mar 2019 10:45:21 -0700
+Message-ID: <817835b9-6cd1-4264-7e6a-733e37983b2c@mvista.com>
+Date: Fri, 29 Mar 2019 10:45:58 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.5.1
 MIME-Version: 1.0
-In-Reply-To: <20190329065107.GB26574@localhost>
+In-Reply-To: <20190329065014.GA26574@localhost>
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-security][PATCH 3/5] sssd: fix a few runtime issues
+Subject: Re: [meta-security][PATCH 2/5] libldb: work around samba libldb packaging issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -123,37 +122,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Mar 2019 17:45:27 -0000
+X-List-Received-Date: Fri, 29 Mar 2019 17:46:34 -0000
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
 
 
 
-On 3/28/19 11:51 PM, Adrian Bunk wrote:
-> On Thu, Mar 28, 2019 at 10:28:19PM -0700, Armin Kuster wrote:
->> include a few more RDEPEND packages. remove init script as there really
->> isn't one yet.
->>
+On 3/28/19 11:50 PM, Adrian Bunk wrote:
+> On Thu, Mar 28, 2019 at 10:28:18PM -0700, Armin Kuster wrote:
+>> Samba and libldb overlap in a few places. This is the simplest fix for
+>> now.
+> Adding a quick hack for interaction problems between two packages
+> that are both in meta-openembedded by adding a .bbappend in 
+> meta-security creates a technical debt while not even helping
+> users who are not using meta-security.
+>
+> The proper solution is likely to make samba use the external libldb 
+> instead of an internal copy.
+>
 >> Signed-off-by: Armin Kuster <akuster808@gmail.com>
 >> ---
->>  recipes-security/sssd/sssd_1.16.3.bb | 14 ++++++++++++--
->>  1 file changed, 12 insertions(+), 2 deletions(-)
+>>  recipes-support/libldb/libldb_%.bbappend | 22 ++++++++++++++++++++++
+>>  1 file changed, 22 insertions(+)
+>>  create mode 100644 recipes-support/libldb/libldb_%.bbappend
 >>
->> diff --git a/recipes-security/sssd/sssd_1.16.3.bb b/recipes-security/sssd/sssd_1.16.3.bb
->> index 8f7f805..e3fb254 100644
->> --- a/recipes-security/sssd/sssd_1.16.3.bb
->> +++ b/recipes-security/sssd/sssd_1.16.3.bb
+>> diff --git a/recipes-support/libldb/libldb_%.bbappend b/recipes-support/libldb/libldb_%.bbappend
+>> new file mode 100644
+>> index 0000000..2633a1e
+>> --- /dev/null
+>> +++ b/recipes-support/libldb/libldb_%.bbappend
+>> @@ -0,0 +1,22 @@
+>> +# This fixes this issue:
+>> +#ERROR: sssd-1.16.3-r0 do_prepare_recipe_sysroot: The file /usr/lib/python2.7/site-packages/_ldb_text.py is installed by both libldb and samba, aborting
+>> +
+>> +EXTRA_OECONF += "--disable-python"
 >> ...
->>  # The package contains symlinks that trip up insane
->>  INSANE_SKIP_${PN} = "dev-so"
->>  
->> -RDEPENDS_${PN} += "bind dbus"
->> +RDEPENDS_${PN} = "bind dbus samba libldb"
-> Even when samba support is not enabled?
-Yeah, that isn't right.
-thanks,
-Armin
+> So just adding the meta-security layer will turn the pyldb* packages 
+> into empty packages?
+ I think I have a possible solution in libldb. patch out shortly.
+
+- armin
 >
 > cu
 > Adrian
