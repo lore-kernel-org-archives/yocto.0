@@ -1,54 +1,67 @@
-Return-Path: <bunk@stusta.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D017E00D26; Fri, 29 Mar 2019 05:58:12 -0700 (PDT)
+	id 63FB4E00D24; Fri, 29 Mar 2019 06:03:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [141.84.69.5 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.179 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 017DDE00BAF
-	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 05:58:10 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 44W1xY2qdKzH8;
-	Fri, 29 Mar 2019 13:58:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
-	s=default; t=1553864289;
-	bh=5KoKgLUKvEJsLWyE0dvy2QPLJMM0umT76uhQAfEhPLo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N+bpKNdB3IvURUa8De4vK89OlIw9ZlNu1VSSbfg+qHV3aimSZ2iPCbPcstKetCOKI
-	FymI+FsrWy8fUtyg91eEa3tiJxVdN37UwO0lMdWGw7QwtPdijE6tsno13GMfngguUW
-	Q121tU11k7sSLJvFgWiAMrVOLTs/hWu+Dke4kaHRlUXRR5IKGki6jeggGqgd9LPn2z
-	AHWAKHhnZKnyyS5tQVm1ynF3GL6qoP8kErX0xnVcAE+GT6EQbn/Lv5JLp1D+5ozNVw
-	sFkil5TSaYVJix9nE35tfdEvXcevd+m4lyuQnvlD/XMMhalWAiMvf/nVFVL8QUBSFJ
-	1GB2JuufXV+ynhX6dKtLM1ygb9geFQAC4mTpNTs9BQzdlZVxGyv7NUbZkUaaJHXQXk
-	UuHzeySM/2utf9MHydIG7MoiTCJw+dnbKiwxJovaf1SycY6VVfxNjZEdwqIqKpugUR
-	5W36rHrhBH8bkGDs0kCeNgD+0hb1IgvLxwbJIKoJdacGSYvj+pWi7tN9isv8ittp1F
-	tcvF1AOVKcad34u4Eq5gJrFPRggy/rdnTo2nANDp9cUBymZHfVZ3S6ShiCLOO7gDXQ
-	WeXGEvh4aM8mDXjgrKobZZAPOv0y8G6q2ARCysSNONtHgMRQaHZ/6ITkBWyNP/XzBE
-	tG/eN7qLreO+WPqX1nv1K23o=
-Date: Fri, 29 Mar 2019 14:58:07 +0200
-From: Adrian Bunk <bunk@stusta.de>
-To: Armin Kuster <akuster808@gmail.com>
-Message-ID: <20190329125807.GA11351@localhost>
-References: <20190329052821.13718-1-akuster808@gmail.com>
-	<20190329052821.13718-2-akuster808@gmail.com>
-	<20190329065014.GA26574@localhost>
+Received: from mail-it1-f179.google.com (mail-it1-f179.google.com
+	[209.85.166.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0DEBE00942
+	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 06:03:09 -0700 (PDT)
+Received: by mail-it1-f179.google.com with SMTP id y204so3572204itf.3
+	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 06:03:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=OVCTOlxWAXbTp7trKJ49DvXxPUCKphldLZP1nCr58Hk=;
+	b=kOuO/Zvy1d7D/VvxZbX0xJPSTtFkJRbpZHOYpq7ytwPIf0vpofvk0/kpe2oHkrsqts
+	lR+lehpZlh9y80fC2UMr0QIDfsSSHRmmfvWTAJ6cGtmGqVfHtE2V4/DAPp4r7kZwCVye
+	gmOlANZlhmp/lBRNKH60MYekotcwEQlo0jYUsa0wdZr+ovDKfq5v/bo5hdEWpKjZK7tF
+	paHPFYR6WuRBVwt0eOjmRnYfwAfhSKjEoCJmRpYIgPNPcxSv6zmE77Tnh9k+U8r6GkZI
+	hFJtq4iOn33H6QQ7x8lsLd73vaipNPnqAim76afBnnHhC4MjBRuU40lgEHR0P9PU3klL
+	DXGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=OVCTOlxWAXbTp7trKJ49DvXxPUCKphldLZP1nCr58Hk=;
+	b=g6rACbo5NnxVxHjiaH9YDP7UEvSu5r/aB0BnXIzBoaRdz47IE78GwX3ZWRHcMlZ2Q+
+	Lkjl8CpP+WrGKvsot9Tvp98yM6BQjqMzGBN59Da/TZy7vxDamvE1B597tKczNmPieCMv
+	AcQ0W/JWnZVUo3I+bgB5DxLFfDh2ojhxG5AlOloNtnwLIfEmNJPllwiUKJqcvpfc11U2
+	7J1LsJgQQGPDxbG6O+O2+0dC0cxJ5U4yDsaEOPzOpt+BNidB4Vabd4PrL8mC9J4WcHAG
+	DfRhmiv2lszYI6zrJzMq3EVlUhrdgpDaVTuqrxwYmhkdJcpEMeLYVgt3dWbRlhis9ilb
+	X9aQ==
+X-Gm-Message-State: APjAAAUfLBF+fascRyXYbR0c9qV3ED8g+sNkbsQRAgU7dl2UREiVgTMW
+	TgqMfrgRmkfOS1BZnDV8F2Jkb1z3MUPvE5fAdNExKEsK
+X-Google-Smtp-Source: APXvYqynY1E0BtVr6X/VXspNVkmEJs+1RwgcfJzcl0tlnceXtBN888BYKM9O0NQ+1OYM5W5j0Edfbryd4SYsyvLKb68=
+X-Received: by 2002:a05:660c:111:: with SMTP id
+	w17mr4066219itj.62.1553864589379; 
+	Fri, 29 Mar 2019 06:03:09 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190329065014.GA26574@localhost>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-security][PATCH 2/5] libldb: work around samba libldb packaging issues
+References: <CAFvQSYSDbe5YEEvFG+sF8enGzG+AsGoms6TYe_DCv-snZiqRYw@mail.gmail.com>
+	<CAJTo0LaromaqsWigi1skaoD5gRQp6JdPXg1WUBV=i8LRq2PHRQ@mail.gmail.com>
+	<CAFvQSYTY4cFD9QbC6R3JHAqtc_7r9X_NAj8zb8mGA1iu_9A3EQ@mail.gmail.com>
+	<CAJTo0LYgeMSNG1R3qmNbccNH12ObATgJP-A-L-BzZ0E6Hw+mPA@mail.gmail.com>
+	<CAFvQSYRMG5VHoCbbZ6fHuRjT+Mae22XsERJCKgfNigX_eWu74w@mail.gmail.com>
+	<CAJTo0LZB0siaFty7_K1J3b1JS8uG5JOwow=12fzuL0qSovuwtw@mail.gmail.com>
+	<CAFvQSYRppKFuJTBJyediTxVmcoJAtwmT4ffj=RYuFErr6ohU9A@mail.gmail.com>
+In-Reply-To: <CAFvQSYRppKFuJTBJyediTxVmcoJAtwmT4ffj=RYuFErr6ohU9A@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 29 Mar 2019 13:02:53 +0000
+Message-ID: <CAJTo0La22deB4HJysOQKvLWYduq7j8UHP=Yao5_yuhGx+JEmPw@mail.gmail.com>
+To: Clemens Eisserer <linuxhippy@gmail.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: pkg-config does not find "luajit" since upgrade to sumo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,54 +73,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Mar 2019 12:58:12 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Fri, 29 Mar 2019 13:03:10 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Mar 29, 2019 at 08:50:14AM +0200, Adrian Bunk wrote:
-> On Thu, Mar 28, 2019 at 10:28:18PM -0700, Armin Kuster wrote:
-> > Samba and libldb overlap in a few places. This is the simplest fix for
-> > now.
-> 
-> Adding a quick hack for interaction problems between two packages
-> that are both in meta-openembedded by adding a .bbappend in 
-> meta-security creates a technical debt while not even helping
-> users who are not using meta-security.
-> 
-> The proper solution is likely to make samba use the external libldb 
-> instead of an internal copy.
->...
+On Fri, 29 Mar 2019 at 12:49, Clemens Eisserer <linuxhippy@gmail.com> wrote:
+> The issue was the _$PN appended to DEPENDS, when I removed it the build succeeded:
+> changing DEPENDS_${PN} = "luajit" to DEPENDS = "luajit" did the trick.
 
-commit a001e465293b36c03d4ca4500857fe0a67d13e20
-Date:   Fri Jul 27 14:09:10 2018 -0700
+Right, DEPENDS_${PN} isn't a variable that is used.  You'll most
+likely have got a warning from bitbake about that.
 
-    samba: Update to 4.8.3
-    
-    LDB 1.4.0 breaks Samba < 4.9 therefore use internal version
+> However, I am still puzzled what happens here and why it worked before.
 
+Because in the old days, every recipe shared a global sysroot.  If
+luajit was built at some point, it was in the sysroot.  For the last
+few releases (almost two years now?) the sysroot is per-recipe, so if
+you don't have luajit in DEPENDS then it isn't in the sysroot.
 
-So the root cause is that last summer LDB in meta-openembedded was 
-updated to a version not compatible with with the Samba version in 
-meta-openembedded.
-
-As workaround Samba was changed to use the internal version
-of the library.
-
-What is now proposed is a workaround to fix a regression caused
-by the first workaround.
-
-The best way forward would be to upgrade Samba to 4.9 or 4.10 and
-use the external LDB again.
-
-
-cu
-Adrian
-
--- 
-
-       "Is there not promise of rain?" Ling Tan asked suddenly out
-        of the darkness. There had been need of rain for many days.
-       "Only a promise," Lao Er said.
-                                       Pearl S. Buck - Dragon Seed
-
+Ross
 
