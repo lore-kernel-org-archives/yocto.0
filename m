@@ -1,64 +1,71 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13AE9E00D26; Fri, 29 Mar 2019 03:23:56 -0700 (PDT)
+	id 15589E00D26; Fri, 29 Mar 2019 04:51:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (twoerner[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.170 listed in list.dnswl.org]
+	*      [209.85.166.182 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f170.google.com (mail-it1-f170.google.com
-	[209.85.166.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7FA1E00D20
-	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 03:23:54 -0700 (PDT)
-Received: by mail-it1-f170.google.com with SMTP id f22so2965511ita.3
-	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 03:23:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=Q/ZR2v+tk7t0pJOmV4IRZwOx6aH6A9iUr7sOn5k/VyI=;
-	b=icfhUA0tXY2d6kddmoBo60zpguE+EliWqqvPbfK1WYPCCC24FpEpDhTpK4hVDOHYgt
-	2X/JscJGSC4237ffds4/aRu+nTdBEWZ00p/TDzFnEcx//Ar25fGWpkV5kbAUOvcXw1JN
-	TO1vYIF7kdPywMTTBe+uHBQy/h878J39AmFTVo8f7xKMN5LQrQVSQBp+3tb/PU8P2OVU
-	8uu286ZRgbUXbiCTQWXvsuRLuTjBcyakvqBFtVoVQX84D9O9M0PD9mnuQaqQg+sMO44r
-	GLNE9mdbW/g8Jp1ZA/e76Fu0ZQhHSDbqeFleYeV+PG6Z098d+jcCoucnKW0j3T/wti8/
-	XMew==
+Received: from mail-it1-f182.google.com (mail-it1-f182.google.com
+	[209.85.166.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D60F3E00942
+	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 04:51:42 -0700 (PDT)
+Received: by mail-it1-f182.google.com with SMTP id g17so3258335ita.2
+	for <yocto@yoctoproject.org>; Fri, 29 Mar 2019 04:51:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:content-transfer-encoding:in-reply-to
+	:user-agent; bh=bOypZGuwuY9IW+GtT9M1rV2WGwzAeX/Gwp8VTb/zdho=;
+	b=kP2hyi+kEbhsvHJAU1vAUQl+oWzdr2VkuiCtmal6jkLS7+28fUjjGN7IC2kCAenvBg
+	neN4jrfKzOaulSDW+d+xIfJ8XZma2/F5V3ppd3iGt7I7jaVDxDj9KQ1B4aKoTBnf8LXE
+	9MCvNGfz/WWI36kNI7Fag74DC2OEA1gVosMJs/zma1FiPY+wj4P+TqBtI6dxT43+LPdO
+	ovq4DTzGIEFGTySKD67PvaX1hOv4zISKM/QyPDS/m9+09JH7rLdsCOolZY2cDiOBFA7a
+	KY4FkCqPyDmzI7F/VLpqMG+ULMMti57CNtnxQhMvN/OuldD6GL2G6tYubCbIoSH9joDo
+	WD7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=Q/ZR2v+tk7t0pJOmV4IRZwOx6aH6A9iUr7sOn5k/VyI=;
-	b=ObjOKXwwskrttRcW483cVgTZ4IqBQdXsEprKMAkEAPOQdXXSP/mMsbMzwabKUh7hrd
-	b30ajJ0QwG90JwGH8wpJxE56H2iRYvT6kH+E7tXM8jl8FGkCzqeUOHrIhQe157HGmMPC
-	2qKDXC0KYKzpPApUPcY2QfSiYITx0tbqcpuwNZLmAGvTt5EDuL5aWh22TYeGw1vYYJLY
-	PwuDyWf9DUg4xJq8wJJBcZN9qYJLa6JjwUmtmVjukeMNn8gJJpFgB0Xkfw60M6tLmx77
-	1VoGj1+pOXC7JKPFAkBUisEHE7pfnZF0IHXOD4V+enjoabaKzxuOyj0oGsQ3zpXHdDs8
-	iExQ==
-X-Gm-Message-State: APjAAAWRoJ+Pt017JoDxAFXk+F11bM24AUMS0WoCmqFgF5m4p72TYmZ0
-	RUCiFxOq6prirYuV+4tie7Zxla6SI+0mit3uYe0OiD3pZ64=
-X-Google-Smtp-Source: APXvYqx6pLADD2PiGxkgEte3ENARCZL5aMVizEU+nm5loYZZcy1FvXC7UVpuDKjWrbuFKuvtyLv6j642lHAczQxdDKU=
-X-Received: by 2002:a24:ad2:: with SMTP id 201mr3565591itw.26.1553855034234;
-	Fri, 29 Mar 2019 03:23:54 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:content-transfer-encoding
+	:in-reply-to:user-agent;
+	bh=bOypZGuwuY9IW+GtT9M1rV2WGwzAeX/Gwp8VTb/zdho=;
+	b=HTwyI9l5SN4lRXo7lEkHBJL6/BC1Q6vI9pe2Q+BkFff5VxrKIr8wfKZq9v1NfKJEZb
+	VcdQ+Iv2vsRshS/jpxzSQfxuHX5eaYfP4GfCw0VM6HlG40W3i7zbI6xEeVsqciEUtT4U
+	iItwKyXtuKel5SB0Z8gDBExbGf1pT9WNoNUjQ5z5tpfjU8hzHRzsgl1mAJAjCDP6ITNW
+	x2LNwPvQgwzpeQP8xramx+LN3PWnHYNt2q8CoqbbmQQ063CR1DBBXB+SSgaWg1nJlOal
+	qh741si0ed6QU1+RwxPPkanpSqsoQtNhMF+G4gPkusPebgEV3jq9i+N2iagpvmU2KfWP
+	P+yg==
+X-Gm-Message-State: APjAAAWYFktktEsiQePWeSidJdP5e5Xn2nw3aLG4w0rh+Oba8+rbnLe4
+	GCih5Mhb8m1WLdjM1WGmLkw=
+X-Google-Smtp-Source: APXvYqwMB5Xw85S6HANy/lk+t2AEE7vVQ42TvVb+QxTa4aoDpZH85/XmiM20RPWypK9/hxWITzJEag==
+X-Received: by 2002:a24:4746:: with SMTP id t67mr3989489itb.123.1553860301894; 
+	Fri, 29 Mar 2019 04:51:41 -0700 (PDT)
+Received: from linux-uys3 ([206.248.190.95])
+	by smtp.gmail.com with ESMTPSA id i23sm660660ion.40.2019.03.29.04.51.40
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 29 Mar 2019 04:51:40 -0700 (PDT)
+Date: Fri, 29 Mar 2019 07:51:38 -0400
+From: Trevor Woerner <twoerner@gmail.com>
+To: =?utf-8?Q?Jo=C3=A3o_Gon=C3=A7alves?= <joao.jfgoncalves@gmail.com>
+Message-ID: <20190329115138.GA8353@linux-uys3>
+References: <CAHXEV+mfcxpGekquU2NFxLcmtw1gTAtp9eR3FYsXfdURW9YyfQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <CAFvQSYSDbe5YEEvFG+sF8enGzG+AsGoms6TYe_DCv-snZiqRYw@mail.gmail.com>
-	<CAJTo0LaromaqsWigi1skaoD5gRQp6JdPXg1WUBV=i8LRq2PHRQ@mail.gmail.com>
-	<CAFvQSYTY4cFD9QbC6R3JHAqtc_7r9X_NAj8zb8mGA1iu_9A3EQ@mail.gmail.com>
-	<CAJTo0LYgeMSNG1R3qmNbccNH12ObATgJP-A-L-BzZ0E6Hw+mPA@mail.gmail.com>
-	<CAFvQSYRMG5VHoCbbZ6fHuRjT+Mae22XsERJCKgfNigX_eWu74w@mail.gmail.com>
-In-Reply-To: <CAFvQSYRMG5VHoCbbZ6fHuRjT+Mae22XsERJCKgfNigX_eWu74w@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 29 Mar 2019 10:23:41 +0000
-Message-ID: <CAJTo0LZB0siaFty7_K1J3b1JS8uG5JOwow=12fzuL0qSovuwtw@mail.gmail.com>
-To: Clemens Eisserer <linuxhippy@gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: pkg-config does not find "luajit" since upgrade to sumo
+In-Reply-To: <CAHXEV+mfcxpGekquU2NFxLcmtw1gTAtp9eR3FYsXfdURW9YyfQ@mail.gmail.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: yocto@yoctoproject.org
+Subject: Re: qemu segmentation fault on gobject-introspection
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,42 +77,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Mar 2019 10:23:56 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 29 Mar 2019 11:51:44 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-All I can say is stop digging around random paths and actually ask the
-system the questions you need answers to.
+On Wed 2019-02-20 @ 11:50:45 PM, João Gonçalves wrote:
+> Hello,
+> when trying to migrate my build to master branch of oe layers I got this
+> qemu segmentation fault during gobject-introspection.
+> Does anyone have any clue on this?
+> 
+> Thank you,
+> João Gonçalves
+> 
+> | qemu: uncaught target signal 11 (Segmentation fault) - core dumped
+> | Segmentation fault (core dumped)
+> | If the above error message is about missing .so libraries, then setting
+> up GIR_EXTRA_LIBS_PATH in the recipe should help.
+> | (typically like this: GIR_EXTRA_LIBS_PATH="${B}/something/.libs" )
+> | Command
+> '['/home/joao/poky_imx6/build/tmp-glibc/work/cortexa9t2hf-neon-angstrom-linux-gnueabi/gobject-introspection/1.58.3-r0/build/g-ir-scanner-qemuwrapper',
+> '/home/joao/poky_imx6/build/tmp-glibc/work/cortexa9t2hf-neon-angstrom-linux-gnueabi/gobject-introspection/1.58.3-r0/build/tmp-introspect5euoldbk/GLib-2.0',
+> '--introspect-dump=/home/joao/poky_imx6/build/tmp-glibc/work/cortexa9t2hf-neon-angstrom-linux-gnueabi/gobject-introspection/1.58.3-r0/build/tmp-introspect5euoldbk/functions.txt,/home/joao/poky_imx6/build/tmp-glibc/work/cortexa9t2hf-neon-angstrom-linux-gnueabi/gobject-introspection/1.58.3-r0/build/tmp-introspect5euoldbk/dump.xml']'
+> returned non-zero exit status 1.
+> | ninja: build stopped: subcommand failed.
+> | WARNING: exit code 1 from a shell command.
+> | ERROR: Function failed: do_compile (log file is located at
+> /home/joao/poky_imx6/build/tmp-glibc/work/cortexa9t2hf-neon-angstrom-linux-gnueabi/gobject-introspection/1.58.3-r0/temp/log.do_compile.20894)
+> ERROR: Task
+> (/home/joao/poky_imx6/poky/meta/recipes-gnome/gobject-introspection/gobject-introspection_1.58.3.bb:do_compile)
+> failed with exit code '1'
 
-- Does my recipe depend on luajit.
-Check that you have DEPENDS=luajit.
+Is it possible you're building your image with the gold linker? I.e.
 
-- What files does luajit ship.
-$ oe-pkgdata-util list-pkg-files -p luajit
-Does that include a /usr/lib/pkgconfig/luajit.pc?
+	DISTRO_FEATURES_append = " ld-is-gold"
 
-Ross
+It looks like there's a problem using the gold linker with 32-bit ARM targets.
+Everything seems to work with the regular/default bfd linker is used instead.
 
-On Fri, 29 Mar 2019 at 00:55, Clemens Eisserer <linuxhippy@gmail.com> wrote:
->
-> Hello Burton,
->
-> > Check what luajit is shipping and compare that to what the pkgconfig
-> > is looking for.  Calling pkgconfig directly in your recipe's devshell
-> > is useful for this.
->
-> Thanks for the hint regarding the devshell.
->
-> Indeed, pkgconfig can not find luajit in the devshell - the path
-> specified as PKG_CONFIG_PATH is:
-> build/tmp-angstrom-glibc/work/armv7at2hf-neon-angstrom-linux-gnueabi/xpcompiler/0.1-r0/recipe-sysroot/usr/lib/pkgconfig
-> - however the folder pkgconfig does not even exist in there.
->
-> Inside work/armv7.../ there is also a luajit directory, and there I
-> was able to find the pc-file:
-> /2.0.5-r0/sysroot-destdir/usr/lib/pkgconfig/luajit.pc
->
-> So i wonder, are there some extra steps required to make the luajit
-> sysroot-destdir visible to luajit's recipe-sysroot?
->
-> Thanks & br, Clemens
+Please see:
+	http://lists.openembedded.org/pipermail/openembedded-core/2019-March/280537.html
+	https://patchwork.openembedded.org/patch/159874/
+
+Best regards,
+	Trevor
 
