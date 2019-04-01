@@ -1,6 +1,6 @@
-Return-Path: <dimtass@gmail.com>
+Return-Path: <ms.priyanshu.sharma@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F04C3E00D20; Mon,  1 Apr 2019 00:27:22 -0700 (PDT)
+	id 2EFE6E00D32; Mon,  1 Apr 2019 00:30:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,56 +10,57 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (dimtass[at]gmail.com)
+	provider *      (ms.priyanshu.sharma[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.179 listed in list.dnswl.org]
+	*      [209.85.167.174 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com
-	[209.85.167.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6E48E00C46
-	for <yocto@yoctoproject.org>; Mon,  1 Apr 2019 00:27:21 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id j132so6436281oib.2
-	for <yocto@yoctoproject.org>; Mon, 01 Apr 2019 00:27:21 -0700 (PDT)
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com
+	[209.85.167.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A51D6E00D20
+	for <yocto@yoctoproject.org>; Mon,  1 Apr 2019 00:30:58 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id x188so6391827oia.13
+	for <yocto@yoctoproject.org>; Mon, 01 Apr 2019 00:30:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=0lLmg+UfSVh2nrHqnir4wyX92JywEwcnMMRwOEowmLc=;
-	b=EIBzTOjjci+gst8kTR+EWL/PMPSJWaNIbCvkCMoH+rQA67AT1GVpJ3k8JYxC5zmXSJ
-	ALLrbvtw20GfGogf3OErVxb1YiZTy9uRDxHDTYIRBdPiodNq8LtIx+Gflyn1zevPeoRB
-	qoSwCdi3XTyhE0GAQl6hOG18vsNbvfkyAIkcQqXslLWLiP97dj9dYwQ6o1+SMx0MaLWP
-	RAV0n2zwJKQ1Zp5OVBF2JxG+06g4+qAr0pGVuH5ZPlovDhPyums6nt3kZYzplure7Xw8
-	kKJ8fuji2la+l+e3AcMY9jq54Tazpg/XNp7OdnLzJdGj/yqPqOxpvirK/FH1EBQ2yMy+
-	qpYw==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=kDzLPTla0zqV1/vFgyHQUBD7xJMq3iJtFmLDFEYHtQc=;
+	b=YnRK0m8RKv5vDBzZHFG5Y9iqKWUEl0v8Kfp7+6jIQwEyldcb7n+6n2AREDi0xJ5dHg
+	SQZDLIJSwN0Z7XDXOkhZu7kQN9q+b+IOUdAnmW/mpzSXFXgjjFDqJqibtIjDDHuRQ9XG
+	8lUzyPOtIjd3RhIC/xZYqHs3CfqbGXy5s78h0gnvlWiQb0anfAlYrx1lmdNsQwhlaXBe
+	t7szFFFsZlQD0Ifh5+5sZ3vAK5ccHAGJbf+q830iy5aBp27MXlSS4PYdqqac+hbhWKAc
+	5VIz3Dzc6Y0YMjoARoXmy1/X3bPuzaOi6G0FUnj+GOKDCa/ftzXLfMCXRgc6qPYRmita
+	qChA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=0lLmg+UfSVh2nrHqnir4wyX92JywEwcnMMRwOEowmLc=;
-	b=bt+Rbv2Vg7srzHttLi2hEOgx5DrHTO7BpGVQV4vXYas1BQExw/D4LaAcaJFcSmGMaB
-	l/2uH1X7Zo9tI7rPN6ZGdgICWAzAVMF5N8odbqc6UTEGrYK8CfVzqFFVR9dPkWGjDpc2
-	54Vbd24r3OYQs1XHuNpchbfeZZgwuDbvH06jy8xLzNIgdy9CHoNwCpkSYmQvKDIgRw8I
-	i/Kkr2HFFrBrrS8HAe89o4OvgotG7mC6XcTTmfXgtc2sKk5CYplxQIC3y92mOQZYJPN8
-	hhXhVfbm7AdDfEtlC708pO95SUsx4D22uVMlvxS7OEulK1o6TVgavYop/iGwOJrMa2Ov
-	Je8g==
-X-Gm-Message-State: APjAAAUZmSSIUHyupkD+GlKKt4E5zm2ql+T/axRUKJNMTmwOAyuH6WBq
-	W/fC1woan55uxIuFTxrPVxalGzitclFQ7U/oCII=
-X-Google-Smtp-Source: APXvYqy9OH5rdU/f18+B2Gj7SJwpoTPaWgLVqagdzsA4OHi6E2C1hpEKnhCJ0Elh6yHlQQe6ZWcCv3V6ySIHfUqY06E=
-X-Received: by 2002:aca:43c4:: with SMTP id q187mr12188716oia.45.1554103640687;
-	Mon, 01 Apr 2019 00:27:20 -0700 (PDT)
+	:message-id:subject:to;
+	bh=kDzLPTla0zqV1/vFgyHQUBD7xJMq3iJtFmLDFEYHtQc=;
+	b=jDuLptxlvbT+x3q6QI+Jq2FyHghTXBTu2NPPTOWyxYk/kp4wBXQZrCiouXOabhgzbg
+	KcL80p7Fpp/vtScIymhs8WF+56hvPw4RBxO/jhloqLdKYnJwfR3sq0rVCxslBLUjRfSS
+	4vDRVBsba0RSHFncG1MQANwm+a++FpurCqBb/YsfDRw5D5Cc6FZn86KBoQ7TN92JJ0pU
+	r63Kk+uyG4nNXoJOVYJj2YsLCmCBdEzh+HrmjB1vyFSJ20ZcMkcproXi4ZiaQ2QCzB/6
+	9ykpMe767WvA+UA2r/jf4lGkiIwy6KlXqoa/CxKt644i/d3a3GGLyKBMKMIxsvnkz2jD
+	w7dg==
+X-Gm-Message-State: APjAAAWGc+YOVMziYXYaBnPe3q4AOKLmsyppn0qZqhZusHvP4iyw5+5S
+	igpUQBSr2JSa1ryypBD0uNPQuFq3T0UbX8yi3E/rIKK5
+X-Google-Smtp-Source: APXvYqxTVPw5FweMBCEkwf0ip8xUFL6agVLViPQP+LiHhvNtynN29EDmnepvsgcpHN+mnSIAEKyas68c2cbfeEG/l8c=
+X-Received: by 2002:aca:ac94:: with SMTP id
+	v142mr11881625oie.135.1554103857866; 
+	Mon, 01 Apr 2019 00:30:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAFuHCCBnm9uGqeiyFrpzuGtahYQUUK=ap1gp3NOuy_eA1TooCA@mail.gmail.com>
-In-Reply-To: <CAFuHCCBnm9uGqeiyFrpzuGtahYQUUK=ap1gp3NOuy_eA1TooCA@mail.gmail.com>
-From: Dimitris Tassopoulos <dimtass@gmail.com>
-Date: Mon, 1 Apr 2019 09:27:09 +0200
-Message-ID: <CACKFPN02mVEou-e9A5SQs+WiQB-_Xm1yGkhrbnHiOACZjzUHjg@mail.gmail.com>
-To: Sergio Torres Soldado <torres.soldado@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: customising a bsp
+References: <CAA_f9ePWPaPacQkJYsne0F6T-nY5j5epbgjaz+iFrxCAV+476g@mail.gmail.com>
+	<CAA_f9ePLea9ewu=UBf5Gv299birMfZps_DK1jOWPd3ZFJu6u5w@mail.gmail.com>
+In-Reply-To: <CAA_f9ePLea9ewu=UBf5Gv299birMfZps_DK1jOWPd3ZFJu6u5w@mail.gmail.com>
+From: Priyanshu Sharma <ms.priyanshu.sharma@gmail.com>
+Date: Mon, 1 Apr 2019 13:00:47 +0530
+Message-ID: <CAA_f9eMQyFab=Q55FGP6ZMLqXf18=qqxKy80E8oyCDToK4Pywg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: [meta-qt5][qtwayland]Qtwayland recipe fails with Yocto 2.5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,178 +72,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2019 07:27:23 -0000
-Content-Type: multipart/alternative; boundary="000000000000728a46058572f32b"
+X-List-Received-Date: Mon, 01 Apr 2019 07:30:59 -0000
+Content-Type: multipart/alternative; boundary="000000000000646b64058573008e"
 
---000000000000728a46058572f32b
+--000000000000646b64058573008e
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Serj,
+The compilation of features.egl was failing because wayland-client.h was
+not found in Yocto 2.5 sysroot of QTbase. In yocto 2.2, the sysroot was
+common so qtbase was able to find this header even without dependencies.
+Adding DEPENDS=wayland in qtbase recipe is compiling qtbase and qtwayland
+successfully.
 
-I'm using the -r / -R options in bitbake in order to customize the image
-via global
-variables and be able to build different configurations for the same
-machine and
-distro. You you use the same option to create e.g. different versions. Have
-a look
-in the documentation
+The bitbake did not throw error for missing driver. It just printed it in
+logs.
 
-https://www.yoctoproject.org/docs/1.6/bitbake-user-manual/bitbake-user-manu=
-al.html
+Warm Regards,
+Priyanshu Sharma
 
-search for these lines:
--r PREFILE, --read=3DPREFILE
--R POSTFILE, --postread=3DPOSTFILE
+On Wed, Mar 27, 2019 at 4:20 PM Priyanshu Sharma <
+ms.priyanshu.sharma@gmail.com> wrote:
 
-What those do is that you can add an extra configuration file wich either
-prepends
-or appends the local.conf file. I'm using it both ways, but for your case I
-think you
-need to add your default versions with ?=3D in the local.conf and then
-override them
-with an external conf file and use --read option.
-
-So, let's say that you have the minimal-image then you can have a number or
-versioned configuration files (e.g. version-1.0.conf, version-1.2.conf,
-e.t.c.) then
-you setup your environment as usual using your environment setup scripts or
-just calling oe-init-build-env for your machine and then you'll be able to
-build
-different versions like this:
-
-bitbake -R version-1.0.conf minimal-image
-
-
-You can also build a single recipe using the version file
-
-bitbake -R version-1.2.conf virtual/kernel
-
-
-Then, if you like, you can create a wrapper script that actually simplifies
-the call
-and just pass the version. For example, you can create an executable bash
-script
-and these
-
-#!/bin/bash
-> CONF_VERSION=3D"1.0"
-> while getopts v:h" OPTION
-> do
->     case $OPTION in
->     v) CONF_VERSION=3D${OPTARG} ;;
->     h) echo "Print some help" ;;
->     *) echo "Print some help" ;;
-> esac
-> done
-> bitbake --postread=3D${CONF_VERSION} ${1}
-
-
-And then call the script using -v to pass the version. Of course, that
-assumes
-that all version files are in the same folder with the local.conf. I
-usually make
-such scripts but they are doing much more stuff, for example use variables
-from the extra conf file to run other tasks.
-
-Hope that helps.
-
-Cheers,
-Dimitris
-
-Sergio Torres Soldado <torres.soldado@gmail.com> schrieb am Sa., 30. M=C3=
-=A4rz
-2019, 18:34:
-
-> Hi,
+> Found that the missing features.egl is provided by QTBase recipe. And in
+> my case, qtbase is not compiling the feature "EGL" and thats why qtwayland
+> fails to find it.
 >
->  What is the best alternative to setting variables in local.conf? The
-> specific use-case is customising a meta-raspberrypi build, which has a
-> bunch of variables that are picked up by the MACHINE code to influence
-> build configurations. I want to version these customisations hence removi=
-ng
-> them from local.conf.
+> egl is not included in PACKAGECONFIG of qtbase recipe. However, it used to
+> be enabled with Yocto 2.2.
+> Adding it PACKAGECONFIG[eg] of qtbase is not enabling it. How can egl be
+> enabled in qtbase?
 >
->  I have tried adding a machine definition in a separate layer that
-> includes the same files as those from the machines in meta-raspberry pi b=
-ut
-> there is logic that depends on the machine name and building an image fai=
-ls.
+> Warm regards,
+> Priyanshu Sharma
 >
-> Many thanks,
-> Serj.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> On Tue, Mar 19, 2019 at 1:23 PM Priyanshu Sharma <
+> ms.priyanshu.sharma@gmail.com> wrote:
+>
+>> Hi All,
+>>
+>> I'm consistently getting a build failure after upgrading Poky to 2.5 from
+>> 2.2 on qtwayland
+>> Yocto recipe from meta-qt5.
+>>
+>> The error looks like :
+>>
+>> | Running configuration tests...
+>> | Checking for Wayland client library... yes
+>> | Checking for Wayland cursor library... yes
+>> | Checking for wayland-scanner... yes
+>> | Checking for Wayland EGL library... yes
+>> | Checking for wayland-server... yes
+>> | Done running configuration tests.
+>> |
+>> | Configure summary:
+>> |
+>> | Qt Wayland Drivers:
+>> |   EGL .................................... no
+>> |   Raspberry Pi ........................... no
+>> |   XComposite EGL ......................... no
+>> |   XComposite GLX ......................... no
+>> |   DRM EGL ................................ no
+>> |   libhybris EGL .......................... no
+>> | Qt Wayland Client ........................ yes
+>> | Qt Wayland Compositor .................... yes
+>> |
+>> | ERROR: Feature 'wayland-egl' was enabled, but the pre-condition 'features.wayland-client && features.opengl && features.egl && libs.wayland-egl' failed.
+>> |
+>> | ERROR: Feature 'wayland-egl' was enabled, but the pre-condition 'features.wayland-server && features.opengl && features.egl && libs.wayland-egl' failed.
+>> |
+>> | Check config.log for details.
+>> | WARNING: exit code 1 from a shell command.
+>> I've checked that only pre-condition "features.egl" is failing.
+>> I've my own custom recipe which is providing virtual/egl and is set as PREFERRED_PROVIDER also.
+>> What is the missing dependency here when virtual/egl is provided?
+>> What exactly is features.egl looking for? ( virtual/egl provides egl.pc )
+>> I've not changed anything in meta-qt5 layer. And the version is 5.9.2 QT5. However, is fails with 5.12 also.
+>>
+>>
+>> Warm Regards,
+>>
+>> Priyanshu Sharma
+>>
+>>
+>>
 
---000000000000728a46058572f32b
+--000000000000646b64058573008e
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
-r=3D"ltr"><div dir=3D"ltr"><div dir=3D"auto">Hi Serj,<div dir=3D"auto"><br>=
-</div><div>I&#39;m using the -r / -R options in bitbake in order to customi=
-ze the image via global</div><div>variables and be able to build different =
-configurations for the same machine and</div><div>distro. You you use the s=
-ame option to create e.g. different versions. Have a look</div><div>in the =
-documentation</div><div><br></div><div><a href=3D"https://www.yoctoproject.=
-org/docs/1.6/bitbake-user-manual/bitbake-user-manual.html">https://www.yoct=
-oproject.org/docs/1.6/bitbake-user-manual/bitbake-user-manual.html</a><br><=
-/div><div><br></div><div>search for these lines:</div><div><div>-r PREFILE,=
- --read=3DPREFILE</div><div>-R POSTFILE, --postread=3DPOSTFILE</div></div><=
-div><br></div><div>What those do is that you can add an extra configuration=
- file wich either prepends</div><div>or appends the local.conf file. I&#39;=
-m using it both ways, but for your case I think you</div><div>need to add y=
-our default versions with ?=3D in the local.conf and then override them</di=
-v><div>with an external conf file and use --read option.</div><div><br></di=
-v><div>So, let&#39;s say that you have the minimal-image then you can have =
-a number or</div><div>versioned configuration files (e.g. version-1.0.conf,=
- version-1.2.conf, e.t.c.) then</div><div>you setup your environment as usu=
-al using your environment setup scripts or</div><div>just calling oe-init-b=
-uild-env for your machine and then you&#39;ll be able to build</div><div>di=
-fferent versions like this:</div><div><br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex">bitbake -R version-1.0.conf minimal-image</blockquot=
-e><div><br></div><div>You can also build a single recipe using the version =
-file</div><div><br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">bitbak=
-e -R version-1.2.conf virtual/kernel</blockquote></div><div><br></div><div>=
-Then, if you like, you can create a wrapper script that actually simplifies=
- the call</div><div>and just pass the version. For example, you can create =
-an executable bash script</div><div>and these</div><div><br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex">#!/bin/bash<br>CONF_VERSION=3D&quo=
-t;1.0&quot;<br>while getopts v:h&quot; OPTION<br>do<br>=C2=A0 =C2=A0 case $=
-OPTION in<br>=C2=A0 =C2=A0 v) CONF_VERSION=3D${OPTARG} ;;<br>=C2=A0 =C2=A0 =
-h) echo &quot;Print some help&quot; ;;<br>=C2=A0 =C2=A0 *) echo &quot;Print=
- some help&quot; ;;<br>esac<br>done<br>bitbake --<span style=3D"color:rgb(5=
-1,51,51)">postread</span>=3D${CONF_VERSION} ${1}</blockquote><div><br></div=
-><div>And then call the script using -v to pass the version. Of course, tha=
-t assumes</div><div>that all version files are in the same folder with the =
-local.conf. I usually make</div><div>such scripts but they are doing much m=
-ore stuff, for example use variables</div><div>from the extra conf file to =
-run other tasks.</div><div><br></div><div>Hope that helps.</div><div><br></=
-div><div>Cheers,</div><div>Dimitris</div></div></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Sergio Torres Soldad=
-o &lt;<a href=3D"mailto:torres.soldado@gmail.com" target=3D"_blank">torres.=
-soldado@gmail.com</a>&gt; schrieb am Sa., 30. M=C3=A4rz 2019, 18:34:<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
-er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<d=
-iv><br></div><div>=C2=A0What is the best alternative to setting variables i=
-n local.conf? The specific use-case is customising a meta-raspberrypi build=
-, which has a bunch of variables that are picked up by the MACHINE code to =
-influence build configurations. I want to version these customisations henc=
-e removing them from local.conf.=C2=A0</div><div><br></div><div>=C2=A0I hav=
-e tried adding a machine definition in a separate layer that includes the s=
-ame files as those from the machines in meta-raspberry pi but there is logi=
-c that depends on the machine name and building an image fails.</div><div><=
-br></div><div>Many thanks,</div><div>Serj.</div></div>--=C2=A0<br>_________=
-______________________________________<br>yocto mailing list<br><a href=3D"=
-mailto:yocto@yoctoproject.org" rel=3D"noreferrer" target=3D"_blank">yocto@y=
-octoproject.org</a><br><a href=3D"https://lists.yoctoproject.org/listinfo/y=
-octo" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopr=
-oject.org/listinfo/yocto</a></blockquote></div></div></div></div></div>
+<div dir=3D"ltr">The compilation of features.egl was failing because waylan=
+d-client.h was not found in Yocto 2.5 sysroot of QTbase. In yocto 2.2, the =
+sysroot was common so qtbase was able to find this header even without depe=
+ndencies.=C2=A0<br>Adding DEPENDS=3Dwayland in qtbase recipe is compiling q=
+tbase and qtwayland successfully.<br><br>The bitbake did not throw error fo=
+r missing driver. It just printed it in logs.<div><br></div><div>Warm Regar=
+ds,</div><div>Priyanshu Sharma</div></div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Wed, Mar 27, 2019 at 4:20 PM Priyans=
+hu Sharma &lt;<a href=3D"mailto:ms.priyanshu.sharma@gmail.com">ms.priyanshu=
+.sharma@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><div dir=3D"ltr">Found that the missing features.egl is pr=
+ovided by QTBase recipe. And in my case, qtbase is not compiling the featur=
+e &quot;EGL&quot; and thats why qtwayland fails to find it.<div><br></div><=
+div>egl is not included in PACKAGECONFIG of qtbase recipe. However, it used=
+ to be enabled with Yocto 2.2.=C2=A0</div><div>Adding it PACKAGECONFIG[eg] =
+of qtbase is not enabling it. How can egl be enabled in qtbase?</div><div><=
+br></div><div>Warm regards,</div><div>Priyanshu Sharma</div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 19,=
+ 2019 at 1:23 PM Priyanshu Sharma &lt;<a href=3D"mailto:ms.priyanshu.sharma=
+@gmail.com" target=3D"_blank">ms.priyanshu.sharma@gmail.com</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
+><div class=3D"gmail-m_3353676281559097329gmail-m_-3634063191643445799gmail=
+-gs" style=3D"margin:0px;padding:0px 0px 20px;width:1299.11px"><div class=
+=3D"gmail-m_3353676281559097329gmail-m_-3634063191643445799gmail-"><div id=
+=3D"gmail-m_3353676281559097329gmail-m_-3634063191643445799gmail-:mp" class=
+=3D"gmail-m_3353676281559097329gmail-m_-3634063191643445799gmail-ii gmail-m=
+_3353676281559097329gmail-m_-3634063191643445799gmail-gt" style=3D"directio=
+n:ltr;margin:8px 0px 0px;padding:0px"><div id=3D"gmail-m_335367628155909732=
+9gmail-m_-3634063191643445799gmail-:mq" class=3D"gmail-m_335367628155909732=
+9gmail-m_-3634063191643445799gmail-a3s gmail-m_3353676281559097329gmail-m_-=
+3634063191643445799gmail-aXjCH" style=3D"overflow:hidden;font-variant-numer=
+ic:normal;font-variant-east-asian:normal;font-stretch:normal;line-height:1.=
+5"><div dir=3D"ltr"><div style=3D"font-family:Arial,Helvetica,sans-serif;fo=
+nt-size:small">Hi All,</div><div style=3D"font-family:Arial,Helvetica,sans-=
+serif;font-size:small"><br class=3D"gmail-m_3353676281559097329gmail-m_-363=
+4063191643445799gmail-Apple-interchange-newline">I&#39;m consistently getti=
+ng a build failure after upgrading Poky to 2.5 from 2.2 on qtwayland=C2=A0<=
+/div><div style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small">=
+Yocto recipe from meta-qt5.</div><div style=3D"font-family:Arial,Helvetica,=
+sans-serif;font-size:small"><br></div><div>The error looks like :<br><br><p=
+re><font color=3D"#000000"><font face=3D"garamond, serif" style=3D"font-fam=
+ily:Arial,Helvetica,sans-serif;font-size:small;white-space:pre-wrap">| Runn=
+ing configuration tests...
+| Checking for Wayland client library... yes
+| Checking for Wayland cursor library... yes
+| Checking for wayland-scanner... yes
+| Checking for Wayland EGL library... yes
+| Checking for wayland-server... yes
+| Done running configuration tests.
+|=20
+| Configure summary:
+|=20
+| Qt Wayland Drivers:
+|   EGL .................................... no
+|   Raspberry Pi ........................... no
+|   XComposite EGL ......................... no
+|   XComposite GLX ......................... no
+|   DRM EGL ................................ no
+|   libhybris EGL .......................... no
+| Qt Wayland Client ........................ yes
+| Qt Wayland Compositor .................... yes
+|=20
+| ERROR: Feature &#39;wayland-egl&#39; was enabled, but the pre-condition &=
+#39;features.wayland-client &amp;&amp; features.opengl &amp;&amp; features.=
+egl &amp;&amp; libs.wayland-egl&#39; failed.
+|=20
+| ERROR: Feature &#39;wayland-egl&#39; was enabled, but the pre-condition &=
+#39;features.wayland-server &amp;&amp; features.opengl &amp;&amp; features.=
+egl &amp;&amp; libs.wayland-egl&#39; failed.
+|=20
+| Check config.log for details.
+| WARNING: exit code 1 from a shell command.
 
---000000000000728a46058572f32b--
+</font><font face=3D"arial, helvetica, sans-serif"><font face=3D"Arial, Hel=
+vetica, sans-serif"><span style=3D"white-space:pre-wrap">I&#39;ve checked t=
+hat only pre-condition &quot;features.egl&quot; is failing.
+I&#39;ve my own custom recipe which is providing virtual/egl and is set as =
+PREFERRED_PROVIDER also.
+What is the missing </span></font><span style=3D"white-space:pre-wrap">depe=
+ndency</span><font face=3D"Arial, Helvetica, sans-serif"><span style=3D"whi=
+te-space:pre-wrap"> here when virtual/egl is provided?
+What exactly is features.egl looking for? ( virtual/egl provides egl.pc )
+I&#39;ve not changed anything in meta-qt5 layer. And the version is 5.9.2 Q=
+T5. However, is fails with </span></font></font></font>5.12 also.</pre><pre=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small;white-spac=
+e:pre-wrap"><font color=3D"#000000"><font face=3D"arial, helvetica, sans-se=
+rif"><br></font></font></pre><pre style=3D"font-family:Arial,Helvetica,sans=
+-serif;font-size:small;white-space:pre-wrap"><font color=3D"#000000"><font =
+face=3D"arial, helvetica, sans-serif">Warm Regards,</font></font></pre><pre=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small;white-spac=
+e:pre-wrap"><font color=3D"#000000"><font face=3D"arial, helvetica, sans-se=
+rif">Priyanshu Sharma</font></font></pre></div></div><div class=3D"gmail-m_=
+3353676281559097329gmail-m_-3634063191643445799gmail-yj6qo" style=3D"font-f=
+amily:Arial,Helvetica,sans-serif;font-size:small"></div><div class=3D"gmail=
+-m_3353676281559097329gmail-m_-3634063191643445799gmail-adL" style=3D"font-=
+family:Arial,Helvetica,sans-serif;font-size:small"></div></div></div><div c=
+lass=3D"gmail-m_3353676281559097329gmail-m_-3634063191643445799gmail-hi" st=
+yle=3D"font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:=
+medium;border-bottom-left-radius:1px;border-bottom-right-radius:1px;padding=
+:0px;width:auto;background:rgb(242,242,242);margin:0px"></div></div></div><=
+br class=3D"gmail-m_3353676281559097329gmail-m_-3634063191643445799gmail-Ap=
+ple-interchange-newline"></div>
+</blockquote></div>
+</blockquote></div>
+
+--000000000000646b64058573008e--
