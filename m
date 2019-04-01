@@ -1,64 +1,70 @@
-Return-Path: <haidoan@qti.qualcomm.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C832EE00D12; Wed, 27 Mar 2019 16:02:01 -0700 (PDT)
+	id 85913E00AA9; Mon,  1 Apr 2019 15:17:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	https://www.dnswl.org/, no *      trust
+	*      [209.85.215.178 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [199.106.114.38 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (sjolley.yp.pm[at]gmail.com)
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 123 seconds by postgrey-1.32 at yocto-www;
-	Wed, 27 Mar 2019 16:01:58 PDT
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com
-	[199.106.114.38])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FDB6E00CE0
-	for <yocto@yoctoproject.org>; Wed, 27 Mar 2019 16:01:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-	d=qti.qualcomm.com; i=@qti.qualcomm.com; q=dns/txt;
-	s=qcdkim; t=1553727718; x=1585263718;
-	h=from:to:subject:date:message-id:mime-version;
-	bh=yi4WUav4j7xnckJe1SoliK7Zg21Wbmv1zQiBbmeeGJc=;
-	b=KJH4VGmWkRVtFZclyCW6oEiDbzBnkDZvz7H3KAcgKNM91MYdtbFsPE6D
-	OGtrlS8iNdpg94hlrfbnvMqtVksMCbdA1ieAYasWjyE5RarT1V4hjyfpQ
-	fqO/MncW9qbPHIJ2tPy+Lnepovh6EOO5GquVZwZWYfJWXlY3gEggG3DuN A=;
-X-IronPort-AV: E=Sophos;i="5.60,277,1549958400"; d="scan'208,217";a="36838413"
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-	by alexa-out-sd-01.qualcomm.com with ESMTP; 27 Mar 2019 15:59:55 -0700
-Received: from nasanexm03a.na.qualcomm.com ([10.85.0.103])
-	by ironmsg02-sd.qualcomm.com with ESMTP/TLS/AES256-SHA;
-	27 Mar 2019 15:59:53 -0700
-Received: from nasanexm03d.na.qualcomm.com (10.85.0.91) by
-	nasanexm03a.na.qualcomm.com (10.85.0.103) with Microsoft SMTP Server
-	(TLS) id 15.0.1395.4; Wed, 27 Mar 2019 15:59:52 -0700
-Received: from nasanexm03d.na.qualcomm.com ([10.85.0.91]) by
-	nasanexm03d.na.qualcomm.com ([10.85.0.91]) with mapi id 15.00.1395.000;
-	Wed, 27 Mar 2019 15:59:52 -0700
-From: Hai Doan <haidoan@qti.qualcomm.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Python 3.6 - Import numpy gives "Importing the multiarray numpy
-	extension module failed" error
-Thread-Index: AdTk7qcwwHygS39dTjmNkU+GCzHtoA==
-Date: Wed, 27 Mar 2019 22:59:52 +0000
-Message-ID: <3509857a38f748bd984b96a2f1a72819@nasanexm03d.na.qualcomm.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.49.16.6]
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com
+	[209.85.215.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A9E1E00A0C
+	for <yocto@yoctoproject.org>; Mon,  1 Apr 2019 15:17:20 -0700 (PDT)
+Received: by mail-pg1-f178.google.com with SMTP id g8so5468714pgf.2
+	for <yocto@yoctoproject.org>; Mon, 01 Apr 2019 15:17:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id:mime-version:content-language
+	:thread-index; bh=K1VqgQmjBFkM6ZeP2Uzo+TksW7l6TsBBGnR4u2wLfgU=;
+	b=YgHn49i458nhUcS+teD3ASwK0TNvO45H4F9JO8QXHw1ErtrhF96F/MEz8+JJ4mATPT
+	DBQOEhM9lP8A6jJ2ayCQBT5/Tg7ABLkdv5RMujSHNHqEFHp+6iiicnBOQVz7k/cbRfLW
+	Bl4+jdRaLqLAudvGElMuBFMz/wL4/zWbxhTA9guTBNkgxFM3PYPWnD49nzB6/IKV2uCY
+	P9Cob32TWh+GUCGrX/GwyPrQmIDAq5cV+nktTqoeeepkHHxJK+aqIZGrZkwEhlOVcctZ
+	nXheYTAzb2gRfUTIDwhBB/DBt5F4k5V5RQvPmn5myFvwfEGKh2uBe1LKYmKKF/ioVHb2
+	BjAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-language:thread-index;
+	bh=K1VqgQmjBFkM6ZeP2Uzo+TksW7l6TsBBGnR4u2wLfgU=;
+	b=Q2C2Z0Nsi/IJUV9HlMhYZRkn1F0ZyzKEOa6FOJOm/CBkCCLRXIjnYpRIyx4OujkwV4
+	nB7rT4yJgzoJeo+6lUIBmDWgrTUzDDzNf41LUSX6Gnwcn/PGvxJTOrcnh1AREBrvD9Is
+	l/0C7RRyqISDN3MdsVBmM2BDnKgLiOeaj8TgMGuS0oMvxOp3+8OrnqXW3KtzZ9RhcrN+
+	bJ7QBZXwMJihc0yBjKv0xscYQu1bXlIMkxfYb0xzLIOYq32T9tsRTwHDdfuq0iMz4y65
+	4S8pAC28qTV4IBPB7QVwhpZO6mfj/bd2QehttEDSfiL4sH2Y/J9pLA8U6mfvhjOBjq9p
+	jkFQ==
+X-Gm-Message-State: APjAAAVNl1n8x7M7yQ7cz+qD8p1s2ZRFiwbgFDlO2Fp4SJhCKlBnsKeR
+	K1ZF3kBh3YN+xzqWKGqzFDwWoycI
+X-Google-Smtp-Source: APXvYqzwkY9gTooOYnKnT28H3Y+xDOr8UmcLkYoO9F652zKoAa341UnJkZsEHhAcP5FOfIB3x2NokA==
+X-Received: by 2002:a63:df12:: with SMTP id u18mr62405264pgg.135.1554157039812;
+	Mon, 01 Apr 2019 15:17:19 -0700 (PDT)
+Received: from sjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+	by smtp.gmail.com with ESMTPSA id
+	e22sm15166749pfi.126.2019.04.01.15.17.18
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 01 Apr 2019 15:17:19 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Date: Mon, 1 Apr 2019 15:17:19 -0700
+Message-ID: <00b001d4e8d8$ac38ca90$04aa5fb0$@gmail.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 01 Apr 2019 09:16:00 -0700
-Subject: Python 3.6 - Import numpy gives "Importing the multiarray numpy extension module failed" error
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKoHQFZyU3CrDyFVoRh0YXLxzDFvA==
+Subject: Yocto Project Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,91 +76,157 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Mar 2019 23:02:01 -0000
-Content-Language: en-US
+X-List-Received-Date: Mon, 01 Apr 2019 22:17:21 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_3509857a38f748bd984b96a2f1a72819nasanexm03dnaqualcommco_"
+	boundary="----=_NextPart_000_00B1_01D4E89D.FFDB0400"
+Content-Language: en-us
 
---_000_3509857a38f748bd984b96a2f1a72819nasanexm03dnaqualcommco_
-Content-Type: text/plain; charset="us-ascii"
+------=_NextPart_000_00B1_01D4E89D.FFDB0400
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team meets weekly and does its best to handle the bugs reported
+into the Bugzilla. The number of people attending that meeting has fallen,
+as have the number of people available to help fix bugs. One of the things
+we hear users report is they don't know how to help. We (the triage team)
+are therefore going to start reporting out the currently 287 unassigned
+bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.
+
+ 
+
+Bugs are split into two types, "true bugs" where things don't work as they
+should and "enhancements" which are features we'd want to add to the system.
+
+ 
+
+There are also roughly four different "priority" classes right now, "2.7",
+"2.8", "2.9', "2.99" and "Future", the more pressing/urgent issues being in
+"2.7" and then "2.8".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me
+(Stephen.k.jolley@intel.com <mailto:Stephen.k.jolley@intel.com> ) an e-mail
+with the bug number you would like and I will assign it to you (please make
+sure you have a Bugzilla account).
+
+ 
+
+The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+ 
+
+
+------=_NextPart_000_00B1_01D4E89D.FFDB0400
+Content-Type: text/html;
+	boundary="----=_NextPart_000_00BC_01D4E2EF.2450E750";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-I recently updated python from 3.5.2 to 3.6.8 for my Poky Morty - version 2=
-.2.2 build and now I'm having issues with getting the numpy library to work=
-. I thought it was a compatibility issue with python 3.6 and the version of=
- numpy I was using, but after trying multiple numpy versions (1.11.0, 1.13.=
-1, 1.14.5, 1.14.6, 1.16.2), I'm still getting the same "cannot import 'mult=
-iarray'" error show below. I checked the /usr/lib/python3.6/site-packages/n=
-umpy/core/ folder, and the multiarray library seems to be there (file named=
- multiarray.cpython-36m-x86_64-linux-gnu.so), so I'm not sure why it is not=
- working.
-
-
-Output when importing numpy:
-Python 3.6.8 (default, Mar 26 2019, 23:27:51)
-[GCC 6.2.0] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> import subprocess
->>> import numpy
-Traceback (most recent call last):
-  File "/usr/lib/python3.6/site-packages/numpy/core/__init__.py", line 16, =
-in <module>
-    from . import multiarray
-ImportError: cannot import name 'multiarray'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "/usr/lib/python3.6/site-packages/numpy/__init__.py", line 142, in <=
-module>
-    from . import add_newdocs
-  File "/usr/lib/python3.6/site-packages/numpy/add_newdocs.py", line 13, in=
- <module>
-    from numpy.lib import add_newdoc
-  File "/usr/lib/python3.6/site-packages/numpy/lib/__init__.py", line 8, in=
- <module>
-    from .type_check import *
-  File "/usr/lib/python3.6/site-packages/numpy/lib/type_check.py", line 11,=
- in <module>
-    import numpy.core.numeric as _nx
-  File "/usr/lib/python3.6/site-packages/numpy/core/__init__.py", line 26, =
-in <module>
-    raise ImportError(msg)
-ImportError:
-Importing the multiarray numpy extension module failed.  Most
-likely you are trying to import a failed build of numpy.
-If you're working with a numpy git repo, try `git clean -xdf` (removes all
-files not under version control).  Otherwise reinstall numpy.
-
-Original error was: cannot import name 'multiarray'
-
-
-Does anyone have an idea on how to resolve this? Any help would be greatly =
-appreciated. Thank you.
-
---_000_3509857a38f748bd984b96a2f1a72819nasanexm03dnaqualcommco_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:p=3D"urn:schemas-microsoft-com:office:powerpoint" =
+xmlns:a=3D"urn:schemas-microsoft-com:office:access" =
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" =
+xmlns:s=3D"uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" =
+xmlns:rs=3D"urn:schemas-microsoft-com:rowset" xmlns:z=3D"#RowsetSchema" =
+xmlns:b=3D"urn:schemas-microsoft-com:office:publisher" =
+xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadsheet" =
+xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" =
+xmlns:odc=3D"urn:schemas-microsoft-com:office:odc" =
+xmlns:oa=3D"urn:schemas-microsoft-com:office:activation" =
+xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" =
+xmlns:rtc=3D"http://microsoft.com/officenet/conferencing" =
+xmlns:D=3D"DAV:" xmlns:Repl=3D"http://schemas.microsoft.com/repl/" =
+xmlns:mt=3D"http://schemas.microsoft.com/sharepoint/soap/meetings/" =
+xmlns:x2=3D"http://schemas.microsoft.com/office/excel/2003/xml" =
+xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" =
+xmlns:ois=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" =
+xmlns:dir=3D"http://schemas.microsoft.com/sharepoint/soap/directory/" =
+xmlns:ds=3D"http://www.w3.org/2000/09/xmldsig#" =
+xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint/dsp" =
+xmlns:udc=3D"http://schemas.microsoft.com/data/udc" =
+xmlns:xsd=3D"http://www.w3.org/2001/XMLSchema" =
+xmlns:sub=3D"http://schemas.microsoft.com/sharepoint/soap/2002/1/alerts/"=
+ xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#" =
+xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" =
+xmlns:sps=3D"http://schemas.microsoft.com/sharepoint/soap/" =
+xmlns:xsi=3D"http://www.w3.org/2001/XMLSchema-instance" =
+xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/soap" =
+xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" =
+xmlns:udcp2p=3D"http://schemas.microsoft.com/data/udc/parttopart" =
+xmlns:wf=3D"http://schemas.microsoft.com/sharepoint/soap/workflow/" =
+xmlns:dsss=3D"http://schemas.microsoft.com/office/2006/digsig-setup" =
+xmlns:dssi=3D"http://schemas.microsoft.com/office/2006/digsig" =
+xmlns:mdssi=3D"http://schemas.openxmlformats.org/package/2006/digital-sig=
+nature" =
+xmlns:mver=3D"http://schemas.openxmlformats.org/markup-compatibility/2006=
+" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns:mrels=3D"http://schemas.openxmlformats.org/package/2006/relationshi=
+ps" xmlns:spwp=3D"http://microsoft.com/sharepoint/webpartpages" =
+xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/2006/types"=
+ =
+xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/2006/messag=
+es" =
+xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/=
+" =
+xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortalServer/Pub=
+lishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" =
+xmlns:st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
 /* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
 @font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -169,13 +241,32 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:#954F72;
 	text-decoration:underline;}
-span.EmailStyle17
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
 	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
+	font-family:"Calibri",sans-serif;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -186,118 +277,72 @@ div.WordSection1
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I recently updated python from 3.5.2 to 3.6.8 for my=
- Poky Morty &#8211; version 2.2.2 build and now I&#8217;m having issues wit=
-h getting the numpy library to work. I thought it was a compatibility issue=
- with python 3.6 and the version of numpy I was
- using, but after trying multiple numpy versions (1.11.0, 1.13.1, 1.14.5, 1=
-.14.6, 1.16.2), I&#8217;m still getting the same &#8220;cannot import &#821=
-6;multiarray&#8217;&#8221; error show below. I checked the /usr/lib/python3=
-.6/site-packages/numpy/core/ folder, and the multiarray library
- seems to be there (file named <i>multiarray.cpython-36m-x86_64-linux-gnu.s=
-o</i>), so I&#8217;m not sure why it is not working.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b><u>Output when importing numpy:<o:p></o:p></u></b=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">Python 3.6.8 (default, Mar 26 2019, 23:27:51)<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">[GCC 6.2.0] on linux<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credit=
-s&quot; or &quot;license&quot; for more information.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&gt;&gt;&gt; import subprocess<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&gt;&gt;&gt; import numpy<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">Traceback (most recent call last):<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;/usr/lib/python3.6/site-packages/numpy/c=
-ore/__init__.py&quot;, line 16, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp; from . import multiarray<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">ImportError: cannot import name 'multiarray'<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">During handling of the above exception, another exception =
-occurred:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">Traceback (most recent call last):<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;modu=
-le&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;/usr/lib/python3.6/site-packages/numpy/_=
-_init__.py&quot;, line 142, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp; from . import add_newdocs<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;/usr/lib/python3.6/site-packages/numpy/a=
-dd_newdocs.py&quot;, line 13, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp; from numpy.lib import add_newdoc<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;/usr/lib/python3.6/site-packages/numpy/l=
-ib/__init__.py&quot;, line 8, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp; from .type_check import *<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;/usr/lib/python3.6/site-packages/numpy/l=
-ib/type_check.py&quot;, line 11, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp; import numpy.core.numeric as _nx<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp; File &quot;/usr/lib/python3.6/site-packages/numpy/c=
-ore/__init__.py&quot;, line 26, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">&nbsp;&nbsp;&nbsp; raise ImportError(msg)<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">ImportError:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">Importing the multiarray numpy extension module failed.&nb=
-sp; Most<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">likely you are trying to import a failed build of numpy.<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">If you're working with a numpy git repo, try `git clean -x=
-df` (removes all<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">files not under version control).&nbsp; Otherwise reinstal=
-l numpy.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">Original error was: cannot import name 'multiarray'<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal">Does anyone have an idea on how to resolve this? Any=
- help would be greatly appreciated. Thank you.<o:p></o:p></p>
-</div>
-</body>
-</html>
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoPlainText>All,<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
+triage team meets weekly and does its best to handle the bugs reported =
+into the Bugzilla. The number of people attending that meeting has =
+fallen, as have the number of people available to help fix bugs. One of =
+the things we hear users report is they don't know how to help. We (the =
+triage team) are therefore going to start reporting out the currently =
+287 unassigned bugs.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>We're =
+hoping people may be able to spare some time now and again to help out =
+with these.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Bugs =
+are split into two types, &quot;true bugs&quot; where things don't work =
+as they should and &quot;enhancements&quot; which are features we'd want =
+to add to the system.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>There =
+are also roughly four different &quot;priority&quot; classes right now, =
+&#8220;2.7&#8221;, &#8220;2.8&#8221;, &#8220;2.9&#8217;, =
+&quot;2.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;2.7&quot; and then &#8220;2.8&#8221;.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Please =
+review this link and if a bug is something you would be able to help =
+with either take ownership of the bug, or send me (<a =
+href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com</a>=
+) an e-mail with the bug number you would like and I will assign it to =
+you (please make sure you have a Bugzilla account).<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
+list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs">ht=
+tps://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_Bugs</a><o:p></o:p=
+></p><p class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a><o:p><=
+/o:p></span></p><p class=3DMsoNormal><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:=
+p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
---_000_3509857a38f748bd984b96a2f1a72819nasanexm03dnaqualcommco_--
+------=_NextPart_000_00B1_01D4E89D.FFDB0400--
