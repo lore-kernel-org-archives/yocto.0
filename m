@@ -1,64 +1,84 @@
-Return-Path: <gabbla.malist@gmail.com>
+Return-Path: <Srinivasa.RaoW@Ltts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D88AE00C43; Mon,  8 Apr 2019 06:26:41 -0700 (PDT)
+	id 9CC71E00C14; Tue,  2 Apr 2019 16:26:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (gabbla.malist[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.179 listed in list.dnswl.org]
+	*      [40.107.139.74 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
-	[209.85.208.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA5C2E00BB7
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2019 06:26:36 -0700 (PDT)
-Received: by mail-lj1-f179.google.com with SMTP id v22so11234106lje.9
-	for <yocto@yoctoproject.org>; Mon, 08 Apr 2019 06:26:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=g1t74kWDqYYUS2qWZRKRfuh6diU9TXf321OtFuwp0qo=;
-	b=kwPB/s4hiF8v0GyWonFY3hBcESKXk+0+O7lNj9MpuGyB6FDW25DDlQqEU2iEyfimaq
-	VzFO3pPgi5A/yOru5sPLhPcx5Fz8V1HqNMs5fHmws43v8XcqLljeCfqAV+LU9RtZOteV
-	xl07Qc2TMdMMWzQz9bbm5usJxp45x1dp0eAKxwRE8AGsek7Sow1he5iOxKIpL9woyE0x
-	v/nxJxHWIslJ3G6le4HIy/e+tjIi2hsw4mUqCeRpPhnekbWNDEkmsy83Wl619wfh1lRg
-	Z5G68nf/jT0CO9cwGTVmb6fKvT0zRYqTGEGKQup5+lSmxB4Zx20+h4kPcywi6ITjz67O
-	CJkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=g1t74kWDqYYUS2qWZRKRfuh6diU9TXf321OtFuwp0qo=;
-	b=JyrTRzes4cWNoQhuZbeUTWWUNPGHC2GE3aGUy5EglqJX/usX6+cWgVKbScfRBCe+cM
-	DNR1e0QI/oscI8TFrcWEYYVsBgfO10CH8fAmO6DR9vbU8Q3H+vf00DcZoynv/B+3NmhF
-	JlPTlaKBJeVU2voxbC5O81b4yigc/ppH3T8zTqu6lNhT2P4J/2Dwmgq/pj+lOzdj/P4A
-	f3JquffxGXoVNtktKnx9FsetHT28WgEHXk2Q5xdGI2ACi2qPZ3qDirJXycrW1zTJJByy
-	oq1W82qCkuI88J9roS6ckG0yTNVOiuxe4gNMCbVYZt2VMPGLLxxB85hijey6P/Xox7G+
-	MJYw==
-X-Gm-Message-State: APjAAAVo3uqbSAAFGbMCvtFLjzv5W18Uo7ha3zsscZ0Yse3Q64MlkEl+
-	/0P9oMEDHoAXE7fXLxaDNaciel/Q6dbYrbuRjJq+2w==
-X-Google-Smtp-Source: APXvYqwugvose72ulQNofUpJ2TddR4C4LrUfMyIegn+ipl5RbUoJy7rAOV4O4uARH4FqGbWwF+C2/6oflTEMIw9z3MI=
-X-Received: by 2002:a2e:8316:: with SMTP id a22mr15745509ljh.171.1554729995213;
-	Mon, 08 Apr 2019 06:26:35 -0700 (PDT)
+X-Greylist: delayed 18082 seconds by postgrey-1.32 at yocto-www;
+	Tue, 02 Apr 2019 16:26:50 PDT
+Received: from IND01-BO1-obe.outbound.protection.outlook.com
+	(mail-eopbgr1390074.outbound.protection.outlook.com [40.107.139.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07A05E00754
+	for <yocto@yoctoproject.org>; Tue,  2 Apr 2019 16:26:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ltts.com; s=selector1; 
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=0awfyIJUo4odga2ID0fgQ2j9D1y6ntOt2WOXgztfGuE=;
+	b=V4R4fRq65Fg3T9ToD/eY28CLUjXOdJbXq5sNi9GrVi188a34v41QLIY9BxuOeSwiz3evOXIH/mLspn8Ytf27TzRc1ev4JmlGox1vP8OSIpI7ZghB8qnv+tLM9Dq3JLywJ8v2OKvZSo7YK1tNuI5LgRQIGi1Qhq4E5nAgMI7BHXs=
+Received: from MA1PR01MB3689.INDPRD01.PROD.OUTLOOK.COM (20.179.238.15) by
+	MA1PR01MB2362.INDPRD01.PROD.OUTLOOK.COM (52.134.147.146) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1750.17; Tue, 2 Apr 2019 12:52:28 +0000
+Received: from MA1PR01MB3689.INDPRD01.PROD.OUTLOOK.COM
+	([fe80::88eb:16e9:d25f:ae0b]) by
+	MA1PR01MB3689.INDPRD01.PROD.OUTLOOK.COM
+	([fe80::88eb:16e9:d25f:ae0b%2]) with mapi id 15.20.1750.017;
+	Tue, 2 Apr 2019 12:52:28 +0000
+From: Srinivasa RaoW <Srinivasa.RaoW@Ltts.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Development environment for Grub bootloader and Linux
+Thread-Index: AdTpUrl6Mxx5Pt0gS9u+UkaX4jm7KQ==
+Date: Tue, 2 Apr 2019 12:52:28 +0000
+Message-ID: <MA1PR01MB3689C606A400567C9831BC0FE5560@MA1PR01MB3689.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=Srinivasa.RaoW@Ltts.com; 
+x-originating-ip: [14.141.44.2]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9ddc9149-1f07-49a1-e312-08d6b76a1041
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(7020095)(4652040)(8989299)(5600139)(711020)(4605104)(4534185)(7168020)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
+	SRVR:MA1PR01MB2362; 
+x-ms-traffictypediagnostic: MA1PR01MB2362:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <MA1PR01MB2362F7EA029E0184FF815BF2E5560@MA1PR01MB2362.INDPRD01.PROD.OUTLOOK.COM>
+x-forefront-prvs: 0995196AA2
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(366004)(346002)(396003)(39860400002)(136003)(376002)(199004)(189003)(53376002)(1730700003)(5660300002)(71190400001)(99286004)(6506007)(66066001)(2351001)(6436002)(606006)(55236004)(102836004)(316002)(33656002)(2906002)(105586002)(97736004)(7696005)(55016002)(52536014)(9686003)(5640700003)(790700001)(6116002)(54896002)(8936002)(6916009)(106356001)(53936002)(71200400001)(186003)(25786009)(6306002)(81166006)(8676002)(256004)(486006)(14444005)(413944005)(476003)(74316002)(68736007)(86362001)(72206003)(7066003)(478600001)(2501003)(26005)(3846002)(14454004)(81156014)(7736002)(236005);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:MA1PR01MB2362;
+	H:MA1PR01MB3689.INDPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: Ltts.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 7nqk01IvaDzSd3cko4HEKzN6XIGKgR+6ItCPMxyyOWpLdQBI8lpACz6XtS3Z0Bmo6Vp2TJLFk3Gc2quHCsH1INtRoyvHhpW6cuqaId4TDJcN9zy2r90OQHP1vblPMivpJ176LphnYWSLEMsp/tTtmSXhU7mn5NousauK3vOWUOfowkYmEOE/msFcBHcCJgifZfro6Cb97A187DFWXKL6Jn+sqqUIN5GVKWcxZXUBSlEZb1BvaoD2VwrT9koVd/PkM/OlwryUU5d3roW0hUuNnas8OlXRiG4rmvntWmjrhty2VD4Tag5VfL0bEiKibMyfvprgY2k7JynOndsY0xerFimj1P1dKK+xFHkztqXU/SfEk/NwEkGPSm2mIfNcLu/6eG5fxI77NcspP/RJnxF42lUCtYDICijA0e2n76YxNCE=
 MIME-Version: 1.0
-References: <CAAx3WaCdBQh-Thsn+YgBs8mCVU+ddF4SJQOXUJjsDveZTKcSiA@mail.gmail.com>
-In-Reply-To: <CAAx3WaCdBQh-Thsn+YgBs8mCVU+ddF4SJQOXUJjsDveZTKcSiA@mail.gmail.com>
-From: Gabriele Zampieri <gabbla.malist@gmail.com>
-Date: Mon, 8 Apr 2019 15:26:23 +0200
-Message-ID: <CAAx3WaD7YuG84Y7CJe=TDEFJ9Tq7mpS7LaNMTbQm5gXfU98tEg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: shared cmake modules
+X-OriginatorOrg: ltts.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ddc9149-1f07-49a1-e312-08d6b76a1041
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Apr 2019 12:52:28.4892 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 311b3378-8e8a-4b5e-a33f-e80a3d8ba60a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR01MB2362
+X-Mailman-Approved-At: Mon, 08 Apr 2019 09:30:29 -0700
+Subject: Development environment for Grub bootloader and Linux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,88 +90,258 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2019 13:26:41 -0000
-Content-Type: multipart/alternative; boundary="000000000000161ef6058604c97f"
+X-List-Received-Date: Tue, 02 Apr 2019 23:26:55 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MA1PR01MB3689C606A400567C9831BC0FE5560MA1PR01MB3689INDP_"
 
---000000000000161ef6058604c97f
-Content-Type: text/plain; charset="UTF-8"
-
-bump
-
-Il giorno mer 3 apr 2019 alle ore 12:07 Gabriele Zampieri <
-gabbla.malist@gmail.com> ha scritto:
-
-> Hi all,
->
-> I'm setting up a layer that will compile our applications and libraries.
-> All the applications are based on cmake and they share modules. Before
-> using yocto I kept the modules in <workspace>/cmake (under version control)
-> alongside applications and libraries. With yocto I wrote a recipe that
-> checkout the module repo and install them in
-> "${STAGING_DATADIR}/cmake/Modules/". I took this path from
-> "meta/classes/cmake.bbclass". If i build the module target, I get the files
-> installed in the target recipe datadir. If I want to build a library (that
-> depends also on my modules recipe) the task do_configure fails because
-> cmake cannot find none of my include. Digging around I found that the
-> toolchain.cmake file points to a module location that doesn't exist in the
-> library workdir, but in module recipe (${STAGING_DATADIR}/cmake/Modules/).
->
-> The module recipe looks like as follow:
->
-> MODULES_DEST_PATH = "${STAGING_DATADIR}/cmake/Modules"
-> FILES_${PN}-dev = "${MODULES_DEST_PATH}/*"
->
-> do_install() {
->     DEST_DIR=${MODULES_DEST_PATH}
->
->     # Create the destination folder
->     install -d $DEST_DIR
->     install -m 0444 ${S}/my/module.cmake $DEST_DIR
->     ......
-> }
->
-> So my question is: where should I install the shared modules
-> (MODULE_DEST_PATH int the above snippet)? and how to update the
-> CMAKE_MODULE_PATH properly to append that location?
->
-> Thanks,
-> Gabriele
->
-
---000000000000161ef6058604c97f
-Content-Type: text/html; charset="UTF-8"
+--_000_MA1PR01MB3689C606A400567C9831BC0FE5560MA1PR01MB3689INDP_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">bump<br></div><br><div class=3D"gmail_quote"><div dir=3D"l=
-tr" class=3D"gmail_attr">Il giorno mer 3 apr 2019 alle ore 12:07 Gabriele Z=
-ampieri &lt;<a href=3D"mailto:gabbla.malist@gmail.com">gabbla.malist@gmail.=
-com</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi all,</di=
-v><div><br></div><div>I&#39;m setting up a layer that will compile our appl=
-ications and libraries. All the applications are based on cmake and they sh=
-are modules. Before using yocto I kept the modules in &lt;workspace&gt;/cma=
-ke (under version control) alongside applications and libraries. With yocto=
- I wrote a recipe that checkout the module repo and install them in &quot;$=
-{STAGING_DATADIR}/cmake/Modules/&quot;. I took this path from &quot;meta/cl=
-asses/cmake.bbclass&quot;. If i build the module target, I get the files in=
-stalled in the target recipe datadir. If I want to build a library (that de=
-pends also on my modules recipe) the task do_configure fails because cmake =
-cannot find none of my include. Digging around I found that the toolchain.c=
-make file points to a module location that doesn&#39;t exist in the library=
- workdir, but in module recipe (${STAGING_DATADIR}/cmake/Modules/). <br></d=
-iv><div><br></div><div>The module recipe looks like as follow:</div><div><b=
-r></div><div>MODULES_DEST_PATH =3D &quot;${STAGING_DATADIR}/cmake/Modules&q=
-uot;<br>FILES_${PN}-dev =3D &quot;${MODULES_DEST_PATH}/*&quot;<br><br>do_in=
-stall() {<br>=C2=A0=C2=A0=C2=A0 DEST_DIR=3D${MODULES_DEST_PATH}<br><br>=C2=
-=A0=C2=A0=C2=A0 # Create the destination folder<br>=C2=A0=C2=A0=C2=A0 insta=
-ll -d $DEST_DIR<br></div><div>=C2=A0=C2=A0=C2=A0 install -m 0444 ${S}/my/mo=
-dule.cmake $DEST_DIR</div><div>=C2=A0=C2=A0=C2=A0 ......</div><div>}<br></d=
-iv><div>=C2=A0=C2=A0=C2=A0 <br></div><div>So my question is: where should I=
- install the shared modules (MODULE_DEST_PATH int the above snippet)? and h=
-ow to update the CMAKE_MODULE_PATH properly to append that location?</div><=
-div><br></div><div>Thanks, <br></div><div>Gabriele<br></div></div></div></d=
-iv>
-</blockquote></div>
+Dear All,
+I have a requirement of modifying Grub bootloader for x86 architecture but =
+Just read the Wiki Page of Yocto and it states as below"
+"The Yocto Project<http://yoctoproject.org/> is an open-source project that=
+ delivers a set of tools that create operating system images for embedded L=
+inux systems"
+Towards this I have below questions:
 
---000000000000161ef6058604c97f--
+  1.  Does Yocto project support only Linux systems?
+  2.  Do we have repositories/build tool chain for Grub bootloader?
+  3.  Which is the bootloader that Yocto project recommends for x86 archite=
+cture?
+I am trying to setup a development environment under Ubunt Host for x86 tar=
+get architecture.  Goal is to build Grub bootloader, Ubuntu linux and root =
+file system all together under one umbrella.
+Please let me know if Yocto has anything for this.
+Appreciate any input on this.
+Regards
+Srinivasa
+
+
+L&T Technology Services Ltd
+
+www.LTTS.com
+
+This Email may contain confidential or privileged information for the inten=
+ded recipient (s). If you are not the intended recipient, please do not use=
+ or disseminate the information, notify the sender and delete it from your =
+system.
+
+--_000_MA1PR01MB3689C606A400567C9831BC0FE5560MA1PR01MB3689INDP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:106%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:.5in;
+	mso-add-space:auto;
+	line-height:106%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParag=
+raphCxSpFirst
+	{mso-style-priority:34;
+	mso-style-type:export-only;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:106%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListPar=
+agraphCxSpMiddle
+	{mso-style-priority:34;
+	mso-style-type:export-only;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:106%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagra=
+phCxSpLast
+	{mso-style-priority:34;
+	mso-style-type:export-only;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:.5in;
+	mso-add-space:auto;
+	line-height:106%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:88547128;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-803686622 67698703 67698713 67698715 67698703 67698=
+713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:1.25in;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:1.75in;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:2.25in;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:2.75in;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:3.25in;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:3.75in;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:4.25in;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Dear All,<o:p></o:p></p>
+<p class=3D"MsoNormal">I have a requirement of modifying Grub bootloader fo=
+r x86 architecture but Just read the Wiki Page of Yocto and it states as be=
+low&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#8220;<u><span style=3D"font-size:9.5pt;line-height=
+:106%;font-family:&quot;Arial&quot;,sans-serif;color:black;background:white=
+">The&nbsp;</span><a href=3D"http://yoctoproject.org/"><span style=3D"font-=
+size:9.5pt;line-height:106%;font-family:&quot;Arial&quot;,sans-serif;color:=
+#3366BB;background:white">Yocto
+ Project</span></a></u><u><span style=3D"font-size:9.5pt;line-height:106%;f=
+ont-family:&quot;Arial&quot;,sans-serif;color:black;background:white">&nbsp=
+;is an open-source project that delivers a set of tools that create operati=
+ng system images for embedded Linux systems</span></u>&#8221;<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">Towards this I have below questions:<o:p></o:p></p>
+<ol style=3D"margin-top:0in" start=3D"1" type=3D"1">
+<li class=3D"MsoListParagraphCxSpFirst" style=3D"margin-left:-.25in;mso-add=
+-space:auto;mso-list:l0 level1 lfo1">
+Does Yocto project support only Linux systems?<o:p></o:p></li><li class=3D"=
+MsoListParagraphCxSpMiddle" style=3D"margin-left:-.25in;mso-add-space:auto;=
+mso-list:l0 level1 lfo1">
+Do we have repositories/build tool chain for Grub bootloader?<o:p></o:p></l=
+i><li class=3D"MsoListParagraphCxSpLast" style=3D"margin-left:-.25in;mso-ad=
+d-space:auto;mso-list:l0 level1 lfo1">
+Which is the bootloader that Yocto project recommends for x86 architecture?=
+<o:p></o:p></li></ol>
+<p class=3D"MsoNormal">I am trying to setup a development environment under=
+ Ubunt Host for x86 target architecture.&nbsp; Goal is to build Grub bootlo=
+ader, Ubuntu linux and root file system all together under one umbrella.&nb=
+sp;
+<o:p></o:p></p>
+<p class=3D"MsoNormal">Please let me know if Yocto has anything for this. <=
+o:p></o:p></p>
+<p class=3D"MsoNormal">Appreciate any input on this. <o:p></o:p></p>
+<p class=3D"MsoNormal">Regards<o:p></o:p></p>
+<p class=3D"MsoNormal">Srinivasa<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<p><strong>L&amp;T Technology Services Ltd</strong></p>
+<p><a href=3D"" http:www.LTTS.com??=3D"" target=3D"" _blank??=3D"">www.LTTS=
+.com</a></p>
+<p>This Email may contain confidential or privileged information for the in=
+tended recipient (s). If you are not the intended recipient, please do not =
+use or disseminate the information, notify the sender and delete it from yo=
+ur system.</p>
+</body>
+</html>
+
+--_000_MA1PR01MB3689C606A400567C9831BC0FE5560MA1PR01MB3689INDP_--
