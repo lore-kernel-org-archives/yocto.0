@@ -1,70 +1,68 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <lluis.campos@northern.tech>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7FDC6E00AD5; Tue,  2 Apr 2019 04:21:34 -0700 (PDT)
+	id 9D556E00A54; Tue,  2 Apr 2019 04:45:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.65 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (martin.jansa[at]gmail.com)
+	*      [209.85.208.178 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
-	[209.85.221.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F701E00994
-	for <yocto@lists.yoctoproject.org>;
-	Tue,  2 Apr 2019 04:21:32 -0700 (PDT)
-Received: by mail-wr1-f65.google.com with SMTP id w1so16169174wrp.2
-	for <yocto@lists.yoctoproject.org>;
-	Tue, 02 Apr 2019 04:21:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=WJA0fjWQnTBNHAX3P28t1NAi0d/OXB0jzpRTYEwqHrM=;
-	b=CPrne3gMju/79Y2zijDNRjzV1k7vkUoBs7hZl16aWI3eVZH0eud0B8JPBwITHxxV89
-	YvBYCH41Eth/O6jGftmoql6ErutPrA83eK1OVXwWtO6/Lp4EUjGoMjbDVu2zHlWvZcDs
-	FiTRsZSMLqHJglJDBt8zLNgx7WsHDQVjSgDoqubzB037utiEV/sEDUA10VLjY37Lbqjm
-	ldVGvZ5jFYvcfaUkGBLCSgUJEIGRlntGHqhAJt1I2A64Z8UkiiP80xIiayvLuWItsjcO
-	wDsMepJTSFDac1BuL4T0YSyTYXGsq4Xm37HAzgYeOwAr1LJQv/Xm/F4FLijZkGZBPGDw
-	YI2g==
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com
+	[209.85.208.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1051E0053F
+	for <yocto@yoctoproject.org>; Tue,  2 Apr 2019 04:45:14 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id l7so11264586ljg.6
+	for <yocto@yoctoproject.org>; Tue, 02 Apr 2019 04:45:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=northern.tech; s=google;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding:content-language;
+	bh=5VSWJvwfsRqulh1CzwwTyRLJG+Kz+9MeXK5vCzXc4Vs=;
+	b=X0MfDIgoK5mJc3Xyk+7iUngneX3GEyo3ym+x4XfJXTxlHQL1pyEW1eB1ACG2ElahX9
+	Y2jbfsiN4NDNW2sJw9EzWCugUbiZrWGn1ldjiJNFPb+CubXsNqh1PyywVwbnp25b3KPr
+	wLpiTO4Rt4rfGId/LfBFYCu3cPmwBPpsl/BZizq2WZAZ7jxRzBL8hHE3qWi1E2odF7AU
+	1A4kEVA2jnnS0zO6as3krpVL4TyteV0KAILvLUPvM60xiJryQimFojRSqzX1ZK7AmOUC
+	HkcunNf3u84mc4J+d0UXp2GhNDHgMSpwCTuTtJlfRfBU06cQoe6ayIVDxC+AI3o7bYEC
+	7PSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=WJA0fjWQnTBNHAX3P28t1NAi0d/OXB0jzpRTYEwqHrM=;
-	b=Kd+sBW/bdRtVh/3+z9WrTcgyCs4IBlKuAW4yT/eSHL1EF+sjYiJixIW5WvVx8+DgAL
-	rKBWcQRFhByaDOutZ7GFFNj1tDxrwT/ijk/BS756IBAyZfa6nj9Uyv4RMU+5RWzfP/Py
-	MpoScwTK4ihexK/dCAhRNofgFGIKWQdlglAymZzvNlpDtCydeJXPNwpOwiVloo2RCu6l
-	F/inPWmFCojXMbhCpN8gkVoTFS1frz4FOoBReN7puZHvbaXucWw8020gUydKQpYl6BN9
-	WHBXRU6okm0uBWS6gjvNW9wbL2WocY0rNOe7o2biwOcD87wiK1BN1USfavlOM5VX1kaO
-	dREQ==
-X-Gm-Message-State: APjAAAUiZ9HixxECY4DTuuRpajmG4F7YMtG3U6rcvWKag2W5JItxnQmK
-	diewtYUnaNV5mXpnVFQ43usVNxCy
-X-Google-Smtp-Source: APXvYqz9PfLEcCjGik5sfPCyzBcvtV1qwDrZqDlOG+WJNWhTb20/geFxJ1h7YYfsiNVyr7eC+npqcA==
-X-Received: by 2002:adf:ff88:: with SMTP id j8mr37911962wrr.1.1554204091262;
-	Tue, 02 Apr 2019 04:21:31 -0700 (PDT)
-Received: from localhost (ip-217-030-068-212.aim-net.cz. [217.30.68.212])
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding:content-language;
+	bh=5VSWJvwfsRqulh1CzwwTyRLJG+Kz+9MeXK5vCzXc4Vs=;
+	b=Rxp0nL4Hp6Yk6n0ttxeRPBvLYGnxEia05KNEBxe7XbLloafPSfLjGUVZ0Tnoo7Iqgp
+	PkZZk5sqqUE7ecymmy3o6MyWXlryBOErK5Auz6mIxAOlCBMVnwOQV28wZmnRm8sHiGCL
+	AMzHPK9Xl9toCxaSdIQ+YheaxsynzaYGAlePdSaS79btYpRekKTuilTpZo5ARXh4JGUX
+	Saz1dtHv4AQCQ6Uj1gs4qQQHkHKoF1ATlmcTzlDdeCaOqEYhjdS2cWngJEUiFy+zRlwF
+	tAFYILwY195oO/1Bn+fqNbmSs0FSdcfO+V+GfRRZsIFDkJY246YnzZ9slm6/KsEonhME
+	CsBg==
+X-Gm-Message-State: APjAAAUvKLJVlFnP3SNNljkdD8C84wcyhbD0vV4UPsBze0AKp+R1V7b6
+	wuXTsXWCSZ5Ms5/9Gf8TYChVmk4w6Bo=
+X-Google-Smtp-Source: APXvYqzvPfwxO1YHCJNsrtTZ1KOuxb8/XpDEwLB3wL5P1di0MttzuPFw71Vx923eH7TK3stUb0adsw==
+X-Received: by 2002:a2e:8693:: with SMTP id l19mr26938159lji.47.1554205513618; 
+	Tue, 02 Apr 2019 04:45:13 -0700 (PDT)
+Received: from [10.20.33.217] ([195.159.234.190])
 	by smtp.gmail.com with ESMTPSA id
-	r30sm32908190wrr.46.2019.04.02.04.21.29
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Tue, 02 Apr 2019 04:21:30 -0700 (PDT)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-To: yocto@lists.yoctoproject.org
-Date: Tue,  2 Apr 2019 11:21:25 +0000
-Message-Id: <20190402112125.91-1-Martin.Jansa@gmail.com>
-X-Mailer: git-send-email 2.17.1
-X-Mailman-Approved-At: Tue, 02 Apr 2019 04:34:25 -0700
-Cc: Martin Jansa <Martin.Jansa@gmail.com>
-Subject: [meta-gplv2][PATCH] layer.conf: Update to warrior release name series
+	t29sm2693840ljd.82.2019.04.02.04.45.12 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 02 Apr 2019 04:45:12 -0700 (PDT)
+To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+From: Lluis Campos <lluis.campos@northern.tech>
+Message-ID: <4faf2c04-d2d5-9695-ab8e-d79b73eb55c9@northern.tech>
+Date: Tue, 2 Apr 2019 13:45:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.3.0
+MIME-Version: 1.0
+Subject: gdb built with musl libc segfault
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,24 +74,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Apr 2019 11:21:34 -0000
+X-List-Received-Date: Tue, 02 Apr 2019 11:45:15 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
----
- conf/layer.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi all,
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 43d578b..59f6a89 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -14,4 +14,4 @@ LAYERVERSION_gplv2 = "1"
- 
- LAYERDEPENDS_gplv2 = "core"
- 
--LAYERSERIES_COMPAT_gplv2 = "thud"
-+LAYERSERIES_COMPAT_gplv2 = "warrior"
--- 
-2.17.1
+This is my very first question in the Yocto mailing list. Very exited! 
+Please let me know if I should use other list for this.
+
+
+I am building an image using musl libc instead of gnu libc. I am not 
+using yocto-tiny distro, instead I achieve this by setting on my local.conf:
+
+TCLIBC = "musl"
+
+
+My app (mender) got a segfault just starting. See output from strace:
+
+root@raspberrypi3:~# strace mender
+execve("/usr/bin/mender", ["mender"], 0x7ee65e10 /* 13 vars */) = 0
+set_tls(0x76f1bffc)                     = 0
+set_tid_address(0x76f1bfa0)             = 3020
+--- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_ACCERR, si_addr=0x530bc8} ---
++++ killed by SIGSEGV +++
+Segmentation fault
+
+
+To be able to debug the process, I added gdb to my image adding to my 
+local.conf:
+
+CORE_IMAGE_EXTRA_INSTALL += "packagegroup-core-buildessential 
+packagegroup-core-tools-debug"
+
+
+Then, ironically, gdb itself also segfaults:
+
+root@raspberrypi3:~# strace gdb 2>&1 | tail
+fcntl64(3, F_SETFD, FD_CLOEXEC)         = 0
+getdents64(3, /* 6 entries */, 2048)    = 144
+getdents64(3, /* 0 entries */, 2048)    = 0
+close(3)                                = 0
+ioctl(0, TIOCGWINSZ, {ws_row=25, ws_col=74, ws_xpixel=0, ws_ypixel=0}) = 0
+getcwd("/home/root", 4096)              = 11
+access("/usr/local/bin/gdb", X_OK)      = -1 ENOENT (No such file or 
+directory)
+access("/usr/bin/gdb", X_OK)            = 0
+--- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_MAPERR, si_addr=0x7e35aff0} ---
++++ killed by SIGSEGV +++
+
+
+So, what is going on here? My guess is that some recipes are being 
+wrongly linked with gnu libc instead of musl, and then cannot run in my 
+device.
+
+Any ideas on how to debug the issue?
+
+Thanks!
+
+
+Lluís Campos
+mender.io
+Northen Tech
 
 
