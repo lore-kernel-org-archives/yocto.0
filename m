@@ -1,57 +1,33 @@
-Return-Path: <bunk@stusta.de>
+Return-Path: <Kexin.Hao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2B986E00AC5; Mon,  1 Apr 2019 23:51:29 -0700 (PDT)
+	id 516AFE00B1B; Tue,  2 Apr 2019 00:43:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [141.84.69.5 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A581E00A0C
-	for <yocto@yoctoproject.org>; Mon,  1 Apr 2019 23:51:26 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 44YKcX693lz4T;
-	Tue,  2 Apr 2019 08:51:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
-	s=default; t=1554187885;
-	bh=9Vslfiu4ks6EqT0/GeFlpHVLOQ/6yJVWB7nV5XWnhWg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tvxKPekSrYWAvqtodhShyIYp5YUGQqh4FoQhXOT8qSU1BO+XFHEVhQEKFsIFTZ4r6
-	VLPYxGJQAQMakLDhe7pdupZUY3XbXgMpwT87P/SoNZiKsR+0xZ8Hh1cdT+/k2q8PtV
-	v+UrM0E11f6znWio38wGAp6QImUKWnHRuAq+tIwtNZ/irKVRPIq2yLj8SQrKJVNPtM
-	RIal7JPu39gau5BlSS4V6ql7B1VpSoLXaRE7OLl7AZ1oARB5dJBZtD8O7L+FqNb2lp
-	pHyfJ6O7FdMzDZSeO7as+BVIHK/8tGREUkppIIhLpWp/if4tlKsNx6CMjIU8/ss5k8
-	VcPzMkLI1nuzARt9LoIQ3oEuq6FCckCWhbdWWBYijEVpfYfWmfpUx4Ek5hXuyEsIyY
-	AfOVVGoNDPPWW41uDWHTP/rj6OhcmhjY9dAebt+LZqMy7xrwZWhgMma8rzcGmNCBvD
-	CLanEB18EtMlbxPF3v+6gooK2hUZiouKl7HAtmb8EvjPEzJn/1J4tDldTKYSAGJ8RW
-	cJ540vp74aexICKtsa+bf6U40bB0l2d+v/geMCvkRxSI3ZLAJMRbdKQYoeBNdWcnM+
-	lcTNwYFAZKsizcdz6jfO4KM7syvUBmfG4ChRITKgR5CyTlMIoSCHNkW09cGRrt24rz
-	xXWWYEI7wmcmI0ZD1n2UT3QA=
-Date: Tue, 2 Apr 2019 09:51:21 +0300
-From: Adrian Bunk <bunk@stusta.de>
-To: akuster808 <akuster808@gmail.com>
-Message-ID: <20190402065121.GA31468@localhost>
-References: <854544cb-aab1-1a9d-9e98-0f39663ca621@gmail.com>
-	<b08083fc2f63f6324a652706f8343a0b8defe209.camel@linuxfoundation.org>
-	<a1416fe3-04fb-1d37-eaef-05b9a838254e@gmail.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9B95E00AC5
+	for <yocto@yoctoproject.org>; Tue,  2 Apr 2019 00:43:50 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x327hotM026147
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 2 Apr 2019 00:43:50 -0700 (PDT)
+Received: from pek-lpggp6.wrs.com (128.224.153.40) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.439.0;
+	Tue, 2 Apr 2019 00:43:49 -0700
+From: Kevin Hao <kexin.hao@windriver.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Tue, 2 Apr 2019 15:36:03 +0800
+Message-ID: <20190402073604.23446-1-kexin.hao@windriver.com>
+X-Mailer: git-send-email 2.14.4
 MIME-Version: 1.0
-In-Reply-To: <a1416fe3-04fb-1d37-eaef-05b9a838254e@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Git commit process question.
+Subject: [PATCH 1/2] meta-yocto-bsp: Bump to the latest stable kernel for all the BSPs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,52 +39,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Apr 2019 06:51:29 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Tue, 02 Apr 2019 07:43:51 -0000
+Content-Type: text/plain
 
-On Mon, Apr 01, 2019 at 04:20:41PM -0700, akuster808 wrote:
-> 
-> 
-> On 4/1/19 4:02 PM, Richard Purdie wrote:
-> > On Mon, 2019-04-01 at 15:33 -0700, akuster808 wrote:
-> >> Hello,
-> >>
-> >> I have noticed a large number of git commits with no header
-> >> information being accepted.
-> > Can you be more specific about what "no header information" means? You
-> > mean a shortlog and no full log message?
-> Commits with just a "subject" and signoff. No additional information
-> 
-> We tend to reference back to how the kernel does things.
-> 
-> https://www.kernel.org/doc/html/latest/process/submitting-patches.html
-> These two sections in particular.
-> 
-> 
->     2) Describe your changes
-> 
-> Describe your problem. Whether your patch is a one-line bug fix or 5000
-> lines of a new feature, there must be an underlying problem that
-> motivated you to do this work. Convince the reviewer that there is a
-> problem worth fixing and that it makes sense for them to read past the
-> first paragraph.
->...
+Boot test for all these boards.
 
-The kernel does not have "upgrade foo to the latest upstream version" commits.
+Signed-off-by: Kevin Hao <kexin.hao@windriver.com>
+---
+ .../recipes-kernel/linux/linux-yocto_5.0.bbappend    | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-With the Automatic Upgrade Helper this is a semi-automatic task, and 
-most of the time there is no specific motivation other than upgrading
-to the latest upstream version.
-
-cu
-Adrian
-
+diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend
+index fe52a06550d2..5cf6e1f0649e 100644
+--- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend
++++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend
+@@ -8,11 +8,11 @@ KMACHINE_genericx86 ?= "common-pc"
+ KMACHINE_genericx86-64 ?= "common-pc-64"
+ KMACHINE_beaglebone-yocto ?= "beaglebone"
+ 
+-SRCREV_machine_genericx86    ?= "1a0da7e50b77c82841efb501c648dbaca699eac2"
+-SRCREV_machine_genericx86-64 ?= "1a0da7e50b77c82841efb501c648dbaca699eac2"
+-SRCREV_machine_edgerouter ?= "1a0da7e50b77c82841efb501c648dbaca699eac2"
+-SRCREV_machine_beaglebone-yocto ?= "1a0da7e50b77c82841efb501c648dbaca699eac2"
+-SRCREV_machine_mpc8315e-rdb ?= "21aae3b4437eb6eec18804f1bad692030352430c"
++SRCREV_machine_genericx86    ?= "3df4aae6074e94e794e27fe7f17451d9353cdf3d"
++SRCREV_machine_genericx86-64 ?= "3df4aae6074e94e794e27fe7f17451d9353cdf3d"
++SRCREV_machine_edgerouter ?= "3df4aae6074e94e794e27fe7f17451d9353cdf3d"
++SRCREV_machine_beaglebone-yocto ?= "3df4aae6074e94e794e27fe7f17451d9353cdf3d"
++SRCREV_machine_mpc8315e-rdb ?= "8b62af7f252af10588276802c4c6d7c502e875be"
+ 
+ COMPATIBLE_MACHINE_genericx86 = "genericx86"
+ COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
+@@ -20,8 +20,8 @@ COMPATIBLE_MACHINE_edgerouter = "edgerouter"
+ COMPATIBLE_MACHINE_beaglebone-yocto = "beaglebone-yocto"
+ COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
+ 
+-LINUX_VERSION_genericx86 = "5.0"
+-LINUX_VERSION_genericx86-64 = "5.0"
+-LINUX_VERSION_edgerouter = "5.0"
+-LINUX_VERSION_beaglebone-yocto = "5.0"
+-LINUX_VERSION_mpc8315e-rdb = "5.0"
++LINUX_VERSION_genericx86 = "5.0.3"
++LINUX_VERSION_genericx86-64 = "5.0.3"
++LINUX_VERSION_edgerouter = "5.0.3"
++LINUX_VERSION_beaglebone-yocto = "5.0.3"
++LINUX_VERSION_mpc8315e-rdb = "5.0.3"
 -- 
-
-       "Is there not promise of rain?" Ling Tan asked suddenly out
-        of the darkness. There had been need of rain for many days.
-       "Only a promise," Lao Er said.
-                                       Pearl S. Buck - Dragon Seed
+2.14.4
 
 
