@@ -1,11 +1,11 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F1AECE00BC8; Tue,  2 Apr 2019 13:58:18 -0700 (PDT)
+	id 8AF5BE00C43; Tue,  2 Apr 2019 14:24:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
@@ -13,57 +13,57 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.196 listed in list.dnswl.org]
+	*      [209.85.215.178 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com
-	[209.85.214.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74116E00950
-	for <yocto@yoctoproject.org>; Tue,  2 Apr 2019 13:58:18 -0700 (PDT)
-Received: by mail-pl1-f196.google.com with SMTP id m10so6857766plt.10
-	for <yocto@yoctoproject.org>; Tue, 02 Apr 2019 13:58:18 -0700 (PDT)
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com
+	[209.85.215.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E167E00C14
+	for <yocto@yoctoproject.org>; Tue,  2 Apr 2019 14:24:55 -0700 (PDT)
+Received: by mail-pg1-f178.google.com with SMTP id e6so2818978pgc.4
+	for <yocto@yoctoproject.org>; Tue, 02 Apr 2019 14:24:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=+qswfvgfhZYJsbijOfa70q24NMR2oEkzg5ZXpJFDNVQ=;
-	b=dTNPsBLYfhkDmgQEMBHZUFdTC5WuGoH5DuKTjnjfLbHbyifDmg57fWpDnVdRXgNsMe
-	Q32osGYwziory/q8sVzvh3J4oAijjGc0RJMl7po7BjtqPMRK+oo8mswU1lMkXlmlMGG8
-	ymmM21k9l/GsoezYT1tp6Oywpz5uL9HkDf8dI3OrSnQxk5CT9c+IOusHXM2B+ZmVm6vl
-	S4rmPTp5PQdfcJTniuX0IGCoEIuz43WrecUtLDlgSxaHOb9b60CAYkDAPC7t78MjqVfU
-	tyQisqfTSkM5i9ralTSNu7AHeoA1fxzL4ng+5CFLjWLvw+hyhSK1mqR6tYn365+j8NhY
-	LfCg==
+	:user-agent:mime-version:in-reply-to;
+	bh=H41fFPxZsi5cF+YP3DOD15omBJNInATJbv7sUCiveAI=;
+	b=o2yH8GTFCFRIxxT6T4mAAaXeCo7Fh66CVVgus2n75CDSymrMW2TIdeMdK5N9ademFJ
+	eYwQQyGzkQ+yXs6wLZQG2Sz6taxiD61Rg0kdHA75YmG7ROXlVR0Ed07jJFTCx6kkExz8
+	Y9S8fGYn7qtRD3HeLOA5a0cRpg6YJ0dvI81DRzGMx/mRNmkdeigjmPayZpo3HAA+zMXH
+	pMSBM4xd+/cybcwMcBsM21SzNFFVuXCXU7dWpSu7/mCAVsNNKvEhLEEay/n3aRK8HRni
+	7ulZz1hzLjkPBK6lyuY4ENYwCRPiAJqW8raYtJmidSyNG1BPjloNaAV0XXz8GhG1JkF0
+	XFVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-transfer-encoding:content-language;
-	bh=+qswfvgfhZYJsbijOfa70q24NMR2oEkzg5ZXpJFDNVQ=;
-	b=GiHg9fyNIuUQsf9Iip4/BYbMWMyZmVBMW4kNn1YER85UnBzcdLZLuZHgfmK/9djMA7
-	93PJhFgXAuM6unps/U+besdT4Em6JLzMCOv3ScMK7svD14h2ur02SXjjkEOuvpyImXnd
-	csRDK8xmQ2dy71O0iPmopg6oApoZN2vo3bIAl6QpWLRG295DK6QqmXCJ+20mi2+6kWFH
-	S3SCSA1hOefqajneTVwKSXrsAjeBi3HNfGP+zYigUWuBvt2fGxeiGRM8lyn4tGRUz6H+
-	EaW7T0nBl8rz3synypQ8dgwejk/nQ6EbVuHpwA/JVWAvo68EtFK1bEsMUWVWGbxr2xIX
-	dWyA==
-X-Gm-Message-State: APjAAAWBJcZHaxe5ivFTb9RrsziSgIvc5Z46fVJJryELZYF4kcyWuVbs
-	gPGkwXCeABVsj1QoNdTli8g=
-X-Google-Smtp-Source: APXvYqwz42GZPNsXY/cYjjTIjqqW84xEAL7SM2M2iJb7GWmW3OsdKh5RkSJvm/SsOIluuLrcnH2lyg==
-X-Received: by 2002:a17:902:6b8c:: with SMTP id
-	p12mr73583844plk.282.1554238697717; 
-	Tue, 02 Apr 2019 13:58:17 -0700 (PDT)
+	:message-id:date:user-agent:mime-version:in-reply-to;
+	bh=H41fFPxZsi5cF+YP3DOD15omBJNInATJbv7sUCiveAI=;
+	b=nBKoc5TbuNuoxO8HxGboJAY9h1/g+AZIGq5tJpaCCflAU4r71JkEprAElK3xMFjGO7
+	OZIxRa4ZWUbL9VvAYWSoFJ3l4V3P8lY5F1h3v4Gh8r/ed4A0IL5w4bqyhRAHAtAWbLte
+	hXrstyhDRkUp/+nNoif9aFZCjk99GLdrocCBv+LFcmzUfBfxSgskFFWGgywzpZ6QzFXZ
+	9sdgCd/HSJ7P2pu66i0l6v7x4NdJErkhBQOhPtxPn4bqGO04Sfr9XjyoIT8bd7eAzU/s
+	LUm7iNTmrO26jFZhnnwTbcXMa7g0fMeDixLOrnmtAvFg/+9EyeILuvhUMKaqXLV3RN5F
+	QBUg==
+X-Gm-Message-State: APjAAAUo05Cn9QMcNeHSTkFUGDstAyeScA11Qa29alfYKxOSBpDCpiYs
+	1KZRET8nKPFUFhAiVBifwfg=
+X-Google-Smtp-Source: APXvYqykp0nPjxbLdmI1+XpdsVn4OgnZU33TnUmlbey4croxqeGYUX0KVN/qmsxzm5+AOc7PZrrmFg==
+X-Received: by 2002:a62:e412:: with SMTP id r18mr19485759pfh.207.1554240294663;
+	Tue, 02 Apr 2019 14:24:54 -0700 (PDT)
 Received: from [10.188.84.210] ([206.121.102.138])
 	by smtp.gmail.com with ESMTPSA id
-	o89sm27357089pfi.178.2019.04.02.13.58.16
+	t12sm28470732pfl.59.2019.04.02.14.24.52
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 02 Apr 2019 13:58:16 -0700 (PDT)
-To: Tom Rini <trini@konsulko.com>, Adrian Bunk <bunk@stusta.de>
+	Tue, 02 Apr 2019 14:24:53 -0700 (PDT)
+To: Tom Rini <trini@konsulko.com>, Jon Mason <jdmason@kudzu.us>
 References: <854544cb-aab1-1a9d-9e98-0f39663ca621@gmail.com>
 	<b08083fc2f63f6324a652706f8343a0b8defe209.camel@linuxfoundation.org>
 	<a1416fe3-04fb-1d37-eaef-05b9a838254e@gmail.com>
-	<20190402065121.GA31468@localhost> <20190402194614.GY4664@bill-the-cat>
+	<6068e963-94c1-7225-2c60-9ae027c74639@windriver.com>
+	<CAPoiz9yat-4XRgSFikh5PxrsgVpRAWNi2dx1O0+_iHyVR529Ag@mail.gmail.com>
+	<20190402194738.GZ4664@bill-the-cat>
 From: akuster808 <akuster808@gmail.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
@@ -109,17 +109,17 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <d526f577-71bf-d99d-1cbd-767a6d69f0d2@gmail.com>
-Date: Tue, 2 Apr 2019 13:58:15 -0700
+Message-ID: <56e2b936-177c-7066-99c0-bb46854daa4b@gmail.com>
+Date: Tue, 2 Apr 2019 14:24:51 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190402194614.GY4664@bill-the-cat>
+In-Reply-To: <20190402194738.GZ4664@bill-the-cat>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
 	Patches and discussions about the oe-core layer
 	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Git commit process question.
+Subject: Re: [oe] [OE-core] Git commit process question.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -131,52 +131,331 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Apr 2019 20:58:19 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 02 Apr 2019 21:24:56 -0000
+X-Groupsio-MsgNum: 44607
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="kmFSbKfNATamUmkQwWrEFz66pW5JofYRN"
+
+--kmFSbKfNATamUmkQwWrEFz66pW5JofYRN
+Content-Type: multipart/mixed; boundary="EjcxwKrJpXF4KfP316oM0k8RUmygTODU0";
+ protected-headers="v1"
+From: akuster808 <akuster808@gmail.com>
+To: Tom Rini <trini@konsulko.com>, Jon Mason <jdmason@kudzu.us>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+ OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+ Patches and discussions about the oe-core layer
+ <openembedded-core@lists.openembedded.org>
+Message-ID: <56e2b936-177c-7066-99c0-bb46854daa4b@gmail.com>
+Subject: Re: [oe] [OE-core] Git commit process question.
+References: <854544cb-aab1-1a9d-9e98-0f39663ca621@gmail.com>
+ <b08083fc2f63f6324a652706f8343a0b8defe209.camel@linuxfoundation.org>
+ <a1416fe3-04fb-1d37-eaef-05b9a838254e@gmail.com>
+ <6068e963-94c1-7225-2c60-9ae027c74639@windriver.com>
+ <CAPoiz9yat-4XRgSFikh5PxrsgVpRAWNi2dx1O0+_iHyVR529Ag@mail.gmail.com>
+ <20190402194738.GZ4664@bill-the-cat>
+In-Reply-To: <20190402194738.GZ4664@bill-the-cat>
+
+--EjcxwKrJpXF4KfP316oM0k8RUmygTODU0
+Content-Type: multipart/alternative;
+ boundary="------------ACF619984FBE2BEC09B40A67"
 Content-Language: en-US
 
+--------------ACF619984FBE2BEC09B40A67
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
 
-On 4/2/19 12:46 PM, Tom Rini wrote:
-> On Tue, Apr 02, 2019 at 09:51:21AM +0300, Adrian Bunk wrote:
->> On Mon, Apr 01, 2019 at 04:20:41PM -0700, akuster808 wrote:
->>>
->>> On 4/1/19 4:02 PM, Richard Purdie wrote:
->>>> On Mon, 2019-04-01 at 15:33 -0700, akuster808 wrote:
->>>>> Hello,
->>>>>
->>>>> I have noticed a large number of git commits with no header
->>>>> information being accepted.
->>>> Can you be more specific about what "no header information" means? You
->>>> mean a shortlog and no full log message?
->>> Commits with just a "subject" and signoff. No additional information
->>>
->>> We tend to reference back to how the kernel does things.
->>>
->>> https://www.kernel.org/doc/html/latest/process/submitting-patches.html
->>> These two sections in particular.
->>>
->>>
->>>     2) Describe your changes
->>>
->>> Describe your problem. Whether your patch is a one-line bug fix or 5000
->>> lines of a new feature, there must be an underlying problem that
->>> motivated you to do this work. Convince the reviewer that there is a
->>> problem worth fixing and that it makes sense for them to read past the
->>> first paragraph.
->>> ...
->> The kernel does not have "upgrade foo to the latest upstream version" commits.
->>
->> With the Automatic Upgrade Helper this is a semi-automatic task, and 
->> most of the time there is no specific motivation other than upgrading
->> to the latest upstream version.
-> But since that's just filling in a template the body can also be a
-> template perhaps with useful AUH data (run at ... by ... ?) ?..
 
-Maybe, if someone want to enhance the AUH.
+On 4/2/19 12:47 PM, Tom Rini wrote:
+> On Tue, Apr 02, 2019 at 04:45:16AM +0000, Jon Mason wrote:
+>> On Tue, Apr 2, 2019 at 6:41 AM Mark Hatle <mark.hatle@windriver.com> w=
+rote:
+>>> On 4/1/19 6:20 PM, akuster808 wrote:
+>>>>
+>>>> On 4/1/19 4:02 PM, Richard Purdie wrote:
+>>>>> On Mon, 2019-04-01 at 15:33 -0700, akuster808 wrote:
+>>>>>> Hello,
+>>>>>>
+>>>>>> I have noticed a large number of git commits with no header
+>>>>>> information being accepted.
+>>>>> Can you be more specific about what "no header information" means? =
+You
+>>>>> mean a shortlog and no full log message?
+>>>> Commits with just a "subject" and signoff. No additional information=
+
+>>> If you can convey the reason for the change in just the subject, that=
+ is
+>>> acceptable.. but there is -always- supposed to be a signed-off-by lin=
+e according
+>>> to our guidelines.
+>>>
+>>> So if you see this, I think we need to step back and figure out where=
+ and why
+>>> it's happening and get it resolved in the future.
+>>>
+>>> (Places I've seen in the past were one-off mistakes and clearly that =
+-- so it
+>>> wasn't anything that we needed to work on a correction.)
+>>>
+>>> --Mark
+>>>
+>>>> We tend to reference back to how the kernel does things.
+>>>>
+>>>> https://www.kernel.org/doc/html/latest/process/submitting-patches.ht=
+ml
+>>>> These two sections in particular.
+>>>>
+>>>>
+>>>>     2) Describe your changes
+>>>>
+>>>> Describe your problem. Whether your patch is a one-line bug fix or 5=
+000 lines of
+>>>> a new feature, there must be an underlying problem that motivated yo=
+u to do this
+>>>> work. Convince the reviewer that there is a problem worth fixing and=
+ that it
+>>>> makes sense for them to read past the first paragraph.
+>>>>
+>>>>
+>>>> along with this section.
+>>>>
+>>>>
+>>>>     14) The canonical patch format
+>>>>
+>>>> This section describes how the patch itself should be formatted. Not=
+e that, if
+>>>> you have your patches stored in a |git| repository, proper patch for=
+matting can
+>>>> be had with |git format-patch|. The tools cannot create the necessar=
+y text,
+>>>> though, so read the instructions below anyway.
+>>>>
+>>>> The canonical patch subject line is:
+>>>>
+>>>> Subject: [PATCH 001/123] subsystem: summary phrase
+>>>>
+>>>> The canonical patch message body contains the following:
+>>>>
+>>>>       * A |from| line specifying the patch author, followed by an em=
+pty line
+>>>>         (only needed if the person sending the patch is not the auth=
+or).
+>>>>       * The body of the explanation, line wrapped at 75 columns, whi=
+ch will be
+>>>>         copied to the permanent changelog to describe this patch.
+>>>>       * An empty line.
+>>>>       * The |Signed-off-by:| lines, described above, which will also=
+ go in the
+>>>>         changelog.
+>>>>       * A marker line containing simply |---|.
+>>>>       * Any additional comments not suitable for the changelog.
+>>>>       * The actual patch (|diff| output).
+>>>>
+>>>>
+>>>>     - Armin
+>> There are existing git hooks that can be used to detect and fail to
+>> merge patches like this.  For Linux, I have the following in
+>> .git/hooks/pre-commit
+>> #!/bin/sh
+>> exec git diff --cached | scripts/checkpatch.pl -
+> FWIW, over in U-Boot land I do:
+> ./scripts/checkpatch.pl -q --git origin/master..
+> as part of checking things prior to pushing to master.
+Having hooks is fine but after the fact. It puts the burden back on the
+Layer maintainer to resolve. If we think more info is better, it needs
+to happen at time of change submittal.
 
 - armin
 >
+>
 
 
+--------------ACF619984FBE2BEC09B40A67
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html;
+      charset=3Dwindows-1252">
+  </head>
+  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <br>
+    <br>
+    <div class=3D"moz-cite-prefix">On 4/2/19 12:47 PM, Tom Rini wrote:<br=
+>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:20190402194738.GZ4664@bill-the-cat">
+      <pre class=3D"moz-quote-pre" wrap=3D"">On Tue, Apr 02, 2019 at 04:4=
+5:16AM +0000, Jon Mason wrote:
+</pre>
+      <blockquote type=3D"cite">
+        <pre class=3D"moz-quote-pre" wrap=3D"">On Tue, Apr 2, 2019 at 6:4=
+1 AM Mark Hatle <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:mark.ha=
+tle@windriver.com">&lt;mark.hatle@windriver.com&gt;</a> wrote:
+</pre>
+        <blockquote type=3D"cite">
+          <pre class=3D"moz-quote-pre" wrap=3D"">
+On 4/1/19 6:20 PM, akuster808 wrote:
+</pre>
+          <blockquote type=3D"cite">
+            <pre class=3D"moz-quote-pre" wrap=3D"">
+
+On 4/1/19 4:02 PM, Richard Purdie wrote:
+</pre>
+            <blockquote type=3D"cite">
+              <pre class=3D"moz-quote-pre" wrap=3D"">On Mon, 2019-04-01 a=
+t 15:33 -0700, akuster808 wrote:
+</pre>
+              <blockquote type=3D"cite">
+                <pre class=3D"moz-quote-pre" wrap=3D"">Hello,
+
+I have noticed a large number of git commits with no header
+information being accepted.
+</pre>
+              </blockquote>
+              <pre class=3D"moz-quote-pre" wrap=3D"">Can you be more spec=
+ific about what "no header information" means? You
+mean a shortlog and no full log message?
+</pre>
+            </blockquote>
+            <pre class=3D"moz-quote-pre" wrap=3D"">Commits with just a "s=
+ubject" and signoff. No additional information
+</pre>
+          </blockquote>
+          <pre class=3D"moz-quote-pre" wrap=3D"">
+If you can convey the reason for the change in just the subject, that is
+acceptable.. but there is -always- supposed to be a signed-off-by line ac=
+cording
+to our guidelines.
+
+So if you see this, I think we need to step back and figure out where and=
+ why
+it's happening and get it resolved in the future.
+
+(Places I've seen in the past were one-off mistakes and clearly that -- s=
+o it
+wasn't anything that we needed to work on a correction.)
+
+--Mark
+
+</pre>
+          <blockquote type=3D"cite">
+            <pre class=3D"moz-quote-pre" wrap=3D"">We tend to reference b=
+ack to how the kernel does things.
+
+<a class=3D"moz-txt-link-freetext" href=3D"https://www.kernel.org/doc/htm=
+l/latest/process/submitting-patches.html">https://www.kernel.org/doc/html=
+/latest/process/submitting-patches.html</a>
+These two sections in particular.
+
+
+    2) Describe your changes
+
+Describe your problem. Whether your patch is a one-line bug fix or 5000 l=
+ines of
+a new feature, there must be an underlying problem that motivated you to =
+do this
+work. Convince the reviewer that there is a problem worth fixing and that=
+ it
+makes sense for them to read past the first paragraph.
+
+
+along with this section.
+
+
+    14) The canonical patch format
+
+This section describes how the patch itself should be formatted. Note tha=
+t, if
+you have your patches stored in a |git| repository, proper patch formatti=
+ng can
+be had with |git format-patch|. The tools cannot create the necessary tex=
+t,
+though, so read the instructions below anyway.
+
+The canonical patch subject line is:
+
+Subject: [PATCH 001/123] subsystem: summary phrase
+
+The canonical patch message body contains the following:
+
+      * A |from| line specifying the patch author, followed by an empty l=
+ine
+        (only needed if the person sending the patch is not the author).
+      * The body of the explanation, line wrapped at 75 columns, which wi=
+ll be
+        copied to the permanent changelog to describe this patch.
+      * An empty line.
+      * The |Signed-off-by:| lines, described above, which will also go i=
+n the
+        changelog.
+      * A marker line containing simply |---|.
+      * Any additional comments not suitable for the changelog.
+      * The actual patch (|diff| output).
+
+
+    - Armin
+</pre>
+          </blockquote>
+        </blockquote>
+        <pre class=3D"moz-quote-pre" wrap=3D"">
+There are existing git hooks that can be used to detect and fail to
+merge patches like this.  For Linux, I have the following in
+=2Egit/hooks/pre-commit
+#!/bin/sh
+exec git diff --cached | scripts/checkpatch.pl -
+</pre>
+      </blockquote>
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+FWIW, over in U-Boot land I do:
+=2E/scripts/checkpatch.pl -q --git origin/master..
+as part of checking things prior to pushing to master.</pre>
+    </blockquote>
+    Having hooks is fine but after the fact. It puts the burden back on
+    the Layer maintainer to resolve. If we think more info is better, it
+    needs to happen at time of change submittal.<br>
+    <br>
+    - armin<br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:20190402194738.GZ4664@bill-the-cat">
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+
+</pre>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------ACF619984FBE2BEC09B40A67--
+
+--EjcxwKrJpXF4KfP316oM0k8RUmygTODU0--
+
+--kmFSbKfNATamUmkQwWrEFz66pW5JofYRN
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJco9MjAAoJEO6LtJn0Vuf56nUP/2IZrhcjzVp+mr29oGCC2SCl
+ZFzVOcsnyebCzTHwZkS0Ge5yfhZ3rjPQXCq0jhcZHZW/1bfSwMpl0g8fjwo6tADi
+/w9ZMLbc/m08SaG9KvgPSrV0JZAjGAqk62f7yLZ0YMQyJrhrRnO8rA9pSPsk3z//
+1M8rYEMQBTP6S30yqo+qumO1/b5QDEBefD5r+t4Pv+HbhAfKYV+fP94F/y93j6Fl
+j9vVq9FdiRy/k9LrfFcUHRgWtfvg8/15G17LzSivQd4O/QQ6CkEEeNk2nuyavTo7
+wXuyowpUn5RkjII+PcdKCoQ5ce6Y0s9M8MqBV9qI8xsFtpwLxkyEPVfE81qCcLTK
+SVLLDsIPYaZqrtNc5FmNDxopEInrkkipkdmnbMmZm4P0bYT+TfxgFkJoYvY+LU/8
+BZ0Al8DIdXy3RSduubNt2Cm7u6Skj/mQKdWuMFKesU5yzDPSxT80KFQvAKL2xeNF
+VXHXvfLYb9Nw/qp0i61FejBe8EK/XZagQt94ZIIWlF8imCaCHlD9nix3RbDf+KBN
+RMud1cwpJi+vgf5F8xCR7UxluXajeTCS4c0xppmAemG4n/+ziQE9qSQROqzBUns/
+44z7SD9nGMTbmiiV0menabGzdRMuszyj3wyW7ALlIhf+W3kbik8/cwF5WMOPDJr0
+hr8mNYpXcHBDJMJ0LXKT
+=pXtA
+-----END PGP SIGNATURE-----
+
+--kmFSbKfNATamUmkQwWrEFz66pW5JofYRN--
