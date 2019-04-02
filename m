@@ -1,50 +1,67 @@
-Return-Path: <ee.peng.yeoh@intel.com>
+Return-Path: <jdmason@kudzu.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3C898E00AB0; Mon,  1 Apr 2019 20:28:40 -0700 (PDT)
+	id 9A3CBE00AC5; Mon,  1 Apr 2019 21:45:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 110D2E0049A
-	for <yocto@yoctoproject.org>; Mon,  1 Apr 2019 20:28:38 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	01 Apr 2019 20:28:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.60,298,1549958400"; 
-	d="scan'208,217";a="312351909"
-Received: from pgsmsx106.gar.corp.intel.com ([10.221.44.98])
-	by orsmga005.jf.intel.com with ESMTP; 01 Apr 2019 20:28:36 -0700
-Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.173]) by
-	PGSMSX106.gar.corp.intel.com ([169.254.9.12]) with mapi id
-	14.03.0415.000; Tue, 2 Apr 2019 11:28:36 +0800
-From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
-To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Thread-Topic: Proposed new QA process
-Thread-Index: AdTpA8p1v/O57UGcSFmNstkpN14rMA==
-Date: Tue, 2 Apr 2019 03:28:35 +0000
-Message-ID: <9DDD2658D1FE414E99172D2DB1E4D043481A33CC@PGSMSX109.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYWYwNmMzZjUtZWZlYS00NDdhLTk2ZDAtNTAyMzMyY2MxZTU2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoialZOTmV5dVwvdTRTcnpXbm9ocnhlalJRNEpoSEdrdDNMM0F6RzRqT0Z0Zk90Z2VzZVlhczE3VVwvQTQ1MmQrY0w3In0=
-dlp-product: dlpe-windows
-dlp-version: 11.0.400.15
-dlp-reaction: no-action
-x-originating-ip: [172.30.20.205]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.195 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-it1-f195.google.com (mail-it1-f195.google.com
+	[209.85.166.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79B11E00950
+	for <yocto@yoctoproject.org>; Mon,  1 Apr 2019 21:45:25 -0700 (PDT)
+Received: by mail-it1-f195.google.com with SMTP id z17so1748634itc.1
+	for <yocto@yoctoproject.org>; Mon, 01 Apr 2019 21:45:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=kudzu-us.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=P2t5e91PvXtQ1vk6gpBPehsQ8MAV3ilydskB33y3WMw=;
+	b=JhssEqPPvGY24JU6uh+PqXgLZUPPUHzM+0np+s7CYFZEg/x2ogMZexQP6y9zUgi+bH
+	2FX89YZ0Q8mrWk2T2gJl97XBHepFbnKNs4ihUeN26xnOdVKEiFUIhbOY1kNagQOET4wo
+	PGjz3IrZGaeZA6jb2MlWqq2SG133TJQ8q5890pUw/OpNouiR7hQUOPD8/uNLY91n7XJk
+	W8KJTElFro/gzwcA+aVfpLj+Z3dO/w6TUktZjAfq8EqNNfYLXynAzIXsy2XOx8rxaa8H
+	cmX195cX1+Gy0sff5wpwGPMufnDpUQR1bYAG1pDZsl4a8faoZ9mI5s3QFiwNzdEFDJDk
+	WWzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=P2t5e91PvXtQ1vk6gpBPehsQ8MAV3ilydskB33y3WMw=;
+	b=UBC/IonQioDVKXc3pkc6w8BiRNtqDdG2O9BakH4U9AFyB1PeBvqC4t4Y2DF0o2V4dv
+	mzP42X+TLyE5yhRN6/3O3KlBe1kEc8CkibNWjkfS6Sgl7QqdwFAmwxjEWMjmBur46+Wq
+	QwT/75y1o51TQjErXHPzCdsUPVzsrh+4TeszGiCdOtDosfVF04Y2maFtm6lEGCWRMAE1
+	NfqEjL5pmLjMgK9gioZKiVSQ1oTwxJpVFmACd/36G9VU8U/1G1QCUFCNTUBp+VIUH6PE
+	yEh04mpU2cH2tcece7q3wbLvTUSKTt41WlbyHWvVlRSyD+NPJsxzBLmWEDEPuqKrQ9Ss
+	fQlQ==
+X-Gm-Message-State: APjAAAUUi29D7YQlSICQ6vBqmgZr0eo3AIXY37JiI/wtuw7ng2Bk1dWQ
+	88F6Kwx6oBAD7zdnyBHHzOr2IagA2hKOUzdCwmx47w==
+X-Google-Smtp-Source: APXvYqwB53u160M+/OAKKEssIgGZTG24h2X6oQRBw/ocLh2wZFIORSQ9Av/q/d5V4nx7K7wky4DjkFAgl36d4UkeW9M=
+X-Received: by 2002:a24:55d8:: with SMTP id e207mr2320877itb.119.1554180324762;
+	Mon, 01 Apr 2019 21:45:24 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Proposed new QA process
+References: <854544cb-aab1-1a9d-9e98-0f39663ca621@gmail.com>
+	<b08083fc2f63f6324a652706f8343a0b8defe209.camel@linuxfoundation.org>
+	<a1416fe3-04fb-1d37-eaef-05b9a838254e@gmail.com>
+	<6068e963-94c1-7225-2c60-9ae027c74639@windriver.com>
+In-Reply-To: <6068e963-94c1-7225-2c60-9ae027c74639@windriver.com>
+From: Jon Mason <jdmason@kudzu.us>
+Date: Tue, 2 Apr 2019 04:45:16 +0000
+Message-ID: <CAPoiz9yat-4XRgSFikh5PxrsgVpRAWNi2dx1O0+_iHyVR529Ag@mail.gmail.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	akuster808 <akuster808@gmail.com>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] Git commit process question.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,353 +73,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Apr 2019 03:28:40 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9DDD2658D1FE414E99172D2DB1E4D043481A33CCPGSMSX109garcor_"
+X-List-Received-Date: Tue, 02 Apr 2019 04:45:26 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---_000_9DDD2658D1FE414E99172D2DB1E4D043481A33CCPGSMSX109garcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Given the new QA tooling (resulttool) available to manage QA test results a=
-nd reporting, here was the proposed new QA process.
-
-
-The new QA process consists below:
-
-*       Test Trigger
-
-*       Test Planning
-
-*       Test Execution
-
-*       Test Result Store
-
-*       Test Monitoring & Reporting
-
-*       Release Decision
-
-
-Test Trigger: Each QA team will subscribe to QA notification email (request=
- through Richard Purdie).
-
-
-Test Planning: The lead QA team no longer need to setup Testopia and wiki p=
-age.  Each QA team (eg. intel, windriver, etc) will perform planning on wha=
-t extra tests they plan to run and when they'll send the results back, then=
- send these planning information as acknowledge email to QA stakeholders (e=
-g. Richard Purdie, Stephen Jolley) and the lead QA team.  Each QA team can =
-refer to OEQA for automated and manual test cases for their planning.
-
-
-Test Execution: Each QA team will execute the planned extra tests. To make =
-sure test result from the test execution could fully integrated to the new =
-QA tooling (resulttool for test result management and reporting/regression)=
-, execute OEQA automated tests and OEQA manual tests through resulttool (re=
-fer https://wiki.yoctoproject.org/wiki/Resulttool#manualexecution).
-
-
-Test Result Store: Each QA team will store test result to the remote yocto-=
-testresults git repository using resulttool (refer https://wiki.yoctoprojec=
-t.org/wiki/Resulttool#store), then send the QA completion email (include ne=
-w defects information) to both QA stakeholder and the lead QA team.  Each Q=
-A team will request write access to remote yocto-testresults git repository=
- (request through Richard Purdie).
-
-
-Test Monitoring & Reporting: QA stakeholder will monitor testing progress f=
-rom remote yocto-testresults git repository using resulttool (refer https:/=
-/wiki.yoctoproject.org/wiki/Resulttool#report).  Once every QA team complet=
-ed the test execution, the lead QA team will create QA test report and regr=
-ession using resulttool. Send email report to QA stakeholder and public yoc=
-to mailing list.
-
-
-Release Decision: QA stakeholder will make the final decision for release.
-
-
-
-
---_000_9DDD2658D1FE414E99172D2DB1E4D043481A33CCPGSMSX109garcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Tue, Apr 2, 2019 at 6:41 AM Mark Hatle <mark.hatle@windriver.com> wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1279996028;
-	mso-list-template-ids:-1485525260;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Given the new QA t=
-ooling (resulttool) available to manage QA test results and reporting, here=
- was the proposed new QA process.
-</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">The new QA process=
- consists below:</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Test Trigger<o:p></o:p></span></p=
+> On 4/1/19 6:20 PM, akuster808 wrote:
+> >
+> >
+> > On 4/1/19 4:02 PM, Richard Purdie wrote:
+> >> On Mon, 2019-04-01 at 15:33 -0700, akuster808 wrote:
+> >>> Hello,
+> >>>
+> >>> I have noticed a large number of git commits with no header
+> >>> information being accepted.
+> >> Can you be more specific about what "no header information" means? You
+> >> mean a shortlog and no full log message?
+> > Commits with just a "subject" and signoff. No additional information
 >
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Test Planning
-<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Test Execution<o:p></o:p></span><=
-/p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Test Result Store<o:p></o:p></spa=
-n></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Test Monitoring &amp; Reporting<o=
-:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-1;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt=
- &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Release Decision<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Test Trigger: Each=
- QA team will subscribe to QA notification email (request through Richard P=
-urdie).
-</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Test Planning: The=
- lead QA team no longer need to setup Testopia and wiki page. &nbsp;Each QA=
- team (eg. intel, windriver, etc) will perform planning
- on what extra tests they plan to run and when they'll send the results bac=
-k, then send these planning information as acknowledge email to QA stakehol=
-ders (eg. Richard Purdie, Stephen Jolley) and the lead QA team. &nbsp;Each =
-QA team can refer to OEQA for automated
- and manual test cases for their planning.</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Test Execution: Ea=
-ch QA team will execute the planned extra tests. To make sure test result f=
-rom the test execution could fully integrated
- to the new QA tooling (resulttool for test result management and reporting=
-/regression), execute OEQA automated tests and OEQA manual tests through re=
-sulttool (refer
-</span><a href=3D"https://wiki.yoctoproject.org/wiki/Resulttool#manualexecu=
-tion"><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-se=
-rif;color:#1155CC">https://wiki.yoctoproject.org/wiki/Resulttool#manualexec=
-ution</span></a><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quo=
-t;,sans-serif;color:black">).
-</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Test Result Store:=
- Each QA team will store test result to the remote yocto-testresults git re=
-pository using resulttool (refer
-</span><a href=3D"https://wiki.yoctoproject.org/wiki/Resulttool#store"><spa=
-n style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
-#1155CC">https://wiki.yoctoproject.org/wiki/Resulttool#store</span></a><spa=
-n style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
-black">),
- then send the QA completion email (include new defects information) to bot=
-h QA stakeholder and the lead QA team. &nbsp;Each QA team will request writ=
-e access to remote yocto-testresults git repository (request through Richar=
-d Purdie).</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Test Monitoring &a=
-mp; Reporting: QA stakeholder will monitor testing progress from remote yoc=
-to-testresults git repository using resulttool (refer
-</span><a href=3D"https://wiki.yoctoproject.org/wiki/Resulttool#report"><sp=
-an style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color=
-:#1155CC">https://wiki.yoctoproject.org/wiki/Resulttool#report</span></a><s=
-pan style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;colo=
-r:black">).
- &nbsp;Once every QA team completed the test execution, the lead QA team wi=
-ll create QA test report and regression using resulttool. Send email report=
- to QA stakeholder and public yocto mailing list.</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Release Decision: =
-QA stakeholder will make the final decision for release.</span><o:p></o:p><=
-/p>
-<p class=3D"MsoNormal"><br>
-<br>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> If you can convey the reason for the change in just the subject, that is
+> acceptable.. but there is -always- supposed to be a signed-off-by line according
+> to our guidelines.
+>
+> So if you see this, I think we need to step back and figure out where and why
+> it's happening and get it resolved in the future.
+>
+> (Places I've seen in the past were one-off mistakes and clearly that -- so it
+> wasn't anything that we needed to work on a correction.)
+>
+> --Mark
+>
+> > We tend to reference back to how the kernel does things.
+> >
+> > https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+> > These two sections in particular.
+> >
+> >
+> >     2) Describe your changes
+> >
+> > Describe your problem. Whether your patch is a one-line bug fix or 5000 lines of
+> > a new feature, there must be an underlying problem that motivated you to do this
+> > work. Convince the reviewer that there is a problem worth fixing and that it
+> > makes sense for them to read past the first paragraph.
+> >
+> >
+> > along with this section.
+> >
+> >
+> >     14) The canonical patch format
+> >
+> > This section describes how the patch itself should be formatted. Note that, if
+> > you have your patches stored in a |git| repository, proper patch formatting can
+> > be had with |git format-patch|. The tools cannot create the necessary text,
+> > though, so read the instructions below anyway.
+> >
+> > The canonical patch subject line is:
+> >
+> > Subject: [PATCH 001/123] subsystem: summary phrase
+> >
+> > The canonical patch message body contains the following:
+> >
+> >       * A |from| line specifying the patch author, followed by an empty line
+> >         (only needed if the person sending the patch is not the author).
+> >       * The body of the explanation, line wrapped at 75 columns, which will be
+> >         copied to the permanent changelog to describe this patch.
+> >       * An empty line.
+> >       * The |Signed-off-by:| lines, described above, which will also go in the
+> >         changelog.
+> >       * A marker line containing simply |---|.
+> >       * Any additional comments not suitable for the changelog.
+> >       * The actual patch (|diff| output).
+> >
+> >
+> >     - Armin
 
---_000_9DDD2658D1FE414E99172D2DB1E4D043481A33CCPGSMSX109garcor_--
+There are existing git hooks that can be used to detect and fail to
+merge patches like this.  For Linux, I have the following in
+.git/hooks/pre-commit
+#!/bin/sh
+exec git diff --cached | scripts/checkpatch.pl -
+
+Perhaps something similar can be added to check for this.
+
+Thanks,
+Jon
+
+> >
+> >> Cheers,
+> >>
+> >> Richard
+> >>
+> >
+> >
+>
+> --
+> _______________________________________________
+> Openembedded-core mailing list
+> Openembedded-core@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+
