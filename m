@@ -1,83 +1,75 @@
-Return-Path: <paul@betafive.co.uk>
+Return-Path: <trini@konsulko.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C2CDE00CE5; Wed,  3 Apr 2019 07:16:22 -0700 (PDT)
+	id CBA05E00CBC; Wed,  3 Apr 2019 07:41:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [66.111.4.28 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.66 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
-	[66.111.4.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A5CBE00994
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2019 07:16:21 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailout.nyi.internal (Postfix) with ESMTP id 9B24121F17;
-	Wed,  3 Apr 2019 10:16:20 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-	by compute1.internal (MEProxy); Wed, 03 Apr 2019 10:16:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
-	h=subject:to:references:from:message-id:date:mime-version
-	:in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=3
-	9FaNu2MWSsf2RYftytOOpSJa6J3jJ/aEXpBHCZQwUQ=; b=id+2ENm7nZYRrnlBi
-	I2CuB3Hk9+zK1cjKw5WmIMXXM4yPKiisveQ+B7AmunWS60Aku3xv1PLdbkSLw2Gq
-	0ZmSwXKh8/CpHbeVZzWXCSkDGQRUzWWtfNflk/1LvECnB1zwRK6+ucN5a/GRkh/6
-	EGi2BFwlPuq05KVPAokYI/kvFuFfNAgxgkL2hUwIJAZmSM8wTnCyTWVdKNQ1OvzY
-	y/DJwwt1UQDLqulb1+pVagQuooZ3tKOxNt/2NckbWK1GK2atzjscjMzjKV+wxsKm
-	a9BceB6m5bVPHEyKoBYMUTLt8RJSPFFZjdMw1zgPm34zH1vTiEritDd340yINUcY
-	O1wvA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-transfer-encoding:content-type
-	:date:from:in-reply-to:message-id:mime-version:references
-	:subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm2; bh=39FaNu2MWSsf2RYftytOOpSJa6J3jJ/aEXpBHCZQw
-	UQ=; b=K3gHNxBHmN3EAeQ52lRcBfss56pR0r02jBmg1xymNvM16XN/lYR+M50Qr
-	TGlhX5OxxCdREkN0LPRn+69MynqvUnB+p/az7UtBwkAnkmo/J5ElYQCHBrdmiHRo
-	jSff5DXN5yg+cYAM5qGKd9UPti19KVH2vNFy1UyPg5NyKhnfAw0Jr0ynhZf1o/J1
-	daMFNmmb9h6yX7pwUbpVs6qznDhpPAKfjRzLbNoH2S6d70mEjPPyfo+BhZKbYOUB
-	JapszXlMLJiXfbTKmV7qOPgcjrKwgwLaDzpB3Zz9xUQMoNphMOdQHovOd84oJSwb
-	92mMBadyDxSbkdwz3kwbiqtuxI35A==
-X-ME-Sender: <xms:NMCkXKtqMm5qfYlsozHA_1WiiyKnzwwNCyNeaGlk4ehtznTL10NZHg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddrtdefgdegkeculddtuddrgedutddrtddtmd
-	cutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdp
-	uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-	hnthhsucdlqddutddtmdenucfjughrpefuvfhfhfhokffffgggjggtgfesthekredttdef
-	jeenucfhrhhomheprfgruhhluceurghrkhgvrhcuoehprghulhessggvthgrfhhivhgvrd
-	gtohdruhhkqeenucffohhmrghinhepghhithhlrggsrdgtohhmnecukfhppeekuddrudek
-	jedrfedvrddufeeknecurfgrrhgrmhepmhgrihhlfhhrohhmpehprghulhessggvthgrfh
-	hivhgvrdgtohdruhhknecuvehluhhsthgvrhfuihiivgeptd
-X-ME-Proxy: <xmx:NMCkXCVvfMVA7lfSeJtzHaVtoXvINhJ4dxHwBOEayG8UVdgRWMkadQ>
-	<xmx:NMCkXGkwZk_LSMlU-fxlvT2DkOMCUIcGd7voOeEITskfdWhxDO2qlg>
-	<xmx:NMCkXHDIiX5tsKaMZezlMQMpWmJe2pBbZF7WbZ62Fq4YvN-c6FwmqQ>
-	<xmx:NMCkXNfYHtOYzU1dY7mdWmKc4VzGx_uNvuu_D3AGJwQh6wYWp4jpPA>
-Received: from [192.168.1.100] (138.32.187.81.in-addr.arpa [81.187.32.138])
-	by mail.messagingengine.com (Postfix) with ESMTPA id C0002E408B;
-	Wed,  3 Apr 2019 10:16:19 -0400 (EDT)
-To: Lluis Campos <lluis.campos@northern.tech>,
-	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-References: <4faf2c04-d2d5-9695-ab8e-d79b73eb55c9@northern.tech>
-	<2cf2ff61-4afe-abcf-c56c-286c88198c49@betafive.co.uk>
-	<70715015-8652-4b32-15f7-2579933ede89@northern.tech>
-From: Paul Barker <paul@betafive.co.uk>
-Organization: Beta Five Ltd
-Message-ID: <9f0f19eb-9678-3dd6-fee1-4b9dcf98a120@betafive.co.uk>
-Date: Wed, 3 Apr 2019 15:16:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.6.1
+Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com
+	[209.85.208.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 390F3E00BB7
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2019 07:41:16 -0700 (PDT)
+Received: by mail-ed1-f66.google.com with SMTP id a25so15145399edc.8
+	for <yocto@yoctoproject.org>; Wed, 03 Apr 2019 07:41:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=7889NLI0s35grXq1VYGM1Ulq7Z0ewFiYzH0BLVVvfB4=;
+	b=imZ9ypxcftP+LJk5MPzVJXNiKU7pcLfWtQQ+s3dQsjLnk299jQVllks9Psn+EbY4vf
+	rIQzVNcJOwZb1I14cQy0SH4Z8VZPYIMD9KrUyvO6x0iT6Z1X+msOPWUOgfLSx/pt06Y5
+	sba6YcrFtMFrjGIybEjzyrPn98MOS3ACUxygc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=7889NLI0s35grXq1VYGM1Ulq7Z0ewFiYzH0BLVVvfB4=;
+	b=UY6M44bUCVrDqpGygCndwF42jLFyUwHPMnl3oWzZ7Kxi/GcgUdsTdsuBlXTZcUCnMv
+	5GE8BAhP7QA5n4qkwI5H5QVqrSiOoJPUQosQ9CQZg9VlFafDPcwVUQl8rcA37Mt3TrLx
+	ONqbz3FC2NpEn6YREeqME8GcaGBYPHzOfS19kr+SYMsDuL1htPbT+2YsQxmtXS6+QSWs
+	ZnLpYW3B02PPm0vFmVlohB/fJNcg8HcZs+R5Kgj+8HWKaIn1OSCJbZvMIkq++udwak43
+	0WoF2gFmjcHSwolqX9JzzTRDan1KdPyHfD+3OGEmG8E8CrbQnd7rQ3O5S4niKYeKk27i
+	luNg==
+X-Gm-Message-State: APjAAAUnTuK2IPU7oKmMyxg37TtnIP47AD2aKs9dHxymlkPVBSC1YYjK
+	lbp3g8p9/udwpDY4f4uOITvDSg==
+X-Google-Smtp-Source: APXvYqyvPh0Py7FXIAzV5WrzrSAhrD/eCtk0FYF+ZzRbB92wvosWvhE1aY2jTvmEvhGoE2vS9ax6MQ==
+X-Received: by 2002:a17:906:4f83:: with SMTP id o3mr76696eju.188.1554302475135;
+	Wed, 03 Apr 2019 07:41:15 -0700 (PDT)
+Received: from bill-the-cat (cpe-65-184-134-105.ec.res.rr.com.
+	[65.184.134.105])
+	by smtp.gmail.com with ESMTPSA id g3sm3067440ejp.31.2019.04.03.07.41.12
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 03 Apr 2019 07:41:13 -0700 (PDT)
+Date: Wed, 3 Apr 2019 10:41:10 -0400
+From: Tom Rini <trini@konsulko.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Message-ID: <20190403144110.GG4664@bill-the-cat>
+References: <854544cb-aab1-1a9d-9e98-0f39663ca621@gmail.com>
+	<b08083fc2f63f6324a652706f8343a0b8defe209.camel@linuxfoundation.org>
+	<a1416fe3-04fb-1d37-eaef-05b9a838254e@gmail.com>
+	<20190402065121.GA31468@localhost>
+	<20190402194614.GY4664@bill-the-cat>
+	<CAJTo0LZ5qeDA+rQ5Eh3_LCbGtQyo732LrDkiZ=O4sh52cjXU=w@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <70715015-8652-4b32-15f7-2579933ede89@northern.tech>
-Subject: Re: gdb built with musl libc segfault
+In-Reply-To: <CAJTo0LZ5qeDA+rQ5Eh3_LCbGtQyo732LrDkiZ=O4sh52cjXU=w@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+	Adrian Bunk <bunk@stusta.de>
+Subject: Re: [oe] [OE-core] Git commit process question.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -89,123 +81,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2019 14:16:22 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 03 Apr 2019 14:41:16 -0000
+X-Groupsio-MsgNum: 44625
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="J1ldk4ymECC/Y9sn"
+Content-Disposition: inline
 
-On 02/04/2019 14:51, Lluis Campos wrote:
-> Hi Paul,
-> 
-> 
-> On 02.04.2019 14:49, Paul Barker wrote:
->> On 02/04/2019 12:45, Lluis Campos wrote:
->>> Hi all,
->>>
->>> This is my very first question in the Yocto mailing list. Very 
->>> exited! Please let me know if I should use other list for this.
->>>
->>>
->>> I am building an image using musl libc instead of gnu libc. I am not 
->>> using yocto-tiny distro, instead I achieve this by setting on my 
->>> local.conf:
->>>
->>> TCLIBC = "musl"
->>>
->>>
->>> My app (mender) got a segfault just starting. See output from strace:
->>>
->>> root@raspberrypi3:~# strace mender
->>> execve("/usr/bin/mender", ["mender"], 0x7ee65e10 /* 13 vars */) = 0
->>> set_tls(0x76f1bffc)                     = 0
->>> set_tid_address(0x76f1bfa0)             = 3020
->>> --- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_ACCERR, si_addr=0x530bc8} 
->>> ---
->>> +++ killed by SIGSEGV +++
->>> Segmentation fault
->>>
->>>
->>> To be able to debug the process, I added gdb to my image adding to my 
->>> local.conf:
->>>
->>> CORE_IMAGE_EXTRA_INSTALL += "packagegroup-core-buildessential 
->>> packagegroup-core-tools-debug"
->>>
->>>
->>> Then, ironically, gdb itself also segfaults:
->>>
->>> root@raspberrypi3:~# strace gdb 2>&1 | tail
->>> fcntl64(3, F_SETFD, FD_CLOEXEC)         = 0
->>> getdents64(3, /* 6 entries */, 2048)    = 144
->>> getdents64(3, /* 0 entries */, 2048)    = 0
->>> close(3)                                = 0
->>> ioctl(0, TIOCGWINSZ, {ws_row=25, ws_col=74, ws_xpixel=0, 
->>> ws_ypixel=0}) = 0
->>> getcwd("/home/root", 4096)              = 11
->>> access("/usr/local/bin/gdb", X_OK)      = -1 ENOENT (No such file or 
->>> directory)
->>> access("/usr/bin/gdb", X_OK)            = 0
->>> --- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_MAPERR, 
->>> si_addr=0x7e35aff0} ---
->>> +++ killed by SIGSEGV +++
->>>
->>>
->>> So, what is going on here? My guess is that some recipes are being 
->>> wrongly linked with gnu libc instead of musl, and then cannot run in 
->>> my device.
->>>
->>> Any ideas on how to debug the issue?
->>>
->>
->> Hi Lluis,
->>
->> This is an issue I've seen before with runc and gdb.
->>
->> In runc we saw SIGILL which I tracked down to some hideous 
->> setjmp/longjmp magic written in C. cgo is used to include this C code 
->> in with the Go code that comprises the rest of the application.
-> 
-> Our application is written in Go and we use CGO as well. So it sounds 
-> quite similar.
-> 
-> 
+--J1ldk4ymECC/Y9sn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Does your application use setjmp/longjmp or C++ exceptions in the 
-sections built with CGO?
+On Wed, Apr 03, 2019 at 11:30:39AM +0100, Burton, Ross wrote:
+> On Tue, 2 Apr 2019 at 20:46, Tom Rini <trini@konsulko.com> wrote:
+> > > The kernel does not have "upgrade foo to the latest upstream version"=
+ commits.
+> > >
+> > > With the Automatic Upgrade Helper this is a semi-automatic task, and
+> > > most of the time there is no specific motivation other than upgrading
+> > > to the latest upstream version.
+> >
+> > But since that's just filling in a template the body can also be a
+> > template perhaps with useful AUH data (run at ... by ... ?) ?
+>=20
+> Apart from making the commit message longer what does this achieve?
+> The commit already has a timestamp and author.
 
-I've dug into the runc disassembly as well as adding extra prints and 
-can see that it's at calls to those functions that the program counter 
-jumps off into the weeds resulting in SIGILL. For gdb there's usage of 
-C++ exception handling around gdb_main() and strace shows that the crash 
-is very very early in execution so I suspect it's setjmp/longjmp again, 
-used by C++ exception handling.
+It's an etiquette thing.  Subject+Sign-off+Empty body is bad form.  AUH
+updates are a form of "trivial update" that every project has.  "Update
+$X from version $Y to $Z" is what a human would normally put.  It's
+weird looking at git log of nothing but subject+signed-off-by.  I'm not
+going to object further on this point, but I don't get it.
 
->>
->> In gdb we saw SIGSEGV which is what you've got above.
->>
->> I think things are being correctly linked against musl but then 
->> there's some runtime issue in recent musl versions, possibly in 
->> conjunction with recent kernel headers.
->>
->> Are you using the thud or master branch?
->>
-> I am using thud branch. I haven't actually tried with master but I will 
-> do it later today
-> 
+--=20
+Tom
 
-I've reproduced the issue on master. I've also ruled out the issue in 
-sumo branch even if we uprev musl to the same version used on master. 
-It's likely a gcc/musl incompatibility of some kind introduced in a 
-recent gcc version.
+--J1ldk4ymECC/Y9sn
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I'm passing this one to a colleague for now but I'll try to have another 
-look myself next week. It's captured in our issue tracker for Oryx here: 
-https://gitlab.com/oryx/oryx/issues/14.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
 
-Thanks,
+iQIcBAEBAgAGBQJcpMYFAAoJEIf59jXTHXZSNM4P/jiot9v78SXY7AC4hLN3E/0t
+/VkrNGTD9THD1r76eurhrpyzvQ+jipTlJoaepp3ZtUdKc9kg50SM+nlfo25NnmzE
+S4n5QsCqH41oHj+t2AW6xikRhOifOvbilsFH9HSGW4mppJNCsU7BJ6gm9xb+HS2F
+GCKZknUNCrV3VTNBRyJBt1gRJRBhLU47aIoF2JlY5QXBcDDaEfDKE0Nm05ABoIev
+4bLyEjzua6YTngNpJnoGyiAMAZQVVlC/pNAlHSIpRSGLoYONjDUm2d7AfNmhnf2n
+GFrea2lhOhPN8VtbQPcKqxdEhYcALXy6+OHJeH0giTNH2NcZxfs9nSRzftKlSdON
+/V3X1oYfiXKnDnz1eLSkGhxBUYlwUEiQSmWkiYgROvXNDCw8iYT7WtcXuTl/HFJl
+3WDiM/FmF6EsdpLUaIS9kezz49Z237Y+LlMuOuR9jwBxTUNiYrg1wgOlIIeH7GKL
+H5PbYOe3LuqwIsHuDWpdMeUGD3SmkiNhB7C+sUyicN5Xgy8SxdMiE5LJ/rqyeh2m
+a2t+il0iT/UhAARjpweiRbCpLY8NpV4FRb4RTwJa+8EAB++CeiBdLtKQrdrXn2+F
+3edSJehcr7kTRLmbhnpqVez9l2cCrRXxQSnVU8IlvPdYYwrY3mo3NfyI2/fShQ5x
+DThFd9nYeXvzBD20F2Hc
+=4enG
+-----END PGP SIGNATURE-----
 
--- 
-Paul Barker
-Managing Director & Principal Engineer
-Beta Five Ltd
-
+--J1ldk4ymECC/Y9sn--
