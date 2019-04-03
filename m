@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF846E00C93; Wed,  3 Apr 2019 02:50:28 -0700 (PDT)
+	id B788FE00C49; Wed,  3 Apr 2019 03:05:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,59 +13,53 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.50 listed in list.dnswl.org]
+	*      [209.85.221.66 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
-	[209.85.128.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69AC6E00C46
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2019 02:50:27 -0700 (PDT)
-Received: by mail-wm1-f50.google.com with SMTP id v14so7347259wmf.2
-	for <yocto@yoctoproject.org>; Wed, 03 Apr 2019 02:50:27 -0700 (PDT)
+Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
+	[209.85.221.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8F27E00C1E
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2019 03:05:21 -0700 (PDT)
+Received: by mail-wr1-f66.google.com with SMTP id y7so20466524wrn.11
+	for <yocto@yoctoproject.org>; Wed, 03 Apr 2019 03:05:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=FDk3DU5ssJnv9KJ6MwO4Jo5x3Pkf+1VLnnb/I+fwNuI=;
-	b=pwHvTgS2c6agNphKz/DS+VhrDsqPS5PVwHLY3LGt4u9H/L6P7ExomCK9W7sBu8xqCw
-	4TTtFtOwyKep3FbNCUxpkq+Xj40bScbwkAFflMx1xvc0z8Ns3ZYV9SrGZOQrljRZvGf0
-	GsvzypgIEUPrKkn1OoXeFwpND04dMynp3VYlrzPqrvzFwStAJZhqSkbLO9BmQUZC/YWr
-	687p57NwgUuutY7KAuVLoNqCqDTXunTiZfXsxRKD2Yz02veOdw8Kck6SfM6eVTlLStO7
-	RXYdoSO04HZw6bolqvS4fC8GVeDphwHMmLn+LMv+wK7h1kGRXID47Hxo7O9vNCTqJavK
-	vXXw==
+	bh=LNhAbBcIp9aj8BWC+Hsm8naxaXtnatEhomPnLoZICjc=;
+	b=biyePYlwjubsRIhC2KGpe1dk/7Pq7Z5UbHVjWerIQT88OcFQbgixEfgjOSZJ/PFVWK
+	IUtwSxRYpvggPDjzeURNk9jALiYwrgoerSHRELxktsJyM48auLs1VlTog1+Zi5q6Ds7o
+	/0ObdBTvBQsHCdQ5SV2HFV8oBVVYVlwiR64uze91zRIH7gHIKDobLjqj48z00Saf1LK4
+	ZF4/+jN4Y9av+jgL+nlZTM2QAc3RKQ6t6hIsBaq3QWM0xZG+NIb7zZ/qAH7rPe1mLWJs
+	5bResqm1dAKy+GCyWI4HnUKffWuKURoNZQshYhpmFAe9ff56hpNNDQTdjeaJf71l64Jj
+	+DKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=FDk3DU5ssJnv9KJ6MwO4Jo5x3Pkf+1VLnnb/I+fwNuI=;
-	b=h4XbYuWezJdgzLndg204OzF4MJdf/uEd26Q85lgEkCMnUJrNgg5K0pXpkoADn/VVk7
-	RoX/iw7qcj8xp8pTyBhdiDD4eO4ufYe4rQGbPeVC/e4nX1uME/AS9VNJGXijCeqbSl3R
-	WOK+Av62tx6fqimszkBfE5RvW6efTGWS6h5QL6otdii6aWpNMNnVVyLtoVFhvZrG8idh
-	OYsfnjCAeFYQBLRLZQv43LtoT8WU5TDwrFxqGzCnkDEkbxLzu+nUVk93V4H/Dr16QwFs
-	GiIV/1QimNrtPNnCOAL9Ycd1ijOKSGdCa19+nZMmsQEiHUq7saBzpmVIYTeFrW4Si0y8
-	L8Zw==
-X-Gm-Message-State: APjAAAUHXUDxFDiJ5urvphKqQypBjdzTkW1ovxhQToB4gAGyECNDjmFB
-	xremEWD5JBzmEOyq+wFLbaI=
-X-Google-Smtp-Source: APXvYqy6wMEcTKDB+MLXR57w0wu9h5u0Ho6AJbSGUgKBNPU/SAlahWL+0ApFqXKRynOradbx8BC1gg==
-X-Received: by 2002:a1c:b189:: with SMTP id a131mr1375426wmf.107.1554285026461;
-	Wed, 03 Apr 2019 02:50:26 -0700 (PDT)
+	bh=LNhAbBcIp9aj8BWC+Hsm8naxaXtnatEhomPnLoZICjc=;
+	b=fGhl8XeDGnlDar4wZJzFn5TsE4XOnE0Esxkvko12NyQ+4VpOZ3K9BxVRFNobkNsNrc
+	xt55OnqkBmso2HqqDA7NRLeDPzCimNOTVZrgbnTrNR9JVvs+C17CBkxbMvLW/K9z6Ts4
+	TYXshR0zqztgH2Lq4aepd4PvqjViFlUimZOyH6jsZYViUdI70mfhZ6u7DYOH5IGFw2yk
+	+xixgCHJRPAqTPX1V76XN1XeqPEPUelOVcz78JJqFeUMmMMHwkwKsxhyYn0mx59rYQ6A
+	BNVeKhtfn9P1uSCG5st5Vl4dGpsbDzQPSSADJ1B0EgEroQZfk1+v11bXV/R9Fyl2iZsG
+	dDpQ==
+X-Gm-Message-State: APjAAAX7AGWt7m7O6pGA5dpYM9ikGtVwBL+IRx3nLxp/ZPV40zArhzp/
+	oujlf+W9rnBOXjdjdqQr8/Cawlc8XLY=
+X-Google-Smtp-Source: APXvYqwWoBthjamK0q9iqTHC8g+pSPZYUFY9cmILQGKIsed20a2yhWEz8/ja8wYdQUm2iyAZ3U9omg==
+X-Received: by 2002:adf:f64d:: with SMTP id x13mr7487993wrp.298.1554285920433; 
+	Wed, 03 Apr 2019 03:05:20 -0700 (PDT)
 Received: from [172.16.50.58] ([37.205.61.202])
 	by smtp.gmail.com with ESMTPSA id
-	w11sm45514563wre.15.2019.04.03.02.50.25
+	l20sm11821165wme.20.2019.04.03.03.05.19
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 03 Apr 2019 02:50:25 -0700 (PDT)
-To: "Jain, Sangeeta" <sangeeta.jain@intel.com>,
-	Poky Build User <pokybuild@ubuntu1604-ty-1.yocto.io>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
-	"sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
-	Yi Zhao <yi.zhao@windriver.com>
-References: <20190328033000.C90DF1C2149@ubuntu1604-ty-1.yocto.io>
-	<015AB11D45F2C442929CB2765DAE738634DB02DA@PGSMSX110.gar.corp.intel.com>
+	Wed, 03 Apr 2019 03:05:19 -0700 (PDT)
+To: mingli.yu@windriver.com, yocto@yoctoproject.org
+References: <1554281714-333089-1-git-send-email-mingli.yu@windriver.com>
 From: akuster808 <akuster808@gmail.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
@@ -111,15 +105,13 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <171c360d-16c9-7f7f-2c7f-6825878b5d51@gmail.com>
-Date: Wed, 3 Apr 2019 02:50:20 -0700
+Message-ID: <58d88371-221a-636c-3abf-3fcd887bf8f8@gmail.com>
+Date: Wed, 3 Apr 2019 03:05:15 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <015AB11D45F2C442929CB2765DAE738634DB02DA@PGSMSX110.gar.corp.intel.com>
-Cc: "Chan, Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
-	"otavio@ossystems.com.br" <otavio@ossystems.com.br>
-Subject: Re: QA notification for completed autobuilder build (yocto-2.6.2.rc3)
+In-Reply-To: <1554281714-333089-1-git-send-email-mingli.yu@windriver.com>
+Subject: Re: [meta-security][PATCH] samhain: hash fix for aarch64 and mips64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -131,100 +123,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2019 09:50:28 -0000
+X-List-Received-Date: Wed, 03 Apr 2019 10:05:23 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-Hello,
 
-On 4/3/19 1:06 AM, Jain, Sangeeta wrote:
-> Intel and WR YP QA is now working on QA execution for YP build 2.6.2 RC3. We are planning to execute following tests for this cycle:
+
+On 4/3/19 1:55 AM, mingli.yu@windriver.com wrote:
+> From: Mingli Yu <Mingli.Yu@windriver.com>
 >
-> OEQA-Manual tests for following modules:
-> 1.	SDK
-> 2.	Eclipse-plugin
-> 3.	Kernel
-> 4.	Toaster
-> 5.	Bitbake (oe-core)
-> 6.	Build-appliance
-> 7.	Crops
-> 8.	Compliance-test
-> 9.	Bsp-hw
-> 10.	Bsp-qemu
-I did not backport the manual test from master or thud. Are these the
-original set?
+> samhain fails on both aarch64 and mips64 targets with:
+> | samhain[3013]: FATAL: x_dnmalloc.c: 2790: hashval < AMOUNTHASH
+>
+> Though there is already a patch samhain-mips64-aarch64-dnmalloc-hash-fix.patch
+> to fix this issue, the logic is incomplete and
+> pass -DCONFIG_ARCH_MIPS64=1 and -DCONFIG_ARCH_AARCH64=1
+> during do_configure phase respectively to fix the
+> issue.
+This does not apply. Can you rebase with master.
 
-
-regards,
+thanks,
 Armin
-> Runtime auto test for following platforms:
 >
-> 1.	MinnowTurbo 32bit
-> 2.	MinnowTurbot 64 bit
-> 3.	NUC 7
-> 4.	NUC 6
-> 5.	Edgerouter
-> 6.	MPC8315e-rdb
-> 7.	Beaglebone
-> 8.	Qemuarm
-> 9.	Qemuarm-64
-> 10.	Qemuppc
-> 11.	Qemumips
-> 12.	Qemumips64
+> Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
+> ---
+>  recipes-security/samhain/samhain.inc | 5 +++++
+>  1 file changed, 5 insertions(+)
 >
-> Other auto tests: 
->
-> 1.	Qemu-selftest
-> 2.	Qemu-meta-ide
->
-> ETA for completion is Wednesday, 10 April.
->
-> Thanks & Regards,
-> Sangeeta Jain
->
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> On
->> Behalf Of Poky Build User
->> Sent: Thursday, 28 March, 2019 11:30 AM
->> To: yocto@yoctoproject.org
->> Cc: otavio@ossystems.com.br; Chan, Aaron Chun Yew
->> <aaron.chun.yew.chan@intel.com>; akuster808@gmail.com
->> Subject: [yocto] QA notification for completed autobuilder build (yocto-2.6.2.rc3)
->>
->>
->> A build flagged for QA (yocto-2.6.2.rc3) was completed on the autobuilder and is
->> available at:
->>
->>
->>    https://autobuilder.yocto.io/pub/releases/yocto-2.6.2.rc3
->>
->>
->> Build hash information:
->>
->> bitbake: 7c1eb51d1e8a4c5f39bf9dddf05fb0b3598da72b
->> eclipse-poky-neon: cd86f167be58a11b289af4ef236b4adec57ec316
->> eclipse-poky-oxygen: 210c58c5a7147127f9c840718c6cd2a56e871718
->> meta-gplv2: aabc30f3bd03f97326fb8596910b94639fea7575
->> meta-intel: 27dadcfc7bc0de70328b02fecb841608389d22fc
->> meta-mingw: 6556cde16fbdf42c7edae89bb186e5ae4982eff5
->> meta-qt3: 23d7543ebd7e82ba95cbe19043ae4229bdb3b6b1
->> meta-qt4: b37d8b93924b314df3591b4a61e194ff3feb5517
->> oecore: 45032e30be70503faeee468159b216031b729309
->> poky: faeb366bc3eb322f5f203cfe08dc4cf529a822e9
->>
->>
->>
->> This is an automated message from the Yocto Project Autobuilder
->> Git: git://git.yoctoproject.org/yocto-autobuilder2
->> Email: richard.purdie@linuxfoundation.org
->>
->>
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+> diff --git a/recipes-security/samhain/samhain.inc b/recipes-security/samhain/samhain.inc
+> index dcd72b9..90da813 100644
+> --- a/recipes-security/samhain/samhain.inc
+> +++ b/recipes-security/samhain/samhain.inc
+> @@ -97,6 +97,11 @@ EOF
+>  
+>  do_configure () {
+>  	autoconf -f
+> +	if [ "${TARGET_ARCH}" = "mips64" ]; then
+> +	    export CFLAGS="${CFLAGS} -DCONFIG_ARCH_MIPS64=1"
+> +	elif [ "${TARGET_ARCH}" = "aarch64" ]; then
+> +	    export CFLAGS="${CFLAGS} -DCONFIG_ARCH_AARCH64=1"
+> +	fi
+>  	./configure \
+>  	--build=${BUILD_SYS} \
+>  	--host=${HOST_SYS} \
 
 
