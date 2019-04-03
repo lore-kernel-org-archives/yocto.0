@@ -1,71 +1,84 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <johann.obermayr@sigmatek.at>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0488E00CD6; Wed,  3 Apr 2019 17:39:21 -0700 (PDT)
+	id 9441AE00CEE; Wed,  3 Apr 2019 18:24:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=unavailable version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.195 listed in list.dnswl.org]
+	*      [40.107.14.103 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f195.google.com (mail-qk1-f195.google.com
-	[209.85.222.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07953E00994
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2019 17:39:20 -0700 (PDT)
-Received: by mail-qk1-f195.google.com with SMTP id b74so594768qkg.9
-	for <yocto@yoctoproject.org>; Wed, 03 Apr 2019 17:39:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=xgz0S6lGlc07esuIoQoVYBejaSO4dHgPy4bgh3kQG5Q=;
-	b=ZNRMfrVd+jX9qj7ehgC1wnQNMsccGHvBIawiUIukqHS9Mp6M6O3DkJfoyKx+DvXX+d
-	ChKC/DFwMayrVxwfElaLD3Pdo1l2wET4ZZEYsM7lOAk7HYChMUMcaDyepUeNIsiWL0OJ
-	6NpmmjkXSITo/1T6lfHf//hH/VI3PIk++Z2ninCEy2dZE7lvuW0CAvIRc3NSKBINBkP5
-	ubm+1X9X44VDvbcrxId/+ARTQC6M35tdYzzPYHTZQ/SasHYpdsnp09o2VEvq5/yb/4u+
-	NFiOwW01fKBNMlyPb/UnJFzPpLNaGLSkHTA0GlB5bHHY912NCb9KWk4DnHJh3VEzcI+u
-	2pNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=xgz0S6lGlc07esuIoQoVYBejaSO4dHgPy4bgh3kQG5Q=;
-	b=lvTsSWekUmixeaT7LJjOUcf4vxJfEp29TonUFO3til6vIG/a+DtZPcB3siQ9RO6ppB
-	X7JmRtiGIt0XrrTTvJpKnu7iXBQbsemg4KgeQR2aP3RghNyeiUp3w1lXarA3NPaBtEEh
-	e0eQ845iLA5GQnvSSmDcgNfKkEqkuXPqKZMnJKzgps6yC5Ab3nrLCs9b4KyPRijHidpt
-	ld+yaZSjbQSmfVZwAN4ui1ejtWM/583w/35DGmNlXT1odRAQdzHhSrQB2VyLrFCfbdTA
-	wtkc8eOTAE6jeY/coPvtZu9nLYvIu0DHg3B+cM2ZwO/TgoL0gtjPum00szaxq7Rrmd+D
-	kGTA==
-X-Gm-Message-State: APjAAAX1lF8O26sbKXJ76aOJY/jcADoDCfNNAs4kzb9W1h/BNwCg9d5W
-	83qVqvEZgdNvvSfyDUPvoZ6X27aBGsw48zhWj1GNBWNn
-X-Google-Smtp-Source: APXvYqyVy3cpHue0WjdWqDQWdXoiggXCG8gASt/Rb13SKaeKPYaA0GhwKZbCYcwsf+L9XtJD2IC7ui3TVX/La4D+tmk=
-X-Received: by 2002:a37:9d84:: with SMTP id g126mr2625221qke.22.1554338359839; 
-	Wed, 03 Apr 2019 17:39:19 -0700 (PDT)
+X-Greylist: delayed 18056 seconds by postgrey-1.32 at yocto-www;
+	Wed, 03 Apr 2019 18:24:39 PDT
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com
+	(mail-eopbgr140103.outbound.protection.outlook.com [40.107.14.103])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27EC6E00CD6
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2019 18:24:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sigmatek.at;
+	s=selector1;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=L1ywrI1u+kkbLZWTi3lYSW+OQc559Yu+6lkOGX6xhQA=;
+	b=FPCYFjHUGQBSzFTxEHfi89GI87ac3wQuQqyA/KnqYuiOzchlVXpGiXBFrUPa+0YhdYVI4yRE3kRNumWLAdxCqO5BFc0TIsqTGj8v6Xtjyln6lqId1tO/Ym2hSx9rrHrJ9IEuiFSHTHJmqdv2yhXACCf3EjUU6H1k70cN+cT06O8=
+Received: from AM6PR08MB3366.eurprd08.prod.outlook.com (20.177.113.224) by
+	AM6PR08MB3397.eurprd08.prod.outlook.com (20.177.112.222) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1750.17; Wed, 3 Apr 2019 18:50:12 +0000
+Received: from AM6PR08MB3366.eurprd08.prod.outlook.com
+	([fe80::501f:cd56:27ca:c6dc]) by
+	AM6PR08MB3366.eurprd08.prod.outlook.com
+	([fe80::501f:cd56:27ca:c6dc%5]) with mapi id 15.20.1750.014;
+	Wed, 3 Apr 2019 18:50:12 +0000
+From: Johann Obermayr <johann.obermayr@sigmatek.at>
+To: "yocto-bounces@yoctoproject.org" <yocto-bounces@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: grub-efi
+Thread-Index: AdTqTTqLo5vfs3k0S06Ak/fm7xoKXA==
+Date: Wed, 3 Apr 2019 18:50:12 +0000
+Message-ID: <AM6PR08MB33665CAE79E2E27832B78647F5570@AM6PR08MB3366.eurprd08.prod.outlook.com>
+Accept-Language: de-AT, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=johann.obermayr@sigmatek.at; 
+x-originating-ip: [83.215.235.253]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1a0416b5-0173-4eb6-d742-08d6b86533ff
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600139)(711020)(4605104)(2017052603328)(7193020);
+	SRVR:AM6PR08MB3397; 
+x-ms-traffictypediagnostic: AM6PR08MB3397:
+x-microsoft-antispam-prvs: <AM6PR08MB33971259AC16401558D94437F5570@AM6PR08MB3397.eurprd08.prod.outlook.com>
+x-forefront-prvs: 0996D1900D
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(39840400004)(136003)(366004)(346002)(396003)(376002)(199004)(189003)(55016002)(476003)(6306002)(54896002)(9686003)(4744005)(102836004)(478600001)(25786009)(316002)(110136005)(53936002)(6436002)(68736007)(5660300002)(66066001)(74482002)(86362001)(486006)(2906002)(450100002)(44832011)(2501003)(81156014)(186003)(8936002)(71190400001)(256004)(7696005)(99286004)(19627235002)(8676002)(71200400001)(26005)(52536014)(3480700005)(97736004)(81166006)(6506007)(14454004)(105586002)(106356001)(6116002)(790700001)(3846002)(7736002)(74316002)(33656002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:AM6PR08MB3397;
+	H:AM6PR08MB3366.eurprd08.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: sigmatek.at does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: kdsfKWOpYovyubf/fLaPQCoZ2wzIYmHIoDwhJY4+f3ShednSTAuNBVzm+ZLYesWHDepgeGORnI2ERd4HHIslZSkWkOC5YTxiGueQ8wDEgDSU6CJS5R1AlLvGrP9OhMEEMR9oXYVuXWHNe5P7WQKNjfxRd1a3W9AQdgTflMIjtvBLH0pSzKbDJ9SHzRsuD8ru4YaBvGQ4J34AlSEtzyNMu0dpcFrmsMdFxDDWdMSQ2vXRjZOLokO2bcmryzqkVSseWRbl6m49Oy5IFGyH9uf77Ple0GmWE9ZBmEtFzSGefPXHQODl28a7dyAQSSqT96lbmI+wZ4Jsir27gu91YLHSJdzDCU6Gu4HoYz8sCSmNSv1YvP4h2dg57Bt3SqTOthbCb3PC7RzWPOkru6hetRMMKi3H5u+3RmhCdAGOwovgcDI=
 MIME-Version: 1.0
-References: <854544cb-aab1-1a9d-9e98-0f39663ca621@gmail.com>
-	<20190403144110.GG4664@bill-the-cat>
-	<CAMKF1srb2EgL7tYZDFoq2EqABp-+_eib2u2OZMwT6B3TVgNk=Q@mail.gmail.com>
-	<2189093.Hm6Vq2XZhg@localhost.localdomain>
-In-Reply-To: <2189093.Hm6Vq2XZhg@localhost.localdomain>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 3 Apr 2019 17:38:53 -0700
-Message-ID: <CAMKF1spJCg2HjGRzke_3yH_9hCZR=ZQZfJ1EQZCQi9gQF3x-4g@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>, Adrian Bunk <bunk@stusta.de>,
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
-	Tom Rini <trini@konsulko.com>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [oe] [OE-core] Git commit process question.
+X-OriginatorOrg: sigmatek.at
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a0416b5-0173-4eb6-d742-08d6b86533ff
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2019 18:50:12.2816 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: bcb1d87a-d2bc-486e-a62b-9ac9c746bc1b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR08MB3397
+Subject: grub-efi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,78 +90,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Apr 2019 00:39:22 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 04 Apr 2019 01:24:41 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_AM6PR08MB33665CAE79E2E27832B78647F5570AM6PR08MB3366eurp_"
 
-On Wed, Apr 3, 2019 at 4:07 PM Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
->
-> On Thursday, 4 April 2019 5:46:04 AM NZDT Khem Raj wrote:
-> > On Wed, Apr 3, 2019 at 7:41 AM Tom Rini <trini@konsulko.com> wrote:
-> > >
-> > > On Wed, Apr 03, 2019 at 11:30:39AM +0100, Burton, Ross wrote:
-> > > > On Tue, 2 Apr 2019 at 20:46, Tom Rini <trini@konsulko.com> wrote:
-> > > > > > The kernel does not have "upgrade foo to the latest upstream
-> > > > > > version" commits.
-> > > > > >
-> > > > > > With the Automatic Upgrade Helper this is a semi-automatic task, and
-> > > > > > most of the time there is no specific motivation other than
-> > > > > > upgrading
-> > > > > > to the latest upstream version.
-> > > > >
-> > > > > But since that's just filling in a template the body can also be a
-> > > > > template perhaps with useful AUH data (run at ... by ... ?) ?
-> > > >
-> > > > Apart from making the commit message longer what does this achieve?
-> > > > The commit already has a timestamp and author.
-> > >
-> > > It's an etiquette thing.  Subject+Sign-off+Empty body is bad form.  AUH
-> > > updates are a form of "trivial update" that every project has.  "Update
-> > > $X from version $Y to $Z" is what a human would normally put.  It's
-> > > weird looking at git log of nothing but subject+signed-off-by.  I'm not
-> > > going to object further on this point, but I don't get it.
-> >
-> > if the content of subject is being repeated in body then I would
-> > prefer an empty body
-> > redundant information in commits should be avoided since it can create
-> > impression that body does not have
-> > useful information and skip reading it. We should strive to make commits
-> > concise and useful.
->
-> There is often (I won't say always, but often) something useful you can put in
-> the commit message. If it's a recipe upgrade, you could put a pointer to the
-> upstream changelog in it, for example. As the person doing the upgrade if your
-> prior review of that changelog or other upstream release documentation
-> indicated any backwards-compatibility issues or CVEs fixed then those really
-> ought to be mentioned as well; if you're feeling especially generous you might
-> mention highlights of any new functionality. (I have a proposal that might
-> help us automate part of that which I've not yet fully fleshed out, hopefully
-> one day soon I will get around to it.)
->
-> The issue of empty commit messages is something I've complained about in the
-> past, and not just about recipe upgrades. If I - as someone who is relatively
-> familiar with OE - have to actually read beyond the shortlog / commit message
-> to understand the basics of why a change has been made, then it's likely that
-> the commit message wasn't good enough. Unlike other issues, once a commit goes
-> in the message is set in stone within the git history, so if you are working
-> on a change, *please* take a minute or two to document it adequately in the
-> commit message so that others looking back can understand it.
->
+--_000_AM6PR08MB33665CAE79E2E27832B78647F5570AM6PR08MB3366eurp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Definitely, and I agree that we should put relevant information in
-commits, usually
-the information about side effects if any, links to changelog etc. are
-useful too
-however, we should not enforce a behavior which could result in
-redundancy as explained
+Hello,
 
-> Thanks,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
->
+now i build a wic image. This has bootia32.efi included.
 
+How can I add bootx64.efi & legacy bios boot ?
+
+Because the image must boot on different x64 machines.
+One machine has only efi 64 bit boot support.
+Another (older) has  only legacy boot support.
+
+After create a image I have copy grubx64.efi  from a ubuntu installation to=
+ my disk into /EFI/BOOT/bootx64.efi
+And now it will booting.
+
+We will have a 32 bit system, but only the kernel must be a 64bit.
+Xenomai only support 64bit x86.
+But our user space application must be 32bit.
+
+Mit freundlichen Gr=FC=DFen / Best regards
+                Johann Obermayr
+
+--_000_AM6PR08MB33665CAE79E2E27832B78647F5570AM6PR08MB3366eurp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">now i build a wic image. This h=
+as bootia32.efi included.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">How can I add bootx64.efi &amp;=
+ legacy bios boot ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Because the image must boot on =
+different x64 machines.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">One machine has only efi 64 bit=
+ boot support.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Another (older) has &nbsp;only =
+legacy boot support.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">After create a image I have cop=
+y grubx64.efi &nbsp;from a ubuntu installation to my disk into /EFI/BOOT/bo=
+otx64.efi<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">And now it will booting.<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">We will have a 32 bit system, b=
+ut only the kernel must be a 64bit.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Xenomai only support 64bit x86.=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">But our user space application =
+must be 32bit.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"mso-fareast-language:D=
+E"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:DE">Mit freundli=
+chen Gr=FC=DFen / Best regards<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:DE">&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; Johann Obermayr<o:p></o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_AM6PR08MB33665CAE79E2E27832B78647F5570AM6PR08MB3366eurp_--
