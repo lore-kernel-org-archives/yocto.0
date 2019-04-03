@@ -1,129 +1,83 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <paul@betafive.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4C008E00CB9; Wed,  3 Apr 2019 04:39:03 -0700 (PDT)
+	id 7C2CDE00CE5; Wed,  3 Apr 2019 07:16:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.176 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [66.111.4.28 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F842E00872
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2019 04:39:02 -0700 (PDT)
-Received: by mail-pf1-f176.google.com with SMTP id c207so8028523pfc.7
-	for <yocto@yoctoproject.org>; Wed, 03 Apr 2019 04:39:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=/MoTr0o8ua98tSYMqSK861i+FxTX4FFgN04nsS/Vv4I=;
-	b=Zq2ac5YCmWw7Mrha4+J133DnUso+1xBXxYfyGSCLJcV7ym6CJDmFXbr5wFYGbbTVvA
-	XTJwmXp8KhKJ6gHDCEJ8llzSQX85jzXMag0ZO4HwrPo449ONltT8LGJEBAVa6zrQP9dh
-	ZYz67juek9dMeRJ5ptgL27W/KBD51ADUXcJ13tnYh52ETPLDqmFeU/rTINODklkjtI6G
-	mgl1UctkX2hWawwMQDrPygSHk/9T/+nkjNj75GMCc55i+nqoLxIbnjGwToBYaoh4BuNG
-	CnICYTlRSB0/yAd+KPcM10FvXPHpML85ua724wXv1jiTlVmEf0wH2F0FA0WX/NYJf0sp
-	S8yQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-transfer-encoding:content-language;
-	bh=/MoTr0o8ua98tSYMqSK861i+FxTX4FFgN04nsS/Vv4I=;
-	b=mWR9ZCwV8LACHyy0PDX9bIWEm+RwvAU7lbkb6ODUKN8MN1ixT/awaLz05m+CQjfuFD
-	xCeRvHCjSKjb71FMxdV6nSCYHksFD06eFsRQisuazqe6QAEEbbPy8IwmipXhcPXvwwpD
-	7XJSjJn7Ysyh00VGKLZLX9g2Oz7m5qoiH3SIlKl6Kw3Ti/db/FjQnmSt2unjihy1NUW7
-	Ftw1WfIITq4TX0feKNIXz2iRV0fwXdp2R01e6bxg0VGeGFWHTD7v/vddkD4yIKIjxRkI
-	Dc01w3aAHLdOk3v/d5stjMjn9igjLbmV1akeWpUlNJaVdJPaDhJ1V86o2htUMQtKtlmj
-	jMIQ==
-X-Gm-Message-State: APjAAAX125z45nJ+eCRnf2Xw8uFlE2EMt+2UzTljVRNEpPMITRXlH2PW
-	txknarZWUBKzfcIIsbKhwGiUhVXDI3ubNg==
-X-Google-Smtp-Source: APXvYqwwAUk0OFJ8xu8MVGN5QFSJOYwr8VLl7dtPwOCN5828SETHcA2FGAhYNsn9h5xEa0Jqnw1Hjw==
-X-Received: by 2002:a62:e412:: with SMTP id r18mr23042192pfh.207.1554291541546;
-	Wed, 03 Apr 2019 04:39:01 -0700 (PDT)
-Received: from [172.16.50.58] ([37.205.61.202])
-	by smtp.gmail.com with ESMTPSA id
-	d25sm21856961pfn.154.2019.04.03.04.38.59
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 03 Apr 2019 04:39:01 -0700 (PDT)
-To: Alexander Kanavin <alex.kanavin@gmail.com>,
-	"Burton, Ross" <ross.burton@intel.com>
-References: <854544cb-aab1-1a9d-9e98-0f39663ca621@gmail.com>
-	<b08083fc2f63f6324a652706f8343a0b8defe209.camel@linuxfoundation.org>
-	<a1416fe3-04fb-1d37-eaef-05b9a838254e@gmail.com>
-	<20190402065121.GA31468@localhost> <20190402194614.GY4664@bill-the-cat>
-	<CAJTo0LZ5qeDA+rQ5Eh3_LCbGtQyo732LrDkiZ=O4sh52cjXU=w@mail.gmail.com>
-	<CANNYZj9u4uYCnAAT5rrTWv9VvECb5GWq122NPz49qnoUeLTFDw@mail.gmail.com>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	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
-	8CS2NxU=
-Message-ID: <b0a36f6a-0a8f-7938-e1c6-226bf69e4a9c@gmail.com>
-Date: Wed, 3 Apr 2019 04:38:57 -0700
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
+	[66.111.4.28])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A5CBE00994
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2019 07:16:21 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.nyi.internal (Postfix) with ESMTP id 9B24121F17;
+	Wed,  3 Apr 2019 10:16:20 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+	by compute1.internal (MEProxy); Wed, 03 Apr 2019 10:16:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
+	h=subject:to:references:from:message-id:date:mime-version
+	:in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=3
+	9FaNu2MWSsf2RYftytOOpSJa6J3jJ/aEXpBHCZQwUQ=; b=id+2ENm7nZYRrnlBi
+	I2CuB3Hk9+zK1cjKw5WmIMXXM4yPKiisveQ+B7AmunWS60Aku3xv1PLdbkSLw2Gq
+	0ZmSwXKh8/CpHbeVZzWXCSkDGQRUzWWtfNflk/1LvECnB1zwRK6+ucN5a/GRkh/6
+	EGi2BFwlPuq05KVPAokYI/kvFuFfNAgxgkL2hUwIJAZmSM8wTnCyTWVdKNQ1OvzY
+	y/DJwwt1UQDLqulb1+pVagQuooZ3tKOxNt/2NckbWK1GK2atzjscjMzjKV+wxsKm
+	a9BceB6m5bVPHEyKoBYMUTLt8RJSPFFZjdMw1zgPm34zH1vTiEritDd340yINUcY
+	O1wvA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-transfer-encoding:content-type
+	:date:from:in-reply-to:message-id:mime-version:references
+	:subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; bh=39FaNu2MWSsf2RYftytOOpSJa6J3jJ/aEXpBHCZQw
+	UQ=; b=K3gHNxBHmN3EAeQ52lRcBfss56pR0r02jBmg1xymNvM16XN/lYR+M50Qr
+	TGlhX5OxxCdREkN0LPRn+69MynqvUnB+p/az7UtBwkAnkmo/J5ElYQCHBrdmiHRo
+	jSff5DXN5yg+cYAM5qGKd9UPti19KVH2vNFy1UyPg5NyKhnfAw0Jr0ynhZf1o/J1
+	daMFNmmb9h6yX7pwUbpVs6qznDhpPAKfjRzLbNoH2S6d70mEjPPyfo+BhZKbYOUB
+	JapszXlMLJiXfbTKmV7qOPgcjrKwgwLaDzpB3Zz9xUQMoNphMOdQHovOd84oJSwb
+	92mMBadyDxSbkdwz3kwbiqtuxI35A==
+X-ME-Sender: <xms:NMCkXKtqMm5qfYlsozHA_1WiiyKnzwwNCyNeaGlk4ehtznTL10NZHg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddrtdefgdegkeculddtuddrgedutddrtddtmd
+	cutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdp
+	uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+	hnthhsucdlqddutddtmdenucfjughrpefuvfhfhfhokffffgggjggtgfesthekredttdef
+	jeenucfhrhhomheprfgruhhluceurghrkhgvrhcuoehprghulhessggvthgrfhhivhgvrd
+	gtohdruhhkqeenucffohhmrghinhepghhithhlrggsrdgtohhmnecukfhppeekuddrudek
+	jedrfedvrddufeeknecurfgrrhgrmhepmhgrihhlfhhrohhmpehprghulhessggvthgrfh
+	hivhgvrdgtohdruhhknecuvehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:NMCkXCVvfMVA7lfSeJtzHaVtoXvINhJ4dxHwBOEayG8UVdgRWMkadQ>
+	<xmx:NMCkXGkwZk_LSMlU-fxlvT2DkOMCUIcGd7voOeEITskfdWhxDO2qlg>
+	<xmx:NMCkXHDIiX5tsKaMZezlMQMpWmJe2pBbZF7WbZ62Fq4YvN-c6FwmqQ>
+	<xmx:NMCkXNfYHtOYzU1dY7mdWmKc4VzGx_uNvuu_D3AGJwQh6wYWp4jpPA>
+Received: from [192.168.1.100] (138.32.187.81.in-addr.arpa [81.187.32.138])
+	by mail.messagingengine.com (Postfix) with ESMTPA id C0002E408B;
+	Wed,  3 Apr 2019 10:16:19 -0400 (EDT)
+To: Lluis Campos <lluis.campos@northern.tech>,
+	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+References: <4faf2c04-d2d5-9695-ab8e-d79b73eb55c9@northern.tech>
+	<2cf2ff61-4afe-abcf-c56c-286c88198c49@betafive.co.uk>
+	<70715015-8652-4b32-15f7-2579933ede89@northern.tech>
+From: Paul Barker <paul@betafive.co.uk>
+Organization: Beta Five Ltd
+Message-ID: <9f0f19eb-9678-3dd6-fee1-4b9dcf98a120@betafive.co.uk>
+Date: Wed, 3 Apr 2019 15:16:18 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <CANNYZj9u4uYCnAAT5rrTWv9VvECb5GWq122NPz49qnoUeLTFDw@mail.gmail.com>
-Cc: Tom Rini <trini@konsulko.com>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
-	Adrian Bunk <bunk@stusta.de>
-Subject: Re: [OE-core] [oe] Git commit process question.
+In-Reply-To: <70715015-8652-4b32-15f7-2579933ede89@northern.tech>
+Subject: Re: gdb built with musl libc segfault
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -135,53 +89,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2019 11:39:03 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 03 Apr 2019 14:16:22 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-
-
-On 4/3/19 3:38 AM, Alexander Kanavin wrote:
-> Just to make clear, the AUH workflow does require the maintainer to
-> sign off and edit a commit message via 'git commit -s --reset-author
-> --amend' for every commit,=20
-Not sure if this a requirement anymore. Most of my packages got updated
-by other folks this time around.=C2=A0 Hard to say if the AUH played a pa=
-rt
-or are folks now using the devtool check.
-> so AUH does not get in the way of useful
-> commit messages.
-There was talk of using the AUH to fast track updates that pass the
-process so in that case the message would be whatever the AUH provides
-
-- armin
->
-> Alex
->
-> On Wed, 3 Apr 2019 at 12:31, Burton, Ross <ross.burton@intel.com> wrote=
-:
->> On Tue, 2 Apr 2019 at 20:46, Tom Rini <trini@konsulko.com> wrote:
->> pr
->>>> The kernel does not have "upgrade foo to the latest upstream version=
-" commits.
->>>>
->>>> With the Automatic Upgrade Helper this is a semi-automatic task, and=
-
->>>> most of the time there is no specific motivation other than upgradin=
-g
->>>> to the latest upstream version.
->>> But since that's just filling in a template the body can also be a
->>> template perhaps with useful AUH data (run at ... by ... ?) ?
->> Apart from making the commit message longer what does this achieve?
->> The commit already has a timestamp and author.
+On 02/04/2019 14:51, Lluis Campos wrote:
+> Hi Paul,
+> 
+> 
+> On 02.04.2019 14:49, Paul Barker wrote:
+>> On 02/04/2019 12:45, Lluis Campos wrote:
+>>> Hi all,
+>>>
+>>> This is my very first question in the Yocto mailing list. Very 
+>>> exited! Please let me know if I should use other list for this.
+>>>
+>>>
+>>> I am building an image using musl libc instead of gnu libc. I am not 
+>>> using yocto-tiny distro, instead I achieve this by setting on my 
+>>> local.conf:
+>>>
+>>> TCLIBC = "musl"
+>>>
+>>>
+>>> My app (mender) got a segfault just starting. See output from strace:
+>>>
+>>> root@raspberrypi3:~# strace mender
+>>> execve("/usr/bin/mender", ["mender"], 0x7ee65e10 /* 13 vars */) = 0
+>>> set_tls(0x76f1bffc)                     = 0
+>>> set_tid_address(0x76f1bfa0)             = 3020
+>>> --- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_ACCERR, si_addr=0x530bc8} 
+>>> ---
+>>> +++ killed by SIGSEGV +++
+>>> Segmentation fault
+>>>
+>>>
+>>> To be able to debug the process, I added gdb to my image adding to my 
+>>> local.conf:
+>>>
+>>> CORE_IMAGE_EXTRA_INSTALL += "packagegroup-core-buildessential 
+>>> packagegroup-core-tools-debug"
+>>>
+>>>
+>>> Then, ironically, gdb itself also segfaults:
+>>>
+>>> root@raspberrypi3:~# strace gdb 2>&1 | tail
+>>> fcntl64(3, F_SETFD, FD_CLOEXEC)         = 0
+>>> getdents64(3, /* 6 entries */, 2048)    = 144
+>>> getdents64(3, /* 0 entries */, 2048)    = 0
+>>> close(3)                                = 0
+>>> ioctl(0, TIOCGWINSZ, {ws_row=25, ws_col=74, ws_xpixel=0, 
+>>> ws_ypixel=0}) = 0
+>>> getcwd("/home/root", 4096)              = 11
+>>> access("/usr/local/bin/gdb", X_OK)      = -1 ENOENT (No such file or 
+>>> directory)
+>>> access("/usr/bin/gdb", X_OK)            = 0
+>>> --- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_MAPERR, 
+>>> si_addr=0x7e35aff0} ---
+>>> +++ killed by SIGSEGV +++
+>>>
+>>>
+>>> So, what is going on here? My guess is that some recipes are being 
+>>> wrongly linked with gnu libc instead of musl, and then cannot run in 
+>>> my device.
+>>>
+>>> Any ideas on how to debug the issue?
+>>>
 >>
->> Ross
->> --
->> _______________________________________________
->> Openembedded-core mailing list
->> Openembedded-core@lists.openembedded.org
->> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+>> Hi Lluis,
+>>
+>> This is an issue I've seen before with runc and gdb.
+>>
+>> In runc we saw SIGILL which I tracked down to some hideous 
+>> setjmp/longjmp magic written in C. cgo is used to include this C code 
+>> in with the Go code that comprises the rest of the application.
+> 
+> Our application is written in Go and we use CGO as well. So it sounds 
+> quite similar.
+> 
+> 
 
+Does your application use setjmp/longjmp or C++ exceptions in the 
+sections built with CGO?
 
+I've dug into the runc disassembly as well as adding extra prints and 
+can see that it's at calls to those functions that the program counter 
+jumps off into the weeds resulting in SIGILL. For gdb there's usage of 
+C++ exception handling around gdb_main() and strace shows that the crash 
+is very very early in execution so I suspect it's setjmp/longjmp again, 
+used by C++ exception handling.
+
+>>
+>> In gdb we saw SIGSEGV which is what you've got above.
+>>
+>> I think things are being correctly linked against musl but then 
+>> there's some runtime issue in recent musl versions, possibly in 
+>> conjunction with recent kernel headers.
+>>
+>> Are you using the thud or master branch?
+>>
+> I am using thud branch. I haven't actually tried with master but I will 
+> do it later today
+> 
+
+I've reproduced the issue on master. I've also ruled out the issue in 
+sumo branch even if we uprev musl to the same version used on master. 
+It's likely a gcc/musl incompatibility of some kind introduced in a 
+recent gcc version.
+
+I'm passing this one to a colleague for now but I'll try to have another 
+look myself next week. It's captured in our issue tracker for Oryx here: 
+https://gitlab.com/oryx/oryx/issues/14.
+
+Thanks,
+
+-- 
+Paul Barker
+Managing Director & Principal Engineer
+Beta Five Ltd
 
