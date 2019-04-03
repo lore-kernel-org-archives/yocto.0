@@ -1,52 +1,68 @@
-Return-Path: <bunk@stusta.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6BD7E00CDD; Wed,  3 Apr 2019 03:27:50 -0700 (PDT)
+	id 98EBAE00CEE; Wed,  3 Apr 2019 03:30:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	https://www.dnswl.org/, low *      trust
-	*      [141.84.69.5 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.180 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF225E00994
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2019 03:27:49 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 44Z2Mm1547z4b;
-	Wed,  3 Apr 2019 12:27:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
-	s=default; t=1554287268;
-	bh=WJniEIqPk/GV3MBviJeE2ImEfmpF7qFkAJ/Gwg3kowg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HP3VYFf25JFhDos1cBv086eHhtH3foUlswvR23MF48DMxLWlf2ERWKPDhWCtUvnBA
-	5yVnhIw23wzLJW/OG3meqenearjQrnmJ0w8fh/hNaqC6t/P2qJ77i95oft2dgYGker
-	TXrEEgmeQm7sRWcsig/OwS0O00KN3yBtYkyDLX+Fpgn2m3rLPxSNGwpIWbeUn1Yb4q
-	ijnxlE8hjFAyzxw17UctUXl+j3qItGWOZ+5XHQcQN9An28by2M6Sg2mzvXeXpS6v4V
-	fWOWvDs2qgV81x2KPSNLx+fqIdWcH3z47G4XABQxGS44UBAreShbZfSkl+S+BUoXF5
-	99MBTF7QLLohZ1arsOJPPTQ8a3axGLjGCRENx5X/pw7iCJ2tTA1d5XJAcZ7wc8Qq1K
-	isfDrEqKHtxh0PUobsCASUBPA36UVh1zwbWH8jv644zPUH2SJ1120PNUX1vQ1LNrK6
-	XShTZJNfB+1KVfqnXvDRBb8GwxnFKqc1PWwcjzCj6azvle/VF+Ek38KczRFqt2Ct3G
-	3s2yzm5C0OxB0j6tCWzJ/iZ3yHzH/B9JUh/bCOMql0gecVOqETh8pSH8F16J8IZe+b
-	0fbgHEGBVub9MalKNgodrAJ2cH21rADu+NkfuaJ3guOk02cPQkzSf9wHjj8SOXuquG
-	BSiGhsFma5nMbtPuLMzcY2eI=
-Date: Wed, 3 Apr 2019 13:27:45 +0300
-From: Adrian Bunk <bunk@stusta.de>
-To: mingli.yu@windriver.com
-Message-ID: <20190403102745.GA16400@localhost>
-References: <1554281714-333089-1-git-send-email-mingli.yu@windriver.com>
+Received: from mail-it1-f180.google.com (mail-it1-f180.google.com
+	[209.85.166.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DA76E00CDD
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2019 03:30:51 -0700 (PDT)
+Received: by mail-it1-f180.google.com with SMTP id x132so8180498itf.2
+	for <yocto@yoctoproject.org>; Wed, 03 Apr 2019 03:30:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=benLBz9hW99WBZEeOFcAKwfVLMwfm2Ry36HGmFBMO8o=;
+	b=SQGw6pGWvV2BQfEH99p7lXhGhjcxoLinT1QzUJdM/cQ07HykT5GXxeC6yZD+3i6J+X
+	pYHqo/KFvYz845co3jIpoQlsvIHElrtN0kvQ5aV15PYAXWG5SKIMiZbkM0Bp3pN/XNsT
+	Vx2Z9zfSg9kQLT5ALyhUrwa3tPnsCHiQQQxbpwOchmY5Ajn5Jbilrf9pZqCpJUEFCVFa
+	NXABdf59YdyoygoexNO9IUM901Og5rEZZ8a+Fu2KKVoVI4Stjr30gAxNwJVdpfvp3VLI
+	1UlceUPoOvXBtCcfrFUqoXquAWS69f6EPiBatVcf1nJ5PlNyOZj9QMd7UzqKv94ZVu2b
+	qmEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=benLBz9hW99WBZEeOFcAKwfVLMwfm2Ry36HGmFBMO8o=;
+	b=jTHOKG0LcTUapaKV1QYie+d43vNoiJrcd/Pc+5eO+k9C3SL1TftdWeBbDw1Bsis2lp
+	cHCXywZYmBfh4E9cokOowq7SN1C6+SD5KeyU3ARrM3TxvKftx9mZrNubNE03uavw6Uou
+	ITGGg4UUT9x7/U5RBGCNXU2+dcVrAm6IAU7wWXGUkzvmS5h/vIuhLtZ6kF1dsl0nhxCG
+	vZIybaINATHxW8hg72yaNHmO5DEHNLCjyEl5R8m7GhiQQ9uMrvXvLrFqur0UgvrYI5F0
+	l7SsYZ99d4NsICn4f/ZgMkBZ2GjOQnmkmF+9jpxtrwBkY04Fnq5ceUeAHNM2KMyREeEp
+	Bpaw==
+X-Gm-Message-State: APjAAAVcMEvZpR0CZpBTs7hZwhk5WG9b7fT5U6WdMfixjieGl3ha3sgE
+	Rr1FRs9nHI156oThkCooAilsztsRCl4hd5z8pP/yPONZ
+X-Google-Smtp-Source: APXvYqz9krAoYmJ9iEH/W+3fq3fSBkvPRClYTS/J7SbBKgtMn7jrBaEwTrpgcTIIbVLkW9iqmfnndk6VjuO+p7DetYc=
+X-Received: by 2002:a24:d643:: with SMTP id o64mr1186771itg.148.1554287450951; 
+	Wed, 03 Apr 2019 03:30:50 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1554281714-333089-1-git-send-email-mingli.yu@windriver.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-security][PATCH] samhain: hash fix for aarch64 and mips64
+References: <854544cb-aab1-1a9d-9e98-0f39663ca621@gmail.com>
+	<b08083fc2f63f6324a652706f8343a0b8defe209.camel@linuxfoundation.org>
+	<a1416fe3-04fb-1d37-eaef-05b9a838254e@gmail.com>
+	<20190402065121.GA31468@localhost>
+	<20190402194614.GY4664@bill-the-cat>
+In-Reply-To: <20190402194614.GY4664@bill-the-cat>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 3 Apr 2019 11:30:39 +0100
+Message-ID: <CAJTo0LZ5qeDA+rQ5Eh3_LCbGtQyo732LrDkiZ=O4sh52cjXU=w@mail.gmail.com>
+To: Tom Rini <trini@konsulko.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+	Adrian Bunk <bunk@stusta.de>
+Subject: Re: [oe] [OE-core] Git commit process question.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,33 +74,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2019 10:27:50 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Wed, 03 Apr 2019 10:30:52 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Apr 03, 2019 at 04:55:14PM +0800, mingli.yu@windriver.com wrote:
-> From: Mingli Yu <Mingli.Yu@windriver.com>
-> 
-> samhain fails on both aarch64 and mips64 targets with:
-> | samhain[3013]: FATAL: x_dnmalloc.c: 2790: hashval < AMOUNTHASH
-> 
-> Though there is already a patch samhain-mips64-aarch64-dnmalloc-hash-fix.patch
-> to fix this issue, the logic is incomplete and
-> pass -DCONFIG_ARCH_MIPS64=1 and -DCONFIG_ARCH_AARCH64=1
-> during do_configure phase respectively to fix the
-> issue.
->...
+On Tue, 2 Apr 2019 at 20:46, Tom Rini <trini@konsulko.com> wrote:
+> > The kernel does not have "upgrade foo to the latest upstream version" commits.
+> >
+> > With the Automatic Upgrade Helper this is a semi-automatic task, and
+> > most of the time there is no specific motivation other than upgrading
+> > to the latest upstream version.
+>
+> But since that's just filling in a template the body can also be a
+> template perhaps with useful AUH data (run at ... by ... ?) ?
 
-In master this has already been workarounded with --disable-dnmalloc.
+Apart from making the commit message longer what does this achieve?
+The commit already has a timestamp and author.
 
-cu
-Adrian
-
--- 
-
-       "Is there not promise of rain?" Ling Tan asked suddenly out
-        of the darkness. There had been need of rain for many days.
-       "Only a promise," Lao Er said.
-                                       Pearl S. Buck - Dragon Seed
-
+Ross
 
