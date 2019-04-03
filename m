@@ -1,73 +1,59 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <bunk@stusta.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56559E00C93; Wed,  3 Apr 2019 02:20:13 -0700 (PDT)
+	id 1BCD5E00C93; Wed,  3 Apr 2019 02:34:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.52 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [141.84.69.5 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
-	[209.85.128.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD8B9E00C46
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2019 02:20:05 -0700 (PDT)
-Received: by mail-wm1-f52.google.com with SMTP id 4so6572652wmf.1
-	for <yocto@yoctoproject.org>; Wed, 03 Apr 2019 02:20:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:user-agent:mime-version:content-transfer-encoding;
-	bh=OTKrYe8PfhWZizQ0m2QN2brrmG8tTXeVe5qw0xVxqGc=;
-	b=bYGi5qwbTunD0y8Jny06XoFTZBT/FDj2dfsxkKku2tpZDggKRzTFy+q1k2QOvzZEuI
-	PM0wEVoJWOSGY5ecI7lHz1laBIBEpLCt5gCMRUrouFGFmP2UQ2J7wsLsCmb8xaaf+l59
-	A8wE34NcWIdhSBhIE5cXm/BYWNjckTZJBTyBw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=OTKrYe8PfhWZizQ0m2QN2brrmG8tTXeVe5qw0xVxqGc=;
-	b=kbasAedsTJMIcKbvV1eWKNp6EBy+HfgQG6TyDRavJ2tOJIAKsyNwtFjZTNddBRvwlp
-	rAEGQFf5PQzrBSmWqFhNb4fkbidTQoCTxrEf216qwiMJNhWCtSb932ibb0rT2T208QE3
-	qz9NnZtQai1jc5IdqjQV2aZcXsU+oCurQFxsPJ/XEHWu1VpIO8mir/GyZ8YK1PfWXw7g
-	24anL+IZs8F2ILULutZUFDy54wmUS6KYmWVw6p7ptC4/UlT2MHdLk/ei5sXiU9ou1jlf
-	XFHbVNtkycL4OCs1HoAPdJpbWXM4wL/kUUJweKk337o/b/VuyRXbvqBYSvVm9hx+P5xU
-	fRLw==
-X-Gm-Message-State: APjAAAW96jL7tweIxd2tWvvWr9nVsV1UtVAzTmZXZbvFoQFG+1Xy6qK2
-	9s6QYTc1cT3sJWNMyCy3lL32xA==
-X-Google-Smtp-Source: APXvYqwBzOlbwEGg9FrzjrL4i1Vgc9UGHbmbcr3k1zog/m2uqOxEVx8vs/smOaptD8gJH1jyuKiEHg==
-X-Received: by 2002:a1c:e0c6:: with SMTP id x189mr1322604wmg.4.1554283203486; 
-	Wed, 03 Apr 2019 02:20:03 -0700 (PDT)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	l12sm20239539wrt.31.2019.04.03.02.20.02
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Wed, 03 Apr 2019 02:20:02 -0700 (PDT)
-Message-ID: <8322586b16a5bda01770480f7096837c13d26f6b.camel@linuxfoundation.org>
-From: richard.purdie@linuxfoundation.org
-To: "Jain, Sangeeta" <sangeeta.jain@intel.com>, Poky Build User
-	<pokybuild@ubuntu1604-ty-1.yocto.io>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "sjolley.yp.pm@gmail.com"
-	<sjolley.yp.pm@gmail.com>,  Yi Zhao <yi.zhao@windriver.com>
-Date: Wed, 03 Apr 2019 10:20:01 +0100
-In-Reply-To: <015AB11D45F2C442929CB2765DAE738634DB02DA@PGSMSX110.gar.corp.intel.com>
-References: <20190328033000.C90DF1C2149@ubuntu1604-ty-1.yocto.io>
-	<015AB11D45F2C442929CB2765DAE738634DB02DA@PGSMSX110.gar.corp.intel.com>
-User-Agent: Evolution 3.32.0-1 
+Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E5CFE00994
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2019 02:34:16 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 44Z19x5z2Jz4b;
+	Wed,  3 Apr 2019 11:34:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
+	s=default; t=1554284054;
+	bh=IVui8djscj7ciaJ/1vrzh9QB+az2mKJeoguW5l2WLtk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OXzGaoZKfeS0lobTZRXwrtVokaEvsC8Tlvm4mD+la1NvulziI9+2ax0ckF3cWBSRs
+	nMa7Mz3595E5EwDtGWvZd0CtOvnCE2WWTocq6zLQMAAzjgaardXU+3Fv0zu2LafTyS
+	jyZRItVRP9MVLFNgafKAUFTm0lU3OU7qVpo0LqIf37HccGBK61YuqgKVz3tSzYUqkj
+	UDC7CpYB1n74VY8jXaG0ODbflhIZUrVCQHzpA2jr8LNBcyPTHfyZqPLMgCYga/TisJ
+	8N001Rm5eWyCyq45YmdTczjYxDIW5XMryIhaTgzZFuROjL1B7AZUr+G5njT4NLMSaT
+	JBj7Loz0pO9N4SZWRMKbaTMDmZYyyQUboMPA3wiogkBUq0UymhmTiMh/HliUcnwhh2
+	e2pcZahUJJ/ScAAEFX9WKI2ssmsvHBudooOap0rp/1AZ3oi/Qc1O+oyU3JmwJYSFKr
+	xS1utM4slZijCrCJipsXOfxg9iJiDZ5ejwfRTtq2e7gdPCViyAsXrUHJHoDs6kBUSD
+	bF+zLQ2/3PicJyvd31+b7+wM1OHVqsg2Vqi85Llq26nGt6O7abU8SwZHgh7wuKPhvr
+	A6gKsTJQbpQNvUDzqttJKQdyDkCVM5sb63YUckopRC8mGgfS++qtG1yku/mUCik3ez
+	d56iA30K8ZGnullzXJaAEbVU=
+Date: Wed, 3 Apr 2019 12:34:11 +0300
+From: Adrian Bunk <bunk@stusta.de>
+To: Tom Rini <trini@konsulko.com>
+Message-ID: <20190403093411.GA8376@localhost>
+References: <854544cb-aab1-1a9d-9e98-0f39663ca621@gmail.com>
+	<b08083fc2f63f6324a652706f8343a0b8defe209.camel@linuxfoundation.org>
+	<a1416fe3-04fb-1d37-eaef-05b9a838254e@gmail.com>
+	<20190402065121.GA31468@localhost>
+	<20190402194614.GY4664@bill-the-cat>
 MIME-Version: 1.0
-Cc: "akuster808@gmail.com" <akuster808@gmail.com>, "Chan, Aaron Chun
-	Yew" <aaron.chun.yew.chan@intel.com>,
-	"otavio@ossystems.com.br" <otavio@ossystems.com.br>
-Subject: Re: QA notification for completed autobuilder build (yocto-2.6.2.rc3)
+In-Reply-To: <20190402194614.GY4664@bill-the-cat>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] Git commit process question.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,53 +65,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2019 09:20:13 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 03 Apr 2019 09:34:17 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-Hi,
-
-This is good information and helps a lot, thanks! I had a question
-below.
-
-On Wed, 2019-04-03 at 08:06 +0000, Jain, Sangeeta wrote:
-> Intel and WR YP QA is now working on QA execution for YP build 2.6.2
-> RC3. We are planning to execute following tests for this cycle:
+On Tue, Apr 02, 2019 at 03:46:14PM -0400, Tom Rini wrote:
+> On Tue, Apr 02, 2019 at 09:51:21AM +0300, Adrian Bunk wrote:
+> > On Mon, Apr 01, 2019 at 04:20:41PM -0700, akuster808 wrote:
+> > > 
+> > > 
+> > > On 4/1/19 4:02 PM, Richard Purdie wrote:
+> > > > On Mon, 2019-04-01 at 15:33 -0700, akuster808 wrote:
+> > > >> Hello,
+> > > >>
+> > > >> I have noticed a large number of git commits with no header
+> > > >> information being accepted.
+> > > > Can you be more specific about what "no header information" means? You
+> > > > mean a shortlog and no full log message?
+> > > Commits with just a "subject" and signoff. No additional information
+> > > 
+> > > We tend to reference back to how the kernel does things.
+> > > 
+> > > https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+> > > These two sections in particular.
+> > > 
+> > > 
+> > >     2) Describe your changes
+> > > 
+> > > Describe your problem. Whether your patch is a one-line bug fix or 5000
+> > > lines of a new feature, there must be an underlying problem that
+> > > motivated you to do this work. Convince the reviewer that there is a
+> > > problem worth fixing and that it makes sense for them to read past the
+> > > first paragraph.
+> > >...
+> > 
+> > The kernel does not have "upgrade foo to the latest upstream version" commits.
+> > 
+> > With the Automatic Upgrade Helper this is a semi-automatic task, and 
+> > most of the time there is no specific motivation other than upgrading
+> > to the latest upstream version.
 > 
-> OEQA-Manual tests for following modules:
-> 1.	SDK
-> 2.	Eclipse-plugin
-> 3.	Kernel
-> 4.	Toaster
-> 5.	Bitbake (oe-core)
-> 6.	Build-appliance
-> 7.	Crops
-> 8.	Compliance-test
-> 9.	Bsp-hw
-> 10.	Bsp-qemu
-> 
-> Runtime auto test for following platforms:
-> 
-> 1.	MinnowTurbo 32bit
-> 2.	MinnowTurbot 64 bit
-> 3.	NUC 7
-> 4.	NUC 6
-> 5.	Edgerouter
-> 6.	MPC8315e-rdb
-> 7.	Beaglebone
-> 8.	Qemuarm
-> 9.	Qemuarm-64
-> 10.	Qemuppc
-> 11.	Qemumips
-> 12.	Qemumips64
+> But since that's just filling in a template the body can also be a
+> template perhaps with useful AUH data (run at ... by ... ?) ?
 
-I'm wondering if there is any difference between items 8-12 here and
-the runtime testing we run on the public autobuilder? Is there some
-testing we're missing on the public autobuilder?
+That would be more trivial than useful.
 
-Cheers,
+And so far noone has stated any actual problem that would be solved
+by adding such a new requirement.
 
-Richard
+> Tom
 
+cu
+Adrian
+
+-- 
+
+       "Is there not promise of rain?" Ling Tan asked suddenly out
+        of the darkness. There had been need of rain for many days.
+       "Only a promise," Lao Er said.
+                                       Pearl S. Buck - Dragon Seed
 
 
