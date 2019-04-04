@@ -1,57 +1,66 @@
-Return-Path: <matteo.facchinetti@sirius-es.it>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 136B6E00CD6; Thu,  4 Apr 2019 06:36:05 -0700 (PDT)
+	id 9B2A5E00CD6; Thu,  4 Apr 2019 08:34:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.173 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.128.45 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com
-	[209.85.160.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAF5BE00BB7
-	for <yocto@yoctoproject.org>; Thu,  4 Apr 2019 06:36:03 -0700 (PDT)
-Received: by mail-qt1-f173.google.com with SMTP id p20so3172989qtc.9
-	for <yocto@yoctoproject.org>; Thu, 04 Apr 2019 06:36:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=sirius-es-it.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=qSoHPA+WNmN641VDQOBIvOEiRplh916V/4aF5mbw/io=;
-	b=TvcA1E6cT0F65dLtBbKaEu0WZl6RGXNNWqHWsFhO22akPZ0yc4l72gZj6JhZ3iHw0o
-	SH++ynH6oLjIYKp23vpiQQE3nO1JhhBHMSm0nhpGn62eizoGci7ETY0qOIXPEJc4qN36
-	zXBK0L4ueT81vxsLX4C+A4YdgJSJbeF2H2WTLQcTnMKvLf6myi/nN6t/nBHcWWBdPhyG
-	bteEmiKfb51Mesn7vy/kScWM6bDiNlAUAkHS9lWbRvwAFCMDlvdDGJxQZTt1HEadOF6K
-	RoyTMRxjLo7Tlq9Bn69QHpx22MrVctTNunnnehzwjviEm7IymtqLlT7/Qup5huyOeKdK
-	M+Ow==
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
+	[209.85.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DBD1E00BC8
+	for <yocto@yoctoproject.org>; Thu,  4 Apr 2019 08:34:43 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id y197so3968539wmd.0
+	for <yocto@yoctoproject.org>; Thu, 04 Apr 2019 08:34:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=JICp87+gCh3Cgfpp+8nmrUk+fsnqeBk/YW1TzKdBI4c=;
+	b=g6wNwqMjZSsiK6gb18JqQmhWd8TZIs38ozlVqn9/zzgYcc1bWrFlEDKmEtgL3UxiUG
+	EMNgeNQq3EjZaURYIfWVJhP/ziSjm2jtdaIL+rUJ8FxaALS4V2/hJOCDmuyW9ly6U5rL
+	D/ykMUCbHemHa1nwUEI9WLxB9yBdbqCOPq1EQQJCVkkwCOqxjI7NGvd3BQo0rZBdFlz0
+	wJqMkVioDxcNeRumbu478bSlNPBKmiQtwmZynJbUxtIzROHES+1wvb8kco/SO3B2/qEb
+	XTaa3ZtQ5HuwqHhq/+Xa6zGZHPhWtIWcF7qchLeJJyliVkfGDXqtixmPbwrA8S3KbwqQ
+	XTpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=qSoHPA+WNmN641VDQOBIvOEiRplh916V/4aF5mbw/io=;
-	b=kUIrkH5S8s68nYU5Tyst0oqXY71uQZCDdDLhKQmReYSnjUIt7SrKjDw9Tw8jkvMwP8
-	QX/VuKBcMKrrQdalYsVXAOsoUx07MPPnMsTOhtL9OPblPmeXd7yy1eizayju/nPNYp9K
-	k/f0nuagbERvYNcxdyok1MybJ/sJIHuN/mjP+oGbIuBLo40TK+O19okWVa0jaGyn1k1W
-	MkA/GE3qy/CLscXCHgJE1C11XMHa/sucVoec35Ymb4BmfMWymgfzPkwNRGv3OCYPnzL4
-	1qmoROkYSx8AS1qs+K8ry/CyK11IzaG+hpyrxutTZEnx5eG/+FmbOnuYNovRZOiIyYmW
-	/jOw==
-X-Gm-Message-State: APjAAAWeL+pEzOKlNvmvsJWhofAk3evHOOlSuU0lYOrkXdQAdSQpK/Dy
-	/tQ4oBsM6cltDhEI5BHFYMo8k2Ysk7TkS4+tODpfMTVmPs6rdCqg
-X-Google-Smtp-Source: APXvYqw+2G4kdchgcx3hyRtmwq8o+Fcl6fYMfgHFkfZ3FYH70gvoPdPvlUPP9K0BMcEBueAvmW/c4Na510hEjs+GxkM=
-X-Received: by 2002:a0c:9236:: with SMTP id a51mr4798687qva.217.1554384963035; 
-	Thu, 04 Apr 2019 06:36:03 -0700 (PDT)
-MIME-Version: 1.0
-From: Matteo Facchinetti <matteo.facchinetti@sirius-es.it>
-Date: Thu, 4 Apr 2019 15:35:52 +0200
-Message-ID: <CAAjAsixRKTj9pt1gSC5cT149Y4Kgy5WYxjLmWRU9z9LhY-2-ww@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: require and image.bbappend
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=JICp87+gCh3Cgfpp+8nmrUk+fsnqeBk/YW1TzKdBI4c=;
+	b=m4njKqDD6y7BVDWoWzCvzyI92IW94NZBau7EyCCk9vprA4JkwfUiI2NptMUpmCZVa7
+	J5vKB5nk1pU2/5foEn8J8zTb+IivJpjrIg7pzofPzVHLN8RnRIS6wRv4FjHznD3RtqkS
+	Xkkb/wifPWp0AtbjMi6dykwDyxabEqtt030XvKVtmIiJjqDeaDQkGvrCsJMnPN9lPVmf
+	15SsP4M/vOHpd7U2mxDz5WSo5b7r0WaT0nly8jhbLaqpZFzGq8XvjEsZritFx/tRsw8P
+	t7fUAKwMVMEIQIMZ0ZIPERaAXbGSBI5n4+4jPhYLoImHMIuKnRjiSROLiS68kLV91WlU
+	B0Xw==
+X-Gm-Message-State: APjAAAV97PLm4Sky+7o7sHlX4++Qmo1hqBtYEjnofhVjogsvKGayJPHb
+	xNJn5LJrzUzP7tXvKq1Vul3ByAA7FS8=
+X-Google-Smtp-Source: APXvYqw6u12kc9spI5qDken5eUke0BaF8RXYgT+5NHrO9ojTk1JpCOscvL4jjo4RW65t7Zug5k1U5A==
+X-Received: by 2002:a7b:c111:: with SMTP id w17mr4590035wmi.6.1554392082811;
+	Thu, 04 Apr 2019 08:34:42 -0700 (PDT)
+Received: from alexander-box.luxoft.com ([62.96.135.139])
+	by smtp.gmail.com with ESMTPSA id
+	b11sm23946605wru.61.2019.04.04.08.34.41
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 04 Apr 2019 08:34:41 -0700 (PDT)
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+To: yocto@yoctoproject.org,
+	anibal.limon@linaro.org
+Date: Thu,  4 Apr 2019 17:34:29 +0200
+Message-Id: <20190404153429.37636-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [ptest-runner] Run ptests via stdbuf configured to line-buffering
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,60 +72,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Apr 2019 13:36:05 -0000
-Content-Type: multipart/alternative; boundary="00000000000091100a0585b4732e"
+X-List-Received-Date: Thu, 04 Apr 2019 15:34:44 -0000
 
---00000000000091100a0585b4732e
-Content-Type: text/plain; charset="UTF-8"
+As ptest-runner communicates with child processes via pipe2(),
+the corresponding channels are not attached to a pty. In that
+situation stdio facilities like printf() or fwrite() are fully
+buffered. If a ptest would use them, without bothering
+to fflush() the output, ptest-runner will only receive what
+was written by the child ptest process after a buffer gets filled.
+If the unit tests are proceeding slowly, this may mean that
+ptest-runner will erroneously timeout due to an apparent lack of
+'signs of life' from the child process.
 
-Hi,
+stdbuf utility from coreutils adjusts the buffering to a line-buffered
+one, and so ptest-runner will get the lines as soon as they are
+written.
 
-I encountered a problem when try to add packages in my image recipe, but I
-don't understernd if I wrong something or I have to do it in another way.
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+---
+ utils.c | 11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
 
-In detail, in my common_layer there are:
-   - image_base.bb : yocto base image
-   - image_with_graphicsupport.bb : where include image_base.bb (require
-image_base.bb)
+diff --git a/utils.c b/utils.c
+index 504df0b..c130fbd 100644
+--- a/utils.c
++++ b/utils.c
+@@ -243,16 +243,13 @@ filter_ptests(struct ptest_list *head, char **ptests, int ptest_num)
+ static inline void
+ run_child(char *run_ptest, int fd_stdout, int fd_stderr)
+ {
+-	char **argv = malloc(sizeof(char) * 2);
++	char* argv[] = {"stdbuf", "-oL", "-eL", "./run-ptest", NULL};
+ 	chdir(dirname(strdup(run_ptest)));
+ 
+-	argv[0] = run_ptest;
+-	argv[1] = NULL;
+-
+ 	dup2(fd_stdout, STDOUT_FILENO);
+ 	// XXX: Redirect stderr to stdout to avoid buffer ordering problems.
+ 	dup2(fd_stdout, STDERR_FILENO);
+-	execv(run_ptest, argv);
++	execvp(argv[0], argv);
+ 
+ 	exit(1);
+ }
+@@ -291,12 +288,12 @@ wait_child(const char *ptest_dir, const char *run_ptest, pid_t pid,
+ 
+ 			if (pfds[0].revents != 0) {
+ 				while ((n = read(fds[0], buf, WAIT_CHILD_BUF_MAX_SIZE)) > 0)
+-					fwrite(buf, n, 1, fps[0]);
++					fwrite(buf, n, 1, fps[0]); fwrite("hallo", 5 ,1 ,fps[0]); fflush(fps[0]);
+ 			}
+ 
+ 			if (pfds[1].revents != 0) {
+ 				while ((n = read(fds[1], buf, WAIT_CHILD_BUF_MAX_SIZE)) > 0)
+-					fwrite(buf, n, 1, fps[1]);
++					fwrite(buf, n, 1, fps[1]); fwrite("hallo-err", 9 ,1 ,fps[0]); fflush(fps[1]);
+ 			}
+ 
+ 			clock_gettime(clock, &sentinel);
+-- 
+2.17.1
 
-Now, in my BSP layer, I want to add some packages to the image_base.bb, so
-I create here the image_base.bbappend file.
-But when I try to compile image_with_graphicsupport.bb the result is not
-how expected.
-Image_with_graphicsupport.bb doesn't add packages contained in
-image_base.bbappend but only the packages contained in image_base.bb.
 
-Is true that when include an image to another with require statement, you
-can't extend the base image with a bbappend? or I wrong something else?
-
-Regards,
-
-Matteo Facchinetti,
-Sirius Electronic Systems
-
---00000000000091100a0585b4732e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I encou=
-ntered a problem when try to add packages in my image recipe, but I don&#39=
-;t understernd if I wrong something or I have to do it in another way.</div=
-><div><br></div><div>In detail, in my common_layer there are:</div><div>=C2=
-=A0 =C2=A0- <a href=3D"http://image_base.bb">image_base.bb</a> : yocto base=
- image=C2=A0</div><div>=C2=A0 =C2=A0- <a href=3D"http://image_with_graphics=
-upport.bb">image_with_graphicsupport.bb</a> : where include <a href=3D"http=
-://image_base.bb">image_base.bb</a> (require <a href=3D"http://image_base.b=
-b">image_base.bb</a>)</div><div><br></div><div>Now, in my BSP layer, I want=
- to add some packages to the <a href=3D"http://image_base.bb">image_base.bb=
-</a>, so I create here the image_base.bbappend file.</div><div>But when I t=
-ry to compile <a href=3D"http://image_with_graphicsupport.bb">image_with_gr=
-aphicsupport.bb</a> the result is not how expected.</div><div>Image_with_gr=
-aphicsupport.bb doesn&#39;t add packages contained in image_base.bbappend b=
-ut only the packages contained in <a href=3D"http://image_base.bb">image_ba=
-se.bb</a>.</div><div><br></div><div>Is true that when include an image to a=
-nother with require statement, you can&#39;t extend the base image with a b=
-bappend? or I wrong something else?</div><div><br></div><div>Regards,</div>=
-<div><br></div><div>Matteo Facchinetti,</div><div>Sirius Electronic Systems=
-</div></div></div>
-
---00000000000091100a0585b4732e--
