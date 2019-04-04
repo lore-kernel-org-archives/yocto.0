@@ -1,84 +1,63 @@
-Return-Path: <sbabic@denx.de>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E7EE3E00D08; Thu,  4 Apr 2019 08:38:00 -0700 (PDT)
+	id E392BE00D20; Thu,  4 Apr 2019 08:41:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [212.18.0.9 listed in list.dnswl.org]
-X-Greylist: delayed 355 seconds by postgrey-1.32 at yocto-www;
-	Thu, 04 Apr 2019 08:37:59 PDT
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2BEBE00CD6
-	for <yocto@yoctoproject.org>; Thu,  4 Apr 2019 08:37:59 -0700 (PDT)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 44Zn4N0Swhz1rByk;
-	Thu,  4 Apr 2019 17:32:04 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-	by mail.m-online.net (Postfix) with ESMTP id 44Zn4N03gPz1qsFl;
-	Thu,  4 Apr 2019 17:32:03 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new,
-	port 10024)
-	with ESMTP id 5Y9HLm1WTJPS; Thu,  4 Apr 2019 17:32:02 +0200 (CEST)
-Received: from babic.homelinux.org (host-88-217-136-221.customer.m-online.net
-	[88.217.136.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPS;
-	Thu,  4 Apr 2019 17:32:02 +0200 (CEST)
-Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
-	by babic.homelinux.org (Postfix) with ESMTP id F0B8345403D1;
-	Thu,  4 Apr 2019 17:32:01 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
-Received: from babic.homelinux.org ([127.0.0.1])
-	by localhost (mail.babic.homelinux.org [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id xSNjRtMBAzmI; Thu,  4 Apr 2019 17:31:58 +0200 (CEST)
-Received: from [192.168.178.132] (papero.fritz.box [192.168.178.132])
-	by babic.homelinux.org (Postfix) with ESMTP id B2FD345403AE;
-	Thu,  4 Apr 2019 17:31:58 +0200 (CEST)
-To: Matteo Facchinetti <matteo.facchinetti@sirius-es.it>,
-	yocto@yoctoproject.org
-References: <CAAjAsixRKTj9pt1gSC5cT149Y4Kgy5WYxjLmWRU9z9LhY-2-ww@mail.gmail.com>
-From: Stefano Babic <sbabic@denx.de>
-Openpgp: preference=signencrypt
-Autocrypt: addr=sbabic@denx.de; prefer-encrypt=mutual; keydata=
-	xsDiBEfdB5IRBADkpYcnh2BoAkGD5p186ysEkWlcp5DU07m7BKzvkEMRhFjeFUOU0klKNmh0
-	ZM6rKpYpAYPYBm9YahMyqvj9DmLrZ4yfJ5MssvW9SRETmHpva+h1rN+DzmEcwrqZmLG1JWGy
-	LA5ruJaFSzxJHBoROoog1NDMbNDB8A9F7VKrePfkVwCgmODpW/uh2IuMYLVidzDeuvo7alED
-	/iV8rwU7C+eBcKy2htuDsEmsqlkBxIDM7IO6h5XxdyqbZOYizuBP3Ksb6xK54weEaB5aQs7S
-	8N9Soi0p1Xh0LMWj6PBCzTC4LF+OCGEMBPc6bBHNzivChgztJlUMioCDSVpOXB/QpBaK302G
-	yP5WdmcB1Jn6neq/YRlxHN38MV2yA/46jnzeUotL9LliVZKA/ql4GmyWg2Ae1BUiCqEJQNwl
-	knGJOmIS4uABLArB5HjsfDU5hA9FORaNGCIiZlezBkZ3JXA2uQMQhfgqBXrZt4j1fcw9I7E+
-	7IZ2kSCeTPZFLd5FiGQPDOm3Z9eHrpK6pmBGMeBG0pDgUEbN9awyLNBLj80eU3RlZmFubyBC
-	YWJpYyA8c2JhYmljQGRlbnguZGU+wmMEExECACMCGwMGCwkIBwMCBBUCCAMEFgIDAQIeAQIX
-	gAUCT9deSgIZAQAKCRD09WXkmmjvppF1AKCRl8d49K4yxWzdBVRTTWG55cyo/gCfRD1RAttl
-	R1ofs2wGLHNtXousyL3OwU0ER90HmBAIAIFfX4bKnOmCyB3nPh+jbXZuBSMZTuyDEnguRxl5
-	N8Q0ayofQwucCBjXYv65sQ9Rq6FNhEnWqUZBu8A5CwvSakOFOGNC5ta/8VxVRLh0Z0ZTgEep
-	SKiPonJyacCbmgWDECdVrKowV7QB9be3Wu67uAZ74rPw2Kd7f0FKnL3djvVRMaBWFIpyQ6SE
-	bGOCJjhRQ5L1pIM1Soko+reU7eO+1g6IBw6YkFJisdQE6fzTwaSqUKPPsQLz/W03invQltOb
-	Eg7ZwtFs0DFonr1DMm57ksiEhW6SN1wylRO/JzRYG1Qe7u1EVln6iV3ilBvbbfkyRssk4/0e
-	kicpSnQknA72YOMAAwYH+QGpAiQ4hAMHrp1bUrtyGXYdeQpYufIZAM4etOnBy/G+e1nfu6y+
-	jH4SN9sVK7bwBBAbhEJqkqR5LVsFIRapThJQOWB11rQxLpwkBU9wao/pRM+o95ujGo32WUzf
-	wWrzWrkTDy7vMCZuUOLVi4n1GZlUAwpG4rzb6UxPC6GWymkVWGgXp1NC58og5i3Y+rKT7+Xi
-	XT2BtvC6PDepoH4JhD+9OkHQO6UfTxPSmtgNbTgtl6L6tj+bm5dOHgkPJFMkEiG8qhUZYQzb
-	bYz37orRbA72M2bxK76e9QKn0mVu+d/YCd8wRcvvJbGsozpzcxPvD5Wy5RNJCES8McPtAseU
-	tMfCSQQYEQIACQUCR90HmAIbDAAKCRD09WXkmmjvpv+3AJ9RakBsH1j0X/Kxp6t2lf0VUfS2
-	qACfZ+J6ktk8PKNuyHf0J/I0mbCrhV4=
-Message-ID: <036ebe30-ce24-9e66-9e00-b6431023946c@denx.de>
-Date: Thu, 4 Apr 2019 17:31:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.6.1
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.52 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com
+	[209.85.210.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3335E00D5F
+	for <yocto@yoctoproject.org>; Thu,  4 Apr 2019 08:41:51 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id m10so2769613otp.2
+	for <yocto@yoctoproject.org>; Thu, 04 Apr 2019 08:41:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=yXOMxj1tOj7pXAeJfM7hOLjpS9Uhysaa8YiJRYsA2is=;
+	b=RlUDMKrgnT4P+4RiA68xBW5ZUFlL1f/BHtUQ2SnRZsOiuXi1VVJI501HJvjjAS/+3v
+	VGV/BnFxOSUpUcDcp8bAHFXCWnfzDeBr6SgPKvTw2F37AgKYU25qlozNjDwuFz3ea5B0
+	182y/Yt97F60AORkIW5JVDwPJs6+/DMpOYqtOnPJUbit00JxR3DjsmkUSIxKz8qqqqXC
+	OOeF9XfdecZH7BPgFPJ5Cc9nQvRaKAICk10xr//x2sYMEntGlscfdOnBTSJ4isrVDJCe
+	X5hTNJGWPoVoxXAye1q3RFz1FYOr9czvSPcUtu9nr2IEEIz8nLF60UqM0q/R3gaQebZk
+	/oLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to;
+	bh=yXOMxj1tOj7pXAeJfM7hOLjpS9Uhysaa8YiJRYsA2is=;
+	b=KrzyNXjs/qibjjUpv+7GOpcXGmyZgQQFbrlaGfouWSgzmADOxMX/3RP9yyCZkNceWH
+	DS0H9pxevScnjY+ZyBzI5V6vbcpCB6BWFRJgS/RVaiB62jJJBFkuWmvNL7OH8hSPm7Ug
+	TSYgsSi+BGpb2tvYJT5PWkKbtm/USkqGEYhKYtqxCj3+4hxKJNMK7SB+ipHBSIEOHt0S
+	+CV6f26T/902FP59UKlGV1AdhvUIP3PyK2WT1k//yJXeKeAENrgyCm9sSQ+WHgnzJsHs
+	8wznHn1KpnX+7sOMKfnS4c9idJtabj4b4odETRB8MkTEG6mYoIUDniCgMiQipN2wyZzm
+	dyaQ==
+X-Gm-Message-State: APjAAAVt0xi9NXRPDN8hZJlZhAZmI10B8r8dx+hBAb/hdA/lKGBF0igL
+	SdS+3hTUJPV3gGzGWDtBbJqOw4Mjzpi3GQ9B3RYPIQ==
+X-Google-Smtp-Source: APXvYqx8+SjHURALr/RojhOwh20CgtnboRBYgTyz2qqEWQ24dZvMm+gbvVTVjlTW86kPChRS8Z7GMGypGotg7anorwE=
+X-Received: by 2002:a9d:62c8:: with SMTP id z8mr4890534otk.144.1554392511007; 
+	Thu, 04 Apr 2019 08:41:51 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAAjAsixRKTj9pt1gSC5cT149Y4Kgy5WYxjLmWRU9z9LhY-2-ww@mail.gmail.com>
-Subject: Re: require and image.bbappend
+References: <20190404153429.37636-1-alex.kanavin@gmail.com>
+In-Reply-To: <20190404153429.37636-1-alex.kanavin@gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 4 Apr 2019 17:41:39 +0200
+Message-ID: <CANNYZj_T+sGa1kEQhho-8s0Rfg5jp8=JaXEF6mpdmHZaoAtoVg@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>, anibal.limon@linaro.org
+Subject: Re: [ptest-runner] Run ptests via stdbuf configured to line-buffering
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -90,58 +69,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Apr 2019 15:38:01 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 04 Apr 2019 15:41:53 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Matteo,
+Bah, sorry, debugging got into the patch.
 
-On 04/04/19 15:35, Matteo Facchinetti wrote:
-> Hi,
-> 
-> I encountered a problem when try to add packages in my image recipe, but
-> I don't understernd if I wrong something or I have to do it in another way.
-> 
-> In detail, in my common_layer there are:
->    - image_base.bb <http://image_base.bb> : yocto base image 
->    - image_with_graphicsupport.bb <http://image_with_graphicsupport.bb>
-> : where include image_base.bb <http://image_base.bb> (require
-> image_base.bb <http://image_base.bb>)
-> 
-> Now, in my BSP layer, I want to add some packages to the image_base.bb
-> <http://image_base.bb>, so I create here the image_base.bbappend file.
-> But when I try to compile image_with_graphicsupport.bb
-> <http://image_with_graphicsupport.bb> the result is not how expected.
-> Image_with_graphicsupport.bb doesn't add packages contained in
-> image_base.bbappend but only the packages contained in image_base.bb
-> <http://image_base.bb>.
-> 
-> Is true that when include an image to another with require statement,
-> you can't extend the base image with a bbappend?
+Will resend.
 
-Yes, it is true, because the file is included and it is not anymore like
-a recipe that can be extend. It will be searched for a
-image_with_graphicsupport.bb append, not image_base.bbappend.
+Alex
 
-IMHO you can easy reach your goal if you write a packagegroup recipe
-where you put all packages you have in the IMAGE_INSTALL of your
-image_base.bb. You can then have a .bbappend for the packagegroup in
-your BSP layer (and this then works) and you put the packagegroup in the
-IMAGE_INSTALL directive of both image_base.bb and
-Image_with_graphicsupport.bb.
-
-> or I wrong something else?
-> 
-
-Best regards,
-Stefano Babic
-
-
--- 
-=====================================================================
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=====================================================================
+On Thu, 4 Apr 2019 at 17:34, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
+>
+> As ptest-runner communicates with child processes via pipe2(),
+> the corresponding channels are not attached to a pty. In that
+> situation stdio facilities like printf() or fwrite() are fully
+> buffered. If a ptest would use them, without bothering
+> to fflush() the output, ptest-runner will only receive what
+> was written by the child ptest process after a buffer gets filled.
+> If the unit tests are proceeding slowly, this may mean that
+> ptest-runner will erroneously timeout due to an apparent lack of
+> 'signs of life' from the child process.
+>
+> stdbuf utility from coreutils adjusts the buffering to a line-buffered
+> one, and so ptest-runner will get the lines as soon as they are
+> written.
+>
+> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+> ---
+>  utils.c | 11 ++++-------
+>  1 file changed, 4 insertions(+), 7 deletions(-)
+>
+> diff --git a/utils.c b/utils.c
+> index 504df0b..c130fbd 100644
+> --- a/utils.c
+> +++ b/utils.c
+> @@ -243,16 +243,13 @@ filter_ptests(struct ptest_list *head, char **ptests, int ptest_num)
+>  static inline void
+>  run_child(char *run_ptest, int fd_stdout, int fd_stderr)
+>  {
+> -       char **argv = malloc(sizeof(char) * 2);
+> +       char* argv[] = {"stdbuf", "-oL", "-eL", "./run-ptest", NULL};
+>         chdir(dirname(strdup(run_ptest)));
+>
+> -       argv[0] = run_ptest;
+> -       argv[1] = NULL;
+> -
+>         dup2(fd_stdout, STDOUT_FILENO);
+>         // XXX: Redirect stderr to stdout to avoid buffer ordering problems.
+>         dup2(fd_stdout, STDERR_FILENO);
+> -       execv(run_ptest, argv);
+> +       execvp(argv[0], argv);
+>
+>         exit(1);
+>  }
+> @@ -291,12 +288,12 @@ wait_child(const char *ptest_dir, const char *run_ptest, pid_t pid,
+>
+>                         if (pfds[0].revents != 0) {
+>                                 while ((n = read(fds[0], buf, WAIT_CHILD_BUF_MAX_SIZE)) > 0)
+> -                                       fwrite(buf, n, 1, fps[0]);
+> +                                       fwrite(buf, n, 1, fps[0]); fwrite("hallo", 5 ,1 ,fps[0]); fflush(fps[0]);
+>                         }
+>
+>                         if (pfds[1].revents != 0) {
+>                                 while ((n = read(fds[1], buf, WAIT_CHILD_BUF_MAX_SIZE)) > 0)
+> -                                       fwrite(buf, n, 1, fps[1]);
+> +                                       fwrite(buf, n, 1, fps[1]); fwrite("hallo-err", 9 ,1 ,fps[0]); fflush(fps[1]);
+>                         }
+>
+>                         clock_gettime(clock, &sentinel);
+> --
+> 2.17.1
+>
 
