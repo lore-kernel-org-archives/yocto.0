@@ -1,43 +1,73 @@
-Return-Path: <d.s.e@sordidmusic.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4F192E00D24; Thu,  4 Apr 2019 03:00:54 -0700 (PDT)
+	id 53FB2E00D0F; Thu,  4 Apr 2019 03:50:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.180 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 465 seconds by postgrey-1.32 at yocto-www;
-	Thu, 04 Apr 2019 03:00:53 PDT
-Received: from mail.rpgmaster.net (mail.rpgmaster.net [78.46.222.82])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B8CCE00D20
-	for <yocto@yoctoproject.org>; Thu,  4 Apr 2019 03:00:53 -0700 (PDT)
-Received: from phoenix.invalid (x59cc87c8.dyn.telefonica.de [89.204.135.200])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits)
-	server-digest SHA256) (No client certificate requested)
-	by mail.rpgmaster.net (Postfix) with ESMTPSA id 266E42092C
-	for <yocto@yoctoproject.org>; Thu,  4 Apr 2019 11:53:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=sordidmusic.com;
-	s=rpgmaster; t=1554371587;
-	bh=kz5CN7q79TYcWy3B1PunPa4TVNFrCD8YXSC2WklEoQA=;
-	h=Date:From:To:Subject;
-	b=uvtFtRijag71gSYyMFjLrIZ512dHLcSdt27p4KpX9Prcp5QAgDSIpEKOWlNC697o3
-	10KWtq04yw35tDUjD/T00ot6L3TVGArK3RBZ9A/3X3TLTI8p1aXH7d65VOaMckslxq
-	86QSf58Z1yHUtxOI8XwagRZOh6tND4wEB4Nhubfo=
-Date: Thu, 4 Apr 2019 11:53:01 +0200
-From: Guenther Meyer <d.s.e@sordidmusic.com>
-To: yocto@yoctoproject.org
-Message-ID: <20190404115301.1820604a@phoenix.invalid>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com
+	[209.85.167.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE5F4E00CE5
+	for <yocto@yoctoproject.org>; Thu,  4 Apr 2019 03:50:39 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id v10so1506071oib.1
+	for <yocto@yoctoproject.org>; Thu, 04 Apr 2019 03:50:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=0P5kR6jhn4WNSQYVMDXuSXY3ENFBvxHRUqq3jwVaoVI=;
+	b=e7IrthM9tWhHhCWswMrpOzTveLh7FlZvGEVa4b5qRQmQdDA+MpqErfuVYIHTTb57uC
+	QTJ3Lgfsmj1qWwlA0QYf4gHSH/mZMRSB/gY3ta57u9odewT4M2dOE893Zbs90Qu1B1AR
+	4pkDhPjp/BXt3VfrywsssIZObmmmsuVlpXWWIMErzFOu7spflnQe4C9DdLwAXqkP/zGY
+	nqGbqKDmX5sda/gv5lZoXbrzCD+fRzEdRxHZ54QnqRlVPzwjz8s+Tbejr2Jj2S9kkCei
+	We3m+63C6MB9ciHsDBbJ1y6QGloNiGch6Rt0VHC+teQXmv8KlBMwxiB0KR/XZh0ZAQWg
+	LFIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=0P5kR6jhn4WNSQYVMDXuSXY3ENFBvxHRUqq3jwVaoVI=;
+	b=UM0GfcSnkXbaIKJS2IBLTHgLPGx+aOtA5hMgusL8GROGDxCdmhW7O3whgfwP+E83Nr
+	F56MNrSRKNNZ452mI75+1sFLB1y2jnfDpZ3Hv0AE4dWoAI4rXOksItNXMpRyErU2xz5n
+	mvnGcHjmJeD/i3zw8bfLK8wsNnDV3bF1BhUayu3WfPpH/beWcFThnxaqD0LmKlBi2P8D
+	vn1jl+bdyyYkCRhKaXaXVN/weX39svwwRdTdmlvrCgw3hjRzGLwBWCiBhHahiGddyKbE
+	xiojcG9am6EESb3hHTb2wCF7yvmWGx4z54wmtZkLM1KtUSGomgNO5vNASdhLpCAi+iMy
+	9/SA==
+X-Gm-Message-State: APjAAAW/p6b3y9ZjgSecHedTkaxURhlI2TH86OLTwiUMUhmLR4fMGx5W
+	jbShPMDqLiUEAU8jAHO+C4S4poZHcG/aqHRHzK0=
+X-Google-Smtp-Source: APXvYqzZroSKuUETEM3GqtqOd4Nw/sC3xzcstxgXKl/OMcAB62jgWnMobiGPUafXy5hz3VYyhVswK1rVcxp4G6p3VJc=
+X-Received: by 2002:aca:e689:: with SMTP id d131mr3055538oih.132.1554375039211;
+	Thu, 04 Apr 2019 03:50:39 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Metadata is missing in some Python packages
+References: <854544cb-aab1-1a9d-9e98-0f39663ca621@gmail.com>
+	<20190403144110.GG4664@bill-the-cat>
+	<CAMKF1srb2EgL7tYZDFoq2EqABp-+_eib2u2OZMwT6B3TVgNk=Q@mail.gmail.com>
+	<2189093.Hm6Vq2XZhg@localhost.localdomain>
+	<CAMKF1spJCg2HjGRzke_3yH_9hCZR=ZQZfJ1EQZCQi9gQF3x-4g@mail.gmail.com>
+In-Reply-To: <CAMKF1spJCg2HjGRzke_3yH_9hCZR=ZQZfJ1EQZCQi9gQF3x-4g@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 4 Apr 2019 12:50:27 +0200
+Message-ID: <CANNYZj9iPw7yV1Csy1wBk53twHk3nWo9jFhmJ+ww4vtQ_sJ1yQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Tom Rini <trini@konsulko.com>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+	Yocto Project <yocto@yoctoproject.org>, Adrian Bunk <bunk@stusta.de>
+Subject: Re: [OE-core] [oe] Git commit process question.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,53 +79,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Apr 2019 10:00:54 -0000
-X-Groupsio-MsgNum: 44638
-Content-Type: multipart/signed; boundary="Sig_/+lIt5NiztS6g06mxI+0Hnqv";
-	protocol="application/pgp-signature"; micalg=pgp-sha256
+X-List-Received-Date: Thu, 04 Apr 2019 10:50:40 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---Sig_/+lIt5NiztS6g06mxI+0Hnqv
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Thu, 4 Apr 2019 at 02:39, Khem Raj <raj.khem@gmail.com> wrote:
+> Definitely, and I agree that we should put relevant information in
+> commits, usually
+> the information about side effects if any, links to changelog etc. are
+> useful too
+> however, we should not enforce a behavior which could result in
+> redundancy as explained
 
-Hi,
+To be honest, researching changelogs and summarizing them into commit
+messages is feasible if you maintain maybe three recipes. When you
+maintain thirty, it becomes a burden, and I am not going to take that
+burden. There's already enough work in getting the upgrade into
+working shape, work that largely goes unnoticed and unappreciated and
+does not require finding and reading upstream changelogs.
 
-I added some python recipes for my application, and now I have the
-problem, that in some of the created packages the metadata is missing.
-For example, the package I have for Twisted 18.7 is one of those.
-When I use a python package like daphne, which is dependent on
-Twisted >=3D 18.7, then it won't work, because daphne checks the version
-before doing anything else.
-I created a workaround by removing this check in the recipe, but that
-doesn't feel right.
+HOWEVER. I think we could start putting links to changelogs into the
+recipes themselves. If it's a webpage, we can use templating to
+substitute version numbers, if it's a file in the source tree, we can
+also come up with a format for that. Then it's a simple extension to
+e.g. devtool to show that changelog via less or a browser.
 
-Maybe there is something I missed in my recipes?
+Alex
 
-
---=20
-Summer-Hack-Session 2.8
-http://session.pestilenz.org/session2/
-
-
---Sig_/+lIt5NiztS6g06mxI+0Hnqv
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEzA/1q58SJcycb7/KVdabz09aRfwFAlyl0/0ACgkQVdabz09a
-RfyBaQ/+Mi9pc/2mtOEBPKGiAngg8Xx+kUSFNrb9A4bAXlDmGcyiLLiBQF8SPr6q
-JyXQRDwCbVzu17j91u8+6T98udTKz07wybDaCUPAPnNkn5s4S7zhR9fseeftU0GW
-HW/SfpTzUbojvzqULenCEjmBTxnir0sf+w9XaqTDOjVf5jSQYwyj7Ji3tA6ZR41J
-2YUC5kUx2fXXISNRf7392qOO8R25UICCcHvgR5LDYp1iSRLNHATvJUKR+bT1310C
-LNb6gwxrxSf3PlIf0wOpYfEu2YrR30vLOaAiEfmiggfFiufD4CHuhzEv1jA7XsJX
-k6xgh+sKEWKodJSJnBp9jNBPuq0bpCFUd3rmUwnq8j4ZOWCNIlSViURhCSmOrm6b
-Fu7F9ek6SSOfF9nLojQPp1KR+PKp5PAJ4BKW8q0oebZl4CZAFaEFEuY4Lau71xMD
-QhloFHG5xkrtp7Xv/vdx+f49InRnRdczUPp1nHkPQM0KxccB5o5HRuxlrJ6RIOYX
-4n80w233rwwjgub58yStrvgDuLpkfFHkkJJ7JlaCcGE1P4mMgKFOLqcP6oynW9wA
-9Y3IzEZCwYDz/QN5fAyKMp9NncfqQezJiIRgy8yH5D5Z46t7UJygkXp21WXfeW8J
-yo9Ty/ewbyCu9sZ+6/ZbthvXdy9UrXw3VjIg1r+6zBx0R/WzrRg=
-=P7jL
------END PGP SIGNATURE-----
-
---Sig_/+lIt5NiztS6g06mxI+0Hnqv--
