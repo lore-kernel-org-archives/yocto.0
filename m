@@ -1,72 +1,58 @@
-Return-Path: <jpewhacker@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E31B9E00D07; Thu,  4 Apr 2019 10:31:46 -0700 (PDT)
+	id 38C49E00D07; Thu,  4 Apr 2019 13:14:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jpewhacker[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.52 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.166.176 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com
-	[209.85.166.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51B5AE00CBC
-	for <yocto@yoctoproject.org>; Thu,  4 Apr 2019 10:31:46 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id f6so2724053iop.3
-	for <yocto@yoctoproject.org>; Thu, 04 Apr 2019 10:31:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:message-id:subject:to:date:in-reply-to:references:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=I2AKRDEoc4BVwlLe6QPSOk77QthzUNojjgZ+BzqmJfE=;
-	b=swA1dVwufqN7wmbC5zsRBpKi8qUnmYj7kKpubOzXrH9qIlf9S4ZmXQMtAMACNhhO34
-	bA36hSXP1ai1sbygVC7VkLLLSS1a9IhOj2anCvAzIKC+0gL8TBxuXG9kaqNVJl0PZgka
-	w6/R3CmOd9pfpLdhY0k0Nfj0IariWPztogwajoJwL5lhk4gDuHD/DEcanfe7Zmmt0ZjT
-	Sz74Ur62dF3/pNx/SDsYyPkkA3sMrSLTLHoM2wakQczUSHjjefkwyru38Jm+FIKDA0ZO
-	L/6swqmDkFYYXj4uK8zAGquHwF1mCgNzRce9ENWkRowgq0dlLVFB2U+2O3XU87Iitm+/
-	5OMg==
+Received: from mail-it1-f176.google.com (mail-it1-f176.google.com
+	[209.85.166.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDEF0E00798
+	for <yocto@yoctoproject.org>; Thu,  4 Apr 2019 13:14:50 -0700 (PDT)
+Received: by mail-it1-f176.google.com with SMTP id q14so5923970itk.0
+	for <yocto@yoctoproject.org>; Thu, 04 Apr 2019 13:14:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=OBhho5GpIGv+7Gtx7jwa0sFdionS0Jds0O0HgkBCTjs=;
+	b=I6/Xcib1V9eXZDYyT1BuwwP5nlhPaE9/6MTz/5V/3MAOZ53RymtVGhN5Hjg+aworTA
+	tr04aLWzur9N3rz3Zkd3E483f+k5ePy5zCgvX86hqyxZpWAVmdIXwWLZaOOtcFw8GyEq
+	B4aIlRv8ertCXFlYzOz3XLnWD4lQV2OaV2R/wNKUR3RQ2cmimZzq9NsujdANZ/x6Kcef
+	RVaxkI/0cOaLa2vsoytNNJMb3B6ftOMfFrTiLiVA8oYcFv50xgLBPde9HfMqQzrKKTVi
+	MSVJRYdh1u547bEV0c/1WLAR7xa+MdItzFeMqRbhzz28CdqUKSF9DHaaoJvjplU80yqI
+	0CQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:message-id:subject:to:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=I2AKRDEoc4BVwlLe6QPSOk77QthzUNojjgZ+BzqmJfE=;
-	b=kRaGOervXdX2mVxHdZ6aQIKwh/3yjt9RYh95rpATAk6ld5X3A5CgyqHKdd+4eMNPA7
-	GYIcpIZF9vg1bz2zOCtAEnqkK+2H9dqfNZsf1Eo0e4d4h38d0hSe/kvIMPJUhj2a1DP0
-	3mIt3IHHtwZS/6mcIuPeuyLF2voX9Tl0GH8MSrLtY4NK9iAtAO7j96Re9wmBUqX8oPL8
-	RcpwGMc/lRPsV3tJ9WLmmS/LtYPmadCiLdG/26mkep2IzgjfisBv00XXyfjN4dIwNoZF
-	3zcU/P0KrQhGYVCMA5o3kqxF0npZ8K3OVcf2m1fkEzTVwDSCkarQiLF2fF1RDxbeuvi9
-	42ww==
-X-Gm-Message-State: APjAAAU07xgbsJGIs6eEAm+NpU7q63GBUjKFsG53qBR6I9jNr+iFMPr6
-	ETeoTC7b0bL1Gqm1DMkRGxM=
-X-Google-Smtp-Source: APXvYqyzVCjaRvJ7uRJBhWwFOQARg/6rAYrZlUIYfUK3TRvBYNsuBHZ9293VserDlA9B0jBIqb2z7w==
-X-Received: by 2002:a5d:9908:: with SMTP id x8mr451817iol.223.1554399105644;
-	Thu, 04 Apr 2019 10:31:45 -0700 (PDT)
-Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
-	by smtp.googlemail.com with ESMTPSA id
-	v10sm7876330iom.45.2019.04.04.10.31.44
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Thu, 04 Apr 2019 10:31:44 -0700 (PDT)
-From: Joshua Watt <jpewhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-Message-ID: <d56639d928551bbc586e89e33f5efab656b2f3b3.camel@gmail.com>
-To: Alexander Kanavin <alex.kanavin@gmail.com>, yocto@yoctoproject.org, 
-	anibal.limon@linaro.org
-Date: Thu, 04 Apr 2019 12:31:43 -0500
-In-Reply-To: <20190404160015.39306-1-alex.kanavin@gmail.com>
-References: <20190404160015.39306-1-alex.kanavin@gmail.com>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=OBhho5GpIGv+7Gtx7jwa0sFdionS0Jds0O0HgkBCTjs=;
+	b=GScreyXClr/6WyQzhBOYbgsHJU5vIY5fRNDrbm1E8Ei+nDQbZyDIlyFmno5mZ1Le0k
+	fDX1p27BTQsbeaIzftNHlJDKpqgR+cAitl7EJTVnjudAsYJuZF8Nxdw8PWeENrMOSTeQ
+	cs0BJjojPb7OLGS6pD4PvxdEJGbcK7gDU1i5toNdn4ZFpl7B9hoCStFif3W6vKCyKCIl
+	aV4HgUWMVpNnmrP/3FSWw7x551YknClngoq7Z1OcDFnkYVa9hyxai3VqijMV4c5fQIIk
+	1lnHGU/kocLDXiVzt6rbak7I7t7zwhb/o7Dbu8VzaX0xaUmXbmc04etaokpFfMf0isjS
+	B+zA==
+X-Gm-Message-State: APjAAAV58NGcu1z5dxOCmHK+srw1HZwIkvbK7DBZOACadEHajK+rjrRI
+	IHhqn+FcRklrbLxe52GQ93FdGsMuThQbL7br4M8OrHRw
+X-Google-Smtp-Source: APXvYqwkircDYUznEm9j6bGsgK5cHnbH6U2oc0R2YtyYuh8nhgUpJJCY5es0RfSzTa4p4f6poJ4LLFm7alIxFfih8tc=
+X-Received: by 2002:a02:7a48:: with SMTP id z8mr6187549jad.62.1554408890135;
+	Thu, 04 Apr 2019 13:14:50 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [ptest-runner] Run ptests via stdbuf configured to line-buffering
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 4 Apr 2019 21:14:39 +0100
+Message-ID: <CAJTo0Lb6BqeQoYSo_uargq-6QuyoezD+s_7rr6CkXXCLaRgLHA@mail.gmail.com>
+To: OE-core <openembedded-core@lists.openembedded.org>, 
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>, 
+	Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Do you use ISO images generated by bitbake?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,65 +64,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Apr 2019 17:31:47 -0000
+X-List-Received-Date: Thu, 04 Apr 2019 20:14:51 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
-On Thu, 2019-04-04 at 18:00 +0200, Alexander Kanavin wrote:
-> As ptest-runner communicates with child processes via pipe2(),
-> the corresponding channels are not attached to a pty. In that
-> situation stdio facilities like printf() or fwrite() are fully
-> buffered. If a ptest would use them, without bothering
-> to fflush() the output, ptest-runner will only receive what
-> was written by the child ptest process after a buffer gets filled.
-> If the unit tests are proceeding slowly, this may mean that
-> ptest-runner will erroneously timeout due to an apparent lack of
-> 'signs of life' from the child process.
-> 
-> stdbuf utility from coreutils adjusts the buffering to a line-
-> buffered
-> one, and so ptest-runner will get the lines as soon as they are
-> written.
-> 
-> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
-> ---
->  utils.c | 7 ++-----
->  1 file changed, 2 insertions(+), 5 deletions(-)
-> 
-> diff --git a/utils.c b/utils.c
-> index 504df0b..1376e39 100644
-> --- a/utils.c
-> +++ b/utils.c
-> @@ -243,16 +243,13 @@ filter_ptests(struct ptest_list *head, char
-> **ptests, int ptest_num)
->  static inline void
->  run_child(char *run_ptest, int fd_stdout, int fd_stderr)
->  {
-> -	char **argv = malloc(sizeof(char) * 2);
-> +	char* argv[] = {"stdbuf", "-oL", "-eL", "./run-ptest", NULL};
+Hi,
 
-Should be run_ptest the from the function argument, not the string
-literal "./run-ptest" ?
+I'm looking for some users that use the ISO images generated by
+Bitbake (IMAGE_FSTYPE live or iso).  Anyone out there?
 
-
->  	chdir(dirname(strdup(run_ptest)));
->  
-> -	argv[0] = run_ptest;
-> -	argv[1] = NULL;
-> -
->  	dup2(fd_stdout, STDOUT_FILENO);
->  	// XXX: Redirect stderr to stdout to avoid buffer ordering
-> problems.
->  	dup2(fd_stdout, STDERR_FILENO);
-> -	execv(run_ptest, argv);
-> +	execvp(argv[0], argv);
->  
->  	exit(1);
->  }
-> -- 
-> 2.17.1
-> 
--- 
-Joshua Watt <JPEWhacker@gmail.com>
-
+Ross
 
