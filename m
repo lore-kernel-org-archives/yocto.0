@@ -1,6 +1,6 @@
-Return-Path: <prvs=9913b796b=Mikko.Rapeli@bmw.de>
+Return-Path: <bunk@stusta.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5EED3E00D15; Fri,  5 Apr 2019 00:04:28 -0700 (PDT)
+	id E7FBCE00D15; Fri,  5 Apr 2019 01:19:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,62 +10,46 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
 	low *      trust
-	*      [68.232.133.109 listed in list.dnswl.org]
+	*      [141.84.69.5 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from esa7.bmw.c3s2.iphmx.com (esa7.bmw.c3s2.iphmx.com
-	[68.232.133.109])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DFDFE00D07
-	for <yocto@yoctoproject.org>; Fri,  5 Apr 2019 00:04:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-	t=1554447867; x=1585983867;
-	h=from:to:cc:subject:date:message-id:references:
-	in-reply-to:content-id:content-transfer-encoding: mime-version;
-	bh=lXD0KXZV689jfsgCVKIuERRxMeGirQ/rNtY8lQGmFmI=;
-	b=noD/q8/wFkgHIbL8ybSvYYB8VugpyYiKKKbsru/LUuWv5CWORXXzffUZ
-	rKypZZuFoBM3/PaR9KK/n1MxIDRUJHGcvYSf9cvtHRt5b5FVo3f9A9O+v
-	QnMA6wP6JkNayitsDccXqjm0zt7LhEqSiCeGe9lSCQHmxhj05PzaK8XaX w=;
-Received: from esagw4.bmwgroup.com (HELO esagw4.muc) ([160.46.252.39]) by
-	esa7.bmw.c3s2.iphmx.com with ESMTP/TLS; 05 Apr 2019 09:04:26 +0200
-Received: from esabb3.muc ([160.50.100.30])  by esagw4.muc with ESMTP/TLS;
-	05 Apr 2019 09:04:25 +0200
-Received: from smucm10l.bmwgroup.net (HELO smucm10l.europe.bmw.corp)
-	([160.48.96.48])
-	by esabb3.muc with ESMTP/TLS; 05 Apr 2019 09:04:25 +0200
-Received: from smucm10k.europe.bmw.corp (160.48.96.47) by
-	smucm10l.europe.bmw.corp
-	(160.48.96.48) with Microsoft SMTP Server (TLS;
-	Fri, 5 Apr 2019 09:04:25 +0200
-Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
-	smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.003;
-	Fri, 5 Apr 2019 09:04:25 +0200
-From: <Mikko.Rapeli@bmw.de>
-To: <richard.purdie@linuxfoundation.org>
-Thread-Topic: [yocto] [ptest-runner] Run ptests via stdbuf configured to
-	line-buffering
-Thread-Index: AQHU6zFfFMfluXctaEWGw6xn8MPpNKYs9lkAgAAIMgCAAAJVgIAAAX6AgAABUoA=
-Date: Fri, 5 Apr 2019 07:04:25 +0000
-Message-ID: <20190405070425.GY20077@hiutale>
-References: <20190404160015.39306-1-alex.kanavin@gmail.com>
-	<8703dcd293e64bbee38f5ff20ae422c80c579511.camel@linuxfoundation.org>
-	<20190405061640.GT20077@hiutale>
-	<a3d54bdd1bd6a674bc67deb32d5c824f0275c61e.camel@linuxfoundation.org>
-	<20190405065421.GX20077@hiutale>
-	<2fa5e79d7b6a04b29c14622ffff6637a93303f18.camel@linuxfoundation.org>
-In-Reply-To: <2fa5e79d7b6a04b29c14622ffff6637a93303f18.camel@linuxfoundation.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [192.168.221.45]
+Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9381EE00D07
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2019 01:19:34 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 44bCQr4Kh4z24;
+	Fri,  5 Apr 2019 10:19:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
+	s=default; t=1554452372;
+	bh=89BjGHk6Yzt6yYPwh0lwi6cjqoNgdkS5NF7X6ZbyOFY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=c6Y4Kpq3FjYDQ/tWfFJva6pUHmR7TPMzcke2UmTJB4UjgZlj50Wn2ECOXGOqUU/W0
+	jb09HfVUgPKq9nSnUq7lxkdPzFhM9qyZUsx+4BrUfCOJlbo596LRAOSFI9d5GuIS1n
+	Ge6WD5D5rhMRgls21yBLpLvNdmLAGY7rVk/kJrobtl3+IyscBKb/vOs6ENziOVwvik
+	L4eIpdLfwiPhfw8m38SUOeX1rWVjY5ND4y1SgY7E5dPVgg037CNqkwc9YuPFljyh8t
+	VflrFEBzjKWe74yWXqMz667NlGHlIpW0U5uAvkZ9vwCFl8EsEHfk4hekZDRB6qwILv
+	usetDfQeUyjDWqbYKwMERY98EHkt1QAR7dlxoDhpbut68k+XuTsKXAj8vfY/FZ/wMY
+	rgMmIrm61wXQplT7xOYksmPr5KOCSrbXflgD/iy8rATscqIHzK7apO/kwvl7F0li/s
+	c4NDzIOCJb6QvaxktXMi3UU+ViLj22wycwq08y8xcdptq52uwHjX1te+AmbnOLD6+q
+	CGbrm7zxiSKEl3h9a5X1e87k+5aQ0u7/r+aVxoDXH20lnoI1VDfPKqOT/LPjoSSHmO
+	W7VXE/hcC2r0sGUPv7dsseWhki/hRn45DhdEIgZit+KIOCNkJItc5WzTQFdD59+iww
+	cEBkc/MR4FUHaWSydrkz2ptc=
+Date: Fri, 5 Apr 2019 11:19:30 +0300
+From: Adrian Bunk <bunk@stusta.de>
+To: akuster808 <akuster808@gmail.com>
+Message-ID: <20190405081930.GA22318@localhost>
+References: <1554416266-28620-1-git-send-email-akuster808@gmail.com>
+	<1554416266-28620-2-git-send-email-akuster808@gmail.com>
+	<20190405045951.GA28935@localhost>
+	<623dd471-1e89-fdcb-fcc6-deab840731ab@gmail.com>
 MIME-Version: 1.0
+In-Reply-To: <623dd471-1e89-fdcb-fcc6-deab840731ab@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Cc: yocto@yoctoproject.org
-Subject: Re: [ptest-runner] Run ptests via stdbuf configured to line-buffering
+Subject: Re: [meta-security][PATCH 2/2] sssd: add DISTRO_FEATURE sssd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,109 +61,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2019 07:04:28 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <D00723C3F852DC438C242880AA10CD88@bmwmail.corp>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 05 Apr 2019 08:19:37 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-On Fri, Apr 05, 2019 at 07:59:41AM +0100, richard.purdie@linuxfoundation.or=
-g wrote:
-> On Fri, 2019-04-05 at 06:54 +0000, Mikko.Rapeli@bmw.de wrote:
-> > On Fri, Apr 05, 2019 at 07:46:00AM +0100,=20
-> > richard.purdie@linuxfoundation.org wrote:
-> > > On Fri, 2019-04-05 at 06:16 +0000, Mikko.Rapeli@bmw.de wrote:
-> > > > On Thu, Apr 04, 2019 at 10:48:17PM +0100, Richard Purdie wrote:
-> > > > > On Thu, 2019-04-04 at 18:00 +0200, Alexander Kanavin wrote:
-> > > > > > As ptest-runner communicates with child processes via
-> > > > > > pipe2(),
-> > > > > > the corresponding channels are not attached to a pty. In that
-> > > > > > situation stdio facilities like printf() or fwrite() are
-> > > > > > fully
-> > > > > > buffered. If a ptest would use them, without bothering
-> > > > > > to fflush() the output, ptest-runner will only receive what
-> > > > > > was written by the child ptest process after a buffer gets
-> > > > > > filled.
-> > > > > > If the unit tests are proceeding slowly, this may mean that
-> > > > > > ptest-runner will erroneously timeout due to an apparent lack
-> > > > > > of
-> > > > > > 'signs of life' from the child process.
-> > > > > >=20
-> > > > > > stdbuf utility from coreutils adjusts the buffering to a
-> > > > > > line-
-> > > > > > buffered
-> > > > > > one, and so ptest-runner will get the lines as soon as they
-> > > > > > are
-> > > > > > written.
-> > > > > >=20
-> > > > > > Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
-> > > > > > ---
-> > > > > >  utils.c | 7 ++-----
-> > > > > >  1 file changed, 2 insertions(+), 5 deletions(-)
-> > > > >=20
-> > > > > I'm a little torn on this. I noticed some of the run-ptest
-> > > > > scripts
-> > > > > use
-> > > > > "| sed -u" whilst the one you were seeing problems with uses "|
-> > > > > sed"
-> > > > > without -u.
-> > > > >=20
-> > > > > We may want to consider strongly recommending -u. I'm testing a
-> > > > > patch
-> > > > > with some tweaks like that in it...
-> > > >=20
-> > > > Please no. I'm running images without sed and using busybox sed
-> > > > instead, and that
-> > > > doesn't support -u. I'd rather be compatible with sed from
-> > > > busybox to
-> > > > keep changes
-> > > > to images minimal (e.g. install of additional packages) before
-> > > > executing ptests.
-> > >=20
-> > > The other alternative option being proposed is for ptest-runner to
-> > > depend on coreutils which is worse?
-> >=20
-> > GNU sed does not come from coreutils but from sed recipe.
-> >=20
-> > Your call in the end. I just provided my point of view.
->=20
-> The original patch in this thread from Alex needs stdbuf which would
-> add a coreutils depends to ptest-runner for everything as I understand
-> it.
+On Fri, Apr 05, 2019 at 11:05:17AM +0530, akuster808 wrote:
+> 
+> 
+> On 4/5/19 10:29 AM, Adrian Bunk wrote:
+> > On Fri, Apr 05, 2019 at 03:47:46AM +0530, Armin Kuster wrote:
+> >> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> >> ---
+> >>  recipes-security/sssd/sssd_1.16.4.bb | 2 +-
+> >>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >>
+> >> diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security/sssd/sssd_1.16.4.bb
+> >> index 34bc8c8..d6a308c 100644
+> >> --- a/recipes-security/sssd/sssd_1.16.4.bb
+> >> +++ b/recipes-security/sssd/sssd_1.16.4.bb
+> >> @@ -16,7 +16,7 @@ SRC_URI[sha256sum] = "6bb212cd6b75b918e945c24e7c3f95a486fb54d7f7d489a9334cfa1a1f
+> >>  
+> >>  inherit autotools pkgconfig gettext python-dir distro_features_check
+> >>  
+> >> -REQUIRED_DISTRO_FEATURES = "pam"
+> >> +REQUIRED_DISTRO_FEATURES = "pam sssd"
+> >> ...
+> > Adding a distro feature for a leaf package is wrong.
+> Is it a naming issue or something else? I would like to understand so I
+> may avoid making the same mistake.
 
-Ok, that too then. Then all hope is lost so lets include sed there as well =
-:)
+This has nothing to do with naming.
+It is about getting rid of workarounds by fixing the root cause,
+instead of adding more and more layers of workarounds.
 
-> > > I did test the -u option to sed in the openssh ptest runner and it
-> > > did
-> > > fix the problems we've been seeing.
-> > >=20
-> > > I'm open to other alternatives but the -u option to sed is looking
-> > > like
-> > > the best one we have right now. These bugs are making our testing
-> > > of
-> > > ptests effectively useless and unpredictable so this is a serious
-> > > issue...
-> >=20
-> > Understood. I hope you could also add 'set -eux' to all ptest shell
-> > scripts. Many of them seem to be missing shell script error handling
-> > and failures like providing -u to busybox sed may go unnoticed.
->=20
-> Patches would be welcome to help clean up some of these scripts. I feel
-> like I'm fighting a lonely battle trying to get any of this to work at
-> times :(
+A DISTRO_FEATURE is for cases where PACKAGECONFIG in many recipes should 
+be toggled with one setting, or the setting has to be the same in several
+recipes.
 
-We're ramping up with ptests and will provide fixes back to upstream.
+DISTRO_FEATURES is not appropriate to guard a quick hack workaround for
+breakage caused by another workaround.
 
-> The good news is the automated monitoring of the ptest results should
-> catch problems like that as if a chunk of ptests "disappear", the new
-> testing should quickly highlight that.
->=20
-> (We should improve the scripts, we just also have another way to spot
-> problems)
+The problem at hand is that libldb in meta-openembedded was upgraded to 
+a version not compatible with the version of samba in meta-openembedded.
 
-All this work is very much appreciated here in downstream! Thanks you very =
-much!
+As workaroud the libldb shipped in samba was used and installed by 
+the samba recipe.
 
--Mikko=
+The proper fix would be to upgrade samba to 4.9 or 4.10,
+and use the external libldb again.
+This would make all problems caused by having two different versions
+of libldb disappear.
+
+If this is not possible, it is likely samba that should stop just 
+shipping the (older versions of) the conflicting binaries for now.
+
+In a semi-related note, the current samba is a pretty outdated even for
+the 4.8 branch and misses several CVE fixes.
+
+cu
+Adrian
+
+-- 
+
+       "Is there not promise of rain?" Ling Tan asked suddenly out
+        of the darkness. There had been need of rain for many days.
+       "Only a promise," Lao Er said.
+                                       Pearl S. Buck - Dragon Seed
+
 
