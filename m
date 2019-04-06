@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF3A4E00D20; Fri,  5 Apr 2019 17:04:23 -0700 (PDT)
+	id 77F00E00D3D; Fri,  5 Apr 2019 17:24:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,54 +13,57 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.173 listed in list.dnswl.org]
+	*      [209.85.215.193 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
-	[209.85.210.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92D95E00BAF
-	for <yocto@yoctoproject.org>; Fri,  5 Apr 2019 17:04:22 -0700 (PDT)
-Received: by mail-pf1-f173.google.com with SMTP id t21so1800580pfh.2
-	for <yocto@yoctoproject.org>; Fri, 05 Apr 2019 17:04:22 -0700 (PDT)
+Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
+	[209.85.215.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5912BE00D39
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2019 17:24:50 -0700 (PDT)
+Received: by mail-pg1-f193.google.com with SMTP id z9so964232pgu.10
+	for <yocto@yoctoproject.org>; Fri, 05 Apr 2019 17:24:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=NAeIgxugrMuL53ABDtC/7T/xI3Xb00q2yV8zZdSDALE=;
-	b=C8iUkne4USP6Xrm+4zKMDHfDw9iHjEntEpOkc5SygvNJ2kYRvwVxZPQX3rBVrWWeuM
-	pfOVmb5tIqCQLyxThGxICo1TmLx5idu7N4cXp9jbtAh3SKKwEc8qMzcs8F7rKiPp9DPN
-	exgY0f/Rn/nT3BNMsMev02EJ7iYimwBbLRw041TcLdU+2TY3OxtddbFK3MkSFEcCdSfT
-	SHnFurxUYhgmVvFuroVhqYt0QzXXwIBYfbgtDhlvCsTyNMf2T9556KZRnFMosoXOlh2g
-	Fnhx1CPh2sc902ZPf6LGR2b53EjZy2BMaBVtkeaDYxJRZhyuPDSXv+LvPmtr5/2Wzi2w
-	SWrQ==
+	bh=rInjHx25+oKOQhukBqVTCcJpBFQDmyDeGc3KRF83ycc=;
+	b=cwR+RWCQyEGFKa684P21qlhAvwktzb0nDw8ku73ceHg6QhF33dC7BLsP0otfHv+G7s
+	Zm7JP2pYMmUZ3uSPxDQYikF47ywJCu61c9asSBwcyRAEJzAl2R+GCu6WszVZgORbXB1H
+	KG9cKBUV6q7g5TD/ryphb4veEoupNyIB77ftp05igt+KLnndgDq+8XY6UzDedYYhUZP0
+	e+rSrkaYb7TFndVemaZExpKaV3VsqF/iNr1ankMlQk8L3oWgGRGDrOYD+82Y6oBysBtS
+	AVwXbR0eQWZ7TKErCyujF0+a+XTa7MbXvCMJx5gx2nYmcDhRrhUz8Pm6Qay8KFTlsJyG
+	J+Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=NAeIgxugrMuL53ABDtC/7T/xI3Xb00q2yV8zZdSDALE=;
-	b=DX1U8GMOC/bisGdvKH1llF4TiY819na4TXUrET0ENt3yfpUz0oMxd8pm/bh2ZPvoXM
-	E8cDnV9VFpZcypp4LeAeeVAyc27cr1QDbAJ+4nrkIGZGZSw/i+HQdDdfy9lXbHDsTO4k
-	B9iuF7z0HOxyksotf42Xj8XQD8hQW3T7VxqfMiQBUDR8AjEPEKs6XhWZ47MleuKi7WPC
-	zTaNZx+uzU5IWrE3F95luO/8MW3UuDkdFDtZ0fABNMPGcyaM+izXdLijlrSGd6M9qFfZ
-	dfr/nRGteniIUpE+SBNinqHPZX7j/e2Cqlb1sMSatUznGwLqFQy+nmbyIsN3eZNXvHJO
-	vOBQ==
-X-Gm-Message-State: APjAAAXFYCGXPvfWDk9XwEIehX6Y9bOFIIJiLgyX0Skw5PO0K6lvaA31
-	+IgDQA2siVMQFt67A1sPgPKLNvmn3E0=
-X-Google-Smtp-Source: APXvYqziEGGnOYzm1yGz1q6e9iMEvJTWBdDYTD/WV/dn9D5qkVdb3mm1fomclj2rDEQxLW3rqNSllw==
-X-Received: by 2002:a65:4185:: with SMTP id a5mr14630500pgq.82.1554509061638; 
-	Fri, 05 Apr 2019 17:04:21 -0700 (PDT)
+	bh=rInjHx25+oKOQhukBqVTCcJpBFQDmyDeGc3KRF83ycc=;
+	b=uBfbPIYchiDxipnN+s0shcU/5nkL0u77fW9aAGFKX31rtmXxQeiugenGNYDhPoolyH
+	KSplx7ts4zCr+R/RAaNH/RkSiPqTwWUuqSZIHImSe3tSP8CDvIW9xIZj0XqAzH1sT5aA
+	xmvI0sIVRUZZQLZoE7JX9VEb9/P9yoJzB2BkCthLoL3Aq7GIbiJOWRw67VCl4k2Noi5Q
+	UOcqxOkn/e63wZdsWRzjg3t+E9sjt/w5w9vemMWzahP0oZZ8rLjowYWRbHwm9DuqQLwI
+	UH2MxB7IubxJjtN9nXDGIA+ZfIHXx3kcNUlDdaRGIXPMulUkghiGN/d2VDE/CEEhkRIU
+	e9yA==
+X-Gm-Message-State: APjAAAU+lH64xEICjX7uL04NXBnF17OJZE3FBJp5f73WySzPoxgoFKVJ
+	YEjZOkEkU1krlBLVaDGGux/8ypHEndc=
+X-Google-Smtp-Source: APXvYqx8Lxj+wDaf2W+tlpV0OyFtTrx3FY2h+LGVoOBVjNrHXpR9yYRMpy/gwJJ6d0PI1Blz92E4oA==
+X-Received: by 2002:a63:7e10:: with SMTP id z16mr8365004pgc.40.1554510289132; 
+	Fri, 05 Apr 2019 17:24:49 -0700 (PDT)
 Received: from [10.240.241.171] ([116.212.180.67])
 	by smtp.gmail.com with ESMTPSA id
-	g4sm42238944pfm.115.2019.04.05.17.04.19
+	l63sm34023076pfc.89.2019.04.05.17.24.47
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 05 Apr 2019 17:04:20 -0700 (PDT)
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-References: <cfd56541-43c4-5128-3d41-cddc356a3cb8@gmail.com>
-	<CADkTA4MT3JctYMTFjLZXtJYgaxj6HG=G_nAAe+w0A-JRGXRFxw@mail.gmail.com>
+	Fri, 05 Apr 2019 17:24:48 -0700 (PDT)
+To: Adrian Bunk <bunk@stusta.de>
+References: <1554416266-28620-1-git-send-email-akuster808@gmail.com>
+	<1554416266-28620-2-git-send-email-akuster808@gmail.com>
+	<20190405045951.GA28935@localhost>
+	<623dd471-1e89-fdcb-fcc6-deab840731ab@gmail.com>
+	<20190405081930.GA22318@localhost>
 From: akuster808 <akuster808@gmail.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
@@ -106,16 +109,14 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <cb36599b-ab9f-36cc-ce2c-9760508df54c@gmail.com>
-Date: Sat, 6 Apr 2019 05:34:09 +0530
+Message-ID: <945d1df4-2eff-645a-a707-833139b00def@gmail.com>
+Date: Sat, 6 Apr 2019 05:54:35 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <CADkTA4MT3JctYMTFjLZXtJYgaxj6HG=G_nAAe+w0A-JRGXRFxw@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: Worries kernels supported
+In-Reply-To: <20190405081930.GA22318@localhost>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-security][PATCH 2/2] sssd: add DISTRO_FEATURE sssd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -127,44 +128,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Apr 2019 00:04:23 -0000
+X-List-Received-Date: Sat, 06 Apr 2019 00:24:51 -0000
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 Content-Language: en-US
 
 
 
-On 4/6/19 5:12 AM, Bruce Ashfield wrote:
-> On Thu, Apr 4, 2019 at 5:28 PM akuster808 <akuster808@gmail.com> wrote:
->> Hello,
+On 4/5/19 1:49 PM, Adrian Bunk wrote:
+> On Fri, Apr 05, 2019 at 11:05:17AM +0530, akuster808 wrote:
 >>
->> I noticed there are 3 kernels in Warrior. 4.18, 4.19 an 5.0. Do we
->> really need 4.18?
->> I see its the default version for poky-tiny. 4.18 is EOL but maintained
->> by Windriver.
-> 4.18 needed to be around through M3 to backstop some layers and references
-> that were being updated.
+>> On 4/5/19 10:29 AM, Adrian Bunk wrote:
+>>> On Fri, Apr 05, 2019 at 03:47:46AM +0530, Armin Kuster wrote:
+>>>> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+>>>> ---
+>>>>  recipes-security/sssd/sssd_1.16.4.bb | 2 +-
+>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security=
+/sssd/sssd_1.16.4.bb
+>>>> index 34bc8c8..d6a308c 100644
+>>>> --- a/recipes-security/sssd/sssd_1.16.4.bb
+>>>> +++ b/recipes-security/sssd/sssd_1.16.4.bb
+>>>> @@ -16,7 +16,7 @@ SRC_URI[sha256sum] =3D "6bb212cd6b75b918e945c24e7c=
+3f95a486fb54d7f7d489a9334cfa1a1f
+>>>> =20
+>>>>  inherit autotools pkgconfig gettext python-dir distro_features_chec=
+k
+>>>> =20
+>>>> -REQUIRED_DISTRO_FEATURES =3D "pam"
+>>>> +REQUIRED_DISTRO_FEATURES =3D "pam sssd"
+>>>> ...
+>>> Adding a distro feature for a leaf package is wrong.
+>> Is it a naming issue or something else? I would like to understand so =
+I
+>> may avoid making the same mistake.
+> This has nothing to do with naming.
+> It is about getting rid of workarounds by fixing the root cause,
+> instead of adding more and more layers of workarounds.
 >
-> I may delete it as part of M4, but really, since I kept it through M3, I may not
-> churn it in M4.  I handle all the support load on the linux-yocto
-> reference kernels,
-> so it shouldn't cause any one harm one way or the other.
-Thanks for the info.
+> A DISTRO_FEATURE is for cases where PACKAGECONFIG in many recipes shoul=
+d=20
+> be toggled with one setting, or the setting has to be the same in sever=
+al
+> recipes.
+The definition is old and needs to be updated to modern time. There a
+plenty of recipes that require libraries the we ended up using this
+mechanism. Look at the X11 situations. The sssd requires PAM but there
+is no PAM config option supported in the recipe so I should remove PAM
+to then?
+>
+> DISTRO_FEATURES is not appropriate to guard a quick hack workaround for=
 
-Armin
+> breakage caused by another workaround.
+Its being used in the case of mali support.=C2=A0 So I do see value in ab=
+le
+to use this mechanism in those cases.
+
+I do have another option and that is to supply the previous libldb. This
+I know is standard practice for other layers.
 >
-> I keep a very close eye on the versions, so nothing is around by chance or
-> by mistake .. and best to just copy me on the email, since I can
-> easily miss them
-> in the noise.
+> The problem at hand is that libldb in meta-openembedded was upgraded to=
+=20
+> a version not compatible with the version of samba in meta-openembedded=
+=2E
+
+And that should not have been allowed IMHO.=C2=A0 What is even worse, one=
+ can
+not install libldb onto a system without seen the same issues so it
+appears no one is using it.
+
 >
-> Bruce
+> As workaroud the libldb shipped in samba was used and installed by=20
+> the samba recipe.
 >
->> regards,
->> Armin
->>
->>
->>
+> The proper fix would be to upgrade samba to 4.9 or 4.10,
+> and use the external libldb again.
+> This would make all problems caused by having two different versions
+> of libldb disappear.
 >
+> If this is not possible, it is likely samba that should stop just=20
+> shipping the (older versions of) the conflicting binaries for now.
+>
+> In a semi-related note, the current samba is a pretty outdated even for=
+
+> the 4.8 branch and misses several CVE fixes.
+Make you wonder if folks are using samba.
+- armin
+>
+> cu
+> Adrian
+>
+
 
 
