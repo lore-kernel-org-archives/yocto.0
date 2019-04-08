@@ -1,6 +1,6 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <henriklindblomster@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8AC5FE00B77; Mon,  8 Apr 2019 09:33:37 -0700 (PDT)
+	id 473DDE00A0C; Mon,  8 Apr 2019 10:05:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,62 +10,57 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (sjolley.yp.pm[at]gmail.com)
+	provider *      (henriklindblomster[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.182 listed in list.dnswl.org]
+	*      [209.85.208.46 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
-	[209.85.210.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B45E2E00CE8
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2019 09:31:16 -0700 (PDT)
-Received: by mail-pf1-f182.google.com with SMTP id e24so7907729pfi.12
-	for <yocto@yoctoproject.org>; Mon, 08 Apr 2019 09:31:16 -0700 (PDT)
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com
+	[209.85.208.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 575C2E00994
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2019 10:05:27 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id d13so2358244edr.5
+	for <yocto@yoctoproject.org>; Mon, 08 Apr 2019 10:05:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:mime-version:thread-index
-	:content-language;
-	bh=qckzP8sPFdZBUxjXF0Dro2AFB28JV/dVCHDLnE+j+S0=;
-	b=TMpL9dEkUzmBTXGECeF3CQXXE5YGjW7xv+CH/B0qwFdxv/WmaP8DtLqKo+oJsagKLO
-	noCVuVFQNReZ5Ozr0zRKEEcbLkN8e2hGRQeTmauM+FwX1w9S5pcx2zipk+LyZrs+4wy4
-	sYOg/GQu0w/aE/uFMMTSvA4zDcIwRZZu0sgVWPwnpL30PkrWoR6AHBhiQbhhFhQioJZX
-	bc1y3YK0kZqUGARNOEp6BRdNOHyIFfxHHFSs/eTPB30TM1ITu9QoDzUIzDIW/ipdypKW
-	/++isVUjpTc6wGh7aZmBN+PRVfwGPnyPVgtnnLtWtiXt3dNqjZZR/Fn4aOtOysu0RFhR
-	grjg==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=ZScvmrIzxiV6hRd+GoRMxSN1n8hShrBLKW9UhfaWZF4=;
+	b=VOfW7/9VurBCGUvSHO4UUP5RPq0r7v2z3x67gGuUduRvhoY92eR1hYYq5r0KaMVz0/
+	4AOSVs/zHcWr8vpaG6iLklldstClUW7lCzZ/OAzfGFar9KSzsEnHGkbsvJdx9l/no+ia
+	fnv0TrxaxvTwE+3dk5Nn4eMcr+wfPgjBulNiIILqauasF7ScR0CUPtAYI2ZRIXK+rfCh
+	RiAxA4HmFJA781DxLUxrPktv2HJ3koomWrfC/uAvumSXGfLmaLfD86kL13+GqlvMbjj7
+	z6V+mcFWYgegqy7uWUGG6LLYLDbv3RfC5V85Oa0fFE6loCqPgGC5dC4LNO1ejHQaMiQV
+	lZTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-	:thread-index:content-language;
-	bh=qckzP8sPFdZBUxjXF0Dro2AFB28JV/dVCHDLnE+j+S0=;
-	b=HqMWSzeMAlZrSXIgriRy8qBXba9Ht4Sq+1XCABAN9mGJQXiHxWcVvjorKfhlmT3dL1
-	nMlL0Y+O22msTOTQhBro1nQlN6gghtdhjzrezVeGtCevPj9i2Pf1gz7Preu4Sj9uRPGc
-	+QXkKaIhluAVTuNvkW/HuyAOvKG1RUx9Sx7QitS88naWGHRDtyNc3mNHx++oRjRNa5qT
-	3RQoB8lWJkeRBp9z65fb5SK5fj9tnMXRLEFz5oNWBpcDCDZTyu5Z2Wuc5I5Qt9KkVEnc
-	Sa+iIk45p0UkCIUhJFyP58VAZso3jbC/ma4ZqY/6+1BKzEGpCy78GmkxX9otEE1MJjmY
-	Jmtw==
-X-Gm-Message-State: APjAAAUFA1XuWhVM3hTXnYo5S/gDwd98ooAI4z3swzNFROdph49MMfYf
-	Yk8HH7aj+eOfD2a1uyRACD0=
-X-Google-Smtp-Source: APXvYqw12en0RtSAIB31ByY0wdGJwcYf+DnXRTxoHFV2ehz08glwzkHq8Cm9uyOwwPRN7i9nPjjLag==
-X-Received: by 2002:a63:c64a:: with SMTP id x10mr27692144pgg.12.1554741076068; 
-	Mon, 08 Apr 2019 09:31:16 -0700 (PDT)
-Received: from sjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-	by smtp.gmail.com with ESMTPSA id
-	a129sm71836780pfa.152.2019.04.08.09.31.14
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 08 Apr 2019 09:31:15 -0700 (PDT)
-From: <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Date: Mon, 8 Apr 2019 09:31:14 -0700
-Message-ID: <0e3d01d4ee28$7c7a9d60$756fd820$@gmail.com>
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=ZScvmrIzxiV6hRd+GoRMxSN1n8hShrBLKW9UhfaWZF4=;
+	b=jEaVcJJKgPNIH8rAQM6uK5b4yD5+qGN06enxlTB0TE9RLj9W8Zp5dpFbByMnmNHq7H
+	bvdsB7zPyttFJApwDt9TH/EZ+Wsa+cP4L3ROC8fz2/lVpxPH5XkYsD/2TeMDJ2Ia5+tS
+	urPMuCd245ctCh/+m1LrkY5XnXBEtXNAv/PW3GLZmlmorz3xec6FjT4C2Fm+UI8v16gb
+	qdIf3jdzq2Nb1sywpgPYS1w86mgQQNB9iFlt476tqlCQlac+GuI3FMy7kv3rqnmrSNnq
+	Mn0vyM85ihAvTcozeEDyChWkdAWGH2Q14FZGLctBGo4mctIWa3o3VUTeiaY0qLQetDHZ
+	M70A==
+X-Gm-Message-State: APjAAAW9c9tgRjfQP6zyY+dYlrvSlrDFoKqKl4qilnGFoouvhIX47PBm
+	Iz1NDx3Vjc3k3adkEmtG86GVKFv6BfWTJMbSQEIyO32DKzY=
+X-Google-Smtp-Source: APXvYqxst1hDzIHXHfqQUuRMvzVKPSCynE2MYT8o0naURuNl6R28MADD6g8tJ9zu6YdB7KfY3H5J+Q8c3w/9VAWOK74=
+X-Received: by 2002:a17:906:aece:: with SMTP id
+	me14mr17861804ejb.0.1554743126407; 
+	Mon, 08 Apr 2019 10:05:26 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQMawDt5x2Z5aVV3paA9u4L5XLE2tA==
-Subject: Yocto Project Unassigned Bugs - Help Needed
+References: <CAAx3WaCdBQh-Thsn+YgBs8mCVU+ddF4SJQOXUJjsDveZTKcSiA@mail.gmail.com>
+In-Reply-To: <CAAx3WaCdBQh-Thsn+YgBs8mCVU+ddF4SJQOXUJjsDveZTKcSiA@mail.gmail.com>
+From: Henrik Lindblom <henriklindblomster@gmail.com>
+Date: Mon, 8 Apr 2019 20:05:15 +0300
+Message-ID: <CAOgGgEQYZtKodfnKCSNeZh98gh60OfcNLhR6VLhoXrJuZeuceg@mail.gmail.com>
+To: Gabriele Zampieri <gabbla.malist@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: shared cmake modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,274 +72,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2019 16:33:37 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0E3E_01D4EDED.D01CD6D0"
-Content-Language: en-us
+X-List-Received-Date: Mon, 08 Apr 2019 17:05:28 -0000
+Content-Type: multipart/alternative; boundary="000000000000c4403c058607d756"
 
-------=_NextPart_000_0E3E_01D4EDED.D01CD6D0
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+--000000000000c4403c058607d756
+Content-Type: text/plain; charset="UTF-8"
 
-All,
+>
+> FILES_${PN}-dev = "${MODULES_DEST_PATH}/*"
+>
 
- 
+Does your library recipe explicitly depend on <cmake_module>-dev? Can you
+share the failing recipe?
 
-The triage team meets weekly and does its best to handle the bugs reported
-into the Bugzilla. The number of people attending that meeting has fallen,
-as have the number of people available to help fix bugs. One of the things
-we hear users report is they don't know how to help. We (the triage team)
-are therefore going to start reporting out the currently 281 unassigned
-bugs.
+Cheers,
+Henrik
 
- 
+On Wed, Apr 3, 2019 at 1:18 PM Gabriele Zampieri <gabbla.malist@gmail.com>
+wrote:
 
-We're hoping people may be able to spare some time now and again to help out
-with these.
+> Hi all,
+>
+> I'm setting up a layer that will compile our applications and libraries.
+> All the applications are based on cmake and they share modules. Before
+> using yocto I kept the modules in <workspace>/cmake (under version control)
+> alongside applications and libraries. With yocto I wrote a recipe that
+> checkout the module repo and install them in
+> "${STAGING_DATADIR}/cmake/Modules/". I took this path from
+> "meta/classes/cmake.bbclass". If i build the module target, I get the files
+> installed in the target recipe datadir. If I want to build a library (that
+> depends also on my modules recipe) the task do_configure fails because
+> cmake cannot find none of my include. Digging around I found that the
+> toolchain.cmake file points to a module location that doesn't exist in the
+> library workdir, but in module recipe (${STAGING_DATADIR}/cmake/Modules/).
+>
+> The module recipe looks like as follow:
+>
+> MODULES_DEST_PATH = "${STAGING_DATADIR}/cmake/Modules"
+> FILES_${PN}-dev = "${MODULES_DEST_PATH}/*"
+>
+> do_install() {
+>     DEST_DIR=${MODULES_DEST_PATH}
+>
+>     # Create the destination folder
+>     install -d $DEST_DIR
+>     install -m 0444 ${S}/my/module.cmake $DEST_DIR
+>     ......
+> }
+>
+> So my question is: where should I install the shared modules
+> (MODULE_DEST_PATH int the above snippet)? and how to update the
+> CMAKE_MODULE_PATH properly to append that location?
+>
+> Thanks,
+> Gabriele
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
- 
-
-Bugs are split into two types, "true bugs" where things don't work as they
-should and "enhancements" which are features we'd want to add to the system.
-
- 
-
-There are also roughly four different "priority" classes right now, "2.7",
-"2.8", "2.9', "2.99" and "Future", the more pressing/urgent issues being in
-"2.7" and then "2.8".
-
- 
-
-Please review this link and if a bug is something you would be able to help
-with either take ownership of the bug, or send me
-(Stephen.k.jolley@intel.com <mailto:Stephen.k.jolley@intel.com> ) an e-mail
-with the bug number you would like and I will assign it to you (please make
-sure you have a Bugzilla account).
-
- 
-
-The list is at:
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newcomer_Bugs
-
- 
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
-
- 
-
-
-------=_NextPart_000_0E3E_01D4EDED.D01CD6D0
-Content-Type: text/html;
-	boundary="----=_NextPart_000_00B1_01D4E89D.FFDB0400";
-	charset="us-ascii"
+--000000000000c4403c058607d756
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:p=3D"urn:schemas-microsoft-com:office:powerpoint" =
-xmlns:a=3D"urn:schemas-microsoft-com:office:access" =
-xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" =
-xmlns:s=3D"uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" =
-xmlns:rs=3D"urn:schemas-microsoft-com:rowset" xmlns:z=3D"#RowsetSchema" =
-xmlns:b=3D"urn:schemas-microsoft-com:office:publisher" =
-xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadsheet" =
-xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" =
-xmlns:odc=3D"urn:schemas-microsoft-com:office:odc" =
-xmlns:oa=3D"urn:schemas-microsoft-com:office:activation" =
-xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" =
-xmlns:rtc=3D"http://microsoft.com/officenet/conferencing" =
-xmlns:D=3D"DAV:" xmlns:Repl=3D"http://schemas.microsoft.com/repl/" =
-xmlns:mt=3D"http://schemas.microsoft.com/sharepoint/soap/meetings/" =
-xmlns:x2=3D"http://schemas.microsoft.com/office/excel/2003/xml" =
-xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" =
-xmlns:ois=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" =
-xmlns:dir=3D"http://schemas.microsoft.com/sharepoint/soap/directory/" =
-xmlns:ds=3D"http://www.w3.org/2000/09/xmldsig#" =
-xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint/dsp" =
-xmlns:udc=3D"http://schemas.microsoft.com/data/udc" =
-xmlns:xsd=3D"http://www.w3.org/2001/XMLSchema" =
-xmlns:sub=3D"http://schemas.microsoft.com/sharepoint/soap/2002/1/alerts/"=
- xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#" =
-xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" =
-xmlns:sps=3D"http://schemas.microsoft.com/sharepoint/soap/" =
-xmlns:xsi=3D"http://www.w3.org/2001/XMLSchema-instance" =
-xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/soap" =
-xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" =
-xmlns:udcp2p=3D"http://schemas.microsoft.com/data/udc/parttopart" =
-xmlns:wf=3D"http://schemas.microsoft.com/sharepoint/soap/workflow/" =
-xmlns:dsss=3D"http://schemas.microsoft.com/office/2006/digsig-setup" =
-xmlns:dssi=3D"http://schemas.microsoft.com/office/2006/digsig" =
-xmlns:mdssi=3D"http://schemas.openxmlformats.org/package/2006/digital-sig=
-nature" =
-xmlns:mver=3D"http://schemas.openxmlformats.org/markup-compatibility/2006=
-" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns:mrels=3D"http://schemas.openxmlformats.org/package/2006/relationshi=
-ps" xmlns:spwp=3D"http://microsoft.com/sharepoint/webpartpages" =
-xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/2006/types"=
- =
-xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/2006/messag=
-es" =
-xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/=
-" =
-xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortalServer/Pub=
-lishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" =
-xmlns:st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoPlainText>All,<o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
-triage team meets weekly and does its best to handle the bugs reported =
-into the Bugzilla. The number of people attending that meeting has =
-fallen, as have the number of people available to help fix bugs. One of =
-the things we hear users report is they don't know how to help. We (the =
-triage team) are therefore going to start reporting out the currently =
-281 unassigned bugs.<o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>We're =
-hoping people may be able to spare some time now and again to help out =
-with these.<o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Bugs =
-are split into two types, &quot;true bugs&quot; where things don't work =
-as they should and &quot;enhancements&quot; which are features we'd want =
-to add to the system.<o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>There =
-are also roughly four different &quot;priority&quot; classes right now, =
-&#8220;2.7&#8221;, &#8220;2.8&#8221;, &#8220;2.9&#8217;, =
-&quot;2.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
-being in &quot;2.7&quot; and then &#8220;2.8&#8221;.<o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Please =
-review this link and if a bug is something you would be able to help =
-with either take ownership of the bug, or send me (<a =
-href=3D"mailto:Stephen.k.jolley@intel.com">Stephen.k.jolley@intel.com</a>=
-) an e-mail with the bug number you would like and I will assign it to =
-you (please make sure you have a Bugzilla account).<o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
-list is at: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newco=
-mer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_New=
-comer_Bugs</a><o:p></o:p></p><p =
-class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif;color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif;color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif",serif'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif;color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;<a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a><o:p><=
-/o:p></span></p><p class=3DMsoNormal><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:=
-p></span></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+<div dir=3D"ltr"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">FILES_${=
+PN}-dev =3D &quot;${MODULES_DEST_PATH}/*&quot;<br></blockquote><div><br></d=
+iv>Does your library recipe explicitly depend on &lt;cmake_module&gt;-dev? =
+Can you share the failing recipe?<div><br></div><div>Cheers,</div><div>Henr=
+ik=C2=A0</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Wed, Apr 3, 2019 at 1:18 PM Gabriele Zampieri &lt;<a hre=
+f=3D"mailto:gabbla.malist@gmail.com">gabbla.malist@gmail.com</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I=
+&#39;m setting up a layer that will compile our applications and libraries.=
+ All the applications are based on cmake and they share modules. Before usi=
+ng yocto I kept the modules in &lt;workspace&gt;/cmake (under version contr=
+ol) alongside applications and libraries. With yocto I wrote a recipe that =
+checkout the module repo and install them in &quot;${STAGING_DATADIR}/cmake=
+/Modules/&quot;. I took this path from &quot;meta/classes/cmake.bbclass&quo=
+t;. If i build the module target, I get the files installed in the target r=
+ecipe datadir. If I want to build a library (that depends also on my module=
+s recipe) the task do_configure fails because cmake cannot find none of my =
+include. Digging around I found that the toolchain.cmake file points to a m=
+odule location that doesn&#39;t exist in the library workdir, but in module=
+ recipe (${STAGING_DATADIR}/cmake/Modules/). <br></div><div><br></div><div>=
+The module recipe looks like as follow:</div><div><br></div><div>MODULES_DE=
+ST_PATH =3D &quot;${STAGING_DATADIR}/cmake/Modules&quot;<br>FILES_${PN}-dev=
+ =3D &quot;${MODULES_DEST_PATH}/*&quot;<br><br>do_install() {<br>=C2=A0=C2=
+=A0=C2=A0 DEST_DIR=3D${MODULES_DEST_PATH}<br><br>=C2=A0=C2=A0=C2=A0 # Creat=
+e the destination folder<br>=C2=A0=C2=A0=C2=A0 install -d $DEST_DIR<br></di=
+v><div>=C2=A0=C2=A0=C2=A0 install -m 0444 ${S}/my/module.cmake $DEST_DIR</d=
+iv><div>=C2=A0=C2=A0=C2=A0 ......</div><div>}<br></div><div>=C2=A0=C2=A0=C2=
+=A0 <br></div><div>So my question is: where should I install the shared mod=
+ules (MODULE_DEST_PATH int the above snippet)? and how to update the CMAKE_=
+MODULE_PATH properly to append that location?</div><div><br></div><div>Than=
+ks, <br></div><div>Gabriele<br></div></div></div></div>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
 
-------=_NextPart_000_0E3E_01D4EDED.D01CD6D0--
+--000000000000c4403c058607d756--
