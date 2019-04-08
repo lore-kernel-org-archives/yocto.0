@@ -1,73 +1,65 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 14080E00C44; Sun,  7 Apr 2019 22:23:53 -0700 (PDT)
+	id 17C15E00C44; Sun,  7 Apr 2019 22:52:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.194 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.214.173 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
-	[209.85.210.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1913E00BB7
-	for <yocto@yoctoproject.org>; Sun,  7 Apr 2019 22:23:51 -0700 (PDT)
-Received: by mail-pf1-f194.google.com with SMTP id e24so6869829pfi.12
-	for <yocto@yoctoproject.org>; Sun, 07 Apr 2019 22:23:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
+	[209.85.214.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB4F3E009A0
+	for <yocto@yoctoproject.org>; Sun,  7 Apr 2019 22:52:04 -0700 (PDT)
+Received: by mail-pl1-f173.google.com with SMTP id y6so6628994pll.13
+	for <yocto@yoctoproject.org>; Sun, 07 Apr 2019 22:52:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=s+AWnj/pfQXeszRZsbbZ5I6KleJ4s6q/eHc+evLXBcA=;
-	b=kX9eb78rPh9VLfmQxHhoqBKy5o/tfPLaRBwbnvrbVbTTGYy+aRJDe4HTLypgpEprP6
-	jAh1hP2vuR0ENQ3FzVJfYt+e8ajeFFtGvJGYKeDKGSf3sRvUv6kovkx/2cxUxsm+ERZ2
-	Es8Vvg80qB3YYmBn4D7AWeAFCvxCoRc1K6U122YQCyen0kDgu+gcmvAGEZf38y8QGeta
-	Xy2uW+68Sg/vtW3rVbQ5LyJOsQ61IcR9azVwvM/WLAH/LICrGqEXUyUL+ew297kpYpTn
-	ihEMlTQSTT77ykaAi8TT4hT+vDy+oIzEJN0FvGWwRL0amOKKHx7ri4VVRwMY+jhkkttm
-	iVkQ==
+	bh=ZnXcYLN+vL+thaf4L4Yxp53vH6BJbnXRAPN2uATGqtw=;
+	b=rjZo7kXerkngNzG9G9kGa9DfOUFdz1iay3cJGF/O9pIiLa2Q3TN58pUWBAdzGH/4XD
+	zwrDwvh0/Db4noC6q0LgIx9NCQRWL6M3+mgzPj6EtfYP4q8IvivduUm1IblkxzoPg22O
+	fi7xqM/8uJp6YK5HUE0Y/rx/Wzu3URQZwqour3s3D3rPU2GRTW50lElPdK/7uG0pmvPJ
+	XT3IxeZ0NK6+J8K0HlyZzfKW/EQR6Lzh0WYSt7E+ZTX7xvfpMJlRJjj6oZaEHt0rsohr
+	b0I5ePhbysjukLuKVYGHgx9roqwL/JaRFonhViCO1cUK4cJsbfWnAzmbpSiKVO6h0OWv
+	Diog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=s+AWnj/pfQXeszRZsbbZ5I6KleJ4s6q/eHc+evLXBcA=;
-	b=o1xKwk2JFXCCjgsxOyV1LbqwlOpndB731ERLkIhBl1jt6y/o9KstSOK9ZNqomIN+9L
-	BnUWX2yDGsoED7yuFV2THG0R5C6cxBkokL1y7ZJ7QKvlEu3tKp9Ng5T9+BZvN5s35gdh
-	JlmWQW6Ko8r6hIs8IpaHWn+TrjRaGa8P9kIPhHXlpSbnNctGctkmhebQORkqplQeEkuo
-	M/OH2x20NEWdjS9UIrQfuQbXPi0Kfl+zl2GuD2RKmC008Nf5UOC9+TNwbtZTb5QomtPE
-	9jTmlVCsXGhollQgbeuf3gdQewKYWFP16QJE5bSg8Vc4GXq0VQF2bxhy068yv/Pdaz/P
-	y4AA==
-X-Gm-Message-State: APjAAAUaJgcjSUOvvwh0bJ4yTI00kU5sy5cjW+Z2FYHpZOXFP3/1k/ZD
-	e548P4KELPf+no4DtSmKwVBzE+5y
-X-Google-Smtp-Source: APXvYqzrBV4F21XXa3PfiYMV0d/58iUU/8vsBwaqP4i6a/9vYQowtAaEc2pi3CC59F0X9spwAhfvcg==
-X-Received: by 2002:aa7:8284:: with SMTP id s4mr28246212pfm.235.1554701030949; 
-	Sun, 07 Apr 2019 22:23:50 -0700 (PDT)
+	bh=ZnXcYLN+vL+thaf4L4Yxp53vH6BJbnXRAPN2uATGqtw=;
+	b=lV2LHePlUzMLtF2kWnC61b0yFUT2jfF4S4j6t3EpyuiWiBr1P4nvGjsyWSLGQUcyD3
+	ShDWjOk+5NRjzuXlH2wUoxhE2zz+QqUXB0REd2b85oFQ/joScewo7Vk4cCoDX/eN4B97
+	q9y/orpqqcd6U+ULO7Tlh0S1oo/VOxxA3rkqkNOMZO0jo8FiZnDUlm67FTKXEDOrJrd+
+	eACjIuQgVYPw4TquUaPRxujvUqnqt2/cLJkhMVeG8rlrNOEmMP1hUyWsArZ7GfrbO4IM
+	tiKxXEcKCDShRPUj35RC9Gc8oXKSTsClS/fqzI5wjTN6br/n1zAkI5GlMjxlk9gF259y
+	qQ0g==
+X-Gm-Message-State: APjAAAVGQQJe7Ky9yuQo9bE/ERVfJoAW40EVd5rOXsBmBUXPyicMnGJY
+	0FCMQI1rr0uAnJeNDvbTGn9mV+3xUq9GYA==
+X-Google-Smtp-Source: APXvYqw91TSui08WZ1MrJAU2Ha+aHdrXWN8nZm7e5Wvx8mcvO4luMhLQ+vL+maiu1qLHFYEFjiQzVw==
+X-Received: by 2002:a17:902:f089:: with SMTP id
+	go9mr27280137plb.309.1554702723354; 
+	Sun, 07 Apr 2019 22:52:03 -0700 (PDT)
 Received: from [10.80.244.24] ([182.72.92.62])
 	by smtp.gmail.com with ESMTPSA id
-	k124sm50448361pgc.65.2019.04.07.22.23.48
+	v82sm64972186pfa.170.2019.04.07.22.52.00
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 07 Apr 2019 22:23:50 -0700 (PDT)
-To: Adrian Bunk <bunk@stusta.de>
-References: <1554561940-31363-1-git-send-email-akuster808@gmail.com>
-	<20190406150140.GA25634@localhost>
-	<b0151407-4541-79ae-c05b-04198e4c7c57@gmail.com>
-	<20190407051232.GA30195@localhost>
-	<38978945-6890-3af5-206e-2e01396b099e@gmail.com>
-	<20190407071601.GB30195@localhost>
-From: akuster808 <akuster808@gmail.com>
+	Sun, 07 Apr 2019 22:52:02 -0700 (PDT)
+To: Anders Montonen <Anders.Montonen@iki.fi>, yocto@yoctoproject.org
+References: <5B900DC4-965B-4569-A259-50F812B96B8B@iki.fi>
+From: akuster <akuster@mvista.com>
 Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	mQINBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
 	Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
 	mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
@@ -110,14 +102,13 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <24805e8b-bd1e-395c-80f9-e21064ac3da1@gmail.com>
-Date: Mon, 8 Apr 2019 10:53:46 +0530
+Message-ID: <b3c36d11-0546-bae4-9a7b-f1a093a89ffb@mvista.com>
+Date: Mon, 8 Apr 2019 11:21:59 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190407071601.GB30195@localhost>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-security][PATCH] clamav: freshclam need bind to run
+In-Reply-To: <5B900DC4-965B-4569-A259-50F812B96B8B@iki.fi>
+Subject: Re: Building on non-x86 hosts, wic and syslinux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -129,99 +120,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2019 05:23:53 -0000
+X-List-Received-Date: Mon, 08 Apr 2019 05:52:10 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 Content-Language: en-US
 
 
 
-On 4/7/19 12:46 PM, Adrian Bunk wrote:
-> On Sun, Apr 07, 2019 at 11:45:18AM +0530, akuster808 wrote:
->>
->> On 4/7/19 10:42 AM, Adrian Bunk wrote:
->>> On Sun, Apr 07, 2019 at 01:38:38AM +0530, akuster808 wrote:
->>>> On 4/6/19 8:31 PM, Adrian Bunk wrote:
->>>>> On Sat, Apr 06, 2019 at 08:15:40PM +0530, Armin Kuster wrote:
->>>>>> Add it to the rdepends for that package
->>>>>>
->>>>>> Signed-off-by: Armin Kuster <akuster808@gmail.com>
->>>>>> ---
->>>>>>  recipes-security/clamav/clamav_0.99.4.bb | 2 ++
->>>>>>  1 file changed, 2 insertions(+)
->>>>>>
->>>>>> diff --git a/recipes-security/clamav/clamav_0.99.4.bb b/recipes-se=
-curity/clamav/clamav_0.99.4.bb
->>>>>> index 6219d9e..dbe903f 100644
->>>>>> --- a/recipes-security/clamav/clamav_0.99.4.bb
->>>>>> +++ b/recipes-security/clamav/clamav_0.99.4.bb
->>>>>> @@ -152,3 +152,5 @@ RCONFLICTS_${PN} +=3D "${PN}-systemd"
->>>>>>  SYSTEMD_SERVICE_${PN} =3D "${BPN}.service"
->>>>>> =20
->>>>>>  RDEPENDS_${PN} +=3D "openssl ncurses-libncurses libbz2 ncurses-li=
-btinfo clamav-freshclam clamav-libclamav"
->>>>>> +
->>>>>> +RDEPENDS_freshclam =3D "bind"
->>>>> freshclam depending on a DNS server looks very wrong.
->>>> got talk to clamav folks then.
->>>>
->>>>> What is the actual problem?
->>>> ClamAV update process started at Sat Apr  6 14:59:25 2019
->>>> WARNING: Can't query current.cvd.clamav.net
->>>> WARNING: Invalid DNS reply. Falling back to HTTP mode.
->>>> ERROR: Can't get information about database.clamav.net: Temporary fa=
-ilure in name resolution
->>>> ERROR: Can't download main.cvd from database.clamav.net
->>>> Giving up on database.clamav.net...
->>>>
->>>> because=20
->>>>
->>>> Use DNS to verify virus database version. Freshclam uses DNS TXT rec=
-ords
->>>> to verify database and software versions=20
->>>>
->>>> therefor I am including bind.
->>> freshclam needing DNS information makes sense, which means it must be=
-=20
->>> configured how to access a DNS server.
->>>
->>> On the local machine you need only DNS client funtionality,
->>> just like every user needs for a web browser.
->>> Forcing installation of a DNS server is not the correct solution
->>> when the actual problem is just a configuration issue on the
->>> machine where you were trying it.
->> So I can expect a patch to provide such configuration. I would like to=
-
->> see how you would solve this.
-> How are you configuring networking on your device?
-
-I figured it out.
+On 4/8/19 4:43 AM, Anders Montonen wrote:
+> Hi,
 >
->> Maybe an FAQ we can add to the layer for this package?
-> From the error message you gave it is not obvious that there is any
-> problem that would be specific to this package.
->
-> I would guess that DNS configuration is missing or incorrect on your=20
-> device, and that "ping www.google.com" would also fail with a name=20
-> resolution error.
+> I was experimenting with building on an AArch64 host, and ran into the =
+issue that image_types_wic.bbclass unconditionally adds syslinux-native t=
+o the dependencies, while syslinux is only compatible with x86 hosts. I d=
+idn=E2=80=99t look further into this, but is it possible to make this dep=
+endency chain dependent on the actual image types you=E2=80=99re trying t=
+o build?
+I think we are going to have to figure that out. The Yocto Project has
+an arm64 builder that they are in the middle of bring up. If might be
+helpful to the project if you could open a bug on this. I know there are
+a few folks building on raspberrypi who my be on the different mailing
+list,=C2=A0 openembedded-core@lists.openembedded.org. You might want to p=
+ost
+your question there too.
 
-The runtime test I added creates a /etc/resolve.conf , that allows me to
-ping to the outside but I missed including the local ip ( 127.)=C2=A0=C2=A0=
- I am
-running this two systems to verify this my flurry of changes. One system
-in at home on real hardware and other in qemu my laptop while I am
-traveling. With that being said, I can drop the bind requirement and I
-need to update the runtime test.
-
-I do appreciate the reviews , questions and push back.=C2=A0
-
-Kind regards,
+kind regards,
 Armin
 >
->> - armin
-> cu
-> Adrian
+> After working around the problem by manually removing the dependency fr=
+om the class, the build completed without issues (though I did not test t=
+he results).
 >
+> Regards,
+> Anders
 
 
 
