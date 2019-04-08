@@ -1,62 +1,65 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3CB22E00A84; Mon,  8 Apr 2019 10:10:59 -0700 (PDT)
+	id 50A46E00A54; Mon,  8 Apr 2019 11:04:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	https://www.dnswl.org/, no *      trust
+	*      [209.85.160.171 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.177 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f177.google.com (mail-it1-f177.google.com
-	[209.85.166.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B05A6E0097C
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2019 10:10:58 -0700 (PDT)
-Received: by mail-it1-f177.google.com with SMTP id v8so498363itf.0
-	for <yocto@yoctoproject.org>; Mon, 08 Apr 2019 10:10:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
+	[209.85.160.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 558B2E0097C
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2019 11:04:29 -0700 (PDT)
+Received: by mail-qt1-f171.google.com with SMTP id w5so16521764qtb.11
+	for <yocto@yoctoproject.org>; Mon, 08 Apr 2019 11:04:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=9aeAtjNF9EB5uMnphIAwpfihCT49AqwpNAL0Qd8m0Lo=;
-	b=d+BVW27VBipCmqqELEsPA8sdffIbePH7luE194ZGr+wsy2lHeNL6ZoQVQTtMkaMzqj
-	vPegIsJfQNt4GrWX0FsWvSanuvZJTQ1tK8a/pf2H0g9FyqKhdqVzEZwlY/2YSq7dm1it
-	lIIP/BnayQuZCsKmQMwk3wC9EfDXtUrZLPM7uxCGrAbzxUuMrKLsRuf50LOOi5BM+6Jq
-	Qm9r9810hoCkfV0IwXnLOtaruz3qRosYbxDqBNLim5xr/ajqU++7mStcWz5fV4CBzjVq
-	SKpNERV+K6P0X6IAz55NvH+WCnn1eTbPbC3cRT9YAQbb9ndgHA0ixum0Ju4TI0I4r/mB
-	3LRg==
+	:cc:content-transfer-encoding;
+	bh=7tScza4kmc/z41k8Avqj7EapjL9N5Y1PgvC1V6FSYlU=;
+	b=OM4a/LZePC/uUoyBq5F0mljYCUx4yVD89k4HmHLtduLXmt8tZZt/Dt8OPDrLTVVfJO
+	AFwrUByL5V45QcZV8zjEjLu/KWgQ8O0HvZTVfkFeCTdpJkwdmGMtyMwA/jOefCCqJRTg
+	AgQ/82sLncg4+/7qn0ywC599OLXu171OiNZ9xLXlR3XHEloJi7xSfIoG9MBmSAUe4x/l
+	XzEMjas/KBJ5Mt+CpUSmxQTdF8VZpNERe2sRui06sS77jRoC5uU1OP4TFw0Sbj7W0+X3
+	z4n8Cg6bDFVvkraIszeeHc3XcioXV02b0QS2IGKdaXJ4dvuDNojAODOHO1misF0eHy8j
+	9BcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=9aeAtjNF9EB5uMnphIAwpfihCT49AqwpNAL0Qd8m0Lo=;
-	b=dtuf2ajPlNqzp/nM8vg/xvD46tee8KwWdCLgnbJMIoYxLgyS12h+vjynEUyfTl4dBV
-	ZTIDidz/J1zvOZXsWWeKQmGU4m9rpal0ElYGudpG2Hwp2LtJ5biIQ79jxqi+A3MLhAKK
-	1LM7ETjCob88PfbpmbF77OjphoDgMgdIla+imHXKoEPyFlUboaaLb/+zvAz2GJqw4zbY
-	1hPHY9b/Rg59LXbMC3yOQSq45+QJcJKQOZ6UhIvioKJl7IVxwgS66o0cV9AIKo7uAOTV
-	bsTE4fRfLYSXwroWmouwMIDIaFTkY4gAhhJ2qacQ9ua+GYLBaJ/QijEE2OKXAw5UhSpi
-	LWRA==
-X-Gm-Message-State: APjAAAUH8daJELeo/PrSG4NH8rP+o+xB9tbvdSCzN78eNIf3xWx+Vv9Q
-	ldnUiAN+QwZ9NXFtVXlrSRUvxFTeGJZtopcyqxETTw4/
-X-Google-Smtp-Source: APXvYqzFRv4wUBTDDQ/VL/2mZtFmGoCLBI2veAQUuDLp6Z9JPcIR7WVMHl5CQ7u9HUcRlYH/P/m/QAKa7vfcs4I/p1g=
-X-Received: by 2002:a24:d643:: with SMTP id o64mr20980162itg.148.1554743449808;
-	Mon, 08 Apr 2019 10:10:49 -0700 (PDT)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=7tScza4kmc/z41k8Avqj7EapjL9N5Y1PgvC1V6FSYlU=;
+	b=s5nupRdugyntcEL554uPFce1moKaC1bPXV8ULR0R+8YQzJRWlidmaEU2bdrGTZRs0Q
+	R8IkRmSiP1srxwDpwEd84bZuNNHmS5ScvkAOL+gB96mDCL1TLBi0FhVrPYkcpenSMBie
+	25XwE7vOzYgTMEjWqLqjH5P3I8ndpOAUtsbM6Iq8jPwN2/KcbDMGooPMOVfBAefYpByH
+	htXTpida6b5Lggw3JhjlZhaGhQlo8scD0seX4dddDG5f7o7Fv281OgEIollPuzBC2Rhs
+	o4ELXPHIJt481hgetsrPakWPwzWeCDKJGNgUhgbWpbpPK179/lyb/jyPaOVGiCeCBN87
+	UgYA==
+X-Gm-Message-State: APjAAAUyrgB9edy5drLIfOxahEBHdr6bDRkEp9Y4kkxOdbiMxxaPFdc5
+	ipf9ES3ue5F6W7/QaBDxNfjcWekQK/8H5eAhgLQ=
+X-Google-Smtp-Source: APXvYqzwI/zYVHuuykC/RCCGqxXRPYTcCsBg3SuUo07ud+MDpwFNqdmzNCXZN3PgtlUPF8M7kvKiQd5RUiuH6k6TUWE=
+X-Received: by 2002:ac8:f86:: with SMTP id b6mr25715380qtk.330.1554746668307; 
+	Mon, 08 Apr 2019 11:04:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <6bf22911-f264-f7b2-13a3-a914f9b3d2dd@gmail.com>
-	<CADz_WD7TRFmcu9YQ+mJ6_nHbKQ5eXp8Fii_AK7ZPDJwhTOVX2A@mail.gmail.com>
-In-Reply-To: <CADz_WD7TRFmcu9YQ+mJ6_nHbKQ5eXp8Fii_AK7ZPDJwhTOVX2A@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 8 Apr 2019 18:10:38 +0100
-Message-ID: <CAJTo0LbEnsy_Ha5EOHuw8cgzFxH_Kj1U8O7ZsXOje+=y_XsVNA@mail.gmail.com>
-To: Nataliya Korovkina <malus.brandywine@gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
-	Karshi Hasanov <karshi.hasanov@gmail.com>
-Subject: Re: Installation help
+References: <000501d4ea27$d512a4e0$7f37eea0$@viveris.fr>
+In-Reply-To: <000501d4ea27$d512a4e0$7f37eea0$@viveris.fr>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 8 Apr 2019 11:04:02 -0700
+Message-ID: <CAMKF1sq=HhkpXswf5OmH9k6aEB1ZqJv-u3-=OQ-+O9bm54oqFg@mail.gmail.com>
+To: =?UTF-8?Q?Cl=C3=A9ment_Cherbeix?= <clement.cherbeix@viveris.fr>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: problem with ruby
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,65 +71,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2019 17:10:59 -0000
+X-List-Received-Date: Mon, 08 Apr 2019 18:04:31 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The better fix is to fix your network.  If you need a proxy, set it in
-local.conf.
+On Mon, Apr 8, 2019 at 9:44 AM Cl=C3=A9ment Cherbeix
+<clement.cherbeix@viveris.fr> wrote:
+>
+> Hello all,
+>
+> I=E2=80=99m trying to add the MIB mechanics in my yocto project, for that=
+ I use dadi (ruby depenedent) but I get an error when bitbake try to compil=
+e :
+>
+> DEBUG: Executing shell function do_compile
+>
+> ERROR:  Loading command: build (LoadError)
+>
+>                 cannot load such file -- zlib
+>
+> ERROR:  While executing gem ... (NoMethodError)
+>
+>     undefined method `invoke_with_build_args' for nil:NilClass
+>
+> WARNING: /home/modem/tkh/build/tmp/work/x86_64-linux/libxml-ruby-native/2=
+.8.0-r0/temp/run.do_compile.567:1 exit 1 from 'LANG=3D"en_US.UTF-8" LC_ALL=
+=3D"en_US.UTF-8" gem build $gem'
+>
+>
+>
+> I have tried to build the gem in an environment outside of Yocto and it w=
+as correct but when I try to do it in Yocto, I get my error.
+> Did someone have an idea on what to do ?
+> what is the recommended way of building ruby via gem in yocto ?
+>
+>
 
-Ross
+It seems that it is using ruby-native but does not have zlib-native
+and it cant find this library. Can you add zlib to DEPENDS in ruby
+recipe and see if that helps.
 
-On Mon, 8 Apr 2019 at 18:09, Nataliya Korovkina
-<malus.brandywine@gmail.com> wrote:
 >
-> Hello Karshi,
+> Here is my build environment :
 >
-> I had the same message. I added:
+> BB_VERSION           =3D "1.40.0"
 >
-> CONNECTIVITY_CHECK_URIS=""
+> BUILD_SYS            =3D "x86_64-linux"
 >
-> in conf/local.conf as a QUICK FIX. I hope someone has better solution, please?
+> NATIVELSBSTRING      =3D "universal"
 >
-> Thanks,
-> Nataliya
+> TARGET_SYS           =3D "x86_64-poky-linux"
 >
+> DISTRO               =3D "poky"
 >
-> On Mon, Apr 8, 2019 at 12:43 PM Karshi Hasanov <karshi.hasanov@gmail.com> wrote:
->>
->> Hi all,
->>
->> I have followed the
->>
->> https://www.yoctoproject.org/docs/2.6.1/brief-yoctoprojectqs/brief-yoctoprojectqs.html
->>
->> when issue the "bitbake core-image-minimal"
->>
->> I am keep getting this error:
->>
->> ERROR:  OE-core's config sanity checker detected a potential
->> misconfiguration.
->>      Either fix the cause of this error or at your own risk disable the
->> checker (see sanity.conf).
->>      Following is the list of potential problems / advisories:
->>
->>      Fetcher failure for URL: 'https://www.example.com/'. URL
->> https://www.example.com/ doesn't work.
->>      Please ensure your host's network is configured correctly,
->>      or set BB_NO_NETWORK = "1" to disable network access if
->>      all required sources are on local disk.
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+> DISTRO_VERSION       =3D "2.6.1"
+>
+> TUNE_FEATURES        =3D "m64 corei7"
 >
 >
 >
-> --
+> Thanks in advance !
 >
 >
-> Nataliya Korovkina
+>
+> Cl=C3=A9ment C.
 >
 > --
 > _______________________________________________
