@@ -1,65 +1,65 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 50A46E00A54; Mon,  8 Apr 2019 11:04:31 -0700 (PDT)
+	id D99DBE00994; Mon,  8 Apr 2019 11:09:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [209.85.160.171 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.178 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
-	[209.85.160.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 558B2E0097C
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2019 11:04:29 -0700 (PDT)
-Received: by mail-qt1-f171.google.com with SMTP id w5so16521764qtb.11
-	for <yocto@yoctoproject.org>; Mon, 08 Apr 2019 11:04:29 -0700 (PDT)
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com
+	[209.85.160.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44BE0E00942
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2019 11:09:31 -0700 (PDT)
+Received: by mail-qt1-f178.google.com with SMTP id k14so16627891qtb.0
+	for <yocto@yoctoproject.org>; Mon, 08 Apr 2019 11:09:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
 	:cc:content-transfer-encoding;
-	bh=7tScza4kmc/z41k8Avqj7EapjL9N5Y1PgvC1V6FSYlU=;
-	b=OM4a/LZePC/uUoyBq5F0mljYCUx4yVD89k4HmHLtduLXmt8tZZt/Dt8OPDrLTVVfJO
-	AFwrUByL5V45QcZV8zjEjLu/KWgQ8O0HvZTVfkFeCTdpJkwdmGMtyMwA/jOefCCqJRTg
-	AgQ/82sLncg4+/7qn0ywC599OLXu171OiNZ9xLXlR3XHEloJi7xSfIoG9MBmSAUe4x/l
-	XzEMjas/KBJ5Mt+CpUSmxQTdF8VZpNERe2sRui06sS77jRoC5uU1OP4TFw0Sbj7W0+X3
-	z4n8Cg6bDFVvkraIszeeHc3XcioXV02b0QS2IGKdaXJ4dvuDNojAODOHO1misF0eHy8j
-	9BcQ==
+	bh=EwaUuge9IadeHZFqdzyUjIwQHZtcSQcknyuA+cf6K8U=;
+	b=fSkL6XFa8Ut4ONowswxCpFMkEtIGU/u+TjdJC5tyNaqLxqv3PP1u7mPlbh1y8FA86F
+	nD39UDG/Zh+rLpEkR7DpgWSMMHeBIJuRdChz0IFNcsjJ8GisqOteV4sT5NLAJj1sLRrf
+	C37Oib54up8tTWSykXFxAnd0s2iwr2e3NbnPK4CnwR5Ct4Ua2WU+W0JHSR1t9HBAOmRD
+	72K8/bqjxRZNFPO3kVaF49CuyFsgiRp3XNgtt30oPW9BbOT/RrK63YzjGPSo0GFujM/g
+	vFAok9qNY1OsD56nbn5mQYGDx7tMNi1cFmnVaGh0BKb24RG6IRFfL4qwGMEve/ZxbC6K
+	kpew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=7tScza4kmc/z41k8Avqj7EapjL9N5Y1PgvC1V6FSYlU=;
-	b=s5nupRdugyntcEL554uPFce1moKaC1bPXV8ULR0R+8YQzJRWlidmaEU2bdrGTZRs0Q
-	R8IkRmSiP1srxwDpwEd84bZuNNHmS5ScvkAOL+gB96mDCL1TLBi0FhVrPYkcpenSMBie
-	25XwE7vOzYgTMEjWqLqjH5P3I8ndpOAUtsbM6Iq8jPwN2/KcbDMGooPMOVfBAefYpByH
-	htXTpida6b5Lggw3JhjlZhaGhQlo8scD0seX4dddDG5f7o7Fv281OgEIollPuzBC2Rhs
-	o4ELXPHIJt481hgetsrPakWPwzWeCDKJGNgUhgbWpbpPK179/lyb/jyPaOVGiCeCBN87
-	UgYA==
-X-Gm-Message-State: APjAAAUyrgB9edy5drLIfOxahEBHdr6bDRkEp9Y4kkxOdbiMxxaPFdc5
-	ipf9ES3ue5F6W7/QaBDxNfjcWekQK/8H5eAhgLQ=
-X-Google-Smtp-Source: APXvYqzwI/zYVHuuykC/RCCGqxXRPYTcCsBg3SuUo07ud+MDpwFNqdmzNCXZN3PgtlUPF8M7kvKiQd5RUiuH6k6TUWE=
-X-Received: by 2002:ac8:f86:: with SMTP id b6mr25715380qtk.330.1554746668307; 
-	Mon, 08 Apr 2019 11:04:28 -0700 (PDT)
+	bh=EwaUuge9IadeHZFqdzyUjIwQHZtcSQcknyuA+cf6K8U=;
+	b=OChQ4xPRIKVAJCN6NSa04YuhamSEuVoD1M+xbx8BuObjZEHUEQBveqWhf45I8VgSdj
+	uUCNwprhJB8hmVKHvQCbKpPIcsHOJcf8Zk/MN6mBlnk62XTVlExz0KLrhe42uaiZVmEB
+	ZaGALAtjxxFqslkhP0mqYRtFvc3Zh0LlOqwbXB3HdjsM3Cj8+LQmqAcqmZwzkyZUo/AX
+	rJzEHkWrmMiyKKeJ1++pzgqa4+dQZdzLEUDdLAmd0zPKpXGIMBokICCxlIdn7/AP9pEW
+	OnoDZ0Xi8BEcCcE7c09P1k53SjIBn8SSNmtrwH6jmF1nAPR1Bx3peIuYLLllUMxQWGBq
+	ShEQ==
+X-Gm-Message-State: APjAAAWVGOULPdjs2BksctiWc53LvRFYtV6a9JhWNvoK7hvpXRDD7e81
+	GyGhT4kDg10udR/2GumzBtrc71cJY3y8u9YuR5o0UoXVsH4=
+X-Google-Smtp-Source: APXvYqw/AR+hpuzf09Su9MgWWHVURpSz9jgi7t+0o2zh6Bdr2z2ZJAY6HsF9Un33u1GmZY7QlNF5a6KNytUB3TL/nyU=
+X-Received: by 2002:a0c:c988:: with SMTP id b8mr24952436qvk.33.1554746970397; 
+	Mon, 08 Apr 2019 11:09:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <000501d4ea27$d512a4e0$7f37eea0$@viveris.fr>
-In-Reply-To: <000501d4ea27$d512a4e0$7f37eea0$@viveris.fr>
+References: <MA1PR01MB3689C606A400567C9831BC0FE5560@MA1PR01MB3689.INDPRD01.PROD.OUTLOOK.COM>
+In-Reply-To: <MA1PR01MB3689C606A400567C9831BC0FE5560@MA1PR01MB3689.INDPRD01.PROD.OUTLOOK.COM>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 8 Apr 2019 11:04:02 -0700
-Message-ID: <CAMKF1sq=HhkpXswf5OmH9k6aEB1ZqJv-u3-=OQ-+O9bm54oqFg@mail.gmail.com>
-To: =?UTF-8?Q?Cl=C3=A9ment_Cherbeix?= <clement.cherbeix@viveris.fr>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: problem with ruby
+Date: Mon, 8 Apr 2019 11:09:04 -0700
+Message-ID: <CAMKF1soAAyreHQxNyCEYXj1NrZTN3hX0w0Yzjr636+tc2WcOsw@mail.gmail.com>
+To: Srinivasa RaoW <Srinivasa.RaoW@ltts.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Development environment for Grub bootloader and Linux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,70 +71,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2019 18:04:31 -0000
+X-List-Received-Date: Mon, 08 Apr 2019 18:09:31 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 8, 2019 at 9:44 AM Cl=C3=A9ment Cherbeix
-<clement.cherbeix@viveris.fr> wrote:
+On Mon, Apr 8, 2019 at 9:39 AM Srinivasa RaoW <Srinivasa.RaoW@ltts.com> wro=
+te:
 >
-> Hello all,
+> Dear All,
 >
-> I=E2=80=99m trying to add the MIB mechanics in my yocto project, for that=
- I use dadi (ruby depenedent) but I get an error when bitbake try to compil=
-e :
+> I have a requirement of modifying Grub bootloader for x86 architecture bu=
+t Just read the Wiki Page of Yocto and it states as below=E2=80=9D
 >
-> DEBUG: Executing shell function do_compile
+> =E2=80=9CThe Yocto Project is an open-source project that delivers a set =
+of tools that create operating system images for embedded Linux systems=E2=
+=80=9D
 >
-> ERROR:  Loading command: build (LoadError)
+> Towards this I have below questions:
 >
->                 cannot load such file -- zlib
->
-> ERROR:  While executing gem ... (NoMethodError)
->
->     undefined method `invoke_with_build_args' for nil:NilClass
->
-> WARNING: /home/modem/tkh/build/tmp/work/x86_64-linux/libxml-ruby-native/2=
-.8.0-r0/temp/run.do_compile.567:1 exit 1 from 'LANG=3D"en_US.UTF-8" LC_ALL=
-=3D"en_US.UTF-8" gem build $gem'
->
->
->
-> I have tried to build the gem in an environment outside of Yocto and it w=
-as correct but when I try to do it in Yocto, I get my error.
-> Did someone have an idea on what to do ?
-> what is the recommended way of building ruby via gem in yocto ?
->
->
+> Does Yocto project support only Linux systems?
 
-It seems that it is using ruby-native but does not have zlib-native
-and it cant find this library. Can you add zlib to DEPENDS in ruby
-recipe and see if that helps.
+yes
+
+> Do we have repositories/build tool chain for Grub bootloader?
+
+
+> Which is the bootloader that Yocto project recommends for x86 architectur=
+e?
+
+It supports multiple bootloaders e.g. grub2, syslinux, systemd-boot
+etc. its upto distro to choose which ever they want
+
+I would suggest to look into devtool workflow with yocto/OE this is
+recommended tool for doing cross development
+
+http://events17.linuxfoundation.org/sites/events/files/slides/2017%20ELC%20=
+--%20Using%20devtool%20to%20Streamline%20your%20Yocto%20Project%20Workflow.=
+pdf
 
 >
-> Here is my build environment :
+> I am trying to setup a development environment under Ubunt Host for x86 t=
+arget architecture.  Goal is to build Grub bootloader, Ubuntu linux and roo=
+t file system all together under one umbrella.
 >
-> BB_VERSION           =3D "1.40.0"
+> Please let me know if Yocto has anything for this.
 >
-> BUILD_SYS            =3D "x86_64-linux"
+> Appreciate any input on this.
 >
-> NATIVELSBSTRING      =3D "universal"
+> Regards
 >
-> TARGET_SYS           =3D "x86_64-poky-linux"
->
-> DISTRO               =3D "poky"
->
-> DISTRO_VERSION       =3D "2.6.1"
->
-> TUNE_FEATURES        =3D "m64 corei7"
+> Srinivasa
 >
 >
 >
-> Thanks in advance !
+> L&T Technology Services Ltd
 >
+> www.LTTS.com
 >
->
-> Cl=C3=A9ment C.
+> This Email may contain confidential or privileged information for the int=
+ended recipient (s). If you are not the intended recipient, please do not u=
+se or disseminate the information, notify the sender and delete it from you=
+r system.
 >
 > --
 > _______________________________________________
