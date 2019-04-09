@@ -1,69 +1,66 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 200EBE00D44; Tue,  9 Apr 2019 03:18:10 -0700 (PDT)
+	id 1E41DE00B81; Tue,  9 Apr 2019 03:24:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [199.212.143.9 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.181 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
-Received: from dawnrocksmusic.com (cpanel4.indieserve.net [199.212.143.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE68FE00D11
-	for <yocto@yoctoproject.org>; Tue,  9 Apr 2019 03:18:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=crashcourse.ca; s=default; h=Content-Type:MIME-Version:References:
-	Message-ID:In-Reply-To:Subject:cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=dAZJYUaQs8I/3Os+e5SgfbYpCZjCjMRqvr4OlL9Qy9g=;
-	b=C8eCNihEhR+TMSTlmTbwTkmlA
-	HuXg6htmxZNIx0VJk85w5Sjw3PaLl4JxsMxaxx1EI+AMi9dwELDJDbwXY0bUZO8/YEi5KHybeUk8+
-	g5lfYw8zQGeBK5GV7FF3F+o9LYq8ciBlRweUtiMjJ+lpCO9Nhu5MU3xDYGy385NKew2j62FuMW6vR
-	9yvW+cOjqS/zcTChfF7GEqJict0+fT0f3r8lqxvxF7+dnWbDRt0uRTsUx1sV2bOk92JrNUI87MxDf
-	S9ItqLIvsehCTQaCm56efjxfZlSAS7k39tdLp/B5vbp/sNEd9QRZej9hiQYUbqYZBzw9oHZSxvzKo
-	U9hmniYDg==;
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com
-	([174.114.57.56]:45492 helo=localhost.localdomain)
-	by cpanel4.indieserve.net with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.91)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1hDnpM-00088C-10; Tue, 09 Apr 2019 06:18:04 -0400
-Date: Tue, 9 Apr 2019 06:18:02 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: "Burton, Ross" <ross.burton@intel.com>
-In-Reply-To: <CAJTo0LYB0ckHOoXG59NPDY-dkXc7Qf1XUcpjkjXgfw_BqduVxg@mail.gmail.com>
-Message-ID: <alpine.LFD.2.21.1904090617510.7571@localhost.localdomain>
-References: <alpine.LFD.2.21.1904081613420.23184@localhost.localdomain>
-	<CAJTo0LYVR2L137Gt5s0-6HUcTKhx=KKwi=Lz_Fgx5nExf5bzQA@mail.gmail.com>
-	<alpine.LFD.2.21.1904090613060.7419@localhost.localdomain>
-	<CAJTo0LYB0ckHOoXG59NPDY-dkXc7Qf1XUcpjkjXgfw_BqduVxg@mail.gmail.com>
-User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
+Received: from mail-it1-f181.google.com (mail-it1-f181.google.com
+	[209.85.166.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 879B9E00798
+	for <yocto@yoctoproject.org>; Tue,  9 Apr 2019 03:24:29 -0700 (PDT)
+Received: by mail-it1-f181.google.com with SMTP id x132so4007356itf.2
+	for <yocto@yoctoproject.org>; Tue, 09 Apr 2019 03:24:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=BDWBla5qIuIaJN9gREBKk+HXCI34L0jN9m9gApEW4l0=;
+	b=lYIkaLA1RrDox0egIda0w/fujUd38oay6JyDIzSgmY3F53OgN2I7x5TYV6anTA9hJU
+	+R5ym0kidnlbsWnk9kQy9eXqG1hmhuWU9+GL2FWv56TOWOeI9nc4wLIgoHhvf+K4Z9H/
+	+qbK/zKTJXjjEBtBtacpp24Dy7jPFw71X6OxXw85exteGSe0yHE37ljL0j4uk8tYDasf
+	x+JT74G9AydgFg9Tm6kSZ0SwjyEZjJqiDIT5VJcwXMfIVzuU0q8gdz7ngztB86Ok/CsL
+	UDrLLdv+DYSSYjTBJx8Isnk8+xVUZBNzjGdmpypO+fgFxP4GSquJsnfC9Ewk0L2JODw+
+	IunA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=BDWBla5qIuIaJN9gREBKk+HXCI34L0jN9m9gApEW4l0=;
+	b=pcSdn+dmNNJoTC3AIjmoCCcV0iWeVB5jai5yfPUWT+8XbUH00Fc/mN3VAowrK9IxBE
+	TN7Gc86B4A0hVqLB2lQPE/ghRdaScaeSf1fuWZipwyCrUmNwq1O9BhKojOgdhv9d2tL5
+	+dNR56OtpiM98XLAinmDgU7ElPL8a5bFgN0R9D+rblAQ1X9YZu8XvVWzkpeaENkC7j9M
+	kH3RHhpOnbN33egerYRjvW6+qzlIbbRWUgKQmFuYuCQOlij+oJXCBzhuw7PlrnIjRC6P
+	vTYK0DNxriqUf+V1JjgreF7exqdwGijvA/fMxJDBUwoBiKE9FRZxTmtMMOsVfeONdeUX
+	1P4g==
+X-Gm-Message-State: APjAAAWZECOwe3R19oGBpHlYhg/8FeWVl9trjnF0zK4kEdsvYSB5OZ8V
+	GQ4+oWLwxrt/erjhqX3nWbhEyD4Oz1QopYztdxgZ6w==
+X-Google-Smtp-Source: APXvYqzsDDZTr20oA8/raSC/iyCL1Uan3ouNX2ImQNuO946tZvJhFy0xeEeWl6vc28qB6uFi+caPhU2/+IWqOEXcybY=
+X-Received: by 2002:a24:ad2:: with SMTP id 201mr23318469itw.26.1554805468841; 
+	Tue, 09 Apr 2019 03:24:28 -0700 (PDT)
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel4.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel4.indieserve.net: authenticated_id:
-	rpjday+crashcourse.ca/only user confirmed/virtual account not
-	confirmed
-X-Authenticated-Sender: cpanel4.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: m4-mative: "Please port gnulib fseeko.c to your platform!"
+References: <20190404115301.1820604a@phoenix.invalid>
+	<CAJTo0LbwKobcEg8qp0NY-EaEtkgyBHLoVNSBH41brjoOJPw_Vw@mail.gmail.com>
+	<20190409094450.6a180445@phoenix.invalid>
+	<CAJTo0LY2nx8PUBywRwBtFv2otHq5OKPBYv9fpuvpftnCe0Zp7w@mail.gmail.com>
+	<20190409120329.0c68afca@phoenix.invalid>
+	<CAJTo0LbNzZs=Ba=PmVzAKrK0FsVNVPSKCud6AMgGUgt+q4osWw@mail.gmail.com>
+	<20190409121710.52ee90e0@phoenix.invalid>
+In-Reply-To: <20190409121710.52ee90e0@phoenix.invalid>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 9 Apr 2019 11:24:17 +0100
+Message-ID: <CAJTo0LZ7MOqt_9UcR7VDXG6odDNxcmZKEEdK0iT5R+H=1gD=5Q@mail.gmail.com>
+To: Guenther Meyer <d.s.e@sordidmusic.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Metadata is missing in some Python packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,24 +72,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Apr 2019 10:18:10 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Tue, 09 Apr 2019 10:24:30 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 9 Apr 2019, Burton, Ross wrote:
+An upgrade should just be a matter of taking the meta-python recipe
+and doing a version bump/checksum update.  If you've written a recipe
+from scratch then you're probably missing some of the glue required.
 
-> On Tue, 9 Apr 2019 at 11:14, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
-> >   so, to confirm what i thought, this is a bug in gnulib which
-> > suggests i should dig through the build configuration to see where i
-> > can, say, set a PREFERRED_VERSION of a newer version of gnulib that
-> > no longer has tat bug? or, barring that, just add the appropriate
-> > local patch on my end.
+Ross
+
+On Tue, 9 Apr 2019 at 11:17, Guenther Meyer <d.s.e@sordidmusic.com> wrote:
 >
-> No, gnulib is a copy/paste library.  The bug was fixed in gnulib, and
-> new releases of m4 are fixed, but you'll need to cherry-pick the fix
-> from oe-core master (we apply the patch to our m4 recipe) back to
-> whatever stable branch you're using.
-
-  ah, got it, thanks.
-
-rday
+> On Tue, 9 Apr 2019 11:11:04 +0100
+> "Burton, Ross" <ross.burton@intel.com> wrote:
+>
+> > So for me they're in python3-twisted-core on target, and if you have
+> > the right DEPENDS then it should be there for build time.
+>
+> I will have a look at this, when I'm back in the office again.
+> The thing is, I needed a newer version of twisted, so I did my own
+> recipe. But obviously it is not enough to let setuptools do the work.
+>
+>
+> --
+> Summer-Hack-Session 2.8
+> http://session.pestilenz.org/session2/
+>
 
