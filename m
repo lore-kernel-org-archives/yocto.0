@@ -1,70 +1,47 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <mauro@faresoftware.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F2B8AE00C49; Wed, 10 Apr 2019 02:41:25 -0700 (PDT)
+	id E5DECE00D0F; Wed, 10 Apr 2019 02:48:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [62.149.158.131 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.47 listed in list.dnswl.org]
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
-	[209.85.221.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC77AE00C14
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2019 02:41:24 -0700 (PDT)
-Received: by mail-wr1-f47.google.com with SMTP id y7so2069127wrn.11
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2019 02:41:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=BS1dxAymN4xVQI5RL/sOe8PTS5ZD9ACKNEhWAi0SeK8=;
-	b=cxxHhnCeocdyD//TLUlap45R6aGq9/+cWxodU75b6/D8kQHC8oyrVGRPhiEEZFWM4N
-	IomO4owc+zOivShsK+6hxEIjsRg/DAcjIIbprmV85bwlRdZasUuzKjLX3ZPjaFiKNWcP
-	4089P/Fk7D1caiRSRbUiJAH60GoPBId+DA560=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=BS1dxAymN4xVQI5RL/sOe8PTS5ZD9ACKNEhWAi0SeK8=;
-	b=cXKMvZvcCvfCzAZhnFM1lReM5lpld9rAOucVk52JzlIs3UqjgBCpz2Rd6KwFiKOUVR
-	D0pb7c8WCjBChdapw8X96NBtPuNG7ZIbUbT8nTXrWBd6DSDvMNWii+XcIntI1QQQVdBU
-	TaKZdLlJ9vkOA9wnfxXMrgMEjYisOZHVJTaIMCxz4HmritDePhMqmk3eVNwIKAHaq5q5
-	d2KBAuZTz1m4ef10oL1CjBI66jabi78mrsSuS/UMomumOqkWwVB1QL4T3pUdKB8o6XC0
-	gQAJKXnptB0N6IQ+zsKuL0Gi5UYGBjXSB96Cxwtk/1/MMT4wVlHlRA8xXkCxcXcw9Yr9
-	mtqQ==
-X-Gm-Message-State: APjAAAXGtvjAdUv+SmxeDXUGHl8+0REvE/pl+islaHZHSNH+2zeBF58s
-	gKJP/GGrCbQtgi0AnTp5BC/CIg==
-X-Google-Smtp-Source: APXvYqznGkSR+WAWRzOROV6ERrdL4O2joWiQu6qLt7edT05q4Oh0uSf4g6vo4ysQYqEq035ZBLesYw==
-X-Received: by 2002:a5d:52cc:: with SMTP id r12mr6888111wrv.163.1554889283812; 
-	Wed, 10 Apr 2019 02:41:23 -0700 (PDT)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	c10sm40684639wrt.65.2019.04.10.02.41.22
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Wed, 10 Apr 2019 02:41:22 -0700 (PDT)
-Message-ID: <680dff761ebd04f8f240d12339b31569c70c48da.camel@linuxfoundation.org>
-From: richard.purdie@linuxfoundation.org
-To: akuster808 <akuster808@gmail.com>, Yocto discussion list
-	<yocto@yoctoproject.org>, openembedded-core
-	<openembedded-core@lists.openembedded.org>, openembedded-architecture
-	<openembedded-architecture@lists.openembedded.org>
-Date: Wed, 10 Apr 2019 10:41:21 +0100
-In-Reply-To: <f8b3661d-a6cc-494e-de49-e462ba935535@gmail.com>
-References: <90d55754e9381759c8b70ebca0b880e6013f17f0.camel@linuxfoundation.org>
-	<f8b3661d-a6cc-494e-de49-e462ba935535@gmail.com>
-User-Agent: Evolution 3.32.0-1 
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Wed, 10 Apr 2019 02:48:49 PDT
+Received: from smtpcmd04131.aruba.it (smtpcmd04131.aruba.it [62.149.158.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C7EEE00C1E
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2019 02:48:49 -0700 (PDT)
+Received: from [10.0.3.121] ([78.6.3.122])
+	by smtpcmd04.ad.aruba.it with bizsmtp
+	id yZni1z00f2dwwGE01ZniBb; Wed, 10 Apr 2019 11:47:43 +0200
+To: yocto@yoctoproject.org
+References: <015AB11D45F2C442929CB2765DAE738634DD053D@PGSMSX110.gar.corp.intel.com>
+From: Mauro Ziliani <mauro@faresoftware.it>
+Message-ID: <72b7a5a1-3297-9011-67e8-f2a5a943f086@faresoftware.it>
+Date: Wed, 10 Apr 2019 11:47:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
 MIME-Version: 1.0
-Subject: Re: [OE-core] Eclipse support dropped with immediate effect
+In-Reply-To: <015AB11D45F2C442929CB2765DAE738634DD053D@PGSMSX110.gar.corp.intel.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1554889663; bh=4GAg1BZUXGNT2xUlAdeSrOakNsgEhSIb5eyyfpUNDU0=;
+	h=Subject:To:From:Date:MIME-Version:Content-Type;
+	b=fZxtyKeFIUXRLlVRl1BztzkkNBR0K6uIOuoSTiiLE+FqWYPcJDllCWJC8nPPhx2ct
+	z6LKtb8k5R86o//od2cqQhjc5YyQnb/5nbLr31AT5FKhnQRl51rd0en+Ap1FT/mLid
+	TQr7h4l8L2DP+lOhiQoBLkiLkkDl7r2BiRHeSAWUe+Pe195uArooiSeIclVqgVJyiU
+	rWGQzBd4gGWlwYLaxSW8+K694UmuAJOa4n3+mUnheyP94QPRcIA6cHiFa0R65AEr6D
+	fFxa8OAjtZbzXOcdOPg4SeZOUq8ouojzESj7ivPd9D13lF5cj524TDpbgq62y6nBPG
+	6cIBoApDctQGA==
+Subject: Changing IMAGE_NAME [yocto krogoth]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,23 +53,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Apr 2019 09:41:26 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 10 Apr 2019 09:48:51 -0000
+Content-Type: multipart/alternative;
+	boundary="------------87F043DDA9C7686BA08A5EFD"
+Content-Language: it
 
-On Wed, 2019-04-10 at 05:56 +0530, akuster808 wrote:
-> 
-> On 4/9/19 8:52 PM, Richard Purdie wrote:
-> > I'm sorry to have to say this but the project is terminating its
-> > official eclipse plugin support with immediate effect.
-> 
-> Does this affect the stable branches as well?
+--------------87F043DDA9C7686BA08A5EFD
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-Yes, I think we'll just be removing the target from the autobuilder
-entirely.
+Hi all.
 
-Cheers,
+I need to change the default IMAGE_NAME of my image recipe.
 
-Richard
+I make my image recipe as mysystem-image_1.0.bb and I'd like to produce
+and image (tar) with the name
+
+mysystem-image-1.0-<datetime>.tar
 
 
+So I setup
+
+IMAGE_NAME := "{IMAGE_BASENAME}-${PV}-${DATETIME}"
+
+
+I made some compilation of mysystem with the default IMAGE_NAME.
+
+Than I update the value of IMAGE_NAME.
+
+
+Now when I rebuild the image bitbke tell me
+
+ERROR: When reparsing mysystem-image_1.0.do_roots, the basehash value
+change from .... to ....
+
+If i restore the IMAGE_NAME to the default value this message disappear
+
+
+How can I change the IMAGE_NAME as I need and avoi this message?
+
+
+Best regards,
+
+  MZ
+
+
+--------------87F043DDA9C7686BA08A5EFD
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Hi all.</p>
+    <p>I need to change the default IMAGE_NAME of my image recipe.</p>
+    <p>I make my image recipe as mysystem-image_1.0.bb and I'd like to
+      produce and image (tar) with the name</p>
+    <p>mysystem-image-1.0-&lt;datetime&gt;.tar</p>
+    <p><br>
+    </p>
+    <p>So I setup</p>
+    <p>IMAGE_NAME := "{IMAGE_BASENAME}-${PV}-${DATETIME}"</p>
+    <p><br>
+    </p>
+    <p>I made some compilation of mysystem with the default IMAGE_NAME.</p>
+    <p>Than I update the value of IMAGE_NAME.</p>
+    <p><br>
+    </p>
+    <p>Now when I rebuild the image bitbke tell me</p>
+    <p><font color="#3366ff">ERROR: When reparsing
+        mysystem-image_1.0.do_roots, the basehash value change from ....
+        to ....</font></p>
+    <p>If i restore the IMAGE_NAME to the default value this message
+      disappear</p>
+    <p><br>
+    </p>
+    <p>How can I change the IMAGE_NAME as I need and avoi this message?</p>
+    <p><br>
+    </p>
+    <p>Best regards,</p>
+    <p>  MZ<br>
+    </p>
+  </body>
+</html>
+
+--------------87F043DDA9C7686BA08A5EFD--
