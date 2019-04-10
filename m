@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 30102E00C49; Tue,  9 Apr 2019 17:07:46 -0700 (PDT)
+	id 73563E00C46; Tue,  9 Apr 2019 17:26:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,56 +11,59 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.193 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com
-	[209.85.214.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A46C6E00C1E;
-	Tue,  9 Apr 2019 17:07:45 -0700 (PDT)
-Received: by mail-pl1-f193.google.com with SMTP id y6so186412pll.13;
-	Tue, 09 Apr 2019 17:07:45 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.176 listed in list.dnswl.org]
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CC0FE0097C
+	for <yocto@yoctoproject.org>; Tue,  9 Apr 2019 17:26:24 -0700 (PDT)
+Received: by mail-pf1-f176.google.com with SMTP id 8so282221pfr.4
+	for <yocto@yoctoproject.org>; Tue, 09 Apr 2019 17:26:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=xYk1uf8NS6qRd4hWGzv8qQ+tIvblLvKZXeRdaT4rf0k=;
-	b=Nm9e2GfDthhezXDENpMB3sUtfE+0NKOEko0Sla4Jy0m7VcTX/jLqxoB6HUWihF43TR
-	IeWWANVoh+j2gksESDTu2bVAlRPW9xQ9W7Z2eitlsKYV9jlt8Z+AZejt/9ro1pb6qwl4
-	uHcmi4thOpIpOYaTYjGOQjTgmgEBR16kOXzaJua+EU5RUS/CWBaflX2bw8aT9SgW9c1L
-	fJa5RW5B1G+LbdQITmJbFaFH2d6MtWFQHZqyBo0NfmJQ5yDSvqT2uLBJqAuaC4ssQGO6
-	cttzyYOj0BefiYV6j9ko4Y/Dx/npfYzKsa/S7CxTHUm0Fx7WgI4rN7P4SGqqBnIf7llt
-	jugA==
+	bh=TucITWc5nlGC/3YlBOPq475dejngtS21zGpgAk5zPck=;
+	b=YFhzHjnPA/INiS2HIIDYaaUazIOVB0CIpD99yoNb0RMi7vniRnYsjVn2CkE9snnP2x
+	0WDh5dHTcatuxYa6dIYTVoacU+KVPtasTp28JdxuJW680STQkSTXsY3ODh0eq5afiqTe
+	hVDFPSOJz672wSM0cFpduJpp+e6USiz75N1tbmgYA7XRLhlAPMpMoJ1/MX8Gbia9+Evv
+	4StZDPECNLvvNRUd/fqp/BonuP4wyjRu3tp/YTuXfb4U1omNS39ow8AL7laOCwGj+Oj/
+	rKSEFr6/XedCW5CjvD3MBttrW6EJdiIZPyblQK6ZbhU6sx77ootNUKd0o+zpjdhECE7Q
+	OpoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=xYk1uf8NS6qRd4hWGzv8qQ+tIvblLvKZXeRdaT4rf0k=;
-	b=VS0hPE2q2q8Gin4dCpBDpj+q4ntZLrS2oZhl++xUo+nAEMpKsMXleGaheUBKkxdu49
-	DNQHqHYlTT3JMC8nA29A4U7ygivuRMbeK9Kt7XlLxsn/lo9Tkbdo3lDZE5TRodhGDwUw
-	smmR3MjlVWS2gKfeDeQTw94WBDh4daubHPvQNOm3y1JH/P2b3ZFZGjn8uSLh0i0LH1LY
-	iOQ+Q5r8ehnwiXbZkQaJy0iCHdvmFVK/fb1t209BVDnfM/MCKPTl0kq65cHMnt2Mscfo
-	QJ3NAbuNM5yzjG0OGHB0MA0ptbUoBM8zBK5o3tKAkcRzBjw/7qaME/WjhLti6g4638xM
-	z0UQ==
-X-Gm-Message-State: APjAAAWe+KQp+LkuK430c0OU0ud0aj3+pZ3Td5sKIizZMcOgeCyoTmUC
-	z7LHPZmpaX9Dymyy4TH2x6swsgG5xRZXUQ==
-X-Google-Smtp-Source: APXvYqzPdPIJr/vOm1ESPY/410dXqfNz0/WI/tgAY4MYJINwyZVfJ+sF5//8UoCT82OfDZP6yPAnTQ==
-X-Received: by 2002:a17:902:2ec1:: with SMTP id
-	r59mr40651855plb.171.1554854864820; 
-	Tue, 09 Apr 2019 17:07:44 -0700 (PDT)
+	bh=TucITWc5nlGC/3YlBOPq475dejngtS21zGpgAk5zPck=;
+	b=WBlaLHytGSfSb+YjsgnfcBGQHrFJXrPb03QbxEqrenHCnT/Jnmk/nS5jKj691/10SV
+	bznFY/YKGDuFA4LOyKHTq6W6RmZvtawUaLUGyRI9+eB8R1SGbsqWvbjSu0XTneCHt241
+	tZARPQczCxD/HwyTC39oGL1D/DHF105OSZOmV+3iCA/TsLBIewJpr9jVLnAF9U3vaAhV
+	ryhLFrZcsdzlhY4EcVw6LWJII1cHjopk8ekb1nJF1cmY5Aw92yR2eXVTv4+GwphHcMRJ
+	zNP+VSM/AdtnCTd9ri2/In5Xnu08lM8YKYKw2MhXuz9fHgpnemabI4y+oaW/6SqEHPn2
+	Yl9A==
+X-Gm-Message-State: APjAAAUG8klpVsTCnIXL9xaqOAeQHTzL4sFBLw76DV1utyh/kDScpz5q
+	KWoym9Qp7BreacmQUba4OnE=
+X-Google-Smtp-Source: APXvYqxmTJ5RsZxxGDHCq3zlHo1c/n8vLmN5/GYv/Gka3PV9dt4Y0l4IHMzGSztgM7Hap/6J74A0CA==
+X-Received: by 2002:a62:4602:: with SMTP id t2mr39763182pfa.26.1554855983917; 
+	Tue, 09 Apr 2019 17:26:23 -0700 (PDT)
 Received: from [100.116.26.172] ([49.248.228.18])
 	by smtp.gmail.com with ESMTPSA id
-	t190sm55362589pfb.33.2019.04.09.17.07.42
+	d129sm50674708pfa.142.2019.04.09.17.26.21
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 09 Apr 2019 17:07:43 -0700 (PDT)
-To: bruce.ashfield@gmail.com, richard.purdie@linuxfoundation.org
-References: <20190409153924.26811-1-bruce.ashfield@gmail.com>
+	Tue, 09 Apr 2019 17:26:23 -0700 (PDT)
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+	Yocto discussion list <yocto@yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>,
+	openembedded-architecture
+	<openembedded-architecture@lists.openembedded.org>
+References: <90d55754e9381759c8b70ebca0b880e6013f17f0.camel@linuxfoundation.org>
 From: akuster808 <akuster808@gmail.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
@@ -106,14 +109,13 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <65caf19b-d385-9052-bd91-340eaa77ed30@gmail.com>
-Date: Wed, 10 Apr 2019 05:37:40 +0530
+Message-ID: <f8b3661d-a6cc-494e-de49-e462ba935535@gmail.com>
+Date: Wed, 10 Apr 2019 05:56:20 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190409153924.26811-1-bruce.ashfield@gmail.com>
-Cc: yocto@yoctoproject.org, poky@yoctoproject.org
-Subject: Re: [poky] [PATCH] poky-tiny: set 5.0 as the preferred kernel
+In-Reply-To: <90d55754e9381759c8b70ebca0b880e6013f17f0.camel@linuxfoundation.org>
+Subject: Re: [OE-core] Eclipse support dropped with immediate effect
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -125,40 +127,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Apr 2019 00:07:46 -0000
+X-List-Received-Date: Wed, 10 Apr 2019 00:26:25 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
 
-On 4/9/19 9:09 PM, bruce.ashfield@gmail.com wrote:
-> From: Bruce Ashfield <bruce.ashfield@gmail.com>
->
-> Updating poky-tiny to prefer 5.0 as the kernel version. Boot
-> tested against qemux86 and qemuarm. This removes the last user
-> of the 4.18 kernel, so we can queue it for removal from master.
-Thanks Bruce.
+On 4/9/19 8:52 PM, Richard Purdie wrote:
+> I'm sorry to have to say this but the project is terminating its
+> official eclipse plugin support with immediate effect.
 
-- Armin
+Does this affect the stable branches as well?
+
+- armin
 >
-> Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
-> ---
->  meta-poky/conf/distro/poky-tiny.conf | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> There is nobody willing to keep the builds going, fix bugs, port to new
+> eclipse releases or release the current plugin. This has been raised in
+> many forums, multiple times and nobody stepped up to help. With nobody
+> to do the work, we can't keep it going, it is that simple.
 >
-> diff --git a/meta-poky/conf/distro/poky-tiny.conf b/meta-poky/conf/distro/poky-tiny.conf
-> index 690cb0d5c9..243d492918 100644
-> --- a/meta-poky/conf/distro/poky-tiny.conf
-> +++ b/meta-poky/conf/distro/poky-tiny.conf
-> @@ -38,7 +38,7 @@ TCLIBC = "musl"
->  # Distro config is evaluated after the machine config, so we have to explicitly
->  # set the kernel provider to override a machine config.
->  PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-tiny"
-> -PREFERRED_VERSION_linux-yocto-tiny ?= "4.18%"
-> +PREFERRED_VERSION_linux-yocto-tiny ?= "5.0%"
->  
->  # We can use packagegroup-core-boot, but in the future we may need a new packagegroup-core-tiny
->  #POKY_DEFAULT_EXTRA_RDEPENDS += "packagegroup-core-boot"
+> We'll be removing the automated testing of the eclipse plugin from the
+> autobuilder with immediate effect for all project releases.
+>
+> Richard
+>
+>
+>
 
 
