@@ -1,72 +1,67 @@
-Return-Path: <ticotimo@gmail.com>
+Return-Path: <Lukasz.Zemla@woodward.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 10E2CE00D30; Thu, 11 Apr 2019 11:15:05 -0700 (PDT)
+	id 2F095E00D33; Thu, 11 Apr 2019 13:31:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (ticotimo[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.50 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com
-	[209.85.222.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4201E00950
-	for <yocto@yoctoproject.org>; Thu, 11 Apr 2019 11:15:01 -0700 (PDT)
-Received: by mail-ua1-f50.google.com with SMTP id k32so2353442uae.3
-	for <yocto@yoctoproject.org>; Thu, 11 Apr 2019 11:15:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=sxtCrpmF3Ou7betowsQWGBZ9BDUP2+bTKg2O0mX5VV4=;
-	b=NelsnhyhjKmLoS9mgLVcBqyOGbxgooT9zMbP8t6H2z5+u09mPV8p13jvvHFuG4Vx5T
-	rVX0tmaBf2wf5YJbe8dKqFNtJYaaj6984i/fENheUd+BFtZ6XT+W9wO6uotp708Mu0Tp
-	b4QbEiBDnL3SG79PD+47925fV10qHCuoVwTLn5b8UFbY2VfnU5KQkfUYWAQxhnn1joXK
-	iAWZbWPI6HUz9m95amdWgEAzR1YM7Edu9jwA2iK090BV3c8QYvM9POzWgw6XhJuuwsGq
-	3gTWPj22JDALH0xVNdBsJFXc54dcbUoxDcnefha8jH4Fl9/v0BZI0aJXex6cMpT0BoIK
-	h+Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=sxtCrpmF3Ou7betowsQWGBZ9BDUP2+bTKg2O0mX5VV4=;
-	b=PVTtAHraq6Pw9mavSdWY5m/rGrBBf5LpOrDw3kxZVMmTFsDQdwLzjb0PP4+jRduWOJ
-	L+wBM29Eezeau/VCFfZTdjgD8H1zmkuUUgARt3uSDegeRG3NaD6GJBHuop/0hCKctf74
-	kdNbyHy0QGa2jZt+6JMgR5LkqArPrNsS90+2PkZarlmAHRAbtvdy6qcJR6TNOl3OHZNg
-	B6TPuEcnRaaEHfXJFj+Fz1lRHwUb6aIQ0bzu5uxyTNIpv5l+l/AkC+U2KK3VT0hJwG2A
-	LvizPsAtoQ/EDKQSyWHaf7CXsiH8dig6oVZI4Lfed2gnuetoYWxhZmeh59nfeAvir5u7
-	IIKA==
-X-Gm-Message-State: APjAAAU3FoGcamHN0s9/zUAz5HV16QZWQOSMHF3TvxU85FHM9qwjJb0i
-	x0HVe1JdIjed6Q4+VJXC/faQNx6+nshgM1RG758=
-X-Google-Smtp-Source: APXvYqxteMfjidT6+BFxZ17nOm3r569EGEtvW+VyYqNIOAoNGr9P2nF9PmFcLfO3Nb+brMdrBjA2qRwuW6CjKm4FLVs=
-X-Received: by 2002:ab0:7493:: with SMTP id n19mr1443804uap.121.1555006500890; 
-	Thu, 11 Apr 2019 11:15:00 -0700 (PDT)
+X-Greylist: delayed 1723 seconds by postgrey-1.32 at yocto-www;
+	Thu, 11 Apr 2019 13:31:21 PDT
+Received: from Mail4.woodward.com (mail4.woodward.com [204.27.169.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D77A8E00D30
+	for <yocto@yoctoproject.org>; Thu, 11 Apr 2019 13:31:21 -0700 (PDT)
+Received: from pps.filterd (COIL-PMSGA1.woodward.com [127.0.0.1])
+	by COIL-PMSGA1.woodward.com (8.16.0.27/8.16.0.27) with SMTP id
+	x3BJvZY3006283; Thu, 11 Apr 2019 15:02:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=woodward.com;
+	h=from : to : date :
+	subject : message-id : content-transfer-encoding : mime-version :
+	content-type; s=20190114Woodward;
+	bh=xaiLg5N/mCBwv5ZSQYqMj72FkfmEPbh4nGGzYbHcBQE=;
+	b=VkV/Y+9k1R9JEy+csbSCxyW+62+WONpq1FcAodFwJ+WykJAiiaFc4ubvlrW9E7N7GCIn
+	wMlVrl8zFecojs+VSBS7O3A0TrE1+cOccvyq6ySeL12MA30pO53T0apd2aiCXNZR64wd
+	XJQ230qouErmd6oxw1LEr2rQedi8qKRzn60WDso5DG0Ns0+wH4njy0k/tqPNdNaasL3k
+	XXjUHXV13XVj1kLj8AR2icRO72fowudC3dnJbP4sI6HqViq4/uP8iBDz4X5dlZkHV1cn
+	Ul21i37dZ5KoatzLCqCpT8P+A65beiL316oh40NvDaVw+8xDo8ZOg59lrh93uhNsuEj2
+	Ow== 
+Received: from rkfdhc1.woodward.com ([10.1.100.158])
+	by COIL-PMSGA1.woodward.com with ESMTP id 2rtc1xg10g-4
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=NOT);
+	Thu, 11 Apr 2019 15:02:33 -0500
+Received: from KempHC1.woodward.com (10.25.100.51) by RKFDHC1.woodward.com
+	(10.1.100.158) with Microsoft SMTP Server (TLS) id 8.3.485.1;
+	Thu, 11 Apr 2019 14:55:45 -0500
+Received: from KempMail2.woodward.com ([169.254.2.253]) by
+	KempHC1.woodward.com ([172.20.1.103]) with mapi;
+	Thu, 11 Apr 2019 21:55:43 +0200
+From: Lukasz Zemla <Lukasz.Zemla@woodward.com>
+To: Timothy Froehlich <tfroehlich@archsys.io>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Date: Thu, 11 Apr 2019 21:55:41 +0200
+Thread-Topic: [yocto] Read-only filesystems: Move directory to RW directory
+	and symlink back
+Thread-Index: AdTwn90KUUjgBihnQcCbYBhIwsLQBg==
+Message-ID: <CE2E43470FE5444A811B580382FE5EDF55C99E7C4D@KEMPMAIL2.woodward.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-References: <90d55754e9381759c8b70ebca0b880e6013f17f0.camel@linuxfoundation.org>
-	<f8b3661d-a6cc-494e-de49-e462ba935535@gmail.com>
-	<680dff761ebd04f8f240d12339b31569c70c48da.camel@linuxfoundation.org>
-	<05dd3911-b195-1d1f-b218-e4b41d80ec72@gmail.com>
-	<7c1d84b0957f2831a7add461f73e3d9108176e9b.camel@linuxfoundation.org>
-	<CAFNP8OstwvzhdYvyiaJ4JFZqNPGK3zypTPVEG-u437hE83js1A@mail.gmail.com>
-In-Reply-To: <CAFNP8OstwvzhdYvyiaJ4JFZqNPGK3zypTPVEG-u437hE83js1A@mail.gmail.com>
-From: Tim Orling <ticotimo@gmail.com>
-Date: Thu, 11 Apr 2019 11:14:48 -0700
-Message-ID: <CANx9H-BpLmKOhhetW8AKnWw+UaeD5GHjjhQVpSn+BWL=M9_ziA@mail.gmail.com>
-To: Scott Rifenbark <srifenbark@gmail.com>
-Cc: openembedded-core <openembedded-core@lists.openembedded.org>,
-	Yocto discussion list <yocto@yoctoproject.org>, openembedded-architecture
-	<openembedded-architecture@lists.openembedded.org>
-Subject: Re: [Openembedded-architecture] [OE-core] Eclipse support dropped with immediate effect
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	priorityscore=1501
+	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+	clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+	mlxlogscore=816 adultscore=0 classifier=spam adjust=0 reason=mlx
+	scancount=1 engine=8.0.1-1810050000 definitions=main-1904110132
+Subject: Re: Read-only filesystems: Move directory to RW directory and symlink back
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,124 +73,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Apr 2019 18:15:05 -0000
-Content-Type: multipart/alternative; boundary="0000000000001bedb40586452a53"
+X-List-Received-Date: Thu, 11 Apr 2019 20:31:23 -0000
+Content-Language: en-US
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"
 
---0000000000001bedb40586452a53
-Content-Type: text/plain; charset="UTF-8"
+T24gVHVlc2RheSwgTWFyY2ggMjYsIDIwMTkgOTo1NCBQTSwgVGltb3RoeSBGcm9laGxpY2ggd3Jv
+dGU6DQo+IElzIHRoZXJlIGEgcmVjb21tZW5kZWQgd2F5IG9mIGRvaW5nIHRoaXM/IFJpZ2h0IG5v
+dyBJIGhhdmUgYSBST09URlNfUE9TVFBST0NFU1NfQ01EIA0KPiB0aGF0IG1vdmVzIHRoZSBkaXJl
+Y3RvcmllcyBhbmQgc3ltbGlua3MgdGhlbSBiYWNrLCBidXQgSSdtIG5vdCBzdXJlIGlmIEknbSBk
+b2luZyBpdCBleGFjdGx5IHJpZ2h0IG9yIGlmIHRoZXJlJ3Mgc29tZXRoaW5nIGJ1aWx0LWluLg0K
+DQo+IFRoZSBmdW5jdGlvbiBqdXN0IGRvZXMgYSBidW5jaCBvZiB0aGlzOg0KPsKgIMKgIGluc3Rh
+bGwgLWQgJHtEfS8ke3BlcnNpc3RfZGlyfQ0KDQo+wqAgwqAgbXYgJHtEfS8ke09SSUd9ICR7RH0v
+JHtwZXJzaXN0X2Rpcn0vJHtMSU5LTkFNRX0NCj7CoCDCoCBsbiAtc3IgJHtEfS8ke3BlcnNpc3Rf
+ZGlyfS8ke0xJTktOQU1FfSAke0R9LyR7T1JJR30NCg0KSSBhbSBhbHNvIHdvcmtpbmcgb24gcmVh
+ZC1vbmx5IHJvb3RmcyBub3cuIFVuZm9ydHVuYXRlbHkgaXQgbG9va3MgbGlrZSB0aGF0IFlvY3Rv
+IGRvZXMgbm90IHByb3ZpZGUgcmVhZHkgc29sdXRpb24gZm9yIHN5bWxpbmtpbmcuIEkgdXNlIHNp
+bWlsYXIgYXBwcm9hY2ggdG8geW91cnMuDQpJZiB5b3UgYWNjZXB0IGJpbmQgbW91bnRzIG9yIG92
+ZXJsYXlmcywgeW91IG1heSBoYXZlIGEgbG9vayBhdCBtZXRhL3JlY2lwZXMtY29yZS92b2xhdGls
+ZS1iaW5kcy92b2xhdGlsZS1iaW5kcy5iYg0KDQpCZXN0IHJlZ2FyZHMsDQpMdWthc3ogWmVtbGEN
+CgoqKioKVGhlIGluZm9ybWF0aW9uIGluIHRoaXMgZW1haWwgaXMgY29uZmlkZW50aWFsIGFuZCBp
+bnRlbmRlZCBzb2xlbHkgZm9yIHRoZSBpbmRpdmlkdWFsIG9yIGVudGl0eSB0byB3aG9tIGl0IGlz
+IGFkZHJlc3NlZC7CoMKgSWYgeW91IGhhdmUgcmVjZWl2ZWQgdGhpcyBlbWFpbCBpbiBlcnJvciBw
+bGVhc2Ugbm90aWZ5IHRoZSBzZW5kZXIgYnkgcmV0dXJuIGUtbWFpbCwgZGVsZXRlIHRoaXMgZW1h
+aWwsIGFuZCByZWZyYWluIGZyb20gYW55IGRpc2Nsb3N1cmUgb3IgYWN0aW9uIGJhc2VkIG9uIHRo
+ZSBpbmZvcm1hdGlvbi4KKioqCg==
 
-On Thu, Apr 11, 2019 at 9:29 AM Scott Rifenbark <srifenbark@gmail.com>
-wrote:
-
-> Richard and Armin,
->
-> I am going to start pulling Eclipse from the docs today.  The changes
-> won't make the frozen rc build but the website docs will reflect reality.
->
-
-Thank you, Scott.
-
->
-> Scott
->
-> On Thu, Apr 11, 2019 at 12:20 AM <richard.purdie@linuxfoundation.org>
-> wrote:
->
->> On Thu, 2019-04-11 at 08:42 +0530, akuster808 wrote:
->> >
->> > On 4/10/19 3:11 PM, richard.purdie@linuxfoundation.org wrote:
->> > > On Wed, 2019-04-10 at 05:56 +0530, akuster808 wrote:
->> > > > On 4/9/19 8:52 PM, Richard Purdie wrote:
->> > > > > I'm sorry to have to say this but the project is terminating
->> > > > > its
->> > > > > official eclipse plugin support with immediate effect.
->> > > > Does this affect the stable branches as well?
->> > > Yes, I think we'll just be removing the target from the autobuilder
->> > > entirely.
->> >
->> > Have we every removed a feature from a release? Do we need to doc
->> > this ?
->>
->> Its not so much remove as not release. No, we haven't and yes, we do
->> need to document it in the release notes.
->>
->> Cheers,
->>
->> Richard
->>
->> _______________________________________________
->> Openembedded-architecture mailing list
->> Openembedded-architecture@lists.openembedded.org
->> http://lists.openembedded.org/mailman/listinfo/openembedded-architecture
->>
-> _______________________________________________
-> Openembedded-architecture mailing list
-> Openembedded-architecture@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-architecture
->
-
---0000000000001bedb40586452a53
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Thu, Apr 11, 2019 at 9:29 AM Scott Rifenbark &lt;<a href=
-=3D"mailto:srifenbark@gmail.com">srifenbark@gmail.com</a>&gt; wrote:<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left=
-:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div>Richard and Armin, =
-<br></div><div><br></div><div>I am going to start pulling Eclipse from the =
-docs today.=C2=A0 The changes won&#39;t make the frozen rc build but the we=
-bsite docs will reflect reality.</div></div><div dir=3D"ltr"><div></div></d=
-iv></blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">Thank you, Sc=
-ott.</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
-er-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><br></div><d=
-iv>Scott<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Thu, Apr 11, 2019 at 12:20 AM &lt;<a href=3D"mailto:ri=
-chard.purdie@linuxfoundation.org" target=3D"_blank">richard.purdie@linuxfou=
-ndation.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">On Thu, 2019-04-11 at 08:42 +0530, akuster808 wrote:<br>
-&gt; <br>
-&gt; On 4/10/19 3:11 PM, <a href=3D"mailto:richard.purdie@linuxfoundation.o=
-rg" target=3D"_blank">richard.purdie@linuxfoundation.org</a> wrote:<br>
-&gt; &gt; On Wed, 2019-04-10 at 05:56 +0530, akuster808 wrote:<br>
-&gt; &gt; &gt; On 4/9/19 8:52 PM, Richard Purdie wrote:<br>
-&gt; &gt; &gt; &gt; I&#39;m sorry to have to say this but the project is te=
-rminating<br>
-&gt; &gt; &gt; &gt; its<br>
-&gt; &gt; &gt; &gt; official eclipse plugin support with immediate effect.<=
-br>
-&gt; &gt; &gt; Does this affect the stable branches as well?<br>
-&gt; &gt; Yes, I think we&#39;ll just be removing the target from the autob=
-uilder<br>
-&gt; &gt; entirely.<br>
-&gt; <br>
-&gt; Have we every removed a feature from a release? Do we need to doc<br>
-&gt; this ?<br>
-<br>
-Its not so much remove as not release. No, we haven&#39;t and yes, we do<br=
->
-need to document it in the release notes.<br>
-<br>
-Cheers,<br>
-<br>
-Richard<br>
-<br>
-_______________________________________________<br>
-Openembedded-architecture mailing list<br>
-<a href=3D"mailto:Openembedded-architecture@lists.openembedded.org" target=
-=3D"_blank">Openembedded-architecture@lists.openembedded.org</a><br>
-<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-arch=
-itecture" rel=3D"noreferrer" target=3D"_blank">http://lists.openembedded.or=
-g/mailman/listinfo/openembedded-architecture</a><br>
-</blockquote></div>
-_______________________________________________<br>
-Openembedded-architecture mailing list<br>
-<a href=3D"mailto:Openembedded-architecture@lists.openembedded.org" target=
-=3D"_blank">Openembedded-architecture@lists.openembedded.org</a><br>
-<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-arch=
-itecture" rel=3D"noreferrer" target=3D"_blank">http://lists.openembedded.or=
-g/mailman/listinfo/openembedded-architecture</a><br>
-</blockquote></div></div>
-
---0000000000001bedb40586452a53--
