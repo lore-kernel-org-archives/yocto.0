@@ -1,69 +1,45 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4111AE00BC8; Fri, 12 Apr 2019 07:17:53 -0700 (PDT)
+	id A943BE00D11; Fri, 12 Apr 2019 12:24:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.46 listed in list.dnswl.org]
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
-	[209.85.221.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BA12E00BAB
-	for <yocto@yoctoproject.org>; Fri, 12 Apr 2019 07:17:52 -0700 (PDT)
-Received: by mail-wr1-f46.google.com with SMTP id y7so12150321wrn.11
-	for <yocto@yoctoproject.org>; Fri, 12 Apr 2019 07:17:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:user-agent:mime-version:content-transfer-encoding;
-	bh=A3AUfxrJx8WBF0LizoWNM+65OvsXE5wB5HlzcLrZfaY=;
-	b=T1dd0umiN/n9LcJadHlIw97Cj8ScSAY+ir2ZI98bXlYZF3L4EeMWwJw6YDUlvRLFUW
-	gvoE/6vhJYApez12eeLTyQa0Xm8nGCa/pJe7F0HkPpLMEIR0lggMDk2UWDzeoai1VtDy
-	8pD7E6vAfuxeftUulkQ7TZaADGLePsbgXU7ik=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=A3AUfxrJx8WBF0LizoWNM+65OvsXE5wB5HlzcLrZfaY=;
-	b=pHRU1wZScRnpS3Gmiv6s5UD20uQn9XQW3fi1vlDT9MDVidi543XTu8TTwmlKomRSRM
-	ffNWc3+5yx0CSrgbxgVRofsc+4mP2SRICIXI/56HjGOS5yu7lXmAbXEDlG1GQQFQiZlk
-	85A2t4dBPQuDf2b6negwpTW2RR+9X/7ozuIvpea59Ijs6tXOZYBA4tbtuYLFt66ZUp87
-	+RpUh+a1gvA0rvHQd7DcyNJh/XwdfZF+bWlfOroFLREgsysNEP91/v/8xjNu9m0iPr7d
-	TQoxNSAVN7wolp/Ttr4lwQ5TzloH4Yk1FcBgjtAYQvuc5theA9Pv3fvaO7VoLYu26G2R
-	sTyQ==
-X-Gm-Message-State: APjAAAXjShtiPbBnHqEdJosesrwD6E8Kyweu4QeJgrheB8IQIvOn0O/0
-	SvAE0OQaXRXa9Oukjpl3fdrrkQ==
-X-Google-Smtp-Source: APXvYqxiScnhu7BTGutQ2ayzuwFtAu42OQGDxa7AdnZjBawWh7YZ6T3dA+HBG3mCaszLvxp+5whYCg==
-X-Received: by 2002:adf:dcca:: with SMTP id x10mr15184382wrm.57.1555078671770; 
-	Fri, 12 Apr 2019 07:17:51 -0700 (PDT)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	t24sm11958567wmi.10.2019.04.12.07.17.50
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Fri, 12 Apr 2019 07:17:51 -0700 (PDT)
-Message-ID: <ddddfc4db6df73aa86ea934140c6795d1d912c0e.camel@linuxfoundation.org>
-From: richard.purdie@linuxfoundation.org
-To: Eric Grunt <gruntblue@gmail.com>
-Date: Fri, 12 Apr 2019 15:17:49 +0100
-In-Reply-To: <CADB9fJHhPie5Efxs3g_+HyjBtwK7n6Nu_=Gx9CMCjc9_0pK4OQ@mail.gmail.com>
-References: <CADB9fJEbDEKKdu7CUoWC4AxC_=hk0vMFPajh0PWijUHy5WW1BA@mail.gmail.com>
-	<cdeb499d193a545fd52d93a2ebe2b998e9421b20.camel@linuxfoundation.org>
-	<CADB9fJHhPie5Efxs3g_+HyjBtwK7n6Nu_=Gx9CMCjc9_0pK4OQ@mail.gmail.com>
-User-Agent: Evolution 3.32.0-1 
+	*      [192.94.38.131 listed in list.dnswl.org]
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A5B4E00BC8
+	for <yocto@yoctoproject.org>; Fri, 12 Apr 2019 12:24:47 -0700 (PDT)
+Received: from svr-orw-mbx-03.mgc.mentorg.com ([147.34.90.203])
+	by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+	id 1hF1mz-0003KX-Ox from Joe_MacDonald@mentor.com ;
+	Fri, 12 Apr 2019 12:24:41 -0700
+Received: from svr-orw-mbx-03.mgc.mentorg.com (147.34.90.203) by
+	svr-orw-mbx-03.mgc.mentorg.com (147.34.90.203) with Microsoft SMTP
+	Server (TLS) id 15.0.1320.4; Fri, 12 Apr 2019 12:24:39 -0700
+Received: from nightwinge.cal.mentorg.com (147.34.91.1) by
+	svr-orw-mbx-03.mgc.mentorg.com (147.34.90.203) with Microsoft SMTP
+	Server id
+	15.0.1320.4 via Frontend Transport; Fri, 12 Apr 2019 12:24:39 -0700
+Received: by nightwinge.cal.mentorg.com (Postfix, from userid 53144)
+	id 7112715F885; Fri, 12 Apr 2019 15:24:38 -0400 (EDT)
+Date: Fri, 12 Apr 2019 15:24:38 -0400
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: Yi Zhao <yi.zhao@windriver.com>
+Message-ID: <20190412192438.GE4054@mentor.com>
+References: <20190410155302.GA17879@mentor.com>
+	<c1864a11-0368-a0d0-85e0-f40a2436c033@windriver.com>
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Dependencies on other file system types for custom file system type
+In-Reply-To: <c1864a11-0368-a0d0-85e0-f40a2436c033@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PULL] refpolicy: update to 2.20190201 and git HEAD policies (2019-04-10 10:57:14 -0400)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,33 +51,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Apr 2019 14:17:53 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 12 Apr 2019 19:24:48 -0000
+X-Groupsio-MsgNum: 44790
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="FeAIMMcddNRN4P4/"
+Content-Disposition: inline
 
-On Fri, 2019-04-12 at 20:50 +0700, Eric Grunt wrote:
-> > The dependency code is only triggered if the image type is in
-> > IMAGE_FSTYPES. Did you add it there?
-> 
-> Yes, in the distro conf file.
-> Guess, otherwise it wouldn't be built at all (since it isn't
-> dependency of another fs)
+--FeAIMMcddNRN4P4/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Notice how the function names for squashfs are:
+Hi Yi,
 
-do_image_squashfs_xz
+[Re: [yocto] [meta-selinux][PULL] refpolicy: update to 2.20190201 and git H=
+EAD policies (2019-04-10 10:57:14 -0400)] On 19.04.11 (Thu 16:19) Yi Zhao w=
+rote:
 
-not
+> Hi Joe,
+>=20
+> Thank you for working on the refpolicy upgrade.
+> I have a quick test with your patch. Here are the results:
+>=20
+> Machine: qemux86-64
+> Image: core-image-selinux
+> Init manager: systemd
+> Boot command: runqemu qemux86-64 kvm nographic bootparams=3D"selinux=3D1 =
+enforcing=3D
+> X" qemuparams=3D"-m 1024"
+>=20
+> 1. All refpolicy type of git version can be built without problems.
+>=20
+> 2. With parameter selinux=3D1 & enforcing=3D0
+> The qemu can boot up and login for all refpolicy types.
 
-do_image_squashfs-xz
+Perfect, that's what I had when testing on my reference hardware, so I'm
+happy you were able to validate those results.
 
-This is because shell functions/variables can't have "-" in their name.
-You need to change to us IMAGE_CMD_squashfs_xz_ubi.
+> 3. With parameter selinux=3D1 & enforcing=3D1
+> Some of services failed to startup when booting. But this issue also exis=
+t on
+> old refpolicy version (2.20170204)
 
-Cheers,
+Yeah, and given the scope of this change my goal was mainly parity with
+the old policy but based on a version that's 2-ish years newer.  So once
+that's done I think we can reasonably work at enabling the additional
+services in some structured way.
 
-Richard
+> 4. refpolicy stable version (2.20190201)
+> I got an do_fetch error with refpolicy stable version.
+> Seems the SRC_URI is not correct. It should be "https://github.com/
+> SELinuxProject/refpolicy/releases/download/RELEASE_2_20190201/refpolicy-$
+> {PV}.tar.bz2"
 
+Thanks, good catch, I don't know how that slipped through.  Corrected on
+my end, I'll update it in a bit.
 
+-J.
 
+>=20
+>=20
+> Regards,
+> Yi
 
+--=20
+-Joe MacDonald.
+:wq
+
+--FeAIMMcddNRN4P4/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEkMd/b97HINT8/zEqSfx99yw59pYFAlyw5fUACgkQSfx99yw5
+9pb1lQgAj0LEbkC1QosYgD6Jq6zLzaml1h5yUgrkLeze7yfx2fOwizoCWb615kZR
+CqhGVgfgKFJBzWsoPLJNl269CCrgSlgFizaEYXcjv7KZkVq3ABqz3L5v8H8sSXug
+nnOxOHXeIIu+qXFBuLz9IOX0uKGQ5KxNyOyRWjIuzXRxeDuxtwh7qlSmxn3ZGFQy
+2WDHtUjM0rIc8y0A6v2LoPMl4qzvKABHFdZNlSukru5vNvQFfEYXl65g48ziqlCU
+A+PDnn4RT8WFQZbguZ7IaKAHaPUPBMELgjYexY++ccLee29zv6CEZymb8M+CR+2C
+lV/WZPG/91VRDGQaf5QFACZnNdbpdg==
+=Er4g
+-----END PGP SIGNATURE-----
+
+--FeAIMMcddNRN4P4/--
