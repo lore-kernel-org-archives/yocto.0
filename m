@@ -1,104 +1,65 @@
-Return-Path: <prvs=99731c0ad=Alistair.Francis@wdc.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C8D9E00D33; Thu, 11 Apr 2019 11:31:19 -0700 (PDT)
+	id EE548E00AB0; Thu, 11 Apr 2019 19:14:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [216.71.154.42 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.182 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Thu, 11 Apr 2019 11:31:18 PDT
-Received: from esa4.hgst.iphmx.com (esa4.hgst.iphmx.com [216.71.154.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFEC0E00D31
-	for <yocto@yoctoproject.org>; Thu, 11 Apr 2019 11:31:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-	d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-	t=1555007479; x=1586543479;
-	h=from:to:cc:subject:date:message-id:
-	content-transfer-encoding:mime-version;
-	bh=ITuicQEUtDMfItlcWgqoUyTp261zUm7N1C3McItJjBA=;
-	b=i1kQZ8XfhtAQcugN3XCqWP4XpVN0JJoZemk+K7DN+XoMdaZJ9+GNE3CF
-	FeY3D3SSGzz9upWCyII0QTRoP2FG8uIZT473KrdZrjr1m+/Ut0mczP0A+
-	Z+9ucT3ISehOKTnO9t2SsK1rH+tziBaTEDEk7bBaUiHjDiWicKMePiUEO
-	culu6a9CvZcYLnCHtPEFIwxAsY7qoOutnQI/K0GBcueBGN5w7V0fNX/Fp
-	3noDQKJqpeFODvu/PB3OjtaeJZkzg1sdgyfa+FjQWzOZSUqw3R+uf31KY
-	Kmzkm/hUpoEdr1Ye0Aul0okOlVOdYRR9EB8WnQmM53tKEw/UBAxNXfsiv g==;
-X-IronPort-AV: E=Sophos;i="5.60,338,1549900800"; d="scan'208";a="105623131"
-Received: from mail-co1nam04lp2059.outbound.protection.outlook.com (HELO
-	NAM04-CO1-obe.outbound.protection.outlook.com) ([104.47.45.59])
-	by ob1.hgst.iphmx.com with ESMTP; 12 Apr 2019 02:30:16 +0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=sharedspace.onmicrosoft.com; s=selector1-wdc-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=ITuicQEUtDMfItlcWgqoUyTp261zUm7N1C3McItJjBA=;
-	b=ZAjftVkseIWb2gTfB2id8HVDB+7qmCrMGMk09GzJN7Oxc+60UG0QBgAPiNYw5ieivkdp6cjfPoYsK25zMwxUMIfGi+LSswXkbaKbZRdQ/qgh1HK02ACnWV7DVvXrV2pPsD+mtCulGmNEwKl/KYlReiJflAWLl+0hASnUrPzOBmg=
-Received: from DM6PR04MB4908.namprd04.prod.outlook.com (20.176.109.81) by
-	DM6PR04MB5385.namprd04.prod.outlook.com (20.178.27.22) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1792.14; Thu, 11 Apr 2019 18:30:14 +0000
-Received: from DM6PR04MB4908.namprd04.prod.outlook.com
-	([fe80::9ba:6028:ae27:7d2]) by DM6PR04MB4908.namprd04.prod.outlook.com
-	([fe80::9ba:6028:ae27:7d2%2]) with mapi id 15.20.1771.019;
-	Thu, 11 Apr 2019 18:30:14 +0000
-From: Alistair Francis <Alistair.Francis@wdc.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [meta-yocto-bsp][PATCH v2] beaglebone-yocto: Update u-boot
-	config to match u-boot 19.04
-Thread-Index: AQHU8JSa3r66wGV0mkGexn3uPUiKOQ==
-Date: Thu, 11 Apr 2019 18:30:14 +0000
-Message-ID: <20190411182858.11756-1-alistair.francis@wdc.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.21.0
-x-clientproxiedby: BYAPR08CA0022.namprd08.prod.outlook.com
-	(2603:10b6:a03:100::35) To DM6PR04MB4908.namprd04.prod.outlook.com
-	(2603:10b6:5:19::17)
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=Alistair.Francis@wdc.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [199.255.44.250]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7e835d83-7e10-49e1-4410-08d6beabbcde
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600139)(711020)(4605104)(4618075)(2017052603328)(7193020);
-	SRVR:DM6PR04MB5385; 
-x-ms-traffictypediagnostic: DM6PR04MB5385:
-x-ms-exchange-purlcount: 1
-wdcipoutbound: EOP-TRUE
-x-microsoft-antispam-prvs: <DM6PR04MB53850E4F56E3B36053BE1827902F0@DM6PR04MB5385.namprd04.prod.outlook.com>
-x-forefront-prvs: 00046D390F
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(396003)(376002)(136003)(346002)(366004)(39860400002)(199004)(189003)(6116002)(6506007)(53936002)(6436002)(26005)(476003)(7736002)(99286004)(486006)(66066001)(2616005)(305945005)(44832011)(3846002)(97736004)(54906003)(36756003)(316002)(68736007)(386003)(2501003)(86362001)(6512007)(6306002)(6916009)(5660300002)(102836004)(52116002)(105586002)(256004)(478600001)(4744005)(5640700003)(1730700003)(81166006)(50226002)(2351001)(14444005)(4326008)(106356001)(2906002)(25786009)(1076003)(81156014)(6486002)(8676002)(71190400001)(71200400001)(8936002)(14454004)(72206003)(966005)(186003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DM6PR04MB5385;
-	H:DM6PR04MB4908.namprd04.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: nUUzVKSWjjHC67LB+VdaV2hq65l6H/tsWg3k+2q0CvE0hRCQyZ3RzVquxXZJQEHsry5G+rOoNuosBVDw+4mKHVGdBK020/How0lDZnE0qfqsxm5tUN5j1htAyP6izPpvjOhTcEzlS3NsVJQxCxyHnp0pc/MloSbhvxOaOmGMwBF0LLgYQUdpI7WsQc2viWjl4WyLPZTB6n+L1eF11mSbE1EKt93X/t8O7BT0de2Nqz/jy5XG1SMypHF8KYoWD4dRkLj+eBQuHq7eFJyU18cCIjIYpIgMLgNcg7Ob5JaI7tcGP1rdoOamo92laTgWPw+kp9VQc7mEkNBen0Rd02Yzt7t6yHLEYJnXvjgIrX6BmM394t/4DzQgt2gNmss3xzbRJh+kg7LB1F9cCjyqwolBnJgYnzvQmFnj0oKePZ9y7bU=
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
+	[209.85.222.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEC10E00A84
+	for <yocto@yoctoproject.org>; Thu, 11 Apr 2019 19:14:06 -0700 (PDT)
+Received: by mail-qk1-f182.google.com with SMTP id g1so4768656qki.5
+	for <yocto@yoctoproject.org>; Thu, 11 Apr 2019 19:14:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=ixvmmFNHUXtzhxx36pnHXpGr+BO2TWim8WCKGhOWXTk=;
+	b=PJ1MC04OWkf2GMFCcHtPK6AD5qVJSR0dcQL7sYDVqxWfykRrSk08HNg4h1OT4M+w4i
+	L3pM6huVMOlXh48aa+m32NnICJ5uFMtJt8Hu5gOqntSVXuyv9rSbn2XaPoIa9GW3Qudn
+	ToH8BnJsvNKruuQmbUKPhT9BRvAGhIzcT71iW28mXHWUre9RbwtgVlyUT1QpHLBaQfRr
+	lPAsWb5JYegZMZIfLjI8OIi7T85/jExO74B3eC4PyrKpfzFGxKm3Et/8AHELrjAO3azK
+	Gr2zFrFHMUGVjlC1ikvkU9BSywn9j36wSsegndqHVcVtX0Qm4zMaNTKBa9xsp+I9VT9q
+	G80Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=ixvmmFNHUXtzhxx36pnHXpGr+BO2TWim8WCKGhOWXTk=;
+	b=rPL3z3fsyVFmDC7R0WceUAqv/AuF/PN4QD+C27M2ipx/1MjG2VgPpe4FTBEctSprwz
+	mUVZqDn3pnT2dLFcIIX/wnbaOc7eUnNcQb1OGFwV/OsXM4hZrmawe4MndIpuaXBTg4tj
+	JONsI/vRy1AG1DcU8PK40XI1VMiYXSQxf3zFVVdcaupvToQNcLMiMOY2kvv62O2RwK7/
+	KYnFaRe5URkHQwgvMrNn4uvaI/JyxNfJORcx21OpeE3CjqaoKE/PCdDBwNFLhy1178Mj
+	MTqUQvg9ojUC/IodR+dapTRhqf447C+7dOQAaVEEeXgg5mTQoQPhF2fpQ3KQpKbB8ala
+	swWA==
+X-Gm-Message-State: APjAAAVEbbT7091J4ZtFlNWPkRm35rA1zdP1QosYooH+RgKfMbQAEOv7
+	Arkam/tHz3oHFaPEpy0MbMfJb8hIMh1mesZWUd8=
+X-Google-Smtp-Source: APXvYqzjZ6Wq8U+br+yRlXY0Vtxf0vbNyOg3f8PyqgPD1b2UStpIVq0HMQm6slNfSqeRzTtHlOltYF4q6XGEgD824QU=
+X-Received: by 2002:a37:a208:: with SMTP id l8mr42833263qke.210.1555035245870; 
+	Thu, 11 Apr 2019 19:14:05 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: wdc.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e835d83-7e10-49e1-4410-08d6beabbcde
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Apr 2019 18:30:14.1154 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR04MB5385
-X-Mailman-Approved-At: Thu, 11 Apr 2019 15:05:32 -0700
-Cc: "alistair23@gmail.com" <alistair23@gmail.com>,
-	Alistair Francis <Alistair.Francis@wdc.com>, "denys@ti.com" <denys@ti.com>
-Subject: [meta-yocto-bsp][PATCH v2] beaglebone-yocto: Update u-boot config to match u-boot 19.04
+References: <2e1ac0d1-94d5-4e1f-4b84-ea71685244e3@faresoftware.it>
+In-Reply-To: <2e1ac0d1-94d5-4e1f-4b84-ea71685244e3@faresoftware.it>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 11 Apr 2019 19:13:55 -0700
+Message-ID: <CAMKF1sroULsNWmV09Wpcbap-CEm2_T-Jh5zYSUG7gUGdtc1r6A@mail.gmail.com>
+To: Mauro Ziliani <mauro@faresoftware.it>
+Cc: yocto@yoctoproject.org
+Subject: Re: Stripping debug symbols
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -110,29 +71,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Apr 2019 18:31:19 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 12 Apr 2019 02:14:08 -0000
+Content-Type: multipart/alternative; boundary="00000000000071818e05864bdb2e"
 
-W1lPQ1RPICMxMzE0NV0NCg0KVGhpcyB3YXMgYW5ub3VuY2VkIGF0IDIwMTkuMDE6DQpodHRwczov
-L3d3dy5tYWlsLWFyY2hpdmUuY29tL3UtYm9vdEBsaXN0cy5kZW54LmRlL21zZzMwNTQyNC5odG1s
-DQoNCkJhc2ljYWxseSwgYW0zMzV4X2JvbmVibGFjayBpcyBqdXN0IGEgc3BlY2lhbCBzdWJzZXQg
-b2YgYW0zMzV4X2V2bSBjb25maWcsDQpjcmVhdGVkIGFuZCBvd25lZCBieSBCZWFnbGVCb2FyZC5v
-cmcgY29tbXVuaXR5LiBTaW5jZSBpdCB3YXMgbm90IG1pZ3JhdGVkIHRvDQp1c2UgQ09ORklHX0JM
-SyBpbiB0aW1lIGZvciAyMDE5LjA0IHJlbGVhc2UuDQoNClNpZ25lZC1vZmYtYnk6IEFsaXN0YWly
-IEZyYW5jaXMgPGFsaXN0YWlyLmZyYW5jaXNAd2RjLmNvbT4NCkFja2VkLWJ5OiBEZW55cyBEbXl0
-cml5ZW5rbyA8ZGVueXNAdGkuY29tPg0KLS0tDQogbWV0YS15b2N0by1ic3AvY29uZi9tYWNoaW5l
-L2JlYWdsZWJvbmUteW9jdG8uY29uZiB8IDIgKy0NCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRp
-b24oKyksIDEgZGVsZXRpb24oLSkNCg0KZGlmZiAtLWdpdCBhL21ldGEteW9jdG8tYnNwL2NvbmYv
-bWFjaGluZS9iZWFnbGVib25lLXlvY3RvLmNvbmYgYi9tZXRhLXlvY3RvLWJzcC9jb25mL21hY2hp
-bmUvYmVhZ2xlYm9uZS15b2N0by5jb25mDQppbmRleCA3MGQzY2ZlLi5iYzE4ZWU4IDEwMDY0NA0K
-LS0tIGEvbWV0YS15b2N0by1ic3AvY29uZi9tYWNoaW5lL2JlYWdsZWJvbmUteW9jdG8uY29uZg0K
-KysrIGIvbWV0YS15b2N0by1ic3AvY29uZi9tYWNoaW5lL2JlYWdsZWJvbmUteW9jdG8uY29uZg0K
-QEAgLTMyLDcgKzMyLDcgQEAgS0VSTkVMX0VYVFJBX0FSR1MgKz0gIkxPQURBRERSPSR7VUJPT1Rf
-RU5UUllQT0lOVH0iDQogDQogU1BMX0JJTkFSWSA9ICJNTE8iDQogVUJPT1RfU1VGRklYID0gImlt
-ZyINCi1VQk9PVF9NQUNISU5FID0gImFtMzM1eF9ib25lYmxhY2tfY29uZmlnIg0KK1VCT09UX01B
-Q0hJTkUgPSAiYW0zMzV4X2V2bV9kZWZjb25maWciDQogVUJPT1RfRU5UUllQT0lOVCA9ICIweDgw
-MDA4MDAwIg0KIFVCT09UX0xPQURBRERSRVNTID0gIjB4ODAwMDgwMDAiDQogDQotLSANCjIuMjEu
-MA0KDQo=
+--00000000000071818e05864bdb2e
+Content-Type: text/plain; charset="UTF-8"
 
+Build should strip it automatically what does your build recipe look like
+
+On Thu, Apr 11, 2019 at 1:37 AM Mauro Ziliani <mauro@faresoftware.it> wrote:
+
+> Hi all.
+>
+> I worked on my project woth Krogoth, gcc 5.3.0, on imx6dlsabresd board.
+>
+> My application is build with cmake 3.4.3, shipped with BSP.
+>
+>
+> I'd like to strip debug symbols from the final binary, but if I prepend
+> the strip parameter in CMAKE_{C,CXX}_FLAGS_RELEASE in my CMakeLists.txt,
+> bitbake give me errors.
+>
+>
+> What is the right path to follow to strip final binary?
+>
+> With debug info the binary is 109MB, without 5MB
+>
+>
+> Best regards,
+>
+>  Mauro
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--00000000000071818e05864bdb2e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br></div><div dir=3D"auto">Build should strip it automatically what d=
+oes your build recipe look like=C2=A0</div><div><br><div class=3D"gmail_quo=
+te"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Apr 11, 2019 at 1:37 AM M=
+auro Ziliani &lt;<a href=3D"mailto:mauro@faresoftware.it">mauro@faresoftwar=
+e.it</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi all.<br>
+<br>
+I worked on my project woth Krogoth, gcc 5.3.0, on imx6dlsabresd board.<br>
+<br>
+My application is build with cmake 3.4.3, shipped with BSP.<br>
+<br>
+<br>
+I&#39;d like to strip debug symbols from the final binary, but if I prepend=
+<br>
+the strip parameter in CMAKE_{C,CXX}_FLAGS_RELEASE in my CMakeLists.txt,<br=
+>
+bitbake give me errors.<br>
+<br>
+<br>
+What is the right path to follow to strip final binary?<br>
+<br>
+With debug info the binary is 109MB, without 5MB<br>
+<br>
+<br>
+Best regards,<br>
+<br>
+=C2=A0Mauro<br>
+<br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div></div>
+
+--00000000000071818e05864bdb2e--
