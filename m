@@ -1,6 +1,6 @@
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65187E00A84; Fri, 12 Apr 2019 03:58:02 -0700 (PDT)
+	id 36082E00AB0; Fri, 12 Apr 2019 04:15:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,57 +11,56 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.44 listed in list.dnswl.org]
+	*      [209.85.128.43 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
-	[209.85.221.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B4C6E0097C
-	for <yocto@yoctoproject.org>; Fri, 12 Apr 2019 03:58:00 -0700 (PDT)
-Received: by mail-wr1-f44.google.com with SMTP id k11so11374347wro.5
-	for <yocto@yoctoproject.org>; Fri, 12 Apr 2019 03:58:00 -0700 (PDT)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+	[209.85.128.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10622E0091D
+	for <yocto@yoctoproject.org>; Fri, 12 Apr 2019 04:15:55 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id y197so10535520wmd.0
+	for <yocto@yoctoproject.org>; Fri, 12 Apr 2019 04:15:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=linuxfoundation.org; s=google;
 	h=message-id:subject:from:to:cc:date:in-reply-to:references
 	:user-agent:mime-version:content-transfer-encoding;
 	bh=T98nrEt00gbtKHCyqL7qOBH2EFSif47dvNuCF3AFokU=;
-	b=NicfQ1K/Rbs/7aeWQiXgsf2FB9PAC1s1SYmJaUISYahqInHhCb7UsO0PySemS5AGQz
-	R3NZYHnlPNvgpgl0pRHEJ+BVqO7VIO3gFqSclxzQd8Jc9hPRGrgDNuZDFjGI6YHPm35B
-	CdanDFmT9mJgGhiH+uGiK0q2/YRIUi0X7iNz4=
+	b=G4olYAwC0hK2NkB+menvWzgoxWbOZygfHp3VvIoLddKgE9TdcN7/ON8cuCb3kbd0pb
+	4xwSaZLe/Q+9eaWy20BqYcouIJBZMWNlpseX0UuY+FM56bngkx9OZ2w7/WZqCyMpm6dz
+	UJXRs6mXl30LjeDzd9mxnAd3OsqAIuHwponiQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
 	:references:user-agent:mime-version:content-transfer-encoding;
 	bh=T98nrEt00gbtKHCyqL7qOBH2EFSif47dvNuCF3AFokU=;
-	b=eWgG2J3j66ekYsHbhHXR5QItUl+vMHra9SYRHC8f0YIOj4uiugRTZdM0IRMs2IRw31
-	YQpEMrS7iUnj2TUslzXYLsg2o2xEi2ffoVcw6IQ6dxOByayEgIXwHKkubcifRrpt53nd
-	i4SiBlokY63728wSQpV2RGS8LdVPfK0945ravMzlKiwQpV411P28OaLQ2JbFgRajUv66
-	NrzNubXWt750uRBolg/0zM4n//Wwq8br1ksF1TsyH7czbz6Hw0DacXJ9HOW7B3lwOARn
-	YJ079K0EjWRRU1NGsB2ND4S0uDIpLNVKOYPySDVYjSiv7n2pkqDcUh+KzypaXYW+krt/
-	U3ag==
-X-Gm-Message-State: APjAAAXinfC9j/X7uFH5J+ZOJb2AYCbEGeWmP99fBVGbcl/p+oh8mo+t
-	nO9pXjJ4B0xG8lnHbjsle+HCIA==
-X-Google-Smtp-Source: APXvYqzEqP9XwEpn+gV5/ShpjKNm2u2vHkBWhrx//7njIYJk8iI9DgpqCBPNlLJ6VT3AJxGFgoFcow==
-X-Received: by 2002:adf:e84b:: with SMTP id d11mr33710750wrn.289.1555066680096;
-	Fri, 12 Apr 2019 03:58:00 -0700 (PDT)
+	b=pOrXpYlUwdo2URaXQJcYiVoy9+5b+RIfqSoixc0dSrZdAN9dMVftilI1SA8Gg2AFU7
+	+0dCB5z6YP/oyW9LGpJfzhOWl3mbomRVJ6KpRUvzrqqwXjMjdEBXJ/TnoavdlnRqYqO8
+	JTXiTOM75TiBapFcoFRo7WS76vZ8O+vDYO1Tu9KDnIktDSoEOuxn9X1DMq5Gzu/GGKvn
+	CanyS/rs7WDy7CyfgO2vm5Vzy7H5m81BeVhd0RgpTTwiogL8iCPmSqyxJHWZAItScBUf
+	ZJRb/ZPdcQpvU2tO3zzcgY+0KuGSRTAcjUl3xqcgxg5OJCa7RMEGlQGm1QysFKWovrP3
+	bq+Q==
+X-Gm-Message-State: APjAAAVTMTvgD9/9JW/gPiqL9M1442QEQ6UT47Iu0iENOIMyv3IfPlDH
+	xkbJ1yI3pSrj3oSeIGJpecHDZQ==
+X-Google-Smtp-Source: APXvYqxJr9Vz1Ef1Xry5OWVmR/DE8uPV0vy3gNLlBGx+ZtrJn0YkcdV6r7hQ3rlS95B/trxlFyszqQ==
+X-Received: by 2002:a05:600c:21d3:: with SMTP id
+	x19mr10771043wmj.2.1555067755217; 
+	Fri, 12 Apr 2019 04:15:55 -0700 (PDT)
 Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
 	by smtp.gmail.com with ESMTPSA id
-	t76sm12182213wmt.8.2019.04.12.03.57.58
+	t74sm15126007wmt.3.2019.04.12.04.15.53
 	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Fri, 12 Apr 2019 03:57:59 -0700 (PDT)
-Message-ID: <d996f4fc461a2def10b9af6704b9153642d3f409.camel@linuxfoundation.org>
+	Fri, 12 Apr 2019 04:15:54 -0700 (PDT)
+Message-ID: <6efbe3299710921b8da6988b37e53ce34ed14314.camel@linuxfoundation.org>
 From: richard.purdie@linuxfoundation.org
 To: "Jain, Sangeeta" <sangeeta.jain@intel.com>, "'yocto@yoctoproject.org'"
 	<yocto@yoctoproject.org>, "Eggleton, Paul" <paul.eggleton@intel.com>, 
 	'Michael Halstead' <mhalstead@linuxfoundation.org>, "Erway, Tracey M"
 	<tracey.m.erway@intel.com>,  "'sjolley.yp.pm@gmail.com'"
-	<sjolley.yp.pm@gmail.com>,
-	"openembedded-core-request@lists.openembedded.org"
-	<openembedded-core-request@lists.openembedded.org>
-Date: Fri, 12 Apr 2019 11:57:57 +0100
+	<sjolley.yp.pm@gmail.com>, openembedded-core@lists.openembedded.org
+Date: Fri, 12 Apr 2019 12:15:53 +0100
 In-Reply-To: <015AB11D45F2C442929CB2765DAE738634DD053D@PGSMSX110.gar.corp.intel.com>
 References: <015AB11D45F2C442929CB2765DAE738634DD053D@PGSMSX110.gar.corp.intel.com>
 User-Agent: Evolution 3.32.0-1 
@@ -78,7 +77,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Apr 2019 10:58:02 -0000
+X-List-Received-Date: Fri, 12 Apr 2019 11:15:57 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
