@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EE548E00AB0; Thu, 11 Apr 2019 19:14:07 -0700 (PDT)
+	id 413CFE00994; Thu, 11 Apr 2019 19:16:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,53 +13,54 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.182 listed in list.dnswl.org]
+	*      [209.85.222.178 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
-	[209.85.222.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEC10E00A84
-	for <yocto@yoctoproject.org>; Thu, 11 Apr 2019 19:14:06 -0700 (PDT)
-Received: by mail-qk1-f182.google.com with SMTP id g1so4768656qki.5
-	for <yocto@yoctoproject.org>; Thu, 11 Apr 2019 19:14:06 -0700 (PDT)
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
+	[209.85.222.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CC69E00950
+	for <yocto@yoctoproject.org>; Thu, 11 Apr 2019 19:16:28 -0700 (PDT)
+Received: by mail-qk1-f178.google.com with SMTP id b74so4759212qkg.9
+	for <yocto@yoctoproject.org>; Thu, 11 Apr 2019 19:16:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=ixvmmFNHUXtzhxx36pnHXpGr+BO2TWim8WCKGhOWXTk=;
-	b=PJ1MC04OWkf2GMFCcHtPK6AD5qVJSR0dcQL7sYDVqxWfykRrSk08HNg4h1OT4M+w4i
-	L3pM6huVMOlXh48aa+m32NnICJ5uFMtJt8Hu5gOqntSVXuyv9rSbn2XaPoIa9GW3Qudn
-	ToH8BnJsvNKruuQmbUKPhT9BRvAGhIzcT71iW28mXHWUre9RbwtgVlyUT1QpHLBaQfRr
-	lPAsWb5JYegZMZIfLjI8OIi7T85/jExO74B3eC4PyrKpfzFGxKm3Et/8AHELrjAO3azK
-	Gr2zFrFHMUGVjlC1ikvkU9BSywn9j36wSsegndqHVcVtX0Qm4zMaNTKBa9xsp+I9VT9q
-	G80Q==
+	:cc; bh=IIqxzLczqXjZ8j0jE4GV+jCNJN4pgjH8e6dW8l7OGVo=;
+	b=M/U+VKpGKzc2KSG9FAoYb65rbKYFcwWsWnLtY+R3owz7C4tjkO8AcS2n1JxwHorPk+
+	CmKPsEEmdtQNJicmETRCcCKJR8uwFlj3nb/NpGqGPfzvY/WNBFFj7hFJcCeUdo0MowgX
+	Tso/MTpTTOUxEt4EQuBaeK3g+AJdjxptJAWXpbjxj3rIqrjlxg5/OdRXCX/8/heI808m
+	u/QrDsBbHSU2ZsWfbBtxzsq/3aS7/ZPGBMOPw7XEGj+d+qOoEZECD/rWumZT64Bt0R3B
+	dx/RbilfkAW55G6Dw63Xl8QI14m7ohexOQ5uKepeIAMRnH35TxfYBvKmAtw12ZB9P0TM
+	wfxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=ixvmmFNHUXtzhxx36pnHXpGr+BO2TWim8WCKGhOWXTk=;
-	b=rPL3z3fsyVFmDC7R0WceUAqv/AuF/PN4QD+C27M2ipx/1MjG2VgPpe4FTBEctSprwz
-	mUVZqDn3pnT2dLFcIIX/wnbaOc7eUnNcQb1OGFwV/OsXM4hZrmawe4MndIpuaXBTg4tj
-	JONsI/vRy1AG1DcU8PK40XI1VMiYXSQxf3zFVVdcaupvToQNcLMiMOY2kvv62O2RwK7/
-	KYnFaRe5URkHQwgvMrNn4uvaI/JyxNfJORcx21OpeE3CjqaoKE/PCdDBwNFLhy1178Mj
-	MTqUQvg9ojUC/IodR+dapTRhqf447C+7dOQAaVEEeXgg5mTQoQPhF2fpQ3KQpKbB8ala
-	swWA==
-X-Gm-Message-State: APjAAAVEbbT7091J4ZtFlNWPkRm35rA1zdP1QosYooH+RgKfMbQAEOv7
-	Arkam/tHz3oHFaPEpy0MbMfJb8hIMh1mesZWUd8=
-X-Google-Smtp-Source: APXvYqzjZ6Wq8U+br+yRlXY0Vtxf0vbNyOg3f8PyqgPD1b2UStpIVq0HMQm6slNfSqeRzTtHlOltYF4q6XGEgD824QU=
-X-Received: by 2002:a37:a208:: with SMTP id l8mr42833263qke.210.1555035245870; 
-	Thu, 11 Apr 2019 19:14:05 -0700 (PDT)
+	bh=IIqxzLczqXjZ8j0jE4GV+jCNJN4pgjH8e6dW8l7OGVo=;
+	b=ThuO75eeticgrON7r5LoydrTNrf0z/QYRzh32CzouCG9VTmdeYdzx3umWrey2Io8Rm
+	YV8IzcKx/ZcRFExNcsk9M89X5A2C0sD9Dcz+H85Dq06IN8hAZvTFg3FRzMNB4K2OnBos
+	LTiN2hUDUT9gTlo1rUftSQe72j6bD6qiTVunG78xK4ohEqY6TVVGcrLKcACd9b8E/abE
+	Pbh0g2sj5sUFJgB+9eiHHgldQkgcUmwtblm6jQkXl+ntlsc8TNWUFJnd3VqARHrw4Jvy
+	v5+SpJvL4FjaqTld41hAT6gC3sPWtZEusGdwuQBsOouXa2NQRUs0BaI4zRf0G2sRkF1i
+	PChA==
+X-Gm-Message-State: APjAAAXRpGGNYsylhlOphqq+4PNeIpaRBf8D6gyh5xcuMBwqyXdmWXwU
+	A9kNWMLhmmsgIDCLRPefSA+yzdmZRjNSREt01kQ=
+X-Google-Smtp-Source: APXvYqwDRf/4DL71YDkkzYw1oNm4mq47BnrfQnedRZ/BfrgnbfPqxDbOYE67/ZHMo5tgLsm7cm4K2ZkR4kKbhVaYx7w=
+X-Received: by 2002:a37:7b02:: with SMTP id w2mr40841906qkc.225.1555035387739; 
+	Thu, 11 Apr 2019 19:16:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <2e1ac0d1-94d5-4e1f-4b84-ea71685244e3@faresoftware.it>
-In-Reply-To: <2e1ac0d1-94d5-4e1f-4b84-ea71685244e3@faresoftware.it>
+References: <015AB11D45F2C442929CB2765DAE738634DD053D@PGSMSX110.gar.corp.intel.com>
+	<72b7a5a1-3297-9011-67e8-f2a5a943f086@faresoftware.it>
+In-Reply-To: <72b7a5a1-3297-9011-67e8-f2a5a943f086@faresoftware.it>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 11 Apr 2019 19:13:55 -0700
-Message-ID: <CAMKF1sroULsNWmV09Wpcbap-CEm2_T-Jh5zYSUG7gUGdtc1r6A@mail.gmail.com>
+Date: Thu, 11 Apr 2019 19:16:17 -0700
+Message-ID: <CAMKF1sraewn-efkDqz=7oeys7Us18di85rP7uzTKuk+0Q3KEfA@mail.gmail.com>
 To: Mauro Ziliani <mauro@faresoftware.it>
 Cc: yocto@yoctoproject.org
-Subject: Re: Stripping debug symbols
+Subject: Re: Changing IMAGE_NAME [yocto krogoth]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,36 +72,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Apr 2019 02:14:08 -0000
-Content-Type: multipart/alternative; boundary="00000000000071818e05864bdb2e"
+X-List-Received-Date: Fri, 12 Apr 2019 02:16:29 -0000
+Content-Type: multipart/alternative; boundary="000000000000e644ab05864be376"
 
---00000000000071818e05864bdb2e
+--000000000000e644ab05864be376
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Build should strip it automatically what does your build recipe look like
-
-On Thu, Apr 11, 2019 at 1:37 AM Mauro Ziliani <mauro@faresoftware.it> wrote:
+On Wed, Apr 10, 2019 at 2:49 AM Mauro Ziliani <mauro@faresoftware.it> wrote=
+:
 
 > Hi all.
 >
-> I worked on my project woth Krogoth, gcc 5.3.0, on imx6dlsabresd board.
+> I need to change the default IMAGE_NAME of my image recipe.
 >
-> My application is build with cmake 3.4.3, shipped with BSP.
+> I make my image recipe as mysystem-image_1.0.bb and I'd like to produce
+> and image (tar) with the name
 >
->
-> I'd like to strip debug symbols from the final binary, but if I prepend
-> the strip parameter in CMAKE_{C,CXX}_FLAGS_RELEASE in my CMakeLists.txt,
-> bitbake give me errors.
+> mysystem-image-1.0-<datetime>.tar
 >
 >
-> What is the right path to follow to strip final binary?
+Isn=E2=80=99t time stamp part of the standard image you get out of build ?
+
 >
-> With debug info the binary is 109MB, without 5MB
+> So I setup
+>
+> IMAGE_NAME :=3D "{IMAGE_BASENAME}-${PV}-${DATETIME}"
+>
+>
+> I made some compilation of mysystem with the default IMAGE_NAME.
+>
+> Than I update the value of IMAGE_NAME.
+>
+>
+> Now when I rebuild the image bitbke tell me
+>
+> ERROR: When reparsing mysystem-image_1.0.do_roots, the basehash value
+> change from .... to ....
+>
+> If i restore the IMAGE_NAME to the default value this message disappear
+>
+>
+> How can I change the IMAGE_NAME as I need and avoi this message?
 >
 >
 > Best regards,
 >
->  Mauro
+>   MZ
+>
 >
 > --
 > _______________________________________________
@@ -109,38 +128,55 @@ On Thu, Apr 11, 2019 at 1:37 AM Mauro Ziliani <mauro@faresoftware.it> wrote:
 > https://lists.yoctoproject.org/listinfo/yocto
 >
 
---00000000000071818e05864bdb2e
+--000000000000e644ab05864be376
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div><br></div><div dir=3D"auto">Build should strip it automatically what d=
-oes your build recipe look like=C2=A0</div><div><br><div class=3D"gmail_quo=
-te"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Apr 11, 2019 at 1:37 AM M=
-auro Ziliani &lt;<a href=3D"mailto:mauro@faresoftware.it">mauro@faresoftwar=
-e.it</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi all.<br>
-<br>
-I worked on my project woth Krogoth, gcc 5.3.0, on imx6dlsabresd board.<br>
-<br>
-My application is build with cmake 3.4.3, shipped with BSP.<br>
-<br>
-<br>
-I&#39;d like to strip debug symbols from the final binary, but if I prepend=
-<br>
-the strip parameter in CMAKE_{C,CXX}_FLAGS_RELEASE in my CMakeLists.txt,<br=
->
-bitbake give me errors.<br>
-<br>
-<br>
-What is the right path to follow to strip final binary?<br>
-<br>
-With debug info the binary is 109MB, without 5MB<br>
-<br>
-<br>
-Best regards,<br>
-<br>
-=C2=A0Mauro<br>
-<br>
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Wed, Apr 10, 2019 at 2:49 AM Mauro Ziliani &lt;<a href=
+=3D"mailto:mauro@faresoftware.it">mauro@faresoftware.it</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
+ft:1px #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <p>Hi all.</p>
+    <p>I need to change the default IMAGE_NAME of my image recipe.</p>
+    <p>I make my image recipe as <a href=3D"http://mysystem-image_1.0.bb" t=
+arget=3D"_blank">mysystem-image_1.0.bb</a> and I&#39;d like to
+      produce and image (tar) with the name</p>
+    <p>mysystem-image-1.0-&lt;datetime&gt;.tar</p>
+    <p></p></div></blockquote><div dir=3D"auto"><br></div><div dir=3D"auto"=
+>Isn=E2=80=99t time stamp part of the standard image you get out of build ?=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
+eft:1px #ccc solid;padding-left:1ex"><div text=3D"#000000" bgcolor=3D"#FFFF=
+FF"><p><br>
+    </p>
+    <p>So I setup</p>
+    <p>IMAGE_NAME :=3D &quot;{IMAGE_BASENAME}-${PV}-${DATETIME}&quot;</p>
+    <p><br>
+    </p>
+    <p>I made some compilation of mysystem with the default IMAGE_NAME.</p>
+    <p>Than I update the value of IMAGE_NAME.</p>
+    <p><br>
+    </p>
+    <p>Now when I rebuild the image bitbke tell me</p>
+    <p><font color=3D"#3366ff">ERROR: When reparsing
+        mysystem-image_1.0.do_roots, the basehash value change from ....
+        to ....</font></p>
+    <p>If i restore the IMAGE_NAME to the default value this message
+      disappear</p>
+    <p><br>
+    </p>
+    <p>How can I change the IMAGE_NAME as I need and avoi this message?</p>
+    <p><br>
+    </p>
+    <p>Best regards,</p>
+    <p>=C2=A0 MZ</p></div><div text=3D"#000000" bgcolor=3D"#FFFFFF"><p><br>
+    </p>
+  </div>
+
 -- <br>
 _______________________________________________<br>
 yocto mailing list<br>
@@ -150,4 +186,4 @@ ect.org</a><br>
 " target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
 </blockquote></div></div>
 
---00000000000071818e05864bdb2e--
+--000000000000e644ab05864be376--
