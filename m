@@ -1,66 +1,62 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <sbabic@denx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B3A78E00BCE; Sat, 13 Apr 2019 10:29:43 -0700 (PDT)
+	id 50F03E00BCE; Sat, 13 Apr 2019 11:40:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.177 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
-	[209.85.214.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E64D3E00BAB
-	for <yocto@yoctoproject.org>; Sat, 13 Apr 2019 10:29:42 -0700 (PDT)
-Received: by mail-pl1-f177.google.com with SMTP id cv12so6605484plb.9
-	for <yocto@yoctoproject.org>; Sat, 13 Apr 2019 10:29:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=bd8aeBw13OTcn0coCslonM3s+BdRZHkHR1FVfMxtYzk=;
-	b=F7nBaRkzGE5ARM6v1nm90yJymukJgRStkFxcig0OKT6cUdTNerVrSwf8aYiuaVaTMM
-	ohnn92gP90o8Mz+vIy95a1rTYXHNPShDtfh5naGNtiyAsmmSG9egQCzStKGso+Do0COv
-	fmVIHS6nRjOKSaBNdCwR2ys6eWmsTD6tUYnDn5RALT+Qo+WBwxf+wDkVbYPRJpixQ2b0
-	gNr/7y6Z4qsOrT2tRIBl6nM//SA4SEG8LHNvHAUvSKmwhePo003m8K9eVQSe+2ZWCmni
-	LxkIcdz7C3Q8DA26mXBAmRar7QLPjHOhEh7yBg8ymlfk/1DddxiG/GvnVO49JPwiiBar
-	yKpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=bd8aeBw13OTcn0coCslonM3s+BdRZHkHR1FVfMxtYzk=;
-	b=Q4LP0oRuL8HeuwinZfBf2mhjyYXCO280oa0x0tV7lyIRJeV3gL//xQVMQ56s68kFxM
-	S+6C+5r4oN7AK3KogrEA9v3G1wDBF0SL1DWleqWKGVtvhttkEgsjn+BxZ9l8TEoUcqJK
-	A1i5knw+q2L1SJBhgjwakMU+3zs01e8b+cnXTYrvdWAAgTRM+W4g62PFGThXm7OGxESt
-	Qi79kJYgt0nCZhAJidbhczcGBJ9O3BAeuFChFveNMhd8LUBUmGw+yJTagfVXOq03cSQr
-	Z1I4q0LSJczNQ1IvIOiwU+0w1+1JqcK/lXkGjgccuxaHfqCdff/FYbjd7aQRWoYOyJax
-	7Mkw==
-X-Gm-Message-State: APjAAAWLPD6KSciwyUl4ks0+CK+Mj9TlNdkjX+H7x5WnDTDGHcqmBu1n
-	yT/4L1bTamTEtatTSVtjBoMTXcMz
-X-Google-Smtp-Source: APXvYqw+30GptqXBCrSgfO+R69wOdmJtwoFeg6wnQqRhjzNfnCQxrDCZyw/f6zii7PeQQ73owAcTQg==
-X-Received: by 2002:a17:902:bc85:: with SMTP id
-	bb5mr38331395plb.310.1555176581868; 
-	Sat, 13 Apr 2019 10:29:41 -0700 (PDT)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	j20sm31417570pfn.84.2019.04.13.10.29.40 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 13 Apr 2019 10:29:41 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sat, 13 Apr 2019 10:29:39 -0700
-Message-Id: <20190413172939.15121-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [meta-security][PATCH] clamav-native: fix new build issue
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [212.18.0.9 listed in list.dnswl.org]
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6A61E00BAA
+	for <yocto@yoctoproject.org>; Sat, 13 Apr 2019 11:40:12 -0700 (PDT)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+	by mail-out.m-online.net (Postfix) with ESMTP id 44hNqH1SRBz1rFsK;
+	Sat, 13 Apr 2019 20:40:11 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+	by mail.m-online.net (Postfix) with ESMTP id 44hNqH0ybfz1qv17;
+	Sat, 13 Apr 2019 20:40:11 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new,
+	port 10024)
+	with ESMTP id rr1lyW0sr_nB; Sat, 13 Apr 2019 20:40:09 +0200 (CEST)
+Received: from babic.homelinux.org (host-88-217-136-221.customer.m-online.net
+	[88.217.136.221])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail.mnet-online.de (Postfix) with ESMTPS;
+	Sat, 13 Apr 2019 20:40:09 +0200 (CEST)
+Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
+	by babic.homelinux.org (Postfix) with ESMTP id 83B5745403CE;
+	Sat, 13 Apr 2019 20:40:08 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
+Received: from babic.homelinux.org ([127.0.0.1])
+	by localhost (mail.babic.homelinux.org [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id m0TbwVm16h9T; Sat, 13 Apr 2019 20:40:05 +0200 (CEST)
+Received: from [192.168.178.89] (stefano-MacBookPro.fritz.box [192.168.178.89])
+	by babic.homelinux.org (Postfix) with ESMTPS id C39BE45403AD;
+	Sat, 13 Apr 2019 20:40:04 +0200 (CEST)
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>,
+	Alistair Francis <Alistair.Francis@wdc.com>
+References: <20190411182858.11756-1-alistair.francis@wdc.com>
+	<CAGAf8Lx6xBcOb_PZD=4QwTxi8FyJC99z=rR_BqckyR9JO-yW7Q@mail.gmail.com>
+From: Stefano Babic <sbabic@denx.de>
+Message-ID: <3ff466e5-de1c-b83a-efab-129a2c357017@denx.de>
+Date: Sat, 13 Apr 2019 20:40:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <CAGAf8Lx6xBcOb_PZD=4QwTxi8FyJC99z=rR_BqckyR9JO-yW7Q@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"denys@ti.com" <denys@ti.com>,
+	"alistair23@gmail.com" <alistair23@gmail.com>
+Subject: Re: [meta-yocto-bsp][PATCH v2] beaglebone-yocto: Update u-boot config to match u-boot 19.04
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,105 +68,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Apr 2019 17:29:43 -0000
+X-List-Received-Date: Sat, 13 Apr 2019 18:40:15 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-re-arch the reciped to build properly.
+Hi Zoran,
 
-Fixed /var/lib/clamav dir issue
+On 12/04/19 09:00, Zoran Stojsavljevic wrote:
+> Hello to all,
+> 
+> I will ask few questions here regarding U-Boot, since U-Boot mailing
+> list is too frequent/clogged...
+> 
+> Apropos (Regarding to) U-Boot 2019.04, I have some questions? May I?
+> 
+> I know for the fact the following:
+> Alexander Graf (till 03.2019 SUSE developer) said (September 2018. in
+> Erlangen, Bavaria, DE) that U-Boot folks will move his UEFI patches in
+> master U-Boot git somewhere in midst of January 2019.
+> 
+> I am wondering, did these patches were moved from Alexander Graf's U-Boot git?
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/clamav/clamav_0.99.4.bb | 41 +++++++++++-------------
- 1 file changed, 19 insertions(+), 22 deletions(-)
+As far as I know, Alex's patches at the time were already integrated in
+2019.01.
 
-diff --git a/recipes-security/clamav/clamav_0.99.4.bb b/recipes-security/clamav/clamav_0.99.4.bb
-index 32dc59c..7d8767e 100644
---- a/recipes-security/clamav/clamav_0.99.4.bb
-+++ b/recipes-security/clamav/clamav_0.99.4.bb
-@@ -4,8 +4,8 @@ HOMEPAGE = "http://www.clamav.net/index.html"
- SECTION = "security"
- LICENSE = "LGPL-2.1"
- 
--DEPENDS = "libtool db libmspack chrpath-replacement-native clamav-native"
--DEPENDS_class-native = "db-native"
-+DEPENDS = "libtool db libmspack openssl zlib llvm chrpath-replacement-native clamav-native"
-+DEPENDS_class-native = "db-native openssl-native zlib-native"
-  
- LIC_FILES_CHKSUM = "file://COPYING.LGPL;beginline=2;endline=3;md5=4b89c05acc71195e9a06edfa2fa7d092"
- 
-@@ -36,39 +36,35 @@ INSTALL_CLAMAV_CVD ?= "1"
- # disable the internal one. This is a known issue
- # If you want LLVM support, use the one in core
- 
--PACKAGECONFIG ?= "ncurses openssl bz2 zlib llvm"
--PACKAGECONFIG += " ${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6", "", d)}"
--PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
-+CLAMAV_USR_DIR = "${STAGING_DIR_NATIVE}/usr"
-+CLAMAV_USR_DIR_class-target = "${STAGING_DIR_HOST}/usr"
- 
--PACKAGECONFIG[llvm] = "--with-system-llvm --with-llvm-linking=dynamic --disable-llvm, ,llvm"
-+PACKAGECONFIG_class-target ?= "ncurses bz2"
-+PACKAGECONFIG_class-target += " ${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6", "", d)}"
-+PACKAGECONFIG_class-target += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
- 
- PACKAGECONFIG[pcre] = "--with-pcre=${STAGING_LIBDIR},  --without-pcre, libpcre"
--PACKAGECONFIG[xml] = "--with-xml=${STAGING_LIBDIR}/.., --with-xml=no, libxml2,"
-+PACKAGECONFIG[xml] = "--with-xml=${CLAMAV_USR_DIR}, --disable-xml, libxml2,"
- PACKAGECONFIG[json] = "--with-libjson=${STAGING_LIBDIR}, --without-libjson, json,"
- PACKAGECONFIG[curl] = "--with-libcurl=${STAGING_LIBDIR}, --without-libcurl, curl,"
- PACKAGECONFIG[ipv6] = "--enable-ipv6, --disable-ipv6"
--PACKAGECONFIG[openssl] = "--with-openssl=${STAGING_DIR_HOST}/usr, --without-openssl, openssl, openssl"
--PACKAGECONFIG[zlib] = "--with-zlib=${STAGING_DIR_HOST}/usr --disable-zlib-vcheck , --without-zlib, zlib, "
--PACKAGECONFIG[bz2] = "--with-libbz2-prefix=${STAGING_LIBDIR}/.., --without-libbz2-prefix, "
--PACKAGECONFIG[ncurses] = "--with-libncurses-prefix=${STAGING_LIBDIR}/.., --without-libncurses-prefix, ncurses, "
-+PACKAGECONFIG[bz2] = "--with-libbz2-prefix=${CLAMAV_USR_DIR}, --without-libbz2-prefix, "
-+PACKAGECONFIG[ncurses] = "--with-libncurses-prefix=${CLAMAV_USR_DIR}, --without-libncurses-prefix, ncurses, "
- PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_unitdir}/system/, --without-systemdsystemunitdir, "
- 
--EXTRA_OECONF += " --with-user=${UID}  --with-group=${GID} \
--            --without-libcheck-prefix --disable-unrar \
--            --disable-mempool \
--            --program-prefix="" \
--            --disable-yara \
--            --disable-rpath \
--            "
--
--EXTRA_OECONF_class-native += "--without-libcheck-prefix --disable-unrar \
-+EXTRA_OECONF_CLAMAV = "--without-libcheck-prefix --disable-unrar \
-             --with-system-llvm --with-llvm-linking=dynamic --disable-llvm \
-             --disable-mempool \
-             --program-prefix="" \
-             --disable-yara \
--            --without-libbz2-prefix --without-zlib \
-+            --disable-xml \
-+            --with-openssl=${CLAMAV_USR_DIR} \
-+            --with-zlib=${CLAMAV_USR_DIR} --disable-zlib-vcheck \
-             "
- 
-+EXTRA_OECONF_class-native += "${EXTRA_OECONF_CLAMAV}"
-+EXTRA_OECONF_class-target += "--with-user=${UID}  --with-group=${GID} --disable-rpath ${EXTRA_OECONF_CLAMAV}"
-+
- do_configure () {
-     cd ${S}
-     ./configure ${CONFIGUREOPTS} ${EXTRA_OECONF} 
-@@ -117,6 +113,7 @@ pkg_postinst_ontarget_${PN} () {
-     if [ -e /etc/init.d/populate-volatile.sh ] ; then
-         ${sysconfdir}/init.d/populate-volatile.sh update
-     fi
-+    mkdir -p ${localstatedir}/lib/clamav
-     chown -R ${UID}:${GID} ${localstatedir}/lib/clamav
- }
- 
-@@ -177,7 +174,7 @@ RREPLACES_${PN} += "${PN}-systemd"
- RCONFLICTS_${PN} += "${PN}-systemd"
- SYSTEMD_SERVICE_${PN} = "${BPN}.service"
- 
--RDEPENDS_${PN} += "openssl ncurses-libncurses libbz2 ncurses-libtinfo clamav-freshclam clamav-libclamav"
-+RDEPENDS_${PN} = "openssl ncurses-libncurses libbz2 ncurses-libtinfo clamav-freshclam clamav-libclamav"
- RDEPENDS_${PN}_class-native = ""
- 
- BBCLASSEXTEND = "native"
+> 
+> If yes, from which release UEFI shell support does reside in Coreboot
+> (version number)?
+> 
+> Here is the pointer to Alex Graf's Git, I am talking about:
+> https://github.com/agraf/u-boot
+
+As far as I see, Alex's efi-2019.01 was integrated by Tom in 2019.01.
+But I have not tried myself, I fear you have to post U-Boot's ML if you
+need some help.
+
+> _______
+> 
+> I have UEFI USB stick with already pre-compiled ready EFI shell 2.40,
+> so I would like to program such an U-Boot (2019.04?!) to my BBB and
+> try to get to the EFI shell with attached UEFI USB stick.
+> 
+> Nice exercise, won't you all agree!? ;-)
+> 
+
+Best regards,
+Stefano Babic
+
+> Thank you,
+> Zoran Stojsavljevic
+> _______
+> 
+> On Fri, Apr 12, 2019 at 12:09 AM Alistair Francis
+> <Alistair.Francis@wdc.com> wrote:
+>>
+>> [YOCTO #13145]
+>>
+>> This was announced at 2019.01:
+>> https://www.mail-archive.com/u-boot@lists.denx.de/msg305424.html
+>>
+>> Basically, am335x_boneblack is just a special subset of am335x_evm config,
+>> created and owned by BeagleBoard.org community. Since it was not migrated to
+>> use CONFIG_BLK in time for 2019.04 release.
+>>
+>> Signed-off-by: Alistair Francis <alistair.francis@wdc.com>
+>> Acked-by: Denys Dmytriyenko <denys@ti.com>
+>> ---
+>>  meta-yocto-bsp/conf/machine/beaglebone-yocto.conf | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/meta-yocto-bsp/conf/machine/beaglebone-yocto.conf b/meta-yocto-bsp/conf/machine/beaglebone-yocto.conf
+>> index 70d3cfe..bc18ee8 100644
+>> --- a/meta-yocto-bsp/conf/machine/beaglebone-yocto.conf
+>> +++ b/meta-yocto-bsp/conf/machine/beaglebone-yocto.conf
+>> @@ -32,7 +32,7 @@ KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
+>>
+>>  SPL_BINARY = "MLO"
+>>  UBOOT_SUFFIX = "img"
+>> -UBOOT_MACHINE = "am335x_boneblack_config"
+>> +UBOOT_MACHINE = "am335x_evm_defconfig"
+>>  UBOOT_ENTRYPOINT = "0x80008000"
+>>  UBOOT_LOADADDRESS = "0x80008000"
+>>
+>> --
+>> 2.21.0
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+
 -- 
-2.17.1
-
+=====================================================================
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
+=====================================================================
 
