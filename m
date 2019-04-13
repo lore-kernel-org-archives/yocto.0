@@ -1,45 +1,66 @@
-Return-Path: <Joe_MacDonald@mentor.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A943BE00D11; Fri, 12 Apr 2019 12:24:48 -0700 (PDT)
+	id B3A78E00BCE; Sat, 13 Apr 2019 10:29:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A5B4E00BC8
-	for <yocto@yoctoproject.org>; Fri, 12 Apr 2019 12:24:47 -0700 (PDT)
-Received: from svr-orw-mbx-03.mgc.mentorg.com ([147.34.90.203])
-	by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
-	id 1hF1mz-0003KX-Ox from Joe_MacDonald@mentor.com ;
-	Fri, 12 Apr 2019 12:24:41 -0700
-Received: from svr-orw-mbx-03.mgc.mentorg.com (147.34.90.203) by
-	svr-orw-mbx-03.mgc.mentorg.com (147.34.90.203) with Microsoft SMTP
-	Server (TLS) id 15.0.1320.4; Fri, 12 Apr 2019 12:24:39 -0700
-Received: from nightwinge.cal.mentorg.com (147.34.91.1) by
-	svr-orw-mbx-03.mgc.mentorg.com (147.34.90.203) with Microsoft SMTP
-	Server id
-	15.0.1320.4 via Frontend Transport; Fri, 12 Apr 2019 12:24:39 -0700
-Received: by nightwinge.cal.mentorg.com (Postfix, from userid 53144)
-	id 7112715F885; Fri, 12 Apr 2019 15:24:38 -0400 (EDT)
-Date: Fri, 12 Apr 2019 15:24:38 -0400
-From: Joe MacDonald <Joe_MacDonald@mentor.com>
-To: Yi Zhao <yi.zhao@windriver.com>
-Message-ID: <20190412192438.GE4054@mentor.com>
-References: <20190410155302.GA17879@mentor.com>
-	<c1864a11-0368-a0d0-85e0-f40a2436c033@windriver.com>
-MIME-Version: 1.0
-In-Reply-To: <c1864a11-0368-a0d0-85e0-f40a2436c033@windriver.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PULL] refpolicy: update to 2.20190201 and git HEAD policies (2019-04-10 10:57:14 -0400)
+	*      [209.85.214.177 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
+	[209.85.214.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E64D3E00BAB
+	for <yocto@yoctoproject.org>; Sat, 13 Apr 2019 10:29:42 -0700 (PDT)
+Received: by mail-pl1-f177.google.com with SMTP id cv12so6605484plb.9
+	for <yocto@yoctoproject.org>; Sat, 13 Apr 2019 10:29:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=bd8aeBw13OTcn0coCslonM3s+BdRZHkHR1FVfMxtYzk=;
+	b=F7nBaRkzGE5ARM6v1nm90yJymukJgRStkFxcig0OKT6cUdTNerVrSwf8aYiuaVaTMM
+	ohnn92gP90o8Mz+vIy95a1rTYXHNPShDtfh5naGNtiyAsmmSG9egQCzStKGso+Do0COv
+	fmVIHS6nRjOKSaBNdCwR2ys6eWmsTD6tUYnDn5RALT+Qo+WBwxf+wDkVbYPRJpixQ2b0
+	gNr/7y6Z4qsOrT2tRIBl6nM//SA4SEG8LHNvHAUvSKmwhePo003m8K9eVQSe+2ZWCmni
+	LxkIcdz7C3Q8DA26mXBAmRar7QLPjHOhEh7yBg8ymlfk/1DddxiG/GvnVO49JPwiiBar
+	yKpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=bd8aeBw13OTcn0coCslonM3s+BdRZHkHR1FVfMxtYzk=;
+	b=Q4LP0oRuL8HeuwinZfBf2mhjyYXCO280oa0x0tV7lyIRJeV3gL//xQVMQ56s68kFxM
+	S+6C+5r4oN7AK3KogrEA9v3G1wDBF0SL1DWleqWKGVtvhttkEgsjn+BxZ9l8TEoUcqJK
+	A1i5knw+q2L1SJBhgjwakMU+3zs01e8b+cnXTYrvdWAAgTRM+W4g62PFGThXm7OGxESt
+	Qi79kJYgt0nCZhAJidbhczcGBJ9O3BAeuFChFveNMhd8LUBUmGw+yJTagfVXOq03cSQr
+	Z1I4q0LSJczNQ1IvIOiwU+0w1+1JqcK/lXkGjgccuxaHfqCdff/FYbjd7aQRWoYOyJax
+	7Mkw==
+X-Gm-Message-State: APjAAAWLPD6KSciwyUl4ks0+CK+Mj9TlNdkjX+H7x5WnDTDGHcqmBu1n
+	yT/4L1bTamTEtatTSVtjBoMTXcMz
+X-Google-Smtp-Source: APXvYqw+30GptqXBCrSgfO+R69wOdmJtwoFeg6wnQqRhjzNfnCQxrDCZyw/f6zii7PeQQ73owAcTQg==
+X-Received: by 2002:a17:902:bc85:: with SMTP id
+	bb5mr38331395plb.310.1555176581868; 
+	Sat, 13 Apr 2019 10:29:41 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	j20sm31417570pfn.84.2019.04.13.10.29.40 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 13 Apr 2019 10:29:41 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sat, 13 Apr 2019 10:29:39 -0700
+Message-Id: <20190413172939.15121-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH] clamav-native: fix new build issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,86 +72,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Apr 2019 19:24:48 -0000
-X-Groupsio-MsgNum: 44790
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="FeAIMMcddNRN4P4/"
-Content-Disposition: inline
+X-List-Received-Date: Sat, 13 Apr 2019 17:29:43 -0000
 
---FeAIMMcddNRN4P4/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+re-arch the reciped to build properly.
 
-Hi Yi,
+Fixed /var/lib/clamav dir issue
 
-[Re: [yocto] [meta-selinux][PULL] refpolicy: update to 2.20190201 and git H=
-EAD policies (2019-04-10 10:57:14 -0400)] On 19.04.11 (Thu 16:19) Yi Zhao w=
-rote:
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/clamav/clamav_0.99.4.bb | 41 +++++++++++-------------
+ 1 file changed, 19 insertions(+), 22 deletions(-)
 
-> Hi Joe,
->=20
-> Thank you for working on the refpolicy upgrade.
-> I have a quick test with your patch. Here are the results:
->=20
-> Machine: qemux86-64
-> Image: core-image-selinux
-> Init manager: systemd
-> Boot command: runqemu qemux86-64 kvm nographic bootparams=3D"selinux=3D1 =
-enforcing=3D
-> X" qemuparams=3D"-m 1024"
->=20
-> 1. All refpolicy type of git version can be built without problems.
->=20
-> 2. With parameter selinux=3D1 & enforcing=3D0
-> The qemu can boot up and login for all refpolicy types.
+diff --git a/recipes-security/clamav/clamav_0.99.4.bb b/recipes-security/clamav/clamav_0.99.4.bb
+index 32dc59c..7d8767e 100644
+--- a/recipes-security/clamav/clamav_0.99.4.bb
++++ b/recipes-security/clamav/clamav_0.99.4.bb
+@@ -4,8 +4,8 @@ HOMEPAGE = "http://www.clamav.net/index.html"
+ SECTION = "security"
+ LICENSE = "LGPL-2.1"
+ 
+-DEPENDS = "libtool db libmspack chrpath-replacement-native clamav-native"
+-DEPENDS_class-native = "db-native"
++DEPENDS = "libtool db libmspack openssl zlib llvm chrpath-replacement-native clamav-native"
++DEPENDS_class-native = "db-native openssl-native zlib-native"
+  
+ LIC_FILES_CHKSUM = "file://COPYING.LGPL;beginline=2;endline=3;md5=4b89c05acc71195e9a06edfa2fa7d092"
+ 
+@@ -36,39 +36,35 @@ INSTALL_CLAMAV_CVD ?= "1"
+ # disable the internal one. This is a known issue
+ # If you want LLVM support, use the one in core
+ 
+-PACKAGECONFIG ?= "ncurses openssl bz2 zlib llvm"
+-PACKAGECONFIG += " ${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6", "", d)}"
+-PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
++CLAMAV_USR_DIR = "${STAGING_DIR_NATIVE}/usr"
++CLAMAV_USR_DIR_class-target = "${STAGING_DIR_HOST}/usr"
+ 
+-PACKAGECONFIG[llvm] = "--with-system-llvm --with-llvm-linking=dynamic --disable-llvm, ,llvm"
++PACKAGECONFIG_class-target ?= "ncurses bz2"
++PACKAGECONFIG_class-target += " ${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6", "", d)}"
++PACKAGECONFIG_class-target += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
+ 
+ PACKAGECONFIG[pcre] = "--with-pcre=${STAGING_LIBDIR},  --without-pcre, libpcre"
+-PACKAGECONFIG[xml] = "--with-xml=${STAGING_LIBDIR}/.., --with-xml=no, libxml2,"
++PACKAGECONFIG[xml] = "--with-xml=${CLAMAV_USR_DIR}, --disable-xml, libxml2,"
+ PACKAGECONFIG[json] = "--with-libjson=${STAGING_LIBDIR}, --without-libjson, json,"
+ PACKAGECONFIG[curl] = "--with-libcurl=${STAGING_LIBDIR}, --without-libcurl, curl,"
+ PACKAGECONFIG[ipv6] = "--enable-ipv6, --disable-ipv6"
+-PACKAGECONFIG[openssl] = "--with-openssl=${STAGING_DIR_HOST}/usr, --without-openssl, openssl, openssl"
+-PACKAGECONFIG[zlib] = "--with-zlib=${STAGING_DIR_HOST}/usr --disable-zlib-vcheck , --without-zlib, zlib, "
+-PACKAGECONFIG[bz2] = "--with-libbz2-prefix=${STAGING_LIBDIR}/.., --without-libbz2-prefix, "
+-PACKAGECONFIG[ncurses] = "--with-libncurses-prefix=${STAGING_LIBDIR}/.., --without-libncurses-prefix, ncurses, "
++PACKAGECONFIG[bz2] = "--with-libbz2-prefix=${CLAMAV_USR_DIR}, --without-libbz2-prefix, "
++PACKAGECONFIG[ncurses] = "--with-libncurses-prefix=${CLAMAV_USR_DIR}, --without-libncurses-prefix, ncurses, "
+ PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_unitdir}/system/, --without-systemdsystemunitdir, "
+ 
+-EXTRA_OECONF += " --with-user=${UID}  --with-group=${GID} \
+-            --without-libcheck-prefix --disable-unrar \
+-            --disable-mempool \
+-            --program-prefix="" \
+-            --disable-yara \
+-            --disable-rpath \
+-            "
+-
+-EXTRA_OECONF_class-native += "--without-libcheck-prefix --disable-unrar \
++EXTRA_OECONF_CLAMAV = "--without-libcheck-prefix --disable-unrar \
+             --with-system-llvm --with-llvm-linking=dynamic --disable-llvm \
+             --disable-mempool \
+             --program-prefix="" \
+             --disable-yara \
+-            --without-libbz2-prefix --without-zlib \
++            --disable-xml \
++            --with-openssl=${CLAMAV_USR_DIR} \
++            --with-zlib=${CLAMAV_USR_DIR} --disable-zlib-vcheck \
+             "
+ 
++EXTRA_OECONF_class-native += "${EXTRA_OECONF_CLAMAV}"
++EXTRA_OECONF_class-target += "--with-user=${UID}  --with-group=${GID} --disable-rpath ${EXTRA_OECONF_CLAMAV}"
++
+ do_configure () {
+     cd ${S}
+     ./configure ${CONFIGUREOPTS} ${EXTRA_OECONF} 
+@@ -117,6 +113,7 @@ pkg_postinst_ontarget_${PN} () {
+     if [ -e /etc/init.d/populate-volatile.sh ] ; then
+         ${sysconfdir}/init.d/populate-volatile.sh update
+     fi
++    mkdir -p ${localstatedir}/lib/clamav
+     chown -R ${UID}:${GID} ${localstatedir}/lib/clamav
+ }
+ 
+@@ -177,7 +174,7 @@ RREPLACES_${PN} += "${PN}-systemd"
+ RCONFLICTS_${PN} += "${PN}-systemd"
+ SYSTEMD_SERVICE_${PN} = "${BPN}.service"
+ 
+-RDEPENDS_${PN} += "openssl ncurses-libncurses libbz2 ncurses-libtinfo clamav-freshclam clamav-libclamav"
++RDEPENDS_${PN} = "openssl ncurses-libncurses libbz2 ncurses-libtinfo clamav-freshclam clamav-libclamav"
+ RDEPENDS_${PN}_class-native = ""
+ 
+ BBCLASSEXTEND = "native"
+-- 
+2.17.1
 
-Perfect, that's what I had when testing on my reference hardware, so I'm
-happy you were able to validate those results.
 
-> 3. With parameter selinux=3D1 & enforcing=3D1
-> Some of services failed to startup when booting. But this issue also exis=
-t on
-> old refpolicy version (2.20170204)
-
-Yeah, and given the scope of this change my goal was mainly parity with
-the old policy but based on a version that's 2-ish years newer.  So once
-that's done I think we can reasonably work at enabling the additional
-services in some structured way.
-
-> 4. refpolicy stable version (2.20190201)
-> I got an do_fetch error with refpolicy stable version.
-> Seems the SRC_URI is not correct. It should be "https://github.com/
-> SELinuxProject/refpolicy/releases/download/RELEASE_2_20190201/refpolicy-$
-> {PV}.tar.bz2"
-
-Thanks, good catch, I don't know how that slipped through.  Corrected on
-my end, I'll update it in a bit.
-
--J.
-
->=20
->=20
-> Regards,
-> Yi
-
---=20
--Joe MacDonald.
-:wq
-
---FeAIMMcddNRN4P4/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEkMd/b97HINT8/zEqSfx99yw59pYFAlyw5fUACgkQSfx99yw5
-9pb1lQgAj0LEbkC1QosYgD6Jq6zLzaml1h5yUgrkLeze7yfx2fOwizoCWb615kZR
-CqhGVgfgKFJBzWsoPLJNl269CCrgSlgFizaEYXcjv7KZkVq3ABqz3L5v8H8sSXug
-nnOxOHXeIIu+qXFBuLz9IOX0uKGQ5KxNyOyRWjIuzXRxeDuxtwh7qlSmxn3ZGFQy
-2WDHtUjM0rIc8y0A6v2LoPMl4qzvKABHFdZNlSukru5vNvQFfEYXl65g48ziqlCU
-A+PDnn4RT8WFQZbguZ7IaKAHaPUPBMELgjYexY++ccLee29zv6CEZymb8M+CR+2C
-lV/WZPG/91VRDGQaf5QFACZnNdbpdg==
-=Er4g
------END PGP SIGNATURE-----
-
---FeAIMMcddNRN4P4/--
