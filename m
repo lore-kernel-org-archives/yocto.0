@@ -1,6 +1,6 @@
 Return-Path: <gruntblue@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BE0D7E00CBC; Mon, 15 Apr 2019 09:02:39 -0700 (PDT)
+	id 8B5E4E00CC9; Mon, 15 Apr 2019 09:12:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,51 +18,52 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.53 listed in list.dnswl.org]
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com
-	[209.85.217.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 578DDE00D3F
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2019 09:02:37 -0700 (PDT)
-Received: by mail-vs1-f53.google.com with SMTP id o10so9748279vsp.12
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2019 09:02:37 -0700 (PDT)
+	*      [209.85.217.49 listed in list.dnswl.org]
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com
+	[209.85.217.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CD8BE00C37
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2019 09:12:27 -0700 (PDT)
+Received: by mail-vs1-f49.google.com with SMTP id s2so9790938vsi.5
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2019 09:12:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=8gvkJO9xVQrfWrfjWP/FCdTmCdKZ6obU9cH2iK7dvpc=;
-	b=O5EwssTEJlVgyCvWmMnEIbA6XK7tg+KnHw+TrDlrsQEYZbdHHD+s1F6qLBW9qD/JXr
-	cfNCAGipchhtA/MRSJRXT7HaBuyuHtk+QzaVcnecud9D1z7kpHTWHeZ5rpF6i0tTcD0N
-	zvpoHl35srYCgm6T6ljx4rKLObfDigM07tHVrkpm3fr4SQGczxF0oN3YT6FJ0mEhJe/+
-	6REA9rrgwgCTl2n+9EkB6pOFYSwxeuMsbXzc/V6vNokdMV2U2VHn0TM4aOBAmFllnAh0
-	MIj9mD+u+6HY72eLJh9iXZ43jLh9ULX7GqfxVaGkSFQ61mvLGynAOD2kK/yq6OvDoZ9e
-	5LZA==
+	bh=Wb5z90xI231p+8Zmu87JlpiyXsWoBSliCrWt3QdN0rs=;
+	b=L46+uii3nL4IvIuJkZXEfQItggGvcbmckrxnNGY7NdrJd5aIunYSAp6PPvxjWWcCcU
+	cVj2WyLvd3BBt0BLR0pLvynK1QKXs2fxeOoODtgcJvEr0MthRj5gbsnLDd8y3YeV2YF+
+	FmRd5vINMas8DDQ+1sm0CnwX1xEw43FbOGtBUgupJNuewF+fYP5W344BhqEWE67HMWx6
+	eC1rYgY+GlnE36YxCd54YMRgpaJb1+d8EqpFYdJ9zPFQvm1CgNvsl4HuTtuK0QrncatM
+	1LozfPNZ0IU4qYtqxMdBG/PMiJk8AIPIw9f++g+S3GqFkc2qHo7Idfdy1/f1W65yxt7M
+	hZGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to;
-	bh=8gvkJO9xVQrfWrfjWP/FCdTmCdKZ6obU9cH2iK7dvpc=;
-	b=PU0N3wRCBqHx7QnfQg1Ls5JRSbMLZkFnO9v0ERjBK2iZVl2fBs/vb8Tz0HMcwz3A3E
-	4Zpi1+H9AMXn16HMctc2PpUGThPAqJ4dOZ+IhE9drqqYvpEYS41UAuckAXfQf1uSwTAs
-	P7ap1f2oeNDXGXn9B4yS5/xQkopjQtsZqBIuv9Tpu5O6Oyrys1+QmGmduoWL9DjKjQMG
-	cW6eG74G1Bxj1nNrJmQUnw4zq3e/yf844zgmVaV6EDY4wwI5tTqxqzWQ/WOdY04sgo7r
-	/vtipuSnJ+9Rdp7pU2WaAG1Vi1HwVWwiWjTDsm+ylMIgYCd7uXRnwhwR+fw69PSXMFsX
-	6Amw==
-X-Gm-Message-State: APjAAAWWRYSNLsbS5EaAcHNG2mhe3R0x9KXP0YSr0yLu9DjqRaY2pSiA
-	enP+zvS1LGNcFwuyJRV2h6jXWz1KE8LahmUS+fa7Nw==
-X-Google-Smtp-Source: APXvYqypsRvi5xgqSdE2Lsrup4blmDsCx4vdl8DCV7Cdr813v2/SaiM8Qt9RE8AZnt3kZLlQzswSa+MBol2iYvrKxiE=
-X-Received: by 2002:a67:b44c:: with SMTP id c12mr30654671vsm.169.1555344156416;
-	Mon, 15 Apr 2019 09:02:36 -0700 (PDT)
+	bh=Wb5z90xI231p+8Zmu87JlpiyXsWoBSliCrWt3QdN0rs=;
+	b=b3ld57bndmRv+mlpHY2RNZZ497e00/+FjcDUUuaBbP9cHUcEf4XX+Ng1QTgpWSqcpd
+	veYQi8ICyzZLQmtXVeZ5HcnxIxYWXbyiOaPTlj1Fz+iczmTmW0buFCeIhYkKjhXM97BW
+	KkAjPApaIPaxfx6yZn519p57SjS7NEGVFPHiXa9ZN12Idanumsqz3fDJeG63t7NjAjo+
+	RvA4dynU0UNxeEOgwy2VWqLaN87eKdoDMmum6SRcjaQeibNeNkYPwBduqru01rIeKD7n
+	ZmyGuBbu3yxPPrOeRXe5McbdvCopVuHdbPdisq6Li2AF1t3XclQoi4DCqGbZfwiEl5L3
+	8WOg==
+X-Gm-Message-State: APjAAAX7hdzPrKREkgzjNiFqFTviNhkxkFClfwUz5lZ7+Kz0n3py4WEt
+	iVxJn2wzcR3+UxjuWS9h3PYKUttvobwJPui0+9ODfg==
+X-Google-Smtp-Source: APXvYqwIv/Wcqt4hWnVT3N/QcAAFnImx/5s13UBMpJ/FwtPEBZCJXLUapw5y52KaoQGcYjBV0LZuF/vAbjco2kglNek=
+X-Received: by 2002:a67:f505:: with SMTP id u5mr39743119vsn.159.1555344746472; 
+	Mon, 15 Apr 2019 09:12:26 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ab0:7025:0:0:0:0:0 with HTTP; Mon, 15 Apr 2019 09:02:36
+Received: by 2002:ab0:7025:0:0:0:0:0 with HTTP; Mon, 15 Apr 2019 09:12:26
 	-0700 (PDT)
-In-Reply-To: <bcc6b9e58a9148d3fa8d3d64732e6cbeba5ca88a.camel@linuxfoundation.org>
+In-Reply-To: <CADB9fJF21h6c2yhAF0jtDHDf2ek1hyfk0mLuQ=zMrojQj4TjkA@mail.gmail.com>
 References: <CADB9fJEbDEKKdu7CUoWC4AxC_=hk0vMFPajh0PWijUHy5WW1BA@mail.gmail.com>
 	<cdeb499d193a545fd52d93a2ebe2b998e9421b20.camel@linuxfoundation.org>
 	<CADB9fJHhPie5Efxs3g_+HyjBtwK7n6Nu_=Gx9CMCjc9_0pK4OQ@mail.gmail.com>
 	<ddddfc4db6df73aa86ea934140c6795d1d912c0e.camel@linuxfoundation.org>
 	<CADB9fJFY+MJsRPYgWzDxqH6LoxrDY9KVEbn92PrJ_KvXY=LPBg@mail.gmail.com>
 	<bcc6b9e58a9148d3fa8d3d64732e6cbeba5ca88a.camel@linuxfoundation.org>
+	<CADB9fJF21h6c2yhAF0jtDHDf2ek1hyfk0mLuQ=zMrojQj4TjkA@mail.gmail.com>
 From: Eric Grunt <gruntblue@gmail.com>
-Date: Mon, 15 Apr 2019 23:02:36 +0700
-Message-ID: <CADB9fJF21h6c2yhAF0jtDHDf2ek1hyfk0mLuQ=zMrojQj4TjkA@mail.gmail.com>
+Date: Mon, 15 Apr 2019 23:12:26 +0700
+Message-ID: <CADB9fJG=naMkbJDsf4UFeSRSfG6eEV-qkf7gXjTdaSgyEs8ykA@mail.gmail.com>
 To: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: Dependencies on other file system types for custom file system type
 X-BeenThere: yocto@yoctoproject.org
@@ -76,15 +77,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Apr 2019 16:02:39 -0000
+X-List-Received-Date: Mon, 15 Apr 2019 16:12:27 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-> I think there is some translation code somewhere which probably
-> confuses things more as some bits have - and some have _. Does the
-> squashfs_xz image type actually work?
+> squashfs-xz (by poky) works,
+> squashfs_xz_ubi (custom type) also works
 
-There is no squashfs_xz image type.
-squashfs-xz (by poky) works,
-squashfs_xz_ubi (custom type) also works,
-but needs to occasionally call IMAGE_CMD_squashfs-xz itself.
+To clarify, squashfs_xz_ubi was named squashfs-xz-ubi before,
+I renamed it in order to try to avoid using "-".
 
