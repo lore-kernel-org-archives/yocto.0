@@ -1,63 +1,66 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <ms.priyanshu.sharma@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0080CE00D2A; Mon, 15 Apr 2019 18:10:03 -0700 (PDT)
+	id CF83BE00D2E; Mon, 15 Apr 2019 22:48:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
+	provider *      (ms.priyanshu.sharma[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.173 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.172 listed in list.dnswl.org]
-Received: from mail-it1-f172.google.com (mail-it1-f172.google.com
-	[209.85.166.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B055FE00CC9
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2019 18:10:03 -0700 (PDT)
-Received: by mail-it1-f172.google.com with SMTP id y10so29936744itc.1
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2019 18:10:03 -0700 (PDT)
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com
+	[209.85.167.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13B69E00D20
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2019 22:48:39 -0700 (PDT)
+Received: by mail-oi1-f173.google.com with SMTP id a6so15909743oie.5
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2019 22:48:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=CU2MRnyCTm89pvChyIc1/smGgq2pcLzxWNFBgdE801M=;
-	b=NC1bwjuwyFotJfF+eaVwvzzbeIXeB1iSduD21OQRDScYYiTn0YRrrZPAiaqSu1/ewl
-	lZNN/GodAtk8Thtr0DMUw4xxCGkfbnz3SLvWtl519Dxzd0FqfRRYts+N/sxLsSz69bhg
-	A9dWm0Qb2ATSsWVFxuUualMZnOcmIfGvtgS9dFB7MstDnf7EpOLBcNU1yFj9SMrO62Jo
-	/aWDM3nWTDx63bD2QrpOvROr6mBsM7TGVsBEIKKoFlEo8irCS47bav2+mPvhREeNDaqx
-	eI/gfgeDTyeCHi4PO0RV5wBKbmV5i7ONPthIF6dFi/AQ8RCjknXh5W73tJBov/2CLPp/
-	4hPA==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=POt4ks+WhOJXpgGGhdCVpSe4Tb6SsoajVXOw6IGRkis=;
+	b=XR5Td4nVWdBcaan6zi35JDfCp2MmHb6TRnZxLDkaelBv8fCOVhkC9eKOTmGGZVFQEq
+	yU50pIIT8mdTHh0o42lXrmozum5bo4CAQQbO4VowhYuq9wMseSdsnx6+pE3YnUihwYAP
+	9gKcKD/vVViUxR1Kz24QFQc9q6i1fQUd9wgWYYzaXG9+GbgtPLs6f0638OlDhzz/1Y26
+	DedW/Dxkif/BCU3nKO15VYE42io5nVvrA9mGjHDNIzDWBg32ss8Z7NJ7e6xte+HOgBsI
+	gR546suh3BMkdRsF5SlL5qa91TgctJaBdFplokaoag6J26Zf3gToR8rSwd4CUR+SqKyB
+	zNkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=CU2MRnyCTm89pvChyIc1/smGgq2pcLzxWNFBgdE801M=;
-	b=jLmqgnDxvayoRv4Mf38z1T16kFEvmH7D5ZzKX5YjjCRD0U3WV3n2GocvlqaLffv9r8
-	f6lfdWR4d50pKUVH49YhrJgsD8SsZ/PZVGJpE0LXCZISrgQ742CyrT9XyADJWG4Iuk2L
-	XpCdesTv83idyH8eiyGx+7zeZHJJvAJI5j5YrysFWRiVR1lhAfsv6rKmGpKwSlzNNYXa
-	ns1jeGOALVG7ZjbRVRBDubMyUmkTZE5pAOJP2HA811L4GLFcaIENhuOH6qezL5nYokES
-	BmQcTzYMGdLFDK0bLUztZ3UGligbRz71BQhA+RZQqOhYJnlHyOC3EzKafyx3PqTKljyg
-	a5qg==
-X-Gm-Message-State: APjAAAXGdNQGGoWKMwroQOMvBvfdsu+EAlrXo0OrtcDVqOPDX1ct1Pb0
-	6AgUJNO4PIKc0nfBdYLm8ptCwFBruvS0VhhCMal6QQ==
-X-Google-Smtp-Source: APXvYqyOE+Rtvzky6SH/q1UER4gifxbSY/ee6h5KEnUhra2C1U7x/GvR0/AaY7XwxprtixyefVqYjsFYZVSDeV0Csh4=
-X-Received: by 2002:a24:56d1:: with SMTP id
-	o200mr27082611itb.111.1555377002919; 
-	Mon, 15 Apr 2019 18:10:02 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to;
+	bh=POt4ks+WhOJXpgGGhdCVpSe4Tb6SsoajVXOw6IGRkis=;
+	b=T2bIBaUK3XsdpTcbERA55bi+vj6Fy65duyV/a55QANsk1iltTd5/CmzwizOtsrCzKU
+	haWeg0oC1IZakAUyoJD2TdkC8JZUYYutkwQ+z2JowPZiIH6I9ZryNMaRh6vanSDT+baH
+	NJLx3mBfkojZN2oct5v8dXQdOywSTnQhGUzTwQFoDeMsKLpG8RxwHHGZqKkcwGCIPeBJ
+	t+BzlD5QtpmJflOxYN7JHLKbXcRtOTq2rJ9byfNADwoPr3AWmO5Mwbh8rf6eQk23v5YW
+	KQdNN+r0A1CIK1E1tDsKrzJFLH0D90lvyUUr/y8H68+oAc0WbQyFqixW49YvPUXDb/IR
+	6g8Q==
+X-Gm-Message-State: APjAAAVxGpB00Fsy0C/CU25GGyGBuWL1ZeoiY6UhFymyslEp7ZiPd54c
+	pHedOipqLyaFTDdjkkCB1Z92kZ1nyOkqkWTyJDAIT9IZqEs=
+X-Google-Smtp-Source: APXvYqyDkKVeehiNt2cXQVvcT+m5/QyFWI37Kw7X3B+I4EuKqa6eJbrJgV8Yvyob3ALq3mwbmtuUUCZFs9IeJQwKX94=
+X-Received: by 2002:aca:5986:: with SMTP id n128mr20992745oib.2.1555393719188; 
+	Mon, 15 Apr 2019 22:48:39 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ac0:91a9:0:0:0:0:0 with HTTP; Mon, 15 Apr 2019 18:10:02
-	-0700 (PDT)
-From: JH <jupiter.hce@gmail.com>
-Date: Tue, 16 Apr 2019 11:10:02 +1000
-Message-ID: <CAA=hcWSbKYtANQJOCgpjdbuod_yoONGCygBynrnzdjWxULEnmw@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Failed to execute GCC
+References: <CAA_f9ePWPaPacQkJYsne0F6T-nY5j5epbgjaz+iFrxCAV+476g@mail.gmail.com>
+	<CAA_f9ePLea9ewu=UBf5Gv299birMfZps_DK1jOWPd3ZFJu6u5w@mail.gmail.com>
+	<CAA_f9eMQyFab=Q55FGP6ZMLqXf18=qqxKy80E8oyCDToK4Pywg@mail.gmail.com>
+In-Reply-To: <CAA_f9eMQyFab=Q55FGP6ZMLqXf18=qqxKy80E8oyCDToK4Pywg@mail.gmail.com>
+From: Priyanshu Sharma <ms.priyanshu.sharma@gmail.com>
+Date: Tue, 16 Apr 2019 11:18:28 +0530
+Message-ID: <CAA_f9ePtmohmoJcUmTuEGKOwr6x4pQ2F_X9X=8yPHmgWZqn3TQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: [meta-qt5][qtwayland]Qtwayland recipe fails with Yocto 2.5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,24 +72,231 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Apr 2019 01:10:04 -0000
+X-List-Received-Date: Tue, 16 Apr 2019 05:48:41 -0000
+Content-Type: multipart/alternative; boundary="0000000000001e40cf05869f52ae"
+
+--0000000000001e40cf05869f52ae
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+The compilation of features.egl was failing because wayland-client.h was
+not found in Yocto 2.5 sysroot of QTbase. In yocto 2.2, the sysroot was
+common so qtbase was able to find this header even without dependencies.
+Adding DEPENDS=wayland in qtbase recipe is compiling qtbase and qtwayland
+successfully.
 
-I am building an image on Ubuntu 18.04 host, I got following error:
+The bitbake did not throw error for missing driver. It just printed it in
+logs.
 
- unable to execute 'x86_64-linux-gnu-gcc': No such file or directory
- | error: command 'x86_64-linux-gnu-gcc' failed with exit status 1
+Warm Regards,
+Priyanshu Sharma
 
-I can see the x86_64-linux-gnu-gcc is available, but why it failed to find it?
+On Mon, Apr 1, 2019 at 1:00 PM Priyanshu Sharma <
+ms.priyanshu.sharma@gmail.com> wrote:
 
-$ which x86_64-linux-gnu-gcc
-/usr/bin/x86_64-linux-gnu-gcc
+> The compilation of features.egl was failing because wayland-client.h was
+> not found in Yocto 2.5 sysroot of QTbase. In yocto 2.2, the sysroot was
+> common so qtbase was able to find this header even without dependencies.
+> Adding DEPENDS=wayland in qtbase recipe is compiling qtbase and qtwayland
+> successfully.
+>
+> The bitbake did not throw error for missing driver. It just printed it in
+> logs.
+>
+> Warm Regards,
+> Priyanshu Sharma
+>
+> On Wed, Mar 27, 2019 at 4:20 PM Priyanshu Sharma <
+> ms.priyanshu.sharma@gmail.com> wrote:
+>
+>> Found that the missing features.egl is provided by QTBase recipe. And in
+>> my case, qtbase is not compiling the feature "EGL" and thats why qtwayland
+>> fails to find it.
+>>
+>> egl is not included in PACKAGECONFIG of qtbase recipe. However, it used
+>> to be enabled with Yocto 2.2.
+>> Adding it PACKAGECONFIG[eg] of qtbase is not enabling it. How can egl be
+>> enabled in qtbase?
+>>
+>> Warm regards,
+>> Priyanshu Sharma
+>>
+>> On Tue, Mar 19, 2019 at 1:23 PM Priyanshu Sharma <
+>> ms.priyanshu.sharma@gmail.com> wrote:
+>>
+>>> Hi All,
+>>>
+>>> I'm consistently getting a build failure after upgrading Poky to 2.5
+>>> from 2.2 on qtwayland
+>>> Yocto recipe from meta-qt5.
+>>>
+>>> The error looks like :
+>>>
+>>> | Running configuration tests...
+>>> | Checking for Wayland client library... yes
+>>> | Checking for Wayland cursor library... yes
+>>> | Checking for wayland-scanner... yes
+>>> | Checking for Wayland EGL library... yes
+>>> | Checking for wayland-server... yes
+>>> | Done running configuration tests.
+>>> |
+>>> | Configure summary:
+>>> |
+>>> | Qt Wayland Drivers:
+>>> |   EGL .................................... no
+>>> |   Raspberry Pi ........................... no
+>>> |   XComposite EGL ......................... no
+>>> |   XComposite GLX ......................... no
+>>> |   DRM EGL ................................ no
+>>> |   libhybris EGL .......................... no
+>>> | Qt Wayland Client ........................ yes
+>>> | Qt Wayland Compositor .................... yes
+>>> |
+>>> | ERROR: Feature 'wayland-egl' was enabled, but the pre-condition 'features.wayland-client && features.opengl && features.egl && libs.wayland-egl' failed.
+>>> |
+>>> | ERROR: Feature 'wayland-egl' was enabled, but the pre-condition 'features.wayland-server && features.opengl && features.egl && libs.wayland-egl' failed.
+>>> |
+>>> | Check config.log for details.
+>>> | WARNING: exit code 1 from a shell command.
+>>> I've checked that only pre-condition "features.egl" is failing.
+>>> I've my own custom recipe which is providing virtual/egl and is set as PREFERRED_PROVIDER also.
+>>> What is the missing dependency here when virtual/egl is provided?
+>>> What exactly is features.egl looking for? ( virtual/egl provides egl.pc )
+>>> I've not changed anything in meta-qt5 layer. And the version is 5.9.2 QT5. However, is fails with 5.12 also.
+>>>
+>>>
+>>> Warm Regards,
+>>>
+>>> Priyanshu Sharma
+>>>
+>>>
+>>>
 
-Thank you.
+--0000000000001e40cf05869f52ae
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Kind regards,
+<div dir=3D"ltr">The compilation of features.egl was failing because waylan=
+d-client.h was not found in Yocto 2.5 sysroot of QTbase. In yocto 2.2, the =
+sysroot was common so qtbase was able to find this header even without depe=
+ndencies.=C2=A0<br>Adding DEPENDS=3Dwayland in qtbase recipe is compiling q=
+tbase and qtwayland successfully.<br><br>The bitbake did not throw error fo=
+r missing driver. It just printed it in logs.<div><br></div><div>Warm Regar=
+ds,</div><div>Priyanshu Sharma</div></div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 1, 2019 at 1:00 PM Priyansh=
+u Sharma &lt;<a href=3D"mailto:ms.priyanshu.sharma@gmail.com">ms.priyanshu.=
+sharma@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex"><div dir=3D"ltr">The compilation of features.egl was failin=
+g because wayland-client.h was not found in Yocto 2.5 sysroot of QTbase. In=
+ yocto 2.2, the sysroot was common so qtbase was able to find this header e=
+ven without dependencies.=C2=A0<br>Adding DEPENDS=3Dwayland in qtbase recip=
+e is compiling qtbase and qtwayland successfully.<br><br>The bitbake did no=
+t throw error for missing driver. It just printed it in logs.<div><br></div=
+><div>Warm Regards,</div><div>Priyanshu Sharma</div></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Mar 27, 2019 at=
+ 4:20 PM Priyanshu Sharma &lt;<a href=3D"mailto:ms.priyanshu.sharma@gmail.c=
+om" target=3D"_blank">ms.priyanshu.sharma@gmail.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Found t=
+hat the missing features.egl is provided by QTBase recipe. And in my case, =
+qtbase is not compiling the feature &quot;EGL&quot; and thats why qtwayland=
+ fails to find it.<div><br></div><div>egl is not included in PACKAGECONFIG =
+of qtbase recipe. However, it used to be enabled with Yocto 2.2.=C2=A0</div=
+><div>Adding it PACKAGECONFIG[eg] of qtbase is not enabling it. How can egl=
+ be enabled in qtbase?</div><div><br></div><div>Warm regards,</div><div>Pri=
+yanshu Sharma</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">On Tue, Mar 19, 2019 at 1:23 PM Priyanshu Sharma &lt;<a =
+href=3D"mailto:ms.priyanshu.sharma@gmail.com" target=3D"_blank">ms.priyansh=
+u.sharma@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail-m_-30164742923083565=
+63gmail-m_3353676281559097329gmail-m_-3634063191643445799gmail-gs" style=3D=
+"margin:0px;padding:0px 0px 20px;width:1299.11px"><div class=3D"gmail-m_-30=
+16474292308356563gmail-m_3353676281559097329gmail-m_-3634063191643445799gma=
+il-"><div id=3D"gmail-m_-3016474292308356563gmail-m_3353676281559097329gmai=
+l-m_-3634063191643445799gmail-:mp" class=3D"gmail-m_-3016474292308356563gma=
+il-m_3353676281559097329gmail-m_-3634063191643445799gmail-ii gmail-m_-30164=
+74292308356563gmail-m_3353676281559097329gmail-m_-3634063191643445799gmail-=
+gt" style=3D"direction:ltr;margin:8px 0px 0px;padding:0px"><div id=3D"gmail=
+-m_-3016474292308356563gmail-m_3353676281559097329gmail-m_-3634063191643445=
+799gmail-:mq" class=3D"gmail-m_-3016474292308356563gmail-m_3353676281559097=
+329gmail-m_-3634063191643445799gmail-a3s gmail-m_-3016474292308356563gmail-=
+m_3353676281559097329gmail-m_-3634063191643445799gmail-aXjCH" style=3D"over=
+flow:hidden;font-variant-numeric:normal;font-variant-east-asian:normal;font=
+-stretch:normal;line-height:1.5"><div dir=3D"ltr"><div style=3D"font-family=
+:Arial,Helvetica,sans-serif;font-size:small">Hi All,</div><div style=3D"fon=
+t-family:Arial,Helvetica,sans-serif;font-size:small"><br class=3D"gmail-m_-=
+3016474292308356563gmail-m_3353676281559097329gmail-m_-3634063191643445799g=
+mail-Apple-interchange-newline">I&#39;m consistently getting a build failur=
+e after upgrading Poky to 2.5 from 2.2 on qtwayland=C2=A0</div><div style=
+=3D"font-family:Arial,Helvetica,sans-serif;font-size:small">Yocto recipe fr=
+om meta-qt5.</div><div style=3D"font-family:Arial,Helvetica,sans-serif;font=
+-size:small"><br></div><div>The error looks like :<br><br><pre><font color=
+=3D"#000000"><font face=3D"garamond, serif" style=3D"font-family:Arial,Helv=
+etica,sans-serif;font-size:small;white-space:pre-wrap">| Running configurat=
+ion tests...
+| Checking for Wayland client library... yes
+| Checking for Wayland cursor library... yes
+| Checking for wayland-scanner... yes
+| Checking for Wayland EGL library... yes
+| Checking for wayland-server... yes
+| Done running configuration tests.
+|=20
+| Configure summary:
+|=20
+| Qt Wayland Drivers:
+|   EGL .................................... no
+|   Raspberry Pi ........................... no
+|   XComposite EGL ......................... no
+|   XComposite GLX ......................... no
+|   DRM EGL ................................ no
+|   libhybris EGL .......................... no
+| Qt Wayland Client ........................ yes
+| Qt Wayland Compositor .................... yes
+|=20
+| ERROR: Feature &#39;wayland-egl&#39; was enabled, but the pre-condition &=
+#39;features.wayland-client &amp;&amp; features.opengl &amp;&amp; features.=
+egl &amp;&amp; libs.wayland-egl&#39; failed.
+|=20
+| ERROR: Feature &#39;wayland-egl&#39; was enabled, but the pre-condition &=
+#39;features.wayland-server &amp;&amp; features.opengl &amp;&amp; features.=
+egl &amp;&amp; libs.wayland-egl&#39; failed.
+|=20
+| Check config.log for details.
+| WARNING: exit code 1 from a shell command.
 
-- jh
+</font><font face=3D"arial, helvetica, sans-serif"><font face=3D"Arial, Hel=
+vetica, sans-serif"><span style=3D"white-space:pre-wrap">I&#39;ve checked t=
+hat only pre-condition &quot;features.egl&quot; is failing.
+I&#39;ve my own custom recipe which is providing virtual/egl and is set as =
+PREFERRED_PROVIDER also.
+What is the missing </span></font><span style=3D"white-space:pre-wrap">depe=
+ndency</span><font face=3D"Arial, Helvetica, sans-serif"><span style=3D"whi=
+te-space:pre-wrap"> here when virtual/egl is provided?
+What exactly is features.egl looking for? ( virtual/egl provides egl.pc )
+I&#39;ve not changed anything in meta-qt5 layer. And the version is 5.9.2 Q=
+T5. However, is fails with </span></font></font></font>5.12 also.</pre><pre=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small;white-spac=
+e:pre-wrap"><font color=3D"#000000"><font face=3D"arial, helvetica, sans-se=
+rif"><br></font></font></pre><pre style=3D"font-family:Arial,Helvetica,sans=
+-serif;font-size:small;white-space:pre-wrap"><font color=3D"#000000"><font =
+face=3D"arial, helvetica, sans-serif">Warm Regards,</font></font></pre><pre=
+ style=3D"font-family:Arial,Helvetica,sans-serif;font-size:small;white-spac=
+e:pre-wrap"><font color=3D"#000000"><font face=3D"arial, helvetica, sans-se=
+rif">Priyanshu Sharma</font></font></pre></div></div><div class=3D"gmail-m_=
+-3016474292308356563gmail-m_3353676281559097329gmail-m_-3634063191643445799=
+gmail-yj6qo" style=3D"font-family:Arial,Helvetica,sans-serif;font-size:smal=
+l"></div><div class=3D"gmail-m_-3016474292308356563gmail-m_3353676281559097=
+329gmail-m_-3634063191643445799gmail-adL" style=3D"font-family:Arial,Helvet=
+ica,sans-serif;font-size:small"></div></div></div><div class=3D"gmail-m_-30=
+16474292308356563gmail-m_3353676281559097329gmail-m_-3634063191643445799gma=
+il-hi" style=3D"font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;f=
+ont-size:medium;border-bottom-left-radius:1px;border-bottom-right-radius:1p=
+x;padding:0px;width:auto;background:rgb(242,242,242);margin:0px"></div></di=
+v></div><br class=3D"gmail-m_-3016474292308356563gmail-m_335367628155909732=
+9gmail-m_-3634063191643445799gmail-Apple-interchange-newline"></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
 
+--0000000000001e40cf05869f52ae--
