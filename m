@@ -1,64 +1,61 @@
-Return-Path: <evan.oloughlin@vitalograph.ie>
+Return-Path: <me@herrie.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 64D0BE00D32; Tue, 16 Apr 2019 00:20:05 -0700 (PDT)
+	id 3A205E00D38; Tue, 16 Apr 2019 02:25:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
 	low *      trust
-	*      [192.162.216.181 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-X-Greylist: delayed 297 seconds by postgrey-1.32 at yocto-www;
-	Tue, 16 Apr 2019 00:20:02 PDT
-Received: from smtp-out4.electric.net (smtp-out4.electric.net
-	[192.162.216.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5F59E00D2E
-	for <yocto@yoctoproject.org>; Tue, 16 Apr 2019 00:20:02 -0700 (PDT)
-Received: from 1hGIJ6-000BhL-T6 by out4b.electric.net with emc1-ok (Exim
-	4.90_1) (envelope-from <evan.oloughlin@vitalograph.ie>)
-	id 1hGIJ6-000Bk4-UQ
-	for yocto@yoctoproject.org; Tue, 16 Apr 2019 00:15:04 -0700
-Received: by emcmailer; Tue, 16 Apr 2019 00:15:04 -0700
-Received: from [176.58.6.8] (helo=VitalExchange.vitalograph.local)
-	by out4b.electric.net with esmtps (TLSv1.2:AES256-GCM-SHA384:256)
-	(Exim 4.90_1) (envelope-from <evan.oloughlin@vitalograph.ie>)
-	id 1hGIJ6-000BhL-T6
-	for yocto@yoctoproject.org; Tue, 16 Apr 2019 00:15:04 -0700
-Received: from VIT-IE-EX01.vitalograph.local (192.168.245.30) by
-	VitalExchange.vitalograph.local (10.1.1.7) with Microsoft SMTP Server
-	(TLS) id 14.3.439.0; Tue, 16 Apr 2019 08:15:03 +0100
-Received: from VIT-IE-EX01.vitalograph.local ([fe80::412b:45ff:24fc:b5ad]) by
-	VIT-IE-EX01.vitalograph.local ([::1]) with mapi id 14.03.0439.000;
-	Tue, 16 Apr 2019 08:15:02 +0100
-From: Evan O'Loughlin <evan.oloughlin@vitalograph.ie>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Screenshot tool
-Thread-Index: AdT0IPjt9SVMpTCERo241DqkND4JOA==
-Date: Tue, 16 Apr 2019 07:15:02 +0000
-Message-ID: <2EE3E45FEAD8944697CC29BFE83DD70F37B5BEC0@VIT-IE-EX01.vitalograph.local>
-Accept-Language: en-IE, en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.1.7]
+	*      [149.210.149.69 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 329 seconds by postgrey-1.32 at yocto-www;
+	Tue, 16 Apr 2019 02:25:03 PDT
+Received: from outbound0.mail.transip.nl (outbound0.mail.transip.nl
+	[149.210.149.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 444FCE00D33
+	for <yocto@yoctoproject.org>; Tue, 16 Apr 2019 02:25:03 -0700 (PDT)
+Received: from submission8.mail.transip.nl (submission8.mail.transip.nl
+	[149.210.149.41])
+	by outbound0.mail.transip.nl (Postfix) with ESMTP id 44k0F15C45zxNpW;
+	Tue, 16 Apr 2019 11:19:33 +0200 (CEST)
+Received: from transip.email (pr.ams4.transip.net [37.97.254.72])
+	by submission8.mail.transip.nl (Postfix) with ESMTPA id
+	44k0F00966z2ZNxR; Tue, 16 Apr 2019 11:19:29 +0200 (CEST)
 MIME-Version: 1.0
-X-Outbound-IP: 176.58.6.8
-X-Env-From: evan.oloughlin@vitalograph.ie
-X-Proto: esmtps
-X-Revdns: 
-X-HELO: VitalExchange.vitalograph.local
-X-TLS: TLSv1.2:AES256-GCM-SHA384:256
-X-Authenticated_ID: 
-X-PolicySMART: 14033467
-X-Virus-Status: Scanned by VirusSMART (c)
-X-Virus-Status: Scanned by VirusSMART (s)
-Subject: Screenshot tool
+Date: Tue, 16 Apr 2019 11:19:29 +0200
+From: Herman van Hazendonk <me@herrie.org>
+To: Evan O'Loughlin <evan.oloughlin@vitalograph.ie>
+Mail-Reply-To: yoctoproject.org@herrie.org
+In-Reply-To: <2EE3E45FEAD8944697CC29BFE83DD70F37B5BEC0@VIT-IE-EX01.vitalograph.local>
+References: <2EE3E45FEAD8944697CC29BFE83DD70F37B5BEC0@VIT-IE-EX01.vitalograph.local>
+Message-ID: <45bcdd25a9d2960ca4b639a8527658ac@herrie.org>
+X-Sender: me@herrie.org
+User-Agent: Webmail
+X-Scanned-By: ClueGetter at submission8.mail.transip.nl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	s=transip-a; d=herrie.org; t=1555406373; h=from:reply-to:subject:to:
+	cc:references:in-reply-to:date:mime-version:content-type;
+	bh=jQOI9Ng2oA4kaXvJh/7wuDMKZ9kh44sp+ZXlgxJv6KY=;
+	b=ap9eSzaV4HD4qgO93daM99ImKweWWMXJLckB2IAawtqa91nOnOj6Ksya+sPfRO1y9oo5JF
+	NYQmLYM5qnjrEnWMx3RUJSnvK36u8bLFxqwYXcNOYMtbAa7p4NKmAeCQh7UhpDxSEzvasb
+	jc3/jfmYr0+KD2PRHkOL1kPvVldYtLHfhmyN/7EjVFfbbFANZuK9C+yP/x8BeQRlmimpXN
+	KGhi/rIB2ZwqsT7w4LlcgplTKcFjY62w16yabiMX14rNraFbQnF4QVdKwyYdXN//p+aQfn
+	oz5lpxZPdiYOsqfgR0pkLu3IEQ74i5WlfQLRvnO8ODt4HGzq9B7pC2hPMiKYJA==
+X-Report-Abuse-To: abuse@transip.nl
+Cc: yocto@yoctoproject.org
+Subject: Re: Screenshot tool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: yoctoproject.org@herrie.org
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -67,59 +64,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Apr 2019 07:20:05 -0000
-Content-Language: en-IE
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 16 Apr 2019 09:25:06 -0000
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Hi Evan,
 
-I=92m currently using yocto to build a custom OS based on Linux 4.9 for our=
- hardware:
-Build Configuration:
-BB_VERSION        =3D "1.32.0"
-BUILD_SYS         =3D "x86_64-linux"
-NATIVELSBSTRING   =3D "Ubuntu-16.04"
-TARGET_SYS        =3D "arm-linux-gnueabi"
-MACHINE           =3D "CUSTOM_MACHINE_NAME"
-DISTRO            =3D "arago"
-DISTRO_VERSION    =3D "2017.12"
-TUNE_FEATURES     =3D "arm armv7a vfp thumb neon       callconvention-hard"
-TARGET_FPU        =3D "hard"
-meta-processor-sdk =3D "HEAD:92db4d8023d88ab59fab2953e7447ec0bd5a6db1"
-meta-ros          =3D "HEAD:e2566402ab108a19634354a934788109422cf409"
-meta-arago-distro=20
-meta-arago-extras =3D "HEAD:5b2a44b0c4d989133bc13d59398fd10375d351bb"
-meta-browser      =3D "HEAD:26d50665e2f7223c5f4ad7481a8d2431e7cb55fb"
-meta-openamp      =3D "HEAD:8a214032bfb7e8124bc1485c70c69f7d60abb819"
-meta-qt5          =3D "HEAD:2c9f0e4eb0e9097f6f872ec1e1d81768a8ab5f1b"
-meta-networking  =20
-meta-ruby        =20
-meta-python      =20
-meta-oe          =20
-meta-gnome       =20
-meta-multimedia   =3D "HEAD:b40116cf457b88a2db14b86fda9627fb34d56ae6"
-meta-ti           =3D "HEAD:3dc08477529b31ce887bb22a08201a843ded48f0"
-meta-linaro-toolchain=20
-meta-optee        =3D "HEAD:d73e794c7e7ebb1cc5bf495a52a72b26fb118250"
-meta              =3D "HEAD:39fd8c129e2bff7f2f1649b7f6e036ccc50fd5d8"
-meta-custom  =3D "########################################"
-meta-printing     =3D "morty:72811bc3755d1a943fa2a2e79601781b44a77420"
+We don't currently have a 4.9 kernel running for our project since we're 
+working mainly with mobile devices which are stuck on 3.4 and 3.18 
+kernels for now, however we do have small screenshot utility which we 
+have as a plugin to our compositor which we have been using since early 
+Qt5 releases and we're currently on Qt 5.11/5.12.
 
+Might be worth to give a go at your end:
 
-We run a Qt5 application using EGLFS but can no longer capture screenshots.=
-=20
-In a previous yocto build based on Linux 3.x we were able to use a screensh=
-ot tool which effectively just read /dev/fb0 to a file.
+https://github.com/webOS-ports/luna-next/blob/f5fc4c8af0d0c6f74f57d3963eb570966bc8fa55/plugins/compositor/screenshooter.cpp
 
-I believe this was a change to how the underlying drivers interact with the=
- GPU/Screen - I've started reading up on KMS/DRM.
+And the header file at:
 
+https://github.com/webOS-ports/luna-next/blob/f5fc4c8af0d0c6f74f57d3963eb570966bc8fa55/plugins/compositor/screenshooter.h
 
-Does anyone know is there a utility/tool which I could use to capture the Q=
-t5 application as its drawn on screen?
+Hope this helps.
 
+Best regards,
+Herman
 
-Regards,
-Evan
+On 2019-04-16 09:15, Evan O'Loughlin wrote:
+> Hi,
+> 
+> I’m currently using yocto to build a custom OS based on Linux 4.9 for
+> our hardware:
+> Build Configuration:
+> BB_VERSION        = "1.32.0"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "Ubuntu-16.04"
+> TARGET_SYS        = "arm-linux-gnueabi"
+> MACHINE           = "CUSTOM_MACHINE_NAME"
+> DISTRO            = "arago"
+> DISTRO_VERSION    = "2017.12"
+> TUNE_FEATURES     = "arm armv7a vfp thumb neon       
+> callconvention-hard"
+> TARGET_FPU        = "hard"
+> meta-processor-sdk = "HEAD:92db4d8023d88ab59fab2953e7447ec0bd5a6db1"
+> meta-ros          = "HEAD:e2566402ab108a19634354a934788109422cf409"
+> meta-arago-distro
+> meta-arago-extras = "HEAD:5b2a44b0c4d989133bc13d59398fd10375d351bb"
+> meta-browser      = "HEAD:26d50665e2f7223c5f4ad7481a8d2431e7cb55fb"
+> meta-openamp      = "HEAD:8a214032bfb7e8124bc1485c70c69f7d60abb819"
+> meta-qt5          = "HEAD:2c9f0e4eb0e9097f6f872ec1e1d81768a8ab5f1b"
+> meta-networking
+> meta-ruby
+> meta-python
+> meta-oe
+> meta-gnome
+> meta-multimedia   = "HEAD:b40116cf457b88a2db14b86fda9627fb34d56ae6"
+> meta-ti           = "HEAD:3dc08477529b31ce887bb22a08201a843ded48f0"
+> meta-linaro-toolchain
+> meta-optee        = "HEAD:d73e794c7e7ebb1cc5bf495a52a72b26fb118250"
+> meta              = "HEAD:39fd8c129e2bff7f2f1649b7f6e036ccc50fd5d8"
+> meta-custom  = "########################################"
+> meta-printing     = "morty:72811bc3755d1a943fa2a2e79601781b44a77420"
+> 
+> 
+> We run a Qt5 application using EGLFS but can no longer capture 
+> screenshots.
+> In a previous yocto build based on Linux 3.x we were able to use a
+> screenshot tool which effectively just read /dev/fb0 to a file.
+> 
+> I believe this was a change to how the underlying drivers interact
+> with the GPU/Screen - I've started reading up on KMS/DRM.
+> 
+> 
+> Does anyone know is there a utility/tool which I could use to capture
+> the Qt5 application as its drawn on screen?
+> 
+> 
+> Regards,
+> Evan
 
