@@ -1,90 +1,34 @@
-Return-Path: <patrick.schneider@bhtronik.de>
+Return-Path: <pierluigi.greto@bisdn.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CC076E00CEE; Wed, 17 Apr 2019 10:27:41 -0700 (PDT)
+	id E75AEE00D46; Wed, 17 Apr 2019 12:06:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [40.107.0.74 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-X-Greylist: delayed 28825 seconds by postgrey-1.32 at yocto-www;
-	Wed, 17 Apr 2019 10:27:39 PDT
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com
-	(mail-eopbgr00074.outbound.protection.outlook.com [40.107.0.74])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC59BE00AD5
-	for <yocto@yoctoproject.org>; Wed, 17 Apr 2019 10:27:39 -0700 (PDT)
-Received: from AM0PR08MB3586.eurprd08.prod.outlook.com (20.177.110.155) by
-	DB7PR08MB3593.eurprd08.prod.outlook.com (20.177.120.95) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1813.12; Wed, 17 Apr 2019 00:54:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=bhtronik.onmicrosoft.com; s=selector1-bhtronik-de;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=aYhTI9j1a5GesbZyYGk6miu0Zb7M7wv3sgCQjN66rqg=;
-	b=CEMTfNBTodjbQ5h46wSR+F91OILSfPV4rXiEkc667j47HTNDW1x/40jcV4zO1KEt2n0kQ9KMPeMCABY5XoEfjWq2SH+7omBg4TBLwqnaEjSY1zQct2TkSuHMA0OyTcG7eU4lW1dtH60WMiaAsPidC0g+aRKUnUv1u4vQcLNBrAI=
-Received: from AM0PR08MB3842.eurprd08.prod.outlook.com (20.178.82.148) by
-	AM0PR08MB3586.eurprd08.prod.outlook.com (20.177.110.155) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1792.19; Tue, 16 Apr 2019 06:49:14 +0000
-Received: from AM0PR08MB3842.eurprd08.prod.outlook.com
-	([fe80::f527:5457:eaef:a905]) by
-	AM0PR08MB3842.eurprd08.prod.outlook.com
-	([fe80::f527:5457:eaef:a905%2]) with mapi id 15.20.1792.018;
-	Tue, 16 Apr 2019 06:49:14 +0000
-From: Patrick Schneider <patrick.schneider@bhtronik.de>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] Compiling on target - building buildessentials error
-Thread-Index: AdTxArUQOr/O55+IQH6rvnXenVPT6gBL6aMAAHt8msA=
-Date: Tue, 16 Apr 2019 06:49:13 +0000
-Message-ID: <AM0PR08MB38425150D911D400105A23E3EB240@AM0PR08MB3842.eurprd08.prod.outlook.com>
-References: <AM0PR08MB384222BB52BB6A610551BC11EB280@AM0PR08MB3842.eurprd08.prod.outlook.com>
-	<CAMKF1spi3DC01+9hHpn_xg1sCGxkTL1FaiH3LRcZZJy57cLzvA@mail.gmail.com>
-In-Reply-To: <CAMKF1spi3DC01+9hHpn_xg1sCGxkTL1FaiH3LRcZZJy57cLzvA@mail.gmail.com>
-Accept-Language: de-DE, en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=patrick.schneider@bhtronik.de; 
-x-originating-ip: [188.195.186.119]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c92b4c1b-cd47-4c5f-2788-08d6c237a389
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(5600140)(711020)(4605104)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(2017052603328)(7193020);
-	SRVR:AM0PR08MB3586; 
-X-MS-TrafficTypeDiagnostic: AM0PR08MB3586:|AM0PR08MB3586:|AM0PR08MB3586:|AM0PR08MB3586:|AM0PR08MB3586:|AM0PR08MB3586:|AM0PR08MB3586:|AM0PR08MB3586:|AM0PR08MB3586:|DB7PR08MB3593:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <AM0PR08MB358676775F5CC456678CE48FEB240@AM0PR08MB3586.eurprd08.prod.outlook.com>
-x-forefront-prvs: 000947967F
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(366004)(136003)(396003)(346002)(376002)(39830400003)(51914003)(199004)(189003)(6436002)(6306002)(55016002)(9686003)(25786009)(102836004)(68736007)(81156014)(81166006)(53936002)(4326008)(26005)(2906002)(97736004)(66574012)(66066001)(8676002)(6506007)(3846002)(6916009)(75402003)(8936002)(6116002)(52536014)(966005)(316002)(74316002)(99286004)(53546011)(305945005)(5660300002)(7736002)(486006)(74482002)(76176011)(7696005)(44832011)(508600001)(105586002)(446003)(14444005)(71200400001)(71190400001)(33656002)(11346002)(106356001)(14454004)(256004)(86362001)(186003)(476003);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:AM0PR08MB3586;
-	H:AM0PR08MB3842.eurprd08.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: bhtronik.de does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 9sNWoaqqLXJHV0bUnlfSm5zVrm7AT+DxGdm5xjpltTzUrFg3ZQLhsF+ugzylRi0DQX+RcQS7jXywmaAPMCSFNoI8FJJachPgMGfPhfxx8JP23VWWJqUw5eBbVWMVkZPVzitNU4ripJieFFzQYNl4jZ0hpMoTsrBPuLcdkveeHCwJmCIXlC92kSdowpKxcXmgOCkTz9Zity12xty2KpK+1VLfeX3qXluaMTZTwZmYFrgmfdAmc6uPMsckU83cS8rmN3TbhIHijPt0RIcTYJEetpCbgCzsnYSpkUuxxUiiCMiJuRPCnNfbgqu7DSPqIZwkjbgWhpRMR596UwxkzhdJ/rCNYZbv9jr85cQbjINOVF1KaTbbq75dvucKokoyPTxLl9LbxJGK9G7FpuQCbo6J+1NjWzlBj/AOfc1752m8YSQ=
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mx.bisdn.de (mx.bisdn.de [185.27.182.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5751E00D42
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2019 12:06:44 -0700 (PDT)
+Received: from localhost.localdomain (unknown [172.16.251.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mx.bisdn.de (Postfix) with ESMTPSA id 2655BA46AA;
+	Wed, 17 Apr 2019 21:06:43 +0200 (CEST)
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+References: <e6fc119b-6216-9dc2-b0d4-8692e081ab29@bisdn.de>
+	<CAGAf8Lw0jeS5En90TQfFQzYGAF5x6ZhVzLy4xvXu+GZHoq8-ww@mail.gmail.com>
+From: Pierluigi Greto <pierluigi.greto@bisdn.de>
+Message-ID: <bb00f911-35d6-d8b2-195c-c95e59fa12fc@bisdn.de>
+Date: Wed, 17 Apr 2019 21:06:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: c92b4c1b-cd47-4c5f-2788-08d6c237a389
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Apr 2019 06:49:14.0837 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f812b2db-ebea-4164-9771-3ee82d61b6fb
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR08MB3586
-X-OriginatorOrg: bhtronik.de
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Compiling on target - building buildessentials error
+In-Reply-To: <CAGAf8Lw0jeS5En90TQfFQzYGAF5x6ZhVzLy4xvXu+GZHoq8-ww@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: fitImage: hangs at "Starting kernel ..."
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -96,61 +40,312 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Apr 2019 17:27:41 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 17 Apr 2019 19:06:47 -0000
+X-Groupsio-MsgNum: 44829
+Content-Type: multipart/mixed; boundary="------------2465124AEE442490A72AFC30"
+Content-Language: en-US
 
-SGkgdGhlcmUsDQp0aGFua3MgZm9yIHRoZSB0aXAgYnV0IHRoYXQgZGlkbid0IHdvcmsuIEkgc3Rp
-bGwgZ2V0IHRoaXM6DQpSZWFkaW5nIHBhY2thZ2UgbGlzdHMuLi4NCkJ1aWxkaW5nIGRlcGVuZGVu
-Y3kgdHJlZS4uLg0KUmVhZGluZyBzdGF0ZSBpbmZvcm1hdGlvbi4uLg0KU29tZSBwYWNrYWdlcyBj
-b3VsZCBub3QgYmUgaW5zdGFsbGVkLiBUaGlzIG1heSBtZWFuIHRoYXQgeW91IGhhdmUNCnJlcXVl
-c3RlZCBhbiBpbXBvc3NpYmxlIHNpdHVhdGlvbiBvciBpZiB5b3UgYXJlIHVzaW5nIHRoZSB1bnN0
-YWJsZQ0KZGlzdHJpYnV0aW9uIHRoYXQgc29tZSByZXF1aXJlZCBwYWNrYWdlcyBoYXZlIG5vdCB5
-ZXQgYmVlbiBjcmVhdGVkDQpvciBiZWVuIG1vdmVkIG91dCBvZiBJbmNvbWluZy4NClRoZSBmb2xs
-b3dpbmcgaW5mb3JtYXRpb24gbWF5IGhlbHAgdG8gcmVzb2x2ZSB0aGUgc2l0dWF0aW9uOg0KDQpU
-aGUgZm9sbG93aW5nIHBhY2thZ2VzIGhhdmUgdW5tZXQgZGVwZW5kZW5jaWVzOg0KIHBhY2thZ2Vn
-cm91cC1jb3JlLWJ1aWxkZXNzZW50aWFsIDogRGVwZW5kczogbGlic3RkYysrLWRldiBidXQgaXQg
-aXMgbm90IGluc3RhbGxhYmxlDQogcGFja2FnZWdyb3VwLWNvcmUtc3RhbmRhbG9uZS1zZGstdGFy
-Z2V0IDogRGVwZW5kczogbGliYXRvbWljLWRldiBidXQgaXQgaXMgbm90IGluc3RhbGxhYmxlDQog
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgRGVwZW5kczogbGliYzYt
-ZGJnIGJ1dCBpdCBpcyBub3QgaW5zdGFsbGFibGUNCiAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICBEZXBlbmRzOiBsaWJjNi1kZXYgYnV0IGl0IGlzIG5vdCBpbnN0YWxs
-YWJsZQ0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIERlcGVuZHM6
-IGxpYmdjYy1zLWRldiBidXQgaXQgaXMgbm90IGluc3RhbGxhYmxlDQogICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgRGVwZW5kczogbGlic3RkYysrLWRldiBidXQgaXQg
-aXMgbm90IGluc3RhbGxhYmxlDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgUmVjb21tZW5kczogbGlic3NwLWRldiBidXQgaXQgaXMgbm90IGluc3RhbGxhYmxlDQpF
-OiBVbmFibGUgdG8gY29ycmVjdCBwcm9ibGVtcywgeW91IGhhdmUgaGVsZCBicm9rZW4gcGFja2Fn
-ZXMuDQoNCkFueSBpZGVhPw0KDQpCZXN0IHJlZ2FyZHMsDQpQYXRyaWNrIFNjaG5laWRlcg0KDQo+
-IC0tLS0tVXJzcHLDvG5nbGljaGUgTmFjaHJpY2h0LS0tLS0NCj4gVm9uOiBLaGVtIFJhaiA8cmFq
-LmtoZW1AZ21haWwuY29tPg0KPiBHZXNlbmRldDogU2Ftc3RhZywgMTMuIEFwcmlsIDIwMTkgMjE6
-NTINCj4gQW46IFBhdHJpY2sgU2NobmVpZGVyIDxwYXRyaWNrLnNjaG5laWRlckBiaHRyb25pay5k
-ZT4NCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gQmV0cmVmZjogUmU6IFt5b2N0b10g
-Q29tcGlsaW5nIG9uIHRhcmdldCAtIGJ1aWxkaW5nIGJ1aWxkZXNzZW50aWFscyBlcnJvcg0KPiAN
-Cj4gWW91IG1heSB3YW50IHRvIGFkZCBmb2xsb3dpbmcgaW4gbG9jYWwuY29uZg0KPiANCj4gRVhU
-UkFfSU1BR0VfRkVBVFVSRVNfYXBwZW5kID0gIiB0b29scy1zZGsgdG9vbHMtZGVidWcgZGJnLXBr
-Z3MiDQo+IA0KPiB0aGF0IHNob3VsZCBnZXQgeW91IGdvaW5nLiBUaGVuIHlvdSBjYW4gaW5zdGFs
-bCB0aGUgYWRkaXRpb25hbCBwYWNrYWdlcyB5b3UNCj4gbmVlZC4NCj4gDQo+IE9uIFNhdCwgQXBy
-IDEzLCAyMDE5IGF0IDEyOjI2IFBNIFBhdHJpY2sgU2NobmVpZGVyDQo+IDxwYXRyaWNrLnNjaG5l
-aWRlckBiaHRyb25pay5kZT4gd3JvdGU6DQo+ID4NCj4gPiBIaSBndXlzLA0KPiA+IEkgYW0gdHJ5
-aW5nIHRvIHVzZSBnY2Mgb24gbXkgdGFyZ2V0IGJvYXJkLiBJbiBvcmRlciB0byBkbyB0aGF0IEkg
-YWRkZWQNCj4gcGFja2FnZWdyb3VwLWNvcmUtYnVpbGRlc3NlbnRpYWxzIHRvIG15IGltYWdlLiBB
-dCBsZWFzdCBJIHRyaWVkIHRvLg0KPiA+IFdoZW4gYnVpbGRpbmcgSSBnZXQgdGhhdCBlcnJvcjoN
-Cj4gPiBwYWNrYWdlZ3JvdXAtY29yZS1idWlsZGVzc2VudGlhbCA6IERlcGVuZHM6IGxpYnN0ZGMr
-Ky1kZXYgYnV0IGl0IGlzDQo+ID4gbm90IGluc3RhbGxhYmxlIEFmdGVyIHRyeWluZyBhIGxvdCBv
-ZiB0aGluZ3MgYW5kIHBsYXlpbmcgYXJvdW5kIHdpdGggZGlmZmVyZW50DQo+IHBhY2thZ2VzIGl0
-IHNlZW1zIHRoYXQgSSBhbSBnZW5lcmFsbHkgbm90IGFibGUgdG8gYWRkICotZGV2IHBhY2thZ2Vz
-IHRvIG15DQo+IGltYWdlLCBvciBhdCBsZWFzdCBidWlsZCB0aGVtIHdpdGggYml0YmFrZSB0byBh
-ZGQgdGhlbSBtYW51YWxseS4gRXZlcnl0aGluZyBJDQo+IHRyeSB3aXRoICotZGV2IGludm9sdmVk
-IHRocm93cyBhbiBlcnJvci4gRm9yIGV4YW1wbGUgaWYgSSBhbSBhZGRpbmcgJ2Rldi0NCj4gcGtn
-cycgdG8gbXkgRVhUUkFfSU1BR0VfRkVBVFVSRVMgdmFyaWFibGUgSSBnZXQgb3ZlciAyMDAgZXJy
-b3JzIHdpdGggYWxsDQo+IGRldi1wYWNrYWdlcyBtaXNzaW5nIGp1c3QgbGlrZSB0aGF0IGFib3Zl
-Lg0KPiA+IEkgbXVzdCBoYXZlIHNvbWV0aGluZyBtaXNjb25maWd1cmVkIGluIG15IGxvY2FsL2Rp
-c3Ryby9tYWNoaW5lL2ltYWdlDQo+IGNvbmYgZmlsZXMgYnV0IEkgY2FuJ3QgZmlndXJlIG91dCB3
-aGF0Lg0KPiA+IEFueSBoZWxwIGFwcHJlY2lhdGVkLg0KPiA+DQo+ID4gQmVzdCByZWdhcmRzLA0K
-PiA+IFBhdHJpY2sgU2NobmVpZGVyDQo+ID4NCj4gPiAtLQ0KPiA+IF9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+ID4geW9jdG8gbWFpbGluZyBsaXN0DQo+
-ID4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiA+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0
-Lm9yZy9saXN0aW5mby95b2N0bw0K
+--------------2465124AEE442490A72AFC30
+Content-Type: multipart/alternative;
+ boundary="------------8EF9C1BE17CC4A25ECAFB71A"
 
+--------------8EF9C1BE17CC4A25ECAFB71A
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hi Zoran,
+
+thank you for the reply.
+[1] In this you can find some information about the device (link 
+<https://github.com/opencomputeproject/OpenNetworkLinux/blob/master/packages/platforms/delta/armel/arm-delta-ag6248c/arm-delta-ag6248c-poe/platform-config/r0/src/lib/arm-delta-ag6248c-poe-r0.yml>). 
+In this patch the dts (link 
+<https://github.com/opencomputeproject/OpenNetworkLinux/blob/663642e817c33d44d5e4dd1f98247addd68c9f5c/packages/base/any/kernels/3.2-lts/configs/arm-iproc-all/patches/platform-delta-ag6248c-device-drivers.patch>). 
+The platform is an arm cortexa9.
+[2] This is how I install the image
+
+install_uimage() {
+echo "Format Nand Flash region\n"
+flash_erase /dev/mtd-open 0 0
+nandwrite -p /dev/mtd-open fitImage-core-image-base-delta-ag6248c-poe.bin
+sync; sync
+}
+
+hw_load() {
+echo "nand read \$loadaddr open 0x1000000 && run fpboot && bootm"
+}
+
+I'll attach the log from when I install the image to when it the kernel 
+hangs.
+
+Thank you,
+Pierluigi
+
+On 17/04/19 17:26, Zoran Stojsavljevic wrote:
+> Hello PierLuigi,
+>
+> [1] Which arm platform (based upon which arm Open Sorce platform) you are using?
+> [2] Please, can we see your added proprietary ash script to U-Boot default env?
+>
+> Thank you,
+> Zoran
+> _______
+>
+> On Wed, Apr 17, 2019 at 5:13 PM Pierluigi Greto
+> <pierluigi.greto@bisdn.de> wrote:
+>> Hi all,
+>>
+>> I'm trying to build an image for an arm platform with uboot. After the
+>> installation, when the system is starting it hangs at "Starting kernel
+>> ...". In the log I can see that the kernel uncompressed image, the
+>> ramdisk subimage and  the Flat Device Tree are found. But the kernel
+>> doesn't start.
+>> Any hints on how to check what it's wrong with the image? For example if
+>> the kernel is correctly compiled, the FTD is the right one ecc.
+>> The loaded kernel is shown as "uncompressed", there is some way to
+>> define the compression type in yocto (I have an image that works and the
+>> kernel is shown as "gzip compressed")? Could the compression type be a
+>> problem?
+>>
+>> Any hint is very welcome.
+>>
+>> Thank you,
+>> Pierluigi
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+
+--------------8EF9C1BE17CC4A25ECAFB71A
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Hi Zoran,</p>
+    <p>thank you for the reply. <br>
+      [1] In this you can find some information about the device (<a
+href="https://github.com/opencomputeproject/OpenNetworkLinux/blob/master/packages/platforms/delta/armel/arm-delta-ag6248c/arm-delta-ag6248c-poe/platform-config/r0/src/lib/arm-delta-ag6248c-poe-r0.yml">link</a>).
+      In this patch the dts (<a moz-do-not-send="true"
+href="https://github.com/opencomputeproject/OpenNetworkLinux/blob/663642e817c33d44d5e4dd1f98247addd68c9f5c/packages/base/any/kernels/3.2-lts/configs/arm-iproc-all/patches/platform-delta-ag6248c-device-drivers.patch">link</a>).
+      The platform is an arm cortexa9.<br>
+      [2] This is how I install the image <br>
+      <br>
+    </p>
+    <pre class="code highlight" lang="conf"><span id="LC5" class="line" lang="conf"><span class="n">install_uimage</span>() {</span>
+<span id="LC6" class="line" lang="conf">    <span class="n">echo</span> <span class="s2">"Format Nand Flash region\n"</span></span>
+<span id="LC7" class="line" lang="conf">    <span class="n">flash_erase</span> /<span class="n">dev</span>/<span class="n">mtd</span>-<span class="n">open</span> <span class="m">0</span> <span class="m">0</span></span>
+<span id="LC8" class="line" lang="conf">    <span class="n">nandwrite</span> -<span class="n">p</span> /<span class="n">dev</span>/<span class="n">mtd</span>-<span class="n">open</span> <span class="n">fitImage</span>-<span class="n">core</span>-<span class="n">image</span>-<span class="n">base</span>-<span class="n">delta</span>-<span class="n">ag6248c</span>-<span class="n">poe</span>.<span class="n">bin</span></span>
+<span id="LC9" class="line" lang="conf">    <span class="n">sync</span>; <span class="n">sync</span></span>
+<span id="LC10" class="line" lang="conf">}</span>
+<span id="LC11" class="line" lang="conf"></span>
+<span id="LC12" class="line" lang="conf"><span class="n">hw_load</span>() {</span>
+<span id="LC13" class="line" lang="conf">    <span class="n">echo</span> <span class="s2">"nand read \$loadaddr open 0x1000000 &amp;&amp; run fpboot &amp;&amp; bootm"</span></span>
+<span id="LC14" class="line" lang="conf">}</span>
+</pre>
+    <p>I'll attach the log from when I install the image to when it the
+      kernel hangs.<br>
+      <br>
+      Thank you,<br>
+      Pierluigi<br>
+    </p>
+    <div class="moz-cite-prefix">On 17/04/19 17:26, Zoran Stojsavljevic
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAGAf8Lw0jeS5En90TQfFQzYGAF5x6ZhVzLy4xvXu+GZHoq8-ww@mail.gmail.com">
+      <pre class="moz-quote-pre" wrap="">Hello PierLuigi,
+
+[1] Which arm platform (based upon which arm Open Sorce platform) you are using?
+[2] Please, can we see your added proprietary ash script to U-Boot default env?
+
+Thank you,
+Zoran
+_______
+
+On Wed, Apr 17, 2019 at 5:13 PM Pierluigi Greto
+<a class="moz-txt-link-rfc2396E" href="mailto:pierluigi.greto@bisdn.de">&lt;pierluigi.greto@bisdn.de&gt;</a> wrote:
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">
+Hi all,
+
+I'm trying to build an image for an arm platform with uboot. After the
+installation, when the system is starting it hangs at "Starting kernel
+...". In the log I can see that the kernel uncompressed image, the
+ramdisk subimage and  the Flat Device Tree are found. But the kernel
+doesn't start.
+Any hints on how to check what it's wrong with the image? For example if
+the kernel is correctly compiled, the FTD is the right one ecc.
+The loaded kernel is shown as "uncompressed", there is some way to
+define the compression type in yocto (I have an image that works and the
+kernel is shown as "gzip compressed")? Could the compression type be a
+problem?
+
+Any hint is very welcome.
+
+Thank you,
+Pierluigi
+
+--
+_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+</pre>
+      </blockquote>
+    </blockquote>
+  </body>
+</html>
+
+--------------8EF9C1BE17CC4A25ECAFB71A--
+
+--------------2465124AEE442490A72AFC30
+Content-Type: text/x-log;
+ name="startup.log"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="startup.log"
+
+ONIE:/ # onie-nos-install http://172.16.250.50/onie/pierluigi/onie-bisdn-delta-a
+g6248c-poe-20190417.bin
+discover: installer mode detected.
+Stopping: discover... done.
+Info: Fetching http://172.16.250.50/onie/pierluigi/onie-bisdn-delta-ag6248c-poe-20190417.bin ...
+Connecting to 172.16.250.50 (172.16.250.50:80)
+installer            100% |*******************************| 13781k  0:00:00 ETA
+ONIE: Executing installer: http://172.16.250.50/onie/pierluigi/onie-bisdn-delta-ag6248c-poe-20190417.bin
+Image build date: 2019-04-17
+Verifying image checksum ... OK.
+Preparing image archive ... OK.
+Demo Installer: platform: arm-delta_ag6248c-poe-r0
+Format Nand Flash region\n
+Erasing 1024 Kibyte @ 4900000 -  1% complete.
+Skipping bad block at 0x04a00000
+
+Skipping bad block at 0x04b00000
+Erasing 1024 Kibyte @ f9800000 - 100% complete.
+Writing at 0x00000000
+Writing at 0x00100000
+Writing at 0x00200000
+Writing at 0x00300000
+Writing at 0x00400000
+Writing at 0x00500000
+Writing at 0x00600000
+Writing at 0x00700000
+Writing at 0x00800000
+Writing at 0x00900000
+Writing at 0x00a00000
+Writing at 0x00b00000
+Writing at 0x00c00000
+Writing at 0x00d00000
+Updating U-Boot environment variables
+ONIE: NOS install successful: http://172.16.250.50/onie/pierluigi/onie-bisdn-delta-ag6248c-poe-20190417.bin
+ONIE: Rebooting...
+ONIE:/ # discover: installer mode detected.
+Stopping: discover...start-stop-daemon: warning: killing process 342: No such process
+ done.
+Stopping: dropbear ssh daemon... done.
+Stopping: telnetd... done.
+Stopping: syslogd... done.
+Info: Unmounting kernel filesystems
+The system is going down NOW!
+Sent SIGTERM to all processes
+Sent SIGKILL toRestarting system.
+
+U-Boot SPL 2012.10-gcbef171 (Mar 09 2016 - 17:01:14)
+DCO:   44 (PASS)
+AVS: 0x0
+VOUT Init: 0x64 VOUT Set: 0x64 
+Device:Helix4 (0xdc14)
+SKU:   BCM56340 (0xb340)
+DRAM:  DDR3, 750MHz
+       Validate DDR shmoo parameters stored in flash ..... OK
+       Press Ctrl-C to run DDR shmoo ..... skipped
+       Restoring DDR shmoo parameters from flash ..... done
+       Running simple memory test ..... OK
+       DDR Interface Ready
+(ONFI), MT29F32G08ABAAAWP   , blocks per lun: 1000 lun count: 1
+NAND:  1024 KiB blocks, 8 KiB pages, 16B OOB, 8-bit
+NAND:  chipsize 
+
+U-Boot 2012.10-gcbef171 (Mar 09 2016 - 17:01:14) - ONIE master-201603091701-dirty
+
+DRAM:  1 GiB
+WARNING: Caches not enabled
+NAND:  (ONFI), MT29F32G08ABAAAWP   , blocks per lun: 1000 lun count: 1
+NAND:  1024 KiB blocks, 8 KiB pages, 16B OOB, 8-bit
+NAND:  chipsize 4096 MiB
+EEPROM:TlvInfo v1 len=104
+In:    serial
+Out:   serial
+Err:   serial
+CLOCKS:ARM Core=1000Hz, AXI=500Hz, APB=125Hz, Peripheral=500Hz
+Bringing USB2 host out of reset...
+EEPROM:TlvInfo v1 len=104
+Net:   eth-0
+Hit any key to stop autoboot:  0 
+Loading Demo arm-delta_ag6248c-poe-r0 image...
+
+NAND read: device 0 offset 0x1000000, size 0x1000000
+ 16777216 bytes read: OK
+## Booting kernel from FIT Image at 70000000 ...
+   Using 'conf@delta_ag6248c.dtb' configuration
+   Trying 'kernel@1' kernel subimage
+     Description:  Linux kernel
+     Type:         Kernel Image
+     Compression:  uncompressed
+     Data Start:   0x70000100
+     Data Size:    2943960 Bytes = 2.8 MiB
+     Architecture: ARM
+     OS:           Linux
+     Load Address: 0x61008000
+     Entry Point:  0x61008000
+     Hash algo:    sha1
+     Hash value:   b1a3f81b226b7711aed98fa0fa1a3ae48734ee5f
+   Verifying Hash Integrity ... sha1+ OK
+## Loading init Ramdisk from FIT Image at 70000000 ...
+   Using 'conf@delta_ag6248c.dtb' configuration
+   Trying 'ramdisk@1' ramdisk subimage
+     Description:  core-image-base
+     Type:         RAMDisk Image
+     Compression:  gzip compressed
+     Data Start:   0x702cf6c8
+     Data Size:    11154972 Bytes = 10.6 MiB
+     Architecture: ARM
+     OS:           Linux
+     Load Address: 0x00000000
+     Entry Point:  0x00000000
+     Hash algo:    sha1
+     Hash value:   fd0c0f2dd095d2cd248ed18af3590032ec4f332b
+   Verifying Hash Integrity ... sha1+ OK
+## Flattened Device Tree from FIT Image at 70000000
+   Using 'conf@delta_ag6248c.dtb' configuration
+   Trying 'fdt@delta_ag6248c.dtb' FDT blob subimage
+     Description:  Flattened Device Tree blob
+     Type:         Flat Device Tree
+     Compression:  uncompressed
+     Data Start:   0x702ceddc
+     Data Size:    2098 Bytes = 2 KiB
+     Architecture: ARM
+     Hash algo:    sha1
+     Hash value:   1272aaf9f1b473c73bcbacfdef37a89e7d83bda4
+   Verifying Hash Integrity ... sha1+ OK
+   Booting using the fdt blob at 0x702ceddc
+   Loading Kernel Image ... OK
+OK
+boot_prep_linux commandline: console=ttyS0,115200 maxcpus=2 mem=1024M root=/dev/ram mtdparts=nand_iproc.0:1m(uboot),2m(shmoo),1m(nenv),12m(onie),3992m
+(open),12m(onie2),2m(vpd),6m(sys_eeprom),16m(diags),16m(diags2),32m(diags_fs) ubi.mtd=4 ethaddr=00:18:23:30:EB:4A quiet
+   Loading Ramdisk to 7f55c000, end 7ffff61c ... OK
+   Loading Device Tree to 63ffc000, end 63fff831 ... OK
+
+Starting kernel ...
+
+
+
+
+--------------2465124AEE442490A72AFC30--
