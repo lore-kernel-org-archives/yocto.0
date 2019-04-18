@@ -1,85 +1,62 @@
-Return-Path: <kweihmann@outlook.com>
+Return-Path: <balazovic.peter@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9950BE00D2F; Mon, 15 Apr 2019 23:12:28 -0700 (PDT)
+	id 51EFBE00AB0; Thu, 18 Apr 2019 07:58:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, SPF_HELO_PASS autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (kweihmann[at]outlook.com)
+	provider *      (balazovic.peter[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [40.92.64.37 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.166.170 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 18016 seconds by postgrey-1.32 at yocto-www;
-	Mon, 15 Apr 2019 23:12:26 PDT
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-oln040092064037.outbound.protection.outlook.com [40.92.64.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C785DE0091D
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2019 23:12:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
-	s=selector1;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=wZ0BA2LTKpfR+Q4B3JsSRyTMKgboE0ZsfUpM08YyIM4=;
-	b=sUY3qn8ss9SI0ieBX7rlKjLY9K0pZSBbxf5qwl77tZaaBj1BsF7ADROzJoSvayJECVvf/jglGyUxIyLs1GUwSXh97ISEl8UFuOp7Uu3E4Us58QGn1RT8nQdFDCIQ8bOBihXyCJKHwqvKkYNWUOD8fFwxivDOLmGeOgKJ5c9OSMwnZY99zmUHnzYMB6eY73OuenmyiGuECqP9Pyee051O0dxc1W8nGMArDZCDY3bjR/Qb3PaJxWcUsy2IMXNYIeR42em+vwT3qNvPTRBjqocKvzN/sFoVu9mYOIMgZP2x1Kd4X8ZHco6aKf4EgNt1gGFuQBvyW1Dc3ysLZ9jVockf0w==
-Received: from DB5EUR01FT047.eop-EUR01.prod.protection.outlook.com
-	(10.152.4.53) by DB5EUR01HT104.eop-EUR01.prod.protection.outlook.com
-	(10.152.5.108) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1771.16;
-	Mon, 15 Apr 2019 12:40:41 +0000
-Received: from DB6PR0501MB2182.eurprd05.prod.outlook.com (10.152.4.60) by
-	DB5EUR01FT047.mail.protection.outlook.com (10.152.5.196) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
-	15.20.1771.16 via Frontend Transport; Mon, 15 Apr 2019 12:40:41 +0000
-Received: from DB6PR0501MB2182.eurprd05.prod.outlook.com
-	([fe80::11ad:c6a6:d55f:2524]) by
-	DB6PR0501MB2182.eurprd05.prod.outlook.com
-	([fe80::11ad:c6a6:d55f:2524%4]) with mapi id 15.20.1792.018;
-	Mon, 15 Apr 2019 12:40:41 +0000
-From: Konrad Weihmann <kweihmann@outlook.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Static code analysis
-Thread-Index: AdTzh1qpBS5ZLTf8SaGKYC7xps31bA==
-Date: Mon, 15 Apr 2019 12:40:41 +0000
-Message-ID: <DB6PR0501MB21826F5CEE93CE575B5995AEA82B0@DB6PR0501MB2182.eurprd05.prod.outlook.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:49428085B288532062B04DD5D1BF031228818782DCE1C9CA5D9E1B76BB4154E0;
-	UpperCasedChecksum:0DAA58759267F72B40F4BCA02F1BAA5F49A8EEFEB80D614389F4911082EB5134;
-	SizeAsReceived:6507; Count:40
-x-tmn: [cUcPN+56OehtIrMImanKXCflz6Gdw0qX]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 40
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);
-	SRVR:DB5EUR01HT104; 
-x-ms-traffictypediagnostic: DB5EUR01HT104:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-message-info: 4fxzY15yKUfXqGnni0xrWFVEKpfAES3xxEoWJVEx9Dx0r5cUs1SMVouf0PnkP6EDvdfB9beoYb0e26KY6DIew3gLBsK3BRpwpmfWO8fVjyDjyX5NhfOVZ0mYUiVW3INIjgGd4hAOc0Yw35bMmO7OdKmgcFgJWI414qD+7rISkJ5xBN5bv0S+x3DcBl2o6aTb
+Received: from mail-it1-f170.google.com (mail-it1-f170.google.com
+	[209.85.166.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1ACDAE00A1C
+	for <yocto@yoctoproject.org>; Thu, 18 Apr 2019 07:58:03 -0700 (PDT)
+Received: by mail-it1-f170.google.com with SMTP id y134so3725240itc.5
+	for <yocto@yoctoproject.org>; Thu, 18 Apr 2019 07:58:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=sRN0hPH/ziqeFp/MXavcdplIE0YQhNVZh3E/hvYuh4A=;
+	b=DzmsaT8GAZe2E8lQv8C+k+A3/qMjIJ6J8TQrFoZpNfLT1qOS8Yffuf8owaLWXF5Rl6
+	g9qtfJf/eAx3Sopkls/CkSmqgkj78irqoPzbRwIShhnkr+y/cTDSdKlOB9fOkCfHigQh
+	xgQU6TJzVQ8hWrx8QRiQldm/69OvocAaqjsdLrJ0VpMQM52lT6Rt1OPAP74vgnlwgX6W
+	sARRz++xZkbLGcYYgBjHd9YC3dcqecROFmlrKjhr8hdBexNPb4puSt8hpG8jvIp0fDQI
+	89ft3B1rjMWYJZ5sdy35kno54DIuJo9Cx6d9ZulH9cKkgPaQpMBhaNP+a5FceDfaGfUG
+	6Q1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=sRN0hPH/ziqeFp/MXavcdplIE0YQhNVZh3E/hvYuh4A=;
+	b=odRMGWP7VowljYwQkdBVbLoGSyXsZURbwMOPeOKNLSBkfaPeQrQq290U0RI2pYFZJI
+	Gd7VyeswCNmh1KVJqN5OLm7yJxuNGpL823tgS+vy0DZjGdFFsGMEWt4einIurb1iZ88e
+	x2fj6GVGi1k/lAbokODxKZhqKTtf0gZ0+sEKXC68k+G2XgniM/6HefY2iUb8DIduB8aq
+	iAR1fmKoS09FrR217ZfSE/nMaaWz56oyPGo5YV/VeGYpET2HAjr9H8Kk9AaiCp8KQ7ib
+	DyA4toP1HUrAA5l6llCjrhUVyqjJ8L1Cibe0QtqJh4pqFT/Hdhis+2/GGMIilpgcHkyZ
+	796g==
+X-Gm-Message-State: APjAAAX8rrp/aRq2yi6S0c52dmktLtdgGd4OuEU8qcJbaTlb/zivK4Ii
+	groy9scdG5Sm1ra8wuJKWLgGqj2dUD+ZPoIkLoVQ3pS0kjQ=
+X-Google-Smtp-Source: APXvYqyUaueKnen3vD/4Xg39q/hjb9Qkg7BEULv8g8TW643a999z1YllrQUg8Cc9giiLdn1nq1fVE8GFlbNjLbWs/Is=
+X-Received: by 2002:a24:68d:: with SMTP id 135mr3764089itv.53.1555599482993;
+	Thu, 18 Apr 2019 07:58:02 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c32d5a5-8629-4cf6-c6f8-08d6c19f91e7
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Apr 2019 12:40:41.0750 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5EUR01HT104
+From: Peter Balazovic <balazovic.peter@gmail.com>
+Date: Thu, 18 Apr 2019 16:57:52 +0200
+Message-ID: <CAFq4t4hR=jdVUS+0PrmCxU7sHJNOCO9GxEK=MD=TtbCWr2LdYA@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
 X-Mailman-Approved-At: Tue, 23 Apr 2019 02:14:18 -0700
-Subject: Static code analysis
+Subject: config.guess: unable to guess system type
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -91,121 +68,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Apr 2019 06:12:28 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_DB6PR0501MB21826F5CEE93CE575B5995AEA82B0DB6PR0501MB2182_"
+X-List-Received-Date: Thu, 18 Apr 2019 14:58:05 -0000
+Content-Type: multipart/alternative; boundary="00000000000098c0dc0586cf3a8e"
 
---_000_DB6PR0501MB21826F5CEE93CE575B5995AEA82B0DB6PR0501MB2182_
-Content-Type: text/plain; charset="us-ascii"
+--00000000000098c0dc0586cf3a8e
+Content-Type: text/plain; charset="UTF-8"
+
+I am trying to compile on my Yocto system from source the SDL
+http://www.libsdl.org/release/SDL-1.2.15.tar.gz and by running ./configure
+I got error to configure the build
+
+checking build system type... ./build-scripts/config.guess: unable to guess
+system type
+
+This script, last modified 2009-09-18, has failed to recognize
+the operating system you are using. It is advised that you
+download the most up to date version of the config scripts from
+
+
+http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD
+and
+
+http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD
+
+If the version you run (./build-scripts/config.guess) is already up to
+date, please
+send the following data and any information you think might be
+pertinent to <config-patches@gnu.org> in order to provide the needed
+information to handle your system.
+
+config.guess timestamp = 2009-09-18
+uname -m = aarch64
+uname -r = 4.14.78-imx_4.14.78_1.0.0_ga+g66620c3
+uname -s = Linux
+uname -v = #1 SMP PREEMPT Fri Feb 1 09:09:25 UTC 2019
+
+/usr/bin/uname -p =
+/bin/uname -X     =
+
+hostinfo               =
+/bin/universe          =
+/usr/bin/arch -k       =
+/bin/arch              =
+/usr/bin/oslevel       =
+/usr/convex/getsysinfo =
+
+UNAME_MACHINE = aarch64
+UNAME_RELEASE = 4.14.78-imx_4.14.78_1.0.0_ga+g66620c3
+UNAME_SYSTEM  = Linux
+UNAME_VERSION = #1 SMP PREEMPT Fri Feb 1 09:09:25 UTC 2019
+configure: error: cannot guess build type; you must specify one
+
+What would be causing the problem?
+Thanks.
+
+--00000000000098c0dc0586cf3a8e
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi All,
+<div dir=3D"ltr"><div dir=3D"ltr">I am trying to compile on my Yocto system=
+ from source the SDL=C2=A0<div><a id=3D"gmail-url" target=3D"_blank" href=
+=3D"http://www.libsdl.org/release/SDL-1.2.15.tar.gz" tabindex=3D"0" style=
+=3D"max-width:100%;margin-top:6px;min-height:0px;overflow:hidden;text-decor=
+ation-line:none;text-overflow:ellipsis;white-space:nowrap;font-family:Robot=
+o,&quot;Segoe UI&quot;,Tahoma,sans-serif;font-size:13px">http://www.libsdl.=
+org/release/SDL-1.2.15.tar.gz</a>=C2=A0and by running ./configure I got err=
+or to configure the build</div><div><br></div><div><div><font face=3D"monos=
+pace, monospace">checking build system type... ./build-scripts/config.guess=
+: unable to guess system type</font></div><div><font face=3D"monospace, mon=
+ospace"><br></font></div><div><font face=3D"monospace, monospace">This scri=
+pt, last modified 2009-09-18, has failed to recognize</font></div><div><fon=
+t face=3D"monospace, monospace">the operating system you are using. It is a=
+dvised that you</font></div><div><font face=3D"monospace, monospace">downlo=
+ad the most up to date version of the config scripts from</font></div><div>=
+<font face=3D"monospace, monospace"><br></font></div><div><font face=3D"mon=
+ospace, monospace">=C2=A0 <a href=3D"http://git.savannah.gnu.org/gitweb/?p=
+=3Dconfig.git;a=3Dblob_plain;f=3Dconfig.guess;hb=3DHEAD">http://git.savanna=
+h.gnu.org/gitweb/?p=3Dconfig.git;a=3Dblob_plain;f=3Dconfig.guess;hb=3DHEAD<=
+/a></font></div><div><font face=3D"monospace, monospace">and</font></div><d=
+iv><font face=3D"monospace, monospace">=C2=A0 <a href=3D"http://git.savanna=
+h.gnu.org/gitweb/?p=3Dconfig.git;a=3Dblob_plain;f=3Dconfig.sub;hb=3DHEAD">h=
+ttp://git.savannah.gnu.org/gitweb/?p=3Dconfig.git;a=3Dblob_plain;f=3Dconfig=
+.sub;hb=3DHEAD</a></font></div><div><font face=3D"monospace, monospace"><br=
+></font></div><div><font face=3D"monospace, monospace">If the version you r=
+un (./build-scripts/config.guess) is already up to date, please</font></div=
+><div><font face=3D"monospace, monospace">send the following data and any i=
+nformation you think might be</font></div><div><font face=3D"monospace, mon=
+ospace">pertinent to &lt;<a href=3D"mailto:config-patches@gnu.org">config-p=
+atches@gnu.org</a>&gt; in order to provide the needed</font></div><div><fon=
+t face=3D"monospace, monospace">information to handle your system.</font></=
+div><div><font face=3D"monospace, monospace"><br></font></div><div><font fa=
+ce=3D"monospace, monospace">config.guess timestamp =3D 2009-09-18</font></d=
+iv><div><span style=3D"font-family:monospace,monospace">uname -m =3D aarch6=
+4</span><br></div><div><font face=3D"monospace, monospace">uname -r =3D 4.1=
+4.78-imx_4.14.78_1.0.0_ga+g66620c3</font></div><div><font face=3D"monospace=
+, monospace">uname -s =3D Linux</font></div><div><font face=3D"monospace, m=
+onospace">uname -v =3D #1 SMP PREEMPT Fri Feb 1 09:09:25 UTC 2019</font></d=
+iv><div><font face=3D"monospace, monospace"><br></font></div><div><font fac=
+e=3D"monospace, monospace">/usr/bin/uname -p =3D</font></div><div><font fac=
+e=3D"monospace, monospace">/bin/uname -X=C2=A0 =C2=A0 =C2=A0=3D</font></div=
+><div><font face=3D"monospace, monospace"><br></font></div><div><font face=
+=3D"monospace, monospace">hostinfo=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0=3D</font></div><div><font face=3D"monospace, monospace">/bin=
+/universe=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D</font></div><div><font face=
+=3D"monospace, monospace">/usr/bin/arch -k=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D</f=
+ont></div><div><font face=3D"monospace, monospace">/bin/arch=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D</font></div><div><font face=3D"monos=
+pace, monospace">/usr/bin/oslevel=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D</font></div=
+><div><font face=3D"monospace, monospace">/usr/convex/getsysinfo =3D</font>=
+</div><div><font face=3D"monospace, monospace"><br></font></div><div><font =
+face=3D"monospace, monospace">UNAME_MACHINE =3D aarch64</font></div><div><f=
+ont face=3D"monospace, monospace">UNAME_RELEASE =3D 4.14.78-imx_4.14.78_1.0=
+.0_ga+g66620c3</font></div><div><font face=3D"monospace, monospace">UNAME_S=
+YSTEM=C2=A0 =3D Linux</font></div><div><font face=3D"monospace, monospace">=
+UNAME_VERSION =3D #1 SMP PREEMPT Fri Feb 1 09:09:25 UTC 2019</font></div><d=
+iv><font face=3D"monospace, monospace">configure: error: cannot guess build=
+ type; you must specify one</font></div><div><br></div></div><div>What woul=
+d be causing the problem?</div><div>Thanks.</div></div></div>
 
-I didn't know where to put this else, so here I am.
-I've been working with YOCTO for quite a while on professional and personal=
- projects.
-From time to time I wished I had some static code analysis inside of the bu=
-ild chain.
-Esp. when something quite obvious (like a badly written shell-script) flipp=
-ed the whole build - For most of my professional work I've always used the =
-fail-early principle, which often means dying at build time instead of dyin=
-g in testing.
-Over at GitHub (https://github.com/priv-kweihmann/meta-sca) you can find my=
- current implementation of static code analysis tools to be used in YOCTO.
-
-If you're interested please have a look at it, and maybe if you like join t=
-he further development (or at least the discussion).
-Hope for some serious feedback,
-Best regards
-K. Weihmann
-
---_000_DB6PR0501MB21826F5CEE93CE575B5995AEA82B0DB6PR0501MB2182_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi All,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I didn&#8217;t know where to pu=
-t this else, so here I am.<br>
-I&#8217;ve been working with YOCTO for quite a while on professional and pe=
-rsonal projects.
-<br>
-From time to time I wished I had some static code analysis inside of the bu=
-ild chain.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Esp. when something quite obvio=
-us (like a badly written shell-script) flipped the whole build &#8211; For =
-most of my professional work I&#8217;ve always used the fail-early principl=
-e, which often means dying at build time instead
- of dying in testing.<br>
-Over at GitHub (<a href=3D"https://github.com/priv-kweihmann/meta-sca">http=
-s://github.com/priv-kweihmann/meta-sca</a>) you can find my current impleme=
-ntation of static code analysis tools to be used in YOCTO.<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">If you&#8217;re interested plea=
-se have a look at it, and maybe if you like join the further development (o=
-r at least the discussion).<br>
-Hope for some serious feedback,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">K. Weihmann<o:p></o:p></span></=
-p>
-</div>
-</body>
-</html>
-
---_000_DB6PR0501MB21826F5CEE93CE575B5995AEA82B0DB6PR0501MB2182_--
+--00000000000098c0dc0586cf3a8e--
