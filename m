@@ -1,55 +1,34 @@
-Return-Path: <sangeeta.jain@intel.com>
+Return-Path: <Kexin.Hao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7AC9DE00B5C; Thu, 18 Apr 2019 20:16:43 -0700 (PDT)
+	id AB073E00D2F; Thu, 18 Apr 2019 22:32:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EDBDE009A0;
-	Thu, 18 Apr 2019 20:16:42 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	18 Apr 2019 20:16:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.60,368,1549958400"; d="scan'208";a="137059345"
-Received: from pgsmsx105.gar.corp.intel.com ([10.221.44.96])
-	by orsmga006.jf.intel.com with ESMTP; 18 Apr 2019 20:16:40 -0700
-Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.159]) by
-	PGSMSX105.gar.corp.intel.com ([169.254.4.8]) with mapi id
-	14.03.0415.000; Fri, 19 Apr 2019 11:16:39 +0800
-From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
-To: Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>, "Graydon, Tracy"
-	<tracy.graydon@intel.com>, "yocto-announce@yoctoproject.org"
-	<yocto-announce@yoctoproject.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [yocto-announce] [ANNOUNCEMENT] Yocto Project 2.6.2
-	(thud 20.0.2)	Released
-Thread-Index: AQHU9lPltK/FgWg8xke2kwFzqqzHYaZCzi3Q
-Date: Fri, 19 Apr 2019 03:16:38 +0000
-Message-ID: <015AB11D45F2C442929CB2765DAE738634DD7AB4@PGSMSX110.gar.corp.intel.com>
-References: <0720978d-2fdd-3084-3217-dc93470040e1@intel.com>
-	<BYAPR02MB60055D9DE1AD3A765C241855B9250@BYAPR02MB6005.namprd02.prod.outlook.com>
-In-Reply-To: <BYAPR02MB60055D9DE1AD3A765C241855B9250@BYAPR02MB6005.namprd02.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.600.7
-dlp-reaction: no-action
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiODY2YTVkMjAtMzI4ZC00NmYzLWE1ZTctZTQxMjMwNDY1MmJjIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoicXhsUFFMa3Q5Z05Lb1lBZVY2VW9DcXZGVTlYOEQ3TUZQT3I0VytEYkE5M3dWTElmek1jRHlJbDJrNjVLMDJIZCJ9
-x-originating-ip: [172.30.20.205]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31198E004D8
+	for <yocto@yoctoproject.org>; Thu, 18 Apr 2019 22:32:44 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x3J5WDLX014518
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 18 Apr 2019 22:32:33 -0700
+Received: from pek-lpggp6.wrs.com (128.224.153.40) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.439.0;
+	Thu, 18 Apr 2019 22:32:20 -0700
+From: Kevin Hao <kexin.hao@windriver.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Fri, 19 Apr 2019 13:23:35 +0800
+Message-ID: <20190419052335.28270-1-kexin.hao@windriver.com>
+X-Mailer: git-send-email 2.14.4
 MIME-Version: 1.0
-Subject: Re: [yocto-announce] [ANNOUNCEMENT] Yocto Project 2.6.2	(thud 20.0.2)	Released
+Subject: [PATCH][thud] meta-yocto-bsp: Bump to the latest stable kernel for the BSPs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,102 +40,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2019 03:16:43 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 19 Apr 2019 05:32:45 -0000
+Content-Type: text/plain
 
-For latest releases and test results please refer to:
+In order to fix a systemtap bug [1] on arm board, we backport a kernel
+patch from v5.0 kernel to v4.14 & v4.18 kernel, then need to bump the
+kernel version to include this patch. Even this is only an arm specific
+bug, we would like to bump the kernel version for the BSPs at the same
+time. Boot test for all the boards.
 
-https://autobuilder.yocto.io/pub/releases/
+[1] https://bugzilla.yoctoproject.org/show_bug.cgi?id=13273
 
-For previous test results, refer to yocto-testresults repo at=20
+Signed-off-by: Kevin Hao <kexin.hao@windriver.com>
+---
+ .../recipes-kernel/linux/linux-yocto_4.14.bbappend   | 20 ++++++++++----------
+ .../recipes-kernel/linux/linux-yocto_4.18.bbappend   | 20 ++++++++++----------
+ 2 files changed, 20 insertions(+), 20 deletions(-)
 
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults/
+diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend
+index 502485a94b15..426757e48c9e 100644
+--- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend
++++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend
+@@ -8,11 +8,11 @@ KMACHINE_genericx86 ?= "common-pc"
+ KMACHINE_genericx86-64 ?= "common-pc-64"
+ KMACHINE_beaglebone-yocto ?= "beaglebone"
+ 
+-SRCREV_machine_genericx86    ?= "2c5caa7e84311f2a0097974a697ac1f59030530e"
+-SRCREV_machine_genericx86-64 ?= "2c5caa7e84311f2a0097974a697ac1f59030530e"
+-SRCREV_machine_edgerouter ?= "e06bfa18c727bd0e6e10cf26d9f161e4c791f52b"
+-SRCREV_machine_beaglebone-yocto ?= "b8805de77dcf8f59d8368fee4921c146c1300a6a"
+-SRCREV_machine_mpc8315e-rdb ?= "f88e87360b10f8fbd853a7d412982e6620f3f96d"
++SRCREV_machine_genericx86    ?= "5252513a39b4b3773debab1f77071d7c430ecb10"
++SRCREV_machine_genericx86-64 ?= "5252513a39b4b3773debab1f77071d7c430ecb10"
++SRCREV_machine_edgerouter ?= "d8fb40cd0e99325715c70aed6f361a8318097829"
++SRCREV_machine_beaglebone-yocto ?= "c67809688bd22cb4cb909bcf1a1045e6337c3229"
++SRCREV_machine_mpc8315e-rdb ?= "258ee8228e0a512c6dbe2a0dadcd9f030ba45964"
+ 
+ COMPATIBLE_MACHINE_genericx86 = "genericx86"
+ COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
+@@ -20,8 +20,8 @@ COMPATIBLE_MACHINE_edgerouter = "edgerouter"
+ COMPATIBLE_MACHINE_beaglebone-yocto = "beaglebone-yocto"
+ COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
+ 
+-LINUX_VERSION_genericx86 = "4.14.76"
+-LINUX_VERSION_genericx86-64 = "4.14.76"
+-LINUX_VERSION_edgerouter = "4.14.71"
+-LINUX_VERSION_beaglebone-yocto = "4.14.71"
+-LINUX_VERSION_mpc8315e-rdb = "4.14.71"
++LINUX_VERSION_genericx86 = "4.14.98"
++LINUX_VERSION_genericx86-64 = "4.14.98"
++LINUX_VERSION_edgerouter = "4.14.98"
++LINUX_VERSION_beaglebone-yocto = "4.14.98"
++LINUX_VERSION_mpc8315e-rdb = "4.14.98"
+diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.18.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.18.bbappend
+index 7f15843f3a90..11b35cc1c2f8 100644
+--- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.18.bbappend
++++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.18.bbappend
+@@ -8,11 +8,11 @@ KMACHINE_genericx86 ?= "common-pc"
+ KMACHINE_genericx86-64 ?= "common-pc-64"
+ KMACHINE_beaglebone-yocto ?= "beaglebone"
+ 
+-SRCREV_machine_genericx86    ?= "db2d813869a0501782469ecdb17e277a501c9f57"
+-SRCREV_machine_genericx86-64 ?= "db2d813869a0501782469ecdb17e277a501c9f57"
+-SRCREV_machine_edgerouter ?= "28e7781d57a59227bf1c08c7f3dbdfee16aa0dc2"
+-SRCREV_machine_beaglebone-yocto ?= "28e7781d57a59227bf1c08c7f3dbdfee16aa0dc2"
+-SRCREV_machine_mpc8315e-rdb ?= "99071a599d8650b069fb8135866fca203f375350"
++SRCREV_machine_genericx86    ?= "b24d9d2146d4ce4ef3ad7251b936f35c69dcf0c4"
++SRCREV_machine_genericx86-64 ?= "b24d9d2146d4ce4ef3ad7251b936f35c69dcf0c4"
++SRCREV_machine_edgerouter ?= "b24d9d2146d4ce4ef3ad7251b936f35c69dcf0c4"
++SRCREV_machine_beaglebone-yocto ?= "b24d9d2146d4ce4ef3ad7251b936f35c69dcf0c4"
++SRCREV_machine_mpc8315e-rdb ?= "0802dc980cbc8bdb156d6fe305e7b88e6b602634"
+ 
+ COMPATIBLE_MACHINE_genericx86 = "genericx86"
+ COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
+@@ -20,8 +20,8 @@ COMPATIBLE_MACHINE_edgerouter = "edgerouter"
+ COMPATIBLE_MACHINE_beaglebone-yocto = "beaglebone-yocto"
+ COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
+ 
+-LINUX_VERSION_genericx86 = "4.18.22"
+-LINUX_VERSION_genericx86-64 = "4.18.22"
+-LINUX_VERSION_edgerouter = "4.18.25"
+-LINUX_VERSION_beaglebone-yocto = "4.18.25"
+-LINUX_VERSION_mpc8315e-rdb = "4.18.25"
++LINUX_VERSION_genericx86 = "4.18.35"
++LINUX_VERSION_genericx86-64 = "4.18.35"
++LINUX_VERSION_edgerouter = "4.18.35"
++LINUX_VERSION_beaglebone-yocto = "4.18.35"
++LINUX_VERSION_mpc8315e-rdb = "4.18.35"
+-- 
+2.14.4
 
-to refer 2.6.2.rc3 results from yocto-testresults, use
-
---branch thud  --commit faeb366bc3eb322f5f203cfe08dc4cf529a822e9
-
-
-Thanks & Regards,
-Sangeeta Jain
-
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> On
->Behalf Of Manjukumar Harthikote Matha
->Sent: Thursday, 18 April, 2019 4:28 AM
->To: Graydon, Tracy <tracy.graydon@intel.com>; yocto-
->announce@yoctoproject.org; yocto@yoctoproject.org
->Subject: Re: [yocto] [yocto-announce] [ANNOUNCEMENT] Yocto Project 2.6.2
->(thud 20.0.2) Released
->
->Hi Tracy,
->
->> -----Original Message-----
->> From: yocto-announce-bounces@yoctoproject.org [mailto:yocto-announce-
->> bounces@yoctoproject.org] On Behalf Of Tracy Graydon
->> Sent: Wednesday, April 17, 2019 1:25 PM
->> To: yocto-announce@yoctoproject.org; yocto@yoctoproject.org
->> Subject: [yocto-announce] [ANNOUNCEMENT] Yocto Project 2.6.2 (thud
->> 20.0.2) Released
->>
->> We are pleased to announce the latest release of the Yocto Project
->> 2.6.2 (thud-
->> 20.0.2) is now available for download:
->>
->> http://downloads.yoctoproject.org/releases/yocto/yocto-2.6.2/poky-thud
->> -
->> 20.0.2.tar.bz2
->> http://mirrors.kernel.org/yocto/yocto/yocto-2.6.2/poky-thud-20.0.2.tar
->> .bz2
->>
->> A gpg signed version of these release notes is available at:
->>
->> http://downloads.yoctoproject.org/releases/yocto/yocto-2.6.2/RELEASENO
->> TES
->>
->> Yocto 2.6.2 QA reporting:
->>
->> Summary: https://lists.yoctoproject.org/pipermail/yocto/2019-
->> April/044827.html
->> Results:
->> https://autobuilder.yocto.io/pub/releases/yocto-2.6.2.rc3/testresults/
->>
->
->I am not able to access this results page. It says "No Such Resource File =
-not
->found."
->
->
->Thanks,
->Manju
->
->
->> Build log:
->> hhttps://autobuilder.yoctoproject.org/typhoon/#/builders/83/builds/122
->>
->> Release Criteria:
->> https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.6_Status#Yocto_Pro
->> ject_2
->> .6.2_release
->>
->>
->> Thank you for everyone's contributions to this release.
->>
->> Sincerely,
->>
->> Tracy Graydon
->> Yocto Project Build and Release
->> tracy.graydon@intel.com
->> --
->> _______________________________________________
->> yocto-announce mailing list
->> yocto-announce@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto-announce
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
 
