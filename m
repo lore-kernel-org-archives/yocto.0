@@ -1,6 +1,6 @@
 Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AFDA7E00D40; Fri, 19 Apr 2019 18:00:27 -0700 (PDT)
+	id 05710E00CFD; Sat, 20 Apr 2019 17:57:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,51 +13,53 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (jupiter.hce[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.51 listed in list.dnswl.org]
+	*      [209.85.166.178 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com
-	[209.85.166.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 841BEE00AB0
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2019 18:00:26 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id i21so5022126iol.7
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2019 18:00:26 -0700 (PDT)
+Received: from mail-it1-f178.google.com (mail-it1-f178.google.com
+	[209.85.166.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96731E00AB0
+	for <yocto@yoctoproject.org>; Sat, 20 Apr 2019 17:57:22 -0700 (PDT)
+Received: by mail-it1-f178.google.com with SMTP id s3so13311882itk.1
+	for <yocto@yoctoproject.org>; Sat, 20 Apr 2019 17:57:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=741BhOhGWX/nhYcbbuJCzzOGZssu/5vP6k/8+XYroSk=;
-	b=mVJgCYTVCGfl/O4SQA5VDJq1acv2+rq0H4zf7Zg6sPGW1uNnr6rVzxwWGJBP6yBZdg
-	lwitwx1fXP0cdnjko1QxQ3wGsaySQosZbiwbkC0Oshcl6qX9vr7dKpCOA3lMragdT11c
-	/z/h+a7y1WnnCz9E3jKJwXUxN28F8AaaosVCNQJ9mdI0S+/X0DV6iCJYHzEnQ++lMZ4J
-	RubEiNZ5iRTwoFGwdzPcr4IlsN6YaN+Vqv5YMDPjuNKmGQ3jT5XstO8yvOdtNnkeiuJ9
-	F9hveMl4Bx7UWV69VtcjokH6b68DCyPjSOt0TntPwcDqVdjADE23zkUtnpCJ4kIJB4SZ
-	kTtQ==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=2WSov6N95Yx+YCdVKW8CCZpt3BE5zZjTwc3p3hE0EoU=;
+	b=mXLWzhg3DFKfGX32qnViOqZNLfk1OOV3vN09vtbzLQUttZzKtjJxmE+SYj6smOOMmb
+	p3QJUL4G6kVATviHYpXZ8/qnU89SZdsgtJ3U3ytPb98SBhJ1J5oztQbWtQ8fpmFAgKhA
+	0rrR7rI4NMyhRyROm++6Eiqwz+g5HSVFt7lF7/syjv4Vc3lJVtVLCice/Fj0BBnG+HnR
+	NIXJXsCgURiwkzEvflD2Alu6lAi7uesIfB8FFr2ATF0hKTwbxVErm/AgROpWT8I/I5eX
+	KSCUGVWkIizu+bFjeh9ZOAG/K2S9EaWKsbQFBlAtZYpEstHH7Gz841kwovLc/F2gZH16
+	QTHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=741BhOhGWX/nhYcbbuJCzzOGZssu/5vP6k/8+XYroSk=;
-	b=kvSptR9EN0deDiI3lyTFSWk/859DeMBQm8fhxr6SAD5OGel1uFfArYWh7DrvSG2HPu
-	9+c3ffjVmIjPilHZ+Regm7EwlJGzAlE6UGngy36ILJAEF/Jo6SNfhoj2YnvPhY5jtexf
-	m2rsoXBRArfpCTgdhhjy+x/1SjjKQ8qzoI/5XdTE7dUh9WgvEf0JEky6+COUa0RA0sIk
-	pLIKZm9ZbzqddapXPaIUmcXPLiEehUPRk2JJtyNhjwwCOfM+rloj2KbkXHYwXOh6fOJB
-	NNB43PXW1XzLHmuI2NwYM/JeiLOESF9vvfPiLbGLqGQ2jwl+K4cvB1iUVegRJuSmSNNV
-	oNPg==
-X-Gm-Message-State: APjAAAV0SgvCcTYhvY8EPgS6mdpPWIqOLsGZAgA752JYAYWsatz8XWvU
-	rqbZXyFW2kZbPsurbSmd7s+CeHSXfXwXSNNzzljZAw==
-X-Google-Smtp-Source: APXvYqxU7ExM3y25w8hPMmFnn7PYngX2weHiF7dQdFniprj1GPoR7SDhsRIKBRKGSrmeNj9/10NtZrES6x+yBWmive4=
-X-Received: by 2002:a05:6602:224d:: with SMTP id
-	o13mr165565ioo.78.1555722025705; 
-	Fri, 19 Apr 2019 18:00:25 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=2WSov6N95Yx+YCdVKW8CCZpt3BE5zZjTwc3p3hE0EoU=;
+	b=erHHB4bUx4DGpuviNYjNoRrMU17M5Ha4C0pn4Q9krbloxxtr4+rvTjXGOBSVQ9YiBT
+	P6d+ETQrFxoctSCNIbY+Xv0N04yRhGiPdo3j3ROAa2fAMqESLeBY/xRK0tKErSXSgZvP
+	952bup7Fb8EeElxB7QJyk8ciDYmI5pB1AuQT7+37UAUdWQDJ6nOwTudnMSoErtm0zDqR
+	nGCA/Y8sNpchKtwjRjqE5LpjNoj1v/1SVckMRAfPqbCYuUP8rkWeNWYuOuBZKrcJBbU9
+	Af+Wm8BoO+tspS2JZ9FOtX9WyPvawPT2EBfNi+ONmCV3+rX2PzsNzUjFrtBuP9y29NF2
+	6kRQ==
+X-Gm-Message-State: APjAAAVdtiuAIxfCp02HQpDM/ltTq7f06KD+TpdCGSpfoyA1L7MsYJcu
+	jjutK3ChTMxAukcmfX7caUOVYVofj06HFkLpVZmHDA==
+X-Google-Smtp-Source: APXvYqxMN1CaxL65d2pFEoHON+js/auSXHtpEXSHibzF/q6a77neU/UvvqogsvTWXmOiOM1edr4qEdHEeSr2jKaVKJk=
+X-Received: by 2002:a02:b053:: with SMTP id q19mr8608436jah.21.1555808241857; 
+	Sat, 20 Apr 2019 17:57:21 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ac0:91bd:0:0:0:0:0 with HTTP; Fri, 19 Apr 2019 18:00:25
+Received: by 2002:ad5:5d10:0:0:0:0:0 with HTTP; Sat, 20 Apr 2019 17:57:21
 	-0700 (PDT)
+In-Reply-To: <CAA=hcWQk+gOfOU6LsHWFcLtZJ9V9VfTfGRXDMfLD_0gAA1QqBQ@mail.gmail.com>
+References: <CAA=hcWQk+gOfOU6LsHWFcLtZJ9V9VfTfGRXDMfLD_0gAA1QqBQ@mail.gmail.com>
 From: JH <jupiter.hce@gmail.com>
-Date: Sat, 20 Apr 2019 11:00:25 +1000
-Message-ID: <CAA=hcWQk+gOfOU6LsHWFcLtZJ9V9VfTfGRXDMfLD_0gAA1QqBQ@mail.gmail.com>
+Date: Sun, 21 Apr 2019 10:57:21 +1000
+Message-ID: <CAA=hcWRfFKhQzqS8yKRyth14dWN=VPQqhXejbew01EnOtUtAJg@mail.gmail.com>
 To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: What is the right SRC_URI syntax for git@bitbucket.org?
+Subject: Re: What is the right SRC_URI syntax for git@bitbucket.org?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,28 +71,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Apr 2019 01:00:27 -0000
+X-List-Received-Date: Sun, 21 Apr 2019 00:57:23 -0000
 Content-Type: text/plain; charset="UTF-8"
 
 Hi,
 
-Sorry for a new starter questions, I searched Internet, there are a
-few examples to set up:
+Could someone kindly clarify what is the syntax to access git source
+from bitbucket.org? I tried following different patterns, nothing
+works:
+
+SRC_URI = "git://bitbucket.org/<account name>/<repository
+name>;protocol=http;branch=${BRANCH}"
 
 SRC_URI = "git://<username>@bitbucket.org/<account name>/<repository
 name>.git;protocol=ssh";branch=${BRANCH}"
-
-Not only that does not work, I have set up the public key to access
-the git bitbucket repository:
-
-$ ssh -v git@bitbucket.org
-
-The Yocto also complained SRCREV, following some blog to add the
-SRCREV = "${AUTOREV}" that not work either.
 
 Thank you.
 
 Kind regards,
 
-- jh
+- jupiter
+On 4/20/19, JH <jupiter.hce@gmail.com> wrote:
+> Hi,
+>
+> Sorry for a new starter questions, I searched Internet, there are a
+> few examples to set up:
+>
+> SRC_URI = "git://<username>@bitbucket.org/<account name>/<repository
+> name>.git;protocol=ssh";branch=${BRANCH}"
+>
+> Not only that does not work, I have set up the public key to access
+> the git bitbucket repository:
+>
+> $ ssh -v git@bitbucket.org
+>
+> The Yocto also complained SRCREV, following some blog to add the
+> SRCREV = "${AUTOREV}" that not work either.
+>
+> Thank you.
+>
+> Kind regards,
+>
+> - jh
+>
 
