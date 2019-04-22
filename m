@@ -1,33 +1,63 @@
-Return-Path: <ayaka@soulik.info>
+Return-Path: <laurentiu.duca@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E42BCE00C44; Sun, 21 Apr 2019 23:29:31 -0700 (PDT)
+	id 22614E00C44; Mon, 22 Apr 2019 05:27:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	MIME_QP_LONG_LINE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
-Received: from kozue.soulik.info (kozue.soulik.info [108.61.200.231])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4475E00BC8
-	for <yocto@yoctoproject.org>; Sun, 21 Apr 2019 23:29:21 -0700 (PDT)
-Received: from [192.168.10.231] (unknown [103.29.142.67])
-	by kozue.soulik.info (Postfix) with ESMTPSA id 59F3C100D52;
-	Mon, 22 Apr 2019 15:29:35 +0900 (JST)
-Mime-Version: 1.0 (1.0)
-From: Ayaka <ayaka@soulik.info>
-X-Mailer: iPad Mail (16A404)
-In-Reply-To: <CAMKF1spG3JO8qWQzCc9f9kFgOmP=TEJLoEJemspNs4+QEfwwnA@mail.gmail.com>
-Date: Mon, 22 Apr 2019 14:29:18 +0800
-Message-Id: <4F60B32B-282B-4FD0-8F4E-FB017593473A@soulik.info>
-References: <20190421155339.6332-1-ayaka@soulik.info>
-	<20190421155339.6332-3-ayaka@soulik.info>
-	<CAMKF1spG3JO8qWQzCc9f9kFgOmP=TEJLoEJemspNs4+QEfwwnA@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@yoctoproject.org, romain.perier@gmail.com
-Subject: Re: [PATCH 2/5] conf/machine: add rk3399 support
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (laurentiu.duca[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.44 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
+	[209.85.210.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA425E00AF2
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2019 05:27:19 -0700 (PDT)
+Received: by mail-ot1-f44.google.com with SMTP id o74so9429736ota.3
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2019 05:27:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=v5xO9cC24daa9nK/M7MDM+GM01EF/tX2c6Yrmkmv0bU=;
+	b=TVD5ajzlaygqfhchjeJ2HaWnt4vz/Tg+ih9YAwfDcSOLK55rdI+gmpXYlLXK4GGV9T
+	b4bMqqhFBR3QN6/Gqlrosnr8TJjRisTQn0ecdZLQe3MxFcTYz5axbuRoLjMKuU9RQFH9
+	ngpdXz6F543OTUeVYxWpdBhdShqN0NhjAEAe1YMQSh8czofcegmgcFdnvxFxCHMoA2wB
+	W/P2RTi3FEiQiOrtcsFuQB/71SguwWhIswSkW7VaDArruK7OpTK8+POi1SMybyW0pP3P
+	LWFnht6TmoH0+8vnoG1XZOi6UoSuqIyWh/dtzQJZTpR9+3uukuZzfdAaNWJHiYAzWCI5
+	2U9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=v5xO9cC24daa9nK/M7MDM+GM01EF/tX2c6Yrmkmv0bU=;
+	b=Hkzo4WuYne/txwguFZY0IMYsHj1PpXpAUURt3cXslhaUg8kWzioGEcPJDJHJWlCMF4
+	bR3xshbCV/aUxr9ls1C7/8yjthGSouzhsJHq/Kv8C2PZ6YTDCbGBMdVIqOcvX/pBDpO2
+	vJwjiSHgSJ5vQaHpu8ySgFRV8k7aQknAvSniooADHErn6HCB44hcWTSRhOb2cJ5MK7y2
+	YfoAjMCINrhtSLYmXoXmfLxbNrrqalE3pu9rXoHHo4YjE1ccWOrGlqHES89i9e2PcSbq
+	W8T97ObNGlE7FJLSgbkWqzVycrTKEnWUJayCU+/wLqkbGrjilDNOaBZgZUozg9VkPy+j
+	BSmQ==
+X-Gm-Message-State: APjAAAWLTsrb9JSE/mf5MSONyKDx25tvkBJOP5wFIW2JmTNGCAEilqNF
+	oCtwLkAi5uQI9et9XIj9zeMJi/+c0t8N2+gzmH3c8A==
+X-Google-Smtp-Source: APXvYqzNFNhpmBmkB6FqsZts9QRkFFPCzza4MpM8gEPkA2nkYO4y+XyyBt3soReK4HTjLf1lrvGkBNpMkrOmzdVe0Cc=
+X-Received: by 2002:a05:6830:10d7:: with SMTP id
+	z23mr11897879oto.265.1555936038876; 
+	Mon, 22 Apr 2019 05:27:18 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a4a:9cd1:0:0:0:0:0 with HTTP; Mon, 22 Apr 2019 05:27:18
+	-0700 (PDT)
+From: Laurentiu-Cristian Duca <laurentiu.duca@gmail.com>
+Date: Mon, 22 Apr 2019 15:27:18 +0300
+Message-ID: <CAPm8-H7zfMkaN-nzHX2j6YcxY=ghn3QA8qrvOiwtQTCrJp8Utw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: How to find and modify the list of packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,231 +69,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2019 06:29:31 -0000
-Content-Type: multipart/alternative;
-	boundary=Apple-Mail-224978E8-63D1-422F-8B5E-1FE6C2791D2B
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 22 Apr 2019 12:27:20 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---Apple-Mail-224978E8-63D1-422F-8B5E-1FE6C2791D2B
-Content-Type: text/plain;
-	charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+Dear yocto-community,
 
+  I have a basic question:
+how to find the list of packages that will be installed
+and (most important) how to modify this list before
+running "bitbake core-image-sato" for example.
 
+Thank you
+and best regards,
+L-C. Duca
 
-> On Apr 22, 2019, at 11:47 AM, Khem Raj <raj.khem@gmail.com> wrote:
->=20
-> This seems more a bsp layer thing may be meta-rockchip is better for this o=
-r meta-firefly=20
->=20
-You want to make a board vendor maintain a layer repository themselves? I sa=
-w every meta bsp repository would have some configures files. And those boar=
-ds are sold around the world having many users, it is waste time to make peo=
-ple to collect layers.
-
-Anyway, I hope the chip support would be merged.
->> On Sun, Apr 21, 2019 at 10:06 AM Randy 'ayaka' Li <ayaka@soulik.info> wro=
-te:
->> RK3399 is a new generation powerful SoC from Rockchip, which has
->> Dual Cortex-A72 + Quad Cortex-A53, 64-bit CPU.
->>=20
->> Signed-off-by: Randy 'ayaka' Li <ayaka@soulik.info>
->> ---
->>  conf/machine/excavator-rk3399.conf | 10 ++++++++++
->>  conf/machine/firefly-rk3399.conf   | 15 +++++++++++++++
->>  conf/machine/include/rk3399.inc    | 17 +++++++++++++++++
->>  3 files changed, 42 insertions(+)
->>  create mode 100644 conf/machine/excavator-rk3399.conf
->>  create mode 100644 conf/machine/firefly-rk3399.conf
->>  create mode 100644 conf/machine/include/rk3399.inc
->>=20
->> diff --git a/conf/machine/excavator-rk3399.conf b/conf/machine/excavator-=
-rk3399.conf
->> new file mode 100644
->> index 0000000..c7134d2
->> --- /dev/null
->> +++ b/conf/machine/excavator-rk3399.conf
->> @@ -0,0 +1,10 @@
->> +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
->> +# Released under the MIT license (see COPYING.MIT for the terms)
->> +
->> +#@TYPE: Machine
->> +#@NAME: EXCAVATOR 3399
->> +
->> +include conf/machine/include/rk3399.inc
->> +
->> +KERNEL_DEVICETREE =3D "rk3399-sapphire-excavator-linux.dtb"
->> +UBOOT_MACHINE =3D "evb-rk3399_defconfig"
->> diff --git a/conf/machine/firefly-rk3399.conf b/conf/machine/firefly-rk33=
-99.conf
->> new file mode 100644
->> index 0000000..fefafed
->> --- /dev/null
->> +++ b/conf/machine/firefly-rk3399.conf
->> @@ -0,0 +1,15 @@
->> +# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
->> +# Released under the MIT license (see COPYING.MIT for the terms)
->> +
->> +#@TYPE: Machine
->> +#@NAME: Firefly RK3399
->> +#@DESCRIPTION: Firefly-RK3399 is a Six-Core 64-bit High-Performance Plat=
-form.
->> +#http://www.t-firefly.com/en/
->> +
->> +include conf/machine/include/rk3399.inc
->> +
->> +PREFERRED_PROVIDER_virtual/kernel =3D "linux-rockchip"
->> +KERNEL_DEVICETREE =3D "rockchip/rk3399-firefly-linux.dtb"
->> +UBOOT_MACHINE =3D "evb-rk3399_defconfig"
->> +
->> +GPTIMG_APPEND =3D "console=3DttyS2,1500000n8 rw root=3DPARTUUID=3D614e00=
-00-0000 rootfstype=3Dext4 init=3D/sbin/init"
->> diff --git a/conf/machine/include/rk3399.inc b/conf/machine/include/rk339=
-9.inc
->> new file mode 100644
->> index 0000000..6e2af57
->> --- /dev/null
->> +++ b/conf/machine/include/rk3399.inc
->> @@ -0,0 +1,17 @@
->> +# Copyright (C) 2019 SUMOMO Computer Association
->> +# Released under the MIT license (see COPYING.MIT for the terms)
->> +
->> +SOC_FAMILY =3D "rk3399"
->> +
->> +require conf/machine/include/tune-cortexa72.inc
->> +require conf/machine/include/soc-family.inc
->> +
->> +PREFERRED_PROVIDER_virtual/kernel =3D "linux"
->> +SERIAL_CONSOLES =3D "1500000;ttyS2"
->> +KERNEL_IMAGETYPE =3D "Image"
->> +#KBUILD_DEFCONFIG =3D "multi_v8_defconfig"
->> +
->> +PREFERRED_PROVIDER_virtual/bootloader ?=3D "u-boot-rockchip"
->> +
->> +IMAGE_FSTYPES =3D "rockchip-gpt-img"
->> +IMAGE_CLASSES =3D "rockchip-gpt-img"
->> --=20
->> 2.20.1
->>=20
->> --=20
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-
---Apple-Mail-224978E8-63D1-422F-8B5E-1FE6C2791D2B
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto"><br><div dir=3D"ltr"><br>On Apr 22, 2019, a=
-t 11:47 AM, Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmai=
-l.com</a>&gt; wrote:<br><br></div><blockquote type=3D"cite"><div dir=3D"ltr"=
-><div><div dir=3D"auto">This seems more a bsp layer thing may be meta-rockch=
-ip is better for this or meta-firefly&nbsp;</div></div><div><br></div></div>=
-</blockquote><span style=3D"background-color: rgba(255, 255, 255, 0);">You w=
-ant to make a board vendor maintain a layer repository themselves? I saw eve=
-ry meta bsp repository would have some configures files. And those boards ar=
-e sold around the world having many users, it is waste time to make people t=
-o collect layers.</span><div><br></div><div>Anyway, I hope the chip support w=
-ould be merged.<br><div><div><blockquote type=3D"cite"><div dir=3D"ltr"><div=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Ap=
-r 21, 2019 at 10:06 AM Randy 'ayaka' Li &lt;<a href=3D"mailto:ayaka@soulik.i=
-nfo">ayaka@soulik.info</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
->RK3399 is a new generation powerful SoC from Rockchip, which has<br>
-Dual Cortex-A72 + Quad Cortex-A53, 64-bit CPU.<br>
-<br>
-Signed-off-by: Randy 'ayaka' Li &lt;<a href=3D"mailto:ayaka@soulik.info" tar=
-get=3D"_blank">ayaka@soulik.info</a>&gt;<br>
----<br>
-&nbsp;conf/machine/excavator-rk3399.conf | 10 ++++++++++<br>
-&nbsp;conf/machine/firefly-rk3399.conf&nbsp; &nbsp;| 15 +++++++++++++++<br>
-&nbsp;conf/machine/include/rk3399.inc&nbsp; &nbsp; | 17 +++++++++++++++++<br=
->
-&nbsp;3 files changed, 42 insertions(+)<br>
-&nbsp;create mode 100644 conf/machine/excavator-rk3399.conf<br>
-&nbsp;create mode 100644 conf/machine/firefly-rk3399.conf<br>
-&nbsp;create mode 100644 conf/machine/include/rk3399.inc<br>
-<br>
-diff --git a/conf/machine/excavator-rk3399.conf b/conf/machine/excavator-rk3=
-399.conf<br>
-new file mode 100644<br>
-index 0000000..c7134d2<br>
---- /dev/null<br>
-+++ b/conf/machine/excavator-rk3399.conf<br>
-@@ -0,0 +1,10 @@<br>
-+# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd<br>
-+# Released under the MIT license (see COPYING.MIT for the terms)<br>
-+<br>
-+#@TYPE: Machine<br>
-+#@NAME: EXCAVATOR 3399<br>
-+<br>
-+include conf/machine/include/rk3399.inc<br>
-+<br>
-+KERNEL_DEVICETREE =3D "rk3399-sapphire-excavator-linux.dtb"<br>
-+UBOOT_MACHINE =3D "evb-rk3399_defconfig"<br>
-diff --git a/conf/machine/firefly-rk3399.conf b/conf/machine/firefly-rk3399.=
-conf<br>
-new file mode 100644<br>
-index 0000000..fefafed<br>
---- /dev/null<br>
-+++ b/conf/machine/firefly-rk3399.conf<br>
-@@ -0,0 +1,15 @@<br>
-+# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd<br>
-+# Released under the MIT license (see COPYING.MIT for the terms)<br>
-+<br>
-+#@TYPE: Machine<br>
-+#@NAME: Firefly RK3399<br>
-+#@DESCRIPTION: Firefly-RK3399 is a Six-Core 64-bit High-Performance Platfor=
-m.<br>
-+#<a href=3D"http://www.t-firefly.com/en/" rel=3D"noreferrer" target=3D"_bla=
-nk">http://www.t-firefly.com/en/</a><br>
-+<br>
-+include conf/machine/include/rk3399.inc<br>
-+<br>
-+PREFERRED_PROVIDER_virtual/kernel =3D "linux-rockchip"<br>
-+KERNEL_DEVICETREE =3D "rockchip/rk3399-firefly-linux.dtb"<br>
-+UBOOT_MACHINE =3D "evb-rk3399_defconfig"<br>
-+<br>
-+GPTIMG_APPEND =3D "console=3DttyS2,1500000n8 rw root=3DPARTUUID=3D614e0000-=
-0000 rootfstype=3Dext4 init=3D/sbin/init"<br>
-diff --git a/conf/machine/include/rk3399.inc b/conf/machine/include/rk3399.i=
-nc<br>
-new file mode 100644<br>
-index 0000000..6e2af57<br>
---- /dev/null<br>
-+++ b/conf/machine/include/rk3399.inc<br>
-@@ -0,0 +1,17 @@<br>
-+# Copyright (C) 2019 SUMOMO Computer Association<br>
-+# Released under the MIT license (see COPYING.MIT for the terms)<br>
-+<br>
-+SOC_FAMILY =3D "rk3399"<br>
-+<br>
-+require conf/machine/include/tune-cortexa72.inc<br>
-+require conf/machine/include/soc-family.inc<br>
-+<br>
-+PREFERRED_PROVIDER_virtual/kernel =3D "linux"<br>
-+SERIAL_CONSOLES =3D "1500000;ttyS2"<br>
-+KERNEL_IMAGETYPE =3D "Image"<br>
-+#KBUILD_DEFCONFIG =3D "multi_v8_defconfig"<br>
-+<br>
-+PREFERRED_PROVIDER_virtual/bootloader ?=3D "u-boot-rockchip"<br>
-+<br>
-+IMAGE_FSTYPES =3D "rockchip-gpt-img"<br>
-+IMAGE_CLASSES =3D "rockchip-gpt-img"<br>
--- <br>
-2.20.1<br>
-<br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproje=
-ct.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer"=
- target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div></div>
-</div></blockquote></div></div></div></body></html>=
-
---Apple-Mail-224978E8-63D1-422F-8B5E-1FE6C2791D2B--
