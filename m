@@ -1,62 +1,47 @@
-Return-Path: <balazovic.peter@gmail.com>
+Return-Path: <Archana.c727@toshiba-tsip.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51EFBE00AB0; Thu, 18 Apr 2019 07:58:05 -0700 (PDT)
+	id 55AE7E00BC8; Mon, 22 Apr 2019 04:57:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (balazovic.peter[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.170 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-it1-f170.google.com (mail-it1-f170.google.com
-	[209.85.166.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1ACDAE00A1C
-	for <yocto@yoctoproject.org>; Thu, 18 Apr 2019 07:58:03 -0700 (PDT)
-Received: by mail-it1-f170.google.com with SMTP id y134so3725240itc.5
-	for <yocto@yoctoproject.org>; Thu, 18 Apr 2019 07:58:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=sRN0hPH/ziqeFp/MXavcdplIE0YQhNVZh3E/hvYuh4A=;
-	b=DzmsaT8GAZe2E8lQv8C+k+A3/qMjIJ6J8TQrFoZpNfLT1qOS8Yffuf8owaLWXF5Rl6
-	g9qtfJf/eAx3Sopkls/CkSmqgkj78irqoPzbRwIShhnkr+y/cTDSdKlOB9fOkCfHigQh
-	xgQU6TJzVQ8hWrx8QRiQldm/69OvocAaqjsdLrJ0VpMQM52lT6Rt1OPAP74vgnlwgX6W
-	sARRz++xZkbLGcYYgBjHd9YC3dcqecROFmlrKjhr8hdBexNPb4puSt8hpG8jvIp0fDQI
-	89ft3B1rjMWYJZ5sdy35kno54DIuJo9Cx6d9ZulH9cKkgPaQpMBhaNP+a5FceDfaGfUG
-	6Q1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=sRN0hPH/ziqeFp/MXavcdplIE0YQhNVZh3E/hvYuh4A=;
-	b=odRMGWP7VowljYwQkdBVbLoGSyXsZURbwMOPeOKNLSBkfaPeQrQq290U0RI2pYFZJI
-	Gd7VyeswCNmh1KVJqN5OLm7yJxuNGpL823tgS+vy0DZjGdFFsGMEWt4einIurb1iZ88e
-	x2fj6GVGi1k/lAbokODxKZhqKTtf0gZ0+sEKXC68k+G2XgniM/6HefY2iUb8DIduB8aq
-	iAR1fmKoS09FrR217ZfSE/nMaaWz56oyPGo5YV/VeGYpET2HAjr9H8Kk9AaiCp8KQ7ib
-	DyA4toP1HUrAA5l6llCjrhUVyqjJ8L1Cibe0QtqJh4pqFT/Hdhis+2/GGMIilpgcHkyZ
-	796g==
-X-Gm-Message-State: APjAAAX8rrp/aRq2yi6S0c52dmktLtdgGd4OuEU8qcJbaTlb/zivK4Ii
-	groy9scdG5Sm1ra8wuJKWLgGqj2dUD+ZPoIkLoVQ3pS0kjQ=
-X-Google-Smtp-Source: APXvYqyUaueKnen3vD/4Xg39q/hjb9Qkg7BEULv8g8TW643a999z1YllrQUg8Cc9giiLdn1nq1fVE8GFlbNjLbWs/Is=
-X-Received: by 2002:a24:68d:: with SMTP id 135mr3764089itv.53.1555599482993;
-	Thu, 18 Apr 2019 07:58:02 -0700 (PDT)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 249 seconds by postgrey-1.32 at yocto-www;
+	Mon, 22 Apr 2019 04:57:54 PDT
+Received: from peak.toshiba-tesi.com (unknown [202.56.254.199])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFC50E00A62
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2019 04:57:54 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2ATBwAkqr1c/xlVdApmHgEGBwaBZYJ5g?=
+	=?us-ascii?q?SwKhASWRYhBhmCEY4UyK4Rrhig4EwEDAQEFAQEBAQKBCQELhXQRVwEVDQImAgQ?=
+	=?us-ascii?q?wFRIEgzanfYEvGgKFK4RhgQsngV2MA4wvgjUiBIErAQEBi3+ZKAEGAQEBggpUh?=
+	=?us-ascii?q?TuMNoF7AW2JIAOJCIwEkQ2FPIF3cIFugU4JiGKHZXKPUYEhAQE?=
+X-IPAS-Result: =?us-ascii?q?A2ATBwAkqr1c/xlVdApmHgEGBwaBZYJ5gSwKhASWRYhBhmC?=
+	=?us-ascii?q?EY4UyK4Rrhig4EwEDAQEFAQEBAQKBCQELhXQRVwEVDQImAgQwFRIEgzanfYEvG?=
+	=?us-ascii?q?gKFK4RhgQsngV2MA4wvgjUiBIErAQEBi3+ZKAEGAQEBggpUhTuMNoF7AW2JIAO?=
+	=?us-ascii?q?JCIwEkQ2FPIF3cIFugU4JiGKHZXKPUYEhAQE?=
+X-IronPort-AV: E=Sophos;i="5.60,381,1549909800"; d="scan'208";a="20595536"
+Received: from unknown (HELO tosblrmbx04.TOSHIBA-TSIP.COM) ([10.116.85.25])
+	by peak.toshiba-tesi.com with ESMTP; 22 Apr 2019 17:06:27 +0530
+Received: from TOSBLRMBX01.TOSHIBA-TSIP.COM ([fe80::1d8f:a072:df12:dcb2]) by
+	tosblrmbx04.TOSHIBA-TSIP.COM ([fe80::2089:5e37:936d:8fb9%18]) with mapi
+	id 14.02.0247.003; Mon, 22 Apr 2019 17:20:30 +0530
+From: Archana Polampalli <Archana.c727@toshiba-tsip.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: .pc files are not avilable at build time
+Thread-Index: AQHU+QGVAxU7eft6BE2Lic4a00hOAw==
+Date: Mon, 22 Apr 2019 11:50:29 +0000
+Message-ID: <1555933846.5224.23.camel@toshiba-tsip.com>
+Accept-Language: en-IN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.80.64]
 MIME-Version: 1.0
-From: Peter Balazovic <balazovic.peter@gmail.com>
-Date: Thu, 18 Apr 2019 16:57:52 +0200
-Message-ID: <CAFq4t4hR=jdVUS+0PrmCxU7sHJNOCO9GxEK=MD=TtbCWr2LdYA@mail.gmail.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
 X-Mailman-Approved-At: Tue, 23 Apr 2019 02:14:18 -0700
-Subject: config.guess: unable to guess system type
+Subject: .pc files are not avilable at build time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,122 +53,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Apr 2019 14:58:05 -0000
-Content-Type: multipart/alternative; boundary="00000000000098c0dc0586cf3a8e"
+X-List-Received-Date: Mon, 22 Apr 2019 11:57:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <BB4C0DD68A2EC446BE8F87899B2CD150@TOSHIBA-TSIP.COM>
+Content-Transfer-Encoding: base64
 
---00000000000098c0dc0586cf3a8e
-Content-Type: text/plain; charset="UTF-8"
+SGkgYWxsLA0KDQpJIGFtIHRyeWluZyB0byBidWlsZCBidHJmcy10b29scyByZWNpcGVzLml0IG5l
+ZWRzIHRoZSBleDJmcy5wYw0KcGtnY29uZmlnIGZpbGUuaSBoYXZlIGFscmVkeSBpbnN0YWxsZWQg
+ZTJmc3Byb2dzIHJlY2lwZSBpdCBjcmVhdGVkIHRoZQ0KZXgyZnMucGMgaW4gaW1hZ2UgZGlyZWN0
+b3J5LmJ1dCBidHJmc3Rvb2xzIHVuYWJsZSB0byB0YWtlIHRoZSBwa2djb25maWcNCmZpbGUuDQoN
+CnBsZXNlIGFueSBoZWxwIG1lIGhvdyB0byBwcm92aWRlIGV4MmZzLnBjIGZpbGUgZm9yIGJ1aWxk
+IGJ0cmZzLXRvb2xzDQoNClJlZ2FyZHMNCkFyY2hhbmEKVGhlIGluZm9ybWF0aW9uIGNvbnRhaW5l
+ZCBpbiB0aGlzIGUtbWFpbCBtZXNzYWdlIGFuZCBpbiBhbnkNCmF0dGFjaG1lbnRzL2FubmV4dXJl
+L2FwcGVuZGljZXMgaXMgY29uZmlkZW50aWFsIHRvIHRoZSANCnJlY2lwaWVudCBhbmQgbWF5IGNv
+bnRhaW4gcHJpdmlsZWdlZCBpbmZvcm1hdGlvbi4gDQpJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5k
+ZWQgcmVjaXBpZW50LCBwbGVhc2Ugbm90aWZ5IHRoZQ0Kc2VuZGVyIGFuZCBkZWxldGUgdGhlIG1l
+c3NhZ2UgYWxvbmcgd2l0aCBhbnkgDQphdHRhY2htZW50cy9hbm5leHVyZS9hcHBlbmRpY2VzLiBZ
+b3Ugc2hvdWxkIG5vdCBkaXNjbG9zZSwNCmNvcHkgb3Igb3RoZXJ3aXNlIHVzZSB0aGUgaW5mb3Jt
+YXRpb24gY29udGFpbmVkIGluIHRoZQ0KbWVzc2FnZSBvciBhbnkgYW5uZXh1cmUuIEFueSB2aWV3
+cyBleHByZXNzZWQgaW4gdGhpcyBlLW1haWwgDQphcmUgdGhvc2Ugb2YgdGhlIGluZGl2aWR1YWwg
+c2VuZGVyIGV4Y2VwdCB3aGVyZSB0aGUgc2VuZGVyIA0Kc3BlY2lmaWNhbGx5IHN0YXRlcyB0aGVt
+IHRvIGJlIHRoZSB2aWV3cyBvZiANClRvc2hpYmEgU29mdHdhcmUgSW5kaWEgUHZ0LiBMdGQuIChU
+U0lQKSxCYW5nYWxvcmUuDQoNCkFsdGhvdWdoIHRoaXMgdHJhbnNtaXNzaW9uIGFuZCBhbnkgYXR0
+YWNobWVudHMgYXJlIGJlbGlldmVkIHRvIGJlDQpmcmVlIG9mIGFueSB2aXJ1cyBvciBvdGhlciBk
+ZWZlY3QgdGhhdCBtaWdodCBhZmZlY3QgYW55IGNvbXB1dGVyIA0Kc3lzdGVtIGludG8gd2hpY2gg
+aXQgaXMgcmVjZWl2ZWQgYW5kIG9wZW5lZCwgaXQgaXMgdGhlIHJlc3BvbnNpYmlsaXR5DQpvZiB0
+aGUgcmVjaXBpZW50IHRvIGVuc3VyZSB0aGF0IGl0IGlzIHZpcnVzIGZyZWUgYW5kIG5vIHJlc3Bv
+bnNpYmlsaXR5IA0KaXMgYWNjZXB0ZWQgYnkgVG9zaGliYSBFbWJlZGRlZCBTb2Z0d2FyZSBJbmRp
+YSBQdnQuIEx0ZCwgZm9yIGFueSBsb3NzIG9yDQpkYW1hZ2UgYXJpc2luZyBpbiBhbnkgd2F5IGZy
+b20gaXRzIHVzZS4K
 
-I am trying to compile on my Yocto system from source the SDL
-http://www.libsdl.org/release/SDL-1.2.15.tar.gz and by running ./configure
-I got error to configure the build
 
-checking build system type... ./build-scripts/config.guess: unable to guess
-system type
-
-This script, last modified 2009-09-18, has failed to recognize
-the operating system you are using. It is advised that you
-download the most up to date version of the config scripts from
-
-
-http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD
-and
-
-http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD
-
-If the version you run (./build-scripts/config.guess) is already up to
-date, please
-send the following data and any information you think might be
-pertinent to <config-patches@gnu.org> in order to provide the needed
-information to handle your system.
-
-config.guess timestamp = 2009-09-18
-uname -m = aarch64
-uname -r = 4.14.78-imx_4.14.78_1.0.0_ga+g66620c3
-uname -s = Linux
-uname -v = #1 SMP PREEMPT Fri Feb 1 09:09:25 UTC 2019
-
-/usr/bin/uname -p =
-/bin/uname -X     =
-
-hostinfo               =
-/bin/universe          =
-/usr/bin/arch -k       =
-/bin/arch              =
-/usr/bin/oslevel       =
-/usr/convex/getsysinfo =
-
-UNAME_MACHINE = aarch64
-UNAME_RELEASE = 4.14.78-imx_4.14.78_1.0.0_ga+g66620c3
-UNAME_SYSTEM  = Linux
-UNAME_VERSION = #1 SMP PREEMPT Fri Feb 1 09:09:25 UTC 2019
-configure: error: cannot guess build type; you must specify one
-
-What would be causing the problem?
-Thanks.
-
---00000000000098c0dc0586cf3a8e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">I am trying to compile on my Yocto system=
- from source the SDL=C2=A0<div><a id=3D"gmail-url" target=3D"_blank" href=
-=3D"http://www.libsdl.org/release/SDL-1.2.15.tar.gz" tabindex=3D"0" style=
-=3D"max-width:100%;margin-top:6px;min-height:0px;overflow:hidden;text-decor=
-ation-line:none;text-overflow:ellipsis;white-space:nowrap;font-family:Robot=
-o,&quot;Segoe UI&quot;,Tahoma,sans-serif;font-size:13px">http://www.libsdl.=
-org/release/SDL-1.2.15.tar.gz</a>=C2=A0and by running ./configure I got err=
-or to configure the build</div><div><br></div><div><div><font face=3D"monos=
-pace, monospace">checking build system type... ./build-scripts/config.guess=
-: unable to guess system type</font></div><div><font face=3D"monospace, mon=
-ospace"><br></font></div><div><font face=3D"monospace, monospace">This scri=
-pt, last modified 2009-09-18, has failed to recognize</font></div><div><fon=
-t face=3D"monospace, monospace">the operating system you are using. It is a=
-dvised that you</font></div><div><font face=3D"monospace, monospace">downlo=
-ad the most up to date version of the config scripts from</font></div><div>=
-<font face=3D"monospace, monospace"><br></font></div><div><font face=3D"mon=
-ospace, monospace">=C2=A0 <a href=3D"http://git.savannah.gnu.org/gitweb/?p=
-=3Dconfig.git;a=3Dblob_plain;f=3Dconfig.guess;hb=3DHEAD">http://git.savanna=
-h.gnu.org/gitweb/?p=3Dconfig.git;a=3Dblob_plain;f=3Dconfig.guess;hb=3DHEAD<=
-/a></font></div><div><font face=3D"monospace, monospace">and</font></div><d=
-iv><font face=3D"monospace, monospace">=C2=A0 <a href=3D"http://git.savanna=
-h.gnu.org/gitweb/?p=3Dconfig.git;a=3Dblob_plain;f=3Dconfig.sub;hb=3DHEAD">h=
-ttp://git.savannah.gnu.org/gitweb/?p=3Dconfig.git;a=3Dblob_plain;f=3Dconfig=
-.sub;hb=3DHEAD</a></font></div><div><font face=3D"monospace, monospace"><br=
-></font></div><div><font face=3D"monospace, monospace">If the version you r=
-un (./build-scripts/config.guess) is already up to date, please</font></div=
-><div><font face=3D"monospace, monospace">send the following data and any i=
-nformation you think might be</font></div><div><font face=3D"monospace, mon=
-ospace">pertinent to &lt;<a href=3D"mailto:config-patches@gnu.org">config-p=
-atches@gnu.org</a>&gt; in order to provide the needed</font></div><div><fon=
-t face=3D"monospace, monospace">information to handle your system.</font></=
-div><div><font face=3D"monospace, monospace"><br></font></div><div><font fa=
-ce=3D"monospace, monospace">config.guess timestamp =3D 2009-09-18</font></d=
-iv><div><span style=3D"font-family:monospace,monospace">uname -m =3D aarch6=
-4</span><br></div><div><font face=3D"monospace, monospace">uname -r =3D 4.1=
-4.78-imx_4.14.78_1.0.0_ga+g66620c3</font></div><div><font face=3D"monospace=
-, monospace">uname -s =3D Linux</font></div><div><font face=3D"monospace, m=
-onospace">uname -v =3D #1 SMP PREEMPT Fri Feb 1 09:09:25 UTC 2019</font></d=
-iv><div><font face=3D"monospace, monospace"><br></font></div><div><font fac=
-e=3D"monospace, monospace">/usr/bin/uname -p =3D</font></div><div><font fac=
-e=3D"monospace, monospace">/bin/uname -X=C2=A0 =C2=A0 =C2=A0=3D</font></div=
-><div><font face=3D"monospace, monospace"><br></font></div><div><font face=
-=3D"monospace, monospace">hostinfo=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0=3D</font></div><div><font face=3D"monospace, monospace">/bin=
-/universe=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D</font></div><div><font face=
-=3D"monospace, monospace">/usr/bin/arch -k=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D</f=
-ont></div><div><font face=3D"monospace, monospace">/bin/arch=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D</font></div><div><font face=3D"monos=
-pace, monospace">/usr/bin/oslevel=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D</font></div=
-><div><font face=3D"monospace, monospace">/usr/convex/getsysinfo =3D</font>=
-</div><div><font face=3D"monospace, monospace"><br></font></div><div><font =
-face=3D"monospace, monospace">UNAME_MACHINE =3D aarch64</font></div><div><f=
-ont face=3D"monospace, monospace">UNAME_RELEASE =3D 4.14.78-imx_4.14.78_1.0=
-.0_ga+g66620c3</font></div><div><font face=3D"monospace, monospace">UNAME_S=
-YSTEM=C2=A0 =3D Linux</font></div><div><font face=3D"monospace, monospace">=
-UNAME_VERSION =3D #1 SMP PREEMPT Fri Feb 1 09:09:25 UTC 2019</font></div><d=
-iv><font face=3D"monospace, monospace">configure: error: cannot guess build=
- type; you must specify one</font></div><div><br></div></div><div>What woul=
-d be causing the problem?</div><div>Thanks.</div></div></div>
-
---00000000000098c0dc0586cf3a8e--
