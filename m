@@ -1,47 +1,61 @@
-Return-Path: <Archana.c727@toshiba-tsip.com>
+Return-Path: <alessioigorbogani@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 55AE7E00BC8; Mon, 22 Apr 2019 04:57:57 -0700 (PDT)
+	id 50817E0088B; Tue, 23 Apr 2019 02:20:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 249 seconds by postgrey-1.32 at yocto-www;
-	Mon, 22 Apr 2019 04:57:54 PDT
-Received: from peak.toshiba-tesi.com (unknown [202.56.254.199])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFC50E00A62
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2019 04:57:54 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2ATBwAkqr1c/xlVdApmHgEGBwaBZYJ5g?=
-	=?us-ascii?q?SwKhASWRYhBhmCEY4UyK4Rrhig4EwEDAQEFAQEBAQKBCQELhXQRVwEVDQImAgQ?=
-	=?us-ascii?q?wFRIEgzanfYEvGgKFK4RhgQsngV2MA4wvgjUiBIErAQEBi3+ZKAEGAQEBggpUh?=
-	=?us-ascii?q?TuMNoF7AW2JIAOJCIwEkQ2FPIF3cIFugU4JiGKHZXKPUYEhAQE?=
-X-IPAS-Result: =?us-ascii?q?A2ATBwAkqr1c/xlVdApmHgEGBwaBZYJ5gSwKhASWRYhBhmC?=
-	=?us-ascii?q?EY4UyK4Rrhig4EwEDAQEFAQEBAQKBCQELhXQRVwEVDQImAgQwFRIEgzanfYEvG?=
-	=?us-ascii?q?gKFK4RhgQsngV2MA4wvgjUiBIErAQEBi3+ZKAEGAQEBggpUhTuMNoF7AW2JIAO?=
-	=?us-ascii?q?JCIwEkQ2FPIF3cIFugU4JiGKHZXKPUYEhAQE?=
-X-IronPort-AV: E=Sophos;i="5.60,381,1549909800"; d="scan'208";a="20595536"
-Received: from unknown (HELO tosblrmbx04.TOSHIBA-TSIP.COM) ([10.116.85.25])
-	by peak.toshiba-tesi.com with ESMTP; 22 Apr 2019 17:06:27 +0530
-Received: from TOSBLRMBX01.TOSHIBA-TSIP.COM ([fe80::1d8f:a072:df12:dcb2]) by
-	tosblrmbx04.TOSHIBA-TSIP.COM ([fe80::2089:5e37:936d:8fb9%18]) with mapi
-	id 14.02.0247.003; Mon, 22 Apr 2019 17:20:30 +0530
-From: Archana Polampalli <Archana.c727@toshiba-tsip.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: .pc files are not avilable at build time
-Thread-Index: AQHU+QGVAxU7eft6BE2Lic4a00hOAw==
-Date: Mon, 22 Apr 2019 11:50:29 +0000
-Message-ID: <1555933846.5224.23.camel@toshiba-tsip.com>
-Accept-Language: en-IN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.80.64]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alessioigorbogani[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.49 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com
+	[209.85.217.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27AE6E006D8
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 02:20:15 -0700 (PDT)
+Received: by mail-vs1-f49.google.com with SMTP id d8so7789752vsp.2
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 02:20:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=qvf78+l551I7yEsaRkdYWl2lzJC5EkLPVKUhrsUHAJA=;
+	b=KIrPtklzWR7GkqKkHjU5qFcLE/pHaLl8GfJ8Y7+xl5H4zlrFuXntFdLNqXToVG8Hz7
+	iJdv+ZARlqegx+38m3xDZtTUluyXnrSe+Dkjqz1vbK3p2ayOdJubBYkwLT5rqW3eaaDc
+	P8M8kgXcu2wTf4w856oeYqYYXcOvvZhKF5zJsA1AD3kOq++6hqC25fDvmkJP8g7LtbEX
+	zx3CW4Ll+D5m84ER6FRtDt4cySRLGExF69K88wSWt2vqHwvX+OB45GRkq58Kt28TSu45
+	PMQD14+EXVIHTfleacDltfwLfIwCsBKpgEKo01w+wXS2XNDB27EuBZcHz1qaRuCxEKjB
+	1e7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=qvf78+l551I7yEsaRkdYWl2lzJC5EkLPVKUhrsUHAJA=;
+	b=mg5z5Ie2N4Obh7eH3K0YhK+OaRdXsups9oxuAaxSxWnzbSlq5rJoNE6oqdOlEBB0vH
+	TjWX9XR1WC1XOEKgsoO78fzLPAdD346QnRYJs+20uPVdRSYyN72VBwN7a1faD3i2apOO
+	FJc3zzDsv27N6VWlnIaGqQSHSOhacdNPw53uWqFR8KMGfZUwEmAwn2i+QnarqFuiJKAA
+	fZp5TAIgSSFbQUUGWuAZfC1cfvSF4f1cVC6GTdoZLDyfx+jygvPmOBxREeDr5Jtc8OgV
+	vQMlCptnfj9qIjvRGmgA5xvm9zgFeTNDbMvUq7hEdBqhUWDzm7Rzt2tfPOblbKug8vuD
+	GkGw==
+X-Gm-Message-State: APjAAAX0UfGd3c+xQgbA1hN97/uOIeNaePYtlAjm2yx6ssxa9DXhmLNq
+	Yo4xiW9NKVHsCwEY2wNusiucwJWV8CS8ZsfunLO1YApo
+X-Google-Smtp-Source: APXvYqzITVshJi1JhO45VyBTRdMKOzpcdNUeMh/kREgHJIbWUoEMlZzVIWeh7MrGO4EgXcDCYwX8HPW6Mvvvo0XMLz0=
+X-Received: by 2002:a67:ba15:: with SMTP id l21mr13226558vsn.240.1556011214603;
+	Tue, 23 Apr 2019 02:20:14 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 23 Apr 2019 02:14:18 -0700
-Subject: .pc files are not avilable at build time
+From: Alessio Igor Bogani <alessioigorbogani@gmail.com>
+Date: Tue, 23 Apr 2019 11:20:01 +0200
+Message-ID: <CAPk1OjELjHPtwrpuXJJzZZvf_9vGFWJ-CKo4jW73m1FjNJtgQw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Generate an SDK with both 32 and 64 bit versions of the glibc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,35 +67,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2019 11:57:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <BB4C0DD68A2EC446BE8F87899B2CD150@TOSHIBA-TSIP.COM>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 23 Apr 2019 09:20:17 -0000
+Content-Type: multipart/alternative; boundary="000000000000b68b7705872f1721"
 
-SGkgYWxsLA0KDQpJIGFtIHRyeWluZyB0byBidWlsZCBidHJmcy10b29scyByZWNpcGVzLml0IG5l
-ZWRzIHRoZSBleDJmcy5wYw0KcGtnY29uZmlnIGZpbGUuaSBoYXZlIGFscmVkeSBpbnN0YWxsZWQg
-ZTJmc3Byb2dzIHJlY2lwZSBpdCBjcmVhdGVkIHRoZQ0KZXgyZnMucGMgaW4gaW1hZ2UgZGlyZWN0
-b3J5LmJ1dCBidHJmc3Rvb2xzIHVuYWJsZSB0byB0YWtlIHRoZSBwa2djb25maWcNCmZpbGUuDQoN
-CnBsZXNlIGFueSBoZWxwIG1lIGhvdyB0byBwcm92aWRlIGV4MmZzLnBjIGZpbGUgZm9yIGJ1aWxk
-IGJ0cmZzLXRvb2xzDQoNClJlZ2FyZHMNCkFyY2hhbmEKVGhlIGluZm9ybWF0aW9uIGNvbnRhaW5l
-ZCBpbiB0aGlzIGUtbWFpbCBtZXNzYWdlIGFuZCBpbiBhbnkNCmF0dGFjaG1lbnRzL2FubmV4dXJl
-L2FwcGVuZGljZXMgaXMgY29uZmlkZW50aWFsIHRvIHRoZSANCnJlY2lwaWVudCBhbmQgbWF5IGNv
-bnRhaW4gcHJpdmlsZWdlZCBpbmZvcm1hdGlvbi4gDQpJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5k
-ZWQgcmVjaXBpZW50LCBwbGVhc2Ugbm90aWZ5IHRoZQ0Kc2VuZGVyIGFuZCBkZWxldGUgdGhlIG1l
-c3NhZ2UgYWxvbmcgd2l0aCBhbnkgDQphdHRhY2htZW50cy9hbm5leHVyZS9hcHBlbmRpY2VzLiBZ
-b3Ugc2hvdWxkIG5vdCBkaXNjbG9zZSwNCmNvcHkgb3Igb3RoZXJ3aXNlIHVzZSB0aGUgaW5mb3Jt
-YXRpb24gY29udGFpbmVkIGluIHRoZQ0KbWVzc2FnZSBvciBhbnkgYW5uZXh1cmUuIEFueSB2aWV3
-cyBleHByZXNzZWQgaW4gdGhpcyBlLW1haWwgDQphcmUgdGhvc2Ugb2YgdGhlIGluZGl2aWR1YWwg
-c2VuZGVyIGV4Y2VwdCB3aGVyZSB0aGUgc2VuZGVyIA0Kc3BlY2lmaWNhbGx5IHN0YXRlcyB0aGVt
-IHRvIGJlIHRoZSB2aWV3cyBvZiANClRvc2hpYmEgU29mdHdhcmUgSW5kaWEgUHZ0LiBMdGQuIChU
-U0lQKSxCYW5nYWxvcmUuDQoNCkFsdGhvdWdoIHRoaXMgdHJhbnNtaXNzaW9uIGFuZCBhbnkgYXR0
-YWNobWVudHMgYXJlIGJlbGlldmVkIHRvIGJlDQpmcmVlIG9mIGFueSB2aXJ1cyBvciBvdGhlciBk
-ZWZlY3QgdGhhdCBtaWdodCBhZmZlY3QgYW55IGNvbXB1dGVyIA0Kc3lzdGVtIGludG8gd2hpY2gg
-aXQgaXMgcmVjZWl2ZWQgYW5kIG9wZW5lZCwgaXQgaXMgdGhlIHJlc3BvbnNpYmlsaXR5DQpvZiB0
-aGUgcmVjaXBpZW50IHRvIGVuc3VyZSB0aGF0IGl0IGlzIHZpcnVzIGZyZWUgYW5kIG5vIHJlc3Bv
-bnNpYmlsaXR5IA0KaXMgYWNjZXB0ZWQgYnkgVG9zaGliYSBFbWJlZGRlZCBTb2Z0d2FyZSBJbmRp
-YSBQdnQuIEx0ZCwgZm9yIGFueSBsb3NzIG9yDQpkYW1hZ2UgYXJpc2luZyBpbiBhbnkgd2F5IGZy
-b20gaXRzIHVzZS4K
+--000000000000b68b7705872f1721
+Content-Type: text/plain; charset="UTF-8"
 
+Hi all,
 
+I'm trying to install a third parted developed tool (closed source)
+into my x86_64 SDK. Unfortunately it is composed by a mix of 32 and 64
+bit binaries thus `bitbake myimage -c populate_sdk` fails with:
+
+Error:
+ Problem: conflicting requests
+  - nothing provides libpthread.so.0 needed by
+nativesdk-scw-2019-r0.x86_64_nativesdk
+
+I guess that libpthread.so.0 is the missing 32 bit variant of the glibc library.
+
+How can I make bitbake to install 32 bit version of the glibc
+alongside the above mentioned tool?
+
+Thanks in advance!
+
+Ciao,
+Alessio
+
+--000000000000b68b7705872f1721
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="auto"><pre style="white-space:pre-wrap">Hi all,
+
+I&#39;m trying to install a third parted developed tool (closed source)
+into my x86_64 SDK. Unfortunately it is composed by a mix of 32 and 64
+bit binaries thus `bitbake myimage -c populate_sdk` fails with:
+
+Error:
+ Problem: conflicting requests
+  - nothing provides libpthread.so.0 needed by
+nativesdk-scw-2019-r0.x86_64_nativesdk
+
+I guess that libpthread.so.0 is the missing 32 bit variant of the glibc library.
+
+How can I make bitbake to install 32 bit version of the glibc
+alongside the above mentioned tool?
+
+Thanks in advance!
+
+Ciao,
+Alessio</pre></div>
+
+--000000000000b68b7705872f1721--
