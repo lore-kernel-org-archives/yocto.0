@@ -1,60 +1,61 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <ms.priyanshu.sharma@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63BADE00CEA; Tue, 23 Apr 2019 02:52:13 -0700 (PDT)
+	id B6E07E00950; Tue, 23 Apr 2019 03:07:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ms.priyanshu.sharma[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.181 listed in list.dnswl.org]
-Received: from mail-it1-f181.google.com (mail-it1-f181.google.com
-	[209.85.166.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EED42E00D13
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 02:52:04 -0700 (PDT)
-Received: by mail-it1-f181.google.com with SMTP id y134so22395139itc.5
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 02:52:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=OVNSuuKorrAFuuX/ZPLKnhHAayzDz3ZHrIISYDg2snE=;
-	b=1quiE28675iWwRBqkIfoYxUO4B8+pzx1B2JiflQ119sqZ+7QdlVV4S7cVaRqaVDtqV
-	8gn7xVsofh5LYchGoL+CWjvLqFo43HY6K7FWVf4dsOwAJ09aYEC6XYs6fumGSoZoARxh
-	I9v0/3JcYKhgNN6MpG6MJbZhIZjNQfWHE3dQWjIVzUao7f7Y/xsYarozbV3Af2DqMxix
-	cQkQJWxL94DLszf5boVncVzBNyS7a/ga3m7S/0Ca1quIpQZjTdoiz8nnvxCFbBz9uMgN
-	nVmyTRVoizgoqEpmHU3N/DQCT9A2xhhcp2BshVhF4MQWgEmiJS1tOtT8nPlPmw2lzRka
-	Meyg==
+	*      [209.85.210.46 listed in list.dnswl.org]
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com
+	[209.85.210.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C18CE008F2
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 03:07:52 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id 64so12259110otb.8
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 03:07:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=uRuMTJjKBB9fgKv1f/8d9SlIKFvGgb4ziHofz+nByqA=;
+	b=btyQjd3Y5R2DRGyrkStQuykSuW7SwyI0lw4Dfx38DUstDavkTTDSf8oHfg4CU6pkcN
+	gstlA6K2y4n2FZdSwFDeE1YSkhqBYsaqeQMEyTW2dbFJgHiE6pzauYdddFhEm7GbTrQ8
+	svXw7VU12keu4E3BXG0/r2OmWjWQdEqgNL8sbUOHkk3fHiGJROgmnynoJcwUEgRHFFC/
+	kGKfK/Tn4H10yslta/T8gynHwT57FHMiqgOxABOi69Eth+skjfbvODwvhEMZZ/dSRXwQ
+	Xd5uTCz1F4Qme6Xsb/CiEfvbw/NNHezx+jYf+v8/EmIzX9jjlZyP5YWjtq07CJ6Nau60
+	AO2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=OVNSuuKorrAFuuX/ZPLKnhHAayzDz3ZHrIISYDg2snE=;
-	b=ZdOhG8844LrHXEY4fLyo2cOGDs4t+cgtQC+TCaDBzvC4p09dgrOidNwBwnp5rQ5i/R
-	I1Y+y5vQqmAL18K4BUIsChjq/EbOFthasg1OfzeL5xcfWzbbwL48+RjV+Xfif3JRFNad
-	eQcd0MB9g0FBGWmfqHaojloam+gLu9RIZBHdUiUihy4gxYghHyk374i9um4xxkM2H/Ga
-	d92wZQ+vrw1p/GlHAQcfZthKywqeyVivBCcGpJS8ZBdengGMyY6N3DomIhhPyXShlm9b
-	Qs806X17eGJagub2KVUq2hnle1TM5wAy4ek69y6Qczi0/YKGWvVLTq4E4gejQlHy9qeh
-	0pvA==
-X-Gm-Message-State: APjAAAXVUB7BDJXgVojo+ygPlXLCZW7NWaUyqXD6iaFqlbVH8OwpEuX7
-	bIGQGyDgOEEAGvHsakL4gnxh42ycHMoeGVq1onbxr3yU
-X-Google-Smtp-Source: APXvYqytnWa748WOkPgMsy0foEVmwazFqnFYxvos4++8lru2nVW4Dq1WfzDP4MKUF8N08l75k5KIXte4yQ3jk6dkOZs=
-X-Received: by 2002:a24:ad2:: with SMTP id 201mr1244383itw.26.1556013124409;
-	Tue, 23 Apr 2019 02:52:04 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=uRuMTJjKBB9fgKv1f/8d9SlIKFvGgb4ziHofz+nByqA=;
+	b=OKXEBbvGI3ghXGaXK5jowJXC6nxn4pO1UCIHX3fbTd2EAodl9Zzs670SJ/dvhkPryg
+	+NfjyvF3JhaL/QuGULRm2vsXWZvhYMiOZTyyi5P5NqbdzkFgLdZfsz5jHSg0XLv6ebc6
+	ELfC5OQ8tJOJyBxr3//h516jTndZDYj9Quq+rbeNnXYdNRUbVyJ9YlvddM4SVz/ew+2g
+	BPwu6Ek1AwU+x1N+oRL2hQDak7+bxWkTL+3AxTDCFiOEE09PI0OrH/9mH9+HTacTTSlx
+	F+rbh7Rfw8tS/ILoKL4OtwIhxbSYUzb4S58h3iKRNO1ezNaLCkAn7+c6/7wcEOxJqI8s
+	f1ew==
+X-Gm-Message-State: APjAAAXPbQcVqmN6yQmvcg9OYJN/LoJZ+GFblFusURhvatGCNBIsW6jT
+	WzF3xvpPLPPLUmXcETYyp0+RUumOPxSYqz45iE6VVF8B
+X-Google-Smtp-Source: APXvYqzYk2uhLn/3Dn7t1HTPMdsYBah1r65d0PQ6VMszgUYVoH7aNbellyAit4rrSL+g+UUbRMNLQ0f9WrKmERZzfPg=
+X-Received: by 2002:a9d:6ad1:: with SMTP id m17mr855229otq.108.1556014071538; 
+	Tue, 23 Apr 2019 03:07:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <1555933846.5224.23.camel@toshiba-tsip.com>
-In-Reply-To: <1555933846.5224.23.camel@toshiba-tsip.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 23 Apr 2019 10:51:52 +0100
-Message-ID: <CAJTo0LYzO4NfWtDpSShBDiouUke7nRMMP7WwWSsCrFPHtz4BjQ@mail.gmail.com>
-To: Archana Polampalli <Archana.c727@toshiba-tsip.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: .pc files are not avilable at build time
+From: Priyanshu Sharma <ms.priyanshu.sharma@gmail.com>
+Date: Tue, 23 Apr 2019 15:37:40 +0530
+Message-ID: <CAA_f9ePxLuPytZav9z=9qcJzTNHZKvoqfyPJd4LZxVzBgQ6BnQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: How to remove packages from Image coming because of RDEPENDS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,46 +67,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Apr 2019 09:52:13 -0000
+X-List-Received-Date: Tue, 23 Apr 2019 10:07:52 -0000
+Content-Type: multipart/alternative; boundary="000000000000ffe95205872fc1b6"
+
+--000000000000ffe95205872fc1b6
 Content-Type: text/plain; charset="UTF-8"
 
-Works for me.  What is the actual error you're seeing?
+Hi,
 
-On Tue, 23 Apr 2019 at 10:17, Archana Polampalli
-<Archana.c727@toshiba-tsip.com> wrote:
->
-> Hi all,
->
-> I am trying to build btrfs-tools recipes.it needs the ex2fs.pc
-> pkgconfig file.i have alredy installed e2fsprogs recipe it created the
-> ex2fs.pc in image directory.but btrfstools unable to take the pkgconfig
-> file.
->
-> plese any help me how to provide ex2fs.pc file for build btrfs-tools
->
-> Regards
-> Archana
-> The information contained in this e-mail message and in any
-> attachments/annexure/appendices is confidential to the
-> recipient and may contain privileged information.
-> If you are not the intended recipient, please notify the
-> sender and delete the message along with any
-> attachments/annexure/appendices. You should not disclose,
-> copy or otherwise use the information contained in the
-> message or any annexure. Any views expressed in this e-mail
-> are those of the individual sender except where the sender
-> specifically states them to be the views of
-> Toshiba Software India Pvt. Ltd. (TSIP),Bangalore.
->
-> Although this transmission and any attachments are believed to be
-> free of any virus or other defect that might affect any computer
-> system into which it is received and opened, it is the responsibility
-> of the recipient to ensure that it is virus free and no responsibility
-> is accepted by Toshiba Embedded Software India Pvt. Ltd, for any loss or
-> damage arising in any way from its use.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+How can we remove inclusion of any package which comes because some other
+package RDPENDS on it?
 
+For example, rpcbind recipe RDEPENDS on shadow and libpam packages, because
+of which if IMAGE_INSTALL+="rpcbind" is mentioned in recipe ( even though
+shadow and libpam are not added like this explicilty) , shadow and libpam
+packages get packaged in Image rootfs.
+This even includes any bin/sbin provided by shadow/libpam, even when they
+are not needed in rootfs.
+
+Is there an optimum way to control inclusion of RDEPENDS packages?
+One way is to use ROOTFS_POST_PROCESS and remove specific files after
+do_rootfs task is done.
+But is there a way to remove entire package, instead of removing each file ?
+
+Warm Regards,
+Priyanshu Sharma
+
+--000000000000ffe95205872fc1b6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>How can we remove inclusion of any =
+package which comes because some other package RDPENDS on it?</div><div><br=
+></div><div>For example, rpcbind recipe RDEPENDS on shadow and libpam packa=
+ges, because of which if IMAGE_INSTALL+=3D&quot;rpcbind&quot; is mentioned =
+in recipe ( even though shadow and libpam are not added like this explicilt=
+y) , shadow and libpam packages get packaged in Image rootfs.</div><div>Thi=
+s even includes any bin/sbin provided by shadow/libpam, even when they are =
+not needed in rootfs.</div><div><br></div><div>Is there an optimum way to c=
+ontrol inclusion of RDEPENDS packages?=C2=A0</div><div>One way is to use RO=
+OTFS_POST_PROCESS and remove specific files after do_rootfs task is done.=
+=C2=A0</div><div>But is there a way to remove entire package, instead of re=
+moving each file ?</div><div><br></div><div>Warm Regards,</div><div>Priyans=
+hu Sharma</div><div><br></div></div>
+
+--000000000000ffe95205872fc1b6--
