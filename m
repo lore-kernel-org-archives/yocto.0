@@ -1,61 +1,60 @@
-Return-Path: <alessioigorbogani@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 50817E0088B; Tue, 23 Apr 2019 02:20:17 -0700 (PDT)
+	id AF799E00927; Tue, 23 Apr 2019 02:51:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alessioigorbogani[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.49 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.166.179 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com
-	[209.85.217.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27AE6E006D8
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 02:20:15 -0700 (PDT)
-Received: by mail-vs1-f49.google.com with SMTP id d8so7789752vsp.2
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 02:20:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=qvf78+l551I7yEsaRkdYWl2lzJC5EkLPVKUhrsUHAJA=;
-	b=KIrPtklzWR7GkqKkHjU5qFcLE/pHaLl8GfJ8Y7+xl5H4zlrFuXntFdLNqXToVG8Hz7
-	iJdv+ZARlqegx+38m3xDZtTUluyXnrSe+Dkjqz1vbK3p2ayOdJubBYkwLT5rqW3eaaDc
-	P8M8kgXcu2wTf4w856oeYqYYXcOvvZhKF5zJsA1AD3kOq++6hqC25fDvmkJP8g7LtbEX
-	zx3CW4Ll+D5m84ER6FRtDt4cySRLGExF69K88wSWt2vqHwvX+OB45GRkq58Kt28TSu45
-	PMQD14+EXVIHTfleacDltfwLfIwCsBKpgEKo01w+wXS2XNDB27EuBZcHz1qaRuCxEKjB
-	1e7g==
+Received: from mail-it1-f179.google.com (mail-it1-f179.google.com
+	[209.85.166.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72178E0088B
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 02:51:29 -0700 (PDT)
+Received: by mail-it1-f179.google.com with SMTP id q14so4203586itk.0
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 02:51:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=SiKq/r/4gDZCrtg4JKW3lJ537mjX02nzUfRoToiOelI=;
+	b=gfeIE0QQlbwADwnW4LAr/jtaahgC72s0+nPLuBIFJLt1oDo868yx0WJsBVy4+GDVlf
+	zoyoW0bkCP7o4z7Z2+NeX4JQU8wWEjjIg/cBiB8zqePtvS0pPa14eDPQa2t1QwfqCY4U
+	NV+y0DyiJf2wG+LYMDAw+N94KL72fW8/aZrBwulKiCdQzNdoCQPoTLQmqNnxuXuCPDl2
+	yn7X2kCqVhqvdVg/VoXeIGXi244Clr0TTXv6O7De61FzB6+DUGdLQaFrwxq54TYC4MbS
+	lFKHN0379j1FIwHBAQJRtyD4btuuUNH1PTBpCqPY5bAMlL0RK4ynYy1blqN/q6XDeAWu
+	8SlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=qvf78+l551I7yEsaRkdYWl2lzJC5EkLPVKUhrsUHAJA=;
-	b=mg5z5Ie2N4Obh7eH3K0YhK+OaRdXsups9oxuAaxSxWnzbSlq5rJoNE6oqdOlEBB0vH
-	TjWX9XR1WC1XOEKgsoO78fzLPAdD346QnRYJs+20uPVdRSYyN72VBwN7a1faD3i2apOO
-	FJc3zzDsv27N6VWlnIaGqQSHSOhacdNPw53uWqFR8KMGfZUwEmAwn2i+QnarqFuiJKAA
-	fZp5TAIgSSFbQUUGWuAZfC1cfvSF4f1cVC6GTdoZLDyfx+jygvPmOBxREeDr5Jtc8OgV
-	vQMlCptnfj9qIjvRGmgA5xvm9zgFeTNDbMvUq7hEdBqhUWDzm7Rzt2tfPOblbKug8vuD
-	GkGw==
-X-Gm-Message-State: APjAAAX0UfGd3c+xQgbA1hN97/uOIeNaePYtlAjm2yx6ssxa9DXhmLNq
-	Yo4xiW9NKVHsCwEY2wNusiucwJWV8CS8ZsfunLO1YApo
-X-Google-Smtp-Source: APXvYqzITVshJi1JhO45VyBTRdMKOzpcdNUeMh/kREgHJIbWUoEMlZzVIWeh7MrGO4EgXcDCYwX8HPW6Mvvvo0XMLz0=
-X-Received: by 2002:a67:ba15:: with SMTP id l21mr13226558vsn.240.1556011214603;
-	Tue, 23 Apr 2019 02:20:14 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=SiKq/r/4gDZCrtg4JKW3lJ537mjX02nzUfRoToiOelI=;
+	b=q3XMQT+GmN6RjM9S8rKX7B1+F8hVzl7FZPYFiHS17URIENKCHCR7SsCgrhvW4nKKvj
+	h+uCUwgxNYQkb0eo1IN3fOzNmBZzPMMb4/JQ17iTZoI6X0P1vADgCH3mNmRbhmNPEqcI
+	nHXklMN+SyOhJLVDHuZgJPXcJTBBgZdSPC5rcR2o3WOuRWRpyyNiALEA9NYeff6PCMPm
+	H11uwwwvlRyAI7IMsRl1NTy1VTVfsgAaqvFDvBXaWmkv6ot6vuqJ4qeOn2UD0B9CXmro
+	OcPPO5KmEqPmwHSR/J26/9BcQEuk/CmV8BHcS45CU9wqGJoYK/2BOXMsdr5l5WwLqRUD
+	H8oQ==
+X-Gm-Message-State: APjAAAUxgBtWfY+H48tAEq3Ko3o/yV0vj1lDqhT064xY3YHUmzbR2RSt
+	7DeDGuDeNETEoNPWu8wj91Hgd0ncMRJEJB6qTWbnrg==
+X-Google-Smtp-Source: APXvYqy7btMcX93/OS0A2k0oF2SSsMZfSODJRcTlsMboqjRbPIZdeE0gVh703ezCj6l/X6yE3QZ+QBcEbzf88l+Yie0=
+X-Received: by 2002:a02:c955:: with SMTP id u21mr17544031jao.105.1556013089207;
+	Tue, 23 Apr 2019 02:51:29 -0700 (PDT)
 MIME-Version: 1.0
-From: Alessio Igor Bogani <alessioigorbogani@gmail.com>
-Date: Tue, 23 Apr 2019 11:20:01 +0200
-Message-ID: <CAPk1OjELjHPtwrpuXJJzZZvf_9vGFWJ-CKo4jW73m1FjNJtgQw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Generate an SDK with both 32 and 64 bit versions of the glibc
+References: <CAFq4t4hR=jdVUS+0PrmCxU7sHJNOCO9GxEK=MD=TtbCWr2LdYA@mail.gmail.com>
+In-Reply-To: <CAFq4t4hR=jdVUS+0PrmCxU7sHJNOCO9GxEK=MD=TtbCWr2LdYA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 23 Apr 2019 10:51:16 +0100
+Message-ID: <CAJTo0LZpyzafwdzDOAcMT0tmxshQgrhkhb_9MjQBAuKSxEAGDQ@mail.gmail.com>
+To: Peter Balazovic <balazovic.peter@gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: config.guess: unable to guess system type
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,55 +66,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Apr 2019 09:20:17 -0000
-Content-Type: multipart/alternative; boundary="000000000000b68b7705872f1721"
-
---000000000000b68b7705872f1721
+X-List-Received-Date: Tue, 23 Apr 2019 09:51:31 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi all,
+The problem is that config.guess, last modified 2009-09-18, has failed
+to recognize the operating system you are using. It is advised that
+you download the most up to date version of the config scripts from
 
-I'm trying to install a third parted developed tool (closed source)
-into my x86_64 SDK. Unfortunately it is composed by a mix of 32 and 64
-bit binaries thus `bitbake myimage -c populate_sdk` fails with:
+  http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD
+and
+  http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD
 
-Error:
- Problem: conflicting requests
-  - nothing provides libpthread.so.0 needed by
-nativesdk-scw-2019-r0.x86_64_nativesdk
+You're trying to build a piece of software that was released on
+2013-08-17 using a config.guess from 2009, both of which predate
+aarch64 being actually available.
 
-I guess that libpthread.so.0 is the missing 32 bit variant of the glibc library.
+There's a perfectly good recipe for libsdl in oe-core, or if you
+insist on building it on-target then you can either follow the
+instructions or install the gnu-config package into your image and
+copy the config.* files from /usr/share/gnu-config/.
 
-How can I make bitbake to install 32 bit version of the glibc
-alongside the above mentioned tool?
+Ross
 
-Thanks in advance!
+On Tue, 23 Apr 2019 at 10:22, Peter Balazovic <balazovic.peter@gmail.com> wrote:
+>
+> I am trying to compile on my Yocto system from source the SDL
+> http://www.libsdl.org/release/SDL-1.2.15.tar.gz and by running ./configure I got error to configure the build
+>
+> checking build system type... ./build-scripts/config.guess: unable to guess system type
+>
+> This script, last modified 2009-09-18, has failed to recognize
+> the operating system you are using. It is advised that you
+> download the most up to date version of the config scripts from
+>
+>   http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD
+> and
+>   http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD
+>
+> If the version you run (./build-scripts/config.guess) is already up to date, please
+> send the following data and any information you think might be
+> pertinent to <config-patches@gnu.org> in order to provide the needed
+> information to handle your system.
+>
+> config.guess timestamp = 2009-09-18
+> uname -m = aarch64
+> uname -r = 4.14.78-imx_4.14.78_1.0.0_ga+g66620c3
+> uname -s = Linux
+> uname -v = #1 SMP PREEMPT Fri Feb 1 09:09:25 UTC 2019
+>
+> /usr/bin/uname -p =
+> /bin/uname -X     =
+>
+> hostinfo               =
+> /bin/universe          =
+> /usr/bin/arch -k       =
+> /bin/arch              =
+> /usr/bin/oslevel       =
+> /usr/convex/getsysinfo =
+>
+> UNAME_MACHINE = aarch64
+> UNAME_RELEASE = 4.14.78-imx_4.14.78_1.0.0_ga+g66620c3
+> UNAME_SYSTEM  = Linux
+> UNAME_VERSION = #1 SMP PREEMPT Fri Feb 1 09:09:25 UTC 2019
+> configure: error: cannot guess build type; you must specify one
+>
+> What would be causing the problem?
+> Thanks.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Ciao,
-Alessio
-
---000000000000b68b7705872f1721
-Content-Type: text/html; charset="UTF-8"
-
-<div dir="auto"><pre style="white-space:pre-wrap">Hi all,
-
-I&#39;m trying to install a third parted developed tool (closed source)
-into my x86_64 SDK. Unfortunately it is composed by a mix of 32 and 64
-bit binaries thus `bitbake myimage -c populate_sdk` fails with:
-
-Error:
- Problem: conflicting requests
-  - nothing provides libpthread.so.0 needed by
-nativesdk-scw-2019-r0.x86_64_nativesdk
-
-I guess that libpthread.so.0 is the missing 32 bit variant of the glibc library.
-
-How can I make bitbake to install 32 bit version of the glibc
-alongside the above mentioned tool?
-
-Thanks in advance!
-
-Ciao,
-Alessio</pre></div>
-
---000000000000b68b7705872f1721--
