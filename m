@@ -1,46 +1,48 @@
-Return-Path: <joe@deserted.net>
+Return-Path: <uol@pengutronix.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E3C9AE00C1E; Wed, 24 Apr 2019 06:06:32 -0700 (PDT)
+	id 1B87FE00C14; Wed, 24 Apr 2019 06:35:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00, DATE_IN_PAST_12_24, 
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
-	* 1.0 DATE_IN_PAST_12_24 Date: is 12 to 24 hours before Received: date
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7661FE00BAA
-	for <yocto@yoctoproject.org>; Wed, 24 Apr 2019 06:06:31 -0700 (PDT)
-Received: from svr-orw-mbx-07.mgc.mentorg.com ([147.34.90.207])
-	by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
-	id 1hJHbZ-0006OY-5C from joe@deserted.net ;
-	Wed, 24 Apr 2019 06:06:29 -0700
-Received: from SVR-ORW-MBX-09.mgc.mentorg.com (147.34.90.209) by
-	SVR-ORW-MBX-07.mgc.mentorg.com (147.34.90.207) with Microsoft SMTP
-	Server (TLS) id 15.0.1320.4; Wed, 24 Apr 2019 06:06:26 -0700
-Received: from burninator2.cal.mentorg.com (147.34.91.1) by
-	SVR-ORW-MBX-09.mgc.mentorg.com (147.34.90.209) with Microsoft SMTP
-	Server id
-	15.0.1320.4 via Frontend Transport; Wed, 24 Apr 2019 06:06:26 -0700
-Received: by burninator2.cal.mentorg.com (Postfix, from userid 5844)
-	id 34A2D28A134C; Tue, 23 Apr 2019 12:00:46 -0400 (EDT)
-Date: Tue, 23 Apr 2019 12:00:46 -0400
-From: Joe MacDonald <joe@deserted.net>
-To: Yi Zhao <yi.zhao@windriver.com>
-Message-ID: <20190423160043.GA5013@deserted.net>
-References: <1555654248-5791-1-git-send-email-yi.zhao@windriver.com>
+	*      [85.220.165.71 listed in list.dnswl.org]
+X-Greylist: delayed 1145 seconds by postgrey-1.32 at yocto-www;
+	Wed, 24 Apr 2019 06:35:02 PDT
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
+	[85.220.165.71])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 871A4E00AD5
+	for <yocto@yoctoproject.org>; Wed, 24 Apr 2019 06:35:02 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+	by metis.ext.pengutronix.de with esmtps
+	(TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.89)
+	(envelope-from <uol@pengutronix.de>)
+	id 1hJHki-0001pj-CP; Wed, 24 Apr 2019 15:15:56 +0200
+Received: from uol by dude.hi.pengutronix.de with local (Exim 4.92-RC6)
+	(envelope-from <uol@pengutronix.de>)
+	id 1hJHkh-0008H4-Ob; Wed, 24 Apr 2019 15:15:55 +0200
+References: <CAAx3WaA0NR=cdGJdPHrkSuENKT7m60GW=pcjCjAHpgwEFPMHwg@mail.gmail.com>
+	<A2A9E37E9C946847B2258F923F7CFE42047B38BE@GOEMAIL-Server2.goerlitz.int>
+	<6rh8ceu2rn.fsf@pengutronix.de>
+	<CAAx3WaDQKbNg0tXZd07s8i_5PTDVctuOcScDMDbXFMmotjoJpw@mail.gmail.com>
+	<CAAx3WaCL2XBSarSVpDN+KdwwYoUDEd3cLT1MfecFWriUB=OT-Q@mail.gmail.com>
+User-agent: mu4e 1.1.0; emacs 26.1
+From: Ulrich =?utf-8?Q?=C3=96lmann?= <u.oelmann@pengutronix.de>
+To: yocto@yoctoproject.org
+In-reply-to: <CAAx3WaCL2XBSarSVpDN+KdwwYoUDEd3cLT1MfecFWriUB=OT-Q@mail.gmail.com>
+Date: Wed, 24 Apr 2019 15:15:55 +0200
+Message-ID: <6rbm0vbl2s.fsf@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <1555654248-5791-1-git-send-email-yi.zhao@windriver.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-800 http://www.vim.org
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH] refpolicy: refresh patches
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: uol@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+	SAEximRunCond expanded to false
+X-PTX-Original-Recipient: yocto@yoctoproject.org
+Subject: Re: Multiple ubifs partition
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,241 +54,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Apr 2019 13:06:33 -0000
-X-Groupsio-MsgNum: 44902
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="gBBFr7Ir9EOA20Yy"
-Content-Disposition: inline
-
---gBBFr7Ir9EOA20Yy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 24 Apr 2019 13:35:04 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Yi,
+Hi Gabriele,
 
-Where did this patch refresh come from?  Since the goal right now for the
-refpolicy recipes is to move to a purely git-based approach, I'd prefer to =
-not
-do patch refreshes that don't come from an export of the patched git trees,=
- like
-the one I'd mentioned in my earlier email here:
+On Wed, Apr 24 2019 at 14:06 +0200, Gabriele Zampieri <gabbla.malist@gmail.=
+com> wrote:
+> I'm now testing genimage via meta-ptx in my Yocto workflow, but I found a
+> problem: I cannot set a SRC_URI in my custom image recipe (that inherit
+> from core-image which in turn inherit from image) because do_fetch and
+> do_unpack tasks have noexec set to 1. If I specify the SRC_URI with my
+> genimage.config, bitbake exits, complaining about LIC_FILE_CHECKSUM (that
+> is correctly specified). If I hack image.bbclass and comment out
+>
+> #do_fetch[noexec] =3D "1"
+>
+>
+> #do_unpack[noexec] =3D "1"
+>
+> The process start correctly. Is there a way to avoid touching image.bbcla=
+ss
+> and install my configuration from the image recipe?
+>
+> Thanks,
+> Gabriele
 
-	https://www.mail-archive.com/yocto@yoctoproject.org/msg43933.html
+you need one or more recipe(s) that construct(s) your filesystem(s) and
+a separate one that makes a flashable image out of that (see the
+introductory documentation in 'genimage.bbclass'). In the former you
+inherit 'core-image' and only in the latter which inherits 'genimage'
+you have to set the SRC_URI to point to your 'genimage.config'.
 
-Thanks,
--Joe.
+Best regards
+Ulrich
 
-[[yocto] [meta-selinux][PATCH] refpolicy: refresh patches] On 19.04.19 (Fri=
- 14:10) Yi Zhao wrote:
 
-> Refrefsh 0001-refpolicy-minimum-audit-logging-getty-audit-related-.patch
-> and 0004-refpolicy-minimum-systemd-mount-logging-authlogin-ad.patch.
-> Remove the trailing line: \ No newline at end of file
->=20
-> Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-> ---
->  ...y-minimum-audit-logging-getty-audit-related-.patch |  1 -
->  ...y-minimum-systemd-mount-logging-authlogin-ad.patch | 19 ++++++++-----=
-------
->  ...y-minimum-audit-logging-getty-audit-related-.patch |  1 -
->  ...y-minimum-systemd-mount-logging-authlogin-ad.patch | 19 ++++++++-----=
-------
->  4 files changed, 16 insertions(+), 24 deletions(-)
->=20
-> diff --git a/recipes-security/refpolicy/refpolicy-2.20190201/0001-refpoli=
-cy-minimum-audit-logging-getty-audit-related-.patch b/recipes-security/refp=
-olicy/refpolicy-2.20190201/0001-refpolicy-minimum-audit-logging-getty-audit=
--related-.patch
-> index f92ddb8..10d2bcb 100644
-> --- a/recipes-security/refpolicy/refpolicy-2.20190201/0001-refpolicy-mini=
-mum-audit-logging-getty-audit-related-.patch
-> +++ b/recipes-security/refpolicy/refpolicy-2.20190201/0001-refpolicy-mini=
-mum-audit-logging-getty-audit-related-.patch
-> @@ -62,7 +62,6 @@ index 63e92a8e..8ab46925 100644
->  +allow auditd_t initrc_t:unix_dgram_socket sendto;
->  +
->  +allow klogd_t initrc_t:unix_dgram_socket sendto;
-> -\ No newline at end of file
->  --=20
->  2.19.1
-> =20
-> diff --git a/recipes-security/refpolicy/refpolicy-2.20190201/0004-refpoli=
-cy-minimum-systemd-mount-logging-authlogin-ad.patch b/recipes-security/refp=
-olicy/refpolicy-2.20190201/0004-refpolicy-minimum-systemd-mount-logging-aut=
-hlogin-ad.patch
-> index 98b6156..65ef55b 100644
-> --- a/recipes-security/refpolicy/refpolicy-2.20190201/0004-refpolicy-mini=
-mum-systemd-mount-logging-authlogin-ad.patch
-> +++ b/recipes-security/refpolicy/refpolicy-2.20190201/0004-refpolicy-mini=
-mum-systemd-mount-logging-authlogin-ad.patch
-> @@ -33,13 +33,13 @@ Signed-off-by: Shrikant Bobade <shrikant_bobade@mento=
-r.com>
->  Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
->  ---
->   policy/modules/system/authlogin.te | 2 ++
-> - policy/modules/system/logging.te   | 7 ++++++-
-> + policy/modules/system/logging.te   | 5 +++++
->   policy/modules/system/mount.te     | 3 +++
->   policy/modules/system/systemd.te   | 5 +++++
-> - 4 files changed, 16 insertions(+), 1 deletion(-)
-> + 4 files changed, 15 insertions(+)
-> =20
->  diff --git a/policy/modules/system/authlogin.te b/policy/modules/system/=
-authlogin.te
-> -index 345e07f3..39f860e0 100644
-> +index 345e07f..39f860e 100644
->  --- a/policy/modules/system/authlogin.te
->  +++ b/policy/modules/system/authlogin.te
->  @@ -472,3 +472,5 @@ optional_policy(`
-> @@ -49,23 +49,20 @@ index 345e07f3..39f860e0 100644
->  +
->  +allow chkpwd_t proc_t:filesystem getattr;
->  diff --git a/policy/modules/system/logging.te b/policy/modules/system/lo=
-gging.te
-> -index 8ab46925..520f7da6 100644
-> +index c9991ab..520f7da 100644
->  --- a/policy/modules/system/logging.te
->  +++ b/policy/modules/system/logging.te
-> -@@ -627,4 +627,9 @@ allow auditd_t tmpfs_t:file { getattr setattr create=
- open read append };
-> - allow auditd_t tmpfs_t:dir { open read search add_name write getattr se=
-arch };
-> +@@ -628,3 +628,8 @@ allow auditd_t tmpfs_t:dir { open read search add_na=
-me write getattr search };
->   allow auditd_t initrc_t:unix_dgram_socket sendto;
->  =20
-> --allow klogd_t initrc_t:unix_dgram_socket sendto;
-> -\ No newline at end of file
-> -+allow klogd_t initrc_t:unix_dgram_socket sendto;
-> + allow klogd_t initrc_t:unix_dgram_socket sendto;
->  +
->  +allow syslogd_t self:shm create;
->  +allow syslogd_t self:sem { create read unix_write write };
->  +allow syslogd_t self:shm { read unix_read unix_write write };
->  +allow syslogd_t tmpfs_t:file { read write };
->  diff --git a/policy/modules/system/mount.te b/policy/modules/system/moun=
-t.te
-> -index 3dcb8493..a87d0e82 100644
-> +index 3dcb849..a87d0e8 100644
->  --- a/policy/modules/system/mount.te
->  +++ b/policy/modules/system/mount.te
->  @@ -231,3 +231,6 @@ optional_policy(`
-> @@ -76,7 +73,7 @@ index 3dcb8493..a87d0e82 100644
->  +allow mount_t proc_t:filesystem getattr;
->  +allow mount_t initrc_t:udp_socket { read write };
->  diff --git a/policy/modules/system/systemd.te b/policy/modules/system/sy=
-stemd.te
-> -index a6f09dfd..68b80de3 100644
-> +index a6f09df..68b80de 100644
->  --- a/policy/modules/system/systemd.te
->  +++ b/policy/modules/system/systemd.te
->  @@ -993,6 +993,11 @@ allow systemd_tmpfiles_t systemd_journal_t:file { r=
-elabelfrom relabelto };
-> diff --git a/recipes-security/refpolicy/refpolicy-git/0001-refpolicy-mini=
-mum-audit-logging-getty-audit-related-.patch b/recipes-security/refpolicy/r=
-efpolicy-git/0001-refpolicy-minimum-audit-logging-getty-audit-related-.patch
-> index 3cc5395..517782d 100644
-> --- a/recipes-security/refpolicy/refpolicy-git/0001-refpolicy-minimum-aud=
-it-logging-getty-audit-related-.patch
-> +++ b/recipes-security/refpolicy/refpolicy-git/0001-refpolicy-minimum-aud=
-it-logging-getty-audit-related-.patch
-> @@ -62,7 +62,6 @@ index e6221a02..4cc73327 100644
->  +allow auditd_t initrc_t:unix_dgram_socket sendto;
->  +
->  +allow klogd_t initrc_t:unix_dgram_socket sendto;
-> -\ No newline at end of file
->  --=20
->  2.19.1
-> =20
-> diff --git a/recipes-security/refpolicy/refpolicy-git/0004-refpolicy-mini=
-mum-systemd-mount-logging-authlogin-ad.patch b/recipes-security/refpolicy/r=
-efpolicy-git/0004-refpolicy-minimum-systemd-mount-logging-authlogin-ad.patch
-> index 06b9192..5132cd8 100644
-> --- a/recipes-security/refpolicy/refpolicy-git/0004-refpolicy-minimum-sys=
-temd-mount-logging-authlogin-ad.patch
-> +++ b/recipes-security/refpolicy/refpolicy-git/0004-refpolicy-minimum-sys=
-temd-mount-logging-authlogin-ad.patch
-> @@ -33,13 +33,13 @@ Signed-off-by: Shrikant Bobade <shrikant_bobade@mento=
-r.com>
->  Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
->  ---
->   policy/modules/system/authlogin.te | 2 ++
-> - policy/modules/system/logging.te   | 7 ++++++-
-> + policy/modules/system/logging.te   | 5 +++++
->   policy/modules/system/mount.te     | 3 +++
->   policy/modules/system/systemd.te   | 5 +++++
-> - 4 files changed, 16 insertions(+), 1 deletion(-)
-> + 4 files changed, 15 insertions(+)
-> =20
->  diff --git a/policy/modules/system/authlogin.te b/policy/modules/system/=
-authlogin.te
-> -index 28f74bac..dfa46612 100644
-> +index 28f74ba..dfa4661 100644
->  --- a/policy/modules/system/authlogin.te
->  +++ b/policy/modules/system/authlogin.te
->  @@ -479,3 +479,5 @@ optional_policy(`
-> @@ -49,23 +49,20 @@ index 28f74bac..dfa46612 100644
->  +
->  +allow chkpwd_t proc_t:filesystem getattr;
->  diff --git a/policy/modules/system/logging.te b/policy/modules/system/lo=
-gging.te
-> -index 4cc73327..98c2bd19 100644
-> +index 541f5c6..98c2bd1 100644
->  --- a/policy/modules/system/logging.te
->  +++ b/policy/modules/system/logging.te
-> -@@ -627,4 +627,9 @@ allow auditd_t tmpfs_t:file { getattr setattr create=
- open read append };
-> - allow auditd_t tmpfs_t:dir { open read search add_name write getattr se=
-arch };
-> +@@ -628,3 +628,8 @@ allow auditd_t tmpfs_t:dir { open read search add_na=
-me write getattr search };
->   allow auditd_t initrc_t:unix_dgram_socket sendto;
->  =20
-> --allow klogd_t initrc_t:unix_dgram_socket sendto;
-> -\ No newline at end of file
-> -+allow klogd_t initrc_t:unix_dgram_socket sendto;
-> + allow klogd_t initrc_t:unix_dgram_socket sendto;
->  +
->  +allow syslogd_t self:shm create;
->  +allow syslogd_t self:sem { create read unix_write write };
->  +allow syslogd_t self:shm { read unix_read unix_write write };
->  +allow syslogd_t tmpfs_t:file { read write };
->  diff --git a/policy/modules/system/mount.te b/policy/modules/system/moun=
-t.te
-> -index 3dcb8493..a87d0e82 100644
-> +index 3dcb849..a87d0e8 100644
->  --- a/policy/modules/system/mount.te
->  +++ b/policy/modules/system/mount.te
->  @@ -231,3 +231,6 @@ optional_policy(`
-> @@ -76,7 +73,7 @@ index 3dcb8493..a87d0e82 100644
->  +allow mount_t proc_t:filesystem getattr;
->  +allow mount_t initrc_t:udp_socket { read write };
->  diff --git a/policy/modules/system/systemd.te b/policy/modules/system/sy=
-stemd.te
-> -index f6455f6f..b13337b9 100644
-> +index f6455f6..b13337b 100644
->  --- a/policy/modules/system/systemd.te
->  +++ b/policy/modules/system/systemd.te
->  @@ -1011,6 +1011,11 @@ allow systemd_tmpfiles_t systemd_journal_t:file {=
- relabelfrom relabelto };
-> --=20
-> 2.7.4
->=20
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Il giorno mer 13 mar 2019 alle ore 16:14 Gabriele Zampieri <
+> gabbla.malist@gmail.com> ha scritto:
+>
+>> Hi all,
+>>
+>> thank you very much for the suggestion, I will check genimage and test i=
+t.
+>>
+>> Gabriele
+>>
+>> Il giorno gio 7 mar 2019 alle ore 16:23 Ulrich =C3=96lmann <
+>> u.oelmann@pengutronix.de> ha scritto:
+>>
+>>> Hi there,
+>>>
+>>> On Thu, Mar 07 2019 at 15:11 +0100, Stelling2 Carsten <
+>>> Carsten.Stelling2@goerlitz.com> wrote:
+>>> > Have you seen https://github.com/pengutronix/genimage?
+>>>
+>>> you can find it included within https://github.com/pengutronix/meta-ptx
+>>> with an accompanying genimage.bbclass.
+>>>
+>>> Best regards
+>>> Ulrich
+>>>
+>>> > Regards,
+>>> >
+>>> > Carsten
+>>> >
+>>> > Von: yocto-bounces@yoctoproject.org [mailto:
+>>> yocto-bounces@yoctoproject.org] Im Auftrag von Gabriele Zampieri
+>>> > Gesendet: Montag, 4. M=C3=A4rz 2019 12:17
+>>> > An: yocto@yoctoproject.org
+>>> > Betreff: [yocto] Multiple ubifs partition
+>>> >
+>>> > Hi all,
+>>> >
+>>> > I'm trying to build a distribution that has multiple partitions. The
+>>> desiderata is something like:
+>>> >
+>>> > - rootfs.ubifs mounted on /
+>>> > - data.ubifs mounted on /data
+>>> > - opt.ubifs mounted on /opt
+>>> >
+>>> > I was wondering if there is a standard way to achieve the goal. I see
+>>> that there is a tool called wic, but it does not seems to support ubifs=
+. I
+>>> could post process the tarball image and doing stuff with my scripts, b=
+ut
+>>> I'd prefer doing this in a single bitbake run. Can you suggest somethin=
+g?
+>>> >
+>>> > Thanks,
+>>> > Gabriele
+>>>
+>>>
+>>> --
+>>> Pengutronix e.K.                           | Ulrich =C3=96lmann        =
+       |
+>>> Industrial Linux Solutions                 | http://www.pengutronix.de/
+>>> |
+>>> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0  =
+  |
+>>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-555=
+5 |
+>>>
+>>
 
---gBBFr7Ir9EOA20Yy
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+--
+Pengutronix e.K.                           | Ulrich =C3=96lmann            =
+   |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
-iF0EABECAB0WIQRjqRhJknEwCqrWVXzAW9yWWiDRfAUCXL82qwAKCRDAW9yWWiDR
-fFV9AJ0f2qUEavDcZukUedWUYe8+/ns1kACfZDdHmxf5C4CPiDCWj4Dz+j7DxPk=
-=G5R8
------END PGP SIGNATURE-----
-
---gBBFr7Ir9EOA20Yy--
