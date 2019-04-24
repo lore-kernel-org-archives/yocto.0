@@ -1,60 +1,36 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D1D7FE00B81; Tue, 23 Apr 2019 16:10:49 -0700 (PDT)
+	id 864CDE00BAA; Tue, 23 Apr 2019 19:03:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.42 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com
-	[209.85.166.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4763EE00942
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 16:10:49 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id u12so3565548iop.0
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 16:10:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=kFja0bZP0SPGq/4Tf/UNVSOWrTSxumURa/S1tZ6F+o8=;
-	b=vE6bXG0f2LOsVG/qZryX1mFkvcdJJXCyuH7tU8pojfdu3rItAwxl6EJqSPWK3xVa+r
-	/nxGLDZbSKhhj6Ilxod0sOrSiEfCI8wyuYwhiReSaczQTXI61VaWJksEw4YTE99way5/
-	R62lKqh9kBLyzam0kZ8MyYzyEv2STMGiTbUCcPUj+q0bo5xt/MAIJRa6xuE5imVp+HW3
-	ZB5c/dgy+VDmrvznUOKokNsiY+ZaufUdS8ox6nyE937zekc4oZIMnoA0hL7tIYDGlVVd
-	zc+1yMWfQDPa/esN6veYKzjy4oqs7bmQ+il2kVUqBKj68TTP3F6qU0JAI05rZgyuG/zN
-	o8OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=kFja0bZP0SPGq/4Tf/UNVSOWrTSxumURa/S1tZ6F+o8=;
-	b=X+MTvBbWQyt/XUXy3winmDNBZXddbO6+pZvUbWFA23ctAiZHzPycOBWE1VPeFJoLrg
-	fJuOuh5+y2JmboVCXGVs6KDuI/wjGXgcV6tPG0y43qe0NwBj+OVbZqMA7PFvY/ltpm5N
-	N/Mo8DLZTKBhOXHlZ0x5RHmYoudjGUTo3xLDKNTYzobGy4uPB5KgHTuDSF4D+XI1LxHL
-	Xhgs7a7G3ff39F5escKT5DDT28vejHvTFGPRoDXHumjELIRpDSfDoFtPB9WPpgGRiD6Q
-	eULjQIeIu6XNrCf4bdCTYRPgUyptt5aZ9Bj6ekkQreBCWAa1buQp2CAY+quaS+jq4RIF
-	1XjQ==
-X-Gm-Message-State: APjAAAVqTAehn8G1WfqeMqfYlsqckh7rlfhd1E+CyzB2L25yzVdtmTp3
-	tyqDF2TZzmNgyq8nwi1GhvDAQ8tRsBicXt3e9wYWzw==
-X-Google-Smtp-Source: APXvYqyKw+k1U2RSwFMnuL+Ji7QHnoR+1Zupk8Z/J+ZNAz2YWCIT0HSS8pBCr7X6eO5ih/tpwc5+YsGbyqyIMOSArVc=
-X-Received: by 2002:a6b:8e05:: with SMTP id q5mr9825783iod.270.1556061048648; 
-	Tue, 23 Apr 2019 16:10:48 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82969E0091A
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 19:03:57 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x3O23uQn012482
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2019 19:03:56 -0700 (PDT)
+Received: from localhost (128.224.162.195) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
+	Tue, 23 Apr 2019 19:03:56 -0700
+From: Yi Zhao <yi.zhao@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 24 Apr 2019 10:03:25 +0800
+Message-ID: <1556071405-32093-2-git-send-email-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1556071405-32093-1-git-send-email-yi.zhao@windriver.com>
+References: <1556071405-32093-1-git-send-email-yi.zhao@windriver.com>
 MIME-Version: 1.0
-References: <CAA=hcWSdDkk86YAqQ98oLippf+XtTk=WCraM8cu+W9=j-R+gLg@mail.gmail.com>
-In-Reply-To: <CAA=hcWSdDkk86YAqQ98oLippf+XtTk=WCraM8cu+W9=j-R+gLg@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 24 Apr 2019 00:10:37 +0100
-Message-ID: <CAJTo0La+At4hqdktEQ_CRtT=Tn=cjQAnpnMunAzL8e0ZreMcyw@mail.gmail.com>
-To: JH <jupiter.hce@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: WARNING message: Building library didn't pass LDFLAGS? [ldflags]
+X-Originating-IP: [128.224.162.195]
+Subject: [meta-security][PATCH 2/2] meta-tpm/README: update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,34 +42,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Apr 2019 23:10:49 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 24 Apr 2019 02:03:58 -0000
+Content-Type: text/plain
 
-It means that the compile didn't respect LDFLAGS from the environment
-(which sets the ELF hashing type).  Most usual build systems handle
-this for you, but if your recipe uses hand-coded Makefiles then you'll
-need to figure out what they're doing and how to make it respect
-$LDFLAGS.
+Add more description
 
-Ross
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ meta-tpm/README | 57 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
 
-On Tue, 23 Apr 2019 at 23:49, JH <jupiter.hce@gmail.com> wrote:
->
-> Hi,
->
-> What is the following WARNING means, how can I fix it?
->
-> yocto-sample-1.0.0-0 do_package_qa: QA Issue: No GNU_HASH in the ELF
-> binary my_library, didn't pass LDFLAGS? [ldflags]
->
-> Thank you.
->
-> Kind regards,
->
-> - jupiter
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+diff --git a/meta-tpm/README b/meta-tpm/README
+index bbc70bb..dd662b3 100644
+--- a/meta-tpm/README
++++ b/meta-tpm/README
+@@ -2,3 +2,60 @@ meta-tpm layer
+ ==============
+ 
+ This layer contains base TPM recipes.
++
++Dependencies
++============
++
++This layer depends on:
++
++  URI: git://git.openembedded.org/openembedded-core
++  branch: master
++  revision: HEAD
++  prio: default
++
++  URI: git://git.openembedded.org/meta-openembedded/meta-oe
++  branch: master
++  revision: HEAD
++  prio: default
++
++Adding the meta-tpm layer to your build
++========================================
++
++In order to use this layer, you need to make the build system aware of
++it.
++
++Assuming this layer exists at the top-level of your
++yocto build tree, you can add it to the build system by adding the
++location of the meta-tpm layer to bblayers.conf, along with any
++other layers needed. e.g.:
++
++  BBLAYERS ?= " \
++    /path/to/oe-core/meta \
++    /path/to/meta-openembedded/meta-oe \
++    /path/to/layer/meta-tpm \
++
++
++Maintenance
++-----------
++
++Send pull requests, patches, comments or questions to yocto@yoctoproject.org
++
++When sending single patches, please using something like:
++'git send-email -1 --to yocto@yoctoproject.org --subject-prefix=meta-security][PATCH'
++
++These values can be set as defaults for this repository:
++
++$ git config sendemail.to yocto@yoctoproject.org
++$ git config format.subjectPrefix meta-security][PATCH
++
++Now you can just do 'git send-email origin/master' to send all local patches.
++
++Maintainers:    Armin Kuster <akuster808@gmail.com>
++
++
++License
++=======
++
++All metadata is MIT licensed unless otherwise stated. Source code included
++in tree for individual recipes is under the LICENSE stated in each recipe
++(.bb file) unless otherwise stated.
+-- 
+2.7.4
+
 
