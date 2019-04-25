@@ -1,40 +1,74 @@
-Return-Path: <andreea.volosincu@windriver.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 955F9E00CB9; Wed, 24 Apr 2019 21:34:30 -0700 (PDT)
+	id 46F74E00CD5; Thu, 25 Apr 2019 02:55:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B14CE00B1B
-	for <yocto@yoctoproject.org>; Wed, 24 Apr 2019 21:34:29 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x3P4YRhU008928
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 24 Apr 2019 21:34:28 -0700 (PDT)
-Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.68]) by
-	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0439.000;
-	Wed, 24 Apr 2019 21:34:27 -0700
-From: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: =?Windows-1252?Q?Join_Us_=96_April_30th_=96_Live_Coding_with_Yocto_Projec?=
-	=?Windows-1252?Q?t_-_First_Session?=
-Thread-Index: AdT7HkSkbvS25uveQ9ifrgLTkNUafg==
-Date: Thu, 25 Apr 2019 04:34:26 +0000
-Message-ID: <A084970538D2234B96D99D06FA9D974FC3771AE7@ALA-MBD.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.119.99]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.47 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+	[209.85.221.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89311E00CB9
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2019 02:55:35 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id c6so23722578wrm.1
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2019 02:55:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:user-agent:mime-version:content-transfer-encoding;
+	bh=GhAZN2/bueStWm0QnqkZ72eeNoja2FoMh1eR+oyJGzc=;
+	b=WAKqDMnFZXEOFeJ8PbWjR83oIZFBF+BNODSrG3dn/ZVKZhqo+CkA/2fNKWyBa3cBYs
+	+RvuwPNo8/4n+F006LZqYpP5Z7Rl1qzZ4vCTzbNZyvY3swBvBV9OsUxPsJacKrI4bUYO
+	whMh98h+2FaefwsGOEQ186ni1rH4FWWQiV1oI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:user-agent:mime-version:content-transfer-encoding;
+	bh=GhAZN2/bueStWm0QnqkZ72eeNoja2FoMh1eR+oyJGzc=;
+	b=FECra/n2+01QZ8wXfaxcXLtAlZ810lsaG7kDBtWlTW6aaX6IrDphVc4HiJsSO1x9zO
+	qCLNpV7r3pcSPaUw0wq9fc64lS9LwPtsz0JDg1DCPEc+pi/aTyDtLc0t/VdmPWChNk0y
+	FHJTPNw2bz0hEOp25JnEohCK1I+c5KZOtCxM/mWz1QgdLthnt60PwNFhufWbPAKrFHoa
+	QoajhbPR19dXoYFJ4hGspnLIOd2zODRJGBqwE9isrELM66e0z6G8sRaeMTTynCrLkH8b
+	F7x5BESU3e7fKTm0ipxQauIJLHyYteOKBtu5hJF6Xo3j2Ozphwza6XqEKDoOcidSq5NO
+	f4GQ==
+X-Gm-Message-State: APjAAAU2aGbKRLmTbzyZerT5WhJ7ywI2qakEV9f4SR8wwrIfSQuJwAAX
+	nEvmRo8ShjRyKmVADVuxaJPBew==
+X-Google-Smtp-Source: APXvYqzKkfpfDYCRLEETAgJrNFjquxav3e0NRtixVSDdIhzDxAMyCtHq06WSi5BxnmDvZCvwkXvQJw==
+X-Received: by 2002:adf:b696:: with SMTP id j22mr5541107wre.85.1556186134732; 
+	Thu, 25 Apr 2019 02:55:34 -0700 (PDT)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+	by smtp.gmail.com with ESMTPSA id
+	z19sm17008584wml.44.2019.04.25.02.55.33
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Thu, 25 Apr 2019 02:55:33 -0700 (PDT)
+Message-ID: <bcc6fe9fbe54e3896d02932dbd7dac46f658c536.camel@linuxfoundation.org>
+From: richard.purdie@linuxfoundation.org
+To: "Jain, Sangeeta" <sangeeta.jain@intel.com>, "'yocto@yoctoproject.org'"
+	<yocto@yoctoproject.org>, "Eggleton, Paul" <paul.eggleton@intel.com>, 
+	'Michael Halstead' <mhalstead@linuxfoundation.org>, "Erway, Tracey M"
+	<tracey.m.erway@intel.com>,  "'sjolley.yp.pm@gmail.com'"
+	<sjolley.yp.pm@gmail.com>, 
+	"'openembedded-core-request@lists.openembedded.org'"
+	<openembedded-core-request@lists.openembedded.org>
+Date: Thu, 25 Apr 2019 10:55:32 +0100
+In-Reply-To: <015AB11D45F2C442929CB2765DAE738634DDCE9B@PGSMSX110.gar.corp.intel.com>
+References: <015AB11D45F2C442929CB2765DAE738634DD6D05@PGSMSX110.gar.corp.intel.com>
+	<191c2490a17a1e5b18b6a0d98659c30d766adde4.camel@linuxfoundation.org>
+	<015AB11D45F2C442929CB2765DAE738634DDCE9B@PGSMSX110.gar.corp.intel.com>
+User-Agent: Evolution 3.32.1-2 
 MIME-Version: 1.0
-Subject: =?UTF-8?B?Sm9pbiBVcyDigJMgQXByaWwgMzB0aCDigJMgTGl2ZSBDb2Rpbmcgd2l0aCBZb2N0byBQcm9qZWN0IC0gRmlyc3QgU2Vzc2lvbg==?=
+Subject: Re: QA cycle report for 2.5.3 RC3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,136 +80,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2019 04:34:30 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_A084970538D2234B96D99D06FA9D974FC3771AE7ALAMBDcorpadwrs_"
+X-List-Received-Date: Thu, 25 Apr 2019 09:55:36 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---_000_A084970538D2234B96D99D06FA9D974FC3771AE7ALAMBDcorpadwrs_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+On Wed, 2019-04-24 at 06:28 +0000, Jain, Sangeeta wrote:
+> That looks great to me. 
+> As a further improvement for sharing of test results, I am working to
+> create a wiki page for consolidated 
+> test results. For 2.5.3, it can be viewed at:
+> https://wiki.yoctoproject.org/wiki/WW16_-_2019-04-18_-_Full_Test_Cycle_2.5.3_RC3
 
-Hello Everybody,
+The reasons for a wiki page are historical, mainly from the testopia
+plugin to the wiki. I think going forward we should focus on having a
+test report included in the release artefacts and that we shouldn't
+need the wiki page.
 
-Yocto Project is kicking off the live streaming series for Linux developers=
- =96 Live Coding with Yocto Project. Bring your questions, see Yocto Projec=
-t developers step through live tutorials and share your ideas for next sess=
-ions. We talk, explore devtools and write code along the way.
+> After you have added more results on AB, I will change some existing
+> links on this web page with the new ones.
+> 
+> Another thought I have is that since for any release, all data will
+> be removed from public AB after few days of release,
+> Should I include here a  link to "yocto-testresults" git repo? It
+> will make this wiki page more useful for reference in future as well.
 
-The first session =96
-When: April 30, 2019, 5:00 PM CET
-Where: Yocto Project Twitch channel - https://www.twitch.tv/yocto_project
-What: Yocto Project developer, Josef Holzmayr, will go over download to fir=
-st build steps
+Release data is moved from the autobuilder to the main public release
+location, e.g.:
 
-Add it to your calendar =96  https://calendar.google.com/calendar/ical/d7um=
-m3pdhorsnnjbe1cvbgfhlk%40group.calendar.google.com/public/basic.ics
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.6.2/testresults/
 
-See you soon!
+So if we put a test report as a release artefact, it moves with the
+rest of the release artefacts and we're all good!
 
-Yocto Project Advocacy Team
+This avoids the need for any links as all the data is in one place.
 
---_000_A084970538D2234B96D99D06FA9D974FC3771AE7ALAMBDcorpadwrs_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+Cheers,
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-Hello Everybody,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-Yocto Project is kicking off the live streaming series for Linux developers=
- =96 Live Coding with Yocto Project. Bring your questions, see Yocto Projec=
-t developers step through live tutorials and share
- your ideas for next sessions. We talk, explore devtools and write code alo=
-ng the way.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-The first session =96 <o:p>
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-When: April 30, 2019, 5:00 PM CET<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-Where: Yocto Project Twitch channel - https://www.twitch.tv/yocto_project<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-What: Yocto Project developer, Josef Holzmayr, will go over download to fir=
-st build steps<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-Add it to your calendar =96&nbsp; https://calendar.google.com/calendar/ical=
-/d7umm3pdhorsnnjbe1cvbgfhlk%40group.calendar.google.com/public/basic.ics<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-See you soon!<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-Yocto Project Advocacy Team<o:p></o:p></span></p>
-</div>
-</body>
-</html>
+Richard
 
---_000_A084970538D2234B96D99D06FA9D974FC3771AE7ALAMBDcorpadwrs_--
+
