@@ -1,74 +1,65 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 46F74E00CD5; Thu, 25 Apr 2019 02:55:36 -0700 (PDT)
+	id E7A3FE00CB9; Thu, 25 Apr 2019 05:05:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.47 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*      [199.212.143.9 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
-	[209.85.221.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89311E00CB9
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2019 02:55:35 -0700 (PDT)
-Received: by mail-wr1-f47.google.com with SMTP id c6so23722578wrm.1
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2019 02:55:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:user-agent:mime-version:content-transfer-encoding;
-	bh=GhAZN2/bueStWm0QnqkZ72eeNoja2FoMh1eR+oyJGzc=;
-	b=WAKqDMnFZXEOFeJ8PbWjR83oIZFBF+BNODSrG3dn/ZVKZhqo+CkA/2fNKWyBa3cBYs
-	+RvuwPNo8/4n+F006LZqYpP5Z7Rl1qzZ4vCTzbNZyvY3swBvBV9OsUxPsJacKrI4bUYO
-	whMh98h+2FaefwsGOEQ186ni1rH4FWWQiV1oI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=GhAZN2/bueStWm0QnqkZ72eeNoja2FoMh1eR+oyJGzc=;
-	b=FECra/n2+01QZ8wXfaxcXLtAlZ810lsaG7kDBtWlTW6aaX6IrDphVc4HiJsSO1x9zO
-	qCLNpV7r3pcSPaUw0wq9fc64lS9LwPtsz0JDg1DCPEc+pi/aTyDtLc0t/VdmPWChNk0y
-	FHJTPNw2bz0hEOp25JnEohCK1I+c5KZOtCxM/mWz1QgdLthnt60PwNFhufWbPAKrFHoa
-	QoajhbPR19dXoYFJ4hGspnLIOd2zODRJGBqwE9isrELM66e0z6G8sRaeMTTynCrLkH8b
-	F7x5BESU3e7fKTm0ipxQauIJLHyYteOKBtu5hJF6Xo3j2Ozphwza6XqEKDoOcidSq5NO
-	f4GQ==
-X-Gm-Message-State: APjAAAU2aGbKRLmTbzyZerT5WhJ7ywI2qakEV9f4SR8wwrIfSQuJwAAX
-	nEvmRo8ShjRyKmVADVuxaJPBew==
-X-Google-Smtp-Source: APXvYqzKkfpfDYCRLEETAgJrNFjquxav3e0NRtixVSDdIhzDxAMyCtHq06WSi5BxnmDvZCvwkXvQJw==
-X-Received: by 2002:adf:b696:: with SMTP id j22mr5541107wre.85.1556186134732; 
-	Thu, 25 Apr 2019 02:55:34 -0700 (PDT)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	z19sm17008584wml.44.2019.04.25.02.55.33
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Thu, 25 Apr 2019 02:55:33 -0700 (PDT)
-Message-ID: <bcc6fe9fbe54e3896d02932dbd7dac46f658c536.camel@linuxfoundation.org>
-From: richard.purdie@linuxfoundation.org
-To: "Jain, Sangeeta" <sangeeta.jain@intel.com>, "'yocto@yoctoproject.org'"
-	<yocto@yoctoproject.org>, "Eggleton, Paul" <paul.eggleton@intel.com>, 
-	'Michael Halstead' <mhalstead@linuxfoundation.org>, "Erway, Tracey M"
-	<tracey.m.erway@intel.com>,  "'sjolley.yp.pm@gmail.com'"
-	<sjolley.yp.pm@gmail.com>, 
-	"'openembedded-core-request@lists.openembedded.org'"
-	<openembedded-core-request@lists.openembedded.org>
-Date: Thu, 25 Apr 2019 10:55:32 +0100
-In-Reply-To: <015AB11D45F2C442929CB2765DAE738634DDCE9B@PGSMSX110.gar.corp.intel.com>
-References: <015AB11D45F2C442929CB2765DAE738634DD6D05@PGSMSX110.gar.corp.intel.com>
-	<191c2490a17a1e5b18b6a0d98659c30d766adde4.camel@linuxfoundation.org>
-	<015AB11D45F2C442929CB2765DAE738634DDCE9B@PGSMSX110.gar.corp.intel.com>
-User-Agent: Evolution 3.32.1-2 
+	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
+Received: from barrelracingcanada.ca (cpanel4.indieserve.net [199.212.143.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C76C4E00C14
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2019 05:05:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=crashcourse.ca; s=default;
+	h=Content-Type:MIME-Version:Message-ID:Subject:
+	To:From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=aUeQKrLqD4HcgTgRg7klpdi0SgB2h5dRq71M0R8pyU0=;
+	b=MWLwZsTh/B1LL0As4PsRz7wtMA
+	ogTEFt3I9R3+5zuOA9d+0qqYQno2UzgOvtBoNrsnxkbd5f//jv6Cpd2vFQqV1EewKDT0waRKJkSu6
+	xZNedRbbQhkY73ZV/K5g+AV3HOCW2KueJ3bGOfyoeRKe67jiyUr9dljty+Ryh+pPybWPC/JtjffHP
+	VT6omiJ1CO6LHr7cyCCsrULLHqr2tyKQXUgU0u07wPPpQ9lb0d1jtIvjVoezbCOBVyB5VGX9aPB6G
+	dodqmvcr4Jlu6sOQwMAq9O5Ahi7PyTvSdDeXq7xMJOVczo2zcrliPlnsmzBRl3vb2lE42RMVbivEK
+	5Tm9t1Pw==;
+Received: from [72.142.126.219] (port=40956 helo=localhost.localdomain)
+	by cpanel4.indieserve.net with esmtpsa
+	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.91)
+	(envelope-from <rpjday@crashcourse.ca>) id 1hJd7s-0000Dd-IT
+	for yocto@yoctoproject.org; Thu, 25 Apr 2019 08:05:21 -0400
+Date: Thu, 25 Apr 2019 08:05:15 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.21.1904250752050.457@localhost.localdomain>
+User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
 MIME-Version: 1.0
-Subject: Re: QA cycle report for 2.5.3 RC3
+X-OutGoing-Spam-Status: No, score=-0.2
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel4.indieserve.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel4.indieserve.net: authenticated_id:
+	rpjday+crashcourse.ca/only user confirmed/virtual account not
+	confirmed
+X-Authenticated-Sender: cpanel4.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: ASSUME_PROVIDED, cmake-native and why cmake is subsequently not found?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,42 +71,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2019 09:55:36 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 25 Apr 2019 12:05:24 -0000
+Content-Type: text/plain; charset=US-ASCII
 
-On Wed, 2019-04-24 at 06:28 +0000, Jain, Sangeeta wrote:
-> That looks great to me. 
-> As a further improvement for sharing of test results, I am working to
-> create a wiki page for consolidated 
-> test results. For 2.5.3, it can be viewed at:
-> https://wiki.yoctoproject.org/wiki/WW16_-_2019-04-18_-_Full_Test_Cycle_2.5.3_RC3
 
-The reasons for a wiki page are historical, mainly from the testopia
-plugin to the wiki. I think going forward we should focus on having a
-test report included in the release artefacts and that we shouldn't
-need the wiki page.
+  (warning: i've been away from YP for well over a year and am now
+studiously trying to catch up, so i have some work to do.)
 
-> After you have added more results on AB, I will change some existing
-> links on this web page with the new ones.
-> 
-> Another thought I have is that since for any release, all data will
-> be removed from public AB after few days of release,
-> Should I include here a  link to "yocto-testresults" git repo? It
-> will make this wiki page more useful for reference in future as well.
+  currently trying to build a "core-image-minimal" for a zedboard on
+my wholly unsupported fedora 30 (branched) system, so i'm well aware
+there will almost certainly be breakage as i try to resolve version
+numbers and so on, but working off the "thud" branch, the first issue
+i had was trying to configure cmake-native -- the error message is
+exactly what you can read someone asking about here:
 
-Release data is moved from the autobuilder to the main public release
-location, e.g.:
+https://stackoverflow.com/questions/52663287/glibcxx-3-4-26-not-found
 
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.6.2/testresults/
+/home/rpjday/oe/builds/zedboard/tmp/work/x86_64-linux/cmake-native/3.12.2-r0/build/Bootstrap.cmk/cmake:
+/home/rpjday/oe/builds/zedboard/tmp/sysroots-uninative/x86_64-linux/usr/lib/libstdc++.so.6:
+version `GLIBCXX_3.4.26' not found (required by
+/home/rpjday/oe/builds/zedboard/tmp/work/x86_64-linux/cmake-native/3.12.2-r0/build/Bootstrap.cmk/cmake)
+| ---------------------------------------------
+| Error when bootstrapping CMake:
+| Problem while running initial CMake
+| ---------------------------------------------
 
-So if we put a test report as a release artefact, it moves with the
-rest of the release artefacts and we're all good!
+  i'm unsure how to resolve that easily, but my first reaction was,
+"if i already have cmake installed on the host, why not just take
+advantage of ASSUME_PROVIDED"? i recall from some time back asking why
+more host utils were not, by default, included in ASSUME_PROVIDED, and
+the answer (quite reasonably) was that one wants to have as few
+variables as possible for reliably replicated builds.
 
-This avoids the need for any links as all the data is in one place.
+  fair enough, but in my case, until i figure out how to fix that, i
+thought, why not just:
 
-Cheers,
+  ASSUME_PROVIDED += "cmake-native"
 
-Richard
+so i did, and that got me past the cmake-native build issue, until i
+hit this trying to build libsolv-native:
 
+DEBUG: Executing shell function do_configure
+/home/rpjday/oe/builds/zedboard/tmp/work/x86_64-linux/libsolv-native/0.6.35-r0/temp/run.do_configure.16705:
+line 130: cmake: command not found
+
+  hang on ... why would a subsequent recipe not be able to locate
+/usr/bin/cmake on my host after i explicitly identified cmake-native
+as assumed to be provided? is there something about the libsolv-native
+recipe that does not take that possibility into account? i'm just
+about to check, but if someone has an explanation for that, i'm
+all ears.
+
+  finally, regarding ASSUME_PROVIDED, given that i'm already living
+life dangerously with an unsupported distro, is there any harm in just
+loading up on ASSUME_PROVIDED packages, as long as they work? in many
+cases, i can see that the version that would be built by YP is close
+to, if not identical to, my host version. so other than risking
+breakage down the line as versions change, as long as the host
+packages work, is there any harm in just taking advantage of them?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                         http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
